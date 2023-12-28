@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-12 13:41+0300\n"
-"PO-Revision-Date: 2023-12-12 10:44\n"
+"PO-Revision-Date: 2023-12-12 12:53\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -4373,19 +4373,19 @@ msgstr "Выберите счёт назначения "
 
 #: mmchecking_list.cpp:1636
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
-msgstr ""
+msgstr "Это вызвано некоторыми элементами транзакции или деталями счета, не позволяющими перемещение"
 
 #: mmchecking_list.cpp:1637
 msgid "Moved"
-msgstr ""
+msgstr "Перемещено"
 
 #: mmchecking_list.cpp:1638
 msgid "Not moved"
-msgstr ""
+msgstr "Не перемещено"
 
 #: mmchecking_list.cpp:1641
 msgid "Some transactions could not be moved"
-msgstr ""
+msgstr "Некоторые транзакции не могут быть перемещены"
 
 #: mmchecking_list.cpp:1706
 msgid "Scheduled transaction saved."
@@ -7686,19 +7686,19 @@ msgstr "Присоединять"
 
 #: transactionsupdatedialog.cpp:511
 msgid "This is due to some elements of the transaction or account detail not allowing the update"
-msgstr ""
+msgstr "Это вызвано некоторыми элементами транзакции или деталей счета, не позволяющих обновление"
 
 #: transactionsupdatedialog.cpp:512
 msgid "Updated"
-msgstr ""
+msgstr "Обновленно"
 
 #: transactionsupdatedialog.cpp:513
 msgid "Not updated"
-msgstr ""
+msgstr "Не обновлено"
 
 #: transactionsupdatedialog.cpp:516
 msgid "Some transactions could not be updated"
-msgstr ""
+msgstr "Некоторые транзакции не могут быть обновлены"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
@@ -8007,7 +8007,7 @@ msgstr "Полный список закрытых задач доступен �
 
 #: util.cpp:1945
 msgid "Copy all text to clipboard"
-msgstr ""
+msgstr "Копировать весь текст в буфер обмена"
 
 #: util.h:192
 msgid "January"

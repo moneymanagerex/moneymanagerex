@@ -1,61 +1,68 @@
-Version 1.7.0 RC 1
+Version 1.7.1 Beta 1
 ~~~~~~~~~~~~~~~~~~~~
-Released: 2023-12-20
+Released: 2023-12-28
+
+
+Version 1.7.0
+~~~~~~~~~~~~~~~~~~~~
+Released: 2023-12-26
 
 Features:
-* #6247  GA4 integration
-* #6246  Have Flathub as the sole distribution mechanism for MMEX on Linux
-* #5401  Import with custom columns
-* #4232  Option to easily view all transactions for a payee by selection 
-* #6354  Update GRM submodule for 1.7.0 
-* #6333  Recent Files list doesn't always show the full path to the recent MMX .mmb files
-* #6332  Copy text on About window
-* #6322  wxWidgets 3.2.4 released
-* #6311  [Feature Request] Use Credit Card credit limit to format Credit Limit field automatically
-* #6308  Sort share accounts in the nav panel by STOCKNAME instead of STOCKID
-* #6305  Remove wxDatePickerCtrl workaround for MacOS
-* #6200  New/Edit Scheduled Transaction: Set Focus on Amount should select its value
-* #6185  General Manager Reports
-* #6143  Rename Full Transactions Report to Account View: All Transactions
-* #6069  Please extend the `Search` field to the end of the window.
-* #6063  Strings ordering
-* #6062  Organize vs Organise
-* #5989  Build with wxWidgets 3.2.3
-* #5464  Improve budget perfomance report
-* #5439  Addition of "classes" or "tags"
-* #1983  Change name of Recurring Transactions to Transaction Planner
-* #1349  Consolidate README.md and README.TXT
+* #6247 GA4 integration
+* #6246 Have Flathub as the sole distribution mechanism for MMEX on Linux
+* #5401 Import with custom columns
+* #4232 Option to easily view all transactions for a payee by selection
+* #6354 Update GRM submodule for 1.7.0
+* #6333 Recent Files list doesn't always show the full path to the recent MMX .mmb files
+* #6332 Copy text on About window
+* #6322 wxWidgets 3.2.4 released
+* #6311 [Feature Request] Use Credit Card credit limit to format Credit Limit field automatically
+* #6308 Sort share accounts in the nav panel by STOCKNAME instead of STOCKID
+* #6305 Remove wxDatePickerCtrl workaround for MacOS
+* #6200 New/Edit Scheduled Transaction: Set Focus on Amount should select its value
+* #6185 General Manager Reports
+* #6143 Rename Full Transactions Report to Account View: All Transactions
+* #6069 Please extend the `Search` field to the end of the window. Thank you
+* #6063 Strings ordering
+* #6062 Organize vs Organise
+* #5989 Build with wxWidgets 3.2.3
+* #5464 Improve budget perfomance report
+* #5439 Addition of "classes" or "tags"
+* #4899 Import dialog / Appearance of the list of templates
+* #4270 Import data into custom fields from CSV (& other file formats)
+* #1983 Change name of Recurring Transactions to Transaction Planner
+* #1349 Consolidate README.md and README.TXT
 
 Bugfixes:
-* #6346  Invalid Menu ID causing debug alert
-* #6338  No error message shown when unable to move transactions from one account to another with an invalid account creation data
-* #6323  Booking in foreign currency
-* #6296  MMEX Instance crashes when trying to create a new Asset
-* #6281  Plural when multiple transactions selected
-* #6280  `Tags` down-arrow too small
-* #6270  Transaction Report - Wrong Field(s) Become Hidden Due to Tags/Rate Column Indices
-* #6212  Transaction Report crashes if category starts with `+`
-* #6203  Refresh Stock Prices from Yahoo error "url using bad/illegal format or missing url" in version 1.7.0 beta.1
-* #6183  Tags Filtering
-* #6154  `Color` not showing in `Transaction Filter` as vertical scrollbar can not go any further down
-* #6141  MMEX 1.7 Beta 1 - High CPU & GPU usage when Edit Transaction and Transaction Filter dialogs are displayed
-* #6140  Dropdown menus issue (duplicated list)
-* #6102  Dashboard Transaction Statistics erroneously includes deleted transactions
-* #6098  View Since Statement Date does not work unless account statement is Locked
-* #6096  MMEX icon in ALT+TAB is blurry
-* #6089  Crash when adding a new asset
-* #6077  MMEX database Upgrade to version 18 Failed
-* #6074  Money format question
-* #6071  Saving account - deposit 0, saved as withdrawal
-* #6064  Memory leaks on CSV import
-* #6040  Refresh Stock Prices from Yahoo error "url using bad/illegal format or missing url"
-* #6036  Crash in theme manager
-* #5988  Homepage account balances wrong for some currencies
-* #5344  macOS menubar Window option position & localization
-* #5330  MacOS window refresh UI client area corruption
-* #5328  bad string (translations issue)
-* #5215  Transaction Filter dialog loses its saved display location on the screen
-* #1691  Stock errors                                                 
+* #6346 Invalid Menu ID causing debug alert
+* #6338 No error message shown when unable to move transactions from one account to another with an invalid account creation data
+* #6323 Booking in foreign currency
+* #6296 MMEX Instance crashes when trying to create a new Asset
+* #6281 Plural when multiple transactions selected
+* #6280 `Tags` down-arrow too small
+* #6270 Transaction Report - Wrong Field(s) Become Hidden Due to Tags/Rate Column Indices
+* #6212 Transaction Report crashes if category starts with `+`
+* #6203 Refresh Stock Prices from Yahoo error "url using bad/illegal format or missing url" in version 1.7.0 beta.1
+* #6183 Tags Filtering
+* #6154 `Color` not showing in `Transaction Filter` as vertical scrollbar can not go any further down
+* #6141 MMEX 1.7 Beta 1 - High CPU & GPU usage when Edit Transaction and Transaction Filter dialogs are displayed
+* #6140 Dropdown menus issue (duplicated list)
+* #6102 Dashboard Transaction Statistics erroneously includes deleted transactions
+* #6098 View Since Statement Date does not work unless account statement is Locked
+* #6096 MMEX icon in ALT+TAB is blurry
+* #6089 Crash when adding a new asset
+* #6077 MMEX database Upgrade to version 18 Failed
+* #6074 Money format question
+* #6071 Saving account - deposit 0, saved as withdrawal
+* #6064 Memory leaks on CSV import
+* #6040 Refresh Stock Prices from Yahoo error "url using bad/illegal format or missing url"
+* #6036 Crash in theme manager
+* #5988 Homepage account balances wrong for some currencies
+* #5344 macOS menubar Window option position & localization
+* #5330 MacOS window refresh UI client area corruption
+* #5328 bad string (translations issue)
+* #5215 Transaction Filter dialog loses its saved display location on the screen
+* #1691 Stock errors                                               
 
 
 Version 1.6.4
@@ -194,7 +201,7 @@ Released: 2022-12-18
 
 Notes:
 * Your database will be updated once you run this version. You will then not be able to open your database with earlier versions of the software or run Android versions with the same database. As ever, it is recommended to take a copy of your database prior to installing any new software version.
-* #1477 changes the DB schema for the storage of categories. Whilst this will not affected basic usage of MMEX if you have created GRM reports that use categories then you may need to update them. The standard GRM templates have been updated to accommodate the new schema and can be used as examples. In particular see: https://github.com/moneymanagerex/general-reports/tree/master/packages/Category/OneCategoryList
+* #1477 changes the DB schema for the storage of categories. Whilst this will not affected basic usage of MMEX if you have created GRM reports that use categories then you may need to update them. The standard GRM templates have been updated to accommodate the new schema and can be used as examples. 
 
 Features:
 * #1477 Nested Categories
@@ -956,7 +963,7 @@ Features:
 Notes:
 * Currency Exchange Rates
 * Virtual File System
-* Foreign language versions updated [crowdin.com](https://crowdin.com/project/moneymanagerex/activity_stream)
+* Foreign language versions updated on Crowdin
 
 Version 1.3.4
 ~~~~~~~~~~~~~
@@ -997,7 +1004,7 @@ Version 1.3.2
 Released: 2017-02-25
 
 Bugfixes:
-* Programs and Features icon in Windows. SF Issue https://sourceforge.net/p/moneymanagerex/bugs/972/
+* Programs and Features icon in Windows. SF Issue #972
 * Albanian lang file
 * Prevent Crash on Home page Issue #1019
 * Hebrew, Hungarian Translations
@@ -1076,7 +1083,7 @@ Bugfixes:
 * Wrong currency on repeating transactions (Issues #562, #568)
 * EOL support for CSV export/import (Issue #577)
 * ANSI encoding and date with time support for CSV import (Issue #579)
-* Problem with full screen mode on Mac (bug https://sourceforge.net/p/moneymanagerex/bugs/742/)
+* Problem with full screen mode on Mac (bug #742)
 * tmp folder permissions(Issue #559)
 
 Features:
@@ -1091,13 +1098,13 @@ Version 1.2.2
 Released: 2015-07-29
 
 Bugfixes:
-* Transaction Type Transfer From/To Error (bug https://sourceforge.net/p/moneymanagerex/bugs/707/)
+* Transaction Type Transfer From/To Error (bug #707)
 * Stock Account fix total value
-* Export of small withdrawals have wrong sign (bug https://sourceforge.net/p/moneymanagerex/bugs/695/)
+* Export of small withdrawals have wrong sign (bug #695)
 * Czech translation update
-* Colours on print and print preview are not the same (bug https://sourceforge.net/p/moneymanagerex/bugs/722/)
-* QIF import fixes (bug https://sourceforge.net/p/moneymanagerex/bugs/712/)
-* Cancel button label changed to Close for Currency dialogue (bug https://sourceforge.net/p/moneymanagerex/bugs/714/)
+* Colours on print and print preview are not the same (bug #722)
+* QIF import fixes (bug 712)
+* Cancel button label changed to Close for Currency dialogue (bug #714)
 
 Features:
 * Lithuanian translation added
@@ -1108,10 +1115,10 @@ Version 1.2.1
 Released: 2015-06-07
 
 * Bugfixes:
-* Negative 'Initial Balance' (bug https://sourceforge.net/p/moneymanagerex/bugs/692/)
-* Recurring Transactions navigation issue (bug https://sourceforge.net/p/moneymanagerex/bugs/679/)
-* Spelling mistakes (bugs https://sourceforge.net/p/moneymanagerex/bugs/676/), [#677](https://sourceforge.net/p/moneymanagerex/bugs/677/)
-* Temporary View Change (bug https://sourceforge.net/p/moneymanagerex/bugs/684/)
+* Negative 'Initial Balance' (bug #692)
+* Recurring Transactions navigation issue (bug #679)
+* Spelling mistakes (bugs #676, #677)
+* Temporary View Change (bug #684)
 * html format (issue #487)
 
 
@@ -1164,7 +1171,7 @@ Released: 2014-11-02
 
 Features:
 * Full UTF-8 and wide characters support in GRM and LUA
-* Full integration with WebApp @ http:\webapp.moneymanagerex.org
+* Full integration with WebApp
 * Added "unknown" payee\category in QIF, CSV and WebApp import
 * Navigation panel status saving
 * New JS pie charts on report
