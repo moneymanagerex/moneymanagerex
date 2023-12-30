@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-30 22:01+0300\n"
-"PO-Revision-Date: 2023-12-30 19:21\n"
+"PO-Revision-Date: 2023-12-30 20:29\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -7187,11 +7187,11 @@ msgstr "Introducir notas para describir esta transacción dividida"
 
 #: splittransactionsdialog.cpp:250
 msgid "&Add Split"
-msgstr ""
+msgstr "&Añadir desglose"
 
 #: splittransactionsdialog.cpp:255
 msgid "&Remove Split"
-msgstr ""
+msgstr "&Eliminar desglose"
 
 #: splittransactionsdialog.cpp:411
 msgid "Invalid Total Amount"
