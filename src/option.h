@@ -35,138 +35,138 @@ public:
 public:
     Option();
     static Option& instance();
-    void LoadOptions(bool include_infotable = true);
+    void LoadOptions(const bool include_infotable = true);
 
     // set and save the option: m_dateFormat
     void setDateFormat(const wxString& date_format);
     const wxString getDateFormat() const;
 
     // set and save the option: m_language
-    wxLanguage getLanguageID(bool get_db = false);
+    wxLanguage getLanguageID(const bool get_db = false);
     // get 2-letter ISO 639-1 code
-    const wxString getLanguageCode(bool get_db = false);
-    void setLanguage(wxLanguage& language);
+    const wxString getLanguageCode(const bool get_db = false);
+    void setLanguage(const wxLanguage& language);
 
     // set and save the option: m_userNameString
     void UserName(const wxString& username);
-    const wxString UserName() const;
+    const wxString& UserName() const;
 
     // set and save the option: m_localeNameString
     void LocaleName(const wxString& locale);
-    const wxString LocaleName() const;
+    const wxString& LocaleName() const;
 
     // set and save the option: m_financialYearStartDayString
     void FinancialYearStartDay(const wxString& setting);
-    const wxString FinancialYearStartDay() const;
+    const wxString& FinancialYearStartDay() const;
 
     // set and save the option: m_financialYearStartMonthString
     void FinancialYearStartMonth(const wxString& setting);
-    wxString FinancialYearStartMonth();
+    const wxString& FinancialYearStartMonth() const;
 
     // set the base currency ID
-    void setBaseCurrency(int base_currency_id);
+    void setBaseCurrency(const int base_currency_id);
     // returns the base currency ID
-    int getBaseCurrencyID();
+    int getBaseCurrencyID() const noexcept;
 
     // set and save the option: m_databaseUpdated
-    void DatabaseUpdated(bool value);
-    bool DatabaseUpdated();
+    void DatabaseUpdated(const bool value);
+    bool DatabaseUpdated() const noexcept;
 
-    void HideShareAccounts(bool value);
-    bool HideShareAccounts();
+    void HideShareAccounts(const bool value);
+    bool HideShareAccounts() const noexcept;
 
-    void HideDeletedTransactions(bool value);
-    bool HideDeletedTransactions();
+    void HideDeletedTransactions(const bool value);
+    bool HideDeletedTransactions() const noexcept;
 
-    void BudgetFinancialYears(bool value);
-    bool BudgetFinancialYears();
+    void BudgetFinancialYears(const bool value);
+    bool BudgetFinancialYears() const noexcept;
 
-    void BudgetIncludeTransfers(bool value);
-    bool BudgetIncludeTransfers();
+    void BudgetIncludeTransfers(const bool value);
+    bool BudgetIncludeTransfers() const noexcept;
 
-    void BudgetReportWithSummaries(bool value);
-    bool BudgetReportWithSummaries();
+    void BudgetReportWithSummaries(const bool value);
+    bool BudgetReportWithSummaries() const noexcept;
 
-    void BudgetOverride(bool value);
-    bool BudgetOverride();
+    void BudgetOverride(const bool value);
+    bool BudgetOverride() const noexcept;
 
     // Deduct monthly budget from yearly budget
-    void BudgetDeductMonthly(bool value);
-    bool BudgetDeductMonthly();
+    void BudgetDeductMonthly(const bool value);
+    bool BudgetDeductMonthly() const noexcept;
 
-    void TransPayeeSelection(int value);
-    int TransPayeeSelection();
+    void TransPayeeSelection(const int value);
+    int TransPayeeSelection() const noexcept;
 
-    void TransCategorySelectionNonTransfer(int value);
-    int TransCategorySelectionNonTransfer() const;
+    void TransCategorySelectionNonTransfer(const int value);
+    int TransCategorySelectionNonTransfer() const noexcept;
 
-    void TransCategorySelectionTransfer(int value);
-    int TransCategorySelectionTransfer() const;
+    void TransCategorySelectionTransfer(const int value);
+    int TransCategorySelectionTransfer() const noexcept;
 
-    void set_bulk_transactions(bool value);
-    bool get_bulk_transactions() const;
+    void set_bulk_transactions(const bool value);
+    bool get_bulk_transactions() const noexcept;
 
-    void TransStatusReconciled(int value);
-    int TransStatusReconciled();
+    void TransStatusReconciled(const int value);
+    int TransStatusReconciled() const noexcept;
 
-    void TransDateDefault(int value);
-    int TransDateDefault();
+    void TransDateDefault(const int value);
+    int TransDateDefault() const noexcept;
 
     void SendUsageStatistics(const bool value);
-    bool SendUsageStatistics();
+    bool SendUsageStatistics() const noexcept;
 
-    void CheckNewsOnStartup(bool value);
-    bool CheckNewsOnStartup();
+    void CheckNewsOnStartup(const bool value);
+    bool CheckNewsOnStartup() const noexcept;
 
-    void SharePrecision(int value);
-    int SharePrecision();
+    void SharePrecision(const int value);
+    int SharePrecision() const noexcept;
 
     // Allows a year or financial year to start before or after the 1st of the month.
-    void setBudgetDaysOffset(int value);
-    int getBudgetDaysOffset() const;
+    void setBudgetDaysOffset(const int value);
+    int getBudgetDaysOffset() const noexcept;
     /**Re-adjust date by the date offset value*/
     void setBudgetDateOffset(wxDateTime& date) const;
 
     // Allows the 'first day' in the month to be adjusted for reporting purposes
-    void setReportingFirstDay(int value);
-    int getReportingFirstDay() const;
+    void setReportingFirstDay(const int value);
+    int getReportingFirstDay() const noexcept;
 
     /* stored value in percantage for scale html font and other objects */
-    void setHTMLFontSizes(int value);
-    int getHtmlFontSize();
+    void setHTMLFontSizes(const int value);
+    int getHtmlFontSize() const noexcept;
 
-    void setThemeMode(int value);
-    int getThemeMode() const;
+    void setThemeMode(const int value);
+    int getThemeMode() const noexcept;
 
-    void setFontSize(int value);
-    int getFontSize() const;
+    void setFontSize(const int value);
+    int getFontSize() const noexcept;
 
-    void setIconSize(int value);
-    void setToolbarIconSize(int value);
-    void setNavigationIconSize(int value);
+    void setIconSize(const int value);
+    void setToolbarIconSize(const int value);
+    void setNavigationIconSize(const int value);
 
-    int getIconSize();
-    int getNavigationIconSize();
-    int getToolbarIconSize();
+    int getIconSize() const noexcept;
+    int getNavigationIconSize() const noexcept;
+    int getToolbarIconSize() const noexcept;
 
-    int AccountImageId(int account_id, bool def, bool ignoreClosure = false);
-    bool getSendUsageStatistics() const;
+    int AccountImageId(const int account_id, const bool def, const bool ignoreClosure = false);
+    bool getSendUsageStatistics() const noexcept;
 
-    void IgnoreFutureTransactions(bool value);
-    bool getIgnoreFutureTransactions() const;
+    void IgnoreFutureTransactions(const bool value);
+    bool getIgnoreFutureTransactions() const noexcept;
 
-    void ShowToolTips(bool value);
-    bool getShowToolTips() const;
+    void ShowToolTips(const bool value);
+    bool getShowToolTips() const noexcept;
 
-    void ShowMoneyTips(bool value);
-    bool getShowMoneyTips() const;
+    void ShowMoneyTips(const bool value);
+    bool getShowMoneyTips() const noexcept;
 
-    void CurrencyHistoryEnabled(bool value);
-    bool getCurrencyHistoryEnabled() const;
+    void CurrencyHistoryEnabled(const bool value);
+    bool getCurrencyHistoryEnabled() const noexcept;
 
     // Homepage income vs expenses graph range
-    void setHomePageIncExpRange(int value);
-    int getHomePageIncExpRange() const;
+    void setHomePageIncExpRange(const int value);
+    int getHomePageIncExpRange() const noexcept;
 
 private:
     wxString m_dateFormat;
@@ -213,24 +213,47 @@ private:
     int m_homepage_incexp_range = 0;
 };
 
-inline int Option::getIconSize() { return m_ico_size; }
-inline int Option::getNavigationIconSize() { return m_navigation_ico_size; }
-inline int Option::getToolbarIconSize() { return m_toolbar_ico_size; }
-inline const wxString Option::LocaleName() const { return m_localeNameString; }
-inline const wxString Option::UserName() const { return m_userNameString; }
-inline const wxString Option::FinancialYearStartDay() const { return m_financialYearStartDayString; }
-inline int Option::TransCategorySelectionNonTransfer() const { return m_transCategorySelectionNonTransfer; }
-inline int Option::TransCategorySelectionTransfer() const { return m_transCategorySelectionTransfer; }
-inline bool Option::get_bulk_transactions() const { return m_bulk_enter; }
-inline int Option::getThemeMode() const { return m_theme_mode; }
-inline int Option::getFontSize() const { return m_font_size; }
+inline int Option::getIconSize() const noexcept
+{
+    return m_ico_size;
+}
+inline int Option::getNavigationIconSize() const noexcept
+{
+    return m_navigation_ico_size;
+}
+inline int Option::getToolbarIconSize() const noexcept{
+    return m_toolbar_ico_size;
+}
+inline const wxString& Option::LocaleName() const { return m_localeNameString; }
+inline const wxString& Option::UserName() const { return m_userNameString; }
+inline const wxString& Option::FinancialYearStartDay() const { return m_financialYearStartDayString; }
+inline int Option::TransCategorySelectionNonTransfer() const noexcept
+{
+    return m_transCategorySelectionNonTransfer;
+}
+inline int Option::TransCategorySelectionTransfer() const noexcept
+{
+    return m_transCategorySelectionTransfer;
+}
+inline bool Option::get_bulk_transactions() const noexcept
+{
+    return m_bulk_enter;
+}
+inline int Option::getThemeMode() const noexcept
+{
+    return m_theme_mode;
+}
+inline int Option::getFontSize() const noexcept
+{
+    return m_font_size;
+}
 
 inline const wxString Option::getDateFormat() const
 {
     return m_dateFormat;
 }
 
-inline bool Option::getSendUsageStatistics() const
+inline bool Option::getSendUsageStatistics() const noexcept
 {
 #ifdef _DEBUG
     return false;
@@ -239,37 +262,37 @@ inline bool Option::getSendUsageStatistics() const
 #endif
 }
 
-inline bool Option::getCurrencyHistoryEnabled() const
+inline bool Option::getCurrencyHistoryEnabled() const noexcept
 {
     return m_currencyHistoryEnabled;
 }
 
-inline bool Option::getIgnoreFutureTransactions() const
+inline bool Option::getIgnoreFutureTransactions() const noexcept
 {
     return m_ignoreFutureTransactions;
 }
 
-inline bool Option::getShowToolTips() const
+inline bool Option::getShowToolTips() const noexcept
 {
     return m_showToolTips;
 }
 
-inline bool Option::getShowMoneyTips() const
+inline bool Option::getShowMoneyTips() const noexcept
 {
     return m_showMoneyTips;
 }
 
-inline int Option::getBudgetDaysOffset() const
+inline int Option::getBudgetDaysOffset() const noexcept
 {
     return m_budget_days_offset;
 }
 
-inline int Option::getReportingFirstDay() const
+inline int Option::getReportingFirstDay() const noexcept
 {
     return m_reporting_firstday;
 }
 
-inline int Option::getHomePageIncExpRange() const
+inline int Option::getHomePageIncExpRange() const noexcept
 {
     return m_homepage_incexp_range;
 }
