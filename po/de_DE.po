@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2023-12-20 23:15+0300\n"
-"PO-Revision-Date: 2023-12-25 16:56\n"
+"POT-Creation-Date: 2023-12-30 22:01+0300\n"
+"PO-Revision-Date: 2023-12-30 19:21\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1833,8 +1833,8 @@ msgstr "Schließen"
 msgid "&Close "
 msgstr "&Schließen "
 
-#: constants.cpp:84 import_export/qif_import_gui.cpp:756
-#: import_export/qif_import_gui.cpp:789 import_export/qif_import_gui.cpp:815
+#: constants.cpp:84 import_export/qif_import_gui.cpp:760
+#: import_export/qif_import_gui.cpp:793 import_export/qif_import_gui.cpp:819
 #: import_export/univcsvdialog.cpp:2068 import_export/univcsvdialog.cpp:2092
 msgid "OK"
 msgstr "OK"
@@ -2515,7 +2515,7 @@ msgstr "Ein falsches Passwort für eine verschlüsselte Datei\n"
 "oder\n"
 "versucht eine Datei zu öffnen, die keine Datenbankdatei ist \n"
 
-#: dbwrapper.cpp:86 import_export/qif_import_gui.cpp:1158 webapp.cpp:120
+#: dbwrapper.cpp:86 import_export/qif_import_gui.cpp:1162 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
 msgstr "Fehler %s"
@@ -2730,8 +2730,8 @@ msgstr "Der eingegebene Name ist bereits in Gebrauch"
 
 #: filtertransdialog.cpp:2026 images_list.cpp:326 images_list.cpp:414
 #: images_list.cpp:425 images_list.cpp:460 images_list.cpp:489
-#: images_list.cpp:495 import_export/qif_import_gui.cpp:758
-#: import_export/qif_import_gui.cpp:761 import_export/univcsvdialog.cpp:1093
+#: images_list.cpp:495 import_export/qif_import_gui.cpp:762
+#: import_export/qif_import_gui.cpp:765 import_export/univcsvdialog.cpp:1093
 msgid "Warning"
 msgstr "Warnung"
 
@@ -3099,7 +3099,7 @@ msgstr "QIF-Export"
 msgid "Choose QIF data file to Export"
 msgstr "QIF-Datei für Export auswählen"
 
-#: import_export/qif_export.cpp:320 import_export/qif_import_gui.cpp:872
+#: import_export/qif_export.cpp:320 import_export/qif_import_gui.cpp:876
 msgid "QIF Files (*.qif)"
 msgstr "QIF Dateien (*.qif)"
 
@@ -3132,7 +3132,7 @@ msgid "Categories exported"
 msgstr "Kategorien exportiert"
 
 #: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:401
-#: import_export/qif_import_gui.cpp:1049
+#: import_export/qif_import_gui.cpp:1053
 msgid "Please wait"
 msgstr "Bitte warten"
 
@@ -3194,7 +3194,7 @@ msgstr "Spieldetails zu Notizen hinzufügen"
 
 #: import_export/qif_import_gui.cpp:391 import_export/qif_import_gui.cpp:394
 #: import_export/qif_import_gui.cpp:469 import_export/qif_import_gui.cpp:626
-#: import_export/qif_import_gui.cpp:786 import_export/qif_import_gui.cpp:1520
+#: import_export/qif_import_gui.cpp:790 import_export/qif_import_gui.cpp:1527
 #: import_export/univcsvdialog.cpp:1021 import_export/univcsvdialog.cpp:1246
 #: import_export/univcsvdialog.cpp:1249 import_export/univcsvdialog.cpp:1269
 #: import_export/univcsvdialog.cpp:1276 import_export/univcsvdialog.cpp:1822
@@ -3229,7 +3229,7 @@ msgstr "Anzahl der aus der QIF-Datei gelesenen Zeilen: %zu in %lld ms"
 msgid "Accounts:"
 msgstr "Konten:"
 
-#: import_export/qif_import_gui.cpp:548 import_export/qif_import_gui.cpp:894
+#: import_export/qif_import_gui.cpp:548 import_export/qif_import_gui.cpp:898
 #: import_export/univcsvdialog.cpp:355
 msgid "Date Format: "
 msgstr "Datumsformat: "
@@ -3238,119 +3238,119 @@ msgstr "Datumsformat: "
 msgid "Press OK Button to continue"
 msgstr "OK anklicken zum weiterfahren"
 
-#: import_export/qif_import_gui.cpp:766 import_export/qif_import_gui.cpp:797
+#: import_export/qif_import_gui.cpp:770 import_export/qif_import_gui.cpp:801
 #: import_export/univcsvdialog.cpp:2076 import_export/univcsvdialog.cpp:2090
 #: stockspanel.cpp:449
 msgid "Missing"
 msgstr "Fehlend"
 
-#: import_export/qif_import_gui.cpp:791 import_export/univcsvdialog.cpp:2070
+#: import_export/qif_import_gui.cpp:795 import_export/univcsvdialog.cpp:2070
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
 msgstr "Übereinstimmung zu %1$s nach Muster %2$s"
 
-#: import_export/qif_import_gui.cpp:870
+#: import_export/qif_import_gui.cpp:874
 msgid "Choose QIF data file to Import"
 msgstr "QIF-Datei für Import auswählen"
 
-#: import_export/qif_import_gui.cpp:1041
+#: import_export/qif_import_gui.cpp:1045
 msgid "Do you want to import all transaction?"
 msgstr "Möchten Sie alle Transaktionen importieren?"
 
-#: import_export/qif_import_gui.cpp:1042
+#: import_export/qif_import_gui.cpp:1046
 msgid "All missing account, payees and categories will be created."
 msgstr "Alle fehlenden Konten, Zahlungsempfänger/Zahler und Kategorien werden erstellt."
 
-#: import_export/qif_import_gui.cpp:1043
+#: import_export/qif_import_gui.cpp:1047
 msgid "Confirm Import"
 msgstr "Import bestätigen"
 
-#: import_export/qif_import_gui.cpp:1049
+#: import_export/qif_import_gui.cpp:1053
 msgid "Importing"
 msgstr "Importiere"
 
-#: import_export/qif_import_gui.cpp:1051
+#: import_export/qif_import_gui.cpp:1055
 msgid "Importing Accounts"
 msgstr "Importiere Konten"
 
-#: import_export/qif_import_gui.cpp:1054
+#: import_export/qif_import_gui.cpp:1058
 msgid "Importing Payees"
 msgstr "Importiere Zahlungsempfänger"
 
-#: import_export/qif_import_gui.cpp:1058
+#: import_export/qif_import_gui.cpp:1062
 msgid "Importing Categories"
 msgstr "Importiere Kategorien"
 
-#: import_export/qif_import_gui.cpp:1080
+#: import_export/qif_import_gui.cpp:1084
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
 msgstr "Importiere Buchungen %1$i von %2$i"
 
-#: import_export/qif_import_gui.cpp:1169
+#: import_export/qif_import_gui.cpp:1173
 msgid "Importing Transfers"
 msgstr "Importiere Buchungen"
 
-#: import_export/qif_import_gui.cpp:1209
+#: import_export/qif_import_gui.cpp:1213
 msgid "Importing Split transactions"
 msgstr "Importiere gesplittete Buchungen"
 
-#: import_export/qif_import_gui.cpp:1213
+#: import_export/qif_import_gui.cpp:1217
 msgid "Import finished successfully"
 msgstr "Import fertig beendet"
 
-#: import_export/qif_import_gui.cpp:1213
+#: import_export/qif_import_gui.cpp:1217
 #, c-format
 msgid "Total Imported: %zu"
 msgstr "Insgesamt importiert: %zu"
 
-#: import_export/qif_import_gui.cpp:1223 import_export/univcsvdialog.cpp:1525
+#: import_export/qif_import_gui.cpp:1227 import_export/univcsvdialog.cpp:1525
 msgid "Imported transactions discarded by user!"
 msgstr "Importierte Buchungen durch Benutzer verworfen!"
 
-#: import_export/qif_import_gui.cpp:1225 import_export/qif_import_gui.h:45
+#: import_export/qif_import_gui.cpp:1229 import_export/qif_import_gui.h:45
 #: mmframe.cpp:1562
 msgid "Import from QIF file"
 msgstr "Aus QIF-Datei importieren"
 
-#: import_export/qif_import_gui.cpp:1330
+#: import_export/qif_import_gui.cpp:1337
 msgid "Transaction code is missing"
 msgstr "Transaktionscode fehlt"
 
-#: import_export/qif_import_gui.cpp:1344
+#: import_export/qif_import_gui.cpp:1351
 #, c-format
 msgid "%1$s matched by %2$s"
 msgstr "%1$s entspricht %2$s"
 
-#: import_export/qif_import_gui.cpp:1356
+#: import_export/qif_import_gui.cpp:1363
 msgid "Transaction Payee is missing or incorrect"
 msgstr "Zahlungsempfänger fehlt oder ist falsch"
 
-#: import_export/qif_import_gui.cpp:1368
+#: import_export/qif_import_gui.cpp:1375
 msgid "Date format or date mask is incorrect"
 msgstr "Datumsformat oder Datumsmaske ist falsch"
 
-#: import_export/qif_import_gui.cpp:1380
+#: import_export/qif_import_gui.cpp:1387
 msgid "Transaction Account is incorrect"
 msgstr "Das Buchungskonto ist falsch"
 
-#: import_export/qif_import_gui.cpp:1389
+#: import_export/qif_import_gui.cpp:1396
 msgid "Transaction Account for transfer is incorrect"
 msgstr "Das Buchungskonto für die Übertragung ist falsch"
 
-#: import_export/qif_import_gui.cpp:1418
+#: import_export/qif_import_gui.cpp:1425
 msgid "Transaction Amount is incorrect"
 msgstr "Buchungsbetrag ist falsch"
 
-#: import_export/qif_import_gui.cpp:1444
+#: import_export/qif_import_gui.cpp:1451
 msgid "Transaction Category is incorrect"
 msgstr "Die Buchungskategorie ist falsch"
 
-#: import_export/qif_import_gui.cpp:1578
+#: import_export/qif_import_gui.cpp:1585
 #, c-format
 msgid "Added account: %s"
 msgstr "Konto zugefügt '%s'"
 
-#: import_export/qif_import_gui.cpp:1609 import_export/univcsvdialog.cpp:1253
+#: import_export/qif_import_gui.cpp:1616 import_export/univcsvdialog.cpp:1253
 #, c-format
 msgid "Added payee: %s"
 msgstr "Zahlungsempfänger hinzugefügt: %s"
@@ -7185,12 +7185,12 @@ msgid "Enter notes to describe this split transaction"
 msgstr "Geben Sie Notizen zur Beschreibung dieser Split-Transaktion ein"
 
 #: splittransactionsdialog.cpp:250
-msgid "Add Split"
-msgstr "Split hinzufügen"
+msgid "&Add Split"
+msgstr ""
 
 #: splittransactionsdialog.cpp:255
-msgid "Remove Split"
-msgstr "Split entfernen"
+msgid "&Remove Split"
+msgstr ""
 
 #: splittransactionsdialog.cpp:411
 msgid "Invalid Total Amount"
