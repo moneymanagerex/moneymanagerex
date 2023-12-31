@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-30 22:01+0300\n"
-"PO-Revision-Date: 2023-12-30 19:21\n"
+"PO-Revision-Date: 2023-12-31 02:09\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -7186,11 +7186,11 @@ msgstr "Írjon be megjegyzéseket a felosztott ügylet leírásához"
 
 #: splittransactionsdialog.cpp:250
 msgid "&Add Split"
-msgstr ""
+msgstr "Felosztás &hozzáadása"
 
 #: splittransactionsdialog.cpp:255
 msgid "&Remove Split"
-msgstr ""
+msgstr "Felosztás &eltávolítása"
 
 #: splittransactionsdialog.cpp:411
 msgid "Invalid Total Amount"
