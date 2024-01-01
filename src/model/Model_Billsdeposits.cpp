@@ -299,7 +299,7 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r, AccountBalance& bal)
     {
         wxString message = _("A scheduled transaction will exceed your account limit.\n\n"
             "Account: %1$s\n"
-            "Current Balance: %1$6.2f\n"
+            "Current Balance: %2$6.2f\n"
             "Transaction amount: %3$6.2f\n"
             "%4$s: %5$6.2f\n\n"
             "Do you wish to continue?"
