@@ -1370,6 +1370,7 @@ bool mmTagTextCtrl::Enable(bool enable)
     if (enable == textCtrl_->IsEnabled())
         return false;
 
+    wxPanel::Enable(enable);
     textCtrl_->Enable(enable);
     btn_dropdown_->Enable(enable);
 
