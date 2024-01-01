@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2023-12-30 22:01+0300\n"
-"PO-Revision-Date: 2023-12-30 19:21\n"
+"PO-Revision-Date: 2024-01-01 22:57\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -4328,11 +4328,11 @@ msgstr ""
 
 #: mmchecking_list.cpp:1637
 msgid "Moved"
-msgstr ""
+msgstr "已移动"
 
 #: mmchecking_list.cpp:1638
 msgid "Not moved"
-msgstr ""
+msgstr "未移动"
 
 #: mmchecking_list.cpp:1641
 msgid "Some transactions could not be moved"
@@ -7954,7 +7954,7 @@ msgstr "已关闭议题的完整列表在此链接可用"
 
 #: util.cpp:1945
 msgid "Copy all text to clipboard"
-msgstr ""
+msgstr "拷贝文本到剪贴板"
 
 #: util.h:192
 msgid "January"
