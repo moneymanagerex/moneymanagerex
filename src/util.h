@@ -147,8 +147,8 @@ const wxString inQuotes(const wxString& label, const wxString& delimiter);
 void csv2tab_separated_values(wxString& line, const wxString& delimit);
 void correctEmptyFileExt(const wxString& ext, wxString & fileName );
 
-void mmLoadColorsFromDatabase(bool def = false);
-wxColour getUDColour(int c);
+void mmLoadColorsFromDatabase(const bool def = false);
+wxColour getUDColour(const int c);
 
 class mmColors
 {
@@ -165,21 +165,21 @@ public:
 
 bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList);
 enum yahoo_price_type { FIAT = 0, SHARES };
-bool getOnlineCurrencyRates(wxString& msg, int curr_id = -1, bool used_only = true);
+bool getOnlineCurrencyRates(wxString& msg, const int curr_id = -1, const bool used_only = true);
 bool get_yahoo_prices(std::map<wxString, double>& symbols
     , std::map<wxString, double>& out
     , const wxString& base_currency_symbol
     , wxString& output
     , int type);
-bool getCoincapInfoFromSymbol(const wxString symbol, wxString& out_id, double& price_usd, wxString& output);
-bool getCoincapAssetHistory(const wxString asset_id, wxDateTime begin_date, std::map<wxDateTime, double> &historical_rates, wxString &msg);
+bool getCoincapInfoFromSymbol(const wxString& symbol, wxString& out_id, double& price_usd, wxString& output);
+bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std::map<wxDateTime, double> &historical_rates, wxString &msg);
 
-wxString cleanseNumberString(wxString str, bool decimal);
-double cleanseNumberStringToDouble(wxString str, bool decimal);
+wxString cleanseNumberString(const wxString& str, const bool decimal);
+double cleanseNumberStringToDouble(const wxString& str, const bool decimal);
 const wxString mmPlatformType();
 
 //All components version in TXT, HTML, ABOUT
-const wxString getProgramDescription(int type = 0);
+const wxString getProgramDescription(const int type = 0);
 void DoWindowsFreezeThaw(wxWindow* w);
 const wxString md2html(const wxString& md);
 const wxString getVFname4print(const wxString& name, const wxString& data);
@@ -196,7 +196,6 @@ static const wxString MONTHS[12] =
 };
 
 const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
-const wxString mmGetMonthName(wxDateTime::Month month);
 const std::map<wxString, wxString> &date_formats_regex();
 bool mmParseISODate(const wxString& in_str, wxDateTime& out_date);
 const wxString mmGetDateForDisplay(const wxString &iso_date, const wxString& dateFormat = Option::instance().getDateFormat());
@@ -204,7 +203,9 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const w
 extern const std::vector<std::pair<wxString, wxString>> g_date_formats_map();
 extern const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding;
 
-inline const wxString mmGetMonthName(wxDateTime::Month month) { return MONTHS[static_cast<int>(month)]; }
+inline const wxString mmGetMonthName(const wxDateTime::Month& month) {
+    return MONTHS[static_cast<int>(month)];
+}
 //----------------------------------------------------------------------------
 
 CURLcode http_get_data(const wxString& site, wxString& output, const wxString& useragent = wxEmptyString);
@@ -273,23 +274,23 @@ private:
 
 };
 
-const wxColor* bestFontColour(wxColour background);
+const wxColor* bestFontColour(const wxColour& background);
 
 // used where differences occur between platforms
-wxImageList* createImageList(int size = 0);
+wxImageList* createImageList(const int size = 0);
 
-void mmToolTip(wxWindow* widget, wxString tip);
+void mmToolTip(wxWindow* widget,const wxString& tip);
 
 //fast alternative for pow(10, y)
-int pow10(int y);
+int pow10(const int y);
 
 // escape HTML characters
-wxString HTMLEncode(wxString input);
+wxString HTMLEncode(const wxString& input);
 
 void mmSetSize(wxWindow* w);
 void mmFontSize(wxWindow* widget);
 
-bool isValidURI(const wxString validate);
+bool isValidURI(const wxString& validate);
 
 class mmHtmlWindow : public wxHtmlWindow
 {
