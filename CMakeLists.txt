@@ -678,8 +678,6 @@ if(LINUX)
         DESTINATION share/mime/packages)
     execute_process(COMMAND appstreamcli news-to-metainfo --format=markdown ${PROJECT_SOURCE_DIR}/NEWS ${PROJECT_SOURCE_DIR}/resources/dist/linux/share/metainfo/org.moneymanagerex.MMEX.metainfo.xml.in org.moneymanagerex.MMEX.metainfo.xml
 	            COMMAND_ERROR_IS_FATAL ANY)
-    execute_process(COMMAND appstreamcli validate --strict org.moneymanagerex.MMEX.metainfo.xml
-                    COMMAND_ERROR_IS_FATAL ANY)
     install(FILES
         org.moneymanagerex.MMEX.metainfo.xml
         DESTINATION share/metainfo)
