@@ -136,11 +136,6 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     if(NOT APPSTREAMCLI)
         message(SEND_ERROR "appstreamcli tool not found.")
     endif()
-    find_program(APPSTREAMCLI perl
-        DOC "command for patching metainfo file")
-    if(NOT APPSTREAMCLI)
-        message(SEND_ERROR "perl not found.") 
-    endif()
 
     # Detect Linux distribution (if possible)
     find_program(LSB_RELEASE lsb_release
@@ -683,8 +678,6 @@ if(LINUX)
         DESTINATION share/mime/packages)
     execute_process(COMMAND appstreamcli news-to-metainfo --format=markdown ${PROJECT_SOURCE_DIR}/NEWS ${PROJECT_SOURCE_DIR}/resources/dist/linux/share/metainfo/org.moneymanagerex.MMEX.metainfo.xml.in org.moneymanagerex.MMEX.metainfo.xml
 	            COMMAND_ERROR_IS_FATAL ANY)
-    execute_process(COMMAND perl -0777 -i -pe "s@<developer>\n    <name>MMEX team</name>\n  </developer>@<developer_name>MMEX team</developer_name>@g" org.moneymanagerex.MMEX.metainfo.xml
-                    COMMAND_ERROR_IS_FATAL ANY)
     execute_process(COMMAND appstreamcli validate --strict --no-net org.moneymanagerex.MMEX.metainfo.xml
                     COMMAND_ERROR_IS_FATAL ANY)
     install(FILES
