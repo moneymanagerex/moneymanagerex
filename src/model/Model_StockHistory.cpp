@@ -22,11 +22,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 Model_StockHistory::Model_StockHistory()
 : Model<DB_Table_STOCKHISTORY_V1>()
 {
-};
+}
 
 Model_StockHistory::~Model_StockHistory()
 {
-};
+}
 
 /**
 * Initialize the global Model_StockHistory table.

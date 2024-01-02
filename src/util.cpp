@@ -127,7 +127,7 @@ const wxString inQuotes(const wxString& l, const wxString& delimiter)
     return label;
 }
 
-void mmLoadColorsFromDatabase(bool def)
+void mmLoadColorsFromDatabase(const bool def)
 {
     mmColors::userDefColor1 = def ? wxColour(246, 144, 144) : Model_Infotable::instance().GetColourSetting("USER_COLOR1", wxColour(246, 144, 144));
     mmColors::userDefColor2 = def ? wxColour(229, 196, 146) : Model_Infotable::instance().GetColourSetting("USER_COLOR2", wxColour(229, 196, 146));
@@ -146,7 +146,7 @@ wxColour mmColors::userDefColor5;
 wxColour mmColors::userDefColor6;
 wxColour mmColors::userDefColor7;
 
-wxColour getUDColour(int c)
+wxColour getUDColour(const int c)
 {
     switch (c)
     {
@@ -271,7 +271,7 @@ void csv2tab_separated_values(wxString& line, const wxString& delimit)
             token.Replace(delimit, "\t");
         temp_line << token;
         i++;
-    };
+    }
     //Replace back all replacers to the original value
     temp_line.Replace("\5", "\"");
     temp_line.Replace("\6", "'");
@@ -465,7 +465,7 @@ bool mmParseISODate(const wxString& in, wxDateTime& out)
     return true;
 }
 
-const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
+const wxDateTime getUserDefinedFinancialYear(const bool prevDayRequired)
 {
     long monthNum;
     Option::instance().FinancialYearStartMonth().ToLong(&monthNum);
@@ -525,7 +525,8 @@ const std::map<wxString, wxString> &date_formats_regex()
     return date_regex;
 }
 
-bool comp(std::pair<wxString, wxString> a, std::pair<wxString, wxString> b) {
+bool comp(const std::pair<wxString, wxString>& a, const std::pair<wxString, wxString>& b)
+{
 
     wxString one = a.second;
     wxRegEx pattern(R"([^DayMonY])");
@@ -617,7 +618,7 @@ const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding = {
     , { 9, { wxConvAuto(wxFONTENCODING_CP1257), "1257" } }
 };
 
-wxString cleanseNumberString(wxString str, bool decimal)
+wxString cleanseNumberString(const wxString& str,const bool decimal)
 {
     // Strip any thousands separators and make sure decimal is "." (if present)
     wxString content = str;
@@ -634,7 +635,7 @@ wxString cleanseNumberString(wxString str, bool decimal)
     return content;
 }
 
-double cleanseNumberStringToDouble(wxString str, bool decimal)
+double cleanseNumberStringToDouble(const wxString& str, const bool decimal)
 {
     double v;
     if (!cleanseNumberString(str, decimal).ToCDouble(&v))
@@ -670,7 +671,7 @@ END_EVENT_TABLE()
 
 //--------------------------------------------------------------------
 
-bool getOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
+bool getOnlineCurrencyRates(wxString& msg,const int curr_id, const bool used_only)
 {
     wxString base_currency_symbol;
 
@@ -951,7 +952,7 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
 // this method searches coincap using a symbol and gets the ID of the first
 // currency found with that symbol.
 // this method also tries to get the price in USD, or -1.0 if not found
-bool getCoincapInfoFromSymbol(const wxString symbol, wxString& out_id, double& price_usd, wxString& output) {
+bool getCoincapInfoFromSymbol(const wxString& symbol, wxString& out_id, double& price_usd, wxString& output) {
     wxString url = wxString::Format(mmex::weblink::CoinCapSearch, symbol);
 
     wxString json_data;
@@ -1007,7 +1008,7 @@ bool getCoincapInfoFromSymbol(const wxString symbol, wxString& out_id, double& p
     return false;
 }
 
-bool getCoincapAssetHistory(const wxString asset_id, wxDateTime begin_date, std::map<wxDateTime, double> &historical_rates, wxString &msg) {
+bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std::map<wxDateTime, double> &historical_rates, wxString &msg) {
     // coincap uses unix time milliseconds
     long long begin_date_unix = static_cast<long long>(begin_date.GetTicks()) * 1000;
     long long end_date_unix = static_cast<long long>(wxDateTime::Today().GetTicks()) * 1000;
@@ -1087,7 +1088,7 @@ struct curlBuff {
     size_t size;
 };
 
-static size_t curlWriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
+static size_t curlWriteMemoryCallback(void *contents,const size_t size,const size_t nmemb, void *userp)
 {
     size_t realsize = size * nmemb;
     struct curlBuff *mem = static_cast<struct curlBuff *>(userp);
@@ -1107,14 +1108,14 @@ static size_t curlWriteMemoryCallback(void *contents, size_t size, size_t nmemb,
     return realsize;
 }
 
-static size_t curlWriteFileCallback(void *contents, size_t size, size_t nmemb, wxFileOutputStream *stream)
+static size_t curlWriteFileCallback(void *contents,const size_t size,const size_t nmemb, wxFileOutputStream *stream)
 {
     stream->Write(contents, size * nmemb);
     return stream->LastWrite();
 }
 
 #ifdef _DEBUG
-static int log_libcurl_debug(CURL *handle, curl_infotype type, char *data, size_t size, void *userp)
+static int log_libcurl_debug(CURL *handle,const curl_infotype type, char *data,const size_t size, void *userp)
 {
     (void)handle; /* Not used */
     (void)userp; /* Not used */
@@ -1396,7 +1397,7 @@ CURLcode getYahooFinanceQuotes(const wxString& URL, wxString& output) {
 
 }
 
-const wxString getProgramDescription(int type)
+const wxString getProgramDescription(const int type)
 {
     const wxString bull = L" \u2022 ";
     wxString eol;
@@ -1774,14 +1775,14 @@ const wxString md2html(const wxString& md)
     return body;
 }
 
-wxImageList* createImageList(int size)
+wxImageList* createImageList(const int size)
 {
     int x = (size > 0) ? size : Option::instance().getIconSize();
     return(new wxImageList(x, x, false));   // No mask creation, not needed and causes image correuption on Mac
 
 }
 
-const wxColor* bestFontColour(wxColour background)
+const wxColor* bestFontColour(const wxColour& background)
 {
     // http://stackoverflow.com/a/3943023/112731
 
@@ -1798,12 +1799,12 @@ const wxColor* bestFontColour(wxColour background)
 
 // Ideally we would use wxToolTip::Enable() to enable or disable tooltips globally.
 // but this only works on some platforms! 
-void mmToolTip(wxWindow* widget, wxString tip)
+void mmToolTip(wxWindow* widget, const wxString& tip)
 {
     if (Option::instance().getShowToolTips()) widget->SetToolTip(tip);
 }
 
-int pow10(int y)
+int pow10(const int y)
 {
     switch (y)
     {
@@ -1821,7 +1822,7 @@ int pow10(int y)
     }
 }
 
-wxString HTMLEncode(wxString input)
+wxString HTMLEncode(const wxString& input)
 {
     wxString output;
     for(size_t pos = 0; pos < input.Len(); ++pos)
@@ -1917,7 +1918,7 @@ void mmFontSize(wxWindow* widget)
     }
 }
 
-bool isValidURI(const wxString validate)
+bool isValidURI(const wxString& validate)
 {
     wxString uri = validate.Lower().Trim();
     wxRegEx pattern(R"(^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$)");
