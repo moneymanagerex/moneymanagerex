@@ -318,7 +318,7 @@ const wxArrayString Model_CustomField::UDFC_FIELDS()
     choices.Add("UDFC04");
     choices.Add("UDFC05");
     return choices;
-};
+}
 
 const wxArrayString Model_CustomField::getUDFCList(DB_Table_CUSTOMFIELD_V1::Data* r)
 {

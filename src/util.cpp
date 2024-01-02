@@ -271,7 +271,7 @@ void csv2tab_separated_values(wxString& line, const wxString& delimit)
             token.Replace(delimit, "\t");
         temp_line << token;
         i++;
-    };
+    }
     //Replace back all replacers to the original value
     temp_line.Replace("\5", "\"");
     temp_line.Replace("\6", "'");

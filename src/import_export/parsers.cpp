@@ -150,9 +150,10 @@ bool FileXML::Load(const wxString& fileName, unsigned int itemsInLine)
     wxXmlNode *worksheetElement = workbookElement->GetChildren();
     for (; worksheetElement && worksheetElement->GetName() != "Worksheet"; worksheetElement = worksheetElement->GetNext())
     {
-    };
+    	;
+    }
 
-    if (!worksheetElement)
+    if (nullptr == worksheetElement)
     {
         mmErrorDialogs::MessageError(pParentWindow_, _("Could not find Worksheet."), _("Parsing error"));
         return false;

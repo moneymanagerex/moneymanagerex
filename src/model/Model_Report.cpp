@@ -90,7 +90,7 @@ const std::vector<Model_Report::Values> Model_Report::SqlPlaceHolders()
     {"&only_years", "wxChoice", def_date, mmReportsPanel::RepPanel::ID_CHOICE_YEAR, _("Year:")},
     };
     return v;
-};
+}
 
 const std::vector<std::pair<wxString, wxString>> Model_Report::getParamNames()
 {

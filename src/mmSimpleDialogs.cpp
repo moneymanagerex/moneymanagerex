@@ -623,7 +623,7 @@ mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete()
 const wxString mmDialogComboBoxAutocomplete::getText() const
 {
     return cbText_->GetValue();
-};
+}
 
 mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete(wxWindow *parent, const wxString& message, const wxString& caption,
     const wxString& defaultText, const wxArrayString& choices)
