@@ -196,7 +196,7 @@ double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const 
             }
         }
 
-        if (numShares == 0.0 && stock.PURCHASEDATE <= strDate)
+        if (linkrecords.empty() && stock.PURCHASEDATE <= strDate)
             numShares = stock.NUMSHARES;
 
         totBalance[stock.id()] += numShares * valueAtDate;
