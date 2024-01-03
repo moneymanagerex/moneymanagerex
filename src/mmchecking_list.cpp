@@ -506,7 +506,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     long column = getColumnFromPosition(event.GetX());
     int flags;
     long row = HitTest(event.GetPosition(), flags);
-    if (flags & wxLIST_HITTEST_ONITEM)
+    if (row >= 0 && flags & wxLIST_HITTEST_ONITEM)
     {
         if (column >= 0 && column < m_columns.size())
         {
