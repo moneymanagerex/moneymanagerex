@@ -978,15 +978,33 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
     int transactionID = Model_Checking::instance().save(copy);
     m_pasted_id.push_back(transactionID);   // add the newly pasted transaction
 
+    // Clone transaction tags
+    Model_Taglink::Cache copy_taglinks;
+    wxString reftype = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    for (const auto& link : Model_Taglink::instance().find(Model_Taglink::REFTYPE(reftype), Model_Taglink::REFID(tran->TRANSID)))
+    {
+        Model_Taglink::Data* taglink = Model_Taglink::instance().clone(&link);
+        taglink->REFID = transactionID;
+        copy_taglinks.push_back(taglink);
+    }
+
     // Clone split transactions
-    Model_Splittransaction::Cache copy_split;
+    reftype = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
     for (const auto& split_item : Model_Checking::splittransaction(tran))
     {
         Model_Splittransaction::Data *copy_split_item = Model_Splittransaction::instance().clone(&split_item);
         copy_split_item->TRANSID = transactionID;
-        copy_split.push_back(copy_split_item);
+        int splittransID = Model_Splittransaction::instance().save(copy_split_item);
+
+        // Clone split tags
+        for (const auto& link : Model_Taglink::instance().find(Model_Taglink::REFTYPE(reftype), Model_Taglink::REFID(split_item.SPLITTRANSID)))
+        {
+            Model_Taglink::Data* taglink = Model_Taglink::instance().clone(&link);
+            taglink->REFID = splittransID;
+            copy_taglinks.push_back(taglink);
+        }
     }
-    Model_Splittransaction::instance().save(copy_split);
+    Model_Taglink::instance().save(copy_taglinks);
 
     // Clone duplicate custom fields
     const auto& data_set = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(tran->TRANSID));
