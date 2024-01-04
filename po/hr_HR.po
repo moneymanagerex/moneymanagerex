@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-04 11:18\n"
+"PO-Revision-Date: 2024-01-04 16:05\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -385,7 +385,7 @@ msgstr "Standardna postavka sustava"
 
 #: appstartdialog.cpp:212 optionsettingsgeneral.cpp:92
 msgid "User Interface Language"
-msgstr ""
+msgstr "Jezik korisničkog sučelja"
 
 #: appstartdialog.cpp:220 mmframe.cpp:3877 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -673,7 +673,7 @@ msgstr "Ukupno: %s"
 #: assetspanel.cpp:666
 #, c-format
 msgid "Change in Value: %1$s %2$s"
-msgstr ""
+msgstr "Promjena vrijednosti: %1$s %2$s"
 
 #: assetspanel.cpp:782
 msgid "This asset does not have its own account\n\n"
@@ -730,7 +730,7 @@ msgstr "Organiziraj priloge | %s | %i"
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Organize Attachments | %1$s | %2$s"
-msgstr ""
+msgstr "Organiziraj priloge | %1$s | %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
@@ -791,7 +791,7 @@ msgstr "Prilozi"
 
 #: attachmentdialog.cpp:407
 msgid "This directory and its files are automatically managed by MMEX."
-msgstr ""
+msgstr "Ovim direktorijem i njegovim datotekama automatski upravlja MMEX."
 
 #: attachmentdialog.cpp:409
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -895,19 +895,19 @@ msgstr "Dnevno"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
-msgstr ""
+msgstr "Za (n) dana"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr ""
+msgstr "Za (n) mjeseca"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr ""
+msgstr "Svakih (n) dana"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr ""
+msgstr "Svakih (n) mjeseca"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -4351,19 +4351,19 @@ msgstr "Odaberi odredišni račun "
 
 #: mmchecking_list.cpp:1654
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
-msgstr ""
+msgstr "Razlog tome su neki elementi transakcije ili pojedinosti računa koji ne dopuštaju premještanje"
 
 #: mmchecking_list.cpp:1655
 msgid "Moved"
-msgstr ""
+msgstr "Premješteno"
 
 #: mmchecking_list.cpp:1656
 msgid "Not moved"
-msgstr ""
+msgstr "Nije premješteno"
 
 #: mmchecking_list.cpp:1659
 msgid "Some transactions could not be moved"
-msgstr ""
+msgstr "Neke se transakcije nisu mogle premjestiti"
 
 #: mmchecking_list.cpp:1724
 msgid "Scheduled transaction saved."
@@ -4893,7 +4893,7 @@ msgstr "&Budžetski plan …"
 
 #: mmframe.cpp:1735
 msgid "&Scheduled Transactions"
-msgstr ""
+msgstr "&Planirane transakcije"
 
 #: mmframe.cpp:1735
 msgid "Bills && Deposits"
@@ -4945,7 +4945,7 @@ msgstr "&Opcije …\tCtrl-,"
 
 #: mmframe.cpp:1772
 msgid "Options"
-msgstr ""
+msgstr "Opcije"
 
 #: mmframe.cpp:1779
 msgid "Convert Encrypted &DB..."
@@ -4981,7 +4981,7 @@ msgstr "Stvori izvještaj o bazi podataka ili ispravi greške"
 
 #: mmframe.cpp:1794
 msgid "&Database"
-msgstr ""
+msgstr "&Baza podataka"
 
 #: mmframe.cpp:1795
 msgid "Database management"
@@ -4993,11 +4993,11 @@ msgstr "&Pomoć\tF1"
 
 #: mmframe.cpp:1802
 msgid "Show Help"
-msgstr ""
+msgstr "Prikaži pomoć"
 
 #: mmframe.cpp:1808
 msgid "Open MMEX website for the latest news, updates etc"
-msgstr ""
+msgstr "Otvori MMEX web stranicu za najnovije vijesti, nove verzije itd."
 
 #: mmframe.cpp:1810
 msgid "&Facebook"
@@ -5065,7 +5065,7 @@ msgstr "Posjeti MMEX forum za prikaz korisničkih komentara ili za prijavu greš
 
 #: mmframe.cpp:1827
 msgid "MMEX for &Android"
-msgstr ""
+msgstr "MMEX za &Android"
 
 #: mmframe.cpp:1828
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -6826,9 +6826,9 @@ msgstr "Molimo te, slijedi ove smjernice za slanje izvještaja o novoj grešci:"
 #, c-format
 msgid "%1$s (%2$i month)"
 msgid_plural "%1$s (%2$i months)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%1$s (%2$i mjesec)"
+msgstr[1] "%1$s (%2$i mjeseca)"
+msgstr[2] "%1$s (%2$i mjeseci)"
 
 #: reports/cashflow.cpp:289 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6888,12 +6888,12 @@ msgstr "Prognoza"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %1$s %2$s"
-msgstr ""
+msgstr "Izvještaj je stvoren %1$s %2$s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
 msgid "From %1$s till %2$s"
-msgstr ""
+msgstr "Od %1$s do %2$s"
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
@@ -6945,7 +6945,7 @@ msgstr "Tekući mjesec do danas"
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
-msgstr ""
+msgstr "Prethodni mjesec"
 
 #: reports/mmDateRange.cpp:110
 msgid "1 Month Ago to Date"
@@ -6957,11 +6957,11 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "Zadnja 3 mjeseca"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "Zadnjih 12 mjeseci"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
@@ -6973,7 +6973,7 @@ msgstr "Tekuća godina do danas"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "Prethodna godina"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -6985,7 +6985,7 @@ msgstr "Tekuća fiskalna godina do danas"
 
 #: reports/mmDateRange.cpp:236
 msgid "Previous Financial Year"
-msgstr ""
+msgstr "Prethodna fiskalna godina"
 
 #: reports/mmDateRange.cpp:260
 msgid "Custom"
@@ -7088,7 +7088,7 @@ msgstr "Dijagram rezultata vlasničkih udjela"
 
 #: reports/transactions.cpp:197
 msgid "FX Rate"
-msgstr ""
+msgstr "FX stopa"
 
 #: reports/transactions.cpp:395
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
@@ -7646,19 +7646,19 @@ msgstr "Priloži"
 
 #: transactionsupdatedialog.cpp:511
 msgid "This is due to some elements of the transaction or account detail not allowing the update"
-msgstr ""
+msgstr "Razlog tome su neki elementi transakcije ili pojedinosti računa koji ne dopuštaju aktualiziranje"
 
 #: transactionsupdatedialog.cpp:512
 msgid "Updated"
-msgstr ""
+msgstr "Aktualizirano"
 
 #: transactionsupdatedialog.cpp:513
 msgid "Not updated"
-msgstr ""
+msgstr "Nije aktualizirano"
 
 #: transactionsupdatedialog.cpp:516
 msgid "Some transactions could not be updated"
-msgstr ""
+msgstr "Neke se transakcije nisu mogle aktualizirati"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
@@ -7967,7 +7967,7 @@ msgstr ""
 
 #: util.cpp:1946
 msgid "Copy all text to clipboard"
-msgstr ""
+msgstr "Kopirati sav tekst u međuspremnik"
 
 #: util.h:192
 msgid "January"
