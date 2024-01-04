@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-04 11:18\n"
+"PO-Revision-Date: 2024-01-04 12:19\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -4385,7 +4385,7 @@ msgstr "账户余额： "
 
 #: mmcheckingpanel.cpp:538
 msgid "Reconciled Bal: "
-msgstr "初始金额："
+msgstr "已核实金额："
 
 #: mmcheckingpanel.cpp:540
 msgid "Diff: "
