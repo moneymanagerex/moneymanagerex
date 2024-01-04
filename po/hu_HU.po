@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-04 11:18\n"
+"PO-Revision-Date: 2024-01-04 21:00\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1487,11 +1487,11 @@ msgstr "A tervezett költségvetés kategóriáinak mutatása"
 
 #: budgetingpanel.cpp:55
 msgid "View Income Budget Categories"
-msgstr "A költségvetés bevételi kategóriáinak mutatása"
+msgstr "Költségvetés bevételi kategóriáinak megtekintése"
 
 #: budgetingpanel.cpp:56
 msgid "View Expense Budget Categories"
-msgstr "A költségvetés kiadási kategóriáinak mutatása"
+msgstr "Költségvetés kiadási kategóriáinak megtekintése"
 
 #: budgetingpanel.cpp:57
 msgid "View Budget Category Summary"
@@ -1875,23 +1875,23 @@ msgstr "Megtekintés ügyletszűrővel…"
 
 #: constants.cpp:194
 msgid "View All Transactions"
-msgstr "Minden ügylet mutatása"
+msgstr "Minden ügylet megtekintése"
 
 #: constants.cpp:195
 msgid "View Today"
-msgstr "Mai nap mutatása"
+msgstr "Mai nap megtekintése"
 
 #: constants.cpp:196
 msgid "View Current Month"
-msgstr "Jelen hónap mutatása"
+msgstr "Jelen hónap megtekintése"
 
 #: constants.cpp:197
 msgid "View Last 30 days"
-msgstr "Elmúlt 30 nap mutatása"
+msgstr "Elmúlt 30 nap megtekintése"
 
 #: constants.cpp:198
 msgid "View Last 90 days"
-msgstr "Elmúlt 90 nap mutatása"
+msgstr "Elmúlt 90 nap megtekintése"
 
 #: constants.cpp:199
 msgid "View Last Month"
@@ -1899,31 +1899,31 @@ msgstr "Előző hónap megtekintése"
 
 #: constants.cpp:200
 msgid "View Last 3 Months"
-msgstr "Elmúlt 3 hónap mutatása"
+msgstr "Elmúlt 3 hónap megtekintése"
 
 #: constants.cpp:201
 msgid "View Last 12 Months"
-msgstr "Elmúlt 12 hónap mutatása"
+msgstr "Elmúlt 12 hónap megtekintése"
 
 #: constants.cpp:202
 msgid "View Current Year"
-msgstr "Idei év mutatása"
+msgstr "Idei év megtekintése"
 
 #: constants.cpp:203
 msgid "View Current Financial Year"
-msgstr "Jelen pénzügyi év mutatása"
+msgstr "Jelen pénzügyi év megtekintése"
 
 #: constants.cpp:204
 msgid "View Last Year"
-msgstr "Múlt év mutatása"
+msgstr "Múlt év megtekintése"
 
 #: constants.cpp:205
 msgid "View Last Financial Year"
-msgstr "Az elmúlt pénzügyi év mutatása"
+msgstr "Elmúlt pénzügyi év megtekintése"
 
 #: constants.cpp:206
 msgid "View Since Statement Date"
-msgstr "Számlazárás dátumát követő mutatása"
+msgstr "Számlazárás dátumát követő megtekintése"
 
 #: constants.cpp:208
 msgid "ALL"
@@ -7005,7 +7005,7 @@ msgstr "1 évvel ezelőtt a dátumig"
 #: reports/mmDateRange.cpp:284 reports/mmDateRange.cpp:296
 #, c-format
 msgid "Last %i Days"
-msgstr ""
+msgstr "Előző %i nap"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -7095,7 +7095,7 @@ msgstr "Részvény teljesítménye diagram"
 
 #: reports/transactions.cpp:197
 msgid "FX Rate"
-msgstr ""
+msgstr "Deviza árfolyam"
 
 #: reports/transactions.cpp:395
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
