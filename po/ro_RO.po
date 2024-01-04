@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-04 11:18\n"
+"PO-Revision-Date: 2024-01-04 12:19\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -5824,7 +5824,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "O tranzacție programată va depăși limita contului dvs.\n\n"
+"Cont: %1$s\n"
+"Soldul curent: %2$6.2f\n"
+"Valoarea tranzacției: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Vrei să continui?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -7011,7 +7016,7 @@ msgstr "De acum un an"
 #: reports/mmDateRange.cpp:284 reports/mmDateRange.cpp:296
 #, c-format
 msgid "Last %i Days"
-msgstr ""
+msgstr "Ultimele %i zile"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -7101,7 +7106,7 @@ msgstr ""
 
 #: reports/transactions.cpp:197
 msgid "FX Rate"
-msgstr ""
+msgstr "Rată FX"
 
 #: reports/transactions.cpp:395
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
