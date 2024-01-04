@@ -194,7 +194,7 @@ table {
             if (showColumnById(16)) hb.addTableHeaderCell(_("Tags"), "Tags");
             if (showColumnById(8)) hb.addTableHeaderCell(_("Type"), "Type");
             if (showColumnById(9)) hb.addTableHeaderCell(_("Amount"), "Amount text-right");
-            if (showColumnById(17)) hb.addTableHeaderCell(_("Currency exchange rate"), "Rate text-right");
+            if (showColumnById(17)) hb.addTableHeaderCell(_("FX Rate"), "Rate text-right");
             if (showColumnById(10)) hb.addTableHeaderCell(_("Notes"), "Notes");
             const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
             int colNo = 11;

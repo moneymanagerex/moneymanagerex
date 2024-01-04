@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 constexpr auto DATE_MAX = 253402214400 /* Dec 31, 9999 */;
 
 static const wxString COLUMN_NAMES[] = { "ID", "Color", "Date", "Number", "Account", "Payee", "Status", "Category", "Type",
-                                              "Amount", "Notes", "UDFC01", "UDFC02", "UDFC03", "UDFC04", "UDFC05", "Tags", "Rate" };
+                                              "Amount", "Notes", "UDFC01", "UDFC02", "UDFC03", "UDFC04", "UDFC05", "Tags", "FX Rate" };
 
 static const wxString TRANSACTION_STATUSES[] = { wxTRANSLATE("Unreconciled"), wxTRANSLATE("Reconciled"), wxTRANSLATE("Void"),
                                                  wxTRANSLATE("Follow Up"),    wxTRANSLATE("Duplicate"),  wxTRANSLATE("All Except Reconciled") };
