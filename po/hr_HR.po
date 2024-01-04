@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-04 16:05\n"
+"PO-Revision-Date: 2024-01-04 20:04\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -1743,11 +1743,11 @@ msgstr ""
 
 #: categdialog.cpp:475
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "Alati → Sjedini → Kategorije"
 
 #: categdialog.cpp:477
 msgid "Organize Categories: Delete Error"
-msgstr ""
+msgstr "Organiziraj kategorije: Greška brisanja"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1776,11 +1776,11 @@ msgstr "Uredi kategoriju"
 
 #: categdialog.cpp:625
 msgid "Organize Categories: Editing Error"
-msgstr ""
+msgstr "Organiziraj kategorije: Greška uređivanja"
 
 #: categdialog.cpp:682 mmframe.cpp:3731
 msgid "Merge categories completed"
-msgstr ""
+msgstr "Sjedinjavanje kategorija dovršeno"
 
 #: categdialog.cpp:683 mmframe.cpp:3732 mmframe.cpp:3747 mmframe.cpp:3763
 #: payeedialog.cpp:834
@@ -1790,7 +1790,7 @@ msgstr "Zapisi su aktualizirani u bazi podataka: %i"
 
 #: categdialog.cpp:685 mmframe.cpp:3734
 msgid "Merge categories result"
-msgstr ""
+msgstr "Rezultat sjedinjavanja kategorija"
 
 #: categdialog.cpp:761
 msgid "Are you sure you want to unhide all categories"
@@ -5810,7 +5810,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Terminirana transakcija će premašiti ograničenje tvog računa.\n\n"
+"Račun: %1$s\n"
+"Aktualno stanje: %2$6.2f\n"
+"Iznos transakcije: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Želiš li nastaviti?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -6998,7 +7003,7 @@ msgstr ""
 #: reports/mmDateRange.cpp:284 reports/mmDateRange.cpp:296
 #, c-format
 msgid "Last %i Days"
-msgstr ""
+msgstr "Zadnjih %i dana"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
