@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-05 16:27\n"
+"PO-Revision-Date: 2024-01-05 17:32\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -1701,7 +1701,7 @@ msgstr ""
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "Podkategorija s ovim imenom već postoji"
 
 #: categdialog.cpp:440
 msgid "Target category is a descendant"
@@ -1729,7 +1729,7 @@ msgstr "Upotrijebljena kategorija."
 
 #: categdialog.cpp:467
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Korištena podkategorija."
 
 #: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
@@ -2577,7 +2577,7 @@ msgstr "Razdoblje"
 
 #: filtertransdialog.cpp:576 filtertransdialog.cpp:1727
 msgid "Include all subcategories"
-msgstr ""
+msgstr "Uključi sve podkategorije"
 
 #: filtertransdialog.cpp:607 filtertransdialog.cpp:1462
 #: filtertransdialog.cpp:1565 import_export/univcsvdialog.cpp:113
@@ -2635,11 +2635,11 @@ msgstr "Odredi kako grupirati izvještaj"
 
 #: filtertransdialog.cpp:708 filtertransdialog.cpp:1862
 msgid "Combine Splits"
-msgstr ""
+msgstr "Sjedini podjele"
 
 #: filtertransdialog.cpp:711
 msgid "Display split transactions as a single row"
-msgstr ""
+msgstr "Prikaži podijeljene transakcije kao jedan redak"
 
 #: filtertransdialog.cpp:720
 msgid "Settings"
@@ -4845,15 +4845,15 @@ msgstr "Organiziraj &kategorije …"
 
 #: mmframe.cpp:1702
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "Organiziraj &oznake …"
 
 #: mmframe.cpp:1702 mmframe.cpp:1925 tagdialog.h:45
 msgid "Organize Tags"
-msgstr ""
+msgstr "Organiziraj oznake"
 
 #: mmframe.cpp:1706
 msgid "Organize Curre&ncies..."
-msgstr ""
+msgstr "Organiziraj &valute …"
 
 #: mmframe.cpp:1710
 msgid "&Categories..."
@@ -4861,7 +4861,7 @@ msgstr "&Kategorije …"
 
 #: mmframe.cpp:1711 relocatecategorydialog.cpp:89 relocatecategorydialog.h:43
 msgid "Merge categories"
-msgstr ""
+msgstr "Sjedini kategorije"
 
 #: mmframe.cpp:1713
 msgid "&Payees..."
@@ -4873,15 +4873,15 @@ msgstr ""
 
 #: mmframe.cpp:1716
 msgid "&Tags..."
-msgstr ""
+msgstr "&Oznake …"
 
 #: mmframe.cpp:1717 relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge tags"
-msgstr ""
+msgstr "Sjedini oznake"
 
 #: mmframe.cpp:1719
 msgid "&Merge"
-msgstr ""
+msgstr "&Sjedini"
 
 #: mmframe.cpp:1720
 msgid "Merge categories, payees, and tags"
@@ -5337,7 +5337,7 @@ msgstr ""
 
 #: mmframe.cpp:2416
 msgid "Database Check"
-msgstr ""
+msgstr "Provjera baze podataka"
 
 #: mmframe.cpp:2429
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
@@ -5796,11 +5796,11 @@ msgstr "Ponavljajuća transakcija"
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "Podjela transakcije"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "Ponavljajuća podjela transakcije"
 
 #: model/Model_Billsdeposits.cpp:300
 #, c-format
@@ -6629,23 +6629,23 @@ msgstr ""
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
 #: relocatetagdialog.cpp:114
 msgid "Source:"
-msgstr ""
+msgstr "Izvor:"
 
 #: relocatecategorydialog.cpp:119 relocatepayeedialog.cpp:113
 #: relocatetagdialog.cpp:115
 msgid "Target:"
-msgstr ""
+msgstr "Cilj:"
 
 #: relocatecategorydialog.cpp:133 relocatepayeedialog.cpp:131
 #: relocatetagdialog.cpp:133
 msgid "Merge"
-msgstr ""
+msgstr "Sjedini"
 
 #: relocatecategorydialog.cpp:153 relocatepayeedialog.cpp:151
 #: relocatetagdialog.cpp:153
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr ""
+msgstr "Od %1$s do %2$s"
 
 #: relocatecategorydialog.cpp:157 relocatepayeedialog.cpp:155
 #: relocatetagdialog.cpp:157
@@ -7185,11 +7185,11 @@ msgstr "Upiši bilješke za opis ove podijeljene transakcije"
 
 #: splittransactionsdialog.cpp:250
 msgid "&Add Split"
-msgstr ""
+msgstr "&Dodaj podjelu"
 
 #: splittransactionsdialog.cpp:255
 msgid "&Remove Split"
-msgstr ""
+msgstr "&Ukloni podjelu"
 
 #: splittransactionsdialog.cpp:411
 msgid "Invalid Total Amount"
@@ -7409,11 +7409,11 @@ msgstr "Trenutačna ukupna vrijednost"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
-msgstr ""
+msgstr "&Nova burzovna investicija …"
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions..."
-msgstr ""
+msgstr "&Dodaj burzovnu transakciju …"
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
@@ -7421,11 +7421,11 @@ msgstr "&Prikaz transakcije vlasničkog udjela"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment..."
-msgstr ""
+msgstr "&Uredi burzovnu investiciji …"
 
 #: stocks_list.cpp:144
 msgid "&Delete Stock Investment..."
-msgstr ""
+msgstr "&Izbriši burzovnu investiciji …"
 
 #: stocks_list.cpp:147
 msgid "Stock &Web Page"
@@ -7474,7 +7474,7 @@ msgstr "Aktualiziraj cijene vlasničkog udjela s Yahooa"
 
 #: stockspanel.cpp:213
 msgid "Lot"
-msgstr ""
+msgstr "Šarža"
 
 #: stockspanel.cpp:288
 #, c-format
@@ -7529,7 +7529,7 @@ msgstr "Dodaj novu oznaku"
 
 #: tagdialog.cpp:131
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "Uredi ime postojeće oznake"
 
 #: tagdialog.cpp:136
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
@@ -7959,7 +7959,7 @@ msgstr "Pokreće se na:"
 #: util.cpp:1511
 #, c-format
 msgid "System Locale: %s"
-msgstr ""
+msgstr "Jezik sustava: %s"
 
 #: util.cpp:1512
 #, c-format
