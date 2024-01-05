@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-04 20:04\n"
+"PO-Revision-Date: 2024-01-05 16:27\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -312,7 +312,7 @@ msgstr ""
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "Terminirane transakcije za ovaj račun su terminirane prije ovog datuma."
 
 #: accountdialog.h:41 mmframe.cpp:1666 mmframe.cpp:1918
 #: wizard_newaccount.cpp:87 wizard_newaccount.cpp:94 wizard_newaccount.cpp:166
@@ -919,19 +919,19 @@ msgstr "Mjesečno (zadnji radni dan)"
 
 #: billsdepositsdialog.cpp:306 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Dupliciraj terminiranu transakciju"
 
 #: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Uredi terminiranu transakciju"
 
 #: billsdepositsdialog.cpp:313
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "Unesi terminiranu transakciju"
 
 #: billsdepositsdialog.cpp:407
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Detalji terminirane transakcije"
 
 #: billsdepositsdialog.cpp:421
 msgid "Specify the date when this bill or deposit is due"
@@ -1045,7 +1045,7 @@ msgstr "Račun"
 
 #: billsdepositsdialog.cpp:549
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "Odaberi račun za terminiranu transakciju"
 
 #: billsdepositsdialog.cpp:554 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1122,7 +1122,7 @@ msgstr "Korisničke boje"
 
 #: billsdepositsdialog.cpp:618
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Organiziraj priloge za ovu terminiranu transakciju"
 
 #: billsdepositsdialog.cpp:628 filtertrans.cpp:189 filtertransdialog.cpp:654
 #: filtertransdialog.cpp:1019 filtertransdialog.cpp:1814
@@ -1252,7 +1252,7 @@ msgstr "Podijeljena transakcija"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "Nova terminirana transakcija"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1321,7 +1321,7 @@ msgstr "Savjet: Ove se transakcije mogu postaviti kao aktivirajuće – dozvolja
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:774
 #: mmframe.cpp:3166 mmhomepagepanel.cpp:243
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Terminirane transakcije"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:457
 msgid "D&uplicate "
@@ -1329,7 +1329,7 @@ msgstr "&Kopiraj "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Izbriši terminiranu transakciju"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -1337,7 +1337,7 @@ msgstr "&Upiši"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Upiši sljedeći događaj terminirane transakcije"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1345,7 +1345,7 @@ msgstr "&Preskoči"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Preskoči sljedeći događaj terminirane transakcije"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
@@ -1357,19 +1357,19 @@ msgstr "Preskoči sljedeći događaj"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&Nova terminirana transakcija …"
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "&Uredi terminiranu transakciju …"
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "&Dupliciraj terminiranu transakciju …"
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&Izbriši terminiranu transakciju …"
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1415,7 +1415,7 @@ msgstr[2] "Dospjelo prije %d dana!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Stvarno želiš izbrisati terminiranu transakciju?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -3282,7 +3282,7 @@ msgstr "Uvoz kategorije"
 #: import_export/qif_import_gui.cpp:1084
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "Uvoz transakcije %1$i od %2$i"
 
 #: import_export/qif_import_gui.cpp:1173
 msgid "Importing Transfers"
@@ -4183,7 +4183,7 @@ msgstr "&Prikaz podijeljenih kategorija"
 
 #: mmchecking_list.cpp:497
 msgid "Create Scheduled T&ransaction..."
-msgstr ""
+msgstr "&Stvori terminiranu transakciju …"
 
 #: mmchecking_list.cpp:501
 msgid "&Restore selected transaction..."
@@ -4367,11 +4367,11 @@ msgstr "Neke se transakcije nisu mogle premjestiti"
 
 #: mmchecking_list.cpp:1724
 msgid "Scheduled transaction saved."
-msgstr ""
+msgstr "Terminirana transakcija je spremljena."
 
 #: mmcheckingpanel.cpp:442
 msgid "Delete all selected transactions"
-msgstr ""
+msgstr "Izbriši sve odabrane transakcije"
 
 #: mmcheckingpanel.cpp:446 mmframe.cpp:1921 transdialog.cpp:183
 msgid "New Transaction"
@@ -4379,7 +4379,7 @@ msgstr "Nova transakcija"
 
 #: mmcheckingpanel.cpp:450
 msgid "Edit all selected transactions"
-msgstr ""
+msgstr "Uredi sve odabrane transakcije"
 
 #: mmcheckingpanel.cpp:458
 msgid "Duplicate selected transaction"
@@ -4893,7 +4893,7 @@ msgstr "&Budžetski plan …"
 
 #: mmframe.cpp:1735
 msgid "&Scheduled Transactions"
-msgstr "&Planirane transakcije"
+msgstr "&Terminirane transakcije"
 
 #: mmframe.cpp:1735
 msgid "Bills && Deposits"
@@ -5827,7 +5827,7 @@ msgstr "Kreditni limit"
 
 #: model/Model_Billsdeposits.cpp:325
 msgid "MMEX Scheduled Transaction Check"
-msgstr ""
+msgstr "MMEX provjera terminirane transakcije"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
@@ -6671,12 +6671,12 @@ msgstr "Zapisi ponađeni u podijeljenim transakcijama: %i"
 #: relocatetagdialog.cpp:204
 #, c-format
 msgid "Records found in scheduled transactions: %i"
-msgstr ""
+msgstr "Pronađeni zapisi u terminiranim transakcijama: %i"
 
 #: relocatecategorydialog.cpp:258 relocatetagdialog.cpp:205
 #, c-format
 msgid "Records found in scheduled split transactions: %i"
-msgstr ""
+msgstr "Pronađeni zapisi u terminiranim podjelama transakcija: %i"
 
 #: relocatecategorydialog.cpp:259
 #, c-format
@@ -7533,7 +7533,7 @@ msgstr ""
 
 #: tagdialog.cpp:136
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr ""
+msgstr "Izbriši postojeću oznaku. Oznaku ne mogu koristiti postojeće transakcije."
 
 #: tagdialog.cpp:142
 msgid "Select"
