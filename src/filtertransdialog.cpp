@@ -49,7 +49,13 @@ static const wxString COLUMN_NAMES[] = { "ID", "Color", "Date", "Number", "Accou
 static const wxString TRANSACTION_STATUSES[] = { wxTRANSLATE("Unreconciled"), wxTRANSLATE("Reconciled"), wxTRANSLATE("Void"),
                                                  wxTRANSLATE("Follow Up"),    wxTRANSLATE("Duplicate"),  wxTRANSLATE("All Except Reconciled") };
 
-static const wxString GROUPBY_OPTIONS[] = { wxTRANSLATE("Account"), wxTRANSLATE("Payee"), wxTRANSLATE("Category"), wxTRANSLATE("Type") };
+static const wxString GROUPBY_OPTIONS[] = { wxTRANSLATE("Account"), wxTRANSLATE("Payee"), wxTRANSLATE("Category"), wxTRANSLATE("Type"),
+                                            wxTRANSLATE("Day"),     wxTRANSLATE("Month"), wxTRANSLATE("Year") };
+
+static const wxString CHART_OPTIONS[] = { wxTRANSLATE("Bar"), wxTRANSLATE("Line"), wxTRANSLATE("Line DateTime"),
+                                            wxTRANSLATE("Pie"),    wxTRANSLATE("Donut"), wxTRANSLATE("Radar"),
+                                            wxTRANSLATE("Bar Line"), wxTRANSLATE("Stacked Bar Line"), wxTRANSLATE("Stacked Area")};
+// Keep options aligned with HtmlBuilder GraphData::type
 
 // Used to determine if we need to refresh the tag text ctrl after
 // accelerator hints are shown which only occurs once.
@@ -440,6 +446,14 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     bGroupBy_->Enable(groupByCheckBox_->IsChecked() && isReportMode_);
     bGroupBy_->SetStringSelection(s_groupBy);
 
+    // Chart
+    Value& j_chart = GetValueByPointerWithDefault(j_doc, "/CHART", "");
+    const wxString& s_chart = j_chart.IsString() ? wxString::FromUTF8(j_chart.GetString()) : "";
+    chartCheckBox_->SetValue(!s_chart.empty());
+    bChart_->Enable(chartCheckBox_->IsChecked() && isReportMode_);
+    bChart_->SetStringSelection(s_chart);
+
+    // Combine splits
     Value& j_combineSplits = GetValueByPointerWithDefault(j_doc, "/COMBINE_SPLITS", "");
     const bool& b_combineSplits = j_combineSplits.IsBool() ? j_combineSplits.GetBool() : false;
     combineSplitsCheckBox_->SetValue(b_combineSplits);
@@ -704,6 +718,18 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     presPanelSizer->Add(bGroupBy_, g_flagsExpand);
     mmToolTip(bGroupBy_, _("Specify how the report should be grouped"));
 
+    // Chart
+    chartCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Chart"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    presPanelSizer->Add(chartCheckBox_, g_flagsH);
+
+    bChart_ = new wxChoice(presPanel, wxID_ANY);
+    for (const auto& i : CHART_OPTIONS)
+    {
+        bChart_->Append(wxGetTranslation(i), new wxStringClientData(i));
+    }
+    presPanelSizer->Add(bChart_, g_flagsExpand);
+    mmToolTip(bChart_, _("Specify which chart will be included in the report"));
+
     // Compress Splits
     combineSplitsCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Combine Splits"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     combineSplitsCheckBox_->SetMinSize(wxSize(-1, bGroupBy_->GetSize().GetHeight()));
@@ -789,10 +815,14 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     {
         groupByCheckBox_->Disable();
         bGroupBy_->Disable();
+        chartCheckBox_->Disable();
+        bChart_->Disable();
         showColumnsCheckBox_->Disable();
         bHideColumns_->Disable();
         groupByCheckBox_->Hide();
         bGroupBy_->Hide();
+        chartCheckBox_->Hide();
+        bChart_->Hide();
         showColumnsCheckBox_->Hide();
         bHideColumns_->Hide();
         combineSplitsCheckBox_->Hide();
@@ -877,6 +907,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     colorButton_->Enable(colorCheckBox_->IsChecked());
     bHideColumns_->Enable(showColumnsCheckBox_->IsChecked());
     bGroupBy_->Enable(groupByCheckBox_->IsChecked() && isReportMode_);
+    bChart_->Enable(chartCheckBox_->IsChecked() && isReportMode_);
 
     event.Skip();
 }
@@ -1033,6 +1064,12 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
     if (groupByCheckBox_->IsChecked() && bGroupBy_->GetSelection() == wxNOT_FOUND)
     {
         mmErrorDialogs::ToolTip4Object(bGroupBy_, _("Invalid value"), _("Group By"), wxICON_ERROR);
+        return false;
+    }
+
+    if (chartCheckBox_->IsChecked() && bChart_->GetSelection() == wxNOT_FOUND)
+    {
+        mmErrorDialogs::ToolTip4Object(bChart_, _("Invalid value"), _("Chart"), wxICON_ERROR);
         return false;
     }
 
@@ -1855,6 +1892,17 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
         }
     }
 
+    // Chart
+    if (chartCheckBox_->IsChecked())
+    {
+        const wxString chart = bChart_->GetStringSelection();
+        if (!chart.empty())
+        {
+            json_writer.Key((i18n ? _("Chart") : "CHART").utf8_str());
+            json_writer.String(chart.utf8_str());
+        }
+    }
+
     // Compress Splits
     const bool combineSplits = combineSplitsCheckBox_->IsChecked();
     if (combineSplits)
@@ -1947,6 +1995,14 @@ int mmFilterTransactionsDialog::mmGetGroupBy() const
     int by = -1;
     if (groupByCheckBox_->IsChecked())
         by = bGroupBy_->GetSelection();
+    return by;
+}
+
+int mmFilterTransactionsDialog::mmGetChart() const
+{
+    int by = -1;
+    if (chartCheckBox_->IsChecked())
+        by = bChart_->GetSelection();
     return by;
 }
 
