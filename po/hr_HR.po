@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-06 13:46\n"
+"PO-Revision-Date: 2024-01-06 14:50\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -1794,7 +1794,7 @@ msgstr "Rezultat sjedinjavanja kategorija"
 
 #: categdialog.cpp:761
 msgid "Are you sure you want to unhide all categories"
-msgstr ""
+msgstr "Stvarno želiš prikazati sve kategorije"
 
 #: categdialog.cpp:762
 msgid "Unhide all categories"
@@ -1869,7 +1869,7 @@ msgstr "64-bitni"
 
 #: constants.cpp:193
 msgid "View with Transaction Filter..."
-msgstr ""
+msgstr "Prikaži s filtrom transakcija …"
 
 #: constants.cpp:194
 msgid "View All Transactions"
@@ -2948,7 +2948,7 @@ msgstr ""
 #: images_list.cpp:424
 #, c-format
 msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
-msgstr ""
+msgstr "Metapodaci „%1$s” nedostaju u odabranoj temi „%2$s”"
 
 #: images_list.cpp:457
 msgid "and more..."
@@ -2957,7 +2957,7 @@ msgstr "i više …"
 #: images_list.cpp:459
 #, c-format
 msgid "There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s"
-msgstr ""
+msgstr "%1$d ikone nedostaju ili nisu ispravne u odabranoj temi „%2$s”: %3$s"
 
 #: images_list.cpp:488
 #, c-format
@@ -3790,7 +3790,7 @@ msgstr "Stvarno želiš izbrisati odabranu valutu?"
 #: maincurrencydialog.cpp:813 maincurrencydialog.h:76 mmframe.cpp:1706
 #: mmframe.cpp:1926 optionsettingsgeneral.cpp:301
 msgid "Organize Currencies"
-msgstr ""
+msgstr "Organiziraj valute"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -3959,11 +3959,11 @@ msgstr ""
 #: mmSimpleDialogs.cpp:1538
 #, c-format
 msgid "Create new tag '%s'?"
-msgstr ""
+msgstr "Stvoriti novu oznaku „%s”?"
 
 #: mmSimpleDialogs.cpp:1538
 msgid "New tag entered"
-msgstr ""
+msgstr "Nova oznaka je upisana"
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:585
 msgid "Invalid Value"
@@ -5205,7 +5205,7 @@ msgstr "&Ispiši"
 
 #: mmframe.cpp:1953
 msgid "Print"
-msgstr ""
+msgstr "Ispis"
 
 #: mmframe.cpp:2010
 #, c-format
