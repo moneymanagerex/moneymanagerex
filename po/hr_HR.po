@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-06 17:18\n"
+"PO-Revision-Date: 2024-01-06 18:19\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -4637,7 +4637,7 @@ msgstr "&Otvori web stranicu računa"
 
 #: mmframe.cpp:1472 mmframe.cpp:1672
 msgid "&Change Account Type..."
-msgstr ""
+msgstr "&Promijeni vrstu računa …"
 
 #: mmframe.cpp:1490 mmframe.cpp:1666
 msgid "&New Account..."
@@ -4817,7 +4817,7 @@ msgstr "Otvori nadzornu ploču"
 
 #: mmframe.cpp:1672
 msgid "Change the account type of an account"
-msgstr ""
+msgstr "Promijeni vrstu računa za račun"
 
 #: mmframe.cpp:1675
 msgid "Delete Account from database"
@@ -4869,7 +4869,7 @@ msgstr "&Primaoci …"
 
 #: mmframe.cpp:1714 relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge payees"
-msgstr ""
+msgstr "Sjedini primaoce"
 
 #: mmframe.cpp:1716
 msgid "&Tags..."
@@ -4885,7 +4885,7 @@ msgstr "&Sjedini"
 
 #: mmframe.cpp:1720
 msgid "Merge categories, payees, and tags"
-msgstr ""
+msgstr "Sjedini kategorije, primaoce i oznake"
 
 #: mmframe.cpp:1731
 msgid "&Budget Setup..."
@@ -5464,11 +5464,11 @@ msgstr ""
 
 #: mmframe.cpp:3746 payeedialog.cpp:833
 msgid "Merge payees completed"
-msgstr ""
+msgstr "Sjedinjavanje primalaca dovršeno"
 
 #: mmframe.cpp:3750 payeedialog.cpp:837
 msgid "Merge payees result"
-msgstr ""
+msgstr "Rezultat sjedinjavanja primalaca"
 
 #: mmframe.cpp:3762
 msgid "Merge tags completed"
@@ -6563,16 +6563,18 @@ msgstr "URL web stranice povezan s primaocem"
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "Poklapanje uzoraka\n"
+"pri uvozu"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "Unesi bilo koji niz za pokalapnje ovog primaoca pri uvozu.\n"
+"Uzorci se testiraju redoslijedom koji je ovdje unesen."
 
 #: payeedialog.cpp:238
 msgid "A payee with this name already exists"
-msgstr ""
+msgstr "Primalac s ovim imenom već postoji"
 
 #: payeedialog.cpp:454
 msgid "Match Pattern"
@@ -6580,11 +6582,11 @@ msgstr ""
 
 #: payeedialog.cpp:736
 msgid "Payee in use."
-msgstr "Korišteni primalac."
+msgstr "Korišteni primaoc."
 
 #: payeedialog.cpp:741
 msgid "It will be not removed"
-msgstr ""
+msgstr "Neće se ukloniti"
 
 #: payeedialog.cpp:743
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
@@ -6592,7 +6594,7 @@ msgstr ""
 
 #: payeedialog.cpp:745
 msgid "Tools → Merge → Payees"
-msgstr ""
+msgstr "Alati → Sjedini → Primaoci"
 
 #: payeedialog.cpp:746
 msgid "Organize Payees: Delete Error"
@@ -6690,11 +6692,11 @@ msgstr "Pronađeni zapisi u budžetu: %i"
 
 #: relocatepayeedialog.cpp:99
 msgid "Delete source payee after merge"
-msgstr ""
+msgstr "Izbriši izvornog primaoca nakon sjedinjavanja"
 
 #: relocatepayeedialog.cpp:156
 msgid "Merge payees confirmation"
-msgstr ""
+msgstr "Potvrda sjedinjavanja primaoca"
 
 #: relocatetagdialog.cpp:101
 msgid "Delete source tag after merge"
