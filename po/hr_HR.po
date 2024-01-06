@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-05 17:32\n"
+"PO-Revision-Date: 2024-01-06 13:46\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -1669,11 +1669,11 @@ msgstr "Odaberi trenutačno odabranu kategoriju za transakciju"
 
 #: categdialog.cpp:343
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "Ime sadrži znak odvajanja kategorija."
 
 #: categdialog.cpp:344
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "Znak dvotočke (:) se koristi za odvajanje kategorija i potkategorija i stoga se ne smije koristiti u imenu"
 
 #: categdialog.cpp:346
 msgid "Organize Categories: Invalid Name"
