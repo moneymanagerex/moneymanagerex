@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-06 14:50\n"
+"PO-Revision-Date: 2024-01-06 17:18\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -2035,7 +2035,7 @@ msgstr "%.2f Prikazuje se kao: %s"
 
 #: currencydialog.cpp:334
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(korištnje jezika područja)"
 
 #: currencydialog.h:48
 msgid "Currency Manager"
@@ -3580,7 +3580,7 @@ msgstr "Redak %ld: U redu, uvezen."
 
 #: import_export/univcsvdialog.cpp:1473
 msgid "Rejected rows:"
-msgstr ""
+msgstr "Odbijeni redci:"
 
 #: import_export/univcsvdialog.cpp:1478
 #, c-format
@@ -4404,7 +4404,7 @@ msgstr "Izbrisane transakcije"
 #: mmcheckingpanel.cpp:517
 #, c-format
 msgid "Account View: %s"
-msgstr ""
+msgstr "Prikaz računa: %s"
 
 #: mmcheckingpanel.cpp:536
 msgid "Account Bal: "
@@ -5149,7 +5149,7 @@ msgstr "&O programu"
 
 #: mmframe.cpp:1883
 msgid "About dialog"
-msgstr ""
+msgstr "Dijalog s informacijama o programu"
 
 #: mmframe.cpp:1887
 msgid "&File"
@@ -5181,7 +5181,7 @@ msgstr "&Opcije"
 
 #: mmframe.cpp:1932
 msgid "Options Dialog"
-msgstr ""
+msgstr "Dijalog za opcije"
 
 #: mmframe.cpp:1940 mmframe.cpp:1945 mmframe.cpp:2945 optionsettingsnet.cpp:132
 msgid "News"
@@ -5193,7 +5193,7 @@ msgstr "Preuzmi tečajeve"
 
 #: mmframe.cpp:1947
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "Preuzmi tečajeve valuta i dionica"
 
 #: mmframe.cpp:1950
 msgid "Toggle Fullscreen\tF11"
