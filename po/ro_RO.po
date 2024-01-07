@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-04 12:19\n"
+"PO-Revision-Date: 2024-01-07 20:08\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -3228,7 +3228,7 @@ msgstr "Linia %zu \t %s\n"
 #: import_export/qif_import_gui.cpp:536
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "Numărul de linii citite din fișierul QIF: %zu în %lld ms"
 
 #: import_export/qif_import_gui.cpp:541 mmreportspanel.cpp:347
 msgid "Accounts:"
@@ -3252,7 +3252,7 @@ msgstr "Lipsește"
 #: import_export/qif_import_gui.cpp:795 import_export/univcsvdialog.cpp:2070
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
-msgstr ""
+msgstr "Potrivire %1$s după modelul %2$s"
 
 #: import_export/qif_import_gui.cpp:874
 msgid "Choose QIF data file to Import"
@@ -3260,11 +3260,11 @@ msgstr "Selectaţi fişierul de date QIF pentru import"
 
 #: import_export/qif_import_gui.cpp:1045
 msgid "Do you want to import all transaction?"
-msgstr ""
+msgstr "Doriți să importați toate tranzacțiile?"
 
 #: import_export/qif_import_gui.cpp:1046
 msgid "All missing account, payees and categories will be created."
-msgstr ""
+msgstr "Toate conturile lipsă, beneficiarii și categoriile vor fi create."
 
 #: import_export/qif_import_gui.cpp:1047
 msgid "Confirm Import"
@@ -3289,28 +3289,28 @@ msgstr "Se importă Categorii"
 #: import_export/qif_import_gui.cpp:1084
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "Se importă tranzacția %1$i din %2$i"
 
 #: import_export/qif_import_gui.cpp:1173
 msgid "Importing Transfers"
-msgstr ""
+msgstr "Se importă transferuri"
 
 #: import_export/qif_import_gui.cpp:1213
 msgid "Importing Split transactions"
-msgstr ""
+msgstr "Importul de tranzacții Split"
 
 #: import_export/qif_import_gui.cpp:1217
 msgid "Import finished successfully"
-msgstr ""
+msgstr "Import terminat cu succes"
 
 #: import_export/qif_import_gui.cpp:1217
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Total importat: %zu"
 
 #: import_export/qif_import_gui.cpp:1227 import_export/univcsvdialog.cpp:1525
 msgid "Imported transactions discarded by user!"
-msgstr ""
+msgstr "Tranzacțiile importate au fost anulate de către utilizator!"
 
 #: import_export/qif_import_gui.cpp:1229 import_export/qif_import_gui.h:45
 #: mmframe.cpp:1562
@@ -3319,7 +3319,7 @@ msgstr "Importă din fișierul QIF"
 
 #: import_export/qif_import_gui.cpp:1337
 msgid "Transaction code is missing"
-msgstr ""
+msgstr "Codul tranzacției lipsește"
 
 #: import_export/qif_import_gui.cpp:1351
 #, c-format
@@ -3890,32 +3890,32 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:713
 msgid "Add one year"
-msgstr ""
+msgstr "Adaugă un an"
 
 #: mmSimpleDialogs.cpp:769
 #, c-format
 msgid "Entry %s is invalid"
-msgstr ""
+msgstr "Înregistrarea %s nu este corectă"
 
 #: mmSimpleDialogs.cpp:775
 msgid "Please select an existing category"
-msgstr ""
+msgstr "Selectează o categorie existentă"
 
 #: mmSimpleDialogs.cpp:775
 msgid "Invalid Category"
-msgstr ""
+msgstr "Categoria nu este validă"
 
 #: mmSimpleDialogs.cpp:780
 msgid "File name is empty."
-msgstr ""
+msgstr "Numele fișierului este gol."
 
 #: mmSimpleDialogs.cpp:781
 msgid "Please select the file for this operation."
-msgstr ""
+msgstr "Vă rugăm să selectaţi fişierul pentru această operaţiune."
 
 #: mmSimpleDialogs.cpp:791
 msgid "Please select the account for this transaction."
-msgstr ""
+msgstr "Selectează contul pentru această tranzacție."
 
 #: mmSimpleDialogs.cpp:793
 msgid "Please specify which account the transfer is going to."
