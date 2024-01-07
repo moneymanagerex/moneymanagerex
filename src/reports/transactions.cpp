@@ -195,7 +195,7 @@ table {
             }
             hb.addDivContainer("shadow");
             if (groupBy > -1)
-                hb.addHeader(2, sortLabel);
+                hb.addHeader(3, sortLabel);
             hb.startSortTable();
             hb.startThead();
             hb.startTableRow();
