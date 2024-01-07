@@ -26,6 +26,7 @@
 #include "util.h"
 #include "model/allmodel.h"
 #include <algorithm>
+#include <numeric>
 #include <vector>
 #include <float.h>
 
@@ -127,6 +128,7 @@ table {
     m_noOfCols = (m_transDialog->mmIsHideColumnsChecked()) ? m_transDialog->mmGetHideColumnsID().GetCount() : 11;
     const wxString& AttRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     const int groupBy = m_transDialog->mmGetGroupBy();
+    const int chart = m_transDialog->mmGetChart();
     wxString lastSortLabel = "";
 
     std::map<int, double> total; //Store transaction amount with original currency
@@ -135,6 +137,7 @@ table {
     std::map<int, double> grand_total_in_base_curr; //Grad - Store transactions amount daily converted to base currency
     std::map<int, double> grand_total_extrans; //Grand - Store transaction amount with original currency - excluding TRANSFERS
     std::map<int, double> grand_total_in_base_curr_extrans; //Grand - Store transactions amount daily converted to base currency - excluding TRANSFERS
+    std::map<wxString, double> values_chart; // Store grouped values for chart
 
     const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     Model_CustomField::FIELDTYPE UDFC01_Type = Model_CustomField::getUDFCType(RefType, "UDFC01");
@@ -161,6 +164,12 @@ table {
             sortLabel = transaction.CATEGNAME;
         else if (groupBy == mmFilterTransactionsDialog::GROUPBY_TYPE)
             sortLabel = wxGetTranslation(transaction.TRANSCODE);
+        else if (groupBy == mmFilterTransactionsDialog::GROUPBY_DAY)
+            sortLabel = mmGetDateForDisplay(transaction.TRANSDATE);
+        else if (groupBy == mmFilterTransactionsDialog::GROUPBY_MONTH)
+            sortLabel = Model_Checking::TRANSDATE(transaction).Format("%Y-%m");
+        else if (groupBy == mmFilterTransactionsDialog::GROUPBY_YEAR)
+            sortLabel = Model_Checking::TRANSDATE(transaction).Format("%Y");
 
         if (sortLabel != lastSortLabel)
         {
@@ -174,12 +183,19 @@ table {
                 hb.endTbody();
                 hb.endTable();
                 hb.endDiv();
+
+                if (chart > -1)
+                {
+                    double value_chart = std::accumulate(total_in_base_curr.begin(), total_in_base_curr.end(), 0,
+                                                         [](const double previous, decltype(*total_in_base_curr.begin()) p) { return previous + p.second; });
+                    values_chart[lastSortLabel] += value_chart;
+                }
                 total.clear();
                 total_in_base_curr.clear();
             }
             hb.addDivContainer("shadow");
             if (groupBy > -1)
-                hb.addHeader(2, sortLabel);
+                hb.addHeader(3, sortLabel);
             hb.startSortTable();
             hb.startThead();
             hb.startTableRow();
@@ -287,6 +303,10 @@ table {
                         grand_total_extrans[curr->CURRENCYID] += amount;
                         grand_total_in_base_curr_extrans[curr->CURRENCYID] += amount * convRate;
                     }
+                    if (chart > -1 && groupBy == -1)
+                    {
+                        values_chart[std::to_string(transaction.TRANSID)] += (amount * convRate);
+                    }
                 }
                 else
                 {
@@ -378,11 +398,18 @@ table {
         hb.startTable();
         hb.startTbody();
         displayTotals(total, total_in_base_curr, m_noOfCols);
+        if (chart > -1)
+        {
+            double value_chart = std::accumulate(total_in_base_curr.begin(), total_in_base_curr.end(), 0,
+                                                 [](const double previous, decltype(*total_in_base_curr.begin()) p) { return previous + p.second; });
+            values_chart[lastSortLabel] += value_chart;
+        }
     }
     hb.endTbody();
     hb.endTable();
     hb.endDiv();
 
+    // Totals box
     hb.addDivContainer("shadow");
     {
         hb.startTable();
@@ -426,6 +453,24 @@ table {
         hb.endTable();
     }
     hb.endDiv();
+
+    // Chart
+    if (chart > -1 && values_chart.size() > 0)
+    {
+        GraphData gd;
+        GraphSeries gs;
+        for (const auto& kv : values_chart)
+        {
+            gd.labels.push_back(kv.first);
+            gs.values.push_back(kv.second);
+        }
+        gd.series.push_back(gs);
+        //gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_DELTA) };
+        gd.type = static_cast<GraphData::GraphType>(chart);
+        hb.addChart(gd);
+    }
+
+    // Filters recap
     hb.addDivContainer("shadow");
     {
         m_transDialog->mmGetDescription(hb);
@@ -502,6 +547,15 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
         break;
     case mmFilterTransactionsDialog::GROUPBY_TYPE:
         std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSCODE());
+        break;
+    case mmFilterTransactionsDialog::GROUPBY_DAY:
+        std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
+        break;
+    case mmFilterTransactionsDialog::GROUPBY_MONTH:
+        std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
+        break;
+    case mmFilterTransactionsDialog::GROUPBY_YEAR:
+        std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
         break;
     }
 }
