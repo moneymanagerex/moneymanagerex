@@ -468,6 +468,8 @@ table {
         //gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_DELTA) };
         gd.type = static_cast<GraphData::GraphType>(chart);
         hb.addChart(gd);
+        //TODO: Fix with proper HTML code instead of jQuery trick
+        hb.addText("<script>$('.shadowGraph').insertAfter($('.shadowTitle'));</script>");
     }
 
     // Filters recap
