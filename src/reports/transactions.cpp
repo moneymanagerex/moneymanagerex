@@ -457,22 +457,17 @@ table {
     // Chart
     if (chart > -1 && values_chart.size() > 0)
     {
-        hb.addDivContainer("shadow");
+        GraphData gd;
+        GraphSeries gs;
+        for (const auto& kv : values_chart)
         {
-            GraphData gd;
-            GraphSeries gs;
-            for (const auto& kv : values_chart)
-            {
-                gd.labels.push_back(kv.first);
-                gs.values.push_back(kv.second);
-            }
-            gd.series.push_back(gs);
-            //gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_DELTA) };
-            gd.type = static_cast<GraphData::GraphType>(chart);
-            hb.addChart(gd);
-            hb.end();
+            gd.labels.push_back(kv.first);
+            gs.values.push_back(kv.second);
         }
-        hb.endDiv();
+        gd.series.push_back(gs);
+        //gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_DELTA) };
+        gd.type = static_cast<GraphData::GraphType>(chart);
+        hb.addChart(gd);
     }
 
     // Filters recap
