@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-04 12:19\n"
+"PO-Revision-Date: 2024-01-07 21:36\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -201,7 +201,7 @@ msgstr "Autentificare:"
 
 #: accountdialog.cpp:220
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "Introdu informațiile de autentificare/acces pentru instituția financiară. Acestea nu sînt securizate și oricine are acces la fila mmb le poate vedea."
+msgstr "Introdu informațiile de autentificare/acces pentru instituția financiară. Acestea nu sunt securizate și oricine are acces la fișierul MoneyManagerEx le poate vedea."
 
 #: accountdialog.cpp:225
 msgid "Statement"
@@ -358,7 +358,7 @@ msgstr "Citește manualul de utilizare"
 
 #: appstartdialog.cpp:119 mmframe.cpp:1807
 msgid "&Website"
-msgstr "&Website"
+msgstr "Pagină Web"
 
 #: appstartdialog.cpp:120
 #, c-format
@@ -3228,7 +3228,7 @@ msgstr "Linia %zu \t %s\n"
 #: import_export/qif_import_gui.cpp:536
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "Numărul de linii citite din fișierul QIF: %zu în %lld ms"
 
 #: import_export/qif_import_gui.cpp:541 mmreportspanel.cpp:347
 msgid "Accounts:"
@@ -3252,7 +3252,7 @@ msgstr "Lipsește"
 #: import_export/qif_import_gui.cpp:795 import_export/univcsvdialog.cpp:2070
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
-msgstr ""
+msgstr "Potrivire %1$s după modelul %2$s"
 
 #: import_export/qif_import_gui.cpp:874
 msgid "Choose QIF data file to Import"
@@ -3260,11 +3260,11 @@ msgstr "Selectaţi fişierul de date QIF pentru import"
 
 #: import_export/qif_import_gui.cpp:1045
 msgid "Do you want to import all transaction?"
-msgstr ""
+msgstr "Doriți să importați toate tranzacțiile?"
 
 #: import_export/qif_import_gui.cpp:1046
 msgid "All missing account, payees and categories will be created."
-msgstr ""
+msgstr "Toate conturile lipsă, beneficiarii și categoriile vor fi create."
 
 #: import_export/qif_import_gui.cpp:1047
 msgid "Confirm Import"
@@ -3289,28 +3289,28 @@ msgstr "Se importă Categorii"
 #: import_export/qif_import_gui.cpp:1084
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "Se importă tranzacția %1$i din %2$i"
 
 #: import_export/qif_import_gui.cpp:1173
 msgid "Importing Transfers"
-msgstr ""
+msgstr "Se importă transferuri"
 
 #: import_export/qif_import_gui.cpp:1213
 msgid "Importing Split transactions"
-msgstr ""
+msgstr "Importul de tranzacții Split"
 
 #: import_export/qif_import_gui.cpp:1217
 msgid "Import finished successfully"
-msgstr ""
+msgstr "Import terminat cu succes"
 
 #: import_export/qif_import_gui.cpp:1217
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Total importat: %zu"
 
 #: import_export/qif_import_gui.cpp:1227 import_export/univcsvdialog.cpp:1525
 msgid "Imported transactions discarded by user!"
-msgstr ""
+msgstr "Tranzacțiile importate au fost anulate de către utilizator!"
 
 #: import_export/qif_import_gui.cpp:1229 import_export/qif_import_gui.h:45
 #: mmframe.cpp:1562
@@ -3319,36 +3319,36 @@ msgstr "Importă din fișierul QIF"
 
 #: import_export/qif_import_gui.cpp:1337
 msgid "Transaction code is missing"
-msgstr ""
+msgstr "Codul tranzacției lipsește"
 
 #: import_export/qif_import_gui.cpp:1351
 #, c-format
 msgid "%1$s matched by %2$s"
-msgstr ""
+msgstr "%1$s se potrivește cu %2$s"
 
 #: import_export/qif_import_gui.cpp:1363
 msgid "Transaction Payee is missing or incorrect"
-msgstr ""
+msgstr "Beneficiarul tranzacției lipsește sau este incorect"
 
 #: import_export/qif_import_gui.cpp:1375
 msgid "Date format or date mask is incorrect"
-msgstr ""
+msgstr "Formatul datei sau data este incorect/ă"
 
 #: import_export/qif_import_gui.cpp:1387
 msgid "Transaction Account is incorrect"
-msgstr ""
+msgstr "Contul de Tranzacție este incorect"
 
 #: import_export/qif_import_gui.cpp:1396
 msgid "Transaction Account for transfer is incorrect"
-msgstr ""
+msgstr "Contul de Tranzacție pentru transfer este incorect"
 
 #: import_export/qif_import_gui.cpp:1425
 msgid "Transaction Amount is incorrect"
-msgstr ""
+msgstr "Suma tranzacției este incorectă"
 
 #: import_export/qif_import_gui.cpp:1451
 msgid "Transaction Category is incorrect"
-msgstr ""
+msgstr "Categoria tranzacției este incorectă"
 
 #: import_export/qif_import_gui.cpp:1585
 #, c-format
@@ -3392,14 +3392,15 @@ msgstr "Cont: "
 
 #: import_export/univcsvdialog.cpp:215
 msgid "Preset:"
-msgstr ""
+msgstr "Presetare:"
 
 #: import_export/univcsvdialog.cpp:263 import_export/univcsvdialog.cpp:580
 #: import_export/univcsvdialog.cpp:2640
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
-msgstr ""
+msgstr "Încarcă această presetare când Contul este:\n"
+"%s"
 
 #: import_export/univcsvdialog.cpp:270
 msgid "Specify the order of fields in the file"
@@ -3467,15 +3468,15 @@ msgstr "Alege fila CSV în care să se facă exportul"
 
 #: import_export/univcsvdialog.cpp:563
 msgid "Preset name"
-msgstr ""
+msgstr "Nume presetare"
 
 #: import_export/univcsvdialog.cpp:564
 msgid "Save current settings as a Preset"
-msgstr ""
+msgstr "Salvează setările curente ca presetare"
 
 #: import_export/univcsvdialog.cpp:565 import_export/univcsvdialog.cpp:2168
 msgid "Delete Preset"
-msgstr ""
+msgstr "Ştergere presetare"
 
 #: import_export/univcsvdialog.cpp:566
 msgid "MMEX standard format"
@@ -3504,7 +3505,7 @@ msgstr "Export fișier"
 #: import_export/univcsvdialog.cpp:584 import_export/univcsvdialog.cpp:2647
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
-msgstr ""
+msgstr "Presetare '%1$s' încărcată deoarece Contul %2$s a fost selectat"
 
 #: import_export/univcsvdialog.cpp:738
 #, c-format
@@ -3515,21 +3516,21 @@ msgstr "Contul implicit '%s' pentru acest șablon nu există.\n"
 
 #: import_export/univcsvdialog.cpp:740
 msgid "Account does not exist"
-msgstr ""
+msgstr "Contul nu există"
 
 #: import_export/univcsvdialog.cpp:942 import_export/univcsvdialog.cpp:1037
 #: import_export/univcsvdialog.cpp:2662
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Pozitiv dacă tipul are '%s'"
 
 #: import_export/univcsvdialog.cpp:1064
 msgid "Preset Name"
-msgstr ""
+msgstr "Nume presetare"
 
 #: import_export/univcsvdialog.cpp:1064
 msgid "Save Preset"
-msgstr ""
+msgstr "Salvare presetare"
 
 #: import_export/univcsvdialog.cpp:1233
 msgid "Invalid Date."
@@ -3663,7 +3664,7 @@ msgstr "Tranzacții exportate: %ld"
 #: import_export/univcsvdialog.cpp:2166
 #, c-format
 msgid "Preset '%s' will be deleted"
-msgstr ""
+msgstr "Presetarea %s va fi ştearsă"
 
 #: import_export/univcsvdialog.cpp:2199 stockdialog.cpp:544
 msgid "Choose CSV data file to import"
@@ -3706,22 +3707,22 @@ msgstr "Semnul sumei trebuie să fie definit de tip atunci când 'Tip' este sele
 #: import_export/univcsvdialog.cpp:2871
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
-msgstr ""
+msgstr "Valoarea %1$s pentru câmpul personalizat '%2$s' nu este de tip %3$s."
 
 #: import_export/univcsvdialog.cpp:2829 import_export/univcsvdialog.cpp:2850
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
-msgstr ""
+msgstr "Valoarea %1$s pentru câmpul personalizat %2$s '%3$s' nu este o selecție validă."
 
 #: import_export/univcsvdialog.cpp:2861
 #, c-format
 msgid "Confirm format matches selection %s."
-msgstr ""
+msgstr "Confirmați formatul selecției %s."
 
 #: import_export/univcsvdialog.cpp:2888
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
-msgstr ""
+msgstr "Valoarea %1$s nu se potrivește cu regex %2$s pentru câmpul personalizat '%3$s'."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -3797,66 +3798,67 @@ msgstr "Ești sigur că vrei să ștergi Valuta selectată?"
 #: maincurrencydialog.cpp:813 maincurrencydialog.h:76 mmframe.cpp:1706
 #: mmframe.cpp:1926 optionsettingsgeneral.cpp:301
 msgid "Organize Currencies"
-msgstr ""
+msgstr "Administrează Valutele"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
-msgstr ""
+msgstr "Selecție valută de bază"
 
 #: maincurrencydialog.cpp:435
 #, c-format
 msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %2$s"
-msgstr ""
+msgstr "Au fost găsite rate istorice pentru %1$s, dar opțiunea \"Utilizează istoricul valutar\" este dezactivată:\n"
+"apăsați pe \"Nu\" și activați-o sau apăsați pe \"Da\" pentru a elimina toate ratele istorice pentru %2$s"
 
 #: maincurrencydialog.cpp:447
 #, c-format
 msgid "Currency History Options: %s"
-msgstr ""
+msgstr "Opțiuni istoric valutar: %s"
 
 #: maincurrencydialog.cpp:503
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "Nu se pot actualiza ratele valutare ale istoricului. Vă rugăm să le actualizați manual!"
 
 #: maincurrencydialog.cpp:504 maincurrencydialog.cpp:657
 #: maincurrencydialog.cpp:692 maincurrencydialog.cpp:728
 #: maincurrencydialog.cpp:834
 msgid "Currency history error"
-msgstr ""
+msgstr "Eroare în istoricul valutar"
 
 #: maincurrencydialog.cpp:536
 msgid "Set as Base Currency"
-msgstr ""
+msgstr "Setează ca Monedă de Bază"
 
 #: maincurrencydialog.cpp:537
 msgid "Online Update Currency Rate"
-msgstr ""
+msgstr "Actualizare online a ratei valutei"
 
 #: maincurrencydialog.cpp:657
 msgid "No currency selected!"
-msgstr ""
+msgstr "Nici o monedă selectată!"
 
 #: maincurrencydialog.cpp:663
 msgid "Do you want to add also dates without any transaction?"
-msgstr ""
+msgstr "Doriți să adăugați și date fără nicio tranzacție?"
 
 #: maincurrencydialog.cpp:690
 #, c-format
 msgid "Unable to download %s currency rates"
-msgstr ""
+msgstr "Imposibil de descărcat ratele de schimb valutar %s"
 
 #: maincurrencydialog.cpp:726
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr ""
+msgstr "Imposibil de descărcat istoricul pentru simbolul %s. Ratele de istorie nu sunt disponibile!"
 
 #: maincurrencydialog.cpp:788 optionsettingsgeneral.cpp:300
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "Schimbarea valutei de bază va șterge toate ratele din istorie, continuați?"
 
 #: maincurrencydialog.cpp:812
 msgid "Do you want to update today currency rates?"
-msgstr ""
+msgstr "Doriți să actualizați astăzi ratele valutare?"
 
 #: maincurrencydialog.cpp:833
 #, c-format
@@ -3878,81 +3880,82 @@ msgstr "Culoare #%i"
 
 #: mmSimpleDialogs.cpp:710
 msgid "Subtract one year"
-msgstr ""
+msgstr "Scade un an"
 
 #: mmSimpleDialogs.cpp:711
 msgid "Subtract one month"
-msgstr ""
+msgstr "Scade o lună"
 
 #: mmSimpleDialogs.cpp:712
 msgid "Add one month"
-msgstr ""
+msgstr "Adaugă o lună"
 
 #: mmSimpleDialogs.cpp:713
 msgid "Add one year"
-msgstr ""
+msgstr "Adaugă un an"
 
 #: mmSimpleDialogs.cpp:769
 #, c-format
 msgid "Entry %s is invalid"
-msgstr ""
+msgstr "Înregistrarea %s nu este corectă"
 
 #: mmSimpleDialogs.cpp:775
 msgid "Please select an existing category"
-msgstr ""
+msgstr "Selectează o categorie existentă"
 
 #: mmSimpleDialogs.cpp:775
 msgid "Invalid Category"
-msgstr ""
+msgstr "Categoria nu este validă"
 
 #: mmSimpleDialogs.cpp:780
 msgid "File name is empty."
-msgstr ""
+msgstr "Numele fișierului este gol."
 
 #: mmSimpleDialogs.cpp:781
 msgid "Please select the file for this operation."
-msgstr ""
+msgstr "Vă rugăm să selectaţi fişierul pentru această operaţiune."
 
 #: mmSimpleDialogs.cpp:791
 msgid "Please select the account for this transaction."
-msgstr ""
+msgstr "Selectează contul pentru această tranzacție."
 
 #: mmSimpleDialogs.cpp:793
 msgid "Please specify which account the transfer is going to."
-msgstr ""
+msgstr "Vă rugăm să specificați contul la care va fi trimis transferul."
 
 #: mmSimpleDialogs.cpp:795
 msgid "Selection can be made by using the dropdown button."
-msgstr ""
+msgstr "Selecția poate fi făcută utilizând butonul derulant."
 
 #: mmSimpleDialogs.cpp:798
 msgid "Activating the button will provide a selection box where the account can be selected."
-msgstr ""
+msgstr "Activarea butonului va oferi o casetă de selecţie în care contul poate fi selectat."
 
 #: mmSimpleDialogs.cpp:807
 msgid "Invalid Payee"
-msgstr ""
+msgstr "Beneficiar incorect"
 
 #: mmSimpleDialogs.cpp:808
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr ""
+msgstr "Te rugăm să introduci un nou beneficiar,\n"
+"sau să faci o selecție folosind butonul derulant."
 
 #: mmSimpleDialogs.cpp:816 mmSimpleDialogs.cpp:828
 msgid "Invalid Name"
-msgstr ""
+msgstr "Nume nevalid"
 
 #: mmSimpleDialogs.cpp:819 mmSimpleDialogs.cpp:831
 msgid "Already exist!"
-msgstr ""
+msgstr "Există deja!"
 
 #: mmSimpleDialogs.cpp:821
 msgid "Please type in a non empty name."
-msgstr ""
+msgstr "Te rugăm să introduci un nume care nu este gol."
 
 #: mmSimpleDialogs.cpp:833
 msgid "Please type in a non empty symbol."
-msgstr ""
+msgstr "Vă rugăm să introduceţi un simbol care nu este gol."
 
 #: mmSimpleDialogs.cpp:936
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
@@ -3965,7 +3968,7 @@ msgstr "Operatorul implicit dintre etichetele consecutive este ȘI, folosește '
 #: mmSimpleDialogs.cpp:1538
 #, c-format
 msgid "Create new tag '%s'?"
-msgstr ""
+msgstr "Creaţi o nouă etichetă '%s'?"
 
 #: mmSimpleDialogs.cpp:1538
 msgid "New tag entered"
@@ -3973,7 +3976,7 @@ msgstr "O nouă etichetă introdusă"
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:585
 msgid "Invalid Value"
-msgstr ""
+msgstr "Valoare nevalidă"
 
 #: mmTextCtrl.cpp:113
 msgid "Please enter a positive or calculated value."
