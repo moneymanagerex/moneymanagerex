@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-04 11:18\n"
+"PO-Revision-Date: 2024-01-08 14:51\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4344,19 +4344,19 @@ msgstr "Selecione a Conta Destino "
 
 #: mmchecking_list.cpp:1654
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
-msgstr ""
+msgstr "Isto deve-se a alguns elementos da transação ou detalhes da conta não permitirem a movimentação"
 
 #: mmchecking_list.cpp:1655
 msgid "Moved"
-msgstr ""
+msgstr "Movido"
 
 #: mmchecking_list.cpp:1656
 msgid "Not moved"
-msgstr ""
+msgstr "Por mover"
 
 #: mmchecking_list.cpp:1659
 msgid "Some transactions could not be moved"
-msgstr ""
+msgstr "Algumas transações não puderam ser movidas"
 
 #: mmchecking_list.cpp:1724
 msgid "Scheduled transaction saved."
@@ -5815,7 +5815,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Uma transação recorrente excederá o limite da sua conta.\n\n"
+"Conta: %1$s\n"
+"Saldo atual: %2$6.2f\n"
+"Valor da transação: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Deseja continuar?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -7008,7 +7013,7 @@ msgstr "Há 1 Ano"
 #: reports/mmDateRange.cpp:284 reports/mmDateRange.cpp:296
 #, c-format
 msgid "Last %i Days"
-msgstr ""
+msgstr "Últimos %i Dias"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -7098,7 +7103,7 @@ msgstr "Gráficos de Desempenho de Ações"
 
 #: reports/transactions.cpp:197
 msgid "FX Rate"
-msgstr ""
+msgstr "Taxa de Câmbio"
 
 #: reports/transactions.cpp:395
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
@@ -7190,11 +7195,11 @@ msgstr "Digite as notas para descrever esta transação fracionada"
 
 #: splittransactionsdialog.cpp:250
 msgid "&Add Split"
-msgstr ""
+msgstr "&Adicionar Transação Fracionada"
 
 #: splittransactionsdialog.cpp:255
 msgid "&Remove Split"
-msgstr ""
+msgstr "Remover Transação Fracionada"
 
 #: splittransactionsdialog.cpp:411
 msgid "Invalid Total Amount"
@@ -7656,19 +7661,19 @@ msgstr "Anexar"
 
 #: transactionsupdatedialog.cpp:511
 msgid "This is due to some elements of the transaction or account detail not allowing the update"
-msgstr ""
+msgstr "Isto deve-se a alguns elementos da transação ou detalhes da conta não permitirem a atualização"
 
 #: transactionsupdatedialog.cpp:512
 msgid "Updated"
-msgstr ""
+msgstr "Atualizado"
 
 #: transactionsupdatedialog.cpp:513
 msgid "Not updated"
-msgstr ""
+msgstr "Não atualizado"
 
 #: transactionsupdatedialog.cpp:516
 msgid "Some transactions could not be updated"
-msgstr ""
+msgstr "Algumas transações não puderam ser atualizadas"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
@@ -7977,7 +7982,7 @@ msgstr "A lista completa de problemas fechados está disponível nesta ligação
 
 #: util.cpp:1946
 msgid "Copy all text to clipboard"
-msgstr ""
+msgstr "Copiar texto para a área de transferência"
 
 #: util.h:192
 msgid "January"

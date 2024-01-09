@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-04 11:18\n"
+"PO-Revision-Date: 2024-01-07 12:33\n"
 "Last-Translator: \n"
 "Language-Team: Slovenian\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Pošiljaj anonimne statistične podatke o uporabi"
 
 #: aboutdialog.cpp:240 optionsettingsnet.cpp:127
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
+msgstr "Dovoli pošiljanje anonimiziranih podatkov o MMEX uporabi."
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:138
 #: assetdialog.cpp:283 attachmentdialog.cpp:151 billsdepositsdialog.cpp:645
@@ -100,7 +100,7 @@ msgstr "Določite da je ta račun zaprt. Zaprti računi niso aktivni v večini k
 #: accountdialog.cpp:149
 #, c-format
 msgid "Initial Balance: %s"
-msgstr ""
+msgstr "Začetno stanje: %s"
 
 #: accountdialog.cpp:152
 msgid "Enter the initial balance in this account."
@@ -217,11 +217,11 @@ msgstr ""
 
 #: accountdialog.cpp:235
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Omogoči ali onemogoči zaklep transakcije"
 
 #: accountdialog.cpp:238
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Usklajen datum:"
 
 #: accountdialog.cpp:240
 msgid "The date of the transaction lock"
@@ -257,7 +257,7 @@ msgstr ""
 
 #: accountdialog.cpp:272
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Minimalno plačilo:"
 
 #: accountdialog.cpp:291
 msgid "Organize attachments of this account"
@@ -393,7 +393,7 @@ msgstr ""
 
 #: appstartdialog.cpp:222 mmframe.cpp:3879 optionsettingsgeneral.cpp:365
 msgid "Language change"
-msgstr ""
+msgstr "Menjaj jezik"
 
 #: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:471
 msgid "New Asset"
@@ -476,7 +476,7 @@ msgstr ""
 
 #: assetdialog.cpp:227
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Vnesite, v odstotkih, stopnjo, s katero sredstvo spremeni svojo vrednost na leto"
 
 #: assetdialog.cpp:237
 msgid "Organize attachments of this asset"
@@ -488,11 +488,11 @@ msgstr "Vnesi opombe vezane na premoženje"
 
 #: assetdialog.cpp:246
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Podrobnosti nove transakcije"
 
 #: assetdialog.cpp:249 sharetransactiondialog.cpp:292
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Spremeni podrobnosti transakcije"
 
 #: assetdialog.cpp:284 constants.cpp:74 sharetransactiondialog.cpp:322
 msgid "&Cancel "
@@ -500,7 +500,7 @@ msgstr ""
 
 #: assetdialog.cpp:386 sharetransactiondialog.cpp:415
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Neveljavna transakcija"
 
 #: assetdialog.cpp:393
 msgid "Asset Account not found.\n\n"
@@ -511,7 +511,7 @@ msgstr ""
 #: import_export/qif_export.cpp:625 import_export/univcsvdialog.cpp:99
 #: mmchecking_list.cpp:273 reports/transactions.cpp:186 stocks_list.cpp:87
 msgid "ID"
-msgstr ""
+msgstr "Identifikacijska številka"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:517 billsdepositspanel.cpp:139
 #: customfieldlistdialog.cpp:54 filtertrans.cpp:196 filtertransdialog.cpp:52
@@ -527,7 +527,7 @@ msgstr "Vrsta"
 
 #: assetspanel.cpp:63 mmhomepage.cpp:586 reports/summarystocks.cpp:116
 msgid "Initial Value"
-msgstr ""
+msgstr "Začetna vrednost"
 
 #: assetspanel.cpp:64 mmhomepage.cpp:587 reports/summarystocks.cpp:121
 #: stockdialog.cpp:242
@@ -609,21 +609,21 @@ msgstr ""
 
 #: assetspanel.cpp:480
 msgid "View Asset Transactions"
-msgstr ""
+msgstr "Ogled prenosa sredstev"
 
 #: assetspanel.cpp:484 attachmentdialog.cpp:356 billsdepositspanel.cpp:298
 #: categdialog.cpp:317 customfieldlistdialog.cpp:262 maincurrencydialog.cpp:540
 #: mmcheckingpanel.cpp:449 payeedialog.cpp:883 stockspanel.cpp:146
 #: tagdialog.cpp:128
 msgid "&Edit "
-msgstr ""
+msgstr "&Urejaj "
 
 #: assetspanel.cpp:489 billsdepositspanel.cpp:308 budgetyeardialog.cpp:103
 #: categdialog.cpp:321 maincurrencydialog.cpp:304 mmchecking_list.cpp:618
 #: mmcheckingpanel.cpp:441 stockdialog.cpp:321 stockspanel.cpp:151
 #: tagdialog.cpp:133
 msgid "&Delete "
-msgstr ""
+msgstr "&Izbriši "
 
 #: assetspanel.cpp:490
 msgid "Delete Asset"
@@ -632,13 +632,13 @@ msgstr "Izbriši lastnino"
 #: assetspanel.cpp:497 billsdepositspanel.cpp:326 mmcheckingpanel.cpp:466
 #: stockspanel.cpp:164
 msgid "Open attachments"
-msgstr ""
+msgstr "Odpri prilogo"
 
 #: assetspanel.cpp:504 assetspanel.cpp:505 categdialog.cpp:302
 #: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:488 payeedialog.cpp:590
 #: tagdialog.cpp:113
 msgid "Search"
-msgstr ""
+msgstr "Išči"
 
 #: assetspanel.cpp:508
 msgid "Enter any string to find related assets"
@@ -662,7 +662,7 @@ msgstr ""
 #: assetspanel.cpp:512 filtertransdialog.cpp:650 mmcheckingpanel.cpp:495
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Uporabite zvezdico (*) na začetku, da najdete kakršen koli niz (string) na sredini stavka."
 
 #: assetspanel.cpp:583 stockspanel.cpp:333 stockspanel.cpp:520
 #, c-format
@@ -681,7 +681,7 @@ msgstr ""
 
 #: assetspanel.cpp:784
 msgid "Asset Management"
-msgstr ""
+msgstr "Upravljanje premoženja"
 
 #: assetspanel.cpp:803
 msgid "Account \t Date\t   Value\n\n"
@@ -689,12 +689,12 @@ msgstr ""
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:435
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:203
 #: import_export/univcsvdialog.cpp:198
 msgid "File"
-msgstr ""
+msgstr "Datoteka"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
@@ -1878,11 +1878,11 @@ msgstr "Poglej tekoči mesec"
 
 #: constants.cpp:197
 msgid "View Last 30 days"
-msgstr ""
+msgstr "Pregled za zadnjih 30 dni"
 
 #: constants.cpp:198
 msgid "View Last 90 days"
-msgstr ""
+msgstr "Pregled za zadnjih 90 dni"
 
 #: constants.cpp:199
 msgid "View Last Month"
@@ -1890,27 +1890,27 @@ msgstr "Poglej zadnji mesec"
 
 #: constants.cpp:200
 msgid "View Last 3 Months"
-msgstr ""
+msgstr "Pregled za zadnje 3 mesece"
 
 #: constants.cpp:201
 msgid "View Last 12 Months"
-msgstr ""
+msgstr "Pregled za zadnjih 12 mesecev"
 
 #: constants.cpp:202
 msgid "View Current Year"
-msgstr ""
+msgstr "Pregled za tekoče leto"
 
 #: constants.cpp:203
 msgid "View Current Financial Year"
-msgstr ""
+msgstr "Pregled za tekoče finančno leto"
 
 #: constants.cpp:204
 msgid "View Last Year"
-msgstr ""
+msgstr "Pregled za zadnje leto"
 
 #: constants.cpp:205
 msgid "View Last Financial Year"
-msgstr ""
+msgstr "Pregled za zadnje finančno leto"
 
 #: constants.cpp:206
 msgid "View Since Statement Date"
@@ -1918,7 +1918,7 @@ msgstr ""
 
 #: constants.cpp:208
 msgid "ALL"
-msgstr ""
+msgstr "VSE"
 
 #: constants.cpp:209 mmframe.cpp:1503 mmframe.cpp:1916
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
@@ -1936,7 +1936,7 @@ msgstr "Priljubljeni"
 
 #: currencydialog.cpp:112
 msgid "Currency name"
-msgstr ""
+msgstr "Ime valute"
 
 #: currencydialog.cpp:188
 msgid "Currency Name"
@@ -1944,7 +1944,7 @@ msgstr "Naziv valute."
 
 #: currencydialog.cpp:193
 msgid "Currency Code"
-msgstr ""
+msgstr "Kratica valute"
 
 #: currencydialog.cpp:198
 msgid "Currency Symbol"
@@ -2218,7 +2218,7 @@ msgstr "Elektrika"
 
 #: db/DB_Table_Category_V1.h:116 db/DB_Table_Category_V1.h:130
 msgid "Gas"
-msgstr "Plin"
+msgstr "Gorivo"
 
 #: db/DB_Table_Category_V1.h:117
 msgid "Internet"
@@ -2318,7 +2318,7 @@ msgstr "Zobna"
 
 #: db/DB_Table_Category_V1.h:144
 msgid "Eyecare"
-msgstr "Okolist"
+msgstr "Okulist"
 
 #: db/DB_Table_Category_V1.h:145
 msgid "Physician"
@@ -2366,7 +2366,7 @@ msgstr "Davki"
 
 #: db/DB_Table_Category_V1.h:157
 msgid "Income Tax"
-msgstr "Prejeti davki"
+msgstr "Davek na prihodke"
 
 #: db/DB_Table_Category_V1.h:158
 msgid "House Tax"
@@ -2374,7 +2374,7 @@ msgstr "Davek na napremičnine"
 
 #: db/DB_Table_Category_V1.h:159
 msgid "Water Tax"
-msgstr "Vodni davek"
+msgstr "Davek na vodo"
 
 #: db/DB_Table_Category_V1.h:161
 msgid "Miscellaneous"
@@ -7787,7 +7787,7 @@ msgstr ""
 
 #: util.cpp:287
 msgid "Aug"
-msgstr ""
+msgstr "Avg"
 
 #: util.cpp:287
 msgid "Sep"
@@ -7795,7 +7795,7 @@ msgstr ""
 
 #: util.cpp:288
 msgid "Oct"
-msgstr ""
+msgstr "Okt"
 
 #: util.cpp:288
 msgid "Nov"
@@ -7847,23 +7847,23 @@ msgstr ""
 
 #: util.cpp:301
 msgid "Wed"
-msgstr ""
+msgstr "Sre"
 
 #: util.cpp:301
 msgid "Thu"
-msgstr ""
+msgstr "Čet"
 
 #: util.cpp:301
 msgid "Fri"
-msgstr ""
+msgstr "Pet"
 
 #: util.cpp:302
 msgid "Sat"
-msgstr ""
+msgstr "Sob"
 
 #: util.cpp:737
 msgid "Currency rates have been updated"
-msgstr ""
+msgstr "Stopnje valute so bile posodobljene"
 
 #: util.cpp:836 util.cpp:931 util.cpp:937 util.cpp:968 util.cpp:1027
 msgid "JSON Parse Error"

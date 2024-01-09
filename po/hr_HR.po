@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-04 20:04\n"
+"PO-Revision-Date: 2024-01-06 18:19\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -312,7 +312,7 @@ msgstr ""
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "Terminirane transakcije za ovaj račun su terminirane prije ovog datuma."
 
 #: accountdialog.h:41 mmframe.cpp:1666 mmframe.cpp:1918
 #: wizard_newaccount.cpp:87 wizard_newaccount.cpp:94 wizard_newaccount.cpp:166
@@ -919,19 +919,19 @@ msgstr "Mjesečno (zadnji radni dan)"
 
 #: billsdepositsdialog.cpp:306 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Dupliciraj terminiranu transakciju"
 
 #: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Uredi terminiranu transakciju"
 
 #: billsdepositsdialog.cpp:313
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "Unesi terminiranu transakciju"
 
 #: billsdepositsdialog.cpp:407
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Detalji terminirane transakcije"
 
 #: billsdepositsdialog.cpp:421
 msgid "Specify the date when this bill or deposit is due"
@@ -1045,7 +1045,7 @@ msgstr "Račun"
 
 #: billsdepositsdialog.cpp:549
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "Odaberi račun za terminiranu transakciju"
 
 #: billsdepositsdialog.cpp:554 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1122,7 +1122,7 @@ msgstr "Korisničke boje"
 
 #: billsdepositsdialog.cpp:618
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Organiziraj priloge za ovu terminiranu transakciju"
 
 #: billsdepositsdialog.cpp:628 filtertrans.cpp:189 filtertransdialog.cpp:654
 #: filtertransdialog.cpp:1019 filtertransdialog.cpp:1814
@@ -1252,7 +1252,7 @@ msgstr "Podijeljena transakcija"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "Nova terminirana transakcija"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1321,7 +1321,7 @@ msgstr "Savjet: Ove se transakcije mogu postaviti kao aktivirajuće – dozvolja
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:774
 #: mmframe.cpp:3166 mmhomepagepanel.cpp:243
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Terminirane transakcije"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:457
 msgid "D&uplicate "
@@ -1329,7 +1329,7 @@ msgstr "&Kopiraj "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Izbriši terminiranu transakciju"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -1337,7 +1337,7 @@ msgstr "&Upiši"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Upiši sljedeći događaj terminirane transakcije"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1345,7 +1345,7 @@ msgstr "&Preskoči"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Preskoči sljedeći događaj terminirane transakcije"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
@@ -1357,19 +1357,19 @@ msgstr "Preskoči sljedeći događaj"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&Nova terminirana transakcija …"
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "&Uredi terminiranu transakciju …"
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "&Dupliciraj terminiranu transakciju …"
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&Izbriši terminiranu transakciju …"
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1415,7 +1415,7 @@ msgstr[2] "Dospjelo prije %d dana!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Stvarno želiš izbrisati terminiranu transakciju?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -1669,11 +1669,11 @@ msgstr "Odaberi trenutačno odabranu kategoriju za transakciju"
 
 #: categdialog.cpp:343
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "Ime sadrži znak odvajanja kategorija."
 
 #: categdialog.cpp:344
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "Znak dvotočke (:) se koristi za odvajanje kategorija i potkategorija i stoga se ne smije koristiti u imenu"
 
 #: categdialog.cpp:346
 msgid "Organize Categories: Invalid Name"
@@ -1701,7 +1701,7 @@ msgstr ""
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "Podkategorija s ovim imenom već postoji"
 
 #: categdialog.cpp:440
 msgid "Target category is a descendant"
@@ -1729,7 +1729,7 @@ msgstr "Upotrijebljena kategorija."
 
 #: categdialog.cpp:467
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Korištena podkategorija."
 
 #: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
@@ -1794,7 +1794,7 @@ msgstr "Rezultat sjedinjavanja kategorija"
 
 #: categdialog.cpp:761
 msgid "Are you sure you want to unhide all categories"
-msgstr ""
+msgstr "Stvarno želiš prikazati sve kategorije"
 
 #: categdialog.cpp:762
 msgid "Unhide all categories"
@@ -1869,7 +1869,7 @@ msgstr "64-bitni"
 
 #: constants.cpp:193
 msgid "View with Transaction Filter..."
-msgstr ""
+msgstr "Prikaži s filtrom transakcija …"
 
 #: constants.cpp:194
 msgid "View All Transactions"
@@ -2035,7 +2035,7 @@ msgstr "%.2f Prikazuje se kao: %s"
 
 #: currencydialog.cpp:334
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(korištnje jezika područja)"
 
 #: currencydialog.h:48
 msgid "Currency Manager"
@@ -2577,7 +2577,7 @@ msgstr "Razdoblje"
 
 #: filtertransdialog.cpp:576 filtertransdialog.cpp:1727
 msgid "Include all subcategories"
-msgstr ""
+msgstr "Uključi sve podkategorije"
 
 #: filtertransdialog.cpp:607 filtertransdialog.cpp:1462
 #: filtertransdialog.cpp:1565 import_export/univcsvdialog.cpp:113
@@ -2635,11 +2635,11 @@ msgstr "Odredi kako grupirati izvještaj"
 
 #: filtertransdialog.cpp:708 filtertransdialog.cpp:1862
 msgid "Combine Splits"
-msgstr ""
+msgstr "Sjedini podjele"
 
 #: filtertransdialog.cpp:711
 msgid "Display split transactions as a single row"
-msgstr ""
+msgstr "Prikaži podijeljene transakcije kao jedan redak"
 
 #: filtertransdialog.cpp:720
 msgid "Settings"
@@ -2948,7 +2948,7 @@ msgstr ""
 #: images_list.cpp:424
 #, c-format
 msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
-msgstr ""
+msgstr "Metapodaci „%1$s” nedostaju u odabranoj temi „%2$s”"
 
 #: images_list.cpp:457
 msgid "and more..."
@@ -2957,7 +2957,7 @@ msgstr "i više …"
 #: images_list.cpp:459
 #, c-format
 msgid "There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s"
-msgstr ""
+msgstr "%1$d ikone nedostaju ili nisu ispravne u odabranoj temi „%2$s”: %3$s"
 
 #: images_list.cpp:488
 #, c-format
@@ -3282,7 +3282,7 @@ msgstr "Uvoz kategorije"
 #: import_export/qif_import_gui.cpp:1084
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "Uvoz transakcije %1$i od %2$i"
 
 #: import_export/qif_import_gui.cpp:1173
 msgid "Importing Transfers"
@@ -3580,7 +3580,7 @@ msgstr "Redak %ld: U redu, uvezen."
 
 #: import_export/univcsvdialog.cpp:1473
 msgid "Rejected rows:"
-msgstr ""
+msgstr "Odbijeni redci:"
 
 #: import_export/univcsvdialog.cpp:1478
 #, c-format
@@ -3790,7 +3790,7 @@ msgstr "Stvarno želiš izbrisati odabranu valutu?"
 #: maincurrencydialog.cpp:813 maincurrencydialog.h:76 mmframe.cpp:1706
 #: mmframe.cpp:1926 optionsettingsgeneral.cpp:301
 msgid "Organize Currencies"
-msgstr ""
+msgstr "Organiziraj valute"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -3959,11 +3959,11 @@ msgstr ""
 #: mmSimpleDialogs.cpp:1538
 #, c-format
 msgid "Create new tag '%s'?"
-msgstr ""
+msgstr "Stvoriti novu oznaku „%s”?"
 
 #: mmSimpleDialogs.cpp:1538
 msgid "New tag entered"
-msgstr ""
+msgstr "Nova oznaka je upisana"
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:585
 msgid "Invalid Value"
@@ -4183,7 +4183,7 @@ msgstr "&Prikaz podijeljenih kategorija"
 
 #: mmchecking_list.cpp:497
 msgid "Create Scheduled T&ransaction..."
-msgstr ""
+msgstr "&Stvori terminiranu transakciju …"
 
 #: mmchecking_list.cpp:501
 msgid "&Restore selected transaction..."
@@ -4367,11 +4367,11 @@ msgstr "Neke se transakcije nisu mogle premjestiti"
 
 #: mmchecking_list.cpp:1724
 msgid "Scheduled transaction saved."
-msgstr ""
+msgstr "Terminirana transakcija je spremljena."
 
 #: mmcheckingpanel.cpp:442
 msgid "Delete all selected transactions"
-msgstr ""
+msgstr "Izbriši sve odabrane transakcije"
 
 #: mmcheckingpanel.cpp:446 mmframe.cpp:1921 transdialog.cpp:183
 msgid "New Transaction"
@@ -4379,7 +4379,7 @@ msgstr "Nova transakcija"
 
 #: mmcheckingpanel.cpp:450
 msgid "Edit all selected transactions"
-msgstr ""
+msgstr "Uredi sve odabrane transakcije"
 
 #: mmcheckingpanel.cpp:458
 msgid "Duplicate selected transaction"
@@ -4404,7 +4404,7 @@ msgstr "Izbrisane transakcije"
 #: mmcheckingpanel.cpp:517
 #, c-format
 msgid "Account View: %s"
-msgstr ""
+msgstr "Prikaz računa: %s"
 
 #: mmcheckingpanel.cpp:536
 msgid "Account Bal: "
@@ -4637,7 +4637,7 @@ msgstr "&Otvori web stranicu računa"
 
 #: mmframe.cpp:1472 mmframe.cpp:1672
 msgid "&Change Account Type..."
-msgstr ""
+msgstr "&Promijeni vrstu računa …"
 
 #: mmframe.cpp:1490 mmframe.cpp:1666
 msgid "&New Account..."
@@ -4817,7 +4817,7 @@ msgstr "Otvori nadzornu ploču"
 
 #: mmframe.cpp:1672
 msgid "Change the account type of an account"
-msgstr ""
+msgstr "Promijeni vrstu računa za račun"
 
 #: mmframe.cpp:1675
 msgid "Delete Account from database"
@@ -4845,15 +4845,15 @@ msgstr "Organiziraj &kategorije …"
 
 #: mmframe.cpp:1702
 msgid "Organize &Tags..."
-msgstr ""
+msgstr "Organiziraj &oznake …"
 
 #: mmframe.cpp:1702 mmframe.cpp:1925 tagdialog.h:45
 msgid "Organize Tags"
-msgstr ""
+msgstr "Organiziraj oznake"
 
 #: mmframe.cpp:1706
 msgid "Organize Curre&ncies..."
-msgstr ""
+msgstr "Organiziraj &valute …"
 
 #: mmframe.cpp:1710
 msgid "&Categories..."
@@ -4861,7 +4861,7 @@ msgstr "&Kategorije …"
 
 #: mmframe.cpp:1711 relocatecategorydialog.cpp:89 relocatecategorydialog.h:43
 msgid "Merge categories"
-msgstr ""
+msgstr "Sjedini kategorije"
 
 #: mmframe.cpp:1713
 msgid "&Payees..."
@@ -4869,23 +4869,23 @@ msgstr "&Primaoci …"
 
 #: mmframe.cpp:1714 relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge payees"
-msgstr ""
+msgstr "Sjedini primaoce"
 
 #: mmframe.cpp:1716
 msgid "&Tags..."
-msgstr ""
+msgstr "&Oznake …"
 
 #: mmframe.cpp:1717 relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge tags"
-msgstr ""
+msgstr "Sjedini oznake"
 
 #: mmframe.cpp:1719
 msgid "&Merge"
-msgstr ""
+msgstr "&Sjedini"
 
 #: mmframe.cpp:1720
 msgid "Merge categories, payees, and tags"
-msgstr ""
+msgstr "Sjedini kategorije, primaoce i oznake"
 
 #: mmframe.cpp:1731
 msgid "&Budget Setup..."
@@ -4893,7 +4893,7 @@ msgstr "&Budžetski plan …"
 
 #: mmframe.cpp:1735
 msgid "&Scheduled Transactions"
-msgstr "&Planirane transakcije"
+msgstr "&Terminirane transakcije"
 
 #: mmframe.cpp:1735
 msgid "Bills && Deposits"
@@ -5149,7 +5149,7 @@ msgstr "&O programu"
 
 #: mmframe.cpp:1883
 msgid "About dialog"
-msgstr ""
+msgstr "Dijalog s informacijama o programu"
 
 #: mmframe.cpp:1887
 msgid "&File"
@@ -5181,7 +5181,7 @@ msgstr "&Opcije"
 
 #: mmframe.cpp:1932
 msgid "Options Dialog"
-msgstr ""
+msgstr "Dijalog za opcije"
 
 #: mmframe.cpp:1940 mmframe.cpp:1945 mmframe.cpp:2945 optionsettingsnet.cpp:132
 msgid "News"
@@ -5193,7 +5193,7 @@ msgstr "Preuzmi tečajeve"
 
 #: mmframe.cpp:1947
 msgid "Download Currency and Stock Rates"
-msgstr ""
+msgstr "Preuzmi tečajeve valuta i dionica"
 
 #: mmframe.cpp:1950
 msgid "Toggle Fullscreen\tF11"
@@ -5205,7 +5205,7 @@ msgstr "&Ispiši"
 
 #: mmframe.cpp:1953
 msgid "Print"
-msgstr ""
+msgstr "Ispis"
 
 #: mmframe.cpp:2010
 #, c-format
@@ -5337,7 +5337,7 @@ msgstr ""
 
 #: mmframe.cpp:2416
 msgid "Database Check"
-msgstr ""
+msgstr "Provjera baze podataka"
 
 #: mmframe.cpp:2429
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
@@ -5464,11 +5464,11 @@ msgstr ""
 
 #: mmframe.cpp:3746 payeedialog.cpp:833
 msgid "Merge payees completed"
-msgstr ""
+msgstr "Sjedinjavanje primalaca dovršeno"
 
 #: mmframe.cpp:3750 payeedialog.cpp:837
 msgid "Merge payees result"
-msgstr ""
+msgstr "Rezultat sjedinjavanja primalaca"
 
 #: mmframe.cpp:3762
 msgid "Merge tags completed"
@@ -5796,11 +5796,11 @@ msgstr "Ponavljajuća transakcija"
 
 #: model/Model_Attachment.cpp:30
 msgid "TransactionSplit"
-msgstr ""
+msgstr "Podjela transakcije"
 
 #: model/Model_Attachment.cpp:31
 msgid "RecurringTransactionSplit"
-msgstr ""
+msgstr "Ponavljajuća podjela transakcije"
 
 #: model/Model_Billsdeposits.cpp:300
 #, c-format
@@ -5827,7 +5827,7 @@ msgstr "Kreditni limit"
 
 #: model/Model_Billsdeposits.cpp:325
 msgid "MMEX Scheduled Transaction Check"
-msgstr ""
+msgstr "MMEX provjera terminirane transakcije"
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
@@ -6563,16 +6563,18 @@ msgstr "URL web stranice povezan s primaocem"
 #: payeedialog.cpp:122
 msgid "Match Patterns\n"
 "on Import"
-msgstr ""
+msgstr "Poklapanje uzoraka\n"
+"pri uvozu"
 
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "Unesi bilo koji niz za pokalapnje ovog primaoca pri uvozu.\n"
+"Uzorci se testiraju redoslijedom koji je ovdje unesen."
 
 #: payeedialog.cpp:238
 msgid "A payee with this name already exists"
-msgstr ""
+msgstr "Primalac s ovim imenom već postoji"
 
 #: payeedialog.cpp:454
 msgid "Match Pattern"
@@ -6580,11 +6582,11 @@ msgstr ""
 
 #: payeedialog.cpp:736
 msgid "Payee in use."
-msgstr "Korišteni primalac."
+msgstr "Korišteni primaoc."
 
 #: payeedialog.cpp:741
 msgid "It will be not removed"
-msgstr ""
+msgstr "Neće se ukloniti"
 
 #: payeedialog.cpp:743
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
@@ -6592,7 +6594,7 @@ msgstr ""
 
 #: payeedialog.cpp:745
 msgid "Tools → Merge → Payees"
-msgstr ""
+msgstr "Alati → Sjedini → Primaoci"
 
 #: payeedialog.cpp:746
 msgid "Organize Payees: Delete Error"
@@ -6629,23 +6631,23 @@ msgstr ""
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
 #: relocatetagdialog.cpp:114
 msgid "Source:"
-msgstr ""
+msgstr "Izvor:"
 
 #: relocatecategorydialog.cpp:119 relocatepayeedialog.cpp:113
 #: relocatetagdialog.cpp:115
 msgid "Target:"
-msgstr ""
+msgstr "Cilj:"
 
 #: relocatecategorydialog.cpp:133 relocatepayeedialog.cpp:131
 #: relocatetagdialog.cpp:133
 msgid "Merge"
-msgstr ""
+msgstr "Sjedini"
 
 #: relocatecategorydialog.cpp:153 relocatepayeedialog.cpp:151
 #: relocatetagdialog.cpp:153
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr ""
+msgstr "Od %1$s do %2$s"
 
 #: relocatecategorydialog.cpp:157 relocatepayeedialog.cpp:155
 #: relocatetagdialog.cpp:157
@@ -6671,12 +6673,12 @@ msgstr "Zapisi ponađeni u podijeljenim transakcijama: %i"
 #: relocatetagdialog.cpp:204
 #, c-format
 msgid "Records found in scheduled transactions: %i"
-msgstr ""
+msgstr "Pronađeni zapisi u terminiranim transakcijama: %i"
 
 #: relocatecategorydialog.cpp:258 relocatetagdialog.cpp:205
 #, c-format
 msgid "Records found in scheduled split transactions: %i"
-msgstr ""
+msgstr "Pronađeni zapisi u terminiranim podjelama transakcija: %i"
 
 #: relocatecategorydialog.cpp:259
 #, c-format
@@ -6690,11 +6692,11 @@ msgstr "Pronađeni zapisi u budžetu: %i"
 
 #: relocatepayeedialog.cpp:99
 msgid "Delete source payee after merge"
-msgstr ""
+msgstr "Izbriši izvornog primaoca nakon sjedinjavanja"
 
 #: relocatepayeedialog.cpp:156
 msgid "Merge payees confirmation"
-msgstr ""
+msgstr "Potvrda sjedinjavanja primaoca"
 
 #: relocatetagdialog.cpp:101
 msgid "Delete source tag after merge"
@@ -7185,11 +7187,11 @@ msgstr "Upiši bilješke za opis ove podijeljene transakcije"
 
 #: splittransactionsdialog.cpp:250
 msgid "&Add Split"
-msgstr ""
+msgstr "&Dodaj podjelu"
 
 #: splittransactionsdialog.cpp:255
 msgid "&Remove Split"
-msgstr ""
+msgstr "&Ukloni podjelu"
 
 #: splittransactionsdialog.cpp:411
 msgid "Invalid Total Amount"
@@ -7409,11 +7411,11 @@ msgstr "Trenutačna ukupna vrijednost"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment..."
-msgstr ""
+msgstr "&Nova burzovna investicija …"
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions..."
-msgstr ""
+msgstr "&Dodaj burzovnu transakciju …"
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
@@ -7421,11 +7423,11 @@ msgstr "&Prikaz transakcije vlasničkog udjela"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment..."
-msgstr ""
+msgstr "&Uredi burzovnu investiciji …"
 
 #: stocks_list.cpp:144
 msgid "&Delete Stock Investment..."
-msgstr ""
+msgstr "&Izbriši burzovnu investiciji …"
 
 #: stocks_list.cpp:147
 msgid "Stock &Web Page"
@@ -7474,7 +7476,7 @@ msgstr "Aktualiziraj cijene vlasničkog udjela s Yahooa"
 
 #: stockspanel.cpp:213
 msgid "Lot"
-msgstr ""
+msgstr "Šarža"
 
 #: stockspanel.cpp:288
 #, c-format
@@ -7529,11 +7531,11 @@ msgstr "Dodaj novu oznaku"
 
 #: tagdialog.cpp:131
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "Uredi ime postojeće oznake"
 
 #: tagdialog.cpp:136
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr ""
+msgstr "Izbriši postojeću oznaku. Oznaku ne mogu koristiti postojeće transakcije."
 
 #: tagdialog.cpp:142
 msgid "Select"
@@ -7959,7 +7961,7 @@ msgstr "Pokreće se na:"
 #: util.cpp:1511
 #, c-format
 msgid "System Locale: %s"
-msgstr ""
+msgstr "Jezik sustava: %s"
 
 #: util.cpp:1512
 #, c-format
