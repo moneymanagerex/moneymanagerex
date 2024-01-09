@@ -208,6 +208,7 @@ Michael Ellis
 Constantin Georgescu
 Jose Manuel Marrero León
 Sven Wiesner
+Francesco Orabona
 
 ### 2023
 Renato
