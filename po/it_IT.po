@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-04 11:18\n"
+"PO-Revision-Date: 2024-01-10 08:12\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -5815,7 +5815,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Una transazione programmata supererà il limite del conto.\n\n"
+"Conto: %1$s\n"
+"Saldo attuale: %2$6.2f\n"
+"Importo della transazione: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Vuoi continuare?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -7008,7 +7013,7 @@ msgstr "1 Anno fa ad oggi"
 #: reports/mmDateRange.cpp:284 reports/mmDateRange.cpp:296
 #, c-format
 msgid "Last %i Days"
-msgstr ""
+msgstr "Last %i Days"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -7098,7 +7103,7 @@ msgstr "Diagrammi andamento azioni"
 
 #: reports/transactions.cpp:197
 msgid "FX Rate"
-msgstr ""
+msgstr "Tasso del FX"
 
 #: reports/transactions.cpp:395
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
@@ -7190,11 +7195,11 @@ msgstr "Inserisci le note per descrivere questa transazione divisa"
 
 #: splittransactionsdialog.cpp:250
 msgid "&Add Split"
-msgstr ""
+msgstr "&Aggiungi Frazionamento"
 
 #: splittransactionsdialog.cpp:255
 msgid "&Remove Split"
-msgstr ""
+msgstr "&Rimuovi Frazionamento"
 
 #: splittransactionsdialog.cpp:411
 msgid "Invalid Total Amount"
