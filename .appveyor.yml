@@ -71,7 +71,7 @@ init:
 
 cache:
 - '%wxwin%\lib -> ..\MSVC_ver.txt'
-- '%curlLibFolder% -> appveyor.yml'
+- '%curlLibFolder%'
 - '%CLCACHE_DIR% -> ..\MSVC_ver.txt'
 
 install:
