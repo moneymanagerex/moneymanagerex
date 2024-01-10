@@ -71,7 +71,7 @@ init:
 
 cache:
 - '%wxwin%\lib -> ..\MSVC_ver.txt'
-- '%curlLibFolder%'
+- '%curlLibFolder% -> appveyor.yml'
 - '%CLCACHE_DIR% -> ..\MSVC_ver.txt'
 
 install:
@@ -110,7 +110,7 @@ install:
     echo Building libcurl %curlVer% &
     git clone -q --depth=1 -b curl-%curlVer% --single-branch https://github.com/curl/curl.git %curldir%-src &&
     mkdir %curldir%-src\build && cd %curldir%-src\build &&
-    if %platform:~-2%==64 (
+    (if %platform:~-2%==64 (
       cmake -T %tool% -G "Visual Studio %gen%" -A %platform% %curlConf%
         -DBUILD_CURL_EXE=OFF
         -DHTTP_ONLY=ON
@@ -127,7 +127,7 @@ install:
         -DCURL_USE_SCHANNEL=ON
         -DBUILD_TESTING=OFF
         -DCMAKE_INSTALL_PREFIX=%curlLibFolder%
-        .. ) &&
+        .. )) &&
     cmake --build . --target install --config %configuration%
       -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64 %curlFlags%
   )
