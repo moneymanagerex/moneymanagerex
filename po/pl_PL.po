@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-04 12:19\n"
+"PO-Revision-Date: 2024-01-11 19:46\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -5141,7 +5141,7 @@ msgstr "Pozostań w kontakcie ze społecznością MMEX"
 
 #: mmframe.cpp:1865
 msgid "Report a &Bug"
-msgstr "&Zgłość błąd"
+msgstr "&Zgłoś błąd"
 
 #: mmframe.cpp:1866
 msgid "Report an error in application to the developers"
