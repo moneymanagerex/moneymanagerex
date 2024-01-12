@@ -642,7 +642,6 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         }
     }
     PopupMenu(&menu, event.GetPosition());
-    this->SetFocus();
 }
 
 void TransactionListCtrl::findInAllTransactions(wxCommandEvent& event) {
