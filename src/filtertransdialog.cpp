@@ -472,6 +472,7 @@ void mmFilterTransactionsDialog::mmDoInitSettingNameChoice(wxString sel) const
 
     if (isMultiAccount_)
     {
+        m_setting_name->Append(_("Last Used"), new wxStringClientData(Model_Infotable::instance().GetStringInfo("TRANSACTION_FILTER_LAST_USED", "")));
         wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting(m_filter_key, true);
         for (const auto& data : filter_settings)
         {
@@ -2095,8 +2096,8 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
         const auto& l = mmGetLabelString();
         int sel_json = Model_Infotable::instance().FindLabelInJSON(m_filter_key, l);
         const auto& json = sel_json != wxNOT_FOUND ? filter_settings[sel_json] : "";
-        const auto& test = mmGetJsonSetings();
-        if (isMultiAccount_ && json != test && !label.empty())
+        m_settings_json = mmGetJsonSetings();
+        if (isMultiAccount_ && json != m_settings_json && !label.empty())
         {
             if (wxMessageBox(_("Filter settings have changed") + "\n" + _("Do you want to save them before continuing?") + "\n\n", _("Please confirm"),
                              wxYES_NO | wxICON_WARNING) == wxYES)
@@ -2105,6 +2106,7 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
             }
         }
     }
+    Model_Infotable::instance().Set("TRANSACTION_FILTER_LAST_USED", m_settings_json);
 }
 
 void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
