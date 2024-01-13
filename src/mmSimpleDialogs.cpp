@@ -623,7 +623,7 @@ mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete()
 const wxString mmDialogComboBoxAutocomplete::getText() const
 {
     return cbText_->GetValue();
-};
+}
 
 mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete(wxWindow *parent, const wxString& message, const wxString& caption,
     const wxString& defaultText, const wxArrayString& choices)
@@ -1370,6 +1370,7 @@ bool mmTagTextCtrl::Enable(bool enable)
     if (enable == textCtrl_->IsEnabled())
         return false;
 
+    wxPanel::Enable(enable);
     textCtrl_->Enable(enable);
     btn_dropdown_->Enable(enable);
 

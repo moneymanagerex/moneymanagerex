@@ -94,7 +94,7 @@ void OptionSettingsGeneral::Create()
     wxStaticBoxSizer* langFormatStaticBoxSizer = new wxStaticBoxSizer(langStaticBox, wxHORIZONTAL);
     generalPanelSizer->Add(langFormatStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    wxButton* langButton = new wxButton(general_panel, ID_DIALOG_OPTIONS_BUTTON_LANG, langName);
+    wxButton* langButton = new wxButton(general_panel, ID_DIALOG_OPTIONS_BUTTON_LANG, wxGetTranslation(langName));
     langButton->SetMinSize(wxSize(200, -1));
     langFormatStaticBoxSizer->Add(langButton, g_flagsH);
     mmToolTip(langButton, _("Change user interface language"));
@@ -376,9 +376,9 @@ void OptionSettingsGeneral::OnMouseLeftDown(wxCommandEvent& event)
     {
         const wxLanguageInfo* info = wxLocale::FindLanguageInfo(file);
         if (info)
-            langs[info->Description] = std::make_pair(info->Language, info->CanonicalName);
+            langs[wxGetTranslation(info->Description)] = std::make_pair(info->Language, info->CanonicalName);
     }
-    langs[wxLocale::GetLanguageName(wxLANGUAGE_ENGLISH_US)] = std::make_pair(wxLANGUAGE_ENGLISH_US, "en_US");
+    langs[wxGetTranslation(wxLocale::GetLanguageName(wxLANGUAGE_ENGLISH_US))] = std::make_pair(wxLANGUAGE_ENGLISH_US, "en_US");
     for (auto const& lang : langs)
     {
         menuLang.AppendRadioItem(wxID_LAST + 1 + lang.second.first, lang.first, lang.second.second)

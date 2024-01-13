@@ -247,12 +247,12 @@ void mmSplitTransactionDialog::CreateControls()
     wxBoxSizer* plusAmountSizer = new wxBoxSizer(wxHORIZONTAL);
     bottomSizer->Add(plusAmountSizer, wxSizerFlags().Align(wxALIGN_LEFT).Border(wxALL, 5));
 
-    wxButton* bAdd = new wxButton(this, mmID_SPLIT, _("Add Split"));
+    wxButton* bAdd = new wxButton(this, mmID_SPLIT, _("&Add Split"));
     bAdd->Enable(!is_view_only_);
     plusAmountSizer->AddSpacer(mmBitmapButtonSize + 10);
     plusAmountSizer->Add(bAdd);
 
-    wxButton* bRemove = new wxButton(this, mmID_REMOVE, _("Remove Split"));
+    wxButton* bRemove = new wxButton(this, mmID_REMOVE, _("&Remove Split"));
     bRemove->Enable(!is_view_only_);
     plusAmountSizer->AddSpacer(5);
     plusAmountSizer->Add(bRemove);

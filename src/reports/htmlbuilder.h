@@ -37,7 +37,8 @@ struct GraphSeries
 struct GraphData
 {
     wxString title;
-    enum { BAR = 0, LINE, LINE_DATETIME, PIE, DONUT, RADAR, BARLINE, STACKEDBARLINE, STACKEDAREA } type;
+    enum GraphType { BAR = 0, LINE, LINE_DATETIME, PIE, DONUT, RADAR, BARLINE, STACKEDBARLINE, STACKEDAREA } type;
+    //Keep type aligned in FilterTransDialog CHART_OPTIONS
     std::vector<wxString> labels;
     std::vector<GraphSeries> series;
     std::vector<wxColour> colors;

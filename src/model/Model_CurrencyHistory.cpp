@@ -23,11 +23,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 Model_CurrencyHistory::Model_CurrencyHistory()
     : Model<DB_Table_CURRENCYHISTORY_V1>()
 {
-};
+}
 
 Model_CurrencyHistory::~Model_CurrencyHistory()
 {
-};
+}
 
 /**
 * Initialize the global Model_CurrencyHistory table.

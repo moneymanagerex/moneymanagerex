@@ -484,15 +484,15 @@ void mmHTMLBuilder::endTable()
 void mmHTMLBuilder::endThead()
 {
     html_ += tags::THEAD_END;
-};
+}
 void mmHTMLBuilder::endTbody()
 {
     html_ += tags::TBODY_END;
-};
+}
 void mmHTMLBuilder::endTfoot()
 {
     html_ += tags::TFOOT_END;
-};
+}
 
 void mmHTMLBuilder::startTableRow()
 {
@@ -605,7 +605,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             gtype = "line";
             if (gd.labels.size() < 5)
                 chartWidth = 70;
-    };
+    }
 
     addDivContainer("shadowGraph"); 
 
@@ -745,7 +745,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         divid, gtype, htmlPieData, htmlChart, divid));
     
     endDiv();
-};
+}
 
 const wxString mmHTMLBuilder::getHTMLText() const
 {

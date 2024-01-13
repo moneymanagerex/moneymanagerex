@@ -183,12 +183,15 @@ wxString mmReportSummaryByDate::getHTMLText()
     }
 
     //  prepare the dates array
-    while (dateStart <= dateEnd) {
+    while (dateStart <= dateEnd)
+    {
         if (mode_ == MONTHLY)
+        {
             dateEnd.SetToLastMonthDay(dateEnd.GetMonth(), dateEnd.GetYear());
+        }
         arDates.push_back(dateEnd);
         dateEnd -= span;
-    };
+    }
     std::reverse(arDates.begin(), arDates.end());
 
 

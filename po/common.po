@@ -63,7 +63,7 @@ msgid "Kannada (India)"
 msgstr "kn-IN ಕನ್ನಡ (ಭಾರತ)"
 
 msgid "Korean (Korea)"
-msgstr "ko-KR 韓国語 (韓国)"
+msgstr "ko-KR 한국어 (한국)"
 
 msgid "Lithuanian (Lithuania)"
 msgstr "lt-LT lietuvių (Lietuva)"

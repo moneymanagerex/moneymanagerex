@@ -174,8 +174,10 @@ wxString mmReportSummaryStocks::getHTMLText()
 
             hb.startTfoot();
             {
-                double forex_real_gain_loss = m_real_gain_loss_sum_total - m_real_gain_loss_excl_forex;
-                double forex_unreal_gain_loss = m_unreal_gain_loss_sum_total - m_unreal_gain_loss_excl_forex;
+                // Round FX gain/loss to the scale of the base currency for display
+                int scale = pow(10, log10(Model_Currency::instance().GetBaseCurrency()->SCALE));
+                double forex_real_gain_loss = std::round((m_real_gain_loss_sum_total - m_real_gain_loss_excl_forex) * scale) / scale;
+                double forex_unreal_gain_loss = std::round((m_unreal_gain_loss_sum_total - m_unreal_gain_loss_excl_forex) * scale) / scale;
 
                 hb.startTotalTableRow();
                 hb.addTableCell(_("Grand Total:"));

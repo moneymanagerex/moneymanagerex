@@ -1,7 +1,7 @@
 version: '{build}'
 clone_depth: 10 # to allow queued build jobs
 image:
-- Visual Studio 2017
+- Visual Studio 2022
 configuration:
 - Release
 # - Debug
@@ -11,10 +11,6 @@ platform:
 
 matrix:
   fast_finish: true
-  exclude:
-  # not installed
-  - { comp: 110, image: Visual Studio 2017 }
-  - { comp: 120, image: Visual Studio 2017 }
   allow_failures:
   - configuration: Debug
 
@@ -25,12 +21,14 @@ environment:
   path: '%path%;C:\cygwin64\bin'
   # clcache config
   clcVer: 4.1.0
+  CLCACHE_DISABLE: 1
   # libcurl config
-  curlVer: 7_82_0
+  curlVer: 8_5_0
   curldir: C:\curl-$(curlVer)
   curlStatic: ON
   # wxWidgets config
   wxVer: 3.2.4
+  wxComp: 14x
   wxwin: C:\wxWidgets-$(wxVer)-$(configuration)
   wxShared: 0
   wxURL: https://github.com/wxWidgets/wxWidgets/releases/download/v$(wxVer)
@@ -39,34 +37,16 @@ environment:
   # Python version to use
   pythonDir: C:\Python38-x64
   matrix:
-  # - comp: 141
-  - { comp: 141, wxShared: 1 }
-  # - { comp: 141, xp: _xp }
-  # - { comp: 141, xp: _xp, wxShared: 1 }
-  # - comp: 140
-  # - { comp: 140, wxShared: 1 }
-  # - { comp: 140, xp: _xp }
-  # - { comp: 140, xp: _xp, wxShared: 1 }
-  # - comp: 120
-  # - { comp: 120, wxShared: 1 }
-  # - { comp: 120, xp: _xp }
-  - { comp: 120, xp: _xp, wxShared: 1 }
-  # v110 not working so far - see issue #1307 on GitHub
-  # - comp: 110
-  # - { comp: 110, wxShared: 1 }
-  # - { comp: 110, xp: _xp }
-  # - { comp: 110, xp: _xp, wxShared: 1 }
+  - { comp: 143, wxShared: 1 }
 
 init:
 # AppVeyor missing paths
-- if "%VS150COMNTOOLS%"=="" set "VS150COMNTOOLS=%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\Common7\Tools\"
+- if "%VS170COMNTOOLS%"=="" set "VS170COMNTOOLS=%ProgramFiles%\Microsoft Visual Studio\2022\Community\Common7\Tools\"
  Set python path
 - cmd: set PATH=%pythonDir%;%pythonDir%\Scripts;%PATH%
 # Set developer command prompt
 - if %platform:~-2%==64 (set arch=amd64) else (set arch=amd64_x86)
-- if %comp% LSS 120 if %platform:~-2%==64 (set arch=x86_amd64) else (set arch=x86)
-- call set "vcvarsall=%%VS%comp%COMNTOOLS%%..\..\VC\vcvarsall.bat"
-- if %comp%==141 set "vcvarsall=%VS150COMNTOOLS%..\..\VC\Auxiliary\Build\vcvarsall.bat"
+- set "vcvarsall=%VS170COMNTOOLS%..\..\VC\Auxiliary\Build\vcvarsall.bat"
 - call "%vcvarsall%" %arch%
 # detect MSVC compiler version
 - for /f "tokens=1,2 delims=." %%a in ('cl 2^>^&1 ^| findstr /r "\<[0-9][0-9]*\.[0-9][0-9]*\."') do (
@@ -75,7 +55,7 @@ init:
 - echo %clver% > ..\MSVC_ver.txt
 # Set wxWidgets library paths
 - if %platform:~-2%==64 set wxSuff=_x64
-- set "wxLibFolder=%wxwin%\lib\vc%comp%%xp%%wxSuff%"
+- set "wxLibFolder=%wxwin%\lib\vc%wxComp%%wxSuff%"
 - if %wxShared%==0 (set wxLibFolder=%wxLibFolder%_lib)
   else (set wxLibFolder=%wxLibFolder%_dll)
 # Set curl library paths
@@ -87,11 +67,7 @@ init:
 # clcache unique directory
 - set "CLCACHE_DIR=C:\clcache-%APPVEYOR_BUILD_WORKER_IMAGE%-%platform%-v%comp%%xp%"
 # prepare cmake options
-- if %comp%==110 (set "gen=11 2012" & set "tool=v%comp%%xp%")
-- if %comp%==120 (set "gen=12 2013" & set "tool=v%comp%%xp%,host=x64")
-- if %comp%==140 (set "gen=14 2015" & set "tool=v%comp%%xp%,host=x64")
-- if %comp%==141 (set "gen=15 2017" & set "tool=v%comp%%xp%,host=x64")
-- if %platform:~-2%==64 set "gen=%gen% Win64"
+- set "gen=17 2022" & set "tool=v%comp%%xp%,host=x64"
 
 cache:
 - '%wxwin%\lib -> ..\MSVC_ver.txt'
@@ -104,19 +80,15 @@ install:
 - copy clcache\clcache-%clcVer%\clcache.exe clcache\clcache-%clcVer%\cl.exe
 - if exist %APPVEYOR_BUILD_FOLDER%\clcache\clcache-%clcVer%\cl.exe set "PATH=%APPVEYOR_BUILD_FOLDER%\clcache\clcache-%clcVer%;%PATH%"
 - clcache -s
-# Patch CMake
-- for /d %%d in ("%ProgramFiles(x86)%\CMake\share\cmake-*") do (
-    type util\FindwxWidgets.cmake-SupportMSVC1911.patch 2>nul | patch -Nf -d "%%d\Modules"
-  )
 # wxWidgets, try to download pre-compiled version first
 - if %wxShared%==1 (
     curl -fsL --fail-early
-      -O %wxURL%/wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z
+      -O %wxURL%/wxMSW-%wxVer%_vc%wxComp%%wxSuff%_Dev.7z
       -O %wxURL%/wxWidgets-%wxVer%-headers.7z &&
     if %configuration%==Release
-      curl -fsL -O %wxURL%/wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_ReleaseDLL.7z
+      curl -fsL -O %wxURL%/wxMSW-%wxVer%_vc%wxComp%%wxSuff%_ReleaseDLL.7z
   ) || exit 0
-- if not exist wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z
+- if not exist wxMSW-%wxVer%_vc%wxComp%%wxSuff%_Dev.7z
     curl -fsSL -O %wxURL%/wxWidgets-%wxVer%.7z
 - 7z x -y "-o%wxwin%" wx*-%wxVer%*.7z
 # wxWidgets, build script from build/tools/msvs/officialbuild.bat
@@ -138,15 +110,24 @@ install:
     echo Building libcurl %curlVer% &
     git clone -q --depth=1 -b curl-%curlVer% --single-branch https://github.com/curl/curl.git %curldir%-src &&
     mkdir %curldir%-src\build && cd %curldir%-src\build &&
-    cmake -T %tool% -G "Visual Studio %gen%" %curlConf%
-      -DBUILD_CURL_EXE=OFF
-      -DCURL_STATICLIB=%curlStatic%
-      -DHTTP_ONLY=ON
-      -DENABLE_MANUAL=OFF
-      -DCURL_USE_SCHANNEL=ON
-      -DBUILD_TESTING=OFF
-      -DCMAKE_INSTALL_PREFIX=%curlLibFolder%
-      .. &&
+    (if %platform:~-2%==64 (
+      cmake -T %tool% -G "Visual Studio %gen%" -A %platform% %curlConf%
+        -DBUILD_CURL_EXE=OFF
+        -DHTTP_ONLY=ON
+        -DENABLE_MANUAL=OFF
+        -DCURL_USE_SCHANNEL=ON
+        -DBUILD_TESTING=OFF
+        -DCMAKE_INSTALL_PREFIX=%curlLibFolder% ..
+    ) else (
+      cmake -T %tool% -G "Visual Studio %gen%"
+        -DCMAKE_GENERATOR_PLATFORM=WIN32
+        -DBUILD_CURL_EXE=OFF
+        -DHTTP_ONLY=ON
+        -DENABLE_MANUAL=OFF
+        -DCURL_USE_SCHANNEL=ON
+        -DBUILD_TESTING=OFF
+        -DCMAKE_INSTALL_PREFIX=%curlLibFolder%
+        .. )) &&
     cmake --build . --target install --config %configuration%
       -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64 %curlFlags%
   )
@@ -166,7 +147,11 @@ build_script:
 - if %configuration%==Debug
     set "cmake_def=-DCMAKE_INSTALL_DEBUG_LIBRARIES=ON -DCMAKE_INSTALL_DEBUG_LIBRARIES_ONLY=ON"
 - set "cmake_def=%cmake_def% -DCMAKE_PREFIX_PATH=%curlLibFolder%"
-- cmake --graphviz=mmex.dot -T %tool% -G "Visual Studio %gen%" %cmake_def% ..
+- if %platform:~-2%==64 (
+    cmake --graphviz=mmex.dot -T %tool% -G "Visual Studio %gen%" -A %platform% %cmake_def% ..
+  ) else (
+    cmake --graphviz=mmex.dot -T %tool% -G "Visual Studio %gen%" -DCMAKE_GENERATOR_PLATFORM=WIN32 %cmake_def% ..
+  )
 - cmake --build . --target package --config %configuration%
     -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
 
@@ -186,7 +171,7 @@ test: off
 on_success:
 # don't cache downloaded wxWidgets binaries
 - if %wxShared%==1 (
-    if exist wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z
+    if exist wxMSW-%wxVer%_vc14x%wxSuff%_Dev.7z
       rmdir /s /q "%wxLibFolder%"
   )
 

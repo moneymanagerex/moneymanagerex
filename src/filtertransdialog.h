@@ -76,9 +76,14 @@ public:
         GROUPBY_ACCOUNT,
         GROUPBY_PAYEE,
         GROUPBY_CATEGORY,
-        GROUPBY_TYPE
+        GROUPBY_TYPE,
+        GROUPBY_DAY,
+        GROUPBY_MONTH,
+        GROUPBY_YEAR
     };
     int mmGetGroupBy() const;
+
+    int mmGetChart() const;
 
     const wxArrayInt mmGetAccountsID() const;
     const wxArrayInt mmGetHideColumnsID() const;
@@ -203,6 +208,8 @@ private:
     wxButton* bHideColumns_ = nullptr;
     wxCheckBox* groupByCheckBox_ = nullptr;
     wxChoice* bGroupBy_ = nullptr;
+    wxCheckBox* chartCheckBox_ = nullptr;
+    wxChoice* bChart_ = nullptr;
     wxCheckBox* combineSplitsCheckBox_ = nullptr;
 private:
     wxString m_settings_json;

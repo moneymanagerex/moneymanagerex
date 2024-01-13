@@ -141,13 +141,15 @@ std::pair<wxString /*UUID*/, wxString /*UID*/> uuid()
 class SendStatsThread : public wxThread
 {
 public:
-    explicit SendStatsThread(const wxString& url) : wxThread()
-        , m_url(url) {};
+    explicit SendStatsThread(const wxString& url) : wxThread(), m_url(url) {
+    }
     explicit SendStatsThread(const wxString& url, const wxString& payload) : wxThread()
         , m_url(url)
         , m_payload(payload)
-        {};
-    ~SendStatsThread() {};
+        {
+    }
+    ~SendStatsThread() {
+    }
 
 protected:
     wxString m_url;

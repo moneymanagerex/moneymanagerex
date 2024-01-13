@@ -97,7 +97,7 @@ __All following commands must be run from this command prompt!__
        set "PATH=%PATH%;%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\bin"
        cmake -G "Visual Studio 17 2022" -A x64 -DBUILD_CURL_EXE=OFF -DHTTP_ONLY=ON ^
          -DENABLE_MANUAL=OFF -DBUILD_TESTING=OFF -DCURL_STATICLIB=ON ^
-         -USE_SCHANNEL -DCMAKE_INSTALL_PREFIX=c:\libcurl ..
+         -DCURL_USE_SCHANNEL=ON -DCMAKE_INSTALL_PREFIX=c:\libcurl ..
        set "CL=/MP"
        cmake --build . --target install --config Release --clean-first ^
          -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64

@@ -28,7 +28,7 @@ Model_Splittransaction::Model_Splittransaction()
 
 Model_Splittransaction::~Model_Splittransaction()
 {
-};
+}
 
 /**
 * Initialize the global Model_Splittransaction table.
