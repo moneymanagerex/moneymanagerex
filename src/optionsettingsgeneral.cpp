@@ -135,7 +135,7 @@ void OptionSettingsGeneral::Create()
     baseCurrencyComboBox_ = new mmComboBoxCurrency(general_panel, ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
     baseCurrencyComboBox_->SetMinSize(wxSize(200, -1));
     baseCurrencyComboBox_->ChangeValue(currName);
-    mmToolTip(baseCurrencyComboBox_, _("Sets the database default currency using 'Currency Manager'"));
+    mmToolTip(baseCurrencyComboBox_, _("Set default database currency using 'Currency Manager'"));
     currencyBaseSizer->Add(baseCurrencyComboBox_, g_flagsH);
 
     m_currencyStaticBoxSizer->AddSpacer(10);
