@@ -1732,7 +1732,7 @@ void mmGUIFrame::createMenu()
     menuTools->Append(menuItemBudgeting);
 
     wxMenuItem* menuItemBillsDeposits = new wxMenuItem(menuTools, MENU_BILLSDEPOSITS
-        , _("&Scheduled Transactions"), _("Bills && Deposits"));
+        , _("&Scheduled Transactions"), _("Bills and Deposits"));
     menuTools->Append(menuItemBillsDeposits);
 
     wxMenuItem* menuItemAssets = new wxMenuItem(menuTools, MENU_ASSETS
