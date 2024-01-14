@@ -562,7 +562,7 @@ void mmTransDialog::CreateControls()
 
     // Attachments
     bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));
-    mmToolTip(bAttachments_, _("Organize attachments of this transaction"));
+    mmToolTip(bAttachments_, _("Manage transaction attachments"));
 
     // Now display the Frequently Used Notes, Colour, Attachment buttons
     wxBoxSizer* notes_sizer = new wxBoxSizer(wxHORIZONTAL);

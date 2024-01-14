@@ -31,8 +31,8 @@ static const wxString TIPS [] =
     wxTRANSLATE("Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."),
     wxTRANSLATE("Tip: Set exchange rate for currencies in case if you have accounts with different currencies."),
 
-    wxTRANSLATE("Organize Categories Tip: Pressing the “H” key will cycle through all categories starting with the letter h."),
-    wxTRANSLATE("Organize Categories Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"),
+    wxTRANSLATE("Category Manager Tip: Pressing the “H” key will cycle through all categories starting with the letter h."),
+    wxTRANSLATE("Category Manager Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"),
 
     wxTRANSLATE("Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."),
     wxTRANSLATE("Tip to get out of debt: Establish an emergency fund."),
