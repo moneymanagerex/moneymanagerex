@@ -267,7 +267,7 @@ void ShareTransactionDialog::CreateControls()
 
     //Attachments
     m_attachments_btn = new wxBitmapButton(stock_details_panel, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));
-    mmToolTip(m_attachments_btn, _("Organize attachments of this stock"));
+    mmToolTip(m_attachments_btn, _("Manage stock attachments"));
     //TODO m_attachments not used here
     m_attachments_btn->Hide();
 
