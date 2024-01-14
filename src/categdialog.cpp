@@ -343,7 +343,7 @@ bool mmCategDialog::validateName(wxString name)
         wxString errMsg = _("Name contains category delimiter.");
         errMsg << "\n\n" << _("The colon (:) character is used to separate categories and subcategories"
             " and therefore should not be used in the name");
-        wxMessageBox(errMsg, _("Organize Categories: Invalid Name"), wxOK | wxICON_ERROR);
+        wxMessageBox(errMsg, _("Category Manager: Invalid Name"), wxOK | wxICON_ERROR);
         return false;
     }
     return true;
@@ -363,7 +363,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         const auto& categories = Model_Category::instance().find(Model_Category::CATEGNAME(text), Model_Category::PARENTID(-1));
         if (!categories.empty())
         {
-            wxMessageBox(_("A category with this name already exists for the parent"), _("Organize Categories: Adding Error"), wxOK | wxICON_ERROR);
+            wxMessageBox(_("A category with this name already exists for the parent"), _("Category Manager: Adding Error"), wxOK | wxICON_ERROR);
             return;
         }
         category->PARENTID = -1;
@@ -372,7 +372,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         const auto& categories = Model_Category::instance().find(Model_Category::CATEGNAME(text), Model_Category::PARENTID(selectedCategory->CATEGID));
         if (!categories.empty())
         {
-            wxMessageBox(_("A category with this name already exists for the parent"), _("Organize Categories: Adding Error"), wxOK | wxICON_ERROR);
+            wxMessageBox(_("A category with this name already exists for the parent"), _("Category Manager: Adding Error"), wxOK | wxICON_ERROR);
             return;
         }
         category->PARENTID = selectedCategory->CATEGID;
@@ -474,7 +474,7 @@ void mmCategDialog::showCategDialogDeleteError(bool category)
 
     deleteCategoryErrMsg << "\n\n" << wxString::FromUTF8(_("Tools → Merge → Categories").ToStdString());
 
-    wxMessageBox(deleteCategoryErrMsg, _("Organize Categories: Delete Error"), wxOK | wxICON_ERROR);
+    wxMessageBox(deleteCategoryErrMsg, _("Category Manager: Delete Error"), wxOK | wxICON_ERROR);
 }
 
 void mmCategDialog::mmDoDeleteSelectedCategory()
@@ -622,7 +622,7 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     if (!categories.empty())
     {
         wxString errMsg = _("A category with this name already exists for the parent");
-        wxMessageBox(errMsg, _("Organize Categories: Editing Error"), wxOK | wxICON_ERROR);
+        wxMessageBox(errMsg, _("Category Manager: Editing Error"), wxOK | wxICON_ERROR);
         return;
     }
     category->CATEGNAME = text;
