@@ -178,13 +178,13 @@ bool mmTagDialog::validateName(const wxString& name)
     {
         wxString errMsg = _("Invalid tag name");
         errMsg << "\n\n" << _("Tag names may not be the '&' or '|' characters because these are reserved for filter operators");
-        wxMessageBox(errMsg, _("Organize Tags: Invalid Name"), wxOK | wxICON_ERROR);
+        wxMessageBox(errMsg, _("Tag Manager: Invalid Name"), wxOK | wxICON_ERROR);
         return false;
     } else if (name.Find(' ') != wxNOT_FOUND)
     {
         wxString errMsg = _("Name contains tag delimiter.");
         errMsg << "\n\n" << _("Tag names may not contain the space (' ') character");
-        wxMessageBox(errMsg, _("Organize Tags: Invalid Name"), wxOK | wxICON_ERROR);
+        wxMessageBox(errMsg, _("Tag Manager: Invalid Name"), wxOK | wxICON_ERROR);
         return false;
     }
     return true;
@@ -215,7 +215,7 @@ void mmTagDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
     const auto& tags = Model_Tag::instance().find(Model_Tag::TAGNAME(text));
     if (!tags.empty())
     {
-        wxMessageBox(_("A tag with this name already exists"), _("Organize Tags: Adding Error"), wxOK | wxICON_ERROR);
+        wxMessageBox(_("A tag with this name already exists"), _("Tag Manager: Adding Error"), wxOK | wxICON_ERROR);
         return;
     }
 
@@ -251,7 +251,7 @@ void mmTagDialog::OnEdit(wxCommandEvent& WXUNUSED(event))
     if (tag)
     {
         wxString errMsg = _("A tag with this name already exists");
-        wxMessageBox(errMsg, _("Organize Tags: Editing Error"), wxOK | wxICON_ERROR);
+        wxMessageBox(errMsg, _("Tag Manager: Editing Error"), wxOK | wxICON_ERROR);
         return;
     }
 
@@ -292,7 +292,7 @@ void mmTagDialog::OnDelete(wxCommandEvent& WXUNUSED(event))
         int tag_used = Model_Tag::instance().is_used(tag->TAGID);
         if (tag_used == 1)
         {
-            wxMessageBox(wxString::Format(_("Tag '%s' in use"), tag->TAGNAME), _("Organize Tags: Delete Error"), wxOK | wxICON_ERROR);
+            wxMessageBox(wxString::Format(_("Tag '%s' in use"), tag->TAGNAME), _("Tag Manager: Delete Error"), wxOK | wxICON_ERROR);
             continue;
         }
         wxMessageDialog msgDlg(this, wxString::Format(_("Deleted transactions exist which use tag '%s'."), tag->TAGNAME)
