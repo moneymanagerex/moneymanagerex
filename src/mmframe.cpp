@@ -1754,11 +1754,11 @@ void mmGUIFrame::createMenu()
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemGRM = new wxMenuItem(menuTools, wxID_VIEW_LIST
-        , _("General Report &Manager..."), _("General Report Manager"));
+        , _("&General Report Manager..."), _("General Report Manager"));
     menuTools->Append(menuItemGRM);
 
     wxMenuItem* menuItemCF = new wxMenuItem(menuTools, wxID_BROWSE
-        , _("C&ustom Fields Manager..."), _("Custom Fields Manager"));
+        , _("C&ustom Field Manager..."), _("Custom Field Manager"));
     menuTools->Append(menuItemCF);
 
     menuTools->AppendSeparator();
