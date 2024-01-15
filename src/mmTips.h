@@ -61,7 +61,7 @@ static const wxString STOCKTIPS[] = {
     
     wxTRANSLATE("Before you start investing, have a fully-funded emergency fund."),
     wxTRANSLATE("Before you start investing, know your cash flow (have a budget)."),
-    wxTRANSLATE("Before you start investing, pay off consumer debt - especially credit cards."),
+    wxTRANSLATE("Before you start investing, pay off consumer debt — especially credit cards."),
     wxTRANSLATE("Before you start investing, make net worth your primary tracking metric."),
     wxTRANSLATE("Before you start investing, clarify your goals and priorities."),
     wxTRANSLATE("Before you start investing, make sure you understand investing basics."),
