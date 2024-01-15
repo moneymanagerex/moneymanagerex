@@ -34,7 +34,8 @@ static const wxString TIPS [] =
     wxTRANSLATE("Category Manager Tip: Pressing the “H” key will cycle through all categories starting with the letter h."),
     wxTRANSLATE("Category Manager Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"),
 
-    wxTRANSLATE("Never endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank doesn’t trust the person to make the payments."),
+    wxTRANSLATE("Never endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."),
+    wxTRANSLATE("Avoiding grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."),
 
     wxTRANSLATE("Tip for parents: If you are asked to be a guarantor for a loan for your college student, first check to see if your child has maxed out federal loan, grant, and scholarship options."),
 
