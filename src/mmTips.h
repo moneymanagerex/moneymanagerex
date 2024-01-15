@@ -34,7 +34,7 @@ static const wxString TIPS [] =
     wxTRANSLATE("Category Manager Tip: Pressing the “H” key will cycle through all categories starting with the letter h."),
     wxTRANSLATE("Category Manager Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"),
 
-    wxTRANSLATE("Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."),
+    wxTRANSLATE("Tip to get out of debt: Pay yourself 10% first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."),
     wxTRANSLATE("Tip to get out of debt: Establish an emergency fund."),
     wxTRANSLATE("Tip to get out of debt: Stop acquiring new debt."),
     wxTRANSLATE("Tip to get out of debt: Create a realistic budget for your expenses."),
