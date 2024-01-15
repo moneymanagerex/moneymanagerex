@@ -40,6 +40,7 @@ static const wxString TIPS [] =
     wxTRANSLATE("Tip to get out of debt: Create a realistic budget for your expenses."),
     wxTRANSLATE("Tip to get out of debt: Spend less than you earn."),
     wxTRANSLATE("Tip to get out of debt: Pay more than the minimum."),
+    wxTRANSLATE("Tip to get out of debt: If you have a mountain of debt, studies show paying off the smallest debts can give you the confidence to tackle the larger ones."),
     wxTRANSLATE("Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list.")
 };
 
