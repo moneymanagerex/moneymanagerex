@@ -1685,7 +1685,7 @@ void mmGUIFrame::createMenu()
     wxMenu* menuTools = new wxMenu;
 
     wxMenuItem* menuItemRates = new wxMenuItem(menuTools
-        , MENU_RATES, _("Download Ra&tes"), _("Download Currency and Stock rates"));
+        , MENU_RATES, _("Download &Rates"), _("Download Currency and Stock Rates"));
     menuTools->Append(menuItemRates);
 
     menuTools->AppendSeparator();
@@ -1944,7 +1944,7 @@ void mmGUIFrame::CreateToolBar()
         : mmBitmapBundle(png::NEWS, toolbar_icon_size);
     toolBar_->AddTool(MENU_ANNOUNCEMENTMAILING, _("News"), news_ico, news_array);
 
-    toolBar_->AddTool(MENU_RATES, _("Download rates"), mmBitmapBundle(png::CURRATES, toolbar_icon_size), _("Download Currency and Stock Rates"));
+    toolBar_->AddTool(MENU_RATES, _("Download Rates"), mmBitmapBundle(png::CURRATES, toolbar_icon_size), _("Download Currency and Stock Rates"));
 
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Toggle Fullscreen\tF11"), mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _("Toggle Fullscreen"));
