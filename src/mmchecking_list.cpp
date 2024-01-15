@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013, 2014, 2020, 2021, 2022 Nikolay Akimov
- Copyright (C) 2021-2023 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2024 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public as published by
@@ -74,6 +74,7 @@ wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
     EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, TransactionListCtrl::OnOrganizeAttachments)
     EVT_MENU(MENU_TREEPOPUP_CREATE_REOCCURANCE, TransactionListCtrl::OnCreateReoccurance)
     EVT_MENU(MENU_TREEPOPUP_FIND, TransactionListCtrl::findInAllTransactions)
+    EVT_MENU(MENU_TREEPOPUP_COPYTEXT, TransactionListCtrl::OnCopyText)
     EVT_CHAR(TransactionListCtrl::OnChar)
 
 wxEND_EVENT_TABLE();
@@ -426,6 +427,7 @@ int TransactionListCtrl::getColumnFromPosition(int xPos)
 void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 {
     rightClickFilter_ = "";
+    copyText_ = "";
     wxLogDebug("OnMouseRightClick: %i selected", GetSelectedItemCount());
     int selected = GetSelectedItemCount();
 
@@ -512,22 +514,35 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         {
             wxString menuItemText;
             wxString refType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+            wxDateTime datetime;
+            wxString dateFormat = Option::instance().getDateFormat();
+            bool is_transfer = Model_Checking::is_transfer(m_trans[row].TRANSCODE)
+                        && m_cp->m_AccountID != m_trans[row].ACCOUNTID;
+            Model_Account::Data* account = Model_Account::instance().get(is_transfer && !m_cp->isAllAccounts_ ? m_trans[row].TOACCOUNTID : m_trans[row].ACCOUNTID);
+            Model_Currency::Data* currency = account
+                ? Model_Currency::instance().get(account->CURRENCYID)
+                : Model_Currency::GetBaseCurrency();
+
             switch (m_real_columns[column])
             {
+            case COL_ID:
+                copyText_ = m_trans[row].displayID;
+                break;
             case COL_DATE:
-                menuItemText = mmGetDateForDisplay(m_trans[row].TRANSDATE);
+                copyText_ = menuItemText = mmGetDateForDisplay(m_trans[row].TRANSDATE);
                 rightClickFilter_ = "{\n\"DATE1\": \"" + m_trans[row].TRANSDATE +
                     "\",\n\"DATE2\" : \"" + m_trans[row].TRANSDATE + "\"\n}";
                 break;
             case COL_NUMBER:
-                menuItemText = m_trans[row].TRANSACTIONNUMBER;
+                copyText_ = menuItemText = m_trans[row].TRANSACTIONNUMBER;
                 rightClickFilter_ = "{\n\"NUMBER\": \"" + menuItemText + "\"\n}";
                 break;
             case COL_ACCOUNT:
-                menuItemText = m_trans[row].ACCOUNTNAME;
+                copyText_ = menuItemText = m_trans[row].ACCOUNTNAME;
                 rightClickFilter_ = "{\n\"ACCOUNT\": [\n\"" + menuItemText + "\"\n]\n}";
                 break;
             case COL_PAYEE_STR:
+                copyText_ = m_trans[row].PAYEENAME;
                 if (!Model_Checking::is_transfer(m_trans[row].TRANSCODE))
                 {
                     menuItemText = m_trans[row].PAYEENAME;
@@ -535,10 +550,11 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
                 }
                 break;
             case COL_STATUS:
-                menuItemText = Model_Checking::STATUS_ENUM_CHOICES[Model_Checking::status(m_trans[row].STATUS)].second;
+                copyText_ = menuItemText = Model_Checking::STATUS_ENUM_CHOICES[Model_Checking::status(m_trans[row].STATUS)].second;
                 rightClickFilter_ = "{\n\"STATUS\": \"" + menuItemText + "\"\n}";
                 break;
             case COL_CATEGORY:
+                copyText_ = m_trans[row].CATEGNAME;
                 if (!m_trans[row].has_split())
                 {
                     menuItemText = m_trans[row].CATEGNAME;
@@ -548,7 +564,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
             case COL_TAGS:
                 if (!m_trans[row].has_split() && m_trans[row].has_tags())
                 {
-                    menuItemText = m_trans[row].TAGNAMES;
+                    copyText_ = menuItemText = m_trans[row].TAGNAMES;
                     // build the tag filter json
                     for (const auto& tag : m_trans[row].m_tags)
                     {
@@ -559,47 +575,70 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
                 break;
             case COL_WITHDRAWAL:
                 columnIsAmount = true;
+                copyText_ = Model_Currency::toString(std::abs(m_trans[row].AMOUNT), currency);
                 menuItemText = wxString::Format("%.2f", std::abs(m_trans[row].AMOUNT));
                 rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText + ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
                 break;
             case COL_DEPOSIT:
                 columnIsAmount = true;
+                copyText_ = Model_Currency::toString(std::abs(m_trans[row].AMOUNT), currency);
                 menuItemText = wxString::Format("%.2f", std::abs(m_trans[row].AMOUNT));
                 rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText + ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
                 break;
+            case COL_BALANCE:
+                copyText_ = Model_Currency::toString(m_trans[row].BALANCE, currency);
+                break;
+            case COL_CREDIT:
+                copyText_ = Model_Currency::toString(account->CREDITLIMIT + m_trans[row].BALANCE, currency);
+                break;
             case COL_NOTES:
-                menuItemText = m_trans[row].NOTES;
+                copyText_ = menuItemText = m_trans[row].NOTES;
                 rightClickFilter_ = "{\n\"NOTES\": \"" + menuItemText + "\"\n}";
                 break;
+            case COL_DELETEDTIME:
+                datetime.ParseISOCombined(m_trans[row].DELETEDTIME);        
+                if(datetime.IsValid())
+                    copyText_ = mmGetDateForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
+                break;
+            case COL_UPDATEDTIME:
+                datetime.ParseISOCombined(m_trans[row].LASTUPDATEDTIME);
+                if (datetime.IsValid())
+                    copyText_ = mmGetDateForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
+                break;
             case COL_UDFC01:
-                menuItemText = m_trans[row].UDFC01;
+                copyText_ = menuItemText = m_trans[row].UDFC01;
                 rightClickFilter_ = wxString::Format("{\n\"CUSTOM%i\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC01"));
                 break;
             case COL_UDFC02:
-                menuItemText = m_trans[row].UDFC02;
+                copyText_ = menuItemText = m_trans[row].UDFC02;
                 rightClickFilter_ = wxString::Format("{\n\"CUSTOM%i\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC02"));
                 break;
             case COL_UDFC03:
-                menuItemText = m_trans[row].UDFC03;
+                copyText_ = menuItemText = m_trans[row].UDFC03;
                 rightClickFilter_ = wxString::Format("{\n\"CUSTOM%i\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC03"));
                 break;
             case COL_UDFC04:
-                menuItemText = m_trans[row].UDFC04;
+                copyText_ = menuItemText = m_trans[row].UDFC04;
                 rightClickFilter_ = wxString::Format("{\n\"CUSTOM%i\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC04"));
                 break;
             case COL_UDFC05:
-                menuItemText = m_trans[row].UDFC05;
+                copyText_ = menuItemText = m_trans[row].UDFC05;
                 rightClickFilter_ = wxString::Format("{\n\"CUSTOM%i\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC05"));
                 break;
             default:
                 break;
             }
 
-            if (!menuItemText.IsEmpty()) {
+            if (!menuItemText.IsEmpty() || !copyText_.IsEmpty()) {
                 menu.AppendSeparator();
-                if (menuItemText.length() > 30)
-                    menuItemText = menuItemText.SubString(0, 30).Append(L"\u2026");
-                menu.Append(MENU_TREEPOPUP_FIND, wxString::Format(_("&Find all transactions with %s '%s'"), (columnIsAmount ? _("Amount") : m_columns[column].HEADER), menuItemText));
+                if (!menuItemText.IsEmpty())
+                {
+                    if (menuItemText.length() > 30)
+                        menuItemText = menuItemText.SubString(0, 30).Append(L"\u2026");
+                    menu.Append(MENU_TREEPOPUP_FIND, wxString::Format(_("&Find all transactions with %s '%s'"), (columnIsAmount ? _("Amount") : m_columns[column].HEADER), menuItemText));
+                }
+                if (!copyText_.IsEmpty())
+                    menu.Append(MENU_TREEPOPUP_COPYTEXT, _("Copy Text to Clipboard"));
             }
         }
     }
@@ -663,6 +702,18 @@ void TransactionListCtrl::findInAllTransactions(wxCommandEvent& event) {
         }
         else
             m_cp->m_frame->SetNavTreeSelection(m_cp->m_frame->GetNavTreeSelection());
+    }
+}
+
+void TransactionListCtrl::OnCopyText(wxCommandEvent& event) 
+{
+    if (!copyText_.IsEmpty())
+    {
+        if (wxTheClipboard->Open())
+        {
+            wxTheClipboard->SetData(new wxTextDataObject(copyText_));
+            wxTheClipboard->Close();
+        }
     }
 }
 //----------------------------------------------------------------------------
