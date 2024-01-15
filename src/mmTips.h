@@ -34,7 +34,7 @@ static const wxString TIPS [] =
     wxTRANSLATE("Category Manager Tip: Pressing the “H” key will cycle through all categories starting with the letter h."),
     wxTRANSLATE("Category Manager Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"),
 
-    wxTRANSLATE("Do not ever endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank doesn’t trust the person to make the payments."),
+    wxTRANSLATE("Never endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank doesn’t trust the person to make the payments."),
 
     wxTRANSLATE("Tip for parents: If you are asked to be a guarantor for a loan for your college student, first check to see if your child has maxed out federal loan, grant, and scholarship options."),
 
