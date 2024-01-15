@@ -38,6 +38,7 @@ static const wxString TIPS [] =
 
     wxTRANSLATE("Grocery Tip: Avoiding grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."),
     wxTRANSLATE("Grocery Tip: Making a shopping list. A shopping list saves money by helping you avoid buying products you do not need. The simplest way is to track consumables as you use them. Keep a magnetic notepad on the fridge and jot down what you need as you run out."),
+    wxTRANSLATE("Grocery Tip: Buy fruits and vegetables in season."),
 
     wxTRANSLATE("Tip for parents: If you are asked to be a guarantor for a loan for your college student, first check to see if your child has maxed out federal loan, grant, and scholarship options."),
 
