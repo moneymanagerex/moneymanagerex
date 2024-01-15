@@ -779,8 +779,8 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     m_nav_tree_ctrl->SetItemData(trash, new mmTreeItemData(mmTreeItemData::TRASH, "Deleted Transactions"));
     m_nav_tree_ctrl->SetItemBold(trash, true);
 
-    wxTreeItemId budgeting = m_nav_tree_ctrl->AppendItem(root, _("Budget Setup"), img::CALENDAR_PNG, img::CALENDAR_PNG);
-    m_nav_tree_ctrl->SetItemData(budgeting, new mmTreeItemData(mmTreeItemData::HELP_BUDGET, "Budget Setup"));
+    wxTreeItemId budgeting = m_nav_tree_ctrl->AppendItem(root, _("Budget Planner"), img::CALENDAR_PNG, img::CALENDAR_PNG);
+    m_nav_tree_ctrl->SetItemData(budgeting, new mmTreeItemData(mmTreeItemData::HELP_BUDGET, "Budget Planner"));
     m_nav_tree_ctrl->SetItemBold(budgeting, true);
     this->DoUpdateBudgetNavigation(budgeting);
 
@@ -1728,7 +1728,7 @@ void mmGUIFrame::createMenu()
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemBudgeting = new wxMenuItem(menuTools, MENU_BUDGETSETUPDIALOG
-        , _("&Budget Setup..."), _("Budget Setup"));
+        , _("&Budget Planner..."), _("Budget Planner"));
     menuTools->Append(menuItemBudgeting);
 
     wxMenuItem* menuItemBillsDeposits = new wxMenuItem(menuTools, MENU_BILLSDEPOSITS
@@ -2817,7 +2817,7 @@ void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& /*event*/)
         if (a != b) {
             DoRecreateNavTreeControl(true);
         }
-        setNavTreeSection(_("Budget Setup"));
+        setNavTreeSection(_("Budget Planner"));
     }
 }
 
