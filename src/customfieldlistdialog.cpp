@@ -63,7 +63,7 @@ void mmCustomFieldListDialog::Create(wxWindow* parent)
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
 
-    wxString WindowTitle = wxString::Format(_("Personalize custom fields"));
+    wxString WindowTitle = wxString::Format(_("Custom Field Manager"));
     if (!wxDialog::Create(parent, wxID_ANY, WindowTitle, wxDefaultPosition, wxDefaultSize, style))
         return;
     CreateControls();
