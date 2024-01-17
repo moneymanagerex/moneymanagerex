@@ -681,7 +681,7 @@ if(LINUX)
     execute_process(COMMAND appstreamcli validate --strict --no-net org.moneymanagerex.MMEX.metainfo.xml
                     COMMAND_ERROR_IS_FATAL ANY)
     install(FILES
-        org.moneymanagerex.MMEX.metainfo.xml
+        ${CMAKE_BINARY_DIR}/org.moneymanagerex.MMEX.metainfo.xml
         DESTINATION share/metainfo)
 endif()
 
