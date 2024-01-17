@@ -177,7 +177,7 @@ bool mmTagDialog::validateName(const wxString& name)
     if (name == "&" || name == "|")
     {
         wxString errMsg = _("Invalid tag name");
-        errMsg << "\n\n" << _("Tag names may not contain '&' or '|' characters because these are reserved for filter operators");
+        errMsg << "\n\n" << _("Tag names may not be the '&' or '|' characters because these are reserved for filter operators");
         wxMessageBox(errMsg, _("Tag Manager: Invalid Name"), wxOK | wxICON_ERROR);
         return false;
     } else if (name.Find(' ') != wxNOT_FOUND)
