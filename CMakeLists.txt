@@ -709,14 +709,17 @@ if(LINUX)
     endif()
 
     # AppStream 'strict' validation wasn't an option prior to v0.15.4
-    if(APPSTREAM_MAJOR_VERSION EQUAL 0 AND (APPSTREAM_MINOR_VERSION LESS 15 OR (APPSTREAM_MINOR_VERSION EQUAL 15 AND APPSTREAM_PATCH_VERSION LESS 4)))
+    if(APPSTREAM_MAJOR_VERSION GREATER 0 OR (APPSTREAM_MINOR_VERSION GREATER 15 OR (APPSTREAM_MINOR_VERSION EQUAL 15 AND APPSTREAM_PATCH_VERSION GREATER_EQUAL 4)))
+        execute_process(COMMAND appstreamcli validate --strict --no-net org.moneymanagerex.MMEX.metainfo.xml
+                COMMAND_ERROR_IS_FATAL ANY)
+    # Bypass metadata validation for AppStream versions < 0.12.3 which don't allow an empty content_rating tag
+    elseif(APPSTREAM_MINOR_VERSION GREATER 12 OR (APPSTREAM_MINOR_VERSION EQUAL 12 AND APPSTREAM_PATCH_VERSION GREATER_EQUAL 3))
         execute_process(COMMAND appstreamcli validate --no-net org.moneymanagerex.MMEX.metainfo.xml RESULT_VARIABLE cmd_result)
         if(cmd_result)
             message(FATAL_ERROR "appstreamcli validate returned ${cmd_result}")
         endif()
     else()
-        execute_process(COMMAND appstreamcli validate --strict --no-net org.moneymanagerex.MMEX.metainfo.xml
-                COMMAND_ERROR_IS_FATAL ANY)
+        message(STATUS "AppStream version ${APPSTREAM_VERSION} < 0.12.3. Skipping metainfo validation.")
     endif()
     install(FILES
         ${CMAKE_BINARY_DIR}/org.moneymanagerex.MMEX.metainfo.xml
