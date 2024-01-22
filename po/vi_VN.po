@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-04 14:14+0300\n"
-"PO-Revision-Date: 2024-01-04 11:18\n"
+"PO-Revision-Date: 2024-01-22 16:18\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -112,7 +112,7 @@ msgstr ""
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "Ngày tài khoản được mở"
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:581
 #: import_export/univcsvdialog.cpp:2636
@@ -233,7 +233,7 @@ msgstr "Giá trị tối thiểu:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Giới hạn số dư tài khoản thấp hơn. Không để vô hiệu hóa"
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:303
 msgid "Credit"
