@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021,2024 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -264,9 +264,9 @@ wxString mmReportChartStocks::getHTMLText()
     wxArrayString symbols;
     for (const auto& stock : Model_Stock::instance().all(Model_Stock::COL_SYMBOL))
     {
-        if (symbols.Index(stock.SYMBOL) != wxNOT_FOUND) {
-            continue;
-        }
+        Model_Account::Data* account = Model_Account::instance().get(stock.HELDAT);
+        if (Model_Account::status(account) != Model_Account::OPEN) continue;
+        if (symbols.Index(stock.SYMBOL) != wxNOT_FOUND) continue;
 
         symbols.Add(stock.SYMBOL);
         int dataCount = 0, freq = 1;
@@ -298,8 +298,6 @@ wxString mmReportChartStocks::getHTMLText()
 
         if (!gd.series.empty())
         {
-
-            Model_Account::Data* account = Model_Account::instance().get(stock.HELDAT);
             hb.addHeader(1, wxString::Format("%s / %s - (%s)", stock.SYMBOL, stock.STOCKNAME, account->ACCOUNTNAME));
             gd.type = GraphData::LINE_DATETIME;
             hb.addChart(gd);
