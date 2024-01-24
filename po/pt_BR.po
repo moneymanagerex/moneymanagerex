@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-24 14:28\n"
+"PO-Revision-Date: 2024-01-24 17:27\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -367,11 +367,11 @@ msgstr "Visite o site %s"
 
 #: appstartdialog.cpp:126
 msgid "&Support Forums"
-msgstr ""
+msgstr "&Fóruns de suporte"
 
 #: appstartdialog.cpp:127
 msgid "Visit the Support Forums"
-msgstr ""
+msgstr "Visite os Fóruns de Suporte"
 
 #: appstartdialog.cpp:133 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -733,17 +733,17 @@ msgstr "Pasta de anexos não encontrada"
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %s | %i"
-msgstr ""
+msgstr "Gerenciador de Anexos | %s | %i"
 
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr ""
+msgstr "Gerenciador de Anexos | %1$s | %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr ""
+msgstr "Gerenciador de Anexos | Novo %s"
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
@@ -759,7 +759,7 @@ msgstr "Insira uma descrição para o novo anexo:"
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
-msgstr ""
+msgstr "Gerenciador de Anexos: Adicionar Anexo"
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
@@ -767,7 +767,7 @@ msgstr "Digite uma nova descrição para o anexo:"
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
-msgstr ""
+msgstr "Gerenciador de Anexos: Editar Anexo"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
@@ -1528,7 +1528,7 @@ msgstr "%1$s    Data de início de: %2$s"
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "Planejamento de Orçamento para %s"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -1682,7 +1682,7 @@ msgstr "O caractere dois-pontos (:) é usado para separar categorias e subcatego
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
-msgstr ""
+msgstr "Gerenciador de Categoria: Nome inválido"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
@@ -1698,7 +1698,7 @@ msgstr "Já existe uma categoria com este nome"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category Manager: Adding Error"
-msgstr ""
+msgstr "Gerenciador de Categoria: Erro ao Adicionar"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
@@ -1757,7 +1757,7 @@ msgstr "Ferramentas → Mesclar → Categorias"
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
-msgstr ""
+msgstr "Gerenciador de Categoria: Erro ao Excluir"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1786,7 +1786,7 @@ msgstr "Editar Categoria"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
-msgstr ""
+msgstr "Gerenciador de Categoria: Erro ao Editar"
 
 #: categdialog.cpp:682 mmframe.cpp:3731
 msgid "Merge categories completed"
@@ -1828,7 +1828,7 @@ msgstr "Limpar as configurações"
 
 #: categdialog.h:68 mmframe.cpp:1698 mmframe.cpp:1924
 msgid "Category Manager"
-msgstr ""
+msgstr "Gerenciador de categoria"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -2167,7 +2167,7 @@ msgstr "Propriedades"
 
 #: customfieldlistdialog.cpp:66 mmframe.cpp:1761
 msgid "Custom Field Manager"
-msgstr ""
+msgstr "Gerenciador de Campos Personalizados"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2579,51 +2579,51 @@ msgstr "Todas exceto as reconciliadas"
 
 #: filtertransdialog.cpp:53
 msgid "Day"
-msgstr ""
+msgstr "Dia"
 
 #: filtertransdialog.cpp:53
 msgid "Month"
-msgstr ""
+msgstr "Mês"
 
 #: filtertransdialog.cpp:53
 msgid "Year"
-msgstr ""
+msgstr "Ano"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
-msgstr ""
+msgstr "Barra"
 
 #: filtertransdialog.cpp:55
 msgid "Line"
-msgstr ""
+msgstr "Linha"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
-msgstr ""
+msgstr "Data da Linha"
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
-msgstr ""
+msgstr "Pizza"
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
-msgstr ""
+msgstr "Rosca"
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
-msgstr ""
+msgstr "Radar"
 
 #: filtertransdialog.cpp:57
 msgid "Bar Line"
-msgstr ""
+msgstr "Barra de Linha"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Bar Line"
-msgstr ""
+msgstr "Linha de barra empilhada"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Area"
-msgstr ""
+msgstr "Área empilhada"
 
 #: filtertransdialog.cpp:521 transactionsupdatedialog.cpp:122
 msgid "Specify"
@@ -2698,11 +2698,11 @@ msgstr "Especifique como o relatório deve ser agrupado"
 #: filtertransdialog.cpp:722 filtertransdialog.cpp:1072
 #: filtertransdialog.cpp:1901
 msgid "Chart"
-msgstr ""
+msgstr "Gráfico"
 
 #: filtertransdialog.cpp:731
 msgid "Specify which chart will be included in the report"
-msgstr ""
+msgstr "Especifique qual gráfico será incluído no relatório"
 
 #: filtertransdialog.cpp:734 filtertransdialog.cpp:1910
 msgid "Combine Splits"
@@ -4058,11 +4058,11 @@ msgstr "Recomendação: Utilize a função copiar (Ctrl+C) e colar (Ctrl+V) para
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb database file."
-msgstr ""
+msgstr "Dica: Lembre-se de fazer backups do seu arquivo .mmb."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Dica: O arquivo .mmb não é criptografado. Isso significa que qualquer outra pessoa que tenha o conhecimento sabe como abrir o arquivo e ler seu conteúdo. Portanto, certifique-se de que se você estiver armazenando qualquer informação financeira sigilosa, ela está devidamente protegida."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
@@ -4090,56 +4090,56 @@ msgstr "Dica: Defina a taxa de câmbio para moedas caso você tenha contas com d
 
 #: mmTips.h:34
 msgid "Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Dica do Gerenciador de Categorias: Pressionando a tecla \"H\" o programa percorrerá por todas as categorias que começam com a letra 'h'."
 
 #: mmTips.h:35
 msgid "Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Dica do Gerenciador de Categorias: Pressionando uma combinação de 2 caracteres o programa percorrerá por todas as categorias que começam pela combinação digitada. Exemplo: Pressionando 'ca' o sistema selecionará Casa, Carro, etc…"
 
 #: mmTips.h:37
 msgid "Never endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
-msgstr ""
+msgstr "Nunca endosse um empréstimo. Se o mutuário - seu amigo, membro da família, alguém significante, quem quer que seja - perder os pagamentos, sua pontuação de crédito afundará, o mutuante pode vir atrás de você pelo dinheiro, e provavelmente destruirá seu relacionamento. Além disso, se o banco está exigindo um fiador, é porque não confia na pessoa para fazer os pagamentos."
 
 #: mmTips.h:39
 msgid "Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."
-msgstr ""
+msgstr "Dica de compras: Evite compras de mercearia quando estiver com fome ou estresse. A fome e o estresse podem te levar a fazer coisas estranhas, como comprar muito chocolate ou péssima comida processada. Planeje ir à loja quando você estiver bem alimentado e relaxado. Dessa forma, conseguirá seguir a sua lista e não gastará demais em alimentos de que não precisa."
 
 #: mmTips.h:40
 msgid "Grocery tip: Make a shopping list. A shopping list saves money by helping you avoid buying products you do not need. The simplest way is to track consumables as you use them. Keep a magnetic notepad on the fridge and jot down what you need as you run out."
-msgstr ""
+msgstr "Dica de compras: Faça uma lista de compras. Uma lista de compras economiza dinheiro ajudando você a evitar comprar produtos de que não precisa. O jeito mais simples é ter controle dos consumíveis enquanto você os usa. Mantenha um bloco de notas magnéticas na geladeira e junte o que você precisa ao acabar."
 
 #: mmTips.h:41
 msgid "Grocery tip: Buy fruits and vegetables in season."
-msgstr ""
+msgstr "Dica de compras: Compre frutas e legumes da estação."
 
 #: mmTips.h:42
 msgid "Grocery tip: Make sure your family consumes everything you purchase. Every month or so, hold a pantry challenge during which you use up as many pantry goods as possible before you shop again. A pantry challenge cuts down on waste and lets you get a sense of how much you are overbuying."
-msgstr ""
+msgstr "Dica de compras: Certifique-se de que sua família consome tudo o que compra. Todos os meses, tenha um desafio de despensa durante o qual você consome o maior número possível de produtos da despensa antes de comprar novamente. Um controle diminui as perdas e permite ter uma noção do quanto você está comprando em excesso."
 
 #: mmTips.h:43
 msgid "Grocery tip: Reduce waste. Adopting better grocery shopping habits is one way to cut back on wasted food and money. Make a list of everything you throw out without using, such as spoiled leftovers or soggy lettuce, to get a sense of the full scale of the issue."
-msgstr ""
+msgstr "Dica de compras: Reduza o desperdício. Adotar melhores hábitos de compras de é uma maneira de eliminar o desperdício de comida e dinheiro. Faça uma lista de tudo o que você joga fora sem usar, como sobras estragadas ou alface adormecido, para ter uma noção do tamanho do problema."
 
 #: mmTips.h:44
 msgid "Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."
-msgstr ""
+msgstr "Dica de compras: Leia os encartes. Revise o encarte de cada loja e combine o que está à venda com o que está na sua lista ou plano de refeições. Algumas vezes, sai mais barato visitar várias lojas numa semana para obter o melhor valor."
 
 #: mmTips.h:46
 msgid "Cut back on subscriptions. Do you really need to subscribe to every streaming service? Are you using a paid service enough to justify the expense, or can you survive with the ad-supported free one? Do you need that monthly book club, or can you head to the library once per month instead?"
-msgstr ""
+msgstr "Corte suas assinaturas. Você realmente precisa assinar todos os serviços de streaming? Você está usando um serviço pago o suficiente para justificar a despesa, ou você pode sobreviver com um serviço gratuito com anúncios? Você precisa daquele clube de livros mensais ou você pode ir à biblioteca uma vez por mês?"
 
 #: mmTips.h:47
 msgid "Use open source alternatives to proprietary software. Search at https://www.opensourcealternative.to/"
-msgstr ""
+msgstr "Use softwares alternativos de código aberto ao invés do software proprietário. Pesquise em https://www.opensourcealternative.to/"
 
 #: mmTips.h:49
 msgid "Parent tip: If you are asked to be a guarantor for a loan for your college student, first check to see if your child has maxed out federal loan, grant, and scholarship options."
-msgstr ""
+msgstr "Dica para pais: se lhe pedirem para ser fiador de um empréstimo para seu estudante universitário, primeiro verifique se o seu filho já esgotou as opções de empréstimo do governo, Ongs e bolsas de estudo."
 
 #: mmTips.h:51
 #, c-format
 msgid "Get out of debt tip: Pay yourself 10% first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Dica para acabar com  dívida: Pague-se 10% em primeiro lugar. Coloque numa conta de difícil acesso. Certifique-se que para movimentar essa conta é muito difícil (ter que se deslocar ao banco para movimentar pessoalmente), assim garante que você só vai fazer movimentações conscientemente e para grandes despesas."
 
 #: mmTips.h:52
 msgid "Get out of debt tip: Establish an emergency fund."
