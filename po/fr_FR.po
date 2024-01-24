@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-24 14:28\n"
+"PO-Revision-Date: 2024-01-24 19:42\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -367,11 +367,11 @@ msgstr "Visiter le site web %s"
 
 #: appstartdialog.cpp:126
 msgid "&Support Forums"
-msgstr ""
+msgstr "Forums de support"
 
 #: appstartdialog.cpp:127
 msgid "Visit the Support Forums"
-msgstr ""
+msgstr "Visitez les forums de support"
 
 #: appstartdialog.cpp:133 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -733,17 +733,17 @@ msgstr "Répertoire des pièces jointes non trouvé"
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %s | %i"
-msgstr ""
+msgstr "Gestionnaire de pièces jointes | %s | %i"
 
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr ""
+msgstr "Gestionnaire de pièces jointes | %1$s | %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr ""
+msgstr "Gestionnaire de pièces jointes | Nouveau %s"
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
@@ -759,7 +759,7 @@ msgstr "Saisissez une description pour cette nouvelle pièce jointe:"
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
-msgstr ""
+msgstr "Gestionnaire de pièces jointes : Ajouter un document"
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
@@ -767,7 +767,7 @@ msgstr "Saisissez une nouvelle description pour cette pièce jointe :"
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
-msgstr ""
+msgstr "Gestionnaire de pièces jointes : Editer le document"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
@@ -1528,7 +1528,7 @@ msgstr "%1$s    Date de début de : %2$s"
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "Planificateur budgétaire pour %s"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -1682,7 +1682,7 @@ msgstr "Le caractère deux-points (:) est utilisé pour séparer les catégories
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
-msgstr ""
+msgstr "Gestionnaire de catégories : Nom invalide"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
@@ -1698,7 +1698,7 @@ msgstr "Une catégorie avec le même nom existe déjà pour le parent"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category Manager: Adding Error"
-msgstr ""
+msgstr "Gestionnaire de catégories : Erreur d'ajout"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
@@ -1757,7 +1757,7 @@ msgstr "Outils → Fusionner → Catégories"
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
-msgstr ""
+msgstr "Gestionnaire de catégories : Erreur de suppression"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1786,7 +1786,7 @@ msgstr "Modifier la catégorie"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
-msgstr ""
+msgstr "Gestionnaire de catégories : Editer l'erreur"
 
 #: categdialog.cpp:682 mmframe.cpp:3731
 msgid "Merge categories completed"
@@ -1828,7 +1828,7 @@ msgstr "Effacer les configuration"
 
 #: categdialog.h:68 mmframe.cpp:1698 mmframe.cpp:1924
 msgid "Category Manager"
-msgstr ""
+msgstr "Gestionnaire des catégories"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -2167,7 +2167,7 @@ msgstr "Propriérés"
 
 #: customfieldlistdialog.cpp:66 mmframe.cpp:1761
 msgid "Custom Field Manager"
-msgstr ""
+msgstr "Gestionnaire de champs personnalisés"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2580,27 +2580,27 @@ msgstr "Tout sauf les transactions réconciliées"
 
 #: filtertransdialog.cpp:53
 msgid "Day"
-msgstr ""
+msgstr "Jour"
 
 #: filtertransdialog.cpp:53
 msgid "Month"
-msgstr ""
+msgstr "Mois"
 
 #: filtertransdialog.cpp:53
 msgid "Year"
-msgstr ""
+msgstr "Année"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
-msgstr ""
+msgstr "Barre"
 
 #: filtertransdialog.cpp:55
 msgid "Line"
-msgstr ""
+msgstr "Ligne"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
-msgstr ""
+msgstr "Date et heure de la ligne"
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
@@ -2612,11 +2612,11 @@ msgstr ""
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
-msgstr ""
+msgstr "Radar"
 
 #: filtertransdialog.cpp:57
 msgid "Bar Line"
-msgstr ""
+msgstr "Barre"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Bar Line"
