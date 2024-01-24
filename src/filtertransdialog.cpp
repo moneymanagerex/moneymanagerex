@@ -179,28 +179,39 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     // Account
     m_selected_accounts_id.clear();
     Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
-    if (isMultiAccount_ && j_account.IsArray())
+    if (isMultiAccount_)
     {
-        wxString baloon = "";
-        wxString acc_name;
-        for (rapidjson::SizeType i = 0; i < j_account.Size(); i++)
+        if (j_account.IsArray())
         {
-            wxASSERT(j_account[i].IsString());
-            acc_name = wxString::FromUTF8(j_account[i].GetString());
-            wxLogDebug("%s", acc_name);
-            accountCheckBox_->SetValue(true);
-            for (const auto& a : Model_Account::instance().find(Model_Account::ACCOUNTNAME(acc_name)))
+            wxString baloon = "";
+            wxString acc_name;
+            for (rapidjson::SizeType i = 0; i < j_account.Size(); i++)
             {
-                m_selected_accounts_id.Add(a.ACCOUNTID);
-                baloon += (baloon.empty() ? "" : "\n") + a.ACCOUNTNAME;
+                wxASSERT(j_account[i].IsString());
+                acc_name = wxString::FromUTF8(j_account[i].GetString());
+                wxLogDebug("%s", acc_name);
+                accountCheckBox_->SetValue(true);
+                for (const auto& a : Model_Account::instance().find(Model_Account::ACCOUNTNAME(acc_name)))
+                {
+                    m_selected_accounts_id.Add(a.ACCOUNTID);
+                    baloon += (baloon.empty() ? "" : "\n") + a.ACCOUNTNAME;
+                }
+            }
+            if (m_selected_accounts_id.size() == 1)
+                bSelectedAccounts_->SetLabelText(acc_name);
+            else
+            {
+                mmToolTip(bSelectedAccounts_, baloon);
+                bSelectedAccounts_->SetLabelText("...");
             }
         }
-        if (m_selected_accounts_id.size() == 1)
-            bSelectedAccounts_->SetLabelText(acc_name);
-        else
+
+        // If no accounts are explicitly selected, turn off the Account filter and set selection to "All"
+        if (m_selected_accounts_id.GetCount() == 0)
         {
-            mmToolTip(bSelectedAccounts_, baloon);
-            bSelectedAccounts_->SetLabelText("...");
+            bSelectedAccounts_->SetLabelText(_("All"));
+            accountCheckBox_->SetValue(false);
+            bSelectedAccounts_->Disable();
         }
     }
 
@@ -467,11 +478,13 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
 void mmFilterTransactionsDialog::mmDoInitSettingNameChoice(wxString sel) const
 {
     m_setting_name->Clear();
-    if (isReportMode_)
-        m_setting_name->Append("", new wxStringClientData("{}"));
 
     if (isMultiAccount_)
     {
+        // Add a blank setting at the beginning. This clears all selections if the user chooses it.
+        m_setting_name->Append("", new wxStringClientData("{}"));
+        // Add the 'Last Used' setting which was the last setting used that wasn't saved
+        m_setting_name->Append(_("Last Unsaved Filter"), new wxStringClientData(Model_Infotable::instance().GetStringInfo(m_filter_key + "_LAST_USED", "")));
         wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting(m_filter_key, true);
         for (const auto& data : filter_settings)
         {
@@ -2085,26 +2098,64 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
         }
         mmDoInitSettingNameChoice(user_label);
     }
-    else if (!isReportMode_)
-    {
-        mmDoUpdateSettings();
-    }
     else
     {
-        const auto& filter_settings = Model_Infotable::instance().GetArrayStringSetting(m_filter_key);
-        const auto& l = mmGetLabelString();
-        int sel_json = Model_Infotable::instance().FindLabelInJSON(m_filter_key, l);
-        const auto& json = sel_json != wxNOT_FOUND ? filter_settings[sel_json] : "";
-        const auto& test = mmGetJsonSetings();
-        if (isMultiAccount_ && json != test && !label.empty())
+        bool updateLastUsed = false;
+        if (!isReportMode_)
         {
-            if (wxMessageBox(_("Filter settings have changed") + "\n" + _("Do you want to save them before continuing?") + "\n\n", _("Please confirm"),
-                             wxYES_NO | wxICON_WARNING) == wxYES)
+            mmDoUpdateSettings();
+            // If no filter name is selected, save as the "Last Used"
+            // Named filters are updated automatically in the "All Transactions" panel
+            if (m_setting_name->GetStringSelection() == "")
             {
-                mmDoUpdateSettings();
+                m_settings_json = mmGetJsonSetings();
+                updateLastUsed = true;
             }
         }
+        else
+        {
+            const auto& filter_settings = Model_Infotable::instance().GetArrayStringSetting(m_filter_key);
+            const auto& l = mmGetLabelString();
+            int sel_json = Model_Infotable::instance().FindLabelInJSON(m_filter_key, l);
+            const auto& json = sel_json != wxNOT_FOUND ? filter_settings[sel_json] : "";
+            m_settings_json = mmGetJsonSetings();
+            if (isMultiAccount_ && json != m_settings_json && !label.empty())
+            {
+                if (wxMessageBox(_("Filter settings have changed") + "\n" + _("Do you want to save them before continuing?") + "\n\n", _("Please confirm"),
+                                 wxYES_NO | wxICON_WARNING) == wxYES)
+                {
+                    mmDoUpdateSettings();
+                }
+                else // User changed a preset but didnt save changes
+                updateLastUsed = true;
+            }
+            else if (isMultiAccount_ && label.empty()) // the preset name field is empty 
+                updateLastUsed = true;
+        }
+
+        // If the filter was changed and not saved by the user, save it as the 'Last Used' filter
+        if (updateLastUsed)
+        {
+            // Save the JSON (without label) as the "Last Used" settings
+            Document j_doc;
+            if (j_doc.Parse(m_settings_json.utf8_str()).HasParseError())
+            {
+                j_doc.Parse("{}");
+            }
+            // Remove the 'LABEL' key which is present if the user changed an existing setting but didn't save the changes
+            if (j_doc.HasMember("LABEL"))
+            {
+                j_doc.RemoveMember("LABEL");
+            }
+            StringBuffer buffer;
+            Writer<StringBuffer> writer(buffer);
+            j_doc.Accept(writer);
+            Model_Infotable::instance().Set(m_filter_key + "_LAST_USED", wxString(buffer.GetString()));
+            // Update the settings list with the new data
+            mmDoInitSettingNameChoice();
+        }
     }
+    Model_Infotable::instance().Set("TRANSACTION_FILTER_LAST_USED", m_settings_json);
 }
 
 void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
