@@ -676,12 +676,53 @@ if(LINUX)
     install(FILES
         resources/dist/linux/share/mime/packages/org.moneymanagerex.MMEX.mime.xml
         DESTINATION share/mime/packages)
-    execute_process(COMMAND appstreamcli news-to-metainfo --format=markdown ${PROJECT_SOURCE_DIR}/NEWS ${PROJECT_SOURCE_DIR}/resources/dist/linux/share/metainfo/org.moneymanagerex.MMEX.metainfo.xml.in org.moneymanagerex.MMEX.metainfo.xml
-	            COMMAND_ERROR_IS_FATAL ANY)
-    execute_process(COMMAND appstreamcli validate --strict --no-net org.moneymanagerex.MMEX.metainfo.xml
-                    COMMAND_ERROR_IS_FATAL ANY)
+    # Determine AppStream version
+    execute_process(
+        COMMAND appstreamcli --version
+        OUTPUT_VARIABLE APPSTREAM_VERSION
+        OUTPUT_STRIP_TRAILING_WHITESPACE)
+    string(REPLACE "AppStream version: " "" APPSTREAM_VERSION ${APPSTREAM_VERSION})
+    string(REGEX MATCH "([0-9]+)\\.([0-9]+)\\.([0-9]+)" APPSTREAM_VERSION_MATCH "${APPSTREAM_VERSION}")
+    set(APPSTREAM_MAJOR_VERSION ${CMAKE_MATCH_1})
+    set(APPSTREAM_MINOR_VERSION ${CMAKE_MATCH_2})
+    set(APPSTREAM_PATCH_VERSION ${CMAKE_MATCH_3})
+    
+    # AppStream version < 0.12.9 does not have function news-to-metainfo, so just copy metainfo directly
+    if(APPSTREAM_MAJOR_VERSION EQUAL 0 AND (APPSTREAM_MINOR_VERSION LESS 12 OR (APPSTREAM_MINOR_VERSION EQUAL 12 AND APPSTREAM_PATCH_VERSION LESS 9)))
+        message(STATUS "AppStream version ${APPSTREAM_VERSION} < 0.12.9. Skipping merge of NEWS into Metainfo.")
+        execute_process(COMMAND cp ${PROJECT_SOURCE_DIR}/resources/dist/linux/share/metainfo/org.moneymanagerex.MMEX.metainfo.xml.in org.moneymanagerex.MMEX.metainfo.xml)
+    # AppStream version < 0.14.6 can't parse the 'Miscellaneous' section of NEWS, so merge with 'Bugfix'
+    elseif(APPSTREAM_MAJOR_VERSION EQUAL 0 AND (APPSTREAM_MINOR_VERSION LESS 14 OR (APPSTREAM_MINOR_VERSION EQUAL 14 AND APPSTREAM_PATCH_VERSION LESS 6)))
+        message(STATUS "AppStream version ${APPSTREAM_VERSION} < 0.14.6. Merging Miscellaneous into Bugfix section in NEWS.")
+        execute_process(COMMAND cp ${CMAKE_SOURCE_DIR}/NEWS ${CMAKE_BINARY_DIR}/NEWS)
+        execute_process(COMMAND sed -i -e ":a;N;$!ba;s/\\n\\nMiscellaneous://g" ${CMAKE_BINARY_DIR}/NEWS)
+        execute_process(COMMAND appstreamcli news-to-metainfo --format=markdown ${CMAKE_BINARY_DIR}/NEWS ${PROJECT_SOURCE_DIR}/resources/dist/linux/share/metainfo/org.moneymanagerex.MMEX.metainfo.xml.in org.moneymanagerex.MMEX.metainfo.xml
+                RESULT_VARIABLE cmd_result)
+        if(cmd_result)
+            message(FATAL_ERROR "appstreamcli news-to-metainfo returned ${cmd_result}")
+        endif()
+    # AppStream version >= 0.14.6
+    else()
+        message(STATUS "AppStream version ${APPSTREAM_VERSION}")
+        execute_process(COMMAND appstreamcli news-to-metainfo --format=markdown ${PROJECT_SOURCE_DIR}/NEWS ${PROJECT_SOURCE_DIR}/resources/dist/linux/share/metainfo/org.moneymanagerex.MMEX.metainfo.xml.in org.moneymanagerex.MMEX.metainfo.xml
+                COMMAND_ERROR_IS_FATAL ANY)
+    endif()
+
+    # AppStream 'strict' validation wasn't an option prior to v0.15.4
+    if(APPSTREAM_MAJOR_VERSION GREATER 0 OR (APPSTREAM_MINOR_VERSION GREATER 15 OR (APPSTREAM_MINOR_VERSION EQUAL 15 AND APPSTREAM_PATCH_VERSION GREATER_EQUAL 4)))
+        execute_process(COMMAND appstreamcli validate --strict --no-net org.moneymanagerex.MMEX.metainfo.xml
+                COMMAND_ERROR_IS_FATAL ANY)
+    # Bypass metadata validation for AppStream versions < 0.12.3 which don't allow an empty content_rating tag
+    elseif(APPSTREAM_MINOR_VERSION GREATER 12 OR (APPSTREAM_MINOR_VERSION EQUAL 12 AND APPSTREAM_PATCH_VERSION GREATER_EQUAL 3))
+        execute_process(COMMAND appstreamcli validate --no-net org.moneymanagerex.MMEX.metainfo.xml RESULT_VARIABLE cmd_result)
+        if(cmd_result)
+            message(FATAL_ERROR "appstreamcli validate returned ${cmd_result}")
+        endif()
+    else()
+        message(STATUS "AppStream version ${APPSTREAM_VERSION} < 0.12.3. Skipping metainfo validation.")
+    endif()
     install(FILES
-        org.moneymanagerex.MMEX.metainfo.xml
+        ${CMAKE_BINARY_DIR}/org.moneymanagerex.MMEX.metainfo.xml
         DESTINATION share/metainfo)
 endif()
 

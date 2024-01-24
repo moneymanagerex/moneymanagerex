@@ -42,7 +42,7 @@ public:
 
 private:
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
-        const wxString& caption = _("Organize Tags"),
+        const wxString& caption = _("Tag Manager"),
         const wxString& name = "Organize Tags",
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,

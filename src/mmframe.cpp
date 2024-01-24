@@ -779,7 +779,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     m_nav_tree_ctrl->SetItemData(trash, new mmTreeItemData(mmTreeItemData::TRASH, "Deleted Transactions"));
     m_nav_tree_ctrl->SetItemBold(trash, true);
 
-    wxTreeItemId budgeting = m_nav_tree_ctrl->AppendItem(root, _("Budget Setup"), img::CALENDAR_PNG, img::CALENDAR_PNG);
+    wxTreeItemId budgeting = m_nav_tree_ctrl->AppendItem(root, _("Budget Planner"), img::CALENDAR_PNG, img::CALENDAR_PNG);
     m_nav_tree_ctrl->SetItemData(budgeting, new mmTreeItemData(mmTreeItemData::HELP_BUDGET, "Budget Setup"));
     m_nav_tree_ctrl->SetItemBold(budgeting, true);
     this->DoUpdateBudgetNavigation(budgeting);
@@ -1454,7 +1454,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account..."));
             menu.AppendSeparator();
             menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
-            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Organize Attachments..."));
+            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Attachment Manager..."));
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
 
             PopupMenu(&menu, pt);
@@ -1474,7 +1474,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account..."));
             menu.AppendSeparator();
             menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
-            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Organize Attachments..."));
+            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Attachment Manager..."));
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
             menu.Enable(MENU_TREEPOPUP_REALLOCATE, account->ACCOUNTTYPE != Model_Account::all_type()[Model_Account::SHARES]);
             menu.AppendSeparator();
@@ -1685,25 +1685,25 @@ void mmGUIFrame::createMenu()
     wxMenu* menuTools = new wxMenu;
 
     wxMenuItem* menuItemRates = new wxMenuItem(menuTools
-        , MENU_RATES, _("Download Ra&tes"), _("Download Currency and Stock rates"));
+        , MENU_RATES, _("Download &Rates"), _("Download Currency and Stock Rates"));
     menuTools->Append(menuItemRates);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemPayee = new wxMenuItem(menuTools
-        , MENU_ORGPAYEE, _("Organize &Payees..."), _("Organize Payees"));
+        , MENU_ORGPAYEE, _("&Payee Manager..."), _("Payee Manager"));
     menuTools->Append(menuItemPayee);
 
     wxMenuItem* menuItemCateg = new wxMenuItem(menuTools
-        , MENU_ORGCATEGS, _("Organize &Categories..."), _("Organize Categories"));
+        , MENU_ORGCATEGS, _("&Category Manager..."), _("Category Manager"));
     menuTools->Append(menuItemCateg);
 
     wxMenuItem* menuItemTags = new wxMenuItem(menuTools
-        , MENU_ORGTAGS, _("Organize &Tags..."), _("Organize Tags"));
+        , MENU_ORGTAGS, _("&Tag Manager..."), _("Tag Manager"));
     menuTools->Append(menuItemTags);
 
     wxMenuItem* menuItemCurrency = new wxMenuItem(menuTools, MENU_CURRENCY
-        , _("Organize Curre&ncies..."), _("Organize Currencies"));
+        , _("Curre&ncy Manager..."), _("Currency Manager"));
     menuTools->Append(menuItemCurrency);
 
     wxMenuItem* menuItemCategoryRelocation = new wxMenuItem(menuTools
@@ -1728,11 +1728,11 @@ void mmGUIFrame::createMenu()
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemBudgeting = new wxMenuItem(menuTools, MENU_BUDGETSETUPDIALOG
-        , _("&Budget Setup..."), _("Budget Setup"));
+        , _("&Budget Planner..."), _("Budget Planner"));
     menuTools->Append(menuItemBudgeting);
 
     wxMenuItem* menuItemBillsDeposits = new wxMenuItem(menuTools, MENU_BILLSDEPOSITS
-        , _("&Scheduled Transactions"), _("Bills && Deposits"));
+        , _("&Scheduled Transactions"), _("Bills and Deposits"));
     menuTools->Append(menuItemBillsDeposits);
 
     wxMenuItem* menuItemAssets = new wxMenuItem(menuTools, MENU_ASSETS
@@ -1754,11 +1754,11 @@ void mmGUIFrame::createMenu()
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemGRM = new wxMenuItem(menuTools, wxID_VIEW_LIST
-        , _("General Report &Manager..."), _("General Report Manager"));
+        , _("&General Report Manager..."), _("General Report Manager"));
     menuTools->Append(menuItemGRM);
 
     wxMenuItem* menuItemCF = new wxMenuItem(menuTools, wxID_BROWSE
-        , _("C&ustom Fields Manager..."), _("Custom Fields Manager"));
+        , _("C&ustom Field Manager..."), _("Custom Field Manager"));
     menuTools->Append(menuItemCF);
 
     menuTools->AppendSeparator();
@@ -1920,10 +1920,10 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_NEW, _("New"), mmBitmapBundle(png::NEW_TRX, toolbar_icon_size), _("New Transaction"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), mmBitmapBundle(png::PAYEE, toolbar_icon_size), _("Organize Payees"));
-    toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), mmBitmapBundle(png::CATEGORY, toolbar_icon_size), _("Organize Categories"));
-    toolBar_->AddTool(MENU_ORGTAGS, _("Organize Tags"), mmBitmapBundle(png::TAG, toolbar_icon_size), _("Organize Tags"));
-    toolBar_->AddTool(MENU_CURRENCY, _("Organize Currencies"), mmBitmapBundle(png::CURR, toolbar_icon_size), _("Organize Currencies"));
+    toolBar_->AddTool(MENU_ORGPAYEE, _("Payee Manager"), mmBitmapBundle(png::PAYEE, toolbar_icon_size), _("Payee Manager"));
+    toolBar_->AddTool(MENU_ORGCATEGS, _("Category Manager"), mmBitmapBundle(png::CATEGORY, toolbar_icon_size), _("Category Manager"));
+    toolBar_->AddTool(MENU_ORGTAGS, _("Tag Manager"), mmBitmapBundle(png::TAG, toolbar_icon_size), _("Tag Manager"));
+    toolBar_->AddTool(MENU_CURRENCY, _("Currency Manager"), mmBitmapBundle(png::CURR, toolbar_icon_size), _("Currency Manager"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report Filter"), mmBitmapBundle(png::FILTER, toolbar_icon_size), _("Transaction Report Filter"));
     toolBar_->AddSeparator();
@@ -1944,7 +1944,7 @@ void mmGUIFrame::CreateToolBar()
         : mmBitmapBundle(png::NEWS, toolbar_icon_size);
     toolBar_->AddTool(MENU_ANNOUNCEMENTMAILING, _("News"), news_ico, news_array);
 
-    toolBar_->AddTool(MENU_RATES, _("Download rates"), mmBitmapBundle(png::CURRATES, toolbar_icon_size), _("Download Currency and Stock Rates"));
+    toolBar_->AddTool(MENU_RATES, _("Download Rates"), mmBitmapBundle(png::CURRATES, toolbar_icon_size), _("Download Currency and Stock Rates"));
 
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Toggle Fullscreen\tF11"), mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _("Toggle Fullscreen"));
@@ -2245,7 +2245,7 @@ void mmGUIFrame::OnNew(wxCommandEvent& /*event*/)
         _("Choose database file to create"),
         wxEmptyString,
         wxEmptyString,
-        "MMB Files(*.mmb)|*.mmb",
+        _("MMB Database (*.mmb)|*.mmb"),
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
@@ -2267,7 +2267,7 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
     autoRepeatTransactionsTimer_.Stop();
     wxString fileName = wxFileSelector(_("Choose database file to open")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , "MMB Files(*.mmb)|*.mmb|Encrypted MMB files (*.emb)|*.emb"
+        , _("MMB Database (*.mmb)|*.mmb|Encrypted MMB Database (*.emb)|*.emb")
         , wxFD_FILE_MUST_EXIST | wxFD_OPEN
         , this
     );
@@ -2293,7 +2293,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
 {
     wxString encFileName = wxFileSelector(_("Choose Encrypted database file to open")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , "Encrypted MMB files (*.emb)|*.emb"
+        , "Encrypted MMB Database (*.emb)|*.emb"
         , wxFD_FILE_MUST_EXIST
         , this
     );
@@ -2309,7 +2309,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
         , _("Choose database file to Save As")
         , wxEmptyString
         , wxEmptyString
-        , "MMB Files(*.mmb)|*.mmb"
+        , _("MMB Database (*.mmb)|*.mmb")
         , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
@@ -2449,7 +2449,7 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
         _("Save database file as"),
         wxEmptyString,
         wxEmptyString,
-        "MMB Files(*.mmb)|*.mmb|Encrypted MMB files (*.emb)|*.emb",
+        _("MMB Database (*.mmb)|*.mmb|Encrypted MMB Database (*.emb)|*.emb"),
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
@@ -2817,7 +2817,7 @@ void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& /*event*/)
         if (a != b) {
             DoRecreateNavTreeControl(true);
         }
-        setNavTreeSection(_("Budget Setup"));
+        setNavTreeSection(_("Budget Planner"));
     }
 }
 

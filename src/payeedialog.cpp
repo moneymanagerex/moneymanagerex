@@ -505,7 +505,7 @@ void mmPayeeDialog::Create(wxWindow* parent, const wxString &name)
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
 
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
-    if (!wxDialog::Create(parent, wxID_ANY, _("Organize Payees")
+    if (!wxDialog::Create(parent, wxID_ANY, _("Payee Manager")
         , wxDefaultPosition, wxDefaultSize, style, name))
     {
         return;
@@ -743,7 +743,7 @@ void mmPayeeDialog::DeletePayee()
                     << _("Tip: Change all transactions using this Payee to another Payee"
                         " using the merge command:")
                     << "\n\n" << wxString::FromUTF8(_("Tools → Merge → Payees").ToStdString());
-                wxMessageBox(deletePayeeErrMsg, _("Organize Payees: Delete Error"), wxOK | wxICON_ERROR);
+                wxMessageBox(deletePayeeErrMsg, _("Payee Manager: Delete Error"), wxOK | wxICON_ERROR);
                 continue;
             }
             Model_Checking::Data_Set deletedTrans = Model_Checking::instance().find(Model_Checking::PAYEEID(p));
@@ -888,7 +888,7 @@ void mmPayeeDialog::OnItemRightClick(wxListEvent& event)
     if (!payee || selected.front() == -1) mainMenu.Enable(MENU_DELETE_PAYEE, false);
     mainMenu.AppendSeparator();
 
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ORGANIZE_ATTACHMENTS, _("&Organize Attachments")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ORGANIZE_ATTACHMENTS, _("&Attachment Manager")));
     if (!payee) mainMenu.Enable(MENU_ORGANIZE_ATTACHMENTS, false);
     mainMenu.AppendSeparator();
 

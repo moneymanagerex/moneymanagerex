@@ -55,6 +55,7 @@ private:
     void OnButtonAppstartChangeLanguage( wxCommandEvent& /*event*/ );
     void OnButtonAppstartHelpClick( wxCommandEvent& event );
     void OnButtonAppstartWebsiteClick( wxCommandEvent& event );
+    void OnButtonAppstartForumsClick( wxCommandEvent& /*event*/ );
     void OnButtonAppstartLastDatabaseClick( wxCommandEvent& event );
     void OnQuit(wxCommandEvent& event);
     void OnClose(wxCloseEvent& event);

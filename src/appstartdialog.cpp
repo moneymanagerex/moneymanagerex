@@ -34,6 +34,7 @@ wxBEGIN_EVENT_TABLE(mmAppStartDialog, wxDialog)
     EVT_BUTTON(wxID_SETUP, mmAppStartDialog::OnButtonAppstartChangeLanguage)
     EVT_BUTTON(wxID_HELP, mmAppStartDialog::OnButtonAppstartHelpClick)
     EVT_BUTTON(wxID_INDEX, mmAppStartDialog::OnButtonAppstartWebsiteClick)
+    EVT_BUTTON(wxID_FORWARD, mmAppStartDialog::OnButtonAppstartForumsClick)
     EVT_BUTTON(wxID_FILE1, mmAppStartDialog::OnButtonAppstartLastDatabaseClick)
     EVT_BUTTON(wxID_EXIT, mmAppStartDialog::OnQuit)
     EVT_CLOSE(mmAppStartDialog::OnClose)
@@ -46,7 +47,7 @@ mmAppStartDialog::mmAppStartDialog(wxWindow* parent, mmGUIApp* app, const wxStri
     const auto caption = wxString::Format("%s %s", mmex::getProgramName(), mmex::getTitleProgramVersion());
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, caption, wxDefaultPosition, wxDefaultSize, style, name);
-    SetMinSize(wxSize(310, 300));
+    SetMinSize(wxSize(350, 300));
     Fit();
 }
 
@@ -122,6 +123,10 @@ void mmAppStartDialog::CreateControls()
     mmToolTip(itemButton10, s);
     itemBoxSizer5->Add(itemButton10, 0, wxGROW | wxALL, 5);
 
+    wxButton* itemButton11 = new wxButton(this, wxID_FORWARD, _("&Support Forums"));
+    mmToolTip(itemButton11, _("Visit the Support Forums"));
+    itemBoxSizer5->Add(itemButton11, 0, wxGROW | wxALL, 5);
+
     wxBoxSizer* itemBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer10, 0, wxALIGN_LEFT | wxALL, 5);
 
@@ -170,6 +175,11 @@ void mmAppStartDialog::OnButtonAppstartHelpClick( wxCommandEvent& /*event*/ )
 void mmAppStartDialog::OnButtonAppstartWebsiteClick( wxCommandEvent& /*event*/ )
 {
     wxLaunchDefaultBrowser(mmex::weblink::WebSite);
+}
+
+void mmAppStartDialog::OnButtonAppstartForumsClick( wxCommandEvent& /*event*/ )
+{
+    wxLaunchDefaultBrowser(mmex::weblink::Forum);
 }
 
 void mmAppStartDialog::OnButtonAppstartLastDatabaseClick( wxCommandEvent& /*event*/ )

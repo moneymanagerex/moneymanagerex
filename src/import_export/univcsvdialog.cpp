@@ -2512,7 +2512,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
 
     case UNIV_CSV_NOTES:
         token.Replace("\\n", "\n");
-        holder.Notes += token + "\n";
+        holder.Notes += (holder.Notes.IsEmpty() ? "" : "\n") + token;
         break;
 
     case UNIV_CSV_WITHDRAWAL:

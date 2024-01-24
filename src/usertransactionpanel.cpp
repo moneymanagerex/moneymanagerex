@@ -182,7 +182,7 @@ void UserTransactionPanel::Create()
 
     // Attachment ---------------------------------------------
     m_attachment = new wxBitmapButton(this, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));
-    mmToolTip(m_attachment, _("Organize attachments of this transaction"));
+    mmToolTip(m_attachment, _("Manage transaction attachments"));
     //TODO: m_attachment Enable/disable
     //m_attachment->Enable(false);
 

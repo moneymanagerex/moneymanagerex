@@ -135,7 +135,7 @@ void OptionSettingsGeneral::Create()
     baseCurrencyComboBox_ = new mmComboBoxCurrency(general_panel, ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
     baseCurrencyComboBox_->SetMinSize(wxSize(200, -1));
     baseCurrencyComboBox_->ChangeValue(currName);
-    mmToolTip(baseCurrencyComboBox_, _("Sets the database default Currency using 'Organize Currencies'"));
+    mmToolTip(baseCurrencyComboBox_, _("Set default database currency using 'Currency Manager'"));
     currencyBaseSizer->Add(baseCurrencyComboBox_, g_flagsH);
 
     m_currencyStaticBoxSizer->AddSpacer(10);
@@ -161,7 +161,7 @@ void OptionSettingsGeneral::Create()
 
         m_currencyStaticBoxSizer->Add(new wxStaticText(general_panel, wxID_STATIC
             , _("Format derived from locale.\n"
-                "Leave blank to manually set format via 'Organize Currencies | Edit'")),
+                "Leave blank to manually set format via 'Currency Manager | Edit'")),
             wxSizerFlags(g_flagsV).Border(wxTOP, 0).Border(wxLEFT, 5));
 
         m_itemListOfLocales->Connect(ID_DIALOG_OPTIONS_LOCALE, wxEVT_COMMAND_TEXT_UPDATED
@@ -298,7 +298,7 @@ bool OptionSettingsGeneral::SaveSettings()
         if (Option::instance().getCurrencyHistoryEnabled())
         {
             if (wxMessageBox(_("Changing base currency will delete all history rates, proceed?")
-                , _("Organize Currencies")
+                , _("Currency Manager")
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING) != wxYES)
                 return false;
         }

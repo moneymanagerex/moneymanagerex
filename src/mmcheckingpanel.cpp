@@ -815,7 +815,7 @@ void mmCheckingPanel::initFilterSettings()
         , Model_Setting::instance().ViewTransactions());
     wxString json = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view);
     Document j_doc;
-    if (j_doc.Parse(json.utf8_str()).HasParseError()) {
+    if (j_doc.Parse(json.utf8_str()).HasParseError() || !j_doc.IsArray()) {
         j_doc.Parse("{}");
     }
 

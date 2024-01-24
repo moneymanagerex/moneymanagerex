@@ -111,11 +111,11 @@ void mmAttachmentDialog::Create(wxWindow* parent, const wxString& name)
             RefName = "";
         }       
         if (RefName.IsEmpty())
-            WindowTitle = wxString::Format(_("Organize Attachments | %s | %i"), wxGetTranslation(m_RefType), m_RefId);
+            WindowTitle = wxString::Format(_("Attachment Manager | %s | %i"), wxGetTranslation(m_RefType), m_RefId);
         else
-            WindowTitle = wxString::Format(_("Organize Attachments | %1$s | %2$s"), wxGetTranslation(m_RefType), RefName);
+            WindowTitle = wxString::Format(_("Attachment Manager | %1$s | %2$s"), wxGetTranslation(m_RefType), RefName);
     } else
-        WindowTitle = wxString::Format(_("Organize Attachments | New %s"), wxGetTranslation(m_RefType));
+        WindowTitle = wxString::Format(_("Attachment Manager | New %s"), wxGetTranslation(m_RefType));
 
     if (!wxDialog::Create(parent, wxID_ANY, WindowTitle, wxDefaultPosition, wxDefaultSize, style, name))
         return;
@@ -199,7 +199,7 @@ void mmAttachmentDialog::AddAttachment(wxString FilePath)
     const wxString attachmentFileExtension = wxFileName(FilePath).GetExt().MakeLower();
     
     mmDialogComboBoxAutocomplete dlg(this, _("Enter a description for the new attachment:") + wxString::Format("\n(%s)", FilePath),
-        _("Organize Attachments: Add Attachment"), attachmentFileName, Model_Attachment::instance().allDescriptions());
+        _("Attachment Manager: Add Attachment"), attachmentFileName, Model_Attachment::instance().allDescriptions());
 
     if (dlg.ShowModal() != wxID_OK)
         return;
@@ -246,7 +246,7 @@ void mmAttachmentDialog::EditAttachment()
     if (attachment)
     {
         mmDialogComboBoxAutocomplete dlg(this, _("Enter a new description for the attachment:"),
-            _("Organize Attachments: Edit Attachment"), attachment->DESCRIPTION,
+            _("Attachment Manager: Edit Attachment"), attachment->DESCRIPTION,
             Model_Attachment::instance().allDescriptions());
 
         if (dlg.ShowModal() != wxID_OK)
