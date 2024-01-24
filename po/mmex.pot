@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-01-24 17:11+0300\n"
+"POT-Creation-Date: 2024-01-24 17:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5362,8 +5362,16 @@ msgstr ""
 msgid "Choose database file to create"
 msgstr ""
 
+#: mmframe.cpp:2248 mmframe.cpp:2312
+msgid "MMB Database (*.mmb)|*.mmb"
+msgstr ""
+
 #: mmframe.cpp:2268
 msgid "Choose database file to open"
+msgstr ""
+
+#: mmframe.cpp:2270 mmframe.cpp:2452
+msgid "MMB Database (*.mmb)|*.mmb|Encrypted MMB Database (*.emb)|*.emb"
 msgstr ""
 
 #: mmframe.cpp:2294
