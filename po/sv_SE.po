@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-24 14:28\n"
+"PO-Revision-Date: 2024-01-24 15:48\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -1525,7 +1525,7 @@ msgstr ""
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "Budgetplanerare för %s"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -2565,15 +2565,15 @@ msgstr "Alla Utom Avstämda"
 
 #: filtertransdialog.cpp:53
 msgid "Day"
-msgstr ""
+msgstr "Dag"
 
 #: filtertransdialog.cpp:53
 msgid "Month"
-msgstr ""
+msgstr "Månad"
 
 #: filtertransdialog.cpp:53
 msgid "Year"
-msgstr ""
+msgstr "År"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
