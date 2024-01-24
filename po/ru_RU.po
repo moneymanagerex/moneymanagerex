@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-24 14:28\n"
+"PO-Revision-Date: 2024-01-24 15:48\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -367,11 +367,11 @@ msgstr "Посетить сайт %s"
 
 #: appstartdialog.cpp:126
 msgid "&Support Forums"
-msgstr ""
+msgstr "&Форум"
 
 #: appstartdialog.cpp:127
 msgid "Visit the Support Forums"
-msgstr ""
+msgstr "Посетите форумы поддержки"
 
 #: appstartdialog.cpp:133 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -733,17 +733,17 @@ msgstr "Папка для вложений не найдена"
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %s | %i"
-msgstr ""
+msgstr "Менеджер вложений | %s | %i"
 
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr ""
+msgstr "Менеджер вложений | %1$s | %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr ""
+msgstr "Менеджер вложений | Новое %s"
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
@@ -759,7 +759,7 @@ msgstr "Введите имя нового вложения:"
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
-msgstr ""
+msgstr "Менеджер вложений: Добавить вложение"
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
@@ -767,7 +767,7 @@ msgstr "Введите новое описание для вложения:"
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
-msgstr ""
+msgstr "Управление вложениями: Редактировать вложение"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
@@ -1533,7 +1533,7 @@ msgstr "%1$s    Дата начала: %2$s"
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "Планирование бюджета для %s"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -1687,7 +1687,7 @@ msgstr "Символ двоеточия (:) используется для ра
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
-msgstr ""
+msgstr "Менеджер категорий: Неверное имя"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
@@ -1703,7 +1703,7 @@ msgstr "Категория с таким названием уже сущест�
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category Manager: Adding Error"
-msgstr ""
+msgstr "Менеджер категорий: Ошибка добавления"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
@@ -1759,7 +1759,7 @@ msgstr "Инструменты → Объединить → Категории"
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
-msgstr ""
+msgstr "Менеджер категорий: Ошибка удаления"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1788,7 +1788,7 @@ msgstr "Редактировать категорию"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
-msgstr ""
+msgstr "Менеджер категорий: Ошибка редактирования"
 
 #: categdialog.cpp:682 mmframe.cpp:3731
 msgid "Merge categories completed"
@@ -1830,7 +1830,7 @@ msgstr "Очистить настройки"
 
 #: categdialog.h:68 mmframe.cpp:1698 mmframe.cpp:1924
 msgid "Category Manager"
-msgstr ""
+msgstr "Менеджер категорий"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -2169,7 +2169,7 @@ msgstr "Свойства"
 
 #: customfieldlistdialog.cpp:66 mmframe.cpp:1761
 msgid "Custom Field Manager"
-msgstr ""
+msgstr "Менеджер пользовательских полей"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2583,51 +2583,51 @@ msgstr "Кроме выверенных"
 
 #: filtertransdialog.cpp:53
 msgid "Day"
-msgstr ""
+msgstr "день"
 
 #: filtertransdialog.cpp:53
 msgid "Month"
-msgstr ""
+msgstr "месяц"
 
 #: filtertransdialog.cpp:53
 msgid "Year"
-msgstr ""
+msgstr "год"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
-msgstr ""
+msgstr "Бар"
 
 #: filtertransdialog.cpp:55
 msgid "Line"
-msgstr ""
+msgstr "Линия"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
-msgstr ""
+msgstr "Линия Дата/Время"
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
-msgstr ""
+msgstr "Пирог"
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
-msgstr ""
+msgstr "Кольцо"
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
-msgstr ""
+msgstr "Радар"
 
 #: filtertransdialog.cpp:57
 msgid "Bar Line"
-msgstr ""
+msgstr "Линия бара"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Bar Line"
-msgstr ""
+msgstr "Накопленная линия"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Area"
-msgstr ""
+msgstr "Диаграмма с областями с накоплением"
 
 #: filtertransdialog.cpp:521 transactionsupdatedialog.cpp:122
 msgid "Specify"
@@ -2702,11 +2702,11 @@ msgstr "Укажите, как следует сгруппировать отч�
 #: filtertransdialog.cpp:722 filtertransdialog.cpp:1072
 #: filtertransdialog.cpp:1901
 msgid "Chart"
-msgstr ""
+msgstr "График"
 
 #: filtertransdialog.cpp:731
 msgid "Specify which chart will be included in the report"
-msgstr ""
+msgstr "Укажите, какой график будет включен в отчет"
 
 #: filtertransdialog.cpp:734 filtertransdialog.cpp:1910
 msgid "Combine Splits"
@@ -4065,11 +4065,11 @@ msgstr "Совет: Используйте копирование  (Ctrl+С) и 
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb database file."
-msgstr ""
+msgstr "Совет: не забудьте сделать резервные копии файла базы данных .mmb."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Подсказка: файл базы данных .mmb не зашифрован. Это означает, что любой другой владелец знает, как на самом деле открыть файл и прочитать его содержимое. Таким образом, убедитесь, что если вы храните конфиденциальную финансовую информацию, она должным образом охраняется."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
@@ -4097,7 +4097,7 @@ msgstr "Совет: Если ведёте счета в разных валют�
 
 #: mmTips.h:34
 msgid "Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Подсказка менеджера категорий: нажатие клавиши \"Н\" будет переключаться по всем категориям, начинающимися с буквы н."
 
 #: mmTips.h:35
 msgid "Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
