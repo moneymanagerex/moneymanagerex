@@ -2245,7 +2245,7 @@ void mmGUIFrame::OnNew(wxCommandEvent& /*event*/)
         _("Choose database file to create"),
         wxEmptyString,
         wxEmptyString,
-        "MMB Files(*.mmb)|*.mmb",
+        _("MMB Files (*.mmb)|*.mmb"),
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
@@ -2267,7 +2267,7 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
     autoRepeatTransactionsTimer_.Stop();
     wxString fileName = wxFileSelector(_("Choose database file to open")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , "MMB Files(*.mmb)|*.mmb|Encrypted MMB files (*.emb)|*.emb"
+        , _("MMB Files (*.mmb)|*.mmb|Encrypted MMB files (*.emb)|*.emb")
         , wxFD_FILE_MUST_EXIST | wxFD_OPEN
         , this
     );
@@ -2309,7 +2309,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
         , _("Choose database file to Save As")
         , wxEmptyString
         , wxEmptyString
-        , "MMB Files(*.mmb)|*.mmb"
+        , _("MMB Files (*.mmb)|*.mmb")
         , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
@@ -2449,7 +2449,7 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
         _("Save database file as"),
         wxEmptyString,
         wxEmptyString,
-        "MMB Files(*.mmb)|*.mmb|Encrypted MMB files (*.emb)|*.emb",
+        _("MMB Files (*.mmb)|*.mmb|Encrypted MMB files (*.emb)|*.emb"),
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
