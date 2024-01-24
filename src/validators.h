@@ -95,11 +95,14 @@ inline void mmCalcValidator::OnChar(wxKeyEvent& event)
         str = wxString(decChar);
 
     // if decimal point, check if it's already in the string
-    if (str == '.' || str == ',')
+    if (str == decChar)
     {
         const wxString value = text_field->GetValue();
         size_t ind = value.rfind(decChar);
-        if (ind < value.Length())
+        // Determine selection start/end to allow overwrite of decimal
+        long selStart, selEnd;
+        text_field->GetSelection(&selStart, &selEnd);
+        if (ind < value.Length() && (ind < selStart || ind >= selEnd))
         {
             // check if after last decimal point there is an operation char (+-/*)
             if (value.find('+', ind + 1) >= value.Length() && value.find('-', ind + 1) >= value.Length() &&
