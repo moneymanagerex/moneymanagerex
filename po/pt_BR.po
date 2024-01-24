@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-24 17:27\n"
+"PO-Revision-Date: 2024-01-24 18:42\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -4139,31 +4139,31 @@ msgstr "Dica para pais: se lhe pedirem para ser fiador de um empréstimo para se
 #: mmTips.h:51
 #, c-format
 msgid "Get out of debt tip: Pay yourself 10% first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr "Dica para acabar com  dívida: Pague-se 10% em primeiro lugar. Coloque numa conta de difícil acesso. Certifique-se que para movimentar essa conta é muito difícil (ter que se deslocar ao banco para movimentar pessoalmente), assim garante que você só vai fazer movimentações conscientemente e para grandes despesas."
+msgstr "Dica para não se endividar: Pague-se 10% em primeiro lugar. Coloque numa conta de difícil acesso. Certifique-se que para movimentar essa conta é muito difícil (ter que se deslocar ao banco para movimentar pessoalmente), assim garante que você só vai fazer movimentações conscientemente e para grandes despesas."
 
 #: mmTips.h:52
 msgid "Get out of debt tip: Establish an emergency fund."
-msgstr ""
+msgstr "Dica para não se endividar: Crie um fundo de emergência."
 
 #: mmTips.h:53
 msgid "Get out of debt tip: Stop acquiring new debt."
-msgstr ""
+msgstr "Dica para não se endividar: Pare de aumentar despesas."
 
 #: mmTips.h:54
 msgid "Get out of debt tip: Create a realistic budget for your expenses."
-msgstr ""
+msgstr "Dica para não se endividar: Crie um orçamento realista com suas despesas."
 
 #: mmTips.h:55
 msgid "Get out of debt tip: Spend less than you earn."
-msgstr ""
+msgstr "Dica para não se endividar: Gaste menos do que você ganha."
 
 #: mmTips.h:56
 msgid "Get out of debt tip: Pay more than the minimum."
-msgstr ""
+msgstr "Dica para não se endividar: Pague a fatura completa do cartão."
 
 #: mmTips.h:57
 msgid "Get out of debt tip: If you have a mountain of debt, studies show paying off the smallest debts can give you the confidence to tackle the larger ones."
-msgstr ""
+msgstr "Dica para sair das dívidas: Se você tem uma montanha de dívidas, estudos mostram que quitar as dívidas menores pode dar a você a confiança necessária para enfrentar as maiores."
 
 #: mmTips.h:58
 msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
@@ -4191,7 +4191,7 @@ msgstr "Antes de começar a investir, saiba seu fluxo de caixa (tenha um orçame
 
 #: mmTips.h:69
 msgid "Before you start investing, pay off consumer debt — especially credit cards."
-msgstr ""
+msgstr "Antes de começar a investir, pague as dívidas de consumo — especialmente os cartões de crédito."
 
 #: mmTips.h:70
 msgid "Before you start investing, make net worth your primary tracking metric."
@@ -4305,7 +4305,7 @@ msgstr "&Localizar todas as transações com %s '%s'"
 
 #: mmchecking_list.cpp:641
 msgid "Copy Text to Clipboard"
-msgstr ""
+msgstr "Copiar Texto para a Área de Transferência"
 
 #: mmchecking_list.cpp:648
 msgid "&Delete selected transaction..."
@@ -4628,7 +4628,7 @@ msgstr "Contas de Ações"
 
 #: mmframe.cpp:782 mmframe.cpp:1731 mmframe.cpp:2820
 msgid "Budget Planner"
-msgstr ""
+msgstr "Planejador de Orçamento"
 
 #: mmframe.cpp:787 mmframe.cpp:1318 mmframe.cpp:1335 mmframe.cpp:2805
 msgid "Transaction Report"
@@ -4737,7 +4737,7 @@ msgstr "&Ir para o Site da Conta"
 
 #: mmframe.cpp:1457 mmframe.cpp:1477
 msgid "&Attachment Manager..."
-msgstr ""
+msgstr "&Gerenciador de Anexos..."
 
 #: mmframe.cpp:1472 mmframe.cpp:1672
 msgid "&Change Account Type..."
@@ -4929,7 +4929,7 @@ msgstr "Eliminar Conta do banco de dados"
 
 #: mmframe.cpp:1688
 msgid "Download &Rates"
-msgstr ""
+msgstr "Baixar &taxas de conversão"
 
 #: mmframe.cpp:1688 mmframe.cpp:1947
 msgid "Download Currency and Stock Rates"
@@ -4937,27 +4937,27 @@ msgstr "Baixar valores da moeda e de ações"
 
 #: mmframe.cpp:1694
 msgid "&Payee Manager..."
-msgstr ""
+msgstr "Gerenciador de &Favorecidos..."
 
 #: mmframe.cpp:1694 mmframe.cpp:1923 payeedialog.cpp:508
 msgid "Payee Manager"
-msgstr ""
+msgstr "Gerenciador de Favorecidos"
 
 #: mmframe.cpp:1698
 msgid "&Category Manager..."
-msgstr ""
+msgstr "Gerenciador de &Categoria..."
 
 #: mmframe.cpp:1702
 msgid "&Tag Manager..."
-msgstr ""
+msgstr "Gerenciador de &Etiquetas..."
 
 #: mmframe.cpp:1702 mmframe.cpp:1925 tagdialog.h:45
 msgid "Tag Manager"
-msgstr ""
+msgstr "Gerenciador de Etiquetas"
 
 #: mmframe.cpp:1706
 msgid "Curre&ncy Manager..."
-msgstr ""
+msgstr "Gerenciador de &Moedas..."
 
 #: mmframe.cpp:1710
 msgid "&Categories..."
@@ -4993,7 +4993,7 @@ msgstr "Mesclar Categorias, Beneficiários e Etiquetas"
 
 #: mmframe.cpp:1731
 msgid "&Budget Planner..."
-msgstr ""
+msgstr "Planejador de &Orçamento..."
 
 #: mmframe.cpp:1735
 msgid "&Scheduled Transactions"
@@ -5001,7 +5001,7 @@ msgstr "Transações &Agendadas"
 
 #: mmframe.cpp:1735
 msgid "Bills and Deposits"
-msgstr ""
+msgstr "Pagamentos e Recebimentos"
 
 #: mmframe.cpp:1739
 msgid "&Assets"
@@ -5021,11 +5021,11 @@ msgstr "Relatório de Transações com filtro..."
 
 #: mmframe.cpp:1757
 msgid "&General Report Manager..."
-msgstr ""
+msgstr "Gerenciador do &Relatório Geral..."
 
 #: mmframe.cpp:1761
 msgid "C&ustom Field Manager..."
-msgstr ""
+msgstr "Gerenciador de &Campos Personalizados..."
 
 #: mmframe.cpp:1767
 msgid "Refresh &WebApp..."
@@ -5285,7 +5285,7 @@ msgstr "Notícias"
 
 #: mmframe.cpp:1947
 msgid "Download Rates"
-msgstr ""
+msgstr "Baixar taxas de conversão"
 
 #: mmframe.cpp:1950
 msgid "Toggle Fullscreen\tF11"
@@ -5362,7 +5362,7 @@ msgstr "Escolha o arquivo de dados a ser criado"
 
 #: mmframe.cpp:2248 mmframe.cpp:2312
 msgid "MMB Database (*.mmb)|*.mmb"
-msgstr ""
+msgstr "Banco de dados MMB (*.mmb)|*.mmb"
 
 #: mmframe.cpp:2268
 msgid "Choose database file to open"
@@ -5370,7 +5370,7 @@ msgstr "Escolha o arquivo de dados a ser aberto"
 
 #: mmframe.cpp:2270 mmframe.cpp:2452
 msgid "MMB Database (*.mmb)|*.mmb|Encrypted MMB Database (*.emb)|*.emb"
-msgstr ""
+msgstr "Banco de dados MMB (*.mmb)|*.mmb|Banco de dados MMB criptografado (*.emb)|*.emb"
 
 #: mmframe.cpp:2294
 msgid "Choose Encrypted database file to open"
@@ -6188,12 +6188,13 @@ msgstr "Selecionar Moeda"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Set default database currency using 'Currency Manager'"
-msgstr ""
+msgstr "Defina a moeda padrão usando 'Gerenciador de moedas'"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Manager | Edit'"
-msgstr ""
+msgstr "Formato derivado de \"Local\".\n"
+"Deixe em branco para definir o formato manualmente através do 'Gerenciador de Moedas'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6712,7 +6713,7 @@ msgstr "Ferramentas → Mesclar → Beneficiários"
 
 #: payeedialog.cpp:746
 msgid "Payee Manager: Delete Error"
-msgstr ""
+msgstr "Gerenciador de Favorecidos: Erro ao Excluir"
 
 #: payeedialog.cpp:751
 msgid "Deleted transactions exist which use this payee."
@@ -6732,7 +6733,7 @@ msgstr "Definir categoria"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
-msgstr ""
+msgstr "Gerenciador de &Anexos"
 
 #: payeedialog.cpp:895
 msgid "Relocate Payee"
@@ -7272,7 +7273,7 @@ msgstr "Insira o LOTE ao qual esta parcela de ações pertence"
 
 #: sharetransactiondialog.cpp:270 stockdialog.cpp:251
 msgid "Manage stock attachments"
-msgstr ""
+msgstr "Gerenciar anexos de ações de empresas"
 
 #: sharetransactiondialog.cpp:275 stockdialog.cpp:253
 msgid "Display the web page for the specified Stock symbol"
@@ -7664,7 +7665,7 @@ msgstr "Nomes de etiqueta não podem ser os caracteres '&' ou '|' porque estes s
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Tag Manager: Invalid Name"
-msgstr ""
+msgstr "Gerenciador de Etiqueta: Nome inválido"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
@@ -7688,7 +7689,7 @@ msgstr "Já existe uma etiqueta com este nome"
 
 #: tagdialog.cpp:218
 msgid "Tag Manager: Adding Error"
-msgstr ""
+msgstr "Gerenciador de Etiqueta: Erro ao Adicionar"
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
@@ -7696,7 +7697,7 @@ msgstr "Editar Etiqueta"
 
 #: tagdialog.cpp:254
 msgid "Tag Manager: Editing Error"
-msgstr ""
+msgstr "Gerenciador de Etiqueta: Erro ao Editar"
 
 #: tagdialog.cpp:295
 #, c-format
@@ -7705,7 +7706,7 @@ msgstr "Etiqueta '%s' em uso"
 
 #: tagdialog.cpp:295
 msgid "Tag Manager: Delete Error"
-msgstr ""
+msgstr "Gerenciador de Etiqueta: Erro ao Excluir"
 
 #: tagdialog.cpp:298
 #, c-format
@@ -7798,7 +7799,7 @@ msgstr "Preencher Transação #"
 
 #: transdialog.cpp:565 usertransactionpanel.cpp:185
 msgid "Manage transaction attachments"
-msgstr ""
+msgstr "Gerenciar anexos de transações"
 
 #: transdialog.cpp:768
 msgid "This transaction will exceed your account limit.\n\n"
