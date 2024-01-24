@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-24 14:28\n"
+"PO-Revision-Date: 2024-01-24 17:27\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -367,11 +367,11 @@ msgstr "Bezoek de %s website"
 
 #: appstartdialog.cpp:126
 msgid "&Support Forums"
-msgstr ""
+msgstr "Helpforums"
 
 #: appstartdialog.cpp:127
 msgid "Visit the Support Forums"
-msgstr ""
+msgstr "Bezoek de Support Forums"
 
 #: appstartdialog.cpp:133 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -733,17 +733,17 @@ msgstr "Bijlagenmap niet gevonden"
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %s | %i"
-msgstr ""
+msgstr "Bijlagebeheerder | %s | %i"
 
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr ""
+msgstr "Bijlagebeheerder | %1$s | %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr ""
+msgstr "Bijlagebeheerder | Nieuw %s"
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
@@ -759,7 +759,7 @@ msgstr "Geef een omschrijving voor de nieuwe bijlage:"
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
-msgstr ""
+msgstr "Bijlagebeheer: bijlage toevoegen"
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
@@ -767,7 +767,7 @@ msgstr "Voer een nieuwe omschrijving voor de bijlagen in:"
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
-msgstr ""
+msgstr "Bijlagebeheer: Bijlage bewerken"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
@@ -1528,7 +1528,7 @@ msgstr "%1$s    Startdatum van: %2$s"
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "Budget Planner voor %s"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -1682,7 +1682,7 @@ msgstr "Het dubbele punt (:) teken wordt gebruikt om categorieën en subcategori
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
-msgstr ""
+msgstr "Categoriebeheer: ongeldige naam"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
@@ -1698,7 +1698,7 @@ msgstr "Categorie met dezelfde naam bestaat al voor de bovenliggende categorie"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category Manager: Adding Error"
-msgstr ""
+msgstr "Categoriebeheer: Fout bij toevoegen"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
@@ -1757,7 +1757,7 @@ msgstr "Gereedschappen → Samenvoegen → Categorieën"
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
-msgstr ""
+msgstr "Categoriebeheer: Fout bij verwijderen"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1786,7 +1786,7 @@ msgstr "Categorie wijzigen"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
-msgstr ""
+msgstr "Categoriebeheer: Fout bij bewerken"
 
 #: categdialog.cpp:682 mmframe.cpp:3731
 msgid "Merge categories completed"
@@ -1828,7 +1828,7 @@ msgstr "Instellingen wissen"
 
 #: categdialog.h:68 mmframe.cpp:1698 mmframe.cpp:1924
 msgid "Category Manager"
-msgstr ""
+msgstr "Categoriebeheer"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -2167,7 +2167,7 @@ msgstr "Eigenschappen"
 
 #: customfieldlistdialog.cpp:66 mmframe.cpp:1761
 msgid "Custom Field Manager"
-msgstr ""
+msgstr "Aangepaste Velden Manager"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2579,51 +2579,51 @@ msgstr "Alles uitgezonderd bevestigde"
 
 #: filtertransdialog.cpp:53
 msgid "Day"
-msgstr ""
+msgstr "Dag"
 
 #: filtertransdialog.cpp:53
 msgid "Month"
-msgstr ""
+msgstr "Maand"
 
 #: filtertransdialog.cpp:53
 msgid "Year"
-msgstr ""
+msgstr "Jaar"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
-msgstr ""
+msgstr "Kolom"
 
 #: filtertransdialog.cpp:55
 msgid "Line"
-msgstr ""
+msgstr "Lijn"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
-msgstr ""
+msgstr "Lijn datum tijd"
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
-msgstr ""
+msgstr "Taart"
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
-msgstr ""
+msgstr "Donut"
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
-msgstr ""
+msgstr "Radar"
 
 #: filtertransdialog.cpp:57
 msgid "Bar Line"
-msgstr ""
+msgstr "Kolom lijn"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Bar Line"
-msgstr ""
+msgstr "Gestapelde staaflijn"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Area"
-msgstr ""
+msgstr "Gestapeld vlak"
 
 #: filtertransdialog.cpp:521 transactionsupdatedialog.cpp:122
 msgid "Specify"
@@ -2698,11 +2698,11 @@ msgstr "Specificeer hoe het rapport gegroepeerd moet worden"
 #: filtertransdialog.cpp:722 filtertransdialog.cpp:1072
 #: filtertransdialog.cpp:1901
 msgid "Chart"
-msgstr ""
+msgstr "Grafiek"
 
 #: filtertransdialog.cpp:731
 msgid "Specify which chart will be included in the report"
-msgstr ""
+msgstr "Specificeer welke grafiek in het rapport moet worden opgenomen"
 
 #: filtertransdialog.cpp:734 filtertransdialog.cpp:1910
 msgid "Combine Splits"
@@ -4058,7 +4058,7 @@ msgstr "Aanbeveling: Gebruik kopiëren (CTRL+C) en plakken (CTRL+V) voor regelma
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb database file."
-msgstr ""
+msgstr "Tip: Denk eraan om regelmatig een back-up te maken van het *.mmb bestand."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
