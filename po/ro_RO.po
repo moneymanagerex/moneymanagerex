@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-01-24 17:11+0300\n"
-"PO-Revision-Date: 2024-01-24 14:26\n"
+"POT-Creation-Date: 2024-01-24 17:27+0300\n"
+"PO-Revision-Date: 2024-01-24 14:28\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -5376,9 +5376,17 @@ msgstr "Verificarea instanțelor MMEX"
 msgid "Choose database file to create"
 msgstr "Alege fişierul bazei de date pentru al crea"
 
+#: mmframe.cpp:2248 mmframe.cpp:2312
+msgid "MMB Database (*.mmb)|*.mmb"
+msgstr ""
+
 #: mmframe.cpp:2268
 msgid "Choose database file to open"
 msgstr "Alege fişierul bazei de date pentru al deschide"
+
+#: mmframe.cpp:2270 mmframe.cpp:2452
+msgid "MMB Database (*.mmb)|*.mmb|Encrypted MMB Database (*.emb)|*.emb"
+msgstr ""
 
 #: mmframe.cpp:2294
 msgid "Choose Encrypted database file to open"
