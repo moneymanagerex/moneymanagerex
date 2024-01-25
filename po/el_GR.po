@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-24 14:28\n"
+"PO-Revision-Date: 2024-01-25 07:33\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -367,11 +367,11 @@ msgstr "Επισκεφθείτε την ιστοσελίδα %s"
 
 #: appstartdialog.cpp:126
 msgid "&Support Forums"
-msgstr ""
+msgstr "Φόρουμ &Υποστήριξης"
 
 #: appstartdialog.cpp:127
 msgid "Visit the Support Forums"
-msgstr ""
+msgstr "Επισκεφθείτε τα Φόρουμ Υποστήριξης"
 
 #: appstartdialog.cpp:133 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -733,17 +733,17 @@ msgstr "Ο φάκελος συνημμένων δεν βρέθηκε"
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %s | %i"
-msgstr ""
+msgstr "Διαχειριστής Συνημμένων | %s %i"
 
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr ""
+msgstr "Διαχειριστής Συνημμένων | Νέο %1$s %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr ""
+msgstr "Διαχειριστής Συνημμένων |Νέο %s"
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
@@ -759,7 +759,7 @@ msgstr "Εισάγετε μια περιγραφή για το νέο συνημ
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
-msgstr ""
+msgstr "Διαχειριστής Συνημμένων: Προσθήκη Συνημμένου"
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
@@ -767,7 +767,7 @@ msgstr "Εισάγετε μια νέα περιγραφή για το συνημ
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
-msgstr ""
+msgstr "Διαχειριστής Συνημμένων: Επεξεργασία Συνημμένου"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
@@ -1683,7 +1683,7 @@ msgstr "Ο χαρακτήρας άνω και κάτω τελείας (:) χρη
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
-msgstr ""
+msgstr "Διαχείριση Κατηγοριών: Μη Έγκυρο Όνομα"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
@@ -1699,7 +1699,7 @@ msgstr "Υπάρχει κατηγορία με αυτό το όνομα για �
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category Manager: Adding Error"
-msgstr ""
+msgstr "Διαχείριση Κατηγοριών: Σφάλμα Προσθήκης"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
@@ -1758,7 +1758,7 @@ msgstr "Εργαλεία → Συγχώνευση → Κατηγορίες"
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
-msgstr ""
+msgstr "Διαχείριση Κατηγοριών: Σφάλμα Διαγραφής"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1787,7 +1787,7 @@ msgstr "Επεξεργασία Κατηγορίας"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
-msgstr ""
+msgstr "Διαχείριση Κατηγοριών: Σφάλμα Επεξεργασίας"
 
 #: categdialog.cpp:682 mmframe.cpp:3731
 msgid "Merge categories completed"
@@ -1829,7 +1829,7 @@ msgstr "Καθαρισμός Ρυθμίσεων"
 
 #: categdialog.h:68 mmframe.cpp:1698 mmframe.cpp:1924
 msgid "Category Manager"
-msgstr ""
+msgstr "Διαχειριστής Κατηγοριών"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -2168,7 +2168,7 @@ msgstr "Ιδιότητες"
 
 #: customfieldlistdialog.cpp:66 mmframe.cpp:1761
 msgid "Custom Field Manager"
-msgstr ""
+msgstr "Διαχειριστής Προσαρμοσμένων Πεδίων"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2580,23 +2580,23 @@ msgstr "Όλα Εκτός Επανασύνδεσης"
 
 #: filtertransdialog.cpp:53
 msgid "Day"
-msgstr ""
+msgstr "Ημέρα"
 
 #: filtertransdialog.cpp:53
 msgid "Month"
-msgstr ""
+msgstr "Μήνας"
 
 #: filtertransdialog.cpp:53
 msgid "Year"
-msgstr ""
+msgstr "Έτος"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
-msgstr ""
+msgstr "Μπάρα"
 
 #: filtertransdialog.cpp:55
 msgid "Line"
-msgstr ""
+msgstr "Γραμμή"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
@@ -2604,27 +2604,27 @@ msgstr ""
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
-msgstr ""
+msgstr "Πίτα"
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
-msgstr ""
+msgstr "Κουλούρα"
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
-msgstr ""
+msgstr "Ραντάρ"
 
 #: filtertransdialog.cpp:57
 msgid "Bar Line"
-msgstr ""
+msgstr "Γραμμή Μπάρας"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Bar Line"
-msgstr ""
+msgstr "Σωρευμένη Γραμμή Μπάρας"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Area"
-msgstr ""
+msgstr "Σωρευμένη Περιοχή"
 
 #: filtertransdialog.cpp:521 transactionsupdatedialog.cpp:122
 msgid "Specify"
@@ -2699,7 +2699,7 @@ msgstr "Καθορίστε τον τρόπο ομαδοποίησης της έ�
 #: filtertransdialog.cpp:722 filtertransdialog.cpp:1072
 #: filtertransdialog.cpp:1901
 msgid "Chart"
-msgstr ""
+msgstr "Γράφημα"
 
 #: filtertransdialog.cpp:731
 msgid "Specify which chart will be included in the report"
