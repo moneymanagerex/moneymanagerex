@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-24 17:27\n"
+"PO-Revision-Date: 2024-01-25 17:30\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -4062,7 +4062,7 @@ msgstr "Tip: Denk eraan om regelmatig een back-up te maken van het *.mmb bestand
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Tip: Het .mmb bestand is niet versleuteld. Dat betekent dat iedereen die de juiste kennis heeft, het bestand kan openen en de inhoud kan lezen. Dus zorg ervoor dat als u gevoelige financiële informatie opslaat, deze naar behoren wordt bewaakt."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
@@ -4090,15 +4090,15 @@ msgstr "TIP: Voer de wisselkoersen voor de valuta's in indien u rekeningen met v
 
 #: mmTips.h:34
 msgid "Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Tip van de categoriemanager: als u op de “H”-toets drukt, bladert u door alle categorieën, beginnend met de letter h."
 
 #: mmTips.h:35
 msgid "Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Categoriemanager tip: Door op 2 toetsencombinaties te drukken, bladert u door alle categorieën, te beginnen met die toetsencombinatie. Voorbeeld: Als u op ho drukt, worden Woningbehoeften, Woning, Woningbelasting, ect…"
 
 #: mmTips.h:37
 msgid "Never endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
-msgstr ""
+msgstr "Onderschrijf nooit een lening. Als de lener (uw vriend, familielid, partner, wie dan ook) betalingen mist, zal uw kredietscore een duik nemen, kan de kredietverstrekker achter u aan komen voor het geld, en dit zal waarschijnlijk uw relatie vernietigen. Bovendien, als de bank een medeondertekenaar nodig heeft, vertrouwt de bank de persoon niet om de betalingen uit te voeren."
 
 #: mmTips.h:39
 msgid "Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."
@@ -4305,7 +4305,7 @@ msgstr "&Vind alle transacties met %s '%s'"
 
 #: mmchecking_list.cpp:641
 msgid "Copy Text to Clipboard"
-msgstr ""
+msgstr "Kopiëer tekst naar Klembord"
 
 #: mmchecking_list.cpp:648
 msgid "&Delete selected transaction..."
@@ -4628,7 +4628,7 @@ msgstr "Aandelenrekening"
 
 #: mmframe.cpp:782 mmframe.cpp:1731 mmframe.cpp:2820
 msgid "Budget Planner"
-msgstr ""
+msgstr "Budget Planner"
 
 #: mmframe.cpp:787 mmframe.cpp:1318 mmframe.cpp:1335 mmframe.cpp:2805
 msgid "Transaction Report"
@@ -4929,7 +4929,7 @@ msgstr "Verwijder een rekening uit het databestand"
 
 #: mmframe.cpp:1688
 msgid "Download &Rates"
-msgstr ""
+msgstr "Download &tarieven"
 
 #: mmframe.cpp:1688 mmframe.cpp:1947
 msgid "Download Currency and Stock Rates"
@@ -4941,7 +4941,7 @@ msgstr ""
 
 #: mmframe.cpp:1694 mmframe.cpp:1923 payeedialog.cpp:508
 msgid "Payee Manager"
-msgstr ""
+msgstr "Begunstigde manager"
 
 #: mmframe.cpp:1698
 msgid "&Category Manager..."
@@ -4953,7 +4953,7 @@ msgstr ""
 
 #: mmframe.cpp:1702 mmframe.cpp:1925 tagdialog.h:45
 msgid "Tag Manager"
-msgstr ""
+msgstr "Labels beheerder"
 
 #: mmframe.cpp:1706
 msgid "Curre&ncy Manager..."
@@ -5001,7 +5001,7 @@ msgstr "&Geplande transacties"
 
 #: mmframe.cpp:1735
 msgid "Bills and Deposits"
-msgstr ""
+msgstr "Rekeningen en stortingen"
 
 #: mmframe.cpp:1739
 msgid "&Assets"
@@ -5285,7 +5285,7 @@ msgstr "Nieuws"
 
 #: mmframe.cpp:1947
 msgid "Download Rates"
-msgstr ""
+msgstr "Download tarieven"
 
 #: mmframe.cpp:1950
 msgid "Toggle Fullscreen\tF11"
@@ -5362,7 +5362,7 @@ msgstr "Kies een databestand om aan te maken"
 
 #: mmframe.cpp:2248 mmframe.cpp:2312
 msgid "MMB Database (*.mmb)|*.mmb"
-msgstr ""
+msgstr "MMB Database (*.mmb)|*.mmb"
 
 #: mmframe.cpp:2268
 msgid "Choose database file to open"
@@ -5370,7 +5370,7 @@ msgstr "Kies een databestand om te openen"
 
 #: mmframe.cpp:2270 mmframe.cpp:2452
 msgid "MMB Database (*.mmb)|*.mmb|Encrypted MMB Database (*.emb)|*.emb"
-msgstr ""
+msgstr "MMB Database (*.mmb)|*.mmb|Versleutelde MMB Database (*.emb)|*.emb"
 
 #: mmframe.cpp:2294
 msgid "Choose Encrypted database file to open"
