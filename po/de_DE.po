@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-25 08:57\n"
+"PO-Revision-Date: 2024-01-25 10:04\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -2607,23 +2607,23 @@ msgstr "Kreis"
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
-msgstr ""
+msgstr "Kreisdiagramm"
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
-msgstr ""
+msgstr "Netz"
 
 #: filtertransdialog.cpp:57
 msgid "Bar Line"
-msgstr ""
+msgstr "Balkenlinie"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Bar Line"
-msgstr ""
+msgstr "Stapelbalkenlinie"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Area"
-msgstr ""
+msgstr "Gestapelte Fläche"
 
 #: filtertransdialog.cpp:521 transactionsupdatedialog.cpp:122
 msgid "Specify"
@@ -2698,11 +2698,11 @@ msgstr "Legen Sie fest, wie der Bericht gruppiert werden soll"
 #: filtertransdialog.cpp:722 filtertransdialog.cpp:1072
 #: filtertransdialog.cpp:1901
 msgid "Chart"
-msgstr ""
+msgstr "Diagramm"
 
 #: filtertransdialog.cpp:731
 msgid "Specify which chart will be included in the report"
-msgstr ""
+msgstr "Legen Sie fest, welches Diagramm in den Bericht aufgenommen werden soll"
 
 #: filtertransdialog.cpp:734 filtertransdialog.cpp:1910
 msgid "Combine Splits"
@@ -4059,11 +4059,11 @@ msgstr "Empfehlung: Verwenden Sie Kopieren (Strg + С) und Einfügen (Strg + V) 
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb database file."
-msgstr ""
+msgstr "Tipp: Vergessen Sie nicht ein Backups Ihrer Datenbank (.mmb) zu machen."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Tipp: Die unverschlüsselte .mmb-Datei ist unsicher. Das bedeutet, dass jeder mit dem entsprechenden Wissen die Datei öffnen und den Inhalt lesen kann. Stellen Sie also sicher, dass, wenn Sie sensible Finanzinformationen in der Datei speichern, diese ordnungsgemäß geschützt ist."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
