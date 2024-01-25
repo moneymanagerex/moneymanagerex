@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-25 17:30\n"
+"PO-Revision-Date: 2024-01-25 18:50\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -4737,7 +4737,7 @@ msgstr "&Open website van de rekening"
 
 #: mmframe.cpp:1457 mmframe.cpp:1477
 msgid "&Attachment Manager..."
-msgstr ""
+msgstr "&Bijlage beheer..."
 
 #: mmframe.cpp:1472 mmframe.cpp:1672
 msgid "&Change Account Type..."
@@ -4937,7 +4937,7 @@ msgstr "Download valutakoersen en aandelenkoersen"
 
 #: mmframe.cpp:1694
 msgid "&Payee Manager..."
-msgstr ""
+msgstr "&Begunstigde beheer..."
 
 #: mmframe.cpp:1694 mmframe.cpp:1923 payeedialog.cpp:508
 msgid "Payee Manager"
@@ -4945,19 +4945,19 @@ msgstr "Begunstigde manager"
 
 #: mmframe.cpp:1698
 msgid "&Category Manager..."
-msgstr ""
+msgstr "&Categoriebeheer..."
 
 #: mmframe.cpp:1702
 msgid "&Tag Manager..."
-msgstr ""
+msgstr "&Labels beheer..."
 
 #: mmframe.cpp:1702 mmframe.cpp:1925 tagdialog.h:45
 msgid "Tag Manager"
-msgstr "Labels beheerder"
+msgstr "Labels beheer"
 
 #: mmframe.cpp:1706
 msgid "Curre&ncy Manager..."
-msgstr ""
+msgstr "Valuta Beheer..."
 
 #: mmframe.cpp:1710
 msgid "&Categories..."
@@ -4993,7 +4993,7 @@ msgstr "Categorieën, begunstigden en labels samenvoegen"
 
 #: mmframe.cpp:1731
 msgid "&Budget Planner..."
-msgstr ""
+msgstr "&Budget Planner..."
 
 #: mmframe.cpp:1735
 msgid "&Scheduled Transactions"
@@ -6187,7 +6187,7 @@ msgstr "Stel valuta in"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Set default database currency using 'Currency Manager'"
-msgstr ""
+msgstr "Stel de standaard database valuta in met 'Valuta Manager'"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
