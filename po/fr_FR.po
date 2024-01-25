@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-24 19:42\n"
+"PO-Revision-Date: 2024-01-25 07:33\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2604,11 +2604,11 @@ msgstr "Date et heure de la ligne"
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
-msgstr ""
+msgstr "Tarte"
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
-msgstr ""
+msgstr "Donut"
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
@@ -2620,11 +2620,11 @@ msgstr "Barre"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Bar Line"
-msgstr ""
+msgstr "Barres empilées"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Area"
-msgstr ""
+msgstr "Zone empilée"
 
 #: filtertransdialog.cpp:521 transactionsupdatedialog.cpp:122
 msgid "Specify"
@@ -2699,11 +2699,11 @@ msgstr "Spécifiez comment le rapport doit être regroupé"
 #: filtertransdialog.cpp:722 filtertransdialog.cpp:1072
 #: filtertransdialog.cpp:1901
 msgid "Chart"
-msgstr ""
+msgstr "Diagramme"
 
 #: filtertransdialog.cpp:731
 msgid "Specify which chart will be included in the report"
-msgstr ""
+msgstr "Spécifier quel graphique sera inclus dans le rapport"
 
 #: filtertransdialog.cpp:734 filtertransdialog.cpp:1910
 msgid "Combine Splits"
@@ -4059,11 +4059,11 @@ msgstr "Conseil: utilisez les fonctions copier ( CTRL C) et coller ( CTRL V) pou
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb database file."
-msgstr ""
+msgstr "Astuce: N'oubliez pas de faires des sauvegardes de votre fichier .mmb."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Astuce : Le fichier .mmb n’est pas chiffré. Cela signifie que quiconque a les connaissances suffisantes peut l'ouvrir en en lire le contenu. Assurez-vous donc, si vous stockez des informations financières sensibles, que ce fichier soit correctement protégé."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
@@ -4091,11 +4091,11 @@ msgstr "Astuce: Réglez le taux de change pour les monnaies si  vous avez des co
 
 #: mmTips.h:34
 msgid "Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Astuce pour la gestion des catégories : Appuyer sur la touche « H » fera défiler toutes les catégories dont le nom commence par la lettre h."
 
 #: mmTips.h:35
 msgid "Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Astuce pour la gestion des catégories : Saisir une combinaison de 2 touches permet de faire défiler toutes les catégories dont le nom commence par cette combinaison de lettres. Exemple, appuyer sur \"HO\" sélectionnera hôpital, hôtel, etc."
 
 #: mmTips.h:37
 msgid "Never endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
