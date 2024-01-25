@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-25 07:33\n"
+"PO-Revision-Date: 2024-01-25 08:57\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4099,72 +4099,72 @@ msgstr "Astuce pour la gestion des catégories : Saisir une combinaison de 2 tou
 
 #: mmTips.h:37
 msgid "Never endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
-msgstr ""
+msgstr "N'endossez jamais un prêt. Si l'emprunteur – votre ami, un membre de votre famille, une autre personne importante ou qui que ce soit – n'effectue pas des paiements, votre solvabilité en sera affectée. Le prêteur pourra venir vous voir pour exiger l'argent, ce qui nuira probablement à votre relation. De plus, si la banque exige un cosignataire, cela signifie que la banque ne fait pas confiance à la personne pour effectuer les paiements."
 
 #: mmTips.h:39
 msgid "Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."
-msgstr ""
+msgstr "Conseils pour les courses : Évitez de faire vos courses d'épicerie lorsque vous avez faim ou que vous êtes stréssé. La faim et le stress peuvent vous faire faire des choses étranges, comme acheter beaucoup de chocolat ou des aliments à la mode. Planifiez plutôt d'aller au magasin quand vous êtes bien nourri et détendu. Ainsi, vous pouvez vous en tenir à votre liste et ne pas dépenser pour de la nourriture dont vous n'avez pas besoin."
 
 #: mmTips.h:40
 msgid "Grocery tip: Make a shopping list. A shopping list saves money by helping you avoid buying products you do not need. The simplest way is to track consumables as you use them. Keep a magnetic notepad on the fridge and jot down what you need as you run out."
-msgstr ""
+msgstr "Conseils pour les courses : Faites une liste de course. Une liste de courses vous permet d'économiser de l'argent en vous aidant à éviter d'acheter des produits dont vous n'avez pas besoin. La façon la plus simple est de suivre les consommables que vous utilisez. Gardez un bloc-notes magnétique sur le frigo et notez les choses dont vous avez besoin au fur et à mesure qu'elles viennent à manquer."
 
 #: mmTips.h:41
 msgid "Grocery tip: Buy fruits and vegetables in season."
-msgstr ""
+msgstr "Conseils pour les courses : Achetez des fruits et légumes de saison."
 
 #: mmTips.h:42
 msgid "Grocery tip: Make sure your family consumes everything you purchase. Every month or so, hold a pantry challenge during which you use up as many pantry goods as possible before you shop again. A pantry challenge cuts down on waste and lets you get a sense of how much you are overbuying."
-msgstr ""
+msgstr "Conseils pour les courses : Assurez-vous que votre famille consomme tout ce que vous achetez. Chaque mois environ, tentez le défi d'utiliser le maximum de produits de la réserve avant de retourner faire les courses. Ce type de défi réduit les déchets et vous permet de vous faire une idée de ce que vous achetez de façon excessive."
 
 #: mmTips.h:43
 msgid "Grocery tip: Reduce waste. Adopting better grocery shopping habits is one way to cut back on wasted food and money. Make a list of everything you throw out without using, such as spoiled leftovers or soggy lettuce, to get a sense of the full scale of the issue."
-msgstr ""
+msgstr "Astuce pour les courses : Réduisez le gaspillage. Adopter de meilleures habitudes de courses est l'un des moyens de réduire le gaspillage de nourriture et d'argent. Faites une liste de tout ce que vous jetez sans l'avoir utilisé, comme les restes avariés ou la laitue flétrie, pour avoir un bon aperçu de la dimension du problème."
 
 #: mmTips.h:44
 msgid "Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."
-msgstr ""
+msgstr "Astuce pour les courses : Lisez les promotions des magasins. Examinez celles de chaque magasin et associez ce qui est en vente à ce qui se trouve sur votre liste ou planifiez des repas autour des articles en promotion. Il est parfois plus économique de faire plusieurs magasins en une semaine afin d'obtenir les meilleurs prix."
 
 #: mmTips.h:46
 msgid "Cut back on subscriptions. Do you really need to subscribe to every streaming service? Are you using a paid service enough to justify the expense, or can you survive with the ad-supported free one? Do you need that monthly book club, or can you head to the library once per month instead?"
-msgstr ""
+msgstr "Réduction des abonnements. Avez-vous vraiment besoin de vous abonner à tous les services de streaming ? Utilisez-vous assez un service payant pour justifier les dépenses ou pouvez-vous survivre avec le service gratuit pris en charge par la publicité ? Avez-vous besoin de ce club mensuel de livres ou pouvez-vous, à la place, vous rendre à la bibliothèque une fois par mois ?"
 
 #: mmTips.h:47
 msgid "Use open source alternatives to proprietary software. Search at https://www.opensourcealternative.to/"
-msgstr ""
+msgstr "Utilisez des alternatives open source aux logiciels propriétaires. Voir notamment https://www.bercynumerique.finances.gouv.fr/logiciels-libres-recommandes-par-letat-la-liste-officielle"
 
 #: mmTips.h:49
 msgid "Parent tip: If you are asked to be a guarantor for a loan for your college student, first check to see if your child has maxed out federal loan, grant, and scholarship options."
-msgstr ""
+msgstr "Astuce pour les parents : Si on vous demande d'être le garant d'un prêt pour votre étudiant, vérifiez d'abord si votre enfant a utilisé tous ses droits en termes de prêts subventionnés et de bourses d'études."
 
 #: mmTips.h:51
 #, c-format
 msgid "Get out of debt tip: Pay yourself 10% first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Astuce pour éviter les dettes : Mettez de côté 10 % de vos revenus en priorité. Mettez les sur un compte qu'il est difficile d'atteindre. Assurez-vous que cela soit une corvée de faire sortir l'argent (qu'il faille aller jusqu'à l'agence bancaire) afin que vous n'y touchiez que consciemment et pour des dépenses importantes."
 
 #: mmTips.h:52
 msgid "Get out of debt tip: Establish an emergency fund."
-msgstr ""
+msgstr "Astuce pour éviter les dettes : Conservez une réserve en cas d'urgence."
 
 #: mmTips.h:53
 msgid "Get out of debt tip: Stop acquiring new debt."
-msgstr ""
+msgstr "Astuce pour éviter les dettes : Arrêter de prendre de nouvelles dettes."
 
 #: mmTips.h:54
 msgid "Get out of debt tip: Create a realistic budget for your expenses."
-msgstr ""
+msgstr "Astuce pour éviter les dettes : Faites un budget réaliste de vos dépenses."
 
 #: mmTips.h:55
 msgid "Get out of debt tip: Spend less than you earn."
-msgstr ""
+msgstr "Astuce pour éviter les dettes : Dépensez moins que vous ne gagnez."
 
 #: mmTips.h:56
 msgid "Get out of debt tip: Pay more than the minimum."
-msgstr ""
+msgstr "Astuce pour éviter les dettes : Payez plus que le minimum demandé."
 
 #: mmTips.h:57
 msgid "Get out of debt tip: If you have a mountain of debt, studies show paying off the smallest debts can give you the confidence to tackle the larger ones."
-msgstr ""
+msgstr "Astuce pour éviter les dettes : Si vous avez une montagne de dettes, des études montrent que le remboursement des plus petites dettes peut vous donner la confiance nécessaire pour vous attaquer aux plus grands."
 
 #: mmTips.h:58
 msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
@@ -4192,7 +4192,7 @@ msgstr "Avant de commencer à investir, évaluez vos flux de trésorerie (faire 
 
 #: mmTips.h:69
 msgid "Before you start investing, pay off consumer debt — especially credit cards."
-msgstr ""
+msgstr "Avant de commencer à investir, remboursez vos dettes - en particulier celle des cartes de crédit."
 
 #: mmTips.h:70
 msgid "Before you start investing, make net worth your primary tracking metric."
@@ -4306,7 +4306,7 @@ msgstr "&Trouver toutes les opérations avec %s '%s'"
 
 #: mmchecking_list.cpp:641
 msgid "Copy Text to Clipboard"
-msgstr ""
+msgstr "Copier le texte vers le presse-papiers"
 
 #: mmchecking_list.cpp:648
 msgid "&Delete selected transaction..."
@@ -4629,7 +4629,7 @@ msgstr "Comptes Titres"
 
 #: mmframe.cpp:782 mmframe.cpp:1731 mmframe.cpp:2820
 msgid "Budget Planner"
-msgstr ""
+msgstr "Planificateur budgétaire"
 
 #: mmframe.cpp:787 mmframe.cpp:1318 mmframe.cpp:1335 mmframe.cpp:2805
 msgid "Transaction Report"
@@ -4738,7 +4738,7 @@ msgstr "&Ouvrir le site Web du compte"
 
 #: mmframe.cpp:1457 mmframe.cpp:1477
 msgid "&Attachment Manager..."
-msgstr ""
+msgstr "&Gestionnaire de pièces jointes..."
 
 #: mmframe.cpp:1472 mmframe.cpp:1672
 msgid "&Change Account Type..."
@@ -4930,7 +4930,7 @@ msgstr "Supprimer le compte de la base de donnée"
 
 #: mmframe.cpp:1688
 msgid "Download &Rates"
-msgstr ""
+msgstr "&Taux de téléchargement"
 
 #: mmframe.cpp:1688 mmframe.cpp:1947
 msgid "Download Currency and Stock Rates"
@@ -4938,27 +4938,27 @@ msgstr "Télécharger les cours des devises et des actions"
 
 #: mmframe.cpp:1694
 msgid "&Payee Manager..."
-msgstr ""
+msgstr "&Gestionnaire des Tiers ..."
 
 #: mmframe.cpp:1694 mmframe.cpp:1923 payeedialog.cpp:508
 msgid "Payee Manager"
-msgstr ""
+msgstr "Gestionnaire des Tiers"
 
 #: mmframe.cpp:1698
 msgid "&Category Manager..."
-msgstr ""
+msgstr "&Gestionnaire des catégories..."
 
 #: mmframe.cpp:1702
 msgid "&Tag Manager..."
-msgstr ""
+msgstr "&Gestionnaire des étiquettes..."
 
 #: mmframe.cpp:1702 mmframe.cpp:1925 tagdialog.h:45
 msgid "Tag Manager"
-msgstr ""
+msgstr "Gestionnaire des étiquettes"
 
 #: mmframe.cpp:1706
 msgid "Curre&ncy Manager..."
-msgstr ""
+msgstr "&Gestionnaire de devises..."
 
 #: mmframe.cpp:1710
 msgid "&Categories..."
@@ -4994,7 +4994,7 @@ msgstr "Fusionner les catégories, les bénéficiaires et les étiquettes"
 
 #: mmframe.cpp:1731
 msgid "&Budget Planner..."
-msgstr ""
+msgstr "&Planificateur budgétaire..."
 
 #: mmframe.cpp:1735
 msgid "&Scheduled Transactions"
@@ -5002,7 +5002,7 @@ msgstr "&Opérations récurrentes"
 
 #: mmframe.cpp:1735
 msgid "Bills and Deposits"
-msgstr ""
+msgstr "Factures et dépôts"
 
 #: mmframe.cpp:1739
 msgid "&Assets"
@@ -5022,11 +5022,11 @@ msgstr "Filtre d'opérations pour le rapport..."
 
 #: mmframe.cpp:1757
 msgid "&General Report Manager..."
-msgstr ""
+msgstr "&Gestionnaire de rapport..."
 
 #: mmframe.cpp:1761
 msgid "C&ustom Field Manager..."
-msgstr ""
+msgstr "Gestionnaire de champs personnalisés..."
 
 #: mmframe.cpp:1767
 msgid "Refresh &WebApp..."
@@ -5286,7 +5286,7 @@ msgstr "Infos"
 
 #: mmframe.cpp:1947
 msgid "Download Rates"
-msgstr ""
+msgstr "Taux de téléchargement"
 
 #: mmframe.cpp:1950
 msgid "Toggle Fullscreen\tF11"
@@ -5363,7 +5363,7 @@ msgstr "Sélectionner la base de données à créer"
 
 #: mmframe.cpp:2248 mmframe.cpp:2312
 msgid "MMB Database (*.mmb)|*.mmb"
-msgstr ""
+msgstr "Base de données MMB (*.mmb)|*.mmb"
 
 #: mmframe.cpp:2268
 msgid "Choose database file to open"
@@ -5371,7 +5371,7 @@ msgstr "Sélectionner la base de données à ouvrir"
 
 #: mmframe.cpp:2270 mmframe.cpp:2452
 msgid "MMB Database (*.mmb)|*.mmb|Encrypted MMB Database (*.emb)|*.emb"
-msgstr ""
+msgstr "Base de données MMB (*.mmb)|*.mmb|Base de données MMB chiffrée (*.emb)|*.emb"
 
 #: mmframe.cpp:2294
 msgid "Choose Encrypted database file to open"
@@ -6187,12 +6187,13 @@ msgstr "Choisir la devise"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Set default database currency using 'Currency Manager'"
-msgstr ""
+msgstr "Définir la devise par défaut de la base de données en utilisant le 'Gestionnaire de devises'"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Manager | Edit'"
-msgstr ""
+msgstr "Format dérivé des informations de localisation.\n"
+"Laisser en blanc pour définir manuellement le format via 'Dialogue sur les devises | Modifier'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6711,7 +6712,7 @@ msgstr "Outils → Fusionner → Tiers"
 
 #: payeedialog.cpp:746
 msgid "Payee Manager: Delete Error"
-msgstr ""
+msgstr "Gestionnaire des tiers : Erreur de suppression"
 
 #: payeedialog.cpp:751
 msgid "Deleted transactions exist which use this payee."
@@ -6731,7 +6732,7 @@ msgstr "Définir une catégorie"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
-msgstr ""
+msgstr "&Gestionnaire de pièces jointes"
 
 #: payeedialog.cpp:895
 msgid "Relocate Payee"
@@ -7271,7 +7272,7 @@ msgstr "Entrer le LOT auquel ces actions appartiennent"
 
 #: sharetransactiondialog.cpp:270 stockdialog.cpp:251
 msgid "Manage stock attachments"
-msgstr ""
+msgstr "Gérer la liste des pièces jointes"
 
 #: sharetransactiondialog.cpp:275 stockdialog.cpp:253
 msgid "Display the web page for the specified Stock symbol"
@@ -7663,7 +7664,7 @@ msgstr "Les noms de tags ne peuvent pas être les caractères '&' ou '|' car ils
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Tag Manager: Invalid Name"
-msgstr ""
+msgstr "Gestionnaire d'étiquettes : Nom invalide"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
@@ -7687,7 +7688,7 @@ msgstr "Il existe déjà une étiquette portant ce nom"
 
 #: tagdialog.cpp:218
 msgid "Tag Manager: Adding Error"
-msgstr ""
+msgstr "Gestionnaire d'étiquettes : Ajouter une erreur"
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
@@ -7695,7 +7696,7 @@ msgstr "Editer l'étiquette"
 
 #: tagdialog.cpp:254
 msgid "Tag Manager: Editing Error"
-msgstr ""
+msgstr "Gestionnaire d'étiquettes : Editer une erreur"
 
 #: tagdialog.cpp:295
 #, c-format
@@ -7704,7 +7705,7 @@ msgstr "Étiquette '%s' en cours d'utilisation"
 
 #: tagdialog.cpp:295
 msgid "Tag Manager: Delete Error"
-msgstr ""
+msgstr "Gestionnaire des tiers : Supprimer une erreur"
 
 #: tagdialog.cpp:298
 #, c-format
@@ -7797,7 +7798,7 @@ msgstr "Coller l'opération #"
 
 #: transdialog.cpp:565 usertransactionpanel.cpp:185
 msgid "Manage transaction attachments"
-msgstr ""
+msgstr "Gérer les pièces jointes liées à des opérations"
 
 #: transdialog.cpp:768
 msgid "This transaction will exceed your account limit.\n\n"
