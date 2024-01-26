@@ -54,7 +54,7 @@ static const wxString TIPS [] =
     wxTRANSLATE("Software tip: Become productive with “LibreOffice Writer” for word processing. Visit https://www.libreoffice.org/discover/writer/"),
     wxTRANSLATE("Software tip: Consolidate all your email, calendar, and contacts using the “Betterbird” client. Visit https://betterbird.eu/"),
     wxTRANSLATE("Software tip: Create images and edit photographs with “GNU Image Manipulation Program”. Visit https://www.gimp.org/"),
-    wxTRANSLATE("Software tip: Enjoy “Linux Mint” a free and open-source operating system for your desktop device. Visit https://linuxmint.com/"),
+    wxTRANSLATE("Software tip: Enjoy “Linux Mint” a free and open-source operating system for all your desktop devices. Visit https://linuxmint.com/"),
     wxTRANSLATE("Software tip: If you know another language, help translate MMEX Money Manager at Crowdin. Visit https://crowdin.com/project/moneymanagerex"),
     wxTRANSLATE("Software tip: Merge, split, rotate, crop and rearrange PDF documents with “PDF Arranger”. Visit https://github.com/pdfarranger/pdfarranger"),
     wxTRANSLATE("Software tip: Share MMEX Money Manager with your friends. Visit https://moneymanagerex.org/"),
