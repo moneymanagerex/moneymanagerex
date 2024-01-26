@@ -2013,7 +2013,8 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             passwordCheckPassed = false;
     }
 
-    const wxString dialogErrorMessageHeading = _("Opening MMEX Database - Error");
+    const wxString dialogErrorMessageHeading = wxString::Format(_("Opening %s Database - Error")
+        , mmex::getProgramName());
 
     // Existing Database
     if (!openingNew
