@@ -873,9 +873,9 @@ void mmPayeeDialog::OnItemRightClick(wxListEvent& event)
 
     wxMenu mainMenu;
     if (payee) mainMenu.SetTitle(payee->PAYEENAME);
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_DEFINE_CATEGORY, _("Define Category")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_DEFINE_CATEGORY, _("&Define Category")));
     if (!payee) mainMenu.Enable(MENU_DEFINE_CATEGORY, false);
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_REMOVE_CATEGORY, _("Remove Category")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_REMOVE_CATEGORY, _("Remove &Category")));
     if (!payee) mainMenu.Enable(MENU_REMOVE_CATEGORY, false);
     mainMenu.AppendSeparator();
 
