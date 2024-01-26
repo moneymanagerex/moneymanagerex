@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-26 04:31\n"
+"PO-Revision-Date: 2024-01-26 06:33\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1528,7 +1528,7 @@ msgstr "%1$s    Kezdődátum ehhez: %2$s"
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "Költségvetés-tervező a következő időszakra: %s"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -4628,7 +4628,7 @@ msgstr "Értékpapírszámlák"
 
 #: mmframe.cpp:782 mmframe.cpp:1731 mmframe.cpp:2820
 msgid "Budget Planner"
-msgstr ""
+msgstr "Költségvetés-tervező"
 
 #: mmframe.cpp:787 mmframe.cpp:1318 mmframe.cpp:1335 mmframe.cpp:2805
 msgid "Transaction Report"
@@ -4993,7 +4993,7 @@ msgstr "Kategóriák, kedvezményezettek és címkék egyesítése"
 
 #: mmframe.cpp:1731
 msgid "&Budget Planner..."
-msgstr ""
+msgstr "&Költségvetés-tervező…"
 
 #: mmframe.cpp:1735
 msgid "&Scheduled Transactions"
