@@ -1808,15 +1808,19 @@ void mmGUIFrame::createMenu()
     //Community Submenu
     wxMenuItem* menuItemWebsite = new wxMenuItem(menuHelp, MENU_WEBSITE
         , _("&Website")
-        , _("Open MMEX website for the latest news, updates etc"));
+        , wxString::Format(_("Visit %s website for the latest news and updates")
+            , mmex::getProgramName()));
     wxMenuItem* menuItemFacebook = new wxMenuItem(menuHelp, MENU_FACEBOOK
-        , _("&Facebook"), _("Visit us on Facebook"));
+        , _("&Facebook"), wxString::Format(_("Visit the %s Facebook page")
+            , mmex::getProgramName()));
     wxMenuItem* menuItemCrowdin = new wxMenuItem(menuHelp, MENU_CROWDIN
-        , _("&Crowdin"), _("We use Crowdin to translate MMEX"));
+        , _("&Crowdin"), wxString::Format(_("Help translate %s on Crowdin")
+            , mmex::getProgramName()));
     wxMenuItem* menuItemTwitter = new wxMenuItem(menuHelp, MENU_TWITTER
         , _("&Twitter"), _("Follow us on Twitter"));
     wxMenuItem* menuItemYouTube = new wxMenuItem(menuHelp, MENU_YOUTUBE
-        , _("&YouTube"), _("Watch free video materials about MMEX"));
+        , _("&YouTube"), wxString::Format(_("Watch %s videos on YouTube")
+            , mmex::getProgramName()));
     wxMenuItem* menuItemSlack = new wxMenuItem(menuHelp, MENU_SLACK
         , _("&Slack"), _("Communicate online with MMEX team from your desktop or mobile device"));
     wxMenuItem* menuItemGitHub = new wxMenuItem(menuHelp, MENU_GITHUB
