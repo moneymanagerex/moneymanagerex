@@ -2214,7 +2214,7 @@ void mmUnivCSVDialog::OnFileBrowse(wxCommandEvent& WXUNUSED(event))
     long flags = IsImporter() ? wxFD_FILE_MUST_EXIST | wxFD_OPEN : wxFD_SAVE;
     const wxString defaultWildcard = IsXML()
         ? wxString() << _("XML Files (*.xml)") << "|*.xml;*.XML|" << _("All Files") << "|" << wxFileSelectorDefaultWildcardStr
-        : wxString() << _("CSV Files (*.csv)") << "|*.csv;*.CSV";
+        : wxString() << _("Comma-separated values (*.csv)") << "|*.csv;*.CSV";
     const wxString chooseExt = IsXML() ? "*.xml" : "*.csv";
 
     if (!IsImporter()) correctEmptyFileExt("csv", fileName);
