@@ -57,7 +57,7 @@ static const wxString TIPS [] =
     wxTRANSLATE("Software tip: Enjoy “Linux Mint” a free and open-source operating system for all your desktop devices. Visit https://linuxmint.com/"),
     wxTRANSLATE("Software tip: If you know another language, help translate MMEX Money Manager at Crowdin. Visit https://crowdin.com/project/moneymanagerex"),
     wxTRANSLATE("Software tip: Merge, split, rotate, crop and rearrange PDF documents with “PDF Arranger”. Visit https://github.com/pdfarranger/pdfarranger"),
-    wxTRANSLATE("Software tip: Share MMEX Money Manager with your friends. Visit https://moneymanagerex.org/"),
+    wxTRANSLATE("Software tip: Share MMEX Money Manager with your friends. Share https://moneymanagerex.org/"),
     wxTRANSLATE("Software tip: Share, freely and privately with “Jami” a free/libre, end-to-end encrypted, and private communication software. Visit https://jami.net/"),
     wxTRANSLATE("Software tip: Take handwritten notes with ease using “Xournal++”. Visit https://xournalpp.github.io/"),
     wxTRANSLATE("Software tip: Use “Qalculate!” the ultimate desktop calculator, powerful and versatile yet simple to use having useful tools for everyday needs (such as currency conversion and percent calculation). Visit https://qalculate.github.io/"),
