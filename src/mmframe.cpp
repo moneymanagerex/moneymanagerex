@@ -2058,9 +2058,11 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             //DB backup is handled inside UpgradeDB
             if (!dbUpgrade::UpgradeDB(m_db.get(), fileName))
             {
-                int response = wxMessageBox(wxString::Format(_("Have %s support provided a debug/patch file?"),
+                int response = wxMessageBox(wxString::Format(_("Have %s support provided a debug/patch file?")
                         , mmex::getProgramName())
-                    _("MMEX upgrade"), wxYES_NO);
+                    , wxString::Format(_("%s upgrade")
+                        , mmex::getProgramName())
+                    , wxYES_NO);
                 if (response == wxYES)
                 {
                     // upgrade failure turns CorruptRdOnly flag back on, so reopen again in debug mode
@@ -2237,7 +2239,9 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
                     "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
                     "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
                     "Would you like to continue to open this database?")
-                    , _("MMEX Instance Check"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+                    , wxString::Format(_("%s Instance Check")
+                        , mmex::getProgramName())
+                    , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
                 if (response == wxNO)
                     return false;
             }
@@ -2256,12 +2260,13 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
 void mmGUIFrame::OnNew(wxCommandEvent& /*event*/)
 {
     autoRepeatTransactionsTimer_.Stop();
-    wxFileDialog dlg(this,
-        _("Choose database file to create"),
-        wxEmptyString,
-        wxEmptyString,
-        _("MMEX Database (*.mmb)")+"|*.mmb"),
-        wxFD_SAVE | wxFD_OVERWRITE_PROMPT
+    wxFileDialog dlg(this
+        , _("Choose database file to create")
+        , wxEmptyString
+        , wxEmptyString
+        , wxString::Format(_("%s Database (*.mmb)")+"|*.mmb")
+            , mmex::getProgramName())
+        , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
     if (dlg.ShowModal() != wxID_OK)
@@ -2282,7 +2287,7 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
     autoRepeatTransactionsTimer_.Stop();
     wxString fileName = wxFileSelector(_("Choose database file to open")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , _("MMEX Database (*.mmb)")+"|*.mmb|"+_("Encrypted MMEX Database (*.emb)")+"|*.emb")
+        , wxString::Format(_("%s Database (*.mmb)"), mmex::getProgramName())+"|*.mmb|"+wxString::Format(_("Encrypted %s Database (*.emb)"), mmex::getProgramName())+"|*.emb")
         , wxFD_FILE_MUST_EXIST | wxFD_OPEN
         , this
     );
@@ -2308,7 +2313,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
 {
     wxString encFileName = wxFileSelector(_("Choose Encrypted database file to open")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , _("Encrypted MMEX Database (*.emb)")+"|*.emb"
+        , wxString::Format(_("Encrypted %s Database (*.emb)"), mmex::getProgramName())+"|*.emb"
         , wxFD_FILE_MUST_EXIST
         , this
     );
@@ -2324,7 +2329,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
         , _("Choose database file to Save As")
         , wxEmptyString
         , wxEmptyString
-        , _("MMEX Database (*.mmb)")+"|*.mmb")
+        , wxString::Format(_("%s Database (*.mmb)"), mmex::getProgramName())+"|*.mmb")
         , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
@@ -2343,14 +2348,17 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
     db.ReKey(wxEmptyString);
     db.Close();
 
-    mmErrorDialogs::MessageError(this, _("Converted DB!"), _("MMEX message"));
+    mmErrorDialogs::MessageError(this, _("Converted database!")
+        , wxString::Format(_("%s message")
+                , mmex::getProgramName()));
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnChangeEncryptPassword(wxCommandEvent& /*event*/)
 {
-    wxString password_change_heading = _("MMEX: Encryption Password Change");
-    wxString password_message = wxString::Format(_("New password for database\n\n%s"), m_filename);
+    wxString password_change_heading = wxString::Format(_("%s: Encryption Password Change")
+            , mmex::getProgramName());
+    wxString password_message = wxString::Format(_("New password for database:")+"\n\n%s"), m_filename);
 
     wxPasswordEntryDialog dlg(this, password_message, password_change_heading);
     if (dlg.ShowModal() == wxID_OK)
@@ -2384,7 +2392,7 @@ void mmGUIFrame::OnChangeEncryptPassword(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnVacuumDB(wxCommandEvent& /*event*/)
 {
     wxMessageDialog msgDlg(this
-        , wxString::Format("%s\n\n%s", _("Make sure you have a backup of DB before optimize it"), _("Do you want to proceed?"))
+        , wxString::Format("%s\n\n%s", _("Backup database before optimization"), _("Do you want to proceed?"))
         , _("DB Optimization"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     if (msgDlg.ShowModal() == wxID_YES)
     {
@@ -2421,7 +2429,9 @@ void mmGUIFrame::OnDebugDB(wxCommandEvent& /*event*/)
         }
         catch (const wxSQLite3Exception& e)
         {
-            wxMessageBox(_("Query error, please contact MMEX support!") + "\n\n" + e.GetMessage(), _("MMEX debug error"), wxOK | wxICON_ERROR);
+            wxMessageBox(_("Query error, please contact MMEX support!") + "\n\n" + e.GetMessage()
+                , _("MMEX debug error")
+                , wxOK | wxICON_ERROR);
             return;
         }
     }
