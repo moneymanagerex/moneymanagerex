@@ -2267,7 +2267,7 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
     autoRepeatTransactionsTimer_.Stop();
     wxString fileName = wxFileSelector(_("Choose database file to open")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , _("MMB Database (*.mmb)|*.mmb|Encrypted MMB Database (*.emb)|*.emb")
+        , _("MMB Database (*.mmb)")+"|*.mmb|"+_("Encrypted MMB Database (*.emb)")+"|*.emb")
         , wxFD_FILE_MUST_EXIST | wxFD_OPEN
         , this
     );
