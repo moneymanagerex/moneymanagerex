@@ -44,7 +44,25 @@ static const wxString TIPS [] =
     wxTRANSLATE("Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."),
 
     wxTRANSLATE("Cut back on subscriptions. Do you really need to subscribe to every streaming service? Are you using a paid service enough to justify the expense, or can you survive with the ad-supported free one? Do you need that monthly book club, or can you head to the library once per month instead?"),
-    wxTRANSLATE("Replace closed-source software with free/libre open-source software. Search https://alternativeto.net/"),
+
+    wxTRANSLATE("Software tip: Replace closed-source software with free/libre open-source software. Visit https://alternativeto.net/"),
+    wxTRANSLATE("Software tip: Become productive with “LibreOffice Base” for databases. Visit https://www.libreoffice.org/discover/base/"),
+    wxTRANSLATE("Software tip: Become productive with “LibreOffice Calc” for spreadsheets. Visit https://www.libreoffice.org/discover/calc/"),
+    wxTRANSLATE("Software tip: Become productive with “LibreOffice Draw” for vector graphics and flowcharts. Visit https://www.libreoffice.org/discover/draw/"),
+    wxTRANSLATE("Software tip: Become productive with “LibreOffice Impress” for presentations. Visit https://www.libreoffice.org/discover/impress/"),
+    wxTRANSLATE("Software tip: Become productive with “LibreOffice Math” for formula editing. Visit https://www.libreoffice.org/discover/math/"),
+    wxTRANSLATE("Software tip: Become productive with “LibreOffice Writer” for word processing. Visit https://www.libreoffice.org/discover/writer/"),
+    wxTRANSLATE("Software tip: Consolidate all your email, calendar, and contacts using the “Betterbird” client. Visit https://betterbird.eu/"),
+    wxTRANSLATE("Software tip: Create images and edit photographs with “GNU Image Manipulation Program”. Visit https://www.gimp.org/"),
+    wxTRANSLATE("Software tip: Enjoy “Linux Mint” a free and open-source operating system for your desktop device. Visit https://linuxmint.com/"),
+    wxTRANSLATE("Software tip: If you know another language, help translate MMEX Money Manager at Crowdin. Visit https://crowdin.com/project/moneymanagerex"),
+    wxTRANSLATE("Software tip: Merge, split, rotate, crop and rearrange PDF documents with “PDF Arranger”. Visit https://github.com/pdfarranger/pdfarranger"),
+    wxTRANSLATE("Software tip: Share MMEX Money Manager with your friends. Visit https://moneymanagerex.org/"),
+    wxTRANSLATE("Software tip: Share, freely and privately with “Jami” a free/libre, end-to-end encrypted, and private communication software. Visit https://jami.net/"),
+    wxTRANSLATE("Software tip: Take handwritten notes with ease using “Xournal++”. Visit https://xournalpp.github.io/"),
+    wxTRANSLATE("Software tip: Use “Qalculate!” the ultimate desktop calculator, powerful and versatile yet simple to use having useful tools for everyday needs (such as currency conversion and percent calculation). Visit https://qalculate.github.io/"),
+    wxTRANSLATE("Software tip: Watch free and live TV, movies and series from around the world with “Hypnotix”. Visit https://github.com/linuxmint/hypnotix"),
+    wxTRANSLATE("Software tip: Watch YouTube more conveniently with “FreeTube”. Visit https://freetubeapp.io/"),
 
     wxTRANSLATE("Parent tip: If you are asked to be a guarantor for a loan for your college student, first check to see if your child has maxed out federal loan, grant, and scholarship options."),
 
