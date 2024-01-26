@@ -1377,8 +1377,11 @@ void mmGUIFrame::OnItemMenu(wxTreeEvent& event)
     if (menuBar_->FindItem(MENU_ORGCATEGS)->IsEnabled())
         showTreePopupMenu(selectedItem, event.GetPoint());
     else
-        wxMessageBox(_("MMEX has been opened without an active database.")
-            , _("MMEX: Menu Popup Error"), wxOK | wxICON_EXCLAMATION);
+        wxMessageBox(wxString::Format(_("%s has been opened without an active database.")
+                , mmex::getProgramName())
+            , wxString::Format(_("%s: Menu Popup Error")
+                , mmex::getProgramName())
+            , wxOK | wxICON_EXCLAMATION);
 }
 //----------------------------------------------------------------------------
 
