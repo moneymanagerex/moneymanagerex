@@ -333,7 +333,7 @@ void mmQIFExportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
     case CSV:
         fileName = wxFileSelector(_("Choose QIF data file to Export")
             , wxEmptyString, fileName, wxEmptyString
-            , _("CSV Files (*.csv)") + "|*.csv;*.CSV"
+            , _("Comma-separated values (*.csv)") + "|*.csv;*.CSV"
             , wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
         if (!fileName.IsEmpty())
             correctEmptyFileExt("csv", fileName);
