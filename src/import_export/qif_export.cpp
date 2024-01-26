@@ -317,7 +317,7 @@ void mmQIFExportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
     case QIF:
         fileName = wxFileSelector(_("Choose QIF data file to Export")
             , wxEmptyString, fileName, wxEmptyString
-            , _("QIF Files (*.qif)") + "|*.qif;*.QIF"
+            , _("Quicken Interchange Format (*.qif)") + "|*.qif;*.QIF"
             , wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
         if (!fileName.IsEmpty())
             correctEmptyFileExt("qif", fileName);
