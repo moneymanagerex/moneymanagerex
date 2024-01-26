@@ -1822,17 +1822,21 @@ void mmGUIFrame::createMenu()
         , _("&YouTube"), wxString::Format(_("Watch %s videos on YouTube")
             , mmex::getProgramName()));
     wxMenuItem* menuItemSlack = new wxMenuItem(menuHelp, MENU_SLACK
-        , _("&Slack"), _("Communicate online with MMEX team from your desktop or mobile device"));
+        , _("&Slack"), wxString::Format(_("Communicate with the %s team online")
+            , mmex::getProgramName()));
     wxMenuItem* menuItemGitHub = new wxMenuItem(menuHelp, MENU_GITHUB
         , _("&GitHub"), _("Access open source code repository and track reported bug statuses"));
     wxMenuItem* menuItemWiki = new wxMenuItem(menuHelp, MENU_WIKI
         , _("W&iki pages"), _("Read and update wiki pages"));
     wxMenuItem* menuItemReportIssues = new wxMenuItem(menuHelp, MENU_REPORTISSUES
         , _("F&orum")
-        , _("Visit the MMEX forum to see existing user comments or report new issues with the software"));
+        , wxString::Format(_("Visit %s forum to read and post comments")
+            , mmex::getProgramName()));
     wxMenuItem* menuItemGooglePlay = new wxMenuItem(menuHelp, MENU_GOOGLEPLAY
-        , _("MMEX for &Android")
-        , _("Get free Android version and run MMEX on your smart phone or tablet"));
+        , wxString::Format(_("%s for &Android")
+            , mmex::getProgramName())
+        , wxString::Format(_("Install %s for Android based smartphones and tablets")
+            , mmex::getProgramName()));
     wxMenuItem* menuItemNotify = new wxMenuItem(menuHelp, MENU_ANNOUNCEMENTMAILING
         , _("&Newsletter")
         , _("Subscribe to e-mail newsletter or view existing announcements"));
