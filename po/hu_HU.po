@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-26 03:21\n"
+"PO-Revision-Date: 2024-01-26 04:31\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1698,7 +1698,7 @@ msgstr "Már létezik ilyen nevű kategória a fölérendelthez"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category Manager: Adding Error"
-msgstr ""
+msgstr "Kategóriakezelő: Hozzáadási hiba"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
@@ -1757,7 +1757,7 @@ msgstr "Eszközök → Egyesítés → Kategóriák"
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
-msgstr ""
+msgstr "Kategóriakezelő: Törlési hiba"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1786,7 +1786,7 @@ msgstr "Kategória szerkesztése"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
-msgstr ""
+msgstr "Kategóriakezelő: Szerkesztési hiba"
 
 #: categdialog.cpp:682 mmframe.cpp:3731
 msgid "Merge categories completed"
@@ -1828,7 +1828,7 @@ msgstr "Beállítások törlése"
 
 #: categdialog.h:68 mmframe.cpp:1698 mmframe.cpp:1924
 msgid "Category Manager"
-msgstr ""
+msgstr "Kategóriakezelő"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -2056,7 +2056,7 @@ msgstr "Pénznemkezelő"
 
 #: customfieldeditdialog.cpp:113
 msgid "Custom Field Details"
-msgstr "Felhasználói mező részletei"
+msgstr "Egyéni mező részletei"
 
 #: customfieldeditdialog.cpp:124 customfieldlistdialog.cpp:52
 msgid "Attribute of"
@@ -2147,7 +2147,7 @@ msgstr "Folytatja?"
 
 #: customfieldeditdialog.cpp:229 customfieldeditdialog.cpp:251
 msgid "Custom Field Change"
-msgstr "Felhasználói mező változtatása"
+msgstr "Egyéni mező módosítása"
 
 #: customfieldeditdialog.cpp:249
 msgid "You have modified choices: ones removed will be cleaned!"
@@ -2155,7 +2155,7 @@ msgstr "Módosított a választási lehetőségeket: az eltávolítottak töröl
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
-msgstr "Felhasználói mező - új vagy szerkesztés"
+msgstr "Egyéni mező - új vagy szerkesztés"
 
 #: customfieldlistdialog.cpp:51
 msgid "#"
@@ -2167,7 +2167,7 @@ msgstr "Tulajdonságok"
 
 #: customfieldlistdialog.cpp:66 mmframe.cpp:1761
 msgid "Custom Field Manager"
-msgstr ""
+msgstr "Egyéni mezőkezelő"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
@@ -4090,11 +4090,11 @@ msgstr "Tipp: amennyiben több, eltérő pénznemben vezetett számlája van, á
 
 #: mmTips.h:34
 msgid "Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Kategóriakezelő tipp: A „H” billentyű megnyomásával az összes „H” betűvel kezdődő kategórián keresztül lépkedhet."
 
 #: mmTips.h:35
 msgid "Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Kategóriakezelő tipp: A 2 billentyűkombináció megnyomásával az adott billentyűkombinációtól kezdve az összes kategórián keresztül lépkedhet. Például: Az „LA” megnyomásával kiválasztja a „Lakás, Lakásadó, Lakberendezés, …” lehetőséget."
 
 #: mmTips.h:37
 msgid "Never endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
@@ -4542,7 +4542,7 @@ msgstr "Kijelölt ügyletek között eltelt napok: %d"
 
 #: mmcustomdata.cpp:65
 msgid "Custom fields"
-msgstr "Felhasználói mezők"
+msgstr "Egyéni mezők"
 
 #: mmcustomdata.cpp:156
 msgid "False"
@@ -4937,11 +4937,11 @@ msgstr "Pénznem- és részvényárfolyamok letöltése"
 
 #: mmframe.cpp:1694
 msgid "&Payee Manager..."
-msgstr ""
+msgstr "&Kedvezményezettkezelő…"
 
 #: mmframe.cpp:1694 mmframe.cpp:1923 payeedialog.cpp:508
 msgid "Payee Manager"
-msgstr ""
+msgstr "Kedvezményezettkezelő"
 
 #: mmframe.cpp:1698
 msgid "&Category Manager..."
@@ -4949,15 +4949,15 @@ msgstr "&Kategóriakezelő…"
 
 #: mmframe.cpp:1702
 msgid "&Tag Manager..."
-msgstr ""
+msgstr "&Címkekezelő…"
 
 #: mmframe.cpp:1702 mmframe.cpp:1925 tagdialog.h:45
 msgid "Tag Manager"
-msgstr ""
+msgstr "Címkekezelő"
 
 #: mmframe.cpp:1706
 msgid "Curre&ncy Manager..."
-msgstr ""
+msgstr "&Pénznemkezelő…"
 
 #: mmframe.cpp:1710
 msgid "&Categories..."
@@ -5021,11 +5021,11 @@ msgstr "Ügylet-jelentés s&zűrése…"
 
 #: mmframe.cpp:1757
 msgid "&General Report Manager..."
-msgstr ""
+msgstr "&Általános jelentéskezelő…"
 
 #: mmframe.cpp:1761
 msgid "C&ustom Field Manager..."
-msgstr ""
+msgstr "&Egyéni mezőkezelő…"
 
 #: mmframe.cpp:1767
 msgid "Refresh &WebApp..."
@@ -6187,12 +6187,13 @@ msgstr "Pénznem beállítása"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Set default database currency using 'Currency Manager'"
-msgstr ""
+msgstr "Az adatbázis alapértelmezett pénznemének beállítása a „Pénznemkezelő” segítségével"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Manager | Edit'"
-msgstr ""
+msgstr "Területi beállításból származtatott formátum.\n"
+"Hagyja üresen a formátum kézi beállításához a „Pénznemkezelő | Szerkesztés”"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6710,7 +6711,7 @@ msgstr "Eszközök → Egyesítés → Kedvezményezettek"
 
 #: payeedialog.cpp:746
 msgid "Payee Manager: Delete Error"
-msgstr ""
+msgstr "Kedvezményezettkezelő: Törlési hiba"
 
 #: payeedialog.cpp:751
 msgid "Deleted transactions exist which use this payee."
@@ -7662,7 +7663,7 @@ msgstr "Címke neve nem lehet „&” vagy „|” karaktereket, mert ezek a sz�
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Tag Manager: Invalid Name"
-msgstr ""
+msgstr "Címkekezelő: Érvénytelen név"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
@@ -7686,7 +7687,7 @@ msgstr "Már létezik ilyen nevű címke"
 
 #: tagdialog.cpp:218
 msgid "Tag Manager: Adding Error"
-msgstr ""
+msgstr "Címkekezelő: Hozzáadási hiba"
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
@@ -7694,7 +7695,7 @@ msgstr "Címke szerkesztése"
 
 #: tagdialog.cpp:254
 msgid "Tag Manager: Editing Error"
-msgstr ""
+msgstr "Címkekezelő: Szerkesztési hiba"
 
 #: tagdialog.cpp:295
 #, c-format
@@ -7703,7 +7704,7 @@ msgstr "A(z) „%s” címke használatban van"
 
 #: tagdialog.cpp:295
 msgid "Tag Manager: Delete Error"
-msgstr ""
+msgstr "Címkekezelő: Törlési hiba"
 
 #: tagdialog.cpp:298
 #, c-format
