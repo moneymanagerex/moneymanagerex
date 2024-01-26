@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-25 10:04\n"
+"PO-Revision-Date: 2024-01-26 13:23\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4091,11 +4091,11 @@ msgstr "Tipp: Verwenden Sie Wechselkurse für Währungen, im Fall, wenn Sie Kont
 
 #: mmTips.h:34
 msgid "Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Kategorien Dialog Tipp: Durch Drücken der Taste h werden alle Kategorien beginnend mit dem Buchstaben h angezeigt."
 
 #: mmTips.h:35
 msgid "Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Kategorien Tipp: Bei der Eingabe von zwei Zeichen werden alle Kategorien, die mit diesen Zeichen beginnen, angezeigt. Beispiel: bei Eingabe von „ho“ werden angezeigt: Homeneeds, Home, House Tax, etc…"
 
 #: mmTips.h:37
 msgid "Never endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
