@@ -1811,7 +1811,7 @@ void mmGUIFrame::createMenu()
         , wxString::Format(_("Visit %s website for the latest news and updates")
             , mmex::getProgramName()));
     wxMenuItem* menuItemFacebook = new wxMenuItem(menuHelp, MENU_FACEBOOK
-        , _("&Facebook"), wxString::Format(_("Visit the %s Facebook page")
+        , _("&Facebook"), wxString::Format(_("Visit %s Facebook page")
             , mmex::getProgramName()));
     wxMenuItem* menuItemCrowdin = new wxMenuItem(menuHelp, MENU_CROWDIN
         , _("&Crowdin"), wxString::Format(_("Help translate %s on Crowdin")
