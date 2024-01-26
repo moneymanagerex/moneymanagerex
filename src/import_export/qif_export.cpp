@@ -325,7 +325,7 @@ void mmQIFExportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
     case JSON:
         fileName = wxFileSelector(_("Choose JSON data file to Export")
             , wxEmptyString, fileName, wxEmptyString
-            , _("JSON Files (*.json)") + "|*.json;*.JSON"
+            , _("JavaScript Object Notation (*.json)") + "|*.json;*.JSON"
             , wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
         if (!fileName.IsEmpty())
             correctEmptyFileExt("json", fileName);
