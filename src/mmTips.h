@@ -44,7 +44,7 @@ static const wxString TIPS [] =
     wxTRANSLATE("Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."),
 
     wxTRANSLATE("Cut back on subscriptions. Do you really need to subscribe to every streaming service? Are you using a paid service enough to justify the expense, or can you survive with the ad-supported free one? Do you need that monthly book club, or can you head to the library once per month instead?"),
-    wxTRANSLATE("Use open source alternatives to proprietary software. Search at https://www.opensourcealternative.to/"),
+    wxTRANSLATE("Replace closed-source software with free/libre open-source software. Search https://alternativeto.net/"),
 
     wxTRANSLATE("Parent tip: If you are asked to be a guarantor for a loan for your college student, first check to see if your child has maxed out federal loan, grant, and scholarship options."),
 
