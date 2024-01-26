@@ -60,7 +60,7 @@ static const wxString TIPS [] =
     wxTRANSLATE("Software tip: Share MMEX Money Manager with your friends. Share https://moneymanagerex.org/"),
     wxTRANSLATE("Software tip: Share, freely and privately with “Jami” a free/libre, end-to-end encrypted, and private communication software. Visit https://jami.net/"),
     wxTRANSLATE("Software tip: Take handwritten notes with ease using “Xournal++”. Visit https://xournalpp.github.io/"),
-    wxTRANSLATE("Software tip: Use “Qalculate!” the ultimate desktop calculator, powerful and versatile yet simple to use having useful tools for everyday needs (such as currency conversion and percent calculation). Visit https://qalculate.github.io/"),
+    wxTRANSLATE("Software tip: Use “Qalculate!” the ultimate desktop calculator – a powerful and versatile, yet simple to use, calculator with useful tools for everyday needs (such as currency conversion and percent calculation). Visit https://qalculate.github.io/"),
     wxTRANSLATE("Software tip: Watch free and live TV, movies and series from around the world with “Hypnotix”. Visit https://github.com/linuxmint/hypnotix"),
     wxTRANSLATE("Software tip: Watch YouTube more conveniently with “FreeTube”. Visit https://freetubeapp.io/"),
 
