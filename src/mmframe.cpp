@@ -1851,7 +1851,8 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemCommunity = new wxMenuItem(menuHelp, MENU_COMMUNITY
         , _("&Community")
-        , _("Stay in touch with MMEX community"));
+        , wxString::Format(_("Stay in touch with %s community")
+            , mmex::getProgramName()));
 
     wxMenu* menuCommunity = new wxMenu;
     menuCommunity->Append(menuItemFacebook);
@@ -2057,7 +2058,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             //DB backup is handled inside UpgradeDB
             if (!dbUpgrade::UpgradeDB(m_db.get(), fileName))
             {
-                int response = wxMessageBox(_("Have MMEX support provided you a debug/patch file?"), _("MMEX upgrade"), wxYES_NO);
+                int response = wxMessageBox(wxString::Format(_("Have %s support provided a debug/patch file?"),
+                        , mmex::getProgramName())
+                    _("MMEX upgrade"), wxYES_NO);
                 if (response == wxYES)
                 {
                     // upgrade failure turns CorruptRdOnly flag back on, so reopen again in debug mode
