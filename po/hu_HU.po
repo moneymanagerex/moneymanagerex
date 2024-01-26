@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-26 07:57\n"
+"PO-Revision-Date: 2024-01-26 10:03\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2579,51 +2579,51 @@ msgstr "Minden, az egyeztetve kivételével"
 
 #: filtertransdialog.cpp:53
 msgid "Day"
-msgstr ""
+msgstr "Nap"
 
 #: filtertransdialog.cpp:53
 msgid "Month"
-msgstr ""
+msgstr "Hónap"
 
 #: filtertransdialog.cpp:53
 msgid "Year"
-msgstr ""
+msgstr "Év"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
-msgstr ""
+msgstr "Sávdiagram"
 
 #: filtertransdialog.cpp:55
 msgid "Line"
-msgstr ""
+msgstr "Vonaldiagram"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
-msgstr ""
+msgstr "Vonaldiagram dátum/idő"
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
-msgstr ""
+msgstr "Kördiagram"
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
-msgstr ""
+msgstr "Perecdiagram"
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
-msgstr ""
+msgstr "Sugárdiagram"
 
 #: filtertransdialog.cpp:57
 msgid "Bar Line"
-msgstr ""
+msgstr "Sávvonaldiagram"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Bar Line"
-msgstr ""
+msgstr "Halmozott sávvonaldiagram"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Area"
-msgstr ""
+msgstr "Halmozott területdiagram"
 
 #: filtertransdialog.cpp:521 transactionsupdatedialog.cpp:122
 msgid "Specify"
@@ -2698,11 +2698,11 @@ msgstr "Jelentések csoportosításának megadása"
 #: filtertransdialog.cpp:722 filtertransdialog.cpp:1072
 #: filtertransdialog.cpp:1901
 msgid "Chart"
-msgstr ""
+msgstr "Diagram"
 
 #: filtertransdialog.cpp:731
 msgid "Specify which chart will be included in the report"
-msgstr ""
+msgstr "Jelölje ki, hogy melyik diagram szerepeljen a jelentésben"
 
 #: filtertransdialog.cpp:734 filtertransdialog.cpp:1910
 msgid "Combine Splits"
@@ -4102,27 +4102,27 @@ msgstr "Soha ne hagyjon jóvá egy kölcsönt. Ha a hitelfelvevő–a barátod, 
 
 #: mmTips.h:39
 msgid "Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."
-msgstr ""
+msgstr "Élelmiszer-vásárlási tipp: kerülje a bevásárlást, ha éhes vagy ideges. Az éhség és az idegességek furcsa dolgokra késztethetnek, például sok csokoládé vásárlására vagy trükkös feldolgozott élelmiszerekre. Tervezze meg, hogy akkor megy a boltba, amikor jóllakott és kipihent. Így ragaszkodhatsz a listádhoz, és nem költesz túl olyan élelmiszerekre, amelyekre nincs szükséged."
 
 #: mmTips.h:40
 msgid "Grocery tip: Make a shopping list. A shopping list saves money by helping you avoid buying products you do not need. The simplest way is to track consumables as you use them. Keep a magnetic notepad on the fridge and jot down what you need as you run out."
-msgstr ""
+msgstr "Élelmiszer-vásárlási tipp: Készítsen bevásárlólistát. A bevásárlólista pénzt takarít meg, mivel segít elkerülni, hogy olyan termékeket vásároljon, amelyekre nincs szüksége. A legegyszerűbb módja a fogyóeszközök nyomon követése használat közben. Tarts egy mágneses jegyzettömböt a hűtőn, és írd le, mire van szükséged, amint elfogy."
 
 #: mmTips.h:41
 msgid "Grocery tip: Buy fruits and vegetables in season."
-msgstr ""
+msgstr "Élelmiszer-vásárlási tipp: Vásároljon gyümölcsöt és zöldséget évszakónban."
 
 #: mmTips.h:42
 msgid "Grocery tip: Make sure your family consumes everything you purchase. Every month or so, hold a pantry challenge during which you use up as many pantry goods as possible before you shop again. A pantry challenge cuts down on waste and lets you get a sense of how much you are overbuying."
-msgstr ""
+msgstr "Élelmiszer-vásárlási tipp: győződjön meg róla, hogy családja mindent elfogyaszt, amit vásárol. Körülbelül havonta tarts egy kamra-kihívást, amely során a lehető legtöbb éléskamra árut elhasználod, mielőtt újra vásárolnál. Az éléskamra kihívás csökkenti a pazarlást, és lehetővé teszi, hogy érzékelje, mennyit vásárol túl."
 
 #: mmTips.h:43
 msgid "Grocery tip: Reduce waste. Adopting better grocery shopping habits is one way to cut back on wasted food and money. Make a list of everything you throw out without using, such as spoiled leftovers or soggy lettuce, to get a sense of the full scale of the issue."
-msgstr ""
+msgstr "Élelmiszer-vásárlási tipp: csökkentse a hulladékot. A jobb élelmiszer-vásárlási szokások elfogadása az egyik módja annak, hogy csökkentsük a kidobott élelmiszerek és pénzek számát. Készítsen listát mindenről, amit felhasználás nélkül kidob, például a romlott maradékot vagy az elázott salátát, hogy átérezhesse a probléma teljes mértékét."
 
 #: mmTips.h:44
 msgid "Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."
-msgstr ""
+msgstr "Élelmiszer-vásárlási tipp: olvasson értékesítési szórólapokat. Tekintse át az egyes üzletek szórólapjait, és párosítsa az akciókat a listán szereplőkkel, vagy tervezzen étkezést az akciós termékek köré. Néha költséghatékonyabb, ha egy héten több üzletet keres fel, hogy a legjobb ár-érték arányt kapja."
 
 #: mmTips.h:46
 msgid "Cut back on subscriptions. Do you really need to subscribe to every streaming service? Are you using a paid service enough to justify the expense, or can you survive with the ad-supported free one? Do you need that monthly book club, or can you head to the library once per month instead?"
@@ -4139,31 +4139,31 @@ msgstr "Szülői tipp: ha felkérik, hogy vállaljon kezességet főiskolai hall
 #: mmTips.h:51
 #, c-format
 msgid "Get out of debt tip: Pay yourself 10% first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Szálljon ki az adósságból tipp: először fizessen magának 10%-ot. Helyezze be ezt egy olyan számlára, amelyet nehéz kivenni. Ügyeljen arra, hogy a pénz kiszedése melós legyen (a pénzintézetbe kell autózni), így csak tudatosan és nagyobb kiadások miatt vesz fel pénzt."
 
 #: mmTips.h:52
 msgid "Get out of debt tip: Establish an emergency fund."
-msgstr ""
+msgstr "Szálljon ki az adósságból tipp: különítsen el biztonsági tartalékot."
 
 #: mmTips.h:53
 msgid "Get out of debt tip: Stop acquiring new debt."
-msgstr ""
+msgstr "Szálljon ki az adósságból tipp: ne vegyen fel újabb kölcsönt."
 
 #: mmTips.h:54
 msgid "Get out of debt tip: Create a realistic budget for your expenses."
-msgstr ""
+msgstr "Szálljon ki az adósságból tipp: készítsen reális költségvetést a kiadásaira."
 
 #: mmTips.h:55
 msgid "Get out of debt tip: Spend less than you earn."
-msgstr ""
+msgstr "Szálljon ki az adósságból tipp: költsön kevesebbet, mint a bevételei."
 
 #: mmTips.h:56
 msgid "Get out of debt tip: Pay more than the minimum."
-msgstr ""
+msgstr "Szálljon ki az adósságból tipp: visszafizesse többet, mint a minimum."
 
 #: mmTips.h:57
 msgid "Get out of debt tip: If you have a mountain of debt, studies show paying off the smallest debts can give you the confidence to tackle the larger ones."
-msgstr ""
+msgstr "Szálljon ki az adósságból tipp: ha adóssághegyei vannak, a tanulmányok azt mutatják, hogy a legkisebb adósságok törlesztése önbizalmat adhat a nagyobbak leküzdéséhez."
 
 #: mmTips.h:58
 msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
