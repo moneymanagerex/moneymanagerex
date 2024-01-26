@@ -1688,7 +1688,7 @@ void mmGUIFrame::createMenu()
     wxMenu* menuTools = new wxMenu;
 
     wxMenuItem* menuItemRates = new wxMenuItem(menuTools
-        , MENU_RATES, _("Download &Rates"), _("Download currency and stock Rates"));
+        , MENU_RATES, _("Download &Rates"), _("Download currency and stock rates"));
     menuTools->Append(menuItemRates);
 
     menuTools->AppendSeparator();
