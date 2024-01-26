@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-24 14:28\n"
+"PO-Revision-Date: 2024-01-26 03:21\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -367,11 +367,11 @@ msgstr "%s honlap felkeresése"
 
 #: appstartdialog.cpp:126
 msgid "&Support Forums"
-msgstr ""
+msgstr "&Támogató fórumok"
 
 #: appstartdialog.cpp:127
 msgid "Visit the Support Forums"
-msgstr ""
+msgstr "Támogató fórumok látogatása"
 
 #: appstartdialog.cpp:133 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -733,17 +733,17 @@ msgstr "A mellékletek könyvtárat nem találom"
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %s | %i"
-msgstr ""
+msgstr "Mellékletkezelő | %s | %i"
 
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr ""
+msgstr "Mellékletkezelő | %1$s | %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr ""
+msgstr "Mellékletkezelő | Új %s"
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
@@ -759,7 +759,7 @@ msgstr "Az új melléklethez adjon leírást:"
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
-msgstr ""
+msgstr "Mellékletkezelő: Melléklet hozzáadása"
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
@@ -767,7 +767,7 @@ msgstr "A melléklethez készítsen új leírást:"
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
-msgstr ""
+msgstr "Mellékletkezelő: Melléklet szerkesztése"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
@@ -1682,7 +1682,7 @@ msgstr "A kettőspont (:) karakter a kategóriák és az alkategóriák elválas
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
-msgstr ""
+msgstr "Kategóriakezelő: Érvénytelen név"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
@@ -4126,7 +4126,7 @@ msgstr ""
 
 #: mmTips.h:46
 msgid "Cut back on subscriptions. Do you really need to subscribe to every streaming service? Are you using a paid service enough to justify the expense, or can you survive with the ad-supported free one? Do you need that monthly book club, or can you head to the library once per month instead?"
-msgstr ""
+msgstr "Csökkentse az előfizetéseket. Valóban minden streaming szolgáltatásra elő kell fizetnie? Elegendő fizetős szolgáltatást vesz igénybe, hogy igazolja a költségeket, vagy meg tud élni a reklámokkal támogatott ingyenes szolgáltatással? Szüksége van arra a havi könyvklubra, vagy havonta egyszer elmenhet a könyvtárba?"
 
 #: mmTips.h:47
 msgid "Use open source alternatives to proprietary software. Search at https://www.opensourcealternative.to/"
@@ -4737,7 +4737,7 @@ msgstr "Számla honlapjának &megnyitása"
 
 #: mmframe.cpp:1457 mmframe.cpp:1477
 msgid "&Attachment Manager..."
-msgstr ""
+msgstr "&Mellékletkezelő…"
 
 #: mmframe.cpp:1472 mmframe.cpp:1672
 msgid "&Change Account Type..."
@@ -4945,7 +4945,7 @@ msgstr ""
 
 #: mmframe.cpp:1698
 msgid "&Category Manager..."
-msgstr ""
+msgstr "&Kategóriakezelő…"
 
 #: mmframe.cpp:1702
 msgid "&Tag Manager..."
@@ -6730,7 +6730,7 @@ msgstr "Kategória meghatározása"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
-msgstr ""
+msgstr "&Mellékletkezelő"
 
 #: payeedialog.cpp:895
 msgid "Relocate Payee"
@@ -7270,7 +7270,7 @@ msgstr "Adja meg azt a csomagot, amelyhez ez a részvénycsomag tartozik"
 
 #: sharetransactiondialog.cpp:270 stockdialog.cpp:251
 msgid "Manage stock attachments"
-msgstr ""
+msgstr "Értékpapír mellékleteinek kezelése"
 
 #: sharetransactiondialog.cpp:275 stockdialog.cpp:253
 msgid "Display the web page for the specified Stock symbol"
@@ -7796,7 +7796,7 @@ msgstr "Ügylet közzététele #"
 
 #: transdialog.cpp:565 usertransactionpanel.cpp:185
 msgid "Manage transaction attachments"
-msgstr ""
+msgstr "Ügylet mellékleteinek kezelése"
 
 #: transdialog.cpp:768
 msgid "This transaction will exceed your account limit.\n\n"
