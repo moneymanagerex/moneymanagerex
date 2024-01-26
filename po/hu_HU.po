@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-26 06:33\n"
+"PO-Revision-Date: 2024-01-26 07:57\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4058,11 +4058,11 @@ msgstr "Javaslat: használja a másolást (CRTL+C) és a beillesztést (CTRL+V) 
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb database file."
-msgstr ""
+msgstr "Tipp: emlékezzen biztonsági másolatot készíteni az .mmb-adatbázisfájlról."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Tipp: az .mmb-adatbázisfájl nincs titkosítva. Ez azt jelenti, hogy bárki, aki rendelkezik kellő ismerettel, megnyithatja és olvashatja a tartalmát. Tehát gondoskodjon a megfelelő védelméről, amennyiben bármilyen érzékeny pénzügyi adatot tárol."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
@@ -4098,7 +4098,7 @@ msgstr "Kategóriakezelő tipp: A 2 billentyűkombináció megnyomásával az ad
 
 #: mmTips.h:37
 msgid "Never endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
-msgstr ""
+msgstr "Soha ne hagyjon jóvá egy kölcsönt. Ha a hitelfelvevő–a barátod, családtagod, más jelentőséged, bárki–elmulasztja a fizetést, akkor a hitelképességed zuhan, a hitelező utánad jöhet a pénzért, és ez valószínűleg tönkreteszi a kapcsolatodat. Ráadásul, ha a bank megbízót kér, a bank nem bízik abban, hogy a fizetést teljesíti."
 
 #: mmTips.h:39
 msgid "Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."
@@ -4130,11 +4130,11 @@ msgstr "Csökkentse az előfizetéseket. Valóban minden streaming szolgáltatá
 
 #: mmTips.h:47
 msgid "Use open source alternatives to proprietary software. Search at https://www.opensourcealternative.to/"
-msgstr ""
+msgstr "Cserélje le a zárt forráskódú szoftvert szabadság/ingyenes nyílt forráskódú szoftverre. Keressen a https://www.opensourcealternative.to/ oldalon"
 
 #: mmTips.h:49
 msgid "Parent tip: If you are asked to be a guarantor for a loan for your college student, first check to see if your child has maxed out federal loan, grant, and scholarship options."
-msgstr ""
+msgstr "Szülői tipp: ha felkérik, hogy vállaljon kezességet főiskolai hallgatója hiteléhez, először ellenőrizze, hogy gyermeke kihasználta-e a szövetségi hitel-, támogatás- és ösztöndíj-lehetőségeket."
 
 #: mmTips.h:51
 #, c-format
@@ -4191,7 +4191,7 @@ msgstr "Mielőtt elkezdené a befektetést, ismerje meg pénzforgalmát (legyen 
 
 #: mmTips.h:69
 msgid "Before you start investing, pay off consumer debt — especially credit cards."
-msgstr ""
+msgstr "Mielőtt elkezdené a befektetést, fizesse ki a fogyasztói adósságokat — különösen a hitelkártyákat."
 
 #: mmTips.h:70
 msgid "Before you start investing, make net worth your primary tracking metric."
@@ -4305,7 +4305,7 @@ msgstr "Minden ügylet keresése a következővel: %s „%s”"
 
 #: mmchecking_list.cpp:641
 msgid "Copy Text to Clipboard"
-msgstr ""
+msgstr "Szöveg másolása a vágólapra"
 
 #: mmchecking_list.cpp:648
 msgid "&Delete selected transaction..."
@@ -4929,7 +4929,7 @@ msgstr "Számla törlése az adatbázisból."
 
 #: mmframe.cpp:1688
 msgid "Download &Rates"
-msgstr ""
+msgstr "&Árfolyamok letöltése"
 
 #: mmframe.cpp:1688 mmframe.cpp:1947
 msgid "Download Currency and Stock Rates"
@@ -5001,7 +5001,7 @@ msgstr "&Ütemezett ügyletek"
 
 #: mmframe.cpp:1735
 msgid "Bills and Deposits"
-msgstr ""
+msgstr "Számlák és betétek"
 
 #: mmframe.cpp:1739
 msgid "&Assets"
@@ -5285,7 +5285,7 @@ msgstr "Hírek"
 
 #: mmframe.cpp:1947
 msgid "Download Rates"
-msgstr ""
+msgstr "Árfolyamok letöltése"
 
 #: mmframe.cpp:1950
 msgid "Toggle Fullscreen\tF11"
@@ -5362,7 +5362,7 @@ msgstr "Válassza ki a létrehozandó adatbázisfájlt"
 
 #: mmframe.cpp:2248 mmframe.cpp:2312
 msgid "MMB Database (*.mmb)|*.mmb"
-msgstr ""
+msgstr "MMEX-adatbázis (*.mmb)|*.mmb"
 
 #: mmframe.cpp:2268
 msgid "Choose database file to open"
@@ -5370,7 +5370,7 @@ msgstr "Válassza ki a megnyitni kívánt adatbázis"
 
 #: mmframe.cpp:2270 mmframe.cpp:2452
 msgid "MMB Database (*.mmb)|*.mmb|Encrypted MMB Database (*.emb)|*.emb"
-msgstr ""
+msgstr "MMEX-adatbázis (*.mmb)|*.mmb|Titkosított MMEX-adatbázis (*.emb)|*.emb"
 
 #: mmframe.cpp:2294
 msgid "Choose Encrypted database file to open"
