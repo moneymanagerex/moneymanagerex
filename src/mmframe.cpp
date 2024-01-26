@@ -2267,7 +2267,7 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
     autoRepeatTransactionsTimer_.Stop();
     wxString fileName = wxFileSelector(_("Choose database file to open")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , _("MMB Database (*.mmb)")+"|*.mmb|"+_("Encrypted MMB Database (*.emb)")+"|*.emb")
+        , _("MMEX Database (*.mmb)")+"|*.mmb|"+_("Encrypted MMEX Database (*.emb)")+"|*.emb")
         , wxFD_FILE_MUST_EXIST | wxFD_OPEN
         , this
     );
@@ -2293,7 +2293,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
 {
     wxString encFileName = wxFileSelector(_("Choose Encrypted database file to open")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , "Encrypted MMB Database (*.emb)|*.emb"
+        , _("Encrypted MMEX Database (*.emb)")+"|*.emb"
         , wxFD_FILE_MUST_EXIST
         , this
     );
@@ -2309,7 +2309,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
         , _("Choose database file to Save As")
         , wxEmptyString
         , wxEmptyString
-        , _("MMB Database (*.mmb)|*.mmb")
+        , _("MMEX Database (*.mmb)")+"|*.mmb")
         , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
@@ -2449,7 +2449,7 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
         _("Save database file as"),
         wxEmptyString,
         wxEmptyString,
-        _("MMB Database (*.mmb)|*.mmb|Encrypted MMB Database (*.emb)|*.emb"),
+        _("MMEX Database (*.mmb)")+"|*.mmb|"+_("Encrypted MMEX Database (*.emb)")+|*.emb"),
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
