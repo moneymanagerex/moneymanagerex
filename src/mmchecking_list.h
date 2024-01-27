@@ -2,7 +2,7 @@
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2011, 2012 Stefano Giorgio
 Copyright (C) 2013, 2014, 2020, 2021 Nikolay Akimov
-Copyright (C) 2021-2023 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021-2024 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -135,6 +135,7 @@ private:
         MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
         MENU_TREEPOPUP_CREATE_REOCCURANCE,
         MENU_TREEPOPUP_FIND,
+        MENU_TREEPOPUP_COPYTEXT,
         MENU_SUBMENU_MARK_ALL,
 
         MENU_VIEW_,
@@ -212,6 +213,7 @@ private:
     void setExtraTransactionData(const bool single);
     void SortTransactions(int sortcol, bool ascend);
     void findInAllTransactions(wxCommandEvent& event);
+    void OnCopyText(wxCommandEvent& event);
     int getColumnFromPosition(int xPos);
 private:
     /* The topmost visible item - this will be used to set
@@ -221,6 +223,7 @@ private:
     wxString m_today;
     bool m_firstSort;
     wxString rightClickFilter_;
+    wxString copyText_;
 };
 
 //----------------------------------------------------------------------------

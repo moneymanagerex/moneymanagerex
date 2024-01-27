@@ -180,7 +180,7 @@ wxString mmBudgetingPanel::GetPanelTitle() const
         yearStr = wxString::Format(_("%1$s    Start Date of: %2$s"), yearStr, mmGetDateForDisplay(m_budget_offset_date));
     }
 
-    return wxString::Format(_("Budget Setup for %s"), yearStr);
+    return wxString::Format(_("Budget Planner for %s"), yearStr);
 }
 
 void mmBudgetingPanel::UpdateBudgetHeading()

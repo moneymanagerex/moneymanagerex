@@ -248,7 +248,7 @@ void mmStockDialog::CreateControls()
     wxBoxSizer* iconsSizer = new wxBoxSizer(wxHORIZONTAL);
     itemFlexGridSizer6->Add(iconsSizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
     m_bAttachments = new wxBitmapButton(itemPanel5, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));
-    mmToolTip(m_bAttachments, _("Organize attachments of this stock"));
+    mmToolTip(m_bAttachments, _("Manage stock attachments"));
     wxBitmapButton* itemButton31 = new wxBitmapButton(itemPanel5, wxID_INDEX, mmBitmapBundle(png::WEB, mmBitmapButtonSize));
     mmToolTip(itemButton31, _("Display the web page for the specified Stock symbol"));
     iconsSizer->Add(m_bAttachments, g_flagsH);

@@ -318,9 +318,9 @@ additional package and select it as default compiler:
 
 You need git to download the sources, see prerequisites above.
 
-If you want the stable 1.5.11 version of mmex:
+If you want the stable 1.7.0 version of mmex:
 
-    git clone --recursive https://github.com/moneymanagerex/moneymanagerex  --branch v1.5.11
+    git clone --recursive https://github.com/moneymanagerex/moneymanagerex  --branch v1.7.0
 
 If you want the latest (possibly unstable) version of the trunk:
 
@@ -332,7 +332,6 @@ Got to the directory, where you downloaded the sources from github.
 
     cd moneymanagerex/
     mkdir build
-    cmake . (only sometimes needed)
     cd build/
     cmake ..
 
@@ -340,8 +339,8 @@ E.g. for the trunk version the output should be something like:
 
     -- MMEX configuration summary
     -- ==========================
-    -- Version        : 1.5.13-Beta.1
-    -- Commit         : 94b606828 (2022-01-30)
+    -- Version        : 1.7.1-Beta.1
+    -- Commit         : 1edc0dfe2 (2024-01-16)
     -- Branch         : master
     -- Host system    : Linux x86_64
     -- Target system  : Linux x86_64
@@ -352,26 +351,27 @@ E.g. for the trunk version the output should be something like:
     -- 
     -- Versions
     -- --========--
-    -- Linux 4.15.0-166-generic
-    -- Ubuntu 18.04 'bionic'
-    -- CMake 3.10.2
-    -- GNU Make 4.1
-    -- ccache
-    -- GNU 7.5.0
-    -- wxWidgets 3.1.5
-    -- wxSQLite3 4.6.0
-    -- Lua 5.3.3
-    -- curl 7.58.0
-    -- gettext 0.19.8.1
+    -- Linux 6.1.38
+    -- Debian.12.bookworm
+    -- Debian.GNU/Linux.12.(bookworm)
+    -- CMake 3.25.1
+    -- GNU Make 4.3
+    -- ccache 4.7.5
+    -- GNU 12.2.0
+    -- wxWidgets 3.2.4
+    -- wxSQLite3 4.9.1
+    -- Lua 5.3.6
+    -- curl 7.88.1
+    -- gettext 0.21
     -- ------------------ 8< -----------------
     -- Configuring done
     -- Generating done
-    -- Build files have been written to: <your $HOME >/<directory where you downloaded mmex>/moneymanagerex
+    -- Build files have been written to: <your $HOME >/<directory where you downloaded mmex>/moneymanagerex/build
 
 Now build
 
     export MAKEFLAGS=-j4  (to speed up the build)
-    cmake --build .. --target package
+    cmake --build . --target package
 
 If the build was ok the last message should be something like:
 
@@ -384,10 +384,10 @@ If the build was ok the last message should be something like:
     CPack: - Install project: MMEX
     CPack: Create package
     CPackDeb: - Generating dependency list
-    CPack: - package: <directory where you saved the download from git>/moneymanagerex/mmex_1.5.13-Beta.1-1~bionic_amd64.deb generated.
+    CPack: - package: <directory where you saved the download from git>/moneymanagerex/mmex_1.7.1-Beta.1-Debian.12.bookworm_amd64.deb generated.
 
     For testing without installing you can run
-    ../_CPack_Packages/Linux/DEB/mmex-1.5.13-Beta.1-Linux/usr/bin/mmex
+    ../_CPack_Packages/Linux/DEB/mmex-1.7.1-Beta.1-Linux/usr/bin/mmex
     
 #### 5. Install MMEX Package
 

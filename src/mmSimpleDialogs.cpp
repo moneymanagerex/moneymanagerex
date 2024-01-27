@@ -124,25 +124,27 @@ void mmComboBox::OnDropDown(wxCommandEvent& event)
 
 void mmComboBox::OnSetFocus(wxFocusEvent& event)
 {
-    if (!is_initialized_)
-    {
-       wxArrayString auto_complete;
-       for (const auto& item : all_elements_) {
-           auto_complete.Add(item.first);
+   if (!is_initialized_)
+   {
+      wxArrayString auto_complete;
+      for (const auto& item : all_elements_) {
+          auto_complete.Add(item.first);
+      }
+      auto_complete.Sort(CaseInsensitiveLocaleCmp);
+   
+       this->AutoComplete(auto_complete);
+       if (!auto_complete.empty()) {
+           wxString selection = GetValue();
+           Set(auto_complete);
+           ChangeValue(selection);
+           if (!selection.IsEmpty() && FindString(selection, false) != wxNOT_FOUND)
+               SetStringSelection(selection);
        }
-       auto_complete.Sort(CaseInsensitiveLocaleCmp);
-
-        this->AutoComplete(auto_complete);
-        if (!auto_complete.empty()) {
-            wxString selection = GetValue();
-            Set(auto_complete);
-            if (!selection.IsEmpty()) SetStringSelection(selection);
-        }
-        if (auto_complete.GetCount() == 1) {
-            Select(0);
-        }
-        is_initialized_ = true;   
-    }
+       if (auto_complete.GetCount() == 1) {
+           Select(0);
+       }
+       is_initialized_ = true;   
+   }
     event.Skip();
 }
 

@@ -209,6 +209,12 @@ Constantin Georgescu
 Jose Manuel Marrero León
 Sven Wiesner
 Francesco Orabona
+Damon Achey
+Manuel Mayr
+David Coons
+Markus Egg
+Tobias Dach
+Francisco Fos Ros
 
 ### 2023
 Renato

@@ -123,12 +123,29 @@ bool mmTextCtrl::checkValue(double &amount, bool positive_value)
 
 wxChar mmTextCtrl::GetDecimalPoint()
 {
-    wxChar dp;
-    if (!m_currency->DECIMAL_POINT.empty()) {
-        dp = m_currency->DECIMAL_POINT[0];
+    wxString dp;
+
+    auto localeStr = Model_Infotable::instance().GetStringInfo("LOCALE", "");
+
+    // If there is no defined locale, use the currency decimal
+    if (localeStr.empty())
+    {
+        if (!m_currency->DECIMAL_POINT.empty())
+        {
+            dp = m_currency->DECIMAL_POINT;
+        }
+        else
+        {
+            dp = Model_Currency::GetBaseCurrency()->DECIMAL_POINT;
+        }
     }
-    else {
-        dp = Model_Currency::GetBaseCurrency()->DECIMAL_POINT[0];
+    else 
+    {
+        // Locale is set, so use the locale decimal
+        dp = Model_Currency::toString(1.0);
+        wxRegEx pattern2(R"([^.,])");
+        pattern2.ReplaceAll(&dp, wxEmptyString);
     }
-    return dp;
+
+    return dp[0];
 }
