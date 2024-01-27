@@ -214,6 +214,7 @@ Manuel Mayr
 David Coons
 Markus Egg
 Tobias Dach
+Francisco Fos Ros
 
 ### 2023
 Renato
