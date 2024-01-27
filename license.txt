@@ -10,8 +10,9 @@ Please report any bugs or issues with MMEX using the links in the MMEX Help menu
 GNU GENERAL PUBLIC LICENSE
 ================================================
 
-Copyright © 2009-2022 Nikolay [Nikolay]
-Copyright © 2020-2022 Mark Whalley [whalley]
+Copyright © 2009-2024 Nikolay [Nikolay]
+Copyright © 2020-2024 Mark Whalley [whalley]
+Copyright © 2022-2024 Nick [n-stein]
 Copyright © 2011-2020 LiSheng [guanlisheng]
 Copyright © 2013-2017 James [siena123]
 Copyright © 2013-2017 Gabriele [gabriele-v]
