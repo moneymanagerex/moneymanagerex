@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-25 18:50\n"
+"PO-Revision-Date: 2024-01-29 18:10\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -367,7 +367,7 @@ msgstr "Bezoek de %s website"
 
 #: appstartdialog.cpp:126
 msgid "&Support Forums"
-msgstr "Helpforums"
+msgstr "&Help forums"
 
 #: appstartdialog.cpp:127
 msgid "Visit the Support Forums"
@@ -4102,7 +4102,7 @@ msgstr "Onderschrijf nooit een lening. Als de lener (uw vriend, familielid, part
 
 #: mmTips.h:39
 msgid "Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."
-msgstr ""
+msgstr "Supermarkt tip: vermijd boodschappen wanneer je honger hebt of gestrest bent. Honger en stress kunnen ervoor zorgen dat je vreemde dingen doet, zoals het kopen van veel chocolade of gimmicky verwerkte levensmiddelen. Plan om naar de winkel te gaan als je goed gevoed en ontspannen bent. Op die manier kun je je aan je lijst houden en niet te veel uitgeven aan voedsel dat je niet nodig hebt."
 
 #: mmTips.h:40
 msgid "Grocery tip: Make a shopping list. A shopping list saves money by helping you avoid buying products you do not need. The simplest way is to track consumables as you use them. Keep a magnetic notepad on the fridge and jot down what you need as you run out."
@@ -5021,7 +5021,7 @@ msgstr "Transactie &Rapport Filter..."
 
 #: mmframe.cpp:1757
 msgid "&General Report Manager..."
-msgstr ""
+msgstr "&Algemeen Rapport &Beheer..."
 
 #: mmframe.cpp:1761
 msgid "C&ustom Field Manager..."
@@ -6731,7 +6731,7 @@ msgstr "Categorie definiëren"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
-msgstr ""
+msgstr "&Bijlage beheer"
 
 #: payeedialog.cpp:895
 msgid "Relocate Payee"
@@ -7271,7 +7271,7 @@ msgstr "Voer het aantal dat hoort bij dit aandelenpakket in"
 
 #: sharetransactiondialog.cpp:270 stockdialog.cpp:251
 msgid "Manage stock attachments"
-msgstr ""
+msgstr "Beheer aandelen bijlagen"
 
 #: sharetransactiondialog.cpp:275 stockdialog.cpp:253
 msgid "Display the web page for the specified Stock symbol"
@@ -7663,7 +7663,7 @@ msgstr "Labelnamen mogen niet de '&' of 'ρ' tekens zijn, omdat deze gereserveer
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Tag Manager: Invalid Name"
-msgstr ""
+msgstr "Label beheer: ongeldige naam"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
@@ -7687,7 +7687,7 @@ msgstr "Een label met die naam bestaat al"
 
 #: tagdialog.cpp:218
 msgid "Tag Manager: Adding Error"
-msgstr ""
+msgstr "Label beheer: Fout bij toevoegen"
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
@@ -7704,7 +7704,7 @@ msgstr "Label '%s' in gebruik"
 
 #: tagdialog.cpp:295
 msgid "Tag Manager: Delete Error"
-msgstr ""
+msgstr "Label beheer: Fout bij verwijderen"
 
 #: tagdialog.cpp:298
 #, c-format
