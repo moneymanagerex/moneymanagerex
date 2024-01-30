@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-26 13:23\n"
+"PO-Revision-Date: 2024-01-30 20:17\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4099,27 +4099,27 @@ msgstr "Kategorien Tipp: Bei der Eingabe von zwei Zeichen werden alle Kategorien
 
 #: mmTips.h:37
 msgid "Never endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
-msgstr ""
+msgstr "Bürgen Sie niemals für einen Kredit. Wenn der Kreditnehmer - Ihr Freund, Familienmitglied, Lebensgefährte oder wer auch immer seine Zahlungen nicht leistet, wird Ihre Kreditwürdigkeit in Mitleidenschaft gezogen, und der Kreditgeber kann das Geld von Ihnen einfordern, was Ihre Beziehung wahrscheinlich zerstören wird."
 
 #: mmTips.h:39
 msgid "Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."
-msgstr ""
+msgstr "Lebensmitteltipp: Vermeiden Sie Lebensmittelgeschäfte bei Hunger oder Stress. Planen Sie, in den Laden zu gehen, wenn Sie gut ernährt und entspannt sind. Auf diese Weise können Sie sich an Ihre Liste halten und nicht für Lebensmittel ausgeben, die Sie nicht benötigen."
 
 #: mmTips.h:40
 msgid "Grocery tip: Make a shopping list. A shopping list saves money by helping you avoid buying products you do not need. The simplest way is to track consumables as you use them. Keep a magnetic notepad on the fridge and jot down what you need as you run out."
-msgstr ""
+msgstr "Lebensmitteltipp: Machen Sie eine Einkaufsliste. Eine Einkaufsliste spart Geld, indem Sie den Kauf von Produkten vermeiden, die Sie nicht benötigen."
 
 #: mmTips.h:41
 msgid "Grocery tip: Buy fruits and vegetables in season."
-msgstr ""
+msgstr "Lebensmitteltipp: Obst und Gemüse in der Saison kaufen."
 
 #: mmTips.h:42
 msgid "Grocery tip: Make sure your family consumes everything you purchase. Every month or so, hold a pantry challenge during which you use up as many pantry goods as possible before you shop again. A pantry challenge cuts down on waste and lets you get a sense of how much you are overbuying."
-msgstr ""
+msgstr "Lebensmitteltipp: Stellen Sie sicher, dass Ihre Familie alles verzehrt, was Sie kaufen."
 
 #: mmTips.h:43
 msgid "Grocery tip: Reduce waste. Adopting better grocery shopping habits is one way to cut back on wasted food and money. Make a list of everything you throw out without using, such as spoiled leftovers or soggy lettuce, to get a sense of the full scale of the issue."
-msgstr ""
+msgstr "Einkaufstipp: Produzieren Sie weniger Abfall. Bessere Einkaufsgewohnheiten sind eine Möglichkeit, die Verschwendung von Lebensmitteln und Geld zu reduzieren."
 
 #: mmTips.h:44
 msgid "Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."
