@@ -2309,7 +2309,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
         , _("Choose database file to Save As")
         , wxEmptyString
         , wxEmptyString
-        , _("MMEX Database (*.mmb)")+"|*.mmb")
+        , _("MMEX Database (*.mmb)")+"|*.mmb"
         , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
