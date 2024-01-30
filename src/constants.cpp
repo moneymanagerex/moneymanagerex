@@ -102,7 +102,7 @@ const wxString mmex::DEFDELIMTER = ",";
 
 const wxString mmex::getProgramName()
 {
-    return wxString("Money Manager Ex");
+    return wxString("MMEX");
 }
 const wxString mmex::getTitleProgramVersion()
 {

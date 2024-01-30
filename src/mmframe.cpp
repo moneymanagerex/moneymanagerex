@@ -1377,8 +1377,11 @@ void mmGUIFrame::OnItemMenu(wxTreeEvent& event)
     if (menuBar_->FindItem(MENU_ORGCATEGS)->IsEnabled())
         showTreePopupMenu(selectedItem, event.GetPoint());
     else
-        wxMessageBox(_("MMEX has been opened without an active database.")
-            , _("MMEX: Menu Popup Error"), wxOK | wxICON_EXCLAMATION);
+        wxMessageBox(wxString::Format(_("%s has been opened without an active database.")
+                , mmex::getProgramName())
+            , wxString::Format(_("%s: Menu Popup Error")
+                , mmex::getProgramName())
+            , wxOK | wxICON_EXCLAMATION);
 }
 //----------------------------------------------------------------------------
 
@@ -1498,11 +1501,11 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
 
         menu.AppendSeparator();
         wxMenu* viewAccounts(new wxMenu);
-        viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWALL, _("All"))->Check(m_temp_view == VIEW_ACCOUNTS_ALL_STR);
-        viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE, _("Favorites"))->Check(m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR);
-        viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWOPEN, _("Open"))->Check(m_temp_view == VIEW_ACCOUNTS_OPEN_STR);
-        viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED, _("Closed"))->Check(m_temp_view == VIEW_ACCOUNTS_CLOSED_STR);
-        menu.AppendSubMenu(viewAccounts, _("Accounts Visible"));
+        viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWALL, _("&All"))->Check(m_temp_view == VIEW_ACCOUNTS_ALL_STR);
+        viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE, _("&Favorites"))->Check(m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR);
+        viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWOPEN, _("&Open"))->Check(m_temp_view == VIEW_ACCOUNTS_OPEN_STR);
+        viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED, _("&Closed"))->Check(m_temp_view == VIEW_ACCOUNTS_CLOSED_STR);
+        menu.AppendSubMenu(viewAccounts, _("Accounts &Visible"));
 
         PopupMenu(&menu, pt);
         break;
@@ -1685,25 +1688,25 @@ void mmGUIFrame::createMenu()
     wxMenu* menuTools = new wxMenu;
 
     wxMenuItem* menuItemRates = new wxMenuItem(menuTools
-        , MENU_RATES, _("Download &Rates"), _("Download Currency and Stock Rates"));
+        , MENU_RATES, _("Download &Rates"), _("Download currency and stock rates"));
     menuTools->Append(menuItemRates);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemPayee = new wxMenuItem(menuTools
-        , MENU_ORGPAYEE, _("&Payee Manager..."), _("Payee Manager"));
+        , MENU_ORGPAYEE, _("&Payee Manager..."), _("Manage payees"));
     menuTools->Append(menuItemPayee);
 
     wxMenuItem* menuItemCateg = new wxMenuItem(menuTools
-        , MENU_ORGCATEGS, _("&Category Manager..."), _("Category Manager"));
+        , MENU_ORGCATEGS, _("&Category Manager..."), _("Manage categories"));
     menuTools->Append(menuItemCateg);
 
     wxMenuItem* menuItemTags = new wxMenuItem(menuTools
-        , MENU_ORGTAGS, _("&Tag Manager..."), _("Tag Manager"));
+        , MENU_ORGTAGS, _("&Tag Manager..."), _("Manage tags"));
     menuTools->Append(menuItemTags);
 
     wxMenuItem* menuItemCurrency = new wxMenuItem(menuTools, MENU_CURRENCY
-        , _("Curre&ncy Manager..."), _("Currency Manager"));
+        , _("Curre&ncy Manager..."), _("Manage currencies"));
     menuTools->Append(menuItemCurrency);
 
     wxMenuItem* menuItemCategoryRelocation = new wxMenuItem(menuTools
@@ -1776,17 +1779,17 @@ void mmGUIFrame::createMenu()
 
     wxMenu* menuDatabase = new wxMenu;
     wxMenuItem* menuItemConvertDB = new wxMenuItem(menuTools, MENU_CONVERT_ENC_DB
-        , _("Convert Encrypted &DB...")
-        , _("Convert Encrypted DB to Non-Encrypted DB"));
+        , _("&Decrypt Encrypted Database...")
+        , _("Convert encrypted database to unencrypted database"));
     wxMenuItem* menuItemChangeEncryptPassword = new wxMenuItem(menuTools, MENU_CHANGE_ENCRYPT_PASSWORD
         , _("Change Encrypted &Password...")
         , _("Change the password of an encrypted database"));
     wxMenuItem* menuItemVacuumDB = new wxMenuItem(menuTools, MENU_DB_VACUUM
         , _("&Optimize Database...")
-        , _("Optimize database space and performance"));
+        , _("Optimize database for space and performance"));
     wxMenuItem* menuItemCheckDB = new wxMenuItem(menuTools, MENU_DB_DEBUG
         , _("Database Check and De&bug...")
-        , _("Generate database report or fix errors"));
+        , _("Generate database report and fix errors"));
     menuDatabase->Append(menuItemConvertDB);
     menuDatabase->Append(menuItemChangeEncryptPassword);
     menuDatabase->Append(menuItemVacuumDB);
@@ -1805,27 +1808,35 @@ void mmGUIFrame::createMenu()
     //Community Submenu
     wxMenuItem* menuItemWebsite = new wxMenuItem(menuHelp, MENU_WEBSITE
         , _("&Website")
-        , _("Open MMEX website for the latest news, updates etc"));
+        , wxString::Format(_("Visit %s website for the latest news and updates")
+            , mmex::getProgramName()));
     wxMenuItem* menuItemFacebook = new wxMenuItem(menuHelp, MENU_FACEBOOK
-        , _("&Facebook"), _("Visit us on Facebook"));
+        , _("&Facebook"), wxString::Format(_("Visit %s Facebook page")
+            , mmex::getProgramName()));
     wxMenuItem* menuItemCrowdin = new wxMenuItem(menuHelp, MENU_CROWDIN
-        , _("&Crowdin"), _("We use Crowdin to translate MMEX"));
+        , _("&Crowdin"), wxString::Format(_("Help translate %s on Crowdin")
+            , mmex::getProgramName()));
     wxMenuItem* menuItemTwitter = new wxMenuItem(menuHelp, MENU_TWITTER
         , _("&Twitter"), _("Follow us on Twitter"));
     wxMenuItem* menuItemYouTube = new wxMenuItem(menuHelp, MENU_YOUTUBE
-        , _("&YouTube"), _("Watch free video materials about MMEX"));
+        , _("&YouTube"), wxString::Format(_("Watch %s videos on YouTube")
+            , mmex::getProgramName()));
     wxMenuItem* menuItemSlack = new wxMenuItem(menuHelp, MENU_SLACK
-        , _("&Slack"), _("Communicate online with MMEX team from your desktop or mobile device"));
+        , _("&Slack"), wxString::Format(_("Communicate with the %s team online")
+            , mmex::getProgramName()));
     wxMenuItem* menuItemGitHub = new wxMenuItem(menuHelp, MENU_GITHUB
         , _("&GitHub"), _("Access open source code repository and track reported bug statuses"));
     wxMenuItem* menuItemWiki = new wxMenuItem(menuHelp, MENU_WIKI
         , _("W&iki pages"), _("Read and update wiki pages"));
     wxMenuItem* menuItemReportIssues = new wxMenuItem(menuHelp, MENU_REPORTISSUES
         , _("F&orum")
-        , _("Visit the MMEX forum to see existing user comments or report new issues with the software"));
+        , wxString::Format(_("Visit %s forum to read and post comments")
+            , mmex::getProgramName()));
     wxMenuItem* menuItemGooglePlay = new wxMenuItem(menuHelp, MENU_GOOGLEPLAY
-        , _("MMEX for &Android")
-        , _("Get free Android version and run MMEX on your smart phone or tablet"));
+        , wxString::Format(_("%s for &Android")
+            , mmex::getProgramName())
+        , wxString::Format(_("Install %s for Android based smartphones and tablets")
+            , mmex::getProgramName()));
     wxMenuItem* menuItemNotify = new wxMenuItem(menuHelp, MENU_ANNOUNCEMENTMAILING
         , _("&Newsletter")
         , _("Subscribe to e-mail newsletter or view existing announcements"));
@@ -1840,7 +1851,8 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemCommunity = new wxMenuItem(menuHelp, MENU_COMMUNITY
         , _("&Community")
-        , _("Stay in touch with MMEX community"));
+        , wxString::Format(_("Stay in touch with %s community")
+            , mmex::getProgramName()));
 
     wxMenu* menuCommunity = new wxMenu;
     menuCommunity->Append(menuItemFacebook);
@@ -1944,7 +1956,7 @@ void mmGUIFrame::CreateToolBar()
         : mmBitmapBundle(png::NEWS, toolbar_icon_size);
     toolBar_->AddTool(MENU_ANNOUNCEMENTMAILING, _("News"), news_ico, news_array);
 
-    toolBar_->AddTool(MENU_RATES, _("Download Rates"), mmBitmapBundle(png::CURRATES, toolbar_icon_size), _("Download Currency and Stock Rates"));
+    toolBar_->AddTool(MENU_RATES, _("Download Rates"), mmBitmapBundle(png::CURRATES, toolbar_icon_size), _("Download currency and stock rates"));
 
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Toggle Fullscreen\tF11"), mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _("Toggle Fullscreen"));
@@ -2013,7 +2025,8 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             passwordCheckPassed = false;
     }
 
-    const wxString dialogErrorMessageHeading = _("Opening MMEX Database - Error");
+    const wxString dialogErrorMessageHeading = wxString::Format(_("Opening %s Database - Error")
+        , mmex::getProgramName());
 
     // Existing Database
     if (!openingNew
@@ -2045,7 +2058,11 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             //DB backup is handled inside UpgradeDB
             if (!dbUpgrade::UpgradeDB(m_db.get(), fileName))
             {
-                int response = wxMessageBox(_("Have MMEX support provided you a debug/patch file?"), _("MMEX upgrade"), wxYES_NO);
+                int response = wxMessageBox(wxString::Format(_("Have %s support provided a debug/patch file?")
+                        , mmex::getProgramName())
+                    , wxString::Format(_("%s upgrade")
+                        , mmex::getProgramName())
+                    , wxYES_NO);
                 if (response == wxYES)
                 {
                     // upgrade failure turns CorruptRdOnly flag back on, so reopen again in debug mode
@@ -2222,7 +2239,9 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
                     "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
                     "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
                     "Would you like to continue to open this database?")
-                    , _("MMEX Instance Check"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+                    , wxString::Format(_("%s Instance Check")
+                        , mmex::getProgramName())
+                    , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
                 if (response == wxNO)
                     return false;
             }
@@ -2241,12 +2260,13 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
 void mmGUIFrame::OnNew(wxCommandEvent& /*event*/)
 {
     autoRepeatTransactionsTimer_.Stop();
-    wxFileDialog dlg(this,
-        _("Choose database file to create"),
-        wxEmptyString,
-        wxEmptyString,
-        _("MMB Database (*.mmb)|*.mmb"),
-        wxFD_SAVE | wxFD_OVERWRITE_PROMPT
+    wxFileDialog dlg(this
+        , _("Choose database file to create")
+        , wxEmptyString
+        , wxEmptyString
+        , wxString::Format(_("%s Database (*.mmb)")+"|*.mmb")
+            , mmex::getProgramName())
+        , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
     if (dlg.ShowModal() != wxID_OK)
@@ -2267,7 +2287,7 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
     autoRepeatTransactionsTimer_.Stop();
     wxString fileName = wxFileSelector(_("Choose database file to open")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , _("MMB Database (*.mmb)|*.mmb|Encrypted MMB Database (*.emb)|*.emb")
+        , wxString::Format(_("%s Database (*.mmb)"), mmex::getProgramName())+"|*.mmb|"+wxString::Format(_("Encrypted %s Database (*.emb)"), mmex::getProgramName())+"|*.emb")
         , wxFD_FILE_MUST_EXIST | wxFD_OPEN
         , this
     );
@@ -2293,7 +2313,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
 {
     wxString encFileName = wxFileSelector(_("Choose Encrypted database file to open")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , "Encrypted MMB Database (*.emb)|*.emb"
+        , wxString::Format(_("Encrypted %s Database (*.emb)"), mmex::getProgramName())+"|*.emb"
         , wxFD_FILE_MUST_EXIST
         , this
     );
@@ -2309,7 +2329,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
         , _("Choose database file to Save As")
         , wxEmptyString
         , wxEmptyString
-        , _("MMB Database (*.mmb)|*.mmb")
+        , wxString::Format(_("%s Database (*.mmb)"), mmex::getProgramName())+"|*.mmb")
         , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
@@ -2328,14 +2348,17 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
     db.ReKey(wxEmptyString);
     db.Close();
 
-    mmErrorDialogs::MessageError(this, _("Converted DB!"), _("MMEX message"));
+    mmErrorDialogs::MessageError(this, _("Converted database!")
+        , wxString::Format(_("%s message")
+                , mmex::getProgramName()));
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnChangeEncryptPassword(wxCommandEvent& /*event*/)
 {
-    wxString password_change_heading = _("MMEX: Encryption Password Change");
-    wxString password_message = wxString::Format(_("New password for database\n\n%s"), m_filename);
+    wxString password_change_heading = wxString::Format(_("%s: Encryption Password Change")
+            , mmex::getProgramName());
+    wxString password_message = wxString::Format(_("New password for database:")+"\n\n%s"), m_filename);
 
     wxPasswordEntryDialog dlg(this, password_message, password_change_heading);
     if (dlg.ShowModal() == wxID_OK)
@@ -2369,7 +2392,7 @@ void mmGUIFrame::OnChangeEncryptPassword(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnVacuumDB(wxCommandEvent& /*event*/)
 {
     wxMessageDialog msgDlg(this
-        , wxString::Format("%s\n\n%s", _("Make sure you have a backup of DB before optimize it"), _("Do you want to proceed?"))
+        , wxString::Format("%s\n\n%s", _("Backup database before optimization"), _("Do you want to proceed?"))
         , _("DB Optimization"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     if (msgDlg.ShowModal() == wxID_YES)
     {
@@ -2406,7 +2429,9 @@ void mmGUIFrame::OnDebugDB(wxCommandEvent& /*event*/)
         }
         catch (const wxSQLite3Exception& e)
         {
-            wxMessageBox(_("Query error, please contact MMEX support!") + "\n\n" + e.GetMessage(), _("MMEX debug error"), wxOK | wxICON_ERROR);
+            wxMessageBox(_("Query error, please contact MMEX support!") + "\n\n" + e.GetMessage()
+                , _("MMEX debug error")
+                , wxOK | wxICON_ERROR);
             return;
         }
     }
@@ -2449,7 +2474,7 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
         _("Save database file as"),
         wxEmptyString,
         wxEmptyString,
-        _("MMB Database (*.mmb)|*.mmb|Encrypted MMB Database (*.emb)|*.emb"),
+        _("MMEX Database (*.mmb)")+"|*.mmb|"+_("Encrypted MMEX Database (*.emb)")+|*.emb"),
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 

@@ -106,7 +106,8 @@ void mmAppStartDialog::CreateControls()
     itemBoxSizer5->Add(itemButton6, 0, wxGROW | wxALL, 5);
 
     wxButton* itemButton7 = new wxButton(this, wxID_OPEN, _("Open &Existing Database"));
-    mmToolTip(itemButton7, _("Open an already created database file with extension (*.mmb)"));
+    mmToolTip(itemButton7, wxString::Format(_("Open %s database (*.mmb)")
+        , mmex::getProgramName()));
     itemBoxSizer5->Add(itemButton7, 0, wxGROW | wxALL, 5);
 
     wxButton* itemButton8 = new wxButton(this, wxID_SETUP , _("User Interface &Language"));

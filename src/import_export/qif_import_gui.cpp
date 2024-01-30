@@ -873,7 +873,7 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
 
     m_FileNameStr = wxFileSelector(_("Choose QIF data file to Import")
         , wxEmptyString, m_FileNameStr, wxEmptyString
-        , _("QIF Files (*.qif)") + "|*.qif;*.QIF"
+        , _("Quicken Interchange Format (*.qif)") + "|*.qif;*.QIF"
         , wxFD_OPEN | wxFD_CHANGE_DIR | wxFD_FILE_MUST_EXIST, this); //TODO: Remove UI Blinking
 
     if (m_FileNameStr.IsEmpty()) {

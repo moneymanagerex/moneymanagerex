@@ -317,7 +317,7 @@ void mmQIFExportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
     case QIF:
         fileName = wxFileSelector(_("Choose QIF data file to Export")
             , wxEmptyString, fileName, wxEmptyString
-            , _("QIF Files (*.qif)") + "|*.qif;*.QIF"
+            , _("Quicken Interchange Format (*.qif)") + "|*.qif;*.QIF"
             , wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
         if (!fileName.IsEmpty())
             correctEmptyFileExt("qif", fileName);
@@ -325,7 +325,7 @@ void mmQIFExportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
     case JSON:
         fileName = wxFileSelector(_("Choose JSON data file to Export")
             , wxEmptyString, fileName, wxEmptyString
-            , _("JSON Files (*.json)") + "|*.json;*.JSON"
+            , _("JavaScript Object Notation (*.json)") + "|*.json;*.JSON"
             , wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
         if (!fileName.IsEmpty())
             correctEmptyFileExt("json", fileName);
@@ -333,7 +333,7 @@ void mmQIFExportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
     case CSV:
         fileName = wxFileSelector(_("Choose QIF data file to Export")
             , wxEmptyString, fileName, wxEmptyString
-            , _("CSV Files (*.csv)") + "|*.csv;*.CSV"
+            , _("Comma-separated values (*.csv)") + "|*.csv;*.CSV"
             , wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
         if (!fileName.IsEmpty())
             correctEmptyFileExt("csv", fileName);
