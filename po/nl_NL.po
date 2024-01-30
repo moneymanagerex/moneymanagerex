@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-29 18:10\n"
+"PO-Revision-Date: 2024-01-30 21:19\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -4122,48 +4122,48 @@ msgstr ""
 
 #: mmTips.h:44
 msgid "Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."
-msgstr ""
+msgstr "Boodschappen tip: Lees de verkoopfolders. Bekijk de folder van elke winkel en match wat er te koop is met wat er op uw lijst staat, of plan maaltijden rond uitverkoopartikelen. Het is soms kosteneffectiever om meerdere winkels in één week te bezoeken om de beste waarde te krijgen."
 
 #: mmTips.h:46
 msgid "Cut back on subscriptions. Do you really need to subscribe to every streaming service? Are you using a paid service enough to justify the expense, or can you survive with the ad-supported free one? Do you need that monthly book club, or can you head to the library once per month instead?"
-msgstr ""
+msgstr "Bezuinigen op abonnementen. Moet je je echt op elke streamingdienst abonneren? Maakt u voldoende gebruik van een betaalde dienst om de kosten te rechtvaardigen, of kunt u overleven met de door advertenties ondersteunde gratis dienst? Heb je die maandelijkse boekenclub nodig, of kun je in plaats daarvan één keer per maand naar de bibliotheek gaan?"
 
 #: mmTips.h:47
 msgid "Use open source alternatives to proprietary software. Search at https://www.opensourcealternative.to/"
-msgstr ""
+msgstr "Gebruik open source alternatieven voor merksoftware. Zoek op https://www.opensourcealternative.to/"
 
 #: mmTips.h:49
 msgid "Parent tip: If you are asked to be a guarantor for a loan for your college student, first check to see if your child has maxed out federal loan, grant, and scholarship options."
-msgstr ""
+msgstr "Tip voor ouders: Als u wordt gevraagd garant te staan voor een lening voor uw studerende kind, controleer dan eerst of uw kind de maximale mogelijkheden voor overheidsleningen, subsidies en studiebeurzen heeft benut."
 
 #: mmTips.h:51
 #, c-format
 msgid "Get out of debt tip: Pay yourself 10% first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Tip: kom uit de schulden: Betaal uzelf eerst 10%. Zet dit op een moeilijk bereikbare rekening. Zorg ervoor dat het een hele klus is om het geld eruit te krijgen (je moet naar de bank rijden), zodat je het alleen bewust en voor grote uitgaven aftapt."
 
 #: mmTips.h:52
 msgid "Get out of debt tip: Establish an emergency fund."
-msgstr ""
+msgstr "Tip om uit de schulden te geraken: Zorg voor een noodfonds."
 
 #: mmTips.h:53
 msgid "Get out of debt tip: Stop acquiring new debt."
-msgstr ""
+msgstr "Tip om uit de schulden te geraken: Stop met het opbouwen van nieuwe schulden."
 
 #: mmTips.h:54
 msgid "Get out of debt tip: Create a realistic budget for your expenses."
-msgstr ""
+msgstr "Tip om uit de schulden te komen: Maak een realistische begroting voor uw uitgaven."
 
 #: mmTips.h:55
 msgid "Get out of debt tip: Spend less than you earn."
-msgstr ""
+msgstr "Tip om uit de schulden te komen: Geef minder uit dan u verdient."
 
 #: mmTips.h:56
 msgid "Get out of debt tip: Pay more than the minimum."
-msgstr ""
+msgstr "Tip om uit de schulden te komen: Betaal meer dan het minimum aflossingsbedrag."
 
 #: mmTips.h:57
 msgid "Get out of debt tip: If you have a mountain of debt, studies show paying off the smallest debts can give you the confidence to tackle the larger ones."
-msgstr ""
+msgstr "Tip om uit de schulden te komen: Als u een berg schulden heeft, tonen onderzoeken aan dat het afbetalen van de kleinste schulden u het vertrouwen kan geven om de grotere aan te pakken."
 
 #: mmTips.h:58
 msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
@@ -4191,7 +4191,7 @@ msgstr "Voordat u begint met beleggen, moet u uw cashflow kennen (een budget heb
 
 #: mmTips.h:69
 msgid "Before you start investing, pay off consumer debt — especially credit cards."
-msgstr ""
+msgstr "Voordat u begint met beleggen, moet u de consumentenschulden afbetalen, vooral creditcards."
 
 #: mmTips.h:70
 msgid "Before you start investing, make net worth your primary tracking metric."
@@ -5025,7 +5025,7 @@ msgstr "&Algemeen Rapport &Beheer..."
 
 #: mmframe.cpp:1761
 msgid "C&ustom Field Manager..."
-msgstr ""
+msgstr "Beheer aangepast velden..."
 
 #: mmframe.cpp:1767
 msgid "Refresh &WebApp..."
@@ -6192,7 +6192,8 @@ msgstr "Stel de standaard database valuta in met 'Valuta Manager'"
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Manager | Edit'"
-msgstr ""
+msgstr "Indeling afgeleid van landinstelling.\n"
+"Laat dit veld leeg om het formaat handmatig in te stellen via 'Valuta beheer| Bewerking'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6711,7 +6712,7 @@ msgstr "Gereedschappen → Samenvoegen → Begunstigden"
 
 #: payeedialog.cpp:746
 msgid "Payee Manager: Delete Error"
-msgstr ""
+msgstr "Ontvangerbeheer: Fout bij verwijderen"
 
 #: payeedialog.cpp:751
 msgid "Deleted transactions exist which use this payee."
@@ -7695,7 +7696,7 @@ msgstr "Bewerk label"
 
 #: tagdialog.cpp:254
 msgid "Tag Manager: Editing Error"
-msgstr ""
+msgstr "Label beheer: Fout bij bewerken"
 
 #: tagdialog.cpp:295
 #, c-format
@@ -7797,7 +7798,7 @@ msgstr "Vul transactienummer in"
 
 #: transdialog.cpp:565 usertransactionpanel.cpp:185
 msgid "Manage transaction attachments"
-msgstr ""
+msgstr "Beheer transactie bijlagen"
 
 #: transdialog.cpp:768
 msgid "This transaction will exceed your account limit.\n\n"
