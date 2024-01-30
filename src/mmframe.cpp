@@ -2449,7 +2449,7 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
         _("Save database file as"),
         wxEmptyString,
         wxEmptyString,
-        _("MMEX Database (*.mmb)")+"|*.mmb|"+_("Encrypted MMEX Database (*.emb)")+"|*.emb"),
+        _("MMEX Database (*.mmb)")+"|*.mmb|"+_("Encrypted MMEX Database (*.emb)")+"|*.emb",
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
