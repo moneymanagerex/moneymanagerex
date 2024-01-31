@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-31 18:24\n"
+"PO-Revision-Date: 2024-01-31 19:33\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -6725,7 +6725,7 @@ msgstr "Definiraj kategoriju"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
-msgstr ""
+msgstr "&Upravljač privitaka"
 
 #: payeedialog.cpp:895
 msgid "Relocate Payee"
@@ -7792,7 +7792,7 @@ msgstr "Popuni transakciju br."
 
 #: transdialog.cpp:565 usertransactionpanel.cpp:185
 msgid "Manage transaction attachments"
-msgstr ""
+msgstr "Upravljaj privitcima transakcije"
 
 #: transdialog.cpp:768
 msgid "This transaction will exceed your account limit.\n\n"
@@ -8036,7 +8036,7 @@ msgstr "Verzija: %s"
 #: util.cpp:1446
 #, c-format
 msgid "Built on: %1$s %2$s"
-msgstr ""
+msgstr "Izgradnja: %1$s %2$s"
 
 #: util.cpp:1447
 #, c-format
@@ -8077,7 +8077,7 @@ msgstr "Jezik korisničkog sučelja: %s"
 
 #: util.cpp:1749
 msgid "The complete list of closed issues is available at this link"
-msgstr ""
+msgstr "Potpuni popis zatvorenih problema dostupan je putem ove poveznice"
 
 #: util.cpp:1946
 msgid "Copy all text to clipboard"
@@ -8203,7 +8203,7 @@ msgstr "Transakcija nije preuzeta:"
 
 #: webapp.cpp:599
 msgid "Please fix attachments folder or delete attachments from WebApp"
-msgstr ""
+msgstr "Popravi mapu privitaka ili izbriši privitke iz WebApp-a"
 
 #: webapp.cpp:600
 msgid "Attachment folder error"
@@ -8284,7 +8284,7 @@ msgstr "Nevaljano ime računa"
 
 #: wizard_newaccount.cpp:94
 msgid "An account with this name already exists"
-msgstr ""
+msgstr "Račun s ovim imenom već postoji"
 
 #: wizard_newaccount.cpp:108
 msgid "Name of the Account"
