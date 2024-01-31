@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-31 15:32\n"
+"PO-Revision-Date: 2024-01-31 16:53\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -733,17 +733,17 @@ msgstr "Mapa priloga nije pronađena"
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %s | %i"
-msgstr ""
+msgstr "Upravljač privitaka | %s | %i"
 
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr ""
+msgstr "Upravljač privitaka | %1$s | %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr ""
+msgstr "Upravljač privitaka | Novi %s"
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
@@ -759,7 +759,7 @@ msgstr "Unesi opis za novi prilog:"
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
-msgstr ""
+msgstr "Upravljač privitaka: Dodaj privitak"
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
@@ -767,7 +767,7 @@ msgstr "Unesi nov opis za prilog:"
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
-msgstr ""
+msgstr "Upravljač privitaka: Uredi privitak"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
@@ -1685,7 +1685,7 @@ msgstr "Znak dvotočke (:) se koristi za odvajanje kategorija i potkategorija i 
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
-msgstr ""
+msgstr "Upravljač kategorija: Neispravno ime"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
@@ -1701,7 +1701,7 @@ msgstr ""
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category Manager: Adding Error"
-msgstr ""
+msgstr "Upravljač kategorija: Dodavanje greške"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
@@ -1755,7 +1755,7 @@ msgstr "Alati → Sjedini → Kategorije"
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
-msgstr ""
+msgstr "Upravljač kategorija: Izbriši grešku"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1784,7 +1784,7 @@ msgstr "Uredi kategoriju"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
-msgstr ""
+msgstr "Upravljač kategorija: Uređivanje greške"
 
 #: categdialog.cpp:682 mmframe.cpp:3731
 msgid "Merge categories completed"
@@ -1826,7 +1826,7 @@ msgstr "Izbriši postavke"
 
 #: categdialog.h:68 mmframe.cpp:1698 mmframe.cpp:1924
 msgid "Category Manager"
-msgstr ""
+msgstr "Upravljač kategorija"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -2588,11 +2588,11 @@ msgstr "Godina"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
-msgstr ""
+msgstr "Stupac"
 
 #: filtertransdialog.cpp:55
 msgid "Line"
-msgstr ""
+msgstr "Linija"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
@@ -2608,7 +2608,7 @@ msgstr "Krug"
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
-msgstr ""
+msgstr "Mreža"
 
 #: filtertransdialog.cpp:57
 msgid "Bar Line"
@@ -2695,7 +2695,7 @@ msgstr "Odredi kako grupirati izvještaj"
 #: filtertransdialog.cpp:722 filtertransdialog.cpp:1072
 #: filtertransdialog.cpp:1901
 msgid "Chart"
-msgstr ""
+msgstr "Dijagram"
 
 #: filtertransdialog.cpp:731
 msgid "Specify which chart will be included in the report"
@@ -4956,11 +4956,11 @@ msgstr ""
 
 #: mmframe.cpp:1702
 msgid "&Tag Manager..."
-msgstr ""
+msgstr "&Upravljač oznaka …"
 
 #: mmframe.cpp:1702 mmframe.cpp:1925 tagdialog.h:45
 msgid "Tag Manager"
-msgstr ""
+msgstr "Upravljač oznaka"
 
 #: mmframe.cpp:1706
 msgid "Curre&ncy Manager..."
@@ -7658,7 +7658,7 @@ msgstr ""
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Tag Manager: Invalid Name"
-msgstr ""
+msgstr "Upravljač oznaka: Neispravno ime"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
@@ -7682,7 +7682,7 @@ msgstr ""
 
 #: tagdialog.cpp:218
 msgid "Tag Manager: Adding Error"
-msgstr ""
+msgstr "Upravljač oznaka: Dodavanje greške"
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
@@ -7690,7 +7690,7 @@ msgstr "Uredi oznaku"
 
 #: tagdialog.cpp:254
 msgid "Tag Manager: Editing Error"
-msgstr ""
+msgstr "Upravljač oznaka: Uređivanje greške"
 
 #: tagdialog.cpp:295
 #, c-format
@@ -7699,7 +7699,7 @@ msgstr ""
 
 #: tagdialog.cpp:295
 msgid "Tag Manager: Delete Error"
-msgstr ""
+msgstr "Upravljač oznaka: Izbriši grešku"
 
 #: tagdialog.cpp:298
 #, c-format
