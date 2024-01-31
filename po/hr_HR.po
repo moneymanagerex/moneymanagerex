@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-31 16:53\n"
+"PO-Revision-Date: 2024-01-31 18:24\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -1531,7 +1531,7 @@ msgstr ""
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "Planer budžeta za %s"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -4302,11 +4302,11 @@ msgstr "Obnovi sve transakcije u trenutačnom prikazu …"
 #: mmchecking_list.cpp:638
 #, c-format
 msgid "&Find all transactions with %s '%s'"
-msgstr ""
+msgstr "&Pronađi sve transakcije s %s '%s'"
 
 #: mmchecking_list.cpp:641
 msgid "Copy Text to Clipboard"
-msgstr ""
+msgstr "Kopirati tekst u međuspremnik"
 
 #: mmchecking_list.cpp:648
 msgid "&Delete selected transaction..."
@@ -4430,7 +4430,7 @@ msgstr "\n\n"
 
 #: mmchecking_list.cpp:1460
 msgid "Closed Account Check"
-msgstr ""
+msgstr "Provjera zatvorenog računa"
 
 #: mmchecking_list.cpp:1656
 #, c-format
@@ -4936,7 +4936,7 @@ msgstr "Izbriši račun iz baze podataka"
 
 #: mmframe.cpp:1688
 msgid "Download &Rates"
-msgstr ""
+msgstr "Preuzmi &tečajeve"
 
 #: mmframe.cpp:1688 mmframe.cpp:1947
 msgid "Download Currency and Stock Rates"
@@ -4944,15 +4944,15 @@ msgstr "Preuzmi tečajeve valuta i dionica"
 
 #: mmframe.cpp:1694
 msgid "&Payee Manager..."
-msgstr ""
+msgstr "&Upravljač primalaca …"
 
 #: mmframe.cpp:1694 mmframe.cpp:1923 payeedialog.cpp:508
 msgid "Payee Manager"
-msgstr ""
+msgstr "Upravljač primalaca"
 
 #: mmframe.cpp:1698
 msgid "&Category Manager..."
-msgstr ""
+msgstr "Upravljač &kategorija …"
 
 #: mmframe.cpp:1702
 msgid "&Tag Manager..."
@@ -4964,7 +4964,7 @@ msgstr "Upravljač oznaka"
 
 #: mmframe.cpp:1706
 msgid "Curre&ncy Manager..."
-msgstr ""
+msgstr "Upravljač &valuta..."
 
 #: mmframe.cpp:1710
 msgid "&Categories..."
@@ -5000,7 +5000,7 @@ msgstr "Sjedini kategorije, primaoce i oznake"
 
 #: mmframe.cpp:1731
 msgid "&Budget Planner..."
-msgstr ""
+msgstr "Planer &budžeta …"
 
 #: mmframe.cpp:1735
 msgid "&Scheduled Transactions"
@@ -5008,7 +5008,7 @@ msgstr "&Terminirane transakcije"
 
 #: mmframe.cpp:1735
 msgid "Bills and Deposits"
-msgstr ""
+msgstr "Računi i uplate"
 
 #: mmframe.cpp:1739
 msgid "&Assets"
@@ -5028,11 +5028,11 @@ msgstr "&Filtar za izvještaje o transakcijama …"
 
 #: mmframe.cpp:1757
 msgid "&General Report Manager..."
-msgstr ""
+msgstr "&Opći upravljač izvještaja …"
 
 #: mmframe.cpp:1761
 msgid "C&ustom Field Manager..."
-msgstr ""
+msgstr "&Upravljač prilagođenih polja …"
 
 #: mmframe.cpp:1767
 msgid "Refresh &WebApp..."
@@ -5076,7 +5076,7 @@ msgstr "Optimiraj prostor baze podataka i njen rad"
 
 #: mmframe.cpp:1788
 msgid "Database Check and De&bug..."
-msgstr ""
+msgstr "Provjera baze podataka i ispravljanje grešaka …"
 
 #: mmframe.cpp:1789
 msgid "Generate database report or fix errors"
@@ -5292,7 +5292,7 @@ msgstr "Novosti"
 
 #: mmframe.cpp:1947
 msgid "Download Rates"
-msgstr ""
+msgstr "Preuzmi tečajeve"
 
 #: mmframe.cpp:1950
 msgid "Toggle Fullscreen\tF11"
@@ -5366,7 +5366,7 @@ msgstr "Odaberi datoteku baze podataka, koju želiš stvoriti"
 
 #: mmframe.cpp:2248 mmframe.cpp:2312
 msgid "MMB Database (*.mmb)|*.mmb"
-msgstr ""
+msgstr "MMB baza podataka (*.mmb)|*.mmb"
 
 #: mmframe.cpp:2268
 msgid "Choose database file to open"
@@ -5374,7 +5374,7 @@ msgstr "Odaberi datoteku baze podataka, koju želiš otvoriti"
 
 #: mmframe.cpp:2270 mmframe.cpp:2452
 msgid "MMB Database (*.mmb)|*.mmb|Encrypted MMB Database (*.emb)|*.emb"
-msgstr ""
+msgstr "MMB baza podataka (*.mmb)|*.mmb|Šifrirana MMB baza podataka (*.emb)|*.emb"
 
 #: mmframe.cpp:2294
 msgid "Choose Encrypted database file to open"
@@ -5417,7 +5417,7 @@ msgstr "Potvrdi novu lozinku"
 
 #: mmframe.cpp:2357
 msgid "Password change completed"
-msgstr ""
+msgstr "Promjena lozinke je završena"
 
 #: mmframe.cpp:2361
 msgid "Confirm password failed."
@@ -5452,7 +5452,7 @@ msgstr ""
 
 #: mmframe.cpp:2430
 msgid "Database Debug"
-msgstr ""
+msgstr "Ispravljanje grešaka baze podataka"
 
 #: mmframe.cpp:2449 mmframe.cpp:2470
 msgid "Save database file as"
@@ -5558,16 +5558,16 @@ msgstr ""
 
 #: mmframe.cpp:3558
 msgid "Select account"
-msgstr ""
+msgstr "Odaberi račun"
 
 #: mmframe.cpp:3558 mmframe.cpp:3581
 msgid "Change Account Type"
-msgstr ""
+msgstr "Promijeni vrstu računa"
 
 #: mmframe.cpp:3580
 #, c-format
 msgid "Select new account type for %s"
-msgstr ""
+msgstr "Odaberi novu vrstu računa za %s"
 
 #: mmframe.cpp:3746 payeedialog.cpp:833
 msgid "Merge payees completed"
@@ -5579,11 +5579,11 @@ msgstr "Rezultat sjedinjavanja primalaca"
 
 #: mmframe.cpp:3762
 msgid "Merge tags completed"
-msgstr ""
+msgstr "Sjedinjavanje oznaka dovršeno"
 
 #: mmframe.cpp:3766
 msgid "Merge tags result"
-msgstr ""
+msgstr "Rezultat sjedinjavanja oznaka"
 
 #: mmframe.cpp:3842
 #, c-format
@@ -6235,7 +6235,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
-msgstr ""
+msgstr "Zvuk za transakcije"
 
 #: optionsettingsgeneral.cpp:237
 msgid "Select whether to use sounds when entering transactions"
@@ -6252,11 +6252,11 @@ msgstr "Primjer vrijednosti valute: %s"
 
 #: optionsettingsgeneral.cpp:351
 msgid "Bad locale name"
-msgstr ""
+msgstr "Neispravno ime jezičnog područja"
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr ""
+msgstr "Zadnjih X dana"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -7666,11 +7666,11 @@ msgstr ""
 
 #: tagdialog.cpp:186
 msgid "Tag names may not contain the space (' ') character"
-msgstr ""
+msgstr "Imena oznaka ne smiju sadržavati znak razmaka (' ')"
 
 #: tagdialog.cpp:206
 msgid "Enter the name for the new tag:"
-msgstr ""
+msgstr "Unesi ime za novu oznaku:"
 
 #: tagdialog.cpp:207 tagdialog.cpp:210
 msgid "Add Tag"
@@ -7678,7 +7678,7 @@ msgstr "Dodaj oznaku"
 
 #: tagdialog.cpp:218 tagdialog.cpp:253
 msgid "A tag with this name already exists"
-msgstr ""
+msgstr "Oznaka s ovim imenom već postoji"
 
 #: tagdialog.cpp:218
 msgid "Tag Manager: Adding Error"
@@ -7695,7 +7695,7 @@ msgstr "Upravljač oznaka: Uređivanje greške"
 #: tagdialog.cpp:295
 #, c-format
 msgid "Tag '%s' in use"
-msgstr ""
+msgstr "Oznaka „%s” se koristi"
 
 #: tagdialog.cpp:295
 msgid "Tag Manager: Delete Error"
@@ -8073,7 +8073,7 @@ msgstr "Jezik sustava: %s"
 #: util.cpp:1512
 #, c-format
 msgid "User Interface Language: %s"
-msgstr ""
+msgstr "Jezik korisničkog sučelja: %s"
 
 #: util.cpp:1749
 msgid "The complete list of closed issues is available at this link"
