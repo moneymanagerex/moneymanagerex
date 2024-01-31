@@ -186,7 +186,7 @@ table {
 
                 if (chart > -1)
                 {
-                    double value_chart = std::accumulate(total_in_base_curr.begin(), total_in_base_curr.end(), 0,
+                    double value_chart = std::accumulate(total_in_base_curr.begin(), total_in_base_curr.end(), (double)0,
                                                          [](const double previous, decltype(*total_in_base_curr.begin()) p) { return previous + p.second; });
                     values_chart[lastSortLabel] += value_chart;
                 }
@@ -488,13 +488,13 @@ table {
                 {
                     auto statsMin = std::min_element
                     (values_chart.begin(), values_chart.end(),
-                        [](const std::pair<wxString, int>& p1, const std::pair<wxString, int>& p2) {
+                    [](const std::pair<wxString, double>& p1, const std::pair<wxString, double>& p2) {
                             return p1.second < p2.second;
                         }
                     );
                     auto statsMax = std::max_element
                     (values_chart.begin(), values_chart.end(),
-                         [](const std::pair<wxString, int>& p1, const std::pair<wxString, int>& p2) {
+                    [](const std::pair<wxString, double>& p1, const std::pair<wxString, double>& p2) {
                             return p1.second < p2.second;
                         }
                     );
