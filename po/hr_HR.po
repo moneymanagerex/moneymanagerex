@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-24 14:28\n"
+"PO-Revision-Date: 2024-01-31 15:32\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -2576,15 +2576,15 @@ msgstr "Sve osim neusklađeno"
 
 #: filtertransdialog.cpp:53
 msgid "Day"
-msgstr ""
+msgstr "Dan"
 
 #: filtertransdialog.cpp:53
 msgid "Month"
-msgstr ""
+msgstr "Mjesec"
 
 #: filtertransdialog.cpp:53
 msgid "Year"
-msgstr ""
+msgstr "Godina"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
@@ -2600,11 +2600,11 @@ msgstr ""
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
-msgstr ""
+msgstr "Torta"
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
-msgstr ""
+msgstr "Krug"
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
