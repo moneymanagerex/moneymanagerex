@@ -2245,7 +2245,7 @@ void mmGUIFrame::OnNew(wxCommandEvent& /*event*/)
         _("Choose database file to create"),
         wxEmptyString,
         wxEmptyString,
-        _("MMEX Database")+" (*.mmb)|*.mmb"),
+        _("MMEX Database")+" (*.mmb)|*.mmb",
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
