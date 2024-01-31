@@ -697,6 +697,7 @@ void TransactionListCtrl::findInAllTransactions(wxCommandEvent& event) {
         if (currentId.IsOk() && currentId == allTransactionsId)
         {
             m_cp->m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, -1, false, rightClickFilter_));
+            m_cp->m_currentView = mmCheckingPanel::MENU_VIEW_FILTER_DIALOG;
             m_cp->initFilterSettings();
             refreshVisualList();
         }
