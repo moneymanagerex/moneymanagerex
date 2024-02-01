@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-01 21:34\n"
+"PO-Revision-Date: 2024-02-01 23:16\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -2631,7 +2631,7 @@ msgstr "Диаграмма с областями с накоплением"
 
 #: filtertransdialog.cpp:487
 msgid "Last Unsaved Filter"
-msgstr ""
+msgstr "Последний несохраненный фильтр"
 
 #: filtertransdialog.cpp:534 transactionsupdatedialog.cpp:122
 msgid "Specify"
@@ -4996,7 +4996,7 @@ msgstr ""
 
 #: mmframe.cpp:1707 mmframe.cpp:1930 tagdialog.h:45
 msgid "Tag Manager"
-msgstr ""
+msgstr "Менеджер тегов"
 
 #: mmframe.cpp:1711
 msgid "Curre&ncy Manager..."
@@ -5328,7 +5328,7 @@ msgstr "Новости"
 
 #: mmframe.cpp:1952
 msgid "Download Rates"
-msgstr ""
+msgstr "Загрузить курсы"
 
 #: mmframe.cpp:1955
 msgid "Toggle Fullscreen\tF11"
@@ -5405,7 +5405,7 @@ msgstr "Выберите файл базы данных для создания"
 
 #: mmframe.cpp:2253 mmframe.cpp:2275 mmframe.cpp:2317 mmframe.cpp:2457
 msgid "MMEX Database"
-msgstr ""
+msgstr "База данных MMEX"
 
 #: mmframe.cpp:2273
 msgid "Choose database file to open"
@@ -6755,7 +6755,7 @@ msgstr "Инструменты → Слияние → Получатели"
 
 #: payeedialog.cpp:746
 msgid "Payee Manager: Delete Error"
-msgstr ""
+msgstr "Менеджер получателя: Ошибка удаления"
 
 #: payeedialog.cpp:751
 msgid "Deleted transactions exist which use this payee."
@@ -7265,19 +7265,19 @@ msgstr "Все транзакции, за исключением перевод�
 
 #: reports/transactions.cpp:481
 msgid "Statistics"
-msgstr ""
+msgstr "Статистика"
 
 #: reports/transactions.cpp:504
 msgid "Minimum"
-msgstr ""
+msgstr "Минимум"
 
 #: reports/transactions.cpp:506
 msgid "Maximum"
-msgstr ""
+msgstr "Максимум"
 
 #: reports/transactions.cpp:508
 msgid "Average"
-msgstr ""
+msgstr "Средний"
 
 #: sharetransactiondialog.cpp:61 sharetransactiondialog.cpp:68
 msgid "Add Share Transaction"
@@ -7333,7 +7333,7 @@ msgstr "Введите лот которому этот пакет акций п
 
 #: sharetransactiondialog.cpp:270 stockdialog.cpp:251
 msgid "Manage stock attachments"
-msgstr ""
+msgstr "Управление вложениями активов"
 
 #: sharetransactiondialog.cpp:275 stockdialog.cpp:253
 msgid "Display the web page for the specified Stock symbol"
@@ -7725,7 +7725,7 @@ msgstr "Имена тегов не могут быть символами '&' и
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Tag Manager: Invalid Name"
-msgstr ""
+msgstr "Менеджер тегов: Неверное имя"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
@@ -7749,7 +7749,7 @@ msgstr "Тег с таким именем уже существует"
 
 #: tagdialog.cpp:218
 msgid "Tag Manager: Adding Error"
-msgstr ""
+msgstr "Менеджер категорий: Ошибка добавления"
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
@@ -7757,7 +7757,7 @@ msgstr "Изменить тег"
 
 #: tagdialog.cpp:254
 msgid "Tag Manager: Editing Error"
-msgstr ""
+msgstr "Менеджер тегов: Ошибка добавления"
 
 #: tagdialog.cpp:295
 #, c-format
@@ -7766,7 +7766,7 @@ msgstr "Тег '%s' используется"
 
 #: tagdialog.cpp:295
 msgid "Tag Manager: Delete Error"
-msgstr ""
+msgstr "Менеджер тегов: Ошибка удаления"
 
 #: tagdialog.cpp:298
 #, c-format
@@ -7859,7 +7859,7 @@ msgstr "Присвоить №"
 
 #: transdialog.cpp:565 usertransactionpanel.cpp:185
 msgid "Manage transaction attachments"
-msgstr ""
+msgstr "Управление вложениями транзакций"
 
 #: transdialog.cpp:768
 msgid "This transaction will exceed your account limit.\n\n"
