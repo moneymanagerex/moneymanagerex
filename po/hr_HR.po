@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-02-01 17:30\n"
+"PO-Revision-Date: 2024-02-01 18:34\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -371,7 +371,7 @@ msgstr "&Forumi podrške"
 
 #: appstartdialog.cpp:127
 msgid "Visit the Support Forums"
-msgstr ""
+msgstr "Posjeti forume podrške"
 
 #: appstartdialog.cpp:133 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -2165,7 +2165,7 @@ msgstr "Svojstva"
 
 #: customfieldlistdialog.cpp:66 mmframe.cpp:1761
 msgid "Custom Field Manager"
-msgstr ""
+msgstr "Upravljač prilagođenih polja"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2672,7 +2672,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:665 payeedialog.cpp:141
 msgid "Use regex: to match using regular expressions."
-msgstr ""
+msgstr "Koristi regex: za poklapanje pomoću regularnih izraza."
 
 #: filtertransdialog.cpp:687
 msgid "Presentation Options"
@@ -2751,7 +2751,7 @@ msgstr "Želiš li nastaviti?"
 
 #: filtertransdialog.cpp:1237 mmframe.cpp:1259
 msgid "Settings item deletion"
-msgstr ""
+msgstr "Brisanje elementa postavki"
 
 #: filtertransdialog.cpp:1568
 msgid "Filtering Details: "
@@ -2986,7 +2986,7 @@ msgstr "Novi izvještaj %s"
 
 #: general_report_manager.cpp:1017
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "Izvještaj s ovim imenom već postoji"
 
 #: general_report_manager.cpp:1017 general_report_manager.cpp:1024
 msgid "New Report"
@@ -3008,7 +3008,7 @@ msgstr "JSON metapodaci u temi „%s” se ne mogu obraditi i nisu ispravno kons
 #: images_list.cpp:413
 #, c-format
 msgid "File '%1$s' missing or invalid in chosen theme '%2$s'"
-msgstr ""
+msgstr "Datoteka „%1$s” nedostaje ili je neispravna u odabranoj temi „%2$s”"
 
 #: images_list.cpp:424
 #, c-format
@@ -3863,7 +3863,7 @@ msgstr ""
 #: maincurrencydialog.cpp:447
 #, c-format
 msgid "Currency History Options: %s"
-msgstr ""
+msgstr "Opcije za povijest valuta: %s"
 
 #: maincurrencydialog.cpp:503
 msgid "Unable to update history currency rates. Please update them manually!"
@@ -4012,7 +4012,7 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:937
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
-msgstr ""
+msgstr "Standardni operator između uzastopnih oznaka je AND. Koristi znak „|” za mijenjanje operatora u OR."
 
 #: mmSimpleDialogs.cpp:1538
 #, c-format
@@ -4635,7 +4635,7 @@ msgstr "Dionički računi"
 
 #: mmframe.cpp:782 mmframe.cpp:1731 mmframe.cpp:2820
 msgid "Budget Planner"
-msgstr ""
+msgstr "Planer budžeta"
 
 #: mmframe.cpp:787 mmframe.cpp:1318 mmframe.cpp:1335 mmframe.cpp:2805
 msgid "Transaction Report"
@@ -4744,7 +4744,7 @@ msgstr "&Otvori web stranicu računa"
 
 #: mmframe.cpp:1457 mmframe.cpp:1477
 msgid "&Attachment Manager..."
-msgstr ""
+msgstr "&Upravljač privitaka …"
 
 #: mmframe.cpp:1472 mmframe.cpp:1672
 msgid "&Change Account Type..."
@@ -5554,7 +5554,8 @@ msgstr "Odaberi račun koji želiš izbrisati"
 #, c-format
 msgid "Are you sure you want to delete\n"
 "%1$s account: %2$s?"
-msgstr ""
+msgstr "Stvarno želiš izbrisati\n"
+"račun %1$s: %2$s?"
 
 #: mmframe.cpp:3558
 msgid "Select account"
@@ -5993,7 +5994,9 @@ msgstr "Predložak je prazan"
 msgid "The SQL script:\n"
 "%s\n"
 "will modify database! Aborted!"
-msgstr ""
+msgstr "SQL skripta:\n"
+"%s \n"
+"će promijeniti bazu podataka! Postupak se prekida!"
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
@@ -6276,7 +6279,7 @@ msgstr "Postavi detaljiziranost cijena dionica"
 
 #: optionsettingsmisc.cpp:94
 msgid "Refresh at Startup"
-msgstr ""
+msgstr "Aktualiziraj prilikom pokretanja"
 
 #: optionsettingsmisc.cpp:100
 msgid "New Transaction Dialog Settings"
@@ -6521,7 +6524,7 @@ msgstr "Omogućuje mijenjanje „prvog dana” u mjesecu (obično 1.) za izraču
 
 #: optionsettingsview.cpp:169
 msgid "Start day of month for reporting:"
-msgstr ""
+msgstr "Početni dan u mjesecu za izvještavanje:"
 
 #: optionsettingsview.cpp:173
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
@@ -6705,7 +6708,7 @@ msgstr "Alati → Sjedini → Primaoci"
 
 #: payeedialog.cpp:746
 msgid "Payee Manager: Delete Error"
-msgstr ""
+msgstr "Upravljač primalaca: Izbriši grešku"
 
 #: payeedialog.cpp:751
 msgid "Deleted transactions exist which use this payee."
@@ -6763,7 +6766,7 @@ msgstr "Potvrdi:"
 
 #: relocatecategorydialog.cpp:158
 msgid "Merge categories confirmation"
-msgstr ""
+msgstr "Potvrda sjedinjavanja kategorija"
 
 #: relocatecategorydialog.cpp:255 relocatepayeedialog.cpp:208
 #: relocatetagdialog.cpp:202
@@ -6807,11 +6810,11 @@ msgstr "Potvrda sjedinjavanja primaoca"
 
 #: relocatetagdialog.cpp:101
 msgid "Delete source tag after merge"
-msgstr ""
+msgstr "Izbriši izvornu oznaku nakon sjedinjavanja"
 
 #: relocatetagdialog.cpp:158
 msgid "Merge tags confirmation"
-msgstr ""
+msgstr "Potvrda sjedinjavanja oznaka"
 
 #: reports/budget.cpp:90
 #, c-format
@@ -7063,11 +7066,11 @@ msgstr "Prethodni mjesec"
 
 #: reports/mmDateRange.cpp:110
 msgid "1 Month Ago to Date"
-msgstr ""
+msgstr "1 mjesec do danas"
 
 #: reports/mmDateRange.cpp:120
 msgid "3 Months Ago to Date"
-msgstr ""
+msgstr "3 mjeseca do danas"
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
@@ -7107,7 +7110,7 @@ msgstr "Proizvoljno"
 
 #: reports/mmDateRange.cpp:274
 msgid "1 Year Ago to Date"
-msgstr ""
+msgstr "1 godina do danas"
 
 #: reports/mmDateRange.cpp:284 reports/mmDateRange.cpp:296
 #, c-format
@@ -7662,7 +7665,7 @@ msgstr "Upravljač oznaka: Neispravno ime"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
-msgstr ""
+msgstr "Ime sadrži znak odvajanja."
 
 #: tagdialog.cpp:186
 msgid "Tag names may not contain the space (' ') character"
@@ -7704,7 +7707,7 @@ msgstr "Upravljač oznaka: Izbriši grešku"
 #: tagdialog.cpp:298
 #, c-format
 msgid "Deleted transactions exist which use tag '%s'."
-msgstr ""
+msgstr "Postoje izbrisane transakcije koje koriste oznaku „%s”."
 
 #: tagdialog.cpp:299
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
@@ -8367,7 +8370,10 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
+msgstr "Odredi osnovnu (ili standardnu) valutu koja će se koristiti za\n"
+"bazu podataka. Osnovna valuta se kasnije može promijeniti\n"
+"u opcijama. Novi računi će standardno koristiti ovu valutu. \n"
+"Valuta se može promijeniti prilikom uređivanja detalja računa."
 
 #: wizard_newdb.cpp:124
 msgid "(Optional) Specify a title or your name."
