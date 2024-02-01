@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-24 14:28\n"
+"POT-Creation-Date: 2024-02-02 00:32+0300\n"
+"PO-Revision-Date: 2024-02-01 21:35\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr ""
 msgid "License agreement"
 msgstr ""
 
-#: aboutdialog.cpp:181 mmframe.cpp:1956
+#: aboutdialog.cpp:181 mmframe.cpp:1961
 msgid "About"
 msgstr ""
 
@@ -59,9 +59,9 @@ msgstr ""
 #: assetdialog.cpp:283 attachmentdialog.cpp:151 billsdepositsdialog.cpp:645
 #: budgetentrydialog.cpp:153 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
-#: customfieldeditdialog.cpp:194 filtertransdialog.cpp:777
+#: customfieldeditdialog.cpp:194 filtertransdialog.cpp:790
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:366
-#: mmSimpleDialogs.cpp:865 optiondialog.cpp:160 payeedialog.cpp:158
+#: mmSimpleDialogs.cpp:867 optiondialog.cpp:160 payeedialog.cpp:158
 #: payeedialog.cpp:594 sharetransactiondialog.cpp:321
 #: splittransactionsdialog.cpp:103 splittransactionsdialog.cpp:284
 #: tagdialog.cpp:142 transactionsupdatedialog.cpp:266 transdialog.cpp:594
@@ -69,7 +69,7 @@ msgstr ""
 msgid "&OK "
 msgstr ""
 
-#: accountdialog.cpp:95 mmframe.cpp:1669
+#: accountdialog.cpp:95 mmframe.cpp:1674
 msgid "Edit Account"
 msgstr "கணக்கைத் திருத்து"
 
@@ -138,7 +138,7 @@ msgstr "அடிக்கடி பயன்படும் கணக்கா 
 #: accountdialog.cpp:181 assetdialog.cpp:231 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:623 billsdepositspanel.cpp:146
 #: budgetentrydialog.cpp:144 budgetingpanel.cpp:296 filtertrans.cpp:198
-#: filtertransdialog.cpp:655 filtertransdialog.cpp:1844
+#: filtertransdialog.cpp:668 filtertransdialog.cpp:1857
 #: import_export/qif_export.cpp:635 import_export/qif_import_gui.cpp:93
 #: import_export/univcsvdialog.cpp:111 mmchecking_list.cpp:308
 #: payeedialog.cpp:115 payeedialog.cpp:453 reports/transactions.cpp:214
@@ -314,7 +314,7 @@ msgstr ""
 msgid "Scheduled transactions for this account are scheduled before this date."
 msgstr ""
 
-#: accountdialog.h:41 mmframe.cpp:1666 mmframe.cpp:1918
+#: accountdialog.h:41 mmframe.cpp:1671 mmframe.cpp:1923
 #: wizard_newaccount.cpp:87 wizard_newaccount.cpp:94 wizard_newaccount.cpp:166
 msgid "New Account"
 msgstr "புது கணக்கு"
@@ -339,11 +339,11 @@ msgstr ""
 msgid "Open an already created database file with extension (*.mmb)"
 msgstr "ஏற்கனவே (*.mmb) நீட்சியுடன் உருவாக்கப்பட்ட மணி மேனேஜர் தகவல்தளத்தை கோப்பை திற"
 
-#: appstartdialog.cpp:112 mmframe.cpp:1637
+#: appstartdialog.cpp:112 mmframe.cpp:1642
 msgid "User Interface &Language"
 msgstr ""
 
-#: appstartdialog.cpp:113 appstartdialog.cpp:222 mmframe.cpp:1638
+#: appstartdialog.cpp:113 appstartdialog.cpp:222 mmframe.cpp:1643
 #: optionsettingsgeneral.cpp:100
 msgid "Change user interface language"
 msgstr ""
@@ -356,7 +356,7 @@ msgstr ""
 msgid "Read the user manual"
 msgstr "பயனர் குறிப்பினை படி"
 
-#: appstartdialog.cpp:120 mmframe.cpp:1807
+#: appstartdialog.cpp:120 mmframe.cpp:1812
 msgid "&Website"
 msgstr ""
 
@@ -386,7 +386,7 @@ msgstr ""
 msgid "Open the previously opened database : %s"
 msgstr ""
 
-#: appstartdialog.cpp:209 mmframe.cpp:1643 mmframe.cpp:3008
+#: appstartdialog.cpp:209 mmframe.cpp:1648 mmframe.cpp:3013
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
 msgstr ""
@@ -395,11 +395,11 @@ msgstr ""
 msgid "User Interface Language"
 msgstr ""
 
-#: appstartdialog.cpp:230 mmframe.cpp:3877 optionsettingsgeneral.cpp:363
+#: appstartdialog.cpp:230 mmframe.cpp:3890 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr ""
 
-#: appstartdialog.cpp:232 mmframe.cpp:3879 optionsettingsgeneral.cpp:365
+#: appstartdialog.cpp:232 mmframe.cpp:3892 optionsettingsgeneral.cpp:365
 msgid "Language change"
 msgstr ""
 
@@ -436,7 +436,7 @@ msgid "Enter the name of the asset"
 msgstr "சொத்தின் பெயரை இடு"
 
 #: assetdialog.cpp:185 assetspanel.cpp:61 filtertrans.cpp:190
-#: filtertransdialog.cpp:929 filtertransdialog.cpp:936
+#: filtertransdialog.cpp:942 filtertransdialog.cpp:949
 #: import_export/qif_export.cpp:626 import_export/qif_import_gui.cpp:86
 #: import_export/univcsvdialog.cpp:100 maincurrencydialog.cpp:253
 #: maincurrencydialog.cpp:270 mmchecking_list.cpp:276
@@ -523,8 +523,8 @@ msgstr ""
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:517 billsdepositspanel.cpp:139
 #: customfieldlistdialog.cpp:54 filtertrans.cpp:196 filtertransdialog.cpp:52
-#: filtertransdialog.cpp:616 filtertransdialog.cpp:1003
-#: filtertransdialog.cpp:1790 import_export/qif_export.cpp:134
+#: filtertransdialog.cpp:629 filtertransdialog.cpp:1016
+#: filtertransdialog.cpp:1803 import_export/qif_export.cpp:134
 #: import_export/qif_export.cpp:628 import_export/qif_import_gui.cpp:89
 #: import_export/qif_import_gui.cpp:245 import_export/univcsvdialog.cpp:102
 #: maincurrencydialog.cpp:263 mmhomepage.cpp:425 reports/incexpenses.cpp:108
@@ -588,17 +588,17 @@ msgid "MMEX allows you to track fixed assets like cars, houses, land and others.
 msgstr ""
 
 #: assetspanel.cpp:419 assetspanel.h:108 general_report_manager.cpp:1030
-#: mmframe.cpp:489 mmframe.cpp:770 mmframe.cpp:1739 mmframe.cpp:3418
+#: mmframe.cpp:490 mmframe.cpp:771 mmframe.cpp:1744 mmframe.cpp:3423
 #: mmhomepage.cpp:537 mmhomepage.cpp:585 mmhomepagepanel.cpp:237
 #: reports/summary.cpp:271 reports/summary.cpp:309
 msgid "Assets"
 msgstr "சொத்துக்கள்"
 
 #: assetspanel.cpp:428 assetspanel.cpp:705 assetspanel.cpp:722
-#: filtertransdialog.cpp:541 filtertransdialog.cpp:857
-#: filtertransdialog.cpp:2152 import_export/qif_export.cpp:75
-#: import_export/qif_export.cpp:76 import_export/qif_export.cpp:154
-#: mmframe.cpp:1501
+#: filtertransdialog.cpp:212 filtertransdialog.cpp:554
+#: filtertransdialog.cpp:870 filtertransdialog.cpp:2203
+#: import_export/qif_export.cpp:75 import_export/qif_export.cpp:76
+#: import_export/qif_export.cpp:154 mmframe.cpp:1502
 msgid "All"
 msgstr "எல்லாம்"
 
@@ -652,22 +652,22 @@ msgstr "தேடு"
 msgid "Enter any string to find related assets"
 msgstr "தேடல்"
 
-#: assetspanel.cpp:509 filtertransdialog.cpp:661 mmcheckingpanel.cpp:492
+#: assetspanel.cpp:509 filtertransdialog.cpp:674 mmcheckingpanel.cpp:492
 #: payeedialog.cpp:137
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
 msgstr ""
 
-#: assetspanel.cpp:510 filtertransdialog.cpp:662 mmcheckingpanel.cpp:493
+#: assetspanel.cpp:510 filtertransdialog.cpp:675 mmcheckingpanel.cpp:493
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
 msgstr ""
 
-#: assetspanel.cpp:511 filtertransdialog.cpp:663 mmcheckingpanel.cpp:494
+#: assetspanel.cpp:511 filtertransdialog.cpp:676 mmcheckingpanel.cpp:494
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
 msgstr ""
 
-#: assetspanel.cpp:512 filtertransdialog.cpp:664 mmcheckingpanel.cpp:495
+#: assetspanel.cpp:512 filtertransdialog.cpp:677 mmcheckingpanel.cpp:495
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr ""
@@ -844,7 +844,7 @@ msgid "Open attachment failed"
 msgstr ""
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 currencydialog.cpp:219
-#: mmSimpleDialogs.cpp:593 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
+#: mmSimpleDialogs.cpp:595 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
 #: optionsettingsgeneral.cpp:226 optionsettingsmisc.cpp:107
 #: reports/reportbase.cpp:203
 msgid "None"
@@ -991,13 +991,13 @@ msgstr ""
 msgid "Date Paid"
 msgstr ""
 
-#: billsdepositsdialog.cpp:499 filtertransdialog.cpp:613 transdialog.cpp:1315
+#: billsdepositsdialog.cpp:499 filtertransdialog.cpp:626 transdialog.cpp:1315
 msgid "Specify the status for the transaction"
 msgstr "பரிமாற்ற நிலையை குறிப்பிடு"
 
 #: billsdepositsdialog.cpp:501 billsdepositspanel.cpp:136 filtertrans.cpp:194
-#: filtertransdialog.cpp:604 filtertransdialog.cpp:997
-#: filtertransdialog.cpp:1779 import_export/qif_export.cpp:627
+#: filtertransdialog.cpp:617 filtertransdialog.cpp:1010
+#: filtertransdialog.cpp:1792 import_export/qif_export.cpp:627
 #: import_export/qif_import_gui.cpp:247 import_export/qif_import_gui.cpp:258
 #: import_export/qif_import_gui.cpp:268 import_export/univcsvdialog.cpp:101
 #: import_export/univcsvdialog.cpp:509 import_export/univcsvdialog.cpp:519
@@ -1020,8 +1020,8 @@ msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr ""
 
 #: billsdepositsdialog.cpp:522 billsdepositspanel.cpp:140
-#: budgetingpanel.cpp:293 filtertrans.cpp:197 filtertransdialog.cpp:1030
-#: filtertransdialog.cpp:1040 import_export/qif_export.cpp:632
+#: budgetingpanel.cpp:293 filtertrans.cpp:197 filtertransdialog.cpp:1043
+#: filtertransdialog.cpp:1053 import_export/qif_export.cpp:632
 #: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:626
 #: mmchecking_list.cpp:638 mmhomepage.cpp:353 mmhomepage.cpp:427
 #: reports/cashflow.cpp:420 reports/categexp.cpp:218
@@ -1038,8 +1038,8 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:544 billsdepositsdialog.cpp:831
 #: billsdepositsdialog.cpp:844 billsdepositspanel.cpp:134 filtertrans.cpp:192
-#: filtertransdialog.cpp:52 filtertransdialog.cpp:538 filtertransdialog.cpp:919
-#: filtertransdialog.cpp:1704 import_export/qif_export.cpp:629
+#: filtertransdialog.cpp:52 filtertransdialog.cpp:551 filtertransdialog.cpp:932
+#: filtertransdialog.cpp:1717 import_export/qif_export.cpp:629
 #: import_export/qif_import_gui.cpp:85 import_export/qif_import_gui.cpp:157
 #: import_export/qif_import_gui.cpp:239 import_export/univcsvdialog.cpp:103
 #: mmchecking_list.cpp:282 reports/cashflow.cpp:417
@@ -1059,8 +1059,8 @@ msgstr "பெறுதல்"
 
 #: billsdepositsdialog.cpp:564 billsdepositsdialog.cpp:832
 #: billsdepositspanel.cpp:135 filtertrans.cpp:193 filtertransdialog.cpp:52
-#: filtertransdialog.cpp:572 filtertransdialog.cpp:947
-#: filtertransdialog.cpp:1741 import_export/qif_export.cpp:630
+#: filtertransdialog.cpp:585 filtertransdialog.cpp:960
+#: filtertransdialog.cpp:1754 import_export/qif_export.cpp:630
 #: import_export/qif_import_gui.cpp:88 import_export/qif_import_gui.cpp:252
 #: import_export/univcsvdialog.cpp:104 import_export/univcsvdialog.cpp:503
 #: mmchecking_list.cpp:285 model/Model_Attachment.cpp:29 payeedialog.cpp:83
@@ -1073,8 +1073,8 @@ msgstr "பெறுநர்"
 
 #: billsdepositsdialog.cpp:576 billsdepositsdialog.cpp:963
 #: billsdepositspanel.cpp:137 budgetingpanel.cpp:291 filtertrans.cpp:195
-#: filtertransdialog.cpp:52 filtertransdialog.cpp:581 filtertransdialog.cpp:984
-#: filtertransdialog.cpp:990 filtertransdialog.cpp:1748
+#: filtertransdialog.cpp:52 filtertransdialog.cpp:594 filtertransdialog.cpp:997
+#: filtertransdialog.cpp:1003 filtertransdialog.cpp:1761
 #: import_export/qif_export.cpp:631 import_export/qif_import_gui.cpp:90
 #: import_export/qif_import_gui.cpp:263 import_export/univcsvdialog.cpp:107
 #: import_export/univcsvdialog.cpp:514 mmchecking_list.cpp:289
@@ -1094,9 +1094,9 @@ msgid "Use split Categories"
 msgstr ""
 
 #: billsdepositsdialog.cpp:590 billsdepositsdialog.cpp:969
-#: billsdepositspanel.cpp:138 filtertransdialog.cpp:597
-#: filtertransdialog.cpp:1011 filtertransdialog.cpp:1016
-#: filtertransdialog.cpp:1826 import_export/qif_import_gui.cpp:91
+#: billsdepositspanel.cpp:138 filtertransdialog.cpp:610
+#: filtertransdialog.cpp:1024 filtertransdialog.cpp:1029
+#: filtertransdialog.cpp:1839 import_export/qif_import_gui.cpp:91
 #: import_export/univcsvdialog.cpp:109 mmchecking_list.cpp:291
 #: reports/transactions.cpp:210 splittransactionsdialog.cpp:223
 #: splittransactionsdialog.cpp:565 transactionsupdatedialog.cpp:219
@@ -1109,7 +1109,7 @@ msgid "Specify any associated check number or transaction number"
 msgstr "தொடர்புடைய காசோலை அல்லது பரிமாற்ற எண்ணை குறிப்பிடு"
 
 #: billsdepositsdialog.cpp:601 billsdepositspanel.cpp:145 filtertrans.cpp:191
-#: filtertransdialog.cpp:648 filtertransdialog.cpp:1819
+#: filtertransdialog.cpp:661 filtertransdialog.cpp:1832
 #: import_export/qif_export.cpp:634 import_export/qif_import_gui.cpp:87
 #: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:278
 #: reports/transactions.cpp:205 transdialog.cpp:546
@@ -1130,8 +1130,8 @@ msgstr ""
 msgid "Organize attachments of this scheduled transaction"
 msgstr ""
 
-#: billsdepositsdialog.cpp:628 filtertrans.cpp:189 filtertransdialog.cpp:668
-#: filtertransdialog.cpp:1050 filtertransdialog.cpp:1851
+#: billsdepositsdialog.cpp:628 filtertrans.cpp:189 filtertransdialog.cpp:681
+#: filtertransdialog.cpp:1063 filtertransdialog.cpp:1864
 #: import_export/qif_import_gui.cpp:340 import_export/univcsvdialog.cpp:449
 #: import_export/univcsvdialog.cpp:1338 reports/transactions.cpp:203
 #: transactionsupdatedialog.cpp:232 transactionsupdatedialog.cpp:415
@@ -1144,7 +1144,7 @@ msgstr "நிறம்"
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "இப்பரிமாற்றத்துக்கான தகவல் ஏதும் இருப்பின் குறிப்பிடு"
 
-#: billsdepositsdialog.cpp:652 filtertransdialog.cpp:783
+#: billsdepositsdialog.cpp:652 filtertransdialog.cpp:796
 #: transactionsupdatedialog.cpp:273 transdialog.cpp:598
 msgid "Show/Hide custom fields window"
 msgstr ""
@@ -1175,14 +1175,14 @@ msgid "Confirm payee name"
 msgstr ""
 
 #: billsdepositsdialog.cpp:963 billsdepositsdialog.cpp:969
-#: billsdepositsdialog.cpp:1355 filtertransdialog.cpp:919
-#: filtertransdialog.cpp:929 filtertransdialog.cpp:936
-#: filtertransdialog.cpp:969 filtertransdialog.cpp:990
-#: filtertransdialog.cpp:997 filtertransdialog.cpp:1003
-#: filtertransdialog.cpp:1011 filtertransdialog.cpp:1030
-#: filtertransdialog.cpp:1040 filtertransdialog.cpp:1050
-#: filtertransdialog.cpp:1059 filtertransdialog.cpp:1066
-#: filtertransdialog.cpp:1072 import_export/univcsvdialog.cpp:1338
+#: billsdepositsdialog.cpp:1355 filtertransdialog.cpp:932
+#: filtertransdialog.cpp:942 filtertransdialog.cpp:949
+#: filtertransdialog.cpp:982 filtertransdialog.cpp:1003
+#: filtertransdialog.cpp:1010 filtertransdialog.cpp:1016
+#: filtertransdialog.cpp:1024 filtertransdialog.cpp:1043
+#: filtertransdialog.cpp:1053 filtertransdialog.cpp:1063
+#: filtertransdialog.cpp:1072 filtertransdialog.cpp:1079
+#: filtertransdialog.cpp:1085 import_export/univcsvdialog.cpp:1338
 #: optionsettingsgeneral.cpp:293 optionsettingsgeneral.cpp:318
 #: payeedialog.cpp:201 splittransactionsdialog.cpp:565
 #: transactionsupdatedialog.cpp:355 transactionsupdatedialog.cpp:415
@@ -1239,7 +1239,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1355 images_list.cpp:501
 #: import_export/univcsvdialog.cpp:1574 maincurrencydialog.cpp:482
-#: mmframe.cpp:3842 splittransactionsdialog.cpp:411 stockspanel.cpp:384
+#: mmframe.cpp:3847 splittransactionsdialog.cpp:411 stockspanel.cpp:384
 #: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
@@ -1318,8 +1318,8 @@ msgstr ""
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr ""
 
-#: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:774
-#: mmframe.cpp:3166 mmhomepagepanel.cpp:243
+#: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:775
+#: mmframe.cpp:3171 mmhomepagepanel.cpp:243
 msgid "Scheduled Transactions"
 msgstr ""
 
@@ -1773,17 +1773,17 @@ msgstr ""
 msgid "Category Manager: Editing Error"
 msgstr ""
 
-#: categdialog.cpp:682 mmframe.cpp:3731
+#: categdialog.cpp:682 mmframe.cpp:3736
 msgid "Merge categories completed"
 msgstr ""
 
-#: categdialog.cpp:683 mmframe.cpp:3732 mmframe.cpp:3747 mmframe.cpp:3763
+#: categdialog.cpp:683 mmframe.cpp:3737 mmframe.cpp:3752 mmframe.cpp:3768
 #: payeedialog.cpp:834
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr ""
 
-#: categdialog.cpp:685 mmframe.cpp:3734
+#: categdialog.cpp:685 mmframe.cpp:3739
 msgid "Merge categories result"
 msgstr ""
 
@@ -1811,7 +1811,7 @@ msgstr ""
 msgid "Clear Settings"
 msgstr ""
 
-#: categdialog.h:68 mmframe.cpp:1698 mmframe.cpp:1924
+#: categdialog.h:68 mmframe.cpp:1703 mmframe.cpp:1929
 msgid "Category Manager"
 msgstr ""
 
@@ -1922,17 +1922,17 @@ msgstr ""
 msgid "ALL"
 msgstr ""
 
-#: constants.cpp:209 mmframe.cpp:1503 mmframe.cpp:1916
+#: constants.cpp:209 mmframe.cpp:1504 mmframe.cpp:1921
 #: model/Model_Account.cpp:27 model/Model_Asset.cpp:54
 msgid "Open"
 msgstr "திற"
 
-#: constants.cpp:210 mmframe.cpp:1504 model/Model_Account.cpp:28
+#: constants.cpp:210 mmframe.cpp:1505 model/Model_Account.cpp:28
 #: model/Model_Asset.cpp:53
 msgid "Closed"
 msgstr "மூடப்பட்டது"
 
-#: constants.cpp:211 mmframe.cpp:482 mmframe.cpp:738 mmframe.cpp:1502
+#: constants.cpp:211 mmframe.cpp:483 mmframe.cpp:739 mmframe.cpp:1503
 msgid "Favorites"
 msgstr "விருப்பங்கள்"
 
@@ -2015,7 +2015,7 @@ msgstr ""
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
 #: import_export/univcsvdialog.cpp:2669 maincurrencydialog.cpp:626
-#: mmSimpleDialogs.cpp:770
+#: mmSimpleDialogs.cpp:772
 msgid "Invalid Entry"
 msgstr "உள்ளீடு செல்லாது"
 
@@ -2034,8 +2034,8 @@ msgstr ""
 
 #: currencydialog.h:48 maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
-#: maincurrencydialog.cpp:813 maincurrencydialog.h:76 mmframe.cpp:1706
-#: mmframe.cpp:1926 optionsettingsgeneral.cpp:301
+#: maincurrencydialog.cpp:813 maincurrencydialog.h:76 mmframe.cpp:1711
+#: mmframe.cpp:1931 optionsettingsgeneral.cpp:301
 msgid "Currency Manager"
 msgstr ""
 
@@ -2124,8 +2124,8 @@ msgstr ""
 msgid "Changing field type will delete all content!"
 msgstr ""
 
-#: customfieldeditdialog.cpp:228 customfieldeditdialog.cpp:250 mmframe.cpp:2372
-#: mmframe.cpp:2429
+#: customfieldeditdialog.cpp:228 customfieldeditdialog.cpp:250 mmframe.cpp:2377
+#: mmframe.cpp:2434
 msgid "Do you want to proceed?"
 msgstr ""
 
@@ -2149,7 +2149,7 @@ msgstr ""
 msgid "Properties"
 msgstr ""
 
-#: customfieldlistdialog.cpp:66 mmframe.cpp:1761
+#: customfieldlistdialog.cpp:66 mmframe.cpp:1766
 msgid "Custom Field Manager"
 msgstr ""
 
@@ -2407,8 +2407,8 @@ msgstr ""
 msgid "Other Expenses"
 msgstr ""
 
-#: db/DB_Table_Category_V1.h:169 filtertransdialog.cpp:860
-#: filtertransdialog.cpp:1505 filtertransdialog.cpp:1608
+#: db/DB_Table_Category_V1.h:169 filtertransdialog.cpp:873
+#: filtertransdialog.cpp:1518 filtertransdialog.cpp:1621
 #: import_export/qif_import_gui.cpp:476 import_export/qif_import_gui.cpp:606
 #: model/Model_Billsdeposits.cpp:35 model/Model_Checking.cpp:36
 msgid "Transfer"
@@ -2455,11 +2455,11 @@ msgid "Wrong file type!"
 msgstr ""
 
 #: dbupgrade.cpp:190 dbupgrade.cpp:227 dbupgrade.cpp:234 dbupgrade.cpp:278
-#: dbupgrade.cpp:289 mmframe.cpp:2409
+#: dbupgrade.cpp:289 mmframe.cpp:2414
 msgid "MMEX debug error"
 msgstr ""
 
-#: dbupgrade.cpp:227 dbupgrade.cpp:278 mmframe.cpp:2409
+#: dbupgrade.cpp:227 dbupgrade.cpp:278 mmframe.cpp:2414
 msgid "Query error, please contact MMEX support!"
 msgstr ""
 
@@ -2507,7 +2507,7 @@ msgstr ""
 msgid "Error: %s"
 msgstr ""
 
-#: dbwrapper.cpp:89 mmframe.cpp:2016
+#: dbwrapper.cpp:89 mmframe.cpp:2021
 msgid "Opening MMEX Database - Error"
 msgstr ""
 
@@ -2523,7 +2523,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: filtertransdialog.cpp:49 mmchecking_list.cpp:663 mmchecking_list.cpp:1278
+#: filtertransdialog.cpp:49 mmchecking_list.cpp:663 mmchecking_list.cpp:1279
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:41
 msgid "Unreconciled"
 msgstr ""
@@ -2539,7 +2539,7 @@ msgstr "சரிபார்க்கப்பட்டது"
 msgid "Void"
 msgstr "செல்லாதது"
 
-#: filtertransdialog.cpp:50 mmchecking_list.cpp:669 mmchecking_list.cpp:1267
+#: filtertransdialog.cpp:50 mmchecking_list.cpp:669 mmchecking_list.cpp:1268
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:44
 msgid "Follow Up"
 msgstr ""
@@ -2549,7 +2549,7 @@ msgstr ""
 msgid "Duplicate"
 msgstr "நகல்"
 
-#: filtertransdialog.cpp:50 filtertransdialog.cpp:1772
+#: filtertransdialog.cpp:50 filtertransdialog.cpp:1785
 msgid "All Except Reconciled"
 msgstr ""
 
@@ -2601,203 +2601,207 @@ msgstr ""
 msgid "Stacked Area"
 msgstr ""
 
-#: filtertransdialog.cpp:521 transactionsupdatedialog.cpp:122
+#: filtertransdialog.cpp:487
+msgid "Last Unsaved Filter"
+msgstr ""
+
+#: filtertransdialog.cpp:534 transactionsupdatedialog.cpp:122
 msgid "Specify"
 msgstr ""
 
-#: filtertransdialog.cpp:547
+#: filtertransdialog.cpp:560
 msgid "Period Range"
 msgstr ""
 
-#: filtertransdialog.cpp:559 reports/mmDateRange.cpp:35
+#: filtertransdialog.cpp:572 reports/mmDateRange.cpp:35
 msgid "Date Range"
 msgstr ""
 
-#: filtertransdialog.cpp:590 filtertransdialog.cpp:1764
+#: filtertransdialog.cpp:603 filtertransdialog.cpp:1777
 msgid "Include all subcategories"
 msgstr ""
 
-#: filtertransdialog.cpp:621 filtertransdialog.cpp:1499
-#: filtertransdialog.cpp:1602 import_export/univcsvdialog.cpp:113
+#: filtertransdialog.cpp:634 filtertransdialog.cpp:1512
+#: filtertransdialog.cpp:1615 import_export/univcsvdialog.cpp:113
 #: mmchecking_list.cpp:293 model/Model_Billsdeposits.cpp:33
 #: model/Model_Checking.cpp:34 reports/forecast.cpp:81
 msgid "Withdrawal"
 msgstr "பற்று"
 
-#: filtertransdialog.cpp:622 filtertransdialog.cpp:1501
-#: filtertransdialog.cpp:1604 import_export/univcsvdialog.cpp:114
+#: filtertransdialog.cpp:635 filtertransdialog.cpp:1514
+#: filtertransdialog.cpp:1617 import_export/univcsvdialog.cpp:114
 #: mmchecking_list.cpp:295 model/Model_Billsdeposits.cpp:34
 #: model/Model_Checking.cpp:35 reports/forecast.cpp:79
 msgid "Deposit"
 msgstr "வரவு"
 
-#: filtertransdialog.cpp:623 filtertransdialog.cpp:850
-#: filtertransdialog.cpp:1505 filtertransdialog.cpp:1608
+#: filtertransdialog.cpp:636 filtertransdialog.cpp:863
+#: filtertransdialog.cpp:1518 filtertransdialog.cpp:1621
 msgid "Transfer Out"
 msgstr ""
 
-#: filtertransdialog.cpp:624 filtertransdialog.cpp:1503
-#: filtertransdialog.cpp:1606
+#: filtertransdialog.cpp:637 filtertransdialog.cpp:1516
+#: filtertransdialog.cpp:1619
 msgid "Transfer In"
 msgstr ""
 
-#: filtertransdialog.cpp:635
+#: filtertransdialog.cpp:648
 msgid "Amount Range"
 msgstr ""
 
-#: filtertransdialog.cpp:660
+#: filtertransdialog.cpp:673
 msgid "Enter any string to find it in transaction notes"
 msgstr ""
 
-#: filtertransdialog.cpp:665 payeedialog.cpp:141
+#: filtertransdialog.cpp:678 payeedialog.cpp:141
 msgid "Use regex: to match using regular expressions."
 msgstr ""
 
-#: filtertransdialog.cpp:687
+#: filtertransdialog.cpp:700
 msgid "Presentation Options"
 msgstr ""
 
-#: filtertransdialog.cpp:701 filtertransdialog.cpp:1059
-#: filtertransdialog.cpp:1877
+#: filtertransdialog.cpp:714 filtertransdialog.cpp:1072
+#: filtertransdialog.cpp:1890
 msgid "Hide Columns"
 msgstr ""
 
-#: filtertransdialog.cpp:710 filtertransdialog.cpp:1066
-#: filtertransdialog.cpp:1890
+#: filtertransdialog.cpp:723 filtertransdialog.cpp:1079
+#: filtertransdialog.cpp:1903
 msgid "Group By"
 msgstr ""
 
-#: filtertransdialog.cpp:719
+#: filtertransdialog.cpp:732
 msgid "Specify how the report should be grouped"
 msgstr ""
 
-#: filtertransdialog.cpp:722 filtertransdialog.cpp:1072
-#: filtertransdialog.cpp:1901
+#: filtertransdialog.cpp:735 filtertransdialog.cpp:1085
+#: filtertransdialog.cpp:1914
 msgid "Chart"
 msgstr ""
 
-#: filtertransdialog.cpp:731
+#: filtertransdialog.cpp:744
 msgid "Specify which chart will be included in the report"
 msgstr ""
 
-#: filtertransdialog.cpp:734 filtertransdialog.cpp:1910
+#: filtertransdialog.cpp:747 filtertransdialog.cpp:1923
 msgid "Combine Splits"
 msgstr ""
 
-#: filtertransdialog.cpp:737
+#: filtertransdialog.cpp:750
 msgid "Display split transactions as a single row"
 msgstr ""
 
-#: filtertransdialog.cpp:746
+#: filtertransdialog.cpp:759
 msgid "Settings"
 msgstr "அமைப்புகள்"
 
-#: filtertransdialog.cpp:759
+#: filtertransdialog.cpp:772
 msgid "Save active values into current Preset selection"
 msgstr ""
 
-#: filtertransdialog.cpp:763
+#: filtertransdialog.cpp:776
 msgid "Delete current Preset selection"
 msgstr ""
 
-#: filtertransdialog.cpp:947 filtertransdialog.cpp:984
-#: filtertransdialog.cpp:1016 filtertransdialog.cpp:1559
+#: filtertransdialog.cpp:960 filtertransdialog.cpp:997
+#: filtertransdialog.cpp:1029 filtertransdialog.cpp:1572
 #: reports/myusage.cpp:102 webappdialog.cpp:185 webappdialog.cpp:190
 msgid "Empty value"
 msgstr ""
 
-#: filtertransdialog.cpp:966
+#: filtertransdialog.cpp:979
 #, c-format
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
 msgstr ""
 
-#: filtertransdialog.cpp:1117
+#: filtertransdialog.cpp:1130
 msgid "Hide Report Columns"
 msgstr ""
 
-#: filtertransdialog.cpp:1237 mmframe.cpp:1257
+#: filtertransdialog.cpp:1250 mmframe.cpp:1258
 msgid "The selected item will be deleted"
 msgstr ""
 
-#: filtertransdialog.cpp:1237 import_export/univcsvdialog.cpp:2167
-#: mmframe.cpp:1258
+#: filtertransdialog.cpp:1250 import_export/univcsvdialog.cpp:2167
+#: mmframe.cpp:1259
 msgid "Do you wish to continue?"
 msgstr ""
 
-#: filtertransdialog.cpp:1237 mmframe.cpp:1259
+#: filtertransdialog.cpp:1250 mmframe.cpp:1260
 msgid "Settings item deletion"
 msgstr ""
 
-#: filtertransdialog.cpp:1568
+#: filtertransdialog.cpp:1581
 msgid "Filtering Details: "
 msgstr ""
 
-#: filtertransdialog.cpp:1697
+#: filtertransdialog.cpp:1710
 msgid "Label"
 msgstr ""
 
-#: filtertransdialog.cpp:1717
+#: filtertransdialog.cpp:1730
 msgid "Since"
 msgstr ""
 
-#: filtertransdialog.cpp:1719
+#: filtertransdialog.cpp:1732
 msgid "Before"
 msgstr ""
 
-#: filtertransdialog.cpp:1732
+#: filtertransdialog.cpp:1745
 msgid "Period"
 msgstr ""
 
-#: filtertransdialog.cpp:1802
+#: filtertransdialog.cpp:1815
 msgid "Amount Min."
 msgstr ""
 
-#: filtertransdialog.cpp:1810
+#: filtertransdialog.cpp:1823
 msgid "Amount Max."
 msgstr ""
 
-#: filtertransdialog.cpp:2058 mmframe.cpp:1285
+#: filtertransdialog.cpp:2071 mmframe.cpp:1286
 msgid "Setting Name"
 msgstr ""
 
-#: filtertransdialog.cpp:2058 mmframe.cpp:1285
+#: filtertransdialog.cpp:2071 mmframe.cpp:1286
 msgid "Please Enter"
 msgstr ""
 
-#: filtertransdialog.cpp:2082 import_export/univcsvdialog.cpp:1093
+#: filtertransdialog.cpp:2095 import_export/univcsvdialog.cpp:1093
 msgid "The entered name is already in use"
 msgstr ""
 
-#: filtertransdialog.cpp:2082 images_list.cpp:326 images_list.cpp:414
+#: filtertransdialog.cpp:2095 images_list.cpp:326 images_list.cpp:414
 #: images_list.cpp:425 images_list.cpp:460 images_list.cpp:489
 #: images_list.cpp:495 import_export/qif_import_gui.cpp:762
 #: import_export/qif_import_gui.cpp:765 import_export/univcsvdialog.cpp:1093
 msgid "Warning"
 msgstr "எச்சரிக்கை"
 
-#: filtertransdialog.cpp:2101
+#: filtertransdialog.cpp:2124
 msgid "Filter settings have changed"
 msgstr ""
 
-#: filtertransdialog.cpp:2101
+#: filtertransdialog.cpp:2124
 msgid "Do you want to save them before continuing?"
 msgstr ""
 
-#: filtertransdialog.cpp:2101
+#: filtertransdialog.cpp:2124
 msgid "Please confirm"
 msgstr ""
 
-#: filtertransdialog.cpp:2120 reports/reportbase.cpp:232
+#: filtertransdialog.cpp:2171 reports/reportbase.cpp:232
 msgid "Choose Accounts"
 msgstr "கணக்கை தேர்ந்தெடு"
 
-#: filtertransdialog.h:139 mmframe.cpp:1751 mmframe.cpp:1928
+#: filtertransdialog.h:139 mmframe.cpp:1756 mmframe.cpp:1933
 msgid "Transaction Report Filter"
 msgstr ""
 
-#: general_report_manager.cpp:284 mmframe.cpp:792 mmframe.cpp:2952
+#: general_report_manager.cpp:284 mmframe.cpp:793 mmframe.cpp:2957
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
 msgstr "அறிக்கை"
@@ -2882,8 +2886,8 @@ msgid "ZIP files (*.zip)"
 msgstr ""
 
 #: general_report_manager.cpp:665 general_report_manager.cpp:849
-#: general_report_manager.cpp:1010 general_report_manager.h:64 mmframe.cpp:797
-#: mmframe.cpp:1757 mmframe.cpp:1930
+#: general_report_manager.cpp:1010 general_report_manager.h:64 mmframe.cpp:798
+#: mmframe.cpp:1762 mmframe.cpp:1935
 msgid "General Report Manager"
 msgstr ""
 
@@ -3015,12 +3019,12 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr ""
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2233
-#: mmSimpleDialogs.cpp:780
+#: mmSimpleDialogs.cpp:782
 msgid "Unable to open file."
 msgstr "கோப்பை திறக்க முடியவில்லை."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
-#: import_export/univcsvdialog.cpp:1345 mmframe.cpp:2570 mmframe.cpp:2589
+#: import_export/univcsvdialog.cpp:1345 mmframe.cpp:2575 mmframe.cpp:2594
 msgid "Universal CSV Import"
 msgstr ""
 
@@ -3062,16 +3066,16 @@ msgid "Transactions"
 msgstr ""
 
 #: import_export/qif_export.cpp:49 import_export/qif_export.cpp:680
-#: mmframe.cpp:1573
+#: mmframe.cpp:1574
 msgid "Export as QIF file"
 msgstr ""
 
-#: import_export/qif_export.cpp:50 mmframe.cpp:1572
+#: import_export/qif_export.cpp:50 mmframe.cpp:1573
 msgid "Export as JSON file"
 msgstr ""
 
 #: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:124
-#: mmframe.cpp:1568
+#: mmframe.cpp:1569
 msgid "Export as CSV file"
 msgstr ""
 
@@ -3095,8 +3099,8 @@ msgstr ""
 msgid "QIF"
 msgstr ""
 
-#: import_export/qif_export.cpp:152 mmframe.cpp:3510 mmframe.cpp:3514
-#: mmframe.cpp:3531 mmframe.cpp:3535
+#: import_export/qif_export.cpp:152 mmframe.cpp:3515 mmframe.cpp:3519
+#: mmframe.cpp:3536 mmframe.cpp:3540
 msgid "Accounts"
 msgstr "கணக்குகள்"
 
@@ -3347,7 +3351,7 @@ msgid "Imported transactions discarded by user!"
 msgstr ""
 
 #: import_export/qif_import_gui.cpp:1229 import_export/qif_import_gui.h:45
-#: mmframe.cpp:1562
+#: mmframe.cpp:1563
 msgid "Import from QIF file"
 msgstr ""
 
@@ -3408,7 +3412,7 @@ msgstr "கவலையில்லை"
 msgid "Balance"
 msgstr "இருப்பு"
 
-#: import_export/univcsvdialog.cpp:121 mmframe.cpp:1559
+#: import_export/univcsvdialog.cpp:121 mmframe.cpp:1560
 msgid "Import from CSV file"
 msgstr ""
 
@@ -3416,7 +3420,7 @@ msgstr ""
 msgid "Import from XML file"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:130 mmframe.cpp:1569
+#: import_export/univcsvdialog.cpp:130 mmframe.cpp:1570
 msgid "Export as XML file"
 msgstr ""
 
@@ -3684,7 +3688,7 @@ msgstr ""
 msgid "Destination file error"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1574 mmSimpleDialogs.cpp:788
+#: import_export/univcsvdialog.cpp:1574 mmSimpleDialogs.cpp:790
 msgid "Invalid Account"
 msgstr ""
 
@@ -3893,107 +3897,107 @@ msgstr ""
 msgid "Could not find base currency symbol!"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:535 mmSimpleDialogs.cpp:547
+#: mmSimpleDialogs.cpp:537 mmSimpleDialogs.cpp:549
 msgid "Clear color"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:538 mmSimpleDialogs.cpp:552
+#: mmSimpleDialogs.cpp:540 mmSimpleDialogs.cpp:554
 #, c-format
 msgid "Color #%i"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:710
+#: mmSimpleDialogs.cpp:712
 msgid "Subtract one year"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:711
+#: mmSimpleDialogs.cpp:713
 msgid "Subtract one month"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:712
+#: mmSimpleDialogs.cpp:714
 msgid "Add one month"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:713
+#: mmSimpleDialogs.cpp:715
 msgid "Add one year"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:769
+#: mmSimpleDialogs.cpp:771
 #, c-format
 msgid "Entry %s is invalid"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:775
+#: mmSimpleDialogs.cpp:777
 msgid "Please select an existing category"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:775
+#: mmSimpleDialogs.cpp:777
 msgid "Invalid Category"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:780
+#: mmSimpleDialogs.cpp:782
 msgid "File name is empty."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:781
+#: mmSimpleDialogs.cpp:783
 msgid "Please select the file for this operation."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:791
+#: mmSimpleDialogs.cpp:793
 msgid "Please select the account for this transaction."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:793
+#: mmSimpleDialogs.cpp:795
 msgid "Please specify which account the transfer is going to."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:795
+#: mmSimpleDialogs.cpp:797
 msgid "Selection can be made by using the dropdown button."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:798
+#: mmSimpleDialogs.cpp:800
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:807
+#: mmSimpleDialogs.cpp:809
 msgid "Invalid Payee"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:808
+#: mmSimpleDialogs.cpp:810
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:816 mmSimpleDialogs.cpp:828
+#: mmSimpleDialogs.cpp:818 mmSimpleDialogs.cpp:830
 msgid "Invalid Name"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:819 mmSimpleDialogs.cpp:831
+#: mmSimpleDialogs.cpp:821 mmSimpleDialogs.cpp:833
 msgid "Already exist!"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:821
+#: mmSimpleDialogs.cpp:823
 msgid "Please type in a non empty name."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:833
+#: mmSimpleDialogs.cpp:835
 msgid "Please type in a non empty symbol."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:936
+#: mmSimpleDialogs.cpp:938
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:937
+#: mmSimpleDialogs.cpp:939
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1538
+#: mmSimpleDialogs.cpp:1540
 #, c-format
 msgid "Create new tag '%s'?"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1538
+#: mmSimpleDialogs.cpp:1540
 msgid "New tag entered"
 msgstr ""
 
@@ -4309,130 +4313,130 @@ msgstr ""
 msgid "Mark as"
 msgstr ""
 
-#: mmchecking_list.cpp:695 mmcheckingpanel.cpp:513 mmframe.cpp:734
+#: mmchecking_list.cpp:695 mmcheckingpanel.cpp:513 mmframe.cpp:735
 msgid "All Transactions"
 msgstr ""
 
-#: mmchecking_list.cpp:1167
+#: mmchecking_list.cpp:1168
 msgid "Do you really want to restore all of the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1168 mmchecking_list.cpp:1210
+#: mmchecking_list.cpp:1169 mmchecking_list.cpp:1211
 msgid "Confirm Transaction Restore"
 msgstr ""
 
-#: mmchecking_list.cpp:1205
+#: mmchecking_list.cpp:1206
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1247
+#: mmchecking_list.cpp:1248
 msgid "Do you really want to delete all the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1248
+#: mmchecking_list.cpp:1249
 msgid "Do you really want to permanently delete all the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1252 mmchecking_list.cpp:1354
+#: mmchecking_list.cpp:1253 mmchecking_list.cpp:1355
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr ""
 
-#: mmchecking_list.cpp:1253 mmchecking_list.cpp:1353
+#: mmchecking_list.cpp:1254 mmchecking_list.cpp:1354
 msgid "You cannot undo this action."
 msgstr ""
 
-#: mmchecking_list.cpp:1257 mmchecking_list.cpp:1268 mmchecking_list.cpp:1279
-#: mmchecking_list.cpp:1358
+#: mmchecking_list.cpp:1258 mmchecking_list.cpp:1269 mmchecking_list.cpp:1280
+#: mmchecking_list.cpp:1359
 msgid "Confirm Transaction Deletion"
 msgstr "பரிமாற்ற அழிப்பை உறுதி செய்"
 
-#: mmchecking_list.cpp:1267 mmchecking_list.cpp:1278
+#: mmchecking_list.cpp:1268 mmchecking_list.cpp:1279
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1345
+#: mmchecking_list.cpp:1346
 #, c-format
 msgid "Do you really want to permanently delete the selected transaction?"
 msgid_plural "Do you really want to permanently delete %i selected transactions?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1349
+#: mmchecking_list.cpp:1350
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1421
+#: mmchecking_list.cpp:1422
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr ""
 
-#: mmchecking_list.cpp:1424 transdialog.cpp:739 transdialog.cpp:770
+#: mmchecking_list.cpp:1425 transdialog.cpp:739 transdialog.cpp:770
 msgid "MMEX Transaction Check"
 msgstr ""
 
-#: mmchecking_list.cpp:1457
+#: mmchecking_list.cpp:1458
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1459
+#: mmchecking_list.cpp:1460
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr ""
 
-#: mmchecking_list.cpp:1460
+#: mmchecking_list.cpp:1461
 msgid "Closed Account Check"
 msgstr ""
 
-#: mmchecking_list.cpp:1656
+#: mmchecking_list.cpp:1657
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1661
+#: mmchecking_list.cpp:1662
 msgid "Confirm Transaction Move"
 msgstr ""
 
-#: mmchecking_list.cpp:1667
+#: mmchecking_list.cpp:1668
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1671 stocks_list.cpp:300
+#: mmchecking_list.cpp:1672 stocks_list.cpp:300
 msgid "Select the destination Account "
 msgstr ""
 
-#: mmchecking_list.cpp:1704
+#: mmchecking_list.cpp:1705
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
 msgstr ""
 
-#: mmchecking_list.cpp:1705
+#: mmchecking_list.cpp:1706
 msgid "Moved"
 msgstr ""
 
-#: mmchecking_list.cpp:1706
+#: mmchecking_list.cpp:1707
 msgid "Not moved"
 msgstr ""
 
-#: mmchecking_list.cpp:1709
+#: mmchecking_list.cpp:1710
 msgid "Some transactions could not be moved"
 msgstr ""
 
-#: mmchecking_list.cpp:1774
+#: mmchecking_list.cpp:1775
 msgid "Scheduled transaction saved."
 msgstr ""
 
@@ -4440,7 +4444,7 @@ msgstr ""
 msgid "Delete all selected transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:446 mmframe.cpp:1921 transdialog.cpp:183
+#: mmcheckingpanel.cpp:446 mmframe.cpp:1926 transdialog.cpp:183
 msgid "New Transaction"
 msgstr "புதிய பரிமாற்றம்"
 
@@ -4464,7 +4468,7 @@ msgstr ""
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr ""
 
-#: mmcheckingpanel.cpp:515 mmframe.cpp:778
+#: mmcheckingpanel.cpp:515 mmframe.cpp:779
 msgid "Deleted Transactions"
 msgstr ""
 
@@ -4543,902 +4547,910 @@ msgid "Fatal error occured.\n"
 "Application will be terminated."
 msgstr ""
 
-#: mmframe.cpp:270
+#: mmframe.cpp:271
 msgid "Navigation"
 msgstr "உலாவல்"
 
-#: mmframe.cpp:271
+#: mmframe.cpp:272
 msgid "Toolbar"
 msgstr ""
 
-#: mmframe.cpp:483 mmframe.cpp:742 mmhomepage.cpp:690 reports/summary.cpp:259
+#: mmframe.cpp:484 mmframe.cpp:743 mmhomepage.cpp:690 reports/summary.cpp:259
 #: reports/summary.cpp:302
 msgid "Bank Accounts"
 msgstr "வங்கிக் கணக்குகள்"
 
-#: mmframe.cpp:484 mmframe.cpp:746 mmhomepage.cpp:691 reports/summary.cpp:261
+#: mmframe.cpp:485 mmframe.cpp:747 mmhomepage.cpp:691 reports/summary.cpp:261
 #: reports/summary.cpp:303
 msgid "Credit Card Accounts"
 msgstr ""
 
-#: mmframe.cpp:485 mmframe.cpp:758 mmhomepage.cpp:693 reports/summary.cpp:265
+#: mmframe.cpp:486 mmframe.cpp:759 mmhomepage.cpp:693 reports/summary.cpp:265
 #: reports/summary.cpp:305
 msgid "Term Accounts"
 msgstr ""
 
-#: mmframe.cpp:486 mmframe.cpp:762
+#: mmframe.cpp:487 mmframe.cpp:763
 msgid "Stock Portfolios"
 msgstr ""
 
-#: mmframe.cpp:487 mmframe.cpp:750 mmhomepage.cpp:689
+#: mmframe.cpp:488 mmframe.cpp:751 mmhomepage.cpp:689
 msgid "Cash Accounts"
 msgstr ""
 
-#: mmframe.cpp:488 mmframe.cpp:754 mmhomepage.cpp:692 reports/summary.cpp:263
+#: mmframe.cpp:489 mmframe.cpp:755 mmhomepage.cpp:692 reports/summary.cpp:263
 #: reports/summary.cpp:304
 msgid "Loan Accounts"
 msgstr ""
 
-#: mmframe.cpp:521
+#: mmframe.cpp:522
 msgid "Auto Repeat Transactions"
 msgstr ""
 
-#: mmframe.cpp:730 mmframe.cpp:1919 optiondialog.cpp:37
+#: mmframe.cpp:731 mmframe.cpp:1924 optiondialog.cpp:37
 msgid "Dashboard"
 msgstr ""
 
-#: mmframe.cpp:766 mmhomepage.cpp:696 reports/summary.cpp:269
+#: mmframe.cpp:767 mmhomepage.cpp:696 reports/summary.cpp:269
 #: reports/summary.cpp:307
 msgid "Share Accounts"
 msgstr ""
 
-#: mmframe.cpp:782 mmframe.cpp:1731 mmframe.cpp:2820
+#: mmframe.cpp:783 mmframe.cpp:1736 mmframe.cpp:2825
 msgid "Budget Planner"
 msgstr ""
 
-#: mmframe.cpp:787 mmframe.cpp:1318 mmframe.cpp:1335 mmframe.cpp:2805
+#: mmframe.cpp:788 mmframe.cpp:1319 mmframe.cpp:1336 mmframe.cpp:2810
 msgid "Transaction Report"
 msgstr "பரிமாற்ற அறிக்கை"
 
-#: mmframe.cpp:804 mmframe.cpp:1957 mmframe.cpp:2611 mmframe.cpp:2902
+#: mmframe.cpp:805 mmframe.cpp:1962 mmframe.cpp:2616 mmframe.cpp:2907
 #: mmhelppanel.cpp:69
 msgid "Help"
 msgstr "உதவி"
 
-#: mmframe.cpp:1292
+#: mmframe.cpp:1293
 msgid "A setting with this name already exists"
 msgstr ""
 
-#: mmframe.cpp:1294
+#: mmframe.cpp:1295
 msgid "Please specify a new name for the setting"
 msgstr ""
 
-#: mmframe.cpp:1296
+#: mmframe.cpp:1297
 msgid "Name in use"
 msgstr ""
 
-#: mmframe.cpp:1353
+#: mmframe.cpp:1354
 msgid "Do you really want to delete the account?"
 msgstr "நிஜமாய் இந்தக் கணக்கை அழிக்க விருப்பமா?"
 
-#: mmframe.cpp:1360 mmframe.cpp:3543
+#: mmframe.cpp:1361 mmframe.cpp:3548
 msgid "Confirm Account Deletion"
 msgstr "கணக்கு அழிப்பை உறுதி செய்"
 
-#: mmframe.cpp:1380
+#: mmframe.cpp:1381
 msgid "MMEX has been opened without an active database."
 msgstr ""
 
-#: mmframe.cpp:1381
+#: mmframe.cpp:1382
 msgid "MMEX: Menu Popup Error"
 msgstr ""
 
-#: mmframe.cpp:1397 mmframe.cpp:1558
+#: mmframe.cpp:1398 mmframe.cpp:1559
 msgid "&Import from"
 msgstr ""
 
-#: mmframe.cpp:1398
+#: mmframe.cpp:1399
 msgid "&CSV Files..."
 msgstr ""
 
-#: mmframe.cpp:1399
+#: mmframe.cpp:1400
 msgid "&XML Files..."
 msgstr ""
 
-#: mmframe.cpp:1399 mmframe.cpp:1560
+#: mmframe.cpp:1400 mmframe.cpp:1561
 msgid "Import from XML file (Excel format)"
 msgstr ""
 
-#: mmframe.cpp:1401
+#: mmframe.cpp:1402
 msgid "&QIF Files..."
 msgstr ""
 
-#: mmframe.cpp:1404 mmframe.cpp:1567
+#: mmframe.cpp:1405 mmframe.cpp:1568
 msgid "&Export as"
 msgstr ""
 
-#: mmframe.cpp:1405 mmframe.cpp:1559 mmframe.cpp:1568
+#: mmframe.cpp:1406 mmframe.cpp:1560 mmframe.cpp:1569
 msgid "&CSV File..."
 msgstr ""
 
-#: mmframe.cpp:1406 mmframe.cpp:1560 mmframe.cpp:1569
+#: mmframe.cpp:1407 mmframe.cpp:1561 mmframe.cpp:1570
 msgid "&XML File..."
 msgstr ""
 
-#: mmframe.cpp:1408 mmframe.cpp:1571
+#: mmframe.cpp:1409 mmframe.cpp:1572
 msgid "&MMEX CSV File..."
 msgstr ""
 
-#: mmframe.cpp:1409 mmframe.cpp:1572
+#: mmframe.cpp:1410 mmframe.cpp:1573
 msgid "&JSON File..."
 msgstr ""
 
-#: mmframe.cpp:1410 mmframe.cpp:1562 mmframe.cpp:1573
+#: mmframe.cpp:1411 mmframe.cpp:1563 mmframe.cpp:1574
 msgid "&QIF File..."
 msgstr ""
 
-#: mmframe.cpp:1435
+#: mmframe.cpp:1436
 msgid "&Edit Filter..."
 msgstr ""
 
-#: mmframe.cpp:1436
+#: mmframe.cpp:1437
 msgid "&Rename Filter..."
 msgstr ""
 
-#: mmframe.cpp:1437
+#: mmframe.cpp:1438
 msgid "&Delete Filter..."
 msgstr ""
 
-#: mmframe.cpp:1453 mmframe.cpp:1471 mmframe.cpp:1491 mmframe.cpp:1669
+#: mmframe.cpp:1454 mmframe.cpp:1472 mmframe.cpp:1492 mmframe.cpp:1674
 msgid "&Edit Account..."
 msgstr ""
 
-#: mmframe.cpp:1454 mmframe.cpp:1474 mmframe.cpp:1494 mmframe.cpp:1675
+#: mmframe.cpp:1455 mmframe.cpp:1475 mmframe.cpp:1495 mmframe.cpp:1680
 msgid "&Delete Account..."
 msgstr ""
 
-#: mmframe.cpp:1456 mmframe.cpp:1476
+#: mmframe.cpp:1457 mmframe.cpp:1477
 msgid "&Launch Account Website"
 msgstr "கணக்கு வலைத்தளத்தில் உலாவு"
 
-#: mmframe.cpp:1457 mmframe.cpp:1477
+#: mmframe.cpp:1458 mmframe.cpp:1478
 msgid "&Attachment Manager..."
 msgstr ""
 
-#: mmframe.cpp:1472 mmframe.cpp:1672
+#: mmframe.cpp:1473 mmframe.cpp:1677
 msgid "&Change Account Type..."
 msgstr ""
 
-#: mmframe.cpp:1490 mmframe.cpp:1666
+#: mmframe.cpp:1491 mmframe.cpp:1671
 msgid "&New Account..."
 msgstr ""
 
-#: mmframe.cpp:1492
+#: mmframe.cpp:1493
 msgid "Account &List"
 msgstr ""
 
-#: mmframe.cpp:1505 optionsettingsview.cpp:69
+#: mmframe.cpp:1506 optionsettingsview.cpp:69
 msgid "Accounts Visible"
 msgstr "தெரியும் கணக்குகள்"
 
-#: mmframe.cpp:1543
+#: mmframe.cpp:1544
 msgid "&New Database..."
 msgstr ""
 
-#: mmframe.cpp:1543 mmframe.cpp:1915 wizard_newdb.cpp:136
+#: mmframe.cpp:1544 mmframe.cpp:1920 wizard_newdb.cpp:136
 msgid "New Database"
 msgstr "எளிய முறையில் புதிய தகவல்தளம்"
 
-#: mmframe.cpp:1544
+#: mmframe.cpp:1545
 msgid "&Open Database...\tCtrl-O"
 msgstr ""
 
-#: mmframe.cpp:1544 mmframe.cpp:1916
+#: mmframe.cpp:1545 mmframe.cpp:1921
 msgid "Open Database"
 msgstr "தகவல்தளத்தை &திற\tCtrl-O"
 
-#: mmframe.cpp:1545
+#: mmframe.cpp:1546
 msgid "Save Database &As..."
 msgstr ""
 
-#: mmframe.cpp:1545
+#: mmframe.cpp:1546
 msgid "Save Database As"
 msgstr "தகவல்தளத்தை &வேறாக சேமி "
 
-#: mmframe.cpp:1552
+#: mmframe.cpp:1553
 msgid "&Recent Files"
 msgstr ""
 
-#: mmframe.cpp:1553
+#: mmframe.cpp:1554
 msgid "&Clear Recent Files"
 msgstr ""
 
-#: mmframe.cpp:1564
+#: mmframe.cpp:1565
 msgid "&WebApp..."
 msgstr ""
 
-#: mmframe.cpp:1564
+#: mmframe.cpp:1565
 msgid "Import from WebApp"
 msgstr ""
 
-#: mmframe.cpp:1571
+#: mmframe.cpp:1572
 msgid "Export as fixed CSV file"
 msgstr ""
 
-#: mmframe.cpp:1575
+#: mmframe.cpp:1576
 msgid "&HTML File..."
 msgstr ""
 
-#: mmframe.cpp:1575
+#: mmframe.cpp:1576
 msgid "Export as HTML file"
 msgstr ""
 
-#: mmframe.cpp:1580
+#: mmframe.cpp:1581
 msgid "&Print..."
 msgstr ""
 
-#: mmframe.cpp:1580
+#: mmframe.cpp:1581
 msgid "Print current view"
 msgstr ""
 
-#: mmframe.cpp:1586
+#: mmframe.cpp:1587
 msgid "E&xit\tAlt-X"
 msgstr ""
 
-#: mmframe.cpp:1586
+#: mmframe.cpp:1587
 msgid "Quit this program"
 msgstr ""
 
-#: mmframe.cpp:1592
+#: mmframe.cpp:1593
 msgid "&Toolbar"
 msgstr "&கருவிகள்"
 
-#: mmframe.cpp:1592
+#: mmframe.cpp:1593
 msgid "Show/Hide the toolbar"
 msgstr "கருவிப்பட்டையை காட்டு/மறை"
 
-#: mmframe.cpp:1594
+#: mmframe.cpp:1595
 msgid "&Navigation"
 msgstr ""
 
-#: mmframe.cpp:1594
+#: mmframe.cpp:1595
 msgid "Show/Hide the Navigation tree control"
 msgstr "உலாவும் வழியை காட்டு/மறை"
 
-#: mmframe.cpp:1596
+#: mmframe.cpp:1597
 msgid "&Display Share Accounts"
 msgstr ""
 
-#: mmframe.cpp:1596
+#: mmframe.cpp:1597
 msgid "Show/Hide Share Accounts in the navigation tree"
 msgstr ""
 
-#: mmframe.cpp:1598
+#: mmframe.cpp:1599
 msgid "&Display Deleted Transactions"
 msgstr ""
 
-#: mmframe.cpp:1598
+#: mmframe.cpp:1599
 msgid "Show/Hide Deleted Transactions in the navigation tree"
 msgstr ""
 
-#: mmframe.cpp:1600
+#: mmframe.cpp:1601
 msgid "Budgets: As Financial &Years"
 msgstr ""
 
-#: mmframe.cpp:1600
+#: mmframe.cpp:1601
 msgid "Display Budgets in Financial Year Format"
 msgstr ""
 
-#: mmframe.cpp:1602
+#: mmframe.cpp:1603
 msgid "Budgets: &Include Transfers in Totals"
 msgstr ""
 
-#: mmframe.cpp:1602
+#: mmframe.cpp:1603
 msgid "Include the transfer transactions in the Budget Totals"
 msgstr ""
 
-#: mmframe.cpp:1604
+#: mmframe.cpp:1605
 msgid "Budget Category Report: with &Summaries"
 msgstr ""
 
-#: mmframe.cpp:1604
+#: mmframe.cpp:1605
 msgid "Include the category summaries in the Budget Category Summary"
 msgstr ""
 
-#: mmframe.cpp:1606
+#: mmframe.cpp:1607
 msgid "Ignore F&uture Transactions"
 msgstr ""
 
-#: mmframe.cpp:1606
+#: mmframe.cpp:1607
 msgid "Ignore Future transactions"
 msgstr ""
 
-#: mmframe.cpp:1608
+#: mmframe.cpp:1609
 msgid "Show T&ooltips"
 msgstr ""
 
-#: mmframe.cpp:1608 optionsettingsview.cpp:104
+#: mmframe.cpp:1609 optionsettingsview.cpp:104
 msgid "Show Tooltips"
 msgstr ""
 
-#: mmframe.cpp:1610
+#: mmframe.cpp:1611
 msgid "Show &Money Tips"
 msgstr ""
 
-#: mmframe.cpp:1610 optionsettingsview.cpp:110
+#: mmframe.cpp:1611 optionsettingsview.cpp:110
 msgid "Show Money Tips"
 msgstr ""
 
-#: mmframe.cpp:1630
+#: mmframe.cpp:1631
 msgid "Toggle &Fullscreen\tShift+F11"
 msgstr ""
 
-#: mmframe.cpp:1631 mmframe.cpp:1950
+#: mmframe.cpp:1632 mmframe.cpp:1955
 msgid "Toggle Fullscreen"
 msgstr ""
 
-#: mmframe.cpp:1663
+#: mmframe.cpp:1636
+msgid "Reset View"
+msgstr ""
+
+#: mmframe.cpp:1637
+msgid "Reset view and dock tools"
+msgstr ""
+
+#: mmframe.cpp:1668
 msgid "Dash&board"
 msgstr ""
 
-#: mmframe.cpp:1663 mmframe.cpp:1919
+#: mmframe.cpp:1668 mmframe.cpp:1924
 msgid "Open Dashboard"
 msgstr ""
 
-#: mmframe.cpp:1672
+#: mmframe.cpp:1677
 msgid "Change the account type of an account"
 msgstr ""
 
-#: mmframe.cpp:1675
+#: mmframe.cpp:1680
 msgid "Delete Account from database"
 msgstr "தகவல்தளத்திலிருந்து கணக்கை அழி"
 
-#: mmframe.cpp:1688
+#: mmframe.cpp:1693
 msgid "Download &Rates"
 msgstr ""
 
-#: mmframe.cpp:1688 mmframe.cpp:1947
+#: mmframe.cpp:1693 mmframe.cpp:1952
 msgid "Download Currency and Stock Rates"
 msgstr ""
 
-#: mmframe.cpp:1694
+#: mmframe.cpp:1699
 msgid "&Payee Manager..."
 msgstr ""
 
-#: mmframe.cpp:1694 mmframe.cpp:1923 payeedialog.cpp:508
+#: mmframe.cpp:1699 mmframe.cpp:1928 payeedialog.cpp:508
 msgid "Payee Manager"
 msgstr ""
 
-#: mmframe.cpp:1698
+#: mmframe.cpp:1703
 msgid "&Category Manager..."
 msgstr ""
 
-#: mmframe.cpp:1702
+#: mmframe.cpp:1707
 msgid "&Tag Manager..."
 msgstr ""
 
-#: mmframe.cpp:1702 mmframe.cpp:1925 tagdialog.h:45
+#: mmframe.cpp:1707 mmframe.cpp:1930 tagdialog.h:45
 msgid "Tag Manager"
 msgstr ""
 
-#: mmframe.cpp:1706
+#: mmframe.cpp:1711
 msgid "Curre&ncy Manager..."
 msgstr ""
 
-#: mmframe.cpp:1710
+#: mmframe.cpp:1715
 msgid "&Categories..."
 msgstr ""
 
-#: mmframe.cpp:1711 relocatecategorydialog.cpp:89 relocatecategorydialog.h:43
+#: mmframe.cpp:1716 relocatecategorydialog.cpp:89 relocatecategorydialog.h:43
 msgid "Merge categories"
 msgstr ""
 
-#: mmframe.cpp:1713
+#: mmframe.cpp:1718
 msgid "&Payees..."
 msgstr ""
 
-#: mmframe.cpp:1714 relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
+#: mmframe.cpp:1719 relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge payees"
 msgstr ""
 
-#: mmframe.cpp:1716
+#: mmframe.cpp:1721
 msgid "&Tags..."
 msgstr ""
 
-#: mmframe.cpp:1717 relocatetagdialog.cpp:87 relocatetagdialog.h:42
+#: mmframe.cpp:1722 relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge tags"
 msgstr ""
 
-#: mmframe.cpp:1719
+#: mmframe.cpp:1724
 msgid "&Merge"
 msgstr ""
 
-#: mmframe.cpp:1720
+#: mmframe.cpp:1725
 msgid "Merge categories, payees, and tags"
 msgstr ""
 
-#: mmframe.cpp:1731
+#: mmframe.cpp:1736
 msgid "&Budget Planner..."
 msgstr ""
 
-#: mmframe.cpp:1735
+#: mmframe.cpp:1740
 msgid "&Scheduled Transactions"
 msgstr ""
 
-#: mmframe.cpp:1735
+#: mmframe.cpp:1740
 msgid "Bills and Deposits"
 msgstr ""
 
-#: mmframe.cpp:1739
+#: mmframe.cpp:1744
 msgid "&Assets"
 msgstr ""
 
-#: mmframe.cpp:1745
+#: mmframe.cpp:1750
 msgid "T&heme Manager..."
 msgstr ""
 
-#: mmframe.cpp:1745 themes.cpp:143
+#: mmframe.cpp:1750 themes.cpp:143
 msgid "Theme Manager"
 msgstr ""
 
-#: mmframe.cpp:1751
+#: mmframe.cpp:1756
 msgid "Transaction Report &Filter..."
 msgstr ""
 
-#: mmframe.cpp:1757
+#: mmframe.cpp:1762
 msgid "&General Report Manager..."
 msgstr ""
 
-#: mmframe.cpp:1761
+#: mmframe.cpp:1766
 msgid "C&ustom Field Manager..."
 msgstr ""
 
-#: mmframe.cpp:1767
+#: mmframe.cpp:1772
 msgid "Refresh &WebApp..."
 msgstr ""
 
-#: mmframe.cpp:1767 mmframe.cpp:2879 mmframe.cpp:2886
+#: mmframe.cpp:1772 mmframe.cpp:2884 mmframe.cpp:2891
 msgid "Refresh WebApp"
 msgstr ""
 
-#: mmframe.cpp:1772
+#: mmframe.cpp:1777
 msgid "&Options...\tCtrl-,"
 msgstr ""
 
-#: mmframe.cpp:1772
+#: mmframe.cpp:1777
 msgid "Options"
 msgstr ""
 
-#: mmframe.cpp:1779
+#: mmframe.cpp:1784
 msgid "Convert Encrypted &DB..."
 msgstr ""
 
-#: mmframe.cpp:1780
+#: mmframe.cpp:1785
 msgid "Convert Encrypted DB to Non-Encrypted DB"
 msgstr ""
 
-#: mmframe.cpp:1782
+#: mmframe.cpp:1787
 msgid "Change Encrypted &Password..."
 msgstr ""
 
-#: mmframe.cpp:1783
+#: mmframe.cpp:1788
 msgid "Change the password of an encrypted database"
 msgstr ""
 
-#: mmframe.cpp:1785
+#: mmframe.cpp:1790
 msgid "&Optimize Database..."
 msgstr ""
 
-#: mmframe.cpp:1786
+#: mmframe.cpp:1791
 msgid "Optimize database space and performance"
 msgstr ""
 
-#: mmframe.cpp:1788
+#: mmframe.cpp:1793
 msgid "Database Check and De&bug..."
 msgstr ""
 
-#: mmframe.cpp:1789
+#: mmframe.cpp:1794
 msgid "Generate database report or fix errors"
 msgstr ""
 
-#: mmframe.cpp:1794
+#: mmframe.cpp:1799
 msgid "&Database"
 msgstr ""
 
-#: mmframe.cpp:1795
+#: mmframe.cpp:1800
 msgid "Database management"
 msgstr ""
 
-#: mmframe.cpp:1802 mmframe.cpp:1957
+#: mmframe.cpp:1807 mmframe.cpp:1962
 msgid "&Help\tF1"
 msgstr ""
 
-#: mmframe.cpp:1802
+#: mmframe.cpp:1807
 msgid "Show Help"
 msgstr ""
 
-#: mmframe.cpp:1808
+#: mmframe.cpp:1813
 msgid "Open MMEX website for the latest news, updates etc"
 msgstr ""
 
-#: mmframe.cpp:1810
+#: mmframe.cpp:1815
 msgid "&Facebook"
 msgstr ""
 
-#: mmframe.cpp:1810
+#: mmframe.cpp:1815
 msgid "Visit us on Facebook"
 msgstr ""
 
-#: mmframe.cpp:1812
+#: mmframe.cpp:1817
 msgid "&Crowdin"
 msgstr ""
 
-#: mmframe.cpp:1812
+#: mmframe.cpp:1817
 msgid "We use Crowdin to translate MMEX"
 msgstr ""
 
-#: mmframe.cpp:1814
+#: mmframe.cpp:1819
 msgid "&Twitter"
 msgstr ""
 
-#: mmframe.cpp:1814
+#: mmframe.cpp:1819
 msgid "Follow us on Twitter"
 msgstr ""
 
-#: mmframe.cpp:1816
+#: mmframe.cpp:1821
 msgid "&YouTube"
 msgstr ""
 
-#: mmframe.cpp:1816
+#: mmframe.cpp:1821
 msgid "Watch free video materials about MMEX"
 msgstr ""
 
-#: mmframe.cpp:1818
+#: mmframe.cpp:1823
 msgid "&Slack"
 msgstr ""
 
-#: mmframe.cpp:1818
+#: mmframe.cpp:1823
 msgid "Communicate online with MMEX team from your desktop or mobile device"
 msgstr ""
 
-#: mmframe.cpp:1820
+#: mmframe.cpp:1825
 msgid "&GitHub"
 msgstr ""
 
-#: mmframe.cpp:1820
+#: mmframe.cpp:1825
 msgid "Access open source code repository and track reported bug statuses"
 msgstr ""
 
-#: mmframe.cpp:1822
+#: mmframe.cpp:1827
 msgid "W&iki pages"
 msgstr ""
 
-#: mmframe.cpp:1822
+#: mmframe.cpp:1827
 msgid "Read and update wiki pages"
 msgstr ""
 
-#: mmframe.cpp:1824
+#: mmframe.cpp:1829
 msgid "F&orum"
 msgstr ""
 
-#: mmframe.cpp:1825
+#: mmframe.cpp:1830
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
 msgstr ""
 
-#: mmframe.cpp:1827
+#: mmframe.cpp:1832
 msgid "MMEX for &Android"
 msgstr ""
 
-#: mmframe.cpp:1828
+#: mmframe.cpp:1833
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
 msgstr ""
 
-#: mmframe.cpp:1830
+#: mmframe.cpp:1835
 msgid "&Newsletter"
 msgstr ""
 
-#: mmframe.cpp:1831
+#: mmframe.cpp:1836
 msgid "Subscribe to e-mail newsletter or view existing announcements"
 msgstr ""
 
-#: mmframe.cpp:1833
+#: mmframe.cpp:1838
 msgid "&RSS Feed"
 msgstr ""
 
-#: mmframe.cpp:1833
+#: mmframe.cpp:1838
 msgid "Connect RSS web feed to news aggregator"
 msgstr ""
 
-#: mmframe.cpp:1835
+#: mmframe.cpp:1840
 msgid "&Donate via PayPal"
 msgstr ""
 
-#: mmframe.cpp:1836
+#: mmframe.cpp:1841
 msgid "Donate the team to support infrastructure etc"
 msgstr ""
 
-#: mmframe.cpp:1838
+#: mmframe.cpp:1843
 msgid "&Buy us a Coffee"
 msgstr ""
 
-#: mmframe.cpp:1839
+#: mmframe.cpp:1844
 msgid "Buy key developer a coffee"
 msgstr ""
 
-#: mmframe.cpp:1842
+#: mmframe.cpp:1847
 msgid "&Community"
 msgstr ""
 
-#: mmframe.cpp:1843
+#: mmframe.cpp:1848
 msgid "Stay in touch with MMEX community"
 msgstr ""
 
-#: mmframe.cpp:1865
+#: mmframe.cpp:1870
 msgid "Report a &Bug"
 msgstr ""
 
-#: mmframe.cpp:1866
+#: mmframe.cpp:1871
 msgid "Report an error in application to the developers"
 msgstr ""
 
-#: mmframe.cpp:1870
+#: mmframe.cpp:1875
 msgid "View &Diagnostics"
 msgstr ""
 
-#: mmframe.cpp:1871
+#: mmframe.cpp:1876
 msgid "Help provide information to the developers"
 msgstr ""
 
-#: mmframe.cpp:1875
+#: mmframe.cpp:1880
 msgid "&Show App Start Dialog"
 msgstr ""
 
-#: mmframe.cpp:1875
+#: mmframe.cpp:1880
 msgid "App Start Dialog"
 msgstr ""
 
-#: mmframe.cpp:1879
+#: mmframe.cpp:1884
 msgid "Check for &Updates"
 msgstr "&புதுப்பிக்க சோதி"
 
-#: mmframe.cpp:1879
+#: mmframe.cpp:1884
 msgid "Check For Updates"
 msgstr ""
 
-#: mmframe.cpp:1883 mmframe.cpp:1956
+#: mmframe.cpp:1888 mmframe.cpp:1961
 msgid "&About"
 msgstr ""
 
-#: mmframe.cpp:1883
+#: mmframe.cpp:1888
 msgid "About dialog"
 msgstr ""
 
-#: mmframe.cpp:1887
+#: mmframe.cpp:1892
 msgid "&File"
 msgstr "&கோப்பு"
 
-#: mmframe.cpp:1888
+#: mmframe.cpp:1893
 msgid "&Accounts"
 msgstr "&கணக்குகள்"
 
-#: mmframe.cpp:1889
+#: mmframe.cpp:1894
 msgid "&Tools"
 msgstr "&கருவிகள்"
 
-#: mmframe.cpp:1890
+#: mmframe.cpp:1895
 msgid "&View"
 msgstr "&காட்டு"
 
-#: mmframe.cpp:1891
+#: mmframe.cpp:1896
 msgid "&Help"
 msgstr "&உதவி"
 
-#: mmframe.cpp:1915 mmframe.cpp:1921
+#: mmframe.cpp:1920 mmframe.cpp:1926
 msgid "New"
 msgstr "புதிய"
 
-#: mmframe.cpp:1932
+#: mmframe.cpp:1937
 msgid "&Options"
 msgstr ""
 
-#: mmframe.cpp:1932
+#: mmframe.cpp:1937
 msgid "Options Dialog"
 msgstr ""
 
-#: mmframe.cpp:1940 mmframe.cpp:1945 mmframe.cpp:2945 optionsettingsnet.cpp:132
+#: mmframe.cpp:1945 mmframe.cpp:1950 mmframe.cpp:2950 optionsettingsnet.cpp:132
 msgid "News"
 msgstr ""
 
-#: mmframe.cpp:1947
+#: mmframe.cpp:1952
 msgid "Download Rates"
 msgstr ""
 
-#: mmframe.cpp:1950
+#: mmframe.cpp:1955
 msgid "Toggle Fullscreen\tF11"
 msgstr ""
 
-#: mmframe.cpp:1953
+#: mmframe.cpp:1958
 msgid "&Print"
 msgstr ""
 
-#: mmframe.cpp:1953
+#: mmframe.cpp:1958
 msgid "Print"
 msgstr ""
 
-#: mmframe.cpp:2010
+#: mmframe.cpp:2015
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
 msgstr ""
 
-#: mmframe.cpp:2011 mmframe.cpp:2304 mmframe.cpp:2483
+#: mmframe.cpp:2016 mmframe.cpp:2309 mmframe.cpp:2488
 msgid "MMEX: Encrypted Database"
 msgstr ""
 
-#: mmframe.cpp:2048
+#: mmframe.cpp:2053
 msgid "Have MMEX support provided you a debug/patch file?"
 msgstr ""
 
-#: mmframe.cpp:2048
+#: mmframe.cpp:2053
 msgid "MMEX upgrade"
 msgstr ""
 
-#: mmframe.cpp:2075 mmframe.cpp:2161
+#: mmframe.cpp:2080 mmframe.cpp:2166
 msgid "No File opened"
 msgstr ""
 
-#: mmframe.cpp:2077
+#: mmframe.cpp:2082
 msgid "Sorry. The Database version is too old or Database password is incorrect"
 msgstr ""
 
-#: mmframe.cpp:2151
+#: mmframe.cpp:2156
 msgid "&Next →"
 msgstr ""
 
-#: mmframe.cpp:2164
+#: mmframe.cpp:2169
 msgid "Cannot locate previously opened database.\n"
 msgstr ""
 
-#: mmframe.cpp:2166
+#: mmframe.cpp:2171
 msgid "Password not entered for encrypted Database.\n"
 msgstr ""
 
-#: mmframe.cpp:2185
+#: mmframe.cpp:2190
 msgid "portable mode"
 msgstr ""
 
-#: mmframe.cpp:2221
+#: mmframe.cpp:2226
 msgid "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
 msgstr ""
 
-#: mmframe.cpp:2225
+#: mmframe.cpp:2230
 msgid "MMEX Instance Check"
 msgstr ""
 
-#: mmframe.cpp:2245
+#: mmframe.cpp:2250
 msgid "Choose database file to create"
 msgstr ""
 
-#: mmframe.cpp:2248 mmframe.cpp:2312
-msgid "MMB Database (*.mmb)|*.mmb"
+#: mmframe.cpp:2253 mmframe.cpp:2275 mmframe.cpp:2317 mmframe.cpp:2457
+msgid "MMEX Database"
 msgstr ""
 
-#: mmframe.cpp:2268
+#: mmframe.cpp:2273
 msgid "Choose database file to open"
 msgstr ""
 
-#: mmframe.cpp:2270 mmframe.cpp:2452
-msgid "MMB Database (*.mmb)|*.mmb|Encrypted MMB Database (*.emb)|*.emb"
+#: mmframe.cpp:2275 mmframe.cpp:2301 mmframe.cpp:2457
+msgid "Encrypted MMEX Database"
 msgstr ""
 
-#: mmframe.cpp:2294
+#: mmframe.cpp:2299
 msgid "Choose Encrypted database file to open"
 msgstr ""
 
-#: mmframe.cpp:2304
+#: mmframe.cpp:2309
 msgid "Enter password for database"
 msgstr ""
 
-#: mmframe.cpp:2309
+#: mmframe.cpp:2314
 msgid "Choose database file to Save As"
 msgstr ""
 
-#: mmframe.cpp:2331
+#: mmframe.cpp:2336
 msgid "Converted DB!"
 msgstr ""
 
-#: mmframe.cpp:2331
+#: mmframe.cpp:2336
 msgid "MMEX message"
 msgstr ""
 
-#: mmframe.cpp:2337
+#: mmframe.cpp:2342
 msgid "MMEX: Encryption Password Change"
 msgstr ""
 
-#: mmframe.cpp:2338
+#: mmframe.cpp:2343
 #, c-format
 msgid "New password for database\n\n"
 "%s"
 msgstr ""
 
-#: mmframe.cpp:2346
+#: mmframe.cpp:2351
 msgid "New password must not be empty."
 msgstr ""
 
-#: mmframe.cpp:2350
+#: mmframe.cpp:2355
 msgid "Please confirm new password"
 msgstr ""
 
-#: mmframe.cpp:2357
+#: mmframe.cpp:2362
 msgid "Password change completed"
 msgstr ""
 
-#: mmframe.cpp:2361
+#: mmframe.cpp:2366
 msgid "Confirm password failed."
 msgstr ""
 
-#: mmframe.cpp:2372
+#: mmframe.cpp:2377
 msgid "Make sure you have a backup of DB before optimize it"
 msgstr ""
 
-#: mmframe.cpp:2373 mmframe.cpp:2383
+#: mmframe.cpp:2378 mmframe.cpp:2388
 msgid "DB Optimization"
 msgstr ""
 
-#: mmframe.cpp:2380
+#: mmframe.cpp:2385
 #, c-format
 msgid "Database Optimization Completed!\n\n"
 "Size before: %1$s\n"
 "Size after: %2$s\n"
 msgstr ""
 
-#: mmframe.cpp:2416
+#: mmframe.cpp:2421
 msgid "Result of database integrity check:"
 msgstr ""
 
-#: mmframe.cpp:2416
+#: mmframe.cpp:2421
 msgid "Database Check"
 msgstr ""
 
-#: mmframe.cpp:2429
+#: mmframe.cpp:2434
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
 msgstr ""
 
-#: mmframe.cpp:2430
+#: mmframe.cpp:2435
 msgid "Database Debug"
 msgstr ""
 
-#: mmframe.cpp:2449 mmframe.cpp:2470
+#: mmframe.cpp:2454 mmframe.cpp:2475
 msgid "Save database file as"
 msgstr ""
 
-#: mmframe.cpp:2470
+#: mmframe.cpp:2475
 msgid "Can't copy file to itself"
 msgstr ""
 
-#: mmframe.cpp:2483
+#: mmframe.cpp:2488
 msgid "Enter password for new database"
 msgstr ""
 
-#: mmframe.cpp:2570 mmframe.cpp:2589
+#: mmframe.cpp:2575 mmframe.cpp:2594
 msgid "No account available to import"
 msgstr ""
 
-#: mmframe.cpp:2638
+#: mmframe.cpp:2643
 msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n\n"
 "Asset Accounts can also hold normal transactions to regular accounts."
 msgstr ""
 
-#: mmframe.cpp:2642
+#: mmframe.cpp:2647
 msgid "Asset Account Creation"
 msgstr ""
 
-#: mmframe.cpp:2648
+#: mmframe.cpp:2653
 msgid "Share Accounts hold Share transactions\n\n"
 "Share transactions are created within the Stock Portfolio View\n"
 "after the selection of the Company Stock within the associated view.\n\n"
@@ -5447,99 +5459,99 @@ msgid "Share Accounts hold Share transactions\n\n"
 "Share Accounts can also hold normal transactions to regular account."
 msgstr ""
 
-#: mmframe.cpp:2654
+#: mmframe.cpp:2659
 msgid "Share Account Creation"
 msgstr ""
 
-#: mmframe.cpp:2852
+#: mmframe.cpp:2857
 msgid "MMEX Options have been updated."
 msgstr ""
 
-#: mmframe.cpp:2853
+#: mmframe.cpp:2858
 msgid "Some settings take effect only after an application restart."
 msgstr ""
 
-#: mmframe.cpp:2854 optiondialog.cpp:220 optiondialog.h:49
+#: mmframe.cpp:2859 optiondialog.cpp:220 optiondialog.h:49
 msgid "MMEX Options"
 msgstr ""
 
-#: mmframe.cpp:2879
+#: mmframe.cpp:2884
 msgid "Accounts, Payees, and Categories Updated"
 msgstr ""
 
-#: mmframe.cpp:2885
+#: mmframe.cpp:2890
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr ""
 
-#: mmframe.cpp:3025
+#: mmframe.cpp:3030
 msgid "Choose HTML file to Export"
 msgstr ""
 
-#: mmframe.cpp:3443 mmframe.cpp:3450
+#: mmframe.cpp:3448 mmframe.cpp:3455
 msgid "Downloading stock prices from Yahoo"
 msgstr ""
 
-#: mmframe.cpp:3444
+#: mmframe.cpp:3449
 msgid "Please wait..."
 msgstr ""
 
-#: mmframe.cpp:3493 stockspanel.cpp:459
+#: mmframe.cpp:3498 stockspanel.cpp:459
 #, c-format
 msgid "%1$s on %2$s"
 msgstr ""
 
-#: mmframe.cpp:3510
+#: mmframe.cpp:3515
 msgid "No account available to edit!"
 msgstr ""
 
-#: mmframe.cpp:3514
+#: mmframe.cpp:3519
 msgid "Choose Account to Edit"
 msgstr "மாற்றும் கணக்கை தேர்ந்தெடு"
 
-#: mmframe.cpp:3531
+#: mmframe.cpp:3536
 msgid "No account available to delete!"
 msgstr ""
 
-#: mmframe.cpp:3535
+#: mmframe.cpp:3540
 msgid "Choose Account to Delete"
 msgstr "அழிக்கும் கணக்கை தேர்ந்தெடு"
 
-#: mmframe.cpp:3540
+#: mmframe.cpp:3545
 #, c-format
 msgid "Are you sure you want to delete\n"
 "%1$s account: %2$s?"
 msgstr ""
 
-#: mmframe.cpp:3558
+#: mmframe.cpp:3563
 msgid "Select account"
 msgstr ""
 
-#: mmframe.cpp:3558 mmframe.cpp:3581
+#: mmframe.cpp:3563 mmframe.cpp:3586
 msgid "Change Account Type"
 msgstr ""
 
-#: mmframe.cpp:3580
+#: mmframe.cpp:3585
 #, c-format
 msgid "Select new account type for %s"
 msgstr ""
 
-#: mmframe.cpp:3746 payeedialog.cpp:833
+#: mmframe.cpp:3751 payeedialog.cpp:833
 msgid "Merge payees completed"
 msgstr ""
 
-#: mmframe.cpp:3750 payeedialog.cpp:837
+#: mmframe.cpp:3755 payeedialog.cpp:837
 msgid "Merge payees result"
 msgstr ""
 
-#: mmframe.cpp:3762
+#: mmframe.cpp:3767
 msgid "Merge tags completed"
 msgstr ""
 
-#: mmframe.cpp:3766
+#: mmframe.cpp:3771
 msgid "Merge tags result"
 msgstr ""
 
-#: mmframe.cpp:3842
+#: mmframe.cpp:3847
 #, c-format
 msgid "File %s not found"
 msgstr ""
@@ -7154,6 +7166,22 @@ msgstr ""
 
 #: reports/transactions.cpp:440
 msgid "All Transactions excluding Transfers"
+msgstr ""
+
+#: reports/transactions.cpp:481
+msgid "Statistics"
+msgstr ""
+
+#: reports/transactions.cpp:504
+msgid "Minimum"
+msgstr ""
+
+#: reports/transactions.cpp:506
+msgid "Maximum"
+msgstr ""
+
+#: reports/transactions.cpp:508
+msgid "Average"
 msgstr ""
 
 #: sharetransactiondialog.cpp:61 sharetransactiondialog.cpp:68
