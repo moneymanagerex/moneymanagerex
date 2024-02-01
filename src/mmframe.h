@@ -4,7 +4,7 @@ Copyright (C) 2012 Stefano Giorgio
 Copyright (C) 2013, 2022 Nikolay Akimov
 Copyright (C) 2014 James Higley
 Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
-Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021, 2022, 2024 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -75,6 +75,7 @@ public:
     bool setNavTreeSection(const wxString &sectionName);
     void menuPrintingEnable(bool enable);
     void OnToggleFullScreen(wxCommandEvent& WXUNUSED(event));
+    void OnResetView(wxCommandEvent& WXUNUSED(event));
     void OnClose(wxCloseEvent&);
 
     void RefreshNavigationTree();
@@ -346,6 +347,7 @@ private:
         MENU_VIEW_LINKS,
         MENU_VIEW_HIDE_SHARE_ACCOUNTS,
         MENU_VIEW_HIDE_DELETED_TRANSACTIONS,
+        MENU_VIEW_RESET,
         MENU_CATEGORY_RELOCATION,
         MENU_PAYEE_RELOCATION,
         MENU_TAG_RELOCATION,

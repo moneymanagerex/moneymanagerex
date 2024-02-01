@@ -186,7 +186,7 @@ table {
 
                 if (chart > -1)
                 {
-                    double value_chart = std::accumulate(total_in_base_curr.begin(), total_in_base_curr.end(), 0,
+                    double value_chart = std::accumulate(total_in_base_curr.begin(), total_in_base_curr.end(), static_cast<double>(0),
                                                          [](const double previous, decltype(*total_in_base_curr.begin()) p) { return previous + p.second; });
                     values_chart[lastSortLabel] += value_chart;
                 }
@@ -468,8 +468,54 @@ table {
         //gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_DELTA) };
         gd.type = static_cast<GraphData::GraphType>(chart);
         hb.addChart(gd);
-        //TODO: Fix with proper HTML code instead of jQuery trick
-        hb.addText("<script>$('.shadowGraph').insertAfter($('.shadowTitle'));</script>");
+
+        // Statistics
+        hb.addDivContainer("shadowGraph");
+        {
+            hb.startTable();
+            {
+                hb.startThead();
+                {
+                    hb.startTableRow();
+                    {
+                        hb.addTableHeaderCell(_("Statistics"));
+                        hb.addTableHeaderCell("");
+                    }
+                    hb.endTableRow();
+                }
+                hb.endThead();
+                hb.startTbody();
+                {
+                    auto statsMin = std::min_element
+                    (values_chart.begin(), values_chart.end(),
+                    [](const std::pair<wxString, double>& p1, const std::pair<wxString, double>& p2) {
+                            return p1.second < p2.second;
+                        }
+                    );
+                    auto statsMax = std::max_element
+                    (values_chart.begin(), values_chart.end(),
+                    [](const std::pair<wxString, double>& p1, const std::pair<wxString, double>& p2) {
+                            return p1.second < p2.second;
+                        }
+                    );
+                    double statsAvg = std::accumulate(values_chart.begin(), values_chart.end(), 0,
+                        [](const double previous, decltype(*values_chart.begin()) p) { return previous + p.second; });
+                    statsAvg = values_chart.size() > 0 ? statsAvg / values_chart.size() : 0;
+                    hb.addTotalRow(_("Minimum") + " >> " + statsMin->first, 2,
+                        std::vector<wxString>{ Model_Currency::toCurrency(statsMin->second, Model_Currency::GetBaseCurrency()) });
+                    hb.addTotalRow(_("Maximum") + " >> " + statsMax->first, 2,
+                        std::vector<wxString>{ Model_Currency::toCurrency(statsMax->second, Model_Currency::GetBaseCurrency()) });
+                    hb.addTotalRow(_("Average"), 2,
+                        std::vector<wxString>{ Model_Currency::toCurrency(statsAvg, Model_Currency::GetBaseCurrency()) });
+                }
+                hb.endTbody();
+            }
+            hb.endTable();
+        }
+        hb.endDiv();
+
+        // TODO: Fix with proper HTML code reordering instead of jQuery trick
+        hb.addText("<script>$('.shadowGraph').insertAfter($('.shadowTitle'));</script>\n");
     }
 
     // Filters recap

@@ -4,7 +4,7 @@
  Copyright (C) 2013 - 2022 Nikolay Akimov
  Copyright (C) 2014 James Higley
  Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
- Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021, 2022, 2024 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -198,6 +198,7 @@ EVT_TIMER(AUTO_REPEAT_TRANSACTIONS_TIMER_ID, mmGUIFrame::OnAutoRepeatTransaction
 EVT_MENU_RANGE(wxID_FILE1, wxID_FILE9, mmGUIFrame::OnRecentFiles)
 EVT_MENU(MENU_RECENT_FILES_CLEAR, mmGUIFrame::OnClearRecentFiles)
 EVT_MENU(MENU_VIEW_TOGGLE_FULLSCREEN, mmGUIFrame::OnToggleFullScreen)
+EVT_MENU(MENU_VIEW_RESET, mmGUIFrame::OnResetView)
 EVT_CLOSE(mmGUIFrame::OnClose)
 
 wxEND_EVENT_TABLE()
@@ -1631,6 +1632,10 @@ void mmGUIFrame::createMenu()
         , _("Toggle Fullscreen"));
     menuView->Append(menuItemToggleFullscreen);
 #endif
+wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
+        , _("Reset View")
+        , _("Reset view and dock tools"));
+    menuView->Append(menuItemResetView);   
 
     menuView->AppendSeparator();
     wxMenuItem* menuItemLanguage = new wxMenuItem(menuView, MENU_LANG
@@ -2245,7 +2250,7 @@ void mmGUIFrame::OnNew(wxCommandEvent& /*event*/)
         _("Choose database file to create"),
         wxEmptyString,
         wxEmptyString,
-        _("MMB Database (*.mmb)|*.mmb"),
+        _("MMEX Database")+" (*.mmb)|*.mmb",
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
@@ -2267,7 +2272,7 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
     autoRepeatTransactionsTimer_.Stop();
     wxString fileName = wxFileSelector(_("Choose database file to open")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , _("MMB Database (*.mmb)|*.mmb|Encrypted MMB Database (*.emb)|*.emb")
+        , _("MMEX Database")+" (*.mmb)|*.mmb|"+_("Encrypted MMEX Database")+" (*.emb)|*.emb"
         , wxFD_FILE_MUST_EXIST | wxFD_OPEN
         , this
     );
@@ -2293,7 +2298,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
 {
     wxString encFileName = wxFileSelector(_("Choose Encrypted database file to open")
         , wxEmptyString, wxEmptyString, wxEmptyString
-        , "Encrypted MMB Database (*.emb)|*.emb"
+        , _("Encrypted MMEX Database")+" (*.emb)|*.emb"
         , wxFD_FILE_MUST_EXIST
         , this
     );
@@ -2309,7 +2314,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
         , _("Choose database file to Save As")
         , wxEmptyString
         , wxEmptyString
-        , _("MMB Database (*.mmb)|*.mmb")
+        , _("MMEX Database")+" (*.mmb)|*.mmb"
         , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
@@ -2449,7 +2454,7 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
         _("Save database file as"),
         wxEmptyString,
         wxEmptyString,
-        _("MMB Database (*.mmb)|*.mmb|Encrypted MMB Database (*.emb)|*.emb"),
+        _("MMEX Database")+" (*.mmb)|*.mmb|"+_("Encrypted MMEX Database")+" (*.emb)|*.emb",
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
     );
 
@@ -3862,6 +3867,14 @@ void mmGUIFrame::OnToggleFullScreen(wxCommandEvent& WXUNUSED(event))
 #if (wxMAJOR_VERSION >= 3 && wxMINOR_VERSION >= 0)
     this->ShowFullScreen(!IsFullScreen());
 #endif
+}
+
+void mmGUIFrame::OnResetView(wxCommandEvent& WXUNUSED(event))
+{
+    Model_Setting::instance().Set("SHOWTOOLBAR", true);
+    m_mgr.GetPane("toolbar").Show(true).Dock().Top().Position(0);
+    m_mgr.GetPane("Navigation").Show(true).Dock().Left();
+    m_mgr.Update();
 }
 
 void mmGUIFrame::OnClose(wxCloseEvent&)
