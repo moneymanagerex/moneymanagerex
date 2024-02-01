@@ -186,7 +186,7 @@ table {
 
                 if (chart > -1)
                 {
-                    double value_chart = std::accumulate(total_in_base_curr.begin(), total_in_base_curr.end(), (double)0,
+                    double value_chart = std::accumulate(total_in_base_curr.begin(), total_in_base_curr.end(), static_cast<double>(0),
                                                          [](const double previous, decltype(*total_in_base_curr.begin()) p) { return previous + p.second; });
                     values_chart[lastSortLabel] += value_chart;
                 }
