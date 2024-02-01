@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-01-24 17:27+0300\n"
-"PO-Revision-Date: 2024-01-31 19:33\n"
+"PO-Revision-Date: 2024-02-01 17:30\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -367,7 +367,7 @@ msgstr "Posjeti web stranicu %s"
 
 #: appstartdialog.cpp:126
 msgid "&Support Forums"
-msgstr ""
+msgstr "&Forumi podrške"
 
 #: appstartdialog.cpp:127
 msgid "Visit the Support Forums"
