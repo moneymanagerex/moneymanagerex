@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-01 21:34\n"
+"PO-Revision-Date: 2024-02-02 21:57\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -367,11 +367,11 @@ msgstr "Visitar el sitio web de %s"
 
 #: appstartdialog.cpp:126
 msgid "&Support Forums"
-msgstr ""
+msgstr "&Foros de soporte"
 
 #: appstartdialog.cpp:127
 msgid "Visit the Support Forums"
-msgstr ""
+msgstr "Visite los foros de soporte"
 
 #: appstartdialog.cpp:133 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -733,17 +733,17 @@ msgstr "Carpeta de adjuntos no encontrada"
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %s | %i"
-msgstr ""
+msgstr "Administrador de adjuntos | %s | %i"
 
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr ""
+msgstr "Administrador de adjuntos | %1$s | %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr ""
+msgstr "Administrador de adjuntos | Nuevo %s"
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
@@ -759,7 +759,7 @@ msgstr "Escriba una descripción para el nuevo adjunto:"
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
-msgstr ""
+msgstr "Administrador de adjuntos: Añadir adjunto"
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
@@ -767,7 +767,7 @@ msgstr "Introduzca una nueva descripción para el adjunto:"
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
-msgstr ""
+msgstr "Administrador de adjuntos: Editar archivo adjunto"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
@@ -1528,7 +1528,7 @@ msgstr "%1$s    Fecha de inicio de: %2$s"
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "Planificación de presupuesto para %s"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -1682,7 +1682,7 @@ msgstr "El carácter de dos puntos (:) se utiliza para separar categorías y sub
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
-msgstr ""
+msgstr "Administrador de categorías: Nombre inválido"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
@@ -1698,7 +1698,7 @@ msgstr "Ya existe una categoría con el mismo nombre en la matriz"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category Manager: Adding Error"
-msgstr ""
+msgstr "Administrador de categorías: Error al añadir"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
@@ -1755,7 +1755,7 @@ msgstr "Herramientas → Combinar → Categorías"
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
-msgstr ""
+msgstr "Administrador de categorías: Error al eliminar"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1784,7 +1784,7 @@ msgstr "Editar categoría"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
-msgstr ""
+msgstr "Administrador de categorías: Error de edición"
 
 #: categdialog.cpp:682 mmframe.cpp:3736
 msgid "Merge categories completed"
@@ -1826,7 +1826,7 @@ msgstr "Eliminar Ajustes"
 
 #: categdialog.h:68 mmframe.cpp:1703 mmframe.cpp:1929
 msgid "Category Manager"
-msgstr ""
+msgstr "Administrador de categorías"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -2165,7 +2165,7 @@ msgstr "Propiedades"
 
 #: customfieldlistdialog.cpp:66 mmframe.cpp:1766
 msgid "Custom Field Manager"
-msgstr ""
+msgstr "Administrador de campos personalizados"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2577,23 +2577,23 @@ msgstr "Todo excepto conciliados"
 
 #: filtertransdialog.cpp:53
 msgid "Day"
-msgstr ""
+msgstr "Día"
 
 #: filtertransdialog.cpp:53
 msgid "Month"
-msgstr ""
+msgstr "Mes"
 
 #: filtertransdialog.cpp:53
 msgid "Year"
-msgstr ""
+msgstr "Año"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
-msgstr ""
+msgstr "Barra"
 
 #: filtertransdialog.cpp:55
 msgid "Line"
-msgstr ""
+msgstr "Línea"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
@@ -2613,7 +2613,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:57
 msgid "Bar Line"
-msgstr ""
+msgstr "Línea de barra"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Bar Line"
@@ -2625,7 +2625,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:487
 msgid "Last Unsaved Filter"
-msgstr ""
+msgstr "Último filtro no guardado"
 
 #: filtertransdialog.cpp:534 transactionsupdatedialog.cpp:122
 msgid "Specify"
@@ -2700,7 +2700,7 @@ msgstr "Especifique cómo se debe agrupar el informe"
 #: filtertransdialog.cpp:735 filtertransdialog.cpp:1085
 #: filtertransdialog.cpp:1914
 msgid "Chart"
-msgstr ""
+msgstr "Gráfico"
 
 #: filtertransdialog.cpp:744
 msgid "Specify which chart will be included in the report"
@@ -7732,7 +7732,7 @@ msgstr "Etiqueta '%s' en uso"
 
 #: tagdialog.cpp:295
 msgid "Tag Manager: Delete Error"
-msgstr ""
+msgstr "Administrador de etiquetas: Error al eliminar"
 
 #: tagdialog.cpp:298
 #, c-format
@@ -7825,7 +7825,7 @@ msgstr "Rellenar # de transacción"
 
 #: transdialog.cpp:565 usertransactionpanel.cpp:185
 msgid "Manage transaction attachments"
-msgstr ""
+msgstr "Administrar los archivos adjuntos de transacción"
 
 #: transdialog.cpp:768
 msgid "This transaction will exceed your account limit.\n\n"
