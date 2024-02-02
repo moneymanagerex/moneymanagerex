@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-01 21:34\n"
+"PO-Revision-Date: 2024-02-02 07:02\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2628,7 +2628,7 @@ msgstr "Zone empilée"
 
 #: filtertransdialog.cpp:487
 msgid "Last Unsaved Filter"
-msgstr ""
+msgstr "Dernier filtre non enregistré"
 
 #: filtertransdialog.cpp:534 transactionsupdatedialog.cpp:122
 msgid "Specify"
@@ -4918,11 +4918,11 @@ msgstr "Basculer en plein écran"
 
 #: mmframe.cpp:1636
 msgid "Reset View"
-msgstr ""
+msgstr "Réinitialiser l'affichage"
 
 #: mmframe.cpp:1637
 msgid "Reset view and dock tools"
-msgstr ""
+msgstr "Réinitialiser la vue et amarrer les outils"
 
 #: mmframe.cpp:1668
 msgid "Dash&board"
@@ -5375,7 +5375,7 @@ msgstr "Sélectionner la base de données à créer"
 
 #: mmframe.cpp:2253 mmframe.cpp:2275 mmframe.cpp:2317 mmframe.cpp:2457
 msgid "MMEX Database"
-msgstr ""
+msgstr "Base de données MMEX"
 
 #: mmframe.cpp:2273
 msgid "Choose database file to open"
@@ -5383,7 +5383,7 @@ msgstr "Sélectionner la base de données à ouvrir"
 
 #: mmframe.cpp:2275 mmframe.cpp:2301 mmframe.cpp:2457
 msgid "Encrypted MMEX Database"
-msgstr ""
+msgstr "Base de données chiffrée MMEX"
 
 #: mmframe.cpp:2299
 msgid "Choose Encrypted database file to open"
@@ -7232,19 +7232,19 @@ msgstr "Toutes les transactions sauf les virements"
 
 #: reports/transactions.cpp:481
 msgid "Statistics"
-msgstr ""
+msgstr "Statistiques"
 
 #: reports/transactions.cpp:504
 msgid "Minimum"
-msgstr ""
+msgstr "Minimum"
 
 #: reports/transactions.cpp:506
 msgid "Maximum"
-msgstr ""
+msgstr "Maximum"
 
 #: reports/transactions.cpp:508
 msgid "Average"
-msgstr ""
+msgstr "Moyenne"
 
 #: sharetransactiondialog.cpp:61 sharetransactiondialog.cpp:68
 msgid "Add Share Transaction"
