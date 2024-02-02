@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-01 21:35\n"
+"PO-Revision-Date: 2024-02-02 12:22\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -1197,7 +1197,7 @@ msgstr "Nevaljana vrijednost"
 #: import_export/univcsvdialog.cpp:1411 stockdialog.cpp:414 transdialog.cpp:644
 #: transdialog.cpp:718 usertransactionpanel.cpp:451 webapp.cpp:566
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr ""
+msgstr "Datum otvaranja računa je kasniji od datuma ove transakcije"
 
 #: billsdepositsdialog.cpp:1278
 msgid "Specify the transfer amount in the From Account"
