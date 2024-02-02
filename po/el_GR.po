@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-01 21:34\n"
+"PO-Revision-Date: 2024-02-02 09:21\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2628,7 +2628,7 @@ msgstr "Σωρευμένη Περιοχή"
 
 #: filtertransdialog.cpp:487
 msgid "Last Unsaved Filter"
-msgstr ""
+msgstr "Τελευταίο Μη Αποθηκευμένο Φίλτρο"
 
 #: filtertransdialog.cpp:534 transactionsupdatedialog.cpp:122
 msgid "Specify"
@@ -4916,11 +4916,11 @@ msgstr "Εναλλαγή Πλήρους Οθόνης"
 
 #: mmframe.cpp:1636
 msgid "Reset View"
-msgstr ""
+msgstr "Επαναφορά προβολής"
 
 #: mmframe.cpp:1637
 msgid "Reset view and dock tools"
-msgstr ""
+msgstr "Επαναφορά εργαλείων προβολής και προσάρτησης"
 
 #: mmframe.cpp:1668
 msgid "Dash&board"
@@ -5372,7 +5372,7 @@ msgstr "Επιλέξτε αρχείο βάσης δεδομένων για δη�
 
 #: mmframe.cpp:2253 mmframe.cpp:2275 mmframe.cpp:2317 mmframe.cpp:2457
 msgid "MMEX Database"
-msgstr ""
+msgstr "Βάση Δεδομένων MMEX"
 
 #: mmframe.cpp:2273
 msgid "Choose database file to open"
@@ -5380,7 +5380,7 @@ msgstr "Επιλέξτε βάση δεδομένων για άνοιγμα"
 
 #: mmframe.cpp:2275 mmframe.cpp:2301 mmframe.cpp:2457
 msgid "Encrypted MMEX Database"
-msgstr ""
+msgstr "Κρυπτογραφημένη Βάση Δεδομένων MMEX"
 
 #: mmframe.cpp:2299
 msgid "Choose Encrypted database file to open"
@@ -7227,19 +7227,19 @@ msgstr "Όλες οι συναλλαγές εκτός των μεταφορών"
 
 #: reports/transactions.cpp:481
 msgid "Statistics"
-msgstr ""
+msgstr "Στατιστικά στοιχεία"
 
 #: reports/transactions.cpp:504
 msgid "Minimum"
-msgstr ""
+msgstr "Ελάχιστο"
 
 #: reports/transactions.cpp:506
 msgid "Maximum"
-msgstr ""
+msgstr "Μέγιστο"
 
 #: reports/transactions.cpp:508
 msgid "Average"
-msgstr ""
+msgstr "Μέσος όρος"
 
 #: sharetransactiondialog.cpp:61 sharetransactiondialog.cpp:68
 msgid "Add Share Transaction"
