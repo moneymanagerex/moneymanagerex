@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-02 15:17\n"
+"PO-Revision-Date: 2024-02-02 20:11\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -4110,19 +4110,19 @@ msgstr "Supermarkt tip: vermijd boodschappen wanneer je honger hebt of gestrest 
 
 #: mmTips.h:40
 msgid "Grocery tip: Make a shopping list. A shopping list saves money by helping you avoid buying products you do not need. The simplest way is to track consumables as you use them. Keep a magnetic notepad on the fridge and jot down what you need as you run out."
-msgstr ""
+msgstr "Boodschappen tip: Maak een boodschappenlijstje. Een boodschappenlijstje bespaart geld doordat u vermijdt dat u producten koopt die u niet nodig heeft. De eenvoudigste manier is om verbruiksartikelen bij te houden terwijl u ze gebruikt. Leg een magnetisch notitieblok op de koelkast en noteer wat je nodig hebt als je voorraad op is."
 
 #: mmTips.h:41
 msgid "Grocery tip: Buy fruits and vegetables in season."
-msgstr ""
+msgstr "Boodschappen tip: Koop groenten en fruit in het seizoen."
 
 #: mmTips.h:42
 msgid "Grocery tip: Make sure your family consumes everything you purchase. Every month or so, hold a pantry challenge during which you use up as many pantry goods as possible before you shop again. A pantry challenge cuts down on waste and lets you get a sense of how much you are overbuying."
-msgstr ""
+msgstr "Boodschappen tip: Zorg ervoor dat uw gezin alles consumeert wat u koopt. Houd elke maand een voorraadkast uitdaging, waarbij je zoveel mogelijk voorraadartikelen opgebruikt voordat je weer gaat winkelen. Een voorraadkast uitdaging vermindert de verspilling en geeft u een idee van hoeveel u te veel koopt."
 
 #: mmTips.h:43
 msgid "Grocery tip: Reduce waste. Adopting better grocery shopping habits is one way to cut back on wasted food and money. Make a list of everything you throw out without using, such as spoiled leftovers or soggy lettuce, to get a sense of the full scale of the issue."
-msgstr ""
+msgstr "Boodschappen tip: Verminder afval. Het aannemen van betere boodschappen gewoonten is een manier om de verspilling van voedsel en geld terug te dringen. Maak een lijst van alles wat je weggooit zonder te gebruiken, zoals bedorven restjes of doorweekte sla, om een idee te krijgen van de volledige omvang van het probleem."
 
 #: mmTips.h:44
 msgid "Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."
