@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-01 21:34\n"
+"PO-Revision-Date: 2024-02-02 15:17\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -2627,7 +2627,7 @@ msgstr "Gestapeld vlak"
 
 #: filtertransdialog.cpp:487
 msgid "Last Unsaved Filter"
-msgstr ""
+msgstr "Laatste niet opgeslagen filter"
 
 #: filtertransdialog.cpp:534 transactionsupdatedialog.cpp:122
 msgid "Specify"
@@ -4917,11 +4917,11 @@ msgstr "Fullscreen"
 
 #: mmframe.cpp:1636
 msgid "Reset View"
-msgstr ""
+msgstr "Herstel weergave"
 
 #: mmframe.cpp:1637
 msgid "Reset view and dock tools"
-msgstr ""
+msgstr "Reset weergave- en docktools"
 
 #: mmframe.cpp:1668
 msgid "Dash&board"
@@ -5374,7 +5374,7 @@ msgstr "Kies een databestand om aan te maken"
 
 #: mmframe.cpp:2253 mmframe.cpp:2275 mmframe.cpp:2317 mmframe.cpp:2457
 msgid "MMEX Database"
-msgstr ""
+msgstr "MMEX Database"
 
 #: mmframe.cpp:2273
 msgid "Choose database file to open"
@@ -5382,7 +5382,7 @@ msgstr "Kies een databestand om te openen"
 
 #: mmframe.cpp:2275 mmframe.cpp:2301 mmframe.cpp:2457
 msgid "Encrypted MMEX Database"
-msgstr ""
+msgstr "Versleutelde MMEX Database"
 
 #: mmframe.cpp:2299
 msgid "Choose Encrypted database file to open"
@@ -7232,19 +7232,19 @@ msgstr "Alle transacties, exclusief overboekingen"
 
 #: reports/transactions.cpp:481
 msgid "Statistics"
-msgstr ""
+msgstr "Statistieken"
 
 #: reports/transactions.cpp:504
 msgid "Minimum"
-msgstr ""
+msgstr "Minimum"
 
 #: reports/transactions.cpp:506
 msgid "Maximum"
-msgstr ""
+msgstr "Maximum"
 
 #: reports/transactions.cpp:508
 msgid "Average"
-msgstr ""
+msgstr "Gemiddelde"
 
 #: sharetransactiondialog.cpp:61 sharetransactiondialog.cpp:68
 msgid "Add Share Transaction"
