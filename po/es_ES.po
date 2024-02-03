@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-02 21:57\n"
+"PO-Revision-Date: 2024-02-03 14:08\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -4956,19 +4956,19 @@ msgstr ""
 
 #: mmframe.cpp:1703
 msgid "&Category Manager..."
-msgstr ""
+msgstr "&Administrador de categorías..."
 
 #: mmframe.cpp:1707
 msgid "&Tag Manager..."
-msgstr ""
+msgstr "&Administrador de etiquetas..."
 
 #: mmframe.cpp:1707 mmframe.cpp:1930 tagdialog.h:45
 msgid "Tag Manager"
-msgstr ""
+msgstr "Administrador de etiquetas"
 
 #: mmframe.cpp:1711
 msgid "Curre&ncy Manager..."
-msgstr ""
+msgstr "Gestor de div&isas..."
 
 #: mmframe.cpp:1715
 msgid "&Categories..."
@@ -5004,7 +5004,7 @@ msgstr "Combinar categorías, beneficiarios y etiquetas"
 
 #: mmframe.cpp:1736
 msgid "&Budget Planner..."
-msgstr ""
+msgstr "Planificador del &presupuesto..."
 
 #: mmframe.cpp:1740
 msgid "&Scheduled Transactions"
@@ -5032,11 +5032,11 @@ msgstr "&Filtro para informe de transacción..."
 
 #: mmframe.cpp:1762
 msgid "&General Report Manager..."
-msgstr ""
+msgstr "&Administrador de informes generales..."
 
 #: mmframe.cpp:1766
 msgid "C&ustom Field Manager..."
-msgstr ""
+msgstr "Administrador de campos p&ersonalizados..."
 
 #: mmframe.cpp:1772
 msgid "Refresh &WebApp..."
@@ -5296,7 +5296,7 @@ msgstr "Nuevos"
 
 #: mmframe.cpp:1952
 msgid "Download Rates"
-msgstr ""
+msgstr "Descargar valores"
 
 #: mmframe.cpp:1955
 msgid "Toggle Fullscreen\tF11"
@@ -5373,7 +5373,7 @@ msgstr "Seleccionar base de datos a crear"
 
 #: mmframe.cpp:2253 mmframe.cpp:2275 mmframe.cpp:2317 mmframe.cpp:2457
 msgid "MMEX Database"
-msgstr ""
+msgstr "Base de datos de MMEX"
 
 #: mmframe.cpp:2273
 msgid "Choose database file to open"
@@ -5381,7 +5381,7 @@ msgstr "Seleccionar base de datos para abrir"
 
 #: mmframe.cpp:2275 mmframe.cpp:2301 mmframe.cpp:2457
 msgid "Encrypted MMEX Database"
-msgstr ""
+msgstr "Base de datos de MMEX cifrada"
 
 #: mmframe.cpp:2299
 msgid "Choose Encrypted database file to open"
