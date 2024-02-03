@@ -416,9 +416,15 @@ EVT_SPIN(wxID_ANY, mmDatePickerCtrl::OnDateSpin)
 wxEND_EVENT_TABLE()
 
 mmDatePickerCtrl::mmDatePickerCtrl(wxWindow* parent, wxWindowID id, wxDateTime dt, wxPoint pos, wxSize size, long style)
-    : wxDatePickerCtrl(parent, id, dt, pos, size, style)
-    , parent_(parent)
+    : wxPanel(parent, id, pos, size, style)
+    , parent_(parent), dt_(dt)
 {
+    if (!dt.IsValid())
+        dt_ = wxDateTime::Now();
+    wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
+    SetSizer(sizer);
+    datePicker_ = new wxDatePickerCtrl(this, id, dt, wxDefaultPosition, wxDefaultSize, style);
+    sizer->Add(datePicker_);
 }
 
 mmDatePickerCtrl::~mmDatePickerCtrl()
@@ -441,9 +447,9 @@ wxStaticText* mmDatePickerCtrl::getTextWeek()
             WeekDayNameMaxSize.IncTo(GetTextExtent(
                 wxGetTranslation(wxDateTime::GetEnglishWeekDayName(d))+ " "));
         WeekDayNameMaxSize.SetHeight(-1);
-        itemStaticTextWeek_ = new wxStaticText(this->GetParent(), wxID_ANY, "", wxDefaultPosition, WeekDayNameMaxSize, wxST_NO_AUTORESIZE);
+        itemStaticTextWeek_ = new wxStaticText(parent_, wxID_ANY, "", wxDefaultPosition, WeekDayNameMaxSize, wxST_NO_AUTORESIZE);
         // Force update
-        wxDateEvent dateEvent(this, this->GetValue(), wxEVT_DATE_CHANGED);
+        wxDateEvent dateEvent(this, datePicker_->GetValue(), wxEVT_DATE_CHANGED);
         OnDateChanged(dateEvent);
     }
     return itemStaticTextWeek_;
@@ -453,7 +459,7 @@ wxSpinButton* mmDatePickerCtrl::getSpinButton()
 {
     if (!spinButton_)
     {
-        spinButton_ = new wxSpinButton(this->GetParent(), wxID_ANY
+        spinButton_ = new wxSpinButton(parent_, wxID_ANY
             , wxDefaultPosition, wxSize(-1, this->GetSize().GetHeight())
             , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
         spinButton_->Connect(wxID_ANY, wxEVT_SPIN
@@ -465,7 +471,9 @@ wxSpinButton* mmDatePickerCtrl::getSpinButton()
 
 void mmDatePickerCtrl::SetValue(const wxDateTime &dt)
 {
-    wxDatePickerCtrl::SetValue(dt);
+    datePicker_->SetValue(dt);
+    if (timePicker_)
+        timePicker_->SetValue(dt);
     //trigger date change event
     wxDateEvent dateEvent(this, dt, wxEVT_DATE_CHANGED);
     OnDateChanged(dateEvent);
@@ -473,19 +481,27 @@ void mmDatePickerCtrl::SetValue(const wxDateTime &dt)
 
 bool mmDatePickerCtrl::Enable(bool state)
 {
-    bool response = wxDatePickerCtrl::Enable(state);
+    bool response = datePicker_->Enable(state);
+    if (timePicker_)
+        timePicker_->Enable(state);
     if (itemStaticTextWeek_) itemStaticTextWeek_->Enable(state);
     if (spinButton_) spinButton_->Enable(state);
     return response;
 }
 
-wxBoxSizer* mmDatePickerCtrl::mmGetLayout()
+wxBoxSizer* mmDatePickerCtrl::mmGetLayout(bool showTimeCtrl)
 {
     wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
     date_sizer->Add(this, g_flagsH);
 #if defined(__WXMSW__) || defined(__WXGTK__)
     date_sizer->Add(this->getSpinButton(), g_flagsH);
 #endif
+    if (showTimeCtrl)
+    {
+        timePicker_ = new wxTimePickerCtrl(parent_, wxID_ANY, dt_, wxDefaultPosition, wxDefaultSize);
+        timePicker_->Bind(wxEVT_TIME_CHANGED, &mmDatePickerCtrl::OnDateChanged, this);
+        date_sizer->Add(timePicker_, g_flagsH);
+    }
     date_sizer->Add(this->getTextWeek(), g_flagsH);
 
     return date_sizer;
@@ -498,6 +514,10 @@ void mmDatePickerCtrl::OnDateChanged(wxDateEvent& event)
         wxDateTime dt = event.GetDate();
         itemStaticTextWeek_->SetLabelText(wxGetTranslation(dt.GetEnglishWeekDayName(dt.GetWeekDay())));
     }
+    if (timePicker_)
+        dt_.ParseISOCombined(datePicker_->GetValue().FormatISODate() + "T" + timePicker_->GetValue().FormatISOTime());
+    else
+        dt_ = datePicker_->GetValue();
     event.Skip();
 }
 
@@ -505,11 +525,11 @@ void mmDatePickerCtrl::OnDateSpin(wxSpinEvent& event)
 {
     if (spinButton_)
     {
-        wxDateTime date = this->GetValue();
+        wxDateTime date = GetValue();
         date = date.Add(wxDateSpan::Days(spinButton_->GetValue()));
-        this->SetValue(date);
-        wxDateEvent evt(this, this->GetValue(), wxEVT_DATE_CHANGED);
-        this->GetEventHandler()->AddPendingEvent(evt);
+        SetValue(date);
+        wxDateEvent evt(this, GetValue(), wxEVT_DATE_CHANGED);
+        GetEventHandler()->AddPendingEvent(evt);
         spinButton_->SetValue(0);
     }
 }

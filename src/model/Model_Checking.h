@@ -132,6 +132,16 @@ public:
             return x.TAGNAMES < y.TAGNAMES;
         }
     };
+    struct SorterByTRANSTIME
+    {
+        template <class DATA> bool operator()(const DATA& x, const DATA& y)
+        {
+            wxDate dateX, dateY;
+            dateX.ParseDateTime(x.TRANSDATE) || dateX.ParseDate(x.TRANSDATE);
+            dateY.ParseDateTime(y.TRANSDATE) || dateY.ParseDate(y.TRANSDATE);
+            return dateX.FormatISOTime() < dateY.FormatISOTime();
+        }
+    };
 
 public:
     Model_Checking();

@@ -1384,10 +1384,12 @@ template <class MODEL, class DATA> bool mmFilterTransactionsDialog::mmIsRecordMa
         refType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
 
     // wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(),
-    // getToDateControl().GetDateOnly().FormatISODate());
+    wxDate date;
+    date.ParseDate(tran.TRANSDATE);
+    wxString strDate = date.FormatISODate();
     if (mmIsAccountChecked() && m_selected_accounts_id.Index(tran.ACCOUNTID) == wxNOT_FOUND && m_selected_accounts_id.Index(tran.TOACCOUNTID) == wxNOT_FOUND)
         ok = false;
-    else if ((mmIsDateRangeChecked() || mmIsRangeChecked()) && (tran.TRANSDATE < m_begin_date || tran.TRANSDATE > m_end_date))
+    else if ((mmIsDateRangeChecked() || mmIsRangeChecked()) && (strDate < m_begin_date || strDate > m_end_date))
         ok = false;
     else if (mmIsPayeeChecked() && !mmIsPayeeMatches(tran.PAYEEID))
         ok = false;

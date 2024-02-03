@@ -584,7 +584,7 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
 {
     data.TRANSID = -1;
     data.PAYEEID = -1;
-    const wxString today_date = wxDate::Today().FormatISODate();
+    const wxString today_date = wxDate::Now().FormatISOCombined();
     wxString max_trx_date;
     if (Option::instance().TransDateDefault() != Option::NONE)
     {

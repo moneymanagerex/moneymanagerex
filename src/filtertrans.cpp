@@ -100,11 +100,12 @@ bool mmFilterTransactions::mmIsRecordMatches(const Model_Checking::Data &tran
     , const std::map<int, Model_Splittransaction::Data_Set>& split)
 {
     bool ok = true;
+    wxString strDate = Model_Checking::TRANSDATE(tran).FormatISODate();
     if (_accountFilter
         && (_accountList.Index(tran.ACCOUNTID) == wxNOT_FOUND)
         && (_accountList.Index(tran.TOACCOUNTID) == wxNOT_FOUND))
         ok = false;
-    else if (_dateFilter && ((tran.TRANSDATE < _startDate) || (tran.TRANSDATE > _endDate)))
+    else if (_dateFilter && ((strDate < _startDate) || (strDate > _endDate)))
         ok = false;
     else if (_payeeFilter && (_payeeList.Index(tran.PAYEEID) == wxNOT_FOUND))
         ok = false;

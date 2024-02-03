@@ -197,7 +197,7 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(date_label, g_flagsH);
     date_label->SetFont(this->GetFont().Bold());
     m_purchase_date_ctrl = new mmDatePickerCtrl(itemPanel5, ID_DPC_STOCK_PDATE);
-    itemFlexGridSizer6->Add(m_purchase_date_ctrl->mmGetLayout());
+    itemFlexGridSizer6->Add(m_purchase_date_ctrl->mmGetLayout(false));
     mmToolTip(m_purchase_date_ctrl, _("Specify the initial date of the stock investment\nUsed when creating the initial Share transaction."));
     m_purchase_date_ctrl->Enable(initial_stock_transaction);
 
