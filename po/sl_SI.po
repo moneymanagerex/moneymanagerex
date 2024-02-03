@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-03 15:54\n"
+"PO-Revision-Date: 2024-02-03 17:06\n"
 "Last-Translator: \n"
 "Language-Team: Slovenian\n"
 "MIME-Version: 1.0\n"
@@ -1550,7 +1550,7 @@ msgstr ""
 
 #: budgetingpanel.cpp:290
 msgid "Icon"
-msgstr ""
+msgstr "Ikona"
 
 #: budgetingpanel.cpp:294 reports/budgetcategorysummary.cpp:142
 #: reports/budgetcategorysummary.cpp:186
@@ -1638,7 +1638,7 @@ msgstr ""
 
 #: categdialog.cpp:265 reports/categexp.cpp:207
 msgid "Expand All"
-msgstr ""
+msgstr "Razširi vse"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "Show &All"
@@ -1828,11 +1828,11 @@ msgstr "Prekliči"
 #: constants.cpp:78 diagnostics.cpp:88 relocatecategorydialog.cpp:134
 #: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:134 themes.cpp:195
 msgid "Close"
-msgstr ""
+msgstr "Zapri"
 
 #: constants.cpp:80
 msgid "&Close "
-msgstr ""
+msgstr "&Zapri"
 
 #: constants.cpp:84 import_export/qif_import_gui.cpp:760
 #: import_export/qif_import_gui.cpp:793 import_export/qif_import_gui.cpp:819
@@ -1842,31 +1842,31 @@ msgstr "Potrdi"
 
 #: constants.cpp:90
 msgid "Undo"
-msgstr ""
+msgstr "Razveljavi"
 
 #: constants.cpp:91
 msgid "Redo"
-msgstr ""
+msgstr "Obnovi"
 
 #: constants.cpp:92
 msgid "Cut"
-msgstr ""
+msgstr "Izreži"
 
 #: constants.cpp:93
 msgid "Copy"
-msgstr ""
+msgstr "Kopiraj"
 
 #: constants.cpp:94
 msgid "Paste"
-msgstr ""
+msgstr "Prilepi"
 
 #: constants.cpp:95
 msgid "Select All"
-msgstr ""
+msgstr "Izberi vse"
 
 #: constants.cpp:111
 msgid "64-bit"
-msgstr ""
+msgstr "64-bitno"
 
 #: constants.cpp:193
 msgid "View with Transaction Filter..."
@@ -1964,7 +1964,7 @@ msgstr ""
 
 #: currencydialog.cpp:203
 msgid "Prefix"
-msgstr ""
+msgstr "Predpona"
 
 #: currencydialog.cpp:204
 msgid "Suffix"
@@ -2063,7 +2063,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:141
 msgid "Field Type"
-msgstr ""
+msgstr "Vrsta polja"
 
 #: customfieldeditdialog.cpp:145
 msgid "Select type of custom field"
@@ -2079,7 +2079,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:153
 msgid "RegEx"
-msgstr ""
+msgstr "RegEx"
 
 #: customfieldeditdialog.cpp:155
 msgid "Enter the RegEx to validate field"
@@ -2095,7 +2095,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:164 optionsettingsview.cpp:218 util.cpp:609
 msgid "Default"
-msgstr ""
+msgstr "Privzeto"
 
 #: customfieldeditdialog.cpp:166
 msgid "Enter the default for this field\n"
@@ -2104,7 +2104,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:170
 msgid "Choices"
-msgstr ""
+msgstr "Izbire"
 
 #: customfieldeditdialog.cpp:172
 msgid "Enter the choices for this field separated with a semicolon"
@@ -2153,7 +2153,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
-msgstr ""
+msgstr "Lastnosti"
 
 #: customfieldlistdialog.cpp:66 mmframe.cpp:1766
 msgid "Custom Field Manager"
@@ -2233,7 +2233,7 @@ msgstr "Gorivo"
 
 #: db/DB_Table_Category_V1.h:117
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: db/DB_Table_Category_V1.h:118
 msgid "Rent"
@@ -2529,7 +2529,7 @@ msgstr ""
 
 #: filtertrans.cpp:182
 msgid "Back"
-msgstr ""
+msgstr "Nazaj"
 
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:663 mmchecking_list.cpp:1279
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:41
@@ -2563,23 +2563,23 @@ msgstr ""
 
 #: filtertransdialog.cpp:53
 msgid "Day"
-msgstr ""
+msgstr "Dan"
 
 #: filtertransdialog.cpp:53
 msgid "Month"
-msgstr ""
+msgstr "Mesec"
 
 #: filtertransdialog.cpp:53
 msgid "Year"
-msgstr ""
+msgstr "Leto"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
-msgstr ""
+msgstr "Vrstica"
 
 #: filtertransdialog.cpp:55
 msgid "Line"
-msgstr ""
+msgstr "Črta"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
@@ -2587,7 +2587,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
-msgstr ""
+msgstr "Torta"
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
@@ -2672,12 +2672,12 @@ msgstr ""
 #: filtertransdialog.cpp:714 filtertransdialog.cpp:1072
 #: filtertransdialog.cpp:1890
 msgid "Hide Columns"
-msgstr ""
+msgstr "Skrij stolpce"
 
 #: filtertransdialog.cpp:723 filtertransdialog.cpp:1079
 #: filtertransdialog.cpp:1903
 msgid "Group By"
-msgstr ""
+msgstr "Združi po"
 
 #: filtertransdialog.cpp:732
 msgid "Specify how the report should be grouped"
@@ -2686,7 +2686,7 @@ msgstr ""
 #: filtertransdialog.cpp:735 filtertransdialog.cpp:1085
 #: filtertransdialog.cpp:1914
 msgid "Chart"
-msgstr ""
+msgstr "Grafikon"
 
 #: filtertransdialog.cpp:744
 msgid "Specify which chart will be included in the report"
@@ -2702,7 +2702,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:759
 msgid "Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #: filtertransdialog.cpp:772
 msgid "Save active values into current Preset selection"
@@ -2716,7 +2716,7 @@ msgstr ""
 #: filtertransdialog.cpp:1029 filtertransdialog.cpp:1572
 #: reports/myusage.cpp:102 webappdialog.cpp:185 webappdialog.cpp:190
 msgid "Empty value"
-msgstr ""
+msgstr "Prazna vrednost"
 
 #: filtertransdialog.cpp:979
 #, c-format
@@ -2787,7 +2787,7 @@ msgstr ""
 #: images_list.cpp:495 import_export/qif_import_gui.cpp:762
 #: import_export/qif_import_gui.cpp:765 import_export/univcsvdialog.cpp:1093
 msgid "Warning"
-msgstr ""
+msgstr "Opozorilo"
 
 #: filtertransdialog.cpp:2124
 msgid "Filter settings have changed"
@@ -2836,7 +2836,7 @@ msgstr ""
 
 #: general_report_manager.cpp:393
 msgid "Save changes."
-msgstr ""
+msgstr "Shrani spremembe."
 
 #: general_report_manager.cpp:395
 msgid "&Run"
@@ -2848,11 +2848,11 @@ msgstr ""
 
 #: general_report_manager.cpp:409
 msgid "Output"
-msgstr ""
+msgstr "Izhod"
 
 #: general_report_manager.cpp:432
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:433
 msgid "Lua"
@@ -2860,7 +2860,7 @@ msgstr ""
 
 #: general_report_manager.cpp:434
 msgid "Template"
-msgstr ""
+msgstr "Predloga"
 
 #: general_report_manager.cpp:487
 msgid "&Test"
@@ -2868,7 +2868,7 @@ msgstr ""
 
 #: general_report_manager.cpp:488
 msgid "Create Template"
-msgstr ""
+msgstr "Ustvari predlogo"
 
 #: general_report_manager.cpp:540
 #, c-format
@@ -2903,7 +2903,7 @@ msgstr ""
 
 #: general_report_manager.cpp:732
 msgid "Assets..."
-msgstr ""
+msgstr "Premoženje..."
 
 #: general_report_manager.cpp:735
 msgid "New Empty Report..."
