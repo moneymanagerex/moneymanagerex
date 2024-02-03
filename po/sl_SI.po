@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-01 21:34\n"
+"PO-Revision-Date: 2024-02-03 15:54\n"
 "Last-Translator: \n"
 "Language-Team: Slovenian\n"
 "MIME-Version: 1.0\n"
@@ -237,11 +237,11 @@ msgstr ""
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:304
 msgid "Credit"
-msgstr ""
+msgstr "Kredit"
 
 #: accountdialog.cpp:258 mmcheckingpanel.cpp:548
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Limit kredita"
 
 #: accountdialog.cpp:260
 msgid "Credit limit for the Account. Zero to disable"
@@ -249,11 +249,11 @@ msgstr ""
 
 #: accountdialog.cpp:263
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Obrestna mera:"
 
 #: accountdialog.cpp:268
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Rok plačila"
 
 #: accountdialog.cpp:272
 msgid "Minimum Payment:"
@@ -289,7 +289,7 @@ msgstr ""
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Invalid URL"
-msgstr ""
+msgstr "Neveljaven URL"
 
 #: accountdialog.cpp:515
 msgid "Opening date cannot be in the future"
@@ -504,7 +504,7 @@ msgstr "Spremeni podrobnosti transakcije"
 
 #: assetdialog.cpp:284 constants.cpp:74 sharetransactiondialog.cpp:322
 msgid "&Cancel "
-msgstr ""
+msgstr "&Prekliči "
 
 #: assetdialog.cpp:386 sharetransactiondialog.cpp:415
 msgid "Invalid Transaction"
@@ -745,7 +745,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
-msgstr ""
+msgstr "Druga orodja"
 
 #: attachmentdialog.cpp:190
 msgid "Import attachment:"
@@ -779,11 +779,11 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:308 maincurrencydialog.cpp:539
 #: payeedialog.cpp:882 stockdialog.cpp:323 tagdialog.cpp:124
 msgid "&Add "
-msgstr ""
+msgstr "&Dodaj "
 
 #: attachmentdialog.cpp:355
 msgid "&Open "
-msgstr ""
+msgstr "&Odprt "
 
 #: attachmentdialog.cpp:358 customfieldlistdialog.cpp:263
 #: import_export/univcsvdialog.cpp:312 maincurrencydialog.cpp:541
@@ -869,7 +869,7 @@ msgstr "Mesečno"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:62
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Vsaka 2 meseca"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:55
 #: model/Model_Budget.cpp:63
@@ -901,11 +901,11 @@ msgstr "Dnevno"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
-msgstr ""
+msgstr "V (n) dneh"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr ""
+msgstr "V (n) mesecih"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
@@ -1137,7 +1137,7 @@ msgstr ""
 #: transactionsupdatedialog.cpp:232 transactionsupdatedialog.cpp:415
 #: transdialog.cpp:575
 msgid "Color"
-msgstr ""
+msgstr "Barva"
 
 #: billsdepositsdialog.cpp:635 transdialog.cpp:582 transdialog.cpp:1318
 #: usertransactionpanel.cpp:201
