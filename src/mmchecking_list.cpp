@@ -453,10 +453,10 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     }
     wxMenu menu;
     if (!m_cp->isTrash_) {
-        menu.Append(MENU_TREEPOPUP_WITHDRAWAL, _("&New Withdrawal..."));
-        menu.Append(MENU_TREEPOPUP_DEPOSIT, _("&New Deposit..."));
+        menu.Append(MENU_TREEPOPUP_WITHDRAWAL, _("New &Withdrawal..."));
+        menu.Append(MENU_TREEPOPUP_DEPOSIT, _("New &Deposit..."));
         if (Model_Account::instance().all_checking_account_names(true).size() > 1)
-            menu.Append(MENU_TREEPOPUP_TRANSFER, _("&New Transfer..."));
+            menu.Append(MENU_TREEPOPUP_TRANSFER, _("New &Transfer..."));
 
         menu.AppendSeparator();
 
@@ -638,7 +638,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
                     menu.Append(MENU_TREEPOPUP_FIND, wxString::Format(_("&Find all transactions with %s '%s'"), (columnIsAmount ? _("Amount") : m_columns[column].HEADER), menuItemText));
                 }
                 if (!copyText_.IsEmpty())
-                    menu.Append(MENU_TREEPOPUP_COPYTEXT, _("Copy Text to Clipboard"));
+                    menu.Append(MENU_TREEPOPUP_COPYTEXT, _("Cop&y Text to Clipboard"));
             }
         }
     }
@@ -654,23 +654,23 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_FLAGGED, _("Delete Viewed \"Follow Up\" Transactions..."));
         subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_UNRECONCILED, _("Delete Viewed \"Unreconciled\" Transactions..."));
     }
-    menu.Append(MENU_TREEPOPUP_DELETE2, _("&Delete "), subGlobalOpMenuDelete);
+    menu.Append(MENU_TREEPOPUP_DELETE2, _("De&lete "), subGlobalOpMenuDelete);
 
     if (!m_cp->isTrash_) {
         menu.AppendSeparator();
 
         wxMenu* subGlobalOpMenuMark = new wxMenu();
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("Unreconciled"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("&Unreconciled"));
         if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKUNRECONCILED, false);
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("Reconciled"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("&Reconciled"));
         if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("Void"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("&Void"));
         if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKVOID, false);
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("Follow Up"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("&Follow Up"));
         if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, false);
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("Duplicate"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("D&uplicate"));
         if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
-        menu.AppendSubMenu(subGlobalOpMenuMark, _("Mark as"));
+        menu.AppendSubMenu(subGlobalOpMenuMark, _("Mar&k as"));
 
         // Disable menu items not ment for foreign transactions
         if (is_foreign)
