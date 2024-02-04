@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-04 10:28\n"
+"PO-Revision-Date: 2024-02-04 14:32\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2601,15 +2601,15 @@ msgstr ""
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
-msgstr ""
+msgstr "Tarta"
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
-msgstr ""
+msgstr "Donut"
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
-msgstr ""
+msgstr "Radar"
 
 #: filtertransdialog.cpp:57
 msgid "Bar Line"
@@ -2617,11 +2617,11 @@ msgstr "Línea de barra"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Bar Line"
-msgstr ""
+msgstr "Línea de barra apilada"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Area"
-msgstr ""
+msgstr "Área apilada"
 
 #: filtertransdialog.cpp:487
 msgid "Last Unsaved Filter"
@@ -4093,7 +4093,7 @@ msgstr "Consejo: Seleccione el tipo de cambio para las divisas en caso de que te
 
 #: mmTips.h:34
 msgid "Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Consejo del administrador de categorías: Al pulsar la tecla “H” pasará por todas las categorías que empiezan con la letra h."
 
 #: mmTips.h:35
 msgid "Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
@@ -4142,31 +4142,31 @@ msgstr ""
 #: mmTips.h:51
 #, c-format
 msgid "Get out of debt tip: Pay yourself 10% first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Consejo para salir del endeudamiento: Guárdese el 10% en primer lugar. Póngalo en una cuenta con la que sea más difícil operar. Asegúrese que es engorroso sacar el dinero (como tener que ir en coche al banco), así sólo lo usará para gastos importantes."
 
 #: mmTips.h:52
 msgid "Get out of debt tip: Establish an emergency fund."
-msgstr ""
+msgstr "Consejo para salir del endeudamiento: Establezca un fondo de emergencia."
 
 #: mmTips.h:53
 msgid "Get out of debt tip: Stop acquiring new debt."
-msgstr ""
+msgstr "Consejo para salir del endeudamiento: Deje de adquirir nuevas deudas."
 
 #: mmTips.h:54
 msgid "Get out of debt tip: Create a realistic budget for your expenses."
-msgstr ""
+msgstr "Consejo para salir del endeudamiento: Cree un presupuesto realista para sus gastos."
 
 #: mmTips.h:55
 msgid "Get out of debt tip: Spend less than you earn."
-msgstr ""
+msgstr "Consejo para salir del endeudamiento: Gaste menos de lo que gana."
 
 #: mmTips.h:56
 msgid "Get out of debt tip: Pay more than the minimum."
-msgstr ""
+msgstr "Consejo para salir del endeudamiento: Pague más que el mínimo."
 
 #: mmTips.h:57
 msgid "Get out of debt tip: If you have a mountain of debt, studies show paying off the smallest debts can give you the confidence to tackle the larger ones."
-msgstr ""
+msgstr "Consejo para salir del endeudamiento: si tiene una montaña de deudas, los estudios muestran que el pago de las deudas más pequeñas puede darle la confianza para abordar las más grandes."
 
 #: mmTips.h:58
 msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
@@ -4194,7 +4194,7 @@ msgstr "Antes de empezar a invertir, conozca su flujo de efectivo (tenga un pres
 
 #: mmTips.h:69
 msgid "Before you start investing, pay off consumer debt — especially credit cards."
-msgstr ""
+msgstr "Antes de empezar a invertir, pague la deuda de consumo, especialmente las tarjetas de crédito."
 
 #: mmTips.h:70
 msgid "Before you start investing, make net worth your primary tracking metric."
@@ -4920,7 +4920,7 @@ msgstr "Restablecer vista"
 
 #: mmframe.cpp:1637
 msgid "Reset view and dock tools"
-msgstr ""
+msgstr "Restablecer vista y acoplar herramientas"
 
 #: mmframe.cpp:1668
 msgid "Dash&board"
