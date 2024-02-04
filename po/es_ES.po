@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-03 14:08\n"
+"PO-Revision-Date: 2024-02-04 10:28\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -1784,7 +1784,7 @@ msgstr "Editar categoría"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
-msgstr "Administrador de categorías: Error de edición"
+msgstr "Administrador de categorías: Error al editar"
 
 #: categdialog.cpp:682 mmframe.cpp:3736
 msgid "Merge categories completed"
@@ -2704,7 +2704,7 @@ msgstr "Gráfico"
 
 #: filtertransdialog.cpp:744
 msgid "Specify which chart will be included in the report"
-msgstr ""
+msgstr "Especifique qué gráfico se incluirá en el informe"
 
 #: filtertransdialog.cpp:747 filtertransdialog.cpp:1923
 msgid "Combine Splits"
@@ -4065,7 +4065,7 @@ msgstr ""
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Consejo: El archivo .mmb de la base de datos no está cifrado. Esto significa que cualquiera que tenga el conocimiento adecuado puede abrir el archivo y leer el contenido. Así que asegúrese de que, si está almacenando cualquier información financiera delicada, ésta esté debidamente protegida."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
@@ -4073,7 +4073,7 @@ msgstr "Consejo: Para marcar una transacción como conciliada, simplemente selec
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."
-msgstr "Sugerencia: Para marcar una transacción como que requiere seguimiento, seleccione la transacción y pulse la tecla “F”."
+msgstr "Consejo: Para marcar una transacción como que requiere seguimiento, seleccione la transacción y pulse la tecla “F”."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
@@ -4089,7 +4089,7 @@ msgstr "Consejo: Para imprimir un extracto con transacciones cumpliendo unos det
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
-msgstr "Consejo: Seleccione el tipo de cambio para las divisas en caso de que tenga cuentas con diferente divisa."
+msgstr "Consejo: Seleccione el tipo de cambio para las divisas en caso de que tenga cuentas con diferentes divisas."
 
 #: mmTips.h:34
 msgid "Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."
@@ -4308,7 +4308,7 @@ msgstr "&Buscar todas las transacciones con %s '%s'"
 
 #: mmchecking_list.cpp:641
 msgid "Copy Text to Clipboard"
-msgstr ""
+msgstr "Copiar texto al portapapeles"
 
 #: mmchecking_list.cpp:648
 msgid "&Delete selected transaction..."
@@ -4631,7 +4631,7 @@ msgstr "Cuentas de acciones"
 
 #: mmframe.cpp:783 mmframe.cpp:1736 mmframe.cpp:2825
 msgid "Budget Planner"
-msgstr ""
+msgstr "Planificador del presupuesto"
 
 #: mmframe.cpp:788 mmframe.cpp:1319 mmframe.cpp:1336 mmframe.cpp:2810
 msgid "Transaction Report"
@@ -4740,7 +4740,7 @@ msgstr "&Abrir sitio web de la cuenta"
 
 #: mmframe.cpp:1458 mmframe.cpp:1478
 msgid "&Attachment Manager..."
-msgstr ""
+msgstr "&Administrador de adjuntos..."
 
 #: mmframe.cpp:1473 mmframe.cpp:1677
 msgid "&Change Account Type..."
@@ -4916,7 +4916,7 @@ msgstr "Cambiar a pantalla completa"
 
 #: mmframe.cpp:1636
 msgid "Reset View"
-msgstr ""
+msgstr "Restablecer vista"
 
 #: mmframe.cpp:1637
 msgid "Reset view and dock tools"
@@ -4940,7 +4940,7 @@ msgstr "Borrar la cuenta de la base de datos"
 
 #: mmframe.cpp:1693
 msgid "Download &Rates"
-msgstr ""
+msgstr "Descargar &valores"
 
 #: mmframe.cpp:1693 mmframe.cpp:1952
 msgid "Download Currency and Stock Rates"
@@ -4948,11 +4948,11 @@ msgstr "Descargar tasas de divisas y acciones"
 
 #: mmframe.cpp:1699
 msgid "&Payee Manager..."
-msgstr ""
+msgstr "&Administrador de beneficiarios..."
 
 #: mmframe.cpp:1699 mmframe.cpp:1928 payeedialog.cpp:508
 msgid "Payee Manager"
-msgstr ""
+msgstr "Administrador de beneficiarios"
 
 #: mmframe.cpp:1703
 msgid "&Category Manager..."
@@ -5012,7 +5012,7 @@ msgstr "&Transacciones programadas"
 
 #: mmframe.cpp:1740
 msgid "Bills and Deposits"
-msgstr ""
+msgstr "Facturas y abonos"
 
 #: mmframe.cpp:1744
 msgid "&Assets"
@@ -6199,12 +6199,13 @@ msgstr "Seleccionar divisa"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Set default database currency using 'Currency Manager'"
-msgstr ""
+msgstr "Establecer la moneda por defecto de la base de datos usando 'Administrador de divisas'"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Manager | Edit'"
-msgstr ""
+msgstr "Formato derivado de la configuración regional.\n"
+"Déjelo en blanco para establecer el formato manualmente a través de 'Administrador de divisas | Editar'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6715,7 +6716,7 @@ msgstr "No se eliminará"
 
 #: payeedialog.cpp:743
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
-msgstr "Consejo: Cambiar todas las transacciones de este beneficiario a otro beneficiario usando el comando de combinación:"
+msgstr "Consejo: Cambie todas las transacciones de este beneficiario a otro beneficiario usando el comando de combinación:"
 
 #: payeedialog.cpp:745
 msgid "Tools → Merge → Payees"
@@ -6723,7 +6724,7 @@ msgstr "Herramientas → Combinar → Beneficiarios"
 
 #: payeedialog.cpp:746
 msgid "Payee Manager: Delete Error"
-msgstr ""
+msgstr "Administrador de beneficiarios: Error al eliminar"
 
 #: payeedialog.cpp:751
 msgid "Deleted transactions exist which use this payee."
@@ -6743,7 +6744,7 @@ msgstr "Seleccionar categoría"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
-msgstr ""
+msgstr "Administrador de &adjuntos"
 
 #: payeedialog.cpp:895
 msgid "Relocate Payee"
@@ -7231,19 +7232,19 @@ msgstr "Todas las transacciones menos las transferencias"
 
 #: reports/transactions.cpp:481
 msgid "Statistics"
-msgstr ""
+msgstr "Estadísticas"
 
 #: reports/transactions.cpp:504
 msgid "Minimum"
-msgstr ""
+msgstr "Mínimo"
 
 #: reports/transactions.cpp:506
 msgid "Maximum"
-msgstr ""
+msgstr "Máximo"
 
 #: reports/transactions.cpp:508
 msgid "Average"
-msgstr ""
+msgstr "Promedio"
 
 #: sharetransactiondialog.cpp:61 sharetransactiondialog.cpp:68
 msgid "Add Share Transaction"
@@ -7299,7 +7300,7 @@ msgstr "Introduzca el LOT al que este paquete de acciones pertenece"
 
 #: sharetransactiondialog.cpp:270 stockdialog.cpp:251
 msgid "Manage stock attachments"
-msgstr ""
+msgstr "Administrar los archivos adjuntos de acciones"
 
 #: sharetransactiondialog.cpp:275 stockdialog.cpp:253
 msgid "Display the web page for the specified Stock symbol"
@@ -7691,7 +7692,7 @@ msgstr "Los nombres de etiquetas no pueden ser los caracteres '&' o '|' porque e
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Tag Manager: Invalid Name"
-msgstr ""
+msgstr "Administrador de etiquetas: Nombre inválido"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
@@ -7715,7 +7716,7 @@ msgstr "Ya existe una etiqueta con este nombre"
 
 #: tagdialog.cpp:218
 msgid "Tag Manager: Adding Error"
-msgstr ""
+msgstr "Administrador de etiquetas: Error al añadir"
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
@@ -7723,7 +7724,7 @@ msgstr "Editar etiqueta"
 
 #: tagdialog.cpp:254
 msgid "Tag Manager: Editing Error"
-msgstr ""
+msgstr "Administrador de etiquetas: Error al editar"
 
 #: tagdialog.cpp:295
 #, c-format
