@@ -1401,7 +1401,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
             continue;
         }
 
-        wxString trxDate = holder.Date.FormatISODate();
+        wxString trxDate = holder.Date.FormatISOCombined();
         Model_Account::Data* account2 = Model_Account::instance().get(accountID_);
         const Model_Account::Data* toAccount = Model_Account::instance().get(holder.ToAccountID);
         if ((trxDate < account2->INITIALDATE) ||

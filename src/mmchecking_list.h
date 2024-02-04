@@ -47,6 +47,7 @@ public:
         COL_IMGSTATUS = 0,
         COL_ID,
         COL_DATE,
+        COL_TIME,
         COL_NUMBER,
         COL_ACCOUNT,
         COL_PAYEE_STR,

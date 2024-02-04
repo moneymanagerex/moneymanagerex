@@ -147,6 +147,10 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE())
               : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByTRANSDATE());
         break;
+    case TransactionListCtrl::COL_TIME:
+        ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByTRANSTIME())
+               : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByTRANSTIME());
+        break;
     case TransactionListCtrl::COL_DELETEDTIME:
         ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByDELETEDTIME())
             : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByDELETEDTIME());
@@ -275,6 +279,8 @@ TransactionListCtrl::TransactionListCtrl(
     m_real_columns.push_back(COL_ID);
     m_columns.push_back(PANEL_COLUMN(_("Date"), 112, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_DATE);
+    m_columns.push_back(PANEL_COLUMN(_("Time"), 70, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(COL_TIME);
     m_columns.push_back(PANEL_COLUMN(_("Number"), 70, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_NUMBER);
     if (m_cp->isAllAccounts_ || m_cp->isTrash_)
@@ -529,10 +535,12 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
                 copyText_ = m_trans[row].displayID;
                 break;
             case COL_DATE:
+            {
                 copyText_ = menuItemText = mmGetDateForDisplay(m_trans[row].TRANSDATE);
-                rightClickFilter_ = "{\n\"DATE1\": \"" + m_trans[row].TRANSDATE +
-                    "\",\n\"DATE2\" : \"" + m_trans[row].TRANSDATE + "\"\n}";
+                wxString strDate = Model_Checking::TRANSDATE(m_trans[row]).FormatISODate();
+                rightClickFilter_ = "{\n\"DATE1\": \"" + strDate + "\",\n\"DATE2\" : \"" + strDate + "\"\n}";
                 break;
+            }
             case COL_NUMBER:
                 copyText_ = menuItemText = m_trans[row].TRANSACTIONNUMBER;
                 rightClickFilter_ = "{\n\"NUMBER\": \"" + menuItemText + "\"\n}";
@@ -744,8 +752,9 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
         {
             Model_Account::Data* account = Model_Account::instance().get(m_trans[row].ACCOUNTID);
             const auto statement_date = Model_Account::DateOf(account->STATEMENTDATE).FormatISODate();
+            wxString strDate = Model_Checking::TRANSDATE(m_trans[row]).FormatISODate();
             if (!Model_Account::BoolOf(account->STATEMENTLOCKED)
-                || m_trans[row].TRANSDATE > statement_date)
+                || strDate > statement_date)
             {
                 //bRefreshRequired |= (status == "V") || (m_trans[row].STATUS == "V");
                 m_trans[row].STATUS = status;
@@ -856,7 +865,8 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
     if (item < 0 || item >= static_cast<int>(m_trans.size())) return 0;
 
     const Model_Checking::Full_Data& tran = m_trans[item];
-    bool in_the_future = (tran.TRANSDATE > m_today);
+    wxString strDate = Model_Checking::TRANSDATE(tran).FormatISODate();
+    bool in_the_future = (strDate > m_today);
 
     // apply alternating background pattern
     int user_color_id = tran.COLOR;
@@ -1022,7 +1032,7 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
 
     //TODO: the clone function can't clone split transactions, or custom data
     Model_Checking::Data* copy = Model_Checking::instance().clone(tran); 
-    if (!useOriginalDate) copy->TRANSDATE = wxDateTime::Now().FormatISODate();
+    if (!useOriginalDate) copy->TRANSDATE = wxDateTime::Now().FormatISOCombined();
     if (!m_cp->isAllAccounts_ && ((Model_Checking::type(copy->TRANSCODE) != Model_Checking::TRANSFER) ||
             (m_cp->m_AccountID != copy->ACCOUNTID && m_cp->m_AccountID != copy->TOACCOUNTID)))
         copy->ACCOUNTID = m_cp->m_AccountID;
@@ -1940,6 +1950,12 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         return tran.ACCOUNTNAME;
     case TransactionListCtrl::COL_DATE:
         return mmGetDateForDisplay(tran.TRANSDATE);
+    case TransactionListCtrl::COL_TIME:
+    {
+        wxDate date;
+        date.ParseDateTime(tran.TRANSDATE) || date.ParseDate(tran.TRANSDATE);
+        return date.FormatISOTime();
+    }
     case TransactionListCtrl::COL_NUMBER:
         return tran.TRANSACTIONNUMBER;
     case TransactionListCtrl::COL_CATEGORY:

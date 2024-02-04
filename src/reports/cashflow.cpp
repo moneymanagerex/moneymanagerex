@@ -94,9 +94,10 @@ void mmReportCashFlow::getTransactions()
 
         for (const auto& tran : Model_Account::transaction(account))
         {
+            wxString strDate = Model_Checking::TRANSDATE(tran).FormatISODate();
             // Do not include asset or stock transfers in income expense calculations.
             if (Model_Checking::foreignTransactionAsTransfer(tran)
-                || (tran.TRANSDATE > todayString))
+                || (strDate > todayString))
                 continue;
             m_balance += Model_Checking::balance(tran, account.ACCOUNTID) * convRate;
         }

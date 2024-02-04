@@ -547,7 +547,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 tran->NOTES = q1.NOTES;
                 tran->CATEGID = q1.CATEGID;
                 tran->FOLLOWUPID = q1.FOLLOWUPID;
-                tran->TRANSDATE = payment_date.FormatISODate();
+                tran->TRANSDATE = payment_date.FormatISOCombined();
                 tran->COLOR = q1.COLOR;
                 int transID = Model_Checking::instance().save(tran);
 

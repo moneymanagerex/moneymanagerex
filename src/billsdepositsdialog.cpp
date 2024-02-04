@@ -237,7 +237,7 @@ void mmBDDialog::dataToControls()
 
     // Set the date paid
     wxDateTime field_date;
-    field_date.ParseDate(m_bill_data.TRANSDATE);
+    field_date.ParseDateTime(m_bill_data.TRANSDATE) || field_date.ParseDate(m_bill_data.TRANSDATE);
     m_date_paid->SetValue(field_date);
 
     // Set the due Date
@@ -420,7 +420,7 @@ void mmBDDialog::CreateControls()
     m_date_due = new mmDatePickerCtrl(this, ID_DIALOG_BD_DUE_DATE);
     mmToolTip(m_date_due, _("Specify the date when this bill or deposit is due"));
     itemFlexGridSizer5->Add(new wxStaticText(this, wxID_STATIC, _("Date Due")), g_flagsH);
-    itemFlexGridSizer5->Add(m_date_due->mmGetLayout());
+    itemFlexGridSizer5->Add(m_date_due->mmGetLayout(false));
 
     // Repeats --------------------------------------------
 
@@ -886,7 +886,7 @@ void mmBDDialog::OnNoteSelected(wxCommandEvent& event)
 void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     // Ideally 'paid date' should be on or before the 'due date'
-    if (m_date_paid->GetValue() > m_date_due->GetValue())
+    if (m_date_paid->GetValue().GetDateOnly() > m_date_due->GetValue())
         if (wxMessageBox(_("The payment date is after the due date, is this what you intended?"),
             _("Looks like a late payment"),
             wxYES_NO | wxNO_DEFAULT | wxICON_WARNING) != wxYES)
@@ -1022,7 +1022,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
 
     m_bill_data.NEXTOCCURRENCEDATE = m_date_due->GetValue().FormatISODate();
-    m_bill_data.TRANSDATE = m_date_paid->GetValue().FormatISODate();
+    m_bill_data.TRANSDATE = m_date_paid->GetValue().FormatISOCombined();
 
     wxStringClientData* status_obj = static_cast<wxStringClientData *>(m_choice_status->GetClientObject(m_choice_status->GetSelection()));
     if (status_obj) {

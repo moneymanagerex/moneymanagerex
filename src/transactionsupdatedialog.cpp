@@ -397,7 +397,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
 
         if (m_date_checkbox->IsChecked()) {
-            wxString date = m_dpc->GetValue().FormatISODate();
+            wxString date = m_dpc->GetValue().FormatISOCombined();
             const Model_Account::Data* account = Model_Account::instance().get(trx->ACCOUNTID);
             const Model_Account::Data* to_account = Model_Account::instance().get(trx->TOACCOUNTID);
             if ((date < account->INITIALDATE) ||

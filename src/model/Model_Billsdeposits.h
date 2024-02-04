@@ -71,7 +71,7 @@ public:
     {
         int BDID = 0;
         // This relates the 'Date Due' field.
-        wxString TRANSDATE = wxDateTime::Now().FormatISODate();
+        wxString TRANSDATE = wxDateTime::Now().FormatISOCombined();
         wxString STATUS = Model_Billsdeposits::all_status()[Model_Billsdeposits::NONE];;
         int ACCOUNTID = -1;
         int TOACCOUNTID = -1;

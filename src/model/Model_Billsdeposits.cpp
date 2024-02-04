@@ -343,7 +343,9 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
     {
         int repeats = bill->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
         int numRepeats = bill->NUMOCCURRENCES;
-        const wxDateTime& payment_date_current = TRANSDATE(bill);
+        wxDateTime transdate;
+        transdate.ParseDateTime(bill->TRANSDATE) || transdate.ParseDate(bill->TRANSDATE);
+        const wxDateTime& payment_date_current = transdate;
         const wxDateTime& payment_date_update = nextOccurDate(repeats, numRepeats, payment_date_current);
 
         const wxDateTime& due_date_current = NEXTOCCURRENCEDATE(bill);
@@ -364,7 +366,7 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
         }
 
         bill->NEXTOCCURRENCEDATE = due_date_update.FormatISODate();
-        bill->TRANSDATE = payment_date_update.FormatISODate();
+        bill->TRANSDATE = payment_date_update.FormatISOCombined();
 
         bill->NUMOCCURRENCES = numRepeats;
         save(bill);
@@ -422,7 +424,7 @@ const wxDateTime Model_Billsdeposits::nextOccurDate(int repeatsType, int numRepe
                 dt.SetToPrevWeekDay(wxDateTime::Fri);
         }
     }
-    wxLogDebug("init date: %s -> next date: %s", nextOccurDate.FormatISODate(), dt.FormatISODate());
+    wxLogDebug("init date: %s -> next date: %s", nextOccurDate.FormatISOCombined(), dt.FormatISOCombined());
     return dt;
 }
 

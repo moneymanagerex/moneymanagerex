@@ -190,7 +190,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
             mmDatePickerCtrl* CustomDate = new mmDatePickerCtrl(scrolled_window, controlID, value);
             mmToolTip(CustomDate, Model_CustomField::getTooltip(field.PROPERTIES));
-            grid_sizer_custom->Add(CustomDate->mmGetLayout());
+            grid_sizer_custom->Add(CustomDate->mmGetLayout(false));
 
             CustomDate->Connect(controlID, wxEVT_DATE_CHANGED, wxDateEventHandler(mmCustomData::OnDateChanged), nullptr, this);
 

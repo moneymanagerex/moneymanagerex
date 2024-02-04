@@ -204,7 +204,9 @@ void Model_Translink::UpdateStockValue(Model_Stock::Data* stock_entry)
     }
     else
     {
-        stock_entry->PURCHASEDATE = earliest_date;
+        wxDateTime purchasedate;
+        purchasedate.ParseDateTime(earliest_date) || purchasedate.ParseDate(earliest_date);
+        stock_entry->PURCHASEDATE = purchasedate.FormatISODate();
         stock_entry->PURCHASEPRICE = avg_share_price;
         stock_entry->NUMSHARES = total_shares;
         stock_entry->VALUE = total_initial_value;
