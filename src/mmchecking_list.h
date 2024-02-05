@@ -41,6 +41,8 @@ public:
     Model_Checking::Full_Data_Set m_trans;
     void markSelectedTransaction();
     void DeleteTransactionsByStatus(const wxString& status);
+    void resetColumns();
+
 public:
     enum EColumn
     {

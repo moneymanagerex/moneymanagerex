@@ -64,6 +64,7 @@ public:
     void SetSelectedTransaction(int transID);
 
     void RefreshList();
+    void ResetColumnView();
 
     wxString BuildPage() const;
 

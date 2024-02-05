@@ -191,7 +191,7 @@ double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const 
         Model_Translink::Data_Set linkrecords = Model_Translink::TranslinkList(Model_Attachment::REFTYPE::STOCK, stock.STOCKID);
         for (const auto& linkrecord : linkrecords)
         {
-            if (Model_Checking::instance().get(linkrecord.CHECKINGACCOUNTID)->TRANSDATE <= strDate) {
+            if (Model_Checking::TRANSDATE(Model_Checking::instance().get(linkrecord.CHECKINGACCOUNTID)).FormatISODate() <= strDate) {
                 numShares += Model_Shareinfo::instance().ShareEntry(linkrecord.CHECKINGACCOUNTID)->SHARENUMBER;
             }
         }

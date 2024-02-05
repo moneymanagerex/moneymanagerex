@@ -199,21 +199,36 @@ table {
             hb.startSortTable();
             hb.startThead();
             hb.startTableRow();
-            if (showColumnById(0)) hb.addTableHeaderCell(_("ID"), "ID text-right");
-            if (showColumnById(1)) hb.addTableHeaderCell(_("Color"), "Color text-center");
-            if (showColumnById(2)) hb.addTableHeaderCell(_("Date"), "Date");
-            if (showColumnById(3)) hb.addTableHeaderCell(_("Number"), "Number");
-            if (showColumnById(4)) hb.addTableHeaderCell(_("Account"), "Account");
-            if (showColumnById(5)) hb.addTableHeaderCell(_("Payee"), "Payee");
-            if (showColumnById(6)) hb.addTableHeaderCell(_("Status"), "Status text-center");
-            if (showColumnById(7)) hb.addTableHeaderCell(_("Category"), "Category");
-            if (showColumnById(16)) hb.addTableHeaderCell(_("Tags"), "Tags");
-            if (showColumnById(8)) hb.addTableHeaderCell(_("Type"), "Type");
-            if (showColumnById(9)) hb.addTableHeaderCell(_("Amount"), "Amount text-right");
-            if (showColumnById(17)) hb.addTableHeaderCell(_("FX Rate"), "Rate text-right");
-            if (showColumnById(10)) hb.addTableHeaderCell(_("Notes"), "Notes");
+            if (showColumnById(mmFilterTransactionsDialog::COL_ID))
+                hb.addTableHeaderCell(_("ID"), "ID text-right");
+            if (showColumnById(mmFilterTransactionsDialog::COL_COLOR))
+                hb.addTableHeaderCell(_("Color"), "Color text-center");
+            if (showColumnById(mmFilterTransactionsDialog::COL_DATE))
+                hb.addTableHeaderCell(_("Date"), "Date");
+            if (showColumnById(mmFilterTransactionsDialog::COL_TIME))
+                hb.addTableHeaderCell(_("Time"), "Time");
+            if (showColumnById(mmFilterTransactionsDialog::COL_NUMBER))
+                hb.addTableHeaderCell(_("Number"), "Number");
+            if (showColumnById(mmFilterTransactionsDialog::COL_ACCOUNT))
+                hb.addTableHeaderCell(_("Account"), "Account");
+            if (showColumnById(mmFilterTransactionsDialog::COL_PAYEE))
+                hb.addTableHeaderCell(_("Payee"), "Payee");
+            if (showColumnById(mmFilterTransactionsDialog::COL_STATUS))
+                hb.addTableHeaderCell(_("Status"), "Status text-center");
+            if (showColumnById(mmFilterTransactionsDialog::COL_CATEGORY))
+                hb.addTableHeaderCell(_("Category"), "Category");
+            if (showColumnById(mmFilterTransactionsDialog::COL_TAGS))
+                hb.addTableHeaderCell(_("Tags"), "Tags");
+            if (showColumnById(mmFilterTransactionsDialog::COL_TYPE))
+                hb.addTableHeaderCell(_("Type"), "Type");
+            if (showColumnById(mmFilterTransactionsDialog::COL_AMOUNT))
+                hb.addTableHeaderCell(_("Amount"), "Amount text-right");
+            if (showColumnById(mmFilterTransactionsDialog::COL_RATE))
+                hb.addTableHeaderCell(_("FX Rate"), "Rate text-right");
+            if (showColumnById(mmFilterTransactionsDialog::COL_NOTES))
+                hb.addTableHeaderCell(_("Notes"), "Notes");
             const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-            int colNo = 11;
+            int colNo = mmFilterTransactionsDialog::COL_UDFC01;
             for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS())
             {
                 if (udfc_entry.empty()) continue;
@@ -255,23 +270,36 @@ table {
             {
                 /*  if ((Model_Checking::type(transaction) == Model_Checking::TRANSFER)
                     && m_transDialog->getTypeCheckBox() && */
-                if (showColumnById(0)) {
+                if (showColumnById(mmFilterTransactionsDialog::COL_ID))
+                {
                     hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
                         , transaction.displayID, true);
                 }
-                if (showColumnById(1)) hb.addColorMarker(getUDColour(transaction.COLOR).GetAsString(), true);
-                if (showColumnById(2)) hb.addTableCellDate(transaction.TRANSDATE);
-                if (showColumnById(3)) hb.addTableCell(transaction.TRANSACTIONNUMBER);
-                if (showColumnById(4)) {
+                wxDateTime dt;
+                dt.ParseDateTime(transaction.TRANSDATE) || dt.ParseDate(transaction.TRANSDATE);
+                if (showColumnById(mmFilterTransactionsDialog::COL_COLOR))
+                    hb.addColorMarker(getUDColour(transaction.COLOR).GetAsString(), true);
+                if (showColumnById(mmFilterTransactionsDialog::COL_DATE))
+                    hb.addTableCellDate(dt.FormatISODate());
+                if (showColumnById(mmFilterTransactionsDialog::COL_TIME))
+                    hb.addTableCell(dt.FormatISOTime());
+                if (showColumnById(mmFilterTransactionsDialog::COL_NUMBER))
+                    hb.addTableCell(transaction.TRANSACTIONNUMBER);
+                if (showColumnById(mmFilterTransactionsDialog::COL_ACCOUNT))
+                {
                     hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID)
                         , noOfTrans ? transaction.TOACCOUNTNAME : transaction.ACCOUNTNAME);
                 }
-                if (showColumnById(5)) hb.addTableCell(noOfTrans ? "< " + transaction.ACCOUNTNAME : transaction.PAYEENAME);
-                if (showColumnById(6)) hb.addTableCell(transaction.STATUS, false, true);
-                if (showColumnById(7)) hb.addTableCell(transaction.CATEGNAME);
+                if (showColumnById(mmFilterTransactionsDialog::COL_PAYEE))
+                    hb.addTableCell(noOfTrans ? "< " + transaction.ACCOUNTNAME : transaction.PAYEENAME);
+                if (showColumnById(mmFilterTransactionsDialog::COL_STATUS))
+                    hb.addTableCell(transaction.STATUS, false, true);
+                if (showColumnById(mmFilterTransactionsDialog::COL_CATEGORY))
+                    hb.addTableCell(transaction.CATEGNAME);
                 // Tags
-                if (showColumnById(16)) hb.addTableCell(transaction.TAGNAMES);
-                if (showColumnById(8))
+                if (showColumnById(mmFilterTransactionsDialog::COL_TAGS))
+                    hb.addTableCell(transaction.TAGNAMES);
+                if (showColumnById(mmFilterTransactionsDialog::COL_TYPE))
                 {
                     if (Model_Checking::foreignTransactionAsTransfer(transaction))
                         hb.addTableCell("< " + wxGetTranslation(transaction.TRANSCODE));
@@ -289,7 +317,7 @@ table {
                     if (noOfTrans || (!allAccounts && (selected_accounts.Index(transaction.ACCOUNTID) == wxNOT_FOUND)))
                         amount = -amount;
                     const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
-                    if (showColumnById(9))
+                    if (showColumnById(mmFilterTransactionsDialog::COL_AMOUNT))
                         if (Model_Checking::status(transaction.STATUS) == Model_Checking::VOID_)
                             hb.addCurrencyCell(Model_Checking::amount(transaction, acc->ACCOUNTID), curr, -1, true);                            
                         else if (transaction.DELETEDTIME.IsEmpty())
@@ -311,11 +339,12 @@ table {
                 else
                 {
                     wxFAIL_MSG("account for transaction not found");
-                    if (showColumnById(9)) hb.addEmptyTableCell();
+                    if (showColumnById(mmFilterTransactionsDialog::COL_AMOUNT))
+                        hb.addEmptyTableCell();
                 }
 
                 // Exchange Rate
-                if (showColumnById(17))
+                if (showColumnById(mmFilterTransactionsDialog::COL_RATE))
                 {
                     if ((Model_Checking::type(transaction) == Model_Checking::TRANSFER)
                         && (transaction.TRANSAMOUNT != transaction.TOTRANSAMOUNT))
@@ -333,7 +362,8 @@ table {
                 }
 
                 // Notes
-                if (showColumnById(10)) hb.addTableCell(AttachmentsLink + transaction.NOTES);
+                if (showColumnById(mmFilterTransactionsDialog::COL_NOTES))
+                    hb.addTableCell(AttachmentsLink + transaction.NOTES);
 
                 // Custom Fields
 
@@ -377,15 +407,15 @@ table {
                     }
                 }
 
-                if (showColumnById(11))
+                if (showColumnById(mmFilterTransactionsDialog::COL_UDFC01))
                     UDFCFormatHelper(UDFC01_Type, udfc01_ref_id, transaction.UDFC01, transaction.UDFC01_val, UDFC01_Scale);
-                if (showColumnById(12))
+                if (showColumnById(mmFilterTransactionsDialog::COL_UDFC02))
                     UDFCFormatHelper(UDFC02_Type, udfc02_ref_id, transaction.UDFC02, transaction.UDFC02_val, UDFC02_Scale);
-                if (showColumnById(13))
+                if (showColumnById(mmFilterTransactionsDialog::COL_UDFC03))
                     UDFCFormatHelper(UDFC03_Type, udfc03_ref_id, transaction.UDFC03, transaction.UDFC03_val, UDFC03_Scale);
-                if (showColumnById(14))
+                if (showColumnById(mmFilterTransactionsDialog::COL_UDFC04))
                     UDFCFormatHelper(UDFC04_Type, udfc04_ref_id, transaction.UDFC04, transaction.UDFC04_val, UDFC04_Scale);
-                if (showColumnById(15))
+                if (showColumnById(mmFilterTransactionsDialog::COL_UDFC05))
                     UDFCFormatHelper(UDFC05_Type, udfc05_ref_id, transaction.UDFC05, transaction.UDFC05_val, UDFC05_Scale);                               
             }
             hb.endTableRow();
@@ -610,6 +640,9 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
 
 bool mmReportTransactions::showColumnById(int num)
 {
+    if (num == mmFilterTransactionsDialog::COL_TIME && !Option::instance().UseTransDateTime())
+        return false;
+
     if (m_transDialog->mmIsHideColumnsChecked())
     {
         wxArrayInt columns = m_transDialog->mmGetHideColumnsID();

@@ -39,8 +39,11 @@ void mmFilterTransactions::clear()
 void mmFilterTransactions::setDateRange(wxDateTime startDate, wxDateTime endDate)
 {
     _dateFilter = true;
-    _startDate = startDate.FormatISODate();
-    _endDate = endDate.FormatISODate();
+    if (startDate.FormatISOTime() = "00:00:00")
+        _startDate = startDate.FormatISODate();
+    else
+        _startDate = startDate.FormatISOCombined();
+    _endDate = endDate.FormatISOCombined();
 }
 
 void mmFilterTransactions::setAccountList(wxSharedPtr<wxArrayString> accountList)
@@ -100,7 +103,7 @@ bool mmFilterTransactions::mmIsRecordMatches(const Model_Checking::Data &tran
     , const std::map<int, Model_Splittransaction::Data_Set>& split)
 {
     bool ok = true;
-    wxString strDate = Model_Checking::TRANSDATE(tran).FormatISODate();
+    wxString strDate = Model_Checking::TRANSDATE(tran).FormatISOCombined();
     if (_accountFilter
         && (_accountList.Index(tran.ACCOUNTID) == wxNOT_FOUND)
         && (_accountList.Index(tran.TOACCOUNTID) == wxNOT_FOUND))

@@ -180,6 +180,10 @@ void OptionSettingsView::Create()
     m_ignore_future_transactions->SetValue(Option::instance().getIgnoreFutureTransactions());
     trxStaticBoxSizer->Add(m_ignore_future_transactions, g_flagsV);
 
+    m_use_trans_date_time = new wxCheckBox(view_panel, wxID_ANY, _("Use 'Time' in transaction recording/reporting"));
+    m_use_trans_date_time->SetValue(Option::instance().UseTransDateTime());
+    trxStaticBoxSizer->Add(m_use_trans_date_time, g_flagsV);
+
     // Colours settings
     wxStaticBox* userColourSettingStBox = new wxStaticBox(view_panel, wxID_ANY, _("Transaction Colors"));
     SetBoldFont(userColourSettingStBox);
@@ -422,6 +426,7 @@ bool OptionSettingsView::SaveSettings()
     Option::instance().IgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
     Option::instance().ShowToolTips(m_showToolTips->GetValue());
     Option::instance().ShowMoneyTips(m_showMoneyTips->GetValue());
+    Option::instance().UseTransDateTime(m_use_trans_date_time->GetValue());
 
     mmColors::userDefColor1 = m_UDFCB1->GetBackgroundColour();
     mmColors::userDefColor2 = m_UDFCB2->GetBackgroundColour();

@@ -159,7 +159,6 @@ inline void mmComboBoxCustom::init() {}
 
 class mmDatePickerCtrl : public wxPanel
 {
-    wxDECLARE_EVENT_TABLE();
 
 public:
     mmDatePickerCtrl(wxWindow* parent, wxWindowID id
@@ -169,6 +168,7 @@ public:
     void SetValue(const wxDateTime &dt);    // Override
     bool Enable(bool state=true);           // Override
     wxBoxSizer* mmGetLayout(bool showTimeCtrl = true);
+    wxBoxSizer* mmGetLayoutWithTime();
     wxDateTime GetValue();
 
 private:
