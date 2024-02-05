@@ -43,6 +43,10 @@ void mmFilterTransactions::setDateRange(wxDateTime startDate, wxDateTime endDate
         _startDate = startDate.FormatISODate();
     else
         _startDate = startDate.FormatISOCombined();
+
+    if (!Option::instance().UseTransDateTime())
+        endDate = mmDateRange::getDayEnd(endDate);
+
     _endDate = endDate.FormatISOCombined();
 }
 
