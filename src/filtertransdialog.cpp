@@ -43,8 +43,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 constexpr auto DATE_MAX = 253402214400 /* Dec 31, 9999 */;
 
-static const wxString COLUMN_NAMES[] = { "ID", "Color", "Date", "Number", "Account", "Payee", "Status", "Category", "Type",
-                                              "Amount", "Notes", "UDFC01", "UDFC02", "UDFC03", "UDFC04", "UDFC05", "Tags", "FX Rate" };
+static const wxString COLUMN_NAMES[] = { "ID", "Color", "Date", "Number", "Account", "Payee", "Status", "Category", "Type", "Amount",
+                                         "Notes", "UDFC01", "UDFC02", "UDFC03", "UDFC04", "UDFC05", "Tags", "FX Rate", "Time" };
 
 static const wxString TRANSACTION_STATUSES[] = { wxTRANSLATE("Unreconciled"), wxTRANSLATE("Reconciled"), wxTRANSLATE("Void"),
                                                  wxTRANSLATE("Follow Up"),    wxTRANSLATE("Duplicate"),  wxTRANSLATE("All Except Reconciled") };
@@ -71,6 +71,7 @@ EVT_BUTTON(wxID_CLEAR, mmFilterTransactionsDialog::OnButtonClearClick)
 EVT_BUTTON(ID_BTN_CUSTOMFIELDS, mmFilterTransactionsDialog::OnMoreFields)
 EVT_MENU(wxID_ANY, mmFilterTransactionsDialog::OnMenuSelected)
 EVT_DATE_CHANGED(wxID_ANY, mmFilterTransactionsDialog::OnDateChanged)
+EVT_TIME_CHANGED(wxID_ANY, mmFilterTransactionsDialog::OnDateChanged)
 EVT_CHOICE(wxID_ANY, mmFilterTransactionsDialog::OnChoice)
 EVT_BUTTON(wxID_CANCEL, mmFilterTransactionsDialog::OnButtonCancelClick)
 EVT_CLOSE(mmFilterTransactionsDialog::OnQuit)
@@ -216,8 +217,13 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     }
 
     // Dates
-    const wxString& begin_date_str = wxString::FromUTF8(GetValueByPointerWithDefault(j_doc, "/DATE1", "").GetString());
-    const wxString& end_date_str = wxString::FromUTF8(GetValueByPointerWithDefault(j_doc, "/DATE2", "").GetString());
+    const wxString begin_date_str = wxString::FromUTF8(GetValueByPointerWithDefault(j_doc, "/DATE1", "").GetString());
+    wxString end_date_str = wxString::FromUTF8(GetValueByPointerWithDefault(j_doc, "/DATE2", "").GetString());
+
+    // Default end date to end of today
+    if (end_date_str.IsEmpty())
+        end_date_str = wxDateTime(23, 59, 59, 999).FormatISOCombined();
+
     wxDateTime begin_date, end_date;
     bool is_begin_date_valid = mmParseISODate(begin_date_str, begin_date);
     bool is_end_date_valid = mmParseISODate(end_date_str, end_date);
@@ -450,6 +456,10 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     }
     bHideColumns_->Enable(showColumnsCheckBox_->IsChecked());
 
+    // Hide time column if not enabled in options
+    if (!Option::instance().UseTransDateTime())
+        m_selected_columns_id.Add(COL_TIME);
+
     // Group By
     Value& j_groupBy = GetValueByPointerWithDefault(j_doc, "/GROUPBY", "");
     const wxString& s_groupBy = j_groupBy.IsString() ? wxString::FromUTF8(j_groupBy.GetString()) : "";
@@ -576,9 +586,9 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     toDateControl_ = new mmDatePickerCtrl(itemPanel, wxID_LAST, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
 
     wxBoxSizer* dateSizer = new wxBoxSizer(wxHORIZONTAL);
-    dateSizer->Add(fromDateCtrl_, g_flagsExpand);
+    dateSizer->Add(fromDateCtrl_->mmGetLayoutWithTime(), g_flagsExpand);
     dateSizer->AddSpacer(5);
-    dateSizer->Add(toDateControl_, g_flagsExpand);
+    dateSizer->Add(toDateControl_->mmGetLayoutWithTime(), g_flagsExpand);
     itemPanelSizer->Add(dateSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     // Payee
@@ -937,7 +947,7 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
     {
         if (m_begin_date > m_end_date)
         {
-            const auto today = wxDate::Today().FormatISODate();
+            const auto today = wxDate::Today().FormatISOCombined();
             int id = m_begin_date >= today ? fromDateCtrl_->GetId() : toDateControl_->GetId();
             mmErrorDialogs::ToolTip4Object(FindWindow(id), _("Date"), _("Invalid value"), wxICON_ERROR);
             return false;
@@ -1127,6 +1137,11 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
         column_names.Add(wxGetTranslation(name));
     }
 
+    bool useDateTime = Option::instance().UseTransDateTime();
+
+    if (!useDateTime && m_selected_columns_id.Index(COL_TIME) == wxNOT_FOUND)
+        m_selected_columns_id.Add(COL_TIME);
+
     mmMultiChoiceDialog s_col(this, _("Hide Report Columns"), "", column_names);
     s_col.SetSelections(m_selected_columns_id);
 
@@ -1148,7 +1163,8 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
         }
     }
 
-    if (m_selected_columns_id.GetCount() == 0)
+    if (m_selected_columns_id.GetCount() == 0 ||
+        (!useDateTime && m_selected_columns_id.GetCount() == 1 && m_selected_columns_id[0] == COL_TIME))
     {
         bHideColumns_->SetLabelText("");
         showColumnsCheckBox_->SetValue(false);
@@ -1385,8 +1401,8 @@ template <class MODEL, class DATA> bool mmFilterTransactionsDialog::mmIsRecordMa
 
     // wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(),
     wxDate date;
-    date.ParseDate(tran.TRANSDATE);
-    wxString strDate = date.FormatISODate();
+    date.ParseDateTime(tran.TRANSDATE) || date.ParseDate(tran.TRANSDATE);
+    wxString strDate = date.FormatISOCombined();
     if (mmIsAccountChecked() && m_selected_accounts_id.Index(tran.ACCOUNTID) == wxNOT_FOUND && m_selected_accounts_id.Index(tran.TOACCOUNTID) == wxNOT_FOUND)
         ok = false;
     else if ((mmIsDateRangeChecked() || mmIsRangeChecked()) && (strDate < m_begin_date || strDate > m_end_date))
@@ -1651,7 +1667,8 @@ void mmFilterTransactionsDialog::mmGetDescription(mmHTMLBuilder& hb)
                         temp += (temp.empty() ? "" : (appendOperator ? " & " : " ")) + Model_Tag::instance().get(a.GetInt())->TAGNAME;
                         appendOperator = true;
                     }
-                    else if (wxGetTranslation("Hide Columns").IsSameAs(name))
+                    else if (wxGetTranslation("Hide Columns").IsSameAs(name) &&
+                        !(!Option::instance().UseTransDateTime() && a.GetInt() == COL_TIME))
                     {
                         temp += (temp.empty() ? "" : ", ") + wxGetTranslation(COLUMN_NAMES[a.GetInt()]);
                     }
@@ -1729,10 +1746,21 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     // Dates
     if (dateRangeCheckBox_->IsChecked())
     {
+        wxString from_date, to_date;
+        if (Option::instance().UseTransDateTime())
+        {
+            from_date = fromDateCtrl_->GetValue().FormatISOCombined(' ');
+            to_date = toDateControl_->GetValue().FormatISOCombined(' ');
+        }
+        else
+        {
+            from_date = fromDateCtrl_->GetValue().FormatISODate();
+            to_date = toDateControl_->GetValue().FormatISODate();
+        }
         json_writer.Key((i18n ? _("Since") : "DATE1").utf8_str());
-        json_writer.String(fromDateCtrl_->GetValue().FormatISODate().utf8_str());
+        json_writer.String(from_date.utf8_str());
         json_writer.Key((i18n ? _("Before") : "DATE2").utf8_str());
-        json_writer.String(toDateControl_->GetValue().FormatISODate().utf8_str());
+        json_writer.String(to_date.utf8_str());
     }
 
     // Date Period Range
@@ -1955,10 +1983,13 @@ void mmFilterTransactionsDialog::OnDateChanged(wxDateEvent& event)
     switch (event.GetId())
     {
     case wxID_FIRST:
-        m_begin_date = event.GetDate().FormatISODate();
+        m_begin_date = event.GetDate().FormatISOCombined();
         break;
     case wxID_LAST:
-        m_end_date = event.GetDate().FormatISODate();
+        if (Option::instance().UseTransDateTime())
+            m_end_date = event.GetDate().FormatISOCombined();
+        else
+            m_end_date = mmDateRange::getDayEnd(event.GetDate()).FormatISOCombined();
         break;
     }
 }
@@ -2247,9 +2278,9 @@ void mmFilterTransactionsDialog::OnChoice(wxCommandEvent& event)
         if (sel != wxNOT_FOUND)
         {
             wxSharedPtr<mmDateRange> dates(m_all_date_ranges.at(sel));
-            wxLogDebug("%s %s", dates->start_date().FormatISODate(), dates.get()->end_date().FormatISODate());
-            m_begin_date = dates->start_date().FormatISODate();
-            m_end_date = dates->end_date().FormatISODate();
+            m_begin_date = dates->start_date().FormatISOCombined();
+            m_end_date = dates->end_date().FormatISOCombined();
+            wxLogDebug("%s %s", m_begin_date, m_end_date);
             m_startDay = dates->startDay();
             m_futureIgnored = dates->isFutureIgnored();
             fromDateCtrl_->SetValue(dates->start_date());

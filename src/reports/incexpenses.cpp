@@ -47,7 +47,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
     std::pair<double, double> income_expenses_pair;
     for (const auto& transaction : Model_Checking::instance().find(
         Model_Checking::TRANSDATE(m_date_range->start_date(), GREATER_OR_EQUAL)
-        , Model_Checking::TRANSDATE(m_date_range->end_date(), LESS_OR_EQUAL)
+        , Model_Checking::TRANSDATE(m_date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL)
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
     {
         // Do not include asset or stock transfers or deleted transactions in income expense calculations.
@@ -142,11 +142,12 @@ mmReportIncomeExpensesMonthly::~mmReportIncomeExpensesMonthly()
 wxString mmReportIncomeExpensesMonthly::getHTMLText()
 {
     // Grab the data
+    const wxDateTime start_date = m_date_range->start_date();
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     //TODO: init all the map values with 0.0
     for (const auto& transaction : Model_Checking::instance().find(
-        Model_Checking::TRANSDATE(m_date_range->start_date(), GREATER_OR_EQUAL)
-        , Model_Checking::TRANSDATE(m_date_range->end_date(), LESS_OR_EQUAL)
+        Model_Checking::TRANSDATE(start_date, GREATER_OR_EQUAL)
+        , Model_Checking::TRANSDATE(m_date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL)
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
     {
         // Do not include asset or stock transfers or deleted transactions in income expense calculations.
@@ -182,7 +183,6 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.DisplayFooter(getAccountNames());
 
     // Chart
-    const wxDateTime start_date = m_date_range->start_date();
     wxDateSpan s = m_date_range->end_date().GetLastMonthDay().DiffAsDateSpan(start_date);
     int m = s.GetYears() * 12 + s.GetMonths() + 1;
     m = m > 60 ? 60 : m;

@@ -27,6 +27,7 @@ class mmDateRange
 {
 protected:
     const wxDateTime today_;
+    const wxDateTime today_end_;
     const wxDateTime future_;
     wxDateTime start_date_, end_date_;
     int startDay_;
@@ -51,6 +52,10 @@ public:
     void findBeginOfMonth();
     int startDay() const;
     bool isFutureIgnored() const;
+    static const wxDateTime getDayEnd(wxDateTime dt)
+    {
+        return wxDateTime(dt.GetDay(), dt.GetMonth(), dt.GetYear(), 23, 59, 59, 999);
+    };
 };
 
 class mmCurrentMonth: public mmDateRange

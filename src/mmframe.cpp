@@ -3226,7 +3226,7 @@ void mmGUIFrame::createAllTransactionsPage()
     if (panelCurrent_->GetId() == mmID_ALLTRANSACTIONS)
     {
         mmCheckingPanel* checkingAccountPage = wxDynamicCast(panelCurrent_, mmCheckingPanel);
-        checkingAccountPage->RefreshList();
+        checkingAccountPage->ResetColumnView();
     }
     else
     {
@@ -3265,7 +3265,7 @@ void mmGUIFrame::createDeletedTransactionsPage()
     if (panelCurrent_->GetId() == mmID_DELETEDTRANSACTIONS)
     {
         mmCheckingPanel* checkingAccountPage = wxDynamicCast(panelCurrent_, mmCheckingPanel);
-        checkingAccountPage->RefreshList();
+        checkingAccountPage->ResetColumnView();
     }
     else
     {
@@ -3310,6 +3310,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     if (panelCurrent_->GetId() == mmID_CHECKING && (newCreditDisplayed == creditDisplayed_))
     {
         mmCheckingPanel* checkingAccountPage = wxDynamicCast(panelCurrent_, mmCheckingPanel);
+        checkingAccountPage->ResetColumnView();
         checkingAccountPage->DisplayAccountDetails(accountID);
     }
     else

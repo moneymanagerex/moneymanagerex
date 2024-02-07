@@ -75,7 +75,7 @@ void mmReportCashFlow::getTransactions()
     m_forecastVector.clear();
 
     wxString todayString = m_today.FormatISODate();
-    wxDateTime endDate = m_today.Add(wxDateSpan::Months(getForwardMonths()));
+    wxDateTime endDate = mmDateRange::getDayEnd(m_today.Add(wxDateSpan::Months(getForwardMonths())));
 
     // Get initial Balance as of today
 

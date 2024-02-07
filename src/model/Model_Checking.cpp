@@ -172,9 +172,11 @@ DB_Table_CHECKINGACCOUNT_V1::TRANSACTIONNUMBER Model_Checking::TRANSACTIONNUMBER
     return DB_Table_CHECKINGACCOUNT_V1::TRANSACTIONNUMBER(num, op);
 }
 
-DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxDate& date, OP op)
+DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxDateTime& date, OP op)
 {
-    return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date.FormatISODate(), op);
+    if (date.FormatISOTime() == "00:00:00")
+        return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date.FormatISODate(), op);
+    return TRANSDATE(date.FormatISOCombined(), op);
 }
 
 DB_Table_CHECKINGACCOUNT_V1::DELETEDTIME Model_Checking::DELETEDTIME(const wxString& date, OP op)
@@ -187,12 +189,12 @@ DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxString&
     return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_iso_str, op);
 }
 
-wxDate Model_Checking::TRANSDATE(const Data* r)
+wxDateTime Model_Checking::TRANSDATE(const Data* r)
 {
     return Model::to_date(r->TRANSDATE);
 }
 
-wxDate Model_Checking::TRANSDATE(const Data& r)
+wxDateTime Model_Checking::TRANSDATE(const Data& r)
 {
     return Model::to_date(r.TRANSDATE);
 }

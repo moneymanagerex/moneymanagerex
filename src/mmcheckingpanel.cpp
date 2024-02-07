@@ -911,6 +911,14 @@ void mmCheckingPanel::RefreshList()
     m_listCtrlAccount->refreshVisualList();
 }
 
+void mmCheckingPanel::ResetColumnView()
+{
+    m_listCtrlAccount->DeleteAllColumns();
+    m_listCtrlAccount->resetColumns();
+    m_listCtrlAccount->createColumns(*m_listCtrlAccount);
+    m_listCtrlAccount->refreshVisualList();
+}
+
 void mmCheckingPanel::SetSelectedTransaction(int transID)
 {
     m_listCtrlAccount->setSelectedID(transID);

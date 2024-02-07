@@ -2394,7 +2394,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     {
         wxDateTime dtdt;
         if (mmParseDisplayStringToDate(dtdt, token, date_format_))
-            holder.Date = dtdt.GetDateOnly();
+            holder.Date = dtdt;
         else
             holder.valid = false;
         break;

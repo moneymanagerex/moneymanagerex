@@ -79,6 +79,7 @@ void Option::LoadOptions(bool include_infotable)
     m_budgetOverride = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_OVERRIDE, false);
     m_budgetDeductMonthly = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_DEDUCT_MONTH_FROM_YEAR, false);
     m_ignoreFutureTransactions = Model_Setting::instance().GetBoolSetting(INIDB_IGNORE_FUTURE_TRANSACTIONS, false);
+    m_useTransDateTime = Model_Setting::instance().GetBoolSetting("TRANSACTION_USE_DATE_TIME", false);
     m_showToolTips = Model_Setting::instance().GetBoolSetting(INIDB_SHOW_TOOLTIPS, true);
     m_showMoneyTips = Model_Setting::instance().GetBoolSetting(INIDB_SHOW_MONEYTIPS, true);
 
@@ -280,6 +281,22 @@ void Option::IgnoreFutureTransactions(const bool value)
 {
     Model_Setting::instance().Set(INIDB_IGNORE_FUTURE_TRANSACTIONS, value);
     m_ignoreFutureTransactions = value;
+}
+
+bool Option::UseTransDateTime(const bool value)
+{
+    if (value != m_useTransDateTime)
+    {
+        Model_Setting::instance().Set("TRANSACTION_USE_DATE_TIME", value);
+        m_useTransDateTime = value;
+        return true;
+    }
+    return false;
+}
+
+bool Option::UseTransDateTime() const noexcept
+{
+    return m_useTransDateTime;
 }
 
 void Option::ShowToolTips(const bool value)

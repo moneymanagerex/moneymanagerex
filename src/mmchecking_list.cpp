@@ -273,14 +273,33 @@ TransactionListCtrl::TransactionListCtrl(
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
     SetAcceleratorTable(tab);
 
+    resetColumns();
+
+    // V2 used as now maps to real column names and this resets everything to default
+    // to avoid strange column widths when this code version is first
+    m_col_width = m_cp->isAllAccounts_ ? "ALLTRANS_COLV2%d_WIDTH" : "CHECK2_COLV2%d_WIDTH";
+
+    m_default_sort_column = COL_DEF_SORT;
+    m_today = wxDateTime::Today().FormatISODate();
+
+    SetSingleStyle(wxLC_SINGLE_SEL, false);
+}
+
+void TransactionListCtrl::resetColumns()
+{
+    m_columns.clear();
+    m_real_columns.clear();
     m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_CENTER, false));
     m_real_columns.push_back(COL_IMGSTATUS);
     m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true));
     m_real_columns.push_back(COL_ID);
     m_columns.push_back(PANEL_COLUMN(_("Date"), 112, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_DATE);
-    m_columns.push_back(PANEL_COLUMN(_("Time"), 70, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(COL_TIME);
+    if (Option::instance().UseTransDateTime())
+    {
+        m_columns.push_back(PANEL_COLUMN(_("Time"), 70, wxLIST_FORMAT_LEFT, true));
+        m_real_columns.push_back(COL_TIME);
+    }
     m_columns.push_back(PANEL_COLUMN(_("Number"), 70, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_NUMBER);
     if (m_cp->isAllAccounts_ || m_cp->isTrash_)
@@ -331,9 +350,9 @@ TransactionListCtrl::TransactionListCtrl(
             if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
                 align = wxLIST_FORMAT_RIGHT;
             else if (type == Model_CustomField::FIELDTYPE::BOOLEAN)
-                align = wxLIST_FORMAT_CENTER; 
+                align = wxLIST_FORMAT_CENTER;
             else
-                align = wxLIST_FORMAT_LEFT; 
+                align = wxLIST_FORMAT_LEFT;
             m_columns.push_back(PANEL_COLUMN(name, 100, align, true));
             m_real_columns.push_back(static_cast<EColumn>(i));
         }
@@ -341,15 +360,6 @@ TransactionListCtrl::TransactionListCtrl(
     }
     m_columns.push_back(PANEL_COLUMN(_("Last Updated"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_UPDATEDTIME);
-
-    // V2 used as now maps to real column names and this resets everything to default
-    // to avoid strange column widths when this code version is first
-    m_col_width = m_cp->isAllAccounts_ ? "ALLTRANS_COLV2%d_WIDTH" : "CHECK2_COLV2%d_WIDTH";
-
-    m_default_sort_column = COL_DEF_SORT;
-    m_today = wxDateTime::Today().FormatISODate();
-
-    SetSingleStyle(wxLC_SINGLE_SEL, false);
 }
 
 TransactionListCtrl::~TransactionListCtrl()

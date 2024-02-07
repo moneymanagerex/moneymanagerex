@@ -90,6 +90,9 @@ public:
     void BudgetOverride(const bool value);
     bool BudgetOverride() const noexcept;
 
+    bool UseTransDateTime(const bool value);
+    bool UseTransDateTime() const noexcept;
+
     // Deduct monthly budget from yearly budget
     void BudgetDeductMonthly(const bool value);
     bool BudgetDeductMonthly() const noexcept;
@@ -190,6 +193,7 @@ private:
     bool m_ignoreFutureTransactions = false;        //INIDB_IGNORE_FUTURE_TRANSACTIONS
     bool m_showToolTips = true;                     //INIDB_SHOW_TOOLTIPS
     bool m_showMoneyTips = true;                    //INIDB_SHOW_MONEYTIPS
+    bool m_useTransDateTime = false;
 
     int m_transPayeeSelection = Option::NONE;
     int m_transCategorySelectionNonTransfer = Option::NONE;

@@ -58,7 +58,7 @@ private:
     wxButton* m_UDFCB5 = nullptr;
     wxButton* m_UDFCB6 = nullptr;
     wxButton* m_UDFCB7 = nullptr;
-
+    
     
     wxButton* m_theme_manager = nullptr;
     wxChoice* m_theme_mode = nullptr;
@@ -77,6 +77,7 @@ private:
     wxCheckBox* m_budget_override = nullptr;
     wxCheckBox* m_budget_deduct_monthly = nullptr;
     wxCheckBox* m_ignore_future_transactions = nullptr;
+    wxCheckBox* m_use_trans_date_time = nullptr;
     wxSpinCtrl* m_budget_days_offset = nullptr;
     wxSpinCtrl* m_reporting_firstday = nullptr;
 

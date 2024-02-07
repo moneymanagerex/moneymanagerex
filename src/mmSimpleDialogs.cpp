@@ -410,10 +410,6 @@ mmComboBoxCustom::mmComboBoxCustom(wxWindow* parent, wxArrayString& a, wxWindowI
 
 /* --------------------------------------------------------- */
 
-wxBEGIN_EVENT_TABLE(mmDatePickerCtrl, wxDatePickerCtrl)
-EVT_DATE_CHANGED(wxID_ANY, mmDatePickerCtrl::OnDateChanged)
-EVT_SPIN(wxID_ANY, mmDatePickerCtrl::OnDateSpin)
-wxEND_EVENT_TABLE()
 
 mmDatePickerCtrl::mmDatePickerCtrl(wxWindow* parent, wxWindowID id, wxDateTime dt, wxPoint pos, wxSize size, long style)
     : wxPanel(parent, id, pos, size, style)
@@ -424,6 +420,7 @@ mmDatePickerCtrl::mmDatePickerCtrl(wxWindow* parent, wxWindowID id, wxDateTime d
     wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
     SetSizer(sizer);
     datePicker_ = new wxDatePickerCtrl(this, id, dt, wxDefaultPosition, wxDefaultSize, style);
+    datePicker_->Bind(wxEVT_DATE_CHANGED, &mmDatePickerCtrl::OnDateChanged, this);
     sizer->Add(datePicker_);
 }
 
@@ -462,8 +459,7 @@ wxSpinButton* mmDatePickerCtrl::getSpinButton()
         spinButton_ = new wxSpinButton(parent_, wxID_ANY
             , wxDefaultPosition, wxSize(-1, this->GetSize().GetHeight())
             , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
-        spinButton_->Connect(wxID_ANY, wxEVT_SPIN
-            , wxSpinEventHandler(mmDatePickerCtrl::OnDateSpin), nullptr, this);
+        spinButton_->Bind(wxEVT_SPIN, &mmDatePickerCtrl::OnDateSpin, this);
         spinButton_->SetRange(-32768, 32768);
     }
     return spinButton_;
@@ -489,6 +485,7 @@ bool mmDatePickerCtrl::Enable(bool state)
     return response;
 }
 
+// Gets the full layout including spin buttons, time picker, and day of week
 wxBoxSizer* mmDatePickerCtrl::mmGetLayout(bool showTimeCtrl)
 {
     wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -496,13 +493,29 @@ wxBoxSizer* mmDatePickerCtrl::mmGetLayout(bool showTimeCtrl)
 #if defined(__WXMSW__) || defined(__WXGTK__)
     date_sizer->Add(this->getSpinButton(), g_flagsH);
 #endif
-    if (showTimeCtrl)
+    // If time picker is requested and turned on in Options, add it to the layout
+    if (showTimeCtrl && Option::instance().UseTransDateTime())
     {
-        timePicker_ = new wxTimePickerCtrl(parent_, wxID_ANY, dt_, wxDefaultPosition, wxDefaultSize);
+        timePicker_ = new wxTimePickerCtrl(parent_, GetId(), dt_, wxDefaultPosition, wxDefaultSize);
         timePicker_->Bind(wxEVT_TIME_CHANGED, &mmDatePickerCtrl::OnDateChanged, this);
         date_sizer->Add(timePicker_, g_flagsH);
     }
     date_sizer->Add(this->getTextWeek(), g_flagsH);
+
+    return date_sizer;
+}
+
+// Adds only the time picker to the layout if "Use time" is turned on in Options
+wxBoxSizer* mmDatePickerCtrl::mmGetLayoutWithTime()
+{
+    wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
+    date_sizer->Add(this, g_flagsH);
+    if (Option::instance().UseTransDateTime())
+    {
+        timePicker_ = new wxTimePickerCtrl(parent_, GetId(), dt_, wxDefaultPosition, wxDefaultSize);
+        timePicker_->Bind(wxEVT_TIME_CHANGED, &mmDatePickerCtrl::OnDateChanged, this);
+        date_sizer->Add(timePicker_, g_flagsH);
+    }
 
     return date_sizer;
 }
@@ -518,6 +531,8 @@ void mmDatePickerCtrl::OnDateChanged(wxDateEvent& event)
         dt_.ParseISOCombined(datePicker_->GetValue().FormatISODate() + "T" + timePicker_->GetValue().FormatISOTime());
     else
         dt_ = datePicker_->GetValue();
+
+    event.SetDate(dt_);
     event.Skip();
 }
 
