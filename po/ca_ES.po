@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-01 21:34\n"
+"PO-Revision-Date: 2024-02-08 06:51\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -177,7 +177,7 @@ msgstr ""
 
 #: accountdialog.cpp:205
 msgid "Enter the name of the financial institution in which the account is held."
-msgstr ""
+msgstr "Introdueixi el nom de la institució financera a on es manté el compte."
 
 #: accountdialog.cpp:208
 msgid "Website:"
@@ -675,7 +675,7 @@ msgstr "Utilitzi l'asterisc (*) al començament per trobar qualsevol cadena de c
 #: assetspanel.cpp:583 stockspanel.cpp:333 stockspanel.cpp:520
 #, c-format
 msgid "Total: %s"
-msgstr ""
+msgstr "Total: %s"
 
 #: assetspanel.cpp:666
 #, c-format
@@ -761,7 +761,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "Introdueixi una nova descripció per a l'arxiu adjunt:"
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
@@ -993,7 +993,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:499 filtertransdialog.cpp:626 transdialog.cpp:1315
 msgid "Specify the status for the transaction"
-msgstr ""
+msgstr "Especifiqui l'estat per a la transacció"
 
 #: billsdepositsdialog.cpp:501 billsdepositspanel.cpp:136 filtertrans.cpp:194
 #: filtertransdialog.cpp:617 filtertransdialog.cpp:1010
@@ -1009,7 +1009,7 @@ msgstr "Estat"
 
 #: billsdepositsdialog.cpp:507 transdialog.cpp:1316
 msgid "Specify the type of transactions to be created."
-msgstr ""
+msgstr "Especifiqui el tipus de transaccions a crear."
 
 #: billsdepositsdialog.cpp:508 transdialog.cpp:459
 msgid "&Advanced"
@@ -1322,7 +1322,7 @@ msgstr ""
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:775
 #: mmframe.cpp:3171 mmhomepagepanel.cpp:243
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Transaccions Programades"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:457
 msgid "D&uplicate "
@@ -1330,7 +1330,7 @@ msgstr "D&uplicar "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Eliminar Transacció Programada"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
