@@ -454,11 +454,19 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
         showColumnsCheckBox_->SetValue(false);
         bHideColumns_->SetLabelText("");
     }
-    bHideColumns_->Enable(showColumnsCheckBox_->IsChecked());
 
-    // Hide time column if not enabled in options
-    if (!Option::instance().UseTransDateTime())
-        m_selected_columns_id.Add(COL_TIME);
+    // Remove the time column from the hidden columns list if not enabled in options
+    if (!Option::instance().UseTransDateTime() && m_selected_columns_id.Index(COL_TIME) != wxNOT_FOUND)
+    {
+        m_selected_columns_id.Remove(COL_TIME);
+        if (m_selected_columns_id.IsEmpty())
+        {
+            showColumnsCheckBox_->SetValue(false);
+            bHideColumns_->SetLabelText("");
+        }
+    }
+
+    bHideColumns_->Enable(showColumnsCheckBox_->IsChecked());
 
     // Group By
     Value& j_groupBy = GetValueByPointerWithDefault(j_doc, "/GROUPBY", "");
@@ -1131,19 +1139,37 @@ void mmFilterTransactionsDialog::OnQuit(wxCloseEvent& /*event*/)
 
 void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
 {
-    wxArrayString column_names;
-    for (const auto& name : COLUMN_NAMES)
-    {
-        column_names.Add(wxGetTranslation(name));
-    }
 
     bool useDateTime = Option::instance().UseTransDateTime();
 
-    if (!useDateTime && m_selected_columns_id.Index(COL_TIME) == wxNOT_FOUND)
-        m_selected_columns_id.Add(COL_TIME);
+    wxArrayString column_names;
+    for (const auto& name : COLUMN_NAMES)
+    {
+        // Suppress the 'Time' column if the option is turned off
+        if (!useDateTime && name == "Time")
+        {
+            if (m_selected_columns_id.Index(COL_TIME) != wxNOT_FOUND)
+                m_selected_columns_id.Remove(COL_TIME);
+        }
+        else
+            column_names.Add(wxGetTranslation(name));
+    }
+
+    wxArrayInt hiddenCols = m_selected_columns_id;
+
+    if (!useDateTime)
+    {
+        // We removed the 'Time' column from the list of names
+        // We need to reduce the index of any columns to the right to realign the indexes to the names in the dialog
+        for (int i = 0; i < hiddenCols.GetCount(); i++)
+        {
+            if (hiddenCols[i] > COL_TIME)
+                hiddenCols[i] -= 1;
+        }
+    }
 
     mmMultiChoiceDialog s_col(this, _("Hide Report Columns"), "", column_names);
-    s_col.SetSelections(m_selected_columns_id);
+    s_col.SetSelections(hiddenCols);
 
     wxString baloon = "";
     wxArrayInt selected_items;
@@ -1157,6 +1183,11 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
         for (const auto& entry : selected_items)
         {
             int index = entry;
+
+            // If we shifted the names when displaying the dialog, shift them back
+            if (!useDateTime && index >= COL_TIME)
+                index += 1;
+
             const wxString column_name = COLUMN_NAMES[index];
             m_selected_columns_id.Add(index);
             baloon += wxGetTranslation(column_name) + "\n";
