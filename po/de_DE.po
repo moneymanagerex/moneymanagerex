@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-01 21:34\n"
+"PO-Revision-Date: 2024-02-10 10:49\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -2627,7 +2627,7 @@ msgstr "Gestapelte Fläche"
 
 #: filtertransdialog.cpp:487
 msgid "Last Unsaved Filter"
-msgstr ""
+msgstr "Letzter ungespeicherter Filter"
 
 #: filtertransdialog.cpp:534 transactionsupdatedialog.cpp:122
 msgid "Specify"
@@ -4310,7 +4310,7 @@ msgstr "&Finde alle Transaktionen mit %s '%s'"
 
 #: mmchecking_list.cpp:641
 msgid "Copy Text to Clipboard"
-msgstr ""
+msgstr "Text in die Zwischenablage kopieren"
 
 #: mmchecking_list.cpp:648
 msgid "&Delete selected transaction..."
@@ -4633,7 +4633,7 @@ msgstr "Aktienkonten"
 
 #: mmframe.cpp:783 mmframe.cpp:1736 mmframe.cpp:2825
 msgid "Budget Planner"
-msgstr ""
+msgstr "Budgetplaner"
 
 #: mmframe.cpp:788 mmframe.cpp:1319 mmframe.cpp:1336 mmframe.cpp:2810
 msgid "Transaction Report"
@@ -4742,7 +4742,7 @@ msgstr "Konto-Webseite &öffnen"
 
 #: mmframe.cpp:1458 mmframe.cpp:1478
 msgid "&Attachment Manager..."
-msgstr ""
+msgstr "&Anlageverwalter..."
 
 #: mmframe.cpp:1473 mmframe.cpp:1677
 msgid "&Change Account Type..."
@@ -4918,11 +4918,11 @@ msgstr "Vollbild umschalten"
 
 #: mmframe.cpp:1636
 msgid "Reset View"
-msgstr ""
+msgstr "Ansicht zurücksetzen"
 
 #: mmframe.cpp:1637
 msgid "Reset view and dock tools"
-msgstr ""
+msgstr "Ansichts- und Dockwerkzeuge zurücksetzen"
 
 #: mmframe.cpp:1668
 msgid "Dash&board"
@@ -4942,7 +4942,7 @@ msgstr "Konto aus Datenbank löschen"
 
 #: mmframe.cpp:1693
 msgid "Download &Rates"
-msgstr ""
+msgstr "Kurse herunterladen"
 
 #: mmframe.cpp:1693 mmframe.cpp:1952
 msgid "Download Currency and Stock Rates"
@@ -4950,27 +4950,27 @@ msgstr "Währungs- und Börsenkurse herunterladen"
 
 #: mmframe.cpp:1699
 msgid "&Payee Manager..."
-msgstr ""
+msgstr "&Zahlungsempfänger Manager..."
 
 #: mmframe.cpp:1699 mmframe.cpp:1928 payeedialog.cpp:508
 msgid "Payee Manager"
-msgstr ""
+msgstr "Zahlungsempfänger Manager"
 
 #: mmframe.cpp:1703
 msgid "&Category Manager..."
-msgstr ""
+msgstr "&Kategorien verwalten..."
 
 #: mmframe.cpp:1707
 msgid "&Tag Manager..."
-msgstr ""
+msgstr "&Tag-Verwalter..."
 
 #: mmframe.cpp:1707 mmframe.cpp:1930 tagdialog.h:45
 msgid "Tag Manager"
-msgstr ""
+msgstr "Tag-Verwalter"
 
 #: mmframe.cpp:1711
 msgid "Curre&ncy Manager..."
-msgstr ""
+msgstr "Währungsverwaltung..."
 
 #: mmframe.cpp:1715
 msgid "&Categories..."
@@ -5006,7 +5006,7 @@ msgstr "Kategorien, Zahler und Tags zusammenführen"
 
 #: mmframe.cpp:1736
 msgid "&Budget Planner..."
-msgstr ""
+msgstr "&Budgetplaner..."
 
 #: mmframe.cpp:1740
 msgid "&Scheduled Transactions"
@@ -5014,7 +5014,7 @@ msgstr "Geplante Buchungen"
 
 #: mmframe.cpp:1740
 msgid "Bills and Deposits"
-msgstr ""
+msgstr "Zahlungen und Gutschriften"
 
 #: mmframe.cpp:1744
 msgid "&Assets"
@@ -5034,11 +5034,11 @@ msgstr "Transaktionsbericht &Filter..."
 
 #: mmframe.cpp:1762
 msgid "&General Report Manager..."
-msgstr ""
+msgstr "&Allgemeiner Bericht Manager..."
 
 #: mmframe.cpp:1766
 msgid "C&ustom Field Manager..."
-msgstr ""
+msgstr "Benutzerdefinierte Felder verwalten..."
 
 #: mmframe.cpp:1772
 msgid "Refresh &WebApp..."
@@ -5298,7 +5298,7 @@ msgstr "Nachrichten"
 
 #: mmframe.cpp:1952
 msgid "Download Rates"
-msgstr ""
+msgstr "Kurse herunterladen"
 
 #: mmframe.cpp:1955
 msgid "Toggle Fullscreen\tF11"
@@ -5375,7 +5375,7 @@ msgstr "Wählen Sie die zu erstellende Datenbank-Datei"
 
 #: mmframe.cpp:2253 mmframe.cpp:2275 mmframe.cpp:2317 mmframe.cpp:2457
 msgid "MMEX Database"
-msgstr ""
+msgstr "MMEX-Datenbank"
 
 #: mmframe.cpp:2273
 msgid "Choose database file to open"
@@ -5383,7 +5383,7 @@ msgstr "Wählen Sie die zu öffnende Datenbank-Datei"
 
 #: mmframe.cpp:2275 mmframe.cpp:2301 mmframe.cpp:2457
 msgid "Encrypted MMEX Database"
-msgstr ""
+msgstr "Verschlüsselte MMEX-Datenbank"
 
 #: mmframe.cpp:2299
 msgid "Choose Encrypted database file to open"
@@ -6197,12 +6197,13 @@ msgstr "Währung auswählen"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Set default database currency using 'Currency Manager'"
-msgstr ""
+msgstr "Standardwährung mit 'Währungsmanager' festlegen"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Manager | Edit'"
-msgstr ""
+msgstr "Format abgeleitet von Gebietsschema.\n"
+"Leer lassen um das Format manuell über den 'Währungsdialog | Bearbeiten' festzulegen"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6722,7 +6723,7 @@ msgstr "Werkzeuge → Zusammenführen → Zahlungsempfänger"
 
 #: payeedialog.cpp:746
 msgid "Payee Manager: Delete Error"
-msgstr ""
+msgstr "Zahlungsempfänger-Manager: Fehler beim löschen"
 
 #: payeedialog.cpp:751
 msgid "Deleted transactions exist which use this payee."
@@ -6742,7 +6743,7 @@ msgstr "Kategorie definieren"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
-msgstr ""
+msgstr "&Anhang Verwaltung"
 
 #: payeedialog.cpp:895
 msgid "Relocate Payee"
@@ -7230,19 +7231,19 @@ msgstr "Alle Transaktionen ohne Transfers"
 
 #: reports/transactions.cpp:481
 msgid "Statistics"
-msgstr ""
+msgstr "Statistiken"
 
 #: reports/transactions.cpp:504
 msgid "Minimum"
-msgstr ""
+msgstr "Minimum"
 
 #: reports/transactions.cpp:506
 msgid "Maximum"
-msgstr ""
+msgstr "Maximum"
 
 #: reports/transactions.cpp:508
 msgid "Average"
-msgstr ""
+msgstr "Durchschnitt"
 
 #: sharetransactiondialog.cpp:61 sharetransactiondialog.cpp:68
 msgid "Add Share Transaction"
@@ -7298,7 +7299,7 @@ msgstr "Geben Sie die Charge ein, zu dem dieses Paket oder diese Aktien gehören
 
 #: sharetransactiondialog.cpp:270 stockdialog.cpp:251
 msgid "Manage stock attachments"
-msgstr ""
+msgstr "Aktien Beilagen verwalten"
 
 #: sharetransactiondialog.cpp:275 stockdialog.cpp:253
 msgid "Display the web page for the specified Stock symbol"
@@ -7690,7 +7691,7 @@ msgstr "Schlagwörter dürfen nicht die Zeichen '&' oder '|' enthalten, da diese
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Tag Manager: Invalid Name"
-msgstr ""
+msgstr "Tag-Manager: Ungültiger Name"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
@@ -7714,7 +7715,7 @@ msgstr "Ein Schlagwort mit diesem Namen existiert bereits"
 
 #: tagdialog.cpp:218
 msgid "Tag Manager: Adding Error"
-msgstr ""
+msgstr "Tag-Manager: Fehler beim Hinzufügen"
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
@@ -7722,7 +7723,7 @@ msgstr "Schlagwort bearbeiten"
 
 #: tagdialog.cpp:254
 msgid "Tag Manager: Editing Error"
-msgstr ""
+msgstr "Tag-Manager: Bearbeitungsfehler"
 
 #: tagdialog.cpp:295
 #, c-format
@@ -7731,7 +7732,7 @@ msgstr "Schlagwort '%s' in Benutzung"
 
 #: tagdialog.cpp:295
 msgid "Tag Manager: Delete Error"
-msgstr ""
+msgstr "Tag-Manager: Fehler beim löschen"
 
 #: tagdialog.cpp:298
 #, c-format
@@ -7824,7 +7825,7 @@ msgstr "Ausfüllen von Buchung #"
 
 #: transdialog.cpp:565 usertransactionpanel.cpp:185
 msgid "Manage transaction attachments"
-msgstr ""
+msgstr "Verwalten von Buchungs-Beilagen"
 
 #: transdialog.cpp:768
 msgid "This transaction will exceed your account limit.\n\n"
