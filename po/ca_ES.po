@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-10 21:27\n"
+"PO-Revision-Date: 2024-02-10 23:01\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -185,7 +185,7 @@ msgstr "Pàgina web:"
 
 #: accountdialog.cpp:210
 msgid "Enter the URL of the website for the financial institution."
-msgstr "Introdueixi l'adreça del lloc web de l'entitat financera."
+msgstr "Introdueixi l'adreça URL del lloc web de l'entitat financera."
 
 #: accountdialog.cpp:213
 msgid "Contact:"
@@ -201,7 +201,7 @@ msgstr "Informació d'Accés"
 
 #: accountdialog.cpp:220
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "Introdueixi qualsevol informació d'inici de sessió o accés de l'entitat financera. Això no és segur, ja que qualsevol amb accés a l'arxiu mmb pot accedir-hi."
+msgstr "Introdueixi qualsevol informació d'inici de sessió o accés de l'entitat financera. Això no és segur, ja que qualsevol amb accés al fitxer mmb pot accedir-hi."
 
 #: accountdialog.cpp:225
 msgid "Statement"
@@ -285,7 +285,7 @@ msgstr "Divisa"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Please enter a valid URL"
-msgstr ""
+msgstr "Si us plau, introdueixi una adreça URL vàlida"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Invalid URL"
@@ -409,7 +409,7 @@ msgstr "Actiu nou"
 
 #: assetdialog.cpp:54 assetspanel.cpp:485
 msgid "Edit Asset"
-msgstr ""
+msgstr "Editar Actiu"
 
 #: assetdialog.cpp:58 assetdialog.cpp:70 assetspanel.cpp:475
 msgid "Add Asset Transaction"
@@ -749,11 +749,11 @@ msgstr "Altres eines"
 
 #: attachmentdialog.cpp:190
 msgid "Import attachment:"
-msgstr ""
+msgstr "Importar fitxer adjunt:"
 
 #: attachmentdialog.cpp:201
 msgid "Enter a description for the new attachment:"
-msgstr ""
+msgstr "Introdueixi una descripció per al nou fitxer adjunt:"
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
@@ -761,7 +761,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
-msgstr "Introdueixi una nova descripció per a l'arxiu adjunt:"
+msgstr "Introdueixi una nova descripció per al fitxer adjunt:"
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
@@ -793,7 +793,7 @@ msgstr "&Eliminar "
 
 #: attachmentdialog.cpp:400
 msgid "Att."
-msgstr ""
+msgstr "Adj."
 
 #: attachmentdialog.cpp:407
 msgid "This directory and its files are automatically managed by MMEX."
@@ -805,7 +805,7 @@ msgstr "Si us plau, no elimini, canviï el nom ni modifiqui manualment els direc
 
 #: attachmentdialog.cpp:454 attachmentdialog.cpp:462
 msgid "Destination file already exist:"
-msgstr ""
+msgstr "El fitxer de destí ja existeix:"
 
 #: attachmentdialog.cpp:457
 msgid "File not found in attachments. Please delete or rename it."
@@ -813,7 +813,7 @@ msgstr "No s'ha trobat el fitxer en els fitxers adjunts. Si us plau, elimini'l o
 
 #: attachmentdialog.cpp:458 attachmentdialog.cpp:466
 msgid "Destination file already exist"
-msgstr ""
+msgstr "El fitxer de destí ja existeix"
 
 #: attachmentdialog.cpp:465
 msgid "File already found in attachments"
@@ -1253,7 +1253,7 @@ msgstr ""
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "Nova Transacció Programada"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1362,11 +1362,11 @@ msgstr "&Nova Transacció Programada..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "&Editar Transacció Programada..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "D&uplicar Transacció Programada..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
@@ -1841,11 +1841,11 @@ msgstr "Desfer"
 
 #: constants.cpp:91
 msgid "Redo"
-msgstr ""
+msgstr "Refer"
 
 #: constants.cpp:92
 msgid "Cut"
-msgstr ""
+msgstr "Retallar"
 
 #: constants.cpp:93
 msgid "Copy"
@@ -1861,7 +1861,7 @@ msgstr "Seleccionar Tot"
 
 #: constants.cpp:111
 msgid "64-bit"
-msgstr ""
+msgstr "64-bit"
 
 #: constants.cpp:193
 msgid "View with Transaction Filter..."
@@ -6546,11 +6546,11 @@ msgstr ""
 
 #: optionsettingsview.cpp:275
 msgid "Large"
-msgstr ""
+msgstr "Gran"
 
 #: optionsettingsview.cpp:276
 msgid "Huge"
-msgstr ""
+msgstr "Enorme"
 
 #: optionsettingsview.cpp:278
 msgid "Font Size"
@@ -6558,19 +6558,19 @@ msgstr ""
 
 #: optionsettingsview.cpp:290
 msgid "Small (16 px)"
-msgstr ""
+msgstr "Petit (16 px)"
 
 #: optionsettingsview.cpp:291
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "Normal (24 px)"
 
 #: optionsettingsview.cpp:292
 msgid "Large (32 px)"
-msgstr ""
+msgstr "Gran (32 px)"
 
 #: optionsettingsview.cpp:293
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "Enorme (48 px)"
 
 #: optionsettingsview.cpp:307
 msgid "Toolbar Icon Size"
@@ -6914,11 +6914,11 @@ msgstr ""
 
 #: reports/cashflow.cpp:345
 msgid "Cash Flow - Daily"
-msgstr ""
+msgstr "Flux de Caixa - Diari"
 
 #: reports/cashflow.cpp:359
 msgid "Cash Flow - Monthly"
-msgstr ""
+msgstr "Flux de Caixa - Mensual"
 
 #: reports/cashflow.cpp:373
 msgid "Cash Flow - Transactions"
@@ -7029,15 +7029,15 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:134
 msgid "Latest 3 Months"
-msgstr ""
+msgstr "Últims 3 Mesos"
 
 #: reports/mmDateRange.cpp:148
 msgid "Latest 12 Months"
-msgstr ""
+msgstr "Últims 12 Mesos"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
-msgstr ""
+msgstr "Any Actual"
 
 #: reports/mmDateRange.cpp:173 stockdialog.cpp:679
 msgid "Current Year to Date"
@@ -7045,7 +7045,7 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
-msgstr ""
+msgstr "Any Passat"
 
 #: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
@@ -7592,7 +7592,7 @@ msgstr ""
 
 #: stockspanel.cpp:415
 msgid "Connecting..."
-msgstr ""
+msgstr "Connectant..."
 
 #: stockspanel.cpp:519
 #, c-format
@@ -7601,11 +7601,11 @@ msgstr ""
 
 #: tagdialog.cpp:126
 msgid "Add a new tag"
-msgstr ""
+msgstr "Afegir una nova etiqueta"
 
 #: tagdialog.cpp:131
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "Editar el nom d'una etiqueta existent"
 
 #: tagdialog.cpp:136
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
@@ -7613,7 +7613,7 @@ msgstr ""
 
 #: tagdialog.cpp:142
 msgid "Select"
-msgstr ""
+msgstr "Seleccionar"
 
 #: tagdialog.cpp:179
 msgid "Invalid tag name"
@@ -7997,7 +7997,7 @@ msgstr ""
 #: util.cpp:1445
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Versió: %s"
 
 #: util.cpp:1446
 #, c-format
@@ -8007,7 +8007,7 @@ msgstr ""
 #: util.cpp:1447
 #, c-format
 msgid "Database version: %d"
-msgstr ""
+msgstr "Versió de la base de dades: %d"
 
 #: util.cpp:1454
 #, c-format
@@ -8039,7 +8039,7 @@ msgstr ""
 #: util.cpp:1512
 #, c-format
 msgid "User Interface Language: %s"
-msgstr ""
+msgstr "Idioma de la Interfície d'Usuari: %s"
 
 #: util.cpp:1749
 msgid "The complete list of closed issues is available at this link"
@@ -8047,7 +8047,7 @@ msgstr "La llista completa de problemes tancats està disponible en aquest enlla
 
 #: util.cpp:1946
 msgid "Copy all text to clipboard"
-msgstr ""
+msgstr "Copiar tot el text al porta-retalls"
 
 #: util.h:192
 msgid "January"
@@ -8251,11 +8251,11 @@ msgstr ""
 
 #: wizard_newaccount.cpp:108
 msgid "Name of the Account"
-msgstr ""
+msgstr "Nom del Compte"
 
 #: wizard_newaccount.cpp:112
 msgid "Specify a descriptive name for the account."
-msgstr ""
+msgstr "Especifiqui un nom descriptiu pel compte."
 
 #: wizard_newaccount.cpp:113
 msgid "This is generally the name of a financial institution\n"
@@ -8264,7 +8264,7 @@ msgstr ""
 
 #: wizard_newaccount.cpp:133
 msgid "Type of Account"
-msgstr ""
+msgstr "Tipus de Compte"
 
 #: wizard_newaccount.cpp:137
 msgid "Select the type of account you want to create:"
