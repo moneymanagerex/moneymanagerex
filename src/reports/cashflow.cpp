@@ -240,16 +240,13 @@ wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
     // squash the data by month or day
     for (const auto& trx : m_forecastVector)
     {
-        wxString date = trx.TRANSDATE;
+        dt = Model_Checking::TRANSDATE(trx);
+        wxString date = dt.FormatISODate();
         if (monthly)
         {
-            dt.ParseDate(trx.TRANSDATE);
             date = dt.SetDay(1).FormatISODate();
         }
-        if (dateMap.count(date) == 0)
-            dateMap[date] = trx.TRANSAMOUNT;
-        else
-            dateMap[date] = dateMap[date] + trx.TRANSAMOUNT;
+        dateMap[date] += trx.TRANSAMOUNT;
     }
 
     // Build the report

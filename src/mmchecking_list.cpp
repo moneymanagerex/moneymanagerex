@@ -548,7 +548,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
             {
                 copyText_ = menuItemText = mmGetDateForDisplay(m_trans[row].TRANSDATE);
                 wxString strDate = Model_Checking::TRANSDATE(m_trans[row]).FormatISODate();
-                rightClickFilter_ = "{\n\"DATE1\": \"" + strDate + "\",\n\"DATE2\" : \"" + strDate + "\"\n}";
+                rightClickFilter_ = "{\n\"DATE1\": \"" + strDate + "\",\n\"DATE2\" : \"" + strDate + "T23:59:59" + "\"\n}";
                 break;
             }
             case COL_NUMBER:
