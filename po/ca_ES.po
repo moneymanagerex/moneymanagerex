@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-08 06:51\n"
+"PO-Revision-Date: 2024-02-10 21:27\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Enviar dades d'estadístiques d'ús anònimes"
 
 #: aboutdialog.cpp:240 optionsettingsnet.cpp:127
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
+msgstr "Activar per ajudar-nos a enviar dades anònimes sobre l'ús de MMEX."
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:143
 #: assetdialog.cpp:283 attachmentdialog.cpp:151 billsdepositsdialog.cpp:645
@@ -185,7 +185,7 @@ msgstr "Pàgina web:"
 
 #: accountdialog.cpp:210
 msgid "Enter the URL of the website for the financial institution."
-msgstr ""
+msgstr "Introdueixi l'adreça del lloc web de l'entitat financera."
 
 #: accountdialog.cpp:213
 msgid "Contact:"
@@ -193,7 +193,7 @@ msgstr "Contacte:"
 
 #: accountdialog.cpp:215
 msgid "Enter any contact information for the financial institution."
-msgstr ""
+msgstr "Introdueixi qualsevol informació de contacte de l'entitat financera."
 
 #: accountdialog.cpp:218
 msgid "Access Info:"
@@ -201,7 +201,7 @@ msgstr "Informació d'Accés"
 
 #: accountdialog.cpp:220
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr ""
+msgstr "Introdueixi qualsevol informació d'inici de sessió o accés de l'entitat financera. Això no és segur, ja que qualsevol amb accés a l'arxiu mmb pot accedir-hi."
 
 #: accountdialog.cpp:225
 msgid "Statement"
@@ -245,7 +245,7 @@ msgstr "Límit de crèdit:"
 
 #: accountdialog.cpp:260
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Límit de crèdit per al Compte. Zero per desactivar"
 
 #: accountdialog.cpp:263
 msgid "Interest Rate:"
