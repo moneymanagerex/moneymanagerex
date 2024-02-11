@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-10 23:01\n"
+"PO-Revision-Date: 2024-02-11 13:55\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -2556,15 +2556,15 @@ msgstr ""
 
 #: filtertransdialog.cpp:53
 msgid "Day"
-msgstr ""
+msgstr "Dia"
 
 #: filtertransdialog.cpp:53
 msgid "Month"
-msgstr ""
+msgstr "Mes"
 
 #: filtertransdialog.cpp:53
 msgid "Year"
-msgstr ""
+msgstr "Any"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
@@ -3675,11 +3675,11 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1559
 msgid "Overwrite existing file?"
-msgstr ""
+msgstr "Sobreescriure el fitxer existent?"
 
 #: import_export/univcsvdialog.cpp:1559
 msgid "File exists"
-msgstr ""
+msgstr "El fitxer existeix"
 
 #: import_export/univcsvdialog.cpp:1565
 msgid "Failed to delete existing file. File may be locked by another program."
