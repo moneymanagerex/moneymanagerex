@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-04 14:32\n"
+"PO-Revision-Date: 2024-02-11 16:11\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -4061,7 +4061,7 @@ msgstr "Recomendación: Use copiar (Ctrl+C) y pegar (Ctrl+V) para las transaccio
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb database file."
-msgstr ""
+msgstr "Consejo: Recuerde hacer copias de seguridad de su archivo de base de datos .mmb."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
@@ -4097,31 +4097,31 @@ msgstr "Consejo del administrador de categorías: Al pulsar la tecla “H” pas
 
 #: mmTips.h:35
 msgid "Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Consejo para el administrador de categorías: Al pulsar una combinación de dos teclas de caracteres seleccionará la siguiente categoría que comience por esa combinación de teclas. Por ejemplo: Pulsando \"R\" y \"E\" seleccionará Regalos, si la vuelve a pulsar seleccionará Reembolsos, etc…"
 
 #: mmTips.h:37
 msgid "Never endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
-msgstr ""
+msgstr "Nunca avale un préstamo. Si el prestatario —su amigo, familiar u otra persona con la que guarde relación— deja de realizar los pagos, la puntuación crediticia de usted se hundirá, el prestamista puede reclamarle a usted el dinero, y probablemente además se destruirá su relación. Además, si el banco requiere un avalista es porque no confía en que la persona pueda hacer frente a los pagos."
 
 #: mmTips.h:39
 msgid "Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."
-msgstr ""
+msgstr "Consejo para la lista de la compra: Evite hacer la compra cuando tenga hambre o estrés. El hambre y el estrés le pueden forzar a darse más caprichos de la cuenta, como comprar mucho chocolate o alimentos procesados. Planifique ir a la tienda cuando no haga mucho que ha comido y esté relajado. De esta manera, usted puede limitarse a su lista y no gastar en alimentos que no necesita."
 
 #: mmTips.h:40
 msgid "Grocery tip: Make a shopping list. A shopping list saves money by helping you avoid buying products you do not need. The simplest way is to track consumables as you use them. Keep a magnetic notepad on the fridge and jot down what you need as you run out."
-msgstr ""
+msgstr "Consejo para la lista de la compra: Haga una lista de la compra con la que ahorrar dinero evitando comprar productos que no necesite. La forma más sencilla es apuntar los artículos a medida que los utilice, por ejemplo, con un bloc de notas magnético en el frigorífico y apuntando lo que necesita conforme se va acabando."
 
 #: mmTips.h:41
 msgid "Grocery tip: Buy fruits and vegetables in season."
-msgstr ""
+msgstr "Consejo para la lista de la compra: Compre frutas y verduras de temporada."
 
 #: mmTips.h:42
 msgid "Grocery tip: Make sure your family consumes everything you purchase. Every month or so, hold a pantry challenge during which you use up as many pantry goods as possible before you shop again. A pantry challenge cuts down on waste and lets you get a sense of how much you are overbuying."
-msgstr ""
+msgstr "Consejo para la lista de la compra: asegúrese de que su familia consume todo lo que compra. Cada mes más o menos, consuma la mayor cantidad posible de artículos de la despensa antes de comprar de nuevo. Esto reduce los residuos y le permite tener una idea de cuánto está sobrecomprando."
 
 #: mmTips.h:43
 msgid "Grocery tip: Reduce waste. Adopting better grocery shopping habits is one way to cut back on wasted food and money. Make a list of everything you throw out without using, such as spoiled leftovers or soggy lettuce, to get a sense of the full scale of the issue."
-msgstr ""
+msgstr "Consejo para la lista de la compra: Reduzca los residuos. Adoptar mejores hábitos de compra es una forma de reducir los desperdicios de alimentos y dinero. Haga una lista de todo lo que tira sin usar, como restos estropeados o lechugas podridas, para tener una sensación de la magnitud completa del problema."
 
 #: mmTips.h:44
 msgid "Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."
