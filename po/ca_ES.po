@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-11 13:55\n"
+"PO-Revision-Date: 2024-02-11 14:58\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -4443,27 +4443,27 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:442
 msgid "Delete all selected transactions"
-msgstr ""
+msgstr "Eliminar totes les transaccions seleccionades"
 
 #: mmcheckingpanel.cpp:446 mmframe.cpp:1926 transdialog.cpp:183
 msgid "New Transaction"
-msgstr ""
+msgstr "Nova Transacció"
 
 #: mmcheckingpanel.cpp:450
 msgid "Edit all selected transactions"
-msgstr ""
+msgstr "Editar totes les transaccions seleccionades"
 
 #: mmcheckingpanel.cpp:458
 msgid "Duplicate selected transaction"
-msgstr ""
+msgstr "Duplicar la transacció seleccionada"
 
 #: mmcheckingpanel.cpp:475
 msgid "&Restore "
-msgstr ""
+msgstr "&Restaurar "
 
 #: mmcheckingpanel.cpp:476
 msgid "Restore selected transaction"
-msgstr ""
+msgstr "Restaurar la transacció seleccionada"
 
 #: mmcheckingpanel.cpp:491
 msgid "Enter any string to find it in the nearest transaction data"
@@ -5758,11 +5758,11 @@ msgstr ""
 
 #: mmreportspanel.cpp:320
 msgid "Budget:"
-msgstr ""
+msgstr "Pressupost:"
 
 #: mmreportspanel.cpp:352
 msgid "All Accounts:"
-msgstr ""
+msgstr "Tots els Comptes:"
 
 #: mmreportspanel.cpp:353
 msgid "Specific Accounts:"
@@ -8360,7 +8360,7 @@ msgstr ""
 #: wizard_update.cpp:180
 #, c-format
 msgid "Your version is %s"
-msgstr ""
+msgstr "La vostra versió és %s"
 
 #: wizard_update.cpp:327 wizard_update.cpp:343
 msgid "Unable to check for updates!"
