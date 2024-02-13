@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-13 08:29\n"
+"PO-Revision-Date: 2024-02-13 10:17\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -1128,7 +1128,7 @@ msgstr "Colors d'usuari"
 
 #: billsdepositsdialog.cpp:618
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Organitzeu els fitxers adjunts d'aquesta transacció programada"
 
 #: billsdepositsdialog.cpp:628 filtertrans.cpp:189 filtertransdialog.cpp:681
 #: filtertransdialog.cpp:1063 filtertransdialog.cpp:1864
@@ -1195,7 +1195,7 @@ msgstr "Valor invàlid"
 #: import_export/univcsvdialog.cpp:1411 stockdialog.cpp:414 transdialog.cpp:644
 #: transdialog.cpp:718 usertransactionpanel.cpp:451 webapp.cpp:566
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr ""
+msgstr "La data d'obertura del compte és posterior a la data d'aquesta transacció"
 
 #: billsdepositsdialog.cpp:1278
 msgid "Specify the transfer amount in the From Account"
