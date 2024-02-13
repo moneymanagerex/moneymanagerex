@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-13 21:11\n"
+"PO-Revision-Date: 2024-02-13 22:31\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -3158,11 +3158,11 @@ msgstr "Fitxers CSV (*.csv)"
 
 #: import_export/qif_export.cpp:354
 msgid "No Account available for export"
-msgstr ""
+msgstr "No hi ha Compte disponible per exportar"
 
 #: import_export/qif_export.cpp:356
 msgid "No Accounts selected for export"
-msgstr ""
+msgstr "No hi ha Comptes seleccionats per exportar"
 
 #: import_export/qif_export.cpp:358
 msgid "To Date less than From Date"
@@ -3219,7 +3219,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:280
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "Utilitzar el nombre del compte en comptes del nom del compte"
 
 #: import_export/qif_import_gui.cpp:284
 msgid "Include payee field in notes"
@@ -3389,12 +3389,12 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:1586
 #, c-format
 msgid "Added account: %s"
-msgstr ""
+msgstr "Compte afegit: %s"
 
 #: import_export/qif_import_gui.cpp:1617 import_export/univcsvdialog.cpp:1253
 #, c-format
 msgid "Added payee: %s"
-msgstr ""
+msgstr "Beneficiari afegit: %s"
 
 #: import_export/univcsvdialog.cpp:108
 msgid "SubCategory"
@@ -3809,7 +3809,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:300
 msgid "Add/&Update "
-msgstr ""
+msgstr "Afegir/Act&ualitzar "
 
 #: maincurrencydialog.cpp:301
 msgid "Add Currency Values to history"
@@ -3914,11 +3914,11 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:749
 msgid "Add one month"
-msgstr ""
+msgstr "Afegir un mes"
 
 #: mmSimpleDialogs.cpp:750
 msgid "Add one year"
-msgstr ""
+msgstr "Afegir un any"
 
 #: mmSimpleDialogs.cpp:806
 #, c-format
@@ -4216,11 +4216,11 @@ msgstr ""
 
 #: mmchecking_list.cpp:473
 msgid "New &Deposit..."
-msgstr ""
+msgstr "Nou &Dipòsit..."
 
 #: mmchecking_list.cpp:475
 msgid "New &Transfer..."
-msgstr ""
+msgstr "Nova &Transferència..."
 
 #: mmchecking_list.cpp:479
 msgid "&Edit Transaction..."
