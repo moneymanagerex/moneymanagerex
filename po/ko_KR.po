@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-01 21:34\n"
+"PO-Revision-Date: 2024-02-13 02:26\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -367,11 +367,11 @@ msgstr "%s 웹사이트 방문"
 
 #: appstartdialog.cpp:126
 msgid "&Support Forums"
-msgstr ""
+msgstr "지원 포럼(&S)"
 
 #: appstartdialog.cpp:127
 msgid "Visit the Support Forums"
-msgstr ""
+msgstr "지원 포럼 방문"
 
 #: appstartdialog.cpp:133 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -733,12 +733,12 @@ msgstr "첨부 파일 폴더를 찾을 수 없음"
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %s | %i"
-msgstr ""
+msgstr "첨부 관리자 | %s | %i"
 
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr ""
+msgstr "첨부 관리자 | %1$s | %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
@@ -759,7 +759,7 @@ msgstr "새 첨부 파일에 대한 설명을 입력:"
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
-msgstr ""
+msgstr "첨부 관리자: 첨부 추가"
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
@@ -767,7 +767,7 @@ msgstr "첨부 파일에 대한 설명을 입력:"
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
-msgstr ""
+msgstr "첨부 관리자: 첨부 편집"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
@@ -1053,7 +1053,7 @@ msgstr "계정"
 
 #: billsdepositsdialog.cpp:549
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "예약 거래를 소유할 계정 지정"
 
 #: billsdepositsdialog.cpp:554 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1130,7 +1130,7 @@ msgstr "사용자 색상"
 
 #: billsdepositsdialog.cpp:618
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "이 예약된 거래의 첨부 파일 구성"
 
 #: billsdepositsdialog.cpp:628 filtertrans.cpp:189 filtertransdialog.cpp:681
 #: filtertransdialog.cpp:1063 filtertransdialog.cpp:1864
@@ -1417,7 +1417,7 @@ msgstr[0] "%d일 연체!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "예약된 거래를 정말 삭제하시겠습니까?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -1679,7 +1679,7 @@ msgstr "콜론(:) 문자는 범주와 하위 범주를 구분하는 데 사용�
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
-msgstr ""
+msgstr "범주 관리자: 잘못된 이름"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
@@ -1695,7 +1695,7 @@ msgstr "상위 항목에 이 이름을 가진 범주가 있습니다"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category Manager: Adding Error"
-msgstr ""
+msgstr "범주 관리자: 추가 오류"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
@@ -1749,7 +1749,7 @@ msgstr "도구 → 병합 → 범주"
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
-msgstr ""
+msgstr "범주 관리자: 삭제 오류"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1778,7 +1778,7 @@ msgstr "범주 편집"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
-msgstr ""
+msgstr "범주 관리자: 편집 오류"
 
 #: categdialog.cpp:682 mmframe.cpp:3736
 msgid "Merge categories completed"
@@ -1820,7 +1820,7 @@ msgstr "설정 지우기"
 
 #: categdialog.h:68 mmframe.cpp:1703 mmframe.cpp:1929
 msgid "Category Manager"
-msgstr ""
+msgstr "범주 관리자"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -2159,7 +2159,7 @@ msgstr "속성"
 
 #: customfieldlistdialog.cpp:66 mmframe.cpp:1766
 msgid "Custom Field Manager"
-msgstr ""
+msgstr "사용자 지정 필드 관리자"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2570,15 +2570,15 @@ msgstr "조정된 항목을 모두 제외"
 
 #: filtertransdialog.cpp:53
 msgid "Day"
-msgstr ""
+msgstr "일"
 
 #: filtertransdialog.cpp:53
 msgid "Month"
-msgstr ""
+msgstr "월"
 
 #: filtertransdialog.cpp:53
 msgid "Year"
-msgstr ""
+msgstr "년"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
@@ -2598,7 +2598,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
-msgstr ""
+msgstr "도넛"
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
@@ -2693,7 +2693,7 @@ msgstr "보고서를 그룹화할 항목을 지정합니다"
 #: filtertransdialog.cpp:735 filtertransdialog.cpp:1085
 #: filtertransdialog.cpp:1914
 msgid "Chart"
-msgstr ""
+msgstr "차트"
 
 #: filtertransdialog.cpp:744
 msgid "Specify which chart will be included in the report"
@@ -4719,7 +4719,7 @@ msgstr "계정 웹 사이트 시작(&L)"
 
 #: mmframe.cpp:1458 mmframe.cpp:1478
 msgid "&Attachment Manager..."
-msgstr ""
+msgstr "첨부 관리자(&A)..."
 
 #: mmframe.cpp:1473 mmframe.cpp:1677
 msgid "&Change Account Type..."
@@ -4927,27 +4927,27 @@ msgstr "통화 및 주가 내려받기"
 
 #: mmframe.cpp:1699
 msgid "&Payee Manager..."
-msgstr ""
+msgstr "수취인 관리자(&P)..."
 
 #: mmframe.cpp:1699 mmframe.cpp:1928 payeedialog.cpp:508
 msgid "Payee Manager"
-msgstr ""
+msgstr "수취인 관리자"
 
 #: mmframe.cpp:1703
 msgid "&Category Manager..."
-msgstr ""
+msgstr "범주 관리자(&C)..."
 
 #: mmframe.cpp:1707
 msgid "&Tag Manager..."
-msgstr ""
+msgstr "태그 관리자(&T)..."
 
 #: mmframe.cpp:1707 mmframe.cpp:1930 tagdialog.h:45
 msgid "Tag Manager"
-msgstr ""
+msgstr "태그 관리자"
 
 #: mmframe.cpp:1711
 msgid "Curre&ncy Manager..."
-msgstr ""
+msgstr "통화 관리자(&N)..."
 
 #: mmframe.cpp:1715
 msgid "&Categories..."
@@ -5011,11 +5011,11 @@ msgstr "거래 내역 보고서 필터(&F)..."
 
 #: mmframe.cpp:1762
 msgid "&General Report Manager..."
-msgstr ""
+msgstr "일반 보고서 관리자(&G)..."
 
 #: mmframe.cpp:1766
 msgid "C&ustom Field Manager..."
-msgstr ""
+msgstr "사용자 지정 필드 관리자(&U)..."
 
 #: mmframe.cpp:1772
 msgid "Refresh &WebApp..."
@@ -6690,7 +6690,7 @@ msgstr "도구 → 병합 → 수취인"
 
 #: payeedialog.cpp:746
 msgid "Payee Manager: Delete Error"
-msgstr ""
+msgstr "수취인 관리자: 삭제 오류"
 
 #: payeedialog.cpp:751
 msgid "Deleted transactions exist which use this payee."
@@ -6710,7 +6710,7 @@ msgstr "범주 정의"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
-msgstr ""
+msgstr "첨부 관리자(&A)..."
 
 #: payeedialog.cpp:895
 msgid "Relocate Payee"
@@ -7657,7 +7657,7 @@ msgstr "'&' 또는 '|' 문자는 필터 연산자로 예약되어 있기 때문�
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Tag Manager: Invalid Name"
-msgstr ""
+msgstr "태그 관리자: 잘못된 이름"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
@@ -7681,7 +7681,7 @@ msgstr "이 이름을 가진 태그가 이미 존재합니다"
 
 #: tagdialog.cpp:218
 msgid "Tag Manager: Adding Error"
-msgstr ""
+msgstr "태그 관리자: 추가 오류"
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
@@ -7689,7 +7689,7 @@ msgstr "태그 편집"
 
 #: tagdialog.cpp:254
 msgid "Tag Manager: Editing Error"
-msgstr ""
+msgstr "태그 관리자: 편집 오류"
 
 #: tagdialog.cpp:295
 #, c-format
@@ -7698,7 +7698,7 @@ msgstr "'%s' 태그 사용 중"
 
 #: tagdialog.cpp:295
 msgid "Tag Manager: Delete Error"
-msgstr ""
+msgstr "태그 관리자: 삭제 오류"
 
 #: tagdialog.cpp:298
 #, c-format
