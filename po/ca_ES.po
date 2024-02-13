@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-13 18:37\n"
+"PO-Revision-Date: 2024-02-13 21:11\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -1570,7 +1570,7 @@ msgstr ""
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
-msgstr ""
+msgstr "Afegir &Mes"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -1716,7 +1716,7 @@ msgstr ""
 
 #: categdialog.cpp:450
 msgid "Confirm Move"
-msgstr ""
+msgstr "Confirmar Moviment"
 
 #: categdialog.cpp:467
 msgid "Category in use."
@@ -1872,7 +1872,7 @@ msgstr "Visualitzar Totes les Transaccions"
 
 #: constants.cpp:195
 msgid "View Today"
-msgstr ""
+msgstr "Visualitzar Avui"
 
 #: constants.cpp:196
 msgid "View Current Month"
@@ -1884,19 +1884,19 @@ msgstr "Visualitzar els Últims 30 dies"
 
 #: constants.cpp:198
 msgid "View Last 90 days"
-msgstr ""
+msgstr "Visualitzar els Últims 90 dies"
 
 #: constants.cpp:199
 msgid "View Last Month"
-msgstr ""
+msgstr "Visualitzar l'Últim Mes"
 
 #: constants.cpp:200
 msgid "View Last 3 Months"
-msgstr ""
+msgstr "Visualitzar els Últims 3 Mesos"
 
 #: constants.cpp:201
 msgid "View Last 12 Months"
-msgstr ""
+msgstr "Visualitzar els Últims 12 Mesos"
 
 #: constants.cpp:202
 msgid "View Current Year"
@@ -1908,7 +1908,7 @@ msgstr ""
 
 #: constants.cpp:204
 msgid "View Last Year"
-msgstr ""
+msgstr "Visualitzar l'Últim Any"
 
 #: constants.cpp:205
 msgid "View Last Financial Year"
@@ -2224,7 +2224,7 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:117
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: db/DB_Table_Category_V1.h:118
 msgid "Rent"
@@ -2504,7 +2504,7 @@ msgstr ""
 #: dbwrapper.cpp:86 import_export/qif_import_gui.cpp:1163 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
-msgstr ""
+msgstr "Error: %s"
 
 #: dbwrapper.cpp:89 mmframe.cpp:2021
 msgid "Opening MMEX Database - Error"
@@ -2822,7 +2822,7 @@ msgstr ""
 
 #: general_report_manager.cpp:391 stockdialog.cpp:336
 msgid "&Save "
-msgstr ""
+msgstr "De&sar "
 
 #: general_report_manager.cpp:393
 msgid "Save changes."
@@ -2895,7 +2895,7 @@ msgstr "Actius..."
 
 #: general_report_manager.cpp:735
 msgid "New Empty Report..."
-msgstr ""
+msgstr "Nou Informe Buit..."
 
 #: general_report_manager.cpp:736
 msgid "New Sample Report"
@@ -2960,7 +2960,7 @@ msgstr ""
 #: general_report_manager.cpp:1004
 #, c-format
 msgid "New Report %s"
-msgstr ""
+msgstr "Nou Informe %s"
 
 #: general_report_manager.cpp:1017
 msgid "A report with this name already exists"
