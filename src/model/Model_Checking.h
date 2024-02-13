@@ -132,6 +132,16 @@ public:
             return x.TAGNAMES < y.TAGNAMES;
         }
     };
+    struct SorterByTRANSTIME
+    {
+        template <class DATA> bool operator()(const DATA& x, const DATA& y)
+        {
+            wxDate dateX, dateY;
+            dateX.ParseDateTime(x.TRANSDATE) || dateX.ParseDate(x.TRANSDATE);
+            dateY.ParseDateTime(y.TRANSDATE) || dateY.ParseDate(y.TRANSDATE);
+            return dateX.FormatISOTime() < dateY.FormatISOTime();
+        }
+    };
 
 public:
     Model_Checking();
@@ -170,7 +180,7 @@ public:
     static const Model_Splittransaction::Data_Set splittransaction(const Data& r);
 
 public:
-    static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxDate& date, OP op = EQUAL);
+    static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxDateTime& date, OP op = EQUAL);
     static DB_Table_CHECKINGACCOUNT_V1::DELETEDTIME DELETEDTIME(const wxString& date, OP op = EQUAL);
     static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxString& date_iso_str, OP op = EQUAL);
     static DB_Table_CHECKINGACCOUNT_V1::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL);

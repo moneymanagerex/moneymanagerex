@@ -203,7 +203,7 @@ void mmTransDialog::dataToControls()
     if (!skip_date_init_) //Date
     {
         wxDateTime trx_date;
-        trx_date.ParseDate(m_trx_data.TRANSDATE);
+        trx_date.ParseDateTime(m_trx_data.TRANSDATE) || trx_date.ParseDate(m_trx_data.TRANSDATE);
         dpc_->SetValue(trx_date);
         dpc_->SetFocus();
         skip_date_init_ = true;
@@ -1159,7 +1159,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     m_trx_data.NOTES = textNotes_->GetValue();
     m_trx_data.TRANSACTIONNUMBER = textNumber_->GetValue();
-    m_trx_data.TRANSDATE = dpc_->GetValue().FormatISODate();
+    m_trx_data.TRANSDATE = dpc_->GetValue().FormatISOCombined();
     wxStringClientData* status_obj = static_cast<wxStringClientData*>(choiceStatus_->GetClientObject(choiceStatus_->GetSelection()));
     if (status_obj)
     {

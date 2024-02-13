@@ -873,9 +873,9 @@ void mmPayeeDialog::OnItemRightClick(wxListEvent& event)
 
     wxMenu mainMenu;
     if (payee) mainMenu.SetTitle(payee->PAYEENAME);
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_DEFINE_CATEGORY, _("Define Category")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_DEFINE_CATEGORY, _("Define &Category")));
     if (!payee) mainMenu.Enable(MENU_DEFINE_CATEGORY, false);
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_REMOVE_CATEGORY, _("Remove Category")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_REMOVE_CATEGORY, _("Remove Ca&tegory")));
     if (!payee) mainMenu.Enable(MENU_REMOVE_CATEGORY, false);
     mainMenu.AppendSeparator();
 
@@ -892,7 +892,7 @@ void mmPayeeDialog::OnItemRightClick(wxListEvent& event)
     if (!payee) mainMenu.Enable(MENU_ORGANIZE_ATTACHMENTS, false);
     mainMenu.AppendSeparator();
 
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_RELOCATE_PAYEE, _("Relocate Payee")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_RELOCATE_PAYEE, _("Merge &Payee")));
     //SetToolTip(_("Change all transactions using one Payee to another Payee"));
     if (!payee) mainMenu.Enable(MENU_RELOCATE_PAYEE, false);
 

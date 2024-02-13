@@ -494,11 +494,11 @@ void mmQIFExportDialog::mmExportQIF()
         for (const auto& transaction : transactions)
         {
             if (!transaction.DELETEDTIME.IsEmpty()) continue;
-
+            wxString strDate = Model_Checking::TRANSDATE(transaction).FormatISODate();
             //Filtering
-            if (dateFromCheckBox_->IsChecked() && transaction.TRANSDATE < begin_date)
+            if (dateFromCheckBox_->IsChecked() && strDate < begin_date)
                 continue;
-            if (dateToCheckBox_->IsChecked() && transaction.TRANSDATE > end_date)
+            if (dateToCheckBox_->IsChecked() && strDate > end_date)
                 continue;
             if (!Model_Checking::is_transfer(transaction.TRANSCODE)
                 && (selected_accounts_id_.Index(transaction.ACCOUNTID) == wxNOT_FOUND))

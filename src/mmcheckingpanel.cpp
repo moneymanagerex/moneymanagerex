@@ -173,9 +173,12 @@ void mmCheckingPanel::filterTable()
             if (Model_Checking::status(tran.STATUS) == Model_Checking::RECONCILED)
                 m_reconciled_balance += transaction_amount;
         }
-        if (ignore_future) {
-            if (tran.TRANSDATE > today_date_string) continue;
-        }
+
+        wxString strDate = Model_Checking::TRANSDATE(tran).FormatISODate();
+
+        if (ignore_future && strDate > today_date_string)
+            continue;
+
         Model_Checking::Full_Data full_tran(tran, splits, tags);
         bool expandSplits = false;
         if (m_transFilterActive)
@@ -189,8 +192,10 @@ void mmCheckingPanel::filterTable()
         {
             if (m_currentView != MENU_VIEW_ALLTRANSACTIONS)
             {
-                if (tran.TRANSDATE < m_begin_date) continue;
-                if (tran.TRANSDATE > m_end_date) continue;
+                if (strDate < m_begin_date)
+                    continue;
+                if (strDate > m_end_date)
+                    continue;
             }
         }
 
@@ -903,6 +908,14 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
 
 void mmCheckingPanel::RefreshList()
 {
+    m_listCtrlAccount->refreshVisualList();
+}
+
+void mmCheckingPanel::ResetColumnView()
+{
+    m_listCtrlAccount->DeleteAllColumns();
+    m_listCtrlAccount->resetColumns();
+    m_listCtrlAccount->createColumns(*m_listCtrlAccount);
     m_listCtrlAccount->refreshVisualList();
 }
 

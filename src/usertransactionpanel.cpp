@@ -209,7 +209,7 @@ void UserTransactionPanel::DataToControls()
     if (!m_checking_entry) return;
 
     wxDateTime trans_date;
-    trans_date.ParseDate(m_checking_entry->TRANSDATE);
+    trans_date.ParseDateTime(m_checking_entry->TRANSDATE) || trans_date.ParseDate(m_checking_entry->TRANSDATE);
     TransactionDate(trans_date);
 
     m_transaction_id = m_checking_entry->TRANSID;
@@ -441,12 +441,12 @@ void UserTransactionPanel::CheckingType(Model_Translink::CHECKING_TYPE ct)
 int UserTransactionPanel::SaveChecking()
 {
     double initial_amount = 0;
-    wxString trxDate = m_date_selector->GetValue().FormatISODate();
+    wxDateTime trxDate = m_date_selector->GetValue();
 
     m_entered_amount->checkValue(initial_amount);
     
     const Model_Account::Data* account = Model_Account::instance().get(m_account_id);
-    if (trxDate < account->INITIALDATE)
+    if (trxDate.FormatISODate() < account->INITIALDATE)
     {
         mmErrorDialogs::ToolTip4Object(m_account, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
         return -1;
@@ -466,7 +466,7 @@ int UserTransactionPanel::SaveChecking()
     m_checking_entry->TRANSACTIONNUMBER = m_entered_number->GetValue();
     m_checking_entry->NOTES = m_entered_notes->GetValue();
     m_checking_entry->CATEGID = m_category_id;
-    m_checking_entry->TRANSDATE = trxDate;
+    m_checking_entry->TRANSDATE = trxDate.FormatISOCombined();
     m_checking_entry->FOLLOWUPID = 0;
     m_checking_entry->TOTRANSAMOUNT = m_checking_entry->TRANSAMOUNT;
     m_checking_entry->COLOR = 0;

@@ -556,7 +556,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     //Create New Transaction
     Model_Checking::Data * desktopNewTransaction;
     desktopNewTransaction = Model_Checking::instance().create();
-    wxString trxDate = WebAppTrans.Date.FormatISODate();
+    wxString trxDate = WebAppTrans.Date.FormatISOCombined();
     if ((trxDate < accountInitialDate) ||
             (ToAccount && trxDate < ToAccount->INITIALDATE))
     {
@@ -566,9 +566,9 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
                             , _("The opening date for the account is later than the date of this transaction")
                             , _("Today will be used as the transaction date"));
         wxMessageBox(msgStr, _("Invalid Date"), wxICON_ERROR);
-        trxDate = wxDate::Today().FormatISODate();
+        trxDate = wxDate::Today().FormatISOCombined();
     }
-    desktopNewTransaction->TRANSDATE = WebAppTrans.Date.FormatISODate();
+    desktopNewTransaction->TRANSDATE = trxDate;
     desktopNewTransaction->STATUS = TrStatus;
     desktopNewTransaction->TRANSCODE = WebAppTrans.Type;
     desktopNewTransaction->TRANSAMOUNT = WebAppTrans.Amount;

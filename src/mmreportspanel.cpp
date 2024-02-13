@@ -213,7 +213,7 @@ void mmReportsPanel::CreateControls()
             m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastFinancialYear()));
             m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmAllTime()));
             m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast365Days()));
-            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSpecifiedRange(wxDate::Today().SetDay(1), wxDate::Today())));
+            m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSpecifiedRange(wxDate::Today().SetDay(1), wxDateTime(23,59,59,999))));
 
             for (const auto & date_range : m_all_date_ranges) {
                 m_date_ranges->Append(date_range.get()->local_title(), date_range.get());
@@ -232,16 +232,16 @@ void mmReportsPanel::CreateControls()
             m_start_date = new mmDatePickerCtrl(itemPanel3, ID_CHOICE_START_DATE
                 , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, date_style);
             m_start_date->SetValue(date_range.get()->start_date());
-            m_start_date->Enable(false);
 
             m_end_date = new mmDatePickerCtrl(itemPanel3, ID_CHOICE_END_DATE
                 , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, date_style);
             m_end_date->SetValue(date_range.get()->end_date());
-            m_end_date->Enable(false);
 
-            itemBoxSizerHeader->Add(m_start_date, 0, wxALL| wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->Add(m_start_date->mmGetLayoutWithTime(), 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            m_start_date->Enable(false);
             itemBoxSizerHeader->AddSpacer(5);
-            itemBoxSizerHeader->Add(m_end_date, 0, wxALL| wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->Add(m_end_date->mmGetLayoutWithTime(), 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            m_end_date->Enable(false);
             itemBoxSizerHeader->AddSpacer(30);
         }
         else if (rp & rb_->RepParams::SINGLE_DATE)

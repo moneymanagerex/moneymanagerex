@@ -204,7 +204,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     const auto split = Model_Splittransaction::instance().get_all();
     const auto &transactions = Model_Checking::instance().find(
         Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
-        , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)
+        , Model_Checking::TRANSDATE(date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL)
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
         , Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL));
 
@@ -387,7 +387,7 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
     //Calculations
     const auto &transactions = Model_Checking::instance().find(
         Model_Checking::TRANSDATE(date_range.get()->start_date(), GREATER_OR_EQUAL)
-        , Model_Checking::TRANSDATE(date_range.get()->end_date(), LESS_OR_EQUAL)
+        , Model_Checking::TRANSDATE(date_range.get()->end_date().FormatISOCombined(), LESS_OR_EQUAL)
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
         , Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL)
     );
@@ -473,7 +473,7 @@ const wxString htmlWidgetStatistics::getHTMLText()
     Model_Checking::Data_Set all_trans;
     if (Option::instance().getIgnoreFutureTransactions()) {
         all_trans = Model_Checking::instance().find(
-            DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->today().FormatISODate(), LESS_OR_EQUAL));
+            Model_Checking::TRANSDATE(wxDateTime(23,59,59,999), LESS_OR_EQUAL));
     }
     else {
         all_trans = Model_Checking::instance().all();
@@ -661,7 +661,7 @@ void htmlWidgetAccounts::get_account_stats()
     if (Option::instance().getIgnoreFutureTransactions())
     {
         all_trans = Model_Checking::instance().find(
-            DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->today().FormatISODate(), LESS_OR_EQUAL));
+            Model_Checking::TRANSDATE(wxDateTime(23,59,59,999), LESS_OR_EQUAL));
     }
     else
     {
