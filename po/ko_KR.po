@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-13 02:26\n"
+"PO-Revision-Date: 2024-02-13 04:16\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -1525,7 +1525,7 @@ msgstr ""
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "%s 예산 계획표"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -1715,7 +1715,9 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "\"%1$s\" 항목을 \n"
+"\"%2$s\"로 \n"
+"이동하겠습니까?"
 
 #: categdialog.cpp:449
 msgid "Top level"
@@ -2582,11 +2584,11 @@ msgstr "년"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
-msgstr ""
+msgstr "막대"
 
 #: filtertransdialog.cpp:55
 msgid "Line"
-msgstr ""
+msgstr "선"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
@@ -2594,7 +2596,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
-msgstr ""
+msgstr "원형"
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
@@ -2602,15 +2604,15 @@ msgstr "도넛"
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
-msgstr ""
+msgstr "레이더"
 
 #: filtertransdialog.cpp:57
 msgid "Bar Line"
-msgstr ""
+msgstr "막대 줄"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Bar Line"
-msgstr ""
+msgstr "적층된 막대 라인"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Area"
@@ -4295,7 +4297,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:641
 msgid "Copy Text to Clipboard"
-msgstr ""
+msgstr "텍스트를 클립보드에 복사"
 
 #: mmchecking_list.cpp:648
 msgid "&Delete selected transaction..."
@@ -4444,11 +4446,11 @@ msgstr "이동되지 않음"
 
 #: mmchecking_list.cpp:1710
 msgid "Some transactions could not be moved"
-msgstr ""
+msgstr "일부 거래를 이동할 수 없습니다"
 
 #: mmchecking_list.cpp:1775
 msgid "Scheduled transaction saved."
-msgstr ""
+msgstr "예약된 거래가 저장되었습니다."
 
 #: mmcheckingpanel.cpp:442
 msgid "Delete all selected transactions"
@@ -4610,7 +4612,7 @@ msgstr "주식 계정"
 
 #: mmframe.cpp:783 mmframe.cpp:1736 mmframe.cpp:2825
 msgid "Budget Planner"
-msgstr ""
+msgstr "예산 계획표"
 
 #: mmframe.cpp:788 mmframe.cpp:1319 mmframe.cpp:1336 mmframe.cpp:2810
 msgid "Transaction Report"
@@ -4895,7 +4897,7 @@ msgstr "전체 화면 전환"
 
 #: mmframe.cpp:1636
 msgid "Reset View"
-msgstr ""
+msgstr "보기 초기화"
 
 #: mmframe.cpp:1637
 msgid "Reset view and dock tools"
@@ -4919,7 +4921,7 @@ msgstr "데이터베이스에서 계정 삭제"
 
 #: mmframe.cpp:1693
 msgid "Download &Rates"
-msgstr ""
+msgstr "환율 내려받기(&R)"
 
 #: mmframe.cpp:1693 mmframe.cpp:1952
 msgid "Download Currency and Stock Rates"
@@ -4983,7 +4985,7 @@ msgstr "범주, 수취인 및 태그 병합"
 
 #: mmframe.cpp:1736
 msgid "&Budget Planner..."
-msgstr ""
+msgstr "예산 계획표(&B)..."
 
 #: mmframe.cpp:1740
 msgid "&Scheduled Transactions"
@@ -5275,7 +5277,7 @@ msgstr "새로운 소식"
 
 #: mmframe.cpp:1952
 msgid "Download Rates"
-msgstr ""
+msgstr "환율 내려받기"
 
 #: mmframe.cpp:1955
 msgid "Toggle Fullscreen\tF11"
@@ -5352,7 +5354,7 @@ msgstr "작성할 데이터베이스 파일 선택"
 
 #: mmframe.cpp:2253 mmframe.cpp:2275 mmframe.cpp:2317 mmframe.cpp:2457
 msgid "MMEX Database"
-msgstr ""
+msgstr "MMEX 데이터베이스"
 
 #: mmframe.cpp:2273
 msgid "Choose database file to open"
@@ -5360,7 +5362,7 @@ msgstr "열려는 데이터베이스 파일 선택"
 
 #: mmframe.cpp:2275 mmframe.cpp:2301 mmframe.cpp:2457
 msgid "Encrypted MMEX Database"
-msgstr ""
+msgstr "암호화된 MMEX 데이터베이스"
 
 #: mmframe.cpp:2299
 msgid "Choose Encrypted database file to open"
@@ -7095,7 +7097,7 @@ msgstr "1 년 전부터 현재까지"
 #: reports/mmDateRange.cpp:284 reports/mmDateRange.cpp:296
 #, c-format
 msgid "Last %i Days"
-msgstr ""
+msgstr "지난 %i일"
 
 #: reports/mmDateRange.cpp:302
 msgid "Since Today"
@@ -7197,19 +7199,19 @@ msgstr "이체를 제외한 모든 거래 내역"
 
 #: reports/transactions.cpp:481
 msgid "Statistics"
-msgstr ""
+msgstr "통계"
 
 #: reports/transactions.cpp:504
 msgid "Minimum"
-msgstr ""
+msgstr "최소"
 
 #: reports/transactions.cpp:506
 msgid "Maximum"
-msgstr ""
+msgstr "최대"
 
 #: reports/transactions.cpp:508
 msgid "Average"
-msgstr ""
+msgstr "평균"
 
 #: sharetransactiondialog.cpp:61 sharetransactiondialog.cpp:68
 msgid "Add Share Transaction"
@@ -7293,11 +7295,11 @@ msgstr "이 분할 거래를 설명하는 내용 입력"
 
 #: splittransactionsdialog.cpp:250
 msgid "&Add Split"
-msgstr ""
+msgstr "분할 추가(&A)"
 
 #: splittransactionsdialog.cpp:255
 msgid "&Remove Split"
-msgstr ""
+msgstr "분할 제거(&R)"
 
 #: splittransactionsdialog.cpp:411
 msgid "Invalid Total Amount"
@@ -7759,7 +7761,7 @@ msgstr "덧붙이기"
 
 #: transactionsupdatedialog.cpp:511
 msgid "This is due to some elements of the transaction or account detail not allowing the update"
-msgstr ""
+msgstr "이는 업데이트를 허용하지 않는 거래 또는 계정 세부정보의 일부 요소로 인해 발생합니다"
 
 #: transactionsupdatedialog.cpp:512
 msgid "Updated"
@@ -7771,7 +7773,7 @@ msgstr "업데이트되지 않음"
 
 #: transactionsupdatedialog.cpp:516
 msgid "Some transactions could not be updated"
-msgstr ""
+msgstr "일부 거래를 업데이트할 수 없습니다"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
@@ -7791,7 +7793,7 @@ msgstr "거래 채우기 #"
 
 #: transdialog.cpp:565 usertransactionpanel.cpp:185
 msgid "Manage transaction attachments"
-msgstr ""
+msgstr "거래 첨부 파일 관리"
 
 #: transdialog.cpp:768
 msgid "This transaction will exceed your account limit.\n\n"
