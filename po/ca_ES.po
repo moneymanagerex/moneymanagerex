@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-02 00:32+0300\n"
-"PO-Revision-Date: 2024-02-11 14:58\n"
+"PO-Revision-Date: 2024-02-13 08:29\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -217,7 +217,7 @@ msgstr "Bloquejat"
 
 #: accountdialog.cpp:235
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Activa o desactiva el bloqueig de la transacció"
 
 #: accountdialog.cpp:238
 msgid "Reconciled Date:"
@@ -225,7 +225,7 @@ msgstr "Data valor:"
 
 #: accountdialog.cpp:240
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "La data del bloqueig de la transacció"
 
 #: accountdialog.cpp:243
 msgid "Minimum Bal:"
@@ -237,7 +237,7 @@ msgstr ""
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:304
 msgid "Credit"
-msgstr ""
+msgstr "Crèdit"
 
 #: accountdialog.cpp:258 mmcheckingpanel.cpp:548
 msgid "Credit Limit:"
@@ -249,7 +249,7 @@ msgstr "Límit de crèdit per al Compte. Zero per desactivar"
 
 #: accountdialog.cpp:263
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Taxa d'interès:"
 
 #: accountdialog.cpp:268
 msgid "Payment Due Date:"
@@ -257,7 +257,7 @@ msgstr ""
 
 #: accountdialog.cpp:272
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Pagament mínim:"
 
 #: accountdialog.cpp:291
 msgid "Organize attachments of this account"
@@ -289,7 +289,7 @@ msgstr "Si us plau, introdueixi una adreça URL vàlida"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Invalid URL"
-msgstr ""
+msgstr "URL no vàlid"
 
 #: accountdialog.cpp:515
 msgid "Opening date cannot be in the future"
@@ -304,7 +304,7 @@ msgstr "Data invàlida"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
-msgstr ""
+msgstr "Les transaccions per a aquest compte ja existeixen abans d'aquesta data"
 
 #: accountdialog.cpp:529
 msgid "Stock purchases for this account already exist before this date"
@@ -312,7 +312,7 @@ msgstr ""
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "Les transaccions programades per a aquest compte es programen abans d'aquesta data."
 
 #: accountdialog.h:41 mmframe.cpp:1671 mmframe.cpp:1923
 #: wizard_newaccount.cpp:87 wizard_newaccount.cpp:94 wizard_newaccount.cpp:166
@@ -367,11 +367,11 @@ msgstr "Visiti la %s pàgina web"
 
 #: appstartdialog.cpp:126
 msgid "&Support Forums"
-msgstr ""
+msgstr "&Fòrums de suport"
 
 #: appstartdialog.cpp:127
 msgid "Visit the Support Forums"
-msgstr ""
+msgstr "Visiteu els fòrums de suport"
 
 #: appstartdialog.cpp:133 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -393,7 +393,7 @@ msgstr "Predeterminat del sistema"
 
 #: appstartdialog.cpp:222 optionsettingsgeneral.cpp:92
 msgid "User Interface Language"
-msgstr ""
+msgstr "Idioma de la interfície d'usuari"
 
 #: appstartdialog.cpp:230 mmframe.cpp:3890 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -401,7 +401,7 @@ msgstr "S'ha canviat l'idioma d'aquesta aplicació. El canvi es farà efectiu la
 
 #: appstartdialog.cpp:232 mmframe.cpp:3892 optionsettingsgeneral.cpp:365
 msgid "Language change"
-msgstr ""
+msgstr "Canvi de llengua"
 
 #: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:471
 msgid "New Asset"
@@ -413,11 +413,11 @@ msgstr "Editar Actiu"
 
 #: assetdialog.cpp:58 assetdialog.cpp:70 assetspanel.cpp:475
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "Afegeix una transacció d'actius"
 
 #: assetdialog.cpp:75
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "Edita la transacció d'actius"
 
 #: assetdialog.cpp:167
 msgid "Asset Details"
@@ -480,7 +480,7 @@ msgstr "Especifiqui si el valor de l'actiu varia en el temps"
 
 #: assetdialog.cpp:220
 msgid "% Rate"
-msgstr ""
+msgstr "Taxa %"
 
 #: assetdialog.cpp:227
 msgid "Enter the rate at which the asset changes its value in percentage per year"
@@ -773,7 +773,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:277
 msgid "Confirm Attachment Deletion"
-msgstr ""
+msgstr "Confirmeu la supressió del fitxer adjunt"
 
 #: attachmentdialog.cpp:353 categdialog.cpp:313 customfieldlistdialog.cpp:260
 #: import_export/univcsvdialog.cpp:308 maincurrencydialog.cpp:539
@@ -1017,7 +1017,7 @@ msgstr "&Avançat"
 
 #: billsdepositsdialog.cpp:511 transdialog.cpp:1319
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
-msgstr ""
+msgstr "Permet establir diferents imports als comptes DE i A."
 
 #: billsdepositsdialog.cpp:522 billsdepositspanel.cpp:140
 #: budgetingpanel.cpp:293 filtertrans.cpp:197 filtertransdialog.cpp:1043
@@ -1051,7 +1051,7 @@ msgstr "Compte"
 
 #: billsdepositsdialog.cpp:549
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "Especifiqueu el compte que serà el propietari de la transacció programada"
 
 #: billsdepositsdialog.cpp:554 transdialog.cpp:243 transdialog.cpp:498
 msgid "To"
@@ -1091,7 +1091,7 @@ msgstr "Categoria"
 #: billsdepositsdialog.cpp:582 billsdepositsdialog.cpp:1415 transdialog.cpp:525
 #: transdialog.cpp:1278
 msgid "Use split Categories"
-msgstr ""
+msgstr "Utilitzeu categories dividides"
 
 #: billsdepositsdialog.cpp:590 billsdepositsdialog.cpp:969
 #: billsdepositspanel.cpp:138 filtertransdialog.cpp:610
@@ -1106,7 +1106,7 @@ msgstr "Etiquetes"
 
 #: billsdepositsdialog.cpp:599 transdialog.cpp:1317
 msgid "Specify any associated check number or transaction number"
-msgstr ""
+msgstr "Especifiqueu qualsevol número de xec o número de transacció associat"
 
 #: billsdepositsdialog.cpp:601 billsdepositspanel.cpp:145 filtertrans.cpp:191
 #: filtertransdialog.cpp:661 filtertransdialog.cpp:1832
@@ -1119,12 +1119,12 @@ msgstr "Nombre"
 
 #: billsdepositsdialog.cpp:608 transdialog.cpp:553 usertransactionpanel.cpp:192
 msgid "Select one of the frequently used notes"
-msgstr ""
+msgstr "Seleccioneu una de les notes utilitzades amb freqüència"
 
 #: billsdepositsdialog.cpp:614 transactionsupdatedialog.cpp:235
 #: transdialog.cpp:560
 msgid "User Colors"
-msgstr ""
+msgstr "Colors d'usuari"
 
 #: billsdepositsdialog.cpp:618
 msgid "Organize attachments of this scheduled transaction"
@@ -1147,20 +1147,20 @@ msgstr "Especifiqui qualsevol nota de text que vulgui afegir a aquesta transacci
 #: billsdepositsdialog.cpp:652 filtertransdialog.cpp:796
 #: transactionsupdatedialog.cpp:273 transdialog.cpp:598
 msgid "Show/Hide custom fields window"
-msgstr ""
+msgstr "Mostra/amaga la finestra de camps personalitzats"
 
 #: billsdepositsdialog.cpp:822 billsdepositsdialog.cpp:845 transdialog.cpp:242
 #: transdialog.cpp:251
 msgid "From"
-msgstr ""
+msgstr "Des de"
 
 #: billsdepositsdialog.cpp:890
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "La data de pagament és posterior a la data de venciment, és això el que volies?"
 
 #: billsdepositsdialog.cpp:891
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Sembla un pagament tardà"
 
 #: billsdepositsdialog.cpp:943 transactionsupdatedialog.cpp:335
 #: transdialog.cpp:675
