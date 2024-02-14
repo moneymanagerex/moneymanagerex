@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-13 18:37\n"
+"PO-Revision-Date: 2024-02-14 20:30\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -1566,7 +1566,7 @@ msgstr "Budgeteditor"
 
 #: budgetyeardialog.cpp:93
 msgid "Add &Year"
-msgstr ""
+msgstr "Lägg till &år"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1574,7 +1574,7 @@ msgstr "Lägg till ett nytt budgetår"
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
-msgstr ""
+msgstr "Lägg till &månad"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -4225,15 +4225,15 @@ msgstr "Senast uppdaterad"
 
 #: mmchecking_list.cpp:472
 msgid "New &Withdrawal..."
-msgstr ""
+msgstr "Nytt &uttag..."
 
 #: mmchecking_list.cpp:473
 msgid "New &Deposit..."
-msgstr ""
+msgstr "Ny &insättning..."
 
 #: mmchecking_list.cpp:475
 msgid "New &Transfer..."
-msgstr ""
+msgstr "Ny &överföring..."
 
 #: mmchecking_list.cpp:479
 msgid "&Edit Transaction..."
@@ -4295,7 +4295,7 @@ msgstr "&Hitta alla transaktioner med %s '%s'"
 
 #: mmchecking_list.cpp:659
 msgid "Cop&y Text to Clipboard"
-msgstr ""
+msgstr "Kopiera text till urklipp"
 
 #: mmchecking_list.cpp:666
 msgid "&Delete selected transaction..."
@@ -4327,31 +4327,31 @@ msgstr "Ta bort visade \"Oavstämda\" Transaktioner..."
 
 #: mmchecking_list.cpp:675
 msgid "De&lete "
-msgstr ""
+msgstr "Ra&dera "
 
 #: mmchecking_list.cpp:681
 msgid "&Unreconciled"
-msgstr ""
+msgstr "&Oavstämd"
 
 #: mmchecking_list.cpp:683
 msgid "&Reconciled"
-msgstr ""
+msgstr "&Avstämd"
 
 #: mmchecking_list.cpp:685
 msgid "&Void"
-msgstr ""
+msgstr "&Ogiltig"
 
 #: mmchecking_list.cpp:687
 msgid "&Follow Up"
-msgstr ""
+msgstr "&Följ upp"
 
 #: mmchecking_list.cpp:689
 msgid "D&uplicate"
-msgstr ""
+msgstr "D&uplicera"
 
 #: mmchecking_list.cpp:691
 msgid "Mar&k as"
-msgstr ""
+msgstr "Markera som"
 
 #: mmchecking_list.cpp:713 mmcheckingpanel.cpp:518 mmframe.cpp:735
 msgid "All Transactions"
@@ -4776,23 +4776,23 @@ msgstr ""
 
 #: mmframe.cpp:1502
 msgid "&All"
-msgstr ""
+msgstr "&Alla"
 
 #: mmframe.cpp:1503
 msgid "&Favorites"
-msgstr ""
+msgstr "&Favoriter"
 
 #: mmframe.cpp:1504
 msgid "&Open"
-msgstr ""
+msgstr "&Öppna"
 
 #: mmframe.cpp:1505
 msgid "&Closed"
-msgstr ""
+msgstr "&Stängd"
 
 #: mmframe.cpp:1506
 msgid "Accounts &Visible"
-msgstr ""
+msgstr "Synliga konton"
 
 #: mmframe.cpp:1544
 msgid "&New Database..."
@@ -6755,11 +6755,11 @@ msgstr "Bekräfta borttagning av betalningsmottagare"
 
 #: payeedialog.cpp:876
 msgid "Define &Category"
-msgstr ""
+msgstr "Definiera &kategori"
 
 #: payeedialog.cpp:878
 msgid "Remove Ca&tegory"
-msgstr ""
+msgstr "Ta bort kategori"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
