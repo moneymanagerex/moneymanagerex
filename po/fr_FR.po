@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-14 05:48\n"
+"PO-Revision-Date: 2024-02-14 07:34\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1569,7 +1569,7 @@ msgstr "Editeur de budget."
 
 #: budgetyeardialog.cpp:93
 msgid "Add &Year"
-msgstr "Ajouter une &année"
+msgstr "Ajouter une année"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1577,7 +1577,7 @@ msgstr "Ajouter un nouveau budget annuel"
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
-msgstr "Ajouter un &mois"
+msgstr "Ajouter un mois"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -4242,15 +4242,15 @@ msgstr "Dernière mise à jour"
 
 #: mmchecking_list.cpp:472
 msgid "New &Withdrawal..."
-msgstr "Nouveau &Retrait..."
+msgstr "Nouveau débit..."
 
 #: mmchecking_list.cpp:473
 msgid "New &Deposit..."
-msgstr "Nouveau &Dépôt..."
+msgstr "Nouveau crédit..."
 
 #: mmchecking_list.cpp:475
 msgid "New &Transfer..."
-msgstr "Nouveau &Transfert..."
+msgstr "Nouveau virement..."
 
 #: mmchecking_list.cpp:479
 msgid "&Edit Transaction..."
@@ -4344,27 +4344,27 @@ msgstr "Supprimer les opérations visibles de statut \"Non rapproché\"..."
 
 #: mmchecking_list.cpp:675
 msgid "De&lete "
-msgstr "&Supprimer "
+msgstr "Supprimer "
 
 #: mmchecking_list.cpp:681
 msgid "&Unreconciled"
-msgstr "&Non rapproché"
+msgstr "Non rapproché"
 
 #: mmchecking_list.cpp:683
 msgid "&Reconciled"
-msgstr "&Réconcilié"
+msgstr "Réconcilié"
 
 #: mmchecking_list.cpp:685
 msgid "&Void"
-msgstr "&Nul"
+msgstr "Nul"
 
 #: mmchecking_list.cpp:687
 msgid "&Follow Up"
-msgstr "&Suivi"
+msgstr "Suivi"
 
 #: mmchecking_list.cpp:689
 msgid "D&uplicate"
-msgstr "&Dupliquer"
+msgstr "Duplicata"
 
 #: mmchecking_list.cpp:691
 msgid "Mar&k as"
@@ -4796,19 +4796,19 @@ msgstr "&Liste des comptes"
 
 #: mmframe.cpp:1502
 msgid "&All"
-msgstr "&Tous"
+msgstr "Tous"
 
 #: mmframe.cpp:1503
 msgid "&Favorites"
-msgstr "&Favoris"
+msgstr "Favori(s)"
 
 #: mmframe.cpp:1504
 msgid "&Open"
-msgstr "&Ouvrir"
+msgstr "Ouvert(s)"
 
 #: mmframe.cpp:1505
 msgid "&Closed"
-msgstr "&Fermé"
+msgstr "Fermé(s)"
 
 #: mmframe.cpp:1506
 msgid "Accounts &Visible"
@@ -6606,7 +6606,7 @@ msgstr "Ignorer les prochaines transactions"
 
 #: optionsettingsview.cpp:183
 msgid "Use 'Time' in transaction recording/reporting"
-msgstr "Utiliser 'Heure' pour les enregistrements/rapports d'opérations"
+msgstr "Utiliser 'Date' pour les enregistrements/rapports d'opérations"
 
 #: optionsettingsview.cpp:188
 msgid "Transaction Colors"
@@ -6798,11 +6798,11 @@ msgstr "Confirmez la suppression du bénéficiaire"
 
 #: payeedialog.cpp:876
 msgid "Define &Category"
-msgstr "Définir une &catégorie"
+msgstr "Définir une catégorie"
 
 #: payeedialog.cpp:878
 msgid "Remove Ca&tegory"
-msgstr "Supprimer une Ca&tégorie"
+msgstr "Supprimer une catégorie"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
@@ -6810,7 +6810,7 @@ msgstr "&Gestionnaire de pièces jointes"
 
 #: payeedialog.cpp:895
 msgid "Merge &Payee"
-msgstr "Fusionner les bénéficiaires"
+msgstr "Fusionner les tiers"
 
 #: relocatecategorydialog.cpp:102
 msgid "Delete source category after merge (if source category has no subcategories)"
