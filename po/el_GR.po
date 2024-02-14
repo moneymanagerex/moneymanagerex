@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-13 18:37\n"
+"PO-Revision-Date: 2024-02-14 07:34\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1570,7 +1570,7 @@ msgstr "Επεξεργαστής προϋπολογισμού"
 
 #: budgetyeardialog.cpp:93
 msgid "Add &Year"
-msgstr ""
+msgstr "Προσθήκη &Έτους"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -4239,15 +4239,15 @@ msgstr "Τελευταία Ενημέρωση"
 
 #: mmchecking_list.cpp:472
 msgid "New &Withdrawal..."
-msgstr ""
+msgstr "Νέα &Ανάληψη..."
 
 #: mmchecking_list.cpp:473
 msgid "New &Deposit..."
-msgstr ""
+msgstr "Νέα &Κατάθεση..."
 
 #: mmchecking_list.cpp:475
 msgid "New &Transfer..."
-msgstr ""
+msgstr "Νέα &Μεταφορά..."
 
 #: mmchecking_list.cpp:479
 msgid "&Edit Transaction..."
@@ -4310,7 +4310,7 @@ msgstr "&Αναζήτησε όλες τις συναλλαγές με %s '%s'"
 
 #: mmchecking_list.cpp:659
 msgid "Cop&y Text to Clipboard"
-msgstr ""
+msgstr "Αντιγραφή Κειμένου στο Πρόχειρο"
 
 #: mmchecking_list.cpp:666
 msgid "&Delete selected transaction..."
@@ -4343,31 +4343,31 @@ msgstr ""
 
 #: mmchecking_list.cpp:675
 msgid "De&lete "
-msgstr ""
+msgstr "De&lete "
 
 #: mmchecking_list.cpp:681
 msgid "&Unreconciled"
-msgstr ""
+msgstr "&Ανεπιβεβαίωτη"
 
 #: mmchecking_list.cpp:683
 msgid "&Reconciled"
-msgstr ""
+msgstr "&Τακτοποιημένο"
 
 #: mmchecking_list.cpp:685
 msgid "&Void"
-msgstr ""
+msgstr "&Άκυρο"
 
 #: mmchecking_list.cpp:687
 msgid "&Follow Up"
-msgstr ""
+msgstr "&Για επανέλεγχο"
 
 #: mmchecking_list.cpp:689
 msgid "D&uplicate"
-msgstr ""
+msgstr "Δ&ιπλότυπη"
 
 #: mmchecking_list.cpp:691
 msgid "Mar&k as"
-msgstr ""
+msgstr "Επισήμαν&ση ως"
 
 #: mmchecking_list.cpp:713 mmcheckingpanel.cpp:518 mmframe.cpp:735
 msgid "All Transactions"
