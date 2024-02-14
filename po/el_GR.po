@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-14 07:34\n"
+"PO-Revision-Date: 2024-02-14 10:05\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1578,7 +1578,7 @@ msgstr "Εισάγετε ένα νέος έτος προϋπολογισμού"
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
-msgstr ""
+msgstr "Προσθήκη &Μήνα"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -4794,23 +4794,23 @@ msgstr "Λίστα &Λογαριασμών"
 
 #: mmframe.cpp:1502
 msgid "&All"
-msgstr ""
+msgstr "&Όλα"
 
 #: mmframe.cpp:1503
 msgid "&Favorites"
-msgstr ""
+msgstr "&Αγαπημένα"
 
 #: mmframe.cpp:1504
 msgid "&Open"
-msgstr ""
+msgstr "&Άνοιγμα"
 
 #: mmframe.cpp:1505
 msgid "&Closed"
-msgstr ""
+msgstr "&Κλείσιμο"
 
 #: mmframe.cpp:1506
 msgid "Accounts &Visible"
-msgstr ""
+msgstr "&Ορατοί Λογαριασμοί"
 
 #: mmframe.cpp:1544
 msgid "&New Database..."
@@ -6601,7 +6601,7 @@ msgstr "Αγνόηση Μελλοντικών Συναλλαγών"
 
 #: optionsettingsview.cpp:183
 msgid "Use 'Time' in transaction recording/reporting"
-msgstr ""
+msgstr "Χρήση 'Ώρα' στην εγγραφή/αναφορά συναλλαγών"
 
 #: optionsettingsview.cpp:188
 msgid "Transaction Colors"
@@ -6793,11 +6793,11 @@ msgstr "Επιβεβαίωση Διαγραφής Κατηγορίας"
 
 #: payeedialog.cpp:876
 msgid "Define &Category"
-msgstr ""
+msgstr "Ορισμός &Κατηγορίας"
 
 #: payeedialog.cpp:878
 msgid "Remove Ca&tegory"
-msgstr ""
+msgstr "Αφαίρεση &Κατηγορίας"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
@@ -6805,7 +6805,7 @@ msgstr ""
 
 #: payeedialog.cpp:895
 msgid "Merge &Payee"
-msgstr ""
+msgstr "Συγχώνευση &Δικαιούχων"
 
 #: relocatecategorydialog.cpp:102
 msgid "Delete source category after merge (if source category has no subcategories)"
