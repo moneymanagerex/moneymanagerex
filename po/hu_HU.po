@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-15 06:51\n"
+"PO-Revision-Date: 2024-02-15 08:20\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1332,7 +1332,7 @@ msgstr "Ütemezett ügyletek"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:462
 msgid "D&uplicate "
-msgstr "&Megkettőzés "
+msgstr "Meg&kettőzés "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
@@ -4311,7 +4311,7 @@ msgstr "Minden ügylet keresése a következővel: %s „%s”"
 
 #: mmchecking_list.cpp:659
 msgid "Cop&y Text to Clipboard"
-msgstr ""
+msgstr "S&zöveg másolása a vágólapra"
 
 #: mmchecking_list.cpp:666
 msgid "&Delete selected transaction..."
@@ -4339,35 +4339,35 @@ msgstr "Megtekintett „követés” ügyletek törlése…"
 
 #: mmchecking_list.cpp:673
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
-msgstr "Megtekintett „nincs egyeztetve” ügyletek törlése…"
+msgstr "Megtekintett „Nincs egyeztetve” ügyletek törlése…"
 
 #: mmchecking_list.cpp:675
 msgid "De&lete "
-msgstr ""
+msgstr "&Törlés"
 
 #: mmchecking_list.cpp:681
 msgid "&Unreconciled"
-msgstr ""
+msgstr "&Nincs egyeztetve"
 
 #: mmchecking_list.cpp:683
 msgid "&Reconciled"
-msgstr ""
+msgstr "&Egyeztetve"
 
 #: mmchecking_list.cpp:685
 msgid "&Void"
-msgstr ""
+msgstr "&Érvénytelen"
 
 #: mmchecking_list.cpp:687
 msgid "&Follow Up"
-msgstr ""
+msgstr "&Követés"
 
 #: mmchecking_list.cpp:689
 msgid "D&uplicate"
-msgstr ""
+msgstr "Meg&kettőzés"
 
 #: mmchecking_list.cpp:691
 msgid "Mar&k as"
-msgstr ""
+msgstr "Meg&jelölés mint"
 
 #: mmchecking_list.cpp:713 mmcheckingpanel.cpp:518 mmframe.cpp:735
 msgid "All Transactions"
@@ -4795,23 +4795,23 @@ msgstr "S&zámlalista"
 
 #: mmframe.cpp:1502
 msgid "&All"
-msgstr ""
+msgstr "&Összes"
 
 #: mmframe.cpp:1503
 msgid "&Favorites"
-msgstr ""
+msgstr "&Kedvencek"
 
 #: mmframe.cpp:1504
 msgid "&Open"
-msgstr ""
+msgstr "&Megnyitás"
 
 #: mmframe.cpp:1505
 msgid "&Closed"
-msgstr ""
+msgstr "&Bezárt"
 
 #: mmframe.cpp:1506
 msgid "Accounts &Visible"
-msgstr ""
+msgstr "&Látható számlák"
 
 #: mmframe.cpp:1544
 msgid "&New Database..."
@@ -6606,7 +6606,7 @@ msgstr "Jövőbeni ügyletek figyelmen kívül hagyása"
 
 #: optionsettingsview.cpp:183
 msgid "Use 'Time' in transaction recording/reporting"
-msgstr ""
+msgstr "„Idő” használata az ügylet rögzítésében/jelentésében"
 
 #: optionsettingsview.cpp:188
 msgid "Transaction Colors"
@@ -6797,11 +6797,11 @@ msgstr "Kedvezményezett törlésének megerősítése"
 
 #: payeedialog.cpp:876
 msgid "Define &Category"
-msgstr ""
+msgstr "&Kategória meghatározása"
 
 #: payeedialog.cpp:878
 msgid "Remove Ca&tegory"
-msgstr ""
+msgstr "Ka&tegória eltávolítása"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
@@ -6809,7 +6809,7 @@ msgstr "&Mellékletkezelő"
 
 #: payeedialog.cpp:895
 msgid "Merge &Payee"
-msgstr ""
+msgstr "Ked&vezményezettek egyesítése"
 
 #: relocatecategorydialog.cpp:102
 msgid "Delete source category after merge (if source category has no subcategories)"
