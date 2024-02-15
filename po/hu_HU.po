@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-13 18:36\n"
+"PO-Revision-Date: 2024-02-15 06:51\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1569,7 +1569,7 @@ msgstr "Költségvetésszerkesztő"
 
 #: budgetyeardialog.cpp:93
 msgid "Add &Year"
-msgstr ""
+msgstr "&Év hozzáadása"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1577,7 +1577,7 @@ msgstr "Új költségvetési év hozzáadása"
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
-msgstr ""
+msgstr "&Hónap hozzáadása"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -4241,15 +4241,15 @@ msgstr "Utolsó frissítés"
 
 #: mmchecking_list.cpp:472
 msgid "New &Withdrawal..."
-msgstr ""
+msgstr "Új &kivét…"
 
 #: mmchecking_list.cpp:473
 msgid "New &Deposit..."
-msgstr ""
+msgstr "Új &betét…"
 
 #: mmchecking_list.cpp:475
 msgid "New &Transfer..."
-msgstr ""
+msgstr "Új &átutalás…"
 
 #: mmchecking_list.cpp:479
 msgid "&Edit Transaction..."
