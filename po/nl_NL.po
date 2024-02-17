@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-13 18:37\n"
+"PO-Revision-Date: 2024-02-17 13:08\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -1569,7 +1569,7 @@ msgstr "Begroting bewerken"
 
 #: budgetyeardialog.cpp:93
 msgid "Add &Year"
-msgstr ""
+msgstr "J&aar Toevoegen"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1577,7 +1577,7 @@ msgstr "Nieuw begrotingsjaar toevoegen"
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
-msgstr ""
+msgstr "M&aand Toevoegen"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -4241,15 +4241,15 @@ msgstr "Laatst bijgewerkt"
 
 #: mmchecking_list.cpp:472
 msgid "New &Withdrawal..."
-msgstr ""
+msgstr "Nieuwe &Opname..."
 
 #: mmchecking_list.cpp:473
 msgid "New &Deposit..."
-msgstr ""
+msgstr "Nieuwe &storting..."
 
 #: mmchecking_list.cpp:475
 msgid "New &Transfer..."
-msgstr ""
+msgstr "Nieuwe o&verboeking..."
 
 #: mmchecking_list.cpp:479
 msgid "&Edit Transaction..."
@@ -4311,7 +4311,7 @@ msgstr "&Vind alle transacties met %s '%s'"
 
 #: mmchecking_list.cpp:659
 msgid "Cop&y Text to Clipboard"
-msgstr ""
+msgstr "Kopieer tekst naar klembord"
 
 #: mmchecking_list.cpp:666
 msgid "&Delete selected transaction..."
@@ -4343,31 +4343,31 @@ msgstr "Verwijder bekeken \"openstaande\" transacties..."
 
 #: mmchecking_list.cpp:675
 msgid "De&lete "
-msgstr ""
+msgstr "Ve&rwijderen "
 
 #: mmchecking_list.cpp:681
 msgid "&Unreconciled"
-msgstr ""
+msgstr "&Openstaand"
 
 #: mmchecking_list.cpp:683
 msgid "&Reconciled"
-msgstr ""
+msgstr "&Bevestigd"
 
 #: mmchecking_list.cpp:685
 msgid "&Void"
-msgstr ""
+msgstr "&Ongeldig"
 
 #: mmchecking_list.cpp:687
 msgid "&Follow Up"
-msgstr ""
+msgstr "&Te controleren"
 
 #: mmchecking_list.cpp:689
 msgid "D&uplicate"
-msgstr ""
+msgstr "D&upliceren"
 
 #: mmchecking_list.cpp:691
 msgid "Mar&k as"
-msgstr ""
+msgstr "Markeer als"
 
 #: mmchecking_list.cpp:713 mmcheckingpanel.cpp:518 mmframe.cpp:735
 msgid "All Transactions"
@@ -4795,23 +4795,23 @@ msgstr "Rekeningenoverzicht"
 
 #: mmframe.cpp:1502
 msgid "&All"
-msgstr ""
+msgstr "&Alles"
 
 #: mmframe.cpp:1503
 msgid "&Favorites"
-msgstr ""
+msgstr "Favorieten"
 
 #: mmframe.cpp:1504
 msgid "&Open"
-msgstr ""
+msgstr "&Open"
 
 #: mmframe.cpp:1505
 msgid "&Closed"
-msgstr ""
+msgstr "&Gesloten"
 
 #: mmframe.cpp:1506
 msgid "Accounts &Visible"
-msgstr ""
+msgstr "Zichtbare rekeningen"
 
 #: mmframe.cpp:1544
 msgid "&New Database..."
@@ -6606,7 +6606,7 @@ msgstr "Negeer toekomstige transacties"
 
 #: optionsettingsview.cpp:183
 msgid "Use 'Time' in transaction recording/reporting"
-msgstr ""
+msgstr "Gebruik 'Tijd' bij het vastleggen/rapporteren van transacties"
 
 #: optionsettingsview.cpp:188
 msgid "Transaction Colors"
@@ -6798,11 +6798,11 @@ msgstr "Bevestig verwijderen begunstigde"
 
 #: payeedialog.cpp:876
 msgid "Define &Category"
-msgstr ""
+msgstr "&Categorie definiëren"
 
 #: payeedialog.cpp:878
 msgid "Remove Ca&tegory"
-msgstr ""
+msgstr "Verwijder categorie"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
@@ -6810,7 +6810,7 @@ msgstr "&Bijlage beheer"
 
 #: payeedialog.cpp:895
 msgid "Merge &Payee"
-msgstr ""
+msgstr "Voeg ontvangers samen"
 
 #: relocatecategorydialog.cpp:102
 msgid "Delete source category after merge (if source category has no subcategories)"
