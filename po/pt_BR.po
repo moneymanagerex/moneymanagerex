@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-17 15:13\n"
+"PO-Revision-Date: 2024-02-17 16:28\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -6803,7 +6803,7 @@ msgstr "Definir &Categoria"
 
 #: payeedialog.cpp:878
 msgid "Remove Ca&tegory"
-msgstr ""
+msgstr "Remover Ca&tegoria"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
@@ -6811,7 +6811,7 @@ msgstr "Gerenciador de &Anexos"
 
 #: payeedialog.cpp:895
 msgid "Merge &Payee"
-msgstr ""
+msgstr "Mesclar &Beneficiários"
 
 #: relocatecategorydialog.cpp:102
 msgid "Delete source category after merge (if source category has no subcategories)"
