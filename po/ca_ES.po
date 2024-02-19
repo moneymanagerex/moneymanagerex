@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-13 22:31\n"
+"PO-Revision-Date: 2024-02-19 21:09\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -1813,7 +1813,7 @@ msgstr ""
 
 #: categdialog.h:68 mmframe.cpp:1703 mmframe.cpp:1929
 msgid "Category Manager"
-msgstr ""
+msgstr "Gestor de Categories"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -2036,7 +2036,7 @@ msgstr ""
 #: maincurrencydialog.cpp:813 maincurrencydialog.h:76 mmframe.cpp:1711
 #: mmframe.cpp:1931 optionsettingsgeneral.cpp:301
 msgid "Currency Manager"
-msgstr ""
+msgstr "Gestor de Monedes"
 
 #: customfieldeditdialog.cpp:113
 msgid "Custom Field Details"
@@ -2052,15 +2052,15 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:138
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "Introdueixi el nom del camp personalitzat"
 
 #: customfieldeditdialog.cpp:141
 msgid "Field Type"
-msgstr ""
+msgstr "Tipus de Camp"
 
 #: customfieldeditdialog.cpp:145
 msgid "Select type of custom field"
-msgstr ""
+msgstr "Seleccioni el tipus de camp personalitzat"
 
 #: customfieldeditdialog.cpp:148
 msgid "ToolTip"
@@ -2150,7 +2150,7 @@ msgstr "Propietats"
 
 #: customfieldlistdialog.cpp:66 mmframe.cpp:1766
 msgid "Custom Field Manager"
-msgstr ""
+msgstr "Gestor de Camps Personalitzats"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
