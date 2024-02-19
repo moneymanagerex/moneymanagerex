@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-19 21:09\n"
+"PO-Revision-Date: 2024-02-19 22:49\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -2138,7 +2138,7 @@ msgstr ""
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
-msgstr ""
+msgstr "Nou/Editar Camp Personalitzat"
 
 #: customfieldlistdialog.cpp:51
 msgid "#"
@@ -3741,7 +3741,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:2871
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
-msgstr ""
+msgstr "El valor %1$s pel camp personalitzat '%2$s' no és del tipus %3$s."
 
 #: import_export/univcsvdialog.cpp:2829 import_export/univcsvdialog.cpp:2850
 #, c-format
@@ -3793,7 +3793,7 @@ msgstr ""
 #: maincurrencydialog.cpp:258 stockdialog.cpp:287 stockdialog.cpp:306
 #: stockdialog.cpp:634 stockspanel.cpp:215
 msgid "Price"
-msgstr ""
+msgstr "Preu"
 
 #: maincurrencydialog.cpp:277
 msgid "Specify the date of currency value"
@@ -3801,7 +3801,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:287
 msgid "Enter the currency value"
-msgstr ""
+msgstr "Introdueixi el valor de la moneda"
 
 #: maincurrencydialog.cpp:297
 msgid "Download Currency Values history"
@@ -3993,11 +3993,11 @@ msgstr ""
 #: mmSimpleDialogs.cpp:1575
 #, c-format
 msgid "Create new tag '%s'?"
-msgstr ""
+msgstr "Crear la nova etiqueta '%s'?"
 
 #: mmSimpleDialogs.cpp:1575
 msgid "New tag entered"
-msgstr ""
+msgstr "Nova etiqueta introduïda"
 
 #: mmTextCtrl.cpp:87 splittransactionsdialog.cpp:585
 msgid "Invalid Value"
@@ -4030,7 +4030,7 @@ msgstr ""
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb database file."
-msgstr ""
+msgstr "Consell: Recordi fer còpies de seguretat del seu fitxer de base de dades .mmb."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
