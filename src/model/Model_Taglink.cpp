@@ -111,16 +111,14 @@ int Model_Taglink::update(const Data_Set& rows, const wxString& refType, int ref
 
     if (!rows.empty())
     {
-        Data_Set taglinks;
         for (const auto& item : rows)
         {
             Data* taglink = instance().create();
             taglink->REFID = refId;
             taglink->REFTYPE = refType;
             taglink->TAGID = item.TAGID;
-            taglinks.push_back(*taglink);
+            instance().save(taglink);
         }
-        instance().save(taglinks);
     }
 
     if (updateTimestamp)
