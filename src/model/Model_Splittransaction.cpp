@@ -114,20 +114,15 @@ int Model_Splittransaction::update(Data_Set& rows, int transactionID)
 
     if (!rows.empty())
     {
-        Data_Set split_items;
-        for (const auto &item : rows)
+        for (auto &item : rows)
         {
             Data *split_item = instance().create();
             split_item->TRANSID = transactionID;
             split_item->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
             split_item->CATEGID = item.CATEGID;
-            split_item->NOTES = item.NOTES;            
-            split_items.push_back(*split_item);
+            split_item->NOTES = item.NOTES;
+            item.SPLITTRANSID = instance().save(split_item);
         }
-        instance().save(split_items);
-        // Send back the new SPLITTRANSID which is needed to update taglinks
-        for (int i = 0; i < rows.size(); i++)
-            rows.at(i).SPLITTRANSID = split_items.at(i).SPLITTRANSID;
     }
 
     if (updateTimestamp)
