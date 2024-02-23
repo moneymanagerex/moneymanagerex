@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-13 18:37\n"
+"PO-Revision-Date: 2024-02-23 07:55\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -1566,7 +1566,7 @@ msgstr "예산 편집기"
 
 #: budgetyeardialog.cpp:93
 msgid "Add &Year"
-msgstr ""
+msgstr "년 추가(&Y)"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1574,7 +1574,7 @@ msgstr "새 예산 연도 추가"
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
-msgstr ""
+msgstr "월 추가(&M)"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -2613,7 +2613,7 @@ msgstr "적층된 막대 라인"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Area"
-msgstr ""
+msgstr "누적 영역형"
 
 #: filtertransdialog.cpp:505
 msgid "Last Unsaved Filter"
@@ -4233,15 +4233,15 @@ msgstr "마지막 업데이트"
 
 #: mmchecking_list.cpp:472
 msgid "New &Withdrawal..."
-msgstr ""
+msgstr "출금 생성(&W)..."
 
 #: mmchecking_list.cpp:473
 msgid "New &Deposit..."
-msgstr ""
+msgstr "입금 생성(&D)..."
 
 #: mmchecking_list.cpp:475
 msgid "New &Transfer..."
-msgstr ""
+msgstr "이체 생성(&T)..."
 
 #: mmchecking_list.cpp:479
 msgid "&Edit Transaction..."
@@ -4299,7 +4299,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:659
 msgid "Cop&y Text to Clipboard"
-msgstr ""
+msgstr "텍스트를 클립보드에 복사(&Y)"
 
 #: mmchecking_list.cpp:666
 msgid "&Delete selected transaction..."
@@ -4329,27 +4329,27 @@ msgstr "확인된 \"미조정\" 거래내역 삭제..."
 
 #: mmchecking_list.cpp:675
 msgid "De&lete "
-msgstr ""
+msgstr "삭제(&L) "
 
 #: mmchecking_list.cpp:681
 msgid "&Unreconciled"
-msgstr ""
+msgstr "미조정(&U)"
 
 #: mmchecking_list.cpp:683
 msgid "&Reconciled"
-msgstr ""
+msgstr "조정됨(&R)"
 
 #: mmchecking_list.cpp:685
 msgid "&Void"
-msgstr ""
+msgstr "무효(&V)"
 
 #: mmchecking_list.cpp:687
 msgid "&Follow Up"
-msgstr ""
+msgstr "후속조치(&F)"
 
 #: mmchecking_list.cpp:689
 msgid "D&uplicate"
-msgstr ""
+msgstr "복제(&U)"
 
 #: mmchecking_list.cpp:691
 msgid "Mar&k as"
