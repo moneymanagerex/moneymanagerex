@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-23 09:35\n"
+"PO-Revision-Date: 2024-02-23 10:50\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -4051,19 +4051,19 @@ msgstr "권장 사항: 자주 사용하는 거래는 복사(Ctrl+C) 및 붙여�
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb database file."
-msgstr ""
+msgstr "팁: .mmb 데이터베이스 파일을 백업하는 것을 잊지 마십시오."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "팁: .mmb 데이터베이스 파일이 암호화되지 않았습니다. 이는 적절한 지식을 가진 다른 사람이 실제로 파일을 열고 내용을 읽을 수 있다는 것을 의미합니다. 따라서 중요한 재무 정보를 저장하는 경우 적절한 보호를 받아야 합니다."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
-msgstr ""
+msgstr "팁: 거래내역을 조정된 것으로 표시하려면 거래를 선택하고 “R” 키를 누르십시오. 거래내역을 조정되지 않음으로 표시하려면 거래를 선택하고 “U” 키를 누릅니다."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."
-msgstr ""
+msgstr "팁: 후속 조치가 필요한 거래로 표시하려면 거래를 선택하고 “F” 키를 누릅니다."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
@@ -4071,7 +4071,7 @@ msgstr "팁: MMEX는 볼 수 있는 모든 보고서의 인쇄를 지원합니�
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
-msgstr ""
+msgstr "팁: 옵션의 설정을 변경하여 MMEX의 일부 런타임 동작을 수정할 수 있습니다."
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
@@ -4083,11 +4083,11 @@ msgstr "팁: 다른 통화의 계정을 가지고 있는 경우에 대비하여 
 
 #: mmTips.h:34
 msgid "Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "범주 관리자 팁: “H” 키를 누르면 h 문자로 시작하는 모든 범주가 순환됩니다."
 
 #: mmTips.h:35
 msgid "Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "범주 관리자 팁: 2개의 키 조합을 누르면 해당 키 조합을 시작으로 모든 범주가 순환됩니다. 예: ho를 누르면 Home Needs, Home, House Tax 등이 선택됩니다."
 
 #: mmTips.h:37
 msgid "Never endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
@@ -5477,7 +5477,9 @@ msgstr "DB 최적화"
 msgid "Database Optimization Completed!\n\n"
 "Size before: %1$s\n"
 "Size after: %2$s\n"
-msgstr ""
+msgstr "데이터베이스 최적화 완료!\n\n"
+"이전 크기: %1$s\n"
+"이후 크기: %2$s\n"
 
 #: mmframe.cpp:2421
 msgid "Result of database integrity check:"
@@ -5599,7 +5601,7 @@ msgstr "삭제할 계정 선택"
 #, c-format
 msgid "Are you sure you want to delete\n"
 "%1$s account: %2$s?"
-msgstr ""
+msgstr "%1$s의 %2$s 계정을 삭제하시겠습니까?"
 
 #: mmframe.cpp:3564
 msgid "Select account"
@@ -5962,7 +5964,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "예약된 거래가 계정 한도를 초과합니다.\n\n"
+"계정: %1$s\n"
+"현재 잔액: %2$6.2f\n"
+"거래 금액: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"계속하시겠습니까?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -6029,7 +6036,9 @@ msgstr "템플릿이 비어 있음"
 msgid "The SQL script:\n"
 "%s\n"
 "will modify database! Aborted!"
-msgstr ""
+msgstr "SQL 스크립트:\n"
+"%s \n"
+"데이터베이스 수정 작업이 중단되었습니다!"
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
@@ -6223,7 +6232,8 @@ msgstr ""
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Manager | Edit'"
-msgstr ""
+msgstr "현지에서 파생된 형식입니다.\n"
+"'통화 관리자 | 편집'을 통해 형식을 수동으로 설정하려면 공백으로 두십시오"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
