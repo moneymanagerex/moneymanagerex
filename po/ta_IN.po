@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-13 18:37\n"
+"PO-Revision-Date: 2024-02-23 19:29\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -25,11 +25,11 @@ msgstr ""
 
 #: aboutdialog.cpp:48
 msgid "License agreement"
-msgstr ""
+msgstr "உரிம ஒப்பந்தம்"
 
 #: aboutdialog.cpp:181 mmframe.cpp:1961
 msgid "About"
-msgstr ""
+msgstr "பற்றி"
 
 #: aboutdialog.cpp:186
 msgid "Authors"
@@ -37,7 +37,7 @@ msgstr ""
 
 #: aboutdialog.cpp:191
 msgid "Sponsors"
-msgstr ""
+msgstr "ஆதரவாளர்கள்"
 
 #: aboutdialog.cpp:196
 msgid "License"
@@ -205,11 +205,11 @@ msgstr "நிதி நிறுவன அணுகும் விவரம்
 
 #: accountdialog.cpp:225
 msgid "Statement"
-msgstr ""
+msgstr "வாக்கியம்"
 
 #: accountdialog.cpp:233
 msgid "Statement:"
-msgstr ""
+msgstr "வாக்கியம்:"
 
 #: accountdialog.cpp:234
 msgid "Locked"
@@ -401,7 +401,7 @@ msgstr ""
 
 #: appstartdialog.cpp:232 mmframe.cpp:3893 optionsettingsgeneral.cpp:365
 msgid "Language change"
-msgstr ""
+msgstr "மொழியை மாற்ற"
 
 #: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:471
 msgid "New Asset"
