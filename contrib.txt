@@ -215,6 +215,10 @@ David Coons
 Markus Egg
 Tobias Dach
 Francisco Fos Ros
+Marco Fusini
+Rafael Tappe Maestro
+Robert D Quinlan
+Roger Gimbrere
 
 ### 2023
 Renato

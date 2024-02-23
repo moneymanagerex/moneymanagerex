@@ -1429,7 +1429,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         pTransaction->TRANSACTIONNUMBER = holder.Number;
         pTransaction->NOTES = holder.Notes;
         if (payeeMatchAddNotes_->IsChecked() && !holder.PayeeMatchNotes.IsEmpty())
-            pTransaction->NOTES.Append(holder.PayeeMatchNotes);
+            pTransaction->NOTES.Append((pTransaction->NOTES.IsEmpty() ? "" : "\n" ) + holder.PayeeMatchNotes);
         pTransaction->COLOR = color_id;
 
         Model_Checking::instance().save(pTransaction);
@@ -2401,7 +2401,13 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     }
     case UNIV_CSV_PAYEE:
         if (m_CSVpayeeNames.find(token) != m_CSVpayeeNames.end() && std::get<0>(m_CSVpayeeNames[token]) != -1)
+        {
             holder.PayeeID = std::get<0>(m_CSVpayeeNames[token]);
+            if (payeeMatchAddNotes_->IsChecked() && !std::get<2>(m_CSVpayeeNames[token]).IsEmpty())
+            {
+                holder.PayeeMatchNotes = wxString::Format(_("%1$s matched by %2$s"), token, std::get<2>(m_CSVpayeeNames[token]));
+            }
+        }
         else
         {
             Model_Payee::Data* payee = Model_Payee::instance().create();
