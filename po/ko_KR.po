@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-23 07:55\n"
+"PO-Revision-Date: 2024-02-23 09:35\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -742,7 +742,7 @@ msgstr "첨부 관리자 | %1$s | %2$s"
 #: attachmentdialog.cpp:118
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr ""
+msgstr "첨부 관리자 | 새 %s"
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
@@ -1544,7 +1544,7 @@ msgstr "차이: "
 
 #: budgetingpanel.cpp:248
 msgid "Expenses: "
-msgstr "비용: "
+msgstr "지출: "
 
 #: budgetingpanel.cpp:290
 msgid "Icon"
@@ -4295,7 +4295,7 @@ msgstr "현재 보기의 모든 거래내역 복원..."
 #: mmchecking_list.cpp:656
 #, c-format
 msgid "&Find all transactions with %s '%s'"
-msgstr ""
+msgstr "%s '%s'인 모든 거래 찾기(&F)"
 
 #: mmchecking_list.cpp:659
 msgid "Cop&y Text to Clipboard"
@@ -4353,7 +4353,7 @@ msgstr "복제(&U)"
 
 #: mmchecking_list.cpp:691
 msgid "Mar&k as"
-msgstr ""
+msgstr "상태 표시(&K)"
 
 #: mmchecking_list.cpp:713 mmcheckingpanel.cpp:518 mmframe.cpp:735
 msgid "All Transactions"
@@ -4775,23 +4775,23 @@ msgstr "계정 목록(&L)"
 
 #: mmframe.cpp:1502
 msgid "&All"
-msgstr ""
+msgstr "모두(&A)"
 
 #: mmframe.cpp:1503
 msgid "&Favorites"
-msgstr ""
+msgstr "즐겨찾기(&F)"
 
 #: mmframe.cpp:1504
 msgid "&Open"
-msgstr ""
+msgstr "열림(&O)"
 
 #: mmframe.cpp:1505
 msgid "&Closed"
-msgstr ""
+msgstr "닫힘(&C)"
 
 #: mmframe.cpp:1506
 msgid "Accounts &Visible"
-msgstr ""
+msgstr "계정 보이기(&V)"
 
 #: mmframe.cpp:1544
 msgid "&New Database..."
@@ -4955,7 +4955,7 @@ msgstr "보기 초기화"
 
 #: mmframe.cpp:1637
 msgid "Reset view and dock tools"
-msgstr ""
+msgstr "보기 및 독 도구 초기화"
 
 #: mmframe.cpp:1668
 msgid "Dash&board"
@@ -6766,11 +6766,11 @@ msgstr "수취인 삭제 확인"
 
 #: payeedialog.cpp:876
 msgid "Define &Category"
-msgstr ""
+msgstr "범주 정의(&C)"
 
 #: payeedialog.cpp:878
 msgid "Remove Ca&tegory"
-msgstr ""
+msgstr "범주 제거(&T)"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
@@ -6778,7 +6778,7 @@ msgstr "첨부 관리자(&A)..."
 
 #: payeedialog.cpp:895
 msgid "Merge &Payee"
-msgstr ""
+msgstr "수취인 병합(&P)"
 
 #: relocatecategorydialog.cpp:102
 msgid "Delete source category after merge (if source category has no subcategories)"
@@ -7049,7 +7049,7 @@ msgstr "예상"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %1$s %2$s"
-msgstr ""
+msgstr "보고서 생성일: %1$s %2$s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
@@ -7249,7 +7249,7 @@ msgstr "주식 실적 차트"
 
 #: reports/transactions.cpp:227
 msgid "FX Rate"
-msgstr ""
+msgstr "환율"
 
 #: reports/transactions.cpp:452
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
@@ -7329,7 +7329,7 @@ msgstr "이 주식에 대한 매매 단위"
 
 #: sharetransactiondialog.cpp:270 stockdialog.cpp:251
 msgid "Manage stock attachments"
-msgstr ""
+msgstr "주식 첨부 파일 관리"
 
 #: sharetransactiondialog.cpp:275 stockdialog.cpp:253
 msgid "Display the web page for the specified Stock symbol"
@@ -8099,7 +8099,7 @@ msgstr "버전: %s"
 #: util.cpp:1446
 #, c-format
 msgid "Built on: %1$s %2$s"
-msgstr ""
+msgstr "빌드 날짜: %1$s %2$s"
 
 #: util.cpp:1447
 #, c-format
