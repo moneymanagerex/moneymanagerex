@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-13 18:37\n"
+"POT-Creation-Date: 2024-02-23 22:29+0300\n"
+"PO-Revision-Date: 2024-02-23 21:32\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Ліцэнзійнае пагадненне"
 
 #: aboutdialog.cpp:181 mmframe.cpp:1961
 msgid "About"
-msgstr "Дататак"
+msgstr "Пра праграму"
 
 #: aboutdialog.cpp:186
 msgid "Authors"
@@ -115,7 +115,7 @@ msgid "The date when the account was opened"
 msgstr "Дата, калі быў адчынены рахунак"
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:581
-#: import_export/univcsvdialog.cpp:2636
+#: import_export/univcsvdialog.cpp:2642
 msgid "Currency:"
 msgstr "Валюта:"
 
@@ -2033,7 +2033,7 @@ msgid "Any changes will be lost without update"
 msgstr "Без абнаўлення усе змены будуць страчаныя"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
-#: import_export/univcsvdialog.cpp:2669 maincurrencydialog.cpp:626
+#: import_export/univcsvdialog.cpp:2675 maincurrencydialog.cpp:626
 #: mmSimpleDialogs.cpp:807
 msgid "Invalid Entry"
 msgstr "Хібны запіс"
@@ -3392,7 +3392,7 @@ msgstr "Імпарт з QIF"
 msgid "Transaction code is missing"
 msgstr "Адсутнічае код аперацыі"
 
-#: import_export/qif_import_gui.cpp:1352
+#: import_export/qif_import_gui.cpp:1352 import_export/univcsvdialog.cpp:2408
 #, c-format
 msgid "%1$s matched by %2$s"
 msgstr "%1$s супадае з %2$s"
@@ -3466,7 +3466,7 @@ msgid "Preset:"
 msgstr "Набор наладаў:"
 
 #: import_export/univcsvdialog.cpp:263 import_export/univcsvdialog.cpp:580
-#: import_export/univcsvdialog.cpp:2640
+#: import_export/univcsvdialog.cpp:2646
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
@@ -3573,7 +3573,7 @@ msgstr "Імпартаваць файл"
 msgid "Export File"
 msgstr "Экспартаваць файл"
 
-#: import_export/univcsvdialog.cpp:584 import_export/univcsvdialog.cpp:2647
+#: import_export/univcsvdialog.cpp:584 import_export/univcsvdialog.cpp:2653
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
 msgstr "Быў ужыты набор наладаў '%1$s' таму што абраны рахунак '%2$s'"
@@ -3590,7 +3590,7 @@ msgid "Account does not exist"
 msgstr "Рахунак не існуе"
 
 #: import_export/univcsvdialog.cpp:942 import_export/univcsvdialog.cpp:1037
-#: import_export/univcsvdialog.cpp:2662
+#: import_export/univcsvdialog.cpp:2668
 #, c-format
 msgid "Positive if type has '%s'"
 msgstr "Станоўчы, калі тып мае '%s'"
@@ -3761,36 +3761,36 @@ msgstr "Файлы XML (*.xml)"
 msgid "All Files"
 msgstr "Усе файлы"
 
-#: import_export/univcsvdialog.cpp:2658
+#: import_export/univcsvdialog.cpp:2664
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
 msgstr "Калі ласка, пакажыце слова, якое паказвае станоўчыя значэння ў вашым файле CSV, напрыклад, 'крыдыт'"
 
-#: import_export/univcsvdialog.cpp:2658
+#: import_export/univcsvdialog.cpp:2664
 msgid "Enter a value"
 msgstr "Пакажыце значэнне"
 
-#: import_export/univcsvdialog.cpp:2668
+#: import_export/univcsvdialog.cpp:2674
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
 msgstr "Знак сумы мае вызначацца тыпам, калі ён абраны для імпарту"
 
-#: import_export/univcsvdialog.cpp:2789 import_export/univcsvdialog.cpp:2800
-#: import_export/univcsvdialog.cpp:2816 import_export/univcsvdialog.cpp:2860
-#: import_export/univcsvdialog.cpp:2871
+#: import_export/univcsvdialog.cpp:2795 import_export/univcsvdialog.cpp:2806
+#: import_export/univcsvdialog.cpp:2822 import_export/univcsvdialog.cpp:2866
+#: import_export/univcsvdialog.cpp:2877
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
 msgstr "Значэнне %1$s для карыстальніцкага поля '%2$s' не з'яўляецца тыпам %3$s."
 
-#: import_export/univcsvdialog.cpp:2829 import_export/univcsvdialog.cpp:2850
+#: import_export/univcsvdialog.cpp:2835 import_export/univcsvdialog.cpp:2856
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
 msgstr "Значэнне %1$s для карыстальніцкага поля %2$s '%3$s' не з'яўляецца слушным выбарам."
 
-#: import_export/univcsvdialog.cpp:2861
+#: import_export/univcsvdialog.cpp:2867
 #, c-format
 msgid "Confirm format matches selection %s."
 msgstr "Пацвердзіце, што фармат адпавядае выбару %s."
 
-#: import_export/univcsvdialog.cpp:2888
+#: import_export/univcsvdialog.cpp:2894
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
 msgstr "Значэнне %1$s не адпавядае рыгулярнаму выразу %2$s для карыстальніцкага поля '%3$s'."
