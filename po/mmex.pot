@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-02-23 22:29+0300\n"
+"POT-Creation-Date: 2024-02-24 16:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4998,7 +4998,7 @@ msgstr ""
 msgid "Download &Rates"
 msgstr ""
 
-#: mmframe.cpp:1693 mmframe.cpp:1952
+#: mmframe.cpp:1693
 msgid "Download Currency and Stock Rates"
 msgstr ""
 
@@ -5111,11 +5111,11 @@ msgid "Options"
 msgstr ""
 
 #: mmframe.cpp:1784
-msgid "Convert Encrypted &DB..."
+msgid "&Decrypt Encrypted Database..."
 msgstr ""
 
 #: mmframe.cpp:1785
-msgid "Convert Encrypted DB to Non-Encrypted DB"
+msgid "Convert encrypted database to unencrypted database"
 msgstr ""
 
 #: mmframe.cpp:1787
@@ -5131,7 +5131,7 @@ msgid "&Optimize Database..."
 msgstr ""
 
 #: mmframe.cpp:1791
-msgid "Optimize database space and performance"
+msgid "Optimize database for space and performance"
 msgstr ""
 
 #: mmframe.cpp:1793
@@ -5159,7 +5159,7 @@ msgid "Show Help"
 msgstr ""
 
 #: mmframe.cpp:1813
-msgid "Open MMEX website for the latest news, updates etc"
+msgid "Visit MMEX website for the latest news and updates"
 msgstr ""
 
 #: mmframe.cpp:1815
@@ -5167,7 +5167,7 @@ msgid "&Facebook"
 msgstr ""
 
 #: mmframe.cpp:1815
-msgid "Visit us on Facebook"
+msgid "Visit MMEX Facebook page"
 msgstr ""
 
 #: mmframe.cpp:1817
@@ -5175,7 +5175,7 @@ msgid "&Crowdin"
 msgstr ""
 
 #: mmframe.cpp:1817
-msgid "We use Crowdin to translate MMEX"
+msgid "Help translate MMEX on Crowdin"
 msgstr ""
 
 #: mmframe.cpp:1819
@@ -5191,7 +5191,7 @@ msgid "&YouTube"
 msgstr ""
 
 #: mmframe.cpp:1821
-msgid "Watch free video materials about MMEX"
+msgid "Watch MMEX videos on YouTube"
 msgstr ""
 
 #: mmframe.cpp:1823
@@ -5199,7 +5199,7 @@ msgid "&Slack"
 msgstr ""
 
 #: mmframe.cpp:1823
-msgid "Communicate online with MMEX team from your desktop or mobile device"
+msgid "Communicate with the MMEX team online"
 msgstr ""
 
 #: mmframe.cpp:1825
@@ -5223,7 +5223,7 @@ msgid "F&orum"
 msgstr ""
 
 #: mmframe.cpp:1830
-msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
+msgid "Visit MMEX forum to read and post comments"
 msgstr ""
 
 #: mmframe.cpp:1832
@@ -5231,7 +5231,7 @@ msgid "MMEX for &Android"
 msgstr ""
 
 #: mmframe.cpp:1833
-msgid "Get free Android version and run MMEX on your smart phone or tablet"
+msgid "Install MMEX for Android based smartphones and tablets"
 msgstr ""
 
 #: mmframe.cpp:1835
@@ -5354,6 +5354,10 @@ msgstr ""
 msgid "Download Rates"
 msgstr ""
 
+#: mmframe.cpp:1952
+msgid "Download currency and stock rates"
+msgstr ""
+
 #: mmframe.cpp:1955
 msgid "Toggle Fullscreen\tF11"
 msgstr ""
@@ -5379,7 +5383,7 @@ msgid "MMEX: Encrypted Database"
 msgstr ""
 
 #: mmframe.cpp:2053
-msgid "Have MMEX support provided you a debug/patch file?"
+msgid "Have MMEX support provided a debug/patch file?"
 msgstr ""
 
 #: mmframe.cpp:2053
@@ -5453,7 +5457,7 @@ msgid "Choose database file to Save As"
 msgstr ""
 
 #: mmframe.cpp:2336
-msgid "Converted DB!"
+msgid "Converted database!"
 msgstr ""
 
 #: mmframe.cpp:2336
@@ -5465,11 +5469,7 @@ msgid "MMEX: Encryption Password Change"
 msgstr ""
 
 #: mmframe.cpp:2343
-#, c-format
-msgid ""
-"New password for database\n"
-"\n"
-"%s"
+msgid "New password for database:"
 msgstr ""
 
 #: mmframe.cpp:2351
@@ -5489,7 +5489,7 @@ msgid "Confirm password failed."
 msgstr ""
 
 #: mmframe.cpp:2377
-msgid "Make sure you have a backup of DB before optimize it"
+msgid "Backup database before optimization."
 msgstr ""
 
 #: mmframe.cpp:2378 mmframe.cpp:2388
