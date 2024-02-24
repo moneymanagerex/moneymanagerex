@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-13 18:37\n"
+"POT-Creation-Date: 2024-02-24 16:38+0300\n"
+"PO-Revision-Date: 2024-02-24 13:40\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -115,7 +115,7 @@ msgid "The date when the account was opened"
 msgstr "开设账户的日期"
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:581
-#: import_export/univcsvdialog.cpp:2636
+#: import_export/univcsvdialog.cpp:2642
 msgid "Currency:"
 msgstr "货币："
 
@@ -2022,7 +2022,7 @@ msgid "Any changes will be lost without update"
 msgstr "未更新以前任何更改都将丢失"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
-#: import_export/univcsvdialog.cpp:2669 maincurrencydialog.cpp:626
+#: import_export/univcsvdialog.cpp:2675 maincurrencydialog.cpp:626
 #: mmSimpleDialogs.cpp:807
 msgid "Invalid Entry"
 msgstr "输入无效"
@@ -3375,7 +3375,7 @@ msgstr "从 QIF 文件导入"
 msgid "Transaction code is missing"
 msgstr "缺少交易代码"
 
-#: import_export/qif_import_gui.cpp:1352
+#: import_export/qif_import_gui.cpp:1352 import_export/univcsvdialog.cpp:2408
 #, c-format
 msgid "%1$s matched by %2$s"
 msgstr "%1$s 与 %2$s 匹配"
@@ -3449,7 +3449,7 @@ msgid "Preset:"
 msgstr "预设："
 
 #: import_export/univcsvdialog.cpp:263 import_export/univcsvdialog.cpp:580
-#: import_export/univcsvdialog.cpp:2640
+#: import_export/univcsvdialog.cpp:2646
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
@@ -3555,7 +3555,7 @@ msgstr "导入文件"
 msgid "Export File"
 msgstr "导出文件"
 
-#: import_export/univcsvdialog.cpp:584 import_export/univcsvdialog.cpp:2647
+#: import_export/univcsvdialog.cpp:584 import_export/univcsvdialog.cpp:2653
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
 msgstr "由于选择了账户 ‘%2$s’，已加载预设 ‘%1$s’"
@@ -3572,7 +3572,7 @@ msgid "Account does not exist"
 msgstr "账户不存在"
 
 #: import_export/univcsvdialog.cpp:942 import_export/univcsvdialog.cpp:1037
-#: import_export/univcsvdialog.cpp:2662
+#: import_export/univcsvdialog.cpp:2668
 #, c-format
 msgid "Positive if type has '%s'"
 msgstr "如果类型有 '%s ' 则为正数"
@@ -3743,36 +3743,36 @@ msgstr "XML 文件(*.xml)"
 msgid "All Files"
 msgstr "所有文件"
 
-#: import_export/univcsvdialog.cpp:2658
+#: import_export/univcsvdialog.cpp:2664
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
 msgstr "请在您的 CSV 文件中输入表示正值的单词，例如'credit'"
 
-#: import_export/univcsvdialog.cpp:2658
+#: import_export/univcsvdialog.cpp:2664
 msgid "Enter a value"
 msgstr "输入值："
 
-#: import_export/univcsvdialog.cpp:2668
+#: import_export/univcsvdialog.cpp:2674
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
 msgstr "当选择要导入的“类型”时，必须按类型定义数量标志"
 
-#: import_export/univcsvdialog.cpp:2789 import_export/univcsvdialog.cpp:2800
-#: import_export/univcsvdialog.cpp:2816 import_export/univcsvdialog.cpp:2860
-#: import_export/univcsvdialog.cpp:2871
+#: import_export/univcsvdialog.cpp:2795 import_export/univcsvdialog.cpp:2806
+#: import_export/univcsvdialog.cpp:2822 import_export/univcsvdialog.cpp:2866
+#: import_export/univcsvdialog.cpp:2877
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
 msgstr "自定义字段 ‘%2$s’ 的值 %1$s 不是类型 %3$s。"
 
-#: import_export/univcsvdialog.cpp:2829 import_export/univcsvdialog.cpp:2850
+#: import_export/univcsvdialog.cpp:2835 import_export/univcsvdialog.cpp:2856
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
 msgstr "%2$s 自定义字段 ‘%3$s’ 的值 %1$s 不是有效选择。"
 
-#: import_export/univcsvdialog.cpp:2861
+#: import_export/univcsvdialog.cpp:2867
 #, c-format
 msgid "Confirm format matches selection %s."
 msgstr "确认格式与选择 %s 匹配。"
 
-#: import_export/univcsvdialog.cpp:2888
+#: import_export/univcsvdialog.cpp:2894
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
 msgstr "值 %1$s 与自定义字段 ‘%3$s’ 的正则表达式 %2$s 不匹配。"
@@ -4978,7 +4978,7 @@ msgstr "从数据库中删除账户"
 msgid "Download &Rates"
 msgstr ""
 
-#: mmframe.cpp:1693 mmframe.cpp:1952
+#: mmframe.cpp:1693
 msgid "Download Currency and Stock Rates"
 msgstr "下载货币和股票汇率"
 
@@ -5091,12 +5091,12 @@ msgid "Options"
 msgstr "选项"
 
 #: mmframe.cpp:1784
-msgid "Convert Encrypted &DB..."
-msgstr "转换加密的数据库(&D)..."
+msgid "&Decrypt Encrypted Database..."
+msgstr ""
 
 #: mmframe.cpp:1785
-msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr "将加密数据库转换为非加密数据库"
+msgid "Convert encrypted database to unencrypted database"
+msgstr ""
 
 #: mmframe.cpp:1787
 msgid "Change Encrypted &Password..."
@@ -5111,8 +5111,8 @@ msgid "&Optimize Database..."
 msgstr "优化数据库(&O)..."
 
 #: mmframe.cpp:1791
-msgid "Optimize database space and performance"
-msgstr "优化数据库空间和性能"
+msgid "Optimize database for space and performance"
+msgstr ""
 
 #: mmframe.cpp:1793
 msgid "Database Check and De&bug..."
@@ -5139,24 +5139,24 @@ msgid "Show Help"
 msgstr "显示帮助"
 
 #: mmframe.cpp:1813
-msgid "Open MMEX website for the latest news, updates etc"
-msgstr "打开 MMEX 网站获取最新消息，更新等"
+msgid "Visit MMEX website for the latest news and updates"
+msgstr ""
 
 #: mmframe.cpp:1815
 msgid "&Facebook"
 msgstr "Facebook(&F)"
 
 #: mmframe.cpp:1815
-msgid "Visit us on Facebook"
-msgstr "访问我们的 Facebook"
+msgid "Visit MMEX Facebook page"
+msgstr ""
 
 #: mmframe.cpp:1817
 msgid "&Crowdin"
 msgstr "Crowdin(&C)"
 
 #: mmframe.cpp:1817
-msgid "We use Crowdin to translate MMEX"
-msgstr "我们使用 Crowdin 翻译 MMEX"
+msgid "Help translate MMEX on Crowdin"
+msgstr ""
 
 #: mmframe.cpp:1819
 msgid "&Twitter"
@@ -5171,16 +5171,16 @@ msgid "&YouTube"
 msgstr "YouTube(&Y)"
 
 #: mmframe.cpp:1821
-msgid "Watch free video materials about MMEX"
-msgstr "观看有关MMEX的免费视频材料"
+msgid "Watch MMEX videos on YouTube"
+msgstr ""
 
 #: mmframe.cpp:1823
 msgid "&Slack"
 msgstr "Slack(&S)"
 
 #: mmframe.cpp:1823
-msgid "Communicate online with MMEX team from your desktop or mobile device"
-msgstr "与桌面或移动设备的 MMEX 团队在线沟通"
+msgid "Communicate with the MMEX team online"
+msgstr ""
 
 #: mmframe.cpp:1825
 msgid "&GitHub"
@@ -5203,16 +5203,16 @@ msgid "F&orum"
 msgstr "论坛(&O)"
 
 #: mmframe.cpp:1830
-msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
-msgstr "访问 MMEX 论坛查看现有用户评论或报告软件的新问题"
+msgid "Visit MMEX forum to read and post comments"
+msgstr ""
 
 #: mmframe.cpp:1832
 msgid "MMEX for &Android"
 msgstr "用于Android 的 MMEX(&A)"
 
 #: mmframe.cpp:1833
-msgid "Get free Android version and run MMEX on your smart phone or tablet"
-msgstr "获取免费的 Android 版本并在您的智能手机或平板电脑上运行 MMEX"
+msgid "Install MMEX for Android based smartphones and tablets"
+msgstr ""
 
 #: mmframe.cpp:1835
 msgid "&Newsletter"
@@ -5334,6 +5334,10 @@ msgstr "新闻"
 msgid "Download Rates"
 msgstr ""
 
+#: mmframe.cpp:1952
+msgid "Download currency and stock rates"
+msgstr ""
+
 #: mmframe.cpp:1955
 msgid "Toggle Fullscreen\tF11"
 msgstr "全屏 F11"
@@ -5358,8 +5362,8 @@ msgid "MMEX: Encrypted Database"
 msgstr "MMEX：加密数据库"
 
 #: mmframe.cpp:2053
-msgid "Have MMEX support provided you a debug/patch file?"
-msgstr "MMEX 支持是否给您提供了调试/补丁文件？"
+msgid "Have MMEX support provided a debug/patch file?"
+msgstr ""
 
 #: mmframe.cpp:2053
 msgid "MMEX upgrade"
@@ -5432,8 +5436,8 @@ msgid "Choose database file to Save As"
 msgstr "选择要另存为的数据库文件"
 
 #: mmframe.cpp:2336
-msgid "Converted DB!"
-msgstr "已转换数据库！"
+msgid "Converted database!"
+msgstr ""
 
 #: mmframe.cpp:2336
 msgid "MMEX message"
@@ -5444,11 +5448,8 @@ msgid "MMEX: Encryption Password Change"
 msgstr "MMEX：加密密码更改"
 
 #: mmframe.cpp:2343
-#, c-format
-msgid "New password for database\n\n"
-"%s"
-msgstr "数据库新密码\n\n"
-"%s"
+msgid "New password for database:"
+msgstr ""
 
 #: mmframe.cpp:2351
 msgid "New password must not be empty."
@@ -5467,8 +5468,8 @@ msgid "Confirm password failed."
 msgstr "确认密码失败。"
 
 #: mmframe.cpp:2377
-msgid "Make sure you have a backup of DB before optimize it"
-msgstr "确保你在优化数据库前有一个备份"
+msgid "Backup database before optimization."
+msgstr ""
 
 #: mmframe.cpp:2378 mmframe.cpp:2388
 msgid "DB Optimization"
