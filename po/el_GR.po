@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-24 16:38+0300\n"
-"PO-Revision-Date: 2024-02-24 13:40\n"
+"PO-Revision-Date: 2024-02-24 20:36\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -5110,11 +5110,11 @@ msgstr "Επιλογές"
 
 #: mmframe.cpp:1784
 msgid "&Decrypt Encrypted Database..."
-msgstr ""
+msgstr "&Αποκρυπτογράφηση Κρυπτογραφημένης Βάσης Δεδομένων..."
 
 #: mmframe.cpp:1785
 msgid "Convert encrypted database to unencrypted database"
-msgstr ""
+msgstr "Μετατροπή κρυπτογραφημένης βάσης δεδομένων σε μη κρυπτογραφημένη βάση δεδομένων"
 
 #: mmframe.cpp:1787
 msgid "Change Encrypted &Password..."
@@ -5130,7 +5130,7 @@ msgstr ""
 
 #: mmframe.cpp:1791
 msgid "Optimize database for space and performance"
-msgstr ""
+msgstr "Βελτιστοποίηση βάσης δεδομένων για χώρο και απόδοση"
 
 #: mmframe.cpp:1793
 msgid "Database Check and De&bug..."
@@ -5158,7 +5158,7 @@ msgstr "Εμφάνιση Βοήθειας"
 
 #: mmframe.cpp:1813
 msgid "Visit MMEX website for the latest news and updates"
-msgstr ""
+msgstr "Επισκεφθείτε την ιστοσελίδα MMEX για τα τελευταία νέα και ενημερώσεις"
 
 #: mmframe.cpp:1815
 msgid "&Facebook"
@@ -5166,7 +5166,7 @@ msgstr "&Facebook"
 
 #: mmframe.cpp:1815
 msgid "Visit MMEX Facebook page"
-msgstr ""
+msgstr "Επισκεφθείτε τη σελίδα MMEX στο Facebook"
 
 #: mmframe.cpp:1817
 msgid "&Crowdin"
@@ -5174,7 +5174,7 @@ msgstr "&Crowdin"
 
 #: mmframe.cpp:1817
 msgid "Help translate MMEX on Crowdin"
-msgstr ""
+msgstr "Βοηθήστε στη μετάφραση του MMEX στο Crowdin"
 
 #: mmframe.cpp:1819
 msgid "&Twitter"
@@ -5190,7 +5190,7 @@ msgstr "&YouTube"
 
 #: mmframe.cpp:1821
 msgid "Watch MMEX videos on YouTube"
-msgstr ""
+msgstr "Παρακολουθήστε βίντεο MMEX στο YouTube"
 
 #: mmframe.cpp:1823
 msgid "&Slack"
@@ -5198,7 +5198,7 @@ msgstr "&Slack"
 
 #: mmframe.cpp:1823
 msgid "Communicate with the MMEX team online"
-msgstr ""
+msgstr "Επικοινωνία με την online ομάδα MMEX"
 
 #: mmframe.cpp:1825
 msgid "&GitHub"
@@ -5222,7 +5222,7 @@ msgstr "Forum"
 
 #: mmframe.cpp:1830
 msgid "Visit MMEX forum to read and post comments"
-msgstr ""
+msgstr "Επισκεφθείτε το φόρουμ MMEX για να διαβάσετε και να δημοσιεύσετε σχόλια"
 
 #: mmframe.cpp:1832
 msgid "MMEX for &Android"
@@ -5230,7 +5230,7 @@ msgstr "MMEX για &Android"
 
 #: mmframe.cpp:1833
 msgid "Install MMEX for Android based smartphones and tablets"
-msgstr ""
+msgstr "Εγκαταστήστε το MMEX για smartphones και tablet που βασίζονται στο Android"
 
 #: mmframe.cpp:1835
 msgid "&Newsletter"
@@ -5354,7 +5354,7 @@ msgstr ""
 
 #: mmframe.cpp:1952
 msgid "Download currency and stock rates"
-msgstr ""
+msgstr "Κατεβάστε τις ισοτιμίες συναλλάγματος και μετοχών"
 
 #: mmframe.cpp:1955
 msgid "Toggle Fullscreen\tF11"
@@ -5380,7 +5380,7 @@ msgstr "MMEX: Κρυπτογραφημένη Βάση Δεδομένων"
 
 #: mmframe.cpp:2053
 msgid "Have MMEX support provided a debug/patch file?"
-msgstr ""
+msgstr "Σας παρείχε η υποστήριξη του MMEX ένα αρχείο debug/patch;"
 
 #: mmframe.cpp:2053
 msgid "MMEX upgrade"
@@ -5454,7 +5454,7 @@ msgstr "Επιλέξτε αρχείο βάσης δεδομένων για Απ�
 
 #: mmframe.cpp:2336
 msgid "Converted database!"
-msgstr ""
+msgstr "Μετατραπείσα βάση δεδομένων!"
 
 #: mmframe.cpp:2336
 msgid "MMEX message"
@@ -5466,7 +5466,7 @@ msgstr "MMEX: Έγινε αλλαγή του κωδικού πρόσβασης �
 
 #: mmframe.cpp:2343
 msgid "New password for database:"
-msgstr ""
+msgstr "Νέος κωδικός πρόσβασης για τη βάση δεδομένων:"
 
 #: mmframe.cpp:2351
 msgid "New password must not be empty."
