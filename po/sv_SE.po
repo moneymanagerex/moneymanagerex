@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-02-13 21:28+0300\n"
-"PO-Revision-Date: 2024-02-14 20:30\n"
+"POT-Creation-Date: 2024-02-24 16:38+0300\n"
+"PO-Revision-Date: 2024-02-24 13:40\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -115,7 +115,7 @@ msgid "The date when the account was opened"
 msgstr "Datum när kontot öppnades"
 
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:581
-#: import_export/univcsvdialog.cpp:2636
+#: import_export/univcsvdialog.cpp:2642
 msgid "Currency:"
 msgstr "Valuta:"
 
@@ -2018,7 +2018,7 @@ msgid "Any changes will be lost without update"
 msgstr "Eventuella ändringar kommer att gå förlorade utan uppdatering"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
-#: import_export/univcsvdialog.cpp:2669 maincurrencydialog.cpp:626
+#: import_export/univcsvdialog.cpp:2675 maincurrencydialog.cpp:626
 #: mmSimpleDialogs.cpp:807
 msgid "Invalid Entry"
 msgstr "Ogiltig inmatning"
@@ -3368,7 +3368,7 @@ msgstr "Importera från QIF-fil"
 msgid "Transaction code is missing"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:1352
+#: import_export/qif_import_gui.cpp:1352 import_export/univcsvdialog.cpp:2408
 #, c-format
 msgid "%1$s matched by %2$s"
 msgstr ""
@@ -3442,7 +3442,7 @@ msgid "Preset:"
 msgstr "Förval:"
 
 #: import_export/univcsvdialog.cpp:263 import_export/univcsvdialog.cpp:580
-#: import_export/univcsvdialog.cpp:2640
+#: import_export/univcsvdialog.cpp:2646
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
@@ -3549,7 +3549,7 @@ msgstr "Importera fil"
 msgid "Export File"
 msgstr "Exportera fil"
 
-#: import_export/univcsvdialog.cpp:584 import_export/univcsvdialog.cpp:2647
+#: import_export/univcsvdialog.cpp:584 import_export/univcsvdialog.cpp:2653
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
 msgstr ""
@@ -3565,7 +3565,7 @@ msgid "Account does not exist"
 msgstr "Kontot finns inte"
 
 #: import_export/univcsvdialog.cpp:942 import_export/univcsvdialog.cpp:1037
-#: import_export/univcsvdialog.cpp:2662
+#: import_export/univcsvdialog.cpp:2668
 #, c-format
 msgid "Positive if type has '%s'"
 msgstr "Positiv om typen har '%s'"
@@ -3736,36 +3736,36 @@ msgstr ""
 msgid "All Files"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2658
+#: import_export/univcsvdialog.cpp:2664
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
 msgstr "Skriv in det ord som anger positiva värden i din CSV-fil, t.ex. 'kredit'"
 
-#: import_export/univcsvdialog.cpp:2658
+#: import_export/univcsvdialog.cpp:2664
 msgid "Enter a value"
 msgstr "Ange ett värde"
 
-#: import_export/univcsvdialog.cpp:2668
+#: import_export/univcsvdialog.cpp:2674
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
 msgstr "Belopp tecken måste definieras efter typ när 'Type' är valt för import"
 
-#: import_export/univcsvdialog.cpp:2789 import_export/univcsvdialog.cpp:2800
-#: import_export/univcsvdialog.cpp:2816 import_export/univcsvdialog.cpp:2860
-#: import_export/univcsvdialog.cpp:2871
+#: import_export/univcsvdialog.cpp:2795 import_export/univcsvdialog.cpp:2806
+#: import_export/univcsvdialog.cpp:2822 import_export/univcsvdialog.cpp:2866
+#: import_export/univcsvdialog.cpp:2877
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2829 import_export/univcsvdialog.cpp:2850
+#: import_export/univcsvdialog.cpp:2835 import_export/univcsvdialog.cpp:2856
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:2861
+#: import_export/univcsvdialog.cpp:2867
 #, c-format
 msgid "Confirm format matches selection %s."
 msgstr "Bekräfta att valet av format matchar %s."
 
-#: import_export/univcsvdialog.cpp:2888
+#: import_export/univcsvdialog.cpp:2894
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
 msgstr ""
@@ -4978,7 +4978,7 @@ msgstr "Ta bort konto från databas"
 msgid "Download &Rates"
 msgstr ""
 
-#: mmframe.cpp:1693 mmframe.cpp:1952
+#: mmframe.cpp:1693
 msgid "Download Currency and Stock Rates"
 msgstr ""
 
@@ -5091,11 +5091,11 @@ msgid "Options"
 msgstr ""
 
 #: mmframe.cpp:1784
-msgid "Convert Encrypted &DB..."
-msgstr "Konvertera Krypterad &DB..."
+msgid "&Decrypt Encrypted Database..."
+msgstr ""
 
 #: mmframe.cpp:1785
-msgid "Convert Encrypted DB to Non-Encrypted DB"
+msgid "Convert encrypted database to unencrypted database"
 msgstr ""
 
 #: mmframe.cpp:1787
@@ -5111,8 +5111,8 @@ msgid "&Optimize Database..."
 msgstr "&Optimera databas..."
 
 #: mmframe.cpp:1791
-msgid "Optimize database space and performance"
-msgstr "Optimera databasens utrymme och prestanda"
+msgid "Optimize database for space and performance"
+msgstr ""
 
 #: mmframe.cpp:1793
 msgid "Database Check and De&bug..."
@@ -5139,23 +5139,23 @@ msgid "Show Help"
 msgstr ""
 
 #: mmframe.cpp:1813
-msgid "Open MMEX website for the latest news, updates etc"
-msgstr "Öppna MMEX webbplats för de senaste nyheterna, uppdateringar etc"
+msgid "Visit MMEX website for the latest news and updates"
+msgstr ""
 
 #: mmframe.cpp:1815
 msgid "&Facebook"
 msgstr ""
 
 #: mmframe.cpp:1815
-msgid "Visit us on Facebook"
-msgstr "Besök oss på Facebook"
+msgid "Visit MMEX Facebook page"
+msgstr ""
 
 #: mmframe.cpp:1817
 msgid "&Crowdin"
 msgstr ""
 
 #: mmframe.cpp:1817
-msgid "We use Crowdin to translate MMEX"
+msgid "Help translate MMEX on Crowdin"
 msgstr ""
 
 #: mmframe.cpp:1819
@@ -5171,15 +5171,15 @@ msgid "&YouTube"
 msgstr ""
 
 #: mmframe.cpp:1821
-msgid "Watch free video materials about MMEX"
-msgstr "Titta på gratis videomaterial om MMEX"
+msgid "Watch MMEX videos on YouTube"
+msgstr ""
 
 #: mmframe.cpp:1823
 msgid "&Slack"
 msgstr ""
 
 #: mmframe.cpp:1823
-msgid "Communicate online with MMEX team from your desktop or mobile device"
+msgid "Communicate with the MMEX team online"
 msgstr ""
 
 #: mmframe.cpp:1825
@@ -5203,7 +5203,7 @@ msgid "F&orum"
 msgstr ""
 
 #: mmframe.cpp:1830
-msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
+msgid "Visit MMEX forum to read and post comments"
 msgstr ""
 
 #: mmframe.cpp:1832
@@ -5211,7 +5211,7 @@ msgid "MMEX for &Android"
 msgstr "MMEX för &Android"
 
 #: mmframe.cpp:1833
-msgid "Get free Android version and run MMEX on your smart phone or tablet"
+msgid "Install MMEX for Android based smartphones and tablets"
 msgstr ""
 
 #: mmframe.cpp:1835
@@ -5334,6 +5334,10 @@ msgstr "Nyheter"
 msgid "Download Rates"
 msgstr ""
 
+#: mmframe.cpp:1952
+msgid "Download currency and stock rates"
+msgstr ""
+
 #: mmframe.cpp:1955
 msgid "Toggle Fullscreen\tF11"
 msgstr ""
@@ -5357,7 +5361,7 @@ msgid "MMEX: Encrypted Database"
 msgstr ""
 
 #: mmframe.cpp:2053
-msgid "Have MMEX support provided you a debug/patch file?"
+msgid "Have MMEX support provided a debug/patch file?"
 msgstr ""
 
 #: mmframe.cpp:2053
@@ -5428,7 +5432,7 @@ msgid "Choose database file to Save As"
 msgstr "Välj databasfil att spara som"
 
 #: mmframe.cpp:2336
-msgid "Converted DB!"
+msgid "Converted database!"
 msgstr ""
 
 #: mmframe.cpp:2336
@@ -5440,11 +5444,8 @@ msgid "MMEX: Encryption Password Change"
 msgstr ""
 
 #: mmframe.cpp:2343
-#, c-format
-msgid "New password for database\n\n"
-"%s"
-msgstr "Nytt lösenord för databasen\n\n"
-"%s"
+msgid "New password for database:"
+msgstr ""
 
 #: mmframe.cpp:2351
 msgid "New password must not be empty."
@@ -5463,7 +5464,7 @@ msgid "Confirm password failed."
 msgstr ""
 
 #: mmframe.cpp:2377
-msgid "Make sure you have a backup of DB before optimize it"
+msgid "Backup database before optimization."
 msgstr ""
 
 #: mmframe.cpp:2378 mmframe.cpp:2388
