@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-02-23 22:29+0300\n"
-"PO-Revision-Date: 2024-02-23 21:32\n"
+"POT-Creation-Date: 2024-02-24 16:38+0300\n"
+"PO-Revision-Date: 2024-02-24 13:40\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5032,7 +5032,7 @@ msgstr "Выдаліць рахунак з базы дадзеных"
 msgid "Download &Rates"
 msgstr ""
 
-#: mmframe.cpp:1693 mmframe.cpp:1952
+#: mmframe.cpp:1693
 msgid "Download Currency and Stock Rates"
 msgstr "Спампаваць курсы валютаў і акцыяў"
 
@@ -5145,12 +5145,12 @@ msgid "Options"
 msgstr "Налады"
 
 #: mmframe.cpp:1784
-msgid "Convert Encrypted &DB..."
-msgstr "Канвертаваць зашыфраваную &БД..."
+msgid "&Decrypt Encrypted Database..."
+msgstr ""
 
 #: mmframe.cpp:1785
-msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr "Канвертаванне зашыфраванай БД у нешыфраваную"
+msgid "Convert encrypted database to unencrypted database"
+msgstr ""
 
 #: mmframe.cpp:1787
 msgid "Change Encrypted &Password..."
@@ -5165,8 +5165,8 @@ msgid "&Optimize Database..."
 msgstr "&Аптымізаваць базу дадзеных..."
 
 #: mmframe.cpp:1791
-msgid "Optimize database space and performance"
-msgstr "Аптымізацыя памера і хуткасці базы дадзеных"
+msgid "Optimize database for space and performance"
+msgstr ""
 
 #: mmframe.cpp:1793
 msgid "Database Check and De&bug..."
@@ -5193,7 +5193,7 @@ msgid "Show Help"
 msgstr "Паказаць даведку"
 
 #: mmframe.cpp:1813
-msgid "Open MMEX website for the latest news, updates etc"
+msgid "Visit MMEX website for the latest news and updates"
 msgstr ""
 
 #: mmframe.cpp:1815
@@ -5201,16 +5201,16 @@ msgid "&Facebook"
 msgstr "&Facebook"
 
 #: mmframe.cpp:1815
-msgid "Visit us on Facebook"
-msgstr "Завітайце да нас у Facebook"
+msgid "Visit MMEX Facebook page"
+msgstr ""
 
 #: mmframe.cpp:1817
 msgid "&Crowdin"
 msgstr "&Crowdin"
 
 #: mmframe.cpp:1817
-msgid "We use Crowdin to translate MMEX"
-msgstr "Мы карыстуемся Crowdin для пераклада MMEX"
+msgid "Help translate MMEX on Crowdin"
+msgstr ""
 
 #: mmframe.cpp:1819
 msgid "&Twitter"
@@ -5225,16 +5225,16 @@ msgid "&YouTube"
 msgstr "&YouTube"
 
 #: mmframe.cpp:1821
-msgid "Watch free video materials about MMEX"
-msgstr "Глядзіце бескаштоўныя відыа пра MMEX"
+msgid "Watch MMEX videos on YouTube"
+msgstr ""
 
 #: mmframe.cpp:1823
 msgid "&Slack"
 msgstr "&Slack"
 
 #: mmframe.cpp:1823
-msgid "Communicate online with MMEX team from your desktop or mobile device"
-msgstr "Размаўляйце ў сетцы з камандай MMEX са свайго кампутара або мабільнага"
+msgid "Communicate with the MMEX team online"
+msgstr ""
 
 #: mmframe.cpp:1825
 msgid "&GitHub"
@@ -5257,16 +5257,16 @@ msgid "F&orum"
 msgstr "Ф&орум"
 
 #: mmframe.cpp:1830
-msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
-msgstr "Наведайце форум MMEX, каб пачытаць камэнтары карыстальнікаў або паведаміць пра новыя праблемы з дадаткам"
+msgid "Visit MMEX forum to read and post comments"
+msgstr ""
 
 #: mmframe.cpp:1832
 msgid "MMEX for &Android"
 msgstr ""
 
 #: mmframe.cpp:1833
-msgid "Get free Android version and run MMEX on your smart phone or tablet"
-msgstr "Спампуйце бясплатную вэрсію для Android і працуйце з MMEX на сваім смартфоне або планшэце"
+msgid "Install MMEX for Android based smartphones and tablets"
+msgstr ""
 
 #: mmframe.cpp:1835
 msgid "&Newsletter"
@@ -5388,6 +5388,10 @@ msgstr "Навіны"
 msgid "Download Rates"
 msgstr ""
 
+#: mmframe.cpp:1952
+msgid "Download currency and stock rates"
+msgstr ""
+
 #: mmframe.cpp:1955
 msgid "Toggle Fullscreen\tF11"
 msgstr "Перамкнуць на ўвесь экран\tF11"
@@ -5412,8 +5416,8 @@ msgid "MMEX: Encrypted Database"
 msgstr "MMEX: зашыфраваная база дадзеных"
 
 #: mmframe.cpp:2053
-msgid "Have MMEX support provided you a debug/patch file?"
-msgstr "Ці прадаставіла служба падтрымкі MMEX файл наладкі/патч?"
+msgid "Have MMEX support provided a debug/patch file?"
+msgstr ""
 
 #: mmframe.cpp:2053
 msgid "MMEX upgrade"
@@ -5486,8 +5490,8 @@ msgid "Choose database file to Save As"
 msgstr "Абраць файл для захоўвання базы дадзеных"
 
 #: mmframe.cpp:2336
-msgid "Converted DB!"
-msgstr "БД ператвораная!"
+msgid "Converted database!"
+msgstr ""
 
 #: mmframe.cpp:2336
 msgid "MMEX message"
@@ -5498,11 +5502,8 @@ msgid "MMEX: Encryption Password Change"
 msgstr "MMEX: Змена пароля шыфраванай БД"
 
 #: mmframe.cpp:2343
-#, c-format
-msgid "New password for database\n\n"
-"%s"
-msgstr "Новы пароль для базы дадзеных\n\n"
-"%s"
+msgid "New password for database:"
+msgstr ""
 
 #: mmframe.cpp:2351
 msgid "New password must not be empty."
@@ -5521,8 +5522,8 @@ msgid "Confirm password failed."
 msgstr "Пароль ня спраўджаны."
 
 #: mmframe.cpp:2377
-msgid "Make sure you have a backup of DB before optimize it"
-msgstr "Пераканайцеся, што маеце рызервовую копію БД, перш чым аптымізаваць яе"
+msgid "Backup database before optimization."
+msgstr ""
 
 #: mmframe.cpp:2378 mmframe.cpp:2388
 msgid "DB Optimization"
