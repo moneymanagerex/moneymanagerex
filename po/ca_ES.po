@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-24 16:38+0300\n"
-"PO-Revision-Date: 2024-02-24 13:40\n"
+"PO-Revision-Date: 2024-02-24 15:43\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -960,7 +960,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:451 billsdepositsdialog.cpp:1329
 msgid "Payments Left"
-msgstr ""
+msgstr "Abonaments Restants"
 
 #: billsdepositsdialog.cpp:465
 msgid "Request user to enter payment"
@@ -2915,7 +2915,7 @@ msgstr ""
 
 #: general_report_manager.cpp:743
 msgid "Rename Report..."
-msgstr ""
+msgstr "Canviar el nom de l'Informe..."
 
 #: general_report_manager.cpp:747
 msgid "Active"
@@ -2995,7 +2995,7 @@ msgstr ""
 
 #: images_list.cpp:457
 msgid "and more..."
-msgstr ""
+msgstr "i més..."
 
 #: images_list.cpp:459
 #, c-format
@@ -3608,12 +3608,12 @@ msgstr "Línia %ld: Buida"
 #: import_export/univcsvdialog.cpp:1395
 #, c-format
 msgid "Line %ld: Error:"
-msgstr ""
+msgstr "Línia %ld: Error:"
 
 #: import_export/univcsvdialog.cpp:1410
 #, c-format
 msgid "Line %ld: %s"
-msgstr ""
+msgstr "Línia %ld: %s"
 
 #: import_export/univcsvdialog.cpp:1464
 #, c-format
