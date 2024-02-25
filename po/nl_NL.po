@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-24 16:38+0300\n"
-"PO-Revision-Date: 2024-02-25 12:39\n"
+"PO-Revision-Date: 2024-02-25 13:34\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -5488,7 +5488,7 @@ msgstr "Wachtwoorden onjuist."
 
 #: mmframe.cpp:2377
 msgid "Backup database before optimization."
-msgstr ""
+msgstr "Maak een Back-up van de database voor optimalisatie."
 
 #: mmframe.cpp:2378 mmframe.cpp:2388
 msgid "DB Optimization"
