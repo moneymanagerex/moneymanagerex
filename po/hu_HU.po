@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-24 16:38+0300\n"
-"PO-Revision-Date: 2024-02-25 08:49\n"
+"PO-Revision-Date: 2024-02-25 10:46\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5003,7 +5003,7 @@ msgstr "Pénznem- és részvényárfolyamok letöltése"
 
 #: mmframe.cpp:1699
 msgid "&Payee Manager..."
-msgstr "&Kedvezményezettkezelő…"
+msgstr "Ked&vezményezettkezelő…"
 
 #: mmframe.cpp:1699 mmframe.cpp:1928 payeedialog.cpp:508
 msgid "Payee Manager"
@@ -5035,7 +5035,7 @@ msgstr "Kategóriák egyesítése"
 
 #: mmframe.cpp:1718
 msgid "&Payees..."
-msgstr "&Kedvezményezettek…"
+msgstr "Ked&vezményezettek…"
 
 #: mmframe.cpp:1719 relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge payees"
@@ -5071,7 +5071,7 @@ msgstr "Számlák és betétek"
 
 #: mmframe.cpp:1744
 msgid "&Assets"
-msgstr "Eszközök"
+msgstr "&Eszközök"
 
 #: mmframe.cpp:1750
 msgid "T&heme Manager..."
@@ -5111,11 +5111,11 @@ msgstr "Beállítások"
 
 #: mmframe.cpp:1784
 msgid "&Decrypt Encrypted Database..."
-msgstr ""
+msgstr "Titkosított adatbázis &visszafejtése…"
 
 #: mmframe.cpp:1785
 msgid "Convert encrypted database to unencrypted database"
-msgstr ""
+msgstr "A titkosított adatbázis átalakítása titkosítatlan adatbázissá"
 
 #: mmframe.cpp:1787
 msgid "Change Encrypted &Password..."
@@ -5131,7 +5131,7 @@ msgstr "Adatbázis &optimalizálása…"
 
 #: mmframe.cpp:1791
 msgid "Optimize database for space and performance"
-msgstr ""
+msgstr "Adatbázis optimalizálása a méret és a működés érdekében"
 
 #: mmframe.cpp:1793
 msgid "Database Check and De&bug..."
@@ -5159,7 +5159,7 @@ msgstr "Súgó"
 
 #: mmframe.cpp:1813
 msgid "Visit MMEX website for the latest news and updates"
-msgstr ""
+msgstr "MMEX-webhely meglátogassa a legfrissebb hírekért és frissítésekért"
 
 #: mmframe.cpp:1815
 msgid "&Facebook"
@@ -5167,7 +5167,7 @@ msgstr "&Facebook"
 
 #: mmframe.cpp:1815
 msgid "Visit MMEX Facebook page"
-msgstr ""
+msgstr "MMEX Facebook oldalának meglátogassa"
 
 #: mmframe.cpp:1817
 msgid "&Crowdin"
@@ -5175,7 +5175,7 @@ msgstr "&Crowdin"
 
 #: mmframe.cpp:1817
 msgid "Help translate MMEX on Crowdin"
-msgstr ""
+msgstr "MMEX fordításának segítségében Crowdin rendszeren"
 
 #: mmframe.cpp:1819
 msgid "&Twitter"
@@ -5191,7 +5191,7 @@ msgstr "&YouTube"
 
 #: mmframe.cpp:1821
 msgid "Watch MMEX videos on YouTube"
-msgstr ""
+msgstr "MMEX videók megtekintése a YouTube-on"
 
 #: mmframe.cpp:1823
 msgid "&Slack"
@@ -5199,7 +5199,7 @@ msgstr "&Slack"
 
 #: mmframe.cpp:1823
 msgid "Communicate with the MMEX team online"
-msgstr ""
+msgstr "MMEX csapatával online kommunikálása"
 
 #: mmframe.cpp:1825
 msgid "&GitHub"
@@ -5223,7 +5223,7 @@ msgstr "&Fórum"
 
 #: mmframe.cpp:1830
 msgid "Visit MMEX forum to read and post comments"
-msgstr ""
+msgstr "MMEX-fórum meglátogassa, hogy olvasson és tegyen megjegyzéseket"
 
 #: mmframe.cpp:1832
 msgid "MMEX for &Android"
@@ -5231,7 +5231,7 @@ msgstr "MMEX &Androidra"
 
 #: mmframe.cpp:1833
 msgid "Install MMEX for Android based smartphones and tablets"
-msgstr ""
+msgstr "MMEX telepítés Android alapú okostelefonokra és táblagépekre"
 
 #: mmframe.cpp:1835
 msgid "&Newsletter"
@@ -5323,7 +5323,7 @@ msgstr "S&zámlák"
 
 #: mmframe.cpp:1894
 msgid "&Tools"
-msgstr "&Eszközök"
+msgstr "Es&zközök"
 
 #: mmframe.cpp:1895
 msgid "&View"
@@ -5355,7 +5355,7 @@ msgstr "Árfolyamok letöltése"
 
 #: mmframe.cpp:1952
 msgid "Download currency and stock rates"
-msgstr ""
+msgstr "Pénznem- és részvényárfolyamok letöltése"
 
 #: mmframe.cpp:1955
 msgid "Toggle Fullscreen\tF11"
@@ -6810,7 +6810,7 @@ msgstr "&Mellékletkezelő"
 
 #: payeedialog.cpp:895
 msgid "Merge &Payee"
-msgstr "Ked&vezményezettek egyesítése"
+msgstr "Ked&vezményezett egyesítése"
 
 #: relocatecategorydialog.cpp:102
 msgid "Delete source category after merge (if source category has no subcategories)"
