@@ -2371,7 +2371,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
     wxSQLite3CipherAes128 cipher;
 
     db.Open(fileName, cipher, password);
-    db.ReKey(wxEmptyString);
+    db.ReKey(cipher, wxEmptyString);
     db.Close();
 
     mmErrorDialogs::MessageError(this, _("Converted database!"), _("MMEX message"));
@@ -2558,7 +2558,7 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
         wxSQLite3CipherAes128 cipher;
 
         dbx.Open(newFileName.GetFullPath(), cipher, m_password);
-        dbx.ReKey(new_password); // empty password resets encryption
+        dbx.ReKey(cipher, new_password); // empty password resets encryption
         dbx.Close();
     }
 
