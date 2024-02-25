@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-24 16:38+0300\n"
-"PO-Revision-Date: 2024-02-24 13:40\n"
+"PO-Revision-Date: 2024-02-25 12:39\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -5111,11 +5111,11 @@ msgstr "Opties"
 
 #: mmframe.cpp:1784
 msgid "&Decrypt Encrypted Database..."
-msgstr ""
+msgstr "&Gecodeerde database decoderen..."
 
 #: mmframe.cpp:1785
 msgid "Convert encrypted database to unencrypted database"
-msgstr ""
+msgstr "Versleutelde database omzetten naar niet-versleutelde database"
 
 #: mmframe.cpp:1787
 msgid "Change Encrypted &Password..."
@@ -5131,7 +5131,7 @@ msgstr "Database &optimaliseren..."
 
 #: mmframe.cpp:1791
 msgid "Optimize database for space and performance"
-msgstr ""
+msgstr "Optimaliseer de database voor ruimte en prestaties"
 
 #: mmframe.cpp:1793
 msgid "Database Check and De&bug..."
@@ -5159,7 +5159,7 @@ msgstr "Toon help"
 
 #: mmframe.cpp:1813
 msgid "Visit MMEX website for the latest news and updates"
-msgstr ""
+msgstr "Bezoek de MMEX website voor het laatste nieuws en de laatste updates"
 
 #: mmframe.cpp:1815
 msgid "&Facebook"
@@ -5167,7 +5167,7 @@ msgstr "&Facebook"
 
 #: mmframe.cpp:1815
 msgid "Visit MMEX Facebook page"
-msgstr ""
+msgstr "Bezoek de MMEX Facebook pagina"
 
 #: mmframe.cpp:1817
 msgid "&Crowdin"
@@ -5175,7 +5175,7 @@ msgstr "&Crowdin"
 
 #: mmframe.cpp:1817
 msgid "Help translate MMEX on Crowdin"
-msgstr ""
+msgstr "Help MMEX te vertalen op Crowdin"
 
 #: mmframe.cpp:1819
 msgid "&Twitter"
@@ -5191,7 +5191,7 @@ msgstr "&YouTube"
 
 #: mmframe.cpp:1821
 msgid "Watch MMEX videos on YouTube"
-msgstr ""
+msgstr "MMEX-video's op YouTube bekijken"
 
 #: mmframe.cpp:1823
 msgid "&Slack"
@@ -5199,7 +5199,7 @@ msgstr "&Slack"
 
 #: mmframe.cpp:1823
 msgid "Communicate with the MMEX team online"
-msgstr ""
+msgstr "Communiceer online met het MMEX-team"
 
 #: mmframe.cpp:1825
 msgid "&GitHub"
@@ -5223,7 +5223,7 @@ msgstr "F&orum"
 
 #: mmframe.cpp:1830
 msgid "Visit MMEX forum to read and post comments"
-msgstr ""
+msgstr "Bezoek het MMEX forum om reacties te lezen en te plaatsen"
 
 #: mmframe.cpp:1832
 msgid "MMEX for &Android"
@@ -5231,7 +5231,7 @@ msgstr "MMEX voor &Android"
 
 #: mmframe.cpp:1833
 msgid "Install MMEX for Android based smartphones and tablets"
-msgstr ""
+msgstr "Installeer MMEX voor Android gebaseerde smartphones en tablets"
 
 #: mmframe.cpp:1835
 msgid "&Newsletter"
@@ -5355,7 +5355,7 @@ msgstr "Download tarieven"
 
 #: mmframe.cpp:1952
 msgid "Download currency and stock rates"
-msgstr ""
+msgstr "Download valutakoersen en aandelenkoersen"
 
 #: mmframe.cpp:1955
 msgid "Toggle Fullscreen\tF11"
@@ -5382,7 +5382,7 @@ msgstr "MMEX: Versleutelde Database"
 
 #: mmframe.cpp:2053
 msgid "Have MMEX support provided a debug/patch file?"
-msgstr ""
+msgstr "Heeft MMEX support u een debug/patch bestand toegezonden?"
 
 #: mmframe.cpp:2053
 msgid "MMEX upgrade"
@@ -5456,7 +5456,7 @@ msgstr "Kies databasebestand om op te slaan"
 
 #: mmframe.cpp:2336
 msgid "Converted database!"
-msgstr ""
+msgstr "Database geconverteerd!"
 
 #: mmframe.cpp:2336
 msgid "MMEX message"
@@ -5468,7 +5468,7 @@ msgstr "MMEX: wachtwoord versleuteling wijzigen"
 
 #: mmframe.cpp:2343
 msgid "New password for database:"
-msgstr ""
+msgstr "Nieuw wachtwoord voor database:"
 
 #: mmframe.cpp:2351
 msgid "New password must not be empty."
