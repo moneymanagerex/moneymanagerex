@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-24 16:38+0300\n"
-"PO-Revision-Date: 2024-02-24 16:42\n"
+"PO-Revision-Date: 2024-02-25 13:34\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -5111,15 +5111,11 @@ msgstr "Opções"
 
 #: mmframe.cpp:1784
 msgid "&Decrypt Encrypted Database..."
-msgstr "Chave: &Descriptografar banco de dados criptografado...\n"
-"#: mmframe. cpp: 1784\n"
-"Arquivo: mmex. po..."
+msgstr "&Descriptografar banco de dados criptografado..."
 
 #: mmframe.cpp:1785
 msgid "Convert encrypted database to unencrypted database"
-msgstr "Chave: Converter banco de dados criptografado em banco de dados não criptografado\n"
-"#: mmframe. cpp: 1785\n"
-"Arquivo: mmex. po"
+msgstr "Converte banco de dados criptografado em banco de dados não criptografado"
 
 #: mmframe.cpp:1787
 msgid "Change Encrypted &Password..."
@@ -5135,9 +5131,7 @@ msgstr "&Otimizar Banco de Dados..."
 
 #: mmframe.cpp:1791
 msgid "Optimize database for space and performance"
-msgstr "Chave: Otimizar banco de dados para espaço e desempenho\n"
-"#: mmframe. cpp: 1791\n"
-"Arquivo: mmex. po"
+msgstr "Otimizar o tamanho e desempenho do banco de dados"
 
 #: mmframe.cpp:1793
 msgid "Database Check and De&bug..."
@@ -5165,7 +5159,7 @@ msgstr "Mostrar Ajuda"
 
 #: mmframe.cpp:1813
 msgid "Visit MMEX website for the latest news and updates"
-msgstr "Visite o site da MMEX para obter as últimas notícias e atualizações"
+msgstr "Visite o site do MMEX para obter as últimas notícias e atualizações"
 
 #: mmframe.cpp:1815
 msgid "&Facebook"
@@ -5173,7 +5167,7 @@ msgstr "&Facebook"
 
 #: mmframe.cpp:1815
 msgid "Visit MMEX Facebook page"
-msgstr "Visite a página da MMEX no Facebook"
+msgstr "Visite a página do MMEX no Facebook"
 
 #: mmframe.cpp:1817
 msgid "&Crowdin"
@@ -5197,7 +5191,7 @@ msgstr "&YouTube"
 
 #: mmframe.cpp:1821
 msgid "Watch MMEX videos on YouTube"
-msgstr "Assista a vídeos MMEX no YouTube"
+msgstr "Assista a vídeos sobre o MMEX no YouTube"
 
 #: mmframe.cpp:1823
 msgid "&Slack"
@@ -5494,7 +5488,7 @@ msgstr "Confirmação de senha falhou."
 
 #: mmframe.cpp:2377
 msgid "Backup database before optimization."
-msgstr "Banco de dados de backup antes da otimização."
+msgstr "Backup do banco de dados antes da otimização."
 
 #: mmframe.cpp:2378 mmframe.cpp:2388
 msgid "DB Optimization"
