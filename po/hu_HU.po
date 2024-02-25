@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-24 16:38+0300\n"
-"PO-Revision-Date: 2024-02-24 13:40\n"
+"PO-Revision-Date: 2024-02-25 08:49\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5382,7 +5382,7 @@ msgstr "MMEX: titkosított adatbázis"
 
 #: mmframe.cpp:2053
 msgid "Have MMEX support provided a debug/patch file?"
-msgstr ""
+msgstr "Az MMEX-támogatás biztosított hibakeresési/javító fájlt?"
 
 #: mmframe.cpp:2053
 msgid "MMEX upgrade"
@@ -5456,7 +5456,7 @@ msgstr "A másképp mentéshez válasszon adatbázisfájlt"
 
 #: mmframe.cpp:2336
 msgid "Converted database!"
-msgstr ""
+msgstr "Átalakított adatbázis!"
 
 #: mmframe.cpp:2336
 msgid "MMEX message"
@@ -5468,7 +5468,7 @@ msgstr "MMEX: titkosítási jelszó módosítása"
 
 #: mmframe.cpp:2343
 msgid "New password for database:"
-msgstr ""
+msgstr "Új jelszó az adatbázishoz:"
 
 #: mmframe.cpp:2351
 msgid "New password must not be empty."
@@ -5488,7 +5488,7 @@ msgstr "A jelszó megerősítése sikertelen."
 
 #: mmframe.cpp:2377
 msgid "Backup database before optimization."
-msgstr ""
+msgstr "Adatbázis biztonsági mentése az optimalizálás előtt."
 
 #: mmframe.cpp:2378 mmframe.cpp:2388
 msgid "DB Optimization"
