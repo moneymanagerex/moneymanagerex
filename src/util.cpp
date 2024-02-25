@@ -128,7 +128,7 @@ const wxString inQuotes(const wxString& l, const wxString& delimiter)
 }
 
 void mmLoadColorsFromDatabase(const bool def)
-{
+    {
     mmColors::userDefColor1 = def ? wxColour(246, 144, 144) : Model_Infotable::instance().GetColourSetting("USER_COLOR1", wxColour(246, 144, 144));
     mmColors::userDefColor2 = def ? wxColour(229, 196, 146) : Model_Infotable::instance().GetColourSetting("USER_COLOR2", wxColour(229, 196, 146));
     mmColors::userDefColor3 = def ? wxColour(245, 237, 149) : Model_Infotable::instance().GetColourSetting("USER_COLOR3", wxColour(245, 237, 149));
@@ -453,7 +453,7 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
 
 bool mmParseISODate(const wxString& in, wxDateTime& out)
 {
-    if (in.IsEmpty() || !out.ParseDate(in)) {
+    if (in.IsEmpty() || !(out.ParseDateTime(in) || out.ParseDate(in))) {
         out = wxDateTime::Today();
         return false;
     }
@@ -794,7 +794,7 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
     wxString buffer;
 
     wxString base_curr_symbol = base_currency_symbol;
-    if (type == yahoo_price_type::FIAT && !wxString("USD|EUR|GBP|CHF").Contains(base_currency_symbol))
+    if (type == yahoo_price_type::FIAT && !wxString("USD|EUR|GBP").Contains(base_currency_symbol))
     {
         base_curr_symbol = "USD";
         buffer += wxString::Format("%s%s=X,", base_currency_symbol, base_curr_symbol);

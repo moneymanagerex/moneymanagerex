@@ -147,6 +147,10 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE())
               : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByTRANSDATE());
         break;
+    case TransactionListCtrl::COL_TIME:
+        ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByTRANSTIME())
+               : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByTRANSTIME());
+        break;
     case TransactionListCtrl::COL_DELETEDTIME:
         ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByDELETEDTIME())
             : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByDELETEDTIME());
@@ -269,12 +273,33 @@ TransactionListCtrl::TransactionListCtrl(
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
     SetAcceleratorTable(tab);
 
+    resetColumns();
+
+    // V2 used as now maps to real column names and this resets everything to default
+    // to avoid strange column widths when this code version is first
+    m_col_width = m_cp->isAllAccounts_ ? "ALLTRANS_COLV2%d_WIDTH" : "CHECK2_COLV2%d_WIDTH";
+
+    m_default_sort_column = COL_DEF_SORT;
+    m_today = wxDateTime::Today().FormatISODate();
+
+    SetSingleStyle(wxLC_SINGLE_SEL, false);
+}
+
+void TransactionListCtrl::resetColumns()
+{
+    m_columns.clear();
+    m_real_columns.clear();
     m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_CENTER, false));
     m_real_columns.push_back(COL_IMGSTATUS);
     m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true));
     m_real_columns.push_back(COL_ID);
     m_columns.push_back(PANEL_COLUMN(_("Date"), 112, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_DATE);
+    if (Option::instance().UseTransDateTime())
+    {
+        m_columns.push_back(PANEL_COLUMN(_("Time"), 70, wxLIST_FORMAT_LEFT, true));
+        m_real_columns.push_back(COL_TIME);
+    }
     m_columns.push_back(PANEL_COLUMN(_("Number"), 70, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_NUMBER);
     if (m_cp->isAllAccounts_ || m_cp->isTrash_)
@@ -325,9 +350,9 @@ TransactionListCtrl::TransactionListCtrl(
             if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
                 align = wxLIST_FORMAT_RIGHT;
             else if (type == Model_CustomField::FIELDTYPE::BOOLEAN)
-                align = wxLIST_FORMAT_CENTER; 
+                align = wxLIST_FORMAT_CENTER;
             else
-                align = wxLIST_FORMAT_LEFT; 
+                align = wxLIST_FORMAT_LEFT;
             m_columns.push_back(PANEL_COLUMN(name, 100, align, true));
             m_real_columns.push_back(static_cast<EColumn>(i));
         }
@@ -335,15 +360,6 @@ TransactionListCtrl::TransactionListCtrl(
     }
     m_columns.push_back(PANEL_COLUMN(_("Last Updated"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_UPDATEDTIME);
-
-    // V2 used as now maps to real column names and this resets everything to default
-    // to avoid strange column widths when this code version is first
-    m_col_width = m_cp->isAllAccounts_ ? "ALLTRANS_COLV2%d_WIDTH" : "CHECK2_COLV2%d_WIDTH";
-
-    m_default_sort_column = COL_DEF_SORT;
-    m_today = wxDateTime::Today().FormatISODate();
-
-    SetSingleStyle(wxLC_SINGLE_SEL, false);
 }
 
 TransactionListCtrl::~TransactionListCtrl()
@@ -453,10 +469,10 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     }
     wxMenu menu;
     if (!m_cp->isTrash_) {
-        menu.Append(MENU_TREEPOPUP_WITHDRAWAL, _("&New Withdrawal..."));
-        menu.Append(MENU_TREEPOPUP_DEPOSIT, _("&New Deposit..."));
+        menu.Append(MENU_TREEPOPUP_WITHDRAWAL, _("New &Withdrawal..."));
+        menu.Append(MENU_TREEPOPUP_DEPOSIT, _("New &Deposit..."));
         if (Model_Account::instance().all_checking_account_names(true).size() > 1)
-            menu.Append(MENU_TREEPOPUP_TRANSFER, _("&New Transfer..."));
+            menu.Append(MENU_TREEPOPUP_TRANSFER, _("New &Transfer..."));
 
         menu.AppendSeparator();
 
@@ -529,10 +545,12 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
                 copyText_ = m_trans[row].displayID;
                 break;
             case COL_DATE:
+            {
                 copyText_ = menuItemText = mmGetDateForDisplay(m_trans[row].TRANSDATE);
-                rightClickFilter_ = "{\n\"DATE1\": \"" + m_trans[row].TRANSDATE +
-                    "\",\n\"DATE2\" : \"" + m_trans[row].TRANSDATE + "\"\n}";
+                wxString strDate = Model_Checking::TRANSDATE(m_trans[row]).FormatISODate();
+                rightClickFilter_ = "{\n\"DATE1\": \"" + strDate + "\",\n\"DATE2\" : \"" + strDate + "T23:59:59" + "\"\n}";
                 break;
+            }
             case COL_NUMBER:
                 copyText_ = menuItemText = m_trans[row].TRANSACTIONNUMBER;
                 rightClickFilter_ = "{\n\"NUMBER\": \"" + menuItemText + "\"\n}";
@@ -638,7 +656,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
                     menu.Append(MENU_TREEPOPUP_FIND, wxString::Format(_("&Find all transactions with %s '%s'"), (columnIsAmount ? _("Amount") : m_columns[column].HEADER), menuItemText));
                 }
                 if (!copyText_.IsEmpty())
-                    menu.Append(MENU_TREEPOPUP_COPYTEXT, _("Copy Text to Clipboard"));
+                    menu.Append(MENU_TREEPOPUP_COPYTEXT, _("Cop&y Text to Clipboard"));
             }
         }
     }
@@ -654,23 +672,23 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_FLAGGED, _("Delete Viewed \"Follow Up\" Transactions..."));
         subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_UNRECONCILED, _("Delete Viewed \"Unreconciled\" Transactions..."));
     }
-    menu.Append(MENU_TREEPOPUP_DELETE2, _("&Delete "), subGlobalOpMenuDelete);
+    menu.Append(MENU_TREEPOPUP_DELETE2, _("De&lete "), subGlobalOpMenuDelete);
 
     if (!m_cp->isTrash_) {
         menu.AppendSeparator();
 
         wxMenu* subGlobalOpMenuMark = new wxMenu();
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("Unreconciled"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("&Unreconciled"));
         if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKUNRECONCILED, false);
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("Reconciled"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("&Reconciled"));
         if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("Void"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("&Void"));
         if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKVOID, false);
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("Follow Up"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("&Follow Up"));
         if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, false);
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("Duplicate"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("D&uplicate"));
         if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
-        menu.AppendSubMenu(subGlobalOpMenuMark, _("Mark as"));
+        menu.AppendSubMenu(subGlobalOpMenuMark, _("Mar&k as"));
 
         // Disable menu items not ment for foreign transactions
         if (is_foreign)
@@ -697,6 +715,7 @@ void TransactionListCtrl::findInAllTransactions(wxCommandEvent& event) {
         if (currentId.IsOk() && currentId == allTransactionsId)
         {
             m_cp->m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, -1, false, rightClickFilter_));
+            m_cp->m_currentView = mmCheckingPanel::MENU_VIEW_FILTER_DIALOG;
             m_cp->initFilterSettings();
             refreshVisualList();
         }
@@ -743,8 +762,9 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
         {
             Model_Account::Data* account = Model_Account::instance().get(m_trans[row].ACCOUNTID);
             const auto statement_date = Model_Account::DateOf(account->STATEMENTDATE).FormatISODate();
+            wxString strDate = Model_Checking::TRANSDATE(m_trans[row]).FormatISODate();
             if (!Model_Account::BoolOf(account->STATEMENTLOCKED)
-                || m_trans[row].TRANSDATE > statement_date)
+                || strDate > statement_date)
             {
                 //bRefreshRequired |= (status == "V") || (m_trans[row].STATUS == "V");
                 m_trans[row].STATUS = status;
@@ -855,7 +875,8 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
     if (item < 0 || item >= static_cast<int>(m_trans.size())) return 0;
 
     const Model_Checking::Full_Data& tran = m_trans[item];
-    bool in_the_future = (tran.TRANSDATE > m_today);
+    wxString strDate = Model_Checking::TRANSDATE(tran).FormatISODate();
+    bool in_the_future = (strDate > m_today);
 
     // apply alternating background pattern
     int user_color_id = tran.COLOR;
@@ -1021,7 +1042,7 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
 
     //TODO: the clone function can't clone split transactions, or custom data
     Model_Checking::Data* copy = Model_Checking::instance().clone(tran); 
-    if (!useOriginalDate) copy->TRANSDATE = wxDateTime::Now().FormatISODate();
+    if (!useOriginalDate) copy->TRANSDATE = wxDateTime::Now().FormatISOCombined();
     if (!m_cp->isAllAccounts_ && ((Model_Checking::type(copy->TRANSCODE) != Model_Checking::TRANSFER) ||
             (m_cp->m_AccountID != copy->ACCOUNTID && m_cp->m_AccountID != copy->TOACCOUNTID)))
         copy->ACCOUNTID = m_cp->m_AccountID;
@@ -1939,6 +1960,12 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         return tran.ACCOUNTNAME;
     case TransactionListCtrl::COL_DATE:
         return mmGetDateForDisplay(tran.TRANSDATE);
+    case TransactionListCtrl::COL_TIME:
+    {
+        wxDate date;
+        date.ParseDateTime(tran.TRANSDATE) || date.ParseDate(tran.TRANSDATE);
+        return date.FormatISOTime();
+    }
     case TransactionListCtrl::COL_NUMBER:
         return tran.TRANSACTIONNUMBER;
     case TransactionListCtrl::COL_CATEGORY:

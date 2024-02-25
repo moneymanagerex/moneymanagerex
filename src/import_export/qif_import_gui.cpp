@@ -1089,9 +1089,10 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             wxString msg;
             if (completeTransaction(entry, trx, msg))
             {
-                if (dateFromCheckBox_->IsChecked() && trx->TRANSDATE < begin_date)
+                wxString strDate = Model_Checking::TRANSDATE(trx).FormatISODate();
+                if (dateFromCheckBox_->IsChecked() && strDate < begin_date)
                     continue;
-                if (dateToCheckBox_->IsChecked() && trx->TRANSDATE > end_date)
+                if (dateToCheckBox_->IsChecked() && strDate > end_date)
                     continue;
                 
                 Model_Account::Data* account = Model_Account::instance().get(trx->ACCOUNTID);
@@ -1369,7 +1370,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
     wxDateTime dtdt;
     wxString::const_iterator end;
     if (dtdt.ParseFormat(dateStr, m_dateFormatStr, &end))
-        trx->TRANSDATE = dtdt.FormatISODate();
+        trx->TRANSDATE = dtdt.FormatISOCombined();
     else
     {
         *log_field_ << _("Date format or date mask is incorrect") << "\n";

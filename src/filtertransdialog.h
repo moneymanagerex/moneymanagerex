@@ -81,6 +81,30 @@ public:
         GROUPBY_MONTH,
         GROUPBY_YEAR
     };
+
+    enum columnId
+    {
+        COL_ID = 0,
+        COL_COLOR,
+        COL_DATE,
+        COL_NUMBER,
+        COL_ACCOUNT,
+        COL_PAYEE,
+        COL_STATUS,
+        COL_CATEGORY,
+        COL_TYPE,
+        COL_AMOUNT,
+        COL_NOTES,
+        COL_UDFC01,
+        COL_UDFC02,
+        COL_UDFC03,
+        COL_UDFC04,
+        COL_UDFC05,
+        COL_TAGS,
+        COL_RATE,
+        COL_TIME
+    };
+
     int mmGetGroupBy() const;
 
     int mmGetChart() const;

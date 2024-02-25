@@ -184,7 +184,7 @@ void mmAssetDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _("Date")), g_flagsH);
     m_dpc = new mmDatePickerCtrl(asset_details_panel, wxID_ANY);
-    itemFlexGridSizer6->Add(m_dpc->mmGetLayout());
+    itemFlexGridSizer6->Add(m_dpc->mmGetLayout(false));
     mmToolTip(m_dpc, _("Specify the date of purchase of asset"));
 
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _("Asset Type")), g_flagsH);

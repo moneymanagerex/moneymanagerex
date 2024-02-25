@@ -77,14 +77,14 @@ public:
     }
 
 protected:
-    static wxDate to_date(const wxString& str_date)
+    static wxDateTime to_date(const wxString& str_date)
     {
-        static std::unordered_map<wxString, wxDate> cache;
+        static std::unordered_map<wxString, wxDateTime> cache;
         const auto it = cache.find(str_date);
         if (it != cache.end()) return it->second;
 
-        wxDate date;
-        date.ParseISODate(str_date); // the date in ISO 8601 format "YYYY-MM-DD".
+        wxDateTime date;
+        date.ParseISOCombined(str_date) || date.ParseISODate(str_date); // the date in ISO 8601 format "YYYY-MM-DD".
         cache.insert(std::make_pair(str_date, date));
         return date;
     }

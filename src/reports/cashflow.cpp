@@ -75,7 +75,7 @@ void mmReportCashFlow::getTransactions()
     m_forecastVector.clear();
 
     wxString todayString = m_today.FormatISODate();
-    wxDateTime endDate = m_today.Add(wxDateSpan::Months(getForwardMonths()));
+    wxDateTime endDate = mmDateRange::getDayEnd(m_today.Add(wxDateSpan::Months(getForwardMonths())));
 
     // Get initial Balance as of today
 
@@ -94,9 +94,10 @@ void mmReportCashFlow::getTransactions()
 
         for (const auto& tran : Model_Account::transaction(account))
         {
+            wxString strDate = Model_Checking::TRANSDATE(tran).FormatISODate();
             // Do not include asset or stock transfers in income expense calculations.
             if (Model_Checking::foreignTransactionAsTransfer(tran)
-                || (tran.TRANSDATE > todayString))
+                || (strDate > todayString))
                 continue;
             m_balance += Model_Checking::balance(tran, account.ACCOUNTID) * convRate;
         }
@@ -239,16 +240,13 @@ wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
     // squash the data by month or day
     for (const auto& trx : m_forecastVector)
     {
-        wxString date = trx.TRANSDATE;
+        dt = Model_Checking::TRANSDATE(trx);
+        wxString date = dt.FormatISODate();
         if (monthly)
         {
-            dt.ParseDate(trx.TRANSDATE);
             date = dt.SetDay(1).FormatISODate();
         }
-        if (dateMap.count(date) == 0)
-            dateMap[date] = trx.TRANSAMOUNT;
-        else
-            dateMap[date] = dateMap[date] + trx.TRANSAMOUNT;
+        dateMap[date] += trx.TRANSAMOUNT;
     }
 
     // Build the report

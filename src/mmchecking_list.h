@@ -41,12 +41,15 @@ public:
     Model_Checking::Full_Data_Set m_trans;
     void markSelectedTransaction();
     void DeleteTransactionsByStatus(const wxString& status);
+    void resetColumns();
+
 public:
     enum EColumn
     {
         COL_IMGSTATUS = 0,
         COL_ID,
         COL_DATE,
+        COL_TIME,
         COL_NUMBER,
         COL_ACCOUNT,
         COL_PAYEE_STR,

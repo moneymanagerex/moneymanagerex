@@ -90,12 +90,12 @@ void mmBudgetYearDialog::CreateControls()
     itemBoxSizer2->Add(itemBoxSizer5, 1, wxGROW|wxALL, 5);
 
     wxButton* itemButton7 = new wxButton(this, wxID_ADD
-        , _("&Add Year"));
+        , _("Add &Year"));
     itemBoxSizer5->Add(itemButton7, 0, wxALIGN_CENTER_VERTICAL);
     mmToolTip(itemButton7, _("Add a new budget year"));
 
     wxButton* itemBudgetMonth = new wxButton(this, ID_ADD_MONTH
-        , _("&Add Month"));
+        , _("Add &Month"));
     itemBoxSizer5->Add(itemBudgetMonth, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, 5);
     mmToolTip(itemBudgetMonth, _("Add a new budget month"));
 

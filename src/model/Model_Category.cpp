@@ -300,7 +300,7 @@ void Model_Category::getCategoryStats(
     for (const auto& transaction : Model_Checking::instance().find(
         Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
         , Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
-        , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)))
+        , Model_Checking::TRANSDATE(date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL)))
     {
         if (!transaction.DELETEDTIME.IsEmpty()) continue;
 

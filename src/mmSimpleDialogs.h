@@ -31,6 +31,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/dialog.h>
 #include <wx/choice.h>
 #include <wx/stc/stc.h>
+#include <wx/timectrl.h>
 
 class wxComboBox;
 class wxTextCtrl;
@@ -156,9 +157,8 @@ inline void mmComboBoxCustom::init() {}
 
 /* -------------------------------------------- */
 
-class mmDatePickerCtrl : public wxDatePickerCtrl
+class mmDatePickerCtrl : public wxPanel
 {
-    wxDECLARE_EVENT_TABLE();
 
 public:
     mmDatePickerCtrl(wxWindow* parent, wxWindowID id
@@ -167,11 +167,16 @@ public:
     ~mmDatePickerCtrl();
     void SetValue(const wxDateTime &dt);    // Override
     bool Enable(bool state=true);           // Override
-    wxBoxSizer* mmGetLayout();
+    wxBoxSizer* mmGetLayout(bool showTimeCtrl = true);
+    wxBoxSizer* mmGetLayoutWithTime();
+    wxDateTime GetValue();
+
 private:
     wxStaticText* getTextWeek();
     wxSpinButton* getSpinButton();
-
+    wxDateTime dt_;
+    wxDatePickerCtrl* datePicker_ = nullptr;
+    wxTimePickerCtrl* timePicker_ = nullptr;
     void OnDateChanged(wxDateEvent& event);
     void OnDateSpin(wxSpinEvent& event);
 
@@ -179,6 +184,8 @@ private:
     wxStaticText* itemStaticTextWeek_ = nullptr;
     wxSpinButton* spinButton_ = nullptr;
 };
+
+inline wxDateTime mmDatePickerCtrl::GetValue() { return dt_; }
 
 /* -------------------------------------------- */
 
