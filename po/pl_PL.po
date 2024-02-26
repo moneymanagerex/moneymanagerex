@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-24 16:38+0300\n"
-"PO-Revision-Date: 2024-02-24 13:40\n"
+"PO-Revision-Date: 2024-02-26 00:52\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -732,17 +732,17 @@ msgstr "Nie znaleziono katalogu załączników"
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %s | %i"
-msgstr ""
+msgstr "Menedżer załączników | %s | %i"
 
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr ""
+msgstr "Menedżer załączników | %1$s | %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr ""
+msgstr "Menedżer załączników | Nowy %s"
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
@@ -758,7 +758,7 @@ msgstr "Wprowadź opis dla nowego załącznika:"
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
-msgstr ""
+msgstr "Menedżer załączników: Dodaj załącznik"
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
@@ -766,7 +766,7 @@ msgstr "Wprowadź opis dla nowego załącznika:"
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
-msgstr ""
+msgstr "Menedżer załączników: Edytuj załącznik"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
@@ -1533,7 +1533,7 @@ msgstr "%1$s    Data rozpoczęcia: %2$s"
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "Planer budżetu dla %s"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -1575,7 +1575,7 @@ msgstr "Edytor budżetu"
 
 #: budgetyeardialog.cpp:93
 msgid "Add &Year"
-msgstr ""
+msgstr "Dodaj &rok"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1583,7 +1583,7 @@ msgstr "Dodaj nowy rok budżetowy"
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
-msgstr ""
+msgstr "Dodaj &miesiąc"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -1687,7 +1687,7 @@ msgstr "Znak dwukropka (:) jest używany do oddzielania kategorii i podkategorii
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
-msgstr ""
+msgstr "Menedżer kategorii: Nieprawidłowa nazwa"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
@@ -1703,7 +1703,7 @@ msgstr "Kategoria o tej samej nazwie istnieje dla nadrzędnej"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category Manager: Adding Error"
-msgstr ""
+msgstr "Menedżer kategorii: Błąd dodawania"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
@@ -1762,7 +1762,7 @@ msgstr "Narzędzia → Scal → Kategorie"
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
-msgstr ""
+msgstr "Menedżer kategorii: Błąd usuwania"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1791,7 +1791,7 @@ msgstr "Edytuj kategorię"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
-msgstr ""
+msgstr "Menedżer kategorii: Błąd edycji"
 
 #: categdialog.cpp:682 mmframe.cpp:3737
 msgid "Merge categories completed"
@@ -1833,7 +1833,7 @@ msgstr "Wyczyść ustawienia"
 
 #: categdialog.h:68 mmframe.cpp:1703 mmframe.cpp:1929
 msgid "Category Manager"
-msgstr ""
+msgstr "Menedżer kategorii"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -2171,7 +2171,7 @@ msgstr "Własności"
 
 #: customfieldlistdialog.cpp:66 mmframe.cpp:1766
 msgid "Custom Field Manager"
-msgstr ""
+msgstr "Menedżer pól własnych"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2584,23 +2584,23 @@ msgstr "Wszystkie, z wyjątkiem uzgodnionych"
 
 #: filtertransdialog.cpp:53
 msgid "Day"
-msgstr ""
+msgstr "Dzień"
 
 #: filtertransdialog.cpp:53
 msgid "Month"
-msgstr ""
+msgstr "Miesiąc"
 
 #: filtertransdialog.cpp:53
 msgid "Year"
-msgstr ""
+msgstr "Rok"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
-msgstr ""
+msgstr "Pasek"
 
 #: filtertransdialog.cpp:55
 msgid "Line"
-msgstr ""
+msgstr "Wiersz"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
@@ -2608,7 +2608,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
-msgstr ""
+msgstr "Wykres kołowy"
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
@@ -2707,11 +2707,11 @@ msgstr "Określ, jak raport powinien być pogrupowany"
 #: filtertransdialog.cpp:753 filtertransdialog.cpp:1103
 #: filtertransdialog.cpp:1975
 msgid "Chart"
-msgstr ""
+msgstr "Wykres"
 
 #: filtertransdialog.cpp:762
 msgid "Specify which chart will be included in the report"
-msgstr ""
+msgstr "Wybierz wykres, który będzie uwzględniony w raporcie"
 
 #: filtertransdialog.cpp:765 filtertransdialog.cpp:1984
 msgid "Combine Splits"
@@ -4070,7 +4070,7 @@ msgstr "Zalecenie: Użyj 'kopiuj' (Ctrl+C) i 'wklej' (Ctrl+V) do często używan
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb database file."
-msgstr ""
+msgstr "Wskazówka: Pamiętaj o wykonywaniu kopii zapasowych pliku bazy danych .mmb."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
@@ -4366,7 +4366,7 @@ msgstr "Usuń wyświetlane transakcje \"Nieuzgodnione\"..."
 
 #: mmchecking_list.cpp:675
 msgid "De&lete "
-msgstr ""
+msgstr "&Usuń "
 
 #: mmchecking_list.cpp:681
 msgid "&Unreconciled"
@@ -5146,11 +5146,11 @@ msgstr "Opcje"
 
 #: mmframe.cpp:1784
 msgid "&Decrypt Encrypted Database..."
-msgstr ""
+msgstr "&Odszyfruj zaszyfrowaną bazę danych..."
 
 #: mmframe.cpp:1785
 msgid "Convert encrypted database to unencrypted database"
-msgstr ""
+msgstr "Konwertuj zaszyfrowaną bazę danych na niezaszyfrowaną bazę danych"
 
 #: mmframe.cpp:1787
 msgid "Change Encrypted &Password..."
@@ -5166,7 +5166,7 @@ msgstr "&Optymalizuj bazę danych..."
 
 #: mmframe.cpp:1791
 msgid "Optimize database for space and performance"
-msgstr ""
+msgstr "Optymalizuj bazę danych pod kątem zajmowanego miejsca i wydajności"
 
 #: mmframe.cpp:1793
 msgid "Database Check and De&bug..."
@@ -5194,7 +5194,7 @@ msgstr "Pokaż okno pomocy"
 
 #: mmframe.cpp:1813
 msgid "Visit MMEX website for the latest news and updates"
-msgstr ""
+msgstr "Odwiedź stronę MMEX po najnowsze wiadomości i aktualizacje"
 
 #: mmframe.cpp:1815
 msgid "&Facebook"
@@ -5202,7 +5202,7 @@ msgstr "&Facebook"
 
 #: mmframe.cpp:1815
 msgid "Visit MMEX Facebook page"
-msgstr ""
+msgstr "Odwiedź stronę MMEX na Facebooku"
 
 #: mmframe.cpp:1817
 msgid "&Crowdin"
@@ -5210,7 +5210,7 @@ msgstr "&Crowdin"
 
 #: mmframe.cpp:1817
 msgid "Help translate MMEX on Crowdin"
-msgstr ""
+msgstr "Pomóż przetłumaczyć MMEX na serwisie Crowdin"
 
 #: mmframe.cpp:1819
 msgid "&Twitter"
@@ -5226,7 +5226,7 @@ msgstr "&YouTube"
 
 #: mmframe.cpp:1821
 msgid "Watch MMEX videos on YouTube"
-msgstr ""
+msgstr "Obejrzyj filmy o MMEX na YouTubie"
 
 #: mmframe.cpp:1823
 msgid "&Slack"
@@ -5234,7 +5234,7 @@ msgstr "&Slack"
 
 #: mmframe.cpp:1823
 msgid "Communicate with the MMEX team online"
-msgstr ""
+msgstr "Skontaktuj się z zespołem MMEX przez sieć"
 
 #: mmframe.cpp:1825
 msgid "&GitHub"
@@ -5258,7 +5258,7 @@ msgstr "F&orum"
 
 #: mmframe.cpp:1830
 msgid "Visit MMEX forum to read and post comments"
-msgstr ""
+msgstr "Odwiedź forum MMEX, aby czytać i zamieszczać komentarze"
 
 #: mmframe.cpp:1832
 msgid "MMEX for &Android"
@@ -5266,7 +5266,7 @@ msgstr "MMEX dla &Androida"
 
 #: mmframe.cpp:1833
 msgid "Install MMEX for Android based smartphones and tablets"
-msgstr ""
+msgstr "Zainstaluj MMEX dla smartfonów i tabletów z Androidem"
 
 #: mmframe.cpp:1835
 msgid "&Newsletter"
@@ -5390,7 +5390,7 @@ msgstr ""
 
 #: mmframe.cpp:1952
 msgid "Download currency and stock rates"
-msgstr ""
+msgstr "Pobierz kursy walut i akcji"
 
 #: mmframe.cpp:1955
 msgid "Toggle Fullscreen\tF11"
@@ -5417,7 +5417,7 @@ msgstr "MMEX: Zaszyfrowana baza danych"
 
 #: mmframe.cpp:2053
 msgid "Have MMEX support provided a debug/patch file?"
-msgstr ""
+msgstr "Czy otrzymałeś plik debugowania/łatki od pomocy technicznej MMEX?"
 
 #: mmframe.cpp:2053
 msgid "MMEX upgrade"
@@ -5491,7 +5491,7 @@ msgstr "Wybierz plik bazy danych do zapisania"
 
 #: mmframe.cpp:2336
 msgid "Converted database!"
-msgstr ""
+msgstr "Baza danych została przekonwertowana!"
 
 #: mmframe.cpp:2336
 msgid "MMEX message"
@@ -5503,7 +5503,7 @@ msgstr "MMEX: Zmiana hasła szyfrowania"
 
 #: mmframe.cpp:2343
 msgid "New password for database:"
-msgstr ""
+msgstr "Nowe hasło do bazy danych:"
 
 #: mmframe.cpp:2351
 msgid "New password must not be empty."
@@ -5523,7 +5523,7 @@ msgstr "Podane hasła się różnią."
 
 #: mmframe.cpp:2377
 msgid "Backup database before optimization."
-msgstr ""
+msgstr "Stwórz kopię zapasową bazy danych przed optymalizacją."
 
 #: mmframe.cpp:2378 mmframe.cpp:2388
 msgid "DB Optimization"
