@@ -2340,7 +2340,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnChangeEncryptPassword(wxCommandEvent& /*event*/)
 {
     wxString password_change_heading = _("MMEX: Encryption Password Change");
-    wxString password_message = wxString::Format(_("New password for database:")+"\n\n%s"), m_filename);
+    wxString password_message = wxString::Format(_("New password for database:")+"\n\n%s", m_filename);
 
     wxPasswordEntryDialog dlg(this, password_message, password_change_heading);
     if (dlg.ShowModal() == wxID_OK)
