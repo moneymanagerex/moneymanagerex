@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-24 16:38+0300\n"
-"PO-Revision-Date: 2024-02-28 07:56\n"
+"PO-Revision-Date: 2024-02-28 10:38\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2647,7 +2647,7 @@ msgstr "Összes alkategória belefoglalása"
 #: mmchecking_list.cpp:318 model/Model_Billsdeposits.cpp:33
 #: model/Model_Checking.cpp:34 reports/forecast.cpp:81
 msgid "Withdrawal"
-msgstr "Kivét"
+msgstr "Kivétel"
 
 #: filtertransdialog.cpp:653 filtertransdialog.cpp:1563
 #: filtertransdialog.cpp:1666 import_export/univcsvdialog.cpp:114
@@ -3493,7 +3493,7 @@ msgstr "A pozitív értékek befizetések"
 
 #: import_export/univcsvdialog.cpp:413
 msgid "Positive values are withdrawals"
-msgstr "A pozitív értékek kifiztések"
+msgstr "A pozitív értékek kivételek"
 
 #: import_export/univcsvdialog.cpp:430
 msgid "Rows to ignore"
@@ -3603,7 +3603,7 @@ msgstr "Érvénytelen összeg."
 
 #: import_export/univcsvdialog.cpp:1235
 msgid "Type (withdrawal/deposit) unknown."
-msgstr "A (kivét, vagy letét) típusa ismeretlen."
+msgstr "A (kivétel, vagy letét) típusa ismeretlen."
 
 #: import_export/univcsvdialog.cpp:1295
 msgid "Incorrect fields specified for import!"
@@ -3615,7 +3615,7 @@ msgstr "A dátummező kötelező."
 
 #: import_export/univcsvdialog.cpp:1297
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr "Az összeg mezőt vagy mindkettőt a kivét és a betét mezők kitöltése kötelező."
+msgstr "Az összeg mezőt vagy mindkettőt a kivétel és a betét mezők kitöltése kötelező."
 
 #: import_export/univcsvdialog.cpp:1298 import_export/univcsvdialog.cpp:1493
 #: themes.cpp:189 webappdialog.cpp:408
@@ -4241,7 +4241,7 @@ msgstr "Utolsó frissítés"
 
 #: mmchecking_list.cpp:472
 msgid "New &Withdrawal..."
-msgstr "Új &kivét…"
+msgstr "Új &kivétel…"
 
 #: mmchecking_list.cpp:473
 msgid "New &Deposit..."
@@ -4500,7 +4500,7 @@ msgstr "Ütemezett ügylet mentve."
 
 #: mmcheckingpanel.cpp:324
 msgid "&New Withdrawal..."
-msgstr "&Új kivét…"
+msgstr "&Új kivétel…"
 
 #: mmcheckingpanel.cpp:325
 msgid "&New Deposit..."
@@ -5756,7 +5756,7 @@ msgstr "Összesen: "
 #: mmhomepage.cpp:162
 #, c-format
 msgid "Top Withdrawals: %s"
-msgstr "Legnagyobb kivétek: %s"
+msgstr "Legnagyobb kivételek: %s"
 
 #: mmhomepage.cpp:353
 msgid "Account/Payee"
@@ -6385,7 +6385,7 @@ msgstr "Alapértelmezett kedvezményezett"
 
 #: optionsettingsmisc.cpp:156
 msgid "Default Deposit/Withdrawal Category"
-msgstr "Alapértelmezett betét/kivét kategória"
+msgstr "Alapértelmezett betét/kivétel kategória"
 
 #: optionsettingsmisc.cpp:158
 msgid "Default Transfer Category"
@@ -7286,7 +7286,7 @@ msgstr "Deviza árfolyam"
 
 #: reports/transactions.cpp:452
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr "Az összes ügylet: Kivét, Betét és Transzfer"
+msgstr "Az összes ügylet: Kivétel, Betét és Átutalás"
 
 #: reports/transactions.cpp:470
 msgid "All Transactions excluding Transfers"
