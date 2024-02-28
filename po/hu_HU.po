@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-24 16:38+0300\n"
-"PO-Revision-Date: 2024-02-25 10:46\n"
+"PO-Revision-Date: 2024-02-28 07:56\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5179,11 +5179,11 @@ msgstr "MMEX fordításának segítségében Crowdin rendszeren"
 
 #: mmframe.cpp:1819
 msgid "&Twitter"
-msgstr "&Twitter"
+msgstr "&X"
 
 #: mmframe.cpp:1819
 msgid "Follow us on Twitter"
-msgstr "Kövessen minket Twitteren"
+msgstr "MMEX kövesse az X-platformon"
 
 #: mmframe.cpp:1821
 msgid "&YouTube"
