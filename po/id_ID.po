@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-02-24 16:38+0300\n"
-"PO-Revision-Date: 2024-02-24 13:40\n"
+"PO-Revision-Date: 2024-02-28 17:16\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "MIME-Version: 1.0\n"
@@ -312,7 +312,7 @@ msgstr "Pembelian saham untuk akun ini sudah ada sebelum tanggal ini"
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "Transaksi terjadwal untuk akun ini telah dijadwalkan sebelum tanggal ini."
 
 #: accountdialog.h:41 mmframe.cpp:1671 mmframe.cpp:1923
 #: wizard_newaccount.cpp:87 wizard_newaccount.cpp:94 wizard_newaccount.cpp:166
@@ -321,7 +321,7 @@ msgstr "Rekening Baru"
 
 #: appstartdialog.cpp:101
 msgid "Open Last Opened &Database"
-msgstr ""
+msgstr "Buka &Database Yang Terakhir Dibuka"
 
 #: appstartdialog.cpp:104
 msgid "&New Database"
@@ -333,7 +333,7 @@ msgstr "Buat data keuangan baru untuk memulai mengelola keuangan"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "Buka Databas&e Yang Ada"
 
 #: appstartdialog.cpp:109
 msgid "Open an already created database file with extension (*.mmb)"
@@ -346,7 +346,7 @@ msgstr ""
 #: appstartdialog.cpp:113 appstartdialog.cpp:222 mmframe.cpp:1643
 #: optionsettingsgeneral.cpp:100
 msgid "Change user interface language"
-msgstr ""
+msgstr "Ubah Bahasa Antarmuka"
 
 #: appstartdialog.cpp:116
 msgid "&User Manual"
@@ -363,7 +363,7 @@ msgstr "Situs Web"
 #: appstartdialog.cpp:121
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "Kunjungi situs %s"
 
 #: appstartdialog.cpp:126
 msgid "&Support Forums"
