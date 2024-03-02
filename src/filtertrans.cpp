@@ -39,7 +39,7 @@ void mmFilterTransactions::clear()
 void mmFilterTransactions::setDateRange(wxDateTime startDate, wxDateTime endDate)
 {
     _dateFilter = true;
-    if (startDate.FormatISOTime() = "00:00:00")
+    if (startDate.FormatISOTime() == "00:00:00")
         _startDate = startDate.FormatISODate();
     else
         _startDate = startDate.FormatISOCombined();
