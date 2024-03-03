@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-02-24 16:38+0300\n"
-"PO-Revision-Date: 2024-02-24 13:40\n"
+"POT-Creation-Date: 2024-03-03 22:42+0300\n"
+"PO-Revision-Date: 2024-03-03 19:46\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -2105,7 +2105,7 @@ msgid "Enter the default for this field\n"
 msgstr "输入此字段的默认值\n"
 "对于日期/时间来说插入 'Now' 将当前日期/时间作为默认值"
 
-#: customfieldeditdialog.cpp:170
+#: customfieldeditdialog.cpp:170 customfieldeditdialog.cpp:220
 msgid "Choices"
 msgstr "选项"
 
@@ -2129,20 +2129,27 @@ msgstr "面板栏"
 msgid "Select a value to represent the item on a panel"
 msgstr "选择一个值来表示面板上的项目"
 
-#: customfieldeditdialog.cpp:227
+#: customfieldeditdialog.cpp:220 filtertransdialog.cpp:978
+#: filtertransdialog.cpp:1015 filtertransdialog.cpp:1047
+#: filtertransdialog.cpp:1621 reports/myusage.cpp:102 webappdialog.cpp:185
+#: webappdialog.cpp:190
+msgid "Empty value"
+msgstr "空值"
+
+#: customfieldeditdialog.cpp:233
 msgid "Changing field type will delete all content!"
 msgstr "更改字段类型将删除所有内容！"
 
-#: customfieldeditdialog.cpp:228 customfieldeditdialog.cpp:250 mmframe.cpp:2377
+#: customfieldeditdialog.cpp:234 customfieldeditdialog.cpp:256 mmframe.cpp:2377
 #: mmframe.cpp:2434
 msgid "Do you want to proceed?"
 msgstr "您想要继续吗？"
 
-#: customfieldeditdialog.cpp:229 customfieldeditdialog.cpp:251
+#: customfieldeditdialog.cpp:235 customfieldeditdialog.cpp:257
 msgid "Custom Field Change"
 msgstr "自定义字段更改"
 
-#: customfieldeditdialog.cpp:249
+#: customfieldeditdialog.cpp:255
 msgid "You have modified choices: ones removed will be cleaned!"
 msgstr "您已修改了选项：删除的选项将被清理！"
 
@@ -2718,12 +2725,6 @@ msgstr "活动值保存到当前预设选择"
 #: filtertransdialog.cpp:794
 msgid "Delete current Preset selection"
 msgstr "删除当前预设选择"
-
-#: filtertransdialog.cpp:978 filtertransdialog.cpp:1015
-#: filtertransdialog.cpp:1047 filtertransdialog.cpp:1621
-#: reports/myusage.cpp:102 webappdialog.cpp:185 webappdialog.cpp:190
-msgid "Empty value"
-msgstr "空值"
 
 #: filtertransdialog.cpp:997
 #, c-format
@@ -5159,12 +5160,12 @@ msgid "Help translate MMEX on Crowdin"
 msgstr ""
 
 #: mmframe.cpp:1819
-msgid "&Twitter"
-msgstr "Twitter(&T)"
+msgid "&X"
+msgstr ""
 
 #: mmframe.cpp:1819
-msgid "Follow us on Twitter"
-msgstr "在 Twitter 上关注我们"
+msgid "Follow MMEX on X"
+msgstr ""
 
 #: mmframe.cpp:1821
 msgid "&YouTube"
@@ -5219,8 +5220,8 @@ msgid "&Newsletter"
 msgstr "新闻(&N)"
 
 #: mmframe.cpp:1836
-msgid "Subscribe to e-mail newsletter or view existing announcements"
-msgstr "订阅电子邮件通讯或查看现有公告"
+msgid "Visit the MMEX blog to view announcements"
+msgstr ""
 
 #: mmframe.cpp:1838
 msgid "&RSS Feed"
