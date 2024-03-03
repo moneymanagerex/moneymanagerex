@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-03 19:46\n"
+"PO-Revision-Date: 2024-03-03 21:46\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5180,11 +5180,11 @@ msgstr "MMEX fordításának segítségében Crowdin rendszeren"
 
 #: mmframe.cpp:1819
 msgid "&X"
-msgstr ""
+msgstr "&X"
 
 #: mmframe.cpp:1819
 msgid "Follow MMEX on X"
-msgstr ""
+msgstr "MMEX kövesse az X-en"
 
 #: mmframe.cpp:1821
 msgid "&YouTube"
@@ -5212,11 +5212,11 @@ msgstr "Lépj be a forráskód tárolójába és kövesd a jelentett hiba státu
 
 #: mmframe.cpp:1827
 msgid "W&iki pages"
-msgstr "&Wiki oldalak"
+msgstr "&Wiki"
 
 #: mmframe.cpp:1827
 msgid "Read and update wiki pages"
-msgstr "Olvasd és frissítsd a wiki-oldalakat"
+msgstr "Wiki olvasása és frissítése"
 
 #: mmframe.cpp:1829
 msgid "F&orum"
@@ -5240,7 +5240,7 @@ msgstr "&Hírlevél"
 
 #: mmframe.cpp:1836
 msgid "Visit the MMEX blog to view announcements"
-msgstr ""
+msgstr "MMEX-blog látogatása a közlemények megtekintéséhez"
 
 #: mmframe.cpp:1838
 msgid "&RSS Feed"
