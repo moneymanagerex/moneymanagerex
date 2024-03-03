@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-02-24 16:38+0300\n"
-"PO-Revision-Date: 2024-02-24 13:40\n"
+"POT-Creation-Date: 2024-03-03 22:42+0300\n"
+"PO-Revision-Date: 2024-03-03 19:46\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2101,7 +2101,7 @@ msgid "Enter the default for this field\n"
 msgstr "Ange förvalt värde för det här fältet\n"
 "För datum/tid infoga 'Nu' för att sätta aktuell datum/tid som förval"
 
-#: customfieldeditdialog.cpp:170
+#: customfieldeditdialog.cpp:170 customfieldeditdialog.cpp:220
 msgid "Choices"
 msgstr "Val"
 
@@ -2125,20 +2125,27 @@ msgstr ""
 msgid "Select a value to represent the item on a panel"
 msgstr ""
 
-#: customfieldeditdialog.cpp:227
+#: customfieldeditdialog.cpp:220 filtertransdialog.cpp:978
+#: filtertransdialog.cpp:1015 filtertransdialog.cpp:1047
+#: filtertransdialog.cpp:1621 reports/myusage.cpp:102 webappdialog.cpp:185
+#: webappdialog.cpp:190
+msgid "Empty value"
+msgstr "Tomt värde"
+
+#: customfieldeditdialog.cpp:233
 msgid "Changing field type will delete all content!"
 msgstr "Att ändra fälttyp kommer att ta bort allt innehåll!"
 
-#: customfieldeditdialog.cpp:228 customfieldeditdialog.cpp:250 mmframe.cpp:2377
+#: customfieldeditdialog.cpp:234 customfieldeditdialog.cpp:256 mmframe.cpp:2377
 #: mmframe.cpp:2434
 msgid "Do you want to proceed?"
 msgstr "Vill du fortsätta?"
 
-#: customfieldeditdialog.cpp:229 customfieldeditdialog.cpp:251
+#: customfieldeditdialog.cpp:235 customfieldeditdialog.cpp:257
 msgid "Custom Field Change"
 msgstr "Ändring av anpassat fält"
 
-#: customfieldeditdialog.cpp:249
+#: customfieldeditdialog.cpp:255
 msgid "You have modified choices: ones removed will be cleaned!"
 msgstr "Du har ändrat val: de borttagna kommer att rensas!"
 
@@ -2710,12 +2717,6 @@ msgstr ""
 #: filtertransdialog.cpp:794
 msgid "Delete current Preset selection"
 msgstr "Ta bort aktuellt förval"
-
-#: filtertransdialog.cpp:978 filtertransdialog.cpp:1015
-#: filtertransdialog.cpp:1047 filtertransdialog.cpp:1621
-#: reports/myusage.cpp:102 webappdialog.cpp:185 webappdialog.cpp:190
-msgid "Empty value"
-msgstr "Tomt värde"
 
 #: filtertransdialog.cpp:997
 #, c-format
@@ -5159,12 +5160,12 @@ msgid "Help translate MMEX on Crowdin"
 msgstr ""
 
 #: mmframe.cpp:1819
-msgid "&Twitter"
+msgid "&X"
 msgstr ""
 
 #: mmframe.cpp:1819
-msgid "Follow us on Twitter"
-msgstr "Följ oss på Twitter"
+msgid "Follow MMEX on X"
+msgstr ""
 
 #: mmframe.cpp:1821
 msgid "&YouTube"
@@ -5219,7 +5220,7 @@ msgid "&Newsletter"
 msgstr "&Nyhetsbrev"
 
 #: mmframe.cpp:1836
-msgid "Subscribe to e-mail newsletter or view existing announcements"
+msgid "Visit the MMEX blog to view announcements"
 msgstr ""
 
 #: mmframe.cpp:1838
