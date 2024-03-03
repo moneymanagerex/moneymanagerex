@@ -214,6 +214,12 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         ArrChoices.Add(token.GetNextToken());
     }
 
+    int itemType = m_itemType->GetSelection();
+    if (ArrChoices.IsEmpty() && (itemType == Model_CustomField::SINGLECHOICE || itemType == Model_CustomField::MULTICHOICE))
+    {
+        return mmErrorDialogs::ToolTip4Object(m_itemChoices, _("Empty value"), _("Choices"));
+    }
+
     if (!this->m_field)
     {
         this->m_field = Model_CustomField::instance().create();

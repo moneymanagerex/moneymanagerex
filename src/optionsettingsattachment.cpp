@@ -92,7 +92,7 @@ void OptionSettingsAttachment::Create()
     m_attachments_path->ChangeValue(attachmentFolder);
 
     wxButton* AttachmentsFolderButton = new wxButton(attachment_panel, ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, "..."
-        , wxDefaultPosition, wxSize(Option::instance().getIconSize(), -1), 0);
+        , wxDefaultPosition, m_attachments_path->GetSizeFromTextSize(GetTextExtent("...")), 0);
     mmToolTip(AttachmentsFolderButton, _("Browse for folder"));
 
     attachDefinedSizer->Add(m_attachments_path, g_flagsExpand);

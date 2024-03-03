@@ -1816,7 +1816,7 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     wxMenuItem* menuItemCrowdin = new wxMenuItem(menuHelp, MENU_CROWDIN
         , _("&Crowdin"), _("Help translate MMEX on Crowdin"));
     wxMenuItem* menuItemTwitter = new wxMenuItem(menuHelp, MENU_TWITTER
-        , _("&Twitter"), _("Follow us on Twitter"));
+        , _("&X"), _("Follow MMEX on X"));
     wxMenuItem* menuItemYouTube = new wxMenuItem(menuHelp, MENU_YOUTUBE
         , _("&YouTube"), _("Watch MMEX videos on YouTube"));
     wxMenuItem* menuItemSlack = new wxMenuItem(menuHelp, MENU_SLACK
@@ -1833,7 +1833,7 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
         , _("Install MMEX for Android based smartphones and tablets"));
     wxMenuItem* menuItemNotify = new wxMenuItem(menuHelp, MENU_ANNOUNCEMENTMAILING
         , _("&Newsletter")
-        , _("Subscribe to e-mail newsletter or view existing announcements"));
+        , _("Visit the MMEX blog to view announcements"));
     wxMenuItem* menuItemRSS = new wxMenuItem(menuHelp, MENU_RSS
         , _("&RSS Feed"), _("Connect RSS web feed to news aggregator"));
     wxMenuItem* menuItemDonate = new wxMenuItem(menuHelp, MENU_DONATE
