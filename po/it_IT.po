@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-03 19:46\n"
+"PO-Revision-Date: 2024-03-03 20:51\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -4105,23 +4105,23 @@ msgstr "Non fate mai da garante a un prestito. Se il mutuatario - un amico, un f
 
 #: mmTips.h:39
 msgid "Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."
-msgstr ""
+msgstr "Suggerimento di generi alimentari: Evitare lo shopping di generi alimentari quando affamato o stressato. La fame e lo stress possono farti fare cose strane, come comprare un sacco di cioccolato o cibi trasformati gimmicky. Pianifica di andare al negozio quando sei ben nutrito e rilassato. In questo modo, puoi attenerti alla tua lista e non spendere troppo per il cibo che non ti serve."
 
 #: mmTips.h:40
 msgid "Grocery tip: Make a shopping list. A shopping list saves money by helping you avoid buying products you do not need. The simplest way is to track consumables as you use them. Keep a magnetic notepad on the fridge and jot down what you need as you run out."
-msgstr ""
+msgstr "Suggerimento di generi alimentari: Crea una lista della spesa. Una lista della spesa risparmia denaro aiutandoti a evitare di acquistare prodotti che non ti servono. Il modo più semplice è quello di tenere traccia dei consumabili mentre li utilizzi. Tieni un blocco note magnetico sul frigorifero e scorri quello che ti serve mentre finisce."
 
 #: mmTips.h:41
 msgid "Grocery tip: Buy fruits and vegetables in season."
-msgstr ""
+msgstr "Suggerimento di generi alimentari: Acquista frutta e verdura nella stagione."
 
 #: mmTips.h:42
 msgid "Grocery tip: Make sure your family consumes everything you purchase. Every month or so, hold a pantry challenge during which you use up as many pantry goods as possible before you shop again. A pantry challenge cuts down on waste and lets you get a sense of how much you are overbuying."
-msgstr ""
+msgstr "Suggerimento di generi alimentari: Assicurati che la tua famiglia consuma tutto quello che acquisti. Ogni mese o giù di lì, tenere una sfida di dispensa durante la quale si utilizza il maggior numero di prodotti di dispensa possibile prima di acquistare di nuovo. Una sfida di dispensa riduce i rifiuti e consente di ottenere un senso di quanto si sta overbuying."
 
 #: mmTips.h:43
 msgid "Grocery tip: Reduce waste. Adopting better grocery shopping habits is one way to cut back on wasted food and money. Make a list of everything you throw out without using, such as spoiled leftovers or soggy lettuce, to get a sense of the full scale of the issue."
-msgstr ""
+msgstr "Suggerimento di generi alimentari: ridurre gli sprechi. Adottare migliori abitudini di spesa è un modo per tagliare il cibo sprecato e i soldi. Fai una lista di tutto quello che gettate fuori senza usare, come gli avanzi viziati o la lattuga invischiata, per ottenere un senso della scala completa del problema."
 
 #: mmTips.h:44
 msgid "Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."
@@ -4672,7 +4672,7 @@ msgstr "Conti Titoli"
 
 #: mmframe.cpp:783 mmframe.cpp:1736 mmframe.cpp:2825
 msgid "Budget Planner"
-msgstr ""
+msgstr "Pianificatore Bilancio"
 
 #: mmframe.cpp:788 mmframe.cpp:1319 mmframe.cpp:1336 mmframe.cpp:2810
 msgid "Transaction Report"
@@ -4781,7 +4781,7 @@ msgstr "&Apri il sito web del Conto"
 
 #: mmframe.cpp:1458 mmframe.cpp:1478
 msgid "&Attachment Manager..."
-msgstr ""
+msgstr "&Gestore Allegati..."
 
 #: mmframe.cpp:1473 mmframe.cpp:1677
 msgid "&Change Account Type..."
@@ -4977,7 +4977,7 @@ msgstr "Reimposta Vista"
 
 #: mmframe.cpp:1637
 msgid "Reset view and dock tools"
-msgstr ""
+msgstr "Reimposta gli strumenti di visualizzazione e dock"
 
 #: mmframe.cpp:1668
 msgid "Dash&board"
@@ -4997,7 +4997,7 @@ msgstr "Elimina un conto dal Database"
 
 #: mmframe.cpp:1693
 msgid "Download &Rates"
-msgstr ""
+msgstr "Scarica &Tariffe"
 
 #: mmframe.cpp:1693
 msgid "Download Currency and Stock Rates"
@@ -5005,27 +5005,27 @@ msgstr "Aggiornamento tassi di cambio e valore azioni"
 
 #: mmframe.cpp:1699
 msgid "&Payee Manager..."
-msgstr ""
+msgstr "&Gestore Beneficiario..."
 
 #: mmframe.cpp:1699 mmframe.cpp:1928 payeedialog.cpp:508
 msgid "Payee Manager"
-msgstr ""
+msgstr "Responsabile Beneficiario"
 
 #: mmframe.cpp:1703
 msgid "&Category Manager..."
-msgstr ""
+msgstr "Gestore &categoria..."
 
 #: mmframe.cpp:1707
 msgid "&Tag Manager..."
-msgstr ""
+msgstr "&Gestore Etichette..."
 
 #: mmframe.cpp:1707 mmframe.cpp:1930 tagdialog.h:45
 msgid "Tag Manager"
-msgstr ""
+msgstr "Gestore Tag"
 
 #: mmframe.cpp:1711
 msgid "Curre&ncy Manager..."
-msgstr ""
+msgstr "&Gestione Valute..."
 
 #: mmframe.cpp:1715
 msgid "&Categories..."
@@ -5061,7 +5061,7 @@ msgstr "Unisci categorie, beneficiari ed etichette"
 
 #: mmframe.cpp:1736
 msgid "&Budget Planner..."
-msgstr ""
+msgstr "&Pianificazione Bilancio..."
 
 #: mmframe.cpp:1740
 msgid "&Scheduled Transactions"
@@ -5069,7 +5069,7 @@ msgstr "&Transazioni Pianificate"
 
 #: mmframe.cpp:1740
 msgid "Bills and Deposits"
-msgstr ""
+msgstr "Fatture e depositi"
 
 #: mmframe.cpp:1744
 msgid "&Assets"
@@ -5089,11 +5089,11 @@ msgstr "&Filtro Resoconto Transazioni..."
 
 #: mmframe.cpp:1762
 msgid "&General Report Manager..."
-msgstr ""
+msgstr "Gestore Dei Report &Generali..."
 
 #: mmframe.cpp:1766
 msgid "C&ustom Field Manager..."
-msgstr ""
+msgstr "&Gestione campi personalizzati..."
 
 #: mmframe.cpp:1772
 msgid "Refresh &WebApp..."
@@ -5181,11 +5181,11 @@ msgstr "Aiuta a tradurre MMEX su Crowdin"
 
 #: mmframe.cpp:1819
 msgid "&X"
-msgstr ""
+msgstr "&X"
 
 #: mmframe.cpp:1819
 msgid "Follow MMEX on X"
-msgstr ""
+msgstr "Segui MMEX su X"
 
 #: mmframe.cpp:1821
 msgid "&YouTube"
@@ -5241,7 +5241,7 @@ msgstr "&Newsletter"
 
 #: mmframe.cpp:1836
 msgid "Visit the MMEX blog to view announcements"
-msgstr ""
+msgstr "Visita il blog MMEX per visualizzare gli annunci"
 
 #: mmframe.cpp:1838
 msgid "&RSS Feed"
@@ -5353,7 +5353,7 @@ msgstr "Novità"
 
 #: mmframe.cpp:1952
 msgid "Download Rates"
-msgstr ""
+msgstr "Scarica Tariffe"
 
 #: mmframe.cpp:1952
 msgid "Download currency and stock rates"
@@ -6253,12 +6253,13 @@ msgstr "Imposta Valuta"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Set default database currency using 'Currency Manager'"
-msgstr ""
+msgstr "Imposta la valuta predefinita del database usando 'Gestione valuta'"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Manager | Edit'"
-msgstr ""
+msgstr "Formato derivato dalla localizzazione.\n"
+"Lascia vuoto per impostare manualmente il formato tramite 'Gestione valuta <unk> Modifica'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6785,7 +6786,7 @@ msgstr "Strumenti → Unisci → Beneficiari"
 
 #: payeedialog.cpp:746
 msgid "Payee Manager: Delete Error"
-msgstr ""
+msgstr "Responsabile Beneficiario: Elimina Errore"
 
 #: payeedialog.cpp:751
 msgid "Deleted transactions exist which use this payee."
@@ -6809,7 +6810,7 @@ msgstr "Rimuovi Ca&tegoria"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
-msgstr ""
+msgstr "&Gestore Allegati"
 
 #: payeedialog.cpp:895
 msgid "Merge &Payee"
@@ -7365,7 +7366,7 @@ msgstr "Inserire il lotto a cui appartiene questo pacchetto di azioni"
 
 #: sharetransactiondialog.cpp:270 stockdialog.cpp:251
 msgid "Manage stock attachments"
-msgstr ""
+msgstr "Gestisci allegati stock"
 
 #: sharetransactiondialog.cpp:275 stockdialog.cpp:253
 msgid "Display the web page for the specified Stock symbol"
@@ -7757,7 +7758,7 @@ msgstr "I nomi delle etichette non possono contenere i caratteri '&' o '|', perc
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Tag Manager: Invalid Name"
-msgstr ""
+msgstr "Tag Manager: Nome Non Valido"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
@@ -7781,7 +7782,7 @@ msgstr "Esiste già un etichetta con questo nome"
 
 #: tagdialog.cpp:218
 msgid "Tag Manager: Adding Error"
-msgstr ""
+msgstr "Tag Manager: Errore Di Aggiunta"
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
@@ -7789,7 +7790,7 @@ msgstr "Modifica Tag"
 
 #: tagdialog.cpp:254
 msgid "Tag Manager: Editing Error"
-msgstr ""
+msgstr "Tag Manager: Errore Di Modifica"
 
 #: tagdialog.cpp:295
 #, c-format
@@ -7798,7 +7799,7 @@ msgstr "Tag '%s' in uso"
 
 #: tagdialog.cpp:295
 msgid "Tag Manager: Delete Error"
-msgstr ""
+msgstr "Tag Manager: Errore Di Eliminazione"
 
 #: tagdialog.cpp:298
 #, c-format
@@ -7891,7 +7892,7 @@ msgstr "Numerazione progressiva della Transazione #"
 
 #: transdialog.cpp:565 usertransactionpanel.cpp:185
 msgid "Manage transaction attachments"
-msgstr ""
+msgstr "Gestisci gli allegati delle transazioni"
 
 #: transdialog.cpp:768
 msgid "This transaction will exceed your account limit.\n\n"
