@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-02-24 16:38+0300\n"
-"PO-Revision-Date: 2024-02-24 15:43\n"
+"POT-Creation-Date: 2024-03-03 22:42+0300\n"
+"PO-Revision-Date: 2024-03-03 19:46\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2110,7 +2110,7 @@ msgid "Enter the default for this field\n"
 msgstr "Saisir le valeur par défaut pour ce champ\n"
 "Pour Date/heure saisir \"Now\" pour que Date/heure courante soient par défaut"
 
-#: customfieldeditdialog.cpp:170
+#: customfieldeditdialog.cpp:170 customfieldeditdialog.cpp:220
 msgid "Choices"
 msgstr "Choix :"
 
@@ -2134,20 +2134,27 @@ msgstr "Colonne du tableau"
 msgid "Select a value to represent the item on a panel"
 msgstr "Sélectionnez la valeur qui représente l'item dans le panneau"
 
-#: customfieldeditdialog.cpp:227
+#: customfieldeditdialog.cpp:220 filtertransdialog.cpp:978
+#: filtertransdialog.cpp:1015 filtertransdialog.cpp:1047
+#: filtertransdialog.cpp:1621 reports/myusage.cpp:102 webappdialog.cpp:185
+#: webappdialog.cpp:190
+msgid "Empty value"
+msgstr "Valeur vide"
+
+#: customfieldeditdialog.cpp:233
 msgid "Changing field type will delete all content!"
 msgstr "La modification du type de champ supprimera tout le contenu !"
 
-#: customfieldeditdialog.cpp:228 customfieldeditdialog.cpp:250 mmframe.cpp:2377
+#: customfieldeditdialog.cpp:234 customfieldeditdialog.cpp:256 mmframe.cpp:2377
 #: mmframe.cpp:2434
 msgid "Do you want to proceed?"
 msgstr "Voulez-vous poursuivre ?"
 
-#: customfieldeditdialog.cpp:229 customfieldeditdialog.cpp:251
+#: customfieldeditdialog.cpp:235 customfieldeditdialog.cpp:257
 msgid "Custom Field Change"
 msgstr "Modification de Champ personnalisé"
 
-#: customfieldeditdialog.cpp:249
+#: customfieldeditdialog.cpp:255
 msgid "You have modified choices: ones removed will be cleaned!"
 msgstr "Vous avez modifié les choix: ceux enlevés seront supprimés!"
 
@@ -2725,12 +2732,6 @@ msgstr "Enregistrer les valeurs actives dans la sélection prédéfinie actuelle
 #: filtertransdialog.cpp:794
 msgid "Delete current Preset selection"
 msgstr "Supprimer le préréglage actuel"
-
-#: filtertransdialog.cpp:978 filtertransdialog.cpp:1015
-#: filtertransdialog.cpp:1047 filtertransdialog.cpp:1621
-#: reports/myusage.cpp:102 webappdialog.cpp:185 webappdialog.cpp:190
-msgid "Empty value"
-msgstr "Valeur vide"
 
 #: filtertransdialog.cpp:997
 #, c-format
@@ -5179,12 +5180,12 @@ msgid "Help translate MMEX on Crowdin"
 msgstr "Aidez à traduire MMEX sur Crowdin"
 
 #: mmframe.cpp:1819
-msgid "&Twitter"
-msgstr "Twitter"
+msgid "&X"
+msgstr ""
 
 #: mmframe.cpp:1819
-msgid "Follow us on Twitter"
-msgstr "Nous suivre sur Twitter"
+msgid "Follow MMEX on X"
+msgstr ""
 
 #: mmframe.cpp:1821
 msgid "&YouTube"
@@ -5239,8 +5240,8 @@ msgid "&Newsletter"
 msgstr "&Bulletin d'information"
 
 #: mmframe.cpp:1836
-msgid "Subscribe to e-mail newsletter or view existing announcements"
-msgstr "S’abonner au bulletin e-mail ou consulter les annonces existantes"
+msgid "Visit the MMEX blog to view announcements"
+msgstr ""
 
 #: mmframe.cpp:1838
 msgid "&RSS Feed"
