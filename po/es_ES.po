@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-03 19:46\n"
+"PO-Revision-Date: 2024-03-03 20:51\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -5179,11 +5179,11 @@ msgstr "Ayude a traducir MMEX en Crowdin"
 
 #: mmframe.cpp:1819
 msgid "&X"
-msgstr ""
+msgstr "&X"
 
 #: mmframe.cpp:1819
 msgid "Follow MMEX on X"
-msgstr ""
+msgstr "Seguir a MMEX en X"
 
 #: mmframe.cpp:1821
 msgid "&YouTube"
@@ -5239,7 +5239,7 @@ msgstr "&Boletín"
 
 #: mmframe.cpp:1836
 msgid "Visit the MMEX blog to view announcements"
-msgstr ""
+msgstr "Visite el blog de MMEX para ver anuncios"
 
 #: mmframe.cpp:1838
 msgid "&RSS Feed"
