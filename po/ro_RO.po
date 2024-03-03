@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-02-24 16:38+0300\n"
-"PO-Revision-Date: 2024-02-24 13:40\n"
+"POT-Creation-Date: 2024-03-03 22:42+0300\n"
+"PO-Revision-Date: 2024-03-03 19:46\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -2113,7 +2113,7 @@ msgid "Enter the default for this field\n"
 msgstr "Introduceți valoarea implicită pentru acest câmp\n"
 "Pentru data/ora inserați „Now” pentru a seta data/ora curentă ca implicită"
 
-#: customfieldeditdialog.cpp:170
+#: customfieldeditdialog.cpp:170 customfieldeditdialog.cpp:220
 msgid "Choices"
 msgstr "Alegeri"
 
@@ -2137,20 +2137,27 @@ msgstr "Coloana panoului"
 msgid "Select a value to represent the item on a panel"
 msgstr "Selectează o valoare pentru a reprezenta elementul pe un panou"
 
-#: customfieldeditdialog.cpp:227
+#: customfieldeditdialog.cpp:220 filtertransdialog.cpp:978
+#: filtertransdialog.cpp:1015 filtertransdialog.cpp:1047
+#: filtertransdialog.cpp:1621 reports/myusage.cpp:102 webappdialog.cpp:185
+#: webappdialog.cpp:190
+msgid "Empty value"
+msgstr "Valoare goală"
+
+#: customfieldeditdialog.cpp:233
 msgid "Changing field type will delete all content!"
 msgstr "Schimbarea tipului de câmp va șterge tot conținutul!"
 
-#: customfieldeditdialog.cpp:228 customfieldeditdialog.cpp:250 mmframe.cpp:2377
+#: customfieldeditdialog.cpp:234 customfieldeditdialog.cpp:256 mmframe.cpp:2377
 #: mmframe.cpp:2434
 msgid "Do you want to proceed?"
 msgstr "Dorești să continui?"
 
-#: customfieldeditdialog.cpp:229 customfieldeditdialog.cpp:251
+#: customfieldeditdialog.cpp:235 customfieldeditdialog.cpp:257
 msgid "Custom Field Change"
 msgstr "Modificare câmp personalizat"
 
-#: customfieldeditdialog.cpp:249
+#: customfieldeditdialog.cpp:255
 msgid "You have modified choices: ones removed will be cleaned!"
 msgstr "Ați modificat opțiunile: cele eliminate vor fi șterse!"
 
@@ -2728,12 +2735,6 @@ msgstr "Salvați valorile active în selecția actuală de presetări"
 #: filtertransdialog.cpp:794
 msgid "Delete current Preset selection"
 msgstr "Ștergeți selecția curentă de presetări"
-
-#: filtertransdialog.cpp:978 filtertransdialog.cpp:1015
-#: filtertransdialog.cpp:1047 filtertransdialog.cpp:1621
-#: reports/myusage.cpp:102 webappdialog.cpp:185 webappdialog.cpp:190
-msgid "Empty value"
-msgstr "Valoare goală"
 
 #: filtertransdialog.cpp:997
 #, c-format
@@ -5194,12 +5195,12 @@ msgid "Help translate MMEX on Crowdin"
 msgstr ""
 
 #: mmframe.cpp:1819
-msgid "&Twitter"
-msgstr "&Twitter"
+msgid "&X"
+msgstr ""
 
 #: mmframe.cpp:1819
-msgid "Follow us on Twitter"
-msgstr "Urmărește-ne pe Twitter"
+msgid "Follow MMEX on X"
+msgstr ""
 
 #: mmframe.cpp:1821
 msgid "&YouTube"
@@ -5254,8 +5255,8 @@ msgid "&Newsletter"
 msgstr "Buletin i&nformativ"
 
 #: mmframe.cpp:1836
-msgid "Subscribe to e-mail newsletter or view existing announcements"
-msgstr "Abonați-vă la buletinul informativ prin e-mail sau vizualizați anunțurile existente"
+msgid "Visit the MMEX blog to view announcements"
+msgstr ""
 
 #: mmframe.cpp:1838
 msgid "&RSS Feed"
