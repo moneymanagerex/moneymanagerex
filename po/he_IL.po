@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-02-24 16:38+0300\n"
-"PO-Revision-Date: 2024-02-24 13:40\n"
+"POT-Creation-Date: 2024-03-03 22:42+0300\n"
+"PO-Revision-Date: 2024-03-03 19:46\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2110,7 +2110,7 @@ msgid "Enter the default for this field\n"
 msgstr "הזנת ברירת המחדל עבור שדה זה\n"
 " להוספת תאריך/שעה בחירה ב'כעת'  כדי להפוך תאריך/שעה נוכחיים לברירת מחדל"
 
-#: customfieldeditdialog.cpp:170
+#: customfieldeditdialog.cpp:170 customfieldeditdialog.cpp:220
 msgid "Choices"
 msgstr "ברירה"
 
@@ -2134,20 +2134,27 @@ msgstr "עמודות לוח"
 msgid "Select a value to represent the item on a panel"
 msgstr "נא לבחור ערך לייצוג הפריט בלוח"
 
-#: customfieldeditdialog.cpp:227
+#: customfieldeditdialog.cpp:220 filtertransdialog.cpp:978
+#: filtertransdialog.cpp:1015 filtertransdialog.cpp:1047
+#: filtertransdialog.cpp:1621 reports/myusage.cpp:102 webappdialog.cpp:185
+#: webappdialog.cpp:190
+msgid "Empty value"
+msgstr "ערך ריק"
+
+#: customfieldeditdialog.cpp:233
 msgid "Changing field type will delete all content!"
 msgstr "שינוי סוג שדה תמחק את כל התוכן!"
 
-#: customfieldeditdialog.cpp:228 customfieldeditdialog.cpp:250 mmframe.cpp:2377
+#: customfieldeditdialog.cpp:234 customfieldeditdialog.cpp:256 mmframe.cpp:2377
 #: mmframe.cpp:2434
 msgid "Do you want to proceed?"
 msgstr "האם להמשיך?"
 
-#: customfieldeditdialog.cpp:229 customfieldeditdialog.cpp:251
+#: customfieldeditdialog.cpp:235 customfieldeditdialog.cpp:257
 msgid "Custom Field Change"
 msgstr "שינוי שדה מותאם אישית"
 
-#: customfieldeditdialog.cpp:249
+#: customfieldeditdialog.cpp:255
 msgid "You have modified choices: ones removed will be cleaned!"
 msgstr "בוצעו שינוים באפשרויות: עם הסרה, השינויים יבוטלו!"
 
@@ -2725,12 +2732,6 @@ msgstr "שמירת ערכים פעילים להגדרה מראש נוכחית"
 #: filtertransdialog.cpp:794
 msgid "Delete current Preset selection"
 msgstr "מחיקת בחירת הגדרה מראש נוכחית"
-
-#: filtertransdialog.cpp:978 filtertransdialog.cpp:1015
-#: filtertransdialog.cpp:1047 filtertransdialog.cpp:1621
-#: reports/myusage.cpp:102 webappdialog.cpp:185 webappdialog.cpp:190
-msgid "Empty value"
-msgstr "ערך ריק"
 
 #: filtertransdialog.cpp:997
 #, c-format
@@ -5205,12 +5206,12 @@ msgid "Help translate MMEX on Crowdin"
 msgstr ""
 
 #: mmframe.cpp:1819
-msgid "&Twitter"
-msgstr "&טוויטר"
+msgid "&X"
+msgstr ""
 
 #: mmframe.cpp:1819
-msgid "Follow us on Twitter"
-msgstr "עקוב אחרינו בטוויטר"
+msgid "Follow MMEX on X"
+msgstr ""
 
 #: mmframe.cpp:1821
 msgid "&YouTube"
@@ -5265,8 +5266,8 @@ msgid "&Newsletter"
 msgstr "&עמוד חדשות"
 
 #: mmframe.cpp:1836
-msgid "Subscribe to e-mail newsletter or view existing announcements"
-msgstr "הרשם לרשימת תפוצה לקבלת חדשות לדוא\"ל או צפה בהכרזות עדכניות"
+msgid "Visit the MMEX blog to view announcements"
+msgstr ""
 
 #: mmframe.cpp:1838
 msgid "&RSS Feed"
