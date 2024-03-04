@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-03 19:46\n"
+"PO-Revision-Date: 2024-03-04 00:07\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -5161,11 +5161,11 @@ msgstr ""
 
 #: mmframe.cpp:1819
 msgid "&X"
-msgstr ""
+msgstr "&X"
 
 #: mmframe.cpp:1819
 msgid "Follow MMEX on X"
-msgstr ""
+msgstr "Följ MMEX på X"
 
 #: mmframe.cpp:1821
 msgid "&YouTube"
@@ -5221,7 +5221,7 @@ msgstr "&Nyhetsbrev"
 
 #: mmframe.cpp:1836
 msgid "Visit the MMEX blog to view announcements"
-msgstr ""
+msgstr "Besök MMEX blogg för att se meddelanden"
 
 #: mmframe.cpp:1838
 msgid "&RSS Feed"
