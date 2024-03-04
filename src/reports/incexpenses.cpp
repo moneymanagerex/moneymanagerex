@@ -130,7 +130,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
 }
 
 mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly()
-    : mmPrintableBase(wxTRANSLATE("Income vs Expenses Monthly"))
+    : mmPrintableBase(wxTRANSLATE("Income vs. Expenses Monthly"))
 {
     setReportParameters(Reports::IncomevsExpensesMonthly);
 }
