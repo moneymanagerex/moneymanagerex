@@ -145,7 +145,7 @@ void mmCustomFieldEditDialog::CreateControls()
     mmToolTip(m_itemType, _("Select type of custom field"));
     itemFlexGridSizer6->Add(m_itemType, g_flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("ToolTip")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Tooltip")), g_flagsH);
     m_itemTooltip = new wxTextCtrl(itemPanel5, wxID_ANY, "");
     mmToolTip(m_itemTooltip, _("Enter the tooltip that will be shown"));
     itemFlexGridSizer6->Add(m_itemTooltip, g_flagsExpand);
