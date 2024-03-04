@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-03 20:51\n"
+"PO-Revision-Date: 2024-03-04 17:31\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1939,7 +1939,7 @@ msgstr "Tout/tous/toutes"
 #: constants.cpp:209 mmframe.cpp:1921 model/Model_Account.cpp:27
 #: model/Model_Asset.cpp:54
 msgid "Open"
-msgstr "Ouvrir"
+msgstr "Ouvert"
 
 #: constants.cpp:210 model/Model_Account.cpp:28 model/Model_Asset.cpp:53
 msgid "Closed"
