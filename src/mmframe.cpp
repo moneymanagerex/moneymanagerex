@@ -1633,7 +1633,7 @@ void mmGUIFrame::createMenu()
     menuView->Append(menuItemToggleFullscreen);
 #endif
 wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
-        , _("Reset View")
+        , _("&Reset View")
         , _("Reset view and dock tools"));
     menuView->Append(menuItemResetView);   
 
