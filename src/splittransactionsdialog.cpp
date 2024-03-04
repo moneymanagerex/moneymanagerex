@@ -74,6 +74,7 @@ void mmEditSplitOther::CreateControls()
 
     wxFlexGridSizer* fgSizer1 = new wxFlexGridSizer(0, 2, 0, 0);
     fgSizer1->AddGrowableCol(1, 0);
+    fgSizer1->AddGrowableRow(2);
     bSizer1->Add(fgSizer1, g_flagsExpand);
 
     // Split Category
@@ -91,7 +92,7 @@ void mmEditSplitOther::CreateControls()
     fgSizer1->Add(amount, g_flagsExpand);
 
     // Notes
-    fgSizer1->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flagsH);
+    fgSizer1->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flagsV);
     m_Notes = new wxTextCtrl(this, wxID_ANY, ""
         , wxDefaultPosition, wxSize(-1, -1), wxTE_MULTILINE);
     fgSizer1->Add(m_Notes, g_flagsExpand);
@@ -107,7 +108,7 @@ void mmEditSplitOther::CreateControls()
 
     Fit();
     wxSize sz = this->GetSize();
-    SetSizeHints(sz.GetWidth(), sz.GetHeight(), -1, sz.GetHeight());
+    SetSizeHints(sz.GetWidth(), sz.GetHeight(), -1, -1);
 }
 
 void mmEditSplitOther::fillControls()
