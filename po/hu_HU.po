@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-03 21:46\n"
+"PO-Revision-Date: 2024-03-04 11:54\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,7 @@ msgstr "Számla szerkesztése"
 
 #: accountdialog.cpp:123
 msgid "Account Name:"
-msgstr "Számla neve: "
+msgstr "Számlanév:"
 
 #: accountdialog.cpp:126
 msgid "Enter the Name of the Account. This name can be renamed at any time."
@@ -83,7 +83,7 @@ msgstr "Számla nevének megadása. A név bármikor átírható."
 
 #: accountdialog.cpp:129
 msgid "Account Type:"
-msgstr "Számla típusa: "
+msgstr "Számlatípus:"
 
 #: accountdialog.cpp:136 wizard_newaccount.cpp:128
 msgid "Specify the type of account to be created."
@@ -91,7 +91,7 @@ msgstr "Adja meg a létrehozandó számla típusát."
 
 #: accountdialog.cpp:140
 msgid "Account Status:"
-msgstr "A számla állapota: "
+msgstr "Számlaállapot:"
 
 #: accountdialog.cpp:145
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
@@ -121,7 +121,7 @@ msgstr "Pénznem: "
 
 #: accountdialog.cpp:162 currencydialog.cpp:112
 msgid "Select Currency"
-msgstr "Pénznem választása"
+msgstr "Pénznem kijelölése"
 
 #: accountdialog.cpp:168
 msgid "Specify the currency to be used by this account."
@@ -165,7 +165,7 @@ msgstr "Kártyaszám: "
 
 #: accountdialog.cpp:198
 msgid "Account Number:"
-msgstr "Számlaszám: "
+msgstr "Számlaszám:"
 
 #: accountdialog.cpp:200
 msgid "Enter the Account Number associated with this account."
@@ -1470,7 +1470,7 @@ msgstr "Kiadás vagy betét gyakoriságának megadása"
 
 #: budgetentrydialog.cpp:136 import_export/univcsvdialog.cpp:406
 msgid "Amount:"
-msgstr "Összeg: "
+msgstr "Összeg:"
 
 #: budgetentrydialog.cpp:141
 msgid "Enter the amount budgeted for this category."
@@ -1918,11 +1918,11 @@ msgstr "Idei év megtekintése"
 
 #: constants.cpp:203
 msgid "View Current Financial Year"
-msgstr "Jelen pénzügyi év megtekintése"
+msgstr "Jelenlegi pénzügyi év megtekintése"
 
 #: constants.cpp:204
 msgid "View Last Year"
-msgstr "Múlt év megtekintése"
+msgstr "Tavaly megtekintése"
 
 #: constants.cpp:205
 msgid "View Last Financial Year"
@@ -4916,7 +4916,7 @@ msgstr "Törölt ügyletek megjelenítése/elrejtése a navigációs fában"
 
 #: mmframe.cpp:1601
 msgid "Budgets: As Financial &Years"
-msgstr "Költségvetés: pénzügyi év szerint"
+msgstr "Költségvetések: pénzügyi &évenként"
 
 #: mmframe.cpp:1601
 msgid "Display Budgets in Financial Year Format"
@@ -4924,7 +4924,7 @@ msgstr "Költségkeretek megjelenítése pénzügyi év formátumban"
 
 #: mmframe.cpp:1603
 msgid "Budgets: &Include Transfers in Totals"
-msgstr "Költségvetések: az átutalások beszámítása a végösszegbe"
+msgstr "&Költségvetések: az átutalások beszámítása a végösszegbe"
 
 #: mmframe.cpp:1603
 msgid "Include the transfer transactions in the Budget Totals"
@@ -4932,7 +4932,7 @@ msgstr "Átutalások beszámítása a költségvetés végösszegébe"
 
 #: mmframe.cpp:1605
 msgid "Budget Category Report: with &Summaries"
-msgstr "Költségvetési kategóriák jelentés: összesítéssel"
+msgstr "Költségvetési kategóriák jelentés: &összesítéssel"
 
 #: mmframe.cpp:1605
 msgid "Include the category summaries in the Budget Category Summary"
@@ -4972,11 +4972,11 @@ msgstr "Teljes képernyős váltás"
 
 #: mmframe.cpp:1636
 msgid "Reset View"
-msgstr "Nézet visszaállítása"
+msgstr "Nézet &visszaállítása"
 
 #: mmframe.cpp:1637
 msgid "Reset view and dock tools"
-msgstr "Nézet visszaállítása és rögzítés eszközök"
+msgstr "Nézet és rögzítés eszközök visszaállítása"
 
 #: mmframe.cpp:1668
 msgid "Dash&board"
@@ -4996,7 +4996,7 @@ msgstr "Számla törlése az adatbázisból."
 
 #: mmframe.cpp:1693
 msgid "Download &Rates"
-msgstr "&Árfolyamok letöltése"
+msgstr "Ár&folyamok letöltése"
 
 #: mmframe.cpp:1693
 msgid "Download Currency and Stock Rates"
@@ -5052,7 +5052,7 @@ msgstr "Címkék egyesítése"
 
 #: mmframe.cpp:1724
 msgid "&Merge"
-msgstr "&Egyesítés"
+msgstr "E&gyesítés"
 
 #: mmframe.cpp:1725
 msgid "Merge categories, payees, and tags"
@@ -5060,7 +5060,7 @@ msgstr "Kategóriák, kedvezményezettek és címkék egyesítése"
 
 #: mmframe.cpp:1736
 msgid "&Budget Planner..."
-msgstr "&Költségvetés-tervező…"
+msgstr "Költ&ségvetés-tervező…"
 
 #: mmframe.cpp:1740
 msgid "&Scheduled Transactions"
@@ -5088,11 +5088,11 @@ msgstr "Ügylet-jelentés s&zűrése…"
 
 #: mmframe.cpp:1762
 msgid "&General Report Manager..."
-msgstr "&Általános jelentéskezelő…"
+msgstr "Általános &jelentéskezelő…"
 
 #: mmframe.cpp:1766
 msgid "C&ustom Field Manager..."
-msgstr "&Egyéni mezőkezelő…"
+msgstr "Egyéni &mezőkezelő…"
 
 #: mmframe.cpp:1772
 msgid "Refresh &WebApp..."
@@ -5324,7 +5324,7 @@ msgstr "S&zámlák"
 
 #: mmframe.cpp:1894
 msgid "&Tools"
-msgstr "Es&zközök"
+msgstr "&Eszközök"
 
 #: mmframe.cpp:1895
 msgid "&View"
@@ -5692,7 +5692,7 @@ msgstr "Előrejelzés"
 
 #: mmframereport.cpp:168 optionsettingshome.cpp:78
 msgid "Income vs Expenses"
-msgstr "Bevételek vs. kiadások"
+msgstr "Bevételek/kiadások"
 
 #: mmframereport.cpp:179
 msgid "My Usage"
@@ -5766,7 +5766,7 @@ msgstr "Számla/kedvezményezett"
 #: mmhomepage.cpp:423
 #, c-format
 msgid "Income vs Expenses: %s"
-msgstr "Bevételek vs. kiadások: %s"
+msgstr "Bevételek/kiadások: %s"
 
 #: mmhomepage.cpp:433 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:425 reports/categexp.cpp:496 reports/incexpenses.cpp:88
@@ -6917,7 +6917,7 @@ msgstr "Költségvetési kategóriák összesítése ehhez: %s"
 
 #: reports/budgetcategorysummary.cpp:123
 msgid "( Estimated Vs Actual )"
-msgstr "( Becsült vs. Tényleges )"
+msgstr "(becsült/tényleges)"
 
 #: reports/budgetcategorysummary.cpp:340
 msgid "Estimated Income:"
@@ -7108,7 +7108,7 @@ msgstr "Jövőbeni ügyleteket figyelmen kívül hagyták"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
-msgstr "Bevételek és kiadások összesítése"
+msgstr "Bevételek/kiadások összesítése"
 
 #: reports/incexpenses.cpp:115
 msgid "Income:"
@@ -7120,7 +7120,7 @@ msgstr "Kiadások: "
 
 #: reports/incexpenses.cpp:133
 msgid "Income vs Expenses Monthly"
-msgstr "Havi bevételek és kiadások"
+msgstr "Bevételek/kiadások havonta"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
