@@ -32,7 +32,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 
 mmReportIncomeExpenses::mmReportIncomeExpenses()
-    : mmPrintableBase(wxTRANSLATE("Income vs Expenses Summary"))
+    : mmPrintableBase(wxTRANSLATE("Income vs. Expenses Summary"))
 {
     setReportParameters(Reports::IncomevsExpensesSummary);
 }
