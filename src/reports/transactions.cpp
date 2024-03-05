@@ -278,14 +278,16 @@ table {
                     hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
                         , transaction.displayID, true);
                 }
-                wxDateTime dt;
-                dt.ParseFormat(transaction.TRANSDATE, mask) || dt.ParseDate(transaction.TRANSDATE);
                 if (showColumnById(mmFilterTransactionsDialog::COL_COLOR))
                     hb.addColorMarker(getUDColour(transaction.COLOR).GetAsString(), true);
                 if (showColumnById(mmFilterTransactionsDialog::COL_DATE))
+                {
+                    wxDateTime dt;
+                    dt.ParseFormat(transaction.TRANSDATE, mask) || dt.ParseDate(transaction.TRANSDATE);
                     hb.addTableCellDate(dt.FormatISODate());
+                }
                 if (showColumnById(mmFilterTransactionsDialog::COL_TIME))
-                    hb.addTableCell(dt.FormatISOTime());
+                    hb.addTableCell(mmGetTimeForDisplay(transaction.TRANSDATE));
                 if (showColumnById(mmFilterTransactionsDialog::COL_NUMBER))
                     hb.addTableCell(transaction.TRANSACTIONNUMBER);
                 if (showColumnById(mmFilterTransactionsDialog::COL_ACCOUNT))
