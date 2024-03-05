@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-03 19:46\n"
+"PO-Revision-Date: 2024-03-05 02:43\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -6587,7 +6587,7 @@ msgstr "이후 거래 내역 무시"
 
 #: optionsettingsview.cpp:183
 msgid "Use 'Time' in transaction recording/reporting"
-msgstr ""
+msgstr "거래 기록/보고 시 '시간' 사용"
 
 #: optionsettingsview.cpp:188
 msgid "Transaction Colors"
@@ -6831,33 +6831,33 @@ msgstr "범주 병합 확인"
 #: relocatetagdialog.cpp:202
 #, c-format
 msgid "Records found in transactions: %i"
-msgstr "거래내역에서 발견된 레코드: %i"
+msgstr "거래내역에서 발견된 기록: %i"
 
 #: relocatecategorydialog.cpp:256 relocatetagdialog.cpp:203
 #, c-format
 msgid "Records found in split transactions: %i"
-msgstr "분할 거래내역에서 발견된 레코드: %i"
+msgstr "분할 거래내역에서 발견된 기록: %i"
 
 #: relocatecategorydialog.cpp:257 relocatepayeedialog.cpp:209
 #: relocatetagdialog.cpp:204
 #, c-format
 msgid "Records found in scheduled transactions: %i"
-msgstr ""
+msgstr "예약된 거래에서 발견된 기록: %i"
 
 #: relocatecategorydialog.cpp:258 relocatetagdialog.cpp:205
 #, c-format
 msgid "Records found in scheduled split transactions: %i"
-msgstr ""
+msgstr "예약된 분할 거래에서 발견된 기록: %i"
 
 #: relocatecategorydialog.cpp:259
 #, c-format
 msgid "Records found as default payee category: %i"
-msgstr ""
+msgstr "기본 수취인 범주로 발견된 기록: %i"
 
 #: relocatecategorydialog.cpp:260
 #, c-format
 msgid "Records found in budget: %i"
-msgstr "예산에서 발견된 레코드: %i"
+msgstr "예산에서 발견된 기록: %i"
 
 #: relocatepayeedialog.cpp:99
 msgid "Delete source payee after merge"
