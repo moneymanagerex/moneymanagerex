@@ -199,6 +199,7 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 const std::map<wxString, wxString> &date_formats_regex();
 bool mmParseISODate(const wxString& in_str, wxDateTime& out_date);
 const wxString mmGetDateForDisplay(const wxString &iso_date, const wxString& dateFormat = Option::instance().getDateFormat());
+const wxString mmGetTimeForDisplay(const wxString& iso_date);
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString& sDateMask);
 extern const std::vector<std::pair<wxString, wxString>> g_date_formats_map();
 extern const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding;
