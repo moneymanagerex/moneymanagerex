@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-04 17:31\n"
+"PO-Revision-Date: 2024-03-05 00:02\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgstr "Saisissez le solde initial de ce compte."
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr "Date d'ouverture:"
+msgstr "Date d'ouverture :"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
@@ -2561,7 +2561,7 @@ msgstr "Non rapproché"
 #: filtertransdialog.cpp:49 mmhomepage.cpp:534 mmhomepage.cpp:705
 #: model/Model_Billsdeposits.cpp:41 model/Model_Checking.cpp:42
 msgid "Reconciled"
-msgstr "Réconcilié"
+msgstr "Pointé"
 
 #: filtertransdialog.cpp:49 model/Model_Billsdeposits.cpp:42
 #: model/Model_Checking.cpp:43
@@ -2580,7 +2580,7 @@ msgstr "Duplicata"
 
 #: filtertransdialog.cpp:50 filtertransdialog.cpp:1846
 msgid "All Except Reconciled"
-msgstr "Tout sauf les transactions réconciliées"
+msgstr "Tout sauf les transactions pointées"
 
 #: filtertransdialog.cpp:53
 msgid "Day"
