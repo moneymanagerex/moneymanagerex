@@ -1522,15 +1522,12 @@ const wxString getProgramDescription(const int type)
         if (display->IsPrimary())
         {
 
-            description << wxString::Format("%1$s%2$ix%3$i %4$i-%5$s %6$ix%7$i%8$s\n",
-                bull,
+            description << wxString::Format(bull + "%1$ix%2$i %3$i-bit %4$ix%5$ippi" + "\n",
                 display->GetCurrentMode().GetWidth(),
                 display->GetCurrentMode().GetHeight(),
                 display->GetCurrentMode().bpp,
-                _("bit"),
                 display->GetPPI().GetWidth(),
-                display->GetPPI().GetHeight(),
-                _("ppi")
+                display->GetPPI().GetHeight()
             );
         }
     }
