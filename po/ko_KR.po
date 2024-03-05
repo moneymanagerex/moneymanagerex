@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-05 15:04\n"
+"PO-Revision-Date: 2024-03-05 17:02\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -2624,11 +2624,11 @@ msgstr "누적 영역형"
 
 #: filtertransdialog.cpp:505
 msgid "Last Unsaved Filter"
-msgstr ""
+msgstr "마지막으로 저장되지 않은 필터"
 
 #: filtertransdialog.cpp:552 transactionsupdatedialog.cpp:122
 msgid "Specify"
-msgstr "조건"
+msgstr "지정"
 
 #: filtertransdialog.cpp:578
 msgid "Period Range"
@@ -5160,11 +5160,11 @@ msgstr ""
 
 #: mmframe.cpp:1819
 msgid "&X"
-msgstr ""
+msgstr "&X"
 
 #: mmframe.cpp:1819
 msgid "Follow MMEX on X"
-msgstr ""
+msgstr "X에서 MMEX 팔로우하기"
 
 #: mmframe.cpp:1821
 msgid "&YouTube"
@@ -5212,7 +5212,7 @@ msgstr "안드로이드용 MMEX(&A)"
 
 #: mmframe.cpp:1833
 msgid "Install MMEX for Android based smartphones and tablets"
-msgstr ""
+msgstr "안드로이드 기반 스마트폰 및 태블릿용 MMEX 설치"
 
 #: mmframe.cpp:1835
 msgid "&Newsletter"
@@ -5220,7 +5220,7 @@ msgstr "새 소식(&N)"
 
 #: mmframe.cpp:1836
 msgid "Visit the MMEX blog to view announcements"
-msgstr ""
+msgstr "공지사항을 보려면 MMEX 블로그를 방문하세요"
 
 #: mmframe.cpp:1838
 msgid "&RSS Feed"
@@ -5336,7 +5336,7 @@ msgstr "환율 내려받기"
 
 #: mmframe.cpp:1952
 msgid "Download currency and stock rates"
-msgstr ""
+msgstr "통화 및 주가 내려받기"
 
 #: mmframe.cpp:1955
 msgid "Toggle Fullscreen\tF11"
@@ -5437,7 +5437,7 @@ msgstr "다른 이름으로 저장할 데이터베이스 파일 선택"
 
 #: mmframe.cpp:2336
 msgid "Converted database!"
-msgstr ""
+msgstr "데이터베이스를 변환했습니다!"
 
 #: mmframe.cpp:2336
 msgid "MMEX message"
