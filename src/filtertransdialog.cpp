@@ -1423,20 +1423,10 @@ template <class MODEL, class DATA> bool mmFilterTransactionsDialog::mmIsRecordMa
 {
     bool ok = true;
 
-    wxString refType;
-    // Check the Data type to determine the tag RefType
-    if (typeid(tran).hash_code() == typeid(Model_Checking::Data).hash_code())
-        refType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    else if (typeid(tran).hash_code() == typeid(Model_Billsdeposits::Data).hash_code())
-        refType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
-
     // wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(),
-    wxDate date;
-    date.ParseDateTime(tran.TRANSDATE) || date.ParseDate(tran.TRANSDATE);
-    wxString strDate = date.FormatISOCombined();
     if (mmIsAccountChecked() && m_selected_accounts_id.Index(tran.ACCOUNTID) == wxNOT_FOUND && m_selected_accounts_id.Index(tran.TOACCOUNTID) == wxNOT_FOUND)
         ok = false;
-    else if ((mmIsDateRangeChecked() || mmIsRangeChecked()) && (strDate < m_begin_date || strDate > m_end_date))
+    else if ((mmIsDateRangeChecked() || mmIsRangeChecked()) && (tran.TRANSDATE < m_begin_date || tran.TRANSDATE > m_end_date))
         ok = false;
     else if (mmIsPayeeChecked() && !mmIsPayeeMatches(tran.PAYEEID))
         ok = false;
@@ -1459,8 +1449,17 @@ template <class MODEL, class DATA> bool mmFilterTransactionsDialog::mmIsRecordMa
         ok = false;
     else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran.id()))
         ok = false;
-    else if (mmIsTagsChecked() && !mmIsTagMatches(refType, tran.id(), mergeSplitTags))
-        ok = false;
+    else if (mmIsTagsChecked())
+    {
+        wxString refType;
+        // Check the Data type to determine the tag RefType
+        if (typeid(tran).hash_code() == typeid(Model_Checking::Data).hash_code())
+            refType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+        else if (typeid(tran).hash_code() == typeid(Model_Billsdeposits::Data).hash_code())
+            refType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+        if (!mmIsTagMatches(refType, tran.id(), mergeSplitTags))
+            ok = false;
+    }
     return ok;
 }
 

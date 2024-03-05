@@ -205,7 +205,7 @@ void mmTransDialog::dataToControls()
     {
         bool is_time_used = Option::instance().UseTransDateTime();
         wxDateTime trx_date;
-        wxString mask = is_time_used ? "%Y-%m-%dT%H:%M:%S" : "%Y-%m-%d";
+        const wxString mask = is_time_used ? "%Y-%m-%dT%H:%M:%S" : "%Y-%m-%d";
         if (!trx_date.ParseFormat(m_trx_data.TRANSDATE, mask))
             trx_date.ParseDate(m_trx_data.TRANSDATE);
         dpc_->SetValue(trx_date);
