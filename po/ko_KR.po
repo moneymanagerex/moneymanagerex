@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-05 02:43\n"
+"PO-Revision-Date: 2024-03-05 15:04\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -1107,7 +1107,7 @@ msgstr "태그"
 
 #: billsdepositsdialog.cpp:599 transdialog.cpp:1317
 msgid "Specify any associated check number or transaction number"
-msgstr "관련된 수표 번호 또는 거래 번호를 지정하세요."
+msgstr "관련된 수표 번호 또는 거래 번호를 지정하세요"
 
 #: billsdepositsdialog.cpp:601 billsdepositspanel.cpp:145 filtertrans.cpp:199
 #: filtertransdialog.cpp:679 filtertransdialog.cpp:1893
@@ -2694,7 +2694,7 @@ msgstr "그룹화"
 
 #: filtertransdialog.cpp:750
 msgid "Specify how the report should be grouped"
-msgstr "보고서를 그룹화할 항목을 지정합니다"
+msgstr "보고서를 그룹화하는 방법을 지정하세요"
 
 #: filtertransdialog.cpp:753 filtertransdialog.cpp:1103
 #: filtertransdialog.cpp:1975
@@ -2703,7 +2703,7 @@ msgstr "차트"
 
 #: filtertransdialog.cpp:762
 msgid "Specify which chart will be included in the report"
-msgstr ""
+msgstr "보고서에 포함될 차트를 지정하세요"
 
 #: filtertransdialog.cpp:765 filtertransdialog.cpp:1984
 msgid "Combine Splits"
