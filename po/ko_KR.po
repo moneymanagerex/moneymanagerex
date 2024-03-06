@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-06 02:07\n"
+"PO-Revision-Date: 2024-03-06 03:45\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -1737,12 +1737,12 @@ msgstr "사용 중인 하위 범주입니다."
 #: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "팁: 병합 명령을 사용하여 이 범주를 사용하는 모든 거래를 다른 범주로 변경합니다:"
 
 #: categdialog.cpp:472
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "팁: 병합 명령을 사용하여 이 하위 범주를 사용하는 모든 거래를 다른 범주로 변경합니다:"
 
 #: categdialog.cpp:475
 msgid "Tools → Merge → Categories"
@@ -3004,12 +3004,12 @@ msgstr "'%s' 테마의 메타데이터 JSON을 구문 분석할 수 없으며 �
 #: images_list.cpp:413
 #, c-format
 msgid "File '%1$s' missing or invalid in chosen theme '%2$s'"
-msgstr ""
+msgstr "선택한 '%2$s' 테마에서 '%1$s' 파일이 누락되었거나 유효하지 않습니다"
 
 #: images_list.cpp:424
 #, c-format
 msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
-msgstr ""
+msgstr "선택한 '%2$s' 테마에 '%1$s' 메타데이터가 없습니다"
 
 #: images_list.cpp:457
 msgid "and more..."
@@ -3018,7 +3018,7 @@ msgstr "그리고 더..."
 #: images_list.cpp:459
 #, c-format
 msgid "There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s"
-msgstr ""
+msgstr "선택한 '%2$s' 테마에 %1$d개의 누락되거나 잘못된 아이콘이 있습니다: %3$s"
 
 #: images_list.cpp:488
 #, c-format
@@ -3306,7 +3306,7 @@ msgstr "누락"
 #: import_export/qif_import_gui.cpp:795 import_export/univcsvdialog.cpp:2070
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
-msgstr ""
+msgstr "%2$s 패턴으로 %1$s 값이 일치합니다."
 
 #: import_export/qif_import_gui.cpp:874
 msgid "Choose QIF data file to Import"
@@ -3343,7 +3343,7 @@ msgstr "범주를 가져오는 중"
 #: import_export/qif_import_gui.cpp:1084
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "%2$i 중 %1$i 거래를 가져오는 중"
 
 #: import_export/qif_import_gui.cpp:1174
 msgid "Importing Transfers"
@@ -3378,7 +3378,7 @@ msgstr "거래 추적 코드가 없습니다"
 #: import_export/qif_import_gui.cpp:1352 import_export/univcsvdialog.cpp:2408
 #, c-format
 msgid "%1$s matched by %2$s"
-msgstr ""
+msgstr "%1$s가 %2$s와 일치함"
 
 #: import_export/qif_import_gui.cpp:1364
 msgid "Transaction Payee is missing or incorrect"
@@ -3559,7 +3559,7 @@ msgstr "파일 내보내기"
 #: import_export/univcsvdialog.cpp:584 import_export/univcsvdialog.cpp:2653
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
-msgstr ""
+msgstr "'%2$s' 계정이 선택되어 '%1$s' 사전 설정이 로드되었습니다."
 
 #: import_export/univcsvdialog.cpp:738
 #, c-format
@@ -3761,12 +3761,12 @@ msgstr "가져오기를 위해 '유형'을 선택한 경우 유형별로 금액 
 #: import_export/univcsvdialog.cpp:2877
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
-msgstr ""
+msgstr "사용자 정의 필드 '%2$s'의 %1$s 값은 %3$s 유형이 아닙니다."
 
 #: import_export/univcsvdialog.cpp:2835 import_export/univcsvdialog.cpp:2856
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
-msgstr ""
+msgstr "%2$s 사용자 정의 필드 '%3$s'의 %1$s 값은 유효한 선택이 아닙니다."
 
 #: import_export/univcsvdialog.cpp:2867
 #, c-format
@@ -3776,7 +3776,7 @@ msgstr "형식이 선택 항목 %s와 일치하는지 확인합니다."
 #: import_export/univcsvdialog.cpp:2894
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
-msgstr ""
+msgstr "%1$s 값이 사용자 정의 필드 '%3$s'의 %2$s 정규식과 일치하지 않습니다."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -3855,7 +3855,8 @@ msgstr "기준 통화 선택"
 #, c-format
 msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %2$s"
-msgstr ""
+msgstr "%1$s에 대한 과거 환율이 발견되었지만 옵션에서 '통화 기록 사용'이 비활성화되었습니다.\n"
+"아니요를 클릭하고 활성화하거나 예를 클릭하여 %2$s에 대한 모든 과거 환율을 제거합니다."
 
 #: maincurrencydialog.cpp:447
 #, c-format
@@ -4005,11 +4006,11 @@ msgstr "비어 있지 않은 기호를 입력하십시오."
 
 #: mmSimpleDialogs.cpp:973
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
-msgstr ""
+msgstr "검색할 태그를 입력하세요. 선택적으로 '&' 및 '|' 연산자로 구분하세요."
 
 #: mmSimpleDialogs.cpp:974
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
-msgstr ""
+msgstr "연속된 태그 사이의 기본 연산자는 AND입니다. OR 연산자로 변경하려면 '|'를 사용하세요."
 
 #: mmSimpleDialogs.cpp:1575
 #, c-format
@@ -4092,27 +4093,27 @@ msgstr "범주 관리자 팁: 2개의 키 조합을 누르면 해당 키 조합�
 
 #: mmTips.h:37
 msgid "Never endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
-msgstr ""
+msgstr "대출에 보증을 서지 마세요. 대출금 상환을 받지 못한 경우, 친구, 가족, 연인 등 대출금 상환을 받지 못한 경우, 신용 점수가 하락하고, 대출금 상환을 위해 대출금 상환을 요구할 수 있으며, 관계가 파괴될 가능성이 높습니다. 게다가, 은행이 공동 서명자를 요구하는 경우, 은행은 상환을 할 수 있는 사람을 믿지 않습니다."
 
 #: mmTips.h:39
 msgid "Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."
-msgstr ""
+msgstr "장보기 팁: 배고픈 상태나 스트레스를 받은 상태에서 장보기를 피하세요. 배고픔과 스트레스는 많은 초콜릿이나 매력적인 가공 식품을 사는 것처럼 이상한 일을 하게 만들 수 있습니다. 잘 먹고 편안한 상태에서 가게에 가는 것을 계획하세요. 그렇게 하면 목록에 따라 필요한 음식 이외의 음식에 지나치게 돈을 쓰지 않을 수 있습니다."
 
 #: mmTips.h:40
 msgid "Grocery tip: Make a shopping list. A shopping list saves money by helping you avoid buying products you do not need. The simplest way is to track consumables as you use them. Keep a magnetic notepad on the fridge and jot down what you need as you run out."
-msgstr ""
+msgstr "장보기 팁: 쇼핑 목록을 만드세요. 쇼핑 목록은 필요하지 않은 제품을 구입하지 않도록 도와 돈을 절약합니다. 가장 간단한 방법은 소비품을 사용할 때마다 추적하는 것입니다. 냉장고에 자석 메모장을 붙여두고 다 떨어지면 필요한 것을 적어두세요."
 
 #: mmTips.h:41
 msgid "Grocery tip: Buy fruits and vegetables in season."
-msgstr ""
+msgstr "장보기 팁: 계절에 맞는 과일과 채소를 구입하세요."
 
 #: mmTips.h:42
 msgid "Grocery tip: Make sure your family consumes everything you purchase. Every month or so, hold a pantry challenge during which you use up as many pantry goods as possible before you shop again. A pantry challenge cuts down on waste and lets you get a sense of how much you are overbuying."
-msgstr ""
+msgstr "장보기 팁: 구매한 모든 것을 가족들이 소비하도록 하세요. 한 달에 한 번씩, 다시 쇼핑하기 전에 가능한 많은 냉장고 내용물을 사용하는 냉장고 비우기 도전을 진행하세요. 냉장고 비우기 도전은 낭비를 줄이고 과소비를 얼마나 하는지 파악할 수 있습니다."
 
 #: mmTips.h:43
 msgid "Grocery tip: Reduce waste. Adopting better grocery shopping habits is one way to cut back on wasted food and money. Make a list of everything you throw out without using, such as spoiled leftovers or soggy lettuce, to get a sense of the full scale of the issue."
-msgstr ""
+msgstr "장보기 팁: 음식물 쓰레기 줄이기. 더 나은 장보기 습관을 갖는 것은 음식물과 돈을 절약하는 한 가지 방법입니다. 상한 남은 음식이나 시든 상추와 같이 사용하지 않고 버리는 모든 것을 목록으로 작성하여 문제의 전체적인 규모를 파악하세요."
 
 #: mmTips.h:44
 msgid "Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."
@@ -4461,7 +4462,7 @@ msgstr "대상 계정 선택 "
 
 #: mmchecking_list.cpp:1725
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
-msgstr ""
+msgstr "이는 이동을 허용하지 않는 거래 또는 계정 세부정보의 일부 요소로 인해 발생합니다"
 
 #: mmchecking_list.cpp:1726
 msgid "Moved"
@@ -5048,7 +5049,7 @@ msgstr "예약된 거래(&S)"
 
 #: mmframe.cpp:1740
 msgid "Bills and Deposits"
-msgstr ""
+msgstr "지불 및 입금"
 
 #: mmframe.cpp:1744
 msgid "&Assets"
@@ -5363,7 +5364,7 @@ msgstr "MMEX: 암호화된 데이터베이스"
 
 #: mmframe.cpp:2053
 msgid "Have MMEX support provided a debug/patch file?"
-msgstr ""
+msgstr "MMEX 지원팀에서 디버그/패치 파일을 제공했습니까?"
 
 #: mmframe.cpp:2053
 msgid "MMEX upgrade"
