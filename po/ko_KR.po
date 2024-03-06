@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-06 01:00\n"
+"PO-Revision-Date: 2024-03-06 02:07\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -5092,11 +5092,11 @@ msgstr "옵션"
 
 #: mmframe.cpp:1784
 msgid "&Decrypt Encrypted Database..."
-msgstr ""
+msgstr "암호화된 데이터베이스 암호 해독(&D)..."
 
 #: mmframe.cpp:1785
 msgid "Convert encrypted database to unencrypted database"
-msgstr ""
+msgstr "암호화된 데이터베이스를 암호화되지 않은 데이터베이스로 변환"
 
 #: mmframe.cpp:1787
 msgid "Change Encrypted &Password..."
@@ -5112,7 +5112,7 @@ msgstr "데이터베이스 최적화(&O)..."
 
 #: mmframe.cpp:1791
 msgid "Optimize database for space and performance"
-msgstr ""
+msgstr "데이터베이스의 공간 및 성능 최적화"
 
 #: mmframe.cpp:1793
 msgid "Database Check and De&bug..."
@@ -5156,7 +5156,7 @@ msgstr "&Crowdin"
 
 #: mmframe.cpp:1817
 msgid "Help translate MMEX on Crowdin"
-msgstr ""
+msgstr "Crowdin에서 MMEX 번역을 도와주기"
 
 #: mmframe.cpp:1819
 msgid "&X"
@@ -5172,7 +5172,7 @@ msgstr "&YouTube"
 
 #: mmframe.cpp:1821
 msgid "Watch MMEX videos on YouTube"
-msgstr ""
+msgstr "유투브에서 MMEX 동영상 보기"
 
 #: mmframe.cpp:1823
 msgid "&Slack"
@@ -5180,7 +5180,7 @@ msgstr "&Slack"
 
 #: mmframe.cpp:1823
 msgid "Communicate with the MMEX team online"
-msgstr ""
+msgstr "MMEX 팀과 온라인으로 소통하기"
 
 #: mmframe.cpp:1825
 msgid "&GitHub"
@@ -5204,7 +5204,7 @@ msgstr "포럼(&F)"
 
 #: mmframe.cpp:1830
 msgid "Visit MMEX forum to read and post comments"
-msgstr ""
+msgstr "댓글을 읽고 게시하려면 MMEX 포럼을 방문하세요"
 
 #: mmframe.cpp:1832
 msgid "MMEX for &Android"
@@ -5449,7 +5449,7 @@ msgstr "MMEX: 암호화 암호 변경"
 
 #: mmframe.cpp:2343
 msgid "New password for database:"
-msgstr ""
+msgstr "새 암호 입력. 데이터베이스:"
 
 #: mmframe.cpp:2351
 msgid "New password must not be empty."
@@ -5469,7 +5469,7 @@ msgstr "암호 확인에 실패했습니다."
 
 #: mmframe.cpp:2377
 msgid "Backup database before optimization."
-msgstr ""
+msgstr "최적화 전 데이터베이스를 백업하세요."
 
 #: mmframe.cpp:2378 mmframe.cpp:2388
 msgid "DB Optimization"
@@ -6230,7 +6230,7 @@ msgstr "통화 설정"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Set default database currency using 'Currency Manager'"
-msgstr ""
+msgstr "'환율 관리자'를 사용하여 기본 데이터베이스 통화 설정"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
@@ -8153,7 +8153,7 @@ msgstr "사용자 인터페이스 언어: %s"
 
 #: util.cpp:1749
 msgid "The complete list of closed issues is available at this link"
-msgstr ""
+msgstr "닫힌 이슈의 전체 목록은 이 링크에서 확인할 수 있습니다"
 
 #: util.cpp:1946
 msgid "Copy all text to clipboard"
@@ -8360,7 +8360,7 @@ msgstr "유효하지 않은 계정 이름"
 
 #: wizard_newaccount.cpp:94
 msgid "An account with this name already exists"
-msgstr ""
+msgstr "같은 이름의 계정이 이미 존재합니다"
 
 #: wizard_newaccount.cpp:108
 msgid "Name of the Account"
@@ -8445,7 +8445,10 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
+msgstr "데이터베이스에 사용할 기준(또는 기본) 통화를 지정합니다.\n"
+"데이터 베이스. 기준 통화는 나중에 옵션에서 변경할 수 있습니다.\n"
+"새 계정은 기본적으로 이 통화를 사용하며, \n"
+"계정 세부 정보를 편집할 때 변경할 수 있습니다."
 
 #: wizard_newdb.cpp:124
 msgid "(Optional) Specify a title or your name."
