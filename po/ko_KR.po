@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-05 17:02\n"
+"PO-Revision-Date: 2024-03-06 01:00\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -5140,7 +5140,7 @@ msgstr "도움말 표시"
 
 #: mmframe.cpp:1813
 msgid "Visit MMEX website for the latest news and updates"
-msgstr ""
+msgstr "최신 뉴스 및 업데이트를 보려면 MMEX 웹사이트를 방문하세요"
 
 #: mmframe.cpp:1815
 msgid "&Facebook"
@@ -5148,7 +5148,7 @@ msgstr "&Facebook"
 
 #: mmframe.cpp:1815
 msgid "Visit MMEX Facebook page"
-msgstr ""
+msgstr "MMEX 페이스북 페이지 방문하기"
 
 #: mmframe.cpp:1817
 msgid "&Crowdin"
