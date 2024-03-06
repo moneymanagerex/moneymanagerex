@@ -422,7 +422,15 @@ const wxString mmCustomData::GetWidgetData(wxWindowID controlID) const
         wxWindow* w = FindWindowById(controlID, m_dialog);
         if (w)
         {
-            const wxString class_name = w->GetEventHandler()->GetClassInfo()->GetClassName();
+            wxString class_name = w->GetEventHandler()->GetClassInfo()->GetClassName();
+
+            if (class_name == "wxPanel")
+            {
+                w = w->GetChildren()[0];
+                if (w)
+                    class_name = w->GetEventHandler()->GetClassInfo()->GetClassName();
+            }
+
             if (class_name == "wxDatePickerCtrl")
             {
                 mmDatePickerCtrl* d = static_cast<mmDatePickerCtrl*>(w);
