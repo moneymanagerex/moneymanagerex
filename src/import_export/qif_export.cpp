@@ -331,7 +331,7 @@ void mmQIFExportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
             correctEmptyFileExt("json", fileName);
         break;
     case CSV:
-        fileName = wxFileSelector(_("Choose QIF data file to Export")
+        fileName = wxFileSelector(_("Choose CSV data file to Export")
             , wxEmptyString, fileName, wxEmptyString
             , _("CSV Files (*.csv)") + "|*.csv;*.CSV"
             , wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
