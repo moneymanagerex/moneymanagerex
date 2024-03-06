@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-04 00:07\n"
+"PO-Revision-Date: 2024-03-04 21:20\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -5955,7 +5955,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "En schemalagd transaktion kommer att överskrida din kontogräns.\n\n"
+"konto: %1$s\n"
+"Nuvarande saldo: %2$6.2f\n"
+"Transaktionsbelopp: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Vill du fortsätta?"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "Minimum Balance"
@@ -7151,7 +7156,7 @@ msgstr ""
 #: reports/mmDateRange.cpp:285 reports/mmDateRange.cpp:297
 #, c-format
 msgid "Last %i Days"
-msgstr ""
+msgstr "Senaste %i dagarna"
 
 #: reports/mmDateRange.cpp:303
 msgid "Since Today"
@@ -7241,7 +7246,7 @@ msgstr ""
 
 #: reports/transactions.cpp:227
 msgid "FX Rate"
-msgstr ""
+msgstr "FX kurs"
 
 #: reports/transactions.cpp:452
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
