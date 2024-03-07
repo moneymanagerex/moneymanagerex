@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-07 02:13\n"
+"PO-Revision-Date: 2024-03-07 03:31\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3931,7 +3931,7 @@ msgstr "Szín törlése"
 #: mmSimpleDialogs.cpp:575 mmSimpleDialogs.cpp:589
 #, c-format
 msgid "Color #%i"
-msgstr "Szín #%i"
+msgstr "%i. szín"
 
 #: mmSimpleDialogs.cpp:747
 msgid "Subtract one year"
@@ -6612,7 +6612,7 @@ msgstr "„Idő” használata az ügylet rögzítésében/jelentésében"
 
 #: optionsettingsview.cpp:188
 msgid "Transaction Colors"
-msgstr "Tranzakciós színek"
+msgstr "Ügylet színei"
 
 #: optionsettingsview.cpp:227
 msgid "User Interface"
