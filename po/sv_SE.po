@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-08 22:48\n"
+"PO-Revision-Date: 2024-03-08 23:46\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -5205,7 +5205,7 @@ msgstr ""
 
 #: mmframe.cpp:1830
 msgid "Visit MMEX forum to read and post comments"
-msgstr ""
+msgstr "Besök MMEX forum för att läsa och skriva kommentarer"
 
 #: mmframe.cpp:1832
 msgid "MMEX for &Android"
@@ -5213,7 +5213,7 @@ msgstr "MMEX för &Android"
 
 #: mmframe.cpp:1833
 msgid "Install MMEX for Android based smartphones and tablets"
-msgstr ""
+msgstr "Installera MMEX för Android-baserade smartphones och surfplattor"
 
 #: mmframe.cpp:1835
 msgid "&Newsletter"
@@ -5337,7 +5337,7 @@ msgstr ""
 
 #: mmframe.cpp:1952
 msgid "Download currency and stock rates"
-msgstr ""
+msgstr "Ladda ner valuta- och aktiekurser"
 
 #: mmframe.cpp:1955
 msgid "Toggle Fullscreen\tF11"
@@ -5363,7 +5363,7 @@ msgstr ""
 
 #: mmframe.cpp:2053
 msgid "Have MMEX support provided a debug/patch file?"
-msgstr ""
+msgstr "Har MMEX-användarstöd tillhandahållit en debug/patch-fil?"
 
 #: mmframe.cpp:2053
 msgid "MMEX upgrade"
@@ -5434,7 +5434,7 @@ msgstr "Välj databasfil att spara som"
 
 #: mmframe.cpp:2336
 msgid "Converted database!"
-msgstr ""
+msgstr "Konverterad databas!"
 
 #: mmframe.cpp:2336
 msgid "MMEX message"
@@ -5446,7 +5446,7 @@ msgstr ""
 
 #: mmframe.cpp:2343
 msgid "New password for database:"
-msgstr ""
+msgstr "Nytt lösenord för databasen:"
 
 #: mmframe.cpp:2351
 msgid "New password must not be empty."
@@ -5466,7 +5466,7 @@ msgstr ""
 
 #: mmframe.cpp:2377
 msgid "Backup database before optimization."
-msgstr ""
+msgstr "Säkerhetskopiera databasen före optimering."
 
 #: mmframe.cpp:2378 mmframe.cpp:2388
 msgid "DB Optimization"
