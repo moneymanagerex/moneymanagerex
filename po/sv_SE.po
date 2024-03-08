@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-04 21:20\n"
+"PO-Revision-Date: 2024-03-08 22:48\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -5093,11 +5093,11 @@ msgstr ""
 
 #: mmframe.cpp:1784
 msgid "&Decrypt Encrypted Database..."
-msgstr ""
+msgstr "&Dekryptera krypterad databas..."
 
 #: mmframe.cpp:1785
 msgid "Convert encrypted database to unencrypted database"
-msgstr ""
+msgstr "Konvertera krypterad databas till okrypterad databas"
 
 #: mmframe.cpp:1787
 msgid "Change Encrypted &Password..."
@@ -5113,7 +5113,7 @@ msgstr "&Optimera databas..."
 
 #: mmframe.cpp:1791
 msgid "Optimize database for space and performance"
-msgstr ""
+msgstr "Optimera databasens utrymme och prestanda"
 
 #: mmframe.cpp:1793
 msgid "Database Check and De&bug..."
@@ -5141,7 +5141,7 @@ msgstr ""
 
 #: mmframe.cpp:1813
 msgid "Visit MMEX website for the latest news and updates"
-msgstr ""
+msgstr "Besök MMEX webbplats för de senaste nyheterna och uppdateringarna"
 
 #: mmframe.cpp:1815
 msgid "&Facebook"
@@ -5149,7 +5149,7 @@ msgstr ""
 
 #: mmframe.cpp:1815
 msgid "Visit MMEX Facebook page"
-msgstr ""
+msgstr "Besök MMEX Facebook-sida"
 
 #: mmframe.cpp:1817
 msgid "&Crowdin"
@@ -5157,7 +5157,7 @@ msgstr ""
 
 #: mmframe.cpp:1817
 msgid "Help translate MMEX on Crowdin"
-msgstr ""
+msgstr "Hjälp till att översätta MMEX på Crowdin"
 
 #: mmframe.cpp:1819
 msgid "&X"
@@ -5173,7 +5173,7 @@ msgstr ""
 
 #: mmframe.cpp:1821
 msgid "Watch MMEX videos on YouTube"
-msgstr ""
+msgstr "Titta på MMEX-videor på YouTube"
 
 #: mmframe.cpp:1823
 msgid "&Slack"
@@ -5181,7 +5181,7 @@ msgstr ""
 
 #: mmframe.cpp:1823
 msgid "Communicate with the MMEX team online"
-msgstr ""
+msgstr "Kommunicera med MMEX-teamet online"
 
 #: mmframe.cpp:1825
 msgid "&GitHub"
