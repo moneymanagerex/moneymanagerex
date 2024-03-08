@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-08 01:27\n"
+"PO-Revision-Date: 2024-03-08 02:30\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -875,17 +875,17 @@ msgstr "2개월마다"
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:55
 #: model/Model_Budget.cpp:63
 msgid "Quarterly"
-msgstr "분기별"
+msgstr "4개월마다"
 
 #: billsdepositsdialog.cpp:57 billsdepositspanel.cpp:56
 #: model/Model_Budget.cpp:64
 msgid "Half-Yearly"
-msgstr "반년마다"
+msgstr "6개월마다"
 
 #: billsdepositsdialog.cpp:58 billsdepositspanel.cpp:57 mmframereport.cpp:201
 #: model/Model_Budget.cpp:65
 msgid "Yearly"
-msgstr "연간"
+msgstr "매년"
 
 #: billsdepositsdialog.cpp:59 billsdepositspanel.cpp:58
 msgid "Four Months"
@@ -906,15 +906,15 @@ msgstr "(n)일 후"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr "(n) 개월 후"
+msgstr "(n)개월 후"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr "매 (x)일 마다"
+msgstr "매 (n)일마다"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr "매 (n)개월 마다"
+msgstr "매 (n)개월마다"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -922,7 +922,7 @@ msgstr "매월 (마지막 날)"
 
 #: billsdepositsdialog.cpp:67 billsdepositspanel.cpp:66
 msgid "Monthly (last business day)"
-msgstr "월별 (마지막 영업일)"
+msgstr "매월 (마지막 영업일)"
 
 #: billsdepositsdialog.cpp:306 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
