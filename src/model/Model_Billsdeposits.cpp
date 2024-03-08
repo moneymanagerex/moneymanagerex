@@ -236,7 +236,7 @@ void Model_Billsdeposits::decode_fields(const Data& q1)
     }
 
     m_requireExecution = (Model_Billsdeposits::NEXTOCCURRENCEDATE(&q1)
-        .Subtract(wxDate::Today()).GetDays() < 1);
+        .Subtract(wxDate::Today()).GetSeconds().GetValue() / 86400 < 1);
 }
 
 bool Model_Billsdeposits::autoExecuteManual()

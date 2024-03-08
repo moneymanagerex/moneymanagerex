@@ -530,11 +530,11 @@ const wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Dat
 const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data* item) const
 {
     int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
-
+    
     int daysRemaining = Model_Billsdeposits::TRANSDATE(item)
-        .Subtract(this->getToday()).GetDays();
+        .Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
     int daysOverdue = Model_Billsdeposits::NEXTOCCURRENCEDATE(item)
-        .Subtract(this->getToday()).GetDays();
+        .Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
     wxString text = wxString::Format(wxPLURAL("%d day remaining", "%d days remaining", daysRemaining), daysRemaining);
 
     if (daysRemaining == 0)
@@ -601,7 +601,7 @@ int billsDepositsListCtrl::OnGetItemImage(long item) const
     repeats %= BD_REPEATS_MULTIPLEX_BASE;
 
     int daysRemaining = Model_Billsdeposits::NEXTOCCURRENCEDATE(m_bdp->bills_[item])
-        .Subtract(m_bdp->getToday()).GetDays();
+        .Subtract(m_bdp->getToday()).GetSeconds().GetValue() / 86400;
     wxString daysRemainingStr = wxString::Format(wxPLURAL("%d day remaining", "%d days remaining", daysRemaining), daysRemaining);
 
     if (daysRemaining == 0)
