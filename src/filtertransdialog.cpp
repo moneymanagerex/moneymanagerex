@@ -1426,8 +1426,11 @@ template <class MODEL, class DATA> bool mmFilterTransactionsDialog::mmIsRecordMa
     // wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(),
     if (mmIsAccountChecked() && m_selected_accounts_id.Index(tran.ACCOUNTID) == wxNOT_FOUND && m_selected_accounts_id.Index(tran.TOACCOUNTID) == wxNOT_FOUND)
         ok = false;
-    else if ((mmIsDateRangeChecked() || mmIsRangeChecked()) && (tran.TRANSDATE < m_begin_date || tran.TRANSDATE > m_end_date))
-        ok = false;
+    else if (mmIsDateRangeChecked() || mmIsRangeChecked()) {
+        //wxLogDebug("date:%s -%s-",tran.TRANSDATE, m_begin_date.Mid(0, tran.TRANSDATE.length()));
+        if (tran.TRANSDATE < m_begin_date.Mid(0, tran.TRANSDATE.length()) || tran.TRANSDATE > m_end_date.Mid(0, tran.TRANSDATE.length()))
+            ok = false;
+    }
     else if (mmIsPayeeChecked() && !mmIsPayeeMatches(tran.PAYEEID))
         ok = false;
     else if (mmIsCategoryChecked() && !mmIsCategoryMatches(tran.CATEGID))
