@@ -577,7 +577,6 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 Model_CustomFieldData::instance().ReleaseSavepoint();
             }
             Model_Billsdeposits::instance().completeBDInSeries(q1.BDID);
-            createHomePage();
         }
     }
 
@@ -585,6 +584,8 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     {
         autoRepeatTransactionsTimer_.Start(5, wxTIMER_ONE_SHOT);
     }
+    else
+        refreshPanelData();
 }
 //----------------------------------------------------------------------------
 
