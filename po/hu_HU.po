@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-07 03:31\n"
+"PO-Revision-Date: 2024-03-09 07:30\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1939,7 +1939,7 @@ msgstr "ÖSSZES"
 #: constants.cpp:209 mmframe.cpp:1921 model/Model_Account.cpp:27
 #: model/Model_Asset.cpp:54
 msgid "Open"
-msgstr "Megnyitás"
+msgstr "Nyitva"
 
 #: constants.cpp:210 model/Model_Account.cpp:28 model/Model_Asset.cpp:53
 msgid "Closed"
