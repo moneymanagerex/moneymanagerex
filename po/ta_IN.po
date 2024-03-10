@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-03 19:46\n"
+"PO-Revision-Date: 2024-03-10 19:37\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "பற்றி"
 
 #: aboutdialog.cpp:186
 msgid "Authors"
-msgstr ""
+msgstr "ஆசிரியர்"
 
 #: aboutdialog.cpp:191
 msgid "Sponsors"
@@ -67,7 +67,7 @@ msgstr ""
 #: tagdialog.cpp:142 transactionsupdatedialog.cpp:266 transdialog.cpp:594
 #: wizard_update.cpp:214
 msgid "&OK "
-msgstr ""
+msgstr "&சரி "
 
 #: accountdialog.cpp:95 mmframe.cpp:1674
 msgid "Edit Account"
@@ -100,7 +100,7 @@ msgstr "இக்கணக்கு மூடப்பட்டதெனில�
 #: accountdialog.cpp:149
 #, c-format
 msgid "Initial Balance: %s"
-msgstr ""
+msgstr "ஆரம்ப இருப்பு: %s"
 
 #: accountdialog.cpp:152
 msgid "Enter the initial balance in this account."
@@ -229,7 +229,7 @@ msgstr ""
 
 #: accountdialog.cpp:243
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "குறைந்தபட்ச இருப்பு:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
@@ -249,7 +249,7 @@ msgstr ""
 
 #: accountdialog.cpp:263
 msgid "Interest Rate:"
-msgstr ""
+msgstr "வட்டி விகிதம்:"
 
 #: accountdialog.cpp:268
 msgid "Payment Due Date:"
@@ -270,7 +270,7 @@ msgstr ""
 #: accountdialog.cpp:438
 #, c-format
 msgid "Image #%i"
-msgstr ""
+msgstr "படம் #%i"
 
 #: accountdialog.cpp:496
 msgid "Account Name "
@@ -480,7 +480,7 @@ msgstr "சொத்து மதிப்பில் மாற்றமிர�
 
 #: assetdialog.cpp:220
 msgid "% Rate"
-msgstr ""
+msgstr "% விகிதம்"
 
 #: assetdialog.cpp:227
 msgid "Enter the rate at which the asset changes its value in percentage per year"
@@ -605,7 +605,7 @@ msgstr "எல்லாம்"
 #: assetspanel.cpp:470 billsdepositspanel.cpp:294 mmcheckingpanel.cpp:450
 #: stockspanel.cpp:132
 msgid "&New "
-msgstr ""
+msgstr "&புதிய "
 
 #: assetspanel.cpp:474 stockspanel.cpp:136
 msgid "&Add Trans "
@@ -778,17 +778,17 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:308 maincurrencydialog.cpp:539
 #: payeedialog.cpp:882 stockdialog.cpp:323 tagdialog.cpp:124
 msgid "&Add "
-msgstr ""
+msgstr "&சேர் "
 
 #: attachmentdialog.cpp:355
 msgid "&Open "
-msgstr ""
+msgstr "&திற "
 
 #: attachmentdialog.cpp:358 customfieldlistdialog.cpp:263
 #: import_export/univcsvdialog.cpp:312 maincurrencydialog.cpp:541
 #: payeedialog.cpp:885
 msgid "&Remove "
-msgstr ""
+msgstr "&நீக்கு "
 
 #: attachmentdialog.cpp:400
 msgid "Att."
@@ -900,19 +900,19 @@ msgstr "தினமும்"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
-msgstr ""
+msgstr "(n) நாட்களில்"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr ""
+msgstr "(n) மாதங்களில்"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr ""
+msgstr "ஒவ்வொரு (n) நாட்களிலும்"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr ""
+msgstr "ஒவ்வொரு (n) மாதங்களிலும்"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
