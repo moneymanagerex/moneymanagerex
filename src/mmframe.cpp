@@ -577,7 +577,6 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 Model_CustomFieldData::instance().ReleaseSavepoint();
             }
             Model_Billsdeposits::instance().completeBDInSeries(q1.BDID);
-            createHomePage();
         }
     }
 
@@ -585,6 +584,8 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     {
         autoRepeatTransactionsTimer_.Start(5, wxTIMER_ONE_SHOT);
     }
+    else
+        refreshPanelData();
 }
 //----------------------------------------------------------------------------
 
@@ -2426,6 +2427,11 @@ void mmGUIFrame::OnDebugDB(wxCommandEvent& /*event*/)
             textCtrl->SetEditable(false);
             textCtrl->SetInsertionPointEnd();
         }
+
+        wxButton* ok = static_cast<wxButton*>(checkDlg.FindWindow(wxID_OK));
+        if (ok)
+            ok->SetLabel(wxGetTranslation(g_OkLabel));
+
         checkDlg.Centre();
         checkDlg.ShowModal();
     }
@@ -2433,6 +2439,9 @@ void mmGUIFrame::OnDebugDB(wxCommandEvent& /*event*/)
     wxMessageDialog msgDlg(this
         , wxString::Format("%s\n\n%s", _("Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"), _("Do you want to proceed?"))
         , _("Database Debug"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+
+    msgDlg.SetYesNoLabels(_("Yes"), _("No"));
+
     if (msgDlg.ShowModal() == wxID_YES)
     {
         dbUpgrade::SqlFileDebug(m_db.get());
