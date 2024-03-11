@@ -274,7 +274,7 @@ void mmNewAcctDialog::CreateControls()
     credit_grid_sizer->Add(m_minimum_payment_ctrl, g_flagsExpand);
     //-------------------------------------------------------------------------------------
 
-    itemBoxSizer3->Add(m_notebook);
+    itemBoxSizer3->Add(m_notebook, g_flagsExpand);
 
     //Buttons
     wxPanel* itemPanel27 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
