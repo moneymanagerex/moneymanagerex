@@ -131,8 +131,18 @@ void transactionsUpdateDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_dpc = new mmDatePickerCtrl(this, wxID_ANY);
     grid_sizer->Add(m_date_checkbox, g_flagsH);
-    grid_sizer->Add(m_dpc->mmGetLayout(), g_flagsH);
+    grid_sizer->Add(m_dpc->mmGetLayout(false), wxSizerFlags(g_flagsH).Border(wxLEFT, 0));
     m_dpc->Enable(false);
+
+    if (Option::instance().UseTransDateTime())
+    {
+        // Time --------------------------------------------
+        m_time_checkbox = new wxCheckBox(this, wxID_ANY, _("Time"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+        m_time_ctrl = new wxTimePickerCtrl(this, wxID_ANY);
+        grid_sizer->Add(m_time_checkbox, g_flagsH);
+        grid_sizer->Add(m_time_ctrl, g_flagsH);
+        m_time_ctrl->Enable(false);
+    }
 
     // Status --------------------------------------------
     m_status_checkbox = new wxCheckBox(this, wxID_ANY, _("Status")
@@ -396,16 +406,30 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             trx->PAYEEID = -1;
         }
 
-        if (m_date_checkbox->IsChecked()) {
-            wxString date = m_dpc->GetValue().FormatISOCombined();
-            const Model_Account::Data* account = Model_Account::instance().get(trx->ACCOUNTID);
-            const Model_Account::Data* to_account = Model_Account::instance().get(trx->TOACCOUNTID);
-            if ((date < account->INITIALDATE) ||
-                (to_account && (date < to_account->INITIALDATE)))
+        if (m_date_checkbox->IsChecked() || (m_time_ctrl && m_time_checkbox->IsChecked()))
+        {
+            wxString date = trx->TRANSDATE;
+            if (m_date_checkbox->IsChecked())
             {
-                skip_trx.push_back(trx->TRANSID);
-                continue;
+                date.replace(0, 10, m_dpc->GetValue().FormatISODate());
+                const Model_Account::Data* account = Model_Account::instance().get(trx->ACCOUNTID);
+                const Model_Account::Data* to_account = Model_Account::instance().get(trx->TOACCOUNTID);
+                if ((date < account->INITIALDATE) ||
+                    (to_account && (date < to_account->INITIALDATE)))
+                {
+                    skip_trx.push_back(trx->TRANSID);
+                    continue;
+                }
             }
+
+            if (m_time_ctrl && m_time_checkbox->IsChecked())
+            {
+                if (date.Length() > 10)
+                    date.replace(11, 8, m_time_ctrl->GetValue().FormatISOTime());
+                else
+                    date.Append("T" + m_time_ctrl->GetValue().FormatISOTime());
+            }
+
             trx->TRANSDATE = date;
         }
 
@@ -564,6 +588,9 @@ void transactionsUpdateDialog::OnCheckboxClick(wxCommandEvent& event)
         m_payee_checkbox->Enable(!m_hasTransfers);
         m_transferAcc_checkbox->Enable(!m_hasNonTransfers);
     }
+
+    if (m_time_ctrl)
+        m_time_ctrl->Enable(m_time_checkbox->IsChecked());
 
     event.Skip();
 }

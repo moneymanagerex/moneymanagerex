@@ -60,6 +60,8 @@ private:
     mmComboBoxAccount* cbAccount_ = nullptr;
     wxCheckBox* m_date_checkbox = nullptr;
     mmDatePickerCtrl* m_dpc = nullptr;
+    wxCheckBox* m_time_checkbox = nullptr;
+    wxTimePickerCtrl* m_time_ctrl = nullptr;
     wxCheckBox* m_status_checkbox = nullptr;
     wxChoice* m_status_choice = nullptr;
     wxCheckBox* m_categ_checkbox = nullptr;
