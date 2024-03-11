@@ -48,6 +48,7 @@
 
 #include <wx/xml/xml.h>
 #include <wx/spinctrl.h>
+#include <wx/display.h>
 
 enum tab_id {
     DATA_TAB = 1,
@@ -148,13 +149,13 @@ bool mmUnivCSVDialog::Create(wxWindow* parent
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
-    this->SetInitialSize();
+    wxSize sz = GetSize();
+    wxSharedPtr<wxDisplay> display(new wxDisplay(GetParent()));
+    wxSize screenSize = display.get()->GetGeometry().GetSize();
+    SetSize(wxSize(std::min(sz.GetX(), screenSize.GetX()), std::min(sz.GetY(), screenSize.GetY())));
     SetIcon(mmex::getProgramIcon());
     Centre();
-    Fit();
-    return true;
+   return true;
 }
 
 void mmUnivCSVDialog::CreateControls()
@@ -165,8 +166,9 @@ void mmUnivCSVDialog::CreateControls()
     // Define the staticBox font and set it as wxFONTWEIGHT_BOLD
     wxFont staticBoxFontSetting = this->GetFont();
 
+    wxScrolledWindow* scrolledWindow = new wxScrolledWindow(this, wxID_ANY);
     wxBoxSizer* itemBoxSizer0 = new wxBoxSizer(wxVERTICAL);
-    this->SetSizer(itemBoxSizer0);
+    scrolledWindow->SetSizer(itemBoxSizer0);
     wxBoxSizer* itemBoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer0->Add(itemBoxSizer1, 0, wxGROW | wxALL, 0);
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
@@ -175,7 +177,7 @@ void mmUnivCSVDialog::CreateControls()
     itemBoxSizer1->Add(itemBoxSizer11, 5, wxGROW | wxALL, 5);
 
     //File to import, file path and browse button
-    wxPanel* itemPanel6 = new wxPanel(this
+    wxPanel* itemPanel6 = new wxPanel(scrolledWindow
         , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer2->Add(itemPanel6, 0, wxEXPAND | wxALL, 1);
 
@@ -202,17 +204,17 @@ void mmUnivCSVDialog::CreateControls()
     // Account to import/export
     wxFlexGridSizer* preset_flex_sizer = new wxFlexGridSizer(0,3,0,0);
 
-    wxStaticText* itemStaticText6 = new wxStaticText(this, wxID_ANY, _("Account: "), wxDefaultPosition, itemStaticText5->GetSize());
+    wxStaticText* itemStaticText6 = new wxStaticText(scrolledWindow, wxID_ANY, _("Account: "), wxDefaultPosition, itemStaticText5->GetSize());
     preset_flex_sizer->Add(itemStaticText6, g_flagsH);
     itemStaticText6->SetFont(staticBoxFontSetting);
 
-    m_choice_account_ = new wxChoice(this, wxID_ACCOUNT, wxDefaultPosition, wxDefaultSize, Model_Account::instance().all_checking_account_names(), 0);
+    m_choice_account_ = new wxChoice(scrolledWindow, wxID_ACCOUNT, wxDefaultPosition, wxDefaultSize, Model_Account::instance().all_checking_account_names(), 0);
     m_choice_account_->SetMinSize(wxSize(210, -1));
     preset_flex_sizer->Add(m_choice_account_, g_flagsExpand);
     preset_flex_sizer->AddSpacer(0);
 
     // Predefined settings
-    wxStaticText* preset_label = new wxStaticText(this, wxID_ANY, _("Preset:"), wxDefaultPosition, itemStaticText5->GetSize());
+    wxStaticText* preset_label = new wxStaticText(scrolledWindow, wxID_ANY, _("Preset:"), wxDefaultPosition, itemStaticText5->GetSize());
     preset_flex_sizer->Add(preset_label, g_flagsH);
 
     Document account_default_presets;
@@ -241,10 +243,9 @@ void mmUnivCSVDialog::CreateControls()
         if (!m_acct_default_preset[m_account_id].IsEmpty() && m_acct_default_preset[m_account_id] == setting.SETTINGNAME) init_preset_name = setting_name;
     }
 
-    m_choice_preset_name = new wxChoice(this, wxID_APPLY, wxDefaultPosition, wxDefaultSize, preset_choices, wxCB_SORT);
+    m_choice_preset_name = new wxChoice(scrolledWindow, wxID_APPLY, wxDefaultPosition, wxDefaultSize, preset_choices, wxCB_SORT);
     m_choice_preset_name->SetMinSize(wxSize(210, -1));
-    m_choice_preset_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED
-        , wxCommandEventHandler(mmUnivCSVDialog::OnSettingsSelected), nullptr, this);
+    m_choice_preset_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler(mmUnivCSVDialog::OnSettingsSelected), nullptr, this);
 
     wxBoxSizer* preset_box_sizer = new wxBoxSizer(wxHORIZONTAL);
     preset_box_sizer->Add(m_choice_preset_name, g_flagsH);
@@ -253,20 +254,20 @@ void mmUnivCSVDialog::CreateControls()
     if (!init_preset_name.IsEmpty())
         m_choice_preset_name->SetStringSelection(init_preset_name);
 
-    wxBitmapButton* itemButton_Save = new wxBitmapButton(this, wxID_SAVEAS, mmBitmapBundle(png::SAVE, mmBitmapButtonSize));
+    wxBitmapButton* itemButton_Save = new wxBitmapButton(scrolledWindow, wxID_SAVEAS, mmBitmapBundle(png::SAVE, mmBitmapButtonSize));
     preset_box_sizer->Add(itemButton_Save, g_flagsH);
 
-    wxBitmapButton* itemButtonClear = new wxBitmapButton(this, wxID_CLEAR, mmBitmapBundle(png::CLEAR, mmBitmapButtonSize));
+    wxBitmapButton* itemButtonClear = new wxBitmapButton(scrolledWindow, wxID_CLEAR, mmBitmapBundle(png::CLEAR, mmBitmapButtonSize));
     preset_box_sizer->Add(itemButtonClear, g_flagsH);
 
     preset_flex_sizer->Add(preset_box_sizer, wxSizerFlags(g_flagsExpand).Border(0).Proportion(0));
-    m_checkbox_preset_default = new wxCheckBox(this, wxID_DEFAULT, wxString::Format(_("Load this Preset when Account is:\n%s"), wxEmptyString));
+    m_checkbox_preset_default = new wxCheckBox(scrolledWindow, wxID_DEFAULT, wxString::Format(_("Load this Preset when Account is:\n%s"), wxEmptyString));
     m_checkbox_preset_default->Enable(m_account_id > -1 && !init_preset_name.IsEmpty());
     preset_flex_sizer->Add(m_checkbox_preset_default, g_flagsH);
     itemBoxSizer2->Add(preset_flex_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0).Proportion(0));
 
     //
-    wxStaticText* itemStaticText3 = new wxStaticText(this, wxID_STATIC
+    wxStaticText* itemStaticText3 = new wxStaticText(scrolledWindow, wxID_STATIC
         , _("Specify the order of fields in the file"));
     itemBoxSizer2->Add(itemStaticText3, g_flagsV);
     itemStaticText3->SetFont(staticBoxFontSetting);
@@ -275,7 +276,7 @@ void mmUnivCSVDialog::CreateControls()
     itemBoxSizer2->Add(itemBoxSizer3, 1, wxGROW | wxALL, 5);
 
     //CSV fields candicate
-    csvFieldCandicate_ = new wxListBox(this, ID_LISTBOX_CANDICATE
+    csvFieldCandicate_ = new wxListBox(scrolledWindow, ID_LISTBOX_CANDICATE
         , wxDefaultPosition, wxDefaultSize, 0, nullptr, wxLB_SINGLE | wxLB_NEEDED_SB);
     itemBoxSizer3->Add(csvFieldCandicate_, 1, wxGROW | wxALL, 1);
     for (const auto& it : CSVFieldName_)
@@ -297,7 +298,7 @@ void mmUnivCSVDialog::CreateControls()
     }
 
     //Add Remove Area
-    wxPanel* itemPanel_AddRemove = new wxPanel(this, ID_PANEL10,
+    wxPanel* itemPanel_AddRemove = new wxPanel(scrolledWindow, ID_PANEL10,
         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer3->Add(itemPanel_AddRemove, g_flagsH);
 
@@ -317,12 +318,12 @@ void mmUnivCSVDialog::CreateControls()
     itemBoxSizer_AddRemove->Add(itemButton_standard, g_flagsV);
 
     //ListBox of attribute order
-    csvListBox_ = new wxListBox(this, ID_LISTBOX
+    csvListBox_ = new wxListBox(scrolledWindow, ID_LISTBOX
         , wxDefaultPosition, wxDefaultSize, 0, nullptr, wxLB_SINGLE | wxLB_NEEDED_SB);
     itemBoxSizer3->Add(csvListBox_, 1, wxGROW | wxALL, 1);
 
     //Arranger Area
-    wxPanel* itemPanel_Arranger = new wxPanel(this, ID_PANEL10
+    wxPanel* itemPanel_Arranger = new wxPanel(scrolledWindow, ID_PANEL10
         , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer3->Add(itemPanel_Arranger, 0, wxALL, 1);
 
@@ -337,18 +338,18 @@ void mmUnivCSVDialog::CreateControls()
     wxButton* itemButton_MoveDown = new wxButton(itemPanel_Arranger, wxID_DOWN, _("&Down"));
     itemBoxSizer_Arranger->Add(itemButton_MoveDown, g_flagsV);
 
-    wxStaticLine*  m_staticline1 = new wxStaticLine(this
+    wxStaticLine* m_staticline1 = new wxStaticLine(scrolledWindow
         , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     itemBoxSizer2->Add(m_staticline1, flagsExpand);
 
     // Date Format
-    wxPanel* itemPanel7 = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    wxPanel* itemPanel7 = new wxPanel(scrolledWindow, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer2->Add(itemPanel7, 0, wxEXPAND | wxALL, 1);
 
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 4, 0, 0);
     itemPanel7->SetSizer(flex_sizer);
 
-    wxStaticLine*  m_staticline2 = new wxStaticLine(this
+    wxStaticLine* m_staticline2 = new wxStaticLine(scrolledWindow
         , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     itemBoxSizer2->Add(m_staticline2, flagsExpand);
 
@@ -427,7 +428,7 @@ void mmUnivCSVDialog::CreateControls()
 
         // Select rows to import (not relevant for export)
         // Container.
-        wxStaticBox* rowSelectionStaticBox = new wxStaticBox(this, wxID_ANY, _("Rows to ignore"));
+        wxStaticBox* rowSelectionStaticBox = new wxStaticBox(scrolledWindow, wxID_ANY, _("Rows to ignore"));
         rowSelectionStaticBox->SetFont(staticBoxFontSetting);
         wxStaticBoxSizer* rowSelectionStaticBoxSizer = new wxStaticBoxSizer(rowSelectionStaticBox, wxHORIZONTAL);
         itemBoxSizer111->Add(rowSelectionStaticBoxSizer, 0, wxALL | wxEXPAND, 5);
@@ -446,22 +447,22 @@ void mmUnivCSVDialog::CreateControls()
         rowSelectionStaticBoxSizer->AddSpacer(30);
 
         // Colour
-        colorCheckBox_ = new wxCheckBox(this, mmID_COLOR, _("Color")
+        colorCheckBox_ = new wxCheckBox(scrolledWindow, mmID_COLOR, _("Color")
             , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
         itemBoxSizer111->Add(colorCheckBox_, wxSizerFlags(g_flagsH).Border(wxLEFT | wxTOP | wxBOTTOM, 5));
-        colorButton_ = new mmColorButton(this, wxID_HIGHEST, wxSize(itemButton_Save->GetSize().GetY(), itemButton_Save->GetSize().GetY()));
+        colorButton_ = new mmColorButton(scrolledWindow, wxID_HIGHEST, wxSize(itemButton_Save->GetSize().GetY(), itemButton_Save->GetSize().GetY()));
         itemBoxSizer111->Add(colorButton_, wxSizerFlags(g_flagsH).Border(wxRIGHT | wxTOP | wxBOTTOM, 5));
         colorButton_->Enable(false);
 
         // Payee Match
         wxBoxSizer* payeeMatchSizer = new wxBoxSizer(wxVERTICAL);
-        payeeMatchCheckBox_ = new wxCheckBox(this, mmID_PAYEE, _("Pattern match Payees")
+        payeeMatchCheckBox_ = new wxCheckBox(scrolledWindow, mmID_PAYEE, _("Pattern match Payees")
             , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
         payeeMatchSizer->Add(payeeMatchCheckBox_, g_flagsV);
         payeeMatchCheckBox_->Disable();
         payeeRegExInitialized_ = false;
 
-        payeeMatchAddNotes_ = new wxCheckBox(this, wxID_ANY, _("Add match details to Notes")
+        payeeMatchAddNotes_ = new wxCheckBox(scrolledWindow, wxID_ANY, _("Add match details to Notes")
             , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
         payeeMatchSizer->Add(payeeMatchAddNotes_, g_flagsV);
         payeeMatchAddNotes_->Disable();
@@ -480,10 +481,10 @@ void mmUnivCSVDialog::CreateControls()
     }
 
     // Preview
-    wxStaticBoxSizer* m_staticbox = new wxStaticBoxSizer(new wxStaticBox(this
+    wxStaticBoxSizer* m_staticbox = new wxStaticBoxSizer(new wxStaticBox(scrolledWindow
         , wxID_STATIC, _("Preview")), wxVERTICAL);
 
-    m_preview_notebook = new wxNotebook(this
+    m_preview_notebook = new wxNotebook(scrolledWindow
         , wxID_PREVIEW, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
     m_staticbox->Add(m_preview_notebook, g_flagsExpand);
 
@@ -523,7 +524,7 @@ void mmUnivCSVDialog::CreateControls()
         categoryListBox_->GetMainWindow()->Bind(wxEVT_LEFT_DCLICK, &mmUnivCSVDialog::OnShowCategDialog, this);
     }
     //Import File button
-    wxPanel* itemPanel5 = new wxPanel(this, ID_PANEL10
+    wxPanel* itemPanel5 = new wxPanel(scrolledWindow, ID_PANEL10
         , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer0->Add(itemPanel5, 0, wxALIGN_CENTER | wxALL, 1);
 
@@ -546,11 +547,11 @@ void mmUnivCSVDialog::CreateControls()
 
     itemBoxSizer11->Add(itemBoxSizer22, 1, wxGROW | wxALL, 0);
 
-    log_field_ = new wxTextCtrl(this
+    log_field_ = new wxTextCtrl(scrolledWindow
         , wxID_STATIC, "", wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxHSCROLL | wxTE_READONLY);
     itemBoxSizer22->Add(log_field_, 1, wxGROW | wxALL, 5);
 
-    wxButton* itemClearButton = new wxButton(this, wxID_CLEAR, _("Clear"));
+    wxButton* itemClearButton = new wxButton(scrolledWindow, wxID_CLEAR, _("Clear"));
     itemBoxSizer22->Add(itemClearButton, 0, wxALIGN_CENTER | wxALL, 5);
     itemClearButton->Connect(wxID_CLEAR, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmUnivCSVDialog::OnButtonClear), nullptr, this);
@@ -583,6 +584,12 @@ void mmUnivCSVDialog::CreateControls()
         if (!init_preset_name.IsEmpty())
             *log_field_ << wxString::Format(_("Preset '%1$s' loaded because Account '%2$s' selected"), init_preset_name, acct_name) << "\n";
     }
+
+    scrolledWindow->SetScrollRate(10, 10);
+    wxBoxSizer* dialogSizer = new wxBoxSizer(wxVERTICAL);
+    dialogSizer->Add(scrolledWindow, 1, wxEXPAND);
+    this->SetSizer(dialogSizer);
+    itemBoxSizer0->Fit(this);
 }
 
 void mmUnivCSVDialog::initDateMask()
