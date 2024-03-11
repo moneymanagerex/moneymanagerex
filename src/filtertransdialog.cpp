@@ -2322,7 +2322,7 @@ void mmFilterTransactionsDialog::OnChoice(wxCommandEvent& event)
     }
 }
 
-void mmFilterTransactionsDialog::OnMenuSelected(wxCommandEvent& event)
+void mmFilterTransactionsDialog::OnMenuSelected(wxCommandEvent&)
 {
     m_color_value = colorButton_->GetColorId();
     if (!m_color_value)

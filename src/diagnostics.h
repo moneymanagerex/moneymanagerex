@@ -45,7 +45,7 @@ private:
     void CreateControls();
     void RefreshView();
  
-    void OnOk(wxCommandEvent& event);
+    void OnOk(wxCommandEvent&);
 };
 
 #endif // MM_EX_DIAGNOSTICS_H_
