@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-03 19:46\n"
+"PO-Revision-Date: 2024-03-11 21:12\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -2624,7 +2624,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:621 filtertransdialog.cpp:1838
 msgid "Include all subcategories"
-msgstr ""
+msgstr "Incloure totes les subcategories"
 
 #: filtertransdialog.cpp:652 filtertransdialog.cpp:1561
 #: filtertransdialog.cpp:1664 import_export/univcsvdialog.cpp:113
@@ -2794,7 +2794,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:2235 reports/reportbase.cpp:232
 msgid "Choose Accounts"
-msgstr ""
+msgstr "Escollir Comptes"
 
 #: filtertransdialog.h:163 mmframe.cpp:1756 mmframe.cpp:1933
 msgid "Transaction Report Filter"
@@ -2928,11 +2928,11 @@ msgstr ""
 
 #: general_report_manager.cpp:751
 msgid "Delete Report..."
-msgstr ""
+msgstr "Eliminar Informe..."
 
 #: general_report_manager.cpp:848 general_report_manager.cpp:1009
 msgid "Enter the name for the report"
-msgstr ""
+msgstr "Introdueixi el nom per a l'informe"
 
 #: general_report_manager.cpp:867
 msgid "Delete the Report Title:"
@@ -2940,7 +2940,7 @@ msgstr ""
 
 #: general_report_manager.cpp:906 general_report_manager.cpp:990
 msgid "Enter or choose name for the new report group"
-msgstr ""
+msgstr "Introdueixi o esculli el nom per al nou grup d'informes"
 
 #: general_report_manager.cpp:907
 msgid "Change report group"
