@@ -153,6 +153,7 @@ bool mmUnivCSVDialog::Create(wxWindow* parent
     wxSharedPtr<wxDisplay> display(new wxDisplay(GetParent()));
     wxSize screenSize = display.get()->GetGeometry().GetSize();
     SetSize(wxSize(std::min(sz.GetX(), screenSize.GetX()), std::min(sz.GetY(), screenSize.GetY())));
+    SetMinSize(GetSize());
     SetIcon(mmex::getProgramIcon());
     Centre();
    return true;
