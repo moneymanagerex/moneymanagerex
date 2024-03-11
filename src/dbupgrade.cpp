@@ -157,7 +157,7 @@ void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKe
     if (BackupType != BACKUPTYPE::VERSION_UPGRADE)
     {
         wxSortedArrayString backupFileArray;
-        const auto fileSearch = wxString::Format("%s%s\?\?\?\?-\?\?-\?\?.bak", FileName, BackupName[BackupType]);
+        const auto fileSearch = wxString::Format(R"(%s%s????-??-??.bak)", FileName, BackupName[BackupType]);
         wxString backupFile = wxFindFirstFile(fileSearch);
         while (!backupFile.empty())
         {
