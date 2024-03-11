@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-11 21:12\n"
+"PO-Revision-Date: 2024-03-11 22:26\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -3114,7 +3114,7 @@ msgstr ""
 #: import_export/qif_export.cpp:187 import_export/qif_import_gui.cpp:301
 #: optionsettingsgeneral.cpp:103
 msgid "Date Format"
-msgstr ""
+msgstr "Format de Data"
 
 #: import_export/qif_export.cpp:199
 msgid "Write to File"
@@ -3123,7 +3123,7 @@ msgstr ""
 #: import_export/qif_export.cpp:202 import_export/qif_import_gui.cpp:123
 #: import_export/univcsvdialog.cpp:185
 msgid "File Name:"
-msgstr ""
+msgstr "Nom del Fitxer:"
 
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:553
 msgid "Clear"
@@ -3274,7 +3274,7 @@ msgstr "Comptes:"
 #: import_export/qif_import_gui.cpp:548 import_export/qif_import_gui.cpp:898
 #: import_export/univcsvdialog.cpp:355
 msgid "Date Format: "
-msgstr ""
+msgstr "Format de Data: "
 
 #: import_export/qif_import_gui.cpp:551
 msgid "Press OK Button to continue"
@@ -3297,7 +3297,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:1045
 msgid "Do you want to import all transaction?"
-msgstr ""
+msgstr "Vol importar totes les transaccions?"
 
 #: import_export/qif_import_gui.cpp:1046
 msgid "All missing account, payees and categories will be created."
@@ -4019,7 +4019,7 @@ msgstr ""
 
 #: mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
-msgstr ""
+msgstr "Recomanació: Sempre realitzi còpies de seguretat del seu fitxer de base de dades .mmb regularment."
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
@@ -4027,7 +4027,7 @@ msgstr ""
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
-msgstr ""
+msgstr "Recomanació: Utilitzi copiar (Ctrl+C) i enganxar (Ctrl+V) per a les transaccions utilitzades freqüentment."
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb database file."
