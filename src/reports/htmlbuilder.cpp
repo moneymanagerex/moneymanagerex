@@ -634,11 +634,23 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         htmlChart += ", dataLabels: { enabled: false }";
     } else if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT)
     {
+        wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
+
+        if (locale.IsEmpty())
+                locale = "undefined";
+        else
+                locale.Append("'").Prepend("'").Replace("_", "-");
+
         htmlChart += ", legend: { formatter: function(seriesName, opts){ "
             "var percent = (+opts.w.globals.seriesPercent[opts.seriesIndex]).toFixed(1); "
-            "percent = new Array((5 - percent.length)*2).join('&nbsp;') + percent; "
-            + wxString::Format("var valueLength = chart_%s.reduce(function(a, b) {return (a.toString().length > b.toString().length ? a : b) }, []).toString().length; var value = chart_%s[opts.seriesIndex]; ", divid, divid)
-            + "if (valueLength > value.toString().length) { value = new Array((valueLength - value.toString().length)*2).join('&nbsp;') + (parseInt(value) == value ? value : '&nbsp;' + value); } "
+            "percent = new Array((5 - percent.length)*2).join('&nbsp;') + percent; " +
+            wxString::Format("var localizedValues = opts.w.globals.series.map(function(value){ return value.toLocaleString(%s, {minimumFractionDigits: %i, "
+                             "maximumFractionDigits: %i});});",
+                             locale, precision, precision)
+            
+            + "var valueLength = localizedValues.reduce(function(a, b) {return Math.max(a, b.length) }, 0) + 1;" +
+            wxString::Format("var value = chart_%s[opts.seriesIndex].toLocaleString(%s, {minimumFractionDigits: %i, maximumFractionDigits: %i});", divid, locale, precision, precision) +
+            "value = new Array((valueLength - value.toString().length)*2 + value.split((1000).toLocaleString(" + wxString::Format("%s", locale) + ").charAt(1)).length - 1).join('&nbsp;') + value;"
             "return['<strong>', percent + '%&nbsp;', value, '&nbsp;</strong>', seriesName] } }\n";
         htmlChart += ", dataLabels: { enabled: true, style: { fontSize: '16px' }, dropShadow: { enabled: false } }\n";
     }
