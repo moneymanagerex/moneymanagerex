@@ -62,8 +62,8 @@ private:
     void OnDecimalChange(wxCommandEvent& event);
     void OnFileNameChanged(wxCommandEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
-    void OnShowPayeeDialog(wxMouseEvent& event);
-    void OnShowCategDialog(wxMouseEvent& event);
+    void OnShowPayeeDialog(wxMouseEvent&);
+    void OnShowCategDialog(wxMouseEvent&);
     void save_file_name();
     bool mmReadQIFFile();
     int getOrCreateAccounts();

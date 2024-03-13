@@ -147,7 +147,7 @@ void mmQIFImportDialog::CreateControls()
     flex_sizer->Add(itemStaticText88, g_flagsH);
 
     m_choiceEncoding = new wxChoice(this, wxID_ANY);
-    for (const auto i : g_encoding)
+    for (const auto &i : g_encoding)
         m_choiceEncoding->Append(wxGetTranslation(i.second.second), new wxStringClientData(i.second.second));
     m_choiceEncoding->SetSelection(0);
 
@@ -822,7 +822,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
     }
 }
 
-void mmQIFImportDialog::OnShowPayeeDialog(wxMouseEvent& event)
+void mmQIFImportDialog::OnShowPayeeDialog(wxMouseEvent&)
 {
     wxString payeeName;
     if (payeeListBox_->GetSelectedRow() >= 0) {
@@ -841,7 +841,7 @@ void mmQIFImportDialog::OnShowPayeeDialog(wxMouseEvent& event)
     }
 }
 
-void mmQIFImportDialog::OnShowCategDialog(wxMouseEvent& event)
+void mmQIFImportDialog::OnShowCategDialog(wxMouseEvent&)
 {
     int id = -1;
     if (categoryListBox_->GetSelectedRow() >= 0)
@@ -1196,7 +1196,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
         // At this point all transactions and tags have been merged into single sets
         Model_Taglink::instance().Savepoint();
-        for (int i = 0; i < trx_data_set.size(); i++)
+        for (int i = 0; i < static_cast<int>(trx_data_set.size()); i++)
         {
             if (!m_txnTaglinks[std::make_pair(0, i)].empty())
             {
@@ -1240,10 +1240,10 @@ void mmQIFImportDialog::saveSplit()
     Model_Splittransaction::instance().Savepoint();
     Model_Taglink::instance().Savepoint();
     // Work through each group of splits 
-    for (int i = 0; i < m_splitDataSets.size(); i++)
+    for (int i = 0; i < static_cast<int>(m_splitDataSets.size()); i++)
     {
         // and each split in the group
-        for (int j = 0; j < m_splitDataSets[i].size(); j++)
+        for (int j = 0; j < static_cast<int>(m_splitDataSets[i].size()); j++)
         {
             // save the split
             int splitTransID = Model_Splittransaction::instance().save(m_splitDataSets[i][j]);
@@ -1280,7 +1280,7 @@ void mmQIFImportDialog::appendTransfers(Model_Checking::Cache &destination, Mode
 {
     // Here we are moving all the 'to' transfers into the normal transactions, so we also
     // need to keep track of the new index for the taglinks
-    for (int i = 0; i < target.size(); i++)
+    for (int i = 0; i < static_cast<int>(target.size()); i++)
     {
         m_txnTaglinks[std::make_pair(0, destination.size())] = m_txnTaglinks[std::make_pair(1, i)];
         destination.push_back(target[i]);
@@ -1316,7 +1316,7 @@ bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Cache& to, Model_Check
     }
 
     // now merge 'from' and 'to' transaction lists
-    for (int i = 0; i < from.size(); i++)
+    for (int i = 0; i < static_cast<int>(from.size()); i++)
     {
         std::swap(from[i]->ACCOUNTID, from[i]->TOACCOUNTID);
         // also need to move the 'from' taglinks to the 'to' taglinks list, keeping track
