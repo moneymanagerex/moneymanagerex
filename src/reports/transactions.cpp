@@ -263,6 +263,9 @@ table {
                     && (selected_accounts.Index(transaction.TOACCOUNTID) != wxNOT_FOUND))))
             noOfTrans = 2;
 
+        bool is_time_used = Option::instance().UseTransDateTime();
+        const wxString mask = is_time_used ? "%Y-%m-%dT%H:%M:%S" : "%Y-%m-%d";
+
         auto custom_fields_data = Model_CustomFieldData::instance().get_all(Model_Attachment::TRANSACTION);
         while (noOfTrans--)
         {
@@ -275,14 +278,16 @@ table {
                     hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
                         , transaction.displayID, true);
                 }
-                wxDateTime dt;
-                dt.ParseDateTime(transaction.TRANSDATE) || dt.ParseDate(transaction.TRANSDATE);
                 if (showColumnById(mmFilterTransactionsDialog::COL_COLOR))
                     hb.addColorMarker(getUDColour(transaction.COLOR).GetAsString(), true);
                 if (showColumnById(mmFilterTransactionsDialog::COL_DATE))
+                {
+                    wxDateTime dt;
+                    dt.ParseFormat(transaction.TRANSDATE, mask) || dt.ParseDate(transaction.TRANSDATE);
                     hb.addTableCellDate(dt.FormatISODate());
+                }
                 if (showColumnById(mmFilterTransactionsDialog::COL_TIME))
-                    hb.addTableCell(dt.FormatISOTime());
+                    hb.addTableCell(mmGetTimeForDisplay(transaction.TRANSDATE));
                 if (showColumnById(mmFilterTransactionsDialog::COL_NUMBER))
                     hb.addTableCell(transaction.TRANSACTIONNUMBER);
                 if (showColumnById(mmFilterTransactionsDialog::COL_ACCOUNT))

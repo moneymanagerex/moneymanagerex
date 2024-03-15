@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-03 20:51\n"
+"PO-Revision-Date: 2024-03-05 01:19\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgstr "Saisissez le solde initial de ce compte."
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr "Date d'ouverture:"
+msgstr "Date d'ouverture :"
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
@@ -429,7 +429,7 @@ msgstr "Détails du bien"
 #: import_export/univcsvdialog.cpp:508 import_export/univcsvdialog.cpp:518
 #: maincurrencydialog.cpp:76 payeedialog.cpp:447 reports/summarystocks.cpp:112
 msgid "Name"
-msgstr "Nom du bien"
+msgstr "Nom"
 
 #: assetdialog.cpp:182
 msgid "Enter the name of the asset"
@@ -865,7 +865,7 @@ msgstr "Quinzaine"
 #: mmframereport.cpp:143 mmframereport.cpp:171 mmframereport.cpp:198
 #: model/Model_Budget.cpp:61
 msgid "Monthly"
-msgstr "Mensuelle"
+msgstr "Mensuel"
 
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:62
@@ -1103,7 +1103,7 @@ msgstr "Répartir dans plusieurs catégories"
 #: splittransactionsdialog.cpp:565 transactionsupdatedialog.cpp:219
 #: transactionsupdatedialog.cpp:355 transdialog.cpp:533 transdialog.cpp:632
 msgid "Tags"
-msgstr "Etiquettes"
+msgstr "Étiquettes"
 
 #: billsdepositsdialog.cpp:599 transdialog.cpp:1317
 msgid "Specify any associated check number or transaction number"
@@ -1795,7 +1795,7 @@ msgstr "Fusion des catégories réalisée"
 #: payeedialog.cpp:834
 #, c-format
 msgid "Records have been updated in the database: %i"
-msgstr "Les enregistrements ont été mis à jour dans la base de donnée: %i"
+msgstr "Les enregistrements ont été mis à jour dans la base de données : %i"
 
 #: categdialog.cpp:685 mmframe.cpp:3740
 msgid "Merge categories result"
@@ -1934,12 +1934,12 @@ msgstr "Voir depuis la date du relevé"
 
 #: constants.cpp:208
 msgid "ALL"
-msgstr "Tout/tous/toutes"
+msgstr "Tous"
 
 #: constants.cpp:209 mmframe.cpp:1921 model/Model_Account.cpp:27
 #: model/Model_Asset.cpp:54
 msgid "Open"
-msgstr "Ouvrir"
+msgstr "Ouvert"
 
 #: constants.cpp:210 model/Model_Account.cpp:28 model/Model_Asset.cpp:53
 msgid "Closed"
@@ -2556,12 +2556,12 @@ msgstr "Retour"
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:1299
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:41
 msgid "Unreconciled"
-msgstr "Non rapproché"
+msgstr "Non pointé"
 
 #: filtertransdialog.cpp:49 mmhomepage.cpp:534 mmhomepage.cpp:705
 #: model/Model_Billsdeposits.cpp:41 model/Model_Checking.cpp:42
 msgid "Reconciled"
-msgstr "Réconcilié"
+msgstr "Pointé"
 
 #: filtertransdialog.cpp:49 model/Model_Billsdeposits.cpp:42
 #: model/Model_Checking.cpp:43
@@ -2580,7 +2580,7 @@ msgstr "Duplicata"
 
 #: filtertransdialog.cpp:50 filtertransdialog.cpp:1846
 msgid "All Except Reconciled"
-msgstr "Tout sauf les transactions réconciliées"
+msgstr "Tout sauf les transactions pointées"
 
 #: filtertransdialog.cpp:53
 msgid "Day"
@@ -2698,7 +2698,7 @@ msgstr "Masquer les colonnes"
 #: filtertransdialog.cpp:741 filtertransdialog.cpp:1097
 #: filtertransdialog.cpp:1964
 msgid "Group By"
-msgstr "Grouper Par"
+msgstr "Grouper par"
 
 #: filtertransdialog.cpp:750
 msgid "Specify how the report should be grouped"
@@ -3816,7 +3816,7 @@ msgstr "Afficher toutes les devises, même celles qui ne sont pas utilisées"
 
 #: maincurrencydialog.cpp:241
 msgid "Currency History Options"
-msgstr "Options de l'historique des devises"
+msgstr "Options d'historique des devises"
 
 #: maincurrencydialog.cpp:258 stockdialog.cpp:287 stockdialog.cpp:306
 #: stockdialog.cpp:634 stockspanel.cpp:215
@@ -3869,7 +3869,7 @@ msgstr "Des taux historiques pour %1$s ont été trouvés mais \"Utiliser l'hist
 #: maincurrencydialog.cpp:447
 #, c-format
 msgid "Currency History Options: %s"
-msgstr "Options de l'historique des devises : %s"
+msgstr "Options d'historique des devises : %s"
 
 #: maincurrencydialog.cpp:503
 msgid "Unable to update history currency rates. Please update them manually!"
@@ -4353,7 +4353,7 @@ msgstr "Non rapproché"
 
 #: mmchecking_list.cpp:683
 msgid "&Reconciled"
-msgstr "Réconcilié"
+msgstr "&Pointé"
 
 #: mmchecking_list.cpp:685
 msgid "&Void"
@@ -4642,7 +4642,7 @@ msgstr "Comptes de carte"
 #: mmframe.cpp:486 mmframe.cpp:759 mmhomepage.cpp:693 reports/summary.cpp:265
 #: reports/summary.cpp:305
 msgid "Term Accounts"
-msgstr "Comptes à Terme"
+msgstr "Comptes à terme"
 
 #: mmframe.cpp:487 mmframe.cpp:763
 msgid "Stock Portfolios"
@@ -5757,7 +5757,7 @@ msgstr "Total :"
 #: mmhomepage.cpp:162
 #, c-format
 msgid "Top Withdrawals: %s"
-msgstr "les plus grands retraits: %s"
+msgstr "Plus grands débits : %s"
 
 #: mmhomepage.cpp:353
 msgid "Account/Payee"
@@ -5789,11 +5789,11 @@ msgstr "Statistiques des opérations"
 
 #: mmhomepage.cpp:512
 msgid "Follow Up On Transactions: "
-msgstr "suivi des opérations: "
+msgstr "Suivi des opérations : "
 
 #: mmhomepage.cpp:516
 msgid "Total Transactions: "
-msgstr "opérations au totalTotal des opérations "
+msgstr "Total des opérations : "
 
 #: mmhomepage.cpp:540 model/Model_Attachment.cpp:25
 msgid "Stock"
@@ -6297,7 +6297,7 @@ msgstr "Option pour conserver la date d'origine ou la date courante des opérati
 
 #: optionsettingsgeneral.cpp:219
 msgid "Use Original Date when Duplicating Transactions"
-msgstr "Coller les opérations avec la date d'origine"
+msgstr "Dupliquer les opérations avec la date d'origine"
 
 #: optionsettingsgeneral.cpp:221
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
@@ -6326,7 +6326,7 @@ msgstr "Mauvais nom de fichier"
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr "Derniers N Jours"
+msgstr "N derniers jours"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6852,12 +6852,12 @@ msgstr "Confirmation de fusion des catégories"
 #: relocatetagdialog.cpp:202
 #, c-format
 msgid "Records found in transactions: %i"
-msgstr "enregistrement trouvé pour les opérations: %i"
+msgstr "Enregistrements trouvés dans les opérations : %i"
 
 #: relocatecategorydialog.cpp:256 relocatetagdialog.cpp:203
 #, c-format
 msgid "Records found in split transactions: %i"
-msgstr "enregistrement touvés pour les opérations eclatées; %i"
+msgstr "Enregistrements trouvés dans les opérations éclatées : %i"
 
 #: relocatecategorydialog.cpp:257 relocatepayeedialog.cpp:209
 #: relocatetagdialog.cpp:204
@@ -6878,7 +6878,7 @@ msgstr "Enregistrements trouvés comme catégorie de bénéficiaire par défaut 
 #: relocatecategorydialog.cpp:260
 #, c-format
 msgid "Records found in budget: %i"
-msgstr "Enregistrements trouvé dans le budget %i"
+msgstr "Enregistrements trouvés dans le budget : %i"
 
 #: relocatepayeedialog.cpp:99
 msgid "Delete source payee after merge"
@@ -7137,7 +7137,7 @@ msgstr "Aujourd'hui"
 
 #: reports/mmDateRange.cpp:90
 msgid "Current Month to Date"
-msgstr "Les jours du mois jusqu'à aujourd'hui"
+msgstr "Mois courant jusqu'à aujourd'hui"
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
@@ -7165,7 +7165,7 @@ msgstr "Année en cours"
 
 #: reports/mmDateRange.cpp:173 stockdialog.cpp:679
 msgid "Current Year to Date"
-msgstr "l'année courante  jusqu'à aujourd'hui"
+msgstr "Année en cours jusqu'à aujourd'hui"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
@@ -7177,7 +7177,7 @@ msgstr "Année fiscale en cours"
 
 #: reports/mmDateRange.cpp:227
 msgid "Current Financial Year to Date"
-msgstr "Année fiscale en cours"
+msgstr "Année fiscale en cours jusqu'à aujourd'hui"
 
 #: reports/mmDateRange.cpp:237
 msgid "Previous Financial Year"
@@ -8276,8 +8276,8 @@ msgstr "Compte '%s' non trouvé!"
 #, c-format
 msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
-msgstr "L'opération sera insérée dans le premier compte en banque: \n"
-"'%s' et marquer en tant que 'suivie'"
+msgstr "L'opération sera insérée dans le premier compte bancaire: \n"
+"'%s' et marquée comme 'Suivi'"
 
 #: webapp.cpp:499
 msgid "Wrong WebApp account"
@@ -8366,7 +8366,7 @@ msgstr "Assistant pour créer un compte"
 #: wizard_newaccount.cpp:39
 #, c-format
 msgid "%s models all transactions as belonging to accounts."
-msgstr "%s modèles de toutes les opérations appartenant aux comptes."
+msgstr "%s modèle toutes les transactions appartenant à des comptes."
 
 #: wizard_newaccount.cpp:40
 msgid "The next pages will help you create a new account.\n"
@@ -8403,7 +8403,7 @@ msgstr "Type de compte"
 
 #: wizard_newaccount.cpp:137
 msgid "Select the type of account you want to create:"
-msgstr "Préciser le type de compte à créer:"
+msgstr "Sélectionnez le type de compte que vous souhaitez créer :"
 
 #: wizard_newaccount.cpp:138
 msgid "General bank accounts cover a wide variety of account\n"

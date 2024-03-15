@@ -302,6 +302,10 @@ static const wxString g_short_days_of_week[7] =
     , wxTRANSLATE("Sat")
 };
 
+const wxString mmGetTimeForDisplay(const wxString& iso_date)
+{
+    return iso_date.Mid(11, 9);
+}
 
 const wxString mmGetDateForDisplay(const wxString &iso_date, const wxString& dateFormat)
 {

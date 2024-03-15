@@ -27,6 +27,7 @@
 #include "images_list.h"
 #include "mmSimpleDialogs.h"
 #include "mmTextCtrl.h"
+#include "optionsettingsview.h"
 #include "paths.h"
 #include "payeedialog.h"
 #include "splittransactionsdialog.h"
@@ -202,8 +203,11 @@ void mmTransDialog::dataToControls()
 
     if (!skip_date_init_) //Date
     {
+        bool is_time_used = Option::instance().UseTransDateTime();
         wxDateTime trx_date;
-        trx_date.ParseDateTime(m_trx_data.TRANSDATE) || trx_date.ParseDate(m_trx_data.TRANSDATE);
+        const wxString mask = is_time_used ? "%Y-%m-%dT%H:%M:%S" : "%Y-%m-%d";
+        if (!trx_date.ParseFormat(m_trx_data.TRANSDATE, mask))
+            trx_date.ParseDate(m_trx_data.TRANSDATE);
         dpc_->SetValue(trx_date);
         dpc_->SetFocus();
         skip_date_init_ = true;

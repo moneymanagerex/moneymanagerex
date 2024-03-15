@@ -1961,11 +1961,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     case TransactionListCtrl::COL_DATE:
         return mmGetDateForDisplay(tran.TRANSDATE);
     case TransactionListCtrl::COL_TIME:
-    {
-        wxDate date;
-        date.ParseDateTime(tran.TRANSDATE) || date.ParseDate(tran.TRANSDATE);
-        return date.FormatISOTime();
-    }
+        return mmGetTimeForDisplay(tran.TRANSDATE);
     case TransactionListCtrl::COL_NUMBER:
         return tran.TRANSACTIONNUMBER;
     case TransactionListCtrl::COL_CATEGORY:
