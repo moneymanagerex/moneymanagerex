@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-05 01:19\n"
+"PO-Revision-Date: 2024-03-08 02:30\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4997,7 +4997,7 @@ msgstr "Supprimer le compte de la base de donnée"
 
 #: mmframe.cpp:1693
 msgid "Download &Rates"
-msgstr "&Taux de téléchargement"
+msgstr "&Téléchargement des cours"
 
 #: mmframe.cpp:1693
 msgid "Download Currency and Stock Rates"
@@ -5353,7 +5353,7 @@ msgstr "Infos"
 
 #: mmframe.cpp:1952
 msgid "Download Rates"
-msgstr "Taux de téléchargement"
+msgstr "Téléchargement des cours"
 
 #: mmframe.cpp:1952
 msgid "Download currency and stock rates"
