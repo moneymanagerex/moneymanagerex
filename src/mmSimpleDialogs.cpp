@@ -457,7 +457,7 @@ wxSpinButton* mmDatePickerCtrl::getSpinButton()
     if (!spinButton_)
     {
         spinButton_ = new wxSpinButton(parent_, wxID_ANY
-            , wxDefaultPosition, wxSize(-1, this->GetSize().GetHeight())
+            , wxDefaultPosition, wxSize(-1, GetBestSize().GetHeight())
             , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
         spinButton_->Bind(wxEVT_SPIN, &mmDatePickerCtrl::OnDateSpin, this);
         spinButton_->SetRange(-32768, 32768);
