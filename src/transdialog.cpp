@@ -59,7 +59,7 @@ EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
 EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
 EVT_BUTTON(wxID_FILE, mmTransDialog::OnAttachments)
 EVT_BUTTON(ID_DIALOG_TRANS_CUSTOMFIELDS, mmTransDialog::OnMoreFields)
-EVT_MENU_RANGE(wxID_LOWEST, wxID_LOWEST + 20, mmTransDialog::OnNoteSelected)
+EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 20, mmTransDialog::OnNoteSelected)
 EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
 EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
 EVT_CLOSE(mmTransDialog::OnQuit)
@@ -1133,7 +1133,7 @@ void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
     if (!frequentNotes_.empty())
     {
         wxMenu menu;
-        int id = wxID_LOWEST;
+        int id = wxID_HIGHEST;
 
         for (const auto& entry : frequentNotes_) {
             wxString label = entry.Mid(0, 36) + (entry.size() > 36 ? "..." : "");
@@ -1146,7 +1146,7 @@ void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::OnNoteSelected(wxCommandEvent& event)
 {
-    int i = event.GetId() - wxID_LOWEST;
+    int i = event.GetId() - wxID_HIGHEST;
 
     if (i > 0 && static_cast<size_t>(i) <= frequentNotes_.size()) {
         if (!textNotes_->GetValue().EndsWith("\n") && !textNotes_->GetValue().empty())
