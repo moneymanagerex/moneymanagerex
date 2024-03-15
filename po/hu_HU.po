@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-03 22:42+0300\n"
-"PO-Revision-Date: 2024-03-04 11:54\n"
+"PO-Revision-Date: 2024-03-09 07:30\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1939,7 +1939,7 @@ msgstr "ÖSSZES"
 #: constants.cpp:209 mmframe.cpp:1921 model/Model_Account.cpp:27
 #: model/Model_Asset.cpp:54
 msgid "Open"
-msgstr "Megnyitás"
+msgstr "Nyitva"
 
 #: constants.cpp:210 model/Model_Account.cpp:28 model/Model_Asset.cpp:53
 msgid "Closed"
@@ -3931,7 +3931,7 @@ msgstr "Szín törlése"
 #: mmSimpleDialogs.cpp:575 mmSimpleDialogs.cpp:589
 #, c-format
 msgid "Color #%i"
-msgstr "Szín #%i"
+msgstr "%i. szín"
 
 #: mmSimpleDialogs.cpp:747
 msgid "Subtract one year"
@@ -6370,11 +6370,11 @@ msgstr "Alkalmazza az alap kedvezményezettet"
 
 #: optionsettingsmisc.cpp:142
 msgid "Yes"
-msgstr "Igen"
+msgstr "&Igen"
 
 #: optionsettingsmisc.cpp:143
 msgid "No"
-msgstr "Nem"
+msgstr "&Nem"
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Date"
@@ -6612,7 +6612,7 @@ msgstr "„Idő” használata az ügylet rögzítésében/jelentésében"
 
 #: optionsettingsview.cpp:188
 msgid "Transaction Colors"
-msgstr "Tranzakciós színek"
+msgstr "Ügylet színei"
 
 #: optionsettingsview.cpp:227
 msgid "User Interface"
