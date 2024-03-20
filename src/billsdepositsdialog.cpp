@@ -91,7 +91,6 @@ EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT, mmBDDialog::OnAutoExecut
 EVT_CHOICE(ID_DIALOG_BD_COMBOBOX_REPEATS, mmBDDialog::OnRepeatTypeChanged)
 EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUMPREV, mmBDDialog::OnsetPrevOrNextRepeatDate)
 EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBDDialog::OnsetPrevOrNextRepeatDate)
-EVT_MENU_RANGE(wxID_LOWEST, wxID_LOWEST + 20, mmBDDialog::OnNoteSelected)
 EVT_TEXT(mmID_ACCOUNTNAME, mmBDDialog::OnAccountUpdated)
 EVT_CLOSE(mmBDDialog::OnQuit)
 wxEND_EVENT_TABLE()
@@ -864,19 +863,20 @@ void mmBDDialog::updateControlsForTransType()
 void mmBDDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 {
     wxMenu menu;
-    int id = wxID_LOWEST;
+    int id = wxID_HIGHEST;
     for (const auto& entry : frequentNotes_) {
         const wxString& label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
         menu.Append(++id, label);
 
     }
+    menu.Bind(wxEVT_COMMAND_MENU_SELECTED, &mmBDDialog::OnNoteSelected, this);
     if (!frequentNotes_.empty())
         PopupMenu(&menu);
 }
 
 void mmBDDialog::OnNoteSelected(wxCommandEvent& event)
 {
-    int i = event.GetId() - wxID_LOWEST;
+    int i = event.GetId() - wxID_HIGHEST;
     if (i > 0 && static_cast<size_t>(i) <= frequentNotes_.size()) {
         if (!textNotes_->GetValue().EndsWith("\n") && !textNotes_->GetValue().empty())
             textNotes_->AppendText("\n");
