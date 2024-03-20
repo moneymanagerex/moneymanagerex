@@ -1,0 +1,40 @@
+# appimage-builder recipe see https://appimage-builder.readthedocs.io for details
+version: 1
+AppDir:
+  path: /home/runner/work/moneymanagerex/moneymanagerex/build/AppDir
+  app_info:
+    id: org.moneymanagerex.MMEX
+    name: MMEX Money Manager
+    icon: org.moneymanagerex.MMEX.svg
+    version: latest
+    exec: usr/local/bin/mmex
+    exec_args: $@
+  apt:
+    arch:
+    - amd64
+    allow_unauthenticated: true
+    sources:
+    - sourceline: deb http://us.archive.ubuntu.com/ubuntu jammy main restricted
+    - sourceline: deb http://us.archive.ubuntu.com/ubuntu jammy-updates main restricted
+    - sourceline: deb http://us.archive.ubuntu.com/ubuntu jammy universe
+    - sourceline: deb http://us.archive.ubuntu.com/ubuntu jammy-updates universe
+    - sourceline: deb http://us.archive.ubuntu.com/ubuntu jammy multiverse
+    - sourceline: deb http://us.archive.ubuntu.com/ubuntu jammy-updates multiverse
+    - sourceline: deb http://us.archive.ubuntu.com/ubuntu jammy-backports main restricted
+        universe multiverse
+    - sourceline: deb http://us.archive.ubuntu.com/ubuntu jammy-security main restricted
+    - sourceline: deb http://us.archive.ubuntu.com/ubuntu jammy-security universe
+    - sourceline: deb http://us.archive.ubuntu.com/ubuntu jammy-security multiverse
+    include:
+    - libc6:amd64
+  files:
+    include: []
+    exclude:
+    - usr/share/man
+    - usr/share/doc/*/README.*
+    - usr/share/doc/*/changelog.*
+    - usr/share/doc/*/NEWS.*
+    - usr/share/doc/*/TODO.*
+AppImage:
+  arch: x86_64
+  update-information: guess
