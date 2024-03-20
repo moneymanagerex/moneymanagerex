@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-20 11:41\n"
+"PO-Revision-Date: 2024-03-20 12:49\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -4321,11 +4321,11 @@ msgstr "שיחזור כל התנועות שבתצוגה הנוכחית..."
 #: mmchecking_list.cpp:656
 #, c-format
 msgid "&Find all transactions with %s '%s'"
-msgstr ""
+msgstr "&חיפוש תנועות שמכילות %s '%s'"
 
 #: mmchecking_list.cpp:659
 msgid "Cop&y Text to Clipboard"
-msgstr "הע&תקת מלל לזיכרון הזמני"
+msgstr "העת&קת מלל ללוח־הגזירים"
 
 #: mmchecking_list.cpp:666
 msgid "&Delete selected transaction..."
@@ -4526,7 +4526,7 @@ msgstr "חלק מהתנועות לא ניתנות להעברה"
 
 #: mmchecking_list.cpp:1795
 msgid "Scheduled transaction saved."
-msgstr ""
+msgstr "תנועות מתוזמנות נשמרו."
 
 #: mmcheckingpanel.cpp:322
 msgid "&New Withdrawal..."
@@ -4542,7 +4542,7 @@ msgstr "העברה ח&דשה..."
 
 #: mmcheckingpanel.cpp:445
 msgid "Delete all selected transactions"
-msgstr ""
+msgstr "מחיקת כל התנועות שנבחרו"
 
 #: mmcheckingpanel.cpp:449 mmframe.cpp:1927 transdialog.cpp:184
 msgid "New Transaction"
@@ -4550,7 +4550,7 @@ msgstr "תנועה חדשה"
 
 #: mmcheckingpanel.cpp:453
 msgid "Edit all selected transactions"
-msgstr ""
+msgstr "עריכת כל התנועות שנבחרו"
 
 #: mmcheckingpanel.cpp:461
 msgid "Duplicate selected transaction"
@@ -5172,7 +5172,7 @@ msgstr "חולל דוח מסד נתונים או תקן שגויים"
 
 #: mmframe.cpp:1800
 msgid "&Database"
-msgstr ""
+msgstr "&מסד־נתונים"
 
 #: mmframe.cpp:1801
 msgid "Database management"
@@ -5188,7 +5188,7 @@ msgstr "הצגת עזרה"
 
 #: mmframe.cpp:1814
 msgid "Visit MMEX website for the latest news and updates"
-msgstr ""
+msgstr "נא לבקר באתר מרשתת MMEX לחדשות האחרונות ועדכונים"
 
 #: mmframe.cpp:1816
 msgid "&Facebook"
@@ -5196,7 +5196,7 @@ msgstr "&פייסבוק"
 
 #: mmframe.cpp:1816
 msgid "Visit MMEX Facebook page"
-msgstr ""
+msgstr "נא לבקר בעמוד הפייסבוק שלנו"
 
 #: mmframe.cpp:1818
 msgid "&Crowdin"
@@ -5256,11 +5256,11 @@ msgstr ""
 
 #: mmframe.cpp:1833
 msgid "MMEX for &Android"
-msgstr ""
+msgstr "MMEX ל&אנדרואיד"
 
 #: mmframe.cpp:1834
 msgid "Install MMEX for Android based smartphones and tablets"
-msgstr ""
+msgstr "התקנת MMEX לניידים ומחשבי־לוח מבוססי אנדרואיד"
 
 #: mmframe.cpp:1836
 msgid "&Newsletter"
@@ -5380,11 +5380,11 @@ msgstr "חדשות"
 
 #: mmframe.cpp:1953
 msgid "Download Rates"
-msgstr ""
+msgstr "אחזור שערים"
 
 #: mmframe.cpp:1953
 msgid "Download currency and stock rates"
-msgstr ""
+msgstr "אחזור שערי מטבע ונירות ערך"
 
 #: mmframe.cpp:1956
 msgid "Toggle Fullscreen\tF11"
@@ -5411,7 +5411,7 @@ msgstr "MMEX: מסד נתונים מוצפן"
 
 #: mmframe.cpp:2054
 msgid "Have MMEX support provided a debug/patch file?"
-msgstr ""
+msgstr "האם תמיכת MMEX סיפקה קובץ ניפוי תקלים/תיקון?"
 
 #: mmframe.cpp:2054
 msgid "MMEX upgrade"
@@ -5461,7 +5461,7 @@ msgstr "בחירת קובץ מסד נתונים ליצירה"
 
 #: mmframe.cpp:2254 mmframe.cpp:2276 mmframe.cpp:2318 mmframe.cpp:2466
 msgid "MMEX Database"
-msgstr ""
+msgstr "מסד־נתוני MMEX"
 
 #: mmframe.cpp:2274
 msgid "Choose database file to open"
@@ -5469,7 +5469,7 @@ msgstr "בחירת קובץ מסד נתונים לפתיחה"
 
 #: mmframe.cpp:2276 mmframe.cpp:2302 mmframe.cpp:2466
 msgid "Encrypted MMEX Database"
-msgstr ""
+msgstr "מסד־נתוני MMEX מוצפן"
 
 #: mmframe.cpp:2300
 msgid "Choose Encrypted database file to open"
@@ -5485,7 +5485,7 @@ msgstr "בחירת קובץ מסד נתונים לשמירה"
 
 #: mmframe.cpp:2337
 msgid "Converted database!"
-msgstr ""
+msgstr "מסד־נתונים הומר!"
 
 #: mmframe.cpp:2337
 msgid "MMEX message"
@@ -6843,23 +6843,23 @@ msgstr ""
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
 #: relocatetagdialog.cpp:114
 msgid "Source:"
-msgstr ""
+msgstr "מקור:"
 
 #: relocatecategorydialog.cpp:119 relocatepayeedialog.cpp:113
 #: relocatetagdialog.cpp:115
 msgid "Target:"
-msgstr ""
+msgstr "יעד:"
 
 #: relocatecategorydialog.cpp:133 relocatepayeedialog.cpp:131
 #: relocatetagdialog.cpp:133
 msgid "Merge"
-msgstr ""
+msgstr "מיזוג"
 
 #: relocatecategorydialog.cpp:153 relocatepayeedialog.cpp:151
 #: relocatetagdialog.cpp:153
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr ""
+msgstr "מ־%1$s ל־%2$s"
 
 #: relocatecategorydialog.cpp:157 relocatepayeedialog.cpp:155
 #: relocatetagdialog.cpp:157
