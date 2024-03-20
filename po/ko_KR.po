@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-20 06:25\n"
+"PO-Revision-Date: 2024-03-20 10:34\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -1998,7 +1998,7 @@ msgstr "소수점 자릿수"
 
 #: currencydialog.cpp:231 currencydialog.cpp:291
 msgid "Conversion to Base Rate"
-msgstr "기준 금리로 전환"
+msgstr "기준 환율로 전환"
 
 #: currencydialog.cpp:240
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
