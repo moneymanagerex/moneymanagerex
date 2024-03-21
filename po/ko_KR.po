@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-21 07:04\n"
+"PO-Revision-Date: 2024-03-21 09:09\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -2877,7 +2877,7 @@ msgstr "Test(&T)"
 
 #: general_report_manager.cpp:488
 msgid "Create Template"
-msgstr "서식 생성"
+msgstr "서식 만들기"
 
 #: general_report_manager.cpp:540
 #, c-format
@@ -4898,7 +4898,7 @@ msgstr "탐색 트리에서 삭제된 거래 표시/숨기기"
 
 #: mmframe.cpp:1602
 msgid "Budgets: As Financial &Years"
-msgstr "예산: 재무 및 연도로"
+msgstr "예산: 회계 연도로"
 
 #: mmframe.cpp:1602
 msgid "Display Budgets in Financial Year Format"
