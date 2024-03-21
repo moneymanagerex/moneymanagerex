@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-21 04:27\n"
+"PO-Revision-Date: 2024-03-21 07:04\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -7308,7 +7308,7 @@ msgstr "회사 이름을 입력하세요"
 
 #: sharetransactiondialog.cpp:207 stockdialog.cpp:186
 msgid "Stock Symbol"
-msgstr "주식 종목"
+msgstr "종목 코드"
 
 #: sharetransactiondialog.cpp:214 stockdialog.cpp:193
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
