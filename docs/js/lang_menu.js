@@ -18,7 +18,8 @@ function generateLangMenu(nav) {
         { id: "nl_NL", flag: "nl", lang: "Dutch"     },
         { id: "pl_PL", flag: "pl", lang: "Polish"    },
         { id: "ru_RU", flag: "ru", lang: "Russian"   },
-        { id: "es_ES", flag: "es", lang: "Spanish"   }
+        { id: "es_ES", flag: "es", lang: "Spanish"   },
+        { id: "ko_KR", flag: "ko", lang: "Korean"    }
     ];
     var docLang = document.getElementsByTagName("html")[0].lang;
     nav = nav.appendChild(document.createElement("small"));
