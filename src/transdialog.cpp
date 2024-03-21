@@ -60,7 +60,6 @@ EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
 EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
 EVT_BUTTON(wxID_FILE, mmTransDialog::OnAttachments)
 EVT_BUTTON(ID_DIALOG_TRANS_CUSTOMFIELDS, mmTransDialog::OnMoreFields)
-EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 20, mmTransDialog::OnNoteSelected)
 EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
 EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
 EVT_CLOSE(mmTransDialog::OnQuit)
@@ -558,7 +557,7 @@ void mmTransDialog::CreateControls()
     bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), nullptr, this);
-
+    
     // Colours
     bColours_ = new mmColorButton(this, wxID_LOWEST, bAuto->GetSize());
     mmToolTip(bColours_, _("User Colors"));
@@ -1144,6 +1143,7 @@ void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
             label.Replace("\n", " ");
             menu.Append(++id, label);
         }
+        menu.Bind(wxEVT_COMMAND_MENU_SELECTED, &mmTransDialog::OnNoteSelected, this);
         PopupMenu(&menu);
     }
 }
