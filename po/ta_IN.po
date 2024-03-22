@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-22 16:53\n"
+"PO-Revision-Date: 2024-03-22 18:27\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -1631,7 +1631,7 @@ msgstr ""
 
 #: categdialog.cpp:265 reports/categexp.cpp:207
 msgid "Expand All"
-msgstr ""
+msgstr "எல்லாவற்றையும் விரிவாக்கு"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "Show &All"
@@ -1753,7 +1753,7 @@ msgstr ""
 
 #: categdialog.cpp:502 payeedialog.cpp:753 tagdialog.cpp:300
 msgid "Do you wish to continue ?"
-msgstr ""
+msgstr "தொடர விருப்பமா ?"
 
 #: categdialog.cpp:503
 msgid "Confirm Category Deletion"
@@ -1766,7 +1766,7 @@ msgstr ""
 
 #: categdialog.cpp:613
 msgid "Edit Category"
-msgstr ""
+msgstr "வகையை திருத்து"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
@@ -1821,11 +1821,11 @@ msgstr "தவிர்"
 #: constants.cpp:78 diagnostics.cpp:88 relocatecategorydialog.cpp:134
 #: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:134 themes.cpp:195
 msgid "Close"
-msgstr ""
+msgstr "மூடு"
 
 #: constants.cpp:80
 msgid "&Close "
-msgstr ""
+msgstr "&மூடு "
 
 #: constants.cpp:84 import_export/qif_import_gui.cpp:760
 #: import_export/qif_import_gui.cpp:793 import_export/qif_import_gui.cpp:819
@@ -1835,7 +1835,7 @@ msgstr "சரி"
 
 #: constants.cpp:90
 msgid "Undo"
-msgstr ""
+msgstr "செயல்தவிர்"
 
 #: constants.cpp:91
 msgid "Redo"
@@ -1871,7 +1871,7 @@ msgstr "எல்லா பரிமாற்றங்களையும் ப�
 
 #: constants.cpp:195
 msgid "View Today"
-msgstr ""
+msgstr "இன்றை காண்"
 
 #: constants.cpp:196
 msgid "View Current Month"
@@ -1879,11 +1879,11 @@ msgstr "இந்த மாதம்"
 
 #: constants.cpp:197
 msgid "View Last 30 days"
-msgstr ""
+msgstr "கடைசி 30 நாட்களைக் காண்"
 
 #: constants.cpp:198
 msgid "View Last 90 days"
-msgstr ""
+msgstr "கடைசி 90 நாட்களைக் காண்"
 
 #: constants.cpp:199
 msgid "View Last Month"
@@ -1891,11 +1891,11 @@ msgstr "கடந்த மாதம் பார்வையிடு"
 
 #: constants.cpp:200
 msgid "View Last 3 Months"
-msgstr ""
+msgstr "கடைசி 3 மாதங்களைக் காண்"
 
 #: constants.cpp:201
 msgid "View Last 12 Months"
-msgstr ""
+msgstr "கடைசி 12 மாதங்களைக் காண்"
 
 #: constants.cpp:202
 msgid "View Current Year"
