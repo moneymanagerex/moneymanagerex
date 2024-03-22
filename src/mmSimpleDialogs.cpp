@@ -569,7 +569,7 @@ void mmColorButton::OnMenuSelected(wxCommandEvent& event)
     if (GetSize().GetX() > 40)
     {
         if (m_color_value <= 0) {
-            SetLabel(wxString::Format(_("Clear color")));
+            SetLabel(wxString::Format(_("&Clear color")));
         }
         else {
             SetLabel(wxString::Format(_("Color #&%i"), m_color_value));
@@ -581,7 +581,7 @@ void mmColorButton::OnMenuSelected(wxCommandEvent& event)
 void mmColorButton::OnColourButton(wxCommandEvent& event)
 {
     wxMenu mainMenu;
-    wxMenuItem* menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST, wxString::Format(_("Clear color"), 0));
+    wxMenuItem* menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST, wxString::Format(_("&Clear color"), 0));
     mainMenu.Append(menuItem);
 
     for (int i = 1; i <= 7; ++i)
