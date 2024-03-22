@@ -572,7 +572,7 @@ void mmColorButton::OnMenuSelected(wxCommandEvent& event)
             SetLabel(wxString::Format(_("Clear color")));
         }
         else {
-            SetLabel(wxString::Format(_("Color #%i"), m_color_value));
+            SetLabel(wxString::Format(_("Color #&%i"), m_color_value));
         }
     }
     event.Skip();
@@ -586,7 +586,7 @@ void mmColorButton::OnColourButton(wxCommandEvent& event)
 
     for (int i = 1; i <= 7; ++i)
     {
-        menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST + i, wxString::Format(_("Color #%i"), i));
+        menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST + i, wxString::Format(_("Color #&%i"), i));
 #ifdef __WXMSW__
         menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
         menuItem->SetTextColour(*bestFontColour(getUDColour(i)));
