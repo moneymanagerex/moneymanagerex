@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-21 09:09\n"
+"PO-Revision-Date: 2024-03-22 04:26\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -1463,7 +1463,7 @@ msgstr "주기:"
 
 #: budgetentrydialog.cpp:133
 msgid "Specify the frequency of the expense or deposit"
-msgstr "지출 또는 예금 주기를 지정합니다"
+msgstr "지출 또는 입금 주기를 지정합니다"
 
 #: budgetentrydialog.cpp:136 import_export/univcsvdialog.cpp:408
 msgid "Amount:"
