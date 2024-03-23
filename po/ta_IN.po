@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-22 18:27\n"
+"PO-Revision-Date: 2024-03-23 08:33\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -1919,7 +1919,7 @@ msgstr ""
 
 #: constants.cpp:208
 msgid "ALL"
-msgstr ""
+msgstr "அனைத்தும்"
 
 #: constants.cpp:209 mmframe.cpp:1922 model/Model_Account.cpp:27
 #: model/Model_Asset.cpp:54
@@ -1936,7 +1936,7 @@ msgstr "விருப்பங்கள்"
 
 #: currencydialog.cpp:112
 msgid "Currency name"
-msgstr ""
+msgstr "நாணயத்தின் பெயர்"
 
 #: currencydialog.cpp:188
 msgid "Currency Name"
@@ -1944,7 +1944,7 @@ msgstr "நாணயத்தின் பெயர்"
 
 #: currencydialog.cpp:193
 msgid "Currency Code"
-msgstr ""
+msgstr "நாணயக் குறியீடு"
 
 #: currencydialog.cpp:198
 msgid "Currency Symbol"
