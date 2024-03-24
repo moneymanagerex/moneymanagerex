@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-20 12:49\n"
+"PO-Revision-Date: 2024-03-24 19:39\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -926,19 +926,19 @@ msgstr "חודשי (יום עסקים אחרון)"
 
 #: billsdepositsdialog.cpp:306 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "שכפול תנועה מתוזמנת"
 
 #: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "עריכת תנועה מתוזמנת"
 
 #: billsdepositsdialog.cpp:313
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "הזנת תנועה מתוזמנת"
 
 #: billsdepositsdialog.cpp:407
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "פרטי תנועה מתוזמנת"
 
 #: billsdepositsdialog.cpp:421
 msgid "Specify the date when this bill or deposit is due"
@@ -1052,7 +1052,7 @@ msgstr "חשבון"
 
 #: billsdepositsdialog.cpp:550
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "בחירת 'חשבון' לתנועה המתוזמנת"
 
 #: billsdepositsdialog.cpp:555 transdialog.cpp:247 transdialog.cpp:502
 msgid "To"
@@ -1129,7 +1129,7 @@ msgstr "צבעים מוגדרים אישית"
 
 #: billsdepositsdialog.cpp:619
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "ניהול צרופות לתנועה המתוזמנת"
 
 #: billsdepositsdialog.cpp:629 filtertrans.cpp:197 filtertransdialog.cpp:699
 #: filtertransdialog.cpp:1081 filtertransdialog.cpp:1924
@@ -1258,7 +1258,7 @@ msgstr "פיצול תנועה"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "תנועה מתוזמנת חדשה"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
@@ -1327,7 +1327,7 @@ msgstr "עצה:  ניתן להגדיר תנועות אלו שיפעלו אוטו
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:776
 #: mmframe.cpp:3180 mmhomepagepanel.cpp:243
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "תנועות מתוזמנות"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:460
 msgid "D&uplicate "
@@ -1335,7 +1335,7 @@ msgstr "שכ&פול "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "מחיקת תנועה מתוזמנת"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
@@ -1343,7 +1343,7 @@ msgstr "אנט&ר"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "הזנת המופע התנועה המתוזמנת הבאה"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1351,7 +1351,7 @@ msgstr "&דילוג"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "דלוג על המופע התנועה המתוזמנת הבאה"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
@@ -1363,19 +1363,19 @@ msgstr "דילוג על המופע הבא"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&תנועה מתוזמנת חדשה..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "&עריכת תנועה מתוזמנת..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "ש&כפול תנועה מתוזמנת..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&מחיקת תנועה מתוזמנת..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1424,7 +1424,7 @@ msgstr[3] "%d ימים בחריגה!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "האם למחוק את התנועה המתוזמנת?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
@@ -1527,12 +1527,12 @@ msgstr "חודש: %s"
 #: budgetingpanel.cpp:180
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s    תאריך התחלה: %2$s"
 
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "תכנון תקציב ל־%s"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -1678,11 +1678,11 @@ msgstr "בחירה בסוג־אב הנוכחי כסוג־אב התנועה"
 
 #: categdialog.cpp:343
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "שם מכיל מפריד סוג־אב."
 
 #: categdialog.cpp:344
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "תו נקודותיים (:) משמש להפרדת סוגי־אב וסוגי־אב משנה לכן לא ניתן להשתמש בו בשם"
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
@@ -2584,43 +2584,43 @@ msgstr "הכל למעט מותאמים"
 
 #: filtertransdialog.cpp:53
 msgid "Day"
-msgstr ""
+msgstr "יום"
 
 #: filtertransdialog.cpp:53
 msgid "Month"
-msgstr ""
+msgstr "חודש"
 
 #: filtertransdialog.cpp:53
 msgid "Year"
-msgstr ""
+msgstr "שנה"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
-msgstr ""
+msgstr "עמודות"
 
 #: filtertransdialog.cpp:55
 msgid "Line"
-msgstr ""
+msgstr "ציר"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
-msgstr ""
+msgstr "ציר זמן"
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
-msgstr ""
+msgstr "עוגה"
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
-msgstr ""
+msgstr "טבעת"
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
-msgstr ""
+msgstr "מכ\"ם"
 
 #: filtertransdialog.cpp:57
 msgid "Bar Line"
-msgstr ""
+msgstr "ציר עמודה"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Bar Line"
@@ -2707,7 +2707,7 @@ msgstr "הגדרת אופן קיבוץ הדוח"
 #: filtertransdialog.cpp:753 filtertransdialog.cpp:1103
 #: filtertransdialog.cpp:1974
 msgid "Chart"
-msgstr ""
+msgstr "תרשים"
 
 #: filtertransdialog.cpp:762
 msgid "Specify which chart will be included in the report"
