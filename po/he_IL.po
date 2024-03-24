@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-24 19:39\n"
+"PO-Revision-Date: 2024-03-24 20:40\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1686,7 +1686,7 @@ msgstr "תו נקודותיים (:) משמש להפרדת סוגי־אב וסו�
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
-msgstr ""
+msgstr "מנהל סוגי־אב: שם לא תקין"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
@@ -1698,19 +1698,19 @@ msgstr "הוספת סוג־אב"
 
 #: categdialog.cpp:366 categdialog.cpp:375 categdialog.cpp:624
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "סוג־אב בשם זהה קיים כבר עבור ההורה"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category Manager: Adding Error"
-msgstr ""
+msgstr "מנהל סוגי־אב: שגיאת הוספה"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "לא ניתן להעביר סוג־אב משנה לסוג־אב שמכיל כבר סוג־אב משנה בשם זהה. נא לשקול שינוי שם לפני ההעברה."
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "סוג־אב משנה בשם זה כבר קיים"
 
 #: categdialog.cpp:440
 msgid "Target category is a descendant"
@@ -1722,7 +1722,10 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "האם להעביר את\n"
+" \"%1$s\"\n"
+" אל:\n"
+" \"%2$s\"?"
 
 #: categdialog.cpp:449
 msgid "Top level"
@@ -1738,25 +1741,27 @@ msgstr "סוג־אב בשימוש."
 
 #: categdialog.cpp:467
 msgid "Subcategory in use."
-msgstr ""
+msgstr "סוג־אב משנה בשימוש."
 
 #: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "עצה: ניתן לשנות את כל התנועות בסוג־אב זה\n"
+"לסוג־אב אחר תוך שימוש בפקודת המיזוג:"
 
 #: categdialog.cpp:472
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "עצה: ניתן לשנות את כל התנועות בסוג־אב זה\n"
+"לסוג־אב אחר תוך שימוש בפקודת המיזוג:"
 
 #: categdialog.cpp:475
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "כלים ← מיזוג ← סוגי־אב"
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
-msgstr ""
+msgstr "מנהל סוגי־אב: שגיאת מחיקה"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1785,7 +1790,7 @@ msgstr "עריכת סוג־אב"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
-msgstr ""
+msgstr "מנהל סוגי־אב: שגיאת מחיקה"
 
 #: categdialog.cpp:682 mmframe.cpp:3746
 msgid "Merge categories completed"
@@ -1799,7 +1804,7 @@ msgstr "רשומות עודכנו במסד הנתונים:  %i"
 
 #: categdialog.cpp:685 mmframe.cpp:3749
 msgid "Merge categories result"
-msgstr ""
+msgstr "תוצאות מיזוג סוגי־אב"
 
 #: categdialog.cpp:761
 msgid "Are you sure you want to unhide all categories"
@@ -1827,7 +1832,7 @@ msgstr "נקוי הגדרות"
 
 #: categdialog.h:68 mmframe.cpp:1704 mmframe.cpp:1930
 msgid "Category Manager"
-msgstr ""
+msgstr "מנהל סוגי־אב"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -2172,7 +2177,7 @@ msgstr "מאפינים"
 
 #: customfieldlistdialog.cpp:66 mmframe.cpp:1767
 msgid "Custom Field Manager"
-msgstr ""
+msgstr "מנהל שדות מותאם אישית"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2632,7 +2637,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:505
 msgid "Last Unsaved Filter"
-msgstr ""
+msgstr "מסנן אחרון שלא נשמר"
 
 #: filtertransdialog.cpp:552 transactionsupdatedialog.cpp:122
 msgid "Specify"
@@ -2648,7 +2653,7 @@ msgstr "טווח תאריכים"
 
 #: filtertransdialog.cpp:621 filtertransdialog.cpp:1837
 msgid "Include all subcategories"
-msgstr ""
+msgstr "הכללת כל סוגי־אב משנה"
 
 #: filtertransdialog.cpp:652 filtertransdialog.cpp:1560
 #: filtertransdialog.cpp:1663 import_export/univcsvdialog.cpp:114
@@ -3788,7 +3793,7 @@ msgstr "אישור שהמבנה תואם לבחירה %s."
 #: import_export/univcsvdialog.cpp:2902
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
-msgstr ""
+msgstr "ערך %1$s לא תואם לביטוי־רגיל%2$s לשדה מותאם־אישית'%3$s'."
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
@@ -3867,7 +3872,8 @@ msgstr "בחירת מטבע הבסיס"
 #, c-format
 msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %2$s"
-msgstr ""
+msgstr "נמצאו שערים היסטוריים עבור %1$s אבל, האפשרות 'שימוש בשערים היסטוריים' נוטרלה בהגדרות:\n"
+"נא להקיש על שפעול האפשרות או, הקשה על 'כן' להסרת כל השערים ההיסטוריים עבור %2$s"
 
 #: maincurrencydialog.cpp:447
 #, c-format
@@ -4064,11 +4070,11 @@ msgstr "המלצה: ניתן להשתמש בעותק (Ctrl + C) ולהדביק (
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb database file."
-msgstr ""
+msgstr "עצה: זכרו לבצע גיבויים לקובץ ה־.mmb."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "עצה: קובץ .mmb לא מוצפן, הוא 'לא מוצפן'. כלומר, כל אחד, בעל ידע מסוים, יוכל לפתוח את הקובץ ולקרוא את תוכנו. לכן, יש וודא כי במידה ומאוחסן בקובץ מידע פיננסי רגיש, שיאובטח כראוי."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
@@ -7332,7 +7338,7 @@ msgstr ""
 
 #: reports/transactions.cpp:543
 msgid "Average"
-msgstr ""
+msgstr "ממוצע"
 
 #: sharetransactiondialog.cpp:61 sharetransactiondialog.cpp:68
 msgid "Add Share Transaction"
