@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-23 09:43\n"
+"PO-Revision-Date: 2024-03-24 13:51\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -358,12 +358,12 @@ msgstr "பயனர் குறிப்பினை படி"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1813
 msgid "&Website"
-msgstr ""
+msgstr "&இணையதளம்"
 
 #: appstartdialog.cpp:121
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "%s இணையதளத்திற்கு செல்"
 
 #: appstartdialog.cpp:126
 msgid "&Support Forums"
@@ -519,7 +519,7 @@ msgstr ""
 #: import_export/qif_export.cpp:625 import_export/univcsvdialog.cpp:100
 #: mmchecking_list.cpp:294 reports/transactions.cpp:203 stocks_list.cpp:87
 msgid "ID"
-msgstr ""
+msgstr "அடையாள எண்"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:518 billsdepositspanel.cpp:139
 #: customfieldlistdialog.cpp:54 filtertrans.cpp:204 filtertransdialog.cpp:52
@@ -544,7 +544,7 @@ msgstr "தற்போதைய மதிப்பு"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&புது சொத்து..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
