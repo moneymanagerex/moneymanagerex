@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-24 20:40\n"
+"PO-Revision-Date: 2024-03-25 07:10\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -7330,11 +7330,11 @@ msgstr ""
 
 #: reports/transactions.cpp:539
 msgid "Minimum"
-msgstr ""
+msgstr "מזערי"
 
 #: reports/transactions.cpp:541
 msgid "Maximum"
-msgstr ""
+msgstr "מירבי"
 
 #: reports/transactions.cpp:543
 msgid "Average"
@@ -7422,11 +7422,11 @@ msgstr "נא להזין הערות לתאור תנועת מפוצלת זו"
 
 #: splittransactionsdialog.cpp:251
 msgid "&Add Split"
-msgstr ""
+msgstr "&הוספת פיצול"
 
 #: splittransactionsdialog.cpp:256
 msgid "&Remove Split"
-msgstr ""
+msgstr "&הסרת פיצול"
 
 #: splittransactionsdialog.cpp:412
 msgid "Invalid Total Amount"
@@ -7786,7 +7786,7 @@ msgstr ""
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Tag Manager: Invalid Name"
-msgstr ""
+msgstr "מנהל תגים: שם לא תקין"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
@@ -7892,11 +7892,11 @@ msgstr ""
 
 #: transactionsupdatedialog.cpp:536
 msgid "Updated"
-msgstr ""
+msgstr "מעודכן"
 
 #: transactionsupdatedialog.cpp:537
 msgid "Not updated"
-msgstr ""
+msgstr "לא מעודכן"
 
 #: transactionsupdatedialog.cpp:540
 msgid "Some transactions could not be updated"
@@ -8209,7 +8209,7 @@ msgstr ""
 
 #: util.cpp:1950
 msgid "Copy all text to clipboard"
-msgstr ""
+msgstr "העתקת מלל ללוח־גזירים"
 
 #: util.h:192
 msgid "January"
