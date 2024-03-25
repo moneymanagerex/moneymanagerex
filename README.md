@@ -46,38 +46,38 @@ simplicity and user-friendliness – an application that can be used everyday.
 <table border="0">
     <tr>
         <td>
-            <img src="https://user-images.githubusercontent.com/17465872/233927369-03eabcaa-0e29-4730-8be0-462c3e1c9a01.png" 
-                 alt="Dashboard (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
-                 title="Dashboard (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
+            <img src="https://github.com/moneymanagerex/moneymanagerex/assets/17465872/01cc2202-9d5a-4bba-a816-5868512196cb" 
+                 alt="Dashboard (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)" 
+                 title="Dashboard (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)">
         </td>
         <td>
-            <img src="https://user-images.githubusercontent.com/17465872/233927379-268bd999-9093-4de9-ad72-02e0781b56ec.png" 
-                 alt="Payee Report (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
-                 title="Payee Report (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <img src="https://user-images.githubusercontent.com/17465872/233927385-0f5a551f-494b-43b6-92ef-8fa1ba91e3ed.png" 
-                 alt="Budget Setup (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
-                 title="Budget Setup (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
-        </td>
-        <td>
-            <img src="https://user-images.githubusercontent.com/17465872/233927390-21a3bd99-06d7-4455-b96f-ae98b39a7358.png" 
-                 alt="Multiple User Interface Language Support - Hungarian (magyar) (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
-                 title="Multiple User Interface Language Support - Hungarian (magyar) (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
+            <img src="https://github.com/moneymanagerex/moneymanagerex/assets/17465872/9ba8d274-7af8-496c-9ab6-2c49235ec735" 
+                 alt="Payee Report (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)" 
+                 title="Payee Report (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)">
         </td>
     </tr>
     <tr>
         <td>
-            <img src="https://user-images.githubusercontent.com/17465872/233927396-7470f433-2756-4a68-b709-9a8834b6347d.png" 
-                 alt="Organize Categories - unlimited nested multi-level category support (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
-                 title="Organize Categories - unlimited nested multi-level category support (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
+            <img src="https://github.com/moneymanagerex/moneymanagerex/assets/17465872/ef2d2269-a973-4957-a10b-d13651390ad0" 
+                 alt="Budget Planner (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)" 
+                 title="Budget Planner (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)">
         </td>
         <td>
-            <img src="https://user-images.githubusercontent.com/17465872/233927401-597ea9bc-a890-44df-b6eb-d26ce8369551.png" 
-                 alt="Transaction Filter (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
-                 title="Transaction Filter (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
+            <img src="https://github.com/moneymanagerex/moneymanagerex/assets/17465872/4edfc0c8-7bfc-4052-bf2c-4b833b8b1547" 
+                 alt="Multiple User Interface Language Support - Hungarian (magyar) (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)" 
+                 title="Multiple User Interface Language Support - Hungarian (magyar) (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="https://github.com/moneymanagerex/moneymanagerex/assets/17465872/be52a7f3-9dea-46dd-a04e-f198dd413b08" 
+                 alt="Category Manager - unlimited nested multi-level category support (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)" 
+                 title="Category Manager - unlimited nested multi-level category support (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)">
+        </td>
+        <td>
+            <img src="https://github.com/moneymanagerex/moneymanagerex/assets/17465872/b69b1eba-e476-4755-b64c-1eec2946f4a8" 
+                 alt="Transaction Report Filter (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)" 
+                 title="Transaction Report Filter (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)">
         </td>
     </tr>
     <tr>
@@ -98,9 +98,9 @@ simplicity and user-friendliness – an application that can be used everyday.
                  title="Export as XML (eXtensible Markup Language) file (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
         </td>
         <td>
-            <img src="https://user-images.githubusercontent.com/17465872/233931456-85f10a2f-c546-445e-966a-647d10919904.png" 
-                 alt="Multi Currency Support (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)" 
-                 title="Multi Currency Support (MMEX 1.6.4-Beta.4 64-bit on Linux Mint 21.1 Cinnamon)">
+            <img src="https://github.com/moneymanagerex/moneymanagerex/assets/17465872/4e6e9a83-a242-43d5-9676-e65163f32fed" 
+                 alt="Currency Manager - multi currency support (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)" 
+                 title="Currency Manager - multi currency support (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)">
         </td>
     </tr>
 </table>
