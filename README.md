@@ -64,15 +64,15 @@ simplicity and user-friendliness – an application that can be used everyday.
         </td>
         <td>
             <img src="https://github.com/moneymanagerex/moneymanagerex/assets/17465872/4edfc0c8-7bfc-4052-bf2c-4b833b8b1547" 
-                 alt="Multiple User Interface Language Support - Hungarian (magyar) (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)" 
-                 title="Multiple User Interface Language Support - Hungarian (magyar) (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)">
+                 alt="Multiple User Interface Language Support – Hungarian (magyar) (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)" 
+                 title="Multiple User Interface Language Support – Hungarian (magyar) (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)">
         </td>
     </tr>
     <tr>
         <td>
             <img src="https://github.com/moneymanagerex/moneymanagerex/assets/17465872/be52a7f3-9dea-46dd-a04e-f198dd413b08" 
-                 alt="Category Manager - unlimited nested multi-level category support (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)" 
-                 title="Category Manager - unlimited nested multi-level category support (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)">
+                 alt="Category Manager – unlimited nested multi-level category support (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)" 
+                 title="Category Manager – unlimited nested multi-level category support (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)">
         </td>
         <td>
             <img src="https://github.com/moneymanagerex/moneymanagerex/assets/17465872/b69b1eba-e476-4755-b64c-1eec2946f4a8" 
@@ -99,8 +99,8 @@ simplicity and user-friendliness – an application that can be used everyday.
         </td>
         <td>
             <img src="https://github.com/moneymanagerex/moneymanagerex/assets/17465872/4e6e9a83-a242-43d5-9676-e65163f32fed" 
-                 alt="Currency Manager - multi currency support (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)" 
-                 title="Currency Manager - multi currency support (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)">
+                 alt="Currency Manager – multi currency support (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)" 
+                 title="Currency Manager – multi currency support (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)">
         </td>
     </tr>
 </table>
