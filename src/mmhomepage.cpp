@@ -621,7 +621,7 @@ const wxString htmlWidgetAssets::getHTMLText()
                 , _("Other Assets"), _("Other Assets"), rows - MAX_ASSETS);
             output += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
                 , initialTotal - initialDisplayed, Model_Currency::toCurrency(initialTotal - initialDisplayed));
-            output += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
+            output += wxString::Format("<td colspan='2' class='money' sorttable_customkey='%f'>%s</td>\n"
                 , currentTotal - currentDisplayed, Model_Currency::toCurrency(currentTotal - currentDisplayed));
             output += "</tr>";
     }
