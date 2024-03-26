@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-26 16:24\n"
+"PO-Revision-Date: 2024-03-26 17:59\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "MIME-Version: 1.0\n"
@@ -325,7 +325,7 @@ msgstr "Buka &Database Yang Terakhir Dibuka"
 
 #: appstartdialog.cpp:104
 msgid "&New Database"
-msgstr ""
+msgstr "&Basis Data Baru"
 
 #: appstartdialog.cpp:105
 msgid "Create a new database file to get started"
@@ -341,7 +341,7 @@ msgstr "Buka data keuangan yang telah dibuat dalam format file extension (*.mmb)
 
 #: appstartdialog.cpp:112 mmframe.cpp:1643
 msgid "User Interface &Language"
-msgstr ""
+msgstr "Bahasa Antarmuka Pengguna"
 
 #: appstartdialog.cpp:113 appstartdialog.cpp:222 mmframe.cpp:1644
 #: optionsettingsgeneral.cpp:100
@@ -367,19 +367,19 @@ msgstr "Kunjungi situs %s"
 
 #: appstartdialog.cpp:126
 msgid "&Support Forums"
-msgstr ""
+msgstr "&Forum Dukungan"
 
 #: appstartdialog.cpp:127
 msgid "Visit the Support Forums"
-msgstr ""
+msgstr "Kunjungi Forum Dukungan"
 
 #: appstartdialog.cpp:133 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&Tampilkan kotak dialog ini saat memulai"
 
 #: appstartdialog.cpp:144
 msgid "E&xit "
-msgstr ""
+msgstr "&Keluar "
 
 #: appstartdialog.cpp:160
 #, c-format
@@ -389,11 +389,11 @@ msgstr "Buka database yang digunakan sebelumnya : %s"
 #: appstartdialog.cpp:209 mmframe.cpp:1649 mmframe.cpp:3022
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
-msgstr ""
+msgstr "Bawaan sistem"
 
 #: appstartdialog.cpp:222 optionsettingsgeneral.cpp:92
 msgid "User Interface Language"
-msgstr ""
+msgstr "Bahasa Antarmuka Pengguna"
 
 #: appstartdialog.cpp:230 mmframe.cpp:3900 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -545,15 +545,15 @@ msgstr "Nilai sekarang"
 
 #: assetspanel.cpp:97
 msgid "&New Asset..."
-msgstr ""
+msgstr "&Aset Baru..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "&Gandakan Aset..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
-msgstr ""
+msgstr "&Tambahkan Transaksi Aset..."
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
@@ -561,20 +561,20 @@ msgstr "&Tampilkan Transaksi Aset"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "&Buka Akun Aset..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
-msgstr ""
+msgstr "&Ubah Data Aset..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "&Hapus Data Aset..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:443 mmchecking_list.cpp:511
 #: stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "&Kelola Lampiran..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -680,7 +680,7 @@ msgstr "Total:%s"
 #: assetspanel.cpp:666
 #, c-format
 msgid "Change in Value: %1$s %2$s"
-msgstr ""
+msgstr "Perubahan pada Nilai: %1$s %2$s"
 
 #: assetspanel.cpp:782
 msgid "This asset does not have its own account\n\n"
@@ -711,7 +711,7 @@ msgstr "Folder lampiran belum didefinisikan."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "Atur di Alat → Opsi → Lampiran"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
@@ -732,17 +732,17 @@ msgstr "Folder Lampiran tidak ditemukan"
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %s | %i"
-msgstr ""
+msgstr "Pengelola Lampiran | %s | %i"
 
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr ""
+msgstr "Pengelola Lampiran | %1$s | %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr ""
+msgstr "Pengelola Lampiran | Baru %s"
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
@@ -758,7 +758,7 @@ msgstr "Masukkan deskripsi untuk lampiran baru:"
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
-msgstr ""
+msgstr "Pengelola Lampiran: Tambah Lampiran"
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
@@ -766,7 +766,7 @@ msgstr "Masukkan deskripsi baru untuk lampiran:"
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
-msgstr ""
+msgstr "Pengelola Lampiran: Sunting Lampiran"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
@@ -798,7 +798,7 @@ msgstr "Att."
 
 #: attachmentdialog.cpp:407
 msgid "This directory and its files are automatically managed by MMEX."
-msgstr ""
+msgstr "Direktori ini beserta file-filenya dikelola otomatis oleh MMEX."
 
 #: attachmentdialog.cpp:409
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -859,7 +859,7 @@ msgstr "Mingguan"
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:52
 #: model/Model_Budget.cpp:60
 msgid "Fortnightly"
-msgstr ""
+msgstr "Dwimingguan"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:53 mmframereport.cpp:129
 #: mmframereport.cpp:143 mmframereport.cpp:171 mmframereport.cpp:198
@@ -902,19 +902,19 @@ msgstr "Harian"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
-msgstr ""
+msgstr "Dalam (n) Hari"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr ""
+msgstr "Dalam (n) Bulan"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr ""
+msgstr "Setiap (n) Hari"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr ""
+msgstr "Setiap (n) Bulan"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -926,19 +926,19 @@ msgstr "Bulanan (hari kerja terakhir)"
 
 #: billsdepositsdialog.cpp:306 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "Gandakan Transaksi Terjadwal"
 
 #: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "Sunting Transaksi Terjadwal"
 
 #: billsdepositsdialog.cpp:313
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "Masukkan Transaksi Terjadwal"
 
 #: billsdepositsdialog.cpp:407
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "Rincian Transaksi Terjadwal"
 
 #: billsdepositsdialog.cpp:421
 msgid "Specify the date when this bill or deposit is due"
@@ -1052,7 +1052,7 @@ msgstr "Rekening"
 
 #: billsdepositsdialog.cpp:550
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "Tentukan Akun yang akan memiliki transaksi berulang"
 
 #: billsdepositsdialog.cpp:555 transdialog.cpp:247 transdialog.cpp:502
 msgid "To"
@@ -1125,11 +1125,11 @@ msgstr "Pilih salah satu dari catatan yang sering digunakan"
 #: billsdepositsdialog.cpp:615 transactionsupdatedialog.cpp:245
 #: transdialog.cpp:564
 msgid "User Colors"
-msgstr ""
+msgstr "Warna pilihan pengguna"
 
 #: billsdepositsdialog.cpp:619
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "Susun lampiran transaksi terjadwal ini"
 
 #: billsdepositsdialog.cpp:629 filtertrans.cpp:197 filtertransdialog.cpp:699
 #: filtertransdialog.cpp:1081 filtertransdialog.cpp:1924
@@ -1138,7 +1138,7 @@ msgstr ""
 #: transactionsupdatedialog.cpp:242 transactionsupdatedialog.cpp:439
 #: transdialog.cpp:579
 msgid "Color"
-msgstr ""
+msgstr "Warna"
 
 #: billsdepositsdialog.cpp:636 transdialog.cpp:586 transdialog.cpp:1322
 #: usertransactionpanel.cpp:201
@@ -1148,7 +1148,7 @@ msgstr "Isi dengan keterangan yang diinginkan untuk transaksi ini"
 #: billsdepositsdialog.cpp:653 filtertransdialog.cpp:814
 #: transactionsupdatedialog.cpp:283 transdialog.cpp:602
 msgid "Show/Hide custom fields window"
-msgstr ""
+msgstr "Tampilkan/Sembunyikan jendela isian kustom"
 
 #: billsdepositsdialog.cpp:823 billsdepositsdialog.cpp:846 transdialog.cpp:246
 #: transdialog.cpp:255
@@ -1157,7 +1157,7 @@ msgstr "Dari"
 
 #: billsdepositsdialog.cpp:891
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "Tanggal pembayarannya setelah jatuh tempo, apakah ini sesuai kehendak Anda?"
 
 #: billsdepositsdialog.cpp:892
 msgid "Looks like a late payment"
@@ -1168,12 +1168,13 @@ msgstr "Tampak seperti pembayaran terlambat"
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "Anda belum pernah menggunakan nama penerima ini. Apakah nama ini benar?\n"
+"%s"
 
 #: billsdepositsdialog.cpp:945 transactionsupdatedialog.cpp:346
 #: transdialog.cpp:680
 msgid "Confirm payee name"
-msgstr ""
+msgstr "Konfirmasikan nama penerima"
 
 #: billsdepositsdialog.cpp:964 billsdepositsdialog.cpp:970
 #: billsdepositsdialog.cpp:1360 filtertransdialog.cpp:950
@@ -1189,13 +1190,13 @@ msgstr ""
 #: transactionsupdatedialog.cpp:365 transactionsupdatedialog.cpp:439
 #: transdialog.cpp:636 transdialog.cpp:640 transdialog.cpp:655 util.cpp:756
 msgid "Invalid value"
-msgstr ""
+msgstr "Isian tidak sah"
 
 #: billsdepositsdialog.cpp:1045 billsdepositsdialog.cpp:1048
 #: import_export/univcsvdialog.cpp:1419 stockdialog.cpp:414 transdialog.cpp:648
 #: transdialog.cpp:722 usertransactionpanel.cpp:451 webapp.cpp:566
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr ""
+msgstr "Tanggal pembukaan rekening lebih maju dari tanggal transaksi ini"
 
 #: billsdepositsdialog.cpp:1279
 msgid "Specify the transfer amount in the From Account"
@@ -1228,7 +1229,8 @@ msgstr "Tentukan periode dalam Bulan untuk mengaktifkan. \n"
 #: billsdepositsdialog.cpp:1315
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Tentukan periode dalam Hari untuk mengaktifkan. \n"
+"Kosongkan jika tidak aktif."
 
 #: billsdepositsdialog.cpp:1323
 msgid "Specify period in Months to activate.\n"
@@ -1315,32 +1317,32 @@ msgstr "Pembayaran"
 
 #: billsdepositspanel.cpp:197
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "MMEX membolehkan pembayaran rutin diatur sebagai transaksi. Transaksi-transaksi ini bisa juga berupa deposito/setoran rutin, atau transfer yang akan terjadi di kemudian hari. Transaksi-transaksi ini berperan sebagai pengingat sesuatu akan terjadi, dan muncul di Dasbor 14 hari sebelum jatuh tempo."
 
 #: billsdepositspanel.cpp:200
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr ""
+msgstr "Tip: Transaksi-transaksi ini bisa diatur untuk diaktifkan, membolehkan pengguna menyesuaikan jatuh temponya."
 
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:776
 #: mmframe.cpp:3180 mmhomepagepanel.cpp:243
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "Transaksi Terjadwal"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:460
 msgid "D&uplicate "
-msgstr ""
+msgstr "D&uplicate "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "Hapus Transaksi Terjadwal"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
-msgstr ""
+msgstr "Ente&r"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Masukkan Kemunculan Transaksi Terjadwal Berikutnya"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1348,11 +1350,11 @@ msgstr "&Lewati"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Lewati Kemunculan Transaksi Terjadwal Berikutnya"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Isikan kemunculan berikutnya..."
 
 #: billsdepositspanel.cpp:435
 msgid "Skip next Occurrence"
@@ -1360,19 +1362,19 @@ msgstr "Lewati Transaksi Berikutnya"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "Transaksi Terjadwal &Baru..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "&Sunting Transaksi Terjadwal..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "Gandakan Transaksi Terjadwal..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&Hapus Transaksi Terjadwal..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1408,15 +1410,15 @@ msgstr[0] "%d hari terlambat!"
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
+msgstr[0] "Terlewat %d hari!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Anda yakin ingin menghapus transaksi terjadwal ini?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Konfirmasi Penghapusan"
 
 #: budgetentrydialog.cpp:47
 msgid "Budget Year Entry"
@@ -1471,7 +1473,7 @@ msgstr "Isi dengan jumlah anggaran untuk kategori ini"
 
 #: budgetentrydialog.cpp:148 payeedialog.cpp:119
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "Masukkan catatan deskripsi entri anggaran ini"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
@@ -1495,36 +1497,36 @@ msgstr "Tampilkan anggaran kategori pengeluaran"
 
 #: budgetingpanel.cpp:57
 msgid "View Budget Category Summary"
-msgstr ""
+msgstr "Tampilkan Ringkasan Kategori Anggaran"
 
 #: budgetingpanel.cpp:165
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Tahun Fiskal: %s - %li"
 
 #: budgetingpanel.cpp:169 reports/budget.cpp:94
 #, c-format
 msgid "Year: %s"
-msgstr ""
+msgstr "Tahun: %s"
 
 #: budgetingpanel.cpp:174
 #, c-format
 msgid "Month: %s"
-msgstr ""
+msgstr "Bulan: %s"
 
 #: budgetingpanel.cpp:180
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s    Tanggal Mulai dari: %2$s"
 
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "Perencanaan Anggaran untuk %s"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
-msgstr ""
+msgstr "Pemasukan: "
 
 #: budgetingpanel.cpp:241 budgetingpanel.cpp:249
 msgid "Estimated: "
