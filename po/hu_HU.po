@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-22 09:44\n"
+"PO-Revision-Date: 2024-03-26 07:08\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2823,7 +2823,7 @@ msgstr "Számlák kiválasztása"
 
 #: filtertransdialog.h:163 mmframe.cpp:1757 mmframe.cpp:1934
 msgid "Transaction Report Filter"
-msgstr "Ügylet-jelentés szűrése"
+msgstr "Ügyletjelentés-szűrő"
 
 #: general_report_manager.cpp:284 mmframe.cpp:794 mmframe.cpp:2966
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
@@ -5085,7 +5085,7 @@ msgstr "Témakezelő"
 
 #: mmframe.cpp:1757
 msgid "Transaction Report &Filter..."
-msgstr "Ügylet-jelentés s&zűrése…"
+msgstr "Ügyletjelentés-s&zűrő…"
 
 #: mmframe.cpp:1763
 msgid "&General Report Manager..."
@@ -7222,7 +7222,7 @@ msgstr "MMEX-használati gyakoriság"
 
 #: reports/payee.cpp:33
 msgid "Payee Report"
-msgstr "Kedvezményezett kimutatás"
+msgstr "Kedvezményezett kimutatása"
 
 #: reports/reportbase.cpp:199 reports/transactions.cpp:87
 msgid "All Accounts"
