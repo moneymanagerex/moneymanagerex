@@ -596,7 +596,7 @@ const wxString htmlWidgetAssets::getHTMLText()
     double currentTotal = 0.0;
     for (const auto& asset : assets)
     {
-        double initial = asset.VALUE;
+        double initial = Model_Asset::instance().valueAtDate(&asset, Model_Asset::STARTDATE(asset));
         double current = Model_Asset::value(asset);
         initialTotal += initial;
         currentTotal += current;
