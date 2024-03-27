@@ -42,13 +42,14 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
 
     int err = SQLITE_OK;
     wxString errStr=wxEmptyString;
+    wxSQLite3CipherAes128 cipher;
     try
     {
         if (debug)
             // open and disable flag SQLITE_CorruptRdOnly = 0x200000000
-            db->Open(dbpath, password, (WXSQLITE_OPEN_READWRITE | WXSQLITE_OPEN_CREATE) & ~0x200000000);
+            db->Open(dbpath, cipher, password, (WXSQLITE_OPEN_READWRITE | WXSQLITE_OPEN_CREATE) & ~0x200000000);
         else
-            db->Open(dbpath, password);
+            db->Open(dbpath, cipher, password);
         // Ensure that an existing mmex database is not encrypted.
         if ((db->IsOpen()) && (db->TableExists("INFOTABLE_V1")))
         {
