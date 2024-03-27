@@ -147,5 +147,5 @@ wxChar mmTextCtrl::GetDecimalPoint()
         pattern2.ReplaceAll(&dp, wxEmptyString);
     }
 
-    return dp[0];
+    return dp.IsEmpty() ? '.' : dp[0];
 }
