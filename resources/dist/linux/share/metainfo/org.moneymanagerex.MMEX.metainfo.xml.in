@@ -290,37 +290,37 @@
     <screenshot type="default">
       <caption>Dashboard</caption>
       <caption xml:lang="hu">Irányítópult</caption>
-      <image>https://user-images.githubusercontent.com/17465872/233927369-03eabcaa-0e29-4730-8be0-462c3e1c9a01.png</image>
+      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/01cc2202-9d5a-4bba-a816-5868512196cb</image>
     </screenshot>
     
     <screenshot>
       <caption>Payee Report</caption>
       <caption xml:lang="hu">Kedvezményezett kimutatás</caption>
-      <image>https://user-images.githubusercontent.com/17465872/233927379-268bd999-9093-4de9-ad72-02e0781b56ec.png</image>
+      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/9ba8d274-7af8-496c-9ab6-2c49235ec735</image>
     </screenshot>
     
     <screenshot>
-      <caption>Budget Setup</caption>
-      <caption xml:lang="hu">Költségvetés beállítása</caption>
-      <image>https://user-images.githubusercontent.com/17465872/233927385-0f5a551f-494b-43b6-92ef-8fa1ba91e3ed.png</image>
+      <caption>Budget Planner</caption>
+      <caption xml:lang="hu">Költségvetés-tervező</caption>
+      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/ef2d2269-a973-4957-a10b-d13651390ad0</image>
     </screenshot>
     
     <screenshot>
-      <caption>Multiple User Interface Language Support - Hungarian (magyar)</caption>
-      <caption xml:lang="hu">Több felhasználói felület nyelvi támogatása - magyar</caption>
-      <image>https://user-images.githubusercontent.com/17465872/233927390-21a3bd99-06d7-4455-b96f-ae98b39a7358.png</image>
+      <caption>Multiple User Interface Language Support – Hungarian (magyar)</caption>
+      <caption xml:lang="hu">Több felhasználói felület nyelvi támogatása – magyar</caption>
+      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/4edfc0c8-7bfc-4052-bf2c-4b833b8b1547</image>
     </screenshot>
     
     <screenshot>
-      <caption>Organize Categories - unlimited nested multi-level category support</caption>
-      <caption xml:lang="hu">Kategóriák rendszerezése - korlátlan beágyazott többszintű kategóriatámogatás</caption>
-      <image>https://user-images.githubusercontent.com/17465872/233927396-7470f433-2756-4a68-b709-9a8834b6347d.png</image>
+      <caption>Category Manager – unlimited nested multi-level category support</caption>
+      <caption xml:lang="hu">Kategóriakezelő – korlátlan beágyazott többszintű kategóriatámogatás</caption>
+      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/be52a7f3-9dea-46dd-a04e-f198dd413b08</image>
     </screenshot>
     
     <screenshot>
-      <caption>Transaction Filter</caption>
-      <caption xml:lang="hu">Ügyletek szűrése</caption>
-      <image>https://user-images.githubusercontent.com/17465872/233927401-597ea9bc-a890-44df-b6eb-d26ce8369551.png</image>
+      <caption>Transaction Report Filter</caption>
+      <caption xml:lang="hu">Ügyletjelentés-szűrő</caption>
+      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/b69b1eba-e476-4755-b64c-1eec2946f4a8</image>
     </screenshot>
     
     <screenshot>
@@ -342,9 +342,9 @@
     </screenshot>
     
     <screenshot>
-      <caption>Multi Currency Support</caption>
-      <caption xml:lang="hu">Több pénznem támogatása</caption>
-      <image>https://user-images.githubusercontent.com/17465872/233931456-85f10a2f-c546-445e-966a-647d10919904.png</image>
+      <caption>Currency Manager – multi currency support</caption>
+      <caption xml:lang="hu">Pénznemkezelő – több pénznem támogatása</caption>
+      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/4e6e9a83-a242-43d5-9676-e65163f32fed</image>
     </screenshot>
     
   </screenshots>
