@@ -420,7 +420,7 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
     json_writer.Key("0");
-    json_writer.String(wxString::Format(_("Income vs Expenses: %s"), date_range.get()->local_title()).utf8_str());
+    json_writer.String(wxString::Format(_("Income vs. Expenses: %s"), date_range.get()->local_title()).utf8_str());
     json_writer.Key("1");
     json_writer.String(_("Type").utf8_str());
     json_writer.Key("2");
