@@ -742,7 +742,7 @@ void mmPayeeDialog::DeletePayee()
                     << "\n\n"
                     << _("Tip: Change all transactions using this Payee to another Payee"
                         " using the merge command:")
-                    << "\n\n" << wxString::FromUTF8(_("Tools → Merge → Payees").ToStdString());
+                    << "\n\n" << wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Tools → Merge → Payees")));
                 wxMessageBox(deletePayeeErrMsg, _("Payee Manager: Delete Error"), wxOK | wxICON_ERROR);
                 continue;
             }

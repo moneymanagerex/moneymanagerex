@@ -2154,7 +2154,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         }
 
         wxButton* next = static_cast<wxButton*>(wizard->FindWindow(wxID_FORWARD)); //FIXME: 
-        if (next) next->SetLabel(wxString::FromUTF8(_("&Next →").ToStdString()));
+        if (next) next->SetLabel(wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Next →"))));
 
         SetDataBaseParameters(fileName);
         /* Jump to new account creation screen */
@@ -2658,14 +2658,14 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
 
         if (account->ACCOUNTTYPE == Model_Account::all_type()[Model_Account::SHARES])
         {
-            wxMessageBox(wxString::FromUTF8(_(
+            wxMessageBox(wxGetTranslation(wxString::FromUTF8(wxTRANSLATE(
                 "Share Accounts hold Share transactions\n\n"
                 "Share transactions are created within the Stock Portfolio View\n"
                 "after the selection of the Company Stock within the associated view.\n\n"
                 "These accounts only become visible after associating a Stock to the Share Account\n"
                 "Or by using the Menu View → 'Display Share Accounts'\n"
                 "Share Accounts can also hold normal transactions to regular account."
-            ).ToStdString()), _("Share Account Creation"));
+            ))), _("Share Account Creation"));
         }
 
         RefreshNavigationTree();

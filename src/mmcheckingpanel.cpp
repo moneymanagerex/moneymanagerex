@@ -677,10 +677,9 @@ void mmCheckingPanel::showTips()
 {
     if (Option::instance().getShowMoneyTips())
         m_info_panel->SetLabelText(
-            wxString::FromUTF8(
-                wxGetTranslation(
-                    TIPS[rand() % (sizeof(TIPS) / sizeof(wxString))]
-                ).ToStdString()
+            wxGetTranslation(wxString::FromUTF8(
+                TIPS[rand() % (sizeof(TIPS) / sizeof(wxString))]
+                .ToStdString())
             )
         );
     else
