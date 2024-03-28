@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-24 13:51\n"
+"PO-Revision-Date: 2024-03-28 21:57\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -346,7 +346,7 @@ msgstr ""
 #: appstartdialog.cpp:113 appstartdialog.cpp:222 mmframe.cpp:1644
 #: optionsettingsgeneral.cpp:100
 msgid "Change user interface language"
-msgstr ""
+msgstr "பயனாளர் மொழியை மாற்ற"
 
 #: appstartdialog.cpp:116
 msgid "&User Manual"
@@ -389,7 +389,7 @@ msgstr ""
 #: appstartdialog.cpp:209 mmframe.cpp:1649 mmframe.cpp:3022
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
-msgstr ""
+msgstr "முறைமை இயல்பு"
 
 #: appstartdialog.cpp:222 optionsettingsgeneral.cpp:92
 msgid "User Interface Language"
@@ -496,11 +496,11 @@ msgstr "சொத்து குறித்த விவரங்க்ளை 
 
 #: assetdialog.cpp:246
 msgid "New Transaction Details"
-msgstr ""
+msgstr "புதிய பரிமாற்ற தகவல்"
 
 #: assetdialog.cpp:249 sharetransactiondialog.cpp:292
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "பரிமாற்ற தகவலைத் திருத்த"
 
 #: assetdialog.cpp:284 constants.cpp:74 sharetransactiondialog.cpp:322
 msgid "&Cancel "
@@ -508,7 +508,7 @@ msgstr "&தவிர் "
 
 #: assetdialog.cpp:386 sharetransactiondialog.cpp:415
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "தவறான பரிமாற்றம்"
 
 #: assetdialog.cpp:393
 msgid "Asset Account not found.\n\n"
