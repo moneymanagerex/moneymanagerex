@@ -32,7 +32,7 @@ public:
     bool RunIt(bool modal);
 
 private:
-    void OnCancel(wxWizardEvent& evt);
+    void OnCancel(wxWizardEvent&);
     wxWizardPageSimple* page1 = nullptr;
     bool success_;
     
