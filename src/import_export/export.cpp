@@ -159,7 +159,8 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
     if (!full_tran.m_tags.empty())
     {
         categ.Append("/");
-        for (int i = 0; i < full_tran.m_tags.size(); i++)
+        auto numTags = full_tran.m_tags.size();
+        for (decltype(numTags) i = 0; i < numTags; i++)
             categ.Append((i > 0 ? ":" : "") + Model_Tag::instance().get(full_tran.m_tags[i].TAGID)->TAGNAME);
     }
 
@@ -195,7 +196,8 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         if (!splitTags.empty())
         {
             split_categ.Append("/");
-            for (int i = 0; i < splitTags.size(); i++)
+            auto numTags = splitTags.size();
+            for (decltype(numTags) i = 0; i < numTags; i++)
             {
                 split_categ.Append((i > 0 ? ":" : "") + Model_Tag::instance().get(splitTags[i].TAGID)->TAGNAME);
             }

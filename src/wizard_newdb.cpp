@@ -74,7 +74,7 @@ bool mmNewDatabaseWizard::RunIt(bool modal)
     return success_;
 }
 
-void mmNewDatabaseWizard::OnCancel(wxWizardEvent& evt)
+void mmNewDatabaseWizard::OnCancel(wxWizardEvent&)
 {
     success_ = false;
 }
