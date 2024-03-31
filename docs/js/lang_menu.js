@@ -4,22 +4,23 @@
  */
 "use strict";
 
+/* Sorted by language code */
 function generateLangMenu(nav) {
     var list = [
-        { id: "en_GB", flag: "en", lang: "English"   },
-        { id: "be_BY", flag: "be", lang: "Belarusian"},
-        { id: "zh_CN", flag: "cn", lang: "Chinese"},
-        { id: "de_DE", flag: "de", lang: "German"    },
-        { id: "fr_FR", flag: "fr", lang: "French"    },
-        { id: "hu_HU", flag: "hu", lang: "Hungarian" },
-        { id: "he_IL", flag: "he", lang: "Hebrew"    },
-        { id: "hr_HR", flag: "hr", lang: "Croatian"  },
-        { id: "it_IT", flag: "it", lang: "Italian"   },
-        { id: "nl_NL", flag: "nl", lang: "Dutch"     },
-        { id: "pl_PL", flag: "pl", lang: "Polish"    },
-        { id: "ru_RU", flag: "ru", lang: "Russian"   },
-        { id: "es_ES", flag: "es", lang: "Spanish"   },
-        { id: "ko_KR", flag: "ko", lang: "Korean"    }
+        { id: "be_BY", flag: "be", lang: "be-BY Беларуская (Беларусь)"  },
+        { id: "de_DE", flag: "de", lang: "de-DE Deutsch (Deutschland)"  },
+        { id: "en_GB", flag: "en", lang: "en-GB English (British)"      },
+        { id: "es_ES", flag: "es", lang: "es-ES Español (españa)"       },
+        { id: "fr_FR", flag: "fr", lang: "fr-FR Français (France)"      },
+        { id: "he_IL", flag: "he", lang: "he-IL עברית (ישראל)"          },
+        { id: "hr_HR", flag: "hr", lang: "hr-HR hrvatski (Hrvatska)"    },
+        { id: "hu_HU", flag: "hu", lang: "hu-HU magyar (Magyarország)"  },
+        { id: "it_IT", flag: "it", lang: "it-IT Italiano (Italia)"      },
+        { id: "ko_KR", flag: "ko", lang: "ko-KR 한국어(한국)"             },
+        { id: "nl_NL", flag: "nl", lang: "nl-NL Nederlands (Nederland)" },
+        { id: "pl_PL", flag: "pl", lang: "pl-PL polski (Polska)"        },
+        { id: "ru_RU", flag: "ru", lang: "ru-RU Русский (Россия)"       },
+        { id: "zh_CN", flag: "cn", lang: "zh-CN 中文（中国）"             }
     ];
     var docLang = document.getElementsByTagName("html")[0].lang;
     nav = nav.appendChild(document.createElement("small"));
