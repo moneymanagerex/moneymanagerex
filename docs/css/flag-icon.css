@@ -19,58 +19,72 @@
   width: 1em;
 }
 
+/* be_BY Беларуская (Беларусь) - Belarusian (Belarus) */
 .flag-icon-be {
   background-image: url(../img/flags/be.svg);
 }
 
-.flag-icon-cn {
-  background-image: url(../img/flags/cn.svg);
-}
-
+/* de_DE Deutsch (Deutschland) - German (Germany) */
 .flag-icon-de {
   background-image: url(../img/flags/de.svg);
 }
 
-.flag-icon-es {
-  background-image: url(../img/flags/es.svg);
-}
-
-.flag-icon-fr {
-  background-image: url(../img/flags/fr.svg);
-}
-
+/* en_GB English (GB) */
 .flag-icon-en {
   background-image: url(../img/flags/en.svg);
 }
 
-.flag-icon-hu {
-  background-image: url(../img/flags/hu.svg);
+/* es_ES Español (españa) - Spanish (Spain) */
+.flag-icon-es {
+  background-image: url(../img/flags/es.svg);
 }
 
+/* fr_FR Français (France) - French (France) */
+.flag-icon-fr {
+  background-image: url(../img/flags/fr.svg);
+}
+
+/* he_IL עברית (ישראל) - Hebrew (Israel) */
 .flag-icon-he {
   background-image: url(../img/flags/he.svg);
 }
 
+/* hr_HR hrvatski (Hrvatska) - Croatian (Croatia) */
 .flag-icon-hr {
   background-image: url(../img/flags/hr.svg);
 }
 
+/* hu_HU magyar (Magyarország) - Hungarian (Hungary) */
+.flag-icon-hu {
+  background-image: url(../img/flags/hu.svg);
+}
+
+/* it_IT Italiano (Italia) - Italian (Italy) */
 .flag-icon-it {
   background-image: url(../img/flags/it.svg);
 }
 
+/* ko_KR 한국어(한국) - Korean (Korea) */
+.flag-icon-ko {
+  background-image: url(../img/flags/ko.svg);
+}
+
+/* nl_NL Nederlands (Nederland) - Dutch (Netherlands) */
 .flag-icon-nl {
   background-image: url(../img/flags/nl.svg);
 }
 
+/* pl_PL polski (Polska) - Polish (Poland) */
 .flag-icon-pl {
   background-image: url(../img/flags/pl.svg);
 }
 
+/* ru_RU Русский (Россия) - Russian (Russia) */
 .flag-icon-ru {
   background-image: url(../img/flags/ru.svg);
 }
 
-.flag-icon-ko {
-  background-image: url(../img/flags/ko.svg);
+/* zh_CN 中文（中国）- Chinese (China) */
+.flag-icon-cn {
+  background-image: url(../img/flags/cn.svg);
 }
