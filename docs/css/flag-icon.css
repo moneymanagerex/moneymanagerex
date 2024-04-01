@@ -34,6 +34,11 @@
   background-image: url(../img/flags/en.svg);
 }
 
+/* en_US English (US) */
+.flag-icon-us {
+  background-image: url(../img/flags/us.svg);
+}
+
 /* es_ES Español (españa) - Spanish (Spain) */
 .flag-icon-es {
   background-image: url(../img/flags/es.svg);
