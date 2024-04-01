@@ -952,104 +952,6 @@
     </p>
 
     <h2>Importing financial data</h2>
-
-    <h3>Importing from WebApp</h3>
-    <p>
-        MMEX has a light <dfn>WebApp</dfn> that can be installed on every PHP
-        webserver like NAS, shared hosting or other PHP local installation.
-    </p>
-    <p>
-        You can download all needed files from
-        <a href="https://sourceforge.net/projects/moneymanagerex-webapp/files/latest/download" target="_blank">
-        WebApp project page</a>.
-    </p>
-    <aside class="sticky tips">
-        To obtain more information about set-up and installation see
-        <a href="https://sourceforge.net/p/moneymanagerex-webapp/wiki/" target="_blank">
-        WebApp wiki pages</a>.
-    </aside>
-    <p>
-        To start-up WebApp you only have to:
-    </p>
-    <ol>
-        <li>unzip file in a folder on your webserver or upload files through FTP</li>
-        <li>
-            rename <code>htaccess.txt</code> in <code>.htaccess</code> (on Windows you need to do
-            it from <code>CMD</code> and <kbd>rename</kbd> command)
-        </li>
-        <li>enable <code>PDO_SQLite</code> if needed</li>
-    </ol>
-    <p>
-        Then simply open your browser to the folder URL, fill first
-        settings and insert correct URL and GUID in MMEX settings
-        (import/export tab).
-    </p>
-    <p>
-        Now at every start-up MMEX will contact WebApp for new
-        transaction that will be downloaded and imported in desktop
-        database.
-    </p>
-    <p>
-        All main transaction linked settings will be automatically
-        synced to WebApp, in this way you can have all your account and
-        payees ready to use inserting new transaction.
-    </p>
-
-    <h3>Importing from QIF Files</h3>
-    <p>
-        <dfn>Quicken Interchange Format</dfn> (<abbr>QIF</abbr>) is an open specification for
-        reading and writing financial data to media (i.e. files). A QIF
-        file typically has the following structure:
-    </p>
-<pre>
-!Type:type identifier string
-[single character line code]Literal String Data
-...
-^
-[single character line code]Literal String Data
-...
-^</pre>
-    <p>Each record ends with a <kbd>^</kbd> (caret).</p>
-    <aside class="sticky notes">
-        The date format option has to match that of the
-        date format in the QIF file, otherwise, date parsing by MMEX will
-        fail and will result in transactions having incorrect dates.
-    </aside>
-    <p>See example QIF transaction:</p>
-<pre>
-<code class="language-qif">!Type:Bank Header
-D6/ 1/94 Date
-T-1,000.00 Amount
-N1005 number
-PBank Of Mortgage Payee
-^ End of transaction</code></pre>
-    <p>
-        QIF is older than <dfn>Open Financial Exchange</dfn> (<abbr>OFX</abbr>).
-        The inability to
-        reconcile imported transactions against the current account
-        information is one of the primary shortcomings of QIF. It is
-        commonly supported by financial institutions to supply
-        downloadable information to account holders.
-    </p>
-    <p>
-        MMEX can import transactions from specific types of QIF formats
-        into an account (you can find the type of QIF by opening in a text editor)
-    </p>
-    <dl>
-        <dt>!Type:Bank</dt>
-        <dd>Bank account transactions</dd>
-        <dt>!Type:Cash</dt>
-        <dd>Cash account transactions</dd>
-        <dt>!Type:CCard</dt>
-        <dd>Credit card account transactions</dd>
-    </dl>
-    <p>
-        After importing from QIF files, all transactions will
-        have a Follow Flag as it its status. You can mark all
-        transactions with this flag using the bulk status setting commands
-        using the right-click contextual menu in the account view.
-    </p>
-
     <h3>Importing from CSV Files</h3>
     <p>
         To alleviate the problem of users having to pre-format their
@@ -1144,6 +1046,103 @@ PBank Of Mortgage Payee
         named <q>XML Spreadsheet 2003</q> in Excel. This is the recommended
         import method if required to import transactions from Excel.
         Method of import and field selection is same as importing from CSV files.
+    </p>
+
+    <h3>Importing from QIF Files</h3>
+    <p>
+        <dfn>Quicken Interchange Format</dfn> (<abbr>QIF</abbr>) is an open specification for
+        reading and writing financial data to media (i.e. files). A QIF
+        file typically has the following structure:
+    </p>
+<pre>
+!Type:type identifier string
+[single character line code]Literal String Data
+...
+^
+[single character line code]Literal String Data
+...
+^</pre>
+    <p>Each record ends with a <kbd>^</kbd> (caret).</p>
+    <aside class="sticky notes">
+        The date format option has to match that of the
+        date format in the QIF file, otherwise, date parsing by MMEX will
+        fail and will result in transactions having incorrect dates.
+    </aside>
+    <p>See example QIF transaction:</p>
+<pre>
+<code class="language-qif">!Type:Bank Header
+D6/ 1/94 Date
+T-1,000.00 Amount
+N1005 number
+PBank Of Mortgage Payee
+^ End of transaction</code></pre>
+    <p>
+        QIF is older than <dfn>Open Financial Exchange</dfn> (<abbr>OFX</abbr>).
+        The inability to
+        reconcile imported transactions against the current account
+        information is one of the primary shortcomings of QIF. It is
+        commonly supported by financial institutions to supply
+        downloadable information to account holders.
+    </p>
+    <p>
+        MMEX can import transactions from specific types of QIF formats
+        into an account (you can find the type of QIF by opening in a text editor)
+    </p>
+    <dl>
+        <dt>!Type:Bank</dt>
+        <dd>Bank account transactions</dd>
+        <dt>!Type:Cash</dt>
+        <dd>Cash account transactions</dd>
+        <dt>!Type:CCard</dt>
+        <dd>Credit card account transactions</dd>
+    </dl>
+    <p>
+        After importing from QIF files, all transactions will
+        have a Follow Flag as it its status. You can mark all
+        transactions with this flag using the bulk status setting commands
+        using the right-click contextual menu in the account view.
+    </p>
+
+    <h3>Importing from WebApp</h3>
+    <p>
+        MMEX has a light <dfn>WebApp</dfn> that can be installed on every PHP
+        webserver like NAS, shared hosting or other PHP local installation.
+    </p>
+    <p>
+        You can download all needed files from
+        <a href="https://sourceforge.net/projects/moneymanagerex-webapp/files/latest/download" target="_blank">
+        WebApp project page</a>.
+    </p>
+    <aside class="sticky tips">
+        To obtain more information about set-up and installation see
+        <a href="https://sourceforge.net/p/moneymanagerex-webapp/wiki/" target="_blank">
+        WebApp wiki pages</a>.
+    </aside>
+    <p>
+        To start-up WebApp you only have to:
+    </p>
+    <ol>
+        <li>unzip file in a folder on your webserver or upload files through FTP</li>
+        <li>
+            rename <code>htaccess.txt</code> in <code>.htaccess</code> (on Windows you need to do
+            it from <code>CMD</code> and <kbd>rename</kbd> command)
+        </li>
+        <li>enable <code>PDO_SQLite</code> if needed</li>
+    </ol>
+    <p>
+        Then simply open your browser to the folder URL, fill first
+        settings and insert correct URL and GUID in MMEX settings
+        (import/export tab).
+    </p>
+    <p>
+        Now at every start-up MMEX will contact WebApp for new
+        transaction that will be downloaded and imported in desktop
+        database.
+    </p>
+    <p>
+        All main transaction linked settings will be automatically
+        synced to WebApp, in this way you can have all your account and
+        payees ready to use inserting new transaction.
     </p>
 
     <h2>Exporting data</h2>
