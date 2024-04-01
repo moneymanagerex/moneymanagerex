@@ -4,12 +4,13 @@
  */
 "use strict";
 
-/* Sorted by language code */
+/* Sorted by language code (id) */
 function generateLangMenu(nav) {
     var list = [
         { id: "be_BY", flag: "be", lang: "be-BY Беларуская (Беларусь)"  },
         { id: "de_DE", flag: "de", lang: "de-DE Deutsch (Deutschland)"  },
         { id: "en_GB", flag: "en", lang: "en-GB English (British)"      },
+        { id: "en_US", flag: "us", lang: "en-US English (US)"           },
         { id: "es_ES", flag: "es", lang: "es-ES Español (españa)"       },
         { id: "fr_FR", flag: "fr", lang: "fr-FR Français (France)"      },
         { id: "he_IL", flag: "he", lang: "he-IL עברית (ישראל)"          },
