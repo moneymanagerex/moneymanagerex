@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-04-04 20:26\n"
+"PO-Revision-Date: 2024-04-04 21:30\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -2623,15 +2623,15 @@ msgstr ""
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Bar Line"
-msgstr ""
+msgstr "Linha de barras empilhadas"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Area"
-msgstr ""
+msgstr "Área empilhada"
 
 #: filtertransdialog.cpp:505
 msgid "Last Unsaved Filter"
-msgstr ""
+msgstr "Último Filtro Não Salvo"
 
 #: filtertransdialog.cpp:552 transactionsupdatedialog.cpp:122
 msgid "Specify"
@@ -2706,11 +2706,11 @@ msgstr "Indique como deve ser agrupado o relatório"
 #: filtertransdialog.cpp:753 filtertransdialog.cpp:1103
 #: filtertransdialog.cpp:1974
 msgid "Chart"
-msgstr ""
+msgstr "Gráfico"
 
 #: filtertransdialog.cpp:762
 msgid "Specify which chart will be included in the report"
-msgstr ""
+msgstr "Especificar qual gráfico será incluído no relatório"
 
 #: filtertransdialog.cpp:765 filtertransdialog.cpp:1983
 msgid "Combine Splits"
@@ -4061,11 +4061,11 @@ msgstr "Recomendação: Utilize a função copiar (Ctrl+C) e colar (Ctrl+V) para
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb database file."
-msgstr ""
+msgstr "Dica: Lembre-se de fazer backups do seu arquivo de banco de dados .mmb."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Dica: O arquivo de banco de dados .mmb não está criptografado. Isso significa que qualquer pessoa que tenha o devido conhecimento de como abrir o arquivo poderá ler o conteúdo. Portanto, certifique-se de que se você estiver armazenando qualquer informação financeira sensível, ela esteja devidamente protegida."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
@@ -4093,11 +4093,11 @@ msgstr "Sugestão: Defina taxas de câmbio monetário caso tenha contas com dife
 
 #: mmTips.h:34
 msgid "Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Dica do Gerenciador de Categorias: Pressionando a chave \"H\" irá percorrer todas as categorias começando com a letra h."
 
 #: mmTips.h:35
 msgid "Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr ""
+msgstr "Dica do Gerenciador de Categoria: Pressionando uma combinação de 2 teclas irá percorrer todas as categorias começando com essa combinação. Exemplo: Pressionar o ca selecionará Casa, Impostos da Casa, etc…"
 
 #: mmTips.h:37
 msgid "Never endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
@@ -4105,15 +4105,15 @@ msgstr ""
 
 #: mmTips.h:39
 msgid "Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."
-msgstr ""
+msgstr "Dica de mercearia: Evite compras de mercearia quando estiver com fome ou estresse. A fome e o estresse fazem com que você aja de forma estranha, como comprar muito chocolate ou comida processada. Planeje ir às compras quando você estiver bem alimentado e relaxado. Dessa forma, pode manter a sua lista e não gastar demais em alimentos de que não precisa."
 
 #: mmTips.h:40
 msgid "Grocery tip: Make a shopping list. A shopping list saves money by helping you avoid buying products you do not need. The simplest way is to track consumables as you use them. Keep a magnetic notepad on the fridge and jot down what you need as you run out."
-msgstr ""
+msgstr "Dica de mercearia: Faça uma lista de compras. Uma lista de compras economiza dinheiro ajudando você a evitar comprar produtos de que não precisa. O jeito mais simples é ter controle dos consumíveis enquanto você os usa. Mantenha um bloco de notas com imã em sua geladeira e anote o que você precisa conforme for consumindo os itens."
 
 #: mmTips.h:41
 msgid "Grocery tip: Buy fruits and vegetables in season."
-msgstr ""
+msgstr "Dica de mercearia: Compre frutas e legumes da estação."
 
 #: mmTips.h:42
 msgid "Grocery tip: Make sure your family consumes everything you purchase. Every month or so, hold a pantry challenge during which you use up as many pantry goods as possible before you shop again. A pantry challenge cuts down on waste and lets you get a sense of how much you are overbuying."
@@ -4121,7 +4121,7 @@ msgstr ""
 
 #: mmTips.h:43
 msgid "Grocery tip: Reduce waste. Adopting better grocery shopping habits is one way to cut back on wasted food and money. Make a list of everything you throw out without using, such as spoiled leftovers or soggy lettuce, to get a sense of the full scale of the issue."
-msgstr ""
+msgstr "Dica de mercearia: Reduza o desperdício. Adotar melhores hábitos de compras de mercearia é uma maneira de evitar o desperdício de comida e dinheiro. Faça uma lista de tudo o que você joga fora sem usar, como sobras estragadas ou alface adormecido, para ter uma noção da escala total da questão."
 
 #: mmTips.h:44
 msgid "Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."
@@ -4244,15 +4244,15 @@ msgstr "Última Atualização"
 
 #: mmchecking_list.cpp:472
 msgid "New &Withdrawal..."
-msgstr ""
+msgstr "Nova &Retirada..."
 
 #: mmchecking_list.cpp:473
 msgid "New &Deposit..."
-msgstr ""
+msgstr "Novo &Depósito..."
 
 #: mmchecking_list.cpp:475
 msgid "New &Transfer..."
-msgstr ""
+msgstr "Nova &Transfer..."
 
 #: mmchecking_list.cpp:479
 msgid "&Edit Transaction..."
@@ -4314,7 +4314,7 @@ msgstr "&Localizar todas as transações com %s '%s'"
 
 #: mmchecking_list.cpp:659
 msgid "Cop&y Text to Clipboard"
-msgstr ""
+msgstr "Copiar Texto para Área de Transferência"
 
 #: mmchecking_list.cpp:666
 msgid "&Delete selected transaction..."
@@ -4350,19 +4350,19 @@ msgstr ""
 
 #: mmchecking_list.cpp:681
 msgid "&Unreconciled"
-msgstr ""
+msgstr "&Não Reconciliada"
 
 #: mmchecking_list.cpp:683
 msgid "&Reconciled"
-msgstr ""
+msgstr "&Reconciliada"
 
 #: mmchecking_list.cpp:685
 msgid "&Void"
-msgstr ""
+msgstr "&Nula"
 
 #: mmchecking_list.cpp:687
 msgid "&Follow Up"
-msgstr ""
+msgstr "&Acompanhar"
 
 #: mmchecking_list.cpp:689
 msgid "D&uplicate"
@@ -4673,7 +4673,7 @@ msgstr "Contas de Títulos"
 
 #: mmframe.cpp:784 mmframe.cpp:1737 mmframe.cpp:2834
 msgid "Budget Planner"
-msgstr ""
+msgstr "Planeador de orçamento"
 
 #: mmframe.cpp:789 mmframe.cpp:1320 mmframe.cpp:1337 mmframe.cpp:2819
 msgid "Transaction Report"
@@ -4782,7 +4782,7 @@ msgstr "&Ir Para a Página Web da Conta"
 
 #: mmframe.cpp:1459 mmframe.cpp:1479
 msgid "&Attachment Manager..."
-msgstr ""
+msgstr "&Gerenciador de Anexos..."
 
 #: mmframe.cpp:1474 mmframe.cpp:1678
 msgid "&Change Account Type..."
@@ -4798,23 +4798,23 @@ msgstr "&Lista de Contas"
 
 #: mmframe.cpp:1503
 msgid "&All"
-msgstr ""
+msgstr "&Todos"
 
 #: mmframe.cpp:1504
 msgid "&Favorites"
-msgstr ""
+msgstr "&Favoritos"
 
 #: mmframe.cpp:1505
 msgid "&Open"
-msgstr ""
+msgstr "&Abrir"
 
 #: mmframe.cpp:1506
 msgid "&Closed"
-msgstr ""
+msgstr "&Fechar"
 
 #: mmframe.cpp:1507
 msgid "Accounts &Visible"
-msgstr ""
+msgstr "Contas &Visíveis"
 
 #: mmframe.cpp:1545
 msgid "&New Database..."
@@ -4974,7 +4974,7 @@ msgstr "Alternar Ecrã Inteiro"
 
 #: mmframe.cpp:1637
 msgid "Reset View"
-msgstr ""
+msgstr "Redifinir Exibição"
 
 #: mmframe.cpp:1638
 msgid "Reset view and dock tools"
@@ -4998,7 +4998,7 @@ msgstr "Apagar a Conta da Base de Dados"
 
 #: mmframe.cpp:1694
 msgid "Download &Rates"
-msgstr ""
+msgstr "Baixar &Taxas"
 
 #: mmframe.cpp:1694
 msgid "Download Currency and Stock Rates"
@@ -5010,7 +5010,7 @@ msgstr ""
 
 #: mmframe.cpp:1700 mmframe.cpp:1929 payeedialog.cpp:508
 msgid "Payee Manager"
-msgstr ""
+msgstr "Gerenciador de Beneficiários"
 
 #: mmframe.cpp:1704
 msgid "&Category Manager..."
@@ -5022,7 +5022,7 @@ msgstr ""
 
 #: mmframe.cpp:1708 mmframe.cpp:1931 tagdialog.h:45
 msgid "Tag Manager"
-msgstr ""
+msgstr "Gerenciador de Etiquetas"
 
 #: mmframe.cpp:1712
 msgid "Curre&ncy Manager..."
@@ -5062,7 +5062,7 @@ msgstr "Fundir categorias, beneficiários e etiquetas"
 
 #: mmframe.cpp:1737
 msgid "&Budget Planner..."
-msgstr ""
+msgstr "&Planejador de orçamento..."
 
 #: mmframe.cpp:1741
 msgid "&Scheduled Transactions"
@@ -5070,7 +5070,7 @@ msgstr "&Transações Recorrentes"
 
 #: mmframe.cpp:1741
 msgid "Bills and Deposits"
-msgstr ""
+msgstr "Pagamentos e Depósitos"
 
 #: mmframe.cpp:1745
 msgid "&Assets"
@@ -5114,11 +5114,11 @@ msgstr "Opções"
 
 #: mmframe.cpp:1785
 msgid "&Decrypt Encrypted Database..."
-msgstr ""
+msgstr "&Descriptografar dados criptografados..."
 
 #: mmframe.cpp:1786
 msgid "Convert encrypted database to unencrypted database"
-msgstr ""
+msgstr "Converter banco de dados criptografado para banco de dados não criptografado"
 
 #: mmframe.cpp:1788
 msgid "Change Encrypted &Password..."
@@ -5134,7 +5134,7 @@ msgstr "&Otimizar Base de Dados..."
 
 #: mmframe.cpp:1792
 msgid "Optimize database for space and performance"
-msgstr ""
+msgstr "Otimizar banco de dados para espaço e desempenho"
 
 #: mmframe.cpp:1794
 msgid "Database Check and De&bug..."
@@ -5162,7 +5162,7 @@ msgstr "Mostrar Ajuda"
 
 #: mmframe.cpp:1814
 msgid "Visit MMEX website for the latest news and updates"
-msgstr ""
+msgstr "Abra o site do MMEX para saber das últimas novidades e atualizações"
 
 #: mmframe.cpp:1816
 msgid "&Facebook"
@@ -5170,7 +5170,7 @@ msgstr "&Facebook"
 
 #: mmframe.cpp:1816
 msgid "Visit MMEX Facebook page"
-msgstr ""
+msgstr "Visite a página do Facebook MMEX"
 
 #: mmframe.cpp:1818
 msgid "&Crowdin"
@@ -5178,15 +5178,15 @@ msgstr "&Crowdin"
 
 #: mmframe.cpp:1818
 msgid "Help translate MMEX on Crowdin"
-msgstr ""
+msgstr "Ajude a traduzir o MMEX no Crowdin"
 
 #: mmframe.cpp:1820
 msgid "&X"
-msgstr ""
+msgstr "&X"
 
 #: mmframe.cpp:1820
 msgid "Follow MMEX on X"
-msgstr ""
+msgstr "Siga o MMEX no X"
 
 #: mmframe.cpp:1822
 msgid "&YouTube"
@@ -5194,7 +5194,7 @@ msgstr "&YouTube"
 
 #: mmframe.cpp:1822
 msgid "Watch MMEX videos on YouTube"
-msgstr ""
+msgstr "Assista vídeos do MMEX no YouTube"
 
 #: mmframe.cpp:1824
 msgid "&Slack"
@@ -5202,7 +5202,7 @@ msgstr "&Slack"
 
 #: mmframe.cpp:1824
 msgid "Communicate with the MMEX team online"
-msgstr ""
+msgstr "Comunique-se com a equipe MMEX on-line"
 
 #: mmframe.cpp:1826
 msgid "&GitHub"
@@ -5226,7 +5226,7 @@ msgstr "&Fórum"
 
 #: mmframe.cpp:1831
 msgid "Visit MMEX forum to read and post comments"
-msgstr ""
+msgstr "Visite o fórum MMEX para ler e publicar comentários"
 
 #: mmframe.cpp:1833
 msgid "MMEX for &Android"
@@ -5234,7 +5234,7 @@ msgstr "MMEX para &Android"
 
 #: mmframe.cpp:1834
 msgid "Install MMEX for Android based smartphones and tablets"
-msgstr ""
+msgstr "Instalar MMEX para smartphones e tablets baseados em Android"
 
 #: mmframe.cpp:1836
 msgid "&Newsletter"
@@ -5242,7 +5242,7 @@ msgstr "&Newsletter"
 
 #: mmframe.cpp:1837
 msgid "Visit the MMEX blog to view announcements"
-msgstr ""
+msgstr "Visite o blog MMEX para ver os anúncios"
 
 #: mmframe.cpp:1839
 msgid "&RSS Feed"
@@ -5354,11 +5354,11 @@ msgstr "Novidades"
 
 #: mmframe.cpp:1953
 msgid "Download Rates"
-msgstr ""
+msgstr "Baixar Taxas"
 
 #: mmframe.cpp:1953
 msgid "Download currency and stock rates"
-msgstr ""
+msgstr "Baixar taxas de moedas e ações"
 
 #: mmframe.cpp:1956
 msgid "Toggle Fullscreen\tF11"
@@ -5385,7 +5385,7 @@ msgstr "MMEX: Base de Dados Encriptada"
 
 #: mmframe.cpp:2054
 msgid "Have MMEX support provided a debug/patch file?"
-msgstr ""
+msgstr "O suporte MMEX forneceu um arquivo de depuração/correção?"
 
 #: mmframe.cpp:2054
 msgid "MMEX upgrade"
@@ -5435,7 +5435,7 @@ msgstr "Escolha o ficheiro de base de dados para criar"
 
 #: mmframe.cpp:2254 mmframe.cpp:2276 mmframe.cpp:2318 mmframe.cpp:2466
 msgid "MMEX Database"
-msgstr ""
+msgstr "Banco de dados MMEX"
 
 #: mmframe.cpp:2274
 msgid "Choose database file to open"
@@ -5443,7 +5443,7 @@ msgstr "Escolha o ficheiro de base de dados para abrir"
 
 #: mmframe.cpp:2276 mmframe.cpp:2302 mmframe.cpp:2466
 msgid "Encrypted MMEX Database"
-msgstr ""
+msgstr "Banco de dados MMEX criptografado"
 
 #: mmframe.cpp:2300
 msgid "Choose Encrypted database file to open"
@@ -5459,7 +5459,7 @@ msgstr "Escolha o ficheiro de base de dados para Gravar Como"
 
 #: mmframe.cpp:2337
 msgid "Converted database!"
-msgstr ""
+msgstr "Banco de dados convertido!"
 
 #: mmframe.cpp:2337
 msgid "MMEX message"
@@ -5471,7 +5471,7 @@ msgstr "MMEX: Alteração da Palavra-passe de Encriptação"
 
 #: mmframe.cpp:2344
 msgid "New password for database:"
-msgstr ""
+msgstr "Nova senha para o banco de dados:"
 
 #: mmframe.cpp:2352
 msgid "New password must not be empty."
@@ -5491,7 +5491,7 @@ msgstr "Confirmação da palavra-passe falhou."
 
 #: mmframe.cpp:2378
 msgid "Backup database before optimization."
-msgstr ""
+msgstr "Backup do banco de dados antes da otimização."
 
 #: mmframe.cpp:2379 mmframe.cpp:2389
 msgid "DB Optimization"
@@ -6262,12 +6262,13 @@ msgstr "Selecionar Moeda"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Set default database currency using 'Currency Manager'"
-msgstr ""
+msgstr "Definir moeda do banco de dados padrão usando 'Gerenciador de moedas'"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Manager | Edit'"
-msgstr ""
+msgstr "Formato derivado da localidade.\n"
+"Deixe em branco para definir o formato manualmente através da 'Janela de Moedas | Editar'"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6610,7 +6611,7 @@ msgstr "Ignorar Transações Futuras"
 
 #: optionsettingsview.cpp:183
 msgid "Use 'Time' in transaction recording/reporting"
-msgstr ""
+msgstr "Usar 'Tempo' na gravação/relatório de transações"
 
 #: optionsettingsview.cpp:188
 msgid "Transaction Colors"
@@ -6786,7 +6787,7 @@ msgstr "Ferramentas → Fundir → Beneficiários"
 
 #: payeedialog.cpp:746
 msgid "Payee Manager: Delete Error"
-msgstr ""
+msgstr "Gerenciador de Favorecidos: Excluir erro"
 
 #: payeedialog.cpp:751
 msgid "Deleted transactions exist which use this payee."
@@ -6802,19 +6803,19 @@ msgstr "Confirmar Eliminação do Beneficiário"
 
 #: payeedialog.cpp:876
 msgid "Define &Category"
-msgstr ""
+msgstr "Definir &Categoria"
 
 #: payeedialog.cpp:878
 msgid "Remove Ca&tegory"
-msgstr ""
+msgstr "Remover Categoria"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
-msgstr ""
+msgstr "&Gerenciador de Anexos"
 
 #: payeedialog.cpp:895
 msgid "Merge &Payee"
-msgstr ""
+msgstr "Mesclar beneficiários"
 
 #: relocatecategorydialog.cpp:102
 msgid "Delete source category after merge (if source category has no subcategories)"
@@ -7298,19 +7299,19 @@ msgstr "Todas as Transações menos Transferências"
 
 #: reports/transactions.cpp:516
 msgid "Statistics"
-msgstr ""
+msgstr "Estatísticas"
 
 #: reports/transactions.cpp:539
 msgid "Minimum"
-msgstr ""
+msgstr "Mínimo"
 
 #: reports/transactions.cpp:541
 msgid "Maximum"
-msgstr ""
+msgstr "Máximo"
 
 #: reports/transactions.cpp:543
 msgid "Average"
-msgstr ""
+msgstr "Média"
 
 #: sharetransactiondialog.cpp:61 sharetransactiondialog.cpp:68
 msgid "Add Share Transaction"
@@ -7366,7 +7367,7 @@ msgstr "Insira o LOTE ao qual esta parcela de ações pertence"
 
 #: sharetransactiondialog.cpp:270 stockdialog.cpp:251
 msgid "Manage stock attachments"
-msgstr ""
+msgstr "Gerenciar anexos de estoque"
 
 #: sharetransactiondialog.cpp:275 stockdialog.cpp:253
 msgid "Display the web page for the specified Stock symbol"
@@ -7758,7 +7759,7 @@ msgstr "Nomes de etiquetas não podem ser '&' ou '|' porque estes são reservado
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Tag Manager: Invalid Name"
-msgstr ""
+msgstr "Gerenciador de Categoria: Nome inválido"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
@@ -7782,7 +7783,7 @@ msgstr "Já existe uma etiqueta com este nome"
 
 #: tagdialog.cpp:218
 msgid "Tag Manager: Adding Error"
-msgstr ""
+msgstr "Gerenciador de Categoria: Erro ao Adicionar"
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
@@ -7790,7 +7791,7 @@ msgstr "Editar Etiqueta"
 
 #: tagdialog.cpp:254
 msgid "Tag Manager: Editing Error"
-msgstr ""
+msgstr "Gerenciador de Categoria: Erro ao Editar"
 
 #: tagdialog.cpp:295
 #, c-format
@@ -7799,7 +7800,7 @@ msgstr "Etiqueta '%s' em utilização"
 
 #: tagdialog.cpp:295
 msgid "Tag Manager: Delete Error"
-msgstr ""
+msgstr "Gerenciador de Categoria: Erro ao Excluir"
 
 #: tagdialog.cpp:298
 #, c-format
@@ -7892,7 +7893,7 @@ msgstr "Transacção #"
 
 #: transdialog.cpp:569 usertransactionpanel.cpp:185
 msgid "Manage transaction attachments"
-msgstr ""
+msgstr "Gerenciar anexos de transações"
 
 #: transdialog.cpp:772
 msgid "This transaction will exceed your account limit.\n\n"
