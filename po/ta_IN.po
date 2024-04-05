@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-28 21:57\n"
+"PO-Revision-Date: 2024-04-05 01:39\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -253,7 +253,7 @@ msgstr "வட்டி விகிதம்:"
 
 #: accountdialog.cpp:268
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "பணம் செலுத்தவேண்டிய தேதி:"
 
 #: accountdialog.cpp:272
 msgid "Minimum Payment:"
@@ -609,11 +609,11 @@ msgstr "&புதிய "
 
 #: assetspanel.cpp:474 stockspanel.cpp:136
 msgid "&Add Trans "
-msgstr ""
+msgstr "பரிவர்த்தணையைச் சேர்க்க "
 
 #: assetspanel.cpp:479 stockspanel.cpp:141
 msgid "&View Trans "
-msgstr ""
+msgstr "பரிவர்த்தணையைக் காண "
 
 #: assetspanel.cpp:480
 msgid "View Asset Transactions"
