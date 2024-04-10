@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-04-04 21:30\n"
+"PO-Revision-Date: 2024-04-10 12:54\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -758,7 +758,7 @@ msgstr "Insira uma descrição para o novo anexo:"
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
-msgstr "Gerenciador de Anexos: Adicionar Anexo"
+msgstr "Gestor de Anexos: Adicionar Anexo"
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
@@ -766,7 +766,7 @@ msgstr "Insira uma nova descrição para o anexo:"
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
-msgstr "Gerenciador de Anexos: Editar Anexo"
+msgstr "Gestor de Anexos: Editar Anexo"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
@@ -1681,7 +1681,7 @@ msgstr "O símbolo dois-pontos (:) é usado para separar categorias e subcategor
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
-msgstr "Gerenciador de Categoria: Nome inválido"
+msgstr "Gestor de Categoria: Nome inválido"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
@@ -1697,7 +1697,7 @@ msgstr "Existe uma categoria com o mesmo nome para este pai"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category Manager: Adding Error"
-msgstr "Gerenciador de Categoria: Erro ao Adicionar"
+msgstr "Gestor de Categoria: Erro ao Adicionar"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
@@ -1756,7 +1756,7 @@ msgstr "Ferramentas → Fundir → Categorias"
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
-msgstr "Gerenciador de Categoria: Erro ao Excluir"
+msgstr "Gestor de Categoria: Erro ao Excluir"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -1785,7 +1785,7 @@ msgstr "Editar Categoria"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
-msgstr "Gerenciador de Categoria: Erro ao Editar"
+msgstr "Gestor de Categoria: Erro ao Editar"
 
 #: categdialog.cpp:682 mmframe.cpp:3746
 msgid "Merge categories completed"
@@ -1827,7 +1827,7 @@ msgstr "Limpar as configurações"
 
 #: categdialog.h:68 mmframe.cpp:1704 mmframe.cpp:1930
 msgid "Category Manager"
-msgstr "Gerenciador de categorias"
+msgstr "Gestor de categorias"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -2172,7 +2172,7 @@ msgstr "Propriedades"
 
 #: customfieldlistdialog.cpp:66 mmframe.cpp:1767
 msgid "Custom Field Manager"
-msgstr "Gerenciador de Campos Personalizados"
+msgstr "Gestor de Campos Personalizados"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
@@ -5018,15 +5018,15 @@ msgstr ""
 
 #: mmframe.cpp:1708
 msgid "&Tag Manager..."
-msgstr ""
+msgstr "Gestor de &Etiquetas..."
 
 #: mmframe.cpp:1708 mmframe.cpp:1931 tagdialog.h:45
 msgid "Tag Manager"
-msgstr "Gerenciador de Etiquetas"
+msgstr "Gestor de Etiquetas"
 
 #: mmframe.cpp:1712
 msgid "Curre&ncy Manager..."
-msgstr ""
+msgstr "Gestor de &Moedas..."
 
 #: mmframe.cpp:1716
 msgid "&Categories..."
@@ -5090,11 +5090,11 @@ msgstr "&Filtro do Relatório de Transações..."
 
 #: mmframe.cpp:1763
 msgid "&General Report Manager..."
-msgstr ""
+msgstr "&Gestor de Relatórios Personalizados..."
 
 #: mmframe.cpp:1767
 msgid "C&ustom Field Manager..."
-msgstr ""
+msgstr "Gestor de &Campos Personalizados..."
 
 #: mmframe.cpp:1773
 msgid "Refresh &WebApp..."
