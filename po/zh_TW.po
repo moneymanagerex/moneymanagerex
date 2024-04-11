@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-04-11 17:48\n"
+"PO-Revision-Date: 2024-04-11 19:15\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -363,15 +363,15 @@ msgstr "網站"
 #: appstartdialog.cpp:121
 #, c-format
 msgid "Visit the %s website"
-msgstr ""
+msgstr "瀏覽 %s 網站"
 
 #: appstartdialog.cpp:126
 msgid "&Support Forums"
-msgstr ""
+msgstr "&支援論壇"
 
 #: appstartdialog.cpp:127
 msgid "Visit the Support Forums"
-msgstr ""
+msgstr "訪問支援論壇"
 
 #: appstartdialog.cpp:133 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
