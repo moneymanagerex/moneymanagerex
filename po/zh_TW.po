@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-28 04:35\n"
+"PO-Revision-Date: 2024-04-11 17:48\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -304,15 +304,15 @@ msgstr "無效的日期"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
-msgstr ""
+msgstr "此賬戶的交易記錄在此日期前已存在"
 
 #: accountdialog.cpp:529
 msgid "Stock purchases for this account already exist before this date"
-msgstr ""
+msgstr "在此賬戶證券的交易記錄在此日期前已存在"
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
-msgstr ""
+msgstr "排程的交易記錄在此日期前已存在."
 
 #: accountdialog.h:41 mmframe.cpp:1672 mmframe.cpp:1924
 #: wizard_newaccount.cpp:87 wizard_newaccount.cpp:94 wizard_newaccount.cpp:166
@@ -321,11 +321,11 @@ msgstr "新增帳目"
 
 #: appstartdialog.cpp:101
 msgid "Open Last Opened &Database"
-msgstr ""
+msgstr "開啟上次開啟的資料庫"
 
 #: appstartdialog.cpp:104
 msgid "&New Database"
-msgstr ""
+msgstr "&新增資料庫"
 
 #: appstartdialog.cpp:105
 msgid "Create a new database file to get started"
@@ -333,7 +333,7 @@ msgstr "建立一個新的資料庫"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
-msgstr ""
+msgstr "開啟 &現存資料庫"
 
 #: appstartdialog.cpp:109
 msgid "Open an already created database file with extension (*.mmb)"
@@ -341,12 +341,12 @@ msgstr "開啟一個已建立的 Money Manager Ex 資料庫 (*.mmb檔案)"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1643
 msgid "User Interface &Language"
-msgstr ""
+msgstr "介面語言"
 
 #: appstartdialog.cpp:113 appstartdialog.cpp:222 mmframe.cpp:1644
 #: optionsettingsgeneral.cpp:100
 msgid "Change user interface language"
-msgstr ""
+msgstr "切換界面語言"
 
 #: appstartdialog.cpp:116
 msgid "&User Manual"
@@ -688,7 +688,7 @@ msgstr ""
 
 #: assetspanel.cpp:784
 msgid "Asset Management"
-msgstr ""
+msgstr "資產管理"
 
 #: assetspanel.cpp:803
 msgid "Account \t Date\t   Value\n\n"
@@ -772,7 +772,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:277
 msgid "Confirm Attachment Deletion"
-msgstr ""
+msgstr "確定刪除附件"
 
 #: attachmentdialog.cpp:353 categdialog.cpp:313 customfieldlistdialog.cpp:260
 #: import_export/univcsvdialog.cpp:310 maincurrencydialog.cpp:539
@@ -812,7 +812,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:458 attachmentdialog.cpp:466
 msgid "Destination file already exist"
-msgstr ""
+msgstr "目標檔案已存在"
 
 #: attachmentdialog.cpp:465
 msgid "File already found in attachments"
