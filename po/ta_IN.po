@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-04-05 01:39\n"
+"PO-Revision-Date: 2024-04-12 15:09\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -325,7 +325,7 @@ msgstr ""
 
 #: appstartdialog.cpp:104
 msgid "&New Database"
-msgstr ""
+msgstr "&புதிய தரவுத்தளம்"
 
 #: appstartdialog.cpp:105
 msgid "Create a new database file to get started"
@@ -379,7 +379,7 @@ msgstr ""
 
 #: appstartdialog.cpp:144
 msgid "E&xit "
-msgstr ""
+msgstr "&வெளியேறு "
 
 #: appstartdialog.cpp:160
 #, c-format
@@ -624,7 +624,7 @@ msgstr ""
 #: mmcheckingpanel.cpp:452 payeedialog.cpp:883 stockspanel.cpp:146
 #: tagdialog.cpp:128
 msgid "&Edit "
-msgstr ""
+msgstr "&திருத்து "
 
 #: assetspanel.cpp:489 billsdepositspanel.cpp:308 budgetyeardialog.cpp:103
 #: categdialog.cpp:321 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:444
