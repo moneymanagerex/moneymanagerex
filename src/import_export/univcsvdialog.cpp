@@ -1602,8 +1602,12 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
 
     // Write transactions to file.
     double account_balance = from_account->INITIALBAL;
-    for (const auto& pBankTransaction : Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(fromAccountID)
-        , Model_Checking::TOACCOUNTID(fromAccountID)))
+
+    Model_Checking::Data_Set txns = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(fromAccountID), Model_Checking::TOACCOUNTID(fromAccountID));
+    std::sort(txns.begin(), txns.end());
+    std::stable_sort(txns.begin(), txns.end(), SorterByTRANSDATE());
+
+    for (const auto& pBankTransaction : txns)
     {
         if (Model_Checking::status(pBankTransaction) == Model_Checking::VOID_ || !pBankTransaction.DELETEDTIME.IsEmpty())
             continue;
