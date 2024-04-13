@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-04-11 19:15\n"
+"PO-Revision-Date: 2024-04-13 05:27\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -375,7 +375,7 @@ msgstr "訪問支援論壇"
 
 #: appstartdialog.cpp:133 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
-msgstr ""
+msgstr "&開始時顯示這對話視窗"
 
 #: appstartdialog.cpp:144
 msgid "E&xit "
@@ -393,7 +393,7 @@ msgstr "系統預設"
 
 #: appstartdialog.cpp:222 optionsettingsgeneral.cpp:92
 msgid "User Interface Language"
-msgstr ""
+msgstr "介面語言"
 
 #: appstartdialog.cpp:230 mmframe.cpp:3900 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -513,7 +513,7 @@ msgstr "無效的交易資料"
 #: assetdialog.cpp:393
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "沒有找到資產賬戶。你是否想新增一個？"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:131 filtertrans.cpp:196
 #: import_export/qif_export.cpp:625 import_export/univcsvdialog.cpp:100
@@ -548,7 +548,7 @@ msgstr "&新增資產..."
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset..."
-msgstr ""
+msgstr "複製資產..."
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction..."
@@ -560,7 +560,7 @@ msgstr "&檢視資產交易紀錄"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account..."
-msgstr ""
+msgstr "&開啓資產賬戶..."
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset..."
@@ -573,7 +573,7 @@ msgstr "&刪除資產..."
 #: assetspanel.cpp:109 billsdepositspanel.cpp:443 mmchecking_list.cpp:511
 #: stocks_list.cpp:146
 msgid "&Organize Attachments..."
-msgstr ""
+msgstr "&管理附件..."
 
 #: assetspanel.cpp:206
 msgid "Do you really want to delete the Asset?"
@@ -613,11 +613,11 @@ msgstr "&新增交易"
 
 #: assetspanel.cpp:479 stockspanel.cpp:141
 msgid "&View Trans "
-msgstr ""
+msgstr "&檢視轉賬 "
 
 #: assetspanel.cpp:480
 msgid "View Asset Transactions"
-msgstr ""
+msgstr "檢視資產轉賬"
 
 #: assetspanel.cpp:484 attachmentdialog.cpp:356 billsdepositspanel.cpp:298
 #: categdialog.cpp:317 customfieldlistdialog.cpp:262 maincurrencydialog.cpp:540
@@ -692,7 +692,7 @@ msgstr "資產管理"
 
 #: assetspanel.cpp:803
 msgid "Account \t Date\t   Value\n\n"
-msgstr ""
+msgstr "賬戶 \t 日期\t   價值\n\n"
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:435
 msgid "Description"
@@ -705,42 +705,42 @@ msgstr "檔案"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
-msgstr ""
+msgstr "未有指定附件資料夾的位置。"
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "請在工具 → 設定 → 附件中設定"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
-msgstr ""
+msgstr "未有指定附件資料夾的位置。"
 
 #: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
-msgstr ""
+msgstr "無法找到附件資料夾："
 
 #: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
-msgstr ""
+msgstr "請檢查以上路徑是否正確"
 
 #: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
-msgstr ""
+msgstr "找不到附件資料夾。"
 
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %s | %i"
-msgstr ""
+msgstr "附件管理員 | %s | %i"
 
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr ""
+msgstr "附件管理員 | %1$s | %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr ""
+msgstr "附件管理員 | 新增 %s"
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
@@ -752,23 +752,23 @@ msgstr "匯入附件"
 
 #: attachmentdialog.cpp:201
 msgid "Enter a description for the new attachment:"
-msgstr ""
+msgstr "輸入新附件的描述："
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
-msgstr ""
+msgstr "附件管理員：新增附件"
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "輸入附件的新描述："
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
-msgstr ""
+msgstr "附件管理員：編輯附件"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
-msgstr ""
+msgstr "您是否真的要刪除此附件？"
 
 #: attachmentdialog.cpp:277
 msgid "Confirm Attachment Deletion"
@@ -796,11 +796,11 @@ msgstr "Att."
 
 #: attachmentdialog.cpp:407
 msgid "This directory and its files are automatically managed by MMEX."
-msgstr ""
+msgstr "此目錄與檔案由MMEX自動管理。"
 
 #: attachmentdialog.cpp:409
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
+msgstr "請不要移除、重新命名或手動修改此目錄及其文件。"
 
 #: attachmentdialog.cpp:454 attachmentdialog.cpp:462
 msgid "Destination file already exist:"
@@ -808,7 +808,7 @@ msgstr "目的地檔案已存在"
 
 #: attachmentdialog.cpp:457
 msgid "File not found in attachments. Please delete or rename it."
-msgstr ""
+msgstr "在附件中找不到此文件，請移除或重新命名。"
 
 #: attachmentdialog.cpp:458 attachmentdialog.cpp:466
 msgid "Destination file already exist"
@@ -816,15 +816,15 @@ msgstr "目標檔案已存在"
 
 #: attachmentdialog.cpp:465
 msgid "File already found in attachments"
-msgstr ""
+msgstr "檔案已在附件中存在"
 
 #: attachmentdialog.cpp:508
 msgid "Attachment not found:"
-msgstr ""
+msgstr "找不到附件"
 
 #: attachmentdialog.cpp:511
 msgid "Do you want to continue and delete attachment on database?"
-msgstr ""
+msgstr "您想要繼續且刪除資料庫中的附件嗎？"
 
 #: attachmentdialog.cpp:512
 msgid "Delete attachment failed"
