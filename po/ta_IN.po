@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-04-12 15:09\n"
+"PO-Revision-Date: 2024-04-13 19:44\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -350,7 +350,7 @@ msgstr "பயனாளர் மொழியை மாற்ற"
 
 #: appstartdialog.cpp:116
 msgid "&User Manual"
-msgstr ""
+msgstr "&பயனர் கையேடு"
 
 #: appstartdialog.cpp:117
 msgid "Read the user manual"
@@ -744,7 +744,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
-msgstr ""
+msgstr "மற்ற கருவிகள்"
 
 #: attachmentdialog.cpp:190
 msgid "Import attachment:"
@@ -868,7 +868,7 @@ msgstr "மாதமொருமுறை"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:62
 msgid "Every 2 Months"
-msgstr ""
+msgstr "ஒவ்வொரு 2 மாதமும்"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:55
 #: model/Model_Budget.cpp:63
