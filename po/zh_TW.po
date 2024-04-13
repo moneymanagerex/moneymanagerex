@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-04-13 06:29\n"
+"PO-Revision-Date: 2024-04-13 20:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr "授權"
 
 #: aboutdialog.cpp:201
 msgid "Privacy"
-msgstr "隱私"
+msgstr "隱私權政策"
 
 #: aboutdialog.cpp:239 optionsettingsnet.cpp:125
 msgid "Send anonymous statistics usage data"
@@ -71,7 +71,7 @@ msgstr "確定(&O) "
 
 #: accountdialog.cpp:95 mmframe.cpp:1675
 msgid "Edit Account"
-msgstr "編輯帳目"
+msgstr "編輯帳號"
 
 #: accountdialog.cpp:123
 msgid "Account Name:"
@@ -117,7 +117,7 @@ msgstr "帳號開啟日期"
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:583
 #: import_export/univcsvdialog.cpp:2650
 msgid "Currency:"
-msgstr "貨幣 : "
+msgstr "貨幣："
 
 #: accountdialog.cpp:162 currencydialog.cpp:112
 msgid "Select Currency"
@@ -173,7 +173,7 @@ msgstr "輸入交易帳目的帳目編號。"
 
 #: accountdialog.cpp:203
 msgid "Held At:"
-msgstr "商戶名稱 :"
+msgstr "商戶名稱："
 
 #: accountdialog.cpp:205
 msgid "Enter the name of the financial institution in which the account is held."
@@ -181,7 +181,7 @@ msgstr "輸入交易帳目的商戶名稱。"
 
 #: accountdialog.cpp:208
 msgid "Website:"
-msgstr "網站 :"
+msgstr "網站："
 
 #: accountdialog.cpp:210
 msgid "Enter the URL of the website for the financial institution."
@@ -189,7 +189,7 @@ msgstr "輸入商戶的網址。"
 
 #: accountdialog.cpp:213
 msgid "Contact:"
-msgstr "聯絡人 :"
+msgstr "聯絡人："
 
 #: accountdialog.cpp:215
 msgid "Enter any contact information for the financial institution."
@@ -270,7 +270,7 @@ msgstr "預設圖片"
 #: accountdialog.cpp:438
 #, c-format
 msgid "Image #%i"
-msgstr "圖片"
+msgstr "圖片 #%i"
 
 #: accountdialog.cpp:496
 msgid "Account Name "
@@ -887,7 +887,7 @@ msgstr "每年"
 
 #: billsdepositsdialog.cpp:59 billsdepositspanel.cpp:58
 msgid "Four Months"
-msgstr "每四個月"
+msgstr "每 4 個月"
 
 #: billsdepositsdialog.cpp:60 billsdepositspanel.cpp:59
 msgid "Four Weeks"
@@ -960,11 +960,11 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:451 billsdepositsdialog.cpp:1330
 msgid "Payments Left"
-msgstr ""
+msgstr "剩餘付款"
 
 #: billsdepositsdialog.cpp:466
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "要求用戶輸入款項"
 
 #: billsdepositsdialog.cpp:467
 msgid "User requested to enter this transaction on the 'Date Paid'"
@@ -1101,7 +1101,7 @@ msgstr ""
 #: splittransactionsdialog.cpp:566 transactionsupdatedialog.cpp:229
 #: transactionsupdatedialog.cpp:365 transdialog.cpp:537 transdialog.cpp:636
 msgid "Tags"
-msgstr ""
+msgstr "標籤"
 
 #: billsdepositsdialog.cpp:600 transdialog.cpp:1321
 msgid "Specify any associated check number or transaction number"
@@ -1201,11 +1201,11 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1289
 msgid "Activates"
-msgstr ""
+msgstr "啟動"
 
 #: billsdepositsdialog.cpp:1291
 msgid "Period: Days"
-msgstr "期間: 日"
+msgstr "期間: 天"
 
 #: billsdepositsdialog.cpp:1292
 msgid "Period: Months"
@@ -1276,22 +1276,22 @@ msgstr ""
 #: billsdepositspanel.cpp:61
 #, c-format
 msgid "In %s Days"
-msgstr ""
+msgstr "%s 天後"
 
 #: billsdepositspanel.cpp:62
 #, c-format
 msgid "In %s Months"
-msgstr ""
+msgstr "%s 個月後"
 
 #: billsdepositspanel.cpp:63
 #, c-format
 msgid "Every %s Days"
-msgstr ""
+msgstr "每%s天"
 
 #: billsdepositspanel.cpp:64
 #, c-format
 msgid "Every %s Months"
-msgstr ""
+msgstr "每個 %s 月"
 
 #: billsdepositspanel.cpp:141 budgetingpanel.cpp:292 reports/myusage.cpp:163
 msgid "Frequency"
@@ -1299,7 +1299,7 @@ msgstr "重複類型"
 
 #: billsdepositspanel.cpp:142
 msgid "Repetitions"
-msgstr ""
+msgstr "重複"
 
 #: billsdepositspanel.cpp:143
 msgid "Autorepeat"
@@ -1307,7 +1307,7 @@ msgstr "自動重複"
 
 #: billsdepositspanel.cpp:144 mmhomepage.cpp:353
 msgid "Payment"
-msgstr ""
+msgstr "付款"
 
 #: billsdepositspanel.cpp:197
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
@@ -1586,7 +1586,7 @@ msgstr ""
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr ""
+msgstr "預算年度"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1595,7 +1595,7 @@ msgstr ""
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
-msgstr ""
+msgstr "預算月份"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
@@ -1624,19 +1624,19 @@ msgstr ""
 
 #: categdialog.cpp:260 reports/categexp.cpp:206
 msgid "Collapse All"
-msgstr ""
+msgstr "全部折疊"
 
 #: categdialog.cpp:265 reports/categexp.cpp:207
 msgid "Expand All"
-msgstr ""
+msgstr "全部展開"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "Show &All"
-msgstr ""
+msgstr "全部顯示"
 
 #: categdialog.cpp:272
 msgid "Show all hidden categories"
-msgstr ""
+msgstr "顯示所有隱藏的種類"
 
 #: categdialog.cpp:315
 msgid "Add a new category"
@@ -1652,7 +1652,7 @@ msgstr "刪除已存在類型。此類型不可以用在已存在的交易上。
 
 #: categdialog.cpp:328 maincurrencydialog.cpp:225
 msgid "&Select"
-msgstr ""
+msgstr "選擇"
 
 #: categdialog.cpp:330
 msgid "Select the currently selected category as the selected category for the transaction"
@@ -1676,7 +1676,7 @@ msgstr ""
 
 #: categdialog.cpp:355
 msgid "Add Category"
-msgstr ""
+msgstr "新增分類"
 
 #: categdialog.cpp:366 categdialog.cpp:375 categdialog.cpp:624
 msgid "A category with this name already exists for the parent"
@@ -1708,11 +1708,11 @@ msgstr ""
 
 #: categdialog.cpp:449
 msgid "Top level"
-msgstr ""
+msgstr "最上層"
 
 #: categdialog.cpp:450
 msgid "Confirm Move"
-msgstr ""
+msgstr "確認移動"
 
 #: categdialog.cpp:467
 msgid "Category in use."
@@ -1720,7 +1720,7 @@ msgstr "分類已存在"
 
 #: categdialog.cpp:467
 msgid "Subcategory in use."
-msgstr ""
+msgstr "正在使用此子分類"
 
 #: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
@@ -1734,7 +1734,7 @@ msgstr ""
 
 #: categdialog.cpp:475
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "工具 → 合併 → 分類"
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
@@ -1754,12 +1754,12 @@ msgstr ""
 
 #: categdialog.cpp:503
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "確認刪除分類？"
 
 #: categdialog.cpp:612 tagdialog.cpp:241
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "為「%s」輸入新名字"
 
 #: categdialog.cpp:613
 msgid "Edit Category"
@@ -1789,27 +1789,27 @@ msgstr ""
 
 #: categdialog.cpp:762
 msgid "Unhide all categories"
-msgstr ""
+msgstr "顯示所有分類"
 
 #: categdialog.cpp:790
 msgid "Hide Selected Category"
-msgstr ""
+msgstr "隱藏所選分類"
 
 #: categdialog.cpp:791
 msgid "Unhide Selected Category"
-msgstr ""
+msgstr "顯示選擇分類"
 
 #: categdialog.cpp:793
 msgid "Remove Category"
-msgstr ""
+msgstr "刪除分類"
 
 #: categdialog.cpp:796
 msgid "Clear Settings"
-msgstr ""
+msgstr "清除設定"
 
 #: categdialog.h:68 mmframe.cpp:1704 mmframe.cpp:1930
 msgid "Category Manager"
-msgstr ""
+msgstr "分類管理員"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -1832,23 +1832,23 @@ msgstr "確定"
 
 #: constants.cpp:90
 msgid "Undo"
-msgstr ""
+msgstr "還原"
 
 #: constants.cpp:91
 msgid "Redo"
-msgstr ""
+msgstr "重做"
 
 #: constants.cpp:92
 msgid "Cut"
-msgstr ""
+msgstr "剪下"
 
 #: constants.cpp:93
 msgid "Copy"
-msgstr ""
+msgstr "複製"
 
 #: constants.cpp:94
 msgid "Paste"
-msgstr ""
+msgstr "貼上"
 
 #: constants.cpp:95
 msgid "Select All"
@@ -1856,7 +1856,7 @@ msgstr ""
 
 #: constants.cpp:111
 msgid "64-bit"
-msgstr ""
+msgstr "64 位元"
 
 #: constants.cpp:193
 msgid "View with Transaction Filter..."
@@ -1953,24 +1953,24 @@ msgstr ""
 
 #: currencydialog.cpp:203
 msgid "Prefix"
-msgstr ""
+msgstr "前綴"
 
 #: currencydialog.cpp:204
 msgid "Suffix"
-msgstr ""
+msgstr "後綴"
 
 #: currencydialog.cpp:210 import_export/qif_import_gui.cpp:328
 #: import_export/univcsvdialog.cpp:419
 msgid "Decimal Char"
-msgstr ""
+msgstr "小數點字元"
 
 #: currencydialog.cpp:213 currencydialog.cpp:220
 msgid "Dot"
-msgstr ""
+msgstr "點"
 
 #: currencydialog.cpp:214 currencydialog.cpp:221
 msgid "Comma"
-msgstr ""
+msgstr "逗號"
 
 #: currencydialog.cpp:216
 msgid "Grouping Char"
@@ -1978,7 +1978,7 @@ msgstr ""
 
 #: currencydialog.cpp:222
 msgid "Space"
-msgstr ""
+msgstr "空格"
 
 #: currencydialog.cpp:227
 msgid "Scale"
@@ -2052,7 +2052,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:141
 msgid "Field Type"
-msgstr ""
+msgstr "欄位類型"
 
 #: customfieldeditdialog.cpp:145
 msgid "Select type of custom field"
@@ -2060,7 +2060,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:148
 msgid "ToolTip"
-msgstr ""
+msgstr "工具提示"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enter the tooltip that will be shown"
@@ -2076,7 +2076,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:158
 msgid "Autocomplete"
-msgstr ""
+msgstr "自動完成"
 
 #: customfieldeditdialog.cpp:161
 msgid "Enables autocomplete on custom field"
@@ -2093,7 +2093,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:170 customfieldeditdialog.cpp:220
 msgid "Choices"
-msgstr ""
+msgstr "選項"
 
 #: customfieldeditdialog.cpp:172
 msgid "Enter the choices for this field separated with a semicolon"
@@ -2120,7 +2120,7 @@ msgstr ""
 #: filtertransdialog.cpp:1620 reports/myusage.cpp:102 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Empty value"
-msgstr ""
+msgstr "空值"
 
 #: customfieldeditdialog.cpp:233
 msgid "Changing field type will delete all content!"
@@ -2176,7 +2176,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:197
 msgid "Find what"
-msgstr ""
+msgstr "尋找內容"
 
 #: customfieldlistdialog.cpp:197 customfieldlistdialog.cpp:203
 #: customfieldlistdialog.cpp:209 customfieldlistdialog.cpp:215
@@ -2191,7 +2191,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:209
 msgid "Replace with"
-msgstr ""
+msgstr "替換為"
 
 #: customfieldlistdialog.cpp:213
 msgid "Do you want to update to blank?\n"
@@ -2222,7 +2222,7 @@ msgstr "電費"
 
 #: db/DB_Table_Category_V1.h:116 db/DB_Table_Category_V1.h:130
 msgid "Gas"
-msgstr "瓦斯費"
+msgstr "燃氣費"
 
 #: db/DB_Table_Category_V1.h:117
 msgid "Internet"
@@ -2366,7 +2366,7 @@ msgstr "觀光"
 
 #: db/DB_Table_Category_V1.h:156
 msgid "Taxes"
-msgstr "税"
+msgstr "稅"
 
 #: db/DB_Table_Category_V1.h:157
 msgid "Income Tax"
@@ -2507,7 +2507,7 @@ msgstr ""
 #: dbwrapper.cpp:86 import_export/qif_import_gui.cpp:1163 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
-msgstr ""
+msgstr "錯誤：%s"
 
 #: dbwrapper.cpp:89 mmframe.cpp:2022
 msgid "Opening MMEX Database - Error"
@@ -2515,7 +2515,7 @@ msgstr "開啟MMEX資料庫-錯誤"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
-msgstr ""
+msgstr "診斷訊息"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -2523,7 +2523,7 @@ msgstr ""
 
 #: filtertrans.cpp:190
 msgid "Back"
-msgstr ""
+msgstr "返回"
 
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:1299
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:41
@@ -2556,23 +2556,23 @@ msgstr ""
 
 #: filtertransdialog.cpp:53
 msgid "Day"
-msgstr ""
+msgstr "日"
 
 #: filtertransdialog.cpp:53
 msgid "Month"
-msgstr ""
+msgstr "月份"
 
 #: filtertransdialog.cpp:53
 msgid "Year"
-msgstr ""
+msgstr "年份"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
-msgstr ""
+msgstr "棒形圖"
 
 #: filtertransdialog.cpp:55
 msgid "Line"
-msgstr ""
+msgstr "折線圖"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
@@ -2580,15 +2580,15 @@ msgstr ""
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
-msgstr ""
+msgstr "圓形圖"
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
-msgstr ""
+msgstr "環形圖"
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
-msgstr ""
+msgstr "雷達圖"
 
 #: filtertransdialog.cpp:57
 msgid "Bar Line"
@@ -2600,7 +2600,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Area"
-msgstr ""
+msgstr "堆疊區域圖"
 
 #: filtertransdialog.cpp:505
 msgid "Last Unsaved Filter"
@@ -2608,11 +2608,11 @@ msgstr ""
 
 #: filtertransdialog.cpp:552 transactionsupdatedialog.cpp:122
 msgid "Specify"
-msgstr ""
+msgstr "指定"
 
 #: filtertransdialog.cpp:578
 msgid "Period Range"
-msgstr ""
+msgstr "期間範圍"
 
 #: filtertransdialog.cpp:590 reports/mmDateRange.cpp:35
 msgid "Date Range"
@@ -2639,16 +2639,16 @@ msgstr "收入"
 #: filtertransdialog.cpp:654 filtertransdialog.cpp:881
 #: filtertransdialog.cpp:1566 filtertransdialog.cpp:1669
 msgid "Transfer Out"
-msgstr ""
+msgstr "轉出"
 
 #: filtertransdialog.cpp:655 filtertransdialog.cpp:1564
 #: filtertransdialog.cpp:1667
 msgid "Transfer In"
-msgstr ""
+msgstr "轉入"
 
 #: filtertransdialog.cpp:666
 msgid "Amount Range"
-msgstr ""
+msgstr "總數範圍"
 
 #: filtertransdialog.cpp:691
 msgid "Enter any string to find it in transaction notes"
@@ -2665,12 +2665,12 @@ msgstr ""
 #: filtertransdialog.cpp:732 filtertransdialog.cpp:1090
 #: filtertransdialog.cpp:1950
 msgid "Hide Columns"
-msgstr ""
+msgstr "隱藏欄"
 
 #: filtertransdialog.cpp:741 filtertransdialog.cpp:1097
 #: filtertransdialog.cpp:1963
 msgid "Group By"
-msgstr ""
+msgstr "群組方式"
 
 #: filtertransdialog.cpp:750
 msgid "Specify how the report should be grouped"
@@ -2679,7 +2679,7 @@ msgstr ""
 #: filtertransdialog.cpp:753 filtertransdialog.cpp:1103
 #: filtertransdialog.cpp:1974
 msgid "Chart"
-msgstr ""
+msgstr "圖表"
 
 #: filtertransdialog.cpp:762
 msgid "Specify which chart will be included in the report"
@@ -2695,7 +2695,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:777
 msgid "Settings"
-msgstr ""
+msgstr "設定"
 
 #: filtertransdialog.cpp:790
 msgid "Save active values into current Preset selection"
@@ -2735,35 +2735,35 @@ msgstr ""
 
 #: filtertransdialog.cpp:1759
 msgid "Label"
-msgstr ""
+msgstr "標籤"
 
 #: filtertransdialog.cpp:1790
 msgid "Since"
-msgstr ""
+msgstr "自"
 
 #: filtertransdialog.cpp:1792
 msgid "Before"
-msgstr ""
+msgstr "之前"
 
 #: filtertransdialog.cpp:1805
 msgid "Period"
-msgstr ""
+msgstr "期間"
 
 #: filtertransdialog.cpp:1875
 msgid "Amount Min."
-msgstr ""
+msgstr "最少數量"
 
 #: filtertransdialog.cpp:1883
 msgid "Amount Max."
-msgstr ""
+msgstr "最大數量"
 
 #: filtertransdialog.cpp:2134 mmframe.cpp:1287
 msgid "Setting Name"
-msgstr ""
+msgstr "設定名稱"
 
 #: filtertransdialog.cpp:2134 mmframe.cpp:1287
 msgid "Please Enter"
-msgstr ""
+msgstr "請輸入"
 
 #: filtertransdialog.cpp:2158 import_export/univcsvdialog.cpp:1101
 msgid "The entered name is already in use"
@@ -2774,7 +2774,7 @@ msgstr ""
 #: images_list.cpp:495 import_export/qif_import_gui.cpp:762
 #: import_export/qif_import_gui.cpp:765 import_export/univcsvdialog.cpp:1101
 msgid "Warning"
-msgstr ""
+msgstr "警告"
 
 #: filtertransdialog.cpp:2187
 msgid "Filter settings have changed"
@@ -2803,7 +2803,7 @@ msgstr "報表"
 
 #: general_report_manager.cpp:382 import_export/univcsvdialog.cpp:536
 msgid "&Import"
-msgstr "匯入"
+msgstr "匯入(&I)"
 
 #: general_report_manager.cpp:384
 msgid "Locate and load a report file."
@@ -2843,7 +2843,7 @@ msgstr "SQL"
 
 #: general_report_manager.cpp:433
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: general_report_manager.cpp:434
 msgid "Template"
@@ -2887,7 +2887,7 @@ msgstr "報告管理工具"
 
 #: general_report_manager.cpp:732
 msgid "Assets..."
-msgstr ""
+msgstr "資產..."
 
 #: general_report_manager.cpp:735
 msgid "New Empty Report..."
@@ -2907,7 +2907,7 @@ msgstr ""
 
 #: general_report_manager.cpp:742
 msgid "UnGroup"
-msgstr ""
+msgstr "取消群組"
 
 #: general_report_manager.cpp:743
 msgid "Rename Report..."
@@ -2915,7 +2915,7 @@ msgstr ""
 
 #: general_report_manager.cpp:747
 msgid "Active"
-msgstr ""
+msgstr "活躍"
 
 #: general_report_manager.cpp:747
 msgid "Show/Hide the report in the main navigation panel"
@@ -2947,7 +2947,7 @@ msgstr ""
 
 #: general_report_manager.cpp:924
 msgid "Rename Group"
-msgstr ""
+msgstr "重新命名群組"
 
 #: general_report_manager.cpp:991
 msgid "Add Report Group"
@@ -2964,7 +2964,7 @@ msgstr ""
 
 #: general_report_manager.cpp:1017 general_report_manager.cpp:1024
 msgid "New Report"
-msgstr "新報告"
+msgstr "新報表"
 
 #: general_report_manager.cpp:1056
 msgid "Choose file to Save As Report"
@@ -2972,7 +2972,7 @@ msgstr ""
 
 #: general_report_manager.cpp:1234
 msgid "Parameters:"
-msgstr ""
+msgstr "參數:"
 
 #: images_list.cpp:325
 #, c-format
@@ -2991,7 +2991,7 @@ msgstr ""
 
 #: images_list.cpp:457
 msgid "and more..."
-msgstr ""
+msgstr "和更多..."
 
 #: images_list.cpp:459
 #, c-format
@@ -3032,7 +3032,7 @@ msgstr ""
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:249
 msgid "Export error"
-msgstr ""
+msgstr "匯出錯誤"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
@@ -3075,11 +3075,11 @@ msgstr ""
 
 #: import_export/qif_export.cpp:119
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: import_export/qif_export.cpp:124 import_export/qif_import_gui.cpp:209
 msgid "Log"
-msgstr ""
+msgstr "記錄"
 
 #: import_export/qif_export.cpp:136
 msgid "CSV"
@@ -3118,11 +3118,11 @@ msgstr ""
 #: import_export/qif_export.cpp:202 import_export/qif_import_gui.cpp:123
 #: import_export/univcsvdialog.cpp:188
 msgid "File Name:"
-msgstr ""
+msgstr "檔案名稱："
 
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:555
 msgid "Clear"
-msgstr ""
+msgstr "清除"
 
 #: import_export/qif_export.cpp:258
 msgid "Choose Account to Export from:"
@@ -3175,11 +3175,11 @@ msgstr ""
 #: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:401
 #: import_export/qif_import_gui.cpp:1053
 msgid "Please wait"
-msgstr ""
+msgstr "請稍候"
 
 #: import_export/qif_export.cpp:485
 msgid "Exporting"
-msgstr ""
+msgstr "匯出中"
 
 #: import_export/qif_export.cpp:513
 #, c-format
@@ -3203,11 +3203,11 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:135 import_export/univcsvdialog.cpp:201
 msgid "&Browse"
-msgstr ""
+msgstr "瀏覽"
 
 #: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:385
 msgid "Encoding:"
-msgstr ""
+msgstr "編碼:"
 
 #: import_export/qif_import_gui.cpp:180
 msgid "Filtering Details:"
@@ -3249,7 +3249,7 @@ msgstr "不明"
 
 #: import_export/qif_import_gui.cpp:401
 msgid "Scanning"
-msgstr ""
+msgstr "掃描"
 
 #: import_export/qif_import_gui.cpp:430
 #, c-format
@@ -3268,7 +3268,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:541 mmreportspanel.cpp:347
 msgid "Accounts:"
-msgstr ""
+msgstr "帳號："
 
 #: import_export/qif_import_gui.cpp:548 import_export/qif_import_gui.cpp:898
 #: import_export/univcsvdialog.cpp:357
@@ -3283,7 +3283,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:2084 import_export/univcsvdialog.cpp:2098
 #: stockspanel.cpp:449
 msgid "Missing"
-msgstr ""
+msgstr "遺失"
 
 #: import_export/qif_import_gui.cpp:795 import_export/univcsvdialog.cpp:2078
 #, c-format
@@ -3308,7 +3308,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:1053
 msgid "Importing"
-msgstr ""
+msgstr "匯入中"
 
 #: import_export/qif_import_gui.cpp:1055
 msgid "Importing Accounts"
@@ -3402,7 +3402,7 @@ msgstr "副類型"
 
 #: import_export/univcsvdialog.cpp:113
 msgid "Don't Care"
-msgstr "不考慮"
+msgstr "忽略"
 
 #: import_export/univcsvdialog.cpp:116 mmchecking_list.cpp:324
 #: mmhomepage.cpp:543 mmhomepage.cpp:706 reports/cashflow.cpp:419
@@ -3424,11 +3424,11 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:208
 msgid "Account: "
-msgstr ""
+msgstr "帳號： "
 
 #: import_export/univcsvdialog.cpp:218
 msgid "Preset:"
-msgstr ""
+msgstr "預設集："
 
 #: import_export/univcsvdialog.cpp:265 import_export/univcsvdialog.cpp:582
 #: import_export/univcsvdialog.cpp:2654
@@ -3443,15 +3443,15 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:318
 msgid "&MMEX format"
-msgstr ""
+msgstr "&MMEX格式"
 
 #: import_export/univcsvdialog.cpp:335
 msgid "&Up"
-msgstr ""
+msgstr "上移(&U)"
 
 #: import_export/univcsvdialog.cpp:339
 msgid "&Down"
-msgstr ""
+msgstr "下移(&D)"
 
 #: import_export/univcsvdialog.cpp:372
 msgid "CSV Delimiter:"
@@ -3475,7 +3475,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:439
 msgid "From start: "
-msgstr ""
+msgstr "從開始： "
 
 #: import_export/univcsvdialog.cpp:474
 msgid "From end: "
@@ -3499,7 +3499,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:565
 msgid "Preset name"
-msgstr ""
+msgstr "範本名稱"
 
 #: import_export/univcsvdialog.cpp:566
 msgid "Save current settings as a Preset"
@@ -3519,7 +3519,7 @@ msgstr "上移"
 
 #: import_export/univcsvdialog.cpp:570
 msgid "Move Down"
-msgstr ""
+msgstr "向下移動"
 
 #: import_export/univcsvdialog.cpp:571 optionsettingsmisc.cpp:228
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -3556,11 +3556,11 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1072
 msgid "Preset Name"
-msgstr ""
+msgstr "範本名稱"
 
 #: import_export/univcsvdialog.cpp:1072
 msgid "Save Preset"
-msgstr ""
+msgstr "儲存範本"
 
 #: import_export/univcsvdialog.cpp:1241
 msgid "Invalid Date."
@@ -3756,19 +3756,19 @@ msgstr ""
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
-msgstr ""
+msgstr "代碼"
 
 #: maincurrencydialog.cpp:77
 msgid "Last Rate"
-msgstr ""
+msgstr "最新匯率"
 
 #: maincurrencydialog.cpp:77
 msgid "Fixed Rate"
-msgstr ""
+msgstr "固定匯率"
 
 #: maincurrencydialog.cpp:137
 msgid "N/A"
-msgstr ""
+msgstr "不適用"
 
 #: maincurrencydialog.cpp:180 maincurrencydialog.cpp:474
 msgid "Online update currency rate"
@@ -4191,7 +4191,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:219
 msgid "Sort Order"
-msgstr ""
+msgstr "排列順序"
 
 #: mmchecking_list.cpp:300 model/Model_CustomField.cpp:30
 #: reports/transactions.cpp:209 transactionsupdatedialog.cpp:140
@@ -4201,7 +4201,7 @@ msgstr "時間"
 
 #: mmchecking_list.cpp:336
 msgid "Deleted On"
-msgstr ""
+msgstr "在此日期刪除"
 
 #: mmchecking_list.cpp:361
 msgid "Last Updated"
@@ -4305,7 +4305,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:675
 msgid "De&lete "
-msgstr ""
+msgstr "刪除(&L) "
 
 #: mmchecking_list.cpp:681
 msgid "&Unreconciled"
@@ -4313,23 +4313,23 @@ msgstr ""
 
 #: mmchecking_list.cpp:683
 msgid "&Reconciled"
-msgstr ""
+msgstr "已對賬"
 
 #: mmchecking_list.cpp:685
 msgid "&Void"
-msgstr ""
+msgstr "無效"
 
 #: mmchecking_list.cpp:687
 msgid "&Follow Up"
-msgstr ""
+msgstr "&需要跟進"
 
 #: mmchecking_list.cpp:689
 msgid "D&uplicate"
-msgstr ""
+msgstr "複製(&U)"
 
 #: mmchecking_list.cpp:691
 msgid "Mar&k as"
-msgstr ""
+msgstr "標記為"
 
 #: mmchecking_list.cpp:713 mmcheckingpanel.cpp:516 mmframe.cpp:736
 msgid "All Transactions"
@@ -4438,11 +4438,11 @@ msgstr ""
 
 #: mmchecking_list.cpp:1726
 msgid "Moved"
-msgstr ""
+msgstr "已移動"
 
 #: mmchecking_list.cpp:1727
 msgid "Not moved"
-msgstr ""
+msgstr "未有移動"
 
 #: mmchecking_list.cpp:1730
 msgid "Some transactions could not be moved"
@@ -4482,7 +4482,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:478
 msgid "&Restore "
-msgstr ""
+msgstr "復原 "
 
 #: mmcheckingpanel.cpp:479
 msgid "Restore selected transaction"
@@ -4511,7 +4511,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:543
 msgid "Diff: "
-msgstr ""
+msgstr "差異："
 
 #: mmcheckingpanel.cpp:545
 msgid "Filtered View Bal: "
@@ -4519,7 +4519,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:619 webapp.cpp:621
 msgid "Attachment"
-msgstr ""
+msgstr "附件"
 
 #: mmcheckingpanel.cpp:655
 #, c-format
@@ -4542,11 +4542,11 @@ msgstr ""
 
 #: mmcustomdata.cpp:156
 msgid "False"
-msgstr ""
+msgstr "錯誤"
 
 #: mmcustomdata.cpp:158
 msgid "True"
-msgstr ""
+msgstr "真確"
 
 #: mmcustomdata.cpp:309
 msgid "Please select"
@@ -4577,7 +4577,7 @@ msgstr "導航樹"
 
 #: mmframe.cpp:272
 msgid "Toolbar"
-msgstr ""
+msgstr "工具列"
 
 #: mmframe.cpp:484 mmframe.cpp:744 mmhomepage.cpp:690 reports/summary.cpp:259
 #: reports/summary.cpp:302
@@ -4643,7 +4643,7 @@ msgstr ""
 
 #: mmframe.cpp:1298
 msgid "Name in use"
-msgstr ""
+msgstr "名稱已被使用"
 
 #: mmframe.cpp:1355
 msgid "Do you really want to delete the account?"
@@ -4747,19 +4747,19 @@ msgstr ""
 
 #: mmframe.cpp:1503
 msgid "&All"
-msgstr ""
+msgstr "&全部"
 
 #: mmframe.cpp:1504
 msgid "&Favorites"
-msgstr ""
+msgstr "我的最愛"
 
 #: mmframe.cpp:1505
 msgid "&Open"
-msgstr ""
+msgstr "&開啟"
 
 #: mmframe.cpp:1506
 msgid "&Closed"
-msgstr ""
+msgstr "關閉(&C)"
 
 #: mmframe.cpp:1507
 msgid "Accounts &Visible"
@@ -4799,7 +4799,7 @@ msgstr "清除最近使用清單"
 
 #: mmframe.cpp:1566
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: mmframe.cpp:1566
 msgid "Import from WebApp"
@@ -4843,7 +4843,7 @@ msgstr "顯示/隱藏工具欄"
 
 #: mmframe.cpp:1596
 msgid "&Navigation"
-msgstr ""
+msgstr "導覽"
 
 #: mmframe.cpp:1596
 msgid "Show/Hide the Navigation tree control"
@@ -4923,7 +4923,7 @@ msgstr ""
 
 #: mmframe.cpp:1637
 msgid "Reset View"
-msgstr ""
+msgstr "重置檢視"
 
 #: mmframe.cpp:1638
 msgid "Reset view and dock tools"
@@ -4931,7 +4931,7 @@ msgstr ""
 
 #: mmframe.cpp:1669
 msgid "Dash&board"
-msgstr ""
+msgstr "總覽報表"
 
 #: mmframe.cpp:1669 mmframe.cpp:1925
 msgid "Open Dashboard"
@@ -4971,7 +4971,7 @@ msgstr ""
 
 #: mmframe.cpp:1708 mmframe.cpp:1931 tagdialog.h:45
 msgid "Tag Manager"
-msgstr ""
+msgstr "標籤管理員"
 
 #: mmframe.cpp:1712
 msgid "Curre&ncy Manager..."
@@ -4987,7 +4987,7 @@ msgstr ""
 
 #: mmframe.cpp:1719
 msgid "&Payees..."
-msgstr ""
+msgstr "&收款人..."
 
 #: mmframe.cpp:1720 relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge payees"
@@ -4995,15 +4995,15 @@ msgstr ""
 
 #: mmframe.cpp:1722
 msgid "&Tags..."
-msgstr ""
+msgstr "&標籤..."
 
 #: mmframe.cpp:1723 relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge tags"
-msgstr ""
+msgstr "合併標籤"
 
 #: mmframe.cpp:1725
 msgid "&Merge"
-msgstr ""
+msgstr "&合併"
 
 #: mmframe.cpp:1726
 msgid "Merge categories, payees, and tags"
@@ -5023,7 +5023,7 @@ msgstr ""
 
 #: mmframe.cpp:1745
 msgid "&Assets"
-msgstr ""
+msgstr "資產"
 
 #: mmframe.cpp:1751
 msgid "T&heme Manager..."
@@ -5059,7 +5059,7 @@ msgstr ""
 
 #: mmframe.cpp:1778
 msgid "Options"
-msgstr ""
+msgstr "選項"
 
 #: mmframe.cpp:1785
 msgid "&Decrypt Encrypted Database..."
@@ -5103,7 +5103,7 @@ msgstr ""
 
 #: mmframe.cpp:1808 mmframe.cpp:1963
 msgid "&Help\tF1"
-msgstr ""
+msgstr "&幫助  F1"
 
 #: mmframe.cpp:1808
 msgid "Show Help"
@@ -5123,7 +5123,7 @@ msgstr ""
 
 #: mmframe.cpp:1818
 msgid "&Crowdin"
-msgstr ""
+msgstr "Crowdin 翻譯"
 
 #: mmframe.cpp:1818
 msgid "Help translate MMEX on Crowdin"
@@ -5131,7 +5131,7 @@ msgstr ""
 
 #: mmframe.cpp:1820
 msgid "&X"
-msgstr ""
+msgstr "&X"
 
 #: mmframe.cpp:1820
 msgid "Follow MMEX on X"
@@ -5139,7 +5139,7 @@ msgstr ""
 
 #: mmframe.cpp:1822
 msgid "&YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: mmframe.cpp:1822
 msgid "Watch MMEX videos on YouTube"
@@ -5147,7 +5147,7 @@ msgstr ""
 
 #: mmframe.cpp:1824
 msgid "&Slack"
-msgstr ""
+msgstr "堆疊"
 
 #: mmframe.cpp:1824
 msgid "Communicate with the MMEX team online"
@@ -5163,7 +5163,7 @@ msgstr ""
 
 #: mmframe.cpp:1828
 msgid "W&iki pages"
-msgstr "Wiki百科"
+msgstr "維基百科頁面"
 
 #: mmframe.cpp:1828
 msgid "Read and update wiki pages"
@@ -5187,7 +5187,7 @@ msgstr ""
 
 #: mmframe.cpp:1836
 msgid "&Newsletter"
-msgstr ""
+msgstr "電子報"
 
 #: mmframe.cpp:1837
 msgid "Visit the MMEX blog to view announcements"
@@ -5259,7 +5259,7 @@ msgstr "檢查更新"
 
 #: mmframe.cpp:1889 mmframe.cpp:1962
 msgid "&About"
-msgstr ""
+msgstr "&關於"
 
 #: mmframe.cpp:1889
 msgid "About dialog"
@@ -5291,7 +5291,7 @@ msgstr "新增"
 
 #: mmframe.cpp:1938
 msgid "&Options"
-msgstr ""
+msgstr "&選項"
 
 #: mmframe.cpp:1938
 msgid "Options Dialog"
@@ -5299,7 +5299,7 @@ msgstr ""
 
 #: mmframe.cpp:1946 mmframe.cpp:1951 mmframe.cpp:2959 optionsettingsnet.cpp:132
 msgid "News"
-msgstr ""
+msgstr "新聞"
 
 #: mmframe.cpp:1953
 msgid "Download Rates"
@@ -5319,7 +5319,7 @@ msgstr "列印"
 
 #: mmframe.cpp:1959
 msgid "Print"
-msgstr ""
+msgstr "列印"
 
 #: mmframe.cpp:2016
 #, c-format
@@ -5349,7 +5349,7 @@ msgstr ""
 
 #: mmframe.cpp:2157
 msgid "&Next →"
-msgstr ""
+msgstr "下一步→"
 
 #: mmframe.cpp:2170
 msgid "Cannot locate previously opened database.\n"
@@ -5467,11 +5467,11 @@ msgstr ""
 
 #: mmframe.cpp:2443 optionsettingsmisc.cpp:142
 msgid "Yes"
-msgstr ""
+msgstr "確定"
 
 #: mmframe.cpp:2443 optionsettingsmisc.cpp:143
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: mmframe.cpp:2463 mmframe.cpp:2484
 msgid "Save database file as"
@@ -5653,7 +5653,7 @@ msgstr "所有帳目總結"
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr ""
+msgstr "預算"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
@@ -5669,15 +5669,15 @@ msgstr "股票報表"
 
 #: mmframereport.cpp:316 mmreportspanel.cpp:390
 msgid "Hide"
-msgstr ""
+msgstr "隱藏"
 
 #: mmhelppanel.cpp:65
 msgid "&Back"
-msgstr ""
+msgstr "&返回"
 
 #: mmhelppanel.cpp:66
 msgid "&Forward"
-msgstr ""
+msgstr "往前(&F)"
 
 #: mmhomepage.cpp:62 mmhomepage.cpp:81 reports/summary.cpp:273
 #: reports/summary.cpp:310
@@ -5786,27 +5786,27 @@ msgstr ""
 
 #: mmreportspanel.cpp:136
 msgid "Report"
-msgstr ""
+msgstr "報表"
 
 #: mmreportspanel.cpp:194
 msgid "Period:"
-msgstr ""
+msgstr "期間:"
 
 #: mmreportspanel.cpp:250 mmreportspanel.cpp:266 model/Model_Report.cpp:87
 msgid "Date:"
-msgstr ""
+msgstr "日期："
 
 #: mmreportspanel.cpp:282 model/Model_Report.cpp:89
 msgid "Time:"
-msgstr ""
+msgstr "時間："
 
 #: mmreportspanel.cpp:297 model/Model_Report.cpp:90
 msgid "Year:"
-msgstr ""
+msgstr "年份："
 
 #: mmreportspanel.cpp:320
 msgid "Budget:"
-msgstr ""
+msgstr "預算:"
 
 #: mmreportspanel.cpp:352
 msgid "All Accounts:"
@@ -5822,11 +5822,11 @@ msgstr ""
 
 #: mmreportspanel.cpp:384
 msgid "Chart:"
-msgstr ""
+msgstr "圖表："
 
 #: mmreportspanel.cpp:389
 msgid "Show"
-msgstr ""
+msgstr "顯示"
 
 #: model/Model_Account.cpp:33 model/Model_Asset.cpp:47 reports/summary.cpp:257
 #: reports/summary.cpp:301
@@ -5843,11 +5843,11 @@ msgstr "信用卡"
 
 #: model/Model_Account.cpp:36
 msgid "Loan"
-msgstr ""
+msgstr "貸款"
 
 #: model/Model_Account.cpp:37
 msgid "Term"
-msgstr ""
+msgstr "定期戶口"
 
 #: model/Model_Account.cpp:38
 msgid "Investment"
@@ -5855,11 +5855,11 @@ msgstr "投資"
 
 #: model/Model_Account.cpp:39 model/Model_Attachment.cpp:26
 msgid "Asset"
-msgstr ""
+msgstr "資產"
 
 #: model/Model_Account.cpp:40 stockspanel.cpp:214
 msgid "Shares"
-msgstr ""
+msgstr "股票"
 
 #: model/Model_Account.cpp:147
 msgid "Account Error"
@@ -5875,11 +5875,11 @@ msgstr "貶值"
 
 #: model/Model_Asset.cpp:33
 msgid "Percentage"
-msgstr ""
+msgstr "百分比"
 
 #: model/Model_Asset.cpp:34
 msgid "Linear"
-msgstr ""
+msgstr "線性"
 
 #: model/Model_Asset.cpp:42
 msgid "Property"
@@ -5903,15 +5903,15 @@ msgstr "其他"
 
 #: model/Model_Asset.cpp:95
 msgid "Asset Error"
-msgstr ""
+msgstr "資產錯誤"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr ""
+msgstr "交易"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "銀行戶口"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
@@ -5949,27 +5949,27 @@ msgstr ""
 
 #: model/Model_Currency.cpp:69
 msgid "Fiat"
-msgstr ""
+msgstr "法幣"
 
 #: model/Model_Currency.cpp:70
 msgid "Crypto"
-msgstr ""
+msgstr "加密貨幣"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
-msgstr ""
+msgstr "字串"
 
 #: model/Model_CustomField.cpp:26
 msgid "Integer"
-msgstr ""
+msgstr "整數"
 
 #: model/Model_CustomField.cpp:27
 msgid "Decimal"
-msgstr ""
+msgstr "小數點"
 
 #: model/Model_CustomField.cpp:28
 msgid "Boolean"
-msgstr ""
+msgstr "布林值"
 
 #: model/Model_CustomField.cpp:31
 msgid "SingleChoice"
@@ -5977,15 +5977,15 @@ msgstr ""
 
 #: model/Model_CustomField.cpp:32
 msgid "MultiChoice"
-msgstr ""
+msgstr "多項選擇"
 
 #: model/Model_Payee.cpp:81
 msgid "Payee Error"
-msgstr ""
+msgstr "收款者錯誤"
 
 #: model/Model_Report.cpp:86
 msgid "Begin date:"
-msgstr ""
+msgstr "開始日期："
 
 #: model/Model_Report.cpp:88
 msgid "End date:"
@@ -6004,7 +6004,7 @@ msgstr ""
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
-msgstr ""
+msgstr "股票錯誤"
 
 #: optiondialog.cpp:37
 msgid "General"
@@ -6016,11 +6016,11 @@ msgstr "顯示設定"
 
 #: optiondialog.cpp:37 webappdialog.cpp:146
 msgid "Attachments"
-msgstr ""
+msgstr "附件"
 
 #: optiondialog.cpp:37
 msgid "Network"
-msgstr ""
+msgstr "網絡"
 
 #: optiondialog.cpp:161
 msgid "&Apply "
@@ -6050,7 +6050,7 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:102 optionsettingsattachment.cpp:212
 msgid "Real path:"
-msgstr ""
+msgstr "實際路徑："
 
 #: optionsettingsattachment.cpp:107
 msgid "Legend (can be used as variables at the beginning of above path)"
@@ -6082,7 +6082,7 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:126
 msgid "Not set yet"
-msgstr ""
+msgstr "尚未設定"
 
 #: optionsettingsattachment.cpp:135
 #, c-format
@@ -6153,11 +6153,11 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:255
 msgid "Origin"
-msgstr ""
+msgstr "來源"
 
 #: optionsettingsattachment.cpp:256
 msgid "Destination"
-msgstr ""
+msgstr "目的地"
 
 #: optionsettingsgeneral.cpp:74
 msgid "Display Heading"
@@ -6250,7 +6250,7 @@ msgstr "選擇輸入交易時的音效"
 
 #: optionsettingsgeneral.cpp:318
 msgid "Locale"
-msgstr ""
+msgstr "區域"
 
 #: optionsettingsgeneral.cpp:346
 #, c-format
@@ -6263,7 +6263,7 @@ msgstr ""
 
 #: optionsettingshome.cpp:91
 msgid "Last N Days"
-msgstr ""
+msgstr "最近 N 天"
 
 #: optionsettingsmisc.cpp:64
 msgid "Stock Quote Web Page"
@@ -6295,7 +6295,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:120
 msgid "Unused"
-msgstr ""
+msgstr "未使用"
 
 #: optionsettingsmisc.cpp:126
 msgid "Last used for payee"
@@ -6381,7 +6381,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
-msgstr ""
+msgstr "網址"
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
@@ -6389,7 +6389,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:81 webappdialog.cpp:101
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: optionsettingsnet.cpp:85
 msgid "Specify the Web App GUID"
@@ -6413,11 +6413,11 @@ msgstr ""
 
 #: optionsettingsnet.cpp:111
 msgid "Proxy"
-msgstr ""
+msgstr "Proxy"
 
 #: optionsettingsnet.cpp:113
 msgid "Port"
-msgstr ""
+msgstr "通訊埠"
 
 #: optionsettingsnet.cpp:119
 msgid "Usage statistics"
@@ -6433,7 +6433,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:145
 msgid "Timeout"
-msgstr ""
+msgstr "逾時"
 
 #: optionsettingsnet.cpp:154
 msgid "Specify a network communication timeout value to use."
@@ -6441,11 +6441,11 @@ msgstr ""
 
 #: optionsettingsnet.cpp:157
 msgid "Seconds"
-msgstr ""
+msgstr "秒"
 
 #: optionsettingsnet.cpp:163
 msgid "Updates"
-msgstr ""
+msgstr "更新"
 
 #: optionsettingsnet.cpp:169
 msgid "Check for updates at StartUp"
@@ -6457,11 +6457,11 @@ msgstr ""
 
 #: optionsettingsnet.cpp:174 wizard_update.cpp:113
 msgid "Stable"
-msgstr ""
+msgstr "穩定"
 
 #: optionsettingsnet.cpp:175 wizard_update.cpp:113
 msgid "Unstable"
-msgstr ""
+msgstr "不穩定"
 
 #: optionsettingsnet.cpp:180
 msgid "Updates source"
@@ -6554,15 +6554,15 @@ msgstr ""
 
 #: optionsettingsview.cpp:245
 msgid "System"
-msgstr ""
+msgstr "系統"
 
 #: optionsettingsview.cpp:246
 msgid "Light"
-msgstr ""
+msgstr "淺色"
 
 #: optionsettingsview.cpp:247
 msgid "Dark"
-msgstr ""
+msgstr "黑暗"
 
 #: optionsettingsview.cpp:251
 msgid "Specify preferred theme variant to use if supported"
@@ -6570,7 +6570,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:253
 msgid "Theme"
-msgstr ""
+msgstr "主題"
 
 #: optionsettingsview.cpp:257
 msgid "HTML Scale Factor"
@@ -6582,19 +6582,19 @@ msgstr ""
 
 #: optionsettingsview.cpp:277
 msgid "Normal"
-msgstr ""
+msgstr "正常"
 
 #: optionsettingsview.cpp:278
 msgid "Enlarged"
-msgstr ""
+msgstr "已放大"
 
 #: optionsettingsview.cpp:279
 msgid "Large"
-msgstr ""
+msgstr "較大"
 
 #: optionsettingsview.cpp:280
 msgid "Huge"
-msgstr ""
+msgstr "巨大"
 
 #: optionsettingsview.cpp:282
 msgid "Font Size"
@@ -6630,7 +6630,7 @@ msgstr ""
 
 #: payeedialog.cpp:55
 msgid "Edit Payee"
-msgstr ""
+msgstr "編輯收款人"
 
 #: payeedialog.cpp:85
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
@@ -6638,7 +6638,7 @@ msgstr ""
 
 #: payeedialog.cpp:89 payeedialog.cpp:448
 msgid "Hidden"
-msgstr ""
+msgstr "隱藏"
 
 #: payeedialog.cpp:91
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
@@ -6666,7 +6666,7 @@ msgstr ""
 
 #: payeedialog.cpp:109 payeedialog.cpp:452
 msgid "Website"
-msgstr ""
+msgstr "網站"
 
 #: payeedialog.cpp:111
 msgid "Website URL associated with the payee"
@@ -6745,17 +6745,17 @@ msgstr ""
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
 #: relocatetagdialog.cpp:114
 msgid "Source:"
-msgstr ""
+msgstr "來源："
 
 #: relocatecategorydialog.cpp:119 relocatepayeedialog.cpp:113
 #: relocatetagdialog.cpp:115
 msgid "Target:"
-msgstr ""
+msgstr "目標："
 
 #: relocatecategorydialog.cpp:133 relocatepayeedialog.cpp:131
 #: relocatetagdialog.cpp:133
 msgid "Merge"
-msgstr ""
+msgstr "合併"
 
 #: relocatecategorydialog.cpp:153 relocatepayeedialog.cpp:151
 #: relocatetagdialog.cpp:153
@@ -6875,19 +6875,19 @@ msgstr ""
 
 #: reports/budgetingperf.cpp:149 reports/budgetingperf.cpp:151
 msgid "Est."
-msgstr ""
+msgstr "估計"
 
 #: reports/budgetingperf.cpp:149 reports/budgetingperf.cpp:151
 msgid "Act."
-msgstr ""
+msgstr "行動"
 
 #: reports/budgetingperf.cpp:152
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #: reports/bugreport.h:56
 msgid "Bug Report"
-msgstr ""
+msgstr "報告錯誤"
 
 #: reports/bugreport.h:68
 msgid "Replace this text (marked with >) with detailed description of your problem."
@@ -6953,7 +6953,7 @@ msgstr[0] ""
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
 #: reports/payee.cpp:139
 msgid "Difference"
-msgstr "結算"
+msgstr "差異"
 
 #: reports/cashflow.cpp:288 reports/cashflow.cpp:420
 msgid "Cumulative Difference"
@@ -6998,11 +6998,11 @@ msgstr "全部"
 
 #: reports/categexp.cpp:495 reports/payee.cpp:137
 msgid "Incomes"
-msgstr ""
+msgstr "收入"
 
 #: reports/forecast.cpp:30
 msgid "Forecast"
-msgstr ""
+msgstr "預測"
 
 #: reports/htmlbuilder.cpp:153
 #, c-format
@@ -7016,7 +7016,7 @@ msgstr ""
 
 #: reports/htmlbuilder.cpp:216
 msgid "Future"
-msgstr ""
+msgstr "未來"
 
 #: reports/htmlbuilder.cpp:219 reports/mmDateRange.cpp:250
 msgid "Over Time"
@@ -7048,7 +7048,7 @@ msgstr ""
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
-msgstr ""
+msgstr "累積"
 
 #: reports/mmDateRange.cpp:76
 msgid "Current Month"
@@ -7056,7 +7056,7 @@ msgstr "本月"
 
 #: reports/mmDateRange.cpp:82
 msgid "Today"
-msgstr ""
+msgstr "今日"
 
 #: reports/mmDateRange.cpp:90
 msgid "Current Month to Date"
@@ -7108,7 +7108,7 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:261
 msgid "Custom"
-msgstr ""
+msgstr "自訂"
 
 #: reports/mmDateRange.cpp:275
 msgid "1 Year Ago to Date"
@@ -7121,7 +7121,7 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:303
 msgid "Since Today"
-msgstr ""
+msgstr "自今日"
 
 #: reports/mmDateRange.cpp:312
 msgid "Since 1 Month Ago"
@@ -7153,7 +7153,7 @@ msgstr ""
 
 #: reports/reportbase.cpp:205 reports/transactions.cpp:126
 msgid "Accounts: "
-msgstr ""
+msgstr "帳號： "
 
 #: reports/summary.cpp:133
 #, c-format
@@ -7182,7 +7182,7 @@ msgstr ""
 
 #: reports/summarystocks.cpp:115
 msgid "Quantity"
-msgstr ""
+msgstr "數量"
 
 #: reports/summarystocks.cpp:117
 msgid "Current Price"
@@ -7207,7 +7207,7 @@ msgstr ""
 
 #: reports/transactions.cpp:227
 msgid "FX Rate"
-msgstr ""
+msgstr "匯率"
 
 #: reports/transactions.cpp:457
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
@@ -7219,19 +7219,19 @@ msgstr ""
 
 #: reports/transactions.cpp:516
 msgid "Statistics"
-msgstr ""
+msgstr "統計數據"
 
 #: reports/transactions.cpp:539
 msgid "Minimum"
-msgstr ""
+msgstr "最小值"
 
 #: reports/transactions.cpp:541
 msgid "Maximum"
-msgstr ""
+msgstr "最大值"
 
 #: reports/transactions.cpp:543
 msgid "Average"
-msgstr ""
+msgstr "平均值"
 
 #: sharetransactiondialog.cpp:61 sharetransactiondialog.cpp:68
 msgid "Add Share Transaction"
@@ -7315,7 +7315,7 @@ msgstr ""
 
 #: splittransactionsdialog.cpp:251
 msgid "&Add Split"
-msgstr ""
+msgstr "新增拆分"
 
 #: splittransactionsdialog.cpp:256
 msgid "&Remove Split"
@@ -7366,7 +7366,7 @@ msgstr ""
 
 #: stockdialog.cpp:226
 msgid "*Commission"
-msgstr ""
+msgstr "*佣金"
 
 #: stockdialog.cpp:231
 msgid "Enter any commission paid.\n"
@@ -7452,39 +7452,39 @@ msgstr ""
 
 #: stockdialog.cpp:671 stockdialog.cpp:701
 msgid "5 Days"
-msgstr ""
+msgstr "5 天"
 
 #: stockdialog.cpp:672 stockdialog.cpp:703
 msgid "1 Month"
-msgstr ""
+msgstr "1個月"
 
 #: stockdialog.cpp:673 stockdialog.cpp:704
 msgid "3 Months"
-msgstr ""
+msgstr "3個月"
 
 #: stockdialog.cpp:674
 msgid "6 Months"
-msgstr ""
+msgstr "6個月"
 
 #: stockdialog.cpp:675
 msgid "1 Year"
-msgstr ""
+msgstr "1年"
 
 #: stockdialog.cpp:676
 msgid "2 Years"
-msgstr ""
+msgstr "2年"
 
 #: stockdialog.cpp:677
 msgid "5 Years"
-msgstr ""
+msgstr "5年"
 
 #: stockdialog.cpp:678
 msgid "10 Years"
-msgstr ""
+msgstr "10年"
 
 #: stockdialog.cpp:680
 msgid "Max"
-msgstr ""
+msgstr "最大値"
 
 #: stockdialog.cpp:686
 msgid "Specify type frequency of stock history"
@@ -7496,11 +7496,11 @@ msgstr ""
 
 #: stockdialog.cpp:700
 msgid "1 Day"
-msgstr ""
+msgstr "1天"
 
 #: stockdialog.cpp:702
 msgid "1 Week"
-msgstr ""
+msgstr "1 周"
 
 #: stockdialog.cpp:710
 msgid "Specify interval of stock history"
@@ -7581,7 +7581,7 @@ msgstr "刪除股票"
 
 #: stockspanel.cpp:156
 msgid "&Move"
-msgstr ""
+msgstr "移動(&M)"
 
 #: stockspanel.cpp:157
 msgid "Move selected transaction to another account"
@@ -7589,7 +7589,7 @@ msgstr ""
 
 #: stockspanel.cpp:170
 msgid "Refresh"
-msgstr ""
+msgstr "重新整理"
 
 #: stockspanel.cpp:171
 msgid "Refresh Stock Prices from Yahoo"
@@ -7617,7 +7617,7 @@ msgstr "投資成本: %s"
 #: stockspanel.cpp:335
 #, c-format
 msgid "Gain: %s"
-msgstr "損益金額: %s"
+msgstr "增值金額: %s"
 
 #: stockspanel.cpp:335
 #, c-format
@@ -7644,7 +7644,7 @@ msgstr ""
 #: stockspanel.cpp:519
 #, c-format
 msgid "Symbol: %s"
-msgstr ""
+msgstr "符號：%s"
 
 #: tagdialog.cpp:126
 msgid "Add a new tag"
@@ -7660,7 +7660,7 @@ msgstr ""
 
 #: tagdialog.cpp:142
 msgid "Select"
-msgstr ""
+msgstr "選擇"
 
 #: tagdialog.cpp:179
 msgid "Invalid tag name"
@@ -7688,7 +7688,7 @@ msgstr ""
 
 #: tagdialog.cpp:207 tagdialog.cpp:210
 msgid "Add Tag"
-msgstr ""
+msgstr "新增標籤"
 
 #: tagdialog.cpp:218 tagdialog.cpp:253
 msgid "A tag with this name already exists"
@@ -7700,7 +7700,7 @@ msgstr ""
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
-msgstr ""
+msgstr "修改標籤"
 
 #: tagdialog.cpp:254
 msgid "Tag Manager: Editing Error"
@@ -7730,11 +7730,11 @@ msgstr ""
 
 #: themes.cpp:191 webappdialog.cpp:410
 msgid "Delete"
-msgstr ""
+msgstr "刪除"
 
 #: themes.cpp:193
 msgid "Use"
-msgstr ""
+msgstr "使用"
 
 #: themes.cpp:239
 msgid "No description available"
@@ -7766,11 +7766,11 @@ msgstr ""
 
 #: transactionsupdatedialog.cpp:206
 msgid "Transfer To"
-msgstr ""
+msgstr "轉移到"
 
 #: transactionsupdatedialog.cpp:230 transactionsupdatedialog.cpp:253
 msgid "Append"
-msgstr ""
+msgstr "添加"
 
 #: transactionsupdatedialog.cpp:535
 msgid "This is due to some elements of the transaction or account detail not allowing the update"
@@ -7778,11 +7778,11 @@ msgstr ""
 
 #: transactionsupdatedialog.cpp:536
 msgid "Updated"
-msgstr ""
+msgstr "已更新"
 
 #: transactionsupdatedialog.cpp:537
 msgid "Not updated"
-msgstr ""
+msgstr "並未更新"
 
 #: transactionsupdatedialog.cpp:540
 msgid "Some transactions could not be updated"
@@ -7963,7 +7963,7 @@ msgstr "星期一"
 
 #: util.cpp:293
 msgid "Tuesday"
-msgstr "星期二"
+msgstr "周二"
 
 #: util.cpp:294
 msgid "Wednesday"
@@ -7971,7 +7971,7 @@ msgstr "星期三"
 
 #: util.cpp:294
 msgid "Thursday"
-msgstr "星期四"
+msgstr "週四"
 
 #: util.cpp:294
 msgid "Friday"
@@ -7979,35 +7979,35 @@ msgstr "星期五"
 
 #: util.cpp:295
 msgid "Saturday"
-msgstr "星期六"
+msgstr "週六"
 
 #: util.cpp:300
 msgid "Sun"
-msgstr ""
+msgstr "週日"
 
 #: util.cpp:300
 msgid "Mon"
-msgstr ""
+msgstr "週一"
 
 #: util.cpp:300
 msgid "Tue"
-msgstr ""
+msgstr "週二"
 
 #: util.cpp:301
 msgid "Wed"
-msgstr ""
+msgstr "週三"
 
 #: util.cpp:301
 msgid "Thu"
-msgstr ""
+msgstr "週四"
 
 #: util.cpp:301
 msgid "Fri"
-msgstr ""
+msgstr "週五"
 
 #: util.cpp:302
 msgid "Sat"
-msgstr ""
+msgstr "週六"
 
 #: util.cpp:741
 msgid "Currency rates have been updated"
@@ -8031,7 +8031,7 @@ msgstr ""
 
 #: util.cpp:1052
 msgid "USD"
-msgstr ""
+msgstr "美元"
 
 #: util.cpp:1055
 msgid "Could not find currency 'USD', needed for converting history prices"
@@ -8044,7 +8044,7 @@ msgstr ""
 #: util.cpp:1449
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "版本：%s"
 
 #: util.cpp:1450
 #, c-format
@@ -8076,7 +8076,7 @@ msgstr ""
 
 #: util.cpp:1501
 msgid "Running on:"
-msgstr ""
+msgstr "執行於："
 
 #: util.cpp:1515
 #, c-format
