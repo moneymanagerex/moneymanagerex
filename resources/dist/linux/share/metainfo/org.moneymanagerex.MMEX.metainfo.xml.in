@@ -288,63 +288,63 @@
   <screenshots>
     
     <screenshot type="default">
+      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/01cc2202-9d5a-4bba-a816-5868512196cb</image>
       <caption>Dashboard</caption>
       <caption xml:lang="hu">Irányítópult</caption>
-      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/01cc2202-9d5a-4bba-a816-5868512196cb</image>
     </screenshot>
     
     <screenshot>
+      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/9ba8d274-7af8-496c-9ab6-2c49235ec735</image>
       <caption>Payee Report</caption>
       <caption xml:lang="hu">Kedvezményezett kimutatás</caption>
-      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/9ba8d274-7af8-496c-9ab6-2c49235ec735</image>
     </screenshot>
     
     <screenshot>
+      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/ef2d2269-a973-4957-a10b-d13651390ad0</image>
       <caption>Budget Planner</caption>
       <caption xml:lang="hu">Költségvetés-tervező</caption>
-      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/ef2d2269-a973-4957-a10b-d13651390ad0</image>
     </screenshot>
     
     <screenshot>
+      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/4edfc0c8-7bfc-4052-bf2c-4b833b8b1547</image>
       <caption>Multiple User Interface Language Support – Hungarian (magyar)</caption>
       <caption xml:lang="hu">Több felhasználói felület nyelvi támogatása – magyar</caption>
-      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/4edfc0c8-7bfc-4052-bf2c-4b833b8b1547</image>
     </screenshot>
     
     <screenshot>
+      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/be52a7f3-9dea-46dd-a04e-f198dd413b08</image>
       <caption>Category Manager – unlimited nested multi-level category support</caption>
       <caption xml:lang="hu">Kategóriakezelő – korlátlan beágyazott többszintű kategóriatámogatás</caption>
-      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/be52a7f3-9dea-46dd-a04e-f198dd413b08</image>
     </screenshot>
     
     <screenshot>
+      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/b69b1eba-e476-4755-b64c-1eec2946f4a8</image>
       <caption>Transaction Report Filter</caption>
       <caption xml:lang="hu">Ügyletjelentés-szűrő</caption>
-      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/b69b1eba-e476-4755-b64c-1eec2946f4a8</image>
     </screenshot>
     
     <screenshot>
+      <image>https://user-images.githubusercontent.com/17465872/233931375-051e7c9f-d4c4-4baa-9586-7ad10ef48aba.png</image>
       <caption>Import from CSV (Comma-Separated Values) file</caption>
       <caption xml:lang="hu">Importálás CSV-fájlból (vesszővel elválasztott értékek)</caption>
-      <image>https://user-images.githubusercontent.com/17465872/233931375-051e7c9f-d4c4-4baa-9586-7ad10ef48aba.png</image>
     </screenshot>
     
     <screenshot>
+      <image>https://user-images.githubusercontent.com/17465872/233931411-d7a92fed-272f-446d-b86a-89f99b66683a.png</image>
       <caption>Import from QIF (Quicken Interchange Format) file</caption>
       <caption xml:lang="hu">Importálás QIF-fájlból (Quicken-adatcsere formátuma)</caption>
-      <image>https://user-images.githubusercontent.com/17465872/233931411-d7a92fed-272f-446d-b86a-89f99b66683a.png</image>
     </screenshot>
     
     <screenshot>
+      <image>https://user-images.githubusercontent.com/17465872/233931435-825fa069-f182-4b50-970d-21755c90f1da.png</image>
       <caption>Export as XML (eXtensible Markup Language) file</caption>
       <caption xml:lang="hu">Exportálás XML-fájlként (bővíthető jelölőnyelv)</caption>
-      <image>https://user-images.githubusercontent.com/17465872/233931435-825fa069-f182-4b50-970d-21755c90f1da.png</image>
     </screenshot>
     
     <screenshot>
+      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/4e6e9a83-a242-43d5-9676-e65163f32fed</image>
       <caption>Currency Manager – multi currency support</caption>
       <caption xml:lang="hu">Pénznemkezelő – több pénznem támogatása</caption>
-      <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/4e6e9a83-a242-43d5-9676-e65163f32fed</image>
     </screenshot>
     
   </screenshots>
