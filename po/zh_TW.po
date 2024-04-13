@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-04-13 05:27\n"
+"PO-Revision-Date: 2024-04-13 06:29\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -828,7 +828,7 @@ msgstr "您想要繼續且刪除資料庫中的附件嗎？"
 
 #: attachmentdialog.cpp:512
 msgid "Delete attachment failed"
-msgstr ""
+msgstr "刪除附件失敗"
 
 #: attachmentdialog.cpp:525 general_report_manager.cpp:664
 msgid "Unable to open file:"
@@ -836,11 +836,11 @@ msgstr "無法開啟檔案:"
 
 #: attachmentdialog.cpp:528
 msgid "Please verify that file exists and user has rights to read it."
-msgstr ""
+msgstr "請確認此檔案存在，並用戶有讀取權限"
 
 #: attachmentdialog.cpp:529
 msgid "Open attachment failed"
-msgstr ""
+msgstr "無法開啓附件"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 currencydialog.cpp:219
 #: mmSimpleDialogs.cpp:630 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
@@ -857,7 +857,7 @@ msgstr "每週"
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:52
 #: model/Model_Budget.cpp:60
 msgid "Fortnightly"
-msgstr ""
+msgstr "每兩週"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:53 mmframereport.cpp:129
 #: mmframereport.cpp:143 mmframereport.cpp:171 mmframereport.cpp:198
@@ -900,19 +900,19 @@ msgstr "每日"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (n) Days"
-msgstr ""
+msgstr "在 (n) 天"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (n) Months"
-msgstr ""
+msgstr "在 (x) 月"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (n) Days"
-msgstr ""
+msgstr "每 (x) 日"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (n) Months"
-msgstr ""
+msgstr "每 (x) 月"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -924,23 +924,23 @@ msgstr "每月 (最後一個工作日)"
 
 #: billsdepositsdialog.cpp:306 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "複製排程交易"
 
 #: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "編輯排程交易"
 
 #: billsdepositsdialog.cpp:313
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "輸入排程交易"
 
 #: billsdepositsdialog.cpp:407
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "排程交易明細"
 
 #: billsdepositsdialog.cpp:421
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "指定此賬單或存款的日期"
 
 #: billsdepositsdialog.cpp:422 billsdepositspanel.cpp:133
 msgid "Date Due"
@@ -1324,19 +1324,19 @@ msgstr ""
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:460
 msgid "D&uplicate "
-msgstr ""
+msgstr "複製 (&U) "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "刪除排程交易"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
-msgstr ""
+msgstr "輸入"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "跳過下一次排程交易"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1344,15 +1344,15 @@ msgstr "略過"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "跳過下一次排程交易"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "輸入下一次交易"
 
 #: billsdepositspanel.cpp:435
 msgid "Skip next Occurrence"
-msgstr ""
+msgstr "跳過下次交易"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
@@ -1372,47 +1372,47 @@ msgstr ""
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
-msgstr ""
+msgstr "手動"
 
 #: billsdepositspanel.cpp:494
 msgid "Automated"
-msgstr ""
+msgstr "自動"
 
 #: billsdepositspanel.cpp:498
 msgid "Suggested"
-msgstr ""
+msgstr "推薦"
 
 #: billsdepositspanel.cpp:538 billsdepositspanel.cpp:605 mmhomepage.cpp:308
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
+msgstr[0] "剩下 %d 天"
 
 #: billsdepositspanel.cpp:543 billsdepositspanel.cpp:550
 #: billsdepositspanel.cpp:557 billsdepositspanel.cpp:610
 #: billsdepositspanel.cpp:617 billsdepositspanel.cpp:621
 msgid "Inactive"
-msgstr ""
+msgstr "不活躍"
 
 #: billsdepositspanel.cpp:548 mmhomepage.cpp:309
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
+msgstr[0] "延遲 %d 天"
 
 #: billsdepositspanel.cpp:555 billsdepositspanel.cpp:615 mmhomepage.cpp:311
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
+msgstr[0] "逾期 %d 天"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "您確定要删除已排程的交易嗎？"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "確認刪除"
 
 #: budgetentrydialog.cpp:47
 msgid "Budget Year Entry"
@@ -1424,11 +1424,11 @@ msgstr "類別 "
 
 #: budgetentrydialog.cpp:112 reports/budgetingperf.cpp:342
 msgid "Estimated:"
-msgstr ""
+msgstr "估計:"
 
 #: budgetentrydialog.cpp:114 reports/budgetingperf.cpp:343
 msgid "Actual:"
-msgstr ""
+msgstr "實際:"
 
 #: budgetentrydialog.cpp:117
 msgid "Type:"
@@ -1479,7 +1479,7 @@ msgstr "檢視非零值預算"
 
 #: budgetingpanel.cpp:54
 msgid "View Planned Budget Categories"
-msgstr ""
+msgstr "檢視已計劃類型預算"
 
 #: budgetingpanel.cpp:55
 msgid "View Income Budget Categories"
@@ -1496,22 +1496,22 @@ msgstr ""
 #: budgetingpanel.cpp:165
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "財政年度: %s - %li"
 
 #: budgetingpanel.cpp:169 reports/budget.cpp:94
 #, c-format
 msgid "Year: %s"
-msgstr ""
+msgstr "年： %s"
 
 #: budgetingpanel.cpp:174
 #, c-format
 msgid "Month: %s"
-msgstr ""
+msgstr "月： %s"
 
 #: budgetingpanel.cpp:180
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s    開始日期: %2$s"
 
 #: budgetingpanel.cpp:183
 #, c-format
@@ -1520,19 +1520,19 @@ msgstr ""
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
-msgstr ""
+msgstr "收入: "
 
 #: budgetingpanel.cpp:241 budgetingpanel.cpp:249
 msgid "Estimated: "
-msgstr ""
+msgstr "估計: "
 
 #: budgetingpanel.cpp:243 budgetingpanel.cpp:251
 msgid "Actual: "
-msgstr ""
+msgstr "實際: "
 
 #: budgetingpanel.cpp:245 budgetingpanel.cpp:253 reports/budgetingperf.cpp:344
 msgid "Difference: "
-msgstr ""
+msgstr "差異: "
 
 #: budgetingpanel.cpp:248
 msgid "Expenses: "
@@ -1558,7 +1558,7 @@ msgstr "預算修改器"
 
 #: budgetyeardialog.cpp:93
 msgid "Add &Year"
-msgstr ""
+msgstr "新增年"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1566,15 +1566,15 @@ msgstr "新增預算年度"
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
-msgstr ""
+msgstr "新增月"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
-msgstr ""
+msgstr "新增預算月份"
 
 #: budgetyeardialog.cpp:105
 msgid "Delete existing budget"
-msgstr ""
+msgstr "刪除現有的預算"
 
 #: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:153
 msgid "Budget Entry Details"
