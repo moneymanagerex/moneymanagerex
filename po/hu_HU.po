@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-03-26 07:08\n"
+"PO-Revision-Date: 2024-04-14 07:56\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -4304,7 +4304,7 @@ msgstr[1] "Kijelölt ügyletek &visszaállítása…"
 
 #: mmchecking_list.cpp:521
 msgid "Restore all transactions in current view..."
-msgstr "Összes ügylet visszaállítása a jelenlegi nézetben…"
+msgstr "Öss&zes ügylet visszaállítása a jelenlegi nézetben…"
 
 #: mmchecking_list.cpp:656
 #, c-format
@@ -4329,15 +4329,15 @@ msgstr[1] "Kijelölt ügyletek &végleges törlése…"
 
 #: mmchecking_list.cpp:670
 msgid "Delete all transactions in current view..."
-msgstr "Összes ügylet törlése a jelenlegi nézetben…"
+msgstr "Öss&zes ügylet törlése a jelenlegi nézetben…"
 
 #: mmchecking_list.cpp:670
 msgid "Permanently delete all transactions in current view..."
-msgstr "Összes ügylet végleges törlése a jelenlegi nézetben…"
+msgstr "Öss&zes ügylet végleges törlése a jelenlegi nézetben…"
 
 #: mmchecking_list.cpp:672
 msgid "Delete Viewed \"Follow Up\" Transactions..."
-msgstr "Megtekintett „követés” ügyletek törlése…"
+msgstr "Megtekintett „&Követés” ügyletek törlése…"
 
 #: mmchecking_list.cpp:673
 msgid "Delete Viewed \"Unreconciled\" Transactions..."
