@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-03-16 00:31+0300\n"
-"PO-Revision-Date: 2024-04-13 21:59\n"
+"PO-Revision-Date: 2024-04-14 08:55\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -1320,7 +1320,7 @@ msgstr ""
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:776
 #: mmframe.cpp:3180 mmhomepagepanel.cpp:243
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "排程交易"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:460
 msgid "D&uplicate "
@@ -1356,19 +1356,19 @@ msgstr "跳過下次交易"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "新增排程交易..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "&編輯排程交易..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "複製排程交易..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&刪除排程交易..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
@@ -1852,7 +1852,7 @@ msgstr "貼上"
 
 #: constants.cpp:95
 msgid "Select All"
-msgstr ""
+msgstr "全選"
 
 #: constants.cpp:111
 msgid "64-bit"
@@ -1941,7 +1941,7 @@ msgstr "貨幣名稱"
 
 #: currencydialog.cpp:193
 msgid "Currency Code"
-msgstr ""
+msgstr "貨幣代碼"
 
 #: currencydialog.cpp:198
 msgid "Currency Symbol"
@@ -1994,7 +1994,7 @@ msgstr ""
 
 #: currencydialog.cpp:242
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "固定匯率"
 
 #: currencydialog.cpp:247
 msgid "Currency Format Sample:"
@@ -2032,7 +2032,7 @@ msgstr ""
 #: maincurrencydialog.cpp:813 maincurrencydialog.h:76 mmframe.cpp:1712
 #: mmframe.cpp:1932 optionsettingsgeneral.cpp:301
 msgid "Currency Manager"
-msgstr ""
+msgstr "貨幣管理員"
 
 #: customfieldeditdialog.cpp:113
 msgid "Custom Field Details"
@@ -2056,7 +2056,7 @@ msgstr "欄位類型"
 
 #: customfieldeditdialog.cpp:145
 msgid "Select type of custom field"
-msgstr ""
+msgstr "選擇自訂欄位的類型。"
 
 #: customfieldeditdialog.cpp:148
 msgid "ToolTip"
