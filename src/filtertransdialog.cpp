@@ -83,7 +83,8 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog()
 mmFilterTransactionsDialog::~mmFilterTransactionsDialog()
 {
     wxLogDebug("~mmFilterTransactionsDialog");
-    Model_Infotable::instance().Set("TRANSACTION_FILTER_SIZE", GetSize());
+    if (isReportMode_)
+        Model_Infotable::instance().Set("TRANSACTION_FILTER_SIZE", GetSize());
 }
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int accountID, bool isReport, wxString selected)
