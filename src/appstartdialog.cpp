@@ -123,8 +123,8 @@ void mmAppStartDialog::CreateControls()
     mmToolTip(itemButton10, s);
     itemBoxSizer5->Add(itemButton10, 0, wxGROW | wxALL, 5);
 
-    wxButton* itemButton11 = new wxButton(this, wxID_FORWARD, _("&Support Forums"));
-    mmToolTip(itemButton11, _("Visit the Support Forums"));
+    wxButton* itemButton11 = new wxButton(this, wxID_FORWARD, _("Support &Forum"));
+    mmToolTip(itemButton11, _("Visit the Support Forum website"));
     itemBoxSizer5->Add(itemButton11, 0, wxGROW | wxALL, 5);
 
     wxBoxSizer* itemBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
