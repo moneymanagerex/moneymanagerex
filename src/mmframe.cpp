@@ -1828,7 +1828,7 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
         , _("W&iki pages"), _("Read and update wiki pages"));
     wxMenuItem* menuItemReportIssues = new wxMenuItem(menuHelp, MENU_REPORTISSUES
         , _("&Forum")
-        , _("Visit MMEX forum to read and post comments"));
+        , _("Visit MMEX forum to read and post comments and for support"));
     wxMenuItem* menuItemGooglePlay = new wxMenuItem(menuHelp, MENU_GOOGLEPLAY
         , _("MMEX for &Android")
         , _("Install MMEX for Android based smartphones and tablets"));
