@@ -2863,6 +2863,9 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         refreshPanelData();
         RefreshNavigationTree();
 
+        // Reset columns of the checking panel in case the time columns was added/removed
+        wxDynamicCast(panelCurrent_, mmCheckingPanel)->ResetColumnView();
+
         const wxString& sysMsg = _("MMEX Options have been updated.") + "\n\n"
             + _("Some settings take effect only after an application restart.");
         wxMessageBox(sysMsg, _("MMEX Options"), wxOK | wxICON_INFORMATION);
@@ -3235,7 +3238,7 @@ void mmGUIFrame::createAllTransactionsPage()
     if (panelCurrent_->GetId() == mmID_ALLTRANSACTIONS)
     {
         mmCheckingPanel* checkingAccountPage = wxDynamicCast(panelCurrent_, mmCheckingPanel);
-        checkingAccountPage->ResetColumnView();
+        checkingAccountPage->RefreshList();
     }
     else
     {
@@ -3274,7 +3277,7 @@ void mmGUIFrame::createDeletedTransactionsPage()
     if (panelCurrent_->GetId() == mmID_DELETEDTRANSACTIONS)
     {
         mmCheckingPanel* checkingAccountPage = wxDynamicCast(panelCurrent_, mmCheckingPanel);
-        checkingAccountPage->ResetColumnView();
+        checkingAccountPage->RefreshList();
     }
     else
     {
@@ -3319,7 +3322,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     if (panelCurrent_->GetId() == mmID_CHECKING && (newCreditDisplayed == creditDisplayed_))
     {
         mmCheckingPanel* checkingAccountPage = wxDynamicCast(panelCurrent_, mmCheckingPanel);
-        checkingAccountPage->ResetColumnView();
+        checkingAccountPage->RefreshList();
         checkingAccountPage->DisplayAccountDetails(accountID);
     }
     else
