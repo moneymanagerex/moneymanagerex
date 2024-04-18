@@ -163,7 +163,12 @@ void mmCheckingPanel::filterTable()
 
     for (const auto& tran : i)
     {
-         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
+        wxString strDate = Model_Checking::TRANSDATE(tran).FormatISODate();
+
+        if (ignore_future && strDate > today_date_string)
+            continue;
+
+        double transaction_amount = Model_Checking::amount(tran, m_AccountID);
         if (tran.DELETEDTIME.IsEmpty())
         {
             if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
@@ -171,11 +176,6 @@ void mmCheckingPanel::filterTable()
             if (Model_Checking::status(tran.STATUS) == Model_Checking::RECONCILED)
                 m_reconciled_balance += transaction_amount;
         }
-
-        wxString strDate = Model_Checking::TRANSDATE(tran).FormatISODate();
-
-        if (ignore_future && strDate > today_date_string)
-            continue;
 
         Model_Checking::Full_Data full_tran(tran, splits, tags);
         bool expandSplits = false;
