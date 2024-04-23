@@ -223,6 +223,9 @@ Stefano Ducati
 Juan de Arriba
 Michel Limenitakis
 Urias Jimenez
+Mihkel Loderaud
+Adam Leinss
+Mariano Rossello
 
 ### 2023
 Renato
