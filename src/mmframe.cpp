@@ -552,6 +552,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 int transID = Model_Checking::instance().save(tran);
 
                 Model_Splittransaction::Cache checking_splits;
+                std::vector<wxArrayInt> splitTags;
                 for (const auto &item : Model_Billsdeposits::splittransaction(q1))
                 {
                     Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
@@ -560,8 +561,31 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                     split->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
                     split->NOTES = item.NOTES;
                     checking_splits.push_back(split);
+                    wxArrayInt tags;
+                    for (const auto& tag :
+                         Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT)),
+                                                        Model_Taglink::REFID(item.SPLITTRANSID)))
+                        tags.Add(tag.TAGID);
+                    splitTags.push_back(tags);
                 }
                 Model_Splittransaction::instance().save(checking_splits);
+
+                // Save split tags
+                const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
+
+                for (size_t i = 0; i < checking_splits.size(); i++)
+                {
+                    Model_Taglink::Data_Set splitTaglinks;
+                    for (const auto& tagId : splitTags.at(i))
+                    {
+                        Model_Taglink::Data* t = Model_Taglink::instance().create();
+                        t->REFTYPE = splitRefType;
+                        t->REFID = checking_splits[i]->SPLITTRANSID;
+                        t->TAGID = tagId;
+                        splitTaglinks.push_back(*t);
+                    }
+                    Model_Taglink::instance().update(splitTaglinks, splitRefType, checking_splits.at(i)->SPLITTRANSID);
+                }
 
                 // Copy the custom fields to the newly created transaction
                 const auto& customDataSet = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(-q1.BDID));
@@ -575,6 +599,20 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                     Model_CustomFieldData::instance().save(fieldData);
                 }
                 Model_CustomFieldData::instance().ReleaseSavepoint();
+                
+                // Save base transaction tags
+                Model_Taglink::Data_Set taglinks;
+                const wxString& txnRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+                for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT)),
+                                                                      Model_Taglink::REFID(q1.BDID)))
+                {
+                    Model_Taglink::Data* t = Model_Taglink::instance().create();
+                    t->REFTYPE = txnRefType;
+                    t->REFID = transID;
+                    t->TAGID = tag.TAGID;
+                    taglinks.push_back(*t);
+                }
+                Model_Taglink::instance().update(taglinks, txnRefType, transID);
             }
             Model_Billsdeposits::instance().completeBDInSeries(q1.BDID);
         }
