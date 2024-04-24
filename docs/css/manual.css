@@ -1,6 +1,6 @@
 /* HTML formatting */
 html {
-    font-family: "Liberation Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Liberation Sans", sans-serif;
     margin: 0 10px;
     line-height: 1.3
 }
@@ -56,7 +56,7 @@ th, td { padding: 3px 10px; }
     @page { margin: 2cm; }
 
     html {
-        font-family: "Liberation Serif", "Times New Roman", Times, serif;
+        font-family: "Liberation Serif", serif;
         font-size: 12pt;
         background: white;
         color: black;
@@ -155,7 +155,7 @@ kbd>kbd {
     box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px white inset;
     color: #333;
     display: inline-block;
-    font-family: "Liberation Sans", Arial, Helvetica, sans-serif;
+    font-family: "Liberation Sans", sans-serif;
     font-size: 0.75em;
     line-height: 1.4;
     margin: 0 .1em;
