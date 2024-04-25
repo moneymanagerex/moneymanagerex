@@ -1,6 +1,6 @@
 /* HTML formatting */
 html {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Liberation Sans", sans-serif;
     margin: 0 10px;
     line-height: 1.3
 }
@@ -11,7 +11,8 @@ html {
         color: white;
     }
     a { text-decoration: none; 
-        color: yellow; }
+        color: yellow;
+    }
 }
   
 @media (prefers-color-scheme: light) {
@@ -20,7 +21,8 @@ html {
         color: #555;
     }
     a { text-decoration: none; 
-        color: blue; }
+        color: blue;
+    }
 }
 
 a:hover, a:focus { text-decoration: underline dotted; }
@@ -54,7 +56,7 @@ th, td { padding: 3px 10px; }
     @page { margin: 2cm; }
 
     html {
-        font-family: "Times New Roman", Times, serif;
+        font-family: "Liberation Serif", serif;
         font-size: 12pt;
         background: white;
         color: black;
@@ -153,7 +155,7 @@ kbd>kbd {
     box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px white inset;
     color: #333;
     display: inline-block;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Liberation Sans", sans-serif;
     font-size: 0.75em;
     line-height: 1.4;
     margin: 0 .1em;
