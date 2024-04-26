@@ -1162,7 +1162,7 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
     {
         // We removed the 'Time' column from the list of names
         // We need to reduce the index of any columns to the right to realign the indexes to the names in the dialog
-        for (int i = 0; i < hiddenCols.GetCount(); i++)
+        for (unsigned int i = 0; i < hiddenCols.GetCount(); i++)
         {
             if (hiddenCols[i] > COL_TIME)
                 hiddenCols[i] -= 1;
@@ -1567,7 +1567,6 @@ const wxString mmFilterTransactionsDialog::mmGetDescriptionToolTip() const
                     temp += (temp.empty() ? "" : ", ") + (mmGetAccountsID().empty() ? _("Transfer") : _("Transfer Out"));
                 value = temp;
             }
-            value;
             break;
         }
         case kNumberType:
@@ -1578,7 +1577,6 @@ const wxString mmFilterTransactionsDialog::mmGetDescriptionToolTip() const
                 value = wxString::Format("%i", static_cast<int>(d));
             else
                 value = wxString::Format("%f", d);
-            value;
             break;
         }
         case kArrayType:

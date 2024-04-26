@@ -296,7 +296,7 @@ void mmSplitTransactionDialog::CreateControls()
     SetSizeHints(sz.GetWidth(), sz.GetHeight(), -1, sz.GetHeight());
 }
 
-void mmSplitTransactionDialog::FillControls(int focusRow)
+void mmSplitTransactionDialog::FillControls(const int focusRow)
 {
     DoWindowsFreezeThaw(this);
     for (int row = (focusRow == -1 ? 0 : focusRow); row < m_splits_widgets.size(); row++)
@@ -332,10 +332,10 @@ void mmSplitTransactionDialog::FillControls(int focusRow)
     DoWindowsFreezeThaw(this);
 }
 
-void mmSplitTransactionDialog::createNewRow(bool enabled)
+void mmSplitTransactionDialog::createNewRow(const bool enabled)
 {
     int row = m_splits_widgets.size();
-    int catID = (row < m_splits.size()) ? m_splits.at(row).CATEGID : -1;
+    int catID = (row < int(m_splits.size())) ? m_splits.at(row).CATEGID : -1;
 
     mmComboBoxCategory* ncbc = new mmComboBoxCategory(slider_, mmID_MAX + row
                                         , wxDefaultSize, catID, true);

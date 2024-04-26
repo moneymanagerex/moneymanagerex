@@ -102,7 +102,7 @@ inline void mmCalcValidator::OnChar(wxKeyEvent& event)
         // Determine selection start/end to allow overwrite of decimal
         long selStart, selEnd;
         text_field->GetSelection(&selStart, &selEnd);
-        if (ind < value.Length() && (ind < selStart || ind >= selEnd))
+        if (ind < value.Length() && (ind < size_t(selStart) || ind >= size_t(selEnd)))
         {
             // check if after last decimal point there is an operation char (+-/*)
             if (value.find('+', ind + 1) >= value.Length() && value.find('-', ind + 1) >= value.Length() &&

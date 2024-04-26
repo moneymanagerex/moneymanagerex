@@ -87,8 +87,8 @@ private:
         );
 
     void CreateControls();
-    void FillControls(int focusRow = -1);
-    void createNewRow(bool enabled);
+    void FillControls(const int focusRow = -1);
+    void createNewRow(const bool enabled);
     void activateNewRow();
     void UpdateSplitTotal();
     void UpdateExtraInfo(int row);
