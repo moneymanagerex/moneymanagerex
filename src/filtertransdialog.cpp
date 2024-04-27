@@ -1407,10 +1407,10 @@ bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int ref
     {
         wxString tag = tags.Item(i);
         // if the tag is the "OR" operator, fetch the next tag and compare with OR
-        if (tags.Item(i) == "|" && i++ < int(tags.GetCount()) - 1)
+        if (tags.Item(i) == "|" && i++ < static_cast<int>(tags.GetCount()) - 1)
             match |= tagnames.find(tags.Item(i)) != tagnames.end();
         // if the tag is the "AND" operator, fetch the next tag and compare with AND
-        else if (tags.Item(i) == "&" && i++ < int(tags.GetCount()) - 1)
+        else if (tags.Item(i) == "&" && i++ < static_cast<int>(tags.GetCount()) - 1)
             match &= tagnames.find(tags.Item(i)) != tagnames.end();
         // default compare with AND operator
         else if (tags.Item(i) != "&" && tags.Item(i) != "|")

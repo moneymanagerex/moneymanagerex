@@ -335,7 +335,7 @@ void mmSplitTransactionDialog::FillControls(const int focusRow)
 void mmSplitTransactionDialog::createNewRow(const bool enabled)
 {
     int row = m_splits_widgets.size();
-    int catID = (row < int(m_splits.size())) ? m_splits.at(row).CATEGID : -1;
+    int catID = (row < static_cast<int>(m_splits.size())) ? m_splits.at(row).CATEGID : -1;
 
     mmComboBoxCategory* ncbc = new mmComboBoxCategory(slider_, mmID_MAX + row
                                         , wxDefaultSize, catID, true);
