@@ -1162,7 +1162,7 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
     {
         // We removed the 'Time' column from the list of names
         // We need to reduce the index of any columns to the right to realign the indexes to the names in the dialog
-        for (int i = 0; i < hiddenCols.GetCount(); i++)
+        for (unsigned int i = 0; i < hiddenCols.GetCount(); i++)
         {
             if (hiddenCols[i] > COL_TIME)
                 hiddenCols[i] -= 1;
@@ -1407,10 +1407,10 @@ bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int ref
     {
         wxString tag = tags.Item(i);
         // if the tag is the "OR" operator, fetch the next tag and compare with OR
-        if (tags.Item(i) == "|" && i++ < int(tags.GetCount()) - 1)
+        if (tags.Item(i) == "|" && i++ < static_cast<int>(tags.GetCount()) - 1)
             match |= tagnames.find(tags.Item(i)) != tagnames.end();
         // if the tag is the "AND" operator, fetch the next tag and compare with AND
-        else if (tags.Item(i) == "&" && i++ < int(tags.GetCount()) - 1)
+        else if (tags.Item(i) == "&" && i++ < static_cast<int>(tags.GetCount()) - 1)
             match &= tagnames.find(tags.Item(i)) != tagnames.end();
         // default compare with AND operator
         else if (tags.Item(i) != "&" && tags.Item(i) != "|")
@@ -1567,7 +1567,6 @@ const wxString mmFilterTransactionsDialog::mmGetDescriptionToolTip() const
                     temp += (temp.empty() ? "" : ", ") + (mmGetAccountsID().empty() ? _("Transfer") : _("Transfer Out"));
                 value = temp;
             }
-            value;
             break;
         }
         case kNumberType:
@@ -1578,7 +1577,6 @@ const wxString mmFilterTransactionsDialog::mmGetDescriptionToolTip() const
                 value = wxString::Format("%i", static_cast<int>(d));
             else
                 value = wxString::Format("%f", d);
-            value;
             break;
         }
         case kArrayType:

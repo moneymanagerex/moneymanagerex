@@ -345,7 +345,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         output += "<table class='table'>\n<thead>\n<tr class='active'><th>";
         output += wxString::Format("<a href=\"billsdeposits:\" oncontextmenu=\"return false;\" target=\"_blank\">%s</a></th>\n<th></th>\n", title_);
         output += wxString::Format("<th nowrap class='text-right sorttable_nosort'>%i <a id='%s_label' onclick=\"toggleTable('%s'); \" href='#%s' oncontextmenu='return false;'>[-]</a></th></tr>\n"
-            , int(bd_days.size()), idStr, idStr, idStr);
+            , static_cast<int>(bd_days.size()), idStr, idStr, idStr);
         output += "</thead></table>\n";
 
         output += wxString::Format("<table class='table' id='%s'>\n", idStr);

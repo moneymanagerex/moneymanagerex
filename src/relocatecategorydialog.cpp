@@ -242,14 +242,14 @@ void relocateCategoryDialog::IsOkOk()
     auto payees = Model_Payee::instance()
         .find(Model_Payee::CATEGID(m_sourceCatID));
 
-    int trxs_size = (m_sourceCatID < 0 && m_sourceSubCatID < 0) ? 0 : int(transactions.size());
-    int checks_size = int(checking_split.size());
-    int bills_size = (m_sourceCatID < 0 && m_sourceSubCatID < 0) ? 0 : int(billsdeposits.size());
-    int budget_split_size = int(budget_split.size());
-    int payees_size = (m_sourceCatID < 0 && m_sourceSubCatID < 0) ? 0 : int(payees.size());
-    int budget_size = int(budget.size());
+    const int trxs_size = (m_sourceCatID < 0 && m_sourceSubCatID < 0) ? 0 : static_cast<int>(transactions.size());
+    const int checks_size = static_cast<int>(checking_split.size());
+    const int bills_size = (m_sourceCatID < 0 && m_sourceSubCatID < 0) ? 0 : static_cast<int>(billsdeposits.size());
+    const int budget_split_size = static_cast<int>(budget_split.size());
+    const int payees_size = (m_sourceCatID < 0 && m_sourceSubCatID < 0) ? 0 : static_cast<int>(payees.size());
+    const int budget_size = static_cast<int>(budget.size());
 
-    int total = trxs_size + checks_size + bills_size + budget_split_size + payees_size + budget_size;
+    const int total = trxs_size + checks_size + bills_size + budget_split_size + payees_size + budget_size;
 
     wxString msgStr = wxString()
         << wxString::Format(_("Records found in transactions: %i"), trxs_size) << "\n"

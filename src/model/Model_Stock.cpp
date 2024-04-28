@@ -226,14 +226,14 @@ double Model_Stock::RealGainLoss(const Data* r, bool to_base_curr)
     double conv_rate = 1;
 
     Model_Checking::Data_Set checking_list;
-    for (const auto trans : trans_list)
+    for (const auto &trans : trans_list)
     {
         Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
         if (checking_entry && checking_entry->DELETEDTIME.IsEmpty()) checking_list.push_back(*checking_entry);
     }
     std::stable_sort(checking_list.begin(), checking_list.end(), SorterByTRANSDATE());
 
-    for (const auto trans : checking_list)
+    for (const auto &trans : checking_list)
     {
         Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.TRANSID);
         conv_rate = to_base_curr ? Model_CurrencyHistory::getDayRate(currency->CURRENCYID, trans.TRANSDATE) : 1;
@@ -298,14 +298,14 @@ double Model_Stock::UnrealGainLoss(const Data* r, bool to_base_curr)
             wxString earliest_date = wxDate::Today().FormatISODate();
 
             Model_Checking::Data_Set checking_list;
-            for (const auto trans : trans_list)
+            for (const auto &trans : trans_list)
             {
                 Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
                 if (checking_entry && checking_entry->DELETEDTIME.IsEmpty()) checking_list.push_back(*checking_entry);
             }
             std::stable_sort(checking_list.begin(), checking_list.end(), SorterByTRANSDATE());
 
-            for (const auto trans : checking_list)
+            for (const auto &trans : checking_list)
             {
                 Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.TRANSID);
                 conv_rate = Model_CurrencyHistory::getDayRate(currency->CURRENCYID, trans.TRANSDATE);
