@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-04-25 23:35+0300\n"
-"PO-Revision-Date: 2024-04-28 15:28\n"
+"PO-Revision-Date: 2024-04-28 16:46\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -655,22 +655,22 @@ msgstr "தேடல்"
 #: assetspanel.cpp:509 filtertransdialog.cpp:693 mmcheckingpanel.cpp:495
 #: payeedialog.cpp:137
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "உதவிக்குறிப்புகள்: உங்கள் தேடல் அளவுகோலில் வைல்டு கார்டு எழுத்துக்களைப் பயன்படுத்தலாம் - கேள்விக்குறி (?), நட்சத்திரக் குறியீடு (*) -."
 
 #: assetspanel.cpp:510 filtertransdialog.cpp:694 mmcheckingpanel.cpp:496
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "எந்த ஒரு எழுத்தையும் கண்டுபிடிக்க கேள்விக்குறியை (?) பயன்படுத்தவும் - எடுத்துக்காட்டாக, s?t 'sat' மற்றும் 'set' ஐக் கண்டறியும்."
 
 #: assetspanel.cpp:511 filtertransdialog.cpp:695 mmcheckingpanel.cpp:497
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "நட்சத்திரக் குறியைப் (*) பயன்படுத்தி எத்தனை எழுத்துக்களைக் கண்டறியவும் - எடுத்துக்காட்டாக, s*d 'sad' மற்றும் 'started' என்பதைக் கண்டறியும்."
 
 #: assetspanel.cpp:512 filtertransdialog.cpp:696 mmcheckingpanel.cpp:498
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "வாக்கியத்தின் நடுவில் ஏதேனும் ஒரு சரத்தைக் கண்டறிய தொடக்கத்தில் (*) நட்சத்திரத்தைப் பயன்படுத்தவும்."
 
 #: assetspanel.cpp:583 stockspanel.cpp:333 stockspanel.cpp:520
 #, c-format
@@ -680,20 +680,21 @@ msgstr "மொத்தம்: %s"
 #: assetspanel.cpp:666
 #, c-format
 msgid "Change in Value: %1$s %2$s"
-msgstr ""
+msgstr "மதிப்பில் மாற்றம்: %1$s %2$s"
 
 #: assetspanel.cpp:782
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "இந்தச் சொத்துக்கு அதன் சொந்தக் கணக்கு இல்லை\n\n"
+"இந்தச் சொத்திற்கான பல பரிவர்த்தனைகள் பரிந்துரைக்கப்படவில்லை."
 
 #: assetspanel.cpp:784
 msgid "Asset Management"
-msgstr ""
+msgstr "சொத்து மேலாண்மை"
 
 #: assetspanel.cpp:803
 msgid "Account \t Date\t   Value\n\n"
-msgstr ""
+msgstr "கணக்கு தேதி மதிப்பு\n\n"
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:435
 msgid "Description"
@@ -706,42 +707,42 @@ msgstr "கோப்பு"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
-msgstr ""
+msgstr "இணைப்பு கோப்புறை வரையறுக்கப்படவில்லை."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools → Options → Attachments"
-msgstr ""
+msgstr "தயவுசெய்து அதை கருவிகள் → விருப்பங்கள் → இணைப்புகளில் அமைக்கவும்"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
-msgstr ""
+msgstr "இணைப்பு கோப்புறை வரையறுக்கப்படவில்லை"
 
 #: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
-msgstr ""
+msgstr "இணைப்புகள் கோப்புறையைக் கண்டுபிடிக்க முடியவில்லை:"
 
 #: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
-msgstr ""
+msgstr "மேலே உள்ள பாதை சரியானதா என்பதைச் சரிபார்க்கவும்"
 
 #: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
-msgstr ""
+msgstr "இணைப்பு கோப்புறை வரையறுக்கப்படவில்லை"
 
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %s | %i"
-msgstr ""
+msgstr "இணைப்பு மேலாளர் | %s | %i"
 
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr ""
+msgstr "இணைப்பு மேலாளர் | %1$s | %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr ""
+msgstr "இணைப்பு மேலாளர் | புதிய %s"
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
@@ -749,31 +750,31 @@ msgstr "மற்ற கருவிகள்"
 
 #: attachmentdialog.cpp:190
 msgid "Import attachment:"
-msgstr ""
+msgstr "இணைப்பை இறக்குமதி செய்:"
 
 #: attachmentdialog.cpp:201
 msgid "Enter a description for the new attachment:"
-msgstr ""
+msgstr "புதிய இணைப்பிற்கான விளக்கத்தை உள்ளிடவும்:"
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
-msgstr ""
+msgstr "இணைப்பு மேலாளர்: இணைப்பைச் சேர்க்கவும்"
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "இணைப்புக்கான புதிய விளக்கத்தை உள்ளிடவும்:"
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
-msgstr ""
+msgstr "இணைப்பு மேலாளர்: இணைப்பைத் திருத்தவும்"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
-msgstr ""
+msgstr "இந்த இணைப்பை உண்மையில் நீக்க விரும்புகிறீர்களா?"
 
 #: attachmentdialog.cpp:277
 msgid "Confirm Attachment Deletion"
-msgstr ""
+msgstr "இணைப்பு நீக்கத்தை உறுதிப்படுத்தவும்"
 
 #: attachmentdialog.cpp:353 categdialog.cpp:313 customfieldlistdialog.cpp:260
 #: import_export/univcsvdialog.cpp:310 maincurrencydialog.cpp:539
@@ -797,51 +798,51 @@ msgstr ""
 
 #: attachmentdialog.cpp:407
 msgid "This directory and its files are automatically managed by MMEX."
-msgstr ""
+msgstr "இந்த கோப்பகமும் அதன் கோப்புகளும் தானாகவே MMEX ஆல் நிர்வகிக்கப்படும்."
 
 #: attachmentdialog.cpp:409
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
+msgstr "கோப்பகங்கள் மற்றும் கோப்புகளை நீக்கவோ, மறுபெயரிடவோ அல்லது கைமுறையாக மாற்றவோ வேண்டாம்."
 
 #: attachmentdialog.cpp:454 attachmentdialog.cpp:462
 msgid "Destination file already exist:"
-msgstr ""
+msgstr "இலக்கு கோப்பு ஏற்கனவே உள்ளது:"
 
 #: attachmentdialog.cpp:457
 msgid "File not found in attachments. Please delete or rename it."
-msgstr ""
+msgstr "இணைப்புகளில் கோப்பு இல்லை. அதை நீக்கவும் அல்லது மறுபெயரிடவும்."
 
 #: attachmentdialog.cpp:458 attachmentdialog.cpp:466
 msgid "Destination file already exist"
-msgstr ""
+msgstr "இலக்கு கோப்பு ஏற்கனவே உள்ளது"
 
 #: attachmentdialog.cpp:465
 msgid "File already found in attachments"
-msgstr ""
+msgstr "கோப்பு ஏற்கனவே இணைப்புகளில் உள்ளது"
 
 #: attachmentdialog.cpp:508
 msgid "Attachment not found:"
-msgstr ""
+msgstr "இணைப்பு கிடைக்கவில்லை:"
 
 #: attachmentdialog.cpp:511
 msgid "Do you want to continue and delete attachment on database?"
-msgstr ""
+msgstr "தரவுத்தளத்தில் இணைப்பைத் தொடரவும் நீக்கவும் விரும்புகிறீர்களா?"
 
 #: attachmentdialog.cpp:512
 msgid "Delete attachment failed"
-msgstr ""
+msgstr "இணைப்பை நீக்க முடியவில்லை"
 
 #: attachmentdialog.cpp:525 general_report_manager.cpp:664
 msgid "Unable to open file:"
-msgstr ""
+msgstr "கோப்பை திறக்க முடியவில்லை:"
 
 #: attachmentdialog.cpp:528
 msgid "Please verify that file exists and user has rights to read it."
-msgstr ""
+msgstr "கோப்பு இருப்பதையும், அதைப் படிக்க பயனருக்கு உரிமை உள்ளதா என்பதையும் சரிபார்க்கவும்."
 
 #: attachmentdialog.cpp:529
 msgid "Open attachment failed"
-msgstr ""
+msgstr "இணைப்பைத் திறக்க முடியவில்லை"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 currencydialog.cpp:219
 #: mmSimpleDialogs.cpp:630 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
@@ -858,7 +859,7 @@ msgstr "வாரமொருமுறை"
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:52
 #: model/Model_Budget.cpp:60
 msgid "Fortnightly"
-msgstr ""
+msgstr "இருவாரம்"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:53 mmframereport.cpp:129
 #: mmframereport.cpp:143 mmframereport.cpp:171 mmframereport.cpp:198
@@ -917,35 +918,35 @@ msgstr "ஒவ்வொரு (n) மாதங்களிலும்"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
-msgstr ""
+msgstr "மாதாந்திர (கடைசி நாள்)"
 
 #: billsdepositsdialog.cpp:67 billsdepositspanel.cpp:66
 msgid "Monthly (last business day)"
-msgstr ""
+msgstr "மாதாந்திர (கடைசி வணிக நாள்)"
 
 #: billsdepositsdialog.cpp:305 billsdepositspanel.cpp:304
 msgid "Duplicate Scheduled Transaction"
-msgstr ""
+msgstr "நகல் திட்டமிடப்பட்ட பரிவர்த்தனை"
 
 #: billsdepositsdialog.cpp:307 billsdepositspanel.cpp:299
 msgid "Edit Scheduled Transaction"
-msgstr ""
+msgstr "திட்டமிடப்பட்ட பரிவர்த்தனையைத் &திருத்து"
 
 #: billsdepositsdialog.cpp:312
 msgid "Enter Scheduled Transaction"
-msgstr ""
+msgstr "திட்டமிடப்பட்ட பரிவர்த்தனையை உள்ளிடவும்"
 
 #: billsdepositsdialog.cpp:406
 msgid "Scheduled Transaction Details"
-msgstr ""
+msgstr "திட்டமிடப்பட்ட பரிவர்த்தனை விவரங்கள்"
 
 #: billsdepositsdialog.cpp:420
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "இந்த பில் அல்லது டெபாசிட் செலுத்த வேண்டிய தேதியைக் குறிப்பிடவும்"
 
 #: billsdepositsdialog.cpp:421 billsdepositspanel.cpp:133
 msgid "Date Due"
-msgstr ""
+msgstr "செலுத்த வேண்டிய தேதி"
 
 #: billsdepositsdialog.cpp:426 billsdepositsdialog.cpp:1288
 msgid "Repeats"
@@ -953,31 +954,31 @@ msgstr "மீண்டும்"
 
 #: billsdepositsdialog.cpp:432
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "குறிப்பிட்ட மதிப்புகளுடன் கடைசியாக நிகழும் தேதிக்குத் திரும்பு"
 
 #: billsdepositsdialog.cpp:439
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "குறிப்பிட்ட மதிப்புகளுடன் அடுத்த நிகழும் தேதிக்கு முன்னேறவும்"
 
 #: billsdepositsdialog.cpp:450 billsdepositsdialog.cpp:1330
 msgid "Payments Left"
-msgstr ""
+msgstr "கொடுப்பனவுகள் மீதமுள்ளன"
 
 #: billsdepositsdialog.cpp:465
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "கட்டணத்தை உள்ளிட பயனரைக் கோருங்கள்"
 
 #: billsdepositsdialog.cpp:466
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr ""
+msgstr "'பணம் செலுத்திய தேதியில்' இந்தப் பரிவர்த்தனையை உள்ளிட பயனர் கோரியுள்ளார்"
 
 #: billsdepositsdialog.cpp:469
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "தானியங்கு இயக்கத்தை வழங்கவும்"
 
 #: billsdepositsdialog.cpp:470
 msgid "The requested payment will occur without user interaction"
-msgstr ""
+msgstr "கோரப்பட்ட கட்டணம் பயனர் தொடர்பு இல்லாமல் நடக்கும்"
 
 #: billsdepositsdialog.cpp:477 filtertrans.cpp:186 transdialog.cpp:422
 msgid "Transaction Details"
@@ -985,11 +986,11 @@ msgstr "பரிமாற்ற விவரம்"
 
 #: billsdepositsdialog.cpp:486
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr ""
+msgstr "இந்த பரிவர்த்தனையை உள்ளிட பயனர் கோரப்பட்ட தேதியைக் குறிப்பிடவும்"
 
 #: billsdepositsdialog.cpp:487 billsdepositspanel.cpp:132
 msgid "Date Paid"
-msgstr ""
+msgstr "செலுத்திய தேதி"
 
 #: billsdepositsdialog.cpp:499 filtertransdialog.cpp:645 transdialog.cpp:1319
 msgid "Specify the status for the transaction"
@@ -1013,11 +1014,11 @@ msgstr "உருவாக்கப்படும் பரிமாற்ற �
 
 #: billsdepositsdialog.cpp:508 transdialog.cpp:462
 msgid "&Advanced"
-msgstr ""
+msgstr "&மேம்படுத்தபட்ட"
 
 #: billsdepositsdialog.cpp:511 transdialog.cpp:1323
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
-msgstr ""
+msgstr "FROM மற்றும் TO கணக்குகளில் வெவ்வேறு தொகைகளை அமைக்க அனுமதிக்கிறது."
 
 #: billsdepositsdialog.cpp:522 billsdepositspanel.cpp:140
 #: budgetingpanel.cpp:293 filtertrans.cpp:205 filtertransdialog.cpp:1062
@@ -1034,7 +1035,7 @@ msgstr "தொகை"
 
 #: billsdepositsdialog.cpp:533 transdialog.cpp:1305
 msgid "Specify the transfer amount in the To Account"
-msgstr ""
+msgstr "கணக்கிலிருந்து பரிமாற்றத் தொகையைக் குறிப்பிடவும்"
 
 #: billsdepositsdialog.cpp:544 billsdepositsdialog.cpp:831
 #: billsdepositsdialog.cpp:844 billsdepositspanel.cpp:134 filtertrans.cpp:200
@@ -1051,7 +1052,7 @@ msgstr "கணக்கு"
 
 #: billsdepositsdialog.cpp:549
 msgid "Specify the Account that will own the scheduled transaction"
-msgstr ""
+msgstr "திட்டமிடப்பட்ட பரிவர்த்தனைக்கு சொந்தமான கணக்கைக் குறிப்பிடவும்"
 
 #: billsdepositsdialog.cpp:554 transdialog.cpp:246 transdialog.cpp:501
 msgid "To"
@@ -1091,7 +1092,7 @@ msgstr "வகை"
 #: billsdepositsdialog.cpp:582 billsdepositsdialog.cpp:1421 transdialog.cpp:528
 #: transdialog.cpp:1282
 msgid "Use split Categories"
-msgstr ""
+msgstr "பிளவு வகைகளைப் பயன்படுத்தவும்"
 
 #: billsdepositsdialog.cpp:590 billsdepositsdialog.cpp:970
 #: billsdepositspanel.cpp:138 filtertransdialog.cpp:629
@@ -1102,7 +1103,7 @@ msgstr ""
 #: splittransactionsdialog.cpp:566 transactionsupdatedialog.cpp:229
 #: transactionsupdatedialog.cpp:365 transdialog.cpp:536 transdialog.cpp:635
 msgid "Tags"
-msgstr ""
+msgstr "குறிச்சொற்கள்"
 
 #: billsdepositsdialog.cpp:599 transdialog.cpp:1321
 msgid "Specify any associated check number or transaction number"
@@ -1119,16 +1120,16 @@ msgstr "எண்"
 
 #: billsdepositsdialog.cpp:608 transdialog.cpp:556 usertransactionpanel.cpp:192
 msgid "Select one of the frequently used notes"
-msgstr ""
+msgstr "அடிக்கடி பயன்படுத்தப்படும் குறிப்புகளில் ஒன்றைத் தேர்ந்தெடுக்கவும்"
 
 #: billsdepositsdialog.cpp:614 transactionsupdatedialog.cpp:245
 #: transdialog.cpp:563
 msgid "User Colors"
-msgstr ""
+msgstr "பயனர் நிறங்கள்"
 
 #: billsdepositsdialog.cpp:618
 msgid "Organize attachments of this scheduled transaction"
-msgstr ""
+msgstr "இந்த திட்டமிடப்பட்ட பரிவர்த்தனையின் இணைப்புகளை ஒழுங்கமைக்கவும்"
 
 #: billsdepositsdialog.cpp:628 filtertrans.cpp:197 filtertransdialog.cpp:700
 #: filtertransdialog.cpp:1082 filtertransdialog.cpp:1925
@@ -1147,7 +1148,7 @@ msgstr "இப்பரிமாற்றத்துக்கான தகவ�
 #: billsdepositsdialog.cpp:652 filtertransdialog.cpp:815
 #: transactionsupdatedialog.cpp:283 transdialog.cpp:601
 msgid "Show/Hide custom fields window"
-msgstr ""
+msgstr "தனிப்பயன் புலங்கள் சாளரத்தைக் காட்டு/மறை"
 
 #: billsdepositsdialog.cpp:822 billsdepositsdialog.cpp:845 transdialog.cpp:245
 #: transdialog.cpp:254
@@ -1156,23 +1157,24 @@ msgstr "அனுப்புநர்"
 
 #: billsdepositsdialog.cpp:891
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "பணம் செலுத்தும் தேதி, நிலுவைத் தேதிக்குப் பிறகு, நீங்கள் நினைத்தது இதுதானா?"
 
 #: billsdepositsdialog.cpp:892
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "தாமதமாக பணம் செலுத்துவது போல் தெரிகிறது"
 
 #: billsdepositsdialog.cpp:944 transactionsupdatedialog.cpp:345
 #: transdialog.cpp:678
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "இந்தப் பணம் பெறுபவரின் பெயரை இதற்கு முன் நீங்கள் பயன்படுத்தியதில்லை. பெயர் சரியா?\n"
+"%s"
 
 #: billsdepositsdialog.cpp:945 transactionsupdatedialog.cpp:346
 #: transdialog.cpp:679
 msgid "Confirm payee name"
-msgstr ""
+msgstr "பணம் பெறுபவரின் பெயரை உறுதிப்படுத்தவும்"
 
 #: billsdepositsdialog.cpp:964 billsdepositsdialog.cpp:970
 #: billsdepositsdialog.cpp:1360 filtertransdialog.cpp:951
@@ -1188,54 +1190,59 @@ msgstr ""
 #: transactionsupdatedialog.cpp:365 transactionsupdatedialog.cpp:439
 #: transdialog.cpp:635 transdialog.cpp:639 transdialog.cpp:654 util.cpp:756
 msgid "Invalid value"
-msgstr ""
+msgstr "தவறான நுழைவு"
 
 #: billsdepositsdialog.cpp:1045 billsdepositsdialog.cpp:1048
 #: import_export/univcsvdialog.cpp:1419 stockdialog.cpp:414 transdialog.cpp:647
 #: transdialog.cpp:721 usertransactionpanel.cpp:451 webapp.cpp:566
 msgid "The opening date for the account is later than the date of this transaction"
-msgstr ""
+msgstr "கணக்கின் தொடக்க தேதி இந்த பரிவர்த்தனை தேதியை விட தாமதமானது"
 
 #: billsdepositsdialog.cpp:1279
 msgid "Specify the transfer amount in the From Account"
-msgstr ""
+msgstr "கணக்கிலிருந்து பரிமாற்றத் தொகையைக் குறிப்பிடவும்"
 
 #: billsdepositsdialog.cpp:1289
 msgid "Activates"
-msgstr ""
+msgstr "செயல்படுத்துகிறது"
 
 #: billsdepositsdialog.cpp:1291
 msgid "Period: Days"
-msgstr ""
+msgstr "காலம்: நாட்கள்"
 
 #: billsdepositsdialog.cpp:1292
 msgid "Period: Months"
-msgstr ""
+msgstr "காலம்: மாதங்கள்"
 
 #: billsdepositsdialog.cpp:1299
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "செயல்படுத்துவதற்கான காலத்தை நாட்களில் குறிப்பிடவும்.\n"
+"செயலில் இல்லாத போது காலியாகிவிடும்."
 
 #: billsdepositsdialog.cpp:1307
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "செயல்படுத்த, மாதங்களில் காலத்தைக் குறிப்பிடவும்.\n"
+"செயலில் இல்லாத போது காலியாகிவிடும்."
 
 #: billsdepositsdialog.cpp:1315
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "செயல்படுத்துவதற்கான காலத்தை நாட்களில் குறிப்பிடவும்.\n"
+"செயலில் இல்லாத போது காலியாக விடவும்."
 
 #: billsdepositsdialog.cpp:1323
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "செயல்படுத்த, மாதங்களில் காலத்தைக் குறிப்பிடவும்.\n"
+"செயலில் இல்லாத போது காலியாக விடவும்."
 
 #: billsdepositsdialog.cpp:1331
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr ""
+msgstr "செலுத்த வேண்டிய கட்டணங்களின் எண்ணிக்கையைக் குறிப்பிடவும்.\n"
+"பணம் செலுத்துதல் எப்போதும் தொடர்ந்தால் காலியாக விடவும்."
 
 #: billsdepositsdialog.cpp:1360 images_list.cpp:501
 #: import_export/univcsvdialog.cpp:1582 maincurrencydialog.cpp:482
@@ -1248,23 +1255,23 @@ msgstr "தவறு"
 #: billsdepositsdialog.cpp:1431 splittransactionsdialog.h:82
 #: transdialog.cpp:339
 msgid "Split Transaction"
-msgstr ""
+msgstr "பிளவு பரிவர்த்தனை"
 
 #: billsdepositsdialog.h:58 billsdepositspanel.cpp:295
 msgid "New Scheduled Transaction"
-msgstr ""
+msgstr "புதிய திட்டமிடப்பட்ட பரிவர்த்தனை"
 
 #: billsdepositsdialog.h:127
 msgid "Specify where the transaction is going to"
-msgstr ""
+msgstr "பரிவர்த்தனை எங்கு நடக்கிறது என்பதைக் குறிப்பிடவும்"
 
 #: billsdepositsdialog.h:128 transdialog.cpp:1314
 msgid "Specify where the transaction is coming from"
-msgstr ""
+msgstr "பரிவர்த்தனை எங்கிருந்து வருகிறது என்பதைக் குறிப்பிடவும்"
 
 #: billsdepositsdialog.h:129
 msgid "Specify which account the transfer is going to"
-msgstr ""
+msgstr "எந்தக் கணக்கிற்குப் பரிமாற்றம் செய்யப்படுகிறது என்பதைக் குறிப்பிடவும்"
 
 #: billsdepositsdialog.h:130 transdialog.cpp:1309 usertransactionpanel.cpp:123
 msgid "Specify the amount for this transaction"
@@ -1272,27 +1279,27 @@ msgstr "பரிமாற்றத் தொகையை குறிப்ப�
 
 #: billsdepositsdialog.h:131
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "மாற்ற வேண்டிய தொகையைக் குறிப்பிடவும்"
 
 #: billsdepositspanel.cpp:61
 #, c-format
 msgid "In %s Days"
-msgstr ""
+msgstr "%s நாட்களில்"
 
 #: billsdepositspanel.cpp:62
 #, c-format
 msgid "In %s Months"
-msgstr ""
+msgstr "%s மாதங்களில்"
 
 #: billsdepositspanel.cpp:63
 #, c-format
 msgid "Every %s Days"
-msgstr ""
+msgstr "ஒவ்வொரு %s நாட்களுக்கும்"
 
 #: billsdepositspanel.cpp:64
 #, c-format
 msgid "Every %s Months"
-msgstr ""
+msgstr "ஒவ்வொரு %s மாதங்களுக்கும்"
 
 #: billsdepositspanel.cpp:141 budgetingpanel.cpp:292 reports/myusage.cpp:163
 msgid "Frequency"
@@ -1300,95 +1307,95 @@ msgstr "இடைவெளி"
 
 #: billsdepositspanel.cpp:142
 msgid "Repetitions"
-msgstr ""
+msgstr "மீண்டும் மீண்டும்"
 
 #: billsdepositspanel.cpp:143
 msgid "Autorepeat"
-msgstr ""
+msgstr "தானாக மீண்டும் செய்யவும்"
 
 #: billsdepositspanel.cpp:144 mmhomepage.cpp:353
 msgid "Payment"
-msgstr ""
+msgstr "பணம் செலுத்துதல்"
 
 #: billsdepositspanel.cpp:197
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Dashboard 14 days before the transaction is due."
-msgstr ""
+msgstr "MMEX வழக்கமான கட்டணங்களை பரிவர்த்தனைகளாக அமைக்க அனுமதிக்கிறது. இந்த பரிவர்த்தனைகள் வழக்கமான வைப்புகளாகவும் இருக்கலாம் அல்லது எதிர்காலத்தில் ஏற்படும் இடமாற்றங்களாகவும் இருக்கலாம். இந்த பரிவர்த்தனைகள் ஒரு நிகழ்வு நிகழவிருக்கிறது என்பதை நினைவூட்டுவதாகவும், பரிவர்த்தனைக்கு 14 நாட்களுக்கு முன்பு டாஷ்போர்டில் தோன்றும்."
 
 #: billsdepositspanel.cpp:200
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr ""
+msgstr "உதவிக்குறிப்பு: இந்த பரிவர்த்தனைகளை செயல்படுத்துவதற்கு அமைக்கலாம் - இது குறிப்பிட்ட தேதியில் எந்த மதிப்புகளையும் சரிசெய்ய பயனரை அனுமதிக்கிறது."
 
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:814
 #: mmframe.cpp:3221 mmhomepagepanel.cpp:243
 msgid "Scheduled Transactions"
-msgstr ""
+msgstr "திட்டமிடப்பட்ட பரிவர்த்தனைகள்"
 
 #: billsdepositspanel.cpp:303 mmcheckingpanel.cpp:460
 msgid "D&uplicate "
-msgstr ""
+msgstr "ந&கல் "
 
 #: billsdepositspanel.cpp:309
 msgid "Delete Scheduled Transaction"
-msgstr ""
+msgstr "திட்டமிடப்பட்ட பரிவர்த்தனையை நீக்கு"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
-msgstr ""
+msgstr "உள்ளிடவு&ம்"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "அடுத்த திட்டமிடப்பட்ட பரிவர்த்தனை நிகழ்வை உள்ளிடவும்"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
-msgstr ""
+msgstr "&தவிர்க்கவும்"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "அடுத்த திட்டமிடப்பட்ட பரிவர்த்தனை நிகழ்வைத் தவிர்க்கவும்"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "அடுத்த நிகழ்வை உள்ளிடவும்..."
 
 #: billsdepositspanel.cpp:435
 msgid "Skip next Occurrence"
-msgstr ""
+msgstr "அடுத்த நிகழ்வைத் தவிர்க்கவும்"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&புதிய திட்டமிடப்பட்ட பரிவர்த்தனை..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "திட்டமிடப்பட்ட பரிவர்த்தனையைத் &திருத்து..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "&நகல் திட்டமிடப்பட்ட பரிவர்த்தனை..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "திட்டமிடப்பட்ட பரிவர்த்தனையை &நீக்கு..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
-msgstr ""
+msgstr "கையேடு"
 
 #: billsdepositspanel.cpp:494
 msgid "Automated"
-msgstr ""
+msgstr "தானியங்கி"
 
 #: billsdepositspanel.cpp:498
 msgid "Suggested"
-msgstr ""
+msgstr "பரிந்துரைக்கப்பட்டது"
 
 #: billsdepositspanel.cpp:538 billsdepositspanel.cpp:605 mmhomepage.cpp:308
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d மீதமுள்ள நாள்"
+msgstr[1] "%d மீதமுள்ள நாட்கள்"
 
 #: billsdepositspanel.cpp:543 billsdepositspanel.cpp:550
 #: billsdepositspanel.cpp:557 billsdepositspanel.cpp:610
