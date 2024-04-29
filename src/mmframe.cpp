@@ -1851,7 +1851,7 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
         , _("&Website")
         , _("Visit MMEX website for the latest news and updates"));
     wxMenuItem* menuItemFacebook = new wxMenuItem(menuHelp, MENU_FACEBOOK
-        , _("&Facebook"), _("Visit MMEX Facebook page"));
+        , _("Face&book"), _("Visit MMEX Facebook page"));
     wxMenuItem* menuItemCrowdin = new wxMenuItem(menuHelp, MENU_CROWDIN
         , _("&Crowdin"), _("Help translate MMEX on Crowdin"));
     wxMenuItem* menuItemTwitter = new wxMenuItem(menuHelp, MENU_TWITTER
@@ -1865,8 +1865,8 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     wxMenuItem* menuItemWiki = new wxMenuItem(menuHelp, MENU_WIKI
         , _("W&iki pages"), _("Read and update wiki pages"));
     wxMenuItem* menuItemReportIssues = new wxMenuItem(menuHelp, MENU_REPORTISSUES
-        , _("F&orum")
-        , _("Visit MMEX forum to read and post comments"));
+        , _("&Forum")
+        , _("Visit MMEX forum to read and post comments and for support"));
     wxMenuItem* menuItemGooglePlay = new wxMenuItem(menuHelp, MENU_GOOGLEPLAY
         , _("MMEX for &Android")
         , _("Install MMEX for Android based smartphones and tablets"));

@@ -118,13 +118,12 @@ void mmAppStartDialog::CreateControls()
     itemBoxSizer5->Add(itemButton9, 0, wxGROW | wxALL, 5);
 
     wxButton* itemButton10 = new wxButton(this, wxID_INDEX, _("&Website"));
-    const wxString s = wxString::Format(_("Visit the %s website")
-        , mmex::getProgramName());
+    const wxString s = wxString::Format(_("Visit MMEX website for the latest news and updates"));
     mmToolTip(itemButton10, s);
     itemBoxSizer5->Add(itemButton10, 0, wxGROW | wxALL, 5);
 
-    wxButton* itemButton11 = new wxButton(this, wxID_FORWARD, _("&Support Forums"));
-    mmToolTip(itemButton11, _("Visit the Support Forums"));
+    wxButton* itemButton11 = new wxButton(this, wxID_FORWARD, _("&Forum"));
+    mmToolTip(itemButton11, _("Visit MMEX forum to read and post comments and for support"));
     itemBoxSizer5->Add(itemButton11, 0, wxGROW | wxALL, 5);
 
     wxBoxSizer* itemBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
