@@ -120,7 +120,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         ? _("Budget Categories for %s") : _("Budget Category Summary for %s");
 
     headingStr = wxString::Format(headerStartupMsg
-        , headingStr + "<br>" + _("( Estimated Vs Actual )"));
+        , headingStr + "<br>" + _("(Estimated vs. Actual)"));
     hb.addReportHeader(headingStr, 1, Option::instance().getIgnoreFutureTransactions());
     hb.DisplayDateHeading(yearBegin, yearEnd);
     // Prime the filter

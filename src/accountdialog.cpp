@@ -187,7 +187,7 @@ void mmNewAcctDialog::CreateControls()
     notes_sizer->Add(m_notesCtrl, g_flagsExpand);
 
     wxPanel* others_tab = new wxPanel(m_notebook, wxID_ANY);
-    m_notebook->AddPage(others_tab, _("Others"));
+    m_notebook->AddPage(others_tab, _("Other"));
     wxBoxSizer *others_sizer = new wxBoxSizer(wxVERTICAL);
     others_tab->SetSizer(others_sizer);
 

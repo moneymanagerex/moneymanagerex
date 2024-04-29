@@ -1672,7 +1672,7 @@ void mmGUIFrame::createMenu()
     menuView->Append(menuItemToggleFullscreen);
 #endif
 wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
-        , _("Reset View")
+        , _("&Reset View")
         , _("Reset view and dock tools"));
     menuView->Append(menuItemResetView);   
 
@@ -1863,7 +1863,7 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     wxMenuItem* menuItemGitHub = new wxMenuItem(menuHelp, MENU_GITHUB
         , _("&GitHub"), _("Access open source code repository and track reported bug statuses"));
     wxMenuItem* menuItemWiki = new wxMenuItem(menuHelp, MENU_WIKI
-        , _("W&iki pages"), _("Read and update wiki pages"));
+        , _("W&iki"), _("Read and update MMEX wiki"));
     wxMenuItem* menuItemReportIssues = new wxMenuItem(menuHelp, MENU_REPORTISSUES
         , _("&Forum")
         , _("Visit MMEX forum to read and post comments and for support"));

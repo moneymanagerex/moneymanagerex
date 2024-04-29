@@ -518,7 +518,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     else {
         menu.Append(MENU_TREEPOPUP_RESTORE, wxPLURAL("&Restore selected transaction...", "&Restore selected transactions...", selected));
         if (is_nothing_selected) menu.Enable(MENU_TREEPOPUP_RESTORE, false);
-        menu.Append(MENU_TREEPOPUP_RESTORE_VIEWED, _("Restore all transactions in current view..."));
+        menu.Append(MENU_TREEPOPUP_RESTORE_VIEWED, _("Restore &all transactions in current view..."));
     }
     bool columnIsAmount = false;
     long column = getColumnFromPosition(event.GetX());
@@ -667,10 +667,10 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         : wxPLURAL("&Permanently delete selected transaction...", "&Permanently delete selected transactions...", selected));
     if (is_nothing_selected) subGlobalOpMenuDelete->Enable(MENU_TREEPOPUP_DELETE2, false);
     subGlobalOpMenuDelete->AppendSeparator();
-    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_VIEWED, !m_cp->isTrash_ ? _("Delete all transactions in current view...") : _("Permanently delete all transactions in current view..."));
+    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_VIEWED, !m_cp->isTrash_ ? _("Delete &all transactions in current view...") : _("Permanently delete &all transactions in current view..."));
     if (!m_cp->isTrash_) {
-        subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_FLAGGED, _("Delete Viewed \"Follow Up\" Transactions..."));
-        subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_UNRECONCILED, _("Delete Viewed \"Unreconciled\" Transactions..."));
+        subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_FLAGGED, _("Delete Viewed \“&Follow Up\” Transactions..."));
+        subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_UNRECONCILED, _("Delete Viewed \“&Unreconciled\” Transactions..."));
     }
     menu.Append(MENU_TREEPOPUP_DELETE2, _("De&lete "), subGlobalOpMenuDelete);
 
