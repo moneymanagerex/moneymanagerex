@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-04-25 23:35+0300\n"
-"PO-Revision-Date: 2024-04-28 16:46\n"
+"PO-Revision-Date: 2024-04-29 11:35\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -794,7 +794,7 @@ msgstr "&நீக்கு "
 
 #: attachmentdialog.cpp:400
 msgid "Att."
-msgstr ""
+msgstr "அட்."
 
 #: attachmentdialog.cpp:407
 msgid "This directory and its files are automatically managed by MMEX."
@@ -1401,29 +1401,29 @@ msgstr[1] "%d மீதமுள்ள நாட்கள்"
 #: billsdepositspanel.cpp:557 billsdepositspanel.cpp:610
 #: billsdepositspanel.cpp:617 billsdepositspanel.cpp:621
 msgid "Inactive"
-msgstr ""
+msgstr "செயலற்ற"
 
 #: billsdepositspanel.cpp:548 mmhomepage.cpp:309
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%d நாட்கள் தாமதம்!"
 
 #: billsdepositspanel.cpp:555 billsdepositspanel.cpp:615 mmhomepage.cpp:311
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%d நாட்கள் தாமதம்!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "திட்டமிடப்பட்ட பரிவர்த்தனையை உண்மையில் நீக்க விரும்புகிறீர்களா?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "நீக்குதலை உறுதிப்படுத்தவும்"
 
 #: budgetentrydialog.cpp:47
 msgid "Budget Year Entry"
@@ -1431,7 +1431,7 @@ msgstr "பட்ஜெட் ஆண்டு உள்ளீடு"
 
 #: budgetentrydialog.cpp:106
 msgid "Category: "
-msgstr ""
+msgstr "வகை: "
 
 #: budgetentrydialog.cpp:112 reports/budgetingperf.cpp:342
 msgid "Estimated:"
