@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-04-25 23:35+0300\n"
-"PO-Revision-Date: 2024-04-29 11:35\n"
+"PO-Revision-Date: 2024-04-29 13:19\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -1435,11 +1435,11 @@ msgstr "வகை: "
 
 #: budgetentrydialog.cpp:112 reports/budgetingperf.cpp:342
 msgid "Estimated:"
-msgstr ""
+msgstr "மதிப்பிடப்பட்டது:"
 
 #: budgetentrydialog.cpp:114 reports/budgetingperf.cpp:343
 msgid "Actual:"
-msgstr ""
+msgstr "உண்மை:"
 
 #: budgetentrydialog.cpp:117
 msgid "Type:"
@@ -1478,7 +1478,7 @@ msgstr "இவ்வகைக்கான பட்ஜெட் தொகைய�
 
 #: budgetentrydialog.cpp:148 payeedialog.cpp:119
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "இந்த பட்ஜெட் உள்ளீட்டை விவரிக்க குறிப்புகளை உள்ளிடவும்"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
@@ -1490,7 +1490,7 @@ msgstr "சுழி அல்லாத பட்ஜெட் வகைகளை
 
 #: budgetingpanel.cpp:54
 msgid "View Planned Budget Categories"
-msgstr ""
+msgstr "திட்டமிடப்பட்ட பட்ஜெட் வகைகளைக் காண்க"
 
 #: budgetingpanel.cpp:55
 msgid "View Income Budget Categories"
@@ -1502,32 +1502,32 @@ msgstr "செலவு பட்ஜெட் வகைகளையும் ப
 
 #: budgetingpanel.cpp:57
 msgid "View Budget Category Summary"
-msgstr ""
+msgstr "பட்ஜெட் வகை சுருக்கத்தைப் பார்க்கவும்"
 
 #: budgetingpanel.cpp:165
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "நிதி ஆண்டு: %s - %li"
 
 #: budgetingpanel.cpp:169 reports/budget.cpp:94
 #, c-format
 msgid "Year: %s"
-msgstr ""
+msgstr "ஆண்டு: %s"
 
 #: budgetingpanel.cpp:174
 #, c-format
 msgid "Month: %s"
-msgstr ""
+msgstr "மாதங்கள்: %s"
 
 #: budgetingpanel.cpp:180
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s தொடக்க தேதி: %2$s"
 
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "%sக்கான பட்ஜெட் திட்டமிடுபவர்"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -1535,15 +1535,15 @@ msgstr "வருமானம்: "
 
 #: budgetingpanel.cpp:241 budgetingpanel.cpp:249
 msgid "Estimated: "
-msgstr ""
+msgstr "மதிப்பிடப்பட்டது: "
 
 #: budgetingpanel.cpp:243 budgetingpanel.cpp:251
 msgid "Actual: "
-msgstr ""
+msgstr "உண்மை: "
 
 #: budgetingpanel.cpp:245 budgetingpanel.cpp:253 reports/budgetingperf.cpp:344
 msgid "Difference: "
-msgstr ""
+msgstr "வேறுபாடு: "
 
 #: budgetingpanel.cpp:248
 msgid "Expenses: "
@@ -1551,7 +1551,7 @@ msgstr "செலவுகள்: "
 
 #: budgetingpanel.cpp:290
 msgid "Icon"
-msgstr ""
+msgstr "சின்னம்"
 
 #: budgetingpanel.cpp:294 reports/budgetcategorysummary.cpp:142
 #: reports/budgetcategorysummary.cpp:186
@@ -1565,11 +1565,11 @@ msgstr "உண்மையான"
 
 #: budgetyeardialog.cpp:46
 msgid "Budget Editor"
-msgstr ""
+msgstr "பட்ஜெட் எடிட்டர்"
 
 #: budgetyeardialog.cpp:93
 msgid "Add &Year"
-msgstr ""
+msgstr "&ஆண்டு சேர்"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1577,49 +1577,51 @@ msgstr "புது பட்ஜெட் ஆண்டை சேர்"
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
-msgstr ""
+msgstr "&மாதம் சேர்க்கவும்"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
-msgstr ""
+msgstr "புதிய பட்ஜெட் மாதத்தைச் சேர்க்கவும்"
 
 #: budgetyeardialog.cpp:105
 msgid "Delete existing budget"
-msgstr ""
+msgstr "ஏற்கனவே உள்ள பட்ஜெட்டை நீக்கவும்"
 
 #: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:153
 msgid "Budget Entry Details"
-msgstr ""
+msgstr "பட்ஜெட் நுழைவு விவரங்கள்"
 
 #: budgetyearentrydialog.cpp:45
 msgid "Budget Month Entry"
-msgstr ""
+msgstr "பட்ஜெட் ஆண்டு உள்ளீடு"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr ""
+msgstr "பட்ஜெட் ஆண்டு"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr ""
+msgstr "தேவையான ஆண்டைக் குறிப்பிடவும்.\n"
+"ஆண்டை அதிகரிக்க அல்லது குறைக்க ஸ்பின் பொத்தான்களைப் பயன்படுத்தவும்."
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
-msgstr ""
+msgstr "பட்ஜெட் மாதம்"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr ""
+msgstr "தேவையான மாதத்தைக் குறிப்பிடவும்.\n"
+"மாதத்தை அதிகரிக்க அல்லது குறைக்க ஸ்பின் பொத்தான்களைப் பயன்படுத்தவும்."
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
-msgstr ""
+msgstr "அடிப்படை பட்ஜெட் வை"
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
-msgstr ""
+msgstr "பட்ஜெட்டை அடிப்படையாகக் கொண்ட ஆண்டைக் குறிப்பிடவும்"
 
 #: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
@@ -1631,11 +1633,11 @@ msgstr "வகை"
 
 #: categdialog.cpp:258
 msgid "Reassign all categories to another category"
-msgstr ""
+msgstr "அனைத்து வகைகளையும் மற்றொரு வகைக்கு மறுஒதுக்கீடு செய்யவும்"
 
 #: categdialog.cpp:260 reports/categexp.cpp:206
 msgid "Collapse All"
-msgstr ""
+msgstr "எல்லாவற்றையும் சுருக்கு"
 
 #: categdialog.cpp:265 reports/categexp.cpp:207
 msgid "Expand All"
@@ -1643,11 +1645,11 @@ msgstr "எல்லாவற்றையும் விரிவாக்க�
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "Show &All"
-msgstr ""
+msgstr "&அனைத்தையும் காட்டு"
 
 #: categdialog.cpp:272
 msgid "Show all hidden categories"
-msgstr ""
+msgstr "மறைக்கப்பட்ட அனைத்து வகைகளையும் காட்டு"
 
 #: categdialog.cpp:315
 msgid "Add a new category"
@@ -1659,11 +1661,11 @@ msgstr "ஏற்கனவேயுள்ள வகையின் பெயர�
 
 #: categdialog.cpp:323
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "ஏற்கனவேயுள்ள பரிமாற்றங்களில் பயனில் இல்லாத ஏற்கனவேயுள்ள வகையை அழி."
 
 #: categdialog.cpp:328 maincurrencydialog.cpp:225
 msgid "&Select"
-msgstr ""
+msgstr "தேர்ந்தெடுக"
 
 #: categdialog.cpp:330
 msgid "Select the currently selected category as the selected category for the transaction"
@@ -1671,43 +1673,43 @@ msgstr "தற்போதுள்ள வகை தெரிவை பரிம
 
 #: categdialog.cpp:343
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "பெயரில் வகை பிரிப்பான் உள்ளது."
 
 #: categdialog.cpp:344
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "கோலோன் (:) எழுத்து வகைகளையும் துணைப்பிரிவுகளையும் பிரிக்கப் பயன்படுகிறது, எனவே பெயரில் பயன்படுத்தக் கூடாது"
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
-msgstr ""
+msgstr "வகை மேலாளர்: தவறான பெயர்"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
-msgstr ""
+msgstr "புதிய வகைக்கான பெயரை உள்ளிடவும்:"
 
 #: categdialog.cpp:355
 msgid "Add Category"
-msgstr ""
+msgstr "வகையைச் சேர்க்கவும்"
 
 #: categdialog.cpp:366 categdialog.cpp:375 categdialog.cpp:624
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "இந்தப் பெயரைக் கொண்ட ஒரு வகை ஏற்கனவே பெற்றோருக்கு உள்ளது"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category Manager: Adding Error"
-msgstr ""
+msgstr "வகை மேலாளர்: பிழையைச் சேர்ப்பதில்"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "ஏற்கனவே அந்தப் பெயருடன் ஒரு துணைப்பிரிவைக் கொண்டிருக்கும் வகைக்கு நீங்கள் ஒரு துணைப்பிரிவை நகர்த்த முடியாது. நகரும் முன் மறுபெயரிடுவதைக் கவனியுங்கள்."
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "இந்தப் பெயரில் ஒரு துணைப்பிரிவு ஏற்கனவே உள்ளது"
 
 #: categdialog.cpp:440
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "இலக்கு வகை ஒரு வழித்தோன்றல்"
 
 #: categdialog.cpp:447
 #, c-format
@@ -2032,201 +2034,206 @@ msgstr ""
 #: currencydialog.cpp:332
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f இவ்வாறு காட்டப்பட்டுள்ளது: %s"
 
 #: currencydialog.cpp:334
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(உள்ளூரைப் பயன்படுத்துதல்)"
 
 #: currencydialog.h:48 maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 maincurrencydialog.h:76 mmframe.cpp:1750
 #: mmframe.cpp:1970 optionsettingsgeneral.cpp:301
 msgid "Currency Manager"
-msgstr ""
+msgstr "நாணய மேலாளர்"
 
 #: customfieldeditdialog.cpp:113
 msgid "Custom Field Details"
-msgstr ""
+msgstr "தனிப்பயன் கள விவரங்கள்"
 
 #: customfieldeditdialog.cpp:124 customfieldlistdialog.cpp:52
 msgid "Attribute of"
-msgstr ""
+msgstr "பண்பு"
 
 #: customfieldeditdialog.cpp:130
 msgid "Select the item that the custom field is associated with"
-msgstr ""
+msgstr "தனிப்பயன் புலத்துடன் தொடர்புடைய உருப்படியைத் தேர்ந்தெடுக்கவும்"
 
 #: customfieldeditdialog.cpp:138
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "தனிப்பயன் புலத்தின் பெயரை உள்ளிடவும்"
 
 #: customfieldeditdialog.cpp:141
 msgid "Field Type"
-msgstr ""
+msgstr "புல வகை"
 
 #: customfieldeditdialog.cpp:145
 msgid "Select type of custom field"
-msgstr ""
+msgstr "தனிப்பயன் புலத்தின் வகையைத் தேர்ந்தெடுக்கவும்"
 
 #: customfieldeditdialog.cpp:148
 msgid "ToolTip"
-msgstr ""
+msgstr "உதவிக்குறிப்பு"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enter the tooltip that will be shown"
-msgstr ""
+msgstr "காட்டப்படும் உதவிக்குறிப்பை உள்ளிடவும்"
 
 #: customfieldeditdialog.cpp:153
 msgid "RegEx"
-msgstr ""
+msgstr "RegEx"
 
 #: customfieldeditdialog.cpp:155
 msgid "Enter the RegEx to validate field"
-msgstr ""
+msgstr "புலத்தை சரிபார்க்க RegEx ஐ உள்ளிடவும்"
 
 #: customfieldeditdialog.cpp:158
 msgid "Autocomplete"
-msgstr ""
+msgstr "தானாக நிறைவு"
 
 #: customfieldeditdialog.cpp:161
 msgid "Enables autocomplete on custom field"
-msgstr ""
+msgstr "தனிப்பயன் புலத்தில் தன்னிரப்பியை இயக்குகிறது"
 
 #: customfieldeditdialog.cpp:164 optionsettingsview.cpp:222 util.cpp:613
 msgid "Default"
-msgstr ""
+msgstr "இயல்புநிலை"
 
 #: customfieldeditdialog.cpp:166
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "இந்த புலத்திற்கான இயல்புநிலையை உள்ளிடவும்\n"
+"தற்போதைய தேதி/நேரத்தை இயல்புநிலையாக மாற்ற, தேதி/நேரத்திற்கு 'இப்போது' என்பதைச் செருகவும்"
 
 #: customfieldeditdialog.cpp:170 customfieldeditdialog.cpp:220
 msgid "Choices"
-msgstr ""
+msgstr "தேர்வுகள்"
 
 #: customfieldeditdialog.cpp:172
 msgid "Enter the choices for this field separated with a semicolon"
-msgstr ""
+msgstr "அரைப்புள்ளியுடன் பிரிக்கப்பட்ட இந்தப் புலத்திற்கான தேர்வுகளை உள்ளிடவும்"
 
 #: customfieldeditdialog.cpp:175
 msgid "Digits scale"
-msgstr ""
+msgstr "இலக்க அளவுகோல்"
 
 #: customfieldeditdialog.cpp:177
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "அனுமதிக்கப்பட்ட தசம இலக்கங்களின் அளவை உள்ளிடவும்"
 
 #: customfieldeditdialog.cpp:180
 msgid "Panel's column"
-msgstr ""
+msgstr "பேனலின் நெடுவரிசை"
 
 #: customfieldeditdialog.cpp:185
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "பேனலில் உள்ள உருப்படியைக் குறிக்க மதிப்பைத் தேர்ந்தெடுக்கவும்"
 
 #: customfieldeditdialog.cpp:220 filtertransdialog.cpp:979
 #: filtertransdialog.cpp:1016 filtertransdialog.cpp:1048
 #: filtertransdialog.cpp:1621 reports/myusage.cpp:102 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Empty value"
-msgstr ""
+msgstr "வெற்று மதிப்பு"
 
 #: customfieldeditdialog.cpp:233
 msgid "Changing field type will delete all content!"
-msgstr ""
+msgstr "புல வகையை மாற்றினால் அனைத்து உள்ளடக்கமும் நீக்கப்படும்!"
 
 #: customfieldeditdialog.cpp:234 customfieldeditdialog.cpp:256 mmframe.cpp:2416
 #: mmframe.cpp:2478
 msgid "Do you want to proceed?"
-msgstr ""
+msgstr "தொடர வேண்டுமா?"
 
 #: customfieldeditdialog.cpp:235 customfieldeditdialog.cpp:257
 msgid "Custom Field Change"
-msgstr ""
+msgstr "தனிப்பயன் கள விவரங்கள்"
 
 #: customfieldeditdialog.cpp:255
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "உங்களிடம் மாற்றப்பட்ட தேர்வுகள் உள்ளன: அகற்றப்பட்டவை சுத்தம் செய்யப்படும்!"
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
-msgstr ""
+msgstr "புதிய/திருத்து தனிப்பயன் புலம்"
 
 #: customfieldlistdialog.cpp:51
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
-msgstr ""
+msgstr "பண்புகள்"
 
 #: customfieldlistdialog.cpp:66 mmframe.cpp:1805
 msgid "Custom Field Manager"
-msgstr ""
+msgstr "தனிப்பயன் கள விவரங்கள்"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr ""
+msgstr "இந்த தனிப்பயன் புலத்தையும் அதன் எல்லா தரவையும் உண்மையில் நீக்க விரும்புகிறீர்களா?"
 
 #: customfieldlistdialog.cpp:171
 msgid "Confirm Custom Field Deletion"
-msgstr ""
+msgstr "தனிப்பயன் புலத்தை நீக்குவதை உறுதிப்படுத்தவும்"
 
 #: customfieldlistdialog.cpp:189
 #, c-format
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "இந்தச் செயல்பாடு \"%s\" தனிப்பயன் புல மதிப்புகளை மொத்தமாகத் தேடும் மற்றும் மாற்றும்\n"
+"இது முழுமையான புல மதிப்புடன் மட்டுமே பொருந்தும் மற்றும் மாற்றியமைக்கும், பகுதி அல்லது நடுத்தர மதிப்பை மாற்ற அனுமதிக்கப்படவில்லை\n"
+"எந்த சரிபார்ப்பும் இல்லை என்பதைக் கவனியுங்கள்!"
 
 #: customfieldlistdialog.cpp:192
 msgid "Confirm Custom Field Content Update"
-msgstr ""
+msgstr "தனிப்பயன் புல உள்ளடக்க புதுப்பிப்பை உறுதிப்படுத்தவும்"
 
 #: customfieldlistdialog.cpp:197
 msgid "Find what"
-msgstr ""
+msgstr "என்ன கண்டுபிடிக்க"
 
 #: customfieldlistdialog.cpp:197 customfieldlistdialog.cpp:203
 #: customfieldlistdialog.cpp:209 customfieldlistdialog.cpp:215
 #: customfieldlistdialog.cpp:230
 msgid "Update Custom Field Content"
-msgstr ""
+msgstr "தனிப்பயன் புல உள்ளடக்கத்தைப் புதுப்பிக்கவும்"
 
 #: customfieldlistdialog.cpp:201
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "வெற்று உள்ளடக்கத்தைப் புதுப்பிக்க விரும்புகிறீர்களா?\n"
+"மாற்று நடைமுறையை நீங்கள் கைவிட விரும்பினால் இல்லை என்பதை அழுத்தவும்!"
 
 #: customfieldlistdialog.cpp:209
 msgid "Replace with"
-msgstr ""
+msgstr "உடன் மாற்றவும்"
 
 #: customfieldlistdialog.cpp:213
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "வெற்று உள்ளடக்கத்தைப் புதுப்பிக்க விரும்புகிறீர்களா?\n"
+"மாற்று நடைமுறையை நீங்கள் கைவிட விரும்பினால் இல்லை என்பதை அழுத்தவும்!"
 
 #: customfieldlistdialog.cpp:229
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%zu நிகழ்வு நிறுவப்பட்டது மற்றும் மாற்றப்பட்டது!"
+msgstr[1] "%zu நிகழ்வுகள் நிறுவப்பட்டு மாற்றப்பட்டன!"
 
 #: customfieldlistdialog.cpp:264
 msgid "&Bulk content update "
-msgstr ""
+msgstr "&மொத்த உள்ளடக்க புதுப்பிப்பு "
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Bills"
-msgstr ""
+msgstr "பில்கள்"
 
 #: db/DB_Table_Category_V1.h:114
 msgid "Telephone"
-msgstr ""
+msgstr "தொலைபேசி"
 
 #: db/DB_Table_Category_V1.h:115
 msgid "Electricity"
@@ -2246,7 +2253,7 @@ msgstr "வாடகை"
 
 #: db/DB_Table_Category_V1.h:119
 msgid "Cable TV"
-msgstr ""
+msgstr "கம்பிவட தொலைக்காட்சி"
 
 #: db/DB_Table_Category_V1.h:120
 msgid "Water"
@@ -2262,11 +2269,11 @@ msgstr "மளிகைகள்"
 
 #: db/DB_Table_Category_V1.h:123
 msgid "Dining out"
-msgstr ""
+msgstr "வெளியே சாப்பாடு"
 
 #: db/DB_Table_Category_V1.h:124
 msgid "Leisure"
-msgstr ""
+msgstr "ஓய்வு"
 
 #: db/DB_Table_Category_V1.h:125
 msgid "Movies"
@@ -2274,11 +2281,11 @@ msgstr "திரைப்படங்கள்"
 
 #: db/DB_Table_Category_V1.h:126
 msgid "Video Rental"
-msgstr ""
+msgstr "வீடியோ வாடகை"
 
 #: db/DB_Table_Category_V1.h:127
 msgid "Magazines"
-msgstr ""
+msgstr "இதழ்கள்"
 
 #: db/DB_Table_Category_V1.h:128 model/Model_Asset.cpp:43
 msgid "Automobile"
@@ -2579,59 +2586,59 @@ msgstr ""
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
-msgstr ""
+msgstr "பட்டை வரைபடங்கள்"
 
 #: filtertransdialog.cpp:55
 msgid "Line"
-msgstr ""
+msgstr "வரி வரைபடங்கள்"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
-msgstr ""
+msgstr "வரி தேதி நேரம்"
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
-msgstr ""
+msgstr "Pie"
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
-msgstr ""
+msgstr "முப்பரிமாண வளைவு"
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
-msgstr ""
+msgstr "ரேடார்"
 
 #: filtertransdialog.cpp:57
 msgid "Bar Line"
-msgstr ""
+msgstr "பட்டை வரி"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Bar Line"
-msgstr ""
+msgstr "அடுக்கப்பட்ட பட்டை வரி"
 
 #: filtertransdialog.cpp:57
 msgid "Stacked Area"
-msgstr ""
+msgstr "அடுக்கப்பட்ட பகுதி"
 
 #: filtertransdialog.cpp:506
 msgid "Last Unsaved Filter"
-msgstr ""
+msgstr "கடைசியாக சேமிக்கப்படாத வடிகட்டி"
 
 #: filtertransdialog.cpp:553 transactionsupdatedialog.cpp:122
 msgid "Specify"
-msgstr ""
+msgstr "குறிப்பிடவும்"
 
 #: filtertransdialog.cpp:579
 msgid "Period Range"
-msgstr ""
+msgstr "கால வரம்பு"
 
 #: filtertransdialog.cpp:591 reports/mmDateRange.cpp:35
 msgid "Date Range"
-msgstr ""
+msgstr "தேதி வகை"
 
 #: filtertransdialog.cpp:622 filtertransdialog.cpp:1838
 msgid "Include all subcategories"
-msgstr ""
+msgstr "அனைத்து துணைப்பிரிவுகளையும் சேர்க்கவும்"
 
 #: filtertransdialog.cpp:653 filtertransdialog.cpp:1561
 #: filtertransdialog.cpp:1664 import_export/univcsvdialog.cpp:114
@@ -2650,59 +2657,59 @@ msgstr "வரவு"
 #: filtertransdialog.cpp:655 filtertransdialog.cpp:882
 #: filtertransdialog.cpp:1567 filtertransdialog.cpp:1670
 msgid "Transfer Out"
-msgstr ""
+msgstr "வெளியே மாற்றவும்"
 
 #: filtertransdialog.cpp:656 filtertransdialog.cpp:1565
 #: filtertransdialog.cpp:1668
 msgid "Transfer In"
-msgstr ""
+msgstr "பரிமாற்றம்"
 
 #: filtertransdialog.cpp:667
 msgid "Amount Range"
-msgstr ""
+msgstr "தொகை வரம்பு"
 
 #: filtertransdialog.cpp:692
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "பரிவர்த்தனை குறிப்புகளில் அதைக் கண்டறிய எந்த சரத்தையும் உள்ளிடவும்"
 
 #: filtertransdialog.cpp:697 payeedialog.cpp:141
 msgid "Use regex: to match using regular expressions."
-msgstr ""
+msgstr "ரெஜெக்ஸைப் பயன்படுத்தவும்: வழக்கமான வெளிப்பாடுகளைப் பயன்படுத்தி பொருத்தவும்."
 
 #: filtertransdialog.cpp:719
 msgid "Presentation Options"
-msgstr ""
+msgstr "அளிப்புக்கான தேர்வுகள்"
 
 #: filtertransdialog.cpp:733 filtertransdialog.cpp:1091
 #: filtertransdialog.cpp:1951
 msgid "Hide Columns"
-msgstr ""
+msgstr "பத்திளை மறை"
 
 #: filtertransdialog.cpp:742 filtertransdialog.cpp:1098
 #: filtertransdialog.cpp:1964
 msgid "Group By"
-msgstr ""
+msgstr "பட்டியல் மூலம் குழு"
 
 #: filtertransdialog.cpp:751
 msgid "Specify how the report should be grouped"
-msgstr ""
+msgstr "அறிக்கை எவ்வாறு குழுவாக இருக்க வேண்டும் என்பதைக் குறிப்பிடவும்"
 
 #: filtertransdialog.cpp:754 filtertransdialog.cpp:1104
 #: filtertransdialog.cpp:1975
 msgid "Chart"
-msgstr ""
+msgstr "வரைபடம்"
 
 #: filtertransdialog.cpp:763
 msgid "Specify which chart will be included in the report"
-msgstr ""
+msgstr "அறிக்கையில் எந்த விளக்கப்படம் சேர்க்கப்படும் என்பதைக் குறிப்பிடவும்"
 
 #: filtertransdialog.cpp:766 filtertransdialog.cpp:1984
 msgid "Combine Splits"
-msgstr ""
+msgstr "பிளவுகளை இணைக்கவும்"
 
 #: filtertransdialog.cpp:769
 msgid "Display split transactions as a single row"
-msgstr ""
+msgstr "பிரிப்பு பரிவர்த்தனைகளை ஒற்றை வரிசையாகக் காண்பி"
 
 #: filtertransdialog.cpp:778
 msgid "Settings"
@@ -2710,75 +2717,77 @@ msgstr "அமைப்புகள்"
 
 #: filtertransdialog.cpp:791
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "தற்போதைய முன்னமைக்கப்பட்ட தேர்வில் செயலில் உள்ள மதிப்புகளைச் சேமிக்கவும்"
 
 #: filtertransdialog.cpp:795
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "தற்போதைய முன்னமைக்கப்பட்ட தேர்வை நீக்கவும்"
 
 #: filtertransdialog.cpp:998
 #, c-format
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
-msgstr ""
+msgstr "இந்தப் பெயர் தற்போது பணம் செலுத்துபவர்களுடன் பொருந்தவில்லை.\n"
+"இதைத் தொடர்ந்து பயன்படுத்த விரும்புகிறீர்களா?\n"
+"%s"
 
 #: filtertransdialog.cpp:1172
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "அறிக்கை நெடுவரிசைகளை மறை"
 
 #: filtertransdialog.cpp:1298 mmframe.cpp:1297
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "தேர்வுசெய்யப்பட்ட உருப்படி பகிரப்படும்"
 
 #: filtertransdialog.cpp:1298 import_export/univcsvdialog.cpp:2182
 #: mmframe.cpp:1298
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "தொடர விருப்பமா?"
 
 #: filtertransdialog.cpp:1298 mmframe.cpp:1299
 msgid "Settings item deletion"
-msgstr ""
+msgstr "அமைப்புகள் உருப்படியை நீக்குதல்"
 
 #: filtertransdialog.cpp:1630
 msgid "Filtering Details: "
-msgstr ""
+msgstr "வடிகட்டுதல் விவரங்கள்: "
 
 #: filtertransdialog.cpp:1760
 msgid "Label"
-msgstr ""
+msgstr "பெயரிடப்பட்டது"
 
 #: filtertransdialog.cpp:1791
 msgid "Since"
-msgstr ""
+msgstr "முதல்"
 
 #: filtertransdialog.cpp:1793
 msgid "Before"
-msgstr ""
+msgstr "முன்"
 
 #: filtertransdialog.cpp:1806
 msgid "Period"
-msgstr ""
+msgstr "காலம்"
 
 #: filtertransdialog.cpp:1876
 msgid "Amount Min."
-msgstr ""
+msgstr "குறைந்தபட்ச தொகை."
 
 #: filtertransdialog.cpp:1884
 msgid "Amount Max."
-msgstr ""
+msgstr "அதிகபட்ச தொகை."
 
 #: filtertransdialog.cpp:2135 mmframe.cpp:1325
 msgid "Setting Name"
-msgstr ""
+msgstr "பெயரை அமைத்தல்"
 
 #: filtertransdialog.cpp:2135 mmframe.cpp:1325
 msgid "Please Enter"
-msgstr ""
+msgstr "தயவுசெய்து உள்ளீடவும்"
 
 #: filtertransdialog.cpp:2159 import_export/univcsvdialog.cpp:1101
 msgid "The entered name is already in use"
-msgstr ""
+msgstr "உள்ளிட்ட பெயர் ஏற்கனவே பயன்பாட்டில் உள்ளது"
 
 #: filtertransdialog.cpp:2159 images_list.cpp:326 images_list.cpp:414
 #: images_list.cpp:425 images_list.cpp:460 images_list.cpp:489
@@ -2789,15 +2798,15 @@ msgstr "எச்சரிக்கை"
 
 #: filtertransdialog.cpp:2188
 msgid "Filter settings have changed"
-msgstr ""
+msgstr "வடிகட்டி அமைப்புகள் மாற்றப்பட்டுள்ளன"
 
 #: filtertransdialog.cpp:2188
 msgid "Do you want to save them before continuing?"
-msgstr ""
+msgstr "தொடர்வதற்கு முன் அவற்றைச் சேமிக்க விரும்புகிறீர்களா?"
 
 #: filtertransdialog.cpp:2188
 msgid "Please confirm"
-msgstr ""
+msgstr "தயவுசெய்து உறுதிப்படுத்தவும்"
 
 #: filtertransdialog.cpp:2235 reports/reportbase.cpp:232
 msgid "Choose Accounts"
@@ -2805,7 +2814,7 @@ msgstr "கணக்கை தேர்ந்தெடு"
 
 #: filtertransdialog.h:163 mmframe.cpp:1795 mmframe.cpp:1972
 msgid "Transaction Report Filter"
-msgstr ""
+msgstr "பரிவர்த்தனை அறிக்கை வடிகட்டி"
 
 #: general_report_manager.cpp:284 mmframe.cpp:832 mmframe.cpp:3007
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
@@ -2814,11 +2823,11 @@ msgstr "அறிக்கை"
 
 #: general_report_manager.cpp:382 import_export/univcsvdialog.cpp:536
 msgid "&Import"
-msgstr ""
+msgstr "இறக்கு"
 
 #: general_report_manager.cpp:384
 msgid "Locate and load a report file."
-msgstr ""
+msgstr "அறிக்கை கோப்பைக் கண்டுபிடித்து ஏற்றவும்."
 
 #: general_report_manager.cpp:386 import_export/univcsvdialog.cpp:538
 msgid "&Export"
