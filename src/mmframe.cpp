@@ -2478,7 +2478,7 @@ void mmGUIFrame::OnDebugDB(wxCommandEvent& /*event*/)
         , wxString::Format("%s\n\n%s", _("Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"), _("Do you want to proceed?"))
         , _("Database Debug"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
 
-    msgDlg.SetYesNoLabels(_("Yes"), _("No"));
+    msgDlg.SetYesNoLabels(_("&Yes"), _("&No"));
 
     if (msgDlg.ShowModal() == wxID_YES)
     {
