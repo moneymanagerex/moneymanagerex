@@ -1472,9 +1472,9 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
     {
         const wxString data = iData->getString();
         wxLogDebug("MENU FILTER: %s", data);
-        menu.Append(MENU_TREEPOPUP_FILTER_EDIT, _("&Edit Filter..."));
-        menu.Append(MENU_TREEPOPUP_FILTER_RENAME, _("&Rename Filter..."));
-        menu.Append(MENU_TREEPOPUP_FILTER_DELETE, _("&Delete Filter..."));
+        menu.Append(MENU_TREEPOPUP_FILTER_EDIT, _("&Customize Report..."));
+        menu.Append(MENU_TREEPOPUP_FILTER_RENAME, _("&Rename Report..."));
+        menu.Append(MENU_TREEPOPUP_FILTER_DELETE, _("&Delete Report..."));
         PopupMenu(&menu, pt);
         break;
     }
