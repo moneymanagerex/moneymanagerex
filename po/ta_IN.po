@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-04-25 23:35+0300\n"
-"PO-Revision-Date: 2024-04-29 13:19\n"
+"PO-Revision-Date: 2024-04-30 04:48\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -1717,37 +1717,42 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "நீங்கள் நிச்சயமாக நகர்த்த விரும்புகிறீர்களா\n"
+"\"%1$s\"\n"
+"செய்ய:\n"
+"\"%2$s\"?"
 
 #: categdialog.cpp:449
 msgid "Top level"
-msgstr ""
+msgstr "மேல் நிலை"
 
 #: categdialog.cpp:450
 msgid "Confirm Move"
-msgstr ""
+msgstr "நடவடிக்கை உறுதிப்படுத்தவும்"
 
 #: categdialog.cpp:467
 msgid "Category in use."
-msgstr ""
+msgstr "வகை பயன்படுத்தப்படுகிறது."
 
 #: categdialog.cpp:467
 msgid "Subcategory in use."
-msgstr ""
+msgstr "துணை வகை பயன்படுத்தப்படுகிறது."
 
 #: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "உதவிக்குறிப்பு: இந்த வகையைப் பயன்படுத்தி அனைத்து பரிவர்த்தனைகளையும் மாற்றவும்\n"
+"ஒன்றிணைக்கும் கட்டளையைப் பயன்படுத்தி மற்றொரு வகை:"
 
 #: categdialog.cpp:472
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "உதவிக்குறிப்பு: இந்த துணைப்பிரிவைப் பயன்படுத்தி அனைத்து பரிவர்த்தனைகளையும் மாற்றவும்\n"
+"ஒன்றிணைக்கும் கட்டளையைப் பயன்படுத்தி மற்றொரு வகை:"
 
 #: categdialog.cpp:475
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "கருவிகள் → ஒன்றிணைத்தல் → வகைகள்"
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
