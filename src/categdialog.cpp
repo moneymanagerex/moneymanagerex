@@ -255,7 +255,7 @@ void mmCategDialog::CreateControls()
         , wxID_REPLACE_ALL, mmBitmapBundle(png::RELOCATION, mmBitmapButtonSize));
     m_buttonRelocate->Connect(wxID_REPLACE_ALL, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmCategDialog::OnCategoryRelocation), nullptr, this);
-    mmToolTip(m_buttonRelocate, _("Reassign all categories to another category"));
+    mmToolTip(m_buttonRelocate, _("Merge Categories"));
 
     m_tbCollapse = new wxToggleButton(this, ID_COLLAPSE, _("Collapse All"), wxDefaultPosition
         , wxDefaultSize);
