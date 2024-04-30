@@ -1792,7 +1792,7 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemTransactions = new wxMenuItem(menuTools, MENU_TRANSACTIONREPORT
-        , _("Transaction Report &Filter..."), _("Transaction Report Filter"));
+        , _("Tra&nsaction Report..."), _("Transaction Report"));
     menuTools->Append(menuItemTransactions);
 
     menuTools->AppendSeparator();
@@ -1969,7 +1969,7 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(MENU_ORGTAGS, _("Tag Manager"), mmBitmapBundle(png::TAG, toolbar_icon_size), _("Tag Manager"));
     toolBar_->AddTool(MENU_CURRENCY, _("Currency Manager"), mmBitmapBundle(png::CURR, toolbar_icon_size), _("Currency Manager"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report Filter"), mmBitmapBundle(png::FILTER, toolbar_icon_size), _("Transaction Report Filter"));
+    toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report"), mmBitmapBundle(png::FILTER, toolbar_icon_size), _("Transaction Report"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_VIEW_LIST, _("General Report Manager"), mmBitmapBundle(png::GRM, toolbar_icon_size), _("General Report Manager"));
     toolBar_->AddSeparator();
