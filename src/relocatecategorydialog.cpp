@@ -86,7 +86,7 @@ void relocateCategoryDialog::CreateControls()
     flagsExpand.Align(wxALIGN_LEFT).Border(wxALL, 5).Expand();
 
     wxStaticText* headerText = new wxStaticText(this, wxID_STATIC
-        , _("Merge categories"));
+        , _("Merge Categories"));
     wxStaticLine* lineTop = new wxStaticLine(this, wxID_STATIC);
 
     cbSourceCategory_ = new mmComboBoxCategory(this, wxID_LAST);
