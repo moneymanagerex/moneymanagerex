@@ -257,12 +257,12 @@ void mmCategDialog::CreateControls()
         , wxCommandEventHandler(mmCategDialog::OnCategoryRelocation), nullptr, this);
     mmToolTip(m_buttonRelocate, _("Merge Categories"));
 
-    m_tbCollapse = new wxToggleButton(this, ID_COLLAPSE, _("Collapse All"), wxDefaultPosition
+    m_tbCollapse = new wxToggleButton(this, ID_COLLAPSE, _("C&ollapse All"), wxDefaultPosition
         , wxDefaultSize);
     m_tbCollapse->Connect(wxID_ANY, wxEVT_TOGGLEBUTTON,
         wxCommandEventHandler(mmCategDialog::OnExpandOrCollapseToggle), nullptr, this);
 
-    m_tbExpand = new wxToggleButton(this, ID_EXPAND, _("Expand All"), wxDefaultPosition
+    m_tbExpand = new wxToggleButton(this, ID_EXPAND, _("E&xpand All"), wxDefaultPosition
         , wxDefaultSize);
     m_tbExpand->Connect(wxID_ANY, wxEVT_TOGGLEBUTTON,
         wxCommandEventHandler(mmCategDialog::OnExpandOrCollapseToggle), nullptr, this);
