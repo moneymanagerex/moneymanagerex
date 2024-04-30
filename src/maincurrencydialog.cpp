@@ -183,7 +183,7 @@ void mmMainCurrencyDialog::CreateControls()
     itemBoxSizer22->Add(new wxStaticText(this, wxID_STATIC, _("Online Update")), g_flagsH);
 
     itemBoxSizer22->AddSpacer(15);
-    cbShowAll_ = new wxCheckBox(this, wxID_SELECTALL, _("Show &All"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbShowAll_ = new wxCheckBox(this, wxID_SELECTALL, _("&Show All"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     mmToolTip(cbShowAll_, _("Show all even the unused currencies"));
     cbShowAll_->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED
         , wxCommandEventHandler(mmMainCurrencyDialog::OnShowHiddenChbClick), nullptr, this);
