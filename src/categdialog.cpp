@@ -267,7 +267,7 @@ void mmCategDialog::CreateControls()
     m_tbExpand->Connect(wxID_ANY, wxEVT_TOGGLEBUTTON,
         wxCommandEventHandler(mmCategDialog::OnExpandOrCollapseToggle), nullptr, this);
 
-    m_tbShowAll = new wxToggleButton(this, wxID_SELECTALL, _("Show &All"), wxDefaultPosition
+    m_tbShowAll = new wxToggleButton(this, wxID_SELECTALL, _("&Show All"), wxDefaultPosition
         , wxDefaultSize);
     mmToolTip(m_tbShowAll, _("Show all hidden categories"));
     m_tbShowAll->Connect(wxID_SELECTALL, wxEVT_TOGGLEBUTTON
