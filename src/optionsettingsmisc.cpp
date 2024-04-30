@@ -139,8 +139,8 @@ void OptionSettingsMisc::Create()
     default_status->SetSelection(Option::instance().TransStatusReconciled());
 
     wxArrayString true_false;
-    true_false.Add(wxTRANSLATE("&Yes"));
-    true_false.Add(wxTRANSLATE("&No"));
+    true_false.Add(wxTRANSLATE("Yes"));
+    true_false.Add(wxTRANSLATE("No"));
     wxChoice* bulk_enter = new wxChoice(misc_panel, ID_DIALOG_OPTIONS_BULK_ENTER);
     for (const auto& i : true_false)
         bulk_enter->Append(wxGetTranslation(i), new wxStringClientData(i));
