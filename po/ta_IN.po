@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-04-25 23:35+0300\n"
-"PO-Revision-Date: 2024-04-30 09:00\n"
+"PO-Revision-Date: 2024-04-30 11:05\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -2583,15 +2583,15 @@ msgstr "சமரசம் தவிர அனைத்தும்"
 
 #: filtertransdialog.cpp:53
 msgid "Day"
-msgstr ""
+msgstr "நாள்"
 
 #: filtertransdialog.cpp:53
 msgid "Month"
-msgstr ""
+msgstr "மாதம்"
 
 #: filtertransdialog.cpp:53
 msgid "Year"
-msgstr ""
+msgstr "ஆண்டு"
 
 #: filtertransdialog.cpp:55
 msgid "Bar"
@@ -3066,62 +3066,62 @@ msgstr "ஏற்றுமதியின் பிழை"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
-msgstr ""
+msgstr "கோப்பு Excel XML விரிதாள் 2003 வடிவத்தில் இல்லை."
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 #: import_export/parsers.cpp:158 import_export/parsers.cpp:166
 msgid "Parsing error"
-msgstr ""
+msgstr "பாகுபடுத்தும் பிழை"
 
 #: import_export/parsers.cpp:158
 msgid "Could not find Worksheet."
-msgstr ""
+msgstr "பணித்தாள் கண்டுபிடிக்க முடியவில்லை."
 
 #: import_export/parsers.cpp:164
 msgid "Table"
-msgstr ""
+msgstr "அட்டவணை"
 
 #: import_export/parsers.cpp:166
 msgid "Could not find Table."
-msgstr ""
+msgstr "அட்டவணையைக் கண்டுபிடிக்க முடியவில்லை."
 
 #: import_export/parsers.cpp:217 mmframereport.cpp:132
 msgid "Transactions"
-msgstr ""
+msgstr "பரிவர்த்தனைகள்"
 
 #: import_export/qif_export.cpp:49 import_export/qif_export.cpp:680
 #: mmframe.cpp:1613
 msgid "Export as QIF file"
-msgstr ""
+msgstr "QIF கோப்பாக ஏற்றுமதி செய்யவும்"
 
 #: import_export/qif_export.cpp:50 mmframe.cpp:1612
 msgid "Export as JSON file"
-msgstr ""
+msgstr "JSON கோப்பாக ஏற்றுமதி செய்யவும்"
 
 #: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:125
 #: mmframe.cpp:1608
 msgid "Export as CSV file"
-msgstr ""
+msgstr "CSV கோப்பாக ஏற்றுமதி செய்யவும்"
 
 #: import_export/qif_export.cpp:119
 msgid "Parameters"
-msgstr ""
+msgstr "அளவுருக்கள்"
 
 #: import_export/qif_export.cpp:124 import_export/qif_import_gui.cpp:209
 msgid "Log"
-msgstr ""
+msgstr "பதிவு"
 
 #: import_export/qif_export.cpp:136
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:137
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:152 mmframe.cpp:3566 mmframe.cpp:3570
 #: mmframe.cpp:3587 mmframe.cpp:3591
@@ -3130,11 +3130,11 @@ msgstr "கணக்குகள்"
 
 #: import_export/qif_export.cpp:163 import_export/qif_import_gui.cpp:186
 msgid "From Date"
-msgstr ""
+msgstr "தேதியிலிருந்து"
 
 #: import_export/qif_export.cpp:173 import_export/qif_import_gui.cpp:196
 msgid "To Date"
-msgstr ""
+msgstr "தேதி வரை"
 
 #: import_export/qif_export.cpp:187 import_export/qif_import_gui.cpp:301
 #: optionsettingsgeneral.cpp:103
@@ -3143,16 +3143,16 @@ msgstr "தேதி வடிவம்"
 
 #: import_export/qif_export.cpp:199
 msgid "Write to File"
-msgstr ""
+msgstr "கோப்பில் எழுதவும்"
 
 #: import_export/qif_export.cpp:202 import_export/qif_import_gui.cpp:123
 #: import_export/univcsvdialog.cpp:188
 msgid "File Name:"
-msgstr ""
+msgstr "கோப்புப் பெயர்:"
 
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:555
 msgid "Clear"
-msgstr ""
+msgstr "அழி"
 
 #: import_export/qif_export.cpp:258
 msgid "Choose Account to Export from:"
@@ -3160,23 +3160,23 @@ msgstr "ஏற்றிடும் கணக்கை தேர்ந்தெ�
 
 #: import_export/qif_export.cpp:259 import_export/qif_export.cpp:365
 msgid "QIF Export"
-msgstr ""
+msgstr "QIF ஏற்றுமதி"
 
 #: import_export/qif_export.cpp:318
 msgid "Choose QIF data file to Export"
-msgstr ""
+msgstr "ஏற்றுமதி செய்ய QIF தரவுக் கோப்பைத் தேர்ந்தெடுக்கவும்"
 
 #: import_export/qif_export.cpp:320 import_export/qif_import_gui.cpp:876
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "QIF கோப்புகள் (*.qif)"
 
 #: import_export/qif_export.cpp:326
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "ஏற்றுமதி செய்ய JSON தரவுக் கோப்பைத் தேர்ந்தெடுக்கவும்"
 
 #: import_export/qif_export.cpp:328
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "JSON கோப்புகள் (*.json)"
 
 #: import_export/qif_export.cpp:334 import_export/univcsvdialog.cpp:562
 msgid "Choose CSV data file to Export"
@@ -3184,84 +3184,84 @@ msgstr "ஏற்றிடும் CSV தகவல் கோப்பை த�
 
 #: import_export/qif_export.cpp:336 import_export/univcsvdialog.cpp:2232
 msgid "CSV Files (*.csv)"
-msgstr ""
+msgstr "CSV கோப்புகள் (*.csv)"
 
 #: import_export/qif_export.cpp:354
 msgid "No Account available for export"
-msgstr ""
+msgstr "ஏற்றுமதிக்கு கணக்கு இல்லை"
 
 #: import_export/qif_export.cpp:356
 msgid "No Accounts selected for export"
-msgstr ""
+msgstr "ஏற்றுமதிக்கு கணக்குகள் எதுவும் தேர்ந்தெடுக்கப்படவில்லை"
 
 #: import_export/qif_export.cpp:358
 msgid "To Date less than From Date"
-msgstr ""
+msgstr "தேதியிலிருந்து தேதியை விட குறைவான தேதி"
 
 #: import_export/qif_export.cpp:454 import_export/qif_export.cpp:465
 msgid "Categories exported"
-msgstr ""
+msgstr "வகைகள் ஏற்றுமதி செய்யப்பட்டன"
 
 #: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:401
 #: import_export/qif_import_gui.cpp:1053
 msgid "Please wait"
-msgstr ""
+msgstr "தயவுசெய்து காத்திருக்கவும்"
 
 #: import_export/qif_export.cpp:485
 msgid "Exporting"
-msgstr ""
+msgstr "ஏற்றுமதி செய்கிறது"
 
 #: import_export/qif_export.cpp:513
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "பரிவர்த்தனை %zu ஏற்றுமதி செய்கிறது"
 
 #: import_export/qif_export.cpp:675
 #, c-format
 msgid "Number of categories exported: %zu \n"
-msgstr ""
+msgstr "ஏற்றுமதி செய்யப்பட்ட வகைகளின் எண்ணிக்கை: %zu\n"
 
 #: import_export/qif_export.cpp:677
 #, c-format
 msgid "Number of transactions exported: %zu \n"
-msgstr ""
+msgstr "ஏற்றுமதி செய்யப்பட்ட பரிவர்த்தனைகளின் எண்ணிக்கை: %zu\n"
 
 #: import_export/qif_export.cpp:678
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "ஏற்றுமதி செய்யப்பட்ட கணக்குகளின் எண்ணிக்கை: %zu"
 
 #: import_export/qif_import_gui.cpp:135 import_export/univcsvdialog.cpp:201
 msgid "&Browse"
-msgstr ""
+msgstr "&உலாவு"
 
 #: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:385
 msgid "Encoding:"
-msgstr ""
+msgstr "குறியாக்கம்:"
 
 #: import_export/qif_import_gui.cpp:180
 msgid "Filtering Details:"
-msgstr ""
+msgstr "வடிகட்டுதல் விவரங்கள்:"
 
 #: import_export/qif_import_gui.cpp:219 import_export/univcsvdialog.cpp:493
 msgid "Data"
-msgstr ""
+msgstr "தரவு"
 
 #: import_export/qif_import_gui.cpp:280
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "கணக்குப் பெயருக்குப் பதிலாக கணக்கு எண்ணைப் பயன்படுத்தவும்"
 
 #: import_export/qif_import_gui.cpp:284
 msgid "Include payee field in notes"
-msgstr ""
+msgstr "குறிப்புகளில் பணம் பெறுபவர் புலத்தைச் சேர்க்கவும்"
 
 #: import_export/qif_import_gui.cpp:288 import_export/univcsvdialog.cpp:460
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "பேட்டர்ன் மேட்ச் பேயிஸ்"
 
 #: import_export/qif_import_gui.cpp:293 import_export/univcsvdialog.cpp:466
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "குறிப்புகளில் போட்டி விவரங்களைச் சேர்க்கவும்"
 
 #: import_export/qif_import_gui.cpp:391 import_export/qif_import_gui.cpp:394
 #: import_export/qif_import_gui.cpp:469 import_export/qif_import_gui.cpp:626
@@ -3279,152 +3279,152 @@ msgstr "தெரியாத"
 
 #: import_export/qif_import_gui.cpp:401
 msgid "Scanning"
-msgstr ""
+msgstr "ஸ்கேன் செய்கிறது"
 
 #: import_export/qif_import_gui.cpp:430
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "வாசிப்பு வரி %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:436
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "வரி %zu %s\n"
 
 #: import_export/qif_import_gui.cpp:536
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "QIF கோப்பிலிருந்து படிக்கப்பட்ட வரிகளின் எண்ணிக்கை: %zu இல் %lld ms"
 
 #: import_export/qif_import_gui.cpp:541 mmreportspanel.cpp:347
 msgid "Accounts:"
-msgstr ""
+msgstr "கணக்குகள்:"
 
 #: import_export/qif_import_gui.cpp:548 import_export/qif_import_gui.cpp:898
 #: import_export/univcsvdialog.cpp:357
 msgid "Date Format: "
-msgstr ""
+msgstr "தேதி வடிவம்: "
 
 #: import_export/qif_import_gui.cpp:551
 msgid "Press OK Button to continue"
-msgstr ""
+msgstr "தொடர, சரி பொத்தானை அழுத்தவும்"
 
 #: import_export/qif_import_gui.cpp:770 import_export/qif_import_gui.cpp:801
 #: import_export/univcsvdialog.cpp:2091 import_export/univcsvdialog.cpp:2105
 #: stockspanel.cpp:449
 msgid "Missing"
-msgstr ""
+msgstr "காணவில்லை"
 
 #: import_export/qif_import_gui.cpp:795 import_export/univcsvdialog.cpp:2085
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
-msgstr ""
+msgstr "%2$s பேட்டர்ன் மூலம் %1$s உடன் பொருத்தப்பட்டது"
 
 #: import_export/qif_import_gui.cpp:874
 msgid "Choose QIF data file to Import"
-msgstr ""
+msgstr "இறக்குமதி செய்ய QIF தரவுக் கோப்பைத் தேர்ந்தெடுக்கவும்"
 
 #: import_export/qif_import_gui.cpp:1045
 msgid "Do you want to import all transaction?"
-msgstr ""
+msgstr "அனைத்து பரிவர்த்தனைகளையும் இறக்குமதி செய்ய விரும்புகிறீர்களா?"
 
 #: import_export/qif_import_gui.cpp:1046
 msgid "All missing account, payees and categories will be created."
-msgstr ""
+msgstr "அனைத்து விடுபட்ட கணக்கு, பணம் செலுத்துபவர்கள் மற்றும் வகைகள் உருவாக்கப்படும்."
 
 #: import_export/qif_import_gui.cpp:1047
 msgid "Confirm Import"
-msgstr ""
+msgstr "இறக்குமதியை உறுதிச்செய்"
 
 #: import_export/qif_import_gui.cpp:1053
 msgid "Importing"
-msgstr ""
+msgstr "இறக்குமதி செய்கிறது"
 
 #: import_export/qif_import_gui.cpp:1055
 msgid "Importing Accounts"
-msgstr ""
+msgstr "கணக்குகளை இறக்குமதி செய்கிறது"
 
 #: import_export/qif_import_gui.cpp:1058
 msgid "Importing Payees"
-msgstr ""
+msgstr "பணம் பெறுபவர்களை இறக்குமதி செய்கிறது"
 
 #: import_export/qif_import_gui.cpp:1062
 msgid "Importing Categories"
-msgstr ""
+msgstr "இறக்குமதி வகைகள்"
 
 #: import_export/qif_import_gui.cpp:1084
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "%2$i இல் %1$i பரிவர்த்தனையை இறக்குமதி செய்கிறது"
 
 #: import_export/qif_import_gui.cpp:1174
 msgid "Importing Transfers"
-msgstr ""
+msgstr "இடமாற்றங்களை இறக்குமதி செய்கிறது"
 
 #: import_export/qif_import_gui.cpp:1214
 msgid "Importing Split transactions"
-msgstr ""
+msgstr "பிரித்த பரிவர்த்தனைகளை இறக்குமதி செய்கிறது"
 
 #: import_export/qif_import_gui.cpp:1218
 msgid "Import finished successfully"
-msgstr ""
+msgstr "இறக்குமதி வெற்றிகரமாக முடிந்தது"
 
 #: import_export/qif_import_gui.cpp:1218
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "மொத்த இறக்குமதி: %zu"
 
 #: import_export/qif_import_gui.cpp:1228 import_export/univcsvdialog.cpp:1533
 msgid "Imported transactions discarded by user!"
-msgstr ""
+msgstr "இறக்குமதி செய்யப்பட்ட பரிவர்த்தனைகள் பயனரால் நிராகரிக்கப்பட்டன!"
 
 #: import_export/qif_import_gui.cpp:1230 import_export/qif_import_gui.h:45
 #: mmframe.cpp:1602
 msgid "Import from QIF file"
-msgstr ""
+msgstr "QIF கோப்பிலிருந்து இறக்குமதி செய்யவும்"
 
 #: import_export/qif_import_gui.cpp:1338
 msgid "Transaction code is missing"
-msgstr ""
+msgstr "பரிவர்த்தனை குறியீடு இல்லை"
 
 #: import_export/qif_import_gui.cpp:1352 import_export/univcsvdialog.cpp:2423
 #, c-format
 msgid "%1$s matched by %2$s"
-msgstr ""
+msgstr "%2$s உடன் %1$s பொருந்தியது"
 
 #: import_export/qif_import_gui.cpp:1364
 msgid "Transaction Payee is missing or incorrect"
-msgstr ""
+msgstr "பரிவர்த்தனை பெறுபவர் காணவில்லை அல்லது தவறானது"
 
 #: import_export/qif_import_gui.cpp:1376
 msgid "Date format or date mask is incorrect"
-msgstr ""
+msgstr "தேதி வடிவம் அல்லது தேதி முகமூடி தவறானது"
 
 #: import_export/qif_import_gui.cpp:1388
 msgid "Transaction Account is incorrect"
-msgstr ""
+msgstr "பரிவர்த்தனை கணக்கு தவறானது"
 
 #: import_export/qif_import_gui.cpp:1397
 msgid "Transaction Account for transfer is incorrect"
-msgstr ""
+msgstr "பரிமாற்றத்திற்கான பரிவர்த்தனை கணக்கு தவறானது"
 
 #: import_export/qif_import_gui.cpp:1426
 msgid "Transaction Amount is incorrect"
-msgstr ""
+msgstr "பரிவர்த்தனை தொகை தவறானது"
 
 #: import_export/qif_import_gui.cpp:1452
 msgid "Transaction Category is incorrect"
-msgstr ""
+msgstr "பரிவர்த்தனை வகை தவறானது"
 
 #: import_export/qif_import_gui.cpp:1586
 #, c-format
 msgid "Added account: %s"
-msgstr ""
+msgstr "கணக்கு சேர்க்கப்பட்டது: %s"
 
 #: import_export/qif_import_gui.cpp:1617 import_export/univcsvdialog.cpp:1261
 #, c-format
 msgid "Added payee: %s"
-msgstr ""
+msgstr "பணம் பெறுபவர் சேர்க்கப்பட்டார்: %s"
 
 #: import_export/univcsvdialog.cpp:109
 msgid "SubCategory"
@@ -3442,98 +3442,99 @@ msgstr "இருப்பு"
 
 #: import_export/univcsvdialog.cpp:122 mmframe.cpp:1599
 msgid "Import from CSV file"
-msgstr ""
+msgstr "CSV கோப்பிலிருந்து இறக்குமதி செய்"
 
 #: import_export/univcsvdialog.cpp:128
 msgid "Import from XML file"
-msgstr ""
+msgstr "QIF கோப்பிலிருந்து இறக்குமதி செய்யவும்"
 
 #: import_export/univcsvdialog.cpp:131 mmframe.cpp:1609
 msgid "Export as XML file"
-msgstr ""
+msgstr "QIF கோப்பாக ஏற்றுமதி செய்யவும்"
 
 #: import_export/univcsvdialog.cpp:208
 msgid "Account: "
-msgstr ""
+msgstr "கணக்கு: "
 
 #: import_export/univcsvdialog.cpp:218
 msgid "Preset:"
-msgstr ""
+msgstr "முன்னமைக்கப்பட்டவை:"
 
 #: import_export/univcsvdialog.cpp:265 import_export/univcsvdialog.cpp:582
 #: import_export/univcsvdialog.cpp:2661
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
-msgstr ""
+msgstr "கணக்கு இருக்கும்போது இந்த முன்னமைவை ஏற்றவும்:\n"
+"%s"
 
 #: import_export/univcsvdialog.cpp:272
 msgid "Specify the order of fields in the file"
-msgstr ""
+msgstr "கோப்பில் உள்ள புலங்களின் வரிசையைக் குறிப்பிடவும்"
 
 #: import_export/univcsvdialog.cpp:318
 msgid "&MMEX format"
-msgstr ""
+msgstr "&MMEX வடிவம்"
 
 #: import_export/univcsvdialog.cpp:335
 msgid "&Up"
-msgstr ""
+msgstr "&மேலே"
 
 #: import_export/univcsvdialog.cpp:339
 msgid "&Down"
-msgstr ""
+msgstr "கீழே"
 
 #: import_export/univcsvdialog.cpp:372
 msgid "CSV Delimiter:"
-msgstr ""
+msgstr "CSV பிரிப்பான்:"
 
 #: import_export/univcsvdialog.cpp:399
 msgid "Export column titles"
-msgstr ""
+msgstr "நெடுவரிசை தலைப்புகளை ஏற்றுமதி செய்யவும்"
 
 #: import_export/univcsvdialog.cpp:414
 msgid "Positive values are deposits"
-msgstr ""
+msgstr "நேர்மறை மதிப்புகள் வைப்பு"
 
 #: import_export/univcsvdialog.cpp:415
 msgid "Positive values are withdrawals"
-msgstr ""
+msgstr "நேர்மறை மதிப்புகள் திரும்பப் பெறுதல்"
 
 #: import_export/univcsvdialog.cpp:432
 msgid "Rows to ignore"
-msgstr ""
+msgstr "புறக்கணிக்க வேண்டிய வரிசைகள்"
 
 #: import_export/univcsvdialog.cpp:439
 msgid "From start: "
-msgstr ""
+msgstr "தொடக்கத்தில் இருந்து: "
 
 #: import_export/univcsvdialog.cpp:474
 msgid "From end: "
-msgstr ""
+msgstr "முடிவில் இருந்து: "
 
 #: import_export/univcsvdialog.cpp:486
 msgid "Preview"
-msgstr ""
+msgstr "முன்னோட்டம்"
 
 #: import_export/univcsvdialog.cpp:561
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "இறக்குமதி செய்ய XML தரவுக் கோப்பைத் தேர்ந்தெடுக்கவும்"
 
 #: import_export/univcsvdialog.cpp:561
 msgid "Choose CSV data file to Import"
-msgstr ""
+msgstr "இறக்குமதி செய்ய CSV தரவுக் கோப்பைத் தேர்ந்தெடுக்கவும்"
 
 #: import_export/univcsvdialog.cpp:562
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "ஏற்றுமதி செய்ய XML தரவுக் கோப்பைத் தேர்ந்தெடுக்கவும்"
 
 #: import_export/univcsvdialog.cpp:565
 msgid "Preset name"
-msgstr ""
+msgstr "முன்னமைவு பெயர்"
 
 #: import_export/univcsvdialog.cpp:566
 msgid "Save current settings as a Preset"
-msgstr ""
+msgstr "தற்போதைய அமைப்புகளை முன்னமைவாக சேமிக்கவும்"
 
 #: import_export/univcsvdialog.cpp:567 import_export/univcsvdialog.cpp:2183
 msgid "Delete Preset"
