@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-04-25 23:35+0300\n"
-"PO-Revision-Date: 2024-04-30 06:05\n"
+"PO-Revision-Date: 2024-04-30 09:00\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -2302,11 +2302,11 @@ msgstr "பராமரிப்பு"
 
 #: db/DB_Table_Category_V1.h:131
 msgid "Parking"
-msgstr ""
+msgstr "நிறுத்துமிடம்"
 
 #: db/DB_Table_Category_V1.h:132
 msgid "Registration"
-msgstr ""
+msgstr "பதிவு"
 
 #: db/DB_Table_Category_V1.h:133
 msgid "Education"
@@ -2318,23 +2318,23 @@ msgstr "புத்தகங்கள்"
 
 #: db/DB_Table_Category_V1.h:135
 msgid "Tuition"
-msgstr ""
+msgstr "பயிற்சி"
 
 #: db/DB_Table_Category_V1.h:137
 msgid "Homeneeds"
-msgstr ""
+msgstr "வீட்டுத் தேவைகள்"
 
 #: db/DB_Table_Category_V1.h:138
 msgid "Clothing"
-msgstr ""
+msgstr "ஆடை"
 
 #: db/DB_Table_Category_V1.h:139
 msgid "Furnishing"
-msgstr ""
+msgstr "நிறுவுதல்"
 
 #: db/DB_Table_Category_V1.h:141
 msgid "Healthcare"
-msgstr ""
+msgstr "சுகாதாரம்"
 
 #: db/DB_Table_Category_V1.h:142 db/DB_Table_Category_V1.h:151
 msgid "Health"
@@ -2342,19 +2342,19 @@ msgstr "உடல்நலம்"
 
 #: db/DB_Table_Category_V1.h:143
 msgid "Dental"
-msgstr ""
+msgstr "பல்"
 
 #: db/DB_Table_Category_V1.h:144
 msgid "Eyecare"
-msgstr ""
+msgstr "கண் பராமரிப்பு"
 
 #: db/DB_Table_Category_V1.h:145
 msgid "Physician"
-msgstr ""
+msgstr "மருத்துவர்"
 
 #: db/DB_Table_Category_V1.h:146
 msgid "Prescriptions"
-msgstr ""
+msgstr "மருந்துச்சீட்டுகள்"
 
 #: db/DB_Table_Category_V1.h:147
 msgid "Insurance"
@@ -2362,11 +2362,11 @@ msgstr "காப்பீடு"
 
 #: db/DB_Table_Category_V1.h:148
 msgid "Auto"
-msgstr ""
+msgstr "வாகனம்"
 
 #: db/DB_Table_Category_V1.h:149
 msgid "Life"
-msgstr ""
+msgstr "வாழ்க்கை"
 
 #: db/DB_Table_Category_V1.h:150
 msgid "Home"
@@ -2382,11 +2382,11 @@ msgstr "பயணம்"
 
 #: db/DB_Table_Category_V1.h:154
 msgid "Lodging"
-msgstr ""
+msgstr "தங்கும் இடம்"
 
 #: db/DB_Table_Category_V1.h:155
 msgid "Sightseeing"
-msgstr ""
+msgstr "சுற்றிப்பார்த்தல்"
 
 #: db/DB_Table_Category_V1.h:156
 msgid "Taxes"
@@ -2418,19 +2418,19 @@ msgstr "சம்பளம்"
 
 #: db/DB_Table_Category_V1.h:165
 msgid "Reimbursement/Refunds"
-msgstr ""
+msgstr "திருப்பிச் செலுத்துதல் / திரும்பப் பெறுதல்"
 
 #: db/DB_Table_Category_V1.h:166
 msgid "Investment Income"
-msgstr ""
+msgstr "முதலீட்டு வருமானம்"
 
 #: db/DB_Table_Category_V1.h:167
 msgid "Other Income"
-msgstr ""
+msgstr "வேறு வருமானம்"
 
 #: db/DB_Table_Category_V1.h:168
 msgid "Other Expenses"
-msgstr ""
+msgstr "இதர செலவுகள்"
 
 #: db/DB_Table_Category_V1.h:169 filtertransdialog.cpp:892
 #: filtertransdialog.cpp:1567 filtertransdialog.cpp:1670
@@ -2442,116 +2442,120 @@ msgstr "பரிமாற்றம்"
 #: dbupgrade.cpp:73
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "MMEX தரவுத்தளத்தை %i பதிப்பிற்கு மேம்படுத்துவது தோல்வியடைந்தது!"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
-msgstr ""
+msgstr "தானாக உருவாக்கப்பட்ட முன்-மேம்படுத்தல் காப்புப்பிரதியிலிருந்து DB ஐ மீட்டெடுத்து மீண்டும் முயற்சிக்கவும் அல்லது MMEX ஆதரவைத் தொடர்பு கொள்ளவும்"
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
-msgstr ""
+msgstr "MMEX தரவுத்தள மேம்படுத்தல்"
 
 #: dbupgrade.cpp:107
 msgid "MMEX database error!"
-msgstr ""
+msgstr "MMEX தரவுத்தள பிழை!"
 
 #: dbupgrade.cpp:108
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr ""
+msgstr "MMEX தரவுத்தள பதிப்பு %i இந்த MMEX பதிப்பில் வேலை செய்யாது.\n"
+"MMEXஐ புதிய பதிப்பிற்கு மேம்படுத்தவும்."
 
 #: dbupgrade.cpp:120
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "MMEX தரவுத்தளம் பதிப்பு %iக்கு வெற்றிகரமாக மேம்படுத்தப்பட்டது"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr ""
+msgstr "Tools → Database → Optimize என்பதன் கீழ் தரவுத்தள மேம்படுத்தலை பரிந்துரைக்கிறோம்"
 
 #: dbupgrade.cpp:183
 msgid "Load debug file"
-msgstr ""
+msgstr "பிழைத்திருத்த கோப்பை ஏற்றவும்"
 
 #: dbupgrade.cpp:190
 msgid "Wrong file type!"
-msgstr ""
+msgstr "தவறான கோப்பு வகை!"
 
 #: dbupgrade.cpp:190 dbupgrade.cpp:227 dbupgrade.cpp:234 dbupgrade.cpp:278
 #: dbupgrade.cpp:289 mmframe.cpp:2453
 msgid "MMEX debug error"
-msgstr ""
+msgstr "MMEX பிழைத்திருத்தப் பிழை"
 
 #: dbupgrade.cpp:227 dbupgrade.cpp:278 mmframe.cpp:2453
 msgid "Query error, please contact MMEX support!"
-msgstr ""
+msgstr "வினவல் பிழை, MMEX ஆதரவைத் தொடர்பு கொள்ளவும்!"
 
 #: dbupgrade.cpp:234 dbupgrade.cpp:289
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "தவறான கோப்பு உள்ளடக்கம், MMEX ஆதரவைத் தொடர்பு கொள்ளவும்!"
 
 #: dbupgrade.cpp:241
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
-msgstr ""
+msgstr "இந்த பதிவை MMEX ஆதரவு குழுவிற்கு அனுப்பவும்:\n"
+"கோப்பில் சேமிக்க சரி என்பதை அழுத்தவும் அல்லது வெளியேற ரத்து செய்யவும்"
 
 #: dbupgrade.cpp:242 dbupgrade.cpp:285
 msgid "MMEX debug"
-msgstr ""
+msgstr "MMEX பிழைத்திருத்தம்"
 
 #: dbupgrade.cpp:245
 msgid "Save debug file"
-msgstr ""
+msgstr "பிழைத்திருத்த கோப்பை சேமிக்கவும்"
 
 #: dbupgrade.cpp:285
 msgid "DB maintenance completed, please close and re-open MMEX!"
-msgstr ""
+msgstr "DB பராமரிப்பு முடிந்தது, MMEX ஐ மூடிவிட்டு மீண்டும் திறக்கவும்!"
 
 #: dbwrapper.cpp:74
 msgid "When database file opening:"
-msgstr ""
+msgstr "தரவுத்தள கோப்பு திறக்கும் போது:"
 
 #: dbwrapper.cpp:78
 msgid "Can't open file"
-msgstr ""
+msgstr "கோப்பைத் திறக்க முடியவில்லை"
 
 #: dbwrapper.cpp:78
 msgid "You must specify path to another database file"
-msgstr ""
+msgstr "மற்றொரு தரவுத்தள கோப்பிற்கான பாதையை நீங்கள் குறிப்பிட வேண்டும்"
 
 #: dbwrapper.cpp:82
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "மறைகுறியாக்கப்பட்ட கோப்பிற்குக் கொடுக்கப்பட்ட தவறான கடவுச்சொல்\n"
+"அல்லது\n"
+"தரவுத்தளக் கோப்பு அல்லாத கோப்பைத் திறக்க முயற்சிக்கவும்\n"
 
 #: dbwrapper.cpp:86 import_export/qif_import_gui.cpp:1163 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
-msgstr ""
+msgstr "பிழை: %s"
 
 #: dbwrapper.cpp:89 mmframe.cpp:2060
 msgid "Opening MMEX Database - Error"
-msgstr ""
+msgstr "MMEX தரவுத்தளத்தைத் திறப்பதில் - பிழை"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
-msgstr ""
+msgstr "பரிசோதனை"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "நிரலில் நீங்கள் புகாரளிக்கக்கூடிய சிக்கல்களைக் கண்டறிய உதவுவதற்காக, டெவலப்பர்கள் இங்கு வழங்கப்பட்ட தகவலை வழங்குமாறு உங்களிடம் கேட்கலாம்."
 
 #: filtertrans.cpp:190
 msgid "Back"
-msgstr ""
+msgstr "பின்"
 
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:1299
 #: model/Model_Billsdeposits.cpp:40 model/Model_Checking.cpp:41
 msgid "Unreconciled"
-msgstr ""
+msgstr "சரிபார்க்கப்படாதது என"
 
 #: filtertransdialog.cpp:49 mmhomepage.cpp:534 mmhomepage.cpp:705
 #: model/Model_Billsdeposits.cpp:41 model/Model_Checking.cpp:42
@@ -2566,7 +2570,7 @@ msgstr "செல்லாதது"
 #: filtertransdialog.cpp:50 mmchecking_list.cpp:1288
 #: model/Model_Billsdeposits.cpp:43 model/Model_Checking.cpp:44
 msgid "Follow Up"
-msgstr ""
+msgstr "பின் தொடர்"
 
 #: filtertransdialog.cpp:50 model/Model_Billsdeposits.cpp:44
 #: model/Model_Checking.cpp:45
@@ -2575,7 +2579,7 @@ msgstr "நகல்"
 
 #: filtertransdialog.cpp:50 filtertransdialog.cpp:1846
 msgid "All Except Reconciled"
-msgstr ""
+msgstr "சமரசம் தவிர அனைத்தும்"
 
 #: filtertransdialog.cpp:53
 msgid "Day"
