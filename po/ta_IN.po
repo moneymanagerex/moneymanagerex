@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-04-25 23:35+0300\n"
-"PO-Revision-Date: 2024-04-30 04:48\n"
+"PO-Revision-Date: 2024-04-30 06:05\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -1756,15 +1756,15 @@ msgstr "கருவிகள் → ஒன்றிணைத்தல் → �
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
-msgstr ""
+msgstr "வகை மேலாளர்: பிழையை நீக்கு"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr ""
+msgstr "இந்த வகை அல்லது அதன் வழித்தோன்றல்களைப் பயன்படுத்தும் நீக்கப்பட்ட பரிவர்த்தனைகள் உள்ளன."
 
 #: categdialog.cpp:501
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "வகையை நீக்குவது, அதனுடன் தொடர்புடைய நீக்கப்பட்ட பரிவர்த்தனைகளையும் தானாகவே அகற்றும்."
 
 #: categdialog.cpp:502 payeedialog.cpp:753 tagdialog.cpp:300
 msgid "Do you wish to continue ?"
@@ -1772,12 +1772,12 @@ msgstr "தொடர விருப்பமா ?"
 
 #: categdialog.cpp:503
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "சொத்து விவர அழிப்பை உறுதி செய்"
 
 #: categdialog.cpp:612 tagdialog.cpp:241
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "'%s'க்கு புதிய பெயரை உள்ளிடவும்"
 
 #: categdialog.cpp:613
 msgid "Edit Category"
@@ -1785,49 +1785,49 @@ msgstr "வகையை திருத்து"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
-msgstr ""
+msgstr "வகை மேலாளர்: திருத்துவதில் பிழை"
 
 #: categdialog.cpp:682 mmframe.cpp:3787
 msgid "Merge categories completed"
-msgstr ""
+msgstr "வகைகளை ஒன்றிணைத்தல் முடிந்தது"
 
 #: categdialog.cpp:683 mmframe.cpp:3788 mmframe.cpp:3803 mmframe.cpp:3819
 #: payeedialog.cpp:834
 #, c-format
 msgid "Records have been updated in the database: %i"
-msgstr ""
+msgstr "தரவுத்தளத்தில் பதிவுகள் புதுப்பிக்கப்பட்டன: %i"
 
 #: categdialog.cpp:685 mmframe.cpp:3790
 msgid "Merge categories result"
-msgstr ""
+msgstr "வகைகளை ஒன்றிணைக்கும் முடிவு"
 
 #: categdialog.cpp:761
 msgid "Are you sure you want to unhide all categories"
-msgstr ""
+msgstr "எல்லா வகைகளையும் மறைக்க விரும்புகிறீர்களா"
 
 #: categdialog.cpp:762
 msgid "Unhide all categories"
-msgstr ""
+msgstr "அனைத்து வகைகளையும் மறை"
 
 #: categdialog.cpp:790
 msgid "Hide Selected Category"
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட வகையை மறை"
 
 #: categdialog.cpp:791
 msgid "Unhide Selected Category"
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட வகையை மறை"
 
 #: categdialog.cpp:793
 msgid "Remove Category"
-msgstr ""
+msgstr "வகையை அகற்று"
 
 #: categdialog.cpp:796
 msgid "Clear Settings"
-msgstr ""
+msgstr "அமைப்புகளை அழிக்கவும்"
 
 #: categdialog.h:68 mmframe.cpp:1742 mmframe.cpp:1968
 msgid "Category Manager"
-msgstr ""
+msgstr "வகை மேலாளர்"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -1854,31 +1854,31 @@ msgstr "செயல்தவிர்"
 
 #: constants.cpp:91
 msgid "Redo"
-msgstr ""
+msgstr "மீண்டும் செய்"
 
 #: constants.cpp:92
 msgid "Cut"
-msgstr ""
+msgstr "வெட்டு"
 
 #: constants.cpp:93
 msgid "Copy"
-msgstr ""
+msgstr "நகலெடு"
 
 #: constants.cpp:94
 msgid "Paste"
-msgstr ""
+msgstr "ஒட்டவும்"
 
 #: constants.cpp:95
 msgid "Select All"
-msgstr ""
+msgstr "அனைத்தையும் தேர்ந்தெடு"
 
 #: constants.cpp:111
 msgid "64-bit"
-msgstr ""
+msgstr "64 பிட்"
 
 #: constants.cpp:193
 msgid "View with Transaction Filter..."
-msgstr ""
+msgstr "பரிவர்த்தனை வடிப்பானுடன் காண்க..."
 
 #: constants.cpp:194
 msgid "View All Transactions"
@@ -1914,23 +1914,23 @@ msgstr "கடைசி 12 மாதங்களைக் காண்"
 
 #: constants.cpp:202
 msgid "View Current Year"
-msgstr ""
+msgstr "நடப்பு ஆண்டைப் பார்க்கவும்"
 
 #: constants.cpp:203
 msgid "View Current Financial Year"
-msgstr ""
+msgstr "நடப்பு நிதியாண்டைப் பார்க்கவும்"
 
 #: constants.cpp:204
 msgid "View Last Year"
-msgstr ""
+msgstr "கடந்த ஆண்டு பார்க்கவும்"
 
 #: constants.cpp:205
 msgid "View Last Financial Year"
-msgstr ""
+msgstr "கடந்த நிதியாண்டைப் பார்க்கவும்"
 
 #: constants.cpp:206
 msgid "View Since Statement Date"
-msgstr ""
+msgstr "அறிக்கை தேதியிலிருந்து பார்க்கவும்"
 
 #: constants.cpp:208
 msgid "ALL"
@@ -1963,19 +1963,19 @@ msgstr "நாணயக் குறியீடு"
 
 #: currencydialog.cpp:198
 msgid "Currency Symbol"
-msgstr ""
+msgstr "நாணய குறியீடு"
 
 #: currencydialog.cpp:202
 msgid "Symbol Location"
-msgstr ""
+msgstr "சின்னம் இடம்"
 
 #: currencydialog.cpp:203
 msgid "Prefix"
-msgstr ""
+msgstr "முன்னொட்டு"
 
 #: currencydialog.cpp:204
 msgid "Suffix"
-msgstr ""
+msgstr "பின்னொட்டு"
 
 #: currencydialog.cpp:210 import_export/qif_import_gui.cpp:328
 #: import_export/univcsvdialog.cpp:419
@@ -1984,11 +1984,11 @@ msgstr "தசம குறியீடு"
 
 #: currencydialog.cpp:213 currencydialog.cpp:220
 msgid "Dot"
-msgstr ""
+msgstr "புள்ளி"
 
 #: currencydialog.cpp:214 currencydialog.cpp:221
 msgid "Comma"
-msgstr ""
+msgstr "காற்புள்ளி"
 
 #: currencydialog.cpp:216
 msgid "Grouping Char"
@@ -1996,7 +1996,7 @@ msgstr "குழுப் பிரிவு குறியீடு"
 
 #: currencydialog.cpp:222
 msgid "Space"
-msgstr ""
+msgstr "இடைவெளி"
 
 #: currencydialog.cpp:227
 msgid "Scale"
@@ -2004,27 +2004,27 @@ msgstr "அளவு"
 
 #: currencydialog.cpp:231 currencydialog.cpp:291
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "அடிப்படை விகிதத்திற்கு மாற்றவும்"
 
 #: currencydialog.cpp:240
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "நாணயத்திற்கான நாணய வரலாறு கண்டறியப்படாத பட்சத்தில் மாற்று விகிதம் பயன்படுத்தப்படும்"
 
 #: currencydialog.cpp:242
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "நிலையான மாற்று விகிதம்"
 
 #: currencydialog.cpp:247
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "நாணய வடிவமைப்பு மாதிரி:"
 
 #: currencydialog.cpp:261
 msgid "Save any changes made"
-msgstr ""
+msgstr "செய்த மாற்றங்களைச் சேமிக்கவும்"
 
 #: currencydialog.cpp:265
 msgid "Any changes will be lost without update"
-msgstr ""
+msgstr "எந்த மாற்றங்களும் புதுப்பிக்கப்படாமல் இழக்கப்படும்"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
 #: import_export/univcsvdialog.cpp:2690 maincurrencydialog.cpp:626
@@ -2034,7 +2034,7 @@ msgstr "உள்ளீடு செல்லாது"
 
 #: currencydialog.cpp:285 currencydialog.cpp:310
 msgid "Grouping character cannot be the same as the decimal character"
-msgstr ""
+msgstr "தொகுத்தல் எழுத்தும் தசம எழுத்தும் ஒரே மாதிரியாக இருக்க முடியாது"
 
 #: currencydialog.cpp:332
 #, c-format
@@ -2840,180 +2840,180 @@ msgstr "&ஏற்று"
 
 #: general_report_manager.cpp:388
 msgid "Export the report to a new file."
-msgstr ""
+msgstr "அறிக்கையை புதிய கோப்பிற்கு ஏற்றுமதி செய்யவும்."
 
 #: general_report_manager.cpp:391 stockdialog.cpp:336
 msgid "&Save "
-msgstr ""
+msgstr "&சேமி "
 
 #: general_report_manager.cpp:393
 msgid "Save changes."
-msgstr ""
+msgstr "மாற்றங்களை சேமி."
 
 #: general_report_manager.cpp:395
 msgid "&Run"
-msgstr ""
+msgstr "&இயக்கவும்"
 
 #: general_report_manager.cpp:397
 msgid "Run selected report."
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட அறிக்கையை இயக்கவும்."
 
 #: general_report_manager.cpp:409
 msgid "Output"
-msgstr ""
+msgstr "வெளியீடு"
 
 #: general_report_manager.cpp:432
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:433
 msgid "Lua"
-msgstr ""
+msgstr "லுவா"
 
 #: general_report_manager.cpp:434
 msgid "Template"
-msgstr ""
+msgstr "படிமஅச்சு"
 
 #: general_report_manager.cpp:487
 msgid "&Test"
-msgstr ""
+msgstr "சோதனை"
 
 #: general_report_manager.cpp:488
 msgid "Create Template"
-msgstr ""
+msgstr "படிமஅச்சு உருவாக்கவும்"
 
 #: general_report_manager.cpp:540
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%zu வரிசைகள் திரும்பியுள்ளன, கால அளவு: %lld ms"
 
 #: general_report_manager.cpp:567
 msgid "SQL Syntax Error"
-msgstr ""
+msgstr "SQL இலக்கண பிழை"
 
 #: general_report_manager.cpp:598
 msgid "Load report file:"
-msgstr ""
+msgstr "அறிக்கை கோப்பை ஏற்றவும்:"
 
 #: general_report_manager.cpp:600 general_report_manager.cpp:1059
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "பொது அறிக்கை மேலாளர் கோப்புகள் (*.grm)"
 
 #: general_report_manager.cpp:600 general_report_manager.cpp:1059
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "ZIP கோப்புகள் (*.zip)"
 
 #: general_report_manager.cpp:665 general_report_manager.cpp:849
 #: general_report_manager.cpp:1010 general_report_manager.h:64 mmframe.cpp:837
 #: mmframe.cpp:1801 mmframe.cpp:1974
 msgid "General Report Manager"
-msgstr ""
+msgstr "பொது அறிக்கை மேலாளர்"
 
 #: general_report_manager.cpp:732
 msgid "Assets..."
-msgstr ""
+msgstr "சொத்துக்கள்..."
 
 #: general_report_manager.cpp:735
 msgid "New Empty Report..."
-msgstr ""
+msgstr "புதிய வெற்று அறிக்கை..."
 
 #: general_report_manager.cpp:736
 msgid "New Sample Report"
-msgstr ""
+msgstr "புதிய மாதிரி அறிக்கை"
 
 #: general_report_manager.cpp:739
 msgid "Change Group..."
-msgstr ""
+msgstr "குழுவை மாற்று..."
 
 #: general_report_manager.cpp:741
 msgid "Rename Group..."
-msgstr ""
+msgstr "குழுவின் பெயரை மாற்று..."
 
 #: general_report_manager.cpp:742
 msgid "UnGroup"
-msgstr ""
+msgstr "குழு நீக்கம்"
 
 #: general_report_manager.cpp:743
 msgid "Rename Report..."
-msgstr ""
+msgstr "அறிக்கையின் பெயரை மாற்று..."
 
 #: general_report_manager.cpp:747
 msgid "Active"
-msgstr ""
+msgstr "செயலில்"
 
 #: general_report_manager.cpp:747
 msgid "Show/Hide the report in the main navigation panel"
-msgstr ""
+msgstr "பிரதான வழிசெலுத்தல் பேனலில் அறிக்கையைக் காட்டு/மறை"
 
 #: general_report_manager.cpp:751
 msgid "Delete Report..."
-msgstr ""
+msgstr "அறிக்கையை நீக்கு..."
 
 #: general_report_manager.cpp:848 general_report_manager.cpp:1009
 msgid "Enter the name for the report"
-msgstr ""
+msgstr "சொத்தின் பெயரை இடு"
 
 #: general_report_manager.cpp:867
 msgid "Delete the Report Title:"
-msgstr ""
+msgstr "அறிக்கையின் தலைப்பை நீக்கு:"
 
 #: general_report_manager.cpp:906 general_report_manager.cpp:990
 msgid "Enter or choose name for the new report group"
-msgstr ""
+msgstr "புதிய அறிக்கை குழுவிற்கு பெயரை உள்ளிடவும் அல்லது தேர்வு செய்யவும்"
 
 #: general_report_manager.cpp:907
 msgid "Change report group"
-msgstr ""
+msgstr "அறிக்கை குழுவை மாற்றவும்"
 
 #: general_report_manager.cpp:923
 msgid "Enter or choose name for the new group"
-msgstr ""
+msgstr "புதிய குழுவிற்கு பெயரை உள்ளிடவும் அல்லது தேர்வு செய்யவும்"
 
 #: general_report_manager.cpp:924
 msgid "Rename Group"
-msgstr ""
+msgstr "குழுவை மறுபெயரிடவும்"
 
 #: general_report_manager.cpp:991
 msgid "Add Report Group"
-msgstr ""
+msgstr "அறிக்கை குழுவைச் சேர்க்கவும்"
 
 #: general_report_manager.cpp:1004
 #, c-format
 msgid "New Report %s"
-msgstr ""
+msgstr "புதிய அறிக்கை %s"
 
 #: general_report_manager.cpp:1017
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "இந்தப் பெயரில் ஒரு அறிக்கை ஏற்கனவே உள்ளது"
 
 #: general_report_manager.cpp:1017 general_report_manager.cpp:1024
 msgid "New Report"
-msgstr ""
+msgstr "புதிய அறிக்கை"
 
 #: general_report_manager.cpp:1056
 msgid "Choose file to Save As Report"
-msgstr ""
+msgstr "அறிக்கையாகச் சேமிக்க கோப்பைத் தேர்ந்தெடுக்கவும்"
 
 #: general_report_manager.cpp:1234
 msgid "Parameters:"
-msgstr ""
+msgstr "அளவுருக்கள்:"
 
 #: images_list.cpp:325
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "தீம் '%s' இல் உள்ள மெட்டாடேட்டா JSON பாகுபடுத்த முடியாது மற்றும் மோசமாக கட்டமைக்கப்பட்டுள்ளது, தயவுசெய்து சரிசெய்யவும்."
 
 #: images_list.cpp:413
 #, c-format
 msgid "File '%1$s' missing or invalid in chosen theme '%2$s'"
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட தீம் '%2$s' இல் '%1$s' கோப்பு இல்லை அல்லது தவறானது"
 
 #: images_list.cpp:424
 #, c-format
 msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட தீம் '%2$s' இல் மெட்டாடேட்டா '%1$s' இல்லை"
 
 #: images_list.cpp:457
 msgid "and more..."
@@ -3022,21 +3022,21 @@ msgstr "மேலும் பல..."
 #: images_list.cpp:459
 #, c-format
 msgid "There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s"
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட தீம் '%2$s' இல் %1$d ஐக் காணவில்லை அல்லது தவறான ஐகான்கள் உள்ளன: %3$s"
 
 #: images_list.cpp:488
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "தீம் %s கிடைக்கவில்லை, அது இனி ஆதரிக்கப்படாமல் போகலாம். இயல்புநிலை தீமுக்கு மாற்றுகிறது"
 
 #: images_list.cpp:495
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "தீம் %s இல் உருப்படிகள் இல்லை மற்றும் இணக்கமற்றது. இயல்புநிலை தீமுக்கு மாற்றுகிறது"
 
 #: images_list.cpp:500
 msgid "No workable theme found, the installation may be corrupt"
-msgstr ""
+msgstr "செயல்படக்கூடிய தீம் எதுவும் இல்லை, நிறுவல் சிதைந்திருக்கலாம்"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2248
 #: mmSimpleDialogs.cpp:817
@@ -3046,19 +3046,19 @@ msgstr "கோப்பை திறக்க முடியவில்லை.
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
 #: import_export/univcsvdialog.cpp:1353 mmframe.cpp:2622 mmframe.cpp:2641
 msgid "Universal CSV Import"
-msgstr ""
+msgstr "உலகளாவிய CSV இறக்குமதி"
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
-msgstr ""
+msgstr "கோப்பை உருவாக்க முடியவில்லை."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:249
 msgid "Could not save file."
-msgstr ""
+msgstr "கோப்பைச் சேமிக்க முடியவில்லை."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:249
 msgid "Export error"
-msgstr ""
+msgstr "ஏற்றுமதியின் பிழை"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
