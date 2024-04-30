@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-04-25 23:35+0300\n"
-"PO-Revision-Date: 2024-04-25 21:55\n"
+"PO-Revision-Date: 2024-04-30 09:00\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5523,11 +5523,11 @@ msgstr "Adatbázis hibakeresése"
 
 #: mmframe.cpp:2481 optionsettingsmisc.cpp:142
 msgid "Yes"
-msgstr "&Igen"
+msgstr "Igen"
 
 #: mmframe.cpp:2481 optionsettingsmisc.cpp:143
 msgid "No"
-msgstr "&Nem"
+msgstr "Nem"
 
 #: mmframe.cpp:2501 mmframe.cpp:2522
 msgid "Save database file as"
