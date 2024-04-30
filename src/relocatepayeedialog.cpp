@@ -84,7 +84,7 @@ void relocatePayeeDialog::CreateControls()
     flagsExpand.Align(wxALIGN_LEFT).Border(wxALL, 5).Expand();
 
     wxStaticText* headerText = new wxStaticText( this, wxID_STATIC
-        , _("Merge payees"));
+        , _("Merge Payees"));
     wxStaticLine* lineTop = new wxStaticLine(this,wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
