@@ -42,7 +42,9 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
 
     int err = SQLITE_OK;
     wxString errStr=wxEmptyString;
-    wxSQLite3CipherAes128 cipher;
+    wxSQLite3CipherSQLCipher cipher;
+    cipher.InitializeVersionDefault(4);
+    cipher.SetLegacy(true);
     try
     {
         if (debug)

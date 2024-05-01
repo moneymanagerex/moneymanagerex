@@ -2368,7 +2368,9 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
     wxCopyFile(encFileName, fileName);
 
     wxSQLite3Database db;
-    wxSQLite3CipherAes128 cipher;
+    wxSQLite3CipherSQLCipher cipher;
+    cipher.InitializeVersionDefault(4);
+    cipher.SetLegacy(true);
 
     db.Open(fileName, cipher, password);
     db.ReKey(cipher, wxEmptyString);
@@ -2399,7 +2401,10 @@ void mmGUIFrame::OnChangeEncryptPassword(wxCommandEvent& /*event*/)
                 wxString confirm_password = confirm_dlg.GetValue();
                 if (!confirm_password.IsEmpty() && (new_password == confirm_password))
                 {
-                    wxSQLite3CipherAes128 cipher;
+                    wxSQLite3CipherSQLCipher cipher;
+                    cipher.InitializeVersionDefault(4);
+                    cipher.SetLegacy(true);
+
                     m_db->ReKey(cipher, confirm_password);
                     wxMessageBox(_("Password change completed"), password_change_heading);
                 }
@@ -2555,7 +2560,9 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
     {
         wxSQLite3Database dbx;
 
-        wxSQLite3CipherAes128 cipher;
+        wxSQLite3CipherSQLCipher cipher;
+        cipher.InitializeVersionDefault(4);
+        cipher.SetLegacy(true);
 
         dbx.Open(newFileName.GetFullPath(), cipher, m_password);
         dbx.ReKey(cipher, new_password); // empty password resets encryption
