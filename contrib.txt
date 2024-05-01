@@ -226,6 +226,12 @@ Urias Jimenez
 Mihkel Loderaud
 Adam Leinss
 Mariano Rossello
+Alberto Ghilardi
+Daniel Vittet
+John Weaving
+Peter Hulm
+Angel Fernandez
+Carol Williams
 
 ### 2023
 Renato
