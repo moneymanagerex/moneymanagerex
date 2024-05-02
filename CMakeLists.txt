@@ -708,6 +708,8 @@ if(LINUX)
                 COMMAND_ERROR_IS_FATAL ANY)
     endif()
 
+    execute_process(COMMAND sed -i -e "s/<developer_name>.*<\\/developer_name>//g" org.moneymanagerex.MMEX.metainfo.xml)
+
     # AppStream 'strict' validation wasn't an option prior to v0.15.4
     if(APPSTREAM_MAJOR_VERSION GREATER 0 OR (APPSTREAM_MINOR_VERSION GREATER 15 OR (APPSTREAM_MINOR_VERSION EQUAL 15 AND APPSTREAM_PATCH_VERSION GREATER_EQUAL 4)))
         execute_process(COMMAND appstreamcli validate --strict --no-net org.moneymanagerex.MMEX.metainfo.xml
