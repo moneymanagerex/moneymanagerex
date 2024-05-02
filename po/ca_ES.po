@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-04-25 23:35+0300\n"
-"PO-Revision-Date: 2024-05-02 21:08\n"
+"PO-Revision-Date: 2024-05-02 22:12\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -233,7 +233,7 @@ msgstr "Balanç mínim:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Límit inferior del balanç del compte. Zero per a deshabilitar"
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:329
 msgid "Credit"
@@ -2755,11 +2755,11 @@ msgstr ""
 
 #: filtertransdialog.cpp:1876
 msgid "Amount Min."
-msgstr ""
+msgstr "Quantitat Mín."
 
 #: filtertransdialog.cpp:1884
 msgid "Amount Max."
-msgstr ""
+msgstr "Quantitat Màx."
 
 #: filtertransdialog.cpp:2135 mmframe.cpp:1325
 msgid "Setting Name"
@@ -3377,19 +3377,19 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:1388
 msgid "Transaction Account is incorrect"
-msgstr ""
+msgstr "El Compte de Transacció és incorrecte"
 
 #: import_export/qif_import_gui.cpp:1397
 msgid "Transaction Account for transfer is incorrect"
-msgstr ""
+msgstr "El Compte de Transacció per a la transferència és incorrecte"
 
 #: import_export/qif_import_gui.cpp:1426
 msgid "Transaction Amount is incorrect"
-msgstr ""
+msgstr "La Quantitat de la Transacció és incorrecte"
 
 #: import_export/qif_import_gui.cpp:1452
 msgid "Transaction Category is incorrect"
-msgstr ""
+msgstr "La Categoria de Transacció és incorrecte"
 
 #: import_export/qif_import_gui.cpp:1586
 #, c-format
@@ -3413,7 +3413,7 @@ msgstr ""
 #: mmhomepage.cpp:543 mmhomepage.cpp:706 reports/cashflow.cpp:419
 #: reports/summary.cpp:275 reports/summary.cpp:311
 msgid "Balance"
-msgstr ""
+msgstr "Balanç"
 
 #: import_export/univcsvdialog.cpp:122 mmframe.cpp:1599
 msgid "Import from CSV file"
@@ -3468,11 +3468,11 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:414
 msgid "Positive values are deposits"
-msgstr ""
+msgstr "Valors positius són dipòsits"
 
 #: import_export/univcsvdialog.cpp:415
 msgid "Positive values are withdrawals"
-msgstr ""
+msgstr "Valors positius són retirades"
 
 #: import_export/univcsvdialog.cpp:432
 msgid "Rows to ignore"
@@ -3488,7 +3488,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:486
 msgid "Preview"
-msgstr ""
+msgstr "Vista prèvia"
 
 #: import_export/univcsvdialog.cpp:561
 msgid "Choose XML data file to Import"
@@ -3924,11 +3924,11 @@ msgstr "Afegir un any"
 #: mmSimpleDialogs.cpp:806
 #, c-format
 msgid "Entry %s is invalid"
-msgstr ""
+msgstr "L'entrada %s és invàlida"
 
 #: mmSimpleDialogs.cpp:812
 msgid "Please select an existing category"
-msgstr ""
+msgstr "Si us plau, seleccioni una categoria existent"
 
 #: mmSimpleDialogs.cpp:812
 msgid "Invalid Category"
@@ -4043,7 +4043,7 @@ msgstr ""
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."
-msgstr ""
+msgstr "Consell: Per marcar una transacció com que requereix seguiment, seleccioni la transacció i premi la tecla \"F\"."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
