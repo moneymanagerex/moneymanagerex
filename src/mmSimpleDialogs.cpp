@@ -280,7 +280,7 @@ void mmCalculatorPopup::OnButtonPressed(wxCommandEvent& event)
         if (from != to)
             value.Remove(from, to - from);
         
-        valueTextCtrl_->ChangeValue(value.insert(ip, text));
+        valueTextCtrl_->WriteText(text);
         ip += 1;
     }
     valueTextCtrl_->SetFocus();
