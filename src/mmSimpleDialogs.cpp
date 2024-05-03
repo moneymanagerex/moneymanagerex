@@ -241,6 +241,7 @@ void mmCalculatorPopup::SetValue(wxString& value)
     if (target_)
         valueTextCtrl_->SetCurrency(target_->GetCurrency());
     valueTextCtrl_->ChangeValue(value);
+    valueTextCtrl_->SelectNone();
     valueTextCtrl_->SetInsertionPointEnd();
 }
 
@@ -257,20 +258,22 @@ void mmCalculatorPopup::OnButtonPressed(wxCommandEvent& event)
     if (text == "=")
     {
         valueTextCtrl_->Calculate();
+        ip = valueTextCtrl_->GetLastPosition();
     }
     else if (text == "C")
     {
         valueTextCtrl_->ChangeValue("");
+        ip = 0;
     }
     else if (text == "Del")
     {
         if (from != to)
-        {
             valueTextCtrl_->ChangeValue(value.Remove(from, to - from));
-            valueTextCtrl_->SetInsertionPoint(ip);
-        }
-        else
+        else if (ip > 0)
+        {
             valueTextCtrl_->Remove(ip - 1, ip);
+            ip -= 1;
+        }
     }
     else
     {
@@ -278,9 +281,11 @@ void mmCalculatorPopup::OnButtonPressed(wxCommandEvent& event)
             value.Remove(from, to - from);
         
         valueTextCtrl_->ChangeValue(value.insert(ip, text));
-        valueTextCtrl_->SetInsertionPoint(ip + 1);
+        ip += 1;
     }
     valueTextCtrl_->SetFocus();
+    valueTextCtrl_->SelectNone();
+    valueTextCtrl_->SetInsertionPoint(ip);
 }
     //------------
 
