@@ -52,9 +52,12 @@ public:
     wxChar GetDecimalPoint();
     void SetCurrency(const Model_Currency::Data* currency);
     void SetAltPrecision(int precision);
+    void SetIgnoreFocusChange(bool ignore_focus);
+    const Model_Currency::Data* GetCurrency();
 
 private:
     int m_alt_precision = -1;
+    bool ignore_focus_;
     void OnTextEntered(wxCommandEvent& event);
     void OnKillFocus(wxFocusEvent& event);
     const Model_Currency::Data* m_currency = nullptr;
@@ -62,4 +65,6 @@ private:
 };
 
 inline void mmTextCtrl::SetAltPrecision(int precision) { m_alt_precision = precision; }
+inline const Model_Currency::Data* mmTextCtrl::GetCurrency() { return m_currency; }
 inline void mmTextCtrl::SetCurrency(const Model_Currency::Data* currency) { m_currency = currency; }
+inline void mmTextCtrl::SetIgnoreFocusChange(bool ignore_focus) { ignore_focus_ = ignore_focus; }

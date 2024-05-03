@@ -538,7 +538,13 @@ void mmBDDialog::CreateControls()
 
     transPanelSizer->Add(amount_label, g_flagsH);
     transPanelSizer->Add(amountSizer, wxSizerFlags(g_flagsExpand).Border(0));
-    transPanelSizer->AddSpacer(1);
+
+    bCalc_ = new wxBitmapButton(this, wxID_ANY, mmBitmapBundle(png::CALCULATOR, mmBitmapButtonSize));
+    bCalc_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmBDDialog::OnCalculator), nullptr, this);
+    mmToolTip(bCalc_, _("Open Calculator"));
+    transPanelSizer->Add(bCalc_, g_flagsH);
+    calcTarget_ = textAmount_;
+    calcPopup_ = new mmCalculatorPopup(bCalc_, calcTarget_);
 
     // Account ------------------------------------------------
     wxStaticText* acc_label = new wxStaticText(this, ID_DIALOG_TRANS_STATIC_ACCOUNT, _("Account"));
@@ -1200,6 +1206,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void mmBDDialog::SetSplitControls(bool split)
 {
     textAmount_->Enable(!split);
+    bCalc_->Enable(!split);
     if (split)
     {
         m_bill_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_bill_data.local_splits);
@@ -1454,7 +1461,7 @@ void mmBDDialog::setCategoryLabel()
 
     bool is_split = !m_bill_data.local_splits.empty();
     textAmount_->Enable(!is_split);
-
+    bCalc_->Enable(!is_split);
     wxButton* bSplit = static_cast<wxBitmapButton*>(FindWindow(ID_DIALOG_TRANS_BUTTONSPLIT));
     bSplit->Enable(!m_transfer);
     cbCategory_->Enable(!is_split);
@@ -1527,6 +1534,12 @@ void mmBDDialog::OnFocusChange(wxChildFocusEvent& event)
             m_bill_data.CATEGID = cbCategory_->mmGetCategoryId();
         }
         break;
+    case ID_DIALOG_TRANS_TEXTAMOUNT:
+        calcTarget_ = textAmount_;
+        break;
+    case ID_DIALOG_TRANS_TOTEXTAMOUNT:
+        calcTarget_ = toTextAmount_;
+        break;
 
     }
 
@@ -1543,4 +1556,20 @@ void mmBDDialog::OnFocusChange(wxChildFocusEvent& event)
         toTextAmount_->GetDouble(m_bill_data.TOTRANSAMOUNT);
         toTextAmount_->SelectAll();
     }
+}
+
+void mmBDDialog::OnCalculator(wxCommandEvent& WXUNUSED(event))
+{
+    if (!calcPopup_->dismissedByButton_)
+    {
+        calcPopup_->SetTarget(calcTarget_);
+        calcTarget_->Enable(false);
+        wxString value = calcTarget_->GetValue();
+        calcPopup_->SetValue(value);
+        calcPopup_->SetPosition(wxPoint(bCalc_->GetScreenPosition().x, bCalc_->GetScreenPosition().y + mmBitmapButtonSize + 12));
+        calcPopup_->Popup();
+        calcPopup_->SetFocus();
+    }
+    else
+        calcPopup_->dismissedByButton_ = false;
 }

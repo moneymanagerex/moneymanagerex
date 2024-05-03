@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define MM_EX_MMSIMPLEDIALOGS_H_
 
 #include "mmex.h"
+#include "mmTextCtrl.h"
 #include "util.h"
 
 #include "model/Model_Account.h"
@@ -37,6 +38,70 @@ class wxComboBox;
 class wxTextCtrl;
 class wxChoice;
 class wxButton;
+
+class mmCalculatorPopup : public wxPopupTransientWindow
+{
+public:
+    mmCalculatorPopup(wxWindow* parent, mmTextCtrl* target = nullptr);
+    virtual ~mmCalculatorPopup();
+
+    bool dismissedByButton_ = false;
+    void SetValue(wxString& value);
+    void SetFocus();
+    void SetTarget(mmTextCtrl* target);
+
+protected:
+    virtual void OnDismiss() override
+    {
+#ifdef __WXMSW__
+        // On MSW check if the button was used to dismiss to prevent the popup from reopening
+        wxPoint mousePos = wxGetMousePosition();
+        if (GetParent()->GetClientRect().Contains(GetParent()->ScreenToClient(mousePos)))
+        {
+            dismissedByButton_ = true;
+        }
+        else
+            dismissedByButton_ = false;
+#endif
+        if (target_)
+        {
+            valueTextCtrl_->Calculate();
+            target_->ChangeValue(valueTextCtrl_->GetValue());
+            target_->Enable(true);
+            target_->SetFocus();
+        }
+    }
+
+private:
+    mmTextCtrl* target_;
+    mmTextCtrl* valueTextCtrl_ = nullptr;
+    wxButton* button_lparen_ = nullptr;
+    wxButton* button_rparen_ = nullptr;
+    wxButton* button_clear_ = nullptr;
+    wxButton* button_del_ = nullptr;
+    wxButton* button_7_ = nullptr;
+    wxButton* button_8_ = nullptr;
+    wxButton* button_9_ = nullptr;
+    wxButton* button_div_ = nullptr;
+    wxButton* button_4_ = nullptr;
+    wxButton* button_5_ = nullptr;
+    wxButton* button_6_ = nullptr;
+    wxButton* button_mult_ = nullptr;
+    wxButton* button_1_ = nullptr;
+    wxButton* button_2_ = nullptr;
+    wxButton* button_3_ = nullptr;
+    wxButton* button_minus_ = nullptr;
+    wxButton* button_dec_ = nullptr;
+    wxButton* button_0_ = nullptr;
+    wxButton* button_equal_ = nullptr;
+    wxButton* button_plus_ = nullptr;
+    ;
+    void OnButtonPressed(wxCommandEvent& event);
+};
+
+inline void mmCalculatorPopup::SetFocus() { valueTextCtrl_->SetFocus(); }
+inline void mmCalculatorPopup::SetTarget(mmTextCtrl* target) { target_ = target; button_dec_->SetLabel(target->GetDecimalPoint()); }
+
 
 class mmComboBox : public wxComboBox
 {

@@ -35,7 +35,8 @@ void mmTextCtrl::OnTextEntered(wxCommandEvent& event)
 
 void mmTextCtrl::OnKillFocus(wxFocusEvent& event)
 {
-    Calculate( (m_alt_precision != -1) ? m_alt_precision 
+    if (!ignore_focus_)
+        Calculate( (m_alt_precision != -1) ? m_alt_precision 
                             : Model_Currency::precision(m_currency));
     event.Skip();
 }

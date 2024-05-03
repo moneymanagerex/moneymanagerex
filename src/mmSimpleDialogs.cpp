@@ -26,6 +26,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "platfdep.h"
 #include "tagdialog.h"
 #include "util.h"
+#include "validators.h"
 
 #include "model/Model_Account.h"
 #include "model/Model_Setting.h"
@@ -100,7 +101,167 @@ void mmCalendarPopup::OnEndSelection(wxCalendarEvent& event)
     m_datePicker->GetEventHandler()->AddPendingEvent(evt);
 }
 
-//------------
+//----------------------------------------------------------------------------
+// mmCalculatorPopup
+//----------------------------------------------------------------------------
+
+mmCalculatorPopup::mmCalculatorPopup(wxWindow* parent, mmTextCtrl* target) : wxPopupTransientWindow(parent, wxBORDER_THEME | wxPU_CONTAINS_CONTROLS), target_(target)
+{
+    wxWindow* panel = new wxWindow(this, wxID_ANY);
+    SetFont(parent->GetFont());
+    int fontSize = GetFont().GetPointSize();
+    wxSize btnSize = wxSize(fontSize + 15, fontSize + 15);
+    wxFlexGridSizer* sizer;
+    sizer = new wxFlexGridSizer(2, 1, 0, 0);
+    sizer->SetFlexibleDirection(wxVERTICAL);
+    sizer->SetNonFlexibleGrowMode(wxFLEX_GROWMODE_SPECIFIED);
+
+    valueTextCtrl_ = new mmTextCtrl(panel, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+    valueTextCtrl_->SetFont(GetFont());
+    valueTextCtrl_->SetIgnoreFocusChange(true);
+    sizer->Add(valueTextCtrl_, g_flagsExpand);
+
+    wxGridSizer* buttonSizer;
+    buttonSizer = new wxGridSizer(5, 4, 0, 0);
+
+    button_lparen_ = new wxButton(panel, wxID_ANY, "(", wxDefaultPosition, btnSize);
+    button_lparen_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_lparen_, g_flagsH);
+
+    button_rparen_ = new wxButton(panel, wxID_ANY, ")", wxDefaultPosition, btnSize);
+    button_rparen_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_rparen_, g_flagsH);
+
+    button_clear_ = new wxButton(panel, wxID_ANY, "C", wxDefaultPosition, btnSize);
+    button_clear_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_clear_, g_flagsH);
+
+    button_del_ = new wxButton(panel, wxID_ANY, "Del", wxDefaultPosition, btnSize);
+    button_del_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_del_, g_flagsH);
+
+    button_7_ = new wxButton(panel, wxID_ANY, "7", wxDefaultPosition, btnSize);
+    button_7_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_7_, g_flagsH);
+
+    button_8_ = new wxButton(panel, wxID_ANY, "8", wxDefaultPosition, btnSize);
+    button_8_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_8_, g_flagsH);
+
+    button_9_ = new wxButton(panel, wxID_ANY, "9", wxDefaultPosition, btnSize);
+    button_9_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_9_, g_flagsH);
+
+    button_div_ = new wxButton(panel, wxID_ANY, "/", wxDefaultPosition, btnSize);
+    button_div_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_div_, g_flagsH);
+
+    button_4_ = new wxButton(panel, wxID_ANY, "4", wxDefaultPosition, btnSize);
+    button_4_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_4_, g_flagsH);
+
+    button_5_ = new wxButton(panel, wxID_ANY, "5", wxDefaultPosition, btnSize);
+    button_5_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_5_, g_flagsH);
+
+    button_6_ = new wxButton(panel, wxID_ANY, "6", wxDefaultPosition, btnSize);
+    button_6_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_6_, g_flagsH);
+
+    button_mult_ = new wxButton(panel, wxID_ANY, "*", wxDefaultPosition, btnSize);
+    button_mult_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_mult_, g_flagsH);
+
+    button_1_ = new wxButton(panel, wxID_ANY, "1", wxDefaultPosition, btnSize);
+    button_1_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_1_, g_flagsH);
+
+    button_2_ = new wxButton(panel, wxID_ANY, "2", wxDefaultPosition, btnSize);
+    button_2_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_2_, g_flagsH);
+
+    button_3_ = new wxButton(panel, wxID_ANY, "3", wxDefaultPosition, btnSize);
+    button_3_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_3_, g_flagsH);
+
+    button_minus_ = new wxButton(panel, wxID_ANY, "-", wxDefaultPosition, btnSize);
+    button_minus_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_minus_, g_flagsH);
+
+    button_dec_ = new wxButton(panel, wxID_ANY, ".", wxDefaultPosition, btnSize);
+    button_dec_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_dec_, g_flagsH);
+
+    button_0_ = new wxButton(panel, wxID_ANY, "0", wxDefaultPosition, btnSize);
+    button_0_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_0_, g_flagsH);
+
+    button_equal_ = new wxButton(panel, wxID_ANY, "=", wxDefaultPosition, btnSize);
+    button_equal_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_equal_, g_flagsH);
+
+    button_plus_ = new wxButton(panel, wxID_ANY, "+", wxDefaultPosition, btnSize);
+    button_plus_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    buttonSizer->Add(button_plus_, g_flagsH);
+
+    sizer->Add(buttonSizer, g_flagsH);
+
+    panel->SetSizer(sizer);
+    sizer->Fit(panel);
+    SetClientSize(panel->GetSize());
+}
+
+mmCalculatorPopup::~mmCalculatorPopup()
+{
+}
+
+void mmCalculatorPopup::SetValue(wxString& value)
+{
+    if (target_)
+        valueTextCtrl_->SetCurrency(target_->GetCurrency());
+    valueTextCtrl_->ChangeValue(value);
+    valueTextCtrl_->SetInsertionPointEnd();
+}
+
+void mmCalculatorPopup::OnButtonPressed(wxCommandEvent& event)
+{
+    wxButton* btn = dynamic_cast<wxButton*>(event.GetEventObject());
+    long from;
+    long to;
+    valueTextCtrl_->GetSelection(&from, &to);
+    wxString text = btn->GetLabel();
+    wxString value = valueTextCtrl_->GetValue();
+    int ip = valueTextCtrl_->GetInsertionPoint();
+
+    if (text == "=")
+    {
+        valueTextCtrl_->Calculate();
+    }
+    else if (text == "C")
+    {
+        valueTextCtrl_->ChangeValue("");
+    }
+    else if (text == "Del")
+    {
+        if (from != to)
+        {
+            valueTextCtrl_->ChangeValue(value.Remove(from, to - from));
+            valueTextCtrl_->SetInsertionPoint(ip);
+        }
+        else
+            valueTextCtrl_->Remove(ip - 1, ip);
+    }
+    else
+    {
+        if (from != to)
+            value.Remove(from, to - from);
+        
+        valueTextCtrl_->ChangeValue(value.insert(ip, text));
+        valueTextCtrl_->SetInsertionPoint(ip + 1);
+    }
+    valueTextCtrl_->SetFocus();
+}
+    //------------
 
 wxBEGIN_EVENT_TABLE(mmComboBox, wxComboBox)
 EVT_SET_FOCUS(mmComboBox::OnSetFocus)

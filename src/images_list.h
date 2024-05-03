@@ -161,6 +161,7 @@ enum png {
     OTHER,
 
     //Controls
+    CALCULATOR,
     CLEAR,
     CLIP,
     DOWNARROW,
