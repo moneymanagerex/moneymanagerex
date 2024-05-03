@@ -277,9 +277,6 @@ void mmCalculatorPopup::OnButtonPressed(wxCommandEvent& event)
     }
     else
     {
-        if (from != to)
-            value.Remove(from, to - from);
-        
         valueTextCtrl_->WriteText(text);
         ip += 1;
     }
