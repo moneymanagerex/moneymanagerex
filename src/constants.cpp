@@ -190,7 +190,7 @@ const wxString INIDB_USE_ORG_DATE_DUPLICATE = "USEORIGDATEONDUPLICATE";
 const wxString INIDB_SEND_USAGE_STATS = "SENDUSAGESTATS";
 const wxString INIDB_CHECK_NEWS = "CHECKNEWS";
 
-const wxString VIEW_TRANS_FILTER_DIALOG_STR  = wxTRANSLATE("View with Transaction Filter...");
+const wxString VIEW_TRANS_FILTER_DIALOG_STR  = wxTRANSLATE("View Transaction Report...");
 const wxString VIEW_TRANS_ALL_STR            = wxTRANSLATE("View All Transactions");
 const wxString VIEW_TRANS_TODAY_STR          = wxTRANSLATE("View Today");
 const wxString VIEW_TRANS_CURRENT_MONTH_STR  = wxTRANSLATE("View Current Month");

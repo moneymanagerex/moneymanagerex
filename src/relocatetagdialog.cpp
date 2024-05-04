@@ -84,7 +84,7 @@ void relocateTagDialog::CreateControls()
     flagsExpand.Align(wxALIGN_LEFT).Border(wxALL, 5).Expand();
 
     wxStaticText* headerText = new wxStaticText( this, wxID_STATIC
-        , _("Merge tags"));
+        , _("Merge Tags"));
     wxStaticLine* lineTop = new wxStaticLine(this,wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
