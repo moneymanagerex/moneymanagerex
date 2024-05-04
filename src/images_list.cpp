@@ -47,7 +47,7 @@ static const std::map<std::string, std::pair<int, bool>> iconName2enum = {
     { "PAYEE.svg", { PAYEE, false } },
     { "CURR.svg", { CURR, false } },
     { "TAG.svg", { TAG, false } },
-    { "FILTER.svg", { FILTER, false } }, 
+    { "FILTER.svg", { FILTER, false } },
     { "GRM.svg", { GRM, false } },
     { "OPTIONS.svg", { OPTIONS, false } },
     { "NEW_TRX.svg", { NEW_TRX, false } },
@@ -78,7 +78,7 @@ static const std::map<std::string, std::pair<int, bool>> iconName2enum = {
     { "TRASH.svg", { TRASH, true } },
     { "BUDGET.svg", { BUDGET, true } },
     { "PIE_CHART.svg", { PIE_CHART, true } },
-     
+
     // Status
     { "UNRECONCILED.svg", { UNRECONCILED, false } },
     { "RECONCILED.svg", { RECONCILED, false } },
@@ -104,6 +104,7 @@ static const std::map<std::string, std::pair<int, bool>> iconName2enum = {
     { "OTHER.svg", { OTHER, false } },
 
     //Controls
+    { "CALCULATOR.svg", { CALCULATOR, false } },
     { "CLEAR.svg", { CLEAR, false } },
     { "CLIP.svg", { CLIP, false } },
     { "DOWNARROW.svg", { DOWNARROW, false } },

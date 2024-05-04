@@ -88,6 +88,7 @@ private:
     void OnFocusChange(wxChildFocusEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     void OnAdvanceChecked(wxCommandEvent& event);
+    void OnCalculator(wxCommandEvent& event);
     void SetTooltips();
     void SetCategoryForPayee(const Model_Payee::Data *payee = nullptr);
 private:
@@ -113,6 +114,9 @@ private:
     wxChoice* transaction_type_ = nullptr;
     mmDatePickerCtrl* dpc_ = nullptr;
     mmTagTextCtrl* tagTextCtrl_ = nullptr;
+    wxButton* bCalc_ = nullptr;
+    mmCalculatorPopup* calcPopup_ = nullptr;
+    mmTextCtrl* calcTarget_ = nullptr;
 
     bool m_transfer = false;
     bool m_new_trx = false;

@@ -362,6 +362,7 @@ void mmTransDialog::dataToControls()
     }
 
     m_textAmount->Enable(!has_split);
+    bCalc_->Enable(!has_split);
     cbCategory_->Enable(!has_split);
     bSplit_->Enable(!m_transfer);
 
@@ -393,6 +394,7 @@ void mmTransDialog::dataToControls()
         cbAccount_->Enable(false);
         choiceStatus_->Enable(false);
         m_textAmount->Enable(false);
+        bCalc_->Enable(false);
         cbToAccount_->Enable(false);
         toTextAmount_->Enable(false);
         cAdvanced_->Enable(false);
@@ -485,7 +487,13 @@ void mmTransDialog::CreateControls()
     amount_label->SetFont(this->GetFont().Bold());
     flex_sizer->Add(amount_label, g_flagsH);
     flex_sizer->Add(amountSizer, wxSizerFlags(g_flagsExpand).Border(0));
-    flex_sizer->AddSpacer(1);
+
+    bCalc_ = new wxBitmapButton(this, wxID_ANY, mmBitmapBundle(png::CALCULATOR, mmBitmapButtonSize));
+    bCalc_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnCalculator), nullptr, this);
+    mmToolTip(bCalc_, _("Open Calculator"));
+    flex_sizer->Add(bCalc_, g_flagsH);
+    calcTarget_ = m_textAmount;
+    calcPopup_ = new mmCalculatorPopup(bCalc_, calcTarget_);
 
     // Account ---------------------------------------------
     account_label_ = new wxStaticText(this, wxID_STATIC, _("Account"));
@@ -848,12 +856,14 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
             m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
         }
         skip_amount_init_ = false;
+        calcTarget_ = m_textAmount;
         break;
     case mmID_TOTEXTAMOUNT:
         if (toTextAmount_->Calculate()) {
             toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
         }
         skip_amount_init_ = false;
+        calcTarget_ = toTextAmount_;
         break;
     }
 
@@ -1024,8 +1034,24 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
     }
 }
 
-void mmTransDialog::OnAutoTransNum(wxCommandEvent& WXUNUSED(event))
+void mmTransDialog::OnCalculator(wxCommandEvent& WXUNUSED(event))
 {
+    if (!calcPopup_->dismissedByButton_)
+    {
+        calcPopup_->SetTarget(calcTarget_);
+        calcTarget_->Enable(false);
+        wxString value = calcTarget_->GetValue();
+        calcPopup_->SetValue(value);
+        calcPopup_->SetPosition(wxPoint(bCalc_->GetScreenPosition().x, bCalc_->GetScreenPosition().y + mmBitmapButtonSize + 12));
+        calcPopup_->Popup();
+        calcPopup_->SetFocus();
+    }
+    else
+        calcPopup_->dismissedByButton_ = false;
+}
+
+void mmTransDialog::OnAutoTransNum(wxCommandEvent& WXUNUSED(event))
+    {
     auto d = Model_Checking::TRANSDATE(m_trx_data).Subtract(wxDateSpan::Months(12));
     double next_number = 0, temp_num;
     const auto numbers = Model_Checking::instance().find(

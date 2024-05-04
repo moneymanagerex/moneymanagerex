@@ -80,6 +80,7 @@ private:
     void OnAutoExecutionSilentChecked(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
     void SetAmountCurrencies(int accountID, int toAccountID);
+    void OnCalculator(wxCommandEvent& event);
     int m_trans_id;
 
     bool m_new_bill;
@@ -89,9 +90,12 @@ private:
     bool autoExecuteSilent_ = false;
     bool m_advanced = false;
 private:
+    wxButton* bCalc_ = nullptr;
+    mmCalculatorPopup* calcPopup_ = nullptr;
     wxTextCtrl* textNumber_ = nullptr;
     mmTextCtrl* textAmount_ = nullptr;
     mmTextCtrl* toTextAmount_ = nullptr;
+    mmTextCtrl* calcTarget_ = nullptr;
     wxTextCtrl* textNotes_ = nullptr;
     wxTextCtrl* textCategory_ = nullptr;
     wxTextCtrl* textNumRepeats_ = nullptr;
