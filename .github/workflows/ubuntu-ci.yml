@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - "master"
-    types: [opened, reopened, edited]
+    types: [opened, reopened, synchronize]
 
 jobs:
   build:
@@ -116,7 +116,7 @@ jobs:
           path: ${{ github.workspace }}/build/MMEX*.AppImage
       
       - name: Sign and Upload AppImage
-        if: ${{ matrix.os == 'ubuntu-20.04' }}
+        if: ${{ matrix.os == 'ubuntu-20.04' && github.event_name == 'push'}}
         uses: sigstore/gh-action-sigstore-python@v2.1.1
         with:
           inputs: ${{ github.workspace }}/build/MMEX*.AppImage
