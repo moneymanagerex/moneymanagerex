@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - "master"
-    types: [opened, reopened, edited]
+    types: [opened, reopened, synchronize]
 
 jobs:
   build:
@@ -15,6 +15,8 @@ jobs:
       matrix:
         os: [ubuntu-20.04, ubuntu-22.04]
     runs-on: ${{ matrix.os }}
+    permissions:
+      id-token: write
     steps:
       - name: Install Dependencies
         id: init
@@ -75,11 +77,20 @@ jobs:
           mkdir /home/runner/work/moneymanagerex/moneymanagerex/build/AppDir
           make install DESTDIR=/home/runner/work/moneymanagerex/moneymanagerex/build/AppDir
           echo "artifact_name=$(ls mmex*.deb)" >> $GITHUB_OUTPUT
-
+          
+      - name: Upload DEB Package
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.mmex-build.outputs.artifact_name }}
+          path: ${{ github.workspace }}/build/mmex*.deb
+          
       - name: Install Sigstore Python dependencies
+        if: ${{ github.event_name == 'push' }}
         run: python -m pip install email-validator
 
       - name: Sign and Upload DEB
+        if: ${{ github.event_name == 'push' }}
         uses: sigstore/gh-action-sigstore-python@v2.1.1
         with:
           inputs: ${{ github.workspace }}/build/mmex*.deb
@@ -96,10 +107,18 @@ jobs:
           sed -i "s/version: latest/version: $(grep '^Version ' ../NEWS | head -n 1 | sed 's/Version //;s/ /-/;s/ /./')/" .appimage-builder.yml
           ./appimage-builder --recipe .appimage-builder.yml
           echo "artifact_name=$(ls MMEX*.AppImage)" >> $GITHUB_OUTPUT
+
+      - name: Upload AppImage
+        if: ${{ matrix.os == 'ubuntu-20.04' && github.event_name == 'pull_request'}}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.appimage-build.outputs.artifact_name }}
+          path: ${{ github.workspace }}/build/MMEX*.AppImage
       
       - name: Sign and Upload AppImage
-        if: ${{ matrix.os == 'ubuntu-20.04' }}
+        if: ${{ matrix.os == 'ubuntu-20.04' && github.event_name == 'push'}}
         uses: sigstore/gh-action-sigstore-python@v2.1.1
         with:
           inputs: ${{ github.workspace }}/build/MMEX*.AppImage
           upload-signing-artifacts: true
+          
