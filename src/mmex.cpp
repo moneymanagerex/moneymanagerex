@@ -47,9 +47,9 @@ static const wxCmdLineEntryDesc g_cmdLineDesc[] = {
       "where <str> is a path to mmexini.db3"
       "\n\nTo open a determined database(.mmb) file from a shortcut or command line, set the path to the database file as a parameter."
       "\n\nThe file with the application settings mmexini.db3 can be used separately."
-      " Otherwise, it is taken from the home directory or the root folder of the application." },
+      " Otherwise, it is taken from the home directory or the root folder of the application.", wxCMD_LINE_VAL_STRING, 0 },
     { wxCMD_LINE_PARAM, nullptr, nullptr, wxT_2("database file"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-    { wxCMD_LINE_NONE }
+    { wxCMD_LINE_NONE, nullptr, nullptr, nullptr, wxCMD_LINE_VAL_NONE, 0 }
 };
 
 //----------------------------------------------------------------------------
