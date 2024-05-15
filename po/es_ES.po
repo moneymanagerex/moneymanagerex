@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-04-25 23:35+0300\n"
-"PO-Revision-Date: 2024-04-30 14:58\n"
+"PO-Revision-Date: 2024-05-15 01:26\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -379,12 +379,12 @@ msgstr "&Mostrar este cuadro de diálogo al iniciar"
 
 #: appstartdialog.cpp:144
 msgid "E&xit "
-msgstr "S&alir "
+msgstr "Salir "
 
 #: appstartdialog.cpp:160
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr "Abrir la base de datos previamente abierta: %s"
+msgstr "Abrir base de datos previamente abierta: %s"
 
 #: appstartdialog.cpp:209 mmframe.cpp:1687 mmframe.cpp:3063
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
