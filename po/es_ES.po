@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-04-25 23:35+0300\n"
-"PO-Revision-Date: 2024-05-15 01:26\n"
+"PO-Revision-Date: 2024-05-15 02:27\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -389,11 +389,11 @@ msgstr "Abrir base de datos previamente abierta: %s"
 #: appstartdialog.cpp:209 mmframe.cpp:1687 mmframe.cpp:3063
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
-msgstr "Valor predeterminado del sistema"
+msgstr "Valor por defecto"
 
 #: appstartdialog.cpp:222 optionsettingsgeneral.cpp:92
 msgid "User Interface Language"
-msgstr "Idioma de la interfaz de usuario"
+msgstr "Idioma de interfaz de usuario"
 
 #: appstartdialog.cpp:230 mmframe.cpp:3941 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -1340,7 +1340,7 @@ msgstr "Eliminar transacción programada"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
-msgstr "Registra&r"
+msgstr "Entrar"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
@@ -2601,7 +2601,7 @@ msgstr "Línea"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
-msgstr ""
+msgstr "Líneas fecha y hora"
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
