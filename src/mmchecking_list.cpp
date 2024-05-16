@@ -280,7 +280,7 @@ TransactionListCtrl::TransactionListCtrl(
     m_col_width = m_cp->isAllAccounts_ ? "ALLTRANS_COLV2%d_WIDTH" : "CHECK2_COLV2%d_WIDTH";
 
     m_default_sort_column = COL_DEF_SORT;
-    m_today = wxDateTime::Today().FormatISODate();
+    m_today = Option::instance().UseTransDateTime() ? wxDateTime::Now().FormatISOCombined() : wxDateTime(23, 59, 59, 999).FormatISOCombined();
 
     SetSingleStyle(wxLC_SINGLE_SEL, false);
 }
@@ -875,7 +875,7 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
     if (item < 0 || item >= static_cast<int>(m_trans.size())) return 0;
 
     const Model_Checking::Full_Data& tran = m_trans[item];
-    wxString strDate = Model_Checking::TRANSDATE(tran).FormatISODate();
+    wxString strDate = Model_Checking::TRANSDATE(tran).FormatISOCombined();
     bool in_the_future = (strDate > m_today);
 
     // apply alternating background pattern
@@ -1623,7 +1623,7 @@ void TransactionListCtrl::refreshVisualList(bool filter)
         m_pasted_id.clear();    // Now clear them
     }
 
-    m_today = wxDateTime::Today().FormatISODate();
+    m_today = Option::instance().UseTransDateTime() ? wxDateTime::Now().FormatISOCombined() : wxDateTime(23, 59, 59, 999).FormatISOCombined();
     this->SetEvtHandlerEnabled(false);
     Hide();
 

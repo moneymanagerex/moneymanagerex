@@ -153,7 +153,7 @@ void mmCheckingPanel::filterTable()
     int udfc05_ref_id = matrix.at("UDFC05");
 
     bool ignore_future = Option::instance().getIgnoreFutureTransactions();
-    const wxString today_date_string = wxDate::Today().FormatISODate();
+    const wxString today_date_string = Option::instance().UseTransDateTime() ? wxDateTime::Now().FormatISOCombined() : wxDateTime(23, 59, 59, 999).FormatISOCombined();
 
     const auto splits = Model_Splittransaction::instance().get_all();
     const auto tags = Model_Taglink::instance().get_all(RefType);
@@ -163,7 +163,7 @@ void mmCheckingPanel::filterTable()
 
     for (const auto& tran : i)
     {
-        wxString strDate = Model_Checking::TRANSDATE(tran).FormatISODate();
+        wxString strDate = Model_Checking::TRANSDATE(tran).FormatISOCombined();
 
         if (ignore_future && strDate > today_date_string)
             continue;
@@ -797,11 +797,11 @@ void mmCheckingPanel::initFilterSettings()
     }
 
     if (m_begin_date.empty()) {
-        m_begin_date = date_range->start_date().FormatISODate();
+        m_begin_date = date_range->start_date().FormatISOCombined();
     }
 
     if (m_end_date.empty()) {
-        m_end_date = date_range->end_date().FormatISODate();
+        m_end_date = date_range->end_date().FormatISOCombined();
     }
 
     auto item = m_transFilterActive ? menu_labels()[MENU_VIEW_FILTER_DIALOG] : menu_labels()[m_currentView];

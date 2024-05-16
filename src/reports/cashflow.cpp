@@ -30,8 +30,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 // --------- CashFlow base class
 
 mmReportCashFlow::mmReportCashFlow(const wxString& name)
-    : mmPrintableBase(name)
-    , m_today(wxDateTime::Today())
+    : mmPrintableBase(name), m_today(Option::instance().UseTransDateTime() ? wxDateTime::Now() : wxDateTime(23,59,59,999))
 {
     m_only_active = true;
 }
@@ -74,7 +73,7 @@ void mmReportCashFlow::getTransactions()
     m_account_id.clear();
     m_forecastVector.clear();
 
-    wxString todayString = m_today.FormatISODate();
+    wxString todayString = m_today.FormatISOCombined();
     wxDateTime endDate = mmDateRange::getDayEnd(m_today.Add(wxDateSpan::Months(getForwardMonths())));
 
     // Get initial Balance as of today
@@ -94,7 +93,7 @@ void mmReportCashFlow::getTransactions()
 
         for (const auto& tran : Model_Account::transaction(account))
         {
-            wxString strDate = Model_Checking::TRANSDATE(tran).FormatISODate();
+            wxString strDate = Model_Checking::TRANSDATE(tran).FormatISOCombined();
             // Do not include asset or stock transfers in income expense calculations.
             if (Model_Checking::foreignTransactionAsTransfer(tran)
                 || (strDate > todayString))
