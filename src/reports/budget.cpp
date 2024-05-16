@@ -97,7 +97,10 @@ const wxString mmReportBudget::AdjustYearValues(int day, wxDateTime::Month month
     else
     {
         const wxString month_str = wxGetTranslation(mmGetMonthName(month));
-        ret = wxString::Format(_("Year: %i Month: %s"), year, month_str);
+        if (Option::instance().BudgetFinancialYears())
+            ret = wxString::Format(_("Financial Year: %i Month: %s"), year, month_str);
+        else
+            ret = wxString::Format(_("Year: %i Month: %s"), year, month_str);
     }
 
     return ret;
