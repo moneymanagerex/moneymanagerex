@@ -744,7 +744,7 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     customReportMenu.AppendSeparator();
 
     wxMenuItem* menuItemActive = new wxMenuItem(&customReportMenu, ID_ACTIVE,
-        _("Active"), _("Show/Hide the report in the main navigation panel"), wxITEM_CHECK);
+        _("Active"), _("Show/Hide the report in the main Navigator panel"), wxITEM_CHECK);
     customReportMenu.Append(menuItemActive);
 
     customReportMenu.AppendSeparator();
