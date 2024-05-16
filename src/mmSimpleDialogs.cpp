@@ -140,7 +140,7 @@ mmCalculatorPopup::mmCalculatorPopup(wxWindow* parent, mmTextCtrl* target) : wxP
     button_clear_->SetFont(font);
     buttonSizer->Add(button_clear_, wxSizerFlags(g_flagsH).Border(wxALL, 1));
 
-    button_del_ = new wxButton(panel, wxID_ANY, "Del", wxDefaultPosition, btnSize);
+    button_del_ = new wxButton(panel, mmID_DELETE, wxString::FromUTF8Unchecked("\u232b"), wxDefaultPosition, btnSize);
     button_del_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
     button_del_->SetFont(font);
     buttonSizer->Add(button_del_, wxSizerFlags(g_flagsH).Border(wxALL, 1));
@@ -160,7 +160,7 @@ mmCalculatorPopup::mmCalculatorPopup(wxWindow* parent, mmTextCtrl* target) : wxP
     button_9_->SetFont(font);
     buttonSizer->Add(button_9_, wxSizerFlags(g_flagsH).Border(wxALL, 1));
 
-    button_div_ = new wxButton(panel, wxID_ANY, "/", wxDefaultPosition, btnSize);
+    button_div_ = new wxButton(panel, mmID_DIVIDE, wxString::FromUTF8Unchecked("\u00f7"), wxDefaultPosition, btnSize);
     button_div_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
     button_div_->SetFont(font);
     buttonSizer->Add(button_div_, wxSizerFlags(g_flagsH).Border(wxALL, 1));
@@ -180,7 +180,7 @@ mmCalculatorPopup::mmCalculatorPopup(wxWindow* parent, mmTextCtrl* target) : wxP
     button_6_->SetFont(font);
     buttonSizer->Add(button_6_, wxSizerFlags(g_flagsH).Border(wxALL, 1));
 
-    button_mult_ = new wxButton(panel, wxID_ANY, "*", wxDefaultPosition, btnSize);
+    button_mult_ = new wxButton(panel, mmID_MULTIPLY, wxString::FromUTF8Unchecked("\u00d7"), wxDefaultPosition, btnSize);
     button_mult_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
     button_mult_->SetFont(font);
     buttonSizer->Add(button_mult_, wxSizerFlags(g_flagsH).Border(wxALL, 1));
@@ -248,6 +248,7 @@ void mmCalculatorPopup::SetValue(wxString& value)
 void mmCalculatorPopup::OnButtonPressed(wxCommandEvent& event)
 {
     wxButton* btn = dynamic_cast<wxButton*>(event.GetEventObject());
+    int id = event.GetId();
     long from;
     long to;
     valueTextCtrl_->GetSelection(&from, &to);
@@ -265,7 +266,7 @@ void mmCalculatorPopup::OnButtonPressed(wxCommandEvent& event)
         valueTextCtrl_->ChangeValue("");
         ip = 0;
     }
-    else if (text == "Del")
+    else if (id == mmID_DELETE)
     {
         if (from != to)
             valueTextCtrl_->ChangeValue(value.Remove(from, to - from));
@@ -274,6 +275,16 @@ void mmCalculatorPopup::OnButtonPressed(wxCommandEvent& event)
             valueTextCtrl_->Remove(ip - 1, ip);
             ip -= 1;
         }
+    }
+    else if (id == mmID_MULTIPLY)
+    {
+        valueTextCtrl_->WriteText("*");
+        ip += 1;
+    }
+    else if (id == mmID_DIVIDE)
+    {
+        valueTextCtrl_->WriteText("/");
+        ip += 1;
     }
     else
     {

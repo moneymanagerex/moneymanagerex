@@ -97,6 +97,12 @@ private:
     wxButton* button_plus_ = nullptr;
     ;
     void OnButtonPressed(wxCommandEvent& event);
+    enum Buttons
+    {
+        mmID_MULTIPLY = wxID_HIGHEST,
+        mmID_DIVIDE,
+        mmID_DELETE
+    };
 };
 
 inline void mmCalculatorPopup::SetFocus() { valueTextCtrl_->SetFocus(); }
