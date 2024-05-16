@@ -1631,11 +1631,11 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemToolbar = new wxMenuItem(menuView, MENU_VIEW_TOOLBAR,
         _("&Toolbar"), _("Show/Hide the toolbar"), wxITEM_CHECK);
     wxMenuItem* menuItemLinks = new wxMenuItem(menuView, MENU_VIEW_LINKS,
-        _("&Navigation"), _("Show/Hide the Navigation tree control"), wxITEM_CHECK);
+        _("&Navigator"), _("Show/Hide the Navigator"), wxITEM_CHECK);
     wxMenuItem* menuItemHideShareAccounts = new wxMenuItem(menuView, MENU_VIEW_HIDE_SHARE_ACCOUNTS,
-        _("&Display Share Accounts"), _("Show/Hide Share Accounts in the navigation tree"), wxITEM_CHECK);
+        _("&Display Share Accounts"), _("Show/Hide Share Accounts in the Navigator"), wxITEM_CHECK);
     wxMenuItem* menuItemHideDeletedTransactions = new wxMenuItem(menuView, MENU_VIEW_HIDE_DELETED_TRANSACTIONS,
-        _("&Display Deleted Transactions"), _("Show/Hide Deleted Transactions in the navigation tree"), wxITEM_CHECK);
+        _("&Display Deleted Transactions"), _("Show/Hide Deleted Transactions in the Navigator"), wxITEM_CHECK);
     wxMenuItem* menuItemBudgetFinancialYears = new wxMenuItem(menuView, MENU_VIEW_BUDGET_FINANCIAL_YEARS,
         _("Budgets: As Financial &Years"), _("Display Budgets in Financial Year Format"), wxITEM_CHECK);
     wxMenuItem* menuItemBudgetTransferTotal = new wxMenuItem(menuView, MENU_VIEW_BUDGET_TRANSFER_TOTAL,
