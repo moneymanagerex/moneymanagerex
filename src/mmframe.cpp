@@ -268,7 +268,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     m_mgr.GetArtProvider()->SetMetric(3, 1);
 
     // "commit" all changes made to wxAuiManager
-    m_mgr.GetPane("Navigation").Caption(_("Navigation"));
+    m_mgr.GetPane("Navigation").Caption(_("Navigator"));
     m_mgr.GetPane("toolbar").Caption(_("Toolbar"));
     m_mgr.Update();
 
