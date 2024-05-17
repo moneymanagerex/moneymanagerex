@@ -25,7 +25,7 @@
         <tr valign="top">
         <td colspan=2>
             <!--Grand total-->
-            <table class='table'>
+            <table class='table' style="position: fixed; top: 0; z-index: 999;">
                 <thead>
                     <tr>
                         <th width="5%"></th>
@@ -47,6 +47,7 @@
                 document.getElementById('bal_value').innerHTML=grand_json['BALVALUE'];
             </script>
         </td>
+        <tr height='25px'></tr>
         </tr>
         <tr valign="top">
             <td width="50%">
