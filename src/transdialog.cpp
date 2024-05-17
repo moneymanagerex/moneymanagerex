@@ -46,6 +46,7 @@
 #include <wx/numformatter.h>
 #include <wx/timectrl.h>
 #include <wx/collpane.h>
+#include <wx/display.h>
 
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmTransDialog, wxDialog);
@@ -1042,7 +1043,10 @@ void mmTransDialog::OnCalculator(wxCommandEvent& WXUNUSED(event))
         calcTarget_->Enable(false);
         wxString value = calcTarget_->GetValue();
         calcPopup_->SetValue(value);
-        calcPopup_->SetPosition(wxPoint(bCalc_->GetScreenPosition().x, bCalc_->GetScreenPosition().y + mmBitmapButtonSize + 12));
+        wxRect displayRect = wxDisplay(wxDisplay::GetFromPoint(bCalc_->GetScreenPosition())).GetGeometry();
+        int x = std::min(bCalc_->GetScreenPosition().x, displayRect.GetRight() - calcPopup_->GetSize().GetWidth());
+        int y = std::min(bCalc_->GetScreenPosition().y + mmBitmapButtonSize + 12, displayRect.GetBottom() - calcPopup_->GetSize().GetHeight());
+        calcPopup_->SetPosition(wxPoint(x, y));
         calcPopup_->Popup();
         calcPopup_->SetFocus();
     }
