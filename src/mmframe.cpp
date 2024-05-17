@@ -3643,6 +3643,7 @@ void mmGUIFrame::ReallocateAccount(int accountID)
 
     wxArrayString types = Model_Account::instance().all_type();
     types.Remove(Model_Account::all_type()[Model_Account::INVESTMENT]);
+    types.Remove(account->ACCOUNTTYPE);
     wxArrayString t;
     for (const auto &entry : types)
         t.Add(wxGetTranslation(entry));
