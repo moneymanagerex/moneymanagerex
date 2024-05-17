@@ -1037,21 +1037,8 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
 
 void mmTransDialog::OnCalculator(wxCommandEvent& WXUNUSED(event))
 {
-    if (!calcPopup_->dismissedByButton_)
-    {
-        calcPopup_->SetTarget(calcTarget_);
-        calcTarget_->Enable(false);
-        wxString value = calcTarget_->GetValue();
-        calcPopup_->SetValue(value);
-        wxRect displayRect = wxDisplay(wxDisplay::GetFromPoint(bCalc_->GetScreenPosition())).GetGeometry();
-        int x = std::min(bCalc_->GetScreenPosition().x, displayRect.GetRight() - calcPopup_->GetSize().GetWidth());
-        int y = std::min(bCalc_->GetScreenPosition().y + mmBitmapButtonSize + 12, displayRect.GetBottom() - calcPopup_->GetSize().GetHeight());
-        calcPopup_->SetPosition(wxPoint(x, y));
-        calcPopup_->Popup();
-        calcPopup_->SetFocus();
-    }
-    else
-        calcPopup_->dismissedByButton_ = false;
+    calcPopup_->SetTarget(calcTarget_);
+    calcPopup_->Popup();
 }
 
 void mmTransDialog::OnAutoTransNum(wxCommandEvent& WXUNUSED(event))
