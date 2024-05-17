@@ -669,8 +669,8 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     subGlobalOpMenuDelete->AppendSeparator();
     subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_VIEWED, !m_cp->isTrash_ ? _("Delete &all transactions in current view...") : _("Permanently delete &all transactions in current view..."));
     if (!m_cp->isTrash_) {
-        subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_FLAGGED, _("Delete Viewed \“&Follow Up\” Transactions..."));
-        subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_UNRECONCILED, _("Delete Viewed \“&Unreconciled\” Transactions..."));
+        subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_FLAGGED, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Delete Viewed “&Follow Up” Transactions..."))));
+        subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_UNRECONCILED, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Delete Viewed “&Unreconciled” Transactions..."))));
     }
     menu.Append(MENU_TREEPOPUP_DELETE2, _("De&lete "), subGlobalOpMenuDelete);
 
