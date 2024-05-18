@@ -660,8 +660,8 @@ void htmlWidgetAccounts::get_account_stats()
     Model_Checking::Data_Set all_trans;
     if (Option::instance().getIgnoreFutureTransactions())
     {
-        all_trans = Model_Checking::instance().find(
-            Model_Checking::TRANSDATE(wxDateTime(23,59,59,999), LESS_OR_EQUAL));
+        all_trans = Model_Checking::instance().find(Model_Checking::TRANSDATE(
+            Option::instance().UseTransDateTime() ? wxDateTime::Now() : wxDateTime(23, 59, 59, 999), LESS_OR_EQUAL));
     }
     else
     {
