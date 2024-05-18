@@ -1403,7 +1403,7 @@ bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int ref
     bool match = true;
 
     wxArrayString tags = tagTextCtrl_->GetTagStrings();
-    for (int i = 0; i < tags.GetCount(); i++)
+    for (int i = 0; i < static_cast<int>(tags.GetCount()); i++)
     {
         wxString tag = tags.Item(i);
         // if the tag is the "OR" operator, fetch the next tag and compare with OR
