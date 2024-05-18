@@ -1560,16 +1560,6 @@ void mmBDDialog::OnFocusChange(wxChildFocusEvent& event)
 
 void mmBDDialog::OnCalculator(wxCommandEvent& WXUNUSED(event))
 {
-    if (!calcPopup_->dismissedByButton_)
-    {
-        calcPopup_->SetTarget(calcTarget_);
-        calcTarget_->Enable(false);
-        wxString value = calcTarget_->GetValue();
-        calcPopup_->SetValue(value);
-        calcPopup_->SetPosition(wxPoint(bCalc_->GetScreenPosition().x, bCalc_->GetScreenPosition().y + mmBitmapButtonSize + 12));
-        calcPopup_->Popup();
-        calcPopup_->SetFocus();
-    }
-    else
-        calcPopup_->dismissedByButton_ = false;
+    calcPopup_->SetTarget(calcTarget_);
+    calcPopup_->Popup();
 }

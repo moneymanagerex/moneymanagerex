@@ -30,6 +30,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/choicdlg.h>
 #include <wx/spinbutt.h>
 #include <wx/dialog.h>
+#include <wx/display.h>
 #include <wx/choice.h>
 #include <wx/stc/stc.h>
 #include <wx/timectrl.h>
@@ -45,10 +46,26 @@ public:
     mmCalculatorPopup(wxWindow* parent, mmTextCtrl* target = nullptr);
     virtual ~mmCalculatorPopup();
 
-    bool dismissedByButton_ = false;
-    void SetValue(wxString& value);
+    void SetValue(wxString& value); 
     void SetFocus();
     void SetTarget(mmTextCtrl* target);
+
+    virtual void Popup(wxWindow* focus = NULL) override
+    {
+        if (dismissedByButton_ == false)
+        {
+            wxPoint pt = GetParent()->GetScreenPosition();
+            wxRect displayRect = wxDisplay(wxDisplay::GetFromPoint(pt)).GetGeometry();
+
+            int x = std::min(pt.x, displayRect.GetRight() - GetSize().GetWidth());
+            int y = std::min(pt.y + GetParent()->GetSize().GetHeight(), displayRect.GetBottom() - GetSize().GetHeight());
+            SetPosition(wxPoint(x, y));
+            valueTextCtrl_->SetValue(target_->GetValue());
+            target_->Enable(false);
+            wxPopupTransientWindow::Popup(focus);
+        }
+        else dismissedByButton_ = false;
+    }
 
 protected:
     virtual void OnDismiss() override
@@ -73,6 +90,7 @@ protected:
     }
 
 private:
+    bool dismissedByButton_ = false;
     mmTextCtrl* target_;
     mmTextCtrl* valueTextCtrl_ = nullptr;
     wxButton* button_lparen_ = nullptr;
@@ -97,6 +115,12 @@ private:
     wxButton* button_plus_ = nullptr;
     ;
     void OnButtonPressed(wxCommandEvent& event);
+    enum Buttons
+    {
+        mmID_MULTIPLY = wxID_HIGHEST,
+        mmID_DIVIDE,
+        mmID_DELETE
+    };
 };
 
 inline void mmCalculatorPopup::SetFocus() { valueTextCtrl_->SetFocus(); }
