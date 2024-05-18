@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-18 23:58+0300\n"
-"PO-Revision-Date: 2024-05-18 21:10\n"
+"PO-Revision-Date: 2024-05-18 22:50\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgstr "&Ny databas"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "Skapa ny MMEX-databasfil"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -337,7 +337,7 @@ msgstr "Öppna &befintlig databas"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "Öppna MMEX databasfil"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1681
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "&Användarmanual"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "Läs MMEX bruksanvisning"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1851
 msgid "&Website"
@@ -366,11 +366,11 @@ msgstr "Besök MMEX webbplats för de senaste nyheterna och uppdateringarna"
 
 #: appstartdialog.cpp:125 mmframe.cpp:1868
 msgid "&Forum"
-msgstr ""
+msgstr "&Forum"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1869
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "Besök MMEX forum för att läsa och skriva kommentarer och få hjälp"
 
 #: appstartdialog.cpp:132 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -383,7 +383,7 @@ msgstr "&Avsluta "
 #: appstartdialog.cpp:159
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Öppna den tidigare öppnade databasen: %s"
 
 #: appstartdialog.cpp:208 mmframe.cpp:1687 mmframe.cpp:3078
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -1036,7 +1036,7 @@ msgstr "Ange överföringsbeloppet i till-kontot"
 
 #: billsdepositsdialog.cpp:544 transdialog.cpp:494
 msgid "Open Calculator"
-msgstr ""
+msgstr "Öppna kalkylator"
 
 #: billsdepositsdialog.cpp:550 billsdepositsdialog.cpp:837
 #: billsdepositsdialog.cpp:850 billsdepositspanel.cpp:134 filtertrans.cpp:200
@@ -1632,19 +1632,19 @@ msgstr "Kategorier"
 #: categdialog.cpp:258 relocatecategorydialog.cpp:89
 #: relocatecategorydialog.h:43
 msgid "Merge Categories"
-msgstr ""
+msgstr "Slå samman kategorier"
 
 #: categdialog.cpp:260
 msgid "C&ollapse All"
-msgstr ""
+msgstr "F&äll ihop alla"
 
 #: categdialog.cpp:265
 msgid "E&xpand All"
-msgstr ""
+msgstr "E&xpandera alla"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "&Show All"
-msgstr ""
+msgstr "&Visa alla"
 
 #: categdialog.cpp:272
 msgid "Show all hidden categories"
@@ -1873,7 +1873,7 @@ msgstr "64-bitars"
 
 #: constants.cpp:193
 msgid "View Transaction Report..."
-msgstr ""
+msgstr "Visa transaktionsrapport..."
 
 #: constants.cpp:194
 msgid "View All Transactions"
@@ -2073,7 +2073,7 @@ msgstr "Välj typ av anpassat fält"
 
 #: customfieldeditdialog.cpp:148
 msgid "Tooltip"
-msgstr ""
+msgstr "Verktygstips"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enter the tooltip that will be shown"
@@ -2813,7 +2813,7 @@ msgstr "Välj konton"
 
 #: filtertransdialog.h:163
 msgid "Customize Transaction Report"
-msgstr ""
+msgstr "Anpassa transaktionsrapport"
 
 #: general_report_manager.cpp:284 mmframe.cpp:832 mmframe.cpp:3022
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
@@ -2939,7 +2939,7 @@ msgstr ""
 
 #: general_report_manager.cpp:747
 msgid "Show/Hide report in Navigator"
-msgstr ""
+msgstr "Visa/Dölj rapport i Navigator"
 
 #: general_report_manager.cpp:751
 msgid "Delete Report..."
@@ -3914,12 +3914,12 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:767 mmSimpleDialogs.cpp:779
 msgid "&Clear color"
-msgstr ""
+msgstr "&Rensa färg"
 
 #: mmSimpleDialogs.cpp:770 mmSimpleDialogs.cpp:784
 #, c-format
 msgid "Color #&%i"
-msgstr ""
+msgstr "Färg #&%i"
 
 #: mmSimpleDialogs.cpp:942
 msgid "Subtract one year"
@@ -4292,7 +4292,7 @@ msgstr[1] "&Återställ valda transaktioner..."
 
 #: mmchecking_list.cpp:521
 msgid "Restore &all transactions in current view..."
-msgstr ""
+msgstr "Återställ &alla transaktioner i aktuell vy..."
 
 #: mmchecking_list.cpp:656
 #, c-format
