@@ -329,14 +329,19 @@ void mmReportsPanel::CreateControls()
             for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
             {
                 const wxString& name = e.BUDGETYEARNAME;
-                if (name.length() == 4) // Only years
+
+                if (rb_->getReportId() == mmPrintableBase::Reports::BudgetCategorySummary || name.length() == 4) // Only years for performance report
                 {
                     m_date_ranges->Append(name, new wxStringClientData(wxString::Format("%i", e.BUDGETYEARID)));
                     if (sel_id == e.BUDGETYEARID)
                         sel_name = e.BUDGETYEARNAME;
                 }
             }
-            m_date_ranges->SetStringSelection(sel_name);
+
+            if (!sel_name.IsEmpty())
+                m_date_ranges->SetStringSelection(sel_name);
+            else
+                m_date_ranges->SetSelection(0);
 
             itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(30);

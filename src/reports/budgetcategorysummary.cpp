@@ -71,8 +71,14 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
 
     budget_year = wxString::Format("%d", startYear);
 
-    if (budget_month.ToLong(&tmp))
-        startMonth = static_cast<wxDateTime::Month>(--tmp);
+    long budgetMonth = 0;
+    if (budget_month.ToLong(&budgetMonth))
+    {
+        if (startMonth != wxDateTime::Jan)
+            startMonth = wxDateTime(1, startMonth, startYear).Add(wxDateSpan::Months(--budgetMonth)).GetMonth();
+        else
+            startMonth = static_cast<wxDateTime::Month>(--budgetMonth);
+    }
 
     wxDateTime yearBegin(startDay, startMonth, startYear);
     wxDateTime yearEnd = yearBegin;
@@ -80,7 +86,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     bool monthlyBudget = (!budget_month.empty());
     if (monthlyBudget) {
         yearEnd.Add(wxDateSpan::Month()).Subtract(wxDateSpan::Day());
-        budget_year = wxString::Format("%i-%ld", startYear, tmp);
+        budget_year = wxString::Format("%i-%ld", startYear, budgetMonth);
     }
     else
         yearEnd.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
@@ -108,7 +114,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         , false, (evaluateTransfer ? &budgetAmt : nullptr));
 
     std::map<int, std::map<int, double> > budgetStats;
-    Model_Budget::instance().getBudgetStats(budgetStats, &date_range, false);
+    Model_Budget::instance().getBudgetStats(budgetStats, &date_range, monthlyBudget);
 
 
     // Build the report
@@ -145,11 +151,11 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             gd.title = categName;
             gd.labels.push_back(category.CATEGNAME);
             gsActual.values.push_back(categoryStats[category.CATEGID][0]);
-            gsEstimated.values.push_back(budgetStats[category.CATEGID][0]);
+            gsEstimated.values.push_back(budgetStats[category.CATEGID][budgetMonth]);
             for(const auto& subcat : Model_Category::sub_tree(category)){
                 gd.labels.push_back(Model_Category::full_name(subcat.CATEGID));
                 gsActual.values.push_back(categoryStats[subcat.CATEGID][0]);
-                gsEstimated.values.push_back(budgetStats[subcat.CATEGID][0]);
+                gsEstimated.values.push_back(budgetStats[subcat.CATEGID][budgetMonth]);
             }
 
             if (gd.labels.size() > 1) // Bar/Line are best with at least 2 items 
@@ -196,7 +202,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                 for (const auto& category : categs)
                 {
                     categLevel[category.CATEGID].first = 0;
-                    double estimated = budgetStats[category.CATEGID][0];
+                    double estimated = budgetStats[category.CATEGID][budgetMonth];
 
                     if (estimated < 0)
                         estExpenses += estimated;
@@ -229,7 +235,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                     Model_Category::Data_Set subcats = Model_Category::sub_tree(category);
                     for (int i = 0; i < subcats.size(); i++) {
                         categLevel[subcats[i].CATEGID].first = 1;
-                        estimated = budgetStats[subcats[i].CATEGID][0];
+                        estimated = budgetStats[subcats[i].CATEGID][budgetMonth];
 
                         if (estimated < 0)
                             estExpenses += estimated;
