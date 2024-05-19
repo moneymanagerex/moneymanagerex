@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-18 23:58+0300\n"
-"PO-Revision-Date: 2024-05-18 21:09\n"
+"PO-Revision-Date: 2024-05-19 06:34\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgstr "&Nouvelle base de données"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "Créer un nouveau fichier de base de données MMEX"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -337,7 +337,7 @@ msgstr "Ouvrir une base de données existante"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "Ouvrir un fichier de base de données MMEX"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1681
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "&Manuel de l'utilisateur"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "Lire le manuel de l'utilisateur MMEX"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1851
 msgid "&Website"
@@ -366,11 +366,11 @@ msgstr "Visitez le site Internet MMEX pour les dernières informations et mises 
 
 #: appstartdialog.cpp:125 mmframe.cpp:1868
 msgid "&Forum"
-msgstr ""
+msgstr "Forum de discussion"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1869
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "Visitez le forum MMEX pour lire et poster des commentaires et pour obtenir de l'aide"
 
 #: appstartdialog.cpp:132 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -383,7 +383,7 @@ msgstr "Q&uitter "
 #: appstartdialog.cpp:159
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Ouvrir la base de données précédemment ouverte : %s"
 
 #: appstartdialog.cpp:208 mmframe.cpp:1687 mmframe.cpp:3078
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -1038,7 +1038,7 @@ msgstr "Précisez le montant du transfert pour le compte \"Vers\""
 
 #: billsdepositsdialog.cpp:544 transdialog.cpp:494
 msgid "Open Calculator"
-msgstr ""
+msgstr "Ouvrir la calculatrice"
 
 #: billsdepositsdialog.cpp:550 billsdepositsdialog.cpp:837
 #: billsdepositsdialog.cpp:850 billsdepositspanel.cpp:134 filtertrans.cpp:200
@@ -1637,19 +1637,19 @@ msgstr "Catégories"
 #: categdialog.cpp:258 relocatecategorydialog.cpp:89
 #: relocatecategorydialog.h:43
 msgid "Merge Categories"
-msgstr ""
+msgstr "Fusionner les catégories"
 
 #: categdialog.cpp:260
 msgid "C&ollapse All"
-msgstr ""
+msgstr "Réduire tout"
 
 #: categdialog.cpp:265
 msgid "E&xpand All"
-msgstr ""
+msgstr "Développer tout"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "&Show All"
-msgstr ""
+msgstr "Tout afficher"
 
 #: categdialog.cpp:272
 msgid "Show all hidden categories"
@@ -1882,7 +1882,7 @@ msgstr "64 bits"
 
 #: constants.cpp:193
 msgid "View Transaction Report..."
-msgstr ""
+msgstr "Voir le rapport d'opération..."
 
 #: constants.cpp:194
 msgid "View All Transactions"
@@ -2082,7 +2082,7 @@ msgstr "Choisir le type de champ personnalisé"
 
 #: customfieldeditdialog.cpp:148
 msgid "Tooltip"
-msgstr ""
+msgstr "Infobulle"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enter the tooltip that will be shown"
@@ -2828,7 +2828,7 @@ msgstr "Sélectionner le(s) compte(s)"
 
 #: filtertransdialog.h:163
 msgid "Customize Transaction Report"
-msgstr ""
+msgstr "Personnaliser le rapport d'opération"
 
 #: general_report_manager.cpp:284 mmframe.cpp:832 mmframe.cpp:3022
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
@@ -2954,7 +2954,7 @@ msgstr "Actif"
 
 #: general_report_manager.cpp:747
 msgid "Show/Hide report in Navigator"
-msgstr ""
+msgstr "Afficher/Masquer le rapport dans le navigateur"
 
 #: general_report_manager.cpp:751
 msgid "Delete Report..."
@@ -3930,12 +3930,12 @@ msgstr "Impossible de trouver le symbole monétaire!"
 
 #: mmSimpleDialogs.cpp:767 mmSimpleDialogs.cpp:779
 msgid "&Clear color"
-msgstr ""
+msgstr "Enlever la couleur"
 
 #: mmSimpleDialogs.cpp:770 mmSimpleDialogs.cpp:784
 #, c-format
 msgid "Color #&%i"
-msgstr ""
+msgstr "Colorer en #%i"
 
 #: mmSimpleDialogs.cpp:942
 msgid "Subtract one year"
@@ -4309,7 +4309,7 @@ msgstr[1] "&Restaurer les opérations sélectionnées..."
 
 #: mmchecking_list.cpp:521
 msgid "Restore &all transactions in current view..."
-msgstr ""
+msgstr "Restaurer toutes les transactions affichées..."
 
 #: mmchecking_list.cpp:656
 #, c-format
@@ -4334,19 +4334,19 @@ msgstr[1] "&Supprimer définitivement les opérations sélectionnées..."
 
 #: mmchecking_list.cpp:670
 msgid "Delete &all transactions in current view..."
-msgstr ""
+msgstr "Supprimer toutes les opérations affichées..."
 
 #: mmchecking_list.cpp:670
 msgid "Permanently delete &all transactions in current view..."
-msgstr ""
+msgstr "Supprimer définitivement toutes les opérations affichées..."
 
 #: mmchecking_list.cpp:672
 msgid "Delete Viewed “&Follow Up” Transactions..."
-msgstr ""
+msgstr "Supprimer les opérations visibles de statut \"Suivi\"..."
 
 #: mmchecking_list.cpp:673
 msgid "Delete Viewed “&Unreconciled” Transactions..."
-msgstr ""
+msgstr "Supprimer les opérations visibles de statut \"Non rapproché\"..."
 
 #: mmchecking_list.cpp:675
 msgid "De&lete "
@@ -4628,7 +4628,7 @@ msgstr "Une erreur fatale est survenue.\n"
 
 #: mmframe.cpp:271
 msgid "Navigator"
-msgstr ""
+msgstr "Navigateur"
 
 #: mmframe.cpp:272
 msgid "Toolbar"
@@ -4763,15 +4763,15 @@ msgstr "Fichier &QIF..."
 
 #: mmframe.cpp:1475
 msgid "&Customize Report..."
-msgstr ""
+msgstr "&Personnaliser le rapport..."
 
 #: mmframe.cpp:1476
 msgid "&Rename Report..."
-msgstr ""
+msgstr "&Renommer le rapport..."
 
 #: mmframe.cpp:1477
 msgid "&Delete Report..."
-msgstr ""
+msgstr "&Supprimer le rapport..."
 
 #: mmframe.cpp:1493 mmframe.cpp:1511 mmframe.cpp:1531 mmframe.cpp:1713
 msgid "&Edit Account..."
@@ -4899,7 +4899,7 @@ msgstr "Afficher/Masquer la barre d'outils"
 
 #: mmframe.cpp:1634
 msgid "&Navigator\tF5"
-msgstr ""
+msgstr "Mise à jour de la fenêtre du navigateur (F5)"
 
 #: mmframe.cpp:1634
 msgid "Show/Hide Navigator"
