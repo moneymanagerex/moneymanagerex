@@ -1814,7 +1814,7 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemOptions = new wxMenuItem(menuTools, wxID_PREFERENCES
-        , _("&Options...\tCtrl-,"), _("Options"));
+        , _("&Settings...\tCtrl-,"), _("Settings"));
     menuTools->Append(menuItemOptions);
 
     menuTools->AppendSeparator();
@@ -2920,9 +2920,9 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         if (id == mmID_CHECKING || id == mmID_ALLTRANSACTIONS || id == mmID_DELETEDTRANSACTIONS)
             wxDynamicCast(panelCurrent_, mmCheckingPanel)->ResetColumnView();
 
-        const wxString& sysMsg = _("MMEX Options have been updated.") + "\n\n"
+        const wxString& sysMsg = _("Settings have been updated.") + "\n\n"
             + _("Some settings take effect only after an application restart.");
-        wxMessageBox(sysMsg, _("MMEX Options"), wxOK | wxICON_INFORMATION);
+        wxMessageBox(sysMsg, _("Settings"), wxOK | wxICON_INFORMATION);
     }
 }
 //----------------------------------------------------------------------------
