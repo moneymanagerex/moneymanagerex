@@ -34,7 +34,7 @@
 #include "optionsettingsmisc.h"
 
 static const char * const s_pagetitle[] = {
-    wxTRANSLATE("General"), wxTRANSLATE("View Options"), wxTRANSLATE("Dashboard"), wxTRANSLATE("Attachments"), wxTRANSLATE("Network"), wxTRANSLATE("Other")
+    wxTRANSLATE("General"), wxTRANSLATE("View"), wxTRANSLATE("Dashboard"), wxTRANSLATE("Attachments"), wxTRANSLATE("Network"), wxTRANSLATE("Other")
 };
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmOptionsDialog, wxDialog);
