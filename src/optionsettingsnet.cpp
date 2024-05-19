@@ -62,7 +62,7 @@ void OptionSettingsNet::Create()
     networkPanelSizer0->Add(network_panel, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     //WebApp settings
-    wxStaticBox* WebAppStaticBox = new wxStaticBox(network_panel, wxID_STATIC, _("WebApp Settings"));
+    wxStaticBox* WebAppStaticBox = new wxStaticBox(network_panel, wxID_STATIC, _("WebApp"));
     SetBoldFont(WebAppStaticBox);
     wxStaticBoxSizer* WebAppStaticBoxSizer = new wxStaticBoxSizer(WebAppStaticBox, wxVERTICAL);
     wxFlexGridSizer* WebAppStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 10);
@@ -90,7 +90,7 @@ void OptionSettingsNet::Create()
     WebAppStaticBoxSizer->Add(WebAppLink, wxSizerFlags(g_flagsV).Border(wxLEFT, 10));
 
     // Proxy Settings
-    wxStaticBox* proxyStaticBox = new wxStaticBox(network_panel, wxID_STATIC, _("Proxy Settings"));
+    wxStaticBox* proxyStaticBox = new wxStaticBox(network_panel, wxID_STATIC, _("Proxy"));
     SetBoldFont(proxyStaticBox);
     wxStaticBoxSizer* proxyStaticBoxSizer = new wxStaticBoxSizer(proxyStaticBox, wxVERTICAL);
     networkPanelSizer->Add(proxyStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
@@ -116,7 +116,7 @@ void OptionSettingsNet::Create()
     proxyStaticBoxSizer->Add(flex_sizer3, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     //Usage data send
-    wxStaticBox* usageStaticBox = new wxStaticBox(network_panel, wxID_STATIC, _("Usage statistics"));
+    wxStaticBox* usageStaticBox = new wxStaticBox(network_panel, wxID_STATIC, _("Usage Statistics"));
     SetBoldFont(usageStaticBox);
     wxStaticBoxSizer* usageStaticBoxSizer = new wxStaticBoxSizer(usageStaticBox, wxVERTICAL);
     networkPanelSizer->Add(usageStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));

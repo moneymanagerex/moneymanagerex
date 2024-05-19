@@ -85,7 +85,7 @@ void mmDiagnosticsDialog::CreateControls()
     bSizer0->Add(bSizer01, g_flagsExpand);
 
     wxBoxSizer* bSizer02 = new wxBoxSizer(wxHORIZONTAL);
-    m_okButton = new wxButton(this, wxID_OK, _("Close"));
+    m_okButton = new wxButton(this, wxID_OK, _("&Close"));
     bSizer02->Add(m_okButton, 0, wxALL, 5);
     bSizer0->Add(bSizer02, g_flagsCenter);
 

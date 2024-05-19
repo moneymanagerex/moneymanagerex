@@ -97,7 +97,7 @@ void OptionSettingsMisc::Create()
     othersPanelSizer->Add(share_precision_sizer, g_flagsBorder1V);
 
     // New transaction dialog settings
-    wxStaticBox* transSettingsStaticBox = new wxStaticBox(misc_panel, wxID_STATIC, _("New Transaction Dialog Settings"));
+    wxStaticBox* transSettingsStaticBox = new wxStaticBox(misc_panel, wxID_STATIC, _("New Transaction"));
     SetBoldFont(transSettingsStaticBox);
     
     wxStaticBoxSizer* transSettingsStaticBoxSizer = new wxStaticBoxSizer(transSettingsStaticBox, wxVERTICAL);
@@ -170,24 +170,24 @@ void OptionSettingsMisc::Create()
     othersPanelSizer->Add(itemBoxSizerStockURL);
 
     // Database Settings
-    wxStaticBox* databaseStaticBox = new wxStaticBox(misc_panel, wxID_STATIC, _("Database Options"));
+    wxStaticBox* databaseStaticBox = new wxStaticBox(misc_panel, wxID_STATIC, _("Database"));
     SetBoldFont(databaseStaticBox);
 
     wxStaticBoxSizer* databaseStaticBoxSizer = new wxStaticBoxSizer(databaseStaticBox, wxVERTICAL);
     othersPanelSizer->Add(databaseStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxCheckBox* databaseCheckBox = new wxCheckBox(misc_panel, ID_DIALOG_OPTIONS_CHK_BACKUP
-        , _("Create a new backup when MMEX Start"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+        , _("Backup database on startup"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     databaseCheckBox->SetValue(GetIniDatabaseCheckboxValue("BACKUPDB", false));
-    databaseCheckBox->SetToolTip(_("When MMEX Starts,\n"
-        "creates the backup database: dbFile_start_YYYY-MM-DD.ext."));
+    databaseCheckBox->SetToolTip(_("When MMEX starts,\n"
+        "create the backup database: dbFile_start_YYYY-MM-DD.ext."));
     databaseStaticBoxSizer->Add(databaseCheckBox, g_flagsV);
 
     wxCheckBox* databaseUpdateCheckBox = new wxCheckBox(misc_panel, ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE
         , _("Backup database on exit"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     databaseUpdateCheckBox->SetValue(GetIniDatabaseCheckboxValue("BACKUPDB_UPDATE", true));
-    databaseUpdateCheckBox->SetToolTip(_("When MMEX shuts down and changes made to database,\n"
-        "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."));
+    databaseUpdateCheckBox->SetToolTip(_("When MMEX shuts down and changes were made to the database,\n"
+        "create or update the backup database: dbFile_update_YYYY-MM-DD.ext."));
     databaseStaticBoxSizer->Add(databaseUpdateCheckBox, g_flagsV);
 
     int max = Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4);
@@ -214,7 +214,7 @@ void OptionSettingsMisc::Create()
     //CSV Import
     const wxString delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
 
-    wxStaticBox* csvStaticBox = new wxStaticBox(misc_panel, wxID_ANY, _("CSV Settings"));
+    wxStaticBox* csvStaticBox = new wxStaticBox(misc_panel, wxID_ANY, _("CSV"));
     SetBoldFont(csvStaticBox);
     wxStaticBoxSizer* csvStaticBoxSizer = new wxStaticBoxSizer(csvStaticBox, wxVERTICAL);
 

@@ -62,7 +62,7 @@ void OptionSettingsAttachment::Create()
     attachmentPanelSizer0->Add(attachment_panel, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     //Attachments
-    wxStaticBox* attachmentStaticBox = new wxStaticBox(attachment_panel, wxID_ANY, _("Attachments Settings"));
+    wxStaticBox* attachmentStaticBox = new wxStaticBox(attachment_panel, wxID_ANY, _("Attachments"));
     SetBoldFont(attachmentStaticBox);
     wxStaticBoxSizer* attachmentStaticBoxSizer = new wxStaticBoxSizer(attachmentStaticBox, wxVERTICAL);
 
