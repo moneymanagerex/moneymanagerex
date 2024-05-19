@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-19 23:47+0300\n"
-"PO-Revision-Date: 2024-05-19 20:49\n"
+"PO-Revision-Date: 2024-05-19 22:18\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -2550,7 +2550,7 @@ msgstr "Diagnosztika"
 #: diagnostics.cpp:88 relocatecategorydialog.cpp:134
 #: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:134 themes.cpp:195
 msgid "&Close"
-msgstr ""
+msgstr "&Bezárás"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -4889,7 +4889,7 @@ msgstr "Jelenlegi nézet nyomtatása"
 
 #: mmframe.cpp:1626
 msgid "E&xit\tCtrl-Q"
-msgstr ""
+msgstr "&Kilépés\tCtrl-Q"
 
 #: mmframe.cpp:1626
 msgid "Quit this program"
@@ -4977,11 +4977,11 @@ msgstr "Pénzzel kapcsolatos tippek megjelenítése"
 
 #: mmframe.cpp:1670
 msgid "&Full Screen\tF11"
-msgstr ""
+msgstr "&Teljes képernyő\tF11"
 
 #: mmframe.cpp:1671 mmframe.cpp:1997
 msgid "Toggle full screen"
-msgstr ""
+msgstr "Teljes képernyős ki-/bekapcsolása"
 
 #: mmframe.cpp:1676
 msgid "&Reset View"
@@ -5118,7 +5118,7 @@ msgstr "Webalkalmazás frissítése"
 
 #: mmframe.cpp:1817
 msgid "&Settings...\tAlt-F12"
-msgstr ""
+msgstr "&Beállítások…\tAlt-F12"
 
 #: mmframe.cpp:1824
 msgid "&Decrypt Encrypted Database..."
@@ -5250,11 +5250,11 @@ msgstr "RSS-hírcsatorna csatlakoztatása a hírgyűjtőhöz"
 
 #: mmframe.cpp:1880
 msgid "Make a &Donation"
-msgstr ""
+msgstr "A&dományozás"
 
 #: mmframe.cpp:1881
 msgid "Donate to the MMEX team to support infrastructure and development"
-msgstr ""
+msgstr "Adományozzon az MMEX csapatának az infrastruktúra és a fejlesztés támogatására"
 
 #: mmframe.cpp:1883
 msgid "&Buy us a Coffee"
@@ -5262,7 +5262,7 @@ msgstr "&Vásároljon nekünk egy kávét"
 
 #: mmframe.cpp:1884
 msgid "Buy a key developer a coffee"
-msgstr ""
+msgstr "Vásároljon egy főfejlesztőnek egy kávét"
 
 #: mmframe.cpp:1887
 msgid "&Community"
@@ -5338,7 +5338,7 @@ msgstr "Új"
 
 #: mmframe.cpp:1979
 msgid "&Settings"
-msgstr ""
+msgstr "&Beállítások"
 
 #: mmframe.cpp:1987 mmframe.cpp:1992 mmframe.cpp:3018 optionsettingsnet.cpp:132
 msgid "News"
@@ -5354,7 +5354,7 @@ msgstr "Pénznem- és részvényárfolyamok letöltése"
 
 #: mmframe.cpp:1997
 msgid "Full Screen\tF11"
-msgstr ""
+msgstr "Teljes képernyő\tF11"
 
 #: mmframe.cpp:2000
 msgid "&Print"
@@ -5571,7 +5571,7 @@ msgstr "Értékpapírszámla létrehozása"
 
 #: mmframe.cpp:2925
 msgid "Settings have been updated."
-msgstr ""
+msgstr "Beállítások frissítve."
 
 #: mmframe.cpp:2926
 msgid "Some settings take effect only after an application restart."
@@ -6068,7 +6068,7 @@ msgstr "Általános"
 
 #: optiondialog.cpp:37 optionsettingsview.cpp:61
 msgid "View"
-msgstr ""
+msgstr "Nézet"
 
 #: optiondialog.cpp:37 optionsettingsattachment.cpp:65 webappdialog.cpp:146
 msgid "Attachments"
@@ -6388,16 +6388,17 @@ msgstr "Tömeges ügyletek"
 
 #: optionsettingsmisc.cpp:173
 msgid "Database"
-msgstr ""
+msgstr "Adatbázis"
 
 #: optionsettingsmisc.cpp:180
 msgid "Backup database on startup"
-msgstr ""
+msgstr "Adatbázis biztonsági másolatának készítése indításkor"
 
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX starts,\n"
 "create the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "Az MMEX indulásakor,\n"
+"biztonsági mentési adatbázis létrehozása: adatbázisfájl_start_ÉÉÉÉ-HH-NN.bak."
 
 #: optionsettingsmisc.cpp:187
 msgid "Backup database on exit"
@@ -6406,7 +6407,8 @@ msgstr "Adatbázis biztonsági másolatának készítése kilépéskor"
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes were made to the database,\n"
 "create or update the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "Az MMEX bezáráskor és az adatbázis módosul,\n"
+"biztonsági mentési adatbázis létrehozása vagy frissítése: adatbázisfájl_update_ÉÉÉÉ-HH-NN.bak."
 
 #: optionsettingsmisc.cpp:197
 msgid "Specify max number of backup files"
@@ -6430,7 +6432,7 @@ msgstr "Határolójel"
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp"
-msgstr ""
+msgstr "Webalkalmazás"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
@@ -6470,7 +6472,7 @@ msgstr "Port"
 
 #: optionsettingsnet.cpp:119
 msgid "Usage Statistics"
-msgstr ""
+msgstr "Használati statisztika"
 
 #: optionsettingsnet.cpp:138
 msgid "Check for latest news on startup"
@@ -6530,7 +6532,7 @@ msgstr "Kategóriaelválasztó"
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget"
-msgstr ""
+msgstr "Ügylet/költségvetés"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
@@ -6791,7 +6793,7 @@ msgstr "Ked&vezményezett egyesítése"
 
 #: relocatecategorydialog.cpp:102
 msgid "&Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "Forráskategória &törlése az egyesítés után (ha a forráskategóriának nincsenek alkategóriái)"
 
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
 #: relocatetagdialog.cpp:114
@@ -6856,7 +6858,7 @@ msgstr "Kedvezményezettek egyesítése"
 
 #: relocatepayeedialog.cpp:99
 msgid "&Delete source payee after merge"
-msgstr ""
+msgstr "Forráskedvezményezett &törlése az egyesítés után"
 
 #: relocatepayeedialog.cpp:156
 msgid "Merge payees confirmation"
@@ -6868,7 +6870,7 @@ msgstr "Címkék egyesítése"
 
 #: relocatetagdialog.cpp:101
 msgid "&Delete source tag after merge"
-msgstr ""
+msgstr "Forráscímke &törlése az egyesítés után"
 
 #: relocatetagdialog.cpp:158
 msgid "Merge tags confirmation"
@@ -7805,11 +7807,11 @@ msgstr "Címke törlésének megerősítése"
 
 #: themes.cpp:191
 msgid "&Delete"
-msgstr ""
+msgstr "&Törlés"
 
 #: themes.cpp:193
 msgid "&Use"
-msgstr ""
+msgstr "&Használat"
 
 #: themes.cpp:239
 msgid "No description available"
