@@ -1843,7 +1843,7 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     wxMenu* menuHelp = new wxMenu;
 
     wxMenuItem* menuItemHelp = new wxMenuItem(menuTools, wxID_HELP,
-        _("&Help\tF1"), _("Show Help"));
+        _("&Help")&"\tF1", _("Show Help"));
     menuHelp->Append(menuItemHelp);
 
     //Community Submenu
