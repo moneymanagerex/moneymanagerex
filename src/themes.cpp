@@ -186,13 +186,13 @@ void mmThemesDialog::CreateControls()
     splittermain->SplitVertically(pnl1, pnl2);
 
     wxBoxSizer* bSizer02 = new wxBoxSizer(wxHORIZONTAL);
-    m_importButton = new wxButton(this, ID_DIALOG_THEME_IMPORT, _("Import"));
+    m_importButton = new wxButton(this, ID_DIALOG_THEME_IMPORT, _("&Import"));
     bSizer02->Add(m_importButton, 0, wxALL, 5);
-    m_deleteButton = new wxButton(this, ID_DIALOG_THEME_DELETE, _("Delete"));
+    m_deleteButton = new wxButton(this, ID_DIALOG_THEME_DELETE, _("&Delete"));
     bSizer02->Add(m_deleteButton, 0, wxALL, 5);
-    m_useButton = new wxButton(this, ID_DIALOG_THEME_USE, _("Use"));
+    m_useButton = new wxButton(this, ID_DIALOG_THEME_USE, _("&Use"));
     bSizer02->Add(m_useButton, 0, wxALL, 5);
-    m_okButton = new wxButton(this, wxID_OK, _("Close"));
+    m_okButton = new wxButton(this, wxID_OK, _("&Close"));
     bSizer02->Add(m_okButton, 0, wxALL, 5);
 
     bSizer0->Add(bSizer02, g_flagsCenter);

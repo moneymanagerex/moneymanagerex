@@ -99,7 +99,7 @@ void relocateCategoryDialog::CreateControls()
     cbDestCategory_->SetMinSize(wxSize(200, -1));
 
     cbDeleteSourceCategory_ = new wxCheckBox(this, wxID_ANY
-        , _("Delete source category after merge (if source category has no subcategories)"));
+        , _("&Delete source category after merge (if source category has no subcategories)"));
 
     wxStaticLine* lineBottom = new wxStaticLine(this, wxID_STATIC);
 
@@ -130,8 +130,8 @@ void relocateCategoryDialog::CreateControls()
     wxStaticLine* lineBottom2 = new wxStaticLine(this, wxID_STATIC);
     boxSizer->Add(lineBottom2, flagsExpand);
 
-    wxButton* okButton = new wxButton(this, wxID_OK, _("Merge"));
-    wxButton* cancelButton = new wxButton(this, wxID_CANCEL, _("Close"));
+    wxButton* okButton = new wxButton(this, wxID_OK, _("&Merge"));
+    wxButton* cancelButton = new wxButton(this, wxID_CANCEL, _("&Close"));
     cancelButton-> SetFocus();
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonBoxSizer->Add(okButton, flagsH);

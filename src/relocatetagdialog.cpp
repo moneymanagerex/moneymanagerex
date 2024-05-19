@@ -98,7 +98,7 @@ void relocateTagDialog::CreateControls()
     cbDestTag_->SetMinSize(wxSize(200, -1));
 
     cbDeleteSourceTag_ = new wxCheckBox(this, wxID_ANY
-        , _("Delete source tag after merge"));
+        , _("&Delete source tag after merge"));
 
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
@@ -130,8 +130,8 @@ void relocateTagDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     boxSizer->Add(lineBottom, flagsExpand);
 
-    wxButton* okButton = new wxButton(this, wxID_OK, _("Merge"));
-    wxButton* cancelButton = new wxButton(this, wxID_CANCEL, _("Close"));
+    wxButton* okButton = new wxButton(this, wxID_OK, _("&Merge"));
+    wxButton* cancelButton = new wxButton(this, wxID_CANCEL, _("&Close"));
 
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonBoxSizer->Add(okButton, flagsH);

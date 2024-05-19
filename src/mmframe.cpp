@@ -1623,7 +1623,7 @@ void mmGUIFrame::createMenu()
     menu_file->AppendSeparator();
 
     wxMenuItem* menuItemQuit = new wxMenuItem(menu_file, wxID_EXIT,
-        _("E&xit\tAlt-X"), _("Quit this program"));
+        _("E&xit\tCtrl-Q"), _("Quit this program"));
     menu_file->Append(menuItemQuit);
 
     // Create the required menu items
@@ -1667,8 +1667,9 @@ void mmGUIFrame::createMenu()
 
 #if (wxMAJOR_VERSION >= 3 && wxMINOR_VERSION >= 0)
     wxMenuItem* menuItemToggleFullscreen = new wxMenuItem(menuView, MENU_VIEW_TOGGLE_FULLSCREEN
-        , _("Toggle &Fullscreen\tShift+F11")
-        , _("Toggle Fullscreen"));
+        , _("&Full Screen\tF11")
+        , _("Toggle full screen")
+        , wxITEM_CHECK);
     menuView->Append(menuItemToggleFullscreen);
 #endif
 wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
@@ -1813,7 +1814,7 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemOptions = new wxMenuItem(menuTools, wxID_PREFERENCES
-        , _("&Options...\tCtrl-,"), _("Options"));
+        , _("&Settings...\tAlt-F12"), _("Settings"));
     menuTools->Append(menuItemOptions);
 
     menuTools->AppendSeparator();
@@ -1876,29 +1877,31 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     wxMenuItem* menuItemRSS = new wxMenuItem(menuHelp, MENU_RSS
         , _("&RSS Feed"), _("Connect RSS web feed to news aggregator"));
     wxMenuItem* menuItemDonate = new wxMenuItem(menuHelp, MENU_DONATE
-        , _("&Donate via PayPal")
-        , _("Donate the team to support infrastructure etc"));
+        , _("Make a &Donation")
+        , _("Donate to the MMEX team to support infrastructure and development"));
     wxMenuItem* menuItemBuyCoffee = new wxMenuItem(menuHelp, MENU_BUY_COFFEE
         , _("&Buy us a Coffee")
-        , _("Buy key developer a coffee"));
+        , _("Buy a key developer a coffee"));
 
     wxMenuItem* menuItemCommunity = new wxMenuItem(menuHelp, MENU_COMMUNITY
         , _("&Community")
         , _("Stay in touch with MMEX community"));
 
     wxMenu* menuCommunity = new wxMenu;
-    menuCommunity->Append(menuItemFacebook);
-    menuCommunity->Append(menuItemCrowdin);
+    menuCommunity->Append(menuItemWebsite);
     menuCommunity->Append(menuItemGitHub);
-    menuCommunity->Append(menuItemGooglePlay);
+    menuCommunity->Append(menuItemCrowdin);
+    menuCommunity->Append(menuItemWiki);
     menuCommunity->Append(menuItemNotify);
     menuCommunity->Append(menuItemReportIssues);
+    menuCommunity->AppendSeparator();
+    menuCommunity->Append(menuItemGooglePlay);
+    menuCommunity->AppendSeparator();
     menuCommunity->Append(menuItemRSS);
+    menuCommunity->Append(menuItemYouTube);
+    menuCommunity->Append(menuItemFacebook);
     menuCommunity->Append(menuItemSlack);
     menuCommunity->Append(menuItemTwitter);
-    menuCommunity->Append(menuItemWebsite);
-    menuCommunity->Append(menuItemWiki);
-    menuCommunity->Append(menuItemYouTube);
     menuCommunity->AppendSeparator();
     menuCommunity->Append(menuItemDonate);
     menuCommunity->Append(menuItemBuyCoffee);
@@ -1973,7 +1976,7 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_VIEW_LIST, _("General Report Manager"), mmBitmapBundle(png::GRM, toolbar_icon_size), _("General Report Manager"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_PREFERENCES, _("&Options"), mmBitmapBundle(png::OPTIONS, toolbar_icon_size), _("Options Dialog"));
+    toolBar_->AddTool(wxID_PREFERENCES, _("&Settings"), mmBitmapBundle(png::OPTIONS, toolbar_icon_size), _("Settings"));
     toolBar_->AddSeparator();
 
     wxString news_array;
@@ -1991,7 +1994,7 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(MENU_RATES, _("Download Rates"), mmBitmapBundle(png::CURRATES, toolbar_icon_size), _("Download currency and stock rates"));
 
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Toggle Fullscreen\tF11"), mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _("Toggle Fullscreen"));
+    toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Full Screen\tF11"), mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _("Toggle full screen"));
 
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_PRINT, _("&Print"), mmBitmapBundle(png::PRINT, toolbar_icon_size), _("Print"));
@@ -2919,9 +2922,9 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         if (id == mmID_CHECKING || id == mmID_ALLTRANSACTIONS || id == mmID_DELETEDTRANSACTIONS)
             wxDynamicCast(panelCurrent_, mmCheckingPanel)->ResetColumnView();
 
-        const wxString& sysMsg = _("MMEX Options have been updated.") + "\n\n"
+        const wxString& sysMsg = _("Settings have been updated.") + "\n\n"
             + _("Some settings take effect only after an application restart.");
-        wxMessageBox(sysMsg, _("MMEX Options"), wxOK | wxICON_INFORMATION);
+        wxMessageBox(sysMsg, _("Settings"), wxOK | wxICON_INFORMATION);
     }
 }
 //----------------------------------------------------------------------------

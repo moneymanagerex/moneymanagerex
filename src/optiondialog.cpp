@@ -34,7 +34,7 @@
 #include "optionsettingsmisc.h"
 
 static const char * const s_pagetitle[] = {
-    wxTRANSLATE("General"), wxTRANSLATE("View Options"), wxTRANSLATE("Dashboard"), wxTRANSLATE("Attachments"), wxTRANSLATE("Network"), wxTRANSLATE("Other")
+    wxTRANSLATE("General"), wxTRANSLATE("View"), wxTRANSLATE("Dashboard"), wxTRANSLATE("Attachments"), wxTRANSLATE("Network"), wxTRANSLATE("Other")
 };
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmOptionsDialog, wxDialog);
@@ -217,7 +217,7 @@ void mmOptionsDialog::OnApply(wxCommandEvent& /*event*/)
     if (m_panel_list[selected_page]->SaveSettings())
     {
         const wxString& msg = wxString::Format(_("%s page has been saved."), _(s_pagetitle[selected_page]));
-        wxMessageBox(msg, _("MMEX Options"));
+        wxMessageBox(msg, _("Settings"));
     }
 
     Model_Setting::instance().ReleaseSavepoint();
