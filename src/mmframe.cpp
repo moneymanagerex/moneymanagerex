@@ -1814,7 +1814,7 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemOptions = new wxMenuItem(menuTools, wxID_PREFERENCES
-        , _("&Settings...\tCtrl-,"), _("Settings"));
+        , _("&Settings...\tAlt-F12"), _("Settings"));
     menuTools->Append(menuItemOptions);
 
     menuTools->AppendSeparator();
