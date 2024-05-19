@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-05-18 23:58+0300\n"
-"PO-Revision-Date: 2024-05-18 21:09\n"
+"POT-Creation-Date: 2024-05-19 23:47+0300\n"
+"PO-Revision-Date: 2024-05-19 20:49\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr ""
 msgid "License agreement"
 msgstr "إتفاقية الإستخدام"
 
-#: aboutdialog.cpp:181 mmframe.cpp:2000
+#: aboutdialog.cpp:181 mmframe.cpp:2003
 msgid "About"
 msgstr "حول البرنامج"
 
@@ -69,7 +69,7 @@ msgstr "تمكين لمساعدتنا في إرسال بيانات مجهولة 
 msgid "&OK "
 msgstr "&موافق"
 
-#: accountdialog.cpp:95 mmframe.cpp:1713
+#: accountdialog.cpp:95 mmframe.cpp:1714
 msgid "Edit Account"
 msgstr "تحرير حساب"
 
@@ -314,7 +314,7 @@ msgstr "مشتريات المخزون لهذا الحساب موجودة بال�
 msgid "Scheduled transactions for this account are scheduled before this date."
 msgstr ""
 
-#: accountdialog.h:41 mmframe.cpp:1710 mmframe.cpp:1962
+#: accountdialog.h:41 mmframe.cpp:1711 mmframe.cpp:1965
 #: wizard_newaccount.cpp:87 wizard_newaccount.cpp:94 wizard_newaccount.cpp:166
 msgid "New Account"
 msgstr "إنشاء"
@@ -339,11 +339,11 @@ msgstr "فتح قاعدة بيانات موجودة"
 msgid "Open MMEX database file"
 msgstr ""
 
-#: appstartdialog.cpp:112 mmframe.cpp:1681
+#: appstartdialog.cpp:112 mmframe.cpp:1682
 msgid "User Interface &Language"
 msgstr "لغة واجهة المستخدم"
 
-#: appstartdialog.cpp:113 appstartdialog.cpp:221 mmframe.cpp:1682
+#: appstartdialog.cpp:113 appstartdialog.cpp:221 mmframe.cpp:1683
 #: optionsettingsgeneral.cpp:100
 msgid "Change user interface language"
 msgstr "تغيير لغة واجهة المستخدم"
@@ -356,19 +356,19 @@ msgstr "دليل المستخدم"
 msgid "Read MMEX user manual"
 msgstr ""
 
-#: appstartdialog.cpp:120 mmframe.cpp:1851
+#: appstartdialog.cpp:120 mmframe.cpp:1852
 msgid "&Website"
 msgstr "&الموقع الالكتروني"
 
-#: appstartdialog.cpp:121 mmframe.cpp:1852
+#: appstartdialog.cpp:121 mmframe.cpp:1853
 msgid "Visit MMEX website for the latest news and updates"
 msgstr ""
 
-#: appstartdialog.cpp:125 mmframe.cpp:1868
+#: appstartdialog.cpp:125 mmframe.cpp:1869
 msgid "&Forum"
 msgstr ""
 
-#: appstartdialog.cpp:126 mmframe.cpp:1869
+#: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
 msgstr ""
 
@@ -385,7 +385,7 @@ msgstr "&خروج "
 msgid "Open the previously opened database: %s"
 msgstr ""
 
-#: appstartdialog.cpp:208 mmframe.cpp:1687 mmframe.cpp:3078
+#: appstartdialog.cpp:208 mmframe.cpp:1688 mmframe.cpp:3081
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
 msgstr "الإعداد الافتراضي للنظام"
@@ -394,11 +394,11 @@ msgstr "الإعداد الافتراضي للنظام"
 msgid "User Interface Language"
 msgstr ""
 
-#: appstartdialog.cpp:229 mmframe.cpp:3957 optionsettingsgeneral.cpp:363
+#: appstartdialog.cpp:229 mmframe.cpp:3960 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "تم تغيير لغة هذا التطبيق. سيدخل التغيير حيز التنفيذ في المرة القادمة التي يبدأ فيها التطبيق."
 
-#: appstartdialog.cpp:231 mmframe.cpp:3959 optionsettingsgeneral.cpp:365
+#: appstartdialog.cpp:231 mmframe.cpp:3962 optionsettingsgeneral.cpp:365
 msgid "Language change"
 msgstr "تغيير اللغة"
 
@@ -588,7 +588,7 @@ msgid "MMEX allows you to track fixed assets like cars, houses, land and others.
 msgstr "يسمح لك MMEX بتتبع الأصول الثابتة مثل السيارات والمنازل والأرض وغيرها. يمكن أن ترتفع قيمة كل أصل بمعدل معين سنويًا، أو تنخفض بمعدل معين سنويًا، أو لا تتغير قيمتها. تتم إضافة إجمالي الأصول إلى إجمالي قيمتك المالية."
 
 #: assetspanel.cpp:419 assetspanel.h:108 general_report_manager.cpp:1030
-#: mmframe.cpp:490 mmframe.cpp:810 mmframe.cpp:1783 mmframe.cpp:3489
+#: mmframe.cpp:490 mmframe.cpp:810 mmframe.cpp:1784 mmframe.cpp:3492
 #: mmhomepage.cpp:537 mmhomepage.cpp:585 mmhomepagepanel.cpp:237
 #: reports/summary.cpp:271 reports/summary.cpp:309
 msgid "Assets"
@@ -1249,7 +1249,7 @@ msgstr "حدد عدد المدفوعات التي يتعين القيام بها
 
 #: billsdepositsdialog.cpp:1367 images_list.cpp:502
 #: import_export/univcsvdialog.cpp:1582 maincurrencydialog.cpp:482
-#: mmframe.cpp:3914 splittransactionsdialog.cpp:412 stockspanel.cpp:384
+#: mmframe.cpp:3917 splittransactionsdialog.cpp:412 stockspanel.cpp:384
 #: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
@@ -1329,7 +1329,7 @@ msgid "Tip: These transactions can be set up to activate - allowing the user to 
 msgstr "نصيحة: يمكن إعداد هذه المعاملات للتنشيط - مما يسمح للمستخدم بضبط أي قيم في تاريخ الاستحقاق."
 
 #: billsdepositspanel.cpp:246 billsdepositspanel.cpp:976 mmframe.cpp:814
-#: mmframe.cpp:3236 mmhomepagepanel.cpp:243
+#: mmframe.cpp:3239 mmhomepagepanel.cpp:243
 msgid "Scheduled Transactions"
 msgstr ""
 
@@ -1798,17 +1798,17 @@ msgstr "تحرير الفئة"
 msgid "Category Manager: Editing Error"
 msgstr ""
 
-#: categdialog.cpp:682 mmframe.cpp:3803
+#: categdialog.cpp:682 mmframe.cpp:3806
 msgid "Merge categories completed"
 msgstr ""
 
-#: categdialog.cpp:683 mmframe.cpp:3804 mmframe.cpp:3819 mmframe.cpp:3835
+#: categdialog.cpp:683 mmframe.cpp:3807 mmframe.cpp:3822 mmframe.cpp:3838
 #: payeedialog.cpp:834
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "تم تحديث السجلات في قاعدة البيانات: %i"
 
-#: categdialog.cpp:685 mmframe.cpp:3806
+#: categdialog.cpp:685 mmframe.cpp:3809
 msgid "Merge categories result"
 msgstr ""
 
@@ -1836,7 +1836,7 @@ msgstr "إزالة الفئة"
 msgid "Clear Settings"
 msgstr "مسح الإعدادات"
 
-#: categdialog.h:68 mmframe.cpp:1742 mmframe.cpp:1968
+#: categdialog.h:68 mmframe.cpp:1743 mmframe.cpp:1971
 msgid "Category Manager"
 msgstr ""
 
@@ -1844,8 +1844,7 @@ msgstr ""
 msgid "Cancel"
 msgstr "الغاء"
 
-#: constants.cpp:78 diagnostics.cpp:88 relocatecategorydialog.cpp:134
-#: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:134 themes.cpp:195
+#: constants.cpp:78
 msgid "Close"
 msgstr "إغلاق"
 
@@ -1947,7 +1946,7 @@ msgstr "عرض منذ تاريخ البيان"
 msgid "ALL"
 msgstr "الكل"
 
-#: constants.cpp:209 mmframe.cpp:1960 model/Model_Account.cpp:27
+#: constants.cpp:209 mmframe.cpp:1963 model/Model_Account.cpp:27
 #: model/Model_Asset.cpp:54
 msgid "Open"
 msgstr "مفتوح"
@@ -2058,8 +2057,8 @@ msgstr "(باستخدام الإعدادات المحلية)"
 
 #: currencydialog.h:48 maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
-#: maincurrencydialog.cpp:813 maincurrencydialog.h:76 mmframe.cpp:1750
-#: mmframe.cpp:1970 optionsettingsgeneral.cpp:301
+#: maincurrencydialog.cpp:813 maincurrencydialog.h:76 mmframe.cpp:1751
+#: mmframe.cpp:1973 optionsettingsgeneral.cpp:301
 msgid "Currency Manager"
 msgstr "ادارة العملة"
 
@@ -2156,8 +2155,8 @@ msgstr "قيمة فارغة"
 msgid "Changing field type will delete all content!"
 msgstr "تغيير نوع الحقل سيحذف كل المحتوى!"
 
-#: customfieldeditdialog.cpp:234 customfieldeditdialog.cpp:256 mmframe.cpp:2424
-#: mmframe.cpp:2486
+#: customfieldeditdialog.cpp:234 customfieldeditdialog.cpp:256 mmframe.cpp:2427
+#: mmframe.cpp:2489
 msgid "Do you want to proceed?"
 msgstr "هل تريد المتابعة ؟"
 
@@ -2181,7 +2180,7 @@ msgstr "#"
 msgid "Properties"
 msgstr "الخصائص"
 
-#: customfieldlistdialog.cpp:66 mmframe.cpp:1805
+#: customfieldlistdialog.cpp:66 mmframe.cpp:1806
 msgid "Custom Field Manager"
 msgstr ""
 
@@ -2496,11 +2495,11 @@ msgid "Wrong file type!"
 msgstr "نوع الملف خاطئ!"
 
 #: dbupgrade.cpp:190 dbupgrade.cpp:227 dbupgrade.cpp:234 dbupgrade.cpp:278
-#: dbupgrade.cpp:289 mmframe.cpp:2461
+#: dbupgrade.cpp:289 mmframe.cpp:2464
 msgid "MMEX debug error"
 msgstr "خطأ في تصحيح MMEX"
 
-#: dbupgrade.cpp:227 dbupgrade.cpp:278 mmframe.cpp:2461
+#: dbupgrade.cpp:227 dbupgrade.cpp:278 mmframe.cpp:2464
 msgid "Query error, please contact MMEX support!"
 msgstr "خطأ في الاستبيان، يرجى الاتصال بدعم MMEX!"
 
@@ -2551,13 +2550,18 @@ msgstr "كلمة مرور غير صحيحة للملف المشفر\n"
 msgid "Error: %s"
 msgstr "خطاء: %s"
 
-#: dbwrapper.cpp:92 mmframe.cpp:2060
+#: dbwrapper.cpp:92 mmframe.cpp:2063
 msgid "Opening MMEX Database - Error"
 msgstr "فتح قاعدة بيانات MMEX - خطأ"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
 msgstr "التشخيصات"
+
+#: diagnostics.cpp:88 relocatecategorydialog.cpp:134
+#: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:134 themes.cpp:195
+msgid "&Close"
+msgstr ""
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -2735,7 +2739,8 @@ msgstr "دمج التقسيمات"
 msgid "Display split transactions as a single row"
 msgstr "عرض المعاملات المقسمة كصف واحد"
 
-#: filtertransdialog.cpp:778
+#: filtertransdialog.cpp:778 mmframe.cpp:1817 mmframe.cpp:1979 mmframe.cpp:2927
+#: optiondialog.cpp:220 optiondialog.h:49
 msgid "Settings"
 msgstr "الإعدادات"
 
@@ -2840,12 +2845,13 @@ msgstr "اختار الحسابات"
 msgid "Customize Transaction Report"
 msgstr ""
 
-#: general_report_manager.cpp:284 mmframe.cpp:832 mmframe.cpp:3022
+#: general_report_manager.cpp:284 mmframe.cpp:832 mmframe.cpp:3025
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
 msgstr "التقارير"
 
 #: general_report_manager.cpp:382 import_export/univcsvdialog.cpp:536
+#: themes.cpp:189
 msgid "&Import"
 msgstr "&استيراد"
 
@@ -2930,7 +2936,7 @@ msgstr "ملفات ZIP (*.zip)"
 
 #: general_report_manager.cpp:665 general_report_manager.cpp:849
 #: general_report_manager.cpp:1010 general_report_manager.h:64 mmframe.cpp:837
-#: mmframe.cpp:1801 mmframe.cpp:1974
+#: mmframe.cpp:1802 mmframe.cpp:1977
 msgid "General Report Manager"
 msgstr "مدير التقرير العام"
 
@@ -3067,7 +3073,7 @@ msgid "Unable to open file."
 msgstr "غير قادر على فتح الملف."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
-#: import_export/univcsvdialog.cpp:1353 mmframe.cpp:2635 mmframe.cpp:2654
+#: import_export/univcsvdialog.cpp:1353 mmframe.cpp:2638 mmframe.cpp:2657
 msgid "Universal CSV Import"
 msgstr "استيراد CSV شامل"
 
@@ -3130,7 +3136,7 @@ msgstr "المعايير"
 msgid "Log"
 msgstr "سجل"
 
-#: import_export/qif_export.cpp:136
+#: import_export/qif_export.cpp:136 optionsettingsmisc.cpp:217
 msgid "CSV"
 msgstr "CSV"
 
@@ -3142,8 +3148,8 @@ msgstr "JSON"
 msgid "QIF"
 msgstr "QIF"
 
-#: import_export/qif_export.cpp:152 mmframe.cpp:3581 mmframe.cpp:3585
-#: mmframe.cpp:3602 mmframe.cpp:3606
+#: import_export/qif_export.cpp:152 mmframe.cpp:3584 mmframe.cpp:3588
+#: mmframe.cpp:3605 mmframe.cpp:3609
 msgid "Accounts"
 msgstr "الحسابات"
 
@@ -3638,7 +3644,7 @@ msgid "Amount field or both Withdrawal and Deposit fields are required."
 msgstr "حقل المبلغ أو كلا حقول السحب والودائع مطلوب."
 
 #: import_export/univcsvdialog.cpp:1306 import_export/univcsvdialog.cpp:1501
-#: themes.cpp:189 webappdialog.cpp:408
+#: webappdialog.cpp:408
 msgid "Import"
 msgstr "استيراد"
 
@@ -4583,7 +4589,8 @@ msgstr "&تحويل جديد..."
 msgid "Delete all selected transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:449 mmframe.cpp:1965 transdialog.cpp:184
+#: mmcheckingpanel.cpp:449 mmframe.cpp:1968 optionsettingsmisc.cpp:100
+#: transdialog.cpp:184
 msgid "New Transaction"
 msgstr "اضافة عملية"
 
@@ -4727,7 +4734,7 @@ msgstr "حسابات القروض"
 msgid "Auto Repeat Transactions"
 msgstr "تكرار المعاملات تلقائياً"
 
-#: mmframe.cpp:770 mmframe.cpp:1963 optiondialog.cpp:37
+#: mmframe.cpp:770 mmframe.cpp:1966 optiondialog.cpp:37
 msgid "Dashboard"
 msgstr ""
 
@@ -4736,16 +4743,16 @@ msgstr ""
 msgid "Share Accounts"
 msgstr ""
 
-#: mmframe.cpp:822 mmframe.cpp:1775 mmframe.cpp:2885
+#: mmframe.cpp:822 mmframe.cpp:1776 mmframe.cpp:2888
 msgid "Budget Planner"
 msgstr ""
 
-#: mmframe.cpp:827 mmframe.cpp:1358 mmframe.cpp:1375 mmframe.cpp:1795
-#: mmframe.cpp:1972 mmframe.cpp:2870
+#: mmframe.cpp:827 mmframe.cpp:1358 mmframe.cpp:1375 mmframe.cpp:1796
+#: mmframe.cpp:1975 mmframe.cpp:2873
 msgid "Transaction Report"
 msgstr "تقرير المُعاملة"
 
-#: mmframe.cpp:844 mmframe.cpp:2001 mmframe.cpp:2676 mmframe.cpp:2972
+#: mmframe.cpp:844 mmframe.cpp:2004 mmframe.cpp:2679 mmframe.cpp:2975
 #: mmhelppanel.cpp:69
 msgid "Help"
 msgstr "مساعدة"
@@ -4766,7 +4773,7 @@ msgstr ""
 msgid "Do you really want to delete the account?"
 msgstr "تأكيد حذف الحساب؟"
 
-#: mmframe.cpp:1400 mmframe.cpp:3614
+#: mmframe.cpp:1400 mmframe.cpp:3617
 msgid "Confirm Account Deletion"
 msgstr "تأكيد حذف حساب"
 
@@ -4834,11 +4841,11 @@ msgstr ""
 msgid "&Delete Report..."
 msgstr ""
 
-#: mmframe.cpp:1493 mmframe.cpp:1511 mmframe.cpp:1531 mmframe.cpp:1713
+#: mmframe.cpp:1493 mmframe.cpp:1511 mmframe.cpp:1531 mmframe.cpp:1714
 msgid "&Edit Account..."
 msgstr ""
 
-#: mmframe.cpp:1494 mmframe.cpp:1514 mmframe.cpp:1534 mmframe.cpp:1719
+#: mmframe.cpp:1494 mmframe.cpp:1514 mmframe.cpp:1534 mmframe.cpp:1720
 msgid "&Delete Account..."
 msgstr ""
 
@@ -4850,11 +4857,11 @@ msgstr ""
 msgid "&Attachment Manager..."
 msgstr ""
 
-#: mmframe.cpp:1512 mmframe.cpp:1716
+#: mmframe.cpp:1512 mmframe.cpp:1717
 msgid "&Change Account Type..."
 msgstr ""
 
-#: mmframe.cpp:1530 mmframe.cpp:1710
+#: mmframe.cpp:1530 mmframe.cpp:1711
 msgid "&New Account..."
 msgstr ""
 
@@ -4886,7 +4893,7 @@ msgstr ""
 msgid "&New Database..."
 msgstr ""
 
-#: mmframe.cpp:1583 mmframe.cpp:1959 wizard_newdb.cpp:136
+#: mmframe.cpp:1583 mmframe.cpp:1962 wizard_newdb.cpp:136
 msgid "New Database"
 msgstr "قاعدة بيانات جديدة"
 
@@ -4894,7 +4901,7 @@ msgstr "قاعدة بيانات جديدة"
 msgid "&Open Database...\tCtrl-O"
 msgstr ""
 
-#: mmframe.cpp:1584 mmframe.cpp:1960
+#: mmframe.cpp:1584 mmframe.cpp:1963
 msgid "Open Database"
 msgstr "فتح قاعدة بيانات"
 
@@ -4943,7 +4950,7 @@ msgid "Print current view"
 msgstr ""
 
 #: mmframe.cpp:1626
-msgid "E&xit\tAlt-X"
+msgid "E&xit\tCtrl-Q"
 msgstr ""
 
 #: mmframe.cpp:1626
@@ -5031,445 +5038,438 @@ msgid "Show Money Tips"
 msgstr "إظهار نصائح المال"
 
 #: mmframe.cpp:1670
-msgid "Toggle &Fullscreen\tShift+F11"
-msgstr "تبديل &ملء الشاشة Shift+F11"
+msgid "&Full Screen\tF11"
+msgstr ""
 
-#: mmframe.cpp:1671 mmframe.cpp:1994
-msgid "Toggle Fullscreen"
-msgstr "تبديل ملء الشاشة"
-
-#: mmframe.cpp:1675
-msgid "&Reset View"
+#: mmframe.cpp:1671 mmframe.cpp:1997
+msgid "Toggle full screen"
 msgstr ""
 
 #: mmframe.cpp:1676
+msgid "&Reset View"
+msgstr ""
+
+#: mmframe.cpp:1677
 msgid "Reset view and dock tools"
 msgstr ""
 
-#: mmframe.cpp:1707
+#: mmframe.cpp:1708
 msgid "Dash&board"
 msgstr "&لوحة التحكم"
 
-#: mmframe.cpp:1707 mmframe.cpp:1963
+#: mmframe.cpp:1708 mmframe.cpp:1966
 msgid "Open Dashboard"
 msgstr "فتح لوحة التحكم"
 
-#: mmframe.cpp:1716
+#: mmframe.cpp:1717
 msgid "Change the account type of an account"
 msgstr ""
 
-#: mmframe.cpp:1719
+#: mmframe.cpp:1720
 msgid "Delete Account from database"
 msgstr "حذف الحساب من قاعدة البيانات"
 
-#: mmframe.cpp:1732
+#: mmframe.cpp:1733
 msgid "Download &Rates"
 msgstr ""
 
-#: mmframe.cpp:1732
+#: mmframe.cpp:1733
 msgid "Download Currency and Stock Rates"
 msgstr ""
 
-#: mmframe.cpp:1738
+#: mmframe.cpp:1739
 msgid "&Payee Manager..."
 msgstr ""
 
-#: mmframe.cpp:1738 mmframe.cpp:1967 payeedialog.cpp:508
+#: mmframe.cpp:1739 mmframe.cpp:1970 payeedialog.cpp:508
 msgid "Payee Manager"
 msgstr ""
 
-#: mmframe.cpp:1742
+#: mmframe.cpp:1743
 msgid "&Category Manager..."
 msgstr ""
 
-#: mmframe.cpp:1746
+#: mmframe.cpp:1747
 msgid "&Tag Manager..."
 msgstr ""
 
-#: mmframe.cpp:1746 mmframe.cpp:1969 tagdialog.h:45
+#: mmframe.cpp:1747 mmframe.cpp:1972 tagdialog.h:45
 msgid "Tag Manager"
 msgstr ""
 
-#: mmframe.cpp:1750
+#: mmframe.cpp:1751
 msgid "Curre&ncy Manager..."
 msgstr ""
 
-#: mmframe.cpp:1754
+#: mmframe.cpp:1755
 msgid "&Categories..."
 msgstr "&تصنيفات..."
 
-#: mmframe.cpp:1755
+#: mmframe.cpp:1756
 msgid "Merge categories"
 msgstr ""
 
-#: mmframe.cpp:1757
+#: mmframe.cpp:1758
 msgid "&Payees..."
 msgstr "المدفوعون لهم..."
 
-#: mmframe.cpp:1758
+#: mmframe.cpp:1759
 msgid "Merge payees"
 msgstr ""
 
-#: mmframe.cpp:1760
+#: mmframe.cpp:1761
 msgid "&Tags..."
 msgstr ""
 
-#: mmframe.cpp:1761
+#: mmframe.cpp:1762
 msgid "Merge tags"
 msgstr ""
 
-#: mmframe.cpp:1763
+#: mmframe.cpp:1764 relocatecategorydialog.cpp:133 relocatepayeedialog.cpp:131
+#: relocatetagdialog.cpp:133
 msgid "&Merge"
 msgstr ""
 
-#: mmframe.cpp:1764
+#: mmframe.cpp:1765
 msgid "Merge categories, payees, and tags"
 msgstr ""
 
-#: mmframe.cpp:1775
+#: mmframe.cpp:1776
 msgid "&Budget Planner..."
 msgstr ""
 
-#: mmframe.cpp:1779
+#: mmframe.cpp:1780
 msgid "&Scheduled Transactions"
 msgstr ""
 
-#: mmframe.cpp:1779
+#: mmframe.cpp:1780
 msgid "Bills and Deposits"
 msgstr ""
 
-#: mmframe.cpp:1783
+#: mmframe.cpp:1784
 msgid "&Assets"
 msgstr "&الممتلكات"
 
-#: mmframe.cpp:1789
+#: mmframe.cpp:1790
 msgid "T&heme Manager..."
 msgstr "مدير النسق..."
 
-#: mmframe.cpp:1789 themes.cpp:143
+#: mmframe.cpp:1790 themes.cpp:143
 msgid "Theme Manager"
 msgstr "مدير السمة"
 
-#: mmframe.cpp:1795
+#: mmframe.cpp:1796
 msgid "Tra&nsaction Report..."
 msgstr ""
 
-#: mmframe.cpp:1801
+#: mmframe.cpp:1802
 msgid "&General Report Manager..."
 msgstr ""
 
-#: mmframe.cpp:1805
+#: mmframe.cpp:1806
 msgid "C&ustom Field Manager..."
 msgstr ""
 
-#: mmframe.cpp:1811
+#: mmframe.cpp:1812
 msgid "Refresh &WebApp..."
 msgstr "تحديث &تطبيق الويب..."
 
-#: mmframe.cpp:1811 mmframe.cpp:2949 mmframe.cpp:2956
+#: mmframe.cpp:1812 mmframe.cpp:2952 mmframe.cpp:2959
 msgid "Refresh WebApp"
 msgstr "تحديث تطبيق الويب"
 
-#: mmframe.cpp:1816
-msgid "&Options...\tCtrl-,"
-msgstr "&خيارات...\tCtrl-,"
-
-#: mmframe.cpp:1816
-msgid "Options"
-msgstr ""
-
-#: mmframe.cpp:1823
-msgid "&Decrypt Encrypted Database..."
+#: mmframe.cpp:1817
+msgid "&Settings...\tAlt-F12"
 msgstr ""
 
 #: mmframe.cpp:1824
+msgid "&Decrypt Encrypted Database..."
+msgstr ""
+
+#: mmframe.cpp:1825
 msgid "Convert encrypted database to unencrypted database"
 msgstr ""
 
-#: mmframe.cpp:1826
+#: mmframe.cpp:1827
 msgid "Change Encrypted &Password..."
 msgstr "تغيير كلمة المرور المشفرة..."
 
-#: mmframe.cpp:1827
+#: mmframe.cpp:1828
 msgid "Change the password of an encrypted database"
 msgstr "تغيير كلمة مرور قاعدة بيانات مشفرة"
 
-#: mmframe.cpp:1829
+#: mmframe.cpp:1830
 msgid "&Optimize Database..."
 msgstr "&تحسين قاعدة البيانات..."
 
-#: mmframe.cpp:1830
+#: mmframe.cpp:1831
 msgid "Optimize database for space and performance"
 msgstr ""
 
-#: mmframe.cpp:1832
+#: mmframe.cpp:1833
 msgid "Database Check and De&bug..."
 msgstr ""
 
-#: mmframe.cpp:1833
+#: mmframe.cpp:1834
 msgid "Generate database report or fix errors"
 msgstr "إنشاء تقرير قاعدة البيانات أو إصلاح الأخطاء"
 
-#: mmframe.cpp:1838
+#: mmframe.cpp:1839
 msgid "&Database"
 msgstr ""
 
-#: mmframe.cpp:1839
+#: mmframe.cpp:1840
 msgid "Database management"
 msgstr "إدارة قاعدة البيانات"
 
-#: mmframe.cpp:1846 mmframe.cpp:2001
+#: mmframe.cpp:1847 mmframe.cpp:2004
 msgid "&Help\tF1"
 msgstr "&مساعدة\tF1"
 
-#: mmframe.cpp:1846
+#: mmframe.cpp:1847
 msgid "Show Help"
 msgstr ""
 
-#: mmframe.cpp:1854
+#: mmframe.cpp:1855
 msgid "Face&book"
 msgstr ""
 
-#: mmframe.cpp:1854
+#: mmframe.cpp:1855
 msgid "Visit MMEX Facebook page"
 msgstr ""
 
-#: mmframe.cpp:1856
+#: mmframe.cpp:1857
 msgid "&Crowdin"
 msgstr "موقع Crowdin"
 
-#: mmframe.cpp:1856
+#: mmframe.cpp:1857
 msgid "Help translate MMEX on Crowdin"
 msgstr ""
 
-#: mmframe.cpp:1858
+#: mmframe.cpp:1859
 msgid "&X"
 msgstr ""
 
-#: mmframe.cpp:1858
+#: mmframe.cpp:1859
 msgid "Follow MMEX on X"
 msgstr ""
 
-#: mmframe.cpp:1860
+#: mmframe.cpp:1861
 msgid "&YouTube"
 msgstr "&يوتيوب"
 
-#: mmframe.cpp:1860
+#: mmframe.cpp:1861
 msgid "Watch MMEX videos on YouTube"
 msgstr ""
 
-#: mmframe.cpp:1862
+#: mmframe.cpp:1863
 msgid "&Slack"
 msgstr "&Slack"
 
-#: mmframe.cpp:1862
+#: mmframe.cpp:1863
 msgid "Communicate with the MMEX team online"
 msgstr ""
 
-#: mmframe.cpp:1864
+#: mmframe.cpp:1865
 msgid "&GitHub"
 msgstr "&GitHub"
 
-#: mmframe.cpp:1864
+#: mmframe.cpp:1865
 msgid "Access open source code repository and track reported bug statuses"
 msgstr "الوصول إلى مستودع التعليمات البرمجية مفتوحة المصدر وتتبع حالات الأخطاء المبلغ عنها"
 
-#: mmframe.cpp:1866
+#: mmframe.cpp:1867
 msgid "W&iki"
 msgstr ""
 
-#: mmframe.cpp:1866
+#: mmframe.cpp:1867
 msgid "Read and update MMEX wiki"
 msgstr ""
 
-#: mmframe.cpp:1871
+#: mmframe.cpp:1872
 msgid "MMEX for &Android"
 msgstr ""
 
-#: mmframe.cpp:1872
+#: mmframe.cpp:1873
 msgid "Install MMEX for Android based smartphones and tablets"
 msgstr ""
 
-#: mmframe.cpp:1874
+#: mmframe.cpp:1875
 msgid "&Newsletter"
 msgstr "&النشرة البريدية"
 
-#: mmframe.cpp:1875
+#: mmframe.cpp:1876
 msgid "Visit the MMEX blog to view announcements"
 msgstr ""
 
-#: mmframe.cpp:1877
+#: mmframe.cpp:1878
 msgid "&RSS Feed"
 msgstr "&RSS موجز"
 
-#: mmframe.cpp:1877
+#: mmframe.cpp:1878
 msgid "Connect RSS web feed to news aggregator"
 msgstr "توصيل تغذية الويب RSS إلى مجمع الأخبار"
 
-#: mmframe.cpp:1879
-msgid "&Donate via PayPal"
-msgstr "&تبرع عبر PayPal"
-
 #: mmframe.cpp:1880
-msgid "Donate the team to support infrastructure etc"
-msgstr "تبرع الفريق لدعم البنية التحتية إلخ"
+msgid "Make a &Donation"
+msgstr ""
 
-#: mmframe.cpp:1882
+#: mmframe.cpp:1881
+msgid "Donate to the MMEX team to support infrastructure and development"
+msgstr ""
+
+#: mmframe.cpp:1883
 msgid "&Buy us a Coffee"
 msgstr "اشترِ لي كوب قهوة"
 
-#: mmframe.cpp:1883
-msgid "Buy key developer a coffee"
-msgstr "شراء القهوة للمطور"
+#: mmframe.cpp:1884
+msgid "Buy a key developer a coffee"
+msgstr ""
 
-#: mmframe.cpp:1886
+#: mmframe.cpp:1887
 msgid "&Community"
 msgstr "&المجتمع"
 
-#: mmframe.cpp:1887
+#: mmframe.cpp:1888
 msgid "Stay in touch with MMEX community"
 msgstr "البقاء على اتصال مع مجتمع MMEX"
 
-#: mmframe.cpp:1909
+#: mmframe.cpp:1912
 msgid "Report a &Bug"
 msgstr "التبليغ عن مشكلة"
 
-#: mmframe.cpp:1910
+#: mmframe.cpp:1913
 msgid "Report an error in application to the developers"
 msgstr "الإبلاغ عن خطأ في التطبيق للمطورين"
 
-#: mmframe.cpp:1914
+#: mmframe.cpp:1917
 msgid "View &Diagnostics"
 msgstr "عرض التشخيص"
 
-#: mmframe.cpp:1915
+#: mmframe.cpp:1918
 msgid "Help provide information to the developers"
 msgstr "المساعدة في تقديم المعلومات للمطورين"
 
-#: mmframe.cpp:1919
+#: mmframe.cpp:1922
 msgid "&Show App Start Dialog"
 msgstr "&إظهار مربع حوار بدء التطبيق"
 
-#: mmframe.cpp:1919
+#: mmframe.cpp:1922
 msgid "App Start Dialog"
 msgstr "دليل بدء التطبيق"
 
-#: mmframe.cpp:1923
+#: mmframe.cpp:1926
 msgid "Check for &Updates"
 msgstr "البحث عن &تحديث"
 
-#: mmframe.cpp:1923
+#: mmframe.cpp:1926
 msgid "Check For Updates"
 msgstr "التحقق من وجود تحديثات"
 
-#: mmframe.cpp:1927 mmframe.cpp:2000
+#: mmframe.cpp:1930 mmframe.cpp:2003
 msgid "&About"
 msgstr "&حول"
 
-#: mmframe.cpp:1927
+#: mmframe.cpp:1930
 msgid "About dialog"
 msgstr ""
 
-#: mmframe.cpp:1931
+#: mmframe.cpp:1934
 msgid "&File"
 msgstr "&ملف"
 
-#: mmframe.cpp:1932
+#: mmframe.cpp:1935
 msgid "&Accounts"
 msgstr "&الحسابات"
 
-#: mmframe.cpp:1933
+#: mmframe.cpp:1936
 msgid "&Tools"
 msgstr "&الادوات"
 
-#: mmframe.cpp:1934
+#: mmframe.cpp:1937
 msgid "&View"
 msgstr "&عرض"
 
-#: mmframe.cpp:1935
+#: mmframe.cpp:1938
 msgid "&Help"
 msgstr "&مساعدة"
 
-#: mmframe.cpp:1959 mmframe.cpp:1965
+#: mmframe.cpp:1962 mmframe.cpp:1968
 msgid "New"
 msgstr "جديد"
 
-#: mmframe.cpp:1976
-msgid "&Options"
-msgstr "&خيارات"
-
-#: mmframe.cpp:1976
-msgid "Options Dialog"
+#: mmframe.cpp:1979
+msgid "&Settings"
 msgstr ""
 
-#: mmframe.cpp:1984 mmframe.cpp:1989 mmframe.cpp:3015 optionsettingsnet.cpp:132
+#: mmframe.cpp:1987 mmframe.cpp:1992 mmframe.cpp:3018 optionsettingsnet.cpp:132
 msgid "News"
 msgstr "الأخبار"
 
-#: mmframe.cpp:1991
+#: mmframe.cpp:1994
 msgid "Download Rates"
 msgstr ""
 
-#: mmframe.cpp:1991
+#: mmframe.cpp:1994
 msgid "Download currency and stock rates"
 msgstr ""
 
-#: mmframe.cpp:1994
-msgid "Toggle Fullscreen\tF11"
-msgstr "تبديل ملء الشاشة F11"
-
 #: mmframe.cpp:1997
+msgid "Full Screen\tF11"
+msgstr ""
+
+#: mmframe.cpp:2000
 msgid "&Print"
 msgstr "&طباعة"
 
-#: mmframe.cpp:1997
+#: mmframe.cpp:2000
 msgid "Print"
 msgstr ""
 
-#: mmframe.cpp:2054
+#: mmframe.cpp:2057
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
 msgstr "الرجاء إدخال كلمة المرور لقاعدة البيانات\n\n"
 "%s"
 
-#: mmframe.cpp:2055 mmframe.cpp:2348 mmframe.cpp:2543
+#: mmframe.cpp:2058 mmframe.cpp:2351 mmframe.cpp:2546
 msgid "MMEX: Encrypted Database"
 msgstr "MMEX: قاعدة بيانات مشفرة"
 
-#: mmframe.cpp:2092
+#: mmframe.cpp:2095
 msgid "Have MMEX support provided a debug/patch file?"
 msgstr ""
 
-#: mmframe.cpp:2092
+#: mmframe.cpp:2095
 msgid "MMEX upgrade"
 msgstr "ترقية MMEX"
 
-#: mmframe.cpp:2119 mmframe.cpp:2205
+#: mmframe.cpp:2122 mmframe.cpp:2208
 msgid "No File opened"
 msgstr "لا يوجد ملف مفتوح"
 
-#: mmframe.cpp:2121
+#: mmframe.cpp:2124
 msgid "Sorry. The Database version is too old or Database password is incorrect"
 msgstr "عذراً. إصدار قاعدة البيانات قديم جداً أو كلمة مرور قاعدة البيانات غير صحيحة"
 
-#: mmframe.cpp:2195
+#: mmframe.cpp:2198
 msgid "&Next →"
 msgstr "&التالي ←"
 
-#: mmframe.cpp:2208
+#: mmframe.cpp:2211
 msgid "Cannot locate previously opened database.\n"
 msgstr "لا يمكن تحديد موقع قاعدة البيانات التي تم فتحها مسبقاً.\n"
 
-#: mmframe.cpp:2210
+#: mmframe.cpp:2213
 msgid "Password not entered for encrypted Database.\n"
 msgstr "لم يتم إدخال كلمة المرور لقاعدة البيانات المشفرة.\n"
 
-#: mmframe.cpp:2229
+#: mmframe.cpp:2232
 msgid "portable mode"
 msgstr "وضع المحمول"
 
-#: mmframe.cpp:2265
+#: mmframe.cpp:2268
 msgid "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
@@ -5479,126 +5479,126 @@ msgstr "تم وضع علامة على قاعدة البيانات التي تح�
 "إذا لم يكن هناك أي شيء آخر قيد التشغيل، فمن الممكن أن تُركت قاعدة البيانات مفتوحة نتيجة لتعطل أثناء الاستخدام السابق لـ MMEX.\n\n"
 "هل ترغب في الاستمرار في فتح قاعدة البيانات هذه؟"
 
-#: mmframe.cpp:2269
+#: mmframe.cpp:2272
 msgid "MMEX Instance Check"
 msgstr "التحقق من مثيل MMEX"
 
-#: mmframe.cpp:2289
+#: mmframe.cpp:2292
 msgid "Choose database file to create"
 msgstr "اختر ملف قاعدة البيانات لإنشائه"
 
-#: mmframe.cpp:2292 mmframe.cpp:2314 mmframe.cpp:2356 mmframe.cpp:2512
+#: mmframe.cpp:2295 mmframe.cpp:2317 mmframe.cpp:2359 mmframe.cpp:2515
 msgid "MMEX Database"
 msgstr ""
 
-#: mmframe.cpp:2312
+#: mmframe.cpp:2315
 msgid "Choose database file to open"
 msgstr "اختر ملف قاعدة البيانات لفتحه"
 
-#: mmframe.cpp:2314 mmframe.cpp:2340 mmframe.cpp:2512
+#: mmframe.cpp:2317 mmframe.cpp:2343 mmframe.cpp:2515
 msgid "Encrypted MMEX Database"
 msgstr ""
 
-#: mmframe.cpp:2338
+#: mmframe.cpp:2341
 msgid "Choose Encrypted database file to open"
 msgstr "اختر ملف قاعدة البيانات المشفرة لفتح"
 
-#: mmframe.cpp:2348
+#: mmframe.cpp:2351
 msgid "Enter password for database"
 msgstr "أدخل كلمة المرور لقاعدة البيانات"
 
-#: mmframe.cpp:2353
+#: mmframe.cpp:2356
 msgid "Choose database file to Save As"
 msgstr "اختر ملف قاعدة البيانات لحفظ كـ"
 
-#: mmframe.cpp:2379
+#: mmframe.cpp:2382
 msgid "Converted database!"
 msgstr ""
 
-#: mmframe.cpp:2379
+#: mmframe.cpp:2382
 msgid "MMEX message"
 msgstr "رسالة MMEX"
 
-#: mmframe.cpp:2385
+#: mmframe.cpp:2388
 msgid "MMEX: Encryption Password Change"
 msgstr "MMEX: تغيير كلمة المرور المشفرة"
 
-#: mmframe.cpp:2386
+#: mmframe.cpp:2389
 msgid "New password for database:"
 msgstr ""
 
-#: mmframe.cpp:2394
+#: mmframe.cpp:2397
 msgid "New password must not be empty."
 msgstr "يجب ألا تكون كلمة المرور الجديدة فارغة."
 
-#: mmframe.cpp:2398
+#: mmframe.cpp:2401
 msgid "Please confirm new password"
 msgstr "الرجاء تأكيد كلمة المرور الجديدة"
 
-#: mmframe.cpp:2409
+#: mmframe.cpp:2412
 msgid "Password change completed"
 msgstr ""
 
-#: mmframe.cpp:2413
+#: mmframe.cpp:2416
 msgid "Confirm password failed."
 msgstr "فشل تأكيد كلمة المرور."
 
-#: mmframe.cpp:2424
+#: mmframe.cpp:2427
 msgid "Backup database before optimization."
 msgstr ""
 
-#: mmframe.cpp:2425 mmframe.cpp:2435
+#: mmframe.cpp:2428 mmframe.cpp:2438
 msgid "DB Optimization"
 msgstr "تحسين DB"
 
-#: mmframe.cpp:2432
+#: mmframe.cpp:2435
 #, c-format
 msgid "Database Optimization Completed!\n\n"
 "Size before: %1$s\n"
 "Size after: %2$s\n"
 msgstr ""
 
-#: mmframe.cpp:2468
+#: mmframe.cpp:2471
 msgid "Result of database integrity check:"
 msgstr ""
 
-#: mmframe.cpp:2468
+#: mmframe.cpp:2471
 msgid "Database Check"
 msgstr ""
 
-#: mmframe.cpp:2486
+#: mmframe.cpp:2489
 msgid "Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"
 msgstr ""
 
-#: mmframe.cpp:2487
+#: mmframe.cpp:2490
 msgid "Database Debug"
 msgstr ""
 
-#: mmframe.cpp:2489
+#: mmframe.cpp:2492
 msgid "&Yes"
 msgstr ""
 
-#: mmframe.cpp:2489
+#: mmframe.cpp:2492
 msgid "&No"
 msgstr ""
 
-#: mmframe.cpp:2509 mmframe.cpp:2530
+#: mmframe.cpp:2512 mmframe.cpp:2533
 msgid "Save database file as"
 msgstr "حفظ ملف قاعدة البيانات ك"
 
-#: mmframe.cpp:2530
+#: mmframe.cpp:2533
 msgid "Can't copy file to itself"
 msgstr "لا يمكن نسخ الملف لنفسه"
 
-#: mmframe.cpp:2543
+#: mmframe.cpp:2546
 msgid "Enter password for new database"
 msgstr "أدخل كلمة المرور لقاعدة البيانات الجديدة"
 
-#: mmframe.cpp:2635 mmframe.cpp:2654
+#: mmframe.cpp:2638 mmframe.cpp:2657
 msgid "No account available to import"
 msgstr "لا يوجد حساب متاح للاستيراد"
 
-#: mmframe.cpp:2703
+#: mmframe.cpp:2706
 msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n\n"
@@ -5608,11 +5608,11 @@ msgstr "حسابات الأصول تحتفظ بمعاملات الأصول\n\n"
 "بعد اختيار الأصول داخل ذلك العرض.\n\n"
 "يمكن أيضا أن تحتفظ حسابات الأصول بالمعاملات العادية في حسابات عادية."
 
-#: mmframe.cpp:2707
+#: mmframe.cpp:2710
 msgid "Asset Account Creation"
 msgstr "إنشاء حساب الأصول"
 
-#: mmframe.cpp:2713
+#: mmframe.cpp:2716
 msgid "Share Accounts hold Share transactions\n\n"
 "Share transactions are created within the Stock Portfolio View\n"
 "after the selection of the Company Stock within the associated view.\n\n"
@@ -5626,99 +5626,95 @@ msgstr "مشاركة الحسابات التي تحتفظ بالمعاملات �
 "أو باستخدام عرض القائمة → 'عرض الحسابات المشاركة'\n"
 "حسابات المشاركة يمكن أيضًا الاحتفاظ بالمعاملات العادية إلى حساب عادي."
 
-#: mmframe.cpp:2719
+#: mmframe.cpp:2722
 msgid "Share Account Creation"
 msgstr "مشاركة إنشاء الحساب"
 
-#: mmframe.cpp:2922
-msgid "MMEX Options have been updated."
-msgstr "تم تحديث خيارات MMEX."
+#: mmframe.cpp:2925
+msgid "Settings have been updated."
+msgstr ""
 
-#: mmframe.cpp:2923
+#: mmframe.cpp:2926
 msgid "Some settings take effect only after an application restart."
 msgstr "بعض الإعدادات تصبح نافذة المفعول فقط بعد إعادة تشغيل التطبيق."
 
-#: mmframe.cpp:2924 optiondialog.cpp:220 optiondialog.h:49
-msgid "MMEX Options"
-msgstr "خيارات MMEX"
-
-#: mmframe.cpp:2949
+#: mmframe.cpp:2952
 msgid "Accounts, Payees, and Categories Updated"
 msgstr "تم تحديث الحسابات والمستفيدين والفئات"
 
-#: mmframe.cpp:2955
+#: mmframe.cpp:2958
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr "تمت مصادفة مشكلة تحديث WebApp، تحقق من خادم الويب وإعدادات WebApp"
 
-#: mmframe.cpp:3095
+#: mmframe.cpp:3098
 msgid "Choose HTML file to Export"
 msgstr "اختر ملف HTML للتصدير"
 
-#: mmframe.cpp:3514 mmframe.cpp:3521
+#: mmframe.cpp:3517 mmframe.cpp:3524
 msgid "Downloading stock prices from Yahoo"
 msgstr "تحميل أسعار الأسهم من ياهو"
 
-#: mmframe.cpp:3515
+#: mmframe.cpp:3518
 msgid "Please wait..."
 msgstr "الرجاء الانتظار..."
 
-#: mmframe.cpp:3564 stockspanel.cpp:459
+#: mmframe.cpp:3567 stockspanel.cpp:459
 #, c-format
 msgid "%1$s on %2$s"
 msgstr ""
 
-#: mmframe.cpp:3581
+#: mmframe.cpp:3584
 msgid "No account available to edit!"
 msgstr "لا يوجد حِساب لتحريره!"
 
-#: mmframe.cpp:3585
+#: mmframe.cpp:3588
 msgid "Choose Account to Edit"
 msgstr "إختر حساباً لتحريره"
 
-#: mmframe.cpp:3602
+#: mmframe.cpp:3605
 msgid "No account available to delete!"
 msgstr "لا يوجد حِساب لحذفه!"
 
-#: mmframe.cpp:3606
+#: mmframe.cpp:3609
 msgid "Choose Account to Delete"
 msgstr "اختيار الحساب لحذفه"
 
-#: mmframe.cpp:3611
+#: mmframe.cpp:3614
 #, c-format
 msgid "Are you sure you want to delete\n"
 "%1$s account: %2$s?"
 msgstr ""
 
-#: mmframe.cpp:3629
+#: mmframe.cpp:3632
 msgid "Select account"
 msgstr ""
 
-#: mmframe.cpp:3629 mmframe.cpp:3653
+#: mmframe.cpp:3632 mmframe.cpp:3656
 msgid "Change Account Type"
 msgstr ""
 
-#: mmframe.cpp:3652
+#: mmframe.cpp:3655
 #, c-format
 msgid "Select new account type for %s"
 msgstr ""
 
-#: mmframe.cpp:3818 payeedialog.cpp:833
+#: mmframe.cpp:3821 payeedialog.cpp:833
 msgid "Merge payees completed"
 msgstr ""
 
-#: mmframe.cpp:3822 payeedialog.cpp:837
+#: mmframe.cpp:3825 payeedialog.cpp:837
 msgid "Merge payees result"
 msgstr ""
 
-#: mmframe.cpp:3834
+#: mmframe.cpp:3837
 msgid "Merge tags completed"
 msgstr ""
 
-#: mmframe.cpp:3838
+#: mmframe.cpp:3841
 msgid "Merge tags result"
 msgstr ""
 
-#: mmframe.cpp:3914
+#: mmframe.cpp:3917
 #, c-format
 msgid "File %s not found"
 msgstr "لم يتم العثور على الملف %s"
@@ -6124,10 +6120,10 @@ msgid "General"
 msgstr "عام"
 
 #: optiondialog.cpp:37 optionsettingsview.cpp:61
-msgid "View Options"
-msgstr "خيارات العرض"
+msgid "View"
+msgstr ""
 
-#: optiondialog.cpp:37 webappdialog.cpp:146
+#: optiondialog.cpp:37 optionsettingsattachment.cpp:65 webappdialog.cpp:146
 msgid "Attachments"
 msgstr "المرفقات"
 
@@ -6143,10 +6139,6 @@ msgstr "&تطبيق "
 #, c-format
 msgid "%s page has been saved."
 msgstr "%s تم حفظ الصفحة."
-
-#: optionsettingsattachment.cpp:65
-msgid "Attachments Settings"
-msgstr "إعدادات المرفقات"
 
 #: optionsettingsattachment.cpp:72
 #, c-format
@@ -6398,10 +6390,6 @@ msgstr ""
 msgid "Refresh at Startup"
 msgstr "تحديث عند بدء التشغيل"
 
-#: optionsettingsmisc.cpp:100
-msgid "New Transaction Dialog Settings"
-msgstr "إعدادات حوار المعاملات الجديدة"
-
 #: optionsettingsmisc.cpp:108
 msgid "Last Used"
 msgstr "آخر استخدام"
@@ -6451,28 +6439,26 @@ msgid "Bulk Transactions"
 msgstr "المعاملات المجمعة"
 
 #: optionsettingsmisc.cpp:173
-msgid "Database Options"
-msgstr "خيارات قاعدة البيانات"
+msgid "Database"
+msgstr ""
 
 #: optionsettingsmisc.cpp:180
-msgid "Create a new backup when MMEX Start"
-msgstr "إنشاء نسخة من قاعدة البيانات عند بدء البرنامج"
+msgid "Backup database on startup"
+msgstr ""
 
 #: optionsettingsmisc.cpp:182
-msgid "When MMEX Starts,\n"
-"creates the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr "عندما يبدأ تشغيل البرنامج،\n"
-"فإنه يقوم بإنشاء نسخة إحتياطية من قاعدة البيانات"
+msgid "When MMEX starts,\n"
+"create the backup database: dbFile_start_YYYY-MM-DD.ext."
+msgstr ""
 
 #: optionsettingsmisc.cpp:187
 msgid "Backup database on exit"
 msgstr "النسخ الاحتياطي لقاعدة البيانات عند الخروج"
 
 #: optionsettingsmisc.cpp:189
-msgid "When MMEX shuts down and changes made to database,\n"
-"creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr "عند إغلاق MMEX وتغيير قاعدة البيانات،\n"
-"ينشئ قاعدة البيانات الاحتياطية أو يحدثها: dbFile_update_YYYY-MM-DD.ext."
+msgid "When MMEX shuts down and changes were made to the database,\n"
+"create or update the backup database: dbFile_update_YYYY-MM-DD.ext."
+msgstr ""
 
 #: optionsettingsmisc.cpp:197
 msgid "Specify max number of backup files"
@@ -6490,17 +6476,13 @@ msgstr "حدد عدد الأيام للاحتفاظ بالمعاملات الم�
 msgid "Days to retain deleted transactions"
 msgstr "الأيام للاحتفاظ بالمعاملات المحذوفة"
 
-#: optionsettingsmisc.cpp:217
-msgid "CSV Settings"
-msgstr "إعدادات CVS"
-
 #: optionsettingsmisc.cpp:225
 msgid "Delimiter"
 msgstr "محدد"
 
 #: optionsettingsnet.cpp:65
-msgid "WebApp Settings"
-msgstr "إعدادات WebApp"
+msgid "WebApp"
+msgstr ""
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
@@ -6522,9 +6504,9 @@ msgstr "تحديد تطبيق الويب GUID"
 msgid "More information about WebApp"
 msgstr "مزيد من المعلومات حول WebApp"
 
-#: optionsettingsnet.cpp:93
-msgid "Proxy Settings"
-msgstr "إعدادات الوكيل"
+#: optionsettingsnet.cpp:93 optionsettingsnet.cpp:111
+msgid "Proxy"
+msgstr "الوكيل"
 
 #: optionsettingsnet.cpp:101
 msgid "Specify the proxy IP address"
@@ -6534,17 +6516,13 @@ msgstr "تحديد عنوان IP الوكيل"
 msgid "Specify proxy port number"
 msgstr "تحديد رقم منفذ الوكيل"
 
-#: optionsettingsnet.cpp:111
-msgid "Proxy"
-msgstr "الوكيل"
-
 #: optionsettingsnet.cpp:113
 msgid "Port"
 msgstr "المنفذ"
 
 #: optionsettingsnet.cpp:119
-msgid "Usage statistics"
-msgstr "إحصائيات الإستخدام"
+msgid "Usage Statistics"
+msgstr ""
 
 #: optionsettingsnet.cpp:138
 msgid "Check for latest news on startup"
@@ -6603,8 +6581,8 @@ msgid "Category Delimiter"
 msgstr "تحديد الفئة"
 
 #: optionsettingsview.cpp:116
-msgid "Transaction/Budget Options"
-msgstr "خيارات المعاملات/الميزانية"
+msgid "Transaction/Budget"
+msgstr ""
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
@@ -6865,7 +6843,7 @@ msgid "Merge &Payee"
 msgstr ""
 
 #: relocatecategorydialog.cpp:102
-msgid "Delete source category after merge (if source category has no subcategories)"
+msgid "&Delete source category after merge (if source category has no subcategories)"
 msgstr ""
 
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
@@ -6876,11 +6854,6 @@ msgstr ""
 #: relocatecategorydialog.cpp:119 relocatepayeedialog.cpp:113
 #: relocatetagdialog.cpp:115
 msgid "Target:"
-msgstr ""
-
-#: relocatecategorydialog.cpp:133 relocatepayeedialog.cpp:131
-#: relocatetagdialog.cpp:133
-msgid "Merge"
 msgstr ""
 
 #: relocatecategorydialog.cpp:153 relocatepayeedialog.cpp:151
@@ -6935,7 +6908,7 @@ msgid "Merge Payees"
 msgstr ""
 
 #: relocatepayeedialog.cpp:99
-msgid "Delete source payee after merge"
+msgid "&Delete source payee after merge"
 msgstr ""
 
 #: relocatepayeedialog.cpp:156
@@ -6947,7 +6920,7 @@ msgid "Merge Tags"
 msgstr ""
 
 #: relocatetagdialog.cpp:101
-msgid "Delete source tag after merge"
+msgid "&Delete source tag after merge"
 msgstr ""
 
 #: relocatetagdialog.cpp:158
@@ -7887,12 +7860,12 @@ msgstr ""
 msgid "Confirm Tag Deletion"
 msgstr ""
 
-#: themes.cpp:191 webappdialog.cpp:410
-msgid "Delete"
+#: themes.cpp:191
+msgid "&Delete"
 msgstr ""
 
 #: themes.cpp:193
-msgid "Use"
+msgid "&Use"
 msgstr ""
 
 #: themes.cpp:239
@@ -8430,6 +8403,10 @@ msgstr ""
 
 #: webappdialog.cpp:409
 msgid "Import and open"
+msgstr ""
+
+#: webappdialog.cpp:410
+msgid "Delete"
 msgstr ""
 
 #: wizard_newaccount.cpp:31
