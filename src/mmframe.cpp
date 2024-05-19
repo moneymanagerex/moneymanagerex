@@ -1667,7 +1667,7 @@ void mmGUIFrame::createMenu()
 
 #if (wxMAJOR_VERSION >= 3 && wxMINOR_VERSION >= 0)
     wxMenuItem* menuItemToggleFullscreen = new wxMenuItem(menuView, MENU_VIEW_TOGGLE_FULLSCREEN
-        , _("&Full Screen\tF11")
+        , _("&Full Screen")&"\tF11"
         , _("Toggle full screen")
         , wxITEM_CHECK);
     menuView->Append(menuItemToggleFullscreen);
