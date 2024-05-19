@@ -179,8 +179,8 @@ void OptionSettingsMisc::Create()
     wxCheckBox* databaseCheckBox = new wxCheckBox(misc_panel, ID_DIALOG_OPTIONS_CHK_BACKUP
         , _("Backup database on startup"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     databaseCheckBox->SetValue(GetIniDatabaseCheckboxValue("BACKUPDB", false));
-    databaseCheckBox->SetToolTip(_("When MMEX starts and changes were made to the database,\n"
-        "create or update the backup database: dbFile_start_YYYY-MM-DD.ext."));
+    databaseCheckBox->SetToolTip(_("When MMEX starts,\n"
+        "create the backup database: dbFile_start_YYYY-MM-DD.ext."));
     databaseStaticBoxSizer->Add(databaseCheckBox, g_flagsV);
 
     wxCheckBox* databaseUpdateCheckBox = new wxCheckBox(misc_panel, ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE
