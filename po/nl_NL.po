@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-18 23:58+0300\n"
-"PO-Revision-Date: 2024-05-18 21:09\n"
+"PO-Revision-Date: 2024-05-19 12:17\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgstr "&Nieuwe Database"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "Maak een nieuw MMEX databasebestand"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -337,7 +337,7 @@ msgstr "&Open bestaande Database"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "Open MMEX databasebestand"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1681
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "Gebruikers&handleiding"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "Lees de MMEX-gebruikers handleiding"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1851
 msgid "&Website"
@@ -366,11 +366,11 @@ msgstr "Bezoek de MMEX website voor het laatste nieuws en de laatste updates"
 
 #: appstartdialog.cpp:125 mmframe.cpp:1868
 msgid "&Forum"
-msgstr ""
+msgstr "&Forum"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1869
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "Bezoek MMEX forum om berichten voor ondersteuning te lezen en plaatsen"
 
 #: appstartdialog.cpp:132 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -383,7 +383,7 @@ msgstr "&Afsluiten "
 #: appstartdialog.cpp:159
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Open de eerder geopende database: %s"
 
 #: appstartdialog.cpp:208 mmframe.cpp:1687 mmframe.cpp:3078
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -1038,7 +1038,7 @@ msgstr "Specificeer het bedrag van de overboeking in de NAAR rekening"
 
 #: billsdepositsdialog.cpp:544 transdialog.cpp:494
 msgid "Open Calculator"
-msgstr ""
+msgstr "Open de rekenmachine"
 
 #: billsdepositsdialog.cpp:550 billsdepositsdialog.cpp:837
 #: billsdepositsdialog.cpp:850 billsdepositspanel.cpp:134 filtertrans.cpp:200
@@ -1637,19 +1637,19 @@ msgstr "Categorieën"
 #: categdialog.cpp:258 relocatecategorydialog.cpp:89
 #: relocatecategorydialog.h:43
 msgid "Merge Categories"
-msgstr ""
+msgstr "Categorieën samenvoegen"
 
 #: categdialog.cpp:260
 msgid "C&ollapse All"
-msgstr ""
+msgstr "Alles &inklappen"
 
 #: categdialog.cpp:265
 msgid "E&xpand All"
-msgstr ""
+msgstr "Alles &uitklappen"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "&Show All"
-msgstr ""
+msgstr "&Alles weergeven"
 
 #: categdialog.cpp:272
 msgid "Show all hidden categories"
@@ -1882,7 +1882,7 @@ msgstr "64-bit"
 
 #: constants.cpp:193
 msgid "View Transaction Report..."
-msgstr ""
+msgstr "Bekijk transactierapport..."
 
 #: constants.cpp:194
 msgid "View All Transactions"
@@ -2082,7 +2082,7 @@ msgstr "Kies soort eigen veld"
 
 #: customfieldeditdialog.cpp:148
 msgid "Tooltip"
-msgstr ""
+msgstr "Tooltip"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enter the tooltip that will be shown"
@@ -2827,7 +2827,7 @@ msgstr "Kies rekeningen"
 
 #: filtertransdialog.h:163
 msgid "Customize Transaction Report"
-msgstr ""
+msgstr "Transactierapport aanpassen"
 
 #: general_report_manager.cpp:284 mmframe.cpp:832 mmframe.cpp:3022
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
@@ -2953,7 +2953,7 @@ msgstr "Actief"
 
 #: general_report_manager.cpp:747
 msgid "Show/Hide report in Navigator"
-msgstr ""
+msgstr "Toon/Verberg rapport in de Navigator"
 
 #: general_report_manager.cpp:751
 msgid "Delete Report..."
@@ -3929,12 +3929,12 @@ msgstr "Kan het standaard valutasymbool niet vinden!"
 
 #: mmSimpleDialogs.cpp:767 mmSimpleDialogs.cpp:779
 msgid "&Clear color"
-msgstr ""
+msgstr "&Kleur wissen"
 
 #: mmSimpleDialogs.cpp:770 mmSimpleDialogs.cpp:784
 #, c-format
 msgid "Color #&%i"
-msgstr ""
+msgstr "Kleur #%i"
 
 #: mmSimpleDialogs.cpp:942
 msgid "Subtract one year"
@@ -4308,7 +4308,7 @@ msgstr[1] "Geselecteerde transacties &herstellen..."
 
 #: mmchecking_list.cpp:521
 msgid "Restore &all transactions in current view..."
-msgstr ""
+msgstr "Herstel alle transacties in de huidige lijst..."
 
 #: mmchecking_list.cpp:656
 #, c-format
@@ -4333,19 +4333,19 @@ msgstr[1] "Geselecteerde transacties definitief verwijderen..."
 
 #: mmchecking_list.cpp:670
 msgid "Delete &all transactions in current view..."
-msgstr ""
+msgstr "Verwijder alle transacties in de huidige lijst..."
 
 #: mmchecking_list.cpp:670
 msgid "Permanently delete &all transactions in current view..."
-msgstr ""
+msgstr "Alle transacties in de huidige lijst permanent verwijderen..."
 
 #: mmchecking_list.cpp:672
 msgid "Delete Viewed “&Follow Up” Transactions..."
-msgstr ""
+msgstr "Bekeken \"Op te Volgen\" Transacties Verwijderen..."
 
 #: mmchecking_list.cpp:673
 msgid "Delete Viewed “&Unreconciled” Transactions..."
-msgstr ""
+msgstr "Bekeken “&Niet-afgestemde” transacties verwijderen..."
 
 #: mmchecking_list.cpp:675
 msgid "De&lete "
@@ -4627,7 +4627,7 @@ msgstr "Ernstige fout opgetreden. \n"
 
 #: mmframe.cpp:271
 msgid "Navigator"
-msgstr ""
+msgstr "Navigatieboom"
 
 #: mmframe.cpp:272
 msgid "Toolbar"
@@ -4762,15 +4762,15 @@ msgstr "&QIF bestand..."
 
 #: mmframe.cpp:1475
 msgid "&Customize Report..."
-msgstr ""
+msgstr "&Rapport aanpassen..."
 
 #: mmframe.cpp:1476
 msgid "&Rename Report..."
-msgstr ""
+msgstr "&Hernoem rapport..."
 
 #: mmframe.cpp:1477
 msgid "&Delete Report..."
-msgstr ""
+msgstr "&Verwijder rapport..."
 
 #: mmframe.cpp:1493 mmframe.cpp:1511 mmframe.cpp:1531 mmframe.cpp:1713
 msgid "&Edit Account..."
@@ -4898,11 +4898,11 @@ msgstr "Toon/Verberg de knoppenbalk"
 
 #: mmframe.cpp:1634
 msgid "&Navigator\tF5"
-msgstr ""
+msgstr "&Navigatieboom F5"
 
 #: mmframe.cpp:1634
 msgid "Show/Hide Navigator"
-msgstr ""
+msgstr "Toon/verberg navigatieboom"
 
 #: mmframe.cpp:1636
 msgid "&Display Share Accounts"
@@ -4910,7 +4910,7 @@ msgstr "&Toon effectenrekeningen"
 
 #: mmframe.cpp:1636
 msgid "Show/Hide Share Accounts in Navigator"
-msgstr ""
+msgstr "Toon/Verberg aandelenrekeningen in de navigatieboom"
 
 #: mmframe.cpp:1638
 msgid "&Display Deleted Transactions"
@@ -4918,7 +4918,7 @@ msgstr "&Geef verwijderde transacties weer"
 
 #: mmframe.cpp:1638
 msgid "Show/Hide Deleted Transactions in Navigator"
-msgstr ""
+msgstr "Toon/verberg verwijderde transacties in de navigatieboom"
 
 #: mmframe.cpp:1640
 msgid "Budgets: As Financial &Years"
@@ -4978,7 +4978,7 @@ msgstr "Fullscreen"
 
 #: mmframe.cpp:1675
 msgid "&Reset View"
-msgstr ""
+msgstr "&Herstel weergave"
 
 #: mmframe.cpp:1676
 msgid "Reset view and dock tools"
@@ -5090,7 +5090,7 @@ msgstr "Themabeheerder"
 
 #: mmframe.cpp:1795
 msgid "Tra&nsaction Report..."
-msgstr ""
+msgstr "Tra&nsactie rapport..."
 
 #: mmframe.cpp:1801
 msgid "&General Report Manager..."
@@ -5166,7 +5166,7 @@ msgstr "Toon help"
 
 #: mmframe.cpp:1854
 msgid "Face&book"
-msgstr ""
+msgstr "Face&book"
 
 #: mmframe.cpp:1854
 msgid "Visit MMEX Facebook page"
@@ -5214,11 +5214,11 @@ msgstr "Toegang tot open source code repository en track gerapporteerde bug stat
 
 #: mmframe.cpp:1866
 msgid "W&iki"
-msgstr ""
+msgstr "W&iki"
 
 #: mmframe.cpp:1866
 msgid "Read and update MMEX wiki"
-msgstr ""
+msgstr "Lees en update MMEX wiki"
 
 #: mmframe.cpp:1871
 msgid "MMEX for &Android"
@@ -5516,11 +5516,11 @@ msgstr "Database debug"
 
 #: mmframe.cpp:2489
 msgid "&Yes"
-msgstr ""
+msgstr "&Ja"
 
 #: mmframe.cpp:2489
 msgid "&No"
-msgstr ""
+msgstr "&Nee"
 
 #: mmframe.cpp:2509 mmframe.cpp:2530
 msgid "Save database file as"
@@ -5694,7 +5694,7 @@ msgstr "Prognoserapport"
 
 #: mmframereport.cpp:168 optionsettingshome.cpp:78
 msgid "Income vs. Expenses"
-msgstr ""
+msgstr "Inkomsten versus uitgaven"
 
 #: mmframereport.cpp:179
 msgid "My Usage"
@@ -5768,7 +5768,7 @@ msgstr "Rekening / begunstigde"
 #: mmhomepage.cpp:423
 #, c-format
 msgid "Income vs. Expenses: %s"
-msgstr ""
+msgstr "Inkomsten versus uitgaven: %s"
 
 #: mmhomepage.cpp:433 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:425 reports/categexp.cpp:496 reports/incexpenses.cpp:88
@@ -6694,7 +6694,7 @@ msgstr "Werkbalk icoon grootte"
 
 #: optionsettingsview.cpp:312
 msgid "Navigator Icon Size"
-msgstr ""
+msgstr "Navigatieboom icoon grootte"
 
 #: optionsettingsview.cpp:313
 msgid "Others Icon Size"
@@ -6880,7 +6880,7 @@ msgstr "Records gevonden in budget: %i"
 
 #: relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge Payees"
-msgstr ""
+msgstr "Begunstigden samenvoegen"
 
 #: relocatepayeedialog.cpp:99
 msgid "Delete source payee after merge"
@@ -6892,7 +6892,7 @@ msgstr "Samenvoegen begunstigde bevestigen"
 
 #: relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge Tags"
-msgstr ""
+msgstr "Labels samenvoegen"
 
 #: relocatetagdialog.cpp:101
 msgid "Delete source tag after merge"
@@ -6910,7 +6910,7 @@ msgstr "Financieel jaar: %s - %i"
 #: reports/budget.cpp:101
 #, c-format
 msgid "Financial Year: %i Month: %s"
-msgstr ""
+msgstr "Financieel jaar: %i maand: %s"
 
 #: reports/budget.cpp:103
 #, c-format
@@ -6929,7 +6929,7 @@ msgstr "Begrotingscategoriesamenvatting voor %s"
 
 #: reports/budgetcategorysummary.cpp:129
 msgid "(Estimated vs. Actual)"
-msgstr ""
+msgstr "(Geschat versus werkelijk)"
 
 #: reports/budgetcategorysummary.cpp:346
 msgid "Estimated Income:"
@@ -7128,7 +7128,7 @@ msgstr "Toekomstige transacties zijn genegeerd"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs. Expenses Summary"
-msgstr ""
+msgstr "Inkomsten versus uitgaven samenvatting"
 
 #: reports/incexpenses.cpp:115
 msgid "Income:"
@@ -7140,7 +7140,7 @@ msgstr "Uitgaven:"
 
 #: reports/incexpenses.cpp:133
 msgid "Income vs. Expenses Monthly"
-msgstr ""
+msgstr "Inkomsten versus uitgaven maandelijks"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
