@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-18 23:58+0300\n"
-"PO-Revision-Date: 2024-05-19 02:03\n"
+"PO-Revision-Date: 2024-05-19 03:09\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1038,7 +1038,7 @@ msgstr "Átutalás összegének megadása a célszámlára"
 
 #: billsdepositsdialog.cpp:544 transdialog.cpp:494
 msgid "Open Calculator"
-msgstr ""
+msgstr "Számológép megnyitása"
 
 #: billsdepositsdialog.cpp:550 billsdepositsdialog.cpp:837
 #: billsdepositsdialog.cpp:850 billsdepositspanel.cpp:134 filtertrans.cpp:200
@@ -1637,7 +1637,7 @@ msgstr "Kategóriák"
 #: categdialog.cpp:258 relocatecategorydialog.cpp:89
 #: relocatecategorydialog.h:43
 msgid "Merge Categories"
-msgstr ""
+msgstr "Kategóriák egyesítése"
 
 #: categdialog.cpp:260
 msgid "C&ollapse All"
@@ -2082,7 +2082,7 @@ msgstr "Válassza a felhasználói mező típusát"
 
 #: customfieldeditdialog.cpp:148
 msgid "Tooltip"
-msgstr ""
+msgstr "Elemleírás"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enter the tooltip that will be shown"
@@ -2953,7 +2953,7 @@ msgstr "Fennáll"
 
 #: general_report_manager.cpp:747
 msgid "Show/Hide report in Navigator"
-msgstr ""
+msgstr "Jelentés megjelenítése/elrejtése a Navigátorban"
 
 #: general_report_manager.cpp:751
 msgid "Delete Report..."
@@ -4341,11 +4341,11 @@ msgstr ""
 
 #: mmchecking_list.cpp:672
 msgid "Delete Viewed “&Follow Up” Transactions..."
-msgstr ""
+msgstr "Megtekintett „&Követés” ügyletek törlése…"
 
 #: mmchecking_list.cpp:673
 msgid "Delete Viewed “&Unreconciled” Transactions..."
-msgstr ""
+msgstr "Megtekintett „&Nincs egyeztetve” ügyletek törlése…"
 
 #: mmchecking_list.cpp:675
 msgid "De&lete "
@@ -4627,7 +4627,7 @@ msgstr "Végzetes hiba!\n"
 
 #: mmframe.cpp:271
 msgid "Navigator"
-msgstr ""
+msgstr "Navigátor"
 
 #: mmframe.cpp:272
 msgid "Toolbar"
@@ -4762,15 +4762,15 @@ msgstr "&QIF-fájl…"
 
 #: mmframe.cpp:1475
 msgid "&Customize Report..."
-msgstr ""
+msgstr "Jelentés &testreszabása…"
 
 #: mmframe.cpp:1476
 msgid "&Rename Report..."
-msgstr ""
+msgstr "Jelentés át&nevezése…"
 
 #: mmframe.cpp:1477
 msgid "&Delete Report..."
-msgstr ""
+msgstr "Jelentés &törlése…"
 
 #: mmframe.cpp:1493 mmframe.cpp:1511 mmframe.cpp:1531 mmframe.cpp:1713
 msgid "&Edit Account..."
@@ -4898,11 +4898,11 @@ msgstr "Eszköztár megjelenítése/elrejtése"
 
 #: mmframe.cpp:1634
 msgid "&Navigator\tF5"
-msgstr ""
+msgstr "&Navigátor\tF5"
 
 #: mmframe.cpp:1634
 msgid "Show/Hide Navigator"
-msgstr ""
+msgstr "Navigátor megjelenítése/elrejtése"
 
 #: mmframe.cpp:1636
 msgid "&Display Share Accounts"
@@ -5166,7 +5166,7 @@ msgstr "Súgó"
 
 #: mmframe.cpp:1854
 msgid "Face&book"
-msgstr ""
+msgstr "Face&book"
 
 #: mmframe.cpp:1854
 msgid "Visit MMEX Facebook page"
@@ -6690,15 +6690,15 @@ msgstr "Hatalmas (48 képpont)"
 
 #: optionsettingsview.cpp:311
 msgid "Toolbar Icon Size"
-msgstr "Eszköztár ikonméret"
+msgstr "Eszköztár ikonmérete"
 
 #: optionsettingsview.cpp:312
 msgid "Navigator Icon Size"
-msgstr ""
+msgstr "Navigátor ikonmérete"
 
 #: optionsettingsview.cpp:313
 msgid "Others Icon Size"
-msgstr "Add meg az ikonméretet"
+msgstr "Egyéni ikonmérete"
 
 #: payeedialog.cpp:55
 msgid "Edit Payee"
@@ -6879,7 +6879,7 @@ msgstr "Költségvetésben talált bejegyzések: %i"
 
 #: relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge Payees"
-msgstr ""
+msgstr "Kedvezményezettek egyesítése"
 
 #: relocatepayeedialog.cpp:99
 msgid "Delete source payee after merge"
@@ -6891,7 +6891,7 @@ msgstr "Kedvezményezettek egyesítésének megerősítése"
 
 #: relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge Tags"
-msgstr ""
+msgstr "Címkék egyesítése"
 
 #: relocatetagdialog.cpp:101
 msgid "Delete source tag after merge"
