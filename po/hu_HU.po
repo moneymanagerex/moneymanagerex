@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-18 23:58+0300\n"
-"PO-Revision-Date: 2024-05-19 03:09\n"
+"PO-Revision-Date: 2024-05-19 11:15\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -341,7 +341,7 @@ msgstr "MMEX-adatbázisfájl megnyitása"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1681
 msgid "User Interface &Language"
-msgstr "Felhasználói felület &nyelve"
+msgstr "Felhasználói felület n&yelve"
 
 #: appstartdialog.cpp:113 appstartdialog.cpp:221 mmframe.cpp:1682
 #: optionsettingsgeneral.cpp:100
@@ -370,7 +370,7 @@ msgstr "&Fórum"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1869
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "MMEX-fórum látogatása megjegyzések olvasásához és közzétételéhez, valamint támogatásért"
 
 #: appstartdialog.cpp:132 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -383,7 +383,7 @@ msgstr "&Kilépés "
 #: appstartdialog.cpp:159
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Korábban megnyitott adatbázis megnyitása: %s"
 
 #: appstartdialog.cpp:208 mmframe.cpp:1687 mmframe.cpp:3078
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -1641,15 +1641,15 @@ msgstr "Kategóriák egyesítése"
 
 #: categdialog.cpp:260
 msgid "C&ollapse All"
-msgstr ""
+msgstr "Összes össze&csukása"
 
 #: categdialog.cpp:265
 msgid "E&xpand All"
-msgstr ""
+msgstr "Összes ki&bontása"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "&Show All"
-msgstr ""
+msgstr "Összes meg&jelenítése"
 
 #: categdialog.cpp:272
 msgid "Show all hidden categories"
@@ -1882,7 +1882,7 @@ msgstr "64 bites"
 
 #: constants.cpp:193
 msgid "View Transaction Report..."
-msgstr ""
+msgstr "Ügyletekjelentés megtekintése…"
 
 #: constants.cpp:194
 msgid "View All Transactions"
@@ -2827,7 +2827,7 @@ msgstr "Számlák kiválasztása"
 
 #: filtertransdialog.h:163
 msgid "Customize Transaction Report"
-msgstr ""
+msgstr "Ügyletekjelentés testreszabása"
 
 #: general_report_manager.cpp:284 mmframe.cpp:832 mmframe.cpp:3022
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
@@ -4308,7 +4308,7 @@ msgstr[1] "Kijelölt ügyletek &visszaállítása…"
 
 #: mmchecking_list.cpp:521
 msgid "Restore &all transactions in current view..."
-msgstr ""
+msgstr "Öss&zes ügylet visszaállítása a jelenlegi nézetben…"
 
 #: mmchecking_list.cpp:656
 #, c-format
@@ -4333,11 +4333,11 @@ msgstr[1] "Kijelölt ügyletek &végleges törlése…"
 
 #: mmchecking_list.cpp:670
 msgid "Delete &all transactions in current view..."
-msgstr ""
+msgstr "Öss&zes ügylet törlése a jelenlegi nézetben…"
 
 #: mmchecking_list.cpp:670
 msgid "Permanently delete &all transactions in current view..."
-msgstr ""
+msgstr "Öss&zes ügylet végleges törlése a jelenlegi nézetben…"
 
 #: mmchecking_list.cpp:672
 msgid "Delete Viewed “&Follow Up” Transactions..."
@@ -4681,7 +4681,7 @@ msgstr "Költségvetés-tervező"
 #: mmframe.cpp:827 mmframe.cpp:1358 mmframe.cpp:1375 mmframe.cpp:1795
 #: mmframe.cpp:1972 mmframe.cpp:2870
 msgid "Transaction Report"
-msgstr "Ügyletek jelentés"
+msgstr "Ügyletekjelentés"
 
 #: mmframe.cpp:844 mmframe.cpp:2001 mmframe.cpp:2676 mmframe.cpp:2972
 #: mmhelppanel.cpp:69
@@ -4910,7 +4910,7 @@ msgstr "Értékpapírszámlák &megjelenítése"
 
 #: mmframe.cpp:1636
 msgid "Show/Hide Share Accounts in Navigator"
-msgstr ""
+msgstr "Értékpapírszámlák megjelenítése/elrejtése a Navigátorban"
 
 #: mmframe.cpp:1638
 msgid "&Display Deleted Transactions"
@@ -4918,7 +4918,7 @@ msgstr "Törölt ügyletek &megjelenítése"
 
 #: mmframe.cpp:1638
 msgid "Show/Hide Deleted Transactions in Navigator"
-msgstr ""
+msgstr "Törölt ügyletek megjelenítése/elrejtése a Navigátorban"
 
 #: mmframe.cpp:1640
 msgid "Budgets: As Financial &Years"
@@ -4974,11 +4974,11 @@ msgstr "&Teljes képernyős nézet ki-/bekapcsolása\tShift+F11"
 
 #: mmframe.cpp:1671 mmframe.cpp:1994
 msgid "Toggle Fullscreen"
-msgstr "Teljes képernyős váltás"
+msgstr "Teljes képernyős nézet ki-/bekapcsolása"
 
 #: mmframe.cpp:1675
 msgid "&Reset View"
-msgstr ""
+msgstr "Né&zet visszaállítása"
 
 #: mmframe.cpp:1676
 msgid "Reset view and dock tools"
@@ -5090,7 +5090,7 @@ msgstr "Témakezelő"
 
 #: mmframe.cpp:1795
 msgid "Tra&nsaction Report..."
-msgstr ""
+msgstr "Üg&yletekjelentés…"
 
 #: mmframe.cpp:1801
 msgid "&General Report Manager..."
@@ -5218,7 +5218,7 @@ msgstr "&Wiki"
 
 #: mmframe.cpp:1866
 msgid "Read and update MMEX wiki"
-msgstr ""
+msgstr "MMEX-wiki olvasása és frissítése"
 
 #: mmframe.cpp:1871
 msgid "MMEX for &Android"
@@ -5354,7 +5354,7 @@ msgstr "Pénznem- és részvényárfolyamok letöltése"
 
 #: mmframe.cpp:1994
 msgid "Toggle Fullscreen\tF11"
-msgstr "Váltás Teljes képernyő\tF11"
+msgstr "Teljes képernyős nézet ki-/bekapcsolása\tF11"
 
 #: mmframe.cpp:1997
 msgid "&Print"
@@ -5694,7 +5694,7 @@ msgstr "Előrejelzés"
 
 #: mmframereport.cpp:168 optionsettingshome.cpp:78
 msgid "Income vs. Expenses"
-msgstr ""
+msgstr "Bevételek/kiadások"
 
 #: mmframereport.cpp:179
 msgid "My Usage"
@@ -5768,7 +5768,7 @@ msgstr "Számla/kedvezményezett"
 #: mmhomepage.cpp:423
 #, c-format
 msgid "Income vs. Expenses: %s"
-msgstr ""
+msgstr "Bevételek/kiadások: %s"
 
 #: mmhomepage.cpp:433 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:425 reports/categexp.cpp:496 reports/incexpenses.cpp:88
@@ -6909,7 +6909,7 @@ msgstr "Pénzügyi év: %s - %i"
 #: reports/budget.cpp:101
 #, c-format
 msgid "Financial Year: %i Month: %s"
-msgstr ""
+msgstr "Pénzügyi év: %i, hónap: %s"
 
 #: reports/budget.cpp:103
 #, c-format
@@ -6928,7 +6928,7 @@ msgstr "Költségvetési kategóriák összesítése ehhez: %s"
 
 #: reports/budgetcategorysummary.cpp:129
 msgid "(Estimated vs. Actual)"
-msgstr ""
+msgstr "(becsült/tényleges)"
 
 #: reports/budgetcategorysummary.cpp:346
 msgid "Estimated Income:"
@@ -7127,7 +7127,7 @@ msgstr "Jövőbeni ügyleteket figyelmen kívül hagyták"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs. Expenses Summary"
-msgstr ""
+msgstr "Bevételek/kiadások összesítése"
 
 #: reports/incexpenses.cpp:115
 msgid "Income:"
@@ -7139,7 +7139,7 @@ msgstr "Kiadások: "
 
 #: reports/incexpenses.cpp:133
 msgid "Income vs. Expenses Monthly"
-msgstr ""
+msgstr "Bevételek/kiadások havonta"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
