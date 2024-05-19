@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-18 23:58+0300\n"
-"PO-Revision-Date: 2024-05-18 22:50\n"
+"PO-Revision-Date: 2024-05-19 09:11\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -5491,11 +5491,11 @@ msgstr ""
 
 #: mmframe.cpp:2489
 msgid "&Yes"
-msgstr ""
+msgstr "&Ja"
 
 #: mmframe.cpp:2489
 msgid "&No"
-msgstr ""
+msgstr "&Nej"
 
 #: mmframe.cpp:2509 mmframe.cpp:2530
 msgid "Save database file as"
