@@ -1877,29 +1877,31 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     wxMenuItem* menuItemRSS = new wxMenuItem(menuHelp, MENU_RSS
         , _("&RSS Feed"), _("Connect RSS web feed to news aggregator"));
     wxMenuItem* menuItemDonate = new wxMenuItem(menuHelp, MENU_DONATE
-        , _("&Donate via PayPal")
-        , _("Donate the team to support infrastructure etc"));
+        , _("Make a &Donation")
+        , _("Donate to the MMEX team to support infrastructure and development"));
     wxMenuItem* menuItemBuyCoffee = new wxMenuItem(menuHelp, MENU_BUY_COFFEE
         , _("&Buy us a Coffee")
-        , _("Buy key developer a coffee"));
+        , _("Buy a key developer a coffee"));
 
     wxMenuItem* menuItemCommunity = new wxMenuItem(menuHelp, MENU_COMMUNITY
         , _("&Community")
         , _("Stay in touch with MMEX community"));
 
     wxMenu* menuCommunity = new wxMenu;
-    menuCommunity->Append(menuItemFacebook);
-    menuCommunity->Append(menuItemCrowdin);
+    menuCommunity->Append(menuItemWebsite);
     menuCommunity->Append(menuItemGitHub);
-    menuCommunity->Append(menuItemGooglePlay);
+    menuCommunity->Append(menuItemCrowdin);
+    menuCommunity->Append(menuItemWiki);
     menuCommunity->Append(menuItemNotify);
     menuCommunity->Append(menuItemReportIssues);
+    menuCommunity->AppendSeparator();
+    menuCommunity->Append(menuItemGooglePlay);
+    menuCommunity->AppendSeparator();
     menuCommunity->Append(menuItemRSS);
+    menuCommunity->Append(menuItemYouTube);
+    menuCommunity->Append(menuItemFacebook);
     menuCommunity->Append(menuItemSlack);
     menuCommunity->Append(menuItemTwitter);
-    menuCommunity->Append(menuItemWebsite);
-    menuCommunity->Append(menuItemWiki);
-    menuCommunity->Append(menuItemYouTube);
     menuCommunity->AppendSeparator();
     menuCommunity->Append(menuItemDonate);
     menuCommunity->Append(menuItemBuyCoffee);
