@@ -1667,8 +1667,9 @@ void mmGUIFrame::createMenu()
 
 #if (wxMAJOR_VERSION >= 3 && wxMINOR_VERSION >= 0)
     wxMenuItem* menuItemToggleFullscreen = new wxMenuItem(menuView, MENU_VIEW_TOGGLE_FULLSCREEN
-        , _("Toggle &Full Screen\tF11")
-        , _("Toggle Full Screen"));
+        , _("&Full Screen\tF11")
+        , _("Toggle full screen")
+        , wxITEM_CHECK);
     menuView->Append(menuItemToggleFullscreen);
 #endif
 wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
@@ -1991,7 +1992,7 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(MENU_RATES, _("Download Rates"), mmBitmapBundle(png::CURRATES, toolbar_icon_size), _("Download currency and stock rates"));
 
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Toggle Full Screen&\tF11"), mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _("Toggle Fullscreen"));
+    toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Full Screen\tF11"), mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _("Fullscreen"));
 
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_PRINT, _("&Print"), mmBitmapBundle(png::PRINT, toolbar_icon_size), _("Print"));
