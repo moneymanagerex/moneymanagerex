@@ -58,7 +58,7 @@ void OptionSettingsView::Create()
     viewsPanelSizer0->Add(view_panel, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     // View Options
-    wxStaticBox* viewStaticBox = new wxStaticBox(view_panel, wxID_STATIC, _("View Options"));
+    wxStaticBox* viewStaticBox = new wxStaticBox(view_panel, wxID_STATIC, _("View"));
     SetBoldFont(viewStaticBox);
 
     wxStaticBoxSizer* viewStaticBoxSizer = new wxStaticBoxSizer(viewStaticBox, wxVERTICAL);
