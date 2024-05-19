@@ -1974,7 +1974,7 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_VIEW_LIST, _("General Report Manager"), mmBitmapBundle(png::GRM, toolbar_icon_size), _("General Report Manager"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_PREFERENCES, _("&Options"), mmBitmapBundle(png::OPTIONS, toolbar_icon_size), _("Options Dialog"));
+    toolBar_->AddTool(wxID_PREFERENCES, _("&Settings"), mmBitmapBundle(png::OPTIONS, toolbar_icon_size), _("Settings"));
     toolBar_->AddSeparator();
 
     wxString news_array;
