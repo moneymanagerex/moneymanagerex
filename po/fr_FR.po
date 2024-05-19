@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-18 23:58+0300\n"
-"PO-Revision-Date: 2024-05-19 06:34\n"
+"PO-Revision-Date: 2024-05-19 07:32\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4903,7 +4903,7 @@ msgstr "Mise à jour de la fenêtre du navigateur (F5)"
 
 #: mmframe.cpp:1634
 msgid "Show/Hide Navigator"
-msgstr ""
+msgstr "Afficher/Masquer le navigateur"
 
 #: mmframe.cpp:1636
 msgid "&Display Share Accounts"
@@ -4911,7 +4911,7 @@ msgstr "&Affiche les comptes d'actions"
 
 #: mmframe.cpp:1636
 msgid "Show/Hide Share Accounts in Navigator"
-msgstr ""
+msgstr "Afficher/Masquer le portefeuille de titres dans le navigateur"
 
 #: mmframe.cpp:1638
 msgid "&Display Deleted Transactions"
@@ -4919,7 +4919,7 @@ msgstr "&Afficher les opérations supprimées"
 
 #: mmframe.cpp:1638
 msgid "Show/Hide Deleted Transactions in Navigator"
-msgstr ""
+msgstr "Afficher/Masquer les opérations supprimées dans le navigateur"
 
 #: mmframe.cpp:1640
 msgid "Budgets: As Financial &Years"
@@ -4979,7 +4979,7 @@ msgstr "Basculer en plein écran"
 
 #: mmframe.cpp:1675
 msgid "&Reset View"
-msgstr ""
+msgstr "Réinitialiser l'affichage"
 
 #: mmframe.cpp:1676
 msgid "Reset view and dock tools"
@@ -5091,7 +5091,7 @@ msgstr "Gestionnaire de thème"
 
 #: mmframe.cpp:1795
 msgid "Tra&nsaction Report..."
-msgstr ""
+msgstr "Rapport d'opérations..."
 
 #: mmframe.cpp:1801
 msgid "&General Report Manager..."
@@ -5167,7 +5167,7 @@ msgstr "Afficher l’aide"
 
 #: mmframe.cpp:1854
 msgid "Face&book"
-msgstr ""
+msgstr "Face&book"
 
 #: mmframe.cpp:1854
 msgid "Visit MMEX Facebook page"
@@ -5215,11 +5215,11 @@ msgstr "Accéder au dépôt du code source et vérifier l'état des bogues signa
 
 #: mmframe.cpp:1866
 msgid "W&iki"
-msgstr ""
+msgstr "W&iki"
 
 #: mmframe.cpp:1866
 msgid "Read and update MMEX wiki"
-msgstr ""
+msgstr "Lire et mettre à jour le wiki MMEX"
 
 #: mmframe.cpp:1871
 msgid "MMEX for &Android"
@@ -5517,11 +5517,11 @@ msgstr "Débogage de la base de données"
 
 #: mmframe.cpp:2489
 msgid "&Yes"
-msgstr ""
+msgstr "Oui"
 
 #: mmframe.cpp:2489
 msgid "&No"
-msgstr ""
+msgstr "Non"
 
 #: mmframe.cpp:2509 mmframe.cpp:2530
 msgid "Save database file as"
@@ -5694,7 +5694,7 @@ msgstr "Rapport des prévisions"
 
 #: mmframereport.cpp:168 optionsettingshome.cpp:78
 msgid "Income vs. Expenses"
-msgstr ""
+msgstr "Balance des revenus et des dépenses"
 
 #: mmframereport.cpp:179
 msgid "My Usage"
@@ -5768,7 +5768,7 @@ msgstr "Compte/bénéficiaire"
 #: mmhomepage.cpp:423
 #, c-format
 msgid "Income vs. Expenses: %s"
-msgstr ""
+msgstr "Balance des revenus et des dépenses : %s"
 
 #: mmhomepage.cpp:433 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:425 reports/categexp.cpp:496 reports/incexpenses.cpp:88
@@ -6694,7 +6694,7 @@ msgstr "Taille des icônes de la barre d'outils"
 
 #: optionsettingsview.cpp:312
 msgid "Navigator Icon Size"
-msgstr ""
+msgstr "Taille de l'icône du navigateur"
 
 #: optionsettingsview.cpp:313
 msgid "Others Icon Size"
@@ -6880,7 +6880,7 @@ msgstr "Enregistrements trouvés dans le budget : %i"
 
 #: relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge Payees"
-msgstr ""
+msgstr "Fusionner les tiers"
 
 #: relocatepayeedialog.cpp:99
 msgid "Delete source payee after merge"
@@ -6892,7 +6892,7 @@ msgstr "Confirmation de fusion des tiers"
 
 #: relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge Tags"
-msgstr ""
+msgstr "Fusionner les étiquettes"
 
 #: relocatetagdialog.cpp:101
 msgid "Delete source tag after merge"
@@ -6910,7 +6910,7 @@ msgstr "Année financière: %s - %i"
 #: reports/budget.cpp:101
 #, c-format
 msgid "Financial Year: %i Month: %s"
-msgstr ""
+msgstr "Année financière : %i Mois : %s"
 
 #: reports/budget.cpp:103
 #, c-format
@@ -6929,7 +6929,7 @@ msgstr "Résumé des catégories du budget pour %s"
 
 #: reports/budgetcategorysummary.cpp:129
 msgid "(Estimated vs. Actual)"
-msgstr ""
+msgstr "(Balance Estimé / Réel)"
 
 #: reports/budgetcategorysummary.cpp:346
 msgid "Estimated Income:"
@@ -7128,7 +7128,7 @@ msgstr "Les prochaines transactions ont été ignorées"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs. Expenses Summary"
-msgstr ""
+msgstr "Bilan des revenus et des dépenses"
 
 #: reports/incexpenses.cpp:115
 msgid "Income:"
@@ -7140,7 +7140,7 @@ msgstr "Dépenses :"
 
 #: reports/incexpenses.cpp:133
 msgid "Income vs. Expenses Monthly"
-msgstr ""
+msgstr "Bilan mensuel des revenus et des dépenses"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
