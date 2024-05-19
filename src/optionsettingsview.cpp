@@ -113,7 +113,7 @@ void OptionSettingsView::Create()
     view_sizer1->Add(m_showMoneyTips, g_flagsH);
 
     // Transaction/Budget options
-    wxStaticBox* trxStaticBox = new wxStaticBox(view_panel, wxID_STATIC, _("Transaction/Budget Options"));
+    wxStaticBox* trxStaticBox = new wxStaticBox(view_panel, wxID_STATIC, _("Transaction/Budget"));
     SetBoldFont(trxStaticBox);
     wxStaticBoxSizer* trxStaticBoxSizer = new wxStaticBoxSizer(trxStaticBox, wxVERTICAL);
     viewsPanelSizer->Add(trxStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
