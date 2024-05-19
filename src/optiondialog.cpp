@@ -217,7 +217,7 @@ void mmOptionsDialog::OnApply(wxCommandEvent& /*event*/)
     if (m_panel_list[selected_page]->SaveSettings())
     {
         const wxString& msg = wxString::Format(_("%s page has been saved."), _(s_pagetitle[selected_page]));
-        wxMessageBox(msg, _("MMEX Options"));
+        wxMessageBox(msg, _("Settings"));
     }
 
     Model_Setting::instance().ReleaseSavepoint();
