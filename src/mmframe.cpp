@@ -1623,7 +1623,7 @@ void mmGUIFrame::createMenu()
     menu_file->AppendSeparator();
 
     wxMenuItem* menuItemQuit = new wxMenuItem(menu_file, wxID_EXIT,
-        _("E&xit")&"\tCtrl-Q", _("Quit this program"));
+        _("E&xit\tCtrl-Q"), _("Quit this program"));
     menu_file->Append(menuItemQuit);
 
     // Create the required menu items
@@ -1631,7 +1631,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemToolbar = new wxMenuItem(menuView, MENU_VIEW_TOOLBAR,
         _("&Toolbar"), _("Show/Hide the toolbar"), wxITEM_CHECK);
     wxMenuItem* menuItemLinks = new wxMenuItem(menuView, MENU_VIEW_LINKS,
-        _("&Navigator")&"\tF5", _("Show/Hide Navigator"), wxITEM_CHECK);
+        _("&Navigator\tF5"), _("Show/Hide Navigator"), wxITEM_CHECK);
     wxMenuItem* menuItemHideShareAccounts = new wxMenuItem(menuView, MENU_VIEW_HIDE_SHARE_ACCOUNTS,
         _("&Display Share Accounts"), _("Show/Hide Share Accounts in Navigator"), wxITEM_CHECK);
     wxMenuItem* menuItemHideDeletedTransactions = new wxMenuItem(menuView, MENU_VIEW_HIDE_DELETED_TRANSACTIONS,
@@ -1667,7 +1667,7 @@ void mmGUIFrame::createMenu()
 
 #if (wxMAJOR_VERSION >= 3 && wxMINOR_VERSION >= 0)
     wxMenuItem* menuItemToggleFullscreen = new wxMenuItem(menuView, MENU_VIEW_TOGGLE_FULLSCREEN
-        , _("&Full Screen")&"\tF11"
+        , _("&Full Screen\tF11")
         , _("Toggle full screen")
         , wxITEM_CHECK);
     menuView->Append(menuItemToggleFullscreen);
@@ -1844,7 +1844,7 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     wxMenu* menuHelp = new wxMenu;
 
     wxMenuItem* menuItemHelp = new wxMenuItem(menuTools, wxID_HELP,
-        _("&Help")&"\tF1", _("Show Help"));
+        _("&Help\tF1"), _("Show Help"));
     menuHelp->Append(menuItemHelp);
 
     //Community Submenu
@@ -1992,7 +1992,7 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(MENU_RATES, _("Download Rates"), mmBitmapBundle(png::CURRATES, toolbar_icon_size), _("Download currency and stock rates"));
 
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Full Screen\tF11"), mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _("Fullscreen"));
+    toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Full Screen\tF11"), mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _("Full screen"));
 
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_PRINT, _("&Print"), mmBitmapBundle(png::PRINT, toolbar_icon_size), _("Print"));
