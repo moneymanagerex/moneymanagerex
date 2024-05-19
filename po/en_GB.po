@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-18 23:58+0300\n"
-"PO-Revision-Date: 2024-05-18 21:10\n"
+"PO-Revision-Date: 2024-05-19 02:03\n"
 "Last-Translator: \n"
 "Language-Team: English, United Kingdom\n"
 "MIME-Version: 1.0\n"
@@ -6314,11 +6314,11 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:142
 msgid "Yes"
-msgstr "&Yes"
+msgstr ""
 
 #: optionsettingsmisc.cpp:143
 msgid "No"
-msgstr "&No"
+msgstr ""
 
 #: optionsettingsmisc.cpp:152
 msgid "Default Date"
