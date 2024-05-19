@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-18 23:58+0300\n"
-"PO-Revision-Date: 2024-05-19 02:03\n"
+"PO-Revision-Date: 2024-05-19 03:09\n"
 "Last-Translator: \n"
 "Language-Team: English, United Kingdom\n"
 "MIME-Version: 1.0\n"
@@ -2801,7 +2801,7 @@ msgstr ""
 
 #: filtertransdialog.h:163
 msgid "Customize Transaction Report"
-msgstr ""
+msgstr "Customise Transaction Report"
 
 #: general_report_manager.cpp:284 mmframe.cpp:832 mmframe.cpp:3022
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
@@ -4728,7 +4728,7 @@ msgstr ""
 
 #: mmframe.cpp:1475
 msgid "&Customize Report..."
-msgstr ""
+msgstr "&Customise Report..."
 
 #: mmframe.cpp:1476
 msgid "&Rename Report..."
@@ -5104,7 +5104,7 @@ msgstr "&Optimise Database…"
 
 #: mmframe.cpp:1830
 msgid "Optimize database for space and performance"
-msgstr ""
+msgstr "Optimise database for space and performance"
 
 #: mmframe.cpp:1832
 msgid "Database Check and De&bug..."
@@ -5648,7 +5648,7 @@ msgstr ""
 
 #: mmframereport.cpp:168 optionsettingshome.cpp:78
 msgid "Income vs. Expenses"
-msgstr ""
+msgstr "Income vs Expenses"
 
 #: mmframereport.cpp:179
 msgid "My Usage"
@@ -5722,7 +5722,7 @@ msgstr ""
 #: mmhomepage.cpp:423
 #, c-format
 msgid "Income vs. Expenses: %s"
-msgstr ""
+msgstr "Income vs Expenses: %s"
 
 #: mmhomepage.cpp:433 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:425 reports/categexp.cpp:496 reports/incexpenses.cpp:88
@@ -6870,7 +6870,7 @@ msgstr ""
 
 #: reports/budgetcategorysummary.cpp:129
 msgid "(Estimated vs. Actual)"
-msgstr ""
+msgstr "(Estimated vs Actual)"
 
 #: reports/budgetcategorysummary.cpp:346
 msgid "Estimated Income:"
@@ -7069,7 +7069,7 @@ msgstr ""
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs. Expenses Summary"
-msgstr ""
+msgstr "Income vs Expenses Summary"
 
 #: reports/incexpenses.cpp:115
 msgid "Income:"
@@ -7081,7 +7081,7 @@ msgstr ""
 
 #: reports/incexpenses.cpp:133
 msgid "Income vs. Expenses Monthly"
-msgstr ""
+msgstr "Income vs Expenses Monthly"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
