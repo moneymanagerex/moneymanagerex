@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-18 23:58+0300\n"
-"PO-Revision-Date: 2024-05-18 21:09\n"
+"PO-Revision-Date: 2024-05-19 02:03\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgstr "&Új adatbázis"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "Új MMEX-adatbázisfájl létrehozása"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -337,7 +337,7 @@ msgstr "&Létező adatbázis megnyitása"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "MMEX-adatbázisfájl megnyitása"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1681
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "&Felhasználói kézikönyv"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "MMEX felhasználói kézikönyv elolvasása"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1851
 msgid "&Website"
@@ -366,7 +366,7 @@ msgstr "MMEX-webhely meglátogassa a legfrissebb hírekért és frissítésekér
 
 #: appstartdialog.cpp:125 mmframe.cpp:1868
 msgid "&Forum"
-msgstr ""
+msgstr "&Fórum"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1869
 msgid "Visit MMEX forum to read and post comments and for support"
@@ -3930,12 +3930,12 @@ msgstr "Az alappénznem jelzése nem található!"
 
 #: mmSimpleDialogs.cpp:767 mmSimpleDialogs.cpp:779
 msgid "&Clear color"
-msgstr ""
+msgstr "Szín &törlése"
 
 #: mmSimpleDialogs.cpp:770 mmSimpleDialogs.cpp:784
 #, c-format
 msgid "Color #&%i"
-msgstr ""
+msgstr "&%i. szín"
 
 #: mmSimpleDialogs.cpp:942
 msgid "Subtract one year"
@@ -5214,7 +5214,7 @@ msgstr "Lépj be a forráskód tárolójába és kövesd a jelentett hiba státu
 
 #: mmframe.cpp:1866
 msgid "W&iki"
-msgstr ""
+msgstr "&Wiki"
 
 #: mmframe.cpp:1866
 msgid "Read and update MMEX wiki"
@@ -5516,11 +5516,11 @@ msgstr "Adatbázis hibakeresése"
 
 #: mmframe.cpp:2489
 msgid "&Yes"
-msgstr ""
+msgstr "&Igen"
 
 #: mmframe.cpp:2489
 msgid "&No"
-msgstr ""
+msgstr "&Nem"
 
 #: mmframe.cpp:2509 mmframe.cpp:2530
 msgid "Save database file as"
