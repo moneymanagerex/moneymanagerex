@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-19 23:47+0300\n"
-"PO-Revision-Date: 2024-05-19 20:49\n"
+"PO-Revision-Date: 2024-05-20 08:49\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -2554,7 +2554,7 @@ msgstr "Diagnosticare"
 #: diagnostics.cpp:88 relocatecategorydialog.cpp:134
 #: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:134 themes.cpp:195
 msgid "&Close"
-msgstr ""
+msgstr "&Închide"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -4905,7 +4905,7 @@ msgstr "Imprimă vizualizarea curentă"
 
 #: mmframe.cpp:1626
 msgid "E&xit\tCtrl-Q"
-msgstr ""
+msgstr "Ieşir&e\tCtrl+Q"
 
 #: mmframe.cpp:1626
 msgid "Quit this program"
@@ -4993,11 +4993,11 @@ msgstr "Arată ponturi despre bani"
 
 #: mmframe.cpp:1670
 msgid "&Full Screen\tF11"
-msgstr ""
+msgstr "Ecran complet"
 
 #: mmframe.cpp:1671 mmframe.cpp:1997
 msgid "Toggle full screen"
-msgstr ""
+msgstr "Schimbă la ecran complet"
 
 #: mmframe.cpp:1676
 msgid "&Reset View"
@@ -5134,7 +5134,7 @@ msgstr "Reîmprospătare WebApp"
 
 #: mmframe.cpp:1817
 msgid "&Settings...\tAlt-F12"
-msgstr ""
+msgstr "Setări"
 
 #: mmframe.cpp:1824
 msgid "&Decrypt Encrypted Database..."
@@ -5266,11 +5266,11 @@ msgstr "Conectează fluxul RSS la agregatorul de știri"
 
 #: mmframe.cpp:1880
 msgid "Make a &Donation"
-msgstr ""
+msgstr "Donează"
 
 #: mmframe.cpp:1881
 msgid "Donate to the MMEX team to support infrastructure and development"
-msgstr ""
+msgstr "Donează pentru a sprijini infrastructura și dezvoltarea echipei MMEX"
 
 #: mmframe.cpp:1883
 msgid "&Buy us a Coffee"
@@ -5278,7 +5278,7 @@ msgstr "&Cumpără-ne o cafea"
 
 #: mmframe.cpp:1884
 msgid "Buy a key developer a coffee"
-msgstr ""
+msgstr "Cumpără unui dezvoltator cheie o cafea"
 
 #: mmframe.cpp:1887
 msgid "&Community"
@@ -5354,7 +5354,7 @@ msgstr "Nou"
 
 #: mmframe.cpp:1979
 msgid "&Settings"
-msgstr ""
+msgstr "&Setări"
 
 #: mmframe.cpp:1987 mmframe.cpp:1992 mmframe.cpp:3018 optionsettingsnet.cpp:132
 msgid "News"
@@ -5370,7 +5370,7 @@ msgstr ""
 
 #: mmframe.cpp:1997
 msgid "Full Screen\tF11"
-msgstr ""
+msgstr "Ecran Complet F11"
 
 #: mmframe.cpp:2000
 msgid "&Print"
@@ -5586,7 +5586,7 @@ msgstr ""
 
 #: mmframe.cpp:2925
 msgid "Settings have been updated."
-msgstr ""
+msgstr "Setările au fost actualizate."
 
 #: mmframe.cpp:2926
 msgid "Some settings take effect only after an application restart."
@@ -6080,7 +6080,7 @@ msgstr "Generale"
 
 #: optiondialog.cpp:37 optionsettingsview.cpp:61
 msgid "View"
-msgstr ""
+msgstr "Vizualizare"
 
 #: optiondialog.cpp:37 optionsettingsattachment.cpp:65 webappdialog.cpp:146
 msgid "Attachments"
@@ -6399,7 +6399,7 @@ msgstr "Tranzacții în masă"
 
 #: optionsettingsmisc.cpp:173
 msgid "Database"
-msgstr ""
+msgstr "Baza de date"
 
 #: optionsettingsmisc.cpp:180
 msgid "Backup database on startup"
