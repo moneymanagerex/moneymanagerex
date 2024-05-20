@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-19 23:47+0300\n"
-"PO-Revision-Date: 2024-05-19 20:49\n"
+"PO-Revision-Date: 2024-05-20 06:55\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2551,7 +2551,7 @@ msgstr "Διαγνωστικός Έλεγχος"
 #: diagnostics.cpp:88 relocatecategorydialog.cpp:134
 #: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:134 themes.cpp:195
 msgid "&Close"
-msgstr ""
+msgstr "&Κλείσιμο"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -4888,7 +4888,7 @@ msgstr "Εκτύπωση τρέχουσας προβολής"
 
 #: mmframe.cpp:1626
 msgid "E&xit\tCtrl-Q"
-msgstr ""
+msgstr "Έξοδος Ctrl-Q"
 
 #: mmframe.cpp:1626
 msgid "Quit this program"
@@ -4976,11 +4976,11 @@ msgstr "Εμφάνιση Συμβουλών Χρημάτων"
 
 #: mmframe.cpp:1670
 msgid "&Full Screen\tF11"
-msgstr ""
+msgstr "&Πλήρης Οθόνη F11"
 
 #: mmframe.cpp:1671 mmframe.cpp:1997
 msgid "Toggle full screen"
-msgstr ""
+msgstr "Εναλλαγή πλήρους οθόνης"
 
 #: mmframe.cpp:1676
 msgid "&Reset View"
@@ -5249,11 +5249,11 @@ msgstr "Συνδέστε την τροφοδοσία ιστού RSS με τον 
 
 #: mmframe.cpp:1880
 msgid "Make a &Donation"
-msgstr ""
+msgstr "Κάντε μία &Δωρεά"
 
 #: mmframe.cpp:1881
 msgid "Donate to the MMEX team to support infrastructure and development"
-msgstr ""
+msgstr "Δωρεά στην ομάδα MMEX για την υποστήριξη της υποδομής και της ανάπτυξης"
 
 #: mmframe.cpp:1883
 msgid "&Buy us a Coffee"
@@ -5261,7 +5261,7 @@ msgstr "&Αγοράστε μας έναν καφέ"
 
 #: mmframe.cpp:1884
 msgid "Buy a key developer a coffee"
-msgstr ""
+msgstr "Κεράστε τον υπεύθυνο ανάπτυξης έναν καφέ"
 
 #: mmframe.cpp:1887
 msgid "&Community"
@@ -5337,7 +5337,7 @@ msgstr "Νέος"
 
 #: mmframe.cpp:1979
 msgid "&Settings"
-msgstr ""
+msgstr "&Ρυθμίσεις"
 
 #: mmframe.cpp:1987 mmframe.cpp:1992 mmframe.cpp:3018 optionsettingsnet.cpp:132
 msgid "News"
@@ -5353,7 +5353,7 @@ msgstr "Κατεβάστε τις ισοτιμίες συναλλάγματος 
 
 #: mmframe.cpp:1997
 msgid "Full Screen\tF11"
-msgstr ""
+msgstr "Πλήρης Οθόνη F11"
 
 #: mmframe.cpp:2000
 msgid "&Print"
@@ -5570,7 +5570,7 @@ msgstr "Διαμοιρασμός Δημιουργίας Λογαριασμού"
 
 #: mmframe.cpp:2925
 msgid "Settings have been updated."
-msgstr ""
+msgstr "Οι ρυθμίσεις ενημερώθηκαν."
 
 #: mmframe.cpp:2926
 msgid "Some settings take effect only after an application restart."
@@ -6064,7 +6064,7 @@ msgstr "Γενικές"
 
 #: optiondialog.cpp:37 optionsettingsview.cpp:61
 msgid "View"
-msgstr ""
+msgstr "Προβολή"
 
 #: optiondialog.cpp:37 optionsettingsattachment.cpp:65 webappdialog.cpp:146
 msgid "Attachments"
@@ -6383,16 +6383,17 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:173
 msgid "Database"
-msgstr ""
+msgstr "Βάση Δεδομένων"
 
 #: optionsettingsmisc.cpp:180
 msgid "Backup database on startup"
-msgstr ""
+msgstr "Αντίγραφο ασφαλείας βάσης δεδομένων κατά την εκκίνηση"
 
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX starts,\n"
 "create the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "Όταν ξεκινάει το MMEX,\n"
+"δημιουργεί ένα αντίγραφο ασφαλείας της βάσης δεδομένων: αρχείοΒΔ_start_ΕΕΕΕ-MM-ΗΗ.ext."
 
 #: optionsettingsmisc.cpp:187
 msgid "Backup database on exit"
@@ -6401,7 +6402,8 @@ msgstr "Αντίγραφο ασφαλείας βάσης δεδομένων κα
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes were made to the database,\n"
 "create or update the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "Όταν το MMEX τερματίζει και οι αλλαγές που έγιναν στη βάση δεδομένων,\n"
+"δημιουργεί ή ενημερώνει την εφεδρική βάση δεδομένων: dbFile_update_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:197
 msgid "Specify max number of backup files"
@@ -6425,7 +6427,7 @@ msgstr "Οριοθέτης"
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp"
-msgstr ""
+msgstr "WebApp"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
@@ -6465,7 +6467,7 @@ msgstr "Θύρα"
 
 #: optionsettingsnet.cpp:119
 msgid "Usage Statistics"
-msgstr ""
+msgstr "Στατιστικά χρήσης"
 
 #: optionsettingsnet.cpp:138
 msgid "Check for latest news on startup"
@@ -6525,7 +6527,7 @@ msgstr "Διαχωριστής κατηγορίας"
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget"
-msgstr ""
+msgstr "Συναλλαγή/Προϋπολογισμός"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
@@ -6787,7 +6789,7 @@ msgstr "Συγχώνευση &Δικαιούχων"
 
 #: relocatecategorydialog.cpp:102
 msgid "&Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "&Διαγραφή κατηγορίας προέλευσης μετά τη συγχώνευση (εάν η κατηγορία προέλευσης δεν έχει υποκατηγορίες)"
 
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
 #: relocatetagdialog.cpp:114
@@ -6852,7 +6854,7 @@ msgstr ""
 
 #: relocatepayeedialog.cpp:99
 msgid "&Delete source payee after merge"
-msgstr ""
+msgstr "&Διαγραφή ετικέτας προέλευσης μετά τη συγχώνευση"
 
 #: relocatepayeedialog.cpp:156
 msgid "Merge payees confirmation"
@@ -6864,7 +6866,7 @@ msgstr ""
 
 #: relocatetagdialog.cpp:101
 msgid "&Delete source tag after merge"
-msgstr ""
+msgstr "&Διαγραφή ετικέτας προέλευσης μετά τη συγχώνευση"
 
 #: relocatetagdialog.cpp:158
 msgid "Merge tags confirmation"
@@ -7801,11 +7803,11 @@ msgstr "Επιβεβαίωση Διαγραφής Ετικέτας"
 
 #: themes.cpp:191
 msgid "&Delete"
-msgstr ""
+msgstr "&Διαγραφή"
 
 #: themes.cpp:193
 msgid "&Use"
-msgstr ""
+msgstr "&Χρήση"
 
 #: themes.cpp:239
 msgid "No description available"
