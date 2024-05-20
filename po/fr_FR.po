@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-19 23:47+0300\n"
-"PO-Revision-Date: 2024-05-20 03:39\n"
+"PO-Revision-Date: 2024-05-20 06:55\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4982,7 +4982,7 @@ msgstr "&Plein Ecran F11"
 
 #: mmframe.cpp:1671 mmframe.cpp:1997
 msgid "Toggle full screen"
-msgstr "Activer plein écran"
+msgstr "Basculer en mode plein écran"
 
 #: mmframe.cpp:1676
 msgid "&Reset View"
@@ -5263,7 +5263,7 @@ msgstr "Offrez nous un café"
 
 #: mmframe.cpp:1884
 msgid "Buy a key developer a coffee"
-msgstr ""
+msgstr "Achetez un café pour un développeur clé"
 
 #: mmframe.cpp:1887
 msgid "&Community"
@@ -5355,7 +5355,7 @@ msgstr "Télécharger les cours des devises et actions"
 
 #: mmframe.cpp:1997
 msgid "Full Screen\tF11"
-msgstr "Plein Ecran\tF11"
+msgstr "Plein écran F11"
 
 #: mmframe.cpp:2000
 msgid "&Print"
@@ -6068,7 +6068,7 @@ msgstr "Général"
 
 #: optiondialog.cpp:37 optionsettingsview.cpp:61
 msgid "View"
-msgstr ""
+msgstr "Afficher"
 
 #: optiondialog.cpp:37 optionsettingsattachment.cpp:65 webappdialog.cpp:146
 msgid "Attachments"
@@ -6397,8 +6397,7 @@ msgstr "Sauvegarder la base de données au démarrage"
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX starts,\n"
 "create the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr "Quand MMEX démarre, \n"
-"Créer une sauvegarde de la base de données: dbFile_start_YYYY-MM-DD.ext."
+msgstr "Au démarrage de MMEX, créer une sauvegarde de la base de données : dbFile_start_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:187
 msgid "Backup database on exit"
@@ -6532,7 +6531,7 @@ msgstr "Délimiteur de catégories"
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget"
-msgstr "Transaction/Budget"
+msgstr "Opérations/Budget"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
@@ -6794,7 +6793,7 @@ msgstr "Fusionner les tiers"
 
 #: relocatecategorydialog.cpp:102
 msgid "&Delete source category after merge (if source category has no subcategories)"
-msgstr "&Supprimer la catégorie source après la fusion (si la catégorie source n'a pas de sous-catégories)"
+msgstr "&Supprimer la catégorie source après la fusion (si elle n'a pas de sous-catégories)"
 
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
 #: relocatetagdialog.cpp:114
