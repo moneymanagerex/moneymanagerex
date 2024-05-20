@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-19 23:47+0300\n"
-"PO-Revision-Date: 2024-05-20 10:15\n"
+"PO-Revision-Date: 2024-05-20 10:24\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -4940,7 +4940,7 @@ msgstr "&Навигатор\tF5"
 
 #: mmframe.cpp:1634
 msgid "Show/Hide Navigator"
-msgstr ""
+msgstr "Показать/Скрыть навигацию"
 
 #: mmframe.cpp:1636
 msgid "&Display Share Accounts"
@@ -4948,7 +4948,7 @@ msgstr "&Показать счёта активов"
 
 #: mmframe.cpp:1636
 msgid "Show/Hide Share Accounts in Navigator"
-msgstr ""
+msgstr "Показать/скрыть инвестиции в навигации"
 
 #: mmframe.cpp:1638
 msgid "&Display Deleted Transactions"
@@ -4956,7 +4956,7 @@ msgstr "&Отображать удаленные транзакции"
 
 #: mmframe.cpp:1638
 msgid "Show/Hide Deleted Transactions in Navigator"
-msgstr ""
+msgstr "Показать/скрыть удаленные транзакции в навигации"
 
 #: mmframe.cpp:1640
 msgid "Budgets: As Financial &Years"
@@ -5129,7 +5129,7 @@ msgstr "Менеджер тем"
 
 #: mmframe.cpp:1796
 msgid "Tra&nsaction Report..."
-msgstr ""
+msgstr "Отчёт по &транзакциям..."
 
 #: mmframe.cpp:1802
 msgid "&General Report Manager..."
@@ -5149,7 +5149,7 @@ msgstr "Обновить WebApp"
 
 #: mmframe.cpp:1817
 msgid "&Settings...\tAlt-F12"
-msgstr ""
+msgstr "&Настройки...\tAlt-F12"
 
 #: mmframe.cpp:1824
 msgid "&Decrypt Encrypted Database..."
@@ -5201,7 +5201,7 @@ msgstr "Справка"
 
 #: mmframe.cpp:1855
 msgid "Face&book"
-msgstr ""
+msgstr "&Фейсбук"
 
 #: mmframe.cpp:1855
 msgid "Visit MMEX Facebook page"
@@ -5249,11 +5249,11 @@ msgstr "Доступ к репозиториям с открытым исход�
 
 #: mmframe.cpp:1867
 msgid "W&iki"
-msgstr ""
+msgstr "&Вики"
 
 #: mmframe.cpp:1867
 msgid "Read and update MMEX wiki"
-msgstr ""
+msgstr "Читать и обновлять MMEX wiki"
 
 #: mmframe.cpp:1872
 msgid "MMEX for &Android"
@@ -5281,11 +5281,11 @@ msgstr "Подключите RSS-ленту новостей к агрегато
 
 #: mmframe.cpp:1880
 msgid "Make a &Donation"
-msgstr ""
+msgstr "Сделать &пожертвование"
 
 #: mmframe.cpp:1881
 msgid "Donate to the MMEX team to support infrastructure and development"
-msgstr ""
+msgstr "Пожертвовать команде MMEX для поддержки инфраструктуры и разработки"
 
 #: mmframe.cpp:1883
 msgid "&Buy us a Coffee"
@@ -5293,7 +5293,7 @@ msgstr "&Купите нам кофе"
 
 #: mmframe.cpp:1884
 msgid "Buy a key developer a coffee"
-msgstr ""
+msgstr "Купите разработчику кофе!"
 
 #: mmframe.cpp:1887
 msgid "&Community"
@@ -5369,7 +5369,7 @@ msgstr "С&оздать"
 
 #: mmframe.cpp:1979
 msgid "&Settings"
-msgstr ""
+msgstr "&Настройки"
 
 #: mmframe.cpp:1987 mmframe.cpp:1992 mmframe.cpp:3018 optionsettingsnet.cpp:132
 msgid "News"
@@ -5385,7 +5385,7 @@ msgstr "Загрузить историю курсов валют и акций"
 
 #: mmframe.cpp:1997
 msgid "Full Screen\tF11"
-msgstr ""
+msgstr "Полноэкранный\tF11"
 
 #: mmframe.cpp:2000
 msgid "&Print"
@@ -5547,11 +5547,11 @@ msgstr "Отладка базы данных"
 
 #: mmframe.cpp:2492
 msgid "&Yes"
-msgstr ""
+msgstr "&Да"
 
 #: mmframe.cpp:2492
 msgid "&No"
-msgstr ""
+msgstr "&Нет"
 
 #: mmframe.cpp:2512 mmframe.cpp:2533
 msgid "Save database file as"
@@ -5603,7 +5603,7 @@ msgstr "Создание счёта ценных бумаг"
 
 #: mmframe.cpp:2925
 msgid "Settings have been updated."
-msgstr ""
+msgstr "Настройки были обновлены."
 
 #: mmframe.cpp:2926
 msgid "Some settings take effect only after an application restart."
@@ -5722,7 +5722,7 @@ msgstr "Прогноз"
 
 #: mmframereport.cpp:168 optionsettingshome.cpp:78
 msgid "Income vs. Expenses"
-msgstr ""
+msgstr "Доход и расходы"
 
 #: mmframereport.cpp:179
 msgid "My Usage"
@@ -5796,7 +5796,7 @@ msgstr "Счёт/получатель"
 #: mmhomepage.cpp:423
 #, c-format
 msgid "Income vs. Expenses: %s"
-msgstr ""
+msgstr "Доход и расходы: %s"
 
 #: mmhomepage.cpp:433 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:425 reports/categexp.cpp:496 reports/incexpenses.cpp:88
@@ -6439,7 +6439,8 @@ msgstr "Архивировать БД при выходе"
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes were made to the database,\n"
 "create or update the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "При выходе MMEX и внесении изменений в базу данных\n"
+"создать или обновить резервную базу данных: dbFile_update_YYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:197
 msgid "Specify max number of backup files"
@@ -6825,7 +6826,7 @@ msgstr "Объединить &получателей"
 
 #: relocatecategorydialog.cpp:102
 msgid "&Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "&Удалить исходную категорию после слияния (если у исходной категории нет подкатегорий)"
 
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
 #: relocatetagdialog.cpp:114
