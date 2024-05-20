@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-19 23:47+0300\n"
-"PO-Revision-Date: 2024-05-20 08:49\n"
+"PO-Revision-Date: 2024-05-20 10:15\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -6403,12 +6403,13 @@ msgstr "Baza de date"
 
 #: optionsettingsmisc.cpp:180
 msgid "Backup database on startup"
-msgstr ""
+msgstr "Copie de rezervă a bazei de date la pornire"
 
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX starts,\n"
 "create the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "Când începe MMEX,\n"
+"creează o copie de rezerva a bazei de date: dbFile_start_YY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:187
 msgid "Backup database on exit"
@@ -6417,7 +6418,8 @@ msgstr "Backup bază de date la ieșire"
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes were made to the database,\n"
 "create or update the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "Când MMEX se oprește și au fost făcute modificări în baza de date,\n"
+"creează sau actualizează o copie de rezerva a bazei de date: dbFile_YY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:197
 msgid "Specify max number of backup files"
@@ -6441,7 +6443,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp"
-msgstr ""
+msgstr "WebApp"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
@@ -6481,7 +6483,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:119
 msgid "Usage Statistics"
-msgstr ""
+msgstr "Statistici de utilizare"
 
 #: optionsettingsnet.cpp:138
 msgid "Check for latest news on startup"
@@ -6541,7 +6543,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget"
-msgstr ""
+msgstr "Tranzacție/Buget"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
@@ -6800,7 +6802,7 @@ msgstr ""
 
 #: relocatecategorydialog.cpp:102
 msgid "&Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "&Șterge categoria sursă după îmbinare (dacă categoria sursă nu are subcategorii)"
 
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
 #: relocatetagdialog.cpp:114
@@ -6865,7 +6867,7 @@ msgstr ""
 
 #: relocatepayeedialog.cpp:99
 msgid "&Delete source payee after merge"
-msgstr ""
+msgstr "Șter&ge beneficiarul sursei după îmbinare"
 
 #: relocatepayeedialog.cpp:156
 msgid "Merge payees confirmation"
@@ -6877,7 +6879,7 @@ msgstr ""
 
 #: relocatetagdialog.cpp:101
 msgid "&Delete source tag after merge"
-msgstr ""
+msgstr "&Șterge eticheta sursă după îmbinare"
 
 #: relocatetagdialog.cpp:158
 msgid "Merge tags confirmation"
@@ -7808,11 +7810,11 @@ msgstr ""
 
 #: themes.cpp:191
 msgid "&Delete"
-msgstr ""
+msgstr "&Șterge"
 
 #: themes.cpp:193
 msgid "&Use"
-msgstr ""
+msgstr "&Utilizează"
 
 #: themes.cpp:239
 msgid "No description available"
