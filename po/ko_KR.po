@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-19 23:47+0300\n"
-"PO-Revision-Date: 2024-05-19 20:49\n"
+"PO-Revision-Date: 2024-05-20 00:25\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgstr "데이터베이스 만들기(&N)"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "새 MMEX 데이터베이스 파일을 만듭니다"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -337,7 +337,7 @@ msgstr "기존 데이터 베이스 열기(&E)"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "MMEX 데이터베이스 파일을 불러옵니다"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1682
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "사용자 설명서(&U)"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "사용자 설명서를 읽어보세요"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1852
 msgid "&Website"
@@ -366,11 +366,11 @@ msgstr "최신 뉴스 및 업데이트를 보려면 MMEX 웹사이트를 방문�
 
 #: appstartdialog.cpp:125 mmframe.cpp:1869
 msgid "&Forum"
-msgstr ""
+msgstr "포럼(&F)"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "댓글을 읽고 게시하고 지원을 받으려면 MMEX 포럼을 방문하세요"
 
 #: appstartdialog.cpp:132 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -383,7 +383,7 @@ msgstr "종료(&X) "
 #: appstartdialog.cpp:159
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "이전에 열었던 데이터베이스 열기: %s"
 
 #: appstartdialog.cpp:208 mmframe.cpp:1688 mmframe.cpp:3081
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -1038,7 +1038,7 @@ msgstr "입금 계정에 이체할 금액 기입"
 
 #: billsdepositsdialog.cpp:544 transdialog.cpp:494
 msgid "Open Calculator"
-msgstr ""
+msgstr "계산기 열기"
 
 #: billsdepositsdialog.cpp:550 billsdepositsdialog.cpp:837
 #: billsdepositsdialog.cpp:850 billsdepositspanel.cpp:134 filtertrans.cpp:200
@@ -2075,7 +2075,7 @@ msgstr "사용자 지정 필드 유형 선택"
 
 #: customfieldeditdialog.cpp:148
 msgid "Tooltip"
-msgstr ""
+msgstr "툴팁"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enter the tooltip that will be shown"
@@ -2543,7 +2543,7 @@ msgstr "진단"
 #: diagnostics.cpp:88 relocatecategorydialog.cpp:134
 #: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:134 themes.cpp:195
 msgid "&Close"
-msgstr ""
+msgstr "닫기(&C) "
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -3928,7 +3928,7 @@ msgstr "기준 통화 기호를 찾을 수 없습니다!"
 
 #: mmSimpleDialogs.cpp:767 mmSimpleDialogs.cpp:779
 msgid "&Clear color"
-msgstr ""
+msgstr "색상 제거(&C)"
 
 #: mmSimpleDialogs.cpp:770 mmSimpleDialogs.cpp:784
 #, c-format
@@ -4615,7 +4615,7 @@ msgstr "치명적인 오류가 발생했습니다.\n"
 
 #: mmframe.cpp:271
 msgid "Navigator"
-msgstr ""
+msgstr "탐색기"
 
 #: mmframe.cpp:272
 msgid "Toolbar"
@@ -4870,7 +4870,7 @@ msgstr "현재 보기 인쇄"
 
 #: mmframe.cpp:1626
 msgid "E&xit\tCtrl-Q"
-msgstr ""
+msgstr "종료(&X)\tCtrl-Q"
 
 #: mmframe.cpp:1626
 msgid "Quit this program"
@@ -4886,11 +4886,11 @@ msgstr "툴바 보이기/숨기기"
 
 #: mmframe.cpp:1634
 msgid "&Navigator\tF5"
-msgstr ""
+msgstr "탐색기(&N)\tF5"
 
 #: mmframe.cpp:1634
 msgid "Show/Hide Navigator"
-msgstr ""
+msgstr "탐색기 보이기/숨기기"
 
 #: mmframe.cpp:1636
 msgid "&Display Share Accounts"
@@ -4958,15 +4958,15 @@ msgstr "금전 팁 표시"
 
 #: mmframe.cpp:1670
 msgid "&Full Screen\tF11"
-msgstr ""
+msgstr "전체 화면(&F)\tF11"
 
 #: mmframe.cpp:1671 mmframe.cpp:1997
 msgid "Toggle full screen"
-msgstr ""
+msgstr "전체화면 전환"
 
 #: mmframe.cpp:1676
 msgid "&Reset View"
-msgstr ""
+msgstr "보기 초기화(&R)"
 
 #: mmframe.cpp:1677
 msgid "Reset view and dock tools"
@@ -5079,7 +5079,7 @@ msgstr "테마 관리자"
 
 #: mmframe.cpp:1796
 msgid "Tra&nsaction Report..."
-msgstr ""
+msgstr "거래 보고서(&N)..."
 
 #: mmframe.cpp:1802
 msgid "&General Report Manager..."
@@ -5099,7 +5099,7 @@ msgstr "WebApp 새로 고침"
 
 #: mmframe.cpp:1817
 msgid "&Settings...\tAlt-F12"
-msgstr ""
+msgstr "설정(&S)...\tAlt-F12"
 
 #: mmframe.cpp:1824
 msgid "&Decrypt Encrypted Database..."
@@ -5151,7 +5151,7 @@ msgstr "도움말 표시"
 
 #: mmframe.cpp:1855
 msgid "Face&book"
-msgstr ""
+msgstr "페이스북(&B)"
 
 #: mmframe.cpp:1855
 msgid "Visit MMEX Facebook page"
@@ -5199,7 +5199,7 @@ msgstr "오픈 소스 코드 저장소 액세스 및 보고된 버그 상태 추
 
 #: mmframe.cpp:1867
 msgid "W&iki"
-msgstr ""
+msgstr "위키(&I)"
 
 #: mmframe.cpp:1867
 msgid "Read and update MMEX wiki"
@@ -5319,7 +5319,7 @@ msgstr "생성"
 
 #: mmframe.cpp:1979
 msgid "&Settings"
-msgstr ""
+msgstr "설정(&S)"
 
 #: mmframe.cpp:1987 mmframe.cpp:1992 mmframe.cpp:3018 optionsettingsnet.cpp:132
 msgid "News"
@@ -5335,7 +5335,7 @@ msgstr "통화 및 주가 내려받기"
 
 #: mmframe.cpp:1997
 msgid "Full Screen\tF11"
-msgstr ""
+msgstr "전체 화면\tF11"
 
 #: mmframe.cpp:2000
 msgid "&Print"
@@ -5497,11 +5497,11 @@ msgstr "데이터베이스 디버그"
 
 #: mmframe.cpp:2492
 msgid "&Yes"
-msgstr ""
+msgstr "네(&Y)"
 
 #: mmframe.cpp:2492
 msgid "&No"
-msgstr ""
+msgstr "아니오(&N)"
 
 #: mmframe.cpp:2512 mmframe.cpp:2533
 msgid "Save database file as"
