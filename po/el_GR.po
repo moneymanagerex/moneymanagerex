@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-19 23:47+0300\n"
-"PO-Revision-Date: 2024-05-20 06:55\n"
+"PO-Revision-Date: 2024-05-20 08:49\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -5117,7 +5117,7 @@ msgstr "Ανανέωση του WebApp"
 
 #: mmframe.cpp:1817
 msgid "&Settings...\tAlt-F12"
-msgstr ""
+msgstr "&Ρυθμίσεις… Alt-F12"
 
 #: mmframe.cpp:1824
 msgid "&Decrypt Encrypted Database..."
