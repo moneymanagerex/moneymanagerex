@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-19 23:47+0300\n"
-"PO-Revision-Date: 2024-05-19 20:49\n"
+"PO-Revision-Date: 2024-05-20 03:39\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2551,7 +2551,7 @@ msgstr "Diagnostics"
 #: diagnostics.cpp:88 relocatecategorydialog.cpp:134
 #: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:134 themes.cpp:195
 msgid "&Close"
-msgstr ""
+msgstr "&Fermer"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -4890,7 +4890,7 @@ msgstr "Imprimer la vue en cours"
 
 #: mmframe.cpp:1626
 msgid "E&xit\tCtrl-Q"
-msgstr ""
+msgstr "&Quitter\tCtrl+Q"
 
 #: mmframe.cpp:1626
 msgid "Quit this program"
@@ -4978,11 +4978,11 @@ msgstr "Afficher les astuces financières"
 
 #: mmframe.cpp:1670
 msgid "&Full Screen\tF11"
-msgstr ""
+msgstr "&Plein Ecran F11"
 
 #: mmframe.cpp:1671 mmframe.cpp:1997
 msgid "Toggle full screen"
-msgstr ""
+msgstr "Activer plein écran"
 
 #: mmframe.cpp:1676
 msgid "&Reset View"
@@ -5119,7 +5119,7 @@ msgstr "Rafraîchir Webapp"
 
 #: mmframe.cpp:1817
 msgid "&Settings...\tAlt-F12"
-msgstr ""
+msgstr "&Paramètres... Alt-F12"
 
 #: mmframe.cpp:1824
 msgid "&Decrypt Encrypted Database..."
@@ -5251,11 +5251,11 @@ msgstr "Se connecter au flux web RSS pour rassembler les informations"
 
 #: mmframe.cpp:1880
 msgid "Make a &Donation"
-msgstr ""
+msgstr "Faire un &don"
 
 #: mmframe.cpp:1881
 msgid "Donate to the MMEX team to support infrastructure and development"
-msgstr ""
+msgstr "Faire un don à l'équipe MMEX pour soutenir l'infrastructure et le développement"
 
 #: mmframe.cpp:1883
 msgid "&Buy us a Coffee"
@@ -5339,7 +5339,7 @@ msgstr "Nouveau"
 
 #: mmframe.cpp:1979
 msgid "&Settings"
-msgstr ""
+msgstr "&Paramètres"
 
 #: mmframe.cpp:1987 mmframe.cpp:1992 mmframe.cpp:3018 optionsettingsnet.cpp:132
 msgid "News"
@@ -5355,7 +5355,7 @@ msgstr "Télécharger les cours des devises et actions"
 
 #: mmframe.cpp:1997
 msgid "Full Screen\tF11"
-msgstr ""
+msgstr "Plein Ecran\tF11"
 
 #: mmframe.cpp:2000
 msgid "&Print"
@@ -5572,7 +5572,7 @@ msgstr "Création de compte d'actions"
 
 #: mmframe.cpp:2925
 msgid "Settings have been updated."
-msgstr ""
+msgstr "Les paramètres ont été mis à jour."
 
 #: mmframe.cpp:2926
 msgid "Some settings take effect only after an application restart."
@@ -6388,16 +6388,17 @@ msgstr "Transactions en lot"
 
 #: optionsettingsmisc.cpp:173
 msgid "Database"
-msgstr ""
+msgstr "Base de données"
 
 #: optionsettingsmisc.cpp:180
 msgid "Backup database on startup"
-msgstr ""
+msgstr "Sauvegarder la base de données au démarrage"
 
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX starts,\n"
 "create the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "Quand MMEX démarre, \n"
+"Créer une sauvegarde de la base de données: dbFile_start_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:187
 msgid "Backup database on exit"
@@ -6406,7 +6407,8 @@ msgstr "Sauvegarder la base de données à la fermeture"
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes were made to the database,\n"
 "create or update the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "Quand MMEX est fermé, et que des changements ont été apportés à la base de données,\n"
+"Créer ou mettre à jour la sauvegarde de la base de données: dbFile_update_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:197
 msgid "Specify max number of backup files"
@@ -6430,7 +6432,7 @@ msgstr "Séparateur"
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp"
-msgstr ""
+msgstr "Application Web"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
@@ -6470,7 +6472,7 @@ msgstr "port"
 
 #: optionsettingsnet.cpp:119
 msgid "Usage Statistics"
-msgstr ""
+msgstr "Statistiques d'utilisation"
 
 #: optionsettingsnet.cpp:138
 msgid "Check for latest news on startup"
@@ -6530,7 +6532,7 @@ msgstr "Délimiteur de catégories"
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget"
-msgstr ""
+msgstr "Transaction/Budget"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
@@ -6792,7 +6794,7 @@ msgstr "Fusionner les tiers"
 
 #: relocatecategorydialog.cpp:102
 msgid "&Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "&Supprimer la catégorie source après la fusion (si la catégorie source n'a pas de sous-catégories)"
 
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
 #: relocatetagdialog.cpp:114
@@ -6857,7 +6859,7 @@ msgstr "Fusionner les tiers"
 
 #: relocatepayeedialog.cpp:99
 msgid "&Delete source payee after merge"
-msgstr ""
+msgstr "&Supprimer le tiers source après la fusion"
 
 #: relocatepayeedialog.cpp:156
 msgid "Merge payees confirmation"
@@ -6869,7 +6871,7 @@ msgstr "Fusionner les étiquettes"
 
 #: relocatetagdialog.cpp:101
 msgid "&Delete source tag after merge"
-msgstr ""
+msgstr "&Supprimer l'étiquette source après fusion"
 
 #: relocatetagdialog.cpp:158
 msgid "Merge tags confirmation"
@@ -7806,11 +7808,11 @@ msgstr "Confirmer la suppression de l'étiquette"
 
 #: themes.cpp:191
 msgid "&Delete"
-msgstr ""
+msgstr "&Supprimer"
 
 #: themes.cpp:193
 msgid "&Use"
-msgstr ""
+msgstr "&Utiliser"
 
 #: themes.cpp:239
 msgid "No description available"
