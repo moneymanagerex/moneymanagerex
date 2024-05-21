@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-05-19 23:47+0300\n"
-"PO-Revision-Date: 2024-05-20 02:38\n"
+"POT-Creation-Date: 2024-05-21 23:59+0300\n"
+"PO-Revision-Date: 2024-05-21 21:01\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -3234,8 +3234,8 @@ msgid "Number of accounts exported: %zu"
 msgstr "내보낸 계정 개수: %zu"
 
 #: import_export/qif_import_gui.cpp:135 import_export/univcsvdialog.cpp:201
-msgid "&Browse"
-msgstr "찾아보기(&B)"
+msgid "&Browse..."
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:385
 msgid "Encoding:"
@@ -6376,9 +6376,8 @@ msgstr "시작 시 데이터베이스 백업"
 
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX starts,\n"
-"create the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr "MMEX가 시작되면,\n"
-"백업 데이터베이스 생성: dbFile_start_YYYY-MM-DD.ext."
+"create the backup database: dbFile_start_YYYY-MM-DD.bak"
+msgstr ""
 
 #: optionsettingsmisc.cpp:187
 msgid "Backup database on exit"
@@ -6386,9 +6385,8 @@ msgstr "종료 시 데이터베이스 백업"
 
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes were made to the database,\n"
-"create or update the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr "MMEX가 종료되고 데이터베이스가 변경되면\n"
-"백업 데이터베이스 생성 또는 업데이트: dbFile_update_YYYY-MM-DD.ext."
+"create or update the backup database: dbFile_update_YYYY-MM-DD.bak"
+msgstr ""
 
 #: optionsettingsmisc.cpp:197
 msgid "Specify max number of backup files"
