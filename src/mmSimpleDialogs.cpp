@@ -205,15 +205,15 @@ mmCalculatorPopup::mmCalculatorPopup(wxWindow* parent, mmTextCtrl* target) : wxP
     button_minus_->SetFont(font);
     buttonSizer->Add(button_minus_, wxSizerFlags(g_flagsH).Border(wxALL, 1));
 
-    button_dec_ = new wxButton(panel, wxID_ANY, ".", wxDefaultPosition, btnSize);
-    button_dec_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
-    button_dec_->SetFont(font);
-    buttonSizer->Add(button_dec_, wxSizerFlags(g_flagsH).Border(wxALL, 1));
-
     button_0_ = new wxButton(panel, wxID_ANY, "0", wxDefaultPosition, btnSize);
     button_0_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
     button_0_->SetFont(font);
     buttonSizer->Add(button_0_, wxSizerFlags(g_flagsH).Border(wxALL, 1));
+
+    button_dec_ = new wxButton(panel, wxID_ANY, ".", wxDefaultPosition, btnSize);
+    button_dec_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
+    button_dec_->SetFont(font);
+    buttonSizer->Add(button_dec_, wxSizerFlags(g_flagsH).Border(wxALL, 1));
 
     button_equal_ = new wxButton(panel, wxID_ANY, "=", wxDefaultPosition, btnSize);
     button_equal_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
