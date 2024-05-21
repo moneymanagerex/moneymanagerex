@@ -62,7 +62,7 @@ mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefTyp
     if (AttachmentsFolder == wxEmptyString)
     {
         wxString msgStr = wxString() << _("Attachment folder not defined.") << "\n"
-            << wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Please set it in Tools → Options → Attachments"))) << "\n";
+            << wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Please set it in Tools → Settings… → Attachments"))) << "\n";
         wxMessageBox(msgStr, _("Attachment folder not defined"), wxICON_ERROR);
     }
     else if (!wxDirExists(AttachmentsFolder))
