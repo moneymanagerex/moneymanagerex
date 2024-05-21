@@ -76,8 +76,8 @@ simplicity and user-friendliness – an application that can be used everyday.
         </td>
         <td>
             <img src="https://private-user-images.githubusercontent.com/17465872/332587332-61be296e-7bec-4d0a-8b4b-24672cce68fc.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTYzMjc1NjcsIm5iZiI6MTcxNjMyNzI2NywicGF0aCI6Ii8xNzQ2NTg3Mi8zMzI1ODczMzItNjFiZTI5NmUtN2JlYy00ZDBhLThiNGItMjQ2NzJjY2U2OGZjLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MjElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTIxVDIxMzQyN1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTAyZWM5YzcwZjAyZTIzNjYxNTNiMjc4YzZjZDc0NTgzZWM5Y2NlMmQ2ZjIzMDM2MjU3MDFhMWI0ODUxMjI4ZWEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.gvpW2_jZdUh5z8qtcjBhcbx2Drja94O1Gu8PDDwptaQ" 
-                 alt="Customise Transaction Report (MMEX 1.8.1-Beta.1 64-bit, User Interface Language: en_GB.UTF-8, on Linux Mint 21.3 Cinnamon)" 
-                 title="Customise Transaction Report (MMEX 1.8.1-Beta.1 64-bit, User Interface Language: en_GB.UTF-8, on Linux Mint 21.3 Cinnamon)">
+                 alt="Customise Transaction Report – English (British) (MMEX 1.8.1-Beta.1 64-bit on Linux Mint 21.3 Cinnamon)" 
+                 title="Customise Transaction Report – English (British) (MMEX 1.8.1-Beta.1 64-bit on Linux Mint 21.3 Cinnamon)">
         </td>
     </tr>
     <tr>
