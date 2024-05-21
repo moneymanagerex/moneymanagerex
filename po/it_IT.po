@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-19 23:47+0300\n"
-"PO-Revision-Date: 2024-05-19 20:49\n"
+"PO-Revision-Date: 2024-05-21 13:57\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgstr "&Nuovo Database"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "Crea un nuovo file di database MMEX"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -337,7 +337,7 @@ msgstr "Apri un Database esistente"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "Apri il file del database MMEX"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1682
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "Manuale d'uso"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "Leggi manuale utente MMEX"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1852
 msgid "&Website"
@@ -366,11 +366,11 @@ msgstr "Visita il sito MMEX per le ultime notizie e gli aggiornamenti"
 
 #: appstartdialog.cpp:125 mmframe.cpp:1869
 msgid "&Forum"
-msgstr ""
+msgstr "&Forum"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "Visita il forum MMEX per leggere e pubblicare commenti e per il supporto"
 
 #: appstartdialog.cpp:132 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -383,7 +383,7 @@ msgstr "Esci "
 #: appstartdialog.cpp:159
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Apri il database precedentemente aperto: %s"
 
 #: appstartdialog.cpp:208 mmframe.cpp:1688 mmframe.cpp:3081
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -1038,7 +1038,7 @@ msgstr "Specificare l'importo da trasferire al Conto Destinazione"
 
 #: billsdepositsdialog.cpp:544 transdialog.cpp:494
 msgid "Open Calculator"
-msgstr ""
+msgstr "Apri Calcolatrice"
 
 #: billsdepositsdialog.cpp:550 billsdepositsdialog.cpp:837
 #: billsdepositsdialog.cpp:850 billsdepositspanel.cpp:134 filtertrans.cpp:200
@@ -1637,7 +1637,7 @@ msgstr "Categorie"
 #: categdialog.cpp:258 relocatecategorydialog.cpp:89
 #: relocatecategorydialog.h:43
 msgid "Merge Categories"
-msgstr ""
+msgstr "Unisci Categorie"
 
 #: categdialog.cpp:260
 msgid "C&ollapse All"
