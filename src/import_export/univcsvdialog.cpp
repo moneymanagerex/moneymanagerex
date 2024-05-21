@@ -198,7 +198,7 @@ void mmUnivCSVDialog::CreateControls()
     m_text_ctrl_->Connect(ID_FILE_NAME
         , wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(mmUnivCSVDialog::OnFileNameEntered), nullptr, this);
 
-    const wxString& file_button_label = IsImporter() ? _("&Browse...") : _("File");
+    const wxString& file_button_label = _("&Browse...");
     wxButton* button_browse = new wxButton(itemPanel6, wxID_BROWSE, file_button_label);
     itemBoxSizer7->Add(button_browse, g_flagsH);
 
