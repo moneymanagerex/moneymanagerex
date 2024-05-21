@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-05-19 23:47+0300\n"
-"PO-Revision-Date: 2024-05-20 10:15\n"
+"POT-Creation-Date: 2024-05-21 23:59+0300\n"
+"PO-Revision-Date: 2024-05-21 21:01\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -3247,8 +3247,8 @@ msgid "Number of accounts exported: %zu"
 msgstr "Numărul de conturi exportate: %zu"
 
 #: import_export/qif_import_gui.cpp:135 import_export/univcsvdialog.cpp:201
-msgid "&Browse"
-msgstr "&Răsfoire"
+msgid "&Browse..."
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:385
 msgid "Encoding:"
@@ -6407,9 +6407,8 @@ msgstr "Copie de rezervă a bazei de date la pornire"
 
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX starts,\n"
-"create the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr "Când începe MMEX,\n"
-"creează o copie de rezerva a bazei de date: dbFile_start_YY-MM-DD.ext."
+"create the backup database: dbFile_start_YYYY-MM-DD.bak"
+msgstr ""
 
 #: optionsettingsmisc.cpp:187
 msgid "Backup database on exit"
@@ -6417,9 +6416,8 @@ msgstr "Backup bază de date la ieșire"
 
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes were made to the database,\n"
-"create or update the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr "Când MMEX se oprește și au fost făcute modificări în baza de date,\n"
-"creează sau actualizează o copie de rezerva a bazei de date: dbFile_YY-MM-DD.ext."
+"create or update the backup database: dbFile_update_YYYY-MM-DD.bak"
+msgstr ""
 
 #: optionsettingsmisc.cpp:197
 msgid "Specify max number of backup files"
