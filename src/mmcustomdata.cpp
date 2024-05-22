@@ -426,9 +426,9 @@ const wxString mmCustomData::GetWidgetData(wxWindowID controlID) const
 
             if (class_name == "wxPanel")
             {
-                w = w->GetChildren()[0];
-                if (w)
-                    class_name = w->GetEventHandler()->GetClassInfo()->GetClassName();
+                wxWindow* child = w->GetChildren()[0];
+                if (child)
+                    class_name = child->GetEventHandler()->GetClassInfo()->GetClassName();
             }
 
             if (class_name == "wxDatePickerCtrl")
