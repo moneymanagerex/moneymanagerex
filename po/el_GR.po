@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-21 23:59+0300\n"
-"PO-Revision-Date: 2024-05-22 12:59\n"
+"PO-Revision-Date: 2024-05-22 13:56\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgstr "&Νέα Βάση Δεδομένων"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "Δημιουργία νέου αρχείου βάσης δεδομένων MMEX"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -337,7 +337,7 @@ msgstr "Άνοιγμα Υπάρχουσας Βάσης Δεδομένων"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "Άνοιγμα αρχείου βάσης δεδομένων MMEX"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1682
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "Ε&γχειρίδιο"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "Διαβάστε το εγχειρίδιο χρήστη MMEX"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1852
 msgid "&Website"
@@ -370,7 +370,7 @@ msgstr "&Φόρουμ"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "Επισκεφθείτε το φόρουμ MMEX για να διαβάσετε και να δημοσιεύσετε σχόλια και για υποστήριξη"
 
 #: appstartdialog.cpp:132 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -383,7 +383,7 @@ msgstr "&Έξοδος "
 #: appstartdialog.cpp:159
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Ανοίξτε την τελευταία ανοιγμένη βάση δεδομένων: %s"
 
 #: appstartdialog.cpp:208 mmframe.cpp:1688 mmframe.cpp:3081
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -2831,7 +2831,7 @@ msgstr "Επιλέξτε λογαριασμούς"
 
 #: filtertransdialog.h:163
 msgid "Customize Transaction Report"
-msgstr ""
+msgstr "Προσαρμογή Αναφοράς Συναλλαγών"
 
 #: general_report_manager.cpp:284 mmframe.cpp:832 mmframe.cpp:3025
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
@@ -2958,7 +2958,7 @@ msgstr "Ενεργό"
 
 #: general_report_manager.cpp:747
 msgid "Show/Hide report in Navigator"
-msgstr ""
+msgstr "Εμφάνιση/Απόκρυψη αναφοράς στον πλοηγό"
 
 #: general_report_manager.cpp:751
 msgid "Delete Report..."
@@ -5221,7 +5221,7 @@ msgstr "W&iki"
 
 #: mmframe.cpp:1867
 msgid "Read and update MMEX wiki"
-msgstr ""
+msgstr "Ανάγνωση και ενημέρωση του MMEX wiki"
 
 #: mmframe.cpp:1872
 msgid "MMEX for &Android"
@@ -5688,7 +5688,7 @@ msgstr "Έκθεση Προβλέψεων"
 
 #: mmframereport.cpp:168 optionsettingshome.cpp:78
 msgid "Income vs. Expenses"
-msgstr ""
+msgstr "Έσοδα προς έξοδα"
 
 #: mmframereport.cpp:179
 msgid "My Usage"
@@ -5762,7 +5762,7 @@ msgstr "Λογαριασμός/Δικαιούχος"
 #: mmhomepage.cpp:423
 #, c-format
 msgid "Income vs. Expenses: %s"
-msgstr ""
+msgstr "Έσοδα vs. Έξοδα: %s"
 
 #: mmhomepage.cpp:433 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:425 reports/categexp.cpp:496 reports/incexpenses.cpp:88
@@ -6668,7 +6668,7 @@ msgstr "Μέγεθος εικόνων εργαλειοθήκης"
 
 #: optionsettingsview.cpp:312
 msgid "Navigator Icon Size"
-msgstr ""
+msgstr "Μέγεθος Εικονιδίου Πλοηγού"
 
 #: optionsettingsview.cpp:313
 msgid "Others Icon Size"
@@ -6879,7 +6879,7 @@ msgstr "Οικονομικό Έτος: %s - %i"
 #: reports/budget.cpp:101
 #, c-format
 msgid "Financial Year: %i Month: %s"
-msgstr ""
+msgstr "Οικονομικό Έτος: %i - %s"
 
 #: reports/budget.cpp:103
 #, c-format
