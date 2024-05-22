@@ -25,7 +25,7 @@
         <tr valign="top">
         <td colspan=2>
             <!--Grand total-->
-            <table class='table' style="position: fixed; top: 0; z-index: 999;">
+            <table class='table' style="position: fixed; top: 0; z-index: 999; white-space: nowrap;">
                 <thead>
                     <tr>
                         <th width="5%"></th>
