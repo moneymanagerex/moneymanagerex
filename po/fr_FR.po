@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-21 23:59+0300\n"
-"PO-Revision-Date: 2024-05-21 21:01\n"
+"PO-Revision-Date: 2024-05-22 07:24\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3244,7 +3244,7 @@ msgstr "Nombre de comptes exportés : %zu"
 
 #: import_export/qif_import_gui.cpp:135 import_export/univcsvdialog.cpp:201
 msgid "&Browse..."
-msgstr ""
+msgstr "&Parcourir..."
 
 #: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:385
 msgid "Encoding:"
@@ -6397,7 +6397,7 @@ msgstr "Sauvegarder la base de données au démarrage"
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX starts,\n"
 "create the backup database: dbFile_start_YYYY-MM-DD.bak"
-msgstr ""
+msgstr "À l'ouverture de MMEX, créer une sauvegarde de la base de données : dbFile_start_AAAA-MM-JJ.ext"
 
 #: optionsettingsmisc.cpp:187
 msgid "Backup database on exit"
@@ -6406,7 +6406,8 @@ msgstr "Sauvegarder la base de données à la fermeture"
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes were made to the database,\n"
 "create or update the backup database: dbFile_update_YYYY-MM-DD.bak"
-msgstr ""
+msgstr "À la fermeture de MMEX, quand des modifications ont été apportées à la base de données,\n"
+"créer ou mettre à jour la base de données de sauvegarde : dbFile_update_AAAA-MM-JJ.bak"
 
 #: optionsettingsmisc.cpp:197
 msgid "Specify max number of backup files"
