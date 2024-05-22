@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-21 23:59+0300\n"
-"PO-Revision-Date: 2024-05-21 21:01\n"
+"PO-Revision-Date: 2024-05-22 22:08\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -2832,7 +2832,7 @@ msgstr "Scegliere Conti"
 
 #: filtertransdialog.h:163
 msgid "Customize Transaction Report"
-msgstr ""
+msgstr "Personalizza Resoconto Transazioni"
 
 #: general_report_manager.cpp:284 mmframe.cpp:832 mmframe.cpp:3025
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
@@ -3243,7 +3243,7 @@ msgstr "Numero di account esportati: %zu"
 
 #: import_export/qif_import_gui.cpp:135 import_export/univcsvdialog.cpp:201
 msgid "&Browse..."
-msgstr ""
+msgstr "&Sfoglia..."
 
 #: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:385
 msgid "Encoding:"
@@ -4978,7 +4978,7 @@ msgstr "Mostra Suggerimenti Finanziari"
 
 #: mmframe.cpp:1670
 msgid "&Full Screen\tF11"
-msgstr ""
+msgstr "&Schermo Intero F11"
 
 #: mmframe.cpp:1671 mmframe.cpp:1997
 msgid "Toggle full screen"
@@ -5219,7 +5219,7 @@ msgstr "Accedi al deposito del codice open source e traccia gli stati dei bug se
 
 #: mmframe.cpp:1867
 msgid "W&iki"
-msgstr ""
+msgstr "W&iki"
 
 #: mmframe.cpp:1867
 msgid "Read and update MMEX wiki"
@@ -5339,7 +5339,7 @@ msgstr "Nuovo"
 
 #: mmframe.cpp:1979
 msgid "&Settings"
-msgstr ""
+msgstr "&Impostazioni"
 
 #: mmframe.cpp:1987 mmframe.cpp:1992 mmframe.cpp:3018 optionsettingsnet.cpp:132
 msgid "News"
@@ -5355,7 +5355,7 @@ msgstr "Scarica valuta e tassi azionari"
 
 #: mmframe.cpp:1997
 msgid "Full Screen\tF11"
-msgstr ""
+msgstr "Schermo Intero F11"
 
 #: mmframe.cpp:2000
 msgid "&Print"
@@ -5517,11 +5517,11 @@ msgstr "Debug del Database"
 
 #: mmframe.cpp:2492
 msgid "&Yes"
-msgstr ""
+msgstr "&Sì"
 
 #: mmframe.cpp:2492
 msgid "&No"
-msgstr ""
+msgstr "&No"
 
 #: mmframe.cpp:2512 mmframe.cpp:2533
 msgid "Save database file as"
@@ -6399,7 +6399,8 @@ msgstr ""
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX starts,\n"
 "create the backup database: dbFile_start_YYYY-MM-DD.bak"
-msgstr ""
+msgstr "Quando MMEX si avvia,\n"
+"crea il database di backup: dbFile_start_YYYY-MM-DD.bak"
 
 #: optionsettingsmisc.cpp:187
 msgid "Backup database on exit"
@@ -6408,7 +6409,8 @@ msgstr "Backup del database all'uscita"
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes were made to the database,\n"
 "create or update the backup database: dbFile_update_YYYY-MM-DD.bak"
-msgstr ""
+msgstr "Alla chiusura di MMEX in caso di modifiche al database,\n"
+"crea o aggiorna il database di backup: dbFile_update_YYYY-MM-DD.bak"
 
 #: optionsettingsmisc.cpp:197
 msgid "Specify max number of backup files"
@@ -6855,7 +6857,7 @@ msgstr "Records trovati nel budget: %i"
 
 #: relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge Payees"
-msgstr ""
+msgstr "Unisci Beneficiari"
 
 #: relocatepayeedialog.cpp:99
 msgid "&Delete source payee after merge"
@@ -7103,7 +7105,7 @@ msgstr "Le transazioni future sono state ignorate"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs. Expenses Summary"
-msgstr ""
+msgstr "Riepilogo Entrate vs Spese"
 
 #: reports/incexpenses.cpp:115
 msgid "Income:"
@@ -7115,7 +7117,7 @@ msgstr "Uscite:"
 
 #: reports/incexpenses.cpp:133
 msgid "Income vs. Expenses Monthly"
-msgstr ""
+msgstr "Entrate vs Uscite Mensili"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
@@ -7808,11 +7810,11 @@ msgstr "Conferma eliminazione del Tag"
 
 #: themes.cpp:191
 msgid "&Delete"
-msgstr ""
+msgstr "&Elimina"
 
 #: themes.cpp:193
 msgid "&Use"
-msgstr ""
+msgstr "&Utilizza"
 
 #: themes.cpp:239
 msgid "No description available"
