@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-21 23:59+0300\n"
-"PO-Revision-Date: 2024-05-21 21:02\n"
+"PO-Revision-Date: 2024-05-22 19:52\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -4323,19 +4323,19 @@ msgstr[1] "&Radera valda transaktioner permanent..."
 
 #: mmchecking_list.cpp:670
 msgid "Delete &all transactions in current view..."
-msgstr ""
+msgstr "Radera &alla transaktioner i aktuell vy..."
 
 #: mmchecking_list.cpp:670
 msgid "Permanently delete &all transactions in current view..."
-msgstr ""
+msgstr "Radera &alla transaktioner permanent i aktuell vy..."
 
 #: mmchecking_list.cpp:672
 msgid "Delete Viewed “&Follow Up” Transactions..."
-msgstr ""
+msgstr "Ta bort visade transaktioner \"&Följ upp\" ..."
 
 #: mmchecking_list.cpp:673
 msgid "Delete Viewed “&Unreconciled” Transactions..."
-msgstr ""
+msgstr "Ta bort visade transaktioner \"&Oförenliga\" ..."
 
 #: mmchecking_list.cpp:675
 msgid "De&lete "
@@ -4615,7 +4615,7 @@ msgstr ""
 
 #: mmframe.cpp:271
 msgid "Navigator"
-msgstr ""
+msgstr "Navigator"
 
 #: mmframe.cpp:272
 msgid "Toolbar"
@@ -4750,15 +4750,15 @@ msgstr "&QIF-fil..."
 
 #: mmframe.cpp:1475
 msgid "&Customize Report..."
-msgstr ""
+msgstr "&Anpassa rapport..."
 
 #: mmframe.cpp:1476
 msgid "&Rename Report..."
-msgstr ""
+msgstr "&Byt namn på rapport..."
 
 #: mmframe.cpp:1477
 msgid "&Delete Report..."
-msgstr ""
+msgstr "&Ta bort rapport..."
 
 #: mmframe.cpp:1493 mmframe.cpp:1511 mmframe.cpp:1531 mmframe.cpp:1714
 msgid "&Edit Account..."
@@ -4886,11 +4886,11 @@ msgstr "Visa/dölj verktygsfältet"
 
 #: mmframe.cpp:1634
 msgid "&Navigator\tF5"
-msgstr ""
+msgstr "&Navigator\tF5"
 
 #: mmframe.cpp:1634
 msgid "Show/Hide Navigator"
-msgstr ""
+msgstr "Visa/Dölj Navigator"
 
 #: mmframe.cpp:1636
 msgid "&Display Share Accounts"
@@ -4898,7 +4898,7 @@ msgstr ""
 
 #: mmframe.cpp:1636
 msgid "Show/Hide Share Accounts in Navigator"
-msgstr ""
+msgstr "Visa/Dölj aktiekonton i Navigator"
 
 #: mmframe.cpp:1638
 msgid "&Display Deleted Transactions"
@@ -4906,7 +4906,7 @@ msgstr ""
 
 #: mmframe.cpp:1638
 msgid "Show/Hide Deleted Transactions in Navigator"
-msgstr ""
+msgstr "Visa/Dölj borttagna transaktioner i Navigator"
 
 #: mmframe.cpp:1640
 msgid "Budgets: As Financial &Years"
