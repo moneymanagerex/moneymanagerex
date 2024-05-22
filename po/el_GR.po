@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-21 23:59+0300\n"
-"PO-Revision-Date: 2024-05-22 06:01\n"
+"PO-Revision-Date: 2024-05-22 12:59\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -366,7 +366,7 @@ msgstr "Επισκεφθείτε την ιστοσελίδα MMEX για τα τ
 
 #: appstartdialog.cpp:125 mmframe.cpp:1869
 msgid "&Forum"
-msgstr ""
+msgstr "&Φόρουμ"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
@@ -1038,7 +1038,7 @@ msgstr "Καθορίστε το ποσό της μεταφοράς στον λο
 
 #: billsdepositsdialog.cpp:544 transdialog.cpp:494
 msgid "Open Calculator"
-msgstr ""
+msgstr "Άνοιγμα Αριθμομηχανής"
 
 #: billsdepositsdialog.cpp:550 billsdepositsdialog.cpp:837
 #: billsdepositsdialog.cpp:850 billsdepositspanel.cpp:134 filtertrans.cpp:200
@@ -1638,19 +1638,19 @@ msgstr "Κατηγορίες"
 #: categdialog.cpp:258 relocatecategorydialog.cpp:89
 #: relocatecategorydialog.h:43
 msgid "Merge Categories"
-msgstr ""
+msgstr "Συγχώνευση Κατηγοριών"
 
 #: categdialog.cpp:260
 msgid "C&ollapse All"
-msgstr ""
+msgstr "Σ&ύμπτυξη Όλων"
 
 #: categdialog.cpp:265
 msgid "E&xpand All"
-msgstr ""
+msgstr "Α&νάπτυξη Όλων"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "&Show All"
-msgstr ""
+msgstr "&Εμφάνιση Όλων"
 
 #: categdialog.cpp:272
 msgid "Show all hidden categories"
@@ -1882,7 +1882,7 @@ msgstr "64-bit"
 
 #: constants.cpp:193
 msgid "View Transaction Report..."
-msgstr ""
+msgstr "Προβολή Αναφοράς Συναλλαγών..."
 
 #: constants.cpp:194
 msgid "View All Transactions"
@@ -2082,7 +2082,7 @@ msgstr "Επιλέξτε τύπο προσαρμοσμένου πεδίου"
 
 #: customfieldeditdialog.cpp:148
 msgid "Tooltip"
-msgstr ""
+msgstr "Συμβουλή"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enter the tooltip that will be shown"
@@ -3933,12 +3933,12 @@ msgstr "Αδυναμία εύρεσης του συμβόλου του βασι�
 
 #: mmSimpleDialogs.cpp:767 mmSimpleDialogs.cpp:779
 msgid "&Clear color"
-msgstr ""
+msgstr "&Καθαρισμός χρώματος"
 
 #: mmSimpleDialogs.cpp:770 mmSimpleDialogs.cpp:784
 #, c-format
 msgid "Color #&%i"
-msgstr ""
+msgstr "Χρώμα #%i"
 
 #: mmSimpleDialogs.cpp:942
 msgid "Subtract one year"
@@ -4633,7 +4633,7 @@ msgstr "Παρουσιάστηκε μοιραίο σφάλμα.\n"
 
 #: mmframe.cpp:271
 msgid "Navigator"
-msgstr ""
+msgstr "Πλοηγός"
 
 #: mmframe.cpp:272
 msgid "Toolbar"
@@ -4768,15 +4768,15 @@ msgstr "&Αρχείο QIF..."
 
 #: mmframe.cpp:1475
 msgid "&Customize Report..."
-msgstr ""
+msgstr "&Προσαρμογή Αναφοράς..."
 
 #: mmframe.cpp:1476
 msgid "&Rename Report..."
-msgstr ""
+msgstr "&Μετονομασία Αναφοράς..."
 
 #: mmframe.cpp:1477
 msgid "&Delete Report..."
-msgstr ""
+msgstr "&Διαγραφή Αναφοράς..."
 
 #: mmframe.cpp:1493 mmframe.cpp:1511 mmframe.cpp:1531 mmframe.cpp:1714
 msgid "&Edit Account..."
@@ -4904,7 +4904,7 @@ msgstr "Εμφάνιση/Απόκρυψη γραμμής εργαλείων"
 
 #: mmframe.cpp:1634
 msgid "&Navigator\tF5"
-msgstr ""
+msgstr "&Πλοήγηση F5"
 
 #: mmframe.cpp:1634
 msgid "Show/Hide Navigator"
@@ -4984,7 +4984,7 @@ msgstr "Εναλλαγή πλήρους οθόνης"
 
 #: mmframe.cpp:1676
 msgid "&Reset View"
-msgstr ""
+msgstr "&Επαναφορά Προβολής"
 
 #: mmframe.cpp:1677
 msgid "Reset view and dock tools"
@@ -5097,7 +5097,7 @@ msgstr "Διαχειριστής Θεμάτων"
 
 #: mmframe.cpp:1796
 msgid "Tra&nsaction Report..."
-msgstr ""
+msgstr "Έκθεση των συναλλαγών..."
 
 #: mmframe.cpp:1802
 msgid "&General Report Manager..."
@@ -5169,7 +5169,7 @@ msgstr "Εμφάνιση Βοήθειας"
 
 #: mmframe.cpp:1855
 msgid "Face&book"
-msgstr ""
+msgstr "Face&book"
 
 #: mmframe.cpp:1855
 msgid "Visit MMEX Facebook page"
@@ -5217,7 +5217,7 @@ msgstr "Πρόσβαση στο ανοικτού κώδικα αποθετήρι
 
 #: mmframe.cpp:1867
 msgid "W&iki"
-msgstr ""
+msgstr "W&iki"
 
 #: mmframe.cpp:1867
 msgid "Read and update MMEX wiki"
@@ -5514,11 +5514,11 @@ msgstr "Αποσφαλμάτωση Βάσης Δεδομένων"
 
 #: mmframe.cpp:2492
 msgid "&Yes"
-msgstr ""
+msgstr "&Ναι"
 
 #: mmframe.cpp:2492
 msgid "&No"
-msgstr ""
+msgstr "&Όχι"
 
 #: mmframe.cpp:2512 mmframe.cpp:2533
 msgid "Save database file as"
@@ -6849,7 +6849,7 @@ msgstr "Αρχεία που βρέθηκαν στον προϋπολογισμό
 
 #: relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge Payees"
-msgstr ""
+msgstr "Συγχώνευση Δικαιούχων"
 
 #: relocatepayeedialog.cpp:99
 msgid "&Delete source payee after merge"
@@ -6861,7 +6861,7 @@ msgstr "Επιβεβαίωση συγχώνευσης δικαιούχων"
 
 #: relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge Tags"
-msgstr ""
+msgstr "Συγχώνευση ετικετών"
 
 #: relocatetagdialog.cpp:101
 msgid "&Delete source tag after merge"
@@ -6898,7 +6898,7 @@ msgstr "Περίληψη κατηγορίας προϋπολογισμού γι�
 
 #: reports/budgetcategorysummary.cpp:129
 msgid "(Estimated vs. Actual)"
-msgstr ""
+msgstr "(Εκτιμώμενη vs. Πραγματική)"
 
 #: reports/budgetcategorysummary.cpp:346
 msgid "Estimated Income:"
@@ -7097,7 +7097,7 @@ msgstr "Μελλοντικές Συναλλαγές έχουν αγνοηθεί"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs. Expenses Summary"
-msgstr ""
+msgstr "Αναφορά Εισόδων - Εξόδων"
 
 #: reports/incexpenses.cpp:115
 msgid "Income:"
@@ -7109,7 +7109,7 @@ msgstr "Έξοδα:"
 
 #: reports/incexpenses.cpp:133
 msgid "Income vs. Expenses Monthly"
-msgstr ""
+msgstr "Μηνιαία Έσοδα - Έξοδα"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
