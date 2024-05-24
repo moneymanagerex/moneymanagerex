@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-05-21 23:59+0300\n"
-"PO-Revision-Date: 2024-05-21 22:33\n"
+"POT-Creation-Date: 2024-05-24 22:36+0300\n"
+"PO-Revision-Date: 2024-05-24 19:50\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -671,7 +671,7 @@ msgstr "Csillagot (*) használj, ha bármennyi karaktert kell helyettesíteni - 
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr "Csillagot (*) használva az elején, hogy a mondaton belül bármilyen karaktersort megtaláljon."
 
-#: assetspanel.cpp:583 stockspanel.cpp:333 stockspanel.cpp:520
+#: assetspanel.cpp:583 stockspanel.cpp:370 stockspanel.cpp:557
 #, c-format
 msgid "Total: %s"
 msgstr "Összesen: %s"
@@ -699,8 +699,7 @@ msgstr "Számla \tDátum\t  Érték\n\n"
 msgid "Description"
 msgstr "Leírás"
 
-#: attachmentdialog.cpp:56 import_export/qif_export.cpp:203
-#: import_export/univcsvdialog.cpp:201
+#: attachmentdialog.cpp:56
 msgid "File"
 msgstr "Fájl"
 
@@ -709,8 +708,8 @@ msgid "Attachment folder not defined."
 msgstr "Mellékletek könyvtár nincs megadva"
 
 #: attachmentdialog.cpp:65
-msgid "Please set it in Tools → Options → Attachments"
-msgstr "Állítsa be az Eszközök → Beállítások → Mellékletek menüben"
+msgid "Please set it in Tools → Settings… → Attachments"
+msgstr ""
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
@@ -1249,8 +1248,8 @@ msgstr "Adja meg hányszor kell fizetni.\n"
 
 #: billsdepositsdialog.cpp:1367 images_list.cpp:502
 #: import_export/univcsvdialog.cpp:1582 maincurrencydialog.cpp:482
-#: mmframe.cpp:3917 splittransactionsdialog.cpp:412 stockspanel.cpp:384
-#: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
+#: mmframe.cpp:3917 splittransactionsdialog.cpp:412 stockspanel.cpp:421
+#: stockspanel.cpp:422 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
 msgstr "Hiba"
@@ -3160,6 +3159,11 @@ msgstr "Fájlba írás"
 msgid "File Name:"
 msgstr "Fájlnév: "
 
+#: import_export/qif_export.cpp:203 import_export/qif_import_gui.cpp:135
+#: import_export/univcsvdialog.cpp:201
+msgid "&Browse..."
+msgstr "&Tallózás…"
+
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:555
 msgid "Clear"
 msgstr "Töröl"
@@ -3241,10 +3245,6 @@ msgstr "Exportált ügyletek száma: %zu\n"
 msgid "Number of accounts exported: %zu"
 msgstr "Exportált számlák száma: %zu"
 
-#: import_export/qif_import_gui.cpp:135 import_export/univcsvdialog.cpp:201
-msgid "&Browse..."
-msgstr "&Tallózás…"
-
 #: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:385
 msgid "Encoding:"
 msgstr "Kódolás"
@@ -3321,7 +3321,7 @@ msgstr "Nyomja meg a Rendben gombot a folytatáshoz"
 
 #: import_export/qif_import_gui.cpp:770 import_export/qif_import_gui.cpp:801
 #: import_export/univcsvdialog.cpp:2091 import_export/univcsvdialog.cpp:2105
-#: stockspanel.cpp:449
+#: stockspanel.cpp:486
 msgid "Missing"
 msgstr "Hiányzó"
 
@@ -3930,7 +3930,7 @@ msgstr "Frissíteni szeretné a pénznemárfolyamokat?"
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr "A(z) %s jelzéshez tartozó előzményeket nem tudom letölteni. Az árfolyamtörténet nem elérhető!"
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:395 util.cpp:684
+#: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:684
 msgid "Could not find base currency symbol!"
 msgstr "Az alappénznem jelzése nem található!"
 
@@ -5597,7 +5597,7 @@ msgstr "Részvényárfolyamok letöltése Yahoo-ról"
 msgid "Please wait..."
 msgstr "Kérem várjon..."
 
-#: mmframe.cpp:3567 stockspanel.cpp:459
+#: mmframe.cpp:3567 stockspanel.cpp:496
 #, c-format
 msgid "%1$s on %2$s"
 msgstr "%1$s/%2$s"
@@ -7676,49 +7676,49 @@ msgstr "Részvényárfolyamok frissítése Yahoo-ról"
 msgid "Lot"
 msgstr "Csomag"
 
-#: stockspanel.cpp:288
+#: stockspanel.cpp:325
 #, c-format
 msgid "Stock Portfolio: %s"
 msgstr "Részvény-portfólió: %s"
 
-#: stockspanel.cpp:332
+#: stockspanel.cpp:369
 #, c-format
 msgid "Total Shares: %s"
 msgstr "Összes részvény: %s"
 
-#: stockspanel.cpp:334
+#: stockspanel.cpp:371
 #, c-format
 msgid "Invested: %s"
 msgstr "Befektetve: %s"
 
-#: stockspanel.cpp:335
+#: stockspanel.cpp:372
 #, c-format
 msgid "Gain: %s"
 msgstr "Hozam: %s"
 
-#: stockspanel.cpp:335
+#: stockspanel.cpp:372
 #, c-format
 msgid "Loss: %s"
 msgstr "Veszteség: %s"
 
-#: stockspanel.cpp:373
+#: stockspanel.cpp:410
 msgid "Stock prices successfully updated"
 msgstr "Részvényárfolyamok sikeresen frissítve"
 
-#: stockspanel.cpp:375 stockspanel.cpp:561
+#: stockspanel.cpp:412 stockspanel.cpp:598
 #, c-format
 msgid "Last updated %s"
 msgstr "Utolsó frissítés %s"
 
-#: stockspanel.cpp:401 util.cpp:708 util.cpp:869
+#: stockspanel.cpp:438 util.cpp:708 util.cpp:869
 msgid "Nothing to update"
 msgstr "Nincs mit frissíteni"
 
-#: stockspanel.cpp:415
+#: stockspanel.cpp:452
 msgid "Connecting..."
 msgstr "Kapcsolódás..."
 
-#: stockspanel.cpp:519
+#: stockspanel.cpp:556
 #, c-format
 msgid "Symbol: %s"
 msgstr "Szimbólum: %s"
@@ -8430,8 +8430,8 @@ msgid "Base Account Currency Not set."
 msgstr "Alap pénznem nincs beállítva."
 
 #: wizard_newaccount.cpp:165
-msgid "Set that first using Tools → Options menu and then add a new account."
-msgstr "Először ezt állítsa be az Eszközök → Beállítások menüben, majd hozzon létre új számlát."
+msgid "Set that first using Tools → Settings… menu and then add a new account."
+msgstr ""
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
