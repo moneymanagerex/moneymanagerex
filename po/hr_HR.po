@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-05-21 23:59+0300\n"
-"PO-Revision-Date: 2024-05-21 21:02\n"
+"POT-Creation-Date: 2024-05-24 22:36+0300\n"
+"PO-Revision-Date: 2024-05-24 19:50\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -671,7 +671,7 @@ msgstr "Koristi asterisk (*) za pronalaženje bilo koji broj znakova – na prim
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr "Koristi asterisk (*) za pronalaženje bilo kojeg niza znakova u rečenici."
 
-#: assetspanel.cpp:583 stockspanel.cpp:333 stockspanel.cpp:520
+#: assetspanel.cpp:583 stockspanel.cpp:370 stockspanel.cpp:557
 #, c-format
 msgid "Total: %s"
 msgstr "Ukupno: %s"
@@ -699,8 +699,7 @@ msgstr "Račun \t Datum\t   Vrijednost\n\n"
 msgid "Description"
 msgstr "Opis"
 
-#: attachmentdialog.cpp:56 import_export/qif_export.cpp:203
-#: import_export/univcsvdialog.cpp:201
+#: attachmentdialog.cpp:56
 msgid "File"
 msgstr "Datoteka"
 
@@ -709,8 +708,8 @@ msgid "Attachment folder not defined."
 msgstr "Mapa priloga nije definirana."
 
 #: attachmentdialog.cpp:65
-msgid "Please set it in Tools → Options → Attachments"
-msgstr "Postavi u Alati → Opcije → Prilozi"
+msgid "Please set it in Tools → Settings… → Attachments"
+msgstr ""
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
@@ -1249,8 +1248,8 @@ msgstr "Odredi broj potrebnih plaćanja.\n"
 
 #: billsdepositsdialog.cpp:1367 images_list.cpp:502
 #: import_export/univcsvdialog.cpp:1582 maincurrencydialog.cpp:482
-#: mmframe.cpp:3917 splittransactionsdialog.cpp:412 stockspanel.cpp:384
-#: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
+#: mmframe.cpp:3917 splittransactionsdialog.cpp:412 stockspanel.cpp:421
+#: stockspanel.cpp:422 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
 msgstr "Greška"
@@ -3158,6 +3157,11 @@ msgstr "Upiši u datoteku"
 msgid "File Name:"
 msgstr "Ime datoteke:"
 
+#: import_export/qif_export.cpp:203 import_export/qif_import_gui.cpp:135
+#: import_export/univcsvdialog.cpp:201
+msgid "&Browse..."
+msgstr ""
+
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:555
 msgid "Clear"
 msgstr "Izbriši"
@@ -3239,10 +3243,6 @@ msgstr "Broj izvezenih transakcija: %zu \n"
 msgid "Number of accounts exported: %zu"
 msgstr "Broj izvezenih računa: %zu"
 
-#: import_export/qif_import_gui.cpp:135 import_export/univcsvdialog.cpp:201
-msgid "&Browse..."
-msgstr ""
-
 #: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:385
 msgid "Encoding:"
 msgstr "Kodiranje:"
@@ -3319,7 +3319,7 @@ msgstr "Klikni na gumb „U redu”, za nastavak"
 
 #: import_export/qif_import_gui.cpp:770 import_export/qif_import_gui.cpp:801
 #: import_export/univcsvdialog.cpp:2091 import_export/univcsvdialog.cpp:2105
-#: stockspanel.cpp:449
+#: stockspanel.cpp:486
 msgid "Missing"
 msgstr "Nedostaje"
 
@@ -3926,7 +3926,7 @@ msgstr "Želiš li aktualizirati današnje tečajeve valuta?"
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr "Nije moguće preuzeti povijest za osnovni simbol %s. Povijesni tečajevi nisu dostupni!"
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:395 util.cpp:684
+#: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:684
 msgid "Could not find base currency symbol!"
 msgstr "Nije moguće naći simbol osnovne valute!"
 
@@ -5595,7 +5595,7 @@ msgstr "Preuzimanje cijena dionica s Yahoo stranice"
 msgid "Please wait..."
 msgstr "Pričekaj …"
 
-#: mmframe.cpp:3567 stockspanel.cpp:459
+#: mmframe.cpp:3567 stockspanel.cpp:496
 #, c-format
 msgid "%1$s on %2$s"
 msgstr ""
@@ -7672,49 +7672,49 @@ msgstr "Aktualiziraj cijene vlasničkog udjela s Yahooa"
 msgid "Lot"
 msgstr "Šarža"
 
-#: stockspanel.cpp:288
+#: stockspanel.cpp:325
 #, c-format
 msgid "Stock Portfolio: %s"
 msgstr "Portfelj vlasničkih udjela: %s"
 
-#: stockspanel.cpp:332
+#: stockspanel.cpp:369
 #, c-format
 msgid "Total Shares: %s"
 msgstr "Ukupno dionica: %s"
 
-#: stockspanel.cpp:334
+#: stockspanel.cpp:371
 #, c-format
 msgid "Invested: %s"
 msgstr "Investirano: %s"
 
-#: stockspanel.cpp:335
+#: stockspanel.cpp:372
 #, c-format
 msgid "Gain: %s"
 msgstr "Dobit: %s"
 
-#: stockspanel.cpp:335
+#: stockspanel.cpp:372
 #, c-format
 msgid "Loss: %s"
 msgstr "Gubitak: %s"
 
-#: stockspanel.cpp:373
+#: stockspanel.cpp:410
 msgid "Stock prices successfully updated"
 msgstr "Cijene vlasničkih udjela su uspješno aktualizirane"
 
-#: stockspanel.cpp:375 stockspanel.cpp:561
+#: stockspanel.cpp:412 stockspanel.cpp:598
 #, c-format
 msgid "Last updated %s"
 msgstr "Zadnji put aktualizirano %s"
 
-#: stockspanel.cpp:401 util.cpp:708 util.cpp:869
+#: stockspanel.cpp:438 util.cpp:708 util.cpp:869
 msgid "Nothing to update"
 msgstr "Nema se što aktualizirati"
 
-#: stockspanel.cpp:415
+#: stockspanel.cpp:452
 msgid "Connecting..."
 msgstr "Povezivanje …"
 
-#: stockspanel.cpp:519
+#: stockspanel.cpp:556
 #, c-format
 msgid "Symbol: %s"
 msgstr "Oznaka: %s"
@@ -8422,7 +8422,7 @@ msgid "Base Account Currency Not set."
 msgstr "Osnovna valuta računa nije postavljena."
 
 #: wizard_newaccount.cpp:165
-msgid "Set that first using Tools → Options menu and then add a new account."
+msgid "Set that first using Tools → Settings… menu and then add a new account."
 msgstr ""
 
 #: wizard_newdb.cpp:30
