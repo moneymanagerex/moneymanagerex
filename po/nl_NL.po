@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-05-21 23:59+0300\n"
-"PO-Revision-Date: 2024-05-22 16:15\n"
+"POT-Creation-Date: 2024-05-24 22:36+0300\n"
+"PO-Revision-Date: 2024-05-24 19:50\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -671,7 +671,7 @@ msgstr "Gebruik het vraagteken (?) om een enkel teken te vinden - zoals s? t vin
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr "Gebruik de asterisk (*) in het begin om een tekenreeks in het midden van de zin te vinden."
 
-#: assetspanel.cpp:583 stockspanel.cpp:333 stockspanel.cpp:520
+#: assetspanel.cpp:583 stockspanel.cpp:370 stockspanel.cpp:557
 #, c-format
 msgid "Total: %s"
 msgstr "Totaal: %s"
@@ -699,8 +699,7 @@ msgstr "Rekening \t Datum\t   Waarde\n\n"
 msgid "Description"
 msgstr "Omschrijving"
 
-#: attachmentdialog.cpp:56 import_export/qif_export.cpp:203
-#: import_export/univcsvdialog.cpp:201
+#: attachmentdialog.cpp:56
 msgid "File"
 msgstr "Bestand"
 
@@ -709,8 +708,8 @@ msgid "Attachment folder not defined."
 msgstr "Bijlagenmap niet opgegeven."
 
 #: attachmentdialog.cpp:65
-msgid "Please set it in Tools → Options → Attachments"
-msgstr "Stel het in in in Tools → Opties → Bijlagen"
+msgid "Please set it in Tools → Settings… → Attachments"
+msgstr ""
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
@@ -1249,8 +1248,8 @@ msgstr "Het aantal uit te voeren betalingen ingeven.\n"
 
 #: billsdepositsdialog.cpp:1367 images_list.cpp:502
 #: import_export/univcsvdialog.cpp:1582 maincurrencydialog.cpp:482
-#: mmframe.cpp:3917 splittransactionsdialog.cpp:412 stockspanel.cpp:384
-#: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
+#: mmframe.cpp:3917 splittransactionsdialog.cpp:412 stockspanel.cpp:421
+#: stockspanel.cpp:422 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
 msgstr "Fout"
@@ -3160,6 +3159,11 @@ msgstr "Schrijf naar bestand"
 msgid "File Name:"
 msgstr "Bestandsnaam:"
 
+#: import_export/qif_export.cpp:203 import_export/qif_import_gui.cpp:135
+#: import_export/univcsvdialog.cpp:201
+msgid "&Browse..."
+msgstr "&Bladeren..."
+
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:555
 msgid "Clear"
 msgstr "Wissen"
@@ -3241,10 +3245,6 @@ msgstr "Aantal transacties geëxporteerd: %zu\n"
 msgid "Number of accounts exported: %zu"
 msgstr "Aantal transacties geëxporteerd: %zu"
 
-#: import_export/qif_import_gui.cpp:135 import_export/univcsvdialog.cpp:201
-msgid "&Browse..."
-msgstr "&Bladeren..."
-
 #: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:385
 msgid "Encoding:"
 msgstr "Tekencodering:"
@@ -3321,7 +3321,7 @@ msgstr "Klik op OK om verder te gaan"
 
 #: import_export/qif_import_gui.cpp:770 import_export/qif_import_gui.cpp:801
 #: import_export/univcsvdialog.cpp:2091 import_export/univcsvdialog.cpp:2105
-#: stockspanel.cpp:449
+#: stockspanel.cpp:486
 msgid "Missing"
 msgstr "Ontbreekt"
 
@@ -3929,7 +3929,7 @@ msgstr "Wilt u de valutakoersen van vandaag bijwerken?"
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr "Kon de historie voor symbool %s niet downloaden. Historische koersen niet beschikbaar!"
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:395 util.cpp:684
+#: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:684
 msgid "Could not find base currency symbol!"
 msgstr "Kan het standaard valutasymbool niet vinden!"
 
@@ -5598,7 +5598,7 @@ msgstr "Aandelen koersen van Yahoo downloaden"
 msgid "Please wait..."
 msgstr "Even wachten alstublieft..."
 
-#: mmframe.cpp:3567 stockspanel.cpp:459
+#: mmframe.cpp:3567 stockspanel.cpp:496
 #, c-format
 msgid "%1$s on %2$s"
 msgstr "%1$s van %2$s"
@@ -7677,49 +7677,49 @@ msgstr "Vernieuw de effectenkoersen van Yahoo"
 msgid "Lot"
 msgstr "Partij"
 
-#: stockspanel.cpp:288
+#: stockspanel.cpp:325
 #, c-format
 msgid "Stock Portfolio: %s"
 msgstr "Aandelenportefeuille: %s"
 
-#: stockspanel.cpp:332
+#: stockspanel.cpp:369
 #, c-format
 msgid "Total Shares: %s"
 msgstr "Totaal aantal aandelen: %s"
 
-#: stockspanel.cpp:334
+#: stockspanel.cpp:371
 #, c-format
 msgid "Invested: %s"
 msgstr "Investering: %s"
 
-#: stockspanel.cpp:335
+#: stockspanel.cpp:372
 #, c-format
 msgid "Gain: %s"
 msgstr "Toename: %s"
 
-#: stockspanel.cpp:335
+#: stockspanel.cpp:372
 #, c-format
 msgid "Loss: %s"
 msgstr "Verlies: %s"
 
-#: stockspanel.cpp:373
+#: stockspanel.cpp:410
 msgid "Stock prices successfully updated"
 msgstr "Aandelenkoersen met succes bijgewerkt"
 
-#: stockspanel.cpp:375 stockspanel.cpp:561
+#: stockspanel.cpp:412 stockspanel.cpp:598
 #, c-format
 msgid "Last updated %s"
 msgstr "Laatst bijgewerkt %s"
 
-#: stockspanel.cpp:401 util.cpp:708 util.cpp:869
+#: stockspanel.cpp:438 util.cpp:708 util.cpp:869
 msgid "Nothing to update"
 msgstr "Niets bij te werken"
 
-#: stockspanel.cpp:415
+#: stockspanel.cpp:452
 msgid "Connecting..."
 msgstr "Bezig met verbinden..."
 
-#: stockspanel.cpp:519
+#: stockspanel.cpp:556
 #, c-format
 msgid "Symbol: %s"
 msgstr "Symbool: %s"
@@ -8431,8 +8431,8 @@ msgid "Base Account Currency Not set."
 msgstr "Standaardvaluta niet ingesteld."
 
 #: wizard_newaccount.cpp:165
-msgid "Set that first using Tools → Options menu and then add a new account."
-msgstr "Dat eerst instellen via Extra -> Opties menu en daarna pas een nieuw bedrag invoeren."
+msgid "Set that first using Tools → Settings… menu and then add a new account."
+msgstr ""
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
