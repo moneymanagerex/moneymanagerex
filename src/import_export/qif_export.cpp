@@ -200,7 +200,7 @@ void mmQIFExportDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     toFileCheckBox_->SetValue(true);
     file_name_label_ = new wxStaticText(main_tab, wxID_ANY, _("File Name:"));
-    button_search_ = new wxButton(main_tab, wxID_SAVE, _("File"));
+    button_search_ = new wxButton(main_tab, wxID_SAVE, _("&Browse..."));
     button_search_->Connect(wxID_SAVE, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFExportDialog::OnFileSearch), nullptr, this);
 
