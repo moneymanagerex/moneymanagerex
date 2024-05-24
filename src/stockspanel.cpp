@@ -232,7 +232,8 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
         Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(stock_trans.TRANSID);
         if (share_entry && ((share_entry->SHARENUMBER > 0) || (share_entry->SHAREPRICE > 0)))
         {
-           stockTxnListCtrl->SetItem(index, 0, mmGetDateForDisplay(stock_trans.TRANSDATE));
+            stockTxnListCtrl->SetItemData(index, stock_trans.TRANSID);
+            stockTxnListCtrl->SetItem(index, 0, mmGetDateForDisplay(stock_trans.TRANSDATE));
             stockTxnListCtrl->SetItem(index, 1, share_entry->SHARELOT);
 
             int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().SharePrecision();
@@ -241,6 +242,41 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
             stockTxnListCtrl->SetItem(index, 4, wxString::FromDouble(share_entry->SHARECOMMISSION, 2));
         }
     }
+
+    // Double click on a row will open the sharetransactiondialog
+    stockTxnListCtrl->Bind(wxEVT_LIST_ITEM_ACTIVATED, [stockTxnListCtrl](wxListEvent& event) {
+        // Display the dialog
+        long index = event.GetIndex();
+        Model_Checking::Data* txn = Model_Checking::instance().get(event.GetData());
+        Model_Translink::Data link = Model_Translink::TranslinkRecord(txn->TRANSID);
+        ShareTransactionDialog dlg(stockTxnListCtrl, &link, txn);
+        dlg.ShowModal();
+
+        // Update the item fields in case something changed
+        Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(txn->TRANSID);
+        stockTxnListCtrl->SetItem(index, 0, mmGetDateForDisplay(txn->TRANSDATE));
+        stockTxnListCtrl->SetItem(index, 1, share_entry->SHARELOT);
+
+        int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().SharePrecision();
+        stockTxnListCtrl->SetItem(index, 2, wxString::FromDouble(share_entry->SHARENUMBER, precision));
+        stockTxnListCtrl->SetItem(index, 3, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().SharePrecision()));
+        stockTxnListCtrl->SetItem(index, 4, wxString::FromDouble(share_entry->SHARECOMMISSION, 2));
+
+        // Sort by date 
+        stockTxnListCtrl->SortItems(
+            [](wxIntPtr item1, wxIntPtr item2, wxIntPtr) -> int
+            {
+                wxDate date1 = Model_Checking::TRANSDATE(Model_Checking::instance().get(item1));
+                wxDate date2 = Model_Checking::TRANSDATE(Model_Checking::instance().get(item2));
+
+                if (date1.IsEarlierThan(date2))
+                    return -1;
+                if (date1.IsLaterThan(date2))
+                    return 1;
+                return 0;
+            },
+            0);
+    });
 
     stockTxnListCtrl->Bind(wxEVT_CHAR, [stockTxnListCtrl](wxKeyEvent& event) {
         if (event.GetKeyCode() == WXK_CONTROL_C) {
@@ -281,6 +317,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
     dlg.SetInitialSize(wxSize(470, -1));
     dlg.Center();
     dlg.ShowModal();
+    RefreshList();
 }
 
 wxString mmStocksPanel::GetPanelTitle(const Model_Account::Data& account) const
