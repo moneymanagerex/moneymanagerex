@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-05-24 19:50\n"
+"PO-Revision-Date: 2024-05-26 09:30\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -709,7 +709,7 @@ msgstr "Ο φάκελος συνημμένων δεν έχει οριστεί."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools → Settings… → Attachments"
-msgstr ""
+msgstr "Παρακαλώ ορίστε το στα Εργαλεία -> Επιλογές -> Συνημμένα"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
@@ -8424,7 +8424,7 @@ msgstr "Το βασικό νόμισμα του λογαριασμού δεν ο
 
 #: wizard_newaccount.cpp:165
 msgid "Set that first using Tools → Settings… menu and then add a new account."
-msgstr ""
+msgstr "Ορίστε το πρώτα χρησιμοποιώντας το μενού Εργαλεία->Επιλογές και μετά προσθέστε ένα νέο λογαριασμό."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
