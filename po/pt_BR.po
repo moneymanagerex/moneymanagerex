@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-05-24 19:50\n"
+"PO-Revision-Date: 2024-05-27 11:57\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -709,7 +709,7 @@ msgstr "Pasta de anexos não definida."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools → Settings… → Attachments"
-msgstr ""
+msgstr "Por favor, configure isto em Ferramentas -> Opções... -> Documentos"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
@@ -8433,7 +8433,7 @@ msgstr "Moeda Padrão não Definida."
 
 #: wizard_newaccount.cpp:165
 msgid "Set that first using Tools → Settings… menu and then add a new account."
-msgstr ""
+msgstr "Defina isso primeiro usando o menu Ferramentas → Opções... e, em seguida, adicione uma nova conta."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
