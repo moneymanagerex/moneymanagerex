@@ -637,9 +637,18 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
 
         if (locale.IsEmpty())
+        {
                 locale = "undefined";
+        }
         else
-                locale.Append("'").Prepend("'").Replace("_", "-");
+        {
+                // Locale format for charts: en-US
+                // Some locale format on Linux are different, e.g. en_US or even en_US.UTF-8
+                // -> underscore (_) needs to be replaced with dash (-) and .UTF_8 suffix needs to be removed, if present
+                locale.Append("'").Prepend("'");
+                locale.Replace("_", "-");
+                locale.Replace(".UTF-8", "");
+        }
 
         htmlChart += ", legend: { formatter: function(seriesName, opts){ "
             "var percent = (+opts.w.globals.seriesPercent[opts.seriesIndex]).toFixed(1); "
