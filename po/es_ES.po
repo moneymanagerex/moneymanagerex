@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-06-01 19:47\n"
+"PO-Revision-Date: 2024-06-01 21:27\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -6883,7 +6883,7 @@ msgstr "Año fiscal: %s - %i"
 #: reports/budget.cpp:101
 #, c-format
 msgid "Financial Year: %i Month: %s"
-msgstr ""
+msgstr "Año fiscal: %i Mes: %s"
 
 #: reports/budget.cpp:103
 #, c-format
