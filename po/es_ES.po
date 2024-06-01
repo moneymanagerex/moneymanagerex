@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-05-26 18:14\n"
+"PO-Revision-Date: 2024-06-01 19:47\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -6902,7 +6902,7 @@ msgstr "Resumen de categorías presupuestarias de %s"
 
 #: reports/budgetcategorysummary.cpp:129
 msgid "(Estimated vs. Actual)"
-msgstr ""
+msgstr "(Estimado contra real)"
 
 #: reports/budgetcategorysummary.cpp:346
 msgid "Estimated Income:"
@@ -7101,7 +7101,7 @@ msgstr "Las transacciones futuras han sido ignoradas"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs. Expenses Summary"
-msgstr ""
+msgstr "Resumen de ingresos y gastos"
 
 #: reports/incexpenses.cpp:115
 msgid "Income:"
@@ -7113,7 +7113,7 @@ msgstr "Gastos:"
 
 #: reports/incexpenses.cpp:133
 msgid "Income vs. Expenses Monthly"
-msgstr ""
+msgstr "Ingresos y gastos mensuales"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
@@ -7806,11 +7806,11 @@ msgstr "Confirmar eliminación de la etiqueta"
 
 #: themes.cpp:191
 msgid "&Delete"
-msgstr ""
+msgstr "&Eliminar"
 
 #: themes.cpp:193
 msgid "&Use"
-msgstr ""
+msgstr "&Usar"
 
 #: themes.cpp:239
 msgid "No description available"
@@ -8432,7 +8432,7 @@ msgstr "No se ha seleccionado divisa base para la cuenta."
 
 #: wizard_newaccount.cpp:165
 msgid "Set that first using Tools → Settings… menu and then add a new account."
-msgstr ""
+msgstr "Establezca eso usando primero Herramientas → Opciones y después añada una nueva cuenta."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
