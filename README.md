@@ -75,7 +75,7 @@ simplicity and user-friendliness – an application that can be used everyday.
                  title="Category Manager – unlimited nested multi-level category support (MMEX 1.7.1-RC.1 64-bit on Linux Mint 21.3 Cinnamon)">
         </td>
         <td>
-            <img src="https://private-user-images.githubusercontent.com/17465872/333730443-ef82b81b-7d91-4f6c-8583-55a8707c16a4.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTY1ODMzODksIm5iZiI6MTcxNjU4MzA4OSwicGF0aCI6Ii8xNzQ2NTg3Mi8zMzM3MzA0NDMtZWY4MmI4MWItN2Q5MS00ZjZjLTg1ODMtNTVhODcwN2MxNmE0LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MjQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTI0VDIwMzgwOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTZiOTNmNzEzMzMyYTgyN2UyOTcyZDU1MWQ4ZjY1NWYxYjg4MmFhZGRmNTYyOTI1MjdhZDc2NmE3NmM0M2Q3MTcmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.ZiiYMHkFzOQb9YeYd2yjR-tLIhpTCwmDVVXW4vp-diY" 
+            <img src="https://github.com/moneymanagerex/moneymanagerex/assets/17465872/d9dcdcd8-abda-4ae5-b6e4-4d137ef99613" 
                  alt="Customise Transaction Report – English (British) (MMEX 1.8.1-Beta.1 64-bit on Linux Mint 21.3 Cinnamon)" 
                  title="Customise Transaction Report – English (British) (MMEX 1.8.1-Beta.1 64-bit on Linux Mint 21.3 Cinnamon)">
         </td>
