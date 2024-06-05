@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-05-24 19:50\n"
+"PO-Revision-Date: 2024-06-05 12:11\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgstr "&Neue Datenbank"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "Neue MMEX Datenbank Datei erstellen"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -337,7 +337,7 @@ msgstr "&Bestehende Datenbank öffnen"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "MMEX Datenbank öffnen"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1682
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "&Benutzerhandbuch"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "MMEX Benutzerhandbuch lesen"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1852
 msgid "&Website"
@@ -2582,7 +2582,7 @@ msgstr "Nachverfolgung"
 #: filtertransdialog.cpp:50 model/Model_Billsdeposits.cpp:44
 #: model/Model_Checking.cpp:45
 msgid "Duplicate"
-msgstr "Duplizieren"
+msgstr "Duplikat"
 
 #: filtertransdialog.cpp:50 filtertransdialog.cpp:1844
 msgid "All Except Reconciled"
