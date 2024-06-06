@@ -617,38 +617,37 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
                     , chartWidth);
     htmlChart += wxString::Format(", title: { text: '%s'}", gd.title);
 
-    wxString toolTipFormatter;
+    wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
+
+    if (locale.IsEmpty())
+    {
+            locale = "undefined";
+    }
+    else
+    {
+            // Locale format for charts: en-US
+            // Some locale format on Linux are different, e.g. en_US or even en_US.UTF-8
+            // -> underscore (_) needs to be replaced with dash (-) and .UTF_8 suffix needs to be removed, if present
+            locale.Append("'").Prepend("'");
+            locale.Replace("_", "-");
+            locale.Replace(".UTF-8", "");
+    }
+
     if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
     {
         htmlChart += ", plotOptions: { pie: { customScale: 0.8 } }";
-
-        const wxString pieFunctionToolTip = wxString::Format("function(value, opts) { return chart_%s[opts.dataPointIndex] }\n", divid);
-        toolTipFormatter = wxString::Format(", y: { formatter: %s }", pieFunctionToolTip);
     }
     
+    wxString toolTipFormatter = wxString::Format(", y: { formatter: function(value, opts) { return value.toLocaleString(%s, {minimumFractionDigits: %i, maximumFractionDigits: %i});}}", locale, precision, precision);
+
     htmlChart += wxString::Format(", tooltip: { theme: 'dark' %s }\n", toolTipFormatter);
-    
+
     // Turn off data labels for bar charts when they get too cluttered
-    if ((gd.type == GraphData::BAR || gd.type == GraphData::STACKEDAREA) && gd.labels.size() > 10) 
+    if ((gd.type == GraphData::BAR || gd.type == GraphData::STACKEDAREA) && gd.labels.size() > 10)
     {
         htmlChart += ", dataLabels: { enabled: false }";
     } else if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT)
     {
-        wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
-
-        if (locale.IsEmpty())
-        {
-                locale = "undefined";
-        }
-        else
-        {
-                // Locale format for charts: en-US
-                // Some locale format on Linux are different, e.g. en_US or even en_US.UTF-8
-                // -> underscore (_) needs to be replaced with dash (-) and .UTF_8 suffix needs to be removed, if present
-                locale.Append("'").Prepend("'");
-                locale.Replace("_", "-");
-                locale.Replace(".UTF-8", "");
-        }
 
         htmlChart += ", legend: { formatter: function(seriesName, opts){ "
             "var percent = (+opts.w.globals.seriesPercent[opts.seriesIndex]).toFixed(1); "
@@ -656,7 +655,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             wxString::Format("var localizedValues = opts.w.globals.series.map(function(value){ return value.toLocaleString(%s, {minimumFractionDigits: %i, "
                              "maximumFractionDigits: %i});});",
                              locale, precision, precision)
-            
+                                                                                                                                                                    
             + "var valueLength = localizedValues.reduce(function(a, b) {return Math.max(a, b.length) }, 0) + 1;" +
             wxString::Format("var value = chart_%s[opts.seriesIndex].toLocaleString(%s, {minimumFractionDigits: %i, maximumFractionDigits: %i});", divid, locale, precision, precision) +
             "value = new Array((valueLength - value.toString().length)*2 + value.split((1000).toLocaleString(" + wxString::Format("%s", locale) + ").charAt(1)).length - 1).join('&nbsp;') + value;"
@@ -753,7 +752,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             }
             seriesNo++;
         }
-        htmlChart += "] }";   // Always label the lines
+        htmlChart += "], formatter: function(value, opts){ return " + wxString::Format("value.toLocaleString(%s, {minimumFractionDigits: %i, maximumFractionDigits: %i});", locale, precision, precision) + "}}";   // Always label the lines
     }
 
     htmlPieData += wxString::Format("var chart_%s = [ %s ]", divid, pieEntries);
