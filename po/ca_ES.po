@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-05-24 19:50\n"
+"PO-Revision-Date: 2024-06-06 20:56\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -766,7 +766,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
-msgstr ""
+msgstr "Realment vol eliminar aquest fitxer adjunt?"
 
 #: attachmentdialog.cpp:277
 msgid "Confirm Attachment Deletion"
@@ -826,7 +826,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:512
 msgid "Delete attachment failed"
-msgstr ""
+msgstr "Ha fallat l'eliminació del fitxer adjunt"
 
 #: attachmentdialog.cpp:525 general_report_manager.cpp:664
 msgid "Unable to open file:"
@@ -838,7 +838,7 @@ msgstr "Si us plau, verifiqui que el fitxer existeix i que l'usuari tingui els d
 
 #: attachmentdialog.cpp:529
 msgid "Open attachment failed"
-msgstr ""
+msgstr "Ha fallat l'obertura del fitxer adjunt"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:50 currencydialog.cpp:219
 #: mmSimpleDialogs.cpp:825 model/Model_Asset.cpp:26 model/Model_Budget.cpp:58
@@ -1035,7 +1035,7 @@ msgstr "Especifiqui l'import de la transferència a \"Al Compte\""
 
 #: billsdepositsdialog.cpp:544 transdialog.cpp:494
 msgid "Open Calculator"
-msgstr ""
+msgstr "Obrir Calculadora"
 
 #: billsdepositsdialog.cpp:550 billsdepositsdialog.cpp:837
 #: billsdepositsdialog.cpp:850 billsdepositspanel.cpp:134 filtertrans.cpp:200
