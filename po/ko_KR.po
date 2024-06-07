@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-05-27 07:53\n"
+"PO-Revision-Date: 2024-06-07 11:36\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -2599,7 +2599,7 @@ msgstr "막대형"
 
 #: filtertransdialog.cpp:55
 msgid "Line"
-msgstr "선"
+msgstr "꺾은선형"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
