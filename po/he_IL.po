@@ -3049,7 +3049,7 @@ msgstr "%1$d סמלים חסרים או לא תקינים בערכת הנושא 
 #: images_list.cpp:489
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr "ערכת הנושא s% לא נמצאה, יתכן שהיא אינה נתמכת עוד. חזרה לערכת נושא ברירת המחדל"
+msgstr "ערכת הנושא %s לא נמצאה, יתכן שהיא אינה נתמכת עוד. חזרה לערכת נושא ברירת המחדל"
 
 #: images_list.cpp:496
 #, c-format
@@ -8298,7 +8298,7 @@ msgstr "חשבון '%s' לא נמצא!"
 msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
 msgstr "התנועה התווספה עם מספר החשבון הראשון :\n"
-"'% s' וסומנה כ' מעקב '"
+"'%s' וסומנה כ' מעקב '"
 
 #: webapp.cpp:499
 msgid "Wrong WebApp account"

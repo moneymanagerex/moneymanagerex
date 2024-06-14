@@ -3589,7 +3589,7 @@ msgstr "Пресет '%1$s' загружен, потому что выбран �
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr "Счёт по умолчанию '% s' для этого шаблона не существует.\n"
+msgstr "Счёт по умолчанию '%s' для этого шаблона не существует.\n"
 "Пожалуйста, выберите другой счёт."
 
 #: import_export/univcsvdialog.cpp:748
@@ -3662,7 +3662,7 @@ msgstr "Строка %ld: %s"
 #: import_export/univcsvdialog.cpp:1472
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr "Строка% ld: ОК, импортировано."
+msgstr "Строка %ld: ОК, импортировано."
 
 #: import_export/univcsvdialog.cpp:1481
 msgid "Rejected rows:"

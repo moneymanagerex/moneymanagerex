@@ -1417,7 +1417,7 @@ msgstr[1] "%d jours de retard !"
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] "1 jour de retard !"
+msgstr[0] "%d jour de retard !"
 msgstr[1] "%d jours de retard !"
 
 #: billsdepositspanel.cpp:676
