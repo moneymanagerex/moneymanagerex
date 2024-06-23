@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-06-17 15:42\n"
+"PO-Revision-Date: 2024-06-23 13:50\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -6858,7 +6858,7 @@ msgstr "Fusionar Beneficiarios"
 
 #: relocatepayeedialog.cpp:99
 msgid "&Delete source payee after merge"
-msgstr ""
+msgstr "&Eliminar beneficiario de origen después de la combinación"
 
 #: relocatepayeedialog.cpp:156
 msgid "Merge payees confirmation"
@@ -6870,7 +6870,7 @@ msgstr "Fusionar Etiquetas"
 
 #: relocatetagdialog.cpp:101
 msgid "&Delete source tag after merge"
-msgstr ""
+msgstr "&Eliminar etiqueta de origen después de la combinación"
 
 #: relocatetagdialog.cpp:158
 msgid "Merge tags confirmation"
