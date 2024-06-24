@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-05-24 19:50\n"
+"PO-Revision-Date: 2024-06-24 03:09\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -2549,7 +2549,7 @@ msgstr "பரிசோதனை"
 #: diagnostics.cpp:88 relocatecategorydialog.cpp:134
 #: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:134 themes.cpp:195
 msgid "&Close"
-msgstr ""
+msgstr "&மூடு"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -3556,11 +3556,11 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:569
 msgid "Move Up"
-msgstr ""
+msgstr "மேலே நகர்த்து"
 
 #: import_export/univcsvdialog.cpp:570
 msgid "Move Down"
-msgstr ""
+msgstr "கீழே நகர்த்து"
 
 #: import_export/univcsvdialog.cpp:571 optionsettingsmisc.cpp:228
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -3568,11 +3568,11 @@ msgstr "CSV கோப்பு இறக்கும்/ஏற்றும் �
 
 #: import_export/univcsvdialog.cpp:572
 msgid "Import File"
-msgstr ""
+msgstr "கோப்பை இறக்குமதி செய்"
 
 #: import_export/univcsvdialog.cpp:573
 msgid "Export File"
-msgstr ""
+msgstr "கோப்பை ஏற்றுமதிசெய்"
 
 #: import_export/univcsvdialog.cpp:586 import_export/univcsvdialog.cpp:2668
 #, c-format
