@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-06-23 13:50\n"
+"PO-Revision-Date: 2024-06-24 19:29\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -4256,7 +4256,7 @@ msgstr "Nuevo &cargo..."
 
 #: mmchecking_list.cpp:473
 msgid "New &Deposit..."
-msgstr "Nuevo &abono..."
+msgstr "&Nuevo depósito..."
 
 #: mmchecking_list.cpp:475
 msgid "New &Transfer..."
@@ -4515,7 +4515,7 @@ msgstr "&Nuevo cargo..."
 
 #: mmcheckingpanel.cpp:323
 msgid "&New Deposit..."
-msgstr "&Nuevo abono..."
+msgstr "&Nuevo depósito..."
 
 #: mmcheckingpanel.cpp:324
 msgid "&New Transfer..."
@@ -5081,7 +5081,7 @@ msgstr "&Transacciones programadas"
 
 #: mmframe.cpp:1780
 msgid "Bills and Deposits"
-msgstr "Facturas y abonos"
+msgstr "Facturas y depósitos"
 
 #: mmframe.cpp:1784
 msgid "&Assets"
@@ -6372,7 +6372,7 @@ msgstr "Beneficiario por defecto"
 
 #: optionsettingsmisc.cpp:156
 msgid "Default Deposit/Withdrawal Category"
-msgstr "Categoría por defecto para abonos/cargos"
+msgstr "Categoría por defecto de depósito/retiro"
 
 #: optionsettingsmisc.cpp:158
 msgid "Default Transfer Category"
