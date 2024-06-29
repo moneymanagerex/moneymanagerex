@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-06-24 19:29\n"
+"PO-Revision-Date: 2024-06-29 00:07\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -4252,7 +4252,7 @@ msgstr "Última actualización"
 
 #: mmchecking_list.cpp:472
 msgid "New &Withdrawal..."
-msgstr "Nuevo &cargo..."
+msgstr "Nuevo &retiro..."
 
 #: mmchecking_list.cpp:473
 msgid "New &Deposit..."
@@ -4511,7 +4511,7 @@ msgstr "Transacción programada guardada."
 
 #: mmcheckingpanel.cpp:322
 msgid "&New Withdrawal..."
-msgstr "&Nuevo cargo..."
+msgstr "&Nuevo retiro..."
 
 #: mmcheckingpanel.cpp:323
 msgid "&New Deposit..."
