@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-06-29 00:07\n"
+"PO-Revision-Date: 2024-06-29 02:07\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -293,7 +293,7 @@ msgstr "URL no válida"
 
 #: accountdialog.cpp:515
 msgid "Opening date cannot be in the future"
-msgstr "La fecha de apertura no puede ser futura"
+msgstr "La fecha de apertura no puede ser en el futuro"
 
 #: accountdialog.cpp:515 accountdialog.cpp:524 accountdialog.cpp:529
 #: accountdialog.cpp:536 billsdepositsdialog.cpp:1051
@@ -346,7 +346,7 @@ msgstr "&Idioma de la interfaz de usuario"
 #: appstartdialog.cpp:113 appstartdialog.cpp:221 mmframe.cpp:1683
 #: optionsettingsgeneral.cpp:100
 msgid "Change user interface language"
-msgstr "Cambiar el idioma de la interfaz"
+msgstr "Cambiar el idioma de la interfaz de usuario"
 
 #: appstartdialog.cpp:116
 msgid "&User Manual"
@@ -362,7 +362,7 @@ msgstr "&Sitio web"
 
 #: appstartdialog.cpp:121 mmframe.cpp:1853
 msgid "Visit MMEX website for the latest news and updates"
-msgstr "Visitar la página web de MMEX para las últimas noticias, actualizaciones, etc."
+msgstr "Visita la página web de MMEX para las últimas noticias y actualizaciones"
 
 #: appstartdialog.cpp:125 mmframe.cpp:1869
 msgid "&Forum"
@@ -370,7 +370,7 @@ msgstr "&Foro"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr "Visite el foro de MMEX para leer y publicar comentarios y para obtener soporte"
+msgstr "Visita el foro de MMEX para leer y publicar comentarios y para obtener soporte"
 
 #: appstartdialog.cpp:132 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
