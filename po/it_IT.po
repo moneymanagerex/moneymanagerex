@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-05-24 19:50\n"
+"PO-Revision-Date: 2024-06-30 10:10\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -5119,7 +5119,7 @@ msgstr "Aggiorna WebApp"
 
 #: mmframe.cpp:1817
 msgid "&Settings...\tAlt-F12"
-msgstr ""
+msgstr "&Impostazioni...\tAlt-F12"
 
 #: mmframe.cpp:1824
 msgid "&Decrypt Encrypted Database..."
@@ -5171,7 +5171,7 @@ msgstr "Mostra Aiuto"
 
 #: mmframe.cpp:1855
 msgid "Face&book"
-msgstr ""
+msgstr "Face&book"
 
 #: mmframe.cpp:1855
 msgid "Visit MMEX Facebook page"
@@ -5692,7 +5692,7 @@ msgstr "Report Previsionale"
 
 #: mmframereport.cpp:168 optionsettingshome.cpp:78
 msgid "Income vs. Expenses"
-msgstr ""
+msgstr "Entrate vs. Spese"
 
 #: mmframereport.cpp:179
 msgid "My Usage"
@@ -5766,7 +5766,7 @@ msgstr "Conto/Beneficiario"
 #: mmhomepage.cpp:423
 #, c-format
 msgid "Income vs. Expenses: %s"
-msgstr ""
+msgstr "Entrate vs. Spese: %s"
 
 #: mmhomepage.cpp:433 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:425 reports/categexp.cpp:496 reports/incexpenses.cpp:88
@@ -6390,7 +6390,7 @@ msgstr "Transazioni In Massa"
 
 #: optionsettingsmisc.cpp:173
 msgid "Database"
-msgstr ""
+msgstr "Database"
 
 #: optionsettingsmisc.cpp:180
 msgid "Backup database on startup"
@@ -6869,7 +6869,7 @@ msgstr "Conferma unione beneficiari"
 
 #: relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge Tags"
-msgstr ""
+msgstr "Unisci Tag"
 
 #: relocatetagdialog.cpp:101
 msgid "&Delete source tag after merge"
