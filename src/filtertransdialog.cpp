@@ -1122,7 +1122,7 @@ void mmFilterTransactionsDialog::OnButtonOkClick(wxCommandEvent& /*event*/)
     }
 }
 
-void mmFilterTransactionsDialog::OnButtonCancelClick(wxCommandEvent& event)
+void mmFilterTransactionsDialog::OnButtonCancelClick( [[maybe_unused]] wxCommandEvent& event)
 {
 #ifdef __WXMSW__
     wxWindow* w = FindFocus();
