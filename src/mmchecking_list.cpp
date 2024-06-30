@@ -84,7 +84,7 @@ wxEND_EVENT_TABLE();
 TransactionListCtrl::EColumn TransactionListCtrl::toEColumn(const unsigned long col)
 {
     EColumn res = COL_DEF_SORT;
-    if (col >= 0 && col < m_real_columns.size()) res = static_cast<EColumn>(col);
+    if (col < m_real_columns.size()) res = static_cast<EColumn>(col);
         return res;
 }
 
@@ -241,14 +241,7 @@ TransactionListCtrl::TransactionListCtrl(
     m_attr14(new wxListItemAttr(*bestFontColour(mmColors::userDefColor4), mmColors::userDefColor4, wxNullFont)),
     m_attr15(new wxListItemAttr(*bestFontColour(mmColors::userDefColor5), mmColors::userDefColor5, wxNullFont)),
     m_attr16(new wxListItemAttr(*bestFontColour(mmColors::userDefColor6), mmColors::userDefColor6, wxNullFont)),
-    m_attr17(new wxListItemAttr(*bestFontColour(mmColors::userDefColor7), mmColors::userDefColor7, wxNullFont)),
-    m_sortCol(COL_DEF_SORT),
-    g_sortcol(COL_DEF_SORT),
-    prev_g_sortcol(COL_DEF_SORT2),
-    g_asc(true),
-    prev_g_asc(true),
-    m_firstSort(true),
-    m_topItemIndex(-1)
+    m_attr17(new wxListItemAttr(*bestFontColour(mmColors::userDefColor7), mmColors::userDefColor7, wxNullFont))
 {
     wxASSERT(m_cp);
     m_selected_id.clear();
@@ -394,14 +387,14 @@ void TransactionListCtrl::setExtraTransactionData(const bool single)
 
 //----------------------------------------------------------------------------
 
-void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
+void TransactionListCtrl::OnListItemSelected(wxListEvent&)
 {
     wxLogDebug("OnListItemSelected: %i selected", GetSelectedItemCount());
     FindSelectedTransactions();
     setExtraTransactionData(GetSelectedItemCount() == 1);
 }
 
-void TransactionListCtrl::OnListItemDeSelected(wxListEvent& event)
+void TransactionListCtrl::OnListItemDeSelected(wxListEvent&)
 {
     wxLogDebug("OnListItemDeSelected: %i selected", GetSelectedItemCount());
     FindSelectedTransactions();
@@ -701,7 +694,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     PopupMenu(&menu, event.GetPosition());
 }
 
-void TransactionListCtrl::findInAllTransactions(wxCommandEvent& event) {
+void TransactionListCtrl::findInAllTransactions(wxCommandEvent&) {
     if (!rightClickFilter_.IsEmpty())
     {
         // save the filter as the "Advanced" filter for All Transactions
@@ -724,7 +717,7 @@ void TransactionListCtrl::findInAllTransactions(wxCommandEvent& event) {
     }
 }
 
-void TransactionListCtrl::OnCopyText(wxCommandEvent& event) 
+void TransactionListCtrl::OnCopyText(wxCommandEvent&)
 {
     if (!copyText_.IsEmpty())
     {
@@ -1182,7 +1175,7 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
 }
 //----------------------------------------------------------------------------
 
-void TransactionListCtrl::OnRestoreViewedTransaction(wxCommandEvent& event)
+void TransactionListCtrl::OnRestoreViewedTransaction(wxCommandEvent&)
 {
     wxMessageDialog msgDlg(this
             , _("Do you really want to restore all of the transactions shown?")
@@ -1928,6 +1921,7 @@ void TransactionListCtrl::doSearchText(const wxString& value)
 wxString UDFCFormatHelper(Model_CustomField::FIELDTYPE type, wxString data)
 {
     wxString formattedData = data;
+    bool v = false;
     if (!data.empty())
     {
         switch (type) {
@@ -1935,8 +1929,10 @@ wxString UDFCFormatHelper(Model_CustomField::FIELDTYPE type, wxString data)
             formattedData = mmGetDateForDisplay(data);
             break;
         case Model_CustomField::FIELDTYPE::BOOLEAN:
-            bool v = wxString("TRUE|true|1").Contains(data);
+            v = wxString("TRUE|true|1").Contains(data);
             formattedData = (v) ? L"\u2713" : L"\u2717";
+            break;
+        default:
             break;
         }
     }
