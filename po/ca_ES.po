@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-06-06 20:56\n"
+"PO-Revision-Date: 2024-07-10 08:30\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -157,7 +157,7 @@ msgstr "Introdueix les anotacions i detalls d'usuari d'aquest compte."
 #: db/DB_Table_Category_V1.h:140 db/DB_Table_Category_V1.h:160
 #: model/Model_Asset.cpp:48 optiondialog.cpp:37
 msgid "Other"
-msgstr ""
+msgstr "Altres"
 
 #: accountdialog.cpp:198
 msgid "Card Number:"
@@ -329,7 +329,7 @@ msgstr "&Nova Base de Dades"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "Creeu un fitxer de base de dades MMEX nou"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -337,7 +337,7 @@ msgstr "Obrir Base de Dades &Existent"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "Obriu el fitxer de base de dades MMEX"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1682
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "Manual d'&Usuari"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "Llegeix el manual d'usuari"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1852
 msgid "&Website"
@@ -362,7 +362,7 @@ msgstr "Pàgina &Web"
 
 #: appstartdialog.cpp:121 mmframe.cpp:1853
 msgid "Visit MMEX website for the latest news and updates"
-msgstr ""
+msgstr "Visiteu el lloc web de MMEX per obtenir les últimes notícies i actualitzacions"
 
 #: appstartdialog.cpp:125 mmframe.cpp:1869
 msgid "&Forum"
@@ -970,7 +970,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:469
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Concedeix l'execució automàtica"
 
 #: billsdepositsdialog.cpp:470
 msgid "The requested payment will occur without user interaction"
@@ -982,11 +982,11 @@ msgstr "Detalls de la Transacció"
 
 #: billsdepositsdialog.cpp:486
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr ""
+msgstr "Especifiqueu la data en què se sol·licita a l'usuari que introdueixi aquesta transacció"
 
 #: billsdepositsdialog.cpp:487 billsdepositspanel.cpp:132
 msgid "Date Paid"
-msgstr ""
+msgstr "Data de pagament"
 
 #: billsdepositsdialog.cpp:499 filtertransdialog.cpp:645 transdialog.cpp:1336
 msgid "Specify the status for the transaction"
