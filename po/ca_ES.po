@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-07-10 08:30\n"
+"PO-Revision-Date: 2024-07-10 10:26\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -370,7 +370,7 @@ msgstr ""
 
 #: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "Visiteu el fòrum MMEX per llegir i publicar comentaris i per obtenir assistència"
 
 #: appstartdialog.cpp:132 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -383,7 +383,7 @@ msgstr "S&ortir "
 #: appstartdialog.cpp:159
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Obriu la base de dades oberta anteriorment: %s"
 
 #: appstartdialog.cpp:208 mmframe.cpp:1688 mmframe.cpp:3081
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -483,11 +483,11 @@ msgstr "Taxa %"
 
 #: assetdialog.cpp:227
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Introduïu la taxa a la qual l'actiu canvia el seu valor en percentatge per any"
 
 #: assetdialog.cpp:237
 msgid "Organize attachments of this asset"
-msgstr ""
+msgstr "Organitzar fitxers adjunts d'aquest actiu"
 
 #: assetdialog.cpp:240
 msgid "Enter notes associated with this asset"
@@ -507,12 +507,13 @@ msgstr "&Cancel·la "
 
 #: assetdialog.cpp:386 sharetransactiondialog.cpp:415
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Transacció no vàlida"
 
 #: assetdialog.cpp:393
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "No s'ha trobat el compte d'actius.\n\n"
+"Voleu crear-ne un?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:131 filtertrans.cpp:196
 #: import_export/qif_export.cpp:625 import_export/univcsvdialog.cpp:100
@@ -567,7 +568,7 @@ msgstr "&Editar Actiu..."
 
 #: assetspanel.cpp:107
 msgid "&Delete Asset..."
-msgstr ""
+msgstr "&Eliminar actiu..."
 
 #: assetspanel.cpp:109 billsdepositspanel.cpp:443 mmchecking_list.cpp:511
 #: stocks_list.cpp:146
@@ -616,7 +617,7 @@ msgstr "&Veure Transacció "
 
 #: assetspanel.cpp:480
 msgid "View Asset Transactions"
-msgstr ""
+msgstr "Visualitzar Transaccions de l'Actiu"
 
 #: assetspanel.cpp:484 attachmentdialog.cpp:356 billsdepositspanel.cpp:298
 #: categdialog.cpp:317 customfieldlistdialog.cpp:262 maincurrencydialog.cpp:540
@@ -648,7 +649,7 @@ msgstr "Cercar"
 
 #: assetspanel.cpp:508
 msgid "Enter any string to find related assets"
-msgstr ""
+msgstr "Introduïu qualsevol cadena per cercar actius relacionats"
 
 #: assetspanel.cpp:509 filtertransdialog.cpp:693 mmcheckingpanel.cpp:495
 #: payeedialog.cpp:137
@@ -687,7 +688,7 @@ msgstr ""
 
 #: assetspanel.cpp:784
 msgid "Asset Management"
-msgstr ""
+msgstr "Gestió d'Actius"
 
 #: assetspanel.cpp:803
 msgid "Account \t Date\t   Value\n\n"
@@ -703,7 +704,7 @@ msgstr "Fitxer"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
-msgstr ""
+msgstr "Carpeta adjunta no definida."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools → Settings… → Attachments"
@@ -962,11 +963,11 @@ msgstr "Abonaments Restants"
 
 #: billsdepositsdialog.cpp:465
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "Sol·licitar a l'usuari que introdueixi el pagament"
 
 #: billsdepositsdialog.cpp:466
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr ""
+msgstr "L'usuari ha sol·licitat que introdueixi aquesta transacció a la \"Data de pagament\""
 
 #: billsdepositsdialog.cpp:469
 msgid "Grant automatic execute"
@@ -974,7 +975,7 @@ msgstr "Concedeix l'execució automàtica"
 
 #: billsdepositsdialog.cpp:470
 msgid "The requested payment will occur without user interaction"
-msgstr ""
+msgstr "El pagament sol·licitat es produirà sense la interacció de l'usuari"
 
 #: billsdepositsdialog.cpp:477 filtertrans.cpp:186 transdialog.cpp:425
 msgid "Transaction Details"
@@ -8227,31 +8228,31 @@ msgstr ""
 
 #: webapp.cpp:599
 msgid "Please fix attachments folder or delete attachments from WebApp"
-msgstr ""
+msgstr "Si us plau, arregleu la carpeta de fitxers adjunts o suprimiu els fitxers adjunts de l'aplicació web"
 
 #: webapp.cpp:600
 msgid "Attachment folder error"
-msgstr ""
+msgstr "Error de carpeta d'arxius adjunts"
 
 #: webapp.cpp:632
 msgid "Transaction not downloaded: please retry to download transactions"
-msgstr ""
+msgstr "Transacció no baixada: torneu a provar de baixar les transaccions"
 
 #: webapp.cpp:633 webappdialog.cpp:339
 msgid "Attachment download error"
-msgstr ""
+msgstr "Error al descarregar l'arxiu adjunt"
 
 #: webappdialog.cpp:68
 msgid "Import WebApp transactions"
-msgstr ""
+msgstr "Importa transaccions de l'aplicació web"
 
 #: webappdialog.cpp:91
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "Estat de la xarxa (feu clic per actualitzar)"
 
 #: webappdialog.cpp:123
 msgid "Checking for new transactions"
-msgstr ""
+msgstr "Comprovació de noves transaccions"
 
 #: webappdialog.cpp:156
 msgid "&Import all "
@@ -8263,19 +8264,19 @@ msgstr "Importar i obrir tot "
 
 #: webappdialog.cpp:205
 msgid "Unable to download transactions from webapp."
-msgstr ""
+msgstr "No es poden baixar transaccions des de l'aplicació web."
 
 #: webappdialog.cpp:206
 msgid "Transactions download error"
-msgstr ""
+msgstr "Error de descàrrega de transaccions"
 
 #: webappdialog.cpp:311
 msgid "Unable to insert transaction in MMEX database"
-msgstr ""
+msgstr "No es pot inserir la transacció a la base de dades MMEX"
 
 #: webappdialog.cpp:312
 msgid "WebApp communication error"
-msgstr ""
+msgstr "Error de comunicació de l'aplicació web"
 
 #: webappdialog.cpp:407
 msgid "Open Attachment"
@@ -8287,30 +8288,32 @@ msgstr "Importar i obrir"
 
 #: webappdialog.cpp:410
 msgid "Delete"
-msgstr ""
+msgstr "Suprimeix"
 
 #: wizard_newaccount.cpp:31
 msgid "Add Account Wizard"
-msgstr ""
+msgstr "Assistent per afegir un compte"
 
 #: wizard_newaccount.cpp:39
 #, c-format
 msgid "%s models all transactions as belonging to accounts."
-msgstr ""
+msgstr "%s modela totes les transaccions com a pertanyents a comptes."
 
 #: wizard_newaccount.cpp:40
 msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
-msgstr ""
+msgstr "Les pàgines següents us ajudaran a crear un compte nou.\n"
+"Per ajudar-vos a començar, comenceu fent una llista de tots\n"
+"entitats financeres on teniu un compte."
 
 #: wizard_newaccount.cpp:87
 msgid "Account Name Invalid"
-msgstr ""
+msgstr "Nom del compte no vàlid"
 
 #: wizard_newaccount.cpp:94
 msgid "An account with this name already exists"
-msgstr ""
+msgstr "Ja existeix un compte amb aquest nom"
 
 #: wizard_newaccount.cpp:108
 msgid "Name of the Account"
@@ -8323,7 +8326,8 @@ msgstr "Especifiqui un nom descriptiu pel compte."
 #: wizard_newaccount.cpp:113
 msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
-msgstr ""
+msgstr "Aquest és generalment el nom d'una entitat financera\n"
+"on es manté el compte. Per exemple: 'ABC Bank'."
 
 #: wizard_newaccount.cpp:133
 msgid "Type of Account"
@@ -8331,36 +8335,41 @@ msgstr "Tipus de Compte"
 
 #: wizard_newaccount.cpp:137
 msgid "Select the type of account you want to create:"
-msgstr ""
+msgstr "Seleccioneu el tipus de compte que voleu crear:"
 
 #: wizard_newaccount.cpp:138
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
-msgstr ""
+msgstr "Els comptes bancaris generals cobreixen una gran varietat de tipus de comptes\n"
+"com Efectiu, xecs, Préstecs i targetes de crèdit."
 
 #: wizard_newaccount.cpp:143
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
+msgstr "Els comptes d'inversió i d'accions són comptes especialitzats que\n"
+"tenen inversions en accions/fonds d'inversió associades."
 
 #: wizard_newaccount.cpp:148
 msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
 "the general income stream."
-msgstr ""
+msgstr "Els comptes a termini i actius són comptes bancaris especialitzats.\n"
+"Estan destinats al seguiment d'actius o dipòsits a termini i bons.\n"
+"on normalment entren i surten diners regularment, fora\n"
+"el flux general dingressos."
 
 #: wizard_newaccount.cpp:164
 msgid "Base Account Currency Not set."
-msgstr ""
+msgstr "La moneda del compte base no s'ha definit."
 
 #: wizard_newaccount.cpp:165
 msgid "Set that first using Tools → Settings… menu and then add a new account."
-msgstr ""
+msgstr "Configureu-ho primer mitjançant el menú Eines → Configuració... i després afegiu un compte nou."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
-msgstr ""
+msgstr "Assistent de nova base de dades"
 
 #: wizard_newdb.cpp:35
 msgid "The next pages will help you create a new database.\n\n"
@@ -8372,11 +8381,18 @@ msgid "The next pages will help you create a new database.\n\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr ""
+msgstr "Les pàgines següents us ajudaran a crear una nova base de dades.\n\n"
+"El vostre fitxer de base de dades s'emmagatzema amb una extensió de .mmb.\n"
+"Com que aquest fitxer conté informació financera important,\n"
+"recomanem crear còpies de seguretat diàries amb les Opcions configuració: \n"
+"\"Còpia de seguretat abans d'obrir\" i deseu les vostres còpies de seguretat\n"
+"en un lloc separat.\n\n"
+"La base de dades es pot xifrar més tard si cal, per utilitzant l'opció:\n"
+" 'Desa la base de dades com' i canviant el fitxer tipus de fitxer abans de desar."
 
 #: wizard_newdb.cpp:103
 msgid "Base Currency for account"
-msgstr ""
+msgstr "Moneda base per al compte"
 
 #: wizard_newdb.cpp:106
 msgid "Specify the base (or default) currency to be used for the\n"
@@ -8390,23 +8406,23 @@ msgstr "Especifiqui la moneda base (o predeterminada) a utilitzar per a la\n"
 
 #: wizard_newdb.cpp:124
 msgid "(Optional) Specify a title or your name."
-msgstr ""
+msgstr "(Opcional) Especifiqueu un títol o el vostre nom."
 
 #: wizard_newdb.cpp:125
 msgid "Used as a database title for displayed and printed reports."
-msgstr ""
+msgstr "S'utilitza com a títol de base de dades per als informes visualitzats i impresos."
 
 #: wizard_newdb.cpp:136
 msgid "Base Currency Not Set"
-msgstr ""
+msgstr "Moneda base no establerta"
 
 #: wizard_update.cpp:77
 msgid "Update Wizard"
-msgstr ""
+msgstr "Assistent d'actualització"
 
 #: wizard_update.cpp:105
 msgid "Historical releases:"
-msgstr ""
+msgstr "Publicacions històriques:"
 
 #: wizard_update.cpp:140
 msgid "Version"
@@ -8418,7 +8434,7 @@ msgstr "Ja té la versió més recent"
 
 #: wizard_update.cpp:148
 msgid "A new version of MMEX is available!"
-msgstr ""
+msgstr "Hi ha disponible una nova versió de MMEX!"
 
 #: wizard_update.cpp:180
 #, c-format
@@ -8427,13 +8443,13 @@ msgstr "La vostra versió és %s"
 
 #: wizard_update.cpp:327 wizard_update.cpp:343
 msgid "Unable to check for updates!"
-msgstr ""
+msgstr "No es poden comprovar si hi ha actualitzacions!"
 
 #: wizard_update.cpp:328 wizard_update.cpp:344
 msgid "Error: "
-msgstr ""
+msgstr "Error: "
 
 #: wizard_update.cpp:329 wizard_update.cpp:346
 msgid "MMEX Update Check"
-msgstr ""
+msgstr "Comprovació d'actualització de MMEX"
 
