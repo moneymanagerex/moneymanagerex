@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-06-05 20:39\n"
+"PO-Revision-Date: 2024-07-17 18:28\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -518,7 +518,7 @@ msgstr "Anlagenkonto nicht gefunden. möchten Sie eines erstellen?"
 #: import_export/qif_export.cpp:625 import_export/univcsvdialog.cpp:100
 #: mmchecking_list.cpp:294 reports/transactions.cpp:203 stocks_list.cpp:87
 msgid "ID"
-msgstr "Nummer"
+msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:517 billsdepositspanel.cpp:139
 #: customfieldlistdialog.cpp:54 filtertrans.cpp:204 filtertransdialog.cpp:52
@@ -4254,7 +4254,7 @@ msgstr "Zuletzt aktualisiert"
 
 #: mmchecking_list.cpp:472
 msgid "New &Withdrawal..."
-msgstr "neuer &Rückzug..."
+msgstr "Neue &Abbuchung..."
 
 #: mmchecking_list.cpp:473
 msgid "New &Deposit..."
@@ -4368,11 +4368,11 @@ msgstr "&Überprüft"
 
 #: mmchecking_list.cpp:685
 msgid "&Void"
-msgstr "&Leer"
+msgstr "&Inaktiv / Ungültig"
 
 #: mmchecking_list.cpp:687
 msgid "&Follow Up"
-msgstr "&Folgeaktion"
+msgstr "&Zu prüfen"
 
 #: mmchecking_list.cpp:689
 msgid "D&uplicate"
@@ -6163,7 +6163,7 @@ msgstr "Wählen Sie, um die Datei nach dem Import ins Attachments Archiv zu lös
 
 #: optionsettingsattachment.cpp:176
 msgid "When remove attachment, move file instead of delete"
-msgstr "wenn die Beilage gelöscht wird, verschieben statt löschen"
+msgstr "Wenn die Beilage gelöscht wird, Datei verschieben statt löschen"
 
 #: optionsettingsattachment.cpp:178
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
@@ -6261,7 +6261,7 @@ msgstr "Finanzjahr"
 
 #: optionsettingsgeneral.cpp:187
 msgid "Start Day"
-msgstr "Start Tag"
+msgstr "Erster Tag"
 
 #: optionsettingsgeneral.cpp:193
 msgid "Specify Day for start of financial year"
@@ -6269,7 +6269,7 @@ msgstr "Geben Sie den Tag für den Beginn des Geschäftsjahres an"
 
 #: optionsettingsgeneral.cpp:197
 msgid "Start Month"
-msgstr "Start Monat"
+msgstr "Erster Monat"
 
 #: optionsettingsgeneral.cpp:209
 msgid "Specify month for start of financial year"
