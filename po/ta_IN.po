@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-07-13 11:34\n"
+"PO-Revision-Date: 2024-07-20 15:47\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -384,7 +384,7 @@ msgstr "&வெளியேறு "
 #: appstartdialog.cpp:159
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "முந்தைய தரவுத்தொகுப்பை திறக்கவும்: %s"
 
 #: appstartdialog.cpp:208 mmframe.cpp:1688 mmframe.cpp:3081
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -709,7 +709,7 @@ msgstr "இணைப்பு கோப்புறை வரையறுக்�
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools → Settings… → Attachments"
-msgstr ""
+msgstr "தயவுசெய்து இதைக் கருவிகள் → அமைப்புகள்… → இணைப்புகளில் அமைக்கவும்"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
@@ -1880,7 +1880,7 @@ msgstr "64 பிட்"
 
 #: constants.cpp:193
 msgid "View Transaction Report..."
-msgstr ""
+msgstr "பரிவர்த்தனை அறிக்கையைப் பார்க்கவும்..."
 
 #: constants.cpp:194
 msgid "View All Transactions"
@@ -2080,7 +2080,7 @@ msgstr "தனிப்பயன் புலத்தின் வகையை�
 
 #: customfieldeditdialog.cpp:148
 msgid "Tooltip"
-msgstr ""
+msgstr "சுட்டி விளக்கம்"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enter the tooltip that will be shown"
@@ -2831,7 +2831,7 @@ msgstr "கணக்கை தேர்ந்தெடு"
 
 #: filtertransdialog.h:163
 msgid "Customize Transaction Report"
-msgstr ""
+msgstr "பரிவர்த்தனை அறிக்கையைத் தனிப்பயனாக்கு"
 
 #: general_report_manager.cpp:284 mmframe.cpp:832 mmframe.cpp:3025
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
