@@ -48,35 +48,47 @@ bool mmColumnsDialog::Create(wxWindow *parent)
     return true;
 }
 
+void mmColumnsDialog::OnUp(wxCommandEvent& event) {
+    Move(-1);
+}
+
+void mmColumnsDialog::OnDown(wxCommandEvent& event) {
+    Move(1);
+}
+
 void mmColumnsDialog::CreateControls()
 {
-    wxBoxSizer* boxSizer = new wxBoxSizer(wxVERTICAL);
-    this->SetSizer(boxSizer);
+    wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
-    // Get the Colum names. Use dummy array for now.
+    // Get the Colum names. Use dummy array for now. Put colum names into the list box
     wxArrayString columnList = { "Column 1", "Column 2", "Column 3", "Column 4", "Column 5" };
-
-    // Put colum names into the list box
     m_listBox = new wxListBox(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, columnList, wxLB_SINGLE | wxLB_NEEDED_SB);
-    boxSizer->Add(m_listBox, 1, wxEXPAND | wxALL, 5);
 
-    wxPanel* buttonsPanel = new wxPanel(this, wxID_ANY);
-    boxSizer->Add(buttonsPanel, wxSizerFlags(g_flagsV).Center());
-    wxBoxSizer* buttonsSizer = new wxBoxSizer(wxHORIZONTAL);
-    buttonsPanel->SetSizer(buttonsSizer);
+    // Buttons for moving items up and down
+    wxBoxSizer* buttonSizer = new wxBoxSizer(wxVERTICAL);
+    wxButton* upButton = new wxButton(this, wxID_ANY, "Up");
+    wxButton* downButton = new wxButton(this, wxID_ANY, "Down");
 
-    m_upButton = new wxButton(this, wxID_UP, _("Up"));
-    m_downButton = new wxButton(this, wxID_DOWN, _("Down"));
-    m_OkButton = new wxButton(this, wxID_OK, _("OK"));
-    m_CancelButton = new wxButton(this, wxID_CANCEL, _("Cancel"));
+    buttonSizer->Add(upButton, 0, wxALL, 5);
+    buttonSizer->Add(downButton, 0, wxALL, 5);
 
-    // arrange the buttons inside the buttonsPanel.
-    buttonsSizer->Add(m_upButton, 0, wxALL, 5);
-    buttonsSizer->Add(m_downButton, 0, wxALL, 5);
-    buttonsSizer->AddStretchSpacer();
-    buttonsSizer->Add(m_OkButton, 0, wxALL, 5);
-    buttonsSizer->Add(m_CancelButton, 0, wxALL, 5);
+    // Horizontal sizer for listbox and up/down buttons
+    wxBoxSizer* listSizer = new wxBoxSizer(wxHORIZONTAL);
+    listSizer->Add(m_listBox, 1, wxEXPAND | wxALL, 5);
+    listSizer->Add(buttonSizer, 0, wxALIGN_CENTER_VERTICAL);
 
+    // OK and Cancel buttons
+    wxSizer* okCancelSizer = CreateButtonSizer(wxOK | wxCANCEL);
+
+    // Add components to main sizer
+    mainSizer->Add(listSizer, 1, wxEXPAND | wxALL, 5);
+    mainSizer->Add(okCancelSizer, 0, wxALIGN_CENTER | wxALL, 5);
+
+    SetSizer(mainSizer);
+
+    // Event bindings
+    upButton->Bind(wxEVT_BUTTON, &mmColumnsDialog::OnUp, this);
+    downButton->Bind(wxEVT_BUTTON, &mmColumnsDialog::OnDown, this);
 }
 
 void mmColumnsDialog::OnOk(wxCommandEvent& event)
@@ -92,14 +104,30 @@ void mmColumnsDialog::OnCancel(wxCommandEvent& event)
     EndModal(wxID_CANCEL);
 }
 
-void mmColumnsDialog::OnUp(wxCommandEvent& event)
-{
-    // Move the selected item up
+
+void mmColumnsDialog::Move(int direction) {
+    //print debug message to stderr 
+    wxLogDebug("Move %d", direction);
+
+    wxArrayInt selections;
+    int count = m_listBox->GetSelections(selections);
+
+    if (count == 0) return;
+
+    if ((direction == -1 && selections[0] > 0) ||
+        (direction == 1 && selections[count - 1] < m_listBox->GetCount() - 1)) {
+        for (int i = (direction == 1 ? count - 1 : 0);
+             (direction == 1 ? i >= 0 : i < count);
+             i += (direction == 1 ? -1 : 1)) {
+
+            int pos = selections[i];
+            wxString item = m_listBox->GetString(pos);
+            m_listBox->Delete(pos);
+            m_listBox->Insert(item, pos + direction);
+            m_listBox->SetSelection(pos + direction, true);
+        }
+    }
 }
 
-void mmColumnsDialog::OnDown(wxCommandEvent& event)
-{
-    // Move the selected item down
-}   
 
 // Other member function implementations go here...

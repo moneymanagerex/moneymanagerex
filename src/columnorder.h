@@ -49,6 +49,7 @@ private:
     void OnOk(wxCommandEvent& event);
     void OnUp(wxCommandEvent& event);
     void OnDown(wxCommandEvent& event);
+    void Move(int direction);
 
     wxArrayString columnList_;
 };
