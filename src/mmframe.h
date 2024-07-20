@@ -239,6 +239,7 @@ private:
     void OnCustomFieldsManager(wxCommandEvent& event);
     void OnGeneralReportManager(wxCommandEvent& event);
     void OnThemeManager(wxCommandEvent& event);
+    void OnColumnOrderManager(wxCommandEvent& event);
     void OnRefreshWebApp(wxCommandEvent&);
     bool OnRefreshWebApp(bool is_silent);
 
@@ -353,6 +354,7 @@ private:
         MENU_TAG_RELOCATION,
         MENU_RELOCATION,
         MENU_THEME_MANAGER,
+        MENU_COLUMN_ORDER,
         MENU_CONVERT_ENC_DB,
         MENU_CHANGE_ENCRYPT_PASSWORD,
         MENU_DB_VACUUM,
