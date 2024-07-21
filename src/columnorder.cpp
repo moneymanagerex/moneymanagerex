@@ -48,6 +48,51 @@ bool mmColumnsDialog::Create(wxWindow *parent)
     return true;
 }
 
+/*
+  Concept:
+  - The column order is stored as a "|" delimited list of header strings in the settings.
+  - A dialog allows reordering the columns. This is saved in the settings.
+  - Constructing a table (in mmcheckingpanel.cpp) will update this list with columns not yet specified.
+    So eventually all existing columns will be in this list (the user needs to have viewed all columns at least once).
+    This is important since there may be user defined columns.
+  - TODO: Users may remove nonexisting columns from the list in the column order dialog.
+*/
+
+
+// Set new column order. Called when closing the dialog using the "OK" button
+void mmColumnsDialog::SetColumnsOrder()
+{
+    wxLogDebug("SetColumnsOrder: columList_ = %s", wxJoin(columnList_, '|'));
+    wxString columnsString = wxJoin(columnList_, '|');
+    Model_Setting::instance().Savepoint();
+    Model_Setting::instance().Set("COLUMNSORDER", columnsString);
+    Model_Setting::instance().ReleaseSavepoint();
+}
+
+
+wxArrayString mmColumnsDialog::GetColumnsOrder()
+{
+    columnList_ = wxSplit(Model_Setting::instance().GetStringSetting("COLUMNSORDER", ""), '|');
+}
+
+// Get the column order from the settings.
+// Append new columns from defaultColumns if the list differs. Then save.
+wxArrayString mmColumnsDialog::updateColumnsOrder(wxArrayString defaultColumns)
+{
+    mmColumnsDialog dlg;
+    auto list = dlg.GetColumnsOrder();
+    wxLogDebug("Columns:        %s", wxJoin(list, ','));
+    for (const auto& column : defaultColumns) {
+        if (list.Index(column) == wxNOT_FOUND) {
+            list.Add(column);
+        }
+    }
+    dlg.SetColumnsOrder();
+    list = dlg.GetColumnsOrder();
+    wxLogDebug("Sorted Columns: %s", wxJoin(list, ','));
+    return list;
+}
+
 void mmColumnsDialog::OnUp(wxCommandEvent& event) {
     Move(-1);
 }
@@ -60,8 +105,7 @@ void mmColumnsDialog::CreateControls()
 {
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
-    // Get the Colum names. Use dummy array for now. Put colum names into the list box
-    wxArrayString columnList = { "Column 1", "Column 2", "Column 3", "Column 4", "Column 5" };
+    wxArrayString columnList = GetColumnsOrder();
     m_listBox = new wxListBox(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, columnList, wxLB_SINGLE | wxLB_NEEDED_SB);
 
     // Buttons for moving items up and down
@@ -93,17 +137,14 @@ void mmColumnsDialog::CreateControls()
 
 void mmColumnsDialog::OnOk(wxCommandEvent& event)
 {
-    // Save the column order
-    // Close the dialog
+    SetColumnsOrder();
     EndModal(wxID_OK);
 }   
 
 void mmColumnsDialog::OnCancel(wxCommandEvent& event)
 {
-    // Close the dialog
     EndModal(wxID_CANCEL);
 }
-
 
 void mmColumnsDialog::Move(int direction) {
     //print debug message to stderr 

@@ -35,6 +35,9 @@ public:
     ~mmColumnsDialog();
     mmColumnsDialog(wxWindow* parent);
 
+    // called from mmcheckingpanel.cpp
+    static wxArrayString updateColumnsOrder(wxArrayString defaultColumns);
+
 private:
     // Declare your dialog controls here
     wxListBox* m_listBox;
@@ -43,6 +46,11 @@ private:
     wxButton* m_OkButton; // Added: Correctly declare the OK button
     wxButton* m_CancelButton; // Added: Correctly declare the cancel button
 
+    wxArrayString columnList_;
+
+    void SetColumnsOrder();
+    wxArrayString GetColumnsOrder();
+
     bool Create(wxWindow* parent);
     void CreateControls();
     void OnCancel(wxCommandEvent& event);
@@ -50,8 +58,6 @@ private:
     void OnUp(wxCommandEvent& event);
     void OnDown(wxCommandEvent& event);
     void Move(int direction);
-
-    wxArrayString columnList_;
 };
 
 #endif // COLUMNORDER_H
