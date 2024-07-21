@@ -406,7 +406,8 @@ void mmCheckingPanel::CreateControls()
     for(const auto& i : m_listCtrlAccount->m_columns) columnList.Add(i.HEADER.c_str());
     mmColumnsDialog dialog;
     sortedColumnList = dialog.updateColumnsOrder(columnList);
-//    sortedColumnList = mmColumnsDialog::updateColumnsOrder(columnList);
+
+    // FIXME: apply the sorted columns list to the list control
 
     m_listCtrlAccount->createColumns(*m_listCtrlAccount);
 
