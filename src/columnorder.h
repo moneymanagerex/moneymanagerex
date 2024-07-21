@@ -36,7 +36,7 @@ public:
     mmColumnsDialog(wxWindow* parent);
 
     // called from mmcheckingpanel.cpp
-    static wxArrayString updateColumnsOrder(wxArrayString defaultColumns);
+    wxArrayString updateColumnsOrder(wxArrayString defaultColumns);
 
 private:
     // Declare your dialog controls here
@@ -49,7 +49,7 @@ private:
     wxArrayString columnList_;
 
     void SetColumnsOrder();
-    wxArrayString GetColumnsOrder();
+    void GetColumnsOrder();
 
     bool Create(wxWindow* parent);
     void CreateControls();

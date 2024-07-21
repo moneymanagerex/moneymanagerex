@@ -62,35 +62,31 @@ bool mmColumnsDialog::Create(wxWindow *parent)
 // Set new column order. Called when closing the dialog using the "OK" button
 void mmColumnsDialog::SetColumnsOrder()
 {
-    wxLogDebug("SetColumnsOrder: columList_ = %s", wxJoin(columnList_, '|'));
-    wxString columnsString = wxJoin(columnList_, '|');
+    wxLogDebug("SetColumnsOrder: %s", wxJoin(columnList_, ','));
     Model_Setting::instance().Savepoint();
-    Model_Setting::instance().Set("COLUMNSORDER", columnsString);
+    Model_Setting::instance().Set("COLUMNSORDER", wxJoin(columnList_, '|'));
     Model_Setting::instance().ReleaseSavepoint();
 }
 
 
-wxArrayString mmColumnsDialog::GetColumnsOrder()
+void mmColumnsDialog::GetColumnsOrder()
 {
     columnList_ = wxSplit(Model_Setting::instance().GetStringSetting("COLUMNSORDER", ""), '|');
+    wxLogDebug("GetColumnsOrder: %s", wxJoin(columnList_, ','));
 }
 
 // Get the column order from the settings.
 // Append new columns from defaultColumns if the list differs. Then save.
 wxArrayString mmColumnsDialog::updateColumnsOrder(wxArrayString defaultColumns)
 {
-    mmColumnsDialog dlg;
-    auto list = dlg.GetColumnsOrder();
-    wxLogDebug("Columns:        %s", wxJoin(list, ','));
+    GetColumnsOrder();
     for (const auto& column : defaultColumns) {
-        if (list.Index(column) == wxNOT_FOUND) {
-            list.Add(column);
+        if (columnList_.Index(column) == wxNOT_FOUND) {
+            columnList_.Add(column);
         }
     }
-    dlg.SetColumnsOrder();
-    list = dlg.GetColumnsOrder();
-    wxLogDebug("Sorted Columns: %s", wxJoin(list, ','));
-    return list;
+    SetColumnsOrder();
+    return columnList_;
 }
 
 void mmColumnsDialog::OnUp(wxCommandEvent& event) {
@@ -105,8 +101,8 @@ void mmColumnsDialog::CreateControls()
 {
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
-    wxArrayString columnList = GetColumnsOrder();
-    m_listBox = new wxListBox(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, columnList, wxLB_SINGLE | wxLB_NEEDED_SB);
+    GetColumnsOrder();
+    m_listBox = new wxListBox(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, columnList_, wxLB_SINGLE | wxLB_NEEDED_SB);
 
     // Buttons for moving items up and down
     wxBoxSizer* buttonSizer = new wxBoxSizer(wxVERTICAL);
@@ -167,6 +163,12 @@ void mmColumnsDialog::Move(int direction) {
             m_listBox->Insert(item, pos + direction);
             m_listBox->SetSelection(pos + direction, true);
         }
+    }
+
+    // Write new order into columnList_
+    columnList_.Clear();
+    for (int i = 0; i < m_listBox->GetCount(); i++) {
+        columnList_.Add(m_listBox->GetString(i));
     }
 }
 

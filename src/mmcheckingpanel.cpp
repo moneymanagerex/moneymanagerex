@@ -404,7 +404,9 @@ void mmCheckingPanel::CreateControls()
     // Get sorted columns list and update the sorted columns with missing columns if needed.
     wxArrayString columnList, sortedColumnList;
     for(const auto& i : m_listCtrlAccount->m_columns) columnList.Add(i.HEADER.c_str());
-    sortedColumnList = mmColumnsDialog::updateColumnsOrder(columnList);
+    mmColumnsDialog dialog;
+    sortedColumnList = dialog.updateColumnsOrder(columnList);
+//    sortedColumnList = mmColumnsDialog::updateColumnsOrder(columnList);
 
     m_listCtrlAccount->createColumns(*m_listCtrlAccount);
 
