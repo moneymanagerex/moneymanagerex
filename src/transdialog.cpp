@@ -1226,7 +1226,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     // Save split tags
     const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
 
-    for (int i = 0; i < m_local_splits.size(); i++)
+    for (unsigned int i = 0; i < m_local_splits.size(); i++)
     {
         Model_Taglink::Data_Set splitTaglinks;
         for (const auto& tagId : m_local_splits.at(i).TAGS)
