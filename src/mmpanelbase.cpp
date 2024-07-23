@@ -132,6 +132,8 @@ void mmListCtrl::OnColRightClick(wxListEvent& event)
         menu.Append(MENU_HEADER_HIDE, _("Hide this column"));
         if (m_default_sort_column >= 0 && (m_columns[m_ColumnHeaderNbr].SORTABLE == true))
             menu.Append(MENU_HEADER_SORT, _("Order by this column"));
+        menu.Append(MENU_HEADER_MOVE_LEFT, _("Move column left"));
+        menu.Append(MENU_HEADER_MOVE_RIGHT, _("Move column right"));
         menu.Append(MENU_HEADER_RESET, _("Reset columns"));
         PopupMenu(&menu);
         this->SetFocus();
@@ -147,6 +149,12 @@ void mmListCtrl::PopupSelected(wxCommandEvent& event)
         break;
     case MENU_HEADER_SORT:
         OnHeaderSort(event);
+        break;
+    case MENU_HEADER_MOVE_LEFT:
+        OnHeaderMove(event, -1);
+        break;
+    case MENU_HEADER_MOVE_RIGHT:
+        OnHeaderMove(event, 1);
         break;
     case MENU_HEADER_RESET:
         OnHeaderReset(event);
@@ -171,6 +179,11 @@ void mmListCtrl::OnHeaderSort(wxCommandEvent& WXUNUSED(event))
     wxListEvent e;
     e.SetId(MENU_HEADER_SORT);
     OnColClick(e);
+}
+
+void mmListCtrl::OnHeaderMove(wxCommandEvent& WXUNUSED(event), int direction)
+{
+    wxLogDebug("Moving column %d (%s) %d", m_ColumnHeaderNbr, m_columns[m_ColumnHeaderNbr].HEADER.c_str(), direction);
 }
 
 void mmListCtrl::OnHeaderReset(wxCommandEvent& WXUNUSED(event))
