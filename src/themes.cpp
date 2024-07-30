@@ -52,7 +52,7 @@ bool mmThemesDialog::vfsThemeImageLoaded = false;
 mmThemesDialog::ThemeEntry mmThemesDialog::getThemeEntry(const wxString& name)
 {
     ThemeEntry thisTheme;
-    for (const auto theme : m_themes)
+    for (const auto &theme : m_themes)
     {
         if (theme.name == name)
         {
@@ -209,7 +209,7 @@ void mmThemesDialog::ReadThemes()
     addThemes(mmex::getPathUser(mmex::USERTHEMEDIR), false);
 
     m_themesListBox_->Clear();
-    for (const auto theme : m_themes)
+    for (const auto &theme : m_themes)
         m_themesListBox_->Append(theme.name);
     m_themesListBox_->SetStringSelection(Model_Setting::instance().Theme());
     m_themesListBox_->Refresh();
@@ -275,12 +275,12 @@ void mmThemesDialog::RefreshView()
     m_useButton->Enable(!thisTheme.isChosen);
 }
 
-void mmThemesDialog::OnThemeView(wxCommandEvent& event)
+void mmThemesDialog::OnThemeView(wxCommandEvent&)
 {
     RefreshView();
 }
 
-void mmThemesDialog::OnImport(wxCommandEvent& event)
+void mmThemesDialog::OnImport(wxCommandEvent&)
 {
     wxString fileName = wxFileSelector(_("Choose theme file to import")
         , wxEmptyString, wxEmptyString, wxEmptyString
@@ -321,7 +321,7 @@ void mmThemesDialog::OnImport(wxCommandEvent& event)
 
 }
 
-void mmThemesDialog::OnDelete(wxCommandEvent& event)
+void mmThemesDialog::OnDelete(wxCommandEvent&)
 {
     ThemeEntry thisTheme = getThemeEntry(m_themesListBox_->GetString(m_themesListBox_->GetSelection()));
     wxString deletingThemeText = _("Are you sure you want to delete this theme? If you want to use it again you will need to re-import it.");
@@ -340,7 +340,7 @@ void mmThemesDialog::OnDelete(wxCommandEvent& event)
 
 }
 
-void mmThemesDialog::OnUse(wxCommandEvent& event)
+void mmThemesDialog::OnUse(wxCommandEvent&)
 {
     ThemeEntry thisTheme = getThemeEntry(m_themesListBox_->GetString(m_themesListBox_->GetSelection()));
     wxString changingThemeText = _("Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started.");
@@ -355,7 +355,7 @@ void mmThemesDialog::OnUse(wxCommandEvent& event)
     RefreshView();
 }
 
-void mmThemesDialog::OnOk(wxCommandEvent& event)
+void mmThemesDialog::OnOk(wxCommandEvent&)
 {
     EndModal(wxID_OK);
 }

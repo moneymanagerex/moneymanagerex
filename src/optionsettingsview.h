@@ -46,7 +46,7 @@ public:
 private:
     void Create();
     void OnHTMLScaleSpin(wxSpinEvent& event);
-    void OnThemeManagerSelected(wxCommandEvent& event);
+    void OnThemeManagerSelected(wxCommandEvent&);
     void OnNavTreeColorChanged(wxCommandEvent& event);
 
 private:
