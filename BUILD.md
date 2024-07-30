@@ -214,16 +214,16 @@ macOS with Homebrew
 
 #### 2. Build wxWidgets
 
-Current stable version that has been tested with MMEX is v3.1.5
+Current stable version that has been tested with MMEX is v3.2.5
 
 1. Download Sources
         
-        /bin/bash -c "$(curl -fsSL -O https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.5/wxWidgets-3.1.5.tar.bz2)"
+        /bin/bash -c "$(curl -fsSL -O https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.5/wxWidgets-3.2.5.tar.bz2)"
         tar xzf wxWidgets-*.tar.bz2
 
 2. Build from source
 
-        cd wxWidgets-3.1.5
+        cd wxWidgets-3.2.5
         mkdir build-cocoa
         cd build-cocoa
         export MAKEFLAGS=-j4
@@ -250,7 +250,7 @@ Current stable version that has been tested with MMEX is v3.1.5
     cd moneymanagerex/build
     export MAKEFLAGS=-j4
     cmake -DCMAKE_CXX_FLAGS="-w" \
-    -DwxWidgets_CONFIG_EXECUTABLE={PATH-TO-wxWidgets}/wxWidgets-3.1.5/build-cocoa/wx-config \
+    -DwxWidgets_CONFIG_EXECUTABLE={PATH-TO-wxWidgets}/wxWidgets-3.2.5/build-cocoa/wx-config \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
     -DCMAKE_OSX_DEPLOYMENT_TARGET=10.10 ..
