@@ -88,6 +88,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     budgetyearentrydialog.h
     categdialog.cpp
     categdialog.h
+    columnorder.cpp
+    columnorder.h
     constants.cpp
     constants.h
     currencydialog.cpp
