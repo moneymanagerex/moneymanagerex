@@ -481,10 +481,15 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     case COL_FREQUENCY:
         return GetFrequency(&bill);
     case COL_REPEATS:
-        if (bill.NUMOCCURRENCES == -1)
-            return L"\x221E";
+    {
+        int numRepeats = GetNumRepeats(&bill);
+        if (numRepeats > 0)
+            return wxString::Format("%i", numRepeats).Trim();
+        else if (numRepeats == -1)
+            return L"\x221E";  // INFITITY
         else
-            return wxString::Format("%i", bill.NUMOCCURRENCES).Trim();
+            return L"\x2015";  // HORIZONTAL BAR
+    }
     case COL_AUTO:
     {
         int repeats = bill.REPEATS;
@@ -525,6 +530,23 @@ const wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Dat
     if (repeats > 10 && repeats < 15)
         text = wxString::Format(text, wxString::Format("%d", item->NUMOCCURRENCES));
     return text;
+}
+
+const int mmBillsDepositsPanel::GetNumRepeats(const Model_Billsdeposits::Data* item) const
+{
+    int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+    int numRepeats = item->NUMOCCURRENCES;
+
+    if (repeats == 0)                          // REPEAT_NONE
+        numRepeats = 1;                        //   once
+    else if (repeats >= 11 && repeats <= 12)   // REPEAT_IN_X_*
+        numRepeats = numRepeats > 0 ? 2 : 0;   //   twice or unknown
+    else if (repeats >= 13 && repeats <= 14)   // REPEAT_EVERY_X_*
+        numRepeats = numRepeats > 0 ? -1 : 0;  //   infinitely or unknown
+    else if (numRepeats < -1)                  // this should not happen
+        numRepeats = 0;                        //   unknown
+
+    return numRepeats;
 }
 
 const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data* item) const
@@ -815,7 +837,17 @@ void mmBillsDepositsPanel::sortTable()
         });
         break;
     case COL_REPEATS:
-        std::stable_sort(bills_.begin(), bills_.end(), SorterByREPEATS());
+        std::stable_sort(bills_.begin(), bills_.end()
+            , [&](const Model_Billsdeposits::Full_Data& x, const Model_Billsdeposits::Full_Data& y)
+        {
+            int xn = this->GetNumRepeats(&x);
+            int yn = this->GetNumRepeats(&y);
+            // the order is: 1, ..., -1 (infinity), 0 (unknown)
+            if (xn > 0)
+                return yn <= 0 || xn < yn;
+            else
+                return xn == -1 && yn == 0;
+        });
         break;
     case COL_DAYS:
         std::stable_sort(bills_.begin(), bills_.end()
