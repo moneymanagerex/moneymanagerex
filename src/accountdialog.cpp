@@ -492,7 +492,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     wxString acctName = m_textAccountName->GetValue().Trim();
     if (acctName.IsEmpty() || Model_Account::Exist(acctName))
     {
-        if (m_account && m_account->ACCOUNTNAME != acctName)
+        if (m_account && m_account->ACCOUNTNAME.CmpNoCase(acctName) != 0)
             return mmErrorDialogs::MessageInvalid(this, _("Account Name "));
     }
 
