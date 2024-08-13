@@ -485,7 +485,7 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
         int numRepeats = GetNumRepeats(&bill);
         if (numRepeats > 0)
             return wxString::Format("%i", numRepeats).Trim();
-        else if (numRepeats == -1)
+        else if (numRepeats == Model_Billsdeposits::REPEAT_NUM_INFINITY)
             return L"\x221E";  // INFITITY
         else
             return L"\x2015";  // HORIZONTAL BAR
@@ -537,14 +537,14 @@ const int mmBillsDepositsPanel::GetNumRepeats(const Model_Billsdeposits::Data* i
     int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
     int numRepeats = item->NUMOCCURRENCES;
 
-    if (repeats == 0)                          // REPEAT_NONE
-        numRepeats = 1;                        //   once
-    else if (repeats >= 11 && repeats <= 12)   // REPEAT_IN_X_*
-        numRepeats = numRepeats > 0 ? 2 : 0;   //   twice or unknown
-    else if (repeats >= 13 && repeats <= 14)   // REPEAT_EVERY_X_*
-        numRepeats = numRepeats > 0 ? -1 : 0;  //   infinitely or unknown
-    else if (numRepeats < -1)                  // this should not happen
-        numRepeats = 0;                        //   unknown
+    if (repeats == Model_Billsdeposits::REPEAT_NONE)
+        numRepeats = 1;
+    else if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_IN_X_MONTHS)
+        numRepeats = numRepeats > 0 ? 2 : Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
+    else if (repeats >= Model_Billsdeposits::REPEAT_EVERY_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS)
+        numRepeats = numRepeats > 0 ? Model_Billsdeposits::REPEAT_NUM_INFINITY : Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
+    else if (numRepeats < -1)  // this should not happen
+        numRepeats = Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
 
     return numRepeats;
 }
@@ -842,11 +842,11 @@ void mmBillsDepositsPanel::sortTable()
         {
             int xn = this->GetNumRepeats(&x);
             int yn = this->GetNumRepeats(&y);
-            // the order is: 1, ..., -1 (infinity), 0 (unknown)
+            // the order is: 1, 2, ..., -1 (REPEAT_NUM_INFINITY), 0 (REPEAT_NUM_UNKNOWN)
             if (xn > 0)
-                return yn <= 0 || xn < yn;
+                return yn > xn || yn == Model_Billsdeposits::REPEAT_NUM_INFINITY || yn == Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
             else
-                return xn == -1 && yn == 0;
+                return xn == Model_Billsdeposits::REPEAT_NUM_INFINITY && yn == Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
         });
         break;
     case COL_DAYS:

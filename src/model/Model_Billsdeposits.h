@@ -57,6 +57,10 @@ public:
         REPEAT_MONTHLY_LAST_DAY,
         REPEAT_MONTHLY_LAST_BUSINESS_DAY
     };
+    enum REPEAT_NUM {
+        REPEAT_NUM_INFINITY = -1,
+        REPEAT_NUM_UNKNOWN = 0
+    };
 
     static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
     static const std::vector<std::pair<STATUS_ENUM, wxString> > STATUS_ENUM_CHOICES;

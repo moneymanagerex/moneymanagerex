@@ -351,7 +351,7 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
         const wxDateTime& due_date_current = NEXTOCCURRENCEDATE(bill);
         const wxDateTime& due_date_update = nextOccurDate(repeats, numRepeats, due_date_current);
 
-        if (numRepeats != -1)
+        if (numRepeats > 0)
         {
             if ((repeats < REPEAT_TYPE::REPEAT_IN_X_DAYS) || (repeats > REPEAT_TYPE::REPEAT_EVERY_X_MONTHS))
                 numRepeats--;
