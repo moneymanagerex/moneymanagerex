@@ -230,7 +230,7 @@ void Model_Billsdeposits::decode_fields(const Data& q1)
         m_autoExecuteManual = true;
     }
     repeats %= BD_REPEATS_MULTIPLEX_BASE;
-    if ((repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS) || (numRepeats > Model_Billsdeposits::REPEAT_NONE) || (repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS))
+    if ((numRepeats > 0) || (repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS) || (repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS))
     {
         m_allowExecution = true;
     }
@@ -351,7 +351,7 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
         const wxDateTime& due_date_current = NEXTOCCURRENCEDATE(bill);
         const wxDateTime& due_date_update = nextOccurDate(repeats, numRepeats, due_date_current);
 
-        if (numRepeats != REPEAT_TYPE::REPEAT_INACTIVE)
+        if (numRepeats > 0)
         {
             if ((repeats < REPEAT_TYPE::REPEAT_IN_X_DAYS) || (repeats > REPEAT_TYPE::REPEAT_EVERY_X_MONTHS))
                 numRepeats--;
@@ -371,7 +371,7 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
         bill->NUMOCCURRENCES = numRepeats;
         save(bill);
 
-        if (bill->NUMOCCURRENCES == REPEAT_TYPE::REPEAT_NONE)
+        if (bill->NUMOCCURRENCES == 0)
         {
             mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), bdID);
             remove(bdID);

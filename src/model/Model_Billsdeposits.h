@@ -38,7 +38,7 @@ public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
     enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
     enum REPEAT_TYPE {
-        REPEAT_INACTIVE = -1,
+        REPEAT_INACTIVE = -1,  // not used (can be removed)
         REPEAT_NONE,
         REPEAT_WEEKLY,
         REPEAT_BI_WEEKLY,      // FORTNIGHTLY
@@ -56,6 +56,10 @@ public:
         REPEAT_EVERY_X_MONTHS,
         REPEAT_MONTHLY_LAST_DAY,
         REPEAT_MONTHLY_LAST_BUSINESS_DAY
+    };
+    enum REPEAT_NUM {
+        REPEAT_NUM_INFINITY = -1,
+        REPEAT_NUM_UNKNOWN = 0
     };
 
     static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
