@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-05-24 19:50\n"
+"PO-Revision-Date: 2024-08-16 19:37\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgstr "&Nová databáza"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "Vytvoriť nový databázový súbor MMEX"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
