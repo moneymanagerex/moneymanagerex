@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-08-16 20:47\n"
+"PO-Revision-Date: 2024-08-17 07:21\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -337,7 +337,7 @@ msgstr "Otvoriť &existujúcu databázu"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "Otvoriť databázový súbor MMEX"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1682
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "&Užívateľská príručka"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "Prečítať používateľskú príručku MMEX"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1852
 msgid "&Website"
@@ -362,15 +362,15 @@ msgstr "&Webová stránka"
 
 #: appstartdialog.cpp:121 mmframe.cpp:1853
 msgid "Visit MMEX website for the latest news and updates"
-msgstr ""
+msgstr "Navštívte webovú stránku MMEX pre najnovšie správy a aktualizácie"
 
 #: appstartdialog.cpp:125 mmframe.cpp:1869
 msgid "&Forum"
-msgstr ""
+msgstr "&Fórum"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "Navštívte fórum MMEX, aby ste si prečítali a pridávali komentáre a získali podporu"
 
 #: appstartdialog.cpp:132 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -383,7 +383,7 @@ msgstr "Ukončiť "
 #: appstartdialog.cpp:159
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Otvoriť predtým otvorenú databázu: %s"
 
 #: appstartdialog.cpp:208 mmframe.cpp:1688 mmframe.cpp:3081
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -392,7 +392,7 @@ msgstr "Predvolené nastavenie systému"
 
 #: appstartdialog.cpp:221 optionsettingsgeneral.cpp:92
 msgid "User Interface Language"
-msgstr ""
+msgstr "Jazyk používateľského rozhrania"
 
 #: appstartdialog.cpp:229 mmframe.cpp:3960 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -709,7 +709,7 @@ msgstr "Nie je nastavený priečinok príloh."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools → Settings… → Attachments"
-msgstr ""
+msgstr "Nastavte to prosím v Nástroje → Nastavenia… → Prílohy"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
@@ -730,17 +730,17 @@ msgstr "Nebol nájdený priečinok príloh"
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %s | %i"
-msgstr ""
+msgstr "Správca príloh | %s | %i"
 
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr ""
+msgstr "Správca príloh | %1$s | %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr ""
+msgstr "Správca príloh | Nová %s"
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
@@ -756,7 +756,7 @@ msgstr "Zadajte opis novej prílohy:"
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
-msgstr ""
+msgstr "Správca príloh: Pridať prílohu"
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
@@ -764,7 +764,7 @@ msgstr "Zadajte nový popis pre prílohu:"
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
-msgstr ""
+msgstr "Správca príloh: Upraviť prílohu"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
@@ -796,7 +796,7 @@ msgstr "Príl."
 
 #: attachmentdialog.cpp:407
 msgid "This directory and its files are automatically managed by MMEX."
-msgstr ""
+msgstr "Tento priečinok a súbory v ňom sú automaticky spravované softvérom MMEX."
 
 #: attachmentdialog.cpp:409
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -1037,7 +1037,7 @@ msgstr "Upresnite sumu prevodu na cieľový účet"
 
 #: billsdepositsdialog.cpp:544 transdialog.cpp:494
 msgid "Open Calculator"
-msgstr ""
+msgstr "Otvoriť kalkulačku"
 
 #: billsdepositsdialog.cpp:550 billsdepositsdialog.cpp:837
 #: billsdepositsdialog.cpp:850 billsdepositspanel.cpp:134 filtertrans.cpp:200
@@ -1231,12 +1231,14 @@ msgstr "Zadajte počet mesiacov do aktivácie.\n"
 #: billsdepositsdialog.cpp:1322
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Zadajte počet dní do aktivácie.\n"
+"Pokiaľ nie je aktívne, pole zostane prázdne."
 
 #: billsdepositsdialog.cpp:1330
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Zadajte počet mesiacov do aktivácie.\n"
+"Pokiaľ nedôjde k aktivácii, pole zostane prázdne."
 
 #: billsdepositsdialog.cpp:1338
 msgid "Specify the number of payments to be made.\n"
@@ -1340,11 +1342,11 @@ msgstr "Odstrániť naplánovanú transakciu"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
-msgstr ""
+msgstr "Vložiť"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Zadajte ďalšiu naplánovanú transakciu"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1352,11 +1354,11 @@ msgstr "&Preskočiť"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Preskočte ďalšiu naplánovanú transakciu"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Zadajte ďalší výskyt..."
 
 #: billsdepositspanel.cpp:435
 msgid "Skip next Occurrence"
@@ -1364,27 +1366,27 @@ msgstr "Preskočiť ďalší výskyt"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&Nová naplánovaná transakcia..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "Upravt&e naplánovanú transakciu..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "D&uplikovať naplánovanú transakciu..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "O&dstrániť naplánovanú transakciu..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
-msgstr ""
+msgstr "Príručka"
 
 #: billsdepositspanel.cpp:494
 msgid "Automated"
-msgstr ""
+msgstr "Automatizovaný"
 
 #: billsdepositspanel.cpp:498
 msgid "Suggested"
