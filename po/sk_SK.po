@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-08-17 07:21\n"
+"PO-Revision-Date: 2024-08-17 08:48\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -1397,9 +1397,9 @@ msgstr "Navrhované"
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "Zostáva/jú %d dni/í"
 msgstr[2] ""
-msgstr[3] "%d dní zostáva"
+msgstr[3] "Zostáva %d dní"
 
 #: billsdepositspanel.cpp:543 billsdepositspanel.cpp:550
 #: billsdepositspanel.cpp:557 billsdepositspanel.cpp:610
@@ -1411,27 +1411,27 @@ msgstr "Neaktívne"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%d deň oneskorenia!"
+msgstr[1] "%d dni omeskorenia!"
+msgstr[2] "%d dní omeskorenia!"
+msgstr[3] "%d dní oneskorenia!"
 
 #: billsdepositspanel.cpp:555 billsdepositspanel.cpp:615 mmhomepage.cpp:311
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%d deň po splatnosti!"
+msgstr[1] "%d dni po splatnosti!"
+msgstr[2] "%d dní po splatnosti!"
+msgstr[3] "%d dní po splatnosti!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Naozaj chcete odstrániť naplánovanú transakciu?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Potvrdiť zmazanie"
 
 #: budgetentrydialog.cpp:47
 msgid "Budget Year Entry"
@@ -1486,7 +1486,7 @@ msgstr "Zadajte predpokladanú sumu pre túto kategóriu."
 
 #: budgetentrydialog.cpp:148 payeedialog.cpp:119
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "Vložte poznámky, v ktorých opíšete tento rozpočtový záznam"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
@@ -1515,7 +1515,7 @@ msgstr "Zobraziť súhrn kategórií rozpočtu"
 #: budgetingpanel.cpp:165
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Fiškálny rok: %s - %li"
 
 #: budgetingpanel.cpp:169 reports/budget.cpp:94
 #, c-format
@@ -1530,12 +1530,12 @@ msgstr "mesiac: %s"
 #: budgetingpanel.cpp:180
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s Dátum začatia: %2$s"
 
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "Plánovanie rozpočtu pre %s"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -1577,7 +1577,7 @@ msgstr "Editor rozpočtu"
 
 #: budgetyeardialog.cpp:93
 msgid "Add &Year"
-msgstr ""
+msgstr "Pridať rok"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1585,7 +1585,7 @@ msgstr "Pridať nový ročný rozpočet"
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
-msgstr ""
+msgstr "Pridať &mesiac"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -1605,7 +1605,7 @@ msgstr "Položka mesačného rozpočtu"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr ""
+msgstr "Rozpočet pre rok"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1615,7 +1615,7 @@ msgstr "Upresnite požadovaný rok.\n"
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
-msgstr ""
+msgstr "Rozpočet pre mesiac"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
@@ -1625,11 +1625,11 @@ msgstr "Upresnite požadovaný mesiac.\n"
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
-msgstr ""
+msgstr "Rozpočet založený na"
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
-msgstr ""
+msgstr "Upresnite rok, na ktorom bude založený rozpočet"
 
 #: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
@@ -1642,19 +1642,19 @@ msgstr "Kategórie"
 #: categdialog.cpp:258 relocatecategorydialog.cpp:89
 #: relocatecategorydialog.h:43
 msgid "Merge Categories"
-msgstr ""
+msgstr "Zlúčiť kategórie"
 
 #: categdialog.cpp:260
 msgid "C&ollapse All"
-msgstr ""
+msgstr "Zbaliť všetk&o"
 
 #: categdialog.cpp:265
 msgid "E&xpand All"
-msgstr ""
+msgstr "Rozbaliť všetko"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "&Show All"
-msgstr ""
+msgstr "Zobraziť všetko"
 
 #: categdialog.cpp:272
 msgid "Show all hidden categories"
@@ -1682,15 +1682,15 @@ msgstr "Vyberte aktuálnu kategóriu pre transakciu"
 
 #: categdialog.cpp:343
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "Názov obsahuje oddeľovač kategórie."
 
 #: categdialog.cpp:344
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "Dvojbodka (:) sa používa na oddelenie kategórií a podkategórií, a preto by sa v názve nemala používať"
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
-msgstr ""
+msgstr "Manažér kategórie: Neplatný názov"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
@@ -1702,7 +1702,7 @@ msgstr "Pridať kategóriu"
 
 #: categdialog.cpp:366 categdialog.cpp:375 categdialog.cpp:624
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "Pre nadradenú kategóriu už existuje kategória s týmto názvom"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category Manager: Adding Error"
