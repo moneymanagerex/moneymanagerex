@@ -47,7 +47,7 @@ enum
 
 const wxString BILLSDEPOSITS_REPEATS[] =
 {
-    wxTRANSLATE("None"),
+    wxTRANSLATE("Once"),
     wxTRANSLATE("Weekly"),
     wxTRANSLATE("Fortnightly"),
     wxTRANSLATE("Monthly"),
@@ -537,14 +537,17 @@ const int mmBillsDepositsPanel::GetNumRepeats(const Model_Billsdeposits::Data* i
     int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
     int numRepeats = item->NUMOCCURRENCES;
 
-    if (repeats == Model_Billsdeposits::REPEAT_NONE)
+    if (repeats == Model_Billsdeposits::REPEAT_ONCE)
         numRepeats = 1;
     else if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_IN_X_MONTHS)
         numRepeats = numRepeats > 0 ? 2 : Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
     else if (repeats >= Model_Billsdeposits::REPEAT_EVERY_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS)
         numRepeats = numRepeats > 0 ? Model_Billsdeposits::REPEAT_NUM_INFINITY : Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
-    else if (numRepeats < -1)  // this should not happen
+    else if (numRepeats < -1)
+    {
+        wxFAIL;
         numRepeats = Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
+    }
 
     return numRepeats;
 }

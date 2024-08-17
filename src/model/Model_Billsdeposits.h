@@ -39,7 +39,7 @@ public:
     enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
     enum REPEAT_TYPE {
         REPEAT_INACTIVE = -1,  // not used (can be removed)
-        REPEAT_NONE,
+        REPEAT_ONCE,
         REPEAT_WEEKLY,
         REPEAT_BI_WEEKLY,      // FORTNIGHTLY
         REPEAT_MONTHLY,
