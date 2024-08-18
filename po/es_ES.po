@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-06-29 02:07\n"
+"PO-Revision-Date: 2024-08-18 06:49\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -308,7 +308,7 @@ msgstr "Ya existen transacciones para esta cuenta antes de esta fecha"
 
 #: accountdialog.cpp:529
 msgid "Stock purchases for this account already exist before this date"
-msgstr "Las compra de acciones para esta cuenta ya existen antes de esta fecha"
+msgstr "Existen compras de acciones para esta cuenta anteriores a esta fecha"
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
@@ -321,7 +321,7 @@ msgstr "Nueva Cuenta"
 
 #: appstartdialog.cpp:101
 msgid "Open Last Opened &Database"
-msgstr "Abrir la última base de datos &utilizada"
+msgstr "Abrir la última &base de datos utilizada"
 
 #: appstartdialog.cpp:104
 msgid "&New Database"
