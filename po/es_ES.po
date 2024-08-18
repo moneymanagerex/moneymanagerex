@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-08-18 06:49\n"
+"PO-Revision-Date: 2024-08-18 08:30\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -333,7 +333,7 @@ msgstr "Crear nuevo archivo de base de datos de MMEX"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
-msgstr "Abrir &base de datos existente"
+msgstr "Abrir una base de datos &existente"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
@@ -378,7 +378,7 @@ msgstr "&Mostrar este cuadro de diálogo al iniciar"
 
 #: appstartdialog.cpp:143
 msgid "E&xit "
-msgstr "Salir "
+msgstr "&Salir "
 
 #: appstartdialog.cpp:159
 #, c-format
@@ -388,11 +388,11 @@ msgstr "Abrir la base de datos abierta anteriormente: %s"
 #: appstartdialog.cpp:208 mmframe.cpp:1688 mmframe.cpp:3081
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
-msgstr "Valor por defecto"
+msgstr "Valor predeterminado del sistema"
 
 #: appstartdialog.cpp:221 optionsettingsgeneral.cpp:92
 msgid "User Interface Language"
-msgstr "Idioma de interfaz de usuario"
+msgstr "Idioma de la interfaz de usuario"
 
 #: appstartdialog.cpp:229 mmframe.cpp:3960 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -4350,7 +4350,7 @@ msgstr "Borrar las transacciones de seguimiento mostradas..."
 
 #: mmchecking_list.cpp:673
 msgid "Delete Viewed “&Unreconciled” Transactions..."
-msgstr ""
+msgstr "Borrar las transacciones \"&No Reconciliadas\" ya vistas..."
 
 #: mmchecking_list.cpp:675
 msgid "De&lete "
