@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-08-20 20:07\n"
+"PO-Revision-Date: 2024-08-20 21:27\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -5231,11 +5231,11 @@ msgstr ""
 
 #: mmframe.cpp:1880
 msgid "Make a &Donation"
-msgstr ""
+msgstr "Gör en &donation"
 
 #: mmframe.cpp:1881
 msgid "Donate to the MMEX team to support infrastructure and development"
-msgstr ""
+msgstr "Donera till MMEX-teamet för att stödja infrastruktur och utveckling"
 
 #: mmframe.cpp:1883
 msgid "&Buy us a Coffee"
@@ -5243,7 +5243,7 @@ msgstr ""
 
 #: mmframe.cpp:1884
 msgid "Buy a key developer a coffee"
-msgstr ""
+msgstr "Köp en kopp kaffe åt utvecklaren"
 
 #: mmframe.cpp:1887
 msgid "&Community"
@@ -5319,7 +5319,7 @@ msgstr "Ny"
 
 #: mmframe.cpp:1979
 msgid "&Settings"
-msgstr ""
+msgstr "&Inställningar"
 
 #: mmframe.cpp:1987 mmframe.cpp:1992 mmframe.cpp:3018 optionsettingsnet.cpp:132
 msgid "News"
@@ -5335,7 +5335,7 @@ msgstr "Ladda ner valuta- och aktiekurser"
 
 #: mmframe.cpp:1997
 msgid "Full Screen\tF11"
-msgstr ""
+msgstr "Helskärm F11"
 
 #: mmframe.cpp:2000
 msgid "&Print"
@@ -5539,7 +5539,7 @@ msgstr ""
 
 #: mmframe.cpp:2925
 msgid "Settings have been updated."
-msgstr ""
+msgstr "Inställningarna har uppdaterats."
 
 #: mmframe.cpp:2926
 msgid "Some settings take effect only after an application restart."
@@ -6033,7 +6033,7 @@ msgstr "Allmänt"
 
 #: optiondialog.cpp:37 optionsettingsview.cpp:61
 msgid "View"
-msgstr ""
+msgstr "Visa"
 
 #: optiondialog.cpp:37 optionsettingsattachment.cpp:65 webappdialog.cpp:146
 msgid "Attachments"
@@ -6356,7 +6356,7 @@ msgstr "Databas"
 
 #: optionsettingsmisc.cpp:180
 msgid "Backup database on startup"
-msgstr ""
+msgstr "Säkerhetskopiera databasen vid uppstart"
 
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX starts,\n"
@@ -6396,7 +6396,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp"
-msgstr ""
+msgstr "WebApp"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
@@ -6436,7 +6436,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:119
 msgid "Usage Statistics"
-msgstr ""
+msgstr "Användningsstatistik"
 
 #: optionsettingsnet.cpp:138
 msgid "Check for latest news on startup"
@@ -6496,7 +6496,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget"
-msgstr ""
+msgstr "Transaktion/Budget"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
@@ -6758,7 +6758,7 @@ msgstr ""
 
 #: relocatecategorydialog.cpp:102
 msgid "&Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "&Ta bort källkategori efter sammanslagning (om källkategorin inte har några underkategorier)"
 
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
 #: relocatetagdialog.cpp:114
@@ -6823,7 +6823,7 @@ msgstr "Slå ihop betalningsmottagare"
 
 #: relocatepayeedialog.cpp:99
 msgid "&Delete source payee after merge"
-msgstr ""
+msgstr "&Ta bort källans betalningsmottagare efter sammanslagning"
 
 #: relocatepayeedialog.cpp:156
 msgid "Merge payees confirmation"
@@ -6835,7 +6835,7 @@ msgstr "Slå ihop taggar"
 
 #: relocatetagdialog.cpp:101
 msgid "&Delete source tag after merge"
-msgstr ""
+msgstr "&Ta bort källtagg efter sammanslagning"
 
 #: relocatetagdialog.cpp:158
 msgid "Merge tags confirmation"
@@ -7765,11 +7765,11 @@ msgstr ""
 
 #: themes.cpp:191
 msgid "&Delete"
-msgstr ""
+msgstr "&Radera"
 
 #: themes.cpp:193
 msgid "&Use"
-msgstr ""
+msgstr "&Använd"
 
 #: themes.cpp:239
 msgid "No description available"
