@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-06-22 20:06\n"
+"PO-Revision-Date: 2024-08-20 19:09\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -5079,7 +5079,7 @@ msgstr ""
 
 #: mmframe.cpp:1796
 msgid "Tra&nsaction Report..."
-msgstr ""
+msgstr "Tra&nsaktionsrapport..."
 
 #: mmframe.cpp:1802
 msgid "&General Report Manager..."
@@ -5151,7 +5151,7 @@ msgstr ""
 
 #: mmframe.cpp:1855
 msgid "Face&book"
-msgstr ""
+msgstr "Face&book"
 
 #: mmframe.cpp:1855
 msgid "Visit MMEX Facebook page"
@@ -5199,11 +5199,11 @@ msgstr ""
 
 #: mmframe.cpp:1867
 msgid "W&iki"
-msgstr ""
+msgstr "W&iki"
 
 #: mmframe.cpp:1867
 msgid "Read and update MMEX wiki"
-msgstr ""
+msgstr "Läs och uppdatera MMEX wiki"
 
 #: mmframe.cpp:1872
 msgid "MMEX for &Android"
@@ -5657,7 +5657,7 @@ msgstr ""
 
 #: mmframereport.cpp:168 optionsettingshome.cpp:78
 msgid "Income vs. Expenses"
-msgstr ""
+msgstr "Inkomster vs utgifter"
 
 #: mmframereport.cpp:179
 msgid "My Usage"
@@ -5731,7 +5731,7 @@ msgstr "Konto/betalningsmottagare"
 #: mmhomepage.cpp:423
 #, c-format
 msgid "Income vs. Expenses: %s"
-msgstr ""
+msgstr "Inkomster vs Utgifter: %s"
 
 #: mmhomepage.cpp:433 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:425 reports/categexp.cpp:496 reports/incexpenses.cpp:88
@@ -6638,7 +6638,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:312
 msgid "Navigator Icon Size"
-msgstr ""
+msgstr "Navigatorns ikonstorlek"
 
 #: optionsettingsview.cpp:313
 msgid "Others Icon Size"
@@ -6819,7 +6819,7 @@ msgstr ""
 
 #: relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge Payees"
-msgstr ""
+msgstr "Slå ihop betalningsmottagare"
 
 #: relocatepayeedialog.cpp:99
 msgid "&Delete source payee after merge"
@@ -6831,7 +6831,7 @@ msgstr ""
 
 #: relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge Tags"
-msgstr ""
+msgstr "Slå ihop taggar"
 
 #: relocatetagdialog.cpp:101
 msgid "&Delete source tag after merge"
