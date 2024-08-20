@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-08-20 19:09\n"
+"PO-Revision-Date: 2024-08-20 20:07\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2535,7 +2535,7 @@ msgstr ""
 #: diagnostics.cpp:88 relocatecategorydialog.cpp:134
 #: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:134 themes.cpp:195
 msgid "&Close"
-msgstr ""
+msgstr "&Stäng"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -4870,7 +4870,7 @@ msgstr "Skriv ut aktuell vy"
 
 #: mmframe.cpp:1626
 msgid "E&xit\tCtrl-Q"
-msgstr ""
+msgstr "A&vsluta Ctrl-Q"
 
 #: mmframe.cpp:1626
 msgid "Quit this program"
@@ -4958,11 +4958,11 @@ msgstr ""
 
 #: mmframe.cpp:1670
 msgid "&Full Screen\tF11"
-msgstr ""
+msgstr "&Helskärm F11"
 
 #: mmframe.cpp:1671 mmframe.cpp:1997
 msgid "Toggle full screen"
-msgstr ""
+msgstr "Växla helskärm"
 
 #: mmframe.cpp:1676
 msgid "&Reset View"
@@ -5099,7 +5099,7 @@ msgstr ""
 
 #: mmframe.cpp:1817
 msgid "&Settings...\tAlt-F12"
-msgstr ""
+msgstr "&Inställningar... Alt-F12"
 
 #: mmframe.cpp:1824
 msgid "&Decrypt Encrypted Database..."
@@ -6849,7 +6849,7 @@ msgstr "Räkenskapsår: %s - %i"
 #: reports/budget.cpp:101
 #, c-format
 msgid "Financial Year: %i Month: %s"
-msgstr ""
+msgstr "Finansiellt år: %i Månad: %s"
 
 #: reports/budget.cpp:103
 #, c-format
@@ -6868,7 +6868,7 @@ msgstr ""
 
 #: reports/budgetcategorysummary.cpp:129
 msgid "(Estimated vs. Actual)"
-msgstr ""
+msgstr "(Uppskattad vs faktisk)"
 
 #: reports/budgetcategorysummary.cpp:346
 msgid "Estimated Income:"
@@ -7067,7 +7067,7 @@ msgstr ""
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs. Expenses Summary"
-msgstr ""
+msgstr "Inkomster vs utgifter, sammanfattning"
 
 #: reports/incexpenses.cpp:115
 msgid "Income:"
@@ -7079,7 +7079,7 @@ msgstr "Utgifter:"
 
 #: reports/incexpenses.cpp:133
 msgid "Income vs. Expenses Monthly"
-msgstr ""
+msgstr "Inkomster vs utgifter månadsvis"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
