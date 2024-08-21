@@ -298,9 +298,9 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
         int repeats = entry.REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields
 
-        if (daysPayment == 0 && repeats > 10 && repeats < 15 && entry.NUMOCCURRENCES < 0) {
-            continue; // Inactive
-        }
+        // ignore inactive entries
+        if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && entry.NUMOCCURRENCES < 0)
+            continue;
 
         int daysOverdue = Model_Billsdeposits::NEXTOCCURRENCEDATE(&entry)
             .Subtract(today).GetDays();

@@ -232,39 +232,37 @@ void mmBDDialog::dataToControls()
     field_date.ParseDate(m_bill_data.NEXTOCCURRENCEDATE);
     m_date_due->SetValue(field_date);
 
-    // Have used repeatSel to multiplex auto repeat fields.
-    if (m_bill_data.REPEATS >= 2 * BD_REPEATS_MULTIPLEX_BASE)
-        autoExecuteSilent_ = true;
-    else if (m_bill_data.REPEATS >= BD_REPEATS_MULTIPLEX_BASE)
-        autoExecuteUserAck_ = true;
-    m_bill_data.REPEATS %= BD_REPEATS_MULTIPLEX_BASE;
+    // demultiplex m_bill_data.REPEATS
+    int autoExecute = m_bill_data.REPEATS / BD_REPEATS_MULTIPLEX_BASE;
+    int repeats = m_bill_data.REPEATS % BD_REPEATS_MULTIPLEX_BASE;
 
-    // fix m_bill_data.REPEATS
-    if (m_bill_data.REPEATS < Model_Billsdeposits::REPEAT_ONCE || m_bill_data.REPEATS > Model_Billsdeposits::REPEAT_MONTHLY_LAST_BUSINESS_DAY)
+    // fix repeats
+    if (repeats < Model_Billsdeposits::REPEAT_ONCE || repeats > Model_Billsdeposits::REPEAT_MONTHLY_LAST_BUSINESS_DAY)
     {
         wxFAIL;
-        m_bill_data.REPEATS = Model_Billsdeposits::REPEAT_MONTHLY;
+        repeats = Model_Billsdeposits::REPEAT_MONTHLY;
     }
-    if (m_bill_data.REPEATS >= Model_Billsdeposits::REPEAT_IN_X_DAYS && m_bill_data.REPEATS <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && m_bill_data.NUMOCCURRENCES < 1)
+    if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && m_bill_data.NUMOCCURRENCES < 1)
     {
         // old inactive entry. transform to REPEAT_ONCE and turn off automatic execution.
-        m_bill_data.REPEATS = Model_Billsdeposits::REPEAT_ONCE;
-        autoExecuteSilent_ = false;
-        autoExecuteUserAck_ = false;
+        repeats = Model_Billsdeposits::REPEAT_ONCE;
+        autoExecute = Model_Billsdeposits::REPEAT_AUTO_NONE;
     }
-    setRepeatType(m_bill_data.REPEATS);
+    setRepeatType(repeats);
 
-    if (m_bill_data.REPEATS != Model_Billsdeposits::REPEAT_ONCE && m_bill_data.NUMOCCURRENCES > 0) {
+    if (repeats != Model_Billsdeposits::REPEAT_ONCE && m_bill_data.NUMOCCURRENCES > 0) {
         textNumRepeats_->SetValue(wxString::Format("%d", m_bill_data.NUMOCCURRENCES));
     }
 
-    if (autoExecuteSilent_)
+    if (autoExecute == Model_Billsdeposits::REPEAT_AUTO_SILENT)
     {
+        autoExecuteSilent_ = true;
         itemCheckBoxAutoExeSilent_->SetValue(true);
         itemCheckBoxAutoExeUserAck_->Enable(false);
     }
-    else if (autoExecuteUserAck_)
+    else if (autoExecute == Model_Billsdeposits::REPEAT_AUTO_MANUAL)
     {
+        autoExecuteUserAck_ = true;
         itemCheckBoxAutoExeUserAck_->SetValue(true);
         itemCheckBoxAutoExeSilent_->Enable(false);
     }
@@ -1006,16 +1004,13 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
     }
 
-    // store repeats (it is used again later)
+    int autoExecute =
+        autoExecuteSilent_ ? Model_Billsdeposits::REPEAT_AUTO_SILENT :
+        autoExecuteUserAck_ ? Model_Billsdeposits::REPEAT_AUTO_MANUAL :
+        Model_Billsdeposits::REPEAT_AUTO_NONE;
     int repeats = getRepeatType();
-    // Multiplex Auto executable onto the repeat field of the database.
-    m_bill_data.REPEATS = repeats;
-    if (autoExecuteUserAck_) {
-        m_bill_data.REPEATS += BD_REPEATS_MULTIPLEX_BASE;
-    }
-    else if (autoExecuteSilent_) {
-        m_bill_data.REPEATS += 2 * BD_REPEATS_MULTIPLEX_BASE;
-    }
+    // multiplex autoExecute and repeats
+    m_bill_data.REPEATS = autoExecute * BD_REPEATS_MULTIPLEX_BASE + repeats;
 
     const wxString& numRepeatStr = textNumRepeats_->GetValue();
     m_bill_data.NUMOCCURRENCES = -1;

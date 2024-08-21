@@ -140,6 +140,10 @@ void mmReportCashFlow::getTransactions()
         int repeatsType = entry.REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields from the db entry: REPEATS
         int numRepeats = entry.NUMOCCURRENCES;
 
+        // ignore inactive entries
+        if (repeatsType >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeatsType <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && numRepeats < 0)
+            continue;
+
         bool processNumRepeats = numRepeats != -1 || repeatsType == 0;
         if (repeatsType == 0)
         {
