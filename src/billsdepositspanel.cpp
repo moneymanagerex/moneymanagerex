@@ -47,7 +47,7 @@ enum
 
 const wxString BILLSDEPOSITS_REPEATS[] =
 {
-    wxTRANSLATE("None"),
+    wxTRANSLATE("Once"),
     wxTRANSLATE("Weekly"),
     wxTRANSLATE("Fortnightly"),
     wxTRANSLATE("Monthly"),
@@ -481,10 +481,15 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     case COL_FREQUENCY:
         return GetFrequency(&bill);
     case COL_REPEATS:
-        if (bill.NUMOCCURRENCES == -1)
-            return L"\x221E";
+    {
+        int numRepeats = GetNumRepeats(&bill);
+        if (numRepeats > 0)
+            return wxString::Format("%i", numRepeats).Trim();
+        else if (numRepeats == Model_Billsdeposits::REPEAT_NUM_INFINITY)
+            return L"\x221E";  // INFITITY
         else
-            return wxString::Format("%i", bill.NUMOCCURRENCES).Trim();
+            return L"\x2015";  // HORIZONTAL BAR
+    }
     case COL_AUTO:
     {
         int repeats = bill.REPEATS;
@@ -525,6 +530,26 @@ const wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Dat
     if (repeats > 10 && repeats < 15)
         text = wxString::Format(text, wxString::Format("%d", item->NUMOCCURRENCES));
     return text;
+}
+
+const int mmBillsDepositsPanel::GetNumRepeats(const Model_Billsdeposits::Data* item) const
+{
+    int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+    int numRepeats = item->NUMOCCURRENCES;
+
+    if (repeats == Model_Billsdeposits::REPEAT_ONCE)
+        numRepeats = 1;
+    else if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_IN_X_MONTHS)
+        numRepeats = numRepeats > 0 ? 2 : Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
+    else if (repeats >= Model_Billsdeposits::REPEAT_EVERY_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS)
+        numRepeats = numRepeats > 0 ? Model_Billsdeposits::REPEAT_NUM_INFINITY : Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
+    else if (numRepeats < -1)
+    {
+        wxFAIL;
+        numRepeats = Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
+    }
+
+    return numRepeats;
 }
 
 const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data* item) const
@@ -815,7 +840,17 @@ void mmBillsDepositsPanel::sortTable()
         });
         break;
     case COL_REPEATS:
-        std::stable_sort(bills_.begin(), bills_.end(), SorterByREPEATS());
+        std::stable_sort(bills_.begin(), bills_.end()
+            , [&](const Model_Billsdeposits::Full_Data& x, const Model_Billsdeposits::Full_Data& y)
+        {
+            int xn = this->GetNumRepeats(&x);
+            int yn = this->GetNumRepeats(&y);
+            // the order is: 1, 2, ..., -1 (REPEAT_NUM_INFINITY), 0 (REPEAT_NUM_UNKNOWN)
+            if (xn > 0)
+                return yn > xn || yn == Model_Billsdeposits::REPEAT_NUM_INFINITY || yn == Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
+            else
+                return xn == Model_Billsdeposits::REPEAT_NUM_INFINITY && yn == Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
+        });
         break;
     case COL_DAYS:
         std::stable_sort(bills_.begin(), bills_.end()

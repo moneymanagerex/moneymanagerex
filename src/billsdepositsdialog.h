@@ -146,6 +146,8 @@ private:
     void OnRepeatTypeChanged(wxCommandEvent& event);
     void OnsetPrevOrNextRepeatDate(wxCommandEvent& event);
     void setRepeatDetails();
+    int getRepeatType();
+    void setRepeatType(int repeatType);
     void OnMoreFields(wxCommandEvent& event);
 
     void activateSplitTransactionsDlg();

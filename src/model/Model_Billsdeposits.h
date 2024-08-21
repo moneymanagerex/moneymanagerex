@@ -38,8 +38,8 @@ public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
     enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
     enum REPEAT_TYPE {
-        REPEAT_INACTIVE = -1,
-        REPEAT_NONE,
+        REPEAT_INACTIVE = -1,  // not used (can be removed)
+        REPEAT_ONCE,
         REPEAT_WEEKLY,
         REPEAT_BI_WEEKLY,      // FORTNIGHTLY
         REPEAT_MONTHLY,
@@ -56,6 +56,15 @@ public:
         REPEAT_EVERY_X_MONTHS,
         REPEAT_MONTHLY_LAST_DAY,
         REPEAT_MONTHLY_LAST_BUSINESS_DAY
+    };
+    enum REPEAT_NUM {
+        REPEAT_NUM_INFINITY = -1,
+        REPEAT_NUM_UNKNOWN = 0
+    };
+    enum REPEAT_AUTO {
+        REPEAT_AUTO_NONE = 0,
+        REPEAT_AUTO_MANUAL = 1,
+        REPEAT_AUTO_SILENT = 2
     };
 
     static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
@@ -155,8 +164,7 @@ public:
     bool AllowTransaction(const Data& r, AccountBalance& bal);
 
 private:
-    bool m_autoExecuteManual;
-    bool m_autoExecuteSilent;
+    int m_autoExecute;
     bool m_requireExecution;
     bool m_allowExecution;
 

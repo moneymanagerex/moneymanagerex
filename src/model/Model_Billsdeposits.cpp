@@ -24,6 +24,7 @@
 #include "Model_Category.h"
 #include "Model_Payee.h"
 #include "Model_Tag.h"
+#include "Model_CustomFieldData.h"
 
  /* TODO: Move attachment management outside of attachmentdialog */
 #include "attachmentdialog.h"
@@ -46,8 +47,7 @@ const std::vector<std::pair<Model_Billsdeposits::STATUS_ENUM, wxString> > Model_
 
 Model_Billsdeposits::Model_Billsdeposits()
     : Model<DB_Table_BILLSDEPOSITS_V1>()
-    , m_autoExecuteManual (false)
-    , m_autoExecuteSilent (false)
+    , m_autoExecute (REPEAT_AUTO_NONE)
     , m_requireExecution (false)
     , m_allowExecution (false)
 
@@ -213,26 +213,17 @@ const Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::splittransacti
 
 void Model_Billsdeposits::decode_fields(const Data& q1)
 {
-    m_autoExecuteManual = false; // Used when decoding: REPEATS
-    m_autoExecuteSilent = false;
-    m_requireExecution = false;
-    m_allowExecution = false;
-
     // DeMultiplex the Auto Executable fields from the db entry: REPEATS
-    int repeats = q1.REPEATS;
-    int numRepeats = q1.NUMOCCURRENCES;
+    m_autoExecute = q1.REPEATS / BD_REPEATS_MULTIPLEX_BASE;
+    m_allowExecution = true;
 
-    if (repeats >= 2 * BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
+    int repeats = q1.REPEATS % BD_REPEATS_MULTIPLEX_BASE;
+    int numRepeats = q1.NUMOCCURRENCES;
+    if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && numRepeats < 1)
     {
-        m_autoExecuteSilent = true;
-    } else if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
-    {
-        m_autoExecuteManual = true;
-    }
-    repeats %= BD_REPEATS_MULTIPLEX_BASE;
-    if ((repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS) || (numRepeats > Model_Billsdeposits::REPEAT_NONE) || (repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS))
-    {
-        m_allowExecution = true;
+        // old inactive entry
+        m_autoExecute = REPEAT_AUTO_NONE;
+        m_allowExecution = false;
     }
 
     m_requireExecution = (Model_Billsdeposits::NEXTOCCURRENCEDATE(&q1)
@@ -241,12 +232,12 @@ void Model_Billsdeposits::decode_fields(const Data& q1)
 
 bool Model_Billsdeposits::autoExecuteManual()
 {
-    return m_autoExecuteManual;
+    return m_autoExecute == REPEAT_AUTO_MANUAL;
 }
 
 bool Model_Billsdeposits::autoExecuteSilent()
 {
-    return m_autoExecuteSilent;
+    return m_autoExecute == REPEAT_AUTO_SILENT;
 }
 
 bool Model_Billsdeposits::requireExecution()
@@ -339,44 +330,40 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r, AccountBalance& bal)
 void Model_Billsdeposits::completeBDInSeries(int bdID)
 {
     Data* bill = get(bdID);
-    if (bill)
+    if (!bill) return;
+
+    int repeats = bill->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+    int numRepeats = bill->NUMOCCURRENCES;
+
+    if ((repeats == REPEAT_TYPE::REPEAT_ONCE) || ((repeats < REPEAT_TYPE::REPEAT_IN_X_DAYS || repeats > REPEAT_TYPE::REPEAT_EVERY_X_MONTHS) && numRepeats == 1))
     {
-        int repeats = bill->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
-        int numRepeats = bill->NUMOCCURRENCES;
-        wxDateTime transdate;
-        transdate.ParseDateTime(bill->TRANSDATE) || transdate.ParseDate(bill->TRANSDATE);
-        const wxDateTime& payment_date_current = transdate;
-        const wxDateTime& payment_date_update = nextOccurDate(repeats, numRepeats, payment_date_current);
-
-        const wxDateTime& due_date_current = NEXTOCCURRENCEDATE(bill);
-        const wxDateTime& due_date_update = nextOccurDate(repeats, numRepeats, due_date_current);
-
-        if (numRepeats != REPEAT_TYPE::REPEAT_INACTIVE)
-        {
-            if ((repeats < REPEAT_TYPE::REPEAT_IN_X_DAYS) || (repeats > REPEAT_TYPE::REPEAT_EVERY_X_MONTHS))
-                numRepeats--;
-        }
-
-        if (repeats == REPEAT_TYPE::REPEAT_NONE)
-            numRepeats = 0;
-        else if ((repeats == REPEAT_TYPE::REPEAT_IN_X_DAYS)
-            || (repeats == REPEAT_TYPE::REPEAT_IN_X_MONTHS))
-        {
-            if (numRepeats != -1) numRepeats = -1;
-        }
-
-        bill->NEXTOCCURRENCEDATE = due_date_update.FormatISODate();
-        bill->TRANSDATE = payment_date_update.FormatISOCombined();
-
-        bill->NUMOCCURRENCES = numRepeats;
-        save(bill);
-
-        if (bill->NUMOCCURRENCES == REPEAT_TYPE::REPEAT_NONE)
-        {
-            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), bdID);
-            remove(bdID);
-        }
+        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), bdID);
+        remove(bdID);
+        return;
     }
+
+    wxDateTime transdate;
+    transdate.ParseDateTime(bill->TRANSDATE) || transdate.ParseDate(bill->TRANSDATE);
+    const wxDateTime& payment_date_current = transdate;
+    const wxDateTime& payment_date_update = nextOccurDate(repeats, numRepeats, payment_date_current);
+    bill->TRANSDATE = payment_date_update.FormatISOCombined();
+
+    const wxDateTime& due_date_current = NEXTOCCURRENCEDATE(bill);
+    const wxDateTime& due_date_update = nextOccurDate(repeats, numRepeats, due_date_current);
+    bill->NEXTOCCURRENCEDATE = due_date_update.FormatISODate();
+
+    if ((repeats < REPEAT_TYPE::REPEAT_IN_X_DAYS || repeats > REPEAT_TYPE::REPEAT_EVERY_X_MONTHS) && numRepeats > 1)
+    {
+        bill->NUMOCCURRENCES = numRepeats - 1;
+    }
+    else if (repeats >= REPEAT_TYPE::REPEAT_IN_X_DAYS && repeats <= REPEAT_TYPE::REPEAT_IN_X_MONTHS)
+    {
+        // preserve the Auto Executable fields, change type to REPEAT_ONCE
+        bill->REPEATS += REPEAT_TYPE::REPEAT_ONCE - repeats;
+        bill->NUMOCCURRENCES = -1;
+    }
+
+    save(bill);
 }
 
 const wxDateTime Model_Billsdeposits::nextOccurDate(int repeatsType, int numRepeats, wxDateTime nextOccurDate, bool reverse)
