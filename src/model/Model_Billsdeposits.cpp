@@ -47,8 +47,7 @@ const std::vector<std::pair<Model_Billsdeposits::STATUS_ENUM, wxString> > Model_
 
 Model_Billsdeposits::Model_Billsdeposits()
     : Model<DB_Table_BILLSDEPOSITS_V1>()
-    , m_autoExecuteManual (false)
-    , m_autoExecuteSilent (false)
+    , m_autoExecute (REPEAT_AUTO_NONE)
     , m_requireExecution (false)
     , m_allowExecution (false)
 
@@ -214,29 +213,17 @@ const Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::splittransacti
 
 void Model_Billsdeposits::decode_fields(const Data& q1)
 {
-    m_autoExecuteManual = false; // Used when decoding: REPEATS
-    m_autoExecuteSilent = false;
-    m_requireExecution = false;
+    // DeMultiplex the Auto Executable fields from the db entry: REPEATS
+    m_autoExecute = q1.REPEATS / BD_REPEATS_MULTIPLEX_BASE;
     m_allowExecution = true;
 
-    // DeMultiplex the Auto Executable fields from the db entry: REPEATS
-    int repeats = q1.REPEATS;
+    int repeats = q1.REPEATS % BD_REPEATS_MULTIPLEX_BASE;
     int numRepeats = q1.NUMOCCURRENCES;
-
-    if (repeats >= 2 * BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
-    {
-        m_autoExecuteSilent = true;
-    } else if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
-    {
-        m_autoExecuteManual = true;
-    }
-    repeats %= BD_REPEATS_MULTIPLEX_BASE;
     if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && numRepeats < 1)
     {
         // old inactive entry
+        m_autoExecute = REPEAT_AUTO_NONE;
         m_allowExecution = false;
-        m_autoExecuteSilent = false;
-        m_autoExecuteManual = false;
     }
 
     m_requireExecution = (Model_Billsdeposits::NEXTOCCURRENCEDATE(&q1)
@@ -245,12 +232,12 @@ void Model_Billsdeposits::decode_fields(const Data& q1)
 
 bool Model_Billsdeposits::autoExecuteManual()
 {
-    return m_autoExecuteManual;
+    return m_autoExecute == REPEAT_AUTO_MANUAL;
 }
 
 bool Model_Billsdeposits::autoExecuteSilent()
 {
-    return m_autoExecuteSilent;
+    return m_autoExecute == REPEAT_AUTO_SILENT;
 }
 
 bool Model_Billsdeposits::requireExecution()
@@ -348,7 +335,7 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
     int repeats = bill->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
     int numRepeats = bill->NUMOCCURRENCES;
 
-    if ((repeats == REPEAT_TYPE::REPEAT_ONCE) || ((repeats < REPEAT_TYPE::REPEAT_IN_X_DAYS || repeats > REPEAT_TYPE::REPEAT_EVERY_X_MONTHS) && numRepeats <= 1))
+    if ((repeats == REPEAT_TYPE::REPEAT_ONCE) || ((repeats < REPEAT_TYPE::REPEAT_IN_X_DAYS || repeats > REPEAT_TYPE::REPEAT_EVERY_X_MONTHS) && numRepeats == 1))
     {
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), bdID);
         remove(bdID);
@@ -365,9 +352,9 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
     const wxDateTime& due_date_update = nextOccurDate(repeats, numRepeats, due_date_current);
     bill->NEXTOCCURRENCEDATE = due_date_update.FormatISODate();
 
-    if (repeats < REPEAT_TYPE::REPEAT_IN_X_DAYS || repeats > REPEAT_TYPE::REPEAT_EVERY_X_MONTHS)
+    if ((repeats < REPEAT_TYPE::REPEAT_IN_X_DAYS || repeats > REPEAT_TYPE::REPEAT_EVERY_X_MONTHS) && numRepeats > 1)
     {
-        bill->NUMOCCURRENCES = numRepeats-1;
+        bill->NUMOCCURRENCES = numRepeats - 1;
     }
     else if (repeats >= REPEAT_TYPE::REPEAT_IN_X_DAYS && repeats <= REPEAT_TYPE::REPEAT_IN_X_MONTHS)
     {

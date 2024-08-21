@@ -61,6 +61,11 @@ public:
         REPEAT_NUM_INFINITY = -1,
         REPEAT_NUM_UNKNOWN = 0
     };
+    enum REPEAT_AUTO {
+        REPEAT_AUTO_NONE = 0,
+        REPEAT_AUTO_MANUAL = 1,
+        REPEAT_AUTO_SILENT = 2
+    };
 
     static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
     static const std::vector<std::pair<STATUS_ENUM, wxString> > STATUS_ENUM_CHOICES;
@@ -159,8 +164,7 @@ public:
     bool AllowTransaction(const Data& r, AccountBalance& bal);
 
 private:
-    bool m_autoExecuteManual;
-    bool m_autoExecuteSilent;
+    int m_autoExecute;
     bool m_requireExecution;
     bool m_allowExecution;
 
