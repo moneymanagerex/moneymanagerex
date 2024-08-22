@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-08-22 16:52\n"
+"PO-Revision-Date: 2024-08-22 18:14\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -2100,11 +2100,11 @@ msgstr "Zadajte regulárny výraz na overenie poľa"
 
 #: customfieldeditdialog.cpp:158
 msgid "Autocomplete"
-msgstr ""
+msgstr "Automatické dopĺňanie"
 
 #: customfieldeditdialog.cpp:161
 msgid "Enables autocomplete on custom field"
-msgstr ""
+msgstr "Povoľuje automatické dopĺňanie vo vlastnom poli"
 
 #: customfieldeditdialog.cpp:164 optionsettingsview.cpp:222 util.cpp:613
 msgid "Default"
@@ -2113,7 +2113,7 @@ msgstr "Predvolené"
 #: customfieldeditdialog.cpp:166
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "Zadajte predvolenú hodnotu pre toto pole. Pre dátum/čas vložte ‘Teraz’, aby sa ako predvolený nastavil aktuálny dátum/čas"
 
 #: customfieldeditdialog.cpp:170 customfieldeditdialog.cpp:220
 msgid "Choices"
@@ -2121,34 +2121,34 @@ msgstr "Voľby"
 
 #: customfieldeditdialog.cpp:172
 msgid "Enter the choices for this field separated with a semicolon"
-msgstr ""
+msgstr "Zadajte možnosti pre toto pole oddelené bodkočiarkou"
 
 #: customfieldeditdialog.cpp:175
 msgid "Digits scale"
-msgstr ""
+msgstr "Desatinné miesta"
 
 #: customfieldeditdialog.cpp:177
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Zadajte platné desatinné miesto"
 
 #: customfieldeditdialog.cpp:180
 msgid "Panel's column"
-msgstr ""
+msgstr "Stĺpec panela"
 
 #: customfieldeditdialog.cpp:185
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Vyberte hodnotu na reprezentáciu položky na paneli"
 
 #: customfieldeditdialog.cpp:220 filtertransdialog.cpp:979
 #: filtertransdialog.cpp:1016 filtertransdialog.cpp:1048
 #: filtertransdialog.cpp:1619 reports/myusage.cpp:102 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Empty value"
-msgstr ""
+msgstr "Prázdna hodnota"
 
 #: customfieldeditdialog.cpp:233
 msgid "Changing field type will delete all content!"
-msgstr ""
+msgstr "Zmena typu poľa vymaže všetok obsah!"
 
 #: customfieldeditdialog.cpp:234 customfieldeditdialog.cpp:256 mmframe.cpp:2427
 #: mmframe.cpp:2489
@@ -2157,11 +2157,11 @@ msgstr "Chcete pokračovať?"
 
 #: customfieldeditdialog.cpp:235 customfieldeditdialog.cpp:257
 msgid "Custom Field Change"
-msgstr ""
+msgstr "Zmena vlastného poľa"
 
 #: customfieldeditdialog.cpp:255
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "Upravili ste možnosti; Tie, ktoré ste odstránili budú vymazané!"
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
