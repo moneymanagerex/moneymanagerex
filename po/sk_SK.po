@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-08-17 08:48\n"
+"PO-Revision-Date: 2024-08-22 16:52\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -2049,54 +2049,54 @@ msgstr "%.2f zobrazené ako: %s"
 
 #: currencydialog.cpp:334
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(Používanie miestnych nastavení)"
 
 #: currencydialog.h:48 maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 maincurrencydialog.h:76 mmframe.cpp:1751
 #: mmframe.cpp:1973 optionsettingsgeneral.cpp:301
 msgid "Currency Manager"
-msgstr ""
+msgstr "Správca meny"
 
 #: customfieldeditdialog.cpp:113
 msgid "Custom Field Details"
-msgstr ""
+msgstr "Podrobnosti vlastného poľa"
 
 #: customfieldeditdialog.cpp:124 customfieldlistdialog.cpp:52
 msgid "Attribute of"
-msgstr ""
+msgstr "Vlastnosť"
 
 #: customfieldeditdialog.cpp:130
 msgid "Select the item that the custom field is associated with"
-msgstr ""
+msgstr "Vyberte položku, s ktorou je vlastné pole spojené"
 
 #: customfieldeditdialog.cpp:138
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "Zadajte názov vlastného poľa"
 
 #: customfieldeditdialog.cpp:141
 msgid "Field Type"
-msgstr ""
+msgstr "Typ poľa"
 
 #: customfieldeditdialog.cpp:145
 msgid "Select type of custom field"
-msgstr ""
+msgstr "Vyberte typ vlastného poľa"
 
 #: customfieldeditdialog.cpp:148
 msgid "Tooltip"
-msgstr ""
+msgstr "Nápoveda"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enter the tooltip that will be shown"
-msgstr ""
+msgstr "Zadajte text nápovedy"
 
 #: customfieldeditdialog.cpp:153
 msgid "RegEx"
-msgstr ""
+msgstr "RegEx"
 
 #: customfieldeditdialog.cpp:155
 msgid "Enter the RegEx to validate field"
-msgstr ""
+msgstr "Zadajte regulárny výraz na overenie poľa"
 
 #: customfieldeditdialog.cpp:158
 msgid "Autocomplete"
