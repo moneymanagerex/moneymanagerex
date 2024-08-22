@@ -492,17 +492,11 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     }
     case COL_AUTO:
     {
-        int repeats = bill.REPEATS;
-        wxString repeatSTR = _("Manual");
-        if (repeats >= 2 * BD_REPEATS_MULTIPLEX_BASE)
-        {
-            repeatSTR = _("Automated");
-        }
-        else if (repeats >= BD_REPEATS_MULTIPLEX_BASE)
-        {
-            repeatSTR = _("Suggested");
-        }
-        
+        int autoExecute = bill.REPEATS / BD_REPEATS_MULTIPLEX_BASE;
+        wxString repeatSTR =
+            (autoExecute == Model_Billsdeposits::REPEAT_AUTO_SILENT) ? _("Automated") :
+            (autoExecute == Model_Billsdeposits::REPEAT_AUTO_MANUAL) ? _("Suggested") :
+            _("Manual");
         return repeatSTR;
     }
     case COL_DAYS:
@@ -527,7 +521,7 @@ const wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Dat
     int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
 
     wxString text = wxGetTranslation(BILLSDEPOSITS_REPEATS[repeats]);
-    if (repeats > 10 && repeats < 15)
+    if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS)
         text = wxString::Format(text, wxString::Format("%d", item->NUMOCCURRENCES));
     return text;
 }
@@ -555,32 +549,20 @@ const int mmBillsDepositsPanel::GetNumRepeats(const Model_Billsdeposits::Data* i
 const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data* item) const
 {
     int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+    if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && item->NUMOCCURRENCES < 0)
+    {
+        return _("Inactive");
+    }
     
     int daysRemaining = Model_Billsdeposits::TRANSDATE(item)
         .Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
     int daysOverdue = Model_Billsdeposits::NEXTOCCURRENCEDATE(item)
         .Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
-    wxString text = wxString::Format(wxPLURAL("%d day remaining", "%d days remaining", daysRemaining), daysRemaining);
 
-    if (daysRemaining == 0)
-    {
-        if (((repeats > 10) && (repeats < 15)) && (item->NUMOCCURRENCES < 0))
-            text = _("Inactive");
-    }
-
-    if (daysRemaining < 0)
-    {
-        text = wxString::Format(wxPLURAL("%d day delay!", "%d days delay!", -daysRemaining), -daysRemaining);
-        if (((repeats > 10) && (repeats < 15)) && (item->NUMOCCURRENCES < 0))
-            text = _("Inactive");
-    }
-
-    if (daysOverdue < 0)
-    {
-        text = wxString::Format(wxPLURAL("%d day overdue!", "%d days overdue!", -daysOverdue), -daysOverdue);
-        if (((repeats > 10) && (repeats < 15)) && (item->NUMOCCURRENCES < 0))
-            text = _("Inactive");
-    }
+    wxString text =
+        (daysOverdue < 0) ? wxString::Format(wxPLURAL("%d day overdue!", "%d days overdue!", -daysOverdue), -daysOverdue) :
+        (daysRemaining < 0) ? wxString::Format(wxPLURAL("%d day delay!", "%d days delay!", -daysRemaining), -daysRemaining) :
+        wxString::Format(wxPLURAL("%d day remaining", "%d days remaining", daysRemaining), daysRemaining);
 
     return text;
 }
@@ -610,44 +592,25 @@ void billsDepositsListCtrl::OnListLeftClick(wxMouseEvent& event)
 
 int billsDepositsListCtrl::OnGetItemImage(long item) const
 {
-    bool bd_repeat_user = false;
-    bool bd_repeat_auto = false;
-    int repeats = m_bdp->bills_[item].REPEATS;
-    // DeMultiplex the Auto Executable fields.
-    if (repeats >= 2 * BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
+    // demultiplex REPEATS
+    int autoExecute = m_bdp->bills_[item].REPEATS / BD_REPEATS_MULTIPLEX_BASE;
+    int repeats = m_bdp->bills_[item].REPEATS % BD_REPEATS_MULTIPLEX_BASE;
+    if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && m_bdp->bills_[item].NUMOCCURRENCES < 0)
     {
-        bd_repeat_auto = true;
+        // inactive
+        return -1;
     }
-    else if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
-    {
-        bd_repeat_user = true;
-    }
-
-    repeats %= BD_REPEATS_MULTIPLEX_BASE;
 
     int daysRemaining = Model_Billsdeposits::NEXTOCCURRENCEDATE(m_bdp->bills_[item])
         .Subtract(m_bdp->getToday()).GetSeconds().GetValue() / 86400;
-    wxString daysRemainingStr = wxString::Format(wxPLURAL("%d day remaining", "%d days remaining", daysRemaining), daysRemaining);
-
-    if (daysRemaining == 0)
-    {
-        if (((repeats > 10) && (repeats < 15)) && (m_bdp->bills_[item].NUMOCCURRENCES < 0))
-            daysRemainingStr = _("Inactive");
-    }
-
-    if (daysRemaining < 0)
-    {
-        daysRemainingStr = wxString::Format(wxPLURAL("%d day overdue!", "%d days overdue!", std::abs(daysRemaining)), std::abs(daysRemaining));
-        if (((repeats > 10) && (repeats < 15)) && (m_bdp->bills_[item].NUMOCCURRENCES < 0))
-            daysRemainingStr = _("Inactive");
-    }
 
     /* Returns the icon to be shown for each entry */
-    if (daysRemainingStr == _("Inactive")) return -1;
-    if (daysRemaining < 0) return mmBillsDepositsPanel::ICON_FOLLOWUP;
-    if (bd_repeat_auto) return mmBillsDepositsPanel::ICON_RUN_AUTO;
-    if (bd_repeat_user) return mmBillsDepositsPanel::ICON_RUN;
-
+    if (daysRemaining < 0)
+        return mmBillsDepositsPanel::ICON_FOLLOWUP;
+    if (autoExecute == Model_Billsdeposits::REPEAT_AUTO_SILENT)
+        return mmBillsDepositsPanel::ICON_RUN_AUTO;
+    if (autoExecute == Model_Billsdeposits::REPEAT_AUTO_MANUAL)
+        return mmBillsDepositsPanel::ICON_RUN;
     return -1;
 }
 
