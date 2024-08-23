@@ -250,43 +250,39 @@ bool Model_Billsdeposits::allowExecution()
     return m_allowExecution;
 }
 
-bool Model_Billsdeposits::AllowTransaction(const Data& r, AccountBalance& bal)
+bool Model_Billsdeposits::AllowTransaction(const Data& r)
 {
+    if (r.STATUS == "V")
+        return true;
+    if (r.TRANSCODE != Model_Checking::WITHDRAWAL_STR && r.TRANSCODE != Model_Checking::TRANSFER_STR)
+        return true;
+
     const int acct_id = r.ACCOUNTID;
     Model_Account::Data* account = Model_Account::instance().get(acct_id);
-    double current_account_balance = 0;
 
-    AccountBalance::iterator itr_bal = bal.find(acct_id);
-    if (itr_bal != bal.end())
+    if (account->MINIMUMBALANCE == 0 && account->CREDITLIMIT == 0)
+        return true;
+
+    double current_balance = Model_Account::balance(account);
+    double new_balance = current_balance - r.TRANSAMOUNT;
+
+    bool allow_transaction = true;
+    wxString limitDescription;
+    double limitAmount{ 0.0L };
+    if (account->MINIMUMBALANCE != 0 && new_balance < account->MINIMUMBALANCE)
     {
-        current_account_balance = itr_bal->second;
+        allow_transaction = false;
+        limitDescription = _("Minimum Balance");
+        limitAmount = account->MINIMUMBALANCE;
     }
-    else
+    else if (account->CREDITLIMIT != 0 && new_balance < -(account->CREDITLIMIT))
     {
-        current_account_balance = Model_Account::balance(account);
-        bal[acct_id] = current_account_balance;
-    }
-
-    double new_value = r.TRANSAMOUNT;
-
-    if (r.TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL])
-    {
-        new_value *= -1;
-    }
-    new_value += current_account_balance;
-
-    bool abort_transaction = false;
-    if ((account->MINIMUMBALANCE != 0) && (new_value < account->MINIMUMBALANCE))
-    {
-        abort_transaction = true;
+        allow_transaction = false;
+        limitDescription = _("Credit Limit");
+        limitAmount = account->CREDITLIMIT;
     }
 
-    if ((account->CREDITLIMIT != 0) && (new_value < (account->CREDITLIMIT * -1)))
-    {
-        abort_transaction = true;
-    }
-
-    if (abort_transaction)
+    if (!allow_transaction)
     {
         wxString message = _("A scheduled transaction will exceed your account limit.\n\n"
             "Account: %1$s\n"
@@ -295,36 +291,13 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r, AccountBalance& bal)
             "%4$s: %5$6.2f\n\n"
             "Do you wish to continue?"
         );
-
-        wxString limitDescription;
-        double limitAmount{ 0.0L };
-
-        if (account->MINIMUMBALANCE > 0)
-        {
-            limitDescription = _("Minimum Balance");
-            limitAmount = account->MINIMUMBALANCE;
-        }
-
-        if (account->CREDITLIMIT > 0)
-        {
-            limitDescription = _("Credit Limit");
-            limitAmount = account->CREDITLIMIT;
-        }
-
-        message.Printf(message, account->ACCOUNTNAME, current_account_balance, r.TRANSAMOUNT, limitDescription, limitAmount);
+        message.Printf(message, account->ACCOUNTNAME, current_balance, r.TRANSAMOUNT, limitDescription, limitAmount);
 
         if (wxMessageBox(message, _("MMEX Scheduled Transaction Check"), wxYES_NO | wxICON_WARNING) == wxYES)
-        {
-            abort_transaction = false;
-        }
+            allow_transaction = true;
     }
 
-    if (!abort_transaction)
-    {
-        bal[acct_id] = new_value;
-    }
-
-    return !abort_transaction;
+    return allow_transaction;
 }
 
 void Model_Billsdeposits::completeBDInSeries(int bdID)

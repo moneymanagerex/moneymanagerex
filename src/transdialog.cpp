@@ -758,23 +758,17 @@ bool mmTransDialog::ValidateData()
     //Checking account does not exceed limits
     if (m_new_trx || m_duplicate)
     {
-        if ((m_trx_data.TRANSCODE == Model_Checking::WITHDRAWAL_STR) ||
-            (m_trx_data.TRANSCODE == Model_Checking::TRANSFER_STR))
+        if (m_trx_data.STATUS != "V" &&
+            (m_trx_data.TRANSCODE == Model_Checking::WITHDRAWAL_STR ||
+             m_trx_data.TRANSCODE == Model_Checking::TRANSFER_STR) &&
+            (account->MINIMUMBALANCE != 0 || account->CREDITLIMIT != 0))
         {
             const double fromAccountBalance = Model_Account::balance(account);
             const double new_value = fromAccountBalance - m_trx_data.TRANSAMOUNT;
 
-            bool abort_transaction = false;
-
-            if ((account->MINIMUMBALANCE != 0) && (new_value < account->MINIMUMBALANCE))
-            {
-                abort_transaction = true;
-            }
-
-            if ((account->CREDITLIMIT != 0) && (new_value < (account->CREDITLIMIT * -1)))
-            {
-                abort_transaction = true;
-            }
+            bool abort_transaction =
+                (account->MINIMUMBALANCE != 0 && new_value < account->MINIMUMBALANCE) ||
+                (account->CREDITLIMIT != 0 && new_value < -(account->CREDITLIMIT));
 
             if (abort_transaction && wxMessageBox(_(
                 "This transaction will exceed your account limit.\n\n"
