@@ -253,7 +253,7 @@ void mmEditPayeeDialog::OnMoveUp(wxCommandEvent& /*event*/)
     //wxGrid row and cell selections do not overlap, so need to get both and combine them
     wxArrayInt selectedRows = m_patternTable->GetSelectedRows();
     wxGridCellCoordsArray selectedCells = m_patternTable->GetSelectedCells();
-    for (int i = 0; i < selectedCells.GetCount(); i++) {
+    for (int i = 0; i < static_cast<int>(selectedCells.GetCount()); i++) {
         int row = selectedCells[i].GetRow();
         if(selectedRows.Index(row) == wxNOT_FOUND)
             selectedRows.Add(row);
@@ -272,7 +272,7 @@ void mmEditPayeeDialog::OnMoveUp(wxCommandEvent& /*event*/)
     }
 
     //Loop over all rows
-    for (int i = 0; i < selectedRows.GetCount(); i++) {
+    for (int i = 0; i < static_cast<int>(selectedRows.GetCount()); i++) {
         // reselect the row (cleared by cursor move)
         m_patternTable->SelectRow(selectedRows[i], true);
         // we only want to move the cell up if the row above is not selected (so that selected blocks stay in order)
@@ -308,7 +308,7 @@ void mmEditPayeeDialog::OnMoveDown(wxCommandEvent& /*event*/)
     //wxGrid row and cell selections do not overlap, so need to get both and combine them
     wxArrayInt selectedRows = m_patternTable->GetSelectedRows();
     wxGridCellCoordsArray selectedCells = m_patternTable->GetSelectedCells();
-    for (int i = 0; i < selectedCells.GetCount(); i++) {
+    for (int i = 0; i < static_cast<int>(selectedCells.GetCount()); i++) {
         int row = selectedCells[i].GetRow();
         if (selectedRows.Index(row) == wxNOT_FOUND)
             selectedRows.Add(row);
@@ -440,9 +440,9 @@ mmPayeeDialog::~mmPayeeDialog()
 
 mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString& name, const wxString& payee_selected) :
     m_payee_choose(payee_choose)
-    , m_sort(PAYEE_NAME)
-    , m_lastSort(PAYEE_NAME)
     , m_init_selected_payee(payee_selected)
+    , m_sort(PAYEE_NAME)
+    , m_lastSort(PAYEE_NAME)    
 {
     ColName_[PAYEE_NAME] = _("Name");
     ColName_[PAYEE_HIDDEN] = _("Hidden");

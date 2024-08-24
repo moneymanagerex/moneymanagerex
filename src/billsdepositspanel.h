@@ -108,7 +108,7 @@ public:
     int col_sort();
 
     const wxString GetFrequency(const Model_Billsdeposits::Data* item) const;
-    const int GetNumRepeats(const Model_Billsdeposits::Data* item) const;
+    int GetNumRepeats(const Model_Billsdeposits::Data* item) const;
     const wxString GetRemainingDays(const Model_Billsdeposits::Data* item) const;
 
     wxString BuildPage() const;

@@ -1197,7 +1197,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     Bind(wxEVT_PAINT, &mmTagTextCtrl::OnPaint, this);
     textCtrl_->Bind(wxEVT_KILL_FOCUS, &mmTagTextCtrl::OnKillFocus, this);
     textCtrl_->Bind(wxEVT_CHAR_HOOK, &mmTagTextCtrl::OnKeyPressed, this);
-    textCtrl_->Bind(wxEVT_STC_ZOOM, [this](wxStyledTextEvent& event) {
+    textCtrl_->Bind(wxEVT_STC_ZOOM, [this](wxStyledTextEvent& ) {
         // Disable zoom
         textCtrl_->SetEvtHandlerEnabled(false);
         textCtrl_->SetZoom(0);
@@ -1226,7 +1226,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     createDropButton(btnSize);
 
     btn_dropdown_->Bind(wxEVT_BUTTON, &mmTagTextCtrl::OnDropDown, this);
-    btn_dropdown_->Bind(wxEVT_NAVIGATION_KEY, [this](wxNavigationKeyEvent& event) { textCtrl_->SetFocus(); });
+    btn_dropdown_->Bind(wxEVT_NAVIGATION_KEY, [this](wxNavigationKeyEvent& ) { textCtrl_->SetFocus(); });
 
 #ifndef __WXMAC__
     // Event handlers for custom control painting in Windows & Linux
@@ -1234,7 +1234,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     Bind(wxEVT_LEAVE_WINDOW, &mmTagTextCtrl::OnMouseCaptureChange, this);
     textCtrl_->Bind(wxEVT_ENTER_WINDOW, &mmTagTextCtrl::OnMouseCaptureChange, this);
     textCtrl_->Bind(wxEVT_LEAVE_WINDOW, &mmTagTextCtrl::OnMouseCaptureChange, this);
-    textCtrl_->Bind(wxEVT_SIZE, [this](wxSizeEvent& event) {textCtrl_->Refresh(); });
+    textCtrl_->Bind(wxEVT_SIZE, [this](wxSizeEvent& ) {textCtrl_->Refresh(); });
     btn_dropdown_->Bind(wxEVT_LEAVE_WINDOW, &mmTagTextCtrl::OnMouseCaptureChange, this);
     btn_dropdown_->Bind(wxEVT_SET_FOCUS, &mmTagTextCtrl::OnFocusChange, this);
     btn_dropdown_->Bind(wxEVT_ENTER_WINDOW, &mmTagTextCtrl::OnMouseCaptureChange, this);
@@ -1416,7 +1416,7 @@ void mmTagTextCtrl::OnFocusChange(wxFocusEvent& event)
     event.Skip();
 }
 
-void mmTagTextCtrl::OnDropDown(wxCommandEvent& event)
+void mmTagTextCtrl::OnDropDown(wxCommandEvent& )
 {
 #ifndef __WXMAC__    
     if (!popupWindow_->dismissedByButton_)
@@ -1703,7 +1703,7 @@ void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
     event.Skip();
 }
 
-void mmTagTextCtrl::OnPaintButton(wxPaintEvent& event)
+void mmTagTextCtrl::OnPaintButton(wxPaintEvent& )
 {
     wxPaintDC dc(btn_dropdown_);
 

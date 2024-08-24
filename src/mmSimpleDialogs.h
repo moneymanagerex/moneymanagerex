@@ -439,8 +439,8 @@ protected:
     void OnPaste(wxStyledTextEvent& event);
     void OnKillFocus(wxFocusEvent& event);
     void OnPaint(wxPaintEvent& event);
-    void OnPaintButton(wxPaintEvent& event);
-    void OnDropDown(wxCommandEvent& event);
+    void OnPaintButton(wxPaintEvent&);
+    void OnDropDown(wxCommandEvent&);
     void OnKeyPressed(wxKeyEvent& event);
     void OnPopupCheckboxSelected(wxCommandEvent& event);
     void OnMouseCaptureChange(wxMouseEvent& event);
