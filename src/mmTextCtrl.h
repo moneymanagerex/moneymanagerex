@@ -58,7 +58,7 @@ public:
 private:
     int m_alt_precision = -1;
     bool ignore_focus_;
-    void OnTextEntered(wxCommandEvent& event);
+    void OnTextEntered(wxCommandEvent&);
     void OnKillFocus(wxFocusEvent& event);
     const Model_Currency::Data* m_currency = nullptr;
     wxDECLARE_EVENT_TABLE();

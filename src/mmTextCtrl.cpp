@@ -27,7 +27,7 @@ EVT_TEXT_ENTER(wxID_ANY, mmTextCtrl::OnTextEntered)
 EVT_KILL_FOCUS(mmTextCtrl::OnKillFocus)
 wxEND_EVENT_TABLE()
 
-void mmTextCtrl::OnTextEntered(wxCommandEvent& event)
+void mmTextCtrl::OnTextEntered(wxCommandEvent& )
 {
     Calculate( (m_alt_precision != -1) ? m_alt_precision 
                             : Model_Currency::precision(m_currency));

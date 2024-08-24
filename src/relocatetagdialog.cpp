@@ -216,7 +216,7 @@ void relocateTagDialog::OnFocusChange(wxChildFocusEvent& event)
     event.Skip();
 }
 
-void relocateTagDialog::OnTextUpdated(wxCommandEvent& event)
+void relocateTagDialog::OnTextUpdated(wxCommandEvent& )
 {
     IsOkOk();
 }

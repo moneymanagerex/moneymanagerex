@@ -526,7 +526,7 @@ const wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Dat
     return text;
 }
 
-const int mmBillsDepositsPanel::GetNumRepeats(const Model_Billsdeposits::Data* item) const
+int mmBillsDepositsPanel::GetNumRepeats(const Model_Billsdeposits::Data* item) const
 {
     int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
     int numRepeats = item->NUMOCCURRENCES;
