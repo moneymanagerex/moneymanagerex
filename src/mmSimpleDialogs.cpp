@@ -568,9 +568,9 @@ void mmComboBoxCategory::init()
 // excludeHidden = set to true if hidden categories should be excluded
 mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id
                     , wxSize size, int catID, bool excludeHidden)
-    : mmComboBox(parent, id, size)
-    , excludeHidden_(excludeHidden)
+    : mmComboBox(parent, id, size)    
     , catID_(catID)
+    , excludeHidden_(excludeHidden)
 {
     init();
     wxArrayString choices;
@@ -1045,7 +1045,7 @@ void mmErrorDialogs::InvalidPayee(wxWindow *object)
 
 void mmErrorDialogs::InvalidName(wxTextCtrl *textBox, bool alreadyexist)
 {
-    const wxString& errorHeader = _("Invalid Name");
+    const wxString errorHeader = _("Invalid Name");
     wxString errorMessage;
     if (alreadyexist)
         errorMessage = _("Already exist!");
@@ -1057,7 +1057,7 @@ void mmErrorDialogs::InvalidName(wxTextCtrl *textBox, bool alreadyexist)
 
 void mmErrorDialogs::InvalidSymbol(wxTextCtrl *textBox, bool alreadyexist)
 {
-    const wxString& errorHeader = _("Invalid Name");
+    const wxString errorHeader = _("Invalid Name");
     wxString errorMessage;
     if (alreadyexist)
         errorMessage = _("Already exist!");
