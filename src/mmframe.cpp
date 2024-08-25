@@ -509,14 +509,13 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     //Auto scheduled transaction
     bool continueExecution = false;
 
-    Model_Billsdeposits::AccountBalance bal;
     Model_Billsdeposits& bills = Model_Billsdeposits::instance();
     for (const auto& q1 : bills.all())
     {
         bills.decode_fields(q1);
         if (bills.autoExecuteManual() && bills.requireExecution())
         {
-            if (bills.allowExecution() && bills.AllowTransaction(q1, bal))
+            if (bills.allowExecution() && bills.AllowTransaction(q1))
             {
                 continueExecution = true;
                 mmBDDialog repeatTransactionsDlg(this, q1.BDID, false, true);
@@ -532,7 +531,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 
         if (bills.autoExecuteSilent() && bills.requireExecution())
         {
-            if (bills.allowExecution() && bills.AllowTransaction(q1, bal))
+            if (bills.allowExecution() && bills.AllowTransaction(q1))
             {
                 continueExecution = true;
                 Model_Checking::Data* tran = Model_Checking::instance().create();
