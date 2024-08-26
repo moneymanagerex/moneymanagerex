@@ -903,12 +903,6 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     m_bill_data.ACCOUNTID = cbAccount_->mmGetId();
     Model_Account::Data* acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
 
-    Model_Billsdeposits::Data bill_data;
-    bill_data.ACCOUNTID = m_bill_data.ACCOUNTID;
-    bill_data.TRANSAMOUNT = m_bill_data.TRANSAMOUNT;
-    bill_data.TRANSCODE = m_bill_data.TRANSCODE;
-
-    if (!Model_Billsdeposits::instance().AllowTransaction(bill_data)) return;
     if (!textAmount_->checkValue(m_bill_data.TRANSAMOUNT)) return;
 
     m_bill_data.TOTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
@@ -1130,6 +1124,12 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             || (repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS)
             || (m_bill_data.NUMOCCURRENCES > 0))
         {
+            Model_Billsdeposits::Data bill_data;
+            bill_data.ACCOUNTID = m_bill_data.ACCOUNTID;
+            bill_data.TRANSCODE = m_bill_data.TRANSCODE;
+            bill_data.TRANSAMOUNT = m_bill_data.TRANSAMOUNT;
+            if (!Model_Billsdeposits::instance().AllowTransaction(bill_data)) return;
+
             Model_Checking::Data* tran = Model_Checking::instance().create();
             tran->ACCOUNTID = m_bill_data.ACCOUNTID;
             tran->TOACCOUNTID = m_bill_data.TOACCOUNTID;
