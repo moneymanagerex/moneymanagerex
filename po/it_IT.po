@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-06-30 10:10\n"
+"PO-Revision-Date: 2024-08-27 09:10\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -3626,7 +3626,7 @@ msgstr "Il campo Data è richiesto"
 
 #: import_export/univcsvdialog.cpp:1305
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr "Il campo Ammontare o entrambi i campi Prelievo e Deposito sono richiesti."
+msgstr "Il campo Importo o entrambi i campi Prelievo e Deposito sono richiesti."
 
 #: import_export/univcsvdialog.cpp:1306 import_export/univcsvdialog.cpp:1501
 #: webappdialog.cpp:408
