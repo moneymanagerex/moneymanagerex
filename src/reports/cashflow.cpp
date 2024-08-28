@@ -77,7 +77,6 @@ void mmReportCashFlow::getTransactions()
     wxDateTime endDate = mmDateRange::getDayEnd(m_today.Add(wxDateSpan::Months(getForwardMonths())));
 
     // Get initial Balance as of today
-
     for (const auto& account : Model_Account::instance().find(
         Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)
         , Model_Account::STATUS(Model_Account::CLOSED, NOT_EQUAL)))
@@ -130,26 +129,24 @@ void mmReportCashFlow::getTransactions()
             m_forecastVector.push_back(trx);
         }
     }
-    // Now we gather the recurring transaction list
 
+    // Now we gather the recurring transaction list
     for (const auto& entry : Model_Billsdeposits::instance().find(Model_Billsdeposits::STATUS(Model_Billsdeposits::VOID_, NOT_EQUAL)))
     {
         wxDateTime nextOccurDate = Model_Billsdeposits::NEXTOCCURRENCEDATE(entry);
         if (nextOccurDate > endDate) continue;
 
-        int repeatsType = entry.REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields from the db entry: REPEATS
+        // demultiplex entry.REPEATS
+        int repeats = entry.REPEATS % BD_REPEATS_MULTIPLEX_BASE;
         int numRepeats = entry.NUMOCCURRENCES;
 
-        // ignore inactive entries
-        if (repeatsType >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeatsType <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && numRepeats < 0)
+        // ignore old inactive entries
+        if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && numRepeats == -1)
             continue;
 
-        bool processNumRepeats = numRepeats != -1 || repeatsType == 0;
-        if (repeatsType == 0)
-        {
-            numRepeats = 1;
-            processNumRepeats = true;
-        }
+        // ignore invalid entries
+        if (repeats != Model_Billsdeposits::REPEAT_ONCE && (numRepeats == 0 || numRepeats < -1))
+            continue;
 
         bool isAccountFound = m_account_id.Index(entry.ACCOUNTID) != wxNOT_FOUND;
         bool isToAccountFound = m_account_id.Index(entry.TOACCOUNTID) != wxNOT_FOUND;
@@ -160,7 +157,6 @@ void mmReportCashFlow::getTransactions()
         while (1)
         {
             if (nextOccurDate > endDate) break;
-            if (processNumRepeats) numRepeats--;
 
             Model_Checking::Data trx;
             trx.TRANSDATE = nextOccurDate.FormatISODate();
@@ -186,29 +182,20 @@ void mmReportCashFlow::getTransactions()
                 m_forecastVector.push_back(trx);
             }
 
-            if (processNumRepeats && (numRepeats <= 0))
+            if ((repeats == Model_Billsdeposits::REPEAT_ONCE) || ((repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS || repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS) && numRepeats == 1))
                 break;
 
-            nextOccurDate = Model_Billsdeposits::nextOccurDate(repeatsType, numRepeats, nextOccurDate);
+            nextOccurDate = Model_Billsdeposits::nextOccurDate(repeats, numRepeats, nextOccurDate);
 
-            if (repeatsType == Model_Billsdeposits::REPEAT_IN_X_DAYS) // repeat in numRepeats Days (Once only)
+            if ((repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS || repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS) && numRepeats > 1)
             {
-                if (numRepeats > 0)
-                    numRepeats = -1;
-                else
-                    break;
+                numRepeats--;
             }
-            else if (repeatsType == Model_Billsdeposits::REPEAT_IN_X_MONTHS) // repeat in numRepeats Months (Once only)
+            else if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_IN_X_MONTHS)
             {
-                if (numRepeats > 0)
-                    numRepeats = -1;
-                else
-                    break;
+                // change repeat type to REPEAT_ONCE
+                repeats = Model_Billsdeposits::REPEAT_ONCE;
             }
-            else if (repeatsType == Model_Billsdeposits::REPEAT_EVERY_X_DAYS) // repeat every numRepeats Days
-                numRepeats = entry.NUMOCCURRENCES;
-            else if (repeatsType == Model_Billsdeposits::REPEAT_EVERY_X_MONTHS) // repeat every numRepeats Months
-                numRepeats = entry.NUMOCCURRENCES;
         }
     }
 
