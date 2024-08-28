@@ -561,7 +561,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
                 }
                 break;
             case COL_STATUS:
-                copyText_ = menuItemText = Model_Checking::STATUS_ENUM_CHOICES[Model_Checking::status(m_trans[row].STATUS)].second;
+                copyText_ = menuItemText = Model_Checking::all_status()[Model_Checking::status(m_trans[row].STATUS)];
                 rightClickFilter_ = "{\n\"STATUS\": \"" + menuItemText + "\"\n}";
                 break;
             case COL_CATEGORY:
@@ -1306,7 +1306,7 @@ void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
     int retainDays = Model_Setting::instance().GetIntSetting("DELETED_TRANS_RETAIN_DAYS", 30);
     wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
     std::set<std::pair<wxString, int>> assetStockAccts;
-    const auto s = Model_Checking::toShortStatus(status);
+    const auto s = Model_Checking::status_key(status);
     Model_Checking::instance().Savepoint();
     Model_Attachment::instance().Savepoint();
     Model_Splittransaction::instance().Savepoint();

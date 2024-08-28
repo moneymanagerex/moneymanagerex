@@ -22,7 +22,8 @@
 
 #include "Model.h"
 #include "db/DB_Table_Billsdeposits_V1.h"
-#include "model/Model_Splittransaction.h"
+#include "Model_Checking.h"
+#include "Model_Splittransaction.h"
 #include "Model_Budgetsplittransaction.h"
 #include "Model_Taglink.h"
 
@@ -35,11 +36,8 @@ public:
     typedef Model_Budgetsplittransaction::Data_Set Split_Data_Set;
 
 public:
-    enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
-    enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
     enum REPEAT_TYPE {
-        REPEAT_INACTIVE = -1,  // not used (can be removed)
-        REPEAT_ONCE,
+        REPEAT_ONCE = 0,
         REPEAT_WEEKLY,
         REPEAT_BI_WEEKLY,      // FORTNIGHTLY
         REPEAT_MONTHLY,
@@ -67,9 +65,6 @@ public:
         REPEAT_AUTO_SILENT = 2
     };
 
-    static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
-    static const std::vector<std::pair<STATUS_ENUM, wxString> > STATUS_ENUM_CHOICES;
-
 public:
     Model_Billsdeposits();
     ~Model_Billsdeposits();
@@ -81,10 +76,10 @@ public:
         int BDID = 0;
         // This relates the 'Date Due' field.
         wxString TRANSDATE = wxDateTime::Now().FormatISOCombined();
-        wxString STATUS = Model_Billsdeposits::all_status()[Model_Billsdeposits::NONE];;
+        wxString STATUS = Model_Checking::all_status()[Model_Checking::NONE];
         int ACCOUNTID = -1;
         int TOACCOUNTID = -1;
-        wxString TRANSCODE = Model_Billsdeposits::all_type()[Model_Billsdeposits::WITHDRAWAL];;
+        wxString TRANSCODE = Model_Checking::WITHDRAWAL_STR;
         int CATEGID = -1;
         double TRANSAMOUNT = 0;
         double TOTRANSAMOUNT = 0;
@@ -116,10 +111,6 @@ public:
     typedef std::vector<Full_Data> Full_Data_Set;
 
 public:
-    static wxArrayString all_type();
-    static wxArrayString all_status();
-
-public:
     /**
     Initialize the global Model_Billsdeposits table on initial call.
     Resets the global table on subsequent calls.
@@ -143,13 +134,10 @@ public:
     static wxDate NEXTOCCURRENCEDATE(const Data* r);
     // This relates the 'Date Paid' field
     static wxDate NEXTOCCURRENCEDATE(const Data& r);
-    static TYPE type(const wxString& r);
-    static TYPE type(const Data* r);
-    static TYPE type(const Data& r);
-    static STATUS_ENUM status(const wxString& r);
-    static STATUS_ENUM status(const Data* r);
-    static STATUS_ENUM status(const Data& r);
-    static wxString toShortStatus(const wxString& fullStatus);
+    static Model_Checking::TYPE type(const Data* r);
+    static Model_Checking::TYPE type(const Data& r);
+    static Model_Checking::STATUS_ENUM status(const Data* r);
+    static Model_Checking::STATUS_ENUM status(const Data& r);
 
     /**
     * Decodes the internal fields and sets the condition of the following parameters:
@@ -160,7 +148,6 @@ public:
     bool autoExecuteSilent();
     bool requireExecution();
     bool allowExecution();
-    // typedef std::map<int, double> AccountBalance;
     bool AllowTransaction(const Data& r);
 
 private:
@@ -175,8 +162,8 @@ public:
     */
     bool remove(int id);
 
-    static DB_Table_BILLSDEPOSITS_V1::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL);
-    static DB_Table_BILLSDEPOSITS_V1::TRANSCODE TRANSCODE(TYPE type, OP op = EQUAL);
+    static DB_Table_BILLSDEPOSITS_V1::STATUS STATUS(Model_Checking::STATUS_ENUM status, OP op = EQUAL);
+    static DB_Table_BILLSDEPOSITS_V1::TRANSCODE TRANSCODE(Model_Checking::TYPE type, OP op = EQUAL);
 
     static const Model_Budgetsplittransaction::Data_Set splittransaction(const Data* r);
     static const Model_Budgetsplittransaction::Data_Set splittransaction(const Data& r);

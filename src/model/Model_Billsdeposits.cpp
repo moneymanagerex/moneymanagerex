@@ -29,47 +29,16 @@
  /* TODO: Move attachment management outside of attachmentdialog */
 #include "attachmentdialog.h"
 
-const std::vector<std::pair<Model_Billsdeposits::TYPE, wxString> > Model_Billsdeposits::TYPE_CHOICES =
-{
-    {Model_Billsdeposits::WITHDRAWAL, wxString(wxTRANSLATE("Withdrawal"))}
-    , {Model_Billsdeposits::DEPOSIT, wxString(wxTRANSLATE("Deposit"))}
-    , {Model_Billsdeposits::TRANSFER, wxString(wxTRANSLATE("Transfer"))}
-};
-
-const std::vector<std::pair<Model_Billsdeposits::STATUS_ENUM, wxString> > Model_Billsdeposits::STATUS_ENUM_CHOICES =
-{
-    {Model_Billsdeposits::NONE, wxString(wxTRANSLATE("Unreconciled"))}
-    , {Model_Billsdeposits::RECONCILED, wxString(wxTRANSLATE("Reconciled"))}
-    , {Model_Billsdeposits::VOID_, wxString(wxTRANSLATE("Void"))}
-    , {Model_Billsdeposits::FOLLOWUP, wxString(wxTRANSLATE("Follow Up"))}
-    , {Model_Billsdeposits::DUPLICATE_, wxString(wxTRANSLATE("Duplicate"))}
-};
-
 Model_Billsdeposits::Model_Billsdeposits()
     : Model<DB_Table_BILLSDEPOSITS_V1>()
     , m_autoExecute (REPEAT_AUTO_NONE)
     , m_requireExecution (false)
     , m_allowExecution (false)
-
 {
 }
 
 Model_Billsdeposits::~Model_Billsdeposits()
 {
-}
-
-wxArrayString Model_Billsdeposits::all_type()
-{
-    wxArrayString types;
-    for (const auto& item : TYPE_CHOICES) types.Add(item.second);
-    return types;
-}
-
-wxArrayString Model_Billsdeposits::all_status()
-{
-    wxArrayString status;
-    for (const auto& item : STATUS_ENUM_CHOICES) status.Add(item.second);
-    return status;
 }
 
 /** Return the static instance of Model_Billsdeposits table */
@@ -112,70 +81,22 @@ wxDate Model_Billsdeposits::NEXTOCCURRENCEDATE(const Data& r)
     return Model::to_date(r.NEXTOCCURRENCEDATE);
 }
 
-Model_Billsdeposits::TYPE Model_Billsdeposits::type(const wxString& r)
+Model_Checking::TYPE Model_Billsdeposits::type(const Data& r)
 {
-    static std::unordered_map<wxString, TYPE> cache;
-    const auto it = cache.find(r);
-    if (it != cache.end()) return it->second;
-
-    for (const auto& t : TYPE_CHOICES)
-    {
-        if (r.CmpNoCase(t.second) == 0)
-        {
-            cache.insert(std::make_pair(r, t.first));
-            return t.first;
-        }
-    }
-
-    cache.insert(std::make_pair(r, WITHDRAWAL));
-    return WITHDRAWAL;
+    return Model_Checking::type(r.TRANSCODE);
 }
-Model_Billsdeposits::TYPE Model_Billsdeposits::type(const Data& r)
+Model_Checking::TYPE Model_Billsdeposits::type(const Data* r)
 {
-    return type(r.TRANSCODE);
-}
-Model_Billsdeposits::TYPE Model_Billsdeposits::type(const Data* r)
-{
-    return type(r->TRANSCODE);
-}
-Model_Billsdeposits::STATUS_ENUM Model_Billsdeposits::status(const wxString& r)
-{
-    static std::unordered_map<wxString, STATUS_ENUM> cache;
-    const auto it = cache.find(r);
-    if (it != cache.end()) return it->second;
-
-    for (const auto & s : STATUS_ENUM_CHOICES)
-    {
-        if (r.CmpNoCase(s.second) == 0)
-        {
-            cache.insert(std::make_pair(r, s.first));
-            return s.first;
-        }
-    }
-
-    STATUS_ENUM ret = NONE;
-    if (r.CmpNoCase("R") == 0) ret = RECONCILED;
-    else if (r.CmpNoCase("V") == 0) ret = VOID_;
-    else if (r.CmpNoCase("F") == 0) ret = FOLLOWUP;
-    else if (r.CmpNoCase("D") == 0) ret = DUPLICATE_;
-    cache.insert(std::make_pair(r, ret));
-
-    return ret;
-}
-Model_Billsdeposits::STATUS_ENUM Model_Billsdeposits::status(const Data& r)
-{
-    return status(r.STATUS);
-}
-Model_Billsdeposits::STATUS_ENUM Model_Billsdeposits::status(const Data* r)
-{
-    return status(r->STATUS);
+    return Model_Checking::type(r->TRANSCODE);
 }
 
-wxString Model_Billsdeposits::toShortStatus(const wxString& fullStatus)
+Model_Checking::STATUS_ENUM Model_Billsdeposits::status(const Data& r)
 {
-    wxString s = fullStatus.Left(1);
-    s.Replace("U", "");
-    return s;
+    return Model_Checking::status(r.STATUS);
+}
+Model_Checking::STATUS_ENUM Model_Billsdeposits::status(const Data* r)
+{
+    return Model_Checking::status(r->STATUS);
 }
 
 /**
@@ -191,14 +112,14 @@ bool Model_Billsdeposits::remove(int id)
     return this->remove(id, db_);
 }
 
-DB_Table_BILLSDEPOSITS_V1::STATUS Model_Billsdeposits::STATUS(STATUS_ENUM status, OP op)
+DB_Table_BILLSDEPOSITS_V1::STATUS Model_Billsdeposits::STATUS(Model_Checking::STATUS_ENUM status, OP op)
 {
-    return DB_Table_BILLSDEPOSITS_V1::STATUS(toShortStatus(all_status()[status]), op);
+    return DB_Table_BILLSDEPOSITS_V1::STATUS(Model_Checking::all_status_key()[status], op);
 }
 
-DB_Table_BILLSDEPOSITS_V1::TRANSCODE Model_Billsdeposits::TRANSCODE(TYPE type, OP op)
+DB_Table_BILLSDEPOSITS_V1::TRANSCODE Model_Billsdeposits::TRANSCODE(Model_Checking::TYPE type, OP op)
 {
-    return DB_Table_BILLSDEPOSITS_V1::TRANSCODE(all_type()[type], op);
+    return DB_Table_BILLSDEPOSITS_V1::TRANSCODE(Model_Checking::all_type()[type], op);
 }
 
 const Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::splittransaction(const Data* r)
@@ -427,7 +348,7 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
     ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
 
     PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
-    if (Model_Billsdeposits::type(r) == Model_Billsdeposits::TRANSFER)
+    if (Model_Billsdeposits::type(r) == Model_Checking::TRANSFER)
     {
         PAYEENAME = Model_Account::get_account_name(r.TOACCOUNTID);
     }
@@ -436,7 +357,7 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
 
 wxString Model_Billsdeposits::Full_Data::real_payee_name() const
 {
-    if (TYPE::TRANSFER == type(this->TRANSCODE))
+    if (Model_Checking::TRANSFER == Model_Checking::type(this->TRANSCODE))
     {
         return ("> " + this->PAYEENAME);
     }

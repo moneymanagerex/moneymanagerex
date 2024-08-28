@@ -34,10 +34,10 @@ public:
 
 public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
-    enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_};
+    enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
 
     static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
-    static const std::vector<std::pair<STATUS_ENUM, wxString> > STATUS_ENUM_CHOICES;
+    static const std::vector<std::pair<STATUS_ENUM, wxString> > STATUS_CHOICES;
 
 public:
     struct Full_Data: public Data
@@ -148,6 +148,7 @@ public:
 public:
     static wxArrayString all_type();
     static wxArrayString all_status();
+    static wxArrayString all_status_key();
     static const wxString TRANSFER_STR;
     static const wxString WITHDRAWAL_STR;
     static const wxString DEPOSIT_STR;
@@ -209,7 +210,7 @@ public:
     static bool is_transfer(const Data* r);
     static bool is_deposit(const wxString& r);
     static bool is_deposit(const Data* r);
-    static wxString toShortStatus(const wxString& fullStatus);
+    static wxString status_key(const wxString& fullStatus);
     static void getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int accountID = -1);
     static void getEmptyTransaction(Data &data, int accountID);
     static bool getTransactionData(Data &data, const Data* r);
