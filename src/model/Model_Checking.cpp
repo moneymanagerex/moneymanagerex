@@ -36,7 +36,7 @@ const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TY
     , {Model_Checking::TRANSFER, wxString(wxTRANSLATE("Transfer"))}
 };
 
-const std::vector<std::pair<Model_Checking::STATUS_ENUM, wxString> > Model_Checking::STATUS_ENUM_CHOICES =
+const std::vector<std::pair<Model_Checking::STATUS_ENUM, wxString> > Model_Checking::STATUS_CHOICES =
 {
     {Model_Checking::NONE, wxTRANSLATE("Unreconciled")}
     , {Model_Checking::RECONCILED, wxString(wxTRANSLATE("Reconciled"))}
@@ -45,9 +45,9 @@ const std::vector<std::pair<Model_Checking::STATUS_ENUM, wxString> > Model_Check
     , {Model_Checking::DUPLICATE_, wxString(wxTRANSLATE("Duplicate"))}
 };
 
-const wxString Model_Checking::TRANSFER_STR = all_type()[TRANSFER];
-const wxString Model_Checking::DEPOSIT_STR = all_type()[DEPOSIT];
 const wxString Model_Checking::WITHDRAWAL_STR = all_type()[WITHDRAWAL];
+const wxString Model_Checking::DEPOSIT_STR = all_type()[DEPOSIT];
+const wxString Model_Checking::TRANSFER_STR = all_type()[TRANSFER];
 
 Model_Checking::Model_Checking() : Model<DB_Table_CHECKINGACCOUNT_V1>()
 {
@@ -61,15 +61,20 @@ wxArrayString Model_Checking::all_type()
 {
     wxArrayString types;
     for (const auto& r : TYPE_CHOICES) types.Add(r.second);
-
     return types;
 }
 
 wxArrayString Model_Checking::all_status()
 {
     wxArrayString status;
-    for (const auto& r : STATUS_ENUM_CHOICES) status.Add(r.second);
+    for (const auto& r : STATUS_CHOICES) status.Add(r.second);
+    return status;
+}
 
+wxArrayString Model_Checking::all_status_key()
+{
+    wxArrayString status;
+    for (const auto& r : STATUS_CHOICES) status.Add(status_key(r.second));
     return status;
 }
 
@@ -159,7 +164,7 @@ const Model_Splittransaction::Data_Set Model_Checking::splittransaction(const Da
 
 DB_Table_CHECKINGACCOUNT_V1::STATUS Model_Checking::STATUS(STATUS_ENUM status, OP op)
 {
-    return DB_Table_CHECKINGACCOUNT_V1::STATUS(toShortStatus(all_status()[status]), op);
+    return DB_Table_CHECKINGACCOUNT_V1::STATUS(all_status_key()[status], op);
 }
 
 DB_Table_CHECKINGACCOUNT_V1::TRANSCODE Model_Checking::TRANSCODE(TYPE type, OP op)
@@ -233,7 +238,7 @@ Model_Checking::STATUS_ENUM Model_Checking::status(const wxString& r)
     const auto it = cache.find(r);
     if (it != cache.end()) return it->second;
 
-    for (const auto & s : STATUS_ENUM_CHOICES)
+    for (const auto & s : STATUS_CHOICES)
     {
         if (r.CmpNoCase(s.second) == 0)
         {
@@ -368,7 +373,7 @@ bool Model_Checking::is_deposit(const Data* r)
     return is_deposit(r->TRANSCODE);
 }
 
-wxString Model_Checking::toShortStatus(const wxString& fullStatus)
+wxString Model_Checking::status_key(const wxString& fullStatus)
 {
     wxString s = fullStatus.Left(1);
     s.Replace("U", "");
@@ -605,7 +610,7 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
 
     data.TRANSDATE = max_trx_date;
     data.ACCOUNTID = accountID;
-    data.STATUS = toShortStatus(all_status()[Option::instance().TransStatusReconciled()]);
+    data.STATUS = all_status_key()[Option::instance().TransStatusReconciled()];
     data.TRANSCODE = all_type()[WITHDRAWAL];
     data.CATEGID = -1;
     data.FOLLOWUPID = -1;

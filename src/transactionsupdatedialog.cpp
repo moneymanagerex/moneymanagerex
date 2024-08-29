@@ -313,7 +313,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     {
         wxStringClientData* status_obj = static_cast<wxStringClientData*>(m_status_choice->GetClientObject(m_status_choice->GetSelection()));
         if (status_obj)
-            status = Model_Checking::toShortStatus(status_obj->GetData());
+            status = Model_Checking::status_key(status_obj->GetData());
         else
             return;
     }

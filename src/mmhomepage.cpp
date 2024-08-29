@@ -315,7 +315,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         if (account) accountStr = account->ACCOUNTNAME;
 
         wxString payeeStr = "";
-        if (Model_Billsdeposits::type(entry) == Model_Billsdeposits::TRANSFER)
+        if (Model_Billsdeposits::type(entry) == Model_Checking::TRANSFER)
         {
             const Model_Account::Data *to_account = Model_Account::instance().get(entry.TOACCOUNTID);
             if (to_account) payeeStr = to_account->ACCOUNTNAME;
@@ -325,10 +325,10 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         {
             const Model_Payee::Data* payee = Model_Payee::instance().get(entry.PAYEEID);
             payeeStr = accountStr;
-            payeeStr += (Model_Billsdeposits::type(entry) == Model_Billsdeposits::WITHDRAWAL ? " &rarr; " : " &larr; ");
+            payeeStr += (Model_Billsdeposits::type(entry) == Model_Checking::WITHDRAWAL ? " &rarr; " : " &larr; ");
             if (payee) payeeStr += payee->PAYEENAME;
         }
-        double amount = (Model_Billsdeposits::type(entry) == Model_Billsdeposits::WITHDRAWAL ? -entry.TRANSAMOUNT : entry.TRANSAMOUNT);
+        double amount = (Model_Billsdeposits::type(entry) == Model_Checking::WITHDRAWAL ? -entry.TRANSAMOUNT : entry.TRANSAMOUNT);
         wxString notes = HTMLEncode(entry.NOTES);
         bd_days.push_back(std::make_tuple(daysPayment, payeeStr, daysRemainingStr, amount, account, notes));
     }

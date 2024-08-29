@@ -49,7 +49,7 @@ bool dbCheck::checkAccounts()
     // BillsDeposits
     const auto &bills = Model_Billsdeposits::instance().all();
     for (const auto& bill : bills)
-        if (!Model_Account::instance().get(bill.ACCOUNTID) || (Model_Billsdeposits::type(bill) == Model_Billsdeposits::TRANSFER && !Model_Account::instance().get(bill.TOACCOUNTID)))
+        if (!Model_Account::instance().get(bill.ACCOUNTID) || (Model_Billsdeposits::type(bill) == Model_Checking::TRANSFER && !Model_Account::instance().get(bill.TOACCOUNTID)))
         {
             result = false;
         }

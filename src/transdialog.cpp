@@ -1178,7 +1178,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     wxStringClientData* status_obj = static_cast<wxStringClientData*>(choiceStatus_->GetClientObject(choiceStatus_->GetSelection()));
     if (status_obj)
     {
-        m_status = Model_Checking::toShortStatus(status_obj->GetData());
+        m_status = Model_Checking::status_key(status_obj->GetData());
         m_trx_data.STATUS = m_status;
     }
 

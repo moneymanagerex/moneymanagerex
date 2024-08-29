@@ -131,7 +131,7 @@ void mmReportCashFlow::getTransactions()
     }
 
     // Now we gather the recurring transaction list
-    for (const auto& entry : Model_Billsdeposits::instance().find(Model_Billsdeposits::STATUS(Model_Billsdeposits::VOID_, NOT_EQUAL)))
+    for (const auto& entry : Model_Billsdeposits::instance().find(Model_Billsdeposits::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
     {
         wxDateTime nextOccurDate = Model_Billsdeposits::NEXTOCCURRENCEDATE(entry);
         if (nextOccurDate > endDate) continue;
