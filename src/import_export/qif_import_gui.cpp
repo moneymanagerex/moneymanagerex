@@ -1563,11 +1563,11 @@ int mmQIFImportDialog::getOrCreateAccounts()
             Model_Account::Data *account = Model_Account::instance().create();
 
             account->FAVORITEACCT = "TRUE";
-            account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
+            account->STATUS = Model_Account::STATUS_STR_OPEN;
 
             const auto type = item.second.find(AccountType) != item.second.end() ? item.second.at(AccountType) : "";
             account->ACCOUNTTYPE = mmExportTransaction::mm_acc_type(type);
-            //Model_Account::all_type()[Model_Account::CHECKING];
+            //Model_Account::TYPE_STR_CHECKING;
             account->ACCOUNTNAME = item.first;
             account->INITIALBAL = 0;
             account->INITIALDATE = wxDate::Today().FormatISODate();

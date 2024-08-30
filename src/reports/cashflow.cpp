@@ -78,8 +78,8 @@ void mmReportCashFlow::getTransactions()
 
     // Get initial Balance as of today
     for (const auto& account : Model_Account::instance().find(
-        Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)
-        , Model_Account::STATUS(Model_Account::CLOSED, NOT_EQUAL)))
+        Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR_INVESTMENT, NOT_EQUAL)
+        , Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL)))
     {
         if (accountArray_ && accountArray_->Index(account.ACCOUNTNAME) == wxNOT_FOUND) {
             continue;

@@ -414,9 +414,9 @@ void mmAssetDialog::CreateAssetAccount()
 {
     Model_Account::Data* asset_account = Model_Account::instance().create();
     asset_account->ACCOUNTNAME = m_asset->ASSETNAME;
-    asset_account->ACCOUNTTYPE = Model_Account::all_type()[Model_Account::ASSET];
+    asset_account->ACCOUNTTYPE = Model_Account::TYPE_STR_ASSET;
     asset_account->FAVORITEACCT = "TRUE";
-    asset_account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
+    asset_account->STATUS = Model_Account::STATUS_STR_OPEN;
     asset_account->INITIALBAL = 0;
     asset_account->INITIALDATE = wxDate::Today().FormatISODate();
     asset_account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;

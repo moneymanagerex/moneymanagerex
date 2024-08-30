@@ -857,9 +857,9 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
 
         for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
         {
-            if ((m_temp_view == VIEW_ACCOUNTS_OPEN_STR) && (Model_Account::status(account) != Model_Account::OPEN))
+            if ((m_temp_view == VIEW_ACCOUNTS_OPEN_STR) && (Model_Account::status_id(account) != Model_Account::STATUS_ID_OPEN))
                 continue;
-            else if (m_temp_view == VIEW_ACCOUNTS_CLOSED_STR && (Model_Account::status(account) == Model_Account::OPEN))
+            else if (m_temp_view == VIEW_ACCOUNTS_CLOSED_STR && (Model_Account::status_id(account) == Model_Account::STATUS_ID_OPEN))
                 continue;
             else if (m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR && !Model_Account::FAVORITEACCT(account))
                 continue;
@@ -867,11 +867,11 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
             int selectedImage = Option::instance().AccountImageId(account.ACCOUNTID, false);
 
             wxTreeItemId tacct;
-            Model_Account::TYPE account_type = Model_Account::type(account);
-            if (Model_Account::FAVORITEACCT(account) && (Model_Account::status(account) == Model_Account::OPEN))
+            Model_Account::TYPE_ID account_type = Model_Account::type_id(account);
+            if (Model_Account::FAVORITEACCT(account) && (Model_Account::status_id(account) == Model_Account::STATUS_ID_OPEN))
             {
-                if (Model_Account::type(account) != Model_Account::INVESTMENT &&
-                    (account_type != Model_Account::SHARES || !hideShareAccounts))
+                if (Model_Account::type_id(account) != Model_Account::TYPE_ID_INVESTMENT &&
+                    (account_type != Model_Account::TYPE_ID_SHARES || !hideShareAccounts))
                 {
                     tacct = m_nav_tree_ctrl->AppendItem(favorites, account.ACCOUNTNAME, selectedImage, selectedImage);
                     m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
@@ -880,7 +880,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
 
             switch (account_type)
             {
-            case Model_Account::INVESTMENT:
+            case Model_Account::TYPE_ID_INVESTMENT:
             {
                 tacct = m_nav_tree_ctrl->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
                 m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::STOCK, account.ACCOUNTID));
@@ -902,34 +902,34 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
                 }
                 break;
             }
-            case Model_Account::CHECKING:
+            case Model_Account::TYPE_ID_CHECKING:
                 tacct = m_nav_tree_ctrl->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 break;
-            case Model_Account::SHARES:
+            case Model_Account::TYPE_ID_SHARES:
                 if (!hideShareAccounts)
                 {
                     tacct = m_nav_tree_ctrl->AppendItem(shareAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                     m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 }
                 break;
-            case Model_Account::ASSET:
+            case Model_Account::TYPE_ID_ASSET:
                 tacct = m_nav_tree_ctrl->AppendItem(assets, account.ACCOUNTNAME, selectedImage, selectedImage);
                 m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 break;
-            case Model_Account::TERM:
+            case Model_Account::TYPE_ID_TERM:
                 tacct = m_nav_tree_ctrl->AppendItem(termAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 break;
-            case Model_Account::CREDIT_CARD:
+            case Model_Account::TYPE_ID_CREDIT_CARD:
                 tacct = m_nav_tree_ctrl->AppendItem(cardAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 break;
-            case Model_Account::CASH:
+            case Model_Account::TYPE_ID_CASH:
                 tacct = m_nav_tree_ctrl->AppendItem(cashAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 break;
-            case Model_Account::LOAN:
+            case Model_Account::TYPE_ID_LOAN:
                 tacct = m_nav_tree_ctrl->AppendItem(loanAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
                 break;
@@ -1392,7 +1392,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
         if (account)
         {
             wxString warning_msg = _("Do you really want to delete the account?");
-            if (account->ACCOUNTTYPE == Model_Account::all_type()[Model_Account::INVESTMENT] || account->ACCOUNTTYPE == Model_Account::all_type()[Model_Account::SHARES])
+            if (account->ACCOUNTTYPE == Model_Account::TYPE_STR_INVESTMENT || account->ACCOUNTTYPE == Model_Account::TYPE_STR_SHARES)
             {
                 warning_msg += "\n\nThis will also delete any associated Shares.";
             }
@@ -1517,7 +1517,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
             menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Attachment Manager..."));
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
-            menu.Enable(MENU_TREEPOPUP_REALLOCATE, account->ACCOUNTTYPE != Model_Account::all_type()[Model_Account::SHARES]);
+            menu.Enable(MENU_TREEPOPUP_REALLOCATE, account->ACCOUNTTYPE != Model_Account::TYPE_STR_SHARES);
             menu.AppendSeparator();
             AppendImportMenu(menu);
             PopupMenu(&menu, pt);
@@ -2705,7 +2705,7 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
         Model_Account::Data* account = Model_Account::instance().get(wizard->acctID_);
         mmNewAcctDialog dlg(account, this);
         dlg.ShowModal();
-        if (account->ACCOUNTTYPE == Model_Account::all_type()[Model_Account::ASSET])
+        if (account->ACCOUNTTYPE == Model_Account::TYPE_STR_ASSET)
         {
             wxMessageBox(_(
                 "Asset Accounts hold Asset transactions\n\n"
@@ -2715,7 +2715,7 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
             ), _("Asset Account Creation"));
         }
 
-        if (account->ACCOUNTTYPE == Model_Account::all_type()[Model_Account::SHARES])
+        if (account->ACCOUNTTYPE == Model_Account::TYPE_STR_SHARES)
         {
             wxMessageBox(wxGetTranslation(wxString::FromUTF8(wxTRANSLATE(
                 "Share Accounts hold Share transactions\n\n"
@@ -3461,7 +3461,7 @@ void mmGUIFrame::OnGotoAccount(wxCommandEvent& WXUNUSED(event))
     bool proper_type = false;
     Model_Account::Data *acc = Model_Account::instance().get(gotoAccountID_);
     if (acc)
-        proper_type = Model_Account::type(acc) != Model_Account::INVESTMENT;
+        proper_type = Model_Account::type_id(acc) != Model_Account::TYPE_ID_INVESTMENT;
     if (proper_type)
         createCheckingAccountPage(gotoAccountID_);
     m_nav_tree_ctrl->Refresh();
@@ -3472,7 +3472,7 @@ void mmGUIFrame::OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event))
     bool proper_type = false;
     Model_Account::Data *acc = Model_Account::instance().get(gotoAccountID_);
     if (acc)
-        proper_type = Model_Account::type(acc) == Model_Account::INVESTMENT;
+        proper_type = Model_Account::type_id(acc) == Model_Account::TYPE_ID_INVESTMENT;
     if (proper_type)
         createStocksAccountPage(gotoAccountID_);
     m_nav_tree_ctrl->Refresh();
@@ -3655,8 +3655,8 @@ void mmGUIFrame::ReallocateAccount(int accountID)
 {
     Model_Account::Data* account = Model_Account::instance().get(accountID);
 
-    wxArrayString types = Model_Account::instance().all_type();
-    types.Remove(Model_Account::all_type()[Model_Account::INVESTMENT]);
+    wxArrayString types = Model_Account::TYPE_STR;
+    types.Remove(Model_Account::TYPE_STR_INVESTMENT);
     types.Remove(account->ACCOUNTTYPE);
     wxArrayString t;
     for (const auto &entry : types)

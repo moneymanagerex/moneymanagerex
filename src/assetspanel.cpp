@@ -117,7 +117,7 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
         menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
     }
 
-    const auto& asset_accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::ASSET]));
+    const auto& asset_accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR_ASSET));
     menu.Enable(MENU_TREEPOPUP_GOTOACCOUNT, !asset_accounts.empty());
     menu.Enable(MENU_TREEPOPUP_VIEWTRANS, !asset_accounts.empty());
 

@@ -174,7 +174,7 @@ std::map<wxDateTime, int> Model_Currency::DateUsed(int CurrencyID)
     const auto &accounts = Model_Account::instance().find(CURRENCYID(CurrencyID));
     for (const auto &account : accounts)
     {
-        if (Model_Account::type(account) == Model_Account::TYPE::INVESTMENT)
+        if (Model_Account::type_id(account) == Model_Account::TYPE_ID_INVESTMENT)
         {
             for (const auto trans : Model_Stock::instance().find(Model_Stock::HELDAT(account.ACCOUNTID)))
             {

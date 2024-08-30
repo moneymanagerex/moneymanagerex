@@ -1451,14 +1451,14 @@ bool TransactionListCtrl::CheckForClosedAccounts()
         Model_Checking::Data* transaction = Model_Checking::instance().get(i);
         Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
         if (account)
-            if (Model_Account::CLOSED == Model_Account::status(account))
+            if (Model_Account::STATUS_ID_CLOSED == Model_Account::status_id(account))
             {
                 closedTrx++;
                 continue;
             }
         Model_Account::Data* to_account = Model_Account::instance().get(transaction->TOACCOUNTID);
         if (to_account) {
-            if (Model_Account::CLOSED == Model_Account::status(account))
+            if (Model_Account::STATUS_ID_CLOSED == Model_Account::status_id(account))
                 closedTrx++;
         }
     }
