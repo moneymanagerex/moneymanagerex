@@ -476,7 +476,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     }
     else
     {
-        TrStatus = "F";
+        TrStatus = Model_Checking::STATUS_KEY_FOLLOWUP;
         wxString FistAccountName;
 
         //Search first bank account

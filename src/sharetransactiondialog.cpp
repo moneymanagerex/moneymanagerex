@@ -46,7 +46,7 @@ wxEND_EVENT_TABLE()
 
 double ShareTransactionDialog::GetAmount(double shares, double price, double commision)
 {
-    if (m_transaction_panel->TransactionType() == Model_Checking::DEPOSIT)
+    if (m_transaction_panel->TransactionType() == Model_Checking::TYPE_ID_DEPOSIT)
         return (shares * price - commision);
     else
         return (shares * price + commision);
@@ -149,7 +149,7 @@ void ShareTransactionDialog::DataToControls()
                     m_transaction_panel->SetTransactionValue(GetAmount(std::abs(m_share_entry->SHARENUMBER)
                         , m_share_entry->SHAREPRICE, m_share_entry->SHARECOMMISSION), true);
                     m_transaction_panel->SetTransactionAccount(Model_Account::get_account_name(checking_entry->ACCOUNTID));
-                    m_transaction_panel->SetTransactionStatus(Model_Checking::status(checking_entry));
+                    m_transaction_panel->SetTransactionStatus(Model_Checking::status_id(checking_entry));
                     m_transaction_panel->SetTransactionPayee(checking_entry->PAYEEID);
                     m_transaction_panel->SetTransactionCategory(checking_entry->CATEGID);
                     if (!checking_entry->DELETEDTIME.IsEmpty()) {
@@ -380,7 +380,7 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     if (m_transaction_panel->ValidCheckingAccountEntry())
     {
         // addition or removal shares
-        if ((num_shares > 0) && (m_transaction_panel->TransactionType() == Model_Checking::DEPOSIT))
+        if ((num_shares > 0) && (m_transaction_panel->TransactionType() == Model_Checking::TYPE_ID_DEPOSIT))
         {
             // we need to subtract the number of shares for a sale
             num_shares = num_shares * -1;

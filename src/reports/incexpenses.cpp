@@ -48,7 +48,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
     for (const auto& transaction : Model_Checking::instance().find(
         Model_Checking::TRANSDATE(m_date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(m_date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL)
-        , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
+        , Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)))
     {
         // Do not include asset or stock transfers or deleted transactions in income expense calculations.
         if (Model_Checking::foreignTransactionAsTransfer(transaction) || !transaction.DELETEDTIME.IsEmpty())
@@ -64,9 +64,9 @@ wxString mmReportIncomeExpenses::getHTMLText()
         // We got this far, get the currency conversion rate for this account
         if (account) convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID,transaction.TRANSDATE);
 
-        if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT)
+        if (Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_DEPOSIT)
             income_expenses_pair.first += transaction.TRANSAMOUNT * convRate;
-        else if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
+        else if (Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_WITHDRAWAL)
             income_expenses_pair.second += transaction.TRANSAMOUNT * convRate;
     }
 
@@ -148,7 +148,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     for (const auto& transaction : Model_Checking::instance().find(
         Model_Checking::TRANSDATE(start_date, GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(m_date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL)
-        , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
+        , Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)))
     {
         // Do not include asset or stock transfers or deleted transactions in income expense calculations.
         if (Model_Checking::foreignTransactionAsTransfer(transaction) || !transaction.DELETEDTIME.IsEmpty())
@@ -167,10 +167,10 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
 
         int idx = year * 100 + Model_Checking::TRANSDATE(transaction).GetMonth();
 
-        if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT) {
+        if (Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_DEPOSIT) {
             incomeExpensesStats[idx].first += transaction.TRANSAMOUNT * convRate;
         }
-        else if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL) {
+        else if (Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_WITHDRAWAL) {
             incomeExpensesStats[idx].second += transaction.TRANSAMOUNT * convRate;
         }
     }

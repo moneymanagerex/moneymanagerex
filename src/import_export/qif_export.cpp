@@ -472,7 +472,7 @@ void mmQIFExportDialog::mmExportQIF()
     wxArrayInt allCustomFields4Export;
     wxArrayInt allTags4Export;
     const auto transactions = Model_Checking::instance().find(
-        Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL));
+        Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL));
 
     if (exp_transactions && !transactions.empty())
     {
@@ -524,7 +524,7 @@ void mmQIFExportDialog::mmExportQIF()
                 mmExportTransaction::getTransactionJSON(json_writer, full_tran);
                 allAccounts4Export[account_id] = "";
                 if (allPayees4Export.Index(full_tran.PAYEEID) == wxNOT_FOUND
-                    && full_tran.TRANSCODE != Model_Checking::all_type()[Model_Checking::TRANSFER]) {
+                    && full_tran.TRANSCODE != Model_Checking::TYPE_STR_TRANSFER) {
                     allPayees4Export.Add(full_tran.PAYEEID);
                 }
 

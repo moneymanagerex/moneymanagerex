@@ -185,13 +185,13 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
 {
 // FIXME: do not ignore ignoreFuture param
     const auto &transactions = Model_Checking::instance().find(
-        Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
+        Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
         , Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL));
     const auto all_splits = Model_Splittransaction::instance().get_all();
     for (const auto& trx: transactions)
     {
-        if (Model_Checking::type(trx) == Model_Checking::TRANSFER || !trx.DELETEDTIME.IsEmpty()) continue;
+        if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER || !trx.DELETEDTIME.IsEmpty()) continue;
 
         // Do not include asset or stock transfers in income expense calculations.
         if (Model_Checking::foreignTransactionAsTransfer(trx))
@@ -203,7 +203,7 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
         if (all_splits.count(trx.id())) splits = all_splits.at(trx.id());
         if (splits.empty())
         {
-            if (Model_Checking::type(trx) == Model_Checking::DEPOSIT)
+            if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_DEPOSIT)
                 payeeStats[trx.PAYEEID].first += trx.TRANSAMOUNT * convRate;
             else
                 payeeStats[trx.PAYEEID].second -= trx.TRANSAMOUNT * convRate;
@@ -212,7 +212,7 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
         {
             for (const auto& entry : splits)
             {
-                if (Model_Checking::type(trx) == Model_Checking::DEPOSIT)
+                if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_DEPOSIT)
                 {
                     if (entry.SPLITTRANSAMOUNT >= 0)
                         payeeStats[trx.PAYEEID].first += entry.SPLITTRANSAMOUNT * convRate;

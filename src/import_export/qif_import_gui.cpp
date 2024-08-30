@@ -604,7 +604,7 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
             {
                 isTransfer = true;
                 trx[Category] = _("Transfer") + (!tags.IsEmpty() ? "/" + tags : "");
-                trx[TrxType] = Model_Checking::TRANSFER_STR;
+                trx[TrxType] = Model_Checking::TYPE_STR_TRANSFER;
                 trx[ToAccountName] = toAccName;
                 trx[Memo] += (trx[Memo].empty() ? "" : "\n") + trx[Payee];
                 if (m_QIFaccounts.find(toAccName) == m_QIFaccounts.end())
@@ -650,9 +650,9 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
     wxString amtStr = (trx.find(Amount) == trx.end() ? "" : trx[Amount]);
     if (!isTransfer) {
         if (amtStr.Mid(0, 1) == "-")
-            trx[TrxType] = Model_Checking::WITHDRAWAL_STR;
+            trx[TrxType] = Model_Checking::TYPE_STR_WITHDRAWAL;
         else if (!amtStr.empty())
-            trx[TrxType] = Model_Checking::DEPOSIT_STR;
+            trx[TrxType] = Model_Checking::TYPE_STR_DEPOSIT;
     }
 
     return !amtStr.empty();
@@ -697,7 +697,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             data.push_back(wxVariant(dateStr));
             data.push_back(wxVariant(trx.find(TransNumber) != trx.end() ? trx.at(TransNumber) : ""));
             const wxString type = (trx.find(TrxType) != trx.end() ? trx.at(TrxType) : "");
-            if (type == Model_Checking::TRANSFER_STR)
+            if (type == Model_Checking::TYPE_STR_TRANSFER)
                 data.push_back(wxVariant(trx.find(ToAccountName) != trx.end() ? trx.at(ToAccountName) : ""));
             else
                 data.push_back(wxVariant(trx.find(Payee) != trx.end() ? trx.at(Payee) : ""));
@@ -1068,7 +1068,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         Model_Checking::Cache transfer_to_data_set;
         Model_Checking::Cache transfer_from_data_set;
         int count = 0;
-        const wxString& transferStr = Model_Checking::TRANSFER_STR;
+        const wxString& transferStr = Model_Checking::TYPE_STR_TRANSFER;
 
         const auto begin_date = toDateCtrl_->GetValue().FormatISODate();
         const auto end_date = fromDateCtrl_->GetValue().FormatISODate();
@@ -1188,11 +1188,11 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 , Model_Checking::TOACCOUNTID(trx->TOACCOUNTID)
                 , Model_Checking::NOTES(trx->NOTES)
                 , Model_Checking::TRANSACTIONNUMBER(trx->TRANSACTIONNUMBER)
-                , Model_Checking::TRANSCODE(Model_Checking::TRANSFER)
+                , Model_Checking::TRANSCODE(Model_Checking::TYPE_ID_TRANSFER)
                 , Model_Checking::TRANSAMOUNT(trx->TRANSAMOUNT)
             );
             if (data.size() > 0)
-                trx->STATUS = "D";
+                trx->STATUS = Model_Checking::STATUS_KEY_DUPLICATE;
         }
         // At this point all transactions and tags have been merged into single sets
         Model_Taglink::instance().Savepoint();
@@ -1400,12 +1400,12 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
 
     trx->TRANSACTIONNUMBER = (t.find(TransNumber) != t.end() ? t[TransNumber] : "");
     trx->NOTES.Prepend(!trx->NOTES.IsEmpty() ? "\n" : "").Prepend(t.find(Memo) != t.end() ? t[Memo] : ""); // add the actual NOTES before the payee match details
-    wxString status = "";
+    wxString status = Model_Checking::STATUS_KEY_NONE;
     if (t.find(Status) != t.end())
     {
         wxString s = t[Status];
         if (s == "X" || s == "R")
-            status = "R";
+            status = Model_Checking::STATUS_KEY_RECONCILED;
         /*else if (s == "*" || s == "c")
         {
             TODO: What does 'cleared' status mean?

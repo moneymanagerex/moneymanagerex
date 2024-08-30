@@ -1235,7 +1235,7 @@ bool mmFilterTransactionsDialog::mmIsStatusMatches(const wxString& itemStatus) c
     }
     else if ("A" == filterStatus) // All Except Reconciled
     {
-        return "R" != itemStatus;
+        return Model_Checking::STATUS_KEY_RECONCILED != itemStatus;
     }
     return false;
 }
@@ -1243,21 +1243,21 @@ bool mmFilterTransactionsDialog::mmIsStatusMatches(const wxString& itemStatus) c
 bool mmFilterTransactionsDialog::mmIsTypeMaches(const wxString& typeState, int accountid, int toaccountid) const
 {
     bool result = false;
-    if (typeState == Model_Checking::all_type()[Model_Checking::TRANSFER] && cbTypeTransferTo_->GetValue() &&
+    if (typeState == Model_Checking::TYPE_STR_TRANSFER && cbTypeTransferTo_->GetValue() &&
         (!mmIsAccountChecked() || (m_selected_accounts_id.Index(accountid) != wxNOT_FOUND)))
     {
         result = true;
     }
-    else if (typeState == Model_Checking::all_type()[Model_Checking::TRANSFER] && cbTypeTransferFrom_->GetValue() &&
+    else if (typeState == Model_Checking::TYPE_STR_TRANSFER && cbTypeTransferFrom_->GetValue() &&
              (!mmIsAccountChecked() || (m_selected_accounts_id.Index(toaccountid) != wxNOT_FOUND)))
     {
         result = true;
     }
-    else if (typeState == Model_Checking::all_type()[Model_Checking::WITHDRAWAL] && cbTypeWithdrawal_->IsChecked())
+    else if (typeState == Model_Checking::TYPE_STR_WITHDRAWAL && cbTypeWithdrawal_->IsChecked())
     {
         result = true;
     }
-    else if (typeState == Model_Checking::all_type()[Model_Checking::DEPOSIT] && cbTypeDeposit_->IsChecked())
+    else if (typeState == Model_Checking::TYPE_STR_DEPOSIT && cbTypeDeposit_->IsChecked())
     {
         result = true;
     }
@@ -1840,7 +1840,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     // Status
     if (statusCheckBox_->IsChecked())
     {
-        wxArrayString s = Model_Checking::all_status();
+        wxArrayString s = Model_Checking::STATUS_STR;
         s.Add(wxTRANSLATE("All Except Reconciled"));
         int item = choiceStatus_->GetSelection();
         wxString status;

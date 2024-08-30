@@ -47,14 +47,14 @@ double mmReportCashFlow::trueAmount(const Model_Checking::Data& trx)
     if (!(isAccountFound && isToAccountFound))
     {
         const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
-        switch (Model_Checking::type(trx.TRANSCODE)) {
-        case Model_Checking::WITHDRAWAL:
+        switch (Model_Checking::type_id(trx.TRANSCODE)) {
+        case Model_Checking::TYPE_ID_WITHDRAWAL:
             amount = -trx.TRANSAMOUNT * convRate;
             break;
-        case Model_Checking::DEPOSIT:
+        case Model_Checking::TYPE_ID_DEPOSIT:
             amount = +trx.TRANSAMOUNT * convRate;
             break;
-        case Model_Checking::TRANSFER:
+        case Model_Checking::TYPE_ID_TRANSFER:
             if (isAccountFound)
                 amount = -trx.TRANSAMOUNT * convRate;
             else
@@ -105,7 +105,7 @@ void mmReportCashFlow::getTransactions()
     Model_Checking::Data_Set transactions = Model_Checking::instance().find(
         Model_Checking::TRANSDATE(m_today, GREATER),
         Model_Checking::TRANSDATE(endDate, LESS),
-        Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL));
+        Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL));
     for (auto& trx : transactions)
     {
         if (!trx.DELETEDTIME.IsEmpty()) continue;
@@ -131,7 +131,7 @@ void mmReportCashFlow::getTransactions()
     }
 
     // Now we gather the recurring transaction list
-    for (const auto& entry : Model_Billsdeposits::instance().find(Model_Billsdeposits::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
+    for (const auto& entry : Model_Billsdeposits::instance().find(Model_Billsdeposits::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)))
     {
         wxDateTime nextOccurDate = Model_Billsdeposits::NEXTOCCURRENCEDATE(entry);
         if (nextOccurDate > endDate) continue;

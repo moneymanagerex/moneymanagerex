@@ -205,8 +205,8 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     const auto &transactions = Model_Checking::instance().find(
         Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL)
-        , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
-        , Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL));
+        , Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
+        , Model_Checking::TRANSCODE(Model_Checking::TYPE_ID_TRANSFER, NOT_EQUAL));
 
     for (const auto &trx : transactions)
     {
@@ -214,7 +214,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
         if (Model_Checking::foreignTransactionAsTransfer(trx) || !trx.DELETEDTIME.IsEmpty())
             continue;
 
-        bool withdrawal = Model_Checking::type(trx) == Model_Checking::WITHDRAWAL;
+        bool withdrawal = Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_WITHDRAWAL;
         const auto it = split.find(trx.TRANSID);
 
         double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
@@ -315,7 +315,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         if (account) accountStr = account->ACCOUNTNAME;
 
         wxString payeeStr = "";
-        if (Model_Billsdeposits::type(entry) == Model_Checking::TRANSFER)
+        if (Model_Billsdeposits::type_id(entry) == Model_Checking::TYPE_ID_TRANSFER)
         {
             const Model_Account::Data *to_account = Model_Account::instance().get(entry.TOACCOUNTID);
             if (to_account) payeeStr = to_account->ACCOUNTNAME;
@@ -325,10 +325,10 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         {
             const Model_Payee::Data* payee = Model_Payee::instance().get(entry.PAYEEID);
             payeeStr = accountStr;
-            payeeStr += (Model_Billsdeposits::type(entry) == Model_Checking::WITHDRAWAL ? " &rarr; " : " &larr; ");
+            payeeStr += (Model_Billsdeposits::type_id(entry) == Model_Checking::TYPE_ID_WITHDRAWAL ? " &rarr; " : " &larr; ");
             if (payee) payeeStr += payee->PAYEENAME;
         }
-        double amount = (Model_Billsdeposits::type(entry) == Model_Checking::WITHDRAWAL ? -entry.TRANSAMOUNT : entry.TRANSAMOUNT);
+        double amount = (Model_Billsdeposits::type_id(entry) == Model_Checking::TYPE_ID_WITHDRAWAL ? -entry.TRANSAMOUNT : entry.TRANSAMOUNT);
         wxString notes = HTMLEncode(entry.NOTES);
         bd_days.push_back(std::make_tuple(daysPayment, payeeStr, daysRemainingStr, amount, account, notes));
     }
@@ -388,8 +388,8 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
     const auto &transactions = Model_Checking::instance().find(
         Model_Checking::TRANSDATE(date_range.get()->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range.get()->end_date().FormatISOCombined(), LESS_OR_EQUAL)
-        , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
-        , Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL)
+        , Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
+        , Model_Checking::TRANSCODE(Model_Checking::TYPE_ID_TRANSFER, NOT_EQUAL)
     );
 
     for (const auto& pBankTransaction : transactions)
@@ -402,7 +402,7 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
         double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(pBankTransaction.ACCOUNTID)->CURRENCYID, pBankTransaction.TRANSDATE);
 
         int idx = pBankTransaction.ACCOUNTID;
-        if (Model_Checking::type(pBankTransaction) == Model_Checking::DEPOSIT)
+        if (Model_Checking::type_id(pBankTransaction) == Model_Checking::TYPE_ID_DEPOSIT)
             incomeExpensesStats[idx].first += pBankTransaction.TRANSAMOUNT * convRate;
         else
             incomeExpensesStats[idx].second += pBankTransaction.TRANSAMOUNT * convRate;
@@ -493,13 +493,13 @@ const wxString htmlWidgetStatistics::getHTMLText()
         if (Model_Checking::foreignTransactionAsTransfer(trx))
             continue;
 
-        if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP)
+        if (Model_Checking::status_id(trx) == Model_Checking::STATUS_ID_FOLLOWUP)
             countFollowUp++;
 
         accountStats[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
         accountStats[trx.ACCOUNTID].second += Model_Checking::balance(trx, trx.ACCOUNTID);
 
-        if (Model_Checking::type(trx) == Model_Checking::TRANSFER)
+        if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER)
         {
             accountStats[trx.TOACCOUNTID].first += Model_Checking::reconciled(trx, trx.TOACCOUNTID);
             accountStats[trx.TOACCOUNTID].second += Model_Checking::balance(trx, trx.TOACCOUNTID);
@@ -673,7 +673,7 @@ void htmlWidgetAccounts::get_account_stats()
         accountStats_[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
         accountStats_[trx.ACCOUNTID].second += Model_Checking::balance(trx, trx.ACCOUNTID);
 
-        if (Model_Checking::type(trx) == Model_Checking::TRANSFER)
+        if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER)
         {
             accountStats_[trx.TOACCOUNTID].first += Model_Checking::reconciled(trx, trx.TOACCOUNTID);
             accountStats_[trx.TOACCOUNTID].second += Model_Checking::balance(trx, trx.TOACCOUNTID);

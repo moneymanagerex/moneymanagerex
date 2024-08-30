@@ -75,7 +75,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
         for (const auto &split_entry : full_tran.m_splits)
         {
             double valueSplit = split_entry.SPLITTRANSAMOUNT;
-            if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
+            if (Model_Checking::type_id(full_tran) == Model_Checking::TYPE_ID_WITHDRAWAL)
                 valueSplit = -valueSplit;
             const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
             const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, ":");
@@ -165,7 +165,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
     }
 
     buffer << "D" << mmGetDateForDisplay(full_tran.TRANSDATE, dateMask) << "\n";
-    buffer << "C" << (full_tran.STATUS == "R" ? "R" : "") << "\n";
+    buffer << "C" << (full_tran.STATUS == Model_Checking::STATUS_KEY_RECONCILED ? "R" : "") << "\n";
     double value = Model_Checking::balance(full_tran
         , (reverce ? full_tran.TOACCOUNTID : full_tran.ACCOUNTID));
     const wxString& s = wxString::FromCDouble(value, 2);
@@ -187,7 +187,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
     for (const auto &split_entry : full_tran.m_splits)
     {
         double valueSplit = split_entry.SPLITTRANSAMOUNT;
-        if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
+        if (Model_Checking::type_id(full_tran) == Model_Checking::TYPE_ID_WITHDRAWAL)
             valueSplit = -valueSplit;
         const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
         wxString split_categ = Model_Category::full_name(split_entry.CATEGID, ":");
@@ -424,7 +424,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
         for (const auto &split_entry : full_tran.m_splits)
         {
             double valueSplit = split_entry.SPLITTRANSAMOUNT;
-            if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL) {
+            if (Model_Checking::type_id(full_tran) == Model_Checking::TYPE_ID_WITHDRAWAL) {
                 valueSplit = -valueSplit;
             }
 

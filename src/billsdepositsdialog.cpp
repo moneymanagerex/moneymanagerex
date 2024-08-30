@@ -152,7 +152,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOcc
         }
     }
 
-    m_transfer = (m_bill_data.TRANSCODE == Model_Checking::TRANSFER_STR);
+    m_transfer = (m_bill_data.TRANSCODE == Model_Checking::TYPE_STR_TRANSFER);
 
     int ref_id = m_dup_bill ?  -bdID : (m_new_bill ? 0 : -m_bill_data.BDID);
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELDS);
@@ -206,13 +206,13 @@ void mmBDDialog::dataToControls()
     }
     setRepeatType(Model_Billsdeposits::REPEAT_MONTHLY);
 
-    for (const auto& i : Model_Checking::all_type())
+    for (const auto& i : Model_Checking::TYPE_STR)
     {
-        if (i == Model_Checking::TRANSFER_STR && Model_Account::instance().all().size() < 2)
+        if (i == Model_Checking::TYPE_STR_TRANSFER && Model_Account::instance().all().size() < 2)
             break;
         m_choice_transaction_type->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
-    m_choice_transaction_type->SetSelection(Model_Checking::WITHDRAWAL);
+    m_choice_transaction_type->SetSelection(Model_Checking::TYPE_ID_WITHDRAWAL);
 
     SetTransferControls();  // hide appropriate fields
     setCategoryLabel();
@@ -221,7 +221,7 @@ void mmBDDialog::dataToControls()
         return;
     }
 
-    m_choice_status->SetSelection(Model_Checking::status(m_bill_data.STATUS));
+    m_choice_status->SetSelection(Model_Checking::status_id(m_bill_data.STATUS));
 
     // Set the date paid
     wxDateTime field_date;
@@ -268,7 +268,7 @@ void mmBDDialog::dataToControls()
     }
     setRepeatDetails();
 
-    m_choice_transaction_type->SetSelection(Model_Checking::type(m_bill_data.TRANSCODE));
+    m_choice_transaction_type->SetSelection(Model_Checking::type_id(m_bill_data.TRANSCODE));
     updateControlsForTransType();
 
     Model_Account::Data* account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
@@ -339,8 +339,8 @@ void mmBDDialog::SetDialogParameters(int trx_id)
     cbAccount_->SetValue(t.ACCOUNTNAME);
 
     m_bill_data.TRANSCODE = t.TRANSCODE;
-    m_choice_transaction_type->SetSelection(Model_Checking::type(t.TRANSCODE));
-    m_transfer = (m_bill_data.TRANSCODE == Model_Checking::TRANSFER_STR);
+    m_choice_transaction_type->SetSelection(Model_Checking::type_id(t.TRANSCODE));
+    m_transfer = (m_bill_data.TRANSCODE == Model_Checking::TYPE_STR_TRANSFER);
     updateControlsForTransType();
 
     m_bill_data.TRANSAMOUNT = t.TRANSAMOUNT;
@@ -489,7 +489,7 @@ void mmBDDialog::CreateControls()
     // Status --------------------------------------------
     m_choice_status = new wxChoice(this, ID_DIALOG_TRANS_STATUS);
 
-    for (const auto& i : Model_Checking::all_status())
+    for (const auto& i : Model_Checking::STATUS_STR)
     {
         m_choice_status->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
@@ -819,7 +819,7 @@ void mmBDDialog::updateControlsForTransType()
     m_transfer = false;
     switch (m_choice_transaction_type->GetSelection())
     {
-    case Model_Checking::TRANSFER:
+    case Model_Checking::TYPE_ID_TRANSFER:
     {
         m_transfer = true;
         mmToolTip(textAmount_, amountTransferTip_);
@@ -829,7 +829,7 @@ void mmBDDialog::updateControlsForTransType()
         m_bill_data.PAYEEID = -1;
         break;
     }
-    case Model_Checking::WITHDRAWAL:
+    case Model_Checking::TYPE_ID_WITHDRAWAL:
     {
         mmToolTip(textAmount_, amountNormalTip_);
         accountLabel->SetLabelText(_("Account"));
@@ -842,7 +842,7 @@ void mmBDDialog::updateControlsForTransType()
         OnPayee(evt);
         break;
     }
-    case Model_Checking::DEPOSIT:
+    case Model_Checking::TYPE_ID_DEPOSIT:
     {
         mmToolTip(textAmount_, amountNormalTip_);
         accountLabel->SetLabelText(_("Account"));
@@ -1052,7 +1052,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         bill->ACCOUNTID = m_bill_data.ACCOUNTID;
         bill->TOACCOUNTID = m_bill_data.TOACCOUNTID;
         bill->PAYEEID = m_bill_data.PAYEEID;
-        bill->TRANSCODE = Model_Checking::all_type()[m_choice_transaction_type->GetSelection()];
+        bill->TRANSCODE = Model_Checking::TYPE_STR[m_choice_transaction_type->GetSelection()];
         bill->TRANSAMOUNT = m_bill_data.TRANSAMOUNT;
         bill->STATUS = m_bill_data.STATUS;
         bill->TRANSACTIONNUMBER = m_bill_data.TRANSACTIONNUMBER;
@@ -1134,7 +1134,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             tran->ACCOUNTID = m_bill_data.ACCOUNTID;
             tran->TOACCOUNTID = m_bill_data.TOACCOUNTID;
             tran->PAYEEID = m_bill_data.PAYEEID;
-            tran->TRANSCODE = Model_Checking::all_type()[m_choice_transaction_type->GetSelection()];
+            tran->TRANSCODE = Model_Checking::TYPE_STR[m_choice_transaction_type->GetSelection()];
             tran->TRANSAMOUNT = m_bill_data.TRANSAMOUNT;
             tran->STATUS = m_bill_data.STATUS;
             tran->TRANSACTIONNUMBER = m_bill_data.TRANSACTIONNUMBER;
@@ -1418,7 +1418,7 @@ void mmBDDialog::activateSplitTransactionsDlg()
         m_bill_data.local_splits = dlg.mmGetResult();
         m_bill_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_bill_data.local_splits);
         m_bill_data.CATEGID = -1;
-        if (m_choice_transaction_type->GetSelection() == Model_Checking::TRANSFER && m_bill_data.TRANSAMOUNT < 0)
+        if (m_choice_transaction_type->GetSelection() == Model_Checking::TYPE_ID_TRANSFER && m_bill_data.TRANSAMOUNT < 0)
         {
             m_bill_data.TRANSAMOUNT = -m_bill_data.TRANSAMOUNT;
         }
@@ -1466,7 +1466,7 @@ void mmBDDialog::setCategoryLabel()
         && Option::instance().TransCategorySelectionTransfer() == Option::LASTUSED)
     {
         Model_Checking::Data_Set transactions = Model_Checking::instance().find(
-            Model_Checking::TRANSCODE(Model_Checking::TRANSFER, EQUAL)
+            Model_Checking::TRANSCODE(Model_Checking::TYPE_ID_TRANSFER, EQUAL)
             , Model_Checking::TRANSDATE(wxDateTime(23,59,59,999), LESS_OR_EQUAL));
 
         if (!transactions.empty())

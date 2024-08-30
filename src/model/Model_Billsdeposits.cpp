@@ -81,22 +81,22 @@ wxDate Model_Billsdeposits::NEXTOCCURRENCEDATE(const Data& r)
     return Model::to_date(r.NEXTOCCURRENCEDATE);
 }
 
-Model_Checking::TYPE Model_Billsdeposits::type(const Data& r)
+Model_Checking::TYPE_ID Model_Billsdeposits::type_id(const Data& r)
 {
-    return Model_Checking::type(r.TRANSCODE);
+    return Model_Checking::type_id(r.TRANSCODE);
 }
-Model_Checking::TYPE Model_Billsdeposits::type(const Data* r)
+Model_Checking::TYPE_ID Model_Billsdeposits::type_id(const Data* r)
 {
-    return Model_Checking::type(r->TRANSCODE);
+    return Model_Checking::type_id(r->TRANSCODE);
 }
 
-Model_Checking::STATUS_ENUM Model_Billsdeposits::status(const Data& r)
+Model_Checking::STATUS_ID Model_Billsdeposits::status_id(const Data& r)
 {
-    return Model_Checking::status(r.STATUS);
+    return Model_Checking::status_id(r.STATUS);
 }
-Model_Checking::STATUS_ENUM Model_Billsdeposits::status(const Data* r)
+Model_Checking::STATUS_ID Model_Billsdeposits::status_id(const Data* r)
 {
-    return Model_Checking::status(r->STATUS);
+    return Model_Checking::status_id(r->STATUS);
 }
 
 /**
@@ -112,14 +112,14 @@ bool Model_Billsdeposits::remove(int id)
     return this->remove(id, db_);
 }
 
-DB_Table_BILLSDEPOSITS_V1::STATUS Model_Billsdeposits::STATUS(Model_Checking::STATUS_ENUM status, OP op)
+DB_Table_BILLSDEPOSITS_V1::STATUS Model_Billsdeposits::STATUS(Model_Checking::STATUS_ID status, OP op)
 {
-    return DB_Table_BILLSDEPOSITS_V1::STATUS(Model_Checking::all_status_key()[status], op);
+    return DB_Table_BILLSDEPOSITS_V1::STATUS(Model_Checking::STATUS_KEY[status], op);
 }
 
-DB_Table_BILLSDEPOSITS_V1::TRANSCODE Model_Billsdeposits::TRANSCODE(Model_Checking::TYPE type, OP op)
+DB_Table_BILLSDEPOSITS_V1::TRANSCODE Model_Billsdeposits::TRANSCODE(Model_Checking::TYPE_ID type, OP op)
 {
-    return DB_Table_BILLSDEPOSITS_V1::TRANSCODE(Model_Checking::all_type()[type], op);
+    return DB_Table_BILLSDEPOSITS_V1::TRANSCODE(Model_Checking::TYPE_STR[type], op);
 }
 
 const Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::splittransaction(const Data* r)
@@ -173,9 +173,9 @@ bool Model_Billsdeposits::allowExecution()
 
 bool Model_Billsdeposits::AllowTransaction(const Data& r)
 {
-    if (r.STATUS == "V")
+    if (r.STATUS == Model_Checking::STATUS_KEY_VOID)
         return true;
-    if (r.TRANSCODE != Model_Checking::WITHDRAWAL_STR && r.TRANSCODE != Model_Checking::TRANSFER_STR)
+    if (r.TRANSCODE != Model_Checking::TYPE_STR_WITHDRAWAL && r.TRANSCODE != Model_Checking::TYPE_STR_TRANSFER)
         return true;
 
     const int acct_id = r.ACCOUNTID;
@@ -348,7 +348,7 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
     ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
 
     PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
-    if (Model_Billsdeposits::type(r) == Model_Checking::TRANSFER)
+    if (Model_Billsdeposits::type_id(r) == Model_Checking::TYPE_ID_TRANSFER)
     {
         PAYEENAME = Model_Account::get_account_name(r.TOACCOUNTID);
     }
@@ -357,7 +357,7 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
 
 wxString Model_Billsdeposits::Full_Data::real_payee_name() const
 {
-    if (Model_Checking::TRANSFER == Model_Checking::type(this->TRANSCODE))
+    if (Model_Checking::TYPE_ID_TRANSFER == Model_Checking::type_id(this->TRANSCODE))
     {
         return ("> " + this->PAYEENAME);
     }
