@@ -48,14 +48,23 @@ public:
     static Model_Currency& instance();
 
 public:
-    enum CURRENCYTYPE { FIAT = 0, CRYPTO };
-    static const std::vector<std::pair<CURRENCYTYPE, wxString> > CURRENCYTYPE_CHOICES;
-    static wxArrayString all_currencytype();
-    static const wxString FIAT_STR;
-    static const wxString CRYPTO_STR;
-    static CURRENCYTYPE currencytype(const Data* r);
-    static CURRENCYTYPE currencytype(const Data& r);
-    static DB_Table_CURRENCYFORMATS_V1::CURRENCY_TYPE CURRENCY_TYPE(CURRENCYTYPE currencytype, OP op = EQUAL);
+    enum TYPE_ID
+    {
+        TYPE_ID_FIAT = 0,
+        TYPE_ID_CRYPTO
+    };
+    static wxArrayString TYPE_STR;
+    static const wxString TYPE_STR_FIAT;
+    static const wxString TYPE_STR_CRYPTO;
+
+private:
+    static const std::vector<std::pair<TYPE_ID, wxString> > TYPE_CHOICES;
+    static wxArrayString type_str_all();
+
+public:
+    static TYPE_ID type_id(const Data* r);
+    static TYPE_ID type_id(const Data& r);
+    static DB_Table_CURRENCYFORMATS_V1::CURRENCY_TYPE CURRENCY_TYPE(TYPE_ID currencytype, OP op = EQUAL);
 
     const wxArrayString all_currency_names();
     const std::map<wxString, int>  all_currency();
