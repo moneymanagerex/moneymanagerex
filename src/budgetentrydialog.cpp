@@ -68,9 +68,9 @@ bool mmBudgetEntryDialog::Create(wxWindow* parent
 void mmBudgetEntryDialog::fillControls()
 {
     double amt = budgetEntry_->AMOUNT;
-    int period = Model_Budget::period(budgetEntry_);
+    int period = Model_Budget::period_id(budgetEntry_);
     m_choiceItem->SetSelection(period);
-    if (period == Model_Budget::NONE && amt == 0.0)
+    if (period == Model_Budget::PERIOD_ID_NONE && amt == 0.0)
         m_choiceItem->SetSelection(DEF_FREQ_MONTHLY);
 
     if (amt <= 0.0)
@@ -128,7 +128,7 @@ void mmBudgetEntryDialog::CreateControls()
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Frequency:")), g_flagsH);
 
     m_choiceItem = new wxChoice(itemPanel7, wxID_ANY
-        , wxDefaultPosition, wxDefaultSize, Model_Budget::all_period());
+        , wxDefaultPosition, wxDefaultSize, Model_Budget::period_loc_all());
     itemGridSizer2->Add(m_choiceItem, g_flagsExpand);
     mmToolTip(m_choiceItem, _("Specify the frequency of the expense or deposit"));
     m_choiceItem->Connect(wxID_ANY, wxEVT_CHAR, wxKeyEventHandler(mmBudgetEntryDialog::onChoiceChar), nullptr, this);
@@ -161,13 +161,13 @@ void mmBudgetEntryDialog::CreateControls()
 void mmBudgetEntryDialog::OnOk(wxCommandEvent& event)
 {
     int typeSelection = m_choiceType->GetSelection();    
-    wxString period = Model_Budget::PERIOD_ENUM_CHOICES[m_choiceItem->GetSelection()].second;
+    wxString period = Model_Budget::PERIOD_STR[m_choiceItem->GetSelection()];
     double amt = 0.0;
 
     if (!m_textAmount->checkValue(amt))
         return;
 
-    if (period == Model_Budget::PERIOD_ENUM_CHOICES[Model_Budget::NONE].second && amt > 0) {
+    if (period == Model_Budget::PERIOD_STR[Model_Budget::PERIOD_ID_NONE] && amt > 0) {
         m_choiceItem->SetFocus();
         m_choiceItem->SetSelection(DEF_FREQ_MONTHLY);
         event.Skip();
@@ -175,7 +175,7 @@ void mmBudgetEntryDialog::OnOk(wxCommandEvent& event)
     }
     
     if (amt == 0.0)
-        period = Model_Budget::PERIOD_ENUM_CHOICES[Model_Budget::NONE].second;
+        period = Model_Budget::PERIOD_STR[Model_Budget::PERIOD_ID_NONE];
 
     if (typeSelection == DEF_TYPE_EXPENSE)
         amt = -amt;

@@ -47,16 +47,33 @@ public:
     static Model_Budget& instance();
 
 public:
-    enum PERIOD_ENUM { NONE = 0, WEEKLY, BIWEEKLY, MONTHLY, BIMONTHLY, QUARTERLY, HALFYEARLY, YEARLY, DAILY, MAX };
-    static const std::vector<std::pair<PERIOD_ENUM, wxString> > PERIOD_ENUM_CHOICES;
+    enum PERIOD_ID
+    {
+        PERIOD_ID_NONE = 0,
+        PERIOD_ID_WEEKLY,
+        PERIOD_ID_BIWEEKLY,
+        PERIOD_ID_MONTHLY,
+        PERIOD_ID_BIMONTHLY,
+        PERIOD_ID_QUARTERLY,
+        PERIOD_ID_HALFYEARLY,
+        PERIOD_ID_YEARLY,
+        PERIOD_ID_DAILY,
+        PERIOD_ID_MAX
+    };
+    static wxArrayString PERIOD_STR;
 
-    static wxArrayString all_period();
-    static PERIOD_ENUM period(const Data* r);
-    static PERIOD_ENUM period(const Data& r);
-    static DB_Table_BUDGETTABLE_V1::PERIOD PERIOD(PERIOD_ENUM period, OP op = EQUAL);
+private:
+    static const std::vector<std::pair<PERIOD_ID, wxString> > PERIOD_CHOICES;
+    static wxArrayString period_str_all();
 
-    static void getBudgetEntry(int budgetYearID, std::map<int,
-       PERIOD_ENUM> &budgetPeriod,
+public:
+    static wxArrayString period_loc_all();
+    static PERIOD_ID period_id(const Data* r);
+    static PERIOD_ID period_id(const Data& r);
+    static DB_Table_BUDGETTABLE_V1::PERIOD PERIOD(PERIOD_ID period, OP op = EQUAL);
+
+    static void getBudgetEntry(int budgetYearID,
+        std::map<int, PERIOD_ID> &budgetPeriod,
         std::map<int, double> &budgetAmt,
         std::map<int, wxString> &budgetNotes);
     static void getBudgetStats(
@@ -64,7 +81,7 @@ public:
         , mmDateRange* date_range
         , bool groupByMonth);
     static void copyBudgetYear(int newYearID, int baseYearID);
-    static double getEstimate(bool is_monthly, const PERIOD_ENUM period, const double amount);
+    static double getEstimate(bool is_monthly, const PERIOD_ID period, const double amount);
 };
 
 #endif // 
