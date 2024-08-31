@@ -407,11 +407,11 @@ wxString Model_Checking::status_key(const wxString& r)
 Model_Checking::Full_Data::Full_Data()
     : Data(0), BALANCE(0), AMOUNT(0), TAGNAMES(""),
     UDFC01(""), UDFC02(""), UDFC03(""), UDFC04(""), UDFC05(""),
-    UDFC01_Type(Model_CustomField::FIELDTYPE::UNKNOWN),
-    UDFC02_Type(Model_CustomField::FIELDTYPE::UNKNOWN),
-    UDFC03_Type(Model_CustomField::FIELDTYPE::UNKNOWN),
-    UDFC04_Type(Model_CustomField::FIELDTYPE::UNKNOWN),
-    UDFC05_Type(Model_CustomField::FIELDTYPE::UNKNOWN)
+    UDFC01_Type(Model_CustomField::TYPE_ID_UNKNOWN),
+    UDFC02_Type(Model_CustomField::TYPE_ID_UNKNOWN),
+    UDFC03_Type(Model_CustomField::TYPE_ID_UNKNOWN),
+    UDFC04_Type(Model_CustomField::TYPE_ID_UNKNOWN),
+    UDFC05_Type(Model_CustomField::TYPE_ID_UNKNOWN)
 {
 }
 

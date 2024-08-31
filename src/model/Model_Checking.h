@@ -106,19 +106,19 @@ public:
         // Reserved string variables for custom data
         wxString UDFC01;
         double UDFC01_val;
-        Model_CustomField::FIELDTYPE UDFC01_Type;
+        Model_CustomField::TYPE_ID UDFC01_Type;
         wxString UDFC02;
         double UDFC02_val;
-        Model_CustomField::FIELDTYPE UDFC02_Type;
+        Model_CustomField::TYPE_ID UDFC02_Type;
         wxString UDFC03;
         double UDFC03_val;
-        Model_CustomField::FIELDTYPE UDFC03_Type;
+        Model_CustomField::TYPE_ID UDFC03_Type;
         wxString UDFC04;
         double UDFC04_val;
-        Model_CustomField::FIELDTYPE UDFC04_Type;
+        Model_CustomField::TYPE_ID UDFC04_Type;
         wxString UDFC05;
         double UDFC05_val;
-        Model_CustomField::FIELDTYPE UDFC05_Type;
+        Model_CustomField::TYPE_ID UDFC05_Type;
     };
     typedef std::vector<Full_Data> Full_Data_Set;
 

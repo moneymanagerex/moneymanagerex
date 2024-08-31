@@ -64,18 +64,18 @@ void mmReportTransactions::displayTotals(std::map<int, double> total, std::map<i
     hb.addTotalRow(_("Grand Total:"), noOfCols, v);
 }
 
-void mmReportTransactions::UDFCFormatHelper(Model_CustomField::FIELDTYPE type, int ref, wxString data, double val, int scale)
+void mmReportTransactions::UDFCFormatHelper(Model_CustomField::TYPE_ID type, int ref, wxString data, double val, int scale)
 {
-    if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
+    if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
         hb.addMoneyCell(val, scale);
     else if (ref != -1)
     {
-        if (type == Model_CustomField::FIELDTYPE::BOOLEAN && !data.empty())
+        if (type == Model_CustomField::TYPE_ID_BOOLEAN && !data.empty())
         {
             bool v = wxString("TRUE|true|1").Contains(data);
             hb.addTableCell(v ? "&check;" : "&cross;", false, true);
         } else
-            hb.addTableCell(type == Model_CustomField::FIELDTYPE::DATE && !data.empty() ? mmGetDateForDisplay(data) : data);
+            hb.addTableCell(type == Model_CustomField::TYPE_ID_DATE && !data.empty() ? mmGetDateForDisplay(data) : data);
     }
 }
 
@@ -140,11 +140,11 @@ table {
     std::map<wxString, double> values_chart; // Store grouped values for chart
 
     const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    Model_CustomField::FIELDTYPE UDFC01_Type = Model_CustomField::getUDFCType(RefType, "UDFC01");
-    Model_CustomField::FIELDTYPE UDFC02_Type = Model_CustomField::getUDFCType(RefType, "UDFC02");
-    Model_CustomField::FIELDTYPE UDFC03_Type = Model_CustomField::getUDFCType(RefType, "UDFC03");
-    Model_CustomField::FIELDTYPE UDFC04_Type = Model_CustomField::getUDFCType(RefType, "UDFC04");
-    Model_CustomField::FIELDTYPE UDFC05_Type = Model_CustomField::getUDFCType(RefType, "UDFC05");
+    Model_CustomField::TYPE_ID UDFC01_Type = Model_CustomField::getUDFCType(RefType, "UDFC01");
+    Model_CustomField::TYPE_ID UDFC02_Type = Model_CustomField::getUDFCType(RefType, "UDFC02");
+    Model_CustomField::TYPE_ID UDFC03_Type = Model_CustomField::getUDFCType(RefType, "UDFC03");
+    Model_CustomField::TYPE_ID UDFC04_Type = Model_CustomField::getUDFCType(RefType, "UDFC04");
+    Model_CustomField::TYPE_ID UDFC05_Type = Model_CustomField::getUDFCType(RefType, "UDFC05");
     int UDFC01_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC01"));
     int UDFC02_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC02"));
     int UDFC03_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC03"));
@@ -237,11 +237,11 @@ table {
                 {
                     wxString nameCSS = name;
                     switch (Model_CustomField::getUDFCType(ref_type, udfc_entry)) {
-                    case Model_CustomField::FIELDTYPE::DECIMAL:
-                    case Model_CustomField::FIELDTYPE::INTEGER:
+                    case Model_CustomField::TYPE_ID_DECIMAL:
+                    case Model_CustomField::TYPE_ID_INTEGER:
                         nameCSS.Append(" text-right");
                         break;
-                    case Model_CustomField::FIELDTYPE::BOOLEAN:
+                    case Model_CustomField::TYPE_ID_BOOLEAN:
                         nameCSS.Append(" text-center");
                         break;
                     }

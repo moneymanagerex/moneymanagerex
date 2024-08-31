@@ -134,11 +134,11 @@ void mmCheckingPanel::filterTable()
     
     const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     const wxString splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
-    Model_CustomField::FIELDTYPE UDFC01_Type = Model_CustomField::getUDFCType(RefType, "UDFC01");
-    Model_CustomField::FIELDTYPE UDFC02_Type = Model_CustomField::getUDFCType(RefType, "UDFC02");
-    Model_CustomField::FIELDTYPE UDFC03_Type = Model_CustomField::getUDFCType(RefType, "UDFC03");
-    Model_CustomField::FIELDTYPE UDFC04_Type = Model_CustomField::getUDFCType(RefType, "UDFC04");
-    Model_CustomField::FIELDTYPE UDFC05_Type = Model_CustomField::getUDFCType(RefType, "UDFC05");
+    Model_CustomField::TYPE_ID UDFC01_Type = Model_CustomField::getUDFCType(RefType, "UDFC01");
+    Model_CustomField::TYPE_ID UDFC02_Type = Model_CustomField::getUDFCType(RefType, "UDFC02");
+    Model_CustomField::TYPE_ID UDFC03_Type = Model_CustomField::getUDFCType(RefType, "UDFC03");
+    Model_CustomField::TYPE_ID UDFC04_Type = Model_CustomField::getUDFCType(RefType, "UDFC04");
+    Model_CustomField::TYPE_ID UDFC05_Type = Model_CustomField::getUDFCType(RefType, "UDFC05");
     int UDFC01_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC01"));
     int UDFC02_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC02"));
     int UDFC03_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC03"));
@@ -209,11 +209,11 @@ void mmCheckingPanel::filterTable()
             }
         }
 
-        full_tran.UDFC01_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
-        full_tran.UDFC02_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
-        full_tran.UDFC03_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
-        full_tran.UDFC04_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
-        full_tran.UDFC05_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
+        full_tran.UDFC01_Type = Model_CustomField::TYPE_ID_UNKNOWN;
+        full_tran.UDFC02_Type = Model_CustomField::TYPE_ID_UNKNOWN;
+        full_tran.UDFC03_Type = Model_CustomField::TYPE_ID_UNKNOWN;
+        full_tran.UDFC04_Type = Model_CustomField::TYPE_ID_UNKNOWN;
+        full_tran.UDFC05_Type = Model_CustomField::TYPE_ID_UNKNOWN;
         full_tran.UDFC01_val = -DBL_MAX;
         full_tran.UDFC02_val = -DBL_MAX;
         full_tran.UDFC03_val = -DBL_MAX;
