@@ -81,7 +81,7 @@ wxArrayString Model_Currency::type_str_all()
     for (const auto& item : TYPE_CHOICES)
     {
         wxASSERT_MSG(item.first == i++, "Wrong order in Model_Currency::TYPE_CHOICES");
-        types.Add(wxGetTranslation(item.second));
+        types.Add(item.second);
     }
     return types;
 }
