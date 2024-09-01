@@ -106,7 +106,7 @@ Model_Budget::PERIOD_ID Model_Budget::period_id(const Data& r)
 
 DB_Table_BUDGETTABLE_V1::PERIOD Model_Budget::PERIOD(PERIOD_ID period, OP op)
 {
-    return DB_Table_BUDGETTABLE_V1::PERIOD(period_loc_all()[period], op);
+    return DB_Table_BUDGETTABLE_V1::PERIOD(PERIOD_STR[period], op);
 }
 
 void Model_Budget::getBudgetEntry(int budgetYearID
