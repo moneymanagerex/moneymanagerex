@@ -33,11 +33,43 @@ public:
     typedef Model_Splittransaction::Data_Set Split_Data_Set;
 
 public:
-    enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
-    enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
+    enum TYPE_ID
+    {
+        TYPE_ID_WITHDRAWAL = 0,
+        TYPE_ID_DEPOSIT,
+        TYPE_ID_TRANSFER
+    };
+    enum STATUS_ID
+    {
+        STATUS_ID_NONE = 0,
+        STATUS_ID_RECONCILED,
+        STATUS_ID_VOID,
+        STATUS_ID_FOLLOWUP,
+        STATUS_ID_DUPLICATE
+    };
+    static wxArrayString TYPE_STR;
+    static const wxString TYPE_STR_WITHDRAWAL;
+    static const wxString TYPE_STR_DEPOSIT;
+    static const wxString TYPE_STR_TRANSFER;
+    static wxArrayString STATUS_KEY;
+    static const wxString STATUS_KEY_NONE;
+    static const wxString STATUS_KEY_RECONCILED;
+    static const wxString STATUS_KEY_VOID;
+    static const wxString STATUS_KEY_FOLLOWUP;
+    static const wxString STATUS_KEY_DUPLICATE;
+    static wxArrayString STATUS_STR;
+    static const wxString STATUS_STR_NONE;
+    static const wxString STATUS_STR_RECONCILED;
+    static const wxString STATUS_STR_VOID;
+    static const wxString STATUS_STR_FOLLOWUP;
+    static const wxString STATUS_STR_DUPLICATE;
 
-    static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
-    static const std::vector<std::pair<STATUS_ENUM, wxString> > STATUS_CHOICES;
+private:
+    static const std::vector<std::pair<TYPE_ID, wxString> > TYPE_CHOICES;
+    static const std::vector<std::tuple<STATUS_ID, wxString, wxString> > STATUS_CHOICES;
+    static wxArrayString type_str_all();
+    static wxArrayString status_key_all();
+    static wxArrayString status_str_all();
 
 public:
     struct Full_Data: public Data
@@ -91,7 +123,7 @@ public:
     typedef std::vector<Full_Data> Full_Data_Set;
 
     struct SorterByBALANCE
-    { 
+    {
         template<class DATA>
         bool operator()(const DATA& x, const DATA& y)
         {
@@ -146,14 +178,6 @@ public:
     ~Model_Checking();
 
 public:
-    static wxArrayString all_type();
-    static wxArrayString all_status();
-    static wxArrayString all_status_key();
-    static const wxString TRANSFER_STR;
-    static const wxString WITHDRAWAL_STR;
-    static const wxString DEPOSIT_STR;
-
-public:
     /**
     Initialize the global Model_Checking table on initial call.
     Resets the global table on subsequent calls.
@@ -182,19 +206,20 @@ public:
     static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxDateTime& date, OP op = EQUAL);
     static DB_Table_CHECKINGACCOUNT_V1::DELETEDTIME DELETEDTIME(const wxString& date, OP op = EQUAL);
     static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxString& date_iso_str, OP op = EQUAL);
-    static DB_Table_CHECKINGACCOUNT_V1::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL);
-    static DB_Table_CHECKINGACCOUNT_V1::TRANSCODE TRANSCODE(TYPE type, OP op = EQUAL);
+    static DB_Table_CHECKINGACCOUNT_V1::STATUS STATUS(STATUS_ID status, OP op = EQUAL);
+    static DB_Table_CHECKINGACCOUNT_V1::TRANSCODE TRANSCODE(TYPE_ID type, OP op = EQUAL);
     static DB_Table_CHECKINGACCOUNT_V1::TRANSACTIONNUMBER TRANSACTIONNUMBER(const wxString& num, OP op = EQUAL);
 
 public:
     static wxDate TRANSDATE(const Data* r);
     static wxDate TRANSDATE(const Data& r);
-    static TYPE type(const wxString& r);
-    static TYPE type(const Data* r);
-    static TYPE type(const Data& r);
-    static STATUS_ENUM status(const wxString& r);
-    static STATUS_ENUM status(const Data* r);
-    static STATUS_ENUM status(const Data& r);
+    static TYPE_ID type_id(const wxString& r);
+    static TYPE_ID type_id(const Data* r);
+    static TYPE_ID type_id(const Data& r);
+    static wxString status_key(const wxString& r);
+    static STATUS_ID status_id(const wxString& r);
+    static STATUS_ID status_id(const Data* r);
+    static STATUS_ID status_id(const Data& r);
     static double amount(const Data* r, int account_id = -1);
     static double amount(const Data&r, int account_id = -1);
     static double balance(const Data* r, int account_id = -1);
@@ -210,7 +235,6 @@ public:
     static bool is_transfer(const Data* r);
     static bool is_deposit(const wxString& r);
     static bool is_deposit(const Data* r);
-    static wxString status_key(const wxString& fullStatus);
     static void getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int accountID = -1);
     static void getEmptyTransaction(Data &data, int accountID);
     static bool getTransactionData(Data &data, const Data* r);

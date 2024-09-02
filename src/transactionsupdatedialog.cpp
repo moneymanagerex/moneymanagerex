@@ -150,7 +150,7 @@ void transactionsUpdateDialog::CreateControls()
 
     m_status_choice = new wxChoice(this, wxID_ANY
         , wxDefaultPosition, wxDefaultSize);
-    for (const auto& i : Model_Checking::all_status())
+    for (const auto& i : Model_Checking::STATUS_STR)
         m_status_choice->Append(wxGetTranslation(i), new wxStringClientData(i));
 
     m_status_choice->Enable(false);
@@ -165,9 +165,9 @@ void transactionsUpdateDialog::CreateControls()
 
     m_type_choice = new wxChoice(this, ID_TRANS_TYPE
         , wxDefaultPosition, wxDefaultSize);
-    for (const auto& i : Model_Checking::all_type())
+    for (const auto& i : Model_Checking::TYPE_STR)
     {
-        if (!(m_hasSplits && (Model_Checking::TRANSFER_STR == i)))
+        if (!(m_hasSplits && (Model_Checking::TYPE_STR_TRANSFER == i)))
             m_type_choice->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
     m_type_choice->Enable(false);
@@ -323,7 +323,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     {
         wxStringClientData* type_obj = static_cast<wxStringClientData*>(m_type_choice->GetClientObject(m_type_choice->GetSelection()));
         type = type_obj->GetData();
-        if (Model_Checking::TRANSFER_STR == type)
+        if (Model_Checking::TYPE_STR_TRANSFER == type)
         {
             if  (m_hasNonTransfers && !m_transferAcc_checkbox->IsChecked())
                 return mmErrorDialogs::InvalidAccount(m_transferAcc_checkbox, true);
@@ -547,7 +547,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void transactionsUpdateDialog::SetPayeeTransferControls()
 {
     wxStringClientData* trans_obj = static_cast<wxStringClientData*>(m_type_choice->GetClientObject(m_type_choice->GetSelection()));
-    bool transfer = (Model_Checking::TRANSFER_STR == trans_obj->GetData());
+    bool transfer = (Model_Checking::TYPE_STR_TRANSFER == trans_obj->GetData());
 
     m_payee_checkbox->Enable(!transfer);
     m_transferAcc_checkbox->Enable(transfer);

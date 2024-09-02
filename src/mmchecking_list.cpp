@@ -450,7 +450,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         const Model_Checking::Data* transel = Model_Checking::instance().get(m_selected_id[0]);
         Model_Checking::Full_Data tran(*transel);
 
-        if (Model_Checking::type(tran.TRANSCODE) == Model_Checking::TRANSFER) {
+        if (Model_Checking::type_id(tran.TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER) {
             type_transfer = true;
         }
         if (!tran.has_split()) {
@@ -561,7 +561,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
                 }
                 break;
             case COL_STATUS:
-                copyText_ = menuItemText = Model_Checking::all_status()[Model_Checking::status(m_trans[row].STATUS)];
+                copyText_ = menuItemText = Model_Checking::STATUS_STR[Model_Checking::status_id(m_trans[row].STATUS)];
                 rightClickFilter_ = "{\n\"STATUS\": \"" + menuItemText + "\"\n}";
                 break;
             case COL_CATEGORY:
@@ -739,11 +739,11 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
     wxString status = "";
     switch (evt)
     {
-    case MENU_TREEPOPUP_MARKRECONCILED:         status = "R"; break;
-    case MENU_TREEPOPUP_MARKUNRECONCILED:       status = ""; break;
-    case MENU_TREEPOPUP_MARKVOID:               status = "V"; break;
-    case MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP: status = "F"; break;
-    case MENU_TREEPOPUP_MARKDUPLICATE:          status = "D"; break;
+    case MENU_TREEPOPUP_MARKRECONCILED:         status = Model_Checking::STATUS_KEY_RECONCILED; break;
+    case MENU_TREEPOPUP_MARKUNRECONCILED:       status = Model_Checking::STATUS_KEY_NONE; break;
+    case MENU_TREEPOPUP_MARKVOID:               status = Model_Checking::STATUS_KEY_VOID; break;
+    case MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP: status = Model_Checking::STATUS_KEY_FOLLOWUP; break;
+    case MENU_TREEPOPUP_MARKDUPLICATE:          status = Model_Checking::STATUS_KEY_DUPLICATE; break;
     default: wxASSERT(false);
     }
 
@@ -759,7 +759,7 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
             if (!Model_Account::BoolOf(account->STATEMENTLOCKED)
                 || strDate > statement_date)
             {
-                //bRefreshRequired |= (status == "V") || (m_trans[row].STATUS == "V");
+                //bRefreshRequired |= (status == Model_Checking::STATUS_KEY_VOID) || (m_trans[row].STATUS == Model_Checking::STATUS_KEY_VOID);
                 m_trans[row].STATUS = status;
                 Model_Checking::instance().save(&m_trans[row]);
             }
@@ -843,13 +843,13 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
         wxString status = getItem(item, COL_STATUS, true);
         if (status.length() > 1)
             status = status.Mid(2, 1);
-        if (status == "F")
+        if (status == Model_Checking::STATUS_KEY_FOLLOWUP)
             res = mmCheckingPanel::ICON_FOLLOWUP;
-        else if (status == "R")
+        else if (status == Model_Checking::STATUS_KEY_RECONCILED)
             res = mmCheckingPanel::ICON_RECONCILED;
-        else if (status == "V")
+        else if (status == Model_Checking::STATUS_KEY_VOID)
             res = mmCheckingPanel::ICON_VOID;
-        else if (status == "D")
+        else if (status == Model_Checking::STATUS_KEY_DUPLICATE)
             res = mmCheckingPanel::ICON_DUPLICATE;
         else
             res = mmCheckingPanel::ICON_UNRECONCILED;
@@ -1036,7 +1036,7 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
     //TODO: the clone function can't clone split transactions, or custom data
     Model_Checking::Data* copy = Model_Checking::instance().clone(tran); 
     if (!useOriginalDate) copy->TRANSDATE = wxDateTime::Now().FormatISOCombined();
-    if (!m_cp->isAllAccounts_ && ((Model_Checking::type(copy->TRANSCODE) != Model_Checking::TRANSFER) ||
+    if (!m_cp->isAllAccounts_ && ((Model_Checking::type_id(copy->TRANSCODE) != Model_Checking::TYPE_ID_TRANSFER) ||
             (m_cp->m_AccountID != copy->ACCOUNTID && m_cp->m_AccountID != copy->TOACCOUNTID)))
         copy->ACCOUNTID = m_cp->m_AccountID;
     int transactionID = Model_Checking::instance().save(copy);
@@ -1283,7 +1283,7 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
             , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
         if (msgDlg.ShowModal() == wxID_YES)
         {
-            DeleteTransactionsByStatus(Model_Checking::all_status()[Model_Checking::FOLLOWUP]);
+            DeleteTransactionsByStatus(Model_Checking::STATUS_STR_FOLLOWUP);
         }
     }
     else if (i == MENU_TREEPOPUP_DELETE_UNRECONCILED)
@@ -1294,7 +1294,7 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
             , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
         if (msgDlg.ShowModal() == wxID_YES)
         {
-            DeleteTransactionsByStatus(Model_Checking::all_status()[Model_Checking::NONE]);
+            DeleteTransactionsByStatus(Model_Checking::STATUS_STR_NONE);
         }
     }
     refreshVisualList();
@@ -1544,16 +1544,16 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
     switch (id)
     {
     case MENU_TREEPOPUP_WITHDRAWAL:
-        type = Model_Checking::WITHDRAWAL;
+        type = Model_Checking::TYPE_ID_WITHDRAWAL;
         break;
     case MENU_TREEPOPUP_DEPOSIT:
-        type = Model_Checking::DEPOSIT;
+        type = Model_Checking::TYPE_ID_DEPOSIT;
         break;
     case MENU_TREEPOPUP_TRANSFER:
-        type = Model_Checking::TRANSFER;
+        type = Model_Checking::TYPE_ID_TRANSFER;
         break;
     default:
-        type = Model_Checking::WITHDRAWAL;
+        type = Model_Checking::TYPE_ID_WITHDRAWAL;
         break;
     }
 
@@ -1701,7 +1701,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
                 Model_Checking::Data* trx = Model_Checking::instance().get(i);
                 if (TransactionLocked(trx->ACCOUNTID, trx->TRANSDATE)
                         || Model_Checking::foreignTransaction(*trx)
-                        || Model_Checking::type(trx->TRANSCODE) == Model_Checking::TRANSFER
+                        || Model_Checking::type_id(trx->TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER
                         || trx->TRANSDATE < dest_account->INITIALDATE)
                 {
                     skip_trx.push_back(trx->TRANSID);
@@ -1963,7 +1963,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     case TransactionListCtrl::COL_CATEGORY:
         return tran.CATEGNAME;
     case TransactionListCtrl::COL_PAYEE_STR:
-        return tran.is_foreign_transfer() ? (Model_Checking::type(tran) == Model_Checking::DEPOSIT ? "< " : "> ") + tran.PAYEENAME : tran.PAYEENAME;
+        return tran.is_foreign_transfer() ? (Model_Checking::type_id(tran) == Model_Checking::TYPE_ID_DEPOSIT ? "< " : "> ") + tran.PAYEENAME : tran.PAYEENAME;
     case TransactionListCtrl::COL_STATUS:
         return tran.is_foreign() ? "< " + tran.STATUS : tran.STATUS;
     case TransactionListCtrl::COL_NOTES:
@@ -2032,7 +2032,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     {
     case TransactionListCtrl::COL_WITHDRAWAL:
         if (balance < 0.0 || (balance == 0.0
-            && ((tran.TRANSCODE == Model_Checking::WITHDRAWAL_STR || tran.TRANSCODE == Model_Checking::TRANSFER_STR )
+            && ((tran.TRANSCODE == Model_Checking::TYPE_STR_WITHDRAWAL || tran.TRANSCODE == Model_Checking::TYPE_STR_TRANSFER )
                 && tran.ACCOUNTID == account->ACCOUNTID)))
         {
             return m_cp->isAllAccounts_
@@ -2042,8 +2042,8 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         return "";
     case TransactionListCtrl::COL_DEPOSIT:
         if (balance > 0.0 || (balance == 0.0
-            && ((tran.TRANSCODE == Model_Checking::DEPOSIT_STR && tran.ACCOUNTID == account->ACCOUNTID)
-                || (tran.TRANSCODE == Model_Checking::TRANSFER_STR && tran.ACCOUNTID != account->ACCOUNTID))))
+            && ((tran.TRANSCODE == Model_Checking::TYPE_STR_DEPOSIT && tran.ACCOUNTID == account->ACCOUNTID)
+                || (tran.TRANSCODE == Model_Checking::TYPE_STR_TRANSFER && tran.ACCOUNTID != account->ACCOUNTID))))
         {
             return m_cp->isAllAccounts_
                 ? Model_Currency::toCurrency(balance, currency)

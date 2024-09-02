@@ -60,7 +60,7 @@ wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
     EVT_MENU_RANGE(wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS, wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS + menu_labels().size()
         , mmCheckingPanel::OnViewPopupSelected)
-    EVT_MENU_RANGE(Model_Checking::WITHDRAWAL, Model_Checking::TRANSFER, mmCheckingPanel::OnNewTransaction)
+    EVT_MENU_RANGE(Model_Checking::TYPE_ID_WITHDRAWAL, Model_Checking::TYPE_ID_TRANSFER, mmCheckingPanel::OnNewTransaction)
 wxEND_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
@@ -172,9 +172,9 @@ void mmCheckingPanel::filterTable()
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
         if (tran.DELETEDTIME.IsEmpty())
         {
-            if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
+            if (Model_Checking::status_id(tran.STATUS) != Model_Checking::STATUS_ID_VOID)
                 m_account_balance += transaction_amount;
-            if (Model_Checking::status(tran.STATUS) == Model_Checking::RECONCILED)
+            if (Model_Checking::status_id(tran.STATUS) == Model_Checking::STATUS_ID_RECONCILED)
                 m_reconciled_balance += transaction_amount;
         }
 
@@ -254,7 +254,7 @@ void mmCheckingPanel::filterTable()
         {
             if (!expandSplits) {
                 m_listCtrlAccount->m_trans.push_back(full_tran);
-                if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && tran.DELETEDTIME.IsEmpty())
+                if (Model_Checking::status_id(tran.STATUS) != Model_Checking::STATUS_ID_VOID && tran.DELETEDTIME.IsEmpty())
                     m_filteredBalance += transaction_amount;
             }
             else
@@ -285,7 +285,7 @@ void mmCheckingPanel::filterTable()
                         if(!tagnames.IsEmpty())
                             full_tran.TAGNAMES.Append((full_tran.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
                         m_listCtrlAccount->m_trans.push_back(full_tran);
-                        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && tran.DELETEDTIME.IsEmpty())
+                        if (Model_Checking::status_id(tran.STATUS) != Model_Checking::STATUS_ID_VOID && tran.DELETEDTIME.IsEmpty())
                             m_filteredBalance += full_tran.AMOUNT;
                     }
                 }
@@ -320,9 +320,9 @@ void mmCheckingPanel::OnButtonRightDown(wxMouseEvent& event)
     case wxID_NEW:
     {
         wxMenu menu;
-        menu.Append(Model_Checking::WITHDRAWAL, _("&New Withdrawal..."));
-        menu.Append(Model_Checking::DEPOSIT, _("&New Deposit..."));
-        menu.Append(Model_Checking::TRANSFER, _("&New Transfer..."));
+        menu.Append(Model_Checking::TYPE_ID_WITHDRAWAL, _("&New Withdrawal..."));
+        menu.Append(Model_Checking::TYPE_ID_DEPOSIT, _("&New Deposit..."));
+        menu.Append(Model_Checking::TYPE_ID_TRANSFER, _("&New Transfer..."));
         PopupMenu(&menu);
     }
     default:
@@ -908,7 +908,7 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
 void mmCheckingPanel::DisplaySplitCategories(int transID)
 {
     const Model_Checking::Data* tran = Model_Checking::instance().get(transID);
-    int transType = Model_Checking::type(tran->TRANSCODE);
+    int transType = Model_Checking::type_id(tran->TRANSCODE);
 
     Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
     auto splits = Model_Checking::splittransaction(transaction);

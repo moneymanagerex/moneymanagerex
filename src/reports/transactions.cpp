@@ -257,7 +257,7 @@ table {
         // If a transfer between two accounts in the list of accounts being reported then we
         // should report both the transfer in and transfer out, i.e. two transactions
         int noOfTrans = 1;
-        if ((Model_Checking::type(transaction) == Model_Checking::TRANSFER) &&
+        if ((Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_TRANSFER) &&
             (allAccounts ||
                 ((selected_accounts.Index(transaction.ACCOUNTID) != wxNOT_FOUND)
                     && (selected_accounts.Index(transaction.TOACCOUNTID) != wxNOT_FOUND))))
@@ -271,7 +271,7 @@ table {
         {
             hb.startTableRow();
             {
-                /*  if ((Model_Checking::type(transaction) == Model_Checking::TRANSFER)
+                /*  if ((Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_TRANSFER)
                     && m_transDialog->getTypeCheckBox() && */
                 if (showColumnById(mmFilterTransactionsDialog::COL_ID))
                 {
@@ -323,7 +323,7 @@ table {
                         amount = -amount;
                     const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
                     if (showColumnById(mmFilterTransactionsDialog::COL_AMOUNT))
-                        if (Model_Checking::status(transaction.STATUS) == Model_Checking::VOID_)
+                        if (Model_Checking::status_id(transaction.STATUS) == Model_Checking::STATUS_ID_VOID)
                             hb.addCurrencyCell(Model_Checking::amount(transaction, acc->ACCOUNTID), curr, -1, true);                            
                         else if (transaction.DELETEDTIME.IsEmpty())
                             hb.addCurrencyCell(amount, curr);
@@ -331,7 +331,7 @@ table {
                     grand_total[curr->CURRENCYID] += amount;
                     total_in_base_curr[curr->CURRENCYID] += amount * convRate;
                     grand_total_in_base_curr[curr->CURRENCYID] += amount * convRate;
-                    if (Model_Checking::type(transaction) != Model_Checking::TRANSFER)
+                    if (Model_Checking::type_id(transaction) != Model_Checking::TYPE_ID_TRANSFER)
                     {
                         grand_total_extrans[curr->CURRENCYID] += amount;
                         grand_total_in_base_curr_extrans[curr->CURRENCYID] += amount * convRate;
@@ -351,7 +351,7 @@ table {
                 // Exchange Rate
                 if (showColumnById(mmFilterTransactionsDialog::COL_RATE))
                 {
-                    if ((Model_Checking::type(transaction) == Model_Checking::TRANSFER)
+                    if ((Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_TRANSFER)
                         && (transaction.TRANSAMOUNT != transaction.TOTRANSAMOUNT))
                         hb.addMoneyCell(transaction.TOTRANSAMOUNT / transaction.TRANSAMOUNT);
                     else

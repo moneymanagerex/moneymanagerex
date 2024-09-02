@@ -95,7 +95,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     m_account_id(account_id),
     m_file_path(file_path),
     decimal_(Model_Currency::GetBaseCurrency()->DECIMAL_POINT),
-    depositType_(Model_Checking::all_type()[Model_Checking::DEPOSIT])
+    depositType_(Model_Checking::TYPE_STR_DEPOSIT)
 {
     CSVFieldName_[UNIV_CSV_ID] = wxTRANSLATE("ID");
     CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
@@ -1609,7 +1609,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
 
     for (const auto& pBankTransaction : txns)
     {
-        if (Model_Checking::status(pBankTransaction) == Model_Checking::VOID_ || !pBankTransaction.DELETEDTIME.IsEmpty())
+        if (Model_Checking::status_id(pBankTransaction) == Model_Checking::STATUS_ID_VOID || !pBankTransaction.DELETEDTIME.IsEmpty())
             continue;
 
         Model_Checking::Full_Data tran(pBankTransaction, split, tags);
@@ -1633,7 +1633,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
             Model_Category::Data* category = Model_Category::instance().get(splt.CATEGID);
 
             double amt = splt.SPLITTRANSAMOUNT;
-            if (Model_Checking::type(pBankTransaction) == Model_Checking::WITHDRAWAL
+            if (Model_Checking::type_id(pBankTransaction) == Model_Checking::TYPE_ID_WITHDRAWAL
                 && has_split) {
                 amt = -amt;
             }
@@ -1705,7 +1705,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                     itemType = ITransactionsFile::TYPE_NUMBER;
                     break;
                 case UNIV_CSV_TYPE:
-                    entry = Model_Checking::all_type()[Model_Checking::type(pBankTransaction)];
+                    entry = Model_Checking::TYPE_STR[Model_Checking::type_id(pBankTransaction)];
                     break;
                 case UNIV_CSV_ID:
                     entry = wxString::Format("%i", tran.TRANSID);
@@ -1916,7 +1916,7 @@ void mmUnivCSVDialog::update_preview()
             std::stable_sort(txns.begin(), txns.end(), SorterByTRANSDATE());
             for (const auto& pBankTransaction : txns)
             {
-                if (Model_Checking::status(pBankTransaction) == Model_Checking::VOID_ || !pBankTransaction.DELETEDTIME.IsEmpty())
+                if (Model_Checking::status_id(pBankTransaction) == Model_Checking::STATUS_ID_VOID || !pBankTransaction.DELETEDTIME.IsEmpty())
                     continue;
 
                 Model_Checking::Full_Data tran(pBankTransaction, split, tags);
@@ -1948,7 +1948,7 @@ void mmUnivCSVDialog::update_preview()
                     Model_Currency::Data* currency = Model_Account::currency(from_account);
 
                     double amt = splt.SPLITTRANSAMOUNT;
-                    if (Model_Checking::type(pBankTransaction) == Model_Checking::WITHDRAWAL
+                    if (Model_Checking::type_id(pBankTransaction) == Model_Checking::TYPE_ID_WITHDRAWAL
                         && has_split) {
                         amt = -amt;
                     }
@@ -2438,7 +2438,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
 
         if (find_if(csvFieldOrder_.begin(), csvFieldOrder_.end(), [](const std::pair<int, int>& element) {return element.first == UNIV_CSV_TYPE; }) == csvFieldOrder_.end()) {
             if ((amount > 0.0 && !m_reverce_sign) || (amount <= 0.0 && m_reverce_sign)) {
-                holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+                holder.Type = Model_Checking::TYPE_STR_DEPOSIT;
             }
         }
 
@@ -2551,7 +2551,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             break;
 
         holder.Amount = fabs(amount);
-        holder.Type = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
+        holder.Type = Model_Checking::TYPE_STR_WITHDRAWAL;
         break;
 
     case UNIV_CSV_DEPOSIT:
@@ -2569,7 +2569,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             break;
 
         holder.Amount = fabs(amount);
-        holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+        holder.Type = Model_Checking::TYPE_STR_DEPOSIT;
         break;
 
         // A number of type options are supported to make amount positive 
@@ -2579,7 +2579,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         {
             if (depositType_.CmpNoCase(token) == 0)
             {
-                holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+                holder.Type = Model_Checking::TYPE_STR_DEPOSIT;
                 break;
             }
         }
@@ -2587,7 +2587,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         {
             for (const wxString& entry : { "debit", "deposit", "+" }) {
                 if (entry.CmpNoCase(token) == 0) {
-                    holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+                    holder.Type = Model_Checking::TYPE_STR_DEPOSIT;
                     break;
                 }
             }

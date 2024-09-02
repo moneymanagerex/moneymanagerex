@@ -94,13 +94,13 @@ void UserTransactionPanel::Create()
 
     // Type --------------------------------------------
     m_type_selector = new wxChoice(this, wxID_VIEW_DETAILS, wxDefaultPosition, std_half_size);
-    for (const auto& i : Model_Checking::all_type())
+    for (const auto& i : Model_Checking::TYPE_STR)
     {
-        if (i != Model_Checking::all_type()[Model_Checking::TRANSFER])
+        if (i != Model_Checking::TYPE_STR_TRANSFER)
             m_type_selector->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
 
-    m_type_selector->SetSelection(Model_Checking::WITHDRAWAL);
+    m_type_selector->SetSelection(Model_Checking::TYPE_ID_WITHDRAWAL);
     mmToolTip(m_type_selector, _("Withdraw funds from or deposit funds to this Account."));
 
     m_transfer = new wxCheckBox(this, ID_TRANS_TRANSFER, _("&Transfer")
@@ -142,7 +142,7 @@ void UserTransactionPanel::Create()
     m_status_selector = new wxChoice(this, ID_TRANS_STATUS_SELECTOR
         , wxDefaultPosition, std_half_size);
 
-    for (const auto& i : Model_Checking::all_status())
+    for (const auto& i : Model_Checking::STATUS_STR)
     {
         m_status_selector->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
@@ -215,7 +215,7 @@ void UserTransactionPanel::DataToControls()
     m_transaction_id = m_checking_entry->TRANSID;
     m_account_id = m_checking_entry->ACCOUNTID;
     m_account->SetLabelText(Model_Account::get_account_name(m_account_id));
-    m_type_selector->SetSelection(Model_Checking::type(m_checking_entry->TRANSCODE));
+    m_type_selector->SetSelection(Model_Checking::type_id(m_checking_entry->TRANSCODE));
 
     if (m_account_id > 0)
     {
@@ -225,7 +225,7 @@ void UserTransactionPanel::DataToControls()
     }
 
     SetTransactionValue(m_checking_entry->TRANSAMOUNT);
-    m_status_selector->SetSelection(Model_Checking::status(m_checking_entry->STATUS));
+    m_status_selector->SetSelection(Model_Checking::status_id(m_checking_entry->STATUS));
 
     m_payee_id = m_checking_entry->PAYEEID;
     m_payee->SetLabelText(Model_Payee::get_payee_name(m_payee_id));
@@ -258,7 +258,7 @@ void UserTransactionPanel::SetLastPayeeAndCategory(const int account_id)
 {
     if (Option::instance().TransPayeeSelection() == Option::LASTUSED)
     {
-        Model_Checking::Data_Set trans_list = Model_Checking::instance().find(Model_Checking::ACCOUNTID(account_id), Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL));
+        Model_Checking::Data_Set trans_list = Model_Checking::instance().find(Model_Checking::ACCOUNTID(account_id), Model_Checking::TRANSCODE(Model_Checking::TYPE_ID_TRANSFER, NOT_EQUAL));
         if (!trans_list.empty())
         {
             int last_trans_pos = trans_list.size() - 1;
@@ -460,7 +460,7 @@ int UserTransactionPanel::SaveChecking()
     m_checking_entry->TOACCOUNTID = CheckingType();
 
     m_checking_entry->PAYEEID = m_payee_id;
-    m_checking_entry->TRANSCODE = Model_Checking::instance().all_type()[TransactionType()];
+    m_checking_entry->TRANSCODE = Model_Checking::TYPE_STR[TransactionType()];
     m_checking_entry->TRANSAMOUNT = initial_amount;
     m_checking_entry->STATUS = m_status_selector->GetStringSelection().Mid(0, 1);
     m_checking_entry->TRANSACTIONNUMBER = m_entered_number->GetValue();
