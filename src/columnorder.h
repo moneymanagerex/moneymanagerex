@@ -34,9 +34,7 @@ public:
     mmColumnsDialog();
     ~mmColumnsDialog();
     mmColumnsDialog(wxWindow* parent);
-
-    // called from mmcheckingpanel.cpp
-    wxArrayString updateColumnsOrder(wxArrayString defaultColumns);
+    wxArrayString GetColumnList();
 
 private:
     // Declare your dialog controls here
@@ -46,7 +44,8 @@ private:
     wxButton* m_OkButton; // Added: Correctly declare the OK button
     wxButton* m_CancelButton; // Added: Correctly declare the cancel button
 
-    wxArrayString columnList_;
+    wxArrayString columnList_;  // String list of column IDs (saved in database)
+    wxArrayString columnNames_; // String list of column names (displayed in dialog)
 
     void SetColumnsOrder();
     void GetColumnsOrder();

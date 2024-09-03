@@ -45,6 +45,7 @@
 #include "images_list.h"
 #include "maincurrencydialog.h"
 #include "mmcheckingpanel.h"
+#include "mmchecking_list.h"
 #include "mmex.h"
 #include "mmhelppanel.h"
 #include "mmhomepagepanel.h"
@@ -2038,6 +2039,8 @@ void mmGUIFrame::InitializeModelTables()
     m_all_models.push_back(&Model_Taglink::instance(m_db.get()));
     m_all_models.push_back(&Model_Translink::instance(m_db.get()));
     m_all_models.push_back(&Model_Shareinfo::instance(m_db.get()));
+
+    TransactionListCtrl::InitializeColumnHeaders();
 }
 
 bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, bool openingNew)
@@ -2952,6 +2955,9 @@ void mmGUIFrame::OnColumnOrderManager(wxCommandEvent& /*event*/)
 {
     mmColumnsDialog dlg(this);
     dlg.ShowModal();
+    int id = panelCurrent_->GetId();
+    if (id == mmID_CHECKING || id == mmID_ALLTRANSACTIONS || id == mmID_DELETEDTRANSACTIONS)
+        wxDynamicCast(panelCurrent_, mmCheckingPanel)->ResetColumnView();
 }
 
 bool mmGUIFrame::OnRefreshWebApp(bool is_silent)

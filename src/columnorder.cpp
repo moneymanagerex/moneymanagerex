@@ -5,6 +5,7 @@
 #include "paths.h"
 #include "option.h"
 #include "util.h"
+#include "mmchecking_list.h"   // for EColumn enum
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmColumnsDialog, wxDialog);
 
@@ -50,14 +51,16 @@ bool mmColumnsDialog::Create(wxWindow *parent)
 
 /*
   Concept:
-  - The column order is stored as a "|" delimited list of header strings in the settings.
+  - The column order is stored as a "|" delimited list of column enums in the settings.
   - A dialog allows reordering the columns. This is saved in the settings.
-  - Constructing a table (in mmcheckingpanel.cpp) will update this list with columns not yet specified.
-    So eventually all existing columns will be in this list (the user needs to have viewed all columns at least once).
-    This is important since there may be user defined columns.
-  - TODO: Users may remove nonexisting columns from the list in the column order dialog.
+  - Constructing a table (in mmcheckingpanel.cpp) will initialize this list,
+    so it always contains all columns that may exist.
 */
 
+wxArrayString mmColumnsDialog::GetColumnList() {
+     GetColumnsOrder();
+     return columnList_;
+}
 
 // Set new column order. Called when closing the dialog using the "OK" button
 void mmColumnsDialog::SetColumnsOrder()
@@ -69,24 +72,19 @@ void mmColumnsDialog::SetColumnsOrder()
 }
 
 
+// Get the current column order from the settings, or initialize a default order
 void mmColumnsDialog::GetColumnsOrder()
 {
     columnList_ = wxSplit(Model_Setting::instance().GetStringSetting("COLUMNSORDER", ""), '|');
-    wxLogDebug("GetColumnsOrder: %s", wxJoin(columnList_, ','));
-}
-
-// Get the column order from the settings.
-// Append new columns from defaultColumns if the list differs. Then save.
-wxArrayString mmColumnsDialog::updateColumnsOrder(wxArrayString defaultColumns)
-{
-    GetColumnsOrder();
-    for (const auto& column : defaultColumns) {
-        if (columnList_.Index(column) == wxNOT_FOUND) {
-            columnList_.Add(column);
+    // wxLogDebug("GetColumnsOrder: db %s", wxJoin(columnList_, ','));
+    if(columnList_.IsEmpty())
+    {
+        auto e = TransactionListCtrl::COL_MAX;
+        for(int i=0; i < e; ++i) {
+            columnList_.Add(wxString::Format("%d", i));
         }
     }
-    SetColumnsOrder();
-    return columnList_;
+    // wxLogDebug("GetColumnsOrder: empty, now %s", wxJoin(columnList_, ','));
 }
 
 void mmColumnsDialog::OnUp(wxCommandEvent& event) {
@@ -103,6 +101,10 @@ void mmColumnsDialog::CreateControls()
 
     GetColumnsOrder();
     m_listBox = new wxListBox(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, columnList_, wxLB_SINGLE | wxLB_NEEDED_SB);
+    m_listBox->SetClientData(0, new wxString("Label 1"));
+    m_listBox->SetClientData(1, new wxString("Label 2"));
+    m_listBox->SetClientData(2, new wxString("Label 3"));
+    // Set more labels and IDs as needed
 
     // Buttons for moving items up and down
     wxBoxSizer* buttonSizer = new wxBoxSizer(wxVERTICAL);

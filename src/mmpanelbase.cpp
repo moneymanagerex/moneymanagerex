@@ -183,7 +183,31 @@ void mmListCtrl::OnHeaderSort(wxCommandEvent& WXUNUSED(event))
 
 void mmListCtrl::OnHeaderMove(wxCommandEvent& WXUNUSED(event), int direction)
 {
-    wxLogDebug("Moving column %d (%s) %d", m_ColumnHeaderNbr, m_columns[m_ColumnHeaderNbr].HEADER.c_str(), direction);
+    if (0 <= m_ColumnHeaderNbr + direction && static_cast<int>(m_columns.size()) > m_ColumnHeaderNbr + direction) {
+        wxArrayString columnList = GetColumnsOrder();
+        wxLogDebug("Moving column %d (%s) %d in list: %s", m_ColumnHeaderNbr, m_columns[m_ColumnHeaderNbr].HEADER.c_str(), direction, wxJoin(columnList, '|'));
+        // wxLogDebug("m_real_columns: %s", wxJoin(m_real_columns, '|'));
+
+        // swap order of column data
+        std::swap(m_real_columns[m_ColumnHeaderNbr + direction], m_real_columns[m_ColumnHeaderNbr]);
+        std::swap(m_columns[m_ColumnHeaderNbr + direction], m_columns[m_ColumnHeaderNbr]);
+        wxSwap(columnList[m_ColumnHeaderNbr], columnList[m_ColumnHeaderNbr + direction]);
+        SetColumnsOrder(columnList);
+    
+        // swap column headers & widths
+        wxListItem col1, col2;
+        col1.SetText(m_columns[m_ColumnHeaderNbr].HEADER);
+        col1.SetWidth(m_columns[m_ColumnHeaderNbr].WIDTH);
+        col1.SetAlign(static_cast<wxListColumnFormat>(m_columns[m_ColumnHeaderNbr].FORMAT));
+        col2.SetText(m_columns[m_ColumnHeaderNbr + direction].HEADER);
+        col2.SetWidth(m_columns[m_ColumnHeaderNbr + direction].WIDTH);
+        col2.SetAlign(static_cast<wxListColumnFormat>(m_columns[m_ColumnHeaderNbr + direction].FORMAT));
+        SetColumn(m_ColumnHeaderNbr, col1);
+        SetColumn(m_ColumnHeaderNbr + direction, col2);
+        
+        // refresh the list view
+        Refresh();
+    }
 }
 
 void mmListCtrl::OnHeaderReset(wxCommandEvent& WXUNUSED(event))
@@ -232,6 +256,32 @@ void mmListCtrl::SetColumnWidthSetting(int column_number, int column_width)
     if (!m_col_width.IsEmpty())
         Model_Setting::instance().Set(wxString::Format(m_col_width, GetRealColumn(column_number)), column_width);
 }
+
+// Set new column order. Called when closing the dialog using the "OK" button
+void mmListCtrl::SetColumnsOrder(wxArrayString columnList_)
+{
+    wxLogDebug("SetColumnsOrder: %s", wxJoin(columnList_, ','));
+    Model_Setting::instance().Savepoint();
+    Model_Setting::instance().Set(m_col_idstr + "_COLUMNSORDER", wxJoin(columnList_, '|'));
+    Model_Setting::instance().ReleaseSavepoint();
+}
+
+
+// Get the current column order from the settings, or initialize a default order
+wxArrayString mmListCtrl::GetColumnsOrder()
+{
+    wxArrayString columnList_ = wxSplit(Model_Setting::instance().GetStringSetting(m_col_idstr + "_COLUMNSORDER", ""), '|');
+    unsigned int e = m_columns.size();
+    if(columnList_.IsEmpty())
+    {
+        for(unsigned i=0; i < e; ++i) {
+            columnList_.Add(std::to_string(i));
+        }
+    }
+    wxLogDebug("GetColumnsOrder: %s_COLUMNSORDER now = %s", m_col_idstr, wxJoin(columnList_, ','));
+    return columnList_;
+}
+
 
 mmPanelBase::mmPanelBase()
 {
