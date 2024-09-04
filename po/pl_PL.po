@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-05-24 19:50\n"
+"PO-Revision-Date: 2024-09-04 11:14\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgstr "&Nowa baza danych"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "Utwórz nowy plik bazy danych MMEX"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -337,7 +337,7 @@ msgstr "&Otwórz istniejącą bazę danych"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "Otwórz plik bazy danych MMEX"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1682
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "&Instrukcja obsługi"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "Przeczytaj podręcznik użytkownika"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1852
 msgid "&Website"
@@ -366,11 +366,11 @@ msgstr "Odwiedź stronę MMEX po najnowsze wiadomości i aktualizacje"
 
 #: appstartdialog.cpp:125 mmframe.cpp:1869
 msgid "&Forum"
-msgstr ""
+msgstr "&Forum"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "Odwiedź forum MMEX, aby czytać i publikować komentarze oraz uzyskać wsparcie"
 
 #: appstartdialog.cpp:132 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -383,7 +383,7 @@ msgstr "&Zakończ "
 #: appstartdialog.cpp:159
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Otwórz ostatnio używaną bazę danych: %s"
 
 #: appstartdialog.cpp:208 mmframe.cpp:1688 mmframe.cpp:3081
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -709,7 +709,7 @@ msgstr "Nie zdefiniowano katalogu załączników."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools → Settings… → Attachments"
-msgstr ""
+msgstr "Proszę ustawić w menu Narzędzia -> Opcje -> Załączniki"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
@@ -1037,7 +1037,7 @@ msgstr "Określ kwotę przelewu na koncie docelowym"
 
 #: billsdepositsdialog.cpp:544 transdialog.cpp:494
 msgid "Open Calculator"
-msgstr ""
+msgstr "Otwórz Kalkulator"
 
 #: billsdepositsdialog.cpp:550 billsdepositsdialog.cpp:837
 #: billsdepositsdialog.cpp:850 billsdepositspanel.cpp:134 filtertrans.cpp:200
@@ -1642,19 +1642,19 @@ msgstr "Kategorie"
 #: categdialog.cpp:258 relocatecategorydialog.cpp:89
 #: relocatecategorydialog.h:43
 msgid "Merge Categories"
-msgstr ""
+msgstr "Scal kategorie"
 
 #: categdialog.cpp:260
 msgid "C&ollapse All"
-msgstr ""
+msgstr "Z&wiń wszystko"
 
 #: categdialog.cpp:265
 msgid "E&xpand All"
-msgstr ""
+msgstr "R&ozwiń wszystko"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "&Show All"
-msgstr ""
+msgstr "&Pokaż wszystko"
 
 #: categdialog.cpp:272
 msgid "Show all hidden categories"
@@ -1886,7 +1886,7 @@ msgstr "wersja 64-bitowa"
 
 #: constants.cpp:193
 msgid "View Transaction Report..."
-msgstr ""
+msgstr "Raport transakcji..."
 
 #: constants.cpp:194
 msgid "View All Transactions"
@@ -2086,7 +2086,7 @@ msgstr "Wybierz typ własnego pola"
 
 #: customfieldeditdialog.cpp:148
 msgid "Tooltip"
-msgstr ""
+msgstr "Podpowiedź"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enter the tooltip that will be shown"
@@ -2557,7 +2557,7 @@ msgstr "Diagnostyka"
 #: diagnostics.cpp:88 relocatecategorydialog.cpp:134
 #: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:134 themes.cpp:195
 msgid "&Close"
-msgstr ""
+msgstr "&Zamknij"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -2618,7 +2618,7 @@ msgstr "Wiersz"
 
 #: filtertransdialog.cpp:55
 msgid "Line DateTime"
-msgstr ""
+msgstr "Linia DataTime"
 
 #: filtertransdialog.cpp:56
 msgid "Pie"
@@ -2626,11 +2626,11 @@ msgstr "Wykres kołowy"
 
 #: filtertransdialog.cpp:56
 msgid "Donut"
-msgstr ""
+msgstr "Pierścień"
 
 #: filtertransdialog.cpp:56
 msgid "Radar"
-msgstr ""
+msgstr "Radar"
 
 #: filtertransdialog.cpp:57
 msgid "Bar Line"
@@ -2646,7 +2646,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:506
 msgid "Last Unsaved Filter"
-msgstr ""
+msgstr "Ostatni niezapisany filtr"
 
 #: filtertransdialog.cpp:553 transactionsupdatedialog.cpp:122
 msgid "Specify"
@@ -2839,7 +2839,7 @@ msgstr "Wybierz konta"
 
 #: filtertransdialog.h:163
 msgid "Customize Transaction Report"
-msgstr ""
+msgstr "Dostosuj raport transakcji"
 
 #: general_report_manager.cpp:284 mmframe.cpp:832 mmframe.cpp:3025
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
@@ -2968,7 +2968,7 @@ msgstr "Aktywny"
 
 #: general_report_manager.cpp:747
 msgid "Show/Hide report in Navigator"
-msgstr ""
+msgstr "Pokaż/Ukryj raport w Nawigatorze"
 
 #: general_report_manager.cpp:751
 msgid "Delete Report..."
@@ -3172,7 +3172,7 @@ msgstr "Nazwa pliku:"
 #: import_export/qif_export.cpp:203 import_export/qif_import_gui.cpp:135
 #: import_export/univcsvdialog.cpp:201
 msgid "&Browse..."
-msgstr ""
+msgstr "&Przeglądaj..."
 
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:555
 msgid "Clear"
@@ -3946,12 +3946,12 @@ msgstr "Nie można ustalić symbolu podstawowej waluty"
 
 #: mmSimpleDialogs.cpp:767 mmSimpleDialogs.cpp:779
 msgid "&Clear color"
-msgstr ""
+msgstr "&Usuń kolor"
 
 #: mmSimpleDialogs.cpp:770 mmSimpleDialogs.cpp:784
 #, c-format
 msgid "Color #&%i"
-msgstr ""
+msgstr "Kolor #%i"
 
 #: mmSimpleDialogs.cpp:942
 msgid "Subtract one year"
@@ -4085,7 +4085,7 @@ msgstr "Wskazówka: Pamiętaj o wykonywaniu kopii zapasowych pliku bazy danych .
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Wskazówka: Plik .mmb nie jest zaszyfrowany. Oznacza to, że każdy, kto wie jak to zrobić, może odczytać jego zawartość. Upewnij się więc, że plik z Twoimi poufnymi danymi finansowymi jest dobrze zabezpieczony."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
