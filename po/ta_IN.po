@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-07-20 15:47\n"
+"PO-Revision-Date: 2024-09-04 03:09\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -342,7 +342,7 @@ msgstr ""
 
 #: appstartdialog.cpp:112 mmframe.cpp:1682
 msgid "User Interface &Language"
-msgstr "பயனர் இடைமுகம் &மொழி"
+msgstr "பயனர் இடைமுகம் & மொழி:"
 
 #: appstartdialog.cpp:113 appstartdialog.cpp:221 mmframe.cpp:1683
 #: optionsettingsgeneral.cpp:100
@@ -1350,7 +1350,7 @@ msgstr "அடுத்த திட்டமிடப்பட்ட பரி�
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
-msgstr "&தவிர்க்கவும்"
+msgstr "தவிர்"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
@@ -3548,7 +3548,7 @@ msgstr "தற்போதைய அமைப்புகளை முன்ன�
 
 #: import_export/univcsvdialog.cpp:567 import_export/univcsvdialog.cpp:2183
 msgid "Delete Preset"
-msgstr ""
+msgstr "முன்னமைக்கப்பட்டவையை நீக்கு"
 
 #: import_export/univcsvdialog.cpp:568
 msgid "MMEX standard format"
@@ -3587,7 +3587,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:748
 msgid "Account does not exist"
-msgstr ""
+msgstr "கணக்கு காணப்படவில்லை"
 
 #: import_export/univcsvdialog.cpp:950 import_export/univcsvdialog.cpp:1045
 #: import_export/univcsvdialog.cpp:2683
@@ -3621,7 +3621,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1304
 msgid "Date field is required."
-msgstr ""
+msgstr "தேதி புலம் தேவையானது."
 
 #: import_export/univcsvdialog.cpp:1305
 msgid "Amount field or both Withdrawal and Deposit fields are required."
@@ -3630,7 +3630,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:1306 import_export/univcsvdialog.cpp:1501
 #: webappdialog.cpp:408
 msgid "Import"
-msgstr ""
+msgstr "இறக்கு"
 
 #: import_export/univcsvdialog.cpp:1366
 #, c-format
@@ -3659,7 +3659,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1481
 msgid "Rejected rows:"
-msgstr ""
+msgstr "மறுக்கப்பட்ட வரிசைகள்:"
 
 #: import_export/univcsvdialog.cpp:1486
 #, c-format
