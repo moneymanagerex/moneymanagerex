@@ -136,7 +136,8 @@ void mmFilterTransactionsDialog::mmDoInitVariables()
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSinseCurrentFinancialYear()));
 
     m_accounts_name.clear();
-    const auto accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL));
+    const auto accounts = Model_Account::instance().find(
+        Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR_INVESTMENT, NOT_EQUAL));
     for (const auto& acc : accounts)
     {
         m_accounts_name.push_back(acc.ACCOUNTNAME);

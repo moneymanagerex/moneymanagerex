@@ -87,8 +87,8 @@ const wxString htmlWidgetStocks::getHTMLText()
         wxString body = "";
         for (const auto& account : accounts)
         {
-            if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
-            if (Model_Account::status(account) != Model_Account::OPEN) continue;
+            if (Model_Account::type_id(account) != Model_Account::TYPE_ID_INVESTMENT) continue;
+            if (Model_Account::status_id(account) != Model_Account::STATUS_ID_OPEN) continue;
             body += "<tr>";
             body += wxString::Format("<td sorttable_customkey='*%s*'><a href='stock:%i' oncontextmenu='return false;' target='_blank'>%s</a>%s</td>\n"
                 , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME,
@@ -682,7 +682,7 @@ void htmlWidgetAccounts::get_account_stats()
 
 }
 
-const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tReconciled, int type = Model_Account::CHECKING)
+const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tReconciled, int type = Model_Account::TYPE_ID_CHECKING)
 {
     static const std::vector < std::pair <wxString, wxString> > typeStr
     {
@@ -713,8 +713,8 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tRe
     const wxDate today = wxDate::Today();
     wxString vAccts = Model_Setting::instance().GetViewAccounts();
     auto accounts = Model_Account::instance().find(
-        Model_Account::ACCOUNTTYPE(Model_Account::all_type()[type])
-        , Model_Account::STATUS(Model_Account::CLOSED, NOT_EQUAL));
+        Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR[type])
+        , Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL));
     std::stable_sort(accounts.begin(), accounts.end(), SorterByACCOUNTNAME());
     for (const auto& account : accounts)
     {
@@ -727,7 +727,7 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tRe
         tReconciled += reconciledBal * currency_rate;
 
         // show the actual amount in that account
-        if (((vAccts == VIEW_ACCOUNTS_OPEN_STR && Model_Account::status(account) == Model_Account::OPEN) ||
+        if (((vAccts == VIEW_ACCOUNTS_OPEN_STR && Model_Account::status_id(account) == Model_Account::STATUS_ID_OPEN) ||
             (vAccts == VIEW_ACCOUNTS_FAVORITES_STR && Model_Account::FAVORITEACCT(account)) ||
             (vAccts == VIEW_ACCOUNTS_ALL_STR)))
         {

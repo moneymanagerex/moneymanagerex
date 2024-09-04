@@ -177,7 +177,7 @@ double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const 
                 precValueDate = stock.PURCHASEDATE;
             }
             //  if next not found and the accoung is open, takes previous date
-            if (nextValue == 0.0 && Model_Account::status(account) == Model_Account::OPEN)
+            if (nextValue == 0.0 && Model_Account::status_id(account) == Model_Account::STATUS_ID_OPEN)
             {
                 nextValue = precValue;
                 nextValueDate = precValueDate;

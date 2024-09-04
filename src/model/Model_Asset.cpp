@@ -21,41 +21,40 @@
 #include "Model_Translink.h"
 #include "Model_CurrencyHistory.h"
 
-const std::vector<std::pair<Model_Asset::RATE, wxString> > Model_Asset::RATE_CHOICES = 
+const std::vector<std::pair<Model_Asset::TYPE_ID, wxString> > Model_Asset::TYPE_CHOICES = 
 {
-    {Model_Asset::RATE_NONE, wxString(wxTRANSLATE("None"))}
-    , {Model_Asset::RATE_APPRECIATE, wxString(wxTRANSLATE("Appreciates"))}
-    , {Model_Asset::RATE_DEPRECIATE, wxString(wxTRANSLATE("Depreciates"))}
+    { Model_Asset::TYPE_ID_PROPERTY,  wxString(wxTRANSLATE("Property")) },
+    { Model_Asset::TYPE_ID_AUTO,      wxString(wxTRANSLATE("Automobile")) },
+    { Model_Asset::TYPE_ID_HOUSE,     wxString(wxTRANSLATE("Household Object")) },
+    { Model_Asset::TYPE_ID_ART,       wxString(wxTRANSLATE("Art")) },
+    { Model_Asset::TYPE_ID_JEWELLERY, wxString(wxTRANSLATE("Jewellery")) },
+    { Model_Asset::TYPE_ID_CASH,      wxString(wxTRANSLATE("Cash")) },
+    { Model_Asset::TYPE_ID_OTHER,     wxString(wxTRANSLATE("Other")) }
 };
 
-const std::vector<std::pair<Model_Asset::RATEMODE, wxString> > Model_Asset::RATEMODE_CHOICES = 
+const std::vector<std::pair<Model_Asset::STATUS_ID, wxString> > Model_Asset::STATUS_CHOICES = 
 {
-    {Model_Asset::PERCENTAGE, wxString(wxTRANSLATE("Percentage"))}
-    , {Model_Asset::LINEAR, wxString(wxTRANSLATE("Linear"))}
+    { Model_Asset::STATUS_ID_CLOSED, wxString(wxTRANSLATE("Closed")) },
+    { Model_Asset::STATUS_ID_OPEN,   wxString(wxTRANSLATE("Open")) }
 };
 
-const wxString Model_Asset::PERCENTAGE_STR = all_ratemode()[PERCENTAGE];
-const wxString Model_Asset::LINEAR_STR = all_ratemode()[LINEAR];
-
-const std::vector<std::pair<Model_Asset::TYPE, wxString> > Model_Asset::TYPE_CHOICES = 
+const std::vector<std::pair<Model_Asset::CHANGE_ID, wxString> > Model_Asset::CHANGE_CHOICES = 
 {
-    {Model_Asset::TYPE_PROPERTY, wxString(wxTRANSLATE("Property"))}
-    , {Model_Asset::TYPE_AUTO, wxString(wxTRANSLATE("Automobile"))}
-    , {Model_Asset::TYPE_HOUSE, wxString(wxTRANSLATE("Household Object"))}
-    , {Model_Asset::TYPE_ART, wxString(wxTRANSLATE("Art"))}
-    , {Model_Asset::TYPE_JEWELLERY, wxString(wxTRANSLATE("Jewellery"))}
-    , {Model_Asset::TYPE_CASH, wxString(wxTRANSLATE("Cash"))}
-    , {Model_Asset::TYPE_OTHER, wxString(wxTRANSLATE("Other"))}
+    { Model_Asset::CHANGE_ID_NONE,       wxString(wxTRANSLATE("None")) },
+    { Model_Asset::CHANGE_ID_APPRECIATE, wxString(wxTRANSLATE("Appreciates")) },
+    { Model_Asset::CHANGE_ID_DEPRECIATE, wxString(wxTRANSLATE("Depreciates")) }
 };
 
-const std::vector<std::pair<Model_Asset::STATUS, wxString> > Model_Asset::STATUS_CHOICES = 
+const std::vector<std::pair<Model_Asset::CHANGEMODE_ID, wxString> > Model_Asset::CHANGEMODE_CHOICES = 
 {
-    {Model_Asset::STATUS_CLOSED, wxString(wxTRANSLATE("Closed"))}
-    , {Model_Asset::STATUS_OPEN, wxString(wxTRANSLATE("Open"))}
+    { Model_Asset::CHANGEMODE_ID_PERCENTAGE, wxString(wxTRANSLATE("Percentage")) },
+    { Model_Asset::CHANGEMODE_ID_LINEAR,     wxString(wxTRANSLATE("Linear")) }
 };
 
-const wxString Model_Asset::OPEN_STR = all_status()[STATUS_OPEN];
-const wxString Model_Asset::CLOSED_STR = all_status()[STATUS_CLOSED];
+wxArrayString Model_Asset::TYPE_STR = type_str_all();
+wxArrayString Model_Asset::STATUS_STR = status_str_all();
+wxArrayString Model_Asset::CHANGE_STR = change_str_all();
+wxArrayString Model_Asset::CHANGEMODE_STR = changemode_str_all();
 
 Model_Asset::Model_Asset()
 : Model<DB_Table_ASSETS_V1>()
@@ -95,32 +94,52 @@ wxString Model_Asset::get_asset_name(int asset_id)
         return _("Asset Error");
 }
 
-wxArrayString Model_Asset::all_rate()
-{
-    wxArrayString rates;
-    for (const auto& item: RATE_CHOICES) rates.Add(item.second);
-    return rates;
-}
-
-wxArrayString Model_Asset::all_ratemode()
-{
-    wxArrayString ratemodes;
-    for (const auto& item: RATEMODE_CHOICES) ratemodes.Add(item.second);
-    return ratemodes;
-}
-
-wxArrayString Model_Asset::all_type()
+wxArrayString Model_Asset::type_str_all()
 {
     wxArrayString types;
-    for (const auto& item: TYPE_CHOICES) types.Add(item.second);
+    int i = 0;
+    for (const auto& item: TYPE_CHOICES)
+    {
+        wxASSERT_MSG(item.first == i++, "Wrong order in Model_Asset::TYPE_CHOICES");
+        types.Add(item.second);
+    }
     return types;
 }
 
-wxArrayString Model_Asset::all_status()
+wxArrayString Model_Asset::status_str_all()
 {
     wxArrayString statusList;
-    for (const auto& item: STATUS_CHOICES) statusList.Add(item.second);
+    int i = 0;
+    for (const auto& item: STATUS_CHOICES)
+    {
+        wxASSERT_MSG(item.first == i++, "Wrong order in Model_Asset::STATUS_CHOICES");
+        statusList.Add(item.second);
+    }
     return statusList;
+}
+
+wxArrayString Model_Asset::change_str_all()
+{
+    wxArrayString rates;
+    int i = 0;
+    for (const auto& item: CHANGE_CHOICES)
+    {
+        wxASSERT_MSG(item.first == i++, "Wrong order in Model_Asset::CHANGE_CHOICES");
+        rates.Add(item.second);
+    }
+    return rates;
+}
+
+wxArrayString Model_Asset::changemode_str_all()
+{
+    wxArrayString changemodes;
+    int i = 0;
+    for (const auto& item: CHANGEMODE_CHOICES)
+    {
+        wxASSERT_MSG(item.first == i++, "Wrong order in Model_Asset::CHANGEMODE_CHOICES");
+        changemodes.Add(item.second);
+    }
+    return changemodes;
 }
 
 double Model_Asset::balance()
@@ -133,9 +152,9 @@ double Model_Asset::balance()
     return balance;
 }
 
-DB_Table_ASSETS_V1::ASSETTYPE Model_Asset::ASSETTYPE(TYPE type, OP op)
+DB_Table_ASSETS_V1::ASSETTYPE Model_Asset::ASSETTYPE(TYPE_ID type, OP op)
 {
-    return DB_Table_ASSETS_V1::ASSETTYPE(all_type()[type], op);
+    return DB_Table_ASSETS_V1::ASSETTYPE(TYPE_STR[type], op);
 }
 
 DB_Table_ASSETS_V1::STARTDATE Model_Asset::STARTDATE(const wxDate& date, OP op)
@@ -153,49 +172,48 @@ wxDate Model_Asset::STARTDATE(const Data& r)
     return Model::to_date(r.STARTDATE);
 }
 
-Model_Asset::TYPE Model_Asset::type(const Data* r)
+Model_Asset::TYPE_ID Model_Asset::type_id(const Data* r)
 {
-    for (const auto& item : TYPE_CHOICES) if (item.second.CmpNoCase(r->ASSETTYPE) == 0) return item.first;
-
-    return TYPE(-1);
+    for (const auto& item : TYPE_CHOICES)
+        if (item.second.CmpNoCase(r->ASSETTYPE) == 0) return item.first;
+    return TYPE_ID(-1);
+}
+Model_Asset::TYPE_ID Model_Asset::type_id(const Data& r)
+{
+    return type_id(&r);
 }
 
-Model_Asset::TYPE Model_Asset::type(const Data& r)
+Model_Asset::STATUS_ID Model_Asset::status_id(const Data* r)
 {
-    return type(&r);
+    for (const auto & item : STATUS_CHOICES)
+        if (item.second.CmpNoCase(r->ASSETSTATUS) == 0) return item.first;
+    return STATUS_ID(-1);
+}
+Model_Asset::STATUS_ID Model_Asset::status_id(const Data& r)
+{
+    return status_id(&r);
 }
 
-Model_Asset::RATE Model_Asset::rate(const Data* r)
+Model_Asset::CHANGE_ID Model_Asset::change_id(const Data* r)
 {
-    for (const auto & item : RATE_CHOICES) if (item.second.CmpNoCase(r->VALUECHANGE) == 0) return item.first;
-    return RATE(-1);
+    for (const auto & item : CHANGE_CHOICES)
+        if (item.second.CmpNoCase(r->VALUECHANGE) == 0) return item.first;
+    return CHANGE_ID(-1);
+}
+Model_Asset::CHANGE_ID Model_Asset::change_id(const Data& r)
+{
+    return change_id(&r);
 }
 
-Model_Asset::RATE Model_Asset::rate(const Data& r)
+Model_Asset::CHANGEMODE_ID Model_Asset::changemode_id(const Data* r)
 {
-    return rate(&r);
+    for (const auto & item : CHANGEMODE_CHOICES)
+        if (item.second.CmpNoCase(r->VALUECHANGEMODE) == 0) return item.first;
+    return CHANGEMODE_ID(-1);
 }
-
-Model_Asset::RATEMODE Model_Asset::ratemode(const Data* r)
+Model_Asset::CHANGEMODE_ID Model_Asset::changemode_id(const Data& r)
 {
-    for (const auto & item : RATEMODE_CHOICES) if (item.second.CmpNoCase(r->VALUECHANGEMODE) == 0) return item.first;
-    return RATEMODE(-1);
-}
-
-Model_Asset::RATEMODE Model_Asset::ratemode(const Data& r)
-{
-    return ratemode(&r);
-}
-
-Model_Asset::STATUS Model_Asset::status(const Data* r)
-{
-    for (const auto & item : STATUS_CHOICES) if (item.second.CmpNoCase(r->ASSETSTATUS) == 0) return item.first;
-    return STATUS(-1);
-}
-
-Model_Asset::STATUS Model_Asset::status(const Data& r)
-{
-    return status(&r);
+    return changemode_id(&r);
 }
 
 Model_Currency::Data* Model_Asset::currency(const Data* /* r */)
@@ -231,14 +249,14 @@ double Model_Asset::valueAtDate(const Data* r, const wxDate date)
                     wxTimeSpan diff_time = date - tranDate;
                     double diff_time_in_days = static_cast<double>(diff_time.GetDays());
 
-                    switch (rate(r))
+                    switch (change_id(r))
                     {
-                    case RATE_NONE:
+                    case CHANGE_ID_NONE:
                         break;
-                    case RATE_APPRECIATE:
+                    case CHANGE_ID_APPRECIATE:
                         amount *= pow(1.0 + (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
                         break;
-                    case RATE_DEPRECIATE:
+                    case CHANGE_ID_DEPRECIATE:
                         amount *= pow(1.0 - (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
                         break;
                     default:
@@ -254,14 +272,14 @@ double Model_Asset::valueAtDate(const Data* r, const wxDate date)
             wxTimeSpan diff_time = date - STARTDATE(r);
             double diff_time_in_days = static_cast<double>(diff_time.GetDays());
 
-            switch (rate(r))
+            switch (change_id(r))
             {
-            case RATE_NONE:
+            case CHANGE_ID_NONE:
                 break;
-            case RATE_APPRECIATE:
+            case CHANGE_ID_APPRECIATE:
                 balance *= pow(1.0 + (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
                 break;
-            case RATE_DEPRECIATE:
+            case CHANGE_ID_DEPRECIATE:
                 balance *= pow(1.0 - (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
                 break;
             default:

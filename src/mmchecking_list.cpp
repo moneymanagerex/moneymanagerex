@@ -91,7 +91,7 @@ TransactionListCtrl::EColumn TransactionListCtrl::toEColumn(const unsigned long 
 void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
 {
     const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    Model_CustomField::FIELDTYPE type;
+    Model_CustomField::TYPE_ID type;
 
     switch (m_real_columns[sortcol])
     {
@@ -157,7 +157,7 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         break;
     case TransactionListCtrl::COL_UDFC01:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC01");
-        if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
+        if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
             ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC01_val)
                   : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC01_val);
         else
@@ -166,7 +166,7 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         break;
     case TransactionListCtrl::COL_UDFC02:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC02");
-        if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
+        if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
             ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC02_val)
                   : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC02_val);
         else
@@ -175,7 +175,7 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         break;
     case TransactionListCtrl::COL_UDFC03:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC03");
-        if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
+        if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
             ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC03_val)
                   : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC03_val);
         else
@@ -184,7 +184,7 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         break;
     case TransactionListCtrl::COL_UDFC04:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC04");
-        if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
+        if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
             ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC04_val)
                   : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC04_val);
         else
@@ -193,7 +193,7 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         break;
     case TransactionListCtrl::COL_UDFC05:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC05");
-        if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
+        if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
             ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC05_val)
                   : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC05_val);
         else
@@ -340,9 +340,9 @@ void TransactionListCtrl::resetColumns()
         {
             const auto& type = Model_CustomField::getUDFCType(ref_type, udfc_entry);
             int align;
-            if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
+            if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
                 align = wxLIST_FORMAT_RIGHT;
-            else if (type == Model_CustomField::FIELDTYPE::BOOLEAN)
+            else if (type == Model_CustomField::TYPE_ID_BOOLEAN)
                 align = wxLIST_FORMAT_CENTER;
             else
                 align = wxLIST_FORMAT_LEFT;
@@ -1451,14 +1451,14 @@ bool TransactionListCtrl::CheckForClosedAccounts()
         Model_Checking::Data* transaction = Model_Checking::instance().get(i);
         Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
         if (account)
-            if (Model_Account::CLOSED == Model_Account::status(account))
+            if (Model_Account::STATUS_ID_CLOSED == Model_Account::status_id(account))
             {
                 closedTrx++;
                 continue;
             }
         Model_Account::Data* to_account = Model_Account::instance().get(transaction->TOACCOUNTID);
         if (to_account) {
-            if (Model_Account::CLOSED == Model_Account::status(account))
+            if (Model_Account::STATUS_ID_CLOSED == Model_Account::status_id(account))
                 closedTrx++;
         }
     }
@@ -1918,17 +1918,17 @@ void TransactionListCtrl::doSearchText(const wxString& value)
     EnsureVisible(selectedItem);
 }
 
-wxString UDFCFormatHelper(Model_CustomField::FIELDTYPE type, wxString data)
+wxString UDFCFormatHelper(Model_CustomField::TYPE_ID type, wxString data)
 {
     wxString formattedData = data;
     bool v = false;
     if (!data.empty())
     {
         switch (type) {
-        case Model_CustomField::FIELDTYPE::DATE:
+        case Model_CustomField::TYPE_ID_DATE:
             formattedData = mmGetDateForDisplay(data);
             break;
-        case Model_CustomField::FIELDTYPE::BOOLEAN:
+        case Model_CustomField::TYPE_ID_BOOLEAN:
             v = wxString("TRUE|true|1").Contains(data);
             formattedData = (v) ? L"\u2713" : L"\u2717";
             break;

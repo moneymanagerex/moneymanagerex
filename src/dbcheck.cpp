@@ -57,7 +57,7 @@ bool dbCheck::checkAccounts()
     // Stocks
     const auto &stocks = Model_Stock::instance().all();
     for (const auto& stock : stocks)
-        if (!Model_Account::instance().get(stock.HELDAT) || (Model_Account::type(Model_Account::instance().get(stock.HELDAT)) != Model_Account::INVESTMENT))
+        if (!Model_Account::instance().get(stock.HELDAT) || (Model_Account::type_id(Model_Account::instance().get(stock.HELDAT)) != Model_Account::TYPE_ID_INVESTMENT))
         {
             result = false;
         }

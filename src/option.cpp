@@ -464,13 +464,13 @@ void Option::setHomePageIncExpRange(const int value)
 int Option::AccountImageId(const int account_id, const bool def, const bool ignoreClosure)
 {
     wxString acctStatus = VIEW_ACCOUNTS_OPEN_STR;
-    Model_Account::TYPE acctType = Model_Account::CHECKING;
+    Model_Account::TYPE_ID acctType = Model_Account::TYPE_ID_CHECKING;
     int selectedImage = img::SAVINGS_ACC_NORMAL_PNG; //Default value
 
     Model_Account::Data* account = Model_Account::instance().get(account_id);
     if (account)
     {
-        acctType = Model_Account::type(account);
+        acctType = Model_Account::type_id(account);
         acctStatus = account->STATUS;
     }
 
@@ -486,28 +486,28 @@ int Option::AccountImageId(const int account_id, const bool def, const bool igno
 
     switch (acctType)
     {
-    case (Model_Account::CHECKING) :
+    case (Model_Account::TYPE_ID_CHECKING) :
         selectedImage = img::SAVINGS_ACC_NORMAL_PNG;
         break;
-    case (Model_Account::TERM) :
+    case (Model_Account::TYPE_ID_TERM) :
         selectedImage = img::TERMACCOUNT_NORMAL_PNG;
         break;
-    case (Model_Account::INVESTMENT) :
+    case (Model_Account::TYPE_ID_INVESTMENT) :
         selectedImage = img::STOCK_ACC_NORMAL_PNG;
         break;
-    case (Model_Account::CREDIT_CARD) :
+    case (Model_Account::TYPE_ID_CREDIT_CARD) :
         selectedImage = img::CARD_ACC_NORMAL_PNG;
         break;
-    case (Model_Account::CASH) :
+    case (Model_Account::TYPE_ID_CASH) :
         selectedImage = img::CASH_ACC_NORMAL_PNG;
         break;
-    case (Model_Account::LOAN) :
+    case (Model_Account::TYPE_ID_LOAN) :
         selectedImage = img::LOAN_ACC_NORMAL_PNG;
         break;
-    case (Model_Account::ASSET) :
+    case (Model_Account::TYPE_ID_ASSET) :
         selectedImage = img::ASSET_NORMAL_PNG;
         break;
-    case (Model_Account::SHARES) :
+    case (Model_Account::TYPE_ID_SHARES) :
         selectedImage = img::LOAN_ACC_NORMAL_PNG;
         break;
     default:

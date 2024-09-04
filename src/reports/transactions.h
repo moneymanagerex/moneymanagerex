@@ -39,7 +39,7 @@ private:
     wxSharedPtr<mmFilterTransactionsDialog> m_transDialog;
     bool showColumnById(int num);
     void displayTotals(std::map<int, double> total, std::map<int, double> total_in_base_curr, int noOfCols);
-    void UDFCFormatHelper(Model_CustomField::FIELDTYPE type, int ref, wxString data, double val, int scale);
+    void UDFCFormatHelper(Model_CustomField::TYPE_ID type, int ref, wxString data, double val, int scale);
 
     mmHTMLBuilder hb;
     int m_noOfCols;

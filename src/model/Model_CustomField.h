@@ -26,8 +26,23 @@ class Model_CustomField : public Model<DB_Table_CUSTOMFIELD_V1>
 public:
     using Model<DB_Table_CUSTOMFIELD_V1>::get;
 
-    enum FIELDTYPE { STRING = 0, INTEGER, DECIMAL, BOOLEAN, DATE, TIME, SINGLECHOICE, MULTICHOICE, UNKNOWN = -1 };
-    static const std::vector<std::pair<FIELDTYPE, wxString> > FIELDTYPE_CHOICES;
+    enum TYPE_ID
+    {
+        TYPE_ID_STRING = 0,
+        TYPE_ID_INTEGER,
+        TYPE_ID_DECIMAL,
+        TYPE_ID_BOOLEAN,
+        TYPE_ID_DATE,
+        TYPE_ID_TIME,
+        TYPE_ID_SINGLECHOICE,
+        TYPE_ID_MULTICHOICE,
+        TYPE_ID_UNKNOWN = -1
+    };
+    static wxArrayString TYPE_STR;
+
+private:
+    static const std::vector<std::pair<TYPE_ID, wxString> > TYPE_CHOICES;
+    static const wxArrayString type_str_all();
 
 public:
     Model_CustomField();
@@ -50,11 +65,9 @@ public:
 
 public:
     bool Delete(const int& FieldID);
-    static const wxString fieldtype_desc(const int FieldTypeEnum);
-    static FIELDTYPE type(const Data* r);
-    static FIELDTYPE type(const Data& r);
-    static FIELDTYPE type(const wxString& value);
-    static const wxArrayString all_type();
+    static TYPE_ID type_id(const Data* r);
+    static TYPE_ID type_id(const Data& r);
+    static TYPE_ID type_id(const wxString& value);
     static const wxString getRegEx(const wxString& Properties);
     static const wxString getTooltip(const wxString& Properties);
     static int getReference(const wxString& Properties);
@@ -64,7 +77,7 @@ public:
     static const wxArrayString getUDFCList(DB_Table_CUSTOMFIELD_V1::Data* r);
     static const wxString getUDFC(const wxString& Properties);
     static const wxString getUDFCName(const wxString& ref_type, const wxString& name);
-    static FIELDTYPE getUDFCType(const wxString& ref_type, const wxString& name);
+    static TYPE_ID getUDFCType(const wxString& ref_type, const wxString& name);
     static const wxString getUDFCProperties(const wxString& ref_type, const wxString& name);
     static int getUDFCID(const wxString& ref_type, const wxString& name);
     static const std::map<wxString, int> getMatrix(Model_Attachment::REFTYPE reftype);
