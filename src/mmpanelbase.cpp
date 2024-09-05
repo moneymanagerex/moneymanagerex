@@ -132,8 +132,11 @@ void mmListCtrl::OnColRightClick(wxListEvent& event)
         menu.Append(MENU_HEADER_HIDE, _("Hide this column"));
         if (m_default_sort_column >= 0 && (m_columns[m_ColumnHeaderNbr].SORTABLE == true))
             menu.Append(MENU_HEADER_SORT, _("Order by this column"));
-        menu.Append(MENU_HEADER_MOVE_LEFT, _("Move column left"));
-        menu.Append(MENU_HEADER_MOVE_RIGHT, _("Move column right"));
+        // Do not show e.g. for Assets root list. Only for sublists.
+        if(m_real_columns.size() > 0) {
+            menu.Append(MENU_HEADER_MOVE_LEFT, _("Move column left"));
+            menu.Append(MENU_HEADER_MOVE_RIGHT, _("Move column right"));
+        }
         menu.Append(MENU_HEADER_RESET, _("Reset columns"));
         PopupMenu(&menu);
         this->SetFocus();
@@ -183,15 +186,17 @@ void mmListCtrl::OnHeaderSort(wxCommandEvent& WXUNUSED(event))
 
 void mmListCtrl::OnHeaderMove(wxCommandEvent& WXUNUSED(event), int direction)
 {
-    if (0 <= m_ColumnHeaderNbr + direction && static_cast<int>(m_columns.size()) > m_ColumnHeaderNbr + direction) {
-        wxArrayString columnList = GetColumnsOrder();
-        wxLogDebug("Moving column %d (%s) %d in list: %s", m_ColumnHeaderNbr, m_columns[m_ColumnHeaderNbr].HEADER.c_str(), direction, wxJoin(columnList, '|'));
+    wxArrayString columnList = GetColumnsOrder();
+    wxLogDebug("Moving column %d (%s) %d in list: %s", m_ColumnHeaderNbr, m_columns[m_ColumnHeaderNbr].HEADER.c_str(), direction, wxJoin(columnList, '|'));
+    if (0 <= m_ColumnHeaderNbr + direction && static_cast<int>(m_columns.size()) > m_ColumnHeaderNbr + direction
+                                           && static_cast<int>(m_real_columns.size()) > m_ColumnHeaderNbr + direction
+                                           && static_cast<int>(columnList.size()) > m_ColumnHeaderNbr + direction){
         // wxLogDebug("m_real_columns: %s", wxJoin(m_real_columns, '|'));
 
         // swap order of column data
         std::swap(m_real_columns[m_ColumnHeaderNbr + direction], m_real_columns[m_ColumnHeaderNbr]);
         std::swap(m_columns[m_ColumnHeaderNbr + direction], m_columns[m_ColumnHeaderNbr]);
-        wxSwap(columnList[m_ColumnHeaderNbr], columnList[m_ColumnHeaderNbr + direction]);
+        std::swap(columnList[m_ColumnHeaderNbr + direction], columnList[m_ColumnHeaderNbr]);
         SetColumnsOrder(columnList);
     
         // swap column headers & widths

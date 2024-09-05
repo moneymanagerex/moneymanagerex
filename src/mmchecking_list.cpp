@@ -88,33 +88,6 @@ TransactionListCtrl::EColumn TransactionListCtrl::toEColumn(const unsigned long 
         return res;
 }
 
-std::map<int, wxString> TransactionListCtrl::COLUMN_NAMES = {};
-
-void TransactionListCtrl::InitializeColumnHeaders()
-{
-    COLUMN_NAMES = { { COL_ID, wxGetTranslation("ID") },
-                     { COL_DATE, wxGetTranslation("Date") },
-                     { COL_TIME, wxGetTranslation("Time") },
-                     { COL_NUMBER, wxGetTranslation("Number") },
-                     { COL_ACCOUNT, wxGetTranslation("Account") },
-                     { COL_PAYEE_STR, wxGetTranslation("Payee") },
-                     { COL_STATUS, wxGetTranslation("Status") },
-                     { COL_CATEGORY, wxGetTranslation("Category") },
-                     { COL_TAGS, wxGetTranslation("Tags") },
-                     { COL_WITHDRAWAL, wxGetTranslation("Withdrawal") },
-                     { COL_DEPOSIT, wxGetTranslation("Deposit") },
-                     { COL_BALANCE, wxGetTranslation("Balance") },
-                     { COL_CREDIT, wxGetTranslation("Credit") },
-                     { COL_NOTES, wxGetTranslation("Notes") },
-                     { COL_DELETEDTIME, wxGetTranslation("Deleted On") },
-                     { COL_UDFC01, "UDFC01" },
-                     { COL_UDFC02, "UDFC02" },
-                     { COL_UDFC03, "UDFC03" },
-                     { COL_UDFC04, "UDFC04" },
-                     { COL_UDFC05, "UDFC05" },
-                     { COL_UPDATEDTIME, wxGetTranslation("Last Updated") } };
-}
-
 void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
 {
     const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);

@@ -38,7 +38,6 @@
 #include "sharetransactiondialog.h"
 #include "assetdialog.h"
 #include "billsdepositsdialog.h"
-#include "columnorder.h"
 #include <wx/clipbrd.h>
 #include <float.h>
 
@@ -404,7 +403,7 @@ void mmCheckingPanel::CreateControls()
     // Get sorted columns list and update the sorted columns with missing columns if needed.
     wxArrayString columnList, sortedColumnList;
     sortedColumnList = m_listCtrlAccount->GetColumnsOrder();
-    wxLogDebug("CreateControls: getColumnList() = %s", wxJoin(sortedColumnList, '|'));
+     wxLogDebug("CreateControls: getColumnList() = %s", wxJoin(sortedColumnList, '|'));
 
     // sort m_columns according to sortedColumnsList
     std::vector<PANEL_COLUMN> sortedColumns = {};
