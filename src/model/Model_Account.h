@@ -32,11 +32,43 @@ public:
     using Model<DB_Table_ACCOUNTLIST_V1>::remove;
     using Model<DB_Table_ACCOUNTLIST_V1>::get;
 
-    enum STATUS_ENUM { OPEN = 0, CLOSED };
-    enum TYPE { CASH = 0, CHECKING, CREDIT_CARD, LOAN, TERM, INVESTMENT, ASSET, SHARES, MAX};
+    enum TYPE_ID
+    {
+        TYPE_ID_CASH = 0,
+        TYPE_ID_CHECKING,
+        TYPE_ID_CREDIT_CARD,
+        TYPE_ID_LOAN,
+        TYPE_ID_TERM,
+        TYPE_ID_INVESTMENT,
+        TYPE_ID_ASSET,
+        TYPE_ID_SHARES,
+        TYPE_ID_MAX
+    };
+    enum STATUS_ID
+    {
+        STATUS_ID_OPEN = 0,
+        STATUS_ID_CLOSED
+    };
+    static wxArrayString TYPE_STR;
+    static const wxString TYPE_STR_CASH;
+    static const wxString TYPE_STR_CHECKING;
+    static const wxString TYPE_STR_CREDIT_CARD;
+    static const wxString TYPE_STR_LOAN;
+    static const wxString TYPE_STR_TERM;
+    static const wxString TYPE_STR_INVESTMENT;
+    static const wxString TYPE_STR_ASSET;
+    static const wxString TYPE_STR_SHARES;
+    static wxArrayString STATUS_STR;
+    static const wxString STATUS_STR_OPEN;
+    static const wxString STATUS_STR_CLOSED;
 
-    static const std::vector<std::pair<STATUS_ENUM, wxString> > STATUS_CHOICES;
-    static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
+public:
+    static const std::vector<std::pair<TYPE_ID, wxString> > TYPE_CHOICES;
+    static const std::vector<std::pair<STATUS_ID, wxString> > STATUS_CHOICES;
+
+private:
+    static wxArrayString type_str_all();
+    static wxArrayString status_str_all();
 
 public:
     Model_Account();
@@ -73,9 +105,6 @@ public:
     wxArrayString all_checking_account_names(bool skip_closed = false);
     const std::map<wxString, int> all_accounts(bool skip_closed = false);
 
-    static wxArrayString all_status();
-    static wxArrayString all_type();
-
     static Model_Currency::Data* currency(const Data* r);
     static Model_Currency::Data* currency(const Data& r);
 
@@ -95,12 +124,12 @@ public:
     static wxString toString(double value, const Data* r, int precision = 2);
     static wxString toString(double value, const Data& r, int precision = 2);
 
-    static STATUS_ENUM status(const Data* account);
-    static STATUS_ENUM status(const Data& account);
-    static DB_Table_ACCOUNTLIST_V1::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL);
+    static STATUS_ID status_id(const Data* account);
+    static STATUS_ID status_id(const Data& account);
+    static DB_Table_ACCOUNTLIST_V1::STATUS STATUS(STATUS_ID status, OP op = EQUAL);
 
-    static TYPE type(const Data* account);
-    static TYPE type(const Data& account);
+    static TYPE_ID type_id(const Data* account);
+    static TYPE_ID type_id(const Data& account);
 
     static bool FAVORITEACCT(const Data* r);
     static bool FAVORITEACCT(const Data& r);

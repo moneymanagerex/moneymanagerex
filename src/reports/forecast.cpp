@@ -52,7 +52,7 @@ wxString mmReportForecast::getHTMLText()
 
     for (const auto & trx : all_trans)
     {
-        if (Model_Checking::type(trx) == Model_Checking::TRANSFER || Model_Checking::foreignTransactionAsTransfer(trx))
+        if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER || Model_Checking::foreignTransactionAsTransfer(trx))
             continue;
         const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
         amount_by_day[trx.TRANSDATE].first += Model_Checking::withdrawal(trx, -1) * convRate;

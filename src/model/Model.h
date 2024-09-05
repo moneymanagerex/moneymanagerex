@@ -122,7 +122,7 @@ public:
     Args: One or more Specialised Parameters creating SQL statement conditions used after the WHERE statement.
     Specialised Parameters: Table_Column_Name(content)[, Table_Column_Name(content)[, ...]]
     Example:
-    Model_Asset::ASSETID(2), Model_Asset::ASSETTYPE(Model_Asset::TYPE_JEWELLERY)
+    Model_Asset::ASSETID(2), Model_Asset::ASSETTYPE(Model_Asset::TYPE_ID_JEWELLERY)
     produces SQL statement condition: ASSETID = 2 AND ASSETTYPE = "Jewellery"
     * Returns a Data_Set containing the addresses of the items found.
     * The Data_Set is empty when nothing found.
@@ -138,7 +138,7 @@ public:
     Args: One or more Specialised Parameters creating SQL statement conditions used after the WHERE statement.
     Specialised Parameters: Table_Column_Name(content)[, Table_Column_Name(content)[, ...]]
     Example:
-    Model_Asset::ASSETID(2), Model_Asset::ASSETTYPE(Model_Asset::TYPE_JEWELLERY)
+    Model_Asset::ASSETID(2), Model_Asset::ASSETTYPE(Model_Asset::TYPE_ID_JEWELLERY)
     produces SQL statement condition: ASSETID = 2 OR ASSETTYPE = "Jewellery"
     * Returns a Data_Set containing the addresses of the items found.
     * The Data_Set is empty when nothing found.

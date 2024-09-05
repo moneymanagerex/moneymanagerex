@@ -72,7 +72,7 @@ mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, const Model_Currency::Data 
         m_currency->SCALE = 100;
         m_currency->DECIMAL_POINT = ".";
         m_currency->GROUP_SEPARATOR = ",";
-        m_currency->CURRENCY_TYPE = Model_Currency::FIAT_STR;
+        m_currency->CURRENCY_TYPE = Model_Currency::TYPE_STR_FIAT;
     }
 
     // Check if locale will be used in preference

@@ -505,10 +505,10 @@ void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account, const
     if (name.empty()) return;
     Model_Account::Data* share_account = Model_Account::instance().create();
     share_account->ACCOUNTNAME = name;
-    share_account->ACCOUNTTYPE = Model_Account::all_type()[Model_Account::SHARES];
+    share_account->ACCOUNTTYPE = Model_Account::TYPE_STR_SHARES;
 
     share_account->FAVORITEACCT = "TRUE";
-    share_account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
+    share_account->STATUS = Model_Account::STATUS_STR_OPEN;
     share_account->INITIALBAL = 0;
     share_account->INITIALDATE = openingDate;
     share_account->CURRENCYID = stock_account->CURRENCYID;

@@ -356,9 +356,9 @@ void mmReportsPanel::CreateControls()
             m_accounts = new wxChoice(itemPanel3, ID_CHOICE_ACCOUNTS);
             m_accounts->Append(_("All Accounts:"));
             m_accounts->Append(_("Specific Accounts:"));
-            for (const auto& e : Model_Account::instance().TYPE_CHOICES)
+            for (const auto& e : Model_Account::TYPE_CHOICES)
             {
-                if (e.first != Model_Account::INVESTMENT) {
+                if (e.first != Model_Account::TYPE_ID_INVESTMENT) {
                     m_accounts->Append(wxGetTranslation(e.second), new wxStringClientData(e.second));
                 }
             }

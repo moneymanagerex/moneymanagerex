@@ -178,7 +178,7 @@ bool mmWebApp::WebApp_UpdateAccount()
 
     for (const auto &account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
-        if (Model_Account::type(account) != Model_Account::INVESTMENT && Model_Account::status(account) != Model_Account::CLOSED)
+        if (Model_Account::type_id(account) != Model_Account::TYPE_ID_INVESTMENT && Model_Account::status_id(account) != Model_Account::STATUS_ID_CLOSED)
         {
             json_writer.StartObject();
             json_writer.Key("AccountName");
@@ -476,13 +476,13 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     }
     else
     {
-        TrStatus = "F";
+        TrStatus = Model_Checking::STATUS_KEY_FOLLOWUP;
         wxString FistAccountName;
 
         //Search first bank account
         for (const auto &FirstAccount : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
         {
-            if (Model_Account::type(FirstAccount) != Model_Account::INVESTMENT && Model_Account::type(FirstAccount) != Model_Account::TERM)
+            if (Model_Account::type_id(FirstAccount) != Model_Account::TYPE_ID_INVESTMENT && Model_Account::type_id(FirstAccount) != Model_Account::TYPE_ID_TERM)
             {
                 accountName = FirstAccount.ACCOUNTNAME;
                 AccountID = FirstAccount.ACCOUNTID;

@@ -100,9 +100,9 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
         grid_sizer_custom->Add(Description, g_flagsH);
 
-        switch (Model_CustomField::type(field))
+        switch (Model_CustomField::type_id(field))
         {
-        case Model_CustomField::STRING:
+        case Model_CustomField::TYPE_ID_STRING:
         {
             const auto& data = fieldData->CONTENT;
             wxTextCtrl* CustomString = new wxTextCtrl(scrolled_window, controlID, data, wxDefaultPosition, wxDefaultSize);
@@ -122,8 +122,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             CustomString->Connect(controlID, wxEVT_TEXT, wxCommandEventHandler(mmCustomData::OnStringChanged), nullptr, this);
             break;
         }
-        case Model_CustomField::INTEGER:
-        case Model_CustomField::DECIMAL:
+        case Model_CustomField::TYPE_ID_INTEGER:
+        case Model_CustomField::TYPE_ID_DECIMAL:
         {
             int digitScale = Model_CustomField::getDigitScale(field.PROPERTIES);
             wxString content = cleanseNumberString(fieldData->CONTENT, digitScale > 0);
@@ -150,7 +150,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
             break;
         }
-        case Model_CustomField::BOOLEAN:
+        case Model_CustomField::TYPE_ID_BOOLEAN:
         {
             wxRadioButton* CustomBooleanF = new wxRadioButton(scrolled_window, controlID
                 , _("False"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
@@ -177,7 +177,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
             break;
         }
-        case Model_CustomField::DATE:
+        case Model_CustomField::TYPE_ID_DATE:
         {
             wxDate value;
             if (!value.ParseDate(fieldData->CONTENT)) {
@@ -196,7 +196,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
             break;
         }
-        case Model_CustomField::TIME:
+        case Model_CustomField::TYPE_ID_TIME:
         {
             wxDateTime value;
             if (!value.ParseTime(fieldData->CONTENT)) {
@@ -216,7 +216,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
             break;
         }
-        case Model_CustomField::SINGLECHOICE:
+        case Model_CustomField::TYPE_ID_SINGLECHOICE:
         {
             wxArrayString Choices = Model_CustomField::getChoices(field.PROPERTIES);
             Choices.Sort();
@@ -241,7 +241,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             CustomChoice->Connect(controlID, wxEVT_CHOICE, wxCommandEventHandler(mmCustomData::OnSingleChoice), nullptr, this);
             break;
         }
-        case Model_CustomField::MULTICHOICE:
+        case Model_CustomField::TYPE_ID_MULTICHOICE:
         {
             const auto& content = fieldData->CONTENT;
             const auto& name = field.DESCRIPTION;
@@ -285,7 +285,7 @@ void mmCustomData::OnMultiChoice(wxCommandEvent& event)
     }
 
     const auto& name = button->GetName();
-    const wxString& type = Model_CustomField::FIELDTYPE_CHOICES[Model_CustomField::MULTICHOICE].second;
+    const wxString& type = Model_CustomField::TYPE_STR[Model_CustomField::TYPE_ID_MULTICHOICE];
 
     Model_CustomField::Data_Set fields = Model_CustomField::instance()
         .find(Model_CustomField::REFTYPE(m_ref_type)
@@ -489,7 +489,7 @@ bool mmCustomData::SaveCustomValues(int ref_id)
             fieldData->CONTENT = data;
             wxLogDebug("Control:%i Type:%s Value:%s"
                 , controlID
-                , Model_CustomField::all_type()[Model_CustomField::type(field)]
+                , Model_CustomField::TYPE_STR[Model_CustomField::type_id(field)]
                 , data);
 
             if (!fieldData->equals(&oldData)) updateTimestamp = true;
@@ -633,7 +633,7 @@ int mmCustomData::GetWidgetType(wxWindowID controlID) const
     {
         if (entry.FIELDID == control_id)
         {
-            return Model_CustomField::type(entry);
+            return Model_CustomField::type_id(entry);
         }
     }
     wxFAIL_MSG("unknown custom field type");
@@ -765,8 +765,8 @@ bool mmCustomData::ValidateCustomValues(int ref_id)
         if (!cb || !cb->GetValue())
             continue;
 
-        if (GetWidgetType(controlID) == Model_CustomField::DECIMAL 
-                || GetWidgetType(controlID) == Model_CustomField::INTEGER)
+        if (GetWidgetType(controlID) == Model_CustomField::TYPE_ID_DECIMAL 
+                || GetWidgetType(controlID) == Model_CustomField::TYPE_ID_INTEGER)
         {
             wxWindow* w = FindWindowById(controlID, m_dialog);
             if (w)

@@ -122,9 +122,9 @@ void mmAssetDialog::dataToControls()
 
     m_valueChangeRate->SetValue(m_asset->VALUECHANGERATE, 3);
 
-    m_valueChange->SetSelection(Model_Asset::rate(m_asset));
-    enableDisableRate(Model_Asset::rate(m_asset) != Model_Asset::RATE_NONE);
-    m_assetType->SetSelection(Model_Asset::type(m_asset));
+    m_valueChange->SetSelection(Model_Asset::change_id(m_asset));
+    enableDisableRate(Model_Asset::change_id(m_asset) != Model_Asset::CHANGE_ID_NONE);
+    m_assetType->SetSelection(Model_Asset::type_id(m_asset));
 
     // Set up the transaction if this is the first entry.
     if (translink.empty())
@@ -190,11 +190,11 @@ void mmAssetDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _("Asset Type")), g_flagsH);
 
     m_assetType = new wxChoice(asset_details_panel, wxID_STATIC);
-    for (const auto& a : Model_Asset::all_type())
+    for (const auto& a : Model_Asset::TYPE_STR)
         m_assetType->Append(wxGetTranslation(a), new wxStringClientData(a));
 
     mmToolTip(m_assetType, _("Select type of asset"));
-    m_assetType->SetSelection(Model_Asset::TYPE_PROPERTY);
+    m_assetType->SetSelection(Model_Asset::TYPE_ID_PROPERTY);
     itemFlexGridSizer6->Add(m_assetType, g_flagsExpand);
 
     wxStaticText* v = new wxStaticText(asset_details_panel, wxID_STATIC, _("Value"));
@@ -210,11 +210,11 @@ void mmAssetDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _("Change in Value")), g_flagsH);
 
     m_valueChange = new wxChoice(asset_details_panel, IDC_COMBO_TYPE);
-    for(const auto& a : Model_Asset::all_rate())
+    for(const auto& a : Model_Asset::CHANGE_STR)
         m_valueChange->Append(wxGetTranslation(a));
 
     mmToolTip(m_valueChange, _("Specify if the value of the asset changes over time"));
-    m_valueChange->SetSelection(Model_Asset::RATE_NONE);
+    m_valueChange->SetSelection(Model_Asset::CHANGE_ID_NONE);
     itemFlexGridSizer6->Add(m_valueChange, g_flagsExpand);
 
     m_valueChangeRateLabel = new wxStaticText(asset_details_panel, wxID_STATIC, _("% Rate"));
@@ -301,7 +301,7 @@ void mmAssetDialog::OnChangeAppreciationType(wxCommandEvent& /*event*/)
 {
     int selection = m_valueChange->GetSelection();
     // Disable for "None", Enable for "Appreciates" or "Depreciates"
-    enableDisableRate(selection != Model_Asset::RATE_NONE);
+    enableDisableRate(selection != Model_Asset::CHANGE_ID_NONE);
 }
 
 void mmAssetDialog::enableDisableRate(bool en)
@@ -337,7 +337,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     }
 
     int valueChangeType = m_valueChange->GetSelection();
-    if (valueChangeType != Model_Asset::RATE_NONE && !m_valueChangeRate->checkValue(valueChangeRate))
+    if (valueChangeType != Model_Asset::CHANGE_ID_NONE && !m_valueChangeRate->checkValue(valueChangeRate))
     {
         return;
     }
@@ -352,11 +352,11 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     m_asset->STARTDATE        = m_dpc->GetValue().FormatISODate();
     m_asset->NOTES            = m_notes->GetValue().Trim();
     m_asset->ASSETNAME        = name;
-    m_asset->ASSETSTATUS      = Model_Asset::OPEN_STR;
-    m_asset->VALUECHANGEMODE  = Model_Asset::PERCENTAGE_STR;  
+    m_asset->ASSETSTATUS      = Model_Asset::STATUS_STR[Model_Asset::STATUS_ID_OPEN];
+    m_asset->VALUECHANGEMODE  = Model_Asset::CHANGEMODE_STR[Model_Asset::CHANGEMODE_ID_PERCENTAGE];  
     m_asset->CURRENCYID       = -1; 
     m_asset->VALUE            = value;
-    m_asset->VALUECHANGE      = Model_Asset::all_rate()[valueChangeType];
+    m_asset->VALUECHANGE      = Model_Asset::CHANGE_STR[valueChangeType];
     m_asset->VALUECHANGERATE  = valueChangeRate;
     m_asset->ASSETTYPE        = asset_type;
 
@@ -414,9 +414,9 @@ void mmAssetDialog::CreateAssetAccount()
 {
     Model_Account::Data* asset_account = Model_Account::instance().create();
     asset_account->ACCOUNTNAME = m_asset->ASSETNAME;
-    asset_account->ACCOUNTTYPE = Model_Account::all_type()[Model_Account::ASSET];
+    asset_account->ACCOUNTTYPE = Model_Account::TYPE_STR_ASSET;
     asset_account->FAVORITEACCT = "TRUE";
-    asset_account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
+    asset_account->STATUS = Model_Account::STATUS_STR_OPEN;
     asset_account->INITIALBAL = 0;
     asset_account->INITIALDATE = wxDate::Today().FormatISODate();
     asset_account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;

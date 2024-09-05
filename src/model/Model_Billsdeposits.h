@@ -76,10 +76,10 @@ public:
         int BDID = 0;
         // This relates the 'Date Due' field.
         wxString TRANSDATE = wxDateTime::Now().FormatISOCombined();
-        wxString STATUS = Model_Checking::all_status()[Model_Checking::NONE];
+        wxString STATUS = Model_Checking::STATUS_STR_NONE;
         int ACCOUNTID = -1;
         int TOACCOUNTID = -1;
-        wxString TRANSCODE = Model_Checking::WITHDRAWAL_STR;
+        wxString TRANSCODE = Model_Checking::TYPE_STR_WITHDRAWAL;
         int CATEGID = -1;
         double TRANSAMOUNT = 0;
         double TOTRANSAMOUNT = 0;
@@ -134,10 +134,10 @@ public:
     static wxDate NEXTOCCURRENCEDATE(const Data* r);
     // This relates the 'Date Paid' field
     static wxDate NEXTOCCURRENCEDATE(const Data& r);
-    static Model_Checking::TYPE type(const Data* r);
-    static Model_Checking::TYPE type(const Data& r);
-    static Model_Checking::STATUS_ENUM status(const Data* r);
-    static Model_Checking::STATUS_ENUM status(const Data& r);
+    static Model_Checking::TYPE_ID type_id(const Data* r);
+    static Model_Checking::TYPE_ID type_id(const Data& r);
+    static Model_Checking::STATUS_ID status_id(const Data* r);
+    static Model_Checking::STATUS_ID status_id(const Data& r);
 
     /**
     * Decodes the internal fields and sets the condition of the following parameters:
@@ -162,8 +162,8 @@ public:
     */
     bool remove(int id);
 
-    static DB_Table_BILLSDEPOSITS_V1::STATUS STATUS(Model_Checking::STATUS_ENUM status, OP op = EQUAL);
-    static DB_Table_BILLSDEPOSITS_V1::TRANSCODE TRANSCODE(Model_Checking::TYPE type, OP op = EQUAL);
+    static DB_Table_BILLSDEPOSITS_V1::STATUS STATUS(Model_Checking::STATUS_ID status, OP op = EQUAL);
+    static DB_Table_BILLSDEPOSITS_V1::TRANSCODE TRANSCODE(Model_Checking::TYPE_ID type, OP op = EQUAL);
 
     static const Model_Budgetsplittransaction::Data_Set splittransaction(const Data* r);
     static const Model_Budgetsplittransaction::Data_Set splittransaction(const Data& r);

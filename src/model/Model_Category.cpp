@@ -232,28 +232,28 @@ bool Model_Category::has_income(int id)
     {
         if (!tran.DELETEDTIME.IsEmpty()) continue;
 
-        switch (Model_Checking::type(tran))
+        switch (Model_Checking::type_id(tran))
         {
-        case Model_Checking::WITHDRAWAL:
+        case Model_Checking::TYPE_ID_WITHDRAWAL:
             sum -= tran.TRANSAMOUNT;
             break;
-        case Model_Checking::DEPOSIT:
+        case Model_Checking::TYPE_ID_DEPOSIT:
             sum += tran.TRANSAMOUNT;
-        case Model_Checking::TRANSFER:
+        case Model_Checking::TYPE_ID_TRANSFER:
         default:
             break;
         }
 
         for (const auto& split: splits[tran.id()])
         {
-            switch (Model_Checking::type(tran))
+            switch (Model_Checking::type_id(tran))
             {
-            case Model_Checking::WITHDRAWAL:
+            case Model_Checking::TYPE_ID_WITHDRAWAL:
                 sum -= split.SPLITTRANSAMOUNT;
                 break;
-            case Model_Checking::DEPOSIT:
+            case Model_Checking::TYPE_ID_DEPOSIT:
                 sum += split.SPLITTRANSAMOUNT;
-            case Model_Checking::TRANSFER:
+            case Model_Checking::TYPE_ID_TRANSFER:
             default:
                 break;
             }
@@ -298,7 +298,7 @@ void Model_Category::getCategoryStats(
     //Calculations
     auto splits = Model_Splittransaction::instance().get_all();
     for (const auto& transaction : Model_Checking::instance().find(
-        Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
+        Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
         , Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL)))
     {
@@ -328,7 +328,7 @@ void Model_Category::getCategoryStats(
 
         if (categID > -1)
         {
-            if (Model_Checking::type(transaction) != Model_Checking::TRANSFER)
+            if (Model_Checking::type_id(transaction) != Model_Checking::TYPE_ID_TRANSFER)
             {
                 // Do not include asset or stock transfers in income expense calculations.
                 if (Model_Checking::foreignTransactionAsTransfer(transaction))
@@ -349,7 +349,7 @@ void Model_Category::getCategoryStats(
             for (const auto& entry : splits[transaction.id()])
             {
                 categoryStats[entry.CATEGID][month] += entry.SPLITTRANSAMOUNT
-                    * convRate * ((Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL) ? -1 : 1);
+                    * convRate * ((Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_WITHDRAWAL) ? -1 : 1);
             }
         }
     }

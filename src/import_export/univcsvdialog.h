@@ -130,7 +130,7 @@ private:
     struct tran_holder
     {
         wxDateTime Date;
-        wxString Type = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
+        wxString Type = Model_Checking::TYPE_STR_WITHDRAWAL;
         wxString Status = "";
         int ToAccountID = -1;
         double ToAmount = 0.0;

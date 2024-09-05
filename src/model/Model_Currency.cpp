@@ -33,6 +33,16 @@ constexpr auto LIMIT = 1e-10;
 static wxString s_locale;
 static wxString s_use_locale;
 
+const std::vector<std::pair<Model_Currency::TYPE_ID, wxString> > Model_Currency::TYPE_CHOICES =
+{
+    { Model_Currency::TYPE_ID_FIAT,   wxString(wxTRANSLATE("Fiat")) },
+    { Model_Currency::TYPE_ID_CRYPTO, wxString(wxTRANSLATE("Crypto")) }
+};
+
+wxArrayString Model_Currency::TYPE_STR = type_str_all();
+const wxString Model_Currency::TYPE_STR_FIAT   = TYPE_STR[TYPE_ID_FIAT];
+const wxString Model_Currency::TYPE_STR_CRYPTO = TYPE_STR[TYPE_ID_CRYPTO];
+
 Model_Currency::Model_Currency()
     : Model<DB_Table_CURRENCYFORMATS_V1>()
 {
@@ -64,39 +74,35 @@ Model_Currency& Model_Currency::instance()
     return Singleton<Model_Currency>::instance();
 }
 
-const std::vector<std::pair<Model_Currency::CURRENCYTYPE, wxString> > Model_Currency::CURRENCYTYPE_CHOICES =
-{
-    {Model_Currency::FIAT, wxString(wxTRANSLATE("Fiat"))}
-    , {Model_Currency::CRYPTO, wxString(wxTRANSLATE("Crypto"))}
-};
-
-const wxString Model_Currency::FIAT_STR = all_currencytype()[FIAT];
-const wxString Model_Currency::CRYPTO_STR = all_currencytype()[CRYPTO];
-
-wxArrayString Model_Currency::all_currencytype()
+wxArrayString Model_Currency::type_str_all()
 {
     wxArrayString types;
-    for (const auto& item : CURRENCYTYPE_CHOICES) types.Add(wxGetTranslation(item.second));
+    int i = 0;
+    for (const auto& item : TYPE_CHOICES)
+    {
+        wxASSERT_MSG(item.first == i++, "Wrong order in Model_Currency::TYPE_CHOICES");
+        types.Add(item.second);
+    }
     return types;
 }
 
-Model_Currency::CURRENCYTYPE Model_Currency::currencytype(const Data* r)
+Model_Currency::TYPE_ID Model_Currency::type_id(const Data* r)
 {
-    for (const auto &entry : CURRENCYTYPE_CHOICES)
+    for (const auto &entry : TYPE_CHOICES)
     {
         if (r->CURRENCY_TYPE.CmpNoCase(entry.second) == 0) return entry.first;
     }
-    return FIAT;
+    return TYPE_ID_FIAT;
 }
 
-Model_Currency::CURRENCYTYPE Model_Currency::currencytype(const Data& r)
+Model_Currency::TYPE_ID Model_Currency::type_id(const Data& r)
 {
-    return currencytype(&r);
+    return type_id(&r);
 }
 
-DB_Table_CURRENCYFORMATS_V1::CURRENCY_TYPE Model_Currency::CURRENCY_TYPE(CURRENCYTYPE currencytype, OP op)
+DB_Table_CURRENCYFORMATS_V1::CURRENCY_TYPE Model_Currency::CURRENCY_TYPE(TYPE_ID currencytype, OP op)
 {
-    return DB_Table_CURRENCYFORMATS_V1::CURRENCY_TYPE(all_currencytype()[currencytype], op);
+    return DB_Table_CURRENCYFORMATS_V1::CURRENCY_TYPE(Model_Currency::TYPE_STR[currencytype], op);
 }
 
 const wxArrayString Model_Currency::all_currency_names()
@@ -174,7 +180,7 @@ std::map<wxDateTime, int> Model_Currency::DateUsed(int CurrencyID)
     const auto &accounts = Model_Account::instance().find(CURRENCYID(CurrencyID));
     for (const auto &account : accounts)
     {
-        if (Model_Account::type(account) == Model_Account::TYPE::INVESTMENT)
+        if (Model_Account::type_id(account) == Model_Account::TYPE_ID_INVESTMENT)
         {
             for (const auto trans : Model_Stock::instance().find(Model_Stock::HELDAT(account.ACCOUNTID)))
             {
