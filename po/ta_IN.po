@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-09-04 03:09\n"
+"PO-Revision-Date: 2024-09-08 16:08\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -3693,7 +3693,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1500 stockdialog.cpp:638
 msgid "Please confirm saving"
-msgstr ""
+msgstr "சேமிப்பை உறுதிப்படுத்தவும்"
 
 #: import_export/univcsvdialog.cpp:1534
 msgid "No imported transactions!"
@@ -3705,7 +3705,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1557 import_export/univcsvdialog.cpp:1738
 msgid "Export"
-msgstr ""
+msgstr "ஏற்றுமதி"
 
 #: import_export/univcsvdialog.cpp:1567
 msgid "Overwrite existing file?"
@@ -3725,7 +3725,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1582 mmSimpleDialogs.cpp:1020
 msgid "Invalid Account"
-msgstr ""
+msgstr "தவறான கணக்கு"
 
 #: import_export/univcsvdialog.cpp:1737
 #, c-format
@@ -3759,7 +3759,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:2231
 msgid "All Files"
-msgstr ""
+msgstr "அனைத்து கோப்புகள்"
 
 #: import_export/univcsvdialog.cpp:2679
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
@@ -3767,7 +3767,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:2679
 msgid "Enter a value"
-msgstr ""
+msgstr "ஒரு மதிப்பை உள்ளிடவும்"
 
 #: import_export/univcsvdialog.cpp:2689
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
