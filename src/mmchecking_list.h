@@ -24,6 +24,7 @@ Copyright (C) 2021-2024 Mark Whalley (mark@ipx.co.uk)
 
 #include "mmpanelbase.h"
 #include "mmcheckingpanel.h"
+#include "fusedtransaction.h"
 
 class mmCheckingPanel;
 
@@ -38,12 +39,15 @@ public:
     ~TransactionListCtrl();
 
     void createColumns(mmListCtrl &lst);
-    Model_Checking::Full_Data_Set m_trans;
+    Fused_Transaction::Full_Data_Set m_trans;
     void markSelectedTransaction();
     void DeleteTransactionsByStatus(const wxString& status);
     void resetColumns();
 
 public:
+    // id represents TRANSID if repeat_num == 0, or BDID otherwise
+    typedef std::pair<int /* id */, int /* repeat_num */> id_t;
+
     enum EColumn
     {
         COL_IMGSTATUS = 0,
@@ -95,6 +99,8 @@ public:
     void OnRestoreViewedTransaction(wxCommandEvent&);
     void OnEditTransaction(wxCommandEvent& event);
     void OnDuplicateTransaction(wxCommandEvent& event);
+    void OnEnterScheduled(wxCommandEvent& event);
+    void OnSkipScheduled(wxCommandEvent& event);
     void OnSetUserColour(wxCommandEvent& event);
     void OnMoveTransaction(wxCommandEvent& event);
     void OnOpenAttachment(wxCommandEvent& event);
@@ -106,9 +112,8 @@ public:
     void refreshVisualList(bool filter = true);
     void sortTable();
 public:
-    std::vector<int> getSelectedForCopy() const;
-
-    std::vector<int> getSelectedId() const;
+    std::vector<id_t> getSelectedForCopy() const;
+    std::vector<id_t> getSelectedId() const;
     void setSelectedID(int v);
     void doSearchText(const wxString& value);
     /* Getter for Virtual List Control */
@@ -121,9 +126,9 @@ protected:
 private:
     void markItem(long selectedItem);
 
-    std::vector<int> m_selectedForCopy; // the copied transactions (held for pasting)
-    std::vector<int> m_pasted_id;       // the last pasted transactions
-    std::vector<int> m_selected_id;     // the selected transactions
+    std::vector<id_t> m_selectedForCopy; // the copied transactions (held for pasting)
+    std::vector<id_t> m_pasted_id;       // the last pasted transactions
+    std::vector<id_t> m_selected_id;     // the selected transactions
     enum
     {
         MENU_TREEPOPUP_MARKRECONCILED = wxID_HIGHEST + 150,
@@ -150,6 +155,8 @@ private:
         MENU_ON_PASTE_TRANSACTION,
         MENU_ON_NEW_TRANSACTION,
         MENU_ON_DUPLICATE_TRANSACTION,
+        MENU_ON_ENTER_SCHEDULED,
+        MENU_ON_SKIP_SCHEDULED,
 
         MENU_ON_SET_UDC0, //Default color
         MENU_ON_SET_UDC1, //User defined color 1
@@ -232,9 +239,9 @@ private:
 //----------------------------------------------------------------------------
 
 inline bool TransactionListCtrl::getSortOrder() const { return m_asc; }
-inline std::vector<int> TransactionListCtrl::getSelectedForCopy() const { return m_selectedForCopy; }
+inline std::vector<TransactionListCtrl::id_t> TransactionListCtrl::getSelectedForCopy() const { return m_selectedForCopy; }
 
-inline std::vector<int> TransactionListCtrl::getSelectedId() const { return m_selected_id; }
+inline std::vector<TransactionListCtrl::id_t> TransactionListCtrl::getSelectedId() const { return m_selected_id; }
 
 inline void TransactionListCtrl::setVisibleItemIndex(long v) { m_topItemIndex = v; }
 

@@ -168,7 +168,7 @@ void mmReportCashFlow::getTransactions()
             trx.TOTRANSAMOUNT = entry.TOTRANSAMOUNT;
             if (entry.CATEGID == -1)
             {
-                for (const auto& split_item : Model_Billsdeposits::splittransaction(entry))
+                for (const auto& split_item : Model_Billsdeposits::split(entry))
                 {
                     trx.CATEGID = split_item.CATEGID;
                     trx.TRANSAMOUNT = split_item.SPLITTRANSAMOUNT;

@@ -554,7 +554,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 
                 Model_Splittransaction::Cache checking_splits;
                 std::vector<wxArrayInt> splitTags;
-                for (const auto &item : Model_Billsdeposits::splittransaction(q1))
+                for (const auto &item : Model_Billsdeposits::split(q1))
                 {
                     Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
                     split->TRANSID = transID;

@@ -293,38 +293,38 @@ void mmBillsDepositsPanel::CreateControls()
 
     wxButton* itemButtonNew = new wxButton(bdPanel, wxID_NEW, _("&New "));
     mmToolTip(itemButtonNew, _("New Scheduled Transaction"));
-    itemBoxSizer5->Add(itemButtonNew, 0, wxRIGHT, 5);
+    itemBoxSizer5->Add(itemButtonNew, 0, wxRIGHT, 2);
 
     wxButton* itemButton81 = new wxButton(bdPanel, wxID_EDIT, _("&Edit "));
     mmToolTip(itemButton81, _("Edit Scheduled Transaction"));
-    itemBoxSizer5->Add(itemButton81, 0, wxRIGHT, 5);
+    itemBoxSizer5->Add(itemButton81, 0, wxRIGHT, 2);
     itemButton81->Enable(false);
 
     wxButton* itemButton82 = new wxButton(bdPanel, wxID_DUPLICATE, _("D&uplicate "));
     mmToolTip(itemButton82, _("Duplicate Scheduled Transaction"));
-    itemBoxSizer5->Add(itemButton82, 0, wxRIGHT, 5);
+    itemBoxSizer5->Add(itemButton82, 0, wxRIGHT, 2);
     itemButton82->Enable(false);
 
     wxButton* itemButton7 = new wxButton(bdPanel, wxID_DELETE, _("&Delete "));
     mmToolTip(itemButton7, _("Delete Scheduled Transaction"));
-    itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 5);
+    itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 2);
     itemButton7->Enable(false);
 
     wxButton* itemButton8 = new wxButton(bdPanel, wxID_PASTE, _("Ente&r"));
     mmToolTip(itemButton8, _("Enter Next Scheduled Transaction Occurrence"));
-    itemBoxSizer5->Add(itemButton8, 0, wxRIGHT, 5);
+    itemBoxSizer5->Add(itemButton8, 0, wxRIGHT, 2);
     itemButton8->Enable(false);
 
     wxButton* buttonSkipTrans = new wxButton(bdPanel, wxID_IGNORE, _("&Skip"));
     mmToolTip(buttonSkipTrans, _("Skip Next Scheduled Transaction Occurrence"));
-    itemBoxSizer5->Add(buttonSkipTrans, 0, wxRIGHT, 5);
+    itemBoxSizer5->Add(buttonSkipTrans, 0, wxRIGHT, 2);
     buttonSkipTrans->Enable(false);
 
     wxBitmapButton* btnAttachment_ = new wxBitmapButton(bdPanel, wxID_FILE
         , mmBitmapBundle(png::CLIP, mmBitmapButtonSize), wxDefaultPosition
         , wxSize(30, itemButton8->GetSize().GetY()));
     mmToolTip(btnAttachment_, _("Open attachments"));
-    itemBoxSizer5->Add(btnAttachment_, 0, wxRIGHT, 5);
+    itemBoxSizer5->Add(btnAttachment_, 0, wxRIGHT, 2);
     btnAttachment_->Enable(false);
 
     //Infobar-mini

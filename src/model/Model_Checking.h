@@ -31,6 +31,7 @@ public:
     using Model<DB_Table_CHECKINGACCOUNT_V1>::remove;
     using Model<DB_Table_CHECKINGACCOUNT_V1>::save;
     typedef Model_Splittransaction::Data_Set Split_Data_Set;
+    typedef Model_Taglink::Data_Set Taglink_Data_Set;
 
 public:
     enum TYPE_ID
@@ -77,20 +78,10 @@ public:
         Full_Data();
         explicit Full_Data(const Data& r);
         Full_Data(const Data& r
-            , const std::map<int /*trans id*/, Model_Splittransaction::Data_Set /*split trans*/ > & splits
-            , const std::map<int /*trans id*/, Model_Taglink::Data_Set /*split trans*/ >& tags);
-
+            , const std::map<int /*trans id*/, Split_Data_Set>& splits
+            , const std::map<int /*trans id*/, Taglink_Data_Set>& tags);
         ~Full_Data();
-        wxString ACCOUNTNAME, TOACCOUNTNAME;
-        wxString PAYEENAME;
-        wxString CATEGNAME;
-        wxString TAGNAMES;
-        wxString displayID;
-        double AMOUNT;
-        double BALANCE;
-        wxArrayString ATTACHMENT_DESCRIPTION;
-        Model_Splittransaction::Data_Set m_splits;
-        Model_Taglink::Data_Set m_tags;
+        void fill_data();
         wxString real_payee_name(int account_id) const;
         const wxString get_currency_code(int account_id) const;
         const wxString get_account_name(int account_id) const;
@@ -99,26 +90,26 @@ public:
         bool has_attachment() const;
         bool is_foreign() const;
         bool is_foreign_transfer() const;
-
         wxString info() const;
         const wxString to_json();
 
+        Split_Data_Set m_splits;
+        Taglink_Data_Set m_tags;
+        wxString displayID;
+        wxString ACCOUNTNAME, TOACCOUNTNAME;
+        wxString PAYEENAME;
+        wxString CATEGNAME;
+        wxString TAGNAMES;
+        double AMOUNT;
+        double BALANCE;
+        wxArrayString ATTACHMENT_DESCRIPTION;
+
         // Reserved string variables for custom data
-        wxString UDFC01;
-        double UDFC01_val;
-        Model_CustomField::TYPE_ID UDFC01_Type;
-        wxString UDFC02;
-        double UDFC02_val;
-        Model_CustomField::TYPE_ID UDFC02_Type;
-        wxString UDFC03;
-        double UDFC03_val;
-        Model_CustomField::TYPE_ID UDFC03_Type;
-        wxString UDFC04;
-        double UDFC04_val;
-        Model_CustomField::TYPE_ID UDFC04_Type;
-        wxString UDFC05;
-        double UDFC05_val;
-        Model_CustomField::TYPE_ID UDFC05_Type;
+        wxString UDFC01; double UDFC01_val; Model_CustomField::TYPE_ID UDFC01_Type;
+        wxString UDFC02; double UDFC02_val; Model_CustomField::TYPE_ID UDFC02_Type;
+        wxString UDFC03; double UDFC03_val; Model_CustomField::TYPE_ID UDFC03_Type;
+        wxString UDFC04; double UDFC04_val; Model_CustomField::TYPE_ID UDFC04_Type;
+        wxString UDFC05; double UDFC05_val; Model_CustomField::TYPE_ID UDFC05_Type;
     };
     typedef std::vector<Full_Data> Full_Data_Set;
 
@@ -199,8 +190,8 @@ public:
     int save(std::vector<Data*>& rows);
     void updateTimestamp(int id);
 public:
-    static const Model_Splittransaction::Data_Set splittransaction(const Data* r);
-    static const Model_Splittransaction::Data_Set splittransaction(const Data& r);
+    static const Split_Data_Set splittransaction(const Data* r);
+    static const Split_Data_Set splittransaction(const Data& r);
 
 public:
     static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxDateTime& date, OP op = EQUAL);

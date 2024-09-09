@@ -111,6 +111,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     filtertrans.h
     filtertransdialog.cpp
     filtertransdialog.h
+    fusedtransaction.cpp
+    fusedtransaction.h
     general_report_manager.cpp
     general_report_manager.h
     images_list.cpp
