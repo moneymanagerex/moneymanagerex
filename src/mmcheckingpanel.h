@@ -22,6 +22,7 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #ifndef MM_EX_CHECKINGPANEL_H_
 #define MM_EX_CHECKINGPANEL_H_
 //----------------------------------------------------------------------------
+#include <wx/tglbtn.h>
 #include "mmpanelbase.h"
 #include "constants.h"
 #include "model/Model_Account.h"
@@ -115,7 +116,7 @@ private:
     wxButton* m_btnRestore = nullptr;
     wxButton* m_btnAttachment = nullptr;
     wxStaticText* m_header_text = nullptr;
-    wxCheckBox* m_header_scheduled_box = nullptr;
+    wxBitmapToggleButton* m_header_scheduled = nullptr;
     wxStaticText* m_header_sortOrder = nullptr;
     wxGauge* m_header_credit = nullptr;
     wxStaticText* m_header_balance = nullptr;

@@ -94,7 +94,8 @@ wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     EVT_BUTTON(wxID_UNDELETE,      mmCheckingPanel::OnRestoreTransaction)
     EVT_BUTTON(wxID_FILE,          mmCheckingPanel::OnOpenAttachment)
     EVT_BUTTON(ID_TRX_FILTER,      mmCheckingPanel::OnMouseLeftDown)
-    EVT_CHECKBOX(ID_TRX_SCHEDULED, mmCheckingPanel::OnScheduled)
+    //EVT_CHECKBOX(ID_TRX_SCHEDULED, mmCheckingPanel::OnScheduled)
+    EVT_TOGGLEBUTTON(ID_TRX_SCHEDULED, mmCheckingPanel::OnScheduled)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
     EVT_MENU_RANGE(wxID_HIGHEST + FILTER_ID_NONE, wxID_HIGHEST + FILTER_ID_MAX
         , mmCheckingPanel::OnViewPopupSelected)
@@ -486,8 +487,10 @@ void mmCheckingPanel::CreateControls()
     if (!isTrash_)
     {
         sizerHCtrl->AddSpacer(15);
-        m_header_scheduled_box = new wxCheckBox(this, ID_TRX_SCHEDULED, _("Scheduled Transactions"));
-        sizerHCtrl->Add(m_header_scheduled_box, g_flagsH);
+        const auto& size = m_bitmapTransFilter->GetSize().GetY();
+        //m_header_scheduled = new wxCheckBox(this, ID_TRX_SCHEDULED, _("Scheduled Transactions"));
+        m_header_scheduled = new wxBitmapToggleButton(this, ID_TRX_SCHEDULED, mmBitmapBundle(png::RECURRING), wxDefaultPosition, wxSize(size, size));
+        sizerHCtrl->Add(m_header_scheduled, g_flagsH);
         sizerHCtrl->AddSpacer(10);
     }
     m_header_sortOrder = new wxStaticText(this, wxID_STATIC, "");
@@ -1056,8 +1059,8 @@ void mmCheckingPanel::updateFilterState()
 
     if (!isTrash_)
     {
-        m_header_scheduled_box->SetValue(m_scheduled_selected);
-        m_header_scheduled_box->Enable(m_scheduled_allowed);
+        m_header_scheduled->SetValue(m_scheduled_selected);
+        m_header_scheduled->Enable(m_scheduled_allowed);
     }
 
     saveFilterChoices();
@@ -1106,7 +1109,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 void mmCheckingPanel::OnScheduled(wxCommandEvent& event)
 {
     if (!isTrash_) {
-        m_scheduled_selected = m_header_scheduled_box->GetValue();
+        m_scheduled_selected = m_header_scheduled->GetValue();
         saveFilterChoices();
     }
     RefreshList();
