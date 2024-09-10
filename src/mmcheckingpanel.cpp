@@ -52,7 +52,7 @@
 
 const std::vector<std::pair<mmCheckingPanel::FILTER_ID, wxString> > mmCheckingPanel::FILTER_CHOICES =
 {
-    { mmCheckingPanel::FILTER_ID_NONE,           wxString(wxTRANSLATE("View All Transactions")) },
+    { mmCheckingPanel::FILTER_ID_ALL,           wxString(wxTRANSLATE("View All Transactions")) },
     { mmCheckingPanel::FILTER_ID_TODAY,          wxString(wxTRANSLATE("View Today")) },
     { mmCheckingPanel::FILTER_ID_CURRENTMONTH,   wxString(wxTRANSLATE("View Current Month")) },
     { mmCheckingPanel::FILTER_ID_LAST30,         wxString(wxTRANSLATE("View Last 30 days")) },
@@ -69,7 +69,7 @@ const std::vector<std::pair<mmCheckingPanel::FILTER_ID, wxString> > mmCheckingPa
 };
 
 wxArrayString mmCheckingPanel::FILTER_STR = filter_str_all();
-const wxString mmCheckingPanel::FILTER_STR_NONE = FILTER_STR[FILTER_ID_NONE];
+const wxString mmCheckingPanel::FILTER_STR_ALL = FILTER_STR[FILTER_ID_ALL];
 
 wxArrayString mmCheckingPanel::filter_str_all()
 {
@@ -97,7 +97,7 @@ wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     //EVT_CHECKBOX(ID_TRX_SCHEDULED, mmCheckingPanel::OnScheduled)
     EVT_TOGGLEBUTTON(ID_TRX_SCHEDULED, mmCheckingPanel::OnScheduled)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
-    EVT_MENU_RANGE(wxID_HIGHEST + FILTER_ID_NONE, wxID_HIGHEST + FILTER_ID_MAX
+    EVT_MENU_RANGE(wxID_HIGHEST + FILTER_ID_ALL, wxID_HIGHEST + FILTER_ID_MAX
         , mmCheckingPanel::OnViewPopupSelected)
     EVT_MENU_RANGE(Model_Checking::TYPE_ID_WITHDRAWAL, Model_Checking::TYPE_ID_TRANSFER
         , mmCheckingPanel::OnNewTransaction)
@@ -278,7 +278,7 @@ void mmCheckingPanel::filterTable()
                 m_reconciled_balance += transaction_amount;
         }
 
-        if (!m_transFilterActive && m_filter_id != FILTER_ID_NONE &&
+        if (!m_transFilterActive && m_filter_id != FILTER_ID_ALL &&
             (tran_date < m_begin_date || tran_date > m_end_date))
             continue;
 
@@ -693,7 +693,7 @@ void mmCheckingPanel::setAccountSummary()
 
     if (!isAllAccounts_ && !isTrash_)
     {
-        bool show_displayed_balance_ = (m_transFilterActive || m_filter_id != FILTER_ID_NONE);
+        bool show_displayed_balance_ = (m_transFilterActive || m_filter_id != FILTER_ID_ALL);
         wxString summaryLine = wxString::Format("%s%s     %s%s     %s%s     %s%s"
             , _("Account Bal: ")
             , Model_Account::toCurrency(m_account_balance, account)
@@ -934,9 +934,9 @@ void mmCheckingPanel::initFilterChoices()
     Value& j_filter = GetValueByPointerWithDefault(j_doc, "/FILTER", "");
     m_filter_id = j_filter.IsString() ?
         FILTER_STR.Index(wxString::FromUTF8(j_filter.GetString())) :
-        FILTER_ID_NONE;
+        FILTER_ID_ALL;
     if (m_filter_id < 0 || m_filter_id >= FILTER_ID_MAX)
-        m_filter_id = FILTER_ID_NONE;
+        m_filter_id = FILTER_ID_ALL;
 
     m_scheduled_selected = false;
     if (!isTrash_ && j_doc.HasMember("SCHEDULED") && j_doc["SCHEDULED"].IsBool())
@@ -1051,8 +1051,10 @@ void mmCheckingPanel::updateFilterState()
     //Text field for name of day of the week
     wxSize buttonSize(wxDefaultSize);
     buttonSize.IncTo(GetTextExtent(wxGetTranslation(item)));
+    int width = buttonSize.GetWidth();
+    if (width < 200) width = 200;
     m_bitmapTransFilter->SetMinSize(
-        wxSize(buttonSize.GetWidth() + Option::instance().getIconSize() * 2, -1));
+        wxSize(width + Option::instance().getIconSize() * 2, -1));
 
     m_scheduled_allowed = !isTrash_ &&
         (m_filter_id >= FILTER_ID_TODAY && m_filter_id <= FILTER_ID_LASTFINYEAR);

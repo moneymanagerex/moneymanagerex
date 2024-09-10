@@ -368,9 +368,9 @@ wxArrayString Model_Billsdeposits::unroll(const Data& r, const wxString end_date
 Model_Billsdeposits::Full_Data::Full_Data()
 {}
 
-Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
+Model_Billsdeposits::Full_Data::Full_Data(const Data& r)
+    : Data(r), m_bill_splits(split(r))
 {
-    m_bill_splits = split(r);
 
     m_tags = Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT)), Model_Taglink::REFID(r.BDID));
 

@@ -279,7 +279,7 @@ void Model_Setting::SetTheme(const wxString& value)
 //-------------------------------------------------------------------
 wxString Model_Setting::ViewTransactions()
 {
-    return GetStringSetting("VIEWTRANSACTIONS", mmCheckingPanel::FILTER_STR_NONE);
+    return GetStringSetting("VIEWTRANSACTIONS", mmCheckingPanel::FILTER_STR_ALL);
 }
 
 void Model_Setting::SetViewTransactions(const wxString& value)

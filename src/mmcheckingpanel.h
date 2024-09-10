@@ -78,7 +78,7 @@ private:
     };
     enum FILTER_ID
     {
-        FILTER_ID_NONE = 0,
+        FILTER_ID_ALL = 0,
         FILTER_ID_TODAY,
         FILTER_ID_CURRENTMONTH,
         FILTER_ID_LAST30,
@@ -97,7 +97,7 @@ private:
 
 public:
     static wxArrayString FILTER_STR;
-    static const wxString FILTER_STR_NONE;
+    static const wxString FILTER_STR_ALL;
 
 private:
     static const std::vector<std::pair<FILTER_ID, wxString> > FILTER_CHOICES;
