@@ -139,6 +139,7 @@ private:
     double m_filteredBalance = 0.0;
     double m_account_balance = 0.0;
     double m_reconciled_balance = 0.0;
+    bool m_show_reconciled;
 
     TransactionListCtrl* m_listCtrlAccount = nullptr;
     Model_Account::Data* m_account = nullptr;

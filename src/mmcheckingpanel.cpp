@@ -171,6 +171,7 @@ void mmCheckingPanel::filterTable()
 
     m_account_balance = !isAllAccounts_ && !isTrash_ && m_account ? m_account->INITIALBAL : 0.0;
     m_reconciled_balance = m_account_balance;
+    m_show_reconciled = false;
     m_filteredBalance = 0.0;
 
     const wxString transRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
@@ -276,6 +277,8 @@ void mmCheckingPanel::filterTable()
                 m_account_balance += transaction_amount;
             if (Model_Checking::status_id(tran->STATUS) == Model_Checking::STATUS_ID_RECONCILED)
                 m_reconciled_balance += transaction_amount;
+            else
+                m_show_reconciled = true;
         }
 
         if (!m_transFilterActive && m_filter_id != FILTER_ID_ALL &&
@@ -694,13 +697,16 @@ void mmCheckingPanel::setAccountSummary()
     if (!isAllAccounts_ && !isTrash_)
     {
         bool show_displayed_balance_ = (m_transFilterActive || m_filter_id != FILTER_ID_ALL);
-        wxString summaryLine = wxString::Format("%s%s     %s%s     %s%s     %s%s"
+        wxString summaryLine = wxString::Format("%s%s" "%s%s%s" "%s%s%s" "%s%s%s"
             , _("Account Bal: ")
             , Model_Account::toCurrency(m_account_balance, account)
-            , _("Reconciled Bal: ")
-            , Model_Account::toCurrency(m_reconciled_balance, account)
-            , _("Diff: ")
-            , Model_Account::toCurrency(m_account_balance - m_reconciled_balance, account)
+            , m_show_reconciled ? "     " : ""
+            , m_show_reconciled ? _("Reconciled Bal: ") : ""
+            , m_show_reconciled ? Model_Account::toCurrency(m_reconciled_balance, account) : ""
+            , m_show_reconciled ? "     " : ""
+            , m_show_reconciled ? _("Diff: ") : ""
+            , m_show_reconciled ? Model_Account::toCurrency(m_account_balance - m_reconciled_balance, account) : ""
+            , show_displayed_balance_ ? "     " : ""
             , show_displayed_balance_ ? _("Filtered View Bal: ") : ""
             , show_displayed_balance_ ? Model_Account::toCurrency(m_filteredBalance, account) : "");
         if (account->CREDITLIMIT != 0.0)
