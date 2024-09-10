@@ -1063,9 +1063,18 @@ void mmCheckingPanel::updateFilterState()
     {
         m_header_scheduled->SetValue(m_scheduled_selected);
         m_header_scheduled->Enable(m_scheduled_allowed);
+        updateScheduledToolTip();
     }
 
     saveFilterChoices();
+}
+
+void mmCheckingPanel::updateScheduledToolTip()
+{
+    mmToolTip(m_header_scheduled,
+        !m_scheduled_allowed ? _("Scheduled transactions cannot be shown, because the current filter choice extends into the future without limit.") :
+        !m_scheduled_selected ? _("Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month).") :
+        _("Click to hide scheduled transactions."));
 }
 
 void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
@@ -1112,6 +1121,7 @@ void mmCheckingPanel::OnScheduled(wxCommandEvent& event)
 {
     if (!isTrash_) {
         m_scheduled_selected = m_header_scheduled->GetValue();
+        updateScheduledToolTip();
         saveFilterChoices();
     }
     RefreshList();

@@ -72,7 +72,7 @@ public:
         template<class DATA>
         bool operator()(const DATA& x, const DATA& y)
         {
-            return (!x.m_bdid && (y.m_bdid || x.TRANSID < y.TRANSID));
+            return (!x.m_repeat_num && (y.m_repeat_num || x.TRANSID < y.TRANSID));
         }
     };
 };

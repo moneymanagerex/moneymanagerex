@@ -182,6 +182,7 @@ private:
 
     /* updates the checking panel data */
     void showTips();
+    void updateScheduledToolTip();
     void updateExtraTransactionData(bool single, int repeat_num, bool foreign);
     void enableButtons(bool edit, bool dup, bool del, bool enter, bool skip, bool attach);
     wxString GetPanelTitle(const Model_Account::Data& account) const;
