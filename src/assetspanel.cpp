@@ -65,6 +65,7 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 450, wxLIST_FORMAT_LEFT, true));
 
     m_col_width = "ASSETS_COL%d_WIDTH";
+    m_col_idstr = "ASSETS";
     for (const auto& entry : m_columns)
     {
         int count = GetColumnCount();

@@ -100,6 +100,7 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     m_columns.push_back(PANEL_COLUMN(_("Notes"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
 
     m_col_width = "STOCKS_COL%d_WIDTH";
+    m_col_idstr = "STOCKS";
     m_default_sort_column = col_sort();
 
     for (const auto& entry : m_columns)

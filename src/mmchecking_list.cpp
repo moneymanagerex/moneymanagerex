@@ -271,6 +271,7 @@ TransactionListCtrl::TransactionListCtrl(
     // V2 used as now maps to real column names and this resets everything to default
     // to avoid strange column widths when this code version is first
     m_col_width = m_cp->isAllAccounts_ ? "ALLTRANS_COLV2%d_WIDTH" : "CHECK2_COLV2%d_WIDTH";
+    m_col_idstr = m_cp->isAllAccounts_ ? "ALLTRANS" : "CHECK2";
 
     m_default_sort_column = COL_DEF_SORT;
     m_today = Option::instance().UseTransDateTime() ? wxDateTime::Now().FormatISOCombined() : wxDateTime(23, 59, 59, 999).FormatISOCombined();

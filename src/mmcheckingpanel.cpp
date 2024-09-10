@@ -38,7 +38,6 @@
 #include "sharetransactiondialog.h"
 #include "assetdialog.h"
 #include "billsdepositsdialog.h"
-#include "columnorder.h"
 #include <wx/clipbrd.h>
 #include <float.h>
 
@@ -403,20 +402,19 @@ void mmCheckingPanel::CreateControls()
 
     // Get sorted columns list and update the sorted columns with missing columns if needed.
     wxArrayString columnList, sortedColumnList;
-    for(const auto& i : m_listCtrlAccount->m_columns) columnList.Add(i.HEADER.c_str());
-    mmColumnsDialog dialog;
-    sortedColumnList = dialog.updateColumnsOrder(columnList);
+    sortedColumnList = m_listCtrlAccount->GetColumnsOrder();
+     wxLogDebug("CreateControls: getColumnList() = %s", wxJoin(sortedColumnList, '|'));
 
     // sort m_columns according to sortedColumnsList
     std::vector<PANEL_COLUMN> sortedColumns = {};
     std::vector<int> sortedRealColumns = {};
     for (const auto& i : sortedColumnList)
     {
-        for (long unsigned int j = 0; j < m_listCtrlAccount->m_columns.size(); j++)
+        for (int j = 0; j < m_listCtrlAccount->m_columns.size(); j++)
         {
             auto k = m_listCtrlAccount->m_columns[j];
             auto l = m_listCtrlAccount->m_real_columns[j];
-            if (k.HEADER == i)
+            if (wxString::Format("%d", j) == i)
             {
                 sortedColumns.push_back(k);
                 sortedRealColumns.push_back(l);

@@ -73,6 +73,7 @@ public:
         COL_DEF_SORT2 = COL_ID 
     };
     EColumn toEColumn(const unsigned long col);
+
 public:
     EColumn g_sortcol = COL_DEF_SORT; // index of primary column to sort by
     EColumn prev_g_sortcol = COL_DEF_SORT2; // index of secondary column to sort by

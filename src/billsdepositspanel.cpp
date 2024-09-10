@@ -146,6 +146,7 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 150, wxLIST_FORMAT_LEFT, true));
 
     m_col_width = "BD_COL%d_WIDTH";
+    m_col_idstr = "BD";
     m_default_sort_column = m_bdp->col_sort();
 
     for (const auto& entry : m_columns)
