@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-05-24 20:57\n"
+"PO-Revision-Date: 2024-09-11 23:47\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -467,7 +467,7 @@ msgstr "Érték"
 
 #: assetdialog.cpp:207
 msgid "Enter the current value of the asset"
-msgstr "Adja meg az eszköz jelenértékét"
+msgstr "Eszköz jelenértékének megadása"
 
 #: assetdialog.cpp:210
 msgid "Change in Value"
