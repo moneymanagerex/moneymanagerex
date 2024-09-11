@@ -1,6 +1,28 @@
-Version 1.8.1 Beta 1
+Version 1.8.1 RC 1
 ~~~~~~~~~~~~~~~~~~~~
-Released: 2024-04-29
+Released: 2024-09-11
+
+Features:
+* #6847 about default column seq.
+* #6827 The model of scheduled transactions (billsdeposits) is confusing
+* #6799 Align with wxWidgets 3.2.5 release
+* #6743 Mohtly budget overview no longer availabe
+* #6737 Unable to edit Stock Transaction
+* #6733 Total Net worth line on Dashboard hide when scrolling down
+* #6703 Provide a calculator attached to Amount column
+* #6538 Upgrade database encryption to AES256
+* #5887 Account Reallocation - Remove Selected Account's Type
+* #4160 Order of columns in the transaction list is not saved
+
+Bugfixes:
+* #6781 Localized Pie-Charts are broken
+* #6763 Thousands separator is missing, again
+* #6752 Custom Field - Date Error
+* #6745 Cashflow transactions doubling income payments
+* #6736 Custom reports broke down after upgrading to 1.8.0
+* #6709 New release 1.8 - account line characters are no longer visible
+* #6393 Transaction Report - filter window has an overlapping between 'Specify' and 'Presentation Options' on MacOS
+* #6056 database upgrade to version17 failed [ 1.6.4. ] Datebase upgraded?
 
 
 Version 1.8.0
