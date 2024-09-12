@@ -606,7 +606,48 @@
     <screenshot>
       <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/ef2d2269-a973-4957-a10b-d13651390ad0</image>
       <caption>Budget Planner</caption>
+      <caption xml:lang="ar">مخطط الميزانية</caption>
+      <caption xml:lang="be">Планавальнік бюджэту</caption>
+      <caption xml:lang="bg">Планиращ бюджет</caption>
+      <caption xml:lang="ca">Planificador de pressupostos</caption>
+      <caption xml:lang="cs">Plánovač rozpočtu</caption>
+      <caption xml:lang="de">Budgetplaner</caption>
+      <caption xml:lang="el">Προγραμματιστής προϋπολογισμού</caption>
+      <caption xml:lang="en_AU">Budget Planner</caption>
+      <caption xml:lang="en_GB">Budget Planner</caption>
+      <caption xml:lang="en">Budget Planner</caption>
+      <caption xml:lang="es">Planificadora de presupuesto</caption>
+      <caption xml:lang="fi">Budjettisuunnittelija</caption>
+      <caption xml:lang="fr">Planificateur de budget</caption>
+      <caption xml:lang="he">מתכנן תקציב</caption>
+      <caption xml:lang="hr">Planer proračuna</caption>
       <caption xml:lang="hu">Költségvetés-tervező</caption>
+      <caption xml:lang="id">Perencana Anggaran</caption>
+      <caption xml:lang="is">Fjárhagsáætlun</caption>
+      <caption xml:lang="it">Pianificatore di budget</caption>
+      <caption xml:lang="ja">予算プランナー</caption>
+      <caption xml:lang="kn">ಬಜೆಟ್ ಪ್ಲಾನರ್</caption>
+      <caption xml:lang="ko">예산 계획자</caption>
+      <caption xml:lang="lt">Biudžeto planuotojas</caption>
+      <caption xml:lang="lv">Budžeta plānotājs</caption>
+      <caption xml:lang="nl">Budgetplanner</caption>
+      <caption xml:lang="no_NY">Budsjettplanlegger</caption>
+      <caption xml:lang="pl">Planer budżetu</caption>
+      <caption xml:lang="pt_BR">Planejador de orçamento</caption>
+      <caption xml:lang="pt">Planeador Orçamental</caption>
+      <caption xml:lang="ro">Planificator de buget</caption>
+      <caption xml:lang="ru">Планировщик бюджета</caption>
+      <caption xml:lang="sk">Plánovač rozpočtu</caption>
+      <caption xml:lang="sl">Načrtovalec proračuna</caption>
+      <caption xml:lang="sq">Planifikues buxheti</caption>
+      <caption xml:lang="sr">Буџетски планер</caption>
+      <caption xml:lang="sv_SE">Budgetplanerare</caption>
+      <caption xml:lang="ta">பட்ஜெட் திட்டமிடுபவர்</caption>
+      <caption xml:lang="tr">Bütçe Planlayıcısı</caption>
+      <caption xml:lang="uk">Планувальник бюджету</caption>
+      <caption xml:lang="vi">Kế hoạch ngân sách</caption>
+      <caption xml:lang="zh_CN">预算规划师</caption>
+      <caption xml:lang="zh_TW">預算規劃師</caption>
     </screenshot>
     
     <screenshot>
