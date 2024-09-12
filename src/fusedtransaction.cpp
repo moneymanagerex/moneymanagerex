@@ -122,15 +122,15 @@ Fused_Transaction::Full_Data::Full_Data(const Model_Billsdeposits::Data& r)
 Fused_Transaction::Full_Data::Full_Data(const Model_Billsdeposits::Data& r,
     wxString date, int repeat_num)
 :
-    Model_Checking::Full_Data(execute_bill_full(r, date)),
+    Model_Checking::Full_Data(execute_bill_full(r, date), {}, {}),
     m_bdid(r.BDID), m_repeat_num(repeat_num)
 {
     if (m_repeat_num < 1)
         wxFAIL;
 
-    m_tags = Model_Billsdeposits::taglink(r);
-
     m_splits = execute_splits(Model_Billsdeposits::split(r));
+
+    m_tags = Model_Billsdeposits::taglink(r);
 
     Model_Checking::Full_Data::fill_data();
     displayID = wxString("");
@@ -141,7 +141,7 @@ Fused_Transaction::Full_Data::Full_Data(const Model_Billsdeposits::Data& r,
     const std::map<int /* BDID */, Budgetsplit_Data_Set>& budgetsplits,
     const std::map<int /* BDID */, Taglink_Data_Set>& tags)
 :
-    Model_Checking::Full_Data(execute_bill_full(r, date)),
+    Model_Checking::Full_Data(execute_bill_full(r, date), {}, {}),
     m_bdid(r.BDID), m_repeat_num(repeat_num)
 {
     if (m_repeat_num < 1)
