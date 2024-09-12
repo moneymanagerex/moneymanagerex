@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-12 15:17\n"
+"PO-Revision-Date: 2024-09-12 20:56\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -844,7 +844,7 @@ msgstr "Otvorenie prílohy zlyhalo"
 
 #: billsdepositsdialog.cpp:45 billsdepositspanel.cpp:50
 msgid "Once"
-msgstr ""
+msgstr "Raz"
 
 #: billsdepositsdialog.cpp:46 billsdepositspanel.cpp:51
 #: model/Model_Budget.cpp:30
@@ -1208,7 +1208,7 @@ msgstr "Obdobie: dni"
 
 #: billsdepositsdialog.cpp:1298
 msgid "Specify period in Days."
-msgstr ""
+msgstr "Zadajte obdobie v dňoch."
 
 #: billsdepositsdialog.cpp:1303
 msgid "Period: Months"
@@ -1216,11 +1216,11 @@ msgstr "Obdobie: mesiace"
 
 #: billsdepositsdialog.cpp:1304
 msgid "Specify period in Months."
-msgstr ""
+msgstr "Zadajte obdobie v mesiacoch."
 
 #: billsdepositsdialog.cpp:1310
 msgid "Ignored (leave blank)."
-msgstr ""
+msgstr "Ignorované (nechajte prázdne)."
 
 #: billsdepositsdialog.cpp:1316
 msgid "Specify the number of payments to be made.\n"
@@ -5818,11 +5818,11 @@ msgstr "Zoradiť podľa tohto stĺpca"
 
 #: mmpanelbase.cpp:137
 msgid "Move column left"
-msgstr ""
+msgstr "Posunúť stĺpec doľava"
 
 #: mmpanelbase.cpp:138
 msgid "Move column right"
-msgstr ""
+msgstr "Posunúť stĺpec doprava"
 
 #: mmpanelbase.cpp:140
 msgid "Reset columns"
