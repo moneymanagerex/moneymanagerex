@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-05-24 22:36+0300\n"
-"PO-Revision-Date: 2024-09-11 23:47\n"
+"PO-Revision-Date: 2024-09-12 00:55\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1892,7 +1892,7 @@ msgstr "Mai nap megtekintése"
 
 #: constants.cpp:196
 msgid "View Current Month"
-msgstr "Jelen hónap megtekintése"
+msgstr "Jelenlegi hónap megtekintése"
 
 #: constants.cpp:197
 msgid "View Last 30 days"
@@ -1916,7 +1916,7 @@ msgstr "Elmúlt 12 hónap megtekintése"
 
 #: constants.cpp:202
 msgid "View Current Year"
-msgstr "Idei év megtekintése"
+msgstr "Jelenlegi év megtekintése"
 
 #: constants.cpp:203
 msgid "View Current Financial Year"
@@ -2109,8 +2109,8 @@ msgstr "Alapértelmezett"
 #: customfieldeditdialog.cpp:166
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr "Adja meg a mező alapértelmezett értékét\n"
-"Dátumnál vagy időnél beírt \"Now\"-ra, akkor az adott napot, vagy időt teszi meg alapértéknek"
+msgstr "Alapértelmezett mező értékének megadása\n"
+"A dátum/idő beállításához írja be a „Now” (Most) szót, hogy a jelenlegi dátum/idő alapértelmezett legyen"
 
 #: customfieldeditdialog.cpp:170 customfieldeditdialog.cpp:220
 msgid "Choices"
@@ -7130,7 +7130,7 @@ msgstr "Ma"
 
 #: reports/mmDateRange.cpp:90
 msgid "Current Month to Date"
-msgstr "Jelenlegi hónap máig"
+msgstr "Jelenlegi hónap a mai napig"
 
 #: reports/mmDateRange.cpp:100
 msgid "Previous Month"
@@ -7154,11 +7154,11 @@ msgstr "Legutóbbi 12 hónap"
 
 #: reports/mmDateRange.cpp:164
 msgid "Current Year"
-msgstr "Aktuális év"
+msgstr "Jelenlegi év"
 
 #: reports/mmDateRange.cpp:173 stockdialog.cpp:679
 msgid "Current Year to Date"
-msgstr "Aktuális év a mai napig"
+msgstr "Jelenlegi év a mai napig"
 
 #: reports/mmDateRange.cpp:185
 msgid "Previous Year"
@@ -7166,11 +7166,11 @@ msgstr "Előző év"
 
 #: reports/mmDateRange.cpp:217
 msgid "Current Financial Year"
-msgstr "Jelen pénzügyi év"
+msgstr "Jelenlegi pénzügyi év"
 
 #: reports/mmDateRange.cpp:227
 msgid "Current Financial Year to Date"
-msgstr "Jelen pénzügyi év máig"
+msgstr "Jelenlegi pénzügyi év a mai napig"
 
 #: reports/mmDateRange.cpp:237
 msgid "Previous Financial Year"
@@ -7256,7 +7256,7 @@ msgstr "Mennyiség"
 
 #: reports/summarystocks.cpp:117
 msgid "Current Price"
-msgstr "Aktuális ár"
+msgstr "Jelenlegi ár"
 
 #: reports/summarystocks.cpp:118 sharetransactiondialog.cpp:244
 #: stocks_list.cpp:99 stockspanel.cpp:216
@@ -7341,7 +7341,7 @@ msgstr "Részvényár"
 
 #: sharetransactiondialog.cpp:238
 msgid "Enter the current value for a single share unit"
-msgstr "Adja meg a részvény jelenlegi egységárát"
+msgstr "Részvénység jelenlegi egységár megadása"
 
 #: sharetransactiondialog.cpp:250
 msgid "Enter any commission paid"
