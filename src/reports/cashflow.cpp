@@ -47,14 +47,14 @@ double mmReportCashFlow::trueAmount(const Model_Checking::Data& trx)
     if (!(isAccountFound && isToAccountFound))
     {
         const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
-        switch (Model_Checking::type(trx.TRANSCODE)) {
-        case Model_Checking::WITHDRAWAL:
+        switch (Model_Checking::type_id(trx.TRANSCODE)) {
+        case Model_Checking::TYPE_ID_WITHDRAWAL:
             amount = -trx.TRANSAMOUNT * convRate;
             break;
-        case Model_Checking::DEPOSIT:
+        case Model_Checking::TYPE_ID_DEPOSIT:
             amount = +trx.TRANSAMOUNT * convRate;
             break;
-        case Model_Checking::TRANSFER:
+        case Model_Checking::TYPE_ID_TRANSFER:
             if (isAccountFound)
                 amount = -trx.TRANSAMOUNT * convRate;
             else
@@ -77,10 +77,9 @@ void mmReportCashFlow::getTransactions()
     wxDateTime endDate = mmDateRange::getDayEnd(m_today.Add(wxDateSpan::Months(getForwardMonths())));
 
     // Get initial Balance as of today
-
     for (const auto& account : Model_Account::instance().find(
-        Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)
-        , Model_Account::STATUS(Model_Account::CLOSED, NOT_EQUAL)))
+        Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR_INVESTMENT, NOT_EQUAL)
+        , Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL)))
     {
         if (accountArray_ && accountArray_->Index(account.ACCOUNTNAME) == wxNOT_FOUND) {
             continue;
@@ -106,7 +105,7 @@ void mmReportCashFlow::getTransactions()
     Model_Checking::Data_Set transactions = Model_Checking::instance().find(
         Model_Checking::TRANSDATE(m_today, GREATER),
         Model_Checking::TRANSDATE(endDate, LESS),
-        Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL));
+        Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL));
     for (auto& trx : transactions)
     {
         if (!trx.DELETEDTIME.IsEmpty()) continue;
@@ -130,22 +129,24 @@ void mmReportCashFlow::getTransactions()
             m_forecastVector.push_back(trx);
         }
     }
-    // Now we gather the recurring transaction list
 
-    for (const auto& entry : Model_Billsdeposits::instance().find(Model_Billsdeposits::STATUS(Model_Billsdeposits::VOID_, NOT_EQUAL)))
+    // Now we gather the recurring transaction list
+    for (const auto& entry : Model_Billsdeposits::instance().find(Model_Billsdeposits::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)))
     {
         wxDateTime nextOccurDate = Model_Billsdeposits::NEXTOCCURRENCEDATE(entry);
         if (nextOccurDate > endDate) continue;
 
-        int repeatsType = entry.REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields from the db entry: REPEATS
+        // demultiplex entry.REPEATS
+        int repeats = entry.REPEATS % BD_REPEATS_MULTIPLEX_BASE;
         int numRepeats = entry.NUMOCCURRENCES;
 
-        bool processNumRepeats = numRepeats != -1 || repeatsType == 0;
-        if (repeatsType == 0)
-        {
-            numRepeats = 1;
-            processNumRepeats = true;
-        }
+        // ignore old inactive entries
+        if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && numRepeats == -1)
+            continue;
+
+        // ignore invalid entries
+        if (repeats != Model_Billsdeposits::REPEAT_ONCE && (numRepeats == 0 || numRepeats < -1))
+            continue;
 
         bool isAccountFound = m_account_id.Index(entry.ACCOUNTID) != wxNOT_FOUND;
         bool isToAccountFound = m_account_id.Index(entry.TOACCOUNTID) != wxNOT_FOUND;
@@ -156,7 +157,6 @@ void mmReportCashFlow::getTransactions()
         while (1)
         {
             if (nextOccurDate > endDate) break;
-            if (processNumRepeats) numRepeats--;
 
             Model_Checking::Data trx;
             trx.TRANSDATE = nextOccurDate.FormatISODate();
@@ -182,29 +182,20 @@ void mmReportCashFlow::getTransactions()
                 m_forecastVector.push_back(trx);
             }
 
-            if (processNumRepeats && (numRepeats <= 0))
+            if ((repeats == Model_Billsdeposits::REPEAT_ONCE) || ((repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS || repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS) && numRepeats == 1))
                 break;
 
-            nextOccurDate = Model_Billsdeposits::nextOccurDate(repeatsType, numRepeats, nextOccurDate);
+            nextOccurDate = Model_Billsdeposits::nextOccurDate(repeats, numRepeats, nextOccurDate);
 
-            if (repeatsType == Model_Billsdeposits::REPEAT_IN_X_DAYS) // repeat in numRepeats Days (Once only)
+            if ((repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS || repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS) && numRepeats > 1)
             {
-                if (numRepeats > 0)
-                    numRepeats = -1;
-                else
-                    break;
+                numRepeats--;
             }
-            else if (repeatsType == Model_Billsdeposits::REPEAT_IN_X_MONTHS) // repeat in numRepeats Months (Once only)
+            else if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_IN_X_MONTHS)
             {
-                if (numRepeats > 0)
-                    numRepeats = -1;
-                else
-                    break;
+                // change repeat type to REPEAT_ONCE
+                repeats = Model_Billsdeposits::REPEAT_ONCE;
             }
-            else if (repeatsType == Model_Billsdeposits::REPEAT_EVERY_X_DAYS) // repeat every numRepeats Days
-                numRepeats = entry.NUMOCCURRENCES;
-            else if (repeatsType == Model_Billsdeposits::REPEAT_EVERY_X_MONTHS) // repeat every numRepeats Months
-                numRepeats = entry.NUMOCCURRENCES;
         }
     }
 

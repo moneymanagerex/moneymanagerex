@@ -101,7 +101,7 @@ public:
     wxString getItem(long item, long column);
 
     Model_Asset::Data_Set m_assets;
-    Model_Asset::TYPE m_filter_type;
+    Model_Asset::TYPE_ID m_filter_type;
     int col_max() { return COL_MAX; }
     int col_sort() { return COL_DATE; }
 

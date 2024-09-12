@@ -73,11 +73,12 @@ public:
         COL_DEF_SORT2 = COL_ID 
     };
     EColumn toEColumn(const unsigned long col);
+
 public:
-    EColumn g_sortcol; // index of primary column to sort by
-    EColumn prev_g_sortcol; // index of secondary column to sort by
-    bool g_asc; // asc\desc sorting for primary sort column
-    bool prev_g_asc; // asc\desc sorting for secondary sort column
+    EColumn g_sortcol = COL_DEF_SORT; // index of primary column to sort by
+    EColumn prev_g_sortcol = COL_DEF_SORT2; // index of secondary column to sort by
+    bool g_asc = true; // asc\desc sorting for primary sort column
+    bool prev_g_asc = true; // asc\desc sorting for secondary sort column
 
     bool getSortOrder() const;
     EColumn getSortColumn() const { return m_sortCol; }
@@ -92,7 +93,7 @@ public:
     void OnDeleteTransaction(wxCommandEvent& event);
     void OnRestoreTransaction(wxCommandEvent& event);
     void OnDeleteViewedTransaction(wxCommandEvent& event);
-    void OnRestoreViewedTransaction(wxCommandEvent& event);
+    void OnRestoreViewedTransaction(wxCommandEvent&);
     void OnEditTransaction(wxCommandEvent& event);
     void OnDuplicateTransaction(wxCommandEvent& event);
     void OnSetUserColour(wxCommandEvent& event);
@@ -198,8 +199,8 @@ private:
 
     void OnMouseRightClick(wxMouseEvent& event);
     void OnListLeftClick(wxMouseEvent& event);
-    void OnListItemSelected(wxListEvent& event);
-    void OnListItemDeSelected(wxListEvent& event);
+    void OnListItemSelected(wxListEvent&);
+    void OnListItemDeSelected(wxListEvent&);
     void OnListItemActivated(wxListEvent& event);
     void OnMarkTransaction(wxCommandEvent& event);
     void OnListKeyDown(wxListEvent& event);
@@ -215,16 +216,16 @@ private:
     bool CheckForClosedAccounts();
     void setExtraTransactionData(const bool single);
     void SortTransactions(int sortcol, bool ascend);
-    void findInAllTransactions(wxCommandEvent& event);
-    void OnCopyText(wxCommandEvent& event);
+    void findInAllTransactions(wxCommandEvent&);
+    void OnCopyText(wxCommandEvent&);
     int getColumnFromPosition(int xPos);
 private:
     /* The topmost visible item - this will be used to set
     where to display the list again after refresh */
-    long m_topItemIndex;
-    EColumn m_sortCol;
+    long m_topItemIndex = -1;
+    EColumn m_sortCol = COL_DEF_SORT;
     wxString m_today;
-    bool m_firstSort;
+    bool m_firstSort = true;
     wxString rightClickFilter_;
     wxString copyText_;
 };

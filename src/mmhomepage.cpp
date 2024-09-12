@@ -87,8 +87,8 @@ const wxString htmlWidgetStocks::getHTMLText()
         wxString body = "";
         for (const auto& account : accounts)
         {
-            if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
-            if (Model_Account::status(account) != Model_Account::OPEN) continue;
+            if (Model_Account::type_id(account) != Model_Account::TYPE_ID_INVESTMENT) continue;
+            if (Model_Account::status_id(account) != Model_Account::STATUS_ID_OPEN) continue;
             body += "<tr>";
             body += wxString::Format("<td sorttable_customkey='*%s*'><a href='stock:%i' oncontextmenu='return false;' target='_blank'>%s</a>%s</td>\n"
                 , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME,
@@ -205,8 +205,8 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     const auto &transactions = Model_Checking::instance().find(
         Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL)
-        , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
-        , Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL));
+        , Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
+        , Model_Checking::TRANSCODE(Model_Checking::TYPE_ID_TRANSFER, NOT_EQUAL));
 
     for (const auto &trx : transactions)
     {
@@ -214,7 +214,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
         if (Model_Checking::foreignTransactionAsTransfer(trx) || !trx.DELETEDTIME.IsEmpty())
             continue;
 
-        bool withdrawal = Model_Checking::type(trx) == Model_Checking::WITHDRAWAL;
+        bool withdrawal = Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_WITHDRAWAL;
         const auto it = split.find(trx.TRANSID);
 
         double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
@@ -298,9 +298,9 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
         int repeats = entry.REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields
 
-        if (daysPayment == 0 && repeats > 10 && repeats < 15 && entry.NUMOCCURRENCES < 0) {
-            continue; // Inactive
-        }
+        // ignore inactive entries
+        if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && entry.NUMOCCURRENCES < 0)
+            continue;
 
         int daysOverdue = Model_Billsdeposits::NEXTOCCURRENCEDATE(&entry)
             .Subtract(today).GetDays();
@@ -315,7 +315,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         if (account) accountStr = account->ACCOUNTNAME;
 
         wxString payeeStr = "";
-        if (Model_Billsdeposits::type(entry) == Model_Billsdeposits::TRANSFER)
+        if (Model_Billsdeposits::type_id(entry) == Model_Checking::TYPE_ID_TRANSFER)
         {
             const Model_Account::Data *to_account = Model_Account::instance().get(entry.TOACCOUNTID);
             if (to_account) payeeStr = to_account->ACCOUNTNAME;
@@ -325,10 +325,10 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         {
             const Model_Payee::Data* payee = Model_Payee::instance().get(entry.PAYEEID);
             payeeStr = accountStr;
-            payeeStr += (Model_Billsdeposits::type(entry) == Model_Billsdeposits::WITHDRAWAL ? " &rarr; " : " &larr; ");
+            payeeStr += (Model_Billsdeposits::type_id(entry) == Model_Checking::TYPE_ID_WITHDRAWAL ? " &rarr; " : " &larr; ");
             if (payee) payeeStr += payee->PAYEENAME;
         }
-        double amount = (Model_Billsdeposits::type(entry) == Model_Billsdeposits::WITHDRAWAL ? -entry.TRANSAMOUNT : entry.TRANSAMOUNT);
+        double amount = (Model_Billsdeposits::type_id(entry) == Model_Checking::TYPE_ID_WITHDRAWAL ? -entry.TRANSAMOUNT : entry.TRANSAMOUNT);
         wxString notes = HTMLEncode(entry.NOTES);
         bd_days.push_back(std::make_tuple(daysPayment, payeeStr, daysRemainingStr, amount, account, notes));
     }
@@ -388,8 +388,8 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
     const auto &transactions = Model_Checking::instance().find(
         Model_Checking::TRANSDATE(date_range.get()->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range.get()->end_date().FormatISOCombined(), LESS_OR_EQUAL)
-        , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
-        , Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL)
+        , Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
+        , Model_Checking::TRANSCODE(Model_Checking::TYPE_ID_TRANSFER, NOT_EQUAL)
     );
 
     for (const auto& pBankTransaction : transactions)
@@ -402,7 +402,7 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
         double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(pBankTransaction.ACCOUNTID)->CURRENCYID, pBankTransaction.TRANSDATE);
 
         int idx = pBankTransaction.ACCOUNTID;
-        if (Model_Checking::type(pBankTransaction) == Model_Checking::DEPOSIT)
+        if (Model_Checking::type_id(pBankTransaction) == Model_Checking::TYPE_ID_DEPOSIT)
             incomeExpensesStats[idx].first += pBankTransaction.TRANSAMOUNT * convRate;
         else
             incomeExpensesStats[idx].second += pBankTransaction.TRANSAMOUNT * convRate;
@@ -493,13 +493,13 @@ const wxString htmlWidgetStatistics::getHTMLText()
         if (Model_Checking::foreignTransactionAsTransfer(trx))
             continue;
 
-        if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP)
+        if (Model_Checking::status_id(trx) == Model_Checking::STATUS_ID_FOLLOWUP)
             countFollowUp++;
 
         accountStats[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
         accountStats[trx.ACCOUNTID].second += Model_Checking::balance(trx, trx.ACCOUNTID);
 
-        if (Model_Checking::type(trx) == Model_Checking::TRANSFER)
+        if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER)
         {
             accountStats[trx.TOACCOUNTID].first += Model_Checking::reconciled(trx, trx.TOACCOUNTID);
             accountStats[trx.TOACCOUNTID].second += Model_Checking::balance(trx, trx.TOACCOUNTID);
@@ -673,7 +673,7 @@ void htmlWidgetAccounts::get_account_stats()
         accountStats_[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
         accountStats_[trx.ACCOUNTID].second += Model_Checking::balance(trx, trx.ACCOUNTID);
 
-        if (Model_Checking::type(trx) == Model_Checking::TRANSFER)
+        if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER)
         {
             accountStats_[trx.TOACCOUNTID].first += Model_Checking::reconciled(trx, trx.TOACCOUNTID);
             accountStats_[trx.TOACCOUNTID].second += Model_Checking::balance(trx, trx.TOACCOUNTID);
@@ -682,7 +682,7 @@ void htmlWidgetAccounts::get_account_stats()
 
 }
 
-const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tReconciled, int type = Model_Account::CHECKING)
+const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tReconciled, int type = Model_Account::TYPE_ID_CHECKING)
 {
     static const std::vector < std::pair <wxString, wxString> > typeStr
     {
@@ -713,8 +713,8 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tRe
     const wxDate today = wxDate::Today();
     wxString vAccts = Model_Setting::instance().GetViewAccounts();
     auto accounts = Model_Account::instance().find(
-        Model_Account::ACCOUNTTYPE(Model_Account::all_type()[type])
-        , Model_Account::STATUS(Model_Account::CLOSED, NOT_EQUAL));
+        Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR[type])
+        , Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL));
     std::stable_sort(accounts.begin(), accounts.end(), SorterByACCOUNTNAME());
     for (const auto& account : accounts)
     {
@@ -727,7 +727,7 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tRe
         tReconciled += reconciledBal * currency_rate;
 
         // show the actual amount in that account
-        if (((vAccts == VIEW_ACCOUNTS_OPEN_STR && Model_Account::status(account) == Model_Account::OPEN) ||
+        if (((vAccts == VIEW_ACCOUNTS_OPEN_STR && Model_Account::status_id(account) == Model_Account::STATUS_ID_OPEN) ||
             (vAccts == VIEW_ACCOUNTS_FAVORITES_STR && Model_Account::FAVORITEACCT(account)) ||
             (vAccts == VIEW_ACCOUNTS_ALL_STR)))
         {

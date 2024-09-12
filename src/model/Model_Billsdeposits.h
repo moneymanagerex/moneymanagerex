@@ -22,7 +22,8 @@
 
 #include "Model.h"
 #include "db/DB_Table_Billsdeposits_V1.h"
-#include "model/Model_Splittransaction.h"
+#include "Model_Checking.h"
+#include "Model_Splittransaction.h"
 #include "Model_Budgetsplittransaction.h"
 #include "Model_Taglink.h"
 
@@ -35,11 +36,8 @@ public:
     typedef Model_Budgetsplittransaction::Data_Set Split_Data_Set;
 
 public:
-    enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
-    enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
     enum REPEAT_TYPE {
-        REPEAT_INACTIVE = -1,
-        REPEAT_NONE,
+        REPEAT_ONCE = 0,
         REPEAT_WEEKLY,
         REPEAT_BI_WEEKLY,      // FORTNIGHTLY
         REPEAT_MONTHLY,
@@ -57,9 +55,15 @@ public:
         REPEAT_MONTHLY_LAST_DAY,
         REPEAT_MONTHLY_LAST_BUSINESS_DAY
     };
-
-    static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
-    static const std::vector<std::pair<STATUS_ENUM, wxString> > STATUS_ENUM_CHOICES;
+    enum REPEAT_NUM {
+        REPEAT_NUM_INFINITY = -1,
+        REPEAT_NUM_UNKNOWN = 0
+    };
+    enum REPEAT_AUTO {
+        REPEAT_AUTO_NONE = 0,
+        REPEAT_AUTO_MANUAL = 1,
+        REPEAT_AUTO_SILENT = 2
+    };
 
 public:
     Model_Billsdeposits();
@@ -72,10 +76,10 @@ public:
         int BDID = 0;
         // This relates the 'Date Due' field.
         wxString TRANSDATE = wxDateTime::Now().FormatISOCombined();
-        wxString STATUS = Model_Billsdeposits::all_status()[Model_Billsdeposits::NONE];;
+        wxString STATUS = Model_Checking::STATUS_STR_NONE;
         int ACCOUNTID = -1;
         int TOACCOUNTID = -1;
-        wxString TRANSCODE = Model_Billsdeposits::all_type()[Model_Billsdeposits::WITHDRAWAL];;
+        wxString TRANSCODE = Model_Checking::TYPE_STR_WITHDRAWAL;
         int CATEGID = -1;
         double TRANSAMOUNT = 0;
         double TOTRANSAMOUNT = 0;
@@ -107,10 +111,6 @@ public:
     typedef std::vector<Full_Data> Full_Data_Set;
 
 public:
-    static wxArrayString all_type();
-    static wxArrayString all_status();
-
-public:
     /**
     Initialize the global Model_Billsdeposits table on initial call.
     Resets the global table on subsequent calls.
@@ -134,13 +134,10 @@ public:
     static wxDate NEXTOCCURRENCEDATE(const Data* r);
     // This relates the 'Date Paid' field
     static wxDate NEXTOCCURRENCEDATE(const Data& r);
-    static TYPE type(const wxString& r);
-    static TYPE type(const Data* r);
-    static TYPE type(const Data& r);
-    static STATUS_ENUM status(const wxString& r);
-    static STATUS_ENUM status(const Data* r);
-    static STATUS_ENUM status(const Data& r);
-    static wxString toShortStatus(const wxString& fullStatus);
+    static Model_Checking::TYPE_ID type_id(const Data* r);
+    static Model_Checking::TYPE_ID type_id(const Data& r);
+    static Model_Checking::STATUS_ID status_id(const Data* r);
+    static Model_Checking::STATUS_ID status_id(const Data& r);
 
     /**
     * Decodes the internal fields and sets the condition of the following parameters:
@@ -151,12 +148,10 @@ public:
     bool autoExecuteSilent();
     bool requireExecution();
     bool allowExecution();
-    typedef std::map<int, double> AccountBalance;
-    bool AllowTransaction(const Data& r, AccountBalance& bal);
+    bool AllowTransaction(const Data& r);
 
 private:
-    bool m_autoExecuteManual;
-    bool m_autoExecuteSilent;
+    int m_autoExecute;
     bool m_requireExecution;
     bool m_allowExecution;
 
@@ -167,8 +162,8 @@ public:
     */
     bool remove(int id);
 
-    static DB_Table_BILLSDEPOSITS_V1::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL);
-    static DB_Table_BILLSDEPOSITS_V1::TRANSCODE TRANSCODE(TYPE type, OP op = EQUAL);
+    static DB_Table_BILLSDEPOSITS_V1::STATUS STATUS(Model_Checking::STATUS_ID status, OP op = EQUAL);
+    static DB_Table_BILLSDEPOSITS_V1::TRANSCODE TRANSCODE(Model_Checking::TYPE_ID type, OP op = EQUAL);
 
     static const Model_Budgetsplittransaction::Data_Set splittransaction(const Data* r);
     static const Model_Budgetsplittransaction::Data_Set splittransaction(const Data& r);

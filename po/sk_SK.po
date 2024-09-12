@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-05-19 23:47+0300\n"
-"PO-Revision-Date: 2024-05-19 20:50\n"
+"POT-Creation-Date: 2024-05-24 22:36+0300\n"
+"PO-Revision-Date: 2024-09-12 12:15\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgstr "&Nová databáza"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "Vytvoriť nový databázový súbor MMEX"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -337,7 +337,7 @@ msgstr "Otvoriť &existujúcu databázu"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "Otvoriť databázový súbor MMEX"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1682
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "&Užívateľská príručka"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "Prečítať používateľskú príručku MMEX"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1852
 msgid "&Website"
@@ -362,15 +362,15 @@ msgstr "&Webová stránka"
 
 #: appstartdialog.cpp:121 mmframe.cpp:1853
 msgid "Visit MMEX website for the latest news and updates"
-msgstr ""
+msgstr "Navštívte webovú stránku MMEX pre najnovšie správy a aktualizácie"
 
 #: appstartdialog.cpp:125 mmframe.cpp:1869
 msgid "&Forum"
-msgstr ""
+msgstr "&Fórum"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "Navštívte fórum MMEX, aby ste si prečítali a pridávali komentáre a získali podporu"
 
 #: appstartdialog.cpp:132 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -383,7 +383,7 @@ msgstr "Ukončiť "
 #: appstartdialog.cpp:159
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Otvoriť predtým otvorenú databázu: %s"
 
 #: appstartdialog.cpp:208 mmframe.cpp:1688 mmframe.cpp:3081
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -392,7 +392,7 @@ msgstr "Predvolené nastavenie systému"
 
 #: appstartdialog.cpp:221 optionsettingsgeneral.cpp:92
 msgid "User Interface Language"
-msgstr ""
+msgstr "Jazyk používateľského rozhrania"
 
 #: appstartdialog.cpp:229 mmframe.cpp:3960 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -671,7 +671,7 @@ msgstr "Hviezdičku (*) použite na vyhľadanie ľubovoľného počtu znakov - n
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr "Ak chcete nájsť akýkoľvek reťazec uprostred vety, použite na začiatku hviezdičku (*)."
 
-#: assetspanel.cpp:583 stockspanel.cpp:333 stockspanel.cpp:520
+#: assetspanel.cpp:583 stockspanel.cpp:370 stockspanel.cpp:557
 #, c-format
 msgid "Total: %s"
 msgstr "Spolu: %s"
@@ -699,8 +699,7 @@ msgstr "Účet \t Dátum\t   Hodnota\n\n"
 msgid "Description"
 msgstr "Opis"
 
-#: attachmentdialog.cpp:56 import_export/qif_export.cpp:203
-#: import_export/univcsvdialog.cpp:201
+#: attachmentdialog.cpp:56
 msgid "File"
 msgstr "Súbor"
 
@@ -709,8 +708,8 @@ msgid "Attachment folder not defined."
 msgstr "Nie je nastavený priečinok príloh."
 
 #: attachmentdialog.cpp:65
-msgid "Please set it in Tools → Options → Attachments"
-msgstr "Nastavte to v Nástroje → Možnosti → Prílohy"
+msgid "Please set it in Tools → Settings… → Attachments"
+msgstr "Nastavte to prosím v Nástroje → Nastavenia… → Prílohy"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
@@ -731,17 +730,17 @@ msgstr "Nebol nájdený priečinok príloh"
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %s | %i"
-msgstr ""
+msgstr "Správca príloh | %s | %i"
 
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr ""
+msgstr "Správca príloh | %1$s | %2$s"
 
 #: attachmentdialog.cpp:118
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr ""
+msgstr "Správca príloh | Nová %s"
 
 #: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
@@ -757,7 +756,7 @@ msgstr "Zadajte opis novej prílohy:"
 
 #: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
-msgstr ""
+msgstr "Správca príloh: Pridať prílohu"
 
 #: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
@@ -765,7 +764,7 @@ msgstr "Zadajte nový popis pre prílohu:"
 
 #: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
-msgstr ""
+msgstr "Správca príloh: Upraviť prílohu"
 
 #: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
@@ -797,7 +796,7 @@ msgstr "Príl."
 
 #: attachmentdialog.cpp:407
 msgid "This directory and its files are automatically managed by MMEX."
-msgstr ""
+msgstr "Tento priečinok a súbory v ňom sú automaticky spravované softvérom MMEX."
 
 #: attachmentdialog.cpp:409
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -1038,7 +1037,7 @@ msgstr "Upresnite sumu prevodu na cieľový účet"
 
 #: billsdepositsdialog.cpp:544 transdialog.cpp:494
 msgid "Open Calculator"
-msgstr ""
+msgstr "Otvoriť kalkulačku"
 
 #: billsdepositsdialog.cpp:550 billsdepositsdialog.cpp:837
 #: billsdepositsdialog.cpp:850 billsdepositspanel.cpp:134 filtertrans.cpp:200
@@ -1232,12 +1231,14 @@ msgstr "Zadajte počet mesiacov do aktivácie.\n"
 #: billsdepositsdialog.cpp:1322
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Zadajte počet dní do aktivácie.\n"
+"Pokiaľ nie je aktívne, pole zostane prázdne."
 
 #: billsdepositsdialog.cpp:1330
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Zadajte počet mesiacov do aktivácie.\n"
+"Pokiaľ nedôjde k aktivácii, pole zostane prázdne."
 
 #: billsdepositsdialog.cpp:1338
 msgid "Specify the number of payments to be made.\n"
@@ -1247,8 +1248,8 @@ msgstr "Zadajte počet platieb, ktoré sa majú vykonať.\n"
 
 #: billsdepositsdialog.cpp:1367 images_list.cpp:502
 #: import_export/univcsvdialog.cpp:1582 maincurrencydialog.cpp:482
-#: mmframe.cpp:3917 splittransactionsdialog.cpp:412 stockspanel.cpp:384
-#: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
+#: mmframe.cpp:3917 splittransactionsdialog.cpp:412 stockspanel.cpp:421
+#: stockspanel.cpp:422 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
 msgstr "Chyba"
@@ -1341,11 +1342,11 @@ msgstr "Odstrániť naplánovanú transakciu"
 
 #: billsdepositspanel.cpp:313
 msgid "Ente&r"
-msgstr ""
+msgstr "Vložiť"
 
 #: billsdepositspanel.cpp:314
 msgid "Enter Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Zadajte ďalšiu naplánovanú transakciu"
 
 #: billsdepositspanel.cpp:318
 msgid "&Skip"
@@ -1353,11 +1354,11 @@ msgstr "&Preskočiť"
 
 #: billsdepositspanel.cpp:319
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr ""
+msgstr "Preskočte ďalšiu naplánovanú transakciu"
 
 #: billsdepositspanel.cpp:433
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Zadajte ďalší výskyt..."
 
 #: billsdepositspanel.cpp:435
 msgid "Skip next Occurrence"
@@ -1365,27 +1366,27 @@ msgstr "Preskočiť ďalší výskyt"
 
 #: billsdepositspanel.cpp:437
 msgid "&New Scheduled Transaction..."
-msgstr ""
+msgstr "&Nová naplánovaná transakcia..."
 
 #: billsdepositspanel.cpp:438
 msgid "&Edit Scheduled Transaction..."
-msgstr ""
+msgstr "Upravt&e naplánovanú transakciu..."
 
 #: billsdepositspanel.cpp:439
 msgid "D&uplicate Scheduled Transaction..."
-msgstr ""
+msgstr "D&uplikovať naplánovanú transakciu..."
 
 #: billsdepositspanel.cpp:441
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "O&dstrániť naplánovanú transakciu..."
 
 #: billsdepositspanel.cpp:491
 msgid "Manual"
-msgstr ""
+msgstr "Príručka"
 
 #: billsdepositspanel.cpp:494
 msgid "Automated"
-msgstr ""
+msgstr "Automatizovaný"
 
 #: billsdepositspanel.cpp:498
 msgid "Suggested"
@@ -1396,9 +1397,9 @@ msgstr "Navrhované"
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "Zostáva/jú %d dni/í"
 msgstr[2] ""
-msgstr[3] "%d dní zostáva"
+msgstr[3] "Zostáva %d dní"
 
 #: billsdepositspanel.cpp:543 billsdepositspanel.cpp:550
 #: billsdepositspanel.cpp:557 billsdepositspanel.cpp:610
@@ -1410,27 +1411,27 @@ msgstr "Neaktívne"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%d deň oneskorenia!"
+msgstr[1] "%d dni omeskorenia!"
+msgstr[2] "%d dní omeskorenia!"
+msgstr[3] "%d dní oneskorenia!"
 
 #: billsdepositspanel.cpp:555 billsdepositspanel.cpp:615 mmhomepage.cpp:311
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%d deň po splatnosti!"
+msgstr[1] "%d dni po splatnosti!"
+msgstr[2] "%d dní po splatnosti!"
+msgstr[3] "%d dní po splatnosti!"
 
 #: billsdepositspanel.cpp:676
 msgid "Do you really want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Naozaj chcete odstrániť naplánovanú transakciu?"
 
 #: billsdepositspanel.cpp:677
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Potvrdiť zmazanie"
 
 #: budgetentrydialog.cpp:47
 msgid "Budget Year Entry"
@@ -1485,7 +1486,7 @@ msgstr "Zadajte predpokladanú sumu pre túto kategóriu."
 
 #: budgetentrydialog.cpp:148 payeedialog.cpp:119
 msgid "Enter notes to describe this budget entry"
-msgstr ""
+msgstr "Vložte poznámky, v ktorých opíšete tento rozpočtový záznam"
 
 #: budgetingpanel.cpp:52
 msgid "View All Budget Categories"
@@ -1514,7 +1515,7 @@ msgstr "Zobraziť súhrn kategórií rozpočtu"
 #: budgetingpanel.cpp:165
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Fiškálny rok: %s - %li"
 
 #: budgetingpanel.cpp:169 reports/budget.cpp:94
 #, c-format
@@ -1529,12 +1530,12 @@ msgstr "mesiac: %s"
 #: budgetingpanel.cpp:180
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr ""
+msgstr "%1$s Dátum začatia: %2$s"
 
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "Plánovanie rozpočtu pre %s"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -1576,7 +1577,7 @@ msgstr "Editor rozpočtu"
 
 #: budgetyeardialog.cpp:93
 msgid "Add &Year"
-msgstr ""
+msgstr "Pridať rok"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1584,7 +1585,7 @@ msgstr "Pridať nový ročný rozpočet"
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
-msgstr ""
+msgstr "Pridať &mesiac"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -1604,7 +1605,7 @@ msgstr "Položka mesačného rozpočtu"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr ""
+msgstr "Rozpočet pre rok"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1614,7 +1615,7 @@ msgstr "Upresnite požadovaný rok.\n"
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
-msgstr ""
+msgstr "Rozpočet pre mesiac"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
@@ -1624,11 +1625,11 @@ msgstr "Upresnite požadovaný mesiac.\n"
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
-msgstr ""
+msgstr "Rozpočet založený na"
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
-msgstr ""
+msgstr "Upresnite rok, na ktorom bude založený rozpočet"
 
 #: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
@@ -1641,19 +1642,19 @@ msgstr "Kategórie"
 #: categdialog.cpp:258 relocatecategorydialog.cpp:89
 #: relocatecategorydialog.h:43
 msgid "Merge Categories"
-msgstr ""
+msgstr "Zlúčiť kategórie"
 
 #: categdialog.cpp:260
 msgid "C&ollapse All"
-msgstr ""
+msgstr "Zbaliť všetk&o"
 
 #: categdialog.cpp:265
 msgid "E&xpand All"
-msgstr ""
+msgstr "Rozbaliť všetko"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "&Show All"
-msgstr ""
+msgstr "Zobraziť všetko"
 
 #: categdialog.cpp:272
 msgid "Show all hidden categories"
@@ -1681,15 +1682,15 @@ msgstr "Vyberte aktuálnu kategóriu pre transakciu"
 
 #: categdialog.cpp:343
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "Názov obsahuje oddeľovač kategórie."
 
 #: categdialog.cpp:344
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "Dvojbodka (:) sa používa na oddelenie kategórií a podkategórií, a preto by sa v názve nemala používať"
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
-msgstr ""
+msgstr "Manažér kategórie: Neplatný názov"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
@@ -1701,23 +1702,23 @@ msgstr "Pridať kategóriu"
 
 #: categdialog.cpp:366 categdialog.cpp:375 categdialog.cpp:624
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "Pre nadradenú kategóriu už existuje kategória s týmto názvom"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category Manager: Adding Error"
-msgstr ""
+msgstr "Správca kategórií: Chyba pri vkladaní"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "Nemôžete presunúť podkategóriu do kategórie, ktorá už má podkategóriu s rovnakým názvom. Pred presunutím zvážte premenovanie."
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "Podkategória s týmto názvom už existuje"
 
 #: categdialog.cpp:440
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "Cieľová kategória je podradená"
 
 #: categdialog.cpp:447
 #, c-format
@@ -1725,15 +1726,18 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "Ste si istí, že chcete presunúť\\n\"\n"
+"%1$s\"\\n\n"
+"do:\\n\n"
+"\"%2$s\"?"
 
 #: categdialog.cpp:449
 msgid "Top level"
-msgstr ""
+msgstr "Najvyššia úroveň"
 
 #: categdialog.cpp:450
 msgid "Confirm Move"
-msgstr ""
+msgstr "Potvrdiť presun"
 
 #: categdialog.cpp:467
 msgid "Category in use."
@@ -1741,46 +1745,46 @@ msgstr "Kategória sa používa."
 
 #: categdialog.cpp:467
 msgid "Subcategory in use."
-msgstr ""
+msgstr "Podkategória sa používa."
 
 #: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Tip: Zmeňte všetky transakcie používajúce túto kategóriu na inú kategóriu pomocou príkazu zlúčenia:"
 
 #: categdialog.cpp:472
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "Tip: Zmeňte všetky transakcie používajúce túto podkategóriu na inú kategóriu pomocou príkazu zlúčenia:"
 
 #: categdialog.cpp:475
 msgid "Tools → Merge → Categories"
-msgstr ""
+msgstr "Nástroje → Zlúčiť → Kategórie"
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
-msgstr ""
+msgstr "Správca kategórií: Chyba pri mazaní"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr ""
+msgstr "Existujú vymazané transakcie, ktoré používajú túto kategóriu alebo jednu z jej podkategórií."
 
 #: categdialog.cpp:501
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "Vymazanie tejto kategórie tiež automaticky odstráni jej súvisiace vymazané transakcie."
 
 #: categdialog.cpp:502 payeedialog.cpp:753 tagdialog.cpp:300
 msgid "Do you wish to continue ?"
-msgstr ""
+msgstr "Želáte si pokračovať?"
 
 #: categdialog.cpp:503
 msgid "Confirm Category Deletion"
-msgstr ""
+msgstr "Potvrdiť vymazanie kategórie"
 
 #: categdialog.cpp:612 tagdialog.cpp:241
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Zadajte nový názov pre %s'"
 
 #: categdialog.cpp:613
 msgid "Edit Category"
@@ -1788,11 +1792,11 @@ msgstr "Upraviť kategóriu"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
-msgstr ""
+msgstr "Správca kategórií: Chyba pri úprave"
 
 #: categdialog.cpp:682 mmframe.cpp:3806
 msgid "Merge categories completed"
-msgstr ""
+msgstr "Zlúčenie kategórií dokončené"
 
 #: categdialog.cpp:683 mmframe.cpp:3807 mmframe.cpp:3822 mmframe.cpp:3838
 #: payeedialog.cpp:834
@@ -1802,15 +1806,15 @@ msgstr "Boli aktualizované záznamy v databáze: %i"
 
 #: categdialog.cpp:685 mmframe.cpp:3809
 msgid "Merge categories result"
-msgstr ""
+msgstr "Výsledok zlúčenia kategórií"
 
 #: categdialog.cpp:761
 msgid "Are you sure you want to unhide all categories"
-msgstr ""
+msgstr "Ste si istí, že chcete zobraziť všetky kategórie"
 
 #: categdialog.cpp:762
 msgid "Unhide all categories"
-msgstr ""
+msgstr "Zobraziť všetky kategórie"
 
 #: categdialog.cpp:790
 msgid "Hide Selected Category"
@@ -1822,7 +1826,7 @@ msgstr "Odkryť vybranú kategóriu"
 
 #: categdialog.cpp:793
 msgid "Remove Category"
-msgstr ""
+msgstr "Odstrániť kategóriu"
 
 #: categdialog.cpp:796
 msgid "Clear Settings"
@@ -1830,7 +1834,7 @@ msgstr "Vymazať nastavenia"
 
 #: categdialog.h:68 mmframe.cpp:1743 mmframe.cpp:1971
 msgid "Category Manager"
-msgstr ""
+msgstr "Správca kategórií"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -1852,35 +1856,35 @@ msgstr "OK"
 
 #: constants.cpp:90
 msgid "Undo"
-msgstr ""
+msgstr "Vrátiť späť"
 
 #: constants.cpp:91
 msgid "Redo"
-msgstr ""
+msgstr "Vpred"
 
 #: constants.cpp:92
 msgid "Cut"
-msgstr ""
+msgstr "Vystrihnúť"
 
 #: constants.cpp:93
 msgid "Copy"
-msgstr ""
+msgstr "Kopírovať"
 
 #: constants.cpp:94
 msgid "Paste"
-msgstr ""
+msgstr "Prilepiť"
 
 #: constants.cpp:95
 msgid "Select All"
-msgstr ""
+msgstr "Vybrať všetko"
 
 #: constants.cpp:111
 msgid "64-bit"
-msgstr ""
+msgstr "64-bit"
 
 #: constants.cpp:193
 msgid "View Transaction Report..."
-msgstr ""
+msgstr "Zobraziť správu o transakciách..."
 
 #: constants.cpp:194
 msgid "View All Transactions"
@@ -1920,23 +1924,23 @@ msgstr "Zobraziť aktuálny rok"
 
 #: constants.cpp:203
 msgid "View Current Financial Year"
-msgstr ""
+msgstr "Zobraziť aktuálny finančný rok"
 
 #: constants.cpp:204
 msgid "View Last Year"
-msgstr ""
+msgstr "Zobraziť minulý rok"
 
 #: constants.cpp:205
 msgid "View Last Financial Year"
-msgstr ""
+msgstr "Zobraziť minulý finančný rok"
 
 #: constants.cpp:206
 msgid "View Since Statement Date"
-msgstr ""
+msgstr "Zobraziť od dátumu výpisu"
 
 #: constants.cpp:208
 msgid "ALL"
-msgstr ""
+msgstr "Všetko"
 
 #: constants.cpp:209 mmframe.cpp:1963 model/Model_Account.cpp:27
 #: model/Model_Asset.cpp:54
@@ -1961,7 +1965,7 @@ msgstr "Názov meny"
 
 #: currencydialog.cpp:193
 msgid "Currency Code"
-msgstr ""
+msgstr "Kód meny"
 
 #: currencydialog.cpp:198
 msgid "Currency Symbol"
@@ -1969,15 +1973,15 @@ msgstr "Symbol meny"
 
 #: currencydialog.cpp:202
 msgid "Symbol Location"
-msgstr ""
+msgstr "Umiestnenie symbolu"
 
 #: currencydialog.cpp:203
 msgid "Prefix"
-msgstr ""
+msgstr "Predpona"
 
 #: currencydialog.cpp:204
 msgid "Suffix"
-msgstr ""
+msgstr "Prípona"
 
 #: currencydialog.cpp:210 import_export/qif_import_gui.cpp:328
 #: import_export/univcsvdialog.cpp:419
@@ -1986,11 +1990,11 @@ msgstr "Desatinný znak"
 
 #: currencydialog.cpp:213 currencydialog.cpp:220
 msgid "Dot"
-msgstr ""
+msgstr "Bodka"
 
 #: currencydialog.cpp:214 currencydialog.cpp:221
 msgid "Comma"
-msgstr ""
+msgstr "Čiarka"
 
 #: currencydialog.cpp:216
 msgid "Grouping Char"
@@ -1998,7 +2002,7 @@ msgstr "Skupinový znak"
 
 #: currencydialog.cpp:222
 msgid "Space"
-msgstr ""
+msgstr "Medzera"
 
 #: currencydialog.cpp:227
 msgid "Scale"
@@ -2006,19 +2010,19 @@ msgstr "Počet desatinných miest (100 = 2 desatinné miesta)"
 
 #: currencydialog.cpp:231 currencydialog.cpp:291
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "Konverzia na základnú sadzbu"
 
 #: currencydialog.cpp:240
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "Konverzný kurz sa použije v prípade, ak pre danú menu nebola nájdená žiadna história mien"
 
 #: currencydialog.cpp:242
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Pevný konverzný kurz"
 
 #: currencydialog.cpp:247
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "Ukážka formátu meny:"
 
 #: currencydialog.cpp:261
 msgid "Save any changes made"
@@ -2036,71 +2040,71 @@ msgstr "Neplatný záznam"
 
 #: currencydialog.cpp:285 currencydialog.cpp:310
 msgid "Grouping character cannot be the same as the decimal character"
-msgstr ""
+msgstr "Znak zoskupenia nemôže byť rovnaký ako desatinný znak"
 
 #: currencydialog.cpp:332
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f zobrazené ako: %s"
 
 #: currencydialog.cpp:334
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(Používanie miestnych nastavení)"
 
 #: currencydialog.h:48 maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
 #: maincurrencydialog.cpp:813 maincurrencydialog.h:76 mmframe.cpp:1751
 #: mmframe.cpp:1973 optionsettingsgeneral.cpp:301
 msgid "Currency Manager"
-msgstr ""
+msgstr "Správca meny"
 
 #: customfieldeditdialog.cpp:113
 msgid "Custom Field Details"
-msgstr ""
+msgstr "Podrobnosti vlastného poľa"
 
 #: customfieldeditdialog.cpp:124 customfieldlistdialog.cpp:52
 msgid "Attribute of"
-msgstr ""
+msgstr "Vlastnosť"
 
 #: customfieldeditdialog.cpp:130
 msgid "Select the item that the custom field is associated with"
-msgstr ""
+msgstr "Vyberte položku, s ktorou je vlastné pole spojené"
 
 #: customfieldeditdialog.cpp:138
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "Zadajte názov vlastného poľa"
 
 #: customfieldeditdialog.cpp:141
 msgid "Field Type"
-msgstr ""
+msgstr "Typ poľa"
 
 #: customfieldeditdialog.cpp:145
 msgid "Select type of custom field"
-msgstr ""
+msgstr "Vyberte typ vlastného poľa"
 
 #: customfieldeditdialog.cpp:148
 msgid "Tooltip"
-msgstr ""
+msgstr "Nápoveda"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enter the tooltip that will be shown"
-msgstr ""
+msgstr "Zadajte text nápovedy"
 
 #: customfieldeditdialog.cpp:153
 msgid "RegEx"
-msgstr ""
+msgstr "RegEx"
 
 #: customfieldeditdialog.cpp:155
 msgid "Enter the RegEx to validate field"
-msgstr ""
+msgstr "Zadajte regulárny výraz na overenie poľa"
 
 #: customfieldeditdialog.cpp:158
 msgid "Autocomplete"
-msgstr ""
+msgstr "Automatické dopĺňanie"
 
 #: customfieldeditdialog.cpp:161
 msgid "Enables autocomplete on custom field"
-msgstr ""
+msgstr "Povoľuje automatické dopĺňanie vo vlastnom poli"
 
 #: customfieldeditdialog.cpp:164 optionsettingsview.cpp:222 util.cpp:613
 msgid "Default"
@@ -2109,7 +2113,7 @@ msgstr "Predvolené"
 #: customfieldeditdialog.cpp:166
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "Zadajte predvolenú hodnotu pre toto pole. Pre dátum/čas vložte ‘Teraz’, aby sa ako predvolený nastavil aktuálny dátum/čas"
 
 #: customfieldeditdialog.cpp:170 customfieldeditdialog.cpp:220
 msgid "Choices"
@@ -2117,34 +2121,34 @@ msgstr "Voľby"
 
 #: customfieldeditdialog.cpp:172
 msgid "Enter the choices for this field separated with a semicolon"
-msgstr ""
+msgstr "Zadajte možnosti pre toto pole oddelené bodkočiarkou"
 
 #: customfieldeditdialog.cpp:175
 msgid "Digits scale"
-msgstr ""
+msgstr "Desatinné miesta"
 
 #: customfieldeditdialog.cpp:177
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Zadajte platné desatinné miesto"
 
 #: customfieldeditdialog.cpp:180
 msgid "Panel's column"
-msgstr ""
+msgstr "Stĺpec panela"
 
 #: customfieldeditdialog.cpp:185
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Vyberte hodnotu na reprezentáciu položky na paneli"
 
 #: customfieldeditdialog.cpp:220 filtertransdialog.cpp:979
 #: filtertransdialog.cpp:1016 filtertransdialog.cpp:1048
 #: filtertransdialog.cpp:1619 reports/myusage.cpp:102 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Empty value"
-msgstr ""
+msgstr "Prázdna hodnota"
 
 #: customfieldeditdialog.cpp:233
 msgid "Changing field type will delete all content!"
-msgstr ""
+msgstr "Zmena typu poľa vymaže všetok obsah!"
 
 #: customfieldeditdialog.cpp:234 customfieldeditdialog.cpp:256 mmframe.cpp:2427
 #: mmframe.cpp:2489
@@ -2153,11 +2157,11 @@ msgstr "Chcete pokračovať?"
 
 #: customfieldeditdialog.cpp:235 customfieldeditdialog.cpp:257
 msgid "Custom Field Change"
-msgstr ""
+msgstr "Zmena vlastného poľa"
 
 #: customfieldeditdialog.cpp:255
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "Upravili ste možnosti; Tie, ktoré ste odstránili budú vymazané!"
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
@@ -3152,6 +3156,11 @@ msgstr "Zapísať do súboru"
 msgid "File Name:"
 msgstr "Názov súboru:"
 
+#: import_export/qif_export.cpp:203 import_export/qif_import_gui.cpp:135
+#: import_export/univcsvdialog.cpp:201
+msgid "&Browse..."
+msgstr ""
+
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:555
 msgid "Clear"
 msgstr "Vymazať"
@@ -3233,10 +3242,6 @@ msgstr ""
 msgid "Number of accounts exported: %zu"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:135 import_export/univcsvdialog.cpp:201
-msgid "&Browse"
-msgstr "&Prehliadať"
-
 #: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:385
 msgid "Encoding:"
 msgstr "Kódovanie:"
@@ -3313,7 +3318,7 @@ msgstr "Pre pokračovanie stlačte tlačidlo OK"
 
 #: import_export/qif_import_gui.cpp:770 import_export/qif_import_gui.cpp:801
 #: import_export/univcsvdialog.cpp:2091 import_export/univcsvdialog.cpp:2105
-#: stockspanel.cpp:449
+#: stockspanel.cpp:486
 msgid "Missing"
 msgstr "Chýbajúce"
 
@@ -3919,7 +3924,7 @@ msgstr ""
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr ""
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:395 util.cpp:684
+#: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:684
 msgid "Could not find base currency symbol!"
 msgstr "Nemožno nájsť symbol základnej meny!"
 
@@ -5594,7 +5599,7 @@ msgstr ""
 msgid "Please wait..."
 msgstr "Prosím čakajte..."
 
-#: mmframe.cpp:3567 stockspanel.cpp:459
+#: mmframe.cpp:3567 stockspanel.cpp:496
 #, c-format
 msgid "%1$s on %2$s"
 msgstr ""
@@ -6384,7 +6389,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX starts,\n"
-"create the backup database: dbFile_start_YYYY-MM-DD.ext."
+"create the backup database: dbFile_start_YYYY-MM-DD.bak"
 msgstr ""
 
 #: optionsettingsmisc.cpp:187
@@ -6393,7 +6398,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes were made to the database,\n"
-"create or update the backup database: dbFile_update_YYYY-MM-DD.ext."
+"create or update the backup database: dbFile_update_YYYY-MM-DD.bak"
 msgstr ""
 
 #: optionsettingsmisc.cpp:197
@@ -7655,49 +7660,49 @@ msgstr "Obnoviť kurzy akcií z Yahoo"
 msgid "Lot"
 msgstr ""
 
-#: stockspanel.cpp:288
+#: stockspanel.cpp:325
 #, c-format
 msgid "Stock Portfolio: %s"
 msgstr ""
 
-#: stockspanel.cpp:332
+#: stockspanel.cpp:369
 #, c-format
 msgid "Total Shares: %s"
 msgstr ""
 
-#: stockspanel.cpp:334
+#: stockspanel.cpp:371
 #, c-format
 msgid "Invested: %s"
 msgstr ""
 
-#: stockspanel.cpp:335
+#: stockspanel.cpp:372
 #, c-format
 msgid "Gain: %s"
 msgstr "Zisk: %s"
 
-#: stockspanel.cpp:335
+#: stockspanel.cpp:372
 #, c-format
 msgid "Loss: %s"
 msgstr "Strata: %s"
 
-#: stockspanel.cpp:373
+#: stockspanel.cpp:410
 msgid "Stock prices successfully updated"
 msgstr "Kurzy akcií boli úspešne aktualizované"
 
-#: stockspanel.cpp:375 stockspanel.cpp:561
+#: stockspanel.cpp:412 stockspanel.cpp:598
 #, c-format
 msgid "Last updated %s"
 msgstr "Posledná aktualizácia %s"
 
-#: stockspanel.cpp:401 util.cpp:708 util.cpp:869
+#: stockspanel.cpp:438 util.cpp:708 util.cpp:869
 msgid "Nothing to update"
 msgstr "Nie je dostupná žiadna aktualizácia"
 
-#: stockspanel.cpp:415
+#: stockspanel.cpp:452
 msgid "Connecting..."
 msgstr "Pripájanie..."
 
-#: stockspanel.cpp:519
+#: stockspanel.cpp:556
 #, c-format
 msgid "Symbol: %s"
 msgstr ""
@@ -8401,7 +8406,7 @@ msgid "Base Account Currency Not set."
 msgstr "Základná mena účtu nie je nastavená."
 
 #: wizard_newaccount.cpp:165
-msgid "Set that first using Tools → Options menu and then add a new account."
+msgid "Set that first using Tools → Settings… menu and then add a new account."
 msgstr ""
 
 #: wizard_newdb.cpp:30

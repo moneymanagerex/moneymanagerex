@@ -1866,6 +1866,9 @@ void mmSetSize(wxWindow* w)
     else if (name == "Organize Currencies") {
         my_size = Model_Infotable::instance().GetSizeSetting("CURRENCY_DIALOG_SIZE");
     }
+    else if (name == "Column Order Dialog") {
+        my_size = Model_Infotable::instance().GetSizeSetting("COLUMNORDER_DIALOG_SIZE");
+    }
     else if (name == "Themes Dialog") {
         my_size = Model_Infotable::instance().GetSizeSetting("THEMES_DIALOG_SIZE");
     }

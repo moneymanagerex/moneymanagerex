@@ -59,7 +59,7 @@ wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
     EVT_MENU_RANGE(wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS, wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS + menu_labels().size()
         , mmCheckingPanel::OnViewPopupSelected)
-    EVT_MENU_RANGE(Model_Checking::WITHDRAWAL, Model_Checking::TRANSFER, mmCheckingPanel::OnNewTransaction)
+    EVT_MENU_RANGE(Model_Checking::TYPE_ID_WITHDRAWAL, Model_Checking::TYPE_ID_TRANSFER, mmCheckingPanel::OnNewTransaction)
 wxEND_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
@@ -133,11 +133,11 @@ void mmCheckingPanel::filterTable()
     
     const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     const wxString splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
-    Model_CustomField::FIELDTYPE UDFC01_Type = Model_CustomField::getUDFCType(RefType, "UDFC01");
-    Model_CustomField::FIELDTYPE UDFC02_Type = Model_CustomField::getUDFCType(RefType, "UDFC02");
-    Model_CustomField::FIELDTYPE UDFC03_Type = Model_CustomField::getUDFCType(RefType, "UDFC03");
-    Model_CustomField::FIELDTYPE UDFC04_Type = Model_CustomField::getUDFCType(RefType, "UDFC04");
-    Model_CustomField::FIELDTYPE UDFC05_Type = Model_CustomField::getUDFCType(RefType, "UDFC05");
+    Model_CustomField::TYPE_ID UDFC01_Type = Model_CustomField::getUDFCType(RefType, "UDFC01");
+    Model_CustomField::TYPE_ID UDFC02_Type = Model_CustomField::getUDFCType(RefType, "UDFC02");
+    Model_CustomField::TYPE_ID UDFC03_Type = Model_CustomField::getUDFCType(RefType, "UDFC03");
+    Model_CustomField::TYPE_ID UDFC04_Type = Model_CustomField::getUDFCType(RefType, "UDFC04");
+    Model_CustomField::TYPE_ID UDFC05_Type = Model_CustomField::getUDFCType(RefType, "UDFC05");
     int UDFC01_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC01"));
     int UDFC02_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC02"));
     int UDFC03_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC03"));
@@ -171,9 +171,9 @@ void mmCheckingPanel::filterTable()
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
         if (tran.DELETEDTIME.IsEmpty())
         {
-            if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
+            if (Model_Checking::status_id(tran.STATUS) != Model_Checking::STATUS_ID_VOID)
                 m_account_balance += transaction_amount;
-            if (Model_Checking::status(tran.STATUS) == Model_Checking::RECONCILED)
+            if (Model_Checking::status_id(tran.STATUS) == Model_Checking::STATUS_ID_RECONCILED)
                 m_reconciled_balance += transaction_amount;
         }
 
@@ -208,11 +208,11 @@ void mmCheckingPanel::filterTable()
             }
         }
 
-        full_tran.UDFC01_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
-        full_tran.UDFC02_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
-        full_tran.UDFC03_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
-        full_tran.UDFC04_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
-        full_tran.UDFC05_Type = Model_CustomField::FIELDTYPE::UNKNOWN;
+        full_tran.UDFC01_Type = Model_CustomField::TYPE_ID_UNKNOWN;
+        full_tran.UDFC02_Type = Model_CustomField::TYPE_ID_UNKNOWN;
+        full_tran.UDFC03_Type = Model_CustomField::TYPE_ID_UNKNOWN;
+        full_tran.UDFC04_Type = Model_CustomField::TYPE_ID_UNKNOWN;
+        full_tran.UDFC05_Type = Model_CustomField::TYPE_ID_UNKNOWN;
         full_tran.UDFC01_val = -DBL_MAX;
         full_tran.UDFC02_val = -DBL_MAX;
         full_tran.UDFC03_val = -DBL_MAX;
@@ -253,7 +253,7 @@ void mmCheckingPanel::filterTable()
         {
             if (!expandSplits) {
                 m_listCtrlAccount->m_trans.push_back(full_tran);
-                if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && tran.DELETEDTIME.IsEmpty())
+                if (Model_Checking::status_id(tran.STATUS) != Model_Checking::STATUS_ID_VOID && tran.DELETEDTIME.IsEmpty())
                     m_filteredBalance += transaction_amount;
             }
             else
@@ -284,7 +284,7 @@ void mmCheckingPanel::filterTable()
                         if(!tagnames.IsEmpty())
                             full_tran.TAGNAMES.Append((full_tran.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
                         m_listCtrlAccount->m_trans.push_back(full_tran);
-                        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_ && tran.DELETEDTIME.IsEmpty())
+                        if (Model_Checking::status_id(tran.STATUS) != Model_Checking::STATUS_ID_VOID && tran.DELETEDTIME.IsEmpty())
                             m_filteredBalance += full_tran.AMOUNT;
                     }
                 }
@@ -319,9 +319,9 @@ void mmCheckingPanel::OnButtonRightDown(wxMouseEvent& event)
     case wxID_NEW:
     {
         wxMenu menu;
-        menu.Append(Model_Checking::WITHDRAWAL, _("&New Withdrawal..."));
-        menu.Append(Model_Checking::DEPOSIT, _("&New Deposit..."));
-        menu.Append(Model_Checking::TRANSFER, _("&New Transfer..."));
+        menu.Append(Model_Checking::TYPE_ID_WITHDRAWAL, _("&New Withdrawal..."));
+        menu.Append(Model_Checking::TYPE_ID_DEPOSIT, _("&New Deposit..."));
+        menu.Append(Model_Checking::TYPE_ID_TRANSFER, _("&New Transfer..."));
         PopupMenu(&menu);
     }
     default:
@@ -399,6 +399,32 @@ void mmCheckingPanel::CreateControls()
 
     m_listCtrlAccount->setSortOrder(m_listCtrlAccount->g_asc);
     m_listCtrlAccount->setSortColumn(m_listCtrlAccount->g_sortcol);
+
+    // Get sorted columns list and update the sorted columns with missing columns if needed.
+    wxArrayString columnList, sortedColumnList;
+    sortedColumnList = m_listCtrlAccount->GetColumnsOrder();
+     wxLogDebug("CreateControls: getColumnList() = %s", wxJoin(sortedColumnList, '|'));
+
+    // sort m_columns according to sortedColumnsList
+    std::vector<PANEL_COLUMN> sortedColumns = {};
+    std::vector<int> sortedRealColumns = {};
+    for (const auto& i : sortedColumnList)
+    {
+        for (int j = 0; j < m_listCtrlAccount->m_columns.size(); j++)
+        {
+            auto k = m_listCtrlAccount->m_columns[j];
+            auto l = m_listCtrlAccount->m_real_columns[j];
+            if (wxString::Format("%d", j) == i)
+            {
+                sortedColumns.push_back(k);
+                sortedRealColumns.push_back(l);
+                break;
+            }
+        }
+    }
+
+    m_listCtrlAccount->m_columns = sortedColumns;
+    m_listCtrlAccount->m_real_columns = sortedRealColumns;
 
     m_listCtrlAccount->createColumns(*m_listCtrlAccount);
 
@@ -880,7 +906,7 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
 void mmCheckingPanel::DisplaySplitCategories(int transID)
 {
     const Model_Checking::Data* tran = Model_Checking::instance().get(transID);
-    int transType = Model_Checking::type(tran->TRANSCODE);
+    int transType = Model_Checking::type_id(tran->TRANSCODE);
 
     Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
     auto splits = Model_Checking::splittransaction(transaction);

@@ -39,33 +39,26 @@
 #include "model/Model_CurrencyHistory.h"
 #include <wx/valnum.h>
 
-enum { NONE, WEEKLY, FORTNIGHTLY, MONTHLY
-    , BIMONTHLY, QUARTERLY, HALFYEARLY
-    , YEARLY, FOURMONTHS, FOURWEEKS
-    , DAILY, INXDAYS, INXMONTHS
-    , EVERYXDAYS, EVERYXMONTHS, MONTHLYLASTDAY, MONTHLYLASTBUSINESSDAY
-};
-
+// the order in gui may be different than the database encoding order.
 const std::vector<std::pair<int, wxString> > mmBDDialog::BILLSDEPOSITS_REPEATS =
 {
-    { NONE, wxTRANSLATE("None")},
-    { WEEKLY, wxTRANSLATE("Weekly")},
-    { FORTNIGHTLY, wxTRANSLATE("Fortnightly")},
-    { MONTHLY, wxTRANSLATE("Monthly")},
-    { BIMONTHLY, wxTRANSLATE("Every 2 Months")},
-    { QUARTERLY, wxTRANSLATE("Quarterly")},
-    { HALFYEARLY, wxTRANSLATE("Half-Yearly")},
-    { YEARLY, wxTRANSLATE("Yearly")},
-    { FOURMONTHS, wxTRANSLATE("Four Months")},
-    { FOURWEEKS, wxTRANSLATE("Four Weeks")},
-    { DAILY, wxTRANSLATE("Daily")},
-    { INXDAYS, wxTRANSLATE("In (n) Days")},
-    { INXMONTHS, wxTRANSLATE("In (n) Months")},
-    { EVERYXDAYS, wxTRANSLATE("Every (n) Days")},
-    { EVERYXMONTHS, wxTRANSLATE("Every (n) Months")},
-    { MONTHLYLASTDAY, wxTRANSLATE("Monthly (last day)")},
-    { MONTHLYLASTBUSINESSDAY, wxTRANSLATE("Monthly (last business day)")}
-
+    { Model_Billsdeposits::REPEAT_ONCE, wxTRANSLATE("Once")},
+    { Model_Billsdeposits::REPEAT_WEEKLY, wxTRANSLATE("Weekly")},
+    { Model_Billsdeposits::REPEAT_BI_WEEKLY, wxTRANSLATE("Fortnightly")},
+    { Model_Billsdeposits::REPEAT_MONTHLY, wxTRANSLATE("Monthly")},
+    { Model_Billsdeposits::REPEAT_BI_MONTHLY, wxTRANSLATE("Every 2 Months")},
+    { Model_Billsdeposits::REPEAT_QUARTERLY, wxTRANSLATE("Quarterly")},
+    { Model_Billsdeposits::REPEAT_HALF_YEARLY, wxTRANSLATE("Half-Yearly")},
+    { Model_Billsdeposits::REPEAT_YEARLY, wxTRANSLATE("Yearly")},
+    { Model_Billsdeposits::REPEAT_FOUR_MONTHLY, wxTRANSLATE("Four Months")},
+    { Model_Billsdeposits::REPEAT_FOUR_WEEKLY, wxTRANSLATE("Four Weeks")},
+    { Model_Billsdeposits::REPEAT_DAILY, wxTRANSLATE("Daily")},
+    { Model_Billsdeposits::REPEAT_IN_X_DAYS, wxTRANSLATE("In (n) Days")},
+    { Model_Billsdeposits::REPEAT_IN_X_MONTHS, wxTRANSLATE("In (n) Months")},
+    { Model_Billsdeposits::REPEAT_EVERY_X_DAYS, wxTRANSLATE("Every (n) Days")},
+    { Model_Billsdeposits::REPEAT_EVERY_X_MONTHS, wxTRANSLATE("Every (n) Months")},
+    { Model_Billsdeposits::REPEAT_MONTHLY_LAST_DAY, wxTRANSLATE("Monthly (last day)")},
+    { Model_Billsdeposits::REPEAT_MONTHLY_LAST_BUSINESS_DAY, wxTRANSLATE("Monthly (last business day)")}
 };
 
 // Used to determine if we need to refresh the tag text ctrl after
@@ -159,7 +152,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool duplicate, bool enterOcc
         }
     }
 
-    m_transfer = (m_bill_data.TRANSCODE == Model_Billsdeposits::all_type()[Model_Billsdeposits::TRANSFER]);
+    m_transfer = (m_bill_data.TRANSCODE == Model_Checking::TYPE_STR_TRANSFER);
 
     int ref_id = m_dup_bill ?  -bdID : (m_new_bill ? 0 : -m_bill_data.BDID);
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELDS);
@@ -211,16 +204,15 @@ void mmBDDialog::dataToControls()
     {
         m_choice_repeat->Append(wxGetTranslation(entry.second));
     }
-    m_choice_repeat->SetSelection(MONTHLY);
+    setRepeatType(Model_Billsdeposits::REPEAT_MONTHLY);
 
-    for (const auto& i : Model_Billsdeposits::all_type())
+    for (const auto& i : Model_Checking::TYPE_STR)
     {
-        if (i != Model_Billsdeposits::all_type()[Model_Billsdeposits::TRANSFER] || Model_Account::instance().all().size() > 1)
-        {
-            m_choice_transaction_type->Append(wxGetTranslation(i), new wxStringClientData(i));
-        }
+        if (i == Model_Checking::TYPE_STR_TRANSFER && Model_Account::instance().all().size() < 2)
+            break;
+        m_choice_transaction_type->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
-    m_choice_transaction_type->SetSelection(0);
+    m_choice_transaction_type->SetSelection(Model_Checking::TYPE_ID_WITHDRAWAL);
 
     SetTransferControls();  // hide appropriate fields
     setCategoryLabel();
@@ -229,10 +221,7 @@ void mmBDDialog::dataToControls()
         return;
     }
 
-    m_choice_status->SetSelection(Model_Checking::status(m_bill_data.STATUS));
-    if (m_bill_data.NUMOCCURRENCES > 0) {
-        textNumRepeats_->SetValue(wxString::Format("%d", m_bill_data.NUMOCCURRENCES));
-    }
+    m_choice_status->SetSelection(Model_Checking::status_id(m_bill_data.STATUS));
 
     // Set the date paid
     wxDateTime field_date;
@@ -243,34 +232,43 @@ void mmBDDialog::dataToControls()
     field_date.ParseDate(m_bill_data.NEXTOCCURRENCEDATE);
     m_date_due->SetValue(field_date);
 
-    // Have used repeatSel to multiplex auto repeat fields.
-    if (m_bill_data.REPEATS >= 2 * BD_REPEATS_MULTIPLEX_BASE)
+    // demultiplex m_bill_data.REPEATS
+    int autoExecute = m_bill_data.REPEATS / BD_REPEATS_MULTIPLEX_BASE;
+    int repeats = m_bill_data.REPEATS % BD_REPEATS_MULTIPLEX_BASE;
+
+    // fix repeats
+    if (repeats < Model_Billsdeposits::REPEAT_ONCE || repeats > Model_Billsdeposits::REPEAT_MONTHLY_LAST_BUSINESS_DAY)
+    {
+        wxFAIL;
+        repeats = Model_Billsdeposits::REPEAT_MONTHLY;
+    }
+    if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && m_bill_data.NUMOCCURRENCES < 1)
+    {
+        // old inactive entry. transform to REPEAT_ONCE and turn off automatic execution.
+        repeats = Model_Billsdeposits::REPEAT_ONCE;
+        autoExecute = Model_Billsdeposits::REPEAT_AUTO_NONE;
+    }
+    setRepeatType(repeats);
+
+    if (repeats != Model_Billsdeposits::REPEAT_ONCE && m_bill_data.NUMOCCURRENCES > 0) {
+        textNumRepeats_->SetValue(wxString::Format("%d", m_bill_data.NUMOCCURRENCES));
+    }
+
+    if (autoExecute == Model_Billsdeposits::REPEAT_AUTO_SILENT)
     {
         autoExecuteSilent_ = true;
         itemCheckBoxAutoExeSilent_->SetValue(true);
         itemCheckBoxAutoExeUserAck_->Enable(false);
-    } else if (m_bill_data.REPEATS >= BD_REPEATS_MULTIPLEX_BASE)
+    }
+    else if (autoExecute == Model_Billsdeposits::REPEAT_AUTO_MANUAL)
     {
         autoExecuteUserAck_ = true;
         itemCheckBoxAutoExeUserAck_->SetValue(true);
         itemCheckBoxAutoExeSilent_->Enable(false);
     }
-    m_bill_data.REPEATS %= BD_REPEATS_MULTIPLEX_BASE;
-
-    if (m_bill_data.REPEATS == 0) {// if none
-        textNumRepeats_->SetValue("");
-    }
-
-    if (m_bill_data.REPEATS < NONE || m_bill_data.REPEATS > MONTHLYLASTBUSINESSDAY) {
-        wxFAIL;
-        m_choice_repeat->SetSelection(MONTHLY);
-    }
-    else {
-        m_choice_repeat->SetSelection(m_bill_data.REPEATS);
-    }
     setRepeatDetails();
 
-    m_choice_transaction_type->SetSelection(Model_Billsdeposits::type(m_bill_data.TRANSCODE));
+    m_choice_transaction_type->SetSelection(Model_Checking::type_id(m_bill_data.TRANSCODE));
     updateControlsForTransType();
 
     Model_Account::Data* account = Model_Account::instance().get(m_bill_data.ACCOUNTID);
@@ -341,8 +339,8 @@ void mmBDDialog::SetDialogParameters(int trx_id)
     cbAccount_->SetValue(t.ACCOUNTNAME);
 
     m_bill_data.TRANSCODE = t.TRANSCODE;
-    m_choice_transaction_type->SetSelection(Model_Billsdeposits::type(t.TRANSCODE));
-    m_transfer = (m_bill_data.TRANSCODE == Model_Billsdeposits::all_type()[Model_Billsdeposits::TRANSFER]);
+    m_choice_transaction_type->SetSelection(Model_Checking::type_id(t.TRANSCODE));
+    m_transfer = (m_bill_data.TRANSCODE == Model_Checking::TYPE_STR_TRANSFER);
     updateControlsForTransType();
 
     m_bill_data.TRANSAMOUNT = t.TRANSAMOUNT;
@@ -491,7 +489,7 @@ void mmBDDialog::CreateControls()
     // Status --------------------------------------------
     m_choice_status = new wxChoice(this, ID_DIALOG_TRANS_STATUS);
 
-    for (const auto& i : Model_Billsdeposits::all_status())
+    for (const auto& i : Model_Checking::STATUS_STR)
     {
         m_choice_status->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
@@ -821,7 +819,7 @@ void mmBDDialog::updateControlsForTransType()
     m_transfer = false;
     switch (m_choice_transaction_type->GetSelection())
     {
-    case Model_Billsdeposits::TRANSFER:
+    case Model_Checking::TYPE_ID_TRANSFER:
     {
         m_transfer = true;
         mmToolTip(textAmount_, amountTransferTip_);
@@ -831,7 +829,7 @@ void mmBDDialog::updateControlsForTransType()
         m_bill_data.PAYEEID = -1;
         break;
     }
-    case Model_Billsdeposits::WITHDRAWAL:
+    case Model_Checking::TYPE_ID_WITHDRAWAL:
     {
         mmToolTip(textAmount_, amountNormalTip_);
         accountLabel->SetLabelText(_("Account"));
@@ -844,7 +842,7 @@ void mmBDDialog::updateControlsForTransType()
         OnPayee(evt);
         break;
     }
-    case Model_Billsdeposits::DEPOSIT:
+    case Model_Checking::TYPE_ID_DEPOSIT:
     {
         mmToolTip(textAmount_, amountNormalTip_);
         accountLabel->SetLabelText(_("Account"));
@@ -905,14 +903,6 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     m_bill_data.ACCOUNTID = cbAccount_->mmGetId();
     Model_Account::Data* acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
 
-    Model_Billsdeposits::Data bill_data;
-    bill_data.ACCOUNTID = m_bill_data.ACCOUNTID;
-    bill_data.TRANSAMOUNT = m_bill_data.TRANSAMOUNT;
-    bill_data.TRANSCODE = m_bill_data.TRANSCODE;
-
-    Model_Billsdeposits::AccountBalance bal;
-
-    if (!Model_Billsdeposits::instance().AllowTransaction(bill_data, bal)) return;
     if (!textAmount_->checkValue(m_bill_data.TRANSAMOUNT)) return;
 
     m_bill_data.TOTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
@@ -1006,23 +996,22 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
     }
 
-    // Multiplex Auto executable onto the repeat field of the database.
-    m_bill_data.REPEATS = m_choice_repeat->GetSelection();
-    if (autoExecuteUserAck_) {
-        m_bill_data.REPEATS += BD_REPEATS_MULTIPLEX_BASE;
-    }
-    else if (autoExecuteSilent_) {
-        m_bill_data.REPEATS += 2 * BD_REPEATS_MULTIPLEX_BASE;
-    }
+    int autoExecute =
+        autoExecuteSilent_ ? Model_Billsdeposits::REPEAT_AUTO_SILENT :
+        autoExecuteUserAck_ ? Model_Billsdeposits::REPEAT_AUTO_MANUAL :
+        Model_Billsdeposits::REPEAT_AUTO_NONE;
+    int repeats = getRepeatType();
+    // multiplex autoExecute and repeats
+    m_bill_data.REPEATS = autoExecute * BD_REPEATS_MULTIPLEX_BASE + repeats;
 
     const wxString& numRepeatStr = textNumRepeats_->GetValue();
     m_bill_data.NUMOCCURRENCES = -1;
-
+    if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS)
+        m_bill_data.NUMOCCURRENCES = 1;
     if (!numRepeatStr.empty())
     {
         long cnt = 0;
-        if (numRepeatStr.ToLong(&cnt)) {
-            wxASSERT(std::numeric_limits<int>::min() <= cnt);
+        if (numRepeatStr.ToLong(&cnt) && cnt > 0) {
             wxASSERT(cnt <= std::numeric_limits<int>::max());
             m_bill_data.NUMOCCURRENCES = static_cast<int>(cnt);
         }
@@ -1033,7 +1022,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     wxStringClientData* status_obj = static_cast<wxStringClientData *>(m_choice_status->GetClientObject(m_choice_status->GetSelection()));
     if (status_obj) {
-        m_bill_data.STATUS = Model_Billsdeposits::toShortStatus(status_obj->GetData());
+        m_bill_data.STATUS = Model_Checking::status_key(status_obj->GetData());
     }
 
     m_bill_data.TRANSACTIONNUMBER = textNumber_->GetValue();
@@ -1063,7 +1052,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         bill->ACCOUNTID = m_bill_data.ACCOUNTID;
         bill->TOACCOUNTID = m_bill_data.TOACCOUNTID;
         bill->PAYEEID = m_bill_data.PAYEEID;
-        bill->TRANSCODE = Model_Billsdeposits::all_type()[m_choice_transaction_type->GetSelection()];
+        bill->TRANSCODE = Model_Checking::TYPE_STR[m_choice_transaction_type->GetSelection()];
         bill->TRANSAMOUNT = m_bill_data.TRANSAMOUNT;
         bill->STATUS = m_bill_data.STATUS;
         bill->TRANSACTIONNUMBER = m_bill_data.TRANSACTIONNUMBER;
@@ -1128,16 +1117,24 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
     else
     {
-        // repeats now hold extra info. Need to get repeats from dialog selection
-        if ((m_choice_repeat->GetSelection() < INXDAYS)
-            || (m_choice_repeat->GetSelection() > EVERYXMONTHS)
-            || (m_bill_data.REPEATS > NONE))
+        // m_bill_data.REPEATS holds extra info; use repeats instead
+        // the following condition is always true, since old inactive entries of type
+        // REPEAT_IN_X_*, REPEAT_EVERY_X_* have been converted to entries of type REPEAT_ONCE
+        if ((repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS)
+            || (repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS)
+            || (m_bill_data.NUMOCCURRENCES > 0))
         {
+            Model_Billsdeposits::Data bill_data;
+            bill_data.ACCOUNTID = m_bill_data.ACCOUNTID;
+            bill_data.TRANSCODE = m_bill_data.TRANSCODE;
+            bill_data.TRANSAMOUNT = m_bill_data.TRANSAMOUNT;
+            if (!Model_Billsdeposits::instance().AllowTransaction(bill_data)) return;
+
             Model_Checking::Data* tran = Model_Checking::instance().create();
             tran->ACCOUNTID = m_bill_data.ACCOUNTID;
             tran->TOACCOUNTID = m_bill_data.TOACCOUNTID;
             tran->PAYEEID = m_bill_data.PAYEEID;
-            tran->TRANSCODE = Model_Billsdeposits::all_type()[m_choice_transaction_type->GetSelection()];
+            tran->TRANSCODE = Model_Checking::TYPE_STR[m_choice_transaction_type->GetSelection()];
             tran->TRANSAMOUNT = m_bill_data.TRANSAMOUNT;
             tran->STATUS = m_bill_data.STATUS;
             tran->TRANSACTIONNUMBER = m_bill_data.TRANSACTIONNUMBER;
@@ -1292,48 +1289,29 @@ void mmBDDialog::SetAdvancedTransferControls(bool advanced)
 
 void mmBDDialog::setRepeatDetails()
 {
-    const wxString repeatLabelRepeats = _("Repeats");
-    const wxString repeatLabelActivate = _("Activates");
+    staticTextRepeats_->SetLabelText(_("Repeats"));
 
-    const wxString timeLabelDays = _("Period: Days");
-    const wxString timeLabelMonths = _("Period: Months");
-
-    int repeats = m_choice_repeat->GetSelection();
-    if (repeats == INXDAYS)
+    int repeats = getRepeatType();
+    if (repeats == Model_Billsdeposits::REPEAT_IN_X_DAYS || repeats == Model_Billsdeposits::REPEAT_EVERY_X_DAYS)
     {
-        staticTextRepeats_->SetLabelText(repeatLabelActivate);
-        staticTimesRepeat_->SetLabelText(timeLabelDays);
-        const auto toolTipsStr = _("Specify period in Days to activate.\n"
-            "Becomes blank when not active.");
+        staticTimesRepeat_->SetLabelText(_("Period: Days"));
+        const auto toolTipsStr = _("Specify period in Days.");
         mmToolTip(textNumRepeats_, toolTipsStr);
     }
-    else if (repeats == INXMONTHS)
+    else if (repeats == Model_Billsdeposits::REPEAT_IN_X_MONTHS || repeats == Model_Billsdeposits::REPEAT_EVERY_X_MONTHS)
     {
-        staticTextRepeats_->SetLabelText(repeatLabelActivate);
-        staticTimesRepeat_->SetLabelText(timeLabelMonths);
-        const auto toolTipsStr = _("Specify period in Months to activate.\n"
-            "Becomes blank when not active.");
+        staticTimesRepeat_->SetLabelText(_("Period: Months"));
+        const auto toolTipsStr = _("Specify period in Months.");
         mmToolTip(textNumRepeats_, toolTipsStr);
     }
-    else if (repeats == EVERYXDAYS)
+    else if (repeats == Model_Billsdeposits::REPEAT_ONCE)
     {
-        staticTextRepeats_->SetLabelText(repeatLabelRepeats);
-        staticTimesRepeat_->SetLabelText(timeLabelDays);
-        const auto toolTipsStr = _("Specify period in Days to activate.\n"
-            "Leave blank when not active.");
-        mmToolTip(textNumRepeats_, toolTipsStr);
-    }
-    else if (repeats == EVERYXMONTHS)
-    {
-        staticTextRepeats_->SetLabelText(repeatLabelRepeats);
-        staticTimesRepeat_->SetLabelText(timeLabelMonths);
-        const auto toolTipsStr = _("Specify period in Months to activate.\n"
-            "Leave blank when not active.");
+        staticTimesRepeat_->SetLabelText(_("Payments Left"));
+        const auto toolTipsStr = _("Ignored (leave blank).");
         mmToolTip(textNumRepeats_, toolTipsStr);
     }
     else
     {
-        staticTextRepeats_->SetLabelText(repeatLabelRepeats);
         staticTimesRepeat_->SetLabelText(_("Payments Left"));
         const auto toolTipsStr = _("Specify the number of payments to be made.\n"
             "Leave blank if the payments continue forever.");
@@ -1346,22 +1324,67 @@ void mmBDDialog::OnRepeatTypeChanged(wxCommandEvent& WXUNUSED(event))
     setRepeatDetails();
 }
 
+int mmBDDialog::getRepeatType()
+{
+    int repeatIndex = m_choice_repeat->GetSelection();
+    return repeatIndex >= 0 ? BILLSDEPOSITS_REPEATS.at(repeatIndex).first : -1;
+}
+
+void mmBDDialog::setRepeatType(int repeatType)
+{
+    if (repeatType < 0)
+    {
+        wxFAIL;
+        return;
+    }
+
+    // fast path
+    int repeatIndex = repeatType;
+    if (BILLSDEPOSITS_REPEATS.at(repeatIndex).first != repeatType)
+    {
+        // slow path: BILLSDEPOSITS_REPEATS is not sorted by REPEAT_TYPE
+        // cache the mapping from type to index
+        static std::vector<int> index;
+        if (index.size() == 0) {
+            wxLogDebug("mmBDDialog::setRepeatType : cache index");
+            index.resize(BILLSDEPOSITS_REPEATS.size(), -1);
+            for (size_t i = 0; i < BILLSDEPOSITS_REPEATS.size(); i++)
+            {
+                int j = BILLSDEPOSITS_REPEATS.at(i).first;
+                if (j >= 0 && j < BILLSDEPOSITS_REPEATS.size() && index.at(j) == -1)
+                    index.at(j) = i;
+                else
+                    wxFAIL;
+            }
+        }
+
+        repeatIndex = index.at(repeatType);
+        if (repeatIndex == -1)
+        {
+            wxFAIL;
+            repeatIndex = 0;
+        }
+    }
+
+    m_choice_repeat->SetSelection(repeatIndex);
+}
+
 void mmBDDialog::OnsetPrevOrNextRepeatDate(wxCommandEvent& event)
 {
-    int repeatType = m_choice_repeat->GetSelection();
+    int repeatType = getRepeatType();
     wxString valueStr = textNumRepeats_->GetValue();
     int span = 1;
     bool goPrev = (event.GetId() == ID_DIALOG_TRANS_BUTTONTRANSNUMPREV);
 
     switch (repeatType)
     {
-    case INXDAYS:
+    case Model_Billsdeposits::REPEAT_IN_X_DAYS:
         wxFALLTHROUGH;
-    case INXMONTHS:
+    case Model_Billsdeposits::REPEAT_IN_X_MONTHS:
         wxFALLTHROUGH;
-    case EVERYXDAYS:
+    case Model_Billsdeposits::REPEAT_EVERY_X_DAYS:
         wxFALLTHROUGH;
-    case EVERYXMONTHS:
+    case Model_Billsdeposits::REPEAT_EVERY_X_MONTHS:
         span = wxAtoi(valueStr);
         if (!valueStr.IsNumber() || !span) {
             mmErrorDialogs::ToolTip4Object(textNumRepeats_, _("Invalid value"), _("Error"));
@@ -1395,7 +1418,7 @@ void mmBDDialog::activateSplitTransactionsDlg()
         m_bill_data.local_splits = dlg.mmGetResult();
         m_bill_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_bill_data.local_splits);
         m_bill_data.CATEGID = -1;
-        if (m_choice_transaction_type->GetSelection() == Model_Billsdeposits::TRANSFER && m_bill_data.TRANSAMOUNT < 0)
+        if (m_choice_transaction_type->GetSelection() == Model_Checking::TYPE_ID_TRANSFER && m_bill_data.TRANSAMOUNT < 0)
         {
             m_bill_data.TRANSAMOUNT = -m_bill_data.TRANSAMOUNT;
         }
@@ -1443,7 +1466,7 @@ void mmBDDialog::setCategoryLabel()
         && Option::instance().TransCategorySelectionTransfer() == Option::LASTUSED)
     {
         Model_Checking::Data_Set transactions = Model_Checking::instance().find(
-            Model_Checking::TRANSCODE(Model_Checking::TRANSFER, EQUAL)
+            Model_Checking::TRANSCODE(Model_Checking::TYPE_ID_TRANSFER, EQUAL)
             , Model_Checking::TRANSDATE(wxDateTime(23,59,59,999), LESS_OR_EQUAL));
 
         if (!transactions.empty())

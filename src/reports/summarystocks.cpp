@@ -53,8 +53,8 @@ void  mmReportSummaryStocks::RefreshData()
 
     for (const auto& a : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
-        if (Model_Account::type(a) != Model_Account::INVESTMENT) continue;
-        if (Model_Account::status(a) != Model_Account::OPEN) continue;
+        if (Model_Account::type_id(a) != Model_Account::TYPE_ID_INVESTMENT) continue;
+        if (Model_Account::status_id(a) != Model_Account::STATUS_ID_OPEN) continue;
 
         account.id = a.id();
         account.name = a.ACCOUNTNAME;
@@ -265,7 +265,7 @@ wxString mmReportChartStocks::getHTMLText()
     for (const auto& stock : Model_Stock::instance().all(Model_Stock::COL_SYMBOL))
     {
         Model_Account::Data* account = Model_Account::instance().get(stock.HELDAT);
-        if (Model_Account::status(account) != Model_Account::OPEN) continue;
+        if (Model_Account::status_id(account) != Model_Account::STATUS_ID_OPEN) continue;
         if (symbols.Index(stock.SYMBOL) != wxNOT_FOUND) continue;
 
         symbols.Add(stock.SYMBOL);

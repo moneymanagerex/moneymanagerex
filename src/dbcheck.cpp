@@ -41,7 +41,7 @@ bool dbCheck::checkAccounts()
     // Transactions
     const auto &transactions = Model_Checking::instance().all();
     for (const auto& trx : transactions)
-        if (!Model_Account::instance().get(trx.ACCOUNTID) || (Model_Checking::type(trx) == Model_Checking::TRANSFER && !Model_Account::instance().get(trx.TOACCOUNTID)))
+        if (!Model_Account::instance().get(trx.ACCOUNTID) || (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER && !Model_Account::instance().get(trx.TOACCOUNTID)))
         {
             result = false;
         }
@@ -49,7 +49,7 @@ bool dbCheck::checkAccounts()
     // BillsDeposits
     const auto &bills = Model_Billsdeposits::instance().all();
     for (const auto& bill : bills)
-        if (!Model_Account::instance().get(bill.ACCOUNTID) || (Model_Billsdeposits::type(bill) == Model_Billsdeposits::TRANSFER && !Model_Account::instance().get(bill.TOACCOUNTID)))
+        if (!Model_Account::instance().get(bill.ACCOUNTID) || (Model_Billsdeposits::type_id(bill) == Model_Checking::TYPE_ID_TRANSFER && !Model_Account::instance().get(bill.TOACCOUNTID)))
         {
             result = false;
         }
@@ -57,7 +57,7 @@ bool dbCheck::checkAccounts()
     // Stocks
     const auto &stocks = Model_Stock::instance().all();
     for (const auto& stock : stocks)
-        if (!Model_Account::instance().get(stock.HELDAT) || (Model_Account::type(Model_Account::instance().get(stock.HELDAT)) != Model_Account::INVESTMENT))
+        if (!Model_Account::instance().get(stock.HELDAT) || (Model_Account::type_id(Model_Account::instance().get(stock.HELDAT)) != Model_Account::TYPE_ID_INVESTMENT))
         {
             result = false;
         }

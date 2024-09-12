@@ -104,11 +104,11 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     SetEvtHandlerEnabled(false);
     Model_Checking::Data *transaction = Model_Checking::instance().get(transaction_id);
     m_new_trx = (transaction || m_duplicate) ? false : true;
-    m_transfer = m_new_trx ? type == Model_Checking::TRANSFER : Model_Checking::is_transfer(transaction);
+    m_transfer = m_new_trx ? type == Model_Checking::TYPE_ID_TRANSFER : Model_Checking::is_transfer(transaction);
     if (m_new_trx)
     {
         Model_Checking::getEmptyTransaction(m_trx_data, account_id);
-        m_trx_data.TRANSCODE = Model_Checking::all_type()[type];
+        m_trx_data.TRANSCODE = Model_Checking::TYPE_STR[type];
     }
     else
     {
@@ -216,12 +216,12 @@ void mmTransDialog::dataToControls()
     if (!skip_status_init_) //Status
     {
         m_status = m_trx_data.STATUS;
-        choiceStatus_->SetSelection(Model_Checking::status(m_status));
+        choiceStatus_->SetSelection(Model_Checking::status_id(m_status));
         skip_status_init_ = true;
     }
 
     //Type
-    transaction_type_->SetSelection(Model_Checking::type(m_trx_data.TRANSCODE));
+    transaction_type_->SetSelection(Model_Checking::type_id(m_trx_data.TRANSCODE));
 
     //Account
     if (!skip_account_init_)
@@ -290,7 +290,7 @@ void mmTransDialog::dataToControls()
                 && (-1 != accountID))
             {
                 Model_Checking::Data_Set transactions = Model_Checking::instance().find(
-                    Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL)
+                    Model_Checking::TRANSCODE(Model_Checking::TYPE_ID_TRANSFER, NOT_EQUAL)
                     , Model_Checking::ACCOUNTID(accountID, EQUAL));
 
                 if (!transactions.empty()) {
@@ -346,7 +346,7 @@ void mmTransDialog::dataToControls()
             && Option::instance().TransCategorySelectionTransfer() == Option::LASTUSED)
         {
             Model_Checking::Data_Set transactions = Model_Checking::instance().find(
-                Model_Checking::TRANSCODE(Model_Checking::TRANSFER, EQUAL));
+                Model_Checking::TRANSCODE(Model_Checking::TYPE_ID_TRANSFER, EQUAL));
 
             if (!transactions.empty()
                 && (!Model_Category::is_hidden(transactions.back().CATEGID)))
@@ -442,7 +442,7 @@ void mmTransDialog::CreateControls()
     // Status --------------------------------------------
     choiceStatus_ = new wxChoice(this, ID_DIALOG_TRANS_STATUS);
 
-    for (const auto& i : Model_Checking::all_status()) {
+    for (const auto& i : Model_Checking::STATUS_STR) {
         choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
 
@@ -453,9 +453,9 @@ void mmTransDialog::CreateControls()
     // Type --------------------------------------------
     transaction_type_ = new wxChoice(this, ID_DIALOG_TRANS_TYPE);
 
-    for (const auto& i : Model_Checking::all_type())
+    for (const auto& i : Model_Checking::TYPE_STR)
     {
-        if (i != Model_Checking::all_type()[Model_Checking::TRANSFER] || Model_Account::instance().all().size() > 1)
+        if (i != Model_Checking::TYPE_STR_TRANSFER || Model_Account::instance().all().size() > 1)
         {
             transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
         }
@@ -718,7 +718,7 @@ bool mmTransDialog::ValidateData()
         const Model_Account::Data *to_account = Model_Account::instance().get(cbToAccount_->GetValue());
 
         if (!to_account || to_account->ACCOUNTID == m_trx_data.ACCOUNTID
-            || Model_Account::type(to_account) == Model_Account::INVESTMENT)
+            || Model_Account::type_id(to_account) == Model_Account::TYPE_ID_INVESTMENT)
         {
             mmErrorDialogs::InvalidAccount(cbToAccount_, true);
             return false;
@@ -758,23 +758,17 @@ bool mmTransDialog::ValidateData()
     //Checking account does not exceed limits
     if (m_new_trx || m_duplicate)
     {
-        if ((m_trx_data.TRANSCODE == Model_Checking::WITHDRAWAL_STR) ||
-            (m_trx_data.TRANSCODE == Model_Checking::TRANSFER_STR))
+        if (m_trx_data.STATUS != Model_Checking::STATUS_KEY_VOID &&
+            (m_trx_data.TRANSCODE == Model_Checking::TYPE_STR_WITHDRAWAL ||
+             m_trx_data.TRANSCODE == Model_Checking::TYPE_STR_TRANSFER) &&
+            (account->MINIMUMBALANCE != 0 || account->CREDITLIMIT != 0))
         {
             const double fromAccountBalance = Model_Account::balance(account);
             const double new_value = fromAccountBalance - m_trx_data.TRANSAMOUNT;
 
-            bool abort_transaction = false;
-
-            if ((account->MINIMUMBALANCE != 0) && (new_value < account->MINIMUMBALANCE))
-            {
-                abort_transaction = true;
-            }
-
-            if ((account->CREDITLIMIT != 0) && (new_value < (account->CREDITLIMIT * -1)))
-            {
-                abort_transaction = true;
-            }
+            bool abort_transaction =
+                (account->MINIMUMBALANCE != 0 && new_value < account->MINIMUMBALANCE) ||
+                (account->CREDITLIMIT != 0 && new_value < -(account->CREDITLIMIT));
 
             if (abort_transaction && wxMessageBox(_(
                 "This transaction will exceed your account limit.\n\n"
@@ -1087,7 +1081,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
     bool isDeposit = Model_Checking::is_deposit(m_trx_data.TRANSCODE);
     mmSplitTransactionDialog dlg(this, m_local_splits
         , m_trx_data.ACCOUNTID
-        , isDeposit ? Model_Checking::DEPOSIT : Model_Checking::WITHDRAWAL
+        , isDeposit ? Model_Checking::TYPE_ID_DEPOSIT : Model_Checking::TYPE_ID_WITHDRAWAL
         , m_trx_data.TRANSAMOUNT);
 
     if (dlg.ShowModal() == wxID_OK)
@@ -1184,7 +1178,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     wxStringClientData* status_obj = static_cast<wxStringClientData*>(choiceStatus_->GetClientObject(choiceStatus_->GetSelection()));
     if (status_obj)
     {
-        m_status = Model_Checking::toShortStatus(status_obj->GetData());
+        m_status = Model_Checking::status_key(status_obj->GetData());
         m_trx_data.STATUS = m_status;
     }
 
@@ -1226,7 +1220,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     // Save split tags
     const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
 
-    for (int i = 0; i < m_local_splits.size(); i++)
+    for (unsigned int i = 0; i < m_local_splits.size(); i++)
     {
         Model_Taglink::Data_Set splitTaglinks;
         for (const auto& tagId : m_local_splits.at(i).TAGS)

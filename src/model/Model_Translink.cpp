@@ -168,13 +168,13 @@ void Model_Translink::UpdateStockValue(Model_Stock::Data* stock_entry)
     double avg_share_price = 0;
     wxString earliest_date = wxDate::Today().FormatISODate();
     Model_Checking::Data_Set checking_list;
-    for (const auto trans : trans_list)
+    for (const auto &trans : trans_list)
     {
         Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
-        if (checking_entry && checking_entry->DELETEDTIME.IsEmpty() && Model_Checking::status(checking_entry->STATUS) != Model_Checking::VOID_) checking_list.push_back(*checking_entry);
+        if (checking_entry && checking_entry->DELETEDTIME.IsEmpty() && Model_Checking::status_id(checking_entry->STATUS) != Model_Checking::STATUS_ID_VOID) checking_list.push_back(*checking_entry);
     }
     std::stable_sort(checking_list.begin(), checking_list.end(), SorterByTRANSDATE());
-    for (const auto trans : checking_list)
+    for (const auto &trans : checking_list)
     {
         Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(trans.TRANSID);
 
@@ -222,12 +222,12 @@ void Model_Translink::UpdateAssetValue(Model_Asset::Data* asset_entry)
     for (const auto &trans : trans_list)
     {
         Model_Checking::Data* asset_trans = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
-        if (asset_trans && asset_trans->DELETEDTIME.IsEmpty() && Model_Checking::status(asset_trans->STATUS) != Model_Checking::VOID_)
+        if (asset_trans && asset_trans->DELETEDTIME.IsEmpty() && Model_Checking::status_id(asset_trans->STATUS) != Model_Checking::STATUS_ID_VOID)
         {
             Model_Currency::Data* asset_currency = Model_Account::currency(Model_Account::instance().get(asset_trans->ACCOUNTID));
             const double conv_rate = Model_CurrencyHistory::getDayRate(asset_currency->CURRENCYID, asset_trans->TRANSDATE);
 
-            if (asset_trans->TRANSCODE == Model_Checking::all_type()[Model_Checking::DEPOSIT])
+            if (asset_trans->TRANSCODE == Model_Checking::TYPE_STR_DEPOSIT)
             {
                 new_value -= asset_trans->TRANSAMOUNT * conv_rate; // Withdrawal from asset value
             }

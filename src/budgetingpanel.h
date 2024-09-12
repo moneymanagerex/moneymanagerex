@@ -105,7 +105,7 @@ private:
     std::vector<std::pair<int, int> > budget_;
     std::map<int, std::pair<int, bool > > displayDetails_; //map categid to level of the category, whether category is visible, and whether any subtree is visible 
     std::map<int, std::pair<double, double> > budgetTotals_;
-    std::map<int, Model_Budget::PERIOD_ENUM> budgetPeriod_;
+    std::map<int, Model_Budget::PERIOD_ID> budgetPeriod_;
     std::map<int, double> budgetAmt_;
     std::map<int, wxString> budgetNotes_;
     std::map<int, std::map<int,double> > categoryStats_;

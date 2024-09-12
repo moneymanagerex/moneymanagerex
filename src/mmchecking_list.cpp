@@ -84,14 +84,14 @@ wxEND_EVENT_TABLE();
 TransactionListCtrl::EColumn TransactionListCtrl::toEColumn(const unsigned long col)
 {
     EColumn res = COL_DEF_SORT;
-    if (col >= 0 && col < m_real_columns.size()) res = static_cast<EColumn>(col);
+    if (col < m_real_columns.size()) res = static_cast<EColumn>(col);
         return res;
 }
 
 void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
 {
     const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    Model_CustomField::FIELDTYPE type;
+    Model_CustomField::TYPE_ID type;
 
     switch (m_real_columns[sortcol])
     {
@@ -157,7 +157,7 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         break;
     case TransactionListCtrl::COL_UDFC01:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC01");
-        if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
+        if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
             ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC01_val)
                   : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC01_val);
         else
@@ -166,7 +166,7 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         break;
     case TransactionListCtrl::COL_UDFC02:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC02");
-        if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
+        if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
             ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC02_val)
                   : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC02_val);
         else
@@ -175,7 +175,7 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         break;
     case TransactionListCtrl::COL_UDFC03:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC03");
-        if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
+        if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
             ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC03_val)
                   : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC03_val);
         else
@@ -184,7 +184,7 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         break;
     case TransactionListCtrl::COL_UDFC04:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC04");
-        if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
+        if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
             ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC04_val)
                   : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC04_val);
         else
@@ -193,7 +193,7 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         break;
     case TransactionListCtrl::COL_UDFC05:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC05");
-        if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
+        if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
             ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC05_val)
                   : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC05_val);
         else
@@ -241,14 +241,7 @@ TransactionListCtrl::TransactionListCtrl(
     m_attr14(new wxListItemAttr(*bestFontColour(mmColors::userDefColor4), mmColors::userDefColor4, wxNullFont)),
     m_attr15(new wxListItemAttr(*bestFontColour(mmColors::userDefColor5), mmColors::userDefColor5, wxNullFont)),
     m_attr16(new wxListItemAttr(*bestFontColour(mmColors::userDefColor6), mmColors::userDefColor6, wxNullFont)),
-    m_attr17(new wxListItemAttr(*bestFontColour(mmColors::userDefColor7), mmColors::userDefColor7, wxNullFont)),
-    m_sortCol(COL_DEF_SORT),
-    g_sortcol(COL_DEF_SORT),
-    prev_g_sortcol(COL_DEF_SORT2),
-    g_asc(true),
-    prev_g_asc(true),
-    m_firstSort(true),
-    m_topItemIndex(-1)
+    m_attr17(new wxListItemAttr(*bestFontColour(mmColors::userDefColor7), mmColors::userDefColor7, wxNullFont))
 {
     wxASSERT(m_cp);
     m_selected_id.clear();
@@ -278,6 +271,7 @@ TransactionListCtrl::TransactionListCtrl(
     // V2 used as now maps to real column names and this resets everything to default
     // to avoid strange column widths when this code version is first
     m_col_width = m_cp->isAllAccounts_ ? "ALLTRANS_COLV2%d_WIDTH" : "CHECK2_COLV2%d_WIDTH";
+    m_col_idstr = m_cp->isAllAccounts_ ? "ALLTRANS" : "CHECK2";
 
     m_default_sort_column = COL_DEF_SORT;
     m_today = Option::instance().UseTransDateTime() ? wxDateTime::Now().FormatISOCombined() : wxDateTime(23, 59, 59, 999).FormatISOCombined();
@@ -347,9 +341,9 @@ void TransactionListCtrl::resetColumns()
         {
             const auto& type = Model_CustomField::getUDFCType(ref_type, udfc_entry);
             int align;
-            if (type == Model_CustomField::FIELDTYPE::DECIMAL || type == Model_CustomField::FIELDTYPE::INTEGER)
+            if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
                 align = wxLIST_FORMAT_RIGHT;
-            else if (type == Model_CustomField::FIELDTYPE::BOOLEAN)
+            else if (type == Model_CustomField::TYPE_ID_BOOLEAN)
                 align = wxLIST_FORMAT_CENTER;
             else
                 align = wxLIST_FORMAT_LEFT;
@@ -394,14 +388,14 @@ void TransactionListCtrl::setExtraTransactionData(const bool single)
 
 //----------------------------------------------------------------------------
 
-void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
+void TransactionListCtrl::OnListItemSelected(wxListEvent&)
 {
     wxLogDebug("OnListItemSelected: %i selected", GetSelectedItemCount());
     FindSelectedTransactions();
     setExtraTransactionData(GetSelectedItemCount() == 1);
 }
 
-void TransactionListCtrl::OnListItemDeSelected(wxListEvent& event)
+void TransactionListCtrl::OnListItemDeSelected(wxListEvent&)
 {
     wxLogDebug("OnListItemDeSelected: %i selected", GetSelectedItemCount());
     FindSelectedTransactions();
@@ -457,7 +451,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         const Model_Checking::Data* transel = Model_Checking::instance().get(m_selected_id[0]);
         Model_Checking::Full_Data tran(*transel);
 
-        if (Model_Checking::type(tran.TRANSCODE) == Model_Checking::TRANSFER) {
+        if (Model_Checking::type_id(tran.TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER) {
             type_transfer = true;
         }
         if (!tran.has_split()) {
@@ -568,7 +562,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
                 }
                 break;
             case COL_STATUS:
-                copyText_ = menuItemText = Model_Checking::STATUS_ENUM_CHOICES[Model_Checking::status(m_trans[row].STATUS)].second;
+                copyText_ = menuItemText = Model_Checking::STATUS_STR[Model_Checking::status_id(m_trans[row].STATUS)];
                 rightClickFilter_ = "{\n\"STATUS\": \"" + menuItemText + "\"\n}";
                 break;
             case COL_CATEGORY:
@@ -701,7 +695,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     PopupMenu(&menu, event.GetPosition());
 }
 
-void TransactionListCtrl::findInAllTransactions(wxCommandEvent& event) {
+void TransactionListCtrl::findInAllTransactions(wxCommandEvent&) {
     if (!rightClickFilter_.IsEmpty())
     {
         // save the filter as the "Advanced" filter for All Transactions
@@ -724,7 +718,7 @@ void TransactionListCtrl::findInAllTransactions(wxCommandEvent& event) {
     }
 }
 
-void TransactionListCtrl::OnCopyText(wxCommandEvent& event) 
+void TransactionListCtrl::OnCopyText(wxCommandEvent&)
 {
     if (!copyText_.IsEmpty())
     {
@@ -746,11 +740,11 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
     wxString status = "";
     switch (evt)
     {
-    case MENU_TREEPOPUP_MARKRECONCILED:         status = "R"; break;
-    case MENU_TREEPOPUP_MARKUNRECONCILED:       status = ""; break;
-    case MENU_TREEPOPUP_MARKVOID:               status = "V"; break;
-    case MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP: status = "F"; break;
-    case MENU_TREEPOPUP_MARKDUPLICATE:          status = "D"; break;
+    case MENU_TREEPOPUP_MARKRECONCILED:         status = Model_Checking::STATUS_KEY_RECONCILED; break;
+    case MENU_TREEPOPUP_MARKUNRECONCILED:       status = Model_Checking::STATUS_KEY_NONE; break;
+    case MENU_TREEPOPUP_MARKVOID:               status = Model_Checking::STATUS_KEY_VOID; break;
+    case MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP: status = Model_Checking::STATUS_KEY_FOLLOWUP; break;
+    case MENU_TREEPOPUP_MARKDUPLICATE:          status = Model_Checking::STATUS_KEY_DUPLICATE; break;
     default: wxASSERT(false);
     }
 
@@ -766,7 +760,7 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
             if (!Model_Account::BoolOf(account->STATEMENTLOCKED)
                 || strDate > statement_date)
             {
-                //bRefreshRequired |= (status == "V") || (m_trans[row].STATUS == "V");
+                //bRefreshRequired |= (status == Model_Checking::STATUS_KEY_VOID) || (m_trans[row].STATUS == Model_Checking::STATUS_KEY_VOID);
                 m_trans[row].STATUS = status;
                 Model_Checking::instance().save(&m_trans[row]);
             }
@@ -850,13 +844,13 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
         wxString status = getItem(item, COL_STATUS, true);
         if (status.length() > 1)
             status = status.Mid(2, 1);
-        if (status == "F")
+        if (status == Model_Checking::STATUS_KEY_FOLLOWUP)
             res = mmCheckingPanel::ICON_FOLLOWUP;
-        else if (status == "R")
+        else if (status == Model_Checking::STATUS_KEY_RECONCILED)
             res = mmCheckingPanel::ICON_RECONCILED;
-        else if (status == "V")
+        else if (status == Model_Checking::STATUS_KEY_VOID)
             res = mmCheckingPanel::ICON_VOID;
-        else if (status == "D")
+        else if (status == Model_Checking::STATUS_KEY_DUPLICATE)
             res = mmCheckingPanel::ICON_DUPLICATE;
         else
             res = mmCheckingPanel::ICON_UNRECONCILED;
@@ -1043,7 +1037,7 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
     //TODO: the clone function can't clone split transactions, or custom data
     Model_Checking::Data* copy = Model_Checking::instance().clone(tran); 
     if (!useOriginalDate) copy->TRANSDATE = wxDateTime::Now().FormatISOCombined();
-    if (!m_cp->isAllAccounts_ && ((Model_Checking::type(copy->TRANSCODE) != Model_Checking::TRANSFER) ||
+    if (!m_cp->isAllAccounts_ && ((Model_Checking::type_id(copy->TRANSCODE) != Model_Checking::TYPE_ID_TRANSFER) ||
             (m_cp->m_AccountID != copy->ACCOUNTID && m_cp->m_AccountID != copy->TOACCOUNTID)))
         copy->ACCOUNTID = m_cp->m_AccountID;
     int transactionID = Model_Checking::instance().save(copy);
@@ -1182,7 +1176,7 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
 }
 //----------------------------------------------------------------------------
 
-void TransactionListCtrl::OnRestoreViewedTransaction(wxCommandEvent& event)
+void TransactionListCtrl::OnRestoreViewedTransaction(wxCommandEvent&)
 {
     wxMessageDialog msgDlg(this
             , _("Do you really want to restore all of the transactions shown?")
@@ -1290,7 +1284,7 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
             , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
         if (msgDlg.ShowModal() == wxID_YES)
         {
-            DeleteTransactionsByStatus(Model_Checking::all_status()[Model_Checking::FOLLOWUP]);
+            DeleteTransactionsByStatus(Model_Checking::STATUS_STR_FOLLOWUP);
         }
     }
     else if (i == MENU_TREEPOPUP_DELETE_UNRECONCILED)
@@ -1301,7 +1295,7 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
             , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
         if (msgDlg.ShowModal() == wxID_YES)
         {
-            DeleteTransactionsByStatus(Model_Checking::all_status()[Model_Checking::NONE]);
+            DeleteTransactionsByStatus(Model_Checking::STATUS_STR_NONE);
         }
     }
     refreshVisualList();
@@ -1313,7 +1307,7 @@ void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
     int retainDays = Model_Setting::instance().GetIntSetting("DELETED_TRANS_RETAIN_DAYS", 30);
     wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
     std::set<std::pair<wxString, int>> assetStockAccts;
-    const auto s = Model_Checking::toShortStatus(status);
+    const auto s = Model_Checking::status_key(status);
     Model_Checking::instance().Savepoint();
     Model_Attachment::instance().Savepoint();
     Model_Splittransaction::instance().Savepoint();
@@ -1458,14 +1452,14 @@ bool TransactionListCtrl::CheckForClosedAccounts()
         Model_Checking::Data* transaction = Model_Checking::instance().get(i);
         Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
         if (account)
-            if (Model_Account::CLOSED == Model_Account::status(account))
+            if (Model_Account::STATUS_ID_CLOSED == Model_Account::status_id(account))
             {
                 closedTrx++;
                 continue;
             }
         Model_Account::Data* to_account = Model_Account::instance().get(transaction->TOACCOUNTID);
         if (to_account) {
-            if (Model_Account::CLOSED == Model_Account::status(account))
+            if (Model_Account::STATUS_ID_CLOSED == Model_Account::status_id(account))
                 closedTrx++;
         }
     }
@@ -1551,16 +1545,16 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
     switch (id)
     {
     case MENU_TREEPOPUP_WITHDRAWAL:
-        type = Model_Checking::WITHDRAWAL;
+        type = Model_Checking::TYPE_ID_WITHDRAWAL;
         break;
     case MENU_TREEPOPUP_DEPOSIT:
-        type = Model_Checking::DEPOSIT;
+        type = Model_Checking::TYPE_ID_DEPOSIT;
         break;
     case MENU_TREEPOPUP_TRANSFER:
-        type = Model_Checking::TRANSFER;
+        type = Model_Checking::TYPE_ID_TRANSFER;
         break;
     default:
-        type = Model_Checking::WITHDRAWAL;
+        type = Model_Checking::TYPE_ID_WITHDRAWAL;
         break;
     }
 
@@ -1708,7 +1702,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
                 Model_Checking::Data* trx = Model_Checking::instance().get(i);
                 if (TransactionLocked(trx->ACCOUNTID, trx->TRANSDATE)
                         || Model_Checking::foreignTransaction(*trx)
-                        || Model_Checking::type(trx->TRANSCODE) == Model_Checking::TRANSFER
+                        || Model_Checking::type_id(trx->TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER
                         || trx->TRANSDATE < dest_account->INITIALDATE)
                 {
                     skip_trx.push_back(trx->TRANSID);
@@ -1925,18 +1919,21 @@ void TransactionListCtrl::doSearchText(const wxString& value)
     EnsureVisible(selectedItem);
 }
 
-wxString UDFCFormatHelper(Model_CustomField::FIELDTYPE type, wxString data)
+wxString UDFCFormatHelper(Model_CustomField::TYPE_ID type, wxString data)
 {
     wxString formattedData = data;
+    bool v = false;
     if (!data.empty())
     {
         switch (type) {
-        case Model_CustomField::FIELDTYPE::DATE:
+        case Model_CustomField::TYPE_ID_DATE:
             formattedData = mmGetDateForDisplay(data);
             break;
-        case Model_CustomField::FIELDTYPE::BOOLEAN:
-            bool v = wxString("TRUE|true|1").Contains(data);
+        case Model_CustomField::TYPE_ID_BOOLEAN:
+            v = wxString("TRUE|true|1").Contains(data);
             formattedData = (v) ? L"\u2713" : L"\u2717";
+            break;
+        default:
             break;
         }
     }
@@ -1967,7 +1964,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     case TransactionListCtrl::COL_CATEGORY:
         return tran.CATEGNAME;
     case TransactionListCtrl::COL_PAYEE_STR:
-        return tran.is_foreign_transfer() ? (Model_Checking::type(tran) == Model_Checking::DEPOSIT ? "< " : "> ") + tran.PAYEENAME : tran.PAYEENAME;
+        return tran.is_foreign_transfer() ? (Model_Checking::type_id(tran) == Model_Checking::TYPE_ID_DEPOSIT ? "< " : "> ") + tran.PAYEENAME : tran.PAYEENAME;
     case TransactionListCtrl::COL_STATUS:
         return tran.is_foreign() ? "< " + tran.STATUS : tran.STATUS;
     case TransactionListCtrl::COL_NOTES:
@@ -2036,7 +2033,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     {
     case TransactionListCtrl::COL_WITHDRAWAL:
         if (balance < 0.0 || (balance == 0.0
-            && ((tran.TRANSCODE == Model_Checking::WITHDRAWAL_STR || tran.TRANSCODE == Model_Checking::TRANSFER_STR )
+            && ((tran.TRANSCODE == Model_Checking::TYPE_STR_WITHDRAWAL || tran.TRANSCODE == Model_Checking::TYPE_STR_TRANSFER )
                 && tran.ACCOUNTID == account->ACCOUNTID)))
         {
             return m_cp->isAllAccounts_
@@ -2046,8 +2043,8 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         return "";
     case TransactionListCtrl::COL_DEPOSIT:
         if (balance > 0.0 || (balance == 0.0
-            && ((tran.TRANSCODE == Model_Checking::DEPOSIT_STR && tran.ACCOUNTID == account->ACCOUNTID)
-                || (tran.TRANSCODE == Model_Checking::TRANSFER_STR && tran.ACCOUNTID != account->ACCOUNTID))))
+            && ((tran.TRANSCODE == Model_Checking::TYPE_STR_DEPOSIT && tran.ACCOUNTID == account->ACCOUNTID)
+                || (tran.TRANSCODE == Model_Checking::TYPE_STR_TRANSFER && tran.ACCOUNTID != account->ACCOUNTID))))
         {
             return m_cp->isAllAccounts_
                 ? Model_Currency::toCurrency(balance, currency)

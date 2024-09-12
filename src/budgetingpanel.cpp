@@ -296,6 +296,7 @@ budgetingListCtrl::budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, con
     m_columns.push_back(PANEL_COLUMN(_("Notes"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
 
     m_col_width = "BUDGET_COL%d_WIDTH";
+    m_col_idstr = "BUDGET";
 }
 
 void mmBudgetingPanel::sortTable()
@@ -536,7 +537,7 @@ double mmBudgetingPanel::getEstimate(int category) const
 {
     try
     {
-        Model_Budget::PERIOD_ENUM period = budgetPeriod_.at(category);
+        Model_Budget::PERIOD_ID period = budgetPeriod_.at(category);
         double amt = budgetAmt_.at(category);
         return Model_Budget::getEstimate(monthlyBudget_, period, amt);
     }
@@ -583,7 +584,10 @@ wxString mmBudgetingPanel::getItem(long item, long column)
     case COL_FREQUENCY:
     {
         if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second)
-            return Model_Budget::all_period()[budgetPeriod_[budget_[item].first]];
+        {
+            Model_Budget::PERIOD_ID period = budgetPeriod_[budget_[item].first];
+            return wxGetTranslation(Model_Budget::PERIOD_STR[period]);
+        }
         return wxEmptyString;
     }
     case COL_AMOUNT:

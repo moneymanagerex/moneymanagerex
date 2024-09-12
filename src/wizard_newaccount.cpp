@@ -63,8 +63,8 @@ void mmAddAccountWizard::RunIt()
         Model_Account::Data* account = Model_Account::instance().create();
 
         account->FAVORITEACCT = "TRUE";
-        account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
-        account->ACCOUNTTYPE = Model_Account::all_type()[accountType_];
+        account->STATUS = Model_Account::STATUS_STR_OPEN;
+        account->ACCOUNTTYPE = Model_Account::TYPE_STR[accountType_];
         account->ACCOUNTNAME = accountName_;
         account->INITIALBAL = 0;
         account->INITIALDATE = wxDate::Today().FormatISODate();
@@ -123,10 +123,10 @@ mmAddAccountTypePage::mmAddAccountTypePage(mmAddAccountWizard *parent)
     , parent_(parent)
 {
     itemChoiceType_ = new wxChoice(this, wxID_ANY);
-    for (const auto& type: Model_Account::all_type())
+    for (const auto& type: Model_Account::TYPE_STR)
         itemChoiceType_->Append(wxGetTranslation(type), new wxStringClientData(type));
     mmToolTip(itemChoiceType_, _("Specify the type of account to be created."));
-    itemChoiceType_->SetSelection(Model_Account::CHECKING);
+    itemChoiceType_->SetSelection(Model_Account::TYPE_ID_CHECKING);
 
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
 

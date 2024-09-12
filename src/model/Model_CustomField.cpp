@@ -20,17 +20,19 @@
 #include "Model_CustomFieldData.h"
 #include <wx/string.h>
 
-const std::vector<std::pair<Model_CustomField::FIELDTYPE, wxString> > Model_CustomField::FIELDTYPE_CHOICES =
+const std::vector<std::pair<Model_CustomField::TYPE_ID, wxString> > Model_CustomField::TYPE_CHOICES =
 {
-    {Model_CustomField::STRING, wxString(wxTRANSLATE("String"))},
-    {Model_CustomField::INTEGER, wxString(wxTRANSLATE("Integer"))},
-    {Model_CustomField::DECIMAL, wxString(wxTRANSLATE("Decimal"))},
-    {Model_CustomField::BOOLEAN, wxString(wxTRANSLATE("Boolean"))},
-    {Model_CustomField::DATE, wxString(wxTRANSLATE("Date"))},
-    {Model_CustomField::TIME, wxString(wxTRANSLATE("Time"))},
-    {Model_CustomField::SINGLECHOICE, wxString(wxTRANSLATE("SingleChoice"))},
-    {Model_CustomField::MULTICHOICE, wxString(wxTRANSLATE("MultiChoice"))}
+    { Model_CustomField::TYPE_ID_STRING,       wxString(wxTRANSLATE("String")) },
+    { Model_CustomField::TYPE_ID_INTEGER,      wxString(wxTRANSLATE("Integer")) },
+    { Model_CustomField::TYPE_ID_DECIMAL,      wxString(wxTRANSLATE("Decimal")) },
+    { Model_CustomField::TYPE_ID_BOOLEAN,      wxString(wxTRANSLATE("Boolean")) },
+    { Model_CustomField::TYPE_ID_DATE,         wxString(wxTRANSLATE("Date")) },
+    { Model_CustomField::TYPE_ID_TIME,         wxString(wxTRANSLATE("Time")) },
+    { Model_CustomField::TYPE_ID_SINGLECHOICE, wxString(wxTRANSLATE("SingleChoice")) },
+    { Model_CustomField::TYPE_ID_MULTICHOICE,  wxString(wxTRANSLATE("MultiChoice")) }
 };
+
+wxArrayString Model_CustomField::TYPE_STR = type_str_all();
 
 Model_CustomField::Model_CustomField()
     : Model<DB_Table_CUSTOMFIELD_V1>()
@@ -83,41 +85,34 @@ bool Model_CustomField::Delete(const int& FieldID)
     return this->remove(FieldID, db_);
 }
 
-const wxString Model_CustomField::fieldtype_desc(const int FieldTypeEnum)
+Model_CustomField::TYPE_ID Model_CustomField::type_id(const wxString& value)
 {
-    const auto& item = FIELDTYPE_CHOICES[FieldTypeEnum];
-    const wxString reftype_desc = item.second;
-    return reftype_desc;
-}
-
-Model_CustomField::FIELDTYPE Model_CustomField::type(const wxString& value)
-{
-    for (const auto& item : FIELDTYPE_CHOICES)
+    for (const auto& item : TYPE_CHOICES)
     {
         if (item.second.CmpNoCase(value) == 0)
             return item.first;
     }
-
-    return UNKNOWN;
+    return TYPE_ID_UNKNOWN;
 }
 
-Model_CustomField::FIELDTYPE Model_CustomField::type(const Data* r)
+Model_CustomField::TYPE_ID Model_CustomField::type_id(const Data* r)
 {
-    return type(r->TYPE);
+    return type_id(r->TYPE);
 }
 
-Model_CustomField::FIELDTYPE Model_CustomField::type(const Data& r)
+Model_CustomField::TYPE_ID Model_CustomField::type_id(const Data& r)
 {
-    return type(&r);
+    return type_id(&r);
 }
 
-const wxArrayString Model_CustomField::all_type()
+const wxArrayString Model_CustomField::type_str_all()
 {
-    static wxArrayString types;
-    if (types.empty())
+    wxArrayString types;
+    int i = 0;
+    for (const auto& item : TYPE_CHOICES)
     {
-        for (const auto& item : FIELDTYPE_CHOICES)
-            types.Add(item.second);
+        wxASSERT_MSG(item.first == i++, "Wrong order in Model_CustomField::TYPE_CHOICES");
+        types.Add(item.second);
     }
     return types;
 }
@@ -266,7 +261,7 @@ const wxString Model_CustomField::getUDFCName(const wxString& ref_type, const wx
     return wxEmptyString;
 }
 
-Model_CustomField::FIELDTYPE Model_CustomField::getUDFCType(const wxString& ref_type, const wxString& name)
+Model_CustomField::TYPE_ID Model_CustomField::getUDFCType(const wxString& ref_type, const wxString& name)
 {
     Document json_doc;
     const auto& a = Model_CustomField::instance().find(REFTYPE(ref_type));
@@ -279,12 +274,12 @@ Model_CustomField::FIELDTYPE Model_CustomField::getUDFCType(const wxString& ref_
                 Value& s = json_doc["UDFC"];
                 const wxString& desc = s.GetString();
                 if (desc == name) {
-                    return type(item.TYPE);
+                    return type_id(item.TYPE);
                 }
             }
         }
     }
-    return Model_CustomField::FIELDTYPE::UNKNOWN;
+    return Model_CustomField::TYPE_ID_UNKNOWN;
 }
 
 const wxString Model_CustomField::getUDFCProperties(const wxString& ref_type, const wxString& name)

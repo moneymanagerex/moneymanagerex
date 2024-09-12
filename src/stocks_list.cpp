@@ -100,6 +100,7 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     m_columns.push_back(PANEL_COLUMN(_("Notes"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
 
     m_col_width = "STOCKS_COL%d_WIDTH";
+    m_col_idstr = "STOCKS";
     m_default_sort_column = col_sort();
 
     for (const auto& entry : m_columns)
@@ -292,7 +293,8 @@ void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
     
-    const auto& accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT]));
+    const auto& accounts = Model_Account::instance().find(
+        Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR_INVESTMENT));
     if (accounts.empty()) return;
 
     const Model_Account::Data* from_account = Model_Account::instance().get(m_stock_panel->m_account_id);

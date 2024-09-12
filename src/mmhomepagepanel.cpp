@@ -140,29 +140,29 @@ void mmHomePagePanel::insertDataIntoTemplate()
     double assetBalance = 0.0, assetReconciled = 0.0;
 
     htmlWidgetAccounts account_stats;
-    m_frames["ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::CHECKING);
-    m_frames["CARD_ACCOUNTS_INFO"] = account_stats.displayAccounts(cardBalance, cardReconciled, Model_Account::CREDIT_CARD);
+    m_frames["ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_CHECKING);
+    m_frames["CARD_ACCOUNTS_INFO"] = account_stats.displayAccounts(cardBalance, cardReconciled, Model_Account::TYPE_ID_CREDIT_CARD);
     tBalance += cardBalance;
     tReconciled += cardReconciled;
 
     // Accounts
-    m_frames["CASH_ACCOUNTS_INFO"] = account_stats.displayAccounts(cashBalance, cashReconciled, Model_Account::CASH);
+    m_frames["CASH_ACCOUNTS_INFO"] = account_stats.displayAccounts(cashBalance, cashReconciled, Model_Account::TYPE_ID_CASH);
     tBalance += cashBalance;
     tReconciled += cashReconciled;
 
-    m_frames["LOAN_ACCOUNTS_INFO"] = account_stats.displayAccounts(loanBalance, loanReconciled, Model_Account::LOAN);
+    m_frames["LOAN_ACCOUNTS_INFO"] = account_stats.displayAccounts(loanBalance, loanReconciled, Model_Account::TYPE_ID_LOAN);
     tBalance += loanBalance;
     tReconciled += loanReconciled;
 
-    m_frames["TERM_ACCOUNTS_INFO"] = account_stats.displayAccounts(termBalance, termReconciled, Model_Account::TERM);
+    m_frames["TERM_ACCOUNTS_INFO"] = account_stats.displayAccounts(termBalance, termReconciled, Model_Account::TYPE_ID_TERM);
     tBalance += termBalance;
     tReconciled += termReconciled;
 
-    account_stats.displayAccounts(assetBalance, assetReconciled, Model_Account::ASSET);
+    account_stats.displayAccounts(assetBalance, assetReconciled, Model_Account::TYPE_ID_ASSET);
     tBalance += assetBalance;
     tReconciled += assetReconciled;
 
-    account_stats.displayAccounts(shareBalance, shareReconciled, Model_Account::SHARES);
+    account_stats.displayAccounts(shareBalance, shareReconciled, Model_Account::TYPE_ID_SHARES);
     tBalance += shareBalance;
     tReconciled += shareReconciled;
 

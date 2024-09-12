@@ -65,6 +65,7 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 450, wxLIST_FORMAT_LEFT, true));
 
     m_col_width = "ASSETS_COL%d_WIDTH";
+    m_col_idstr = "ASSETS";
     for (const auto& entry : m_columns)
     {
         int count = GetColumnCount();
@@ -117,7 +118,7 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
         menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
     }
 
-    const auto& asset_accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::ASSET]));
+    const auto& asset_accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR_ASSET));
     menu.Enable(MENU_TREEPOPUP_GOTOACCOUNT, !asset_accounts.empty());
     menu.Enable(MENU_TREEPOPUP_VIEWTRANS, !asset_accounts.empty());
 
@@ -149,7 +150,7 @@ void mmAssetsListCtrl::OnListItemSelected(wxListEvent& event)
 
 int mmAssetsListCtrl::OnGetItemImage(long item) const
 {
-    return Model_Asset::type(m_panel->m_assets[item]);
+    return Model_Asset::type_id(m_panel->m_assets[item]);
 }
 
 void mmAssetsListCtrl::OnListKeyDown(wxListEvent& event)
@@ -366,7 +367,7 @@ END_EVENT_TABLE()
 
 mmAssetsPanel::mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid, const wxString& name)
     : m_frame(frame)
-    , m_filter_type(Model_Asset::TYPE(-1))
+    , m_filter_type(Model_Asset::TYPE_ID(-1))
     , tips_()
 {
     Create(parent, winid, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, name);
@@ -570,7 +571,7 @@ int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)
     item.SetImage(asc ? ICON_UPARROW : ICON_DOWNARROW);
     m_listCtrlAssets->SetColumn(col, item);
 
-    if (this->m_filter_type == Model_Asset::TYPE(-1)) // ALL
+    if (this->m_filter_type == Model_Asset::TYPE_ID(-1)) // ALL
         this->m_assets = Model_Asset::instance().all();
     else
         this->m_assets = Model_Asset::instance().find(Model_Asset::ASSETTYPE(m_filter_type));
@@ -661,7 +662,7 @@ void mmAssetsPanel::updateExtraAssetData(int selIndex)
     {
         const Model_Asset::Data& asset = this->m_assets[selIndex];
         enableEditDeleteButtons(true);
-        const auto& change_rate = (Model_Asset::rate(asset) != Model_Asset::RATE_NONE)
+        const auto& change_rate = (Model_Asset::change_id(asset) != Model_Asset::CHANGE_ID_NONE)
             ? wxString::Format("%.2f %%", asset.VALUECHANGERATE) : "";
         const wxString& miniInfo = " " + wxString::Format(_("Change in Value: %1$s %2$s")
             , wxGetTranslation(asset.VALUECHANGE), change_rate);
@@ -704,7 +705,7 @@ void mmAssetsPanel::OnMouseLeftDown (wxCommandEvent& event)
     wxMenu menu;
     menu.Append(++i, wxGetTranslation(wxTRANSLATE("All")));
 
-    for (const auto& type: Model_Asset::all_type())
+    for (const auto& type: Model_Asset::TYPE_STR)
     {
         menu.Append(++i, wxGetTranslation(type));
     }
@@ -721,13 +722,13 @@ void mmAssetsPanel::OnViewPopupSelected(wxCommandEvent& event)
     {
         m_bitmapTransFilter->SetLabel(_("All"));
         m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
-        this->m_filter_type = Model_Asset::TYPE(-1);
+        this->m_filter_type = Model_Asset::TYPE_ID(-1);
     }
     else
     {
-        this->m_filter_type = Model_Asset::TYPE(evt - 1);
+        this->m_filter_type = Model_Asset::TYPE_ID(evt - 1);
         m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
-        m_bitmapTransFilter->SetLabel(wxGetTranslation(Model_Asset::all_type()[evt - 1]));
+        m_bitmapTransFilter->SetLabel(wxGetTranslation(Model_Asset::TYPE_STR[evt - 1]));
     }
 
     int trx_id = -1;

@@ -156,9 +156,9 @@ void mmPrintableBase::restoreReportSettings()
     int selection = 0;
     if (j_doc.HasMember("ACCOUNTSELECTION") && j_doc["ACCOUNTSELECTION"].IsInt()) {
         selection = j_doc["ACCOUNTSELECTION"].GetInt();
-        if (selection > (Model_Account::all_type().Count() + 2)) selection = 0;
+        if (selection > (Model_Account::TYPE_STR.Count() + 2)) selection = 0;
     }
-    if (selection > (Model_Account::all_type().Count() + 2))
+    if (selection > (Model_Account::TYPE_STR.Count() + 2))
         selection = 0;
 
     accountArray_ = selectedAccountArray_ = nullptr;
@@ -174,7 +174,7 @@ void mmPrintableBase::restoreReportSettings()
         }
         accountArray_ = selectedAccountArray_ = accountSelections;
     } else if (selection > 1)
-        setAccounts(selection, Model_Account::all_type()[selection - 2]);
+        setAccounts(selection, Model_Account::TYPE_STR[selection - 2]);
 
     m_account_selection = selection;
 }
@@ -220,10 +220,11 @@ void mmPrintableBase::setAccounts(int selection, const wxString& name)
         case 1: // Select Accounts
         {
             wxArrayString accounts;
-            auto a = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL));
+            auto a = Model_Account::instance().find(
+                Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR_INVESTMENT, NOT_EQUAL));
             std::stable_sort(a.begin(), a.end(), SorterByACCOUNTNAME());
             for (const auto& item : a) {
-                if (m_only_active && item.STATUS != Model_Account::all_status()[Model_Account::OPEN])
+                if (m_only_active && item.STATUS != Model_Account::STATUS_STR_OPEN)
                     continue;
                 accounts.Add(item.ACCOUNTNAME);
             }
@@ -258,7 +259,7 @@ void mmPrintableBase::setAccounts(int selection, const wxString& name)
         {
             wxArrayString* accountSelections = new wxArrayString();
             auto accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(name)
-                , Model_Account::STATUS(Model_Account::CLOSED, NOT_EQUAL));
+                , Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL));
             for (const auto &i : accounts) {
                 accountSelections->Add(i.ACCOUNTNAME);
             }

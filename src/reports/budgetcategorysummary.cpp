@@ -102,7 +102,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         evaluateTransfer = true;
     }
     //Get statistics
-    std::map<int, Model_Budget::PERIOD_ENUM> budgetPeriod;
+    std::map<int, Model_Budget::PERIOD_ID> budgetPeriod;
     std::map<int, double> budgetAmt;
     std::map<int, wxString> budgetNotes;
     Model_Budget::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt, budgetNotes);
