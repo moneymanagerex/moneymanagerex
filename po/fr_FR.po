@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-12 15:17\n"
+"PO-Revision-Date: 2024-09-12 20:00\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -844,7 +844,7 @@ msgstr "Échec de l' ouverture de la pièce jointe"
 
 #: billsdepositsdialog.cpp:45 billsdepositspanel.cpp:50
 msgid "Once"
-msgstr ""
+msgstr "Sans répétition"
 
 #: billsdepositsdialog.cpp:46 billsdepositspanel.cpp:51
 #: model/Model_Budget.cpp:30
@@ -1208,7 +1208,7 @@ msgstr "Période :  jours"
 
 #: billsdepositsdialog.cpp:1298
 msgid "Specify period in Days."
-msgstr ""
+msgstr "Spécifiez la période en jours."
 
 #: billsdepositsdialog.cpp:1303
 msgid "Period: Months"
@@ -1216,11 +1216,11 @@ msgstr "Période : mois"
 
 #: billsdepositsdialog.cpp:1304
 msgid "Specify period in Months."
-msgstr ""
+msgstr "Spécifiez la période en mois."
 
 #: billsdepositsdialog.cpp:1310
 msgid "Ignored (leave blank)."
-msgstr ""
+msgstr "Ignoré (laisser vide)."
 
 #: billsdepositsdialog.cpp:1316
 msgid "Specify the number of payments to be made.\n"
@@ -5817,11 +5817,11 @@ msgstr "Trier sur cette colonne"
 
 #: mmpanelbase.cpp:137
 msgid "Move column left"
-msgstr ""
+msgstr "Déplacer la colonne vers la gauche"
 
 #: mmpanelbase.cpp:138
 msgid "Move column right"
-msgstr ""
+msgstr "Déplacer la colonne vers la droite"
 
 #: mmpanelbase.cpp:140
 msgid "Reset columns"
