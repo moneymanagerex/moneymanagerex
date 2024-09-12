@@ -653,7 +653,48 @@
     <screenshot>
       <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/4edfc0c8-7bfc-4052-bf2c-4b833b8b1547</image>
       <caption>Multiple User Interface Language Support – Hungarian (magyar)</caption>
+      <caption xml:lang="ar">دعم لغات واجهة المستخدم المتعددة – المجرية (المجرية)</caption>
+      <caption xml:lang="be">Падтрымка некалькіх моў карыстальніцкага інтэрфейсу - венгерская (magyar)</caption>
+      <caption xml:lang="bg">Поддръжка на няколко езика на потребителския интерфейс – унгарски (magyar)</caption>
+      <caption xml:lang="ca">Suport d'idiomes d'interfície d'usuari múltiple: hongarès (magyar)</caption>
+      <caption xml:lang="cs">Podpora více jazyků uživatelského rozhraní – maďarština (magyar)</caption>
+      <caption xml:lang="de">Unterstützung mehrerer Sprachen für die Benutzeroberfläche – Ungarisch (magyar)</caption>
+      <caption xml:lang="el">Υποστήριξη γλωσσών πολλαπλής διεπαφής χρήστη – Ουγγρικά (magyar)</caption>
+      <caption xml:lang="en_AU">Multiple User Interface Language Support – Hungarian (magyar)</caption>
+      <caption xml:lang="en_GB">Multiple User Interface Language Support – Hungarian (magyar)</caption>
+      <caption xml:lang="en">Multiple User Interface Language Support – Hungarian (magyar)</caption>
+      <caption xml:lang="es">Compatibilidad con varios idiomas de interfaz de usuario: húngaro (magyar)</caption>
+      <caption xml:lang="fi">Usean käyttöliittymän kielituki – unkari (magyar)</caption>
+      <caption xml:lang="fr">Prise en charge de plusieurs langues de l'interface utilisateur – Hongrois (magyar)</caption>
+      <caption xml:lang="he">תמיכה בשפות ממשק משתמש מרובות - הונגרית (מגירית)</caption>
+      <caption xml:lang="hr">Podrška za više jezika korisničkog sučelja – mađarski (magyar)</caption>
       <caption xml:lang="hu">Több felhasználói felület nyelvi támogatása – magyar</caption>
+      <caption xml:lang="id">Dukungan Bahasa Antarmuka Pengguna Ganda – Hungaria (Magyar)</caption>
+      <caption xml:lang="is">Tungumálastuðningur margra notendaviðmóta – ungverska (magyar)</caption>
+      <caption xml:lang="it">Supporto multilingua dell'interfaccia utente: ungherese (magyar)</caption>
+      <caption xml:lang="ja">複数のユーザー インターフェイス言語のサポート - ハンガリー語 (magyar)</caption>
+      <caption xml:lang="kn">ಬಹು ಬಳಕೆದಾರ ಇಂಟರ್ಫೇಸ್ ಭಾಷಾ ಬೆಂಬಲ - ಹಂಗೇರಿಯನ್ (magyar)</caption>
+      <caption xml:lang="ko">다중 사용자 인터페이스 언어 지원 – 헝가리어(magyar)</caption>
+      <caption xml:lang="lt">Kelių vartotojo sąsajos kalbų palaikymas – vengrų (magyar)</caption>
+      <caption xml:lang="lv">Vairāku lietotāja interfeisa valodu atbalsts — ungāru (magyar)</caption>
+      <caption xml:lang="nl">Ondersteuning voor meerdere gebruikersinterfacetalen – Hongaars (magyar)</caption>
+      <caption xml:lang="no_NY">Språkstøtte for flere brukergrensesnitt – ungarsk (magyar)</caption>
+      <caption xml:lang="pl">Obsługa wielu języków interfejsu użytkownika – węgierski (magyar)</caption>
+      <caption xml:lang="pt_BR">Suporte a vários idiomas da interface do usuário – húngaro (magyar)</caption>
+      <caption xml:lang="pt">Suporte de linguagem de interface de utilizadores múltiplos – Húngaro (magia)</caption>
+      <caption xml:lang="ro">Suport de limbi pentru interfețe cu mai multe utilizatori – maghiară (magyar)</caption>
+      <caption xml:lang="ru">Поддержка нескольких языков пользовательского интерфейса – венгерский (мадьяр)</caption>
+      <caption xml:lang="sk">Jazyková podpora viacerých používateľských rozhraní – maďarčina (magyar)</caption>
+      <caption xml:lang="sl">Podpora za več jezikov uporabniškega vmesnika – madžarščina (magyar)</caption>
+      <caption xml:lang="sq">Mbështetje gjuhësore e ndërfaqes së shumëfishtë të përdoruesit - Hungarisht (magyar)</caption>
+      <caption xml:lang="sr">Подршка језика вишеструког корисничког интерфејса – мађарски (магиар)</caption>
+      <caption xml:lang="sv_SE">Språkstöd för flera användargränssnitt – ungerska (magyariska)</caption>
+      <caption xml:lang="ta">பல பயனர் இடைமுக மொழி ஆதரவு - ஹங்கேரிய (magyar)</caption>
+      <caption xml:lang="tr">Çoklu Kullanıcı Arayüzü Dil Desteği – Macarca (magyar)</caption>
+      <caption xml:lang="uk">Підтримка кількох мов інтерфейсу користувача – угорська (magyar)</caption>
+      <caption xml:lang="vi">Hỗ trợ nhiều ngôn ngữ giao diện người dùng – Tiếng Hungary (magyar)</caption>
+      <caption xml:lang="zh_CN">支持多种用户界面语言 - 匈牙利语（magyar）</caption>
+      <caption xml:lang="zh_TW">多用戶介面語言支援 – 匈牙利語 (magyar)</caption>
     </screenshot>
     
     <screenshot>
