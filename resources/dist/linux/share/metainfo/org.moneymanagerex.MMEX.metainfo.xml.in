@@ -114,172 +114,214 @@
       application. The design goals are to concentrate on simplicity and user-friendliness – an 
       application that can be used everyday.
     </p>
-
-    <p xml:lang="ar">
+  </description>
+  <description xml:lang="ar">
+    <p>
       .برامج إدارة الأموال والأموال الشخصية
     </p>
-    
-    <p xml:lang="be">
+  </description>
+  <description xml:lang="be">
+    <p>
       Праграмнае забеспячэнне для кіравання асабістымі фінансамі і грашыма.
     </p>
-    
-    <p xml:lang="bg">
+  </description>
+  <description xml:lang="bg">
+    <p>
       Софтуер за лични финанси и управление на пари.
     </p>
-    
-    <p xml:lang="ca">
+  </description>
+  <description xml:lang="ca">
+    <p>
       Programari personal de gestió financera i financera.
     </p>
-    
-    <p xml:lang="cs">
+  </description>
+  <description xml:lang="cs">
+    <p>
       Software pro správu osobních financí a peněz.
     </p>
-    
-    <p xml:lang="de">
+  </description>
+  <description xml:lang="de">
+    <p>
       Persönliche Finanz- und Geldverwaltungssoftware.
     </p>
-    
-    <p xml:lang="el">
+  </description>
+  <description xml:lang="el">
+    <p>
       Λογισμικό προσωπικής διαχείρισης οικονομικών και χρημάτων.
     </p>
-    
-    <p xml:lang="en_AU">
+  </description>
+  <description xml:lang="en_AU">
+    <p>
       Personal financial and money management software.
     </p>
-    
-    <p xml:lang="en_GB">
+  </description>
+  <description xml:lang="en_GB">
+    <p>
       Personal financial and money management software.
     </p>
-    
-    <p xml:lang="en">
+  </description>
+  <description xml:lang="en">
+    <p>
       Personal financial and money management software.
     </p>
-    
-    <p xml:lang="es">
+  </description>
+  <description xml:lang="es">
+    <p>
       Software de administración de dinero y finanzas personales.
     </p>
-    
-    <p xml:lang="fi">
+  </description>
+  <description xml:lang="fi">
+    <p>
       Henkilökohtainen talous- ja rahanhallintaohjelmisto.
     </p>
-    
-    <p xml:lang="fr">
+  </description>
+  <description xml:lang="fr">
+    <p>
       Logiciel de finances personnelles et de gestion de l'argent.
     </p>
-    
-    <p xml:lang="he">
+  </description>
+  <description xml:lang="he">
+    <p>
       .תוכנה אישית לניהול כספים וכספים
     </p>
-    
-    <p xml:lang="hr">
+  </description>
+  <description xml:lang="hr">
+    <p>
       Softver za upravljanje osobnim financijama i novcem.
     </p>
-    
-    <p xml:lang="hu">
+  </description>
+  <description xml:lang="hu">
+    <p>
       Személyes pénzügyi és pénzkezelési szoftver.
     </p>
-    
-    <p xml:lang="id">
+  </description>
+  <description xml:lang="id">
+    <p>
       Perangkat lunak manajemen keuangan dan uang pribadi.
     </p>
-    
-    <p xml:lang="is">
+  </description>
+  <description xml:lang="is">
+    <p>
       Hugbúnaður fyrir persónulegan fjármála- og peningastjórnun.
     </p>
-    
-    <p xml:lang="it">
+  </description>
+  <description xml:lang="it">
+    <p>
       Software personale finanziario e di gestione del denaro.
     </p>
-    
-    <p xml:lang="ja">
+  </description>
+  <description xml:lang="ja">
+    <p>
       個人の財務および資金管理ソフトウェア。
     </p>
-    
-    <p xml:lang="kn">
+  </description>
+  <description xml:lang="kn">
+    <p>
       ವೈಯಕ್ತಿಕ ಹಣಕಾಸು ಮತ್ತು ಹಣ ನಿರ್ವಹಣೆ ಸಾಫ್ಟ್‌ವೇರ್.
     </p>
-    
-    <p xml:lang="ko">
+  </description>
+  <description xml:lang="ko">
+    <p>
       개인 금융 및 자금 관리 소프트웨어.
     </p>
-    
-    <p xml:lang="lt">
+  </description>
+  <description xml:lang="lt">
+    <p>
       Asmeninių finansų ir pinigų valdymo programinė įranga.
     </p>
-    
-    <p xml:lang="lv">
+  </description>
+  <description xml:lang="lv">
+    <p>
       Personīgo finanšu un naudas pārvaldības programmatūra.
     </p>
-    
-    <p xml:lang="nl">
+  </description>
+  <description xml:lang="nl">
+    <p>
       Software voor persoonlijk financieel en geldbeheer.
     </p>
-    
-    <p xml:lang="no_NY">
+  </description>
+  <description xml:lang="no_NY">
+    <p>
       Software voor persoonlijk financieel en geldbeheer.
     </p>
-    
-    <p xml:lang="pl">
+  </description>
+  <description xml:lang="pl">
+    <p>
       Oprogramowanie do zarządzania finansami osobistymi i pieniędzmi.
     </p>
-    
-    <p xml:lang="pt_BR">
+  </description>
+  <description xml:lang="pt_BR">
+    <p>
       Software de gestão financeira e financeira pessoal.
     </p>
-    
-    <p xml:lang="pt">
+  </description>
+  <description xml:lang="pt">
+    <p>
       Software de gestão financeira e financeira pessoal.
     </p>
-    
-    <p xml:lang="ro">
+  </description>
+  <description xml:lang="ro">
+    <p>
       Software financiar personal și software de gestionare a banilor.
     </p>
-    
-    <p xml:lang="ru">
+  </description>
+  <description xml:lang="ru">
+    <p>
       Программное обеспечение для управления личными финансами и деньгами.
     </p>
-    
-    <p xml:lang="sk">
+  </description>
+  <description xml:lang="sk">
+    <p>
       Softvér na správu osobných financií a peňazí.
     </p>
-    
-    <p xml:lang="sl">
+  </description>
+  <description xml:lang="sl">
+    <p>
       Programska oprema za upravljanje osebnih financ in denarja.
     </p>
-    
-    <p xml:lang="sq">
+  </description>
+  <description xml:lang="sq">
+    <p>
       Softuer personal financiar dhe i menaxhimit të parave.
     </p>
-    
-    <p xml:lang="sr">
+  </description>
+  <description xml:lang="sr">
+    <p>
       Лични софтвер за управљање финансијама и новцем.
     </p>
-    
-    <p xml:lang="sv_SE">
+  </description>
+  <description xml:lang="sv_SE">
+    <p>
       Programvara för personlig ekonomi och pengarhantering.
     </p>
-    
-    <p xml:lang="ta">
+  </description>
+  <description xml:lang="ta">
+    <p>
       தனிப்பட்ட நிதி மற்றும் பண மேலாண்மை மென்பொருள்.
     </p>
-    
-    <p xml:lang="tr">
+  </description>
+  <description xml:lang="tr">
+    <p>
       Kişisel finans ve para yönetimi yazılımı.
     </p>
-    
-    <p xml:lang="uk">
+  </description>
+  <description xml:lang="uk">
+    <p>
       Програмне забезпечення для управління особистими фінансами та грошима.
     </p>
-    
-    <p xml:lang="vi">
+  </description>
+  <description xml:lang="vi">
+    <p>
       Phần mềm quản lý tiền và tài chính cá nhân.
     </p>
-    
-    <p xml:lang="zh_CN">
+  </description>
+  <description xml:lang="zh_CN">
+    <p>
       个人财务和资金管理软件。
     </p>
-    
-    <p xml:lang="zh_TW">
+  </description>
+  <description xml:lang="zh_TW">
+    <p>
       個人財務和資金管理軟件。
     </p>
   </description>
