@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-05-19 23:47+0300\n"
-"PO-Revision-Date: 2024-05-19 20:49\n"
+"POT-Creation-Date: 2024-05-24 22:36+0300\n"
+"PO-Revision-Date: 2024-09-12 12:15\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgstr "&Nuovo Database"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "Crea un nuovo file di database MMEX"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -337,7 +337,7 @@ msgstr "Apri un Database esistente"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "Apri il file del database MMEX"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1682
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "Manuale d'uso"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "Leggi manuale utente MMEX"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1852
 msgid "&Website"
@@ -366,11 +366,11 @@ msgstr "Visita il sito MMEX per le ultime notizie e gli aggiornamenti"
 
 #: appstartdialog.cpp:125 mmframe.cpp:1869
 msgid "&Forum"
-msgstr ""
+msgstr "&Forum"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "Visita il forum MMEX per leggere e pubblicare commenti e per il supporto"
 
 #: appstartdialog.cpp:132 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -383,7 +383,7 @@ msgstr "Esci "
 #: appstartdialog.cpp:159
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Apri il database precedentemente aperto: %s"
 
 #: appstartdialog.cpp:208 mmframe.cpp:1688 mmframe.cpp:3081
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -671,7 +671,7 @@ msgstr "Usa l'asterisco (*) per trovare qualsiasi numero di caratteri - per esem
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr "Utilizzare l'asterisco (*) nell'inizio per trovare qualsiasi stringa nel mezzo della frase."
 
-#: assetspanel.cpp:583 stockspanel.cpp:333 stockspanel.cpp:520
+#: assetspanel.cpp:583 stockspanel.cpp:370 stockspanel.cpp:557
 #, c-format
 msgid "Total: %s"
 msgstr "Totale: %s"
@@ -699,8 +699,7 @@ msgstr "Conto \t Data\t   Valore\n\n"
 msgid "Description"
 msgstr "Descrizione"
 
-#: attachmentdialog.cpp:56 import_export/qif_export.cpp:203
-#: import_export/univcsvdialog.cpp:201
+#: attachmentdialog.cpp:56
 msgid "File"
 msgstr "File"
 
@@ -709,8 +708,8 @@ msgid "Attachment folder not defined."
 msgstr "Cartella allegati non impostata."
 
 #: attachmentdialog.cpp:65
-msgid "Please set it in Tools → Options → Attachments"
-msgstr "Si prega di impostarlo in Strumenti → Opzioni → Allegati"
+msgid "Please set it in Tools → Settings… → Attachments"
+msgstr ""
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
@@ -1038,7 +1037,7 @@ msgstr "Specificare l'importo da trasferire al Conto Destinazione"
 
 #: billsdepositsdialog.cpp:544 transdialog.cpp:494
 msgid "Open Calculator"
-msgstr ""
+msgstr "Apri Calcolatrice"
 
 #: billsdepositsdialog.cpp:550 billsdepositsdialog.cpp:837
 #: billsdepositsdialog.cpp:850 billsdepositspanel.cpp:134 filtertrans.cpp:200
@@ -1249,8 +1248,8 @@ msgstr "Specifica il numero di pagamenti da effettuare.\n"
 
 #: billsdepositsdialog.cpp:1367 images_list.cpp:502
 #: import_export/univcsvdialog.cpp:1582 maincurrencydialog.cpp:482
-#: mmframe.cpp:3917 splittransactionsdialog.cpp:412 stockspanel.cpp:384
-#: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
+#: mmframe.cpp:3917 splittransactionsdialog.cpp:412 stockspanel.cpp:421
+#: stockspanel.cpp:422 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
 msgstr "Errore"
@@ -1637,7 +1636,7 @@ msgstr "Categorie"
 #: categdialog.cpp:258 relocatecategorydialog.cpp:89
 #: relocatecategorydialog.h:43
 msgid "Merge Categories"
-msgstr ""
+msgstr "Unisci Categorie"
 
 #: categdialog.cpp:260
 msgid "C&ollapse All"
@@ -2832,7 +2831,7 @@ msgstr "Scegliere Conti"
 
 #: filtertransdialog.h:163
 msgid "Customize Transaction Report"
-msgstr ""
+msgstr "Personalizza Resoconto Transazioni"
 
 #: general_report_manager.cpp:284 mmframe.cpp:832 mmframe.cpp:3025
 #: mmframereport.cpp:316 reports/myusage.cpp:145 reports/myusage.cpp:162
@@ -3160,6 +3159,11 @@ msgstr "Scrivi su file"
 msgid "File Name:"
 msgstr "Nome File:"
 
+#: import_export/qif_export.cpp:203 import_export/qif_import_gui.cpp:135
+#: import_export/univcsvdialog.cpp:201
+msgid "&Browse..."
+msgstr "&Sfoglia..."
+
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:555
 msgid "Clear"
 msgstr "Cancella"
@@ -3241,10 +3245,6 @@ msgstr "Numero di transazioni esportate: %zu \n"
 msgid "Number of accounts exported: %zu"
 msgstr "Numero di account esportati: %zu"
 
-#: import_export/qif_import_gui.cpp:135 import_export/univcsvdialog.cpp:201
-msgid "&Browse"
-msgstr "&Sfoglia"
-
 #: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:385
 msgid "Encoding:"
 msgstr "Codifica:"
@@ -3321,7 +3321,7 @@ msgstr "Premere OK per continuare"
 
 #: import_export/qif_import_gui.cpp:770 import_export/qif_import_gui.cpp:801
 #: import_export/univcsvdialog.cpp:2091 import_export/univcsvdialog.cpp:2105
-#: stockspanel.cpp:449
+#: stockspanel.cpp:486
 msgid "Missing"
 msgstr "Mancante"
 
@@ -3626,7 +3626,7 @@ msgstr "Il campo Data è richiesto"
 
 #: import_export/univcsvdialog.cpp:1305
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr "Il campo Ammontare o entrambi i campi Prelievo e Deposito sono richiesti."
+msgstr "Il campo Importo o entrambi i campi Prelievo e Deposito sono richiesti."
 
 #: import_export/univcsvdialog.cpp:1306 import_export/univcsvdialog.cpp:1501
 #: webappdialog.cpp:408
@@ -3930,7 +3930,7 @@ msgstr "Aggiornare i tassi di cambio odierni?"
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr "Impossibile scaricare lo storico del simbolo %s. Cronologia dei tassi non disponibile!"
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:395 util.cpp:684
+#: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:684
 msgid "Could not find base currency symbol!"
 msgstr "Impossibile trovare il simbolo della Valuta base!"
 
@@ -4978,7 +4978,7 @@ msgstr "Mostra Suggerimenti Finanziari"
 
 #: mmframe.cpp:1670
 msgid "&Full Screen\tF11"
-msgstr ""
+msgstr "&Schermo Intero F11"
 
 #: mmframe.cpp:1671 mmframe.cpp:1997
 msgid "Toggle full screen"
@@ -5119,7 +5119,7 @@ msgstr "Aggiorna WebApp"
 
 #: mmframe.cpp:1817
 msgid "&Settings...\tAlt-F12"
-msgstr ""
+msgstr "&Impostazioni...\tAlt-F12"
 
 #: mmframe.cpp:1824
 msgid "&Decrypt Encrypted Database..."
@@ -5171,7 +5171,7 @@ msgstr "Mostra Aiuto"
 
 #: mmframe.cpp:1855
 msgid "Face&book"
-msgstr ""
+msgstr "Face&book"
 
 #: mmframe.cpp:1855
 msgid "Visit MMEX Facebook page"
@@ -5219,7 +5219,7 @@ msgstr "Accedi al deposito del codice open source e traccia gli stati dei bug se
 
 #: mmframe.cpp:1867
 msgid "W&iki"
-msgstr ""
+msgstr "W&iki"
 
 #: mmframe.cpp:1867
 msgid "Read and update MMEX wiki"
@@ -5339,7 +5339,7 @@ msgstr "Nuovo"
 
 #: mmframe.cpp:1979
 msgid "&Settings"
-msgstr ""
+msgstr "&Impostazioni"
 
 #: mmframe.cpp:1987 mmframe.cpp:1992 mmframe.cpp:3018 optionsettingsnet.cpp:132
 msgid "News"
@@ -5355,7 +5355,7 @@ msgstr "Scarica valuta e tassi azionari"
 
 #: mmframe.cpp:1997
 msgid "Full Screen\tF11"
-msgstr ""
+msgstr "Schermo Intero F11"
 
 #: mmframe.cpp:2000
 msgid "&Print"
@@ -5517,11 +5517,11 @@ msgstr "Debug del Database"
 
 #: mmframe.cpp:2492
 msgid "&Yes"
-msgstr ""
+msgstr "&Sì"
 
 #: mmframe.cpp:2492
 msgid "&No"
-msgstr ""
+msgstr "&No"
 
 #: mmframe.cpp:2512 mmframe.cpp:2533
 msgid "Save database file as"
@@ -5599,7 +5599,7 @@ msgstr "Aggiornamento valore azioni da Yahoo"
 msgid "Please wait..."
 msgstr "Attendere prego..."
 
-#: mmframe.cpp:3567 stockspanel.cpp:459
+#: mmframe.cpp:3567 stockspanel.cpp:496
 #, c-format
 msgid "%1$s on %2$s"
 msgstr "%1$s su %2$s"
@@ -5692,7 +5692,7 @@ msgstr "Report Previsionale"
 
 #: mmframereport.cpp:168 optionsettingshome.cpp:78
 msgid "Income vs. Expenses"
-msgstr ""
+msgstr "Entrate vs. Spese"
 
 #: mmframereport.cpp:179
 msgid "My Usage"
@@ -5766,7 +5766,7 @@ msgstr "Conto/Beneficiario"
 #: mmhomepage.cpp:423
 #, c-format
 msgid "Income vs. Expenses: %s"
-msgstr ""
+msgstr "Entrate vs. Spese: %s"
 
 #: mmhomepage.cpp:433 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:425 reports/categexp.cpp:496 reports/incexpenses.cpp:88
@@ -6390,7 +6390,7 @@ msgstr "Transazioni In Massa"
 
 #: optionsettingsmisc.cpp:173
 msgid "Database"
-msgstr ""
+msgstr "Database"
 
 #: optionsettingsmisc.cpp:180
 msgid "Backup database on startup"
@@ -6398,8 +6398,9 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX starts,\n"
-"create the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr ""
+"create the backup database: dbFile_start_YYYY-MM-DD.bak"
+msgstr "Quando MMEX si avvia,\n"
+"crea il database di backup: dbFile_start_YYYY-MM-DD.bak"
 
 #: optionsettingsmisc.cpp:187
 msgid "Backup database on exit"
@@ -6407,8 +6408,9 @@ msgstr "Backup del database all'uscita"
 
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes were made to the database,\n"
-"create or update the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr ""
+"create or update the backup database: dbFile_update_YYYY-MM-DD.bak"
+msgstr "Alla chiusura di MMEX in caso di modifiche al database,\n"
+"crea o aggiorna il database di backup: dbFile_update_YYYY-MM-DD.bak"
 
 #: optionsettingsmisc.cpp:197
 msgid "Specify max number of backup files"
@@ -6855,7 +6857,7 @@ msgstr "Records trovati nel budget: %i"
 
 #: relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge Payees"
-msgstr ""
+msgstr "Unisci Beneficiari"
 
 #: relocatepayeedialog.cpp:99
 msgid "&Delete source payee after merge"
@@ -6867,7 +6869,7 @@ msgstr "Conferma unione beneficiari"
 
 #: relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge Tags"
-msgstr ""
+msgstr "Unisci Tag"
 
 #: relocatetagdialog.cpp:101
 msgid "&Delete source tag after merge"
@@ -7103,7 +7105,7 @@ msgstr "Le transazioni future sono state ignorate"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs. Expenses Summary"
-msgstr ""
+msgstr "Riepilogo Entrate vs Spese"
 
 #: reports/incexpenses.cpp:115
 msgid "Income:"
@@ -7115,7 +7117,7 @@ msgstr "Uscite:"
 
 #: reports/incexpenses.cpp:133
 msgid "Income vs. Expenses Monthly"
-msgstr ""
+msgstr "Entrate vs Uscite Mensili"
 
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:248
 msgid "Cumulative"
@@ -7677,49 +7679,49 @@ msgstr "Aggiorna le quotazioni dei Titoli da Yahoo"
 msgid "Lot"
 msgstr "Lotto"
 
-#: stockspanel.cpp:288
+#: stockspanel.cpp:325
 #, c-format
 msgid "Stock Portfolio: %s"
 msgstr "Portafoglio Titoli: %s"
 
-#: stockspanel.cpp:332
+#: stockspanel.cpp:369
 #, c-format
 msgid "Total Shares: %s"
 msgstr "Totale Azioni: %s"
 
-#: stockspanel.cpp:334
+#: stockspanel.cpp:371
 #, c-format
 msgid "Invested: %s"
 msgstr "Investito: %s"
 
-#: stockspanel.cpp:335
+#: stockspanel.cpp:372
 #, c-format
 msgid "Gain: %s"
 msgstr "Guadagno: %s"
 
-#: stockspanel.cpp:335
+#: stockspanel.cpp:372
 #, c-format
 msgid "Loss: %s"
 msgstr "Perdita: %s"
 
-#: stockspanel.cpp:373
+#: stockspanel.cpp:410
 msgid "Stock prices successfully updated"
 msgstr "Quotazioni aggiornate correttamente"
 
-#: stockspanel.cpp:375 stockspanel.cpp:561
+#: stockspanel.cpp:412 stockspanel.cpp:598
 #, c-format
 msgid "Last updated %s"
 msgstr "Ultimo aggiornamento %s"
 
-#: stockspanel.cpp:401 util.cpp:708 util.cpp:869
+#: stockspanel.cpp:438 util.cpp:708 util.cpp:869
 msgid "Nothing to update"
 msgstr "Nulla da aggiornare"
 
-#: stockspanel.cpp:415
+#: stockspanel.cpp:452
 msgid "Connecting..."
 msgstr "Connessione in corso..."
 
-#: stockspanel.cpp:519
+#: stockspanel.cpp:556
 #, c-format
 msgid "Symbol: %s"
 msgstr "Simbolo: %s"
@@ -7808,11 +7810,11 @@ msgstr "Conferma eliminazione del Tag"
 
 #: themes.cpp:191
 msgid "&Delete"
-msgstr ""
+msgstr "&Elimina"
 
 #: themes.cpp:193
 msgid "&Use"
-msgstr ""
+msgstr "&Utilizza"
 
 #: themes.cpp:239
 msgid "No description available"
@@ -8431,8 +8433,8 @@ msgid "Base Account Currency Not set."
 msgstr "Valuta Base non impostata"
 
 #: wizard_newaccount.cpp:165
-msgid "Set that first using Tools → Options menu and then add a new account."
-msgstr "Impostare prima usando il menu Strumenti → Opzioni e quindi aggiungere un nuovo account."
+msgid "Set that first using Tools → Settings… menu and then add a new account."
+msgstr ""
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
