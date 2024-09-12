@@ -559,7 +559,48 @@
     <screenshot>
       <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/9ba8d274-7af8-496c-9ab6-2c49235ec735</image>
       <caption>Payee Report</caption>
+      <caption xml:lang="ar">تقرير المستفيد</caption>
+      <caption xml:lang="be">Справаздача атрымальніка</caption>
+      <caption xml:lang="bg">Отчет на получателя</caption>
+      <caption xml:lang="ca">Informe del beneficiari</caption>
+      <caption xml:lang="cs">Zpráva o příjemci platby</caption>
+      <caption xml:lang="de">Zahlungsempfängerbericht</caption>
+      <caption xml:lang="el">Αναφορά δικαιούχου πληρωμής</caption>
+      <caption xml:lang="en_AU">Payee Report</caption>
+      <caption xml:lang="en_GB">Payee Report</caption>
+      <caption xml:lang="en">Payee Report</caption>
+      <caption xml:lang="es">Informe de beneficiario</caption>
+      <caption xml:lang="fi">Maksunsaajan raportti</caption>
+      <caption xml:lang="fr">Rapport du bénéficiaire</caption>
+      <caption xml:lang="he">דוח מקבל תשלום</caption>
+      <caption xml:lang="hr">Izvješće primatelja</caption>
       <caption xml:lang="hu">Kedvezményezett kimutatás</caption>
+      <caption xml:lang="id">Laporan Penerima Pembayaran</caption>
+      <caption xml:lang="is">Skýrsla greiðsluviðtakanda</caption>
+      <caption xml:lang="it">Rapporto del beneficiario</caption>
+      <caption xml:lang="ja">受取人レポート</caption>
+      <caption xml:lang="kn">ಪಾವತಿದಾರರ ವರದಿ</caption>
+      <caption xml:lang="ko">수취인 보고서</caption>
+      <caption xml:lang="lt">Gavėjo ataskaita</caption>
+      <caption xml:lang="lv">Saņēmēja ziņojums</caption>
+      <caption xml:lang="nl">Rapport van de begunstigde</caption>
+      <caption xml:lang="no_NY">Betalingsmottakers rapport</caption>
+      <caption xml:lang="pl">Raport odbiorcy płatności</caption>
+      <caption xml:lang="pt_BR">Relatório do Beneficiário</caption>
+      <caption xml:lang="pt">Relatório de pagamento</caption>
+      <caption xml:lang="ro">Raportul beneficiarului</caption>
+      <caption xml:lang="ru">Отчет получателя платежа</caption>
+      <caption xml:lang="sk">Správa príjemcu platby</caption>
+      <caption xml:lang="sl">Poročilo o prejemniku plačila</caption>
+      <caption xml:lang="sq">Raporti i të paguarit</caption>
+      <caption xml:lang="sr">Извештај о примаоцу уплате</caption>
+      <caption xml:lang="sv_SE">Betalningsmottagarens rapport</caption>
+      <caption xml:lang="ta">பணம் பெறுபவர் அறிக்கை</caption>
+      <caption xml:lang="tr">Alacaklı Raporu</caption>
+      <caption xml:lang="uk">Звіт одержувача</caption>
+      <caption xml:lang="vi">Báo cáo người nhận tiền</caption>
+      <caption xml:lang="zh_CN">收款人报告</caption>
+      <caption xml:lang="zh_TW">收款人報告</caption>
     </screenshot>
     
     <screenshot>
