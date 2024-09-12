@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-05-19 23:47+0300\n"
-"PO-Revision-Date: 2024-05-19 20:50\n"
+"POT-Creation-Date: 2024-05-24 22:36+0300\n"
+"PO-Revision-Date: 2024-09-12 12:15\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -670,7 +670,7 @@ msgstr ""
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr ""
 
-#: assetspanel.cpp:583 stockspanel.cpp:333 stockspanel.cpp:520
+#: assetspanel.cpp:583 stockspanel.cpp:370 stockspanel.cpp:557
 #, c-format
 msgid "Total: %s"
 msgstr "Tổng cộng: %s"
@@ -697,8 +697,7 @@ msgstr "Tài Khoản \t Ngày\t   Giá Trị\n\n"
 msgid "Description"
 msgstr "Mô tả"
 
-#: attachmentdialog.cpp:56 import_export/qif_export.cpp:203
-#: import_export/univcsvdialog.cpp:201
+#: attachmentdialog.cpp:56
 msgid "File"
 msgstr "Tập tin"
 
@@ -707,7 +706,7 @@ msgid "Attachment folder not defined."
 msgstr "Thư mục tệp đính kèm chưa được xác định."
 
 #: attachmentdialog.cpp:65
-msgid "Please set it in Tools → Options → Attachments"
+msgid "Please set it in Tools → Settings… → Attachments"
 msgstr ""
 
 #: attachmentdialog.cpp:66
@@ -1242,8 +1241,8 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1367 images_list.cpp:502
 #: import_export/univcsvdialog.cpp:1582 maincurrencydialog.cpp:482
-#: mmframe.cpp:3917 splittransactionsdialog.cpp:412 stockspanel.cpp:384
-#: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
+#: mmframe.cpp:3917 splittransactionsdialog.cpp:412 stockspanel.cpp:421
+#: stockspanel.cpp:422 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
 msgstr "Lỗi"
@@ -3130,6 +3129,11 @@ msgstr ""
 msgid "File Name:"
 msgstr "Tên tệp tin:"
 
+#: import_export/qif_export.cpp:203 import_export/qif_import_gui.cpp:135
+#: import_export/univcsvdialog.cpp:201
+msgid "&Browse..."
+msgstr ""
+
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:555
 msgid "Clear"
 msgstr ""
@@ -3211,10 +3215,6 @@ msgstr ""
 msgid "Number of accounts exported: %zu"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:135 import_export/univcsvdialog.cpp:201
-msgid "&Browse"
-msgstr ""
-
 #: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:385
 msgid "Encoding:"
 msgstr ""
@@ -3291,7 +3291,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:770 import_export/qif_import_gui.cpp:801
 #: import_export/univcsvdialog.cpp:2091 import_export/univcsvdialog.cpp:2105
-#: stockspanel.cpp:449
+#: stockspanel.cpp:486
 msgid "Missing"
 msgstr ""
 
@@ -3898,7 +3898,7 @@ msgstr ""
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr ""
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:395 util.cpp:684
+#: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:684
 msgid "Could not find base currency symbol!"
 msgstr ""
 
@@ -4632,7 +4632,7 @@ msgstr ""
 #: mmframe.cpp:806 mmhomepage.cpp:696 reports/summary.cpp:269
 #: reports/summary.cpp:307
 msgid "Share Accounts"
-msgstr "Tài khoản dùng chung"
+msgstr "Tài khoản cổ phần"
 
 #: mmframe.cpp:822 mmframe.cpp:1776 mmframe.cpp:2888
 msgid "Budget Planner"
@@ -5537,7 +5537,7 @@ msgstr ""
 msgid "Please wait..."
 msgstr ""
 
-#: mmframe.cpp:3567 stockspanel.cpp:459
+#: mmframe.cpp:3567 stockspanel.cpp:496
 #, c-format
 msgid "%1$s on %2$s"
 msgstr ""
@@ -5851,7 +5851,7 @@ msgstr ""
 
 #: model/Model_Account.cpp:40 stockspanel.cpp:214
 msgid "Shares"
-msgstr ""
+msgstr "Cổ phần"
 
 #: model/Model_Account.cpp:147
 msgid "Account Error"
@@ -6327,7 +6327,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX starts,\n"
-"create the backup database: dbFile_start_YYYY-MM-DD.ext."
+"create the backup database: dbFile_start_YYYY-MM-DD.bak"
 msgstr ""
 
 #: optionsettingsmisc.cpp:187
@@ -6336,7 +6336,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes were made to the database,\n"
-"create or update the backup database: dbFile_update_YYYY-MM-DD.ext."
+"create or update the backup database: dbFile_update_YYYY-MM-DD.bak"
 msgstr ""
 
 #: optionsettingsmisc.cpp:197
@@ -7595,49 +7595,49 @@ msgstr "Cập nhật giá cổ phiếu từ Yahoo"
 msgid "Lot"
 msgstr ""
 
-#: stockspanel.cpp:288
+#: stockspanel.cpp:325
 #, c-format
 msgid "Stock Portfolio: %s"
 msgstr ""
 
-#: stockspanel.cpp:332
+#: stockspanel.cpp:369
 #, c-format
 msgid "Total Shares: %s"
 msgstr ""
 
-#: stockspanel.cpp:334
+#: stockspanel.cpp:371
 #, c-format
 msgid "Invested: %s"
 msgstr ""
 
-#: stockspanel.cpp:335
+#: stockspanel.cpp:372
 #, c-format
 msgid "Gain: %s"
 msgstr ""
 
-#: stockspanel.cpp:335
+#: stockspanel.cpp:372
 #, c-format
 msgid "Loss: %s"
 msgstr ""
 
-#: stockspanel.cpp:373
+#: stockspanel.cpp:410
 msgid "Stock prices successfully updated"
 msgstr ""
 
-#: stockspanel.cpp:375 stockspanel.cpp:561
+#: stockspanel.cpp:412 stockspanel.cpp:598
 #, c-format
 msgid "Last updated %s"
 msgstr ""
 
-#: stockspanel.cpp:401 util.cpp:708 util.cpp:869
+#: stockspanel.cpp:438 util.cpp:708 util.cpp:869
 msgid "Nothing to update"
 msgstr ""
 
-#: stockspanel.cpp:415
+#: stockspanel.cpp:452
 msgid "Connecting..."
 msgstr ""
 
-#: stockspanel.cpp:519
+#: stockspanel.cpp:556
 #, c-format
 msgid "Symbol: %s"
 msgstr ""
@@ -8340,7 +8340,7 @@ msgid "Base Account Currency Not set."
 msgstr ""
 
 #: wizard_newaccount.cpp:165
-msgid "Set that first using Tools → Options menu and then add a new account."
+msgid "Set that first using Tools → Settings… menu and then add a new account."
 msgstr ""
 
 #: wizard_newdb.cpp:30

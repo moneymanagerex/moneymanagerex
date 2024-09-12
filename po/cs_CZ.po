@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-05-19 23:47+0300\n"
-"PO-Revision-Date: 2024-05-19 20:49\n"
+"POT-Creation-Date: 2024-05-24 22:36+0300\n"
+"PO-Revision-Date: 2024-09-12 12:15\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -671,7 +671,7 @@ msgstr ""
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr ""
 
-#: assetspanel.cpp:583 stockspanel.cpp:333 stockspanel.cpp:520
+#: assetspanel.cpp:583 stockspanel.cpp:370 stockspanel.cpp:557
 #, c-format
 msgid "Total: %s"
 msgstr "Celkem: %s"
@@ -699,8 +699,7 @@ msgstr "Účet \t Datum\t   Hodnota\n\n"
 msgid "Description"
 msgstr "Popis"
 
-#: attachmentdialog.cpp:56 import_export/qif_export.cpp:203
-#: import_export/univcsvdialog.cpp:201
+#: attachmentdialog.cpp:56
 msgid "File"
 msgstr "Soubor"
 
@@ -709,7 +708,7 @@ msgid "Attachment folder not defined."
 msgstr "Složka příloh není nastavena."
 
 #: attachmentdialog.cpp:65
-msgid "Please set it in Tools → Options → Attachments"
+msgid "Please set it in Tools → Settings… → Attachments"
 msgstr ""
 
 #: attachmentdialog.cpp:66
@@ -1248,8 +1247,8 @@ msgstr "Zadejte počet plateb, které mají být zadány.\n"
 
 #: billsdepositsdialog.cpp:1367 images_list.cpp:502
 #: import_export/univcsvdialog.cpp:1582 maincurrencydialog.cpp:482
-#: mmframe.cpp:3917 splittransactionsdialog.cpp:412 stockspanel.cpp:384
-#: stockspanel.cpp:385 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
+#: mmframe.cpp:3917 splittransactionsdialog.cpp:412 stockspanel.cpp:421
+#: stockspanel.cpp:422 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
 msgstr "Chyba"
@@ -3160,6 +3159,11 @@ msgstr "Zapsat do souboru"
 msgid "File Name:"
 msgstr "Název souboru:"
 
+#: import_export/qif_export.cpp:203 import_export/qif_import_gui.cpp:135
+#: import_export/univcsvdialog.cpp:201
+msgid "&Browse..."
+msgstr ""
+
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:555
 msgid "Clear"
 msgstr "Vyčistit"
@@ -3241,10 +3245,6 @@ msgstr ""
 msgid "Number of accounts exported: %zu"
 msgstr "Počet exportovaných účtů: %zu"
 
-#: import_export/qif_import_gui.cpp:135 import_export/univcsvdialog.cpp:201
-msgid "&Browse"
-msgstr "&Procházet"
-
 #: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:385
 msgid "Encoding:"
 msgstr "Kódování:"
@@ -3321,7 +3321,7 @@ msgstr "Stiskněte tlačítko OK pro pokračování"
 
 #: import_export/qif_import_gui.cpp:770 import_export/qif_import_gui.cpp:801
 #: import_export/univcsvdialog.cpp:2091 import_export/univcsvdialog.cpp:2105
-#: stockspanel.cpp:449
+#: stockspanel.cpp:486
 msgid "Missing"
 msgstr "Chybějící "
 
@@ -3928,7 +3928,7 @@ msgstr "Přejete si aktualizovat na dnešní kurzy měn?"
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr "Nelze stáhnout historii pro základní symbol %s. Historie kurzů není dostupná!"
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:395 util.cpp:684
+#: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:684
 msgid "Could not find base currency symbol!"
 msgstr "Nelze najít symbol pro základní měnu!"
 
@@ -5610,7 +5610,7 @@ msgstr "Stahuji kurzy akcií z Yahoo"
 msgid "Please wait..."
 msgstr "Prosím čekejte..."
 
-#: mmframe.cpp:3567 stockspanel.cpp:459
+#: mmframe.cpp:3567 stockspanel.cpp:496
 #, c-format
 msgid "%1$s on %2$s"
 msgstr ""
@@ -6400,7 +6400,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:182
 msgid "When MMEX starts,\n"
-"create the backup database: dbFile_start_YYYY-MM-DD.ext."
+"create the backup database: dbFile_start_YYYY-MM-DD.bak"
 msgstr ""
 
 #: optionsettingsmisc.cpp:187
@@ -6409,7 +6409,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:189
 msgid "When MMEX shuts down and changes were made to the database,\n"
-"create or update the backup database: dbFile_update_YYYY-MM-DD.ext."
+"create or update the backup database: dbFile_update_YYYY-MM-DD.bak"
 msgstr ""
 
 #: optionsettingsmisc.cpp:197
@@ -7678,49 +7678,49 @@ msgstr "Obnovit ceny akcií z Yahoo"
 msgid "Lot"
 msgstr ""
 
-#: stockspanel.cpp:288
+#: stockspanel.cpp:325
 #, c-format
 msgid "Stock Portfolio: %s"
 msgstr "Portfolio akcií: %s"
 
-#: stockspanel.cpp:332
+#: stockspanel.cpp:369
 #, c-format
 msgid "Total Shares: %s"
 msgstr "Akcií celkem: %s"
 
-#: stockspanel.cpp:334
+#: stockspanel.cpp:371
 #, c-format
 msgid "Invested: %s"
 msgstr "Investováno: %s"
 
-#: stockspanel.cpp:335
+#: stockspanel.cpp:372
 #, c-format
 msgid "Gain: %s"
 msgstr "Zisk: %s"
 
-#: stockspanel.cpp:335
+#: stockspanel.cpp:372
 #, c-format
 msgid "Loss: %s"
 msgstr "Ztráta: %s"
 
-#: stockspanel.cpp:373
+#: stockspanel.cpp:410
 msgid "Stock prices successfully updated"
 msgstr "Ceny akcií byly úspěšně aktualizovány"
 
-#: stockspanel.cpp:375 stockspanel.cpp:561
+#: stockspanel.cpp:412 stockspanel.cpp:598
 #, c-format
 msgid "Last updated %s"
 msgstr "Poslední aktualizace %s"
 
-#: stockspanel.cpp:401 util.cpp:708 util.cpp:869
+#: stockspanel.cpp:438 util.cpp:708 util.cpp:869
 msgid "Nothing to update"
 msgstr "Žádná aktualizace není k dispozici"
 
-#: stockspanel.cpp:415
+#: stockspanel.cpp:452
 msgid "Connecting..."
 msgstr "Připojuji..."
 
-#: stockspanel.cpp:519
+#: stockspanel.cpp:556
 #, c-format
 msgid "Symbol: %s"
 msgstr "Symbol: %s"
@@ -8427,7 +8427,7 @@ msgid "Base Account Currency Not set."
 msgstr "Základní měna účtu není nastavena."
 
 #: wizard_newaccount.cpp:165
-msgid "Set that first using Tools → Options menu and then add a new account."
+msgid "Set that first using Tools → Settings… menu and then add a new account."
 msgstr ""
 
 #: wizard_newdb.cpp:30
