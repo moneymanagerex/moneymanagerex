@@ -512,7 +512,48 @@
     <screenshot type="default">
       <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/01cc2202-9d5a-4bba-a816-5868512196cb</image>
       <caption>Dashboard</caption>
+      <caption xml:lang="ar">لوحة القيادة</caption>
+      <caption xml:lang="be">Прыборная панэль</caption>
+      <caption xml:lang="bg">Табло за управление</caption>
+      <caption xml:lang="ca">Tauler de control</caption>
+      <caption xml:lang="cs">Řídicí panel</caption>
+      <caption xml:lang="de">Armaturenbrett</caption>
+      <caption xml:lang="el">Ταμπλό</caption>
+      <caption xml:lang="en_AU">Dashboard</caption>
+      <caption xml:lang="en_GB">Dashboard</caption>
+      <caption xml:lang="en">Dashboard</caption>
+      <caption xml:lang="es">Panel</caption>
+      <caption xml:lang="fi">Kojelauta</caption>
+      <caption xml:lang="fr">Tableau de bord</caption>
+      <caption xml:lang="he">לוּחַ מַחווָנִים</caption>
+      <caption xml:lang="hr">Nadzorna ploča</caption>
       <caption xml:lang="hu">Irányítópult</caption>
+      <caption xml:lang="id">Dasbor</caption>
+      <caption xml:lang="is">Mælaborð</caption>
+      <caption xml:lang="it">Pannello di controllo</caption>
+      <caption xml:lang="ja">ダッシュボード</caption>
+      <caption xml:lang="kn">ಡ್ಯಾಶ್‌ಬೋರ್ಡ್</caption>
+      <caption xml:lang="ko">계기반</caption>
+      <caption xml:lang="lt">Prietaisų skydelis</caption>
+      <caption xml:lang="lv">Informācijas panelis</caption>
+      <caption xml:lang="nl">Dashboard</caption>
+      <caption xml:lang="no_NY">Dashbord</caption>
+      <caption xml:lang="pl">Tablica rozdzielcza</caption>
+      <caption xml:lang="pt_BR">Painel</caption>
+      <caption xml:lang="pt">Painéis</caption>
+      <caption xml:lang="ro">Tabloul de bord</caption>
+      <caption xml:lang="ru">Панель инструментов</caption>
+      <caption xml:lang="sk">Prístrojová doska</caption>
+      <caption xml:lang="sl">Nadzorna plošča</caption>
+      <caption xml:lang="sq">Paneli i kontrollit</caption>
+      <caption xml:lang="sr">Дасхбоард</caption>
+      <caption xml:lang="sv_SE">Instrumentbräda</caption>
+      <caption xml:lang="ta">டாஷ்போர்டு</caption>
+      <caption xml:lang="tr">Gösterge Paneli</caption>
+      <caption xml:lang="uk">Приладова панель</caption>
+      <caption xml:lang="vi">Bảng điều khiển</caption>
+      <caption xml:lang="zh_CN">仪表板</caption>
+      <caption xml:lang="zh_TW">儀表板</caption>
     </screenshot>
     
     <screenshot>
