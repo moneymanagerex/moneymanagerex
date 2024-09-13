@@ -100,8 +100,11 @@ public:
         wxString PAYEENAME;
         wxString CATEGNAME;
         wxString TAGNAMES;
-        double AMOUNT;
-        double BALANCE;
+
+        int ACCOUNTID_W, ACCOUNTID_D;
+        double TRANSAMOUNT_W, TRANSAMOUNT_D;
+        double ACCOUNT_FLOW;
+        double ACCOUNT_BALANCE;
         wxArrayString ATTACHMENT_DESCRIPTION;
 
         // Reserved string variables for custom data
@@ -118,7 +121,7 @@ public:
         template<class DATA>
         bool operator()(const DATA& x, const DATA& y)
         {
-            return x.BALANCE < y.BALANCE;
+            return x.ACCOUNT_BALANCE < y.ACCOUNT_BALANCE;
         }
     };
     struct SorterByDEPOSIT
@@ -126,7 +129,7 @@ public:
         template<class DATA>
         bool operator()(const DATA& x, const DATA& y)
         {
-            return x.AMOUNT < y.AMOUNT;
+            return x.ACCOUNTID_D != -1 && (y.ACCOUNTID_D == -1 || x.TRANSAMOUNT_D < y.TRANSAMOUNT_D);
         }
     };
     struct SorterByWITHDRAWAL
@@ -134,7 +137,7 @@ public:
         template<class DATA>
         bool operator()(const DATA& x, const DATA& y)
         {
-            return x.AMOUNT > y.AMOUNT;
+            return x.ACCOUNTID_W != -1 && (y.ACCOUNTID_W == -1 || x.TRANSAMOUNT_W < y.TRANSAMOUNT_W);
         }
     };
     struct SorterByNUMBER
@@ -211,16 +214,14 @@ public:
     static STATUS_ID status_id(const wxString& r);
     static STATUS_ID status_id(const Data* r);
     static STATUS_ID status_id(const Data& r);
-    static double amount(const Data* r, int account_id = -1);
-    static double amount(const Data&r, int account_id = -1);
-    static double balance(const Data* r, int account_id = -1);
-    static double balance(const Data& r, int account_id = -1);
-    static double withdrawal(const Data* r, int account_id = -1);
-    static double withdrawal(const Data& r, int account_id);
-    static double deposit(const Data* r, int account_id);
-    static double deposit(const Data& r, int account_id);
-    static double reconciled(const Data* r, int account_id);
-    static double reconciled(const Data& r, int account_id);
+    static double account_flow(const Data* r, int account_id);
+    static double account_flow(const Data& r, int account_id);
+    static double account_outflow(const Data* r, int account_id);
+    static double account_outflow(const Data& r, int account_id);
+    static double account_inflow(const Data* r, int account_id);
+    static double account_inflow(const Data& r, int account_id);
+    static double account_recflow(const Data* r, int account_id);
+    static double account_recflow(const Data& r, int account_id);
     static bool is_locked(const Data* r);
     static bool is_transfer(const wxString& r);
     static bool is_transfer(const Data* r);

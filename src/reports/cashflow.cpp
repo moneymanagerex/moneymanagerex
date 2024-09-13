@@ -97,7 +97,7 @@ void mmReportCashFlow::getTransactions()
             if (Model_Checking::foreignTransactionAsTransfer(tran)
                 || (strDate > todayString))
                 continue;
-            m_balance += Model_Checking::balance(tran, account.ACCOUNTID) * convRate;
+            m_balance += Model_Checking::account_flow(tran, account.ACCOUNTID) * convRate;
         }
     }
 

@@ -136,9 +136,9 @@ private:
     bool m_transFilterActive;
     wxString m_begin_date;
     wxString m_end_date;
-    double m_filteredBalance = 0.0;
+    double m_account_flow = 0.0;
     double m_account_balance = 0.0;
-    double m_reconciled_balance = 0.0;
+    double m_account_recbalance = 0.0;
     bool m_show_reconciled;
 
     TransactionListCtrl* m_listCtrlAccount = nullptr;

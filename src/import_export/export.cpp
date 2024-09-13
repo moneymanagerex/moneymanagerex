@@ -109,7 +109,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
 
         buffer << inQuotes(payee, delimiter) << delimiter;
         buffer << inQuotes(categ, delimiter) << delimiter;
-        double value = Model_Checking::balance(full_tran
+        double value = Model_Checking::account_flow(full_tran
             , (reverce ? full_tran.ACCOUNTID : full_tran.TOACCOUNTID));
         const wxString& s = wxString::FromCDouble(value, 2);
         buffer << inQuotes(s, delimiter) << delimiter;
@@ -166,7 +166,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
 
     buffer << "D" << mmGetDateForDisplay(full_tran.TRANSDATE, dateMask) << "\n";
     buffer << "C" << (full_tran.STATUS == Model_Checking::STATUS_KEY_RECONCILED ? "R" : "") << "\n";
-    double value = Model_Checking::balance(full_tran
+    double value = Model_Checking::account_flow(full_tran
         , (reverce ? full_tran.TOACCOUNTID : full_tran.ACCOUNTID));
     const wxString& s = wxString::FromCDouble(value, 2);
     buffer << "T" << s << "\n";

@@ -291,75 +291,57 @@ Model_Checking::STATUS_ID Model_Checking::status_id(const Data* r)
     return status_id(r->STATUS);
 }
 
-double Model_Checking::amount(const Data* r, int account_id)
+double Model_Checking::account_flow(const Data* r, int account_id)
 {
-    double sum = 0;
-    switch (type_id(r->TRANSCODE))
-    {
-    case TYPE_ID_WITHDRAWAL:
-        sum -= r->TRANSAMOUNT;
-        break;
-    case TYPE_ID_DEPOSIT:
-        sum += r->TRANSAMOUNT;
-        break;
-    case TYPE_ID_TRANSFER:
-        if (account_id == r->ACCOUNTID)
-            sum -= r->TRANSAMOUNT;
-        else
-            sum += r->TOTRANSAMOUNT;
-        break;
-    default:
-        break;
-    }
-    return sum;
+    if (Model_Checking::status_id(r->STATUS) == Model_Checking::STATUS_ID_VOID || !r->DELETEDTIME.IsEmpty())
+        return 0.0;
+    if (account_id == r->ACCOUNTID && type_id(r->TRANSCODE) == TYPE_ID_WITHDRAWAL)
+        return -(r->ACCOUNTID);
+    if (account_id == r->ACCOUNTID && type_id(r->TRANSCODE) == TYPE_ID_DEPOSIT)
+        return r->ACCOUNTID;
+    if (account_id == r->ACCOUNTID && type_id(r->TRANSCODE) == TYPE_ID_TRANSFER)
+        return -(r->ACCOUNTID);
+    if (account_id == r->TOACCOUNTID && type_id(r->TRANSCODE) == TYPE_ID_TRANSFER)
+        return r->TOACCOUNTID;
+    return 0.0;
 }
 
-double Model_Checking::amount(const Data&r, int account_id)
+double Model_Checking::account_flow(const Data& r, int account_id)
 {
-    return amount(&r, account_id);
+    return account_flow(&r, account_id);
 }
 
-double Model_Checking::balance(const Data* r, int account_id)
+double Model_Checking::account_outflow(const Data* r, int account_id)
 {
-    if (Model_Checking::status_id(r->STATUS) == Model_Checking::STATUS_ID_VOID || !r->DELETEDTIME.IsEmpty()) return 0;
-    return amount(r, account_id);
-}
-
-double Model_Checking::balance(const Data& r, int account_id)
-{
-    return balance(&r, account_id);
-}
-
-double Model_Checking::withdrawal(const Data* r, int account_id)
-{
-    double bal = balance(r, account_id);
+    double bal = account_flow(r, account_id);
     return bal <= 0 ? -bal : 0;
 }
 
-double Model_Checking::withdrawal(const Data& r, int account_id)
+double Model_Checking::account_outflow(const Data& r, int account_id)
 {
-    return withdrawal(&r, account_id);
+    return account_outflow(&r, account_id);
 }
 
-double Model_Checking::deposit(const Data* r, int account_id)
+double Model_Checking::account_inflow(const Data* r, int account_id)
 {
-    double bal = balance(r, account_id);
-    return bal > 0 ? bal : 0;
+    double bal = account_flow(r, account_id);
+    return bal >= 0 ? bal : 0;
 }
 
-double Model_Checking::deposit(const Data& r, int account_id)
+double Model_Checking::account_inflow(const Data& r, int account_id)
 {
-    return deposit(&r, account_id);
+    return account_inflow(&r, account_id);
 }
 
-double Model_Checking::reconciled(const Data* r, int account_id)
+double Model_Checking::account_recflow(const Data* r, int account_id)
 {
-    return (Model_Checking::status_id(r->STATUS) == Model_Checking::STATUS_ID_RECONCILED) ? balance(r, account_id) : 0;
+    return (Model_Checking::status_id(r->STATUS) == Model_Checking::STATUS_ID_RECONCILED) ?
+        account_flow(r, account_id) : 0;
 }
 
-double Model_Checking::reconciled(const Data& r, int account_id)
+double Model_Checking::account_recflow(const Data& r, int account_id)
 {
-    return reconciled(&r, account_id);
+    return account_recflow(&r, account_id);
 }
 
 bool Model_Checking::is_locked(const Data* r)
@@ -404,8 +386,10 @@ wxString Model_Checking::status_key(const wxString& r)
     return STATUS_KEY[status_id(r)];
 }
 
-Model_Checking::Full_Data::Full_Data()
-    : Data(0), BALANCE(0), AMOUNT(0), TAGNAMES(""),
+Model_Checking::Full_Data::Full_Data() :
+    Data(0), TAGNAMES(""),
+    ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
+    ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0),
     UDFC01(""), UDFC02(""), UDFC03(""), UDFC04(""), UDFC05(""),
     UDFC01_Type(Model_CustomField::TYPE_ID_UNKNOWN),
     UDFC02_Type(Model_CustomField::TYPE_ID_UNKNOWN),
@@ -415,8 +399,10 @@ Model_Checking::Full_Data::Full_Data()
 {
 }
 
-Model_Checking::Full_Data::Full_Data(const Data& r)
-    : Data(r), BALANCE(0), AMOUNT(0),
+Model_Checking::Full_Data::Full_Data(const Data& r) :
+    Data(r),
+    ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
+    ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0),
     m_splits(Model_Splittransaction::instance().find(
         Model_Splittransaction::TRANSID(r.TRANSID))),
     m_tags(Model_Taglink::instance().find(
@@ -429,7 +415,10 @@ Model_Checking::Full_Data::Full_Data(const Data& r)
 Model_Checking::Full_Data::Full_Data(const Data& r,
     const std::map<int /*trans id*/, Split_Data_Set>& splits,
     const std::map<int /*trans id*/, Taglink_Data_Set>& tags)
-    : Data(r), BALANCE(0), AMOUNT(0)
+:
+    Data(r),
+    ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
+    ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)
 {
     const auto it = splits.find(this->id());
     if (it != splits.end()) m_splits = it->second;
@@ -470,6 +459,17 @@ void Model_Checking::Full_Data::fill_data()
         tagnames.Sort(CaseInsensitiveCmp);
         for (const auto& name : tagnames)
             TAGNAMES += (TAGNAMES.empty() ? "" : " ") + name;
+    }
+
+    if (type_id(TRANSCODE) == TYPE_ID_WITHDRAWAL) {
+        ACCOUNTID_W = ACCOUNTID; TRANSAMOUNT_W = TRANSAMOUNT;
+    }
+    else if (type_id(TRANSCODE) == TYPE_ID_DEPOSIT) {
+        ACCOUNTID_D = ACCOUNTID; TRANSAMOUNT_D = TRANSAMOUNT;
+    }
+    else if (type_id(TRANSCODE) == TYPE_ID_TRANSFER) {
+        ACCOUNTID_W = ACCOUNTID; TRANSAMOUNT_W = TRANSAMOUNT;
+        ACCOUNTID_D = TOACCOUNTID; TRANSAMOUNT_D = TOTRANSAMOUNT;
     }
 }
 
@@ -524,7 +524,8 @@ const wxString Model_Checking::Full_Data::get_account_name(int account_id) const
 
 bool Model_Checking::Full_Data::is_foreign() const
 {
-    return (this->TOACCOUNTID > 0) && (this->TRANSCODE == TYPE_STR_DEPOSIT || this->TRANSCODE == TYPE_STR_WITHDRAWAL);
+    return (this->TOACCOUNTID > 0) &&
+        (type_id(this->TRANSCODE) == TYPE_ID_DEPOSIT || type_id(this->TRANSCODE) == TYPE_ID_WITHDRAWAL);
 }
 
 bool Model_Checking::Full_Data::is_foreign_transfer() const

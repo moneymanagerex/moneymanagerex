@@ -170,9 +170,9 @@ void mmCheckingPanel::filterTable()
     m_listCtrlAccount->m_trans.clear();
 
     m_account_balance = !isAllAccounts_ && !isTrash_ && m_account ? m_account->INITIALBAL : 0.0;
-    m_reconciled_balance = m_account_balance;
+    m_account_recbalance = m_account_balance;
     m_show_reconciled = false;
-    m_filteredBalance = 0.0;
+    m_account_flow = 0.0;
 
     const wxString transRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     const wxString splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
@@ -268,15 +268,16 @@ void mmCheckingPanel::filterTable()
         if (isTrash_ != !tran->DELETEDTIME.IsEmpty())
             continue;
         if (ignore_future && tran_date > today_date)
-            continue;
+            break;
 
-        double transaction_amount = Model_Checking::amount(tran, m_AccountID);
-        if (tran->DELETEDTIME.IsEmpty())
-        {
-            if (Model_Checking::status_id(tran->STATUS) != Model_Checking::STATUS_ID_VOID)
-                m_account_balance += transaction_amount;
+        // update m_account_balance even if tran is filtered out
+        double account_flow;
+        if (!isAllAccounts_ && !isTrash_) {
+            // note: !isTrash_ implies tran->DELETEDTIME.IsEmpty()
+            account_flow = Model_Checking::account_flow(tran, m_AccountID);
+            m_account_balance += account_flow;
             if (Model_Checking::status_id(tran->STATUS) == Model_Checking::STATUS_ID_RECONCILED)
-                m_reconciled_balance += transaction_amount;
+                m_account_recbalance += account_flow;
             else
                 m_show_reconciled = true;
         }
@@ -300,8 +301,16 @@ void mmCheckingPanel::filterTable()
         }
 
         full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
-        full_tran.BALANCE = m_account_balance;
-        full_tran.AMOUNT = transaction_amount;
+        if (!isAllAccounts_ && !isTrash_) {
+            if (full_tran.ACCOUNTID_W != m_AccountID) {
+                full_tran.ACCOUNTID_W = -1; full_tran.TRANSAMOUNT_W = 0.0;
+            }
+            if (full_tran.ACCOUNTID_D != m_AccountID) {
+                full_tran.ACCOUNTID_D = -1; full_tran.TRANSAMOUNT_D = 0.0;
+            }
+            full_tran.ACCOUNT_FLOW = account_flow;
+            full_tran.ACCOUNT_BALANCE = m_account_balance;
+        }
 
         if (repeat_num == 0 && trans_attachments.find(tran->TRANSID) != trans_attachments.end())
         {
@@ -363,8 +372,8 @@ void mmCheckingPanel::filterTable()
 
         if (!expandSplits) {
             m_listCtrlAccount->m_trans.push_back(full_tran);
-            if (Model_Checking::status_id(tran->STATUS) != Model_Checking::STATUS_ID_VOID && tran->DELETEDTIME.IsEmpty())
-                m_filteredBalance += transaction_amount;
+            if (!isAllAccounts_ && !isTrash_)
+                m_account_flow += account_flow;
         }
         else
         {
@@ -390,7 +399,7 @@ void mmCheckingPanel::filterTable()
                     && (m_trans_filter_dlg->mmIsRecordMatches<Model_Checking>(splitWithSplitNotes, true)
                         || m_trans_filter_dlg->mmIsRecordMatches<Model_Checking>(splitWithTxnNotes, true)))
                 {
-                    full_tran.AMOUNT = Model_Checking::amount(splitWithTxnNotes, m_AccountID);
+                    full_tran.ACCOUNT_FLOW = Model_Checking::account_flow(splitWithTxnNotes, m_AccountID);
                     full_tran.NOTES.Append((tran->NOTES.IsEmpty() ? "" : " ") + split.NOTES);
                     wxString tagnames;
                     const wxString reftype = (repeat_num == 0) ? splitRefType : billsplitRefType;
@@ -399,8 +408,7 @@ void mmCheckingPanel::filterTable()
                     if (!tagnames.IsEmpty())
                         full_tran.TAGNAMES.Append((full_tran.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
                     m_listCtrlAccount->m_trans.push_back(full_tran);
-                    if (Model_Checking::status_id(tran->STATUS) != Model_Checking::STATUS_ID_VOID && tran->DELETEDTIME.IsEmpty())
-                        m_filteredBalance += full_tran.AMOUNT;
+                    m_account_flow += full_tran.ACCOUNT_FLOW;
                 }
             }
         }
@@ -702,13 +710,13 @@ void mmCheckingPanel::setAccountSummary()
             , Model_Account::toCurrency(m_account_balance, account)
             , m_show_reconciled ? "     " : ""
             , m_show_reconciled ? _("Reconciled Bal: ") : ""
-            , m_show_reconciled ? Model_Account::toCurrency(m_reconciled_balance, account) : ""
+            , m_show_reconciled ? Model_Account::toCurrency(m_account_recbalance, account) : ""
             , m_show_reconciled ? "     " : ""
             , m_show_reconciled ? _("Diff: ") : ""
-            , m_show_reconciled ? Model_Account::toCurrency(m_account_balance - m_reconciled_balance, account) : ""
+            , m_show_reconciled ? Model_Account::toCurrency(m_account_balance - m_account_recbalance, account) : ""
             , show_displayed_balance_ ? "     " : ""
-            , show_displayed_balance_ ? _("Filtered View Bal: ") : ""
-            , show_displayed_balance_ ? Model_Account::toCurrency(m_filteredBalance, account) : "");
+            , show_displayed_balance_ ? _("Filtered Flow: ") : ""
+            , show_displayed_balance_ ? Model_Account::toCurrency(m_account_flow, account) : "");
         if (account->CREDITLIMIT != 0.0)
         {
             double limit = 100.0 * ((m_account_balance < 0.0) ? -m_account_balance / account->CREDITLIMIT : 0.0);
@@ -812,14 +820,19 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
                 /* Skip      */ false,
                 /* attach    */ false);
 
+            Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
+            Model_Currency::Data* currency = nullptr;
+            if (account) currency = Model_Currency::instance().get(account->CURRENCYID);
+
+            double balance = 0;
             wxString maxDate;
             wxString minDate;
-            double balance = 0;
             long item = -1;
             while (true) {
                 item = m_listCtrlAccount->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
                 if (item == -1) break;
-                balance += Model_Checking::balance(m_listCtrlAccount->m_trans[item], m_AccountID);
+                if (currency)
+                    balance += Model_Checking::account_flow(m_listCtrlAccount->m_trans[item], m_AccountID);
                 wxString transdate = m_listCtrlAccount->m_trans[item].TRANSDATE;
                 if (minDate > transdate || maxDate.empty()) minDate = transdate;
                 if (maxDate < transdate || maxDate.empty()) maxDate = transdate;
@@ -830,15 +843,12 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
             max_date.ParseISODate(maxDate);
             int days = max_date.Subtract(min_date).GetDays();
 
-            Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
-            Model_Currency::Data* currency = nullptr;
-            if (account) currency = Model_Currency::instance().get(account->CURRENCYID);
             wxString msg;
             msg = wxString::Format(_("Transactions selected: %zu"), selected.size());
             msg += "\n";
             if (currency) {
-                msg += wxString::Format(_("Selected transactions balance: %s")
-                    , Model_Currency::toCurrency(balance, currency));
+                msg += wxString::Format(_("Selected transactions balance: %s"),
+                    Model_Currency::toCurrency(balance, currency));
                 msg += "\n";
             }
             msg += wxString::Format(_("Days between selected transactions: %d"), days);

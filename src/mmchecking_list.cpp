@@ -607,22 +607,36 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
                 }
                 break;
             case COL_WITHDRAWAL:
+            {
                 columnIsAmount = true;
-                copyText_ = Model_Currency::toString(std::abs(m_trans[row].AMOUNT), currency);
-                menuItemText = wxString::Format("%.2f", std::abs(m_trans[row].AMOUNT));
-                rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText + ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
+                Model_Account::Data* account = Model_Account::instance().get(m_trans[row].ACCOUNTID_W);
+                Model_Currency::Data* currency = account ?
+                    Model_Currency::instance().get(account->CURRENCYID) : nullptr;
+                if (currency) {
+                    copyText_ = Model_Currency::toString(m_trans[row].TRANSAMOUNT_W, currency);
+                    menuItemText = wxString::Format("%.2f", m_trans[row].TRANSAMOUNT_W);
+                    rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText + ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
+                }
                 break;
+            }
             case COL_DEPOSIT:
+            {
                 columnIsAmount = true;
-                copyText_ = Model_Currency::toString(std::abs(m_trans[row].AMOUNT), currency);
-                menuItemText = wxString::Format("%.2f", std::abs(m_trans[row].AMOUNT));
-                rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText + ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
+                Model_Account::Data* account = Model_Account::instance().get(m_trans[row].ACCOUNTID_D);
+                Model_Currency::Data* currency = account ?
+                    Model_Currency::instance().get(account->CURRENCYID) : nullptr;
+                if (currency) {
+                    copyText_ = Model_Currency::toString(m_trans[row].TRANSAMOUNT_D, currency);
+                    menuItemText = wxString::Format("%.2f", m_trans[row].TRANSAMOUNT_D);
+                    rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText + ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
+                }
                 break;
+            }
             case COL_BALANCE:
-                copyText_ = Model_Currency::toString(m_trans[row].BALANCE, currency);
+                copyText_ = Model_Currency::toString(m_trans[row].ACCOUNT_BALANCE, currency);
                 break;
             case COL_CREDIT:
-                copyText_ = Model_Currency::toString(account->CREDITLIMIT + m_trans[row].BALANCE, currency);
+                copyText_ = Model_Currency::toString(account->CREDITLIMIT + m_trans[row].ACCOUNT_BALANCE, currency);
                 break;
             case COL_NOTES:
                 copyText_ = menuItemText = m_trans[row].NOTES;
@@ -717,26 +731,25 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 }
 
 void TransactionListCtrl::findInAllTransactions(wxCommandEvent&) {
-    if (!rightClickFilter_.IsEmpty())
+    if (rightClickFilter_.IsEmpty())
+        return;
+    // save the filter as the "Advanced" filter for All Transactions
+    Model_Infotable::instance().Set("CHECK_FILTER_ID_ADV_-1", rightClickFilter_);
+    // set All Transactions to use the "Advanced" filter
+    Model_Infotable::instance().Set("CHECK_FILTER_ID_-1", wxString("{\n\"FILTER\": \"View with Transaction Filter...\"\n}"));
+    // Navigate to the All Transactions panel
+    wxTreeItemId currentId = m_cp->m_frame->GetNavTreeSelection();
+    m_cp->m_frame->setNavTreeSection(wxTRANSLATE("All Transactions"));
+    wxTreeItemId allTransactionsId = m_cp->m_frame->GetNavTreeSelection();
+    if (currentId.IsOk() && currentId == allTransactionsId)
     {
-        // save the filter as the "Advanced" filter for All Transactions
-        Model_Infotable::instance().Set("CHECK_FILTER_ID_ADV_-1", rightClickFilter_);
-        // set All Transactions to use the "Advanced" filter
-        Model_Infotable::instance().Set("CHECK_FILTER_ID_-1", wxString("{\n\"FILTER\": \"View with Transaction Filter...\"\n}"));
-        // Navigate to the All Transactions panel
-        wxTreeItemId currentId = m_cp->m_frame->GetNavTreeSelection();
-        m_cp->m_frame->setNavTreeSection(wxTRANSLATE("All Transactions"));
-        wxTreeItemId allTransactionsId = m_cp->m_frame->GetNavTreeSelection();
-        if (currentId.IsOk() && currentId == allTransactionsId)
-        {
-            m_cp->m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, -1, false, rightClickFilter_));
-            m_cp->m_filter_id = mmCheckingPanel::FILTER_ID_DIALOG;
-            m_cp->updateFilterState();
-            refreshVisualList();
-        }
-        else
-            m_cp->m_frame->SetNavTreeSelection(m_cp->m_frame->GetNavTreeSelection());
+        m_cp->m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, -1, false, rightClickFilter_));
+        m_cp->m_filter_id = mmCheckingPanel::FILTER_ID_DIALOG;
+        m_cp->updateFilterState();
+        refreshVisualList();
     }
+    else
+        m_cp->m_frame->SetNavTreeSelection(m_cp->m_frame->GetNavTreeSelection());
 }
 
 void TransactionListCtrl::OnCopyText(wxCommandEvent&)
@@ -1024,7 +1037,7 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& WXUNUSED(event)
     id_t id = m_selected_id[0];
 
     if (!id.second) {
-        mmTransDialog dlg(this, m_cp->m_AccountID, id.first, m_cp->m_account_balance, true);
+        mmTransDialog dlg(this, m_cp->m_AccountID, id.first, true);
         if (dlg.ShowModal() != wxID_CANCEL)
         {
             m_selected_id.clear();
@@ -1585,7 +1598,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
             }
         }
         else {
-            mmTransDialog dlg(this, m_cp->m_AccountID, id.first, m_cp->m_account_balance);
+            mmTransDialog dlg(this, m_cp->m_AccountID, id.first);
             if (dlg.ShowModal() != wxID_CANCEL)
                 refreshVisualList();
         }
@@ -1619,7 +1632,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
         break;
     }
 
-    mmTransDialog dlg(this, m_cp->m_AccountID, 0, m_cp->m_account_balance, false, type);
+    mmTransDialog dlg(this, m_cp->m_AccountID, 0, false, type);
     int i = dlg.ShowModal();
     if (i != wxID_CANCEL)
     {
@@ -2096,43 +2109,45 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         return mmGetDateForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
     }
 
-    bool is_transfer = Model_Checking::is_transfer(tran.TRANSCODE)
-        && m_cp->m_AccountID != tran.ACCOUNTID;
-    Model_Account::Data* account = Model_Account::instance().get(is_transfer && !m_cp->isAllAccounts_ ? tran.TOACCOUNTID : tran.ACCOUNTID);
-    Model_Currency::Data* currency = account
-        ? Model_Currency::instance().get(account->CURRENCYID)
-        : Model_Currency::GetBaseCurrency();
-    double balance = m_cp->isAllAccounts_
-        ? Model_Checking::balance(tran, tran.ACCOUNTID)
-        : tran.AMOUNT;
+    Model_Account::Data* account = Model_Account::instance().get(m_cp->m_AccountID);
+    Model_Currency::Data* currency = account ?
+        Model_Currency::instance().get(account->CURRENCYID) : nullptr;
 
     switch (realenum ? column : m_real_columns[column])
     {
     case TransactionListCtrl::COL_WITHDRAWAL:
-        if (balance < 0.0 || (balance == 0.0
-            && ((tran.TRANSCODE == Model_Checking::TYPE_STR_WITHDRAWAL || tran.TRANSCODE == Model_Checking::TYPE_STR_TRANSFER )
-                && tran.ACCOUNTID == account->ACCOUNTID)))
-        {
-            return m_cp->isAllAccounts_
-                ? Model_Currency::toCurrency(-balance, currency)
-                : Model_Currency::toString(-balance, currency);
+        if (m_cp->isAllAccounts_ || m_cp->isTrash_) {
+            Model_Account::Data* account_w = Model_Account::instance().get(tran.ACCOUNTID_W);
+            Model_Currency::Data* currency_w = account_w ?
+                Model_Currency::instance().get(account_w->CURRENCYID) : nullptr;
+            if (currency_w)
+                value = Model_Currency::toCurrency(tran.TRANSAMOUNT_W, currency_w);
         }
-        return "";
+        else if (tran.ACCOUNTID_W == m_cp->m_AccountID) {
+            value = Model_Currency::toString(tran.TRANSAMOUNT_W, currency);
+        }
+        if (!value.IsEmpty() && Model_Checking::status_id(tran.STATUS) == Model_Checking::STATUS_ID_VOID)
+            value = "* " + value;
+        return value;
     case TransactionListCtrl::COL_DEPOSIT:
-        if (balance > 0.0 || (balance == 0.0
-            && ((tran.TRANSCODE == Model_Checking::TYPE_STR_DEPOSIT && tran.ACCOUNTID == account->ACCOUNTID)
-                || (tran.TRANSCODE == Model_Checking::TYPE_STR_TRANSFER && tran.ACCOUNTID != account->ACCOUNTID))))
-        {
-            return m_cp->isAllAccounts_
-                ? Model_Currency::toCurrency(balance, currency)
-                : Model_Currency::toString(balance, currency);
+        if (m_cp->isAllAccounts_ || m_cp->isTrash_) {
+            Model_Account::Data* account_d = Model_Account::instance().get(tran.ACCOUNTID_D);
+            Model_Currency::Data* currency_d = account_d ?
+                Model_Currency::instance().get(account_d->CURRENCYID) : nullptr;
+            if (currency_d)
+                value = Model_Currency::toCurrency(tran.TRANSAMOUNT_D, currency_d);
         }
-        return "";
+        else if (tran.ACCOUNTID_D == m_cp->m_AccountID) {
+            value = Model_Currency::toString(tran.TRANSAMOUNT_D, currency);
+        }
+        if (!value.IsEmpty() && Model_Checking::status_id(tran.STATUS) == Model_Checking::STATUS_ID_VOID)
+            value = "* " + value;
+        return value;
     case TransactionListCtrl::COL_BALANCE:
-        return Model_Currency::toString(tran.BALANCE, currency);
+        return Model_Currency::toString(tran.ACCOUNT_BALANCE, currency);
     case TransactionListCtrl::COL_CREDIT:
         Model_Account::Data* acc = Model_Account::instance().get(m_cp->m_AccountID);
-        return Model_Currency::toString(acc->CREDITLIMIT + tran.BALANCE, currency);
+        return Model_Currency::toString(acc->CREDITLIMIT + tran.ACCOUNT_BALANCE, currency);
     }
 
     return value;
