@@ -888,7 +888,48 @@
     <screenshot>
       <image>https://user-images.githubusercontent.com/17465872/233931435-825fa069-f182-4b50-970d-21755c90f1da.png</image>
       <caption>Export as XML (eXtensible Markup Language) file</caption>
+      <caption xml:lang="ar">تصدير كملف XML (لغة ترميز قابلة للتوسيع)</caption>
+      <caption xml:lang="be">Экспарт у файл XML (расшыраная мова разметкі)</caption>
+      <caption xml:lang="bg">Експортирайте като XML (разширяем език за маркиране) файл</caption>
+      <caption xml:lang="ca">Exporta com a fitxer XML (llenguatge de marques extensible)</caption>
+      <caption xml:lang="cs">Exportujte jako soubor XML (rozšiřitelný značkovací jazyk)</caption>
+      <caption xml:lang="de">Als XML-Datei (Extensible Markup Language) exportieren</caption>
+      <caption xml:lang="el">Εξαγωγή ως αρχείο XML (επεκτάσιμη γλώσσα σήμανσης)</caption>
+      <caption xml:lang="en_AU">Export as XML (eXtensible Markup Language) file</caption>
+      <caption xml:lang="en_GB">Export as XML (eXtensible Markup Language) file</caption>
+      <caption xml:lang="en">Export as XML (eXtensible Markup Language) file</caption>
+      <caption xml:lang="es">Εξαγωγή ως αρχείο XML (επεκτάσιμη γλώσσα σήμανσης)</caption>
+      <caption xml:lang="fi">Vie XML-tiedostona (laajennettava merkintäkieli)</caption>
+      <caption xml:lang="fr">Exporter en tant que fichier XML (langage de balisage extensible)</caption>
+      <caption xml:lang="he">ייצוא כקובץ XML (שפת סימון ניתנת להרחבה)</caption>
+      <caption xml:lang="hr">Izvezi kao XML (proširivi označni jezik) datoteku</caption>
       <caption xml:lang="hu">Exportálás XML-fájlként (bővíthető jelölőnyelv)</caption>
+      <caption xml:lang="id">Ekspor sebagai berkas XML (bahasa markup yang dapat diperluas)</caption>
+      <caption xml:lang="is">Flytja út sem XML (stækkanlegt markup language) skrá</caption>
+      <caption xml:lang="it">Esporta come file XML (linguaggio di markup estensibile)</caption>
+      <caption xml:lang="ja">XML (拡張マークアップ言語) ファイルとしてエクスポート</caption>
+      <caption xml:lang="kn">XML (ವಿಸ್ತರಿಸುವ ಮಾರ್ಕ್ಅಪ್ ಭಾಷೆ) ಫೈಲ್ ಆಗಿ ರಫ್ತು ಮಾಡಿ</caption>
+      <caption xml:lang="ko">XML(확장 가능한 마크업 언어) 파일로 내보내기</caption>
+      <caption xml:lang="lt">Eksportuoti kaip XML (išplečiamos žymėjimo kalbos) failą</caption>
+      <caption xml:lang="lv">Eksportēt kā XML (paplašināmās iezīmēšanas valodas) failu</caption>
+      <caption xml:lang="nl">Exporteren als XML-bestand (uitbreidbare opmaaktaal)</caption>
+      <caption xml:lang="no_NY">Eksporter som XML-fil (utvidbart markeringsspråk)</caption>
+      <caption xml:lang="pl">Eksportuj jako plik XML (rozszerzalny język znaczników)</caption>
+      <caption xml:lang="pt_BR">Exportar como arquivo XML (linguagem de marcação extensível)</caption>
+      <caption xml:lang="pt">Exportar como ficheiro XML (linguagem de marcação extensível)</caption>
+      <caption xml:lang="ro">Exportați ca fișier XML (limbaj de marcare extensibil)</caption>
+      <caption xml:lang="ru">Экспортировать как XML (расширяемый язык разметки) файл</caption>
+      <caption xml:lang="sk">Exportovať ako súbor XML (rozšíriteľný značkovací jazyk)</caption>
+      <caption xml:lang="sl">Izvozi kot datoteko XML (razširljiv označevalni jezik)</caption>
+      <caption xml:lang="sq">Eksporto si skedar XML (gjuhë të zgjerueshme të shënjimit)</caption>
+      <caption xml:lang="sr">Извези као КСМЛ (прошириви језик за означавање) датотеку</caption>
+      <caption xml:lang="sv_SE">Exportera som XML-fil (utbyggbart märkningsspråk)</caption>
+      <caption xml:lang="ta">எக்ஸ்எம்எல் (நீட்டிக்கக்கூடிய மார்க்அப் மொழி) கோப்பாக ஏற்றுமதி செய்யவும்</caption>
+      <caption xml:lang="tr">XML (genişletilebilir işaretleme dili) dosyası olarak dışa aktar</caption>
+      <caption xml:lang="uk">Експорт як файл XML (розширювана мова розмітки)</caption>
+      <caption xml:lang="vi">Xuất dưới dạng tệp XML (ngôn ngữ đánh dấu mở rộng)</caption>
+      <caption xml:lang="zh_CN">导出为 XML（可扩展标记语言）文件</caption>
+      <caption xml:lang="zh_TW">匯出為 XML（可擴展標記語言）文件</caption>
     </screenshot>
     
     <screenshot>
