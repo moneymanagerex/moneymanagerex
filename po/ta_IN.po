@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-12 15:17\n"
+"PO-Revision-Date: 2024-09-13 00:47\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -330,7 +330,7 @@ msgstr "&புதிய தரவுத்தளம்"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "Create new MMEX database file"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -355,7 +355,7 @@ msgstr "&பயனர் கையேடு"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "Read MMEX user manual"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1852
 msgid "&Website"
