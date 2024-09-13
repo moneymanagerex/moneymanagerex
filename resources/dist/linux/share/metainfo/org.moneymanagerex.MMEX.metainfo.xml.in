@@ -700,7 +700,48 @@
     <screenshot>
       <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/be52a7f3-9dea-46dd-a04e-f198dd413b08</image>
       <caption>Category Manager – unlimited nested multi-level category support</caption>
+      <caption xml:lang="ar">مدير الفئات – دعم غير محدود للفئات المتداخلة متعددة المستويات</caption>
+      <caption xml:lang="be">Менеджэр катэгорый – неабмежаваная падтрымка ўкладзеных шматузроўневых катэгорый</caption>
+      <caption xml:lang="bg">Мениджър на категории – неограничена поддръжка на вложени многостепенни категории</caption>
+      <caption xml:lang="ca">Gestor de categories: suport il·limitat de categories multinivell imbricades</caption>
+      <caption xml:lang="cs">Správce kategorií – neomezená podpora vnořených víceúrovňových kategorií</caption>
+      <caption xml:lang="de">Kategorie-Manager – unbegrenzte Unterstützung verschachtelter mehrstufiger Kategorien</caption>
+      <caption xml:lang="el">Διαχειριστής κατηγορίας – απεριόριστη ένθετη υποστήριξη κατηγοριών πολλαπλών επιπέδων</caption>
+      <caption xml:lang="en_AU">Category Manager – unlimited nested multi-level category support</caption>
+      <caption xml:lang="en_GB">Category Manager – unlimited nested multi-level category support</caption>
+      <caption xml:lang="en">Category Manager – unlimited nested multi-level category support</caption>
+      <caption xml:lang="es">Administrador de categorías: compatibilidad ilimitada con categorías anidadas de varios niveles</caption>
+      <caption xml:lang="fi">Luokkahallinta – rajoittamaton sisäkkäinen monitasoinen luokkatuki</caption>
+      <caption xml:lang="fr">Gestionnaire de catégories – prise en charge illimitée de catégories imbriquées à plusieurs niveaux</caption>
+      <caption xml:lang="he">מנהל קטגוריות - תמיכה בקטגוריות מרובות רמות מקונן ללא הגבלה</caption>
+      <caption xml:lang="hr">Upravitelj kategorija – neograničena podrška za kategorije s više razina</caption>
       <caption xml:lang="hu">Kategóriakezelő – korlátlan beágyazott többszintű kategóriatámogatás</caption>
+      <caption xml:lang="id">Manajer kategori – dukungan kategori bertingkat bertingkat tanpa batas</caption>
+      <caption xml:lang="is">Flokkastjóri – ótakmarkaður hreiður stuðningur við fjölþrepa flokka</caption>
+      <caption xml:lang="it">Category manager – supporto illimitato per categorie multilivello nidificate</caption>
+      <caption xml:lang="ja">カテゴリーマネージャー – 無制限のネストされたマルチレベルカテゴリーのサポート</caption>
+      <caption xml:lang="kn">ವರ್ಗ ನಿರ್ವಾಹಕ - ಅನಿಯಮಿತ ನೆಸ್ಟೆಡ್ ಬಹು ಮಟ್ಟದ ವರ್ಗದಲ್ಲಿ ಬೆಂಬಲ</caption>
+      <caption xml:lang="ko">카테고리 관리자 - 무제한 중첩 다중 레벨 카테고리 지원</caption>
+      <caption xml:lang="lt">Kategorijų tvarkyklė – neribotas įdėtas kelių lygių kategorijų palaikymas</caption>
+      <caption xml:lang="lv">Kategoriju pārvaldnieks – neierobežots ligzdotu daudzlīmeņu kategoriju atbalsts</caption>
+      <caption xml:lang="nl">Categoriemanager – onbeperkte geneste ondersteuning voor meerdere categorieën</caption>
+      <caption xml:lang="no_NY">Kategoribehandling – ubegrenset nestet kategoristøtte på flere nivåer</caption>
+      <caption xml:lang="pl">Menedżer kategorii – nieograniczona obsługa zagnieżdżonych kategorii wielopoziomowych</caption>
+      <caption xml:lang="pt_BR">Gerenciador de categorias – suporte ilimitado a categorias multiníveis aninhadas</caption>
+      <caption xml:lang="pt">Gestor de categorias – suporte ilimitado para categorias aninhadas em vários níveis</caption>
+      <caption xml:lang="ro">Manager de categorii – suport nelimitat de categorii imbricate pe mai multe niveluri</caption>
+      <caption xml:lang="ru">Менеджер категорий – поддержка неограниченной вложенности многоуровневых категорий</caption>
+      <caption xml:lang="sk">Správca kategórií – neobmedzená podpora vnorených viacerých úrovní kategórií</caption>
+      <caption xml:lang="sl">Upravitelj kategorij – neomejena podpora za ugnezdene večnivojske kategorije</caption>
+      <caption xml:lang="sq">Menaxheri i kategorisë – mbështetje e pakufizuar e kategorive me shumë nivele</caption>
+      <caption xml:lang="sr">Менаџер категорија – неограничена подршка за категорије на више нивоа</caption>
+      <caption xml:lang="sv_SE">Kategorihanterare – obegränsat stöd för kapslade kategorier på flera nivåer</caption>
+      <caption xml:lang="ta">வகை மேலாளர் - வரம்பற்ற உள்ளமை பல நிலை வகை ஆதரவு</caption>
+      <caption xml:lang="tr">Kategori yöneticisi – sınırsız iç içe geçmiş çok seviyeli kategori desteği</caption>
+      <caption xml:lang="uk">Менеджер категорій – необмежена підтримка вкладених багаторівневих категорій</caption>
+      <caption xml:lang="vi">Trình quản lý danh mục – hỗ trợ danh mục lồng nhau nhiều cấp không giới hạn</caption>
+      <caption xml:lang="zh_CN">类别管理器-无限嵌套多级类别支持</caption>
+      <caption xml:lang="zh_TW">品類管理器－無限嵌套多層級品類支持</caption>
     </screenshot>
     
     <screenshot>
