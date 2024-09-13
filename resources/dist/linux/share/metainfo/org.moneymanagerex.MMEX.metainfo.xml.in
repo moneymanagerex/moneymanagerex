@@ -794,7 +794,48 @@
     <screenshot>
       <image>https://user-images.githubusercontent.com/17465872/233931375-051e7c9f-d4c4-4baa-9586-7ad10ef48aba.png</image>
       <caption>Import from CSV (Comma-Separated Values) file</caption>
+      <caption xml:lang="ar">الاستيراد من ملف CSV (قيم مفصولة بفواصل)</caption>
+      <caption xml:lang="be">Імпарт з файла CSV (значэнні, падзеленыя коскамі)</caption>
+      <caption xml:lang="bg">Импортиране от CSV (стойности, разделени със запетая) файл</caption>
+      <caption xml:lang="ca">Importa des d'un fitxer CSV (valors separats per comes).</caption>
+      <caption xml:lang="cs">Importujte ze souboru CSV (hodnoty oddělené čárkami)</caption>
+      <caption xml:lang="de">Importieren aus einer CSV-Datei (kommagetrennte Werte)</caption>
+      <caption xml:lang="el">Εισαγωγή από αρχείο CSV (τιμές διαχωρισμένες με κόμμα).</caption>
+      <caption xml:lang="en_AU">Import from CSV (Comma-Separated Values) file</caption>
+      <caption xml:lang="en_GB">Import from CSV (Comma-Separated Values) file</caption>
+      <caption xml:lang="en">Import from CSV (Comma-Separated Values) file</caption>
+      <caption xml:lang="es">Importar desde un archivo CSV (valores separados por comas)</caption>
+      <caption xml:lang="fi">Tuo CSV-tiedostosta (pilkuilla erotetut arvot)</caption>
+      <caption xml:lang="fr">Importer à partir d'un fichier CSV (valeurs séparées par des virgules)</caption>
+      <caption xml:lang="he">ייבא מקובץ CSV (ערכים מופרדים בפסיקים)</caption>
+      <caption xml:lang="hr">Uvoz iz datoteke CSV (vrijednosti odvojene zarezima)</caption>
       <caption xml:lang="hu">Importálás CSV-fájlból (vesszővel elválasztott értékek)</caption>
+      <caption xml:lang="id">Impor dari file CSV (nilai yang dipisahkan koma)</caption>
+      <caption xml:lang="is">Flytja inn úr CSV (komma-aðskilin gildi) skrá</caption>
+      <caption xml:lang="it">Importa da file CSV (valori separati da virgole)</caption>
+      <caption xml:lang="ja">CSV（カンマ区切り値）ファイルからインポート</caption>
+      <caption xml:lang="kn">CSV (ಅಲ್ಪವಿರಾಮದಿಂದ ಬೇರ್ಪಡಿಸಿದ ಮೌಲ್ಯಗಳು) ಫೈಲ್‌ನಿಂದ ಆಮದು ಮಾಡಿ</caption>
+      <caption xml:lang="ko">CSV(쉼표로 구분된 값) 파일에서 가져오기</caption>
+      <caption xml:lang="lt">Importuoti iš CSV (kableliais atskirtų reikšmių) failo</caption>
+      <caption xml:lang="lv">Importēt no CSV (komatatdalīto vērtību) faila</caption>
+      <caption xml:lang="nl">Importeren vanuit CSV-bestand (door komma's gescheiden waarden)</caption>
+      <caption xml:lang="no_NY">Importer fra CSV-fil (kommaseparerte verdier)</caption>
+      <caption xml:lang="pl">Importuj z pliku CSV (wartości rozdzielone przecinkami)</caption>
+      <caption xml:lang="pt_BR">Importar de arquivo CSV (valores separados por vírgula)</caption>
+      <caption xml:lang="pt">Importar de ficheiro CSV (valores separados por vírgula)</caption>
+      <caption xml:lang="ro">Importați din fișierul CSV (valori separate prin virgulă)</caption>
+      <caption xml:lang="ru">Импорт из CSV-файла (значения, разделенные запятыми)</caption>
+      <caption xml:lang="sk">Import zo súboru CSV (hodnoty oddelené čiarkou)</caption>
+      <caption xml:lang="sl">Uvoz iz datoteke CSV (vrednosti, ločene z vejicami)</caption>
+      <caption xml:lang="sq">Importo nga skedari CSV (vlera të ndara me presje)</caption>
+      <caption xml:lang="sr">Увези из ЦСВ датотеке (вредности раздвојене зарезима)</caption>
+      <caption xml:lang="sv_SE">Importera från CSV-fil (kommaseparerade värden)</caption>
+      <caption xml:lang="ta">CSV (காற்புள்ளியால் பிரிக்கப்பட்ட மதிப்புகள்) கோப்பிலிருந்து இறக்குமதி செய்யவும்</caption>
+      <caption xml:lang="tr">CSV (virgülle ayrılmış değerler) dosyasından içe aktar</caption>
+      <caption xml:lang="uk">Імпорт із файлу CSV (значення, розділені комами)</caption>
+      <caption xml:lang="vi">Nhập từ tệp CSV (giá trị phân tách bằng dấu phẩy)</caption>
+      <caption xml:lang="zh_CN">从 CSV（逗号分隔值）文件导入</caption>
+      <caption xml:lang="zh_TW">從 CSV（逗號分隔值）檔案匯入</caption>
     </screenshot>
     
     <screenshot>
