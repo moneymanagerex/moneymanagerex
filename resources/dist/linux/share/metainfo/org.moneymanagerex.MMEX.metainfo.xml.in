@@ -747,7 +747,48 @@
     <screenshot>
       <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/b69b1eba-e476-4755-b64c-1eec2946f4a8</image>
       <caption>Transaction Report Filter</caption>
+      <caption xml:lang="ar">فلتر تقرير المعاملات</caption>
+      <caption xml:lang="be">Фільтр справаздач аб транзакцыях</caption>
+      <caption xml:lang="bg">Филтър за отчет за транзакция</caption>
+      <caption xml:lang="ca">Filtre d'informes de transaccions</caption>
+      <caption xml:lang="cs">Filtr přehledu transakcí</caption>
+      <caption xml:lang="de">Transaktionsberichtsfilter</caption>
+      <caption xml:lang="el">Φίλτρο αναφοράς συναλλαγών</caption>
+      <caption xml:lang="en_AU">Transaction Report Filter</caption>
+      <caption xml:lang="en_GB">Transaction Report Filter</caption>
+      <caption xml:lang="en">Transaction Report Filter</caption>
+      <caption xml:lang="es">Filtro de informes de transacciones</caption>
+      <caption xml:lang="fi">Tapahtumaraporttisuodatin</caption>
+      <caption xml:lang="fr">Filtre de rapport de transaction</caption>
+      <caption xml:lang="he">מסנן דוחות עסקאות</caption>
+      <caption xml:lang="hr">Filtar izvješća o transakciji</caption>
       <caption xml:lang="hu">Ügyletjelentés-szűrő</caption>
+      <caption xml:lang="id">Filter Laporan Transaksi</caption>
+      <caption xml:lang="is">Færsluskýrslusía</caption>
+      <caption xml:lang="it">Filtro report transazioni</caption>
+      <caption xml:lang="ja">取引レポートフィルター</caption>
+      <caption xml:lang="kn">ವಹಿವಾಟು ವರದಿ ಫಿಲ್ಟರ್</caption>
+      <caption xml:lang="ko">거래 보고서 필터</caption>
+      <caption xml:lang="lt">Sandorių ataskaitos filtras</caption>
+      <caption xml:lang="lv">Darījumu pārskatu filtrs</caption>
+      <caption xml:lang="nl">Transactierapportfilter</caption>
+      <caption xml:lang="no_NY">Transaksjonsrapportfilter</caption>
+      <caption xml:lang="pl">Filtr raportu transakcji</caption>
+      <caption xml:lang="pt_BR">Filtro de Relatório de Transações</caption>
+      <caption xml:lang="pt">Filtro de relatório de transações</caption>
+      <caption xml:lang="ro">Filtru de raport de tranzacție</caption>
+      <caption xml:lang="ru">Фильтр отчетов о транзакциях</caption>
+      <caption xml:lang="sk">Filter prehľadu transakcií</caption>
+      <caption xml:lang="sl">Filter poročila o transakcijah</caption>
+      <caption xml:lang="sq">Filtri i raportit të transaksionit</caption>
+      <caption xml:lang="sr">Филтер за извештаје о трансакцијама</caption>
+      <caption xml:lang="sv_SE">Transaktionsrapportfilter</caption>
+      <caption xml:lang="ta">பரிவர்த்தனை அறிக்கை வடிகட்டி</caption>
+      <caption xml:lang="tr">İşlem Raporu Filtresi</caption>
+      <caption xml:lang="uk">Фільтр звіту про транзакції</caption>
+      <caption xml:lang="vi">Bộ lọc báo cáo giao dịch</caption>
+      <caption xml:lang="zh_CN">交易报告过滤器</caption>
+      <caption xml:lang="zh_TW">交易報告過濾器</caption>
     </screenshot>
     
     <screenshot>
