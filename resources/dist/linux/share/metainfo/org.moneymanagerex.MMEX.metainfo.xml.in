@@ -841,7 +841,48 @@
     <screenshot>
       <image>https://user-images.githubusercontent.com/17465872/233931411-d7a92fed-272f-446d-b86a-89f99b66683a.png</image>
       <caption>Import from QIF (Quicken Interchange Format) file</caption>
+      <caption xml:lang="ar">الاستيراد من ملف QIF (تنسيق التبادل Quicken)</caption>
+      <caption xml:lang="be">Імпарт з файла QIF (фармат абмену Quicken)</caption>
+      <caption xml:lang="bg">Импортиране от QIF (Quicken формат за обмен) файл</caption>
+      <caption xml:lang="ca">Importa des del fitxer QIF (Format d'intercanvi Quicken)</caption>
+      <caption xml:lang="cs">Import ze souboru QIF (výměnný formát Quicken)</caption>
+      <caption xml:lang="de">Importieren aus einer QIF-Datei (Austauschformat Quicken)</caption>
+      <caption xml:lang="el">Εισαγωγή από το αρχείο QIF (Quicken μορφή ανταλλαγής)</caption>
+      <caption xml:lang="en_AU">Import from QIF (Quicken Interchange Format) file</caption>
+      <caption xml:lang="en_GB">Import from QIF (Quicken Interchange Format) file</caption>
+      <caption xml:lang="en">Import from QIF (Quicken Interchange Format) file</caption>
+      <caption xml:lang="es">Importar desde un archivo QIF (formato de intercambio Quicken)</caption>
+      <caption xml:lang="fi">Tuo QIF-tiedostosta (Quicken-vaihtomuoto)</caption>
+      <caption xml:lang="fr">Importer à partir d'un fichier QIF (format d'échange Quicken)</caption>
+      <caption xml:lang="he">ייבוא ​​מקובץ QIF (Quicken בפורמט מחלף)</caption>
+      <caption xml:lang="hr">Uvoz iz datoteke QIF (format za razmjenu Quicken)</caption>
       <caption xml:lang="hu">Importálás QIF-fájlból (Quicken-adatcsere formátuma)</caption>
+      <caption xml:lang="id">Impor dari file QIF (format pertukaran Quicken)</caption>
+      <caption xml:lang="is">Flytja inn úr QIF (Quicken skiptisniði) skrá</caption>
+      <caption xml:lang="it">Importazione da file QIF (formato di scambio Quicken)</caption>
+      <caption xml:lang="ja">QIF (Quicken 交換形式) ファイルからのインポート</caption>
+      <caption xml:lang="kn">QIF (Quicken ಇಂಟರ್‌ಚೇಂಜ್ ಫಾರ್ಮ್ಯಾಟ್) ಫೈಲ್‌ನಿಂದ ಆಮದು ಮಾಡಿ</caption>
+      <caption xml:lang="ko">QIF(Quicken 교환 형식) 파일에서 가져오기</caption>
+      <caption xml:lang="lt">Importuokite iš QIF (Quicken mainų formato) failo</caption>
+      <caption xml:lang="lv">Importēt no QIF (Quicken apmaiņas formāts) faila</caption>
+      <caption xml:lang="nl">Importeren vanuit QIF (Quicken-uitwisselingsformaat)-bestand</caption>
+      <caption xml:lang="no_NY">Importer fra QIF-fil (Quicken-utvekslingsformat)</caption>
+      <caption xml:lang="pl">Importuj z pliku QIF (format wymiany Quicken)</caption>
+      <caption xml:lang="pt_BR">Importar do arquivo QIF (formato de intercâmbio Quicken)</caption>
+      <caption xml:lang="pt">Importar do ficheiro QIF (formato de intercâmbio Quicken)</caption>
+      <caption xml:lang="ro">Importați din fișierul QIF (format de schimb Quicken)</caption>
+      <caption xml:lang="ru">Импорт из файла QIF (формат обмена Quicken)</caption>
+      <caption xml:lang="sk">Import zo súboru QIF (Quicken výmenný formát)</caption>
+      <caption xml:lang="sl">Uvoz iz datoteke QIF (Quicken izmenjava format)</caption>
+      <caption xml:lang="sq">Importoni nga skedari QIF (format shkëmbimi Quicken)</caption>
+      <caption xml:lang="sr">Увоз из датотеке QIF (Quicken формат размене)</caption>
+      <caption xml:lang="sv_SE">Importera från QIF-fil (Quicken-utbytesformat)</caption>
+      <caption xml:lang="ta">QIF (Quicken பரிமாற்ற வடிவம்) கோப்பிலிருந்து இறக்குமதி செய்யவும்</caption>
+      <caption xml:lang="tr">QIF (Quicken değişim biçimi) dosyasından içe aktar</caption>
+      <caption xml:lang="uk">Імпорт із файлу QIF (формат обміну Quicken)</caption>
+      <caption xml:lang="vi">Nhập từ tệp QIF (Định dạng trao đổi Quicken)</caption>
+      <caption xml:lang="zh_CN">从 QIF（Quicken交换格式）文件导入</caption>
+      <caption xml:lang="zh_TW">從 QIF（Quicken交換格式）檔案匯入</caption>
     </screenshot>
     
     <screenshot>
