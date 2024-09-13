@@ -935,7 +935,48 @@
     <screenshot>
       <image>https://github.com/moneymanagerex/moneymanagerex/assets/17465872/4e6e9a83-a242-43d5-9676-e65163f32fed</image>
       <caption>Currency Manager – multi currency support</caption>
+      <caption xml:lang="ar">مدير العملات - دعم العملات المتعددة</caption>
+      <caption xml:lang="be">Валютны менеджэр - падтрымка некалькіх валют</caption>
+      <caption xml:lang="bg">Валутен мениджър - поддръжка на няколко валути</caption>
+      <caption xml:lang="ca">Gestor de divises: suport de diverses monedes</caption>
+      <caption xml:lang="cs">Správce měn – podpora více měn</caption>
+      <caption xml:lang="de">Währungsmanager – Unterstützung mehrerer Währungen</caption>
+      <caption xml:lang="el">Διαχειριστής νομισμάτων - υποστήριξη πολλαπλών νομισμάτων</caption>
+      <caption xml:lang="en_AU">Currency Manager – multi currency support</caption>
+      <caption xml:lang="en_GB">Currency Manager – multi currency support</caption>
+      <caption xml:lang="en">Currency Manager – multi currency support</caption>
+      <caption xml:lang="es">Gestor de divisas: compatibilidad con múltiples divisas</caption>
+      <caption xml:lang="fi">Valuuttahallinta - usean valuutan tuki</caption>
+      <caption xml:lang="fr">Gestionnaire de devises - prise en charge de plusieurs devises</caption>
+      <caption xml:lang="he">מנהל מטבעות - תמיכה בריבוי מטבעות</caption>
+      <caption xml:lang="hr">Upravitelj valuta - podrška za više valuta</caption>
       <caption xml:lang="hu">Pénznemkezelő – több pénznem támogatása</caption>
+      <caption xml:lang="id">Manajer mata uang - dukungan multi mata uang</caption>
+      <caption xml:lang="is">Gjaldmiðilsstjóri - stuðningur í mörgum gjaldmiðlum</caption>
+      <caption xml:lang="it">Gestore valute - supporto multivaluta</caption>
+      <caption xml:lang="ja">通貨マネージャー - 複数通貨のサポート</caption>
+      <caption xml:lang="kn">ಕರೆನ್ಸಿ ಮ್ಯಾನೇಜರ್ - ಬಹು ಕರೆನ್ಸಿ ಬೆಂಬಲ</caption>
+      <caption xml:lang="ko">통화 관리자 - 다중 통화 지원</caption>
+      <caption xml:lang="lt">Valiutų tvarkyklė – kelių valiutų palaikymas</caption>
+      <caption xml:lang="lv">Valūtas pārvaldnieks – vairāku valūtu atbalsts</caption>
+      <caption xml:lang="nl">Valutamanager – ondersteuning voor meerdere valuta’s</caption>
+      <caption xml:lang="no_NY">Valutabehandler – støtte for flere valutaer</caption>
+      <caption xml:lang="pl">Menedżer walutowy – obsługa wielu walut</caption>
+      <caption xml:lang="pt_BR">Gerenciador de moeda – suporte a várias moedas</caption>
+      <caption xml:lang="pt">Gestor de moeda – suporte multimoeda</caption>
+      <caption xml:lang="ro">Manager valutar – suport pentru mai multe valute</caption>
+      <caption xml:lang="ru">Менеджер валют – поддержка нескольких валют</caption>
+      <caption xml:lang="sk">Menový manažér – podpora viacerých mien</caption>
+      <caption xml:lang="sl">Upravitelj valut – podpora za več valut</caption>
+      <caption xml:lang="sq">Menaxheri i monedhës – mbështetje për shumë monedha</caption>
+      <caption xml:lang="sr">Менаџер валута – подршка за више валута</caption>
+      <caption xml:lang="sv_SE">Valutahanterare – stöd för flera valutor</caption>
+      <caption xml:lang="ta">நாணய மேலாளர் - பல நாணய ஆதரவு</caption>
+      <caption xml:lang="tr">Para birimi yöneticisi – çoklu para birimi desteği</caption>
+      <caption xml:lang="uk">Менеджер валют – підтримка кількох валют</caption>
+      <caption xml:lang="vi">Trình quản lý tiền tệ – hỗ trợ nhiều loại tiền tệ</caption>
+      <caption xml:lang="zh_CN">货币管理器 – 支持多种货币</caption>
+      <caption xml:lang="zh_TW">貨幣管理器 – 多貨幣支持</caption>
     </screenshot>
     
   </screenshots>
