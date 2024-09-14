@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-12 20:00\n"
+"PO-Revision-Date: 2024-09-14 11:27\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4346,7 +4346,7 @@ msgstr "Non rapproché"
 
 #: mmchecking_list.cpp:677
 msgid "&Reconciled"
-msgstr "&Pointé"
+msgstr "&Rapproché"
 
 #: mmchecking_list.cpp:679
 msgid "&Void"
