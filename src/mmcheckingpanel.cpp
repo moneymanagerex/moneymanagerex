@@ -756,7 +756,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
     {
         enableButtons(
             /* Edit      */ true,
-            /* Duplicate */ !repeat_num && !foreign,
+            /* Duplicate */ !foreign,
             /* Delete    */ !repeat_num,
             /* Enter     */ repeat_num == 1,
             /* Skip      */ repeat_num == 1,
@@ -1157,7 +1157,7 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
     int transType = Model_Checking::type_id(tran->TRANSCODE);
 
     Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
-    auto splits = Model_Checking::splittransaction(transaction);
+    auto splits = Model_Checking::split(transaction);
 
     if (splits.empty()) return;
 

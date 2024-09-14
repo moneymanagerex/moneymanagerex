@@ -116,7 +116,7 @@ void mmReportCashFlow::getTransactions()
         if (trx.CATEGID == -1)
         {
             Model_Checking::Data *transaction = Model_Checking::instance().get(trx.TRANSID);
-            for (const auto& split_item : Model_Checking::splittransaction(transaction))
+            for (const auto& split_item : Model_Checking::split(transaction))
             {
                 trx.CATEGID = split_item.CATEGID;
                 trx.TRANSAMOUNT = split_item.SPLITTRANSAMOUNT;

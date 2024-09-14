@@ -80,6 +80,11 @@ Model_Splittransaction::Data_Set Fused_Transaction::execute_splits(const Budgets
     return ts;
 }
 
+Fused_Transaction::Data::Data()
+    : Model_Checking::Data(), m_bdid(0), m_repeat_num(0)
+{
+}
+
 Fused_Transaction::Data::Data(const Model_Checking::Data& t)
     : Model_Checking::Data(t), m_bdid(0), m_repeat_num(0)
 {
@@ -161,4 +166,72 @@ Fused_Transaction::Full_Data::Full_Data(const Model_Billsdeposits::Data& r,
 
 Fused_Transaction::Full_Data::~Full_Data()
 {
+}
+
+
+void Fused_Transaction::getEmptyData(Fused_Transaction::Data &data, int accountID)
+{
+    Model_Checking::getEmptyData(data, accountID);
+    data.m_bdid = 0;
+    data.m_repeat_num = 0;
+}
+
+bool Fused_Transaction::getFusedData(Fused_Transaction::Data &data, Fused_Transaction::id_t fused_id)
+{
+    if (!fused_id.second) {
+        Model_Checking::Data *tran = Model_Checking::instance().get(fused_id.first);
+        if (!tran)
+            return false;
+        data.m_repeat_num = 0;
+        data.m_bdid = 0;
+        data.TRANSID           = tran->TRANSID;
+        data.ACCOUNTID         = tran->ACCOUNTID;
+        data.TOACCOUNTID       = tran->TOACCOUNTID;
+        data.PAYEEID           = tran->PAYEEID;
+        data.TRANSCODE         = tran->TRANSCODE;
+        data.TRANSAMOUNT       = tran->TRANSAMOUNT;
+        data.STATUS            = tran->STATUS;
+        data.TRANSACTIONNUMBER = tran->TRANSACTIONNUMBER;
+        data.NOTES             = tran->NOTES;
+        data.CATEGID           = tran->CATEGID;
+        data.TRANSDATE         = tran->TRANSDATE;
+        data.LASTUPDATEDTIME   = tran->LASTUPDATEDTIME;
+        data.DELETEDTIME       = tran->DELETEDTIME;
+        data.FOLLOWUPID        = tran->FOLLOWUPID;
+        data.TOTRANSAMOUNT     = tran->TOTRANSAMOUNT;
+        data.COLOR             = tran->COLOR;
+    }
+    else {
+        Model_Billsdeposits::Data *bill = Model_Billsdeposits::instance().get(fused_id.first);
+        if (!bill)
+            return false;
+        data.m_repeat_num = 1;
+        data.TRANSID = 0;
+        data.m_bdid            = bill->BDID;
+        data.ACCOUNTID         = bill->ACCOUNTID;
+        data.TOACCOUNTID       = bill->TOACCOUNTID;
+        data.PAYEEID           = bill->PAYEEID;
+        data.TRANSCODE         = bill->TRANSCODE;
+        data.TRANSAMOUNT       = bill->TRANSAMOUNT;
+        data.STATUS            = bill->STATUS;
+        data.TRANSACTIONNUMBER = bill->TRANSACTIONNUMBER;
+        data.NOTES             = bill->NOTES;
+        data.CATEGID           = bill->CATEGID;
+        data.TRANSDATE         = bill->TRANSDATE;
+        data.LASTUPDATEDTIME   = "";
+        data.DELETEDTIME       = "";
+        data.FOLLOWUPID        = bill->FOLLOWUPID;
+        data.TOTRANSAMOUNT     = bill->TOTRANSAMOUNT;
+        data.COLOR             = bill->COLOR;
+    }
+    return true;
+}
+
+const Model_Splittransaction::Data_Set Fused_Transaction::split(Fused_Transaction::Data &r)
+{
+    return (r.m_repeat_num == 0) ?
+        Model_Splittransaction::instance().find(
+            Model_Splittransaction::TRANSID(r.TRANSID)) :
+        Fused_Transaction::execute_splits(Model_Budgetsplittransaction::instance().find(
+            Model_Budgetsplittransaction::TRANSID(r.m_bdid)));
 }

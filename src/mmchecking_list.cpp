@@ -1036,18 +1036,13 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& WXUNUSED(event)
     FindSelectedTransactions();
     id_t id = m_selected_id[0];
 
-    if (!id.second) {
-        mmTransDialog dlg(this, m_cp->m_AccountID, id.first, true);
-        if (dlg.ShowModal() != wxID_CANCEL)
-        {
-            m_selected_id.clear();
-            m_pasted_id.push_back({dlg.GetTransactionID(), 0});
-            m_cp->mmPlayTransactionSound();
-            refreshVisualList();
-        }
-    }
-    else {
-        // not yet implemented: duplicate scheduled transaction to transaction
+    mmTransDialog dlg(this, m_cp->m_AccountID, {id.first, id.second != 0}, true);
+    if (dlg.ShowModal() != wxID_CANCEL)
+    {
+        m_selected_id.clear();
+        m_pasted_id.push_back({dlg.GetTransactionID(), 0});
+        m_cp->mmPlayTransactionSound();
+        refreshVisualList();
     }
     m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
 }
@@ -1124,7 +1119,7 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
 
     // Clone split transactions
     reftype = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
-    for (const auto& split_item : Model_Checking::splittransaction(tran))
+    for (const auto& split_item : Model_Checking::split(tran))
     {
         Model_Splittransaction::Data *copy_split_item = Model_Splittransaction::instance().clone(&split_item);
         copy_split_item->TRANSID = transactionID;
@@ -1598,7 +1593,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
             }
         }
         else {
-            mmTransDialog dlg(this, m_cp->m_AccountID, id.first);
+            mmTransDialog dlg(this, m_cp->m_AccountID, {id.first, false});
             if (dlg.ShowModal() != wxID_CANCEL)
                 refreshVisualList();
         }
@@ -1632,7 +1627,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
         break;
     }
 
-    mmTransDialog dlg(this, m_cp->m_AccountID, 0, false, type);
+    mmTransDialog dlg(this, m_cp->m_AccountID, {0, false}, false, type);
     int i = dlg.ShowModal();
     if (i != wxID_CANCEL)
     {

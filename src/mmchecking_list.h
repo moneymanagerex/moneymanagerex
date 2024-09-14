@@ -31,6 +31,8 @@ class mmCheckingPanel;
 class TransactionListCtrl : public mmListCtrl
 {
 public:
+    // id represents TRANSID if repeat_num == 0, or BDID otherwise
+    typedef std::pair<int /* id */, int /* repeat_num */> id_t;
 
     TransactionListCtrl(mmCheckingPanel* cp
         , wxWindow* parent
@@ -45,9 +47,6 @@ public:
     void resetColumns();
 
 public:
-    // id represents TRANSID if repeat_num == 0, or BDID otherwise
-    typedef std::pair<int /* id */, int /* repeat_num */> id_t;
-
     enum EColumn
     {
         COL_IMGSTATUS = 0,

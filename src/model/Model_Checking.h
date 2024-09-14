@@ -193,8 +193,8 @@ public:
     int save(std::vector<Data*>& rows);
     void updateTimestamp(int id);
 public:
-    static const Split_Data_Set splittransaction(const Data* r);
-    static const Split_Data_Set splittransaction(const Data& r);
+    static const Split_Data_Set split(const Data* r);
+    static const Split_Data_Set split(const Data& r);
 
 public:
     static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxDateTime& date, OP op = EQUAL);
@@ -228,7 +228,7 @@ public:
     static bool is_deposit(const wxString& r);
     static bool is_deposit(const Data* r);
     static void getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int accountID = -1);
-    static void getEmptyTransaction(Data &data, int accountID);
+    static void getEmptyData(Data &data, int accountID);
     static bool getTransactionData(Data &data, const Data* r);
     static void putDataToTransaction(Data *r, const Data &data);
     static bool foreignTransaction(const Data& data);

@@ -29,6 +29,9 @@
 class Fused_Transaction
 {
 public:
+    // id represents TRANSID if !repeat, or BDID otherwise
+    typedef std::pair<int /* id */, bool /* repeat */> id_t;
+
     typedef Model_Splittransaction::Data_Set Split_Data_Set;
     typedef Model_Budgetsplittransaction::Data_Set Budgetsplit_Data_Set;
     typedef Model_Taglink::Data_Set Taglink_Data_Set;
@@ -39,8 +42,9 @@ public:
 
     struct Data: public Model_Checking::Data
     {
+        Data();
         explicit Data(const Model_Checking::Data& t);
-        Data(const Model_Billsdeposits::Data& r);
+        explicit Data(const Model_Billsdeposits::Data& r);
         Data(const Model_Billsdeposits::Data& r, wxString date, int repeat_num);
         ~Data();
 
@@ -75,6 +79,10 @@ public:
             return (!x.m_repeat_num && (y.m_repeat_num || x.TRANSID < y.TRANSID));
         }
     };
+
+    static void getEmptyData(Data &data, int account_id);
+    static bool getFusedData(Data &data, id_t fused_id);
+    static const Model_Splittransaction::Data_Set split(Data &r);
 };
 
 #endif

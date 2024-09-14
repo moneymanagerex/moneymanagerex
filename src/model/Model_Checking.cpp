@@ -182,12 +182,12 @@ int Model_Checking::save(std::vector<Data*>& rows)
     return rows.size();
 }
 
-const Model_Splittransaction::Data_Set Model_Checking::splittransaction(const Data* r)
+const Model_Splittransaction::Data_Set Model_Checking::split(const Data* r)
 {
     return Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r->TRANSID));
 }
 
-const Model_Splittransaction::Data_Set Model_Checking::splittransaction(const Data& r)
+const Model_Splittransaction::Data_Set Model_Checking::split(const Data& r)
 {
     return Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID));
 }
@@ -587,7 +587,7 @@ void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, 
     }
 }
 
-void Model_Checking::getEmptyTransaction(Data &data, int accountID)
+void Model_Checking::getEmptyData(Data &data, int accountID)
 {
     data.TRANSID = -1;
     data.PAYEEID = -1;
