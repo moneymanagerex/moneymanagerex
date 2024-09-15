@@ -1185,9 +1185,9 @@ void mmCheckingPanel::ResetColumnView()
     m_listCtrlAccount->refreshVisualList();
 }
 
-void mmCheckingPanel::SetSelectedTransaction(int transID)
+void mmCheckingPanel::SetSelectedTransaction(mmCheckingPanel::id_t fused_id)
 {
-    m_listCtrlAccount->setSelectedID(transID);
+    m_listCtrlAccount->setSelectedID(fused_id);
     RefreshList();
     m_listCtrlAccount->SetFocus();
 }

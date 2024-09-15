@@ -31,9 +31,6 @@ class mmCheckingPanel;
 class TransactionListCtrl : public mmListCtrl
 {
 public:
-    // id represents TRANSID if repeat_num == 0, or BDID otherwise
-    typedef std::pair<int /* id */, int /* repeat_num */> id_t;
-
     TransactionListCtrl(mmCheckingPanel* cp
         , wxWindow* parent
         , const wxWindowID id = wxID_ANY);
@@ -111,9 +108,9 @@ public:
     void refreshVisualList(bool filter = true);
     void sortTable();
 public:
-    std::vector<id_t> getSelectedForCopy() const;
-    std::vector<id_t> getSelectedId() const;
-    void setSelectedID(int v);
+    std::vector<mmCheckingPanel::id_t> getSelectedForCopy() const;
+    std::vector<mmCheckingPanel::id_t> getSelectedId() const;
+    void setSelectedID(mmCheckingPanel::id_t sel_id);
     void doSearchText(const wxString& value);
     /* Getter for Virtual List Control */
     const wxString getItem(long item, long column, bool realenum = false) const;
@@ -125,9 +122,9 @@ protected:
 private:
     void markItem(long selectedItem);
 
-    std::vector<id_t> m_selectedForCopy; // the copied transactions (held for pasting)
-    std::vector<id_t> m_pasted_id;       // the last pasted transactions
-    std::vector<id_t> m_selected_id;     // the selected transactions
+    std::vector<mmCheckingPanel::id_t> m_selectedForCopy; // the copied transactions (held for pasting)
+    std::vector<mmCheckingPanel::id_t> m_pasted_id;       // the last pasted transactions
+    std::vector<mmCheckingPanel::id_t> m_selected_id;     // the selected transactions
     enum
     {
         MENU_TREEPOPUP_MARKRECONCILED = wxID_HIGHEST + 150,
@@ -238,9 +235,9 @@ private:
 //----------------------------------------------------------------------------
 
 inline bool TransactionListCtrl::getSortOrder() const { return m_asc; }
-inline std::vector<TransactionListCtrl::id_t> TransactionListCtrl::getSelectedForCopy() const { return m_selectedForCopy; }
+inline std::vector<mmCheckingPanel::id_t> TransactionListCtrl::getSelectedForCopy() const { return m_selectedForCopy; }
 
-inline std::vector<TransactionListCtrl::id_t> TransactionListCtrl::getSelectedId() const { return m_selected_id; }
+inline std::vector<mmCheckingPanel::id_t> TransactionListCtrl::getSelectedId() const { return m_selected_id; }
 
 inline void TransactionListCtrl::setVisibleItemIndex(long v) { m_topItemIndex = v; }
 

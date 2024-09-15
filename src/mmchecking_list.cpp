@@ -394,7 +394,7 @@ void TransactionListCtrl::setExtraTransactionData(const bool single)
     int repeat_num = 0;
     bool isForeign = false;
     if (single) {
-        id_t id = m_selected_id[0];
+        mmCheckingPanel::id_t id = m_selected_id[0];
         Fused_Transaction::Data tran = !id.second ?
             Fused_Transaction::Data(*Model_Checking::instance().get(id.first)) :
             Fused_Transaction::Data(*Model_Billsdeposits::instance().get(id.first));
@@ -467,7 +467,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     bool is_foreign = false;
     if (1 == selected)
     {
-        id_t id = m_selected_id[0];
+        mmCheckingPanel::id_t id = m_selected_id[0];
         Fused_Transaction::Full_Data tran = !id.second ?
             Fused_Transaction::Full_Data(*Model_Checking::instance().get(id.first)) :
             Fused_Transaction::Full_Data(*Model_Billsdeposits::instance().get(id.first));
@@ -981,11 +981,11 @@ void TransactionListCtrl::OnSelectAll(wxCommandEvent& WXUNUSED(event))
 {
     m_selected_id.clear();
     SetEvtHandlerEnabled(false);
-    std::set<id_t> unique_ids;
+    std::set<mmCheckingPanel::id_t> unique_ids;
     for (int row = 0; row < GetItemCount(); row++) {
         SetItemState(row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         const auto& tran = m_trans[row];
-        id_t id = { !tran.m_repeat_num ? tran.TRANSID : tran.m_bdid, tran.m_repeat_num };
+        mmCheckingPanel::id_t id = { !tran.m_repeat_num ? tran.TRANSID : tran.m_bdid, tran.m_repeat_num };
         if (unique_ids.find(id) == unique_ids.end())
         {
             m_selected_id.push_back(id);
@@ -1033,7 +1033,7 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& WXUNUSED(event)
     // we can only duplicate a single transaction
     if (GetSelectedItemCount() != 1) return;
     FindSelectedTransactions();
-    id_t id = m_selected_id[0];
+    mmCheckingPanel::id_t id = m_selected_id[0];
 
     mmTransDialog dlg(this, m_cp->m_AccountID, {id.first, id.second != 0}, true);
     if (dlg.ShowModal() != wxID_CANCEL)
@@ -1050,7 +1050,7 @@ void TransactionListCtrl::OnEnterScheduled(wxCommandEvent& WXUNUSED(event))
 {
     if (GetSelectedItemCount() != 1) return;
     FindSelectedTransactions();
-    id_t id = m_selected_id[0];
+    mmCheckingPanel::id_t id = m_selected_id[0];
 
     if (id.second == 1) {
         mmBDDialog dlg(this, id.first, false, true);
@@ -1064,7 +1064,7 @@ void TransactionListCtrl::OnSkipScheduled(wxCommandEvent& WXUNUSED(event))
 {
     if (GetSelectedItemCount() != 1) return;
     FindSelectedTransactions();
-    id_t id = m_selected_id[0];
+    mmCheckingPanel::id_t id = m_selected_id[0];
 
     if (id.second == 1) {
         Model_Billsdeposits::instance().completeBDInSeries(id.first);
@@ -1165,7 +1165,7 @@ void TransactionListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
     // we can only open a single transaction
     if (GetSelectedItemCount() != 1) return;
     FindSelectedTransactions();
-    id_t id = m_selected_id[0];
+    mmCheckingPanel::id_t id = m_selected_id[0];
 
     const wxString refType = !id.second ?
         Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) :
@@ -1564,7 +1564,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     }
 
     // edit single transaction
-    id_t id = m_selected_id[0];
+    mmCheckingPanel::id_t id = m_selected_id[0];
     if (!id.second) {
         Model_Checking::Data* checking_entry = Model_Checking::instance().get(id.first);
         if (TransactionLocked(checking_entry->ACCOUNTID, checking_entry->TRANSDATE))
@@ -1810,7 +1810,7 @@ void TransactionListCtrl::OnViewOtherAccount(wxCommandEvent& /*event*/)
 {
     // we can only get here for a single transfer transaction
     FindSelectedTransactions();
-    id_t id = m_selected_id[0];
+    mmCheckingPanel::id_t id = m_selected_id[0];
 
     Fused_Transaction::Full_Data tran = !id.second ?
         Fused_Transaction::Full_Data(*Model_Checking::instance().get(id.first)) :
@@ -1820,7 +1820,7 @@ void TransactionListCtrl::OnViewOtherAccount(wxCommandEvent& /*event*/)
     wxString gotoAccountName = (m_cp->m_AccountID == tran.ACCOUNTID) ? tran.TOACCOUNTNAME : tran.ACCOUNTNAME;   
 
     m_cp->m_frame->setAccountNavTreeSection(gotoAccountName);
-    m_cp->m_frame->setGotoAccountID(gotoAccountID, !id.second ? tran.TRANSID : -1);
+    m_cp->m_frame->setGotoAccountID(gotoAccountID, id);
     wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
     m_cp->m_frame->GetEventHandler()->AddPendingEvent(event);
 }
@@ -1831,7 +1831,7 @@ void TransactionListCtrl::OnViewSplitTransaction(wxCommandEvent& /*event*/)
     // we can only view a single transaction
     if (GetSelectedItemCount() != 1) return;
     FindSelectedTransactions();
-    id_t id = m_selected_id[0];
+    mmCheckingPanel::id_t id = m_selected_id[0];
 
     m_cp->DisplaySplitCategories({id.first, id.second != 0});
 }
@@ -1842,7 +1842,7 @@ void TransactionListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     // we only support a single transaction
     if (GetSelectedItemCount() != 1) return;
     FindSelectedTransactions();
-    id_t id = m_selected_id[0];
+    mmCheckingPanel::id_t id = m_selected_id[0];
 
     const wxString refType = !id.second ?
         Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) :
@@ -1858,7 +1858,7 @@ void TransactionListCtrl::OnCreateReoccurance(wxCommandEvent& /*event*/)
      // we only support a single transaction
     if (GetSelectedItemCount() != 1) return;
     FindSelectedTransactions();
-    id_t id = m_selected_id[0];
+    mmCheckingPanel::id_t id = m_selected_id[0];
 
     if (!id.second) {
         mmBDDialog dlg(this, 0, false, false);
@@ -1874,7 +1874,7 @@ void TransactionListCtrl::markSelectedTransaction()
 {
     long i = 0;
     for (const auto & tran : m_trans) {
-        id_t id = { !tran.m_repeat_num ? tran.TRANSID : tran.m_bdid, tran.m_repeat_num };
+        mmCheckingPanel::id_t id = { !tran.m_repeat_num ? tran.TRANSID : tran.m_bdid, tran.m_repeat_num };
         //reset any selected items in the list
         if (GetItemState(i, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
             SetItemState(i, 0, wxLIST_STATE_SELECTED);
@@ -2141,7 +2141,7 @@ void TransactionListCtrl::FindSelectedTransactions()
     // find the selected transactions
     long x = 0;
     m_selected_id.clear();
-    std::set<id_t> unique_ids;
+    std::set<mmCheckingPanel::id_t> unique_ids;
     for (const auto& tran : m_trans) {
         if (GetItemState(x++, wxLIST_STATE_SELECTED) != wxLIST_STATE_SELECTED)
             continue;
@@ -2153,11 +2153,11 @@ void TransactionListCtrl::FindSelectedTransactions()
     }
 }
 
-void TransactionListCtrl::setSelectedID(int v)
+void TransactionListCtrl::setSelectedID(mmCheckingPanel::id_t sel_id)
 { 
     int i = 0;
     for (const auto& fused : m_trans) {
-        if (!fused.m_repeat_num && fused.TRANSID == v) {
+        if (fused.m_repeat_num == sel_id.first && fused.TRANSID == sel_id.first) {
             SetItemState(i, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
             SetItemState(i, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
             m_topItemIndex = i;

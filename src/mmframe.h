@@ -32,6 +32,7 @@ Copyright (C) 2021, 2022, 2024 Mark Whalley (mark@ipx.co.uk)
 #include "constants.h"
 #include "util.h"
 #include "paths.h"
+#include "mmcheckingpanel.h"
 
 //----------------------------------------------------------------------------
 class wxSQLite3Database;
@@ -39,7 +40,7 @@ class mmPrintableBase;
 class mmPanelBase;
 class mmHomePagePanel;
 class mmTreeItemData;
-class mmCheckingPanel;
+//class mmCheckingPanel;
 class mmReportsPanel;
 class mmStockPanel;
 class mmBudgetingPanel;
@@ -60,7 +61,7 @@ public:
     mmGUIApp *m_app;
 
 public:
-    void setGotoAccountID(int account_id, long transID = -1);
+    void setGotoAccountID(int account_id, mmCheckingPanel::id_t fused_id = {-1, 0});
     bool financialYearIsDifferent()
     {
         return (Option::instance().FinancialYearStartDay() != "1" ||
@@ -98,7 +99,7 @@ private:
     bool db_lockInPlace;
 
     int gotoAccountID_ = -1;
-    int gotoTransID_ = -1;
+    mmCheckingPanel::id_t gotoTransID_ = { -1, 0 };
 
     /* There are 2 kinds of reports */
     bool activeReport_ = false;

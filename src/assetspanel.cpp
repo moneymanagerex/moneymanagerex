@@ -841,7 +841,7 @@ void mmAssetsPanel::GotoAssetAccount(const int selected_index)
 void mmAssetsPanel::SetAccountParameters(const Model_Account::Data* account)
 {
     m_frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-    m_frame->setGotoAccountID(account->ACCOUNTID, -1);
+    m_frame->setGotoAccountID(account->ACCOUNTID);
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
     m_frame->GetEventHandler()->AddPendingEvent(evt);
 }

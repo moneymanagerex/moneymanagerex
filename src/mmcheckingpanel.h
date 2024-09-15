@@ -38,6 +38,8 @@ class TransactionListCtrl;
 class mmCheckingPanel : public mmPanelBase
 {
 public:
+    // id represents TRANSID if repeat_num == 0, or BDID otherwise
+    typedef std::pair<int /* id */, int /* repeat_num */> id_t;
 
     enum EIcons
     {
@@ -63,7 +65,7 @@ public:
     // Refresh account screen with new details
     void DisplayAccountDetails(int accountID = -1);
 
-    void SetSelectedTransaction(int transID);
+    void SetSelectedTransaction(id_t fused_id);
 
     void RefreshList();
     void ResetColumnView();
