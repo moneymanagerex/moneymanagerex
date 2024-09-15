@@ -2156,10 +2156,8 @@ void TransactionListCtrl::FindSelectedTransactions()
 void TransactionListCtrl::setSelectedID(int v)
 { 
     int i = 0;
-    for(const auto& entry : m_trans)
-    {
-        if (v == entry.TRANSID)
-        {
+    for (const auto& fused : m_trans) {
+        if (!fused.m_repeat_num && fused.TRANSID == v) {
             SetItemState(i, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
             SetItemState(i, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
             m_topItemIndex = i;
