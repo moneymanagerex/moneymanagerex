@@ -25,6 +25,7 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #include <wx/tglbtn.h>
 #include "mmpanelbase.h"
 #include "constants.h"
+#include "fusedtransaction.h"
 #include "model/Model_Account.h"
 #include <map>
 //----------------------------------------------------------------------------
@@ -58,7 +59,7 @@ public:
     ~mmCheckingPanel();
 
     // Display the split categories for the selected transaction.
-    void DisplaySplitCategories(int transID);
+    void DisplaySplitCategories(Fused_Transaction::id_t fused_id);
     // Refresh account screen with new details
     void DisplayAccountDetails(int accountID = -1);
 

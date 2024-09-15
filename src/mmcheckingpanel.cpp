@@ -1151,25 +1151,22 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
     m_listCtrlAccount->doSearchText(search_string);
 }
 
-void mmCheckingPanel::DisplaySplitCategories(int transID)
+void mmCheckingPanel::DisplaySplitCategories(Fused_Transaction::id_t fused_id)
 {
-    const Model_Checking::Data* tran = Model_Checking::instance().get(transID);
-    int transType = Model_Checking::type_id(tran->TRANSCODE);
-
-    Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
-    auto splits = Model_Checking::split(transaction);
-
-    if (splits.empty()) return;
-
-    std::vector<Split> splt;
-    for (const auto& entry : splits) {
+    Fused_Transaction::Data fused = !fused_id.second ?
+        Fused_Transaction::Data(*Model_Checking::instance().get(fused_id.first)) :
+        Fused_Transaction::Data(*Model_Billsdeposits::instance().get(fused_id.first));
+    std::vector<Split> splits;
+    for (const auto& split : Fused_Transaction::split(fused)) {
         Split s;
-        s.CATEGID = entry.CATEGID;
-        s.SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;
-        s.NOTES = entry.NOTES;
-        splt.push_back(s);
+        s.CATEGID          = split.CATEGID;
+        s.SPLITTRANSAMOUNT = split.SPLITTRANSAMOUNT;
+        s.NOTES            = split.NOTES;
+        splits.push_back(s);
     }
-    mmSplitTransactionDialog splitTransDialog(this, splt, m_AccountID, transType, 0.0, true);
+    if (splits.empty()) return;
+    int tranType = Model_Checking::type_id(fused.TRANSCODE);
+    mmSplitTransactionDialog splitTransDialog(this, splits, m_AccountID, tranType, 0.0, true);
 
     //splitTransDialog.SetDisplaySplitCategories();
     splitTransDialog.ShowModal();
