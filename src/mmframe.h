@@ -32,7 +32,7 @@ Copyright (C) 2021, 2022, 2024 Mark Whalley (mark@ipx.co.uk)
 #include "constants.h"
 #include "util.h"
 #include "paths.h"
-#include "mmcheckingpanel.h"
+#include "fusedtransaction.h"
 
 //----------------------------------------------------------------------------
 class wxSQLite3Database;
@@ -40,7 +40,7 @@ class mmPrintableBase;
 class mmPanelBase;
 class mmHomePagePanel;
 class mmTreeItemData;
-//class mmCheckingPanel;
+class mmCheckingPanel;
 class mmReportsPanel;
 class mmStockPanel;
 class mmBudgetingPanel;
