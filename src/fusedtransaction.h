@@ -29,8 +29,11 @@
 class Fused_Transaction
 {
 public:
-    // id represents TRANSID if !repeat, or BDID otherwise
-    typedef std::pair<int /* id */, bool /* repeat */> id_t;
+    // id represents TRANSID if !is_bill, or BDID otherwise
+    typedef std::pair<int /* id */, bool /* is_bill */> IdB;
+
+    // id represents TRANSID if repeat_num == 0, or BDID otherwise
+    typedef std::pair<int /* id */, int /* repeat_num */> IdRepeat;
 
     typedef Model_Splittransaction::Data_Set Split_Data_Set;
     typedef Model_Budgetsplittransaction::Data_Set Budgetsplit_Data_Set;
@@ -81,7 +84,7 @@ public:
     };
 
     static void getEmptyData(Data &data, int account_id);
-    static bool getFusedData(Data &data, id_t fused_id);
+    static bool getFusedData(Data &data, IdB fused_id);
     static const Model_Splittransaction::Data_Set split(Data &r);
 };
 

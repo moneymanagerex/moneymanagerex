@@ -61,7 +61,7 @@ public:
     mmGUIApp *m_app;
 
 public:
-    void setGotoAccountID(int account_id, mmCheckingPanel::id_t fused_id = {-1, 0});
+    void setGotoAccountID(int account_id, Fused_Transaction::IdRepeat fused_id = {-1, 0});
     bool financialYearIsDifferent()
     {
         return (Option::instance().FinancialYearStartDay() != "1" ||
@@ -99,7 +99,7 @@ private:
     bool db_lockInPlace;
 
     int gotoAccountID_ = -1;
-    mmCheckingPanel::id_t gotoTransID_ = { -1, 0 };
+    Fused_Transaction::IdRepeat gotoTransID_ = { -1, 0 };
 
     /* There are 2 kinds of reports */
     bool activeReport_ = false;

@@ -176,7 +176,7 @@ void Fused_Transaction::getEmptyData(Fused_Transaction::Data &data, int accountI
     data.m_repeat_num = 0;
 }
 
-bool Fused_Transaction::getFusedData(Fused_Transaction::Data &data, Fused_Transaction::id_t fused_id)
+bool Fused_Transaction::getFusedData(Fused_Transaction::Data &data, Fused_Transaction::IdB fused_id)
 {
     if (!fused_id.second) {
         Model_Checking::Data *tran = Model_Checking::instance().get(fused_id.first);

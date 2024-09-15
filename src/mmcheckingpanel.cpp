@@ -1151,7 +1151,7 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
     m_listCtrlAccount->doSearchText(search_string);
 }
 
-void mmCheckingPanel::DisplaySplitCategories(Fused_Transaction::id_t fused_id)
+void mmCheckingPanel::DisplaySplitCategories(Fused_Transaction::IdB fused_id)
 {
     Fused_Transaction::Data fused = !fused_id.second ?
         Fused_Transaction::Data(*Model_Checking::instance().get(fused_id.first)) :
@@ -1185,7 +1185,7 @@ void mmCheckingPanel::ResetColumnView()
     m_listCtrlAccount->refreshVisualList();
 }
 
-void mmCheckingPanel::SetSelectedTransaction(mmCheckingPanel::id_t fused_id)
+void mmCheckingPanel::SetSelectedTransaction(Fused_Transaction::IdRepeat fused_id)
 {
     m_listCtrlAccount->setSelectedID(fused_id);
     RefreshList();

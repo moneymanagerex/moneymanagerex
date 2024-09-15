@@ -3932,7 +3932,7 @@ void mmGUIFrame::OnClearRecentFiles(wxCommandEvent& /*event*/)
     m_recentFiles->AddFileToHistory(m_filename);
 }
 
-void mmGUIFrame::setGotoAccountID(int account_id, mmCheckingPanel::id_t fused_id)
+void mmGUIFrame::setGotoAccountID(int account_id, Fused_Transaction::IdRepeat fused_id)
 {
     gotoAccountID_ = account_id;
     gotoTransID_ = fused_id;

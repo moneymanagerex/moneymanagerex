@@ -47,7 +47,7 @@ public:
 
     mmTransDialog(wxWindow* parent
         , int account_id
-        , Fused_Transaction::id_t fused_id
+        , Fused_Transaction::IdB fused_id
         , bool duplicate = false
         , int type = Model_Checking::TYPE_ID_WITHDRAWAL);
 

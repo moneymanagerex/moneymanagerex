@@ -93,7 +93,7 @@ static bool altRefreshDone;
 
 mmTransDialog::mmTransDialog(wxWindow* parent,
     int account_id,
-    Fused_Transaction::id_t fused_id,
+    Fused_Transaction::IdB fused_id,
     bool duplicate,
     int type)
 :
