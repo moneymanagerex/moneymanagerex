@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-12 15:18\n"
+"PO-Revision-Date: 2024-09-16 12:07\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -844,7 +844,7 @@ msgstr "Otvaranje priloga nije uspjelo"
 
 #: billsdepositsdialog.cpp:45 billsdepositspanel.cpp:50
 msgid "Once"
-msgstr ""
+msgstr "Jednom"
 
 #: billsdepositsdialog.cpp:46 billsdepositspanel.cpp:51
 #: model/Model_Budget.cpp:30
@@ -1208,7 +1208,7 @@ msgstr "Razdoblje: Dani"
 
 #: billsdepositsdialog.cpp:1298
 msgid "Specify period in Days."
-msgstr ""
+msgstr "Odredi razdoblje u danima."
 
 #: billsdepositsdialog.cpp:1303
 msgid "Period: Months"
@@ -1216,11 +1216,11 @@ msgstr "Razdoblje: Mjeseci"
 
 #: billsdepositsdialog.cpp:1304
 msgid "Specify period in Months."
-msgstr ""
+msgstr "Odredi razdoblje u mjesecima."
 
 #: billsdepositsdialog.cpp:1310
 msgid "Ignored (leave blank)."
-msgstr ""
+msgstr "Zanemareno (ostavi prazno)."
 
 #: billsdepositsdialog.cpp:1316
 msgid "Specify the number of payments to be made.\n"
@@ -1554,7 +1554,7 @@ msgstr "Uređivač budžeta"
 
 #: budgetyeardialog.cpp:93
 msgid "Add &Year"
-msgstr ""
+msgstr "Dodaj &godinu"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1562,7 +1562,7 @@ msgstr "Dodaj novu budžetsku godinu"
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
-msgstr ""
+msgstr "Dodaj &mjesec"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -1619,19 +1619,19 @@ msgstr "Kategorije"
 #: categdialog.cpp:258 relocatecategorydialog.cpp:89
 #: relocatecategorydialog.h:43
 msgid "Merge Categories"
-msgstr ""
+msgstr "Sjedini kategorije"
 
 #: categdialog.cpp:260
 msgid "C&ollapse All"
-msgstr ""
+msgstr "&Sklopi sve"
 
 #: categdialog.cpp:265
 msgid "E&xpand All"
-msgstr ""
+msgstr "&Rasklopi sve"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "&Show All"
-msgstr ""
+msgstr "&Pokaži sve"
 
 #: categdialog.cpp:272
 msgid "Show all hidden categories"
@@ -2532,7 +2532,7 @@ msgstr "Podaci dijagnoze"
 #: diagnostics.cpp:88 relocatecategorydialog.cpp:134
 #: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:134 themes.cpp:195
 msgid "&Close"
-msgstr ""
+msgstr "&Zatvori"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -3919,7 +3919,7 @@ msgstr ""
 #: mmSimpleDialogs.cpp:770 mmSimpleDialogs.cpp:784
 #, c-format
 msgid "Color #&%i"
-msgstr ""
+msgstr "Boja #&%i"
 
 #: mmSimpleDialogs.cpp:942
 msgid "Subtract one year"
@@ -5815,11 +5815,11 @@ msgstr "Razvrstaj po ovom stupcu"
 
 #: mmpanelbase.cpp:137
 msgid "Move column left"
-msgstr ""
+msgstr "Premjesti stupac ulijevo"
 
 #: mmpanelbase.cpp:138
 msgid "Move column right"
-msgstr ""
+msgstr "Premjesti stupac udesno"
 
 #: mmpanelbase.cpp:140
 msgid "Reset columns"
