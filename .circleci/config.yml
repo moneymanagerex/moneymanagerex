@@ -58,7 +58,7 @@ workflows:
       - build-linux
 #      - build-macosapp-id: org.moneymanagerex.MMEX
 runtime: org.gnome.Platform
-runtime-version: '47'
+runtime-version: '45'
 sdk: org.gnome.Sdk
 command: mmex
 cleanup:
