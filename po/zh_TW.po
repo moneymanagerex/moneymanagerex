@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-18 21:58\n"
+"PO-Revision-Date: 2024-09-21 20:48\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgstr "&新增資料庫"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "建立新的 MMEX資料庫檔案"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -337,7 +337,7 @@ msgstr "開啟 &現存資料庫"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "開啟 MMEX資料庫檔案"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1682
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "用戶手冊"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "閱讀 MMEX 使用者手冊"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1852
 msgid "&Website"
@@ -362,15 +362,15 @@ msgstr "網站"
 
 #: appstartdialog.cpp:121 mmframe.cpp:1853
 msgid "Visit MMEX website for the latest news and updates"
-msgstr ""
+msgstr "請造訪 MMEX 網站以了解最新消息和更新"
 
 #: appstartdialog.cpp:125 mmframe.cpp:1869
 msgid "&Forum"
-msgstr ""
+msgstr "論壇(&F)"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "請造訪 MMEX 論壇閱讀和發表評論並尋求協助"
 
 #: appstartdialog.cpp:132 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -383,7 +383,7 @@ msgstr "離開 "
 #: appstartdialog.cpp:159
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "開啟之前已開啟的資料庫：%s"
 
 #: appstartdialog.cpp:208 mmframe.cpp:1688 mmframe.cpp:3081
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -584,7 +584,7 @@ msgstr "確定刪除資產"
 
 #: assetspanel.cpp:390
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr ""
+msgstr "MMEX 可讓您追蹤汽車、房屋、土地等固定資產。每項資產的價值可以每年以一定的比率升值，每年以一定的比率貶值，或價值不變。總資產將添加到您的總財務價值中。"
 
 #: assetspanel.cpp:420 assetspanel.h:108 general_report_manager.cpp:1030
 #: mmframe.cpp:491 mmframe.cpp:810 mmframe.cpp:1784 mmframe.cpp:3492
@@ -648,22 +648,22 @@ msgstr "搜索"
 
 #: assetspanel.cpp:509
 msgid "Enter any string to find related assets"
-msgstr ""
+msgstr "輸入任意字串以尋找相關資產"
 
 #: assetspanel.cpp:510 filtertransdialog.cpp:694 mmcheckingpanel.cpp:521
 #: payeedialog.cpp:137
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "提示：您可以在搜尋條件中使用萬用字元 - 問號 (?)、星號 (*)。"
 
 #: assetspanel.cpp:511 filtertransdialog.cpp:695 mmcheckingpanel.cpp:522
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "使用問號 (?) 尋找任何單一字元 - 例如，s?t 尋找“sat”和“set”。"
 
 #: assetspanel.cpp:512 filtertransdialog.cpp:696 mmcheckingpanel.cpp:523
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "使用星號 (*) 尋找任意數量的字元 - 例如，s*d 尋找「sad」和「started」。"
 
 #: assetspanel.cpp:513 filtertransdialog.cpp:697 mmcheckingpanel.cpp:524
 #: payeedialog.cpp:140
@@ -842,7 +842,7 @@ msgstr "無法開啓附件"
 
 #: billsdepositsdialog.cpp:45 billsdepositspanel.cpp:50
 msgid "Once"
-msgstr ""
+msgstr "一次"
 
 #: billsdepositsdialog.cpp:46 billsdepositspanel.cpp:51
 #: model/Model_Budget.cpp:30
