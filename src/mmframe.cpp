@@ -553,7 +553,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 
                 Model_Splittransaction::Cache checking_splits;
                 std::vector<wxArrayInt> splitTags;
-                for (const auto &item : Model_Billsdeposits::splittransaction(q1))
+                for (const auto &item : Model_Billsdeposits::split(q1))
                 {
                     Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
                     split->TRANSID = transID;
@@ -2835,7 +2835,7 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& event)
     if (m_db)
     {
         if (Model_Account::instance().all_checking_account_names().empty()) return;
-        mmTransDialog dlg(this, gotoAccountID_, 0, 0);
+        mmTransDialog dlg(this, gotoAccountID_, {0, false});
 
         int i = dlg.ShowModal();
         if (i != wxID_CANCEL)
