@@ -1614,7 +1614,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
 
         Model_Checking::Full_Data tran(pBankTransaction, split, tags);
         bool has_split = tran.has_split();
-        double value = Model_Checking::balance(pBankTransaction, fromAccountID);
+        double value = Model_Checking::account_flow(pBankTransaction, fromAccountID);
         account_balance += value;
 
         if (!has_split)
@@ -1921,7 +1921,7 @@ void mmUnivCSVDialog::update_preview()
 
                 Model_Checking::Full_Data tran(pBankTransaction, split, tags);
                 bool has_split = tran.has_split();
-                double value = Model_Checking::balance(pBankTransaction, fromAccountID);
+                double value = Model_Checking::account_flow(pBankTransaction, fromAccountID);
                 account_balance += value;
 
                 if (!has_split)

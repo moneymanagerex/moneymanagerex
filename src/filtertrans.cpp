@@ -232,8 +232,8 @@ table {
         curr = Model_Account::currency(acc);
         if (acc)
         {
-            double amount = Model_Checking::balance(transaction, acc->ACCOUNTID);
-            hb.addCurrencyCell(amount, curr);
+            double flow = Model_Checking::account_flow(transaction, acc->ACCOUNTID);
+            hb.addCurrencyCell(flow, curr);
         }
         else
         {

@@ -91,15 +91,14 @@ void mmTransDialog::SetEventHandlers()
 // accelerator hints are shown which only occurs once.
 static bool altRefreshDone;
 
-mmTransDialog::mmTransDialog(wxWindow* parent
-    , int account_id
-    , int transaction_id
-    , double current_balance
-    , bool duplicate
-    , int type
-    ) : m_duplicate(duplicate)
-, m_current_balance(current_balance)
-, m_account_id(account_id)
+mmTransDialog::mmTransDialog(wxWindow* parent,
+    int account_id,
+    int transaction_id,
+    bool duplicate,
+    int type)
+:
+    m_duplicate(duplicate),
+    m_account_id(account_id)
 {
     SetEvtHandlerEnabled(false);
     Model_Checking::Data *transaction = Model_Checking::instance().get(transaction_id);

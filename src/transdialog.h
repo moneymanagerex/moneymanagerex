@@ -47,7 +47,6 @@ public:
     mmTransDialog(wxWindow* parent
         , int account_id
         , int transaction_id
-        , double current_balance
         , bool duplicate = false
         , int type = Model_Checking::TYPE_ID_WITHDRAWAL);
 
@@ -122,7 +121,6 @@ private:
     bool m_new_trx = false;
     bool m_duplicate = false;
     bool m_advanced = false;
-    double m_current_balance;
 
     int object_in_focus_;
     int m_account_id;
