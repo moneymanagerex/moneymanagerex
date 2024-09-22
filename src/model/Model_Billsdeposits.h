@@ -165,8 +165,12 @@ public:
     static DB_Table_BILLSDEPOSITS_V1::STATUS STATUS(Model_Checking::STATUS_ID status, OP op = EQUAL);
     static DB_Table_BILLSDEPOSITS_V1::TRANSCODE TRANSCODE(Model_Checking::TYPE_ID type, OP op = EQUAL);
 
-    static const Model_Budgetsplittransaction::Data_Set splittransaction(const Data* r);
-    static const Model_Budgetsplittransaction::Data_Set splittransaction(const Data& r);
+    static const Model_Budgetsplittransaction::Data_Set split(const Data* r);
+    static const Model_Budgetsplittransaction::Data_Set split(const Data& r);
+    static const Model_Taglink::Data_Set taglink(const Data* r);
+    static const Model_Taglink::Data_Set taglink(const Data& r);
+    static wxArrayString unroll(const Data* r, const wxString end_date, int limit = -1);
+    static wxArrayString unroll(const Data& r, const wxString end_date, int limit = -1);
 
     void completeBDInSeries(int bdID);
     static const wxDateTime nextOccurDate(int type, int numRepeats, wxDateTime nextOccurDate, bool reverse = false);

@@ -415,45 +415,20 @@ Model_Checking::Full_Data::Full_Data()
 {
 }
 
-Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUNT(0)
-, m_splits(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID)))
-, m_tags(Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)), Model_Taglink::REFID(r.TRANSID)))
+Model_Checking::Full_Data::Full_Data(const Data& r)
+    : Data(r), BALANCE(0), AMOUNT(0),
+    m_splits(Model_Splittransaction::instance().find(
+        Model_Splittransaction::TRANSID(r.TRANSID))),
+    m_tags(Model_Taglink::instance().find(
+        Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)),
+        Model_Taglink::REFID(r.TRANSID)))
 {
-    ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
-    displayID = wxString::Format("%i", r.TRANSID);
-    if (Model_Checking::type_id(r) == Model_Checking::TYPE_ID_TRANSFER) {
-        TOACCOUNTNAME = Model_Account::get_account_name(r.TOACCOUNTID);
-        PAYEENAME = TOACCOUNTNAME;
-    }
-    else {
-        PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
-    }
-
-    if (!m_tags.empty()) {
-        wxArrayString tagnames;
-        for (const auto& entry : m_tags)
-            tagnames.Add(Model_Tag::instance().get(entry.TAGID)->TAGNAME);
-        // Sort TAGNAMES
-        tagnames.Sort(CaseInsensitiveCmp);
-        for (const auto& name : tagnames)
-            this->TAGNAMES += (this->TAGNAMES.empty() ? "" : " ") + name;
-    }
-
-    if (!m_splits.empty()) {
-        for (const auto& entry : m_splits)
-        {
-            this->CATEGNAME += (this->CATEGNAME.empty() ? " + " : ", ")
-                + Model_Category::full_name(entry.CATEGID);
-        }
-    }
-    else {
-        this->CATEGNAME = Model_Category::instance().full_name(r.CATEGID);
-    }
+    fill_data();
 }
 
-Model_Checking::Full_Data::Full_Data(const Data& r
-    , const std::map<int /*trans id*/, Model_Splittransaction::Data_Set /*split trans*/ > & splits
-    , const std::map<int /*trans id*/, Model_Taglink::Data_Set /*split trans*/ >& tags)
+Model_Checking::Full_Data::Full_Data(const Data& r,
+    const std::map<int /*trans id*/, Split_Data_Set>& splits,
+    const std::map<int /*trans id*/, Taglink_Data_Set>& tags)
     : Data(r), BALANCE(0), AMOUNT(0)
 {
     const auto it = splits.find(this->id());
@@ -462,16 +437,29 @@ Model_Checking::Full_Data::Full_Data(const Data& r
     const auto tag_it = tags.find(this->id());
     if (tag_it != tags.end()) m_tags = tag_it->second;
 
-    ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
-    displayID = wxString::Format("%i", r.TRANSID);
-    if (Model_Checking::type_id(r) == Model_Checking::TYPE_ID_TRANSFER)
-    {
-        TOACCOUNTNAME = Model_Account::get_account_name(r.TOACCOUNTID);
+    fill_data();
+}
+
+void Model_Checking::Full_Data::fill_data()
+{
+    displayID = wxString::Format("%i", TRANSID);
+    ACCOUNTNAME = Model_Account::get_account_name(ACCOUNTID);
+
+    if (Model_Checking::type_id(TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER) {
+        TOACCOUNTNAME = Model_Account::get_account_name(TOACCOUNTID);
         PAYEENAME = TOACCOUNTNAME;
     }
-    else
-    {
-        PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
+    else {
+        PAYEENAME = Model_Payee::get_payee_name(PAYEEID);
+    }
+
+    if (!m_splits.empty()) {
+        for (const auto& entry : m_splits)
+            CATEGNAME += (CATEGNAME.empty() ? " + " : ", ")
+                + Model_Category::full_name(entry.CATEGID);
+    }
+    else {
+        CATEGNAME = Model_Category::full_name(CATEGID);
     }
 
     if (!m_tags.empty()) {
@@ -481,20 +469,7 @@ Model_Checking::Full_Data::Full_Data(const Data& r
         // Sort TAGNAMES
         tagnames.Sort(CaseInsensitiveCmp);
         for (const auto& name : tagnames)
-            this->TAGNAMES += (this->TAGNAMES.empty() ? "" : " ") + name;
-    }
-
-    if (!m_splits.empty())
-    {
-        for (const auto& entry : m_splits)
-        {
-            this->CATEGNAME += (this->CATEGNAME.empty() ? " + " : ", ")
-                + Model_Category::full_name(entry.CATEGID);
-        }
-    }
-    else
-    {
-        CATEGNAME = Model_Category::full_name(r.CATEGID);
+            TAGNAMES += (TAGNAMES.empty() ? "" : " ") + name;
     }
 }
 
