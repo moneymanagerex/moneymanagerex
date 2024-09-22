@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-22 13:19\n"
+"PO-Revision-Date: 2024-09-22 14:30\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -705,7 +705,7 @@ msgstr "檔案"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
-msgstr "未有指定附件資料夾的位置。"
+msgstr "未設定附件資料夾的位置。"
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools → Settings… → Attachments"
@@ -778,21 +778,21 @@ msgstr "確定刪除附件"
 #: import_export/univcsvdialog.cpp:310 maincurrencydialog.cpp:539
 #: payeedialog.cpp:882 stockdialog.cpp:323 tagdialog.cpp:124
 msgid "&Add "
-msgstr "新增(&A) "
+msgstr "(&A)新增 "
 
 #: attachmentdialog.cpp:355
 msgid "&Open "
-msgstr "開啟 "
+msgstr "(&O)開啟 "
 
 #: attachmentdialog.cpp:358 customfieldlistdialog.cpp:263
 #: import_export/univcsvdialog.cpp:314 maincurrencydialog.cpp:541
 #: payeedialog.cpp:885
 msgid "&Remove "
-msgstr "移除 "
+msgstr "(&R)移除 "
 
 #: attachmentdialog.cpp:400
 msgid "Att."
-msgstr "Att."
+msgstr "附件"
 
 #: attachmentdialog.cpp:407
 msgid "This directory and its files are automatically managed by MMEX."
@@ -905,11 +905,11 @@ msgstr "在 (x) 月"
 
 #: billsdepositsdialog.cpp:58
 msgid "Every (n) Days"
-msgstr "每 (x) 日"
+msgstr "每 (n) 日"
 
 #: billsdepositsdialog.cpp:59
 msgid "Every (n) Months"
-msgstr "每 (x) 月"
+msgstr "每 (n) 月"
 
 #: billsdepositsdialog.cpp:60 billsdepositspanel.cpp:65
 msgid "Monthly (last day)"
@@ -921,7 +921,7 @@ msgstr "每月 (最後一個工作日)"
 
 #: billsdepositsdialog.cpp:303 billsdepositspanel.cpp:305
 msgid "Duplicate Scheduled Transaction"
-msgstr "複製排程交易紀錄"
+msgstr "複製貼上排程交易紀錄"
 
 #: billsdepositsdialog.cpp:305 billsdepositspanel.cpp:300
 msgid "Edit Scheduled Transaction"
@@ -978,7 +978,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:475 filtertrans.cpp:186 transdialog.cpp:425
 msgid "Transaction Details"
-msgstr "交易細節"
+msgstr "交易紀錄細節"
 
 #: billsdepositsdialog.cpp:484
 msgid "Specify the date the user is requested to enter this transaction"
@@ -1010,7 +1010,7 @@ msgstr "設定交易的類型"
 
 #: billsdepositsdialog.cpp:506 transdialog.cpp:465
 msgid "&Advanced"
-msgstr "進階&A"
+msgstr "(&A)進階"
 
 #: billsdepositsdialog.cpp:509 transdialog.cpp:1334
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
@@ -1035,7 +1035,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:542 transdialog.cpp:494
 msgid "Open Calculator"
-msgstr "開啟行事曆"
+msgstr "開啟計算機"
 
 #: billsdepositsdialog.cpp:548 billsdepositsdialog.cpp:835
 #: billsdepositsdialog.cpp:848 billsdepositspanel.cpp:134 filtertrans.cpp:200
@@ -1070,7 +1070,7 @@ msgstr "至"
 #: transdialog.cpp:251 transdialog.cpp:519 usertransactionpanel.cpp:157
 #: webappdialog.cpp:142
 msgid "Payee"
-msgstr "受帳人"
+msgstr "受款人"
 
 #: billsdepositsdialog.cpp:580 billsdepositsdialog.cpp:960
 #: billsdepositspanel.cpp:137 budgetingpanel.cpp:291 filtertrans.cpp:203
@@ -1216,7 +1216,7 @@ msgstr "期間: 月"
 
 #: billsdepositsdialog.cpp:1304
 msgid "Specify period in Months."
-msgstr ""
+msgstr "請指定期間(月)。"
 
 #: billsdepositsdialog.cpp:1310
 msgid "Ignored (leave blank)."
@@ -1315,7 +1315,7 @@ msgstr "排程交易紀錄"
 
 #: billsdepositspanel.cpp:304 mmcheckingpanel.cpp:486
 msgid "D&uplicate "
-msgstr "複製 (&U) "
+msgstr "(&U)複製貼上 "
 
 #: billsdepositspanel.cpp:310
 msgid "Delete Scheduled Transaction"
@@ -1323,7 +1323,7 @@ msgstr "刪除排程交易紀錄"
 
 #: billsdepositspanel.cpp:314
 msgid "Ente&r"
-msgstr "輸入"
+msgstr "(&R)輸入"
 
 #: billsdepositspanel.cpp:315
 msgid "Enter Next Scheduled Transaction Occurrence"
@@ -1331,7 +1331,7 @@ msgstr "輸入下一次排程交易紀錄"
 
 #: billsdepositspanel.cpp:319
 msgid "&Skip"
-msgstr "略過"
+msgstr "(&S)略過"
 
 #: billsdepositspanel.cpp:320
 msgid "Skip Next Scheduled Transaction Occurrence"
@@ -1355,11 +1355,11 @@ msgstr "(&E)編輯排程交易紀錄..."
 
 #: billsdepositspanel.cpp:440
 msgid "D&uplicate Scheduled Transaction..."
-msgstr "複製排程交易紀錄..."
+msgstr "(&U)複製貼上排程交易紀錄..."
 
 #: billsdepositspanel.cpp:442
 msgid "&Delete Scheduled Transaction..."
-msgstr "&刪除排程交易紀錄..."
+msgstr "(&D)刪除排程交易紀錄..."
 
 #: billsdepositspanel.cpp:498
 msgid "Automated"
@@ -1421,7 +1421,7 @@ msgstr "實際:"
 
 #: budgetentrydialog.cpp:117
 msgid "Type:"
-msgstr "分類　　 :"
+msgstr "分類:"
 
 #: budgetentrydialog.cpp:120
 msgid "Expense"
@@ -1436,7 +1436,7 @@ msgstr "收入"
 
 #: budgetentrydialog.cpp:126
 msgid "Specify whether this category is an income or an expense category"
-msgstr "指定此類型是收入類型或是支出類型"
+msgstr "指定此類型是收入類型或是支出類別"
 
 #: budgetentrydialog.cpp:128
 msgid "Frequency:"
@@ -1642,7 +1642,7 @@ msgstr "刪除已存在類型。此類型不可以用在已存在的交易上。
 
 #: categdialog.cpp:328 maincurrencydialog.cpp:225
 msgid "&Select"
-msgstr "選擇"
+msgstr "(&S)選擇"
 
 #: categdialog.cpp:330
 msgid "Select the currently selected category as the selected category for the transaction"
