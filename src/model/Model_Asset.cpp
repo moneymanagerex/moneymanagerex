@@ -244,7 +244,7 @@ double Model_Asset::valueAtDate(const Data* r, const wxDate date)
                 const wxDate tranDate = Model_Checking::TRANSDATE(tran);
                 if (tranDate <= date)
                 {
-                    double amount = -1 * Model_Checking::balance(tran, tran->ACCOUNTID) *
+                    double amount = -1 * Model_Checking::account_flow(tran, tran->ACCOUNTID) *
                         Model_CurrencyHistory::getDayRate(Model_Account::instance().get(tran->ACCOUNTID)->CURRENCYID, tranDate);
                     wxTimeSpan diff_time = date - tranDate;
                     double diff_time_in_days = static_cast<double>(diff_time.GetDays());

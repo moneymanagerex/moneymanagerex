@@ -333,7 +333,7 @@ void Model_Category::getCategoryStats(
                 // Do not include asset or stock transfers in income expense calculations.
                 if (Model_Checking::foreignTransactionAsTransfer(transaction))
                     continue;
-                categoryStats[categID][month] += Model_Checking::balance(transaction) * convRate;
+                categoryStats[categID][month] += Model_Checking::account_flow(transaction, transaction.ACCOUNTID) * convRate;
             }
             else if (budgetAmt != 0)
             {
