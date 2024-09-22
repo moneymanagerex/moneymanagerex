@@ -106,9 +106,9 @@ private:
     int m_payee_id = -1;
     wxString m_init_selected_payee;
     int m_payee_rename = -1;
-    bool m_payee_choose;
+    bool m_payee_choose = false;
     wxString m_maskStr;
-    int m_sort, m_lastSort;
+    int m_sort = cols::PAYEE_NAME, m_lastSort = cols::PAYEE_NAME;
     bool refreshRequested_ = false, m_sortReverse = false;
     std::map<int, wxString> ColName_;
 

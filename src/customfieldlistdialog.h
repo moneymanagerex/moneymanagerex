@@ -73,7 +73,11 @@ private:
     void OnListItemActivated(wxDataViewEvent& event);
     void OnMagicButton(wxCommandEvent& event);
 
-    bool debug_;
+    #ifdef _DEBUG
+	    bool debug_ = true;
+    #else
+        bool debug_ = false;
+    #endif
 };
 
 #endif // MM_EX_CUSTOMFIELDLISTDIALOG_H_

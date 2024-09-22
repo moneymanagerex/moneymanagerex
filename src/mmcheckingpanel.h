@@ -134,11 +134,11 @@ private:
 
 private:
     int m_currentView;
-    int m_AccountID;
-    bool isAllAccounts_; // TRUE = All accounts are displayed
+    int m_AccountID = -1;
+    bool isAllAccounts_ = false; // TRUE = All accounts are displayed
     bool isTrash_ = false; // TRUE = Deleted transactions are displayed
     wxString m_sortSaveTitle;   // Used for saving sort settings
-    bool m_transFilterActive;
+    bool m_transFilterActive = false;
     wxString m_begin_date;
     wxString m_end_date;
     double m_filteredBalance = 0.0;
