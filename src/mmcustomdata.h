@@ -77,7 +77,7 @@ private:
     bool IsWidgetChanged(wxWindowID id);
     void SetWidgetChanged(wxWindowID id, const wxString& data);
     void ResetWidgetChanged(wxWindowID id);
-    wxWindowID m_init_control_id;
+    wxWindowID m_init_control_id = wxID_ANY;
 
 };
 
@@ -87,7 +87,7 @@ public:
     mmCustomDataTransaction(wxDialog* dialog, int ref_id, wxWindowID base_id);
 };
 
-inline void       mmCustomData::ResetRefID() { m_ref_id = -1; }
+inline void       mmCustomData::ResetRefID() { m_ref_id = wxID_ANY; }
 inline void       mmCustomData::SetBaseID(wxWindowID id) { m_init_control_id = id; }
 inline size_t     mmCustomData::GetCustomFieldsCount() const { return m_fields.size(); }
 inline wxWindowID mmCustomData::GetBaseID() const { return m_init_control_id; }

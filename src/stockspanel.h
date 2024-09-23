@@ -67,10 +67,10 @@ public:
 
     void ViewStockTransactions(int selectedIndex);
 
-    int m_account_id;
+    int m_account_id = -1;
     Model_Currency::Data * m_currency = nullptr;
     void updateExtraStocksData(int selIndex);
-    wxStaticText* stock_details_short_;
+    wxStaticText* stock_details_short_ = nullptr;
     void updateHeader();
 
     wxString BuildPage() const;

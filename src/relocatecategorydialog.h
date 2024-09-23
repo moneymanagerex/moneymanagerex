@@ -59,8 +59,8 @@ public:
 
 private:
     void IsOkOk();
-    int m_sourceCatID;
-    int m_sourceSubCatID;
+    int m_sourceCatID = -1;
+    int m_sourceSubCatID = -1;
     mmComboBoxCategory* cbSourceCategory_ = nullptr;
     mmComboBoxCategory* cbDestCategory_ = nullptr;
     wxCheckBox* cbDeleteSourceCategory_ = nullptr;
