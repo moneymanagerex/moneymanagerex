@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-23 12:16\n"
+"PO-Revision-Date: 2024-09-23 13:49\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,7 @@ msgstr "編輯帳戶"
 
 #: accountdialog.cpp:123
 msgid "Account Name:"
-msgstr "帳戶名稱:"
+msgstr "帳戶名稱："
 
 #: accountdialog.cpp:126
 msgid "Enter the Name of the Account. This name can be renamed at any time."
@@ -83,7 +83,7 @@ msgstr "輸入帳戶名稱。名稱可以隨時修改。"
 
 #: accountdialog.cpp:129
 msgid "Account Type:"
-msgstr "帳戶類型:"
+msgstr "帳戶類型："
 
 #: accountdialog.cpp:136 wizard_newaccount.cpp:128
 msgid "Specify the type of account to be created."
@@ -91,7 +91,7 @@ msgstr "指定新建立帳戶的類型。"
 
 #: accountdialog.cpp:140
 msgid "Account Status:"
-msgstr "帳戶狀態:"
+msgstr "帳戶狀態："
 
 #: accountdialog.cpp:145
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
@@ -100,7 +100,7 @@ msgstr "設定此帳戶是否被關閉。關閉的帳戶將無法執行計算、
 #: accountdialog.cpp:149
 #, c-format
 msgid "Initial Balance: %s"
-msgstr "初始餘額: %s"
+msgstr "初始餘額：%s"
 
 #: accountdialog.cpp:152
 msgid "Enter the initial balance in this account."
@@ -108,7 +108,7 @@ msgstr "輸入此帳戶的初始餘額。"
 
 #: accountdialog.cpp:154
 msgid "Opening Date:"
-msgstr "開戶日期:"
+msgstr "開戶日期："
 
 #: accountdialog.cpp:157
 msgid "The date when the account was opened"
@@ -117,7 +117,7 @@ msgstr "帳戶開設日期"
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:583
 #: import_export/univcsvdialog.cpp:2657
 msgid "Currency:"
-msgstr "幣別:"
+msgstr "幣別："
 
 #: accountdialog.cpp:162 currencydialog.cpp:112
 msgid "Select Currency"
@@ -161,11 +161,11 @@ msgstr "其他"
 
 #: accountdialog.cpp:198
 msgid "Card Number:"
-msgstr "卡號:"
+msgstr "卡號："
 
 #: accountdialog.cpp:198
 msgid "Account Number:"
-msgstr "帳號:"
+msgstr "帳號："
 
 #: accountdialog.cpp:200
 msgid "Enter the Account Number associated with this account."
@@ -173,7 +173,7 @@ msgstr "輸入與該帳戶相關聯的帳戶編號。"
 
 #: accountdialog.cpp:203
 msgid "Held At:"
-msgstr "金融機構名稱:"
+msgstr "金融機構名稱："
 
 #: accountdialog.cpp:205
 msgid "Enter the name of the financial institution in which the account is held."
@@ -197,7 +197,7 @@ msgstr "輸入金融機構的聯絡資訊。"
 
 #: accountdialog.cpp:218
 msgid "Access Info:"
-msgstr "登入資訊:"
+msgstr "登入資訊："
 
 #: accountdialog.cpp:220
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
@@ -209,7 +209,7 @@ msgstr "對帳單"
 
 #: accountdialog.cpp:233
 msgid "Statement:"
-msgstr "對帳單:"
+msgstr "對帳單："
 
 #: accountdialog.cpp:234
 msgid "Locked"
@@ -221,7 +221,7 @@ msgstr "啟用或停用交易鎖"
 
 #: accountdialog.cpp:238
 msgid "Reconciled Date:"
-msgstr "對帳日期:"
+msgstr "對帳日期："
 
 #: accountdialog.cpp:240
 msgid "The date of the transaction lock"
@@ -229,7 +229,7 @@ msgstr "交易鎖定日期"
 
 #: accountdialog.cpp:243
 msgid "Minimum Bal:"
-msgstr "最小結餘"
+msgstr "最小結餘："
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
@@ -241,7 +241,7 @@ msgstr "額度"
 
 #: accountdialog.cpp:258 mmcheckingpanel.cpp:577
 msgid "Credit Limit:"
-msgstr "信用額度:"
+msgstr "信用額度："
 
 #: accountdialog.cpp:260
 msgid "Credit limit for the Account. Zero to disable"
@@ -674,12 +674,12 @@ msgstr "在開頭使用星號 (*) 可找到句子中間的任何字串。"
 #: assetspanel.cpp:584 stockspanel.cpp:370 stockspanel.cpp:557
 #, c-format
 msgid "Total: %s"
-msgstr "總計: %s"
+msgstr "總計：%s"
 
 #: assetspanel.cpp:667
 #, c-format
 msgid "Change in Value: %1$s %2$s"
-msgstr "價值變動: %1$s %2$s"
+msgstr "價值變動：%1$s %2$s"
 
 #: assetspanel.cpp:783
 msgid "This asset does not have its own account\n\n"
@@ -697,7 +697,7 @@ msgstr "帳戶 \t 日期\t   價值\n\n"
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:435
 msgid "Description"
-msgstr "描述訊息"
+msgstr "詳細資訊"
 
 #: attachmentdialog.cpp:56
 msgid "File"
@@ -748,7 +748,7 @@ msgstr "其他工具"
 
 #: attachmentdialog.cpp:190
 msgid "Import attachment:"
-msgstr "匯入附件"
+msgstr "匯入附件："
 
 #: attachmentdialog.cpp:201
 msgid "Enter a description for the new attachment:"
@@ -804,7 +804,7 @@ msgstr "請不要移除、重新命名或手動修改此目錄及其文件。"
 
 #: attachmentdialog.cpp:454 attachmentdialog.cpp:462
 msgid "Destination file already exist:"
-msgstr "目的地檔案已存在"
+msgstr "目的地檔案已存在："
 
 #: attachmentdialog.cpp:457
 msgid "File not found in attachments. Please delete or rename it."
@@ -820,7 +820,7 @@ msgstr "檔案已在附件中存在"
 
 #: attachmentdialog.cpp:508
 msgid "Attachment not found:"
-msgstr "找不到附件"
+msgstr "找不到附件："
 
 #: attachmentdialog.cpp:511
 msgid "Do you want to continue and delete attachment on database?"
@@ -832,7 +832,7 @@ msgstr "刪除附件失敗"
 
 #: attachmentdialog.cpp:525 general_report_manager.cpp:664
 msgid "Unable to open file:"
-msgstr "無法開啟檔案:"
+msgstr "無法開啟檔案："
 
 #: attachmentdialog.cpp:528
 msgid "Please verify that file exists and user has rights to read it."
@@ -1204,7 +1204,7 @@ msgstr "在來源地帳戶中設定轉帳金額"
 
 #: billsdepositsdialog.cpp:1297
 msgid "Period: Days"
-msgstr "期間: 天"
+msgstr "期間：天"
 
 #: billsdepositsdialog.cpp:1298
 msgid "Specify period in Days."
@@ -1212,7 +1212,7 @@ msgstr "請指定期間(天)。"
 
 #: billsdepositsdialog.cpp:1303
 msgid "Period: Months"
-msgstr "期間: 月"
+msgstr "期間：月"
 
 #: billsdepositsdialog.cpp:1304
 msgid "Specify period in Months."
@@ -1410,19 +1410,19 @@ msgstr "輸入預算年度"
 
 #: budgetentrydialog.cpp:106
 msgid "Category: "
-msgstr "類別 "
+msgstr "類別： "
 
 #: budgetentrydialog.cpp:112 reports/budgetingperf.cpp:342
 msgid "Estimated:"
-msgstr "估計:"
+msgstr "估計："
 
 #: budgetentrydialog.cpp:114 reports/budgetingperf.cpp:343
 msgid "Actual:"
-msgstr "實際:"
+msgstr "實際："
 
 #: budgetentrydialog.cpp:117
 msgid "Type:"
-msgstr "分類:"
+msgstr "分類："
 
 #: budgetentrydialog.cpp:120
 msgid "Expense"
@@ -1441,7 +1441,7 @@ msgstr "指定此類型是收入類型或是支出類別"
 
 #: budgetentrydialog.cpp:128
 msgid "Frequency:"
-msgstr "預算類型 :"
+msgstr "預算類型："
 
 #: budgetentrydialog.cpp:133
 msgid "Specify the frequency of the expense or deposit"
@@ -1449,7 +1449,7 @@ msgstr "指定消費或儲蓄的頻率"
 
 #: budgetentrydialog.cpp:136 import_export/univcsvdialog.cpp:408
 msgid "Amount:"
-msgstr "總額　　 :"
+msgstr "總額："
 
 #: budgetentrydialog.cpp:141
 msgid "Enter the amount budgeted for this category."
@@ -1486,7 +1486,7 @@ msgstr "檢視預算類別摘要"
 #: budgetingpanel.cpp:165
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr "財政年度: %s - %li"
+msgstr "財政年度：%s - %li"
 
 #: budgetingpanel.cpp:169 reports/budget.cpp:94
 #, c-format
@@ -1501,7 +1501,7 @@ msgstr "月： %s"
 #: budgetingpanel.cpp:180
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
-msgstr "%1$s    開始日期: %2$s"
+msgstr "%1$s 開始日期：%2$s"
 
 #: budgetingpanel.cpp:183
 #, c-format
@@ -1510,23 +1510,23 @@ msgstr "%s 的預算規劃"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
-msgstr "收入: "
+msgstr "收入： "
 
 #: budgetingpanel.cpp:241 budgetingpanel.cpp:249
 msgid "Estimated: "
-msgstr "估計: "
+msgstr "估計： "
 
 #: budgetingpanel.cpp:243 budgetingpanel.cpp:251
 msgid "Actual: "
-msgstr "實際: "
+msgstr "實際： "
 
 #: budgetingpanel.cpp:245 budgetingpanel.cpp:253 reports/budgetingperf.cpp:344
 msgid "Difference: "
-msgstr "差異: "
+msgstr "差異： "
 
 #: budgetingpanel.cpp:248
 msgid "Expenses: "
-msgstr "支出: "
+msgstr "支出： "
 
 #: budgetingpanel.cpp:290
 msgid "Icon"
@@ -1572,7 +1572,7 @@ msgstr "預算項目明細"
 
 #: budgetyearentrydialog.cpp:45
 msgid "Budget Month Entry"
-msgstr ""
+msgstr "預算月份輸入"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
@@ -1581,7 +1581,8 @@ msgstr "預算年度"
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr ""
+msgstr "指定年份。\n"
+"使用旋轉按鈕增加或減少年份。"
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month"
@@ -1590,15 +1591,16 @@ msgstr "預算月份"
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr ""
+msgstr "指定月份。\n"
+"使用旋轉按鈕增加或減少月份"
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On"
-msgstr ""
+msgstr "參照預算年份"
 
 #: budgetyearentrydialog.cpp:113
 msgid "Specify year to base budget on"
-msgstr ""
+msgstr "指定預算的參照年份"
 
 #: budgetyearentrydialog.cpp:152
 msgid "Budget Year already exists"
@@ -1611,19 +1613,19 @@ msgstr "依類別查看資金走向"
 #: categdialog.cpp:258 relocatecategorydialog.cpp:89
 #: relocatecategorydialog.h:43
 msgid "Merge Categories"
-msgstr ""
+msgstr "合併類別"
 
 #: categdialog.cpp:260
 msgid "C&ollapse All"
-msgstr ""
+msgstr "(&C)全部折疊"
 
 #: categdialog.cpp:265
 msgid "E&xpand All"
-msgstr ""
+msgstr "(&X)全部展開"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "&Show All"
-msgstr ""
+msgstr "(&S)全部顯示"
 
 #: categdialog.cpp:272
 msgid "Show all hidden categories"
@@ -1651,19 +1653,19 @@ msgstr "選擇目前所選類型為此交易之類型"
 
 #: categdialog.cpp:343
 msgid "Name contains category delimiter."
-msgstr ""
+msgstr "名稱包含類別分隔符號。"
 
 #: categdialog.cpp:344
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
-msgstr ""
+msgstr "冒號 (：) 字元用於分隔類別和子類別，因此不應在名稱中使用"
 
 #: categdialog.cpp:346
 msgid "Category Manager: Invalid Name"
-msgstr ""
+msgstr "類別管理員：名稱無效"
 
 #: categdialog.cpp:354
 msgid "Enter the name for the new category:"
-msgstr ""
+msgstr "輸入新類別的名稱："
 
 #: categdialog.cpp:355
 msgid "Add Category"
@@ -1671,23 +1673,23 @@ msgstr "新增分類"
 
 #: categdialog.cpp:366 categdialog.cpp:375 categdialog.cpp:624
 msgid "A category with this name already exists for the parent"
-msgstr ""
+msgstr "此名稱在父類別已存在"
 
 #: categdialog.cpp:366 categdialog.cpp:375
 msgid "Category Manager: Adding Error"
-msgstr ""
+msgstr "類別管理員：新增錯誤"
 
 #: categdialog.cpp:427
 msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "您無法將子類別移到已有同名子類別的類別中。移動前嘗試重新命名。"
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
-msgstr ""
+msgstr "同名的子類別已存在"
 
 #: categdialog.cpp:440
 msgid "Target category is a descendant"
-msgstr ""
+msgstr "目標類別是一個後代類別"
 
 #: categdialog.cpp:447
 #, c-format
@@ -1695,7 +1697,10 @@ msgid "Are you sure you want to move\n"
 "\"%1$s\"\n"
 "to:\n"
 "\"%2$s\"?"
-msgstr ""
+msgstr "您確定要移動\n"
+"“%1$s”\n"
+"到：\n"
+"“%2$s”嗎？"
 
 #: categdialog.cpp:449
 msgid "Top level"
@@ -1716,12 +1721,14 @@ msgstr "正在使用此子分類"
 #: categdialog.cpp:469
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "提示：使用合併指令將此類別的所有交易紀錄變更為\n"
+"的另一個類別："
 
 #: categdialog.cpp:472
 msgid "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
-msgstr ""
+msgstr "提示： 使用合併指令將採用此子類別的所有交易紀錄變更為\n"
+"的另一個類別："
 
 #: categdialog.cpp:475
 msgid "Tools → Merge → Categories"
@@ -1729,19 +1736,19 @@ msgstr "工具 → 合併 → 分類"
 
 #: categdialog.cpp:477
 msgid "Category Manager: Delete Error"
-msgstr ""
+msgstr "類別管理員：刪除錯誤"
 
 #: categdialog.cpp:500
 msgid "Deleted transactions exist which use this category or one of its descendants."
-msgstr ""
+msgstr "存在使用該類別或後代類別的已刪除交易紀錄。"
 
 #: categdialog.cpp:501
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "刪除此類別也會自動清除相關的已刪除交易紀錄。"
 
 #: categdialog.cpp:502 payeedialog.cpp:753 tagdialog.cpp:300
 msgid "Do you wish to continue ?"
-msgstr ""
+msgstr "您想繼續嗎？"
 
 #: categdialog.cpp:503
 msgid "Confirm Category Deletion"
@@ -1758,25 +1765,25 @@ msgstr "修改類別"
 
 #: categdialog.cpp:625
 msgid "Category Manager: Editing Error"
-msgstr ""
+msgstr "類別管理員： 編輯錯誤"
 
 #: categdialog.cpp:682 mmframe.cpp:3806
 msgid "Merge categories completed"
-msgstr ""
+msgstr "合併類別已經完成"
 
 #: categdialog.cpp:683 mmframe.cpp:3807 mmframe.cpp:3822 mmframe.cpp:3838
 #: payeedialog.cpp:834
 #, c-format
 msgid "Records have been updated in the database: %i"
-msgstr ""
+msgstr "資料庫中的記錄已更新： %i"
 
 #: categdialog.cpp:685 mmframe.cpp:3809
 msgid "Merge categories result"
-msgstr ""
+msgstr "類別合併結果"
 
 #: categdialog.cpp:761
 msgid "Are you sure you want to unhide all categories"
-msgstr ""
+msgstr "您確定要取消隱藏所有類別嗎"
 
 #: categdialog.cpp:762
 msgid "Unhide all categories"
@@ -1800,7 +1807,7 @@ msgstr "清除設定"
 
 #: categdialog.h:68 mmframe.cpp:1743 mmframe.cpp:1971
 msgid "Category Manager"
-msgstr "分類管理員"
+msgstr "類別管理員"
 
 #: constants.cpp:72
 msgid "Cancel"
@@ -1902,7 +1909,7 @@ msgstr "檢視上一財政年度"
 
 #: constants.cpp:206
 msgid "View Since Statement Date"
-msgstr ""
+msgstr "從對帳單日期開始檢視"
 
 #: constants.cpp:208
 msgid "ALL"
@@ -1939,7 +1946,7 @@ msgstr "幣別符號"
 
 #: currencydialog.cpp:202
 msgid "Symbol Location"
-msgstr ""
+msgstr "證券代碼位置"
 
 #: currencydialog.cpp:203
 msgid "Prefix"
@@ -1964,7 +1971,7 @@ msgstr "逗號"
 
 #: currencydialog.cpp:216
 msgid "Grouping Char"
-msgstr ""
+msgstr "分組字元"
 
 #: currencydialog.cpp:219 mmSimpleDialogs.cpp:825 model/Model_Asset.cpp:43
 #: model/Model_Budget.cpp:29 optionsettingsgeneral.cpp:226
@@ -1986,7 +1993,7 @@ msgstr "轉換為基本利率"
 
 #: currencydialog.cpp:240
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "如果沒有找到該幣別的匯率歷史記錄，將使用保守的匯率"
 
 #: currencydialog.cpp:242
 msgid "Fixed conversion rate"
@@ -1994,15 +2001,15 @@ msgstr "固定匯率"
 
 #: currencydialog.cpp:247
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "幣別格式範例："
 
 #: currencydialog.cpp:261
 msgid "Save any changes made"
-msgstr ""
+msgstr "儲存任何變更"
 
 #: currencydialog.cpp:265
 msgid "Any changes will be lost without update"
-msgstr ""
+msgstr "如果不更新，任何變更都將遺失"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
 #: import_export/univcsvdialog.cpp:2690 maincurrencydialog.cpp:626
@@ -2012,16 +2019,16 @@ msgstr "輸入無效"
 
 #: currencydialog.cpp:285 currencydialog.cpp:310
 msgid "Grouping character cannot be the same as the decimal character"
-msgstr ""
+msgstr "分組字元不能與小數點字元相同"
 
 #: currencydialog.cpp:332
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f 顯示為： %s"
 
 #: currencydialog.cpp:334
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(使用當地語言)"
 
 #: currencydialog.h:48 maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
@@ -2032,19 +2039,19 @@ msgstr "貨幣管理員"
 
 #: customfieldeditdialog.cpp:113
 msgid "Custom Field Details"
-msgstr ""
+msgstr "自訂欄位詳細資訊"
 
 #: customfieldeditdialog.cpp:124 customfieldlistdialog.cpp:52
 msgid "Attribute of"
-msgstr ""
+msgstr "屬性"
 
 #: customfieldeditdialog.cpp:130
 msgid "Select the item that the custom field is associated with"
-msgstr ""
+msgstr "選擇與自訂欄位相關聯的項目"
 
 #: customfieldeditdialog.cpp:138
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "輸入自訂欄位的名稱"
 
 #: customfieldeditdialog.cpp:141
 msgid "Field Type"
@@ -2056,11 +2063,11 @@ msgstr "選擇自訂欄位的類型。"
 
 #: customfieldeditdialog.cpp:148
 msgid "Tooltip"
-msgstr ""
+msgstr "提示"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enter the tooltip that will be shown"
-msgstr ""
+msgstr "輸入要顯示的提示"
 
 #: customfieldeditdialog.cpp:153
 msgid "RegEx"
@@ -2076,7 +2083,7 @@ msgstr "自動完成"
 
 #: customfieldeditdialog.cpp:161
 msgid "Enables autocomplete on custom field"
-msgstr ""
+msgstr "在自訂欄位上啟用自動完成"
 
 #: customfieldeditdialog.cpp:164 optionsettingsview.cpp:222 util.cpp:613
 msgid "Default"
@@ -2085,7 +2092,8 @@ msgstr "預設"
 #: customfieldeditdialog.cpp:166
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "輸入該欄位的預設值\n"
+"對於日期/時間，插入“現在”以使當前日期/時間成為預設值"
 
 #: customfieldeditdialog.cpp:170 customfieldeditdialog.cpp:220
 msgid "Choices"
@@ -2093,7 +2101,7 @@ msgstr "選項"
 
 #: customfieldeditdialog.cpp:172
 msgid "Enter the choices for this field separated with a semicolon"
-msgstr ""
+msgstr "輸入此欄位的選項，以分號分隔"
 
 #: customfieldeditdialog.cpp:175
 msgid "Digits scale"
@@ -2125,7 +2133,7 @@ msgstr ""
 #: customfieldeditdialog.cpp:234 customfieldeditdialog.cpp:256 mmframe.cpp:2427
 #: mmframe.cpp:2489
 msgid "Do you want to proceed?"
-msgstr ""
+msgstr "您想繼續嗎？"
 
 #: customfieldeditdialog.cpp:235 customfieldeditdialog.cpp:257
 msgid "Custom Field Change"
@@ -2145,11 +2153,11 @@ msgstr "#"
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
-msgstr ""
+msgstr "屬性"
 
 #: customfieldlistdialog.cpp:66 mmframe.cpp:1806
 msgid "Custom Field Manager"
-msgstr ""
+msgstr "自訂欄位管理員"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2516,7 +2524,7 @@ msgstr "診斷訊息"
 #: diagnostics.cpp:88 relocatecategorydialog.cpp:134
 #: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:134 themes.cpp:195
 msgid "&Close"
-msgstr ""
+msgstr "(&C)關閉"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -2712,24 +2720,24 @@ msgstr ""
 
 #: filtertransdialog.cpp:1173
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "隱藏報表欄位"
 
 #: filtertransdialog.cpp:1299 mmframe.cpp:1297
 msgid "The selected item will be deleted"
-msgstr ""
+msgstr "選擇的項目將被刪除"
 
 #: filtertransdialog.cpp:1299 import_export/univcsvdialog.cpp:2182
 #: mmframe.cpp:1298
 msgid "Do you wish to continue?"
-msgstr ""
+msgstr "您想繼續嗎？"
 
 #: filtertransdialog.cpp:1299 mmframe.cpp:1299
 msgid "Settings item deletion"
-msgstr ""
+msgstr "設定刪除項目"
 
 #: filtertransdialog.cpp:1629
 msgid "Filtering Details: "
-msgstr ""
+msgstr "篩遠詳細資訊： "
 
 #: filtertransdialog.cpp:1759
 msgid "Label"
@@ -2765,7 +2773,7 @@ msgstr "請輸入"
 
 #: filtertransdialog.cpp:2158 import_export/univcsvdialog.cpp:1101
 msgid "The entered name is already in use"
-msgstr ""
+msgstr "輸入的名稱已被使用"
 
 #: filtertransdialog.cpp:2158 images_list.cpp:327 images_list.cpp:415
 #: images_list.cpp:426 images_list.cpp:461 images_list.cpp:490
@@ -2776,15 +2784,15 @@ msgstr "警告"
 
 #: filtertransdialog.cpp:2187
 msgid "Filter settings have changed"
-msgstr ""
+msgstr "過濾的設定已經更改"
 
 #: filtertransdialog.cpp:2187
 msgid "Do you want to save them before continuing?"
-msgstr ""
+msgstr "您想在繼續之前儲存嗎？"
 
 #: filtertransdialog.cpp:2187
 msgid "Please confirm"
-msgstr ""
+msgstr "請確認"
 
 #: filtertransdialog.cpp:2234 reports/reportbase.cpp:233
 msgid "Choose Accounts"
@@ -2806,11 +2814,11 @@ msgstr "匯入(&I)"
 
 #: general_report_manager.cpp:384
 msgid "Locate and load a report file."
-msgstr ""
+msgstr "尋找及載入一個報表檔案"
 
 #: general_report_manager.cpp:386 import_export/univcsvdialog.cpp:538
 msgid "&Export"
-msgstr "匯出(&E)"
+msgstr "(&E)匯出"
 
 #: general_report_manager.cpp:388
 msgid "Export the report to a new file."
@@ -2818,7 +2826,7 @@ msgstr "將報告匯出到新的檔案。"
 
 #: general_report_manager.cpp:391 stockdialog.cpp:336
 msgid "&Save "
-msgstr "儲存 "
+msgstr "(&S)儲存 "
 
 #: general_report_manager.cpp:393
 msgid "Save changes."
@@ -2826,11 +2834,11 @@ msgstr "儲存修改"
 
 #: general_report_manager.cpp:395
 msgid "&Run"
-msgstr "&執行"
+msgstr "(&R)執行"
 
 #: general_report_manager.cpp:397
 msgid "Run selected report."
-msgstr ""
+msgstr "執行所選定的報表"
 
 #: general_report_manager.cpp:409
 msgid "Output"
@@ -2850,29 +2858,29 @@ msgstr "範本"
 
 #: general_report_manager.cpp:487
 msgid "&Test"
-msgstr "&測試"
+msgstr "(&T)測試"
 
 #: general_report_manager.cpp:488
 msgid "Create Template"
-msgstr ""
+msgstr "建立範本"
 
 #: general_report_manager.cpp:540
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] ""
+msgstr[0] "傳回 %zu 行，持續時間：%lld ms"
 
 #: general_report_manager.cpp:567
 msgid "SQL Syntax Error"
-msgstr ""
+msgstr "SQL 語法錯誤"
 
 #: general_report_manager.cpp:598
 msgid "Load report file:"
-msgstr "載入報表檔案:"
+msgstr "載入報表檔案："
 
 #: general_report_manager.cpp:600 general_report_manager.cpp:1059
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "一般性報表管理檔案 (*.grm)"
 
 #: general_report_manager.cpp:600 general_report_manager.cpp:1059
 msgid "ZIP files (*.zip)"
@@ -2890,19 +2898,19 @@ msgstr "資產..."
 
 #: general_report_manager.cpp:735
 msgid "New Empty Report..."
-msgstr ""
+msgstr "新的空白報表..."
 
 #: general_report_manager.cpp:736
 msgid "New Sample Report"
-msgstr ""
+msgstr "新的報表範例..."
 
 #: general_report_manager.cpp:739
 msgid "Change Group..."
-msgstr ""
+msgstr "改變分組..."
 
 #: general_report_manager.cpp:741
 msgid "Rename Group..."
-msgstr ""
+msgstr "重新命名分組..."
 
 #: general_report_manager.cpp:742
 msgid "UnGroup"
@@ -2910,27 +2918,27 @@ msgstr "取消群組"
 
 #: general_report_manager.cpp:743
 msgid "Rename Report..."
-msgstr ""
+msgstr "重新命名報表..."
 
 #: general_report_manager.cpp:747
 msgid "Active"
-msgstr "活躍"
+msgstr "啟用"
 
 #: general_report_manager.cpp:747
 msgid "Show/Hide report in Navigator"
-msgstr ""
+msgstr "於導覽器中 顯示/隱藏 報表"
 
 #: general_report_manager.cpp:751
 msgid "Delete Report..."
-msgstr ""
+msgstr "刪除報表..."
 
 #: general_report_manager.cpp:848 general_report_manager.cpp:1009
 msgid "Enter the name for the report"
-msgstr ""
+msgstr "輸入報表的名稱"
 
 #: general_report_manager.cpp:867
 msgid "Delete the Report Title:"
-msgstr ""
+msgstr "刪除報表的標題："
 
 #: general_report_manager.cpp:906 general_report_manager.cpp:990
 msgid "Enter or choose name for the new report group"
@@ -2938,7 +2946,7 @@ msgstr ""
 
 #: general_report_manager.cpp:907
 msgid "Change report group"
-msgstr ""
+msgstr "改變報表的分組"
 
 #: general_report_manager.cpp:923
 msgid "Enter or choose name for the new group"
@@ -2971,7 +2979,7 @@ msgstr ""
 
 #: general_report_manager.cpp:1234
 msgid "Parameters:"
-msgstr "參數:"
+msgstr "參數："
 
 #: images_list.cpp:326
 #, c-format
@@ -3130,7 +3138,7 @@ msgstr "清除"
 
 #: import_export/qif_export.cpp:258
 msgid "Choose Account to Export from:"
-msgstr "選擇要匯出的帳戶:"
+msgstr "選擇要匯出的帳戶："
 
 #: import_export/qif_export.cpp:259 import_export/qif_export.cpp:365
 msgid "QIF Export"
@@ -3207,7 +3215,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:385
 msgid "Encoding:"
-msgstr "編碼:"
+msgstr "編碼："
 
 #: import_export/qif_import_gui.cpp:180
 msgid "Filtering Details:"
@@ -3268,12 +3276,12 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:541 mmreportspanel.cpp:352
 msgid "Accounts:"
-msgstr "帳戶:"
+msgstr "帳戶："
 
 #: import_export/qif_import_gui.cpp:548 import_export/qif_import_gui.cpp:898
 #: import_export/univcsvdialog.cpp:357
 msgid "Date Format: "
-msgstr "日期格式: "
+msgstr "日期格式： "
 
 #: import_export/qif_import_gui.cpp:551
 msgid "Press OK Button to continue"
@@ -3389,12 +3397,12 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:1586
 #, c-format
 msgid "Added account: %s"
-msgstr ""
+msgstr "已新增的帳戶： %s"
 
 #: import_export/qif_import_gui.cpp:1617 import_export/univcsvdialog.cpp:1261
 #, c-format
 msgid "Added payee: %s"
-msgstr "已新增受款人: %s"
+msgstr "已新增受款人：%s"
 
 #: import_export/univcsvdialog.cpp:109
 msgid "SubCategory"
@@ -3424,7 +3432,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:208
 msgid "Account: "
-msgstr "帳戶: "
+msgstr "帳戶： "
 
 #: import_export/univcsvdialog.cpp:218
 msgid "Preset:"
@@ -3479,7 +3487,7 @@ msgstr "從開始： "
 
 #: import_export/univcsvdialog.cpp:474
 msgid "From end: "
-msgstr ""
+msgstr "從結束： "
 
 #: import_export/univcsvdialog.cpp:486
 msgid "Preview"
@@ -3989,11 +3997,11 @@ msgstr ""
 #: mmSimpleDialogs.cpp:1770
 #, c-format
 msgid "Create new tag '%s'?"
-msgstr ""
+msgstr "新增標記 '%s'？"
 
 #: mmSimpleDialogs.cpp:1770
 msgid "New tag entered"
-msgstr ""
+msgstr "已輸入新標記"
 
 #: mmTextCtrl.cpp:88 splittransactionsdialog.cpp:586
 msgid "Invalid Value"
@@ -4508,7 +4516,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:567
 msgid "Reconciled Bal: "
-msgstr "對帳後餘額: "
+msgstr "對帳後餘額： "
 
 #: mmcheckingpanel.cpp:569
 msgid "Diff: "
@@ -4574,7 +4582,7 @@ msgstr ""
 
 #: mmframe.cpp:272
 msgid "Navigator"
-msgstr ""
+msgstr "導覽器"
 
 #: mmframe.cpp:273
 msgid "Toolbar"
@@ -4733,7 +4741,7 @@ msgstr "(&L)開啟帳戶網頁"
 
 #: mmframe.cpp:1497 mmframe.cpp:1517
 msgid "&Attachment Manager..."
-msgstr ""
+msgstr "(&A)附件管理器"
 
 #: mmframe.cpp:1512 mmframe.cpp:1717
 msgid "&Change Account Type..."
@@ -4845,11 +4853,11 @@ msgstr "顯示/隱藏工具欄"
 
 #: mmframe.cpp:1634
 msgid "&Navigator\tF5"
-msgstr ""
+msgstr "(&N)導覽器\tF5"
 
 #: mmframe.cpp:1634
 msgid "Show/Hide Navigator"
-msgstr ""
+msgstr "顯示/隱藏 導覽器"
 
 #: mmframe.cpp:1636
 msgid "&Display Share Accounts"
@@ -4857,7 +4865,7 @@ msgstr ""
 
 #: mmframe.cpp:1636
 msgid "Show/Hide Share Accounts in Navigator"
-msgstr ""
+msgstr "導覽器中 顯示/隱藏 分享的帳戶"
 
 #: mmframe.cpp:1638
 msgid "&Display Deleted Transactions"
@@ -4865,7 +4873,7 @@ msgstr ""
 
 #: mmframe.cpp:1638
 msgid "Show/Hide Deleted Transactions in Navigator"
-msgstr ""
+msgstr "導覽器中 顯示/隱藏 已刪除的交易紀錄"
 
 #: mmframe.cpp:1640
 msgid "Budgets: As Financial &Years"
@@ -4965,11 +4973,11 @@ msgstr "受款人編輯器"
 
 #: mmframe.cpp:1743
 msgid "&Category Manager..."
-msgstr ""
+msgstr "(&C)類別管理器"
 
 #: mmframe.cpp:1747
 msgid "&Tag Manager..."
-msgstr ""
+msgstr "(&T)標記管理器"
 
 #: mmframe.cpp:1747 mmframe.cpp:1972 tagdialog.h:45
 msgid "Tag Manager"
@@ -5557,7 +5565,7 @@ msgstr "選擇要刪除的帳戶"
 msgid "Are you sure you want to delete\n"
 "%1$s account: %2$s?"
 msgstr "您確定要刪除嗎\n"
-"%1$s 帳戶: %2$s?"
+"%1$s 帳戶： %2$s?"
 
 #: mmframe.cpp:3632
 msgid "Select account"
@@ -5582,7 +5590,7 @@ msgstr ""
 
 #: mmframe.cpp:3837
 msgid "Merge tags completed"
-msgstr ""
+msgstr "合併標記已經完成"
 
 #: mmframe.cpp:3841
 msgid "Merge tags result"
@@ -5684,7 +5692,7 @@ msgstr "總計"
 #: reports/incexpenses.cpp:280 reports/payee.cpp:167
 #: reports/summarystocks.cpp:163 splittransactionsdialog.cpp:263
 msgid "Total:"
-msgstr "總計:"
+msgstr "總計："
 
 #: mmhomepage.cpp:162
 #, c-format
@@ -5709,7 +5717,7 @@ msgstr "支出"
 
 #: mmhomepage.cpp:437 reports/incexpenses.cpp:117
 msgid "Difference:"
-msgstr "盈 / 虧:"
+msgstr "盈 / 虧："
 
 #: mmhomepage.cpp:441
 msgid "Income/Expenses"
@@ -5785,7 +5793,7 @@ msgstr "報表"
 
 #: mmreportspanel.cpp:194
 msgid "Period:"
-msgstr "期間:"
+msgstr "期間："
 
 #: mmreportspanel.cpp:250 mmreportspanel.cpp:266 model/Model_Report.cpp:87
 msgid "Date:"
@@ -5801,7 +5809,7 @@ msgstr "年份："
 
 #: mmreportspanel.cpp:320
 msgid "Budget:"
-msgstr "預算:"
+msgstr "預算："
 
 #: mmreportspanel.cpp:357
 msgid "All Accounts:"
@@ -5932,7 +5940,12 @@ msgid "A scheduled transaction will exceed your account limit.\n\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "一筆排程交易紀錄將超出您的帳戶限額。\n\n"
+"帳號：%1$s\n"
+"當前餘額：%2$6.2f\n"
+"交易金額：%3$6.2f\n"
+"%4$s：%5$6.2f\n\n"
+"您想繼續嗎？"
 
 #: model/Model_Billsdeposits.cpp:217
 msgid "MMEX Scheduled Transaction Check"
@@ -6164,7 +6177,7 @@ msgstr "指定欲顯示的資料格式"
 
 #: optionsettingsgeneral.cpp:117
 msgid "Date format sample:"
-msgstr "日期格式範例:"
+msgstr "日期格式範例："
 
 #: optionsettingsgeneral.cpp:130
 msgid "Base Currency"
@@ -6242,7 +6255,7 @@ msgstr "區域"
 #: optionsettingsgeneral.cpp:346
 #, c-format
 msgid "Currency value sample: %s"
-msgstr "貨幣數字範例: %s"
+msgstr "貨幣數字範例：%s"
 
 #: optionsettingsgeneral.cpp:351
 msgid "Bad locale name"
@@ -6605,7 +6618,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:312
 msgid "Navigator Icon Size"
-msgstr ""
+msgstr "導覽器圖示大小"
 
 #: optionsettingsview.cpp:313
 msgid "Others Icon Size"
@@ -6691,7 +6704,7 @@ msgstr ""
 
 #: payeedialog.cpp:746
 msgid "Payee Manager: Delete Error"
-msgstr "受款人編輯器: 刪除錯誤"
+msgstr "受款人管理員：刪除錯誤"
 
 #: payeedialog.cpp:751
 msgid "Deleted transactions exist which use this payee."
@@ -6744,7 +6757,7 @@ msgstr ""
 #: relocatecategorydialog.cpp:157 relocatepayeedialog.cpp:155
 #: relocatetagdialog.cpp:157
 msgid "Please Confirm:"
-msgstr ""
+msgstr "請確認："
 
 #: relocatecategorydialog.cpp:158
 msgid "Merge categories confirmation"
@@ -6796,7 +6809,7 @@ msgstr ""
 
 #: relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge Tags"
-msgstr ""
+msgstr "管理標記"
 
 #: relocatetagdialog.cpp:101
 msgid "&Delete source tag after merge"
@@ -7035,11 +7048,11 @@ msgstr ""
 
 #: reports/incexpenses.cpp:115
 msgid "Income:"
-msgstr "收入:"
+msgstr "收入："
 
 #: reports/incexpenses.cpp:116
 msgid "Expenses:"
-msgstr "支出:"
+msgstr "支出："
 
 #: reports/incexpenses.cpp:133
 msgid "Income vs. Expenses Monthly"
@@ -7601,27 +7614,27 @@ msgstr ""
 #: stockspanel.cpp:325
 #, c-format
 msgid "Stock Portfolio: %s"
-msgstr "股票投資組合: %s"
+msgstr "證券投資組合： %s"
 
 #: stockspanel.cpp:369
 #, c-format
 msgid "Total Shares: %s"
-msgstr "總股數: %s"
+msgstr "總股數： %s"
 
 #: stockspanel.cpp:371
 #, c-format
 msgid "Invested: %s"
-msgstr "投資成本: %s"
+msgstr "投資成本：%s"
 
 #: stockspanel.cpp:372
 #, c-format
 msgid "Gain: %s"
-msgstr "增值金額: %s"
+msgstr "增值金額： %s"
 
 #: stockspanel.cpp:372
 #, c-format
 msgid "Loss: %s"
-msgstr "虧損金額: %s"
+msgstr "虧損金額： %s"
 
 #: stockspanel.cpp:410
 msgid "Stock prices successfully updated"
@@ -7647,11 +7660,11 @@ msgstr "符號：%s"
 
 #: tagdialog.cpp:126
 msgid "Add a new tag"
-msgstr ""
+msgstr "新增標記"
 
 #: tagdialog.cpp:131
 msgid "Edit the name of an existing tag"
-msgstr ""
+msgstr "編輯現有標記名稱"
 
 #: tagdialog.cpp:136
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
@@ -7663,7 +7676,7 @@ msgstr "選擇"
 
 #: tagdialog.cpp:179
 msgid "Invalid tag name"
-msgstr ""
+msgstr "無效的標記名稱"
 
 #: tagdialog.cpp:180
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
@@ -7671,19 +7684,19 @@ msgstr ""
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Tag Manager: Invalid Name"
-msgstr ""
+msgstr "標記管理器：無效名稱"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
-msgstr ""
+msgstr "名稱包含標記分隔符號。"
 
 #: tagdialog.cpp:186
 msgid "Tag names may not contain the space (' ') character"
-msgstr ""
+msgstr "標記名稱不能包含空格 (' ') 字符"
 
 #: tagdialog.cpp:206
 msgid "Enter the name for the new tag:"
-msgstr ""
+msgstr "輸入新標記的名稱："
 
 #: tagdialog.cpp:207 tagdialog.cpp:210
 msgid "Add Tag"
@@ -7691,11 +7704,11 @@ msgstr "新增標籤"
 
 #: tagdialog.cpp:218 tagdialog.cpp:253
 msgid "A tag with this name already exists"
-msgstr ""
+msgstr "此標記名稱已經存在"
 
 #: tagdialog.cpp:218
 msgid "Tag Manager: Adding Error"
-msgstr ""
+msgstr "標記管理器：新增錯誤"
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
@@ -7703,16 +7716,16 @@ msgstr "修改標籤"
 
 #: tagdialog.cpp:254
 msgid "Tag Manager: Editing Error"
-msgstr ""
+msgstr "標記管理器：編輯錯誤"
 
 #: tagdialog.cpp:295
 #, c-format
 msgid "Tag '%s' in use"
-msgstr ""
+msgstr "標記 '%s' 已經被使用"
 
 #: tagdialog.cpp:295
 msgid "Tag Manager: Delete Error"
-msgstr ""
+msgstr "標記管理器：刪除錯誤"
 
 #: tagdialog.cpp:298
 #, c-format
@@ -7725,7 +7738,7 @@ msgstr ""
 
 #: tagdialog.cpp:301
 msgid "Confirm Tag Deletion"
-msgstr ""
+msgstr "確認刪除標記"
 
 #: themes.cpp:191
 msgid "&Delete"
@@ -8085,7 +8098,7 @@ msgstr ""
 #: util.cpp:1516
 #, c-format
 msgid "User Interface Language: %s"
-msgstr "使用者介面語言: %s"
+msgstr "使用者介面語言： %s"
 
 #: util.cpp:1753
 msgid "The complete list of closed issues is available at this link"
