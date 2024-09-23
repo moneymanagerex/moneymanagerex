@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-23 13:49\n"
+"PO-Revision-Date: 2024-09-23 14:47\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #: aboutdialog.cpp:48
 msgid "License agreement"
-msgstr "授權合約"
+msgstr "授權協議"
 
 #: aboutdialog.cpp:181 mmframe.cpp:2003
 msgid "About"
