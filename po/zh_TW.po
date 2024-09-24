@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-23 14:47\n"
+"PO-Revision-Date: 2024-09-24 14:11\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -2071,11 +2071,11 @@ msgstr "輸入要顯示的提示"
 
 #: customfieldeditdialog.cpp:153
 msgid "RegEx"
-msgstr ""
+msgstr "正規表達式"
 
 #: customfieldeditdialog.cpp:155
 msgid "Enter the RegEx to validate field"
-msgstr ""
+msgstr "輸入正規表達式到驗證欄位"
 
 #: customfieldeditdialog.cpp:158
 msgid "Autocomplete"
@@ -2117,7 +2117,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:185
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "選擇一個值來表示面板上的項目"
 
 #: customfieldeditdialog.cpp:220 filtertransdialog.cpp:980
 #: filtertransdialog.cpp:1017 filtertransdialog.cpp:1049
@@ -2128,7 +2128,7 @@ msgstr "空值"
 
 #: customfieldeditdialog.cpp:233
 msgid "Changing field type will delete all content!"
-msgstr ""
+msgstr "更改欄位類型將刪除所有內容！"
 
 #: customfieldeditdialog.cpp:234 customfieldeditdialog.cpp:256 mmframe.cpp:2427
 #: mmframe.cpp:2489
@@ -2137,15 +2137,15 @@ msgstr "您想繼續嗎？"
 
 #: customfieldeditdialog.cpp:235 customfieldeditdialog.cpp:257
 msgid "Custom Field Change"
-msgstr ""
+msgstr "自訂欄位改片"
 
 #: customfieldeditdialog.cpp:255
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "您已修改選項：刪除的選項將被清除！"
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
-msgstr ""
+msgstr "新建/編輯自訂欄位"
 
 #: customfieldlistdialog.cpp:51
 msgid "#"
@@ -2161,22 +2161,24 @@ msgstr "自訂欄位管理員"
 
 #: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr ""
+msgstr "您確實要刪除此自訂欄位及其所有資料嗎？"
 
 #: customfieldlistdialog.cpp:171
 msgid "Confirm Custom Field Deletion"
-msgstr ""
+msgstr "確認刪除自訂欄位"
 
 #: customfieldlistdialog.cpp:189
 #, c-format
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "此功能將批量搜尋並替換“%s”自訂欄位值\n"
+"它將僅匹配和替換完整的欄位內容，不允許部分或中間值替換\n"
+"請注意，此過程未經任何驗證！"
 
 #: customfieldlistdialog.cpp:192
 msgid "Confirm Custom Field Content Update"
-msgstr ""
+msgstr "確認更新自訂欄位內容"
 
 #: customfieldlistdialog.cpp:197
 msgid "Find what"
@@ -2186,12 +2188,13 @@ msgstr "尋找內容"
 #: customfieldlistdialog.cpp:209 customfieldlistdialog.cpp:215
 #: customfieldlistdialog.cpp:230
 msgid "Update Custom Field Content"
-msgstr ""
+msgstr "更新自訂欄位內容"
 
 #: customfieldlistdialog.cpp:201
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "您想更新空白內容嗎？\n"
+"如果您想中止更新，請按否！"
 
 #: customfieldlistdialog.cpp:209
 msgid "Replace with"
@@ -2200,17 +2203,18 @@ msgstr "替換為"
 #: customfieldlistdialog.cpp:213
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "您想更新為空白嗎？\n"
+"如果您想中止更新，請按否！"
 
 #: customfieldlistdialog.cpp:229
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
+msgstr[0] "找到了 %zu 個事件並完成取代！"
 
 #: customfieldlistdialog.cpp:264
 msgid "&Bulk content update "
-msgstr ""
+msgstr "(&B)批量內容更新 "
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Bills"
@@ -2426,7 +2430,7 @@ msgstr "MMEX資料庫升級至版本%i失敗"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
-msgstr ""
+msgstr "請從自動建立的升級前備份還原資料庫，並且重試，或聯絡 MMEX 協助"
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
@@ -2467,16 +2471,17 @@ msgstr "MMEX 偵錯錯誤"
 
 #: dbupgrade.cpp:227 dbupgrade.cpp:278 mmframe.cpp:2464
 msgid "Query error, please contact MMEX support!"
-msgstr ""
+msgstr "查詢錯誤，請聯絡MMEX協助！"
 
 #: dbupgrade.cpp:234 dbupgrade.cpp:289
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "檔案內容無效，請聯絡 MMEX 協助！"
 
 #: dbupgrade.cpp:241
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
-msgstr ""
+msgstr "將此日誌傳送給 MMEX 支援團隊：\n"
+"按「確定」儲存至檔案或按「取消」退出"
 
 #: dbupgrade.cpp:242 dbupgrade.cpp:285
 msgid "MMEX debug"
@@ -2488,11 +2493,11 @@ msgstr "儲存偵錯檔案"
 
 #: dbupgrade.cpp:285
 msgid "DB maintenance completed, please close and re-open MMEX!"
-msgstr ""
+msgstr "資料庫維護完成，請關閉並重新開啟MMEX！"
 
 #: dbwrapper.cpp:77
 msgid "When database file opening:"
-msgstr ""
+msgstr "當資料庫檔案開啟時："
 
 #: dbwrapper.cpp:81
 msgid "Can't open file"
@@ -2500,7 +2505,7 @@ msgstr "無法開啟檔案"
 
 #: dbwrapper.cpp:81
 msgid "You must specify path to another database file"
-msgstr ""
+msgstr "您必須指定另一個資料庫檔案的路徑"
 
 #: dbwrapper.cpp:85
 msgid "An incorrect password given for an encrypted file\n"
