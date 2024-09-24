@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-18 21:58\n"
+"PO-Revision-Date: 2024-09-24 22:39\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -4617,7 +4617,7 @@ msgstr "Ocorreu um erro fatal.\n"
 
 #: mmframe.cpp:272
 msgid "Navigator"
-msgstr ""
+msgstr "Navegador"
 
 #: mmframe.cpp:273
 msgid "Toolbar"
@@ -4631,7 +4631,7 @@ msgstr "Contas Bancárias"
 #: mmframe.cpp:486 mmframe.cpp:786 mmhomepage.cpp:691 reports/summary.cpp:261
 #: reports/summary.cpp:303
 msgid "Credit Card Accounts"
-msgstr "Contas de Cartão de Crédito"
+msgstr "Contas de Cartão de crédito"
 
 #: mmframe.cpp:487 mmframe.cpp:798 mmhomepage.cpp:693 reports/summary.cpp:265
 #: reports/summary.cpp:305
@@ -4752,15 +4752,15 @@ msgstr "Ficheiro &QIF..."
 
 #: mmframe.cpp:1475
 msgid "&Customize Report..."
-msgstr ""
+msgstr "&Personalizar Relatório..."
 
 #: mmframe.cpp:1476
 msgid "&Rename Report..."
-msgstr ""
+msgstr "&Renomear Relatório..."
 
 #: mmframe.cpp:1477
 msgid "&Delete Report..."
-msgstr ""
+msgstr "&Eliminar Relatório..."
 
 #: mmframe.cpp:1493 mmframe.cpp:1511 mmframe.cpp:1531 mmframe.cpp:1714
 msgid "&Edit Account..."
@@ -4872,7 +4872,7 @@ msgstr "Imprimir vista atual"
 
 #: mmframe.cpp:1626
 msgid "E&xit\tCtrl-Q"
-msgstr ""
+msgstr "S&air\tCtrl-Q"
 
 #: mmframe.cpp:1626
 msgid "Quit this program"
@@ -5233,7 +5233,7 @@ msgstr "Conectar a lista RSS online ao agregador de notícias"
 
 #: mmframe.cpp:1880
 msgid "Make a &Donation"
-msgstr ""
+msgstr "Fazer uma &Doação"
 
 #: mmframe.cpp:1881
 msgid "Donate to the MMEX team to support infrastructure and development"
@@ -5321,7 +5321,7 @@ msgstr "Novo"
 
 #: mmframe.cpp:1979
 msgid "&Settings"
-msgstr ""
+msgstr "&Definições"
 
 #: mmframe.cpp:1987 mmframe.cpp:1992 mmframe.cpp:3018 optionsettingsnet.cpp:132
 msgid "News"
@@ -5499,11 +5499,11 @@ msgstr "Depuração da Base de Dados"
 
 #: mmframe.cpp:2492
 msgid "&Yes"
-msgstr ""
+msgstr "&Sim"
 
 #: mmframe.cpp:2492
 msgid "&No"
-msgstr ""
+msgstr "&Não"
 
 #: mmframe.cpp:2512 mmframe.cpp:2533
 msgid "Save database file as"
@@ -5880,11 +5880,11 @@ msgstr "Numerário"
 
 #: model/Model_Account.cpp:28
 msgid "Checking"
-msgstr "À Ordem"
+msgstr "À ordem"
 
 #: model/Model_Account.cpp:29
 msgid "Credit Card"
-msgstr "Cartão de Crédito"
+msgstr "Cartão de crédito"
 
 #: model/Model_Account.cpp:30
 msgid "Loan"
@@ -6857,7 +6857,7 @@ msgstr "Confirmação da fusão de beneficiários"
 
 #: relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge Tags"
-msgstr ""
+msgstr "Fundir Etiquetas"
 
 #: relocatetagdialog.cpp:101
 msgid "&Delete source tag after merge"
@@ -7798,7 +7798,7 @@ msgstr "Confirmar Eliminação da Etiqueta"
 
 #: themes.cpp:191
 msgid "&Delete"
-msgstr ""
+msgstr "&Eliminar"
 
 #: themes.cpp:193
 msgid "&Use"
@@ -8398,7 +8398,7 @@ msgstr "Selecione o tipo de conta que deseja criar:"
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
 msgstr "As contas bancárias gerais cobrem uma grande variedade de tipos de contas\n"
-"como Contas à Ordem, Empréstimos, e Cartões de Crédito."
+"como Dinheiro, À ordem, Empréstimos, e Cartões de crédito."
 
 #: wizard_newaccount.cpp:143
 msgid "Investment and Share accounts are specialized accounts that\n"
