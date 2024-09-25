@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-25 19:28\n"
+"PO-Revision-Date: 2024-09-25 21:00\n"
 "Last-Translator: \n"
 "Language-Team: English, United Kingdom\n"
 "MIME-Version: 1.0\n"
@@ -7354,7 +7354,7 @@ msgstr ""
 
 #: stockdialog.cpp:205
 msgid "*Share Number"
-msgstr ""
+msgstr "*Number of shares"
 
 #: stockdialog.cpp:212
 msgid "Enter number of shares.\n"
