@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-22 11:16\n"
+"PO-Revision-Date: 2024-09-25 19:28\n"
 "Last-Translator: \n"
 "Language-Team: English, United Kingdom\n"
 "MIME-Version: 1.0\n"
@@ -7265,7 +7265,7 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:217
 msgid "Share Number"
-msgstr ""
+msgstr "Number of shares"
 
 #: sharetransactiondialog.cpp:224
 msgid "Enter number of shares held"
