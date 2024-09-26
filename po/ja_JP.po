@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-18 21:58\n"
+"PO-Revision-Date: 2024-09-22 11:16\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
@@ -350,15 +350,15 @@ msgstr ""
 
 #: appstartdialog.cpp:116
 msgid "&User Manual"
-msgstr ""
+msgstr "ユーザーマニュアル"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "ユーザーマニュアルを読む"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1852
 msgid "&Website"
-msgstr ""
+msgstr "ウェブサイト(&W)"
 
 #: appstartdialog.cpp:121 mmframe.cpp:1853
 msgid "Visit MMEX website for the latest news and updates"
@@ -366,7 +366,7 @@ msgstr ""
 
 #: appstartdialog.cpp:125 mmframe.cpp:1869
 msgid "&Forum"
-msgstr ""
+msgstr "フォーラム(&F)"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
@@ -388,11 +388,11 @@ msgstr ""
 #: appstartdialog.cpp:208 mmframe.cpp:1688 mmframe.cpp:3081
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
 msgid "System default"
-msgstr ""
+msgstr "システムの既定値"
 
 #: appstartdialog.cpp:221 optionsettingsgeneral.cpp:92
 msgid "User Interface Language"
-msgstr ""
+msgstr "ユーザーインターフェイスの表示言語"
 
 #: appstartdialog.cpp:229 mmframe.cpp:3960 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -400,7 +400,7 @@ msgstr ""
 
 #: appstartdialog.cpp:231 mmframe.cpp:3962 optionsettingsgeneral.cpp:365
 msgid "Language change"
-msgstr ""
+msgstr "表示言語の変更"
 
 #: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:472
 msgid "New Asset"
@@ -416,7 +416,7 @@ msgstr "資産取引を追加"
 
 #: assetdialog.cpp:75
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "資産取引の編集"
 
 #: assetdialog.cpp:167
 msgid "Asset Details"
@@ -842,7 +842,7 @@ msgstr "添付を開くことに失敗しました"
 
 #: billsdepositsdialog.cpp:45 billsdepositspanel.cpp:50
 msgid "Once"
-msgstr ""
+msgstr "一度だけ"
 
 #: billsdepositsdialog.cpp:46 billsdepositspanel.cpp:51
 #: model/Model_Budget.cpp:30
@@ -1617,11 +1617,11 @@ msgstr ""
 
 #: categdialog.cpp:265
 msgid "E&xpand All"
-msgstr ""
+msgstr "すべて展開(&X)"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "&Show All"
-msgstr ""
+msgstr "すべて表示(&S)"
 
 #: categdialog.cpp:272
 msgid "Show all hidden categories"
@@ -1828,7 +1828,7 @@ msgstr ""
 
 #: constants.cpp:92
 msgid "Cut"
-msgstr ""
+msgstr "切り取り"
 
 #: constants.cpp:93
 msgid "Copy"
@@ -2123,7 +2123,7 @@ msgstr ""
 #: customfieldeditdialog.cpp:234 customfieldeditdialog.cpp:256 mmframe.cpp:2427
 #: mmframe.cpp:2489
 msgid "Do you want to proceed?"
-msgstr ""
+msgstr "続行しますか?"
 
 #: customfieldeditdialog.cpp:235 customfieldeditdialog.cpp:257
 msgid "Custom Field Change"

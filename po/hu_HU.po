@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-18 21:58\n"
+"PO-Revision-Date: 2024-09-21 23:20\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -5853,11 +5853,11 @@ msgstr "Költségvetés:"
 
 #: mmreportspanel.cpp:357
 msgid "All Accounts:"
-msgstr "Összes számla:"
+msgstr "Összes számla"
 
 #: mmreportspanel.cpp:358
 msgid "Specific Accounts:"
-msgstr "Adott számlák:"
+msgstr "Adott számlák…"
 
 #: mmreportspanel.cpp:374
 msgid "Future Months:"
