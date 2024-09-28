@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-24 15:51\n"
+"PO-Revision-Date: 2024-09-28 06:10\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -2712,18 +2712,20 @@ msgstr "設定"
 
 #: filtertransdialog.cpp:792
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "將啟用的數值儲存到目前預設選項"
 
 #: filtertransdialog.cpp:796
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "刪除當前預設選項"
 
 #: filtertransdialog.cpp:999
 #, c-format
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
-msgstr ""
+msgstr "該名稱目前與任何收款人均不相符。\n"
+"您想繼續使用它嗎？\n"
+"%s"
 
 #: filtertransdialog.cpp:1173
 msgid "Hide Report Columns"
@@ -2996,7 +2998,7 @@ msgstr ""
 #: images_list.cpp:414
 #, c-format
 msgid "File '%1$s' missing or invalid in chosen theme '%2$s'"
-msgstr ""
+msgstr "檔案「%1$s」在所選主題「%2$s」中遺失或無效"
 
 #: images_list.cpp:425
 #, c-format
@@ -3234,7 +3236,7 @@ msgstr "資料"
 
 #: import_export/qif_import_gui.cpp:280
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "請使用帳號而不是帳戶名稱"
 
 #: import_export/qif_import_gui.cpp:284
 msgid "Include payee field in notes"
@@ -3246,7 +3248,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:293 import_export/univcsvdialog.cpp:466
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "註記中包含符合的詳細資訊"
 
 #: import_export/qif_import_gui.cpp:391 import_export/qif_import_gui.cpp:394
 #: import_export/qif_import_gui.cpp:469 import_export/qif_import_gui.cpp:626
@@ -3502,15 +3504,15 @@ msgstr "預覽"
 
 #: import_export/univcsvdialog.cpp:561
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "選擇要匯入的 XML 資料檔案"
 
 #: import_export/univcsvdialog.cpp:561
 msgid "Choose CSV data file to Import"
-msgstr ""
+msgstr "選擇要匯入的 CSV 資料檔案"
 
 #: import_export/univcsvdialog.cpp:562
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "選擇要匯出的 XML 資料檔案"
 
 #: import_export/univcsvdialog.cpp:565
 msgid "Preset name"
@@ -3518,15 +3520,15 @@ msgstr "範本名稱"
 
 #: import_export/univcsvdialog.cpp:566
 msgid "Save current settings as a Preset"
-msgstr ""
+msgstr "將當前的選項儲存為預設"
 
 #: import_export/univcsvdialog.cpp:567 import_export/univcsvdialog.cpp:2183
 msgid "Delete Preset"
-msgstr ""
+msgstr "刪除預設"
 
 #: import_export/univcsvdialog.cpp:568
 msgid "MMEX standard format"
-msgstr ""
+msgstr "MMEX 標準格式"
 
 #: import_export/univcsvdialog.cpp:569
 msgid "Move Up"
@@ -7332,7 +7334,7 @@ msgstr ""
 
 #: splittransactionsdialog.cpp:99
 msgid "Enter notes to describe this split transaction"
-msgstr ""
+msgstr "於此拆分交易紀錄中加入註記來描述"
 
 #: splittransactionsdialog.cpp:251
 msgid "&Add Split"
