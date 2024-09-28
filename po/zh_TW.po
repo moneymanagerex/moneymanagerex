@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-24 15:51\n"
+"PO-Revision-Date: 2024-09-28 07:12\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -1757,7 +1757,7 @@ msgstr "確認刪除分類？"
 #: categdialog.cpp:612 tagdialog.cpp:241
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr "為「%s」輸入新名字"
+msgstr "為「%s」輸入新名稱"
 
 #: categdialog.cpp:613
 msgid "Edit Category"
@@ -2558,7 +2558,7 @@ msgstr "作廢"
 #: filtertransdialog.cpp:50 mmchecking_list.cpp:1282
 #: model/Model_Checking.cpp:44
 msgid "Follow Up"
-msgstr "再追蹤"
+msgstr "追蹤"
 
 #: filtertransdialog.cpp:50 model/Model_Checking.cpp:45
 msgid "Duplicate"
@@ -2712,18 +2712,20 @@ msgstr "設定"
 
 #: filtertransdialog.cpp:792
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "將啟用的數值儲存到目前預設選項"
 
 #: filtertransdialog.cpp:796
 msgid "Delete current Preset selection"
-msgstr ""
+msgstr "刪除當前預設選項"
 
 #: filtertransdialog.cpp:999
 #, c-format
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
-msgstr ""
+msgstr "該名稱目前與任何收款人均不相符。\n"
+"您想繼續使用它嗎？\n"
+"%s"
 
 #: filtertransdialog.cpp:1173
 msgid "Hide Report Columns"
@@ -2996,7 +2998,7 @@ msgstr ""
 #: images_list.cpp:414
 #, c-format
 msgid "File '%1$s' missing or invalid in chosen theme '%2$s'"
-msgstr ""
+msgstr "檔案「%1$s」在所選主題「%2$s」中遺失或無效"
 
 #: images_list.cpp:425
 #, c-format
@@ -3234,7 +3236,7 @@ msgstr "資料"
 
 #: import_export/qif_import_gui.cpp:280
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "請使用帳號而不是帳戶名稱"
 
 #: import_export/qif_import_gui.cpp:284
 msgid "Include payee field in notes"
@@ -3246,7 +3248,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:293 import_export/univcsvdialog.cpp:466
 msgid "Add match details to Notes"
-msgstr ""
+msgstr "註記中包含符合的詳細資訊"
 
 #: import_export/qif_import_gui.cpp:391 import_export/qif_import_gui.cpp:394
 #: import_export/qif_import_gui.cpp:469 import_export/qif_import_gui.cpp:626
@@ -3502,15 +3504,15 @@ msgstr "預覽"
 
 #: import_export/univcsvdialog.cpp:561
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "選擇要匯入的 XML 資料檔案"
 
 #: import_export/univcsvdialog.cpp:561
 msgid "Choose CSV data file to Import"
-msgstr ""
+msgstr "選擇要匯入的 CSV 資料檔案"
 
 #: import_export/univcsvdialog.cpp:562
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "選擇要匯出的 XML 資料檔案"
 
 #: import_export/univcsvdialog.cpp:565
 msgid "Preset name"
@@ -3518,15 +3520,15 @@ msgstr "範本名稱"
 
 #: import_export/univcsvdialog.cpp:566
 msgid "Save current settings as a Preset"
-msgstr ""
+msgstr "將當前的選項儲存為預設"
 
 #: import_export/univcsvdialog.cpp:567 import_export/univcsvdialog.cpp:2183
 msgid "Delete Preset"
-msgstr ""
+msgstr "刪除預設"
 
 #: import_export/univcsvdialog.cpp:568
 msgid "MMEX standard format"
-msgstr ""
+msgstr "MMEX 標準格式"
 
 #: import_export/univcsvdialog.cpp:569
 msgid "Move Up"
@@ -3557,7 +3559,8 @@ msgstr ""
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr ""
+msgstr "此範本的預設帳戶 「%s」 不存在。\n"
+"請選擇一個新帳戶。"
 
 #: import_export/univcsvdialog.cpp:748
 msgid "Account does not exist"
@@ -3595,7 +3598,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1304
 msgid "Date field is required."
-msgstr ""
+msgstr "必須要有資料欄位。"
 
 #: import_export/univcsvdialog.cpp:1305
 msgid "Amount field or both Withdrawal and Deposit fields are required."
@@ -4004,7 +4007,7 @@ msgstr ""
 #: mmSimpleDialogs.cpp:1770
 #, c-format
 msgid "Create new tag '%s'?"
-msgstr "新增標記 '%s'？"
+msgstr "新增標記「'%s」？"
 
 #: mmSimpleDialogs.cpp:1770
 msgid "New tag entered"
@@ -4025,7 +4028,8 @@ msgstr ""
 #: mmTextCtrl.cpp:116
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr ""
+msgstr "提示：如需計算，請輸入如 (2+2)*(2+2) 等表達式\n"
+"計算結果將被紀錄於該欄位。"
 
 #: mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
@@ -4041,31 +4045,31 @@ msgstr ""
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb database file."
-msgstr ""
+msgstr "提示：請記得備份 .mmb 資料庫檔案。"
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "提示：.mmb 資料庫檔案未加密。這代表任何其他擁有適當知識的人都可以打開此檔案並讀取其內容。因此，如果您要儲存任何敏感的財務訊息，請對其進行適當的保護。"
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
-msgstr ""
+msgstr "提示：若要將某交易紀錄標記為已對帳，請選擇該交易紀錄並按下「R」鍵。若要將某交易紀錄標記為未對帳，請選擇該交易紀錄並按下「U」鍵。"
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."
-msgstr ""
+msgstr "提示：若要將某筆交易標記為需要追蹤，請選擇該交易紀錄並按下「F」鍵。"
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr ""
+msgstr "提示：MMEX 支援列印所有可檢視的報表。列印選項位於選單“檔案”→“列印”內。"
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
-msgstr ""
+msgstr "提示：您可以透過變更選項中的設定來修改 MMEX 的某些執行期間的表現方式。"
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr ""
+msgstr "提示：若要列印包含任何篩選條件的交易紀錄報表，請使用交易篩選器選擇所需的交易，然後從選單中列印。"
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
@@ -4312,7 +4316,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:666
 msgid "Delete Viewed “&Follow Up” Transactions..."
-msgstr ""
+msgstr "刪除已檢視的「追蹤」交易紀錄"
 
 #: mmchecking_list.cpp:667
 msgid "Delete Viewed “&Unreconciled” Transactions..."
@@ -4336,7 +4340,7 @@ msgstr "無效"
 
 #: mmchecking_list.cpp:681
 msgid "&Follow Up"
-msgstr "&需要跟進"
+msgstr "(&F)追蹤"
 
 #: mmchecking_list.cpp:683
 msgid "D&uplicate"
@@ -5738,7 +5742,7 @@ msgstr "交易量細明表"
 
 #: mmhomepage.cpp:512
 msgid "Follow Up On Transactions: "
-msgstr ""
+msgstr "(&F)追蹤"
 
 #: mmhomepage.cpp:516
 msgid "Total Transactions: "
@@ -7332,7 +7336,7 @@ msgstr ""
 
 #: splittransactionsdialog.cpp:99
 msgid "Enter notes to describe this split transaction"
-msgstr ""
+msgstr "於此拆分交易紀錄中加入註記來描述"
 
 #: splittransactionsdialog.cpp:251
 msgid "&Add Split"
@@ -7730,7 +7734,7 @@ msgstr "標記管理器：編輯錯誤"
 #: tagdialog.cpp:295
 #, c-format
 msgid "Tag '%s' in use"
-msgstr "標記 '%s' 已經被使用"
+msgstr "標記「'%s」 已經被使用"
 
 #: tagdialog.cpp:295
 msgid "Tag Manager: Delete Error"
@@ -8089,7 +8093,7 @@ msgstr ""
 
 #: util.cpp:1465
 msgid "MMEX is using the following support products:"
-msgstr ""
+msgstr "MMEX 正在使用下列產品："
 
 #: util.cpp:1482
 msgid "Built with:"
@@ -8212,7 +8216,8 @@ msgstr ""
 #, c-format
 msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
-msgstr ""
+msgstr "交易將插入第一個銀行帳戶：\n"
+"「%s」並標記為「追蹤」。"
 
 #: webapp.cpp:499
 msgid "Wrong WebApp account"
