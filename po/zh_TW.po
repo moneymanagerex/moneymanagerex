@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-29 06:40\n"
+"PO-Revision-Date: 2024-09-29 12:13\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -1087,7 +1087,7 @@ msgstr "受款人"
 #: transdialog.cpp:531 transdialog.cpp:663 usertransactionpanel.cpp:164
 #: webappdialog.cpp:143
 msgid "Category"
-msgstr "類型"
+msgstr "類別"
 
 #: billsdepositsdialog.cpp:586 billsdepositsdialog.cpp:1451 transdialog.cpp:537
 #: transdialog.cpp:1293
@@ -1437,7 +1437,7 @@ msgstr "收入"
 
 #: budgetentrydialog.cpp:126
 msgid "Specify whether this category is an income or an expense category"
-msgstr "指定此類型是收入類型或是支出類別"
+msgstr "指定此類別是收入類型或是支出類別"
 
 #: budgetentrydialog.cpp:128
 msgid "Frequency:"
@@ -1453,7 +1453,7 @@ msgstr "總額："
 
 #: budgetentrydialog.cpp:141
 msgid "Enter the amount budgeted for this category."
-msgstr "輸入此類型的預算總額。"
+msgstr "輸入此類別的預算總額。"
 
 #: budgetentrydialog.cpp:148 payeedialog.cpp:119
 msgid "Enter notes to describe this budget entry"
@@ -1633,15 +1633,15 @@ msgstr "顯示所有隱藏的種類"
 
 #: categdialog.cpp:315
 msgid "Add a new category"
-msgstr "新增類型"
+msgstr "新增類別"
 
 #: categdialog.cpp:319
 msgid "Edit the name of an existing category"
-msgstr "編輯已存在類型"
+msgstr "編輯已存在類別"
 
 #: categdialog.cpp:323
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr "刪除已存在類型。此類型不可以用在已存在的交易上。"
+msgstr "刪除已存在類別。此類別不可以用在已存在的交易紀錄上。"
 
 #: categdialog.cpp:328 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -3971,7 +3971,7 @@ msgstr "可以使用下拉按鈕進行選擇。"
 
 #: mmSimpleDialogs.cpp:1030
 msgid "Activating the button will provide a selection box where the account can be selected."
-msgstr ""
+msgstr "啟動該按鈕將將出現一個選擇框，可以在其中選擇帳戶。"
 
 #: mmSimpleDialogs.cpp:1039
 msgid "Invalid Payee"
@@ -3980,7 +3980,8 @@ msgstr "無效的受款人"
 #: mmSimpleDialogs.cpp:1040
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr ""
+msgstr "請輸入新的受款人，\n"
+"或使用下拉按鈕進行選擇。"
 
 #: mmSimpleDialogs.cpp:1048 mmSimpleDialogs.cpp:1060
 msgid "Invalid Name"
@@ -4000,11 +4001,11 @@ msgstr "請輸入不是空白的證券代碼。"
 
 #: mmSimpleDialogs.cpp:1168
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
-msgstr ""
+msgstr "輸入要搜尋的標記，可以選擇以運算子「&」和「|」分隔。"
 
 #: mmSimpleDialogs.cpp:1169
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
-msgstr ""
+msgstr "相連標記之間的預設運算子是 AND，使用「|」將運算符更改為 「OR」。"
 
 #: mmSimpleDialogs.cpp:1770
 #, c-format
@@ -4021,11 +4022,11 @@ msgstr "無效數值"
 
 #: mmTextCtrl.cpp:114
 msgid "Please enter a positive or calculated value."
-msgstr ""
+msgstr "請輸入正值或計算值。"
 
 #: mmTextCtrl.cpp:114
 msgid "Please enter a calculated value."
-msgstr ""
+msgstr "請輸入計算值。"
 
 #: mmTextCtrl.cpp:116
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
@@ -4043,7 +4044,7 @@ msgstr "注意:升級到新版本MMEX前,請先備份您的資料庫mmb檔案"
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
-msgstr ""
+msgstr "建議：對常用交易紀錄使用複製 (Ctrl+C) 和貼上 (Ctrl+V)。"
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb database file."
@@ -4075,11 +4076,11 @@ msgstr "提示：若要列印包含任何篩選條件的交易紀錄報表，請
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
-msgstr ""
+msgstr "提示：如果您有不同貨幣的帳戶，請設定貨幣的匯率。"
 
 #: mmTips.h:34
 msgid "Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "類別管理員提示：按下「H」鍵將循環瀏覽以字母 h 開頭的所有類別。"
 
 #: mmTips.h:35
 msgid "Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
@@ -5034,7 +5035,7 @@ msgstr "&合併"
 
 #: mmframe.cpp:1765
 msgid "Merge categories, payees, and tags"
-msgstr ""
+msgstr "合併類別、受款人和標記"
 
 #: mmframe.cpp:1776
 msgid "&Budget Planner..."
@@ -6830,7 +6831,7 @@ msgstr "管理標記"
 
 #: relocatetagdialog.cpp:101
 msgid "&Delete source tag after merge"
-msgstr ""
+msgstr "(&D)合併後刪除來源標記"
 
 #: relocatetagdialog.cpp:158
 msgid "Merge tags confirmation"
@@ -7685,7 +7686,7 @@ msgstr "編輯現有標記名稱"
 
 #: tagdialog.cpp:136
 msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr ""
+msgstr "刪除現有標記。該標記不能被現有交易紀錄使用。"
 
 #: tagdialog.cpp:142
 msgid "Select"
@@ -7701,7 +7702,7 @@ msgstr ""
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Tag Manager: Invalid Name"
-msgstr "標記管理器：無效名稱"
+msgstr "標記管理員：無效名稱"
 
 #: tagdialog.cpp:185
 msgid "Name contains tag delimiter."
@@ -7717,7 +7718,7 @@ msgstr "輸入新標記的名稱："
 
 #: tagdialog.cpp:207 tagdialog.cpp:210
 msgid "Add Tag"
-msgstr "新增標籤"
+msgstr "新增標記"
 
 #: tagdialog.cpp:218 tagdialog.cpp:253
 msgid "A tag with this name already exists"
@@ -7725,7 +7726,7 @@ msgstr "此標記名稱已經存在"
 
 #: tagdialog.cpp:218
 msgid "Tag Manager: Adding Error"
-msgstr "標記管理器：新增錯誤"
+msgstr "標記管理員：新增錯誤"
 
 #: tagdialog.cpp:242 tagdialog.cpp:245
 msgid "Edit Tag"
@@ -7733,7 +7734,7 @@ msgstr "修改標記"
 
 #: tagdialog.cpp:254
 msgid "Tag Manager: Editing Error"
-msgstr "標記管理器：編輯錯誤"
+msgstr "標記管理員：編輯錯誤"
 
 #: tagdialog.cpp:295
 #, c-format
@@ -7742,7 +7743,7 @@ msgstr "標記「'%s」 已經被使用"
 
 #: tagdialog.cpp:295
 msgid "Tag Manager: Delete Error"
-msgstr "標記管理器：刪除錯誤"
+msgstr "標記管理員：刪除錯誤"
 
 #: tagdialog.cpp:298
 #, c-format
