@@ -32,8 +32,8 @@
 
 mmReportTransactions::mmReportTransactions(wxSharedPtr<mmFilterTransactionsDialog>& transDialog)
     : mmPrintableBase("Transaction Report")
-    , m_transDialog(transDialog)
     , trans_()
+    , m_transDialog(transDialog)
 {
 }
 
@@ -244,6 +244,7 @@ table {
                     case Model_CustomField::TYPE_ID_BOOLEAN:
                         nameCSS.Append(" text-center");
                         break;
+                    default: break;
                     }
                     hb.addTableHeaderCell(name, nameCSS);
                 }
@@ -323,10 +324,12 @@ table {
                         amount = -amount;
                     const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
                     if (showColumnById(mmFilterTransactionsDialog::COL_AMOUNT))
+                    {
                         if (Model_Checking::status_id(transaction.STATUS) == Model_Checking::STATUS_ID_VOID)
                             hb.addCurrencyCell(Model_Checking::amount(transaction, acc->ACCOUNTID), curr, -1, true);                            
                         else if (transaction.DELETEDTIME.IsEmpty())
                             hb.addCurrencyCell(amount, curr);
+                    }
                     total[curr->CURRENCYID] += amount;
                     grand_total[curr->CURRENCYID] += amount;
                     total_in_base_curr[curr->CURRENCYID] += amount * convRate;

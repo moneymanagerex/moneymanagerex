@@ -515,12 +515,12 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         menu.Append(MENU_TREEPOPUP_RESTORE_VIEWED, _("Restore &all transactions in current view..."));
     }
     bool columnIsAmount = false;
-    long column = getColumnFromPosition(event.GetX());
+    unsigned long column = getColumnFromPosition(event.GetX());
     int flags;
-    long row = HitTest(event.GetPosition(), flags);
-    if (row >= 0 && flags & wxLIST_HITTEST_ONITEM)
+    unsigned long row = HitTest(event.GetPosition(), flags);
+    if (flags & wxLIST_HITTEST_ONITEM)
     {
-        if (column >= 0 && column < m_columns.size())
+        if (column < m_columns.size())
         {
             wxString menuItemText;
             wxString refType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
