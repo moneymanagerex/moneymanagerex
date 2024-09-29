@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-28 07:12\n"
+"PO-Revision-Date: 2024-09-29 05:35\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -2105,11 +2105,11 @@ msgstr "輸入此欄位的選項，以分號分隔"
 
 #: customfieldeditdialog.cpp:175
 msgid "Digits scale"
-msgstr ""
+msgstr "小數位數"
 
 #: customfieldeditdialog.cpp:177
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "輸入允許的小數位數"
 
 #: customfieldeditdialog.cpp:180
 msgid "Panel's column"
@@ -2993,7 +2993,7 @@ msgstr "參數："
 #: images_list.cpp:326
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "主題「%s」中的詮釋資料 JSON 無法解析，而且看起來建構很糟糕，請修正。"
 
 #: images_list.cpp:414
 #, c-format
@@ -3003,7 +3003,7 @@ msgstr "檔案「%1$s」在所選主題「%2$s」中遺失或無效"
 #: images_list.cpp:425
 #, c-format
 msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
-msgstr ""
+msgstr "所選主題「%2$s」中缺少詮釋資料「%1$s」"
 
 #: images_list.cpp:458
 msgid "and more..."
@@ -3012,21 +3012,21 @@ msgstr "和更多..."
 #: images_list.cpp:460
 #, c-format
 msgid "There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s"
-msgstr ""
+msgstr "所選主題「%2$s」：%3$s中有 %1$d 個遺失或無效圖示"
 
 #: images_list.cpp:489
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "未找到主題 %s，它可能不再被支援。恢復至預設主題"
 
 #: images_list.cpp:496
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "主題 %s 缺少項目且不相容。恢復至預設主題"
 
 #: images_list.cpp:501
 msgid "No workable theme found, the installation may be corrupt"
-msgstr ""
+msgstr "找不到可用的主題，安裝可能已損壞"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2248
 #: mmSimpleDialogs.cpp:1012
@@ -3244,7 +3244,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:288 import_export/univcsvdialog.cpp:460
 msgid "Pattern match Payees"
-msgstr ""
+msgstr "符合收款人的模式"
 
 #: import_export/qif_import_gui.cpp:293 import_export/univcsvdialog.cpp:466
 msgid "Add match details to Notes"
@@ -3271,17 +3271,17 @@ msgstr "掃描"
 #: import_export/qif_import_gui.cpp:430
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "讀取行 %zu，%lld ms"
 
 #: import_export/qif_import_gui.cpp:436
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "第 %zu %s 行\n"
 
 #: import_export/qif_import_gui.cpp:536
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "從 QIF 檔案讀取的行數： %zu 行 共%lld ms"
 
 #: import_export/qif_import_gui.cpp:541 mmreportspanel.cpp:352
 msgid "Accounts:"
@@ -3294,7 +3294,7 @@ msgstr "日期格式： "
 
 #: import_export/qif_import_gui.cpp:551
 msgid "Press OK Button to continue"
-msgstr ""
+msgstr "請按確認按鈕繼續"
 
 #: import_export/qif_import_gui.cpp:770 import_export/qif_import_gui.cpp:801
 #: import_export/univcsvdialog.cpp:2091 import_export/univcsvdialog.cpp:2105
@@ -3305,19 +3305,19 @@ msgstr "遺失"
 #: import_export/qif_import_gui.cpp:795 import_export/univcsvdialog.cpp:2085
 #, c-format
 msgid "Matched to %1$s by pattern %2$s"
-msgstr ""
+msgstr "依照模式 %2$s 與 %1$s 匹配"
 
 #: import_export/qif_import_gui.cpp:874
 msgid "Choose QIF data file to Import"
-msgstr ""
+msgstr "選擇要匯入的 QIF 資料檔案"
 
 #: import_export/qif_import_gui.cpp:1045
 msgid "Do you want to import all transaction?"
-msgstr ""
+msgstr "您想匯入所有交易紀錄嗎？"
 
 #: import_export/qif_import_gui.cpp:1046
 msgid "All missing account, payees and categories will be created."
-msgstr ""
+msgstr "所有缺少的帳戶、受款人和類別都將被建立。"
 
 #: import_export/qif_import_gui.cpp:1047
 msgid "Confirm Import"
@@ -3342,7 +3342,7 @@ msgstr "匯入類別"
 #: import_export/qif_import_gui.cpp:1084
 #, c-format
 msgid "Importing transaction %1$i of %2$i"
-msgstr ""
+msgstr "正在匯入交易紀錄 %1$i（共 %2$i）"
 
 #: import_export/qif_import_gui.cpp:1174
 msgid "Importing Transfers"
@@ -3350,25 +3350,25 @@ msgstr "匯入轉帳交易"
 
 #: import_export/qif_import_gui.cpp:1214
 msgid "Importing Split transactions"
-msgstr ""
+msgstr "匯入拆分交易紀錄"
 
 #: import_export/qif_import_gui.cpp:1218
 msgid "Import finished successfully"
-msgstr ""
+msgstr "匯入作業成功完成"
 
 #: import_export/qif_import_gui.cpp:1218
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "匯入總數量：%zu"
 
 #: import_export/qif_import_gui.cpp:1228 import_export/univcsvdialog.cpp:1533
 msgid "Imported transactions discarded by user!"
-msgstr ""
+msgstr "匯入的交易紀錄被使用者丟棄！"
 
 #: import_export/qif_import_gui.cpp:1230 import_export/qif_import_gui.h:45
 #: mmframe.cpp:1602
 msgid "Import from QIF file"
-msgstr ""
+msgstr "從 QIF 檔案匯入"
 
 #: import_export/qif_import_gui.cpp:1338
 msgid "Transaction code is missing"
