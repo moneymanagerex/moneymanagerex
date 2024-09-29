@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-29 05:35\n"
+"PO-Revision-Date: 2024-09-29 06:40\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -117,15 +117,15 @@ msgstr "帳戶開設日期"
 #: accountdialog.cpp:160 import_export/univcsvdialog.cpp:583
 #: import_export/univcsvdialog.cpp:2657
 msgid "Currency:"
-msgstr "幣別："
+msgstr "貨幣："
 
 #: accountdialog.cpp:162 currencydialog.cpp:112
 msgid "Select Currency"
-msgstr "選擇幣別"
+msgstr "選擇貨幣幣別"
 
 #: accountdialog.cpp:168
 msgid "Specify the currency to be used by this account."
-msgstr "設定帳戶所使用的幣別。"
+msgstr "設定帳戶所使用的貨幣幣別。"
 
 #: accountdialog.cpp:171
 msgid "Favorite Account"
@@ -281,7 +281,7 @@ msgstr "帳戶名稱 "
 #: optionsettingsgeneral.cpp:123 optionsettingsgeneral.cpp:293
 #: reports/htmlbuilder.cpp:243
 msgid "Currency"
-msgstr "幣別"
+msgstr "貨幣"
 
 #: accountdialog.cpp:507 payeedialog.cpp:198
 msgid "Please enter a valid URL"
@@ -471,7 +471,7 @@ msgstr "請輸入資產值"
 
 #: assetdialog.cpp:210
 msgid "Change in Value"
-msgstr "更改值"
+msgstr "價值變動"
 
 #: assetdialog.cpp:216
 msgid "Specify if the value of the asset changes over time"
@@ -1930,23 +1930,23 @@ msgstr "常用的"
 
 #: currencydialog.cpp:112
 msgid "Currency name"
-msgstr "幣別名稱"
+msgstr "貨幣名稱"
 
 #: currencydialog.cpp:188
 msgid "Currency Name"
-msgstr "幣別名稱"
+msgstr "貨幣名稱"
 
 #: currencydialog.cpp:193
 msgid "Currency Code"
-msgstr "幣別代碼"
+msgstr "貨幣代碼"
 
 #: currencydialog.cpp:198
 msgid "Currency Symbol"
-msgstr "幣別符號"
+msgstr "貨幣符號"
 
 #: currencydialog.cpp:202
 msgid "Symbol Location"
-msgstr "證券代碼位置"
+msgstr "貨幣符號位置"
 
 #: currencydialog.cpp:203
 msgid "Prefix"
@@ -1989,7 +1989,7 @@ msgstr "規模"
 
 #: currencydialog.cpp:231 currencydialog.cpp:291
 msgid "Conversion to Base Rate"
-msgstr "轉換為基本利率"
+msgstr "轉換為基準匯率"
 
 #: currencydialog.cpp:240
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
@@ -2001,7 +2001,7 @@ msgstr "固定匯率"
 
 #: currencydialog.cpp:247
 msgid "Currency Format Sample:"
-msgstr "幣別格式範例："
+msgstr "貨幣格式範例："
 
 #: currencydialog.cpp:261
 msgid "Save any changes made"
@@ -3372,36 +3372,36 @@ msgstr "從 QIF 檔案匯入"
 
 #: import_export/qif_import_gui.cpp:1338
 msgid "Transaction code is missing"
-msgstr ""
+msgstr "無交易紀錄代碼"
 
 #: import_export/qif_import_gui.cpp:1352 import_export/univcsvdialog.cpp:2423
 #, c-format
 msgid "%1$s matched by %2$s"
-msgstr ""
+msgstr "%1$s 與 %2$s 符合"
 
 #: import_export/qif_import_gui.cpp:1364
 msgid "Transaction Payee is missing or incorrect"
-msgstr ""
+msgstr "無交易紀錄受款人或資料不正確"
 
 #: import_export/qif_import_gui.cpp:1376
 msgid "Date format or date mask is incorrect"
-msgstr ""
+msgstr "日期格式或日期遮罩不正確"
 
 #: import_export/qif_import_gui.cpp:1388
 msgid "Transaction Account is incorrect"
-msgstr ""
+msgstr "交易帳戶不正確"
 
 #: import_export/qif_import_gui.cpp:1397
 msgid "Transaction Account for transfer is incorrect"
-msgstr ""
+msgstr "轉帳的交易帳號不正確"
 
 #: import_export/qif_import_gui.cpp:1426
 msgid "Transaction Amount is incorrect"
-msgstr ""
+msgstr "交易金額不正確"
 
 #: import_export/qif_import_gui.cpp:1452
 msgid "Transaction Category is incorrect"
-msgstr ""
+msgstr "交易類別不正確"
 
 #: import_export/qif_import_gui.cpp:1586
 #, c-format
@@ -3452,11 +3452,12 @@ msgstr "預設集："
 #, c-format
 msgid "Load this Preset when Account is:\n"
 "%s"
-msgstr ""
+msgstr "當帳戶處於以下狀態時載入此預設：\n"
+"%s"
 
 #: import_export/univcsvdialog.cpp:272
 msgid "Specify the order of fields in the file"
-msgstr ""
+msgstr "指定檔案中欄位的順序"
 
 #: import_export/univcsvdialog.cpp:318
 msgid "&MMEX format"
@@ -3476,19 +3477,19 @@ msgstr "CSV 分隔符號："
 
 #: import_export/univcsvdialog.cpp:399
 msgid "Export column titles"
-msgstr ""
+msgstr "匯出列名稱"
 
 #: import_export/univcsvdialog.cpp:414
 msgid "Positive values are deposits"
-msgstr ""
+msgstr "正的金額數量為存款"
 
 #: import_export/univcsvdialog.cpp:415
 msgid "Positive values are withdrawals"
-msgstr ""
+msgstr "負的金額數量為提款"
 
 #: import_export/univcsvdialog.cpp:432
 msgid "Rows to ignore"
-msgstr ""
+msgstr "要忽略的行"
 
 #: import_export/univcsvdialog.cpp:439
 msgid "From start: "
@@ -3553,7 +3554,7 @@ msgstr "檔案輸入"
 #: import_export/univcsvdialog.cpp:586 import_export/univcsvdialog.cpp:2668
 #, c-format
 msgid "Preset '%1$s' loaded because Account '%2$s' selected"
-msgstr ""
+msgstr "由於選擇了帳戶「%2$s」，已載入預設「%1$s」"
 
 #: import_export/univcsvdialog.cpp:746
 #, c-format
@@ -3570,7 +3571,7 @@ msgstr "帳戶不存在"
 #: import_export/univcsvdialog.cpp:2683
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "若類型有「%s」則為正"
 
 #: import_export/univcsvdialog.cpp:1072
 msgid "Preset Name"
@@ -3590,11 +3591,11 @@ msgstr "無效的金額數量"
 
 #: import_export/univcsvdialog.cpp:1243
 msgid "Type (withdrawal/deposit) unknown."
-msgstr ""
+msgstr "未知類型(提款/存款)。"
 
 #: import_export/univcsvdialog.cpp:1303
 msgid "Incorrect fields specified for import!"
-msgstr ""
+msgstr "指定匯入的欄位不正確！"
 
 #: import_export/univcsvdialog.cpp:1304
 msgid "Date field is required."
@@ -3602,7 +3603,7 @@ msgstr "必須要有資料欄位。"
 
 #: import_export/univcsvdialog.cpp:1305
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr ""
+msgstr "金額欄位或提款和存款欄位均為必填欄位。"
 
 #: import_export/univcsvdialog.cpp:1306 import_export/univcsvdialog.cpp:1501
 #: webappdialog.cpp:408
@@ -3612,46 +3613,46 @@ msgstr "匯入"
 #: import_export/univcsvdialog.cpp:1366
 #, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
+msgstr "已匯入帳戶 %s 的交易紀錄：%ld"
 
 #: import_export/univcsvdialog.cpp:1392
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "第 %ld 行：空白"
 
 #: import_export/univcsvdialog.cpp:1403
 #, c-format
 msgid "Line %ld: Error:"
-msgstr ""
+msgstr "第 %ld 行：錯誤"
 
 #: import_export/univcsvdialog.cpp:1418
 #, c-format
 msgid "Line %ld: %s"
-msgstr ""
+msgstr "第 %ld 行：%s"
 
 #: import_export/univcsvdialog.cpp:1472
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "第 %ld 行：確認，已經匯入。"
 
 #: import_export/univcsvdialog.cpp:1481
 msgid "Rejected rows:"
-msgstr ""
+msgstr "被拒絕的行："
 
 #: import_export/univcsvdialog.cpp:1486
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "總行數：%ld"
 
 #: import_export/univcsvdialog.cpp:1488
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "選擇匯入的行數：%ld"
 
 #: import_export/univcsvdialog.cpp:1490
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "空行數：%ld"
 
 #: import_export/univcsvdialog.cpp:1492
 #, c-format
@@ -3661,12 +3662,12 @@ msgstr "(&A)關於"
 #: import_export/univcsvdialog.cpp:1494
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "錯誤的：%ld"
 
 #: import_export/univcsvdialog.cpp:1497
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "寫入日誌檔：%s"
 
 #: import_export/univcsvdialog.cpp:1500 stockdialog.cpp:638
 msgid "Please confirm saving"
@@ -3678,7 +3679,7 @@ msgstr "無匯入的交易紀錄!"
 
 #: import_export/univcsvdialog.cpp:1556
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr ""
+msgstr "指定匯出的欄位不正確！至少需要日期和金額。"
 
 #: import_export/univcsvdialog.cpp:1557 import_export/univcsvdialog.cpp:1738
 msgid "Export"
@@ -3686,7 +3687,7 @@ msgstr "匯出"
 
 #: import_export/univcsvdialog.cpp:1567
 msgid "Overwrite existing file?"
-msgstr ""
+msgstr "覆蓋現有的檔案？"
 
 #: import_export/univcsvdialog.cpp:1567
 msgid "File exists"
@@ -3694,7 +3695,7 @@ msgstr "檔案已存在"
 
 #: import_export/univcsvdialog.cpp:1573
 msgid "Failed to delete existing file. File may be locked by another program."
-msgstr ""
+msgstr "無法刪除現有檔案。檔案可能被另一個程式鎖定。"
 
 #: import_export/univcsvdialog.cpp:1574
 msgid "Destination file error"
@@ -3707,12 +3708,12 @@ msgstr "帳戶無效"
 #: import_export/univcsvdialog.cpp:1737
 #, c-format
 msgid "Transactions exported: %ld"
-msgstr ""
+msgstr "已匯出交易紀錄筆數：%ld"
 
 #: import_export/univcsvdialog.cpp:2181
 #, c-format
 msgid "Preset '%s' will be deleted"
-msgstr ""
+msgstr "預設「%s」將被刪除"
 
 #: import_export/univcsvdialog.cpp:2214 stockdialog.cpp:544
 msgid "Choose CSV data file to import"
@@ -3740,7 +3741,7 @@ msgstr "所有檔案"
 
 #: import_export/univcsvdialog.cpp:2679
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'credit'"
-msgstr ""
+msgstr "請輸入在 CSV 檔案中代表正值的單字，例如「信用」"
 
 #: import_export/univcsvdialog.cpp:2679
 msgid "Enter a value"
@@ -3748,33 +3749,33 @@ msgstr "請輸入數值"
 
 #: import_export/univcsvdialog.cpp:2689
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
-msgstr ""
+msgstr "選擇匯入「類型」時，必須按該類型定義金額正負符號"
 
 #: import_export/univcsvdialog.cpp:2810 import_export/univcsvdialog.cpp:2821
 #: import_export/univcsvdialog.cpp:2837 import_export/univcsvdialog.cpp:2881
 #: import_export/univcsvdialog.cpp:2892
 #, c-format
 msgid "Value %1$s for custom field '%2$s' is not type %3$s."
-msgstr ""
+msgstr "自訂欄位「%2$s」的值 %1$s 不是類型 %3$s。"
 
 #: import_export/univcsvdialog.cpp:2850 import_export/univcsvdialog.cpp:2871
 #, c-format
 msgid "Value %1$s for %2$s custom field '%3$s' is not a valid selection."
-msgstr ""
+msgstr "%2$s 自訂欄位「%3$s」的值 %1$s 不是有效選擇。"
 
 #: import_export/univcsvdialog.cpp:2882
 #, c-format
 msgid "Confirm format matches selection %s."
-msgstr ""
+msgstr "確認格式與選擇 %s 相符。"
 
 #: import_export/univcsvdialog.cpp:2909
 #, c-format
 msgid "Value %1$s does not match regex %2$s for custom field '%3$s'."
-msgstr ""
+msgstr "值 %1$s 與自訂欄位「%3$s」的正規表達式 %2$s 不符。"
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
-msgstr "代碼"
+msgstr "貨幣代碼"
 
 #: maincurrencydialog.cpp:77
 msgid "Last Rate"
@@ -3790,7 +3791,7 @@ msgstr "不適用"
 
 #: maincurrencydialog.cpp:180 maincurrencydialog.cpp:474
 msgid "Online update currency rate"
-msgstr ""
+msgstr "線上更新匯率"
 
 #: maincurrencydialog.cpp:183
 msgid "Online Update"
@@ -3798,11 +3799,11 @@ msgstr "線上更新"
 
 #: maincurrencydialog.cpp:187
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "顯示全部，包含未使用的貨幣"
 
 #: maincurrencydialog.cpp:241
 msgid "Currency History Options"
-msgstr ""
+msgstr "歷史匯率選項"
 
 #: maincurrencydialog.cpp:258 stockdialog.cpp:287 stockdialog.cpp:306
 #: stockdialog.cpp:634 stockspanel.cpp:215
@@ -3811,11 +3812,11 @@ msgstr "價格"
 
 #: maincurrencydialog.cpp:277
 msgid "Specify the date of currency value"
-msgstr ""
+msgstr "指定貨幣匯率的日期"
 
 #: maincurrencydialog.cpp:287
 msgid "Enter the currency value"
-msgstr ""
+msgstr "輸入貨幣價格"
 
 #: maincurrencydialog.cpp:297
 msgid "Download Currency Values history"
@@ -3835,21 +3836,22 @@ msgstr "刪除已選擇的貨幣匯率"
 
 #: maincurrencydialog.cpp:309
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "刪除未使用的幣別和天數的歷史匯率"
 
 #: maincurrencydialog.cpp:365
 msgid "Do you really want to delete the selected Currency?"
-msgstr ""
+msgstr "您確實要刪除所選貨幣嗎？"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
-msgstr "基礎幣別選擇"
+msgstr "基準幣別選擇"
 
 #: maincurrencydialog.cpp:435
 #, c-format
 msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %2$s"
-msgstr ""
+msgstr "找到 %1$s 的歷史匯率，但選項中的「使用歷史匯率」被停用：\n"
+"點擊「否」並啟用它，或點擊「是」刪除 %2$s 的所有歷史匯率"
 
 #: maincurrencydialog.cpp:447
 #, c-format
@@ -3858,7 +3860,7 @@ msgstr "貨幣歷史匯率選項：%s"
 
 #: maincurrencydialog.cpp:503
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "無法更新歷史貨幣匯率。請手動更新！"
 
 #: maincurrencydialog.cpp:504 maincurrencydialog.cpp:657
 #: maincurrencydialog.cpp:692 maincurrencydialog.cpp:728
@@ -3868,7 +3870,7 @@ msgstr "貨幣歷史匯率錯誤"
 
 #: maincurrencydialog.cpp:536
 msgid "Set as Base Currency"
-msgstr "設定為基礎幣別"
+msgstr "設定為基準幣別"
 
 #: maincurrencydialog.cpp:537
 msgid "Online Update Currency Rate"
@@ -3880,7 +3882,7 @@ msgstr "未選擇任何幣別"
 
 #: maincurrencydialog.cpp:663
 msgid "Do you want to add also dates without any transaction?"
-msgstr ""
+msgstr "您還想添加沒有任何交易紀錄的日期嗎？"
 
 #: maincurrencydialog.cpp:690
 #, c-format
@@ -3890,11 +3892,11 @@ msgstr "無法下載 %s 匯率"
 #: maincurrencydialog.cpp:726
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr ""
+msgstr "無法下載貨幣符號 %s 的歷史記錄。歷史匯率無法使用！"
 
 #: maincurrencydialog.cpp:788 optionsettingsgeneral.cpp:300
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr "更改基礎幣別將刪除所有歷史匯率，繼續嗎？"
+msgstr "更改基準貨幣將刪除所有歷史匯率，繼續嗎？"
 
 #: maincurrencydialog.cpp:812
 msgid "Do you want to update today currency rates?"
@@ -3903,15 +3905,15 @@ msgstr "您是否要更新今天的匯率?"
 #: maincurrencydialog.cpp:833
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr ""
+msgstr "無法下載基準貨幣符號 %s 的歷史記錄。歷史匯率無法使用！"
 
 #: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:684
 msgid "Could not find base currency symbol!"
-msgstr ""
+msgstr "找不到基準貨幣符號！"
 
 #: mmSimpleDialogs.cpp:767 mmSimpleDialogs.cpp:779
 msgid "&Clear color"
-msgstr ""
+msgstr "(&C)清除顏色"
 
 #: mmSimpleDialogs.cpp:770 mmSimpleDialogs.cpp:784
 #, c-format
@@ -3924,32 +3926,32 @@ msgstr "減去一年"
 
 #: mmSimpleDialogs.cpp:943
 msgid "Subtract one month"
-msgstr ""
+msgstr "減去一個月份"
 
 #: mmSimpleDialogs.cpp:944
 msgid "Add one month"
-msgstr ""
+msgstr "增加一個月份"
 
 #: mmSimpleDialogs.cpp:945
 msgid "Add one year"
-msgstr ""
+msgstr "增加一個年度"
 
 #: mmSimpleDialogs.cpp:1001
 #, c-format
 msgid "Entry %s is invalid"
-msgstr ""
+msgstr "項目 %s 無效"
 
 #: mmSimpleDialogs.cpp:1007
 msgid "Please select an existing category"
-msgstr ""
+msgstr "請選擇現有的類別"
 
 #: mmSimpleDialogs.cpp:1007
 msgid "Invalid Category"
-msgstr ""
+msgstr "無效的類別"
 
 #: mmSimpleDialogs.cpp:1012
 msgid "File name is empty."
-msgstr ""
+msgstr "檔案名稱是空白的。"
 
 #: mmSimpleDialogs.cpp:1013
 msgid "Please select the file for this operation."
@@ -3961,11 +3963,11 @@ msgstr "請選擇用於此操作的帳戶。"
 
 #: mmSimpleDialogs.cpp:1025
 msgid "Please specify which account the transfer is going to."
-msgstr ""
+msgstr "請指定轉帳到哪個帳戶。"
 
 #: mmSimpleDialogs.cpp:1027
 msgid "Selection can be made by using the dropdown button."
-msgstr ""
+msgstr "可以使用下拉按鈕進行選擇。"
 
 #: mmSimpleDialogs.cpp:1030
 msgid "Activating the button will provide a selection box where the account can be selected."
@@ -4581,7 +4583,8 @@ msgstr "多重選擇"
 #, c-format
 msgid "Unable to save custom field \"%1$s\":\n"
 "value \"%2$s\" does not match RegEx validation \"%3$s\""
-msgstr ""
+msgstr "無法儲存自訂欄位「%1$s」：\n"
+"值「%2$s」與正規表達式驗證「%3$s」驗證不符"
 
 #: mmcustomdata.cpp:795
 msgid "CustomField validation error"
@@ -5770,7 +5773,7 @@ msgstr ""
 
 #: mmhomepage.cpp:835
 msgid "Currency Exchange Rates"
-msgstr ""
+msgstr "貨幣兌換匯率"
 
 #: mmhomepagepanel.cpp:189
 msgid "Upcoming Transactions"
@@ -6202,12 +6205,13 @@ msgstr "設定貨幣"
 
 #: optionsettingsgeneral.cpp:138
 msgid "Set default database currency using 'Currency Manager'"
-msgstr ""
+msgstr "使用「貨幣管理員」設定預設資料庫貨幣"
 
 #: optionsettingsgeneral.cpp:163
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Manager | Edit'"
-msgstr ""
+msgstr "格式設定來自於語言環境設定。\n"
+"留空以透過「貨幣管理員 | 編輯」手動設定格式"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use currency history"
@@ -6215,7 +6219,7 @@ msgstr "使用貨幣歷史"
 
 #: optionsettingsgeneral.cpp:176
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "選擇使用貨幣歷史記錄(每天一個匯率)，取消選擇以使用固定匯率"
 
 #: optionsettingsgeneral.cpp:180
 msgid "Financial Year"
@@ -7896,7 +7900,7 @@ msgstr ""
 
 #: usertransactionpanel.cpp:132
 msgid "Currency used for this transaction."
-msgstr ""
+msgstr "用於本次交易紀錄的貨幣幣別。"
 
 #: usertransactionpanel.cpp:151
 msgid "Specify the status for this transaction"
@@ -8036,7 +8040,7 @@ msgstr "週六"
 
 #: util.cpp:741
 msgid "Currency rates have been updated"
-msgstr ""
+msgstr "貨幣匯率已更新"
 
 #: util.cpp:840 util.cpp:935 util.cpp:941 util.cpp:972 util.cpp:1031
 msgid "JSON Parse Error"
@@ -8052,7 +8056,7 @@ msgstr ""
 
 #: util.cpp:1046
 msgid "Could not get base currency!"
-msgstr ""
+msgstr "無法取得基準貨幣！"
 
 #: util.cpp:1052
 msgid "USD"
@@ -8060,7 +8064,7 @@ msgstr "美元"
 
 #: util.cpp:1055
 msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr ""
+msgstr "找不到轉換歷史匯率所需的貨幣「USD」"
 
 #: util.cpp:1076
 msgid "Could not parse price in asset history"
@@ -8366,7 +8370,7 @@ msgstr ""
 
 #: wizard_newaccount.cpp:164
 msgid "Base Account Currency Not set."
-msgstr ""
+msgstr "帳戶基準貨幣未設定。"
 
 #: wizard_newaccount.cpp:165
 msgid "Set that first using Tools → Settings… menu and then add a new account."
@@ -8397,14 +8401,14 @@ msgstr "接下來的幾頁將幫助您建立一個新的資料庫。\n\n"
 
 #: wizard_newdb.cpp:103
 msgid "Base Currency for account"
-msgstr "此帳戶基礎幣別"
+msgstr "此帳戶的基準貨幣"
 
 #: wizard_newdb.cpp:106
 msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr "指定用於此資料庫的基礎 (或預設) 幣別。基礎幣別稍後可以在選項中更改。新帳戶將預設使用該幣別，而且之後可以在編輯帳戶詳細資料時變更。"
+msgstr "指定用於此資料庫的基準 (或預設) 貨幣。基準貨幣稍後可以在選項中更改。新帳戶將預設使用該幣別，而且之後可以在編輯帳戶詳細資料時變更。"
 
 #: wizard_newdb.cpp:124
 msgid "(Optional) Specify a title or your name."
@@ -8416,7 +8420,7 @@ msgstr "用作顯示和打印報告的數據庫標題"
 
 #: wizard_newdb.cpp:136
 msgid "Base Currency Not Set"
-msgstr "未設定基礎幣別"
+msgstr "未設定基準貨幣"
 
 #: wizard_update.cpp:77
 msgid "Update Wizard"
