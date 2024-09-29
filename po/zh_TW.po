@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-29 12:13\n"
+"PO-Revision-Date: 2024-09-29 13:34\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -1641,7 +1641,7 @@ msgstr "編輯已存在類別"
 
 #: categdialog.cpp:323
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr "刪除已存在類別。此類別不可以用在已存在的交易紀錄上。"
+msgstr "刪除現有的類別。此類別不可以用在現有的交易紀錄上。"
 
 #: categdialog.cpp:328 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1649,7 +1649,7 @@ msgstr "(&S)選擇"
 
 #: categdialog.cpp:330
 msgid "Select the currently selected category as the selected category for the transaction"
-msgstr "選擇目前所選類型為此交易之類型"
+msgstr "選擇目前所選的類別作為交易紀錄的選定類別"
 
 #: categdialog.cpp:343
 msgid "Name contains category delimiter."
@@ -1669,7 +1669,7 @@ msgstr "輸入新類別的名稱："
 
 #: categdialog.cpp:355
 msgid "Add Category"
-msgstr "新增分類"
+msgstr "新增類別"
 
 #: categdialog.cpp:366 categdialog.cpp:375 categdialog.cpp:624
 msgid "A category with this name already exists for the parent"
