@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-10-01 12:17\n"
+"PO-Revision-Date: 2024-10-01 13:17\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -4381,11 +4381,11 @@ msgstr "您真的要永久刪除所顯示的全部交易紀錄嗎？"
 
 #: mmchecking_list.cpp:1267 mmchecking_list.cpp:1369
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
-msgstr "已刪除的交易紀錄將被暫時存儲，並且可以從“已刪除的交易紀錄”檢視中復原。"
+msgstr "已刪除的交易紀錄將被暫時存儲，並且可以從「已刪除的交易紀錄」檢視中復原。"
 
 #: mmchecking_list.cpp:1268 mmchecking_list.cpp:1368
 msgid "You cannot undo this action."
-msgstr ""
+msgstr "您無法撤銷恢復此操作。"
 
 #: mmchecking_list.cpp:1272 mmchecking_list.cpp:1283 mmchecking_list.cpp:1294
 #: mmchecking_list.cpp:1373
@@ -4395,13 +4395,13 @@ msgstr "確定刪除交易"
 #: mmchecking_list.cpp:1282 mmchecking_list.cpp:1293
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr ""
+msgstr "您真的要刪除所顯示的全部「%s」交易紀錄嗎？"
 
 #: mmchecking_list.cpp:1360
 #, c-format
 msgid "Do you really want to permanently delete the selected transaction?"
 msgid_plural "Do you really want to permanently delete %i selected transactions?"
-msgstr[0] ""
+msgstr[0] "您真的要永久刪除所選的 %i 交易紀錄嗎？"
 
 #: mmchecking_list.cpp:1364
 #, c-format
