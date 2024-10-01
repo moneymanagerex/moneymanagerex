@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-18 21:58\n"
+"POT-Creation-Date: 2024-10-02 01:00+0300\n"
+"PO-Revision-Date: 2024-10-01 22:03\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "Ενεργοποιήστε για να μας βοηθήσετε να στέλνουμε ανώνυμα δεδομένα σχετικά με τη χρήση MMEX."
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:142
-#: assetdialog.cpp:283 attachmentdialog.cpp:151 billsdepositsdialog.cpp:649
+#: assetdialog.cpp:283 attachmentdialog.cpp:146 billsdepositsdialog.cpp:649
 #: budgetentrydialog.cpp:153 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:194 filtertransdialog.cpp:810
@@ -423,7 +423,7 @@ msgid "Asset Details"
 msgstr "Λεπτομέρειες περιουσιακού στοιχείου"
 
 #: assetdialog.cpp:177 assetspanel.cpp:60 customfieldeditdialog.cpp:134
-#: customfieldlistdialog.cpp:53 import_export/qif_import_gui.cpp:244
+#: customfieldlistdialog.cpp:48 import_export/qif_import_gui.cpp:244
 #: import_export/qif_import_gui.cpp:257 import_export/qif_import_gui.cpp:267
 #: import_export/univcsvdialog.cpp:510 import_export/univcsvdialog.cpp:520
 #: maincurrencydialog.cpp:76 payeedialog.cpp:447 reports/summarystocks.cpp:112
@@ -522,7 +522,7 @@ msgid "ID"
 msgstr "Ταυτότητα"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:515 billsdepositspanel.cpp:139
-#: customfieldlistdialog.cpp:54 filtertrans.cpp:204 filtertransdialog.cpp:52
+#: customfieldlistdialog.cpp:49 filtertrans.cpp:204 filtertransdialog.cpp:52
 #: filtertransdialog.cpp:649 filtertransdialog.cpp:1036
 #: filtertransdialog.cpp:1863 import_export/qif_export.cpp:134
 #: import_export/qif_export.cpp:628 import_export/qif_import_gui.cpp:89
@@ -619,8 +619,8 @@ msgstr "&Προβολή Συναλλαγής "
 msgid "View Asset Transactions"
 msgstr "Προβολή Συναλλαγών Περιουσιακού Στοιχείου"
 
-#: assetspanel.cpp:485 attachmentdialog.cpp:356 billsdepositspanel.cpp:299
-#: categdialog.cpp:317 customfieldlistdialog.cpp:262 maincurrencydialog.cpp:540
+#: assetspanel.cpp:485 attachmentdialog.cpp:351 billsdepositspanel.cpp:299
+#: categdialog.cpp:317 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
 #: mmcheckingpanel.cpp:478 payeedialog.cpp:883 stockspanel.cpp:146
 #: tagdialog.cpp:128
 msgid "&Edit "
@@ -695,150 +695,150 @@ msgstr "Διαχείριση Περιουσιακού Στοιχείου"
 msgid "Account \t Date\t   Value\n\n"
 msgstr "Λογαριασμός Ημερομηνία Τιμή\n\n"
 
-#: attachmentdialog.cpp:55 general_report_manager.cpp:435
+#: attachmentdialog.cpp:50 general_report_manager.cpp:435
 msgid "Description"
 msgstr "Περιγραφή"
 
-#: attachmentdialog.cpp:56
+#: attachmentdialog.cpp:51
 msgid "File"
 msgstr "Αρχείο"
 
-#: attachmentdialog.cpp:64
+#: attachmentdialog.cpp:59
 msgid "Attachment folder not defined."
 msgstr "Ο φάκελος συνημμένων δεν έχει οριστεί."
 
-#: attachmentdialog.cpp:65
+#: attachmentdialog.cpp:60
 msgid "Please set it in Tools → Settings… → Attachments"
 msgstr "Παρακαλώ ορίστε το στα Εργαλεία -> Επιλογές -> Συνημμένα"
 
-#: attachmentdialog.cpp:66
+#: attachmentdialog.cpp:61
 msgid "Attachment folder not defined"
 msgstr "Ο φάκελος συνημμένων δεν έχει οριστεί"
 
-#: attachmentdialog.cpp:70
+#: attachmentdialog.cpp:65
 msgid "Unable to find attachments folder:"
 msgstr "Αδυναμία εύρεσης φακέλου συνημμένων:"
 
-#: attachmentdialog.cpp:73
+#: attachmentdialog.cpp:68
 msgid "Please verify that above path is correct"
 msgstr "Παρακαλώ επιβεβαιώστε ότι η παραπάνω διαδρομή είναι σωστή"
 
-#: attachmentdialog.cpp:74
+#: attachmentdialog.cpp:69
 msgid "Attachments folder not found"
 msgstr "Ο φάκελος συνημμένων δεν βρέθηκε"
 
-#: attachmentdialog.cpp:114
+#: attachmentdialog.cpp:109
 #, c-format
 msgid "Attachment Manager | %s | %i"
 msgstr "Διαχειριστής Συνημμένων | %s %i"
 
-#: attachmentdialog.cpp:116
+#: attachmentdialog.cpp:111
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
 msgstr "Διαχειριστής Συνημμένων | Νέο %1$s %2$s"
 
-#: attachmentdialog.cpp:118
+#: attachmentdialog.cpp:113
 #, c-format
 msgid "Attachment Manager | New %s"
 msgstr "Διαχειριστής Συνημμένων |Νέο %s"
 
-#: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
+#: attachmentdialog.cpp:153 customfieldlistdialog.cpp:94 payeedialog.cpp:584
 msgid "Other tools"
 msgstr "Άλλα εργαλεία"
 
-#: attachmentdialog.cpp:190
+#: attachmentdialog.cpp:185
 msgid "Import attachment:"
 msgstr "Εισαγωγή συνημμένου:"
 
-#: attachmentdialog.cpp:201
+#: attachmentdialog.cpp:196
 msgid "Enter a description for the new attachment:"
 msgstr "Εισάγετε μια περιγραφή για το νέο συνημμένο:"
 
-#: attachmentdialog.cpp:202
+#: attachmentdialog.cpp:197
 msgid "Attachment Manager: Add Attachment"
 msgstr "Διαχειριστής Συνημμένων: Προσθήκη Συνημμένου"
 
-#: attachmentdialog.cpp:248
+#: attachmentdialog.cpp:243
 msgid "Enter a new description for the attachment:"
 msgstr "Εισάγετε μια νέα περιγραφή για το συνημμένο:"
 
-#: attachmentdialog.cpp:249
+#: attachmentdialog.cpp:244
 msgid "Attachment Manager: Edit Attachment"
 msgstr "Διαχειριστής Συνημμένων: Επεξεργασία Συνημμένου"
 
-#: attachmentdialog.cpp:276
+#: attachmentdialog.cpp:271
 msgid "Do you really want to delete this attachment?"
 msgstr "Θέλετε πραγματικά να διαγράψετε αυτό το συνημμένο;"
 
-#: attachmentdialog.cpp:277
+#: attachmentdialog.cpp:272
 msgid "Confirm Attachment Deletion"
 msgstr "Επιβεβαίωση Διαγραφής Συνημμένου"
 
-#: attachmentdialog.cpp:353 categdialog.cpp:313 customfieldlistdialog.cpp:260
+#: attachmentdialog.cpp:348 categdialog.cpp:313 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:310 maincurrencydialog.cpp:539
 #: payeedialog.cpp:882 stockdialog.cpp:323 tagdialog.cpp:124
 msgid "&Add "
 msgstr "&Προσθήκη "
 
-#: attachmentdialog.cpp:355
+#: attachmentdialog.cpp:350
 msgid "&Open "
 msgstr "&Άνοιγμα "
 
-#: attachmentdialog.cpp:358 customfieldlistdialog.cpp:263
+#: attachmentdialog.cpp:353 customfieldlistdialog.cpp:258
 #: import_export/univcsvdialog.cpp:314 maincurrencydialog.cpp:541
 #: payeedialog.cpp:885
 msgid "&Remove "
 msgstr "&Διαγραφή "
 
-#: attachmentdialog.cpp:400
+#: attachmentdialog.cpp:395
 msgid "Att."
 msgstr "Att."
 
-#: attachmentdialog.cpp:407
+#: attachmentdialog.cpp:402
 msgid "This directory and its files are automatically managed by MMEX."
 msgstr "Αυτός ο φάκελος και τα αρχεία του διαχειρίζονται αυτόματα από το λογισμικό Money Manager EX."
 
-#: attachmentdialog.cpp:409
+#: attachmentdialog.cpp:404
 msgid "Please do not remove, rename or modify manually directories and files."
 msgstr "Παρακαλώ μην καταργείτε, μετονομάσετε ή τροποποιήσετε χειροκίνητα καταλόγους και αρχεία."
 
-#: attachmentdialog.cpp:454 attachmentdialog.cpp:462
+#: attachmentdialog.cpp:449 attachmentdialog.cpp:457
 msgid "Destination file already exist:"
 msgstr "Το αρχείο προορισμού υπάρχει ήδη:"
 
-#: attachmentdialog.cpp:457
+#: attachmentdialog.cpp:452
 msgid "File not found in attachments. Please delete or rename it."
 msgstr "Το αρχείο δεν βρέθηκε στα συνημμένα. Παρακαλούμε διαγράψτε το ή μετονομάστε το."
 
-#: attachmentdialog.cpp:458 attachmentdialog.cpp:466
+#: attachmentdialog.cpp:453 attachmentdialog.cpp:461
 msgid "Destination file already exist"
 msgstr "Το αρχείο προορισμού υπάρχει ήδη"
 
-#: attachmentdialog.cpp:465
+#: attachmentdialog.cpp:460
 msgid "File already found in attachments"
 msgstr "Το αρχείο βρέθηκε ήδη στα συνημμένα"
 
-#: attachmentdialog.cpp:508
+#: attachmentdialog.cpp:503
 msgid "Attachment not found:"
 msgstr "Το συνημμένο δεν βρέθηκε:"
 
-#: attachmentdialog.cpp:511
+#: attachmentdialog.cpp:506
 msgid "Do you want to continue and delete attachment on database?"
 msgstr "Θέλετε να συνεχίσετε και να διαγράψετε το συνημμένο στη βάση δεδομένων;"
 
-#: attachmentdialog.cpp:512
+#: attachmentdialog.cpp:507
 msgid "Delete attachment failed"
 msgstr "Αποτυχία διαγραφής συνημμένου"
 
-#: attachmentdialog.cpp:525 general_report_manager.cpp:664
+#: attachmentdialog.cpp:520 general_report_manager.cpp:664
 msgid "Unable to open file:"
 msgstr "Αδυναμία ανοίγματος αρχείου:"
 
-#: attachmentdialog.cpp:528
+#: attachmentdialog.cpp:523
 msgid "Please verify that file exists and user has rights to read it."
 msgstr "Παρακαλώ επιβεβαιώστε ότι το αρχείο υπάρχει και ο χρήστης έχει δικαιώματα να το διαβάσει."
 
-#: attachmentdialog.cpp:529
+#: attachmentdialog.cpp:524
 msgid "Open attachment failed"
 msgstr "Αποτυχία ανοίγματος συνημμένου"
 
@@ -2045,7 +2045,7 @@ msgstr "Διαχειριστής Νομίσματος"
 msgid "Custom Field Details"
 msgstr "Λεπτομέρειες Προσαρμοσμένου Πεδίου"
 
-#: customfieldeditdialog.cpp:124 customfieldlistdialog.cpp:52
+#: customfieldeditdialog.cpp:124 customfieldlistdialog.cpp:47
 msgid "Attribute of"
 msgstr "Χαρακτηριστικό του"
 
@@ -2151,27 +2151,27 @@ msgstr "Έχετε τροποποιήσει τις επιλογές: αυτές 
 msgid "New/Edit Custom Field"
 msgstr "Νέο/Επεξεργασία Προσαρμοσμένου Πεδίου"
 
-#: customfieldlistdialog.cpp:51
+#: customfieldlistdialog.cpp:46
 msgid "#"
 msgstr "#"
 
-#: customfieldlistdialog.cpp:55
+#: customfieldlistdialog.cpp:50
 msgid "Properties"
 msgstr "Ιδιότητες"
 
-#: customfieldlistdialog.cpp:66 mmframe.cpp:1806
+#: customfieldlistdialog.cpp:61 mmframe.cpp:1806
 msgid "Custom Field Manager"
 msgstr "Διαχειριστής Προσαρμοσμένων Πεδίων"
 
-#: customfieldlistdialog.cpp:170
+#: customfieldlistdialog.cpp:165
 msgid "Do you really want to delete this custom field and all its data?"
 msgstr "Θέλετε πραγματικά να διαγράψετε αυτό το προσαρμοσμένο πεδίο και όλα τα δεδομένα του;"
 
-#: customfieldlistdialog.cpp:171
+#: customfieldlistdialog.cpp:166
 msgid "Confirm Custom Field Deletion"
 msgstr "Επιβεβαίωση Διαγραφής Προσαρμοσμένου Πεδίου"
 
-#: customfieldlistdialog.cpp:189
+#: customfieldlistdialog.cpp:184
 #, c-format
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
@@ -2180,44 +2180,44 @@ msgstr "Αυτή η λειτουργία θα αναζητήσει μαζικά 
 "Θα ταιριάξει & θα αντικαταστήσει μόνο την πλήρη τιμή πεδίου, δεν επιτρέπεται η μερική ή η αντικατάσταση μεσαιών τιμών.\n"
 "Παρακαλώ θεωρήστε ότι δεν υπάρχει καμία επικύρωση!"
 
-#: customfieldlistdialog.cpp:192
+#: customfieldlistdialog.cpp:187
 msgid "Confirm Custom Field Content Update"
 msgstr "Επιβεβαίωση Ενημέρωσης Περιεχομένου Προσαρμοσμένου Πεδίου"
 
-#: customfieldlistdialog.cpp:197
+#: customfieldlistdialog.cpp:192
 msgid "Find what"
 msgstr "Βρείτε τι"
 
-#: customfieldlistdialog.cpp:197 customfieldlistdialog.cpp:203
-#: customfieldlistdialog.cpp:209 customfieldlistdialog.cpp:215
-#: customfieldlistdialog.cpp:230
+#: customfieldlistdialog.cpp:192 customfieldlistdialog.cpp:198
+#: customfieldlistdialog.cpp:204 customfieldlistdialog.cpp:210
+#: customfieldlistdialog.cpp:225
 msgid "Update Custom Field Content"
 msgstr "Ενημέρωση Περιεχομένου Προσαρμοσμένου Πεδίου"
 
-#: customfieldlistdialog.cpp:201
+#: customfieldlistdialog.cpp:196
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
 msgstr "Θέλετε να ενημερώσετε το κενό περιεχόμενο?\n"
 "Πατήστε όχι αν θέλετε να καταργήσετε τη διαδικασία αντικατάστασης!"
 
-#: customfieldlistdialog.cpp:209
+#: customfieldlistdialog.cpp:204
 msgid "Replace with"
 msgstr "Αντικατάσταση με"
 
-#: customfieldlistdialog.cpp:213
+#: customfieldlistdialog.cpp:208
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
 msgstr "Θέλετε να ενημερώσετε κενό?\n"
 "Πατήστε όχι αν θέλετε να καταργήσετε τη διαδικασία αντικατάστασης!"
 
-#: customfieldlistdialog.cpp:229
+#: customfieldlistdialog.cpp:224
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
 msgstr[0] "%zu εμφάνιση βρέθηκε και αντικαταστάθηκε!"
 msgstr[1] "%zu εμφανίσεις βρέθηκαν και αντικαταστάθηκαν!"
 
-#: customfieldlistdialog.cpp:264
+#: customfieldlistdialog.cpp:259
 msgid "&Bulk content update "
 msgstr "&Μαζική ενημέρωση περιεχομένου "
 
@@ -7264,27 +7264,27 @@ msgstr "Χάρτες Απόδοσης Αποθεμάτων"
 msgid "FX Rate"
 msgstr "Ισοτιμία FX"
 
-#: reports/transactions.cpp:457
+#: reports/transactions.cpp:460
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
 msgstr "Όλες οι Συναλλαγές: Αναλήψεις, Καταθέσεις και Μεταφορές"
 
-#: reports/transactions.cpp:475
+#: reports/transactions.cpp:478
 msgid "All Transactions excluding Transfers"
 msgstr "Όλες οι συναλλαγές εκτός των μεταφορών"
 
-#: reports/transactions.cpp:516
+#: reports/transactions.cpp:519
 msgid "Statistics"
 msgstr "Στατιστικά στοιχεία"
 
-#: reports/transactions.cpp:539
+#: reports/transactions.cpp:542
 msgid "Minimum"
 msgstr "Ελάχιστο"
 
-#: reports/transactions.cpp:541
+#: reports/transactions.cpp:544
 msgid "Maximum"
 msgstr "Μέγιστο"
 
-#: reports/transactions.cpp:543
+#: reports/transactions.cpp:546
 msgid "Average"
 msgstr "Μέσος όρος"
 
