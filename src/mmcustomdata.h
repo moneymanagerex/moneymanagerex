@@ -37,7 +37,7 @@ public:
     bool SaveCustomValues(int ref_id);
     void UpdateCustomValues(int ref_id);
     void SetStringValue(int fieldID, const wxString& value, bool hasChanged = false);
-    bool ValidateCustomValues(int ref_id);
+    bool ValidateCustomValues(int);
     const wxString GetWidgetData(wxWindowID controlID) const;
     void SetWidgetData(wxWindowID controlID, const wxString& value);
     int GetWidgetType(wxWindowID controlID) const;

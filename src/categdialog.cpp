@@ -763,9 +763,9 @@ void mmCategDialog::OnMenuSelected(wxCommandEvent& event)
                 , wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
         if (msgDlg.ShowModal() == wxID_YES)
         {
-            const auto categList = Model_Category::instance().all();
+            auto categList = Model_Category::instance().all();
             Model_Category::instance().Savepoint();
-            for (auto catItem : categList)
+            for (auto &catItem : categList)
             {
                 catItem.ACTIVE = 1;
                 Model_Category::instance().save(&catItem);              
