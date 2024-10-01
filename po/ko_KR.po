@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-09-19 00:38\n"
+"PO-Revision-Date: 2024-10-01 13:17\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "정보"
 
 #: aboutdialog.cpp:186
 msgid "Authors"
-msgstr "작성자"
+msgstr "제작자"
 
 #: aboutdialog.cpp:191
 msgid "Sponsors"
@@ -1208,7 +1208,7 @@ msgstr "기간: 일"
 
 #: billsdepositsdialog.cpp:1298
 msgid "Specify period in Days."
-msgstr ""
+msgstr "기간을 일 단위로 지정하세요."
 
 #: billsdepositsdialog.cpp:1303
 msgid "Period: Months"
@@ -1216,11 +1216,11 @@ msgstr "기간: 월"
 
 #: billsdepositsdialog.cpp:1304
 msgid "Specify period in Months."
-msgstr ""
+msgstr "기간을 월 단위로 지정하세요."
 
 #: billsdepositsdialog.cpp:1310
 msgid "Ignored (leave blank)."
-msgstr ""
+msgstr "무시됨(공란으로 두기)."
 
 #: billsdepositsdialog.cpp:1316
 msgid "Specify the number of payments to be made.\n"
