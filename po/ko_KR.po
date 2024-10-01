@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-10-01 00:43\n"
+"POT-Creation-Date: 2024-10-02 01:00+0300\n"
+"PO-Revision-Date: 2024-10-01 22:03\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "MMEX 사용에 대한 데이터를 익명으로 보낼 수 있습니다."
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:142
-#: assetdialog.cpp:283 attachmentdialog.cpp:151 billsdepositsdialog.cpp:649
+#: assetdialog.cpp:283 attachmentdialog.cpp:146 billsdepositsdialog.cpp:649
 #: budgetentrydialog.cpp:153 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:194 filtertransdialog.cpp:810
@@ -423,7 +423,7 @@ msgid "Asset Details"
 msgstr "자산 세부정보"
 
 #: assetdialog.cpp:177 assetspanel.cpp:60 customfieldeditdialog.cpp:134
-#: customfieldlistdialog.cpp:53 import_export/qif_import_gui.cpp:244
+#: customfieldlistdialog.cpp:48 import_export/qif_import_gui.cpp:244
 #: import_export/qif_import_gui.cpp:257 import_export/qif_import_gui.cpp:267
 #: import_export/univcsvdialog.cpp:510 import_export/univcsvdialog.cpp:520
 #: maincurrencydialog.cpp:76 payeedialog.cpp:447 reports/summarystocks.cpp:112
@@ -522,7 +522,7 @@ msgid "ID"
 msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:515 billsdepositspanel.cpp:139
-#: customfieldlistdialog.cpp:54 filtertrans.cpp:204 filtertransdialog.cpp:52
+#: customfieldlistdialog.cpp:49 filtertrans.cpp:204 filtertransdialog.cpp:52
 #: filtertransdialog.cpp:649 filtertransdialog.cpp:1036
 #: filtertransdialog.cpp:1863 import_export/qif_export.cpp:134
 #: import_export/qif_export.cpp:628 import_export/qif_import_gui.cpp:89
@@ -619,8 +619,8 @@ msgstr "거래 보기(&V) "
 msgid "View Asset Transactions"
 msgstr "자산 거래 보기"
 
-#: assetspanel.cpp:485 attachmentdialog.cpp:356 billsdepositspanel.cpp:299
-#: categdialog.cpp:317 customfieldlistdialog.cpp:262 maincurrencydialog.cpp:540
+#: assetspanel.cpp:485 attachmentdialog.cpp:351 billsdepositspanel.cpp:299
+#: categdialog.cpp:317 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
 #: mmcheckingpanel.cpp:478 payeedialog.cpp:883 stockspanel.cpp:146
 #: tagdialog.cpp:128
 msgid "&Edit "
@@ -695,150 +695,150 @@ msgstr "자산 관리"
 msgid "Account \t Date\t   Value\n\n"
 msgstr "계정 \t 날짜\t   값\n\n"
 
-#: attachmentdialog.cpp:55 general_report_manager.cpp:435
+#: attachmentdialog.cpp:50 general_report_manager.cpp:435
 msgid "Description"
 msgstr "설명"
 
-#: attachmentdialog.cpp:56
+#: attachmentdialog.cpp:51
 msgid "File"
 msgstr "파일"
 
-#: attachmentdialog.cpp:64
+#: attachmentdialog.cpp:59
 msgid "Attachment folder not defined."
 msgstr "첨부 파일 폴더가 정의되지 않았습니다."
 
-#: attachmentdialog.cpp:65
+#: attachmentdialog.cpp:60
 msgid "Please set it in Tools → Settings… → Attachments"
 msgstr "도구 → 설정... → 첨부 파일에서 설정하십시오"
 
-#: attachmentdialog.cpp:66
+#: attachmentdialog.cpp:61
 msgid "Attachment folder not defined"
 msgstr "첨부 파일 폴더가 정의되지 않음"
 
-#: attachmentdialog.cpp:70
+#: attachmentdialog.cpp:65
 msgid "Unable to find attachments folder:"
 msgstr "첨부 파일 폴더를 찾을 수 없음:"
 
-#: attachmentdialog.cpp:73
+#: attachmentdialog.cpp:68
 msgid "Please verify that above path is correct"
 msgstr "위 경로가 올바른지 확인하십시오"
 
-#: attachmentdialog.cpp:74
+#: attachmentdialog.cpp:69
 msgid "Attachments folder not found"
 msgstr "첨부 파일 폴더를 찾을 수 없음"
 
-#: attachmentdialog.cpp:114
+#: attachmentdialog.cpp:109
 #, c-format
 msgid "Attachment Manager | %s | %i"
 msgstr "첨부 관리자 | %s | %i"
 
-#: attachmentdialog.cpp:116
+#: attachmentdialog.cpp:111
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
 msgstr "첨부 관리자 | %1$s | %2$s"
 
-#: attachmentdialog.cpp:118
+#: attachmentdialog.cpp:113
 #, c-format
 msgid "Attachment Manager | New %s"
 msgstr "첨부 관리자 | 새 %s"
 
-#: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
+#: attachmentdialog.cpp:153 customfieldlistdialog.cpp:94 payeedialog.cpp:584
 msgid "Other tools"
 msgstr "기타 도구"
 
-#: attachmentdialog.cpp:190
+#: attachmentdialog.cpp:185
 msgid "Import attachment:"
 msgstr "첨부 파일 가져오기:"
 
-#: attachmentdialog.cpp:201
+#: attachmentdialog.cpp:196
 msgid "Enter a description for the new attachment:"
 msgstr "새 첨부 파일에 대한 설명을 입력:"
 
-#: attachmentdialog.cpp:202
+#: attachmentdialog.cpp:197
 msgid "Attachment Manager: Add Attachment"
 msgstr "첨부 관리자: 첨부 추가"
 
-#: attachmentdialog.cpp:248
+#: attachmentdialog.cpp:243
 msgid "Enter a new description for the attachment:"
 msgstr "첨부 파일에 대한 설명을 입력:"
 
-#: attachmentdialog.cpp:249
+#: attachmentdialog.cpp:244
 msgid "Attachment Manager: Edit Attachment"
 msgstr "첨부 관리자: 첨부 편집"
 
-#: attachmentdialog.cpp:276
+#: attachmentdialog.cpp:271
 msgid "Do you really want to delete this attachment?"
 msgstr "첨부 파일을 삭제하시겠습니까?"
 
-#: attachmentdialog.cpp:277
+#: attachmentdialog.cpp:272
 msgid "Confirm Attachment Deletion"
 msgstr "첨부 파일 삭제 확인"
 
-#: attachmentdialog.cpp:353 categdialog.cpp:313 customfieldlistdialog.cpp:260
+#: attachmentdialog.cpp:348 categdialog.cpp:313 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:310 maincurrencydialog.cpp:539
 #: payeedialog.cpp:882 stockdialog.cpp:323 tagdialog.cpp:124
 msgid "&Add "
 msgstr "추가(&A)"
 
-#: attachmentdialog.cpp:355
+#: attachmentdialog.cpp:350
 msgid "&Open "
 msgstr "열기(&O)"
 
-#: attachmentdialog.cpp:358 customfieldlistdialog.cpp:263
+#: attachmentdialog.cpp:353 customfieldlistdialog.cpp:258
 #: import_export/univcsvdialog.cpp:314 maincurrencydialog.cpp:541
 #: payeedialog.cpp:885
 msgid "&Remove "
 msgstr "제거(&R)"
 
-#: attachmentdialog.cpp:400
+#: attachmentdialog.cpp:395
 msgid "Att."
 msgstr "첨부"
 
-#: attachmentdialog.cpp:407
+#: attachmentdialog.cpp:402
 msgid "This directory and its files are automatically managed by MMEX."
 msgstr "이 디렉터리와 해당 파일은 MMEX에서 자동으로 관리됩니다."
 
-#: attachmentdialog.cpp:409
+#: attachmentdialog.cpp:404
 msgid "Please do not remove, rename or modify manually directories and files."
 msgstr "디렉터리 및 파일을 임의로 제거, 이름 변경 또는 수정하지 마십시오."
 
-#: attachmentdialog.cpp:454 attachmentdialog.cpp:462
+#: attachmentdialog.cpp:449 attachmentdialog.cpp:457
 msgid "Destination file already exist:"
 msgstr "대상 파일이 이미 있음:"
 
-#: attachmentdialog.cpp:457
+#: attachmentdialog.cpp:452
 msgid "File not found in attachments. Please delete or rename it."
 msgstr "첨부에서 파일을 찾을 수 없습니다. 삭제하거나 이름을 변경하십시오."
 
-#: attachmentdialog.cpp:458 attachmentdialog.cpp:466
+#: attachmentdialog.cpp:453 attachmentdialog.cpp:461
 msgid "Destination file already exist"
 msgstr "대상 파일이 이미 있음"
 
-#: attachmentdialog.cpp:465
+#: attachmentdialog.cpp:460
 msgid "File already found in attachments"
 msgstr "첨부에 이미 있는 파일"
 
-#: attachmentdialog.cpp:508
+#: attachmentdialog.cpp:503
 msgid "Attachment not found:"
 msgstr "첨부 파일을 찾을 수 없음:"
 
-#: attachmentdialog.cpp:511
+#: attachmentdialog.cpp:506
 msgid "Do you want to continue and delete attachment on database?"
 msgstr "데이터베이스에서 첨부 파일을 계속 삭제하시겠습니까?"
 
-#: attachmentdialog.cpp:512
+#: attachmentdialog.cpp:507
 msgid "Delete attachment failed"
 msgstr "첨부 파일 삭제 실패"
 
-#: attachmentdialog.cpp:525 general_report_manager.cpp:664
+#: attachmentdialog.cpp:520 general_report_manager.cpp:664
 msgid "Unable to open file:"
 msgstr "파일을 열 수 없음:"
 
-#: attachmentdialog.cpp:528
+#: attachmentdialog.cpp:523
 msgid "Please verify that file exists and user has rights to read it."
 msgstr "파일이 존재하고 사용자가 파일 읽기 권한이 있는지 확인하십시오."
 
-#: attachmentdialog.cpp:529
+#: attachmentdialog.cpp:524
 msgid "Open attachment failed"
 msgstr "첨부 파일 열기 실패"
 
@@ -2038,7 +2038,7 @@ msgstr "통화 관리자"
 msgid "Custom Field Details"
 msgstr "사용자 지정 필드 세부 정보"
 
-#: customfieldeditdialog.cpp:124 customfieldlistdialog.cpp:52
+#: customfieldeditdialog.cpp:124 customfieldlistdialog.cpp:47
 msgid "Attribute of"
 msgstr "속성"
 
@@ -2144,27 +2144,27 @@ msgstr "선택한 항목이 수정되었습니다. 제거된 항목이 지워집
 msgid "New/Edit Custom Field"
 msgstr "사용자 정의 필드 생성/편집"
 
-#: customfieldlistdialog.cpp:51
+#: customfieldlistdialog.cpp:46
 msgid "#"
 msgstr "#"
 
-#: customfieldlistdialog.cpp:55
+#: customfieldlistdialog.cpp:50
 msgid "Properties"
 msgstr "속성"
 
-#: customfieldlistdialog.cpp:66 mmframe.cpp:1806
+#: customfieldlistdialog.cpp:61 mmframe.cpp:1806
 msgid "Custom Field Manager"
 msgstr "사용자 지정 필드 관리자"
 
-#: customfieldlistdialog.cpp:170
+#: customfieldlistdialog.cpp:165
 msgid "Do you really want to delete this custom field and all its data?"
 msgstr "정말로 사용자 지정 필드와 그 안의 모든 데이터를 삭제하시겠습니까?"
 
-#: customfieldlistdialog.cpp:171
+#: customfieldlistdialog.cpp:166
 msgid "Confirm Custom Field Deletion"
 msgstr "사용자 지정 필드 삭제 확인"
 
-#: customfieldlistdialog.cpp:189
+#: customfieldlistdialog.cpp:184
 #, c-format
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
@@ -2173,43 +2173,43 @@ msgstr "이 기능은 사용자 지정 필드 값이 \"%s\"인 것을 대량 검
 "필드 값과 일치하는 것만 바꾸기가 되며, 부분 또는 중간 값 바꾸기는 허용되지 않습니다\n"
 "유효성 검사가 없다는 점을 고려해 주십시오!"
 
-#: customfieldlistdialog.cpp:192
+#: customfieldlistdialog.cpp:187
 msgid "Confirm Custom Field Content Update"
 msgstr "사용자 지정 필드 내용 업데이트 확인"
 
-#: customfieldlistdialog.cpp:197
+#: customfieldlistdialog.cpp:192
 msgid "Find what"
 msgstr "찾을 내용"
 
-#: customfieldlistdialog.cpp:197 customfieldlistdialog.cpp:203
-#: customfieldlistdialog.cpp:209 customfieldlistdialog.cpp:215
-#: customfieldlistdialog.cpp:230
+#: customfieldlistdialog.cpp:192 customfieldlistdialog.cpp:198
+#: customfieldlistdialog.cpp:204 customfieldlistdialog.cpp:210
+#: customfieldlistdialog.cpp:225
 msgid "Update Custom Field Content"
 msgstr "사용자 지정 필드 내용 업데이트"
 
-#: customfieldlistdialog.cpp:201
+#: customfieldlistdialog.cpp:196
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
 msgstr "빈 내용을 업데이트하시겠습니까?\n"
 "교체 절차를 중단하려면 아니오를 누릅니다!"
 
-#: customfieldlistdialog.cpp:209
+#: customfieldlistdialog.cpp:204
 msgid "Replace with"
 msgstr "대체할 텍스트"
 
-#: customfieldlistdialog.cpp:213
+#: customfieldlistdialog.cpp:208
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
 msgstr "공백으로 갱신하시겠습니까?\n"
 "교체 절차를 중단하려면 아니오를 누릅니다!"
 
-#: customfieldlistdialog.cpp:229
+#: customfieldlistdialog.cpp:224
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
 msgstr[0] "%zu 항목이 발견 및 교체되었습니다!"
 
-#: customfieldlistdialog.cpp:264
+#: customfieldlistdialog.cpp:259
 msgid "&Bulk content update "
 msgstr "대량 내용 업데이트(&B) "
 
@@ -7249,27 +7249,27 @@ msgstr "주식 실적 차트"
 msgid "FX Rate"
 msgstr "환율"
 
-#: reports/transactions.cpp:457
+#: reports/transactions.cpp:460
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
 msgstr "모든 거래: 출금, 입금 및 이체"
 
-#: reports/transactions.cpp:475
+#: reports/transactions.cpp:478
 msgid "All Transactions excluding Transfers"
 msgstr "이체를 제외한 모든 거래 내역"
 
-#: reports/transactions.cpp:516
+#: reports/transactions.cpp:519
 msgid "Statistics"
 msgstr "통계"
 
-#: reports/transactions.cpp:539
+#: reports/transactions.cpp:542
 msgid "Minimum"
 msgstr "최소"
 
-#: reports/transactions.cpp:541
+#: reports/transactions.cpp:544
 msgid "Maximum"
 msgstr "최대"
 
-#: reports/transactions.cpp:543
+#: reports/transactions.cpp:546
 msgid "Average"
 msgstr "평균"
 
