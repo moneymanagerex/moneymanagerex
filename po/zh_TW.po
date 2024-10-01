@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-10-01 13:17\n"
+"PO-Revision-Date: 2024-10-01 14:44\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -4407,23 +4407,24 @@ msgstr[0] "您真的要永久刪除所選的 %i 交易紀錄嗎？"
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
+msgstr[0] "您真的要刪除所選的 %i 交易紀錄嗎？"
 
 #: mmchecking_list.cpp:1436
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "迄今鎖定的交易紀錄：%s\n\n"
+"交易紀錄已對帳。"
 
 #: mmchecking_list.cpp:1439 transdialog.cpp:751 transdialog.cpp:776
 msgid "MMEX Transaction Check"
-msgstr ""
+msgstr "MMEX 交易紀錄查核"
 
 #: mmchecking_list.cpp:1472
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] ""
+msgstr[0] "您將要編輯的 %i 交易紀錄涉及已關閉的帳戶。"
 
 #: mmchecking_list.cpp:1474
 msgid "\n\n"
@@ -4457,7 +4458,7 @@ msgstr "選擇目的地帳戶 "
 
 #: mmchecking_list.cpp:1719
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
-msgstr ""
+msgstr "這是由於交易紀錄或帳戶的某些要素不允許移動。"
 
 #: mmchecking_list.cpp:1720
 msgid "Moved"
@@ -4469,7 +4470,7 @@ msgstr "未有移動"
 
 #: mmchecking_list.cpp:1724
 msgid "Some transactions could not be moved"
-msgstr ""
+msgstr "某些交易紀錄無法移動。"
 
 #: mmchecking_list.cpp:1789
 msgid "Scheduled transaction saved."
@@ -4523,11 +4524,11 @@ msgstr "已刪除的交易紀錄"
 #: mmcheckingpanel.cpp:546
 #, c-format
 msgid "Account View: %s"
-msgstr ""
+msgstr "檢視帳戶：%s"
 
 #: mmcheckingpanel.cpp:565
 msgid "Account Bal: "
-msgstr ""
+msgstr "帳戶餘額： "
 
 #: mmcheckingpanel.cpp:567
 msgid "Reconciled Bal: "
@@ -4548,17 +4549,17 @@ msgstr "附件"
 #: mmcheckingpanel.cpp:681
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "已選定的交易紀錄：%zu"
 
 #: mmcheckingpanel.cpp:684
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "已選定的交易紀錄餘額：%s"
 
 #: mmcheckingpanel.cpp:688
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "所選交易紀錄間隔的天數：%d"
 
 #: mmcustomdata.cpp:65
 msgid "Custom fields"
