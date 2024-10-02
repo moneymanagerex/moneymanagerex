@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-10-01 13:17\n"
+"POT-Creation-Date: 2024-10-02 01:00+0300\n"
+"PO-Revision-Date: 2024-10-02 14:58\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "உங்கள் தனிப்பட்ட தகவல் இல்லாமல் MMEX பயன்பாடு பற்றிய தரவை அனுப்ப எங்களுக்கு உதவ, இயக்கவும்."
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:142
-#: assetdialog.cpp:283 attachmentdialog.cpp:151 billsdepositsdialog.cpp:649
+#: assetdialog.cpp:283 attachmentdialog.cpp:146 billsdepositsdialog.cpp:649
 #: budgetentrydialog.cpp:153 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:194 filtertransdialog.cpp:810
@@ -424,7 +424,7 @@ msgid "Asset Details"
 msgstr "சொத்து விவரம்"
 
 #: assetdialog.cpp:177 assetspanel.cpp:60 customfieldeditdialog.cpp:134
-#: customfieldlistdialog.cpp:53 import_export/qif_import_gui.cpp:244
+#: customfieldlistdialog.cpp:48 import_export/qif_import_gui.cpp:244
 #: import_export/qif_import_gui.cpp:257 import_export/qif_import_gui.cpp:267
 #: import_export/univcsvdialog.cpp:510 import_export/univcsvdialog.cpp:520
 #: maincurrencydialog.cpp:76 payeedialog.cpp:447 reports/summarystocks.cpp:112
@@ -522,7 +522,7 @@ msgid "ID"
 msgstr "அடையாள எண்"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:515 billsdepositspanel.cpp:139
-#: customfieldlistdialog.cpp:54 filtertrans.cpp:204 filtertransdialog.cpp:52
+#: customfieldlistdialog.cpp:49 filtertrans.cpp:204 filtertransdialog.cpp:52
 #: filtertransdialog.cpp:649 filtertransdialog.cpp:1036
 #: filtertransdialog.cpp:1863 import_export/qif_export.cpp:134
 #: import_export/qif_export.cpp:628 import_export/qif_import_gui.cpp:89
@@ -619,8 +619,8 @@ msgstr "பரிவர்த்தணையைக் காண "
 msgid "View Asset Transactions"
 msgstr "சொத்து பரிவர்த்தனைகளைப் பார்க்கவும்"
 
-#: assetspanel.cpp:485 attachmentdialog.cpp:356 billsdepositspanel.cpp:299
-#: categdialog.cpp:317 customfieldlistdialog.cpp:262 maincurrencydialog.cpp:540
+#: assetspanel.cpp:485 attachmentdialog.cpp:351 billsdepositspanel.cpp:299
+#: categdialog.cpp:317 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
 #: mmcheckingpanel.cpp:478 payeedialog.cpp:883 stockspanel.cpp:146
 #: tagdialog.cpp:128
 msgid "&Edit "
@@ -695,150 +695,150 @@ msgstr "சொத்து மேலாண்மை"
 msgid "Account \t Date\t   Value\n\n"
 msgstr "கணக்கு தேதி மதிப்பு\n\n"
 
-#: attachmentdialog.cpp:55 general_report_manager.cpp:435
+#: attachmentdialog.cpp:50 general_report_manager.cpp:435
 msgid "Description"
 msgstr "விளக்கம்"
 
-#: attachmentdialog.cpp:56
+#: attachmentdialog.cpp:51
 msgid "File"
 msgstr "கோப்பு"
 
-#: attachmentdialog.cpp:64
+#: attachmentdialog.cpp:59
 msgid "Attachment folder not defined."
 msgstr "இணைப்பு கோப்புறை வரையறுக்கப்படவில்லை."
 
-#: attachmentdialog.cpp:65
+#: attachmentdialog.cpp:60
 msgid "Please set it in Tools → Settings… → Attachments"
 msgstr "தயவுசெய்து இதைக் கருவிகள் → அமைப்புகள்… → இணைப்புகளில் அமைக்கவும்"
 
-#: attachmentdialog.cpp:66
+#: attachmentdialog.cpp:61
 msgid "Attachment folder not defined"
 msgstr "இணைப்பு கோப்புறை வரையறுக்கப்படவில்லை"
 
-#: attachmentdialog.cpp:70
+#: attachmentdialog.cpp:65
 msgid "Unable to find attachments folder:"
 msgstr "இணைப்புகள் கோப்புறையைக் கண்டுபிடிக்க முடியவில்லை:"
 
-#: attachmentdialog.cpp:73
+#: attachmentdialog.cpp:68
 msgid "Please verify that above path is correct"
 msgstr "மேலே உள்ள பாதை சரியானதா என்பதைச் சரிபார்க்கவும்"
 
-#: attachmentdialog.cpp:74
+#: attachmentdialog.cpp:69
 msgid "Attachments folder not found"
 msgstr "இணைப்பு கோப்புறை வரையறுக்கப்படவில்லை"
 
-#: attachmentdialog.cpp:114
+#: attachmentdialog.cpp:109
 #, c-format
 msgid "Attachment Manager | %s | %i"
 msgstr "இணைப்பு மேலாளர் | %s | %i"
 
-#: attachmentdialog.cpp:116
+#: attachmentdialog.cpp:111
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
 msgstr "இணைப்பு மேலாளர் | %1$s | %2$s"
 
-#: attachmentdialog.cpp:118
+#: attachmentdialog.cpp:113
 #, c-format
 msgid "Attachment Manager | New %s"
 msgstr "இணைப்பு மேலாளர் | புதிய %s"
 
-#: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
+#: attachmentdialog.cpp:153 customfieldlistdialog.cpp:94 payeedialog.cpp:584
 msgid "Other tools"
 msgstr "மற்ற கருவிகள்"
 
-#: attachmentdialog.cpp:190
+#: attachmentdialog.cpp:185
 msgid "Import attachment:"
 msgstr "இணைப்பை இறக்குமதி செய்:"
 
-#: attachmentdialog.cpp:201
+#: attachmentdialog.cpp:196
 msgid "Enter a description for the new attachment:"
 msgstr "புதிய இணைப்பிற்கான விளக்கத்தை உள்ளிடவும்:"
 
-#: attachmentdialog.cpp:202
+#: attachmentdialog.cpp:197
 msgid "Attachment Manager: Add Attachment"
 msgstr "இணைப்பு மேலாளர்: இணைப்பைச் சேர்க்கவும்"
 
-#: attachmentdialog.cpp:248
+#: attachmentdialog.cpp:243
 msgid "Enter a new description for the attachment:"
 msgstr "இணைப்புக்கான புதிய விளக்கத்தை உள்ளிடவும்:"
 
-#: attachmentdialog.cpp:249
+#: attachmentdialog.cpp:244
 msgid "Attachment Manager: Edit Attachment"
 msgstr "இணைப்பு மேலாளர்: இணைப்பைத் திருத்தவும்"
 
-#: attachmentdialog.cpp:276
+#: attachmentdialog.cpp:271
 msgid "Do you really want to delete this attachment?"
 msgstr "இந்த இணைப்பை உண்மையில் நீக்க விரும்புகிறீர்களா?"
 
-#: attachmentdialog.cpp:277
+#: attachmentdialog.cpp:272
 msgid "Confirm Attachment Deletion"
 msgstr "இணைப்பு நீக்கத்தை உறுதிப்படுத்தவும்"
 
-#: attachmentdialog.cpp:353 categdialog.cpp:313 customfieldlistdialog.cpp:260
+#: attachmentdialog.cpp:348 categdialog.cpp:313 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:310 maincurrencydialog.cpp:539
 #: payeedialog.cpp:882 stockdialog.cpp:323 tagdialog.cpp:124
 msgid "&Add "
 msgstr "&சேர் "
 
-#: attachmentdialog.cpp:355
+#: attachmentdialog.cpp:350
 msgid "&Open "
 msgstr "&திற "
 
-#: attachmentdialog.cpp:358 customfieldlistdialog.cpp:263
+#: attachmentdialog.cpp:353 customfieldlistdialog.cpp:258
 #: import_export/univcsvdialog.cpp:314 maincurrencydialog.cpp:541
 #: payeedialog.cpp:885
 msgid "&Remove "
 msgstr "&நீக்கு "
 
-#: attachmentdialog.cpp:400
+#: attachmentdialog.cpp:395
 msgid "Att."
 msgstr "அட்."
 
-#: attachmentdialog.cpp:407
+#: attachmentdialog.cpp:402
 msgid "This directory and its files are automatically managed by MMEX."
 msgstr "இந்த கோப்பகமும் அதன் கோப்புகளும் தானாகவே MMEX ஆல் நிர்வகிக்கப்படும்."
 
-#: attachmentdialog.cpp:409
+#: attachmentdialog.cpp:404
 msgid "Please do not remove, rename or modify manually directories and files."
 msgstr "கோப்பகங்கள் மற்றும் கோப்புகளை நீக்கவோ, மறுபெயரிடவோ அல்லது கைமுறையாக மாற்றவோ வேண்டாம்."
 
-#: attachmentdialog.cpp:454 attachmentdialog.cpp:462
+#: attachmentdialog.cpp:449 attachmentdialog.cpp:457
 msgid "Destination file already exist:"
 msgstr "இலக்கு கோப்பு ஏற்கனவே உள்ளது:"
 
-#: attachmentdialog.cpp:457
+#: attachmentdialog.cpp:452
 msgid "File not found in attachments. Please delete or rename it."
 msgstr "இணைப்புகளில் கோப்பு இல்லை. அதை நீக்கவும் அல்லது மறுபெயரிடவும்."
 
-#: attachmentdialog.cpp:458 attachmentdialog.cpp:466
+#: attachmentdialog.cpp:453 attachmentdialog.cpp:461
 msgid "Destination file already exist"
 msgstr "இலக்கு கோப்பு ஏற்கனவே உள்ளது"
 
-#: attachmentdialog.cpp:465
+#: attachmentdialog.cpp:460
 msgid "File already found in attachments"
 msgstr "கோப்பு ஏற்கனவே இணைப்புகளில் உள்ளது"
 
-#: attachmentdialog.cpp:508
+#: attachmentdialog.cpp:503
 msgid "Attachment not found:"
 msgstr "இணைப்பு கிடைக்கவில்லை:"
 
-#: attachmentdialog.cpp:511
+#: attachmentdialog.cpp:506
 msgid "Do you want to continue and delete attachment on database?"
 msgstr "தரவுத்தளத்தில் இணைப்பைத் தொடரவும் நீக்கவும் விரும்புகிறீர்களா?"
 
-#: attachmentdialog.cpp:512
+#: attachmentdialog.cpp:507
 msgid "Delete attachment failed"
 msgstr "இணைப்பை நீக்க முடியவில்லை"
 
-#: attachmentdialog.cpp:525 general_report_manager.cpp:664
+#: attachmentdialog.cpp:520 general_report_manager.cpp:664
 msgid "Unable to open file:"
 msgstr "கோப்பை திறக்க முடியவில்லை:"
 
-#: attachmentdialog.cpp:528
+#: attachmentdialog.cpp:523
 msgid "Please verify that file exists and user has rights to read it."
 msgstr "கோப்பு இருப்பதையும், அதைப் படிக்க பயனருக்கு உரிமை உள்ளதா என்பதையும் சரிபார்க்கவும்."
 
-#: attachmentdialog.cpp:529
+#: attachmentdialog.cpp:524
 msgid "Open attachment failed"
 msgstr "இணைப்பைத் திறக்க முடியவில்லை"
 
@@ -2044,7 +2044,7 @@ msgstr "நாணய மேலாளர்"
 msgid "Custom Field Details"
 msgstr "தனிப்பயன் கள விவரங்கள்"
 
-#: customfieldeditdialog.cpp:124 customfieldlistdialog.cpp:52
+#: customfieldeditdialog.cpp:124 customfieldlistdialog.cpp:47
 msgid "Attribute of"
 msgstr "பண்பு"
 
@@ -2150,27 +2150,27 @@ msgstr "உங்களிடம் மாற்றப்பட்ட தேர�
 msgid "New/Edit Custom Field"
 msgstr "புதிய/திருத்து தனிப்பயன் புலம்"
 
-#: customfieldlistdialog.cpp:51
+#: customfieldlistdialog.cpp:46
 msgid "#"
 msgstr "#"
 
-#: customfieldlistdialog.cpp:55
+#: customfieldlistdialog.cpp:50
 msgid "Properties"
 msgstr "பண்புகள்"
 
-#: customfieldlistdialog.cpp:66 mmframe.cpp:1806
+#: customfieldlistdialog.cpp:61 mmframe.cpp:1806
 msgid "Custom Field Manager"
 msgstr "தனிப்பயன் கள விவரங்கள்"
 
-#: customfieldlistdialog.cpp:170
+#: customfieldlistdialog.cpp:165
 msgid "Do you really want to delete this custom field and all its data?"
 msgstr "இந்த தனிப்பயன் புலத்தையும் அதன் எல்லா தரவையும் உண்மையில் நீக்க விரும்புகிறீர்களா?"
 
-#: customfieldlistdialog.cpp:171
+#: customfieldlistdialog.cpp:166
 msgid "Confirm Custom Field Deletion"
 msgstr "தனிப்பயன் புலத்தை நீக்குவதை உறுதிப்படுத்தவும்"
 
-#: customfieldlistdialog.cpp:189
+#: customfieldlistdialog.cpp:184
 #, c-format
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
@@ -2179,44 +2179,44 @@ msgstr "இந்தச் செயல்பாடு \"%s\" தனிப்ப
 "இது முழுமையான புல மதிப்புடன் மட்டுமே பொருந்தும் மற்றும் மாற்றியமைக்கும், பகுதி அல்லது நடுத்தர மதிப்பை மாற்ற அனுமதிக்கப்படவில்லை\n"
 "எந்த சரிபார்ப்பும் இல்லை என்பதைக் கவனியுங்கள்!"
 
-#: customfieldlistdialog.cpp:192
+#: customfieldlistdialog.cpp:187
 msgid "Confirm Custom Field Content Update"
 msgstr "தனிப்பயன் புல உள்ளடக்க புதுப்பிப்பை உறுதிப்படுத்தவும்"
 
-#: customfieldlistdialog.cpp:197
+#: customfieldlistdialog.cpp:192
 msgid "Find what"
 msgstr "என்ன கண்டுபிடிக்க"
 
-#: customfieldlistdialog.cpp:197 customfieldlistdialog.cpp:203
-#: customfieldlistdialog.cpp:209 customfieldlistdialog.cpp:215
-#: customfieldlistdialog.cpp:230
+#: customfieldlistdialog.cpp:192 customfieldlistdialog.cpp:198
+#: customfieldlistdialog.cpp:204 customfieldlistdialog.cpp:210
+#: customfieldlistdialog.cpp:225
 msgid "Update Custom Field Content"
 msgstr "தனிப்பயன் புல உள்ளடக்கத்தைப் புதுப்பிக்கவும்"
 
-#: customfieldlistdialog.cpp:201
+#: customfieldlistdialog.cpp:196
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
 msgstr "வெற்று உள்ளடக்கத்தைப் புதுப்பிக்க விரும்புகிறீர்களா?\n"
 "மாற்று நடைமுறையை நீங்கள் கைவிட விரும்பினால் இல்லை என்பதை அழுத்தவும்!"
 
-#: customfieldlistdialog.cpp:209
+#: customfieldlistdialog.cpp:204
 msgid "Replace with"
 msgstr "உடன் மாற்றவும்"
 
-#: customfieldlistdialog.cpp:213
+#: customfieldlistdialog.cpp:208
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
 msgstr "வெற்று உள்ளடக்கத்தைப் புதுப்பிக்க விரும்புகிறீர்களா?\n"
 "மாற்று நடைமுறையை நீங்கள் கைவிட விரும்பினால் இல்லை என்பதை அழுத்தவும்!"
 
-#: customfieldlistdialog.cpp:229
+#: customfieldlistdialog.cpp:224
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
 msgstr[0] "%zu நிகழ்வு நிறுவப்பட்டது மற்றும் மாற்றப்பட்டது!"
 msgstr[1] "%zu நிகழ்வுகள் நிறுவப்பட்டு மாற்றப்பட்டன!"
 
-#: customfieldlistdialog.cpp:264
+#: customfieldlistdialog.cpp:259
 msgid "&Bulk content update "
 msgstr "&மொத்த உள்ளடக்க புதுப்பிப்பு "
 
@@ -7236,27 +7236,27 @@ msgstr ""
 msgid "FX Rate"
 msgstr ""
 
-#: reports/transactions.cpp:457
+#: reports/transactions.cpp:460
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
 msgstr ""
 
-#: reports/transactions.cpp:475
+#: reports/transactions.cpp:478
 msgid "All Transactions excluding Transfers"
 msgstr ""
 
-#: reports/transactions.cpp:516
+#: reports/transactions.cpp:519
 msgid "Statistics"
 msgstr ""
 
-#: reports/transactions.cpp:539
+#: reports/transactions.cpp:542
 msgid "Minimum"
 msgstr ""
 
-#: reports/transactions.cpp:541
+#: reports/transactions.cpp:544
 msgid "Maximum"
 msgstr ""
 
-#: reports/transactions.cpp:543
+#: reports/transactions.cpp:546
 msgid "Average"
 msgstr ""
 
