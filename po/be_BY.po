@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-01 22:03\n"
+"POT-Creation-Date: 2024-09-12 18:13+0300\n"
+"PO-Revision-Date: 2024-09-12 20:56\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "Уключыць, каб дапамагчы нам праз дасыланне ананімнай інфармацыі выкарыстання MMEX."
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:142
-#: assetdialog.cpp:283 attachmentdialog.cpp:146 billsdepositsdialog.cpp:649
+#: assetdialog.cpp:283 attachmentdialog.cpp:151 billsdepositsdialog.cpp:649
 #: budgetentrydialog.cpp:153 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:194 filtertransdialog.cpp:810
@@ -423,7 +423,7 @@ msgid "Asset Details"
 msgstr "Звесткі пра актыў"
 
 #: assetdialog.cpp:177 assetspanel.cpp:60 customfieldeditdialog.cpp:134
-#: customfieldlistdialog.cpp:48 import_export/qif_import_gui.cpp:244
+#: customfieldlistdialog.cpp:53 import_export/qif_import_gui.cpp:244
 #: import_export/qif_import_gui.cpp:257 import_export/qif_import_gui.cpp:267
 #: import_export/univcsvdialog.cpp:510 import_export/univcsvdialog.cpp:520
 #: maincurrencydialog.cpp:76 payeedialog.cpp:447 reports/summarystocks.cpp:112
@@ -522,7 +522,7 @@ msgid "ID"
 msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:515 billsdepositspanel.cpp:139
-#: customfieldlistdialog.cpp:49 filtertrans.cpp:204 filtertransdialog.cpp:52
+#: customfieldlistdialog.cpp:54 filtertrans.cpp:204 filtertransdialog.cpp:52
 #: filtertransdialog.cpp:649 filtertransdialog.cpp:1036
 #: filtertransdialog.cpp:1863 import_export/qif_export.cpp:134
 #: import_export/qif_export.cpp:628 import_export/qif_import_gui.cpp:89
@@ -621,8 +621,8 @@ msgstr "&Глядзець аперацыі "
 msgid "View Asset Transactions"
 msgstr "Усе аперацыі для актыва"
 
-#: assetspanel.cpp:485 attachmentdialog.cpp:351 billsdepositspanel.cpp:299
-#: categdialog.cpp:317 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
+#: assetspanel.cpp:485 attachmentdialog.cpp:356 billsdepositspanel.cpp:299
+#: categdialog.cpp:317 customfieldlistdialog.cpp:262 maincurrencydialog.cpp:540
 #: mmcheckingpanel.cpp:478 payeedialog.cpp:883 stockspanel.cpp:146
 #: tagdialog.cpp:128
 msgid "&Edit "
@@ -697,150 +697,150 @@ msgstr "Кіраванне актывамі"
 msgid "Account \t Date\t   Value\n\n"
 msgstr "Рахунак \t Дата\t   Кошт\n\n"
 
-#: attachmentdialog.cpp:50 general_report_manager.cpp:435
+#: attachmentdialog.cpp:55 general_report_manager.cpp:435
 msgid "Description"
 msgstr "Апісанне"
 
-#: attachmentdialog.cpp:51
+#: attachmentdialog.cpp:56
 msgid "File"
 msgstr "Файл"
 
-#: attachmentdialog.cpp:59
+#: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
 msgstr "Не паказаная тэчка з файламі."
 
-#: attachmentdialog.cpp:60
+#: attachmentdialog.cpp:65
 msgid "Please set it in Tools → Settings… → Attachments"
 msgstr ""
 
-#: attachmentdialog.cpp:61
+#: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
 msgstr "Тэчка для далучэнняў ня вызначаная"
 
-#: attachmentdialog.cpp:65
+#: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
 msgstr "Не магу знайсці тэчку для далучэнняў:"
 
-#: attachmentdialog.cpp:68
+#: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
 msgstr "Калі ласка, праверце, што шлях слушны"
 
-#: attachmentdialog.cpp:69
+#: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
 msgstr "Тэчка для далучэнняў ня вызначаная"
 
-#: attachmentdialog.cpp:109
+#: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %s | %i"
 msgstr ""
 
-#: attachmentdialog.cpp:111
+#: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
 msgstr ""
 
-#: attachmentdialog.cpp:113
+#: attachmentdialog.cpp:118
 #, c-format
 msgid "Attachment Manager | New %s"
 msgstr ""
 
-#: attachmentdialog.cpp:153 customfieldlistdialog.cpp:94 payeedialog.cpp:584
+#: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
 msgid "Other tools"
 msgstr "Іншыя прылады"
 
-#: attachmentdialog.cpp:185
+#: attachmentdialog.cpp:190
 msgid "Import attachment:"
 msgstr "Запампаваць далучэнне:"
 
-#: attachmentdialog.cpp:196
+#: attachmentdialog.cpp:201
 msgid "Enter a description for the new attachment:"
 msgstr "Пакажыце апісанне новага далучэння:"
 
-#: attachmentdialog.cpp:197
+#: attachmentdialog.cpp:202
 msgid "Attachment Manager: Add Attachment"
 msgstr ""
 
-#: attachmentdialog.cpp:243
+#: attachmentdialog.cpp:248
 msgid "Enter a new description for the attachment:"
 msgstr "Пакажыце новае апісанне для далучэння:"
 
-#: attachmentdialog.cpp:244
+#: attachmentdialog.cpp:249
 msgid "Attachment Manager: Edit Attachment"
 msgstr ""
 
-#: attachmentdialog.cpp:271
+#: attachmentdialog.cpp:276
 msgid "Do you really want to delete this attachment?"
 msgstr "Сапраўды жадаеце выдаліць далучэнне?"
 
-#: attachmentdialog.cpp:272
+#: attachmentdialog.cpp:277
 msgid "Confirm Attachment Deletion"
 msgstr "Спраўдзіце выдаленне далучэння"
 
-#: attachmentdialog.cpp:348 categdialog.cpp:313 customfieldlistdialog.cpp:255
+#: attachmentdialog.cpp:353 categdialog.cpp:313 customfieldlistdialog.cpp:260
 #: import_export/univcsvdialog.cpp:310 maincurrencydialog.cpp:539
 #: payeedialog.cpp:882 stockdialog.cpp:323 tagdialog.cpp:124
 msgid "&Add "
 msgstr "Д&адаць "
 
-#: attachmentdialog.cpp:350
+#: attachmentdialog.cpp:355
 msgid "&Open "
 msgstr "А&дчыніць "
 
-#: attachmentdialog.cpp:353 customfieldlistdialog.cpp:258
+#: attachmentdialog.cpp:358 customfieldlistdialog.cpp:263
 #: import_export/univcsvdialog.cpp:314 maincurrencydialog.cpp:541
 #: payeedialog.cpp:885
 msgid "&Remove "
 msgstr "В&ыдаліць "
 
-#: attachmentdialog.cpp:395
+#: attachmentdialog.cpp:400
 msgid "Att."
 msgstr "Далуч."
 
-#: attachmentdialog.cpp:402
+#: attachmentdialog.cpp:407
 msgid "This directory and its files are automatically managed by MMEX."
 msgstr ""
 
-#: attachmentdialog.cpp:404
+#: attachmentdialog.cpp:409
 msgid "Please do not remove, rename or modify manually directories and files."
 msgstr "Калі ласка, не выдаляйце, не пераназывайце і не перасоўвайце файлы і тэчкі ўручную."
 
-#: attachmentdialog.cpp:449 attachmentdialog.cpp:457
+#: attachmentdialog.cpp:454 attachmentdialog.cpp:462
 msgid "Destination file already exist:"
 msgstr "Файл прызначэння ўжо існуе:"
 
-#: attachmentdialog.cpp:452
+#: attachmentdialog.cpp:457
 msgid "File not found in attachments. Please delete or rename it."
 msgstr "Файл ня знойдзены ў далучэннях. Калі ласка, выдаліце або пераназавіце яго."
 
-#: attachmentdialog.cpp:453 attachmentdialog.cpp:461
+#: attachmentdialog.cpp:458 attachmentdialog.cpp:466
 msgid "Destination file already exist"
 msgstr "Файл прызначэння ўжо існуе"
 
-#: attachmentdialog.cpp:460
+#: attachmentdialog.cpp:465
 msgid "File already found in attachments"
 msgstr "Файл ужо ёсць у далучэннях"
 
-#: attachmentdialog.cpp:503
+#: attachmentdialog.cpp:508
 msgid "Attachment not found:"
 msgstr "Далучэнне ня знойдзенае:"
 
-#: attachmentdialog.cpp:506
+#: attachmentdialog.cpp:511
 msgid "Do you want to continue and delete attachment on database?"
 msgstr "Жадаеце працягнуць і таксама выдаліць далучэнне?"
 
-#: attachmentdialog.cpp:507
+#: attachmentdialog.cpp:512
 msgid "Delete attachment failed"
 msgstr "Памылка выдалення далучэння"
 
-#: attachmentdialog.cpp:520 general_report_manager.cpp:664
+#: attachmentdialog.cpp:525 general_report_manager.cpp:664
 msgid "Unable to open file:"
 msgstr "Немагчыма адчыніць файл:"
 
-#: attachmentdialog.cpp:523
+#: attachmentdialog.cpp:528
 msgid "Please verify that file exists and user has rights to read it."
 msgstr "Калі ласка, праверце, што файл існуе і ў карыстальніка дастаткова правоў чытаць яго."
 
-#: attachmentdialog.cpp:524
+#: attachmentdialog.cpp:529
 msgid "Open attachment failed"
 msgstr "Немагчыма адчыніць далучэнне"
 
@@ -2050,7 +2050,7 @@ msgstr "Дыспетчар валютаў"
 msgid "Custom Field Details"
 msgstr "Падрабязнасці"
 
-#: customfieldeditdialog.cpp:124 customfieldlistdialog.cpp:47
+#: customfieldeditdialog.cpp:124 customfieldlistdialog.cpp:52
 msgid "Attribute of"
 msgstr "Належыць да"
 
@@ -2156,27 +2156,27 @@ msgstr "Вы змянілі варыянты: выдаленыя будуць а
 msgid "New/Edit Custom Field"
 msgstr "Дыспетчар карыстальніцкіх палёў"
 
-#: customfieldlistdialog.cpp:46
+#: customfieldlistdialog.cpp:51
 msgid "#"
 msgstr "№"
 
-#: customfieldlistdialog.cpp:50
+#: customfieldlistdialog.cpp:55
 msgid "Properties"
 msgstr "Уласцівасці"
 
-#: customfieldlistdialog.cpp:61 mmframe.cpp:1806
+#: customfieldlistdialog.cpp:66 mmframe.cpp:1806
 msgid "Custom Field Manager"
 msgstr ""
 
-#: customfieldlistdialog.cpp:165
+#: customfieldlistdialog.cpp:170
 msgid "Do you really want to delete this custom field and all its data?"
 msgstr "Вы сапраўды жадаеце выдаліць карыстальніцкае поле і ягоныя дадзеныя?"
 
-#: customfieldlistdialog.cpp:166
+#: customfieldlistdialog.cpp:171
 msgid "Confirm Custom Field Deletion"
 msgstr "Спраўдзіце выдаленне карыстальніцкага поля"
 
-#: customfieldlistdialog.cpp:184
+#: customfieldlistdialog.cpp:189
 #, c-format
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
@@ -2185,37 +2185,37 @@ msgstr "Гэтая функцыя будзе паўсюль выконваць �
 "Будуць замененыя толькі поўныя супадзення поля, частковае або сярэдняе значэнне не дапускаецца\n"
 "Калі ласка, улічвайце, што няма ніякай праверкі!"
 
-#: customfieldlistdialog.cpp:187
+#: customfieldlistdialog.cpp:192
 msgid "Confirm Custom Field Content Update"
 msgstr "Спраўдзіце абнаўленне карыстальніцкага поля"
 
-#: customfieldlistdialog.cpp:192
+#: customfieldlistdialog.cpp:197
 msgid "Find what"
 msgstr "Знайсці"
 
-#: customfieldlistdialog.cpp:192 customfieldlistdialog.cpp:198
-#: customfieldlistdialog.cpp:204 customfieldlistdialog.cpp:210
-#: customfieldlistdialog.cpp:225
+#: customfieldlistdialog.cpp:197 customfieldlistdialog.cpp:203
+#: customfieldlistdialog.cpp:209 customfieldlistdialog.cpp:215
+#: customfieldlistdialog.cpp:230
 msgid "Update Custom Field Content"
 msgstr "Абнаўленне карыстальніцкага поля"
 
-#: customfieldlistdialog.cpp:196
+#: customfieldlistdialog.cpp:201
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
 msgstr "Вы жадаеце замяніць на пустое значэнне?\n"
 "Націсніце Не, калі хочаце скасаваць працэс замены!"
 
-#: customfieldlistdialog.cpp:204
+#: customfieldlistdialog.cpp:209
 msgid "Replace with"
 msgstr "Замяніць на"
 
-#: customfieldlistdialog.cpp:208
+#: customfieldlistdialog.cpp:213
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
 msgstr "Вы жадаеце замяніць на пустое значэнне?\n"
 "Націсніце Не, калі хочаце перапыніць працыдуру замены!"
 
-#: customfieldlistdialog.cpp:224
+#: customfieldlistdialog.cpp:229
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
@@ -2224,7 +2224,7 @@ msgstr[1] "%zu супадзенні знойдзеныя і замененыя!"
 msgstr[2] "%zu супадзенняў знойдзеныя і замененыя!"
 msgstr[3] "%zu супадзенняў знойдзеныя і замененыя!"
 
-#: customfieldlistdialog.cpp:259
+#: customfieldlistdialog.cpp:264
 msgid "&Bulk content update "
 msgstr "&Абнаўленне змесціва паўсюль "
 
@@ -7301,27 +7301,27 @@ msgstr "Прадстаўленне каціровак"
 msgid "FX Rate"
 msgstr ""
 
-#: reports/transactions.cpp:460
+#: reports/transactions.cpp:457
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
 msgstr "Усе аперацыі: спісанні, унёскі і пераказы"
 
-#: reports/transactions.cpp:478
+#: reports/transactions.cpp:475
 msgid "All Transactions excluding Transfers"
 msgstr "Усе аперацыі акрамя пераказаў"
 
-#: reports/transactions.cpp:519
+#: reports/transactions.cpp:516
 msgid "Statistics"
 msgstr ""
 
-#: reports/transactions.cpp:542
+#: reports/transactions.cpp:539
 msgid "Minimum"
 msgstr ""
 
-#: reports/transactions.cpp:544
+#: reports/transactions.cpp:541
 msgid "Maximum"
 msgstr ""
 
-#: reports/transactions.cpp:546
+#: reports/transactions.cpp:543
 msgid "Average"
 msgstr ""
 

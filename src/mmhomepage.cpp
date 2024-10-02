@@ -273,8 +273,8 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
 
 
 htmlWidgetBillsAndDeposits::htmlWidgetBillsAndDeposits(const wxString& title, mmDateRange* date_range)
-    : title_(title)
-    , date_range_(date_range)
+    : date_range_(date_range)
+    , title_(title)
 {}
 
 htmlWidgetBillsAndDeposits::~htmlWidgetBillsAndDeposits()
@@ -793,7 +793,7 @@ const wxString htmlWidgetCurrency::getHtmlText()
     std::map<wxString, double> usedRates;
     const auto currencies = Model_Currency::instance().all();
 
-    for (const auto currency : currencies)
+    for (const auto &currency : currencies)
     {
         if (Model_Account::is_used(currency)) {
 

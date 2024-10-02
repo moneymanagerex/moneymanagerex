@@ -96,5 +96,5 @@ public:
     }
 
 private:
-    bool m_payee;
+    bool m_payee = false;
 };
