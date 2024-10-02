@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-09-12 18:13+0300\n"
-"PO-Revision-Date: 2024-10-01 13:17\n"
+"POT-Creation-Date: 2024-10-02 01:00+0300\n"
+"PO-Revision-Date: 2024-10-02 14:58\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "Permettre de nous aider en envoyant des données anonymes sur l'utilisation de MMex."
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:142
-#: assetdialog.cpp:283 attachmentdialog.cpp:151 billsdepositsdialog.cpp:649
+#: assetdialog.cpp:283 attachmentdialog.cpp:146 billsdepositsdialog.cpp:649
 #: budgetentrydialog.cpp:153 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:194 filtertransdialog.cpp:810
@@ -423,7 +423,7 @@ msgid "Asset Details"
 msgstr "Détails du bien"
 
 #: assetdialog.cpp:177 assetspanel.cpp:60 customfieldeditdialog.cpp:134
-#: customfieldlistdialog.cpp:53 import_export/qif_import_gui.cpp:244
+#: customfieldlistdialog.cpp:48 import_export/qif_import_gui.cpp:244
 #: import_export/qif_import_gui.cpp:257 import_export/qif_import_gui.cpp:267
 #: import_export/univcsvdialog.cpp:510 import_export/univcsvdialog.cpp:520
 #: maincurrencydialog.cpp:76 payeedialog.cpp:447 reports/summarystocks.cpp:112
@@ -522,7 +522,7 @@ msgid "ID"
 msgstr "N° opé."
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:515 billsdepositspanel.cpp:139
-#: customfieldlistdialog.cpp:54 filtertrans.cpp:204 filtertransdialog.cpp:52
+#: customfieldlistdialog.cpp:49 filtertrans.cpp:204 filtertransdialog.cpp:52
 #: filtertransdialog.cpp:649 filtertransdialog.cpp:1036
 #: filtertransdialog.cpp:1863 import_export/qif_export.cpp:134
 #: import_export/qif_export.cpp:628 import_export/qif_import_gui.cpp:89
@@ -619,8 +619,8 @@ msgstr "&Afficher opé."
 msgid "View Asset Transactions"
 msgstr "Afficher toutes les opérations"
 
-#: assetspanel.cpp:485 attachmentdialog.cpp:356 billsdepositspanel.cpp:299
-#: categdialog.cpp:317 customfieldlistdialog.cpp:262 maincurrencydialog.cpp:540
+#: assetspanel.cpp:485 attachmentdialog.cpp:351 billsdepositspanel.cpp:299
+#: categdialog.cpp:317 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
 #: mmcheckingpanel.cpp:478 payeedialog.cpp:883 stockspanel.cpp:146
 #: tagdialog.cpp:128
 msgid "&Edit "
@@ -695,150 +695,150 @@ msgstr "Gestion du bien"
 msgid "Account \t Date\t   Value\n\n"
 msgstr "Compte \t Date\t Valeur\n\n"
 
-#: attachmentdialog.cpp:55 general_report_manager.cpp:435
+#: attachmentdialog.cpp:50 general_report_manager.cpp:435
 msgid "Description"
 msgstr "Description"
 
-#: attachmentdialog.cpp:56
+#: attachmentdialog.cpp:51
 msgid "File"
 msgstr "Fichier"
 
-#: attachmentdialog.cpp:64
+#: attachmentdialog.cpp:59
 msgid "Attachment folder not defined."
 msgstr "Le répertoire des pièces jointes n'est pas défini."
 
-#: attachmentdialog.cpp:65
+#: attachmentdialog.cpp:60
 msgid "Please set it in Tools → Settings… → Attachments"
 msgstr "Configurez-le dans Outils -> Options... -> Pièces jointes"
 
-#: attachmentdialog.cpp:66
+#: attachmentdialog.cpp:61
 msgid "Attachment folder not defined"
 msgstr "Le répertoire des pièces jointes n'est pas défini"
 
-#: attachmentdialog.cpp:70
+#: attachmentdialog.cpp:65
 msgid "Unable to find attachments folder:"
 msgstr "Impossible de trouver le répertoire des pièces jointes : "
 
-#: attachmentdialog.cpp:73
+#: attachmentdialog.cpp:68
 msgid "Please verify that above path is correct"
 msgstr "Merci de vérifier que le chemin suivant est correct"
 
-#: attachmentdialog.cpp:74
+#: attachmentdialog.cpp:69
 msgid "Attachments folder not found"
 msgstr "Répertoire des pièces jointes non trouvé"
 
-#: attachmentdialog.cpp:114
+#: attachmentdialog.cpp:109
 #, c-format
 msgid "Attachment Manager | %s | %i"
 msgstr "Gestionnaire de pièces jointes | %s | %i"
 
-#: attachmentdialog.cpp:116
+#: attachmentdialog.cpp:111
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
 msgstr "Gestionnaire de pièces jointes | %1$s | %2$s"
 
-#: attachmentdialog.cpp:118
+#: attachmentdialog.cpp:113
 #, c-format
 msgid "Attachment Manager | New %s"
 msgstr "Gestionnaire de pièces jointes | Nouveau %s"
 
-#: attachmentdialog.cpp:158 customfieldlistdialog.cpp:99 payeedialog.cpp:584
+#: attachmentdialog.cpp:153 customfieldlistdialog.cpp:94 payeedialog.cpp:584
 msgid "Other tools"
 msgstr "Autres outils"
 
-#: attachmentdialog.cpp:190
+#: attachmentdialog.cpp:185
 msgid "Import attachment:"
 msgstr "Importer des pièces jointes"
 
-#: attachmentdialog.cpp:201
+#: attachmentdialog.cpp:196
 msgid "Enter a description for the new attachment:"
 msgstr "Saisissez une description pour cette nouvelle pièce jointe:"
 
-#: attachmentdialog.cpp:202
+#: attachmentdialog.cpp:197
 msgid "Attachment Manager: Add Attachment"
 msgstr "Gestionnaire de pièces jointes : Ajouter un document"
 
-#: attachmentdialog.cpp:248
+#: attachmentdialog.cpp:243
 msgid "Enter a new description for the attachment:"
 msgstr "Saisissez une nouvelle description pour cette pièce jointe :"
 
-#: attachmentdialog.cpp:249
+#: attachmentdialog.cpp:244
 msgid "Attachment Manager: Edit Attachment"
 msgstr "Gestionnaire de pièces jointes : Editer le document"
 
-#: attachmentdialog.cpp:276
+#: attachmentdialog.cpp:271
 msgid "Do you really want to delete this attachment?"
 msgstr "Voulez-vous vraiment supprimer la pièce jointe ?"
 
-#: attachmentdialog.cpp:277
+#: attachmentdialog.cpp:272
 msgid "Confirm Attachment Deletion"
 msgstr "Confirmez la suppression de la pièce jointe"
 
-#: attachmentdialog.cpp:353 categdialog.cpp:313 customfieldlistdialog.cpp:260
+#: attachmentdialog.cpp:348 categdialog.cpp:313 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:310 maincurrencydialog.cpp:539
 #: payeedialog.cpp:882 stockdialog.cpp:323 tagdialog.cpp:124
 msgid "&Add "
 msgstr "&Ajouter "
 
-#: attachmentdialog.cpp:355
+#: attachmentdialog.cpp:350
 msgid "&Open "
 msgstr "&Ouvrir "
 
-#: attachmentdialog.cpp:358 customfieldlistdialog.cpp:263
+#: attachmentdialog.cpp:353 customfieldlistdialog.cpp:258
 #: import_export/univcsvdialog.cpp:314 maincurrencydialog.cpp:541
 #: payeedialog.cpp:885
 msgid "&Remove "
 msgstr "Effacer"
 
-#: attachmentdialog.cpp:400
+#: attachmentdialog.cpp:395
 msgid "Att."
 msgstr "P.J."
 
-#: attachmentdialog.cpp:407
+#: attachmentdialog.cpp:402
 msgid "This directory and its files are automatically managed by MMEX."
 msgstr "Ce répertoire et ses fichiers sont automatiquement gérés par MMEX."
 
-#: attachmentdialog.cpp:409
+#: attachmentdialog.cpp:404
 msgid "Please do not remove, rename or modify manually directories and files."
 msgstr "Merci de ne pas effacer, renommer ou modifier manuellement les fichiers et les répertoires."
 
-#: attachmentdialog.cpp:454 attachmentdialog.cpp:462
+#: attachmentdialog.cpp:449 attachmentdialog.cpp:457
 msgid "Destination file already exist:"
 msgstr "Le fichier de destination existe déjà :"
 
-#: attachmentdialog.cpp:457
+#: attachmentdialog.cpp:452
 msgid "File not found in attachments. Please delete or rename it."
 msgstr "Fichier non trouvé dans les pièces jointes. Merci de le supprimer ou de le renommer."
 
-#: attachmentdialog.cpp:458 attachmentdialog.cpp:466
+#: attachmentdialog.cpp:453 attachmentdialog.cpp:461
 msgid "Destination file already exist"
 msgstr "Le fichier de destination existe déjà."
 
-#: attachmentdialog.cpp:465
+#: attachmentdialog.cpp:460
 msgid "File already found in attachments"
 msgstr "Le fichier a déjà été trouvé dans les pièces jointes"
 
-#: attachmentdialog.cpp:508
+#: attachmentdialog.cpp:503
 msgid "Attachment not found:"
 msgstr "Pièce jointe non trouvée :"
 
-#: attachmentdialog.cpp:511
+#: attachmentdialog.cpp:506
 msgid "Do you want to continue and delete attachment on database?"
 msgstr "Souhaitez-vous continuer  et supprimer la pièce jointe de la base de données ?"
 
-#: attachmentdialog.cpp:512
+#: attachmentdialog.cpp:507
 msgid "Delete attachment failed"
 msgstr "Échec de suppression de la pièce jointe "
 
-#: attachmentdialog.cpp:525 general_report_manager.cpp:664
+#: attachmentdialog.cpp:520 general_report_manager.cpp:664
 msgid "Unable to open file:"
 msgstr "Impossible d'ouvrir le fichier :"
 
-#: attachmentdialog.cpp:528
+#: attachmentdialog.cpp:523
 msgid "Please verify that file exists and user has rights to read it."
 msgstr "Vérifiez que le fichier existe et que l'utilisateur peut y accéder en lecture."
 
-#: attachmentdialog.cpp:529
+#: attachmentdialog.cpp:524
 msgid "Open attachment failed"
 msgstr "Échec de l' ouverture de la pièce jointe"
 
@@ -2044,7 +2044,7 @@ msgstr "Gestionnaire de devises"
 msgid "Custom Field Details"
 msgstr "Détails du Champ personnalisé"
 
-#: customfieldeditdialog.cpp:124 customfieldlistdialog.cpp:52
+#: customfieldeditdialog.cpp:124 customfieldlistdialog.cpp:47
 msgid "Attribute of"
 msgstr "Attributs de"
 
@@ -2150,27 +2150,27 @@ msgstr "Vous avez modifié les choix: ceux enlevés seront supprimés!"
 msgid "New/Edit Custom Field"
 msgstr "Créer/éditer un champ personnalisé"
 
-#: customfieldlistdialog.cpp:51
+#: customfieldlistdialog.cpp:46
 msgid "#"
 msgstr "#"
 
-#: customfieldlistdialog.cpp:55
+#: customfieldlistdialog.cpp:50
 msgid "Properties"
 msgstr "Propriérés"
 
-#: customfieldlistdialog.cpp:66 mmframe.cpp:1806
+#: customfieldlistdialog.cpp:61 mmframe.cpp:1806
 msgid "Custom Field Manager"
 msgstr "Gestionnaire de champs personnalisés"
 
-#: customfieldlistdialog.cpp:170
+#: customfieldlistdialog.cpp:165
 msgid "Do you really want to delete this custom field and all its data?"
 msgstr "Voulez-vous vraiment supprimer ce champ personnalisé et toutes ses données ?"
 
-#: customfieldlistdialog.cpp:171
+#: customfieldlistdialog.cpp:166
 msgid "Confirm Custom Field Deletion"
 msgstr "Confirmez la suppression du champ personnalisé"
 
-#: customfieldlistdialog.cpp:189
+#: customfieldlistdialog.cpp:184
 #, c-format
 msgid "This function will bulk search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
@@ -2179,44 +2179,44 @@ msgstr "Cette fonction est destinée à rechercher et remplacer massivement le c
 "Le remplacement n'est effectué qu'en cas de correspondance complète avec la valeur du champ. Les remplacements partiels de données ou d'une partie du contenu ne sont pas autorisés.\n"
 "Merci de noter qu'il n'y a aucune validation !"
 
-#: customfieldlistdialog.cpp:192
+#: customfieldlistdialog.cpp:187
 msgid "Confirm Custom Field Content Update"
 msgstr "Confirmer la mise à jour du contenu du champ personnalisé"
 
-#: customfieldlistdialog.cpp:197
+#: customfieldlistdialog.cpp:192
 msgid "Find what"
 msgstr "Trouver quoi ?"
 
-#: customfieldlistdialog.cpp:197 customfieldlistdialog.cpp:203
-#: customfieldlistdialog.cpp:209 customfieldlistdialog.cpp:215
-#: customfieldlistdialog.cpp:230
+#: customfieldlistdialog.cpp:192 customfieldlistdialog.cpp:198
+#: customfieldlistdialog.cpp:204 customfieldlistdialog.cpp:210
+#: customfieldlistdialog.cpp:225
 msgid "Update Custom Field Content"
 msgstr "MàJ du contenu du champ personnalisé"
 
-#: customfieldlistdialog.cpp:201
+#: customfieldlistdialog.cpp:196
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
 msgstr "Voulez-vous mettre à jour le contenu vide?\n"
 "Sélectionnez NON si vous voulez annuler la procédure de remplacement !"
 
-#: customfieldlistdialog.cpp:209
+#: customfieldlistdialog.cpp:204
 msgid "Replace with"
 msgstr "Remplacer avec"
 
-#: customfieldlistdialog.cpp:213
+#: customfieldlistdialog.cpp:208
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
 msgstr "Voulez-vous remettre à zero ?\n"
 "Sélectionnez NON si vous voulez annuler la procédure !"
 
-#: customfieldlistdialog.cpp:229
+#: customfieldlistdialog.cpp:224
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
 msgstr[0] "%zu occurrence trouvée et remplacée !"
 msgstr[1] "%zu occurrences trouvées et remplacées !"
 
-#: customfieldlistdialog.cpp:264
+#: customfieldlistdialog.cpp:259
 msgid "&Bulk content update "
 msgstr "&Mise à jour massive de contenu "
 
@@ -7269,27 +7269,27 @@ msgstr "Graphique de la performance des titres"
 msgid "FX Rate"
 msgstr "Taux de change"
 
-#: reports/transactions.cpp:457
+#: reports/transactions.cpp:460
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
 msgstr "Toutes les transactions : débits, crédits et virements"
 
-#: reports/transactions.cpp:475
+#: reports/transactions.cpp:478
 msgid "All Transactions excluding Transfers"
 msgstr "Toutes les transactions sauf les virements"
 
-#: reports/transactions.cpp:516
+#: reports/transactions.cpp:519
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: reports/transactions.cpp:539
+#: reports/transactions.cpp:542
 msgid "Minimum"
 msgstr "Minimum"
 
-#: reports/transactions.cpp:541
+#: reports/transactions.cpp:544
 msgid "Maximum"
 msgstr "Maximum"
 
-#: reports/transactions.cpp:543
+#: reports/transactions.cpp:546
 msgid "Average"
 msgstr "Moyenne"
 
