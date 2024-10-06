@@ -27,10 +27,7 @@
 #include "util.h"
 
 mmPrintableBase::mmPrintableBase(const wxString& title)
-    : m_title(title)
-    , m_initial(true)
-    , accountArray_(nullptr)
-    , m_settings("")
+    : m_title(title)    
 {
 }
 
