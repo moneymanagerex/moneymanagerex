@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-02 14:58\n"
+"PO-Revision-Date: 2024-10-07 17:31\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -844,7 +844,7 @@ msgstr "இணைப்பைத் திறக்க முடியவில�
 
 #: billsdepositsdialog.cpp:45 billsdepositspanel.cpp:50
 msgid "Once"
-msgstr ""
+msgstr "ஒருமுறை"
 
 #: billsdepositsdialog.cpp:46 billsdepositspanel.cpp:51
 #: model/Model_Budget.cpp:30
@@ -3695,7 +3695,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1567
 msgid "File exists"
-msgstr ""
+msgstr "கோப்பு ஏற்க்கனவே உள்ளது"
 
 #: import_export/univcsvdialog.cpp:1573
 msgid "Failed to delete existing file. File may be locked by another program."
@@ -3779,7 +3779,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:75
 msgid "Code"
-msgstr ""
+msgstr "குறியீடு"
 
 #: maincurrencydialog.cpp:77
 msgid "Last Rate"
@@ -3812,7 +3812,7 @@ msgstr ""
 #: maincurrencydialog.cpp:258 stockdialog.cpp:287 stockdialog.cpp:306
 #: stockdialog.cpp:634 stockspanel.cpp:215
 msgid "Price"
-msgstr ""
+msgstr "விலை"
 
 #: maincurrencydialog.cpp:277
 msgid "Specify the date of currency value"
@@ -3937,7 +3937,7 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:945
 msgid "Add one year"
-msgstr ""
+msgstr "ஒரு வருடத்தைச் சேர்"
 
 #: mmSimpleDialogs.cpp:1001
 #, c-format
