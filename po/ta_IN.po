@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-07 17:31\n"
+"PO-Revision-Date: 2024-10-09 12:36\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -3820,7 +3820,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:287
 msgid "Enter the currency value"
-msgstr ""
+msgstr "பணத்தின் மதிப்பை உள்ளிடவும்"
 
 #: maincurrencydialog.cpp:297
 msgid "Download Currency Values history"
@@ -3921,7 +3921,7 @@ msgstr ""
 #: mmSimpleDialogs.cpp:770 mmSimpleDialogs.cpp:784
 #, c-format
 msgid "Color #&%i"
-msgstr ""
+msgstr "நிறம் #&%i"
 
 #: mmSimpleDialogs.cpp:942
 msgid "Subtract one year"
@@ -3987,11 +3987,11 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:1048 mmSimpleDialogs.cpp:1060
 msgid "Invalid Name"
-msgstr ""
+msgstr "செல்லாத பெயர்"
 
 #: mmSimpleDialogs.cpp:1051 mmSimpleDialogs.cpp:1063
 msgid "Already exist!"
-msgstr ""
+msgstr "ஏற்கனவே உள்ளது!"
 
 #: mmSimpleDialogs.cpp:1053
 msgid "Please type in a non empty name."
@@ -4020,7 +4020,7 @@ msgstr ""
 
 #: mmTextCtrl.cpp:88 splittransactionsdialog.cpp:586
 msgid "Invalid Value"
-msgstr ""
+msgstr "செல்லாத மதிப்பு"
 
 #: mmTextCtrl.cpp:114
 msgid "Please enter a positive or calculated value."
