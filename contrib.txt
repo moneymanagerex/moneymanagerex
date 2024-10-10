@@ -245,6 +245,7 @@ Ciro Caruso
 Pascal Freland
 Detlef Straube
 Stephan Kasslatter
+Panagiotis Theodosopoulos
 
 ### 2023
 Renato
