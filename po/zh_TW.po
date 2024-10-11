@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-11 09:53\n"
+"PO-Revision-Date: 2024-10-11 11:48\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -1506,7 +1506,7 @@ msgstr "%1$s 開始日期：%2$s"
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr "%s 的預算規劃"
+msgstr "%s 的預算規劃員"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -4619,7 +4619,7 @@ msgstr "信用卡帳戶"
 #: mmframe.cpp:487 mmframe.cpp:798 mmhomepage.cpp:693 reports/summary.cpp:265
 #: reports/summary.cpp:305
 msgid "Term Accounts"
-msgstr ""
+msgstr "定存帳戶"
 
 #: mmframe.cpp:488 mmframe.cpp:802
 msgid "Stock Portfolios"
@@ -4649,7 +4649,7 @@ msgstr "共享的帳戶"
 
 #: mmframe.cpp:822 mmframe.cpp:1776 mmframe.cpp:2888
 msgid "Budget Planner"
-msgstr "預算規劃器"
+msgstr "預算規劃員"
 
 #: mmframe.cpp:827 mmframe.cpp:1358 mmframe.cpp:1375 mmframe.cpp:1796
 #: mmframe.cpp:1975 mmframe.cpp:2873
@@ -4911,7 +4911,7 @@ msgstr "將轉帳交易紀錄納入預算總額"
 
 #: mmframe.cpp:1644
 msgid "Budget Category Report: with &Summaries"
-msgstr "預算類別報告：包含摘要(&S)"
+msgstr "預算類別報表：包含摘要(&S)"
 
 #: mmframe.cpp:1644
 msgid "Include the category summaries in the Budget Category Summary"
@@ -4955,7 +4955,7 @@ msgstr "重置檢視(&R)"
 
 #: mmframe.cpp:1677
 msgid "Reset view and dock tools"
-msgstr ""
+msgstr "重置檢視和固定的工具"
 
 #: mmframe.cpp:1708
 msgid "Dash&board"
@@ -4967,7 +4967,7 @@ msgstr "開啟儀表板"
 
 #: mmframe.cpp:1717
 msgid "Change the account type of an account"
-msgstr ""
+msgstr "變更帳戶的類型"
 
 #: mmframe.cpp:1720
 msgid "Delete Account from database"
@@ -5003,7 +5003,7 @@ msgstr "標記管理員"
 
 #: mmframe.cpp:1751
 msgid "Curre&ncy Manager..."
-msgstr ""
+msgstr "貨幣管理員(&N)..."
 
 #: mmframe.cpp:1755
 msgid "&Categories..."
@@ -5040,7 +5040,7 @@ msgstr "合併類別、受款人和標記"
 
 #: mmframe.cpp:1776
 msgid "&Budget Planner..."
-msgstr ""
+msgstr "預算規劃員(&B)..."
 
 #: mmframe.cpp:1780
 msgid "&Scheduled Transactions"
@@ -5048,7 +5048,7 @@ msgstr "排程交易紀錄(&S)"
 
 #: mmframe.cpp:1780
 msgid "Bills and Deposits"
-msgstr ""
+msgstr "支出與收入"
 
 #: mmframe.cpp:1784
 msgid "&Assets"
@@ -5056,7 +5056,7 @@ msgstr "資產(&A)"
 
 #: mmframe.cpp:1790
 msgid "T&heme Manager..."
-msgstr ""
+msgstr "主題管理員(H)..."
 
 #: mmframe.cpp:1790 themes.cpp:143
 msgid "Theme Manager"
@@ -5064,51 +5064,51 @@ msgstr "主題管理"
 
 #: mmframe.cpp:1796
 msgid "Tra&nsaction Report..."
-msgstr ""
+msgstr "交易紀錄報表(B)..."
 
 #: mmframe.cpp:1802
 msgid "&General Report Manager..."
-msgstr ""
+msgstr "通用報告管理員(G)..."
 
 #: mmframe.cpp:1806
 msgid "C&ustom Field Manager..."
-msgstr ""
+msgstr "自訂欄位管理員(&U)..."
 
 #: mmframe.cpp:1812
 msgid "Refresh &WebApp..."
-msgstr ""
+msgstr "重新整理網路程式(&W)..."
 
 #: mmframe.cpp:1812 mmframe.cpp:2952 mmframe.cpp:2959
 msgid "Refresh WebApp"
-msgstr ""
+msgstr "重新整理網路應用程式"
 
 #: mmframe.cpp:1817
 msgid "&Settings...\tAlt-F12"
-msgstr ""
+msgstr "設定(&S)...\tAlt-F12"
 
 #: mmframe.cpp:1824
 msgid "&Decrypt Encrypted Database..."
-msgstr ""
+msgstr "解密已加密資料庫(&D)..."
 
 #: mmframe.cpp:1825
 msgid "Convert encrypted database to unencrypted database"
-msgstr ""
+msgstr "將加密資料庫轉換為未加密資料庫"
 
 #: mmframe.cpp:1827
 msgid "Change Encrypted &Password..."
-msgstr ""
+msgstr "更改加密密碼(&P)..."
 
 #: mmframe.cpp:1828
 msgid "Change the password of an encrypted database"
-msgstr ""
+msgstr "修改加密資料庫的密碼"
 
 #: mmframe.cpp:1830
 msgid "&Optimize Database..."
-msgstr ""
+msgstr "最佳化資料庫(&O)..."
 
 #: mmframe.cpp:1831
 msgid "Optimize database for space and performance"
-msgstr ""
+msgstr "最佳化資料庫以清出空間和增進效能"
 
 #: mmframe.cpp:1833
 msgid "Database Check and De&bug..."
@@ -5116,15 +5116,15 @@ msgstr "檢查資料庫及偵錯(&B)"
 
 #: mmframe.cpp:1834
 msgid "Generate database report or fix errors"
-msgstr ""
+msgstr "產生資料庫報表或修復錯誤"
 
 #: mmframe.cpp:1839
 msgid "&Database"
-msgstr ""
+msgstr "資料庫(&D)"
 
 #: mmframe.cpp:1840
 msgid "Database management"
-msgstr ""
+msgstr "資料庫管理"
 
 #: mmframe.cpp:1847 mmframe.cpp:2004
 msgid "&Help\tF1"
@@ -5136,11 +5136,11 @@ msgstr "顯示輔助說明"
 
 #: mmframe.cpp:1855
 msgid "Face&book"
-msgstr ""
+msgstr "臉書(&B)"
 
 #: mmframe.cpp:1855
 msgid "Visit MMEX Facebook page"
-msgstr ""
+msgstr "瀏覽 MMEX 臉書頁面"
 
 #: mmframe.cpp:1857
 msgid "&Crowdin"
@@ -5148,7 +5148,7 @@ msgstr "&Crowdin"
 
 #: mmframe.cpp:1857
 msgid "Help translate MMEX on Crowdin"
-msgstr ""
+msgstr "於 Crowdin 幫忙翻譯 MMEX"
 
 #: mmframe.cpp:1859
 msgid "&X"
@@ -5156,7 +5156,7 @@ msgstr "&X"
 
 #: mmframe.cpp:1859
 msgid "Follow MMEX on X"
-msgstr ""
+msgstr "於 X 追蹤 MMEX"
 
 #: mmframe.cpp:1861
 msgid "&YouTube"
@@ -5164,7 +5164,7 @@ msgstr "&YouTube"
 
 #: mmframe.cpp:1861
 msgid "Watch MMEX videos on YouTube"
-msgstr ""
+msgstr "於 YouTube 觀看 MMEX 影片"
 
 #: mmframe.cpp:1863
 msgid "&Slack"
@@ -5172,7 +5172,7 @@ msgstr "&Slack"
 
 #: mmframe.cpp:1863
 msgid "Communicate with the MMEX team online"
-msgstr ""
+msgstr "與 MMEX 團隊線上交流"
 
 #: mmframe.cpp:1865
 msgid "&GitHub"
@@ -5180,23 +5180,23 @@ msgstr "&GitHub"
 
 #: mmframe.cpp:1865
 msgid "Access open source code repository and track reported bug statuses"
-msgstr ""
+msgstr "存取開源程式碼儲存庫並追蹤回報錯誤的狀態"
 
 #: mmframe.cpp:1867
 msgid "W&iki"
-msgstr ""
+msgstr "維基百科(&I)"
 
 #: mmframe.cpp:1867
 msgid "Read and update MMEX wiki"
-msgstr ""
+msgstr "閱讀和更新 MMEX 維基百科"
 
 #: mmframe.cpp:1872
 msgid "MMEX for &Android"
-msgstr ""
+msgstr "安卓版的 MMEX"
 
 #: mmframe.cpp:1873
 msgid "Install MMEX for Android based smartphones and tablets"
-msgstr ""
+msgstr "於安卓版的智慧型手機和平板安裝 MMEX"
 
 #: mmframe.cpp:1875
 msgid "&Newsletter"
@@ -5204,31 +5204,31 @@ msgstr "電子報(&N)"
 
 #: mmframe.cpp:1876
 msgid "Visit the MMEX blog to view announcements"
-msgstr ""
+msgstr "請造訪 MMEX 部落格查看公告"
 
 #: mmframe.cpp:1878
 msgid "&RSS Feed"
-msgstr ""
+msgstr "RSS摘要(&R)"
 
 #: mmframe.cpp:1878
 msgid "Connect RSS web feed to news aggregator"
-msgstr ""
+msgstr "將 RSS 網路來源連接到新聞聚合器"
 
 #: mmframe.cpp:1880
 msgid "Make a &Donation"
-msgstr ""
+msgstr "捐款(&D)"
 
 #: mmframe.cpp:1881
 msgid "Donate to the MMEX team to support infrastructure and development"
-msgstr ""
+msgstr "向 MMEX 團隊捐款以支持基礎設施和開發"
 
 #: mmframe.cpp:1883
 msgid "&Buy us a Coffee"
-msgstr ""
+msgstr "給我們買杯咖啡(&B)"
 
 #: mmframe.cpp:1884
 msgid "Buy a key developer a coffee"
-msgstr ""
+msgstr "給關鍵開發者買杯咖啡"
 
 #: mmframe.cpp:1887
 msgid "&Community"
@@ -5236,7 +5236,7 @@ msgstr "社群(&C)"
 
 #: mmframe.cpp:1888
 msgid "Stay in touch with MMEX community"
-msgstr ""
+msgstr "與 MMEX 社群保持聯繫"
 
 #: mmframe.cpp:1912
 msgid "Report a &Bug"
@@ -5244,19 +5244,19 @@ msgstr "回報錯誤(&B)"
 
 #: mmframe.cpp:1913
 msgid "Report an error in application to the developers"
-msgstr ""
+msgstr "於應用程式中向開發人員報告錯誤"
 
 #: mmframe.cpp:1917
 msgid "View &Diagnostics"
-msgstr ""
+msgstr "檢視診斷(&D)"
 
 #: mmframe.cpp:1918
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "幫助向開發者提供資訊"
 
 #: mmframe.cpp:1922
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "顯示應用程式開始畫面(&S)"
 
 #: mmframe.cpp:1922
 msgid "App Start Dialog"
@@ -5304,7 +5304,7 @@ msgstr "新增"
 
 #: mmframe.cpp:1979
 msgid "&Settings"
-msgstr ""
+msgstr "設定(&S)"
 
 #: mmframe.cpp:1987 mmframe.cpp:1992 mmframe.cpp:3018 optionsettingsnet.cpp:132
 msgid "News"
@@ -5320,7 +5320,7 @@ msgstr "下載匯率及股票利率"
 
 #: mmframe.cpp:1997
 msgid "Full Screen\tF11"
-msgstr ""
+msgstr "全螢幕\tF11"
 
 #: mmframe.cpp:2000
 msgid "&Print"
@@ -5334,11 +5334,12 @@ msgstr "列印"
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "請輸入資料庫密碼\n\n"
+"%s"
 
 #: mmframe.cpp:2058 mmframe.cpp:2351 mmframe.cpp:2546
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX：已加密的資料庫"
 
 #: mmframe.cpp:2095
 msgid "Have MMEX support provided a debug/patch file?"
@@ -5543,7 +5544,7 @@ msgstr ""
 
 #: mmframe.cpp:2958
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
-msgstr ""
+msgstr "更新網路應用程式時遇到問題，請檢查網路伺服器和網路應用程式設定"
 
 #: mmframe.cpp:3098
 msgid "Choose HTML file to Export"
@@ -5621,7 +5622,7 @@ msgstr ""
 
 #: mmframereport.cpp:80
 msgid "General Group Report"
-msgstr ""
+msgstr "通用分類報表"
 
 #: mmframereport.cpp:107 mmhomepage.cpp:849 model/Model_Report.cpp:410
 #: reports/bugreport.h:110
@@ -6396,7 +6397,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp"
-msgstr ""
+msgstr "網路應用程式"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
@@ -6404,7 +6405,7 @@ msgstr "網址"
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
-msgstr ""
+msgstr "指定網路應用程式 URL(不含最後斜線)"
 
 #: optionsettingsnet.cpp:81 webappdialog.cpp:101
 msgid "GUID"
@@ -6412,11 +6413,11 @@ msgstr "GUID"
 
 #: optionsettingsnet.cpp:85
 msgid "Specify the Web App GUID"
-msgstr ""
+msgstr "指定網路應用程式 GUID"
 
 #: optionsettingsnet.cpp:89
 msgid "More information about WebApp"
-msgstr ""
+msgstr "有關 網路應用程式的更多資訊"
 
 #: optionsettingsnet.cpp:93 optionsettingsnet.cpp:111
 msgid "Proxy"
@@ -6508,7 +6509,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:132
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "檢視包含摘要的預算類別報告"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
@@ -6520,12 +6521,13 @@ msgstr ""
 
 #: optionsettingsview.cpp:147
 msgid "Subtract monthly budgets from yearly budget in reporting"
-msgstr ""
+msgstr "於報表內，從年度預算中扣除掉每月預算"
 
 #: optionsettingsview.cpp:149
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
 "Total estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."
-msgstr ""
+msgstr "年度預算中將扣除掉每月預算金額。\n"
+"年度總預算將以年度預算或每月預算總和中，兩者取其一並以較高者為準。"
 
 #: optionsettingsview.cpp:157
 msgid "Budget Offset (days):"
@@ -6537,11 +6539,11 @@ msgstr ""
 
 #: optionsettingsview.cpp:169
 msgid "Start day of month for reporting:"
-msgstr ""
+msgstr "報表的每月份開始日期："
 
 #: optionsettingsview.cpp:173
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
-msgstr ""
+msgstr "為了報表的目的，允許調整該月的「第一天」"
 
 #: optionsettingsview.cpp:178
 msgid "Ignore Future Transactions"
@@ -6549,7 +6551,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:183
 msgid "Use 'Time' in transaction recording/reporting"
-msgstr ""
+msgstr "在交易記錄/報表中使用「時間」"
 
 #: optionsettingsview.cpp:188
 msgid "Transaction Colors"
@@ -6593,7 +6595,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:272
 msgid "Specify which scale factor is used for the report pages"
-msgstr ""
+msgstr "指定報表頁面使用的比例因子"
 
 #: optionsettingsview.cpp:277
 msgid "Normal"
@@ -6715,7 +6717,7 @@ msgstr ""
 
 #: payeedialog.cpp:743
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
-msgstr ""
+msgstr "提示：使用合併指令將使用此受款人的所有交易紀錄變更為另一個受款人："
 
 #: payeedialog.cpp:745
 msgid "Tools → Merge → Payees"
@@ -6942,7 +6944,7 @@ msgstr ""
 #: reports/bugreport.h:79
 #, c-format
 msgid "Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."
-msgstr ""
+msgstr "閱讀 <a href='%s'>如何有效報告錯誤</a> 以獲取有用的提示。"
 
 #: reports/bugreport.h:80
 msgid "Come up with a descriptive name for your problem."
@@ -6960,11 +6962,11 @@ msgstr ""
 #: reports/bugreport.h:84
 #, c-format
 msgid "Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."
-msgstr ""
+msgstr "最後，於瀏覽器中開啟 GitHub <a href='%s'>線上表單</a> 報告錯誤。"
 
 #: reports/bugreport.h:95
 msgid "Please, follow these instructions before submitting a new bug report:"
-msgstr ""
+msgstr "在提交新的錯誤報告之前，請按照以下說明進行操作："
 
 #: reports/cashflow.cpp:245 reports/cashflow.cpp:374
 #, c-format
@@ -7038,7 +7040,7 @@ msgstr "預測"
 #: reports/htmlbuilder.cpp:153
 #, c-format
 msgid "Report Generated %1$s %2$s"
-msgstr ""
+msgstr "已產出的報表 %1$s %2$s"
 
 #: reports/htmlbuilder.cpp:214
 #, c-format
@@ -7193,11 +7195,11 @@ msgstr ""
 
 #: reports/summary.cpp:133
 msgid "Monthly Report"
-msgstr ""
+msgstr "每月報表"
 
 #: reports/summary.cpp:133
 msgid "Yearly Report"
-msgstr ""
+msgstr "年度報表"
 
 #: reports/summarystocks.cpp:36
 msgid "Summary of Stocks"
@@ -8173,19 +8175,19 @@ msgstr "十二月"
 
 #: webapp.cpp:111
 msgid "Wrong WebApp GUID:"
-msgstr ""
+msgstr "錯誤的網路應用程式 GUID："
 
 #: webapp.cpp:112
 msgid "please check it in network options."
-msgstr ""
+msgstr "請在網路選項中檢查。"
 
 #: webapp.cpp:113
 msgid "Wrong WebApp settings"
-msgstr ""
+msgstr "錯誤的網路應用程式設定"
 
 #: webapp.cpp:118
 msgid "Unable to connect to WebApp:"
-msgstr ""
+msgstr "無法連接網路應用程式："
 
 #: webapp.cpp:119
 msgid "please check settings and / or internet connection."
@@ -8197,21 +8199,21 @@ msgstr "WebApp 連接錯誤"
 
 #: webapp.cpp:131
 msgid "Wrong WebApp API version:"
-msgstr ""
+msgstr "錯誤的網路應用程式 API 版本："
 
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version: %s"
-msgstr ""
+msgstr "網路應用程式 API 版本： %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version: %s"
-msgstr ""
+msgstr "預期的網路應用程式 API 版本： %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
-msgstr ""
+msgstr "錯誤的網路應用程式 API 版本"
 
 #: webapp.cpp:494
 #, c-format
@@ -8227,79 +8229,79 @@ msgstr "交易將插入第一個銀行帳戶：\n"
 
 #: webapp.cpp:499
 msgid "Wrong WebApp account"
-msgstr ""
+msgstr "錯誤的網路應用程式帳戶"
 
 #: webapp.cpp:567
 msgid "Today will be used as the transaction date"
-msgstr ""
+msgstr "將以今天將作為交易紀錄日期"
 
 #: webapp.cpp:596 webapp.cpp:630 webappdialog.cpp:338
 msgid "Unable to download attachments from webapp."
-msgstr ""
+msgstr "無法從網路應用程式下載附件。"
 
 #: webapp.cpp:597
 msgid "Attachments folder not set or unavailable"
-msgstr ""
+msgstr "附件資料夾未設定或不可用"
 
 #: webapp.cpp:598
 msgid "Transaction not downloaded:"
-msgstr ""
+msgstr "未下載交易紀錄："
 
 #: webapp.cpp:599
 msgid "Please fix attachments folder or delete attachments from WebApp"
-msgstr ""
+msgstr "請修復附件資料夾或從網路應用程式中刪除附件"
 
 #: webapp.cpp:600
 msgid "Attachment folder error"
-msgstr ""
+msgstr "附件資料夾錯誤"
 
 #: webapp.cpp:632
 msgid "Transaction not downloaded: please retry to download transactions"
-msgstr ""
+msgstr "交易紀錄未下載：請重新下載交易紀錄"
 
 #: webapp.cpp:633 webappdialog.cpp:339
 msgid "Attachment download error"
-msgstr ""
+msgstr "下載附件錯誤"
 
 #: webappdialog.cpp:68
 msgid "Import WebApp transactions"
-msgstr ""
+msgstr "匯入網路應用程式交易紀錄"
 
 #: webappdialog.cpp:91
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "網路狀態(點擊以重新整理)"
 
 #: webappdialog.cpp:123
 msgid "Checking for new transactions"
-msgstr ""
+msgstr "正在檢查新的交易紀錄"
 
 #: webappdialog.cpp:156
 msgid "&Import all "
-msgstr ""
+msgstr "匯入全部(&I) "
 
 #: webappdialog.cpp:158
 msgid "Import and open all "
-msgstr ""
+msgstr "匯入及開啟全部 "
 
 #: webappdialog.cpp:205
 msgid "Unable to download transactions from webapp."
-msgstr ""
+msgstr "無法從網路應用程式下載交易紀錄。"
 
 #: webappdialog.cpp:206
 msgid "Transactions download error"
-msgstr ""
+msgstr "交易紀錄下載錯誤"
 
 #: webappdialog.cpp:311
 msgid "Unable to insert transaction in MMEX database"
-msgstr ""
+msgstr "無法將交易紀錄插入至 MMEX 資料庫中"
 
 #: webappdialog.cpp:312
 msgid "WebApp communication error"
-msgstr ""
+msgstr "網路應用程式通訊錯誤"
 
 #: webappdialog.cpp:407
 msgid "Open Attachment"
-msgstr ""
+msgstr "開啟附件"
 
 #: webappdialog.cpp:409
 msgid "Import and open"
@@ -8418,7 +8420,7 @@ msgstr "（可選）指定標題或名稱"
 
 #: wizard_newdb.cpp:125
 msgid "Used as a database title for displayed and printed reports."
-msgstr "用作顯示和打印報告的數據庫標題"
+msgstr "用作顯示和列印報表的資料庫標題。"
 
 #: wizard_newdb.cpp:136
 msgid "Base Currency Not Set"
