@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-02 14:59\n"
+"PO-Revision-Date: 2024-10-11 09:53\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -4835,15 +4835,15 @@ msgstr "從網路應用程式匯入"
 
 #: mmframe.cpp:1611
 msgid "Export as fixed CSV file"
-msgstr ""
+msgstr "匯出為固定 CSV 檔案"
 
 #: mmframe.cpp:1615
 msgid "&HTML File..."
-msgstr ""
+msgstr "HTML 檔案(&H)..."
 
 #: mmframe.cpp:1615
 msgid "Export as HTML file"
-msgstr ""
+msgstr "匯出為 HTML 檔案"
 
 #: mmframe.cpp:1620
 msgid "&Print..."
@@ -4851,11 +4851,11 @@ msgstr "列印(&P)..."
 
 #: mmframe.cpp:1620
 msgid "Print current view"
-msgstr ""
+msgstr "列印當前檢視"
 
 #: mmframe.cpp:1626
 msgid "E&xit\tCtrl-Q"
-msgstr ""
+msgstr "離開(&X)\tCtrl-Q"
 
 #: mmframe.cpp:1626
 msgid "Quit this program"
@@ -4879,7 +4879,7 @@ msgstr "顯示/隱藏 導覽器"
 
 #: mmframe.cpp:1636
 msgid "&Display Share Accounts"
-msgstr ""
+msgstr "顯示分享帳戶(&D)"
 
 #: mmframe.cpp:1636
 msgid "Show/Hide Share Accounts in Navigator"
@@ -4887,7 +4887,7 @@ msgstr "導覽器中 顯示/隱藏 分享的帳戶"
 
 #: mmframe.cpp:1638
 msgid "&Display Deleted Transactions"
-msgstr ""
+msgstr "顯示已刪除的交易紀錄(&D)"
 
 #: mmframe.cpp:1638
 msgid "Show/Hide Deleted Transactions in Navigator"
@@ -4895,35 +4895,35 @@ msgstr "導覽器中 顯示/隱藏 已刪除的交易紀錄"
 
 #: mmframe.cpp:1640
 msgid "Budgets: As Financial &Years"
-msgstr ""
+msgstr "預算：以財務年度(&Y)"
 
 #: mmframe.cpp:1640
 msgid "Display Budgets in Financial Year Format"
-msgstr ""
+msgstr "以財務年度格式顯示預算"
 
 #: mmframe.cpp:1642
 msgid "Budgets: &Include Transfers in Totals"
-msgstr ""
+msgstr "預算：包含轉帳總額(&I)"
 
 #: mmframe.cpp:1642
 msgid "Include the transfer transactions in the Budget Totals"
-msgstr ""
+msgstr "將轉帳交易紀錄納入預算總額"
 
 #: mmframe.cpp:1644
 msgid "Budget Category Report: with &Summaries"
-msgstr ""
+msgstr "預算類別報告：包含摘要(&S)"
 
 #: mmframe.cpp:1644
 msgid "Include the category summaries in the Budget Category Summary"
-msgstr ""
+msgstr "將類別摘要包含在預算類別摘要中"
 
 #: mmframe.cpp:1646
 msgid "Ignore F&uture Transactions"
-msgstr ""
+msgstr "忽略未來交易紀錄(&U)"
 
 #: mmframe.cpp:1646
 msgid "Ignore Future transactions"
-msgstr ""
+msgstr "忽略未來交易紀錄"
 
 #: mmframe.cpp:1648
 msgid "Show T&ooltips"
