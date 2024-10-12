@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-12 10:19\n"
+"PO-Revision-Date: 2024-10-12 11:22\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -7278,7 +7278,7 @@ msgstr "平均值"
 
 #: sharetransactiondialog.cpp:61 sharetransactiondialog.cpp:68
 msgid "Add Share Transaction"
-msgstr ""
+msgstr "新增股票交易紀錄"
 
 #: sharetransactiondialog.cpp:190 stockdialog.cpp:169
 msgid "Stock Investment Details"
@@ -7298,7 +7298,7 @@ msgstr "股票代號"
 
 #: sharetransactiondialog.cpp:214 stockdialog.cpp:193
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr ""
+msgstr "輸入股票代碼。(選則性)包含交易所。例如：IBM.BE"
 
 #: sharetransactiondialog.cpp:217
 msgid "Share Number"
@@ -7314,7 +7314,7 @@ msgstr "股價"
 
 #: sharetransactiondialog.cpp:238
 msgid "Enter the current value for a single share unit"
-msgstr ""
+msgstr "輸入單一股票單位的目前價值"
 
 #: sharetransactiondialog.cpp:250
 msgid "Enter any commission paid"
@@ -7322,19 +7322,19 @@ msgstr "輸入已付手續費"
 
 #: sharetransactiondialog.cpp:256
 msgid "Share Lot"
-msgstr ""
+msgstr "整股"
 
 #: sharetransactiondialog.cpp:263
 msgid "Enter the LOT that this parcel os shares belong to"
-msgstr ""
+msgstr "請輸入零股所屬的股票整股"
 
 #: sharetransactiondialog.cpp:270 stockdialog.cpp:251
 msgid "Manage stock attachments"
-msgstr ""
+msgstr "管理股票附件"
 
 #: sharetransactiondialog.cpp:275 stockdialog.cpp:253
 msgid "Display the web page for the specified Stock symbol"
-msgstr ""
+msgstr "顯示指定股票代碼的網頁"
 
 #: sharetransactiondialog.cpp:285 stockdialog.cpp:260
 msgid "Enter notes associated with this investment"
@@ -7342,15 +7342,15 @@ msgstr "輸入股票相關的註釋"
 
 #: sharetransactiondialog.cpp:290
 msgid "Add Transaction Details"
-msgstr ""
+msgstr "新增交易紀錄明細"
 
 #: sharetransactiondialog.h:43
 msgid "Edit Share Transaction"
-msgstr ""
+msgstr "編輯股票交易紀錄"
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
-msgstr ""
+msgstr "編輯拆分明細"
 
 #: splittransactionsdialog.cpp:99
 msgid "Enter notes to describe this split transaction"
@@ -7362,15 +7362,15 @@ msgstr "新增拆分(&A)"
 
 #: splittransactionsdialog.cpp:256
 msgid "&Remove Split"
-msgstr ""
+msgstr "移除拆分(&R)"
 
 #: splittransactionsdialog.cpp:412
 msgid "Invalid Total Amount"
-msgstr ""
+msgstr "無效的總金額"
 
 #: splittransactionsdialog.cpp:586
 msgid "Please enter a valid monetary amount"
-msgstr ""
+msgstr "請輸入有效的金額"
 
 #: stockdialog.cpp:125 stockdialog.cpp:492 stockspanel.cpp:147
 msgid "Edit Stock Investment"
@@ -7387,7 +7387,8 @@ msgstr "*日期"
 #: stockdialog.cpp:201
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "指定股票投資的初始日期\n"
+"於建立初次股票交易紀錄時使用。"
 
 #: stockdialog.cpp:205
 msgid "*Share Number"
@@ -7829,11 +7830,11 @@ msgstr "並未更新"
 
 #: transactionsupdatedialog.cpp:540
 msgid "Some transactions could not be updated"
-msgstr ""
+msgstr "部份交易紀錄無法更新"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "多筆交易紀錄更新"
 
 #: transdialog.cpp:179
 msgid "Edit Transaction"
@@ -7841,7 +7842,7 @@ msgstr "編輯交易"
 
 #: transdialog.cpp:181
 msgid "Duplicate Transaction"
-msgstr ""
+msgstr "複製貼上交易紀錄"
 
 #: transdialog.cpp:556
 msgid "Populate Transaction #"
@@ -7849,40 +7850,41 @@ msgstr "設定交易 #"
 
 #: transdialog.cpp:577 usertransactionpanel.cpp:185
 msgid "Manage transaction attachments"
-msgstr ""
+msgstr "管理交易紀錄附件"
 
 #: transdialog.cpp:774
 msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "此交易紀錄將超出您的帳戶限額。\n\n"
+"您要繼續嗎？"
 
 #: transdialog.cpp:1195
 msgid "The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?"
-msgstr ""
+msgstr "這兩個帳戶具有不同的貨幣，但您尚未定義進階的交易選項。這是正確的嗎？"
 
 #: transdialog.cpp:1196
 msgid "Currencies are different"
-msgstr ""
+msgstr "貨別不同"
 
 #: transdialog.cpp:1311
 msgid "Specify account the money is taken from"
-msgstr ""
+msgstr "指定資金提取的帳戶"
 
 #: transdialog.cpp:1312
 msgid "Specify account the money is moved to"
-msgstr ""
+msgstr "指定資金轉入的帳戶"
 
 #: transdialog.cpp:1313
 msgid "Specify the transfer amount in the From Account."
-msgstr ""
+msgstr "在轉出帳戶中設定轉帳金額。"
 
 #: transdialog.cpp:1321
 msgid "Specify account for the transaction"
-msgstr ""
+msgstr "指定交易紀錄的帳戶"
 
 #: transdialog.cpp:1323
 msgid "Specify to whom the transaction is going to"
-msgstr ""
+msgstr "指定交易紀錄的對象"
 
 #: transdialog.cpp:1329 usertransactionpanel.cpp:80
 msgid "Specify the date of the transaction"
@@ -7890,7 +7892,7 @@ msgstr "設定交易的日期"
 
 #: transdialog.h:56
 msgid "Transactions Dialog"
-msgstr ""
+msgstr "交易紀錄對話框"
 
 #: usertransactionpanel.cpp:90
 msgid "Select Account"
@@ -7898,19 +7900,19 @@ msgstr "選擇帳目"
 
 #: usertransactionpanel.cpp:92
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "指定將包含此交易紀錄的相關聯帳戶"
 
 #: usertransactionpanel.cpp:104
 msgid "Withdraw funds from or deposit funds to this Account."
-msgstr ""
+msgstr "從該帳戶提取資金或向該帳戶存入資金。"
 
 #: usertransactionpanel.cpp:106
 msgid "&Transfer"
-msgstr ""
+msgstr "轉帳(&T)"
 
 #: usertransactionpanel.cpp:109
 msgid "Funds transfer from/to this account. Uncheck to set as Expense/Income."
-msgstr ""
+msgstr "資金轉入/轉入該帳戶。取消勾選以設定為支出/收入。"
 
 #: usertransactionpanel.cpp:132
 msgid "Currency used for this transaction."
@@ -7918,7 +7920,7 @@ msgstr "用於本次交易紀錄的貨幣幣別。"
 
 #: usertransactionpanel.cpp:151
 msgid "Specify the status for this transaction"
-msgstr ""
+msgstr "指定此交易紀錄的狀態"
 
 #: usertransactionpanel.cpp:158
 msgid "Select Payee"
@@ -7926,7 +7928,7 @@ msgstr "選擇受帳人"
 
 #: usertransactionpanel.cpp:159
 msgid "Specify a person, Company or Organisation for this transaction."
-msgstr ""
+msgstr "指定此交易紀錄的個人、公司或組織。"
 
 #: usertransactionpanel.cpp:165
 msgid "Select Category"
@@ -7938,15 +7940,15 @@ msgstr "選擇交易的類型"
 
 #: usertransactionpanel.cpp:175
 msgid "Specify a transaction code or associated check details"
-msgstr ""
+msgstr "指定交易紀錄代碼或相關支票詳細資訊"
 
 #: usertransactionpanel.cpp:285
 msgid "Select the required account"
-msgstr ""
+msgstr "選擇需要的帳戶"
 
 #: usertransactionpanel.cpp:286
 msgid "Account Selection"
-msgstr ""
+msgstr "帳戶選擇"
 
 #: util.cpp:285
 msgid "Jan"
@@ -8058,15 +8060,15 @@ msgstr "貨幣匯率已更新"
 
 #: util.cpp:840 util.cpp:935 util.cpp:941 util.cpp:972 util.cpp:1031
 msgid "JSON Parse Error"
-msgstr ""
+msgstr "JSON 解析錯誤"
 
 #: util.cpp:980 util.cpp:1039
 msgid "Expected response to contain a data or error string"
-msgstr ""
+msgstr "預期回應包含資料或錯誤字串"
 
 #: util.cpp:1011
 msgid "Could not find asset for symbol"
-msgstr ""
+msgstr "找不到股票代碼的資產"
 
 #: util.cpp:1046
 msgid "Could not get base currency!"
@@ -8082,7 +8084,7 @@ msgstr "找不到轉換歷史匯率所需的貨幣「USD」"
 
 #: util.cpp:1076
 msgid "Could not parse price in asset history"
-msgstr ""
+msgstr "無法解析資產歷史記錄中的價格"
 
 #: util.cpp:1449
 #, c-format
@@ -8092,22 +8094,22 @@ msgstr "版本：%s"
 #: util.cpp:1450
 #, c-format
 msgid "Built on: %1$s %2$s"
-msgstr ""
+msgstr "建於：%1$s %2$s"
 
 #: util.cpp:1451
 #, c-format
 msgid "Database version: %d"
-msgstr ""
+msgstr "資料庫版本：%d"
 
 #: util.cpp:1458
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
-msgstr ""
+msgstr "Git 提交：%1$s (%2$s)"
 
 #: util.cpp:1461
 #, c-format
 msgid "Git branch: %s"
-msgstr ""
+msgstr "Git 分支：%s"
 
 #: util.cpp:1465
 msgid "MMEX is using the following support products:"
@@ -8115,7 +8117,7 @@ msgstr "MMEX 正在使用下列產品："
 
 #: util.cpp:1482
 msgid "Built with:"
-msgstr ""
+msgstr "建立於:"
 
 #: util.cpp:1501
 msgid "Running on:"
@@ -8124,7 +8126,7 @@ msgstr "執行於："
 #: util.cpp:1515
 #, c-format
 msgid "System Locale: %s"
-msgstr ""
+msgstr "系統區域設定：%s"
 
 #: util.cpp:1516
 #, c-format
@@ -8133,11 +8135,11 @@ msgstr "使用者介面語言： %s"
 
 #: util.cpp:1753
 msgid "The complete list of closed issues is available at this link"
-msgstr ""
+msgstr "已解決問題的完整列表可在此連結中找到"
 
 #: util.cpp:1953
 msgid "Copy all text to clipboard"
-msgstr ""
+msgstr "將所有文字複製到剪貼簿"
 
 #: util.h:192
 msgid "January"
@@ -8228,7 +8230,7 @@ msgstr "錯誤的網路應用程式 API 版本"
 #: webapp.cpp:494
 #, c-format
 msgid "Account '%s' not found!"
-msgstr ""
+msgstr "未找到帳戶“%s”！"
 
 #: webapp.cpp:496
 #, c-format
@@ -8328,13 +8330,15 @@ msgstr "新增帳目精靈"
 #: wizard_newaccount.cpp:39
 #, c-format
 msgid "%s models all transactions as belonging to accounts."
-msgstr ""
+msgstr "%s 將所有交易紀錄歸納到帳戶內。"
 
 #: wizard_newaccount.cpp:40
 msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
-msgstr ""
+msgstr "接下來的頁面將幫助您建立一個新帳戶。\n"
+"為了幫助您開始，請先列出您有持有帳戶\n"
+"所有的金融機構名稱。"
 
 #: wizard_newaccount.cpp:87
 msgid "Account Name Invalid"
@@ -8342,7 +8346,7 @@ msgstr "無效的帳目名稱"
 
 #: wizard_newaccount.cpp:94
 msgid "An account with this name already exists"
-msgstr ""
+msgstr "相同名稱的帳戶已存在。"
 
 #: wizard_newaccount.cpp:108
 msgid "Name of the Account"
@@ -8350,7 +8354,7 @@ msgstr "帳目名稱"
 
 #: wizard_newaccount.cpp:112
 msgid "Specify a descriptive name for the account."
-msgstr ""
+msgstr "輸入帳戶的說明。"
 
 #: wizard_newaccount.cpp:113
 msgid "This is generally the name of a financial institution\n"
