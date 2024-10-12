@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-12 12:20\n"
+"PO-Revision-Date: 2024-10-12 13:39\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -95,7 +95,7 @@ msgstr "帳戶狀態："
 
 #: accountdialog.cpp:145
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
-msgstr "設定此帳戶是否被關閉。關閉的帳戶將無法執行計算、製作報表等動作。"
+msgstr "設定此帳戶是否被關閉。關閉的帳戶將無法執行大部分計算、製作報表等動作。"
 
 #: accountdialog.cpp:149
 #, c-format
@@ -4645,7 +4645,7 @@ msgstr "儀表板"
 #: mmframe.cpp:806 mmhomepage.cpp:696 reports/summary.cpp:269
 #: reports/summary.cpp:307
 msgid "Share Accounts"
-msgstr "共享的帳戶"
+msgstr "證券帳戶"
 
 #: mmframe.cpp:822 mmframe.cpp:1776 mmframe.cpp:2888
 msgid "Budget Planner"
@@ -4879,11 +4879,11 @@ msgstr "顯示/隱藏 導覽器"
 
 #: mmframe.cpp:1636
 msgid "&Display Share Accounts"
-msgstr "顯示分享帳戶(&D)"
+msgstr "顯示證券帳戶(&D)"
 
 #: mmframe.cpp:1636
 msgid "Show/Hide Share Accounts in Navigator"
-msgstr "導覽器中 顯示/隱藏 分享的帳戶"
+msgstr "導覽器中 顯示/隱藏 證券帳戶"
 
 #: mmframe.cpp:1638
 msgid "&Display Deleted Transactions"
@@ -5525,7 +5525,7 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr "股票帳戶中保存股票交易紀錄\n\n"
+msgstr "證券帳戶中保存股票交易紀錄\n\n"
 "在關聯視圖中選擇公司股票後，股票交易紀錄將在股票投資組合視圖中建立。\n\n"
 "這些帳戶只有在將股票關聯到股票帳戶後才可見\n"
 "或使用選單檢視→「顯示股票帳戶」\n"
@@ -5533,7 +5533,7 @@ msgstr "股票帳戶中保存股票交易紀錄\n\n"
 
 #: mmframe.cpp:2722
 msgid "Share Account Creation"
-msgstr "創建共享帳戶"
+msgstr "建立證券帳戶"
 
 #: mmframe.cpp:2925
 msgid "Settings have been updated."
@@ -6732,7 +6732,7 @@ msgstr "提示：使用合併指令將使用此受款人的所有交易紀錄變
 
 #: payeedialog.cpp:745
 msgid "Tools → Merge → Payees"
-msgstr ""
+msgstr "工具 → 合併 → 受款人"
 
 #: payeedialog.cpp:746
 msgid "Payee Manager: Delete Error"
@@ -6740,23 +6740,23 @@ msgstr "受款人管理員：刪除錯誤"
 
 #: payeedialog.cpp:751
 msgid "Deleted transactions exist which use this payee."
-msgstr ""
+msgstr "存在使用該受款人的已刪除交易。"
 
 #: payeedialog.cpp:752
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "刪除受款人也會自動清除關聯的已刪除交易。"
 
 #: payeedialog.cpp:754
 msgid "Confirm Payee Deletion"
-msgstr ""
+msgstr "確認刪除受款人"
 
 #: payeedialog.cpp:876
 msgid "Define &Category"
-msgstr ""
+msgstr "定義類別(&C)"
 
 #: payeedialog.cpp:878
 msgid "Remove Ca&tegory"
-msgstr ""
+msgstr "刪除類別(&T)"
 
 #: payeedialog.cpp:891
 msgid "&Attachment Manager"
@@ -6764,11 +6764,11 @@ msgstr "附件管理員(&A)"
 
 #: payeedialog.cpp:895
 msgid "Merge &Payee"
-msgstr ""
+msgstr "合併受款人(&P)"
 
 #: relocatecategorydialog.cpp:102
 msgid "&Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "合併後刪除來源類別(如果來源類別沒有子類別)(&D)"
 
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
 #: relocatetagdialog.cpp:114
@@ -6784,7 +6784,7 @@ msgstr "目標："
 #: relocatetagdialog.cpp:153
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr ""
+msgstr "從 %1$s 到 %2$s"
 
 #: relocatecategorydialog.cpp:157 relocatepayeedialog.cpp:155
 #: relocatetagdialog.cpp:157
@@ -6793,51 +6793,51 @@ msgstr "請確認："
 
 #: relocatecategorydialog.cpp:158
 msgid "Merge categories confirmation"
-msgstr ""
+msgstr "確認合併類別"
 
 #: relocatecategorydialog.cpp:255 relocatepayeedialog.cpp:208
 #: relocatetagdialog.cpp:202
 #, c-format
 msgid "Records found in transactions: %i"
-msgstr ""
+msgstr "交易紀錄中找到的筆數：%i"
 
 #: relocatecategorydialog.cpp:256 relocatetagdialog.cpp:203
 #, c-format
 msgid "Records found in split transactions: %i"
-msgstr ""
+msgstr "拆分交易紀錄中找到的筆數：%i"
 
 #: relocatecategorydialog.cpp:257 relocatepayeedialog.cpp:209
 #: relocatetagdialog.cpp:204
 #, c-format
 msgid "Records found in scheduled transactions: %i"
-msgstr ""
+msgstr "排程交易紀錄中找到的筆數：%i"
 
 #: relocatecategorydialog.cpp:258 relocatetagdialog.cpp:205
 #, c-format
 msgid "Records found in scheduled split transactions: %i"
-msgstr ""
+msgstr "排程拆分交易紀錄中找到的筆數：%i"
 
 #: relocatecategorydialog.cpp:259
 #, c-format
 msgid "Records found as default payee category: %i"
-msgstr ""
+msgstr "預設受款人類別中找到的筆數：%i"
 
 #: relocatecategorydialog.cpp:260
 #, c-format
 msgid "Records found in budget: %i"
-msgstr ""
+msgstr "預算中找到的筆數：%i"
 
 #: relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge Payees"
-msgstr ""
+msgstr "合併受款人"
 
 #: relocatepayeedialog.cpp:99
 msgid "&Delete source payee after merge"
-msgstr ""
+msgstr "合併後刪除來源受款人(&D)"
 
 #: relocatepayeedialog.cpp:156
 msgid "Merge payees confirmation"
-msgstr ""
+msgstr "確認合併受款人"
 
 #: relocatetagdialog.cpp:87 relocatetagdialog.h:42
 msgid "Merge Tags"
@@ -6854,60 +6854,60 @@ msgstr "確認合併標記"
 #: reports/budget.cpp:90
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "財務年度：%s - %i"
 
 #: reports/budget.cpp:101
 #, c-format
 msgid "Financial Year: %i Month: %s"
-msgstr ""
+msgstr "財務年度：%i 月份：%s"
 
 #: reports/budget.cpp:103
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "年度：%i 月份：%s"
 
 #: reports/budgetcategorysummary.cpp:126
 #, c-format
 msgid "Budget Categories for %s"
-msgstr ""
+msgstr "%s 的預算類別"
 
 #: reports/budgetcategorysummary.cpp:126
 #, c-format
 msgid "Budget Category Summary for %s"
-msgstr ""
+msgstr "%s 的預算類別摘要"
 
 #: reports/budgetcategorysummary.cpp:129
 msgid "(Estimated vs. Actual)"
-msgstr ""
+msgstr "(估計與實際)"
 
 #: reports/budgetcategorysummary.cpp:346
 msgid "Estimated Income:"
-msgstr ""
+msgstr "估計收入："
 
 #: reports/budgetcategorysummary.cpp:348
 msgid "Actual Income:"
-msgstr ""
+msgstr "實際收入："
 
 #: reports/budgetcategorysummary.cpp:350
 msgid "Difference Income:"
-msgstr ""
+msgstr "差額收入："
 
 #: reports/budgetcategorysummary.cpp:357
 msgid "Estimated Expenses:"
-msgstr ""
+msgstr "估計支出："
 
 #: reports/budgetcategorysummary.cpp:359
 msgid "Actual Expenses:"
-msgstr ""
+msgstr "實際支出："
 
 #: reports/budgetcategorysummary.cpp:361
 msgid "Difference Expenses:"
-msgstr ""
+msgstr "差額支出："
 
 #: reports/budgetingperf.cpp:108
 #, c-format
 msgid "Budget Performance for %s"
-msgstr ""
+msgstr "%s 的預算績效"
 
 #: reports/budgetingperf.cpp:149 reports/budgetingperf.cpp:151
 msgid "Est."
@@ -6927,30 +6927,30 @@ msgstr "錯誤報表"
 
 #: reports/bugreport.h:68
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "將此文字(標有 >) 替換為問題的詳細描述。"
 
 #: reports/bugreport.h:69
 msgid "Please do not remove information attached below this text."
-msgstr ""
+msgstr "請不要刪除本段落以下的附加資訊。"
 
 #: reports/bugreport.h:74
 msgid "Use Help → Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "使用 輔助說明 → 檢查更新 來取得MMEX的最新版本，您的問題可能已經獲得解決。"
 
 #: reports/bugreport.h:75
 #, c-format
 msgid "Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one."
-msgstr ""
+msgstr "在 <a href='%s'>已知問題清單</a> 中搜尋類似問題。如果是這樣，請更新現有問題而不是建立新問題。"
 
 #: reports/bugreport.h:77
 #, c-format
 msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
-msgstr ""
+msgstr "如您所知，<a href='%s'>用戶論壇</a>可供您討論問題並尋找解決方案。"
 
 #: reports/bugreport.h:78
 #, c-format
 msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
-msgstr ""
+msgstr "請加入我們的 <a href='%s'>Slack</a> 社群。您也可以在這裡提出您的問題並了解最新消息。"
 
 #: reports/bugreport.h:79
 #, c-format
@@ -6959,16 +6959,16 @@ msgstr "閱讀 <a href='%s'>如何有效報告錯誤</a> 以獲取有用的提�
 
 #: reports/bugreport.h:80
 msgid "Come up with a descriptive name for your problem."
-msgstr ""
+msgstr "為您的問題提供一個描述性的說明。"
 
 #: reports/bugreport.h:81
 msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
-msgstr ""
+msgstr "包括重現問題的步驟，並在適當的情況下附上螢幕截圖。"
 
 #: reports/bugreport.h:82
 #, c-format
 msgid "Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>."
-msgstr ""
+msgstr "在點擊以下連結之前，請確保您已登入 <a href='%s'>GitHub</a>。"
 
 #: reports/bugreport.h:84
 #, c-format
@@ -6983,7 +6983,7 @@ msgstr "在提交新的錯誤報告之前，請按照以下說明進行操作：
 #, c-format
 msgid "%1$s (%2$i month)"
 msgid_plural "%1$s (%2$i months)"
-msgstr[0] ""
+msgstr[0] "%1$s (%2$i 個月)"
 
 #: reports/cashflow.cpp:277 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
@@ -6993,15 +6993,15 @@ msgstr "差異"
 
 #: reports/cashflow.cpp:278 reports/cashflow.cpp:410
 msgid "Cumulative Difference"
-msgstr ""
+msgstr "累積差異"
 
 #: reports/cashflow.cpp:333
 msgid "Cash Flow - Daily"
-msgstr ""
+msgstr "現金流 - 每日"
 
 #: reports/cashflow.cpp:347
 msgid "Cash Flow - Monthly"
-msgstr ""
+msgstr "現金流 - 每月"
 
 #: reports/cashflow.cpp:361
 msgid "Cash Flow - Transactions"
@@ -7393,12 +7393,13 @@ msgstr "指定股票投資的初始日期\n"
 
 #: stockdialog.cpp:205
 msgid "*Share Number"
-msgstr ""
+msgstr "*股數"
 
 #: stockdialog.cpp:212
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "輸入股數。\n"
+"於建立初始股票交易紀錄時使用。"
 
 #: stockdialog.cpp:216
 msgid "*Share Price"
@@ -7407,7 +7408,8 @@ msgstr "*股價"
 #: stockdialog.cpp:223
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "輸入股票價格。\n"
+"於建立初始股票交易紀錄時使用。"
 
 #: stockdialog.cpp:226
 msgid "*Commission"
@@ -7416,7 +7418,8 @@ msgstr "*佣金"
 #: stockdialog.cpp:231
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "輸入交易手續費。\n"
+"於建立初始股票交易紀錄時使用。"
 
 #: stockdialog.cpp:234 stocks_list.cpp:96
 msgid "Curr. Share Price"
@@ -7424,15 +7427,15 @@ msgstr "目前股價"
 
 #: stockdialog.cpp:238
 msgid "Enter current stock/share price."
-msgstr ""
+msgstr "輸入股票市價。"
 
 #: stockdialog.cpp:268
 msgid "Stock History Options"
-msgstr ""
+msgstr "股票歷史選項"
 
 #: stockdialog.cpp:275
 msgid "Stock Price History"
-msgstr ""
+msgstr "歷史股價"
 
 #: stockdialog.cpp:299 stocks_list.cpp:98
 msgid "Price Date"
@@ -7440,23 +7443,23 @@ msgstr "股價日期"
 
 #: stockdialog.cpp:303
 msgid "Specify the stock/share price date."
-msgstr ""
+msgstr "指定股票/股價日期。"
 
 #: stockdialog.cpp:318
 msgid "Download Stock Price history"
-msgstr ""
+msgstr "下載歷史股價"
 
 #: stockdialog.cpp:320
 msgid "Import Stock Price history (CSV Format)"
-msgstr ""
+msgstr "匯入歷史股價(CSV格式)"
 
 #: stockdialog.cpp:322
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "刪除已選擇的股價"
 
 #: stockdialog.cpp:324
 msgid "Add Stock Price to history"
-msgstr ""
+msgstr "將股價加入到歷史股價"
 
 #: stockdialog.cpp:401
 msgid "Held At"
@@ -7465,35 +7468,38 @@ msgstr "託管金融機構"
 #: stockdialog.cpp:478
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "未找到證券帳戶。\n\n"
+"您想建立一個嗎？"
 
 #: stockdialog.cpp:488
 msgid "The Company name does not have an associated Share Account.\n\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
-msgstr ""
+msgstr "公司名稱沒有關聯的證券帳戶。\n\n"
+"您可能需要將公司名稱重新調整為具有相同名稱的現有證券帳戶。如果這是沒有證券帳戶的現有股票，建議建立一個證券帳戶。\n\n"
+"您想建立一個新的證券帳戶嗎？\n"
 
 #: stockdialog.cpp:557
 msgid "Stock History CSV Import"
-msgstr ""
+msgstr "匯入歷史股價 CSV"
 
 #: stockdialog.cpp:558 stockdialog.cpp:574
 msgid "Quotes imported from CSV: "
-msgstr ""
+msgstr "從 CSV 匯入的報價： "
 
 #: stockdialog.cpp:630
 #, c-format
 msgid "Total Lines : %ld"
-msgstr ""
+msgstr "總行數：%ld"
 
 #: stockdialog.cpp:632
 #, c-format
 msgid "Total Imported : %ld"
-msgstr ""
+msgstr "總匯入數量：%ld"
 
 #: stockdialog.cpp:640
 msgid "Importing CSV"
-msgstr ""
+msgstr "正在匯入 CSV"
 
 #: stockdialog.cpp:671 stockdialog.cpp:701
 msgid "5 Days"
@@ -7533,11 +7539,11 @@ msgstr "最大値"
 
 #: stockdialog.cpp:686
 msgid "Specify type frequency of stock history"
-msgstr ""
+msgstr "指定歷史股價的類型頻率"
 
 #: stockdialog.cpp:687 stockdialog.cpp:711
 msgid "Stock History Update"
-msgstr ""
+msgstr "更新歷史股價"
 
 #: stockdialog.cpp:700
 msgid "1 Day"
@@ -7549,15 +7555,15 @@ msgstr "1 周"
 
 #: stockdialog.cpp:710
 msgid "Specify interval of stock history"
-msgstr ""
+msgstr "指定歷史股價的時間間隔"
 
 #: stockdialog.cpp:725 stockdialog.cpp:729
 msgid "Stock history not found!"
-msgstr ""
+msgstr "未找到歷史股價！"
 
 #: stockdialog.cpp:726 stockdialog.cpp:838
 msgid "Stock History Error"
-msgstr ""
+msgstr "歷史股價錯誤"
 
 #: stocks_list.cpp:91
 msgid "Share Total"
@@ -7577,27 +7583,27 @@ msgstr "目前現值"
 
 #: stocks_list.cpp:138
 msgid "&New Stock Investment..."
-msgstr ""
+msgstr "新的股票投資(&N)"
 
 #: stocks_list.cpp:140
 msgid "&Add Stock Transactions..."
-msgstr ""
+msgstr "新增股票交易紀錄(&A)"
 
 #: stocks_list.cpp:141
 msgid "&View Stock Transactions"
-msgstr ""
+msgstr "檢視股票交易紀錄(&V)"
 
 #: stocks_list.cpp:143
 msgid "&Edit Stock Investment..."
-msgstr ""
+msgstr "編輯股票投資(&E)"
 
 #: stocks_list.cpp:145
 msgid "&Delete Stock Investment..."
-msgstr ""
+msgstr "刪除股票投資(&D)"
 
 #: stocks_list.cpp:148
 msgid "Stock &Web Page"
-msgstr ""
+msgstr "股票網頁(&W)"
 
 #: stocks_list.cpp:278
 msgid "Do you really want to delete the stock investment?"
@@ -7610,15 +7616,15 @@ msgstr "確認刪除股票投資"
 #: stocks_list.cpp:301
 #, c-format
 msgid "Moving Transaction from %s to"
-msgstr ""
+msgstr "將交易紀錄從 %s 移至"
 
 #: stockspanel.cpp:137
 msgid "Add Stock Transactions"
-msgstr ""
+msgstr "新增股票交易紀錄"
 
 #: stockspanel.cpp:142 stockspanel.cpp:207
 msgid "View Stock Transactions"
-msgstr ""
+msgstr "檢視股票交易紀錄"
 
 #: stockspanel.cpp:152
 msgid "Delete Stock Investment"
@@ -7630,7 +7636,7 @@ msgstr "移動(&M)"
 
 #: stockspanel.cpp:157
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "將選定的交易紀錄轉移到另一個帳戶"
 
 #: stockspanel.cpp:170
 msgid "Refresh"
@@ -7642,7 +7648,7 @@ msgstr "從Yahoo更新股票價格"
 
 #: stockspanel.cpp:213
 msgid "Lot"
-msgstr ""
+msgstr "整股"
 
 #: stockspanel.cpp:325
 #, c-format
@@ -7671,7 +7677,7 @@ msgstr "虧損金額： %s"
 
 #: stockspanel.cpp:410
 msgid "Stock prices successfully updated"
-msgstr ""
+msgstr "股價已成功的更新"
 
 #: stockspanel.cpp:412 stockspanel.cpp:598
 #, c-format
@@ -7684,7 +7690,7 @@ msgstr "没有更新的内容"
 
 #: stockspanel.cpp:452
 msgid "Connecting..."
-msgstr ""
+msgstr "連接中..."
 
 #: stockspanel.cpp:556
 #, c-format
@@ -7713,7 +7719,7 @@ msgstr "無效的標記名稱"
 
 #: tagdialog.cpp:180
 msgid "Tag names may not be the '&' or '|' characters because these are reserved for filter operators"
-msgstr ""
+msgstr "標記名稱不能是「&」或「|」符號，因為這些是為篩選運算符保留符號"
 
 #: tagdialog.cpp:181 tagdialog.cpp:187
 msgid "Tag Manager: Invalid Name"
@@ -7763,11 +7769,11 @@ msgstr "標記管理員：刪除錯誤"
 #: tagdialog.cpp:298
 #, c-format
 msgid "Deleted transactions exist which use tag '%s'."
-msgstr ""
+msgstr "存在使用標記「%s」的已刪除交易紀錄。"
 
 #: tagdialog.cpp:299
 msgid "Deleting the tag will also automatically purge the associated deleted transactions."
-msgstr ""
+msgstr "刪除標記也會自動清除關聯的已刪除交易。"
 
 #: tagdialog.cpp:301
 msgid "Confirm Tag Deletion"
@@ -7775,39 +7781,39 @@ msgstr "確認刪除標記"
 
 #: themes.cpp:191
 msgid "&Delete"
-msgstr ""
+msgstr "刪除(&D)"
 
 #: themes.cpp:193
 msgid "&Use"
-msgstr ""
+msgstr "使用(&U)"
 
 #: themes.cpp:239
 msgid "No description available"
-msgstr ""
+msgstr "無可用描述"
 
 #: themes.cpp:285
 msgid "Choose theme file to import"
-msgstr ""
+msgstr "選擇要匯入的主題檔案"
 
 #: themes.cpp:305
 msgid "The theme already exists, do you still want to import and overwrite the existing theme?"
-msgstr ""
+msgstr "該主題已存在，是否仍要匯入並取代現有主題？"
 
 #: themes.cpp:315
 msgid "Something went wrong importing the theme"
-msgstr ""
+msgstr "匯入主題時發生錯誤"
 
 #: themes.cpp:327
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "您確定要刪除此主題嗎？如果您想再次使用它，則需要重新匯入它。"
 
 #: themes.cpp:334
 msgid "Something went wrong when attempting to delete the theme"
-msgstr ""
+msgstr "嘗試刪除主題時發生錯誤"
 
 #: themes.cpp:346
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "您確定要使用這個主題嗎？請注意，這只有在重新啟動 MMEX 後才會生效。"
 
 #: transactionsupdatedialog.cpp:206
 msgid "Transfer To"
@@ -7819,7 +7825,7 @@ msgstr "添加"
 
 #: transactionsupdatedialog.cpp:535
 msgid "This is due to some elements of the transaction or account detail not allowing the update"
-msgstr ""
+msgstr "這是由於交易紀錄或帳戶詳細資訊的某些因素不允許更新"
 
 #: transactionsupdatedialog.cpp:536
 msgid "Updated"
@@ -8360,7 +8366,8 @@ msgstr "輸入帳戶的說明。"
 #: wizard_newaccount.cpp:113
 msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
-msgstr ""
+msgstr "這通常是帳戶所屬的金融機構的名稱。\n"
+"例如：「ABC 銀行」。"
 
 #: wizard_newaccount.cpp:133
 msgid "Type of Account"
@@ -8368,24 +8375,28 @@ msgstr "帳目類型"
 
 #: wizard_newaccount.cpp:137
 msgid "Select the type of account you want to create:"
-msgstr ""
+msgstr "選擇您要建立的帳戶類型："
 
 #: wizard_newaccount.cpp:138
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
-msgstr ""
+msgstr "一般銀行帳戶涵蓋各種帳戶種類，例如\n"
+"現金、支票、貸款和信用卡等類型。"
 
 #: wizard_newaccount.cpp:143
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
+msgstr "投資和證券帳戶是專門帳戶，\n"
+"帳戶內紀錄 股票/共同基金 的投資。"
 
 #: wizard_newaccount.cpp:148
 msgid "Term and Asset accounts are specialized bank accounts.\n"
 "They are intended for monitoring Assets or Term Deposits and Bonds\n"
 "where typically you have regular money coming in and out, outside\n"
 "the general income stream."
-msgstr ""
+msgstr "定存帳戶和資產帳戶是專門的銀行帳戶。\n"
+"它們用於紀錄資產、定期存款和債券。\n"
+"通常會有定期的資金進出，與一般現金流有所區分。"
 
 #: wizard_newaccount.cpp:164
 msgid "Base Account Currency Not set."
@@ -8393,7 +8404,7 @@ msgstr "帳戶基準貨幣未設定。"
 
 #: wizard_newaccount.cpp:165
 msgid "Set that first using Tools → Settings… menu and then add a new account."
-msgstr ""
+msgstr "首先使用 工具 → 設定… 選單進行設置，然後新增一個帳戶。"
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
