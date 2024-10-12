@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-12 11:22\n"
+"PO-Revision-Date: 2024-10-12 12:20\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -6707,23 +6707,24 @@ msgstr "匯入時的\n"
 #: payeedialog.cpp:136
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
-msgstr ""
+msgstr "輸入任何字串以在匯入時與此受款人核對。\n"
+"模式按照此處輸入的順序進行測試。"
 
 #: payeedialog.cpp:238
 msgid "A payee with this name already exists"
-msgstr ""
+msgstr "已存在相同名稱的受款人"
 
 #: payeedialog.cpp:454
 msgid "Match Pattern"
-msgstr ""
+msgstr "模式匹配"
 
 #: payeedialog.cpp:736
 msgid "Payee in use."
-msgstr ""
+msgstr "使用中受款人"
 
 #: payeedialog.cpp:741
 msgid "It will be not removed"
-msgstr ""
+msgstr "不會被移除"
 
 #: payeedialog.cpp:743
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
