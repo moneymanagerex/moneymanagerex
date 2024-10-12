@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-11 11:48\n"
+"PO-Revision-Date: 2024-10-12 08:52\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -5343,19 +5343,19 @@ msgstr "MMEX：已加密的資料庫"
 
 #: mmframe.cpp:2095
 msgid "Have MMEX support provided a debug/patch file?"
-msgstr ""
+msgstr "MMEX 支援是否提供了除錯/修正檔案？"
 
 #: mmframe.cpp:2095
 msgid "MMEX upgrade"
-msgstr ""
+msgstr "MMEX 升級"
 
 #: mmframe.cpp:2122 mmframe.cpp:2208
 msgid "No File opened"
-msgstr ""
+msgstr "無開啟的檔案"
 
 #: mmframe.cpp:2124
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "抱歉。資料庫版本太舊或資料庫密碼不正確"
 
 #: mmframe.cpp:2198
 msgid "&Next →"
@@ -5363,15 +5363,15 @@ msgstr "下一步(&N)→"
 
 #: mmframe.cpp:2211
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "無法找到先前開啟的資料庫。\n"
 
 #: mmframe.cpp:2213
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "未輸入加密資料庫的密碼。\n"
 
 #: mmframe.cpp:2232
 msgid "portable mode"
-msgstr ""
+msgstr "可攜式軟體模式"
 
 #: mmframe.cpp:2268
 msgid "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
@@ -5385,7 +5385,7 @@ msgstr "您嘗試開啟的資料庫已被另一個 MMEX 開啟。\n"
 
 #: mmframe.cpp:2272
 msgid "MMEX Instance Check"
-msgstr ""
+msgstr "MMEX 執行個體檢查"
 
 #: mmframe.cpp:2292
 msgid "Choose database file to create"
@@ -5393,7 +5393,7 @@ msgstr "建立選擇的資料庫檔案"
 
 #: mmframe.cpp:2295 mmframe.cpp:2317 mmframe.cpp:2359 mmframe.cpp:2515
 msgid "MMEX Database"
-msgstr ""
+msgstr "MMEX 資料庫"
 
 #: mmframe.cpp:2315
 msgid "Choose database file to open"
@@ -5401,11 +5401,11 @@ msgstr "選擇開啟檔案"
 
 #: mmframe.cpp:2317 mmframe.cpp:2343 mmframe.cpp:2515
 msgid "Encrypted MMEX Database"
-msgstr ""
+msgstr "加密的 MMEX 資料庫"
 
 #: mmframe.cpp:2341
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "選擇要開啟的加密資料庫檔案"
 
 #: mmframe.cpp:2351
 msgid "Enter password for database"
