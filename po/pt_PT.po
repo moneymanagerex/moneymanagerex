@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-02 14:58\n"
+"PO-Revision-Date: 2024-10-15 22:09\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgstr "&Nova Base de Dados"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "Criar um ficheiro da base de dados MMEX"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -337,7 +337,7 @@ msgstr "Abrir Base de Dados &Existente"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "Abrir ficheiro da base de dados MMEX"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1682
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "Manual do &Utilizador"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "Ler o manual do utilizador do MMEX"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1852
 msgid "&Website"
@@ -366,7 +366,7 @@ msgstr "Abra o site do MMEX para saber das últimas novidades e atualizações"
 
 #: appstartdialog.cpp:125 mmframe.cpp:1869
 msgid "&Forum"
-msgstr ""
+msgstr "&Fórum"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
@@ -844,7 +844,7 @@ msgstr "Abertura do anexo falhou"
 
 #: billsdepositsdialog.cpp:45 billsdepositspanel.cpp:50
 msgid "Once"
-msgstr ""
+msgstr "Uma vez"
 
 #: billsdepositsdialog.cpp:46 billsdepositspanel.cpp:51
 #: model/Model_Budget.cpp:30
@@ -1035,7 +1035,7 @@ msgstr "Especifique o montante da transferência na Conta Para"
 
 #: billsdepositsdialog.cpp:542 transdialog.cpp:494
 msgid "Open Calculator"
-msgstr ""
+msgstr "Abrir calculadora"
 
 #: billsdepositsdialog.cpp:548 billsdepositsdialog.cpp:835
 #: billsdepositsdialog.cpp:848 billsdepositspanel.cpp:134 filtertrans.cpp:200
@@ -6422,7 +6422,7 @@ msgstr "Delimitador"
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp"
-msgstr ""
+msgstr "WebApp"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
@@ -6462,7 +6462,7 @@ msgstr "Porto"
 
 #: optionsettingsnet.cpp:119
 msgid "Usage Statistics"
-msgstr ""
+msgstr "Estatísticas de utilização"
 
 #: optionsettingsnet.cpp:138
 msgid "Check for latest news on startup"
@@ -6522,7 +6522,7 @@ msgstr "Delimitador de Categoria"
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget"
-msgstr ""
+msgstr "Transação/Orçamento"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
@@ -8421,7 +8421,7 @@ msgstr "Moeda Base da Conta Não Definida."
 
 #: wizard_newaccount.cpp:165
 msgid "Set that first using Tools → Settings… menu and then add a new account."
-msgstr ""
+msgstr "Defina-a primeiro através do menu Ferramentas → Definições e, de seguida, adicione uma conta nova."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
