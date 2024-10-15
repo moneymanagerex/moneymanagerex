@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-15 22:09\n"
+"PO-Revision-Date: 2024-10-15 23:26\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -370,7 +370,7 @@ msgstr "&Fórum"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "Visite o fórum do MMEX para ler, publicar comentários e para obter suporte"
 
 #: appstartdialog.cpp:132 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -383,7 +383,7 @@ msgstr "&Sair "
 #: appstartdialog.cpp:159
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Abrir a base de dados aberta anteriormente: %s"
 
 #: appstartdialog.cpp:208 mmframe.cpp:1688 mmframe.cpp:3081
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -709,7 +709,7 @@ msgstr "Pasta de documentos não definida."
 
 #: attachmentdialog.cpp:60
 msgid "Please set it in Tools → Settings… → Attachments"
-msgstr ""
+msgstr "Por favor, defina-o em Ferramentas →Definições… → Anexos"
 
 #: attachmentdialog.cpp:61
 msgid "Attachment folder not defined"
@@ -1208,7 +1208,7 @@ msgstr "Período: Dias"
 
 #: billsdepositsdialog.cpp:1298
 msgid "Specify period in Days."
-msgstr ""
+msgstr "Especifique o período em Dias."
 
 #: billsdepositsdialog.cpp:1303
 msgid "Period: Months"
@@ -1216,11 +1216,11 @@ msgstr "Período: Meses"
 
 #: billsdepositsdialog.cpp:1304
 msgid "Specify period in Months."
-msgstr ""
+msgstr "Especifique o período em Meses."
 
 #: billsdepositsdialog.cpp:1310
 msgid "Ignored (leave blank)."
-msgstr ""
+msgstr "Ignorado (deixe em branco)."
 
 #: billsdepositsdialog.cpp:1316
 msgid "Specify the number of payments to be made.\n"
@@ -1616,11 +1616,11 @@ msgstr "Categorias"
 #: categdialog.cpp:258 relocatecategorydialog.cpp:89
 #: relocatecategorydialog.h:43
 msgid "Merge Categories"
-msgstr ""
+msgstr "Fundir categorias"
 
 #: categdialog.cpp:260
 msgid "C&ollapse All"
-msgstr ""
+msgstr "Colapsar tudo"
 
 #: categdialog.cpp:265
 msgid "E&xpand All"
