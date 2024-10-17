@@ -246,6 +246,8 @@ Pascal Freland
 Detlef Straube
 Stephan Kasslatter
 Panagiotis Theodosopoulos
+Antonis Vithoulkas
+Jean-Michel Louiset
 
 ### 2023
 Renato
