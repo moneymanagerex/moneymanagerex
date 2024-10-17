@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-02 14:58\n"
+"PO-Revision-Date: 2024-10-17 21:51\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -4113,7 +4113,7 @@ msgstr "Suggerimento di generi alimentari: Assicurati che la tua famiglia consum
 
 #: mmTips.h:43
 msgid "Grocery tip: Reduce waste. Adopting better grocery shopping habits is one way to cut back on wasted food and money. Make a list of everything you throw out without using, such as spoiled leftovers or soggy lettuce, to get a sense of the full scale of the issue."
-msgstr "Suggerimento di generi alimentari: ridurre gli sprechi. Adottare migliori abitudini di spesa è un modo per tagliare il cibo sprecato e i soldi. Fai una lista di tutto quello che gettate fuori senza usare, come gli avanzi viziati o la lattuga invischiata, per ottenere un senso della scala completa del problema."
+msgstr "Suggerimento per la spesa: riduci gli sprechi. Adottare migliori abitudini nella spesa è un modo per ridurre gli sprechi di cibo e di denaro. Fai una lista di tutto ciò che butti via senza utilizzarlo, come gli avanzi avariati o la lattuga ammuffita, per avere un'idea dell'entità del problema."
 
 #: mmTips.h:44
 msgid "Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."
