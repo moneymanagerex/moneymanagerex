@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-17 21:51\n"
+"PO-Revision-Date: 2024-10-18 15:53\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -4297,7 +4297,7 @@ msgstr[1] "&Ripristina le transazioni selezionate..."
 
 #: mmchecking_list.cpp:515
 msgid "Restore &all transactions in current view..."
-msgstr ""
+msgstr "Ripristin&a tutte le operazioni nella schermata attuale..."
 
 #: mmchecking_list.cpp:650
 #, c-format
@@ -4322,11 +4322,11 @@ msgstr[1] "&Elimina definitivamente le transazioni selezionate..."
 
 #: mmchecking_list.cpp:664
 msgid "Delete &all transactions in current view..."
-msgstr ""
+msgstr "Elimin&a tutte le operazioni nella schermata attuale..."
 
 #: mmchecking_list.cpp:664
 msgid "Permanently delete &all transactions in current view..."
-msgstr ""
+msgstr "Elimin&a definitivamente tutte le operazioni nella schermata attuale..."
 
 #: mmchecking_list.cpp:666
 msgid "Delete Viewed “&Follow Up” Transactions..."
@@ -4888,11 +4888,11 @@ msgstr "Mostra/Nasconde la Barra degli Strumenti"
 
 #: mmframe.cpp:1634
 msgid "&Navigator\tF5"
-msgstr ""
+msgstr "&Navigatore\tF5"
 
 #: mmframe.cpp:1634
 msgid "Show/Hide Navigator"
-msgstr ""
+msgstr "Mostra/Nascondi Navigatore"
 
 #: mmframe.cpp:1636
 msgid "&Display Share Accounts"
@@ -4908,7 +4908,7 @@ msgstr "&Visualizza Transazioni Eliminate"
 
 #: mmframe.cpp:1638
 msgid "Show/Hide Deleted Transactions in Navigator"
-msgstr ""
+msgstr "Mostra/Nascondi le Transazioni eliminate nel Navigatore"
 
 #: mmframe.cpp:1640
 msgid "Budgets: As Financial &Years"
@@ -4964,11 +4964,11 @@ msgstr "&Schermo Intero F11"
 
 #: mmframe.cpp:1671 mmframe.cpp:1997
 msgid "Toggle full screen"
-msgstr ""
+msgstr "Attiva/disattiva Schermo intero"
 
 #: mmframe.cpp:1676
 msgid "&Reset View"
-msgstr ""
+msgstr "&Ripristina Vista"
 
 #: mmframe.cpp:1677
 msgid "Reset view and dock tools"
@@ -5081,7 +5081,7 @@ msgstr "Gestore Temi"
 
 #: mmframe.cpp:1796
 msgid "Tra&nsaction Report..."
-msgstr ""
+msgstr "Resoconto Tra&nsazioni..."
 
 #: mmframe.cpp:1802
 msgid "&General Report Manager..."
@@ -5233,7 +5233,7 @@ msgstr "Collega il feed web RSS al news aggregator"
 
 #: mmframe.cpp:1880
 msgid "Make a &Donation"
-msgstr ""
+msgstr "Fai una &Donazione"
 
 #: mmframe.cpp:1881
 msgid "Donate to the MMEX team to support infrastructure and development"
@@ -5555,7 +5555,7 @@ msgstr "Creazione conto titoli"
 
 #: mmframe.cpp:2925
 msgid "Settings have been updated."
-msgstr ""
+msgstr "Impostazioni aggiornate."
 
 #: mmframe.cpp:2926
 msgid "Some settings take effect only after an application restart."
@@ -5819,11 +5819,11 @@ msgstr "Ordina per questa colonna"
 
 #: mmpanelbase.cpp:137
 msgid "Move column left"
-msgstr ""
+msgstr "Sposta colonna a sinistra"
 
 #: mmpanelbase.cpp:138
 msgid "Move column right"
-msgstr ""
+msgstr "Sposta colonna a destra"
 
 #: mmpanelbase.cpp:140
 msgid "Reset columns"
@@ -6060,7 +6060,7 @@ msgstr "Generali"
 
 #: optiondialog.cpp:37 optionsettingsview.cpp:61
 msgid "View"
-msgstr ""
+msgstr "Visualizza"
 
 #: optiondialog.cpp:37 optionsettingsattachment.cpp:65 webappdialog.cpp:146
 msgid "Attachments"
@@ -6424,7 +6424,7 @@ msgstr "Separatore di campo"
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp"
-msgstr ""
+msgstr "WebApp"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
@@ -6464,7 +6464,7 @@ msgstr "Porta"
 
 #: optionsettingsnet.cpp:119
 msgid "Usage Statistics"
-msgstr ""
+msgstr "Statistiche di Utilizzo"
 
 #: optionsettingsnet.cpp:138
 msgid "Check for latest news on startup"
@@ -6524,7 +6524,7 @@ msgstr "Delimitatore di Categoria"
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget"
-msgstr ""
+msgstr "Transazione/Budget"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
@@ -6877,7 +6877,7 @@ msgstr "Anno finanziario: %s - %i"
 #: reports/budget.cpp:101
 #, c-format
 msgid "Financial Year: %i Month: %s"
-msgstr ""
+msgstr "Anno finanziario: %i Mese: %s"
 
 #: reports/budget.cpp:103
 #, c-format
@@ -6896,7 +6896,7 @@ msgstr "Riepilogo Categoria Budget per %s"
 
 #: reports/budgetcategorysummary.cpp:129
 msgid "(Estimated vs. Actual)"
-msgstr ""
+msgstr "(Previsto / Attuale)"
 
 #: reports/budgetcategorysummary.cpp:346
 msgid "Estimated Income:"
@@ -8424,7 +8424,7 @@ msgstr "Valuta Base non impostata"
 
 #: wizard_newaccount.cpp:165
 msgid "Set that first using Tools → Settings… menu and then add a new account."
-msgstr ""
+msgstr "Impostalo prima utilizzando il menu Strumenti → Impostazioni... e poi aggiungi un nuovo conto."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
