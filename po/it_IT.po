@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-19 06:10\n"
+"PO-Revision-Date: 2024-10-19 08:51\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -4330,11 +4330,11 @@ msgstr "Elimin&a definitivamente tutte le operazioni nella schermata attuale..."
 
 #: mmchecking_list.cpp:666
 msgid "Delete Viewed “&Follow Up” Transactions..."
-msgstr ""
+msgstr "Elimina Transazioni \"&Da Monitorare\" Visualizzate..."
 
 #: mmchecking_list.cpp:667
 msgid "Delete Viewed “&Unreconciled” Transactions..."
-msgstr ""
+msgstr "Elimina Transazioni \"Non riconciliate\" Visualizzate..."
 
 #: mmchecking_list.cpp:669
 msgid "De&lete "
@@ -4752,7 +4752,7 @@ msgstr "File &QIF..."
 
 #: mmframe.cpp:1475
 msgid "&Customize Report..."
-msgstr ""
+msgstr "&Personalizza Report..."
 
 #: mmframe.cpp:1476
 msgid "&Rename Report..."
@@ -6786,7 +6786,7 @@ msgstr "Unisci &Beneficiari"
 
 #: relocatecategorydialog.cpp:102
 msgid "&Delete source category after merge (if source category has no subcategories)"
-msgstr ""
+msgstr "&Elimina la categoria di origine dopo l'unione (se la categoria di origine non ha sottocategorie)"
 
 #: relocatecategorydialog.cpp:118 relocatepayeedialog.cpp:112
 #: relocatetagdialog.cpp:114
@@ -6851,7 +6851,7 @@ msgstr "Unisci Beneficiari"
 
 #: relocatepayeedialog.cpp:99
 msgid "&Delete source payee after merge"
-msgstr ""
+msgstr "&Elimina beneficiario di origine dopo l'unione"
 
 #: relocatepayeedialog.cpp:156
 msgid "Merge payees confirmation"
@@ -6863,7 +6863,7 @@ msgstr "Unisci Tag"
 
 #: relocatetagdialog.cpp:101
 msgid "&Delete source tag after merge"
-msgstr ""
+msgstr "&Elimina etichetta di origine dopo l'unione"
 
 #: relocatetagdialog.cpp:158
 msgid "Merge tags confirmation"
