@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-18 17:11\n"
+"PO-Revision-Date: 2024-10-19 06:10\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -7412,7 +7412,7 @@ msgstr "Specificare la data di inzio dell'investimento titoli\n"
 
 #: stockdialog.cpp:205
 msgid "*Share Number"
-msgstr "* Numero Azione"
+msgstr "* Numero AzionI"
 
 #: stockdialog.cpp:212
 msgid "Enter number of shares.\n"
