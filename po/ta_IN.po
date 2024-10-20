@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-09 12:36\n"
+"PO-Revision-Date: 2024-10-20 14:52\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "MIME-Version: 1.0\n"
@@ -3783,11 +3783,11 @@ msgstr "குறியீடு"
 
 #: maincurrencydialog.cpp:77
 msgid "Last Rate"
-msgstr ""
+msgstr "கடைசி விலை"
 
 #: maincurrencydialog.cpp:77
 msgid "Fixed Rate"
-msgstr ""
+msgstr "நிலையான விலை"
 
 #: maincurrencydialog.cpp:137
 msgid "N/A"
@@ -3799,7 +3799,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:183
 msgid "Online Update"
-msgstr ""
+msgstr "ஆன்லைன் புதுப்பிப்பு"
 
 #: maincurrencydialog.cpp:187
 msgid "Show all even the unused currencies"
@@ -3925,15 +3925,15 @@ msgstr "நிறம் #&%i"
 
 #: mmSimpleDialogs.cpp:942
 msgid "Subtract one year"
-msgstr ""
+msgstr "ஒரு வருடத்தைக் கழி"
 
 #: mmSimpleDialogs.cpp:943
 msgid "Subtract one month"
-msgstr ""
+msgstr "ஒரு மாதாதைக் கழி"
 
 #: mmSimpleDialogs.cpp:944
 msgid "Add one month"
-msgstr ""
+msgstr "ஒரு மாதத்தைச் சேர்"
 
 #: mmSimpleDialogs.cpp:945
 msgid "Add one year"
