@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-19 08:51\n"
+"PO-Revision-Date: 2024-10-20 10:30\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -6802,12 +6802,12 @@ msgstr "Destinazione:"
 #: relocatetagdialog.cpp:153
 #, c-format
 msgid "From %1$s to %2$s"
-msgstr "Dal %1$s al %2$s"
+msgstr "Sostituire %1$s con %2$s"
 
 #: relocatecategorydialog.cpp:157 relocatepayeedialog.cpp:155
 #: relocatetagdialog.cpp:157
 msgid "Please Confirm:"
-msgstr "Prego confermare:"
+msgstr "Si prega di confermare:"
 
 #: relocatecategorydialog.cpp:158
 msgid "Merge categories confirmation"
