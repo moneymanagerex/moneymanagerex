@@ -354,8 +354,8 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
             m_accounts = new wxChoice(itemPanel3, ID_CHOICE_ACCOUNTS);
-            m_accounts->Append(_("All Accounts:"));
-            m_accounts->Append(_("Specific Accounts:"));
+            m_accounts->Append(_("All Accounts"));
+            m_accounts->Append(_("Specific Accounts…"));
             for (const auto& e : Model_Account::TYPE_CHOICES)
             {
                 if (e.first != Model_Account::TYPE_ID_INVESTMENT) {
