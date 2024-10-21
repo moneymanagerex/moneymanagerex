@@ -22,7 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "option.h"
 #include <wx/intl.h>
 
-#define DATE_MAX 253402300799 /* Dec 31, 9999 23:59:59 UTC*/
+#define DATE_MAX 32503679999 /* Dec 31, 2999 23:59:59 UTC*/
 
 mmDateRange::mmDateRange() : today_(wxDateTime::Today())
     , today_end_(wxDateTime(23, 59, 59, 999))
