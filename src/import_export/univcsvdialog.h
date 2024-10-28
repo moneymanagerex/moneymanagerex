@@ -225,7 +225,7 @@ private:
     void OnFileBrowse(wxCommandEvent& event);
     void OnListBox(wxCommandEvent& event);
     void OnColumnResize(wxListEvent& event);
-    void OnDelimiterChange(wxCommandEvent& event);
+    void OnDelimiterChange(wxCommandEvent&);
     void OnDecimalChange(wxCommandEvent& event);
     void OnButtonClear(wxCommandEvent& event);
     void OnFileNameEntered(wxCommandEvent& event);
@@ -234,9 +234,9 @@ private:
     void changeFocus(wxChildFocusEvent& event);
     void OnSpinCtrlIgnoreRows(wxSpinEvent& event);
     void OnCheckboxClick(wxCommandEvent& event);
-    void OnMenuSelected(wxCommandEvent& event);
-    void OnShowPayeeDialog(wxMouseEvent& event);
-    void OnShowCategDialog(wxMouseEvent& event);
+    void OnMenuSelected(wxCommandEvent&);
+    void OnShowPayeeDialog(wxMouseEvent&);
+    void OnShowCategDialog(wxMouseEvent&);
     void saveAccountPresets();
     bool validateCustomFieldData(int fieldId, wxString& value, wxString& log_message);
 private:
@@ -251,7 +251,7 @@ private:
     void validateCategories();
 
     bool ShowToolTips();
-    void OnSettingsSelected(wxCommandEvent& event);
+    void OnSettingsSelected(wxCommandEvent&);
     const wxString GetStoredSettings(int id) const;
     void SetSettings(const wxString &data);
     ITransactionsFile *CreateFileHandler();

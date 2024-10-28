@@ -222,7 +222,7 @@ void relocatePayeeDialog::OnFocusChange(wxChildFocusEvent& event)
     event.Skip();
 }
 
-void relocatePayeeDialog::OnTextUpdated(wxCommandEvent& event)
+void relocatePayeeDialog::OnTextUpdated(wxCommandEvent&)
 {
     IsOkOk();
 }
