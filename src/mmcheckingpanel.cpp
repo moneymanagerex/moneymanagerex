@@ -410,7 +410,7 @@ void mmCheckingPanel::CreateControls()
     std::vector<int> sortedRealColumns = {};
     for (const auto& i : sortedColumnList)
     {
-        for (int j = 0; j < m_listCtrlAccount->m_columns.size(); j++)
+        for (unsigned int j = 0; j < m_listCtrlAccount->m_columns.size(); j++)
         {
             auto k = m_listCtrlAccount->m_columns[j];
             auto l = m_listCtrlAccount->m_real_columns[j];

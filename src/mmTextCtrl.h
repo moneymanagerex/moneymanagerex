@@ -57,7 +57,7 @@ public:
 
 private:
     int m_alt_precision = -1;
-    bool ignore_focus_;
+    bool ignore_focus_ = false;
     void OnTextEntered(wxCommandEvent&);
     void OnKillFocus(wxFocusEvent& event);
     const Model_Currency::Data* m_currency = nullptr;

@@ -53,7 +53,7 @@ private:
 
     void OnFocusChange(wxChildFocusEvent& event);
 
-    int sourceTagID_;
+    int sourceTagID_ = -1;
     int destTagID_ = -1;
     wxArrayString choices_;
 

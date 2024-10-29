@@ -122,10 +122,10 @@ private:
     bool m_new_trx = false;
     bool m_duplicate = false;
     bool m_advanced = false;
-    double m_current_balance;
+    double m_current_balance = false;
 
-    int object_in_focus_;
-    int m_account_id;
+    int object_in_focus_ = wxID_ANY;
+    int m_account_id = -1;
     wxString m_status;
 
     DB_Table_CHECKINGACCOUNT_V1::Data m_trx_data;

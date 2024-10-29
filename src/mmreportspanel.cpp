@@ -51,8 +51,8 @@ mmReportsPanel::mmReportsPanel(
     wxWindowID winid, const wxPoint& pos,
     const wxSize& size, long style,
     const wxString& name)
-    : rb_(rb)
-    , m_frame(frame)
+    : m_frame(frame)
+    , rb_(rb)
     , cleanup_(cleanupReport)
 {
     Create(parent, winid, pos, size, style, name);

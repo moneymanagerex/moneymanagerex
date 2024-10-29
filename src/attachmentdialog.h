@@ -57,7 +57,7 @@ private:
     wxString m_PathSep = wxFileName::GetPathSeparator();
 
     wxString m_RefType;
-    int m_RefId;
+    int m_RefId = -1;
 
     mmAttachmentDialog() {}
 
@@ -79,7 +79,11 @@ private:
     void OnListItemActivated(wxDataViewEvent& event);
     void OnMagicButton(wxCommandEvent& event);
 
-    bool debug_;
+    #ifdef _DEBUG
+        bool debug_ = true;
+    #else
+        bool debug_ = false;
+    #endif
 };
 
 class mmAttachmentManage

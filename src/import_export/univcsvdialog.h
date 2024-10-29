@@ -145,8 +145,8 @@ private:
         std::map<int, wxString> customFieldData;
     };
 private:
-    EDialogType dialogType_;
-    int m_account_id;
+    EDialogType dialogType_ = EDialogType::DIALOG_TYPE_IMPORT_CSV;
+    int m_account_id = -1;
     wxString m_file_path;
     wxString delimit_ = ",";
     wxString decimal_;
@@ -181,17 +181,17 @@ private:
     enum amountFieldSignValues { PositiveIsDeposit, PositiveIsWithdrawal, DefindByType };
     wxCheckBox* m_checkBoxExportTitles = nullptr;
 
-    int accountID_;
+    int accountID_ = -1;
     bool importSuccessful_ = false;
     bool m_userDefinedDateMask = false;
-    int m_object_in_focus;
+    int m_object_in_focus = wxID_ANY;
     bool m_reverce_sign = false;
     wxString depositType_;
     std::map <wxString, std::tuple<int, wxString, wxString>, caseInsensitiveComparator> m_CSVpayeeNames;
     wxArrayString m_payee_names;
     std::map <wxString, int, caseInsensitiveComparator> m_CSVcategoryNames;
     std::map<std::pair <int, wxString>, std::map<int, std::pair<wxString, wxRegEx>> > payeeMatchPatterns_;
-    bool payeeRegExInitialized_;
+    bool payeeRegExInitialized_ = false;
     wxCheckBox* payeeMatchCheckBox_ = nullptr;
     wxCheckBox* payeeMatchAddNotes_ = nullptr;
     wxDataViewListCtrl* payeeListBox_ = nullptr;
