@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-01 22:03\n"
+"PO-Revision-Date: 2024-10-19 12:26\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -366,7 +366,7 @@ msgstr "Visitez le site Internet MMEX pour les dernières informations et mises 
 
 #: appstartdialog.cpp:125 mmframe.cpp:1869
 msgid "&Forum"
-msgstr "Forum de discussion"
+msgstr "&Forum de discussion"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
@@ -552,7 +552,7 @@ msgstr "D&upliquer le bien..."
 
 #: assetspanel.cpp:102
 msgid "&Add Asset Transaction..."
-msgstr "&Éditer une transaction de bien..."
+msgstr "&Ajouter une transaction de bien..."
 
 #: assetspanel.cpp:103
 msgid "&View Asset Transactions"
@@ -609,7 +609,7 @@ msgstr "&Nouveau"
 
 #: assetspanel.cpp:475 stockspanel.cpp:136
 msgid "&Add Trans "
-msgstr "Ajouter opé."
+msgstr "&Ajouter opé. "
 
 #: assetspanel.cpp:480 stockspanel.cpp:141
 msgid "&View Trans "
@@ -664,7 +664,7 @@ msgstr "Utilisez le point d'interrogation (?) pour trouver un caractère unique 
 #: assetspanel.cpp:512 filtertransdialog.cpp:696 mmcheckingpanel.cpp:523
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr "Utilisez l'astérisque (*) pour trouver n'importe quel nombre de caractères - par exemple, s*d trouve 'sad' et 'started'."
+msgstr "Utilisez l'astérisque (*) pour trouver n'importe quel nombre de caractères - par exemple, s*n trouve 'son' et 'sapin'."
 
 #: assetspanel.cpp:513 filtertransdialog.cpp:697 mmcheckingpanel.cpp:524
 #: payeedialog.cpp:140

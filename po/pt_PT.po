@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-01 22:03\n"
+"PO-Revision-Date: 2024-10-16 22:30\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgstr "&Nova Base de Dados"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "Criar um ficheiro da base de dados MMEX"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -337,7 +337,7 @@ msgstr "Abrir Base de Dados &Existente"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "Abrir ficheiro da base de dados MMEX"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1682
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "Manual do &Utilizador"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "Ler o manual do utilizador do MMEX"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1852
 msgid "&Website"
@@ -366,11 +366,11 @@ msgstr "Abra o site do MMEX para saber das últimas novidades e atualizações"
 
 #: appstartdialog.cpp:125 mmframe.cpp:1869
 msgid "&Forum"
-msgstr ""
+msgstr "&Fórum"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1870
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "Visite o fórum do MMEX para ler, publicar comentários e para obter suporte"
 
 #: appstartdialog.cpp:132 wizard_update.cpp:208
 msgid "&Show this dialog box at startup"
@@ -383,7 +383,7 @@ msgstr "&Sair "
 #: appstartdialog.cpp:159
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Abrir a base de dados aberta anteriormente: %s"
 
 #: appstartdialog.cpp:208 mmframe.cpp:1688 mmframe.cpp:3081
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:373
@@ -709,7 +709,7 @@ msgstr "Pasta de documentos não definida."
 
 #: attachmentdialog.cpp:60
 msgid "Please set it in Tools → Settings… → Attachments"
-msgstr ""
+msgstr "Por favor, defina-o em Ferramentas →Definições… → Anexos"
 
 #: attachmentdialog.cpp:61
 msgid "Attachment folder not defined"
@@ -844,7 +844,7 @@ msgstr "Abertura do anexo falhou"
 
 #: billsdepositsdialog.cpp:45 billsdepositspanel.cpp:50
 msgid "Once"
-msgstr ""
+msgstr "Uma vez"
 
 #: billsdepositsdialog.cpp:46 billsdepositspanel.cpp:51
 #: model/Model_Budget.cpp:30
@@ -1035,7 +1035,7 @@ msgstr "Especifique o montante da transferência na Conta Para"
 
 #: billsdepositsdialog.cpp:542 transdialog.cpp:494
 msgid "Open Calculator"
-msgstr ""
+msgstr "Abrir calculadora"
 
 #: billsdepositsdialog.cpp:548 billsdepositsdialog.cpp:835
 #: billsdepositsdialog.cpp:848 billsdepositspanel.cpp:134 filtertrans.cpp:200
@@ -1208,7 +1208,7 @@ msgstr "Período: Dias"
 
 #: billsdepositsdialog.cpp:1298
 msgid "Specify period in Days."
-msgstr ""
+msgstr "Especifique o período em Dias."
 
 #: billsdepositsdialog.cpp:1303
 msgid "Period: Months"
@@ -1216,11 +1216,11 @@ msgstr "Período: Meses"
 
 #: billsdepositsdialog.cpp:1304
 msgid "Specify period in Months."
-msgstr ""
+msgstr "Especifique o período em Meses."
 
 #: billsdepositsdialog.cpp:1310
 msgid "Ignored (leave blank)."
-msgstr ""
+msgstr "Ignorado (deixe em branco)."
 
 #: billsdepositsdialog.cpp:1316
 msgid "Specify the number of payments to be made.\n"
@@ -1616,19 +1616,19 @@ msgstr "Categorias"
 #: categdialog.cpp:258 relocatecategorydialog.cpp:89
 #: relocatecategorydialog.h:43
 msgid "Merge Categories"
-msgstr ""
+msgstr "Fundir categorias"
 
 #: categdialog.cpp:260
 msgid "C&ollapse All"
-msgstr ""
+msgstr "Colapsar tudo"
 
 #: categdialog.cpp:265
 msgid "E&xpand All"
-msgstr ""
+msgstr "E&xpandir tudo"
 
 #: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "&Show All"
-msgstr ""
+msgstr "&Exibir tudo"
 
 #: categdialog.cpp:272
 msgid "Show all hidden categories"
@@ -1860,7 +1860,7 @@ msgstr "64-bit"
 
 #: constants.cpp:193
 msgid "View Transaction Report..."
-msgstr ""
+msgstr "Ver relatório da transação..."
 
 #: constants.cpp:194
 msgid "View All Transactions"
@@ -2066,7 +2066,7 @@ msgstr "Selecione o tipo do campo personalizado"
 
 #: customfieldeditdialog.cpp:148
 msgid "Tooltip"
-msgstr ""
+msgstr "Sugestão"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enter the tooltip that will be shown"
@@ -2535,7 +2535,7 @@ msgstr "Diagnósticos"
 #: diagnostics.cpp:88 relocatecategorydialog.cpp:134
 #: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:134 themes.cpp:195
 msgid "&Close"
-msgstr ""
+msgstr "&Fechar"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -4338,7 +4338,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:669
 msgid "De&lete "
-msgstr ""
+msgstr "Eli&minar "
 
 #: mmchecking_list.cpp:675
 msgid "&Unreconciled"
@@ -5201,7 +5201,7 @@ msgstr "Aceda ao repositório de código aberto e siga o estado dos erros report
 
 #: mmframe.cpp:1867
 msgid "W&iki"
-msgstr ""
+msgstr "W&iki"
 
 #: mmframe.cpp:1867
 msgid "Read and update MMEX wiki"
@@ -6380,7 +6380,7 @@ msgstr "Transações em Massa"
 
 #: optionsettingsmisc.cpp:173
 msgid "Database"
-msgstr ""
+msgstr "Base de dados"
 
 #: optionsettingsmisc.cpp:180
 msgid "Backup database on startup"
@@ -6422,7 +6422,7 @@ msgstr "Delimitador"
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp"
-msgstr ""
+msgstr "WebApp"
 
 #: optionsettingsnet.cpp:74 webappdialog.cpp:94
 msgid "URL"
@@ -6462,7 +6462,7 @@ msgstr "Porto"
 
 #: optionsettingsnet.cpp:119
 msgid "Usage Statistics"
-msgstr ""
+msgstr "Estatísticas de utilização"
 
 #: optionsettingsnet.cpp:138
 msgid "Check for latest news on startup"
@@ -6522,7 +6522,7 @@ msgstr "Delimitador de Categoria"
 
 #: optionsettingsview.cpp:116
 msgid "Transaction/Budget"
-msgstr ""
+msgstr "Transação/Orçamento"
 
 #: optionsettingsview.cpp:121
 msgid "View Budgets as Financial Years"
@@ -6845,11 +6845,11 @@ msgstr "Registos encontrados no orçamento: %i"
 
 #: relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge Payees"
-msgstr ""
+msgstr "Fundir beneficiários"
 
 #: relocatepayeedialog.cpp:99
 msgid "&Delete source payee after merge"
-msgstr ""
+msgstr "&Eliminar o beneficiário de origem após a fusão"
 
 #: relocatepayeedialog.cpp:156
 msgid "Merge payees confirmation"
@@ -7802,7 +7802,7 @@ msgstr "&Eliminar"
 
 #: themes.cpp:193
 msgid "&Use"
-msgstr ""
+msgstr "&Utilizar"
 
 #: themes.cpp:239
 msgid "No description available"
@@ -8421,7 +8421,7 @@ msgstr "Moeda Base da Conta Não Definida."
 
 #: wizard_newaccount.cpp:165
 msgid "Set that first using Tools → Settings… menu and then add a new account."
-msgstr ""
+msgstr "Defina-a primeiro através do menu Ferramentas → Definições e, de seguida, adicione uma conta nova."
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"

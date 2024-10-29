@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-01 22:04\n"
+"PO-Revision-Date: 2024-10-05 00:27\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2548,7 +2548,7 @@ msgstr "Voltar"
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:1293
 #: model/Model_Checking.cpp:41
 msgid "Unreconciled"
-msgstr "Não-reconciliada"
+msgstr "Não Pago"
 
 #: filtertransdialog.cpp:49 mmhomepage.cpp:534 mmhomepage.cpp:705
 #: model/Model_Checking.cpp:42
@@ -4333,7 +4333,7 @@ msgstr "Excluir transações visualizadas como 'Acompanhar'..."
 
 #: mmchecking_list.cpp:667
 msgid "Delete Viewed “&Unreconciled” Transactions..."
-msgstr "Excluir transações visualizadas como \"Não-reconciliadas\"..."
+msgstr "Excluir transações visualizadas como \"Não Pagas\"..."
 
 #: mmchecking_list.cpp:669
 msgid "De&lete "
@@ -4341,11 +4341,11 @@ msgstr "Ex&cluir "
 
 #: mmchecking_list.cpp:675
 msgid "&Unreconciled"
-msgstr "&Não-reconciliada"
+msgstr "&Não Paga"
 
 #: mmchecking_list.cpp:677
 msgid "&Reconciled"
-msgstr "&Reconciliada"
+msgstr "&Paga"
 
 #: mmchecking_list.cpp:679
 msgid "&Void"
