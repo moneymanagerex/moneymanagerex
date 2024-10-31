@@ -1,4 +1,9 @@
 # Translations of language descriptions into their native languages
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
 msgid "Albanian (Albania)"
 msgstr "sq-AL shqip (Shqipëri)"
 
