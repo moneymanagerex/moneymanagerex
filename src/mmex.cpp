@@ -76,6 +76,11 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
         return false;
     }
     wxTranslations* trans = new wxTranslations;
+
+    // Add the common UI Language translation catalog
+    trans->SetLanguage(wxLANGUAGE_ENGLISH_US);
+    trans->AddCatalog("common", wxLANGUAGE_ENGLISH_US);
+
     trans->SetLanguage(lang);
     trans->AddStdCatalog();
     if (trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US) || lang == wxLANGUAGE_ENGLISH_US || lang == wxLANGUAGE_DEFAULT)
