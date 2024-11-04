@@ -2213,12 +2213,12 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
             StringBuffer buffer;
             Writer<StringBuffer> writer(buffer);
             j_doc.Accept(writer);
-            Model_Infotable::instance().Set(m_filter_key + "_LAST_USED", wxString(buffer.GetString()));
+            Model_Infotable::instance().Set(m_filter_key + "_LAST_USED", wxString::FromUTF8(buffer.GetString()));
             // Update the settings list with the new data
             mmDoInitSettingNameChoice();
         }
     }
-    Model_Infotable::instance().Set("TRANSACTION_FILTER_LAST_USED", m_settings_json);
+    Model_Infotable::instance().Set("TRANSACTIONS_FILTER_LAST_USED", m_settings_json);
 }
 
 void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
