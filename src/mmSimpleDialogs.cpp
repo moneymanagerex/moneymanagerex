@@ -1017,7 +1017,7 @@ void mmErrorDialogs::InvalidFile(wxWindow *object, bool open)
 
 void mmErrorDialogs::InvalidAccount(wxWindow *object, bool transfer, TOOL_TIP tm)
 {
-    const auto errorHeader = wxString("Invalid Account");
+    const wxString errorHeader = _("Invalid Account");
     wxString errorMessage;
     if (!transfer)
         errorMessage = _("Please select the account for this transaction.");
