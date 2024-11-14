@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-11-01 08:28\n"
+"PO-Revision-Date: 2024-11-14 11:50\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -7080,7 +7080,7 @@ msgstr "Futur"
 
 #: reports/htmlbuilder.cpp:219 reports/mmDateRange.cpp:250
 msgid "Over Time"
-msgstr "Over Time"
+msgstr "Toutes les dates"
 
 #: reports/htmlbuilder.cpp:250
 msgid "User specified start day"
