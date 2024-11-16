@@ -248,6 +248,7 @@ Stephan Kasslatter
 Panagiotis Theodosopoulos
 Antonis Vithoulkas
 Jean-Michel Louiset
+Marino Lippi
 
 ### 2023
 Renato
