@@ -128,35 +128,46 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
     m_asc = Model_Setting::instance().GetBoolSetting("BD_ASC", true);
 
     m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT, false));
+    m_real_columns.push_back(m_bdp->COL_ICON);
     m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(m_bdp->COL_ID);
     m_columns.push_back(PANEL_COLUMN(_("Date Paid"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_PAYMENT_DATE);
     m_columns.push_back(PANEL_COLUMN(_("Date Due"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_DUE_DATE);
     m_columns.push_back(PANEL_COLUMN(_("Account"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_ACCOUNT);
     m_columns.push_back(PANEL_COLUMN(_("Payee"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_PAYEE);
     m_columns.push_back(PANEL_COLUMN(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_STATUS);
     m_columns.push_back(PANEL_COLUMN(_("Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_CATEGORY);
     m_columns.push_back(PANEL_COLUMN(_("Tags"), 200, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_TAGS);
     m_columns.push_back(PANEL_COLUMN(_("Type"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_TYPE);
     m_columns.push_back(PANEL_COLUMN(_("Amount"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(m_bdp->COL_AMOUNT);
     m_columns.push_back(PANEL_COLUMN(_("Frequency"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_FREQUENCY);
     m_columns.push_back(PANEL_COLUMN(_("Repetitions"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(m_bdp->COL_REPEATS);
     m_columns.push_back(PANEL_COLUMN(_("Autorepeat"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_AUTO);
     m_columns.push_back(PANEL_COLUMN(_("Payment"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_DAYS);
     m_columns.push_back(PANEL_COLUMN(_("Number"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_NUMBER);
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 150, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_NOTES);
 
     m_col_width = "BD_COL%d_WIDTH";
     m_col_idstr = "BD";
     m_default_sort_column = m_bdp->col_sort();
 
-    for (const auto& entry : m_columns)
-    {
-        int count = GetColumnCount();
-        InsertColumn(count
-            , entry.HEADER
-            , entry.FORMAT
-            , Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, count), entry.WIDTH));
-    }
+    CreateColumns();
+
 }
 
 billsDepositsListCtrl::~billsDepositsListCtrl()
@@ -570,7 +581,7 @@ const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits:
 
 wxString billsDepositsListCtrl::OnGetItemText(long item, long column) const
 {
-    return m_bdp->getItem(item, column);
+    return m_bdp->getItem(item, m_real_columns[column]);
 }
 
 void billsDepositsListCtrl::OnListItemSelected(wxListEvent& event)

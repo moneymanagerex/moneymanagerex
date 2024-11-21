@@ -56,24 +56,26 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
     m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT, false));
+    m_real_columns.push_back(m_panel->COL_ICON);
     m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(m_panel->COL_ID);
     m_columns.push_back(PANEL_COLUMN(_("Name"), 150, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_panel->COL_NAME);
     m_columns.push_back(PANEL_COLUMN(_("Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_panel->COL_DATE);
     m_columns.push_back(PANEL_COLUMN(_("Type"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_panel->COL_TYPE);
     m_columns.push_back(PANEL_COLUMN(_("Initial Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(m_panel->COL_VALUE_INITIAL);
     m_columns.push_back(PANEL_COLUMN(_("Current Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(m_panel->COL_VALUE_CURRENT);
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 450, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_panel->COL_NOTES);
 
     m_col_width = "ASSETS_COL%d_WIDTH";
     m_col_idstr = "ASSETS";
-    for (const auto& entry : m_columns)
-    {
-        int count = GetColumnCount();
-        InsertColumn(count
-            , entry.HEADER
-            , entry.FORMAT
-            , Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, count), entry.WIDTH));
-    }
+
+    CreateColumns();
 
     // load the global variables
     m_default_sort_column = m_panel->col_sort();
@@ -139,7 +141,7 @@ void mmAssetsListCtrl::OnListLeftClick(wxMouseEvent& event)
 
 wxString mmAssetsListCtrl::OnGetItemText(long item, long column) const
 {
-    return m_panel->getItem(item, column);
+    return m_panel->getItem(item, m_real_columns[column]);
 }
 
 void mmAssetsListCtrl::OnListItemSelected(wxListEvent& event)
