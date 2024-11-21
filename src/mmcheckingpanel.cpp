@@ -400,34 +400,6 @@ void mmCheckingPanel::CreateControls()
     m_listCtrlAccount->setSortOrder(m_listCtrlAccount->g_asc);
     m_listCtrlAccount->setSortColumn(m_listCtrlAccount->g_sortcol);
 
-    // Get sorted columns list and update the sorted columns with missing columns if needed.
-    wxArrayString columnList, sortedColumnList;
-    sortedColumnList = m_listCtrlAccount->GetColumnsOrder();
-     wxLogDebug("CreateControls: getColumnList() = %s", wxJoin(sortedColumnList, '|'));
-
-    // sort m_columns according to sortedColumnsList
-    std::vector<PANEL_COLUMN> sortedColumns = {};
-    std::vector<int> sortedRealColumns = {};
-    for (const auto& i : sortedColumnList)
-    {
-        for (unsigned int j = 0; j < m_listCtrlAccount->m_columns.size(); j++)
-        {
-            auto k = m_listCtrlAccount->m_columns[j];
-            auto l = m_listCtrlAccount->m_real_columns[j];
-            if (wxString::Format("%d", j) == i)
-            {
-                sortedColumns.push_back(k);
-                sortedRealColumns.push_back(l);
-                break;
-            }
-        }
-    }
-
-    m_listCtrlAccount->m_columns = sortedColumns;
-    m_listCtrlAccount->m_real_columns = sortedRealColumns;
-
-    m_listCtrlAccount->createColumns(*m_listCtrlAccount);
-
     // load the global variables
     m_sortSaveTitle = isAllAccounts_ ? "ALLTRANS" : (isTrash_ ? "DELETED" : "CHECK");
 
@@ -936,7 +908,7 @@ void mmCheckingPanel::ResetColumnView()
 {
     m_listCtrlAccount->DeleteAllColumns();
     m_listCtrlAccount->resetColumns();
-    m_listCtrlAccount->createColumns(*m_listCtrlAccount);
+    m_listCtrlAccount->createColumns();
     m_listCtrlAccount->refreshVisualList();
 }
 

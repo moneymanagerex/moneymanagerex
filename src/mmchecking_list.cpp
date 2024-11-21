@@ -266,12 +266,12 @@ TransactionListCtrl::TransactionListCtrl(
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
     SetAcceleratorTable(tab);
 
-    resetColumns();
-
     // V2 used as now maps to real column names and this resets everything to default
     // to avoid strange column widths when this code version is first
     m_col_width = m_cp->isAllAccounts_ ? "ALLTRANS_COLV2%d_WIDTH" : "CHECK2_COLV2%d_WIDTH";
     m_col_idstr = m_cp->isAllAccounts_ ? "ALLTRANS" : "CHECK2";
+
+    resetColumns();
 
     m_default_sort_column = COL_DEF_SORT;
     m_today = Option::instance().UseTransDateTime() ? wxDateTime::Now().FormatISOCombined() : wxDateTime(23, 59, 59, 999).FormatISOCombined();
@@ -354,24 +354,12 @@ void TransactionListCtrl::resetColumns()
     }
     m_columns.push_back(PANEL_COLUMN(_("Last Updated"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT, true));
     m_real_columns.push_back(COL_UPDATEDTIME);
+
+    CreateColumns();
 }
 
 TransactionListCtrl::~TransactionListCtrl()
 {}
-
-//----------------------------------------------------------------------------
-void TransactionListCtrl::createColumns(mmListCtrl &lst)
-{
-
-    for (const auto& entry : m_columns)
-    {
-        int count = lst.GetColumnCount();
-        lst.InsertColumn(count
-            , entry.HEADER
-            , entry.FORMAT
-            , Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, GetRealColumn(count)), entry.WIDTH));
-    }
-}
 
 void TransactionListCtrl::setExtraTransactionData(const bool single)
 {

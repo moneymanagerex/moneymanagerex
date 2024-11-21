@@ -84,33 +84,41 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     m_asc = Model_Setting::instance().GetBoolSetting("STOCKS_ASC", true);
 
     m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT, false));
+    m_real_columns.push_back(COL_ICON);
     m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(COL_ID);
     m_columns.push_back(PANEL_COLUMN(_("*Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(COL_DATE);
     m_columns.push_back(PANEL_COLUMN(_("Company Name"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(COL_NAME);
     m_columns.push_back(PANEL_COLUMN(_("Symbol"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(COL_SYMBOL);
     m_columns.push_back(PANEL_COLUMN(_("Share Total"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(COL_NUMBER);
     m_columns.push_back(PANEL_COLUMN(_("Avg Share Price"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(COL_PRICE);
     m_columns.push_back(PANEL_COLUMN(_("Total Cost"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(COL_VALUE);
     m_columns.push_back(PANEL_COLUMN(_("Realized Gain/Loss"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(COL_REAL_GAIN_LOSS);
     m_columns.push_back(PANEL_COLUMN(_("Unrealized Gain/Loss"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(COL_GAIN_LOSS);
     m_columns.push_back(PANEL_COLUMN(_("Curr. Share Price"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(COL_CURRENT);
     m_columns.push_back(PANEL_COLUMN(_("Curr. Total Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(COL_CURRVALUE);
     m_columns.push_back(PANEL_COLUMN(_("Price Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(COL_PRICEDATE);
     m_columns.push_back(PANEL_COLUMN(_("Commission"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(COL_COMMISSION);
     m_columns.push_back(PANEL_COLUMN(_("Notes"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(COL_NOTES);
 
     m_col_width = "STOCKS_COL%d_WIDTH";
     m_col_idstr = "STOCKS";
     m_default_sort_column = col_sort();
 
-    for (const auto& entry : m_columns)
-    {
-        int count = GetColumnCount();
-        InsertColumn(count
-            , entry.HEADER
-            , entry.FORMAT
-            , Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, count), entry.WIDTH));
-    }
+    CreateColumns();
 
     initVirtualListControl(-1, m_selected_col, m_asc);
     if (!m_stocks.empty())
@@ -161,6 +169,8 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
 
 wxString StocksListCtrl::OnGetItemText(long item, long column) const
 {
+    column = m_real_columns[column];
+
     if (column == COL_ID)           return wxString::Format("%i", m_stocks[item].STOCKID).Trim();
     if (column == COL_DATE)         return mmGetDateForDisplay(m_stocks[item].PURCHASEDATE);
     if (column == COL_NAME)         return m_stocks[item].STOCKNAME;
