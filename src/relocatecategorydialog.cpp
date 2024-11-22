@@ -326,7 +326,7 @@ void relocateCategoryDialog::OnFocusChange(wxChildFocusEvent& event)
     event.Skip();
 }
 
-void relocateCategoryDialog::OnTextUpdated(wxCommandEvent& event)
+void relocateCategoryDialog::OnTextUpdated(wxCommandEvent&)
 {
     IsOkOk();
 }
