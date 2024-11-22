@@ -400,7 +400,7 @@ void mmEditPayeeDialog::OnPatternTableChanged(wxGridEvent& event)
     ResizeDialog();
 }
 
-void mmEditPayeeDialog::OnPatternTableSize(wxSizeEvent& event)
+void mmEditPayeeDialog::OnPatternTableSize(wxSizeEvent&)
 {
     m_patternTable->SetColSize(0, m_patternTable->GetGridWindow()->GetSize().x);
 }

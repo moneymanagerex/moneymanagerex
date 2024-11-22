@@ -49,7 +49,7 @@ public:
     void CreateControls();
 
     // utility functions
-    void OnTextUpdated(wxCommandEvent& event);
+    void OnTextUpdated(wxCommandEvent&);
     void OnFocusChange(wxChildFocusEvent& event);
     void OnComboKey(wxKeyEvent& event);
     void OnCancel(wxCommandEvent& event);

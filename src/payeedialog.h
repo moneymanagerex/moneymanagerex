@@ -60,7 +60,7 @@ private:
     void OnMoveUp(wxCommandEvent& /*event*/);
     void OnMoveDown(wxCommandEvent& /*event*/);
     void OnPatternTableChanged(wxGridEvent& event);
-    void OnPatternTableSize(wxSizeEvent& event);
+    void OnPatternTableSize(wxSizeEvent&);
 
 };
 

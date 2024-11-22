@@ -233,7 +233,7 @@ void mmSplitTransactionDialog::CreateControls()
     wxSize scrollSize;
     for (int row = 0; row < size; row++)
     {
-        createNewRow(row <= m_splits.size() && !is_view_only_);
+        createNewRow(row <= static_cast<int>(m_splits.size()) && !is_view_only_);
         if (row == (STATIC_SPLIT_NUM - 1))
         {
             slider_->Fit();
@@ -301,7 +301,7 @@ void mmSplitTransactionDialog::FillControls(const int focusRow)
     DoWindowsFreezeThaw(this);
     for (int row = (focusRow == -1 ? 0 : focusRow); row < m_splits_widgets.size(); row++)
     {
-        if (row < m_splits.size())
+        if (row < static_cast<int>(m_splits.size()))
         {
             m_splits_widgets.at(row).category->ChangeValue(
                     Model_Category::full_name(m_splits.at(row).CATEGID));
@@ -366,7 +366,7 @@ void mmSplitTransactionDialog::createNewRow(const bool enabled)
     SplitWidget sw = {ncbc, nval, ntag, nother};
     m_splits_widgets.push_back(sw);
 
-    if (enabled && row + 1 >= m_splits.size())
+    if (enabled && row + 1 >= static_cast<int>(m_splits.size()))
     {
         ncbc->SetFocus();
         slider_->FitInside();
@@ -437,12 +437,12 @@ void mmSplitTransactionDialog::OnAddRow(wxCommandEvent& event)
     event.Skip();
 }
 
-void mmSplitTransactionDialog::OnRemoveRow(wxCommandEvent& event)
+void mmSplitTransactionDialog::OnRemoveRow(wxCommandEvent&)
 {
     if (m_splits.size() < 2)    // Should keep one split
         return;
 
-    for (int id=0; id<m_splits.size(); id++)
+    for (int id=0; id<static_cast<int>(m_splits.size()); id++)
         if ((id != row_num_) && !mmDoCheckRow(id))
             return;
             
@@ -503,7 +503,7 @@ void mmSplitTransactionDialog::OnComboKey(wxKeyEvent& event)
                 DoWindowsFreezeThaw(this);
                 if (dlg.getRefreshRequested())
                 {
-                    for (int i=0; i<m_splits_widgets.size(); i++)
+                    for (int i=0; i<static_cast<int>(m_splits_widgets.size()); i++)
                     {
                         auto cbcUpdate = m_splits_widgets.at(i).category;
                         if (cbc != cbcUpdate)
@@ -527,7 +527,7 @@ void mmSplitTransactionDialog::OnComboKey(wxKeyEvent& event)
     // is not applied. We need to refresh the tag ctrls to redraw the drop buttons with the correct images.
     if (event.AltDown() && !altRefreshDone)
     {
-        for (int row = 0; row < m_splits_widgets.size(); row++)
+        for (int row = 0; row < static_cast<int>(m_splits_widgets.size()); row++)
             m_splits_widgets.at(row).tags->Refresh();
         altRefreshDone = true;
     }
