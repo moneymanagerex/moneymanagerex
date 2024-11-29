@@ -30,7 +30,7 @@ class mmAttachmentDialog : public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmAttachmentDialog(wxWindow* parent, const wxString& RefType, int RefId, const wxString& name = "mmAttachmentDialog");
+    mmAttachmentDialog(wxWindow* parent, const wxString& RefType, int64 RefId, const wxString& name = "mmAttachmentDialog");
 
 private:
     enum cols
@@ -95,10 +95,10 @@ public:
     static bool CopyAttachment(const wxString& FileToImport, const wxString& ImportedFile);
     static bool DeleteAttachment(const wxString& FileToDelete);
     static bool OpenAttachment(const wxString& FileToOpen);
-    static bool DeleteAllAttachments(const wxString& RefType, int RefId);
-    static bool RelocateAllAttachments(const wxString& OldRefType, int OldRefId, const wxString& NewRefType, int NewRefId);
-    static bool CloneAllAttachments(const wxString& RefType, int OldRefId, int NewRefId);
-    static void OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, int RefId);
+    static bool DeleteAllAttachments(const wxString& RefType, int64 RefId);
+    static bool RelocateAllAttachments(const wxString& OldRefType, int64 OldRefId, const wxString& NewRefType, int64 NewRefId);
+    static bool CloneAllAttachments(const wxString& RefType, int64 OldRefId, int64 NewRefId);
+    static void OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, int64 RefId);
 private:
     static wxString m_PathSep;
 };
