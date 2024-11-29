@@ -881,7 +881,7 @@ using namespace rapidjson;
 #include "html_template.h"
 using namespace tmpl;
 
-typedef wxLongLong_t int64;
+typedef wxLongLong int64;
 
 class wxString;
 enum OP { EQUAL = 0, GREATER, LESS, GREATER_OR_EQUAL, LESS_OR_EQUAL, NOT_EQUAL };

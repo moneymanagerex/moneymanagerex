@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 17:56:59.312268.
+ *          AUTO GENERATED at 2024-11-29 18:06:38.239553.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -35,7 +35,7 @@ using namespace rapidjson;
 #include "html_template.h"
 using namespace tmpl;
 
-typedef wxLongLong_t int64;
+typedef wxLongLong int64;
 
 class wxString;
 enum OP { EQUAL = 0, GREATER, LESS, GREATER_OR_EQUAL, LESS_OR_EQUAL, NOT_EQUAL };
