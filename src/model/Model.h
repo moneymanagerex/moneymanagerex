@@ -166,7 +166,7 @@ public:
     }
 
     /** Save the Data record memory instance to the database. */
-    int save(typename DB_TABLE::Data* r)
+    int64 save(typename DB_TABLE::Data* r)
     {
         r->save(this->db_);
         return r->id();
