@@ -152,7 +152,7 @@ public:
     * Return the Data record pointer for the given ID
     * from either memory cache or the database.
     */
-    typename DB_TABLE::Data* get(int id)
+    typename DB_TABLE::Data* get(int64 id)
     {
         return this->get(id, this->db_);
     }
@@ -160,7 +160,7 @@ public:
     /**
     * Return the Data record for the given ID directly from the database, bypassing the cache.
     */
-    typename DB_TABLE::Data* get_record(int id)
+    typename DB_TABLE::Data* get_record(int64 id)
     {
         return this->get_record(id, this->db_);
     }
@@ -202,7 +202,7 @@ public:
     }
 
     /** Remove the Data record instance from memory and the database. */
-    bool remove(int id)
+    bool remove(int64 id)
     {
         return this->remove(id, db_);
     }
