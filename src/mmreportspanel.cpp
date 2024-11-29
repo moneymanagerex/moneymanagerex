@@ -32,6 +32,10 @@
 #include "reports/htmlbuilder.h"
 #include "model/allmodel.h"
 #include <wx/wrapsizer.h>
+#include "option.h"
+#include <budgetentrydialog.h>
+#include <vector>
+#include <string>
 
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
 EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
@@ -673,6 +677,53 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
             mmAttachmentManage::OpenAttachmentFromPanelIcon(m_frame, RefType, RefId);
             const auto name = getVFname4print("rep", getPrintableBase()->getHTMLText());
             browser_->LoadURL(name);
+        }
+    }
+    else if (uri.StartsWith("budget:", &sData))
+    {
+        
+        std::vector<std::string> parms;
+        wxStringTokenizer tokenizer(sData, "|");
+        while (tokenizer.HasMoreTokens())
+        {
+            //estimateVal << "|" << catID << "|" << budget_year << "|" << month;
+            wxString token = tokenizer.GetNextToken();
+            parms.push_back(std::string(token.mb_str()));
+            
+        }
+        
+        //wxLogDebug("cat" + wxString(parms[1].c_str(), wxConvUTF8));
+        //wxLogDebug("year:"+ wxString(parms[2].c_str(), wxConvUTF8));
+        //wxLogDebug("month:"+ wxString(parms[3].c_str(), wxConvUTF8));
+        
+        int budgetYearID = Model_Budgetyear::instance().Get(parms[2] + "-" + parms[3]);
+       
+        Model_Budget::Data_Set budget = Model_Budget::instance().find(Model_Budget::BUDGETYEARID(budgetYearID), Model_Budget::CATEGID(std::stoi(parms[1])));
+        
+        Model_Budget::Data* entry = 0;
+        if (budget.empty())
+        {
+            entry = Model_Budget::instance().create();
+            entry->BUDGETYEARID = budgetYearID;
+            entry->CATEGID = std::stoi(parms[1]);
+            entry->PERIOD = "";
+            entry->AMOUNT = 0.0;
+            entry->ACTIVE = 1;
+            Model_Budget::instance().save(entry);
+        }
+        else
+            entry = &budget[0];
+
+        //double estimated = getEstimate(budget_[selectedIndex].second >= 0 ? budget_[selectedIndex].second : budget_[selectedIndex].first);
+        //double actual = categoryStats_[budget_[selectedIndex].second >= 0 ? budget_[selectedIndex].second : budget_[selectedIndex].first][0];
+       
+        mmBudgetEntryDialog dlg(m_frame, entry, Model_Currency::toCurrency(0), Model_Currency::toCurrency(0));
+        if (dlg.ShowModal() == wxID_OK)
+        {
+            /*initVirtualListControl();
+            listCtrlBudget_->Refresh();
+            listCtrlBudget_->Update();
+            listCtrlBudget_->EnsureVisible(selectedIndex);*/
         }
     }
 
