@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 18:06:38.239553.
+ *          AUTO GENERATED at 2024-11-29 18:14:33.526877.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -592,7 +592,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
-    Self::Data* get(const int id, wxSQLite3Database* db)
+    Self::Data* get(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
@@ -640,7 +640,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* get_record(const int id, wxSQLite3Database* db)
+    Self::Data* get_record(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
