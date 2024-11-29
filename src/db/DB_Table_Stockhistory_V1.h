@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
+ *          AUTO GENERATED at 2024-11-29 21:58:47.026874.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -303,7 +303,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("HISTID");
-            json_writer.Int(this->HISTID);
+            json_writer.Int64(this->HISTID);
             json_writer.Key("SYMBOL");
             json_writer.String(this->SYMBOL.utf8_str());
             json_writer.Key("DATE");
@@ -311,7 +311,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
             json_writer.Key("VALUE");
             json_writer.Double(this->VALUE);
             json_writer.Key("UPDTYPE");
-            json_writer.Int(this->UPDTYPE);
+            json_writer.Int64(this->UPDTYPE);
         }
 
         row_t to_row_t() const

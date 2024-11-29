@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
+ *          AUTO GENERATED at 2024-11-29 21:58:47.026874.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -285,13 +285,13 @@ struct DB_Table_TAGLINK_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("TAGLINKID");
-            json_writer.Int(this->TAGLINKID);
+            json_writer.Int64(this->TAGLINKID);
             json_writer.Key("REFTYPE");
             json_writer.String(this->REFTYPE.utf8_str());
             json_writer.Key("REFID");
-            json_writer.Int(this->REFID);
+            json_writer.Int64(this->REFID);
             json_writer.Key("TAGID");
-            json_writer.Int(this->TAGID);
+            json_writer.Int64(this->TAGID);
         }
 
         row_t to_row_t() const

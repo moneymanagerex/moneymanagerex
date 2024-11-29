@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
+ *          AUTO GENERATED at 2024-11-29 21:58:47.026874.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -304,15 +304,15 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("CURRHISTID");
-            json_writer.Int(this->CURRHISTID);
+            json_writer.Int64(this->CURRHISTID);
             json_writer.Key("CURRENCYID");
-            json_writer.Int(this->CURRENCYID);
+            json_writer.Int64(this->CURRENCYID);
             json_writer.Key("CURRDATE");
             json_writer.String(this->CURRDATE.utf8_str());
             json_writer.Key("CURRVALUE");
             json_writer.Double(this->CURRVALUE);
             json_writer.Key("CURRUPDTYPE");
-            json_writer.Int(this->CURRUPDTYPE);
+            json_writer.Int64(this->CURRUPDTYPE);
         }
 
         row_t to_row_t() const

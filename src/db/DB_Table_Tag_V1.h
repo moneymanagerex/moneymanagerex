@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
+ *          AUTO GENERATED at 2024-11-29 21:58:47.026874.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -266,11 +266,11 @@ struct DB_Table_TAG_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("TAGID");
-            json_writer.Int(this->TAGID);
+            json_writer.Int64(this->TAGID);
             json_writer.Key("TAGNAME");
             json_writer.String(this->TAGNAME.utf8_str());
             json_writer.Key("ACTIVE");
-            json_writer.Int(this->ACTIVE);
+            json_writer.Int64(this->ACTIVE);
         }
 
         row_t to_row_t() const

@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
+ *          AUTO GENERATED at 2024-11-29 21:58:47.026874.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -266,7 +266,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("INFOID");
-            json_writer.Int(this->INFOID);
+            json_writer.Int64(this->INFOID);
             json_writer.Key("INFONAME");
             json_writer.String(this->INFONAME.utf8_str());
             json_writer.Key("INFOVALUE");

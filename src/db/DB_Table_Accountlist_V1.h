@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
+ *          AUTO GENERATED at 2024-11-29 21:58:47.026874.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -596,7 +596,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("ACCOUNTID");
-            json_writer.Int(this->ACCOUNTID);
+            json_writer.Int64(this->ACCOUNTID);
             json_writer.Key("ACCOUNTNAME");
             json_writer.String(this->ACCOUNTNAME.utf8_str());
             json_writer.Key("ACCOUNTTYPE");
@@ -622,9 +622,9 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             json_writer.Key("FAVORITEACCT");
             json_writer.String(this->FAVORITEACCT.utf8_str());
             json_writer.Key("CURRENCYID");
-            json_writer.Int(this->CURRENCYID);
+            json_writer.Int64(this->CURRENCYID);
             json_writer.Key("STATEMENTLOCKED");
-            json_writer.Int(this->STATEMENTLOCKED);
+            json_writer.Int64(this->STATEMENTLOCKED);
             json_writer.Key("STATEMENTDATE");
             json_writer.String(this->STATEMENTDATE.utf8_str());
             json_writer.Key("MINIMUMBALANCE");

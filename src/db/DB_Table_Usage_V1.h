@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
+ *          AUTO GENERATED at 2024-11-29 21:58:47.026874.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -265,7 +265,7 @@ struct DB_Table_USAGE_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("USAGEID");
-            json_writer.Int(this->USAGEID);
+            json_writer.Int64(this->USAGEID);
             json_writer.Key("USAGEDATE");
             json_writer.String(this->USAGEDATE.utf8_str());
             json_writer.Key("JSONCONTENT");

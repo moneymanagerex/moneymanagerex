@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
+ *          AUTO GENERATED at 2024-11-29 21:58:47.026874.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -357,11 +357,11 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("PAYEEID");
-            json_writer.Int(this->PAYEEID);
+            json_writer.Int64(this->PAYEEID);
             json_writer.Key("PAYEENAME");
             json_writer.String(this->PAYEENAME.utf8_str());
             json_writer.Key("CATEGID");
-            json_writer.Int(this->CATEGID);
+            json_writer.Int64(this->CATEGID);
             json_writer.Key("NUMBER");
             json_writer.String(this->NUMBER.utf8_str());
             json_writer.Key("WEBSITE");
@@ -369,7 +369,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             json_writer.Key("NOTES");
             json_writer.String(this->NOTES.utf8_str());
             json_writer.Key("ACTIVE");
-            json_writer.Int(this->ACTIVE);
+            json_writer.Int64(this->ACTIVE);
             json_writer.Key("PATTERN");
             json_writer.String(this->PATTERN.utf8_str());
         }

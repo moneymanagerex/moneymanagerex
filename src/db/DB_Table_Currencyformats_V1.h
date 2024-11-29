@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
+ *          AUTO GENERATED at 2024-11-29 21:58:47.026874.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -597,7 +597,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("CURRENCYID");
-            json_writer.Int(this->CURRENCYID);
+            json_writer.Int64(this->CURRENCYID);
             json_writer.Key("CURRENCYNAME");
             json_writer.String(this->CURRENCYNAME.utf8_str());
             json_writer.Key("PFX_SYMBOL");
@@ -613,7 +613,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
             json_writer.Key("CENT_NAME");
             json_writer.String(this->CENT_NAME.utf8_str());
             json_writer.Key("SCALE");
-            json_writer.Int(this->SCALE);
+            json_writer.Int64(this->SCALE);
             json_writer.Key("BASECONVRATE");
             json_writer.Double(this->BASECONVRATE);
             json_writer.Key("CURRENCY_SYMBOL");

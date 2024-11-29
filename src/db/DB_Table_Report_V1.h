@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
+ *          AUTO GENERATED at 2024-11-29 21:58:47.026874.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -356,13 +356,13 @@ struct DB_Table_REPORT_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("REPORTID");
-            json_writer.Int(this->REPORTID);
+            json_writer.Int64(this->REPORTID);
             json_writer.Key("REPORTNAME");
             json_writer.String(this->REPORTNAME.utf8_str());
             json_writer.Key("GROUPNAME");
             json_writer.String(this->GROUPNAME.utf8_str());
             json_writer.Key("ACTIVE");
-            json_writer.Int(this->ACTIVE);
+            json_writer.Int64(this->ACTIVE);
             json_writer.Key("SQLCONTENT");
             json_writer.String(this->SQLCONTENT.utf8_str());
             json_writer.Key("LUACONTENT");

@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
+ *          AUTO GENERATED at 2024-11-29 21:58:47.026874.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -304,11 +304,11 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("SPLITTRANSID");
-            json_writer.Int(this->SPLITTRANSID);
+            json_writer.Int64(this->SPLITTRANSID);
             json_writer.Key("TRANSID");
-            json_writer.Int(this->TRANSID);
+            json_writer.Int64(this->TRANSID);
             json_writer.Key("CATEGID");
-            json_writer.Int(this->CATEGID);
+            json_writer.Int64(this->CATEGID);
             json_writer.Key("SPLITTRANSAMOUNT");
             json_writer.Double(this->SPLITTRANSAMOUNT);
             json_writer.Key("NOTES");

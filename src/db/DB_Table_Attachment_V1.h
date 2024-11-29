@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
+ *          AUTO GENERATED at 2024-11-29 21:58:47.026874.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -302,11 +302,11 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("ATTACHMENTID");
-            json_writer.Int(this->ATTACHMENTID);
+            json_writer.Int64(this->ATTACHMENTID);
             json_writer.Key("REFTYPE");
             json_writer.String(this->REFTYPE.utf8_str());
             json_writer.Key("REFID");
-            json_writer.Int(this->REFID);
+            json_writer.Int64(this->REFID);
             json_writer.Key("DESCRIPTION");
             json_writer.String(this->DESCRIPTION.utf8_str());
             json_writer.Key("FILENAME");
