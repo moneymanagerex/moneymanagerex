@@ -12,13 +12,12 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 17:46:15.270729.
+ *          AUTO GENERATED at 2024-11-29 17:56:59.312268.
  *          DO NOT EDIT!
  */
 //=============================================================================
 #pragma once
 
-#include <cstdint>
 #include <vector>
 #include <map>
 #include <algorithm>
@@ -36,7 +35,7 @@ using namespace rapidjson;
 #include "html_template.h"
 using namespace tmpl;
 
-typedef std::int64_t int64;
+typedef wxLongLong_t int64;
 
 class wxString;
 enum OP { EQUAL = 0, GREATER, LESS, GREATER_OR_EQUAL, LESS_OR_EQUAL, NOT_EQUAL };
