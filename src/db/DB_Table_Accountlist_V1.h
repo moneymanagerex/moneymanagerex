@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -112,10 +112,10 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         db->Commit();
     }
     
-    struct ACCOUNTID : public DB_Column<int>
+    struct ACCOUNTID : public DB_Column<int64>
     { 
         static wxString name() { return "ACCOUNTID"; } 
-        explicit ACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ACCOUNTID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct ACCOUNTNAME : public DB_Column<wxString>
@@ -190,16 +190,16 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         explicit FAVORITEACCT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct CURRENCYID : public DB_Column<int>
+    struct CURRENCYID : public DB_Column<int64>
     { 
         static wxString name() { return "CURRENCYID"; } 
-        explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CURRENCYID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct STATEMENTLOCKED : public DB_Column<int>
+    struct STATEMENTLOCKED : public DB_Column<int64>
     { 
         static wxString name() { return "STATEMENTLOCKED"; } 
-        explicit STATEMENTLOCKED(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit STATEMENTLOCKED(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct STATEMENTDATE : public DB_Column<wxString>
@@ -331,7 +331,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int ACCOUNTID;//  primary key
+        int64 ACCOUNTID;//  primary key
         wxString ACCOUNTNAME;
         wxString ACCOUNTTYPE;
         wxString ACCOUNTNUM;
@@ -344,8 +344,8 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         double INITIALBAL;
         wxString INITIALDATE;
         wxString FAVORITEACCT;
-        int CURRENCYID;
-        int STATEMENTLOCKED;
+        int64 CURRENCYID;
+        int64 STATEMENTLOCKED;
         wxString STATEMENTDATE;
         double MINIMUMBALANCE;
         double CREDITLIMIT;
@@ -353,12 +353,12 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         wxString PAYMENTDUEDATE;
         double MINIMUMPAYMENT;
 
-        int id() const
+        int64 id() const
         {
             return ACCOUNTID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             ACCOUNTID = id;
         }
@@ -417,7 +417,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         {
             table_ = table;
         
-            ACCOUNTID = q.GetInt(0); // ACCOUNTID
+            ACCOUNTID = q.GetInt64(0); // ACCOUNTID
             ACCOUNTNAME = q.GetString(1); // ACCOUNTNAME
             ACCOUNTTYPE = q.GetString(2); // ACCOUNTTYPE
             ACCOUNTNUM = q.GetString(3); // ACCOUNTNUM
@@ -430,8 +430,8 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             INITIALBAL = q.GetDouble(10); // INITIALBAL
             INITIALDATE = q.GetString(11); // INITIALDATE
             FAVORITEACCT = q.GetString(12); // FAVORITEACCT
-            CURRENCYID = q.GetInt(13); // CURRENCYID
-            STATEMENTLOCKED = q.GetInt(14); // STATEMENTLOCKED
+            CURRENCYID = q.GetInt64(13); // CURRENCYID
+            STATEMENTLOCKED = q.GetInt64(14); // STATEMENTLOCKED
             STATEMENTDATE = q.GetString(15); // STATEMENTDATE
             MINIMUMBALANCE = q.GetDouble(16); // MINIMUMBALANCE
             CREDITLIMIT = q.GetDouble(17); // CREDITLIMIT

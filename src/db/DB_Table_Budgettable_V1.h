@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -112,22 +112,22 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         db->Commit();
     }
     
-    struct BUDGETENTRYID : public DB_Column<int>
+    struct BUDGETENTRYID : public DB_Column<int64>
     { 
         static wxString name() { return "BUDGETENTRYID"; } 
-        explicit BUDGETENTRYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit BUDGETENTRYID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct BUDGETYEARID : public DB_Column<int>
+    struct BUDGETYEARID : public DB_Column<int64>
     { 
         static wxString name() { return "BUDGETYEARID"; } 
-        explicit BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit BUDGETYEARID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct CATEGID : public DB_Column<int>
+    struct CATEGID : public DB_Column<int64>
     { 
         static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CATEGID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct PERIOD : public DB_Column<wxString>
@@ -148,10 +148,10 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct ACTIVE : public DB_Column<int>
+    struct ACTIVE : public DB_Column<int64>
     { 
         static wxString name() { return "ACTIVE"; } 
-        explicit ACTIVE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ACTIVE(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     typedef BUDGETENTRYID PRIMARY;
@@ -205,20 +205,20 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int BUDGETENTRYID;//  primary key
-        int BUDGETYEARID;
-        int CATEGID;
+        int64 BUDGETENTRYID;//  primary key
+        int64 BUDGETYEARID;
+        int64 CATEGID;
         wxString PERIOD;
         double AMOUNT;
         wxString NOTES;
-        int ACTIVE;
+        int64 ACTIVE;
 
-        int id() const
+        int64 id() const
         {
             return BUDGETENTRYID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             BUDGETENTRYID = id;
         }
@@ -260,13 +260,13 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         {
             table_ = table;
         
-            BUDGETENTRYID = q.GetInt(0); // BUDGETENTRYID
-            BUDGETYEARID = q.GetInt(1); // BUDGETYEARID
-            CATEGID = q.GetInt(2); // CATEGID
+            BUDGETENTRYID = q.GetInt64(0); // BUDGETENTRYID
+            BUDGETYEARID = q.GetInt64(1); // BUDGETYEARID
+            CATEGID = q.GetInt64(2); // CATEGID
             PERIOD = q.GetString(3); // PERIOD
             AMOUNT = q.GetDouble(4); // AMOUNT
             NOTES = q.GetString(5); // NOTES
-            ACTIVE = q.GetInt(6); // ACTIVE
+            ACTIVE = q.GetInt64(6); // ACTIVE
         }
 
         Data& operator=(const Data& other)

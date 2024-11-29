@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -112,10 +112,10 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         db->Commit();
     }
     
-    struct ASSETID : public DB_Column<int>
+    struct ASSETID : public DB_Column<int64>
     { 
         static wxString name() { return "ASSETID"; } 
-        explicit ASSETID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ASSETID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct STARTDATE : public DB_Column<wxString>
@@ -136,10 +136,10 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         explicit ASSETSTATUS(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct CURRENCYID : public DB_Column<int>
+    struct CURRENCYID : public DB_Column<int64>
     { 
         static wxString name() { return "CURRENCYID"; } 
-        explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CURRENCYID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct VALUECHANGEMODE : public DB_Column<wxString>
@@ -241,11 +241,11 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int ASSETID;//  primary key
+        int64 ASSETID;//  primary key
         wxString STARTDATE;
         wxString ASSETNAME;
         wxString ASSETSTATUS;
-        int CURRENCYID;
+        int64 CURRENCYID;
         wxString VALUECHANGEMODE;
         double VALUE;
         wxString VALUECHANGE;
@@ -253,12 +253,12 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         double VALUECHANGERATE;
         wxString ASSETTYPE;
 
-        int id() const
+        int64 id() const
         {
             return ASSETID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             ASSETID = id;
         }
@@ -303,11 +303,11 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         {
             table_ = table;
         
-            ASSETID = q.GetInt(0); // ASSETID
+            ASSETID = q.GetInt64(0); // ASSETID
             STARTDATE = q.GetString(1); // STARTDATE
             ASSETNAME = q.GetString(2); // ASSETNAME
             ASSETSTATUS = q.GetString(3); // ASSETSTATUS
-            CURRENCYID = q.GetInt(4); // CURRENCYID
+            CURRENCYID = q.GetInt64(4); // CURRENCYID
             VALUECHANGEMODE = q.GetString(5); // VALUECHANGEMODE
             VALUE = q.GetDouble(6); // VALUE
             VALUECHANGE = q.GetString(7); // VALUECHANGE

@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -112,10 +112,10 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         db->Commit();
     }
     
-    struct PAYEEID : public DB_Column<int>
+    struct PAYEEID : public DB_Column<int64>
     { 
         static wxString name() { return "PAYEEID"; } 
-        explicit PAYEEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit PAYEEID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct PAYEENAME : public DB_Column<wxString>
@@ -124,10 +124,10 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         explicit PAYEENAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct CATEGID : public DB_Column<int>
+    struct CATEGID : public DB_Column<int64>
     { 
         static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CATEGID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct NUMBER : public DB_Column<wxString>
@@ -148,10 +148,10 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct ACTIVE : public DB_Column<int>
+    struct ACTIVE : public DB_Column<int64>
     { 
         static wxString name() { return "ACTIVE"; } 
-        explicit ACTIVE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ACTIVE(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct PATTERN : public DB_Column<wxString>
@@ -214,21 +214,21 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int PAYEEID;//  primary key
+        int64 PAYEEID;//  primary key
         wxString PAYEENAME;
-        int CATEGID;
+        int64 CATEGID;
         wxString NUMBER;
         wxString WEBSITE;
         wxString NOTES;
-        int ACTIVE;
+        int64 ACTIVE;
         wxString PATTERN;
 
-        int id() const
+        int64 id() const
         {
             return PAYEEID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             PAYEEID = id;
         }
@@ -269,13 +269,13 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         {
             table_ = table;
         
-            PAYEEID = q.GetInt(0); // PAYEEID
+            PAYEEID = q.GetInt64(0); // PAYEEID
             PAYEENAME = q.GetString(1); // PAYEENAME
-            CATEGID = q.GetInt(2); // CATEGID
+            CATEGID = q.GetInt64(2); // CATEGID
             NUMBER = q.GetString(3); // NUMBER
             WEBSITE = q.GetString(4); // WEBSITE
             NOTES = q.GetString(5); // NOTES
-            ACTIVE = q.GetInt(6); // ACTIVE
+            ACTIVE = q.GetInt64(6); // ACTIVE
             PATTERN = q.GetString(7); // PATTERN
         }
 

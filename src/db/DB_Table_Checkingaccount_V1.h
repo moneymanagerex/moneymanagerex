@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -113,28 +113,28 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         db->Commit();
     }
     
-    struct TRANSID : public DB_Column<int>
+    struct TRANSID : public DB_Column<int64>
     { 
         static wxString name() { return "TRANSID"; } 
-        explicit TRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit TRANSID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct ACCOUNTID : public DB_Column<int>
+    struct ACCOUNTID : public DB_Column<int64>
     { 
         static wxString name() { return "ACCOUNTID"; } 
-        explicit ACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ACCOUNTID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct TOACCOUNTID : public DB_Column<int>
+    struct TOACCOUNTID : public DB_Column<int64>
     { 
         static wxString name() { return "TOACCOUNTID"; } 
-        explicit TOACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit TOACCOUNTID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct PAYEEID : public DB_Column<int>
+    struct PAYEEID : public DB_Column<int64>
     { 
         static wxString name() { return "PAYEEID"; } 
-        explicit PAYEEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit PAYEEID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct TRANSCODE : public DB_Column<wxString>
@@ -167,10 +167,10 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct CATEGID : public DB_Column<int>
+    struct CATEGID : public DB_Column<int64>
     { 
         static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CATEGID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct TRANSDATE : public DB_Column<wxString>
@@ -191,10 +191,10 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         explicit DELETEDTIME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct FOLLOWUPID : public DB_Column<int>
+    struct FOLLOWUPID : public DB_Column<int64>
     { 
         static wxString name() { return "FOLLOWUPID"; } 
-        explicit FOLLOWUPID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit FOLLOWUPID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct TOTRANSAMOUNT : public DB_Column<double>
@@ -203,10 +203,10 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         explicit TOTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     
-    struct COLOR : public DB_Column<int>
+    struct COLOR : public DB_Column<int64>
     { 
         static wxString name() { return "COLOR"; } 
-        explicit COLOR(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit COLOR(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     typedef TRANSID PRIMARY;
@@ -287,29 +287,29 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int TRANSID;//  primary key
-        int ACCOUNTID;
-        int TOACCOUNTID;
-        int PAYEEID;
+        int64 TRANSID;//  primary key
+        int64 ACCOUNTID;
+        int64 TOACCOUNTID;
+        int64 PAYEEID;
         wxString TRANSCODE;
         double TRANSAMOUNT;
         wxString STATUS;
         wxString TRANSACTIONNUMBER;
         wxString NOTES;
-        int CATEGID;
+        int64 CATEGID;
         wxString TRANSDATE;
         wxString LASTUPDATEDTIME;
         wxString DELETEDTIME;
-        int FOLLOWUPID;
+        int64 FOLLOWUPID;
         double TOTRANSAMOUNT;
-        int COLOR;
+        int64 COLOR;
 
-        int id() const
+        int64 id() const
         {
             return TRANSID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             TRANSID = id;
         }
@@ -364,22 +364,22 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         {
             table_ = table;
         
-            TRANSID = q.GetInt(0); // TRANSID
-            ACCOUNTID = q.GetInt(1); // ACCOUNTID
-            TOACCOUNTID = q.GetInt(2); // TOACCOUNTID
-            PAYEEID = q.GetInt(3); // PAYEEID
+            TRANSID = q.GetInt64(0); // TRANSID
+            ACCOUNTID = q.GetInt64(1); // ACCOUNTID
+            TOACCOUNTID = q.GetInt64(2); // TOACCOUNTID
+            PAYEEID = q.GetInt64(3); // PAYEEID
             TRANSCODE = q.GetString(4); // TRANSCODE
             TRANSAMOUNT = q.GetDouble(5); // TRANSAMOUNT
             STATUS = q.GetString(6); // STATUS
             TRANSACTIONNUMBER = q.GetString(7); // TRANSACTIONNUMBER
             NOTES = q.GetString(8); // NOTES
-            CATEGID = q.GetInt(9); // CATEGID
+            CATEGID = q.GetInt64(9); // CATEGID
             TRANSDATE = q.GetString(10); // TRANSDATE
             LASTUPDATEDTIME = q.GetString(11); // LASTUPDATEDTIME
             DELETEDTIME = q.GetString(12); // DELETEDTIME
-            FOLLOWUPID = q.GetInt(13); // FOLLOWUPID
+            FOLLOWUPID = q.GetInt64(13); // FOLLOWUPID
             TOTRANSAMOUNT = q.GetDouble(14); // TOTRANSAMOUNT
-            COLOR = q.GetInt(15); // COLOR
+            COLOR = q.GetInt64(15); // COLOR
         }
 
         Data& operator=(const Data& other)

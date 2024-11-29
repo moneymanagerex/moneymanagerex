@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -112,10 +112,10 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         db->Commit();
     }
     
-    struct HISTID : public DB_Column<int>
+    struct HISTID : public DB_Column<int64>
     { 
         static wxString name() { return "HISTID"; } 
-        explicit HISTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit HISTID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct SYMBOL : public DB_Column<wxString>
@@ -136,10 +136,10 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         explicit VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     
-    struct UPDTYPE : public DB_Column<int>
+    struct UPDTYPE : public DB_Column<int64>
     { 
         static wxString name() { return "UPDTYPE"; } 
-        explicit UPDTYPE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit UPDTYPE(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     typedef HISTID PRIMARY;
@@ -187,18 +187,18 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int HISTID;//  primary key
+        int64 HISTID;//  primary key
         wxString SYMBOL;
         wxString DATE;
         double VALUE;
-        int UPDTYPE;
+        int64 UPDTYPE;
 
-        int id() const
+        int64 id() const
         {
             return HISTID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             HISTID = id;
         }
@@ -236,11 +236,11 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         {
             table_ = table;
         
-            HISTID = q.GetInt(0); // HISTID
+            HISTID = q.GetInt64(0); // HISTID
             SYMBOL = q.GetString(1); // SYMBOL
             DATE = q.GetString(2); // DATE
             VALUE = q.GetDouble(3); // VALUE
-            UPDTYPE = q.GetInt(4); // UPDTYPE
+            UPDTYPE = q.GetInt64(4); // UPDTYPE
         }
 
         Data& operator=(const Data& other)

@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -112,22 +112,22 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         db->Commit();
     }
     
-    struct SPLITTRANSID : public DB_Column<int>
+    struct SPLITTRANSID : public DB_Column<int64>
     { 
         static wxString name() { return "SPLITTRANSID"; } 
-        explicit SPLITTRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit SPLITTRANSID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct TRANSID : public DB_Column<int>
+    struct TRANSID : public DB_Column<int64>
     { 
         static wxString name() { return "TRANSID"; } 
-        explicit TRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit TRANSID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct CATEGID : public DB_Column<int>
+    struct CATEGID : public DB_Column<int64>
     { 
         static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CATEGID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct SPLITTRANSAMOUNT : public DB_Column<double>
@@ -187,18 +187,18 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int SPLITTRANSID;//  primary key
-        int TRANSID;
-        int CATEGID;
+        int64 SPLITTRANSID;//  primary key
+        int64 TRANSID;
+        int64 CATEGID;
         double SPLITTRANSAMOUNT;
         wxString NOTES;
 
-        int id() const
+        int64 id() const
         {
             return SPLITTRANSID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             SPLITTRANSID = id;
         }
@@ -237,9 +237,9 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         {
             table_ = table;
         
-            SPLITTRANSID = q.GetInt(0); // SPLITTRANSID
-            TRANSID = q.GetInt(1); // TRANSID
-            CATEGID = q.GetInt(2); // CATEGID
+            SPLITTRANSID = q.GetInt64(0); // SPLITTRANSID
+            TRANSID = q.GetInt64(1); // TRANSID
+            CATEGID = q.GetInt64(2); // CATEGID
             SPLITTRANSAMOUNT = q.GetDouble(3); // SPLITTRANSAMOUNT
             NOTES = q.GetString(4); // NOTES
         }

@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -112,22 +112,22 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         db->Commit();
     }
     
-    struct FIELDATADID : public DB_Column<int>
+    struct FIELDATADID : public DB_Column<int64>
     { 
         static wxString name() { return "FIELDATADID"; } 
-        explicit FIELDATADID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit FIELDATADID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct FIELDID : public DB_Column<int>
+    struct FIELDID : public DB_Column<int64>
     { 
         static wxString name() { return "FIELDID"; } 
-        explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit FIELDID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct REFID : public DB_Column<int>
+    struct REFID : public DB_Column<int64>
     { 
         static wxString name() { return "REFID"; } 
-        explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit REFID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct CONTENT : public DB_Column<wxString>
@@ -178,17 +178,17 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int FIELDATADID;//  primary key
-        int FIELDID;
-        int REFID;
+        int64 FIELDATADID;//  primary key
+        int64 FIELDID;
+        int64 REFID;
         wxString CONTENT;
 
-        int id() const
+        int64 id() const
         {
             return FIELDATADID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             FIELDATADID = id;
         }
@@ -225,9 +225,9 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         {
             table_ = table;
         
-            FIELDATADID = q.GetInt(0); // FIELDATADID
-            FIELDID = q.GetInt(1); // FIELDID
-            REFID = q.GetInt(2); // REFID
+            FIELDATADID = q.GetInt64(0); // FIELDATADID
+            FIELDID = q.GetInt64(1); // FIELDID
+            REFID = q.GetInt64(2); // REFID
             CONTENT = q.GetString(3); // CONTENT
         }
 

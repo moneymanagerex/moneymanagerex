@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -112,16 +112,16 @@ struct DB_Table_STOCK_V1 : public DB_Table
         db->Commit();
     }
     
-    struct STOCKID : public DB_Column<int>
+    struct STOCKID : public DB_Column<int64>
     { 
         static wxString name() { return "STOCKID"; } 
-        explicit STOCKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit STOCKID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct HELDAT : public DB_Column<int>
+    struct HELDAT : public DB_Column<int64>
     { 
         static wxString name() { return "HELDAT"; } 
-        explicit HELDAT(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit HELDAT(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct PURCHASEDATE : public DB_Column<wxString>
@@ -241,8 +241,8 @@ struct DB_Table_STOCK_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int STOCKID;//  primary key
-        int HELDAT;
+        int64 STOCKID;//  primary key
+        int64 HELDAT;
         wxString PURCHASEDATE;
         wxString STOCKNAME;
         wxString SYMBOL;
@@ -253,12 +253,12 @@ struct DB_Table_STOCK_V1 : public DB_Table
         double VALUE;
         double COMMISSION;
 
-        int id() const
+        int64 id() const
         {
             return STOCKID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             STOCKID = id;
         }
@@ -306,8 +306,8 @@ struct DB_Table_STOCK_V1 : public DB_Table
         {
             table_ = table;
         
-            STOCKID = q.GetInt(0); // STOCKID
-            HELDAT = q.GetInt(1); // HELDAT
+            STOCKID = q.GetInt64(0); // STOCKID
+            HELDAT = q.GetInt64(1); // HELDAT
             PURCHASEDATE = q.GetString(2); // PURCHASEDATE
             STOCKNAME = q.GetString(3); // STOCKNAME
             SYMBOL = q.GetString(4); // SYMBOL

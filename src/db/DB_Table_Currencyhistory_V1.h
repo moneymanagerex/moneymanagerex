@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -112,16 +112,16 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
         db->Commit();
     }
     
-    struct CURRHISTID : public DB_Column<int>
+    struct CURRHISTID : public DB_Column<int64>
     { 
         static wxString name() { return "CURRHISTID"; } 
-        explicit CURRHISTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CURRHISTID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct CURRENCYID : public DB_Column<int>
+    struct CURRENCYID : public DB_Column<int64>
     { 
         static wxString name() { return "CURRENCYID"; } 
-        explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CURRENCYID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct CURRDATE : public DB_Column<wxString>
@@ -136,10 +136,10 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
         explicit CURRVALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     
-    struct CURRUPDTYPE : public DB_Column<int>
+    struct CURRUPDTYPE : public DB_Column<int64>
     { 
         static wxString name() { return "CURRUPDTYPE"; } 
-        explicit CURRUPDTYPE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CURRUPDTYPE(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     typedef CURRHISTID PRIMARY;
@@ -187,18 +187,18 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int CURRHISTID;//  primary key
-        int CURRENCYID;
+        int64 CURRHISTID;//  primary key
+        int64 CURRENCYID;
         wxString CURRDATE;
         double CURRVALUE;
-        int CURRUPDTYPE;
+        int64 CURRUPDTYPE;
 
-        int id() const
+        int64 id() const
         {
             return CURRHISTID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             CURRHISTID = id;
         }
@@ -237,11 +237,11 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
         {
             table_ = table;
         
-            CURRHISTID = q.GetInt(0); // CURRHISTID
-            CURRENCYID = q.GetInt(1); // CURRENCYID
+            CURRHISTID = q.GetInt64(0); // CURRHISTID
+            CURRENCYID = q.GetInt64(1); // CURRENCYID
             CURRDATE = q.GetString(2); // CURRDATE
             CURRVALUE = q.GetDouble(3); // CURRVALUE
-            CURRUPDTYPE = q.GetInt(4); // CURRUPDTYPE
+            CURRUPDTYPE = q.GetInt64(4); // CURRUPDTYPE
         }
 
         Data& operator=(const Data& other)

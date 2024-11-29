@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -112,10 +112,10 @@ struct DB_Table_REPORT_V1 : public DB_Table
         db->Commit();
     }
     
-    struct REPORTID : public DB_Column<int>
+    struct REPORTID : public DB_Column<int64>
     { 
         static wxString name() { return "REPORTID"; } 
-        explicit REPORTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit REPORTID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct REPORTNAME : public DB_Column<wxString>
@@ -130,10 +130,10 @@ struct DB_Table_REPORT_V1 : public DB_Table
         explicit GROUPNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct ACTIVE : public DB_Column<int>
+    struct ACTIVE : public DB_Column<int64>
     { 
         static wxString name() { return "ACTIVE"; } 
-        explicit ACTIVE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ACTIVE(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct SQLCONTENT : public DB_Column<wxString>
@@ -214,21 +214,21 @@ struct DB_Table_REPORT_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int REPORTID;//  primary key
+        int64 REPORTID;//  primary key
         wxString REPORTNAME;
         wxString GROUPNAME;
-        int ACTIVE;
+        int64 ACTIVE;
         wxString SQLCONTENT;
         wxString LUACONTENT;
         wxString TEMPLATECONTENT;
         wxString DESCRIPTION;
 
-        int id() const
+        int64 id() const
         {
             return REPORTID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             REPORTID = id;
         }
@@ -268,10 +268,10 @@ struct DB_Table_REPORT_V1 : public DB_Table
         {
             table_ = table;
         
-            REPORTID = q.GetInt(0); // REPORTID
+            REPORTID = q.GetInt64(0); // REPORTID
             REPORTNAME = q.GetString(1); // REPORTNAME
             GROUPNAME = q.GetString(2); // GROUPNAME
-            ACTIVE = q.GetInt(3); // ACTIVE
+            ACTIVE = q.GetInt64(3); // ACTIVE
             SQLCONTENT = q.GetString(4); // SQLCONTENT
             LUACONTENT = q.GetString(5); // LUACONTENT
             TEMPLATECONTENT = q.GetString(6); // TEMPLATECONTENT

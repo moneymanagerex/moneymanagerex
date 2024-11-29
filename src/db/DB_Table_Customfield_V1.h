@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -112,10 +112,10 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         db->Commit();
     }
     
-    struct FIELDID : public DB_Column<int>
+    struct FIELDID : public DB_Column<int64>
     { 
         static wxString name() { return "FIELDID"; } 
-        explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit FIELDID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct REFTYPE : public DB_Column<wxString>
@@ -187,18 +187,18 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int FIELDID;//  primary key
+        int64 FIELDID;//  primary key
         wxString REFTYPE;
         wxString DESCRIPTION;
         wxString TYPE;
         wxString PROPERTIES;
 
-        int id() const
+        int64 id() const
         {
             return FIELDID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             FIELDID = id;
         }
@@ -234,7 +234,7 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         {
             table_ = table;
         
-            FIELDID = q.GetInt(0); // FIELDID
+            FIELDID = q.GetInt64(0); // FIELDID
             REFTYPE = q.GetString(1); // REFTYPE
             DESCRIPTION = q.GetString(2); // DESCRIPTION
             TYPE = q.GetString(3); // TYPE

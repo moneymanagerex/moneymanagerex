@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -112,10 +112,10 @@ struct DB_Table_SETTING_V1 : public DB_Table
         db->Commit();
     }
     
-    struct SETTINGID : public DB_Column<int>
+    struct SETTINGID : public DB_Column<int64>
     { 
         static wxString name() { return "SETTINGID"; } 
-        explicit SETTINGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit SETTINGID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct SETTINGNAME : public DB_Column<wxString>
@@ -169,16 +169,16 @@ struct DB_Table_SETTING_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int SETTINGID;//  primary key
+        int64 SETTINGID;//  primary key
         wxString SETTINGNAME;
         wxString SETTINGVALUE;
 
-        int id() const
+        int64 id() const
         {
             return SETTINGID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             SETTINGID = id;
         }
@@ -212,7 +212,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
         {
             table_ = table;
         
-            SETTINGID = q.GetInt(0); // SETTINGID
+            SETTINGID = q.GetInt64(0); // SETTINGID
             SETTINGNAME = q.GetString(1); // SETTINGNAME
             SETTINGVALUE = q.GetString(2); // SETTINGVALUE
         }

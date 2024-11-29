@@ -94,7 +94,7 @@ def get_data_initializer_list(cursor, tbl_name):
 base_data_types_reverse = {
     'TEXT': 'wxString',
     'NUMERIC': 'double',
-    'INTEGER': 'int',
+    'INTEGER': 'int64',
     'REAL': 'double',
     'BLOB': 'wxString',
     'DATE': 'wxDateTime',
@@ -103,7 +103,7 @@ base_data_types_reverse = {
 base_data_types_function = {
     'TEXT': 'GetString',
     'NUMERIC': 'GetDouble',
-    'INTEGER': 'GetInt',
+    'INTEGER': 'GetInt64',
     'REAL': 'GetDouble',
 }
 
@@ -366,12 +366,12 @@ struct DB_Table_%s : public DB_Table
 
         s += '''
 
-        int id() const
+        int64 id() const
         {
             return %s;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             %s = id;
         }
@@ -392,7 +392,7 @@ struct DB_Table_%s : public DB_Table
         {'''
         for field in self._fields:
             ftype = base_data_types_reverse[field['type']]
-            if ftype == 'int' or ftype == 'double':
+            if ftype == 'int64' or ftype == 'double':
                 s += '''
             if(%s != r->%s) return false;''' % (field['name'], field['name'])
             elif ftype == 'wxString':
@@ -414,7 +414,7 @@ struct DB_Table_%s : public DB_Table
             elif ftype == 'double':
                 s += '''
             %s = 0.0;''' % field['name']
-            elif ftype == 'int':
+            elif ftype == 'int64':
                 s += '''
             %s = -1;''' % field['name']
 
@@ -488,7 +488,7 @@ struct DB_Table_%s : public DB_Table
         {'''
         for field in self._fields:
             type = base_data_types_reverse[field['type']]
-            if type == 'int':
+            if type == 'int64':
                 s += '''
             json_writer.Key("%s");
             json_writer.Int(this->%s);''' % (field['name'], field['name'])

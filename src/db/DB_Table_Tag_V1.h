@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -112,10 +112,10 @@ struct DB_Table_TAG_V1 : public DB_Table
         db->Commit();
     }
     
-    struct TAGID : public DB_Column<int>
+    struct TAGID : public DB_Column<int64>
     { 
         static wxString name() { return "TAGID"; } 
-        explicit TAGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit TAGID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct TAGNAME : public DB_Column<wxString>
@@ -124,10 +124,10 @@ struct DB_Table_TAG_V1 : public DB_Table
         explicit TAGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct ACTIVE : public DB_Column<int>
+    struct ACTIVE : public DB_Column<int64>
     { 
         static wxString name() { return "ACTIVE"; } 
-        explicit ACTIVE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ACTIVE(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     typedef TAGID PRIMARY;
@@ -169,16 +169,16 @@ struct DB_Table_TAG_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int TAGID;//  primary key
+        int64 TAGID;//  primary key
         wxString TAGNAME;
-        int ACTIVE;
+        int64 ACTIVE;
 
-        int id() const
+        int64 id() const
         {
             return TAGID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             TAGID = id;
         }
@@ -213,9 +213,9 @@ struct DB_Table_TAG_V1 : public DB_Table
         {
             table_ = table;
         
-            TAGID = q.GetInt(0); // TAGID
+            TAGID = q.GetInt64(0); // TAGID
             TAGNAME = q.GetString(1); // TAGNAME
-            ACTIVE = q.GetInt(2); // ACTIVE
+            ACTIVE = q.GetInt64(2); // ACTIVE
         }
 
         Data& operator=(const Data& other)

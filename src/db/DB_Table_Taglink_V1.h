@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -112,10 +112,10 @@ struct DB_Table_TAGLINK_V1 : public DB_Table
         db->Commit();
     }
     
-    struct TAGLINKID : public DB_Column<int>
+    struct TAGLINKID : public DB_Column<int64>
     { 
         static wxString name() { return "TAGLINKID"; } 
-        explicit TAGLINKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit TAGLINKID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct REFTYPE : public DB_Column<wxString>
@@ -124,16 +124,16 @@ struct DB_Table_TAGLINK_V1 : public DB_Table
         explicit REFTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct REFID : public DB_Column<int>
+    struct REFID : public DB_Column<int64>
     { 
         static wxString name() { return "REFID"; } 
-        explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit REFID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct TAGID : public DB_Column<int>
+    struct TAGID : public DB_Column<int64>
     { 
         static wxString name() { return "TAGID"; } 
-        explicit TAGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit TAGID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     typedef TAGLINKID PRIMARY;
@@ -178,17 +178,17 @@ struct DB_Table_TAGLINK_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int TAGLINKID;//  primary key
+        int64 TAGLINKID;//  primary key
         wxString REFTYPE;
-        int REFID;
-        int TAGID;
+        int64 REFID;
+        int64 TAGID;
 
-        int id() const
+        int64 id() const
         {
             return TAGLINKID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             TAGLINKID = id;
         }
@@ -225,10 +225,10 @@ struct DB_Table_TAGLINK_V1 : public DB_Table
         {
             table_ = table;
         
-            TAGLINKID = q.GetInt(0); // TAGLINKID
+            TAGLINKID = q.GetInt64(0); // TAGLINKID
             REFTYPE = q.GetString(1); // REFTYPE
-            REFID = q.GetInt(2); // REFID
-            TAGID = q.GetInt(3); // TAGID
+            REFID = q.GetInt64(2); // REFID
+            TAGID = q.GetInt64(3); // TAGID
         }
 
         Data& operator=(const Data& other)

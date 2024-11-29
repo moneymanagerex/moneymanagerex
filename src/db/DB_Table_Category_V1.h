@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -133,11 +133,11 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('21', '%s', '1', '-1')", _("Education")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('22', '%s', '1', '21')", _("Books")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('23', '%s', '1', '21')", _("Tuition")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('24', '%s', '1', '21')", _("Other")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('24', '%s', '1', '21')", _("Others")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('25', '%s', '1', '-1')", _("Homeneeds")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('26', '%s', '1', '25')", _("Clothing")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('27', '%s', '1', '25')", _("Furnishing")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('28', '%s', '1', '25')", _("Other")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('28', '%s', '1', '25')", _("Others")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('29', '%s', '1', '-1')", _("Healthcare")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('30', '%s', '1', '29')", _("Health")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('31', '%s', '1', '29')", _("Dental")));
@@ -157,7 +157,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('45', '%s', '1', '44')", _("Income Tax")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('46', '%s', '1', '44')", _("House Tax")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('47', '%s', '1', '44')", _("Water Tax")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('48', '%s', '1', '44')", _("Other")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('48', '%s', '1', '44')", _("Others")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('49', '%s', '1', '-1')", _("Miscellaneous")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('50', '%s', '1', '-1')", _("Gifts")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('51', '%s', '1', '-1')", _("Income")));
@@ -170,10 +170,10 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         db->Commit();
     }
     
-    struct CATEGID : public DB_Column<int>
+    struct CATEGID : public DB_Column<int64>
     { 
         static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CATEGID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct CATEGNAME : public DB_Column<wxString>
@@ -182,16 +182,16 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         explicit CATEGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct ACTIVE : public DB_Column<int>
+    struct ACTIVE : public DB_Column<int64>
     { 
         static wxString name() { return "ACTIVE"; } 
-        explicit ACTIVE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ACTIVE(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct PARENTID : public DB_Column<int>
+    struct PARENTID : public DB_Column<int64>
     { 
         static wxString name() { return "PARENTID"; } 
-        explicit PARENTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit PARENTID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     typedef CATEGID PRIMARY;
@@ -236,17 +236,17 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int CATEGID;//  primary key
+        int64 CATEGID;//  primary key
         wxString CATEGNAME;
-        int ACTIVE;
-        int PARENTID;
+        int64 ACTIVE;
+        int64 PARENTID;
 
-        int id() const
+        int64 id() const
         {
             return CATEGID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             CATEGID = id;
         }
@@ -283,10 +283,10 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         {
             table_ = table;
         
-            CATEGID = q.GetInt(0); // CATEGID
+            CATEGID = q.GetInt64(0); // CATEGID
             CATEGNAME = q.GetString(1); // CATEGNAME
-            ACTIVE = q.GetInt(2); // ACTIVE
-            PARENTID = q.GetInt(3); // PARENTID
+            ACTIVE = q.GetInt64(2); // ACTIVE
+            PARENTID = q.GetInt64(3); // PARENTID
         }
 
         Data& operator=(const Data& other)

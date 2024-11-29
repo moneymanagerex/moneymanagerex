@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -113,16 +113,16 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
         db->Commit();
     }
     
-    struct TRANSLINKID : public DB_Column<int>
+    struct TRANSLINKID : public DB_Column<int64>
     { 
         static wxString name() { return "TRANSLINKID"; } 
-        explicit TRANSLINKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit TRANSLINKID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct CHECKINGACCOUNTID : public DB_Column<int>
+    struct CHECKINGACCOUNTID : public DB_Column<int64>
     { 
         static wxString name() { return "CHECKINGACCOUNTID"; } 
-        explicit CHECKINGACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CHECKINGACCOUNTID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct LINKTYPE : public DB_Column<wxString>
@@ -131,10 +131,10 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
         explicit LINKTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct LINKRECORDID : public DB_Column<int>
+    struct LINKRECORDID : public DB_Column<int64>
     { 
         static wxString name() { return "LINKRECORDID"; } 
-        explicit LINKRECORDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit LINKRECORDID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     typedef TRANSLINKID PRIMARY;
@@ -179,17 +179,17 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int TRANSLINKID;//  primary key
-        int CHECKINGACCOUNTID;
+        int64 TRANSLINKID;//  primary key
+        int64 CHECKINGACCOUNTID;
         wxString LINKTYPE;
-        int LINKRECORDID;
+        int64 LINKRECORDID;
 
-        int id() const
+        int64 id() const
         {
             return TRANSLINKID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             TRANSLINKID = id;
         }
@@ -226,10 +226,10 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
         {
             table_ = table;
         
-            TRANSLINKID = q.GetInt(0); // TRANSLINKID
-            CHECKINGACCOUNTID = q.GetInt(1); // CHECKINGACCOUNTID
+            TRANSLINKID = q.GetInt64(0); // TRANSLINKID
+            CHECKINGACCOUNTID = q.GetInt64(1); // CHECKINGACCOUNTID
             LINKTYPE = q.GetString(2); // LINKTYPE
-            LINKRECORDID = q.GetInt(3); // LINKRECORDID
+            LINKRECORDID = q.GetInt64(3); // LINKRECORDID
         }
 
         Data& operator=(const Data& other)

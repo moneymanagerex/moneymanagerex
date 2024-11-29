@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -109,14 +109,14 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     void ensure_data(wxSQLite3Database* db)
     {
         db->Begin();
-        db->ExecuteUpdate(wxString::Format("INSERT INTO INFOTABLE_V1 VALUES ('1', '%s', '%s')", L"DATAVERSION", L"3"));
+        db->ExecuteUpdate("INSERT INTO INFOTABLE_V1 VALUES ('1', 'DATAVERSION', '3')");
         db->Commit();
     }
     
-    struct INFOID : public DB_Column<int>
+    struct INFOID : public DB_Column<int64>
     { 
         static wxString name() { return "INFOID"; } 
-        explicit INFOID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit INFOID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct INFONAME : public DB_Column<wxString>
@@ -170,16 +170,16 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int INFOID;//  primary key
+        int64 INFOID;//  primary key
         wxString INFONAME;
         wxString INFOVALUE;
 
-        int id() const
+        int64 id() const
         {
             return INFOID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             INFOID = id;
         }
@@ -213,7 +213,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
         {
             table_ = table;
         
-            INFOID = q.GetInt(0); // INFOID
+            INFOID = q.GetInt64(0); // INFOID
             INFONAME = q.GetString(1); // INFONAME
             INFOVALUE = q.GetString(2); // INFOVALUE
         }

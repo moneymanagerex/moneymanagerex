@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-29 14:37:32.781496.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -112,10 +112,10 @@ struct DB_Table_USAGE_V1 : public DB_Table
         db->Commit();
     }
     
-    struct USAGEID : public DB_Column<int>
+    struct USAGEID : public DB_Column<int64>
     { 
         static wxString name() { return "USAGEID"; } 
-        explicit USAGEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit USAGEID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct USAGEDATE : public DB_Column<wxString>
@@ -169,16 +169,16 @@ struct DB_Table_USAGE_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int USAGEID;//  primary key
+        int64 USAGEID;//  primary key
         wxString USAGEDATE;
         wxString JSONCONTENT;
 
-        int id() const
+        int64 id() const
         {
             return USAGEID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             USAGEID = id;
         }
@@ -212,7 +212,7 @@ struct DB_Table_USAGE_V1 : public DB_Table
         {
             table_ = table;
         
-            USAGEID = q.GetInt(0); // USAGEID
+            USAGEID = q.GetInt64(0); // USAGEID
             USAGEDATE = q.GetString(1); // USAGEDATE
             JSONCONTENT = q.GetString(2); // JSONCONTENT
         }
