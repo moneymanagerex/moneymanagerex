@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 18:14:33.526877.
+ *          AUTO GENERATED at 2024-11-29 18:17:34.388005.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -406,7 +406,7 @@ struct DB_Table_TAG_V1 : public DB_Table
     }
 
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(const int id, wxSQLite3Database* db)
+    bool remove(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try

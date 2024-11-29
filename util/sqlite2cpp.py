@@ -668,7 +668,7 @@ struct DB_Table_%s : public DB_Table
 ''' % (len(self._fields), self._primay_key, self._table)
         s += '''
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(const int id, wxSQLite3Database* db)
+    bool remove(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try
