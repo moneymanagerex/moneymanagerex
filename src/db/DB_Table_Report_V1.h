@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
+ *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -376,10 +376,10 @@ struct DB_Table_REPORT_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"REPORTID") = REPORTID;
+            row(L"REPORTID") = REPORTID.GetValue();
             row(L"REPORTNAME") = REPORTNAME;
             row(L"GROUPNAME") = GROUPNAME;
-            row(L"ACTIVE") = ACTIVE;
+            row(L"ACTIVE") = ACTIVE.GetValue();
             row(L"SQLCONTENT") = SQLCONTENT;
             row(L"LUACONTENT") = LUACONTENT;
             row(L"TEMPLATECONTENT") = TEMPLATECONTENT;

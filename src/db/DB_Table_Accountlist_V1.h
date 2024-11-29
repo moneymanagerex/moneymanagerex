@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
+ *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -642,7 +642,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"ACCOUNTID") = ACCOUNTID;
+            row(L"ACCOUNTID") = ACCOUNTID.GetValue();
             row(L"ACCOUNTNAME") = ACCOUNTNAME;
             row(L"ACCOUNTTYPE") = ACCOUNTTYPE;
             row(L"ACCOUNTNUM") = ACCOUNTNUM;
@@ -655,8 +655,8 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             row(L"INITIALBAL") = INITIALBAL;
             row(L"INITIALDATE") = INITIALDATE;
             row(L"FAVORITEACCT") = FAVORITEACCT;
-            row(L"CURRENCYID") = CURRENCYID;
-            row(L"STATEMENTLOCKED") = STATEMENTLOCKED;
+            row(L"CURRENCYID") = CURRENCYID.GetValue();
+            row(L"STATEMENTLOCKED") = STATEMENTLOCKED.GetValue();
             row(L"STATEMENTDATE") = STATEMENTDATE;
             row(L"MINIMUMBALANCE") = MINIMUMBALANCE;
             row(L"CREDITLIMIT") = CREDITLIMIT;

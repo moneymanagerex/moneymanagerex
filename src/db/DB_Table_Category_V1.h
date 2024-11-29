@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
+ *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -355,10 +355,10 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"CATEGID") = CATEGID;
+            row(L"CATEGID") = CATEGID.GetValue();
             row(L"CATEGNAME") = CATEGNAME;
-            row(L"ACTIVE") = ACTIVE;
-            row(L"PARENTID") = PARENTID;
+            row(L"ACTIVE") = ACTIVE.GetValue();
+            row(L"PARENTID") = PARENTID.GetValue();
             return row;
         }
 

@@ -513,7 +513,7 @@ struct DB_Table_%s : public DB_Table
             row_t row;'''
         for field in self._fields:
             s += '''
-            row(L"%s") = %s;'''%(field['name'], field['name'])
+            row(L"%s") = %s;'''%(field['name'], field['name'] + '.GetValue()' if field['type'] == 'INTEGER' else field['name'])
 
         s += '''
             return row;

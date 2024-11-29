@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
+ *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -359,13 +359,13 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"BUDGETENTRYID") = BUDGETENTRYID;
-            row(L"BUDGETYEARID") = BUDGETYEARID;
-            row(L"CATEGID") = CATEGID;
+            row(L"BUDGETENTRYID") = BUDGETENTRYID.GetValue();
+            row(L"BUDGETYEARID") = BUDGETYEARID.GetValue();
+            row(L"CATEGID") = CATEGID.GetValue();
             row(L"PERIOD") = PERIOD;
             row(L"AMOUNT") = AMOUNT;
             row(L"NOTES") = NOTES;
-            row(L"ACTIVE") = ACTIVE;
+            row(L"ACTIVE") = ACTIVE.GetValue();
             return row;
         }
 

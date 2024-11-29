@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
+ *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -544,22 +544,22 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"TRANSID") = TRANSID;
-            row(L"ACCOUNTID") = ACCOUNTID;
-            row(L"TOACCOUNTID") = TOACCOUNTID;
-            row(L"PAYEEID") = PAYEEID;
+            row(L"TRANSID") = TRANSID.GetValue();
+            row(L"ACCOUNTID") = ACCOUNTID.GetValue();
+            row(L"TOACCOUNTID") = TOACCOUNTID.GetValue();
+            row(L"PAYEEID") = PAYEEID.GetValue();
             row(L"TRANSCODE") = TRANSCODE;
             row(L"TRANSAMOUNT") = TRANSAMOUNT;
             row(L"STATUS") = STATUS;
             row(L"TRANSACTIONNUMBER") = TRANSACTIONNUMBER;
             row(L"NOTES") = NOTES;
-            row(L"CATEGID") = CATEGID;
+            row(L"CATEGID") = CATEGID.GetValue();
             row(L"TRANSDATE") = TRANSDATE;
             row(L"LASTUPDATEDTIME") = LASTUPDATEDTIME;
             row(L"DELETEDTIME") = DELETEDTIME;
-            row(L"FOLLOWUPID") = FOLLOWUPID;
+            row(L"FOLLOWUPID") = FOLLOWUPID.GetValue();
             row(L"TOTRANSAMOUNT") = TOTRANSAMOUNT;
-            row(L"COLOR") = COLOR;
+            row(L"COLOR") = COLOR.GetValue();
             return row;
         }
 

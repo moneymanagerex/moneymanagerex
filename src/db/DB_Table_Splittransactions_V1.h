@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
+ *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -318,9 +318,9 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"SPLITTRANSID") = SPLITTRANSID;
-            row(L"TRANSID") = TRANSID;
-            row(L"CATEGID") = CATEGID;
+            row(L"SPLITTRANSID") = SPLITTRANSID.GetValue();
+            row(L"TRANSID") = TRANSID.GetValue();
+            row(L"CATEGID") = CATEGID.GetValue();
             row(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
             row(L"NOTES") = NOTES;
             return row;

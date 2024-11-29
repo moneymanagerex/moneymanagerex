@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
+ *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -297,10 +297,10 @@ struct DB_Table_TAGLINK_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"TAGLINKID") = TAGLINKID;
+            row(L"TAGLINKID") = TAGLINKID.GetValue();
             row(L"REFTYPE") = REFTYPE;
-            row(L"REFID") = REFID;
-            row(L"TAGID") = TAGID;
+            row(L"REFID") = REFID.GetValue();
+            row(L"TAGID") = TAGID.GetValue();
             return row;
         }
 

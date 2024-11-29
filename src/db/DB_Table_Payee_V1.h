@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
+ *          AUTO GENERATED at 2024-11-29 21:57:22.773149.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -377,13 +377,13 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"PAYEEID") = PAYEEID;
+            row(L"PAYEEID") = PAYEEID.GetValue();
             row(L"PAYEENAME") = PAYEENAME;
-            row(L"CATEGID") = CATEGID;
+            row(L"CATEGID") = CATEGID.GetValue();
             row(L"NUMBER") = NUMBER;
             row(L"WEBSITE") = WEBSITE;
             row(L"NOTES") = NOTES;
-            row(L"ACTIVE") = ACTIVE;
+            row(L"ACTIVE") = ACTIVE.GetValue();
             row(L"PATTERN") = PATTERN;
             return row;
         }
