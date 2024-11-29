@@ -864,6 +864,7 @@ def generate_base_class(header, fields=set):
     """Generate the base class"""
     code = header + '''#pragma once
 
+#include <cstdint>
 #include <vector>
 #include <map>
 #include <algorithm>
@@ -880,6 +881,8 @@ using namespace rapidjson;
 
 #include "html_template.h"
 using namespace tmpl;
+
+typedef std::int64_t int64;
 
 class wxString;
 enum OP { EQUAL = 0, GREATER, LESS, GREATER_OR_EQUAL, LESS_OR_EQUAL, NOT_EQUAL };
