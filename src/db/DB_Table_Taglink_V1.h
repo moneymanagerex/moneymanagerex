@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 18:17:34.388005.
+ *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -306,10 +306,10 @@ struct DB_Table_TAGLINK_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"TAGLINKID") = TAGLINKID;
+            t(L"TAGLINKID") = TAGLINKID.GetValue();
             t(L"REFTYPE") = REFTYPE;
-            t(L"REFID") = REFID;
-            t(L"TAGID") = TAGID;
+            t(L"REFID") = REFID.GetValue();
+            t(L"TAGID") = TAGID.GetValue();
         }
 
         /** Save the record instance in memory to the database. */

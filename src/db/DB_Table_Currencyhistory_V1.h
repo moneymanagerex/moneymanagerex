@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 18:17:34.388005.
+ *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -328,11 +328,11 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"CURRHISTID") = CURRHISTID;
-            t(L"CURRENCYID") = CURRENCYID;
+            t(L"CURRHISTID") = CURRHISTID.GetValue();
+            t(L"CURRENCYID") = CURRENCYID.GetValue();
             t(L"CURRDATE") = CURRDATE;
             t(L"CURRVALUE") = CURRVALUE;
-            t(L"CURRUPDTYPE") = CURRUPDTYPE;
+            t(L"CURRUPDTYPE") = CURRUPDTYPE.GetValue();
         }
 
         /** Save the record instance in memory to the database. */

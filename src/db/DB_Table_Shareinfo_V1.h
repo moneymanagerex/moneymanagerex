@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 18:17:34.388005.
+ *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -350,8 +350,8 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"SHAREINFOID") = SHAREINFOID;
-            t(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
+            t(L"SHAREINFOID") = SHAREINFOID.GetValue();
+            t(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID.GetValue();
             t(L"SHARENUMBER") = SHARENUMBER;
             t(L"SHAREPRICE") = SHAREPRICE;
             t(L"SHARECOMMISSION") = SHARECOMMISSION;

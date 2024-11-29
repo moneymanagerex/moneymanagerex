@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 18:17:34.388005.
+ *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -307,10 +307,10 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"TRANSLINKID") = TRANSLINKID;
-            t(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
+            t(L"TRANSLINKID") = TRANSLINKID.GetValue();
+            t(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID.GetValue();
             t(L"LINKTYPE") = LINKTYPE;
-            t(L"LINKRECORDID") = LINKRECORDID;
+            t(L"LINKRECORDID") = LINKRECORDID.GetValue();
         }
 
         /** Save the record instance in memory to the database. */

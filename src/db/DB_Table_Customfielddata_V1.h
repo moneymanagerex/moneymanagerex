@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 18:17:34.388005.
+ *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -306,9 +306,9 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"FIELDATADID") = FIELDATADID;
-            t(L"FIELDID") = FIELDID;
-            t(L"REFID") = REFID;
+            t(L"FIELDATADID") = FIELDATADID.GetValue();
+            t(L"FIELDID") = FIELDID.GetValue();
+            t(L"REFID") = REFID.GetValue();
             t(L"CONTENT") = CONTENT;
         }
 

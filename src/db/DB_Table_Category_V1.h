@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 18:17:34.388005.
+ *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -364,10 +364,10 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"CATEGID") = CATEGID;
+            t(L"CATEGID") = CATEGID.GetValue();
             t(L"CATEGNAME") = CATEGNAME;
-            t(L"ACTIVE") = ACTIVE;
-            t(L"PARENTID") = PARENTID;
+            t(L"ACTIVE") = ACTIVE.GetValue();
+            t(L"PARENTID") = PARENTID.GetValue();
         }
 
         /** Save the record instance in memory to the database. */

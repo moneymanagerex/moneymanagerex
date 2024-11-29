@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 18:17:34.388005.
+ *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -371,13 +371,13 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"BUDGETENTRYID") = BUDGETENTRYID;
-            t(L"BUDGETYEARID") = BUDGETYEARID;
-            t(L"CATEGID") = CATEGID;
+            t(L"BUDGETENTRYID") = BUDGETENTRYID.GetValue();
+            t(L"BUDGETYEARID") = BUDGETYEARID.GetValue();
+            t(L"CATEGID") = CATEGID.GetValue();
             t(L"PERIOD") = PERIOD;
             t(L"AMOUNT") = AMOUNT;
             t(L"NOTES") = NOTES;
-            t(L"ACTIVE") = ACTIVE;
+            t(L"ACTIVE") = ACTIVE.GetValue();
         }
 
         /** Save the record instance in memory to the database. */

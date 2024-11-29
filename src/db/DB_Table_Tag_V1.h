@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 18:17:34.388005.
+ *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -284,9 +284,9 @@ struct DB_Table_TAG_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"TAGID") = TAGID;
+            t(L"TAGID") = TAGID.GetValue();
             t(L"TAGNAME") = TAGNAME;
-            t(L"ACTIVE") = ACTIVE;
+            t(L"ACTIVE") = ACTIVE.GetValue();
         }
 
         /** Save the record instance in memory to the database. */

@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 18:17:34.388005.
+ *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -587,23 +587,23 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"BDID") = BDID;
-            t(L"ACCOUNTID") = ACCOUNTID;
-            t(L"TOACCOUNTID") = TOACCOUNTID;
-            t(L"PAYEEID") = PAYEEID;
+            t(L"BDID") = BDID.GetValue();
+            t(L"ACCOUNTID") = ACCOUNTID.GetValue();
+            t(L"TOACCOUNTID") = TOACCOUNTID.GetValue();
+            t(L"PAYEEID") = PAYEEID.GetValue();
             t(L"TRANSCODE") = TRANSCODE;
             t(L"TRANSAMOUNT") = TRANSAMOUNT;
             t(L"STATUS") = STATUS;
             t(L"TRANSACTIONNUMBER") = TRANSACTIONNUMBER;
             t(L"NOTES") = NOTES;
-            t(L"CATEGID") = CATEGID;
+            t(L"CATEGID") = CATEGID.GetValue();
             t(L"TRANSDATE") = TRANSDATE;
-            t(L"FOLLOWUPID") = FOLLOWUPID;
+            t(L"FOLLOWUPID") = FOLLOWUPID.GetValue();
             t(L"TOTRANSAMOUNT") = TOTRANSAMOUNT;
-            t(L"REPEATS") = REPEATS;
+            t(L"REPEATS") = REPEATS.GetValue();
             t(L"NEXTOCCURRENCEDATE") = NEXTOCCURRENCEDATE;
-            t(L"NUMOCCURRENCES") = NUMOCCURRENCES;
-            t(L"COLOR") = COLOR;
+            t(L"NUMOCCURRENCES") = NUMOCCURRENCES.GetValue();
+            t(L"COLOR") = COLOR.GetValue();
         }
 
         /** Save the record instance in memory to the database. */

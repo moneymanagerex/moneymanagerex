@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 18:17:34.388005.
+ *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -454,11 +454,11 @@ struct DB_Table_ASSETS_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"ASSETID") = ASSETID;
+            t(L"ASSETID") = ASSETID.GetValue();
             t(L"STARTDATE") = STARTDATE;
             t(L"ASSETNAME") = ASSETNAME;
             t(L"ASSETSTATUS") = ASSETSTATUS;
-            t(L"CURRENCYID") = CURRENCYID;
+            t(L"CURRENCYID") = CURRENCYID.GetValue();
             t(L"VALUECHANGEMODE") = VALUECHANGEMODE;
             t(L"VALUE") = VALUE;
             t(L"VALUECHANGE") = VALUECHANGE;

@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 18:17:34.388005.
+ *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -327,11 +327,11 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"HISTID") = HISTID;
+            t(L"HISTID") = HISTID.GetValue();
             t(L"SYMBOL") = SYMBOL;
             t(L"DATE") = DATE;
             t(L"VALUE") = VALUE;
-            t(L"UPDTYPE") = UPDTYPE;
+            t(L"UPDTYPE") = UPDTYPE.GetValue();
         }
 
         /** Save the record instance in memory to the database. */

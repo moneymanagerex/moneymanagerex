@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 18:17:34.388005.
+ *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -565,22 +565,22 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"TRANSID") = TRANSID;
-            t(L"ACCOUNTID") = ACCOUNTID;
-            t(L"TOACCOUNTID") = TOACCOUNTID;
-            t(L"PAYEEID") = PAYEEID;
+            t(L"TRANSID") = TRANSID.GetValue();
+            t(L"ACCOUNTID") = ACCOUNTID.GetValue();
+            t(L"TOACCOUNTID") = TOACCOUNTID.GetValue();
+            t(L"PAYEEID") = PAYEEID.GetValue();
             t(L"TRANSCODE") = TRANSCODE;
             t(L"TRANSAMOUNT") = TRANSAMOUNT;
             t(L"STATUS") = STATUS;
             t(L"TRANSACTIONNUMBER") = TRANSACTIONNUMBER;
             t(L"NOTES") = NOTES;
-            t(L"CATEGID") = CATEGID;
+            t(L"CATEGID") = CATEGID.GetValue();
             t(L"TRANSDATE") = TRANSDATE;
             t(L"LASTUPDATEDTIME") = LASTUPDATEDTIME;
             t(L"DELETEDTIME") = DELETEDTIME;
-            t(L"FOLLOWUPID") = FOLLOWUPID;
+            t(L"FOLLOWUPID") = FOLLOWUPID.GetValue();
             t(L"TOTRANSAMOUNT") = TOTRANSAMOUNT;
-            t(L"COLOR") = COLOR;
+            t(L"COLOR") = COLOR.GetValue();
         }
 
         /** Save the record instance in memory to the database. */

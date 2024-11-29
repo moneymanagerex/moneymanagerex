@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 18:17:34.388005.
+ *          AUTO GENERATED at 2024-11-29 21:47:30.364264.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -642,7 +642,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"CURRENCYID") = CURRENCYID;
+            t(L"CURRENCYID") = CURRENCYID.GetValue();
             t(L"CURRENCYNAME") = CURRENCYNAME;
             t(L"PFX_SYMBOL") = PFX_SYMBOL;
             t(L"SFX_SYMBOL") = SFX_SYMBOL;
@@ -650,7 +650,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
             t(L"GROUP_SEPARATOR") = GROUP_SEPARATOR;
             t(L"UNIT_NAME") = UNIT_NAME;
             t(L"CENT_NAME") = CENT_NAME;
-            t(L"SCALE") = SCALE;
+            t(L"SCALE") = SCALE.GetValue();
             t(L"BASECONVRATE") = BASECONVRATE;
             t(L"CURRENCY_SYMBOL") = CURRENCY_SYMBOL;
             t(L"CURRENCY_TYPE") = CURRENCY_TYPE;
