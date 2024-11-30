@@ -41,7 +41,7 @@ mmCustomData::mmCustomData()
 {
 }
 
-mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_id)
+mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int64 ref_id)
     : wxDialog()
     , m_ref_type(ref_type)
     , m_ref_id(ref_id)
@@ -52,7 +52,7 @@ mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_i
     m_data_changed.clear();
 }
 
-mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int ref_id, wxWindowID base_id)
+mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int64 ref_id, wxWindowID base_id)
     : mmCustomData(dialog
         , Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)
         , ref_id)
@@ -466,7 +466,7 @@ const wxString mmCustomData::GetWidgetData(wxWindowID controlID) const
     return data;
 }
 
-bool mmCustomData::SaveCustomValues(int ref_id)
+bool mmCustomData::SaveCustomValues(int64 ref_id)
 {
     bool updateTimestamp = false;
     Model_CustomFieldData::instance().Savepoint();
@@ -511,7 +511,7 @@ bool mmCustomData::SaveCustomValues(int ref_id)
     return true;
 }
 
-void mmCustomData::UpdateCustomValues(int ref_id)
+void mmCustomData::UpdateCustomValues(int64 ref_id)
 {
     Model_CustomFieldData::instance().Savepoint();
     bool updateTimestamp = false;
@@ -745,7 +745,7 @@ void mmCustomData::ShowCustomPanel() const
     m_static_box->Show();
 }
 
-void mmCustomData::SetStringValue(int fieldId, const wxString& value, bool hasChanged)
+void mmCustomData::SetStringValue(int64 fieldId, const wxString& value, bool hasChanged)
 {
     wxWindowID widget_id = GetBaseID() + fieldId * FIELDMULTIPLIER;
     SetWidgetData(widget_id, value);

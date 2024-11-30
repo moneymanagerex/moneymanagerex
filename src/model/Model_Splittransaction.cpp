@@ -50,7 +50,7 @@ Model_Splittransaction& Model_Splittransaction::instance()
     return Singleton<Model_Splittransaction>::instance();
 }
 
-bool Model_Splittransaction::remove(int id)
+bool Model_Splittransaction::remove(int64 id)
 {
     // Delete all tags for the split before removing it
     Model_Taglink::instance().DeleteAllTags(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), id);
@@ -80,7 +80,7 @@ std::map<int, Model_Splittransaction::Data_Set> Model_Splittransaction::get_all(
     return data;
 }
 
-int Model_Splittransaction::update(Data_Set& rows, int transactionID)
+int Model_Splittransaction::update(Data_Set& rows, int64 transactionID)
 {
     bool updateTimestamp = false;
     std::map<int, int> row_id_map;

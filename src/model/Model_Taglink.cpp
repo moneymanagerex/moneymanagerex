@@ -51,7 +51,7 @@ Model_Taglink& Model_Taglink::instance()
     return Singleton<Model_Taglink>::instance();
 }
 
-Model_Taglink::Data* Model_Taglink::get(const wxString& refType, int refId, int tagId)
+Model_Taglink::Data* Model_Taglink::get(const wxString& refType, int64 refId, int64 tagId)
 {
     Data* link = this->get_one(REFTYPE(refType), REFID(refId), TAGID(tagId));
     if (link) return link;
@@ -61,7 +61,7 @@ Model_Taglink::Data* Model_Taglink::get(const wxString& refType, int refId, int 
     return link;
 }
 
-std::map<wxString, int> Model_Taglink::get(const wxString& refType, int refId)
+std::map<wxString, int> Model_Taglink::get(const wxString& refType, int64 refId)
 {
     std::map<wxString, int> tags;
     for (const auto& link : instance().find(REFTYPE(refType), REFID(refId)))
@@ -71,7 +71,7 @@ std::map<wxString, int> Model_Taglink::get(const wxString& refType, int refId)
 }
 
 /* Delete all tags for a REFTYPE + REFID */
-void Model_Taglink::DeleteAllTags(const wxString& refType, int refID)
+void Model_Taglink::DeleteAllTags(const wxString& refType, int64 refID)
 {
     const auto& links = instance().find(REFTYPE(refType), REFID(refID));
     instance().Savepoint();
@@ -80,7 +80,7 @@ void Model_Taglink::DeleteAllTags(const wxString& refType, int refID)
     instance().ReleaseSavepoint();
 }
 
-int Model_Taglink::update(const Data_Set& rows, const wxString& refType, int refId)
+int Model_Taglink::update(const Data_Set& rows, const wxString& refType, int64 refId)
 {
     Model_Taglink::instance().Savepoint();
     bool updateTimestamp = false;
