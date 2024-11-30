@@ -164,7 +164,7 @@ void mmAttachmentDialog::fillControls()
     Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(m_RefType, m_RefId);
     if (attachments.size() == 0) return;
 
-    int firstInTheListAttachentID = -1;
+    int64 firstInTheListAttachentID = -1;
     for (const auto &entry : attachments)
     {
         if (firstInTheListAttachentID == -1) firstInTheListAttachentID = entry.ATTACHMENTID;

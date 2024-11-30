@@ -50,14 +50,14 @@ private:
 
     wxDataViewListCtrl* attachmentListBox_ = nullptr;
 
-    int m_attachment_id = -1;
+    int64 m_attachment_id = -1;
     std::map<int, wxString> ColName_;
     wxButton* btnCancel_ = nullptr;
     wxButton* button_OK_ = nullptr;
     wxString m_PathSep = wxFileName::GetPathSeparator();
 
     wxString m_RefType;
-    int m_RefId = -1;
+    int64 m_RefId = -1;
 
     mmAttachmentDialog() {}
 
