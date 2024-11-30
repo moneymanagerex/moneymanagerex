@@ -271,7 +271,7 @@ void mmAssetsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     if (m_selected_row < 0) return;
 
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
-    int RefId = m_panel->m_assets[m_selected_row].ASSETID;
+    int64 RefId = m_panel->m_assets[m_selected_row].ASSETID;
 
     mmAttachmentDialog dlg(this, RefType, RefId);
     dlg.ShowModal();

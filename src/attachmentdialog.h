@@ -24,6 +24,8 @@
 #include <wx/dataview.h>
 #include <map>
 
+typedef wxLongLong int64;
+
 class mmAttachmentDialog : public wxDialog
 {
     wxDECLARE_DYNAMIC_CLASS(mmAttachmentDialog);
