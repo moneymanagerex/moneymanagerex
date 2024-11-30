@@ -375,7 +375,7 @@ wxDateTime Model_Account::DateOf(const wxString& date_str)
     return Model::to_date(date_str);
 }
 
-bool Model_Account::BoolOf(int value)
+bool Model_Account::BoolOf(int64 value)
 {
     return value > 0 ? true : false;
 }

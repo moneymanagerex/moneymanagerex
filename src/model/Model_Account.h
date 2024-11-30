@@ -142,7 +142,7 @@ public:
     static bool Exist(const wxString& account_name);
 
     static wxDateTime DateOf(const wxString& date_str);
-    static bool BoolOf(int value);
+    static bool BoolOf(int64 value);
     static bool is_positive(int value);
     static wxDateTime get_date_by_string(const wxString& date_str);
 
