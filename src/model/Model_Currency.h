@@ -84,9 +84,9 @@ public:
     * Remove the Data record from memory and the database.
     * Delete also all currency history
     */
-    bool remove(int id);
+    bool remove(int64 id);
 
-    static std::map<wxDateTime,int> DateUsed(int CurrencyID);
+    static std::map<wxDateTime,int> DateUsed(int64 CurrencyID);
 
     /** Add prefix and suffix characters to string value */
     static const wxString toCurrency(double value, const Data* currency = GetBaseCurrency(), int precision = -1);

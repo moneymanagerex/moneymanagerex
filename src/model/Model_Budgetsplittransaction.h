@@ -48,8 +48,8 @@ public:
 public:
     double get_total(const Data_Set& rows);
     std::map<int, Data_Set> get_all();
-    int update(Data_Set& rows, int transactionID);
-    bool remove(int id);
+    int update(Data_Set& rows, int64 transactionID);
+    bool remove(int64 id);
 };
 
 #endif // 

@@ -135,7 +135,7 @@ const wxArrayString Model_Currency::all_currency_symbols()
 // Getter
 Model_Currency::Data* Model_Currency::GetBaseCurrency()
 {
-    int currency_id = Option::instance().getBaseCurrencyID();
+    int64 currency_id = Option::instance().getBaseCurrencyID();
     Model_Currency::Data* currency = Model_Currency::instance().get(currency_id);
     return currency;
 }
@@ -173,7 +173,7 @@ Model_Currency::Data* Model_Currency::GetCurrencyRecord(const wxString& currency
     return record;
 }
 
-std::map<wxDateTime, int> Model_Currency::DateUsed(int CurrencyID)
+std::map<wxDateTime, int> Model_Currency::DateUsed(int64 CurrencyID)
 {
     wxDateTime dt;
     std::map<wxDateTime, int> datesList;
@@ -205,7 +205,7 @@ std::map<wxDateTime, int> Model_Currency::DateUsed(int CurrencyID)
 * Remove the Data record from memory and the database.
 * Delete also all currency history
 */
-bool Model_Currency::remove(int id)
+bool Model_Currency::remove(int64 id)
 {
     this->Savepoint();
     for (const auto& r : Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(id)))
@@ -398,7 +398,7 @@ int Model_Currency::precision(const Data& r)
     return precision(&r);
 }
 
-int Model_Currency::precision(int account_id)
+int Model_Currency::precision(int64 account_id)
 {
     const Model_Account::Data* trans_account = Model_Account::instance().get(account_id);
     if (account_id > 0)

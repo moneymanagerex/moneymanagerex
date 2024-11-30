@@ -109,7 +109,7 @@ DB_Table_BUDGETTABLE_V1::PERIOD Model_Budget::PERIOD(PERIOD_ID period, OP op)
     return DB_Table_BUDGETTABLE_V1::PERIOD(PERIOD_STR[period], op);
 }
 
-void Model_Budget::getBudgetEntry(int budgetYearID
+void Model_Budget::getBudgetEntry(int64 budgetYearID
     , std::map<int, PERIOD_ID> &budgetPeriod
     , std::map<int, double> &budgetAmt
     , std::map<int, wxString> &budgetNotes)
@@ -155,7 +155,7 @@ void Model_Budget::getBudgetStats(
     std::map<std::pair<int, int>, bool> isBudgeted;
     std::map<int, int> budgetedMonths;
     const wxString year = wxString::Format("%i", start_date.GetYear());
-    int budgetYearID = Model_Budgetyear::instance().Get(year);
+    int64 budgetYearID = Model_Budgetyear::instance().Get(year);
     for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
     {
         // Determine the monhly budgeted amounts
@@ -229,7 +229,7 @@ void Model_Budget::getBudgetStats(
     }
 }
 
-void Model_Budget::copyBudgetYear(int newYearID, int baseYearID)
+void Model_Budget::copyBudgetYear(int64 newYearID, int64 baseYearID)
 {
     std::map<int, double> yearDeduction;
     int budgetedMonths = 0;
