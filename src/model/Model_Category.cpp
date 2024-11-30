@@ -158,13 +158,13 @@ const wxString Model_Category::full_name(const Data* category)
     }
 }
 
-const wxString Model_Category::full_name(int category_id)
+const wxString Model_Category::full_name(int64 category_id)
 {
     Data* category = instance().get(category_id);
     return full_name(category);
 }
 
-const wxString Model_Category::full_name(int category_id, wxString delimiter)
+const wxString Model_Category::full_name(int64 category_id, wxString delimiter)
 {
     Data* category = instance().get(category_id);
     if (!category) return "";
@@ -184,7 +184,7 @@ const wxString Model_Category::full_name(int category_id, wxString delimiter)
 // -- Check if Category should be made available for use. 
 //    Hiding a category hides all sub-categories
 
-bool Model_Category::is_hidden(int catID)
+bool Model_Category::is_hidden(int64 catID)
 {
     const auto category = Model_Category::instance().get(catID);
     if (category && category->ACTIVE == 0)
@@ -193,7 +193,7 @@ bool Model_Category::is_hidden(int catID)
     return false;
 }
 
-bool Model_Category::is_used(int id)
+bool Model_Category::is_used(int64 id)
 {
     if (id < 0) return false;
     const auto& trans = Model_Checking::instance().find(Model_Checking::CATEGID(id));
@@ -224,7 +224,7 @@ bool Model_Category::is_used(int id)
     }
     return false;
 }
-bool Model_Category::has_income(int id)
+bool Model_Category::has_income(int64 id)
 {
     double sum = 0.0;
     auto splits = Model_Splittransaction::instance().get_all();
@@ -324,7 +324,7 @@ void Model_Category::getCategoryStats(
             month = it->second;
         }
 
-        int categID = transaction.CATEGID;
+        int64 categID = transaction.CATEGID;
 
         if (categID > -1)
         {

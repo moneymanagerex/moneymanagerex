@@ -103,7 +103,7 @@ Model_Checking::STATUS_ID Model_Billsdeposits::status_id(const Data* r)
 * Remove the Data record instance from memory and the database
 * including any splits associated with the Data Record.
 */
-bool Model_Billsdeposits::remove(int id)
+bool Model_Billsdeposits::remove(int64 id)
 {
     for (auto &item : Model_Billsdeposits::splittransaction(get(id)))
         Model_Budgetsplittransaction::instance().remove(item.SPLITTRANSID);
@@ -178,7 +178,7 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r)
     if (r.TRANSCODE != Model_Checking::TYPE_STR_WITHDRAWAL && r.TRANSCODE != Model_Checking::TYPE_STR_TRANSFER)
         return true;
 
-    const int acct_id = r.ACCOUNTID;
+    const int64 acct_id = r.ACCOUNTID;
     Model_Account::Data* account = Model_Account::instance().get(acct_id);
 
     if (account->MINIMUMBALANCE == 0 && account->CREDITLIMIT == 0)
@@ -221,7 +221,7 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r)
     return allow_transaction;
 }
 
-void Model_Billsdeposits::completeBDInSeries(int bdID)
+void Model_Billsdeposits::completeBDInSeries(int64 bdID)
 {
     Data* bill = get(bdID);
     if (!bill) return;

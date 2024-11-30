@@ -63,16 +63,16 @@ public:
     Data* get(const wxString& name, const wxString& parentname);
 
     const wxArrayString FilterCategory(const wxString& category_pattern);
-    static const std::map<wxString, int > all_categories(bool excludeHidden = false);
+    static const std::map<wxString, int64 > all_categories(bool excludeHidden = false);
     static Model_Category::Data_Set sub_category(const Data* r);
     static Model_Category::Data_Set sub_category(const Data& r);
     static Model_Category::Data_Set sub_tree(const Data& r);
     static Model_Category::Data_Set sub_tree(const Data* r);
-    static const wxString full_name(int category_id);
-    static const wxString full_name(int category_id, wxString delimiter);
-    static bool is_hidden(int catID);
-    static bool is_used(int id);
-    static bool has_income(int id);
+    static const wxString full_name(int64 category_id);
+    static const wxString full_name(int64 category_id, wxString delimiter);
+    static bool is_hidden(int64 catID);
+    static bool is_used(int64 id);
+    static bool has_income(int64 id);
     static void getCategoryStats(
         std::map<int, std::map<int, double>> &categoryStats
         , wxSharedPtr<wxArrayString> accountArray

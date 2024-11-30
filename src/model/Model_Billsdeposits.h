@@ -27,7 +27,7 @@
 #include "Model_Budgetsplittransaction.h"
 #include "Model_Taglink.h"
 
-const int BD_REPEATS_MULTIPLEX_BASE = 100;
+const int64 BD_REPEATS_MULTIPLEX_BASE = 100;
 
 class Model_Billsdeposits : public Model<DB_Table_BILLSDEPOSITS_V1>
 {
@@ -73,26 +73,26 @@ public:
     /** Pre-initialised data structure*/
     struct Bill_Data
     {
-        int BDID = 0;
+        int64 BDID = 0;
         // This relates the 'Date Due' field.
         wxString TRANSDATE = wxDateTime::Now().FormatISOCombined();
         wxString STATUS = Model_Checking::STATUS_STR_NONE;
-        int ACCOUNTID = -1;
-        int TOACCOUNTID = -1;
+        int64 ACCOUNTID = -1;
+        int64 TOACCOUNTID = -1;
         wxString TRANSCODE = Model_Checking::TYPE_STR_WITHDRAWAL;
-        int CATEGID = -1;
+        int64 CATEGID = -1;
         double TRANSAMOUNT = 0;
         double TOTRANSAMOUNT = 0;
-        int FOLLOWUPID = -1;
+        int64 FOLLOWUPID = -1;
         wxString NOTES;
         wxString TRANSACTIONNUMBER;
-        int PAYEEID = -1;
+        int64 PAYEEID = -1;
         std::vector<Split> local_splits;
-        int REPEATS;
-        int NUMOCCURRENCES;
+        int64 REPEATS;
+        int64 NUMOCCURRENCES;
         // This relates the 'Date Paid' field.
         wxString NEXTOCCURRENCEDATE;
-        int COLOR = -1;
+        int64 COLOR = -1;
         wxArrayInt TAGS;
     };
 
@@ -160,7 +160,7 @@ public:
     * Remove the Data record instance from memory and the database
     * including any splits associated with the Data Record.
     */
-    bool remove(int id);
+    bool remove(int64 id);
 
     static DB_Table_BILLSDEPOSITS_V1::STATUS STATUS(Model_Checking::STATUS_ID status, OP op = EQUAL);
     static DB_Table_BILLSDEPOSITS_V1::TRANSCODE TRANSCODE(Model_Checking::TYPE_ID type, OP op = EQUAL);
@@ -168,7 +168,7 @@ public:
     static const Model_Budgetsplittransaction::Data_Set splittransaction(const Data* r);
     static const Model_Budgetsplittransaction::Data_Set splittransaction(const Data& r);
 
-    void completeBDInSeries(int bdID);
+    void completeBDInSeries(int64 bdID);
     static const wxDateTime nextOccurDate(int type, int numRepeats, wxDateTime nextOccurDate, bool reverse = false);
 };
 

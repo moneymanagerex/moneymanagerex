@@ -46,7 +46,7 @@ Model_Stock& Model_Stock::instance(wxSQLite3Database* db)
     return ins;
 }
 
-wxString Model_Stock::get_stock_name(int stock_id)
+wxString Model_Stock::get_stock_name(int64 stock_id)
 {
     Data* stock = instance().get(stock_id);
     if (stock)
@@ -97,7 +97,7 @@ double Model_Stock::CurrentValue(const Data& r)
 * Remove the Data record from memory and the database.
 * Delete also all stock history
 */
-bool Model_Stock::remove(int id)
+bool Model_Stock::remove(int64 id)
 {
     Model_Stock::Data *data = this->get(id);
     const auto &stocks = Model_Stock::instance().find(Model_Stock::SYMBOL(data->SYMBOL));
