@@ -735,7 +735,7 @@ void mmAssetsPanel::OnViewPopupSelected(wxCommandEvent& event)
 
     int64 trx_id = -1;
     m_listCtrlAssets->doRefreshItems(trx_id);
-    updateExtraAssetData(trx_id);
+    updateExtraAssetData(-1);
 }
 
 void mmAssetsPanel::OnSearchTxtEntered(wxCommandEvent& event)
