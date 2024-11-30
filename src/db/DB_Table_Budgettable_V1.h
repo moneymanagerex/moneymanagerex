@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:26:08.292065.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -341,11 +341,11 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("BUDGETENTRYID");
-            json_writer.Int64(this->BUDGETENTRYID);
+            json_writer.Int64(this->BUDGETENTRYID.GetValue());
             json_writer.Key("BUDGETYEARID");
-            json_writer.Int64(this->BUDGETYEARID);
+            json_writer.Int64(this->BUDGETYEARID.GetValue());
             json_writer.Key("CATEGID");
-            json_writer.Int64(this->CATEGID);
+            json_writer.Int64(this->CATEGID.GetValue());
             json_writer.Key("PERIOD");
             json_writer.String(this->PERIOD.utf8_str());
             json_writer.Key("AMOUNT");
@@ -353,7 +353,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
             json_writer.Key("NOTES");
             json_writer.String(this->NOTES.utf8_str());
             json_writer.Key("ACTIVE");
-            json_writer.Int64(this->ACTIVE);
+            json_writer.Int64(this->ACTIVE.GetValue());
         }
 
         row_t to_row_t() const

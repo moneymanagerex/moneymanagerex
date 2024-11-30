@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:26:08.292065.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -323,9 +323,9 @@ struct DB_Table_SHAREINFO_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("SHAREINFOID");
-            json_writer.Int64(this->SHAREINFOID);
+            json_writer.Int64(this->SHAREINFOID.GetValue());
             json_writer.Key("CHECKINGACCOUNTID");
-            json_writer.Int64(this->CHECKINGACCOUNTID);
+            json_writer.Int64(this->CHECKINGACCOUNTID.GetValue());
             json_writer.Key("SHARENUMBER");
             json_writer.Double(this->SHARENUMBER);
             json_writer.Key("SHAREPRICE");

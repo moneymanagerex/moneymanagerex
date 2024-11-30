@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:26:08.292065.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -343,13 +343,13 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("CATEGID");
-            json_writer.Int64(this->CATEGID);
+            json_writer.Int64(this->CATEGID.GetValue());
             json_writer.Key("CATEGNAME");
             json_writer.String(this->CATEGNAME.utf8_str());
             json_writer.Key("ACTIVE");
-            json_writer.Int64(this->ACTIVE);
+            json_writer.Int64(this->ACTIVE.GetValue());
             json_writer.Key("PARENTID");
-            json_writer.Int64(this->PARENTID);
+            json_writer.Int64(this->PARENTID.GetValue());
         }
 
         row_t to_row_t() const

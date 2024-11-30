@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:26:08.292065.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -415,9 +415,9 @@ struct DB_Table_STOCK_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("STOCKID");
-            json_writer.Int64(this->STOCKID);
+            json_writer.Int64(this->STOCKID.GetValue());
             json_writer.Key("HELDAT");
-            json_writer.Int64(this->HELDAT);
+            json_writer.Int64(this->HELDAT.GetValue());
             json_writer.Key("PURCHASEDATE");
             json_writer.String(this->PURCHASEDATE.utf8_str());
             json_writer.Key("STOCKNAME");

@@ -491,7 +491,7 @@ struct DB_Table_%s : public DB_Table
             if type == 'int64':
                 s += '''
             json_writer.Key("%s");
-            json_writer.Int64(this->%s);''' % (field['name'], field['name'])
+            json_writer.Int64(this->%s.GetValue());''' % (field['name'], field['name'])
             elif type == 'double':
                 s += '''
             json_writer.Key("%s");

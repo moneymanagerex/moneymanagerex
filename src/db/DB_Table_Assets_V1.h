@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:26:08.292065.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -412,7 +412,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("ASSETID");
-            json_writer.Int64(this->ASSETID);
+            json_writer.Int64(this->ASSETID.GetValue());
             json_writer.Key("STARTDATE");
             json_writer.String(this->STARTDATE.utf8_str());
             json_writer.Key("ASSETNAME");
@@ -420,7 +420,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             json_writer.Key("ASSETSTATUS");
             json_writer.String(this->ASSETSTATUS.utf8_str());
             json_writer.Key("CURRENCYID");
-            json_writer.Int64(this->CURRENCYID);
+            json_writer.Int64(this->CURRENCYID.GetValue());
             json_writer.Key("VALUECHANGEMODE");
             json_writer.String(this->VALUECHANGEMODE.utf8_str());
             json_writer.Key("VALUE");

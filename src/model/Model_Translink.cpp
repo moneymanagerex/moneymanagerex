@@ -50,7 +50,7 @@ Model_Translink& Model_Translink::instance()
     return Singleton<Model_Translink>::instance();
 }
 
-Model_Translink::CHECKING_TYPE Model_Translink::type_checking(const int tt)
+Model_Translink::CHECKING_TYPE Model_Translink::type_checking(const int64 tt)
 {
     if (tt == AS_TRANSFER)
     {

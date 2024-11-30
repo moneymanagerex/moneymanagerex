@@ -50,7 +50,7 @@ public:
     static Model_Translink& instance();
 
 public:
-    static CHECKING_TYPE type_checking(const int tt);
+    static CHECKING_TYPE type_checking(const int64 tt);
 
 public:
     /* Create the translink record as Asset */

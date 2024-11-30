@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:26:08.292065.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -285,11 +285,11 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("FIELDATADID");
-            json_writer.Int64(this->FIELDATADID);
+            json_writer.Int64(this->FIELDATADID.GetValue());
             json_writer.Key("FIELDID");
-            json_writer.Int64(this->FIELDID);
+            json_writer.Int64(this->FIELDID.GetValue());
             json_writer.Key("REFID");
-            json_writer.Int64(this->REFID);
+            json_writer.Int64(this->REFID.GetValue());
             json_writer.Key("CONTENT");
             json_writer.String(this->CONTENT.utf8_str());
         }

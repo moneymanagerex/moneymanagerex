@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:26:08.292065.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -247,7 +247,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("BUDGETYEARID");
-            json_writer.Int64(this->BUDGETYEARID);
+            json_writer.Int64(this->BUDGETYEARID.GetValue());
             json_writer.Key("BUDGETYEARNAME");
             json_writer.String(this->BUDGETYEARNAME.utf8_str());
         }

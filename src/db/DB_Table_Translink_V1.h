@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:26:08.292065.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -286,13 +286,13 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("TRANSLINKID");
-            json_writer.Int64(this->TRANSLINKID);
+            json_writer.Int64(this->TRANSLINKID.GetValue());
             json_writer.Key("CHECKINGACCOUNTID");
-            json_writer.Int64(this->CHECKINGACCOUNTID);
+            json_writer.Int64(this->CHECKINGACCOUNTID.GetValue());
             json_writer.Key("LINKTYPE");
             json_writer.String(this->LINKTYPE.utf8_str());
             json_writer.Key("LINKRECORDID");
-            json_writer.Int64(this->LINKRECORDID);
+            json_writer.Int64(this->LINKRECORDID.GetValue());
         }
 
         row_t to_row_t() const

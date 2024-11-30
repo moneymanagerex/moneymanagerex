@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:26:08.292065.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -508,13 +508,13 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("TRANSID");
-            json_writer.Int64(this->TRANSID);
+            json_writer.Int64(this->TRANSID.GetValue());
             json_writer.Key("ACCOUNTID");
-            json_writer.Int64(this->ACCOUNTID);
+            json_writer.Int64(this->ACCOUNTID.GetValue());
             json_writer.Key("TOACCOUNTID");
-            json_writer.Int64(this->TOACCOUNTID);
+            json_writer.Int64(this->TOACCOUNTID.GetValue());
             json_writer.Key("PAYEEID");
-            json_writer.Int64(this->PAYEEID);
+            json_writer.Int64(this->PAYEEID.GetValue());
             json_writer.Key("TRANSCODE");
             json_writer.String(this->TRANSCODE.utf8_str());
             json_writer.Key("TRANSAMOUNT");
@@ -526,7 +526,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             json_writer.Key("NOTES");
             json_writer.String(this->NOTES.utf8_str());
             json_writer.Key("CATEGID");
-            json_writer.Int64(this->CATEGID);
+            json_writer.Int64(this->CATEGID.GetValue());
             json_writer.Key("TRANSDATE");
             json_writer.String(this->TRANSDATE.utf8_str());
             json_writer.Key("LASTUPDATEDTIME");
@@ -534,11 +534,11 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             json_writer.Key("DELETEDTIME");
             json_writer.String(this->DELETEDTIME.utf8_str());
             json_writer.Key("FOLLOWUPID");
-            json_writer.Int64(this->FOLLOWUPID);
+            json_writer.Int64(this->FOLLOWUPID.GetValue());
             json_writer.Key("TOTRANSAMOUNT");
             json_writer.Double(this->TOTRANSAMOUNT);
             json_writer.Key("COLOR");
-            json_writer.Int64(this->COLOR);
+            json_writer.Int64(this->COLOR.GetValue());
         }
 
         row_t to_row_t() const
