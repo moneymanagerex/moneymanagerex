@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-11-14 11:50\n"
+"PO-Revision-Date: 2024-11-30 11:46\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -249,7 +249,7 @@ msgstr "Limite de découvert du compte. Zéro \"0\" pour désactiver."
 
 #: accountdialog.cpp:263
 msgid "Interest Rate:"
-msgstr "Taux d'intérêt :"
+msgstr "Taux d'intérêt :4,5"
 
 #: accountdialog.cpp:268
 msgid "Payment Due Date:"
