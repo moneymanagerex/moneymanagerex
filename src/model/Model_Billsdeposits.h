@@ -27,7 +27,7 @@
 #include "Model_Budgetsplittransaction.h"
 #include "Model_Taglink.h"
 
-const int64 BD_REPEATS_MULTIPLEX_BASE = 100;
+const int BD_REPEATS_MULTIPLEX_BASE = 100;
 
 class Model_Billsdeposits : public Model<DB_Table_BILLSDEPOSITS_V1>
 {
@@ -93,7 +93,7 @@ public:
         // This relates the 'Date Paid' field.
         wxString NEXTOCCURRENCEDATE;
         int64 COLOR = -1;
-        wxArrayInt TAGS;
+        wxVector<int64> TAGS;
     };
 
     struct Full_Data : public Data

@@ -172,7 +172,7 @@ void mmAttachmentDialog::fillControls()
         if (debug_) data.push_back(wxVariant(wxString::Format("%i", entry.ATTACHMENTID)));
         data.push_back(wxVariant(entry.DESCRIPTION));
         data.push_back(wxVariant(entry.REFTYPE + m_PathSep + entry.FILENAME));
-        attachmentListBox_->AppendItem(data, static_cast<wxUIntPtr>(entry.ATTACHMENTID));
+        attachmentListBox_->AppendItem(data, static_cast<wxUIntPtr>(entry.ATTACHMENTID.GetValue()));
     }
 
     m_attachment_id = firstInTheListAttachentID;
