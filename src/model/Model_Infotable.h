@@ -61,6 +61,7 @@ public:
     // Getter
     bool GetBoolInfo(const wxString& key, bool default_value);
     int GetIntInfo(const wxString& key, int default_value);
+    int64 GetInt64Info(const wxString& key, int64 default_value);
     wxString GetStringInfo(const wxString& key, const wxString& default_value);
     const wxColour GetColourSetting(const wxString& key, const wxColour& default_value = wxColour(255, 255, 255));
     const wxArrayString GetArrayStringSetting(const wxString& key, bool sort = false);

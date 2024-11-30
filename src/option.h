@@ -64,9 +64,9 @@ public:
     const wxString& FinancialYearStartMonth() const;
 
     // set the base currency ID
-    void setBaseCurrency(const int base_currency_id);
+    void setBaseCurrency(const int64 base_currency_id);
     // returns the base currency ID
-    int getBaseCurrencyID() const noexcept;
+    int64 getBaseCurrencyID() const noexcept;
 
     // set and save the option: m_databaseUpdated
     void DatabaseUpdated(const bool value);
@@ -178,7 +178,7 @@ private:
     wxString m_localeNameString;
     wxString m_financialYearStartDayString;
     wxString m_financialYearStartMonthString;
-    int m_baseCurrency = -1;
+    int64 m_baseCurrency = -1;
     bool m_currencyHistoryEnabled = false;
     bool m_bulk_enter = false;
 

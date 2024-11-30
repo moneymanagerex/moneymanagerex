@@ -46,11 +46,11 @@ public:
     mmMainCurrencyDialog( ) {}
     ~mmMainCurrencyDialog();
     mmMainCurrencyDialog(wxWindow* parent
-        , int currencyID = -1, bool bEnableSelect = true);
+        , int64 currencyID = -1, bool bEnableSelect = true);
 
-    static bool Execute(wxWindow* parent, int& currencyID);
+    static bool Execute(wxWindow* parent, int64& currencyID);
     // Return the base currency
-    static bool Execute(int& currencyID);
+    static bool Execute(int64& currencyID);
 
 private:
     enum cols
@@ -102,7 +102,7 @@ private:
     void OnHistoryDeselected(wxListEvent& WXUNUSED(event));
 
     void OnOnlineUpdateCurRate(wxCommandEvent& event);
-    bool OnlineUpdateCurRate(int curr_id = -1, bool hide = true);
+    bool OnlineUpdateCurRate(int64 curr_id = -1, bool hide = true);
     void OnItemRightClick(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     bool SetBaseCurrency(int& baseCurrencyID);
@@ -124,7 +124,7 @@ private:
     wxButton* m_select_btn = nullptr;
 
     wxString m_maskStr = "";
-    int m_currency_id = -1;
+    int64 m_currency_id = -1;
     bool m_static_dialog = false;
 
     bool ConvertHistoryRates(const std::vector<CurrencyHistoryRate>& Bce, std::vector<CurrencyHistoryRate>& ConvertedRate, const wxString& BaseCurrencySymbol);
