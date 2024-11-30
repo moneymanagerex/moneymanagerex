@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-29 21:58:47.026874.
+ *          AUTO GENERATED at 2024-11-30 08:26:08.292065.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -494,7 +494,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
 
         if (entity->id() <= 0)
         {
-            entity->id((db->GetLastRowId()).ToLong());
+            entity->id(db->GetLastRowId());
             index_by_id_.insert(std::make_pair(entity->id(), entity));
         }
         return true;
