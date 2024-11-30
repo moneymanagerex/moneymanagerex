@@ -178,7 +178,7 @@ void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& /*event*/)
     }
 }
 
-void mmAssetsListCtrl::doRefreshItems(int trx_id)
+void mmAssetsListCtrl::doRefreshItems(int64 trx_id)
 {
     int selectedIndex = m_panel->initVirtualListControl(trx_id, m_selected_col, m_asc);
 
@@ -337,7 +337,7 @@ void mmAssetsListCtrl::OnColClick(wxListEvent& event)
     Model_Setting::instance().Set("ASSETS_ASC", m_asc);
     Model_Setting::instance().Set("ASSETS_SORT_COL", m_selected_col);
 
-    int trx_id = -1;
+    int64 trx_id = -1;
     if (m_selected_row>=0) trx_id = m_panel->m_assets[m_selected_row].ASSETID;
 
     doRefreshItems(trx_id);
@@ -733,7 +733,7 @@ void mmAssetsPanel::OnViewPopupSelected(wxCommandEvent& event)
         m_bitmapTransFilter->SetLabel(wxGetTranslation(Model_Asset::TYPE_STR[evt - 1]));
     }
 
-    int trx_id = -1;
+    int64 trx_id = -1;
     m_listCtrlAssets->doRefreshItems(trx_id);
     updateExtraAssetData(trx_id);
 }
@@ -767,7 +767,7 @@ void mmAssetsPanel::OnSearchTxtEntered(wxCommandEvent& event)
     }
 }
 
-void mmAssetsPanel::AddAssetTrans(const int selected_index)
+void mmAssetsPanel::AddAssetTrans(const int64 selected_index)
 {
     Model_Asset::Data* asset = &m_assets[selected_index];
     mmAssetDialog asset_dialog(this, asset, true);
@@ -797,7 +797,7 @@ void mmAssetsPanel::AddAssetTrans(const int selected_index)
     }
 }
 
-void mmAssetsPanel::ViewAssetTrans(const int selected_index)
+void mmAssetsPanel::ViewAssetTrans(const int64 selected_index)
 {
     Model_Asset::Data* asset = &m_assets[selected_index];
     Model_Translink::Data_Set asset_list = Model_Translink::TranslinkList(Model_Attachment::ASSET, asset->ASSETID);
@@ -818,7 +818,7 @@ void mmAssetsPanel::ViewAssetTrans(const int selected_index)
     wxMessageBox(msg, "Viewing Asset Transactions");
 }
 
-void mmAssetsPanel::GotoAssetAccount(const int selected_index)
+void mmAssetsPanel::GotoAssetAccount(const int64 selected_index)
 {
     Model_Asset::Data* asset = &m_assets[selected_index];
     const Model_Account::Data* account = Model_Account::instance().get(asset->ASSETNAME);

@@ -461,7 +461,7 @@ void Option::setHomePageIncExpRange(const int value)
     m_homepage_incexp_range = value;
 }
 
-int Option::AccountImageId(const int account_id, const bool def, const bool ignoreClosure)
+int Option::AccountImageId(const int64 account_id, const bool def, const bool ignoreClosure)
 {
     wxString acctStatus = VIEW_ACCOUNTS_OPEN_STR;
     Model_Account::TYPE_ID acctType = Model_Account::TYPE_ID_CHECKING;

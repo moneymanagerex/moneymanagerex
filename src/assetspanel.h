@@ -43,7 +43,7 @@ public:
     void OnViewAssetTrans(wxCommandEvent& WXUNUSED(event));
     void OnGotoAssetAccount(wxCommandEvent& WXUNUSED(event));
 
-    void doRefreshItems(int trx_id = -1);
+    void doRefreshItems(int64 trx_id = -1);
 
 protected:
     virtual void OnColClick(wxListEvent& event);
@@ -120,9 +120,9 @@ public:
 
     wxString BuildPage() const { return m_listCtrlAssets->BuildPage(_("Assets")); }
 
-    void AddAssetTrans(const int selected_index);
-    void ViewAssetTrans(const int selected_index);
-    void GotoAssetAccount(const int selected_index);
+    void AddAssetTrans(const int64 selected_index);
+    void ViewAssetTrans(const int64 selected_index);
+    void GotoAssetAccount(const int64 selected_index);
     void RefreshList();
 
 private:

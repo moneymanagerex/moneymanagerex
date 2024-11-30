@@ -152,7 +152,7 @@ public:
     int getNavigationIconSize() const noexcept;
     int getToolbarIconSize() const noexcept;
 
-    int AccountImageId(const int account_id, const bool def, const bool ignoreClosure = false);
+    int AccountImageId(const int64 account_id, const bool def, const bool ignoreClosure = false);
     bool getSendUsageStatistics() const noexcept;
 
     void IgnoreFutureTransactions(const bool value);
