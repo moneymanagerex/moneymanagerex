@@ -767,7 +767,7 @@ void mmAssetsPanel::OnSearchTxtEntered(wxCommandEvent& event)
     }
 }
 
-void mmAssetsPanel::AddAssetTrans(const int64 selected_index)
+void mmAssetsPanel::AddAssetTrans(const int selected_index)
 {
     Model_Asset::Data* asset = &m_assets[selected_index];
     mmAssetDialog asset_dialog(this, asset, true);
@@ -797,7 +797,7 @@ void mmAssetsPanel::AddAssetTrans(const int64 selected_index)
     }
 }
 
-void mmAssetsPanel::ViewAssetTrans(const int64 selected_index)
+void mmAssetsPanel::ViewAssetTrans(const int selected_index)
 {
     Model_Asset::Data* asset = &m_assets[selected_index];
     Model_Translink::Data_Set asset_list = Model_Translink::TranslinkList(Model_Attachment::ASSET, asset->ASSETID);
@@ -818,7 +818,7 @@ void mmAssetsPanel::ViewAssetTrans(const int64 selected_index)
     wxMessageBox(msg, "Viewing Asset Transactions");
 }
 
-void mmAssetsPanel::GotoAssetAccount(const int64 selected_index)
+void mmAssetsPanel::GotoAssetAccount(const int selected_index)
 {
     Model_Asset::Data* asset = &m_assets[selected_index];
     const Model_Account::Data* account = Model_Account::instance().get(asset->ASSETNAME);
