@@ -3926,7 +3926,7 @@ void mmGUIFrame::OnClearRecentFiles(wxCommandEvent& /*event*/)
     m_recentFiles->AddFileToHistory(m_filename);
 }
 
-void mmGUIFrame::setGotoAccountID(int account_id, long transID)
+void mmGUIFrame::setGotoAccountID(int64 account_id, int64 transID)
 {
     gotoAccountID_ = account_id;
     gotoTransID_ = transID;

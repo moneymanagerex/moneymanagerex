@@ -96,10 +96,10 @@ public:
     /** Return the Data record for the given account num */
     Data* getByAccNum(const wxString& num);   
 
-    static wxString get_account_name(int account_id);
+    static wxString get_account_name(int64 account_id);
 
     /** Remove the Data record from memory and the database. */
-    bool remove(int id);
+    bool remove(int64 id);
 
 public:
     wxArrayString all_checking_account_names(bool skip_closed = false);

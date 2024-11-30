@@ -70,7 +70,7 @@ wxArrayString Model_Attachment::all_type()
 }
 
 /** Return a dataset with attachments linked to a specific object */
-const Model_Attachment::Data_Set Model_Attachment::FilterAttachments(const wxString& RefType, const int RefId)
+const Model_Attachment::Data_Set Model_Attachment::FilterAttachments(const wxString& RefType, const int64 RefId)
 {
     Data_Set attachments;
     for (auto &attachment : this->all(COL_DESCRIPTION))
@@ -82,13 +82,13 @@ const Model_Attachment::Data_Set Model_Attachment::FilterAttachments(const wxStr
 }
 
 /** Return the number of attachments linked to a specific object */
-int Model_Attachment::NrAttachments(const wxString& RefType, const int RefId)
+int Model_Attachment::NrAttachments(const wxString& RefType, const int64 RefId)
 {
     return Model_Attachment::instance().find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(RefType), Model_Attachment::REFID(RefId)).size();
 }
 
 /** Return the last attachment number linked to a specific object */
-int Model_Attachment::LastAttachmentNumber(const wxString& RefType, const int RefId)
+int Model_Attachment::LastAttachmentNumber(const wxString& RefType, const int64 RefId)
 {
     int LastAttachmentNumber = 0;
     Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(RefType, RefId);

@@ -162,7 +162,7 @@ Model_Account::Data* Model_Account::getByAccNum(const wxString& num)
     return account;
 }
 
-wxString Model_Account::get_account_name(int account_id)
+wxString Model_Account::get_account_name(int64 account_id)
 {
     Data* account = instance().get(account_id);
     if (account)
@@ -172,7 +172,7 @@ wxString Model_Account::get_account_name(int account_id)
 }
 
 /** Remove the Data record instance from memory and the database. */
-bool Model_Account::remove(int id)
+bool Model_Account::remove(int64 id)
 {
     this->Savepoint();
     for (const auto& r: Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(id), Model_Checking::TOACCOUNTID(id)))

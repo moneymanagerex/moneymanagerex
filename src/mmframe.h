@@ -60,7 +60,7 @@ public:
     mmGUIApp *m_app;
 
 public:
-    void setGotoAccountID(int account_id, long transID = -1);
+    void setGotoAccountID(int64 account_id, int64 transID = -1);
     bool financialYearIsDifferent()
     {
         return (Option::instance().FinancialYearStartDay() != "1" ||
@@ -97,8 +97,8 @@ private:
     // Marker to indicate DB was inuse when opened and open cancelled
     bool db_lockInPlace;
 
-    int gotoAccountID_ = -1;
-    int gotoTransID_ = -1;
+    int64 gotoAccountID_ = -1;
+    int64 gotoTransID_ = -1;
 
     /* There are 2 kinds of reports */
     bool activeReport_ = false;
