@@ -97,7 +97,7 @@ void mmReportCashFlow::getTransactions()
             if (Model_Checking::foreignTransactionAsTransfer(tran)
                 || (strDate > todayString))
                 continue;
-            m_balance += Model_Checking::account_flow(tran, account.ACCOUNTID) * convRate;
+            m_balance += Model_Checking::balance(tran, account.ACCOUNTID) * convRate;
         }
     }
 
@@ -116,7 +116,7 @@ void mmReportCashFlow::getTransactions()
         if (trx.CATEGID == -1)
         {
             Model_Checking::Data *transaction = Model_Checking::instance().get(trx.TRANSID);
-            for (const auto& split_item : Model_Checking::split(transaction))
+            for (const auto& split_item : Model_Checking::splittransaction(transaction))
             {
                 trx.CATEGID = split_item.CATEGID;
                 trx.TRANSAMOUNT = split_item.SPLITTRANSAMOUNT;
@@ -168,7 +168,7 @@ void mmReportCashFlow::getTransactions()
             trx.TOTRANSAMOUNT = entry.TOTRANSAMOUNT;
             if (entry.CATEGID == -1)
             {
-                for (const auto& split_item : Model_Billsdeposits::split(entry))
+                for (const auto& split_item : Model_Billsdeposits::splittransaction(entry))
                 {
                     trx.CATEGID = split_item.CATEGID;
                     trx.TRANSAMOUNT = split_item.SPLITTRANSAMOUNT;

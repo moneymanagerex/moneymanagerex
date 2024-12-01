@@ -25,7 +25,6 @@
 #include "mmcustomdata.h"
 #include "defs.h"
 #include "mmSimpleDialogs.h"
-#include "fusedtransaction.h"
 
 #include "Model_Checking.h"
 #include "Model_Payee.h"
@@ -47,7 +46,8 @@ public:
 
     mmTransDialog(wxWindow* parent
         , int account_id
-        , Fused_Transaction::IdB fused_id
+        , int transaction_id
+        , double current_balance
         , bool duplicate = false
         , int type = Model_Checking::TYPE_ID_WITHDRAWAL);
 
@@ -61,9 +61,9 @@ public:
     );
 
     void SetDialogTitle(const wxString& title);
-    int GetAccountID() { return m_fused_data.ACCOUNTID; }
-    int GetToAccountID() { return m_fused_data.TOACCOUNTID; }
-    int GetTransactionID() { return m_fused_data.TRANSID; }
+    int GetAccountID() { return m_trx_data.ACCOUNTID; }
+    int GetToAccountID() { return m_trx_data.TOACCOUNTID; }
+    int GetTransactionID() { return m_trx_data.TRANSID; }
 
 private:
     wxSharedPtr<mmCustomData> m_custom_fields;
@@ -118,18 +118,17 @@ private:
     mmCalculatorPopup* calcPopup_ = nullptr;
     mmTextCtrl* calcTarget_ = nullptr;
 
-    enum MODE { MODE_NEW = 0, MODE_DUP, MODE_EDIT };
-    MODE m_mode = MODE_EDIT;
     bool m_transfer = false;
+    bool m_new_trx = false;
+    bool m_duplicate = false;
     bool m_advanced = false;
-
     double m_current_balance = false;
 
     int object_in_focus_ = wxID_ANY;
     int m_account_id = -1;
     wxString m_status;
 
-    Fused_Transaction::Data m_fused_data;
+    DB_Table_CHECKINGACCOUNT_V1::Data m_trx_data;
     std::vector<Split> m_local_splits;
 
     std::vector<wxString> frequentNotes_;
@@ -174,6 +173,8 @@ private:
         ID_CUSTOMFIELD,
         ID_DIALOG_TRANS_TAGS
     };
+
+
 };
 
 #endif

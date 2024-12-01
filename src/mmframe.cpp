@@ -553,7 +553,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 
                 Model_Splittransaction::Cache checking_splits;
                 std::vector<wxArrayInt> splitTags;
-                for (const auto &item : Model_Billsdeposits::split(q1))
+                for (const auto &item : Model_Billsdeposits::splittransaction(q1))
                 {
                     Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
                     split->TRANSID = transID;
@@ -2615,14 +2615,16 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
     dlg.ShowModal();
     int account_id = dlg.get_last_imported_acc();
     RefreshNavigationTree();
-    if (account_id > 0) {
-        setGotoAccountID(account_id);
+    if (account_id > 0)
+    {
+        setGotoAccountID(account_id, -1);
         Model_Account::Data* account = Model_Account::instance().get(account_id);
         setAccountNavTreeSection(account->ACCOUNTNAME);
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
         this->GetEventHandler()->AddPendingEvent(evt);
     }
-    else {
+    else
+    {
         refreshPanelData();
     }
 
@@ -2833,13 +2835,13 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& event)
     if (m_db)
     {
         if (Model_Account::instance().all_checking_account_names().empty()) return;
-        mmTransDialog dlg(this, gotoAccountID_, {0, false});
+        mmTransDialog dlg(this, gotoAccountID_, 0, 0);
 
         int i = dlg.ShowModal();
         if (i != wxID_CANCEL)
         {
             gotoAccountID_ = dlg.GetAccountID();
-            gotoTransID_ = { dlg.GetTransactionID(), 0 };
+            gotoTransID_ = dlg.GetTransactionID();
             Model_Account::Data * account = Model_Account::instance().get(gotoAccountID_);
             if (account)
             {
@@ -3373,12 +3375,14 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     Model_Account::Data* account = Model_Account::instance().get(accountID);
     bool newCreditDisplayed = (0 == account->CREDITLIMIT) ? false : true;
 
-    if (panelCurrent_->GetId() == mmID_CHECKING && (newCreditDisplayed == creditDisplayed_)) {
+    if (panelCurrent_->GetId() == mmID_CHECKING && (newCreditDisplayed == creditDisplayed_))
+    {
         mmCheckingPanel* checkingAccountPage = wxDynamicCast(panelCurrent_, mmCheckingPanel);
         checkingAccountPage->RefreshList();
         checkingAccountPage->DisplayAccountDetails(accountID);
     }
-    else {
+    else
+    {
         DoWindowsFreezeThaw(homePanel_);
         creditDisplayed_ = (0 == account->CREDITLIMIT) ? false : true;
         wxSizer *sizer = cleanupHomePanel();
@@ -3395,9 +3399,10 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
 
     menuPrintingEnable(true);
-    if (gotoTransID_.first > 0) {
+    if (gotoTransID_ > 0)
+    {
         wxDynamicCast(panelCurrent_, mmCheckingPanel)->SetSelectedTransaction(gotoTransID_);
-        gotoTransID_ = { -1, 0 };
+        gotoTransID_ = -1;
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
     m_nav_tree_ctrl->SetFocus();
@@ -3921,10 +3926,10 @@ void mmGUIFrame::OnClearRecentFiles(wxCommandEvent& /*event*/)
     m_recentFiles->AddFileToHistory(m_filename);
 }
 
-void mmGUIFrame::setGotoAccountID(int account_id, Fused_Transaction::IdRepeat fused_id)
+void mmGUIFrame::setGotoAccountID(int account_id, long transID)
 {
     gotoAccountID_ = account_id;
-    gotoTransID_ = fused_id;
+    gotoTransID_ = transID;
 }
 
 void mmGUIFrame::OnToggleFullScreen(wxCommandEvent& WXUNUSED(event))

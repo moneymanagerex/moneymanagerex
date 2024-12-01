@@ -32,7 +32,6 @@ Copyright (C) 2021, 2022, 2024 Mark Whalley (mark@ipx.co.uk)
 #include "constants.h"
 #include "util.h"
 #include "paths.h"
-#include "fusedtransaction.h"
 
 //----------------------------------------------------------------------------
 class wxSQLite3Database;
@@ -61,7 +60,7 @@ public:
     mmGUIApp *m_app;
 
 public:
-    void setGotoAccountID(int account_id, Fused_Transaction::IdRepeat fused_id = {-1, 0});
+    void setGotoAccountID(int account_id, long transID = -1);
     bool financialYearIsDifferent()
     {
         return (Option::instance().FinancialYearStartDay() != "1" ||
@@ -99,7 +98,7 @@ private:
     bool db_lockInPlace;
 
     int gotoAccountID_ = -1;
-    Fused_Transaction::IdRepeat gotoTransID_ = { -1, 0 };
+    int gotoTransID_ = -1;
 
     /* There are 2 kinds of reports */
     bool activeReport_ = false;

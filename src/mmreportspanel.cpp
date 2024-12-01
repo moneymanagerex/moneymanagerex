@@ -612,7 +612,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
                 const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
                 if (account) {
                     m_frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-                    m_frame->setGotoAccountID(transaction->ACCOUNTID, { transID, 0 });
+                    m_frame->setGotoAccountID(transaction->ACCOUNTID, transID);
                     wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
                     m_frame->GetEventHandler()->AddPendingEvent(event);
                 }
@@ -651,7 +651,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
                 }
                 else
                 {
-                    mmTransDialog dlg(m_frame, -1, {transId, false});
+                    mmTransDialog dlg(m_frame, -1, transId, 0);
                     if (dlg.ShowModal() != wxID_CANCEL)
                     {
                         rb_->getHTMLText();

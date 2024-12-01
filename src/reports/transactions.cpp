@@ -319,9 +319,9 @@ table {
                 if (acc)
                 {
                     const Model_Currency::Data* curr = Model_Account::currency(acc);
-                    double flow = Model_Checking::account_flow(transaction, acc->ACCOUNTID);
+                    double amount = Model_Checking::balance(transaction, acc->ACCOUNTID);
                     if (noOfTrans || (!allAccounts && (selected_accounts.Index(transaction.ACCOUNTID) == wxNOT_FOUND)))
-                        flow = -flow;
+                        amount = -amount;
                     const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
                     if (showColumnById(mmFilterTransactionsDialog::COL_AMOUNT))
                     {
@@ -336,12 +336,12 @@ table {
                     grand_total_in_base_curr[curr->CURRENCYID] += amount * convRate;
                     if (Model_Checking::type_id(transaction) != Model_Checking::TYPE_ID_TRANSFER)
                     {
-                        grand_total_extrans[curr->CURRENCYID] += flow;
-                        grand_total_in_base_curr_extrans[curr->CURRENCYID] += flow * convRate;
+                        grand_total_extrans[curr->CURRENCYID] += amount;
+                        grand_total_in_base_curr_extrans[curr->CURRENCYID] += amount * convRate;
                     }
                     if (chart > -1 && groupBy == -1)
                     {
-                        values_chart[std::to_string(transaction.TRANSID)] += (flow * convRate);
+                        values_chart[std::to_string(transaction.TRANSID)] += (amount * convRate);
                     }
                 }
                 else
