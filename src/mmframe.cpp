@@ -34,7 +34,6 @@
 #include "budgetyeardialog.h"
 #include "categdialog.h"
 #include "constants.h"
-#include "columnorder.h"
 #include "customfieldlistdialog.h"
 #include "dbcheck.h"
 #include "dbupgrade.h"
@@ -45,6 +44,7 @@
 #include "images_list.h"
 #include "maincurrencydialog.h"
 #include "mmcheckingpanel.h"
+#include "mmchecking_list.h"
 #include "mmex.h"
 #include "mmhelppanel.h"
 #include "mmhomepagepanel.h"
@@ -136,7 +136,6 @@ EVT_MENU(MENU_REFRESH_WEBAPP, mmGUIFrame::OnRefreshWebApp)
 EVT_MENU(wxID_BROWSE, mmGUIFrame::OnCustomFieldsManager)
 EVT_MENU(wxID_VIEW_LIST, mmGUIFrame::OnGeneralReportManager)
 EVT_MENU(MENU_THEME_MANAGER, mmGUIFrame::OnThemeManager)
-EVT_MENU(MENU_COLUMN_ORDER, mmGUIFrame::OnColumnOrderManager)
 EVT_MENU(MENU_TREEPOPUP_LAUNCHWEBSITE, mmGUIFrame::OnLaunchAccountWebsite)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, mmGUIFrame::OnAccountAttachments)
 EVT_MENU(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbar)
@@ -1791,10 +1790,6 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
         , _("T&heme Manager..."), _("Theme Manager"));
     menuTools->Append(menuItemThemes);
 
-    wxMenuItem* menuItemColumnOrder = new wxMenuItem(menuTools, MENU_COLUMN_ORDER
-        , _("C&olumn Order Manager..."), _("Column Order Manager"));
-    menuTools->Append(menuItemColumnOrder);
-
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemTransactions = new wxMenuItem(menuTools, MENU_TRANSACTIONREPORT
@@ -2744,7 +2739,7 @@ void mmGUIFrame::refreshPanelData(wxCommandEvent& /*event*/)
 }
 void mmGUIFrame::refreshPanelData()
 {
-    int id = panelCurrent_->GetId();
+    int id = panelCurrent_ ? panelCurrent_->GetId() : mmID_HOMEPAGE;
     wxLogDebug("Panel ID: %d", id);
 
     switch (id)
@@ -2943,12 +2938,6 @@ void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))
 void mmGUIFrame::OnThemeManager(wxCommandEvent& /*event*/)
 {
     mmThemesDialog dlg(this);
-    dlg.ShowModal();
-}
-
-void mmGUIFrame::OnColumnOrderManager(wxCommandEvent& /*event*/)
-{
-    mmColumnsDialog dlg(this);
     dlg.ShowModal();
 }
 

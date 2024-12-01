@@ -34,7 +34,7 @@ public:
 private:
     void OnCancel(wxWizardEvent&);
     wxWizardPageSimple* page1 = nullptr;
-    bool success_;
+    bool success_ = false;
     
     wxDECLARE_EVENT_TABLE();
 };

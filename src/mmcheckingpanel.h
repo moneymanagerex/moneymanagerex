@@ -126,14 +126,16 @@ private:
     wxSharedPtr<mmFilterTransactionsDialog> m_trans_filter_dlg;
 
 private:
-    bool isAllAccounts_; // TRUE = All accounts are displayed
+    int m_currentView;
+    int m_AccountID = -1;
+    bool isAllAccounts_ = false; // TRUE = All accounts are displayed
     bool isTrash_ = false; // TRUE = Deleted transactions are displayed
     int m_AccountID;
     int m_filter_id;
     bool m_scheduled_selected;
     bool m_scheduled_allowed;
     wxString m_sortSaveTitle;   // Used for saving sort settings
-    bool m_transFilterActive;
+    bool m_transFilterActive = false;
     wxString m_begin_date;
     wxString m_end_date;
     double m_account_flow = 0.0;

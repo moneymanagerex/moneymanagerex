@@ -37,8 +37,8 @@ public:
 
     ~TransactionListCtrl();
 
-    void createColumns(mmListCtrl &lst);
-    Fused_Transaction::Full_Data_Set m_trans;
+    void createColumns();
+    Model_Checking::Full_Data_Set m_trans;
     void markSelectedTransaction();
     void DeleteTransactionsByStatus(const wxString& status);
     void resetColumns();
@@ -73,7 +73,7 @@ public:
         COL_DEF_SORT2 = COL_ID 
     };
     EColumn toEColumn(const unsigned long col);
-public:
+
     EColumn g_sortcol = COL_DEF_SORT; // index of primary column to sort by
     EColumn prev_g_sortcol = COL_DEF_SORT2; // index of secondary column to sort by
     bool g_asc = true; // asc\desc sorting for primary sort column
@@ -240,6 +240,7 @@ inline std::vector<Fused_Transaction::IdRepeat> TransactionListCtrl::getSelected
 inline std::vector<Fused_Transaction::IdRepeat> TransactionListCtrl::getSelectedId() const { return m_selected_id; }
 
 inline void TransactionListCtrl::setVisibleItemIndex(long v) { m_topItemIndex = v; }
+inline void TransactionListCtrl::createColumns(){ mmListCtrl::CreateColumns(); }
 
 #endif // MM_EX_CHECKING_LIST_H_
 

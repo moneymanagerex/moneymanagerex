@@ -52,7 +52,7 @@ public:
 private:
     wxChoice* itemChoice_ = nullptr;
     wxSpinCtrl* textYear_ = nullptr;
-    bool withMonth_;
+    bool withMonth_ = false;
     wxSpinCtrl* textMonth_ = nullptr;
 };
 

@@ -1123,7 +1123,7 @@ void mmFilterTransactionsDialog::OnButtonOkClick(wxCommandEvent& /*event*/)
     }
 }
 
-void mmFilterTransactionsDialog::OnButtonCancelClick( [[maybe_unused]] wxCommandEvent& event)
+void mmFilterTransactionsDialog::OnButtonCancelClick(wxCommandEvent& WXUNUSED(event))
 {
 #ifdef __WXMSW__
     wxWindow* w = FindFocus();
@@ -1492,13 +1492,16 @@ int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tr
     int ok = mmIsRecordMatches<Model_Checking>(tran);
     for (const auto& split : splits)
     {
-        // Need to check if the split matches using the transaction Notes & Tags as well
-        Model_Checking::Data splitWithTxnNotes = tran;
-        splitWithTxnNotes.CATEGID = split.CATEGID;
-        splitWithTxnNotes.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
-        Model_Checking::Data splitWithSplitNotes = splitWithTxnNotes;
-        splitWithSplitNotes.NOTES = split.NOTES;
-        ok += (mmIsRecordMatches<Model_Checking>(splitWithSplitNotes, true) || mmIsRecordMatches<Model_Checking>(splitWithTxnNotes, true));
+        for (const auto& split : it->second)
+        {
+            // Need to check if the split matches using the transaction Notes & Tags as well
+            Model_Checking::Data splitWithTxnNotes(tran);
+            splitWithTxnNotes.CATEGID = split.CATEGID;
+            splitWithTxnNotes.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
+            Model_Checking::Data splitWithSplitNotes = splitWithTxnNotes;
+            splitWithSplitNotes.NOTES = split.NOTES;
+            ok += (mmIsRecordMatches<Model_Checking>(splitWithSplitNotes, true) || mmIsRecordMatches<Model_Checking>(splitWithTxnNotes, true));
+        }
     }
     return ok;
 }
@@ -2218,12 +2221,12 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
             StringBuffer buffer;
             Writer<StringBuffer> writer(buffer);
             j_doc.Accept(writer);
-            Model_Infotable::instance().Set(m_filter_key + "_LAST_USED", wxString(buffer.GetString()));
+            Model_Infotable::instance().Set(m_filter_key + "_LAST_USED", wxString::FromUTF8(buffer.GetString()));
             // Update the settings list with the new data
             mmDoInitSettingNameChoice();
         }
     }
-    Model_Infotable::instance().Set("TRANSACTION_FILTER_LAST_USED", m_settings_json);
+    Model_Infotable::instance().Set("TRANSACTIONS_FILTER_LAST_USED", m_settings_json);
 }
 
 void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))

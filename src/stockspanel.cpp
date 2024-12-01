@@ -218,7 +218,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
 
     const Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList(Model_Attachment::STOCK, stock->STOCKID);
     Model_Checking::Data_Set checking_list;
-    for (const auto trans : stock_list)
+    for (const auto &trans : stock_list)
     {
         Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
         if (checking_entry && checking_entry->DELETEDTIME.IsEmpty()) checking_list.push_back(*checking_entry);

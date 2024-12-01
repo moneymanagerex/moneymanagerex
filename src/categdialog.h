@@ -118,10 +118,10 @@ private:
     wxTreeItemId m_selectedItemId;
     wxTreeItemId root_;
     wxTreeItemId getTreeItemFor(const wxTreeItemId& itemID, const wxString& itemText, const int parentid);
-    bool m_IsSelection;
-    int m_categ_id;
-    int m_init_selected_categ_id;
-    int m_dragSourceCATEGID;
+    bool m_IsSelection = false;
+    int m_categ_id = -1;
+    int m_init_selected_categ_id = -1;
+    int m_dragSourceCATEGID = 0;
     std::map<int, bool> m_categoryVisible;
     std::map<int, std::vector<Model_Category::Data>> m_categ_children;
     bool m_processExpandCollapse = true;
