@@ -409,7 +409,7 @@ bool checkThemeContents(wxArrayString *filesinTheme)
     
     for (int i = 0; !neededFiles[i].IsEmpty(); i++)
     {
-        wxString realName = (darkFound && darkMode) ? neededFiles[i].AfterLast('-') : neededFiles[i];
+        const wxString realName = (darkFound && darkMode) ? neededFiles[i].AfterLast('-') : neededFiles[i];
         if (wxNOT_FOUND == filesinTheme->Index(realName)) {
             wxMessageBox(wxString::Format(_("File '%1$s' missing or invalid in chosen theme '%2$s'")
                 , neededFiles[i], Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);

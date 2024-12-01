@@ -109,11 +109,11 @@ protected:
     bool m_only_active = false;
 
 private:
-    bool m_initial;
+    bool m_initial = true;
     int m_account_selection = 0;
     int m_id = -1;
     int m_parameters = 0;
-    wxString m_settings;
+    wxString m_settings = "";
 };
 
 inline void mmPrintableBase::setSelection(int sel) { m_date_selection = sel; }

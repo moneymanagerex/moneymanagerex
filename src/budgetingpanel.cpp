@@ -296,6 +296,7 @@ budgetingListCtrl::budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, con
     m_columns.push_back(PANEL_COLUMN(_("Notes"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
 
     m_col_width = "BUDGET_COL%d_WIDTH";
+    m_col_idstr = "BUDGET";
 }
 
 void mmBudgetingPanel::sortTable()

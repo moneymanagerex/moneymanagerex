@@ -122,7 +122,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     hb.init();
     wxString headingStr = AdjustYearValues(startDay, startMonth, startYear, budget_year);
     bool amply = Option::instance().BudgetReportWithSummaries();
-    const wxString& headerStartupMsg = amply
+    const wxString headerStartupMsg = amply
         ? _("Budget Categories for %s") : _("Budget Category Summary for %s");
 
     headingStr = wxString::Format(headerStartupMsg

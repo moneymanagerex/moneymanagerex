@@ -192,6 +192,7 @@ wxString mmReportSummaryStocks::getHTMLText()
                     hb.endSpan();
                     hb.startSpan(Model_Currency::toCurrency(forex_real_gain_loss), wxString::Format(" style='text-align:right;%s' nowrap"
                         , forex_real_gain_loss < 0 ? "color:red;" : ""));
+                    hb.endSpan();
                     hb.startSpan(" FX", "");
                     hb.endSpan();
                     hb.addLineBreak();

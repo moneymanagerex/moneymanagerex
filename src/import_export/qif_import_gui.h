@@ -94,7 +94,7 @@ private:
     wxString m_dateFormatStr;
     wxString decimal_;
     bool m_userDefinedDateMask = false;
-    int fromAccountID_;
+    int fromAccountID_ = -1;
     wxString m_FileNameStr;
     const wxDateTime m_today;
     const wxDateTime m_fresh;
@@ -123,9 +123,9 @@ private:
     wxCheckBox* colorCheckBox_ = nullptr;
     mmColorButton* mmColorBtn_ = nullptr;
 
-    bool payeeIsNotes_; //Include payee field in notes
+    bool payeeIsNotes_ = false; //Include payee field in notes
     std::map<std::pair <int, wxString>, std::map<int, std::pair<wxString, wxRegEx>> > payeeMatchPatterns_;
-    bool payeeRegExInitialized_;
+    bool payeeRegExInitialized_ = false;
 
     enum EColumn
     {

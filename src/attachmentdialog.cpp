@@ -45,11 +45,6 @@ wxEND_EVENT_TABLE()
 mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefType, int RefId, const wxString& name) :
     m_RefType(RefType)
     , m_RefId(RefId)
-    #ifdef _DEBUG
-        , debug_(true)
-    #else
-        , debug_(false)
-    #endif
 {
     if (debug_) ColName_[ATTACHMENT_ID] = "#";
     ColName_[ATTACHMENT_DESCRIPTION] = _("Description");

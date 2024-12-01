@@ -60,7 +60,7 @@ private:
     void OnMoveUp(wxCommandEvent& /*event*/);
     void OnMoveDown(wxCommandEvent& /*event*/);
     void OnPatternTableChanged(wxGridEvent& event);
-    void OnPatternTableSize(wxSizeEvent& event);
+    void OnPatternTableSize(wxSizeEvent&);
 
 };
 
@@ -104,11 +104,11 @@ private:
     wxBitmapButton* m_magicButton = nullptr;
 
     int m_payee_id = -1;
+    bool m_payee_choose = false;
     wxString m_init_selected_payee;
     int m_payee_rename = -1;
-    bool m_payee_choose;
     wxString m_maskStr;
-    int m_sort, m_lastSort;
+    int m_sort = cols::PAYEE_NAME, m_lastSort = cols::PAYEE_NAME;
     bool refreshRequested_ = false, m_sortReverse = false;
     std::map<int, wxString> ColName_;
 

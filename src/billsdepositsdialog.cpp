@@ -1350,8 +1350,8 @@ void mmBDDialog::setRepeatType(int repeatType)
             index.resize(BILLSDEPOSITS_REPEATS.size(), -1);
             for (size_t i = 0; i < BILLSDEPOSITS_REPEATS.size(); i++)
             {
-                int j = BILLSDEPOSITS_REPEATS.at(i).first;
-                if (j >= 0 && j < BILLSDEPOSITS_REPEATS.size() && index.at(j) == -1)
+                unsigned int j = BILLSDEPOSITS_REPEATS.at(i).first;
+                if (j < BILLSDEPOSITS_REPEATS.size() && index.at(j) == -1)
                     index.at(j) = i;
                 else
                     wxFAIL;

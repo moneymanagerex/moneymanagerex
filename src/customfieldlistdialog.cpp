@@ -41,12 +41,7 @@ wxBEGIN_EVENT_TABLE( mmCustomFieldListDialog, wxDialog )
 wxEND_EVENT_TABLE()
 
 
-mmCustomFieldListDialog::mmCustomFieldListDialog (wxWindow* parent) :
-    #ifdef _DEBUG
-        debug_(true)
-    #else
-        debug_(false)
-    #endif
+mmCustomFieldListDialog::mmCustomFieldListDialog (wxWindow* parent)
 {
     if (debug_) ColName_[FIELD_ID] = _("#");
     ColName_[FIELD_REF] = _("Attribute of");

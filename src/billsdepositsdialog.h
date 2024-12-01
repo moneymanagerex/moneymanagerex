@@ -83,9 +83,9 @@ private:
     void OnCalculator(wxCommandEvent& event);
     int m_trans_id;
 
-    bool m_new_bill;
-    bool m_dup_bill;
-    bool m_enter_occur;
+    bool m_new_bill = false;
+    bool m_dup_bill = false;
+    bool m_enter_occur = false;
     bool autoExecuteUserAck_ = false;
     bool autoExecuteSilent_ = false;
     bool m_advanced = false;
@@ -121,8 +121,8 @@ private:
     wxBitmapButton* m_btn_due_date = nullptr;
     mmTagTextCtrl* tagTextCtrl_ = nullptr;
 
-    bool m_transfer;
-    int object_in_focus_;
+    bool m_transfer = false;
+    int object_in_focus_ = wxID_ANY;
     wxSize min_size_;
     Model_Billsdeposits::Bill_Data m_bill_data;
 

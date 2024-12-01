@@ -49,7 +49,7 @@ public:
         , const wxString& name = "mmStockDialog"
         );
 
-    int m_stock_id;
+    int m_stock_id = -1;
 
 private:
     void OnQuit(wxCloseEvent& event);
@@ -86,8 +86,8 @@ private:
     wxListCtrl* m_price_listbox = nullptr;
 
     Model_Stock::Data* m_stock = nullptr;
-    bool m_edit;
-    int m_account_id;
+    bool m_edit = false;
+    int m_account_id = -1;
     mmGUIFrame* m_gui_frame = nullptr;
     enum
     {
