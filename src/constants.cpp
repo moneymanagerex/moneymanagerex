@@ -190,6 +190,21 @@ const wxString INIDB_USE_ORG_DATE_DUPLICATE = "USEORIGDATEONDUPLICATE";
 const wxString INIDB_SEND_USAGE_STATS = "SENDUSAGESTATS";
 const wxString INIDB_CHECK_NEWS = "CHECKNEWS";
 
+const wxString VIEW_TRANS_FILTER_DIALOG_STR  = wxTRANSLATE("View Transaction Report...");
+const wxString VIEW_TRANS_ALL_STR            = wxTRANSLATE("View All Transactions");
+const wxString VIEW_TRANS_TODAY_STR          = wxTRANSLATE("View Today");
+const wxString VIEW_TRANS_CURRENT_MONTH_STR  = wxTRANSLATE("View Current Month");
+const wxString VIEW_TRANS_LAST_30_DAYS_STR   = wxTRANSLATE("View Last 30 days");
+const wxString VIEW_TRANS_LAST_90_DAYS_STR   = wxTRANSLATE("View Last 90 days");
+const wxString VIEW_TRANS_LAST_MONTH_STR     = wxTRANSLATE("View Last Month");
+const wxString VIEW_TRANS_LAST_3MONTHS_STR   = wxTRANSLATE("View Last 3 Months");
+const wxString VIEW_TRANS_LAST_12MONTHS_STR  = wxTRANSLATE("View Last 12 Months");
+const wxString VIEW_TRANS_CURRENT_YEAR_STR   = wxTRANSLATE("View Current Year");
+const wxString VIEW_TRANS_CRRNT_FIN_YEAR_STR = wxTRANSLATE("View Current Financial Year");
+const wxString VIEW_TRANS_LAST_YEAR_STR      = wxTRANSLATE("View Last Year");
+const wxString VIEW_TRANS_LAST_FIN_YEAR_STR  = wxTRANSLATE("View Last Financial Year");
+const wxString VIEW_TRANS_SINCE_STATEMENT_STR = wxTRANSLATE("View Since Statement Date");
+
 const wxString VIEW_ACCOUNTS_ALL_STR = wxTRANSLATE("ALL");
 const wxString VIEW_ACCOUNTS_OPEN_STR = wxTRANSLATE("Open");
 const wxString VIEW_ACCOUNTS_CLOSED_STR = wxTRANSLATE("Closed");

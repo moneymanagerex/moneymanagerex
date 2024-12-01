@@ -245,7 +245,7 @@ double Model_Account::balance(const Data* r)
     double sum = r->INITIALBAL;
     for (const auto& tran: transaction(r))
     {
-        sum += Model_Checking::account_flow(tran, r->ACCOUNTID); 
+        sum += Model_Checking::balance(tran, r->ACCOUNTID); 
     }
     return sum;
 }
