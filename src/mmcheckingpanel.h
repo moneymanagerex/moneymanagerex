@@ -130,7 +130,6 @@ private:
     int m_AccountID = -1;
     bool isAllAccounts_ = false; // TRUE = All accounts are displayed
     bool isTrash_ = false; // TRUE = Deleted transactions are displayed
-    int m_AccountID;
     int m_filter_id;
     bool m_scheduled_selected;
     bool m_scheduled_allowed;
