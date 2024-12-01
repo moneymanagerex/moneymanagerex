@@ -52,6 +52,7 @@ public:
     std::vector<PANEL_COLUMN> m_columns;
     std::vector<int> m_real_columns; // map from actual column to EColumn when list can have optional columns
     wxString m_col_width;
+    wxString m_col_idstr;
     int m_default_sort_column = -1;
 
     virtual wxListItemAttr* OnGetItemAttr(long row) const;
@@ -59,7 +60,11 @@ public:
     int GetColumnWidthSetting(int column_number, int default_size = wxLIST_AUTOSIZE);
     void SetColumnWidthSetting(int column_number, int column_width);
 
+    void SetColumnOrder(std::vector<int> columnList);
+    std::vector<int> GetColumnOrder();
+
 protected:
+    void CreateColumns();
     void OnItemResize(wxListEvent& event);
     virtual void OnColClick(wxListEvent& event);
     void OnColRightClick(wxListEvent& event);

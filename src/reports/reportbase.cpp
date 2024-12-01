@@ -27,10 +27,7 @@
 #include "util.h"
 
 mmPrintableBase::mmPrintableBase(const wxString& title)
-    : m_title(title)
-    , m_initial(true)
-    , accountArray_(nullptr)
-    , m_settings("")
+    : m_title(title)    
 {
 }
 
@@ -230,7 +227,7 @@ void mmPrintableBase::setAccounts(int selection, const wxString& name)
             }
 
             auto parent = wxWindow::FindWindowById(mmID_REPORTS);
-            mmMultiChoiceDialog mcd(parent ? parent : 0, _("Choose Accounts"), m_title, accounts);
+            mmMultiChoiceDialog mcd(parent ? parent : 0, _("Choose Accounts"), wxGetTranslation(m_title), accounts);
 
             if (selectedAccountArray_ && !selectedAccountArray_->IsEmpty())
             {

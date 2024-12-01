@@ -122,9 +122,10 @@ private:
     MODE m_mode = MODE_EDIT;
     bool m_transfer = false;
     bool m_advanced = false;
+    double m_current_balance = false;
 
-    int object_in_focus_;
-    int m_account_id;
+    int object_in_focus_ = wxID_ANY;
+    int m_account_id = -1;
     wxString m_status;
 
     Fused_Transaction::Data m_fused_data;

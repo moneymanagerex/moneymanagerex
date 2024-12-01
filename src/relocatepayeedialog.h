@@ -49,7 +49,7 @@ private:
     void IsOkOk();
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
-    void OnTextUpdated(wxCommandEvent& event);
+    void OnTextUpdated(wxCommandEvent&);
 
     void OnFocusChange(wxChildFocusEvent& event);
 

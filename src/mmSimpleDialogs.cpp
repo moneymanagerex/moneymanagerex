@@ -311,7 +311,7 @@ mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
     Bind(wxEVT_CHAR, &mmComboBox::OnKeyPressed, this);
 }
 
-void mmComboBox::OnDropDown(wxCommandEvent& event)
+void mmComboBox::OnDropDown(wxCommandEvent&)
 {
     wxFocusEvent evt;
     OnSetFocus(evt);
@@ -471,8 +471,8 @@ void mmComboBoxAccount::init()
 mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id
     , wxSize size, int accountID, bool excludeClosed)
     : mmComboBox(parent, id, size)
-    , excludeClosed_(excludeClosed)
     , accountID_(accountID)
+    , excludeClosed_(excludeClosed)     
 {
     init();
     wxArrayString choices;
@@ -498,8 +498,8 @@ void mmComboBoxPayee::init()
 mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id
                     , wxSize size, int payeeID, bool excludeHidden)
     : mmComboBox(parent, id, size)
-    , excludeHidden_(excludeHidden)
     , payeeID_(payeeID)
+    , excludeHidden_(excludeHidden)    
 {
     init();
     wxArrayString choices;
@@ -608,7 +608,7 @@ mmComboBoxCustom::mmComboBoxCustom(wxWindow* parent, wxArrayString& a, wxWindowI
 
 mmDatePickerCtrl::mmDatePickerCtrl(wxWindow* parent, wxWindowID id, wxDateTime dt, wxPoint pos, wxSize size, long style)
     : wxPanel(parent, id, pos, size, style)
-    , parent_(parent), dt_(dt)
+    , dt_(dt), parent_(parent)
 {
     if (!dt.IsValid())
         dt_ = wxDateTime::Now();
@@ -731,7 +731,7 @@ void mmDatePickerCtrl::OnDateChanged(wxDateEvent& event)
     event.Skip();
 }
 
-void mmDatePickerCtrl::OnDateSpin(wxSpinEvent& event)
+void mmDatePickerCtrl::OnDateSpin(wxSpinEvent&)
 {
     if (spinButton_)
     {
@@ -1017,7 +1017,7 @@ void mmErrorDialogs::InvalidFile(wxWindow *object, bool open)
 
 void mmErrorDialogs::InvalidAccount(wxWindow *object, bool transfer, TOOL_TIP tm)
 {
-    const wxString& errorHeader = _("Invalid Account");
+    const wxString errorHeader = _("Invalid Account");
     wxString errorMessage;
     if (!transfer)
         errorMessage = _("Please select the account for this transaction.");
@@ -1036,8 +1036,8 @@ void mmErrorDialogs::InvalidAccount(wxWindow *object, bool transfer, TOOL_TIP tm
 
 void mmErrorDialogs::InvalidPayee(wxWindow *object)
 {
-    const wxString& errorHeader = _("Invalid Payee");
-    const wxString& errorMessage = _("Please type in a new payee,\n"
+    const wxString errorHeader = _("Invalid Payee");
+    const wxString errorMessage = _("Please type in a new payee,\n"
         "or make a selection using the dropdown button.")
         + "\n";
     ToolTip4Object(object, errorMessage, errorHeader, wxICON_ERROR);
@@ -1752,7 +1752,6 @@ bool mmTagTextCtrl::Validate(const wxString& tagText)
 
     textCtrl_->SetEvtHandlerEnabled(false);
     wxString tags_out;
-    bool newTagCreated = false;
     bool is_valid = true;
     // parse the tags and prompt to create any which don't exist
     for (const auto& tag : parseTags(tags_in))
@@ -1769,7 +1768,6 @@ bool mmTagTextCtrl::Validate(const wxString& tagText)
             // Prompt user to create a new tag
             if (wxMessageDialog(nullptr, wxString::Format(_("Create new tag '%s'?"), tag), _("New tag entered"), wxYES_NO).ShowModal() == wxID_YES)
             {
-                newTagCreated = true;
                 Model_Tag::Data* newTag = Model_Tag::instance().create();
                 newTag->TAGNAME = tag;
                 newTag->ACTIVE = 1;

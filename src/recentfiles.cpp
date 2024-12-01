@@ -32,7 +32,7 @@ mmFileHistory::~mmFileHistory()
 
 void mmFileHistory::Clear()
 {
-    int count = GetCount();
+    const int count = GetCount();
     for (int i = 0; i < count; i++)
     {
         RemoveFileFromHistory(0);

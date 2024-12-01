@@ -44,8 +44,8 @@ public:
 
 private:
 
-    int m_type;
-    int m_account_id;
+    int m_type = type::CSV;
+    int m_account_id = -1;
     void mmExportQIF();
     void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
     void OnCheckboxClick(wxCommandEvent& WXUNUSED(event));

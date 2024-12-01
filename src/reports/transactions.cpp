@@ -32,8 +32,8 @@
 
 mmReportTransactions::mmReportTransactions(wxSharedPtr<mmFilterTransactionsDialog>& transDialog)
     : mmPrintableBase("Transaction Report")
-    , m_transDialog(transDialog)
     , trans_()
+    , m_transDialog(transDialog)
 {
 }
 
@@ -244,6 +244,7 @@ table {
                     case Model_CustomField::TYPE_ID_BOOLEAN:
                         nameCSS.Append(" text-center");
                         break;
+                    default: break;
                     }
                     hb.addTableHeaderCell(name, nameCSS);
                 }
@@ -323,16 +324,16 @@ table {
                         flow = -flow;
                     const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
                     if (showColumnById(mmFilterTransactionsDialog::COL_AMOUNT))
-                        if (Model_Checking::status_id(transaction.STATUS) == Model_Checking::STATUS_ID_VOID) {
-                            double void_flow = Model_Checking::type_id(transaction.TRANSCODE) == Model_Checking::TYPE_ID_DEPOSIT ? transaction.TRANSAMOUNT : -transaction.TRANSAMOUNT;
-                            hb.addCurrencyCell(void_flow, curr, -1, true);
-                        }
+                    {
+                        if (Model_Checking::status_id(transaction.STATUS) == Model_Checking::STATUS_ID_VOID)
+                            hb.addCurrencyCell(Model_Checking::amount(transaction, acc->ACCOUNTID), curr, -1, true);                            
                         else if (transaction.DELETEDTIME.IsEmpty())
-                            hb.addCurrencyCell(flow, curr);
-                    total[curr->CURRENCYID] += flow;
-                    grand_total[curr->CURRENCYID] += flow;
-                    total_in_base_curr[curr->CURRENCYID] += flow * convRate;
-                    grand_total_in_base_curr[curr->CURRENCYID] += flow * convRate;
+                            hb.addCurrencyCell(amount, curr);
+                    }
+                    total[curr->CURRENCYID] += amount;
+                    grand_total[curr->CURRENCYID] += amount;
+                    total_in_base_curr[curr->CURRENCYID] += amount * convRate;
+                    grand_total_in_base_curr[curr->CURRENCYID] += amount * convRate;
                     if (Model_Checking::type_id(transaction) != Model_Checking::TYPE_ID_TRANSFER)
                     {
                         grand_total_extrans[curr->CURRENCYID] += flow;
