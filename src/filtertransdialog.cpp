@@ -1487,11 +1487,10 @@ template <class MODEL, class DATA> bool mmFilterTransactionsDialog::mmIsSplitRec
 template bool mmFilterTransactionsDialog::mmIsSplitRecordMatches<Model_Splittransaction>(const Model_Splittransaction::Data& split);
 template bool mmFilterTransactionsDialog::mmIsSplitRecordMatches<Model_Budgetsplittransaction>(const Model_Budgetsplittransaction::Data& split);
 
-int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tran, const std::map<int, Model_Splittransaction::Data_Set>& splits)
+int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tran, const Model_Splittransaction::Data_Set& splits)
 {
     int ok = mmIsRecordMatches<Model_Checking>(tran);
-    const auto& it = splits.find(tran.id());
-    if (it != splits.end())
+    for (const auto& split : splits)
     {
         for (const auto& split : it->second)
         {
@@ -1505,6 +1504,15 @@ int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tr
         }
     }
     return ok;
+}
+
+int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tran, const std::map<int, Model_Splittransaction::Data_Set>& splits)
+{
+    const Model_Splittransaction::Data_Set* split;
+    const auto& it = splits.find(tran.id());
+    if (it != splits.end())
+        split = &(it->second);
+    return mmIsRecordMatches(tran, *split);
 }
 
 int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Data& tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& splits)

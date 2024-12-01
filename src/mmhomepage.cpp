@@ -496,13 +496,13 @@ const wxString htmlWidgetStatistics::getHTMLText()
         if (Model_Checking::status_id(trx) == Model_Checking::STATUS_ID_FOLLOWUP)
             countFollowUp++;
 
-        accountStats[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
-        accountStats[trx.ACCOUNTID].second += Model_Checking::balance(trx, trx.ACCOUNTID);
+        accountStats[trx.ACCOUNTID].first += Model_Checking::account_recflow(trx, trx.ACCOUNTID);
+        accountStats[trx.ACCOUNTID].second += Model_Checking::account_flow(trx, trx.ACCOUNTID);
 
         if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER)
         {
-            accountStats[trx.TOACCOUNTID].first += Model_Checking::reconciled(trx, trx.TOACCOUNTID);
-            accountStats[trx.TOACCOUNTID].second += Model_Checking::balance(trx, trx.TOACCOUNTID);
+            accountStats[trx.TOACCOUNTID].first += Model_Checking::account_recflow(trx, trx.TOACCOUNTID);
+            accountStats[trx.TOACCOUNTID].second += Model_Checking::account_flow(trx, trx.TOACCOUNTID);
         }
     }
 
@@ -670,13 +670,13 @@ void htmlWidgetAccounts::get_account_stats()
 
     for (const auto& trx : all_trans)
     {
-        accountStats_[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
-        accountStats_[trx.ACCOUNTID].second += Model_Checking::balance(trx, trx.ACCOUNTID);
+        accountStats_[trx.ACCOUNTID].first += Model_Checking::account_recflow(trx, trx.ACCOUNTID);
+        accountStats_[trx.ACCOUNTID].second += Model_Checking::account_flow(trx, trx.ACCOUNTID);
 
         if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER)
         {
-            accountStats_[trx.TOACCOUNTID].first += Model_Checking::reconciled(trx, trx.TOACCOUNTID);
-            accountStats_[trx.TOACCOUNTID].second += Model_Checking::balance(trx, trx.TOACCOUNTID);
+            accountStats_[trx.TOACCOUNTID].first += Model_Checking::account_recflow(trx, trx.TOACCOUNTID);
+            accountStats_[trx.TOACCOUNTID].second += Model_Checking::account_flow(trx, trx.TOACCOUNTID);
         }
     }
 

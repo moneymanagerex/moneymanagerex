@@ -105,7 +105,7 @@ Model_Checking::STATUS_ID Model_Billsdeposits::status_id(const Data* r)
 */
 bool Model_Billsdeposits::remove(int id)
 {
-    for (auto &item : Model_Billsdeposits::splittransaction(get(id)))
+    for (auto &item : Model_Billsdeposits::split(get(id)))
         Model_Budgetsplittransaction::instance().remove(item.SPLITTRANSID);
     // Delete tags for the scheduled transaction
     Model_Taglink::instance().DeleteAllTags(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), id);
@@ -122,14 +122,27 @@ DB_Table_BILLSDEPOSITS_V1::TRANSCODE Model_Billsdeposits::TRANSCODE(Model_Checki
     return DB_Table_BILLSDEPOSITS_V1::TRANSCODE(Model_Checking::TYPE_STR[type], op);
 }
 
-const Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::splittransaction(const Data* r)
+const Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::split(const Data* r)
 {
-    return Model_Budgetsplittransaction::instance().find(Model_Budgetsplittransaction::TRANSID(r->BDID));
+    return Model_Budgetsplittransaction::instance().find(
+        Model_Budgetsplittransaction::TRANSID(r->BDID));
 }
 
-const Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::splittransaction(const Data& r)
+const Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::split(const Data& r)
 {
-    return Model_Budgetsplittransaction::instance().find(Model_Budgetsplittransaction::TRANSID(r.BDID));
+    return split(&r);
+}
+
+const Model_Taglink::Data_Set Model_Billsdeposits::taglink(const Data* r)
+{
+    return Model_Taglink::instance().find(
+        Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT)),
+        Model_Taglink::REFID(r->BDID));
+}
+
+const Model_Taglink::Data_Set Model_Billsdeposits::taglink(const Data& r)
+{
+    return taglink(&r);
 }
 
 void Model_Billsdeposits::decode_fields(const Data& q1)
@@ -309,15 +322,59 @@ const wxDateTime Model_Billsdeposits::nextOccurDate(int repeatsType, int numRepe
     return dt;
 }
 
+wxArrayString Model_Billsdeposits::unroll(const Data* r, const wxString end_date, int limit)
+{
+    wxArrayString dates;
+    int repeats = r->REPEATS % BD_REPEATS_MULTIPLEX_BASE;
+    int numRepeats = r->NUMOCCURRENCES;
+
+    // ignore old inactive entries
+    if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && numRepeats == -1)
+        return dates;
+
+    // ignore invalid entries
+    if (repeats != Model_Billsdeposits::REPEAT_ONCE && (numRepeats == 0 || numRepeats < -1))
+        return dates;
+
+    wxString date = r->TRANSDATE;
+    while (date <= end_date && limit != 0) {
+        if (limit > 0) limit--;
+        dates.push_back(date);
+
+        if (repeats == Model_Billsdeposits::REPEAT_ONCE)
+            break;
+        if ((repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS || repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS) && numRepeats == 1)
+            break;
+
+        wxDateTime date_curr;
+        date_curr.ParseDateTime(date) || date_curr.ParseDate(date);
+        const wxDateTime& date_next = Model_Billsdeposits::nextOccurDate(repeats, numRepeats, date_curr);
+        date = date_next.FormatISOCombined();
+
+        if ((repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS || repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS) && numRepeats > 1)
+            numRepeats--;
+        else if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_IN_X_MONTHS)
+            repeats = Model_Billsdeposits::REPEAT_ONCE;
+    }
+
+    return dates;
+}
+
+wxArrayString Model_Billsdeposits::unroll(const Data& r, const wxString end_date, int limit)
+{
+    return unroll(&r, end_date, limit);
+}
+
 Model_Billsdeposits::Full_Data::Full_Data()
 {}
 
-Model_Billsdeposits::Full_Data::Full_Data(const Data& r) : Data(r)
+Model_Billsdeposits::Full_Data::Full_Data(const Data& r) :
+    Data(r),
+    m_bill_splits(split(r)),
+    m_tags(Model_Taglink::instance().find(
+        Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT)),
+        Model_Taglink::REFID(r.BDID)))
 {
-    m_bill_splits = splittransaction(r);
-
-    m_tags = Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT)), Model_Taglink::REFID(r.BDID));
-
     if (!m_tags.empty()) {
         wxArrayString tagnames;
         for (const auto& entry : m_tags)
