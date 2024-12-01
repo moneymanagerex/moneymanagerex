@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-02 14:58\n"
+"PO-Revision-Date: 2024-12-01 10:52\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2732,7 +2732,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:1173
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "Απόκρυψη Στηλών Αναφοράς"
 
 #: filtertransdialog.cpp:1299 mmframe.cpp:1297
 msgid "The selected item will be deleted"
@@ -2881,7 +2881,7 @@ msgstr "Δημιουργία Προτύπου"
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
 msgstr[0] "%zu γραμμή επέστρεψε, διάρκεια: %lld ms"
-msgstr[1] ""
+msgstr[1] "%zu γραμμές επέστρεψαν, διάρκεια: %lld ms"
 
 #: general_report_manager.cpp:567
 msgid "SQL Syntax Error"
