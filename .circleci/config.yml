@@ -26,7 +26,7 @@ jobs:
       - run:
           name: Build MoneyManagerEx (Flatpak)
           command: |
-            docker run -it --rm --privileged -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex bilelmoussaoui/flatpak-github-actions:gnome-45 bash -c "rm -rf * && /usr/bin/xvfb-run --auto-servernum flatpak-builder --verbose --repo=repo --disable-rofiles-fuse --force-clean --default-branch=master --arch=x86_64 _build ../org.moneymanagerex.MMEX.yml && /usr/bin/xvfb-run --auto-servernum flatpak build-bundle --arch=x86_64 repo ../mmex.flatpak org.moneymanagerex.MMEX master && flatpak install --bundle --noninteractive ../mmex.flatpak" && \
+            docker run -it --rm --privileged -w /moneymanagerex/build -v $HOME/.ccache:/root/.ccache -v $CIRCLE_WORKING_DIRECTORY:/moneymanagerex bilelmoussaoui/flatpak-github-actions:gnome-47 bash -c "rm -rf * && /usr/bin/xvfb-run --auto-servernum flatpak-builder --verbose --repo=repo --disable-rofiles-fuse --force-clean --default-branch=master --arch=x86_64 _build ../org.moneymanagerex.MMEX.yml && /usr/bin/xvfb-run --auto-servernum flatpak build-bundle --arch=x86_64 repo ../mmex.flatpak org.moneymanagerex.MMEX master && flatpak install --bundle --noninteractive ../mmex.flatpak" && \
             cp $CIRCLE_WORKING_DIRECTORY/mmex*.flatpak /tmp/artifacts
       - store_artifacts:
           path: /tmp/artifacts
@@ -58,7 +58,7 @@ workflows:
       - build-linux
 #      - build-macosapp-id: org.moneymanagerex.MMEX
 runtime: org.gnome.Platform
-runtime-version: '45'
+runtime-version: '47'
 sdk: org.gnome.Sdk
 command: mmex
 cleanup:
@@ -93,8 +93,8 @@ modules:
       - --enable-intl
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.5/wxWidgets-3.2.5.tar.bz2
-        sha256: 0ad86a3ad3e2e519b6a705248fc9226e3a09bbf069c6c692a02acf7c2d1c6b51
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.6/wxWidgets-3.2.6.tar.bz2
+        sha256: 939e5b77ddc5b6092d1d7d29491fe67010a2433cf9b9c0d841ee4d04acb9dce7
         x-checker-data:
           type: json
           url: https://api.github.com/repos/wxWidgets/wxWidgets/releases/latest

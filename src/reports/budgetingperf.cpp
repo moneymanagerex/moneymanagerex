@@ -290,6 +290,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                             hb.endTableRow();
                             totals_stack.pop_back();
                         }
+                    estimateTotal[12] = 0;  // reset estimateTotal for new category
                 }
 
                 // the very last subcategory, so show the rest of the pending totals

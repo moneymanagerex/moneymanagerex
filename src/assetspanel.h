@@ -93,6 +93,19 @@ public:
         ICON_DOWNARROW
     };
 
+    enum EColumn
+    {
+        COL_ICON = 0,
+        COL_ID,
+        COL_NAME,
+        COL_DATE,
+        COL_TYPE,
+        COL_VALUE_INITIAL,
+        COL_VALUE_CURRENT,
+        COL_NOTES,
+        COL_MAX, // number of columns
+    };
+
     mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid, const wxString& name="mmAssetsPanel");
     mmGUIFrame* m_frame = nullptr;
 
@@ -146,18 +159,6 @@ private:
     enum {
         IDC_PANEL_ASSET_STATIC_DETAILS = wxID_HIGHEST + 1220,
         IDC_PANEL_ASSET_STATIC_DETAILS_MINI,
-    };
-    enum EColumn
-    {
-        COL_ICON = 0,
-        COL_ID,
-        COL_NAME,
-        COL_DATE,
-        COL_TYPE,
-        COL_VALUE_INITIAL,
-        COL_VALUE_CURRENT,
-        COL_NOTES,
-        COL_MAX, // number of columns
     };
 };
 

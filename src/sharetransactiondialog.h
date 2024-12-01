@@ -36,7 +36,7 @@ public:
     ShareTransactionDialog(wxWindow* parent, Model_Stock::Data* stock);
     ShareTransactionDialog(wxWindow* parent, Model_Translink::Data* transfer_entry, Model_Checking::Data* checking_entry);
 
-    int m_stock_id;
+    int m_stock_id = -1;
 
 private:
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY

@@ -38,7 +38,7 @@ private:
     wxSharedPtr<wxHtmlWindow> m_diagPanel;
     wxWindow* m_parent = nullptr;
     wxButton* m_okButton = nullptr;
-    bool m_is_max;
+    bool m_is_max = false;
 
 private:
 

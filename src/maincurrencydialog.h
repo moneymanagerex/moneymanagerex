@@ -124,7 +124,7 @@ private:
     wxButton* m_select_btn = nullptr;
 
     wxString m_maskStr = "";
-    int m_currency_id;
+    int m_currency_id = -1;
     bool m_static_dialog = false;
 
     bool ConvertHistoryRates(const std::vector<CurrencyHistoryRate>& Bce, std::vector<CurrencyHistoryRate>& ConvertedRate, const wxString& BaseCurrencySymbol);

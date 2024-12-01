@@ -141,9 +141,9 @@ private:
     const wxString mmGetNumber() const;
     const wxString mmGetNotes() const;
 
-    bool isMultiAccount_;
-    int accountID_;
-    bool isReportMode_;
+    bool isMultiAccount_ = false;
+    int accountID_ = -1;
+    bool isReportMode_ = false;
 
 private:
     void OnDateChanged(wxDateEvent& event);
@@ -243,8 +243,8 @@ private:
     wxString m_begin_date;
     wxString m_end_date;
     wxString m_filter_key;
-    int m_startDay;
-    bool m_futureIgnored;
+    int m_startDay = 0;
+    bool m_futureIgnored = false;
     int m_color_value = -1;
     wxString m_payee_str;
 

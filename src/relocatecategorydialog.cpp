@@ -146,7 +146,7 @@ void relocateCategoryDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 
 void relocateCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
-    int m_destCatID = cbDestCategory_->mmGetCategoryId();
+    const int m_destCatID = cbDestCategory_->mmGetCategoryId();
 
     const auto& source_category_name = cbSourceCategory_->GetValue();
     const auto& destination_category_name = cbDestCategory_->GetValue();
@@ -326,7 +326,7 @@ void relocateCategoryDialog::OnFocusChange(wxChildFocusEvent& event)
     event.Skip();
 }
 
-void relocateCategoryDialog::OnTextUpdated(wxCommandEvent& event)
+void relocateCategoryDialog::OnTextUpdated(wxCommandEvent&)
 {
     IsOkOk();
 }

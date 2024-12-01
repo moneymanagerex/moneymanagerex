@@ -63,7 +63,7 @@ private:
     wxStaticText* m_sample_date_text = nullptr;
     wxStaticText* m_sample_value_text = nullptr;
 
-    int m_currency_id;
+    int m_currency_id = -1;
     wxCheckBox* m_currency_history = nullptr;
     wxString m_date_format;
 
