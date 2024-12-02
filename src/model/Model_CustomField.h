@@ -64,7 +64,7 @@ public:
     static Model_CustomField& instance();
 
 public:
-    bool Delete(const int& FieldID);
+    bool Delete(const int64& FieldID);
     static TYPE_ID type_id(const Data* r);
     static TYPE_ID type_id(const Data& r);
     static TYPE_ID type_id(const wxString& value);

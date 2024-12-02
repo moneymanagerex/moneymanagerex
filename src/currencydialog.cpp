@@ -158,7 +158,7 @@ void mmCurrencyDialog::fillControls()
                                 == m_currency->GROUP_SEPARATOR)
                 break;
         mctrl_groupSep->SetSelection(i);
-        m_scale = log10(m_currency->SCALE);
+        m_scale = log10(m_currency->SCALE.GetValue());
         mctrl_decimalSep->Enable(!m_locale_used && m_scale > 0); 
         mctrl_groupSep->Enable(!m_locale_used); 
         const wxString& scale_value = wxString::Format("%i", m_scale);

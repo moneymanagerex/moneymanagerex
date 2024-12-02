@@ -76,7 +76,7 @@ Model_CustomField& Model_CustomField::instance()
 //}
 
 /** Delete a field and all his data */
-bool Model_CustomField::Delete(const int& FieldID)
+bool Model_CustomField::Delete(const int64& FieldID)
 {
     this->Savepoint();
     for (const auto& r : Model_CustomFieldData::instance().find(Model_CustomFieldData::FIELDID(FieldID)))

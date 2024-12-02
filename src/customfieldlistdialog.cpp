@@ -105,7 +105,7 @@ void mmCustomFieldListDialog::fillControls()
     if (fields.empty()) return;
 
     std::sort(fields.begin(), fields.end(), SorterByDESCRIPTION());
-    int firstInTheListID = -1;
+    int64 firstInTheListID = -1;
     for (const auto& entry : fields)
     {
         if (firstInTheListID == -1) firstInTheListID = entry.FIELDID;
