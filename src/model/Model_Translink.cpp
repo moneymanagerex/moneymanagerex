@@ -245,7 +245,7 @@ void Model_Translink::UpdateAssetValue(Model_Asset::Data* asset_entry)
     }
 }
 
-bool Model_Translink::ShareAccountId(int& stock_entry_id)
+bool Model_Translink::ShareAccountId(int64& stock_entry_id)
 {
     Model_Translink::Data_Set stock_translink_list = TranslinkList(Model_Attachment::STOCK, stock_entry_id);
 

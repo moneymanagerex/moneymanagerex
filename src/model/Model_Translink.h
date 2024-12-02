@@ -97,7 +97,7 @@ public:
     static void UpdateAssetValue(Model_Asset::Data* asset_entry);
 
     /* Return true with the account id of the first share entry in the stock translink list */
-    static bool ShareAccountId(int& stock_entry_id);
+    static bool ShareAccountId(int64& stock_entry_id);
 
 private:
 
