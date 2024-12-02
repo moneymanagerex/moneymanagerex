@@ -21,6 +21,8 @@
 
 #include "defs.h"
 
+typedef wxLongLong int64;
+
 /*
    mmOptions caches the options for MMEX
    so that we don't hit the DB that often

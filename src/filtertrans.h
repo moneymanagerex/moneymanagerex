@@ -46,20 +46,19 @@ public:
 
 private:
     // date range
-    bool _dateFilter;
-    wxString _startDate, _endDate;
+    bool m_dateFilter;
+    wxString m_startDate, m_endDate;
     // account
-    bool _accountFilter;
-    wxArrayInt _accountList;
+    bool m_accountFilter;
+    wxArrayInt64 m_accountList;
     // payee
-    bool _payeeFilter;
-    wxArrayInt _payeeList;
+    bool m_payeeFilter;
+    wxArrayInt64 m_payeeList;
     // category
-    bool _categoryFilter;
-    std::vector<int> _categoryList;
+    bool m_categoryFilter;
+    wxArrayInt64 m_categoryList;
 
-    Model_Checking::Full_Data_Set _trans;
-
+    Model_Checking::Full_Data_Set m_trans;
 };
 
 #endif
