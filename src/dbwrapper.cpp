@@ -75,14 +75,16 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
                 db->ExecuteQuery("select * from INFOTABLE_V1;");
             }
 
-            wxMessageDialog msgDlg(nullptr, _("The default cipher algorithm has changed from AES-128 to AES-256 for compatability with the MMEX mobile apps.\n\nRekeying with the new cipher will prevent opening this database in older versions of MMEX.\n\nDo you want to update?"), _("Opening MMEX Database - Warning"), wxYES_NO | wxICON_WARNING);
+            wxMessageDialog msgDlg(nullptr, _("The default cipher algorithm has changed from AES-128 to AES-256 for compatability with the MMEX mobile apps.")
+                + "\n\n" + _("Rekeying with the new cipher will prevent opening this database in older versions of MMEX.")
+                + "\n\n" + _("Do you want to update?"), _("Opening MMEX Database - Warning"), wxYES_NO | wxICON_WARNING);
             if (msgDlg.ShowModal() == wxID_YES)
             {
                 if (db->ExecuteQuery("PRAGMA page_size;").GetInt(0) < 4096)
                 {
                     db->ReKey("");
-                    db->ExecuteQuery("PRAGMA page_size = 4096;");
-                    db->ExecuteQuery("VACUUM;");
+                    db->ExecuteUpdate("PRAGMA page_size = 4096;");
+                    db->ExecuteUpdate("VACUUM;");
                 }
                 // ReKey with new cipher.
                 db->ReKey(cipher, password);
