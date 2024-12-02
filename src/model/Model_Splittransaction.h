@@ -24,11 +24,13 @@
 #include "Model_Currency.h"
 #include "db/DB_Table_Splittransactions_V1.h"
 
+typedef wxArray<wxLongLong> wxArrayInt64;
+
 struct Split
 {
     int64 CATEGID;
     double SPLITTRANSAMOUNT;
-    wxVector<wxLongLong> TAGS;
+    wxArrayInt64 TAGS;
     wxString NOTES;
 };
 

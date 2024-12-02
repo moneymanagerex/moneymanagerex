@@ -129,7 +129,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int64 bdID, bool duplicate, bool enterO
         m_bill_data.TRANSCODE = bill->TRANSCODE;
         m_bill_data.FOLLOWUPID = bill->FOLLOWUPID;
         m_bill_data.COLOR = bill->COLOR;
-        wxVector<int64> billtags;
+        wxArrayInt64 billtags;
         for (const auto& tag : Model_Taglink::instance().find(
             Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT)),
             Model_Taglink::REFID(bill->BDID)))

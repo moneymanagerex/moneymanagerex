@@ -93,7 +93,7 @@ public:
         // This relates the 'Date Paid' field.
         wxString NEXTOCCURRENCEDATE;
         int64 COLOR = -1;
-        wxVector<int64> TAGS;
+        wxArrayInt64 TAGS;
     };
 
     struct Full_Data : public Data
