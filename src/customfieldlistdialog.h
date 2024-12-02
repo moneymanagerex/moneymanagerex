@@ -25,6 +25,8 @@
 class wxDataViewListCtrl;
 class wxDataViewEvent;
 
+typedef wxLongLong int64;
+
 class mmCustomFieldListDialog : public wxDialog
 {
     wxDECLARE_DYNAMIC_CLASS(mmCustomFieldListDialog);
