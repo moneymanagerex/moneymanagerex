@@ -64,13 +64,13 @@ void mmFilterTransactions::setAccountList(wxSharedPtr<wxArrayString> accountList
     }
 }
 
-void mmFilterTransactions::setPayeeList(const wxArrayInt payeeList)
+void mmFilterTransactions::setPayeeList(const wxArrayInt64 payeeList)
 {
     m_payeeFilter = true;
     m_payeeList = payeeList;
 }
 
-void mmFilterTransactions::setCategoryList(const std::vector<int> &categoryList)
+void mmFilterTransactions::setCategoryList(const wxArrayInt64 &categoryList)
 {
     m_categoryFilter = true;
     m_categoryList = categoryList;

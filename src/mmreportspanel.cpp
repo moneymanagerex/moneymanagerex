@@ -593,8 +593,8 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
 
         if (payeeID > 0)
         {
-            wxArrayInt payees;
-            payees.Add(payeeID);
+            wxArrayInt64 payees;
+            payees.push_back(payeeID);
             rb_->m_filter.setPayeeList(payees);
         }
 

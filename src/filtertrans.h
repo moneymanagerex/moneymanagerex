@@ -33,7 +33,7 @@ public:
     // Filter setup methods
     void setDateRange(wxDateTime startDate, wxDateTime endDate);
     void setAccountList(wxSharedPtr<wxArrayString> accountList);
-    void setPayeeList(const wxArrayInt payeeList);
+    void setPayeeList(const wxArrayInt64 payeeList);
     void setCategoryList(const std::vector<int> &categoryList);
 
     // Apply Filter methods
