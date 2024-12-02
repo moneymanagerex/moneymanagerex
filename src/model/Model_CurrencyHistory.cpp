@@ -71,7 +71,7 @@ DB_Table_CURRENCYHISTORY_V1::CURRDATE Model_CurrencyHistory::CURRDATE(const wxDa
 /**
 Adds or updates an element in stock history
 */
-int Model_CurrencyHistory::addUpdate(const int& currencyID, const wxDate& date, double price, UPDTYPE type)
+int Model_CurrencyHistory::addUpdate(const int64 currencyID, const wxDate& date, double price, UPDTYPE type)
 {
     Data *currHist = this->get(currencyID, date);
     if (!currHist) currHist = this->create();

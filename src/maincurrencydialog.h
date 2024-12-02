@@ -107,7 +107,7 @@ private:
     bool OnlineUpdateCurRate(int64 curr_id = -1, bool hide = true);
     void OnItemRightClick(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
-    bool SetBaseCurrency(int& baseCurrencyID);
+    bool SetBaseCurrency(int64& baseCurrencyID);
 
     wxDataViewListCtrl* currencyListBox_ = nullptr;
     std::map<int, wxString> ColName_;
