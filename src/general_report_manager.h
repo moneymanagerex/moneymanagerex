@@ -84,10 +84,10 @@ private:
     void OnSelChanged(wxTreeEvent& event);
     //void OnLabelChanged(wxTreeEvent& event);
     void viewControls(bool enable);
-    void renameReport(int id);
-    bool DeleteReport(int id);
-    bool changeReportGroup(int id, bool ungroup);
-    void changeReportState(int id);
+    void renameReport(int64 id);
+    bool DeleteReport(int64 id);
+    bool changeReportGroup(int64 id, bool ungroup);
+    void changeReportState(int64 id);
     bool renameReportGroup(const wxString& GroupName);
     void OnMenuSelected(wxCommandEvent& event);
     void newReport(int sample = ID_NEW_EMPTY);
@@ -115,7 +115,7 @@ private:
     sqlListCtrl* m_sqlListBox = nullptr;
     wxTreeItemId m_rootItem;
     wxTreeItemId m_selectedItemID;
-    int m_selectedReportID = 0;
+    int64 m_selectedReportID = 0;
     wxString m_selectedGroup;
 
 #if wxUSE_DRAG_AND_DROP

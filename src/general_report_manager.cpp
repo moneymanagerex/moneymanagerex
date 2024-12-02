@@ -201,12 +201,12 @@ R"(<!DOCTYPE html>
 class MyTreeItemData : public wxTreeItemData
 {
 public:
-    MyTreeItemData(int report_id, const wxString& selectedGroup) : m_report_id(report_id)
+    MyTreeItemData(int64 report_id, const wxString& selectedGroup) : m_report_id(report_id)
         , m_selectedGroup(selectedGroup) { }
-    int get_report_id() const { return m_report_id; }
+    int64 get_report_id() const { return m_report_id; }
     const wxString get_group_name() const { return m_selectedGroup; }
 private:
-    int m_report_id;
+    int64 m_report_id;
     wxString m_selectedGroup;
 };
 
@@ -673,7 +673,7 @@ void mmGeneralReportManager::OnUpdateReport(wxCommandEvent& WXUNUSED(event))
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     if (!iData) return;
 
-    int id = iData->get_report_id();
+    int64 id = iData->get_report_id();
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
@@ -696,7 +696,7 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& WXUNUSED(event))
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     if (!iData) return;
 
-    int id = iData->get_report_id();
+    int64 id = iData->get_report_id();
     m_selectedGroup = iData->get_group_name();
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
@@ -723,7 +723,7 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
 {
     wxTreeItemId id = event.GetItem();
     m_treeCtrl ->SelectItem(id);
-    int report_id = -1;
+    int64 report_id = -1;
     MyTreeItemData *iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(id));
     if (iData) report_id = iData->get_report_id();
     Model_Report::Data *report = Model_Report::instance().get(report_id);
@@ -795,7 +795,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         return;
     }
 
-    int id = iData->get_report_id();
+    int64 id = iData->get_report_id();
     m_selectedGroup = iData->get_group_name();
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
@@ -840,7 +840,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     event.Veto();
 }*/
 
-void mmGeneralReportManager::renameReport(int id)
+void mmGeneralReportManager::renameReport(int64 id)
 {
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
@@ -859,7 +859,7 @@ void mmGeneralReportManager::renameReport(int id)
     }
 }
 
-bool mmGeneralReportManager::DeleteReport(int id)
+bool mmGeneralReportManager::DeleteReport(int64 id)
 {
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
@@ -880,7 +880,7 @@ bool mmGeneralReportManager::DeleteReport(int id)
     return false;
 }
 
-void mmGeneralReportManager::changeReportState(int id)
+void mmGeneralReportManager::changeReportState(int64 id)
 {
     Model_Report::Data* report = Model_Report::instance().get(id);
     if (report)
@@ -890,7 +890,7 @@ void mmGeneralReportManager::changeReportState(int id)
     }
 }
 
-bool mmGeneralReportManager::changeReportGroup(int id, bool ungroup)
+bool mmGeneralReportManager::changeReportGroup(int64 id, bool ungroup)
 {
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
@@ -939,7 +939,7 @@ bool mmGeneralReportManager::renameReportGroup(const wxString& GroupName)
 
 void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 {
-    int id = event.GetId();
+    int64 id = event.GetId();
 
     if (id == ID_NEW_EMPTY || id == ID_NEW_SAMPLE_ASSETS)
     {
@@ -951,7 +951,7 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     if (iData)
     {
-        int report_id = iData->get_report_id();
+        int64 report_id = iData->get_report_id();
 
         if (report_id > -1)
         {
@@ -1047,7 +1047,7 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& WXUNUSED(event))
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     if (!iData) return;
 
-    int id = iData->get_report_id();
+    int64 id = iData->get_report_id();
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
