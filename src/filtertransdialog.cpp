@@ -210,7 +210,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
         }
 
         // If no accounts are explicitly selected, turn off the Account filter and set selection to "All"
-        if (m_selected_accounts_id.GetCount() == 0)
+        if (m_selected_accounts_id.empty())
         {
             bSelectedAccounts_->SetLabelText(_("All"));
             accountCheckBox_->SetValue(false);
