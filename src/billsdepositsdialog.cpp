@@ -137,7 +137,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int64 bdID, bool duplicate, bool enterO
         m_bill_data.TAGS = billtags;
         //
         const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT);
-        for (const auto& item : Model_Billsdeposits::splittransaction(bill)) {
+        for (const auto& item : Model_Billsdeposits::split(bill)) {
             wxArrayInt64 splittags;
             for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(splitRefType), Model_Taglink::REFID(item.SPLITTRANSID)))
                 splittags.push_back(tag.TAGID);
