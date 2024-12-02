@@ -368,7 +368,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
             if (j_tags[i].IsInt())
             {
                 // Retrieve TAGNAME from TAGID
-                Model_Tag::Data* tag = Model_Tag::instance().get(j_tags[i].GetInt());
+                Model_Tag::Data* tag = Model_Tag::instance().get(j_tags[i].GetInt64());
                 if (tag)
                 {
                     s_tag.Append(tag->TAGNAME + " ");
@@ -446,7 +446,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
             wxASSERT(j_columns[i].IsInt());
             const int colID = j_columns[i].GetInt();
 
-            m_selected_columns_id.push_back(colID);
+            m_selected_columns_id.Add(colID);
         }
         showColumnsCheckBox_->SetValue(true);
         bHideColumns_->SetLabelText("...");
@@ -1196,14 +1196,14 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
         }
     }
 
-    if (m_selected_columns_id.GetCount() == 0 ||
-        (!useDateTime && m_selected_columns_id.GetCount() == 1 && m_selected_columns_id[0] == COL_TIME))
+    if (m_selected_columns_id.empty() ||
+        (!useDateTime && m_selected_columns_id.size() == 1 && m_selected_columns_id[0] == COL_TIME))
     {
         bHideColumns_->SetLabelText("");
         showColumnsCheckBox_->SetValue(false);
         bHideColumns_->Disable();
     }
-    else if (m_selected_columns_id.GetCount() > 0)
+    else if (! m_selected_columns_id.empty())
     {
         bHideColumns_->SetLabelText("...");
         mmToolTip(bHideColumns_, baloon);
@@ -1245,12 +1245,12 @@ bool mmFilterTransactionsDialog::mmIsTypeMaches(const wxString& typeState, int64
 {
     bool result = false;
     if (typeState == Model_Checking::TYPE_STR_TRANSFER && cbTypeTransferTo_->GetValue() &&
-        (!mmIsAccountChecked() || (m_selected_accounts_id.Index(accountid) != wxNOT_FOUND)))
+        (!mmIsAccountChecked() || std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), accountid) != m_selected_accounts_id.end())
     {
         result = true;
     }
     else if (typeState == Model_Checking::TYPE_STR_TRANSFER && cbTypeTransferFrom_->GetValue() &&
-             (!mmIsAccountChecked() || (m_selected_accounts_id.Index(toaccountid) != wxNOT_FOUND)))
+             (!mmIsAccountChecked() || std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), toaccountid) != m_selected_accounts_id.end())
     {
         result = true;
     }
@@ -1426,7 +1426,7 @@ template <class MODEL, class DATA> bool mmFilterTransactionsDialog::mmIsRecordMa
     bool ok = true;
 
     // wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(),
-    if (mmIsAccountChecked() && m_selected_accounts_id.Index(tran.ACCOUNTID) == wxNOT_FOUND && m_selected_accounts_id.Index(tran.TOACCOUNTID) == wxNOT_FOUND)
+    if (mmIsAccountChecked() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.ACCOUNTID) == m_selected_accounts_id.end() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.TOACCOUNTID) != m_selected_accounts_id.end())
         ok = false;
     else if ((mmIsDateRangeChecked() || mmIsRangeChecked()) && (tran.TRANSDATE < m_begin_date.Mid(0, tran.TRANSDATE.length()) || tran.TRANSDATE > m_end_date.Mid(0, tran.TRANSDATE.length())))
         ok = false;

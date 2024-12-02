@@ -253,7 +253,7 @@ private:
     wxArrayString m_accounts_name;
     //Selected accountns ID
     wxArrayInt64 m_selected_accounts_id;
-    wxArrayInt64 m_selected_columns_id;
+    wxArrayInt m_selected_columns_id;
     wxArrayInt64 m_selected_categories_id;
     wxSharedPtr<mmCustomData> m_custom_fields;
 
@@ -275,7 +275,7 @@ inline const wxString mmFilterTransactionsDialog::mmGetEndDate() const { return 
 inline int mmFilterTransactionsDialog::mmGetStartDay() const { return m_startDay; }
 inline bool mmFilterTransactionsDialog::mmIsFutureIgnored() const { return m_futureIgnored; }
 inline const wxArrayInt64 mmFilterTransactionsDialog::mmGetAccountsID() const { return m_selected_accounts_id; }
-inline const wxArrayInt64 mmFilterTransactionsDialog::mmGetHideColumnsID() const { return m_selected_columns_id; }
+inline const wxArrayInt mmFilterTransactionsDialog::mmGetHideColumnsID() const { return m_selected_columns_id; }
 inline bool mmFilterTransactionsDialog::mmIsDateRangeChecked() const { return dateRangeCheckBox_->GetValue(); }
 inline bool mmFilterTransactionsDialog::mmIsRangeChecked() const { return datesCheckBox_->IsChecked(); }
 inline const wxString mmFilterTransactionsDialog::mmGetNumber() const { return transNumberEdit_->GetValue(); }
