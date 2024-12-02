@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-12-02 20:16\n"
+"PO-Revision-Date: 2024-12-02 21:19\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -169,7 +169,7 @@ msgstr "Número de Conta:"
 
 #: accountdialog.cpp:200
 msgid "Enter the Account Number associated with this account."
-msgstr "Introduza o Número desta Conta."
+msgstr "Insira o Número da Conta associado à esta conta."
 
 #: accountdialog.cpp:203
 msgid "Held At:"
@@ -193,7 +193,7 @@ msgstr "Contato:"
 
 #: accountdialog.cpp:215
 msgid "Enter any contact information for the financial institution."
-msgstr "Insira informação de contato para a instituição financeira."
+msgstr "Insira qualquer informação de contato para a instituição financeira."
 
 #: accountdialog.cpp:218
 msgid "Access Info:"
@@ -329,7 +329,7 @@ msgstr "&Novo Arquivo de dados"
 
 #: appstartdialog.cpp:105
 msgid "Create new MMEX database file"
-msgstr "Criar novo banco de dados MMEX"
+msgstr "Criar novo arquivo de banco de dados MMEX"
 
 #: appstartdialog.cpp:108
 msgid "Open &Existing Database"
@@ -337,7 +337,7 @@ msgstr "Abrir um Arquivo de Dados &Existente"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr "Abrir banco de dados MMEX"
+msgstr "Abrir um arquivo de banco de dados MMEX"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1682
 msgid "User Interface &Language"
@@ -354,7 +354,7 @@ msgstr "Manual do &Usuário"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
-msgstr "Ler o manual do usuário"
+msgstr "Ler o manual do usuário MMEX"
 
 #: appstartdialog.cpp:120 mmframe.cpp:1852
 msgid "&Website"
@@ -392,7 +392,7 @@ msgstr "Padrão do sistema"
 
 #: appstartdialog.cpp:221 optionsettingsgeneral.cpp:92
 msgid "User Interface Language"
-msgstr "Idioma da interface de usuário"
+msgstr "Idioma da Interface de Usuário"
 
 #: appstartdialog.cpp:229 mmframe.cpp:3960 optionsettingsgeneral.cpp:363
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -408,15 +408,15 @@ msgstr "Novo Ativo"
 
 #: assetdialog.cpp:54 assetspanel.cpp:486
 msgid "Edit Asset"
-msgstr "Editar Ativo"
+msgstr "Editar o Ativo"
 
 #: assetdialog.cpp:58 assetdialog.cpp:70 assetspanel.cpp:476
 msgid "Add Asset Transaction"
-msgstr "Adicionar Transação do Bem"
+msgstr "Adicionar a Transação do Ativo"
 
 #: assetdialog.cpp:75
 msgid "Edit Asset Transaction"
-msgstr "Editar Transação do Bem"
+msgstr "Editar a Transação do Ativo"
 
 #: assetdialog.cpp:167
 msgid "Asset Details"
@@ -432,7 +432,7 @@ msgstr "Nome"
 
 #: assetdialog.cpp:182
 msgid "Enter the name of the asset"
-msgstr "Introduza o nome do bem"
+msgstr "Insira o nome do ativo"
 
 #: assetdialog.cpp:185 assetspanel.cpp:61 filtertrans.cpp:198
 #: filtertransdialog.cpp:962 filtertransdialog.cpp:969
@@ -450,15 +450,15 @@ msgstr "Data"
 
 #: assetdialog.cpp:188
 msgid "Specify the date of purchase of asset"
-msgstr "Especifique a data de compra do ativo"
+msgstr "Especifique a data da compra do ativo"
 
 #: assetdialog.cpp:190
 msgid "Asset Type"
-msgstr "Tipo de Bem"
+msgstr "Tipo do Ativo"
 
 #: assetdialog.cpp:196
 msgid "Select type of asset"
-msgstr "Selecione o tipo de ativo"
+msgstr "Selecione o tipo do ativo"
 
 #: assetdialog.cpp:200 import_export/qif_import_gui.cpp:92
 #: maincurrencydialog.cpp:280
@@ -467,7 +467,7 @@ msgstr "Valor"
 
 #: assetdialog.cpp:207
 msgid "Enter the current value of the asset"
-msgstr "Introduza o valor atual do bem"
+msgstr "Insira o valor atual do ativo"
 
 #: assetdialog.cpp:210
 msgid "Change in Value"
@@ -475,7 +475,7 @@ msgstr "Variação de Valor"
 
 #: assetdialog.cpp:216
 msgid "Specify if the value of the asset changes over time"
-msgstr "Especifique se o valor do ativo se altera com o tempo"
+msgstr "Especifique se o valor do ativo muda com o tempo"
 
 #: assetdialog.cpp:220
 msgid "% Rate"
@@ -487,11 +487,11 @@ msgstr "Introduza a taxa à qual o valor do ativo se altera em porcentagem por a
 
 #: assetdialog.cpp:237
 msgid "Organize attachments of this asset"
-msgstr "Organize anexos deste ativo"
+msgstr "Organizar os anexos deste ativo"
 
 #: assetdialog.cpp:240
 msgid "Enter notes associated with this asset"
-msgstr "Insira notas relacionadas a este bem"
+msgstr "Insira notas relacionadas a este ativo"
 
 #: assetdialog.cpp:246
 msgid "New Transaction Details"
@@ -556,7 +556,7 @@ msgstr "&Adicionar Transação de Ativo..."
 
 #: assetspanel.cpp:103
 msgid "&View Asset Transactions"
-msgstr "&Ver Transações do Bem"
+msgstr "&Exibir Transações do Ativo"
 
 #: assetspanel.cpp:104
 msgid "&Open Asset Account..."
@@ -577,15 +577,15 @@ msgstr "&Organizar Anexos..."
 
 #: assetspanel.cpp:207
 msgid "Do you really want to delete the Asset?"
-msgstr "Tem certeza de que deseja apagar o Ativo?"
+msgstr "Você quer mesmo excluir o Ativo?"
 
 #: assetspanel.cpp:208
 msgid "Confirm Asset Deletion"
-msgstr "Confirmar a eliminação do Bem"
+msgstr "Confirmar Exclusão do Ativo"
 
 #: assetspanel.cpp:390
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "MMEX permite que você controle bens fixos como carros, casas, terras e outras. Cada bem pode se valorizar a uma taxa anual, depreciar a uma taxa anual, ou simplesmente não alterar o seu valor. O total de bens é adicionado ao patrimônio financeiro total."
+msgstr "O MMEX permite que você controle ativos fixos como carros, casas, terras e outras. Cada ativo pode se valorizar a uma taxa anual, depreciar a uma taxa anual, ou simplesmente não alterar o seu valor. O total de ativos é adicionado ao patrimônio financeiro total."
 
 #: assetspanel.cpp:420 assetspanel.h:108 general_report_manager.cpp:1030
 #: mmframe.cpp:491 mmframe.cpp:810 mmframe.cpp:1784 mmframe.cpp:3492
@@ -634,7 +634,7 @@ msgstr "&Apagar "
 
 #: assetspanel.cpp:491
 msgid "Delete Asset"
-msgstr "Apagar Bem"
+msgstr "Excluir Ativo"
 
 #: assetspanel.cpp:498 billsdepositspanel.cpp:327 mmcheckingpanel.cpp:495
 #: stockspanel.cpp:164
@@ -649,7 +649,7 @@ msgstr "Pesquisar"
 
 #: assetspanel.cpp:509
 msgid "Enter any string to find related assets"
-msgstr "Digite uma sequência de caracteres para encontrar bens relacionados"
+msgstr "Insira qualquer string para encontrar ativos relacionados"
 
 #: assetspanel.cpp:510 filtertransdialog.cpp:694 mmcheckingpanel.cpp:521
 #: payeedialog.cpp:137
@@ -1143,7 +1143,7 @@ msgstr "Cor"
 #: billsdepositsdialog.cpp:639 transdialog.cpp:594 transdialog.cpp:1333
 #: usertransactionpanel.cpp:201
 msgid "Specify any text notes you want to add to this transaction."
-msgstr "Introduza quaisquer notas que pretenda adicionar a esta transação."
+msgstr "Especifique quaisquer notas de texto que você quer adicionar a esta transação."
 
 #: billsdepositsdialog.cpp:656 filtertransdialog.cpp:816
 #: transactionsupdatedialog.cpp:283 transdialog.cpp:610
