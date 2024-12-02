@@ -501,11 +501,11 @@ void mmQIFExportDialog::mmExportQIF()
             if (dateToCheckBox_->IsChecked() && strDate > end_date)
                 continue;
             if (!Model_Checking::is_transfer(transaction.TRANSCODE)
-                && (selected_accounts_id_.Index(transaction.ACCOUNTID) == wxNOT_FOUND))
+                && (std::find(elected_accounts_id_.begin(), elected_accounts_id_.end(), transaction.ACCOUNTID) == elected_accounts_id_.end()))
                 continue;
             if (Model_Checking::is_transfer(transaction.TRANSCODE)
-                && (selected_accounts_id_.Index(transaction.ACCOUNTID) == wxNOT_FOUND)
-                && (selected_accounts_id_.Index(transaction.TOACCOUNTID) == wxNOT_FOUND))
+                && (std::find(elected_accounts_id_.begin(), elected_accounts_id_.end(), transaction.ACCOUNTID) == elected_accounts_id_.end())
+                && (std::find(elected_accounts_id_.begin(), elected_accounts_id_.end(), transaction.TOACCOUNTID) == elected_accounts_id_.end()))
                 continue;
             //
 
