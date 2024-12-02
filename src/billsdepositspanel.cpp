@@ -541,7 +541,7 @@ const wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Dat
 int mmBillsDepositsPanel::GetNumRepeats(const Model_Billsdeposits::Data* item) const
 {
     int repeats = item->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
-    int numRepeats = item->NUMOCCURRENCES;
+    int numRepeats = item->NUMOCCURRENCES.GetValue();
 
     if (repeats == Model_Billsdeposits::REPEAT_ONCE)
         numRepeats = 1;
@@ -678,7 +678,7 @@ void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        int BdId = m_bdp->bills_[m_selected_row].BDID;
+        int64 BdId = m_bdp->bills_[m_selected_row].BDID;
         Model_Billsdeposits::instance().remove(BdId);
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), BdId);
         m_bdp->do_delete_custom_values(-BdId);
@@ -691,7 +691,7 @@ void billsDepositsListCtrl::OnEnterBDTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    int id = m_bdp->bills_[m_selected_row].BDID;
+    int64 id = m_bdp->bills_[m_selected_row].BDID;
     mmBDDialog dlg(this, id, false, true);
     if ( dlg.ShowModal() == wxID_OK )
     {
@@ -705,7 +705,7 @@ void billsDepositsListCtrl::OnSkipBDTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    int id = m_bdp->bills_[m_selected_row].BDID;
+    int64 id = m_bdp->bills_[m_selected_row].BDID;
     Model_Billsdeposits::instance().completeBDInSeries(id);
     if (++m_selected_row < long(m_bdp->bills_.size()))
         id = m_bdp->bills_[m_selected_row].BDID;
@@ -716,7 +716,7 @@ void billsDepositsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    int RefId = m_bdp->bills_[m_selected_row].BDID;
+    int64 RefId = m_bdp->bills_[m_selected_row].BDID;
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
 
     mmAttachmentDialog dlg(this, RefType, RefId);
@@ -728,7 +728,7 @@ void billsDepositsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 void billsDepositsListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
-    int RefId = m_bdp->bills_[m_selected_row].BDID;
+    int64 RefId = m_bdp->bills_[m_selected_row].BDID;
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
 
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
@@ -897,7 +897,7 @@ void billsDepositsListCtrl::refreshVisualList(int selected_index)
 void billsDepositsListCtrl::RefreshList()
 {
     if (m_bdp->bills_.size() == 0) return;
-    int id = -1;
+    int64 id = -1;
     if (m_selected_row != -1)
     {
         id = m_bdp->bills_[m_selected_row].BDID;
@@ -909,7 +909,7 @@ wxListItemAttr* billsDepositsListCtrl::OnGetItemAttr(long item) const
 {
     if (item < 0 || item >= static_cast<int>(m_bdp->bills_.size())) return 0;
 
-    int color_id = m_bdp->bills_[item].COLOR;
+    int color_id = m_bdp->bills_[item].COLOR.GetValue();
 
     static std::map<int, wxSharedPtr<wxListItemAttr> > cache;
     if (color_id > 0)
@@ -940,7 +940,7 @@ wxListItemAttr* billsDepositsListCtrl::OnGetItemAttr(long item) const
 void billsDepositsListCtrl::OnSetUserColour(wxCommandEvent& event)
 {
     if (m_selected_row == -1) return;
-    int id = m_bdp->bills_[m_selected_row].BDID;
+    int64 id = m_bdp->bills_[m_selected_row].BDID;
 
     int user_color_id = event.GetId();
     user_color_id -= MENU_ON_SET_UDC0;
