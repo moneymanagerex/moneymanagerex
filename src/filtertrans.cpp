@@ -104,7 +104,7 @@ bool mmFilterTransactions::checkCategory(const DATA& tran, const std::map<int64,
 }
 
 bool mmFilterTransactions::mmIsRecordMatches(const Model_Checking::Data &tran
-    , const std::map<int, Model_Splittransaction::Data_Set>& split)
+    , const std::map<int64, Model_Splittransaction::Data_Set>& split)
 {
     bool ok = true;
     wxString strDate = Model_Checking::TRANSDATE(tran).FormatISOCombined();
@@ -188,7 +188,7 @@ table {
 
     const wxString& AttRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     hb.addDivContainer();
-    hb.addTableCellLink("back:",wxString::Format("<< %s", m_("Back")));
+    hb.addTableCellLink("back:",wxString::Format("<< %s", _("Back")));
     hb.endDiv();
     hb.addDivContainer("shadow");
     hb.startSortTable();

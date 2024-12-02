@@ -87,7 +87,7 @@ mmFilterTransactionsDialog::~mmFilterTransactionsDialog()
         Model_Infotable::instance().Set("TRANSACTION_FILTER_SIZE", GetSize());
 }
 
-mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int accountID, bool isReport, wxString selected)
+mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int64 accountID, bool isReport, wxString selected)
     : isMultiAccount_(accountID == -1), accountID_(accountID), isReportMode_(isReport),
       m_filter_key(isReport ? "TRANSACTIONS_FILTER" : "ALL_TRANSACTIONS_FILTER")
 {
@@ -196,7 +196,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
                 accountCheckBox_->SetValue(true);
                 for (const auto& a : Model_Account::instance().find(Model_Account::ACCOUNTNAME(acc_name)))
                 {
-                    m_selected_accounts_id.Add(a.ACCOUNTID);
+                    m_selected_accounts_id.push_back(a.ACCOUNTID);
                     baloon += (baloon.empty() ? "" : "\n") + a.ACCOUNTNAME;
                 }
             }
@@ -446,7 +446,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
             wxASSERT(j_columns[i].IsInt());
             const int colID = j_columns[i].GetInt();
 
-            m_selected_columns_id.Add(colID);
+            m_selected_columns_id.push_back(colID);
         }
         showColumnsCheckBox_->SetValue(true);
         bHideColumns_->SetLabelText("...");
@@ -1241,7 +1241,7 @@ bool mmFilterTransactionsDialog::mmIsStatusMatches(const wxString& itemStatus) c
     return false;
 }
 
-bool mmFilterTransactionsDialog::mmIsTypeMaches(const wxString& typeState, int accountid, int toaccountid) const
+bool mmFilterTransactionsDialog::mmIsTypeMaches(const wxString& typeState, int64 accountid, int64 toaccountid) const
 {
     bool result = false;
     if (typeState == Model_Checking::TYPE_STR_TRANSFER && cbTypeTransferTo_->GetValue() &&
@@ -1316,7 +1316,7 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
     }
 }
 
-bool mmFilterTransactionsDialog::mmIsPayeeMatches(int payeeID)
+bool mmFilterTransactionsDialog::mmIsPayeeMatches(int64 payeeID)
 {
     const Model_Payee::Data* payee = Model_Payee::instance().get(payeeID);
     if (payee)
@@ -1351,12 +1351,12 @@ bool mmFilterTransactionsDialog::mmIsNoteMatches(const wxString& note)
         return note.IsEmpty();
 }
 
-bool mmFilterTransactionsDialog::mmIsCategoryMatches(int categid)
+bool mmFilterTransactionsDialog::mmIsCategoryMatches(int64 categid)
 {
     return m_selected_categories_id.Index(categid) != wxNOT_FOUND;
 }
 
-bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int refId, bool mergeSplitTags)
+bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int64 refId, bool mergeSplitTags)
 {
     std::map<wxString, int> tagnames = Model_Taglink::instance().get(refType, refId);
 
@@ -1826,7 +1826,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
         json_writer.Key((i18n ? _("Category") : "CATEGORY").utf8_str());
         if (categoryComboBox_->mmIsValid())
         {
-            int categ = categoryComboBox_->mmGetCategoryId();
+            int64 categ = categoryComboBox_->mmGetCategoryId();
             const auto& full_name = Model_Category::full_name(categ, ":");
             json_writer.String(full_name.utf8_str());
         }
@@ -1848,7 +1848,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     {
         wxArrayString s = Model_Checking::STATUS_STR;
         s.Add(wxTRANSLATE("All Except Reconciled"));
-        int item = choiceStatus_->GetSelection();
+        int64 item = choiceStatus_->GetSelection();
         wxString status;
         if (0 <= item && static_cast<size_t>(item) < s.size())
             status = s[item];
@@ -2050,7 +2050,7 @@ bool mmFilterTransactionsDialog::mmIsCustomFieldChecked() const
     return (cf.size() > 0);
 }
 
-bool mmFilterTransactionsDialog::mmIsCustomFieldMatches(int transid) const
+bool mmFilterTransactionsDialog::mmIsCustomFieldMatches(int64 transid) const
 {
     const auto cf = m_custom_fields->GetActiveCustomFields();
     int matched = 0;
@@ -2353,7 +2353,7 @@ void mmFilterTransactionsDialog::OnComboKey(wxKeyEvent& event)
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbPayee_->mmDoReInitialize();
-                int payee_id = dlg.getPayeeId();
+                int64 payee_id = dlg.getPayeeId();
                 Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
                 if (payee)
                 {

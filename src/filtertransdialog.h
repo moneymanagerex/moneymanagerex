@@ -42,7 +42,7 @@ public:
     /// Constructors
     mmFilterTransactionsDialog();
     ~mmFilterTransactionsDialog();
-    mmFilterTransactionsDialog(wxWindow* parent, int accountID, bool isReport,  wxString selected = "");
+    mmFilterTransactionsDialog(wxWindow* parent, int64 accountID, bool isReport,  wxString selected = "");
     mmFilterTransactionsDialog(wxWindow* parent, const wxString& json);
 
     virtual int ShowModal();
@@ -130,10 +130,10 @@ private:
     double mmGetAmountMax() const;
     double mmGetAmountMin() const;
 
-    bool mmIsPayeeMatches(int payeeid);
-    bool mmIsCategoryMatches(int categid);
+    bool mmIsPayeeMatches(int64 payeeid);
+    bool mmIsCategoryMatches(int64 categid);
     bool mmIsNoteMatches(const wxString& note);
-    bool mmIsTagMatches(const wxString& refType, int refId, bool mergeSplitTags = false);
+    bool mmIsTagMatches(const wxString& refType, int64 refId, bool mergeSplitTags = false);
 
     void setTransferTypeCheckBoxes();
 
@@ -142,7 +142,7 @@ private:
     const wxString mmGetNotes() const;
 
     bool isMultiAccount_ = false;
-    int accountID_ = -1;
+    int64 accountID_ = -1;
     bool isReportMode_ = false;
 
 private:
@@ -151,13 +151,13 @@ private:
     bool mmIsStatusMatches(const wxString& itemStatus) const;
 
     bool mmIsTypeChecked() const;
-    bool mmIsTypeMaches(const wxString& typeState, int accountid, int toaccountid) const;
+    bool mmIsTypeMaches(const wxString& typeState, int64 accountid, int64 toaccountid) const;
     bool mmIsPayeeChecked() const;
     bool mmIsNumberChecked() const;
     bool mmIsNotesChecked() const;
     bool mmIsColorChecked() const;
     bool mmIsCustomFieldChecked() const;
-    bool mmIsCustomFieldMatches(int transid) const;
+    bool mmIsCustomFieldMatches(int64 transid) const;
 
     /// Creation
     bool Create(wxWindow* parent
