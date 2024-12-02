@@ -145,14 +145,14 @@ private:
     wxTreeItemId findItemByData(wxTreeItemId itemId, mmTreeItemData& searchData);
 
     void createHomePage();
-    void createCheckingAccountPage(int accountID);
+    void createCheckingAccountPage(int64 accountID);
     void createAllTransactionsPage();
     void createDeletedTransactionsPage();
-    void createStocksAccountPage(int accountID);
+    void createStocksAccountPage(int64 accountID);
 private:
     void createBillsDeposits();
 
-    void createBudgetingPage(int budgetYearID);
+    void createBudgetingPage(int64 budgetYearID);
     void autocleanDeletedTransactions();
     void createControls();
     /*Set nav tree items status from JSON data with stored in DB*/
@@ -270,7 +270,7 @@ private:
 
     void navTreeStateToJson();
     void processPendingEvents();
-    void ReallocateAccount(int accountID);
+    void ReallocateAccount(int64 accountID);
     void mmDoHideReportsDialog();
 private:
     /* Recent Files */

@@ -54,7 +54,7 @@ EVT_CHOICE(ID_ACCOUNT, mmQIFImportDialog::OnAccountChanged)
 EVT_CLOSE(mmQIFImportDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
-mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int account_id, const wxString& file_path)
+mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int64 account_id, const wxString& file_path)
     : m_FileNameStr(file_path)
     , m_today(wxDate::Today())
     , m_fresh(wxDate::Today().Subtract(wxDateSpan::Months(1)))     
@@ -414,7 +414,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     }
 
     std::unordered_map <int, wxString> trx;
-    int split_id = 0;
+    int64 split_id = 0;
     wxSharedPtr<mmDates> dParser(new mmDates);
     std::map<wxString, int> comma({ {".", 0}, {",", 0} });
     while (input.IsOk() && !input.Eof())
@@ -843,7 +843,7 @@ void mmQIFImportDialog::OnShowPayeeDialog(wxMouseEvent&)
 
 void mmQIFImportDialog::OnShowCategDialog(wxMouseEvent&)
 {
-    int id = -1;
+    int64 id = -1;
     if (categoryListBox_->GetSelectedRow() >= 0)
     {
         wxVariant value;
@@ -851,7 +851,7 @@ void mmQIFImportDialog::OnShowCategDialog(wxMouseEvent&)
         wxString selectedCategname = value.GetString();
         id = m_QIFcategoryNames[selectedCategname];
         if (id == -1) {
-            std::map<wxString, int > categories = Model_Category::all_categories();
+            std::map<wxString, int64 > categories = Model_Category::all_categories();
             for (const auto& category : categories)
             {
                 if (category.first.CmpNoCase(selectedCategname) <= 0) id = category.second;
@@ -1246,7 +1246,7 @@ void mmQIFImportDialog::saveSplit()
         for (int j = 0; j < static_cast<int>(m_splitDataSets[i].size()); j++)
         {
             // save the split
-            int splitTransID = Model_Splittransaction::instance().save(m_splitDataSets[i][j]);
+            int64 splitTransID = Model_Splittransaction::instance().save(m_splitDataSets[i][j]);
             // check if there are any taglinks for this split index in this group
             if (!m_splitTaglinks[i][j].empty())
             {
@@ -1377,7 +1377,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
         return false;
     }
 
-    int accountID = -1;
+    int64 accountID = -1;
     wxString accountName = (t.find(AccountName) != t.end() ? t[AccountName] : "");
     if ((accountName.empty() || accountCheckBox_->IsChecked()) /*&& !transfer*/) {
         accountName = m_accountNameStr;
@@ -1440,13 +1440,13 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
         wxStringTokenizer categToken(t[CategorySplit], "\n");
         wxStringTokenizer amtToken((t.find(AmountSplit) != t.end() ? t[AmountSplit] : ""), "\n");
         wxString notes = t.find(MemoSplit) != t.end() ? t[MemoSplit] : "";
-        int split_id = 1;
+        int64 split_id = 1;
 
         while (categToken.HasMoreTokens())
         {
             const wxString c = categToken.GetNextToken().BeforeFirst('/', &tagStr);
             if (m_QIFcategoryNames.find(c) == m_QIFcategoryNames.end()) return false;
-            int categID = m_QIFcategoryNames[c];
+            int64 categID = m_QIFcategoryNames[c];
             if (categID <= 0)
             {
                 msg = _("Transaction Category is incorrect");
@@ -1547,7 +1547,7 @@ void mmQIFImportDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
     EndModal(wxID_CANCEL);
 }
 
-int mmQIFImportDialog::getOrCreateAccounts()
+int64 mmQIFImportDialog::getOrCreateAccounts()
 {
     m_QIFaccountsID.clear();
 
@@ -1630,7 +1630,7 @@ void mmQIFImportDialog::getOrCreateCategories()
     {
         wxString categStr;
         wxStringTokenizer token(item.first, ":");
-        int parentID = -1;
+        int64 parentID = -1;
         while(token.HasMoreTokens()){
             categStr = token.GetNextToken().Trim(false).Trim();
             Model_Category::Data* c = Model_Category::instance().get(categStr, parentID);
@@ -1653,9 +1653,9 @@ void mmQIFImportDialog::getOrCreateCategories()
     }
 }
 
-int mmQIFImportDialog::get_last_imported_acc()
+int64 mmQIFImportDialog::get_last_imported_acc()
 {
-    int accID = -1;
+    int64 accID = -1;
     Model_Account::Data* acc = Model_Account::instance().get(m_accountNameStr);
     if (acc)
         accID = acc->ACCOUNTID;

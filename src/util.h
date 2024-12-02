@@ -78,14 +78,14 @@ inline wxString mmListBoxItem::getName() const { return name_; }
 class mmTreeItemData : public wxTreeItemData
 {
 public:
-    mmTreeItemData(int type, int id);
+    mmTreeItemData(int type, int64 id);
     mmTreeItemData(const wxString& data, mmPrintableBase* report);
     mmTreeItemData(mmPrintableBase* report, const wxString& data);
     mmTreeItemData(int type, const wxString& data);
     
     ~mmTreeItemData() {}
 
-    int getData() const;
+    int64 getData() const;
     const wxString getString() const;
     mmPrintableBase* get_report() const;
     bool isReadOnly() const;
@@ -117,13 +117,13 @@ public:
     };
 
 private:
-    int id_ = -1;
+    int64 id_ = -1;
     int type_;
     wxString stringData_;
     wxSharedPtr<mmPrintableBase> report_;
 };
 
-inline int mmTreeItemData::getData() const { return id_; }
+inline int64 mmTreeItemData::getData() const { return id_; }
 inline const wxString mmTreeItemData::getString() const { return stringData_; }
 inline mmPrintableBase* mmTreeItemData::get_report() const { return report_.get(); }
 inline int mmTreeItemData::getType() const { return type_; }

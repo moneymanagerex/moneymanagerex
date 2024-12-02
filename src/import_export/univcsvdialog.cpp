@@ -84,7 +84,7 @@ mmUnivCSVDialog::mmUnivCSVDialog()
 mmUnivCSVDialog::mmUnivCSVDialog(
     wxWindow* parent,
     EDialogType dialogType,
-    int account_id,
+    int64 account_id,
     const wxString& file_path,
     wxWindowID id,
     const wxPoint& pos,
@@ -292,7 +292,7 @@ void mmUnivCSVDialog::CreateControls()
         {
             // Can't use an enum for the field index since there can be infinite custom fields
             // Instead we offset the last enum by the custom FIELDID to get a unique index for each
-            int csvField = UNIV_CSV_LAST + entry.FIELDID;
+            int csvField = UNIV_CSV_LAST + entry.FIELDID.GetValue();
             CSVFieldName_[csvField] = entry.DESCRIPTION;
             csvFieldCandicate_->Append(entry.DESCRIPTION, new mmListBoxItem(csvField, entry.DESCRIPTION));
         }
@@ -634,7 +634,7 @@ void mmUnivCSVDialog::OnShowPayeeDialog(wxMouseEvent&)
 
 void mmUnivCSVDialog::OnShowCategDialog(wxMouseEvent&)
 {
-    int id = -1;
+    int64 id = -1;
     if (categoryListBox_->GetSelectedRow() >= 0)
     {
         wxVariant value;
@@ -642,7 +642,7 @@ void mmUnivCSVDialog::OnShowCategDialog(wxMouseEvent&)
         wxString selectedCategname = value.GetString();
         id = m_CSVcategoryNames[selectedCategname];
         if (id == -1) {
-            std::map<wxString, int > categories = Model_Category::all_categories();
+            std::map<wxString, int64 > categories = Model_Category::all_categories();
             for (const auto& category : categories)
             {
                 if (category.first.CmpNoCase(selectedCategname) <= 0) id = category.second;
@@ -1583,7 +1583,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
 
     const auto split = Model_Splittransaction::instance().get_all();
     const auto tags = Model_Taglink::instance().get_all(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION));
-    int fromAccountID = from_account->ACCOUNTID;
+    int64 fromAccountID = from_account->ACCOUNTID;
 
     long numRecords = 0;
     Model_Currency::Data* currency = Model_Account::currency(from_account);
@@ -1904,7 +1904,7 @@ void mmUnivCSVDialog::update_preview()
         {
             const auto split = Model_Splittransaction::instance().get_all();
             const auto tags = Model_Taglink::instance().get_all(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION));
-            int fromAccountID = from_account->ACCOUNTID;
+            int64 fromAccountID = from_account->ACCOUNTID;
             size_t count = 0;
             int row = 0;
             const wxString& delimit = this->delimit_;
@@ -2456,7 +2456,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         else // create category and any missing parent categories
         {
             Model_Category::Data* category = nullptr;
-            int parentID = -1;
+            int64 parentID = -1;
             wxStringTokenizer tokenizer = wxStringTokenizer(token, ":");
             while (tokenizer.HasMoreTokens())
             {

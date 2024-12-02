@@ -40,13 +40,13 @@ public:
     mmQIFImportDialog()
     {
     }
-    mmQIFImportDialog(wxWindow* parent, int account_id, const wxString& file_path = wxEmptyString);
+    mmQIFImportDialog(wxWindow* parent, int64 account_id, const wxString& file_path = wxEmptyString);
 
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& caption = _("Import from QIF file"), const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize, long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX);
 
     wxString OnGetItemText(long item, long column) const;
-    int get_last_imported_acc();
+    int64 get_last_imported_acc();
 
 private:
     mmQIFImport* qif_api = nullptr;
@@ -66,7 +66,7 @@ private:
     void OnShowCategDialog(wxMouseEvent&);
     void save_file_name();
     bool mmReadQIFFile();
-    int getOrCreateAccounts();
+    int64 getOrCreateAccounts();
     void getOrCreatePayees();
     void getOrCreateCategories();
     bool completeTransaction(std::unordered_map<int, wxString>& trx, const wxString& accName);
@@ -94,7 +94,7 @@ private:
     wxString m_dateFormatStr;
     wxString decimal_;
     bool m_userDefinedDateMask = false;
-    int fromAccountID_ = -1;
+    int64 fromAccountID_ = -1;
     wxString m_FileNameStr;
     const wxDateTime m_today;
     const wxDateTime m_fresh;

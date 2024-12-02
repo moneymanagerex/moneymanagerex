@@ -87,7 +87,7 @@ public:
 
     /// Constructors
     mmUnivCSVDialog();
-    mmUnivCSVDialog(wxWindow* parent, EDialogType dialogType, int account_id,
+    mmUnivCSVDialog(wxWindow* parent, EDialogType dialogType, int64 account_id,
                     const wxString& file_path = wxEmptyString,
                     wxWindowID id = SYMBOL_UNIVCSVDIALOG_IDNAME,
                     const wxPoint& pos = SYMBOL_UNIVCSVDIALOG_POSITION,
@@ -95,7 +95,7 @@ public:
                     long style = SYMBOL_UNIVCSVDIALOG_STYLE);
 
     bool isImportCompletedSuccessfully() const;
-    int ImportedAccountID() const;
+    int64 ImportedAccountID() const;
     bool IsImporter() const;
     bool IsXML() const;
     bool IsCSV() const;
@@ -132,10 +132,10 @@ private:
         wxDateTime Date;
         wxString Type = Model_Checking::TYPE_STR_WITHDRAWAL;
         wxString Status = "";
-        int ToAccountID = -1;
+        int64 ToAccountID = -1;
         double ToAmount = 0.0;
-        int PayeeID = -1;
-        int CategoryID = -1;
+        int64 PayeeID = -1;
+        int64 CategoryID = -1;
         wxArrayInt tagIDs;
         double Amount = 0.0;
         wxString Number;
@@ -146,7 +146,7 @@ private:
     };
 private:
     EDialogType dialogType_ = EDialogType::DIALOG_TYPE_IMPORT_CSV;
-    int m_account_id = -1;
+    int64 m_account_id = -1;
     wxString m_file_path;
     wxString delimit_ = ",";
     wxString decimal_;
@@ -181,7 +181,7 @@ private:
     enum amountFieldSignValues { PositiveIsDeposit, PositiveIsWithdrawal, DefindByType };
     wxCheckBox* m_checkBoxExportTitles = nullptr;
 
-    int accountID_ = -1;
+    int64 accountID_ = -1;
     bool importSuccessful_ = false;
     bool m_userDefinedDateMask = false;
     int m_object_in_focus = wxID_ANY;
@@ -238,7 +238,7 @@ private:
     void OnShowPayeeDialog(wxMouseEvent&);
     void OnShowCategDialog(wxMouseEvent&);
     void saveAccountPresets();
-    bool validateCustomFieldData(int fieldId, wxString& value, wxString& log_message);
+    bool validateCustomFieldData(int64 fieldId, wxString& value, wxString& log_message);
 private:
     void OnLoad();
     void UpdateListItemBackground();
@@ -261,7 +261,7 @@ inline bool mmUnivCSVDialog::isImportCompletedSuccessfully() const
 {
     return importSuccessful_;
 }
-inline int mmUnivCSVDialog::ImportedAccountID() const
+inline int64 mmUnivCSVDialog::ImportedAccountID() const
 {
     return accountID_;
 }
