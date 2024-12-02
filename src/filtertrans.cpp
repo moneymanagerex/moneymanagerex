@@ -110,7 +110,7 @@ bool mmFilterTransactions::mmIsRecordMatches(const Model_Checking::Data &tran
     wxString strDate = Model_Checking::TRANSDATE(tran).FormatISOCombined();
     if (m_accountFilter
         && (std::find(m_accountList.begin(), m_accountList.end(), tran.ACCOUNTID) == m_accountList.end())
-        && (std::find(m_accountList.begin(), m_accountList.end(), tran.TOACCOUNTID) == m_accountList.end())
+        && (std::find(m_accountList.begin(), m_accountList.end(), tran.TOACCOUNTID) == m_accountList.end()))
         ok = false;
     else if (m_dateFilter && ((strDate < m_startDate) || (strDate > m_endDate)))
         ok = false;

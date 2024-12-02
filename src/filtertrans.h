@@ -34,7 +34,7 @@ public:
     void setDateRange(wxDateTime startDate, wxDateTime endDate);
     void setAccountList(wxSharedPtr<wxArrayString> accountList);
     void setPayeeList(const wxArrayInt64 payeeList);
-    void setCategoryList(const std::vector<int> &categoryList);
+    void setCategoryList(const wxArrayInt64 &categoryList);
 
     // Apply Filter methods
     template<class MODEL, class DATA = typename MODEL::Data>
