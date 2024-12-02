@@ -70,7 +70,7 @@ private:
     wxString name_;
 };
 
-inline int mmListBoxItem::getIndex() const { return index_; }
+inline int64 mmListBoxItem::getIndex() const { return index_; }
 inline wxString mmListBoxItem::getName() const { return name_; }
 
 //----------------------------------------------------------------------------
