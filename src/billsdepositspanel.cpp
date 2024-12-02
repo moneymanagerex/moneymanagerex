@@ -504,7 +504,7 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     }
     case COL_AUTO:
     {
-        int autoExecute = bill.REPEATS / BD_REPEATS_MULTIPLEX_BASE;
+        int autoExecute = bill.REPEATS.GetValue() / BD_REPEATS_MULTIPLEX_BASE;
         wxString repeatSTR =
             (autoExecute == Model_Billsdeposits::REPEAT_AUTO_SILENT) ? _("Automated") :
             (autoExecute == Model_Billsdeposits::REPEAT_AUTO_MANUAL) ? _("Suggested") :
@@ -530,7 +530,7 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
 
 const wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Data* item) const
 {
-    int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+    int repeats = item->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
 
     wxString text = wxGetTranslation(BILLSDEPOSITS_REPEATS[repeats]);
     if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS)
@@ -540,7 +540,7 @@ const wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Dat
 
 int mmBillsDepositsPanel::GetNumRepeats(const Model_Billsdeposits::Data* item) const
 {
-    int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+    int repeats = item->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
     int numRepeats = item->NUMOCCURRENCES;
 
     if (repeats == Model_Billsdeposits::REPEAT_ONCE)
@@ -560,7 +560,7 @@ int mmBillsDepositsPanel::GetNumRepeats(const Model_Billsdeposits::Data* item) c
 
 const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data* item) const
 {
-    int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+    int repeats = item->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
     if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && item->NUMOCCURRENCES < 0)
     {
         return _("Inactive");
@@ -605,8 +605,8 @@ void billsDepositsListCtrl::OnListLeftClick(wxMouseEvent& event)
 int billsDepositsListCtrl::OnGetItemImage(long item) const
 {
     // demultiplex REPEATS
-    int autoExecute = m_bdp->bills_[item].REPEATS / BD_REPEATS_MULTIPLEX_BASE;
-    int repeats = m_bdp->bills_[item].REPEATS % BD_REPEATS_MULTIPLEX_BASE;
+    int autoExecute = m_bdp->bills_[item].REPEATS.GetValue() / BD_REPEATS_MULTIPLEX_BASE;
+    int repeats = m_bdp->bills_[item].REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE;
     if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && m_bdp->bills_[item].NUMOCCURRENCES < 0)
     {
         // inactive
