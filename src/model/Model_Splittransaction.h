@@ -24,9 +24,6 @@
 #include "Model_Currency.h"
 #include "db/DB_Table_Splittransactions_V1.h"
 
-class wxArray;
-typedef wxArray<wxLongLong> wxArrayInt64;
-
 struct Split
 {
     int64 CATEGID;
