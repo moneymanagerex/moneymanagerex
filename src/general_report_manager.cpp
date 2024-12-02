@@ -300,7 +300,7 @@ void mmGeneralReportManager::fillControls()
             m_treeCtrl->SetItemData(group, new MyTreeItemData(-1, group_name));
         }
         wxTreeItemId item = m_treeCtrl->AppendItem(no_group ? m_rootItem : group
-            , wxString::Format("%s%s", (record.ACTIVE ? L"" : L"\u2717 "), record.REPORTNAME));
+            , wxString::Format("%s%s", (record.ACTIVE.GetValue() ? L"" : L"\u2717 "), record.REPORTNAME));
         m_treeCtrl->SetItemData(item, new MyTreeItemData(record.REPORTID, record.GROUPNAME));
 
         if (m_selectedReportID == record.REPORTID)

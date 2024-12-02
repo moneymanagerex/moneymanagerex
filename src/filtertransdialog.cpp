@@ -1595,7 +1595,7 @@ const wxString mmFilterTransactionsDialog::mmGetDescriptionToolTip() const
                 {
                     if (wxGetTranslation("Tags").IsSameAs(wxString::FromUTF8(itr->name.GetString())))
                     {
-                        value += (value.empty() ? "" : " ") + Model_Tag::instance().get(valArray[i].GetInt())->TAGNAME;
+                        value += (value.empty() ? "" : " ") + Model_Tag::instance().get(int64(valArray[i].GetInt64()))->TAGNAME;
                         // don't add a newline between tag operators
                         if (valArray.Size() > 1 && i < valArray.Size() - 2 && valArray[i + 1].GetType() == kStringType)
                             continue;
@@ -1848,7 +1848,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
     {
         wxArrayString s = Model_Checking::STATUS_STR;
         s.Add(wxTRANSLATE("All Except Reconciled"));
-        int64 item = choiceStatus_->GetSelection();
+        int item = choiceStatus_->GetSelection();
         wxString status;
         if (0 <= item && static_cast<size_t>(item) < s.size())
             status = s[item];
@@ -1909,7 +1909,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
             if (tag == "&" || tag == "|")
                 json_writer.String(tag.utf8_str());
             else
-                json_writer.Int(Model_Tag::instance().get(tag)->TAGID);
+                json_writer.Int64(Model_Tag::instance().get(tag)->TAGID.GetValue());
         }
 
         json_writer.EndArray();
@@ -2249,7 +2249,7 @@ void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event
     }
     s_acc.SetSelections(selected_items);
 
-    m_selected_accounts_id.Clear();
+    m_selected_accounts_id.clear();
     bSelectedAccounts_->UnsetToolTip();
 
     if (s_acc.ShowModal() == wxID_OK)
@@ -2261,24 +2261,24 @@ void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event
             const wxString accounts_name = m_accounts_name[index];
             const auto account = Model_Account::instance().get(accounts_name);
             if (account)
-                m_selected_accounts_id.Add(account->ACCOUNTID);
+                m_selected_accounts_id.push_back(account->ACCOUNTID);
             baloon += accounts_name + "\n";
         }
     }
 
-    if (m_selected_accounts_id.GetCount() == 0)
+    if (m_selected_accounts_id.empty())
     {
         bSelectedAccounts_->SetLabelText(_("All"));
         accountCheckBox_->SetValue(false);
         bSelectedAccounts_->Disable();
     }
-    else if (m_selected_accounts_id.GetCount() == 1)
+    else if (m_selected_accounts_id.size() == 1)
     {
         const Model_Account::Data* account = Model_Account::instance().get(*m_selected_accounts_id.begin());
         if (account)
             bSelectedAccounts_->SetLabelText(account->ACCOUNTNAME);
     }
-    else if (m_selected_accounts_id.GetCount() > 1)
+    else if (m_selected_accounts_id.size() > 1)
     {
         bSelectedAccounts_->SetLabelText("...");
         mmToolTip(bSelectedAccounts_, baloon);
