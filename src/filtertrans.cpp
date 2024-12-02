@@ -82,7 +82,7 @@ bool mmFilterTransactions::checkCategory(const DATA& tran, const std::map<int64,
     const auto it = splits.find(tran.id());
     if (it == splits.end())
     {
-        for (int it2 : m_categoryList)
+        for (auto it2 : m_categoryList)
         {
             if (it2 == tran.CATEGID)
                 return true;
@@ -92,7 +92,7 @@ bool mmFilterTransactions::checkCategory(const DATA& tran, const std::map<int64,
     {
         for (const auto& split : it->second)
         {
-            for (int it2 : m_categoryList)
+            for (auto it2 : m_categoryList)
             {
                 if (it2 == split.CATEGID)
                     return true;
