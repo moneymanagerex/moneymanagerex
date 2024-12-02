@@ -425,10 +425,10 @@ public:
     );
     bool IsValid();
     bool Validate(const wxString& tagText = wxEmptyString);
-    const wxArrayInt GetTagIDs() const;
+    const wxArrayInt64 GetTagIDs() const;
     const wxArrayString GetTagStrings();
     void Reinitialize();
-    void SetTags(const wxArrayInt& tagIds);
+    void SetTags(const wxArrayInt64& tagIds);
     void SetText(const wxString& text);
     void Clear();
     bool IsEmpty() const;

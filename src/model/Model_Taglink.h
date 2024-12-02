@@ -54,7 +54,7 @@ public:
     /**
     * Return a map of all tags
     */
-    std::map<int, Model_Taglink::Data_Set> get_all(const wxString& refType);
+    std::map<int64, Model_Taglink::Data_Set> get_all(const wxString& refType);
 
     /**
     * Return a map of all tags for the specified transaction

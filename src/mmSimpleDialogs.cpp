@@ -1842,7 +1842,7 @@ wxArrayString mmTagTextCtrl::parseTags(const wxString& tagString)
     return tags;
 }
 
-void mmTagTextCtrl::SetTags(const wxArrayInt& tagIds)
+void mmTagTextCtrl::SetTags(const wxArrayInt64& tagIds)
 {
     // Save the tag IDs and tag names
     tags_.clear();

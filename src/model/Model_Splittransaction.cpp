@@ -70,9 +70,9 @@ double Model_Splittransaction::get_total(const std::vector<Split>& rows)
     return total;
 }
 
-std::map<int, Model_Splittransaction::Data_Set> Model_Splittransaction::get_all()
+std::map<int64, Model_Splittransaction::Data_Set> Model_Splittransaction::get_all()
 {
-    std::map<int, Model_Splittransaction::Data_Set> data;
+    std::map<int64, Model_Splittransaction::Data_Set> data;
     for (const auto &split : instance().all())
     {
         data[split.TRANSID].push_back(split);
