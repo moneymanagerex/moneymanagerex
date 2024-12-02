@@ -753,7 +753,7 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     if (report)
     {
         customReportMenu.Enable(ID_UNGROUP, !report->GROUPNAME.empty());
-        menuItemActive->Check(report->ACTIVE);
+        menuItemActive->Check(report->ACTIVE.GetValue());
     }
     else
     {
@@ -939,7 +939,7 @@ bool mmGeneralReportManager::renameReportGroup(const wxString& GroupName)
 
 void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 {
-    int64 id = event.GetId();
+    int id = event.GetId();
 
     if (id == ID_NEW_EMPTY || id == ID_NEW_SAMPLE_ASSETS)
     {
@@ -982,7 +982,7 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
     fillControls();
 }
 
-void mmGeneralReportManager::newReport(int sample)
+void mmGeneralReportManager::newReport(int64 sample)
 {
     wxString group_name;
     if (m_selectedItemID == m_rootItem)

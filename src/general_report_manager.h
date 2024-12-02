@@ -90,7 +90,7 @@ private:
     void changeReportState(int64 id);
     bool renameReportGroup(const wxString& GroupName);
     void OnMenuSelected(wxCommandEvent& event);
-    void newReport(int sample = ID_NEW_EMPTY);
+    void newReport(int64 sample = ID_NEW_EMPTY);
     void createEditorTab(wxNotebook* notebook, int type);
     void createOutputTab(wxNotebook* notebook, int type);
     void showHelp();

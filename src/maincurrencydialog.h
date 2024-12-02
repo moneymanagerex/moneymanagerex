@@ -28,6 +28,8 @@
 class mmDatePickerCtrl;
 class mmTextCtrl;
 
+typedef wxLongLong int64;
+
 struct CurrencyHistoryRate
 {
     wxString BaseCurrency;
