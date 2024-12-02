@@ -112,8 +112,8 @@ Fused_Transaction::Full_Data::Full_Data(const Model_Checking::Data& t)
 }
 
 Fused_Transaction::Full_Data::Full_Data(const Model_Checking::Data& t,
-    const std::map<int /* TRANSID */, Split_Data_Set>& splits,
-    const std::map<int /* TRANSID */, Taglink_Data_Set>& tags)
+    const std::map<int64 /* TRANSID */, Split_Data_Set>& splits,
+    const std::map<int64 /* TRANSID */, Taglink_Data_Set>& tags)
 :
     Model_Checking::Full_Data(t, splits, tags), m_bdid(0), m_repeat_num(0)
 {
@@ -143,8 +143,8 @@ Fused_Transaction::Full_Data::Full_Data(const Model_Billsdeposits::Data& r,
 
 Fused_Transaction::Full_Data::Full_Data(const Model_Billsdeposits::Data& r,
     wxString date, int repeat_num,
-    const std::map<int /* BDID */, Budgetsplit_Data_Set>& budgetsplits,
-    const std::map<int /* BDID */, Taglink_Data_Set>& tags)
+    const std::map<int64 /* BDID */, Budgetsplit_Data_Set>& budgetsplits,
+    const std::map<int64 /* BDID */, Taglink_Data_Set>& tags)
 :
     Model_Checking::Full_Data(execute_bill_full(r, date), {}, {}),
     m_bdid(r.BDID), m_repeat_num(repeat_num)
@@ -169,7 +169,7 @@ Fused_Transaction::Full_Data::~Full_Data()
 }
 
 
-void Fused_Transaction::getEmptyData(Fused_Transaction::Data &data, int accountID)
+void Fused_Transaction::getEmptyData(Fused_Transaction::Data &data, int64 accountID)
 {
     Model_Checking::getEmptyData(data, accountID);
     data.m_bdid = 0;

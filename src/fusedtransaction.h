@@ -30,10 +30,10 @@ class Fused_Transaction
 {
 public:
     // id represents TRANSID if !is_bill, or BDID otherwise
-    typedef std::pair<int /* id */, bool /* is_bill */> IdB;
+    typedef std::pair<int64 /* id */, bool /* is_bill */> IdB;
 
     // id represents TRANSID if repeat_num == 0, or BDID otherwise
-    typedef std::pair<int /* id */, int /* repeat_num */> IdRepeat;
+    typedef std::pair<int64 /* id */, int /* repeat_num */> IdRepeat;
 
     typedef Model_Splittransaction::Data_Set Split_Data_Set;
     typedef Model_Budgetsplittransaction::Data_Set Budgetsplit_Data_Set;
@@ -51,7 +51,7 @@ public:
         Data(const Model_Billsdeposits::Data& r, wxString date, int repeat_num);
         ~Data();
 
-        int m_bdid;
+        int64 m_bdid;
         int m_repeat_num;
     };
     typedef std::vector<Data> Data_Set;
@@ -60,16 +60,16 @@ public:
     {
         explicit Full_Data(const Model_Checking::Data& t);
         Full_Data(const Model_Checking::Data& t,
-            const std::map<int /* TRANSID */, Split_Data_Set>& splits,
-            const std::map<int /* TRANSID */, Taglink_Data_Set>& tags);
+            const std::map<int64 /* TRANSID */, Split_Data_Set>& splits,
+            const std::map<int64 /* TRANSID */, Taglink_Data_Set>& tags);
         Full_Data(const Model_Billsdeposits::Data& r);
         Full_Data(const Model_Billsdeposits::Data& r, wxString date, int repeat_num);
         Full_Data(const Model_Billsdeposits::Data& r, wxString date, int repeat_num,
-            const std::map<int /* BDID */, Budgetsplit_Data_Set>& budgetsplits,
-            const std::map<int /* BDID */, Taglink_Data_Set>& tags);
+            const std::map<int64 /* BDID */, Budgetsplit_Data_Set>& budgetsplits,
+            const std::map<int64 /* BDID */, Taglink_Data_Set>& tags);
         ~Full_Data();
 
-        int m_bdid;
+        int64 m_bdid;
         int m_repeat_num;
     };
     typedef std::vector<Full_Data> Full_Data_Set;
@@ -83,7 +83,7 @@ public:
         }
     };
 
-    static void getEmptyData(Data &data, int account_id);
+    static void getEmptyData(Data &data, int64 account_id);
     static bool getFusedData(Data &data, IdB fused_id);
     static const Model_Splittransaction::Data_Set split(Data &r);
 };
