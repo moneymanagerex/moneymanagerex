@@ -77,7 +77,7 @@ void mmFilterTransactions::setCategoryList(const std::vector<int> &categoryList)
 }
 
 template<class MODEL, class DATA>
-bool mmFilterTransactions::checkCategory(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set> & splits)
+bool mmFilterTransactions::checkCategory(const DATA& tran, const std::map<int64, typename MODEL::Split_Data_Set> & splits)
 {
     const auto it = splits.find(tran.id());
     if (it == splits.end())
@@ -214,7 +214,7 @@ table {
         hb.startTableRow();
         hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
             , wxString::Format("%i", transaction.TRANSID), true);
-        hb.addColorMarker(getUDColour(transaction.COLOR).GetAsString(), true);
+        hb.addColorMarker(getUDColour(transaction.COLOR.GetValue()).GetAsString(), true);
         hb.addTableCellDate(transaction.TRANSDATE);
         hb.addTableCell(transaction.TRANSACTIONNUMBER);
         hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID)

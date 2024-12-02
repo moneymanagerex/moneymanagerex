@@ -38,7 +38,7 @@ public:
 
     // Apply Filter methods
     template<class MODEL, class DATA = typename MODEL::Data>
-    bool checkCategory(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set> & splits);
+    bool checkCategory(const DATA& tran, const std::map<int64, typename MODEL::Split_Data_Set> & splits);
     bool mmIsRecordMatches(const Model_Checking::Data &tran
         , const std::map<int, Model_Splittransaction::Data_Set>& split);
 
