@@ -61,9 +61,9 @@ public:
     );
 
     void SetDialogTitle(const wxString& title);
-    int GetAccountID() { return m_fused_data.ACCOUNTID; }
-    int GetToAccountID() { return m_fused_data.TOACCOUNTID; }
-    int GetTransactionID() { return m_fused_data.TRANSID; }
+    int64 GetAccountID() { return m_fused_data.ACCOUNTID; }
+    int64 GetToAccountID() { return m_fused_data.TOACCOUNTID; }
+    int64 GetTransactionID() { return m_fused_data.TRANSID; }
 
 private:
     wxSharedPtr<mmCustomData> m_custom_fields;

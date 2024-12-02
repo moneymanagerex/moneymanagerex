@@ -779,7 +779,7 @@ void mmMainCurrencyDialog::OnHistoryDeselected(wxListEvent& WXUNUSED(event))
 
 bool mmMainCurrencyDialog::SetBaseCurrency(int64& baseCurrencyID)
 {
-    int baseCurrencyOLD = Option::instance().getBaseCurrencyID();
+    int64 baseCurrencyOLD = Option::instance().getBaseCurrencyID();
     if (baseCurrencyID == baseCurrencyOLD)
         return true;
 

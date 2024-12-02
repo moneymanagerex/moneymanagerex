@@ -127,7 +127,7 @@ private:
     wxSharedPtr<mmFilterTransactionsDialog> m_trans_filter_dlg;
 
 private:
-    int m_AccountID = -1;
+    int64 m_AccountID = -1;
     bool isAllAccounts_ = false; // TRUE = All accounts are displayed
     bool isTrash_ = false; // TRUE = Deleted transactions are displayed
     int m_filter_id;

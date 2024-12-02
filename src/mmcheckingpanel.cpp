@@ -104,7 +104,7 @@ wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
 wxEND_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
-mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accountID, int id)
+mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int64 accountID, int id)
     : m_AccountID(accountID)
     , isAllAccounts_((-1 == accountID) ? true : false)
     , isTrash_((-2 == accountID) ? true : false)
@@ -211,9 +211,9 @@ void mmCheckingPanel::filterTable()
         Model_Checking::instance().all() :
         Model_Account::transaction(this->m_account);
 
-    std::map<int, Model_Budgetsplittransaction::Data_Set> bills_splits;
-    std::map<int, Model_Taglink::Data_Set> bills_tags;
-    std::map<int, Model_Attachment::Data_Set> bills_attachments;
+    std::map<int64, Model_Budgetsplittransaction::Data_Set> bills_splits;
+    std::map<int64, Model_Taglink::Data_Set> bills_tags;
+    std::map<int64, Model_Attachment::Data_Set> bills_attachments;
     Model_Billsdeposits::Data_Set bills;
     typedef std::tuple<int /* i */, wxString /* date */, int /* repeat_num */> bills_index_t;
     std::vector<bills_index_t> bills_index;
