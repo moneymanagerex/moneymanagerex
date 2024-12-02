@@ -43,7 +43,7 @@ BEGIN_EVENT_TABLE(mmStocksPanel, wxPanel)
     EVT_BUTTON(wxID_REFRESH,      mmStocksPanel::OnRefreshQuotes)
 END_EVENT_TABLE()
 /*******************************************************/
-mmStocksPanel::mmStocksPanel(int accountID
+mmStocksPanel::mmStocksPanel(int64 accountID
     , mmGUIFrame* frame
     , wxWindow *parent
     , wxWindowID winid)    
@@ -607,7 +607,7 @@ void mmStocksPanel::call_dialog(int selectedIndex)
     listCtrlAccount_->doRefreshItems(dlg.m_stock_id);
 }
 
-void mmStocksPanel::DisplayAccountDetails(int accountID)
+void mmStocksPanel::DisplayAccountDetails(int64 accountID)
 {
 
     m_account_id = accountID;

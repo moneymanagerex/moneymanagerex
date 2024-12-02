@@ -35,7 +35,7 @@ class mmStocksPanel : public mmPanelBase
 
 public:
     mmStocksPanel(
-        int accountID,
+        int64 accountID,
         mmGUIFrame* frame,
         wxWindow *parent,
         wxWindowID winid = mmID_STOCKS
@@ -49,7 +49,7 @@ public:
                  const wxString& name = "mmStocksPanel");
 
     void CreateControls();
-    void DisplayAccountDetails(int accountID);
+    void DisplayAccountDetails(int64 accountID);
     /* Event handlers for Buttons */
     void OnNewStocks(wxCommandEvent& event);
     void OnDeleteStocks(wxCommandEvent& event);
@@ -67,7 +67,7 @@ public:
 
     void ViewStockTransactions(int selectedIndex);
 
-    int m_account_id = -1;
+    int64 m_account_id = -1;
     Model_Currency::Data * m_currency = nullptr;
     void updateExtraStocksData(int selIndex);
     wxStaticText* stock_details_short_ = nullptr;

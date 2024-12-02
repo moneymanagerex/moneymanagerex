@@ -3981,7 +3981,7 @@ void mmGUIFrame::DoUpdateBudgetNavigation(wxTreeItemId& parent_item)
     const auto all_budgets = Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME);
     if (!all_budgets.empty())
     {
-        std::map <wxString, int> years;
+        std::map <wxString, int64> years;
 
         wxRegEx pattern_year(R"(^([0-9]{4})$)");
         wxRegEx pattern_month(R"(^([0-9]{4})-([0-9]{2})$)");
