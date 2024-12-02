@@ -1164,7 +1164,7 @@ void mmCheckingPanel::SetSelectedTransaction(Fused_Transaction::IdRepeat fused_i
 }
 
 // Refresh account screen with new details
-void mmCheckingPanel::DisplayAccountDetails(int accountID)
+void mmCheckingPanel::DisplayAccountDetails(int64 accountID)
 {
     wxASSERT (-1 != accountID); // should not be called for all transaction view
 

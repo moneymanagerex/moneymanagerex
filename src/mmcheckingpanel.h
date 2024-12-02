@@ -60,7 +60,7 @@ public:
     // Display the split categories for the selected transaction.
     void DisplaySplitCategories(Fused_Transaction::IdB fused_id);
     // Refresh account screen with new details
-    void DisplayAccountDetails(int accountID = -1);
+    void DisplayAccountDetails(int64 accountID = -1);
 
     void SetSelectedTransaction(Fused_Transaction::IdRepeat fused_id);
 
