@@ -680,7 +680,7 @@ void mmBDDialog::CreateControls()
 void mmBDDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
-    if (!m_bill_data.BDID)
+    if (m_bill_data.BDID != 0)
         mmAttachmentManage::DeleteAllAttachments(RefType, m_bill_data.BDID);
     EndModal(wxID_CANCEL);
 }
@@ -698,7 +698,7 @@ void mmBDDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 #endif
 
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
-    if (!m_bill_data.BDID)
+    if (m_bill_data.BDID != 0)
         mmAttachmentManage::DeleteAllAttachments(RefType, m_bill_data.BDID);
     EndModal(wxID_CANCEL);
 }
@@ -929,7 +929,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
 
         // Get payee string from populated list to address issues with case compare differences between autocomplete and payee list
-        int64 payee_loc = cbPayee_->FindString(payee_name);
+        int payee_loc = cbPayee_->FindString(payee_name);
         if (payee_loc != wxNOT_FOUND)
             payee_name = cbPayee_->GetString(payee_loc);
 

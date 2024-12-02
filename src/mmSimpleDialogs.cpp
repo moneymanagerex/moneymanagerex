@@ -352,16 +352,16 @@ void mmComboBox::mmDoReInitialize()
     OnSetFocus(evt);
 }
 
-void mmComboBox::mmSetId(int id)
+void mmComboBox::mmSetId(int64 id)
 {
     auto result = std::find_if(all_elements_.begin(), all_elements_.end(),
-        [id](const std::pair<wxString, int>& mo) {return mo.second == id; });
+        [id](const std::pair<wxString, int64>& mo) {return mo.second == id; });
 
     if (result != all_elements_.end())
         ChangeValue(result->first);
 }
 
-int mmComboBox::mmGetId() const
+int64 mmComboBox::mmGetId() const
 {
     auto text = GetValue();
     if (all_elements_.count(text) == 1)

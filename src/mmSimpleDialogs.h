@@ -134,8 +134,8 @@ public:
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
     );
-    void mmSetId(int id);
-    int mmGetId() const;
+    void mmSetId(int64 id);
+    int64 mmGetId() const;
     const wxString mmGetPattern() const;
     bool mmIsValid() const;
     void mmDoReInitialize(); 
@@ -145,7 +145,7 @@ protected:
     void OnDropDown(wxCommandEvent&);
     void OnKeyPressed(wxKeyEvent& event);
     virtual void init() = 0;
-    std::map<wxString, int> all_elements_;
+    std::map<wxString, int64> all_elements_;
 private:
     bool is_initialized_;
     wxDECLARE_EVENT_TABLE();

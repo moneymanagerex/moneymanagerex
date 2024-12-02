@@ -154,7 +154,7 @@ mmSplitTransactionDialog::~mmSplitTransactionDialog()
 
 mmSplitTransactionDialog::mmSplitTransactionDialog(wxWindow* parent
     , std::vector<Split>& split
-    , int accountID
+    , int64 accountID
     , int transType
     , double totalAmount
     , bool is_view_only
@@ -335,7 +335,7 @@ void mmSplitTransactionDialog::FillControls(const int focusRow)
 void mmSplitTransactionDialog::createNewRow(const bool enabled)
 {
     int row = m_splits_widgets.size();
-    int catID = (row < static_cast<int>(m_splits.size())) ? m_splits.at(row).CATEGID : -1;
+    int64 catID = (row < static_cast<int>(m_splits.size())) ? m_splits.at(row).CATEGID : -1;
 
     mmComboBoxCategory* ncbc = new mmComboBoxCategory(slider_, mmID_MAX + row
                                         , wxDefaultSize, catID, true);

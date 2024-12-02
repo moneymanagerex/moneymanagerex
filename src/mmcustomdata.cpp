@@ -753,7 +753,7 @@ void mmCustomData::SetStringValue(int64 fieldId, const wxString& value, bool has
          SetWidgetChanged(widget_id, value);
 }
 
-bool mmCustomData::ValidateCustomValues(int)
+bool mmCustomData::ValidateCustomValues(int64)
 {
     bool is_valid = true;
     for (const auto &field : m_fields)
