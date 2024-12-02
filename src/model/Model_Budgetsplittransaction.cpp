@@ -65,9 +65,9 @@ bool Model_Budgetsplittransaction::remove(int64 id)
     return this->remove(id, db_);
 }
 
-std::map<int, Model_Budgetsplittransaction::Data_Set> Model_Budgetsplittransaction::get_all()
+std::map<int64, Model_Budgetsplittransaction::Data_Set> Model_Budgetsplittransaction::get_all()
 {
-    std::map<int, Model_Budgetsplittransaction::Data_Set> data;
+    std::map<int64, Model_Budgetsplittransaction::Data_Set> data;
     for (const auto & split : instance().all())
     {
         data[split.TRANSID].push_back(split);
