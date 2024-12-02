@@ -1353,7 +1353,7 @@ bool mmFilterTransactionsDialog::mmIsNoteMatches(const wxString& note)
 
 bool mmFilterTransactionsDialog::mmIsCategoryMatches(int64 categid)
 {
-    return m_selected_categories_id.Index(categid) != wxNOT_FOUND;
+    return std::find(m_selected_categories_id.begin(), m_selected_categories_id.end(), categid) != m_selected_categories_id.end();
 }
 
 bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int64 refId, bool mergeSplitTags)
@@ -2004,10 +2004,10 @@ void mmFilterTransactionsDialog::OnCategoryChange(wxEvent& event)
             for (const auto& category : Model_Category::instance().all_categories())
                 if (pattern.Matches(category.first))
                 {
-                    m_selected_categories_id.Add(category.second);
+                    m_selected_categories_id.push_back(category.second);
                     if (mmIsCategorySubCatChecked())
                         for (const auto& subcat : Model_Category::instance().sub_tree(Model_Category::instance().get(category.second)))
-                            m_selected_categories_id.Add(subcat.CATEGID);
+                            m_selected_categories_id.push_back(subcat.CATEGID);
                 }
     }
     event.Skip();
