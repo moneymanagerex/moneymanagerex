@@ -110,9 +110,9 @@ DB_Table_BUDGETTABLE_V1::PERIOD Model_Budget::PERIOD(PERIOD_ID period, OP op)
 }
 
 void Model_Budget::getBudgetEntry(int64 budgetYearID
-    , std::map<int, PERIOD_ID> &budgetPeriod
-    , std::map<int, double> &budgetAmt
-    , std::map<int, wxString> &budgetNotes)
+    , std::map<int64, PERIOD_ID> &budgetPeriod
+    , std::map<int64, double> &budgetAmt
+    , std::map<int64, wxString> &budgetNotes)
 {
     //Set std::map with zerros
     double value = 0;
@@ -132,7 +132,7 @@ void Model_Budget::getBudgetEntry(int64 budgetYearID
 }
 
 void Model_Budget::getBudgetStats(
-    std::map<int, std::map<int, double> > &budgetStats
+    std::map<int64, std::map<int, double> > &budgetStats
     , mmDateRange* date_range
     , bool groupByMonth)
 {
