@@ -112,7 +112,7 @@ public:
     int mmGetChart() const;
 
     const wxArrayInt64 mmGetAccountsID() const;
-    const wxArrayInt64 mmGetHideColumnsID() const;
+    const wxArrayInt mmGetHideColumnsID() const;
 
     const wxString mmGetBeginDate() const;
     const wxString mmGetEndDate() const;
