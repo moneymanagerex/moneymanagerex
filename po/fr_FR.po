@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-19 12:26\n"
+"PO-Revision-Date: 2024-11-28 21:10\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -350,7 +350,7 @@ msgstr "Changer la langue d'interface utilisateur"
 
 #: appstartdialog.cpp:116
 msgid "&User Manual"
-msgstr "&Manuel de l'utilisateur"
+msgstr "Manuel de l'&Utilisateur"
 
 #: appstartdialog.cpp:117
 msgid "Read MMEX user manual"
@@ -7080,7 +7080,7 @@ msgstr "Futur"
 
 #: reports/htmlbuilder.cpp:219 reports/mmDateRange.cpp:250
 msgid "Over Time"
-msgstr "Over Time"
+msgstr "Toutes les dates"
 
 #: reports/htmlbuilder.cpp:250
 msgid "User specified start day"

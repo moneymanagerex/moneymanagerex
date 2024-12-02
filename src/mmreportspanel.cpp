@@ -354,8 +354,8 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
             m_accounts = new wxChoice(itemPanel3, ID_CHOICE_ACCOUNTS);
-            m_accounts->Append(_("All Accounts:"));
-            m_accounts->Append(_("Specific Accounts:"));
+            m_accounts->Append(_("All Accounts"));
+            m_accounts->Append(_("Specific Accounts…"));
             for (const auto& e : Model_Account::TYPE_CHOICES)
             {
                 if (e.first != Model_Account::TYPE_ID_INVESTMENT) {
@@ -612,7 +612,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
                 const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
                 if (account) {
                     m_frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-                    m_frame->setGotoAccountID(transaction->ACCOUNTID, transID);
+                    m_frame->setGotoAccountID(transaction->ACCOUNTID, { transID, 0 });
                     wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
                     m_frame->GetEventHandler()->AddPendingEvent(event);
                 }
@@ -651,7 +651,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
                 }
                 else
                 {
-                    mmTransDialog dlg(m_frame, -1, transId, 0);
+                    mmTransDialog dlg(m_frame, -1, {transId, false});
                     if (dlg.ShowModal() != wxID_CANCEL)
                     {
                         rb_->getHTMLText();
