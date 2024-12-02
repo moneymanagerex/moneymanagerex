@@ -368,7 +368,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
             if (j_tags[i].IsInt64())
             {
                 // Retrieve TAGNAME from TAGID
-                Model_Tag::Data* tag = Model_Tag::instance().get(j_tags[i].GetInt64());
+                Model_Tag::Data* tag = Model_Tag::instance().get(int64(j_tags[i].GetInt64()));
                 if (tag)
                 {
                     s_tag.Append(tag->TAGNAME + " ");
@@ -1503,7 +1503,7 @@ int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tr
     return ok;
 }
 
-int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tran, const std::map<int, Model_Splittransaction::Data_Set>& splits)
+int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tran, const std::map<int64, Model_Splittransaction::Data_Set>& splits)
 {
     const Model_Splittransaction::Data_Set* split;
     const auto& it = splits.find(tran.id());
@@ -1512,7 +1512,7 @@ int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tr
     return mmIsRecordMatches(tran, *split);
 }
 
-int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Data& tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& splits)
+int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Data& tran, const std::map<int64, Model_Budgetsplittransaction::Data_Set>& splits)
 {
     int ok = mmIsRecordMatches<Model_Billsdeposits>(tran);
     const auto& it = splits.find(tran.id());

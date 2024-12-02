@@ -50,9 +50,9 @@ public:
     int mmIsRecordMatches(const Model_Checking::Data &tran
         , const Model_Splittransaction::Data_Set& splits);
     int mmIsRecordMatches(const Model_Checking::Data &tran
-        , const std::map<int, Model_Splittransaction::Data_Set>& splits);
+        , const std::map<int64, Model_Splittransaction::Data_Set>& splits);
     int mmIsRecordMatches(const Model_Billsdeposits::Data &tran
-        , const std::map<int, Model_Budgetsplittransaction::Data_Set>& splits);
+        , const std::map<int64, Model_Budgetsplittransaction::Data_Set>& splits);
     template<class MODEL, class DATA = typename MODEL::DATA>
     bool mmIsRecordMatches(const DATA& tran, bool mergeSplitTags = false);
     template<class MODEL, class DATA = typename MODEL::DATA>
