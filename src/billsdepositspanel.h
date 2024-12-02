@@ -122,7 +122,7 @@ public:
     void updateBottomPanelData(int selIndex);
     void enableEditDeleteButtons(bool en);
     /* updates the Repeating transactions panel data */
-    int initVirtualListControl(int id = -1);
+    int initVirtualListControl(int64 id = -1);
     /* Getter for Virtual List Control */
     wxString getItem(long item, long column);
     void RefreshList();

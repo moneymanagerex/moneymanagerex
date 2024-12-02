@@ -351,7 +351,7 @@ void mmBillsDepositsPanel::CreateControls()
     mmBillsDepositsPanel::updateBottomPanelData(-1);
 }
 
-int mmBillsDepositsPanel::initVirtualListControl(int id)
+int mmBillsDepositsPanel::initVirtualListControl(int64 id)
 {
     listCtrlAccount_->DeleteAllItems();
 
