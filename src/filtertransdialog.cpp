@@ -1487,24 +1487,29 @@ template <class MODEL, class DATA> bool mmFilterTransactionsDialog::mmIsSplitRec
 template bool mmFilterTransactionsDialog::mmIsSplitRecordMatches<Model_Splittransaction>(const Model_Splittransaction::Data& split);
 template bool mmFilterTransactionsDialog::mmIsSplitRecordMatches<Model_Budgetsplittransaction>(const Model_Budgetsplittransaction::Data& split);
 
-int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tran, const std::map<int, Model_Splittransaction::Data_Set>& splits)
+int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tran, const Model_Splittransaction::Data_Set& splits)
 {
     int ok = mmIsRecordMatches<Model_Checking>(tran);
-    const auto& it = splits.find(tran.id());
-    if (it != splits.end())
+    for (const auto& split : splits)
     {
-        for (const auto& split : it->second)
-        {
-            // Need to check if the split matches using the transaction Notes & Tags as well
-            Model_Checking::Data splitWithTxnNotes(tran);
-            splitWithTxnNotes.CATEGID = split.CATEGID;
-            splitWithTxnNotes.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
-            Model_Checking::Data splitWithSplitNotes = splitWithTxnNotes;
-            splitWithSplitNotes.NOTES = split.NOTES;
-            ok += (mmIsRecordMatches<Model_Checking>(splitWithSplitNotes, true) || mmIsRecordMatches<Model_Checking>(splitWithTxnNotes, true));
-        }
+        // Need to check if the split matches using the transaction Notes & Tags as well
+        Model_Checking::Data splitWithTxnNotes(tran);
+        splitWithTxnNotes.CATEGID = split.CATEGID;
+        splitWithTxnNotes.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
+        Model_Checking::Data splitWithSplitNotes = splitWithTxnNotes;
+        splitWithSplitNotes.NOTES = split.NOTES;
+        ok += (mmIsRecordMatches<Model_Checking>(splitWithSplitNotes, true) || mmIsRecordMatches<Model_Checking>(splitWithTxnNotes, true));
     }
     return ok;
+}
+
+int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tran, const std::map<int, Model_Splittransaction::Data_Set>& splits)
+{
+    const Model_Splittransaction::Data_Set* split;
+    const auto& it = splits.find(tran.id());
+    if (it != splits.end())
+        split = &(it->second);
+    return mmIsRecordMatches(tran, *split);
 }
 
 int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Data& tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& splits)
