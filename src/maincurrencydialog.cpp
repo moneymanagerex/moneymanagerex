@@ -144,7 +144,7 @@ void mmMainCurrencyDialog::fillControls()
         data.push_back(wxVariant(currency.CURRENCY_SYMBOL));
         data.push_back(wxVariant(currency.CURRENCYNAME));
         data.push_back(wxVariant(amount));
-        currencyListBox_->AppendItem(data, static_cast<wxUIntPtr>(currencyID));
+        currencyListBox_->AppendItem(data, static_cast<wxUIntPtr>(currencyID.GetValue()));
         if (selected_index == currencyListBox_->GetItemCount() - 1)
         {
             currencyListBox_->SelectRow(selected_index);
@@ -387,7 +387,7 @@ bool mmMainCurrencyDialog::Execute(wxWindow* parent, int64& currencyID)
     return result;
 }
 
-bool mmMainCurrencyDialog::Execute64(int64& currencyID)
+bool mmMainCurrencyDialog::Execute(int64& currencyID)
 {
     mmMainCurrencyDialog dlg(nullptr, currencyID);
     dlg.m_static_dialog = true;

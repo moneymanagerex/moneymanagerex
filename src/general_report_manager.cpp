@@ -982,7 +982,7 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
     fillControls();
 }
 
-void mmGeneralReportManager::newReport(int64 sample)
+void mmGeneralReportManager::newReport(int sample)
 {
     wxString group_name;
     if (m_selectedItemID == m_rootItem)

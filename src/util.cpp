@@ -675,7 +675,7 @@ END_EVENT_TABLE()
 
 //--------------------------------------------------------------------
 
-bool getOnlineCurrencyRates(wxString& msg,const int curr_id, const bool used_only)
+bool getOnlineCurrencyRates(wxString& msg,const int64 curr_id, const bool used_only)
 {
     wxString base_currency_symbol;
 
