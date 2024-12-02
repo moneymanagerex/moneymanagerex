@@ -69,7 +69,7 @@ void mmBudgetYearDialog::fillControls()
     for (const auto& e: Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
     {
         const wxString& payeeString = e.BUDGETYEARNAME;
-        int budgetYearID = e.BUDGETYEARID;
+        int64 budgetYearID = e.BUDGETYEARID;
         m_listBox->Insert(payeeString, index++, new mmListBoxItem(budgetYearID, payeeString));
     }
 }
@@ -144,7 +144,7 @@ void mmBudgetYearDialog::OnAddMonth(wxCommandEvent& /*event*/)
 void mmBudgetYearDialog::OnDelete(wxCommandEvent& /*event*/)
 {
     wxString budgetYearString = m_listBox->GetStringSelection();
-    int budgetYearID = Model_Budgetyear::instance().Get(budgetYearString);
+    int64 budgetYearID = Model_Budgetyear::instance().Get(budgetYearString);
     Model_Budgetyear::instance().remove(budgetYearID);
     m_listBox->Clear();
     fillControls();

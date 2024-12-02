@@ -455,7 +455,7 @@ void mmBudgetingPanel::initVirtualListControl()
             budgetTotals_[category.CATEGID].second += actual;
 
             //walk up the hierarchy and update all the parent totals as well
-            int nextParent = subcats[i].PARENTID;
+            int64 nextParent = subcats[i].PARENTID;
             displayDetails_[subcats[i].CATEGID].first = 1;
             for (int j = i; j > 0; j--) {
                 if (subcats[j - 1].CATEGID == nextParent) {
@@ -549,7 +549,7 @@ double mmBudgetingPanel::getEstimate(int64 category) const
     }
 }
 
-void mmBudgetingPanel::DisplayBudgetingDetails(int budgetYearID)
+void mmBudgetingPanel::DisplayBudgetingDetails(int64 budgetYearID)
 {
     this->windowsFreezeThaw();
     budgetYearID_ = budgetYearID;

@@ -82,7 +82,7 @@ mmCategDialog::mmCategDialog()
 
 mmCategDialog::mmCategDialog(wxWindow* parent
     , bool bIsSelection
-    , int category_id)
+    , int64 category_id)
 {
     // Initialize fields in constructor
     m_categ_id = category_id;
@@ -409,7 +409,7 @@ void mmCategDialog::OnBeginDrag(wxTreeEvent& event)
 void mmCategDialog::OnEndDrag(wxTreeEvent& event)
 {
     auto destItem = event.GetItem();
-    int categID = -1;
+    int64 categID = -1;
 
     if (destItem != root_) {
         Model_Category::Data* newParent = dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(destItem))->getCategData();
@@ -635,7 +635,7 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     fillControls();
 }
 
-wxTreeItemId mmCategDialog::getTreeItemFor(const wxTreeItemId& itemID, const wxString& itemText, const int parentid)
+wxTreeItemId mmCategDialog::getTreeItemFor(const wxTreeItemId& itemID, const wxString& itemText, const int64 parentid)
 {
     wxTreeItemIdValue treeDummyValue;
 
@@ -651,7 +651,7 @@ wxTreeItemId mmCategDialog::getTreeItemFor(const wxTreeItemId& itemID, const wxS
     return catID;
 }
 
-void mmCategDialog::setTreeSelection(int category_id)
+void mmCategDialog::setTreeSelection(int64 category_id)
 {
     Model_Category::Data* category = Model_Category::instance().get(category_id);
     if (category)
@@ -661,7 +661,7 @@ void mmCategDialog::setTreeSelection(int category_id)
     m_categ_id = category_id;   
 }
 
-void mmCategDialog::setTreeSelection(const wxString& catName, const int parentid)
+void mmCategDialog::setTreeSelection(const wxString& catName, const int64 parentid)
 {
     if (!catName.IsEmpty())
     {
@@ -814,7 +814,7 @@ void mmCategDialog::OnItemCollapseOrExpand(wxTreeEvent& event)
     event.Skip();
 }
 
-bool mmCategDialog::categShowStatus(int categId)
+bool mmCategDialog::categShowStatus(int64 categId)
 {
     if (Model_Category::is_hidden(categId))
         return false;
