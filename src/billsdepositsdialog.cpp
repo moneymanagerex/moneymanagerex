@@ -133,14 +133,14 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int64 bdID, bool duplicate, bool enterO
         for (const auto& tag : Model_Taglink::instance().find(
             Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT)),
             Model_Taglink::REFID(bill->BDID)))
-            billtags.Add(tag.TAGID);
+            billtags.push_back(tag.TAGID);
         m_bill_data.TAGS = billtags;
         //
         const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT);
         for (const auto& item : Model_Billsdeposits::splittransaction(bill)) {
             wxArrayInt64 splittags;
             for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(splitRefType), Model_Taglink::REFID(item.SPLITTRANSID)))
-                splittags.Add(tag.TAGID);
+                splittags.push_back(tag.TAGID);
             m_bill_data.local_splits.push_back({ item.CATEGID, item.SPLITTRANSAMOUNT, splittags, item.NOTES });
         }
 

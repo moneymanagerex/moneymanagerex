@@ -561,11 +561,11 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                     split->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
                     split->NOTES = item.NOTES;
                     checking_splits.push_back(split);
-                    wxArrayInt tags;
+                    wxArrayInt64 tags;
                     for (const auto& tag :
                          Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT)),
                                                         Model_Taglink::REFID(item.SPLITTRANSID)))
-                        tags.Add(tag.TAGID);
+                        tags.push_back(tag.TAGID);
                     splitTags.push_back(tags);
                 }
                 Model_Splittransaction::instance().save(checking_splits);

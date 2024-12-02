@@ -1795,11 +1795,11 @@ bool mmTagTextCtrl::Validate(const wxString& tagText)
 }
 
 /* Return a list of tag IDs contained in the control */
-const wxArrayInt mmTagTextCtrl::GetTagIDs() const
+const wxArrayInt64 mmTagTextCtrl::GetTagIDs() const
 {
-    wxArrayInt tags_out;
+    wxArrayInt64 tags_out;
     for (const auto& tag : tags_)
-        tags_out.Add(tag.second);
+        tags_out.push_back(tag.second);
 
     return tags_out;
 }
@@ -1816,7 +1816,7 @@ wxArrayString mmTagTextCtrl::parseTags(const wxString& tagString)
         // ignore search operators
         if (token == "&" || token == "|")
         {
-            if (operatorAllowed_) tags.Add(token);
+            if (operatorAllowed_) tags.push_back(token);
             continue;
         }
 
@@ -1834,9 +1834,9 @@ wxArrayString mmTagTextCtrl::parseTags(const wxString& tagString)
         auto it = tag_map_.find(token);
         if (it != tag_map_.end())
             // case correction for existing tag
-            tags.Add((*it).first);
+            tags.push_back((*it).first);
         else
-            tags.Add(token);
+            tags.push_back(token);
     }
 
     return tags;

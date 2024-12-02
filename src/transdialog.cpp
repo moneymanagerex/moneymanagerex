@@ -117,9 +117,9 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
         for (const auto& item : s)
         {
-            wxArrayInt tags;
+            wxArrayInt64 tags;
             for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(splitRefType), Model_Taglink::REFID(item.SPLITTRANSID)))
-                tags.Add(tag.TAGID);
+                tags.push_back(tag.TAGID);
             m_local_splits.push_back({ item.CATEGID, item.SPLITTRANSAMOUNT, tags, item.NOTES });
         }
 
@@ -370,11 +370,11 @@ void mmTransDialog::dataToControls()
     // Tags
     if (!skip_tag_init_)
     {
-        wxArrayInt tagIds;
+        wxArrayInt64 tagIds;
         for (const auto& tag : Model_Taglink::instance().find(
             Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)),
             Model_Taglink::REFID(m_trx_data.TRANSID)))
-            tagIds.Add(tag.TAGID);
+            tagIds.push_back(tag.TAGID);
         tagTextCtrl_->SetTags(tagIds);
         skip_tag_init_ = true;
     }

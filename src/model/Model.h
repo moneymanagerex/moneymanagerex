@@ -23,7 +23,6 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 #include <algorithm>
 #include <wx/datetime.h>
 #include <wx/log.h>
-#include <wx/dynarray.h>
 #include "db/DB_Table.h"
 #include "singleton.h"
 
@@ -32,7 +31,7 @@ class wxSQLite3Database;
 class wxSQLite3ResultSet;
 
 typedef wxDateTime wxDate;
-typedef wxArray<wxLongLong> wxArrayInt64;
+typedef std::vector<int64> wxArrayInt64;
 
 #if (wxMAJOR_VERSION == 3 && wxMINOR_VERSION >= 1)
 // wx 3.1 has implemented such hash
