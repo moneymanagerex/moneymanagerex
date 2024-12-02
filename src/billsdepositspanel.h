@@ -136,7 +136,7 @@ public:
     wxString BuildPage() const;
     wxDate getToday() const;
 
-    void do_delete_custom_values(int id);
+    void do_delete_custom_values(int64 id);
 
 private:
     void CreateControls();

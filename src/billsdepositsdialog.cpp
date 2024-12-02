@@ -198,7 +198,7 @@ void mmBDDialog::dataToControls()
     wxButton* bFrequentUsedNotes = static_cast<wxButton*>(FindWindow(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES));
     bFrequentUsedNotes->Enable(!frequentNotes_.empty());
 
-    bColours_->SetBackgroundColor(static_cast<int>(m_bill_data.COLOR.ToLong()));
+    bColours_->SetBackgroundColor(m_bill_data.COLOR.GetValue());
 
     for (const auto& entry : BILLSDEPOSITS_REPEATS)
     {
@@ -1013,7 +1013,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         long cnt = 0;
         if (numRepeatStr.ToLong(&cnt) && cnt > 0) {
             wxASSERT(cnt <= std::numeric_limits<int>::max());
-            m_bill_data.NUMOCCURRENCES = static_cast<int>(cnt);
+            m_bill_data.NUMOCCURRENCES = cnt;
         }
     }
 

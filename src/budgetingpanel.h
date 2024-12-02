@@ -57,7 +57,7 @@ class mmBudgetingPanel : public mmPanelBase
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmBudgetingPanel(int budgetYearID
+    mmBudgetingPanel(int64 budgetYearID
         , wxWindow *parent, mmGUIFrame *frame
         , wxWindowID winid = wxID_ANY
         , const wxPoint& pos = wxDefaultPosition
@@ -73,8 +73,8 @@ public:
     /* Getter for Virtual List Control */
     wxString getItem(long item, long column);
 
-    void DisplayBudgetingDetails(int budgetYearID);
-    int GetBudgetYearID()
+    void DisplayBudgetingDetails(int64 budgetYearID);
+    int64 GetBudgetYearID()
     {
         return budgetYearID_;
     }
@@ -84,7 +84,7 @@ public:
     }
     int GetItemImage(long item) const;
     void OnListItemActivated(int selectedIndex);
-    int GetTransID(long item)
+    int64 GetTransID(long item)
     {
         return budget_[item].first;
     }
@@ -112,7 +112,7 @@ private:
     bool monthlyBudget_;
     wxSharedPtr<budgetingListCtrl> listCtrlBudget_;
     wxString currentView_;
-    int budgetYearID_;
+    int64 budgetYearID_;
     wxString m_monthName;
     wxString m_budget_offset_date;
     wxStaticText* budgetReportHeading_ = nullptr;
@@ -132,7 +132,7 @@ private:
 
     void CreateControls();
     void sortTable();
-    bool DisplayEntryAllowed(int categoryID, int subcategoryID);
+    bool DisplayEntryAllowed(int64 categoryID, int64 subcategoryID);
     void UpdateBudgetHeading();
     double getEstimate(int64 category) const;
     wxString GetPanelTitle() const;

@@ -986,7 +986,7 @@ wxString  mmBillsDepositsPanel::BuildPage() const
     return listCtrlAccount_->BuildPage(_("Scheduled Transactions"));
 }
 
-void mmBillsDepositsPanel::do_delete_custom_values(int id)
+void mmBillsDepositsPanel::do_delete_custom_values(int64 id)
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     Model_CustomFieldData::DeleteAllData(RefType, id);
