@@ -328,7 +328,7 @@ size_t mmCustomData::GetActiveCustomFieldsCount() const
     return data_set.size();
 }
 
-std::map<int, wxString> mmCustomData::GetActiveCustomFields() const
+std::map<int64, wxString> mmCustomData::GetActiveCustomFields() const
 {
     std::map<int64, wxString> values;
     for (const auto& entry : m_data_changed)
@@ -603,7 +603,7 @@ void mmCustomData::ClearSettings()
     for (const auto &field : m_fields)
     {
         SetStringValue(field.FIELDID, "");
-        wxWindowID labelID = GetBaseID() + field.FIELDID * FIELDMULTIPLIER + CONTROLOFFSET;
+        wxWindowID labelID = GetBaseID() + field.FIELDID.GetValue() * FIELDMULTIPLIER + CONTROLOFFSET;
         wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(labelID, m_dialog));
         if (cb)
             cb->SetValue(false);
@@ -758,7 +758,7 @@ bool mmCustomData::ValidateCustomValues(int64)
     bool is_valid = true;
     for (const auto &field : m_fields)
     {
-        wxWindowID controlID = GetBaseID() + field.FIELDID * FIELDMULTIPLIER;
+        wxWindowID controlID = GetBaseID() + field.FIELDID.GetValue() * FIELDMULTIPLIER;
         wxWindowID labelID = controlID + CONTROLOFFSET;
 
         wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(labelID, m_dialog));

@@ -44,7 +44,7 @@ public:
     int GetPrecision(wxWindowID controlID) const;
     size_t GetCustomFieldsCount() const;
     size_t GetActiveCustomFieldsCount() const;
-    std::map<int, wxString> GetActiveCustomFields() const;
+    std::map<int64, wxString> GetActiveCustomFields() const;
     void SetBaseID(wxWindowID id);
     wxWindowID GetBaseID() const;
     void ResetRefID();

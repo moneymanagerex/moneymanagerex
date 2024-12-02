@@ -1640,7 +1640,7 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 
     Model_Checking::instance().Savepoint();
     Model_Billsdeposits::instance().Savepoint();
-    for (const auto id : m_selected_id)
+    for (const auto& id : m_selected_id)
     {
         if (!id.second) {
             Model_Checking::Data* tran = Model_Checking::instance().get(id.first);
@@ -1700,7 +1700,7 @@ void TransactionListCtrl::refreshVisualList(bool filter)
 
     i = 0;
     for(const auto& entry : m_trans) {
-        int id = !entry.m_repeat_num ? entry.TRANSID : entry.m_bdid;
+        int64 id = !entry.m_repeat_num ? entry.TRANSID : entry.m_bdid;
         for (const auto& item : m_selected_id) {
             if (item.first == id && item.second == entry.m_repeat_num) {
                 SetItemState(i, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
@@ -1750,14 +1750,14 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
             , Model_Account::instance().all_checking_account_names());
         if (scd.ShowModal() == wxID_OK)
         {
-            int dest_account_id = -1;
+            int64 dest_account_id = -1;
             wxString dest_account_name = scd.GetStringSelection();
             Model_Account::Data* dest_account = Model_Account::instance().get(dest_account_name);
             if (dest_account)
                 dest_account_id = dest_account->ACCOUNTID;
             else
                 return;
-            std::vector<int> skip_trx;
+            std::vector<int64> skip_trx;
             Model_Checking::instance().Savepoint();
             for (const auto& id : m_selected_id)
             {
@@ -1930,7 +1930,7 @@ void TransactionListCtrl::doSearchText(const wxString& value)
     while (true)
     {
         g_asc ? selectedItem-- : selectedItem++;
-        if (selectedItem < 0 || selectedItem >= static_cast<int>(m_trans.size()))
+        if (selectedItem < 0 || selectedItem >= m_trans.size())
             break;
 
         wxString test1 = Model_Currency::fromString2CLocale(value);
