@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-10-02 01:00+0300\n"
-"PO-Revision-Date: 2024-10-05 00:27\n"
+"PO-Revision-Date: 2024-12-02 20:16\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgstr "Nome da Conta:"
 
 #: accountdialog.cpp:126
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "Introduza o Nome da Conta. Este nome poderá ser alterado a qualquer momento posteriormente."
+msgstr "Insira o Nome da Conta. Este nome poderá ser alterado a qualquer momento posteriormente."
 
 #: accountdialog.cpp:129
 msgid "Account Type:"
@@ -95,7 +95,7 @@ msgstr "Estado da Conta:"
 
 #: accountdialog.cpp:145
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
-msgstr "Especifique se a conta foi fechada. Contas fechadas estão inativas na maioria dos cálculos, relatórios, etc."
+msgstr "Especifique se esta conta foi fechada. Contas fechadas estão inativas na maioria dos cálculos, relatórios, etc."
 
 #: accountdialog.cpp:149
 #, c-format
@@ -125,7 +125,7 @@ msgstr "Selecione a Moeda"
 
 #: accountdialog.cpp:168
 msgid "Specify the currency to be used by this account."
-msgstr "Especifique a moeda a utilizar nesta conta."
+msgstr "Especifique a moeda a ser usada por esta conta."
 
 #: accountdialog.cpp:171
 msgid "Favorite Account"
@@ -133,7 +133,7 @@ msgstr "Conta Favorita"
 
 #: accountdialog.cpp:173
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
-msgstr "Indique se esta conta é utilizada com frequência. Isto é usado para filtrar a vista de contas."
+msgstr "Indique se esta conta é usada com frequência. Isto é usado para filtrar a exibição das contas."
 
 #: accountdialog.cpp:181 assetdialog.cpp:231 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:627 billsdepositspanel.cpp:146
