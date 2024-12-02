@@ -296,13 +296,13 @@ double Model_Checking::account_flow(const Data* r, int account_id)
     if (Model_Checking::status_id(r->STATUS) == Model_Checking::STATUS_ID_VOID || !r->DELETEDTIME.IsEmpty())
         return 0.0;
     if (account_id == r->ACCOUNTID && type_id(r->TRANSCODE) == TYPE_ID_WITHDRAWAL)
-        return -(r->ACCOUNTID);
+        return -(r->TRANSAMOUNT);
     if (account_id == r->ACCOUNTID && type_id(r->TRANSCODE) == TYPE_ID_DEPOSIT)
-        return r->ACCOUNTID;
+        return r->TRANSAMOUNT;
     if (account_id == r->ACCOUNTID && type_id(r->TRANSCODE) == TYPE_ID_TRANSFER)
-        return -(r->ACCOUNTID);
+        return -(r->TRANSAMOUNT);
     if (account_id == r->TOACCOUNTID && type_id(r->TRANSCODE) == TYPE_ID_TRANSFER)
-        return r->TOACCOUNTID;
+        return r->TOTRANSAMOUNT;
     return 0.0;
 }
 
