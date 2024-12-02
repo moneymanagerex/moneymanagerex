@@ -113,7 +113,7 @@ wxString Model_Attachment::reftype_desc(const int RefTypeEnum)
 }
 
 /** Return a dataset with attachments linked to a specific type*/
-std::map<int, Model_Attachment::Data_Set> Model_Attachment::get_all(REFTYPE reftype)
+std::map<int64, Model_Attachment::Data_Set> Model_Attachment::get_all(REFTYPE reftype)
 {
     std::map<int, Model_Attachment::Data_Set> data;
     wxString reftype_desc = Model_Attachment::reftype_desc(reftype);

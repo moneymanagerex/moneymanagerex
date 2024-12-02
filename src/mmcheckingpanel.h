@@ -51,7 +51,7 @@ public:
 
     mmCheckingPanel(wxWindow* parent
         , mmGUIFrame* frame
-        , int accountID
+        , int64 accountID
         , int id = wxID_ANY
     );
 
