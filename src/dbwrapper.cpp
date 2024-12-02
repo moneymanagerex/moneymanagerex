@@ -45,13 +45,12 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
     wxSQLite3CipherSQLCipher cipher;
     cipher.InitializeVersionDefault(4);
     cipher.SetLegacy(true);
+
+     // open and disable flag SQLITE_CorruptRdOnly = 0x200000000
+    const int flags = debug ? (WXSQLITE_OPEN_READWRITE | WXSQLITE_OPEN_CREATE) & ~0x200000000 : WXSQLITE_OPEN_READWRITE | WXSQLITE_OPEN_CREATE;
+
     try
     {
-        // open and disable flag SQLITE_CorruptRdOnly = 0x200000000
-        const int flags = debug ?
-                    (WXSQLITE_OPEN_READWRITE | WXSQLITE_OPEN_CREATE) & ~0x200000000 :
-                     WXSQLITE_OPEN_READWRITE | WXSQLITE_OPEN_CREATE;
-
         db->Open(dbpath, cipher, password, flags);
 
         // Ensure that an existing mmex database is not encrypted.
@@ -60,10 +59,42 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
             db->ExecuteQuery("select * from INFOTABLE_V1;");
         }
     }
-    catch (const wxSQLite3Exception& e)
+    catch (const wxSQLite3Exception)
     {
-        err = e.GetErrorCode();
-        errStr << e.GetMessage();
+        
+        // Check if database is encrypted with legacy AES128 cipher used prior to 1.8.1
+        wxSQLite3CipherAes128 cipherAes128;
+        cipherAes128.InitializeFromGlobalDefault();
+        try
+        {
+            db->Open(dbpath, cipherAes128, password, flags);
+
+            // Ensure that an existing mmex database is not encrypted.
+            if ((db->IsOpen()) && (db->TableExists("INFOTABLE_V1")))
+            {
+                db->ExecuteQuery("select * from INFOTABLE_V1;");
+            }
+
+            wxMessageDialog msgDlg(nullptr, _("The default cipher algorithm has changed from AES-128 to AES-256 for compatability with the MMEX mobile apps.")
+                + "\n\n" + _("Rekeying with the new cipher will prevent opening this database in older versions of MMEX.")
+                + "\n\n" + _("Do you want to update?"), _("Opening MMEX Database - Warning"), wxYES_NO | wxICON_WARNING);
+            if (msgDlg.ShowModal() == wxID_YES)
+            {
+                if (db->ExecuteQuery("PRAGMA page_size;").GetInt(0) < 4096)
+                {
+                    db->ReKey("");
+                    db->ExecuteUpdate("PRAGMA page_size = 4096;");
+                    db->ExecuteUpdate("VACUUM;");
+                }
+                // ReKey with new cipher.
+                db->ReKey(cipher, password);
+            }
+        }
+        catch (const wxSQLite3Exception& e)
+        {
+            err = e.GetErrorCode();
+            errStr << e.GetMessage();
+        }
     }
 
     if (err==SQLITE_OK)
