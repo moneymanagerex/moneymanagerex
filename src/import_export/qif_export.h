@@ -33,7 +33,7 @@ public:
     mmQIFExportDialog() {}
     //virtual ~mmQIFExportDialog() {}
 
-    mmQIFExportDialog(wxWindow* parent, int type, int account_id);
+    mmQIFExportDialog(wxWindow* parent, int type, int64 account_id);
 
     bool Create(wxWindow* parent
         , const wxString& caption
@@ -45,7 +45,7 @@ public:
 private:
 
     int m_type = type::CSV;
-    int m_account_id = -1;
+    int64 m_account_id = -1;
     void mmExportQIF();
     void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
     void OnCheckboxClick(wxCommandEvent& WXUNUSED(event));
@@ -79,7 +79,7 @@ private:
 
     /* Selected accounts values */
     wxArrayString m_accounts_name;
-    wxArrayInt accounts_id_;
-    wxArrayInt selected_accounts_id_;
+    wxArrayInt64 accounts_id_;
+    wxArrayInt64 selected_accounts_id_;
 };
 #endif

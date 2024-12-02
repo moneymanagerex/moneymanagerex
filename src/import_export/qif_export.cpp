@@ -39,7 +39,7 @@ wxBEGIN_EVENT_TABLE(mmQIFExportDialog, wxDialog)
     EVT_CLOSE(mmQIFExportDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
-mmQIFExportDialog::mmQIFExportDialog(wxWindow *parent, int type, int account_id)
+mmQIFExportDialog::mmQIFExportDialog(wxWindow *parent, int type, int64 account_id)
 {
     m_type = type;
     m_account_id = account_id;
@@ -86,8 +86,8 @@ void mmQIFExportDialog::fillControls()
     for (const auto& a : all_accounts)
     {
         m_accounts_name.Add(a.ACCOUNTNAME);
-        selected_accounts_id_.Add(a.ACCOUNTID);
-        accounts_id_.Add(a.ACCOUNTID);
+        selected_accounts_id_.push_back(a.ACCOUNTID);
+        accounts_id_.push_back(a.ACCOUNTID);
         if (a.ACCOUNTID == m_account_id)
             bSelectedAccounts_->SetLabelText(a.ACCOUNTNAME);
     }
@@ -95,7 +95,7 @@ void mmQIFExportDialog::fillControls()
     if (m_account_id > -1)
     {
         selected_accounts_id_.clear();
-        selected_accounts_id_.Add(m_account_id);
+        selected_accounts_id_.push_back(m_account_id);
     }
 
     // redirect logs to text control
@@ -284,23 +284,23 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
             int index = entry;
             const wxString accounts_name = m_accounts_name[index];
             const auto account = Model_Account::instance().get(accounts_name);
-            if (account) selected_accounts_id_.Add(account->ACCOUNTID);
+            if (account) selected_accounts_id_.push_back(account->ACCOUNTID);
             baloon += accounts_name + "\n";
         }
     }
     *log_field_ << baloon;
 
-    if (selected_accounts_id_.GetCount() == 0)
+    if (selected_accounts_id_.empty())
     {
         fillControls();
     }
-    else if (selected_accounts_id_.GetCount() == 1)
+    else if (selected_accounts_id_.size() == 1)
     {
         int account_id = accounts_id_[selected_items[0]];
         const Model_Account::Data* account = Model_Account::instance().get(account_id);
         if (account) bSelectedAccounts_->SetLabelText(account->ACCOUNTNAME);
     }
-    else if (selected_accounts_id_.GetCount() > 1)
+    else if (selected_accounts_id_.size() > 1)
     {
         bSelectedAccounts_->SetLabelText("...");
         mmToolTip(bSelectedAccounts_, baloon);
@@ -352,7 +352,7 @@ void mmQIFExportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     wxString sErrorMsg = "";
     if (Model_Account::instance().all().empty() && accountsCheckBox_->IsChecked())
         sErrorMsg =_("No Account available for export");
-    else if (selected_accounts_id_.Count() < 1 && accountsCheckBox_->IsChecked())
+    else if (selected_accounts_id_.size() < 1 && accountsCheckBox_->IsChecked())
         sErrorMsg =_("No Accounts selected for export");
     else if (dateToCheckBox_->IsChecked() && dateFromCheckBox_->IsChecked() && fromDateCtrl_->GetValue() > toDateCtrl_->GetValue())
         sErrorMsg =_("To Date less than From Date");
@@ -431,7 +431,7 @@ void mmQIFExportDialog::mmExportQIF()
     wxString fileName = m_text_ctrl_->GetValue();
 
     bool exp_categ = cCategs_->IsChecked();
-    bool exp_transactions = (accountsCheckBox_->IsChecked() && selected_accounts_id_.GetCount() > 0);
+    bool exp_transactions = (accountsCheckBox_->IsChecked() && selected_accounts_id_.size() > 0);
 
     const wxString delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
 
