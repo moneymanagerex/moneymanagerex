@@ -98,7 +98,6 @@ private:
     // Marker to indicate DB was inuse when opened and open cancelled
     bool db_lockInPlace;
 
-    int64 gotoTransID_ = -1;
     int64 gotoAccountID_ = -1;
     Fused_Transaction::IdRepeat gotoTransID_ = { -1, 0 };
 
