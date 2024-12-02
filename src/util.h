@@ -58,15 +58,15 @@ struct WebsiteNews
 class mmListBoxItem: public wxClientData
 {
 public:
-    mmListBoxItem(int index, const wxString& name)
+    mmListBoxItem(int64 index, const wxString& name)
         : index_(index), name_(name)
     {}
 
-    int getIndex() const;
+    int64 getIndex() const;
     wxString getName() const;
 
 private:
-    int index_;
+    int64 index_;
     wxString name_;
 };
 
