@@ -46,7 +46,7 @@ public:
     virtual ~mmTransDialog();
 
     mmTransDialog(wxWindow* parent
-        , int account_id
+        , int64 account_id
         , Fused_Transaction::IdB fused_id
         , bool duplicate = false
         , int type = Model_Checking::TYPE_ID_WITHDRAWAL);
@@ -124,7 +124,7 @@ private:
     bool m_advanced = false;
 
     int object_in_focus_ = wxID_ANY;
-    int m_account_id = -1;
+    int64 m_account_id = -1;
     wxString m_status;
 
     Fused_Transaction::Data m_fused_data;

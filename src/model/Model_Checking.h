@@ -101,7 +101,7 @@ public:
         wxString CATEGNAME;
         wxString TAGNAMES;
 
-        int ACCOUNTID_W, ACCOUNTID_D;
+        int64 ACCOUNTID_W, ACCOUNTID_D;
         double TRANSAMOUNT_W, TRANSAMOUNT_D;
         double ACCOUNT_FLOW;
         double ACCOUNT_BALANCE;

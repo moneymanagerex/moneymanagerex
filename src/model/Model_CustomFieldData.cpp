@@ -57,7 +57,7 @@ Model_CustomFieldData::Data* Model_CustomFieldData::get(int64 FieldID, int64 Ref
     return nullptr;
 }
 
-std::map<int, Model_CustomFieldData::Data_Set> Model_CustomFieldData::get_all(Model_Attachment::REFTYPE reftype)
+std::map<int64, Model_CustomFieldData::Data_Set> Model_CustomFieldData::get_all(Model_Attachment::REFTYPE reftype)
 {
     const wxString& reftype_desc = Model_Attachment::reftype_desc(reftype);
     Model_CustomField::Data_Set custom_fields = Model_CustomField::instance()

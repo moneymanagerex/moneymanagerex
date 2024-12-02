@@ -896,7 +896,7 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
     bool in_the_future = (strDate > m_today);
 
     // apply alternating background pattern
-    int user_color_id = m_trans[item].COLOR;
+    int user_color_id = m_trans[item].COLOR.GetValue();
     if (user_color_id < 0) user_color_id = 0;
     else if (user_color_id > 7) user_color_id = 0;
 

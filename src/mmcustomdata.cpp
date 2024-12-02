@@ -88,7 +88,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             nonDefaultData = false;
         }
 
-        wxWindowID controlID = GetBaseID() + field.FIELDID * FIELDMULTIPLIER;
+        wxWindowID controlID = GetBaseID() + field.FIELDID.GetValue() * FIELDMULTIPLIER;
         wxWindowID labelID = controlID + CONTROLOFFSET;
 
         wxCheckBox* Description = new wxCheckBox(scrolled_window
@@ -330,10 +330,10 @@ size_t mmCustomData::GetActiveCustomFieldsCount() const
 
 std::map<int, wxString> mmCustomData::GetActiveCustomFields() const
 {
-    std::map<int, wxString> values;
+    std::map<int64, wxString> values;
     for (const auto& entry : m_data_changed)
     {
-        int id = (entry.first - GetBaseID()) / FIELDMULTIPLIER;
+        int64 id = (entry.first - GetBaseID()) / FIELDMULTIPLIER;
         Model_CustomField::Data *item = Model_CustomField::instance().get(id);
         if (item) {
             values[item->FIELDID] = entry.second;
@@ -472,7 +472,7 @@ bool mmCustomData::SaveCustomValues(int64 ref_id)
     Model_CustomFieldData::instance().Savepoint();
     for (const auto &field : m_fields)
     {
-        wxWindowID controlID = GetBaseID() + field.FIELDID * FIELDMULTIPLIER;
+        wxWindowID controlID = GetBaseID() + field.FIELDID.GetValue() * FIELDMULTIPLIER;
         const auto& data = IsWidgetChanged(controlID) ? GetWidgetData(controlID) : "";
 
         Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, ref_id);
@@ -519,7 +519,7 @@ void mmCustomData::UpdateCustomValues(int64 ref_id)
     {
         bool is_changed = false;
 
-        wxWindowID controlID = GetBaseID() + field.FIELDID * FIELDMULTIPLIER;
+        wxWindowID controlID = GetBaseID() + field.FIELDID.GetValue() * FIELDMULTIPLIER;
         auto label_id = controlID + CONTROLOFFSET;
         wxCheckBox* Description = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
         if (Description) {
@@ -747,7 +747,7 @@ void mmCustomData::ShowCustomPanel() const
 
 void mmCustomData::SetStringValue(int64 fieldId, const wxString& value, bool hasChanged)
 {
-    wxWindowID widget_id = GetBaseID() + fieldId * FIELDMULTIPLIER;
+    wxWindowID widget_id = GetBaseID() + fieldId.GetValue() * FIELDMULTIPLIER;
     SetWidgetData(widget_id, value);
     if (hasChanged)
          SetWidgetChanged(widget_id, value);

@@ -92,7 +92,7 @@ void mmTransDialog::SetEventHandlers()
 static bool altRefreshDone;
 
 mmTransDialog::mmTransDialog(wxWindow* parent,
-    int account_id,
+    int64 account_id,
     Fused_Transaction::IdB fused_id,
     bool duplicate,
     int type)
@@ -134,7 +134,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent,
     m_transfer = Model_Checking::type_id(m_fused_data.TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER;
     m_advanced = m_mode != MODE_NEW && m_transfer && (m_fused_data.TRANSAMOUNT != m_fused_data.TOTRANSAMOUNT);
 
-    int ref_id = (m_mode == MODE_NEW) ? 0 : (m_fused_data.m_repeat_num == 0) ?
+    int64 ref_id = (m_mode == MODE_NEW) ? 0 : (m_fused_data.m_repeat_num == 0) ?
         m_fused_data.TRANSID : -(m_fused_data.m_bdid);
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELD);
 
@@ -280,7 +280,7 @@ void mmTransDialog::dataToControls()
                 m_fused_data.TOACCOUNTID = -1;
             }
 
-            int accountID = cbAccount_->mmGetId();
+            int64 accountID = cbAccount_->mmGetId();
             if (m_mode == MODE_NEW && Option::instance().TransPayeeSelection() == Option::LASTUSED
                 && (-1 != accountID))
             {
@@ -346,7 +346,7 @@ void mmTransDialog::dataToControls()
             if (!transactions.empty()
                 && (!Model_Category::is_hidden(transactions.back().CATEGID)))
             {
-                const int cat = transactions.back().CATEGID;
+                const int64 cat = transactions.back().CATEGID;
                 cbCategory_->ChangeValue(Model_Category::full_name(cat));
             }
         } else
@@ -936,7 +936,7 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbPayee_->mmDoReInitialize();
-                int payee_id = dlg.getPayeeId();
+                int64 payee_id = dlg.getPayeeId();
                 Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
                 if (payee) {
                     cbPayee_->ChangeValue(payee->PAYEENAME);
@@ -1118,7 +1118,7 @@ void mmTransDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
     const wxString& refType = (m_fused_data.m_repeat_num == 0) ?
         Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) :
         Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
-    int transID = (m_mode == MODE_DUP) ? -1 : m_fused_data.TRANSID;
+    int64 transID = (m_mode == MODE_DUP) ? -1 : m_fused_data.TRANSID;
     mmAttachmentDialog dlg(this, refType, transID);
     dlg.ShowModal();
 }
