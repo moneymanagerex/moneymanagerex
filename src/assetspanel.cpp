@@ -217,7 +217,7 @@ void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::ASSET), asset.ASSETID);
         Model_Translink::RemoveTransLinkRecords(Model_Attachment::ASSET, asset.ASSETID);
 
-        m_panel->initVirtualListControl(m_selected_row, m_selected_col, m_asc);
+        m_panel->initVirtualListControl(-1, m_selected_col, m_asc);
         m_selected_row = -1;
         m_panel->updateExtraAssetData(m_selected_row);
     }
