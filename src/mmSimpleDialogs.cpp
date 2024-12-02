@@ -469,7 +469,7 @@ void mmComboBoxAccount::init()
 // accountID = always include this account even if it would have been excluded as closed
 // excludeClosed = set to true if closed accounts should be excluded
 mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id
-    , wxSize size, int accountID, bool excludeClosed)
+    , wxSize size, int64 accountID, bool excludeClosed)
     : mmComboBox(parent, id, size)
     , accountID_(accountID)
     , excludeClosed_(excludeClosed)     
@@ -496,7 +496,7 @@ void mmComboBoxPayee::init()
 // payeeID = always include this payee even if it would have been excluded as inactive
 // excludeHidden = set to true if inactive payees should be excluded
 mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id
-                    , wxSize size, int payeeID, bool excludeHidden)
+                    , wxSize size, int64 payeeID, bool excludeHidden)
     : mmComboBox(parent, id, size)
     , payeeID_(payeeID)
     , excludeHidden_(excludeHidden)    
@@ -567,7 +567,7 @@ void mmComboBoxCategory::init()
 // catID/subCatID = always include this category even if it would have been excluded as inactive
 // excludeHidden = set to true if hidden categories should be excluded
 mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id
-                    , wxSize size, int catID, bool excludeHidden)
+                    , wxSize size, int64 catID, bool excludeHidden)
     : mmComboBox(parent, id, size)    
     , catID_(catID)
     , excludeHidden_(excludeHidden)
@@ -582,7 +582,7 @@ mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id
     parent->SetEvtHandlerEnabled(true);
 }
 
-int mmComboBoxCategory::mmGetCategoryId() const
+int64 mmComboBoxCategory::mmGetCategoryId() const
 {
     auto text = GetValue();
     if (all_categories_.count(text) == 1)

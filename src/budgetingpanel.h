@@ -102,13 +102,13 @@ private:
     };
 
     mmGUIFrame* m_frame = nullptr;
-    std::vector<std::pair<int, int> > budget_;
-    std::map<int, std::pair<int, bool > > displayDetails_; //map categid to level of the category, whether category is visible, and whether any subtree is visible 
-    std::map<int, std::pair<double, double> > budgetTotals_;
-    std::map<int, Model_Budget::PERIOD_ID> budgetPeriod_;
-    std::map<int, double> budgetAmt_;
-    std::map<int, wxString> budgetNotes_;
-    std::map<int, std::map<int,double> > categoryStats_;
+    std::vector<std::pair<int64, int64> > budget_;
+    std::map<int64, std::pair<int, bool > > displayDetails_; //map categid to level of the category, whether category is visible, and whether any subtree is visible 
+    std::map<int64, std::pair<double, double> > budgetTotals_;
+    std::map<int64, Model_Budget::PERIOD_ID> budgetPeriod_;
+    std::map<int64, double> budgetAmt_;
+    std::map<int64, wxString> budgetNotes_;
+    std::map<int64, std::map<int,double> > categoryStats_;
     bool monthlyBudget_;
     wxSharedPtr<budgetingListCtrl> listCtrlBudget_;
     wxString currentView_;
@@ -134,7 +134,7 @@ private:
     void sortTable();
     bool DisplayEntryAllowed(int categoryID, int subcategoryID);
     void UpdateBudgetHeading();
-    double getEstimate(int category) const;
+    double getEstimate(int64 category) const;
     wxString GetPanelTitle() const;
 
     /* Event handlers for Buttons */

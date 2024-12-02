@@ -157,13 +157,13 @@ public:
     mmComboBoxAccount(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
-        , int accountID = -1
+        , int64 accountID = -1
         , bool excludeClosed = true
     );
 protected:
     void init();
 private:
-    int accountID_ = -1;
+    int64 accountID_ = -1;
     bool excludeClosed_ = true;
 };
 
@@ -175,13 +175,13 @@ public:
     mmComboBoxPayee(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
-        , int payeeID = -1
+        , int64 payeeID = -1
         , bool excludeHidden = false
     );
 protected:
     void init();
 private:
-    int payeeID_;
+    int64 payeeID_;
     bool excludeHidden_;
 };
 
@@ -217,16 +217,16 @@ public:
     mmComboBoxCategory(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
-        , int catID = -1
+        , int64 catID = -1
         , bool excludeInactive = false
     );
     int mmGetCategoryId() const;
 protected:
     void init();
 private:
-    int catID_;
+    int64 catID_;
     bool excludeHidden_;
-    std::map<wxString, int > all_categories_;
+    std::map<wxString, int64> all_categories_;
 };
 
 /* -------------------------------------------- */

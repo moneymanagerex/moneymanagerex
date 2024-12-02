@@ -74,11 +74,11 @@ public:
     static bool is_used(int64 id);
     static bool has_income(int64 id);
     static void getCategoryStats(
-        std::map<int, std::map<int, double>> &categoryStats
+        std::map<int64, std::map<int, double>> &categoryStats
         , wxSharedPtr<wxArrayString> accountArray
         , mmDateRange* date_range, bool ignoreFuture
         , bool group_by_month = true
-        , std::map<int, double >*budgetAmt = nullptr
+        , std::map<int64, double >*budgetAmt = nullptr
         , bool fin_months = false);
     static const wxString full_name(const Data* category);
 

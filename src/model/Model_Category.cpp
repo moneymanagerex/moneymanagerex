@@ -264,12 +264,12 @@ bool Model_Category::has_income(int64 id)
 }
 
 void Model_Category::getCategoryStats(
-    std::map<int, std::map<int, double>>& categoryStats
+    std::map<int64, std::map<int, double>>& categoryStats
     , wxSharedPtr<wxArrayString> accountArray
     , mmDateRange* date_range
     , bool WXUNUSED(ignoreFuture) //TODO: deprecated
     , bool group_by_month
-    , std::map<int, double> *budgetAmt
+    , std::map<int64, double> *budgetAmt
     , bool fin_months)
 {
     //Initialization

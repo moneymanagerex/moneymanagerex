@@ -533,7 +533,7 @@ void mmBudgetingPanel::initVirtualListControl()
     UpdateBudgetHeading();
 }
 
-double mmBudgetingPanel::getEstimate(int category) const
+double mmBudgetingPanel::getEstimate(int64 category) const
 {
     try
     {

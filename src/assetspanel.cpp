@@ -563,7 +563,7 @@ void mmAssetsPanel::sortTable()
     if (!this->m_listCtrlAssets->m_asc) std::reverse(this->m_assets.begin(), this->m_assets.end());
 }
 
-int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)
+int mmAssetsPanel::initVirtualListControl(int64 id, int col, bool asc)
 {
     /* Clear all the records */
     m_listCtrlAssets->DeleteAllItems();
