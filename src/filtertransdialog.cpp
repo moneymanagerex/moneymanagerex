@@ -365,7 +365,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     {
         for (rapidjson::SizeType i = 0; i < j_tags.Size(); i++)
         {
-            if (j_tags[i].IsInt())
+            if (j_tags[i].IsInt64())
             {
                 // Retrieve TAGNAME from TAGID
                 Model_Tag::Data* tag = Model_Tag::instance().get(j_tags[i].GetInt64());
@@ -1044,7 +1044,7 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
             mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _("Invalid value"), _("Tags"), wxICON_ERROR);
             return false;
         }
-        else if (tagTextCtrl_->GetTagIDs().IsEmpty())
+        else if (tagTextCtrl_->GetTagIDs().empty())
         {
             mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _("Empty value"), _("Tags"), wxICON_ERROR);
             return false;
@@ -1245,12 +1245,12 @@ bool mmFilterTransactionsDialog::mmIsTypeMaches(const wxString& typeState, int64
 {
     bool result = false;
     if (typeState == Model_Checking::TYPE_STR_TRANSFER && cbTypeTransferTo_->GetValue() &&
-        (!mmIsAccountChecked() || std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), accountid) != m_selected_accounts_id.end())
+        (!mmIsAccountChecked() || std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), accountid) != m_selected_accounts_id.end()))
     {
         result = true;
     }
     else if (typeState == Model_Checking::TYPE_STR_TRANSFER && cbTypeTransferFrom_->GetValue() &&
-             (!mmIsAccountChecked() || std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), toaccountid) != m_selected_accounts_id.end())
+             (!mmIsAccountChecked() || std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), toaccountid) != m_selected_accounts_id.end()))
     {
         result = true;
     }
