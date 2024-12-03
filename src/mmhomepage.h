@@ -23,6 +23,8 @@ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 #include <map>
 #include <vector>
 
+typedef wxLongLong int64;
+
 class htmlWidgetStocks
 {
 public:
