@@ -100,9 +100,9 @@ wxArrayString Model_Account::all_checking_account_names(bool skip_closed)
     return accounts;
 }
 
-const std::map<wxString, int> Model_Account::all_accounts(bool skip_closed)
+const std::map<wxString, int64> Model_Account::all_accounts(bool skip_closed)
 {
-    std::map<wxString, int> accounts;
+    std::map<wxString, int64> accounts;
     for (const auto& account : this->all(COL_ACCOUNTNAME))
     {
         if (skip_closed && status_id(account) == STATUS_ID_CLOSED)

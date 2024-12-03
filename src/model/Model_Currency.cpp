@@ -114,9 +114,9 @@ const wxArrayString Model_Currency::all_currency_names()
 }
 
 
-const std::map<wxString, int> Model_Currency::all_currency()
+const std::map<wxString, int64> Model_Currency::all_currency()
 {
-    std::map<wxString, int> currencies;
+    std::map<wxString, int64> currencies;
     for (const auto& curr : this->all(COL_CURRENCYNAME))
     {
         currencies[curr.CURRENCYNAME] = curr.CURRENCYID;

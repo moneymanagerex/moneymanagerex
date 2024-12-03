@@ -97,9 +97,9 @@ const wxArrayString Model_Payee::all_payee_names()
     return payees;
 }
 
-const std::map<wxString, int> Model_Payee::all_payees(bool excludeHidden)
+const std::map<wxString, int64> Model_Payee::all_payees(bool excludeHidden)
 {
-    std::map<wxString, int> payees;
+    std::map<wxString, int64> payees;
     for (const auto& payee : this->all())
     {
         if (!excludeHidden || (payee.ACTIVE == 1))
@@ -108,13 +108,13 @@ const std::map<wxString, int> Model_Payee::all_payees(bool excludeHidden)
     return payees;
 }
 
-const std::map<wxString, int> Model_Payee::used_payee()
+const std::map<wxString, int64> Model_Payee::used_payee()
 {
-    std::map<int, wxString> cache;
+    std::map<int64, wxString> cache;
     for (const auto& p : all())
         cache[p.PAYEEID] = p.PAYEENAME;
 
-    std::map<wxString, int> payees;
+    std::map<wxString, int64> payees;
     for (const auto &t : Model_Checking::instance().all())
     {
         if (cache.count(t.PAYEEID) > 0)

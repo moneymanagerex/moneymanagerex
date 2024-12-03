@@ -579,7 +579,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
 
         if (catID > 0)
         {
-            std::vector<int> cats;
+            std::vector<int64> cats;
             if (-2 == subCatID) // include all sub categories
             {
                 for (const auto& subCategory : Model_Category::sub_tree(Model_Category::instance().get(catID)))

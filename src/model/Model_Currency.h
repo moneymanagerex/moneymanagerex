@@ -67,7 +67,7 @@ public:
     static DB_Table_CURRENCYFORMATS_V1::CURRENCY_TYPE CURRENCY_TYPE(TYPE_ID currencytype, OP op = EQUAL);
 
     const wxArrayString all_currency_names();
-    const std::map<wxString, int>  all_currency();
+    const std::map<wxString, int64>  all_currency();
     const wxArrayString all_currency_symbols();
 
     /** Return the Data record of the base currency.*/

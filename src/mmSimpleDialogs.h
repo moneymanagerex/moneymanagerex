@@ -220,7 +220,7 @@ public:
         , int64 catID = -1
         , bool excludeInactive = false
     );
-    int mmGetCategoryId() const;
+    int64 mmGetCategoryId() const;
 protected:
     void init();
 private:
@@ -451,8 +451,8 @@ private:
     wxStyledTextCtrl* textCtrl_ = nullptr;
     wxBitmapButton* btn_dropdown_ = nullptr;
     wxString autocomplete_string_;
-    std::map<wxString, int, caseInsensitiveComparator> tag_map_;
-    std::map<wxString, int, caseInsensitiveComparator> tags_;
+    std::map<wxString, int64, caseInsensitiveComparator> tag_map_;
+    std::map<wxString, int64, caseInsensitiveComparator> tags_;
     wxArrayString parseTags(const wxString& tagString);
     bool operatorAllowed_;
     mmTagCtrlPopupWindow* popupWindow_ = nullptr;

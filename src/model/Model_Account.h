@@ -103,7 +103,7 @@ public:
 
 public:
     wxArrayString all_checking_account_names(bool skip_closed = false);
-    const std::map<wxString, int> all_accounts(bool skip_closed = false);
+    const std::map<wxString, int64> all_accounts(bool skip_closed = false);
 
     static Model_Currency::Data* currency(const Data* r);
     static Model_Currency::Data* currency(const Data& r);
