@@ -157,6 +157,10 @@ public:
     {
         return this->get(id, this->db_);
     }
+    typename DB_TABLE::Data* get(wxLongLong_t id)
+    {
+        return this->get(int64(id));
+    }
 
     /**
     * Return the Data record for the given ID directly from the database, bypassing the cache.

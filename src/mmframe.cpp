@@ -2141,9 +2141,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             while (token.HasMoreTokens())
             {
                 wxString catData = token.GetNextToken();
-                int64 catID = 0;
-                int64 subCatID = 0;
-                if (2 == sscanf(catData.mb_str(),"*%d:%d*", &catID, &subCatID))
+                wxLongLong_t catID = 0;
+                wxLongLong_t subCatID = 0;
+                if (2 == sscanf(catData.mb_str(),"*%lld:%lld*", &catID, &subCatID))
                 {
                     if (subCatID == -1)
                     {

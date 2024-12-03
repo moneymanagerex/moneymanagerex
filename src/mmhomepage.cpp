@@ -199,7 +199,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     , const mmDateRange* date_range) const
 {
     //Temporary map
-    std::map<int /*category*/, double> stat;
+    std::map<int64 /*category*/, double> stat;
 
     const auto split = Model_Splittransaction::instance().get_all();
     const auto &transactions = Model_Checking::instance().find(
