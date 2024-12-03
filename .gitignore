@@ -36,3 +36,4 @@ src/build.h
 
 # binary translations
 *.mo
+/CMakeLists.txt
