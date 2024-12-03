@@ -1358,11 +1358,11 @@ bool mmFilterTransactionsDialog::mmIsCategoryMatches(int64 categid)
 
 bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int64 refId, bool mergeSplitTags)
 {
-    std::map<wxString, int> tagnames = Model_Taglink::instance().get(refType, refId);
+    std::map<wxString, int64> tagnames = Model_Taglink::instance().get(refType, refId);
 
     // If we have a split, merge the transaciton tags so that an AND condition captures cases
     // where one tag is on the base txn and the other is on the split
-    std::map<wxString, int> txnTagnames;
+    std::map<wxString, int64> txnTagnames;
     if (refType == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT))
         txnTagnames = Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION),
                                                     Model_Splittransaction::instance().get(refId)->TRANSID);
@@ -1380,7 +1380,7 @@ bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int64 r
             // Loop through checking splits and merge tags for each SPLITTRANSID
             for (const auto& split : Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(refId)))
             {
-                std::map<wxString, int> splitTagnames =
+                std::map<wxString, int64> splitTagnames =
                     Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), split.SPLITTRANSID);
                 txnTagnames.insert(splitTagnames.begin(), splitTagnames.end());
             }
@@ -1390,7 +1390,7 @@ bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int64 r
             // Loop through scheduled txn splits and merge tags for each SPLITTRANSID
             for (const auto& split : Model_Budgetsplittransaction::instance().find(Model_Budgetsplittransaction::TRANSID(refId)))
             {
-                std::map<wxString, int> splitTagnames =
+                std::map<wxString, int64> splitTagnames =
                     Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT), split.SPLITTRANSID);
                 txnTagnames.insert(splitTagnames.begin(), splitTagnames.end());
             }

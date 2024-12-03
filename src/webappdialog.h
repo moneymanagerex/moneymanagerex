@@ -74,7 +74,7 @@ private:
     bool refreshRequested_ = false;
     bool isStartup_ = false;
     bool isFilledOnce_ = false;
-    int m_webtran_id = -1;
+    int64 m_webtran_id = -1;
     mmWebApp::WebTranVector WebAppTransactions_;
 
     mmWebAppDialog(){}
@@ -88,7 +88,7 @@ private:
     void OnOk(wxCommandEvent& /*event*/);
     void OnCheckNetwork(wxCommandEvent& /*event*/);
 
-    bool ImportWebTr(int WebTrID, bool open);
+    bool ImportWebTr(int64 WebTrID, bool open);
     void ImportAllWebTr(const bool open);
 
     void OnListItemActivated(wxDataViewEvent& event);

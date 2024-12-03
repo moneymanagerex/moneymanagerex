@@ -136,7 +136,7 @@ private:
         double ToAmount = 0.0;
         int64 PayeeID = -1;
         int64 CategoryID = -1;
-        wxArrayInt tagIDs;
+        wxArrayInt64 tagIDs;
         double Amount = 0.0;
         wxString Number;
         wxString Notes;
@@ -187,17 +187,17 @@ private:
     int m_object_in_focus = wxID_ANY;
     bool m_reverce_sign = false;
     wxString depositType_;
-    std::map <wxString, std::tuple<int, wxString, wxString>, caseInsensitiveComparator> m_CSVpayeeNames;
+    std::map <wxString, std::tuple<int64, wxString, wxString>, caseInsensitiveComparator> m_CSVpayeeNames;
     wxArrayString m_payee_names;
-    std::map <wxString, int, caseInsensitiveComparator> m_CSVcategoryNames;
-    std::map<std::pair <int, wxString>, std::map<int, std::pair<wxString, wxRegEx>> > payeeMatchPatterns_;
+    std::map <wxString, int64, caseInsensitiveComparator> m_CSVcategoryNames;
+    std::map<std::pair <int64, wxString>, std::map<int, std::pair<wxString, wxRegEx>> > payeeMatchPatterns_;
     bool payeeRegExInitialized_ = false;
     wxCheckBox* payeeMatchCheckBox_ = nullptr;
     wxCheckBox* payeeMatchAddNotes_ = nullptr;
     wxDataViewListCtrl* payeeListBox_ = nullptr;
     wxDataViewListCtrl* categoryListBox_ = nullptr;
     std::map<wxString, wxString> m_preset_id;
-    std::map<int, wxString> m_acct_default_preset;
+    std::map<int64, wxString> m_acct_default_preset;
 
     /// Creation
     bool Create(wxWindow* parent,

@@ -62,7 +62,7 @@ mmStockDialog::mmStockDialog( )
 mmStockDialog::mmStockDialog(wxWindow* parent
     , mmGUIFrame* gui_frame
     , Model_Stock::Data* stock
-    , int accountID
+    , int64 accountID
     , const wxString& name
     )
     : m_stock(stock)
@@ -361,7 +361,7 @@ void mmStockDialog::OnCancel(wxCommandEvent& /*event*/)
 void mmStockDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
     const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
-    int RefId = m_stock_id;
+    int64 RefId = m_stock_id;
 
     if (RefId < 0)
         RefId = 0;
@@ -859,7 +859,7 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
     if (!Model_Currency::fromString(currentPriceStr, dPrice, currency) || (dPrice < 0.0))
         return;
 
-    long histID = Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, m_history_date_ctrl->GetValue(), dPrice, Model_StockHistory::MANUAL);
+    int64 histID = Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, m_history_date_ctrl->GetValue(), dPrice, Model_StockHistory::MANUAL);
     long i;
     for (i = 0; i < m_price_listbox->GetItemCount(); i++)
     {
@@ -880,7 +880,7 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
         }
         wxListItem item;
         item.SetId(i);
-        item.SetData(histID);
+        item.SetData(histID.GetValue());
         m_price_listbox->InsertItem(item);
     }
     if (i != m_price_listbox->GetItemCount())
@@ -936,7 +936,7 @@ void mmStockDialog::ShowStockHistory()
         {
             wxListItem item;
             item.SetId(static_cast<long>(idx));
-            item.SetData(histData.at(idx).HISTID);
+            item.SetData(histData.at(idx).HISTID.GetValue());
             m_price_listbox->InsertItem(item);
             const wxDate dtdt = Model_StockHistory::DATE(histData.at(idx));
             const wxString dispAmount = Model_Account::toString(histData.at(idx).VALUE, account, Option::instance().SharePrecision());

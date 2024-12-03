@@ -189,8 +189,8 @@ public:
 public:
     bool remove(int64 id);
     int64 save(Data* r);
-    int64 save(std::vector<Data>& rows);
-    int64 save(std::vector<Data*>& rows);
+    int save(std::vector<Data>& rows);
+    int save(std::vector<Data*>& rows);
     void updateTimestamp(int64 id);
 public:
     static const Split_Data_Set split(const Data* r);

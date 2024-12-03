@@ -83,7 +83,7 @@ std::map<int64, Model_Splittransaction::Data_Set> Model_Splittransaction::get_al
 int Model_Splittransaction::update(Data_Set& rows, int64 transactionID)
 {
     bool updateTimestamp = false;
-    std::map<int, int> row_id_map;
+    std::map<int, int64> row_id_map;
 
     Data_Set split = instance().find(TRANSID(transactionID));
     if (split.size() != rows.size()) updateTimestamp = true;

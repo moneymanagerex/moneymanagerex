@@ -370,7 +370,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     }
     if (m_transaction_panel->ValidCheckingAccountEntry())
     {
-        int checking_id = m_transaction_panel->SaveChecking();
+        int64 checking_id = m_transaction_panel->SaveChecking();
         if (checking_id < 0)
             return;
 

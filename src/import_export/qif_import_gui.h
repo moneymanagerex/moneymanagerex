@@ -82,10 +82,10 @@ private:
     // QIF paragraphs represented like maps type = data
     std::vector<std::unordered_map<int, wxString>> vQIF_trxs_;
     std::unordered_map<wxString, std::unordered_map<int, wxString>> m_QIFaccounts;
-    std::unordered_map<wxString, int> m_QIFaccountsID;
-    std::unordered_map<wxString, std::tuple<int, wxString, wxString>> m_QIFpayeeNames;
+    std::unordered_map<wxString, int64> m_QIFaccountsID;
+    std::unordered_map<wxString, std::tuple<int64, wxString, wxString>> m_QIFpayeeNames;
     wxArrayString m_payee_names;
-    std::unordered_map<wxString, int> m_QIFcategoryNames;
+    std::unordered_map<wxString, int64> m_QIFcategoryNames;
     std::vector<Model_Splittransaction::Cache> m_splitDataSets;
     std::map<int, std::map<int, Model_Taglink::Cache>> m_splitTaglinks;
     std::map<std::pair<int, int>, Model_Taglink::Cache> m_txnTaglinks;
@@ -124,7 +124,7 @@ private:
     mmColorButton* mmColorBtn_ = nullptr;
 
     bool payeeIsNotes_ = false; //Include payee field in notes
-    std::map<std::pair <int, wxString>, std::map<int, std::pair<wxString, wxRegEx>> > payeeMatchPatterns_;
+    std::map<std::pair <int64, wxString>, std::map<int, std::pair<wxString, wxRegEx>> > payeeMatchPatterns_;
     bool payeeRegExInitialized_ = false;
 
     enum EColumn

@@ -60,7 +60,7 @@ public:
     * Return a map of all tags for the specified transaction
     * Mostly useful to return a sorted list of tagnames associated with a transaction
     */
-    std::map<wxString, int> get(const wxString& refType, int64 refId);
+    std::map<wxString, int64> get(const wxString& refType, int64 refId);
 
     /* Delete all tags for a REFTYPE + REFID */
     void DeleteAllTags(const wxString& refType, int64 refID);

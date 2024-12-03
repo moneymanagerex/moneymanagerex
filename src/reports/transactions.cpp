@@ -43,7 +43,7 @@ mmReportTransactions::~mmReportTransactions()
         m_transDialog->Destroy();
 }
 
-void mmReportTransactions::displayTotals(std::map<int, double> total, std::map<int, double> total_in_base_curr, int noOfCols)
+void mmReportTransactions::displayTotals(std::map<int64, double> total, std::map<int64, double> total_in_base_curr, int noOfCols)
 {
     double grand_total = 0;
     for (const auto& curr_total : total)
@@ -64,7 +64,7 @@ void mmReportTransactions::displayTotals(std::map<int, double> total, std::map<i
     hb.addTotalRow(_("Grand Total:"), noOfCols, v);
 }
 
-void mmReportTransactions::UDFCFormatHelper(Model_CustomField::TYPE_ID type, int ref, wxString data, double val, int scale)
+void mmReportTransactions::UDFCFormatHelper(Model_CustomField::TYPE_ID type, int64 ref, wxString data, double val, int scale)
 {
     if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
         hb.addMoneyCell(val, scale);
@@ -83,7 +83,7 @@ wxString mmReportTransactions::getHTMLText()
 {
     Run(m_transDialog);
 
-    wxArrayInt selected_accounts = m_transDialog->mmGetAccountsID();
+    wxArrayInt64 selected_accounts = m_transDialog->mmGetAccountsID();
     wxString accounts_label = _("All Accounts");
     bool allAccounts = true;
     if (m_transDialog->mmIsAccountChecked() && !m_transDialog->mmGetAccountsID().empty()) {
@@ -131,12 +131,12 @@ table {
     const int chart = m_transDialog->mmGetChart();
     wxString lastSortLabel = "";
 
-    std::map<int, double> total; //Store transaction amount with original currency
-    std::map<int, double> total_in_base_curr; //Store transactions amount daily converted to base currency
-    std::map<int, double> grand_total; //Grand - Store transaction amount with original currency
-    std::map<int, double> grand_total_in_base_curr; //Grad - Store transactions amount daily converted to base currency
-    std::map<int, double> grand_total_extrans; //Grand - Store transaction amount with original currency - excluding TRANSFERS
-    std::map<int, double> grand_total_in_base_curr_extrans; //Grand - Store transactions amount daily converted to base currency - excluding TRANSFERS
+    std::map<int64, double> total; //Store transaction amount with original currency
+    std::map<int64, double> total_in_base_curr; //Store transactions amount daily converted to base currency
+    std::map<int64, double> grand_total; //Grand - Store transaction amount with original currency
+    std::map<int64, double> grand_total_in_base_curr; //Grad - Store transactions amount daily converted to base currency
+    std::map<int64, double> grand_total_extrans; //Grand - Store transaction amount with original currency - excluding TRANSFERS
+    std::map<int64, double> grand_total_in_base_curr_extrans; //Grand - Store transactions amount daily converted to base currency - excluding TRANSFERS
     std::map<wxString, double> values_chart; // Store grouped values for chart
 
     const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
@@ -260,8 +260,8 @@ table {
         int noOfTrans = 1;
         if ((Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_TRANSFER) &&
             (allAccounts ||
-                ((selected_accounts.Index(transaction.ACCOUNTID) != wxNOT_FOUND)
-                    && (selected_accounts.Index(transaction.TOACCOUNTID) != wxNOT_FOUND))))
+                (std::find(selected_accounts.begin(), selected_accounts.end(), transaction.ACCOUNTID) != selected_accounts.end()
+                    && std::find(selected_accounts.begin(), selected_accounts.end(), transaction.TOACCOUNTID) != selected_accounts.end())))
             noOfTrans = 2;
 
         bool is_time_used = Option::instance().UseTransDateTime();
@@ -280,7 +280,7 @@ table {
                         , transaction.displayID, true);
                 }
                 if (showColumnById(mmFilterTransactionsDialog::COL_COLOR))
-                    hb.addColorMarker(getUDColour(transaction.COLOR).GetAsString(), true);
+                    hb.addColorMarker(getUDColour(transaction.COLOR.GetValue()).GetAsString(), true);
                 if (showColumnById(mmFilterTransactionsDialog::COL_DATE))
                 {
                     wxDateTime dt;
@@ -320,7 +320,7 @@ table {
                 {
                     const Model_Currency::Data* curr = Model_Account::currency(acc);
                     double flow = Model_Checking::account_flow(transaction, acc->ACCOUNTID);
-                    if (noOfTrans || (!allAccounts && (selected_accounts.Index(transaction.ACCOUNTID) == wxNOT_FOUND)))
+                    if (noOfTrans || (!allAccounts && (std::find(selected_accounts.begin(), selected_accounts.end(), transaction.ACCOUNTID) != selected_accounts.end())))
                         flow = -flow;
                     const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
                     if (showColumnById(mmFilterTransactionsDialog::COL_AMOUNT))
@@ -343,7 +343,7 @@ table {
                     }
                     if (chart > -1 && groupBy == -1)
                     {
-                        values_chart[std::to_string(transaction.TRANSID)] += (flow * convRate);
+                        values_chart[transaction.TRANSID.ToString()] += (flow * convRate);
                     }
                 }
                 else
@@ -378,11 +378,11 @@ table {
                 // Custom Fields
 
                 const auto matrix = Model_CustomField::getMatrix(Model_Attachment::TRANSACTION);
-                int udfc01_ref_id = matrix.at("UDFC01");
-                int udfc02_ref_id = matrix.at("UDFC02");
-                int udfc03_ref_id = matrix.at("UDFC03");
-                int udfc04_ref_id = matrix.at("UDFC04");
-                int udfc05_ref_id = matrix.at("UDFC05");
+                int64 udfc01_ref_id = matrix.at("UDFC01");
+                int64 udfc02_ref_id = matrix.at("UDFC02");
+                int64 udfc03_ref_id = matrix.at("UDFC03");
+                int64 udfc04_ref_id = matrix.at("UDFC04");
+                int64 udfc05_ref_id = matrix.at("UDFC05");
 
                 transaction.UDFC01_val = -DBL_MAX;
                 transaction.UDFC02_val = -DBL_MAX;

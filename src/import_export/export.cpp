@@ -217,7 +217,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
     return buffer;
 }
 
-const wxString mmExportTransaction::getAccountHeaderQIF(int accountID)
+const wxString mmExportTransaction::getAccountHeaderQIF(int64 accountID)
 {
     wxString buffer = "";
     wxString currency_symbol = Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL;
@@ -306,7 +306,7 @@ const wxString mmExportTransaction::mm_acc_type(const wxString& qif_type)
 // JSON Export ----------------------------------------------------------------------------
 
 void mmExportTransaction::getAccountsJSON(PrettyWriter<StringBuffer>& json_writer
-    , std::unordered_map <int /*account ID*/, wxString>& allAccounts4Export)
+    , std::map <int64 /*account ID*/, wxString>& allAccounts4Export)
 {
     json_writer.Key("ACCOUNTS");
     json_writer.StartArray();
@@ -316,7 +316,7 @@ void mmExportTransaction::getAccountsJSON(PrettyWriter<StringBuffer>& json_write
         const auto c = Model_Currency::instance().get(a->CURRENCYID);
         json_writer.StartObject();
         json_writer.Key("ID");
-        json_writer.Int(a->ACCOUNTID);
+        json_writer.Int64(a->ACCOUNTID.GetValue());
         json_writer.Key("NAME");
         json_writer.String(a->ACCOUNTNAME.utf8_str());
         json_writer.Key("INITIAL_BALANCE");
@@ -330,7 +330,7 @@ void mmExportTransaction::getAccountsJSON(PrettyWriter<StringBuffer>& json_write
     json_writer.EndArray();
 }
 
-void mmExportTransaction::getPayeesJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allPayeess4Export)
+void mmExportTransaction::getPayeesJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt64& allPayeess4Export)
 {
     if (!allPayeess4Export.empty())
     {
@@ -341,11 +341,11 @@ void mmExportTransaction::getPayeesJSON(PrettyWriter<StringBuffer>& json_writer,
             if (p) {
                 json_writer.StartObject();
                 json_writer.Key("ID");
-                json_writer.Int(p->PAYEEID);
+                json_writer.Int64(p->PAYEEID.GetValue());
                 json_writer.Key("NAME");
                 json_writer.String(p->PAYEENAME.utf8_str());
                 json_writer.Key("CATEGORY_ID");
-                json_writer.Int(p->CATEGID);
+                json_writer.Int64(p->CATEGID.GetValue());
                 json_writer.EndObject();
             }
         }
@@ -361,7 +361,7 @@ void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_wri
     {
         json_writer.StartObject();
         json_writer.Key("ID");
-        json_writer.Int(category.CATEGID);
+        json_writer.Int64(category.CATEGID.GetValue());
         json_writer.Key("NAME");
         json_writer.String(Model_Category::full_name(category.CATEGID, ":").utf8_str());
         json_writer.EndObject();
@@ -369,7 +369,7 @@ void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_wri
     json_writer.EndArray();
 }
 
-void mmExportTransaction::getTagsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allTags4Export)
+void mmExportTransaction::getTagsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt64& allTags4Export)
 {
     json_writer.Key("TAGS");
     json_writer.StartArray();
@@ -380,7 +380,7 @@ void mmExportTransaction::getTagsJSON(PrettyWriter<StringBuffer>& json_writer, w
         {
             json_writer.StartObject();
             json_writer.Key("ID");
-            json_writer.Int(tag->TAGID);
+            json_writer.Int64(tag->TAGID.GetValue());
             json_writer.Key("NAME");
             json_writer.String(tag->TAGNAME.utf8_str());
             json_writer.EndObject();
@@ -399,7 +399,7 @@ void mmExportTransaction::getUsedCategoriesJSON(PrettyWriter<StringBuffer>& json
             continue;
         json_writer.StartObject();
         json_writer.Key("ID");
-        json_writer.Int(category.CATEGID);
+        json_writer.Int64(category.CATEGID.GetValue());
         json_writer.Key("NAME");
         json_writer.String(Model_Category::full_name(category.CATEGID, ":").utf8_str());
         json_writer.EndObject();
@@ -415,7 +415,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
     json_writer.Key("TAGS");
     json_writer.StartArray();
     for (const auto& tag : full_tran.m_tags)
-        json_writer.Int(tag.TAGID);
+        json_writer.Int64(tag.TAGID.GetValue());
     json_writer.EndArray();
 
     if (!full_tran.m_splits.empty()) {
@@ -430,13 +430,13 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
 
             json_writer.StartObject();
             json_writer.Key("CATEGORY_ID");
-            json_writer.Int(split_entry.CATEGID);
+            json_writer.Int64(split_entry.CATEGID.GetValue());
             json_writer.Key("AMOUNT");
             json_writer.Double(valueSplit);
             json_writer.Key("TAGS");
             json_writer.StartArray();
             for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), split_entry.SPLITTRANSID))
-                json_writer.Int(tag.second);
+                json_writer.Int64(tag.second.GetValue());
             json_writer.EndArray();
             json_writer.EndObject();
 
@@ -453,7 +453,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
         json_writer.Key("ATTACHMENTS");
         json_writer.StartArray();
         for (const auto &entry : attachments) {
-            json_writer.Int(entry.ATTACHMENTID);
+            json_writer.Int64(entry.ATTACHMENTID.GetValue());
         }
         json_writer.EndArray();
     }
@@ -472,7 +472,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
                 , Model_CustomField::FIELDID(entry.FIELDID));
 
             for (const auto& i : customFields) {
-                json_writer.Int(i.FIELDID);
+                json_writer.Int64(i.FIELDID.GetValue());
             }
         }
         json_writer.EndArray();
@@ -481,7 +481,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
     json_writer.EndObject();
 }
 
-void mmExportTransaction::getAttachmentsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allAttachment4Export)
+void mmExportTransaction::getAttachmentsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt64& allAttachment4Export)
 {
 
     if (!allAttachment4Export.empty())
@@ -507,7 +507,7 @@ void mmExportTransaction::getAttachmentsJSON(PrettyWriter<StringBuffer>& json_wr
         for (const auto& entry : attachments)
         {
             if (entry.REFTYPE != RefType) continue;
-            if (allAttachment4Export.Index(entry.REFID) == wxNOT_FOUND) continue;
+            if (std::find(allAttachment4Export.begin(), allAttachment4Export.end(), entry.REFID) == allAttachment4Export.end()) continue;
 
             json_writer.StartObject();
             entry.as_json(json_writer);
@@ -518,7 +518,7 @@ void mmExportTransaction::getAttachmentsJSON(PrettyWriter<StringBuffer>& json_wr
     }
 }
 
-void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allCustomFields4Export)
+void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt64& allCustomFields4Export)
 {
 
     if (!allCustomFields4Export.empty())
@@ -529,7 +529,7 @@ void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_w
         json_writer.StartObject();
 
         // Data
-        wxArrayInt cd;
+        wxArrayInt64 cd;
         Model_CustomFieldData::Data_Set cds = Model_CustomFieldData::instance().all();
 
         if (!cds.empty()) {
@@ -538,10 +538,11 @@ void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_w
 
             for (const auto& entry : cds)
             {
-                if (allCustomFields4Export.Index(entry.FIELDATADID) != wxNOT_FOUND)
+                if (std::find(allCustomFields4Export.begin(), allCustomFields4Export.end(), entry.FIELDATADID) != allCustomFields4Export.end())
                 {
-                    if (cd.Index(entry.FIELDID) == wxNOT_FOUND) {
-                        cd.Add(entry.FIELDID);
+                    if (std::find(cd.begin(), cd.end(), entry.FIELDID) == cd.end())
+                    {
+                        cd.push_back(entry.FIELDID);
                     }
                     json_writer.StartObject();
                     entry.as_json(json_writer);
@@ -562,12 +563,12 @@ void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_w
 
             for (const auto& entry : custom_fields)
             {
-                if (cd.Index(entry.FIELDID) == wxNOT_FOUND)
+                if (std::find(cd.begin(), cd.end(), entry.FIELDID) == cd.end())
                     continue;
 
                 json_writer.StartObject();
                 json_writer.Key("ID");
-                json_writer.Int(entry.FIELDID);
+                json_writer.Int64(entry.FIELDID.GetValue());
                 json_writer.Key("REFTYPE");
                 json_writer.String(entry.REFTYPE.utf8_str());
                 json_writer.Key("DESCRIPTION");

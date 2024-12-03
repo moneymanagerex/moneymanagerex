@@ -22,6 +22,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "defs.h"
 
 class mmDatePickerCtrl;
+typedef wxLongLong int64;
+typedef std::vector<int64> wxArrayInt64;
 
 class mmQIFExportDialog : public wxDialog
 {

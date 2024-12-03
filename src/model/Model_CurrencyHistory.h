@@ -48,13 +48,13 @@ public:
     static Model_CurrencyHistory& instance();
 
 public:
-    Data* get(const int& currencyID, const wxDate& date);
+    Data* get(const int64& currencyID, const wxDate& date);
     static wxDate CURRDATE(const Data& hist);
 
     static DB_Table_CURRENCYHISTORY_V1::CURRDATE CURRDATE(const wxDate& date, OP op = EQUAL);
     
     /** Adds or updates an element in currency history */
-    int addUpdate(const int64 currencyID, const wxDate& date, double price, UPDTYPE type);
+    int64 addUpdate(const int64 currencyID, const wxDate& date, double price, UPDTYPE type);
 
     /** Return the rate for a specific currency in a specific day*/
     static double getDayRate(int64 currencyID, const wxString& DateISO);

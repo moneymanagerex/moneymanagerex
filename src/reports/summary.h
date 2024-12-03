@@ -31,8 +31,8 @@ class mmHistoryItem
 public:
     mmHistoryItem();
 
-    int         acctId;
-    int         stockId;
+    int64       acctId;
+    int64       stockId;
     wxDate      purchaseDate;
     wxString    purchaseDateStr;
     double      purchasePrice;
@@ -55,7 +55,7 @@ protected:
     enum TYPE { MONTHLY = 0, YEARLY };
 private:
     int mode_;
-    std::map<int, std::map<wxDate, double>> accountsBalanceMap;
+    std::map<int64, std::map<wxDate, double>> accountsBalanceMap;
     mmHistoryData   arHistory;
     std::map<wxString, double> currencyDateRateCache;
 
@@ -63,7 +63,7 @@ private:
     double getCheckingDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
     double getInvestingDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
     double getDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
-    double getDayRate(int currencyid, const wxDate& date);
+    double getDayRate(int64 currencyid, const wxDate& date);
 };
 
 class mmReportSummaryByDateMontly : public mmReportSummaryByDate

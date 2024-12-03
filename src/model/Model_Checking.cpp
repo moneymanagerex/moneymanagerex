@@ -154,7 +154,7 @@ int64 Model_Checking::save(Data* r)
     return r->TRANSID;
 }
 
-int64 Model_Checking::save(std::vector<Data>& rows)
+int Model_Checking::save(std::vector<Data>& rows)
 {
     this->Savepoint();
     for (auto& r : rows)
@@ -168,7 +168,7 @@ int64 Model_Checking::save(std::vector<Data>& rows)
     return rows.size();
 }
 
-int64 Model_Checking::save(std::vector<Data*>& rows)
+int Model_Checking::save(std::vector<Data*>& rows)
 {
     this->Savepoint();
     for (auto& r : rows)
@@ -291,55 +291,55 @@ Model_Checking::STATUS_ID Model_Checking::status_id(const Data* r)
     return status_id(r->STATUS);
 }
 
-double Model_Checking::account_flow(const Data* r, int account_id)
+double Model_Checking::account_flow(const Data* r, int64 account_id)
 {
     if (Model_Checking::status_id(r->STATUS) == Model_Checking::STATUS_ID_VOID || !r->DELETEDTIME.IsEmpty())
         return 0.0;
     if (account_id == r->ACCOUNTID && type_id(r->TRANSCODE) == TYPE_ID_WITHDRAWAL)
-        return -(r->ACCOUNTID);
+        return -(r->TRANSAMOUNT);
     if (account_id == r->ACCOUNTID && type_id(r->TRANSCODE) == TYPE_ID_DEPOSIT)
-        return r->ACCOUNTID;
+        return r->TRANSAMOUNT;
     if (account_id == r->ACCOUNTID && type_id(r->TRANSCODE) == TYPE_ID_TRANSFER)
-        return -(r->ACCOUNTID);
+        return -(r->TRANSAMOUNT);
     if (account_id == r->TOACCOUNTID && type_id(r->TRANSCODE) == TYPE_ID_TRANSFER)
-        return r->TOACCOUNTID;
+        return r->TOTRANSAMOUNT;
     return 0.0;
 }
 
-double Model_Checking::account_flow(const Data& r, int account_id)
+double Model_Checking::account_flow(const Data& r, int64 account_id)
 {
     return account_flow(&r, account_id);
 }
 
-double Model_Checking::account_outflow(const Data* r, int account_id)
+double Model_Checking::account_outflow(const Data* r, int64 account_id)
 {
     double bal = account_flow(r, account_id);
     return bal <= 0 ? -bal : 0;
 }
 
-double Model_Checking::account_outflow(const Data& r, int account_id)
+double Model_Checking::account_outflow(const Data& r, int64 account_id)
 {
     return account_outflow(&r, account_id);
 }
 
-double Model_Checking::account_inflow(const Data* r, int account_id)
+double Model_Checking::account_inflow(const Data* r, int64 account_id)
 {
     double bal = account_flow(r, account_id);
     return bal >= 0 ? bal : 0;
 }
 
-double Model_Checking::account_inflow(const Data& r, int account_id)
+double Model_Checking::account_inflow(const Data& r, int64 account_id)
 {
     return account_inflow(&r, account_id);
 }
 
-double Model_Checking::account_recflow(const Data* r, int account_id)
+double Model_Checking::account_recflow(const Data* r, int64 account_id)
 {
     return (Model_Checking::status_id(r->STATUS) == Model_Checking::STATUS_ID_RECONCILED) ?
         account_flow(r, account_id) : 0;
 }
 
-double Model_Checking::account_recflow(const Data& r, int account_id)
+double Model_Checking::account_recflow(const Data& r, int64 account_id)
 {
     return account_recflow(&r, account_id);
 }

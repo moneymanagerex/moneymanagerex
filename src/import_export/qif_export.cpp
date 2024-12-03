@@ -266,8 +266,8 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
 
     for (const auto& a : all_accounts)
     {
-        if (selected_accounts_id_.Index(a.ACCOUNTID) != wxNOT_FOUND)
-            s.Add(i);
+        if (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), a.ACCOUNTID) != selected_accounts_id_.end())
+            s.push_back(i);
         i++;
     }
     s_acc.SetSelections(s);
@@ -296,7 +296,7 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
     }
     else if (selected_accounts_id_.size() == 1)
     {
-        int account_id = accounts_id_[selected_items[0]];
+        int64 account_id = accounts_id_[selected_items[0]];
         const Model_Account::Data* account = Model_Account::instance().get(account_id);
         if (account) bSelectedAccounts_->SetLabelText(account->ACCOUNTNAME);
     }
@@ -465,12 +465,12 @@ void mmQIFExportDialog::mmExportQIF()
         sErrorMsg << _("Categories exported") << "\n";
     }
 
-    std::unordered_map <int /*account ID*/, wxString> allAccounts4Export;
-    wxArrayInt allPayees4Export;
+    std::map<int64 /*account ID*/, wxString> allAccounts4Export;
+    wxArrayInt64 allPayees4Export;
     const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    wxArrayInt allAttachments4Export;
-    wxArrayInt allCustomFields4Export;
-    wxArrayInt allTags4Export;
+    wxArrayInt64 allAttachments4Export;
+    wxArrayInt64 allCustomFields4Export;
+    wxArrayInt64 allTags4Export;
     const auto transactions = Model_Checking::instance().find(
         Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL));
 
@@ -480,7 +480,7 @@ void mmQIFExportDialog::mmExportQIF()
         json_writer.StartArray();
 
         /* Array to store QIF tarts for selected accounts */
-        std::unordered_map <int /*account ID*/, wxString> extraTransfers;
+        std::map<int64 /*account ID*/, wxString> extraTransfers;
 
         wxProgressDialog progressDlg(_("Please wait"), _("Exporting")
             , 100, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
@@ -501,11 +501,11 @@ void mmQIFExportDialog::mmExportQIF()
             if (dateToCheckBox_->IsChecked() && strDate > end_date)
                 continue;
             if (!Model_Checking::is_transfer(transaction.TRANSCODE)
-                && (std::find(elected_accounts_id_.begin(), elected_accounts_id_.end(), transaction.ACCOUNTID) == elected_accounts_id_.end()))
+                && (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), transaction.ACCOUNTID) == selected_accounts_id_.end()))
                 continue;
             if (Model_Checking::is_transfer(transaction.TRANSCODE)
-                && (std::find(elected_accounts_id_.begin(), elected_accounts_id_.end(), transaction.ACCOUNTID) == elected_accounts_id_.end())
-                && (std::find(elected_accounts_id_.begin(), elected_accounts_id_.end(), transaction.TOACCOUNTID) == elected_accounts_id_.end()))
+                && (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), transaction.ACCOUNTID) == selected_accounts_id_.end())
+                && (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), transaction.TOACCOUNTID) == selected_accounts_id_.end()))
                 continue;
             //
 
@@ -516,43 +516,43 @@ void mmQIFExportDialog::mmExportQIF()
             bool is_reverce = false;
             wxString trx_str;
             Model_Checking::Full_Data full_tran(transaction, splits, tags);
-            int account_id = transaction.ACCOUNTID;
+            int64 account_id = transaction.ACCOUNTID;
 
             switch (m_type)
             {
             case JSON:
                 mmExportTransaction::getTransactionJSON(json_writer, full_tran);
                 allAccounts4Export[account_id] = "";
-                if (allPayees4Export.Index(full_tran.PAYEEID) == wxNOT_FOUND
+                if (std::find(allPayees4Export.begin(), allPayees4Export.begin(), full_tran.PAYEEID) == allPayees4Export.end()
                     && full_tran.TRANSCODE != Model_Checking::TYPE_STR_TRANSFER) {
-                    allPayees4Export.Add(full_tran.PAYEEID);
+                    allPayees4Export.push_back(full_tran.PAYEEID);
                 }
 
                 if (!Model_Attachment::instance().FilterAttachments(RefType, full_tran.id()).empty()
-                    && allAttachments4Export.Index(full_tran.TRANSID) == wxNOT_FOUND) {
-                    allAttachments4Export.Add(full_tran.TRANSID);
+                    && std::find(allAttachments4Export.begin(), allAttachments4Export.end(), full_tran.TRANSID) == allAttachments4Export.end()) {
+                    allAttachments4Export.push_back(full_tran.TRANSID);
                 }
 
                 for (const auto & entry : Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(full_tran.id())))
                 {
-                    if (allCustomFields4Export.Index(entry.FIELDATADID) == wxNOT_FOUND) {
-                        allCustomFields4Export.Add(entry.FIELDATADID);
+                    if (std::find(allCustomFields4Export.begin(), allCustomFields4Export.end(), entry.FIELDATADID) == allCustomFields4Export.end()) {
+                        allCustomFields4Export.push_back(entry.FIELDATADID);
                     }
                 }
 
                 // store tags from the transaction
                 for (const auto& tag : full_tran.m_tags)
                 {
-                    if (allTags4Export.Index(tag.TAGID) == wxNOT_FOUND)
-                        allTags4Export.Add(tag.TAGID);
+                    if (std::find(allTags4Export.begin(), allTags4Export.end(), tag.TAGID) == allTags4Export.end())
+                        allTags4Export.push_back(tag.TAGID);
                 }
                 // store tags from the splits
                 for (const auto& split : full_tran.m_splits)
                 {
                     for (const auto& taglink : Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), split.SPLITTRANSID))
                     {
-                        if (allTags4Export.Index(taglink.second) == wxNOT_FOUND)
-                            allTags4Export.Add(taglink.second);
+                        if (std::find(allTags4Export.begin(), allTags4Export.end(), taglink.second) == allTags4Export.end())
+                            allTags4Export.push_back(taglink.second);
                     }
                 }
 
@@ -562,7 +562,7 @@ void mmQIFExportDialog::mmExportQIF()
 
                 if (Model_Checking::is_transfer(transaction.TRANSCODE))
                 {
-                    if (selected_accounts_id_.Index(transaction.ACCOUNTID) == wxNOT_FOUND) {
+                    if (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), transaction.ACCOUNTID) == selected_accounts_id_.end()) {
                         is_reverce = true;
                         account_id = transaction.TOACCOUNTID;
                     }
@@ -581,7 +581,7 @@ void mmQIFExportDialog::mmExportQIF()
 
                 if (Model_Checking::is_transfer(transaction.TRANSCODE))
                 {
-                    if (selected_accounts_id_.Index(transaction.ACCOUNTID) == wxNOT_FOUND) {
+                    if (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), transaction.ACCOUNTID) == selected_accounts_id_.end()) {
                         is_reverce = true;
                         account_id = transaction.TOACCOUNTID;
                     }

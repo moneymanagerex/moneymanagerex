@@ -67,7 +67,7 @@ wxString JSON_Formated(rapidjson::Document& j_doc)
 
 //----------------------------------------------------------------------------
 
-mmTreeItemData::mmTreeItemData(int type, int id)
+mmTreeItemData::mmTreeItemData(int type, int64 id)
     : id_(id)
     , type_(type)
     , report_(nullptr)

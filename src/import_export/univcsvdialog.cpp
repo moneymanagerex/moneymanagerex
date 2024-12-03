@@ -930,7 +930,7 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
         csvListBox_->SetSelection(target_position);
 
         auto itPos = csvFieldOrder_.begin() + target_position;
-        csvFieldOrder_.insert(itPos, std::make_pair(item->getIndex(), -1));
+        csvFieldOrder_.insert(itPos, std::make_pair(item->getIndex().GetValue(), -1));
 
         if (item->getIndex() != UNIV_CSV_DONTCARE
             && (item->getIndex() != UNIV_CSV_NOTES || !IsImporter()))
@@ -972,7 +972,7 @@ void mmUnivCSVDialog::OnRemove(wxCommandEvent& WXUNUSED(event))
     if (index != wxNOT_FOUND)
     {
         mmListBoxItem *item = static_cast<mmListBoxItem*>(csvListBox_->GetClientObject(index));
-        int item_index = item->getIndex();
+        int item_index = item->getIndex().GetValue();
         wxString item_name = item->getName();
 
         if (item_index != UNIV_CSV_DONTCARE
@@ -1274,7 +1274,7 @@ bool mmUnivCSVDialog::validateData(tran_holder & holder, wxString& message)
 
     if (holder.CategoryID == -1) //The category name is missing in SCV file and not assigned for the payee
     {
-        Model_Category::Data* categ = Model_Category::instance().get(_("Unknown"), -1);
+        Model_Category::Data* categ = Model_Category::instance().get(_("Unknown"), int64(-1));
         if (categ) {
             holder.CategoryID = categ->CATEGID;
         }
@@ -1456,7 +1456,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         }
 
         // save tags
-        if (!holder.tagIDs.IsEmpty())
+        if (!holder.tagIDs.empty())
         {
             for (const auto& tag : holder.tagIDs)
             {
@@ -2116,7 +2116,7 @@ void mmUnivCSVDialog::OnMoveUp(wxCommandEvent& WXUNUSED(event))
     if (index != wxNOT_FOUND && index != 0)
     {
         mmListBoxItem* item = static_cast<mmListBoxItem*>(csvListBox_->GetClientObject(index));
-        int item_index = item->getIndex();
+        int item_index = item->getIndex().GetValue();
         const wxString item_name = item->getName();
 
         csvListBox_->Delete(index);
@@ -2135,7 +2135,7 @@ void mmUnivCSVDialog::OnMoveDown(wxCommandEvent& WXUNUSED(event))
     if (index != wxNOT_FOUND && static_cast<size_t>(index) != csvListBox_->GetCount() - 1)
     {
         mmListBoxItem* item = static_cast<mmListBoxItem*>(csvListBox_->GetClientObject(index));
-        int item_index = item->getIndex();
+        int item_index = item->getIndex().GetValue();
         wxString item_name = item->getName();
 
         csvListBox_->Delete(index);
@@ -2377,7 +2377,7 @@ void mmUnivCSVDialog::validateCategories() {
     for(const auto& catname : m_CSVcategoryNames)
     {
         wxString search_name = catname.first;
-        int parentID = -1;
+        int64 parentID = -1;
         // delimit string by ":"
         wxStringTokenizer categs = wxStringTokenizer(search_name, ":");
         // check each level of category exists
@@ -2522,8 +2522,8 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
                 Model_Tag::instance().save(tag);
             }
             // add the tagID to the transaction if it isn't already there
-            if (holder.tagIDs.Index(tag->TAGID) == wxNOT_FOUND)
-                holder.tagIDs.Add(tag->TAGID);
+            if (std::find(holder.tagIDs.begin(), holder.tagIDs.end(), tag->TAGID) == holder.tagIDs.end())
+                holder.tagIDs.push_back(tag->TAGID);
         }
         break;
     }
@@ -2779,7 +2779,7 @@ void mmUnivCSVDialog::OnMenuSelected(wxCommandEvent&)
 /* Validates the specified string matches the parameters of the target Custom Field.
 Cleanses the value and reformats as needed for DB storage
 */
-bool mmUnivCSVDialog::validateCustomFieldData(int fieldId, wxString& value, wxString& message)
+bool mmUnivCSVDialog::validateCustomFieldData(int64 fieldId, wxString& value, wxString& message)
 {
     bool is_valid = true;
     long int_val;

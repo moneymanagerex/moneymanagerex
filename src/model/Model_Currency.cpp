@@ -227,7 +227,7 @@ const wxString Model_Currency::toCurrency(double value, const Data* currency, in
 const wxString Model_Currency::toStringNoFormatting(double value, const Data* currency, int precision)
 {
     const Data* curr = currency ? currency : GetBaseCurrency();
-    precision = (precision >= 0) ? precision : log10(curr->SCALE);
+    precision = (precision >= 0) ? precision : log10(curr->SCALE.GetValue());
     wxString s = wxString::FromCDouble(value, precision);
     s.Replace(".", curr->DECIMAL_POINT);
 
@@ -277,7 +277,7 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     }
 
     if (precision < 0) {
-        precision = log10(currency ? currency->SCALE : GetBaseCurrency()->SCALE);
+        precision = log10(currency ? currency->SCALE.GetValue() : GetBaseCurrency()->SCALE.GetValue());
     }
 
     auto l = (s_use_locale == "Y" ? std::locale(s_locale.c_str()) : (d == "Y" ? std::locale(default_locale) : std::locale()));
@@ -390,7 +390,7 @@ bool Model_Currency::fromString(wxString s, double& val, const Data* currency)
 
 int Model_Currency::precision(const Data* r)
 {
-    return static_cast<int>(log10(static_cast<double>(r->SCALE)));
+    return static_cast<int>(log10(static_cast<double>(r->SCALE.GetValue())));
 }
 
 int Model_Currency::precision(const Data& r)

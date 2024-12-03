@@ -2050,8 +2050,8 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
             for (const auto& split : fused.m_splits)
             {
                 wxString tagnames;
-                std::map<wxString, int> tags = Model_Taglink::instance().get(splitRefType, split.SPLITTRANSID);
-                std::map<wxString, int, caseInsensitiveComparator> sortedTags(tags.begin(), tags.end());
+                std::map<wxString, int64> tags = Model_Taglink::instance().get(splitRefType, split.SPLITTRANSID);
+                std::map<wxString, int64, caseInsensitiveComparator> sortedTags(tags.begin(), tags.end());
                 for (const auto& tag : sortedTags)
                     tagnames.Append(tag.first + " ");
                 if (!tagnames.IsEmpty())

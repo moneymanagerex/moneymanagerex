@@ -62,7 +62,7 @@ std::map<int64, Model_CustomFieldData::Data_Set> Model_CustomFieldData::get_all(
     const wxString& reftype_desc = Model_Attachment::reftype_desc(reftype);
     Model_CustomField::Data_Set custom_fields = Model_CustomField::instance()
         .find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(reftype_desc));
-    std::map<int, Model_CustomFieldData::Data_Set> data;
+    std::map<int64, Model_CustomFieldData::Data_Set> data;
     for (const auto& entry : custom_fields)
     {
         for (const auto & custom_field : find(Model_CustomFieldData::FIELDID(entry.FIELDID)))

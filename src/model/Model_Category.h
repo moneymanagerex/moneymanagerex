@@ -59,7 +59,7 @@ public:
 
 public:
     /** Return the Data record for the given category name */
-    Data* get(const wxString& name, const int& parentid);
+    Data* get(const wxString& name, const int64 parentid);
     Data* get(const wxString& name, const wxString& parentname);
 
     const wxArrayString FilterCategory(const wxString& category_pattern);

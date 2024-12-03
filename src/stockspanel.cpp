@@ -232,7 +232,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
         Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(stock_trans.TRANSID);
         if (share_entry && ((share_entry->SHARENUMBER > 0) || (share_entry->SHAREPRICE > 0)))
         {
-            stockTxnListCtrl->SetItemData(index, stock_trans.TRANSID);
+            stockTxnListCtrl->SetItemData(index, stock_trans.TRANSID.GetValue());
             stockTxnListCtrl->SetItem(index, 0, mmGetDateForDisplay(stock_trans.TRANSDATE));
             stockTxnListCtrl->SetItem(index, 1, share_entry->SHARELOT);
 
@@ -623,7 +623,7 @@ void mmStocksPanel::DisplayAccountDetails(int64 accountID)
 
 void mmStocksPanel::RefreshList()
 {
-    int selected_id = -1;
+    int64 selected_id = -1;
     if (listCtrlAccount_->get_selectedIndex() > -1)
         selected_id = listCtrlAccount_->m_stocks[listCtrlAccount_->get_selectedIndex()].STOCKID;
     listCtrlAccount_->doRefreshItems(selected_id);

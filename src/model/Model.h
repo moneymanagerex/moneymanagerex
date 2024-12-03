@@ -182,7 +182,7 @@ public:
     * in the record list (Data_Set) to the database.
     */
     template<class DATA>
-    int64 save(std::vector<DATA>& rows)
+    int save(std::vector<DATA>& rows)
     {
         this->Savepoint();
         for (auto& r : rows)
@@ -197,7 +197,7 @@ public:
     }
 
     template<class DATA>
-    int64 save(std::vector<DATA*>& rows)
+    int save(std::vector<DATA*>& rows)
     {
         this->Savepoint();
         for (auto& r : rows) this->save(r);

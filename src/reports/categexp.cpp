@@ -41,7 +41,7 @@ mmReportCategoryExpenses::~mmReportCategoryExpenses()
 {
 }
 
-double mmReportCategoryExpenses::AppendData(const std::vector<mmReportCategoryExpenses::data_holder> &data, std::map<int, std::map<int, double>> &categoryStats, const DB_Table_CATEGORY_V1::Data* category, int groupID, int level) {
+double mmReportCategoryExpenses::AppendData(const std::vector<mmReportCategoryExpenses::data_holder> &data, std::map<int64, std::map<int, double>> &categoryStats, const DB_Table_CATEGORY_V1::Data* category, int64 groupID, int level) {
     double amt = categoryStats[category->CATEGID][0];
     if (type_ == COME && amt < 0.0) amt = 0;
     if (type_ == GOES && amt > 0.0) amt = 0;
@@ -61,7 +61,7 @@ double mmReportCategoryExpenses::AppendData(const std::vector<mmReportCategoryEx
 void  mmReportCategoryExpenses::RefreshData()
 {
     data_.clear();
-    std::map<int, std::map<int, double> > categoryStats;
+    std::map<int64, std::map<int, double> > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , accountArray_
         , const_cast<mmDateRange*>(m_date_range)
@@ -115,8 +115,8 @@ wxString mmReportCategoryExpenses::getHTMLText()
     GraphSeries gsExpenses, gsIncome;
     std::vector<std::pair<wxString, double>> expense_vector;
     std::vector<std::pair<wxString, double>> income_vector;
-    std::map <int, int> group_counter;
-    std::map <int, std::map<int, double>> group_total;
+    std::map <int64, int> group_counter;
+    std::map <int64, std::map<int64, double>> group_total;
     
     for (const auto& entry : sortedData)
     {
@@ -339,12 +339,12 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
 
     wxDate sd = m_date_range->start_date();
     wxDate ed = m_date_range->end_date();
-    sd.Add(wxDateSpan::Months(m_date_selection));
-    ed.Add(wxDateSpan::Months(m_date_selection));
+    sd.Add(wxDateSpan::Months(m_date_selection.GetValue()));
+    ed.Add(wxDateSpan::Months(m_date_selection.GetValue()));
     mmDateRange* date_range = new mmSpecifiedRange(sd, ed);
 
     //Get statistic
-    std::map<int, std::map<int, double> > categoryStats;
+    std::map<int64, std::map<int, double> > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , accountArray_
         , date_range
@@ -355,12 +355,12 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     std::map<int, std::map<int, double> > totals;
 
     // structure for sorting of data
-    struct html_data_holder { int catID; int subCatID; wxString name; double period[MONTHS_IN_PERIOD]; double overall; } line;
+    struct html_data_holder { int64 catID; int64 subCatID; wxString name; double period[MONTHS_IN_PERIOD]; double overall; } line;
     std::vector<html_data_holder> data;
-    std::map<wxString,int> categories = Model_Category::all_categories();
+    std::map<wxString, int64> categories = Model_Category::all_categories();
     for (const auto& category : categories)
     {
-        int categID = category.second;
+        int64 categID = category.second;
         line.catID = categID;
         line.subCatID = -1;
         line.name = category.first;

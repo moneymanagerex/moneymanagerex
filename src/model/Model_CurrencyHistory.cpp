@@ -48,7 +48,7 @@ Model_CurrencyHistory& Model_CurrencyHistory::instance()
     return Singleton<Model_CurrencyHistory>::instance();
 }
 
-Model_CurrencyHistory::Data* Model_CurrencyHistory::get(const int& currencyID, const wxDate& date)
+Model_CurrencyHistory::Data* Model_CurrencyHistory::get(const int64& currencyID, const wxDate& date)
 {
     Data* hist = this->get_one(CURRENCYID(currencyID), DB_Table_CURRENCYHISTORY_V1::CURRDATE(date.FormatISODate()));
     if (hist) return hist;
@@ -71,7 +71,7 @@ DB_Table_CURRENCYHISTORY_V1::CURRDATE Model_CurrencyHistory::CURRDATE(const wxDa
 /**
 Adds or updates an element in stock history
 */
-int Model_CurrencyHistory::addUpdate(const int64 currencyID, const wxDate& date, double price, UPDTYPE type)
+int64 Model_CurrencyHistory::addUpdate(const int64 currencyID, const wxDate& date, double price, UPDTYPE type)
 {
     Data *currHist = this->get(currencyID, date);
     if (!currHist) currHist = this->create();

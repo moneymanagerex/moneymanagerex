@@ -25,6 +25,8 @@
 #include <wx/choice.h>
 //----------------------------------------------------------------------------
 
+typedef wxLongLong int64;
+
 class mmAddAccountWizard : public wxWizard
 {
 public:

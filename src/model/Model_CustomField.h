@@ -79,8 +79,8 @@ public:
     static const wxString getUDFCName(const wxString& ref_type, const wxString& name);
     static TYPE_ID getUDFCType(const wxString& ref_type, const wxString& name);
     static const wxString getUDFCProperties(const wxString& ref_type, const wxString& name);
-    static int getUDFCID(const wxString& ref_type, const wxString& name);
-    static const std::map<wxString, int> getMatrix(Model_Attachment::REFTYPE reftype);
+    static int64 getUDFCID(const wxString& ref_type, const wxString& name);
+    static const std::map<wxString, int64> getMatrix(Model_Attachment::REFTYPE reftype);
     static int getDigitScale(const wxString& Properties);
     static const wxString formatProperties(const wxString& Tooltip, const wxString& RegEx
         , bool Autocomplete, const wxString& Default, const wxArrayString& Choices

@@ -554,7 +554,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     return true;
 }
 
-bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &trx, const wxString &accName)
+bool mmQIFImportDialog::completeTransaction(std::unordered_map<int, wxString> &trx, const wxString &accName)
 {
     if (trx.find(Date) == trx.end())
         return false;
@@ -609,7 +609,7 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
                 trx[Memo] += (trx[Memo].empty() ? "" : "\n") + trx[Payee];
                 if (m_QIFaccounts.find(toAccName) == m_QIFaccounts.end())
                 {
-                    std::unordered_map <int, wxString> a;
+                    std::unordered_map<int, wxString> a;
                     a[Description] = "[" + Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL + "]";
                     a[AccountType] = (trx.find(Description) != trx.end() ? trx.at(Description) : "");
                     m_QIFaccounts[toAccName] = a;
@@ -1098,8 +1098,8 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 Model_Account::Data* account = Model_Account::instance().get(trx->ACCOUNTID);
                 Model_Account::Data* toAccount = Model_Account::instance().get(trx->TOACCOUNTID);
 
-                if ((trx->TRANSDATE < account->STATEMENTDATE && account->STATEMENTLOCKED) ||
-                    (toAccount && (trx->TRANSDATE < toAccount->STATEMENTDATE && toAccount->STATEMENTLOCKED)))
+                if ((trx->TRANSDATE < account->STATEMENTDATE && account->STATEMENTLOCKED.GetValue()) ||
+                    (toAccount && (trx->TRANSDATE < toAccount->STATEMENTDATE && toAccount->STATEMENTLOCKED.GetValue())))
                     continue;
 
                 if (trx->TRANSDATE < account->INITIALDATE) {
@@ -1201,7 +1201,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             if (!m_txnTaglinks[std::make_pair(0, i)].empty())
             {
                 // we need to know the transid for the taglink, so save the transaction first
-                int transid = Model_Checking::instance().save(trx_data_set[i]);
+                int64 transid = Model_Checking::instance().save(trx_data_set[i]);
                 // apply that transid to all associated tags
                 for (const auto& taglink : m_txnTaglinks[std::make_pair(0, i)])
                     taglink->REFID = transid;
@@ -1270,7 +1270,7 @@ void mmQIFImportDialog::joinSplit(Model_Checking::Cache &destination
     for (auto &item : destination)
     {
         if (item->CATEGID > 0) continue;
-        for (auto &split_item : target.at(-1 * item->CATEGID))
+        for (auto &split_item : target.at(-1 * item->CATEGID.GetValue()))
             split_item->TRANSID = item->TRANSID;
         item->CATEGID = -1;
     }
@@ -1440,7 +1440,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
         wxStringTokenizer categToken(t[CategorySplit], "\n");
         wxStringTokenizer amtToken((t.find(AmountSplit) != t.end() ? t[AmountSplit] : ""), "\n");
         wxString notes = t.find(MemoSplit) != t.end() ? t[MemoSplit] : "";
-        int64 split_id = 1;
+        int split_id = 1;
 
         while (categToken.HasMoreTokens())
         {
@@ -1553,7 +1553,7 @@ int64 mmQIFImportDialog::getOrCreateAccounts()
 
     for (auto &item : m_QIFaccounts)
     {
-        int accountID = -1;
+        int64 accountID = -1;
         Model_Account::Data* acc = (accountNumberCheckBox_->IsChecked())
             ? Model_Account::instance().getByAccNum(item.first)
             : Model_Account::instance().get(item.first);

@@ -85,7 +85,7 @@ Model_Category::Data* Model_Category::get(const wxString& name, const wxString& 
     return category;
 }
 
-Model_Category::Data* Model_Category::get(const wxString& name, const int& parentid)
+Model_Category::Data* Model_Category::get(const wxString& name, const int64 parentid)
 {
     Data* category = this->get_one(CATEGNAME(name), PARENTID(parentid));
     if (category) return category;
@@ -95,9 +95,9 @@ Model_Category::Data* Model_Category::get(const wxString& name, const int& paren
     return category;
 }
 
-const std::map<wxString, int> Model_Category::all_categories(bool excludeHidden)
+const std::map<wxString, int64> Model_Category::all_categories(bool excludeHidden)
 {
-    std::map<wxString, int> full_categs;
+    std::map<wxString, int64> full_categs;
     for (const auto& c : instance().all(COL_CATEGID))
     {
         if (excludeHidden && (c.ACTIVE == 0))

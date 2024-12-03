@@ -108,12 +108,12 @@ mmTransDialog::mmTransDialog(wxWindow* parent,
             Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT) :
             Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT);
         for (const auto& split : Fused_Transaction::split(m_fused_data)) {
-            wxArrayInt tags;
+            wxArrayInt64 tags;
             for (const auto& tag : Model_Taglink::instance().find(
                 Model_Taglink::REFTYPE(splitRefType),
                 Model_Taglink::REFID(split.SPLITTRANSID))
             )
-                tags.Add(tag.TAGID);
+                tags.push_back(tag.TAGID);
             m_local_splits.push_back({split.CATEGID, split.SPLITTRANSAMOUNT, tags, split.NOTES});
         }
 
@@ -570,7 +570,7 @@ void mmTransDialog::CreateControls()
     // Colours
     bColours_ = new mmColorButton(this, wxID_LOWEST, bAuto->GetSize());
     mmToolTip(bColours_, _("User Colors"));
-    bColours_->SetBackgroundColor(m_fused_data.COLOR);
+    bColours_->SetBackgroundColor(m_fused_data.COLOR.GetValue());
 
     // Attachments
     bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));
@@ -984,7 +984,7 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
     if (m_mode == MODE_NEW && Option::instance().TransCategorySelectionNonTransfer() == Option::UNUSED
         && m_local_splits.empty())
     {
-        Model_Category::Data *category = Model_Category::instance().get(_("Unknown"), -1);
+        Model_Category::Data *category = Model_Category::instance().get(_("Unknown"), int64(-1));
         if (!category)
         {
             category = Model_Category::instance().create();

@@ -61,9 +61,9 @@ Model_Taglink::Data* Model_Taglink::get(const wxString& refType, int64 refId, in
     return link;
 }
 
-std::map<wxString, int> Model_Taglink::get(const wxString& refType, int64 refId)
+std::map<wxString, int64> Model_Taglink::get(const wxString& refType, int64 refId)
 {
-    std::map<wxString, int> tags;
+    std::map<wxString, int64> tags;
     for (const auto& link : instance().find(REFTYPE(refType), REFID(refId)))
         tags[Model_Tag::instance().get(link.TAGID)->TAGNAME] = link.TAGID;
 
@@ -84,7 +84,7 @@ int Model_Taglink::update(const Data_Set& rows, const wxString& refType, int64 r
 {
     Model_Taglink::instance().Savepoint();
     bool updateTimestamp = false;
-    std::map<int, int> row_id_map;
+    std::map<int, int64> row_id_map;
 
     Data_Set links = instance().find(REFTYPE(refType), REFID(refId));
     if (links.size() != rows.size()) updateTimestamp = true;

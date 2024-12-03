@@ -133,7 +133,7 @@ Returns the total stock balance at a given date
 double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const wxDate& date)
 {
     wxString strDate = date.FormatISODate();
-    std::map<int, double> totBalance;
+    std::map<int64, double> totBalance;
 
     Data_Set stocks = this->instance().find(HELDAT(account->id()));
     for (const auto & stock : stocks)

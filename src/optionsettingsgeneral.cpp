@@ -284,8 +284,8 @@ bool OptionSettingsGeneral::SaveFinancialYearStart()
 
 bool OptionSettingsGeneral::SaveSettings()
 {
-    int baseCurrencyOLD = Option::instance().getBaseCurrencyID();
-    int currency_id = baseCurrencyComboBox_->mmGetId();
+    int64 baseCurrencyOLD = Option::instance().getBaseCurrencyID();
+    int64 currency_id = baseCurrencyComboBox_->mmGetId();
     if (currency_id != baseCurrencyOLD)
     {
         if (!baseCurrencyComboBox_->mmIsValid())

@@ -569,7 +569,7 @@ bool mmSplitTransactionDialog::mmDoCheckRow(int row)
 
     if (m_splits_widgets.at(row).category->GetValue().empty() && 
         m_splits_widgets.at(row).amount->GetValue().empty() &&
-        m_splits_widgets.at(row).tags->GetTagIDs().IsEmpty() &&
+        m_splits_widgets.at(row).tags->GetTagIDs().empty() &&
         m_splits.at(row).NOTES.IsEmpty())
         return true;
 

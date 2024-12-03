@@ -148,11 +148,11 @@ const Model_Taglink::Data_Set Model_Billsdeposits::taglink(const Data& r)
 void Model_Billsdeposits::decode_fields(const Data& q1)
 {
     // DeMultiplex the Auto Executable fields from the db entry: REPEATS
-    m_autoExecute = q1.REPEATS / BD_REPEATS_MULTIPLEX_BASE;
+    m_autoExecute = q1.REPEATS.GetValue() / BD_REPEATS_MULTIPLEX_BASE;
     m_allowExecution = true;
 
-    int repeats = q1.REPEATS % BD_REPEATS_MULTIPLEX_BASE;
-    int numRepeats = q1.NUMOCCURRENCES;
+    int repeats = q1.REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE;
+    int numRepeats = q1.NUMOCCURRENCES.GetValue();
     if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && numRepeats < 1)
     {
         // old inactive entry
@@ -239,8 +239,8 @@ void Model_Billsdeposits::completeBDInSeries(int64 bdID)
     Data* bill = get(bdID);
     if (!bill) return;
 
-    int repeats = bill->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
-    int numRepeats = bill->NUMOCCURRENCES;
+    int repeats = bill->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+    int numRepeats = bill->NUMOCCURRENCES.GetValue();
 
     if ((repeats == REPEAT_TYPE::REPEAT_ONCE) || ((repeats < REPEAT_TYPE::REPEAT_IN_X_DAYS || repeats > REPEAT_TYPE::REPEAT_EVERY_X_MONTHS) && numRepeats == 1))
     {
@@ -325,8 +325,8 @@ const wxDateTime Model_Billsdeposits::nextOccurDate(int repeatsType, int numRepe
 wxArrayString Model_Billsdeposits::unroll(const Data* r, const wxString end_date, int limit)
 {
     wxArrayString dates;
-    int repeats = r->REPEATS % BD_REPEATS_MULTIPLEX_BASE;
-    int numRepeats = r->NUMOCCURRENCES;
+    int repeats = r->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE;
+    int numRepeats = r->NUMOCCURRENCES.GetValue();
 
     // ignore old inactive entries
     if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && numRepeats == -1)

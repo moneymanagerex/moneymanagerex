@@ -219,7 +219,7 @@ void mmReportsPanel::CreateControls()
                 m_date_ranges->Append(date_range.get()->local_title(), date_range.get());
             }
 
-            int sel_id = rb_->getDateSelection();
+            int sel_id = rb_->getDateSelection().GetValue();
             if (sel_id < 0 || static_cast<size_t>(sel_id) >= m_all_date_ranges.size()) {
                 sel_id = 0;
             }
@@ -324,7 +324,7 @@ void mmReportsPanel::CreateControls()
 
             m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_BUDGET, wxDefaultPosition, wxDefaultSize, 0, nullptr, wxCB_SORT);
 
-            int sel_id = rb_->getDateSelection();
+            int64 sel_id = rb_->getDateSelection();
             wxString sel_name;
             for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
             {

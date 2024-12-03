@@ -192,11 +192,11 @@ void mmCheckingPanel::filterTable()
 
     auto trans_fields_data = Model_CustomFieldData::instance().get_all(Model_Attachment::TRANSACTION);
     const auto matrix = Model_CustomField::getMatrix(Model_Attachment::TRANSACTION);
-    int udfc01_ref_id = matrix.at("UDFC01");
-    int udfc02_ref_id = matrix.at("UDFC02");
-    int udfc03_ref_id = matrix.at("UDFC03");
-    int udfc04_ref_id = matrix.at("UDFC04");
-    int udfc05_ref_id = matrix.at("UDFC05");
+    int64 udfc01_ref_id = matrix.at("UDFC01");
+    int64 udfc02_ref_id = matrix.at("UDFC02");
+    int64 udfc03_ref_id = matrix.at("UDFC03");
+    int64 udfc04_ref_id = matrix.at("UDFC04");
+    int64 udfc05_ref_id = matrix.at("UDFC05");
 
     bool ignore_future = Option::instance().getIgnoreFutureTransactions();
     const wxString today_date = Option::instance().UseTransDateTime() ?
