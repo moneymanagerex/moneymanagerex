@@ -246,8 +246,8 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
     }
     else if (uri.StartsWith("acct:", &sData))
     {
-        long id = -1;
-        sData.ToLong(&id);
+        int64 id = -1;
+        sData.ToLongLong(&id);
         const Model_Account::Data* account = Model_Account::instance().get(id);
         if (account) {
             m_frame->setGotoAccountID(id);
@@ -258,8 +258,8 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
     }
     else if (uri.StartsWith("stock:", &sData))
     {
-        long id = -1;
-        sData.ToLong(&id);
+        int64 id = -1;
+        sData.ToLongLong(&id);
         const Model_Account::Data* account = Model_Account::instance().get(id);
         if (account) {
             m_frame->setGotoAccountID(id);
