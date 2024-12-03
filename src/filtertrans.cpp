@@ -64,7 +64,7 @@ void mmFilterTransactions::setAccountList(wxSharedPtr<wxArrayString> accountList
     }
 }
 
-void mmFilterTransactions::setPayeeList(const wxArrayInt64 payeeList)
+void mmFilterTransactions::setPayeeList(const wxArrayInt64& payeeList)
 {
     m_payeeFilter = true;
     m_payeeList = payeeList;
