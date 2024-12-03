@@ -209,7 +209,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         wxString estimateVal = Model_Currency::toString(estimate, Model_Currency::GetBaseCurrency());
                         //make the href string parameters
                         std::stringstream ss;
-                        ss << "budget: " << estimateVal << "|" << catID << "|" << budget_year << "|" << month+1;
+                        ss << "budget: " << estimateVal << "|" << Model_Currency::toString(actual, Model_Currency::GetBaseCurrency()) << "|" << catID << "|" << budget_year << "|" << month + 1;
                         std::string editBudgetEntry = ss.str();
 
                         // If monthly budget is deducted and the monthly budgets have exceeded the yearly budget, show estimate in red color

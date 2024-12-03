@@ -686,7 +686,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
         wxStringTokenizer tokenizer(sData, "|");
         while (tokenizer.HasMoreTokens())
         {
-            //estimateVal << "|" << catID << "|" << budget_year << "|" << month;
+            //"budget: " << estimateVal << "|" << Model_Currency::toString(actual, Model_Currency::GetBaseCurrency()) << "|" << catID << "|" << budget_year << "|" << month + 1;
             wxString token = tokenizer.GetNextToken();
             parms.push_back(std::string(token.mb_str()));
             
@@ -696,16 +696,16 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
         //wxLogDebug("year:"+ wxString(parms[2].c_str(), wxConvUTF8));
         //wxLogDebug("month:"+ wxString(parms[3].c_str(), wxConvUTF8));
         
-        int budgetYearID = Model_Budgetyear::instance().Get(parms[2] + "-" + parms[3]);
+        int budgetYearID = Model_Budgetyear::instance().Get(parms[3] + "-" + parms[4]);
        
-        Model_Budget::Data_Set budget = Model_Budget::instance().find(Model_Budget::BUDGETYEARID(budgetYearID), Model_Budget::CATEGID(std::stoi(parms[1])));
+        Model_Budget::Data_Set budget = Model_Budget::instance().find(Model_Budget::BUDGETYEARID(budgetYearID), Model_Budget::CATEGID(std::stoi(parms[2])));
         
         Model_Budget::Data* entry = 0;
         if (budget.empty())
         {
             entry = Model_Budget::instance().create();
             entry->BUDGETYEARID = budgetYearID;
-            entry->CATEGID = std::stoi(parms[1]);
+            entry->CATEGID = std::stoi(parms[2]);
             entry->PERIOD = "";
             entry->AMOUNT = 0.0;
             entry->ACTIVE = 1;
@@ -717,9 +717,12 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
         //double estimated = getEstimate(budget_[selectedIndex].second >= 0 ? budget_[selectedIndex].second : budget_[selectedIndex].first);
         //double actual = categoryStats_[budget_[selectedIndex].second >= 0 ? budget_[selectedIndex].second : budget_[selectedIndex].first][0];
        
-        mmBudgetEntryDialog dlg(m_frame, entry, Model_Currency::toCurrency(0), Model_Currency::toCurrency(0));
+        mmBudgetEntryDialog dlg(m_frame, entry, Model_Currency::toCurrency(std::stoi(parms[0])), Model_Currency::toCurrency(std::stoi(parms[1])));
         if (dlg.ShowModal() == wxID_OK)
         {
+            saveReportText(false);
+            rb_ ->setReportSettings();
+            
             /*initVirtualListControl();
             listCtrlBudget_->Refresh();
             listCtrlBudget_->Update();
