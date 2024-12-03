@@ -250,7 +250,7 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
         sData.ToLongLong(&id);
         const Model_Account::Data* account = Model_Account::instance().get(id);
         if (account) {
-            m_frame->setGotoAccountID(accout->id());
+            m_frame->setGotoAccountID(account->id());
             m_frame->setAccountNavTreeSection(account->ACCOUNTNAME);
             wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
             m_frame->GetEventHandler()->AddPendingEvent(event);
