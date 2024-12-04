@@ -276,7 +276,7 @@ table {
                     && m_transDialog->getTypeCheckBox() && */
                 if (showColumnById(mmFilterTransactionsDialog::COL_ID))
                 {
-                    hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
+                    hb.addTableCellLink(wxString::Format("trx:%lld", transaction.TRANSID)
                         , transaction.displayID, true);
                 }
                 if (showColumnById(mmFilterTransactionsDialog::COL_COLOR))
@@ -293,7 +293,7 @@ table {
                     hb.addTableCell(transaction.TRANSACTIONNUMBER);
                 if (showColumnById(mmFilterTransactionsDialog::COL_ACCOUNT))
                 {
-                    hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID)
+                    hb.addTableCellLink(wxString::Format("trxid:%lld", transaction.TRANSID)
                         , noOfTrans ? transaction.TOACCOUNTNAME : transaction.ACCOUNTNAME);
                 }
                 if (showColumnById(mmFilterTransactionsDialog::COL_PAYEE))
@@ -367,7 +367,7 @@ table {
                 wxString AttachmentsLink = "";
                 if (Model_Attachment::instance().NrAttachments(AttRefType, transaction.TRANSID))
                 {
-                    AttachmentsLink = wxString::Format(R"(<a href = "attachment:%s|%d" target="_blank">%s</a>)",
+                    AttachmentsLink = wxString::Format(R"(<a href = "attachment:%s|%lld" target="_blank">%s</a>)",
                         AttRefType, transaction.TRANSID, mmAttachmentManage::GetAttachmentNoteSign());
                 }
 
@@ -590,7 +590,7 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
             wxString tranTagnames = full_tran.TAGNAMES;
             for (const auto& split : full_tran.m_splits)
             {
-                full_tran.displayID = (wxString::Format("%i", tran.TRANSID) + "." + wxString::Format("%i", splitIndex++));
+                full_tran.displayID = (wxString::Format("%lld", tran.TRANSID) + "." + wxString::Format("%i", splitIndex++));
                 full_tran.CATEGID = split.CATEGID;
                 full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
                 full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;

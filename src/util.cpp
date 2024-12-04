@@ -72,7 +72,7 @@ mmTreeItemData::mmTreeItemData(int type, int64 id)
     , type_(type)
     , report_(nullptr)
 {
-    stringData_ = (wxString::Format("%i", id));
+    stringData_ = (wxString::Format("%lld", id));
 }
 mmTreeItemData::mmTreeItemData(const wxString& data, mmPrintableBase* report)
     : type_(mmTreeItemData::REPORT)

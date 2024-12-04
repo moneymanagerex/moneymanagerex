@@ -90,7 +90,7 @@ const wxString htmlWidgetStocks::getHTMLText()
             if (Model_Account::type_id(account) != Model_Account::TYPE_ID_INVESTMENT) continue;
             if (Model_Account::status_id(account) != Model_Account::STATUS_ID_OPEN) continue;
             body += "<tr>";
-            body += wxString::Format("<td sorttable_customkey='*%s*'><a href='stock:%i' oncontextmenu='return false;' target='_blank'>%s</a>%s</td>\n"
+            body += wxString::Format("<td sorttable_customkey='*%s*'><a href='stock:%lld' oncontextmenu='return false;' target='_blank'>%s</a>%s</td>\n"
                 , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME,
                 account.WEBSITE.empty() ? "" : wxString::Format("&nbsp;&nbsp;&nbsp;&nbsp;(<a href='%s' oncontextmenu='return false;' target='_blank'>WWW</a>)", account.WEBSITE));
             body += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
@@ -732,7 +732,7 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tRe
             (vAccts == VIEW_ACCOUNTS_ALL_STR)))
         {
             body += "<tr>";
-            body += wxString::Format(R"(<td sorttable_customkey="*%s*" nowrap><a href="acct:%i" oncontextmenu="return false;" target="_blank">%s</a>%s</td>)"
+            body += wxString::Format(R"(<td sorttable_customkey="*%s*" nowrap><a href="acct:%lld" oncontextmenu="return false;" target="_blank">%s</a>%s</td>)"
                 , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME,
                 account.WEBSITE.empty() ? "" : wxString::Format(R"(&nbsp;&nbsp;&nbsp;&nbsp;(<a href="%s" oncontextmenu="return false;" target="_blank">WWW</a>))", account.WEBSITE));
             body += wxString::Format("\n<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n", reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));

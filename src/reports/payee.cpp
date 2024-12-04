@@ -147,7 +147,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
                 {
                     hb.startTableRow();
                     {
-                        hb.addTableCellLink(wxString::Format("viewtrans:-1:-1:%d", entry.payee)
+                        hb.addTableCellLink(wxString::Format("viewtrans:-1:-1:%lld", entry.payee)
                             , entry.name);
                         hb.addMoneyCell(entry.incomes);
                         hb.addMoneyCell(entry.expenses);

@@ -251,7 +251,7 @@ void mmBDDialog::dataToControls()
     setRepeatType(repeats);
 
     if (repeats != Model_Billsdeposits::REPEAT_ONCE && m_bill_data.NUMOCCURRENCES > 0) {
-        textNumRepeats_->SetValue(wxString::Format("%d", m_bill_data.NUMOCCURRENCES));
+        textNumRepeats_->SetValue(wxString::Format("%lld", m_bill_data.NUMOCCURRENCES));
     }
 
     if (autoExecute == Model_Billsdeposits::REPEAT_AUTO_SILENT)

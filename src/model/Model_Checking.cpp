@@ -431,7 +431,7 @@ Model_Checking::Full_Data::Full_Data(const Data& r
 
 void Model_Checking::Full_Data::fill_data()
 {
-    displayID = wxString::Format("%i", TRANSID);
+    displayID = wxString::Format("%lld", TRANSID);
     ACCOUNTNAME = Model_Account::get_account_name(ACCOUNTID);
 
     if (Model_Checking::type_id(TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER) {

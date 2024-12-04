@@ -332,7 +332,7 @@ void mmReportsPanel::CreateControls()
 
                 if (rb_->getReportId() == mmPrintableBase::Reports::BudgetCategorySummary || name.length() == 4) // Only years for performance report
                 {
-                    m_date_ranges->Append(name, new wxStringClientData(wxString::Format("%i", e.BUDGETYEARID)));
+                    m_date_ranges->Append(name, new wxStringClientData(wxString::Format("%lld", e.BUDGETYEARID)));
                     if (sel_id == e.BUDGETYEARID)
                         sel_name = e.BUDGETYEARNAME;
                 }

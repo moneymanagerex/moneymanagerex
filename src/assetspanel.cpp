@@ -632,7 +632,7 @@ wxString mmAssetsPanel::getItem(long item, long column)
     case COL_ICON:
         return "";
     case COL_ID:
-        return wxString::Format("%i", asset.ASSETID).Trim();
+        return wxString::Format("%lld", asset.ASSETID).Trim();
     case COL_NAME:
         return asset.ASSETNAME;
     case COL_TYPE:

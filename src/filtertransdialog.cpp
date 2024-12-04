@@ -419,7 +419,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     for (const auto& i : Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType)))
     {
-        const auto entry = wxString::Format("CUSTOM%i", i.FIELDID);
+        const auto entry = wxString::Format("CUSTOM%lld", i.FIELDID);
         if (j_doc.HasMember(entry.c_str()))
         {
             const auto value = j_doc[const_cast<char*>(static_cast<const char*>(entry.mb_str()))].GetString();
@@ -1939,7 +1939,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
             if (!i.second.empty())
             {
                 const auto field = Model_CustomField::instance().get(i.first);
-                json_writer.Key(wxString::Format("CUSTOM%i", field->FIELDID).utf8_str());
+                json_writer.Key(wxString::Format("CUSTOM%lld", field->FIELDID).utf8_str());
                 json_writer.String(i.second.utf8_str());
             }
         }
@@ -2125,7 +2125,7 @@ void mmFilterTransactionsDialog::mmDoUpdateSettings()
     }
     if (!isReportMode_)
     {
-        Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_ADV_%d", accountID_), mmGetJsonSetings());
+        Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_ADV_%lld", accountID_), mmGetJsonSetings());
     }
 }
 

@@ -503,7 +503,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
                 prefix = "\n";
 
             if (lineType == MemoSplit)
-                data.Prepend(wxString::Format("%d:", split_id));
+                data.Prepend(wxString::Format("%lld:", split_id));
             
             trx[lineType] += prefix + data;
         }
@@ -1634,7 +1634,7 @@ void mmQIFImportDialog::getOrCreateCategories()
         while(token.HasMoreTokens()){
             categStr = token.GetNextToken().Trim(false).Trim();
             Model_Category::Data* c = Model_Category::instance().get(categStr, parentID);
-            if (temp.Index(categStr + wxString::Format(":%i", parentID)) == wxNOT_FOUND) {
+            if (temp.Index(categStr + wxString::Format(":%lld", parentID)) == wxNOT_FOUND) {
 
                 if (!c)
                 {
@@ -1644,7 +1644,7 @@ void mmQIFImportDialog::getOrCreateCategories()
                     c->PARENTID = parentID;
                     Model_Category::instance().save(c);
                 }
-                temp.Add(categStr + wxString::Format(":%i", parentID));
+                temp.Add(categStr + wxString::Format(":%lld", parentID));
             }
             parentID = c->CATEGID;
 

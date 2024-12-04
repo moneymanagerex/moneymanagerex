@@ -233,17 +233,17 @@ wxString mmReportCategoryExpenses::getHTMLText()
                     if (entry.subCatID != -1) continue;
 
                     if (entry.level == 0) {
-                        row_id = wxString::Format("%i", entry.catID) + ".";
+                        row_id = wxString::Format("%lld", entry.catID) + ".";
                         row_pid = "0.";
                     }
                     else if (entry.level > lastLevel) {
                         row_pid = row_id;
-                        row_id = row_id + wxString::Format("%i", entry.catID) + ".";
+                        row_id = row_id + wxString::Format("%lld", entry.catID) + ".";
                     }
                     else if (entry.level == lastLevel)
-                        row_id = row_pid + wxString::Format("%i", entry.catID) + ".";
+                        row_id = row_pid + wxString::Format("%lld", entry.catID) + ".";
                     else {
-                        row_id = levelParent[entry.level] + wxString::Format("%i", entry.catID) + ".";
+                        row_id = levelParent[entry.level] + wxString::Format("%lld", entry.catID) + ".";
                         row_pid = levelParent[entry.level];
                     }
 
@@ -264,7 +264,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
                             indent.Append("&nbsp;&nbsp;&nbsp;&nbsp;");
                         }
                         hb.startTableRow("xtoggle' data-row-id='" + row_id + "' data-row-pid='" + (group_counter[entry.catID] ? row_id : row_pid));
-                        hb.addTableCell(wxString::Format(indent +"<a href=\"viewtrans:%d\" target=\"_blank\">%s</a>", entry.catID, entry.name));
+                        hb.addTableCell(wxString::Format(indent +"<a href=\"viewtrans:%lld\" target=\"_blank\">%s</a>", entry.catID, entry.name));
                         hb.addMoneyCell(entry.amount);
                         hb.addEmptyTableCell();
                         hb.endTableRow();
@@ -476,7 +476,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
                     {
                         hb.startTableRow();
                         {
-                            hb.addTableCellLink(wxString::Format("viewtrans:%d", entry.catID)
+                            hb.addTableCellLink(wxString::Format("viewtrans:%lld", entry.catID)
                                 , entry.name);
                             for (int i = 0; i < MONTHS_IN_PERIOD; i++)
                                 hb.addMoneyCell(entry.period[i]);
