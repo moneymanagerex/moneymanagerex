@@ -1225,7 +1225,7 @@ void mmUnivCSVDialog::saveAccountPresets()
     json_writer.StartObject();
     for (const auto& preset : m_acct_default_preset) {
         if (preset.second.IsEmpty()) continue;
-        json_writer.Key(wxString::Format("%i", preset.first).utf8_str());
+        json_writer.Key(wxString::Format("%lld", preset.first).utf8_str());
         json_writer.String(preset.second.utf8_str());
     }
     json_writer.EndObject();
@@ -1708,7 +1708,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                     entry = Model_Checking::TYPE_STR[Model_Checking::type_id(pBankTransaction)];
                     break;
                 case UNIV_CSV_ID:
-                    entry = wxString::Format("%i", tran.TRANSID);
+                    entry = wxString::Format("%lld", tran.TRANSID);
                     break;
                 default:
                     if (it.first > UNIV_CSV_LAST) // Custom Fields
@@ -1962,7 +1962,7 @@ void mmUnivCSVDialog::update_preview()
                         switch (it)
                         {
                         case UNIV_CSV_ID:
-                            text << wxString::Format("%i", tran.TRANSID);
+                            text << wxString::Format("%lld", tran.TRANSID);
                             break;
                         case UNIV_CSV_DATE:
                             text << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(), date_format_), delimit);

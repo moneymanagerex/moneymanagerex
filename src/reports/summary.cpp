@@ -96,7 +96,7 @@ double mmReportSummaryByDate::getDailyBalanceAt(const Model_Account::Data* accou
 
 double mmReportSummaryByDate::getDayRate(int64 currencyid, const wxDate& date)
 {
-    wxString key = wxString::Format("%d_%s", currencyid, date.FormatDate());
+    wxString key = wxString::Format("%lld_%s", currencyid, date.FormatDate());
 
     auto i = currencyDateRateCache.find(key);
     if (i != currencyDateRateCache.end())

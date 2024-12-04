@@ -597,7 +597,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
                     // build the tag filter json
                     for (const auto& tag : m_trans[row].m_tags)
                     {
-                        rightClickFilter_ += (rightClickFilter_.IsEmpty() ? "{\n\"TAGS\": [\n" : ",\n") + wxString::Format("%i", tag.TAGID);
+                        rightClickFilter_ += (rightClickFilter_.IsEmpty() ? "{\n\"TAGS\": [\n" : ",\n") + wxString::Format("%lld", tag.TAGID);
                     }
                     rightClickFilter_ += "\n]\n}";
                 }
@@ -650,23 +650,23 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
                 break;
             case COL_UDFC01:
                 copyText_ = menuItemText = m_trans[row].UDFC01;
-                rightClickFilter_ = wxString::Format("{\n\"CUSTOM%i\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC01"));
+                rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC01"));
                 break;
             case COL_UDFC02:
                 copyText_ = menuItemText = m_trans[row].UDFC02;
-                rightClickFilter_ = wxString::Format("{\n\"CUSTOM%i\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC02"));
+                rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC02"));
                 break;
             case COL_UDFC03:
                 copyText_ = menuItemText = m_trans[row].UDFC03;
-                rightClickFilter_ = wxString::Format("{\n\"CUSTOM%i\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC03"));
+                rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC03"));
                 break;
             case COL_UDFC04:
                 copyText_ = menuItemText = m_trans[row].UDFC04;
-                rightClickFilter_ = wxString::Format("{\n\"CUSTOM%i\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC04"));
+                rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC04"));
                 break;
             case COL_UDFC05:
                 copyText_ = menuItemText = m_trans[row].UDFC05;
-                rightClickFilter_ = wxString::Format("{\n\"CUSTOM%i\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC05"));
+                rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC05"));
                 break;
             default:
                 break;

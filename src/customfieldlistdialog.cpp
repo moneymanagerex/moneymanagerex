@@ -110,7 +110,7 @@ void mmCustomFieldListDialog::fillControls()
     {
         if (firstInTheListID == -1) firstInTheListID = entry.FIELDID;
         wxVector<wxVariant> data;
-        if (debug_) data.push_back(wxVariant(wxString::Format("%i", entry.FIELDID)));
+        if (debug_) data.push_back(wxVariant(wxString::Format("%lld", entry.FIELDID)));
         data.push_back(wxVariant(wxGetTranslation(entry.REFTYPE)));
         data.push_back(wxVariant(entry.DESCRIPTION));
         data.push_back(wxVariant(wxGetTranslation(entry.TYPE)));
