@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
+ *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -472,7 +472,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO REPORT_V1(REPORTNAME, GROUPNAME, ACTIVE, SQLCONTENT, LUACONTENT, TEMPLATECONTENT, DESCRIPTION) VALUES(?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO REPORT_V1(REPORTNAME, GROUPNAME, ACTIVE, SQLCONTENT, LUACONTENT, TEMPLATECONTENT, DESCRIPTION, REPORTID) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         }
         else
         {
@@ -490,8 +490,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
             stmt.Bind(5, entity->LUACONTENT);
             stmt.Bind(6, entity->TEMPLATECONTENT);
             stmt.Bind(7, entity->DESCRIPTION);
-            if (entity->id() > 0)
-                stmt.Bind(8, entity->REPORTID);
+            stmt.Bind(8, entity->id() > 0 ? entity->REPORTID : newId());
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

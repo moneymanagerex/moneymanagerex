@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
+ *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -453,7 +453,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO BUDGETTABLE_V1(BUDGETYEARID, CATEGID, PERIOD, AMOUNT, NOTES, ACTIVE) VALUES(?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO BUDGETTABLE_V1(BUDGETYEARID, CATEGID, PERIOD, AMOUNT, NOTES, ACTIVE, BUDGETENTRYID) VALUES(?, ?, ?, ?, ?, ?, ?)";
         }
         else
         {
@@ -470,8 +470,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
             stmt.Bind(4, entity->AMOUNT);
             stmt.Bind(5, entity->NOTES);
             stmt.Bind(6, entity->ACTIVE);
-            if (entity->id() > 0)
-                stmt.Bind(7, entity->BUDGETENTRYID);
+            stmt.Bind(7, entity->id() > 0 ? entity->BUDGETENTRYID : newId());
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

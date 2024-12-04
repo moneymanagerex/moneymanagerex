@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
+ *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -408,7 +408,7 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CURRENCYHISTORY_V1(CURRENCYID, CURRDATE, CURRVALUE, CURRUPDTYPE) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO CURRENCYHISTORY_V1(CURRENCYID, CURRDATE, CURRVALUE, CURRUPDTYPE, CURRHISTID) VALUES(?, ?, ?, ?, ?)";
         }
         else
         {
@@ -423,8 +423,7 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
             stmt.Bind(2, entity->CURRDATE);
             stmt.Bind(3, entity->CURRVALUE);
             stmt.Bind(4, entity->CURRUPDTYPE);
-            if (entity->id() > 0)
-                stmt.Bind(5, entity->CURRHISTID);
+            stmt.Bind(5, entity->id() > 0 ? entity->CURRHISTID : newId());
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

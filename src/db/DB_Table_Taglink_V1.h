@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
+ *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -385,7 +385,7 @@ struct DB_Table_TAGLINK_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO TAGLINK_V1(REFTYPE, REFID, TAGID) VALUES(?, ?, ?)";
+            sql = "INSERT INTO TAGLINK_V1(REFTYPE, REFID, TAGID, TAGLINKID) VALUES(?, ?, ?, ?)";
         }
         else
         {
@@ -399,8 +399,7 @@ struct DB_Table_TAGLINK_V1 : public DB_Table
             stmt.Bind(1, entity->REFTYPE);
             stmt.Bind(2, entity->REFID);
             stmt.Bind(3, entity->TAGID);
-            if (entity->id() > 0)
-                stmt.Bind(4, entity->TAGLINKID);
+            stmt.Bind(4, entity->id() > 0 ? entity->TAGLINKID : newId());
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

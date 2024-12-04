@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
+ *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -361,7 +361,7 @@ struct DB_Table_USAGE_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO USAGE_V1(USAGEDATE, JSONCONTENT) VALUES(?, ?)";
+            sql = "INSERT INTO USAGE_V1(USAGEDATE, JSONCONTENT, USAGEID) VALUES(?, ?, ?)";
         }
         else
         {
@@ -374,8 +374,7 @@ struct DB_Table_USAGE_V1 : public DB_Table
 
             stmt.Bind(1, entity->USAGEDATE);
             stmt.Bind(2, entity->JSONCONTENT);
-            if (entity->id() > 0)
-                stmt.Bind(3, entity->USAGEID);
+            stmt.Bind(3, entity->id() > 0 ? entity->USAGEID : newId());
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
