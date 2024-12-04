@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,7 +49,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
 
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
-    typedef std::map<int, Self::Data*> Index_By_Id;
+    typedef std::map<int64, Self::Data*> Index_By_Id;
     Cache cache_;
     Index_By_Id index_by_id_;
     Data* fake_; // in case the entity not found
@@ -112,10 +112,10 @@ struct DB_Table_SETTING_V1 : public DB_Table
         db->Commit();
     }
     
-    struct SETTINGID : public DB_Column<int>
+    struct SETTINGID : public DB_Column<int64>
     { 
         static wxString name() { return "SETTINGID"; } 
-        explicit SETTINGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit SETTINGID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct SETTINGNAME : public DB_Column<wxString>
@@ -169,16 +169,16 @@ struct DB_Table_SETTING_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int SETTINGID;//  primary key
+        int64 SETTINGID;//  primary key
         wxString SETTINGNAME;
         wxString SETTINGVALUE;
 
-        int id() const
+        int64 id() const
         {
             return SETTINGID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             SETTINGID = id;
         }
@@ -212,7 +212,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
         {
             table_ = table;
         
-            SETTINGID = q.GetInt(0); // SETTINGID
+            SETTINGID = q.GetInt64(0); // SETTINGID
             SETTINGNAME = q.GetString(1); // SETTINGNAME
             SETTINGVALUE = q.GetString(2); // SETTINGVALUE
         }
@@ -265,7 +265,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("SETTINGID");
-            json_writer.Int(this->SETTINGID);
+            json_writer.Int64(this->SETTINGID.GetValue());
             json_writer.Key("SETTINGNAME");
             json_writer.String(this->SETTINGNAME.utf8_str());
             json_writer.Key("SETTINGVALUE");
@@ -275,7 +275,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"SETTINGID") = SETTINGID;
+            row(L"SETTINGID") = SETTINGID.GetValue();
             row(L"SETTINGNAME") = SETTINGNAME;
             row(L"SETTINGVALUE") = SETTINGVALUE;
             return row;
@@ -283,7 +283,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"SETTINGID") = SETTINGID;
+            t(L"SETTINGID") = SETTINGID.GetValue();
             t(L"SETTINGNAME") = SETTINGNAME;
             t(L"SETTINGVALUE") = SETTINGVALUE;
         }
@@ -398,14 +398,14 @@ struct DB_Table_SETTING_V1 : public DB_Table
 
         if (entity->id() <= 0)
         {
-            entity->id((db->GetLastRowId()).ToLong());
+            entity->id(db->GetLastRowId());
             index_by_id_.insert(std::make_pair(entity->id(), entity));
         }
         return true;
     }
 
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(const int id, wxSQLite3Database* db)
+    bool remove(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try
@@ -476,7 +476,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
-    Self::Data* get(const int id, wxSQLite3Database* db)
+    Self::Data* get(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
@@ -524,7 +524,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* get_record(const int id, wxSQLite3Database* db)
+    Self::Data* get_record(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {

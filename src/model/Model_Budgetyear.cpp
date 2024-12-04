@@ -48,7 +48,7 @@ Model_Budgetyear& Model_Budgetyear::instance()
     return Singleton<Model_Budgetyear>::instance();
 }
 
-bool Model_Budgetyear::remove(int id)
+bool Model_Budgetyear::remove(int64 id)
 {
     for (const Model_Budget::Data& d : Model_Budget::instance().find(Model_Budget::BUDGETYEARID(id)))
         Model_Budget::instance().remove(d.BUDGETENTRYID);
@@ -56,7 +56,7 @@ bool Model_Budgetyear::remove(int id)
 }
 
 // Setter
-void Model_Budgetyear::Set(int year_id, const wxString& value)
+void Model_Budgetyear::Set(int64 year_id, const wxString& value)
 {
     Data* info = this->get(year_id, this->db_);
     if (info)
@@ -73,9 +73,9 @@ void Model_Budgetyear::Set(int year_id, const wxString& value)
     }
 }
 
-int Model_Budgetyear::Add(const wxString& value)
+int64 Model_Budgetyear::Add(const wxString& value)
 {
-    int year_id = this->Get(value);
+    int64 year_id = this->Get(value);
     if (year_id < 0)
     {
         Data* e = this->create();
@@ -87,7 +87,7 @@ int Model_Budgetyear::Add(const wxString& value)
 }
 
 // Getter
-wxString Model_Budgetyear::Get(int year_id)
+wxString Model_Budgetyear::Get(int64 year_id)
 {
     Data* e = this->get(year_id, this->db_);
     if (e) return e->BUDGETYEARNAME;
@@ -95,7 +95,7 @@ wxString Model_Budgetyear::Get(int year_id)
     return "";
 }
 
-int Model_Budgetyear::Get(const wxString& year_name)
+int64 Model_Budgetyear::Get(const wxString& year_name)
 {
     for (const auto& record: this->all())
     {
@@ -106,7 +106,7 @@ int Model_Budgetyear::Get(const wxString& year_name)
     return -1;
 }
 
-bool Model_Budgetyear::Exists(int year_id)
+bool Model_Budgetyear::Exists(int64 year_id)
 {
     Data* e = this->get(year_id, this->db_);
     if (e) return true;

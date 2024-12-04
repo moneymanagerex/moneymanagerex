@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,7 +49,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
 
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
-    typedef std::map<int, Self::Data*> Index_By_Id;
+    typedef std::map<int64, Self::Data*> Index_By_Id;
     Cache cache_;
     Index_By_Id index_by_id_;
     Data* fake_; // in case the entity not found
@@ -112,22 +112,22 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         db->Commit();
     }
     
-    struct SPLITTRANSID : public DB_Column<int>
+    struct SPLITTRANSID : public DB_Column<int64>
     { 
         static wxString name() { return "SPLITTRANSID"; } 
-        explicit SPLITTRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit SPLITTRANSID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct TRANSID : public DB_Column<int>
+    struct TRANSID : public DB_Column<int64>
     { 
         static wxString name() { return "TRANSID"; } 
-        explicit TRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit TRANSID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct CATEGID : public DB_Column<int>
+    struct CATEGID : public DB_Column<int64>
     { 
         static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CATEGID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct SPLITTRANSAMOUNT : public DB_Column<double>
@@ -187,18 +187,18 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int SPLITTRANSID;//  primary key
-        int TRANSID;
-        int CATEGID;
+        int64 SPLITTRANSID;//  primary key
+        int64 TRANSID;
+        int64 CATEGID;
         double SPLITTRANSAMOUNT;
         wxString NOTES;
 
-        int id() const
+        int64 id() const
         {
             return SPLITTRANSID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             SPLITTRANSID = id;
         }
@@ -237,9 +237,9 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         {
             table_ = table;
         
-            SPLITTRANSID = q.GetInt(0); // SPLITTRANSID
-            TRANSID = q.GetInt(1); // TRANSID
-            CATEGID = q.GetInt(2); // CATEGID
+            SPLITTRANSID = q.GetInt64(0); // SPLITTRANSID
+            TRANSID = q.GetInt64(1); // TRANSID
+            CATEGID = q.GetInt64(2); // CATEGID
             SPLITTRANSAMOUNT = q.GetDouble(3); // SPLITTRANSAMOUNT
             NOTES = q.GetString(4); // NOTES
         }
@@ -304,11 +304,11 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("SPLITTRANSID");
-            json_writer.Int(this->SPLITTRANSID);
+            json_writer.Int64(this->SPLITTRANSID.GetValue());
             json_writer.Key("TRANSID");
-            json_writer.Int(this->TRANSID);
+            json_writer.Int64(this->TRANSID.GetValue());
             json_writer.Key("CATEGID");
-            json_writer.Int(this->CATEGID);
+            json_writer.Int64(this->CATEGID.GetValue());
             json_writer.Key("SPLITTRANSAMOUNT");
             json_writer.Double(this->SPLITTRANSAMOUNT);
             json_writer.Key("NOTES");
@@ -318,9 +318,9 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"SPLITTRANSID") = SPLITTRANSID;
-            row(L"TRANSID") = TRANSID;
-            row(L"CATEGID") = CATEGID;
+            row(L"SPLITTRANSID") = SPLITTRANSID.GetValue();
+            row(L"TRANSID") = TRANSID.GetValue();
+            row(L"CATEGID") = CATEGID.GetValue();
             row(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
             row(L"NOTES") = NOTES;
             return row;
@@ -328,9 +328,9 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"SPLITTRANSID") = SPLITTRANSID;
-            t(L"TRANSID") = TRANSID;
-            t(L"CATEGID") = CATEGID;
+            t(L"SPLITTRANSID") = SPLITTRANSID.GetValue();
+            t(L"TRANSID") = TRANSID.GetValue();
+            t(L"CATEGID") = CATEGID.GetValue();
             t(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
             t(L"NOTES") = NOTES;
         }
@@ -447,14 +447,14 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
 
         if (entity->id() <= 0)
         {
-            entity->id((db->GetLastRowId()).ToLong());
+            entity->id(db->GetLastRowId());
             index_by_id_.insert(std::make_pair(entity->id(), entity));
         }
         return true;
     }
 
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(const int id, wxSQLite3Database* db)
+    bool remove(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try
@@ -525,7 +525,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
-    Self::Data* get(const int id, wxSQLite3Database* db)
+    Self::Data* get(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
@@ -573,7 +573,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* get_record(const int id, wxSQLite3Database* db)
+    Self::Data* get_record(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {

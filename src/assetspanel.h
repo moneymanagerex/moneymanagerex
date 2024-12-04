@@ -43,7 +43,7 @@ public:
     void OnViewAssetTrans(wxCommandEvent& WXUNUSED(event));
     void OnGotoAssetAccount(wxCommandEvent& WXUNUSED(event));
 
-    void doRefreshItems(int trx_id = -1);
+    void doRefreshItems(int64 trx_id = -1);
 
 protected:
     virtual void OnColClick(wxListEvent& event);
@@ -110,7 +110,7 @@ public:
     mmGUIFrame* m_frame = nullptr;
 
     void updateExtraAssetData(int selIndex);
-    int initVirtualListControl(int trx_id = -1, int col = 0, bool asc = true);
+    int initVirtualListControl(int64 trx_id = -1, int col = 0, bool asc = true);
     wxString getItem(long item, long column);
 
     Model_Asset::Data_Set m_assets;

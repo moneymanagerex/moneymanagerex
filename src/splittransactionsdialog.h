@@ -68,7 +68,7 @@ public:
     mmSplitTransactionDialog();
     mmSplitTransactionDialog(wxWindow* parent
         , std::vector<Split>& split
-        , int accountID
+        , int64 accountID
         , int transType
         , double totalAmount = 0.0
         , bool is_view_only = false

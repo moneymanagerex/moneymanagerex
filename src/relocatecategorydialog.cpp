@@ -46,7 +46,7 @@ relocateCategoryDialog::~relocateCategoryDialog()
 }
 
 relocateCategoryDialog::relocateCategoryDialog(wxWindow* parent
-    , int sourceCatID, int sourceSubCatID)
+    , int64 sourceCatID, int64 sourceSubCatID)
     : m_sourceCatID(sourceCatID)
     , m_sourceSubCatID(sourceSubCatID)
 {
@@ -146,7 +146,7 @@ void relocateCategoryDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 
 void relocateCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
-    const int m_destCatID = cbDestCategory_->mmGetCategoryId();
+    const int64 m_destCatID = cbDestCategory_->mmGetCategoryId();
 
     const auto& source_category_name = cbSourceCategory_->GetValue();
     const auto& destination_category_name = cbDestCategory_->GetValue();
@@ -227,7 +227,7 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void relocateCategoryDialog::IsOkOk()
 {
     m_sourceCatID = cbSourceCategory_->mmGetCategoryId();
-    int m_destCatID = cbDestCategory_->mmGetCategoryId();
+    int64 m_destCatID = cbDestCategory_->mmGetCategoryId();
 
     auto transactions = Model_Checking::instance()
         .find(Model_Checking::CATEGID(m_sourceCatID));

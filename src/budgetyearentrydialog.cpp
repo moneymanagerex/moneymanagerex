@@ -158,8 +158,8 @@ void mmBudgetYearEntryDialog::OnOk(wxCommandEvent& /*event*/)
         Model_Budgetyear::instance().Add(currYearText);
         if (baseYear != "None" && !baseYear.empty())
         {
-            int baseYearID = Model_Budgetyear::instance().Get(baseYear);
-            int newYearID  = Model_Budgetyear::instance().Get(currYearText);
+            int64 baseYearID = Model_Budgetyear::instance().Get(baseYear);
+            int64 newYearID  = Model_Budgetyear::instance().Get(currYearText);
             Model_Budget::copyBudgetYear(newYearID, baseYearID);
         }
     }

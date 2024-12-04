@@ -25,16 +25,18 @@
 #include <wx/choice.h>
 //----------------------------------------------------------------------------
 
+typedef wxLongLong int64;
+
 class mmAddAccountWizard : public wxWizard
 {
 public:
     mmAddAccountWizard(wxFrame *frame);
     void RunIt();
     wxString accountName_;
-    int currencyID_ = -1;
+    int64 currencyID_ = -1;
     int accountType_ = 0;
 
-    int acctID_ = -1;
+    int64 acctID_ = -1;
 
 private:
     wxWizardPageSimple* page1;

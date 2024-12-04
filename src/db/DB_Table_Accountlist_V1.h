@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,7 +49,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
 
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
-    typedef std::map<int, Self::Data*> Index_By_Id;
+    typedef std::map<int64, Self::Data*> Index_By_Id;
     Cache cache_;
     Index_By_Id index_by_id_;
     Data* fake_; // in case the entity not found
@@ -112,10 +112,10 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         db->Commit();
     }
     
-    struct ACCOUNTID : public DB_Column<int>
+    struct ACCOUNTID : public DB_Column<int64>
     { 
         static wxString name() { return "ACCOUNTID"; } 
-        explicit ACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ACCOUNTID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct ACCOUNTNAME : public DB_Column<wxString>
@@ -190,16 +190,16 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         explicit FAVORITEACCT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct CURRENCYID : public DB_Column<int>
+    struct CURRENCYID : public DB_Column<int64>
     { 
         static wxString name() { return "CURRENCYID"; } 
-        explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CURRENCYID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct STATEMENTLOCKED : public DB_Column<int>
+    struct STATEMENTLOCKED : public DB_Column<int64>
     { 
         static wxString name() { return "STATEMENTLOCKED"; } 
-        explicit STATEMENTLOCKED(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit STATEMENTLOCKED(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct STATEMENTDATE : public DB_Column<wxString>
@@ -331,7 +331,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int ACCOUNTID;//  primary key
+        int64 ACCOUNTID;//  primary key
         wxString ACCOUNTNAME;
         wxString ACCOUNTTYPE;
         wxString ACCOUNTNUM;
@@ -344,8 +344,8 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         double INITIALBAL;
         wxString INITIALDATE;
         wxString FAVORITEACCT;
-        int CURRENCYID;
-        int STATEMENTLOCKED;
+        int64 CURRENCYID;
+        int64 STATEMENTLOCKED;
         wxString STATEMENTDATE;
         double MINIMUMBALANCE;
         double CREDITLIMIT;
@@ -353,12 +353,12 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         wxString PAYMENTDUEDATE;
         double MINIMUMPAYMENT;
 
-        int id() const
+        int64 id() const
         {
             return ACCOUNTID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             ACCOUNTID = id;
         }
@@ -417,7 +417,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         {
             table_ = table;
         
-            ACCOUNTID = q.GetInt(0); // ACCOUNTID
+            ACCOUNTID = q.GetInt64(0); // ACCOUNTID
             ACCOUNTNAME = q.GetString(1); // ACCOUNTNAME
             ACCOUNTTYPE = q.GetString(2); // ACCOUNTTYPE
             ACCOUNTNUM = q.GetString(3); // ACCOUNTNUM
@@ -430,8 +430,8 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             INITIALBAL = q.GetDouble(10); // INITIALBAL
             INITIALDATE = q.GetString(11); // INITIALDATE
             FAVORITEACCT = q.GetString(12); // FAVORITEACCT
-            CURRENCYID = q.GetInt(13); // CURRENCYID
-            STATEMENTLOCKED = q.GetInt(14); // STATEMENTLOCKED
+            CURRENCYID = q.GetInt64(13); // CURRENCYID
+            STATEMENTLOCKED = q.GetInt64(14); // STATEMENTLOCKED
             STATEMENTDATE = q.GetString(15); // STATEMENTDATE
             MINIMUMBALANCE = q.GetDouble(16); // MINIMUMBALANCE
             CREDITLIMIT = q.GetDouble(17); // CREDITLIMIT
@@ -596,7 +596,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("ACCOUNTID");
-            json_writer.Int(this->ACCOUNTID);
+            json_writer.Int64(this->ACCOUNTID.GetValue());
             json_writer.Key("ACCOUNTNAME");
             json_writer.String(this->ACCOUNTNAME.utf8_str());
             json_writer.Key("ACCOUNTTYPE");
@@ -622,9 +622,9 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             json_writer.Key("FAVORITEACCT");
             json_writer.String(this->FAVORITEACCT.utf8_str());
             json_writer.Key("CURRENCYID");
-            json_writer.Int(this->CURRENCYID);
+            json_writer.Int64(this->CURRENCYID.GetValue());
             json_writer.Key("STATEMENTLOCKED");
-            json_writer.Int(this->STATEMENTLOCKED);
+            json_writer.Int64(this->STATEMENTLOCKED.GetValue());
             json_writer.Key("STATEMENTDATE");
             json_writer.String(this->STATEMENTDATE.utf8_str());
             json_writer.Key("MINIMUMBALANCE");
@@ -642,7 +642,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"ACCOUNTID") = ACCOUNTID;
+            row(L"ACCOUNTID") = ACCOUNTID.GetValue();
             row(L"ACCOUNTNAME") = ACCOUNTNAME;
             row(L"ACCOUNTTYPE") = ACCOUNTTYPE;
             row(L"ACCOUNTNUM") = ACCOUNTNUM;
@@ -655,8 +655,8 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             row(L"INITIALBAL") = INITIALBAL;
             row(L"INITIALDATE") = INITIALDATE;
             row(L"FAVORITEACCT") = FAVORITEACCT;
-            row(L"CURRENCYID") = CURRENCYID;
-            row(L"STATEMENTLOCKED") = STATEMENTLOCKED;
+            row(L"CURRENCYID") = CURRENCYID.GetValue();
+            row(L"STATEMENTLOCKED") = STATEMENTLOCKED.GetValue();
             row(L"STATEMENTDATE") = STATEMENTDATE;
             row(L"MINIMUMBALANCE") = MINIMUMBALANCE;
             row(L"CREDITLIMIT") = CREDITLIMIT;
@@ -668,7 +668,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"ACCOUNTID") = ACCOUNTID;
+            t(L"ACCOUNTID") = ACCOUNTID.GetValue();
             t(L"ACCOUNTNAME") = ACCOUNTNAME;
             t(L"ACCOUNTTYPE") = ACCOUNTTYPE;
             t(L"ACCOUNTNUM") = ACCOUNTNUM;
@@ -681,8 +681,8 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             t(L"INITIALBAL") = INITIALBAL;
             t(L"INITIALDATE") = INITIALDATE;
             t(L"FAVORITEACCT") = FAVORITEACCT;
-            t(L"CURRENCYID") = CURRENCYID;
-            t(L"STATEMENTLOCKED") = STATEMENTLOCKED;
+            t(L"CURRENCYID") = CURRENCYID.GetValue();
+            t(L"STATEMENTLOCKED") = STATEMENTLOCKED.GetValue();
             t(L"STATEMENTDATE") = STATEMENTDATE;
             t(L"MINIMUMBALANCE") = MINIMUMBALANCE;
             t(L"CREDITLIMIT") = CREDITLIMIT;
@@ -819,14 +819,14 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
 
         if (entity->id() <= 0)
         {
-            entity->id((db->GetLastRowId()).ToLong());
+            entity->id(db->GetLastRowId());
             index_by_id_.insert(std::make_pair(entity->id(), entity));
         }
         return true;
     }
 
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(const int id, wxSQLite3Database* db)
+    bool remove(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try
@@ -897,7 +897,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
-    Self::Data* get(const int id, wxSQLite3Database* db)
+    Self::Data* get(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
@@ -945,7 +945,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* get_record(const int id, wxSQLite3Database* db)
+    Self::Data* get_record(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {

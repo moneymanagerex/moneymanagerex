@@ -46,7 +46,7 @@ public:
     virtual ~mmTransDialog();
 
     mmTransDialog(wxWindow* parent
-        , int account_id
+        , int64 account_id
         , Fused_Transaction::IdB fused_id
         , bool duplicate = false
         , int type = Model_Checking::TYPE_ID_WITHDRAWAL);
@@ -61,9 +61,9 @@ public:
     );
 
     void SetDialogTitle(const wxString& title);
-    int GetAccountID() { return m_fused_data.ACCOUNTID; }
-    int GetToAccountID() { return m_fused_data.TOACCOUNTID; }
-    int GetTransactionID() { return m_fused_data.TRANSID; }
+    int64 GetAccountID() { return m_fused_data.ACCOUNTID; }
+    int64 GetToAccountID() { return m_fused_data.TOACCOUNTID; }
+    int64 GetTransactionID() { return m_fused_data.TRANSID; }
 
 private:
     wxSharedPtr<mmCustomData> m_custom_fields;
@@ -124,7 +124,7 @@ private:
     bool m_advanced = false;
 
     int object_in_focus_ = wxID_ANY;
-    int m_account_id = -1;
+    int64 m_account_id = -1;
     wxString m_status;
 
     Fused_Transaction::Data m_fused_data;

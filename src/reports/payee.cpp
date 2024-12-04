@@ -48,7 +48,7 @@ void  mmReportPayeeExpenses::RefreshData()
     positiveTotal_ = 0.0;
     negativeTotal_ = 0.0;
 
-    std::map<int, std::pair<double, double> > payeeStats;
+    std::map<int64, std::pair<double, double> > payeeStats;
     getPayeeStats(payeeStats, const_cast<mmDateRange*>(m_date_range)
         , Option::instance().getIgnoreFutureTransactions());
 
@@ -180,7 +180,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     return hb.getHTMLText();
 }
 
-void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double> > &payeeStats
+void mmReportPayeeExpenses::getPayeeStats(std::map<int64, std::pair<double, double> > &payeeStats
                                           , mmDateRange* date_range, bool WXUNUSED(ignoreFuture)) const
 {
 // FIXME: do not ignore ignoreFuture param

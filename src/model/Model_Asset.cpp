@@ -85,7 +85,7 @@ Model_Asset& Model_Asset::instance()
     return Singleton<Model_Asset>::instance();
 }
 
-wxString Model_Asset::get_asset_name(int asset_id)
+wxString Model_Asset::get_asset_name(int64 asset_id)
 {
     Data* asset = instance().get(asset_id);
     if (asset)

@@ -254,7 +254,7 @@ void UserTransactionPanel::DataToControls()
     }
 }
 
-void UserTransactionPanel::SetLastPayeeAndCategory(const int account_id)
+void UserTransactionPanel::SetLastPayeeAndCategory(const int64 account_id)
 {
     if (Option::instance().TransPayeeSelection() == Option::LASTUSED)
     {
@@ -352,7 +352,7 @@ void UserTransactionPanel::onSelectedNote(wxCommandEvent& event)
 void UserTransactionPanel::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    int RefId = m_transaction_id;
+    int64 RefId = m_transaction_id;
 
     if (RefId < 0)
         RefId = 0;
@@ -394,7 +394,7 @@ void UserTransactionPanel::SetTransactionStatus(const int trans_status_enum)
     m_status_selector->SetSelection(trans_status_enum);
 }
 
-void UserTransactionPanel::SetTransactionPayee(const int payeeid)
+void UserTransactionPanel::SetTransactionPayee(const int64 payeeid)
 {
     m_payee_id = payeeid;
     Model_Payee::Data* payee = Model_Payee::instance().get(m_payee_id);
@@ -402,7 +402,7 @@ void UserTransactionPanel::SetTransactionPayee(const int payeeid)
         m_payee->SetLabelText(payee->PAYEENAME);
 }
 
-void UserTransactionPanel::SetTransactionCategory(const int categid)
+void UserTransactionPanel::SetTransactionCategory(const int64 categid)
 {
     m_category_id = categid;
     m_category->SetLabelText(Model_Category::full_name(m_category_id));
@@ -438,7 +438,7 @@ void UserTransactionPanel::CheckingType(Model_Translink::CHECKING_TYPE ct)
     }
 }
 
-int UserTransactionPanel::SaveChecking()
+int64 UserTransactionPanel::SaveChecking()
 {
     double initial_amount = 0;
     wxDateTime trxDate = m_date_selector->GetValue();

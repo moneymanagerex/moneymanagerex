@@ -549,10 +549,10 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 const wxDateTime payment_date = bills.TRANSDATE(q1);
                 tran->TRANSDATE = payment_date.FormatISOCombined();
                 tran->COLOR = q1.COLOR;
-                int transID = Model_Checking::instance().save(tran);
+                int64 transID = Model_Checking::instance().save(tran);
 
                 Model_Splittransaction::Cache checking_splits;
-                std::vector<wxArrayInt> splitTags;
+                std::vector<wxArrayInt64> splitTags;
                 for (const auto &item : Model_Billsdeposits::split(q1))
                 {
                     Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
@@ -561,11 +561,11 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                     split->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
                     split->NOTES = item.NOTES;
                     checking_splits.push_back(split);
-                    wxArrayInt tags;
+                    wxArrayInt64 tags;
                     for (const auto& tag :
                          Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT)),
                                                         Model_Taglink::REFID(item.SPLITTRANSID)))
-                        tags.Add(tag.TAGID);
+                        tags.push_back(tag.TAGID);
                     splitTags.push_back(tags);
                 }
                 Model_Splittransaction::instance().save(checking_splits);
@@ -892,7 +892,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
                     if (Model_Translink::HasShares(stock_entry.STOCKID))
                     {
                         wxTreeItemId se = m_nav_tree_ctrl->AppendItem(tacct, stock_entry.STOCKNAME, selectedImage, selectedImage);
-                        int account_id = stock_entry.STOCKID;
+                        int64 account_id = stock_entry.STOCKID;
                         if (Model_Translink::ShareAccountId(account_id))
                         {
                             m_nav_tree_ctrl->SetItemData(se, new mmTreeItemData(mmTreeItemData::ACCOUNT, account_id));
@@ -1229,7 +1229,7 @@ void mmGUIFrame::OnLaunchAccountWebsite(wxCommandEvent& /*event*/)
 {
     if (selectedItemData_)
     {
-        int data = selectedItemData_->getData();
+        int64 data = selectedItemData_->getData();
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
         {
@@ -1245,7 +1245,7 @@ void mmGUIFrame::OnAccountAttachments(wxCommandEvent& /*event*/)
 {
     if (selectedItemData_)
     {
-        int RefId = selectedItemData_->getData();
+        int64 RefId = selectedItemData_->getData();
         wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT);
 
         mmAttachmentDialog dlg(this, RefType, RefId);
@@ -1258,7 +1258,7 @@ void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
 {
     if (selectedItemData_)
     {
-        int data = selectedItemData_->getData();
+        int64 data = selectedItemData_->getData();
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
         {
@@ -1275,7 +1275,7 @@ void mmGUIFrame::OnPopupReallocateAccount(wxCommandEvent& WXUNUSED(event))
 {
     if (selectedItemData_)
     {
-        int account_id = selectedItemData_->getData();
+        int64 account_id = selectedItemData_->getData();
         ReallocateAccount(account_id);
     }
 }
@@ -1386,7 +1386,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
 {
     if (selectedItemData_)
     {
-        int data = selectedItemData_->getData();
+        int64 data = selectedItemData_->getData();
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
         {
@@ -1485,7 +1485,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         return mmDoHideReportsDialog();
     case mmTreeItemData::STOCK:
     {
-        int data = iData->getData();
+        int64 data = iData->getData();
 
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
@@ -1503,7 +1503,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
     }
     case mmTreeItemData::ACCOUNT:
     {
-        int data = iData->getData();
+        int64 data = iData->getData();
 
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
@@ -2141,9 +2141,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             while (token.HasMoreTokens())
             {
                 wxString catData = token.GetNextToken();
-                int catID = 0;
-                int subCatID = 0;
-                if (2 == sscanf(catData.mb_str(),"*%d:%d*", &catID, &subCatID))
+                wxLongLong_t catID = 0;
+                wxLongLong_t subCatID = 0;
+                if (2 == sscanf(catData.mb_str(),"*%lld:%lld*", &catID, &subCatID))
                 {
                     if (subCatID == -1)
                     {
@@ -2613,7 +2613,7 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
 
     mmQIFImportDialog dlg(this, gotoAccountID_);
     dlg.ShowModal();
-    int account_id = dlg.get_last_imported_acc();
+    int64 account_id = dlg.get_last_imported_acc();
     RefreshNavigationTree();
     if (account_id > 0) {
         setGotoAccountID(account_id);
@@ -3238,7 +3238,7 @@ void mmGUIFrame::createBillsDeposits()
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::createBudgetingPage(int budgetYearID)
+void mmGUIFrame::createBudgetingPage(int64 budgetYearID)
 {
     StringBuffer json_buffer;
     Writer<StringBuffer> json_writer(json_buffer);
@@ -3355,7 +3355,7 @@ void mmGUIFrame::createDeletedTransactionsPage()
     m_nav_tree_ctrl->SetFocus();
 }
 
-void mmGUIFrame::createCheckingAccountPage(int accountID)
+void mmGUIFrame::createCheckingAccountPage(int64 accountID)
 {
     StringBuffer json_buffer;
     Writer<StringBuffer> json_writer(json_buffer);
@@ -3403,7 +3403,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     m_nav_tree_ctrl->SetFocus();
 }
 
-void mmGUIFrame::createStocksAccountPage(int accountID)
+void mmGUIFrame::createStocksAccountPage(int64 accountID)
 {
     StringBuffer json_buffer;
     Writer<StringBuffer> json_writer(json_buffer);
@@ -3635,7 +3635,7 @@ void mmGUIFrame::OnReallocateAccount(wxCommandEvent& WXUNUSED(event))
     }
 }
 
-void mmGUIFrame::ReallocateAccount(int accountID)
+void mmGUIFrame::ReallocateAccount(int64 accountID)
 {
     Model_Account::Data* account = Model_Account::instance().get(accountID);
 
@@ -3921,7 +3921,7 @@ void mmGUIFrame::OnClearRecentFiles(wxCommandEvent& /*event*/)
     m_recentFiles->AddFileToHistory(m_filename);
 }
 
-void mmGUIFrame::setGotoAccountID(int account_id, Fused_Transaction::IdRepeat fused_id)
+void mmGUIFrame::setGotoAccountID(int64 account_id, Fused_Transaction::IdRepeat fused_id)
 {
     gotoAccountID_ = account_id;
     gotoTransID_ = fused_id;
@@ -3981,7 +3981,7 @@ void mmGUIFrame::DoUpdateBudgetNavigation(wxTreeItemId& parent_item)
     const auto all_budgets = Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME);
     if (!all_budgets.empty())
     {
-        std::map <wxString, int> years;
+        std::map <wxString, int64> years;
 
         wxRegEx pattern_year(R"(^([0-9]{4})$)");
         wxRegEx pattern_month(R"(^([0-9]{4})-([0-9]{2})$)");

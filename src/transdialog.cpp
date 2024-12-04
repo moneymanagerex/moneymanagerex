@@ -92,7 +92,7 @@ void mmTransDialog::SetEventHandlers()
 static bool altRefreshDone;
 
 mmTransDialog::mmTransDialog(wxWindow* parent,
-    int account_id,
+    int64 account_id,
     Fused_Transaction::IdB fused_id,
     bool duplicate,
     int type)
@@ -108,12 +108,12 @@ mmTransDialog::mmTransDialog(wxWindow* parent,
             Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT) :
             Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT);
         for (const auto& split : Fused_Transaction::split(m_fused_data)) {
-            wxArrayInt tags;
+            wxArrayInt64 tags;
             for (const auto& tag : Model_Taglink::instance().find(
                 Model_Taglink::REFTYPE(splitRefType),
                 Model_Taglink::REFID(split.SPLITTRANSID))
             )
-                tags.Add(tag.TAGID);
+                tags.push_back(tag.TAGID);
             m_local_splits.push_back({split.CATEGID, split.SPLITTRANSAMOUNT, tags, split.NOTES});
         }
 
@@ -134,7 +134,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent,
     m_transfer = Model_Checking::type_id(m_fused_data.TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER;
     m_advanced = m_mode != MODE_NEW && m_transfer && (m_fused_data.TRANSAMOUNT != m_fused_data.TOTRANSAMOUNT);
 
-    int ref_id = (m_mode == MODE_NEW) ? 0 : (m_fused_data.m_repeat_num == 0) ?
+    int64 ref_id = (m_mode == MODE_NEW) ? 0 : (m_fused_data.m_repeat_num == 0) ?
         m_fused_data.TRANSID : -(m_fused_data.m_bdid);
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELD);
 
@@ -280,7 +280,7 @@ void mmTransDialog::dataToControls()
                 m_fused_data.TOACCOUNTID = -1;
             }
 
-            int accountID = cbAccount_->mmGetId();
+            int64 accountID = cbAccount_->mmGetId();
             if (m_mode == MODE_NEW && Option::instance().TransPayeeSelection() == Option::LASTUSED
                 && (-1 != accountID))
             {
@@ -346,7 +346,7 @@ void mmTransDialog::dataToControls()
             if (!transactions.empty()
                 && (!Model_Category::is_hidden(transactions.back().CATEGID)))
             {
-                const int cat = transactions.back().CATEGID;
+                const int64 cat = transactions.back().CATEGID;
                 cbCategory_->ChangeValue(Model_Category::full_name(cat));
             }
         } else
@@ -365,7 +365,7 @@ void mmTransDialog::dataToControls()
     // Tags
     if (!skip_tag_init_)
     {
-        wxArrayInt tagIds;
+        wxArrayInt64 tagIds;
         for (const auto& tag : Model_Taglink::instance().find(
             Model_Taglink::REFTYPE((m_fused_data.m_repeat_num == 0) ?
                 Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) :
@@ -374,7 +374,7 @@ void mmTransDialog::dataToControls()
                 m_fused_data.TRANSID :
                 m_fused_data.m_bdid))
         )
-            tagIds.Add(tag.TAGID);
+            tagIds.push_back(tag.TAGID);
         tagTextCtrl_->SetTags(tagIds);
         skip_tag_init_ = true;
     }
@@ -570,7 +570,7 @@ void mmTransDialog::CreateControls()
     // Colours
     bColours_ = new mmColorButton(this, wxID_LOWEST, bAuto->GetSize());
     mmToolTip(bColours_, _("User Colors"));
-    bColours_->SetBackgroundColor(m_fused_data.COLOR);
+    bColours_->SetBackgroundColor(m_fused_data.COLOR.GetValue());
 
     // Attachments
     bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));
@@ -936,7 +936,7 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbPayee_->mmDoReInitialize();
-                int payee_id = dlg.getPayeeId();
+                int64 payee_id = dlg.getPayeeId();
                 Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
                 if (payee) {
                     cbPayee_->ChangeValue(payee->PAYEENAME);
@@ -984,7 +984,7 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
     if (m_mode == MODE_NEW && Option::instance().TransCategorySelectionNonTransfer() == Option::UNUSED
         && m_local_splits.empty())
     {
-        Model_Category::Data *category = Model_Category::instance().get(_("Unknown"), -1);
+        Model_Category::Data *category = Model_Category::instance().get(_("Unknown"), int64(-1));
         if (!category)
         {
             category = Model_Category::instance().create();
@@ -1118,7 +1118,7 @@ void mmTransDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
     const wxString& refType = (m_fused_data.m_repeat_num == 0) ?
         Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) :
         Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
-    int transID = (m_mode == MODE_DUP) ? -1 : m_fused_data.TRANSID;
+    int64 transID = (m_mode == MODE_DUP) ? -1 : m_fused_data.TRANSID;
     mmAttachmentDialog dlg(this, refType, transID);
     dlg.ShowModal();
 }

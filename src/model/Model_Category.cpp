@@ -85,7 +85,7 @@ Model_Category::Data* Model_Category::get(const wxString& name, const wxString& 
     return category;
 }
 
-Model_Category::Data* Model_Category::get(const wxString& name, const int& parentid)
+Model_Category::Data* Model_Category::get(const wxString& name, const int64 parentid)
 {
     Data* category = this->get_one(CATEGNAME(name), PARENTID(parentid));
     if (category) return category;
@@ -95,9 +95,9 @@ Model_Category::Data* Model_Category::get(const wxString& name, const int& paren
     return category;
 }
 
-const std::map<wxString, int> Model_Category::all_categories(bool excludeHidden)
+const std::map<wxString, int64> Model_Category::all_categories(bool excludeHidden)
 {
-    std::map<wxString, int> full_categs;
+    std::map<wxString, int64> full_categs;
     for (const auto& c : instance().all(COL_CATEGID))
     {
         if (excludeHidden && (c.ACTIVE == 0))
@@ -158,13 +158,13 @@ const wxString Model_Category::full_name(const Data* category)
     }
 }
 
-const wxString Model_Category::full_name(int category_id)
+const wxString Model_Category::full_name(int64 category_id)
 {
     Data* category = instance().get(category_id);
     return full_name(category);
 }
 
-const wxString Model_Category::full_name(int category_id, wxString delimiter)
+const wxString Model_Category::full_name(int64 category_id, wxString delimiter)
 {
     Data* category = instance().get(category_id);
     if (!category) return "";
@@ -184,7 +184,7 @@ const wxString Model_Category::full_name(int category_id, wxString delimiter)
 // -- Check if Category should be made available for use. 
 //    Hiding a category hides all sub-categories
 
-bool Model_Category::is_hidden(int catID)
+bool Model_Category::is_hidden(int64 catID)
 {
     const auto category = Model_Category::instance().get(catID);
     if (category && category->ACTIVE == 0)
@@ -193,7 +193,7 @@ bool Model_Category::is_hidden(int catID)
     return false;
 }
 
-bool Model_Category::is_used(int id)
+bool Model_Category::is_used(int64 id)
 {
     if (id < 0) return false;
     const auto& trans = Model_Checking::instance().find(Model_Checking::CATEGID(id));
@@ -224,7 +224,7 @@ bool Model_Category::is_used(int id)
     }
     return false;
 }
-bool Model_Category::has_income(int id)
+bool Model_Category::has_income(int64 id)
 {
     double sum = 0.0;
     auto splits = Model_Splittransaction::instance().get_all();
@@ -264,12 +264,12 @@ bool Model_Category::has_income(int id)
 }
 
 void Model_Category::getCategoryStats(
-    std::map<int, std::map<int, double>>& categoryStats
+    std::map<int64, std::map<int, double>>& categoryStats
     , wxSharedPtr<wxArrayString> accountArray
     , mmDateRange* date_range
     , bool WXUNUSED(ignoreFuture) //TODO: deprecated
     , bool group_by_month
-    , std::map<int, double> *budgetAmt
+    , std::map<int64, double> *budgetAmt
     , bool fin_months)
 {
     //Initialization
@@ -324,7 +324,7 @@ void Model_Category::getCategoryStats(
             month = it->second;
         }
 
-        int categID = transaction.CATEGID;
+        int64 categID = transaction.CATEGID;
 
         if (categID > -1)
         {

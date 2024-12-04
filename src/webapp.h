@@ -23,6 +23,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/string.h>
 #include <wx/datetime.h>
 
+typedef wxLongLong int64;
+
 //Parameters used in services.php
 namespace WebAppParam
 {
@@ -56,7 +58,7 @@ class mmWebApp
     static bool WebApp_DeleteAllAccount();
     static bool WebApp_DeleteAllPayee();
     static bool WebApp_DeleteAllCategory();
-    static wxString WebApp_DownloadOneAttachment(const wxString& AttachmentName, int DesktopTransactionID, int AttachmentNr, wxString& Error);
+    static wxString WebApp_DownloadOneAttachment(const wxString& AttachmentName, int64 DesktopTransactionID, int AttachmentNr, wxString& Error);
 
 public:
     const static wxString getUrl();
@@ -64,7 +66,7 @@ public:
     /*WebApp transaction Structure*/
     struct webtran_holder
     {
-        int ID;
+        int64 ID;
         wxDateTime Date;
         wxString Account;
         wxString ToAccount;
@@ -73,7 +75,7 @@ public:
         wxString Payee;
         wxString Category;
         wxString SubCategory;
-        int ParentCategory;
+        int64 ParentCategory;
         double Amount;
         wxString Notes;
         wxString Attachments;
@@ -104,10 +106,10 @@ public:
     static bool WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool CheckOnly, wxString& Error);
 
     /** Insert transaction in MMEX desktop, returns transaction ID */
-    static int MMEX_InsertNewTransaction(webtran_holder& WebAppTrans);
+    static int64 MMEX_InsertNewTransaction(webtran_holder& WebAppTrans);
 
     /** Delete transaction from WebApp */
-    static bool WebApp_DeleteOneTransaction(int WebAppTransactionId);
+    static bool WebApp_DeleteOneTransaction(int64 WebAppTransactionId);
 
     /* Return attachment URL */
     static bool WebApp_DownloadAttachment(wxString& AttachmentFileName, wxString& Error);

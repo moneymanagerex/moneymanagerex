@@ -178,7 +178,7 @@ void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& /*event*/)
     }
 }
 
-void mmAssetsListCtrl::doRefreshItems(int trx_id)
+void mmAssetsListCtrl::doRefreshItems(int64 trx_id)
 {
     int selectedIndex = m_panel->initVirtualListControl(trx_id, m_selected_col, m_asc);
 
@@ -217,7 +217,7 @@ void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::ASSET), asset.ASSETID);
         Model_Translink::RemoveTransLinkRecords(Model_Attachment::ASSET, asset.ASSETID);
 
-        m_panel->initVirtualListControl(m_selected_row, m_selected_col, m_asc);
+        m_panel->initVirtualListControl(-1, m_selected_col, m_asc);
         m_selected_row = -1;
         m_panel->updateExtraAssetData(m_selected_row);
     }
@@ -271,7 +271,7 @@ void mmAssetsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     if (m_selected_row < 0) return;
 
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
-    int RefId = m_panel->m_assets[m_selected_row].ASSETID;
+    int64 RefId = m_panel->m_assets[m_selected_row].ASSETID;
 
     mmAttachmentDialog dlg(this, RefType, RefId);
     dlg.ShowModal();
@@ -284,7 +284,7 @@ void mmAssetsListCtrl::OnOpenAttachment(wxCommandEvent& /*event*/)
     if (m_selected_row < 0) return;
 
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
-    int RefId = m_panel->m_assets[m_selected_row].ASSETID;
+    int64 RefId = m_panel->m_assets[m_selected_row].ASSETID;
 
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
     doRefreshItems(RefId);
@@ -337,7 +337,7 @@ void mmAssetsListCtrl::OnColClick(wxListEvent& event)
     Model_Setting::instance().Set("ASSETS_ASC", m_asc);
     Model_Setting::instance().Set("ASSETS_SORT_COL", m_selected_col);
 
-    int trx_id = -1;
+    int64 trx_id = -1;
     if (m_selected_row>=0) trx_id = m_panel->m_assets[m_selected_row].ASSETID;
 
     doRefreshItems(trx_id);
@@ -563,7 +563,7 @@ void mmAssetsPanel::sortTable()
     if (!this->m_listCtrlAssets->m_asc) std::reverse(this->m_assets.begin(), this->m_assets.end());
 }
 
-int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)
+int mmAssetsPanel::initVirtualListControl(int64 id, int col, bool asc)
 {
     /* Clear all the records */
     m_listCtrlAssets->DeleteAllItems();
@@ -733,9 +733,9 @@ void mmAssetsPanel::OnViewPopupSelected(wxCommandEvent& event)
         m_bitmapTransFilter->SetLabel(wxGetTranslation(Model_Asset::TYPE_STR[evt - 1]));
     }
 
-    int trx_id = -1;
+    int64 trx_id = -1;
     m_listCtrlAssets->doRefreshItems(trx_id);
-    updateExtraAssetData(trx_id);
+    updateExtraAssetData(-1);
 }
 
 void mmAssetsPanel::OnSearchTxtEntered(wxCommandEvent& event)

@@ -128,7 +128,7 @@ Model_Checking& Model_Checking::instance()
     return Singleton<Model_Checking>::instance();
 }
 
-bool Model_Checking::remove(int id)
+bool Model_Checking::remove(int64 id)
 {
     //TODO: remove all split at once
     //Model_Splittransaction::instance().remove(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(id)));
@@ -145,7 +145,7 @@ bool Model_Checking::remove(int id)
     return this->remove(id, db_);
 }
 
-int Model_Checking::save(Data* r)
+int64 Model_Checking::save(Data* r)
 {
     wxSharedPtr<Data> oldData(instance().get_record(r->TRANSID));
     if (!oldData || (!oldData->equals(r) && oldData->DELETEDTIME.IsEmpty() && r->DELETEDTIME.IsEmpty()))
@@ -291,7 +291,7 @@ Model_Checking::STATUS_ID Model_Checking::status_id(const Data* r)
     return status_id(r->STATUS);
 }
 
-double Model_Checking::account_flow(const Data* r, int account_id)
+double Model_Checking::account_flow(const Data* r, int64 account_id)
 {
     if (Model_Checking::status_id(r->STATUS) == Model_Checking::STATUS_ID_VOID || !r->DELETEDTIME.IsEmpty())
         return 0.0;
@@ -306,40 +306,40 @@ double Model_Checking::account_flow(const Data* r, int account_id)
     return 0.0;
 }
 
-double Model_Checking::account_flow(const Data& r, int account_id)
+double Model_Checking::account_flow(const Data& r, int64 account_id)
 {
     return account_flow(&r, account_id);
 }
 
-double Model_Checking::account_outflow(const Data* r, int account_id)
+double Model_Checking::account_outflow(const Data* r, int64 account_id)
 {
     double bal = account_flow(r, account_id);
     return bal <= 0 ? -bal : 0;
 }
 
-double Model_Checking::account_outflow(const Data& r, int account_id)
+double Model_Checking::account_outflow(const Data& r, int64 account_id)
 {
     return account_outflow(&r, account_id);
 }
 
-double Model_Checking::account_inflow(const Data* r, int account_id)
+double Model_Checking::account_inflow(const Data* r, int64 account_id)
 {
     double bal = account_flow(r, account_id);
     return bal >= 0 ? bal : 0;
 }
 
-double Model_Checking::account_inflow(const Data& r, int account_id)
+double Model_Checking::account_inflow(const Data& r, int64 account_id)
 {
     return account_inflow(&r, account_id);
 }
 
-double Model_Checking::account_recflow(const Data* r, int account_id)
+double Model_Checking::account_recflow(const Data* r, int64 account_id)
 {
     return (Model_Checking::status_id(r->STATUS) == Model_Checking::STATUS_ID_RECONCILED) ?
         account_flow(r, account_id) : 0;
 }
 
-double Model_Checking::account_recflow(const Data& r, int account_id)
+double Model_Checking::account_recflow(const Data& r, int64 account_id)
 {
     return account_recflow(&r, account_id);
 }
@@ -412,9 +412,9 @@ Model_Checking::Full_Data::Full_Data(const Data& r) :
     fill_data();
 }
 
-Model_Checking::Full_Data::Full_Data(const Data& r,
-    const std::map<int /*trans id*/, Split_Data_Set>& splits,
-    const std::map<int /*trans id*/, Taglink_Data_Set>& tags)
+Model_Checking::Full_Data::Full_Data(const Data& r
+    , const std::map<int64 /*trans id*/, Model_Splittransaction::Data_Set /*split trans*/ > & splits
+    , const std::map<int64 /*trans id*/, Model_Taglink::Data_Set /*split trans*/ >& tags)
 :
     Data(r),
     ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
@@ -477,7 +477,7 @@ Model_Checking::Full_Data::~Full_Data()
 {
 }
 
-wxString Model_Checking::Full_Data::real_payee_name(int account_id) const
+wxString Model_Checking::Full_Data::real_payee_name(int64 account_id) const
 {
     if (TYPE_ID_TRANSFER == type_id(this->TRANSCODE))
     {
@@ -490,7 +490,7 @@ wxString Model_Checking::Full_Data::real_payee_name(int account_id) const
     return this->PAYEENAME;
 }
 
-const wxString Model_Checking::Full_Data::get_currency_code(int account_id) const
+const wxString Model_Checking::Full_Data::get_currency_code(int64 account_id) const
 {
     if (TYPE_ID_TRANSFER == type_id(this->TRANSCODE))
     {
@@ -500,13 +500,13 @@ const wxString Model_Checking::Full_Data::get_currency_code(int account_id) cons
             account_id = this->TOACCOUNTID;
     }
     Model_Account::Data* acc = Model_Account::instance().get(account_id);
-    int currency_id = acc ? acc->CURRENCYID: -1;
+    int64 currency_id = acc ? acc->CURRENCYID: -1;
     Model_Currency::Data* curr = Model_Currency::instance().get(currency_id);
 
     return curr ? curr->CURRENCY_SYMBOL : "";
 }
 
-const wxString Model_Checking::Full_Data::get_account_name(int account_id) const
+const wxString Model_Checking::Full_Data::get_account_name(int64 account_id) const
 {
     if (TYPE_ID_TRANSFER == type_id(this->TRANSCODE))
     {
@@ -553,7 +553,7 @@ bool CompareUsedNotes(const std::tuple<int, wxString, wxString>& a, const std::t
     return false;
 }
 
-void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int accountID)
+void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int64 accountID)
 {
     frequentNotes.clear();
     size_t max = 20;
@@ -587,7 +587,7 @@ void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, 
     }
 }
 
-void Model_Checking::getEmptyData(Data &data, int accountID)
+void Model_Checking::getEmptyData(Data &data, int64 accountID)
 {
     data.TRANSID = -1;
     data.PAYEEID = -1;
@@ -731,7 +731,7 @@ bool Model_Checking::foreignTransactionAsTransfer(const Data& data)
     return foreignTransaction(data) && (data.TOACCOUNTID == Model_Translink::AS_TRANSFER);
 }
 
-void Model_Checking::updateTimestamp(int id)
+void Model_Checking::updateTimestamp(int64 id)
 {
     Data* r = instance().get(id);
     if (r && r->TRANSID == id) {

@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,7 +49,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
 
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
-    typedef std::map<int, Self::Data*> Index_By_Id;
+    typedef std::map<int64, Self::Data*> Index_By_Id;
     Cache cache_;
     Index_By_Id index_by_id_;
     Data* fake_; // in case the entity not found
@@ -112,10 +112,10 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         db->Commit();
     }
     
-    struct ASSETID : public DB_Column<int>
+    struct ASSETID : public DB_Column<int64>
     { 
         static wxString name() { return "ASSETID"; } 
-        explicit ASSETID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ASSETID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct STARTDATE : public DB_Column<wxString>
@@ -136,10 +136,10 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         explicit ASSETSTATUS(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct CURRENCYID : public DB_Column<int>
+    struct CURRENCYID : public DB_Column<int64>
     { 
         static wxString name() { return "CURRENCYID"; } 
-        explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CURRENCYID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct VALUECHANGEMODE : public DB_Column<wxString>
@@ -241,11 +241,11 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int ASSETID;//  primary key
+        int64 ASSETID;//  primary key
         wxString STARTDATE;
         wxString ASSETNAME;
         wxString ASSETSTATUS;
-        int CURRENCYID;
+        int64 CURRENCYID;
         wxString VALUECHANGEMODE;
         double VALUE;
         wxString VALUECHANGE;
@@ -253,12 +253,12 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         double VALUECHANGERATE;
         wxString ASSETTYPE;
 
-        int id() const
+        int64 id() const
         {
             return ASSETID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             ASSETID = id;
         }
@@ -303,11 +303,11 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         {
             table_ = table;
         
-            ASSETID = q.GetInt(0); // ASSETID
+            ASSETID = q.GetInt64(0); // ASSETID
             STARTDATE = q.GetString(1); // STARTDATE
             ASSETNAME = q.GetString(2); // ASSETNAME
             ASSETSTATUS = q.GetString(3); // ASSETSTATUS
-            CURRENCYID = q.GetInt(4); // CURRENCYID
+            CURRENCYID = q.GetInt64(4); // CURRENCYID
             VALUECHANGEMODE = q.GetString(5); // VALUECHANGEMODE
             VALUE = q.GetDouble(6); // VALUE
             VALUECHANGE = q.GetString(7); // VALUECHANGE
@@ -412,7 +412,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("ASSETID");
-            json_writer.Int(this->ASSETID);
+            json_writer.Int64(this->ASSETID.GetValue());
             json_writer.Key("STARTDATE");
             json_writer.String(this->STARTDATE.utf8_str());
             json_writer.Key("ASSETNAME");
@@ -420,7 +420,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             json_writer.Key("ASSETSTATUS");
             json_writer.String(this->ASSETSTATUS.utf8_str());
             json_writer.Key("CURRENCYID");
-            json_writer.Int(this->CURRENCYID);
+            json_writer.Int64(this->CURRENCYID.GetValue());
             json_writer.Key("VALUECHANGEMODE");
             json_writer.String(this->VALUECHANGEMODE.utf8_str());
             json_writer.Key("VALUE");
@@ -438,11 +438,11 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"ASSETID") = ASSETID;
+            row(L"ASSETID") = ASSETID.GetValue();
             row(L"STARTDATE") = STARTDATE;
             row(L"ASSETNAME") = ASSETNAME;
             row(L"ASSETSTATUS") = ASSETSTATUS;
-            row(L"CURRENCYID") = CURRENCYID;
+            row(L"CURRENCYID") = CURRENCYID.GetValue();
             row(L"VALUECHANGEMODE") = VALUECHANGEMODE;
             row(L"VALUE") = VALUE;
             row(L"VALUECHANGE") = VALUECHANGE;
@@ -454,11 +454,11 @@ struct DB_Table_ASSETS_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"ASSETID") = ASSETID;
+            t(L"ASSETID") = ASSETID.GetValue();
             t(L"STARTDATE") = STARTDATE;
             t(L"ASSETNAME") = ASSETNAME;
             t(L"ASSETSTATUS") = ASSETSTATUS;
-            t(L"CURRENCYID") = CURRENCYID;
+            t(L"CURRENCYID") = CURRENCYID.GetValue();
             t(L"VALUECHANGEMODE") = VALUECHANGEMODE;
             t(L"VALUE") = VALUE;
             t(L"VALUECHANGE") = VALUECHANGE;
@@ -585,14 +585,14 @@ struct DB_Table_ASSETS_V1 : public DB_Table
 
         if (entity->id() <= 0)
         {
-            entity->id((db->GetLastRowId()).ToLong());
+            entity->id(db->GetLastRowId());
             index_by_id_.insert(std::make_pair(entity->id(), entity));
         }
         return true;
     }
 
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(const int id, wxSQLite3Database* db)
+    bool remove(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try
@@ -663,7 +663,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
-    Self::Data* get(const int id, wxSQLite3Database* db)
+    Self::Data* get(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
@@ -711,7 +711,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* get_record(const int id, wxSQLite3Database* db)
+    Self::Data* get_record(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {

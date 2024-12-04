@@ -53,8 +53,8 @@ private:
 
     void OnFocusChange(wxChildFocusEvent& event);
 
-    int sourcePayeeID_;
-    int destPayeeID_ = -1;
+    int64 sourcePayeeID_;
+    int64 destPayeeID_ = -1;
 
     mmComboBoxUsedPayee* cbSourcePayee_ = nullptr;
     mmComboBoxPayee* cbDestPayee_ = nullptr;

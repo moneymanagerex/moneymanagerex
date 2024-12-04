@@ -211,9 +211,9 @@ private:
     void OnCopy(wxCommandEvent& WXUNUSED(event));
     void OnPaste(wxCommandEvent& WXUNUSED(event));
     void OnListItemFocused(wxListEvent& WXUNUSED(event));
-    int OnPaste(Model_Checking::Data* tran);
+    int64 OnPaste(Model_Checking::Data* tran);
 
-    bool TransactionLocked(int AccountID, const wxString& transdate);
+    bool TransactionLocked(int64 AccountID, const wxString& transdate);
     void FindSelectedTransactions();
     bool CheckForClosedAccounts();
     void setExtraTransactionData(const bool single);

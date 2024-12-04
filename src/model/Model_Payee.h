@@ -56,19 +56,19 @@ public:
     * Returns 0 when payee not found.
     */
     Data* get(const wxString& name);
-    static wxString get_payee_name(int payee_id);
+    static wxString get_payee_name(int64 payee_id);
 
-    bool remove(int id);
+    bool remove(int64 id);
 
-    const std::map<wxString, int> all_payees(bool excludeHidden = false);
+    const std::map<wxString, int64> all_payees(bool excludeHidden = false);
     const wxArrayString all_payee_names();
-    const std::map<wxString, int> used_payee();
+    const std::map<wxString, int64> used_payee();
 
-    static bool is_hidden(int id);
+    static bool is_hidden(int64 id);
     static bool is_hidden(const Data* record);
     static bool is_hidden(const Data& record);
 
-    static bool is_used(int id);
+    static bool is_used(int64 id);
     static bool is_used(const Data* record);
     static bool is_used(const Data& record);
 };

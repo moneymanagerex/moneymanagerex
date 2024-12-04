@@ -30,59 +30,59 @@ mmFilterTransactions::mmFilterTransactions()
 
 void mmFilterTransactions::clear()
 {
-    _dateFilter = false;
-    _accountFilter = false;
-    _payeeFilter = false;
-    _categoryFilter = false;
+    m_dateFilter = false;
+    m_accountFilter = false;
+    m_payeeFilter = false;
+    m_categoryFilter = false;
 }
 
 void mmFilterTransactions::setDateRange(wxDateTime startDate, wxDateTime endDate)
 {
-    _dateFilter = true;
+    m_dateFilter = true;
     if (startDate.FormatISOTime() == "00:00:00")
-        _startDate = startDate.FormatISODate();
+        m_startDate = startDate.FormatISODate();
     else
-        _startDate = startDate.FormatISOCombined();
+        m_startDate = startDate.FormatISOCombined();
 
     if (!Option::instance().UseTransDateTime())
         endDate = mmDateRange::getDayEnd(endDate);
 
-    _endDate = endDate.FormatISOCombined();
+    m_endDate = endDate.FormatISOCombined();
 }
 
 void mmFilterTransactions::setAccountList(wxSharedPtr<wxArrayString> accountList)
 {
     if (accountList)
     {
-        _accountList.Clear();
+        m_accountList.clear();
         for (const auto &entry : *accountList)
         {
             const auto account = Model_Account::instance().get(entry);
-            if (account) _accountList.Add(account->ACCOUNTID);
+            if (account) m_accountList.push_back(account->ACCOUNTID);
         }
-        _accountFilter = true;
+        m_accountFilter = true;
     }
 }
 
-void mmFilterTransactions::setPayeeList(const wxArrayInt payeeList)
+void mmFilterTransactions::setPayeeList(const wxArrayInt64& payeeList)
 {
-    _payeeFilter = true;
-    _payeeList = payeeList;
+    m_payeeFilter = true;
+    m_payeeList = payeeList;
 }
 
-void mmFilterTransactions::setCategoryList(const std::vector<int> &categoryList)
+void mmFilterTransactions::setCategoryList(const wxArrayInt64 &categoryList)
 {
-    _categoryFilter = true;
-    _categoryList = categoryList;
+    m_categoryFilter = true;
+    m_categoryList = categoryList;
 }
 
 template<class MODEL, class DATA>
-bool mmFilterTransactions::checkCategory(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set> & splits)
+bool mmFilterTransactions::checkCategory(const DATA& tran, const std::map<int64, typename MODEL::Split_Data_Set> & splits)
 {
     const auto it = splits.find(tran.id());
     if (it == splits.end())
     {
-        for (int it2 : _categoryList)
+        for (auto it2 : m_categoryList)
         {
             if (it2 == tran.CATEGID)
                 return true;
@@ -92,7 +92,7 @@ bool mmFilterTransactions::checkCategory(const DATA& tran, const std::map<int, t
     {
         for (const auto& split : it->second)
         {
-            for (int it2 : _categoryList)
+            for (auto it2 : m_categoryList)
             {
                 if (it2 == split.CATEGID)
                     return true;
@@ -104,19 +104,19 @@ bool mmFilterTransactions::checkCategory(const DATA& tran, const std::map<int, t
 }
 
 bool mmFilterTransactions::mmIsRecordMatches(const Model_Checking::Data &tran
-    , const std::map<int, Model_Splittransaction::Data_Set>& split)
+    , const std::map<int64, Model_Splittransaction::Data_Set>& split)
 {
     bool ok = true;
     wxString strDate = Model_Checking::TRANSDATE(tran).FormatISOCombined();
-    if (_accountFilter
-        && (_accountList.Index(tran.ACCOUNTID) == wxNOT_FOUND)
-        && (_accountList.Index(tran.TOACCOUNTID) == wxNOT_FOUND))
+    if (m_accountFilter
+        && (std::find(m_accountList.begin(), m_accountList.end(), tran.ACCOUNTID) == m_accountList.end())
+        && (std::find(m_accountList.begin(), m_accountList.end(), tran.TOACCOUNTID) == m_accountList.end()))
         ok = false;
-    else if (_dateFilter && ((strDate < _startDate) || (strDate > _endDate)))
+    else if (m_dateFilter && ((strDate < m_startDate) || (strDate > m_endDate)))
         ok = false;
-    else if (_payeeFilter && (_payeeList.Index(tran.PAYEEID) == wxNOT_FOUND))
+    else if (m_payeeFilter && (std::find(m_payeeList.begin(), m_payeeList.end(), tran.PAYEEID) == m_payeeList.end()))
         ok = false;
-    else if (_categoryFilter && !checkCategory<Model_Checking>(tran, split))
+    else if (m_categoryFilter && !checkCategory<Model_Checking>(tran, split))
         ok = false;
     return ok;
 }
@@ -124,7 +124,7 @@ bool mmFilterTransactions::mmIsRecordMatches(const Model_Checking::Data &tran
 wxString mmFilterTransactions::getHTML()
 {
     mmHTMLBuilder hb;
-    _trans.clear();
+    m_trans.clear();
     const auto splits = Model_Splittransaction::instance().get_all();
     const auto tags = Model_Taglink::instance().get_all(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION));
     for (const auto& tran : Model_Checking::instance().all()) //TODO: find should be faster
@@ -138,11 +138,11 @@ wxString mmFilterTransactions::getHTML()
             bool found = true;
             for (const auto& split : full_tran.m_splits)
             {
-                if (_categoryFilter)
+                if (m_categoryFilter)
                 {
                     found = false;
 
-                    for (const auto& it : _categoryList)
+                    for (const auto& it : m_categoryList)
                     {
                         if (it == split.CATEGID) {
                             found = true;
@@ -156,14 +156,14 @@ wxString mmFilterTransactions::getHTML()
                     full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
                     full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
                     full_tran.NOTES.Append((tran.NOTES.IsEmpty() ? "" : " ") + split.NOTES);
-                    _trans.push_back(full_tran);
+                    m_trans.push_back(full_tran);
                 }
             }
         } else
-            _trans.push_back(full_tran);
+            m_trans.push_back(full_tran);
     }
 
-    std::stable_sort(_trans.begin(), _trans.end(), SorterByTRANSDATE());
+    std::stable_sort(m_trans.begin(), m_trans.end(), SorterByTRANSDATE());
 
     const wxString extra_style = R"(
 table {
@@ -209,12 +209,12 @@ table {
     hb.endThead();
     hb.startTbody();
     // Display the data for each row
-    for (auto& transaction : _trans)
+    for (auto& transaction : m_trans)
     {
         hb.startTableRow();
         hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
             , wxString::Format("%i", transaction.TRANSID), true);
-        hb.addColorMarker(getUDColour(transaction.COLOR).GetAsString(), true);
+        hb.addColorMarker(getUDColour(transaction.COLOR.GetValue()).GetAsString(), true);
         hb.addTableCellDate(transaction.TRANSDATE);
         hb.addTableCell(transaction.TRANSACTIONNUMBER);
         hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID)

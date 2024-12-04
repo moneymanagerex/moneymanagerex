@@ -78,13 +78,13 @@ public:
         Full_Data();
         explicit Full_Data(const Data& r);
         Full_Data(const Data& r
-            , const std::map<int /*trans id*/, Split_Data_Set>& splits
-            , const std::map<int /*trans id*/, Taglink_Data_Set>& tags);
+            , const std::map<int64 /*trans id*/, Model_Splittransaction::Data_Set /*split trans*/ > & splits
+            , const std::map<int64 /*trans id*/, Model_Taglink::Data_Set /*split trans*/ >& tags);
         ~Full_Data();
         void fill_data();
-        wxString real_payee_name(int account_id) const;
-        const wxString get_currency_code(int account_id) const;
-        const wxString get_account_name(int account_id) const;
+        wxString real_payee_name(int64 account_id) const;
+        const wxString get_currency_code(int64 account_id) const;
+        const wxString get_account_name(int64 account_id) const;
         bool has_split() const;
         bool has_tags() const;
         bool has_attachment() const;
@@ -101,7 +101,7 @@ public:
         wxString CATEGNAME;
         wxString TAGNAMES;
 
-        int ACCOUNTID_W, ACCOUNTID_D;
+        int64 ACCOUNTID_W, ACCOUNTID_D;
         double TRANSAMOUNT_W, TRANSAMOUNT_D;
         double ACCOUNT_FLOW;
         double ACCOUNT_BALANCE;
@@ -187,11 +187,11 @@ public:
     static Model_Checking& instance();
 
 public:
-    bool remove(int id);
-    int save(Data* r);
+    bool remove(int64 id);
+    int64 save(Data* r);
     int save(std::vector<Data>& rows);
     int save(std::vector<Data*>& rows);
-    void updateTimestamp(int id);
+    void updateTimestamp(int64 id);
 public:
     static const Split_Data_Set split(const Data* r);
     static const Split_Data_Set split(const Data& r);
@@ -214,21 +214,22 @@ public:
     static STATUS_ID status_id(const wxString& r);
     static STATUS_ID status_id(const Data* r);
     static STATUS_ID status_id(const Data& r);
-    static double account_flow(const Data* r, int account_id);
-    static double account_flow(const Data& r, int account_id);
-    static double account_outflow(const Data* r, int account_id);
-    static double account_outflow(const Data& r, int account_id);
-    static double account_inflow(const Data* r, int account_id);
-    static double account_inflow(const Data& r, int account_id);
-    static double account_recflow(const Data* r, int account_id);
-    static double account_recflow(const Data& r, int account_id);
+    static double account_flow(const Data* r, int64 account_id);
+    static double account_flow(const Data& r, int64 account_id);
+    static double account_outflow(const Data* r, int64 account_id);
+    static double account_outflow(const Data& r, int64 account_id);
+    static double account_inflow(const Data* r, int64 account_id);
+    static double account_inflow(const Data& r, int64 account_id);
+    static double account_recflow(const Data* r, int64 account_id);
+    static double account_recflow(const Data& r, int64 account_id);
     static bool is_locked(const Data* r);
     static bool is_transfer(const wxString& r);
     static bool is_transfer(const Data* r);
     static bool is_deposit(const wxString& r);
     static bool is_deposit(const Data* r);
-    static void getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int accountID = -1);
-    static void getEmptyData(Data &data, int accountID);
+    static void getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int64 accountID = -1);
+    static void getEmptyData(Data &data, int64 accountID);
+
     static bool getTransactionData(Data &data, const Data* r);
     static void putDataToTransaction(Data *r, const Data &data);
     static bool foreignTransaction(const Data& data);

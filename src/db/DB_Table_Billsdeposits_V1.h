@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,7 +49,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
 
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
-    typedef std::map<int, Self::Data*> Index_By_Id;
+    typedef std::map<int64, Self::Data*> Index_By_Id;
     Cache cache_;
     Index_By_Id index_by_id_;
     Data* fake_; // in case the entity not found
@@ -112,28 +112,28 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         db->Commit();
     }
     
-    struct BDID : public DB_Column<int>
+    struct BDID : public DB_Column<int64>
     { 
         static wxString name() { return "BDID"; } 
-        explicit BDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit BDID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct ACCOUNTID : public DB_Column<int>
+    struct ACCOUNTID : public DB_Column<int64>
     { 
         static wxString name() { return "ACCOUNTID"; } 
-        explicit ACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ACCOUNTID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct TOACCOUNTID : public DB_Column<int>
+    struct TOACCOUNTID : public DB_Column<int64>
     { 
         static wxString name() { return "TOACCOUNTID"; } 
-        explicit TOACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit TOACCOUNTID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct PAYEEID : public DB_Column<int>
+    struct PAYEEID : public DB_Column<int64>
     { 
         static wxString name() { return "PAYEEID"; } 
-        explicit PAYEEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit PAYEEID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct TRANSCODE : public DB_Column<wxString>
@@ -166,10 +166,10 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct CATEGID : public DB_Column<int>
+    struct CATEGID : public DB_Column<int64>
     { 
         static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CATEGID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct TRANSDATE : public DB_Column<wxString>
@@ -178,10 +178,10 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         explicit TRANSDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct FOLLOWUPID : public DB_Column<int>
+    struct FOLLOWUPID : public DB_Column<int64>
     { 
         static wxString name() { return "FOLLOWUPID"; } 
-        explicit FOLLOWUPID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit FOLLOWUPID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct TOTRANSAMOUNT : public DB_Column<double>
@@ -190,10 +190,10 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         explicit TOTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     
-    struct REPEATS : public DB_Column<int>
+    struct REPEATS : public DB_Column<int64>
     { 
         static wxString name() { return "REPEATS"; } 
-        explicit REPEATS(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit REPEATS(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct NEXTOCCURRENCEDATE : public DB_Column<wxString>
@@ -202,16 +202,16 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         explicit NEXTOCCURRENCEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct NUMOCCURRENCES : public DB_Column<int>
+    struct NUMOCCURRENCES : public DB_Column<int64>
     { 
         static wxString name() { return "NUMOCCURRENCES"; } 
-        explicit NUMOCCURRENCES(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit NUMOCCURRENCES(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct COLOR : public DB_Column<int>
+    struct COLOR : public DB_Column<int64>
     { 
         static wxString name() { return "COLOR"; } 
-        explicit COLOR(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit COLOR(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     typedef BDID PRIMARY;
@@ -295,30 +295,30 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int BDID;//  primary key
-        int ACCOUNTID;
-        int TOACCOUNTID;
-        int PAYEEID;
+        int64 BDID;//  primary key
+        int64 ACCOUNTID;
+        int64 TOACCOUNTID;
+        int64 PAYEEID;
         wxString TRANSCODE;
         double TRANSAMOUNT;
         wxString STATUS;
         wxString TRANSACTIONNUMBER;
         wxString NOTES;
-        int CATEGID;
+        int64 CATEGID;
         wxString TRANSDATE;
-        int FOLLOWUPID;
+        int64 FOLLOWUPID;
         double TOTRANSAMOUNT;
-        int REPEATS;
+        int64 REPEATS;
         wxString NEXTOCCURRENCEDATE;
-        int NUMOCCURRENCES;
-        int COLOR;
+        int64 NUMOCCURRENCES;
+        int64 COLOR;
 
-        int id() const
+        int64 id() const
         {
             return BDID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             BDID = id;
         }
@@ -376,23 +376,23 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         {
             table_ = table;
         
-            BDID = q.GetInt(0); // BDID
-            ACCOUNTID = q.GetInt(1); // ACCOUNTID
-            TOACCOUNTID = q.GetInt(2); // TOACCOUNTID
-            PAYEEID = q.GetInt(3); // PAYEEID
+            BDID = q.GetInt64(0); // BDID
+            ACCOUNTID = q.GetInt64(1); // ACCOUNTID
+            TOACCOUNTID = q.GetInt64(2); // TOACCOUNTID
+            PAYEEID = q.GetInt64(3); // PAYEEID
             TRANSCODE = q.GetString(4); // TRANSCODE
             TRANSAMOUNT = q.GetDouble(5); // TRANSAMOUNT
             STATUS = q.GetString(6); // STATUS
             TRANSACTIONNUMBER = q.GetString(7); // TRANSACTIONNUMBER
             NOTES = q.GetString(8); // NOTES
-            CATEGID = q.GetInt(9); // CATEGID
+            CATEGID = q.GetInt64(9); // CATEGID
             TRANSDATE = q.GetString(10); // TRANSDATE
-            FOLLOWUPID = q.GetInt(11); // FOLLOWUPID
+            FOLLOWUPID = q.GetInt64(11); // FOLLOWUPID
             TOTRANSAMOUNT = q.GetDouble(12); // TOTRANSAMOUNT
-            REPEATS = q.GetInt(13); // REPEATS
+            REPEATS = q.GetInt64(13); // REPEATS
             NEXTOCCURRENCEDATE = q.GetString(14); // NEXTOCCURRENCEDATE
-            NUMOCCURRENCES = q.GetInt(15); // NUMOCCURRENCES
-            COLOR = q.GetInt(16); // COLOR
+            NUMOCCURRENCES = q.GetInt64(15); // NUMOCCURRENCES
+            COLOR = q.GetInt64(16); // COLOR
         }
 
         Data& operator=(const Data& other)
@@ -527,13 +527,13 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("BDID");
-            json_writer.Int(this->BDID);
+            json_writer.Int64(this->BDID.GetValue());
             json_writer.Key("ACCOUNTID");
-            json_writer.Int(this->ACCOUNTID);
+            json_writer.Int64(this->ACCOUNTID.GetValue());
             json_writer.Key("TOACCOUNTID");
-            json_writer.Int(this->TOACCOUNTID);
+            json_writer.Int64(this->TOACCOUNTID.GetValue());
             json_writer.Key("PAYEEID");
-            json_writer.Int(this->PAYEEID);
+            json_writer.Int64(this->PAYEEID.GetValue());
             json_writer.Key("TRANSCODE");
             json_writer.String(this->TRANSCODE.utf8_str());
             json_writer.Key("TRANSAMOUNT");
@@ -545,65 +545,65 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
             json_writer.Key("NOTES");
             json_writer.String(this->NOTES.utf8_str());
             json_writer.Key("CATEGID");
-            json_writer.Int(this->CATEGID);
+            json_writer.Int64(this->CATEGID.GetValue());
             json_writer.Key("TRANSDATE");
             json_writer.String(this->TRANSDATE.utf8_str());
             json_writer.Key("FOLLOWUPID");
-            json_writer.Int(this->FOLLOWUPID);
+            json_writer.Int64(this->FOLLOWUPID.GetValue());
             json_writer.Key("TOTRANSAMOUNT");
             json_writer.Double(this->TOTRANSAMOUNT);
             json_writer.Key("REPEATS");
-            json_writer.Int(this->REPEATS);
+            json_writer.Int64(this->REPEATS.GetValue());
             json_writer.Key("NEXTOCCURRENCEDATE");
             json_writer.String(this->NEXTOCCURRENCEDATE.utf8_str());
             json_writer.Key("NUMOCCURRENCES");
-            json_writer.Int(this->NUMOCCURRENCES);
+            json_writer.Int64(this->NUMOCCURRENCES.GetValue());
             json_writer.Key("COLOR");
-            json_writer.Int(this->COLOR);
+            json_writer.Int64(this->COLOR.GetValue());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"BDID") = BDID;
-            row(L"ACCOUNTID") = ACCOUNTID;
-            row(L"TOACCOUNTID") = TOACCOUNTID;
-            row(L"PAYEEID") = PAYEEID;
+            row(L"BDID") = BDID.GetValue();
+            row(L"ACCOUNTID") = ACCOUNTID.GetValue();
+            row(L"TOACCOUNTID") = TOACCOUNTID.GetValue();
+            row(L"PAYEEID") = PAYEEID.GetValue();
             row(L"TRANSCODE") = TRANSCODE;
             row(L"TRANSAMOUNT") = TRANSAMOUNT;
             row(L"STATUS") = STATUS;
             row(L"TRANSACTIONNUMBER") = TRANSACTIONNUMBER;
             row(L"NOTES") = NOTES;
-            row(L"CATEGID") = CATEGID;
+            row(L"CATEGID") = CATEGID.GetValue();
             row(L"TRANSDATE") = TRANSDATE;
-            row(L"FOLLOWUPID") = FOLLOWUPID;
+            row(L"FOLLOWUPID") = FOLLOWUPID.GetValue();
             row(L"TOTRANSAMOUNT") = TOTRANSAMOUNT;
-            row(L"REPEATS") = REPEATS;
+            row(L"REPEATS") = REPEATS.GetValue();
             row(L"NEXTOCCURRENCEDATE") = NEXTOCCURRENCEDATE;
-            row(L"NUMOCCURRENCES") = NUMOCCURRENCES;
-            row(L"COLOR") = COLOR;
+            row(L"NUMOCCURRENCES") = NUMOCCURRENCES.GetValue();
+            row(L"COLOR") = COLOR.GetValue();
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"BDID") = BDID;
-            t(L"ACCOUNTID") = ACCOUNTID;
-            t(L"TOACCOUNTID") = TOACCOUNTID;
-            t(L"PAYEEID") = PAYEEID;
+            t(L"BDID") = BDID.GetValue();
+            t(L"ACCOUNTID") = ACCOUNTID.GetValue();
+            t(L"TOACCOUNTID") = TOACCOUNTID.GetValue();
+            t(L"PAYEEID") = PAYEEID.GetValue();
             t(L"TRANSCODE") = TRANSCODE;
             t(L"TRANSAMOUNT") = TRANSAMOUNT;
             t(L"STATUS") = STATUS;
             t(L"TRANSACTIONNUMBER") = TRANSACTIONNUMBER;
             t(L"NOTES") = NOTES;
-            t(L"CATEGID") = CATEGID;
+            t(L"CATEGID") = CATEGID.GetValue();
             t(L"TRANSDATE") = TRANSDATE;
-            t(L"FOLLOWUPID") = FOLLOWUPID;
+            t(L"FOLLOWUPID") = FOLLOWUPID.GetValue();
             t(L"TOTRANSAMOUNT") = TOTRANSAMOUNT;
-            t(L"REPEATS") = REPEATS;
+            t(L"REPEATS") = REPEATS.GetValue();
             t(L"NEXTOCCURRENCEDATE") = NEXTOCCURRENCEDATE;
-            t(L"NUMOCCURRENCES") = NUMOCCURRENCES;
-            t(L"COLOR") = COLOR;
+            t(L"NUMOCCURRENCES") = NUMOCCURRENCES.GetValue();
+            t(L"COLOR") = COLOR.GetValue();
         }
 
         /** Save the record instance in memory to the database. */
@@ -730,14 +730,14 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
 
         if (entity->id() <= 0)
         {
-            entity->id((db->GetLastRowId()).ToLong());
+            entity->id(db->GetLastRowId());
             index_by_id_.insert(std::make_pair(entity->id(), entity));
         }
         return true;
     }
 
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(const int id, wxSQLite3Database* db)
+    bool remove(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try
@@ -808,7 +808,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
-    Self::Data* get(const int id, wxSQLite3Database* db)
+    Self::Data* get(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
@@ -856,7 +856,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* get_record(const int id, wxSQLite3Database* db)
+    Self::Data* get_record(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {

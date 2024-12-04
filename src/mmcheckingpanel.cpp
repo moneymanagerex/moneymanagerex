@@ -104,7 +104,7 @@ wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
 wxEND_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
-mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accountID, int id)
+mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int64 accountID, int id)
     : m_AccountID(accountID)
     , isAllAccounts_((-1 == accountID) ? true : false)
     , isTrash_((-2 == accountID) ? true : false)
@@ -192,11 +192,11 @@ void mmCheckingPanel::filterTable()
 
     auto trans_fields_data = Model_CustomFieldData::instance().get_all(Model_Attachment::TRANSACTION);
     const auto matrix = Model_CustomField::getMatrix(Model_Attachment::TRANSACTION);
-    int udfc01_ref_id = matrix.at("UDFC01");
-    int udfc02_ref_id = matrix.at("UDFC02");
-    int udfc03_ref_id = matrix.at("UDFC03");
-    int udfc04_ref_id = matrix.at("UDFC04");
-    int udfc05_ref_id = matrix.at("UDFC05");
+    int64 udfc01_ref_id = matrix.at("UDFC01");
+    int64 udfc02_ref_id = matrix.at("UDFC02");
+    int64 udfc03_ref_id = matrix.at("UDFC03");
+    int64 udfc04_ref_id = matrix.at("UDFC04");
+    int64 udfc05_ref_id = matrix.at("UDFC05");
 
     bool ignore_future = Option::instance().getIgnoreFutureTransactions();
     const wxString today_date = Option::instance().UseTransDateTime() ?
@@ -211,9 +211,9 @@ void mmCheckingPanel::filterTable()
         Model_Checking::instance().all() :
         Model_Account::transaction(this->m_account);
 
-    std::map<int, Model_Budgetsplittransaction::Data_Set> bills_splits;
-    std::map<int, Model_Taglink::Data_Set> bills_tags;
-    std::map<int, Model_Attachment::Data_Set> bills_attachments;
+    std::map<int64, Model_Budgetsplittransaction::Data_Set> bills_splits;
+    std::map<int64, Model_Taglink::Data_Set> bills_tags;
+    std::map<int64, Model_Attachment::Data_Set> bills_attachments;
     Model_Billsdeposits::Data_Set bills;
     typedef std::tuple<int /* i */, wxString /* date */, int /* repeat_num */> bills_index_t;
     std::vector<bills_index_t> bills_index;
@@ -1164,7 +1164,7 @@ void mmCheckingPanel::SetSelectedTransaction(Fused_Transaction::IdRepeat fused_i
 }
 
 // Refresh account screen with new details
-void mmCheckingPanel::DisplayAccountDetails(int accountID)
+void mmCheckingPanel::DisplayAccountDetails(int64 accountID)
 {
     wxASSERT (-1 != accountID); // should not be called for all transaction view
 

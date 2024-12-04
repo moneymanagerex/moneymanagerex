@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,7 +49,7 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
 
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
-    typedef std::map<int, Self::Data*> Index_By_Id;
+    typedef std::map<int64, Self::Data*> Index_By_Id;
     Cache cache_;
     Index_By_Id index_by_id_;
     Data* fake_; // in case the entity not found
@@ -113,16 +113,16 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
         db->Commit();
     }
     
-    struct TRANSLINKID : public DB_Column<int>
+    struct TRANSLINKID : public DB_Column<int64>
     { 
         static wxString name() { return "TRANSLINKID"; } 
-        explicit TRANSLINKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit TRANSLINKID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct CHECKINGACCOUNTID : public DB_Column<int>
+    struct CHECKINGACCOUNTID : public DB_Column<int64>
     { 
         static wxString name() { return "CHECKINGACCOUNTID"; } 
-        explicit CHECKINGACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CHECKINGACCOUNTID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct LINKTYPE : public DB_Column<wxString>
@@ -131,10 +131,10 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
         explicit LINKTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct LINKRECORDID : public DB_Column<int>
+    struct LINKRECORDID : public DB_Column<int64>
     { 
         static wxString name() { return "LINKRECORDID"; } 
-        explicit LINKRECORDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit LINKRECORDID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     typedef TRANSLINKID PRIMARY;
@@ -179,17 +179,17 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int TRANSLINKID;//  primary key
-        int CHECKINGACCOUNTID;
+        int64 TRANSLINKID;//  primary key
+        int64 CHECKINGACCOUNTID;
         wxString LINKTYPE;
-        int LINKRECORDID;
+        int64 LINKRECORDID;
 
-        int id() const
+        int64 id() const
         {
             return TRANSLINKID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             TRANSLINKID = id;
         }
@@ -226,10 +226,10 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
         {
             table_ = table;
         
-            TRANSLINKID = q.GetInt(0); // TRANSLINKID
-            CHECKINGACCOUNTID = q.GetInt(1); // CHECKINGACCOUNTID
+            TRANSLINKID = q.GetInt64(0); // TRANSLINKID
+            CHECKINGACCOUNTID = q.GetInt64(1); // CHECKINGACCOUNTID
             LINKTYPE = q.GetString(2); // LINKTYPE
-            LINKRECORDID = q.GetInt(3); // LINKRECORDID
+            LINKRECORDID = q.GetInt64(3); // LINKRECORDID
         }
 
         Data& operator=(const Data& other)
@@ -286,31 +286,31 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("TRANSLINKID");
-            json_writer.Int(this->TRANSLINKID);
+            json_writer.Int64(this->TRANSLINKID.GetValue());
             json_writer.Key("CHECKINGACCOUNTID");
-            json_writer.Int(this->CHECKINGACCOUNTID);
+            json_writer.Int64(this->CHECKINGACCOUNTID.GetValue());
             json_writer.Key("LINKTYPE");
             json_writer.String(this->LINKTYPE.utf8_str());
             json_writer.Key("LINKRECORDID");
-            json_writer.Int(this->LINKRECORDID);
+            json_writer.Int64(this->LINKRECORDID.GetValue());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"TRANSLINKID") = TRANSLINKID;
-            row(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
+            row(L"TRANSLINKID") = TRANSLINKID.GetValue();
+            row(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID.GetValue();
             row(L"LINKTYPE") = LINKTYPE;
-            row(L"LINKRECORDID") = LINKRECORDID;
+            row(L"LINKRECORDID") = LINKRECORDID.GetValue();
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"TRANSLINKID") = TRANSLINKID;
-            t(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID;
+            t(L"TRANSLINKID") = TRANSLINKID.GetValue();
+            t(L"CHECKINGACCOUNTID") = CHECKINGACCOUNTID.GetValue();
             t(L"LINKTYPE") = LINKTYPE;
-            t(L"LINKRECORDID") = LINKRECORDID;
+            t(L"LINKRECORDID") = LINKRECORDID.GetValue();
         }
 
         /** Save the record instance in memory to the database. */
@@ -424,14 +424,14 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
 
         if (entity->id() <= 0)
         {
-            entity->id((db->GetLastRowId()).ToLong());
+            entity->id(db->GetLastRowId());
             index_by_id_.insert(std::make_pair(entity->id(), entity));
         }
         return true;
     }
 
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(const int id, wxSQLite3Database* db)
+    bool remove(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try
@@ -502,7 +502,7 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
-    Self::Data* get(const int id, wxSQLite3Database* db)
+    Self::Data* get(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
@@ -550,7 +550,7 @@ struct DB_Table_TRANSLINK_V1 : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* get_record(const int id, wxSQLite3Database* db)
+    Self::Data* get_record(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {

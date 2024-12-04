@@ -59,26 +59,26 @@ public:
 
 public:
     /** Return the Data record for the given category name */
-    Data* get(const wxString& name, const int& parentid);
+    Data* get(const wxString& name, const int64 parentid);
     Data* get(const wxString& name, const wxString& parentname);
 
     const wxArrayString FilterCategory(const wxString& category_pattern);
-    static const std::map<wxString, int > all_categories(bool excludeHidden = false);
+    static const std::map<wxString, int64 > all_categories(bool excludeHidden = false);
     static Model_Category::Data_Set sub_category(const Data* r);
     static Model_Category::Data_Set sub_category(const Data& r);
     static Model_Category::Data_Set sub_tree(const Data& r);
     static Model_Category::Data_Set sub_tree(const Data* r);
-    static const wxString full_name(int category_id);
-    static const wxString full_name(int category_id, wxString delimiter);
-    static bool is_hidden(int catID);
-    static bool is_used(int id);
-    static bool has_income(int id);
+    static const wxString full_name(int64 category_id);
+    static const wxString full_name(int64 category_id, wxString delimiter);
+    static bool is_hidden(int64 catID);
+    static bool is_used(int64 id);
+    static bool has_income(int64 id);
     static void getCategoryStats(
-        std::map<int, std::map<int, double>> &categoryStats
+        std::map<int64, std::map<int, double>> &categoryStats
         , wxSharedPtr<wxArrayString> accountArray
         , mmDateRange* date_range, bool ignoreFuture
         , bool group_by_month = true
-        , std::map<int, double >*budgetAmt = nullptr
+        , std::map<int64, double >*budgetAmt = nullptr
         , bool fin_months = false);
     static const wxString full_name(const Data* category);
 

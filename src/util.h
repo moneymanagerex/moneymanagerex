@@ -58,19 +58,19 @@ struct WebsiteNews
 class mmListBoxItem: public wxClientData
 {
 public:
-    mmListBoxItem(int index, const wxString& name)
+    mmListBoxItem(int64 index, const wxString& name)
         : index_(index), name_(name)
     {}
 
-    int getIndex() const;
+    int64 getIndex() const;
     wxString getName() const;
 
 private:
-    int index_;
+    int64 index_;
     wxString name_;
 };
 
-inline int mmListBoxItem::getIndex() const { return index_; }
+inline int64 mmListBoxItem::getIndex() const { return index_; }
 inline wxString mmListBoxItem::getName() const { return name_; }
 
 //----------------------------------------------------------------------------
@@ -78,14 +78,14 @@ inline wxString mmListBoxItem::getName() const { return name_; }
 class mmTreeItemData : public wxTreeItemData
 {
 public:
-    mmTreeItemData(int type, int id);
+    mmTreeItemData(int type, int64 id);
     mmTreeItemData(const wxString& data, mmPrintableBase* report);
     mmTreeItemData(mmPrintableBase* report, const wxString& data);
     mmTreeItemData(int type, const wxString& data);
     
     ~mmTreeItemData() {}
 
-    int getData() const;
+    int64 getData() const;
     const wxString getString() const;
     mmPrintableBase* get_report() const;
     bool isReadOnly() const;
@@ -117,13 +117,13 @@ public:
     };
 
 private:
-    int id_ = -1;
+    int64 id_ = -1;
     int type_;
     wxString stringData_;
     wxSharedPtr<mmPrintableBase> report_;
 };
 
-inline int mmTreeItemData::getData() const { return id_; }
+inline int64 mmTreeItemData::getData() const { return id_; }
 inline const wxString mmTreeItemData::getString() const { return stringData_; }
 inline mmPrintableBase* mmTreeItemData::get_report() const { return report_.get(); }
 inline int mmTreeItemData::getType() const { return type_; }
@@ -165,7 +165,7 @@ public:
 
 bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList);
 enum yahoo_price_type { FIAT = 0, SHARES };
-bool getOnlineCurrencyRates(wxString& msg, const int curr_id = -1, const bool used_only = true);
+bool getOnlineCurrencyRates(wxString& msg, const int64 curr_id = -1, const bool used_only = true);
 bool get_yahoo_prices(std::map<wxString, double>& symbols
     , std::map<wxString, double>& out
     , const wxString& base_currency_symbol

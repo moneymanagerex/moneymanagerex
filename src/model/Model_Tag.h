@@ -52,7 +52,7 @@ public:
     Data* get(const wxString& name);
 
     /* Returns 0 if not used, 1 if used, and -1 if used only in deleted transactions */
-    int is_used(int id);
+    int is_used(int64 id);
 };
 
 #endif // 

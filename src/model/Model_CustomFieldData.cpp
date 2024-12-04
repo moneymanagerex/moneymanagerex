@@ -49,7 +49,7 @@ Model_CustomFieldData& Model_CustomFieldData::instance()
     return Singleton<Model_CustomFieldData>::instance();
 }
 
-Model_CustomFieldData::Data* Model_CustomFieldData::get(int FieldID, int RefID)
+Model_CustomFieldData::Data* Model_CustomFieldData::get(int64 FieldID, int64 RefID)
 {
     Model_CustomFieldData::Data_Set items = this->find(FIELDID(FieldID), REFID(RefID));
     if (!items.empty())
@@ -57,12 +57,12 @@ Model_CustomFieldData::Data* Model_CustomFieldData::get(int FieldID, int RefID)
     return nullptr;
 }
 
-std::map<int, Model_CustomFieldData::Data_Set> Model_CustomFieldData::get_all(Model_Attachment::REFTYPE reftype)
+std::map<int64, Model_CustomFieldData::Data_Set> Model_CustomFieldData::get_all(Model_Attachment::REFTYPE reftype)
 {
     const wxString& reftype_desc = Model_Attachment::reftype_desc(reftype);
     Model_CustomField::Data_Set custom_fields = Model_CustomField::instance()
         .find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(reftype_desc));
-    std::map<int, Model_CustomFieldData::Data_Set> data;
+    std::map<int64, Model_CustomFieldData::Data_Set> data;
     for (const auto& entry : custom_fields)
     {
         for (const auto & custom_field : find(Model_CustomFieldData::FIELDID(entry.FIELDID)))
@@ -74,7 +74,7 @@ std::map<int, Model_CustomFieldData::Data_Set> Model_CustomFieldData::get_all(Mo
 }
 
 // Return all CustomFieldData value
-wxArrayString Model_CustomFieldData::allValue(const int FieldID)
+wxArrayString Model_CustomFieldData::allValue(const int64 FieldID)
 {
     wxArrayString values;
     wxString PreviousValue;
@@ -93,7 +93,7 @@ wxArrayString Model_CustomFieldData::allValue(const int FieldID)
     return values;
 }
 
-bool Model_CustomFieldData::DeleteAllData(const wxString& RefType, int RefID)
+bool Model_CustomFieldData::DeleteAllData(const wxString& RefType, int64 RefID)
 {
     const auto& fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType));
 

@@ -904,7 +904,7 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
     bool in_the_future = (strDate > m_today);
 
     // apply alternating background pattern
-    int user_color_id = m_trans[item].COLOR;
+    int user_color_id = m_trans[item].COLOR.GetValue();
     if (user_color_id < 0) user_color_id = 0;
     else if (user_color_id > 7) user_color_id = 0;
 
@@ -1087,7 +1087,7 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
     refreshVisualList();
 }
 
-int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
+int64 TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
 {
     wxASSERT(!m_cp->isAllAccounts_ && !m_cp->isTrash_);
 
@@ -1099,7 +1099,7 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
     if (!m_cp->isAllAccounts_ && ((Model_Checking::type_id(copy->TRANSCODE) != Model_Checking::TYPE_ID_TRANSFER) ||
             (m_cp->m_AccountID != copy->ACCOUNTID && m_cp->m_AccountID != copy->TOACCOUNTID)))
         copy->ACCOUNTID = m_cp->m_AccountID;
-    int transactionID = Model_Checking::instance().save(copy);
+    int64 transactionID = Model_Checking::instance().save(copy);
     m_pasted_id.push_back({transactionID, 0});   // add the newly pasted transaction
 
     // Clone transaction tags
@@ -1118,7 +1118,7 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
     {
         Model_Splittransaction::Data *copy_split_item = Model_Splittransaction::instance().clone(&split_item);
         copy_split_item->TRANSID = transactionID;
-        int splittransID = Model_Splittransaction::instance().save(copy_split_item);
+        int64 splittransID = Model_Splittransaction::instance().save(copy_split_item);
 
         // Clone split tags
         for (const auto& link : Model_Taglink::instance().find(Model_Taglink::REFTYPE(reftype), Model_Taglink::REFID(split_item.SPLITTRANSID)))
@@ -1243,7 +1243,7 @@ void TransactionListCtrl::OnRestoreViewedTransaction(wxCommandEvent&)
             , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        std::set<std::pair<wxString, int>> assetStockAccts;
+        std::set<std::pair<wxString, int64>> assetStockAccts;
         for (const auto& tran : this->m_trans) {
             if (tran.m_repeat_num) continue;
             Model_Checking::Data* trx = Model_Checking::instance().get(tran.TRANSID);
@@ -1286,7 +1286,7 @@ void TransactionListCtrl::OnRestoreTransaction(wxCommandEvent& WXUNUSED(event))
 
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        std::set<std::pair<wxString, int>> assetStockAccts;
+        std::set<std::pair<wxString, int64>> assetStockAccts;
         for (const auto& id : m_selected_id)
         {
             if (!id.second) {
@@ -1369,7 +1369,7 @@ void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
 {
     int retainDays = Model_Setting::instance().GetIntSetting("DELETED_TRANS_RETAIN_DAYS", 30);
     wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
-    std::set<std::pair<wxString, int>> assetStockAccts;
+    std::set<std::pair<wxString, int64>> assetStockAccts;
     const auto s = Model_Checking::status_key(status);
     Model_Checking::instance().Savepoint();
     Model_Attachment::instance().Savepoint();
@@ -1438,7 +1438,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
     if (msgDlg.ShowModal() == wxID_YES)
     {
         wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
-        std::set<std::pair<wxString, int>> assetStockAccts;
+        std::set<std::pair<wxString, int64>> assetStockAccts;
         Model_Checking::instance().Savepoint();
         Model_Attachment::instance().Savepoint();
         Model_Splittransaction::instance().Savepoint();
@@ -1485,7 +1485,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 }
 
 //----------------------------------------------------------------------------
-bool TransactionListCtrl::TransactionLocked(int accountID, const wxString& transdate)
+bool TransactionListCtrl::TransactionLocked(int64 accountID, const wxString& transdate)
 {
     Model_Account::Data* account = Model_Account::instance().get(accountID);
     if (Model_Account::BoolOf(account->STATEMENTLOCKED))
@@ -1547,7 +1547,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     // edit multiple transactions
     if (m_selected_id.size() > 1)
     {
-        std::vector<int> transid;
+        std::vector<int64> transid;
         for (const auto& id : m_selected_id)
             if (!id.second)
                 transid.push_back(id.first);
@@ -1648,7 +1648,7 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 
     Model_Checking::instance().Savepoint();
     Model_Billsdeposits::instance().Savepoint();
-    for (const auto id : m_selected_id)
+    for (const auto& id : m_selected_id)
     {
         if (!id.second) {
             Model_Checking::Data* tran = Model_Checking::instance().get(id.first);
@@ -1708,7 +1708,7 @@ void TransactionListCtrl::refreshVisualList(bool filter)
 
     i = 0;
     for(const auto& entry : m_trans) {
-        int id = !entry.m_repeat_num ? entry.TRANSID : entry.m_bdid;
+        int64 id = !entry.m_repeat_num ? entry.TRANSID : entry.m_bdid;
         for (const auto& item : m_selected_id) {
             if (item.first == id && item.second == entry.m_repeat_num) {
                 SetItemState(i, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
@@ -1758,14 +1758,14 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
             , Model_Account::instance().all_checking_account_names());
         if (scd.ShowModal() == wxID_OK)
         {
-            int dest_account_id = -1;
+            int64 dest_account_id = -1;
             wxString dest_account_name = scd.GetStringSelection();
             Model_Account::Data* dest_account = Model_Account::instance().get(dest_account_name);
             if (dest_account)
                 dest_account_id = dest_account->ACCOUNTID;
             else
                 return;
-            std::vector<int> skip_trx;
+            std::vector<int64> skip_trx;
             Model_Checking::instance().Savepoint();
             for (const auto& id : m_selected_id)
             {
@@ -1812,7 +1812,7 @@ void TransactionListCtrl::OnViewOtherAccount(wxCommandEvent& /*event*/)
         Fused_Transaction::Full_Data(*Model_Checking::instance().get(id.first)) :
         Fused_Transaction::Full_Data(*Model_Billsdeposits::instance().get(id.first));
 
-    int gotoAccountID = (m_cp->m_AccountID == tran.ACCOUNTID) ? tran.TOACCOUNTID : tran.ACCOUNTID;
+    int64 gotoAccountID = (m_cp->m_AccountID == tran.ACCOUNTID) ? tran.TOACCOUNTID : tran.ACCOUNTID;
     wxString gotoAccountName = (m_cp->m_AccountID == tran.ACCOUNTID) ? tran.TOACCOUNTNAME : tran.ACCOUNTNAME;   
 
     m_cp->m_frame->setAccountNavTreeSection(gotoAccountName);
@@ -1938,7 +1938,7 @@ void TransactionListCtrl::doSearchText(const wxString& value)
     while (true)
     {
         g_asc ? selectedItem-- : selectedItem++;
-        if (selectedItem < 0 || selectedItem >= static_cast<int>(m_trans.size()))
+        if (selectedItem < 0 || selectedItem >= m_trans.size())
             break;
 
         wxString test1 = Model_Currency::fromString2CLocale(value);
@@ -2058,8 +2058,8 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
             for (const auto& split : fused.m_splits)
             {
                 wxString tagnames;
-                std::map<wxString, int> tags = Model_Taglink::instance().get(splitRefType, split.SPLITTRANSID);
-                std::map<wxString, int, caseInsensitiveComparator> sortedTags(tags.begin(), tags.end());
+                std::map<wxString, int64> tags = Model_Taglink::instance().get(splitRefType, split.SPLITTRANSID);
+                std::map<wxString, int64, caseInsensitiveComparator> sortedTags(tags.begin(), tags.end());
                 for (const auto& tag : sortedTags)
                     tagnames.Append(tag.first + " ");
                 if (!tagnames.IsEmpty())
@@ -2142,7 +2142,7 @@ void TransactionListCtrl::FindSelectedTransactions()
     for (const auto& tran : m_trans) {
         if (GetItemState(x++, wxLIST_STATE_SELECTED) != wxLIST_STATE_SELECTED)
             continue;
-        int id = !tran.m_repeat_num ? tran.TRANSID : tran.m_bdid;
+        int64 id = !tran.m_repeat_num ? tran.TRANSID : tran.m_bdid;
         if (unique_ids.find({id, tran.m_repeat_num}) == unique_ids.end()) {
             m_selected_id.push_back({id, tran.m_repeat_num});
             unique_ids.insert({id, tran.m_repeat_num});

@@ -67,7 +67,7 @@ wxString JSON_Formated(rapidjson::Document& j_doc)
 
 //----------------------------------------------------------------------------
 
-mmTreeItemData::mmTreeItemData(int type, int id)
+mmTreeItemData::mmTreeItemData(int type, int64 id)
     : id_(id)
     , type_(type)
     , report_(nullptr)
@@ -675,7 +675,7 @@ END_EVENT_TABLE()
 
 //--------------------------------------------------------------------
 
-bool getOnlineCurrencyRates(wxString& msg,const int curr_id, const bool used_only)
+bool getOnlineCurrencyRates(wxString& msg,const int64 curr_id, const bool used_only)
 {
     wxString base_currency_symbol;
 

@@ -36,7 +36,7 @@ class relocateCategoryDialog : public wxDialog
 public:
     relocateCategoryDialog();
     ~relocateCategoryDialog();
-    relocateCategoryDialog(wxWindow* parent, int sourceCatID = -1, int sourceSubCatID = -1);
+    relocateCategoryDialog(wxWindow* parent, int64 sourceCatID = -1, int64 sourceSubCatID = -1);
 
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
@@ -59,8 +59,8 @@ public:
 
 private:
     void IsOkOk();
-    int m_sourceCatID = -1;
-    int m_sourceSubCatID = -1;
+    int64 m_sourceCatID = -1;
+    int64 m_sourceSubCatID = -1;
     mmComboBoxCategory* cbSourceCategory_ = nullptr;
     mmComboBoxCategory* cbDestCategory_ = nullptr;
     wxCheckBox* cbDeleteSourceCategory_ = nullptr;

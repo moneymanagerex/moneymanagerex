@@ -48,7 +48,7 @@ Model_CurrencyHistory& Model_CurrencyHistory::instance()
     return Singleton<Model_CurrencyHistory>::instance();
 }
 
-Model_CurrencyHistory::Data* Model_CurrencyHistory::get(const int& currencyID, const wxDate& date)
+Model_CurrencyHistory::Data* Model_CurrencyHistory::get(const int64& currencyID, const wxDate& date)
 {
     Data* hist = this->get_one(CURRENCYID(currencyID), DB_Table_CURRENCYHISTORY_V1::CURRDATE(date.FormatISODate()));
     if (hist) return hist;
@@ -71,7 +71,7 @@ DB_Table_CURRENCYHISTORY_V1::CURRDATE Model_CurrencyHistory::CURRDATE(const wxDa
 /**
 Adds or updates an element in stock history
 */
-int Model_CurrencyHistory::addUpdate(const int& currencyID, const wxDate& date, double price, UPDTYPE type)
+int64 Model_CurrencyHistory::addUpdate(const int64 currencyID, const wxDate& date, double price, UPDTYPE type)
 {
     Data *currHist = this->get(currencyID, date);
     if (!currHist) currHist = this->create();
@@ -84,7 +84,7 @@ int Model_CurrencyHistory::addUpdate(const int& currencyID, const wxDate& date, 
 }
 
 /** Return the rate for a specific currency in a specific day*/
-double Model_CurrencyHistory::getDayRate(int currencyID, const wxString& DateISO)
+double Model_CurrencyHistory::getDayRate(int64 currencyID, const wxString& DateISO)
 {
     if (!Option::instance().getCurrencyHistoryEnabled()) {
         auto c = Model_Currency::instance().get(currencyID);
@@ -100,7 +100,7 @@ double Model_CurrencyHistory::getDayRate(int currencyID, const wxString& DateISO
     }
 }
 
-double Model_CurrencyHistory::getDayRate(int currencyID, const wxDate& Date)
+double Model_CurrencyHistory::getDayRate(int64 currencyID, const wxDate& Date)
 {
     if (currencyID == Model_Currency::GetBaseCurrency()->CURRENCYID || currencyID == -1)
         return 1;
@@ -141,7 +141,7 @@ double Model_CurrencyHistory::getDayRate(int currencyID, const wxDate& Date)
 }
 
 /** Return the last rate for specified currency */
-double Model_CurrencyHistory::getLastRate(const int& currencyID)
+double Model_CurrencyHistory::getLastRate(const int64& currencyID)
 {
     if (!Option::instance().getCurrencyHistoryEnabled())
         return Model_Currency::instance().get(currencyID)->BASECONVRATE;

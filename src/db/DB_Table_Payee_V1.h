@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,7 +49,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
 
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
-    typedef std::map<int, Self::Data*> Index_By_Id;
+    typedef std::map<int64, Self::Data*> Index_By_Id;
     Cache cache_;
     Index_By_Id index_by_id_;
     Data* fake_; // in case the entity not found
@@ -112,10 +112,10 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         db->Commit();
     }
     
-    struct PAYEEID : public DB_Column<int>
+    struct PAYEEID : public DB_Column<int64>
     { 
         static wxString name() { return "PAYEEID"; } 
-        explicit PAYEEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit PAYEEID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct PAYEENAME : public DB_Column<wxString>
@@ -124,10 +124,10 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         explicit PAYEENAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct CATEGID : public DB_Column<int>
+    struct CATEGID : public DB_Column<int64>
     { 
         static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CATEGID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct NUMBER : public DB_Column<wxString>
@@ -148,10 +148,10 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct ACTIVE : public DB_Column<int>
+    struct ACTIVE : public DB_Column<int64>
     { 
         static wxString name() { return "ACTIVE"; } 
-        explicit ACTIVE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ACTIVE(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct PATTERN : public DB_Column<wxString>
@@ -214,21 +214,21 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int PAYEEID;//  primary key
+        int64 PAYEEID;//  primary key
         wxString PAYEENAME;
-        int CATEGID;
+        int64 CATEGID;
         wxString NUMBER;
         wxString WEBSITE;
         wxString NOTES;
-        int ACTIVE;
+        int64 ACTIVE;
         wxString PATTERN;
 
-        int id() const
+        int64 id() const
         {
             return PAYEEID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             PAYEEID = id;
         }
@@ -269,13 +269,13 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         {
             table_ = table;
         
-            PAYEEID = q.GetInt(0); // PAYEEID
+            PAYEEID = q.GetInt64(0); // PAYEEID
             PAYEENAME = q.GetString(1); // PAYEENAME
-            CATEGID = q.GetInt(2); // CATEGID
+            CATEGID = q.GetInt64(2); // CATEGID
             NUMBER = q.GetString(3); // NUMBER
             WEBSITE = q.GetString(4); // WEBSITE
             NOTES = q.GetString(5); // NOTES
-            ACTIVE = q.GetInt(6); // ACTIVE
+            ACTIVE = q.GetInt64(6); // ACTIVE
             PATTERN = q.GetString(7); // PATTERN
         }
 
@@ -357,11 +357,11 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("PAYEEID");
-            json_writer.Int(this->PAYEEID);
+            json_writer.Int64(this->PAYEEID.GetValue());
             json_writer.Key("PAYEENAME");
             json_writer.String(this->PAYEENAME.utf8_str());
             json_writer.Key("CATEGID");
-            json_writer.Int(this->CATEGID);
+            json_writer.Int64(this->CATEGID.GetValue());
             json_writer.Key("NUMBER");
             json_writer.String(this->NUMBER.utf8_str());
             json_writer.Key("WEBSITE");
@@ -369,7 +369,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             json_writer.Key("NOTES");
             json_writer.String(this->NOTES.utf8_str());
             json_writer.Key("ACTIVE");
-            json_writer.Int(this->ACTIVE);
+            json_writer.Int64(this->ACTIVE.GetValue());
             json_writer.Key("PATTERN");
             json_writer.String(this->PATTERN.utf8_str());
         }
@@ -377,26 +377,26 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"PAYEEID") = PAYEEID;
+            row(L"PAYEEID") = PAYEEID.GetValue();
             row(L"PAYEENAME") = PAYEENAME;
-            row(L"CATEGID") = CATEGID;
+            row(L"CATEGID") = CATEGID.GetValue();
             row(L"NUMBER") = NUMBER;
             row(L"WEBSITE") = WEBSITE;
             row(L"NOTES") = NOTES;
-            row(L"ACTIVE") = ACTIVE;
+            row(L"ACTIVE") = ACTIVE.GetValue();
             row(L"PATTERN") = PATTERN;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"PAYEEID") = PAYEEID;
+            t(L"PAYEEID") = PAYEEID.GetValue();
             t(L"PAYEENAME") = PAYEENAME;
-            t(L"CATEGID") = CATEGID;
+            t(L"CATEGID") = CATEGID.GetValue();
             t(L"NUMBER") = NUMBER;
             t(L"WEBSITE") = WEBSITE;
             t(L"NOTES") = NOTES;
-            t(L"ACTIVE") = ACTIVE;
+            t(L"ACTIVE") = ACTIVE.GetValue();
             t(L"PATTERN") = PATTERN;
         }
 
@@ -515,14 +515,14 @@ struct DB_Table_PAYEE_V1 : public DB_Table
 
         if (entity->id() <= 0)
         {
-            entity->id((db->GetLastRowId()).ToLong());
+            entity->id(db->GetLastRowId());
             index_by_id_.insert(std::make_pair(entity->id(), entity));
         }
         return true;
     }
 
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(const int id, wxSQLite3Database* db)
+    bool remove(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try
@@ -593,7 +593,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
-    Self::Data* get(const int id, wxSQLite3Database* db)
+    Self::Data* get(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
@@ -641,7 +641,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* get_record(const int id, wxSQLite3Database* db)
+    Self::Data* get_record(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {

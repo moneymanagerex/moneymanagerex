@@ -227,6 +227,15 @@ int Model_Infotable::GetIntInfo(const wxString& key, int default_value)
     return default_value;
 }
 
+int64 Model_Infotable::GetInt64Info(const wxString& key, int64 default_value)
+{
+    const wxString value = this->GetStringInfo(key, "");
+    if (!value.IsEmpty() && value.IsNumber())
+        return int64(wxAtol(value));
+
+    return default_value;
+}
+
 wxString Model_Infotable::GetStringInfo(const wxString& key, const wxString& default_value)
 {
     Data* info = this->get_one(INFONAME(key));

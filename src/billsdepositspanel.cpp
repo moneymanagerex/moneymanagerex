@@ -351,7 +351,7 @@ void mmBillsDepositsPanel::CreateControls()
     mmBillsDepositsPanel::updateBottomPanelData(-1);
 }
 
-int mmBillsDepositsPanel::initVirtualListControl(int id)
+int mmBillsDepositsPanel::initVirtualListControl(int64 id)
 {
     listCtrlAccount_->DeleteAllItems();
 
@@ -504,7 +504,7 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     }
     case COL_AUTO:
     {
-        int autoExecute = bill.REPEATS / BD_REPEATS_MULTIPLEX_BASE;
+        int autoExecute = bill.REPEATS.GetValue() / BD_REPEATS_MULTIPLEX_BASE;
         wxString repeatSTR =
             (autoExecute == Model_Billsdeposits::REPEAT_AUTO_SILENT) ? _("Automated") :
             (autoExecute == Model_Billsdeposits::REPEAT_AUTO_MANUAL) ? _("Suggested") :
@@ -530,7 +530,7 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
 
 const wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Data* item) const
 {
-    int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+    int repeats = item->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
 
     wxString text = wxGetTranslation(BILLSDEPOSITS_REPEATS[repeats]);
     if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS)
@@ -540,8 +540,8 @@ const wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Dat
 
 int mmBillsDepositsPanel::GetNumRepeats(const Model_Billsdeposits::Data* item) const
 {
-    int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
-    int numRepeats = item->NUMOCCURRENCES;
+    int repeats = item->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+    int numRepeats = item->NUMOCCURRENCES.GetValue();
 
     if (repeats == Model_Billsdeposits::REPEAT_ONCE)
         numRepeats = 1;
@@ -560,7 +560,7 @@ int mmBillsDepositsPanel::GetNumRepeats(const Model_Billsdeposits::Data* item) c
 
 const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data* item) const
 {
-    int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+    int repeats = item->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
     if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && item->NUMOCCURRENCES < 0)
     {
         return _("Inactive");
@@ -605,8 +605,8 @@ void billsDepositsListCtrl::OnListLeftClick(wxMouseEvent& event)
 int billsDepositsListCtrl::OnGetItemImage(long item) const
 {
     // demultiplex REPEATS
-    int autoExecute = m_bdp->bills_[item].REPEATS / BD_REPEATS_MULTIPLEX_BASE;
-    int repeats = m_bdp->bills_[item].REPEATS % BD_REPEATS_MULTIPLEX_BASE;
+    int autoExecute = m_bdp->bills_[item].REPEATS.GetValue() / BD_REPEATS_MULTIPLEX_BASE;
+    int repeats = m_bdp->bills_[item].REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE;
     if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && m_bdp->bills_[item].NUMOCCURRENCES < 0)
     {
         // inactive
@@ -678,7 +678,7 @@ void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        int BdId = m_bdp->bills_[m_selected_row].BDID;
+        int64 BdId = m_bdp->bills_[m_selected_row].BDID;
         Model_Billsdeposits::instance().remove(BdId);
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), BdId);
         m_bdp->do_delete_custom_values(-BdId);
@@ -691,7 +691,7 @@ void billsDepositsListCtrl::OnEnterBDTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    int id = m_bdp->bills_[m_selected_row].BDID;
+    int64 id = m_bdp->bills_[m_selected_row].BDID;
     mmBDDialog dlg(this, id, false, true);
     if ( dlg.ShowModal() == wxID_OK )
     {
@@ -705,7 +705,7 @@ void billsDepositsListCtrl::OnSkipBDTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    int id = m_bdp->bills_[m_selected_row].BDID;
+    int64 id = m_bdp->bills_[m_selected_row].BDID;
     Model_Billsdeposits::instance().completeBDInSeries(id);
     if (++m_selected_row < long(m_bdp->bills_.size()))
         id = m_bdp->bills_[m_selected_row].BDID;
@@ -716,7 +716,7 @@ void billsDepositsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    int RefId = m_bdp->bills_[m_selected_row].BDID;
+    int64 RefId = m_bdp->bills_[m_selected_row].BDID;
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
 
     mmAttachmentDialog dlg(this, RefType, RefId);
@@ -728,7 +728,7 @@ void billsDepositsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 void billsDepositsListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
-    int RefId = m_bdp->bills_[m_selected_row].BDID;
+    int64 RefId = m_bdp->bills_[m_selected_row].BDID;
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
 
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
@@ -897,7 +897,7 @@ void billsDepositsListCtrl::refreshVisualList(int selected_index)
 void billsDepositsListCtrl::RefreshList()
 {
     if (m_bdp->bills_.size() == 0) return;
-    int id = -1;
+    int64 id = -1;
     if (m_selected_row != -1)
     {
         id = m_bdp->bills_[m_selected_row].BDID;
@@ -909,7 +909,7 @@ wxListItemAttr* billsDepositsListCtrl::OnGetItemAttr(long item) const
 {
     if (item < 0 || item >= static_cast<int>(m_bdp->bills_.size())) return 0;
 
-    int color_id = m_bdp->bills_[item].COLOR;
+    int color_id = m_bdp->bills_[item].COLOR.GetValue();
 
     static std::map<int, wxSharedPtr<wxListItemAttr> > cache;
     if (color_id > 0)
@@ -940,7 +940,7 @@ wxListItemAttr* billsDepositsListCtrl::OnGetItemAttr(long item) const
 void billsDepositsListCtrl::OnSetUserColour(wxCommandEvent& event)
 {
     if (m_selected_row == -1) return;
-    int id = m_bdp->bills_[m_selected_row].BDID;
+    int64 id = m_bdp->bills_[m_selected_row].BDID;
 
     int user_color_id = event.GetId();
     user_color_id -= MENU_ON_SET_UDC0;
@@ -986,7 +986,7 @@ wxString  mmBillsDepositsPanel::BuildPage() const
     return listCtrlAccount_->BuildPage(_("Scheduled Transactions"));
 }
 
-void mmBillsDepositsPanel::do_delete_custom_values(int id)
+void mmBillsDepositsPanel::do_delete_custom_values(int64 id)
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     Model_CustomFieldData::DeleteAllData(RefType, id);

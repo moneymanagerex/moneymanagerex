@@ -51,7 +51,7 @@ public:
 
     mmCheckingPanel(wxWindow* parent
         , mmGUIFrame* frame
-        , int accountID
+        , int64 accountID
         , int id = wxID_ANY
     );
 
@@ -60,7 +60,7 @@ public:
     // Display the split categories for the selected transaction.
     void DisplaySplitCategories(Fused_Transaction::IdB fused_id);
     // Refresh account screen with new details
-    void DisplayAccountDetails(int accountID = -1);
+    void DisplayAccountDetails(int64 accountID = -1);
 
     void SetSelectedTransaction(Fused_Transaction::IdRepeat fused_id);
 
@@ -127,7 +127,7 @@ private:
     wxSharedPtr<mmFilterTransactionsDialog> m_trans_filter_dlg;
 
 private:
-    int m_AccountID = -1;
+    int64 m_AccountID = -1;
     bool isAllAccounts_ = false; // TRUE = All accounts are displayed
     bool isTrash_ = false; // TRUE = Deleted transactions are displayed
     int m_filter_id;

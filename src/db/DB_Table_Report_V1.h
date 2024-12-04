@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,7 +49,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
 
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
-    typedef std::map<int, Self::Data*> Index_By_Id;
+    typedef std::map<int64, Self::Data*> Index_By_Id;
     Cache cache_;
     Index_By_Id index_by_id_;
     Data* fake_; // in case the entity not found
@@ -112,10 +112,10 @@ struct DB_Table_REPORT_V1 : public DB_Table
         db->Commit();
     }
     
-    struct REPORTID : public DB_Column<int>
+    struct REPORTID : public DB_Column<int64>
     { 
         static wxString name() { return "REPORTID"; } 
-        explicit REPORTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit REPORTID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct REPORTNAME : public DB_Column<wxString>
@@ -130,10 +130,10 @@ struct DB_Table_REPORT_V1 : public DB_Table
         explicit GROUPNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct ACTIVE : public DB_Column<int>
+    struct ACTIVE : public DB_Column<int64>
     { 
         static wxString name() { return "ACTIVE"; } 
-        explicit ACTIVE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ACTIVE(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct SQLCONTENT : public DB_Column<wxString>
@@ -214,21 +214,21 @@ struct DB_Table_REPORT_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int REPORTID;//  primary key
+        int64 REPORTID;//  primary key
         wxString REPORTNAME;
         wxString GROUPNAME;
-        int ACTIVE;
+        int64 ACTIVE;
         wxString SQLCONTENT;
         wxString LUACONTENT;
         wxString TEMPLATECONTENT;
         wxString DESCRIPTION;
 
-        int id() const
+        int64 id() const
         {
             return REPORTID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             REPORTID = id;
         }
@@ -268,10 +268,10 @@ struct DB_Table_REPORT_V1 : public DB_Table
         {
             table_ = table;
         
-            REPORTID = q.GetInt(0); // REPORTID
+            REPORTID = q.GetInt64(0); // REPORTID
             REPORTNAME = q.GetString(1); // REPORTNAME
             GROUPNAME = q.GetString(2); // GROUPNAME
-            ACTIVE = q.GetInt(3); // ACTIVE
+            ACTIVE = q.GetInt64(3); // ACTIVE
             SQLCONTENT = q.GetString(4); // SQLCONTENT
             LUACONTENT = q.GetString(5); // LUACONTENT
             TEMPLATECONTENT = q.GetString(6); // TEMPLATECONTENT
@@ -356,13 +356,13 @@ struct DB_Table_REPORT_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("REPORTID");
-            json_writer.Int(this->REPORTID);
+            json_writer.Int64(this->REPORTID.GetValue());
             json_writer.Key("REPORTNAME");
             json_writer.String(this->REPORTNAME.utf8_str());
             json_writer.Key("GROUPNAME");
             json_writer.String(this->GROUPNAME.utf8_str());
             json_writer.Key("ACTIVE");
-            json_writer.Int(this->ACTIVE);
+            json_writer.Int64(this->ACTIVE.GetValue());
             json_writer.Key("SQLCONTENT");
             json_writer.String(this->SQLCONTENT.utf8_str());
             json_writer.Key("LUACONTENT");
@@ -376,10 +376,10 @@ struct DB_Table_REPORT_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"REPORTID") = REPORTID;
+            row(L"REPORTID") = REPORTID.GetValue();
             row(L"REPORTNAME") = REPORTNAME;
             row(L"GROUPNAME") = GROUPNAME;
-            row(L"ACTIVE") = ACTIVE;
+            row(L"ACTIVE") = ACTIVE.GetValue();
             row(L"SQLCONTENT") = SQLCONTENT;
             row(L"LUACONTENT") = LUACONTENT;
             row(L"TEMPLATECONTENT") = TEMPLATECONTENT;
@@ -389,10 +389,10 @@ struct DB_Table_REPORT_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"REPORTID") = REPORTID;
+            t(L"REPORTID") = REPORTID.GetValue();
             t(L"REPORTNAME") = REPORTNAME;
             t(L"GROUPNAME") = GROUPNAME;
-            t(L"ACTIVE") = ACTIVE;
+            t(L"ACTIVE") = ACTIVE.GetValue();
             t(L"SQLCONTENT") = SQLCONTENT;
             t(L"LUACONTENT") = LUACONTENT;
             t(L"TEMPLATECONTENT") = TEMPLATECONTENT;
@@ -514,14 +514,14 @@ struct DB_Table_REPORT_V1 : public DB_Table
 
         if (entity->id() <= 0)
         {
-            entity->id((db->GetLastRowId()).ToLong());
+            entity->id(db->GetLastRowId());
             index_by_id_.insert(std::make_pair(entity->id(), entity));
         }
         return true;
     }
 
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(const int id, wxSQLite3Database* db)
+    bool remove(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try
@@ -592,7 +592,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
-    Self::Data* get(const int id, wxSQLite3Database* db)
+    Self::Data* get(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
@@ -640,7 +640,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* get_record(const int id, wxSQLite3Database* db)
+    Self::Data* get_record(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {

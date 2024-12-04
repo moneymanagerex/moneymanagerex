@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,7 +49,7 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
 
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
-    typedef std::map<int, Self::Data*> Index_By_Id;
+    typedef std::map<int64, Self::Data*> Index_By_Id;
     Cache cache_;
     Index_By_Id index_by_id_;
     Data* fake_; // in case the entity not found
@@ -112,22 +112,22 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         db->Commit();
     }
     
-    struct FIELDATADID : public DB_Column<int>
+    struct FIELDATADID : public DB_Column<int64>
     { 
         static wxString name() { return "FIELDATADID"; } 
-        explicit FIELDATADID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit FIELDATADID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct FIELDID : public DB_Column<int>
+    struct FIELDID : public DB_Column<int64>
     { 
         static wxString name() { return "FIELDID"; } 
-        explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit FIELDID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct REFID : public DB_Column<int>
+    struct REFID : public DB_Column<int64>
     { 
         static wxString name() { return "REFID"; } 
-        explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit REFID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct CONTENT : public DB_Column<wxString>
@@ -178,17 +178,17 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int FIELDATADID;//  primary key
-        int FIELDID;
-        int REFID;
+        int64 FIELDATADID;//  primary key
+        int64 FIELDID;
+        int64 REFID;
         wxString CONTENT;
 
-        int id() const
+        int64 id() const
         {
             return FIELDATADID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             FIELDATADID = id;
         }
@@ -225,9 +225,9 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         {
             table_ = table;
         
-            FIELDATADID = q.GetInt(0); // FIELDATADID
-            FIELDID = q.GetInt(1); // FIELDID
-            REFID = q.GetInt(2); // REFID
+            FIELDATADID = q.GetInt64(0); // FIELDATADID
+            FIELDID = q.GetInt64(1); // FIELDID
+            REFID = q.GetInt64(2); // REFID
             CONTENT = q.GetString(3); // CONTENT
         }
 
@@ -285,11 +285,11 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("FIELDATADID");
-            json_writer.Int(this->FIELDATADID);
+            json_writer.Int64(this->FIELDATADID.GetValue());
             json_writer.Key("FIELDID");
-            json_writer.Int(this->FIELDID);
+            json_writer.Int64(this->FIELDID.GetValue());
             json_writer.Key("REFID");
-            json_writer.Int(this->REFID);
+            json_writer.Int64(this->REFID.GetValue());
             json_writer.Key("CONTENT");
             json_writer.String(this->CONTENT.utf8_str());
         }
@@ -297,18 +297,18 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"FIELDATADID") = FIELDATADID;
-            row(L"FIELDID") = FIELDID;
-            row(L"REFID") = REFID;
+            row(L"FIELDATADID") = FIELDATADID.GetValue();
+            row(L"FIELDID") = FIELDID.GetValue();
+            row(L"REFID") = REFID.GetValue();
             row(L"CONTENT") = CONTENT;
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"FIELDATADID") = FIELDATADID;
-            t(L"FIELDID") = FIELDID;
-            t(L"REFID") = REFID;
+            t(L"FIELDATADID") = FIELDATADID.GetValue();
+            t(L"FIELDID") = FIELDID.GetValue();
+            t(L"REFID") = REFID.GetValue();
             t(L"CONTENT") = CONTENT;
         }
 
@@ -423,14 +423,14 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
 
         if (entity->id() <= 0)
         {
-            entity->id((db->GetLastRowId()).ToLong());
+            entity->id(db->GetLastRowId());
             index_by_id_.insert(std::make_pair(entity->id(), entity));
         }
         return true;
     }
 
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(const int id, wxSQLite3Database* db)
+    bool remove(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try
@@ -501,7 +501,7 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
-    Self::Data* get(const int id, wxSQLite3Database* db)
+    Self::Data* get(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
@@ -549,7 +549,7 @@ struct DB_Table_CUSTOMFIELDDATA_V1 : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* get_record(const int id, wxSQLite3Database* db)
+    Self::Data* get_record(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {

@@ -90,7 +90,7 @@ public:
     static DB_Table_ASSETS_V1::STARTDATE STARTDATE(const wxDate& date, OP op = EQUAL);
     
 public:
-    static wxString get_asset_name(int asset_id);
+    static wxString get_asset_name(int64 asset_id);
     double balance();
     static wxDate STARTDATE(const Data* r);
     static wxDate STARTDATE(const Data& r);
