@@ -127,7 +127,7 @@ MMEX is mainly written in C++11 and uses the following open-source packages:
 
 ## Tips
 
-* Database file (both regular and encrypted) can be opened directly
+* Database files (both regular and encrypted) can be opened directly
   with [wxsqliteplus]
 * Download dozens of useful reports from the [general reports] repository
 * Star this repository if you feel it is helpful [![st]][stargazers]
@@ -189,9 +189,6 @@ MMEX is mainly written in C++11 and uses the following open-source packages:
 ## Support
 
 [![Donate via PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";)
-
-[![Buy us a Cofee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://cash.me/$guanlisheng/1)
-
 
 ## License
 
