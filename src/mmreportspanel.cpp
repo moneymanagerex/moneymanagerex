@@ -696,7 +696,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
         //wxLogDebug("year:"+ wxString(parms[2].c_str(), wxConvUTF8));
         //wxLogDebug("month:"+ wxString(parms[3].c_str(), wxConvUTF8));
         
-        int budgetYearID = Model_Budgetyear::instance().Get(parms[3] + "-" + parms[4]);
+        int64_t budgetYearID = Model_Budgetyear::instance().Get(parms[3] + "-" + parms[4]);
         if (budgetYearID == -1)
         {
             wxLogInfo("Monthly budget not found!");
