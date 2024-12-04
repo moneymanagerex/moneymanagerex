@@ -53,8 +53,8 @@ private:
 
     void OnFocusChange(wxChildFocusEvent& event);
 
-    int sourceTagID_ = -1;
-    int destTagID_ = -1;
+    int64 sourceTagID_ = -1;
+    int64 destTagID_ = -1;
     wxArrayString choices_;
 
     wxComboBox* cbSourceTag_ = nullptr;

@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,7 +49,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
 
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
-    typedef std::map<int, Self::Data*> Index_By_Id;
+    typedef std::map<int64, Self::Data*> Index_By_Id;
     Cache cache_;
     Index_By_Id index_by_id_;
     Data* fake_; // in case the entity not found
@@ -113,28 +113,28 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         db->Commit();
     }
     
-    struct TRANSID : public DB_Column<int>
+    struct TRANSID : public DB_Column<int64>
     { 
         static wxString name() { return "TRANSID"; } 
-        explicit TRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit TRANSID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct ACCOUNTID : public DB_Column<int>
+    struct ACCOUNTID : public DB_Column<int64>
     { 
         static wxString name() { return "ACCOUNTID"; } 
-        explicit ACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ACCOUNTID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct TOACCOUNTID : public DB_Column<int>
+    struct TOACCOUNTID : public DB_Column<int64>
     { 
         static wxString name() { return "TOACCOUNTID"; } 
-        explicit TOACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit TOACCOUNTID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct PAYEEID : public DB_Column<int>
+    struct PAYEEID : public DB_Column<int64>
     { 
         static wxString name() { return "PAYEEID"; } 
-        explicit PAYEEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit PAYEEID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct TRANSCODE : public DB_Column<wxString>
@@ -167,10 +167,10 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct CATEGID : public DB_Column<int>
+    struct CATEGID : public DB_Column<int64>
     { 
         static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CATEGID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct TRANSDATE : public DB_Column<wxString>
@@ -191,10 +191,10 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         explicit DELETEDTIME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct FOLLOWUPID : public DB_Column<int>
+    struct FOLLOWUPID : public DB_Column<int64>
     { 
         static wxString name() { return "FOLLOWUPID"; } 
-        explicit FOLLOWUPID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit FOLLOWUPID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct TOTRANSAMOUNT : public DB_Column<double>
@@ -203,10 +203,10 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         explicit TOTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     
-    struct COLOR : public DB_Column<int>
+    struct COLOR : public DB_Column<int64>
     { 
         static wxString name() { return "COLOR"; } 
-        explicit COLOR(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit COLOR(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     typedef TRANSID PRIMARY;
@@ -287,29 +287,29 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int TRANSID;//  primary key
-        int ACCOUNTID;
-        int TOACCOUNTID;
-        int PAYEEID;
+        int64 TRANSID;//  primary key
+        int64 ACCOUNTID;
+        int64 TOACCOUNTID;
+        int64 PAYEEID;
         wxString TRANSCODE;
         double TRANSAMOUNT;
         wxString STATUS;
         wxString TRANSACTIONNUMBER;
         wxString NOTES;
-        int CATEGID;
+        int64 CATEGID;
         wxString TRANSDATE;
         wxString LASTUPDATEDTIME;
         wxString DELETEDTIME;
-        int FOLLOWUPID;
+        int64 FOLLOWUPID;
         double TOTRANSAMOUNT;
-        int COLOR;
+        int64 COLOR;
 
-        int id() const
+        int64 id() const
         {
             return TRANSID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             TRANSID = id;
         }
@@ -364,22 +364,22 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         {
             table_ = table;
         
-            TRANSID = q.GetInt(0); // TRANSID
-            ACCOUNTID = q.GetInt(1); // ACCOUNTID
-            TOACCOUNTID = q.GetInt(2); // TOACCOUNTID
-            PAYEEID = q.GetInt(3); // PAYEEID
+            TRANSID = q.GetInt64(0); // TRANSID
+            ACCOUNTID = q.GetInt64(1); // ACCOUNTID
+            TOACCOUNTID = q.GetInt64(2); // TOACCOUNTID
+            PAYEEID = q.GetInt64(3); // PAYEEID
             TRANSCODE = q.GetString(4); // TRANSCODE
             TRANSAMOUNT = q.GetDouble(5); // TRANSAMOUNT
             STATUS = q.GetString(6); // STATUS
             TRANSACTIONNUMBER = q.GetString(7); // TRANSACTIONNUMBER
             NOTES = q.GetString(8); // NOTES
-            CATEGID = q.GetInt(9); // CATEGID
+            CATEGID = q.GetInt64(9); // CATEGID
             TRANSDATE = q.GetString(10); // TRANSDATE
             LASTUPDATEDTIME = q.GetString(11); // LASTUPDATEDTIME
             DELETEDTIME = q.GetString(12); // DELETEDTIME
-            FOLLOWUPID = q.GetInt(13); // FOLLOWUPID
+            FOLLOWUPID = q.GetInt64(13); // FOLLOWUPID
             TOTRANSAMOUNT = q.GetDouble(14); // TOTRANSAMOUNT
-            COLOR = q.GetInt(15); // COLOR
+            COLOR = q.GetInt64(15); // COLOR
         }
 
         Data& operator=(const Data& other)
@@ -508,13 +508,13 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("TRANSID");
-            json_writer.Int(this->TRANSID);
+            json_writer.Int64(this->TRANSID.GetValue());
             json_writer.Key("ACCOUNTID");
-            json_writer.Int(this->ACCOUNTID);
+            json_writer.Int64(this->ACCOUNTID.GetValue());
             json_writer.Key("TOACCOUNTID");
-            json_writer.Int(this->TOACCOUNTID);
+            json_writer.Int64(this->TOACCOUNTID.GetValue());
             json_writer.Key("PAYEEID");
-            json_writer.Int(this->PAYEEID);
+            json_writer.Int64(this->PAYEEID.GetValue());
             json_writer.Key("TRANSCODE");
             json_writer.String(this->TRANSCODE.utf8_str());
             json_writer.Key("TRANSAMOUNT");
@@ -526,7 +526,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             json_writer.Key("NOTES");
             json_writer.String(this->NOTES.utf8_str());
             json_writer.Key("CATEGID");
-            json_writer.Int(this->CATEGID);
+            json_writer.Int64(this->CATEGID.GetValue());
             json_writer.Key("TRANSDATE");
             json_writer.String(this->TRANSDATE.utf8_str());
             json_writer.Key("LASTUPDATEDTIME");
@@ -534,53 +534,53 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             json_writer.Key("DELETEDTIME");
             json_writer.String(this->DELETEDTIME.utf8_str());
             json_writer.Key("FOLLOWUPID");
-            json_writer.Int(this->FOLLOWUPID);
+            json_writer.Int64(this->FOLLOWUPID.GetValue());
             json_writer.Key("TOTRANSAMOUNT");
             json_writer.Double(this->TOTRANSAMOUNT);
             json_writer.Key("COLOR");
-            json_writer.Int(this->COLOR);
+            json_writer.Int64(this->COLOR.GetValue());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"TRANSID") = TRANSID;
-            row(L"ACCOUNTID") = ACCOUNTID;
-            row(L"TOACCOUNTID") = TOACCOUNTID;
-            row(L"PAYEEID") = PAYEEID;
+            row(L"TRANSID") = TRANSID.GetValue();
+            row(L"ACCOUNTID") = ACCOUNTID.GetValue();
+            row(L"TOACCOUNTID") = TOACCOUNTID.GetValue();
+            row(L"PAYEEID") = PAYEEID.GetValue();
             row(L"TRANSCODE") = TRANSCODE;
             row(L"TRANSAMOUNT") = TRANSAMOUNT;
             row(L"STATUS") = STATUS;
             row(L"TRANSACTIONNUMBER") = TRANSACTIONNUMBER;
             row(L"NOTES") = NOTES;
-            row(L"CATEGID") = CATEGID;
+            row(L"CATEGID") = CATEGID.GetValue();
             row(L"TRANSDATE") = TRANSDATE;
             row(L"LASTUPDATEDTIME") = LASTUPDATEDTIME;
             row(L"DELETEDTIME") = DELETEDTIME;
-            row(L"FOLLOWUPID") = FOLLOWUPID;
+            row(L"FOLLOWUPID") = FOLLOWUPID.GetValue();
             row(L"TOTRANSAMOUNT") = TOTRANSAMOUNT;
-            row(L"COLOR") = COLOR;
+            row(L"COLOR") = COLOR.GetValue();
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"TRANSID") = TRANSID;
-            t(L"ACCOUNTID") = ACCOUNTID;
-            t(L"TOACCOUNTID") = TOACCOUNTID;
-            t(L"PAYEEID") = PAYEEID;
+            t(L"TRANSID") = TRANSID.GetValue();
+            t(L"ACCOUNTID") = ACCOUNTID.GetValue();
+            t(L"TOACCOUNTID") = TOACCOUNTID.GetValue();
+            t(L"PAYEEID") = PAYEEID.GetValue();
             t(L"TRANSCODE") = TRANSCODE;
             t(L"TRANSAMOUNT") = TRANSAMOUNT;
             t(L"STATUS") = STATUS;
             t(L"TRANSACTIONNUMBER") = TRANSACTIONNUMBER;
             t(L"NOTES") = NOTES;
-            t(L"CATEGID") = CATEGID;
+            t(L"CATEGID") = CATEGID.GetValue();
             t(L"TRANSDATE") = TRANSDATE;
             t(L"LASTUPDATEDTIME") = LASTUPDATEDTIME;
             t(L"DELETEDTIME") = DELETEDTIME;
-            t(L"FOLLOWUPID") = FOLLOWUPID;
+            t(L"FOLLOWUPID") = FOLLOWUPID.GetValue();
             t(L"TOTRANSAMOUNT") = TOTRANSAMOUNT;
-            t(L"COLOR") = COLOR;
+            t(L"COLOR") = COLOR.GetValue();
         }
 
         /** Save the record instance in memory to the database. */
@@ -706,14 +706,14 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
 
         if (entity->id() <= 0)
         {
-            entity->id((db->GetLastRowId()).ToLong());
+            entity->id(db->GetLastRowId());
             index_by_id_.insert(std::make_pair(entity->id(), entity));
         }
         return true;
     }
 
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(const int id, wxSQLite3Database* db)
+    bool remove(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try
@@ -784,7 +784,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
-    Self::Data* get(const int id, wxSQLite3Database* db)
+    Self::Data* get(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
@@ -832,7 +832,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* get_record(const int id, wxSQLite3Database* db)
+    Self::Data* get_record(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {

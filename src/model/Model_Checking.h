@@ -31,6 +31,7 @@ public:
     using Model<DB_Table_CHECKINGACCOUNT_V1>::remove;
     using Model<DB_Table_CHECKINGACCOUNT_V1>::save;
     typedef Model_Splittransaction::Data_Set Split_Data_Set;
+    typedef Model_Taglink::Data_Set Taglink_Data_Set;
 
 public:
     enum TYPE_ID
@@ -77,48 +78,41 @@ public:
         Full_Data();
         explicit Full_Data(const Data& r);
         Full_Data(const Data& r
-            , const std::map<int /*trans id*/, Model_Splittransaction::Data_Set /*split trans*/ > & splits
-            , const std::map<int /*trans id*/, Model_Taglink::Data_Set /*split trans*/ >& tags);
-
+            , const std::map<int64 /*trans id*/, Model_Splittransaction::Data_Set /*split trans*/ > & splits
+            , const std::map<int64 /*trans id*/, Model_Taglink::Data_Set /*split trans*/ >& tags);
         ~Full_Data();
-        wxString ACCOUNTNAME, TOACCOUNTNAME;
-        wxString PAYEENAME;
-        wxString CATEGNAME;
-        wxString TAGNAMES;
-        wxString displayID;
-        double AMOUNT;
-        double BALANCE;
-        wxArrayString ATTACHMENT_DESCRIPTION;
-        Model_Splittransaction::Data_Set m_splits;
-        Model_Taglink::Data_Set m_tags;
-        wxString real_payee_name(int account_id) const;
-        const wxString get_currency_code(int account_id) const;
-        const wxString get_account_name(int account_id) const;
+        void fill_data();
+        wxString real_payee_name(int64 account_id) const;
+        const wxString get_currency_code(int64 account_id) const;
+        const wxString get_account_name(int64 account_id) const;
         bool has_split() const;
         bool has_tags() const;
         bool has_attachment() const;
         bool is_foreign() const;
         bool is_foreign_transfer() const;
-
         wxString info() const;
         const wxString to_json();
 
+        Split_Data_Set m_splits;
+        Taglink_Data_Set m_tags;
+        wxString displayID;
+        wxString ACCOUNTNAME, TOACCOUNTNAME;
+        wxString PAYEENAME;
+        wxString CATEGNAME;
+        wxString TAGNAMES;
+
+        int64 ACCOUNTID_W, ACCOUNTID_D;
+        double TRANSAMOUNT_W, TRANSAMOUNT_D;
+        double ACCOUNT_FLOW;
+        double ACCOUNT_BALANCE;
+        wxArrayString ATTACHMENT_DESCRIPTION;
+
         // Reserved string variables for custom data
-        wxString UDFC01;
-        double UDFC01_val;
-        Model_CustomField::TYPE_ID UDFC01_Type;
-        wxString UDFC02;
-        double UDFC02_val;
-        Model_CustomField::TYPE_ID UDFC02_Type;
-        wxString UDFC03;
-        double UDFC03_val;
-        Model_CustomField::TYPE_ID UDFC03_Type;
-        wxString UDFC04;
-        double UDFC04_val;
-        Model_CustomField::TYPE_ID UDFC04_Type;
-        wxString UDFC05;
-        double UDFC05_val;
-        Model_CustomField::TYPE_ID UDFC05_Type;
+        wxString UDFC01; double UDFC01_val; Model_CustomField::TYPE_ID UDFC01_Type;
+        wxString UDFC02; double UDFC02_val; Model_CustomField::TYPE_ID UDFC02_Type;
+        wxString UDFC03; double UDFC03_val; Model_CustomField::TYPE_ID UDFC03_Type;
+        wxString UDFC04; double UDFC04_val; Model_CustomField::TYPE_ID UDFC04_Type;
+        wxString UDFC05; double UDFC05_val; Model_CustomField::TYPE_ID UDFC05_Type;
     };
     typedef std::vector<Full_Data> Full_Data_Set;
 
@@ -127,7 +121,7 @@ public:
         template<class DATA>
         bool operator()(const DATA& x, const DATA& y)
         {
-            return x.BALANCE < y.BALANCE;
+            return x.ACCOUNT_BALANCE < y.ACCOUNT_BALANCE;
         }
     };
     struct SorterByDEPOSIT
@@ -135,7 +129,7 @@ public:
         template<class DATA>
         bool operator()(const DATA& x, const DATA& y)
         {
-            return x.AMOUNT < y.AMOUNT;
+            return x.ACCOUNTID_D != -1 && (y.ACCOUNTID_D == -1 || x.TRANSAMOUNT_D < y.TRANSAMOUNT_D);
         }
     };
     struct SorterByWITHDRAWAL
@@ -143,7 +137,7 @@ public:
         template<class DATA>
         bool operator()(const DATA& x, const DATA& y)
         {
-            return x.AMOUNT > y.AMOUNT;
+            return x.ACCOUNTID_W != -1 && (y.ACCOUNTID_W == -1 || x.TRANSAMOUNT_W < y.TRANSAMOUNT_W);
         }
     };
     struct SorterByNUMBER
@@ -193,14 +187,14 @@ public:
     static Model_Checking& instance();
 
 public:
-    bool remove(int id);
-    int save(Data* r);
+    bool remove(int64 id);
+    int64 save(Data* r);
     int save(std::vector<Data>& rows);
     int save(std::vector<Data*>& rows);
-    void updateTimestamp(int id);
+    void updateTimestamp(int64 id);
 public:
-    static const Model_Splittransaction::Data_Set splittransaction(const Data* r);
-    static const Model_Splittransaction::Data_Set splittransaction(const Data& r);
+    static const Split_Data_Set split(const Data* r);
+    static const Split_Data_Set split(const Data& r);
 
 public:
     static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxDateTime& date, OP op = EQUAL);
@@ -220,23 +214,22 @@ public:
     static STATUS_ID status_id(const wxString& r);
     static STATUS_ID status_id(const Data* r);
     static STATUS_ID status_id(const Data& r);
-    static double amount(const Data* r, int account_id = -1);
-    static double amount(const Data&r, int account_id = -1);
-    static double balance(const Data* r, int account_id = -1);
-    static double balance(const Data& r, int account_id = -1);
-    static double withdrawal(const Data* r, int account_id = -1);
-    static double withdrawal(const Data& r, int account_id);
-    static double deposit(const Data* r, int account_id);
-    static double deposit(const Data& r, int account_id);
-    static double reconciled(const Data* r, int account_id);
-    static double reconciled(const Data& r, int account_id);
+    static double account_flow(const Data* r, int64 account_id);
+    static double account_flow(const Data& r, int64 account_id);
+    static double account_outflow(const Data* r, int64 account_id);
+    static double account_outflow(const Data& r, int64 account_id);
+    static double account_inflow(const Data* r, int64 account_id);
+    static double account_inflow(const Data& r, int64 account_id);
+    static double account_recflow(const Data* r, int64 account_id);
+    static double account_recflow(const Data& r, int64 account_id);
     static bool is_locked(const Data* r);
     static bool is_transfer(const wxString& r);
     static bool is_transfer(const Data* r);
     static bool is_deposit(const wxString& r);
     static bool is_deposit(const Data* r);
-    static void getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int accountID = -1);
-    static void getEmptyTransaction(Data &data, int accountID);
+    static void getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int64 accountID = -1);
+    static void getEmptyData(Data &data, int64 accountID);
+
     static bool getTransactionData(Data &data, const Data* r);
     static void putDataToTransaction(Data *r, const Data &data);
     static bool foreignTransaction(const Data& data);

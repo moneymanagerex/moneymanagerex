@@ -51,7 +51,7 @@ std::map<wxDate, double> mmReportSummaryByDate::createCheckingBalanceMap(const M
     for (const auto& tran : Model_Account::transaction(account))
     {
         wxDate date = Model_Checking::TRANSDATE(tran);
-        balance += Model_Checking::balance(tran, account.ACCOUNTID);
+        balance += Model_Checking::account_flow(tran, account.ACCOUNTID);
         balanceMap[date] = balance;
     } 
     return balanceMap;
@@ -94,7 +94,7 @@ double mmReportSummaryByDate::getDailyBalanceAt(const Model_Account::Data* accou
     }
 }
 
-double mmReportSummaryByDate::getDayRate(int currencyid, const wxDate& date)
+double mmReportSummaryByDate::getDayRate(int64 currencyid, const wxDate& date)
 {
     wxString key = wxString::Format("%d_%s", currencyid, date.FormatDate());
 

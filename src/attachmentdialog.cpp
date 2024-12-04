@@ -42,7 +42,7 @@ wxBEGIN_EVENT_TABLE( mmAttachmentDialog, wxDialog )
 wxEND_EVENT_TABLE()
 
 
-mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefType, int RefId, const wxString& name) :
+mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefType, int64 RefId, const wxString& name) :
     m_RefType(RefType)
     , m_RefId(RefId)
 {
@@ -164,7 +164,7 @@ void mmAttachmentDialog::fillControls()
     Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(m_RefType, m_RefId);
     if (attachments.size() == 0) return;
 
-    int firstInTheListAttachentID = -1;
+    int64 firstInTheListAttachentID = -1;
     for (const auto &entry : attachments)
     {
         if (firstInTheListAttachentID == -1) firstInTheListAttachentID = entry.ATTACHMENTID;
@@ -172,7 +172,7 @@ void mmAttachmentDialog::fillControls()
         if (debug_) data.push_back(wxVariant(wxString::Format("%i", entry.ATTACHMENTID)));
         data.push_back(wxVariant(entry.DESCRIPTION));
         data.push_back(wxVariant(entry.REFTYPE + m_PathSep + entry.FILENAME));
-        attachmentListBox_->AppendItem(data, static_cast<wxUIntPtr>(entry.ATTACHMENTID));
+        attachmentListBox_->AppendItem(data, static_cast<wxUIntPtr>(entry.ATTACHMENTID.GetValue()));
     }
 
     m_attachment_id = firstInTheListAttachentID;
@@ -528,7 +528,7 @@ bool mmAttachmentManage::OpenAttachment(const wxString& FileToOpen)
     return wxLaunchDefaultApplication(FileToOpen);;
 }
 
-bool mmAttachmentManage::DeleteAllAttachments(const wxString& RefType, int RefId)
+bool mmAttachmentManage::DeleteAllAttachments(const wxString& RefType, int64 RefId)
 {
     Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(RefType, RefId);
     wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + m_PathSep + RefType;
@@ -545,7 +545,7 @@ bool mmAttachmentManage::DeleteAllAttachments(const wxString& RefType, int RefId
     return true;
 }
 
-bool mmAttachmentManage::RelocateAllAttachments(const wxString& OldRefType, int OldRefId, const wxString& NewRefType, int NewRefId)
+bool mmAttachmentManage::RelocateAllAttachments(const wxString& OldRefType, int64 OldRefId, const wxString& NewRefType, int64 NewRefId)
 {
     auto attachments = Model_Attachment::instance().find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(OldRefType), Model_Attachment::REFID(OldRefId));
 
@@ -574,7 +574,7 @@ bool mmAttachmentManage::RelocateAllAttachments(const wxString& OldRefType, int 
     return true;
 }
 
-bool mmAttachmentManage::CloneAllAttachments(const wxString& RefType, int OldRefId, int NewRefId)
+bool mmAttachmentManage::CloneAllAttachments(const wxString& RefType, int64 OldRefId, int64 NewRefId)
 {
     auto attachments = Model_Attachment::instance().find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(RefType), Model_Attachment::REFID(OldRefId));
     const wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + RefType + m_PathSep;
@@ -598,7 +598,7 @@ bool mmAttachmentManage::CloneAllAttachments(const wxString& RefType, int OldRef
     return true;
 }
 
-void mmAttachmentManage::OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, int RefId)
+void mmAttachmentManage::OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, int64 RefId)
 {
     int AttachmentsNr = Model_Attachment::instance().NrAttachments(RefType, RefId);
 

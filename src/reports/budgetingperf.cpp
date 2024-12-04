@@ -89,12 +89,12 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         evaluateTransfer = true;
     }
     //Get statistics
-    std::map<int, Model_Budget::PERIOD_ID> budgetPeriod;
-    std::map<int, double> budgetAmt;
-    std::map<int, wxString> budgetNotes;
+    std::map<int64, Model_Budget::PERIOD_ID> budgetPeriod;
+    std::map<int64, double> budgetAmt;
+    std::map<int64, wxString> budgetNotes;
     Model_Budget::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt, budgetNotes);
 
-    std::map<int, std::map<int, double> > categoryStats;
+    std::map<int64, std::map<int, double> > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , accountArray_
         , &date_range
@@ -103,12 +103,12 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         , (evaluateTransfer ? &budgetAmt : nullptr)
         , Option::instance().BudgetFinancialYears());
 
-    std::map<int, std::map<int, double> > budgetStats;
+    std::map<int64, std::map<int, double> > budgetStats;
     Model_Budget::instance().getBudgetStats(budgetStats, &date_range, true);
 
     //Totals
-    std::map<int, double> actualTotal;
-    std::map<int, double> estimateTotal;
+    std::map<int64, double> actualTotal;
+    std::map<int64, double> estimateTotal;
 
     const wxString& headingStr = wxString::Format(_("Budget Performance for %s"),
         AdjustYearValues(startDay
@@ -161,9 +161,9 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             hb.endThead();
             hb.startTbody();
             {
-                std::map<int, std::map<int, double>> catTotalsEstimated, catTotalsActual;
-                std::map<int, wxString> formattedNames;
-                std::map<int, std::vector<Model_Category::Data>> categ_children;
+                std::map<int64, std::map<int, double>> catTotalsEstimated, catTotalsActual;
+                std::map<int64, wxString> formattedNames;
+                std::map<int64, std::vector<Model_Category::Data>> categ_children;
 
                 bool budgetDeductMonthly = Option::instance().BudgetDeductMonthly();
                 // pull categories from DB and store
@@ -177,7 +177,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                 {
                     Model_Category::Data category = categ_stack.back();
                     categ_stack.pop_back();
-                    int catID = category.CATEGID;
+                    int64 catID = category.CATEGID;
                     double estimate = 0;
                     double actual = 0;
                     for (auto child : categ_children[catID]) {
@@ -266,7 +266,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         while (!totals_stack.empty() && !categ_stack.empty() && totals_stack.back().CATEGID != categ_stack.back().PARENTID) {
                             hb.startAltTableRow();
                             {
-                                int id = totals_stack.back().CATEGID;
+                                int64 id = totals_stack.back().CATEGID;
                                 hb.startTableCell(" style='vertical-align:middle;'");
                                 hb.addText(wxString::Format(formattedNames[id] + "<a href=\"viewtrans:%d:-2\" target=\"_blank\">%s</a>"
                                     , id
@@ -311,7 +311,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                 {
                     hb.startAltTableRow();
                     {
-                        int id = totals_stack.back().CATEGID;
+                        int64 id = totals_stack.back().CATEGID;
                         hb.startTableCell(" style='vertical-align:middle;'");
                         hb.addText(wxString::Format(formattedNames[id] + "<a href=\"viewtrans:%d:-2\" target=\"_blank\">%s</a>"
                             , id

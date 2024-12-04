@@ -42,14 +42,14 @@ public:
     void date_range(const mmDateRange* date_range, int selection);
     void initial_report(bool initial);
 
-    int getDateSelection() const;
+    int64 getDateSelection() const;
     int getAccountSelection() const;
     int getChartSelection() const;
     int getForwardMonths() const;   
     const wxString getAccountNames() const;
     void chart(int selection);
     void setAccounts(int selection, const wxString& name);
-    void setSelection(int sel);
+    void setSelection(int64 sel);
     void setForwardMonths(int sel);
     void setReportSettings();
     void setReportParameters(int id);
@@ -100,7 +100,7 @@ public:
 
 protected:
     int m_chart_selection = 0;
-    int m_date_selection = 0;
+    int64 m_date_selection = 0;
     int m_forward_months = 24;
     wxString m_title;
     const mmDateRange* m_date_range = nullptr;
@@ -116,8 +116,8 @@ private:
     wxString m_settings = "";
 };
 
-inline void mmPrintableBase::setSelection(int sel) { m_date_selection = sel; }
-inline int mmPrintableBase::getDateSelection() const { return this->m_date_selection; }
+inline void mmPrintableBase::setSelection(int64 sel) { m_date_selection = sel; }
+inline int64 mmPrintableBase::getDateSelection() const { return this->m_date_selection; }
 inline void mmPrintableBase::setForwardMonths(int sel) { m_forward_months = sel; }
 inline int mmPrintableBase::getForwardMonths() const { return this->m_forward_months; }
 inline int mmPrintableBase::getAccountSelection() const { return this->m_account_selection; }

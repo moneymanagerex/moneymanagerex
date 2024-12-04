@@ -34,14 +34,14 @@ public:
     virtual wxString getHTMLText();
 
 protected:
-    void getPayeeStats(std::map<int, std::pair<double, double> > &payeeStats
+    void getPayeeStats(std::map<int64, std::pair<double, double> > &payeeStats
         , mmDateRange* date_range, bool ignoreFuture) const;
 
     enum TYPE {INCOME = 0, EXPENSES, MAX};
 
 private:
     // structure for sorting of data
-    struct data_holder { wxString name; int payee; double incomes; double expenses; };
+    struct data_holder { wxString name; int64 payee; double incomes; double expenses; };
     std::vector<data_holder> data_;
     std::vector<ValuePair> valueList_;
     double positiveTotal_;

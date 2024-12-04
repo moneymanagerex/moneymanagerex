@@ -72,7 +72,7 @@ htmlWidgetStocks::~htmlWidgetStocks()
 const wxString htmlWidgetStocks::getHTMLText()
 {
     wxString output = "";
-    std::map<int, std::pair<double, double> > stockStats;
+    std::map<int64, std::pair<double, double> > stockStats;
     calculate_stats(stockStats);
     if (!stockStats.empty())
     {
@@ -116,7 +116,7 @@ const wxString htmlWidgetStocks::getHTMLText()
     return output;
 }
 
-void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> > &stockStats)
+void htmlWidgetStocks::calculate_stats(std::map<int64, std::pair<double, double> > &stockStats)
 {
     this->grand_total_ = 0;
     this->grand_gain_lost_ = 0;
@@ -199,7 +199,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     , const mmDateRange* date_range) const
 {
     //Temporary map
-    std::map<int /*category*/, double> stat;
+    std::map<int64 /*category*/, double> stat;
 
     const auto split = Model_Splittransaction::instance().get_all();
     const auto &transactions = Model_Checking::instance().find(
@@ -221,7 +221,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
 
         if (it == split.end())
         {
-            int category = trx.CATEGID;
+            int64 category = trx.CATEGID;
             if (withdrawal)
                 stat[category] -= trx.TRANSAMOUNT * convRate;
             else
@@ -231,7 +231,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
         {
             for (const auto& entry : it->second)
             {
-                int category = entry.CATEGID;
+                int64 category = entry.CATEGID;
                 double val = entry.SPLITTRANSAMOUNT
                     * convRate
                     * (withdrawal ? -1 : 1);
@@ -296,7 +296,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         if (daysPayment > 14)
             break; // Done searching for all to include
 
-        int repeats = entry.REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields
+        int repeats = entry.REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields
 
         // ignore inactive entries
         if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && entry.NUMOCCURRENCES < 0)
@@ -382,7 +382,7 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
     wxSharedPtr<mmDateRange> date_range(home_options.get_inc_vs_exp_date_range());
 
     double tIncome = 0.0, tExpenses = 0.0;
-    std::map<int, std::pair<double, double> > incomeExpensesStats;
+    std::map<int64, std::pair<double, double> > incomeExpensesStats;
 
     //Calculations
     const auto &transactions = Model_Checking::instance().find(
@@ -401,7 +401,7 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
 
         double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(pBankTransaction.ACCOUNTID)->CURRENCYID, pBankTransaction.TRANSDATE);
 
-        int idx = pBankTransaction.ACCOUNTID;
+        int64 idx = pBankTransaction.ACCOUNTID;
         if (Model_Checking::type_id(pBankTransaction) == Model_Checking::TYPE_ID_DEPOSIT)
             incomeExpensesStats[idx].first += pBankTransaction.TRANSAMOUNT * convRate;
         else
@@ -410,7 +410,7 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
 
     for (const auto& account : Model_Account::instance().all())
     {
-        int idx = account.ACCOUNTID;
+        int64 idx = account.ACCOUNTID;
         tIncome += incomeExpensesStats[idx].first;
         tExpenses += incomeExpensesStats[idx].second;
     }
@@ -481,7 +481,7 @@ const wxString htmlWidgetStatistics::getHTMLText()
     int countFollowUp = 0;
     int total_transactions = 0;
 
-    std::map<int, std::pair<double, double> > accountStats;
+    std::map<int64, std::pair<double, double> > accountStats;
     for (const auto& trx : all_trans)
     {
         if (!trx.DELETEDTIME.IsEmpty())
@@ -496,13 +496,13 @@ const wxString htmlWidgetStatistics::getHTMLText()
         if (Model_Checking::status_id(trx) == Model_Checking::STATUS_ID_FOLLOWUP)
             countFollowUp++;
 
-        accountStats[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
-        accountStats[trx.ACCOUNTID].second += Model_Checking::balance(trx, trx.ACCOUNTID);
+        accountStats[trx.ACCOUNTID].first += Model_Checking::account_recflow(trx, trx.ACCOUNTID);
+        accountStats[trx.ACCOUNTID].second += Model_Checking::account_flow(trx, trx.ACCOUNTID);
 
         if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER)
         {
-            accountStats[trx.TOACCOUNTID].first += Model_Checking::reconciled(trx, trx.TOACCOUNTID);
-            accountStats[trx.TOACCOUNTID].second += Model_Checking::balance(trx, trx.TOACCOUNTID);
+            accountStats[trx.TOACCOUNTID].first += Model_Checking::account_recflow(trx, trx.TOACCOUNTID);
+            accountStats[trx.TOACCOUNTID].second += Model_Checking::account_flow(trx, trx.TOACCOUNTID);
         }
     }
 
@@ -670,13 +670,13 @@ void htmlWidgetAccounts::get_account_stats()
 
     for (const auto& trx : all_trans)
     {
-        accountStats_[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
-        accountStats_[trx.ACCOUNTID].second += Model_Checking::balance(trx, trx.ACCOUNTID);
+        accountStats_[trx.ACCOUNTID].first += Model_Checking::account_recflow(trx, trx.ACCOUNTID);
+        accountStats_[trx.ACCOUNTID].second += Model_Checking::account_flow(trx, trx.ACCOUNTID);
 
         if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER)
         {
-            accountStats_[trx.TOACCOUNTID].first += Model_Checking::reconciled(trx, trx.TOACCOUNTID);
-            accountStats_[trx.TOACCOUNTID].second += Model_Checking::balance(trx, trx.TOACCOUNTID);
+            accountStats_[trx.TOACCOUNTID].first += Model_Checking::account_recflow(trx, trx.TOACCOUNTID);
+            accountStats_[trx.TOACCOUNTID].second += Model_Checking::account_flow(trx, trx.TOACCOUNTID);
         }
     }
 

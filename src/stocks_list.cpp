@@ -311,7 +311,7 @@ void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
     wxString headerMsg = wxString::Format(_("Moving Transaction from %s to"), from_account->ACCOUNTNAME);
     mmSingleChoiceDialog scd(this, _("Select the destination Account "), headerMsg , accounts);
 
-    int toAccountID = -1;
+    int64 toAccountID = -1;
     int error_code = scd.ShowModal();
     if (error_code == wxID_OK)
     {
@@ -347,7 +347,7 @@ void StocksListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     if (m_selected_row < 0) return;
 
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
-    int RefId = m_stocks[m_selected_row].STOCKID;
+    int64 RefId = m_stocks[m_selected_row].STOCKID;
 
     mmAttachmentDialog dlg(this, RefType, RefId);
     dlg.ShowModal();
@@ -373,7 +373,7 @@ void StocksListCtrl::OnOpenAttachment(wxCommandEvent& /*event*/)
     if (m_selected_row < 0) return;
 
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
-    int RefId = m_stocks[m_selected_row].STOCKID;
+    int64 RefId = m_stocks[m_selected_row].STOCKID;
 
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
     doRefreshItems(RefId);
@@ -417,13 +417,13 @@ void StocksListCtrl::OnColClick(wxListEvent& event)
     Model_Setting::instance().Set("STOCKS_ASC", m_asc);
     Model_Setting::instance().Set("STOCKS_SORT_COL", m_selected_col);
 
-    int trx_id = -1;
+    int64 trx_id = -1;
     if (m_selected_row>=0) trx_id = m_stocks[m_selected_row].STOCKID;
     doRefreshItems(trx_id);
     m_stock_panel->OnListItemSelected(-1);
 }
 
-void StocksListCtrl::doRefreshItems(int trx_id)
+void StocksListCtrl::doRefreshItems(int64 trx_id)
 {
     int selectedIndex = initVirtualListControl(trx_id, m_selected_col, m_asc);
     long cnt = static_cast<long>(m_stocks.size());
@@ -446,7 +446,7 @@ void StocksListCtrl::doRefreshItems(int trx_id)
     }
 }
 
-int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
+int StocksListCtrl::initVirtualListControl(int64 trx_id, int col, bool asc)
 {
     m_stock_panel->updateHeader();
     /* Clear all the records */
@@ -466,7 +466,7 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
     int cnt = 0, selected_item = -1;
     for (auto& stock : m_stocks)
     {
-        if (id == stock.STOCKID)
+        if (trx_id == stock.STOCKID)
         {
             selected_item = cnt;
             break;

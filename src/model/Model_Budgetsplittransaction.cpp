@@ -58,16 +58,16 @@ double Model_Budgetsplittransaction::get_total(const Data_Set& rows)
     return total;
 }
 
-bool Model_Budgetsplittransaction::remove(int id)
+bool Model_Budgetsplittransaction::remove(int64 id)
 {
     // Delete all tags for the split before removing it
     Model_Taglink::instance().DeleteAllTags(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT), id);
     return this->remove(id, db_);
 }
 
-std::map<int, Model_Budgetsplittransaction::Data_Set> Model_Budgetsplittransaction::get_all()
+std::map<int64, Model_Budgetsplittransaction::Data_Set> Model_Budgetsplittransaction::get_all()
 {
-    std::map<int, Model_Budgetsplittransaction::Data_Set> data;
+    std::map<int64, Model_Budgetsplittransaction::Data_Set> data;
     for (const auto & split : instance().all())
     {
         data[split.TRANSID].push_back(split);
@@ -76,7 +76,7 @@ std::map<int, Model_Budgetsplittransaction::Data_Set> Model_Budgetsplittransacti
     return data;
 }
 
-int Model_Budgetsplittransaction::update(Data_Set& rows, int transactionID)
+int Model_Budgetsplittransaction::update(Data_Set& rows, int64 transactionID)
 {
 
     Data_Set split = instance().find(TRANSID(transactionID));

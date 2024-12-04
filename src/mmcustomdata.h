@@ -34,17 +34,17 @@ public:
     mmCustomData();
     ~mmCustomData();
     bool FillCustomFields(wxBoxSizer* box_sizer);
-    bool SaveCustomValues(int ref_id);
-    void UpdateCustomValues(int ref_id);
-    void SetStringValue(int fieldID, const wxString& value, bool hasChanged = false);
-    bool ValidateCustomValues(int);
+    bool SaveCustomValues(int64 ref_id);
+    void UpdateCustomValues(int64 ref_id);
+    void SetStringValue(int64 fieldID, const wxString& value, bool hasChanged = false);
+    bool ValidateCustomValues(int64);
     const wxString GetWidgetData(wxWindowID controlID) const;
     void SetWidgetData(wxWindowID controlID, const wxString& value);
     int GetWidgetType(wxWindowID controlID) const;
     int GetPrecision(wxWindowID controlID) const;
     size_t GetCustomFieldsCount() const;
     size_t GetActiveCustomFieldsCount() const;
-    std::map<int, wxString> GetActiveCustomFields() const;
+    std::map<int64, wxString> GetActiveCustomFields() const;
     void SetBaseID(wxWindowID id);
     wxWindowID GetBaseID() const;
     void ResetRefID();
@@ -57,14 +57,14 @@ public:
     void ShowCustomPanel() const;
 
 protected:
-    mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_id);
+    mmCustomData(wxDialog* dialog, const wxString& ref_type, int64 ref_id);
 private:
     const int FIELDMULTIPLIER = 4;
     const int CONTROLOFFSET = FIELDMULTIPLIER - 1;
     wxDialog* m_dialog = nullptr;
     wxStaticBox* m_static_box =nullptr;
     const wxString m_ref_type;
-    int m_ref_id = -1;
+    int64 m_ref_id = -1;
     Model_CustomField::Data_Set m_fields;
     std::map<wxWindowID, wxString> m_data_changed;
     void OnStringChanged(wxCommandEvent& event);
@@ -84,7 +84,7 @@ private:
 class mmCustomDataTransaction : public mmCustomData
 {
 public:
-    mmCustomDataTransaction(wxDialog* dialog, int ref_id, wxWindowID base_id);
+    mmCustomDataTransaction(wxDialog* dialog, int64 ref_id, wxWindowID base_id);
 };
 
 inline void       mmCustomData::ResetRefID() { m_ref_id = wxID_ANY; }

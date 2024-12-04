@@ -44,14 +44,14 @@ class mmBDDialog : public wxDialog
 public:
     mmBDDialog();
     ~mmBDDialog();
-    mmBDDialog(wxWindow* parent, int bdD, bool duplicate, bool enterOccur);
-    int GetTransID()
+    mmBDDialog(wxWindow* parent, int64 bdD, bool duplicate, bool enterOccur);
+    int64 GetTransID()
     {
         return m_trans_id;
     }
 
     void SetDialogHeader(const wxString& header);
-    void SetDialogParameters(int trx_id);
+    void SetDialogParameters(int64 trx_id);
 
 private:
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
@@ -79,9 +79,9 @@ private:
     void OnAutoExecutionUserAckChecked(wxCommandEvent& event);
     void OnAutoExecutionSilentChecked(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
-    void SetAmountCurrencies(int accountID, int toAccountID);
+    void SetAmountCurrencies(int64 accountID, int64 toAccountID);
     void OnCalculator(wxCommandEvent& event);
-    int m_trans_id;
+    int64 m_trans_id;
 
     bool m_new_bill = false;
     bool m_dup_bill = false;

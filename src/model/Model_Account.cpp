@@ -100,9 +100,9 @@ wxArrayString Model_Account::all_checking_account_names(bool skip_closed)
     return accounts;
 }
 
-const std::map<wxString, int> Model_Account::all_accounts(bool skip_closed)
+const std::map<wxString, int64> Model_Account::all_accounts(bool skip_closed)
 {
-    std::map<wxString, int> accounts;
+    std::map<wxString, int64> accounts;
     for (const auto& account : this->all(COL_ACCOUNTNAME))
     {
         if (skip_closed && status_id(account) == STATUS_ID_CLOSED)
@@ -162,7 +162,7 @@ Model_Account::Data* Model_Account::getByAccNum(const wxString& num)
     return account;
 }
 
-wxString Model_Account::get_account_name(int account_id)
+wxString Model_Account::get_account_name(int64 account_id)
 {
     Data* account = instance().get(account_id);
     if (account)
@@ -172,7 +172,7 @@ wxString Model_Account::get_account_name(int account_id)
 }
 
 /** Remove the Data record instance from memory and the database. */
-bool Model_Account::remove(int id)
+bool Model_Account::remove(int64 id)
 {
     this->Savepoint();
     for (const auto& r: Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(id), Model_Checking::TOACCOUNTID(id)))
@@ -245,7 +245,7 @@ double Model_Account::balance(const Data* r)
     double sum = r->INITIALBAL;
     for (const auto& tran: transaction(r))
     {
-        sum += Model_Checking::balance(tran, r->ACCOUNTID); 
+        sum += Model_Checking::account_flow(tran, r->ACCOUNTID); 
     }
     return sum;
 }
@@ -375,7 +375,7 @@ wxDateTime Model_Account::DateOf(const wxString& date_str)
     return Model::to_date(date_str);
 }
 
-bool Model_Account::BoolOf(int value)
+bool Model_Account::BoolOf(int64 value)
 {
     return value > 0 ? true : false;
 }

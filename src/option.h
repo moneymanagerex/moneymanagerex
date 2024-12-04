@@ -21,6 +21,8 @@
 
 #include "defs.h"
 
+typedef wxLongLong int64;
+
 /*
    mmOptions caches the options for MMEX
    so that we don't hit the DB that often
@@ -64,9 +66,9 @@ public:
     const wxString& FinancialYearStartMonth() const;
 
     // set the base currency ID
-    void setBaseCurrency(const int base_currency_id);
+    void setBaseCurrency(const int64 base_currency_id);
     // returns the base currency ID
-    int getBaseCurrencyID() const noexcept;
+    int64 getBaseCurrencyID() const noexcept;
 
     // set and save the option: m_databaseUpdated
     void DatabaseUpdated(const bool value);
@@ -152,7 +154,7 @@ public:
     int getNavigationIconSize() const noexcept;
     int getToolbarIconSize() const noexcept;
 
-    int AccountImageId(const int account_id, const bool def, const bool ignoreClosure = false);
+    int AccountImageId(const int64 account_id, const bool def, const bool ignoreClosure = false);
     bool getSendUsageStatistics() const noexcept;
 
     void IgnoreFutureTransactions(const bool value);
@@ -178,7 +180,7 @@ private:
     wxString m_localeNameString;
     wxString m_financialYearStartDayString;
     wxString m_financialYearStartMonthString;
-    int m_baseCurrency = -1;
+    int64 m_baseCurrency = -1;
     bool m_currencyHistoryEnabled = false;
     bool m_bulk_enter = false;
 

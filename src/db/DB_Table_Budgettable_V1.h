@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,7 +49,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
 
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
-    typedef std::map<int, Self::Data*> Index_By_Id;
+    typedef std::map<int64, Self::Data*> Index_By_Id;
     Cache cache_;
     Index_By_Id index_by_id_;
     Data* fake_; // in case the entity not found
@@ -112,22 +112,22 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         db->Commit();
     }
     
-    struct BUDGETENTRYID : public DB_Column<int>
+    struct BUDGETENTRYID : public DB_Column<int64>
     { 
         static wxString name() { return "BUDGETENTRYID"; } 
-        explicit BUDGETENTRYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit BUDGETENTRYID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct BUDGETYEARID : public DB_Column<int>
+    struct BUDGETYEARID : public DB_Column<int64>
     { 
         static wxString name() { return "BUDGETYEARID"; } 
-        explicit BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit BUDGETYEARID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct CATEGID : public DB_Column<int>
+    struct CATEGID : public DB_Column<int64>
     { 
         static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CATEGID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct PERIOD : public DB_Column<wxString>
@@ -148,10 +148,10 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct ACTIVE : public DB_Column<int>
+    struct ACTIVE : public DB_Column<int64>
     { 
         static wxString name() { return "ACTIVE"; } 
-        explicit ACTIVE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ACTIVE(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     typedef BUDGETENTRYID PRIMARY;
@@ -205,20 +205,20 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int BUDGETENTRYID;//  primary key
-        int BUDGETYEARID;
-        int CATEGID;
+        int64 BUDGETENTRYID;//  primary key
+        int64 BUDGETYEARID;
+        int64 CATEGID;
         wxString PERIOD;
         double AMOUNT;
         wxString NOTES;
-        int ACTIVE;
+        int64 ACTIVE;
 
-        int id() const
+        int64 id() const
         {
             return BUDGETENTRYID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             BUDGETENTRYID = id;
         }
@@ -260,13 +260,13 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         {
             table_ = table;
         
-            BUDGETENTRYID = q.GetInt(0); // BUDGETENTRYID
-            BUDGETYEARID = q.GetInt(1); // BUDGETYEARID
-            CATEGID = q.GetInt(2); // CATEGID
+            BUDGETENTRYID = q.GetInt64(0); // BUDGETENTRYID
+            BUDGETYEARID = q.GetInt64(1); // BUDGETYEARID
+            CATEGID = q.GetInt64(2); // CATEGID
             PERIOD = q.GetString(3); // PERIOD
             AMOUNT = q.GetDouble(4); // AMOUNT
             NOTES = q.GetString(5); // NOTES
-            ACTIVE = q.GetInt(6); // ACTIVE
+            ACTIVE = q.GetInt64(6); // ACTIVE
         }
 
         Data& operator=(const Data& other)
@@ -341,11 +341,11 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("BUDGETENTRYID");
-            json_writer.Int(this->BUDGETENTRYID);
+            json_writer.Int64(this->BUDGETENTRYID.GetValue());
             json_writer.Key("BUDGETYEARID");
-            json_writer.Int(this->BUDGETYEARID);
+            json_writer.Int64(this->BUDGETYEARID.GetValue());
             json_writer.Key("CATEGID");
-            json_writer.Int(this->CATEGID);
+            json_writer.Int64(this->CATEGID.GetValue());
             json_writer.Key("PERIOD");
             json_writer.String(this->PERIOD.utf8_str());
             json_writer.Key("AMOUNT");
@@ -353,31 +353,31 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
             json_writer.Key("NOTES");
             json_writer.String(this->NOTES.utf8_str());
             json_writer.Key("ACTIVE");
-            json_writer.Int(this->ACTIVE);
+            json_writer.Int64(this->ACTIVE.GetValue());
         }
 
         row_t to_row_t() const
         {
             row_t row;
-            row(L"BUDGETENTRYID") = BUDGETENTRYID;
-            row(L"BUDGETYEARID") = BUDGETYEARID;
-            row(L"CATEGID") = CATEGID;
+            row(L"BUDGETENTRYID") = BUDGETENTRYID.GetValue();
+            row(L"BUDGETYEARID") = BUDGETYEARID.GetValue();
+            row(L"CATEGID") = CATEGID.GetValue();
             row(L"PERIOD") = PERIOD;
             row(L"AMOUNT") = AMOUNT;
             row(L"NOTES") = NOTES;
-            row(L"ACTIVE") = ACTIVE;
+            row(L"ACTIVE") = ACTIVE.GetValue();
             return row;
         }
 
         void to_template(html_template& t) const
         {
-            t(L"BUDGETENTRYID") = BUDGETENTRYID;
-            t(L"BUDGETYEARID") = BUDGETYEARID;
-            t(L"CATEGID") = CATEGID;
+            t(L"BUDGETENTRYID") = BUDGETENTRYID.GetValue();
+            t(L"BUDGETYEARID") = BUDGETYEARID.GetValue();
+            t(L"CATEGID") = CATEGID.GetValue();
             t(L"PERIOD") = PERIOD;
             t(L"AMOUNT") = AMOUNT;
             t(L"NOTES") = NOTES;
-            t(L"ACTIVE") = ACTIVE;
+            t(L"ACTIVE") = ACTIVE.GetValue();
         }
 
         /** Save the record instance in memory to the database. */
@@ -494,14 +494,14 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
 
         if (entity->id() <= 0)
         {
-            entity->id((db->GetLastRowId()).ToLong());
+            entity->id(db->GetLastRowId());
             index_by_id_.insert(std::make_pair(entity->id(), entity));
         }
         return true;
     }
 
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(const int id, wxSQLite3Database* db)
+    bool remove(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try
@@ -572,7 +572,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
-    Self::Data* get(const int id, wxSQLite3Database* db)
+    Self::Data* get(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
@@ -620,7 +620,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* get_record(const int id, wxSQLite3Database* db)
+    Self::Data* get_record(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {

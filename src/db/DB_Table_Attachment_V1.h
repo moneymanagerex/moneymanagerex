@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,7 +49,7 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
 
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
-    typedef std::map<int, Self::Data*> Index_By_Id;
+    typedef std::map<int64, Self::Data*> Index_By_Id;
     Cache cache_;
     Index_By_Id index_by_id_;
     Data* fake_; // in case the entity not found
@@ -112,10 +112,10 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
         db->Commit();
     }
     
-    struct ATTACHMENTID : public DB_Column<int>
+    struct ATTACHMENTID : public DB_Column<int64>
     { 
         static wxString name() { return "ATTACHMENTID"; } 
-        explicit ATTACHMENTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ATTACHMENTID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct REFTYPE : public DB_Column<wxString>
@@ -124,10 +124,10 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
         explicit REFTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     
-    struct REFID : public DB_Column<int>
+    struct REFID : public DB_Column<int64>
     { 
         static wxString name() { return "REFID"; } 
-        explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit REFID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct DESCRIPTION : public DB_Column<wxString>
@@ -187,18 +187,18 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int ATTACHMENTID;//  primary key
+        int64 ATTACHMENTID;//  primary key
         wxString REFTYPE;
-        int REFID;
+        int64 REFID;
         wxString DESCRIPTION;
         wxString FILENAME;
 
-        int id() const
+        int64 id() const
         {
             return ATTACHMENTID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             ATTACHMENTID = id;
         }
@@ -235,9 +235,9 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
         {
             table_ = table;
         
-            ATTACHMENTID = q.GetInt(0); // ATTACHMENTID
+            ATTACHMENTID = q.GetInt64(0); // ATTACHMENTID
             REFTYPE = q.GetString(1); // REFTYPE
-            REFID = q.GetInt(2); // REFID
+            REFID = q.GetInt64(2); // REFID
             DESCRIPTION = q.GetString(3); // DESCRIPTION
             FILENAME = q.GetString(4); // FILENAME
         }
@@ -302,11 +302,11 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("ATTACHMENTID");
-            json_writer.Int(this->ATTACHMENTID);
+            json_writer.Int64(this->ATTACHMENTID.GetValue());
             json_writer.Key("REFTYPE");
             json_writer.String(this->REFTYPE.utf8_str());
             json_writer.Key("REFID");
-            json_writer.Int(this->REFID);
+            json_writer.Int64(this->REFID.GetValue());
             json_writer.Key("DESCRIPTION");
             json_writer.String(this->DESCRIPTION.utf8_str());
             json_writer.Key("FILENAME");
@@ -316,9 +316,9 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"ATTACHMENTID") = ATTACHMENTID;
+            row(L"ATTACHMENTID") = ATTACHMENTID.GetValue();
             row(L"REFTYPE") = REFTYPE;
-            row(L"REFID") = REFID;
+            row(L"REFID") = REFID.GetValue();
             row(L"DESCRIPTION") = DESCRIPTION;
             row(L"FILENAME") = FILENAME;
             return row;
@@ -326,9 +326,9 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"ATTACHMENTID") = ATTACHMENTID;
+            t(L"ATTACHMENTID") = ATTACHMENTID.GetValue();
             t(L"REFTYPE") = REFTYPE;
-            t(L"REFID") = REFID;
+            t(L"REFID") = REFID.GetValue();
             t(L"DESCRIPTION") = DESCRIPTION;
             t(L"FILENAME") = FILENAME;
         }
@@ -445,14 +445,14 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
 
         if (entity->id() <= 0)
         {
-            entity->id((db->GetLastRowId()).ToLong());
+            entity->id(db->GetLastRowId());
             index_by_id_.insert(std::make_pair(entity->id(), entity));
         }
         return true;
     }
 
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(const int id, wxSQLite3Database* db)
+    bool remove(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try
@@ -523,7 +523,7 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
-    Self::Data* get(const int id, wxSQLite3Database* db)
+    Self::Data* get(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
@@ -571,7 +571,7 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* get_record(const int id, wxSQLite3Database* db)
+    Self::Data* get_record(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {

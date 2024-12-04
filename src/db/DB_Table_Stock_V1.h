@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-12-14 23:28:00.889504.
+ *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,7 +49,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
 
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
-    typedef std::map<int, Self::Data*> Index_By_Id;
+    typedef std::map<int64, Self::Data*> Index_By_Id;
     Cache cache_;
     Index_By_Id index_by_id_;
     Data* fake_; // in case the entity not found
@@ -112,16 +112,16 @@ struct DB_Table_STOCK_V1 : public DB_Table
         db->Commit();
     }
     
-    struct STOCKID : public DB_Column<int>
+    struct STOCKID : public DB_Column<int64>
     { 
         static wxString name() { return "STOCKID"; } 
-        explicit STOCKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit STOCKID(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
-    struct HELDAT : public DB_Column<int>
+    struct HELDAT : public DB_Column<int64>
     { 
         static wxString name() { return "HELDAT"; } 
-        explicit HELDAT(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit HELDAT(const int64 &v, OP op = EQUAL): DB_Column<int64>(v, op) {}
     };
     
     struct PURCHASEDATE : public DB_Column<wxString>
@@ -241,8 +241,8 @@ struct DB_Table_STOCK_V1 : public DB_Table
         /** This is a instance pointer to itself in memory. */
         Self* table_;
     
-        int STOCKID;//  primary key
-        int HELDAT;
+        int64 STOCKID;//  primary key
+        int64 HELDAT;
         wxString PURCHASEDATE;
         wxString STOCKNAME;
         wxString SYMBOL;
@@ -253,12 +253,12 @@ struct DB_Table_STOCK_V1 : public DB_Table
         double VALUE;
         double COMMISSION;
 
-        int id() const
+        int64 id() const
         {
             return STOCKID;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             STOCKID = id;
         }
@@ -306,8 +306,8 @@ struct DB_Table_STOCK_V1 : public DB_Table
         {
             table_ = table;
         
-            STOCKID = q.GetInt(0); // STOCKID
-            HELDAT = q.GetInt(1); // HELDAT
+            STOCKID = q.GetInt64(0); // STOCKID
+            HELDAT = q.GetInt64(1); // HELDAT
             PURCHASEDATE = q.GetString(2); // PURCHASEDATE
             STOCKNAME = q.GetString(3); // STOCKNAME
             SYMBOL = q.GetString(4); // SYMBOL
@@ -415,9 +415,9 @@ struct DB_Table_STOCK_V1 : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
             json_writer.Key("STOCKID");
-            json_writer.Int(this->STOCKID);
+            json_writer.Int64(this->STOCKID.GetValue());
             json_writer.Key("HELDAT");
-            json_writer.Int(this->HELDAT);
+            json_writer.Int64(this->HELDAT.GetValue());
             json_writer.Key("PURCHASEDATE");
             json_writer.String(this->PURCHASEDATE.utf8_str());
             json_writer.Key("STOCKNAME");
@@ -441,8 +441,8 @@ struct DB_Table_STOCK_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row(L"STOCKID") = STOCKID;
-            row(L"HELDAT") = HELDAT;
+            row(L"STOCKID") = STOCKID.GetValue();
+            row(L"HELDAT") = HELDAT.GetValue();
             row(L"PURCHASEDATE") = PURCHASEDATE;
             row(L"STOCKNAME") = STOCKNAME;
             row(L"SYMBOL") = SYMBOL;
@@ -457,8 +457,8 @@ struct DB_Table_STOCK_V1 : public DB_Table
 
         void to_template(html_template& t) const
         {
-            t(L"STOCKID") = STOCKID;
-            t(L"HELDAT") = HELDAT;
+            t(L"STOCKID") = STOCKID.GetValue();
+            t(L"HELDAT") = HELDAT.GetValue();
             t(L"PURCHASEDATE") = PURCHASEDATE;
             t(L"STOCKNAME") = STOCKNAME;
             t(L"SYMBOL") = SYMBOL;
@@ -588,14 +588,14 @@ struct DB_Table_STOCK_V1 : public DB_Table
 
         if (entity->id() <= 0)
         {
-            entity->id((db->GetLastRowId()).ToLong());
+            entity->id(db->GetLastRowId());
             index_by_id_.insert(std::make_pair(entity->id(), entity));
         }
         return true;
     }
 
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(const int id, wxSQLite3Database* db)
+    bool remove(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try
@@ -666,7 +666,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
-    Self::Data* get(const int id, wxSQLite3Database* db)
+    Self::Data* get(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
@@ -714,7 +714,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* get_record(const int id, wxSQLite3Database* db)
+    Self::Data* get_record(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {

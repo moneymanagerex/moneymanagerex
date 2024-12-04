@@ -453,15 +453,15 @@ bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_,
 }
 
 //Insert new transaction
-int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
+int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
 {
-    int DeskNewTrID = 0;
+    int64 DeskNewTrID = 0;
     bool bDeleteTrWebApp = false;
 
-    int AccountID = -1;
-    int ToAccountID = -1;
-    int PayeeID = -1;
-    int CategoryID = -1;
+    int64 AccountID = -1;
+    int64 ToAccountID = -1;
+    int64 PayeeID = -1;
+    int64 CategoryID = -1;
     wxString TrStatus;
 
     //Search Account
@@ -509,7 +509,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     }
 
     //Search or insert Category
-    const Model_Category::Data* Category = Model_Category::instance().get(WebAppTrans.Category, -1);
+    const Model_Category::Data* Category = Model_Category::instance().get(WebAppTrans.Category, int64(-1));
     if (Category != nullptr)
         CategoryID = Category->CATEGID;
     else
@@ -549,7 +549,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
         NewPayee->PAYEENAME = WebAppTrans.Payee;
         NewPayee->ACTIVE = 1;
         NewPayee->CATEGID = CategoryID;
-        int NewPayeeID = Model_Payee::instance().save(NewPayee);
+        int64 NewPayeeID = Model_Payee::instance().save(NewPayee);
         PayeeID = NewPayeeID;
     }
 
@@ -652,9 +652,9 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
 }
 
 //Delete one transaction from WebApp
-bool mmWebApp::WebApp_DeleteOneTransaction(int WebAppTransactionId)
+bool mmWebApp::WebApp_DeleteOneTransaction(int64 WebAppTransactionId)
 {
-    wxString DeleteOneTransactionUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::DeleteOneTransaction + "=" << WebAppTransactionId;
+    wxString DeleteOneTransactionUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::DeleteOneTransaction + "=" << WebAppTransactionId.GetValue();
 
     wxString outputMessage;
     int ErrorCode = http_get_data(DeleteOneTransactionUrl, outputMessage);
@@ -663,7 +663,7 @@ bool mmWebApp::WebApp_DeleteOneTransaction(int WebAppTransactionId)
 }
 
 //Download one attachment from WebApp
-wxString mmWebApp::WebApp_DownloadOneAttachment(const wxString& AttachmentName, int DesktopTransactionID, int AttachmentNr, wxString& Error)
+wxString mmWebApp::WebApp_DownloadOneAttachment(const wxString& AttachmentName, int64 DesktopTransactionID, int AttachmentNr, wxString& Error)
 {
     wxString FileExtension = wxFileName(AttachmentName).GetExt().MakeLower();
     wxString FileName = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) + "_" + wxString::Format("%i", DesktopTransactionID)

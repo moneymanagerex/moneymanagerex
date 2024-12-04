@@ -67,7 +67,7 @@ wxString JSON_Formated(rapidjson::Document& j_doc)
 
 //----------------------------------------------------------------------------
 
-mmTreeItemData::mmTreeItemData(int type, int id)
+mmTreeItemData::mmTreeItemData(int type, int64 id)
     : id_(id)
     , type_(type)
     , report_(nullptr)
@@ -675,7 +675,7 @@ END_EVENT_TABLE()
 
 //--------------------------------------------------------------------
 
-bool getOnlineCurrencyRates(wxString& msg,const int curr_id, const bool used_only)
+bool getOnlineCurrencyRates(wxString& msg,const int64 curr_id, const bool used_only)
 {
     wxString base_currency_symbol;
 
@@ -1450,7 +1450,7 @@ const wxString getProgramDescription(const int type)
         << bull << wxString::Format(simple ? "Built: %1$s %2$s" : _("Built on: %1$s %2$s"), build_date, BUILD_TIME) << eol
         << bull << wxString::Format(simple ? "db %d" : _("Database version: %d"), mmex::version::getDbLatestVersion())
 #if WXSQLITE3_HAVE_CODEC
-        << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
+        << " (aes256cbc-hmac-sha512)"
 #endif
         << eol
 

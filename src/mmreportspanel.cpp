@@ -223,7 +223,7 @@ void mmReportsPanel::CreateControls()
                 m_date_ranges->Append(date_range.get()->local_title(), date_range.get());
             }
 
-            int sel_id = rb_->getDateSelection();
+            int sel_id = rb_->getDateSelection().GetValue();
             if (sel_id < 0 || static_cast<size_t>(sel_id) >= m_all_date_ranges.size()) {
                 sel_id = 0;
             }
@@ -328,7 +328,7 @@ void mmReportsPanel::CreateControls()
 
             m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_BUDGET, wxDefaultPosition, wxDefaultSize, 0, nullptr, wxCB_SORT);
 
-            int sel_id = rb_->getDateSelection();
+            int64 sel_id = rb_->getDateSelection();
             wxString sel_name;
             for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
             {
@@ -358,8 +358,8 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
             m_accounts = new wxChoice(itemPanel3, ID_CHOICE_ACCOUNTS);
-            m_accounts->Append(_("All Accounts:"));
-            m_accounts->Append(_("Specific Accounts:"));
+            m_accounts->Append(_("All Accounts"));
+            m_accounts->Append(_("Specific Accounts…"));
             for (const auto& e : Model_Account::TYPE_CHOICES)
             {
                 if (e.first != Model_Account::TYPE_ID_INVESTMENT) {
@@ -583,7 +583,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
 
         if (catID > 0)
         {
-            std::vector<int> cats;
+            std::vector<int64> cats;
             if (-2 == subCatID) // include all sub categories
             {
                 for (const auto& subCategory : Model_Category::sub_tree(Model_Category::instance().get(catID)))
@@ -597,8 +597,8 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
 
         if (payeeID > 0)
         {
-            wxArrayInt payees;
-            payees.Add(payeeID);
+            wxArrayInt64 payees;
+            payees.push_back(payeeID);
             rb_->m_filter.setPayeeList(payees);
         }
 
@@ -616,7 +616,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
                 const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
                 if (account) {
                     m_frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-                    m_frame->setGotoAccountID(transaction->ACCOUNTID, transID);
+                    m_frame->setGotoAccountID(transaction->ACCOUNTID, { transID, 0 });
                     wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
                     m_frame->GetEventHandler()->AddPendingEvent(event);
                 }
@@ -655,7 +655,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
                 }
                 else
                 {
-                    mmTransDialog dlg(m_frame, -1, transId, 0);
+                    mmTransDialog dlg(m_frame, -1, {transId, false});
                     if (dlg.ShowModal() != wxID_CANCEL)
                     {
                         rb_->getHTMLText();

@@ -94,7 +94,7 @@ def get_data_initializer_list(cursor, tbl_name):
 base_data_types_reverse = {
     'TEXT': 'wxString',
     'NUMERIC': 'double',
-    'INTEGER': 'int',
+    'INTEGER': 'int64',
     'REAL': 'double',
     'BLOB': 'wxString',
     'DATE': 'wxDateTime',
@@ -103,7 +103,7 @@ base_data_types_reverse = {
 base_data_types_function = {
     'TEXT': 'GetString',
     'NUMERIC': 'GetDouble',
-    'INTEGER': 'GetInt',
+    'INTEGER': 'GetInt64',
     'REAL': 'GetDouble',
 }
 
@@ -198,7 +198,7 @@ struct DB_Table_%s : public DB_Table
 
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
-    typedef std::map<int, Self::Data*> Index_By_Id;
+    typedef std::map<int64, Self::Data*> Index_By_Id;
     Cache cache_;
     Index_By_Id index_by_id_;
     Data* fake_; // in case the entity not found
@@ -366,12 +366,12 @@ struct DB_Table_%s : public DB_Table
 
         s += '''
 
-        int id() const
+        int64 id() const
         {
             return %s;
         }
 
-        void id(const int id)
+        void id(const int64 id)
         {
             %s = id;
         }
@@ -392,7 +392,7 @@ struct DB_Table_%s : public DB_Table
         {'''
         for field in self._fields:
             ftype = base_data_types_reverse[field['type']]
-            if ftype == 'int' or ftype == 'double':
+            if ftype == 'int64' or ftype == 'double':
                 s += '''
             if(%s != r->%s) return false;''' % (field['name'], field['name'])
             elif ftype == 'wxString':
@@ -414,7 +414,7 @@ struct DB_Table_%s : public DB_Table
             elif ftype == 'double':
                 s += '''
             %s = 0.0;''' % field['name']
-            elif ftype == 'int':
+            elif ftype == 'int64':
                 s += '''
             %s = -1;''' % field['name']
 
@@ -488,10 +488,10 @@ struct DB_Table_%s : public DB_Table
         {'''
         for field in self._fields:
             type = base_data_types_reverse[field['type']]
-            if type == 'int':
+            if type == 'int64':
                 s += '''
             json_writer.Key("%s");
-            json_writer.Int(this->%s);''' % (field['name'], field['name'])
+            json_writer.Int64(this->%s.GetValue());''' % (field['name'], field['name'])
             elif type == 'double':
                 s += '''
             json_writer.Key("%s");
@@ -513,7 +513,7 @@ struct DB_Table_%s : public DB_Table
             row_t row;'''
         for field in self._fields:
             s += '''
-            row(L"%s") = %s;'''%(field['name'], field['name'])
+            row(L"%s") = %s;'''%(field['name'], field['name'] + '.GetValue()' if field['type'] == 'INTEGER' else field['name'])
 
         s += '''
             return row;
@@ -525,7 +525,7 @@ struct DB_Table_%s : public DB_Table
         {'''
         for field in self._fields:
             s += '''
-            t(L"%s") = %s;''' % (field['name'], field['name'])
+            t(L"%s") = %s;''' % (field['name'], field['name'] + '.GetValue()' if field['type'] == 'INTEGER' else field['name'])
 
         s += '''
         }'''
@@ -660,7 +660,7 @@ struct DB_Table_%s : public DB_Table
 
         if (entity->id() <= 0)
         {
-            entity->id((db->GetLastRowId()).ToLong());
+            entity->id(db->GetLastRowId());
             index_by_id_.insert(std::make_pair(entity->id(), entity));
         }
         return true;
@@ -668,7 +668,7 @@ struct DB_Table_%s : public DB_Table
 ''' % (len(self._fields), self._primay_key, self._table)
         s += '''
     /** Remove the Data record from the database and the memory table (cache) */
-    bool remove(const int id, wxSQLite3Database* db)
+    bool remove(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) return false;
         try
@@ -743,7 +743,7 @@ struct DB_Table_%s : public DB_Table
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
-    Self::Data* get(const int id, wxSQLite3Database* db)
+    Self::Data* get(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
@@ -791,7 +791,7 @@ struct DB_Table_%s : public DB_Table
     /**
     * Search the database for the data record, bypassing the cache.
     */
-    Self::Data* get_record(const int id, wxSQLite3Database* db)
+    Self::Data* get_record(const int64 id, wxSQLite3Database* db)
     {
         if (id <= 0) 
         {
@@ -880,6 +880,8 @@ using namespace rapidjson;
 
 #include "html_template.h"
 using namespace tmpl;
+
+typedef wxLongLong int64;
 
 class wxString;
 enum OP { EQUAL = 0, GREATER, LESS, GREATER_OR_EQUAL, LESS_OR_EQUAL, NOT_EQUAL };

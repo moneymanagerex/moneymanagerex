@@ -23,6 +23,8 @@ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 #include <map>
 #include <vector>
 
+typedef wxLongLong int64;
+
 class htmlWidgetStocks
 {
 public:
@@ -38,7 +40,7 @@ protected:
     wxString title_;
     double grand_total_;
     double grand_gain_lost_;
-    void calculate_stats(std::map<int, std::pair<double, double> > &stockStats);
+    void calculate_stats(std::map<int64, std::pair<double, double> > &stockStats);
 };
 
 class htmlWidgetTop7Categories
@@ -106,7 +108,7 @@ public:
     const wxString displayAccounts(double& tBalance, double& tReconciled, int type);
     ~htmlWidgetAccounts();
 private:
-    std::map<int, std::pair<double, double> > accountStats_;
+    std::map<int64, std::pair<double, double> > accountStats_;
     void get_account_stats();
 };
 

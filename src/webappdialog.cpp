@@ -233,7 +233,7 @@ void mmWebAppDialog::fillControls()
 
         data.push_back(wxVariant(WebTran.Notes)); //WEBTRAN_NOTES
         data.push_back(wxVariant(WebTran.Attachments)); //WEBTRAN_ATTACHMENTS
-        webtranListBox_->AppendItem(data, static_cast<wxUIntPtr>(WebTran.ID));
+        webtranListBox_->AppendItem(data, static_cast<wxUIntPtr>(WebTran.ID.GetValue()));
     }
 
     if (!WebAppTransactions_.empty())
@@ -271,13 +271,13 @@ void mmWebAppDialog::OnListItemActivated(wxDataViewEvent& event)
 
     if (selected_index >= 0)
     {
-        int WebTrID = static_cast<int>(webtranListBox_->GetItemData(item));
+        int64 WebTrID = static_cast<int>(webtranListBox_->GetItemData(item));
         mmWebAppDialog::ImportWebTr(WebTrID, true);
         fillControls();
     }
 }
 
-bool mmWebAppDialog::ImportWebTr(int WebTrID, bool open)
+bool mmWebAppDialog::ImportWebTr(int64 WebTrID, bool open)
 {
     mmWebApp::webtran_holder WebTrToImport;
     bool bFound = false;
@@ -288,13 +288,13 @@ bool mmWebAppDialog::ImportWebTr(int WebTrID, bool open)
         {
             bFound = true;
             WebTrToImport = webTr;
-            int InsertedTransactionID = mmWebApp::MMEX_InsertNewTransaction(WebTrToImport);
+            int64 InsertedTransactionID = mmWebApp::MMEX_InsertNewTransaction(WebTrToImport);
             if (InsertedTransactionID > 0)
             {
                 if (open)
                 {
                     //fillControls(); //TODO: Delete transaction from view
-                    mmTransDialog EditTransactionDialog(this, 1, InsertedTransactionID, 0);
+                    mmTransDialog EditTransactionDialog(this, 1, {InsertedTransactionID, false});
                     EditTransactionDialog.ShowModal();
                 }
                 refreshRequested_ = true;
@@ -355,7 +355,7 @@ void mmWebAppDialog::ImportWebTrSelected(const bool open)
         int selectedIndex_ = webtranListBox_->ItemToRow(Item);
         if (selectedIndex_ >= 0)
         {
-            int WebTrID = static_cast<int>(webtranListBox_->GetItemData(Item));
+            int64 WebTrID = static_cast<int>(webtranListBox_->GetItemData(Item));
             mmWebAppDialog::ImportWebTr(WebTrID, open);
         }
     }
@@ -419,7 +419,7 @@ void mmWebAppDialog::ImportAllWebTr(const bool open)
 {
     for (int i = 0; i < webtranListBox_->GetItemCount(); i++)
     {
-        int WebTrID = wxAtoi(webtranListBox_->GetTextValue(i, WEBTRAN_ID));
+        int64 WebTrID = wxAtoi(webtranListBox_->GetTextValue(i, WEBTRAN_ID));
         mmWebAppDialog::ImportWebTr(WebTrID, open);
     }
 }

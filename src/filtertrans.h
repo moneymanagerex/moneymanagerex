@@ -33,33 +33,32 @@ public:
     // Filter setup methods
     void setDateRange(wxDateTime startDate, wxDateTime endDate);
     void setAccountList(wxSharedPtr<wxArrayString> accountList);
-    void setPayeeList(const wxArrayInt payeeList);
-    void setCategoryList(const std::vector<int> &categoryList);
+    void setPayeeList(const wxArrayInt64& payeeList);
+    void setCategoryList(const wxArrayInt64 &categoryList);
 
     // Apply Filter methods
     template<class MODEL, class DATA = typename MODEL::Data>
-    bool checkCategory(const DATA& tran, const std::map<int, typename MODEL::Split_Data_Set> & splits);
+    bool checkCategory(const DATA& tran, const std::map<int64, typename MODEL::Split_Data_Set> & splits);
     bool mmIsRecordMatches(const Model_Checking::Data &tran
-        , const std::map<int, Model_Splittransaction::Data_Set>& split);
+        , const std::map<int64, Model_Splittransaction::Data_Set>& split);
 
     wxString getHTML();
 
 private:
     // date range
-    bool _dateFilter;
-    wxString _startDate, _endDate;
+    bool m_dateFilter;
+    wxString m_startDate, m_endDate;
     // account
-    bool _accountFilter;
-    wxArrayInt _accountList;
+    bool m_accountFilter;
+    wxArrayInt64 m_accountList;
     // payee
-    bool _payeeFilter;
-    wxArrayInt _payeeList;
+    bool m_payeeFilter;
+    wxArrayInt64 m_payeeList;
     // category
-    bool _categoryFilter;
-    std::vector<int> _categoryList;
+    bool m_categoryFilter;
+    wxArrayInt64 m_categoryList;
 
-    Model_Checking::Full_Data_Set _trans;
-
+    Model_Checking::Full_Data_Set m_trans;
 };
 
 #endif

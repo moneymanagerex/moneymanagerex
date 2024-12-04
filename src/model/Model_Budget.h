@@ -72,15 +72,15 @@ public:
     static PERIOD_ID period_id(const Data& r);
     static DB_Table_BUDGETTABLE_V1::PERIOD PERIOD(PERIOD_ID period, OP op = EQUAL);
 
-    static void getBudgetEntry(int budgetYearID,
-        std::map<int, PERIOD_ID> &budgetPeriod,
-        std::map<int, double> &budgetAmt,
-        std::map<int, wxString> &budgetNotes);
+    static void getBudgetEntry(int64 budgetYearID,
+        std::map<int64, PERIOD_ID> &budgetPeriod,
+        std::map<int64, double> &budgetAmt,
+        std::map<int64, wxString> &budgetNotes);
     static void getBudgetStats(
-        std::map<int, std::map<int, double> > &budgetStats
+        std::map<int64, std::map<int, double> > &budgetStats
         , mmDateRange* date_range
         , bool groupByMonth);
-    static void copyBudgetYear(int newYearID, int baseYearID);
+    static void copyBudgetYear(int64 newYearID, int64 baseYearID);
     static double getEstimate(bool is_monthly, const PERIOD_ID period, const double amount);
 };
 

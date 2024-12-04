@@ -134,8 +134,8 @@ public:
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
     );
-    void mmSetId(int id);
-    int mmGetId() const;
+    void mmSetId(int64 id);
+    int64 mmGetId() const;
     const wxString mmGetPattern() const;
     bool mmIsValid() const;
     void mmDoReInitialize(); 
@@ -145,7 +145,7 @@ protected:
     void OnDropDown(wxCommandEvent&);
     void OnKeyPressed(wxKeyEvent& event);
     virtual void init() = 0;
-    std::map<wxString, int> all_elements_;
+    std::map<wxString, int64> all_elements_;
 private:
     bool is_initialized_;
     wxDECLARE_EVENT_TABLE();
@@ -157,13 +157,13 @@ public:
     mmComboBoxAccount(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
-        , int accountID = -1
+        , int64 accountID = -1
         , bool excludeClosed = true
     );
 protected:
     void init();
 private:
-    int accountID_ = -1;
+    int64 accountID_ = -1;
     bool excludeClosed_ = true;
 };
 
@@ -175,13 +175,13 @@ public:
     mmComboBoxPayee(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
-        , int payeeID = -1
+        , int64 payeeID = -1
         , bool excludeHidden = false
     );
 protected:
     void init();
 private:
-    int payeeID_;
+    int64 payeeID_;
     bool excludeHidden_;
 };
 
@@ -217,16 +217,16 @@ public:
     mmComboBoxCategory(wxWindow* parent
         , wxWindowID id = wxID_ANY
         , wxSize size = wxDefaultSize
-        , int catID = -1
+        , int64 catID = -1
         , bool excludeInactive = false
     );
-    int mmGetCategoryId() const;
+    int64 mmGetCategoryId() const;
 protected:
     void init();
 private:
-    int catID_;
+    int64 catID_;
     bool excludeHidden_;
-    std::map<wxString, int > all_categories_;
+    std::map<wxString, int64> all_categories_;
 };
 
 /* -------------------------------------------- */
@@ -425,10 +425,10 @@ public:
     );
     bool IsValid();
     bool Validate(const wxString& tagText = wxEmptyString);
-    const wxArrayInt GetTagIDs() const;
+    const wxArrayInt64 GetTagIDs() const;
     const wxArrayString GetTagStrings();
     void Reinitialize();
-    void SetTags(const wxArrayInt& tagIds);
+    void SetTags(const wxArrayInt64& tagIds);
     void SetText(const wxString& text);
     void Clear();
     bool IsEmpty() const;
@@ -451,8 +451,8 @@ private:
     wxStyledTextCtrl* textCtrl_ = nullptr;
     wxBitmapButton* btn_dropdown_ = nullptr;
     wxString autocomplete_string_;
-    std::map<wxString, int, caseInsensitiveComparator> tag_map_;
-    std::map<wxString, int, caseInsensitiveComparator> tags_;
+    std::map<wxString, int64, caseInsensitiveComparator> tag_map_;
+    std::map<wxString, int64, caseInsensitiveComparator> tags_;
     wxArrayString parseTags(const wxString& tagString);
     bool operatorAllowed_;
     mmTagCtrlPopupWindow* popupWindow_ = nullptr;

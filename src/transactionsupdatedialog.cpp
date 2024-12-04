@@ -55,7 +55,7 @@ transactionsUpdateDialog::~transactionsUpdateDialog()
 static bool altRefreshDone;
 
 transactionsUpdateDialog::transactionsUpdateDialog(wxWindow* parent
-    , std::vector<int>& transaction_id)
+    , std::vector<int64>& transaction_id)
     : m_transaction_id(transaction_id)
 {
     m_currency = Model_Currency::GetBaseCurrency(); // base currency if we need it
@@ -333,7 +333,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
     }
 
-    int payee_id = -1;
+    int64 payee_id = -1;
     if (m_payee_checkbox->IsChecked())
     {
         wxString payee_name = cbPayee_->GetValue();
@@ -375,11 +375,11 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         if (!cbCategory_->mmIsValid())
             return mmErrorDialogs::InvalidCategory(cbCategory_);
     }
-    int categ_id = cbCategory_->mmGetCategoryId();
+    int64 categ_id = cbCategory_->mmGetCategoryId();
 
     const auto split = Model_Splittransaction::instance().get_all();
 
-    std::vector<int> skip_trx;
+    std::vector<int64> skip_trx;
     Model_Checking::instance().Savepoint();
     Model_Taglink::instance().Savepoint();
     for (const auto& id : m_transaction_id)
@@ -456,7 +456,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         if (tag_checkbox_->IsChecked()) {
             Model_Taglink::Data_Set taglinks;
             const wxString& refType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-            wxArrayInt tagIds = tagTextCtrl_->GetTagIDs();
+            wxArrayInt64 tagIds = tagTextCtrl_->GetTagIDs();
 
             if (tag_append_checkbox_->IsChecked()) {
                 // Since we are appending, start with the existing tags
@@ -464,9 +464,9 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 // Remove existing tags from the new list to avoid duplicates
                 for (const auto& link : taglinks)
                 {
-                    int index = tagIds.Index(link.TAGID);
-                    if (index != wxNOT_FOUND)
-                        tagIds.RemoveAt(index);
+                    auto index = std::find(tagIds.begin(), tagIds.end(), link.TAGID);
+                    if (index != tagIds.end())
+                        tagIds.erase(index);
                 }
             }
             // Create new taglinks for each tag ID
@@ -648,7 +648,7 @@ void transactionsUpdateDialog::OnComboKey(wxKeyEvent& event)
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbPayee_->mmDoReInitialize();
-                int payee_id = dlg.getPayeeId();
+                int64 payee_id = dlg.getPayeeId();
                 Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
                 if (payee) {
                     cbPayee_->ChangeValue(payee->PAYEENAME);

@@ -46,7 +46,7 @@ Model_Stock& Model_Stock::instance(wxSQLite3Database* db)
     return ins;
 }
 
-wxString Model_Stock::get_stock_name(int stock_id)
+wxString Model_Stock::get_stock_name(int64 stock_id)
 {
     Data* stock = instance().get(stock_id);
     if (stock)
@@ -97,7 +97,7 @@ double Model_Stock::CurrentValue(const Data& r)
 * Remove the Data record from memory and the database.
 * Delete also all stock history
 */
-bool Model_Stock::remove(int id)
+bool Model_Stock::remove(int64 id)
 {
     Model_Stock::Data *data = this->get(id);
     const auto &stocks = Model_Stock::instance().find(Model_Stock::SYMBOL(data->SYMBOL));
@@ -133,7 +133,7 @@ Returns the total stock balance at a given date
 double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const wxDate& date)
 {
     wxString strDate = date.FormatISODate();
-    std::map<int, double> totBalance;
+    std::map<int64, double> totBalance;
 
     Data_Set stocks = this->instance().find(HELDAT(account->id()));
     for (const auto & stock : stocks)

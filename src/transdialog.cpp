@@ -91,57 +91,58 @@ void mmTransDialog::SetEventHandlers()
 // accelerator hints are shown which only occurs once.
 static bool altRefreshDone;
 
-mmTransDialog::mmTransDialog(wxWindow* parent
-    , int account_id
-    , int transaction_id
-    , double current_balance
-    , bool duplicate
-    , int type
-    ) : m_duplicate(duplicate)
-, m_current_balance(current_balance)
-, m_account_id(account_id)
+mmTransDialog::mmTransDialog(wxWindow* parent,
+    int64 account_id,
+    Fused_Transaction::IdB fused_id,
+    bool duplicate,
+    int type)
+:
+    m_account_id(account_id)
 {
     SetEvtHandlerEnabled(false);
-    Model_Checking::Data *transaction = Model_Checking::instance().get(transaction_id);
-    m_new_trx = (transaction || m_duplicate) ? false : true;
-    m_transfer = m_new_trx ? type == Model_Checking::TYPE_ID_TRANSFER : Model_Checking::is_transfer(transaction);
-    if (m_new_trx)
-    {
-        Model_Checking::getEmptyTransaction(m_trx_data, account_id);
-        m_trx_data.TRANSCODE = Model_Checking::TYPE_STR[type];
-    }
-    else
-    {
-        Model_Checking::getTransactionData(m_trx_data, transaction);
-        const auto s = Model_Checking::splittransaction(transaction);
-        const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
-        for (const auto& item : s)
-        {
-            wxArrayInt tags;
-            for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(splitRefType), Model_Taglink::REFID(item.SPLITTRANSID)))
-                tags.Add(tag.TAGID);
-            m_local_splits.push_back({ item.CATEGID, item.SPLITTRANSAMOUNT, tags, item.NOTES });
+    bool found = Fused_Transaction::getFusedData(m_fused_data, fused_id);
+    if (found) {
+        // a bill can only be duplicated
+        m_mode = (duplicate || fused_id.second) ? MODE_DUP : MODE_EDIT;
+        const wxString& splitRefType = (m_fused_data.m_repeat_num == 0) ?
+            Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT) :
+            Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT);
+        for (const auto& split : Fused_Transaction::split(m_fused_data)) {
+            wxArrayInt64 tags;
+            for (const auto& tag : Model_Taglink::instance().find(
+                Model_Taglink::REFTYPE(splitRefType),
+                Model_Taglink::REFID(split.SPLITTRANSID))
+            )
+                tags.push_back(tag.TAGID);
+            m_local_splits.push_back({split.CATEGID, split.SPLITTRANSAMOUNT, tags, split.NOTES});
         }
 
-        if (m_duplicate && !Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_DUPLICATE, false))
+        if (m_mode == MODE_DUP && !Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_DUPLICATE, false))
         {
             // Use the empty transaction logic to generate the new date to be used
             Model_Checking::Data emptyTrx;
-            Model_Checking::getEmptyTransaction(emptyTrx, account_id);
-            m_trx_data.TRANSDATE = emptyTrx.TRANSDATE;
+            Model_Checking::getEmptyData(emptyTrx, account_id);
+            m_fused_data.TRANSDATE = emptyTrx.TRANSDATE;
         }
     }
+    else {
+        m_mode = MODE_NEW;
+        Model_Checking::getEmptyData(m_fused_data, account_id);
+        m_fused_data.TRANSCODE = Model_Checking::TYPE_STR[type];
+    }
 
-    m_advanced = m_transfer && !m_new_trx && (m_trx_data.TRANSAMOUNT != m_trx_data.TOTRANSAMOUNT);
+    m_transfer = Model_Checking::type_id(m_fused_data.TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER;
+    m_advanced = m_mode != MODE_NEW && m_transfer && (m_fused_data.TRANSAMOUNT != m_fused_data.TOTRANSAMOUNT);
 
-    int ref_id = (m_new_trx) ? 0 : m_trx_data.TRANSID;
+    int64 ref_id = (m_mode == MODE_NEW) ? 0 : (m_fused_data.m_repeat_num == 0) ?
+        m_fused_data.TRANSID : -(m_fused_data.m_bdid);
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELD);
 
     // If duplicate then we may need to copy the attachments
-    if (m_duplicate && Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDUPLICATE", false))
+    if (m_mode == MODE_DUP && Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDUPLICATE", false))
     {
-        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-        mmAttachmentManage::CloneAllAttachments(RefType, transaction_id, -1);
+        const wxString& refType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+        mmAttachmentManage::CloneAllAttachments(refType, fused_id.first, -1);
     }
 
     this->SetFont(parent->GetFont());
@@ -176,16 +177,10 @@ bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     SetEvtHandlerEnabled(false);
     CreateControls();
 
-    wxString header = _("Edit Transaction");
-    if (m_duplicate) {
-        header = _("Duplicate Transaction");
-    }
-    else if (m_new_trx) {
-        header = _("New Transaction");
-    }
-    else if (!m_trx_data.DELETEDTIME.IsEmpty()) {
-        header = ""; //_("View Deleted Transaction");
-    }
+    wxString header = (m_mode == MODE_NEW) ? _("New Transaction") :
+        (m_mode == MODE_DUP) ? _("Duplicate Transaction") :
+        m_fused_data.DELETEDTIME.IsEmpty() ? _("Edit Transaction") :
+        "";  //_("View Deleted Transaction");
     SetDialogTitle(header);
 
     SetIcon(mmex::getProgramIcon());
@@ -197,7 +192,7 @@ bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
 
 void mmTransDialog::dataToControls()
 {
-    Model_Checking::getFrequentUsedNotes(frequentNotes_, m_trx_data.ACCOUNTID);
+    Model_Checking::getFrequentUsedNotes(frequentNotes_, m_fused_data.ACCOUNTID);
     wxButton* bFrequentUsedNotes = static_cast<wxButton*>(FindWindow(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES));
     bFrequentUsedNotes->Enable(!frequentNotes_.empty());
 
@@ -206,8 +201,8 @@ void mmTransDialog::dataToControls()
         bool is_time_used = Option::instance().UseTransDateTime();
         wxDateTime trx_date;
         const wxString mask = is_time_used ? "%Y-%m-%dT%H:%M:%S" : "%Y-%m-%d";
-        if (!trx_date.ParseFormat(m_trx_data.TRANSDATE, mask))
-            trx_date.ParseDate(m_trx_data.TRANSDATE);
+        if (!trx_date.ParseFormat(m_fused_data.TRANSDATE, mask))
+            trx_date.ParseDate(m_fused_data.TRANSDATE);
         dpc_->SetValue(trx_date);
         dpc_->SetFocus();
         skip_date_init_ = true;
@@ -215,24 +210,24 @@ void mmTransDialog::dataToControls()
 
     if (!skip_status_init_) //Status
     {
-        m_status = m_trx_data.STATUS;
+        m_status = m_fused_data.STATUS;
         choiceStatus_->SetSelection(Model_Checking::status_id(m_status));
         skip_status_init_ = true;
     }
 
     //Type
-    transaction_type_->SetSelection(Model_Checking::type_id(m_trx_data.TRANSCODE));
+    transaction_type_->SetSelection(Model_Checking::type_id(m_fused_data.TRANSCODE));
 
     //Account
     if (!skip_account_init_)
     {
-        Model_Account::Data* acc = Model_Account::instance().get(m_trx_data.ACCOUNTID);
+        Model_Account::Data* acc = Model_Account::instance().get(m_fused_data.ACCOUNTID);
         if (acc)
         {
             cbAccount_->ChangeValue(acc->ACCOUNTNAME);
             m_textAmount->SetCurrency(Model_Currency::instance().get(acc->CURRENCYID));
         }
-        Model_Account::Data* to_acc = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
+        Model_Account::Data* to_acc = Model_Account::instance().get(m_fused_data.TOACCOUNTID);
         if (to_acc) {
             cbToAccount_->ChangeValue(to_acc->ACCOUNTNAME);
             toTextAmount_->SetCurrency(Model_Currency::instance().get(to_acc->CURRENCYID));
@@ -246,7 +241,7 @@ void mmTransDialog::dataToControls()
         account_label_->SetLabelText(_("From"));
         payee_label_->SetLabelText(_("To"));
     }
-    else if (!Model_Checking::is_deposit(m_trx_data.TRANSCODE)) {
+    else if (!Model_Checking::is_deposit(m_fused_data.TRANSCODE)) {
         account_label_->SetLabelText(_("Account"));
         payee_label_->SetLabelText(_("Payee"));
     }
@@ -264,12 +259,12 @@ void mmTransDialog::dataToControls()
     if (!skip_amount_init_)
     {
         if (m_transfer && m_advanced)
-            toTextAmount_->SetValue(m_trx_data.TOTRANSAMOUNT);
+            toTextAmount_->SetValue(m_fused_data.TOTRANSAMOUNT);
         else
             toTextAmount_->ChangeValue("");
 
-        if (!m_new_trx)
-            m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
+        if (m_mode != MODE_NEW)
+            m_textAmount->SetValue(m_fused_data.TRANSAMOUNT);
         skip_amount_init_ = true;
     }
 
@@ -281,12 +276,12 @@ void mmTransDialog::dataToControls()
         cbPayee_->UnsetToolTip();
         if (!m_transfer)
         {
-            if (!Model_Checking::foreignTransaction(m_trx_data)) {
-                m_trx_data.TOACCOUNTID = -1;
+            if (!Model_Checking::foreignTransaction(m_fused_data)) {
+                m_fused_data.TOACCOUNTID = -1;
             }
 
-            int accountID = cbAccount_->mmGetId();
-            if (m_new_trx && !m_duplicate && Option::instance().TransPayeeSelection() == Option::LASTUSED
+            int64 accountID = cbAccount_->mmGetId();
+            if (m_mode == MODE_NEW && Option::instance().TransPayeeSelection() == Option::LASTUSED
                 && (-1 != accountID))
             {
                 Model_Checking::Data_Set transactions = Model_Checking::instance().find(
@@ -298,7 +293,7 @@ void mmTransDialog::dataToControls()
                     cbPayee_->ChangeValue(payee->PAYEENAME);
                 }
             }
-            else if (m_new_trx && !m_duplicate && Option::instance().TransPayeeSelection() == Option::UNUSED)
+            else if (m_mode == MODE_NEW && Option::instance().TransPayeeSelection() == Option::UNUSED)
             {
                 Model_Payee::Data *payee = Model_Payee::instance().get(_("Unknown"));
                 if (!payee)
@@ -314,7 +309,7 @@ void mmTransDialog::dataToControls()
             }
             else
             {
-                Model_Payee::Data* payee = Model_Payee::instance().get(m_trx_data.PAYEEID);
+                Model_Payee::Data* payee = Model_Payee::instance().get(m_fused_data.PAYEEID);
                 if (payee)
                     cbPayee_->ChangeValue(payee->PAYEENAME);
             }
@@ -340,9 +335,9 @@ void mmTransDialog::dataToControls()
             cbCategory_->ChangeValue(_("Split Transaction"));
             cbCategory_->Disable();
             m_textAmount->SetValue(Model_Splittransaction::get_total(m_local_splits));
-            m_trx_data.CATEGID = -1;
+            m_fused_data.CATEGID = -1;
         }
-        else if (m_transfer && m_new_trx && !m_duplicate
+        else if (m_mode == MODE_NEW && m_transfer
             && Option::instance().TransCategorySelectionTransfer() == Option::LASTUSED)
         {
             Model_Checking::Data_Set transactions = Model_Checking::instance().find(
@@ -351,12 +346,12 @@ void mmTransDialog::dataToControls()
             if (!transactions.empty()
                 && (!Model_Category::is_hidden(transactions.back().CATEGID)))
             {
-                const int cat = transactions.back().CATEGID;
+                const int64 cat = transactions.back().CATEGID;
                 cbCategory_->ChangeValue(Model_Category::full_name(cat));
             }
         } else
         {
-            auto fullCategoryName = Model_Category::full_name(m_trx_data.CATEGID);
+            auto fullCategoryName = Model_Category::full_name(m_fused_data.CATEGID);
             cbCategory_->ChangeValue(fullCategoryName);
         }
         skip_category_init_ = true;
@@ -370,26 +365,31 @@ void mmTransDialog::dataToControls()
     // Tags
     if (!skip_tag_init_)
     {
-        wxArrayInt tagIds;
+        wxArrayInt64 tagIds;
         for (const auto& tag : Model_Taglink::instance().find(
-            Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)),
-            Model_Taglink::REFID(m_trx_data.TRANSID)))
-            tagIds.Add(tag.TAGID);
+            Model_Taglink::REFTYPE((m_fused_data.m_repeat_num == 0) ?
+                Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) :
+                Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT)),
+            Model_Taglink::REFID((m_fused_data.m_repeat_num == 0) ?
+                m_fused_data.TRANSID :
+                m_fused_data.m_bdid))
+        )
+            tagIds.push_back(tag.TAGID);
         tagTextCtrl_->SetTags(tagIds);
         skip_tag_init_ = true;
     }
 
     if (!skip_notes_init_) //Notes & Transaction Number
     {
-        textNumber_->SetValue(m_trx_data.TRANSACTIONNUMBER);
-        textNotes_->SetValue(m_trx_data.NOTES);
+        textNumber_->SetValue(m_fused_data.TRANSACTIONNUMBER);
+        textNotes_->SetValue(m_fused_data.NOTES);
         skip_notes_init_ = true;
     }
 
     if (!skip_tooltips_init_)
         SetTooltips();
 
-    if (!m_trx_data.DELETEDTIME.IsEmpty()) {
+    if (!m_fused_data.DELETEDTIME.IsEmpty()) {
         dpc_->Enable(false);
         transaction_type_->Enable(false);
         cbAccount_->Enable(false);
@@ -500,7 +500,7 @@ void mmTransDialog::CreateControls()
     account_label_ = new wxStaticText(this, wxID_STATIC, _("Account"));
     account_label_->SetFont(this->GetFont().Bold());
 
-    cbAccount_ = new mmComboBoxAccount(this, mmID_ACCOUNTNAME, wxDefaultSize, m_trx_data.ACCOUNTID);
+    cbAccount_ = new mmComboBoxAccount(this, mmID_ACCOUNTNAME, wxDefaultSize, m_fused_data.ACCOUNTID);
     cbAccount_->SetMinSize(cbAccount_->GetSize());
     flex_sizer->Add(account_label_, g_flagsH);
     flex_sizer->Add(cbAccount_, g_flagsExpand);
@@ -510,7 +510,7 @@ void mmTransDialog::CreateControls()
     to_acc_label_ = new wxStaticText(this, mmID_TOACCOUNT_LABEL, _("To"));
     to_acc_label_->SetFont(this->GetFont().Bold());
     flex_sizer->Add(to_acc_label_, g_flagsH);
-    cbToAccount_ = new mmComboBoxAccount(this, mmID_TOACCOUNTNAME, wxDefaultSize, m_trx_data.TOACCOUNTID);
+    cbToAccount_ = new mmComboBoxAccount(this, mmID_TOACCOUNTNAME, wxDefaultSize, m_fused_data.TOACCOUNTID);
     cbToAccount_->SetMinSize(cbToAccount_->GetSize());
     flex_sizer->Add(cbToAccount_, g_flagsExpand);
     flex_sizer->AddSpacer(1);
@@ -519,7 +519,7 @@ void mmTransDialog::CreateControls()
     payee_label_ = new wxStaticText(this, mmID_PAYEE_LABEL, _("Payee"));
     payee_label_->SetFont(this->GetFont().Bold());
 
-    cbPayee_ = new mmComboBoxPayee(this, mmID_PAYEE, wxDefaultSize, m_trx_data.PAYEEID, true);
+    cbPayee_ = new mmComboBoxPayee(this, mmID_PAYEE, wxDefaultSize, m_fused_data.PAYEEID, true);
     cbPayee_->SetMinSize(cbPayee_->GetSize());
     flex_sizer->Add(payee_label_, g_flagsH);
     flex_sizer->Add(cbPayee_, g_flagsExpand);
@@ -531,7 +531,7 @@ void mmTransDialog::CreateControls()
     categ_label_ = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL2, _("Category"));
     categ_label_->SetFont(this->GetFont().Bold());
     cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize
-        , m_trx_data.CATEGID, true);
+        , m_fused_data.CATEGID, true);
     cbCategory_->SetMinSize(cbCategory_->GetSize());
     bSplit_ = new wxBitmapButton(this, mmID_CATEGORY_SPLIT, mmBitmapBundle(png::NEW_TRX, mmBitmapButtonSize));
     mmToolTip(bSplit_, _("Use split Categories"));
@@ -570,7 +570,7 @@ void mmTransDialog::CreateControls()
     // Colours
     bColours_ = new mmColorButton(this, wxID_LOWEST, bAuto->GetSize());
     mmToolTip(bColours_, _("User Colors"));
-    bColours_->SetBackgroundColor(m_trx_data.COLOR);
+    bColours_->SetBackgroundColor(m_fused_data.COLOR.GetValue());
 
     // Attachments
     bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));
@@ -616,7 +616,7 @@ void mmTransDialog::CreateControls()
     buttons_sizer->Add(m_button_cancel, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
     buttons_sizer->Add(button_hide, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
 
-    if (!m_new_trx && !m_duplicate) m_button_cancel->SetFocus();
+    if (m_mode == MODE_EDIT) m_button_cancel->SetFocus();
 
     buttons_sizer->Realize();
 
@@ -638,7 +638,7 @@ void mmTransDialog::CreateControls()
 
 bool mmTransDialog::ValidateData()
 {
-    if (!m_textAmount->checkValue(m_trx_data.TRANSAMOUNT))
+    if (!m_textAmount->checkValue(m_fused_data.TRANSAMOUNT))
         return false;
     if (!tagTextCtrl_->IsValid()) {
         mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _("Invalid value"), _("Tags"), wxICON_ERROR);
@@ -648,10 +648,10 @@ bool mmTransDialog::ValidateData()
         mmErrorDialogs::ToolTip4Object(cbAccount_, _("Invalid value"), _("Account"), wxICON_ERROR);
         return false;
     }
-    m_trx_data.ACCOUNTID = cbAccount_->mmGetId();
-    const Model_Account::Data* account = Model_Account::instance().get(m_trx_data.ACCOUNTID);
+    m_fused_data.ACCOUNTID = cbAccount_->mmGetId();
+    const Model_Account::Data* account = Model_Account::instance().get(m_fused_data.ACCOUNTID);
 
-    if (m_trx_data.TRANSDATE < account->INITIALDATE)
+    if (m_fused_data.TRANSDATE < account->INITIALDATE)
     {
         mmErrorDialogs::ToolTip4Object(cbAccount_, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
         return false;
@@ -663,7 +663,7 @@ bool mmTransDialog::ValidateData()
             mmErrorDialogs::ToolTip4Object(cbCategory_, _("Invalid value"), _("Category"), wxICON_ERROR);
             return false;
         }
-        m_trx_data.CATEGID = cbCategory_->mmGetCategoryId();
+        m_fused_data.CATEGID = cbCategory_->mmGetCategoryId();
     }
 
     if (!m_transfer)
@@ -698,17 +698,17 @@ bool mmTransDialog::ValidateData()
             else
                 return false;
         }
-        m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
-        m_trx_data.PAYEEID = payee->PAYEEID;
-        if (!Model_Checking::foreignTransaction(m_trx_data))
+        m_fused_data.TOTRANSAMOUNT = m_fused_data.TRANSAMOUNT;
+        m_fused_data.PAYEEID = payee->PAYEEID;
+        if (!Model_Checking::foreignTransaction(m_fused_data))
         {
-            m_trx_data.TOACCOUNTID = -1;
+            m_fused_data.TOACCOUNTID = -1;
         }
 
         if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED)
-            && (!Model_Category::is_hidden(m_trx_data.CATEGID)))
+            && (!Model_Category::is_hidden(m_fused_data.CATEGID)))
         {
-            payee->CATEGID = m_trx_data.CATEGID;
+            payee->CATEGID = m_fused_data.CATEGID;
             Model_Payee::instance().save(payee);
             mmWebApp::MMEX_WebApp_UpdatePayee();
         }
@@ -717,15 +717,15 @@ bool mmTransDialog::ValidateData()
     {
         const Model_Account::Data *to_account = Model_Account::instance().get(cbToAccount_->GetValue());
 
-        if (!to_account || to_account->ACCOUNTID == m_trx_data.ACCOUNTID
+        if (!to_account || to_account->ACCOUNTID == m_fused_data.ACCOUNTID
             || Model_Account::type_id(to_account) == Model_Account::TYPE_ID_INVESTMENT)
         {
             mmErrorDialogs::InvalidAccount(cbToAccount_, true);
             return false;
         }
-        m_trx_data.TOACCOUNTID = to_account->ACCOUNTID;
+        m_fused_data.TOACCOUNTID = to_account->ACCOUNTID;
 
-        if (m_trx_data.TRANSDATE < to_account->INITIALDATE)
+        if (m_fused_data.TRANSDATE < to_account->INITIALDATE)
         {
             mmErrorDialogs::ToolTip4Object(cbToAccount_, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
             return false;
@@ -733,10 +733,10 @@ bool mmTransDialog::ValidateData()
 
         if (m_advanced)
         {
-            if (!toTextAmount_->checkValue(m_trx_data.TOTRANSAMOUNT))
+            if (!toTextAmount_->checkValue(m_fused_data.TOTRANSAMOUNT))
                 return false;
         }
-        m_trx_data.PAYEEID = -1;
+        m_fused_data.PAYEEID = -1;
     }
 
     /* Check if transaction is to proceed.*/
@@ -756,15 +756,15 @@ bool mmTransDialog::ValidateData()
     }
 
     //Checking account does not exceed limits
-    if (m_new_trx || m_duplicate)
+    if (m_mode != MODE_EDIT)
     {
-        if (m_trx_data.STATUS != Model_Checking::STATUS_KEY_VOID &&
-            (m_trx_data.TRANSCODE == Model_Checking::TYPE_STR_WITHDRAWAL ||
-             m_trx_data.TRANSCODE == Model_Checking::TYPE_STR_TRANSFER) &&
+        if (m_fused_data.STATUS != Model_Checking::STATUS_KEY_VOID &&
+            (m_fused_data.TRANSCODE == Model_Checking::TYPE_STR_WITHDRAWAL ||
+             m_fused_data.TRANSCODE == Model_Checking::TYPE_STR_TRANSFER) &&
             (account->MINIMUMBALANCE != 0 || account->CREDITLIMIT != 0))
         {
             const double fromAccountBalance = Model_Account::balance(account);
-            const double new_value = fromAccountBalance - m_trx_data.TRANSAMOUNT;
+            const double new_value = fromAccountBalance - m_fused_data.TRANSAMOUNT;
 
             bool abort_transaction =
                 (account->MINIMUMBALANCE != 0 && new_value < account->MINIMUMBALANCE) ||
@@ -782,9 +782,9 @@ bool mmTransDialog::ValidateData()
 
     int color_id = bColours_->GetColorId();
     if (color_id > 0 && color_id < 8)
-        m_trx_data.COLOR = color_id;
+        m_fused_data.COLOR = color_id;
     else
-        m_trx_data.COLOR = -1;
+        m_fused_data.COLOR = -1;
 
     return true;
 }
@@ -826,7 +826,7 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
         cbAccount_->ChangeValue(cbAccount_->GetValue());
         if (cbAccount_->mmIsValid())
         {
-            m_trx_data.ACCOUNTID = cbAccount_->mmGetId();
+            m_fused_data.ACCOUNTID = cbAccount_->mmGetId();
             skip_account_init_ = false;
         }
         break;
@@ -834,13 +834,13 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
         cbToAccount_->ChangeValue(cbToAccount_->GetValue());
         if (cbToAccount_->mmIsValid())
         {
-            m_trx_data.TOACCOUNTID = cbToAccount_->mmGetId();
+            m_fused_data.TOACCOUNTID = cbToAccount_->mmGetId();
             skip_account_init_ = false;
         }
         break;
     case mmID_PAYEE:
         cbPayee_->ChangeValue(cbPayee_->GetValue());
-        m_trx_data.PAYEEID = cbPayee_->mmGetId();
+        m_fused_data.PAYEEID = cbPayee_->mmGetId();
         SetCategoryForPayee();
         break;
     case mmID_CATEGORY:
@@ -848,14 +848,14 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
         break;
     case mmID_TEXTAMOUNT:
         if (m_textAmount->Calculate()) {
-            m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
+            m_textAmount->GetDouble(m_fused_data.TRANSAMOUNT);
         }
         skip_amount_init_ = false;
         calcTarget_ = m_textAmount;
         break;
     case mmID_TOTEXTAMOUNT:
         if (toTextAmount_->Calculate()) {
-            toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
+            toTextAmount_->GetDouble(m_fused_data.TOTRANSAMOUNT);
         }
         skip_amount_init_ = false;
         calcTarget_ = toTextAmount_;
@@ -867,13 +867,13 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
     if (!m_transfer)
     {
         toTextAmount_->ChangeValue("");
-        m_trx_data.TOACCOUNTID = -1;
+        m_fused_data.TOACCOUNTID = -1;
     }
     else
     {
         const Model_Account::Data* to_account = Model_Account::instance().get(cbToAccount_->mmGetId());
         if (to_account)
-            m_trx_data.TOACCOUNTID = to_account->ACCOUNTID;
+            m_fused_data.TOACCOUNTID = to_account->ACCOUNTID;
     }
 
     dataToControls();
@@ -896,12 +896,12 @@ void mmTransDialog::OnPayeeChanged(wxCommandEvent& /*event*/)
 
 void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
 {
-    const wxString old_type = m_trx_data.TRANSCODE;
+    const wxString old_type = m_fused_data.TRANSCODE;
     wxStringClientData *client_obj = static_cast<wxStringClientData*>(event.GetClientObject());
-    if (client_obj) m_trx_data.TRANSCODE = client_obj->GetData();
-    if (old_type != m_trx_data.TRANSCODE)
+    if (client_obj) m_fused_data.TRANSCODE = client_obj->GetData();
+    if (old_type != m_fused_data.TRANSCODE)
     {
-        m_transfer = Model_Checking::is_transfer(m_trx_data.TRANSCODE);
+        m_transfer = Model_Checking::is_transfer(m_fused_data.TRANSCODE);
         if (m_transfer || Model_Checking::is_transfer(old_type))
             skip_payee_init_ = false;
         else
@@ -910,11 +910,11 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
         skip_tooltips_init_ = false;
 
         if (m_transfer) {
-            m_trx_data.PAYEEID = -1;
+            m_fused_data.PAYEEID = -1;
             skip_category_init_ = false;
         } else {
-            m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
-            m_trx_data.TOACCOUNTID = -1;
+            m_fused_data.TOTRANSAMOUNT = m_fused_data.TRANSAMOUNT;
+            m_fused_data.TOACCOUNTID = -1;
         }
         dataToControls();
     }
@@ -936,7 +936,7 @@ void mmTransDialog::OnComboKey(wxKeyEvent& event)
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbPayee_->mmDoReInitialize();
-                int payee_id = dlg.getPayeeId();
+                int64 payee_id = dlg.getPayeeId();
                 Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
                 if (payee) {
                     cbPayee_->ChangeValue(payee->PAYEENAME);
@@ -981,10 +981,10 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
 {
     // Only for new transactions: if user does not want to use categories.
     // If this is a Split Transaction, ignore displaying last category for payee
-    if (Option::instance().TransCategorySelectionNonTransfer() == Option::UNUSED
-        && m_local_splits.empty() && m_new_trx && !m_duplicate)
+    if (m_mode == MODE_NEW && Option::instance().TransCategorySelectionNonTransfer() == Option::UNUSED
+        && m_local_splits.empty())
     {
-        Model_Category::Data *category = Model_Category::instance().get(_("Unknown"), -1);
+        Model_Category::Data *category = Model_Category::instance().get(_("Unknown"), int64(-1));
         if (!category)
         {
             category = Model_Category::instance().create();
@@ -994,7 +994,7 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
             cbCategory_->mmDoReInitialize();
         }
 
-        m_trx_data.CATEGID = category->CATEGID;
+        m_fused_data.CATEGID = category->CATEGID;
         cbCategory_->ChangeValue(_("Unknown"));
         return;
     }
@@ -1010,20 +1010,20 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
     // If this is a Split Transaction, ignore displaying last category for payee
     if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED ||
         Option::instance().TransCategorySelectionNonTransfer() == Option::DEFAULT)
-        && m_local_splits.empty() && m_new_trx && !m_duplicate
+        && m_mode == MODE_NEW && m_local_splits.empty()
         && (!Model_Category::is_hidden(payee->CATEGID)))
     {
         // if payee has memory of last category used then display last category for payee
         Model_Category::Data *category = Model_Category::instance().get(payee->CATEGID);
         if (category)
         {
-            m_trx_data.CATEGID = payee->CATEGID;
+            m_fused_data.CATEGID = payee->CATEGID;
             cbCategory_->ChangeValue(Model_Category::full_name(payee->CATEGID));
-            wxLogDebug("Category: %s = %.2f", cbCategory_->GetLabel(), m_trx_data.TRANSAMOUNT);
+            wxLogDebug("Category: %s = %.2f", cbCategory_->GetLabel(), m_fused_data.TRANSAMOUNT);
         }
         else
         {
-            m_trx_data.CATEGID = -1;
+            m_fused_data.CATEGID = -1;
             cbCategory_->ChangeValue("");
         }
     }
@@ -1037,10 +1037,10 @@ void mmTransDialog::OnCalculator(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::OnAutoTransNum(wxCommandEvent& WXUNUSED(event))
     {
-    auto d = Model_Checking::TRANSDATE(m_trx_data).Subtract(wxDateSpan::Months(12));
+    auto d = Model_Checking::TRANSDATE(m_fused_data).Subtract(wxDateSpan::Months(12));
     double next_number = 0, temp_num;
     const auto numbers = Model_Checking::instance().find(
-        Model_Checking::ACCOUNTID(m_trx_data.ACCOUNTID, EQUAL)
+        Model_Checking::ACCOUNTID(m_fused_data.ACCOUNTID, EQUAL)
         , Model_Checking::TRANSDATE(d, GREATER_OR_EQUAL)
         , Model_Checking::TRANSACTIONNUMBER("", NOT_EQUAL));
     for (const auto &num : numbers)
@@ -1063,14 +1063,14 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
 {
-    if (!m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT)) {
-        m_trx_data.TRANSAMOUNT = 0;
+    if (!m_textAmount->GetDouble(m_fused_data.TRANSAMOUNT)) {
+        m_fused_data.TRANSAMOUNT = 0;
     }
 
     if (m_local_splits.empty() && cbCategory_->mmIsValid())
     {
         Split s;
-        s.SPLITTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
+        s.SPLITTRANSAMOUNT = m_fused_data.TRANSAMOUNT;
         s.CATEGID = cbCategory_->mmGetCategoryId();
         tagTextCtrl_->Validate();
         s.TAGS = tagTextCtrl_->GetTagIDs();
@@ -1078,21 +1078,21 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         m_local_splits.push_back(s);
     }
 
-    bool isDeposit = Model_Checking::is_deposit(m_trx_data.TRANSCODE);
+    bool isDeposit = Model_Checking::is_deposit(m_fused_data.TRANSCODE);
     mmSplitTransactionDialog dlg(this, m_local_splits
-        , m_trx_data.ACCOUNTID
+        , m_fused_data.ACCOUNTID
         , isDeposit ? Model_Checking::TYPE_ID_DEPOSIT : Model_Checking::TYPE_ID_WITHDRAWAL
-        , m_trx_data.TRANSAMOUNT);
+        , m_fused_data.TRANSAMOUNT);
 
     if (dlg.ShowModal() == wxID_OK)
     {
         m_local_splits = dlg.mmGetResult();
 
         if (m_local_splits.size() == 1) {
-            m_trx_data.CATEGID = m_local_splits[0].CATEGID;
-            m_trx_data.TRANSAMOUNT = m_local_splits[0].SPLITTRANSAMOUNT;
+            m_fused_data.CATEGID = m_local_splits[0].CATEGID;
+            m_fused_data.TRANSAMOUNT = m_local_splits[0].SPLITTRANSAMOUNT;
             textNotes_->SetValue(m_local_splits[0].NOTES);
-            m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
+            m_textAmount->SetValue(m_fused_data.TRANSAMOUNT);
             tagTextCtrl_->Clear();
             wxString tagnames;
             for (const auto& tag : m_local_splits[0].TAGS)
@@ -1102,7 +1102,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         }
 
         if (!m_local_splits.empty()) {
-            m_textAmount->SetValue(m_trx_data.TRANSAMOUNT);
+            m_textAmount->SetValue(m_fused_data.TRANSAMOUNT);
         }
 
         skip_category_init_ = false;
@@ -1115,10 +1115,11 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
-    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    int TransID = m_trx_data.TRANSID;
-    if (m_duplicate) TransID = -1;
-    mmAttachmentDialog dlg(this, RefType, TransID);
+    const wxString& refType = (m_fused_data.m_repeat_num == 0) ?
+        Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) :
+        Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+    int64 transID = (m_mode == MODE_DUP) ? -1 : m_fused_data.TRANSID;
+    mmAttachmentDialog dlg(this, refType, transID);
     dlg.ShowModal();
 }
 
@@ -1128,14 +1129,14 @@ void mmTransDialog::OnTextEntered(wxCommandEvent& WXUNUSED(event))
     {
         if (m_textAmount->Calculate())
         {
-            m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
+            m_textAmount->GetDouble(m_fused_data.TRANSAMOUNT);
         }
     }
     else if (object_in_focus_ == toTextAmount_->GetId())
     {
         if (toTextAmount_->Calculate())
         {
-            toTextAmount_->GetDouble(m_trx_data.TOTRANSAMOUNT);
+            toTextAmount_->GetDouble(m_fused_data.TOTRANSAMOUNT);
         }
     }
     skip_amount_init_ = false;
@@ -1172,24 +1173,27 @@ void mmTransDialog::OnNoteSelected(wxCommandEvent& event)
 
 void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
-    m_trx_data.NOTES = textNotes_->GetValue();
-    m_trx_data.TRANSACTIONNUMBER = textNumber_->GetValue();
-    m_trx_data.TRANSDATE = dpc_->GetValue().FormatISOCombined();
+    m_fused_data.NOTES = textNotes_->GetValue();
+    m_fused_data.TRANSACTIONNUMBER = textNumber_->GetValue();
+    m_fused_data.TRANSDATE = dpc_->GetValue().FormatISOCombined();
     wxStringClientData* status_obj = static_cast<wxStringClientData*>(choiceStatus_->GetClientObject(choiceStatus_->GetSelection()));
     if (status_obj)
     {
         m_status = Model_Checking::status_key(status_obj->GetData());
-        m_trx_data.STATUS = m_status;
+        m_fused_data.STATUS = m_status;
     }
 
     if (!ValidateData()) return;
-    if (!m_custom_fields->ValidateCustomValues(m_trx_data.TRANSID)) return;
+    if (!m_custom_fields->ValidateCustomValues((m_fused_data.m_repeat_num == 0) ?
+        m_fused_data.TRANSID : -(m_fused_data.m_bdid))
+    )
+        return;
 
     if (!m_advanced)
-        m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
+        m_fused_data.TOTRANSAMOUNT = m_fused_data.TRANSAMOUNT;
 
-    if (m_transfer && !m_advanced && (Model_Account::currency(Model_Account::instance().get(m_trx_data.ACCOUNTID))
-        != Model_Account::currency(Model_Account::instance().get(m_trx_data.TOACCOUNTID))))
+    if (m_transfer && !m_advanced && (Model_Account::currency(Model_Account::instance().get(m_fused_data.ACCOUNTID))
+        != Model_Account::currency(Model_Account::instance().get(m_fused_data.TOACCOUNTID))))
     {
         wxMessageDialog msgDlg( this
             , _("The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?")
@@ -1199,12 +1203,14 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             return;
     }
 
-    Model_Checking::Data *r = Model_Checking::instance().get(m_trx_data.TRANSID);
-    if (m_new_trx || m_duplicate)
-        r = Model_Checking::instance().create();
+    Model_Checking::Data *r = (m_mode == MODE_EDIT) ?
+        Model_Checking::instance().get(m_fused_data.TRANSID) :
+        Model_Checking::instance().create();
 
-    Model_Checking::putDataToTransaction(r, m_trx_data);
-    m_trx_data.TRANSID = Model_Checking::instance().save(r);
+    Model_Checking::putDataToTransaction(r, m_fused_data);
+    m_fused_data.TRANSID = Model_Checking::instance().save(r);
+    m_fused_data.m_bdid = 0;
+    m_fused_data.m_repeat_num = 0;
 
     Model_Splittransaction::Data_Set splt;
     for (const auto& entry : m_local_splits)
@@ -1215,7 +1221,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         s->NOTES = entry.NOTES;
         splt.push_back(*s);
     }
-    Model_Splittransaction::instance().update(splt, m_trx_data.TRANSID);
+    Model_Splittransaction::instance().update(splt, m_fused_data.TRANSID);
 
     // Save split tags
     const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
@@ -1234,12 +1240,11 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         Model_Taglink::instance().update(splitTaglinks, splitRefType, splt.at(i).SPLITTRANSID);
     }
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    if (m_new_trx || m_duplicate)
-    {
-        mmAttachmentManage::RelocateAllAttachments(RefType, -1, RefType, m_trx_data.TRANSID);
+    if (m_mode != MODE_EDIT) {
+        mmAttachmentManage::RelocateAllAttachments(RefType, -1, RefType, m_fused_data.TRANSID);
     }
 
-    m_custom_fields->SaveCustomValues(m_trx_data.TRANSID);
+    m_custom_fields->SaveCustomValues(m_fused_data.TRANSID);
 
     // Save base transaction tags
     Model_Taglink::Data_Set taglinks;
@@ -1247,11 +1252,11 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     {
         Model_Taglink::Data* t = Model_Taglink::instance().create();
         t->REFTYPE = RefType;
-        t->REFID = m_trx_data.TRANSID;
+        t->REFID = m_fused_data.TRANSID;
         t->TAGID = tagId;
         taglinks.push_back(*t);
     }
-    Model_Taglink::instance().update(taglinks, RefType, m_trx_data.TRANSID);
+    Model_Taglink::instance().update(taglinks, RefType, m_fused_data.TRANSID);
 
     const Model_Checking::Data& tran(*r);
     Model_Checking::Full_Data trx(tran);
@@ -1259,7 +1264,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     bool loop = Option::instance().get_bulk_transactions();
     bool s = (wxGetKeyState(WXK_SHIFT) && !loop) || (!wxGetKeyState(WXK_SHIFT) && loop);
-    if (m_new_trx && s)
+    if (m_mode == MODE_NEW && s)
         return EndModal(wxID_NEW);
 
     EndModal(wxID_OK);
@@ -1276,8 +1281,7 @@ void mmTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
     }
 #endif
 
-    if (m_new_trx || m_duplicate)
-    {
+    if (m_mode != MODE_EDIT) {
         const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
         mmAttachmentManage::DeleteAllAttachments(RefType, -1);
         Model_CustomFieldData::instance().DeleteAllData(RefType, -1);
@@ -1293,13 +1297,13 @@ void mmTransDialog::SetTooltips()
         mmToolTip(bSplit_, _("Use split Categories"));
     else {
         const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
-        const Model_Account::Data* account = Model_Account::instance().get(m_trx_data.ACCOUNTID);
+        const Model_Account::Data* account = Model_Account::instance().get(m_fused_data.ACCOUNTID);
         if (account)
             currency = Model_Account::currency(account);
 
         bSplit_->SetToolTip(Model_Splittransaction::get_tooltip(m_local_splits, currency));
     }
-    if (!m_new_trx) return;
+    if (m_mode != MODE_NEW) return;
 
     m_textAmount->UnsetToolTip();
     toTextAmount_->UnsetToolTip();
@@ -1319,7 +1323,7 @@ void mmTransDialog::SetTooltips()
     {
         mmToolTip(m_textAmount, _("Specify the amount for this transaction"));
         mmToolTip(cbAccount_, _("Specify account for the transaction"));
-        if (!Model_Checking::is_deposit(m_trx_data.TRANSCODE))
+        if (!Model_Checking::is_deposit(m_fused_data.TRANSCODE))
             mmToolTip(cbPayee_, _("Specify to whom the transaction is going to"));
         else
             mmToolTip(cbPayee_, _("Specify where the transaction is coming from"));
@@ -1337,7 +1341,7 @@ void mmTransDialog::SetTooltips()
 void mmTransDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    if (m_new_trx || m_duplicate) {
+    if (m_mode != MODE_EDIT) {
         mmAttachmentManage::DeleteAllAttachments(RefType, -1);
         Model_CustomFieldData::instance().DeleteAllData(RefType, -1);
     }
