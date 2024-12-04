@@ -214,7 +214,7 @@ void mmWebAppDialog::fillControls()
     for (const auto& WebTran : WebAppTransactions_)
     {
         wxVector<wxVariant> data;
-        data.push_back(wxVariant(wxString::Format(wxT("%i"), WebTran.ID))); //WEBTRAN_ID
+        data.push_back(wxVariant(wxString::Format(wxT("%lld"), WebTran.ID))); //WEBTRAN_ID
         data.push_back(wxVariant(mmGetDateForDisplay(WebTran.Date.FormatISODate()))); //WEBTRAN_DATE
         data.push_back(wxVariant(WebTran.Account)); //WEBTRAN_ACCOUNT
         data.push_back(wxVariant(WebTran.Status)); //WEBTRAN_STATUS

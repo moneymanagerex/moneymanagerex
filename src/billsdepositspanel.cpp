@@ -471,7 +471,7 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     switch (column)
     {
     case COL_ID:
-        return wxString::Format("%i", bill.BDID).Trim();
+        return wxString::Format("%lld", bill.BDID).Trim();
     case COL_PAYMENT_DATE:
         return mmGetDateForDisplay(bill.TRANSDATE);
     case COL_DUE_DATE:
@@ -534,7 +534,7 @@ const wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Dat
 
     wxString text = wxGetTranslation(BILLSDEPOSITS_REPEATS[repeats]);
     if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS)
-        text = wxString::Format(text, wxString::Format("%d", item->NUMOCCURRENCES));
+        text = wxString::Format(text, wxString::Format("%lld", item->NUMOCCURRENCES));
     return text;
 }
 

@@ -182,7 +182,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                     int month = -1;
                     hb.startTableRow();
                     hb.startTableCell(" style='vertical-align:middle;'");
-                    hb.addText(wxString::Format(formattedNames[catID] + "<a href=\"viewtrans:%d\" target=\"_blank\">%s</a>"
+                    hb.addText(wxString::Format(formattedNames[catID] + "<a href=\"viewtrans:%lld\" target=\"_blank\">%s</a>"
                         , catID
                         , category.CATEGNAME));
                     hb.endTableCell();
@@ -255,7 +255,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                             {
                                 int64 id = totals_stack.back().CATEGID;
                                 hb.startTableCell(" style='vertical-align:middle;'");
-                                hb.addText(wxString::Format(formattedNames[id] + "<a href=\"viewtrans:%d:-2\" target=\"_blank\">%s</a>"
+                                hb.addText(wxString::Format(formattedNames[id] + "<a href=\"viewtrans:%lld:-2\" target=\"_blank\">%s</a>"
                                     , id
                                     , totals_stack.back().CATEGNAME));
                                 hb.endTableCell();
@@ -300,7 +300,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                     {
                         int64 id = totals_stack.back().CATEGID;
                         hb.startTableCell(" style='vertical-align:middle;'");
-                        hb.addText(wxString::Format(formattedNames[id] + "<a href=\"viewtrans:%d:-2\" target=\"_blank\">%s</a>"
+                        hb.addText(wxString::Format(formattedNames[id] + "<a href=\"viewtrans:%lld:-2\" target=\"_blank\">%s</a>"
                             , id
                             , totals_stack.back().CATEGNAME));
                         hb.endTableCell();

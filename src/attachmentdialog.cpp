@@ -106,7 +106,7 @@ void mmAttachmentDialog::Create(wxWindow* parent, const wxString& name)
             RefName = "";
         }       
         if (RefName.IsEmpty())
-            WindowTitle = wxString::Format(_("Attachment Manager | %s | %i"), wxGetTranslation(m_RefType), m_RefId);
+            WindowTitle = wxString::Format(_("Attachment Manager | %s | %lld"), wxGetTranslation(m_RefType), m_RefId);
         else
             WindowTitle = wxString::Format(_("Attachment Manager | %1$s | %2$s"), wxGetTranslation(m_RefType), RefName);
     } else
@@ -169,7 +169,7 @@ void mmAttachmentDialog::fillControls()
     {
         if (firstInTheListAttachentID == -1) firstInTheListAttachentID = entry.ATTACHMENTID;
         wxVector<wxVariant> data;
-        if (debug_) data.push_back(wxVariant(wxString::Format("%i", entry.ATTACHMENTID)));
+        if (debug_) data.push_back(wxVariant(wxString::Format("%lld", entry.ATTACHMENTID)));
         data.push_back(wxVariant(entry.DESCRIPTION));
         data.push_back(wxVariant(entry.REFTYPE + m_PathSep + entry.FILENAME));
         attachmentListBox_->AppendItem(data, static_cast<wxUIntPtr>(entry.ATTACHMENTID.GetValue()));
@@ -204,7 +204,7 @@ void mmAttachmentDialog::AddAttachment(wxString FilePath)
     const wxString attachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
     int attachmentLastNumber = Model_Attachment::LastAttachmentNumber(m_RefType, m_RefId);
 
-    wxString importedFileName = m_RefType + "_" + wxString::Format("%i", m_RefId) + "_Attach"
+    wxString importedFileName = m_RefType + "_" + wxString::Format("%lld", m_RefId) + "_Attach"
         + wxString::Format("%i", attachmentLastNumber + 1);
     if (!attachmentFileExtension.empty())
         importedFileName += "." + attachmentFileExtension;
@@ -558,7 +558,7 @@ bool mmAttachmentManage::RelocateAllAttachments(const wxString& OldRefType, int6
     for (auto &entry : attachments)
     {
         wxString NewFileName = entry.FILENAME;
-        NewFileName.Replace(entry.REFTYPE + "_" + wxString::Format("%i", entry.REFID), NewRefType + "_" + wxString::Format("%i", NewRefId));
+        NewFileName.Replace(entry.REFTYPE + "_" + wxString::Format("%lld", entry.REFID), NewRefType + "_" + wxString::Format("%lld", NewRefId));
         wxRenameFile(OldAttachmentsFolder + entry.FILENAME, NewAttachmentsFolder + NewFileName);
         entry.REFTYPE = NewRefType;
         entry.REFID = NewRefId;
@@ -582,7 +582,7 @@ bool mmAttachmentManage::CloneAllAttachments(const wxString& RefType, int64 OldR
     for (auto &entry : attachments)
     {
         wxString NewFileName = entry.FILENAME;
-        NewFileName.Replace(entry.REFTYPE + "_" + wxString::Format("%i", entry.REFID), entry.REFTYPE + "_" + wxString::Format("%i", NewRefId));
+        NewFileName.Replace(entry.REFTYPE + "_" + wxString::Format("%lld", entry.REFID), entry.REFTYPE + "_" + wxString::Format("%lld", NewRefId));
         wxCopyFile(AttachmentsFolder + entry.FILENAME, AttachmentsFolder + NewFileName);
         Model_Attachment::Data* NewAttachment = Model_Attachment::instance().create();
         NewAttachment->REFTYPE = RefType;

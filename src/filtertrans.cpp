@@ -212,12 +212,12 @@ table {
     for (auto& transaction : m_trans)
     {
         hb.startTableRow();
-        hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
-            , wxString::Format("%i", transaction.TRANSID), true);
+        hb.addTableCellLink(wxString::Format("trx:%lld", transaction.TRANSID)
+            , wxString::Format("%lld", transaction.TRANSID), true);
         hb.addColorMarker(getUDColour(transaction.COLOR.GetValue()).GetAsString(), true);
         hb.addTableCellDate(transaction.TRANSDATE);
         hb.addTableCell(transaction.TRANSACTIONNUMBER);
-        hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID)
+        hb.addTableCellLink(wxString::Format("trxid:%lld", transaction.TRANSID)
             , transaction.ACCOUNTNAME);
         hb.addTableCell(transaction.PAYEENAME);
         hb.addTableCell(transaction.STATUS, false, true);
@@ -246,7 +246,7 @@ table {
         wxString AttachmentsLink = "";
         if (Model_Attachment::instance().NrAttachments(AttRefType, transaction.TRANSID))
         {
-            AttachmentsLink = wxString::Format(R"(<a href = "attachment:%s|%d" target="_blank">%s</a>)",
+            AttachmentsLink = wxString::Format(R"(<a href = "attachment:%s|%lld" target="_blank">%s</a>)",
                 AttRefType, transaction.TRANSID, mmAttachmentManage::GetAttachmentNoteSign());
         }
 
