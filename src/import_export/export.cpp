@@ -66,7 +66,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
         //Transaction number used to make transaction unique
         // to proper merge transfer records
         if (transNum.IsEmpty() && notes.IsEmpty()) {
-            transNum = wxString::Format("#%i", full_tran.id());
+            transNum = wxString::Format("#%lld", full_tran.id());
         }
     }
 
@@ -80,7 +80,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
             const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
             const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, ":");
 
-            buffer << inQuotes(wxString::Format("%i", full_tran.TRANSID), delimiter) << delimiter;
+            buffer << inQuotes(wxString::Format("%lld", full_tran.TRANSID), delimiter) << delimiter;
             buffer << inQuotes(mmGetDateForDisplay(full_tran.TRANSDATE, dateMask), delimiter) << delimiter;
             buffer << inQuotes(full_tran.STATUS, delimiter) << delimiter;
             buffer << inQuotes(full_tran.TRANSCODE, delimiter) << delimiter;
@@ -100,7 +100,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
     }
     else
     {
-        buffer << inQuotes(wxString::Format("%i", full_tran.TRANSID), delimiter) << delimiter;
+        buffer << inQuotes(wxString::Format("%lld", full_tran.TRANSID), delimiter) << delimiter;
         buffer << inQuotes(mmGetDateForDisplay(full_tran.TRANSDATE, dateMask), delimiter) << delimiter;
         buffer << inQuotes(full_tran.STATUS, delimiter) << delimiter;
         buffer << inQuotes(full_tran.TRANSCODE, delimiter) << delimiter;
@@ -151,7 +151,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         //Transaction number used to make transaction unique
         // to proper merge transfer records
         if (transNum.IsEmpty() && notes.IsEmpty())
-            transNum = wxString::Format("#%i", full_tran.id());
+            transNum = wxString::Format("#%lld", full_tran.id());
     }
 
     // don't allow '/' in category name as it is reserved for the class/tag separator

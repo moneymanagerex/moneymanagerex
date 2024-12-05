@@ -171,7 +171,7 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
 {
     column = m_real_columns[column];
 
-    if (column == COL_ID)           return wxString::Format("%i", m_stocks[item].STOCKID).Trim();
+    if (column == COL_ID)           return wxString::Format("%lld", m_stocks[item].STOCKID).Trim();
     if (column == COL_DATE)         return mmGetDateForDisplay(m_stocks[item].PURCHASEDATE);
     if (column == COL_NAME)         return m_stocks[item].STOCKNAME;
     if (column == COL_SYMBOL)       return m_stocks[item].SYMBOL;

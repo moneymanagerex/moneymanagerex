@@ -222,7 +222,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                     {
                         hb.startTableRow();
                         {
-                            hb.addTableCellLink(wxString::Format("viewtrans:%d"
+                            hb.addTableCellLink(wxString::Format("viewtrans:%lld"
                                 , category.CATEGID)
                                 , category.CATEGNAME);
                             hb.addMoneyCell(estimated);
@@ -275,7 +275,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                         if (amply) {
                             hb.startTableRow();
                             {
-                                hb.addTableCell(wxString::Format(categLevel[subcats[i].CATEGID].second + "<a href=\"viewtrans:%d\" target=\"_blank\">%s</a>"
+                                hb.addTableCell(wxString::Format(categLevel[subcats[i].CATEGID].second + "<a href=\"viewtrans:%lld\" target=\"_blank\">%s</a>"
                                     , subcats[i].CATEGID
                                     , subcats[i].CATEGNAME));
                                 hb.addMoneyCell(estimated);
@@ -290,7 +290,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                                         hb.startAltTableRow();
                                         {
                                             int index = totals_stack.back();
-                                            hb.addTableCell(wxString::Format(categLevel[subcats[index].CATEGID].second + "<a href=\"viewtrans:%d:-2\" target=\"_blank\">%s</a>"
+                                            hb.addTableCell(wxString::Format(categLevel[subcats[index].CATEGID].second + "<a href=\"viewtrans:%lld:-2\" target=\"_blank\">%s</a>"
                                                 , subcats[index].CATEGID
                                                 , subcats[index].CATEGNAME));
                                             hb.addMoneyCell(catTotalsEstimated[subcats[index].CATEGID]);
@@ -307,7 +307,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                                     hb.startAltTableRow();
                                     {
                                         int index = totals_stack.back();
-                                        hb.addTableCell(wxString::Format(categLevel[subcats[index].CATEGID].second + "<a href=\"viewtrans:%d:-2\" target=\"_blank\">%s</a>"
+                                        hb.addTableCell(wxString::Format(categLevel[subcats[index].CATEGID].second + "<a href=\"viewtrans:%lld:-2\" target=\"_blank\">%s</a>"
                                             , subcats[index].CATEGID
                                             , subcats[index].CATEGNAME));
                                         hb.addMoneyCell(catTotalsEstimated[subcats[index].CATEGID]);
@@ -321,7 +321,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                     }
                     amply ? hb.startAltTableRow() : hb.startTableRow();
                     {
-                        hb.addTableCellLink(wxString::Format("viewtrans:%d:-2"
+                        hb.addTableCellLink(wxString::Format("viewtrans:%lld:-2"
                             , category.CATEGID)
                             , category.CATEGNAME);
                         hb.addMoneyCell(catTotalsEstimated[category.CATEGID]);
