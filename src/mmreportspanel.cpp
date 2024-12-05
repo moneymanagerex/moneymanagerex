@@ -690,19 +690,18 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
             wxString token = tokenizer.GetNextToken();
             parms.push_back(std::string(token.mb_str()));
             
-        }
-        
-        //wxLogDebug("cat" + wxString(parms[1].c_str(), wxConvUTF8));
-        //wxLogDebug("year:"+ wxString(parms[2].c_str(), wxConvUTF8));
-        //wxLogDebug("month:"+ wxString(parms[3].c_str(), wxConvUTF8));
-        
-        int64_t budgetYearID = Model_Budgetyear::instance().Get(parms[3] + "-" + parms[4]);
+        }      
+        //get yearId from year_name
+        int64 budgetYearID = Model_Budgetyear::instance().Get(parms[3] + "-" + parms[4]);
+
+        //if budgetYearID doesn't exist then return
         if (budgetYearID == -1)
         {
             wxLogInfo("Monthly budget not found!");
             return;
         }
            
+        //get model budget for yearID and catID
         Model_Budget::Data_Set budget = Model_Budget::instance().find(Model_Budget::BUDGETYEARID(budgetYearID), Model_Budget::CATEGID(std::stoi(parms[2])));
         
         Model_Budget::Data* entry = 0;
@@ -721,10 +720,12 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
 
         double estimated = std::stod(parms[0]);
         double actual = std::stod(parms[1]);
-       
+
+        //open budgetEntry dialog
         mmBudgetEntryDialog dlg(m_frame, entry, Model_Currency::toCurrency(estimated), Model_Currency::toCurrency(actual));
         if (dlg.ShowModal() == wxID_OK)
         {
+            //refresh report
             saveReportText(false);
             rb_ ->setReportSettings();
             
