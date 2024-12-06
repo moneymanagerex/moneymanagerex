@@ -27,7 +27,7 @@ simplicity and user-friendliness – an application that can be used everyday.
 - [Custom Reports](https://github.com/moneymanagerex/general-reports#general-reports)
 - Installation not required: portable versions run from a USB or a flash drive
 - Nonproprietary [SQLite](https://www.sqlite.org/) database with [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
-- Cross-platform, available for [desktop](https://moneymanagerex.org/docs/downloads/compatibility/) ([GNU/Linux](https://moneymanagerex.org/docs/downloads/compatibility/#linux), [macOS](https://moneymanagerex.org/docs/downloads/compatibility/#macos--osx), [Windows](https://moneymanagerex.org/docs/downloads/compatibility/#windows)) and mobile ([Android](https://android.moneymanagerex.org/)) operating systems
+- Cross-platform, available for [desktop](https://moneymanagerex.org/docs/downloads/compatibility/) ([GNU/Linux](https://moneymanagerex.org/docs/downloads/compatibility/#linux), [macOS](https://moneymanagerex.org/docs/downloads/compatibility/#macos--osx), [Windows](https://moneymanagerex.org/docs/downloads/compatibility/#windows)) and mobile ([Android](https://android.moneymanagerex.org/), [iOS](https://ios.moneymanagerex.org/)) operating systems
 - International language support: [Crowdin](https://crowdin.com/project/moneymanagerex), [Desktop icon](/resources/dist/linux/share/applications/org.moneymanagerex.MMEX.desktop), [AppData](/resources/dist/linux/share/metainfo/org.moneymanagerex.MMEX.metainfo.xml.in), [Filetype associations](/resources/dist/linux/share/mime/packages/org.moneymanagerex.MMEX.mime.xml), [User interface language](/po/common.po)
 
 
