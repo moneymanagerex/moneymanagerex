@@ -407,7 +407,11 @@ void mmGUIFrame::cleanupNavTreeControl(wxTreeItemId& item)
         m_nav_tree_ctrl->SetItemData(item, nullptr);
         if (iData)
             delete iData;
-        item = m_nav_tree_ctrl->GetNextSibling(item);
+
+        if (item != m_nav_tree_ctrl->GetRootItem())
+            item = m_nav_tree_ctrl->GetNextSibling(item);
+        else
+            break;
     }
 }
 
@@ -978,7 +982,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
             }
         }
     }
-    m_nav_tree_ctrl->EnsureVisible(root);
+    m_nav_tree_ctrl->EnsureVisible(dashboard);
     if (home_page) m_nav_tree_ctrl->SelectItem(dashboard);
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
     m_nav_tree_ctrl->Refresh();
@@ -3720,7 +3724,7 @@ void mmGUIFrame::RefreshNavigationTree()
         iData = new mmTreeItemData(*selectedItemData_);
         // also save current section
         wxTreeItemId parentID = m_nav_tree_ctrl->GetItemParent(selection);
-        if (parentID.IsOk())
+        if (parentID.IsOk() && parentID != m_nav_tree_ctrl->GetRootItem())
             sectionName = m_nav_tree_ctrl->GetItemText(parentID);
     }
     DoRecreateNavTreeControl();
