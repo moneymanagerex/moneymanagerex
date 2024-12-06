@@ -731,7 +731,7 @@ void mmGUIFrame::menuPrintingEnable(bool enable)
 void mmGUIFrame::createControls()
 {
     m_nav_tree_ctrl = new wxTreeCtrl(this, ID_NAVTREECTRL, wxDefaultPosition, wxDefaultSize,
-        wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_NO_LINES | wxTR_TWIST_BUTTONS);
+        wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_NO_LINES | wxTR_TWIST_BUTTONS | wxTR_HIDE_ROOT);
 
     m_nav_tree_ctrl->SetMinSize(wxSize(100, 100));
     mmThemeMetaColour(m_nav_tree_ctrl, meta::COLOR_NAVPANEL);
@@ -739,6 +739,7 @@ void mmGUIFrame::createControls()
 
     const auto navIconSize = Option::instance().getNavigationIconSize();
     m_nav_tree_ctrl->SetImages(navtree_images_list(navIconSize));
+    m_nav_tree_ctrl->SetIndent(10);
 
     m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
     m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_ITEM_RIGHT_CLICK, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
@@ -767,9 +768,11 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     DoWindowsFreezeThaw(m_nav_tree_ctrl);
     resetNavTreeControl();
 
-    wxTreeItemId  root = m_nav_tree_ctrl->AddRoot(_("Dashboard"), img::HOUSE_PNG, img::HOUSE_PNG);
-    m_nav_tree_ctrl->SetItemData(root, new mmTreeItemData(mmTreeItemData::HOME_PAGE, "Dashboard"));
-    m_nav_tree_ctrl->SetItemBold(root, true);
+    wxTreeItemId root = m_nav_tree_ctrl->AddRoot("Root");
+
+    wxTreeItemId dashboard = m_nav_tree_ctrl->AppendItem(root, _("Dashboard"), img::HOUSE_PNG, img::HOUSE_PNG);
+    m_nav_tree_ctrl->SetItemData(dashboard, new mmTreeItemData(mmTreeItemData::HOME_PAGE, "Dashboard"));
+    m_nav_tree_ctrl->SetItemBold(dashboard, true);
 
     wxTreeItemId alltransactions = m_nav_tree_ctrl->AppendItem(root, _("All Transactions"), img::ALLTRANSACTIONS_PNG, img::ALLTRANSACTIONS_PNG);
     m_nav_tree_ctrl->SetItemData(alltransactions, new mmTreeItemData(mmTreeItemData::ALL_TRANSACTIONS, "All Transactions"));
@@ -976,7 +979,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
         }
     }
     m_nav_tree_ctrl->EnsureVisible(root);
-    if (home_page) m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
+    if (home_page) m_nav_tree_ctrl->SelectItem(dashboard);
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
     m_nav_tree_ctrl->Refresh();
     m_nav_tree_ctrl->Update();
@@ -994,7 +997,7 @@ void mmGUIFrame::loadNavigationTreeItemsStatusFromJson()
     /* Load Nav Tree Control */
     SetEvtHandlerEnabled(false);
     wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
-    m_nav_tree_ctrl->Expand(root);
+    //m_nav_tree_ctrl->Expand(root);
 
     const wxString& str = Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", "");
     Document json_doc;
@@ -1003,8 +1006,8 @@ void mmGUIFrame::loadNavigationTreeItemsStatusFromJson()
     }
 
     std::stack<wxTreeItemId> items;
-    if (m_nav_tree_ctrl->GetRootItem().IsOk()) {
-        items.push(m_nav_tree_ctrl->GetRootItem());
+    if (root.IsOk()) {
+        items.push(root);
     }
 
     while (!items.empty())
@@ -1020,18 +1023,20 @@ void mmGUIFrame::loadNavigationTreeItemsStatusFromJson()
             nextChild = m_nav_tree_ctrl->GetNextSibling(nextChild);
         }
 
+        if (next == root)
+            continue;
         mmTreeItemData* iData =
             dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
-        if (iData)
+        if (!iData)
+            continue;
+
+        const wxString nav_key = iData->getString();
+        if (json_doc.HasMember(nav_key.utf8_str()))
         {
-            const wxString nav_key = iData->getString();
-            if (json_doc.HasMember(nav_key.utf8_str()))
+            Value json_key(nav_key.utf8_str(), json_doc.GetAllocator());
+            if (json_doc[json_key].IsBool() && json_doc[json_key].GetBool())
             {
-                Value json_key(nav_key.utf8_str(), json_doc.GetAllocator());
-                if (json_doc[json_key].IsBool() && json_doc[json_key].GetBool())
-                {
-                    m_nav_tree_ctrl->Expand(next);
-                }
+                m_nav_tree_ctrl->Expand(next);
             }
         }
     }
@@ -1054,8 +1059,8 @@ void mmGUIFrame::OnTreeItemCollapsing(wxTreeEvent& event)
         dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(event.GetItem()));
 
     // disallow collapsing of HOME item
-    if (mmTreeItemData::HOME_PAGE == iData->getType())
-        event.Veto();
+    //if (mmTreeItemData::HOME_PAGE == iData->getType())
+    //    event.Veto();
 }
 
 //----------------------------------------------------------------------------
@@ -1109,9 +1114,10 @@ void mmGUIFrame::navTreeStateToJson()
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
 
+    wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
     std::stack<wxTreeItemId> items;
-    if (m_nav_tree_ctrl->GetRootItem().IsOk())
-        items.push(m_nav_tree_ctrl->GetRootItem());
+    if (root.IsOk())
+        items.push(root);
 
     while (!items.empty())
     {
@@ -1126,6 +1132,8 @@ void mmGUIFrame::navTreeStateToJson()
             nextChild = m_nav_tree_ctrl->GetNextSibling(nextChild);
         }
 
+        if (next == root)
+            continue;
         mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
         if (iData && !iData->getString().empty() && m_nav_tree_ctrl->IsExpanded(next))
         {
@@ -3149,10 +3157,16 @@ void mmGUIFrame::createHomePage()
         DoWindowsFreezeThaw(homePanel_);
     }
 
-    if (m_nav_tree_ctrl->GetRootItem().IsOk()) {
-        m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
+    wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
+    if (root.IsOk() && m_nav_tree_ctrl->HasChildren(root))
+    {
+        wxTreeItemIdValue cookie;
+        wxTreeItemId firstChild = m_nav_tree_ctrl->GetFirstChild(root, cookie);
+        if (firstChild.IsOk()) {
+            m_nav_tree_ctrl->SelectItem(firstChild);
+        }
+        m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
     }
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 
     json_writer.Key("seconds");
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
@@ -3701,7 +3715,7 @@ void mmGUIFrame::RefreshNavigationTree()
     mmTreeItemData* iData = nullptr;
     wxString sectionName;
     wxTreeItemId selection = m_nav_tree_ctrl->GetSelection();
-    if (selection.IsOk() && selectedItemData_ && selection != m_nav_tree_ctrl->GetRootItem())
+    if (selection.IsOk() && selectedItemData_)
     {
         iData = new mmTreeItemData(*selectedItemData_);
         // also save current section
@@ -3714,7 +3728,8 @@ void mmGUIFrame::RefreshNavigationTree()
     if (iData)
     {
         // search for the item first under the selected section
-        wxTreeItemId navTreeID = getTreeItemfor(m_nav_tree_ctrl->GetRootItem(), sectionName);
+        wxTreeItemId navTreeID = sectionName.empty() ? m_nav_tree_ctrl->GetRootItem() :
+            getTreeItemfor(m_nav_tree_ctrl->GetRootItem(), sectionName);
         if (navTreeID.IsOk())
             navTreeID = findItemByData(navTreeID, *iData);
         // if we didn't find it search all nodes from root
@@ -3725,15 +3740,20 @@ void mmGUIFrame::RefreshNavigationTree()
             m_nav_tree_ctrl->EnsureVisible(navTreeID);
             m_nav_tree_ctrl->SelectItem(navTreeID);
         }
+        delete(iData);
     }
-    delete(iData);
 }
 
 wxTreeItemId mmGUIFrame::findItemByData(wxTreeItemId itemId, mmTreeItemData& searchData)
 {
     // Check if the current item's data matches the search data
-    if (*dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(itemId)) == searchData)
-        return itemId;
+    if (itemId.IsOk())
+        return wxTreeItemId();
+    if (m_nav_tree_ctrl->GetItemData(itemId))
+    {
+        if (*dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(itemId)) == searchData)
+            return itemId;
+    }
 
     wxTreeItemIdValue searchCookie;
     wxTreeItemId childId = m_nav_tree_ctrl->GetFirstChild(itemId, searchCookie);
