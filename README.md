@@ -64,12 +64,12 @@ simplicity and user-friendliness – an application that can be used everyday.
 * [Download stable release](https://github.com/moneymanagerex/moneymanagerex/releases/) for GNU/Linux, macOS, or Windows
 * Download developmental release for [GNU/Linux](https://github.com/moneymanagerex/moneymanagerex/issues/6246#issuecomment-1771746959), [macOS](https://link.ipx.co.uk/mmex-mac-betas), or [Windows](https://ci.appveyor.com/project/whalley/moneymanagerex)
 
+### iPad/iPhone
+* [Download on the App Store](https://apps.apple.com/us/app/money-manager-ex/id6683300571)
+
 ### Android
 * [Get it on F-Droid](https://f-droid.org/packages/com.money.manager.ex/)
 * [Get it on Google Play](https://play.google.com/store/apps/details?id=com.money.manager.ex.android)
-
-### iPad/iPhone
-* [Download on the App Store](https://apps.apple.com/us/app/money-manager-ex/id6683300571)
 
 [![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
 
