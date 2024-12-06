@@ -20,7 +20,6 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 SET(MMEX_VERSION_ALPHA -1)
 SET(MMEX_VERSION_BETA -1)
 SET(MMEX_VERSION_RC -1)
-SET(wxUSE_WEBVIEW_EDGE 1)
 # Extract latest version from the top of the NEWS file
 file(STRINGS NEWS NEWS_VERSION_LINES REGEX "^Version .*")
 string(REPLACE "Version " "" MMEX_VERSIONS "${NEWS_VERSION_LINES}")

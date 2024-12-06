@@ -36,6 +36,7 @@
 #include <budgetentrydialog.h>
 #include <vector>
 #include <string>
+#include <iomanip>
 
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
 EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
@@ -690,9 +691,14 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
             wxString token = tokenizer.GetNextToken();
             parms.push_back(std::string(token.mb_str()));
             
-        }      
+        }
+        //format month 2 digits leading 0
+        std::ostringstream oss;
+        oss << std::setw(2) << std::setfill('0') << std::stoi(parms[4]);
+        std::string formattedMonth = oss.str();
+
         //get yearId from year_name
-        int64 budgetYearID = Model_Budgetyear::instance().Get(parms[3] + "-" + parms[4]);
+        int64 budgetYearID = Model_Budgetyear::instance().Get(parms[3] + "-" + formattedMonth);
 
         //if budgetYearID doesn't exist then return
         if (budgetYearID == -1)
