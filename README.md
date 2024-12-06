@@ -42,7 +42,7 @@ simplicity and user-friendliness – an application that can be used everyday.
         hspace="15"
     /></a>
 
-<a href="https://apps.apple.com/us/app/money-manager-ex/id6683300571?itscg=30200&itsct=apps_box_badge&mttnsubad=6683300571">
+<a href="https://apps.apple.com/us/app/money-manager-ex/id6683300571">
     <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us?releaseDate=1732665600"
         alt="Download on the App Store"
         title="Download on the App Store"
