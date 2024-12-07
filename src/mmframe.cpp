@@ -407,7 +407,11 @@ void mmGUIFrame::cleanupNavTreeControl(wxTreeItemId& item)
         m_nav_tree_ctrl->SetItemData(item, nullptr);
         if (iData)
             delete iData;
-        item = m_nav_tree_ctrl->GetNextSibling(item);
+
+        if (item != m_nav_tree_ctrl->GetRootItem())
+            item = m_nav_tree_ctrl->GetNextSibling(item);
+        else
+            break;
     }
 }
 
@@ -731,7 +735,7 @@ void mmGUIFrame::menuPrintingEnable(bool enable)
 void mmGUIFrame::createControls()
 {
     m_nav_tree_ctrl = new wxTreeCtrl(this, ID_NAVTREECTRL, wxDefaultPosition, wxDefaultSize,
-        wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_NO_LINES | wxTR_TWIST_BUTTONS | wxTR_HIDE_ROOT);
+        wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_NO_LINES | wxTR_TWIST_BUTTONS | wxTR_HIDE_ROOT | wxTR_LINES_AT_ROOT);
 
     m_nav_tree_ctrl->SetMinSize(wxSize(100, 100));
     mmThemeMetaColour(m_nav_tree_ctrl, meta::COLOR_NAVPANEL);
@@ -978,7 +982,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
             }
         }
     }
-    m_nav_tree_ctrl->EnsureVisible(root);
+    m_nav_tree_ctrl->EnsureVisible(dashboard);
     if (home_page) m_nav_tree_ctrl->SelectItem(dashboard);
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
     m_nav_tree_ctrl->Refresh();
@@ -3720,7 +3724,7 @@ void mmGUIFrame::RefreshNavigationTree()
         iData = new mmTreeItemData(*selectedItemData_);
         // also save current section
         wxTreeItemId parentID = m_nav_tree_ctrl->GetItemParent(selection);
-        if (parentID.IsOk())
+        if (parentID.IsOk() && parentID != m_nav_tree_ctrl->GetRootItem())
             sectionName = m_nav_tree_ctrl->GetItemText(parentID);
     }
     DoRecreateNavTreeControl();
