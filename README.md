@@ -38,8 +38,7 @@ simplicity and user-friendliness – an application that can be used everyday.
         alt="Download on Flathub"
         title="Download on Flathub"
         style="height: 68px;"
-        align="center"
-        hspace="15"
+        hspace="1.5%"
     /></a>
 
 <a href="https://apps.apple.com/us/app/money-manager-ex/id6683300571">
@@ -47,24 +46,23 @@ simplicity and user-friendliness – an application that can be used everyday.
         alt="Download on the App Store"
         title="Download on the App Store"
         style="height: 68px;"
-        align="center"
-        hspace="15"
+        hspace="1.5%"
     /></a>
 
 <a href="https://f-droid.org/packages/com.money.manager.ex/">
-    <img src="https://f-droid.org/badge/get-it-on.png"
+    <img src="https://github.com/user-attachments/assets/f586f51b-a2d8-4219-a691-a483d4ca8db7"
         alt="Get it on F-Droid"
         title="Get it on F-Droid"
-        style="height: 100px;"
-        align="center"
+        style="height: 68px;"
+        hspace="1.5%"
     /></a>
 
 <a href="https://play.google.com/store/apps/details?id=com.money.manager.ex.android">
-    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+    <img src="https://github.com/user-attachments/assets/d0844c7a-6e2a-4cac-8848-06c39a9a66ea"
         alt="Get it on Google Play"
         title="Get it on Google Play"
-        style="height: 100px;"
-        align="center"
+        style="height: 68px;"
+        hspace="1.5%"
     /></a>
 
 ### Desktop
