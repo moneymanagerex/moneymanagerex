@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
+ *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -473,7 +473,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO PAYEE_V1(PAYEENAME, CATEGID, NUMBER, WEBSITE, NOTES, ACTIVE, PATTERN) VALUES(?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO PAYEE_V1(PAYEENAME, CATEGID, NUMBER, WEBSITE, NOTES, ACTIVE, PATTERN, PAYEEID) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         }
         else
         {
@@ -491,8 +491,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             stmt.Bind(5, entity->NOTES);
             stmt.Bind(6, entity->ACTIVE);
             stmt.Bind(7, entity->PATTERN);
-            if (entity->id() > 0)
-                stmt.Bind(8, entity->PAYEEID);
+            stmt.Bind(8, entity->id() > 0 ? entity->PAYEEID : newId());
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

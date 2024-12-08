@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
+ *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -361,7 +361,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO SETTING_V1(SETTINGNAME, SETTINGVALUE) VALUES(?, ?)";
+            sql = "INSERT INTO SETTING_V1(SETTINGNAME, SETTINGVALUE, SETTINGID) VALUES(?, ?, ?)";
         }
         else
         {
@@ -374,8 +374,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
 
             stmt.Bind(1, entity->SETTINGNAME);
             stmt.Bind(2, entity->SETTINGVALUE);
-            if (entity->id() > 0)
-                stmt.Bind(3, entity->SETTINGID);
+            stmt.Bind(3, entity->id() > 0 ? entity->SETTINGID : newId());
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

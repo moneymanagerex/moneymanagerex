@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
+ *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -729,7 +729,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CURRENCYFORMATS_V1(CURRENCYNAME, PFX_SYMBOL, SFX_SYMBOL, DECIMAL_POINT, GROUP_SEPARATOR, UNIT_NAME, CENT_NAME, SCALE, BASECONVRATE, CURRENCY_SYMBOL, CURRENCY_TYPE) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO CURRENCYFORMATS_V1(CURRENCYNAME, PFX_SYMBOL, SFX_SYMBOL, DECIMAL_POINT, GROUP_SEPARATOR, UNIT_NAME, CENT_NAME, SCALE, BASECONVRATE, CURRENCY_SYMBOL, CURRENCY_TYPE, CURRENCYID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         }
         else
         {
@@ -751,8 +751,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
             stmt.Bind(9, entity->BASECONVRATE);
             stmt.Bind(10, entity->CURRENCY_SYMBOL);
             stmt.Bind(11, entity->CURRENCY_TYPE);
-            if (entity->id() > 0)
-                stmt.Bind(12, entity->CURRENCYID);
+            stmt.Bind(12, entity->id() > 0 ? entity->CURRENCYID : newId());
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

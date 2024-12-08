@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
+ *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -339,7 +339,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO BUDGETYEAR_V1(BUDGETYEARNAME) VALUES(?)";
+            sql = "INSERT INTO BUDGETYEAR_V1(BUDGETYEARNAME, BUDGETYEARID) VALUES(?, ?)";
         }
         else
         {
@@ -351,8 +351,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
             stmt.Bind(1, entity->BUDGETYEARNAME);
-            if (entity->id() > 0)
-                stmt.Bind(2, entity->BUDGETYEARID);
+            stmt.Bind(2, entity->id() > 0 ? entity->BUDGETYEARID : newId());
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

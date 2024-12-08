@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
+ *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -543,7 +543,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO STOCK_V1(HELDAT, PURCHASEDATE, STOCKNAME, SYMBOL, NUMSHARES, PURCHASEPRICE, NOTES, CURRENTPRICE, VALUE, COMMISSION) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO STOCK_V1(HELDAT, PURCHASEDATE, STOCKNAME, SYMBOL, NUMSHARES, PURCHASEPRICE, NOTES, CURRENTPRICE, VALUE, COMMISSION, STOCKID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         }
         else
         {
@@ -564,8 +564,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
             stmt.Bind(8, entity->CURRENTPRICE);
             stmt.Bind(9, entity->VALUE);
             stmt.Bind(10, entity->COMMISSION);
-            if (entity->id() > 0)
-                stmt.Bind(11, entity->STOCKID);
+            stmt.Bind(11, entity->id() > 0 ? entity->STOCKID : newId());
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
