@@ -41,7 +41,7 @@ simplicity and user-friendliness – an application that can be used everyday.
         hspace="1.5%"
     /></a>
 
-<a href="https://apps.apple.com/us/app/money-manager-ex/id6683300571">
+<a href="https://apps.apple.com/app/money-manager-ex/id6683300571">
     <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us?releaseDate=1732665600"
         alt="Download on the App Store"
         title="Download on the App Store"
@@ -70,7 +70,7 @@ simplicity and user-friendliness – an application that can be used everyday.
 * Download developmental release for [GNU/Linux](https://github.com/moneymanagerex/moneymanagerex/issues/6246#issuecomment-1771746959), [macOS](https://link.ipx.co.uk/mmex-mac-betas), or [Windows](https://ci.appveyor.com/project/whalley/moneymanagerex)
 
 ### iPad/iPhone
-* [Download on the App Store](https://apps.apple.com/us/app/money-manager-ex/id6683300571)
+* [Download on the App Store](https://apps.apple.com/app/money-manager-ex/id6683300571)
 
 ### Android
 * [Get it on F-Droid](https://f-droid.org/packages/com.money.manager.ex/)
