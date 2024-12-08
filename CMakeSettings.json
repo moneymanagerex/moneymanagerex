@@ -24,26 +24,38 @@
       "ctestCommandArgs": ""
     },
     {
-      "name": "x64-Debug",
-      "generator": "Ninja",
-      "configurationType": "Debug",
-      "inheritEnvironments": [ "msvc_x64_x64" ],
-      "buildRoot": "${workspaceRoot}\\build\\${name}",
-      "installRoot": "${workspaceRoot}\\build\\install\\${name}",
-      "cmakeCommandArgs": "",
-      "buildCommandArgs": "-v",
-      "ctestCommandArgs": ""
+        "name": "x64-Debug",
+        "generator": "Ninja",
+        "configurationType": "Debug",
+        "inheritEnvironments": [ "msvc_x64_x64" ],
+        "buildRoot": "${workspaceRoot}\\build\\${name}",
+        "installRoot": "${workspaceRoot}\\build\\install\\${name}",
+        "cmakeCommandArgs": "",
+        "buildCommandArgs": "-v",
+        "ctestCommandArgs": "",
+        "variables": [
+            {
+                "name": "CMAKE_PREFIX_PATH",
+                "value": "c:\\libcurl"
+            }
+        ]
     },
     {
-      "name": "x64-Release",
-      "generator": "Ninja",
-      "configurationType": "RelWithDebInfo",
-      "inheritEnvironments": [ "msvc_x64_x64" ],
-      "buildRoot": "${workspaceRoot}\\build\\${name}",
-      "installRoot": "${workspaceRoot}\\build\\install\\${name}",
-      "cmakeCommandArgs": "",
-      "buildCommandArgs": "-v",
-      "ctestCommandArgs": ""
+        "name": "x64-Release",
+        "generator": "Ninja",
+        "configurationType": "RelWithDebInfo",
+        "inheritEnvironments": [ "msvc_x64_x64" ],
+        "buildRoot": "${workspaceRoot}\\build\\${name}",
+        "installRoot": "${workspaceRoot}\\build\\install\\${name}",
+        "cmakeCommandArgs": "",
+        "buildCommandArgs": "-v",
+        "ctestCommandArgs": "",
+        "variables": [
+            {
+                "name": "CMAKE_PREFIX_PATH",
+                "value": "c:\\libcurl"
+            }
+        ]
     }
   ]
 }
