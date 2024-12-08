@@ -32,7 +32,7 @@ class relocateTagDialog : public wxDialog
 public:
     relocateTagDialog();
     ~relocateTagDialog();
-    relocateTagDialog(wxWindow* parent, int source_tag_id = -1);
+    relocateTagDialog(wxWindow* parent, int64 source_tag_id = -1);
 
     int updatedTagsCount() const;
 

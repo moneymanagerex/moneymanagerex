@@ -73,7 +73,7 @@ public:
     ~mmPayeeDialog();
     mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString& name = "mmPayeeDialog", const wxString& payee_selected = wxEmptyString);
     void DisableTools();
-    int getPayeeId() const;
+    int64 getPayeeId() const;
     bool getRefreshRequested() const;
 
 private:
@@ -103,7 +103,7 @@ private:
     wxSearchCtrl* m_maskTextCtrl = nullptr;
     wxBitmapButton* m_magicButton = nullptr;
 
-    int m_payee_id = -1;
+    int64 m_payee_id = -1;
     bool m_payee_choose = false;
     wxString m_init_selected_payee;
     int m_payee_rename = -1;
@@ -142,7 +142,7 @@ private:
 };
 
 inline void mmPayeeDialog::DisableTools() { m_magicButton->Disable(); }
-inline int mmPayeeDialog::getPayeeId() const { return m_payee_id; }
+inline int64 mmPayeeDialog::getPayeeId() const { return m_payee_id; }
 inline bool mmPayeeDialog::getRefreshRequested() const { return refreshRequested_; }
 inline void mmPayeeDialog::OnListItemDeselected(wxListEvent& WXUNUSED(event)) { m_payee_id = -1; }
 
