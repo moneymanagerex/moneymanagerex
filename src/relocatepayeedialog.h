@@ -32,7 +32,7 @@ class relocatePayeeDialog : public wxDialog
 public:
     relocatePayeeDialog();
     ~relocatePayeeDialog();
-    relocatePayeeDialog(wxWindow* parent, int source_payee_id = -1);
+    relocatePayeeDialog(wxWindow* parent, int64 source_payee_id = -1);
 
     int updatedPayeesCount() const;
 

@@ -249,6 +249,7 @@ Panagiotis Theodosopoulos
 Antonis Vithoulkas
 Jean-Michel Louiset
 Marino Lippi
+Glenn Fowler
 
 ### 2023
 Renato
