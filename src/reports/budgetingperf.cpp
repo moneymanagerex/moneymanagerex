@@ -26,6 +26,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Budget.h"
 #include "model/Model_Category.h"
 #include "reports/mmDateRange.h"
+#include <string>
 
 mmReportBudgetingPerformance::mmReportBudgetingPerformance()
 {
@@ -202,9 +203,18 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         estimateTotal[12] += estimate;;
 
                         wxString estimateVal = Model_Currency::toString(estimate, Model_Currency::GetBaseCurrency());
+                        //make the href string parameters
+                        std::stringstream ss;
+                        ss << "budget: " << estimateVal << "|" << Model_Currency::toString(actual, Model_Currency::GetBaseCurrency()) << "|" << catID << "|"
+                           << budget_year << "|" << month + 1;
+                        std::string editBudgetEntry = ss.str();
+
                         // If monthly budget is deducted and the monthly budgets have exceeded the yearly budget, show estimate in red color
-                        hb.startSpan(estimateVal, wxString::Format(" style='text-align:right;%s' nowrap"
-                            , (budgetDeductMonthly && estimate != 0 && round(estimateTotal[12]/budgetStats[catID][12] * 100)/100 > 1) ? "color:red;" : ""));
+                        //+ add link to budget dlg
+                        hb.startSpan((budgetDeductMonthly && estimate != 0 && round(estimateTotal[12] / budgetStats[catID][12] * 100) / 100 > 1)
+                                         ? hb.getFormattedLink("red",editBudgetEntry,estimateVal)
+                                         : hb.getFormattedLink("", editBudgetEntry, estimateVal),
+                                     wxString::Format(" style='text-align:right;%s' nowrap", ""));
                         hb.endSpan();
                         hb.addLineBreak();
 

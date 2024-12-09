@@ -32,6 +32,11 @@
 #include "reports/htmlbuilder.h"
 #include "model/allmodel.h"
 #include <wx/wrapsizer.h>
+#include "option.h"
+#include <budgetentrydialog.h>
+#include <vector>
+#include <string>
+#include <iomanip>
 
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
 EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
@@ -673,6 +678,63 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
             mmAttachmentManage::OpenAttachmentFromPanelIcon(m_frame, RefType, RefId);
             const auto name = getVFname4print("rep", getPrintableBase()->getHTMLText());
             browser_->LoadURL(name);
+        }
+    }
+    else if (uri.StartsWith("budget:", &sData))
+    {
+        
+        std::vector<std::string> parms;
+        wxStringTokenizer tokenizer(sData, "|");
+        while (tokenizer.HasMoreTokens())
+        {
+            //"budget: " << estimateVal << "|" << Model_Currency::toString(actual, Model_Currency::GetBaseCurrency()) << "|" << catID << "|" << budget_year << "|" << month + 1;
+            wxString token = tokenizer.GetNextToken();
+            parms.push_back(std::string(token.mb_str()));
+            
+        }
+        //format month 2 digits leading 0
+        std::ostringstream oss;
+        oss << std::setw(2) << std::setfill('0') << std::stoi(parms[4]);
+        std::string formattedMonth = oss.str();
+
+        //get yearId from year_name
+        int64 budgetYearID = Model_Budgetyear::instance().Get(parms[3] + "-" + formattedMonth);
+
+        //if budgetYearID doesn't exist then return
+        if (budgetYearID == -1)
+        {
+            wxLogInfo("Monthly budget not found!");
+            return;
+        }
+           
+        //get model budget for yearID and catID
+        Model_Budget::Data_Set budget = Model_Budget::instance().find(Model_Budget::BUDGETYEARID(budgetYearID), Model_Budget::CATEGID(std::stoi(parms[2])));
+        
+        Model_Budget::Data* entry = 0;
+        if (budget.empty())
+        {
+            entry = Model_Budget::instance().create();
+            entry->BUDGETYEARID = budgetYearID;
+            entry->CATEGID = std::stoi(parms[2]);
+            entry->PERIOD = "";
+            entry->AMOUNT = 0.0;
+            entry->ACTIVE = 1;
+            Model_Budget::instance().save(entry);
+        }
+        else
+            entry = &budget[0];
+
+        double estimated = std::stod(parms[0]);
+        double actual = std::stod(parms[1]);
+
+        //open budgetEntry dialog
+        mmBudgetEntryDialog dlg(m_frame, entry, Model_Currency::toCurrency(estimated), Model_Currency::toCurrency(actual));
+        if (dlg.ShowModal() == wxID_OK)
+        {
+            //refresh report
+            saveReportText(false);
+            rb_ ->setReportSettings();
+            
         }
     }
 

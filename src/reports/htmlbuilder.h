@@ -94,6 +94,7 @@ public:
     void addTableCellMonth(int month, int year = 0);
     void addColorMarker(const wxString& color, bool center = false);
     const wxString getColor(int i);
+    const wxString getFormattedLink(const wxString& color, const wxString& href_value, const wxString& a_value);
     const wxString getRandomColor(bool positive);
 
     /** Add a Cell value */
