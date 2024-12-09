@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
+ *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -20,6 +20,7 @@
 
 #include <vector>
 #include <map>
+#include <random>
 #include <algorithm>
 #include <functional>
 #include <cwchar>
@@ -67,6 +68,19 @@ struct DB_Table
     void drop(wxSQLite3Database* db) const
     {
         db->ExecuteUpdate("DROP TABLE IF EXISTS " + this->name());
+    }
+
+    static wxLongLong newId()
+    {
+        // Get the current time in milliseconds as wxLongLong
+        wxLongLong ticks = wxDateTime::UNow().GetValue();
+        // Generate a random 3-digit number (0 to 999)
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<int> dist(0, 999);
+        int randomSuffix = dist(gen);
+        // Combine ticks and randomSuffix
+        return (ticks * 1000) + randomSuffix;
     }
 };
 

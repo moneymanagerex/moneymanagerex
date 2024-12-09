@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
+ *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -406,7 +406,7 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO ATTACHMENT_V1(REFTYPE, REFID, DESCRIPTION, FILENAME) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO ATTACHMENT_V1(REFTYPE, REFID, DESCRIPTION, FILENAME, ATTACHMENTID) VALUES(?, ?, ?, ?, ?)";
         }
         else
         {
@@ -421,8 +421,7 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
             stmt.Bind(2, entity->REFID);
             stmt.Bind(3, entity->DESCRIPTION);
             stmt.Bind(4, entity->FILENAME);
-            if (entity->id() > 0)
-                stmt.Bind(5, entity->ATTACHMENTID);
+            stmt.Bind(5, entity->id() > 0 ? entity->ATTACHMENTID : newId());
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
