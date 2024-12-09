@@ -60,6 +60,11 @@ Model_Infotable& Model_Infotable::instance()
 }
 
 // Setter
+void Model_Infotable::Set(const wxString& key, int64 value)
+{
+    this->Set(key, wxString::Format("%lld", value));
+}
+
 void Model_Infotable::Set(const wxString& key, int value)
 {
     this->Set(key, wxString::Format("%d", value));
