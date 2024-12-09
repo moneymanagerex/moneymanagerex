@@ -47,6 +47,7 @@ public:
 
 public:
     // Setter
+    void Set(const wxString& key, int64 value);
     void Set(const wxString& key, int value);
     void Set(const wxString& key, bool value);
     void Set(const wxString& key, const wxDateTime& date);
