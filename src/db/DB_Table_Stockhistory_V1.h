@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
+ *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -407,7 +407,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO STOCKHISTORY_V1(SYMBOL, DATE, VALUE, UPDTYPE) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO STOCKHISTORY_V1(SYMBOL, DATE, VALUE, UPDTYPE, HISTID) VALUES(?, ?, ?, ?, ?)";
         }
         else
         {
@@ -422,8 +422,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
             stmt.Bind(2, entity->DATE);
             stmt.Bind(3, entity->VALUE);
             stmt.Bind(4, entity->UPDTYPE);
-            if (entity->id() > 0)
-                stmt.Bind(5, entity->HISTID);
+            stmt.Bind(5, entity->id() > 0 ? entity->HISTID : newId());
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

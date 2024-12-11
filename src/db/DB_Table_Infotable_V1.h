@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
+ *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -362,7 +362,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO INFOTABLE_V1(INFONAME, INFOVALUE) VALUES(?, ?)";
+            sql = "INSERT INTO INFOTABLE_V1(INFONAME, INFOVALUE, INFOID) VALUES(?, ?, ?)";
         }
         else
         {
@@ -375,8 +375,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
 
             stmt.Bind(1, entity->INFONAME);
             stmt.Bind(2, entity->INFOVALUE);
-            if (entity->id() > 0)
-                stmt.Bind(3, entity->INFOID);
+            stmt.Bind(3, entity->id() > 0 ? entity->INFOID : newId());
 
             stmt.ExecuteUpdate();
             stmt.Finalize();

@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-11-30 08:58:01.982619.
+ *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -408,7 +408,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO SPLITTRANSACTIONS_V1(TRANSID, CATEGID, SPLITTRANSAMOUNT, NOTES) VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO SPLITTRANSACTIONS_V1(TRANSID, CATEGID, SPLITTRANSAMOUNT, NOTES, SPLITTRANSID) VALUES(?, ?, ?, ?, ?)";
         }
         else
         {
@@ -423,8 +423,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             stmt.Bind(2, entity->CATEGID);
             stmt.Bind(3, entity->SPLITTRANSAMOUNT);
             stmt.Bind(4, entity->NOTES);
-            if (entity->id() > 0)
-                stmt.Bind(5, entity->SPLITTRANSID);
+            stmt.Bind(5, entity->id() > 0 ? entity->SPLITTRANSID : newId());
 
             stmt.ExecuteUpdate();
             stmt.Finalize();
