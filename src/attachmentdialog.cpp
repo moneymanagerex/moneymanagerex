@@ -306,7 +306,7 @@ void mmAttachmentDialog::OnListItemSelected(wxDataViewEvent& event)
     int selected_index = attachmentListBox_->ItemToRow(item);
 
     if (selected_index >= 0)
-        m_attachment_id = static_cast<int>(attachmentListBox_->GetItemData(item));
+        m_attachment_id = static_cast<int64>(attachmentListBox_->GetItemData(item));
 }
 
 void mmAttachmentDialog::OnListItemActivated(wxDataViewEvent& WXUNUSED(event))
