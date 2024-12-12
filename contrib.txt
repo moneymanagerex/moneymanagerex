@@ -250,6 +250,8 @@ Antonis Vithoulkas
 Jean-Michel Louiset
 Marino Lippi
 Glenn Fowler
+Gary Ferland
+Jurica Polkovnikov
 
 ### 2023
 Renato
