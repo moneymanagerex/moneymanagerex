@@ -271,7 +271,7 @@ void mmWebAppDialog::OnListItemActivated(wxDataViewEvent& event)
 
     if (selected_index >= 0)
     {
-        int64 WebTrID = static_cast<int>(webtranListBox_->GetItemData(item));
+        int64 WebTrID = static_cast<int64>(webtranListBox_->GetItemData(item));
         mmWebAppDialog::ImportWebTr(WebTrID, true);
         fillControls();
     }
@@ -355,7 +355,7 @@ void mmWebAppDialog::ImportWebTrSelected(const bool open)
         int selectedIndex_ = webtranListBox_->ItemToRow(Item);
         if (selectedIndex_ >= 0)
         {
-            int64 WebTrID = static_cast<int>(webtranListBox_->GetItemData(Item));
+            int64 WebTrID = static_cast<int64>(webtranListBox_->GetItemData(Item));
             mmWebAppDialog::ImportWebTr(WebTrID, open);
         }
     }
@@ -375,7 +375,7 @@ void mmWebAppDialog::DeleteWebTr()
         int selectedIndex_ = webtranListBox_->ItemToRow(Item);
         if (selectedIndex_ >= 0)
         {
-            mmWebApp::WebApp_DeleteOneTransaction(static_cast<int>(webtranListBox_->GetItemData(Item)));
+            mmWebApp::WebApp_DeleteOneTransaction(static_cast<int64>(webtranListBox_->GetItemData(Item)));
         }
     }
     fillControls();

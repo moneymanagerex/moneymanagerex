@@ -911,7 +911,7 @@ void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& /*event*/)
 
         if (item == -1)
             break;
-        Model_StockHistory::instance().remove(static_cast<int>(m_price_listbox->GetItemData(item)));
+        Model_StockHistory::instance().remove(static_cast<int64>(m_price_listbox->GetItemData(item)));
     }
     Model_StockHistory::instance().ReleaseSavepoint();
     ShowStockHistory();
