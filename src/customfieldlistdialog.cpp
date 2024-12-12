@@ -131,7 +131,7 @@ void mmCustomFieldListDialog::OnListItemSelected(wxDataViewEvent& event)
     int selected_index = fieldListBox_->ItemToRow(item);
 
     if (selected_index >= 0)
-        m_field_id = static_cast<int>(fieldListBox_->GetItemData(item));
+        m_field_id = static_cast<int64>(fieldListBox_->GetItemData(item));
     else
         m_field_id = -1;
 }
