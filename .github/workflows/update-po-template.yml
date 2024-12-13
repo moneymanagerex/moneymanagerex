@@ -1,0 +1,43 @@
+name: Update mmex.pot translation template
+
+on:
+  push:
+    branches:
+      - master
+      
+jobs:
+  update-po-template:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install gettext
+        run: sudo apt-get install -y gettext
+        
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: l10n
+
+      - name: Execute update script
+        run: bash util/update-po-files.sh
+        
+      - name: Commit changes
+        run: |
+          git config --global user.name 'MMEX'
+          git config --global user.email 'developer@moneymanagerex.org'
+          git add po/mmex.pot
+          git commit -m "fix(l10n): update mmex.pot"
+          git push
+      
+      - name: Check for open pull request
+        id: pr_check
+        run: |
+          echo "OPEN_PR"="$(gh pr list --state open -H l10n --json headRefName -q '.[].headRefName' | grep -c "l10n")" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Create pull request
+        if: ${{ steps.pr_check.outputs.OPEN_PR == '0' }}
+        run: |
+          gh pr create -B master -H l10n --title "fix(l10n): update mmex.pot" --body 'Updated PO translation template via GitHub Action'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
