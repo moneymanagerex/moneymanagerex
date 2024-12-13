@@ -86,11 +86,11 @@ jobs:
           path: ${{ github.workspace }}/build/mmex*.deb
           
       - name: Install Sigstore Python dependencies
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'pull_request' && github.repository == 'moneymanagerex/moneymanagerex' }}
         run: python -m pip install email-validator
 
       - name: Sign and Upload DEB
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'pull_request' && github.repository == 'moneymanagerex/moneymanagerex' }}
         uses: sigstore/gh-action-sigstore-python@v2.1.1
         with:
           inputs: ${{ github.workspace }}/build/mmex*.deb
@@ -116,7 +116,7 @@ jobs:
           path: ${{ github.workspace }}/build/MMEX*.AppImage
       
       - name: Sign and Upload AppImage
-        if: ${{ matrix.os == 'ubuntu-20.04' && github.event_name == 'push'}}
+        if: ${{ matrix.os == 'ubuntu-20.04' && github.event_name == 'pull_request' && github.repository == 'moneymanagerex/moneymanagerex'}}
         uses: sigstore/gh-action-sigstore-python@v2.1.1
         with:
           inputs: ${{ github.workspace }}/build/MMEX*.AppImage
