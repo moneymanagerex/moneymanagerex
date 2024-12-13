@@ -205,7 +205,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         wxString estimateVal = Model_Currency::toString(estimate, Model_Currency::GetBaseCurrency());
                         //make the href string parameters
                         std::stringstream ss;
-                        ss << "budget: " << estimateVal << "|" << Model_Currency::toString(actual, Model_Currency::GetBaseCurrency()) << "|" << catID << "|"
+                        ss << "budget:" << estimate << "|" << actual << "|" << catID << "|"
                            << budget_year << "|" << month + 1;
                         std::string editBudgetEntry = ss.str();
 

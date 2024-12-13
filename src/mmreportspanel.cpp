@@ -533,7 +533,8 @@ void mmReportsPanel::OnShiftPressed(wxCommandEvent& event)
 
 void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
 {
-    const wxString uri = evt.GetURL();
+    const wxURI escapedURI(evt.GetURL());
+    const wxString uri = escapedURI.BuildUnescapedURI();
     wxString sData;
 
     if (rb_->report_parameters() & rb_->RepParams::DATE_RANGE)
