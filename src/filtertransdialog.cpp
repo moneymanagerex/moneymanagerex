@@ -1426,7 +1426,7 @@ template <class MODEL, class DATA> bool mmFilterTransactionsDialog::mmIsRecordMa
     bool ok = true;
 
     // wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(),
-    if (mmIsAccountChecked() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.ACCOUNTID) == m_selected_accounts_id.end() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.TOACCOUNTID) != m_selected_accounts_id.end())
+    if (mmIsAccountChecked() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.ACCOUNTID) == m_selected_accounts_id.end() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.TOACCOUNTID) == m_selected_accounts_id.end())
         ok = false;
     else if ((mmIsDateRangeChecked() || mmIsRangeChecked()) && (tran.TRANSDATE < m_begin_date.Mid(0, tran.TRANSDATE.length()) || tran.TRANSDATE > m_end_date.Mid(0, tran.TRANSDATE.length())))
         ok = false;
