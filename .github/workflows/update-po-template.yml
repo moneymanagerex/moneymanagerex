@@ -1,0 +1,56 @@
+name: Update mmex.pot translation template
+
+on:
+  push:
+    branches:
+      - master
+      
+jobs:
+  update-po-template:
+    if: github.repository_owner == 'moneymanagerex'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install gettext
+        run: sudo apt-get install -y gettext
+        
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: l10n
+
+      - name: Execute update script
+        run: |
+          : # reset the l10n branch to match master
+          git fetch origin
+          git reset --hard origin/master
+          git push origin l10n --force
+          
+          : # run the po update script
+          bash util/update-po-files.sh
+
+          : # add the new template to a commit and check if there are any changes
+          git config --global user.name 'MMEX'
+          git config --global user.email 'developer@moneymanagerex.org'
+          git add po/mmex.pot
+          echo "CHANGES"="$(git diff --shortstat --cached | awk '{print $4 + $6}')" >> $GITHUB_ENV
+          echo $CHANGES
+          
+      - name: Commit changes
+        if: ${{ env.CHANGES > 2 }}
+        run: |
+          git commit -m "fix(l10n): update mmex.pot"
+          git push
+      
+      - name: Check for open pull request
+        if: ${{ env.CHANGES > 2 }}
+        run: |
+          echo "OPEN_PR"="$(gh pr list --state open -H l10n --json headRefName -q '.[].headRefName' | grep -c "l10n")" >> $GITHUB_ENV
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Create pull request
+        if: ${{ env.CHANGES > 2 && env.OPEN_PR == 0 }}
+        run: |
+          gh pr create -B master -H l10n --title "fix(l10n): update mmex.pot" --body 'Updated PO translation template via GitHub Action'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
