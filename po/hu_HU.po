@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-13 20:41+0000\n"
-"PO-Revision-Date: 2024-12-13 20:50\n"
+"PO-Revision-Date: 2024-12-13 23:29\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -2249,7 +2249,7 @@ msgstr "Oktatás"
 #: db/DB_Table_Category_V1.h:136 db/DB_Table_Category_V1.h:140
 #: db/DB_Table_Category_V1.h:160
 msgid "Others"
-msgstr ""
+msgstr "Egyebek"
 
 #: db/DB_Table_Category_V1.h:137
 msgid "Homeneeds"
@@ -5889,7 +5889,7 @@ msgstr "Összes számla"
 
 #: mmreportspanel.cpp:363
 msgid "Specific Accounts…"
-msgstr ""
+msgstr "Meghatározott számlák…"
 
 #: mmreportspanel.cpp:379
 msgid "Future Months:"
