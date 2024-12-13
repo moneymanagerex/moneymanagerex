@@ -19,12 +19,12 @@ POT=mmex.pot
 
 echo "Extracting strings into po/$POT..."
 cd src
-find . \( -name \*.cpp -o -name \*.h \) ! -name 'DB_Upgrade.h' ! -name 'DB_Table_Currencyformats_V1.h' | xgettext -f - $XGETTEXT_ARGS -o ../po/$POT
+find . \( -name \*.cpp -o -name \*.h \) ! -name 'DB_Upgrade.h' ! -name 'DB_Table_Currencyformats_V1.h' | xgettext -f - $XGETTEXT_ARGS -o "../po/$POT"
 
 echo "Merging into *.po..."
 for p in ../po/*.po ; do
     echo "Merging $p ..."
-    msgmerge $MSGMERGE_ARGS $p ../po/$POT
+    msgmerge $MSGMERGE_ARGS "$p" "../po/$POT"
 done
 
 cd ..
