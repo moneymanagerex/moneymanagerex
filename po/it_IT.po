@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-14 02:12+0000\n"
-"PO-Revision-Date: 2024-12-14 07:31\n"
+"PO-Revision-Date: 2024-12-14 08:32\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -2448,7 +2448,7 @@ msgstr "L'algoritmo di cifratura predefinito è passato da AES-128 a AES-256 per
 
 #: dbwrapper.cpp:79
 msgid "Rekeying with the new cipher will prevent opening this database in older versions of MMEX."
-msgstr ""
+msgstr "La ricodifica con la nuova cifratura impedirà l'apertura di questo database nelle vecchie versioni di MMEX."
 
 #: dbwrapper.cpp:80
 msgid "Do you want to update the database?"
@@ -4599,7 +4599,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:1063
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
-msgstr ""
+msgstr "Clicca per mostrare le transazioni pianificate. Questa funzione è più efficace con i filtri che si estendono al futuro (ad esempio, iMese Corrente)."
 
 #: mmcheckingpanel.cpp:1064
 msgid "Click to hide scheduled transactions."
