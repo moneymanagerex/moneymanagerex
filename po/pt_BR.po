@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-14 02:12+0000\n"
-"PO-Revision-Date: 2024-12-14 03:30\n"
+"PO-Revision-Date: 2024-12-14 20:13\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -329,7 +329,7 @@ msgstr "Abrir um Arquivo de Dados &Existente"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr "Abrir um arquivo de banco de dados MMEX"
+msgstr "Abrir banco de dados MMEX"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1694
 msgid "User Interface &Language"
@@ -2444,19 +2444,19 @@ msgstr "Manutenção da base de dados concluída, feche e reabra o MMEX!"
 
 #: dbwrapper.cpp:78
 msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatibility with the MMEX mobile apps."
-msgstr ""
+msgstr "O algoritmo de cifra padrão mudou do AES-128 para o AES-256 pela compatibilidade com os aplicativos móveis MMEX."
 
 #: dbwrapper.cpp:79
 msgid "Rekeying with the new cipher will prevent opening this database in older versions of MMEX."
-msgstr ""
+msgstr "Reinserção com a nova cifra impedirá a abertura deste banco de dados em versões mais antigas do MMEX."
 
 #: dbwrapper.cpp:80
 msgid "Do you want to update the database?"
-msgstr ""
+msgstr "Você deseja atualizar a base de dados?"
 
 #: dbwrapper.cpp:80
 msgid "Opening MMEX Database – Warning"
-msgstr ""
+msgstr "Abrindo o banco de dados MMEX — Aviso"
 
 #: dbwrapper.cpp:110
 msgid "When database file opening:"
@@ -2485,7 +2485,7 @@ msgstr "Erro: %s"
 
 #: dbwrapper.cpp:125 mmframe.cpp:2075
 msgid "Opening MMEX Database – Error"
-msgstr ""
+msgstr "Abrindo o banco de dados do MMEX — Erro"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
@@ -4571,7 +4571,7 @@ msgstr "Diferença: "
 
 #: mmcheckingpanel.cpp:689
 msgid "Filtered Flow: "
-msgstr ""
+msgstr "Fluxo Filtrado: "
 
 #: mmcheckingpanel.cpp:769 webapp.cpp:621
 msgid "Attachment"
@@ -4594,15 +4594,15 @@ msgstr "Dias entre as transações selecionadas: %d"
 
 #: mmcheckingpanel.cpp:1062
 msgid "Scheduled transactions cannot be shown, because the current filter choice extends into the future without limit."
-msgstr ""
+msgstr "Transações agendadas não podem ser mostradas, porque a opção de filtro atual se estende para o futuro sem limite."
 
 #: mmcheckingpanel.cpp:1063
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
-msgstr ""
+msgstr "Clique para mostrar transações agendadas. Este recurso funciona melhor com opções de filtro que se estendem para o futuro (por exemplo, mês atual)."
 
 #: mmcheckingpanel.cpp:1064
 msgid "Click to hide scheduled transactions."
-msgstr ""
+msgstr "Clique para ocultar transações agendadas."
 
 #: mmcustomdata.cpp:65
 msgid "Custom fields"
@@ -4722,7 +4722,7 @@ msgstr "Tem certeza de que deseja apagar esta conta?"
 
 #: mmframe.cpp:1408
 msgid "This will also delete any associated Shares."
-msgstr ""
+msgstr "Isto também apagará quaisquer Ações associadas."
 
 #: mmframe.cpp:1412 mmframe.cpp:3630
 msgid "Confirm Account Deletion"
@@ -5890,7 +5890,7 @@ msgstr "Todas as Contas"
 
 #: mmreportspanel.cpp:363
 msgid "Specific Accounts…"
-msgstr ""
+msgstr "Contas específicas…"
 
 #: mmreportspanel.cpp:379
 msgid "Future Months:"
