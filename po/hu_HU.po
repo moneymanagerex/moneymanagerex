@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-13 20:41+0000\n"
-"PO-Revision-Date: 2024-12-13 23:29\n"
+"PO-Revision-Date: 2024-12-14 02:13\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -722,7 +722,7 @@ msgstr "A mellékletek könyvtárat nem találom"
 #: attachmentdialog.cpp:109
 #, c-format
 msgid "Attachment Manager | %s | %lld"
-msgstr ""
+msgstr "Mellékletkezelő | %s | %lld"
 
 #: attachmentdialog.cpp:111
 #, c-format
@@ -2444,19 +2444,19 @@ msgstr "Az adatbázis karbantartása kész, zárja be és nyissa meg újra az MM
 
 #: dbwrapper.cpp:78
 msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatability with the MMEX mobile apps."
-msgstr ""
+msgstr "Az alapértelmezett titkosítási algoritmus AES-128 kulcsról AES-256 kulcsra változott az MMEX mobilalkalmazásokkal való kompatibilitás érdekében."
 
 #: dbwrapper.cpp:79
 msgid "Rekeying with the new cipher will prevent opening this database in older versions of MMEX."
-msgstr ""
+msgstr "Az új titkosítással történő újrakulcsolás megakadályozza az adatbázis megnyitását az MMEX régebbi verzióiban."
 
 #: dbwrapper.cpp:80
 msgid "Do you want to update?"
-msgstr ""
+msgstr "Frissítse?"
 
 #: dbwrapper.cpp:80
 msgid "Opening MMEX Database - Warning"
-msgstr ""
+msgstr "MMEX-adatbázis megnyitása – Figyelmeztetés"
 
 #: dbwrapper.cpp:110
 msgid "When database file opening:"
@@ -2485,7 +2485,7 @@ msgstr "Hiba: %s"
 
 #: dbwrapper.cpp:125 mmframe.cpp:2075
 msgid "Opening MMEX Database - Error"
-msgstr "MMEX-adatbázis megnyitása - Hiba"
+msgstr "MMEX-adatbázis megnyitása – Hiba"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
@@ -4571,7 +4571,7 @@ msgstr "Különb.: "
 
 #: mmcheckingpanel.cpp:689
 msgid "Filtered Flow: "
-msgstr ""
+msgstr "Szűrt adatfolyam: "
 
 #: mmcheckingpanel.cpp:769 webapp.cpp:621
 msgid "Attachment"
@@ -4594,15 +4594,15 @@ msgstr "Kijelölt ügyletek között eltelt napok: %d"
 
 #: mmcheckingpanel.cpp:1062
 msgid "Scheduled transactions cannot be shown, because the current filter choice extends into the future without limit."
-msgstr ""
+msgstr "Az ütemezett ügyletek nem jeleníthetők meg, mert a jelenlegi szűrőkijelölés korlátlanul kiterjed a jövőre."
 
 #: mmcheckingpanel.cpp:1063
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
-msgstr ""
+msgstr "Kattintson az ütemezett ügyletek megjelenítéséhez. Ez a jellemző a jövőbe nyúló szűrőkijelölésekkel működik a legjobban (pl. Jelenlegi hónap)."
 
 #: mmcheckingpanel.cpp:1064
 msgid "Click to hide scheduled transactions."
-msgstr ""
+msgstr "Kattintson az ütemezett ügyletek elrejtéséhez."
 
 #: mmcustomdata.cpp:65
 msgid "Custom fields"
@@ -4722,7 +4722,7 @@ msgstr "Biztosan törölni szeretné a számlát?"
 
 #: mmframe.cpp:1408
 msgid "This will also delete any associated Shares."
-msgstr ""
+msgstr "Ezzel az összes kapcsolódó részvényt is törölni fogja."
 
 #: mmframe.cpp:1412 mmframe.cpp:3630
 msgid "Confirm Account Deletion"
@@ -5934,7 +5934,7 @@ msgstr "Eszköz"
 
 #: model/Model_Account.cpp:34 stockspanel.cpp:214
 msgid "Shares"
-msgstr "Értékpapírok"
+msgstr "Részvények"
 
 #: model/Model_Account.cpp:171
 msgid "Account Error"
