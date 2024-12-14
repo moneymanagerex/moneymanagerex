@@ -75,9 +75,9 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
                 db->ExecuteQuery("select * from INFOTABLE_V1;");
             }
 
-            wxMessageDialog msgDlg(nullptr, _("The default cipher algorithm has changed from AES-128 to AES-256 for compatability with the MMEX mobile apps.")
+            wxMessageDialog msgDlg(nullptr, _("The default cipher algorithm has changed from AES-128 to AES-256 for compatibility with the MMEX mobile apps.")
                 + "\n\n" + _("Rekeying with the new cipher will prevent opening this database in older versions of MMEX.")
-                + "\n\n" + _("Do you want to update?"), _("Opening MMEX Database - Warning"), wxYES_NO | wxICON_WARNING);
+                + "\n\n" + _("Do you want to update the database?"), _("Opening MMEX Database – Warning"), wxYES_NO | wxICON_WARNING);
             if (msgDlg.ShowModal() == wxID_YES)
             {
                 if (db->ExecuteQuery("PRAGMA page_size;").GetInt(0) < 4096)
@@ -122,7 +122,7 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
         s << wxString::Format(_("Error: %s"), wxString() << err << "\n" << errStr << "\n");
     }
 
-    wxMessageDialog msgDlg(nullptr, s, _("Opening MMEX Database - Error"), wxOK | wxICON_ERROR);
+    wxMessageDialog msgDlg(nullptr, s, _("Opening MMEX Database – Error"), wxOK | wxICON_ERROR);
     msgDlg.ShowModal();
 
     return db; // return a nullptr database pointer
