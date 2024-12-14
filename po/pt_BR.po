@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-13 20:41+0000\n"
-"PO-Revision-Date: 2024-12-13 20:50\n"
+"PO-Revision-Date: 2024-12-14 01:07\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -722,7 +722,7 @@ msgstr "Pasta de anexos não encontrada"
 #: attachmentdialog.cpp:109
 #, c-format
 msgid "Attachment Manager | %s | %lld"
-msgstr ""
+msgstr "Gerenciador de Anexos | %s | %lld"
 
 #: attachmentdialog.cpp:111
 #, c-format
@@ -2249,7 +2249,7 @@ msgstr "Tutoria"
 #: db/DB_Table_Category_V1.h:136 db/DB_Table_Category_V1.h:140
 #: db/DB_Table_Category_V1.h:160
 msgid "Others"
-msgstr ""
+msgstr "Outros"
 
 #: db/DB_Table_Category_V1.h:137
 msgid "Homeneeds"
@@ -2452,7 +2452,7 @@ msgstr ""
 
 #: dbwrapper.cpp:80
 msgid "Do you want to update?"
-msgstr ""
+msgstr "Você deseja atualizar?"
 
 #: dbwrapper.cpp:80
 msgid "Opening MMEX Database - Warning"
@@ -2512,7 +2512,7 @@ msgstr "Reconciliada"
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:1356
 #: model/Model_Checking.cpp:41
 msgid "Unreconciled"
-msgstr "Não Pago"
+msgstr "Não-reconciliada"
 
 #: filtertransdialog.cpp:49 model/Model_Checking.cpp:43
 msgid "Void"
