@@ -20,10 +20,9 @@ jobs:
 
       - name: Execute update script
         run: |
-          : # reset the l10n branch to match master
+          : # merge master
           git fetch origin
-          git reset --hard origin/master
-          git push origin l10n --force
+          git merge origin/master
           
           : # run the po update script
           bash util/update-po-files.sh

@@ -2072,7 +2072,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             passwordCheckPassed = false;
     }
 
-    const wxString dialogErrorMessageHeading = _("Opening MMEX Database - Error");
+    const wxString dialogErrorMessageHeading = _("Opening MMEX Database – Error");
 
     // Existing Database
     if (!openingNew
