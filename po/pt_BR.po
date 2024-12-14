@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-14 02:12+0000\n"
-"PO-Revision-Date: 2024-12-14 21:15\n"
+"PO-Revision-Date: 2024-12-14 22:17\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -1545,7 +1545,7 @@ msgstr "Editor de Orçamento"
 
 #: budgetyeardialog.cpp:93
 msgid "Add &Year"
-msgstr "Adicionar &Ano"
+msgstr "Adicionar &Anual"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1553,7 +1553,7 @@ msgstr "Adicionar um novo Orçamento Anual"
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
-msgstr "Adicionar &Mês"
+msgstr "Adicionar &Mensal"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -5809,7 +5809,7 @@ msgstr "Total de Transações: "
 
 #: mmhomepage.cpp:540 model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr "Stock"
+msgstr "Investimento"
 
 #: mmhomepage.cpp:550
 msgid "Total Net Worth"
@@ -6567,7 +6567,7 @@ msgstr "Ver Orçamentos com transações de 'transferência'"
 
 #: optionsettingsview.cpp:132
 msgid "View Budget Category Report with Summaries"
-msgstr "Ver Relatório de Categorias de Orçamento com Índices"
+msgstr "Ver Relatório de Categorias de Orçamento com Totais"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
@@ -7887,7 +7887,7 @@ msgstr "Algumas transações não puderam ser atualizadas"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
-msgstr "Atualização de Transações Múltiplas"
+msgstr "Atualização de Múltiplas Transações"
 
 #: transdialog.cpp:181
 msgid "Duplicate Transaction"
