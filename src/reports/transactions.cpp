@@ -320,7 +320,7 @@ table {
                 {
                     const Model_Currency::Data* curr = Model_Account::currency(acc);
                     double flow = Model_Checking::account_flow(transaction, acc->ACCOUNTID);
-                    if (noOfTrans || (!allAccounts && (std::find(selected_accounts.begin(), selected_accounts.end(), transaction.ACCOUNTID) != selected_accounts.end())))
+                    if (noOfTrans || (!allAccounts && (std::find(selected_accounts.begin(), selected_accounts.end(), transaction.ACCOUNTID) == selected_accounts.end())))
                         flow = -flow;
                     const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
                     if (showColumnById(mmFilterTransactionsDialog::COL_AMOUNT))
