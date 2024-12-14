@@ -725,8 +725,10 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
         else
             entry = &budget[0];
 
-        double estimated = std::stod(parms[0]);
-        double actual = std::stod(parms[1]);
+        double estimated;
+        Model_Currency::fromString(parms[0], estimated, Model_Currency::GetBaseCurrency());
+        double actual;
+        Model_Currency::fromString(parms[1], actual, Model_Currency::GetBaseCurrency());
 
         //open budgetEntry dialog
         mmBudgetEntryDialog dlg(m_frame, entry, Model_Currency::toCurrency(estimated), Model_Currency::toCurrency(actual));
