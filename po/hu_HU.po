@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-14 02:12+0000\n"
-"PO-Revision-Date: 2024-12-14 03:30\n"
+"PO-Revision-Date: 2024-12-15 23:19\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -3254,7 +3254,7 @@ msgstr "Számlák:"
 #: import_export/qif_import_gui.cpp:548 import_export/qif_import_gui.cpp:898
 #: import_export/univcsvdialog.cpp:357
 msgid "Date Format: "
-msgstr "Dátumformátum"
+msgstr "Dátumformátum: "
 
 #: import_export/qif_import_gui.cpp:551
 msgid "Press OK Button to continue"
