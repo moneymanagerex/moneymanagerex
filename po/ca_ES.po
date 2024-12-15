@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-14 02:12+0000\n"
-"PO-Revision-Date: 2024-12-15 21:15\n"
+"PO-Revision-Date: 2024-12-15 22:12\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Language: ca_ES\n"
@@ -483,7 +483,7 @@ msgstr "Organitzar fitxers adjunts d'aquest actiu"
 
 #: assetdialog.cpp:240
 msgid "Enter notes associated with this asset"
-msgstr ""
+msgstr "Introdueixi notes associades amb aquest actiu"
 
 #: assetdialog.cpp:246
 msgid "New Transaction Details"
@@ -646,17 +646,17 @@ msgstr "Introduïu qualsevol cadena per cercar actius relacionats"
 #: assetspanel.cpp:512 filtertransdialog.cpp:694 mmcheckingpanel.cpp:636
 #: payeedialog.cpp:137
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "Consells: Podeu utilitzar comodins - interrogant (?), asterisc (*) - en els vostres criteris de cerca."
 
 #: assetspanel.cpp:513 filtertransdialog.cpp:695 mmcheckingpanel.cpp:637
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "Utilitzeu l'interrogant (?) per buscar un sol caràcter - per exemple, s?t troba 'sat' i 'set'."
 
 #: assetspanel.cpp:514 filtertransdialog.cpp:696 mmcheckingpanel.cpp:638
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "Utilitzeu l'asterisc (*) per buscar qualsevol nombre de caràcters - per exemple, s*d troba 'sad' i 'started'"
 
 #: assetspanel.cpp:515 filtertransdialog.cpp:697 mmcheckingpanel.cpp:639
 #: payeedialog.cpp:140
@@ -676,7 +676,8 @@ msgstr ""
 #: assetspanel.cpp:785
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Aquest actiu no té el seu propi compte\n\n"
+"No es recomana realitzar múltiples transaccions per aquest actiu."
 
 #: assetspanel.cpp:787
 msgid "Asset Management"
@@ -1352,7 +1353,7 @@ msgstr "D&uplicar Transacció Programada..."
 
 #: billsdepositspanel.cpp:453
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&Descartar Transacció Programada..."
 
 #: billsdepositspanel.cpp:509
 msgid "Automated"
