@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-14 02:12+0000\n"
-"PO-Revision-Date: 2024-12-14 03:30\n"
+"PO-Revision-Date: 2024-12-15 21:15\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Language: ca_ES\n"
@@ -197,11 +197,11 @@ msgstr "Introdueixi qualsevol informació d'inici de sessió o accés de l'entit
 
 #: accountdialog.cpp:225
 msgid "Statement"
-msgstr ""
+msgstr "Extracte"
 
 #: accountdialog.cpp:233
 msgid "Statement:"
-msgstr ""
+msgstr "Extracte:"
 
 #: accountdialog.cpp:234
 msgid "Locked"
@@ -296,11 +296,11 @@ msgstr "La data d'obertura no pot ser en el futur"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
-msgstr "Les transaccions per a aquest compte ja existeixen abans d'aquesta data"
+msgstr "Existeixen transaccions per a aquest compte abans d'aquesta data"
 
 #: accountdialog.cpp:529
 msgid "Stock purchases for this account already exist before this date"
-msgstr ""
+msgstr "Existeixen adquisicions d'accions per aquest compte abans d'aquesta data"
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
@@ -358,7 +358,7 @@ msgstr "Visiteu el lloc web de MMEX per obtenir les últimes notícies i actuali
 
 #: appstartdialog.cpp:125 mmframe.cpp:1881
 msgid "&Forum"
-msgstr ""
+msgstr "&Fòrum"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1882
 msgid "Visit MMEX forum to read and post comments and for support"
@@ -601,7 +601,7 @@ msgstr "&Nou "
 
 #: assetspanel.cpp:477 stockspanel.cpp:136
 msgid "&Add Trans "
-msgstr ""
+msgstr "&Afegir Transacció "
 
 #: assetspanel.cpp:482 stockspanel.cpp:141
 msgid "&View Trans "
