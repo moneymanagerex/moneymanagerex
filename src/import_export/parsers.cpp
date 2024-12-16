@@ -50,8 +50,19 @@ bool FileCSV::Load(const wxString& fileName, unsigned int itemsInLine)
     // Parse rows
     wxString line;
     int row = 0;
+    wxRegEx splitLinePattern("[" + delimiter_ + "\ufffd]{1}\\\"[^\"]*?$");
     for (line = txtFile.GetFirstLine(); !txtFile.Eof(); line = txtFile.GetNextLine())
     {
+        // remove double sets of quotes which parse as the double quote literal
+        line.Replace("\"\"", "\ufffd");
+        // if there is an unclosed quote, the line has an in-field newline char
+        while (splitLinePattern.Matches(line))
+        {
+            // append the next line
+            line += "\n" + txtFile.GetNextLine();
+        }
+        // add double quotes back in
+        line.Replace("\ufffd", "\"\"");
         csv2tab_separated_values(line, delimiter_);
         wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
         itemsTable_.push_back(std::vector<ValueAndType>());
