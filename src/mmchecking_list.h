@@ -37,7 +37,6 @@ public:
 
     ~TransactionListCtrl();
 
-    void createColumns();
     Fused_Transaction::Full_Data_Set m_trans;
     void markSelectedTransaction();
     void DeleteTransactionsByStatus(const wxString& status);
@@ -240,7 +239,6 @@ inline std::vector<Fused_Transaction::IdRepeat> TransactionListCtrl::getSelected
 inline std::vector<Fused_Transaction::IdRepeat> TransactionListCtrl::getSelectedId() const { return m_selected_id; }
 
 inline void TransactionListCtrl::setVisibleItemIndex(long v) { m_topItemIndex = v; }
-inline void TransactionListCtrl::createColumns(){ mmListCtrl::CreateColumns(); }
 
 #endif // MM_EX_CHECKING_LIST_H_
 

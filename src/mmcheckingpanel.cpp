@@ -1152,7 +1152,6 @@ void mmCheckingPanel::ResetColumnView()
 {
     m_listCtrlAccount->DeleteAllColumns();
     m_listCtrlAccount->resetColumns();
-    m_listCtrlAccount->createColumns();
     m_listCtrlAccount->refreshVisualList();
 }
 
