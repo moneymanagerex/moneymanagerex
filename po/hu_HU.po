@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-14 02:12+0000\n"
-"PO-Revision-Date: 2024-12-16 00:55\n"
+"PO-Revision-Date: 2024-12-16 02:00\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -487,7 +487,7 @@ msgstr "Írja be az eszközhöz kapcsolódó megjegyzéseket"
 
 #: assetdialog.cpp:246
 msgid "New Transaction Details"
-msgstr "Új tranzakció részletei"
+msgstr "Új ügylet részletei"
 
 #: assetdialog.cpp:249 sharetransactiondialog.cpp:292
 msgid "Edit Transaction Details"
@@ -3505,7 +3505,7 @@ msgstr "Mozgatás lefelé"
 
 #: import_export/univcsvdialog.cpp:571 optionsettingsmisc.cpp:228
 msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr "Adja meg a CSV-fájlok importálásakor/exportálásakor használandó határolójelet"
+msgstr "CSV-fájlok importáláskor/exportáláskor használandó elválasztó karakterének megadása"
 
 #: import_export/univcsvdialog.cpp:572
 msgid "Import File"
