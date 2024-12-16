@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-14 02:12+0000\n"
-"PO-Revision-Date: 2024-12-15 23:19\n"
+"PO-Revision-Date: 2024-12-16 00:55\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -3437,7 +3437,7 @@ msgstr "&Lefelé"
 
 #: import_export/univcsvdialog.cpp:372
 msgid "CSV Delimiter:"
-msgstr "CSV elválasztójel:"
+msgstr "CSV-elválasztó:"
 
 #: import_export/univcsvdialog.cpp:399
 msgid "Export column titles"
@@ -6450,7 +6450,7 @@ msgstr "Napok a törölt ügyletek megőrzésére"
 
 #: optionsettingsmisc.cpp:225
 msgid "Delimiter"
-msgstr "Határolójel"
+msgstr "Elválasztó"
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp"
