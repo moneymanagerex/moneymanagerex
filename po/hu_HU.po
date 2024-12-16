@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-14 02:12+0000\n"
-"PO-Revision-Date: 2024-12-16 02:00\n"
+"PO-Revision-Date: 2024-12-16 03:05\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -1523,7 +1523,7 @@ msgstr "Különbözet: "
 
 #: budgetingpanel.cpp:248
 msgid "Expenses: "
-msgstr "Költségek: "
+msgstr "Kiadások: "
 
 #: budgetingpanel.cpp:290
 msgid "Icon"
@@ -5784,7 +5784,7 @@ msgstr "Bevételek/kiadások: %s"
 #: reports/incexpenses.cpp:214 reports/incexpenses.cpp:246
 #: reports/payee.cpp:138
 msgid "Expenses"
-msgstr "Kiadás"
+msgstr "Kiadások"
 
 #: mmhomepage.cpp:437 reports/incexpenses.cpp:117
 msgid "Difference:"
@@ -6941,11 +6941,11 @@ msgstr "Bevétel különbözete:"
 
 #: reports/budgetcategorysummary.cpp:357
 msgid "Estimated Expenses:"
-msgstr "Becsült költségek:"
+msgstr "Becsült kiadások:"
 
 #: reports/budgetcategorysummary.cpp:359
 msgid "Actual Expenses:"
-msgstr "Tényleges költségek:"
+msgstr "Tényleges kiadások:"
 
 #: reports/budgetcategorysummary.cpp:361
 msgid "Difference Expenses:"
@@ -7082,7 +7082,7 @@ msgstr "Kategóriák összegzése"
 
 #: reports/categexp.cpp:324
 msgid "Category Income/Expenses"
-msgstr "Kategória Bevételei/Kiadásai"
+msgstr "Bevételek/kiadások kategóriánként"
 
 #: reports/categexp.cpp:464
 msgid "Overall"
