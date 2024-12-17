@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-14 02:12+0000\n"
-"PO-Revision-Date: 2024-12-15 22:12\n"
+"PO-Revision-Date: 2024-12-17 22:34\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Language: ca_ES\n"
@@ -705,7 +705,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:61
 msgid "Attachment folder not defined"
-msgstr ""
+msgstr "Carpeta de fitxers adjunts no definida"
 
 #: attachmentdialog.cpp:65
 msgid "Unable to find attachments folder:"
@@ -836,7 +836,7 @@ msgstr "Ha fallat l'obertura del fitxer adjunt"
 
 #: billsdepositsdialog.cpp:45 billsdepositspanel.cpp:50
 msgid "Once"
-msgstr ""
+msgstr "Una vegada"
 
 #: billsdepositsdialog.cpp:46 billsdepositspanel.cpp:51
 #: model/Model_Budget.cpp:30
@@ -1502,7 +1502,7 @@ msgstr ""
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "Planificador de Pressupost per a %s"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -1548,7 +1548,7 @@ msgstr "Afegir An&y"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
-msgstr ""
+msgstr "Afegir un nou pressupost anual"
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
@@ -1556,7 +1556,7 @@ msgstr "Afegir &Mes"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
-msgstr ""
+msgstr "Afegir un nou pressupost mensual"
 
 #: budgetyeardialog.cpp:105
 msgid "Delete existing budget"
@@ -1572,7 +1572,7 @@ msgstr ""
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr ""
+msgstr "Pressupost Anual"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
