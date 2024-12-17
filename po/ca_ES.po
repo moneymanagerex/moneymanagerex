@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-14 02:12+0000\n"
-"PO-Revision-Date: 2024-12-17 22:34\n"
+"PO-Revision-Date: 2024-12-17 23:32\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Language: ca_ES\n"
@@ -1635,7 +1635,7 @@ msgstr ""
 
 #: categdialog.cpp:323
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Eliminar una categoria existent. La categoria no pot ser utilitzada per transaccions existents."
 
 #: categdialog.cpp:328 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1814,7 +1814,7 @@ msgstr "&Tancar "
 #: import_export/qif_import_gui.cpp:793 import_export/qif_import_gui.cpp:819
 #: import_export/univcsvdialog.cpp:2083 import_export/univcsvdialog.cpp:2107
 msgid "OK"
-msgstr ""
+msgstr "D'acord"
 
 #: constants.cpp:90
 msgid "Undo"
@@ -2081,7 +2081,7 @@ msgstr "Nou/Editar Camp Personalitzat"
 
 #: customfieldlistdialog.cpp:46
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:50
 msgid "Properties"
@@ -2179,7 +2179,7 @@ msgstr "Aigua"
 
 #: db/DB_Table_Category_V1.h:121
 msgid "Food"
-msgstr ""
+msgstr "Menjar"
 
 #: db/DB_Table_Category_V1.h:122
 msgid "Groceries"
@@ -2360,7 +2360,7 @@ msgstr ""
 #: dbupgrade.cpp:73
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "L'actualització de la base de dades de MMEX a la versió %i ha fallat!"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2368,22 +2368,23 @@ msgstr ""
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
-msgstr ""
+msgstr "Actualització de la base de dades de MMEX"
 
 #: dbupgrade.cpp:107
 msgid "MMEX database error!"
-msgstr ""
+msgstr "Error en la base de dades de MMEX!"
 
 #: dbupgrade.cpp:108
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr ""
+msgstr "La versió %i de la base de dades de MMEX no és apte amb aquesta versió de MMEX.\n"
+"Si us plau, actualitzi MMEX a la versió més recent."
 
 #: dbupgrade.cpp:120
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "La base de dades de MMEX ha estat actualitzada satisfactòriament a la versió %i"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
