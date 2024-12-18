@@ -166,7 +166,7 @@ bool FileXML::Load(const wxString& fileName, unsigned int itemsInLine)
 
     if (nullptr == worksheetElement)
     {
-        mmErrorDialogs::MessageError(pParentWindow_, _("Could not find Worksheet."), _("Parsing error"));
+        mmErrorDialogs::MessageError(pParentWindow_, _("Unable to find Worksheet."), _("Parsing error"));
         return false;
     }
 
@@ -174,7 +174,7 @@ bool FileXML::Load(const wxString& fileName, unsigned int itemsInLine)
     wxXmlNode *tableElement = worksheetElement->GetChildren();
     if (tableElement->GetName() != _("Table"))
     {
-        mmErrorDialogs::MessageError(pParentWindow_, _("Could not find Table."), _("Parsing error"));
+        mmErrorDialogs::MessageError(pParentWindow_, _("Unable to find Table."), _("Parsing error"));
         return false;
     }
 
