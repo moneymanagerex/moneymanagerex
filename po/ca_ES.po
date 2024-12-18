@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-14 02:12+0000\n"
-"PO-Revision-Date: 2024-12-17 23:32\n"
+"PO-Revision-Date: 2024-12-18 21:16\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Language: ca_ES\n"
@@ -2642,7 +2642,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:764
 msgid "Specify which chart will be included in the report"
-msgstr ""
+msgstr "Especifiqui quin gràfic serà inclòs en l'informe"
 
 #: filtertransdialog.cpp:767 filtertransdialog.cpp:1988
 msgid "Combine Splits"
@@ -2727,7 +2727,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:2163 import_export/univcsvdialog.cpp:1101
 msgid "The entered name is already in use"
-msgstr ""
+msgstr "El nom introduït ja està en ús"
 
 #: filtertransdialog.cpp:2163 images_list.cpp:327 images_list.cpp:415
 #: images_list.cpp:426 images_list.cpp:461 images_list.cpp:490
@@ -2922,7 +2922,7 @@ msgstr "Nou Informe %s"
 
 #: general_report_manager.cpp:1017
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "Ja existeix un informe amb aquest nom"
 
 #: general_report_manager.cpp:1017 general_report_manager.cpp:1024
 msgid "New Report"
@@ -2934,7 +2934,7 @@ msgstr ""
 
 #: general_report_manager.cpp:1234
 msgid "Parameters:"
-msgstr ""
+msgstr "Paràmetres:"
 
 #: images_list.cpp:326
 #, c-format
@@ -2977,7 +2977,7 @@ msgstr ""
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2248
 #: mmSimpleDialogs.cpp:1012
 msgid "Unable to open file."
-msgstr ""
+msgstr "Incapaç d'obrir el fitxer."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
 #: import_export/univcsvdialog.cpp:1353 mmframe.cpp:2648 mmframe.cpp:2667
@@ -2986,7 +2986,7 @@ msgstr ""
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
-msgstr ""
+msgstr "Incapaç de crear el fitxer."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:249
 msgid "Could not save file."
@@ -3141,7 +3141,7 @@ msgstr "Categories exportades"
 
 #: import_export/qif_export.cpp:485
 msgid "Exporting"
-msgstr ""
+msgstr "Exportant"
 
 #: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:401
 #: import_export/qif_import_gui.cpp:1053
@@ -3151,7 +3151,7 @@ msgstr "Si us plau, esperi"
 #: import_export/qif_export.cpp:513
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "Exportant transacció %zu"
 
 #: import_export/qif_export.cpp:675
 #, c-format
@@ -3161,12 +3161,12 @@ msgstr "Nombre de categories exportades: %zu \n"
 #: import_export/qif_export.cpp:677
 #, c-format
 msgid "Number of transactions exported: %zu \n"
-msgstr ""
+msgstr "Nombre de transaccions exportades: %zu \n"
 
 #: import_export/qif_export.cpp:678
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Nombre de comptes exportats: %zu"
 
 #: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:385
 msgid "Encoding:"
@@ -3222,7 +3222,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:436
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Línia %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:536
 #, c-format
@@ -3240,7 +3240,7 @@ msgstr "Format de Data: "
 
 #: import_export/qif_import_gui.cpp:551
 msgid "Press OK Button to continue"
-msgstr ""
+msgstr "Premi el botó \"D'acord\" per a continuar"
 
 #: import_export/qif_import_gui.cpp:770 import_export/qif_import_gui.cpp:801
 #: import_export/univcsvdialog.cpp:2091 import_export/univcsvdialog.cpp:2105
@@ -3968,12 +3968,13 @@ msgstr ""
 
 #: mmTextCtrl.cpp:114
 msgid "Please enter a positive or calculated value."
-msgstr ""
+msgstr "Si us plau, introdueixi un valor positiu o calculat."
 
 #: mmTextCtrl.cpp:116
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr ""
+msgstr "Consell: Per als càlculs, introdueixi expressions com ara (2+2)*(2+2)\n"
+"Els càlculs seran avaluats i el resultat serà utilitzat com a entrada."
 
 #: mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
@@ -3981,7 +3982,7 @@ msgstr "Recomanació: Sempre realitzi còpies de seguretat del seu fitxer de bas
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
-msgstr ""
+msgstr "Recomanació: Si actualitza a una nova versió de MMEX, asseguri's abans de realitzar una còpia de seguretat del seu fitxer de base de dades .mmb."
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
@@ -3993,7 +3994,7 @@ msgstr "Consell: Recordi fer còpies de seguretat del seu fitxer de base de dade
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Consell: El fitxer de base de dades .mmb no està encriptat. Això significa que qualsevol que tingui el coneixement adequat pot obrir el fitxer i llegir el contingut. Doncs, asseguri's de salvaguardar adequadament qualsevol informació financera sensible."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
@@ -4005,7 +4006,7 @@ msgstr "Consell: Per marcar una transacció com que requereix seguiment, selecci
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr ""
+msgstr "Consell: MMEX té suport d'impressió per a tots els informes que es poden visualitzar. Les opcions d'impressió es troben sota el menú, Fitxer → Imprimir."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
@@ -4586,11 +4587,11 @@ msgstr ""
 
 #: mmcustomdata.cpp:156
 msgid "False"
-msgstr ""
+msgstr "Fals"
 
 #: mmcustomdata.cpp:158
 msgid "True"
-msgstr ""
+msgstr "Veritat"
 
 #: mmcustomdata.cpp:309
 msgid "Multi Choice"
@@ -4764,7 +4765,7 @@ msgstr ""
 
 #: mmframe.cpp:1489
 msgid "&Delete Report..."
-msgstr ""
+msgstr "&Descartar Informe..."
 
 #: mmframe.cpp:1505 mmframe.cpp:1523 mmframe.cpp:1543 mmframe.cpp:1726
 msgid "&Edit Account..."
