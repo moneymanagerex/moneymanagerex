@@ -117,7 +117,7 @@ bool FileCSV::Save(const wxString& fileName)
     // Save the file.
     if (!txtFile.Write(wxTextFileType_None, encoding_))
     {
-        mmErrorDialogs::MessageError(pParentWindow_, _("Could not save file."), _("Export error"));
+        mmErrorDialogs::MessageError(pParentWindow_, _("Unable to save file."), _("Export error"));
         return false;
     }
     txtFile.Close();
@@ -257,7 +257,7 @@ bool FileXML::Save(const wxString& fileName)
     // Save the file.
     if (!xmlFile.Save(fileName))
     {
-        mmErrorDialogs::MessageError(pParentWindow_, _("Could not save file."), _("Export error"));
+        mmErrorDialogs::MessageError(pParentWindow_, _("Unable to save file."), _("Export error"));
         return false;
     }
 
