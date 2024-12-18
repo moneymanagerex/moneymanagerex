@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-14 02:12+0000\n"
-"PO-Revision-Date: 2024-12-18 21:16\n"
+"PO-Revision-Date: 2024-12-18 22:23\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Language: ca_ES\n"
@@ -5499,15 +5499,15 @@ msgstr ""
 
 #: mmframe.cpp:2504
 msgid "&No"
-msgstr ""
+msgstr "&No"
 
 #: mmframe.cpp:2504
 msgid "&Yes"
-msgstr ""
+msgstr "&Sí"
 
 #: mmframe.cpp:2524 mmframe.cpp:2545
 msgid "Save database file as"
-msgstr ""
+msgstr "Desar fitxer de base de dades com a"
 
 #: mmframe.cpp:2545
 msgid "Can't copy file to itself"
@@ -5515,7 +5515,7 @@ msgstr ""
 
 #: mmframe.cpp:2558
 msgid "Enter password for new database"
-msgstr ""
+msgstr "Introdueixi la contrasenya per a la nova base de dades"
 
 #: mmframe.cpp:2648 mmframe.cpp:2667
 msgid "No account available to import"
@@ -5673,7 +5673,7 @@ msgstr ""
 
 #: mmframereport.cpp:187 reports/payee.cpp:119
 msgid "Payees"
-msgstr ""
+msgstr "Beneficiaris"
 
 #: mmframereport.cpp:195
 msgid "Summary of Accounts"
@@ -5681,7 +5681,7 @@ msgstr ""
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr ""
+msgstr "Pressupostos"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
@@ -5838,7 +5838,7 @@ msgstr ""
 
 #: mmreportspanel.cpp:302 model/Model_Report.cpp:90
 msgid "Year:"
-msgstr ""
+msgstr "Any:"
 
 #: mmreportspanel.cpp:325
 msgid "Budget:"
@@ -5998,11 +5998,11 @@ msgstr ""
 
 #: model/Model_CustomField.cpp:27
 msgid "Decimal"
-msgstr ""
+msgstr "Decimal"
 
 #: model/Model_CustomField.cpp:28
 msgid "Boolean"
-msgstr ""
+msgstr "Booleà"
 
 #: model/Model_CustomField.cpp:31
 msgid "SingleChoice"
