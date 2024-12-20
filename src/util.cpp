@@ -681,7 +681,7 @@ bool getOnlineCurrencyRates(wxString& msg,const int64 curr_id, const bool used_o
 
     if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
     {
-        msg = _("Could not find base currency symbol!");
+        msg = _("Unable to find base currency symbol!");
         return false;
     }
 
@@ -1008,7 +1008,7 @@ bool getCoincapInfoFromSymbol(const wxString& symbol, wxString& out_id, double& 
         }
     }
 
-    output = _("Could not find asset for symbol");
+    output = _("Unable to find asset for symbol");
     return false;
 }
 
@@ -1043,7 +1043,7 @@ bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std
 
     wxString baseCurrencySymbol;
     if (!Model_Currency::GetBaseCurrencySymbol(baseCurrencySymbol)) {
-        msg = _("Could not get base currency!");
+        msg = _("Unable to get base currency!");
         return false;
     }
 
@@ -1052,7 +1052,7 @@ bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std
     if (baseCurrencySymbol != _("USD")) {
         auto usd = Model_Currency::instance().GetCurrencyRecord("USD");
         if (usd == nullptr) {
-            msg = _("Could not find currency 'USD', needed for converting historical prices");
+            msg = _("Unable to find currency 'USD', required for converting historical prices");
             return false;
         }
 
