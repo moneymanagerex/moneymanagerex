@@ -1052,7 +1052,7 @@ bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std
     if (baseCurrencySymbol != _("USD")) {
         auto usd = Model_Currency::instance().GetCurrencyRecord("USD");
         if (usd == nullptr) {
-            msg = _("Could not find currency 'USD', needed for converting history prices");
+            msg = _("Could not find currency 'USD', needed for converting historical prices");
             return false;
         }
 
@@ -1073,7 +1073,7 @@ bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std
             auto priceUSD = wxString::FromUTF8(entry["priceUsd"].GetString());
 
             if (!priceUSD.ToCDouble(&price_usd)) {
-                msg = _("Could not parse price in asset history");
+                msg = _("Unable to parse price in asset history");
                 return false;
             }
 
