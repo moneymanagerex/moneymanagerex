@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-12-13 20:41+0000\n"
-"PO-Revision-Date: 2024-12-13 23:29\n"
+"POT-Creation-Date: 2024-12-14 02:12+0000\n"
+"PO-Revision-Date: 2024-12-20 00:52\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -487,7 +487,7 @@ msgstr "Írja be az eszközhöz kapcsolódó megjegyzéseket"
 
 #: assetdialog.cpp:246
 msgid "New Transaction Details"
-msgstr "Új tranzakció részletei"
+msgstr "Új ügylet részletei"
 
 #: assetdialog.cpp:249 sharetransactiondialog.cpp:292
 msgid "Edit Transaction Details"
@@ -722,7 +722,7 @@ msgstr "A mellékletek könyvtárat nem találom"
 #: attachmentdialog.cpp:109
 #, c-format
 msgid "Attachment Manager | %s | %lld"
-msgstr ""
+msgstr "Mellékletkezelő | %s | %lld"
 
 #: attachmentdialog.cpp:111
 #, c-format
@@ -1523,7 +1523,7 @@ msgstr "Különbözet: "
 
 #: budgetingpanel.cpp:248
 msgid "Expenses: "
-msgstr "Költségek: "
+msgstr "Kiadások: "
 
 #: budgetingpanel.cpp:290
 msgid "Icon"
@@ -2443,20 +2443,20 @@ msgid "DB maintenance completed, please close and re-open MMEX!"
 msgstr "Az adatbázis karbantartása kész, zárja be és nyissa meg újra az MMEX-et!"
 
 #: dbwrapper.cpp:78
-msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatability with the MMEX mobile apps."
-msgstr ""
+msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatibility with the MMEX mobile apps."
+msgstr "Az alapértelmezett titkosítási algoritmus AES-128 kulcsról AES-256 kulcsra változott az MMEX mobilalkalmazásokkal való kompatibilitás érdekében."
 
 #: dbwrapper.cpp:79
 msgid "Rekeying with the new cipher will prevent opening this database in older versions of MMEX."
-msgstr ""
+msgstr "Az új titkosítással történő újrakulcsolás megakadályozza az adatbázis megnyitását az MMEX régebbi verzióiban."
 
 #: dbwrapper.cpp:80
-msgid "Do you want to update?"
-msgstr ""
+msgid "Do you want to update the database?"
+msgstr "Frissíteni szeretné az adatbázist?"
 
 #: dbwrapper.cpp:80
-msgid "Opening MMEX Database - Warning"
-msgstr ""
+msgid "Opening MMEX Database – Warning"
+msgstr "MMEX-adatbázis megnyitása – Figyelmeztetés"
 
 #: dbwrapper.cpp:110
 msgid "When database file opening:"
@@ -2484,8 +2484,8 @@ msgid "Error: %s"
 msgstr "Hiba: %s"
 
 #: dbwrapper.cpp:125 mmframe.cpp:2075
-msgid "Opening MMEX Database - Error"
-msgstr "MMEX-adatbázis megnyitása - Hiba"
+msgid "Opening MMEX Database – Error"
+msgstr "MMEX-adatbázis megnyitása – Hiba"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
@@ -3254,7 +3254,7 @@ msgstr "Számlák:"
 #: import_export/qif_import_gui.cpp:548 import_export/qif_import_gui.cpp:898
 #: import_export/univcsvdialog.cpp:357
 msgid "Date Format: "
-msgstr "Dátumformátum"
+msgstr "Dátumformátum: "
 
 #: import_export/qif_import_gui.cpp:551
 msgid "Press OK Button to continue"
@@ -3437,7 +3437,7 @@ msgstr "&Lefelé"
 
 #: import_export/univcsvdialog.cpp:372
 msgid "CSV Delimiter:"
-msgstr "CSV elválasztójel:"
+msgstr "CSV-elválasztó:"
 
 #: import_export/univcsvdialog.cpp:399
 msgid "Export column titles"
@@ -3505,7 +3505,7 @@ msgstr "Mozgatás lefelé"
 
 #: import_export/univcsvdialog.cpp:571 optionsettingsmisc.cpp:228
 msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr "Adja meg a CSV-fájlok importálásakor/exportálásakor használandó határolójelet"
+msgstr "CSV-fájlok importáláskor/exportáláskor használandó elválasztó karakterének megadása"
 
 #: import_export/univcsvdialog.cpp:572
 msgid "Import File"
@@ -4571,7 +4571,7 @@ msgstr "Különb.: "
 
 #: mmcheckingpanel.cpp:689
 msgid "Filtered Flow: "
-msgstr ""
+msgstr "Szűrt adatfolyam: "
 
 #: mmcheckingpanel.cpp:769 webapp.cpp:621
 msgid "Attachment"
@@ -4594,15 +4594,15 @@ msgstr "Kijelölt ügyletek között eltelt napok: %d"
 
 #: mmcheckingpanel.cpp:1062
 msgid "Scheduled transactions cannot be shown, because the current filter choice extends into the future without limit."
-msgstr ""
+msgstr "Az ütemezett ügyletek nem jeleníthetők meg, mert a jelenlegi szűrőkijelölés korlátlanul kiterjed a jövőre."
 
 #: mmcheckingpanel.cpp:1063
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
-msgstr ""
+msgstr "Kattintson az ütemezett ügyletek megjelenítéséhez. Ez a jellemző a jövőbe nyúló szűrőkijelölésekkel működik a legjobban (pl. Jelenlegi hónap)."
 
 #: mmcheckingpanel.cpp:1064
 msgid "Click to hide scheduled transactions."
-msgstr ""
+msgstr "Kattintson az ütemezett ügyletek elrejtéséhez."
 
 #: mmcustomdata.cpp:65
 msgid "Custom fields"
@@ -4722,7 +4722,7 @@ msgstr "Biztosan törölni szeretné a számlát?"
 
 #: mmframe.cpp:1408
 msgid "This will also delete any associated Shares."
-msgstr ""
+msgstr "Ezzel az összes kapcsolódó részvényt is törölni fogja."
 
 #: mmframe.cpp:1412 mmframe.cpp:3630
 msgid "Confirm Account Deletion"
@@ -5784,7 +5784,7 @@ msgstr "Bevételek/kiadások: %s"
 #: reports/incexpenses.cpp:214 reports/incexpenses.cpp:246
 #: reports/payee.cpp:138
 msgid "Expenses"
-msgstr "Kiadás"
+msgstr "Kiadások"
 
 #: mmhomepage.cpp:437 reports/incexpenses.cpp:117
 msgid "Difference:"
@@ -5934,7 +5934,7 @@ msgstr "Eszköz"
 
 #: model/Model_Account.cpp:34 stockspanel.cpp:214
 msgid "Shares"
-msgstr "Értékpapírok"
+msgstr "Részvények"
 
 #: model/Model_Account.cpp:171
 msgid "Account Error"
@@ -6450,7 +6450,7 @@ msgstr "Napok a törölt ügyletek megőrzésére"
 
 #: optionsettingsmisc.cpp:225
 msgid "Delimiter"
-msgstr "Határolójel"
+msgstr "Elválasztó"
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp"
@@ -6941,11 +6941,11 @@ msgstr "Bevétel különbözete:"
 
 #: reports/budgetcategorysummary.cpp:357
 msgid "Estimated Expenses:"
-msgstr "Becsült költségek:"
+msgstr "Becsült kiadások:"
 
 #: reports/budgetcategorysummary.cpp:359
 msgid "Actual Expenses:"
-msgstr "Tényleges költségek:"
+msgstr "Tényleges kiadások:"
 
 #: reports/budgetcategorysummary.cpp:361
 msgid "Difference Expenses:"
@@ -7082,7 +7082,7 @@ msgstr "Kategóriák összegzése"
 
 #: reports/categexp.cpp:324
 msgid "Category Income/Expenses"
-msgstr "Kategória Bevételei/Kiadásai"
+msgstr "Bevételek/kiadások kategóriánként"
 
 #: reports/categexp.cpp:464
 msgid "Overall"
