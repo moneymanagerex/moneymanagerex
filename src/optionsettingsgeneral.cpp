@@ -171,9 +171,9 @@ void OptionSettingsGeneral::Create()
 
     m_currencyStaticBoxSizer->AddSpacer(15);
 
-    m_currency_history = new wxCheckBox(general_panel, wxID_STATIC, _("Use currency history"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_currency_history = new wxCheckBox(general_panel, wxID_STATIC, _("Use historical currency"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_currency_history->SetValue(Option::instance().getCurrencyHistoryEnabled());
-    mmToolTip(m_currency_history, _("Select to use currency history (one rate for each day), deselect to use a fixed rate"));
+    mmToolTip(m_currency_history, _("Select to use historical currency (one rate for each day), deselect to use a fixed rate"));
     m_currencyStaticBoxSizer->Add(m_currency_history, g_flagsV);
 
     // Financial Year Settings
@@ -297,7 +297,7 @@ bool OptionSettingsGeneral::SaveSettings()
 
         if (Option::instance().getCurrencyHistoryEnabled())
         {
-            if (wxMessageBox(_("Changing base currency will delete all history rates, proceed?")
+            if (wxMessageBox(_("Changing base currency will delete all historical rates, proceed?")
                 , _("Currency Manager")
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING) != wxYES)
                 return false;
