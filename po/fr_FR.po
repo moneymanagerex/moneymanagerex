@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-20 14:18+0000\n"
-"PO-Revision-Date: 2024-12-20 17:13\n"
+"PO-Revision-Date: 2024-12-20 18:17\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -3013,7 +3013,7 @@ msgstr "Exporter l'erreur"
 
 #: import_export/parsers.cpp:120 import_export/parsers.cpp:260
 msgid "Unable to save file."
-msgstr ""
+msgstr "Impossible d'enregistrer le fichier."
 
 #: import_export/parsers.cpp:146 import_export/parsers.cpp:155
 msgid "File is not in Excel XML Spreadsheet 2003 format."
@@ -3026,7 +3026,7 @@ msgstr "Erreur d'analyse"
 
 #: import_export/parsers.cpp:169
 msgid "Unable to find Worksheet."
-msgstr ""
+msgstr "Impossible de trouver la feuille de travail."
 
 #: import_export/parsers.cpp:175
 msgid "Table"
@@ -3034,7 +3034,7 @@ msgstr "Table"
 
 #: import_export/parsers.cpp:177
 msgid "Unable to find Table."
-msgstr ""
+msgstr "Impossible de trouver la Table."
 
 #: import_export/parsers.cpp:228 mmframereport.cpp:132
 msgid "Transactions"
