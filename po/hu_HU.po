@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-20 14:18+0000\n"
-"PO-Revision-Date: 2024-12-20 17:13\n"
+"PO-Revision-Date: 2024-12-20 19:38\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -709,7 +709,7 @@ msgstr "Mellékletek könyvtár nincs megadva"
 
 #: attachmentdialog.cpp:65
 msgid "Unable to find attachments folder:"
-msgstr "A mellékletek-könyvtár nem található:"
+msgstr "Nem sikerült találni a mellékletek-könyvtár:"
 
 #: attachmentdialog.cpp:68
 msgid "Please verify that above path is correct"
@@ -824,7 +824,7 @@ msgstr "A melléklet törlése nem sikerült"
 
 #: attachmentdialog.cpp:520 general_report_manager.cpp:664
 msgid "Unable to open file:"
-msgstr "A fájlt nem lehet megnyitni:"
+msgstr "Nem sikerült megnyitni a fájlt:"
 
 #: attachmentdialog.cpp:523
 msgid "Please verify that file exists and user has rights to read it."
@@ -2995,7 +2995,7 @@ msgstr "Nincs használható téma, a telepítés megsérülhetett"
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2248
 #: mmSimpleDialogs.cpp:1012
 msgid "Unable to open file."
-msgstr "A fájlt nem lehet megnyitni."
+msgstr "Nem sikerült megnyitni a fájlt."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:100
 #: import_export/univcsvdialog.cpp:1353 mmframe.cpp:2648 mmframe.cpp:2667
@@ -3004,7 +3004,7 @@ msgstr "Univerzális CSV importálása"
 
 #: import_export/parsers.cpp:100
 msgid "Unable to create file."
-msgstr "A fájl nem hozható létre."
+msgstr "Nem sikerült létrehozni a fájlt."
 
 #: import_export/parsers.cpp:120 import_export/parsers.cpp:260
 msgid "Export error"
@@ -3012,7 +3012,7 @@ msgstr "Exportálási hiba"
 
 #: import_export/parsers.cpp:120 import_export/parsers.cpp:260
 msgid "Unable to save file."
-msgstr ""
+msgstr "Nem sikerült menteni a fájlt."
 
 #: import_export/parsers.cpp:146 import_export/parsers.cpp:155
 msgid "File is not in Excel XML Spreadsheet 2003 format."
@@ -3025,7 +3025,7 @@ msgstr "Feldolgozási hiba"
 
 #: import_export/parsers.cpp:169
 msgid "Unable to find Worksheet."
-msgstr ""
+msgstr "Nem sikerült találni a munkalap."
 
 #: import_export/parsers.cpp:175
 msgid "Table"
@@ -3033,7 +3033,7 @@ msgstr "Táblázat"
 
 #: import_export/parsers.cpp:177
 msgid "Unable to find Table."
-msgstr ""
+msgstr "Nem sikerült találni a táblázat."
 
 #: import_export/parsers.cpp:228 mmframereport.cpp:132
 msgid "Transactions"
