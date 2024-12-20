@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-12-13 20:41+0000\n"
-"PO-Revision-Date: 2024-12-13 20:49\n"
+"POT-Creation-Date: 2024-12-14 02:12+0000\n"
+"PO-Revision-Date: 2024-12-20 00:52\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Language: ca_ES\n"
@@ -197,11 +197,11 @@ msgstr "Introdueixi qualsevol informació d'inici de sessió o accés de l'entit
 
 #: accountdialog.cpp:225
 msgid "Statement"
-msgstr ""
+msgstr "Extracte"
 
 #: accountdialog.cpp:233
 msgid "Statement:"
-msgstr ""
+msgstr "Extracte:"
 
 #: accountdialog.cpp:234
 msgid "Locked"
@@ -296,11 +296,11 @@ msgstr "La data d'obertura no pot ser en el futur"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
-msgstr "Les transaccions per a aquest compte ja existeixen abans d'aquesta data"
+msgstr "Existeixen transaccions per a aquest compte abans d'aquesta data"
 
 #: accountdialog.cpp:529
 msgid "Stock purchases for this account already exist before this date"
-msgstr ""
+msgstr "Existeixen adquisicions d'accions per aquest compte abans d'aquesta data"
 
 #: accountdialog.cpp:536
 msgid "Scheduled transactions for this account are scheduled before this date."
@@ -358,7 +358,7 @@ msgstr "Visiteu el lloc web de MMEX per obtenir les últimes notícies i actuali
 
 #: appstartdialog.cpp:125 mmframe.cpp:1881
 msgid "&Forum"
-msgstr ""
+msgstr "&Fòrum"
 
 #: appstartdialog.cpp:126 mmframe.cpp:1882
 msgid "Visit MMEX forum to read and post comments and for support"
@@ -483,7 +483,7 @@ msgstr "Organitzar fitxers adjunts d'aquest actiu"
 
 #: assetdialog.cpp:240
 msgid "Enter notes associated with this asset"
-msgstr ""
+msgstr "Introdueixi notes associades amb aquest actiu"
 
 #: assetdialog.cpp:246
 msgid "New Transaction Details"
@@ -601,7 +601,7 @@ msgstr "&Nou "
 
 #: assetspanel.cpp:477 stockspanel.cpp:136
 msgid "&Add Trans "
-msgstr ""
+msgstr "&Afegir Transacció "
 
 #: assetspanel.cpp:482 stockspanel.cpp:141
 msgid "&View Trans "
@@ -646,17 +646,17 @@ msgstr "Introduïu qualsevol cadena per cercar actius relacionats"
 #: assetspanel.cpp:512 filtertransdialog.cpp:694 mmcheckingpanel.cpp:636
 #: payeedialog.cpp:137
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "Consells: Podeu utilitzar comodins - interrogant (?), asterisc (*) - en els vostres criteris de cerca."
 
 #: assetspanel.cpp:513 filtertransdialog.cpp:695 mmcheckingpanel.cpp:637
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "Utilitzeu l'interrogant (?) per buscar un sol caràcter - per exemple, s?t troba 'sat' i 'set'."
 
 #: assetspanel.cpp:514 filtertransdialog.cpp:696 mmcheckingpanel.cpp:638
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "Utilitzeu l'asterisc (*) per buscar qualsevol nombre de caràcters - per exemple, s*d troba 'sad' i 'started'"
 
 #: assetspanel.cpp:515 filtertransdialog.cpp:697 mmcheckingpanel.cpp:639
 #: payeedialog.cpp:140
@@ -676,7 +676,8 @@ msgstr ""
 #: assetspanel.cpp:785
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Aquest actiu no té el seu propi compte\n\n"
+"No es recomana realitzar múltiples transaccions per aquest actiu."
 
 #: assetspanel.cpp:787
 msgid "Asset Management"
@@ -704,7 +705,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:61
 msgid "Attachment folder not defined"
-msgstr ""
+msgstr "Carpeta de fitxers adjunts no definida"
 
 #: attachmentdialog.cpp:65
 msgid "Unable to find attachments folder:"
@@ -835,7 +836,7 @@ msgstr "Ha fallat l'obertura del fitxer adjunt"
 
 #: billsdepositsdialog.cpp:45 billsdepositspanel.cpp:50
 msgid "Once"
-msgstr ""
+msgstr "Una vegada"
 
 #: billsdepositsdialog.cpp:46 billsdepositspanel.cpp:51
 #: model/Model_Budget.cpp:30
@@ -1352,7 +1353,7 @@ msgstr "D&uplicar Transacció Programada..."
 
 #: billsdepositspanel.cpp:453
 msgid "&Delete Scheduled Transaction..."
-msgstr ""
+msgstr "&Descartar Transacció Programada..."
 
 #: billsdepositspanel.cpp:509
 msgid "Automated"
@@ -1501,7 +1502,7 @@ msgstr ""
 #: budgetingpanel.cpp:183
 #, c-format
 msgid "Budget Planner for %s"
-msgstr ""
+msgstr "Planificador de Pressupost per a %s"
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
@@ -1547,7 +1548,7 @@ msgstr "Afegir An&y"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
-msgstr ""
+msgstr "Afegir un nou pressupost anual"
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
@@ -1555,7 +1556,7 @@ msgstr "Afegir &Mes"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
-msgstr ""
+msgstr "Afegir un nou pressupost mensual"
 
 #: budgetyeardialog.cpp:105
 msgid "Delete existing budget"
@@ -1571,7 +1572,7 @@ msgstr ""
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year"
-msgstr ""
+msgstr "Pressupost Anual"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1634,7 +1635,7 @@ msgstr ""
 
 #: categdialog.cpp:323
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Eliminar una categoria existent. La categoria no pot ser utilitzada per transaccions existents."
 
 #: categdialog.cpp:328 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1813,7 +1814,7 @@ msgstr "&Tancar "
 #: import_export/qif_import_gui.cpp:793 import_export/qif_import_gui.cpp:819
 #: import_export/univcsvdialog.cpp:2083 import_export/univcsvdialog.cpp:2107
 msgid "OK"
-msgstr ""
+msgstr "D'acord"
 
 #: constants.cpp:90
 msgid "Undo"
@@ -2080,7 +2081,7 @@ msgstr "Nou/Editar Camp Personalitzat"
 
 #: customfieldlistdialog.cpp:46
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:50
 msgid "Properties"
@@ -2178,7 +2179,7 @@ msgstr "Aigua"
 
 #: db/DB_Table_Category_V1.h:121
 msgid "Food"
-msgstr ""
+msgstr "Menjar"
 
 #: db/DB_Table_Category_V1.h:122
 msgid "Groceries"
@@ -2359,7 +2360,7 @@ msgstr ""
 #: dbupgrade.cpp:73
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "L'actualització de la base de dades de MMEX a la versió %i ha fallat!"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2367,22 +2368,23 @@ msgstr ""
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
-msgstr ""
+msgstr "Actualització de la base de dades de MMEX"
 
 #: dbupgrade.cpp:107
 msgid "MMEX database error!"
-msgstr ""
+msgstr "Error en la base de dades de MMEX!"
 
 #: dbupgrade.cpp:108
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr ""
+msgstr "La versió %i de la base de dades de MMEX no és apte amb aquesta versió de MMEX.\n"
+"Si us plau, actualitzi MMEX a la versió més recent."
 
 #: dbupgrade.cpp:120
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "La base de dades de MMEX ha estat actualitzada satisfactòriament a la versió %i"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
@@ -2427,7 +2429,7 @@ msgid "DB maintenance completed, please close and re-open MMEX!"
 msgstr ""
 
 #: dbwrapper.cpp:78
-msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatability with the MMEX mobile apps."
+msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatibility with the MMEX mobile apps."
 msgstr ""
 
 #: dbwrapper.cpp:79
@@ -2435,11 +2437,11 @@ msgid "Rekeying with the new cipher will prevent opening this database in older 
 msgstr ""
 
 #: dbwrapper.cpp:80
-msgid "Do you want to update?"
+msgid "Do you want to update the database?"
 msgstr ""
 
 #: dbwrapper.cpp:80
-msgid "Opening MMEX Database - Warning"
+msgid "Opening MMEX Database – Warning"
 msgstr ""
 
 #: dbwrapper.cpp:110
@@ -2466,7 +2468,7 @@ msgid "Error: %s"
 msgstr "Error: %s"
 
 #: dbwrapper.cpp:125 mmframe.cpp:2075
-msgid "Opening MMEX Database - Error"
+msgid "Opening MMEX Database – Error"
 msgstr ""
 
 #: diagnostics.cpp:51
@@ -2640,7 +2642,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:764
 msgid "Specify which chart will be included in the report"
-msgstr ""
+msgstr "Especifiqui quin gràfic serà inclòs en l'informe"
 
 #: filtertransdialog.cpp:767 filtertransdialog.cpp:1988
 msgid "Combine Splits"
@@ -2725,7 +2727,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:2163 import_export/univcsvdialog.cpp:1101
 msgid "The entered name is already in use"
-msgstr ""
+msgstr "El nom introduït ja està en ús"
 
 #: filtertransdialog.cpp:2163 images_list.cpp:327 images_list.cpp:415
 #: images_list.cpp:426 images_list.cpp:461 images_list.cpp:490
@@ -2920,7 +2922,7 @@ msgstr "Nou Informe %s"
 
 #: general_report_manager.cpp:1017
 msgid "A report with this name already exists"
-msgstr ""
+msgstr "Ja existeix un informe amb aquest nom"
 
 #: general_report_manager.cpp:1017 general_report_manager.cpp:1024
 msgid "New Report"
@@ -2932,7 +2934,7 @@ msgstr ""
 
 #: general_report_manager.cpp:1234
 msgid "Parameters:"
-msgstr ""
+msgstr "Paràmetres:"
 
 #: images_list.cpp:326
 #, c-format
@@ -2975,7 +2977,7 @@ msgstr ""
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2248
 #: mmSimpleDialogs.cpp:1012
 msgid "Unable to open file."
-msgstr ""
+msgstr "Incapaç d'obrir el fitxer."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
 #: import_export/univcsvdialog.cpp:1353 mmframe.cpp:2648 mmframe.cpp:2667
@@ -2984,7 +2986,7 @@ msgstr ""
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
-msgstr ""
+msgstr "Incapaç de crear el fitxer."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:249
 msgid "Could not save file."
@@ -3139,7 +3141,7 @@ msgstr "Categories exportades"
 
 #: import_export/qif_export.cpp:485
 msgid "Exporting"
-msgstr ""
+msgstr "Exportant"
 
 #: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:401
 #: import_export/qif_import_gui.cpp:1053
@@ -3149,7 +3151,7 @@ msgstr "Si us plau, esperi"
 #: import_export/qif_export.cpp:513
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "Exportant transacció %zu"
 
 #: import_export/qif_export.cpp:675
 #, c-format
@@ -3159,12 +3161,12 @@ msgstr "Nombre de categories exportades: %zu \n"
 #: import_export/qif_export.cpp:677
 #, c-format
 msgid "Number of transactions exported: %zu \n"
-msgstr ""
+msgstr "Nombre de transaccions exportades: %zu \n"
 
 #: import_export/qif_export.cpp:678
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Nombre de comptes exportats: %zu"
 
 #: import_export/qif_import_gui.cpp:145 import_export/univcsvdialog.cpp:385
 msgid "Encoding:"
@@ -3220,7 +3222,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:436
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Línia %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:536
 #, c-format
@@ -3238,7 +3240,7 @@ msgstr "Format de Data: "
 
 #: import_export/qif_import_gui.cpp:551
 msgid "Press OK Button to continue"
-msgstr ""
+msgstr "Premi el botó \"D'acord\" per a continuar"
 
 #: import_export/qif_import_gui.cpp:770 import_export/qif_import_gui.cpp:801
 #: import_export/univcsvdialog.cpp:2091 import_export/univcsvdialog.cpp:2105
@@ -3966,12 +3968,13 @@ msgstr ""
 
 #: mmTextCtrl.cpp:114
 msgid "Please enter a positive or calculated value."
-msgstr ""
+msgstr "Si us plau, introdueixi un valor positiu o calculat."
 
 #: mmTextCtrl.cpp:116
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr ""
+msgstr "Consell: Per als càlculs, introdueixi expressions com ara (2+2)*(2+2)\n"
+"Els càlculs seran avaluats i el resultat serà utilitzat com a entrada."
 
 #: mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
@@ -3979,7 +3982,7 @@ msgstr "Recomanació: Sempre realitzi còpies de seguretat del seu fitxer de bas
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
-msgstr ""
+msgstr "Recomanació: Si actualitza a una nova versió de MMEX, asseguri's abans de realitzar una còpia de seguretat del seu fitxer de base de dades .mmb."
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
@@ -3991,7 +3994,7 @@ msgstr "Consell: Recordi fer còpies de seguretat del seu fitxer de base de dade
 
 #: mmTips.h:26
 msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Consell: El fitxer de base de dades .mmb no està encriptat. Això significa que qualsevol que tingui el coneixement adequat pot obrir el fitxer i llegir el contingut. Doncs, asseguri's de salvaguardar adequadament qualsevol informació financera sensible."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
@@ -4003,7 +4006,7 @@ msgstr "Consell: Per marcar una transacció com que requereix seguiment, selecci
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr ""
+msgstr "Consell: MMEX té suport d'impressió per a tots els informes que es poden visualitzar. Les opcions d'impressió es troben sota el menú, Fitxer → Imprimir."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
@@ -4584,11 +4587,11 @@ msgstr ""
 
 #: mmcustomdata.cpp:156
 msgid "False"
-msgstr ""
+msgstr "Fals"
 
 #: mmcustomdata.cpp:158
 msgid "True"
-msgstr ""
+msgstr "Veritat"
 
 #: mmcustomdata.cpp:309
 msgid "Multi Choice"
@@ -4762,7 +4765,7 @@ msgstr ""
 
 #: mmframe.cpp:1489
 msgid "&Delete Report..."
-msgstr ""
+msgstr "&Descartar Informe..."
 
 #: mmframe.cpp:1505 mmframe.cpp:1523 mmframe.cpp:1543 mmframe.cpp:1726
 msgid "&Edit Account..."
@@ -5496,15 +5499,15 @@ msgstr ""
 
 #: mmframe.cpp:2504
 msgid "&No"
-msgstr ""
+msgstr "&No"
 
 #: mmframe.cpp:2504
 msgid "&Yes"
-msgstr ""
+msgstr "&Sí"
 
 #: mmframe.cpp:2524 mmframe.cpp:2545
 msgid "Save database file as"
-msgstr ""
+msgstr "Desar fitxer de base de dades com a"
 
 #: mmframe.cpp:2545
 msgid "Can't copy file to itself"
@@ -5512,7 +5515,7 @@ msgstr ""
 
 #: mmframe.cpp:2558
 msgid "Enter password for new database"
-msgstr ""
+msgstr "Introdueixi la contrasenya per a la nova base de dades"
 
 #: mmframe.cpp:2648 mmframe.cpp:2667
 msgid "No account available to import"
@@ -5670,7 +5673,7 @@ msgstr ""
 
 #: mmframereport.cpp:187 reports/payee.cpp:119
 msgid "Payees"
-msgstr ""
+msgstr "Beneficiaris"
 
 #: mmframereport.cpp:195
 msgid "Summary of Accounts"
@@ -5678,7 +5681,7 @@ msgstr ""
 
 #: mmframereport.cpp:212
 msgid "Budgets"
-msgstr ""
+msgstr "Pressupostos"
 
 #: mmframereport.cpp:215
 msgid "Budget Performance"
@@ -5835,7 +5838,7 @@ msgstr ""
 
 #: mmreportspanel.cpp:302 model/Model_Report.cpp:90
 msgid "Year:"
-msgstr ""
+msgstr "Any:"
 
 #: mmreportspanel.cpp:325
 msgid "Budget:"
@@ -5995,11 +5998,11 @@ msgstr ""
 
 #: model/Model_CustomField.cpp:27
 msgid "Decimal"
-msgstr ""
+msgstr "Decimal"
 
 #: model/Model_CustomField.cpp:28
 msgid "Boolean"
-msgstr ""
+msgstr "Booleà"
 
 #: model/Model_CustomField.cpp:31
 msgid "SingleChoice"

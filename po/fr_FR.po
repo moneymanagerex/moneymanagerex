@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-12-13 20:41+0000\n"
-"PO-Revision-Date: 2024-12-13 20:49\n"
+"POT-Creation-Date: 2024-12-14 02:12+0000\n"
+"PO-Revision-Date: 2024-12-20 00:52\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -722,7 +722,7 @@ msgstr "Répertoire des pièces jointes non trouvé"
 #: attachmentdialog.cpp:109
 #, c-format
 msgid "Attachment Manager | %s | %lld"
-msgstr ""
+msgstr "Gestionnaire de pièces jointes | %s | %lld"
 
 #: attachmentdialog.cpp:111
 #, c-format
@@ -2249,7 +2249,7 @@ msgstr "Frais de Scolarité"
 #: db/DB_Table_Category_V1.h:136 db/DB_Table_Category_V1.h:140
 #: db/DB_Table_Category_V1.h:160
 msgid "Others"
-msgstr ""
+msgstr "Autres"
 
 #: db/DB_Table_Category_V1.h:137
 msgid "Homeneeds"
@@ -2444,20 +2444,20 @@ msgid "DB maintenance completed, please close and re-open MMEX!"
 msgstr "Maintenance de la BdD terminée, merci de fermer et rouvrir MMEX !"
 
 #: dbwrapper.cpp:78
-msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatability with the MMEX mobile apps."
-msgstr ""
+msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatibility with the MMEX mobile apps."
+msgstr "L'algorithme de chiffrement par défaut est passé de AES-128 à AES-256 pour être compatible avec les applications mobiles MMEX."
 
 #: dbwrapper.cpp:79
 msgid "Rekeying with the new cipher will prevent opening this database in older versions of MMEX."
-msgstr ""
+msgstr "La réinitialisation de la clé avec le nouveau chiffrement empêchera l'ouverture de cette base de données dans les anciennes versions de MMEX."
 
 #: dbwrapper.cpp:80
-msgid "Do you want to update?"
-msgstr ""
+msgid "Do you want to update the database?"
+msgstr "Voulez-vous mettre à jour la base de données ?"
 
 #: dbwrapper.cpp:80
-msgid "Opening MMEX Database - Warning"
-msgstr ""
+msgid "Opening MMEX Database – Warning"
+msgstr "Ouverture de la base de données MMEX - Attention"
 
 #: dbwrapper.cpp:110
 msgid "When database file opening:"
@@ -2485,8 +2485,8 @@ msgid "Error: %s"
 msgstr "Erreur : %s"
 
 #: dbwrapper.cpp:125 mmframe.cpp:2075
-msgid "Opening MMEX Database - Error"
-msgstr "Ouvrir une base de données existante: erreur"
+msgid "Opening MMEX Database – Error"
+msgstr "Ouverture de la base de données MMEX – Erreur"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
@@ -4572,7 +4572,7 @@ msgstr "Diff: "
 
 #: mmcheckingpanel.cpp:689
 msgid "Filtered Flow: "
-msgstr ""
+msgstr "Flux filtré : "
 
 #: mmcheckingpanel.cpp:769 webapp.cpp:621
 msgid "Attachment"
@@ -4595,15 +4595,15 @@ msgstr "Jours entre les transactions sélectionnées: %d"
 
 #: mmcheckingpanel.cpp:1062
 msgid "Scheduled transactions cannot be shown, because the current filter choice extends into the future without limit."
-msgstr ""
+msgstr "Les opérations planifiées ne peuvent pas être affichées du fait du choix de filtre en cours qui continue de s'appliquer sans limite dans le temps."
 
 #: mmcheckingpanel.cpp:1063
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
-msgstr ""
+msgstr "Cliquez pour afficher les opérations planifiées. Il est préférable d'utiliser cette fonctionnalité avec des choix de filtres qui étendent la période dans le futur (par exemple, le mois courant)."
 
 #: mmcheckingpanel.cpp:1064
 msgid "Click to hide scheduled transactions."
-msgstr ""
+msgstr "Cliquez pour masquer les opérations planifiées."
 
 #: mmcustomdata.cpp:65
 msgid "Custom fields"
@@ -4723,7 +4723,7 @@ msgstr "Souhaitez-vous réellement supprimer le compte?"
 
 #: mmframe.cpp:1408
 msgid "This will also delete any associated Shares."
-msgstr ""
+msgstr "Ceci supprimera également toutes les actions associées."
 
 #: mmframe.cpp:1412 mmframe.cpp:3630
 msgid "Confirm Account Deletion"
@@ -5889,7 +5889,7 @@ msgstr "Tous les Comptes"
 
 #: mmreportspanel.cpp:363
 msgid "Specific Accounts…"
-msgstr ""
+msgstr "Comptes spécifiques …"
 
 #: mmreportspanel.cpp:379
 msgid "Future Months:"
