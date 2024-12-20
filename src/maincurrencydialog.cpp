@@ -238,7 +238,7 @@ void mmMainCurrencyDialog::CreateControls()
     wxBoxSizer* rightBoxSizer = new wxBoxSizer(wxVERTICAL);
     mainBoxSizer->Add(rightBoxSizer, g_flagsExpand);
 
-    historyStaticBox_ = new wxStaticBox(this, wxID_ANY, _("Currency History Options"));
+    historyStaticBox_ = new wxStaticBox(this, wxID_ANY, _("Historical Currency Options"));
     if (bEnableSelect_) historyStaticBox_->Hide();
 
     wxStaticBoxSizer* historyStaticBox_Sizer = new wxStaticBoxSizer(historyStaticBox_, wxVERTICAL);
@@ -306,7 +306,7 @@ void mmMainCurrencyDialog::CreateControls()
     historyButtonDelete_->Disable();
 
     buttonDelUnusedHistory_ = new wxBitmapButton(buttons_panel, HISTORY_DELUNUSED, mmBitmapBundle(png::VOID_STAT, mmBitmapButtonSize));
-    mmToolTip(buttonDelUnusedHistory_, _("Delete Currency Values history for unused currencies and days"));
+    mmToolTip(buttonDelUnusedHistory_, _("Delete Historical Currency Values for unused currencies and days"));
     buttonDelUnusedHistory_->Disable();
 
     buttons_sizer->Add(buttonDownloadHistory_, g_flagsH);
@@ -432,8 +432,8 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
                 else if (Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(m_currency_id)).size() > 0)
                 {
                     if (wxMessageBox(wxString::Format(_(
-                        "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
-                        "click no and enable it or click yes to remove all historic rates for %2$s"),
+                        "Historical rates for %1$s found, but “Use historical currency” in options is disabled:\n"
+                        "click No and enable it or click Yes to remove all historical rates for %2$s"),
                         currency->CURRENCY_SYMBOL, currency->CURRENCY_SYMBOL), _("Currency Manager")
                         , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING) == wxYES)
                     {
@@ -500,8 +500,8 @@ void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
         case MENU_ITEM1:
             if (!SetBaseCurrency(m_currency_id))
                 mmErrorDialogs::MessageError(this
-                    , _("Unable to update history currency rates. Please update them manually!")
-                    , _("Currency history error"));
+                    , _("Unable to update historical currency rates. Please update them manually!")
+                    , _("Historical currency error"));
 
             fillControls();
             ShowCurrencyHistory();
@@ -689,7 +689,7 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
         return mmErrorDialogs::MessageError(this
             , wxString::Format(_("Unable to download %s currency rates")
                 , CurrentCurrency->CURRENCY_SYMBOL)
-            , _("Currency history error"));
+            , _("Historical currency error"));
     }
 
     bool isFound = !historical_rates.empty();
@@ -723,9 +723,9 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
     }
     else
         mmErrorDialogs::MessageError(this
-            , wxString::Format(_("Unable to download history for symbol %s. History rates not available!")
+            , wxString::Format(_("Unable to download history for symbol %s. Historical rates unavailable!")
                 , CurrentCurrency->CURRENCY_SYMBOL)
-            , _("Currency history error"));
+            , _("Historical currency error"));
 }
 
 void mmMainCurrencyDialog::OnHistoryDeleteUnused(wxCommandEvent& WXUNUSED(event))
@@ -785,7 +785,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int64& baseCurrencyID)
 
     if (bHistoryEnabled_)
     {
-        if (wxMessageBox(_("Changing base currency will delete all history rates, proceed?")
+        if (wxMessageBox(_("Changing base currency will delete all historical rates, proceed?")
             , _("Currency Manager")
             , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING) != wxYES)
             return true;
@@ -803,7 +803,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int64& baseCurrencyID)
     }
     Model_Currency::instance().ReleaseSavepoint();
 
-    //Delete currency history
+    //Delete historical currency
     Model_CurrencyHistory::instance().Savepoint();
     for (const auto& r : Model_CurrencyHistory::instance().all())
         Model_CurrencyHistory::instance().remove(r.id());
@@ -830,7 +830,7 @@ bool mmMainCurrencyDialog::ConvertHistoryRates(const std::vector<CurrencyHistory
     if (BaseRatesList.size() == 0)
     {
         mmErrorDialogs::MessageError(this
-            , wxString::Format(_("Unable to download history for base symbol %s. History rates not available!"), BaseCurrencySymbol)
+            , wxString::Format(_("Unable to download history for base symbol %s. Historical rates unavailable!"), BaseCurrencySymbol)
             , _("Currency history error"));
         return false;
     }
