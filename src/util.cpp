@@ -1675,10 +1675,12 @@ const wxString mmSeparator::getSeparator() const
 bool mmSeparator::isStringHasSeparator(const wxString &string)
 {
     bool result = false;
-    bool skip = false;
+
     for (const auto& entry : m_separators)
     {
-        for (const auto& letter : string) {
+        bool skip = false;
+        for (const auto& letter : string)
+        {
             if (letter == '"') {
                 skip = !skip;
             }
