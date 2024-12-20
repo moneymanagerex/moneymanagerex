@@ -539,7 +539,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             , detail
             , _("Unable to update some transactions"));
     }
-    //TODO: enable report on detail on transactions that are unable to be updated
+    //TODO: enable report to detail transactions that are unable to be updated
 
     EndModal(wxID_OK);
 }
