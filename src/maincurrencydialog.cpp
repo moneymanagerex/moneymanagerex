@@ -658,7 +658,7 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
     }
 
     wxString base_currency_symbol;
-    wxASSERT_MSG(Model_Currency::GetBaseCurrencySymbol(base_currency_symbol), "Could not find base currency symbol");
+    wxASSERT_MSG(Model_Currency::GetBaseCurrencySymbol(base_currency_symbol), "Unable to find base currency symbol");
 
     int msgResult = wxMessageBox(_("Do you want to add also dates without any transaction?")
         , _("Currency Manager")
@@ -873,7 +873,7 @@ bool mmMainCurrencyDialog::GetOnlineHistory(const wxString &symbol, wxDateTime b
 {
     wxString base_currency_symbol;
     if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol)) {
-        msg = _("Could not find base currency symbol!");
+        msg = _("Unable to find base currency symbol!");
         return false;
     }
 
