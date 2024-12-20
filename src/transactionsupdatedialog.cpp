@@ -537,9 +537,9 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                         , _("Not updated"), skip_trx.size());
         mmErrorDialogs::MessageWarning(this
             , detail
-            , _("Some transactions could not be updated"));
+            , _("Unable to update some transactions"));
     }
-    //TODO: be able to report detail on transactions that could not be updated
+    //TODO: enable report on detail on transactions that are unable to be updated
 
     EndModal(wxID_OK);
 }
