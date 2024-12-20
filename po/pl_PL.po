@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-12-13 20:41+0000\n"
-"PO-Revision-Date: 2024-12-13 20:50\n"
+"POT-Creation-Date: 2024-12-14 02:12+0000\n"
+"PO-Revision-Date: 2024-12-20 00:52\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -2451,7 +2451,7 @@ msgid "DB maintenance completed, please close and re-open MMEX!"
 msgstr "Konserwacja DB zakończona, należy zamknąć i ponownie otworzyć MMEX!"
 
 #: dbwrapper.cpp:78
-msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatability with the MMEX mobile apps."
+msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatibility with the MMEX mobile apps."
 msgstr ""
 
 #: dbwrapper.cpp:79
@@ -2459,11 +2459,11 @@ msgid "Rekeying with the new cipher will prevent opening this database in older 
 msgstr ""
 
 #: dbwrapper.cpp:80
-msgid "Do you want to update?"
+msgid "Do you want to update the database?"
 msgstr ""
 
 #: dbwrapper.cpp:80
-msgid "Opening MMEX Database - Warning"
+msgid "Opening MMEX Database – Warning"
 msgstr ""
 
 #: dbwrapper.cpp:110
@@ -2492,8 +2492,8 @@ msgid "Error: %s"
 msgstr "Błąd: %s"
 
 #: dbwrapper.cpp:125 mmframe.cpp:2075
-msgid "Opening MMEX Database - Error"
-msgstr "Błąd otwierania bazy danych MMEX"
+msgid "Opening MMEX Database – Error"
+msgstr ""
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"

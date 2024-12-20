@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-12-13 20:41+0000\n"
-"PO-Revision-Date: 2024-12-14 00:50\n"
+"POT-Creation-Date: 2024-12-14 02:12+0000\n"
+"PO-Revision-Date: 2024-12-20 00:52\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -329,7 +329,7 @@ msgstr "Abrir um Arquivo de Dados &Existente"
 
 #: appstartdialog.cpp:109
 msgid "Open MMEX database file"
-msgstr "Abrir um arquivo de banco de dados MMEX"
+msgstr "Abrir banco de dados MMEX"
 
 #: appstartdialog.cpp:112 mmframe.cpp:1694
 msgid "User Interface &Language"
@@ -722,7 +722,7 @@ msgstr "Pasta de anexos não encontrada"
 #: attachmentdialog.cpp:109
 #, c-format
 msgid "Attachment Manager | %s | %lld"
-msgstr ""
+msgstr "Gerenciador de Anexos | %s | %lld"
 
 #: attachmentdialog.cpp:111
 #, c-format
@@ -1119,7 +1119,7 @@ msgstr "Selecione uma das observações mais frequentes"
 #: billsdepositsdialog.cpp:618 transactionsupdatedialog.cpp:245
 #: transdialog.cpp:572
 msgid "User Colors"
-msgstr "Cores do Usuário"
+msgstr "Cores do usuário"
 
 #: billsdepositsdialog.cpp:622
 msgid "Organize attachments of this scheduled transaction"
@@ -1442,7 +1442,7 @@ msgstr "Frequência:"
 
 #: budgetentrydialog.cpp:133
 msgid "Specify the frequency of the expense or deposit"
-msgstr "Informe a frequência do despesa ou receita"
+msgstr "Informe a frequência da despesa ou receita"
 
 #: budgetentrydialog.cpp:136 import_export/univcsvdialog.cpp:408
 msgid "Amount:"
@@ -1545,7 +1545,7 @@ msgstr "Editor de Orçamento"
 
 #: budgetyeardialog.cpp:93
 msgid "Add &Year"
-msgstr "Adicionar &Ano"
+msgstr "Adicionar &Anual"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1553,7 +1553,7 @@ msgstr "Adicionar um novo Orçamento Anual"
 
 #: budgetyeardialog.cpp:98
 msgid "Add &Month"
-msgstr "Adicionar &Mês"
+msgstr "Adicionar &Mensal"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -1934,11 +1934,11 @@ msgstr "Conversão para a Taxa Base"
 
 #: currencydialog.cpp:240
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr "A taxa de conversão será utilizada caso nenhum histórico de moeda tenha sido encontrado para a moeda"
+msgstr "A taxa de câmbio será utilizada caso nenhum histórico de valor tenha sido encontrado para a moeda"
 
 #: currencydialog.cpp:242
 msgid "Fixed conversion rate"
-msgstr "Taxa de câmbio fixa"
+msgstr "Taxa de câmbio corrigida"
 
 #: currencydialog.cpp:247
 msgid "Currency Format Sample:"
@@ -2114,7 +2114,7 @@ msgid "This function will bulk search & replace for \"%s\" custom field values\n
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
 msgstr "Esta função fará uma busca & substituição massiva para os \"%s\" campos personalizados\n"
-"Fará uma busca & substituição apenas dos campos completos, nehuma substituição de valor parcial ou pela metade é permitida\n"
+"Irá comparar & substituir apenas os campos completos, nenhuma substituição parcial ou pela metade é permitida\n"
 "Por favor, considere que não há qualquer validação!"
 
 #: customfieldlistdialog.cpp:187
@@ -2249,7 +2249,7 @@ msgstr "Tutoria"
 #: db/DB_Table_Category_V1.h:136 db/DB_Table_Category_V1.h:140
 #: db/DB_Table_Category_V1.h:160
 msgid "Others"
-msgstr ""
+msgstr "Outros"
 
 #: db/DB_Table_Category_V1.h:137
 msgid "Homeneeds"
@@ -2265,7 +2265,7 @@ msgstr "Mobiliário"
 
 #: db/DB_Table_Category_V1.h:141
 msgid "Healthcare"
-msgstr "Cuidados com Saúde"
+msgstr "Plano de Saúde"
 
 #: db/DB_Table_Category_V1.h:142 db/DB_Table_Category_V1.h:151
 msgid "Health"
@@ -2277,7 +2277,7 @@ msgstr "Dentista"
 
 #: db/DB_Table_Category_V1.h:144
 msgid "Eyecare"
-msgstr "Cuidados com os Olhos"
+msgstr "Oftalmologista"
 
 #: db/DB_Table_Category_V1.h:145
 msgid "Physician"
@@ -2443,20 +2443,20 @@ msgid "DB maintenance completed, please close and re-open MMEX!"
 msgstr "Manutenção da base de dados concluída, feche e reabra o MMEX!"
 
 #: dbwrapper.cpp:78
-msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatability with the MMEX mobile apps."
-msgstr ""
+msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatibility with the MMEX mobile apps."
+msgstr "O algoritmo de cifra padrão mudou do AES-128 para o AES-256 pela compatibilidade com os aplicativos móveis MMEX."
 
 #: dbwrapper.cpp:79
 msgid "Rekeying with the new cipher will prevent opening this database in older versions of MMEX."
-msgstr ""
+msgstr "Reinserção com a nova cifra impedirá a abertura deste banco de dados em versões mais antigas do MMEX."
 
 #: dbwrapper.cpp:80
-msgid "Do you want to update?"
-msgstr ""
+msgid "Do you want to update the database?"
+msgstr "Você deseja atualizar a base de dados?"
 
 #: dbwrapper.cpp:80
-msgid "Opening MMEX Database - Warning"
-msgstr ""
+msgid "Opening MMEX Database – Warning"
+msgstr "Abrindo o banco de dados MMEX — Aviso"
 
 #: dbwrapper.cpp:110
 msgid "When database file opening:"
@@ -2476,7 +2476,7 @@ msgid "An incorrect password given for an encrypted file\n"
 "attempt to open a File that is not a database file \n"
 msgstr "Uma senha incorreta foi informada para um arquivo criptografado\n"
 "ou\n"
-"tentativa de abrir um arquivo que não é um arquivo de banco de dados \n"
+"tentativa de abrir um arquivo que não é um banco de dados \n"
 
 #: dbwrapper.cpp:122 import_export/qif_import_gui.cpp:1163 webapp.cpp:120
 #, c-format
@@ -2484,8 +2484,8 @@ msgid "Error: %s"
 msgstr "Erro: %s"
 
 #: dbwrapper.cpp:125 mmframe.cpp:2075
-msgid "Opening MMEX Database - Error"
-msgstr "Erro ao abrir Arquivo de Dados do MMEX"
+msgid "Opening MMEX Database – Error"
+msgstr "Abrindo o banco de dados do MMEX — Erro"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
@@ -4300,11 +4300,11 @@ msgstr "Ex&cluir "
 
 #: mmchecking_list.cpp:706
 msgid "&Unreconciled"
-msgstr "&Não Paga"
+msgstr "&Não-reconciliada"
 
 #: mmchecking_list.cpp:708
 msgid "&Reconciled"
-msgstr "&Paga"
+msgstr "&Reconciliada"
 
 #: mmchecking_list.cpp:710
 msgid "&Void"
@@ -4571,7 +4571,7 @@ msgstr "Diferença: "
 
 #: mmcheckingpanel.cpp:689
 msgid "Filtered Flow: "
-msgstr ""
+msgstr "Fluxo Filtrado: "
 
 #: mmcheckingpanel.cpp:769 webapp.cpp:621
 msgid "Attachment"
@@ -4594,15 +4594,15 @@ msgstr "Dias entre as transações selecionadas: %d"
 
 #: mmcheckingpanel.cpp:1062
 msgid "Scheduled transactions cannot be shown, because the current filter choice extends into the future without limit."
-msgstr ""
+msgstr "Transações agendadas não podem ser mostradas, porque a opção de filtro atual se estende para o futuro sem limite."
 
 #: mmcheckingpanel.cpp:1063
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
-msgstr ""
+msgstr "Clique para mostrar transações agendadas. Este recurso funciona melhor com opções de filtro que se estendem para o futuro (por exemplo, mês atual)."
 
 #: mmcheckingpanel.cpp:1064
 msgid "Click to hide scheduled transactions."
-msgstr ""
+msgstr "Clique para ocultar transações agendadas."
 
 #: mmcustomdata.cpp:65
 msgid "Custom fields"
@@ -4722,7 +4722,7 @@ msgstr "Tem certeza de que deseja apagar esta conta?"
 
 #: mmframe.cpp:1408
 msgid "This will also delete any associated Shares."
-msgstr ""
+msgstr "Isto também apagará quaisquer Ações associadas."
 
 #: mmframe.cpp:1412 mmframe.cpp:3630
 msgid "Confirm Account Deletion"
@@ -5143,7 +5143,7 @@ msgstr "Converte banco de dados criptografado em banco de dados não criptografa
 
 #: mmframe.cpp:1839
 msgid "Change Encrypted &Password..."
-msgstr "Alterar &Senha Encriptada..."
+msgstr "Alterar &Senha Criptografada..."
 
 #: mmframe.cpp:1840
 msgid "Change the password of an encrypted database"
@@ -5303,15 +5303,15 @@ msgstr "Ajuda a fornecer informações aos desenvolvedores"
 
 #: mmframe.cpp:1934
 msgid "&Show App Start Dialog"
-msgstr "&Mostrar diálogo de início do aplicativo"
+msgstr "&Mostrar janela de início do aplicativo"
 
 #: mmframe.cpp:1934
 msgid "App Start Dialog"
-msgstr "Diálogo de início do aplicativo"
+msgstr "Janela de início do aplicativo"
 
 #: mmframe.cpp:1938
 msgid "Check For Updates"
-msgstr "Verificar por atualizações"
+msgstr "Verificar se há atualizações"
 
 #: mmframe.cpp:1938
 msgid "Check for &Updates"
@@ -5355,7 +5355,7 @@ msgstr "&Configurações"
 
 #: mmframe.cpp:1999 mmframe.cpp:2004 mmframe.cpp:3028 optionsettingsnet.cpp:132
 msgid "News"
-msgstr "Notícias"
+msgstr "Novidades"
 
 #: mmframe.cpp:2006
 msgid "Download Rates"
@@ -5363,7 +5363,7 @@ msgstr "Baixar taxas de conversão"
 
 #: mmframe.cpp:2006
 msgid "Download currency and stock rates"
-msgstr "Baixar moedas e taxas de ações"
+msgstr "Baixar taxa de câmbio e cotação de ações"
 
 #: mmframe.cpp:2009
 msgid "Full Screen\tF11"
@@ -5460,7 +5460,7 @@ msgstr "Insira a senha para o banco de dados"
 
 #: mmframe.cpp:2368
 msgid "Choose database file to Save As"
-msgstr "Escolha o arquivo do banco de dados para Salvar como"
+msgstr "Escolha o banco de dados para Salvar Como"
 
 #: mmframe.cpp:2394
 msgid "Converted database!"
@@ -5692,11 +5692,11 @@ msgstr "Resumo"
 
 #: mmframereport.cpp:149 reports/categexp.cpp:303
 msgid "Where the Money Goes"
-msgstr "Para Onde Vai Dinheiro"
+msgstr "Para onde vai o Dinheiro"
 
 #: mmframereport.cpp:152 reports/categexp.cpp:309
 msgid "Where the Money Comes From"
-msgstr "De Onde Vem o Dinheiro"
+msgstr "De onde vem o Dinheiro"
 
 #: mmframereport.cpp:160
 msgid "Forecast Report"
@@ -5809,7 +5809,7 @@ msgstr "Total de Transações: "
 
 #: mmhomepage.cpp:540 model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr "Stock"
+msgstr "Investimento"
 
 #: mmhomepage.cpp:550
 msgid "Total Net Worth"
@@ -5890,7 +5890,7 @@ msgstr "Todas as Contas"
 
 #: mmreportspanel.cpp:363
 msgid "Specific Accounts…"
-msgstr ""
+msgstr "Contas específicas…"
 
 #: mmreportspanel.cpp:379
 msgid "Future Months:"
@@ -6117,7 +6117,7 @@ msgstr "Pasta de armazenamento de Anexos para %s apenas:"
 
 #: optionsettingsattachment.cpp:76
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr "Todo tipo de SO (Win,Mac,Unix) tem sua pasta de anexos"
+msgstr "Cada tipo de SO (Win,Mac,Unix) tem sua pasta de anexos"
 
 #: optionsettingsattachment.cpp:96
 msgid "Browse for folder"
@@ -6527,7 +6527,7 @@ msgstr "Verificar se há atualizações na inicialização"
 
 #: optionsettingsnet.cpp:171
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
-msgstr "Habilite para verificar automaticamente se a nova versão do MMEX está disponível na Inicialização"
+msgstr "Habilite para verificar automaticamente na inicialização se uma nova versão do MMEX está disponível"
 
 #: optionsettingsnet.cpp:174 wizard_update.cpp:113
 msgid "Stable"
@@ -6567,7 +6567,7 @@ msgstr "Ver Orçamentos com transações de 'transferência'"
 
 #: optionsettingsview.cpp:132
 msgid "View Budget Category Report with Summaries"
-msgstr "Ver Relatório da Categoria de Orçamento com Resumos"
+msgstr "Ver Relatório de Categorias de Orçamento com Totais"
 
 #: optionsettingsview.cpp:139
 msgid "Override yearly budget with monthly budget"
@@ -7194,7 +7194,7 @@ msgstr "Exercício Financeiro Atual"
 
 #: reports/mmDateRange.cpp:227
 msgid "Current Financial Year to Date"
-msgstr "Exercício Financeiro Atual até o Hoje"
+msgstr "Exercício Financeiro Atual até Hoje"
 
 #: reports/mmDateRange.cpp:237
 msgid "Previous Financial Year"
@@ -7887,7 +7887,7 @@ msgstr "Algumas transações não puderam ser atualizadas"
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
-msgstr "Atualização de Transações Múltiplas"
+msgstr "Atualização de Múltiplas Transações"
 
 #: transdialog.cpp:181
 msgid "Duplicate Transaction"

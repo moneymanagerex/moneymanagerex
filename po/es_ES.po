@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-12-13 20:41+0000\n"
-"PO-Revision-Date: 2024-12-13 20:50\n"
+"POT-Creation-Date: 2024-12-14 02:12+0000\n"
+"PO-Revision-Date: 2024-12-20 00:52\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -722,7 +722,7 @@ msgstr "Carpeta de adjuntos no encontrada"
 #: attachmentdialog.cpp:109
 #, c-format
 msgid "Attachment Manager | %s | %lld"
-msgstr ""
+msgstr "Administrador de adjuntos | %s | %lld"
 
 #: attachmentdialog.cpp:111
 #, c-format
@@ -2247,7 +2247,7 @@ msgstr "Clases"
 #: db/DB_Table_Category_V1.h:136 db/DB_Table_Category_V1.h:140
 #: db/DB_Table_Category_V1.h:160
 msgid "Others"
-msgstr ""
+msgstr "Otros"
 
 #: db/DB_Table_Category_V1.h:137
 msgid "Homeneeds"
@@ -2441,20 +2441,20 @@ msgid "DB maintenance completed, please close and re-open MMEX!"
 msgstr "¡Mantenimiento de la BD completado, por favor cierre y vuelva a abrir MMEX!"
 
 #: dbwrapper.cpp:78
-msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatability with the MMEX mobile apps."
-msgstr ""
+msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatibility with the MMEX mobile apps."
+msgstr "El algoritmo de cifrado por defecto ha cambiado de AES-128 a AES-256 para tener compatibilidad con las aplicaciones móviles MMEX."
 
 #: dbwrapper.cpp:79
 msgid "Rekeying with the new cipher will prevent opening this database in older versions of MMEX."
-msgstr ""
+msgstr "Volver a cifrar cambiando al nuevo algoritmo de cifrado impedirá abrir esta base de datos en versiones antiguas de MMEX."
 
 #: dbwrapper.cpp:80
-msgid "Do you want to update?"
-msgstr ""
+msgid "Do you want to update the database?"
+msgstr "¿Desea actualizar la base de datos?"
 
 #: dbwrapper.cpp:80
-msgid "Opening MMEX Database - Warning"
-msgstr ""
+msgid "Opening MMEX Database – Warning"
+msgstr "Abriendo base de datos de MMEX - Advertencia"
 
 #: dbwrapper.cpp:110
 msgid "When database file opening:"
@@ -2482,8 +2482,8 @@ msgid "Error: %s"
 msgstr "Error: %s"
 
 #: dbwrapper.cpp:125 mmframe.cpp:2075
-msgid "Opening MMEX Database - Error"
-msgstr "Abriendo base de datos MMEX - Error"
+msgid "Opening MMEX Database – Error"
+msgstr "Abriendo base de datos de MMEX - Error"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
@@ -4570,7 +4570,7 @@ msgstr "Diferencia: "
 
 #: mmcheckingpanel.cpp:689
 msgid "Filtered Flow: "
-msgstr ""
+msgstr "Flujo filtrado: "
 
 #: mmcheckingpanel.cpp:769 webapp.cpp:621
 msgid "Attachment"
@@ -4593,15 +4593,15 @@ msgstr "Días entre las transacciones seleccionadas: %d"
 
 #: mmcheckingpanel.cpp:1062
 msgid "Scheduled transactions cannot be shown, because the current filter choice extends into the future without limit."
-msgstr ""
+msgstr "Las transacciones programadas no se pueden mostrar, porque la opción de filtro actual no tiene límite temporal."
 
 #: mmcheckingpanel.cpp:1063
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
-msgstr ""
+msgstr "Haga clic para mostrar las transacciones programadas. Esta característica funciona mejor con opciones de filtros que continúan en el futuro (por ejemplo, el mes actual)."
 
 #: mmcheckingpanel.cpp:1064
 msgid "Click to hide scheduled transactions."
-msgstr ""
+msgstr "Haga clic para ocultar las transacciones programadas."
 
 #: mmcustomdata.cpp:65
 msgid "Custom fields"
@@ -4721,7 +4721,7 @@ msgstr "¿Desea eliminar la cuenta?"
 
 #: mmframe.cpp:1408
 msgid "This will also delete any associated Shares."
-msgstr ""
+msgstr "Esto también eliminará cualquier acción asociada."
 
 #: mmframe.cpp:1412 mmframe.cpp:3630
 msgid "Confirm Account Deletion"
@@ -5889,7 +5889,7 @@ msgstr "Todas las cuentas"
 
 #: mmreportspanel.cpp:363
 msgid "Specific Accounts…"
-msgstr ""
+msgstr "Cuentas Específicas…"
 
 #: mmreportspanel.cpp:379
 msgid "Future Months:"
