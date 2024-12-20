@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-12-13 20:41+0000\n"
-"PO-Revision-Date: 2024-12-13 20:50\n"
+"POT-Creation-Date: 2024-12-14 02:12+0000\n"
+"PO-Revision-Date: 2024-12-20 00:52\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -722,7 +722,7 @@ msgstr "Cartella allegati non trovata"
 #: attachmentdialog.cpp:109
 #, c-format
 msgid "Attachment Manager | %s | %lld"
-msgstr ""
+msgstr "Gestore Allegati | %s | %lld"
 
 #: attachmentdialog.cpp:111
 #, c-format
@@ -2443,20 +2443,20 @@ msgid "DB maintenance completed, please close and re-open MMEX!"
 msgstr "Manutenzione DB completata, chiudere e riavviare MMEX!"
 
 #: dbwrapper.cpp:78
-msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatability with the MMEX mobile apps."
-msgstr ""
+msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatibility with the MMEX mobile apps."
+msgstr "L'algoritmo di cifratura predefinito è passato da AES-128 a AES-256 per la compatibilità con le applicazioni mobili MMEX."
 
 #: dbwrapper.cpp:79
 msgid "Rekeying with the new cipher will prevent opening this database in older versions of MMEX."
-msgstr ""
+msgstr "La ricodifica con la nuova cifratura impedirà l'apertura di questo database nelle vecchie versioni di MMEX."
 
 #: dbwrapper.cpp:80
-msgid "Do you want to update?"
-msgstr ""
+msgid "Do you want to update the database?"
+msgstr "Vuoi aggiornare il database?"
 
 #: dbwrapper.cpp:80
-msgid "Opening MMEX Database - Warning"
-msgstr ""
+msgid "Opening MMEX Database – Warning"
+msgstr "Apertura del Database MMEX - Attenzione"
 
 #: dbwrapper.cpp:110
 msgid "When database file opening:"
@@ -2484,7 +2484,7 @@ msgid "Error: %s"
 msgstr "Errore: %s"
 
 #: dbwrapper.cpp:125 mmframe.cpp:2075
-msgid "Opening MMEX Database - Error"
+msgid "Opening MMEX Database – Error"
 msgstr "Apertura del Database MMEX - Errore"
 
 #: diagnostics.cpp:51
@@ -4572,7 +4572,7 @@ msgstr "Differenza: "
 
 #: mmcheckingpanel.cpp:689
 msgid "Filtered Flow: "
-msgstr ""
+msgstr "Flusso Filtrato: "
 
 #: mmcheckingpanel.cpp:769 webapp.cpp:621
 msgid "Attachment"
@@ -4595,15 +4595,15 @@ msgstr "Giorni tra le transazioni selezionate: %d"
 
 #: mmcheckingpanel.cpp:1062
 msgid "Scheduled transactions cannot be shown, because the current filter choice extends into the future without limit."
-msgstr ""
+msgstr "Le transazioni pianificate non possono essere visualizzate, perché la scelta del filtro attuale si estende al futuro senza limiti."
 
 #: mmcheckingpanel.cpp:1063
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
-msgstr ""
+msgstr "Clicca per mostrare le transazioni pianificate. Questa funzione è più efficace con i filtri che si estendono al futuro (ad esempio, iMese Corrente)."
 
 #: mmcheckingpanel.cpp:1064
 msgid "Click to hide scheduled transactions."
-msgstr ""
+msgstr "Clicca per nascondere le transazioni pianificate."
 
 #: mmcustomdata.cpp:65
 msgid "Custom fields"
@@ -4723,7 +4723,7 @@ msgstr "Vuoi davvero eliminare il conto?"
 
 #: mmframe.cpp:1408
 msgid "This will also delete any associated Shares."
-msgstr ""
+msgstr "Questo eliminerà anche le Azioni associate."
 
 #: mmframe.cpp:1412 mmframe.cpp:3630
 msgid "Confirm Account Deletion"
@@ -5891,7 +5891,7 @@ msgstr "Tutti i Conti"
 
 #: mmreportspanel.cpp:363
 msgid "Specific Accounts…"
-msgstr ""
+msgstr "Conti Specifici…"
 
 #: mmreportspanel.cpp:379
 msgid "Future Months:"
