@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-12-14 02:12+0000\n"
-"PO-Revision-Date: 2024-12-14 03:30\n"
+"POT-Creation-Date: 2024-12-20 14:18+0000\n"
+"PO-Revision-Date: 2024-12-20 17:13\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -1094,7 +1094,7 @@ msgstr "분할 범주 사용"
 #: filtertransdialog.cpp:1904 import_export/qif_import_gui.cpp:91
 #: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:334
 #: reports/transactions.cpp:221 splittransactionsdialog.cpp:224
-#: splittransactionsdialog.cpp:566 transactionsupdatedialog.cpp:229
+#: splittransactionsdialog.cpp:567 transactionsupdatedialog.cpp:229
 #: transactionsupdatedialog.cpp:365 transdialog.cpp:545 transdialog.cpp:644
 msgid "Tags"
 msgstr "태그"
@@ -1180,7 +1180,7 @@ msgstr "수취인 이름 확인"
 #: filtertransdialog.cpp:1092 filtertransdialog.cpp:1099
 #: filtertransdialog.cpp:1105 import_export/univcsvdialog.cpp:1346
 #: optionsettingsgeneral.cpp:293 optionsettingsgeneral.cpp:318
-#: payeedialog.cpp:201 payeedialog.cpp:206 splittransactionsdialog.cpp:566
+#: payeedialog.cpp:201 payeedialog.cpp:206 splittransactionsdialog.cpp:567
 #: transactionsupdatedialog.cpp:365 transactionsupdatedialog.cpp:439
 #: transdialog.cpp:644 transdialog.cpp:648 transdialog.cpp:663 util.cpp:756
 msgid "Invalid value"
@@ -1224,7 +1224,7 @@ msgstr "수행 할 지불 횟수를 지정하세요.\n"
 
 #: billsdepositsdialog.cpp:1390 images_list.cpp:502
 #: import_export/univcsvdialog.cpp:1582 maincurrencydialog.cpp:482
-#: mmframe.cpp:3936 splittransactionsdialog.cpp:412 stockspanel.cpp:421
+#: mmframe.cpp:3936 splittransactionsdialog.cpp:413 stockspanel.cpp:421
 #: stockspanel.cpp:422 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
@@ -2989,45 +2989,45 @@ msgstr "실행 가능한 테마를 찾을 수 없습니다. 설치가 손상되�
 msgid "Unable to open file."
 msgstr "파일을 열 수 없습니다."
 
-#: import_export/parsers.cpp:46 import_export/parsers.cpp:89
+#: import_export/parsers.cpp:46 import_export/parsers.cpp:100
 #: import_export/univcsvdialog.cpp:1353 mmframe.cpp:2648 mmframe.cpp:2667
 msgid "Universal CSV Import"
 msgstr "범용 CSV 가져오기"
 
-#: import_export/parsers.cpp:89
+#: import_export/parsers.cpp:100
 msgid "Unable to create file."
 msgstr "파일을 생성할 수 없습니다."
 
-#: import_export/parsers.cpp:109 import_export/parsers.cpp:249
-msgid "Could not save file."
-msgstr "파일을 저장할 수 없습니다."
-
-#: import_export/parsers.cpp:109 import_export/parsers.cpp:249
+#: import_export/parsers.cpp:120 import_export/parsers.cpp:260
 msgid "Export error"
 msgstr "내보내기 오류"
 
-#: import_export/parsers.cpp:135 import_export/parsers.cpp:144
+#: import_export/parsers.cpp:120 import_export/parsers.cpp:260
+msgid "Unable to save file."
+msgstr ""
+
+#: import_export/parsers.cpp:146 import_export/parsers.cpp:155
 msgid "File is not in Excel XML Spreadsheet 2003 format."
 msgstr "파일이 Excel XML 스프레드시트 2003 형식이 아닙니다."
 
-#: import_export/parsers.cpp:135 import_export/parsers.cpp:144
-#: import_export/parsers.cpp:158 import_export/parsers.cpp:166
+#: import_export/parsers.cpp:146 import_export/parsers.cpp:155
+#: import_export/parsers.cpp:169 import_export/parsers.cpp:177
 msgid "Parsing error"
 msgstr "구문 분석 오류"
 
-#: import_export/parsers.cpp:158
-msgid "Could not find Worksheet."
-msgstr "워크시트를 찾을 수 없습니다."
+#: import_export/parsers.cpp:169
+msgid "Unable to find Worksheet."
+msgstr ""
 
-#: import_export/parsers.cpp:164
+#: import_export/parsers.cpp:175
 msgid "Table"
 msgstr "표"
 
-#: import_export/parsers.cpp:166
-msgid "Could not find Table."
-msgstr "테이블을 찾을 수 없습니다."
+#: import_export/parsers.cpp:177
+msgid "Unable to find Table."
+msgstr ""
 
-#: import_export/parsers.cpp:217 mmframereport.cpp:132
+#: import_export/parsers.cpp:228 mmframereport.cpp:132
 msgid "Transactions"
 msgstr "거래"
 
@@ -3972,7 +3972,7 @@ msgstr "새 '%s' 태그를 만드시겠습니까?"
 msgid "New tag entered"
 msgstr "새 태그 입력됨"
 
-#: mmTextCtrl.cpp:88 splittransactionsdialog.cpp:586
+#: mmTextCtrl.cpp:88 splittransactionsdialog.cpp:587
 msgid "Invalid Value"
 msgstr "잘못된 값"
 
@@ -7389,11 +7389,11 @@ msgstr "분할 추가(&A)"
 msgid "&Remove Split"
 msgstr "분할 제거(&R)"
 
-#: splittransactionsdialog.cpp:412
+#: splittransactionsdialog.cpp:413
 msgid "Invalid Total Amount"
 msgstr "잘못된 총 금액"
 
-#: splittransactionsdialog.cpp:586
+#: splittransactionsdialog.cpp:587
 msgid "Please enter a valid monetary amount"
 msgstr "유효한 금액을 입력하십시오"
 
@@ -8164,11 +8164,11 @@ msgstr "시스템 로케일: %s"
 msgid "User Interface Language: %s"
 msgstr "사용자 인터페이스 언어: %s"
 
-#: util.cpp:1753
+#: util.cpp:1755
 msgid "The complete list of closed issues is available at this link"
 msgstr "닫힌 이슈의 전체 목록은 이 링크에서 확인할 수 있습니다"
 
-#: util.cpp:1953
+#: util.cpp:1955
 msgid "Copy all text to clipboard"
 msgstr "모든 텍스트를 클립보드에 복사"
 
