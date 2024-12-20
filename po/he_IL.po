@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-12-14 02:12+0000\n"
-"PO-Revision-Date: 2024-12-14 03:30\n"
+"POT-Creation-Date: 2024-12-20 14:18+0000\n"
+"PO-Revision-Date: 2024-12-20 17:13\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "Language: he_IL\n"
@@ -1094,7 +1094,7 @@ msgstr "שימוש בפיצול סוגי־אב"
 #: filtertransdialog.cpp:1904 import_export/qif_import_gui.cpp:91
 #: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:334
 #: reports/transactions.cpp:221 splittransactionsdialog.cpp:224
-#: splittransactionsdialog.cpp:566 transactionsupdatedialog.cpp:229
+#: splittransactionsdialog.cpp:567 transactionsupdatedialog.cpp:229
 #: transactionsupdatedialog.cpp:365 transdialog.cpp:545 transdialog.cpp:644
 msgid "Tags"
 msgstr "תגים"
@@ -1180,7 +1180,7 @@ msgstr "אישור שם מוטב"
 #: filtertransdialog.cpp:1092 filtertransdialog.cpp:1099
 #: filtertransdialog.cpp:1105 import_export/univcsvdialog.cpp:1346
 #: optionsettingsgeneral.cpp:293 optionsettingsgeneral.cpp:318
-#: payeedialog.cpp:201 payeedialog.cpp:206 splittransactionsdialog.cpp:566
+#: payeedialog.cpp:201 payeedialog.cpp:206 splittransactionsdialog.cpp:567
 #: transactionsupdatedialog.cpp:365 transactionsupdatedialog.cpp:439
 #: transdialog.cpp:644 transdialog.cpp:648 transdialog.cpp:663 util.cpp:756
 msgid "Invalid value"
@@ -1224,7 +1224,7 @@ msgstr "הזנת מספר התשלומים לביצוע.\n"
 
 #: billsdepositsdialog.cpp:1390 images_list.cpp:502
 #: import_export/univcsvdialog.cpp:1582 maincurrencydialog.cpp:482
-#: mmframe.cpp:3936 splittransactionsdialog.cpp:412 stockspanel.cpp:421
+#: mmframe.cpp:3936 splittransactionsdialog.cpp:413 stockspanel.cpp:421
 #: stockspanel.cpp:422 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
@@ -3006,45 +3006,45 @@ msgstr "לא נמצאה ערכת נושאה עבידה, יתכן שההתקנה 
 msgid "Unable to open file."
 msgstr "לא ניתן לפתוח קובץ."
 
-#: import_export/parsers.cpp:46 import_export/parsers.cpp:89
+#: import_export/parsers.cpp:46 import_export/parsers.cpp:100
 #: import_export/univcsvdialog.cpp:1353 mmframe.cpp:2648 mmframe.cpp:2667
 msgid "Universal CSV Import"
 msgstr "אוניברסלי  CSV יבוא"
 
-#: import_export/parsers.cpp:89
+#: import_export/parsers.cpp:100
 msgid "Unable to create file."
 msgstr "לא ניתן ליצר קובץ."
 
-#: import_export/parsers.cpp:109 import_export/parsers.cpp:249
-msgid "Could not save file."
-msgstr "לא ניתן לשמור קובץ."
-
-#: import_export/parsers.cpp:109 import_export/parsers.cpp:249
+#: import_export/parsers.cpp:120 import_export/parsers.cpp:260
 msgid "Export error"
 msgstr "שגיאת יצוא"
 
-#: import_export/parsers.cpp:135 import_export/parsers.cpp:144
+#: import_export/parsers.cpp:120 import_export/parsers.cpp:260
+msgid "Unable to save file."
+msgstr ""
+
+#: import_export/parsers.cpp:146 import_export/parsers.cpp:155
 msgid "File is not in Excel XML Spreadsheet 2003 format."
 msgstr "הקובץ אינו בתבנית XML גיליון אלקטרוני אקסל 2003."
 
-#: import_export/parsers.cpp:135 import_export/parsers.cpp:144
-#: import_export/parsers.cpp:158 import_export/parsers.cpp:166
+#: import_export/parsers.cpp:146 import_export/parsers.cpp:155
+#: import_export/parsers.cpp:169 import_export/parsers.cpp:177
 msgid "Parsing error"
 msgstr "שגיאת ניתוח"
 
-#: import_export/parsers.cpp:158
-msgid "Could not find Worksheet."
-msgstr "גיליון עבודה לא נימצא."
+#: import_export/parsers.cpp:169
+msgid "Unable to find Worksheet."
+msgstr ""
 
-#: import_export/parsers.cpp:164
+#: import_export/parsers.cpp:175
 msgid "Table"
 msgstr "טבלה"
 
-#: import_export/parsers.cpp:166
-msgid "Could not find Table."
-msgstr "לא נמצאה טבלה."
+#: import_export/parsers.cpp:177
+msgid "Unable to find Table."
+msgstr ""
 
-#: import_export/parsers.cpp:217 mmframereport.cpp:132
+#: import_export/parsers.cpp:228 mmframereport.cpp:132
 msgid "Transactions"
 msgstr "תנועות"
 
@@ -3990,7 +3990,7 @@ msgstr "יצירת תג חדש '%s'?"
 msgid "New tag entered"
 msgstr "תג חדש הוזן"
 
-#: mmTextCtrl.cpp:88 splittransactionsdialog.cpp:586
+#: mmTextCtrl.cpp:88 splittransactionsdialog.cpp:587
 msgid "Invalid Value"
 msgstr "ערך לא תקין"
 
@@ -7438,11 +7438,11 @@ msgstr "&הוספת פיצול"
 msgid "&Remove Split"
 msgstr "&הסרת פיצול"
 
-#: splittransactionsdialog.cpp:412
+#: splittransactionsdialog.cpp:413
 msgid "Invalid Total Amount"
 msgstr "סכום כולל לא תקין"
 
-#: splittransactionsdialog.cpp:586
+#: splittransactionsdialog.cpp:587
 msgid "Please enter a valid monetary amount"
 msgstr "נא להזין סכום כספי תקין"
 
@@ -8213,11 +8213,11 @@ msgstr ""
 msgid "User Interface Language: %s"
 msgstr ""
 
-#: util.cpp:1753
+#: util.cpp:1755
 msgid "The complete list of closed issues is available at this link"
 msgstr ""
 
-#: util.cpp:1953
+#: util.cpp:1955
 msgid "Copy all text to clipboard"
 msgstr "העתקת מלל ללוח־גזירים"
 
