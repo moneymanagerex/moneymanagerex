@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-12-20 02:53+0000\n"
+"POT-Creation-Date: 2024-12-20 14:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1099,7 +1099,7 @@ msgstr ""
 #: filtertransdialog.cpp:1904 import_export/qif_import_gui.cpp:91
 #: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:334
 #: reports/transactions.cpp:221 splittransactionsdialog.cpp:224
-#: splittransactionsdialog.cpp:566 transactionsupdatedialog.cpp:229
+#: splittransactionsdialog.cpp:567 transactionsupdatedialog.cpp:229
 #: transactionsupdatedialog.cpp:365 transdialog.cpp:545 transdialog.cpp:644
 msgid "Tags"
 msgstr ""
@@ -1185,7 +1185,7 @@ msgstr ""
 #: filtertransdialog.cpp:1092 filtertransdialog.cpp:1099
 #: filtertransdialog.cpp:1105 import_export/univcsvdialog.cpp:1346
 #: optionsettingsgeneral.cpp:293 optionsettingsgeneral.cpp:318
-#: payeedialog.cpp:201 payeedialog.cpp:206 splittransactionsdialog.cpp:566
+#: payeedialog.cpp:201 payeedialog.cpp:206 splittransactionsdialog.cpp:567
 #: transactionsupdatedialog.cpp:365 transactionsupdatedialog.cpp:439
 #: transdialog.cpp:644 transdialog.cpp:648 transdialog.cpp:663 util.cpp:756
 msgid "Invalid value"
@@ -1229,7 +1229,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1390 images_list.cpp:502
 #: import_export/univcsvdialog.cpp:1582 maincurrencydialog.cpp:482
-#: mmframe.cpp:3936 splittransactionsdialog.cpp:412 stockspanel.cpp:421
+#: mmframe.cpp:3936 splittransactionsdialog.cpp:413 stockspanel.cpp:421
 #: stockspanel.cpp:422 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
@@ -3007,11 +3007,11 @@ msgid "Unable to create file."
 msgstr ""
 
 #: import_export/parsers.cpp:120 import_export/parsers.cpp:260
-msgid "Could not save file."
+msgid "Export error"
 msgstr ""
 
 #: import_export/parsers.cpp:120 import_export/parsers.cpp:260
-msgid "Export error"
+msgid "Unable to save file."
 msgstr ""
 
 #: import_export/parsers.cpp:146 import_export/parsers.cpp:155
@@ -3024,7 +3024,7 @@ msgid "Parsing error"
 msgstr ""
 
 #: import_export/parsers.cpp:169
-msgid "Could not find Worksheet."
+msgid "Unable to find Worksheet."
 msgstr ""
 
 #: import_export/parsers.cpp:175
@@ -3032,7 +3032,7 @@ msgid "Table"
 msgstr ""
 
 #: import_export/parsers.cpp:177
-msgid "Could not find Table."
+msgid "Unable to find Table."
 msgstr ""
 
 #: import_export/parsers.cpp:228 mmframereport.cpp:132
@@ -3980,7 +3980,7 @@ msgstr ""
 msgid "New tag entered"
 msgstr ""
 
-#: mmTextCtrl.cpp:88 splittransactionsdialog.cpp:586
+#: mmTextCtrl.cpp:88 splittransactionsdialog.cpp:587
 msgid "Invalid Value"
 msgstr ""
 
@@ -7410,11 +7410,11 @@ msgstr ""
 msgid "&Remove Split"
 msgstr ""
 
-#: splittransactionsdialog.cpp:412
+#: splittransactionsdialog.cpp:413
 msgid "Invalid Total Amount"
 msgstr ""
 
-#: splittransactionsdialog.cpp:586
+#: splittransactionsdialog.cpp:587
 msgid "Please enter a valid monetary amount"
 msgstr ""
 
@@ -8188,11 +8188,11 @@ msgstr ""
 msgid "User Interface Language: %s"
 msgstr ""
 
-#: util.cpp:1753
+#: util.cpp:1755
 msgid "The complete list of closed issues is available at this link"
 msgstr ""
 
-#: util.cpp:1953
+#: util.cpp:1955
 msgid "Copy all text to clipboard"
 msgstr ""
 
