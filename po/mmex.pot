@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-12-14 02:12+0000\n"
+"POT-Creation-Date: 2024-12-20 02:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2997,45 +2997,45 @@ msgstr ""
 msgid "Unable to open file."
 msgstr ""
 
-#: import_export/parsers.cpp:46 import_export/parsers.cpp:89
+#: import_export/parsers.cpp:46 import_export/parsers.cpp:100
 #: import_export/univcsvdialog.cpp:1353 mmframe.cpp:2648 mmframe.cpp:2667
 msgid "Universal CSV Import"
 msgstr ""
 
-#: import_export/parsers.cpp:89
+#: import_export/parsers.cpp:100
 msgid "Unable to create file."
 msgstr ""
 
-#: import_export/parsers.cpp:109 import_export/parsers.cpp:249
+#: import_export/parsers.cpp:120 import_export/parsers.cpp:260
 msgid "Could not save file."
 msgstr ""
 
-#: import_export/parsers.cpp:109 import_export/parsers.cpp:249
+#: import_export/parsers.cpp:120 import_export/parsers.cpp:260
 msgid "Export error"
 msgstr ""
 
-#: import_export/parsers.cpp:135 import_export/parsers.cpp:144
+#: import_export/parsers.cpp:146 import_export/parsers.cpp:155
 msgid "File is not in Excel XML Spreadsheet 2003 format."
 msgstr ""
 
-#: import_export/parsers.cpp:135 import_export/parsers.cpp:144
-#: import_export/parsers.cpp:158 import_export/parsers.cpp:166
+#: import_export/parsers.cpp:146 import_export/parsers.cpp:155
+#: import_export/parsers.cpp:169 import_export/parsers.cpp:177
 msgid "Parsing error"
 msgstr ""
 
-#: import_export/parsers.cpp:158
+#: import_export/parsers.cpp:169
 msgid "Could not find Worksheet."
 msgstr ""
 
-#: import_export/parsers.cpp:164
+#: import_export/parsers.cpp:175
 msgid "Table"
 msgstr ""
 
-#: import_export/parsers.cpp:166
+#: import_export/parsers.cpp:177
 msgid "Could not find Table."
 msgstr ""
 
-#: import_export/parsers.cpp:217 mmframereport.cpp:132
+#: import_export/parsers.cpp:228 mmframereport.cpp:132
 msgid "Transactions"
 msgstr ""
 
