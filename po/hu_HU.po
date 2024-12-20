@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-20 14:18+0000\n"
-"PO-Revision-Date: 2024-12-20 19:38\n"
+"PO-Revision-Date: 2024-12-20 21:11\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -709,7 +709,7 @@ msgstr "Mellékletek könyvtár nincs megadva"
 
 #: attachmentdialog.cpp:65
 msgid "Unable to find attachments folder:"
-msgstr "Nem sikerült találni a mellékletek-könyvtár:"
+msgstr "Nem sikerült találni a mellékletek-könyvtárat:"
 
 #: attachmentdialog.cpp:68
 msgid "Please verify that above path is correct"
@@ -3025,7 +3025,7 @@ msgstr "Feldolgozási hiba"
 
 #: import_export/parsers.cpp:169
 msgid "Unable to find Worksheet."
-msgstr "Nem sikerült találni a munkalap."
+msgstr "Nem sikerült találni a munkalapot."
 
 #: import_export/parsers.cpp:175
 msgid "Table"
@@ -3033,7 +3033,7 @@ msgstr "Táblázat"
 
 #: import_export/parsers.cpp:177
 msgid "Unable to find Table."
-msgstr "Nem sikerült találni a táblázat."
+msgstr "Nem sikerült találni a táblázatot."
 
 #: import_export/parsers.cpp:228 mmframereport.cpp:132
 msgid "Transactions"
@@ -3824,7 +3824,7 @@ msgstr "Valutaárfolyam-előzmények beállításai: %s"
 
 #: maincurrencydialog.cpp:503
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr "Nem tudom frissíteni a valutaráfolyam történetét. Kérem, frissítse kézzel!"
+msgstr "Nem sikerült frissíteni a pénznemárfolyamok előzményeit. Kérem, frissítse kézzel!"
 
 #: maincurrencydialog.cpp:504 maincurrencydialog.cpp:657
 #: maincurrencydialog.cpp:692 maincurrencydialog.cpp:728
@@ -3851,12 +3851,12 @@ msgstr "Dátumokat hozzáadni szeretné az ügylet részletei nélkül?"
 #: maincurrencydialog.cpp:690
 #, c-format
 msgid "Unable to download %s currency rates"
-msgstr "%s-pénznemárfolyamát letöltése sikertelen"
+msgstr "Nem sikerült letölteni a(z) %s pénznemárfolyamokat"
 
 #: maincurrencydialog.cpp:726
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr "A(z) %s jelzéshez tartozó előzményeket nem tudom letölteni. Az árfolyamtörténet nem elérhető!"
+msgstr "Nem sikerült letölteni a(z) %s-jelelőzményeket. Az árfolyamelőzmények nem elérhető!"
 
 #: maincurrencydialog.cpp:788 optionsettingsgeneral.cpp:300
 msgid "Changing base currency will delete all history rates, proceed?"
@@ -3869,7 +3869,7 @@ msgstr "Frissíteni szeretné a pénznemárfolyamokat?"
 #: maincurrencydialog.cpp:833
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr "A(z) %s jelzéshez tartozó előzményeket nem tudom letölteni. Az árfolyamtörténet nem elérhető!"
+msgstr "Nem sikerült letölteni a(z) %s-alapjelelőzményeket. Az árfolyamelőzmények nem elérhető!"
 
 #: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:684
 msgid "Could not find base currency symbol!"
@@ -7739,7 +7739,7 @@ msgstr "Kapcsolódás..."
 #: stockspanel.cpp:556
 #, c-format
 msgid "Symbol: %s"
-msgstr "Szimbólum: %s"
+msgstr "Jel: %s"
 
 #: tagdialog.cpp:126
 msgid "Add a new tag"
@@ -8356,7 +8356,7 @@ msgstr "Ügylet letöltési hiba"
 
 #: webappdialog.cpp:311
 msgid "Unable to insert transaction in MMEX database"
-msgstr "Nem tudok ügyletet adni az MMEX-adatbázisához"
+msgstr "Nem sikerült beszúrni az ügyletet az MMEX-adatbázisba"
 
 #: webappdialog.cpp:312
 msgid "WebApp communication error"
@@ -8530,7 +8530,7 @@ msgstr "%s verzió"
 
 #: wizard_update.cpp:327 wizard_update.cpp:343
 msgid "Unable to check for updates!"
-msgstr "Frissítések nem tudom ellenőrizni!"
+msgstr "Nem sikerült ellenőrizni a frissítéseket!"
 
 #: wizard_update.cpp:328 wizard_update.cpp:344
 msgid "Error: "
