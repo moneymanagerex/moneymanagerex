@@ -1613,7 +1613,7 @@ void mmGUIFrame::createMenu()
     importMenu->AppendSeparator();
     importMenu->Append(MENU_IMPORT_QIF, _("&QIF File..."), _("Import from QIF file"));
     importMenu->AppendSeparator();
-    importMenu->Append(MENU_IMPORT_WEBAPP, _("&WebApp..."), _("Import from WebApp"));
+    importMenu->Append(MENU_IMPORT_WEBAPP, _("&WebApp..."), _("Import from the WebApp"));
 
     wxMenu* exportMenu = new wxMenu;
     menu_file->Append(MENU_EXPORT, _("&Export as"), exportMenu);

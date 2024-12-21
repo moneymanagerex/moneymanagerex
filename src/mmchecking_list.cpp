@@ -1793,9 +1793,9 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
                                 , _("Not moved"), skip_trx.size());
                 mmErrorDialogs::MessageWarning(this
                     , detail
-                    , _("Some transactions could not be moved"));
+                    , _("Unable to move some transactions"));
             }
-            //TODO: be able to report detail on transactions that could not be moved
+            //TODO: enable report to detail transactions that are unable to be moved
             refreshVisualList();
         }
     }

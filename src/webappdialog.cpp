@@ -202,7 +202,7 @@ void mmWebAppDialog::fillControls()
         mainBoxSizer_->Hide(loadingSizer_, true);
         if (!isStartup_)
         {
-            wxString msgStr = wxString() << _("Unable to download transactions from webapp.") << "\n" << CurlError;
+            wxString msgStr = wxString() << _("Unable to download transactions from the WebApp.") << "\n" << CurlError;
             wxMessageBox(msgStr, _("Transactions download error"), wxICON_ERROR);
         }
 
@@ -335,7 +335,7 @@ void mmWebAppDialog::OpenAttachment()
             }
             else
             {
-                wxString msgStr = wxString() << _("Unable to download attachments from webapp.") << "\n" << CurlError;
+                wxString msgStr = wxString() << _("Unable to download attachments from the WebApp.") << "\n" << CurlError;
                 wxMessageBox(msgStr, _("Attachment download error"), wxICON_ERROR);
             }
         }
