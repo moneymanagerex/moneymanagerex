@@ -1114,7 +1114,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 Model_Taglink::Cache taglinks;
                 if (!tagStr.IsEmpty())
                 {
-                    wxString reftype = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+                    wxString reftype = Model_Attachment::REFTYPE_STR_TRANSACTION;
                     wxStringTokenizer tagTokens = wxStringTokenizer(tagStr, ":");
                     while (tagTokens.HasMoreTokens())
                     {
@@ -1481,7 +1481,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
             if (!tagStr.IsEmpty())
             {
                 Model_Taglink::Cache splitTaglinks;
-                wxString reftype = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
+                wxString reftype = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
                 wxStringTokenizer tagTokens = wxStringTokenizer(tagStr, ":");
                 while (tagTokens.HasMoreTokens())
                 {

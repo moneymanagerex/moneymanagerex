@@ -467,7 +467,7 @@ void mmQIFExportDialog::mmExportQIF()
 
     std::map<int64 /*account ID*/, wxString> allAccounts4Export;
     wxArrayInt64 allPayees4Export;
-    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    const wxString RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
     wxArrayInt64 allAttachments4Export;
     wxArrayInt64 allCustomFields4Export;
     wxArrayInt64 allTags4Export;
@@ -486,7 +486,7 @@ void mmQIFExportDialog::mmExportQIF()
             , 100, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
 
         const auto splits = Model_Splittransaction::instance().get_all();
-        const auto tags = Model_Taglink::instance().get_all(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION));
+        const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_STR_TRANSACTION);
 
         const wxString begin_date = fromDateCtrl_->GetValue().FormatISODate();
         const wxString end_date = toDateCtrl_->GetValue().FormatISODate();
@@ -549,7 +549,7 @@ void mmQIFExportDialog::mmExportQIF()
                 // store tags from the splits
                 for (const auto& split : full_tran.m_splits)
                 {
-                    for (const auto& taglink : Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), split.SPLITTRANSID))
+                    for (const auto& taglink : Model_Taglink::instance().get(Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT, split.SPLITTRANSID))
                     {
                         if (std::find(allTags4Export.begin(), allTags4Export.end(), taglink.second) == allTags4Export.end())
                             allTags4Export.push_back(taglink.second);

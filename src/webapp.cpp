@@ -616,7 +616,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
                     if (DesktopAttachmentName != wxEmptyString)
                     {
                         Model_Attachment::Data* NewAttachment = Model_Attachment::instance().create();
-                        NewAttachment->REFTYPE = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+                        NewAttachment->REFTYPE = Model_Attachment::REFTYPE_STR_TRANSACTION;
                         NewAttachment->REFID = DeskNewTrID;
                         NewAttachment->DESCRIPTION = _("Attachment") + "_" << AttachmentNr;
                         NewAttachment->FILENAME = DesktopAttachmentName;
@@ -666,10 +666,10 @@ bool mmWebApp::WebApp_DeleteOneTransaction(int64 WebAppTransactionId)
 wxString mmWebApp::WebApp_DownloadOneAttachment(const wxString& AttachmentName, int64 DesktopTransactionID, int AttachmentNr, wxString& Error)
 {
     wxString FileExtension = wxFileName(AttachmentName).GetExt().MakeLower();
-    wxString FileName = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) + "_" + wxString::Format("%lld", DesktopTransactionID)
+    wxString FileName = Model_Attachment::REFTYPE_STR_TRANSACTION + "_" + wxString::Format("%lld", DesktopTransactionID)
         + "_Attach" + wxString::Format("%i", AttachmentNr) + "." + FileExtension;
     const wxString FilePath = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting())
-        + Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) + wxFileName::GetPathSeparator() + FileName;
+        + Model_Attachment::REFTYPE_STR_TRANSACTION + wxFileName::GetPathSeparator() + FileName;
     wxString URL = mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadAttachments + "=" + AttachmentName;
     CURLcode CurlStatus = http_download_file(URL, FilePath);
     if (CurlStatus == CURLE_OK)

@@ -105,8 +105,8 @@ mmTransDialog::mmTransDialog(wxWindow* parent,
         // a bill can only be duplicated
         m_mode = (duplicate || fused_id.second) ? MODE_DUP : MODE_EDIT;
         const wxString& splitRefType = (m_fused_data.m_repeat_num == 0) ?
-            Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT) :
-            Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT);
+            Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT :
+            Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT;
         for (const auto& split : Fused_Transaction::split(m_fused_data)) {
             wxArrayInt64 tags;
             for (const auto& tag : Model_Taglink::instance().find(
@@ -141,7 +141,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent,
     // If duplicate then we may need to copy the attachments
     if (m_mode == MODE_DUP && Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDUPLICATE", false))
     {
-        const wxString& refType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+        const wxString& refType = Model_Attachment::REFTYPE_STR_TRANSACTION;
         mmAttachmentManage::CloneAllAttachments(refType, fused_id.first, -1);
     }
 
@@ -368,8 +368,8 @@ void mmTransDialog::dataToControls()
         wxArrayInt64 tagIds;
         for (const auto& tag : Model_Taglink::instance().find(
             Model_Taglink::REFTYPE((m_fused_data.m_repeat_num == 0) ?
-                Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) :
-                Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT)),
+                Model_Attachment::REFTYPE_STR_TRANSACTION :
+                Model_Attachment::REFTYPE_STR_BILLSDEPOSIT),
             Model_Taglink::REFID((m_fused_data.m_repeat_num == 0) ?
                 m_fused_data.TRANSID :
                 m_fused_data.m_bdid))
@@ -1116,8 +1116,8 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
 void mmTransDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
     const wxString& refType = (m_fused_data.m_repeat_num == 0) ?
-        Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) :
-        Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+        Model_Attachment::REFTYPE_STR_TRANSACTION :
+        Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
     int64 transID = (m_mode == MODE_DUP) ? -1 : m_fused_data.TRANSID;
     mmAttachmentDialog dlg(this, refType, transID);
     dlg.ShowModal();
@@ -1224,7 +1224,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     Model_Splittransaction::instance().update(splt, m_fused_data.TRANSID);
 
     // Save split tags
-    const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
+    const wxString& splitRefType = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
 
     for (unsigned int i = 0; i < m_local_splits.size(); i++)
     {
@@ -1239,7 +1239,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
         Model_Taglink::instance().update(splitTaglinks, splitRefType, splt.at(i).SPLITTRANSID);
     }
-    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    const wxString& RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
     if (m_mode != MODE_EDIT) {
         mmAttachmentManage::RelocateAllAttachments(RefType, -1, RefType, m_fused_data.TRANSID);
     }
@@ -1282,7 +1282,7 @@ void mmTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 #endif
 
     if (m_mode != MODE_EDIT) {
-        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+        const wxString& RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
         mmAttachmentManage::DeleteAllAttachments(RefType, -1);
         Model_CustomFieldData::instance().DeleteAllData(RefType, -1);
     }
@@ -1340,7 +1340,7 @@ void mmTransDialog::SetTooltips()
 
 void mmTransDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
-    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    const wxString& RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
     if (m_mode != MODE_EDIT) {
         mmAttachmentManage::DeleteAllAttachments(RefType, -1);
         Model_CustomFieldData::instance().DeleteAllData(RefType, -1);

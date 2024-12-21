@@ -54,7 +54,7 @@ mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int64 ref
 
 mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int64 ref_id, wxWindowID base_id)
     : mmCustomData(dialog
-        , Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)
+        , Model_Attachment::REFTYPE_STR_TRANSACTION
         , ref_id)
 {
     SetBaseID(base_id);
@@ -505,7 +505,7 @@ bool mmCustomData::SaveCustomValues(int64 ref_id)
 
     Model_CustomFieldData::instance().ReleaseSavepoint();
 
-    if (updateTimestamp && m_ref_type == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
+    if (updateTimestamp && m_ref_type == Model_Attachment::REFTYPE_STR_TRANSACTION)
         Model_Checking::instance().updateTimestamp(ref_id);        
 
     return true;
@@ -555,7 +555,7 @@ void mmCustomData::UpdateCustomValues(int64 ref_id)
 
     Model_CustomFieldData::instance().ReleaseSavepoint();
 
-    if (updateTimestamp && m_ref_type == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
+    if (updateTimestamp && m_ref_type == Model_Attachment::REFTYPE_STR_TRANSACTION)
         Model_Checking::instance().updateTimestamp(ref_id);        
 }
 

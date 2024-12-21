@@ -174,10 +174,10 @@ void mmCheckingPanel::filterTable()
     m_show_reconciled = false;
     m_account_flow = 0.0;
 
-    const wxString transRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    const wxString splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
-    const wxString billsRefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
-    const wxString billsplitRefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT);
+    const wxString transRefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+    const wxString splitRefType = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
+    const wxString billsRefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
+    const wxString billsplitRefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT;
 
     Model_CustomField::TYPE_ID UDFC01_Type = Model_CustomField::getUDFCType(transRefType, "UDFC01");
     Model_CustomField::TYPE_ID UDFC02_Type = Model_CustomField::getUDFCType(transRefType, "UDFC02");
@@ -190,8 +190,8 @@ void mmCheckingPanel::filterTable()
     int UDFC04_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(transRefType, "UDFC04"));
     int UDFC05_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(transRefType, "UDFC05"));
 
-    auto trans_fields_data = Model_CustomFieldData::instance().get_all(Model_Attachment::TRANSACTION);
-    const auto matrix = Model_CustomField::getMatrix(Model_Attachment::TRANSACTION);
+    auto trans_fields_data = Model_CustomFieldData::instance().get_all(Model_Attachment::REFTYPE_ID_TRANSACTION);
+    const auto matrix = Model_CustomField::getMatrix(Model_Attachment::REFTYPE_ID_TRANSACTION);
     int64 udfc01_ref_id = matrix.at("UDFC01");
     int64 udfc02_ref_id = matrix.at("UDFC02");
     int64 udfc03_ref_id = matrix.at("UDFC03");
@@ -206,7 +206,7 @@ void mmCheckingPanel::filterTable()
     const auto trans_splits = Model_Splittransaction::instance().get_all();
     const auto trans_tags = Model_Taglink::instance().get_all(transRefType);
     const auto trans_attachments = Model_Attachment::instance().get_all(
-        Model_Attachment::TRANSACTION);
+        Model_Attachment::REFTYPE_ID_TRANSACTION);
     const auto trans = (isAllAccounts_ || isTrash_) ?
         Model_Checking::instance().all() :
         Model_Account::transaction(this->m_account);
@@ -222,7 +222,7 @@ void mmCheckingPanel::filterTable()
         bills_splits = Model_Budgetsplittransaction::instance().get_all();
         bills_tags = Model_Taglink::instance().get_all(billsRefType);
         bills_attachments = Model_Attachment::instance().get_all(
-            Model_Attachment::BILLSDEPOSIT);
+            Model_Attachment::REFTYPE_ID_BILLSDEPOSIT);
         bills = (isAllAccounts_ || isTrash_) ?
             Model_Billsdeposits::instance().all() :
             Model_Account::billsdeposits(this->m_account);
@@ -431,8 +431,8 @@ void mmCheckingPanel::OnButtonRightDown(wxMouseEvent& event)
         auto selected_id = m_listCtrlAccount->getSelectedId();
         if (selected_id.size() == 1) {
             const wxString refType = !selected_id[0].second ?
-                Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) :
-                Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+                Model_Attachment::REFTYPE_STR_TRANSACTION :
+                Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
             mmAttachmentDialog dlg(this, refType, selected_id[0].first);
             dlg.ShowModal();
             RefreshList();
@@ -762,7 +762,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
                     notesStr += split.NOTES;
                 }
             if (full_tran.has_attachment()) {
-                const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+                const wxString& RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
                 Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(RefType, full_tran.id());
                 for (const auto& i : attachments) {
                     notesStr += notesStr.empty() ? "" : "\n";

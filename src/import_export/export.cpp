@@ -183,7 +183,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         buffer << "M" << notes << "\n";
     }
 
-    wxString reftype = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
+    wxString reftype = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
     for (const auto &split_entry : full_tran.m_splits)
     {
         double valueSplit = split_entry.SPLITTRANSAMOUNT;
@@ -435,7 +435,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
             json_writer.Double(valueSplit);
             json_writer.Key("TAGS");
             json_writer.StartArray();
-            for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), split_entry.SPLITTRANSID))
+            for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT, split_entry.SPLITTRANSID))
                 json_writer.Int64(tag.second.GetValue());
             json_writer.EndArray();
             json_writer.EndObject();
@@ -444,7 +444,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
         json_writer.EndArray();
     }
 
-    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    const wxString RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
     Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(RefType, full_tran.id());
 
     if (!attachments.empty())
@@ -486,7 +486,7 @@ void mmExportTransaction::getAttachmentsJSON(PrettyWriter<StringBuffer>& json_wr
 
     if (!allAttachment4Export.empty())
     {
-        const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+        const wxString RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
         const wxString folder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
         const wxString AttachmentsFolder = mmex::getPathAttachment(folder);
 
@@ -523,7 +523,7 @@ void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_w
 
     if (!allCustomFields4Export.empty())
     {
-        const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+        const wxString RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
 
         json_writer.Key("CUSTOM_FIELDS");
         json_writer.StartObject();
