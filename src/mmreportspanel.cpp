@@ -636,7 +636,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
                 if (Model_Checking::foreignTransaction(*transaction))
                 {
                     Model_Translink::Data translink = Model_Translink::TranslinkRecord(transId);
-                    if (translink.LINKTYPE == Model_Attachment::reftype_desc(Model_Attachment::STOCK))
+                    if (translink.LINKTYPE == Model_Attachment::REFTYPE_STR_STOCK)
                     {
                         ShareTransactionDialog dlg(m_frame, &translink, transaction);
                         if (dlg.ShowModal() == wxID_OK)
@@ -674,7 +674,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
         const wxString RefType = sData.BeforeFirst('|');
         int RefId = wxAtoi(sData.AfterFirst('|'));
 
-        if (Model_Attachment::instance().all_type().Index(RefType) != wxNOT_FOUND && RefId > 0)
+        if (Model_Attachment::REFTYPE_STR.Index(RefType) != wxNOT_FOUND && RefId > 0)
         {
             mmAttachmentManage::OpenAttachmentFromPanelIcon(m_frame, RefType, RefId);
             const auto name = getVFname4print("rep", getPrintableBase()->getHTMLText());

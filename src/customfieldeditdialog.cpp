@@ -43,7 +43,7 @@ wxEND_EVENT_TABLE()
 
 mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomField::Data* field)
     : m_field(field)
-    , m_fieldRefType(Model_Attachment::instance().all_type()[Model_Attachment::REFTYPE::TRANSACTION])
+    , m_fieldRefType(Model_Attachment::REFTYPE_STR_TRANSACTION)
 {
     this->SetFont(parent->GetFont());
     Create(parent);
@@ -124,7 +124,7 @@ void mmCustomFieldEditDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Attribute of")), g_flagsH);
     m_itemReference = new wxChoice(itemPanel5, wxID_HIGHEST);
     for (const auto& type : Model_Attachment::REFTYPE_CHOICES) {
-        if (type.first != Model_Attachment::BILLSDEPOSIT)
+        if (type.first != Model_Attachment::REFTYPE_ID_BILLSDEPOSIT)
             m_itemReference->Append(wxGetTranslation(type.second), new wxStringClientData(type.second));
     }
     mmToolTip(m_itemReference, _("Select the item that the custom field is associated with"));

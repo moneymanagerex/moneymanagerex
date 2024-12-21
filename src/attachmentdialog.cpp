@@ -88,20 +88,20 @@ void mmAttachmentDialog::Create(wxWindow* parent, const wxString& name)
         wxString RefName;
         switch (refEnum)
         {
-        case Model_Attachment::STOCK:
+        case Model_Attachment::REFTYPE_ID_STOCK:
             RefName = Model_Stock::get_stock_name(m_RefId);
             break;
-        case Model_Attachment::ASSET:
+        case Model_Attachment::REFTYPE_ID_ASSET:
             RefName = Model_Asset::get_asset_name(m_RefId);
             break;
-        case Model_Attachment::BANKACCOUNT:
+        case Model_Attachment::REFTYPE_ID_BANKACCOUNT:
             RefName = Model_Account::get_account_name(m_RefId);
             break;
-        case Model_Attachment::PAYEE:
+        case Model_Attachment::REFTYPE_ID_PAYEE:
             RefName = Model_Payee::get_payee_name(m_RefId);
             break;
-        case Model_Attachment::TRANSACTION:
-        case Model_Attachment::BILLSDEPOSIT:
+        case Model_Attachment::REFTYPE_ID_TRANSACTION:
+        case Model_Attachment::REFTYPE_ID_BILLSDEPOSIT:
         default:
             RefName = "";
         }       
@@ -219,7 +219,7 @@ void mmAttachmentDialog::AddAttachment(wxString FilePath)
         m_attachment_id = Model_Attachment::instance().save(NewAttachment);
         m_attachment_id = NewAttachment->ATTACHMENTID;
 
-        if (m_RefType == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
+        if (m_RefType == Model_Attachment::REFTYPE_STR_TRANSACTION)
             Model_Checking::instance().updateTimestamp(m_RefId);
     }
 
@@ -255,7 +255,7 @@ void mmAttachmentDialog::EditAttachment()
         m_attachment_id = Model_Attachment::instance().save(attachment);
         m_attachment_id = attachment->ATTACHMENTID;
 
-        if (attachment->REFTYPE == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
+        if (attachment->REFTYPE == Model_Attachment::REFTYPE_STR_TRANSACTION)
             Model_Checking::instance().updateTimestamp(attachment->REFID);
 
         fillControls();
@@ -276,7 +276,7 @@ void mmAttachmentDialog::DeleteAttachment()
             const wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + attachment->REFTYPE;
             if (mmAttachmentManage::DeleteAttachment(AttachmentsFolder + m_PathSep + attachment->FILENAME))
             {
-                if (attachment->REFTYPE == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
+                if (attachment->REFTYPE == Model_Attachment::REFTYPE_STR_TRANSACTION)
                     Model_Checking::instance().updateTimestamp(attachment->REFID);
                 Model_Attachment::instance().remove(m_attachment_id);
             }
@@ -539,7 +539,7 @@ bool mmAttachmentManage::DeleteAllAttachments(const wxString& RefType, int64 Ref
         Model_Attachment::instance().remove(entry.ATTACHMENTID);
     }
 
-    if (RefType == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
+    if (RefType == Model_Attachment::REFTYPE_STR_TRANSACTION)
         Model_Checking::instance().updateTimestamp(RefId);
 
     return true;
@@ -566,9 +566,9 @@ bool mmAttachmentManage::RelocateAllAttachments(const wxString& OldRefType, int6
     }
     Model_Attachment::instance().save(attachments);
 
-    if (OldRefType == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
+    if (OldRefType == Model_Attachment::REFTYPE_STR_TRANSACTION)
         Model_Checking::instance().updateTimestamp(OldRefId);
-    if (NewRefType == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
+    if (NewRefType == Model_Attachment::REFTYPE_STR_TRANSACTION)
         Model_Checking::instance().updateTimestamp(NewRefId);
 
     return true;
@@ -592,7 +592,7 @@ bool mmAttachmentManage::CloneAllAttachments(const wxString& RefType, int64 OldR
         Model_Attachment::instance().save(NewAttachment);
     }
 
-    if (RefType == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
+    if (RefType == Model_Attachment::REFTYPE_STR_TRANSACTION)
         Model_Checking::instance().updateTimestamp(NewRefId);
 
     return true;

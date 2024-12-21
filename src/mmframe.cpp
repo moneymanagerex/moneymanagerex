@@ -567,7 +567,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                     checking_splits.push_back(split);
                     wxArrayInt64 tags;
                     for (const auto& tag :
-                         Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT)),
+                         Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT),
                                                         Model_Taglink::REFID(item.SPLITTRANSID)))
                         tags.push_back(tag.TAGID);
                     splitTags.push_back(tags);
@@ -575,7 +575,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 Model_Splittransaction::instance().save(checking_splits);
 
                 // Save split tags
-                const wxString& splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
+                const wxString& splitRefType = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
 
                 for (size_t i = 0; i < checking_splits.size(); i++)
                 {
@@ -606,8 +606,8 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 
                 // Save base transaction tags
                 Model_Taglink::Data_Set taglinks;
-                const wxString& txnRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-                for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT)),
+                const wxString& txnRefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+                for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT),
                                                                       Model_Taglink::REFID(q1.BDID)))
                 {
                     Model_Taglink::Data* t = Model_Taglink::instance().create();
@@ -1258,7 +1258,7 @@ void mmGUIFrame::OnAccountAttachments(wxCommandEvent& /*event*/)
     if (selectedItemData_)
     {
         int64 RefId = selectedItemData_->getData();
-        wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT);
+        wxString RefType = Model_Attachment::REFTYPE_STR_BANKACCOUNT;
 
         mmAttachmentDialog dlg(this, RefType, RefId);
         dlg.ShowModal();
@@ -1414,7 +1414,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
             if (msgDlg.ShowModal() == wxID_YES)
             {
                 Model_Account::instance().remove(account->ACCOUNTID);
-                mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT), account->ACCOUNTID);
+                mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_STR_BANKACCOUNT, account->ACCOUNTID);
                 DoRecreateNavTreeControl(true);
             }
         }
@@ -3632,7 +3632,7 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
         if (msgDlg.ShowModal() == wxID_YES)
         {
             Model_Account::instance().remove(account->id());
-            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT), account->id());
+            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_STR_BANKACCOUNT, account->id());
         }
     }
     DoRecreateNavTreeControl(true);
@@ -3888,7 +3888,7 @@ void mmGUIFrame::autocleanDeletedTransactions() {
             Model_Checking::instance().remove(transaction.TRANSID);
 
             // remove also any attachments for the transaction
-            const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+            const wxString& RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
             mmAttachmentManage::DeleteAllAttachments(RefType, transaction.TRANSID);
 
             // remove also any custom fields for the transaction

@@ -306,9 +306,9 @@ void mmTagDialog::OnDelete(wxCommandEvent& WXUNUSED(event))
             for (const auto& link : taglinks)
                 // Taglinks for deleted transactions are either TRANSACTION or TRANSACTIONSPLIT type.
                 // Remove the transactions which will delete all associated tags.
-                if (link.REFTYPE == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION))
+                if (link.REFTYPE == Model_Attachment::REFTYPE_STR_TRANSACTION)
                     Model_Checking::instance().remove(link.REFID);
-                else if (link.REFTYPE == Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT))
+                else if (link.REFTYPE == Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT)
                     Model_Checking::instance().remove(Model_Splittransaction::instance().get(link.REFID)->TRANSID);
             Model_Tag::instance().remove(tag->TAGID);
             tagList_.Remove(selection);

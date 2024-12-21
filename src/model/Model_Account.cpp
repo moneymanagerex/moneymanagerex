@@ -190,7 +190,7 @@ bool Model_Account::remove(int64 id)
 
     for (const auto& r : Model_Stock::instance().find(Model_Stock::HELDAT(id)))
     {
-        Model_Translink::RemoveTransLinkRecords(Model_Attachment::STOCK, r.STOCKID);
+        Model_Translink::RemoveTransLinkRecords(Model_Attachment::REFTYPE_ID_STOCK, r.STOCKID);
         Model_Stock::instance().remove(r.STOCKID);
     }
     this->ReleaseSavepoint();

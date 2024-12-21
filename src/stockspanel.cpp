@@ -216,7 +216,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
     stockTxnListCtrl->AppendColumn(_("Commission"), wxLIST_FORMAT_RIGHT);
     topsizer->Add(stockTxnListCtrl, wxSizerFlags(g_flagsExpand).TripleBorder());
 
-    const Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList(Model_Attachment::STOCK, stock->STOCKID);
+    const Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_STOCK, stock->STOCKID);
     Model_Checking::Data_Set checking_list;
     for (const auto &trans : stock_list)
     {

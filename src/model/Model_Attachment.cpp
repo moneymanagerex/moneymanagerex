@@ -19,17 +19,26 @@
 #include "Model_Attachment.h"
 #include <wx/string.h>
 
-const std::vector<std::pair<Model_Attachment::REFTYPE, wxString> > Model_Attachment::REFTYPE_CHOICES =
+const std::vector<std::pair<Model_Attachment::REFTYPE_ID, wxString> > Model_Attachment::REFTYPE_CHOICES =
 {
-    {Model_Attachment::TRANSACTION, wxTRANSLATE("Transaction")},
-    {Model_Attachment::STOCK, wxTRANSLATE("Stock")},
-    {Model_Attachment::ASSET, wxTRANSLATE("Asset")},
-    {Model_Attachment::BANKACCOUNT, wxTRANSLATE("BankAccount")},
-    {Model_Attachment::BILLSDEPOSIT, wxTRANSLATE("RecurringTransaction")},
-    {Model_Attachment::PAYEE, wxTRANSLATE("Payee")},
-    {Model_Attachment::TRANSACTIONSPLIT, wxTRANSLATE("TransactionSplit")},
-    {Model_Attachment::BILLSDEPOSITSPLIT, wxTRANSLATE("RecurringTransactionSplit")}
+    { Model_Attachment::REFTYPE_ID_TRANSACTION,       wxTRANSLATE("Transaction") },
+    { Model_Attachment::REFTYPE_ID_STOCK,             wxTRANSLATE("Stock") },
+    { Model_Attachment::REFTYPE_ID_ASSET,             wxTRANSLATE("Asset") },
+    { Model_Attachment::REFTYPE_ID_BANKACCOUNT,       wxTRANSLATE("BankAccount") },
+    { Model_Attachment::REFTYPE_ID_BILLSDEPOSIT,      wxTRANSLATE("RecurringTransaction") },
+    { Model_Attachment::REFTYPE_ID_PAYEE,             wxTRANSLATE("Payee") },
+    { Model_Attachment::REFTYPE_ID_TRANSACTIONSPLIT,  wxTRANSLATE("TransactionSplit") },
+    { Model_Attachment::REFTYPE_ID_BILLSDEPOSITSPLIT, wxTRANSLATE("RecurringTransactionSplit") },
 };
+wxArrayString Model_Attachment::REFTYPE_STR = reftype_str_all();
+const wxString Model_Attachment::REFTYPE_STR_TRANSACTION       = REFTYPE_STR[REFTYPE_ID_TRANSACTION];
+const wxString Model_Attachment::REFTYPE_STR_STOCK             = REFTYPE_STR[REFTYPE_ID_STOCK];
+const wxString Model_Attachment::REFTYPE_STR_ASSET             = REFTYPE_STR[REFTYPE_ID_ASSET];
+const wxString Model_Attachment::REFTYPE_STR_BANKACCOUNT       = REFTYPE_STR[REFTYPE_ID_BANKACCOUNT];
+const wxString Model_Attachment::REFTYPE_STR_BILLSDEPOSIT      = REFTYPE_STR[REFTYPE_ID_BILLSDEPOSIT];
+const wxString Model_Attachment::REFTYPE_STR_PAYEE             = REFTYPE_STR[REFTYPE_ID_PAYEE];
+const wxString Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT  = REFTYPE_STR[REFTYPE_ID_TRANSACTIONSPLIT];
+const wxString Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT = REFTYPE_STR[REFTYPE_ID_BILLSDEPOSITSPLIT];
 
 Model_Attachment::Model_Attachment()
 : Model<DB_Table_ATTACHMENT_V1>()
@@ -60,13 +69,16 @@ Model_Attachment& Model_Attachment::instance()
     return Singleton<Model_Attachment>::instance();
 }
 
-/** Return all attachments references */
-wxArrayString Model_Attachment::all_type()
+wxArrayString Model_Attachment::reftype_str_all()
 {
-    wxArrayString types;
+    wxArrayString reftype;
+    int i = 0;
     for (const auto& item : REFTYPE_CHOICES)
-        types.Add(item.second);
-    return types;
+    {
+        wxASSERT_MSG(item.first == i++, "Wrong order in Model_Attachment::REFTYPE_CHOICES");
+        reftype.Add(item.second);
+    }
+    return reftype;
 }
 
 /** Return a dataset with attachments linked to a specific object */
@@ -104,20 +116,12 @@ int Model_Attachment::LastAttachmentNumber(const wxString& RefType, const int64 
     return LastAttachmentNumber;
 }
 
-/** Return the description of the choice reftype */
-wxString Model_Attachment::reftype_desc(const int RefTypeEnum)
-{
-    const auto& item = REFTYPE_CHOICES[RefTypeEnum];
-    wxString reftype_desc = item.second;
-    return reftype_desc;
-}
-
 /** Return a dataset with attachments linked to a specific type*/
-std::map<int64, Model_Attachment::Data_Set> Model_Attachment::get_all(REFTYPE reftype)
+std::map<int64, Model_Attachment::Data_Set> Model_Attachment::get_all(REFTYPE_ID reftype)
 {
     std::map<int64, Model_Attachment::Data_Set> data;
-    wxString reftype_desc = Model_Attachment::reftype_desc(reftype);
-    for (const auto & attachment : this->find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(reftype_desc)))
+    wxString reftype_str = Model_Attachment::REFTYPE_STR[reftype];
+    for (const auto & attachment : this->find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(reftype_str)))
     {
         data[attachment.REFID].push_back(attachment);
     }
