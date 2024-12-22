@@ -2741,7 +2741,7 @@ void mmGUIFrame::refreshPanelData(wxCommandEvent& /*event*/)
 }
 void mmGUIFrame::refreshPanelData()
 {
-    int id = panelCurrent_->GetId();
+    int id = panelCurrent_ ? panelCurrent_->GetId() : mmID_HOMEPAGE;
     wxLogDebug("Panel ID: %d", id);
 
     switch (id)

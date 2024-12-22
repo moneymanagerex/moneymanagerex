@@ -1496,7 +1496,7 @@ int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tr
         for (const auto& split : it->second)
         {
             // Need to check if the split matches using the transaction Notes & Tags as well
-            Model_Checking::Data splitWithTxnNotes = tran;
+            Model_Checking::Data splitWithTxnNotes(tran);
             splitWithTxnNotes.CATEGID = split.CATEGID;
             splitWithTxnNotes.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
             Model_Checking::Data splitWithSplitNotes = splitWithTxnNotes;

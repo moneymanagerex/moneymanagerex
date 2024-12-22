@@ -201,6 +201,10 @@ void mmEditPayeeDialog::OnOk(wxCommandEvent& /*event*/)
         return mmErrorDialogs::ToolTip4Object(m_category, _("Invalid value"), _("Category"));
 
     wxString name = m_payeeName->GetValue();
+
+    if (name.IsEmpty())
+        return mmErrorDialogs::ToolTip4Object(m_payeeName, _("Invalid value"), _("Payee"));
+
     Model_Payee::Data_Set payees = Model_Payee::instance().find(Model_Payee::PAYEENAME(name));
     if ((!m_payee && payees.empty()) ||
         (m_payee && (payees.empty() || name.CmpNoCase(m_payee->PAYEENAME) == 0)))

@@ -198,7 +198,7 @@ void mmUnivCSVDialog::CreateControls()
     m_text_ctrl_->Connect(ID_FILE_NAME
         , wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(mmUnivCSVDialog::OnFileNameEntered), nullptr, this);
 
-    const wxString& file_button_label = _("&Browse...");
+    const auto file_button_label = wxString("&Browse...");
     wxButton* button_browse = new wxButton(itemPanel6, wxID_BROWSE, file_button_label);
     itemBoxSizer7->Add(button_browse, g_flagsH);
 
@@ -387,7 +387,7 @@ void mmUnivCSVDialog::CreateControls()
     flex_sizer->Add(itemStaticText88, g_flagsH);
 
     m_choiceEncoding = new wxChoice(itemPanel7, ID_ENCODING);
-    for (const auto i : g_encoding)
+    for (const auto &i : g_encoding)
         m_choiceEncoding->Append(wxGetTranslation(i.second.second), new wxStringClientData(i.second.second));
     m_choiceEncoding->SetSelection(0);
 
@@ -557,7 +557,7 @@ void mmUnivCSVDialog::CreateControls()
     itemClearButton->Connect(wxID_CLEAR, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmUnivCSVDialog::OnButtonClear), nullptr, this);
 
-    const wxString& file_tooltip = IsImporter()
+    const wxString file_tooltip = IsImporter()
         ? (IsXML() ? _("Choose XML data file to Import") : _("Choose CSV data file to Import"))
         : (IsXML() ? _("Choose XML data file to Export") : _("Choose CSV data file to Export"));
     mmToolTip(button_browse, file_tooltip);
@@ -613,7 +613,7 @@ void mmUnivCSVDialog::initDelimiter()
 
 }
 
-void mmUnivCSVDialog::OnShowPayeeDialog(wxMouseEvent& event)
+void mmUnivCSVDialog::OnShowPayeeDialog(wxMouseEvent&)
 {
     wxString payeeName;
     if (payeeListBox_->GetSelectedRow() >= 0) {
@@ -632,7 +632,7 @@ void mmUnivCSVDialog::OnShowPayeeDialog(wxMouseEvent& event)
     } 
 }
 
-void mmUnivCSVDialog::OnShowCategDialog(wxMouseEvent& event)
+void mmUnivCSVDialog::OnShowCategDialog(wxMouseEvent&)
 {
     int id = -1;
     if (categoryListBox_->GetSelectedRow() >= 0)
@@ -660,12 +660,12 @@ void mmUnivCSVDialog::OnShowCategDialog(wxMouseEvent& event)
 
 void mmUnivCSVDialog::OnColumnResize(wxListEvent& event)
 {
-    int col = event.GetColumn();
+    const unsigned int col = event.GetColumn();
     if (col == 0 || col > csvFieldOrder_.size()) return;
     csvFieldOrder_.at(col - 1).second = m_list_ctrl_->GetColumnWidth(col);
 }
 
-void mmUnivCSVDialog::OnSettingsSelected(wxCommandEvent& event)
+void mmUnivCSVDialog::OnSettingsSelected(wxCommandEvent&)
 {
     SetSettings(GetStoredSettings(m_choice_preset_name->GetSelection()));
 }
@@ -822,7 +822,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
         Value a = json_doc["FIELD_WIDTHS"].GetArray();
         if (a.IsArray())
         {
-            int col = 0;
+            unsigned int col = 0;
             for (auto& v : a.GetArray())
             {
                 const auto value = v.GetInt();
@@ -1342,7 +1342,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     const long linesToImport = lastRow - firstRow;
     long countEmptyLines = 0;
     int color_id = colorCheckBox_->IsChecked() ? colorButton_->GetColorId() : -1;
-    if (colorCheckBox_->IsChecked() && color_id < 0 || color_id > 7) {
+    if (colorCheckBox_->IsChecked() && (color_id < 0 || color_id > 7) ) {
         return mmErrorDialogs::ToolTip4Object(colorButton_, _("Color"), _("Invalid value"), wxICON_ERROR);
     }
 
@@ -2280,7 +2280,7 @@ void mmUnivCSVDialog::OnListBox(wxCommandEvent& event)
         OnRemove(event);
 }
 
-void mmUnivCSVDialog::OnDelimiterChange(wxCommandEvent& event)
+void mmUnivCSVDialog::OnDelimiterChange(wxCommandEvent&)
 {
     wxString delimit = m_textDelimiter->GetValue();
 
@@ -2585,7 +2585,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         }
         else
         {
-            for (const wxString& entry : { "debit", "deposit", "+" }) {
+            for (const wxString entry : { "debit", "deposit", "+" }) {
                 if (entry.CmpNoCase(token) == 0) {
                     holder.Type = Model_Checking::TYPE_STR_DEPOSIT;
                     break;
@@ -2770,7 +2770,7 @@ void mmUnivCSVDialog::OnCheckboxClick(wxCommandEvent& event)
     }
 }
 
-void mmUnivCSVDialog::OnMenuSelected(wxCommandEvent& event)
+void mmUnivCSVDialog::OnMenuSelected(wxCommandEvent&)
 {
     colorButton_->Enable(false);
     colorCheckBox_->SetValue(false);

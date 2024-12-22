@@ -194,6 +194,7 @@ void mmListCtrl::OnHeaderMove(wxCommandEvent& WXUNUSED(event), int direction)
         // wxLogDebug("m_real_columns: %s", wxJoin(m_real_columns, '|'));
 
         // swap order of column data
+        Freeze();
         std::swap(m_real_columns[m_ColumnHeaderNbr + direction], m_real_columns[m_ColumnHeaderNbr]);
         std::swap(m_columns[m_ColumnHeaderNbr + direction], m_columns[m_ColumnHeaderNbr]);
         std::swap(columnList[m_ColumnHeaderNbr + direction], columnList[m_ColumnHeaderNbr]);
@@ -202,16 +203,14 @@ void mmListCtrl::OnHeaderMove(wxCommandEvent& WXUNUSED(event), int direction)
         // swap column headers & widths
         wxListItem col1, col2;
         col1.SetText(m_columns[m_ColumnHeaderNbr].HEADER);
-        col1.SetWidth(m_columns[m_ColumnHeaderNbr].WIDTH);
         col1.SetAlign(static_cast<wxListColumnFormat>(m_columns[m_ColumnHeaderNbr].FORMAT));
         col2.SetText(m_columns[m_ColumnHeaderNbr + direction].HEADER);
-        col2.SetWidth(m_columns[m_ColumnHeaderNbr + direction].WIDTH);
         col2.SetAlign(static_cast<wxListColumnFormat>(m_columns[m_ColumnHeaderNbr + direction].FORMAT));
         SetColumn(m_ColumnHeaderNbr, col1);
+        SetColumnWidth(m_ColumnHeaderNbr, m_columns[m_ColumnHeaderNbr].WIDTH);
         SetColumn(m_ColumnHeaderNbr + direction, col2);
-        
-        // refresh the list view
-        Refresh();
+        SetColumnWidth(m_ColumnHeaderNbr + direction, m_columns[m_ColumnHeaderNbr + direction].WIDTH);
+        Thaw();
     }
 }
 

@@ -142,7 +142,7 @@ public:
 protected:
     void OnTextUpdated(wxCommandEvent& event);
     void OnSetFocus(wxFocusEvent& event);
-    void OnDropDown(wxCommandEvent& event);
+    void OnDropDown(wxCommandEvent&);
     void OnKeyPressed(wxKeyEvent& event);
     virtual void init() = 0;
     std::map<wxString, int> all_elements_;
@@ -163,8 +163,8 @@ public:
 protected:
     void init();
 private:
-    int accountID_;
-    bool excludeClosed_;
+    int accountID_ = -1;
+    bool excludeClosed_ = true;
 };
 
 /* -------------------------------------------- */
@@ -267,7 +267,7 @@ private:
     wxDatePickerCtrl* datePicker_ = nullptr;
     wxTimePickerCtrl* timePicker_ = nullptr;
     void OnDateChanged(wxDateEvent& event);
-    void OnDateSpin(wxSpinEvent& event);
+    void OnDateSpin(wxSpinEvent&);
 
     wxWindow* parent_ = nullptr;
     wxStaticText* itemStaticTextWeek_ = nullptr;

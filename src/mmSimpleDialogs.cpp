@@ -311,7 +311,7 @@ mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
     Bind(wxEVT_CHAR, &mmComboBox::OnKeyPressed, this);
 }
 
-void mmComboBox::OnDropDown(wxCommandEvent& event)
+void mmComboBox::OnDropDown(wxCommandEvent&)
 {
     wxFocusEvent evt;
     OnSetFocus(evt);
@@ -471,8 +471,8 @@ void mmComboBoxAccount::init()
 mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id
     , wxSize size, int accountID, bool excludeClosed)
     : mmComboBox(parent, id, size)
-    , excludeClosed_(excludeClosed)
     , accountID_(accountID)
+    , excludeClosed_(excludeClosed)     
 {
     init();
     wxArrayString choices;
@@ -608,7 +608,7 @@ mmComboBoxCustom::mmComboBoxCustom(wxWindow* parent, wxArrayString& a, wxWindowI
 
 mmDatePickerCtrl::mmDatePickerCtrl(wxWindow* parent, wxWindowID id, wxDateTime dt, wxPoint pos, wxSize size, long style)
     : wxPanel(parent, id, pos, size, style)
-    , parent_(parent), dt_(dt)
+    , dt_(dt), parent_(parent)
 {
     if (!dt.IsValid())
         dt_ = wxDateTime::Now();
@@ -731,7 +731,7 @@ void mmDatePickerCtrl::OnDateChanged(wxDateEvent& event)
     event.Skip();
 }
 
-void mmDatePickerCtrl::OnDateSpin(wxSpinEvent& event)
+void mmDatePickerCtrl::OnDateSpin(wxSpinEvent&)
 {
     if (spinButton_)
     {
@@ -1017,7 +1017,7 @@ void mmErrorDialogs::InvalidFile(wxWindow *object, bool open)
 
 void mmErrorDialogs::InvalidAccount(wxWindow *object, bool transfer, TOOL_TIP tm)
 {
-    const wxString& errorHeader = _("Invalid Account");
+    const auto errorHeader = wxString("Invalid Account");
     wxString errorMessage;
     if (!transfer)
         errorMessage = _("Please select the account for this transaction.");

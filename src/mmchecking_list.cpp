@@ -701,7 +701,7 @@ void TransactionListCtrl::findInAllTransactions(wxCommandEvent&) {
         // save the filter as the "Advanced" filter for All Transactions
         Model_Infotable::instance().Set("CHECK_FILTER_ID_ADV_-1", rightClickFilter_);
         // set All Transactions to use the "Advanced" filter
-        Model_Infotable::instance().Set("CHECK_FILTER_ID_-1", wxString("{\n\"FILTER\": \"View with Transaction Filter...\"\n}"));
+        Model_Infotable::instance().Set("CHECK_FILTER_ID_-1", "{\n\"FILTER\": \"" + VIEW_TRANS_FILTER_DIALOG_STR + "\"\n}");
         // Navigate to the All Transactions panel
         wxTreeItemId currentId = m_cp->m_frame->GetNavTreeSelection();
         m_cp->m_frame->setNavTreeSection(wxTRANSLATE("All Transactions"));
