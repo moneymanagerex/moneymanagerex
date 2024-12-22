@@ -593,10 +593,10 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
                 Model_Checking::instance().remove(DeskNewTrID);
                 DeskNewTrID = -1;
 
-                wxString msgStr = wxString() << _("Unable to download attachments from webapp.") << "\n"
+                wxString msgStr = wxString() << _("Unable to download attachments from the WebApp.") << "\n"
                     << _("Attachments folder not set or unavailable") << "\n" << "\n"
                     << _("Transaction not downloaded:") << "\n"
-                    << _("Please fix attachments folder or delete attachments from WebApp") << "\n";
+                    << _("Please fix attachments folder or delete attachments from the WebApp") << "\n";
                 wxMessageBox(msgStr, _("Attachment folder error"), wxICON_ERROR);
             }
             else
@@ -627,7 +627,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
                         Model_Checking::instance().remove(DeskNewTrID);
                         DeskNewTrID = -1;
 
-                        wxString msgStr = wxString() << _("Unable to download attachments from webapp.") << "\n"
+                        wxString msgStr = wxString() << _("Unable to download attachments from the WebApp.") << "\n"
                             << CurlError << "\n" << "\n"
                             << _("Transaction not downloaded: please retry to download transactions") << "\n";
                         wxMessageBox(msgStr, _("Attachment download error"), wxICON_ERROR);
