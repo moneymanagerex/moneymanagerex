@@ -320,7 +320,7 @@ void mmCategDialog::CreateControls()
 
     m_buttonDelete = new wxButton(buttonsPanel, wxID_REMOVE, _("&Delete "));
     itemBoxSizer66->Add(m_buttonDelete, g_flagsH);
-    mmToolTip(m_buttonDelete, _("Delete an existing category. The category cannot be used by existing transactions."));
+    mmToolTip(m_buttonDelete, _("Delete an existing category. The category is unable to be used by an existing transactions."));
 
     wxStdDialogButtonSizer* itemBoxSizer9 = new wxStdDialogButtonSizer;
     buttonsSizer->Add(itemBoxSizer9, wxSizerFlags(g_flagsV).Border(wxALL, 0).Center());
@@ -424,7 +424,7 @@ void mmCategDialog::OnEndDrag(wxTreeEvent& event)
 
     if (!Model_Category::instance().find(Model_Category::CATEGNAME(sourceCat->CATEGNAME), Model_Category::PARENTID(categID)).empty() && sourceCat->PARENTID != categID)
     {
-        wxMessageBox(_("You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving.")
+        wxMessageBox(_("Unable to move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving.")
             , _("A subcategory with this name already exists")
             , wxOK | wxICON_ERROR);
         return;
@@ -436,7 +436,7 @@ void mmCategDialog::OnEndDrag(wxTreeEvent& event)
         if (subcat.PARENTID == sourceCat->CATEGID) subtree_root = subcat.CATEGNAME;
         if (subcat.CATEGID == categID)
         {
-            wxMessageBox(wxString::Format("You cannot move a category to one of its own descendants.\n\nConsider first relocating subcategory %s to move the subtree.", subtree_root)
+            wxMessageBox(wxString::Format("Unable to move a category to one of its own descendants.\n\nConsider first relocating subcategory %s to move the subtree.", subtree_root)
                 , _("Target category is a descendant")
                 , wxOK | wxICON_ERROR);
             return;
