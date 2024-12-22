@@ -320,7 +320,7 @@ void mmCategDialog::CreateControls()
 
     m_buttonDelete = new wxButton(buttonsPanel, wxID_REMOVE, _("&Delete "));
     itemBoxSizer66->Add(m_buttonDelete, g_flagsH);
-    mmToolTip(m_buttonDelete, _("Delete an existing category. The category is unable to be used by an existing transactions."));
+    mmToolTip(m_buttonDelete, _("Delete an existing category. The category is unable to be used by existing transactions."));
 
     wxStdDialogButtonSizer* itemBoxSizer9 = new wxStdDialogButtonSizer;
     buttonsSizer->Add(itemBoxSizer9, wxSizerFlags(g_flagsV).Border(wxALL, 0).Center());
