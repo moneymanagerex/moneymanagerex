@@ -82,7 +82,7 @@ void mmPrintableBase::setReportSettings()
         if ((m_parameters & DATE_RANGE) || (m_parameters & BUDGET_DATES))
         {
             json_writer.Key("REPORTPERIOD");
-            json_writer.Int(m_date_selection);
+            json_writer.Int64(m_date_selection.GetValue());
             isActive = true;
         }
 

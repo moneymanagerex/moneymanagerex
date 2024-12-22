@@ -31,6 +31,7 @@ class wxSQLite3Database;
 class wxSQLite3ResultSet;
 
 typedef wxDateTime wxDate;
+typedef std::vector<int64> wxArrayInt64;
 
 #if (wxMAJOR_VERSION == 3 && wxMINOR_VERSION >= 1)
 // wx 3.1 has implemented such hash
@@ -152,21 +153,25 @@ public:
     * Return the Data record pointer for the given ID
     * from either memory cache or the database.
     */
-    typename DB_TABLE::Data* get(int id)
+    typename DB_TABLE::Data* get(int64 id)
     {
         return this->get(id, this->db_);
+    }
+    typename DB_TABLE::Data* get(wxLongLong_t id)
+    {
+        return this->get(int64(id));
     }
 
     /**
     * Return the Data record for the given ID directly from the database, bypassing the cache.
     */
-    typename DB_TABLE::Data* get_record(int id)
+    typename DB_TABLE::Data* get_record(int64 id)
     {
         return this->get_record(id, this->db_);
     }
 
     /** Save the Data record memory instance to the database. */
-    int save(typename DB_TABLE::Data* r)
+    int64 save(typename DB_TABLE::Data* r)
     {
         r->save(this->db_);
         return r->id();
@@ -202,7 +207,7 @@ public:
     }
 
     /** Remove the Data record instance from memory and the database. */
-    bool remove(int id)
+    bool remove(int64 id)
     {
         return this->remove(id, db_);
     }

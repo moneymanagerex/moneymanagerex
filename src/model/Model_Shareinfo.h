@@ -45,22 +45,22 @@ public:
 
 private:
     /** Return the list of share records for the given checking_id */
-    static Model_Shareinfo::Data_Set ShareList(const int checking_id);
+    static Model_Shareinfo::Data_Set ShareList(const int64 checking_id);
 
 public:
     /* Return the share record for the checking account */
-    static Model_Shareinfo::Data* ShareEntry(const int checking_id);
+    static Model_Shareinfo::Data* ShareEntry(const int64 checking_id);
 
     /**
     Create a Share record if it does not exist.
     save the share record linked to the checking account.
     */
-    static void ShareEntry(int checking_id
+    static void ShareEntry(int64 checking_id
         , double share_number
         , double share_price
         , double share_commission
         , const wxString& share_lot);
 
     /* Remove the share entry if it exists */
-    static void RemoveShareEntry(const int checking_id);
+    static void RemoveShareEntry(const int64 checking_id);
 };

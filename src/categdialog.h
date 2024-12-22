@@ -61,7 +61,7 @@ public:
     mmCategDialog();
     mmCategDialog(wxWindow* parent
         , bool bIsSelection
-        , int category_id);
+        , int64 category_id);
 
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
@@ -71,7 +71,7 @@ public:
         , const wxSize& size = wxDefaultSize
         , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX | wxRESIZE_BORDER);
     
-    int getCategId() const;
+    int64 getCategId() const;
     bool getRefreshRequested() const;
     bool mmIsUsed() const;
     wxString getFullCategName();
@@ -79,7 +79,7 @@ public:
 private:
     void CreateControls();
     void fillControls();
-    void setTreeSelection(int category_id);
+    void setTreeSelection(int64 category_id);
     void saveCurrentCollapseState();
     bool AppendSubcategoryItems(wxTreeItemId parentid, const Model_Category::Data* child);
     void OnOk(wxCommandEvent& event);
@@ -101,8 +101,8 @@ private:
     void OnItemCollapseOrExpand(wxTreeEvent& event);
     void OnBeginDrag(wxTreeEvent& event);
     void OnEndDrag(wxTreeEvent& event);
-    bool categShowStatus(int categId);
-    void setTreeSelection(const wxString& catName, const int parentid);
+    bool categShowStatus(int64 categId);
+    void setTreeSelection(const wxString& catName, const int64 parentid);
     bool validateName(wxString name);
 
     mmCategDialogTreeCtrl* m_treeCtrl = nullptr;
@@ -117,13 +117,13 @@ private:
     wxToggleButton* m_tbShowAll = nullptr;
     wxTreeItemId m_selectedItemId;
     wxTreeItemId root_;
-    wxTreeItemId getTreeItemFor(const wxTreeItemId& itemID, const wxString& itemText, const int parentid);
+    wxTreeItemId getTreeItemFor(const wxTreeItemId& itemID, const wxString& itemText, const int64 parentid);
     bool m_IsSelection = false;
-    int m_categ_id = -1;
-    int m_init_selected_categ_id = -1;
-    int m_dragSourceCATEGID = 0;
-    std::map<int, bool> m_categoryVisible;
-    std::map<int, std::vector<Model_Category::Data>> m_categ_children;
+    int64 m_categ_id = -1;
+    int64 m_init_selected_categ_id = -1;
+    int64 m_dragSourceCATEGID = 0;
+    std::map<int64, bool> m_categoryVisible;
+    std::map<int64, std::vector<Model_Category::Data>> m_categ_children;
     bool m_processExpandCollapse = true;
     wxColour NormalColor_;
     bool m_refresh_requested = false;
@@ -141,7 +141,7 @@ private:
     };
 };
 
-inline int mmCategDialog::getCategId() const { return m_categ_id; }
+inline int64 mmCategDialog::getCategId() const { return m_categ_id; }
 inline bool mmCategDialog::getRefreshRequested() const { return m_refresh_requested; }
 
 #endif

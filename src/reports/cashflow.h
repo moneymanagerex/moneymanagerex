@@ -38,7 +38,7 @@ protected:
 
 private:
     double trueAmount(const Model_Checking::Data& trx);
-    wxArrayInt m_account_id;
+    wxArrayInt64 m_account_id;
     const wxDateTime m_today;
 
 };

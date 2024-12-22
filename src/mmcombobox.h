@@ -69,9 +69,9 @@ public:
         }
     }
 
-    int getID()
+    int64 getID()
     {
-        int id = -1;
+        int64 id = -1;
         if (m_payee) {
             Model_Payee::Data * p = Model_Payee::instance().get(this->GetValue());
             if (p) {

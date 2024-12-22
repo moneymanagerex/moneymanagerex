@@ -50,7 +50,7 @@ Model_Splittransaction& Model_Splittransaction::instance()
     return Singleton<Model_Splittransaction>::instance();
 }
 
-bool Model_Splittransaction::remove(int id)
+bool Model_Splittransaction::remove(int64 id)
 {
     // Delete all tags for the split before removing it
     Model_Taglink::instance().DeleteAllTags(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), id);
@@ -70,9 +70,9 @@ double Model_Splittransaction::get_total(const std::vector<Split>& rows)
     return total;
 }
 
-std::map<int, Model_Splittransaction::Data_Set> Model_Splittransaction::get_all()
+std::map<int64, Model_Splittransaction::Data_Set> Model_Splittransaction::get_all()
 {
-    std::map<int, Model_Splittransaction::Data_Set> data;
+    std::map<int64, Model_Splittransaction::Data_Set> data;
     for (const auto &split : instance().all())
     {
         data[split.TRANSID].push_back(split);
@@ -80,10 +80,10 @@ std::map<int, Model_Splittransaction::Data_Set> Model_Splittransaction::get_all(
     return data;
 }
 
-int Model_Splittransaction::update(Data_Set& rows, int transactionID)
+int Model_Splittransaction::update(Data_Set& rows, int64 transactionID)
 {
     bool updateTimestamp = false;
-    std::map<int, int> row_id_map;
+    std::map<int, int64> row_id_map;
 
     Data_Set split = instance().find(TRANSID(transactionID));
     if (split.size() != rows.size()) updateTimestamp = true;

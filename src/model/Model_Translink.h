@@ -50,17 +50,17 @@ public:
     static Model_Translink& instance();
 
 public:
-    static CHECKING_TYPE type_checking(const int tt);
+    static CHECKING_TYPE type_checking(const int64 tt);
 
 public:
     /* Create the translink record as Asset */
-    static Model_Translink::Data* SetAssetTranslink(const int asset_id
-        , const int checking_id
+    static Model_Translink::Data* SetAssetTranslink(const int64 asset_id
+        , const int64 checking_id
         , const CHECKING_TYPE checking_type = AS_INCOME_EXPENSE);
 
     /* Create a translink record as Stock */
-    static Model_Translink::Data* SetStockTranslink(const int stock_id
-        , const int checking_id
+    static Model_Translink::Data* SetStockTranslink(const int64 stock_id
+        , const int64 checking_id
         , const CHECKING_TYPE checking_type = AS_INCOME_EXPENSE);
 
     /*
@@ -70,22 +70,22 @@ public:
     select * from TRANSLINK_V1 where LINKTYPE = "Stock" AND LINKRECORDID = link_id;
     */
     static Model_Translink::Data_Set TranslinkList(Model_Attachment::REFTYPE link_table
-        , const int link_id);
+        , const int64 link_id);
 
-    static bool HasShares(const int stock_id);
+    static bool HasShares(const int64 stock_id);
 
     /*
     Return the link record for the checking account 
     Equivalent SQL statements:
     select * from TRANSLINK_V1 where CHECKINGACCOUNTID = checking_id;
     */
-    static Model_Translink::Data TranslinkRecord(const int checking_id);
+    static Model_Translink::Data TranslinkRecord(const int64 checking_id);
 
     /* Remove all records associated with the Translink list */
-    static void RemoveTransLinkRecords(Model_Attachment::REFTYPE table_type, const int entry_id);
+    static void RemoveTransLinkRecords(Model_Attachment::REFTYPE table_type, const int64 entry_id);
  
     /* Remove the checking account entry and its associated transfer transaction. */
-    static void RemoveTranslinkEntry(const int checking_account_id);
+    static void RemoveTranslinkEntry(const int64 checking_account_id);
 
     /*
     stock_entry.PURCHASEPRICE = avg price of shares purchased.
@@ -97,10 +97,10 @@ public:
     static void UpdateAssetValue(Model_Asset::Data* asset_entry);
 
     /* Return true with the account id of the first share entry in the stock translink list */
-    static bool ShareAccountId(int& stock_entry_id);
+    static bool ShareAccountId(int64& stock_entry_id);
 
 private:
 
-    static Model_Translink::Data* SetTranslink(const int checking_id, const CHECKING_TYPE checking_type
-        , const wxString& link_type, const int link_record_id);
+    static Model_Translink::Data* SetTranslink(const int64 checking_id, const CHECKING_TYPE checking_type
+        , const wxString& link_type, const int64 link_record_id);
 };

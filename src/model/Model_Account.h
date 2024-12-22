@@ -96,14 +96,14 @@ public:
     /** Return the Data record for the given account num */
     Data* getByAccNum(const wxString& num);   
 
-    static wxString get_account_name(int account_id);
+    static wxString get_account_name(int64 account_id);
 
     /** Remove the Data record from memory and the database. */
-    bool remove(int id);
+    bool remove(int64 id);
 
 public:
     wxArrayString all_checking_account_names(bool skip_closed = false);
-    const std::map<wxString, int> all_accounts(bool skip_closed = false);
+    const std::map<wxString, int64> all_accounts(bool skip_closed = false);
 
     static Model_Currency::Data* currency(const Data* r);
     static Model_Currency::Data* currency(const Data& r);
@@ -142,7 +142,7 @@ public:
     static bool Exist(const wxString& account_name);
 
     static wxDateTime DateOf(const wxString& date_str);
-    static bool BoolOf(int value);
+    static bool BoolOf(int64 value);
     static bool is_positive(int value);
     static wxDateTime get_date_by_string(const wxString& date_str);
 

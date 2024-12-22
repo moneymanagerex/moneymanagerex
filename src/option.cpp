@@ -51,7 +51,7 @@ void Option::LoadOptions(bool include_infotable)
         m_financialYearStartDayString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");
         m_financialYearStartMonthString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "7");
         m_sharePrecision = Model_Infotable::instance().GetIntInfo("SHARE_PRECISION", 4);
-        m_baseCurrency = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
+        m_baseCurrency = Model_Infotable::instance().GetInt64Info("BASECURRENCYID", -1);
         m_currencyHistoryEnabled = Model_Infotable::instance().GetBoolInfo(INIDB_USE_CURRENCY_HISTORY, true);
         m_budget_days_offset = Model_Infotable::instance().GetIntInfo("BUDGET_DAYS_OFFSET", 0);
         m_reporting_firstday = Model_Infotable::instance().GetIntInfo("REPORTING_FIRSTDAY", 1);
@@ -121,8 +121,8 @@ wxLanguage Option::getLanguageID(const bool get_db)
         {
             auto lang_canonical = Model_Setting::instance()
                 .GetStringSetting(LANGUAGE_PARAMETER, wxLocale::GetLanguageCanonicalName(wxLANGUAGE_UNKNOWN));
-            int lang_code = wxLANGUAGE_DEFAULT;
-            for (lang_code; lang_code < wxLANGUAGE_USER_DEFINED; lang_code++)
+
+            for (int lang_code = wxLANGUAGE_DEFAULT; lang_code < wxLANGUAGE_USER_DEFINED; lang_code++)
             {
                 const auto l = wxLocale::GetLanguageCanonicalName(lang_code);
                 if (lang_canonical == l) {
@@ -169,13 +169,13 @@ void Option::FinancialYearStartMonth(const wxString& setting)
     Model_Infotable::instance().Set("FINANCIAL_YEAR_START_MONTH", setting);
 }
 
-void Option::setBaseCurrency(const int base_currency_id)
+void Option::setBaseCurrency(const int64 base_currency_id)
 {
     m_baseCurrency = base_currency_id;
     Model_Infotable::instance().Set("BASECURRENCYID", base_currency_id);
 }
 
-int Option::getBaseCurrencyID() const noexcept
+int64 Option::getBaseCurrencyID() const noexcept
 {
     return m_baseCurrency;
 }
@@ -461,7 +461,7 @@ void Option::setHomePageIncExpRange(const int value)
     m_homepage_incexp_range = value;
 }
 
-int Option::AccountImageId(const int account_id, const bool def, const bool ignoreClosure)
+int Option::AccountImageId(const int64 account_id, const bool def, const bool ignoreClosure)
 {
     wxString acctStatus = VIEW_ACCOUNTS_OPEN_STR;
     Model_Account::TYPE_ID acctType = Model_Account::TYPE_ID_CHECKING;
@@ -479,7 +479,7 @@ int Option::AccountImageId(const int account_id, const bool def, const bool igno
 
     int max = acc_img::MAX_ACC_ICON - img::LAST_NAVTREE_PNG;
     int min = 1;
-    int custom_img_id = Model_Infotable::instance().GetIntInfo(wxString::Format("ACC_IMAGE_ID_%i", account_id), 0);
+    int custom_img_id = Model_Infotable::instance().GetIntInfo(wxString::Format("ACC_IMAGE_ID_%lld", account_id), 0);
     if (custom_img_id > max) custom_img_id = custom_img_id - 20; //Bug #963 fix 
     if (!def && (custom_img_id >= min && custom_img_id <= max))
         return custom_img_id + img::LAST_NAVTREE_PNG - 1;

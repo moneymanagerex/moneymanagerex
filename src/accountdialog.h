@@ -81,7 +81,7 @@ private:
     mmDatePickerCtrl* m_payment_due_date_ctrl = nullptr;
     mmTextCtrl* m_minimum_payment_ctrl = nullptr;
 
-    int m_currencyID = 0;
+    int64 m_currencyID = 0;
     bool m_accessinfo_infocus = false;
 };
 

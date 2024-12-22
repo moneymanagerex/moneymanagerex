@@ -154,7 +154,7 @@ mmSplitTransactionDialog::~mmSplitTransactionDialog()
 
 mmSplitTransactionDialog::mmSplitTransactionDialog(wxWindow* parent
     , std::vector<Split>& split
-    , int accountID
+    , int64 accountID
     , int transType
     , double totalAmount
     , bool is_view_only
@@ -233,7 +233,7 @@ void mmSplitTransactionDialog::CreateControls()
     wxSize scrollSize;
     for (int row = 0; row < size; row++)
     {
-        createNewRow(row <= m_splits.size() && !is_view_only_);
+        createNewRow(row <= static_cast<int>(m_splits.size()) && !is_view_only_);
         if (row == (STATIC_SPLIT_NUM - 1))
         {
             slider_->Fit();
@@ -301,7 +301,7 @@ void mmSplitTransactionDialog::FillControls(const int focusRow)
     DoWindowsFreezeThaw(this);
     for (int row = (focusRow == -1 ? 0 : focusRow); row < m_splits_widgets.size(); row++)
     {
-        if (row < m_splits.size())
+        if (row < static_cast<int>(m_splits.size()))
         {
             m_splits_widgets.at(row).category->ChangeValue(
                     Model_Category::full_name(m_splits.at(row).CATEGID));
@@ -335,7 +335,7 @@ void mmSplitTransactionDialog::FillControls(const int focusRow)
 void mmSplitTransactionDialog::createNewRow(const bool enabled)
 {
     int row = m_splits_widgets.size();
-    int catID = (row < static_cast<int>(m_splits.size())) ? m_splits.at(row).CATEGID : -1;
+    int64 catID = (row < static_cast<int>(m_splits.size())) ? m_splits.at(row).CATEGID : -1;
 
     mmComboBoxCategory* ncbc = new mmComboBoxCategory(slider_, mmID_MAX + row
                                         , wxDefaultSize, catID, true);
@@ -366,7 +366,7 @@ void mmSplitTransactionDialog::createNewRow(const bool enabled)
     SplitWidget sw = {ncbc, nval, ntag, nother};
     m_splits_widgets.push_back(sw);
 
-    if (enabled && row + 1 >= m_splits.size())
+    if (enabled && row + 1 >= static_cast<int>(m_splits.size()))
     {
         ncbc->SetFocus();
         slider_->FitInside();
@@ -408,6 +408,7 @@ void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
     totalAmount_ = 0;
     for (const auto& entry : m_splits)
         totalAmount_ += entry.SPLITTRANSAMOUNT;
+    totalAmount_ = std::round(totalAmount_ * m_currency->SCALE.GetValue()) / m_currency->SCALE.GetValue();
     if (totalAmount_ < 0) {
         return mmErrorDialogs::MessageError(this, _("Invalid Total Amount"), _("Error"));
     }
@@ -437,12 +438,12 @@ void mmSplitTransactionDialog::OnAddRow(wxCommandEvent& event)
     event.Skip();
 }
 
-void mmSplitTransactionDialog::OnRemoveRow(wxCommandEvent& event)
+void mmSplitTransactionDialog::OnRemoveRow(wxCommandEvent&)
 {
     if (m_splits.size() < 2)    // Should keep one split
         return;
 
-    for (int id=0; id<m_splits.size(); id++)
+    for (int id=0; id<static_cast<int>(m_splits.size()); id++)
         if ((id != row_num_) && !mmDoCheckRow(id))
             return;
             
@@ -503,7 +504,7 @@ void mmSplitTransactionDialog::OnComboKey(wxKeyEvent& event)
                 DoWindowsFreezeThaw(this);
                 if (dlg.getRefreshRequested())
                 {
-                    for (int i=0; i<m_splits_widgets.size(); i++)
+                    for (int i=0; i<static_cast<int>(m_splits_widgets.size()); i++)
                     {
                         auto cbcUpdate = m_splits_widgets.at(i).category;
                         if (cbc != cbcUpdate)
@@ -527,7 +528,7 @@ void mmSplitTransactionDialog::OnComboKey(wxKeyEvent& event)
     // is not applied. We need to refresh the tag ctrls to redraw the drop buttons with the correct images.
     if (event.AltDown() && !altRefreshDone)
     {
-        for (int row = 0; row < m_splits_widgets.size(); row++)
+        for (int row = 0; row < static_cast<int>(m_splits_widgets.size()); row++)
             m_splits_widgets.at(row).tags->Refresh();
         altRefreshDone = true;
     }
@@ -569,7 +570,7 @@ bool mmSplitTransactionDialog::mmDoCheckRow(int row)
 
     if (m_splits_widgets.at(row).category->GetValue().empty() && 
         m_splits_widgets.at(row).amount->GetValue().empty() &&
-        m_splits_widgets.at(row).tags->GetTagIDs().IsEmpty() &&
+        m_splits_widgets.at(row).tags->GetTagIDs().empty() &&
         m_splits.at(row).NOTES.IsEmpty())
         return true;
 

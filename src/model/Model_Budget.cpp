@@ -109,10 +109,10 @@ DB_Table_BUDGETTABLE_V1::PERIOD Model_Budget::PERIOD(PERIOD_ID period, OP op)
     return DB_Table_BUDGETTABLE_V1::PERIOD(PERIOD_STR[period], op);
 }
 
-void Model_Budget::getBudgetEntry(int budgetYearID
-    , std::map<int, PERIOD_ID> &budgetPeriod
-    , std::map<int, double> &budgetAmt
-    , std::map<int, wxString> &budgetNotes)
+void Model_Budget::getBudgetEntry(int64 budgetYearID
+    , std::map<int64, PERIOD_ID> &budgetPeriod
+    , std::map<int64, double> &budgetAmt
+    , std::map<int64, wxString> &budgetNotes)
 {
     //Set std::map with zerros
     double value = 0;
@@ -132,7 +132,7 @@ void Model_Budget::getBudgetEntry(int budgetYearID
 }
 
 void Model_Budget::getBudgetStats(
-    std::map<int, std::map<int, double> > &budgetStats
+    std::map<int64, std::map<int, double> > &budgetStats
     , mmDateRange* date_range
     , bool groupByMonth)
 {
@@ -149,13 +149,13 @@ void Model_Budget::getBudgetStats(
     }
 
     //Calculations
-    std::map<int, double> monthlyBudgetValue;
-    std::map<int, double> yearlyBudgetValue;
-    std::map<int, double> yearDeduction;
-    std::map<std::pair<int, int>, bool> isBudgeted;
-    std::map<int, int> budgetedMonths;
+    std::map<int64, double> monthlyBudgetValue;
+    std::map<int64, double> yearlyBudgetValue;
+    std::map<int64, double> yearDeduction;
+    std::map<std::pair<int, int64>, bool> isBudgeted;
+    std::map<int64, int> budgetedMonths;
     const wxString year = wxString::Format("%i", start_date.GetYear());
-    int budgetYearID = Model_Budgetyear::instance().Get(year);
+    int64 budgetYearID = Model_Budgetyear::instance().Get(year);
     for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
     {
         // Determine the monhly budgeted amounts
@@ -175,7 +175,7 @@ void Model_Budget::getBudgetStats(
         //fill with amount from monthly budgets first
         for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
         {
-            std::pair<int, int> month_categ = std::make_pair(month, budget.CATEGID);
+            std::pair<int, int64> month_categ = std::make_pair(month, budget.CATEGID);
             if (!isBudgeted[month_categ])
             {
                 isBudgeted[month_categ] = true;
@@ -216,7 +216,7 @@ void Model_Budget::getBudgetStats(
     }
     if (!groupByMonth)
     {
-        std::map<int, std::map<int,double> > yearlyBudgetStats;
+        std::map<int64, std::map<int,double> > yearlyBudgetStats;
         for (const auto& category : Model_Category::instance().all()) {
             yearlyBudgetStats[category.CATEGID][0] = 0.0;
         }
@@ -229,9 +229,9 @@ void Model_Budget::getBudgetStats(
     }
 }
 
-void Model_Budget::copyBudgetYear(int newYearID, int baseYearID)
+void Model_Budget::copyBudgetYear(int64 newYearID, int64 baseYearID)
 {
-    std::map<int, double> yearDeduction;
+    std::map<int64, double> yearDeduction;
     int budgetedMonths = 0;
     bool optionDeductMonthly = Option::instance().BudgetDeductMonthly();
     const wxString baseBudgetYearName = Model_Budgetyear::instance().get(baseYearID)->BUDGETYEARNAME;
@@ -244,7 +244,7 @@ void Model_Budget::copyBudgetYear(int newYearID, int baseYearID)
         for (int month = 0; month < 12; month++)
         {
             const wxString budgetYearMonth = wxString::Format("%s-%02d", newBudgetYearName.SubString(0,3), month + 1);
-            int budgetYearID = Model_Budgetyear::instance().Get(budgetYearMonth);
+            int64 budgetYearID = Model_Budgetyear::instance().Get(budgetYearMonth);
             Model_Budget::Data_Set monthlyBudgetData = instance().find(BUDGETYEARID(budgetYearID));
             if (!monthlyBudgetData.empty()) budgetedMonths++;
             //calculate deduction

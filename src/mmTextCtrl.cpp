@@ -59,13 +59,13 @@ void mmTextCtrl::SetValueNoEvent(double value, int precision)
 void mmTextCtrl::SetValue(double value, const Model_Account::Data* account, int precision)
 {
     if (account) m_currency = Model_Currency::instance().get(account->CURRENCYID);
-    this->SetValue(value, precision > -1 ? precision : log10(m_currency->SCALE));
+    this->SetValue(value, precision > -1 ? precision : log10(m_currency->SCALE.GetValue()));
 }
 
 void mmTextCtrl::SetValue(double value, const Model_Currency::Data* currency, int precision)
 {
     m_currency = (currency ? currency : Model_Currency::GetBaseCurrency());
-    this->SetValue(value, precision > -1 ? precision : log10(m_currency->SCALE));
+    this->SetValue(value, precision > -1 ? precision : log10(m_currency->SCALE.GetValue()));
 }
 
 bool mmTextCtrl::Calculate(int alt_precision)
@@ -91,7 +91,7 @@ bool mmTextCtrl::Calculate(int alt_precision)
     }
 
     double res = state.invokeFunction<double>("calc");
-    int precision = alt_precision >= 0 ? alt_precision : log10(m_currency->SCALE);
+    int precision = alt_precision >= 0 ? alt_precision : log10(m_currency->SCALE.GetValue());
     const wxString res_str = Model_Currency::toString(res, m_currency, precision);
     this->ChangeValue(res_str);
     this->SetInsertionPoint(res_str.Len());

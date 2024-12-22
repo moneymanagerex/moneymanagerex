@@ -32,7 +32,7 @@ class relocateTagDialog : public wxDialog
 public:
     relocateTagDialog();
     ~relocateTagDialog();
-    relocateTagDialog(wxWindow* parent, int source_tag_id = -1);
+    relocateTagDialog(wxWindow* parent, int64 source_tag_id = -1);
 
     int updatedTagsCount() const;
 
@@ -53,8 +53,8 @@ private:
 
     void OnFocusChange(wxChildFocusEvent& event);
 
-    int sourceTagID_ = -1;
-    int destTagID_ = -1;
+    int64 sourceTagID_ = -1;
+    int64 destTagID_ = -1;
     wxArrayString choices_;
 
     wxComboBox* cbSourceTag_ = nullptr;

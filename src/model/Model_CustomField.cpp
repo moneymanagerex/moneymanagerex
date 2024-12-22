@@ -76,7 +76,7 @@ Model_CustomField& Model_CustomField::instance()
 //}
 
 /** Delete a field and all his data */
-bool Model_CustomField::Delete(const int& FieldID)
+bool Model_CustomField::Delete(const int64& FieldID)
 {
     this->Savepoint();
     for (const auto& r : Model_CustomFieldData::instance().find(Model_CustomFieldData::FIELDID(FieldID)))
@@ -207,9 +207,9 @@ const wxString Model_CustomField::getUDFC(const wxString& Properties)
     return "";
 }
 
-const std::map<wxString, int> Model_CustomField::getMatrix(Model_Attachment::REFTYPE reftype)
+const std::map<wxString, int64> Model_CustomField::getMatrix(Model_Attachment::REFTYPE reftype)
 {
-    std::map<wxString, int> m;
+    std::map<wxString, int64> m;
     const wxString& reftype_desc = Model_Attachment::reftype_desc(reftype);
     for (const auto& entry : UDFC_FIELDS())
     {
@@ -219,7 +219,7 @@ const std::map<wxString, int> Model_CustomField::getMatrix(Model_Attachment::REF
     return m;
 }
 
-int Model_CustomField::getUDFCID(const wxString& ref_type, const wxString& name)
+int64 Model_CustomField::getUDFCID(const wxString& ref_type, const wxString& name)
 {
     Document json_doc;
     const auto& a = Model_CustomField::instance().find(REFTYPE(ref_type));

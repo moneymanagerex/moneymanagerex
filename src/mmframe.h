@@ -32,6 +32,7 @@ Copyright (C) 2021, 2022, 2024 Mark Whalley (mark@ipx.co.uk)
 #include "constants.h"
 #include "util.h"
 #include "paths.h"
+#include "fusedtransaction.h"
 
 //----------------------------------------------------------------------------
 class wxSQLite3Database;
@@ -60,7 +61,7 @@ public:
     mmGUIApp *m_app;
 
 public:
-    void setGotoAccountID(int account_id, long transID = -1);
+    void setGotoAccountID(int64 account_id, Fused_Transaction::IdRepeat fused_id = {-1, 0});
     bool financialYearIsDifferent()
     {
         return (Option::instance().FinancialYearStartDay() != "1" ||
@@ -97,8 +98,8 @@ private:
     // Marker to indicate DB was inuse when opened and open cancelled
     bool db_lockInPlace;
 
-    int gotoAccountID_ = -1;
-    int gotoTransID_ = -1;
+    int64 gotoAccountID_ = -1;
+    Fused_Transaction::IdRepeat gotoTransID_ = { -1, 0 };
 
     /* There are 2 kinds of reports */
     bool activeReport_ = false;
@@ -144,14 +145,14 @@ private:
     wxTreeItemId findItemByData(wxTreeItemId itemId, mmTreeItemData& searchData);
 
     void createHomePage();
-    void createCheckingAccountPage(int accountID);
+    void createCheckingAccountPage(int64 accountID);
     void createAllTransactionsPage();
     void createDeletedTransactionsPage();
-    void createStocksAccountPage(int accountID);
+    void createStocksAccountPage(int64 accountID);
 private:
     void createBillsDeposits();
 
-    void createBudgetingPage(int budgetYearID);
+    void createBudgetingPage(int64 budgetYearID);
     void autocleanDeletedTransactions();
     void createControls();
     /*Set nav tree items status from JSON data with stored in DB*/
@@ -269,7 +270,7 @@ private:
 
     void navTreeStateToJson();
     void processPendingEvents();
-    void ReallocateAccount(int accountID);
+    void ReallocateAccount(int64 accountID);
     void mmDoHideReportsDialog();
 private:
     /* Recent Files */

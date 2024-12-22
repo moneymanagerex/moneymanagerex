@@ -42,7 +42,7 @@ wxBEGIN_EVENT_TABLE( mmAttachmentDialog, wxDialog )
 wxEND_EVENT_TABLE()
 
 
-mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefType, int RefId, const wxString& name) :
+mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefType, int64 RefId, const wxString& name) :
     m_RefType(RefType)
     , m_RefId(RefId)
 {
@@ -106,7 +106,7 @@ void mmAttachmentDialog::Create(wxWindow* parent, const wxString& name)
             RefName = "";
         }       
         if (RefName.IsEmpty())
-            WindowTitle = wxString::Format(_("Attachment Manager | %s | %i"), wxGetTranslation(m_RefType), m_RefId);
+            WindowTitle = wxString::Format(_("Attachment Manager | %s | %lld"), wxGetTranslation(m_RefType), m_RefId);
         else
             WindowTitle = wxString::Format(_("Attachment Manager | %1$s | %2$s"), wxGetTranslation(m_RefType), RefName);
     } else
@@ -164,15 +164,15 @@ void mmAttachmentDialog::fillControls()
     Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(m_RefType, m_RefId);
     if (attachments.size() == 0) return;
 
-    int firstInTheListAttachentID = -1;
+    int64 firstInTheListAttachentID = -1;
     for (const auto &entry : attachments)
     {
         if (firstInTheListAttachentID == -1) firstInTheListAttachentID = entry.ATTACHMENTID;
         wxVector<wxVariant> data;
-        if (debug_) data.push_back(wxVariant(wxString::Format("%i", entry.ATTACHMENTID)));
+        if (debug_) data.push_back(wxVariant(wxString::Format("%lld", entry.ATTACHMENTID)));
         data.push_back(wxVariant(entry.DESCRIPTION));
         data.push_back(wxVariant(entry.REFTYPE + m_PathSep + entry.FILENAME));
-        attachmentListBox_->AppendItem(data, static_cast<wxUIntPtr>(entry.ATTACHMENTID));
+        attachmentListBox_->AppendItem(data, static_cast<wxUIntPtr>(entry.ATTACHMENTID.GetValue()));
     }
 
     m_attachment_id = firstInTheListAttachentID;
@@ -204,7 +204,7 @@ void mmAttachmentDialog::AddAttachment(wxString FilePath)
     const wxString attachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
     int attachmentLastNumber = Model_Attachment::LastAttachmentNumber(m_RefType, m_RefId);
 
-    wxString importedFileName = m_RefType + "_" + wxString::Format("%i", m_RefId) + "_Attach"
+    wxString importedFileName = m_RefType + "_" + wxString::Format("%lld", m_RefId) + "_Attach"
         + wxString::Format("%i", attachmentLastNumber + 1);
     if (!attachmentFileExtension.empty())
         importedFileName += "." + attachmentFileExtension;
@@ -306,7 +306,7 @@ void mmAttachmentDialog::OnListItemSelected(wxDataViewEvent& event)
     int selected_index = attachmentListBox_->ItemToRow(item);
 
     if (selected_index >= 0)
-        m_attachment_id = static_cast<int>(attachmentListBox_->GetItemData(item));
+        m_attachment_id = static_cast<int64>(attachmentListBox_->GetItemData(item));
 }
 
 void mmAttachmentDialog::OnListItemActivated(wxDataViewEvent& WXUNUSED(event))
@@ -528,7 +528,7 @@ bool mmAttachmentManage::OpenAttachment(const wxString& FileToOpen)
     return wxLaunchDefaultApplication(FileToOpen);;
 }
 
-bool mmAttachmentManage::DeleteAllAttachments(const wxString& RefType, int RefId)
+bool mmAttachmentManage::DeleteAllAttachments(const wxString& RefType, int64 RefId)
 {
     Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(RefType, RefId);
     wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + m_PathSep + RefType;
@@ -545,7 +545,7 @@ bool mmAttachmentManage::DeleteAllAttachments(const wxString& RefType, int RefId
     return true;
 }
 
-bool mmAttachmentManage::RelocateAllAttachments(const wxString& OldRefType, int OldRefId, const wxString& NewRefType, int NewRefId)
+bool mmAttachmentManage::RelocateAllAttachments(const wxString& OldRefType, int64 OldRefId, const wxString& NewRefType, int64 NewRefId)
 {
     auto attachments = Model_Attachment::instance().find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(OldRefType), Model_Attachment::REFID(OldRefId));
 
@@ -558,7 +558,7 @@ bool mmAttachmentManage::RelocateAllAttachments(const wxString& OldRefType, int 
     for (auto &entry : attachments)
     {
         wxString NewFileName = entry.FILENAME;
-        NewFileName.Replace(entry.REFTYPE + "_" + wxString::Format("%i", entry.REFID), NewRefType + "_" + wxString::Format("%i", NewRefId));
+        NewFileName.Replace(entry.REFTYPE + "_" + wxString::Format("%lld", entry.REFID), NewRefType + "_" + wxString::Format("%lld", NewRefId));
         wxRenameFile(OldAttachmentsFolder + entry.FILENAME, NewAttachmentsFolder + NewFileName);
         entry.REFTYPE = NewRefType;
         entry.REFID = NewRefId;
@@ -574,7 +574,7 @@ bool mmAttachmentManage::RelocateAllAttachments(const wxString& OldRefType, int 
     return true;
 }
 
-bool mmAttachmentManage::CloneAllAttachments(const wxString& RefType, int OldRefId, int NewRefId)
+bool mmAttachmentManage::CloneAllAttachments(const wxString& RefType, int64 OldRefId, int64 NewRefId)
 {
     auto attachments = Model_Attachment::instance().find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(RefType), Model_Attachment::REFID(OldRefId));
     const wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + RefType + m_PathSep;
@@ -582,7 +582,7 @@ bool mmAttachmentManage::CloneAllAttachments(const wxString& RefType, int OldRef
     for (auto &entry : attachments)
     {
         wxString NewFileName = entry.FILENAME;
-        NewFileName.Replace(entry.REFTYPE + "_" + wxString::Format("%i", entry.REFID), entry.REFTYPE + "_" + wxString::Format("%i", NewRefId));
+        NewFileName.Replace(entry.REFTYPE + "_" + wxString::Format("%lld", entry.REFID), entry.REFTYPE + "_" + wxString::Format("%lld", NewRefId));
         wxCopyFile(AttachmentsFolder + entry.FILENAME, AttachmentsFolder + NewFileName);
         Model_Attachment::Data* NewAttachment = Model_Attachment::instance().create();
         NewAttachment->REFTYPE = RefType;
@@ -598,7 +598,7 @@ bool mmAttachmentManage::CloneAllAttachments(const wxString& RefType, int OldRef
     return true;
 }
 
-void mmAttachmentManage::OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, int RefId)
+void mmAttachmentManage::OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, int64 RefId)
 {
     int AttachmentsNr = Model_Attachment::instance().NrAttachments(RefType, RefId);
 

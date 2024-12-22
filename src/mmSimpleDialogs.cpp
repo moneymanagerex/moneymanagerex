@@ -352,16 +352,16 @@ void mmComboBox::mmDoReInitialize()
     OnSetFocus(evt);
 }
 
-void mmComboBox::mmSetId(int id)
+void mmComboBox::mmSetId(int64 id)
 {
     auto result = std::find_if(all_elements_.begin(), all_elements_.end(),
-        [id](const std::pair<wxString, int>& mo) {return mo.second == id; });
+        [id](const std::pair<wxString, int64>& mo) {return mo.second == id; });
 
     if (result != all_elements_.end())
         ChangeValue(result->first);
 }
 
-int mmComboBox::mmGetId() const
+int64 mmComboBox::mmGetId() const
 {
     auto text = GetValue();
     if (all_elements_.count(text) == 1)
@@ -469,7 +469,7 @@ void mmComboBoxAccount::init()
 // accountID = always include this account even if it would have been excluded as closed
 // excludeClosed = set to true if closed accounts should be excluded
 mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id
-    , wxSize size, int accountID, bool excludeClosed)
+    , wxSize size, int64 accountID, bool excludeClosed)
     : mmComboBox(parent, id, size)
     , accountID_(accountID)
     , excludeClosed_(excludeClosed)     
@@ -496,10 +496,10 @@ void mmComboBoxPayee::init()
 // payeeID = always include this payee even if it would have been excluded as inactive
 // excludeHidden = set to true if inactive payees should be excluded
 mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id
-                    , wxSize size, int payeeID, bool excludeHidden)
+                    , wxSize size, int64 payeeID, bool excludeHidden)
     : mmComboBox(parent, id, size)
-    , excludeHidden_(excludeHidden)
     , payeeID_(payeeID)
+    , excludeHidden_(excludeHidden)    
 {
     init();
     wxArrayString choices;
@@ -567,7 +567,7 @@ void mmComboBoxCategory::init()
 // catID/subCatID = always include this category even if it would have been excluded as inactive
 // excludeHidden = set to true if hidden categories should be excluded
 mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id
-                    , wxSize size, int catID, bool excludeHidden)
+                    , wxSize size, int64 catID, bool excludeHidden)
     : mmComboBox(parent, id, size)    
     , catID_(catID)
     , excludeHidden_(excludeHidden)
@@ -582,7 +582,7 @@ mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id
     parent->SetEvtHandlerEnabled(true);
 }
 
-int mmComboBoxCategory::mmGetCategoryId() const
+int64 mmComboBoxCategory::mmGetCategoryId() const
 {
     auto text = GetValue();
     if (all_categories_.count(text) == 1)
@@ -1017,7 +1017,7 @@ void mmErrorDialogs::InvalidFile(wxWindow *object, bool open)
 
 void mmErrorDialogs::InvalidAccount(wxWindow *object, bool transfer, TOOL_TIP tm)
 {
-    const auto errorHeader = wxString("Invalid Account");
+    const wxString errorHeader = _("Invalid Account");
     wxString errorMessage;
     if (!transfer)
         errorMessage = _("Please select the account for this transaction.");
@@ -1036,8 +1036,8 @@ void mmErrorDialogs::InvalidAccount(wxWindow *object, bool transfer, TOOL_TIP tm
 
 void mmErrorDialogs::InvalidPayee(wxWindow *object)
 {
-    const wxString& errorHeader = _("Invalid Payee");
-    const wxString& errorMessage = _("Please type in a new payee,\n"
+    const wxString errorHeader = _("Invalid Payee");
+    const wxString errorMessage = _("Please type in a new payee,\n"
         "or make a selection using the dropdown button.")
         + "\n";
     ToolTip4Object(object, errorMessage, errorHeader, wxICON_ERROR);
@@ -1752,7 +1752,6 @@ bool mmTagTextCtrl::Validate(const wxString& tagText)
 
     textCtrl_->SetEvtHandlerEnabled(false);
     wxString tags_out;
-    bool newTagCreated = false;
     bool is_valid = true;
     // parse the tags and prompt to create any which don't exist
     for (const auto& tag : parseTags(tags_in))
@@ -1769,7 +1768,6 @@ bool mmTagTextCtrl::Validate(const wxString& tagText)
             // Prompt user to create a new tag
             if (wxMessageDialog(nullptr, wxString::Format(_("Create new tag '%s'?"), tag), _("New tag entered"), wxYES_NO).ShowModal() == wxID_YES)
             {
-                newTagCreated = true;
                 Model_Tag::Data* newTag = Model_Tag::instance().create();
                 newTag->TAGNAME = tag;
                 newTag->ACTIVE = 1;
@@ -1797,11 +1795,11 @@ bool mmTagTextCtrl::Validate(const wxString& tagText)
 }
 
 /* Return a list of tag IDs contained in the control */
-const wxArrayInt mmTagTextCtrl::GetTagIDs() const
+const wxArrayInt64 mmTagTextCtrl::GetTagIDs() const
 {
-    wxArrayInt tags_out;
+    wxArrayInt64 tags_out;
     for (const auto& tag : tags_)
-        tags_out.Add(tag.second);
+        tags_out.push_back(tag.second);
 
     return tags_out;
 }
@@ -1818,7 +1816,7 @@ wxArrayString mmTagTextCtrl::parseTags(const wxString& tagString)
         // ignore search operators
         if (token == "&" || token == "|")
         {
-            if (operatorAllowed_) tags.Add(token);
+            if (operatorAllowed_) tags.push_back(token);
             continue;
         }
 
@@ -1836,15 +1834,15 @@ wxArrayString mmTagTextCtrl::parseTags(const wxString& tagString)
         auto it = tag_map_.find(token);
         if (it != tag_map_.end())
             // case correction for existing tag
-            tags.Add((*it).first);
+            tags.push_back((*it).first);
         else
-            tags.Add(token);
+            tags.push_back(token);
     }
 
     return tags;
 }
 
-void mmTagTextCtrl::SetTags(const wxArrayInt& tagIds)
+void mmTagTextCtrl::SetTags(const wxArrayInt64& tagIds)
 {
     // Save the tag IDs and tag names
     tags_.clear();

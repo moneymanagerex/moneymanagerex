@@ -49,7 +49,7 @@ Model_Shareinfo& Model_Shareinfo::instance()
     return Singleton<Model_Shareinfo>::instance();
 }
 
-Model_Shareinfo::Data_Set Model_Shareinfo::ShareList(const int checking_id)
+Model_Shareinfo::Data_Set Model_Shareinfo::ShareList(const int64 checking_id)
 {
     // SQL equivalent statement:
     // select * from Model_Shareinfo where CHECKINGACCOUNTID = checking_account_id;
@@ -59,7 +59,7 @@ Model_Shareinfo::Data_Set Model_Shareinfo::ShareList(const int checking_id)
     return trans_list;
 }
 
-Model_Shareinfo::Data* Model_Shareinfo::ShareEntry(const int checking_id)
+Model_Shareinfo::Data* Model_Shareinfo::ShareEntry(const int64 checking_id)
 {
     Data_Set list = Model_Shareinfo::ShareList(checking_id);
     if (!list.empty())
@@ -69,7 +69,7 @@ Model_Shareinfo::Data* Model_Shareinfo::ShareEntry(const int checking_id)
     return nullptr;
 }
 
-void Model_Shareinfo::ShareEntry(int checking_id
+void Model_Shareinfo::ShareEntry(int64 checking_id
     , double share_number
     , double share_price
     , double share_commission
@@ -102,7 +102,7 @@ void Model_Shareinfo::ShareEntry(int checking_id
         Model_Checking::instance().updateTimestamp(checking_id);
 }
 
-void Model_Shareinfo::RemoveShareEntry(const int checking_id)
+void Model_Shareinfo::RemoveShareEntry(const int64 checking_id)
 {
     Data_Set list = ShareList(checking_id);
     if (!list.empty())

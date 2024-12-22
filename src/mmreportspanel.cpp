@@ -32,6 +32,11 @@
 #include "reports/htmlbuilder.h"
 #include "model/allmodel.h"
 #include <wx/wrapsizer.h>
+#include "option.h"
+#include <budgetentrydialog.h>
+#include <vector>
+#include <string>
+#include <iomanip>
 
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
 EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
@@ -219,7 +224,7 @@ void mmReportsPanel::CreateControls()
                 m_date_ranges->Append(date_range.get()->local_title(), date_range.get());
             }
 
-            int sel_id = rb_->getDateSelection();
+            int sel_id = rb_->getDateSelection().GetValue();
             if (sel_id < 0 || static_cast<size_t>(sel_id) >= m_all_date_ranges.size()) {
                 sel_id = 0;
             }
@@ -324,7 +329,7 @@ void mmReportsPanel::CreateControls()
 
             m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_BUDGET, wxDefaultPosition, wxDefaultSize, 0, nullptr, wxCB_SORT);
 
-            int sel_id = rb_->getDateSelection();
+            int64 sel_id = rb_->getDateSelection();
             wxString sel_name;
             for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
             {
@@ -332,7 +337,7 @@ void mmReportsPanel::CreateControls()
 
                 if (rb_->getReportId() == mmPrintableBase::Reports::BudgetCategorySummary || name.length() == 4) // Only years for performance report
                 {
-                    m_date_ranges->Append(name, new wxStringClientData(wxString::Format("%i", e.BUDGETYEARID)));
+                    m_date_ranges->Append(name, new wxStringClientData(wxString::Format("%lld", e.BUDGETYEARID)));
                     if (sel_id == e.BUDGETYEARID)
                         sel_name = e.BUDGETYEARNAME;
                 }
@@ -354,8 +359,8 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
             m_accounts = new wxChoice(itemPanel3, ID_CHOICE_ACCOUNTS);
-            m_accounts->Append(_("All Accounts:"));
-            m_accounts->Append(_("Specific Accounts:"));
+            m_accounts->Append(_("All Accounts"));
+            m_accounts->Append(_("Specific Accounts…"));
             for (const auto& e : Model_Account::TYPE_CHOICES)
             {
                 if (e.first != Model_Account::TYPE_ID_INVESTMENT) {
@@ -528,7 +533,8 @@ void mmReportsPanel::OnShiftPressed(wxCommandEvent& event)
 
 void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
 {
-    const wxString uri = evt.GetURL();
+    const wxURI escapedURI(evt.GetURL());
+    const wxString uri = escapedURI.BuildUnescapedURI();
     wxString sData;
 
     if (rb_->report_parameters() & rb_->RepParams::DATE_RANGE)
@@ -579,7 +585,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
 
         if (catID > 0)
         {
-            std::vector<int> cats;
+            std::vector<int64> cats;
             if (-2 == subCatID) // include all sub categories
             {
                 for (const auto& subCategory : Model_Category::sub_tree(Model_Category::instance().get(catID)))
@@ -593,8 +599,8 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
 
         if (payeeID > 0)
         {
-            wxArrayInt payees;
-            payees.Add(payeeID);
+            wxArrayInt64 payees;
+            payees.push_back(payeeID);
             rb_->m_filter.setPayeeList(payees);
         }
 
@@ -612,7 +618,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
                 const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
                 if (account) {
                     m_frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-                    m_frame->setGotoAccountID(transaction->ACCOUNTID, transID);
+                    m_frame->setGotoAccountID(transaction->ACCOUNTID, { transID, 0 });
                     wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
                     m_frame->GetEventHandler()->AddPendingEvent(event);
                 }
@@ -651,7 +657,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
                 }
                 else
                 {
-                    mmTransDialog dlg(m_frame, -1, transId, 0);
+                    mmTransDialog dlg(m_frame, -1, {transId, false});
                     if (dlg.ShowModal() != wxID_CANCEL)
                     {
                         rb_->getHTMLText();
@@ -673,6 +679,65 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
             mmAttachmentManage::OpenAttachmentFromPanelIcon(m_frame, RefType, RefId);
             const auto name = getVFname4print("rep", getPrintableBase()->getHTMLText());
             browser_->LoadURL(name);
+        }
+    }
+    else if (uri.StartsWith("budget:", &sData))
+    {
+        
+        std::vector<std::string> parms;
+        wxStringTokenizer tokenizer(sData, "|");
+        while (tokenizer.HasMoreTokens())
+        {
+            //"budget: " << estimateVal << "|" << Model_Currency::toString(actual, Model_Currency::GetBaseCurrency()) << "|" << catID << "|" << budget_year << "|" << month + 1;
+            wxString token = tokenizer.GetNextToken();
+            parms.push_back(std::string(token.mb_str()));
+            
+        }
+        //format month 2 digits leading 0
+        std::ostringstream oss;
+        oss << std::setw(2) << std::setfill('0') << std::stoi(parms[4]);
+        std::string formattedMonth = oss.str();
+
+        //get yearId from year_name
+        int64 budgetYearID = Model_Budgetyear::instance().Get(parms[3] + "-" + formattedMonth);
+
+        //if budgetYearID doesn't exist then return
+        if (budgetYearID == -1)
+        {
+            wxLogInfo("Monthly budget not found!");
+            return;
+        }
+           
+        //get model budget for yearID and catID
+        Model_Budget::Data_Set budget = Model_Budget::instance().find(Model_Budget::BUDGETYEARID(budgetYearID), Model_Budget::CATEGID(std::stoi(parms[2])));
+        
+        Model_Budget::Data* entry = 0;
+        if (budget.empty())
+        {
+            entry = Model_Budget::instance().create();
+            entry->BUDGETYEARID = budgetYearID;
+            entry->CATEGID = std::stoi(parms[2]);
+            entry->PERIOD = "";
+            entry->AMOUNT = 0.0;
+            entry->ACTIVE = 1;
+            Model_Budget::instance().save(entry);
+        }
+        else
+            entry = &budget[0];
+
+        double estimated;
+        Model_Currency::fromString(parms[0], estimated, Model_Currency::GetBaseCurrency());
+        double actual;
+        Model_Currency::fromString(parms[1], actual, Model_Currency::GetBaseCurrency());
+
+        //open budgetEntry dialog
+        mmBudgetEntryDialog dlg(m_frame, entry, Model_Currency::toCurrency(estimated), Model_Currency::toCurrency(actual));
+        if (dlg.ShowModal() == wxID_OK)
+        {
+            //refresh report
+            saveReportText(false);
+            rb_ ->setReportSettings();
+            
         }
     }
 

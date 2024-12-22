@@ -128,35 +128,46 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
     m_asc = Model_Setting::instance().GetBoolSetting("BD_ASC", true);
 
     m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT, false));
+    m_real_columns.push_back(m_bdp->COL_ICON);
     m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(m_bdp->COL_ID);
     m_columns.push_back(PANEL_COLUMN(_("Date Paid"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_PAYMENT_DATE);
     m_columns.push_back(PANEL_COLUMN(_("Date Due"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_DUE_DATE);
     m_columns.push_back(PANEL_COLUMN(_("Account"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_ACCOUNT);
     m_columns.push_back(PANEL_COLUMN(_("Payee"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_PAYEE);
     m_columns.push_back(PANEL_COLUMN(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_STATUS);
     m_columns.push_back(PANEL_COLUMN(_("Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_CATEGORY);
     m_columns.push_back(PANEL_COLUMN(_("Tags"), 200, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_TAGS);
     m_columns.push_back(PANEL_COLUMN(_("Type"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_TYPE);
     m_columns.push_back(PANEL_COLUMN(_("Amount"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(m_bdp->COL_AMOUNT);
     m_columns.push_back(PANEL_COLUMN(_("Frequency"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_FREQUENCY);
     m_columns.push_back(PANEL_COLUMN(_("Repetitions"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(m_bdp->COL_REPEATS);
     m_columns.push_back(PANEL_COLUMN(_("Autorepeat"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_AUTO);
     m_columns.push_back(PANEL_COLUMN(_("Payment"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_DAYS);
     m_columns.push_back(PANEL_COLUMN(_("Number"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_NUMBER);
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 150, wxLIST_FORMAT_LEFT, true));
+    m_real_columns.push_back(m_bdp->COL_NOTES);
 
     m_col_width = "BD_COL%d_WIDTH";
     m_col_idstr = "BD";
     m_default_sort_column = m_bdp->col_sort();
 
-    for (const auto& entry : m_columns)
-    {
-        int count = GetColumnCount();
-        InsertColumn(count
-            , entry.HEADER
-            , entry.FORMAT
-            , Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, count), entry.WIDTH));
-    }
+    CreateColumns();
+
 }
 
 billsDepositsListCtrl::~billsDepositsListCtrl()
@@ -294,38 +305,38 @@ void mmBillsDepositsPanel::CreateControls()
 
     wxButton* itemButtonNew = new wxButton(bdPanel, wxID_NEW, _("&New "));
     mmToolTip(itemButtonNew, _("New Scheduled Transaction"));
-    itemBoxSizer5->Add(itemButtonNew, 0, wxRIGHT, 5);
+    itemBoxSizer5->Add(itemButtonNew, 0, wxRIGHT, 2);
 
     wxButton* itemButton81 = new wxButton(bdPanel, wxID_EDIT, _("&Edit "));
     mmToolTip(itemButton81, _("Edit Scheduled Transaction"));
-    itemBoxSizer5->Add(itemButton81, 0, wxRIGHT, 5);
+    itemBoxSizer5->Add(itemButton81, 0, wxRIGHT, 2);
     itemButton81->Enable(false);
 
     wxButton* itemButton82 = new wxButton(bdPanel, wxID_DUPLICATE, _("D&uplicate "));
     mmToolTip(itemButton82, _("Duplicate Scheduled Transaction"));
-    itemBoxSizer5->Add(itemButton82, 0, wxRIGHT, 5);
+    itemBoxSizer5->Add(itemButton82, 0, wxRIGHT, 2);
     itemButton82->Enable(false);
 
     wxButton* itemButton7 = new wxButton(bdPanel, wxID_DELETE, _("&Delete "));
     mmToolTip(itemButton7, _("Delete Scheduled Transaction"));
-    itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 5);
+    itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 2);
     itemButton7->Enable(false);
 
     wxButton* itemButton8 = new wxButton(bdPanel, wxID_PASTE, _("Ente&r"));
     mmToolTip(itemButton8, _("Enter Next Scheduled Transaction Occurrence"));
-    itemBoxSizer5->Add(itemButton8, 0, wxRIGHT, 5);
+    itemBoxSizer5->Add(itemButton8, 0, wxRIGHT, 2);
     itemButton8->Enable(false);
 
     wxButton* buttonSkipTrans = new wxButton(bdPanel, wxID_IGNORE, _("&Skip"));
     mmToolTip(buttonSkipTrans, _("Skip Next Scheduled Transaction Occurrence"));
-    itemBoxSizer5->Add(buttonSkipTrans, 0, wxRIGHT, 5);
+    itemBoxSizer5->Add(buttonSkipTrans, 0, wxRIGHT, 2);
     buttonSkipTrans->Enable(false);
 
     wxBitmapButton* btnAttachment_ = new wxBitmapButton(bdPanel, wxID_FILE
         , mmBitmapBundle(png::CLIP, mmBitmapButtonSize), wxDefaultPosition
         , wxSize(30, itemButton8->GetSize().GetY()));
     mmToolTip(btnAttachment_, _("Open attachments"));
-    itemBoxSizer5->Add(btnAttachment_, 0, wxRIGHT, 5);
+    itemBoxSizer5->Add(btnAttachment_, 0, wxRIGHT, 2);
     btnAttachment_->Enable(false);
 
     //Infobar-mini
@@ -340,7 +351,7 @@ void mmBillsDepositsPanel::CreateControls()
     mmBillsDepositsPanel::updateBottomPanelData(-1);
 }
 
-int mmBillsDepositsPanel::initVirtualListControl(int id)
+int mmBillsDepositsPanel::initVirtualListControl(int64 id)
 {
     listCtrlAccount_->DeleteAllItems();
 
@@ -460,7 +471,7 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     switch (column)
     {
     case COL_ID:
-        return wxString::Format("%i", bill.BDID).Trim();
+        return wxString::Format("%lld", bill.BDID).Trim();
     case COL_PAYMENT_DATE:
         return mmGetDateForDisplay(bill.TRANSDATE);
     case COL_DUE_DATE:
@@ -493,7 +504,7 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     }
     case COL_AUTO:
     {
-        int autoExecute = bill.REPEATS / BD_REPEATS_MULTIPLEX_BASE;
+        int autoExecute = bill.REPEATS.GetValue() / BD_REPEATS_MULTIPLEX_BASE;
         wxString repeatSTR =
             (autoExecute == Model_Billsdeposits::REPEAT_AUTO_SILENT) ? _("Automated") :
             (autoExecute == Model_Billsdeposits::REPEAT_AUTO_MANUAL) ? _("Suggested") :
@@ -519,18 +530,18 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
 
 const wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Data* item) const
 {
-    int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+    int repeats = item->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
 
     wxString text = wxGetTranslation(BILLSDEPOSITS_REPEATS[repeats]);
     if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS)
-        text = wxString::Format(text, wxString::Format("%d", item->NUMOCCURRENCES));
+        text = wxString::Format(text, wxString::Format("%lld", item->NUMOCCURRENCES));
     return text;
 }
 
 int mmBillsDepositsPanel::GetNumRepeats(const Model_Billsdeposits::Data* item) const
 {
-    int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
-    int numRepeats = item->NUMOCCURRENCES;
+    int repeats = item->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+    int numRepeats = item->NUMOCCURRENCES.GetValue();
 
     if (repeats == Model_Billsdeposits::REPEAT_ONCE)
         numRepeats = 1;
@@ -549,7 +560,7 @@ int mmBillsDepositsPanel::GetNumRepeats(const Model_Billsdeposits::Data* item) c
 
 const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data* item) const
 {
-    int repeats = item->REPEATS % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+    int repeats = item->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
     if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && item->NUMOCCURRENCES < 0)
     {
         return _("Inactive");
@@ -570,7 +581,7 @@ const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits:
 
 wxString billsDepositsListCtrl::OnGetItemText(long item, long column) const
 {
-    return m_bdp->getItem(item, column);
+    return m_bdp->getItem(item, m_real_columns[column]);
 }
 
 void billsDepositsListCtrl::OnListItemSelected(wxListEvent& event)
@@ -594,8 +605,8 @@ void billsDepositsListCtrl::OnListLeftClick(wxMouseEvent& event)
 int billsDepositsListCtrl::OnGetItemImage(long item) const
 {
     // demultiplex REPEATS
-    int autoExecute = m_bdp->bills_[item].REPEATS / BD_REPEATS_MULTIPLEX_BASE;
-    int repeats = m_bdp->bills_[item].REPEATS % BD_REPEATS_MULTIPLEX_BASE;
+    int autoExecute = m_bdp->bills_[item].REPEATS.GetValue() / BD_REPEATS_MULTIPLEX_BASE;
+    int repeats = m_bdp->bills_[item].REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE;
     if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && m_bdp->bills_[item].NUMOCCURRENCES < 0)
     {
         // inactive
@@ -667,7 +678,7 @@ void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        int BdId = m_bdp->bills_[m_selected_row].BDID;
+        int64 BdId = m_bdp->bills_[m_selected_row].BDID;
         Model_Billsdeposits::instance().remove(BdId);
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), BdId);
         m_bdp->do_delete_custom_values(-BdId);
@@ -680,7 +691,7 @@ void billsDepositsListCtrl::OnEnterBDTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    int id = m_bdp->bills_[m_selected_row].BDID;
+    int64 id = m_bdp->bills_[m_selected_row].BDID;
     mmBDDialog dlg(this, id, false, true);
     if ( dlg.ShowModal() == wxID_OK )
     {
@@ -694,7 +705,7 @@ void billsDepositsListCtrl::OnSkipBDTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    int id = m_bdp->bills_[m_selected_row].BDID;
+    int64 id = m_bdp->bills_[m_selected_row].BDID;
     Model_Billsdeposits::instance().completeBDInSeries(id);
     if (++m_selected_row < long(m_bdp->bills_.size()))
         id = m_bdp->bills_[m_selected_row].BDID;
@@ -705,7 +716,7 @@ void billsDepositsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    int RefId = m_bdp->bills_[m_selected_row].BDID;
+    int64 RefId = m_bdp->bills_[m_selected_row].BDID;
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
 
     mmAttachmentDialog dlg(this, RefType, RefId);
@@ -717,7 +728,7 @@ void billsDepositsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 void billsDepositsListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
-    int RefId = m_bdp->bills_[m_selected_row].BDID;
+    int64 RefId = m_bdp->bills_[m_selected_row].BDID;
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
 
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
@@ -886,7 +897,7 @@ void billsDepositsListCtrl::refreshVisualList(int selected_index)
 void billsDepositsListCtrl::RefreshList()
 {
     if (m_bdp->bills_.size() == 0) return;
-    int id = -1;
+    int64 id = -1;
     if (m_selected_row != -1)
     {
         id = m_bdp->bills_[m_selected_row].BDID;
@@ -898,7 +909,7 @@ wxListItemAttr* billsDepositsListCtrl::OnGetItemAttr(long item) const
 {
     if (item < 0 || item >= static_cast<int>(m_bdp->bills_.size())) return 0;
 
-    int color_id = m_bdp->bills_[item].COLOR;
+    int color_id = m_bdp->bills_[item].COLOR.GetValue();
 
     static std::map<int, wxSharedPtr<wxListItemAttr> > cache;
     if (color_id > 0)
@@ -929,7 +940,7 @@ wxListItemAttr* billsDepositsListCtrl::OnGetItemAttr(long item) const
 void billsDepositsListCtrl::OnSetUserColour(wxCommandEvent& event)
 {
     if (m_selected_row == -1) return;
-    int id = m_bdp->bills_[m_selected_row].BDID;
+    int64 id = m_bdp->bills_[m_selected_row].BDID;
 
     int user_color_id = event.GetId();
     user_color_id -= MENU_ON_SET_UDC0;
@@ -975,7 +986,7 @@ wxString  mmBillsDepositsPanel::BuildPage() const
     return listCtrlAccount_->BuildPage(_("Scheduled Transactions"));
 }
 
-void mmBillsDepositsPanel::do_delete_custom_values(int id)
+void mmBillsDepositsPanel::do_delete_custom_values(int64 id)
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     Model_CustomFieldData::DeleteAllData(RefType, id);

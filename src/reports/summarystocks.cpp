@@ -175,7 +175,7 @@ wxString mmReportSummaryStocks::getHTMLText()
             hb.startTfoot();
             {
                 // Round FX gain/loss to the scale of the base currency for display
-                int scale = pow(10, log10(Model_Currency::instance().GetBaseCurrency()->SCALE));
+                int scale = pow(10, log10(Model_Currency::instance().GetBaseCurrency()->SCALE.GetValue()));
                 double forex_real_gain_loss = std::round((m_real_gain_loss_sum_total - m_real_gain_loss_excl_forex) * scale) / scale;
                 double forex_unreal_gain_loss = std::round((m_unreal_gain_loss_sum_total - m_unreal_gain_loss_excl_forex) * scale) / scale;
 
@@ -192,6 +192,7 @@ wxString mmReportSummaryStocks::getHTMLText()
                     hb.endSpan();
                     hb.startSpan(Model_Currency::toCurrency(forex_real_gain_loss), wxString::Format(" style='text-align:right;%s' nowrap"
                         , forex_real_gain_loss < 0 ? "color:red;" : ""));
+                    hb.endSpan();
                     hb.startSpan(" FX", "");
                     hb.endSpan();
                     hb.addLineBreak();

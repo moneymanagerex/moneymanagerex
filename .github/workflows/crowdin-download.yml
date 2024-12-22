@@ -1,0 +1,34 @@
+name: Crowdin Download
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * FRI"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  crowdin-download:
+    if: github.repository_owner == 'moneymanagerex'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Synchronize with Crowdin
+        uses: crowdin/github-action@v2.4.0
+        with:
+          upload_sources: false
+          download_translations: true
+          localization_branch_name: l10n
+          crowdin_branch_name: master
+          create_pull_request: true
+          pull_request_title: 'fix(l10n): new translations'
+          pull_request_body: 'New translations downloaded via GitHub Action'
+          pull_request_base_branch_name: 'master'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}

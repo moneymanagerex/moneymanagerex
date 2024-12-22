@@ -72,7 +72,7 @@ Model_Payee::Data* Model_Payee::get(const wxString& name)
     return payee;
 }
 
-wxString Model_Payee::get_payee_name(int payee_id)
+wxString Model_Payee::get_payee_name(int64 payee_id)
 {
     Data* payee = instance().get(payee_id);
     if (payee)
@@ -81,7 +81,7 @@ wxString Model_Payee::get_payee_name(int payee_id)
         return _("Payee Error");
 }
 
-bool Model_Payee::remove(int id)
+bool Model_Payee::remove(int64 id)
 {
     if (is_used(id)) return false;
     return this->remove(id, db_);
@@ -97,9 +97,9 @@ const wxArrayString Model_Payee::all_payee_names()
     return payees;
 }
 
-const std::map<wxString, int> Model_Payee::all_payees(bool excludeHidden)
+const std::map<wxString, int64> Model_Payee::all_payees(bool excludeHidden)
 {
-    std::map<wxString, int> payees;
+    std::map<wxString, int64> payees;
     for (const auto& payee : this->all())
     {
         if (!excludeHidden || (payee.ACTIVE == 1))
@@ -108,13 +108,13 @@ const std::map<wxString, int> Model_Payee::all_payees(bool excludeHidden)
     return payees;
 }
 
-const std::map<wxString, int> Model_Payee::used_payee()
+const std::map<wxString, int64> Model_Payee::used_payee()
 {
-    std::map<int, wxString> cache;
+    std::map<int64, wxString> cache;
     for (const auto& p : all())
         cache[p.PAYEEID] = p.PAYEENAME;
 
-    std::map<wxString, int> payees;
+    std::map<wxString, int64> payees;
     for (const auto &t : Model_Checking::instance().all())
     {
         if (cache.count(t.PAYEEID) > 0)
@@ -130,7 +130,7 @@ const std::map<wxString, int> Model_Payee::used_payee()
 
 // -- Check if Payee should be made available for use
 
-bool Model_Payee::is_hidden(int id)
+bool Model_Payee::is_hidden(int64 id)
 {
     const auto payee = Model_Payee::instance().get(id);
     if (payee && payee->ACTIVE == 0)
@@ -151,7 +151,7 @@ bool Model_Payee::is_hidden(const Data& record)
 
 // -- Check if Payee if being used
 
-bool Model_Payee::is_used(int id)
+bool Model_Payee::is_used(int64 id)
 {
     const auto &trans = Model_Checking::instance().find(Model_Checking::PAYEEID(id));
     if (!trans.empty())

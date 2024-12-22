@@ -1,8 +1,14 @@
-Version 1.8.1 RC 1
+Version 1.9.0 Beta 1
 ~~~~~~~~~~~~~~~~~~~~
-Released: 2024-09-11
+Released: 2024-11-29
+
+
+Version 1.8.1
+~~~~~~~~~~~~~~~~~~~~
+Released: 2024-11-29
 
 Features:
+* #6892 wxWidgets 3.2.6
 * #6847 about default column seq.
 * #6827 The model of scheduled transactions (billsdeposits) is confusing
 * #6799 Align with wxWidgets 3.2.5 release
@@ -15,6 +21,15 @@ Features:
 * #4160 Order of columns in the transaction list is not saved
 
 Bugfixes:
+* #6957 subtract monthly budget from yearly budget in reporting - strange behaviour
+* #6954 Show notes of split category in transaction details page
+* #6945 Values containing "é" accents are not filterable on reports ANSI - UTF8
+* #6938 `User Interface Language` list incorrectly showing in English when System locale is selected (System locale = English, Australia)
+* #6935 "Find all transactions" not working from checking account panels
+* #6917 Translations broken
+* #6913 CI builds failing due to bad translation in po/zh_TW.po
+* #6897 Please allow `Cash Flow - Daily` to be translatable
+* #6863 Disallow blank payee name in edit dialog
 * #6781 Localized Pie-Charts are broken
 * #6763 Thousands separator is missing, again
 * #6752 Custom Field - Date Error
@@ -22,6 +37,7 @@ Bugfixes:
 * #6736 Custom reports broke down after upgrading to 1.8.0
 * #6709 New release 1.8 - account line characters are no longer visible
 * #6393 Transaction Report - filter window has an overlapping between 'Specify' and 'Presentation Options' on MacOS
+* #6158 Entry Account Name Invalid When Correcting Title Case
 * #6056 database upgrade to version17 failed [ 1.6.4. ] Datebase upgraded?
 
 

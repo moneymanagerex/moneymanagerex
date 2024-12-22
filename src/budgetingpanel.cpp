@@ -67,7 +67,7 @@ EVT_LIST_ITEM_SELECTED(wxID_ANY, budgetingListCtrl::OnListItemSelected)
 EVT_LIST_ITEM_ACTIVATED(wxID_ANY, budgetingListCtrl::OnListItemActivated)
 wxEND_EVENT_TABLE()
 /*******************************************************/
-mmBudgetingPanel::mmBudgetingPanel(int budgetYearID
+mmBudgetingPanel::mmBudgetingPanel(int64 budgetYearID
     , wxWindow *parent, mmGUIFrame *frame
     , wxWindowID winid
     , const wxPoint& pos, const wxSize& size
@@ -304,7 +304,7 @@ void mmBudgetingPanel::sortTable()
     //TODO: Sort budget panel
 }
 
-bool mmBudgetingPanel::DisplayEntryAllowed(int categoryID, int subcategoryID)
+bool mmBudgetingPanel::DisplayEntryAllowed(int64 categoryID, int64 subcategoryID)
 {
     bool result = false;
 
@@ -455,7 +455,7 @@ void mmBudgetingPanel::initVirtualListControl()
             budgetTotals_[category.CATEGID].second += actual;
 
             //walk up the hierarchy and update all the parent totals as well
-            int nextParent = subcats[i].PARENTID;
+            int64 nextParent = subcats[i].PARENTID;
             displayDetails_[subcats[i].CATEGID].first = 1;
             for (int j = i; j > 0; j--) {
                 if (subcats[j - 1].CATEGID == nextParent) {
@@ -533,7 +533,7 @@ void mmBudgetingPanel::initVirtualListControl()
     UpdateBudgetHeading();
 }
 
-double mmBudgetingPanel::getEstimate(int category) const
+double mmBudgetingPanel::getEstimate(int64 category) const
 {
     try
     {
@@ -549,7 +549,7 @@ double mmBudgetingPanel::getEstimate(int category) const
     }
 }
 
-void mmBudgetingPanel::DisplayBudgetingDetails(int budgetYearID)
+void mmBudgetingPanel::DisplayBudgetingDetails(int64 budgetYearID)
 {
     this->windowsFreezeThaw();
     budgetYearID_ = budgetYearID;
@@ -574,7 +574,7 @@ wxString mmBudgetingPanel::getItem(long item, long column)
             ? budget_[item].first : budget_[item].second);
         if (category) {
             wxString name = category->CATEGNAME;
-            for (int i = displayDetails_[category->CATEGID].first; i > 0; i--) {
+            for (int64 i = displayDetails_[category->CATEGID].first; i > 0; i--) {
                 name.Prepend("    ");
             }
             return name;

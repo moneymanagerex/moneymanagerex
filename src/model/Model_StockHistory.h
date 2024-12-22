@@ -55,7 +55,7 @@ public:
     /**
     Adds or updates an element in stock history
     */
-    int addUpdate(const wxString& symbol, const wxDate& date, double price, UPDTYPE type);
+    int64 addUpdate(const wxString& symbol, const wxDate& date, double price, UPDTYPE type);
 };
 
 #endif // 

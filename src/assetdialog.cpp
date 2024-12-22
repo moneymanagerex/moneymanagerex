@@ -360,8 +360,8 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     m_asset->VALUECHANGERATE  = valueChangeRate;
     m_asset->ASSETTYPE        = asset_type;
 
-    int old_asset_id = m_asset->ASSETID;
-    int new_asset_id = Model_Asset::instance().save(m_asset);
+    int64 old_asset_id = m_asset->ASSETID;
+    int64 new_asset_id = Model_Asset::instance().save(m_asset);
 
     if (old_asset_id < 0)
     {
@@ -370,7 +370,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     }
     if (m_transaction_panel->ValidCheckingAccountEntry())
     {
-        int checking_id = m_transaction_panel->SaveChecking();
+        int64 checking_id = m_transaction_panel->SaveChecking();
         if (checking_id < 0)
             return;
 
@@ -455,7 +455,7 @@ void mmAssetDialog::OnQuit(wxCloseEvent& /*event*/)
 void mmAssetDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
-    int RefId;
+    int64 RefId;
     
     if (!this->m_asset)
         RefId = 0;

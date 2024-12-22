@@ -60,7 +60,7 @@ Model_Tag::Data* Model_Tag::get(const wxString& name)
     return tag;
 }
 
-int Model_Tag::is_used(int id)
+int Model_Tag::is_used(int64 id)
 {
     Model_Taglink::Data_Set taglink = Model_Taglink::instance().find(Model_Taglink::TAGID(id));
 

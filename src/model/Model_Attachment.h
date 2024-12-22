@@ -54,19 +54,19 @@ public:
     wxArrayString all_type();
 
     /** Return a dataset with attachments linked to a specific object */
-    const Data_Set FilterAttachments(const wxString& RefType, const int RefId);
+    const Data_Set FilterAttachments(const wxString& RefType, const int64 RefId);
 
     /** Return the number of attachments linked to a specific object */
-    static int NrAttachments(const wxString& RefType, const int RefId);
+    static int NrAttachments(const wxString& RefType, const int64 RefId);
 
     /** Return the last attachment number linked to a specific object */
-    static int LastAttachmentNumber(const wxString& RefType, const int RefId);
+    static int LastAttachmentNumber(const wxString& RefType, const int64 RefId);
 
     /** Return the description of the choice reftype */
     static wxString reftype_desc(const int RefTypeEnum);
 
     /** Return a dataset with attachments linked to a specific type*/
-    std::map<int, Data_Set> get_all(REFTYPE reftype);
+    std::map<int64, Data_Set> get_all(REFTYPE reftype);
 
     /** Return all attachments descriptions*/
     wxArrayString allDescriptions();

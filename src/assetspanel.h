@@ -43,7 +43,7 @@ public:
     void OnViewAssetTrans(wxCommandEvent& WXUNUSED(event));
     void OnGotoAssetAccount(wxCommandEvent& WXUNUSED(event));
 
-    void doRefreshItems(int trx_id = -1);
+    void doRefreshItems(int64 trx_id = -1);
 
 protected:
     virtual void OnColClick(wxListEvent& event);
@@ -93,11 +93,24 @@ public:
         ICON_DOWNARROW
     };
 
+    enum EColumn
+    {
+        COL_ICON = 0,
+        COL_ID,
+        COL_NAME,
+        COL_DATE,
+        COL_TYPE,
+        COL_VALUE_INITIAL,
+        COL_VALUE_CURRENT,
+        COL_NOTES,
+        COL_MAX, // number of columns
+    };
+
     mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid, const wxString& name="mmAssetsPanel");
     mmGUIFrame* m_frame = nullptr;
 
     void updateExtraAssetData(int selIndex);
-    int initVirtualListControl(int trx_id = -1, int col = 0, bool asc = true);
+    int initVirtualListControl(int64 trx_id = -1, int col = 0, bool asc = true);
     wxString getItem(long item, long column);
 
     Model_Asset::Data_Set m_assets;
@@ -146,18 +159,6 @@ private:
     enum {
         IDC_PANEL_ASSET_STATIC_DETAILS = wxID_HIGHEST + 1220,
         IDC_PANEL_ASSET_STATIC_DETAILS_MINI,
-    };
-    enum EColumn
-    {
-        COL_ICON = 0,
-        COL_ID,
-        COL_NAME,
-        COL_DATE,
-        COL_TYPE,
-        COL_VALUE_INITIAL,
-        COL_VALUE_CURRENT,
-        COL_NOTES,
-        COL_MAX, // number of columns
     };
 };
 

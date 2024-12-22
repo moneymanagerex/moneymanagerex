@@ -60,10 +60,11 @@ public:
     int GetColumnWidthSetting(int column_number, int default_size = wxLIST_AUTOSIZE);
     void SetColumnWidthSetting(int column_number, int column_width);
 
-    void SetColumnsOrder(wxArrayString columnList);
-    wxArrayString GetColumnsOrder();
+    void SetColumnOrder(std::vector<int> columnList);
+    std::vector<int> GetColumnOrder();
 
 protected:
+    void CreateColumns();
     void OnItemResize(wxListEvent& event);
     virtual void OnColClick(wxListEvent& event);
     void OnColRightClick(wxListEvent& event);

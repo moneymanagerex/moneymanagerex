@@ -102,18 +102,18 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         evaluateTransfer = true;
     }
     //Get statistics
-    std::map<int, Model_Budget::PERIOD_ID> budgetPeriod;
-    std::map<int, double> budgetAmt;
-    std::map<int, wxString> budgetNotes;
+    std::map<int64, Model_Budget::PERIOD_ID> budgetPeriod;
+    std::map<int64, double> budgetAmt;
+    std::map<int64, wxString> budgetNotes;
     Model_Budget::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt, budgetNotes);
 
-    std::map<int, std::map<int, double> > categoryStats;
+    std::map<int64, std::map<int, double> > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , static_cast<wxSharedPtr<wxArrayString>>(nullptr)
         , &date_range, Option::instance().getIgnoreFutureTransactions()
         , false, (evaluateTransfer ? &budgetAmt : nullptr));
 
-    std::map<int, std::map<int, double> > budgetStats;
+    std::map<int64, std::map<int, double> > budgetStats;
     Model_Budget::instance().getBudgetStats(budgetStats, &date_range, monthlyBudget);
 
 
@@ -122,7 +122,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     hb.init();
     wxString headingStr = AdjustYearValues(startDay, startMonth, startYear, budget_year);
     bool amply = Option::instance().BudgetReportWithSummaries();
-    const wxString& headerStartupMsg = amply
+    const wxString headerStartupMsg = amply
         ? _("Budget Categories for %s") : _("Budget Category Summary for %s");
 
     headingStr = wxString::Format(headerStartupMsg
@@ -197,8 +197,8 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             hb.endThead();
             hb.startTbody();
             {
-                std::map<int, double> catTotalsEstimated, catTotalsActual;
-                std::map<int, std::pair<int, wxString>> categLevel;
+                std::map<int64, double> catTotalsEstimated, catTotalsActual;
+                std::map<int64, std::pair<int, wxString>> categLevel;
                 for (const auto& category : categs)
                 {
                     categLevel[category.CATEGID].first = 0;
@@ -222,7 +222,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                     {
                         hb.startTableRow();
                         {
-                            hb.addTableCellLink(wxString::Format("viewtrans:%d"
+                            hb.addTableCellLink(wxString::Format("viewtrans:%lld"
                                 , category.CATEGID)
                                 , category.CATEGNAME);
                             hb.addMoneyCell(estimated);
@@ -257,7 +257,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                         catTotalsActual[category.CATEGID] += actual;
 
                         //walk up the hierarchy and update all the parent totals as well
-                        int nextParent = subcats[i].PARENTID;
+                        int64 nextParent = subcats[i].PARENTID;
                         for (int j = i; j > 0; j--) {
                             if (subcats[j - 1].CATEGID == nextParent) {
                                 categLevel[subcats[i].CATEGID].first++;
@@ -275,7 +275,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                         if (amply) {
                             hb.startTableRow();
                             {
-                                hb.addTableCell(wxString::Format(categLevel[subcats[i].CATEGID].second + "<a href=\"viewtrans:%d\" target=\"_blank\">%s</a>"
+                                hb.addTableCell(wxString::Format(categLevel[subcats[i].CATEGID].second + "<a href=\"viewtrans:%lld\" target=\"_blank\">%s</a>"
                                     , subcats[i].CATEGID
                                     , subcats[i].CATEGNAME));
                                 hb.addMoneyCell(estimated);
@@ -290,7 +290,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                                         hb.startAltTableRow();
                                         {
                                             int index = totals_stack.back();
-                                            hb.addTableCell(wxString::Format(categLevel[subcats[index].CATEGID].second + "<a href=\"viewtrans:%d:-2\" target=\"_blank\">%s</a>"
+                                            hb.addTableCell(wxString::Format(categLevel[subcats[index].CATEGID].second + "<a href=\"viewtrans:%lld:-2\" target=\"_blank\">%s</a>"
                                                 , subcats[index].CATEGID
                                                 , subcats[index].CATEGNAME));
                                             hb.addMoneyCell(catTotalsEstimated[subcats[index].CATEGID]);
@@ -307,7 +307,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                                     hb.startAltTableRow();
                                     {
                                         int index = totals_stack.back();
-                                        hb.addTableCell(wxString::Format(categLevel[subcats[index].CATEGID].second + "<a href=\"viewtrans:%d:-2\" target=\"_blank\">%s</a>"
+                                        hb.addTableCell(wxString::Format(categLevel[subcats[index].CATEGID].second + "<a href=\"viewtrans:%lld:-2\" target=\"_blank\">%s</a>"
                                             , subcats[index].CATEGID
                                             , subcats[index].CATEGNAME));
                                         hb.addMoneyCell(catTotalsEstimated[subcats[index].CATEGID]);
@@ -321,7 +321,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                     }
                     amply ? hb.startAltTableRow() : hb.startTableRow();
                     {
-                        hb.addTableCellLink(wxString::Format("viewtrans:%d:-2"
+                        hb.addTableCellLink(wxString::Format("viewtrans:%lld:-2"
                             , category.CATEGID)
                             , category.CATEGNAME);
                         hb.addMoneyCell(catTotalsEstimated[category.CATEGID]);

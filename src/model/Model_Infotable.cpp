@@ -60,6 +60,11 @@ Model_Infotable& Model_Infotable::instance()
 }
 
 // Setter
+void Model_Infotable::Set(const wxString& key, int64 value)
+{
+    this->Set(key, wxString::Format("%lld", value));
+}
+
 void Model_Infotable::Set(const wxString& key, int value)
 {
     this->Set(key, wxString::Format("%d", value));
@@ -223,6 +228,15 @@ int Model_Infotable::GetIntInfo(const wxString& key, int default_value)
     const wxString value = this->GetStringInfo(key, "");
     if (!value.IsEmpty() && value.IsNumber())
         return wxAtoi(value);
+
+    return default_value;
+}
+
+int64 Model_Infotable::GetInt64Info(const wxString& key, int64 default_value)
+{
+    const wxString value = this->GetStringInfo(key, "");
+    if (!value.IsEmpty() && value.IsNumber())
+        return int64(wxAtol(value));
 
     return default_value;
 }

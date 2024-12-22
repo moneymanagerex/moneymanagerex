@@ -51,7 +51,7 @@ private:
     mmNewDatabaseWizard* parent_ = nullptr;
     wxButton* itemButtonCurrency_ = nullptr;
     wxTextCtrl* itemUserName_ = nullptr;
-    int currencyID_ = -1;
+    int64 currencyID_ = -1;
 
     wxDECLARE_EVENT_TABLE();
 };

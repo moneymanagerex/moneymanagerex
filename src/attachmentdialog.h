@@ -24,13 +24,15 @@
 #include <wx/dataview.h>
 #include <map>
 
+typedef wxLongLong int64;
+
 class mmAttachmentDialog : public wxDialog
 {
     wxDECLARE_DYNAMIC_CLASS(mmAttachmentDialog);
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmAttachmentDialog(wxWindow* parent, const wxString& RefType, int RefId, const wxString& name = "mmAttachmentDialog");
+    mmAttachmentDialog(wxWindow* parent, const wxString& RefType, int64 RefId, const wxString& name = "mmAttachmentDialog");
 
 private:
     enum cols
@@ -50,14 +52,14 @@ private:
 
     wxDataViewListCtrl* attachmentListBox_ = nullptr;
 
-    int m_attachment_id = -1;
+    int64 m_attachment_id = -1;
     std::map<int, wxString> ColName_;
     wxButton* btnCancel_ = nullptr;
     wxButton* button_OK_ = nullptr;
     wxString m_PathSep = wxFileName::GetPathSeparator();
 
     wxString m_RefType;
-    int m_RefId = -1;
+    int64 m_RefId = -1;
 
     mmAttachmentDialog() {}
 
@@ -95,10 +97,10 @@ public:
     static bool CopyAttachment(const wxString& FileToImport, const wxString& ImportedFile);
     static bool DeleteAttachment(const wxString& FileToDelete);
     static bool OpenAttachment(const wxString& FileToOpen);
-    static bool DeleteAllAttachments(const wxString& RefType, int RefId);
-    static bool RelocateAllAttachments(const wxString& OldRefType, int OldRefId, const wxString& NewRefType, int NewRefId);
-    static bool CloneAllAttachments(const wxString& RefType, int OldRefId, int NewRefId);
-    static void OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, int RefId);
+    static bool DeleteAllAttachments(const wxString& RefType, int64 RefId);
+    static bool RelocateAllAttachments(const wxString& OldRefType, int64 OldRefId, const wxString& NewRefType, int64 NewRefId);
+    static bool CloneAllAttachments(const wxString& RefType, int64 OldRefId, int64 NewRefId);
+    static void OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, int64 RefId);
 private:
     static wxString m_PathSep;
 };

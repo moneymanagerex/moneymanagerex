@@ -248,6 +248,12 @@ Stephan Kasslatter
 Panagiotis Theodosopoulos
 Antonis Vithoulkas
 Jean-Michel Louiset
+Marino Lippi
+Glenn Fowler
+Gary Ferland
+Jurica Polkovnikov
+Andreas Löwenhagen
+Theodoros Triparolis
 
 ### 2023
 Renato

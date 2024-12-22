@@ -400,7 +400,7 @@ void mmEditPayeeDialog::OnPatternTableChanged(wxGridEvent& event)
     ResizeDialog();
 }
 
-void mmEditPayeeDialog::OnPatternTableSize(wxSizeEvent& event)
+void mmEditPayeeDialog::OnPatternTableSize(wxSizeEvent&)
 {
     m_patternTable->SetColSize(0, m_patternTable->GetGridWindow()->GetSize().x);
 }
@@ -652,7 +652,7 @@ void mmPayeeDialog::fillControls()
     {
         wxListItem item;
         item.SetId(idx);
-        item.SetData(payee.PAYEEID);
+        item.SetData(payee.PAYEEID.GetValue());
         payeeListBox_->InsertItem(item);
         const wxString full_category_name = Model_Category::instance().full_name(payee.CATEGID);
         payeeListBox_->SetItem(idx, 0, payee.PAYEENAME);

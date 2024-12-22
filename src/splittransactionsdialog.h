@@ -68,7 +68,7 @@ public:
     mmSplitTransactionDialog();
     mmSplitTransactionDialog(wxWindow* parent
         , std::vector<Split>& split
-        , int accountID
+        , int64 accountID
         , int transType
         , double totalAmount = 0.0
         , bool is_view_only = false
@@ -95,7 +95,7 @@ private:
 
     void OnOk(wxCommandEvent& event);
     void OnAddRow(wxCommandEvent& event);
-    void OnRemoveRow(wxCommandEvent& event);
+    void OnRemoveRow(wxCommandEvent&);
     void OnOtherButton(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);

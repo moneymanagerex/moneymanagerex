@@ -386,7 +386,7 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             num_shares = num_shares * -1;
         }
 
-        int checking_id = m_transaction_panel->SaveChecking();
+        int64 checking_id = m_transaction_panel->SaveChecking();
         if (checking_id < 0)
             return;
 

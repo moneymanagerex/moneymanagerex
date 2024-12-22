@@ -41,7 +41,7 @@ public:
     ~mmCurrencyDialog();
     mmCurrencyDialog(wxWindow* parent, const Model_Currency::Data * currency);
 
-    int getCurrencyID() { return m_currency->CURRENCYID; };
+    int64 getCurrencyID() { return m_currency->CURRENCYID; };
 
 private:
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,

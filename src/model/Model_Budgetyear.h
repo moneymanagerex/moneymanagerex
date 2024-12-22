@@ -46,16 +46,16 @@ public:
     */
     static Model_Budgetyear& instance();
 
-    bool remove(int id);
+    bool remove(int64 id);
 
 public:
-    void Set(int year_id, const wxString& value);
-    int Add(const wxString& value);
+    void Set(int64 year_id, const wxString& value);
+    int64 Add(const wxString& value);
 
-    wxString Get(int year_id);
-    int Get(const wxString& year_name);
+    wxString Get(int64 year_id);
+    int64 Get(const wxString& year_name);
 
-    bool Exists(int year_id);
+    bool Exists(int64 year_id);
     bool Exists(const wxString& year_name);
 };
 

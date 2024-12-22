@@ -47,7 +47,7 @@ public:
     static Model_Stock& instance();
 
 public:
-    static wxString get_stock_name(int stock_id);
+    static wxString get_stock_name(int64 stock_id);
 
     static wxDate PURCHASEDATE(const Data* stock);
     static wxDate PURCHASEDATE(const Data& stock);
@@ -78,7 +78,7 @@ public:
     * Remove the Data record from memory and the database.
     * Delete also all stock history
     */
-    bool remove(int id);
+    bool remove(int64 id);
 
     /**
     Returns the last price date of a given stock

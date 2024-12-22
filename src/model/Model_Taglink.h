@@ -49,23 +49,23 @@ public:
     * Return the Data record pointer for the given payee name
     * Returns 0 when payee not found.
     */
-    Data* get(const wxString& refType, int refId, int tagId);
+    Data* get(const wxString& refType, int64 refId, int64 tagId);
 
     /**
     * Return a map of all tags
     */
-    std::map<int, Model_Taglink::Data_Set> get_all(const wxString& refType);
+    std::map<int64, Model_Taglink::Data_Set> get_all(const wxString& refType);
 
     /**
     * Return a map of all tags for the specified transaction
     * Mostly useful to return a sorted list of tagnames associated with a transaction
     */
-    std::map<wxString, int> get(const wxString& refType, int refId);
+    std::map<wxString, int64> get(const wxString& refType, int64 refId);
 
     /* Delete all tags for a REFTYPE + REFID */
-    void DeleteAllTags(const wxString& refType, int refID);
+    void DeleteAllTags(const wxString& refType, int64 refID);
 
-    int update(const Data_Set& rows, const wxString& refType, int refId);
+    int update(const Data_Set& rows, const wxString& refType, int64 refId);
 };
 
 #endif // 

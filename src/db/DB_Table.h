@@ -1,7 +1,7 @@
 // -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2023 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2023-07-09 11:41:36.730232.
+ *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -20,6 +20,7 @@
 
 #include <vector>
 #include <map>
+#include <random>
 #include <algorithm>
 #include <functional>
 #include <cwchar>
@@ -34,6 +35,8 @@ using namespace rapidjson;
 
 #include "html_template.h"
 using namespace tmpl;
+
+typedef wxLongLong int64;
 
 class wxString;
 enum OP { EQUAL = 0, GREATER, LESS, GREATER_OR_EQUAL, LESS_OR_EQUAL, NOT_EQUAL };
@@ -65,6 +68,19 @@ struct DB_Table
     void drop(wxSQLite3Database* db) const
     {
         db->ExecuteUpdate("DROP TABLE IF EXISTS " + this->name());
+    }
+
+    static wxLongLong newId()
+    {
+        // Get the current time in milliseconds as wxLongLong
+        wxLongLong ticks = wxDateTime::UNow().GetValue();
+        // Generate a random 3-digit number (0 to 999)
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<int> dist(0, 999);
+        int randomSuffix = dist(gen);
+        // Combine ticks and randomSuffix
+        return (ticks * 1000) + randomSuffix;
     }
 };
 

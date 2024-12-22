@@ -25,6 +25,8 @@
 class wxDataViewListCtrl;
 class wxDataViewEvent;
 
+typedef wxLongLong int64;
+
 class mmCustomFieldListDialog : public wxDialog
 {
     wxDECLARE_DYNAMIC_CLASS(mmCustomFieldListDialog);
@@ -53,7 +55,7 @@ private:
 
     wxDataViewListCtrl* fieldListBox_ = nullptr;
 
-    int m_field_id = -1;
+    int64 m_field_id = -1;
     mmCustomFieldListDialog() {}
     std::map<int, wxString> ColName_;
 

@@ -30,14 +30,14 @@ class mmReportCategoryExpenses : public mmPrintableBase
 {
 public:
     // structure for sorting of data
-    struct data_holder { int catID; int subCatID; wxString name; double amount; int categs; int level; };
+    struct data_holder { int64 catID; int64 subCatID; wxString name; double amount; int64 categs; int level; };
     enum TYPE { GOES = 0, COME , MONTHLY, SUMMARY };
     explicit mmReportCategoryExpenses(const wxString& title, enum TYPE type);
     virtual ~mmReportCategoryExpenses();
 
     virtual void RefreshData();
-    double AppendData(const std::vector<data_holder>& data, std::map<int, std::map<int, double>>& categoryStats,
-        const DB_Table_CATEGORY_V1::Data* category, int groupID, int level);
+    double AppendData(const std::vector<data_holder>& data, std::map<int64, std::map<int, double>>& categoryStats,
+        const DB_Table_CATEGORY_V1::Data* category, int64 groupID, int level);
     virtual wxString getHTMLText();
 
 protected:

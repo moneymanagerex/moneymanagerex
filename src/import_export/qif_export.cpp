@@ -39,7 +39,7 @@ wxBEGIN_EVENT_TABLE(mmQIFExportDialog, wxDialog)
     EVT_CLOSE(mmQIFExportDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
-mmQIFExportDialog::mmQIFExportDialog(wxWindow *parent, int type, int account_id)
+mmQIFExportDialog::mmQIFExportDialog(wxWindow *parent, int type, int64 account_id)
 {
     m_type = type;
     m_account_id = account_id;
@@ -86,8 +86,8 @@ void mmQIFExportDialog::fillControls()
     for (const auto& a : all_accounts)
     {
         m_accounts_name.Add(a.ACCOUNTNAME);
-        selected_accounts_id_.Add(a.ACCOUNTID);
-        accounts_id_.Add(a.ACCOUNTID);
+        selected_accounts_id_.push_back(a.ACCOUNTID);
+        accounts_id_.push_back(a.ACCOUNTID);
         if (a.ACCOUNTID == m_account_id)
             bSelectedAccounts_->SetLabelText(a.ACCOUNTNAME);
     }
@@ -95,7 +95,7 @@ void mmQIFExportDialog::fillControls()
     if (m_account_id > -1)
     {
         selected_accounts_id_.clear();
-        selected_accounts_id_.Add(m_account_id);
+        selected_accounts_id_.push_back(m_account_id);
     }
 
     // redirect logs to text control
@@ -266,8 +266,8 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
 
     for (const auto& a : all_accounts)
     {
-        if (selected_accounts_id_.Index(a.ACCOUNTID) != wxNOT_FOUND)
-            s.Add(i);
+        if (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), a.ACCOUNTID) != selected_accounts_id_.end())
+            s.push_back(i);
         i++;
     }
     s_acc.SetSelections(s);
@@ -284,23 +284,23 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
             int index = entry;
             const wxString accounts_name = m_accounts_name[index];
             const auto account = Model_Account::instance().get(accounts_name);
-            if (account) selected_accounts_id_.Add(account->ACCOUNTID);
+            if (account) selected_accounts_id_.push_back(account->ACCOUNTID);
             baloon += accounts_name + "\n";
         }
     }
     *log_field_ << baloon;
 
-    if (selected_accounts_id_.GetCount() == 0)
+    if (selected_accounts_id_.empty())
     {
         fillControls();
     }
-    else if (selected_accounts_id_.GetCount() == 1)
+    else if (selected_accounts_id_.size() == 1)
     {
-        int account_id = accounts_id_[selected_items[0]];
+        int64 account_id = accounts_id_[selected_items[0]];
         const Model_Account::Data* account = Model_Account::instance().get(account_id);
         if (account) bSelectedAccounts_->SetLabelText(account->ACCOUNTNAME);
     }
-    else if (selected_accounts_id_.GetCount() > 1)
+    else if (selected_accounts_id_.size() > 1)
     {
         bSelectedAccounts_->SetLabelText("...");
         mmToolTip(bSelectedAccounts_, baloon);
@@ -352,7 +352,7 @@ void mmQIFExportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     wxString sErrorMsg = "";
     if (Model_Account::instance().all().empty() && accountsCheckBox_->IsChecked())
         sErrorMsg =_("No Account available for export");
-    else if (selected_accounts_id_.Count() < 1 && accountsCheckBox_->IsChecked())
+    else if (selected_accounts_id_.size() < 1 && accountsCheckBox_->IsChecked())
         sErrorMsg =_("No Accounts selected for export");
     else if (dateToCheckBox_->IsChecked() && dateFromCheckBox_->IsChecked() && fromDateCtrl_->GetValue() > toDateCtrl_->GetValue())
         sErrorMsg =_("To Date less than From Date");
@@ -431,7 +431,7 @@ void mmQIFExportDialog::mmExportQIF()
     wxString fileName = m_text_ctrl_->GetValue();
 
     bool exp_categ = cCategs_->IsChecked();
-    bool exp_transactions = (accountsCheckBox_->IsChecked() && selected_accounts_id_.GetCount() > 0);
+    bool exp_transactions = (accountsCheckBox_->IsChecked() && selected_accounts_id_.size() > 0);
 
     const wxString delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
 
@@ -465,12 +465,12 @@ void mmQIFExportDialog::mmExportQIF()
         sErrorMsg << _("Categories exported") << "\n";
     }
 
-    std::unordered_map <int /*account ID*/, wxString> allAccounts4Export;
-    wxArrayInt allPayees4Export;
+    std::map<int64 /*account ID*/, wxString> allAccounts4Export;
+    wxArrayInt64 allPayees4Export;
     const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    wxArrayInt allAttachments4Export;
-    wxArrayInt allCustomFields4Export;
-    wxArrayInt allTags4Export;
+    wxArrayInt64 allAttachments4Export;
+    wxArrayInt64 allCustomFields4Export;
+    wxArrayInt64 allTags4Export;
     const auto transactions = Model_Checking::instance().find(
         Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL));
 
@@ -480,7 +480,7 @@ void mmQIFExportDialog::mmExportQIF()
         json_writer.StartArray();
 
         /* Array to store QIF tarts for selected accounts */
-        std::unordered_map <int /*account ID*/, wxString> extraTransfers;
+        std::map<int64 /*account ID*/, wxString> extraTransfers;
 
         wxProgressDialog progressDlg(_("Please wait"), _("Exporting")
             , 100, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
@@ -501,11 +501,11 @@ void mmQIFExportDialog::mmExportQIF()
             if (dateToCheckBox_->IsChecked() && strDate > end_date)
                 continue;
             if (!Model_Checking::is_transfer(transaction.TRANSCODE)
-                && (selected_accounts_id_.Index(transaction.ACCOUNTID) == wxNOT_FOUND))
+                && (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), transaction.ACCOUNTID) == selected_accounts_id_.end()))
                 continue;
             if (Model_Checking::is_transfer(transaction.TRANSCODE)
-                && (selected_accounts_id_.Index(transaction.ACCOUNTID) == wxNOT_FOUND)
-                && (selected_accounts_id_.Index(transaction.TOACCOUNTID) == wxNOT_FOUND))
+                && (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), transaction.ACCOUNTID) == selected_accounts_id_.end())
+                && (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), transaction.TOACCOUNTID) == selected_accounts_id_.end()))
                 continue;
             //
 
@@ -516,43 +516,43 @@ void mmQIFExportDialog::mmExportQIF()
             bool is_reverce = false;
             wxString trx_str;
             Model_Checking::Full_Data full_tran(transaction, splits, tags);
-            int account_id = transaction.ACCOUNTID;
+            int64 account_id = transaction.ACCOUNTID;
 
             switch (m_type)
             {
             case JSON:
                 mmExportTransaction::getTransactionJSON(json_writer, full_tran);
                 allAccounts4Export[account_id] = "";
-                if (allPayees4Export.Index(full_tran.PAYEEID) == wxNOT_FOUND
+                if (std::find(allPayees4Export.begin(), allPayees4Export.begin(), full_tran.PAYEEID) == allPayees4Export.end()
                     && full_tran.TRANSCODE != Model_Checking::TYPE_STR_TRANSFER) {
-                    allPayees4Export.Add(full_tran.PAYEEID);
+                    allPayees4Export.push_back(full_tran.PAYEEID);
                 }
 
                 if (!Model_Attachment::instance().FilterAttachments(RefType, full_tran.id()).empty()
-                    && allAttachments4Export.Index(full_tran.TRANSID) == wxNOT_FOUND) {
-                    allAttachments4Export.Add(full_tran.TRANSID);
+                    && std::find(allAttachments4Export.begin(), allAttachments4Export.end(), full_tran.TRANSID) == allAttachments4Export.end()) {
+                    allAttachments4Export.push_back(full_tran.TRANSID);
                 }
 
                 for (const auto & entry : Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(full_tran.id())))
                 {
-                    if (allCustomFields4Export.Index(entry.FIELDATADID) == wxNOT_FOUND) {
-                        allCustomFields4Export.Add(entry.FIELDATADID);
+                    if (std::find(allCustomFields4Export.begin(), allCustomFields4Export.end(), entry.FIELDATADID) == allCustomFields4Export.end()) {
+                        allCustomFields4Export.push_back(entry.FIELDATADID);
                     }
                 }
 
                 // store tags from the transaction
                 for (const auto& tag : full_tran.m_tags)
                 {
-                    if (allTags4Export.Index(tag.TAGID) == wxNOT_FOUND)
-                        allTags4Export.Add(tag.TAGID);
+                    if (std::find(allTags4Export.begin(), allTags4Export.end(), tag.TAGID) == allTags4Export.end())
+                        allTags4Export.push_back(tag.TAGID);
                 }
                 // store tags from the splits
                 for (const auto& split : full_tran.m_splits)
                 {
                     for (const auto& taglink : Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), split.SPLITTRANSID))
                     {
-                        if (allTags4Export.Index(taglink.second) == wxNOT_FOUND)
-                            allTags4Export.Add(taglink.second);
+                        if (std::find(allTags4Export.begin(), allTags4Export.end(), taglink.second) == allTags4Export.end())
+                            allTags4Export.push_back(taglink.second);
                     }
                 }
 
@@ -562,7 +562,7 @@ void mmQIFExportDialog::mmExportQIF()
 
                 if (Model_Checking::is_transfer(transaction.TRANSCODE))
                 {
-                    if (selected_accounts_id_.Index(transaction.ACCOUNTID) == wxNOT_FOUND) {
+                    if (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), transaction.ACCOUNTID) == selected_accounts_id_.end()) {
                         is_reverce = true;
                         account_id = transaction.TOACCOUNTID;
                     }
@@ -581,7 +581,7 @@ void mmQIFExportDialog::mmExportQIF()
 
                 if (Model_Checking::is_transfer(transaction.TRANSCODE))
                 {
-                    if (selected_accounts_id_.Index(transaction.ACCOUNTID) == wxNOT_FOUND) {
+                    if (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), transaction.ACCOUNTID) == selected_accounts_id_.end()) {
                         is_reverce = true;
                         account_id = transaction.TOACCOUNTID;
                     }

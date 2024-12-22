@@ -45,7 +45,7 @@ public:
 
     ~UserTransactionPanel();
 
-    int SaveChecking();
+    int64 SaveChecking();
     bool ValidCheckingAccountEntry();
     wxDateTime TransactionDate();
     void TransactionDate(const wxDateTime& trans_date);
@@ -54,8 +54,8 @@ public:
     void SetTransactionNumber(const wxString& trans_number);
     void SetTransactionAccount(const wxString& trans_account);
     void SetTransactionStatus(const int trans_status_enum);
-    void SetTransactionPayee(const int payeeid);
-    void SetTransactionCategory(const int categid);
+    void SetTransactionPayee(const int64 payeeid);
+    void SetTransactionCategory(const int64 categid);
 
     int TransactionType();
     Model_Translink::CHECKING_TYPE CheckingType();
@@ -63,17 +63,17 @@ public:
 
 private:
     Model_Checking::Data* m_checking_entry = nullptr;
-    int m_transaction_id = -1;
+    int64 m_transaction_id = -1;
 
-    int m_account_id = -1;
-    int m_payee_id = -1;
-    int m_category_id = -1;
-    int m_subcategory_id = -1;
+    int64 m_account_id = -1;
+    int64 m_payee_id = -1;
+    int64 m_category_id = -1;
+    int64 m_subcategory_id = -1;
 
 private:
     void Create();
     void DataToControls();
-    void SetLastPayeeAndCategory(const int account_id);
+    void SetLastPayeeAndCategory(const int64 account_id);
 
     void OnTransAccountButton(wxCommandEvent& WXUNUSED(event));
     void OnTransPayeeButton(wxCommandEvent& WXUNUSED(event));

@@ -42,8 +42,8 @@ mmReportCashFlow::~mmReportCashFlow()
 double mmReportCashFlow::trueAmount(const Model_Checking::Data& trx)
 {
     double amount = 0.0;
-    bool isAccountFound = m_account_id.Index(trx.ACCOUNTID) != wxNOT_FOUND;
-    bool isToAccountFound = m_account_id.Index(trx.TOACCOUNTID) != wxNOT_FOUND;
+    bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(), trx.ACCOUNTID) == m_account_id.end();
+    bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(), trx.TOACCOUNTID) == m_account_id.end();
     if (!(isAccountFound && isToAccountFound))
     {
         const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
@@ -81,14 +81,14 @@ void mmReportCashFlow::getTransactions()
         Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR_INVESTMENT, NOT_EQUAL)
         , Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL)))
     {
-        if (accountArray_ && accountArray_->Index(account.ACCOUNTNAME) == wxNOT_FOUND) {
+        if (accountArray_ && std::find(accountArray_->begin(), accountArray_->end(), account.ACCOUNTNAME) == accountArray_->end()) {
             continue;
         }
 
         double convRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, todayString);
         m_balance += account.INITIALBAL * convRate;
 
-        m_account_id.Add(account.ACCOUNTID);
+        m_account_id.push_back(account.ACCOUNTID);
 
         for (const auto& tran : Model_Account::transaction(account))
         {
@@ -97,7 +97,7 @@ void mmReportCashFlow::getTransactions()
             if (Model_Checking::foreignTransactionAsTransfer(tran)
                 || (strDate > todayString))
                 continue;
-            m_balance += Model_Checking::balance(tran, account.ACCOUNTID) * convRate;
+            m_balance += Model_Checking::account_flow(tran, account.ACCOUNTID) * convRate;
         }
     }
 
@@ -109,14 +109,14 @@ void mmReportCashFlow::getTransactions()
     for (auto& trx : transactions)
     {
         if (!trx.DELETEDTIME.IsEmpty()) continue;
-        bool isAccountFound = m_account_id.Index(trx.ACCOUNTID) != wxNOT_FOUND;
-        bool isToAccountFound = m_account_id.Index(trx.TOACCOUNTID) != wxNOT_FOUND;
+        bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(), trx.ACCOUNTID) == m_account_id.end();
+        bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(), trx.TOACCOUNTID) == m_account_id.end();
         if (!isAccountFound && !isToAccountFound)
             continue; // skip account
         if (trx.CATEGID == -1)
         {
             Model_Checking::Data *transaction = Model_Checking::instance().get(trx.TRANSID);
-            for (const auto& split_item : Model_Checking::splittransaction(transaction))
+            for (const auto& split_item : Model_Checking::split(transaction))
             {
                 trx.CATEGID = split_item.CATEGID;
                 trx.TRANSAMOUNT = split_item.SPLITTRANSAMOUNT;
@@ -137,8 +137,8 @@ void mmReportCashFlow::getTransactions()
         if (nextOccurDate > endDate) continue;
 
         // demultiplex entry.REPEATS
-        int repeats = entry.REPEATS % BD_REPEATS_MULTIPLEX_BASE;
-        int numRepeats = entry.NUMOCCURRENCES;
+        int repeats = entry.REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE;
+        int numRepeats = entry.NUMOCCURRENCES.GetValue();
 
         // ignore old inactive entries
         if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && numRepeats == -1)
@@ -148,8 +148,8 @@ void mmReportCashFlow::getTransactions()
         if (repeats != Model_Billsdeposits::REPEAT_ONCE && (numRepeats == 0 || numRepeats < -1))
             continue;
 
-        bool isAccountFound = m_account_id.Index(entry.ACCOUNTID) != wxNOT_FOUND;
-        bool isToAccountFound = m_account_id.Index(entry.TOACCOUNTID) != wxNOT_FOUND;
+        bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(), entry.ACCOUNTID) == m_account_id.end();
+        bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(), entry.TOACCOUNTID) == m_account_id.end();
         if (!isAccountFound && !isToAccountFound)
             continue; // skip account
 
@@ -168,7 +168,7 @@ void mmReportCashFlow::getTransactions()
             trx.TOTRANSAMOUNT = entry.TOTRANSAMOUNT;
             if (entry.CATEGID == -1)
             {
-                for (const auto& split_item : Model_Billsdeposits::splittransaction(entry))
+                for (const auto& split_item : Model_Billsdeposits::split(entry))
                 {
                     trx.CATEGID = split_item.CATEGID;
                     trx.TRANSAMOUNT = split_item.SPLITTRANSAMOUNT;

@@ -50,8 +50,19 @@ bool FileCSV::Load(const wxString& fileName, unsigned int itemsInLine)
     // Parse rows
     wxString line;
     int row = 0;
+    wxRegEx splitLinePattern(delimiter_ + "[\x1a]?\"[^\"]*?$");
     for (line = txtFile.GetFirstLine(); !txtFile.Eof(); line = txtFile.GetNextLine())
     {
+        // remove double sets of quotes which parse as the double quote literal
+        line.Replace("\"\"", "\x1a");
+        // if there is an unclosed quote, the line has an in-field newline char
+        while (splitLinePattern.Matches(line))
+        {
+            // append the next line
+            line += "\n" + txtFile.GetNextLine();
+        }
+        // add double quotes back in
+        line.Replace("\x1a", "\"\"");
         csv2tab_separated_values(line, delimiter_);
         wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
         itemsTable_.push_back(std::vector<ValueAndType>());
@@ -106,7 +117,7 @@ bool FileCSV::Save(const wxString& fileName)
     // Save the file.
     if (!txtFile.Write(wxTextFileType_None, encoding_))
     {
-        mmErrorDialogs::MessageError(pParentWindow_, _("Could not save file."), _("Export error"));
+        mmErrorDialogs::MessageError(pParentWindow_, _("Unable to save file."), _("Export error"));
         return false;
     }
     txtFile.Close();
@@ -155,7 +166,7 @@ bool FileXML::Load(const wxString& fileName, unsigned int itemsInLine)
 
     if (nullptr == worksheetElement)
     {
-        mmErrorDialogs::MessageError(pParentWindow_, _("Could not find Worksheet."), _("Parsing error"));
+        mmErrorDialogs::MessageError(pParentWindow_, _("Unable to find Worksheet."), _("Parsing error"));
         return false;
     }
 
@@ -163,7 +174,7 @@ bool FileXML::Load(const wxString& fileName, unsigned int itemsInLine)
     wxXmlNode *tableElement = worksheetElement->GetChildren();
     if (tableElement->GetName() != _("Table"))
     {
-        mmErrorDialogs::MessageError(pParentWindow_, _("Could not find Table."), _("Parsing error"));
+        mmErrorDialogs::MessageError(pParentWindow_, _("Unable to find Table."), _("Parsing error"));
         return false;
     }
 
@@ -246,7 +257,7 @@ bool FileXML::Save(const wxString& fileName)
     // Save the file.
     if (!xmlFile.Save(fileName))
     {
-        mmErrorDialogs::MessageError(pParentWindow_, _("Could not save file."), _("Export error"));
+        mmErrorDialogs::MessageError(pParentWindow_, _("Unable to save file."), _("Export error"));
         return false;
     }
 

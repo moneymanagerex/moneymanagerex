@@ -34,7 +34,7 @@ class transactionsUpdateDialog : public wxDialog
 public:
     transactionsUpdateDialog();
     ~transactionsUpdateDialog();
-    transactionsUpdateDialog(wxWindow* parent, std::vector<int>& transaction_id);
+    transactionsUpdateDialog(wxWindow* parent, std::vector<int64>& transaction_id);
 
 private:
     bool Create(wxWindow* parent
@@ -78,7 +78,7 @@ private:
     wxCheckBox* m_notes_checkbox = nullptr;
     wxCheckBox* m_append_checkbox = nullptr;
     wxTextCtrl* m_notes_ctrl = nullptr;
-    std::vector<int> m_transaction_id;
+    std::vector<int64> m_transaction_id;
     Model_Currency::Data* m_currency = nullptr;
     bool m_hasTransfers = false, m_hasNonTransfers = false, m_hasSplits = false;
     wxSharedPtr<mmCustomData> m_custom_fields;

@@ -30,7 +30,7 @@ public:
 
     static const wxString getTransactionQIF(const Model_Checking::Full_Data & tran, const wxString& dateMask, bool reverce = false);
     static const wxString getTransactionCSV(const Model_Checking::Full_Data & tran, const wxString& dateMask, bool reverce = false);
-    static const wxString getAccountHeaderQIF(int accountID);
+    static const wxString getAccountHeaderQIF(int64 accountID);
     static const wxString getCategoriesQIF();
     static const std::unordered_map <wxString, int> m_QIFaccountTypes;
     static const wxString qif_acc_type(const wxString& mmex_type);
@@ -39,11 +39,11 @@ public:
     static void getTransactionJSON(PrettyWriter<StringBuffer>& json_writer, const Model_Checking::Full_Data & tran);
     static void getCategoriesJSON(PrettyWriter<StringBuffer>& json_writer);
     static void getUsedCategoriesJSON(PrettyWriter<StringBuffer>& json_writer);
-    static void getAccountsJSON(PrettyWriter<StringBuffer>& json_writer, std::unordered_map <int /*account ID*/, wxString>& allAccounts4Export);
-    static void getPayeesJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allPayeess4Export);
-    static void getAttachmentsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allAttachment4Export);
-    static void getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allCustomFields4Export);
-    static void getTagsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allTags4Export);
+    static void getAccountsJSON(PrettyWriter<StringBuffer>& json_writer, std::map <int64 /*account ID*/, wxString>& allAccounts4Export);
+    static void getPayeesJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt64& allPayeess4Export);
+    static void getAttachmentsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt64& allAttachment4Export);
+    static void getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt64& allCustomFields4Export);
+    static void getTagsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt64& allTags4Export);
 };
 
 #endif

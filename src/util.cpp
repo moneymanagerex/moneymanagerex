@@ -67,12 +67,12 @@ wxString JSON_Formated(rapidjson::Document& j_doc)
 
 //----------------------------------------------------------------------------
 
-mmTreeItemData::mmTreeItemData(int type, int id)
+mmTreeItemData::mmTreeItemData(int type, int64 id)
     : id_(id)
     , type_(type)
     , report_(nullptr)
 {
-    stringData_ = (wxString::Format("%i", id));
+    stringData_ = (wxString::Format("%lld", id));
 }
 mmTreeItemData::mmTreeItemData(const wxString& data, mmPrintableBase* report)
     : type_(mmTreeItemData::REPORT)
@@ -675,13 +675,13 @@ END_EVENT_TABLE()
 
 //--------------------------------------------------------------------
 
-bool getOnlineCurrencyRates(wxString& msg,const int curr_id, const bool used_only)
+bool getOnlineCurrencyRates(wxString& msg,const int64 curr_id, const bool used_only)
 {
     wxString base_currency_symbol;
 
     if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
     {
-        msg = _("Could not find base currency symbol!");
+        msg = _("Unable to find base currency symbol!");
         return false;
     }
 
@@ -1008,7 +1008,7 @@ bool getCoincapInfoFromSymbol(const wxString& symbol, wxString& out_id, double& 
         }
     }
 
-    output = _("Could not find asset for symbol");
+    output = _("Unable to find asset for symbol");
     return false;
 }
 
@@ -1043,7 +1043,7 @@ bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std
 
     wxString baseCurrencySymbol;
     if (!Model_Currency::GetBaseCurrencySymbol(baseCurrencySymbol)) {
-        msg = _("Could not get base currency!");
+        msg = _("Unable to get base currency!");
         return false;
     }
 
@@ -1052,7 +1052,7 @@ bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std
     if (baseCurrencySymbol != _("USD")) {
         auto usd = Model_Currency::instance().GetCurrencyRecord("USD");
         if (usd == nullptr) {
-            msg = _("Could not find currency 'USD', needed for converting history prices");
+            msg = _("Unable to find currency 'USD', required for converting historical prices");
             return false;
         }
 
@@ -1073,7 +1073,7 @@ bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std
             auto priceUSD = wxString::FromUTF8(entry["priceUsd"].GetString());
 
             if (!priceUSD.ToCDouble(&price_usd)) {
-                msg = _("Could not parse price in asset history");
+                msg = _("Unable to parse price in asset history");
                 return false;
             }
 
@@ -1450,7 +1450,7 @@ const wxString getProgramDescription(const int type)
         << bull << wxString::Format(simple ? "Built: %1$s %2$s" : _("Built on: %1$s %2$s"), build_date, BUILD_TIME) << eol
         << bull << wxString::Format(simple ? "db %d" : _("Database version: %d"), mmex::version::getDbLatestVersion())
 #if WXSQLITE3_HAVE_CODEC
-        << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
+        << " (aes256cbc-hmac-sha512)"
 #endif
         << eol
 
@@ -1675,10 +1675,12 @@ const wxString mmSeparator::getSeparator() const
 bool mmSeparator::isStringHasSeparator(const wxString &string)
 {
     bool result = false;
-    bool skip = false;
+
     for (const auto& entry : m_separators)
     {
-        for (const auto& letter : string) {
+        bool skip = false;
+        for (const auto& letter : string)
+        {
             if (letter == '"') {
                 skip = !skip;
             }
