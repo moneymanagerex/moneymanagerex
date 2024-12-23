@@ -1328,7 +1328,7 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
         text += "\n\n";
         text += !(m_cp->isTrash_ || retainDays == 0)
             ? _("Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view.")
-            : _("You cannot undo this action.");
+            : _("Unable to undo this action.");
 
         wxMessageDialog msgDlg(this
             , text
@@ -1427,7 +1427,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
             , "Do you really want to delete %i selected transactions?", sel)
             , sel);
     text += "\n\n";
-    text += _((m_cp->isTrash_ || retainDays == 0) ? _("You cannot undo this action.")
+    text += _((m_cp->isTrash_ || retainDays == 0) ? _("Unable to undo this action.")
         : _("Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."));
 
     wxMessageDialog msgDlg(this

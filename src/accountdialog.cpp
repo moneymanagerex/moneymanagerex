@@ -512,7 +512,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
 
     wxString openingDate = m_initdate_ctrl->GetValue().FormatISODate();
     if (openingDate > wxDate::Today().FormatISODate())
-        return mmErrorDialogs::ToolTip4Object(m_initdate_ctrl, _("Opening date cannot be in the future"), _("Invalid Date"));
+        return mmErrorDialogs::ToolTip4Object(m_initdate_ctrl, _("Opening date is unable to be in the future"), _("Invalid Date"));
 
     if (this->m_account)
     {

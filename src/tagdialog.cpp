@@ -133,7 +133,7 @@ void mmTagDialog::CreateControls()
     buttonDelete_ = new wxButton(buttonsPanel, wxID_REMOVE, _("&Delete "));
     editButtonSizer->Add(buttonDelete_, g_flagsH);
     buttonDelete_->Enable(false);
-    mmToolTip(buttonDelete_, _("Delete an existing tag. The tag cannot be used by existing transactions."));
+    mmToolTip(buttonDelete_, _("Delete an existing tag. The tag is unable to be used by existing transactions."));
 
     //--------------------------
     wxStdDialogButtonSizer* dlgButtonSizer = new wxStdDialogButtonSizer();

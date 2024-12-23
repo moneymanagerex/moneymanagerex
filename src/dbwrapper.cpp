@@ -111,7 +111,7 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
     s << "\n" << wxString::Format("\n%s\n\n", dbpath);
     if (err == SQLITE_CANTOPEN)
     {
-        s << _("Can't open file") << "\n" << _("You must specify path to another database file") << "\n";
+        s << _("Unable to open file") << "\n" << _("You must specify path to another database file") << "\n";
     }
     else if (err == SQLITE_NOTADB)
     {

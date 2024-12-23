@@ -2220,7 +2220,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         const wxString note = wxString::Format("%s - %s", mmex::getProgramName(), _("No File opened"));
         this->SetTitle(note);
 
-        wxString msgStr = _("Cannot locate previously opened database.\n");
+        wxString msgStr = _("Unable to locate previously opened database.\n");
         if (!passwordCheckPassed)
             msgStr = _("Password not entered for encrypted Database.\n");
 
@@ -2542,7 +2542,7 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
 
     if (newFileName == oldFileName) // on case-sensitive FS uses case-sensitive comparison
     {
-        wxMessageDialog dlgMsg(this, _("Can't copy file to itself"), _("Save database file as"), wxOK | wxICON_WARNING);
+        wxMessageDialog dlgMsg(this, _("Unable to copy file to itself"), _("Save database file as"), wxOK | wxICON_WARNING);
         dlgMsg.ShowModal();
         return;
     }
