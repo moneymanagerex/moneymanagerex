@@ -729,18 +729,18 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     Model_Report::Data *report = Model_Report::instance().get(report_id);
 
     wxMenu* samplesMenu = new wxMenu;
-    samplesMenu->Append(ID_NEW_SAMPLE_ASSETS, _("Assets..."));
+    samplesMenu->Append(ID_NEW_SAMPLE_ASSETS, _("Assets…"));
 
     wxMenu customReportMenu;
-    customReportMenu.Append(ID_NEW_EMPTY, _("New Empty Report..."));
+    customReportMenu.Append(ID_NEW_EMPTY, _("New Empty Report…"));
     customReportMenu.Append(wxID_ANY, _("New Sample Report"), samplesMenu);
     customReportMenu.AppendSeparator();
     if (report)
-        customReportMenu.Append(ID_GROUP, _("Change Group..."));
+        customReportMenu.Append(ID_GROUP, _("Change Group…"));
     else
-        customReportMenu.Append(ID_GROUP, _("Rename Group..."));
+        customReportMenu.Append(ID_GROUP, _("Rename Group…"));
     customReportMenu.Append(ID_UNGROUP, _("UnGroup"));
-    customReportMenu.Append(ID_RENAME, _("Rename Report..."));
+    customReportMenu.Append(ID_RENAME, _("Rename Report…"));
     customReportMenu.AppendSeparator();
 
     wxMenuItem* menuItemActive = new wxMenuItem(&customReportMenu, ID_ACTIVE,
@@ -748,7 +748,7 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     customReportMenu.Append(menuItemActive);
 
     customReportMenu.AppendSeparator();
-    customReportMenu.Append(ID_DELETE, _("Delete Report..."));
+    customReportMenu.Append(ID_DELETE, _("Delete Report…"));
 
     if (report)
     {

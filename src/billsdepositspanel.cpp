@@ -442,17 +442,17 @@ void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
     m_bdp->updateBottomPanelData(m_selected_row);
     bool item_active = (m_selected_row >= 0);
     wxMenu menu;
-    menu.Append(MENU_POPUP_BD_ENTER_OCCUR, _("Enter next Occurrence..."));
+    menu.Append(MENU_POPUP_BD_ENTER_OCCUR, _("Enter next Occurrence…"));
     menu.AppendSeparator();
     menu.Append(MENU_POPUP_BD_SKIP_OCCUR, _("Skip next Occurrence"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_NEW, _("&New Scheduled Transaction..."));
-    menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Scheduled Transaction..."));
-    menu.Append(MENU_TREEPOPUP_DUPLICATE, _("D&uplicate Scheduled Transaction..."));
+    menu.Append(MENU_TREEPOPUP_NEW, _("&New Scheduled Transaction…"));
+    menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Scheduled Transaction…"));
+    menu.Append(MENU_TREEPOPUP_DUPLICATE, _("D&uplicate Scheduled Transaction…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Scheduled Transaction..."));
+    menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Scheduled Transaction…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments..."));
+    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments…"));
 
     menu.Enable(MENU_POPUP_BD_ENTER_OCCUR, item_active);
     menu.Enable(MENU_POPUP_BD_SKIP_OCCUR, item_active);
@@ -820,7 +820,7 @@ void mmBillsDepositsPanel::sortTable()
         {
             int xn = this->GetNumRepeats(&x);
             int yn = this->GetNumRepeats(&y);
-            // the order is: 1, 2, ..., -1 (REPEAT_NUM_INFINITY), 0 (REPEAT_NUM_UNKNOWN)
+            // the order is: 1, 2, …, -1 (REPEAT_NUM_INFINITY), 0 (REPEAT_NUM_UNKNOWN)
             if (xn > 0)
                 return yn > xn || yn == Model_Billsdeposits::REPEAT_NUM_INFINITY || yn == Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
             else
