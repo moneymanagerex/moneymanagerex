@@ -39,7 +39,7 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
         "setting: 'Backup before opening', and store your backups\n"
         "in a separate location.\n\n"
         "The database can later be encrypted if required, by\n"
-        "using the option: 'Save database as' and changing the\n"
+        "using the option: “Save Database As…” and changing the\n"
         "file type before saving.");
     new wxStaticText(page1, wxID_ANY, displayMsg);
 
