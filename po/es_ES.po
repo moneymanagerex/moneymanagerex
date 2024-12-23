@@ -535,37 +535,37 @@ msgid "Current Value"
 msgstr "Valor actual"
 
 #: assetspanel.cpp:100
-msgid "&New Asset..."
-msgstr "&Nuevo activo..."
+msgid "&New Asset…"
+msgstr "&Nuevo activo…"
 
 #: assetspanel.cpp:102
-msgid "D&uplicate Asset..."
-msgstr "D&uplicar activo..."
+msgid "D&uplicate Asset…"
+msgstr "D&uplicar activo…"
 
 #: assetspanel.cpp:104
-msgid "&Add Asset Transaction..."
-msgstr "&Añadir transacción de activos..."
+msgid "&Add Asset Transaction…"
+msgstr "&Añadir transacción de activos…"
 
 #: assetspanel.cpp:105
 msgid "&View Asset Transactions"
 msgstr "&Ver transacciones del valor"
 
 #: assetspanel.cpp:106
-msgid "&Open Asset Account..."
-msgstr "&Abrir una cuenta de valores..."
+msgid "&Open Asset Account…"
+msgstr "&Abrir una cuenta de valores…"
 
 #: assetspanel.cpp:108
-msgid "&Edit Asset..."
-msgstr "&Editar activo..."
+msgid "&Edit Asset…"
+msgstr "&Editar activo…"
 
 #: assetspanel.cpp:110
-msgid "&Delete Asset..."
-msgstr "&Eliminar activo..."
+msgid "&Delete Asset…"
+msgstr "&Eliminar activo…"
 
 #: assetspanel.cpp:112 billsdepositspanel.cpp:455 mmchecking_list.cpp:522
 #: stocks_list.cpp:155
-msgid "&Organize Attachments..."
-msgstr "&Organizar adjuntos..."
+msgid "&Organize Attachments…"
+msgstr "&Organizar adjuntos…"
 
 #: assetspanel.cpp:209
 msgid "Do you really want to delete the Asset?"
@@ -577,7 +577,7 @@ msgstr "Corfirme el borrado del Activo"
 
 #: assetspanel.cpp:392
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "MMEX permite mantener activos fijos como coches, casas, terrenos, etc... Cada activo puede tener su valor de apreciación o depreciación por un cierto índice al año, o no cambiar nada. Todos los activos se añaden al valor financiero total."
+msgstr "MMEX permite mantener activos fijos como coches, casas, terrenos, etc… Cada activo puede tener su valor de apreciación o depreciación por un cierto índice al año, o no cambiar nada. Todos los activos se añaden al valor financiero total."
 
 #: assetspanel.cpp:422 assetspanel.h:121 general_report_manager.cpp:1030
 #: mmframe.cpp:495 mmframe.cpp:817 mmframe.cpp:1796 mmframe.cpp:3505
@@ -1333,28 +1333,28 @@ msgid "Skip Next Scheduled Transaction Occurrence"
 msgstr "Omitir la siguiente aparición de la transacción programada"
 
 #: billsdepositspanel.cpp:445
-msgid "Enter next Occurrence..."
-msgstr "Registrar siguiente aparición..."
+msgid "Enter next Occurrence…"
+msgstr "Registrar siguiente aparición…"
 
 #: billsdepositspanel.cpp:447
 msgid "Skip next Occurrence"
 msgstr "Omitir siguiente aparición"
 
 #: billsdepositspanel.cpp:449
-msgid "&New Scheduled Transaction..."
-msgstr "&Nueva transacción programada..."
+msgid "&New Scheduled Transaction…"
+msgstr "&Nueva transacción programada…"
 
 #: billsdepositspanel.cpp:450
-msgid "&Edit Scheduled Transaction..."
-msgstr "&Editar transacción programada..."
+msgid "&Edit Scheduled Transaction…"
+msgstr "&Editar transacción programada…"
 
 #: billsdepositspanel.cpp:451
-msgid "D&uplicate Scheduled Transaction..."
-msgstr "D&uplicar transacción programada..."
+msgid "D&uplicate Scheduled Transaction…"
+msgstr "D&uplicar transacción programada…"
 
 #: billsdepositspanel.cpp:453
-msgid "&Delete Scheduled Transaction..."
-msgstr "&Eliminar transacción programada..."
+msgid "&Delete Scheduled Transaction…"
+msgstr "&Eliminar transacción programada…"
 
 #: billsdepositspanel.cpp:509
 msgid "Automated"
@@ -2399,7 +2399,7 @@ msgstr "Base de datos MMEX actualizada correctamente a la versión %i"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr "Sugerimos una optimización de la base de datos en Herramientas → Base de datos → Optimizar base de datos..."
+msgstr "Sugerimos una optimización de la base de datos en Herramientas → Base de datos → Optimizar base de datos…"
 
 #: dbupgrade.cpp:183
 msgid "Load debug file"
@@ -2864,32 +2864,32 @@ msgid "General Report Manager"
 msgstr "Administrador de informes generales"
 
 #: general_report_manager.cpp:732
-msgid "Assets..."
-msgstr "Activos..."
+msgid "Assets…"
+msgstr "Activos…"
 
 #: general_report_manager.cpp:735
-msgid "New Empty Report..."
-msgstr "Nuevo informe vacío..."
+msgid "New Empty Report…"
+msgstr "Nuevo informe vacío…"
 
 #: general_report_manager.cpp:736
 msgid "New Sample Report"
 msgstr "Nuevo informe de ejemplo"
 
 #: general_report_manager.cpp:739
-msgid "Change Group..."
-msgstr "Cambiar grupo..."
+msgid "Change Group…"
+msgstr "Cambiar grupo…"
 
 #: general_report_manager.cpp:741
-msgid "Rename Group..."
-msgstr "Renombrar grupo..."
+msgid "Rename Group…"
+msgstr "Renombrar grupo…"
 
 #: general_report_manager.cpp:742
 msgid "UnGroup"
 msgstr "Desagrupar"
 
 #: general_report_manager.cpp:743
-msgid "Rename Report..."
-msgstr "Renombrar informe..."
+msgid "Rename Report…"
+msgstr "Renombrar informe…"
 
 #: general_report_manager.cpp:747
 msgid "Active"
@@ -2900,8 +2900,8 @@ msgid "Show/Hide report in Navigator"
 msgstr "Mostrar / ocultar informe en el navegador"
 
 #: general_report_manager.cpp:751
-msgid "Delete Report..."
-msgstr "Borrar informe..."
+msgid "Delete Report…"
+msgstr "Borrar informe…"
 
 #: general_report_manager.cpp:848 general_report_manager.cpp:1009
 msgid "Enter the name for the report"
@@ -2968,8 +2968,8 @@ msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr "Faltan los metadatos '%1$s' en el tema elegido '%2$s'"
 
 #: images_list.cpp:458
-msgid "and more..."
-msgstr "y mucho más..."
+msgid "and more…"
+msgstr "y mucho más…"
 
 #: images_list.cpp:460
 #, c-format
@@ -3100,8 +3100,8 @@ msgstr "Nombre de fichero:"
 
 #: import_export/qif_export.cpp:203 import_export/qif_import_gui.cpp:135
 #: import_export/univcsvdialog.cpp:201
-msgid "&Browse..."
-msgstr "&Examinar..."
+msgid "&Browse…"
+msgstr "&Examinar…"
 
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:555
 msgid "Clear"
@@ -4026,7 +4026,7 @@ msgstr "Consejo: Para marcar una transacción como que requiere seguimiento, sel
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr "Consejo: MMEX soporta la impresión de todos los informes que se pueden generar. Las opciones de impresión están disponibles en el menú Archivo → Imprimir..."
+msgstr "Consejo: MMEX soporta la impresión de todos los informes que se pueden generar. Las opciones de impresión están disponibles en el menú Archivo → Imprimir…"
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
@@ -4192,22 +4192,22 @@ msgid "Last Updated"
 msgstr "Última actualización"
 
 #: mmchecking_list.cpp:483
-msgid "New &Withdrawal..."
-msgstr "Nuevo &retiro..."
+msgid "New &Withdrawal…"
+msgstr "Nuevo &retiro…"
 
 #: mmchecking_list.cpp:484
-msgid "New &Deposit..."
-msgstr "&Nuevo depósito..."
+msgid "New &Deposit…"
+msgstr "&Nuevo depósito…"
 
 #: mmchecking_list.cpp:486
-msgid "New &Transfer..."
-msgstr "Nueva &transferencia..."
+msgid "New &Transfer…"
+msgstr "Nueva &transferencia…"
 
 #: mmchecking_list.cpp:490
-msgid "&Edit Transaction..."
-msgid_plural "&Edit Transactions..."
-msgstr[0] "&Editar transacción..."
-msgstr[1] "&Editar transacciones..."
+msgid "&Edit Transaction…"
+msgid_plural "&Edit Transactions…"
+msgstr[0] "&Editar transacción…"
+msgstr[1] "&Editar transacciones…"
 
 #: mmchecking_list.cpp:493
 msgid "&Copy Transaction"
@@ -4225,14 +4225,14 @@ msgid "&Paste Transactions (%d)"
 msgstr "&Pegar transacciones (%d)"
 
 #: mmchecking_list.cpp:505
-msgid "D&uplicate Transaction..."
-msgstr "D&uplicar transacción..."
+msgid "D&uplicate Transaction…"
+msgstr "D&uplicar transacción…"
 
 #: mmchecking_list.cpp:508
-msgid "&Move Transaction..."
-msgid_plural "&Move Transactions..."
-msgstr[0] "&Mover transacción..."
-msgstr[1] "&Mover transacciones..."
+msgid "&Move Transaction…"
+msgid_plural "&Move Transactions…"
+msgstr[0] "&Mover transacción…"
+msgstr[1] "&Mover transacciones…"
 
 #: mmchecking_list.cpp:514
 msgid "&View In Other Account"
@@ -4243,18 +4243,18 @@ msgid "&View Split Categories"
 msgstr "&Ver categorías divididas"
 
 #: mmchecking_list.cpp:526
-msgid "Create Scheduled T&ransaction..."
-msgstr "Crear t&ransacción programada..."
+msgid "Create Scheduled T&ransaction…"
+msgstr "Crear t&ransacción programada…"
 
 #: mmchecking_list.cpp:530
-msgid "&Restore selected transaction..."
-msgid_plural "&Restore selected transactions..."
-msgstr[0] "&Restaurar transacción seleccionada..."
-msgstr[1] "&Restaurar transacciones seleccionadas..."
+msgid "&Restore selected transaction…"
+msgid_plural "&Restore selected transactions…"
+msgstr[0] "&Restaurar transacción seleccionada…"
+msgstr[1] "&Restaurar transacciones seleccionadas…"
 
 #: mmchecking_list.cpp:532
-msgid "Restore &all transactions in current view..."
-msgstr "Restaura todas las transacciones en la vista actual..."
+msgid "Restore &all transactions in current view…"
+msgstr "Restaura todas las transacciones en la vista actual…"
 
 #: mmchecking_list.cpp:681
 #, c-format
@@ -4266,32 +4266,32 @@ msgid "Cop&y Text to Clipboard"
 msgstr "Cop&iar texto al portapapeles"
 
 #: mmchecking_list.cpp:691
-msgid "&Delete selected transaction..."
-msgid_plural "&Delete selected transactions..."
-msgstr[0] "&Borrar transacción seleccionada..."
-msgstr[1] "&Borrar transacciones seleccionadas..."
+msgid "&Delete selected transaction…"
+msgid_plural "&Delete selected transactions…"
+msgstr[0] "&Borrar transacción seleccionada…"
+msgstr[1] "&Borrar transacciones seleccionadas…"
 
 #: mmchecking_list.cpp:692
-msgid "&Permanently delete selected transaction..."
-msgid_plural "&Permanently delete selected transactions..."
-msgstr[0] "&Eliminar permanentemente la transacción seleccionada..."
-msgstr[1] "&Eliminar permanentemente las transacciones seleccionadas..."
+msgid "&Permanently delete selected transaction…"
+msgid_plural "&Permanently delete selected transactions…"
+msgstr[0] "&Eliminar permanentemente la transacción seleccionada…"
+msgstr[1] "&Eliminar permanentemente las transacciones seleccionadas…"
 
 #: mmchecking_list.cpp:695
-msgid "Delete &all transactions in current view..."
-msgstr "Borrar todas las transacciones en la vista actual..."
+msgid "Delete &all transactions in current view…"
+msgstr "Borrar todas las transacciones en la vista actual…"
 
 #: mmchecking_list.cpp:695
-msgid "Permanently delete &all transactions in current view..."
-msgstr "Borrar permanentemente todas las transacciones en la vista actual..."
+msgid "Permanently delete &all transactions in current view…"
+msgstr "Borrar permanentemente todas las transacciones en la vista actual…"
 
 #: mmchecking_list.cpp:697
-msgid "Delete Viewed “&Follow Up” Transactions..."
-msgstr "Borrar las transacciones de seguimiento mostradas..."
+msgid "Delete Viewed “&Follow Up” Transactions…"
+msgstr "Borrar las transacciones de seguimiento mostradas…"
 
 #: mmchecking_list.cpp:698
-msgid "Delete Viewed “&Unreconciled” Transactions..."
-msgstr "Borrar las transacciones \"&No Reconciliadas\" ya vistas..."
+msgid "Delete Viewed “&Unreconciled” Transactions…"
+msgstr "Borrar las transacciones \"&No Reconciliadas\" ya vistas…"
 
 #: mmchecking_list.cpp:700
 msgid "De&lete "
@@ -4421,10 +4421,10 @@ msgstr "Confirmar el movimiento de la transacción"
 
 #: mmchecking_list.cpp:1752
 #, c-format
-msgid "Moving transaction to..."
-msgid_plural "Moving %i transactions to..."
-msgstr[0] "Moviendo transacción a..."
-msgstr[1] "Moviendo %i transacciones a..."
+msgid "Moving transaction to…"
+msgid_plural "Moving %i transactions to…"
+msgstr[0] "Moviendo transacción a…"
+msgstr[1] "Moviendo %i transacciones a…"
 
 #: mmchecking_list.cpp:1756 stocks_list.cpp:312
 msgid "Select the destination Account "
@@ -4503,20 +4503,20 @@ msgid "View Since Statement Date"
 msgstr "Ver desde la fecha establecida"
 
 #: mmcheckingpanel.cpp:67
-msgid "View Transaction Report..."
-msgstr "Ver informe de transacción..."
+msgid "View Transaction Report…"
+msgstr "Ver informe de transacción…"
 
 #: mmcheckingpanel.cpp:445
-msgid "&New Withdrawal..."
-msgstr "&Nuevo retiro..."
+msgid "&New Withdrawal…"
+msgstr "&Nuevo retiro…"
 
 #: mmcheckingpanel.cpp:446
-msgid "&New Deposit..."
-msgstr "&Nuevo depósito..."
+msgid "&New Deposit…"
+msgstr "&Nuevo depósito…"
 
 #: mmcheckingpanel.cpp:447
-msgid "&New Transfer..."
-msgstr "&Nueva transferencia..."
+msgid "&New Transfer…"
+msgstr "&Nueva transferencia…"
 
 #: mmcheckingpanel.cpp:576
 msgid "Delete all selected transactions"
@@ -4740,80 +4740,80 @@ msgid "&Import from"
 msgstr "&Importar desde"
 
 #: mmframe.cpp:1450
-msgid "&CSV Files..."
-msgstr "&Archivos CSV..."
+msgid "&CSV Files…"
+msgstr "&Archivos CSV…"
 
 #: mmframe.cpp:1451
-msgid "&XML Files..."
-msgstr "&Archivos XML..."
+msgid "&XML Files…"
+msgstr "&Archivos XML…"
 
 #: mmframe.cpp:1451 mmframe.cpp:1612
 msgid "Import from XML file (Excel format)"
 msgstr "Importar desde archivo XML (formato Excel)"
 
 #: mmframe.cpp:1453
-msgid "&QIF Files..."
-msgstr "&Archivos QIF..."
+msgid "&QIF Files…"
+msgstr "&Archivos QIF…"
 
 #: mmframe.cpp:1456 mmframe.cpp:1619
 msgid "&Export as"
 msgstr "&Exportar como"
 
 #: mmframe.cpp:1457 mmframe.cpp:1611 mmframe.cpp:1620
-msgid "&CSV File..."
-msgstr "Archivo &CSV..."
+msgid "&CSV File…"
+msgstr "Archivo &CSV…"
 
 #: mmframe.cpp:1458 mmframe.cpp:1612 mmframe.cpp:1621
-msgid "&XML File..."
-msgstr "Archivo &XML..."
+msgid "&XML File…"
+msgstr "Archivo &XML…"
 
 #: mmframe.cpp:1460 mmframe.cpp:1623
-msgid "&MMEX CSV File..."
-msgstr "&Archivo CSV de MMEX..."
+msgid "&MMEX CSV File…"
+msgstr "&Archivo CSV de MMEX…"
 
 #: mmframe.cpp:1461 mmframe.cpp:1624
-msgid "&JSON File..."
-msgstr "Archivo &JSON..."
+msgid "&JSON File…"
+msgstr "Archivo &JSON…"
 
 #: mmframe.cpp:1462 mmframe.cpp:1614 mmframe.cpp:1625
-msgid "&QIF File..."
-msgstr "Archivo &QIF..."
+msgid "&QIF File…"
+msgstr "Archivo &QIF…"
 
 #: mmframe.cpp:1487
-msgid "&Customize Report..."
-msgstr "Personalizar Reporte..."
+msgid "&Customize Report…"
+msgstr "Personalizar Reporte…"
 
 #: mmframe.cpp:1488
-msgid "&Rename Report..."
-msgstr "Renombrar Reporte..."
+msgid "&Rename Report…"
+msgstr "Renombrar Reporte…"
 
 #: mmframe.cpp:1489
-msgid "&Delete Report..."
-msgstr "Borrar Reporte..."
+msgid "&Delete Report…"
+msgstr "Borrar Reporte…"
 
 #: mmframe.cpp:1505 mmframe.cpp:1523 mmframe.cpp:1543 mmframe.cpp:1726
-msgid "&Edit Account..."
-msgstr "&Editar cuenta..."
+msgid "&Edit Account…"
+msgstr "&Editar cuenta…"
 
 #: mmframe.cpp:1506 mmframe.cpp:1526 mmframe.cpp:1546 mmframe.cpp:1732
-msgid "&Delete Account..."
-msgstr "&Borrar cuenta..."
+msgid "&Delete Account…"
+msgstr "&Borrar cuenta…"
 
 #: mmframe.cpp:1508 mmframe.cpp:1528
 msgid "&Launch Account Website"
 msgstr "&Abrir sitio web de la cuenta"
 
 #: mmframe.cpp:1509 mmframe.cpp:1529
-msgid "&Attachment Manager..."
-msgstr "&Administrador de adjuntos..."
+msgid "&Attachment Manager…"
+msgstr "&Administrador de adjuntos…"
 
 #: mmframe.cpp:1524 mmframe.cpp:1729
-msgid "&Change Account Type..."
-msgstr "&Cambiar tipo de cuenta..."
+msgid "&Change Account Type…"
+msgstr "&Cambiar tipo de cuenta…"
 
 #: mmframe.cpp:1542 mmframe.cpp:1723
-msgid "&New Account..."
-msgstr "&Nueva cuenta..."
+msgid "&New Account…"
+msgstr "&Nueva cuenta…"
 
 #: mmframe.cpp:1544
 msgid "Account &List"
@@ -4840,24 +4840,24 @@ msgid "Accounts &Visible"
 msgstr "Cuentas &visibles"
 
 #: mmframe.cpp:1595
-msgid "&New Database..."
-msgstr "&Nueva base de datos..."
+msgid "&New Database…"
+msgstr "&Nueva base de datos…"
 
 #: mmframe.cpp:1595 mmframe.cpp:1974 wizard_newdb.cpp:136
 msgid "New Database"
 msgstr "Nueva base de datos"
 
 #: mmframe.cpp:1596
-msgid "&Open Database...\tCtrl-O"
-msgstr "&Abrir base de datos...\tCtrl-O"
+msgid "&Open Database…\tCtrl-O"
+msgstr "&Abrir base de datos…\tCtrl-O"
 
 #: mmframe.cpp:1596 mmframe.cpp:1975
 msgid "Open Database"
 msgstr "Abrir base de datos"
 
 #: mmframe.cpp:1597
-msgid "Save Database &As..."
-msgstr "Guardar base de datos &como..."
+msgid "Save Database &As…"
+msgstr "Guardar base de datos &como…"
 
 #: mmframe.cpp:1597
 msgid "Save Database As"
@@ -4872,8 +4872,8 @@ msgid "&Clear Recent Files"
 msgstr "&Limpiar ficheros recientes"
 
 #: mmframe.cpp:1616
-msgid "&WebApp..."
-msgstr "&WebApp..."
+msgid "&WebApp…"
+msgstr "&WebApp…"
 
 #: mmframe.cpp:1616
 msgid "Import from WebApp"
@@ -4884,16 +4884,16 @@ msgid "Export as fixed CSV file"
 msgstr "Exportar como archivo CSV corregido"
 
 #: mmframe.cpp:1627
-msgid "&HTML File..."
-msgstr "Archivo &HTML..."
+msgid "&HTML File…"
+msgstr "Archivo &HTML…"
 
 #: mmframe.cpp:1627
 msgid "Export as HTML file"
 msgstr "Exportar como archivo HTML"
 
 #: mmframe.cpp:1632
-msgid "&Print..."
-msgstr "&Imprimir..."
+msgid "&Print…"
+msgstr "&Imprimir…"
 
 #: mmframe.cpp:1632
 msgid "Print current view"
@@ -5028,48 +5028,48 @@ msgid "Download Currency and Stock Rates"
 msgstr "Descargar tasas de divisas y acciones"
 
 #: mmframe.cpp:1751
-msgid "&Payee Manager..."
-msgstr "&Administrador de beneficiarios..."
+msgid "&Payee Manager…"
+msgstr "&Administrador de beneficiarios…"
 
 #: mmframe.cpp:1751 mmframe.cpp:1982 payeedialog.cpp:512
 msgid "Payee Manager"
 msgstr "Administrador de beneficiarios"
 
 #: mmframe.cpp:1755
-msgid "&Category Manager..."
-msgstr "&Administrador de categorías..."
+msgid "&Category Manager…"
+msgstr "&Administrador de categorías…"
 
 #: mmframe.cpp:1759
-msgid "&Tag Manager..."
-msgstr "&Administrador de etiquetas..."
+msgid "&Tag Manager…"
+msgstr "&Administrador de etiquetas…"
 
 #: mmframe.cpp:1759 mmframe.cpp:1984 tagdialog.h:45
 msgid "Tag Manager"
 msgstr "Administrador de etiquetas"
 
 #: mmframe.cpp:1763
-msgid "Curre&ncy Manager..."
-msgstr "Gestor de div&isas..."
+msgid "Curre&ncy Manager…"
+msgstr "Gestor de div&isas…"
 
 #: mmframe.cpp:1767
-msgid "&Categories..."
-msgstr "&Categorías..."
+msgid "&Categories…"
+msgstr "&Categorías…"
 
 #: mmframe.cpp:1768
 msgid "Merge categories"
 msgstr "Combinar categorías"
 
 #: mmframe.cpp:1770
-msgid "&Payees..."
-msgstr "&Beneficiarios..."
+msgid "&Payees…"
+msgstr "&Beneficiarios…"
 
 #: mmframe.cpp:1771
 msgid "Merge payees"
 msgstr "Combinar beneficiarios"
 
 #: mmframe.cpp:1773
-msgid "&Tags..."
-msgstr "&Etiquetas..."
+msgid "&Tags…"
+msgstr "&Etiquetas…"
 
 #: mmframe.cpp:1774
 msgid "Merge tags"
@@ -5085,8 +5085,8 @@ msgid "Merge categories, payees, and tags"
 msgstr "Combinar categorías, beneficiarios y etiquetas"
 
 #: mmframe.cpp:1788
-msgid "&Budget Planner..."
-msgstr "Planificador del &presupuesto..."
+msgid "&Budget Planner…"
+msgstr "Planificador del &presupuesto…"
 
 #: mmframe.cpp:1792
 msgid "&Scheduled Transactions"
@@ -5101,64 +5101,64 @@ msgid "&Assets"
 msgstr "&Activos"
 
 #: mmframe.cpp:1802
-msgid "T&heme Manager..."
-msgstr "G&estor de temas..."
+msgid "T&heme Manager…"
+msgstr "G&estor de temas…"
 
 #: mmframe.cpp:1802 themes.cpp:143
 msgid "Theme Manager"
 msgstr "Gestor de temas"
 
 #: mmframe.cpp:1808
-msgid "Tra&nsaction Report..."
-msgstr "Reporte de Transacción..."
+msgid "Tra&nsaction Report…"
+msgstr "Reporte de Transacción…"
 
 #: mmframe.cpp:1814
-msgid "&General Report Manager..."
-msgstr "&Administrador de informes generales..."
+msgid "&General Report Manager…"
+msgstr "&Administrador de informes generales…"
 
 #: mmframe.cpp:1818
-msgid "C&ustom Field Manager..."
-msgstr "Administrador de campos p&ersonalizados..."
+msgid "C&ustom Field Manager…"
+msgstr "Administrador de campos p&ersonalizados…"
 
 #: mmframe.cpp:1824
-msgid "Refresh &WebApp..."
-msgstr "Actualizar &WebApp..."
+msgid "Refresh &WebApp…"
+msgstr "Actualizar &WebApp…"
 
 #: mmframe.cpp:1824 mmframe.cpp:2962 mmframe.cpp:2969
 msgid "Refresh WebApp"
 msgstr "Actualizar WebApp"
 
 #: mmframe.cpp:1829
-msgid "&Settings...\tAlt-F12"
-msgstr "Configuración... Alt-F12"
+msgid "&Settings…\tAlt-F12"
+msgstr "Configuración… Alt-F12"
 
 #: mmframe.cpp:1836
-msgid "&Decrypt Encrypted Database..."
-msgstr "&Descifrar base de datos cifrada..."
+msgid "&Decrypt Encrypted Database…"
+msgstr "&Descifrar base de datos cifrada…"
 
 #: mmframe.cpp:1837
 msgid "Convert encrypted database to unencrypted database"
 msgstr "Convierte la base de datos cifrada en una base de datos sin cifrado"
 
 #: mmframe.cpp:1839
-msgid "Change Encrypted &Password..."
-msgstr "Cambiar &contraseña de cifrado..."
+msgid "Change Encrypted &Password…"
+msgstr "Cambiar &contraseña de cifrado…"
 
 #: mmframe.cpp:1840
 msgid "Change the password of an encrypted database"
 msgstr "Cambiar la contraseña de una base de datos cifrada"
 
 #: mmframe.cpp:1842
-msgid "&Optimize Database..."
-msgstr "&Optimizar base de datos..."
+msgid "&Optimize Database…"
+msgstr "&Optimizar base de datos…"
 
 #: mmframe.cpp:1843
 msgid "Optimize database for space and performance"
 msgstr "Optimizar la base de datos para obtener espacio y rendimiento"
 
 #: mmframe.cpp:1845
-msgid "Database Check and De&bug..."
-msgstr "Comprobación y de&puración de la base de datos..."
+msgid "Database Check and De&bug…"
+msgstr "Comprobación y de&puración de la base de datos…"
 
 #: mmframe.cpp:1846
 msgid "Generate database report or fix errors"
@@ -5607,8 +5607,8 @@ msgid "Downloading stock prices from Yahoo"
 msgstr "Descargando los precios de las acciones desde Yahoo"
 
 #: mmframe.cpp:3531
-msgid "Please wait..."
-msgstr "Espere, por favor..."
+msgid "Please wait…"
+msgstr "Espere, por favor…"
 
 #: mmframe.cpp:3580 stockspanel.cpp:496
 #, c-format
@@ -7626,24 +7626,24 @@ msgid "Curr. Total Value"
 msgstr "Valor actual"
 
 #: stocks_list.cpp:146
-msgid "&New Stock Investment..."
-msgstr "&Nueva compra de acciones..."
+msgid "&New Stock Investment…"
+msgstr "&Nueva compra de acciones…"
 
 #: stocks_list.cpp:148
-msgid "&Add Stock Transactions..."
-msgstr "&Añadir transacciones de acciones..."
+msgid "&Add Stock Transactions…"
+msgstr "&Añadir transacciones de acciones…"
 
 #: stocks_list.cpp:149
 msgid "&View Stock Transactions"
 msgstr "&Ver transacciones de acciones"
 
 #: stocks_list.cpp:151
-msgid "&Edit Stock Investment..."
-msgstr "&Editar compra de acciones..."
+msgid "&Edit Stock Investment…"
+msgstr "&Editar compra de acciones…"
 
 #: stocks_list.cpp:153
-msgid "&Delete Stock Investment..."
-msgstr "&Eliminar compra de acciones..."
+msgid "&Delete Stock Investment…"
+msgstr "&Eliminar compra de acciones…"
 
 #: stocks_list.cpp:156
 msgid "Stock &Web Page"
@@ -7733,8 +7733,8 @@ msgid "Nothing to update"
 msgstr "Nada que actualizar"
 
 #: stockspanel.cpp:452
-msgid "Connecting..."
-msgstr "Conectando..."
+msgid "Connecting…"
+msgstr "Conectando…"
 
 #: stockspanel.cpp:556
 #, c-format

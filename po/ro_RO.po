@@ -535,37 +535,37 @@ msgid "Current Value"
 msgstr "Valoare Curentă"
 
 #: assetspanel.cpp:100
-msgid "&New Asset..."
-msgstr "&Adaugă un Activ nou..."
+msgid "&New Asset…"
+msgstr "&Adaugă un Activ nou…"
 
 #: assetspanel.cpp:102
-msgid "D&uplicate Asset..."
-msgstr "Duplicați Activul..."
+msgid "D&uplicate Asset…"
+msgstr "Duplicați Activul…"
 
 #: assetspanel.cpp:104
-msgid "&Add Asset Transaction..."
-msgstr "&Adăugați o tranzacție de active..."
+msgid "&Add Asset Transaction…"
+msgstr "&Adăugați o tranzacție de active…"
 
 #: assetspanel.cpp:105
 msgid "&View Asset Transactions"
 msgstr "&Vezi Tranzacțiile Activelor"
 
 #: assetspanel.cpp:106
-msgid "&Open Asset Account..."
-msgstr "&Deschide contul de active..."
+msgid "&Open Asset Account…"
+msgstr "&Deschide contul de active…"
 
 #: assetspanel.cpp:108
-msgid "&Edit Asset..."
-msgstr "Editează activul..."
+msgid "&Edit Asset…"
+msgstr "Editează activul…"
 
 #: assetspanel.cpp:110
-msgid "&Delete Asset..."
-msgstr "Șterge activul..."
+msgid "&Delete Asset…"
+msgstr "Șterge activul…"
 
 #: assetspanel.cpp:112 billsdepositspanel.cpp:455 mmchecking_list.cpp:522
 #: stocks_list.cpp:155
-msgid "&Organize Attachments..."
-msgstr "&Organizează atașamentele..."
+msgid "&Organize Attachments…"
+msgstr "&Organizează atașamentele…"
 
 #: assetspanel.cpp:209
 msgid "Do you really want to delete the Asset?"
@@ -1333,28 +1333,28 @@ msgid "Skip Next Scheduled Transaction Occurrence"
 msgstr "Omiteți următoarea tranzacție recurentă"
 
 #: billsdepositspanel.cpp:445
-msgid "Enter next Occurrence..."
-msgstr "Introdu următoarea apariție..."
+msgid "Enter next Occurrence…"
+msgstr "Introdu următoarea apariție…"
 
 #: billsdepositspanel.cpp:447
 msgid "Skip next Occurrence"
 msgstr "Omite următoarea apariție"
 
 #: billsdepositspanel.cpp:449
-msgid "&New Scheduled Transaction..."
-msgstr "&O nouă tranzacție programată..."
+msgid "&New Scheduled Transaction…"
+msgstr "&O nouă tranzacție programată…"
 
 #: billsdepositspanel.cpp:450
-msgid "&Edit Scheduled Transaction..."
-msgstr "&Editați tranzacția programată..."
+msgid "&Edit Scheduled Transaction…"
+msgstr "&Editați tranzacția programată…"
 
 #: billsdepositspanel.cpp:451
-msgid "D&uplicate Scheduled Transaction..."
-msgstr "Duplică tranzacția programată..."
+msgid "D&uplicate Scheduled Transaction…"
+msgstr "Duplică tranzacția programată…"
 
 #: billsdepositspanel.cpp:453
-msgid "&Delete Scheduled Transaction..."
-msgstr "Ștergeți tranzacția programată..."
+msgid "&Delete Scheduled Transaction…"
+msgstr "Ștergeți tranzacția programată…"
 
 #: billsdepositspanel.cpp:509
 msgid "Automated"
@@ -2871,32 +2871,32 @@ msgid "General Report Manager"
 msgstr "Managerul general de rapoarte"
 
 #: general_report_manager.cpp:732
-msgid "Assets..."
-msgstr "Active..."
+msgid "Assets…"
+msgstr "Active…"
 
 #: general_report_manager.cpp:735
-msgid "New Empty Report..."
-msgstr "Un nou raport gol..."
+msgid "New Empty Report…"
+msgstr "Un nou raport gol…"
 
 #: general_report_manager.cpp:736
 msgid "New Sample Report"
 msgstr "Un raport nou"
 
 #: general_report_manager.cpp:739
-msgid "Change Group..."
-msgstr "Schimbă Grupul..."
+msgid "Change Group…"
+msgstr "Schimbă Grupul…"
 
 #: general_report_manager.cpp:741
-msgid "Rename Group..."
-msgstr "Redenumește grupul..."
+msgid "Rename Group…"
+msgstr "Redenumește grupul…"
 
 #: general_report_manager.cpp:742
 msgid "UnGroup"
 msgstr "Degrupare"
 
 #: general_report_manager.cpp:743
-msgid "Rename Report..."
-msgstr "Redenumește raportul..."
+msgid "Rename Report…"
+msgstr "Redenumește raportul…"
 
 #: general_report_manager.cpp:747
 msgid "Active"
@@ -2907,8 +2907,8 @@ msgid "Show/Hide report in Navigator"
 msgstr ""
 
 #: general_report_manager.cpp:751
-msgid "Delete Report..."
-msgstr "Șterge raportul..."
+msgid "Delete Report…"
+msgstr "Șterge raportul…"
 
 #: general_report_manager.cpp:848 general_report_manager.cpp:1009
 msgid "Enter the name for the report"
@@ -2975,8 +2975,8 @@ msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr "Metadata '%1$s' lipseste din tema aleasă '%2$s'"
 
 #: images_list.cpp:458
-msgid "and more..."
-msgstr "și mai multe..."
+msgid "and more…"
+msgstr "și mai multe…"
 
 #: images_list.cpp:460
 #, c-format
@@ -3107,8 +3107,8 @@ msgstr "Nume fişier:"
 
 #: import_export/qif_export.cpp:203 import_export/qif_import_gui.cpp:135
 #: import_export/univcsvdialog.cpp:201
-msgid "&Browse..."
-msgstr "&Răsfoire..."
+msgid "&Browse…"
+msgstr "&Răsfoire…"
 
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:555
 msgid "Clear"
@@ -4199,23 +4199,23 @@ msgid "Last Updated"
 msgstr "Ultima actualizare"
 
 #: mmchecking_list.cpp:483
-msgid "New &Withdrawal..."
+msgid "New &Withdrawal…"
 msgstr ""
 
 #: mmchecking_list.cpp:484
-msgid "New &Deposit..."
+msgid "New &Deposit…"
 msgstr ""
 
 #: mmchecking_list.cpp:486
-msgid "New &Transfer..."
+msgid "New &Transfer…"
 msgstr ""
 
 #: mmchecking_list.cpp:490
-msgid "&Edit Transaction..."
-msgid_plural "&Edit Transactions..."
-msgstr[0] "&Editează Tranzacția..."
-msgstr[1] "&Editează Tranzacțiile..."
-msgstr[2] "&Editează Tranzacțiile..."
+msgid "&Edit Transaction…"
+msgid_plural "&Edit Transactions…"
+msgstr[0] "&Editează Tranzacția…"
+msgstr[1] "&Editează Tranzacțiile…"
+msgstr[2] "&Editează Tranzacțiile…"
 
 #: mmchecking_list.cpp:493
 msgid "&Copy Transaction"
@@ -4234,15 +4234,15 @@ msgid "&Paste Transactions (%d)"
 msgstr "&Lipește Tranzacțiile (%d)"
 
 #: mmchecking_list.cpp:505
-msgid "D&uplicate Transaction..."
-msgstr "D&uplică Tranzacția..."
+msgid "D&uplicate Transaction…"
+msgstr "D&uplică Tranzacția…"
 
 #: mmchecking_list.cpp:508
-msgid "&Move Transaction..."
-msgid_plural "&Move Transactions..."
-msgstr[0] "&Mută Tranzacția..."
-msgstr[1] "&Mută Tranzacțiile..."
-msgstr[2] "&Mută Tranzacțiile..."
+msgid "&Move Transaction…"
+msgid_plural "&Move Transactions…"
+msgstr[0] "&Mută Tranzacția…"
+msgstr[1] "&Mută Tranzacțiile…"
+msgstr[2] "&Mută Tranzacțiile…"
 
 #: mmchecking_list.cpp:514
 msgid "&View In Other Account"
@@ -4253,18 +4253,18 @@ msgid "&View Split Categories"
 msgstr "&Vizualizează categorii de divizare"
 
 #: mmchecking_list.cpp:526
-msgid "Create Scheduled T&ransaction..."
+msgid "Create Scheduled T&ransaction…"
 msgstr ""
 
 #: mmchecking_list.cpp:530
-msgid "&Restore selected transaction..."
-msgid_plural "&Restore selected transactions..."
+msgid "&Restore selected transaction…"
+msgid_plural "&Restore selected transactions…"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
 #: mmchecking_list.cpp:532
-msgid "Restore &all transactions in current view..."
+msgid "Restore &all transactions in current view…"
 msgstr ""
 
 #: mmchecking_list.cpp:681
@@ -4277,33 +4277,33 @@ msgid "Cop&y Text to Clipboard"
 msgstr ""
 
 #: mmchecking_list.cpp:691
-msgid "&Delete selected transaction..."
-msgid_plural "&Delete selected transactions..."
+msgid "&Delete selected transaction…"
+msgid_plural "&Delete selected transactions…"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
 #: mmchecking_list.cpp:692
-msgid "&Permanently delete selected transaction..."
-msgid_plural "&Permanently delete selected transactions..."
+msgid "&Permanently delete selected transaction…"
+msgid_plural "&Permanently delete selected transactions…"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
 #: mmchecking_list.cpp:695
-msgid "Delete &all transactions in current view..."
+msgid "Delete &all transactions in current view…"
 msgstr ""
 
 #: mmchecking_list.cpp:695
-msgid "Permanently delete &all transactions in current view..."
+msgid "Permanently delete &all transactions in current view…"
 msgstr ""
 
 #: mmchecking_list.cpp:697
-msgid "Delete Viewed “&Follow Up” Transactions..."
+msgid "Delete Viewed “&Follow Up” Transactions…"
 msgstr ""
 
 #: mmchecking_list.cpp:698
-msgid "Delete Viewed “&Unreconciled” Transactions..."
+msgid "Delete Viewed “&Unreconciled” Transactions…"
 msgstr ""
 
 #: mmchecking_list.cpp:700
@@ -4438,8 +4438,8 @@ msgstr ""
 
 #: mmchecking_list.cpp:1752
 #, c-format
-msgid "Moving transaction to..."
-msgid_plural "Moving %i transactions to..."
+msgid "Moving transaction to…"
+msgid_plural "Moving %i transactions to…"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -4521,20 +4521,20 @@ msgid "View Since Statement Date"
 msgstr "Vizualizează începând de la data ultimului extras"
 
 #: mmcheckingpanel.cpp:67
-msgid "View Transaction Report..."
+msgid "View Transaction Report…"
 msgstr ""
 
 #: mmcheckingpanel.cpp:445
-msgid "&New Withdrawal..."
-msgstr "&Retragere nouă..."
+msgid "&New Withdrawal…"
+msgstr "&Retragere nouă…"
 
 #: mmcheckingpanel.cpp:446
-msgid "&New Deposit..."
-msgstr "&Depozit nou..."
+msgid "&New Deposit…"
+msgstr "&Depozit nou…"
 
 #: mmcheckingpanel.cpp:447
-msgid "&New Transfer..."
-msgstr "&Transfer nou..."
+msgid "&New Transfer…"
+msgstr "&Transfer nou…"
 
 #: mmcheckingpanel.cpp:576
 msgid "Delete all selected transactions"
@@ -4757,80 +4757,80 @@ msgid "&Import from"
 msgstr "&Importă din"
 
 #: mmframe.cpp:1450
-msgid "&CSV Files..."
-msgstr "Fișiere &CSV..."
+msgid "&CSV Files…"
+msgstr "Fișiere &CSV…"
 
 #: mmframe.cpp:1451
-msgid "&XML Files..."
-msgstr "Fișiere &XML..."
+msgid "&XML Files…"
+msgstr "Fișiere &XML…"
 
 #: mmframe.cpp:1451 mmframe.cpp:1612
 msgid "Import from XML file (Excel format)"
 msgstr "Importă din fișierul XML (în format Excel)"
 
 #: mmframe.cpp:1453
-msgid "&QIF Files..."
-msgstr "Fișiere &QIF..."
+msgid "&QIF Files…"
+msgstr "Fișiere &QIF…"
 
 #: mmframe.cpp:1456 mmframe.cpp:1619
 msgid "&Export as"
 msgstr "&Exportă ca"
 
 #: mmframe.cpp:1457 mmframe.cpp:1611 mmframe.cpp:1620
-msgid "&CSV File..."
-msgstr "Fișier &CSV..."
+msgid "&CSV File…"
+msgstr "Fișier &CSV…"
 
 #: mmframe.cpp:1458 mmframe.cpp:1612 mmframe.cpp:1621
-msgid "&XML File..."
-msgstr "Fișier &XML..."
+msgid "&XML File…"
+msgstr "Fișier &XML…"
 
 #: mmframe.cpp:1460 mmframe.cpp:1623
-msgid "&MMEX CSV File..."
-msgstr "Fișier &MMEX CSV..."
+msgid "&MMEX CSV File…"
+msgstr "Fișier &MMEX CSV…"
 
 #: mmframe.cpp:1461 mmframe.cpp:1624
-msgid "&JSON File..."
-msgstr "Fişier &JSON..."
+msgid "&JSON File…"
+msgstr "Fişier &JSON…"
 
 #: mmframe.cpp:1462 mmframe.cpp:1614 mmframe.cpp:1625
-msgid "&QIF File..."
-msgstr "Fișier &QIF..."
+msgid "&QIF File…"
+msgstr "Fișier &QIF…"
 
 #: mmframe.cpp:1487
-msgid "&Customize Report..."
+msgid "&Customize Report…"
 msgstr ""
 
 #: mmframe.cpp:1488
-msgid "&Rename Report..."
+msgid "&Rename Report…"
 msgstr ""
 
 #: mmframe.cpp:1489
-msgid "&Delete Report..."
+msgid "&Delete Report…"
 msgstr ""
 
 #: mmframe.cpp:1505 mmframe.cpp:1523 mmframe.cpp:1543 mmframe.cpp:1726
-msgid "&Edit Account..."
-msgstr "&Editează Contul..."
+msgid "&Edit Account…"
+msgstr "&Editează Contul…"
 
 #: mmframe.cpp:1506 mmframe.cpp:1526 mmframe.cpp:1546 mmframe.cpp:1732
-msgid "&Delete Account..."
-msgstr "Șter&ge Contul..."
+msgid "&Delete Account…"
+msgstr "Șter&ge Contul…"
 
 #: mmframe.cpp:1508 mmframe.cpp:1528
 msgid "&Launch Account Website"
 msgstr "&Lansează Situl Contului"
 
 #: mmframe.cpp:1509 mmframe.cpp:1529
-msgid "&Attachment Manager..."
+msgid "&Attachment Manager…"
 msgstr ""
 
 #: mmframe.cpp:1524 mmframe.cpp:1729
-msgid "&Change Account Type..."
+msgid "&Change Account Type…"
 msgstr ""
 
 #: mmframe.cpp:1542 mmframe.cpp:1723
-msgid "&New Account..."
-msgstr "&Cont Nou..."
+msgid "&New Account…"
+msgstr "&Cont Nou…"
 
 #: mmframe.cpp:1544
 msgid "Account &List"
@@ -4857,28 +4857,28 @@ msgid "Accounts &Visible"
 msgstr ""
 
 #: mmframe.cpp:1595
-msgid "&New Database..."
-msgstr "&Bază de date nouă..."
+msgid "&New Database…"
+msgstr "&Bază de date nouă…"
 
 #: mmframe.cpp:1595 mmframe.cpp:1974 wizard_newdb.cpp:136
 msgid "New Database"
 msgstr "Bază de Date Nouă"
 
 #: mmframe.cpp:1596
-msgid "&Open Database...\tCtrl-O"
-msgstr "&Deschide baza de date...\tCtrl-O"
+msgid "&Open Database…\tCtrl-O"
+msgstr "&Deschide baza de date…\tCtrl-O"
 
 #: mmframe.cpp:1596 mmframe.cpp:1975
 msgid "Open Database"
 msgstr "Deschide Baza de Date"
 
 #: mmframe.cpp:1597
-msgid "Save Database &As..."
-msgstr "S&alvează baza de date ca..."
+msgid "Save Database &As…"
+msgstr "S&alvează baza de date ca…"
 
 #: mmframe.cpp:1597
 msgid "Save Database As"
-msgstr "Salvează Baza de Date Ca..."
+msgstr "Salvează Baza de Date Ca…"
 
 #: mmframe.cpp:1604
 msgid "&Recent Files"
@@ -4889,8 +4889,8 @@ msgid "&Clear Recent Files"
 msgstr "Șterge fișierele re&cente"
 
 #: mmframe.cpp:1616
-msgid "&WebApp..."
-msgstr "&WebApp..."
+msgid "&WebApp…"
+msgstr "&WebApp…"
 
 #: mmframe.cpp:1616
 msgid "Import from WebApp"
@@ -4901,16 +4901,16 @@ msgid "Export as fixed CSV file"
 msgstr "Exportă ca fișier CSV fix"
 
 #: mmframe.cpp:1627
-msgid "&HTML File..."
-msgstr "Fișier &HTML..."
+msgid "&HTML File…"
+msgstr "Fișier &HTML…"
 
 #: mmframe.cpp:1627
 msgid "Export as HTML file"
 msgstr "Exportă ca fișier HTML"
 
 #: mmframe.cpp:1632
-msgid "&Print..."
-msgstr "Im&primare..."
+msgid "&Print…"
+msgstr "Im&primare…"
 
 #: mmframe.cpp:1632
 msgid "Print current view"
@@ -5045,7 +5045,7 @@ msgid "Download Currency and Stock Rates"
 msgstr "Descarcă ratele de schimb valutare și bursiere"
 
 #: mmframe.cpp:1751
-msgid "&Payee Manager..."
+msgid "&Payee Manager…"
 msgstr ""
 
 #: mmframe.cpp:1751 mmframe.cpp:1982 payeedialog.cpp:512
@@ -5053,11 +5053,11 @@ msgid "Payee Manager"
 msgstr ""
 
 #: mmframe.cpp:1755
-msgid "&Category Manager..."
+msgid "&Category Manager…"
 msgstr ""
 
 #: mmframe.cpp:1759
-msgid "&Tag Manager..."
+msgid "&Tag Manager…"
 msgstr ""
 
 #: mmframe.cpp:1759 mmframe.cpp:1984 tagdialog.h:45
@@ -5065,28 +5065,28 @@ msgid "Tag Manager"
 msgstr ""
 
 #: mmframe.cpp:1763
-msgid "Curre&ncy Manager..."
+msgid "Curre&ncy Manager…"
 msgstr ""
 
 #: mmframe.cpp:1767
-msgid "&Categories..."
-msgstr "&Categorii..."
+msgid "&Categories…"
+msgstr "&Categorii…"
 
 #: mmframe.cpp:1768
 msgid "Merge categories"
 msgstr ""
 
 #: mmframe.cpp:1770
-msgid "&Payees..."
-msgstr "&Beneficiari..."
+msgid "&Payees…"
+msgstr "&Beneficiari…"
 
 #: mmframe.cpp:1771
 msgid "Merge payees"
 msgstr ""
 
 #: mmframe.cpp:1773
-msgid "&Tags..."
-msgstr "&Etichete..."
+msgid "&Tags…"
+msgstr "&Etichete…"
 
 #: mmframe.cpp:1774
 msgid "Merge tags"
@@ -5102,7 +5102,7 @@ msgid "Merge categories, payees, and tags"
 msgstr ""
 
 #: mmframe.cpp:1788
-msgid "&Budget Planner..."
+msgid "&Budget Planner…"
 msgstr ""
 
 #: mmframe.cpp:1792
@@ -5118,39 +5118,39 @@ msgid "&Assets"
 msgstr "&Bunuri"
 
 #: mmframe.cpp:1802
-msgid "T&heme Manager..."
-msgstr "Manag&er de teme..."
+msgid "T&heme Manager…"
+msgstr "Manag&er de teme…"
 
 #: mmframe.cpp:1802 themes.cpp:143
 msgid "Theme Manager"
 msgstr "Manag&er de teme"
 
 #: mmframe.cpp:1808
-msgid "Tra&nsaction Report..."
+msgid "Tra&nsaction Report…"
 msgstr ""
 
 #: mmframe.cpp:1814
-msgid "&General Report Manager..."
+msgid "&General Report Manager…"
 msgstr ""
 
 #: mmframe.cpp:1818
-msgid "C&ustom Field Manager..."
+msgid "C&ustom Field Manager…"
 msgstr ""
 
 #: mmframe.cpp:1824
-msgid "Refresh &WebApp..."
-msgstr "Reîmprospătare &WebApp..."
+msgid "Refresh &WebApp…"
+msgstr "Reîmprospătare &WebApp…"
 
 #: mmframe.cpp:1824 mmframe.cpp:2962 mmframe.cpp:2969
 msgid "Refresh WebApp"
 msgstr "Reîmprospătare WebApp"
 
 #: mmframe.cpp:1829
-msgid "&Settings...\tAlt-F12"
+msgid "&Settings…\tAlt-F12"
 msgstr "Setări"
 
 #: mmframe.cpp:1836
-msgid "&Decrypt Encrypted Database..."
+msgid "&Decrypt Encrypted Database…"
 msgstr ""
 
 #: mmframe.cpp:1837
@@ -5158,23 +5158,23 @@ msgid "Convert encrypted database to unencrypted database"
 msgstr ""
 
 #: mmframe.cpp:1839
-msgid "Change Encrypted &Password..."
-msgstr "Schimbă &parola criptată..."
+msgid "Change Encrypted &Password…"
+msgstr "Schimbă &parola criptată…"
 
 #: mmframe.cpp:1840
 msgid "Change the password of an encrypted database"
 msgstr "Schimbă parola unei baze de date criptate"
 
 #: mmframe.cpp:1842
-msgid "&Optimize Database..."
-msgstr "&Optimizare bază de date..."
+msgid "&Optimize Database…"
+msgstr "&Optimizare bază de date…"
 
 #: mmframe.cpp:1843
 msgid "Optimize database for space and performance"
 msgstr ""
 
 #: mmframe.cpp:1845
-msgid "Database Check and De&bug..."
+msgid "Database Check and De&bug…"
 msgstr ""
 
 #: mmframe.cpp:1846
@@ -5622,8 +5622,8 @@ msgid "Downloading stock prices from Yahoo"
 msgstr "Se descarcă prețurile acțiunilor de la Yahoo"
 
 #: mmframe.cpp:3531
-msgid "Please wait..."
-msgstr "Te rog așteaptă..."
+msgid "Please wait…"
+msgstr "Te rog așteaptă…"
 
 #: mmframe.cpp:3580 stockspanel.cpp:496
 #, c-format
@@ -7629,11 +7629,11 @@ msgid "Curr. Total Value"
 msgstr ""
 
 #: stocks_list.cpp:146
-msgid "&New Stock Investment..."
+msgid "&New Stock Investment…"
 msgstr ""
 
 #: stocks_list.cpp:148
-msgid "&Add Stock Transactions..."
+msgid "&Add Stock Transactions…"
 msgstr ""
 
 #: stocks_list.cpp:149
@@ -7641,11 +7641,11 @@ msgid "&View Stock Transactions"
 msgstr ""
 
 #: stocks_list.cpp:151
-msgid "&Edit Stock Investment..."
+msgid "&Edit Stock Investment…"
 msgstr ""
 
 #: stocks_list.cpp:153
-msgid "&Delete Stock Investment..."
+msgid "&Delete Stock Investment…"
 msgstr ""
 
 #: stocks_list.cpp:156
@@ -7736,7 +7736,7 @@ msgid "Nothing to update"
 msgstr ""
 
 #: stockspanel.cpp:452
-msgid "Connecting..."
+msgid "Connecting…"
 msgstr ""
 
 #: stockspanel.cpp:556

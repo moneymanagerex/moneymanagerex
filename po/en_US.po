@@ -1218,7 +1218,7 @@ msgid "Skip Next Bills & Deposit Occurrence"
 msgstr ""
 
 #: billsdepositspanel.cpp:396
-msgid "Enter next Occurrence..."
+msgid "Enter next Occurrence…"
 msgstr ""
 
 #: billsdepositspanel.cpp:398
@@ -1226,15 +1226,15 @@ msgid "Skip next Occurrence"
 msgstr ""
 
 #: billsdepositspanel.cpp:400
-msgid "&New Bills && Deposit Series..."
+msgid "&New Bills && Deposit Series…"
 msgstr ""
 
 #: billsdepositspanel.cpp:401
-msgid "&Edit Bills && Deposit Series..."
+msgid "&Edit Bills && Deposit Series…"
 msgstr ""
 
 #: billsdepositspanel.cpp:402
-msgid "&Delete Bills && Deposit Series..."
+msgid "&Delete Bills && Deposit Series…"
 msgstr ""
 
 #: billsdepositspanel.cpp:449
@@ -3089,7 +3089,7 @@ msgid "Log file written to: %s"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:1047 stockdialog.cpp:679
-msgid "Please confirm saving..."
+msgid "Please confirm saving…"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:1079
@@ -3450,7 +3450,7 @@ msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all
 msgstr ""
 
 #: mmTips.h:35
-msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
+msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
 msgstr ""
 
 #: mmTips.h:37
@@ -3665,7 +3665,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:1744 stockspanel.cpp:287
 #, c-format
-msgid "Moving Transaction from %s to..."
+msgid "Moving Transaction from %s to…"
 msgstr ""
 
 #: mmcheckingpanel.cpp:1747 stockspanel.cpp:288
@@ -3825,19 +3825,19 @@ msgid "Account &List (Home)"
 msgstr ""
 
 #: mmframe.cpp:1243 mmframe.cpp:1249 mmframe.cpp:1315 mmframe.cpp:1323
-msgid "&CSV Files..."
+msgid "&CSV Files…"
 msgstr ""
 
 #: mmframe.cpp:1244 mmframe.cpp:1250 mmframe.cpp:1316 mmframe.cpp:1324
-msgid "&XML Files..."
+msgid "&XML Files…"
 msgstr ""
 
 #: mmframe.cpp:1245 mmframe.cpp:1251 mmframe.cpp:1317 mmframe.cpp:1325
-msgid "&QIF Files..."
+msgid "&QIF Files…"
 msgstr ""
 
 #: mmframe.cpp:1246 mmframe.cpp:1318
-msgid "&JSON Files..."
+msgid "&JSON Files…"
 msgstr ""
 
 #: mmframe.cpp:1250 mmframe.cpp:1324
@@ -3873,7 +3873,7 @@ msgid "Save Database As"
 msgstr ""
 
 #: mmframe.cpp:1308
-msgid "&Recent Files..."
+msgid "&Recent Files…"
 msgstr ""
 
 #: mmframe.cpp:1309
@@ -3909,7 +3909,7 @@ msgid "Import from QIF"
 msgstr ""
 
 #: mmframe.cpp:1326
-msgid "&WebApp..."
+msgid "&WebApp…"
 msgstr ""
 
 #: mmframe.cpp:1326
@@ -3917,7 +3917,7 @@ msgid "Import from WebApp"
 msgstr ""
 
 #: mmframe.cpp:1332 mmframe.cpp:1713
-msgid "&Print..."
+msgid "&Print…"
 msgstr ""
 
 #: mmframe.cpp:1332 mmframe.cpp:1713
@@ -4025,7 +4025,7 @@ msgid "Delete Account from database"
 msgstr ""
 
 #: mmframe.cpp:1440
-msgid "Download Rates..."
+msgid "Download Rates…"
 msgstr ""
 
 #: mmframe.cpp:1440 mmframe.cpp:1707
@@ -4033,11 +4033,11 @@ msgid "Download Currency and Stock rates"
 msgstr ""
 
 #: mmframe.cpp:1447
-msgid "Organize &Categories..."
+msgid "Organize &Categories…"
 msgstr ""
 
 #: mmframe.cpp:1452
-msgid "Organize &Payees..."
+msgid "Organize &Payees…"
 msgstr ""
 
 #: mmframe.cpp:1452 mmframe.cpp:1683 payeedialog.cpp:75
@@ -4045,7 +4045,7 @@ msgid "Organize Payees"
 msgstr ""
 
 #: mmframe.cpp:1457
-msgid "Organize Currency..."
+msgid "Organize Currency…"
 msgstr ""
 
 #: mmframe.cpp:1457 mmframe.cpp:1684
@@ -4053,11 +4053,11 @@ msgid "Organize Currency"
 msgstr ""
 
 #: mmframe.cpp:1462
-msgid "&Categories..."
+msgid "&Categories…"
 msgstr ""
 
 #: mmframe.cpp:1466
-msgid "&Payees..."
+msgid "&Payees…"
 msgstr ""
 
 #: mmframe.cpp:1467
@@ -4065,7 +4065,7 @@ msgid "Reassign all payees to another payee"
 msgstr ""
 
 #: mmframe.cpp:1470
-msgid "Relocation of..."
+msgid "Relocation of…"
 msgstr ""
 
 #: mmframe.cpp:1471
@@ -4089,7 +4089,7 @@ msgid "&Assets"
 msgstr ""
 
 #: mmframe.cpp:1499
-msgid "&Transaction Report Filter..."
+msgid "&Transaction Report Filter…"
 msgstr ""
 
 #: mmframe.cpp:1499 mmframe.cpp:1686
@@ -4097,11 +4097,11 @@ msgid "Transaction Report Filter"
 msgstr ""
 
 #: mmframe.cpp:1506
-msgid "&General Report Manager..."
+msgid "&General Report Manager…"
 msgstr ""
 
 #: mmframe.cpp:1511
-msgid "&Custom Fields Manager..."
+msgid "&Custom Fields Manager…"
 msgstr ""
 
 #: mmframe.cpp:1511
@@ -4109,7 +4109,7 @@ msgid "Custom Fields Manager"
 msgstr ""
 
 #: mmframe.cpp:1518
-msgid "&Options...\tCtrl-,"
+msgid "&Options…\tCtrl-,"
 msgstr ""
 
 #: mmframe.cpp:1518 mmframe.cpp:1690
@@ -4301,7 +4301,7 @@ msgid "Check For Updates"
 msgstr ""
 
 #: mmframe.cpp:1642 mmframe.cpp:1716
-msgid "&About..."
+msgid "&About…"
 msgstr ""
 
 #: mmframe.cpp:1642 mmframe.cpp:1716
@@ -4349,7 +4349,7 @@ msgid "Show Organize Currency Dialog"
 msgstr ""
 
 #: mmframe.cpp:1690
-msgid "&Options..."
+msgid "&Options…"
 msgstr ""
 
 #: mmframe.cpp:1700
@@ -4414,7 +4414,7 @@ msgstr ""
 
 #: mmframe.cpp:1929
 msgid ""
-"Database that you trying to open has been markrd as opened by another MMEX instance...\n"
+"Database that you trying to open has been markrd as opened by another MMEX instance…\n"
 "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n"
 "\n"
 "Possible it may be as result of a programm crash in previous usage.\n"
@@ -4570,7 +4570,7 @@ msgid "Downloading stock prices from Yahoo"
 msgstr ""
 
 #: mmframe.cpp:2882
-msgid "Please wait..."
+msgid "Please wait…"
 msgstr ""
 
 #: mmframe.cpp:2931 stockspanel.cpp:893
@@ -6299,7 +6299,7 @@ msgid "Nothing to update"
 msgstr ""
 
 #: stockspanel.cpp:845
-msgid "Connecting..."
+msgid "Connecting…"
 msgstr ""
 
 #: stockspanel.cpp:950
@@ -6718,7 +6718,7 @@ msgid "Network status (click to refresh)"
 msgstr ""
 
 #: webappdialog.cpp:132
-msgid "Checking for new transactions..."
+msgid "Checking for new transactions…"
 msgstr ""
 
 #: webappdialog.cpp:165

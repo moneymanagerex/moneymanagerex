@@ -535,37 +535,37 @@ msgid "Current Value"
 msgstr "當前值"
 
 #: assetspanel.cpp:100
-msgid "&New Asset..."
-msgstr "新增資產(&N)..."
+msgid "&New Asset…"
+msgstr "新增資產(&N)…"
 
 #: assetspanel.cpp:102
-msgid "D&uplicate Asset..."
-msgstr "複製貼上資產(&U)..."
+msgid "D&uplicate Asset…"
+msgstr "複製貼上資產(&U)…"
 
 #: assetspanel.cpp:104
-msgid "&Add Asset Transaction..."
-msgstr "新增資產交易紀錄(&A)..."
+msgid "&Add Asset Transaction…"
+msgstr "新增資產交易紀錄(&A)…"
 
 #: assetspanel.cpp:105
 msgid "&View Asset Transactions"
 msgstr "檢視資產交易紀錄(&V)"
 
 #: assetspanel.cpp:106
-msgid "&Open Asset Account..."
-msgstr "開啓資產賬戶(&O)..."
+msgid "&Open Asset Account…"
+msgstr "開啓資產賬戶(&O)…"
 
 #: assetspanel.cpp:108
-msgid "&Edit Asset..."
-msgstr "編輯資產(&E)..."
+msgid "&Edit Asset…"
+msgstr "編輯資產(&E)…"
 
 #: assetspanel.cpp:110
-msgid "&Delete Asset..."
-msgstr "刪除資產(&D)..."
+msgid "&Delete Asset…"
+msgstr "刪除資產(&D)…"
 
 #: assetspanel.cpp:112 billsdepositspanel.cpp:455 mmchecking_list.cpp:522
 #: stocks_list.cpp:155
-msgid "&Organize Attachments..."
-msgstr "管理附件(&O)..."
+msgid "&Organize Attachments…"
+msgstr "管理附件(&O)…"
 
 #: assetspanel.cpp:209
 msgid "Do you really want to delete the Asset?"
@@ -1333,7 +1333,7 @@ msgid "Skip Next Scheduled Transaction Occurrence"
 msgstr "跳過下一次排程交易紀錄"
 
 #: billsdepositspanel.cpp:445
-msgid "Enter next Occurrence..."
+msgid "Enter next Occurrence…"
 msgstr "輸入下一次交易"
 
 #: billsdepositspanel.cpp:447
@@ -1341,20 +1341,20 @@ msgid "Skip next Occurrence"
 msgstr "跳過下次交易"
 
 #: billsdepositspanel.cpp:449
-msgid "&New Scheduled Transaction..."
-msgstr "新增排程交易紀錄(&N)..."
+msgid "&New Scheduled Transaction…"
+msgstr "新增排程交易紀錄(&N)…"
 
 #: billsdepositspanel.cpp:450
-msgid "&Edit Scheduled Transaction..."
-msgstr "編輯排程交易紀錄(&E)..."
+msgid "&Edit Scheduled Transaction…"
+msgstr "編輯排程交易紀錄(&E)…"
 
 #: billsdepositspanel.cpp:451
-msgid "D&uplicate Scheduled Transaction..."
-msgstr "複製貼上排程交易紀錄(&U)..."
+msgid "D&uplicate Scheduled Transaction…"
+msgstr "複製貼上排程交易紀錄(&U)…"
 
 #: billsdepositspanel.cpp:453
-msgid "&Delete Scheduled Transaction..."
-msgstr "刪除排程交易紀錄(&D)..."
+msgid "&Delete Scheduled Transaction…"
+msgstr "刪除排程交易紀錄(&D)…"
 
 #: billsdepositspanel.cpp:509
 msgid "Automated"
@@ -2861,32 +2861,32 @@ msgid "General Report Manager"
 msgstr "報告管理工具"
 
 #: general_report_manager.cpp:732
-msgid "Assets..."
-msgstr "資產..."
+msgid "Assets…"
+msgstr "資產…"
 
 #: general_report_manager.cpp:735
-msgid "New Empty Report..."
-msgstr "新的空白報表..."
+msgid "New Empty Report…"
+msgstr "新的空白報表…"
 
 #: general_report_manager.cpp:736
 msgid "New Sample Report"
-msgstr "新的報表範例..."
+msgstr "新的報表範例…"
 
 #: general_report_manager.cpp:739
-msgid "Change Group..."
-msgstr "改變分組..."
+msgid "Change Group…"
+msgstr "改變分組…"
 
 #: general_report_manager.cpp:741
-msgid "Rename Group..."
-msgstr "重新命名分組..."
+msgid "Rename Group…"
+msgstr "重新命名分組…"
 
 #: general_report_manager.cpp:742
 msgid "UnGroup"
 msgstr "取消群組"
 
 #: general_report_manager.cpp:743
-msgid "Rename Report..."
-msgstr "重新命名報表..."
+msgid "Rename Report…"
+msgstr "重新命名報表…"
 
 #: general_report_manager.cpp:747
 msgid "Active"
@@ -2897,8 +2897,8 @@ msgid "Show/Hide report in Navigator"
 msgstr "於導覽器中 顯示/隱藏 報表"
 
 #: general_report_manager.cpp:751
-msgid "Delete Report..."
-msgstr "刪除報表..."
+msgid "Delete Report…"
+msgstr "刪除報表…"
 
 #: general_report_manager.cpp:848 general_report_manager.cpp:1009
 msgid "Enter the name for the report"
@@ -2965,8 +2965,8 @@ msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr "所選主題「%2$s」中缺少詮釋資料「%1$s」"
 
 #: images_list.cpp:458
-msgid "and more..."
-msgstr "和更多..."
+msgid "and more…"
+msgstr "和更多…"
 
 #: images_list.cpp:460
 #, c-format
@@ -3097,7 +3097,7 @@ msgstr "檔案名稱："
 
 #: import_export/qif_export.cpp:203 import_export/qif_import_gui.cpp:135
 #: import_export/univcsvdialog.cpp:201
-msgid "&Browse..."
+msgid "&Browse…"
 msgstr "(&B)瀏覽"
 
 #: import_export/qif_export.cpp:225 import_export/univcsvdialog.cpp:555
@@ -4043,7 +4043,7 @@ msgstr "類別管理員提示：按下「H」鍵將循環瀏覽以字母 h 開�
 
 #: mmTips.h:35
 msgid "Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
-msgstr "類別管理員提示：按 2 個組合鍵將循環瀏覽以該組合鍵開始的所有類別。範例：按 ho 將選擇 Homeneeds、Home、House Tax 等..."
+msgstr "類別管理員提示：按 2 個組合鍵將循環瀏覽以該組合鍵開始的所有類別。範例：按 ho 將選擇 Homeneeds、Home、House Tax 等…"
 
 #: mmTips.h:37
 msgid "Never endorse a loan. If the borrower—your friend, family member, significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
@@ -4189,21 +4189,21 @@ msgid "Last Updated"
 msgstr "前次更新日期"
 
 #: mmchecking_list.cpp:483
-msgid "New &Withdrawal..."
+msgid "New &Withdrawal…"
 msgstr "新增提款(&W)"
 
 #: mmchecking_list.cpp:484
-msgid "New &Deposit..."
+msgid "New &Deposit…"
 msgstr "(&D)新增一筆的存款"
 
 #: mmchecking_list.cpp:486
-msgid "New &Transfer..."
+msgid "New &Transfer…"
 msgstr "新增轉帳(&T)"
 
 #: mmchecking_list.cpp:490
-msgid "&Edit Transaction..."
-msgid_plural "&Edit Transactions..."
-msgstr[0] "編輯交易紀錄(&E)..."
+msgid "&Edit Transaction…"
+msgid_plural "&Edit Transactions…"
+msgstr[0] "編輯交易紀錄(&E)…"
 
 #: mmchecking_list.cpp:493
 msgid "&Copy Transaction"
@@ -4220,13 +4220,13 @@ msgid "&Paste Transactions (%d)"
 msgstr "貼上交易紀錄 (%d)(&P)"
 
 #: mmchecking_list.cpp:505
-msgid "D&uplicate Transaction..."
+msgid "D&uplicate Transaction…"
 msgstr "複製貼上交易紀錄(&U)"
 
 #: mmchecking_list.cpp:508
-msgid "&Move Transaction..."
-msgid_plural "&Move Transactions..."
-msgstr[0] "移動交易紀錄(&M)..."
+msgid "&Move Transaction…"
+msgid_plural "&Move Transactions…"
+msgstr[0] "移動交易紀錄(&M)…"
 
 #: mmchecking_list.cpp:514
 msgid "&View In Other Account"
@@ -4237,17 +4237,17 @@ msgid "&View Split Categories"
 msgstr "檢視拆分類別(&V)"
 
 #: mmchecking_list.cpp:526
-msgid "Create Scheduled T&ransaction..."
-msgstr "建立新的排程交易紀錄(&R)..."
+msgid "Create Scheduled T&ransaction…"
+msgstr "建立新的排程交易紀錄(&R)…"
 
 #: mmchecking_list.cpp:530
-msgid "&Restore selected transaction..."
-msgid_plural "&Restore selected transactions..."
-msgstr[0] "復原所選定的交易紀錄(&R)..."
+msgid "&Restore selected transaction…"
+msgid_plural "&Restore selected transactions…"
+msgstr[0] "復原所選定的交易紀錄(&R)…"
 
 #: mmchecking_list.cpp:532
-msgid "Restore &all transactions in current view..."
-msgstr "復原目前檢視中的所有交易紀錄(&A)..."
+msgid "Restore &all transactions in current view…"
+msgstr "復原目前檢視中的所有交易紀錄(&A)…"
 
 #: mmchecking_list.cpp:681
 #, c-format
@@ -4259,30 +4259,30 @@ msgid "Cop&y Text to Clipboard"
 msgstr "將文字複製到剪貼簿(&Y)"
 
 #: mmchecking_list.cpp:691
-msgid "&Delete selected transaction..."
-msgid_plural "&Delete selected transactions..."
-msgstr[0] "刪除所選定的交易紀錄(&D)..."
+msgid "&Delete selected transaction…"
+msgid_plural "&Delete selected transactions…"
+msgstr[0] "刪除所選定的交易紀錄(&D)…"
 
 #: mmchecking_list.cpp:692
-msgid "&Permanently delete selected transaction..."
-msgid_plural "&Permanently delete selected transactions..."
-msgstr[0] "永久刪除所選定的交易紀錄(&P)..."
+msgid "&Permanently delete selected transaction…"
+msgid_plural "&Permanently delete selected transactions…"
+msgstr[0] "永久刪除所選定的交易紀錄(&P)…"
 
 #: mmchecking_list.cpp:695
-msgid "Delete &all transactions in current view..."
-msgstr "刪除目前檢視中的所有交易紀錄(&A)..."
+msgid "Delete &all transactions in current view…"
+msgstr "刪除目前檢視中的所有交易紀錄(&A)…"
 
 #: mmchecking_list.cpp:695
-msgid "Permanently delete &all transactions in current view..."
-msgstr "永久刪除目前檢視中的所有交易紀錄(&A)..."
+msgid "Permanently delete &all transactions in current view…"
+msgstr "永久刪除目前檢視中的所有交易紀錄(&A)…"
 
 #: mmchecking_list.cpp:697
-msgid "Delete Viewed “&Follow Up” Transactions..."
-msgstr "刪除已檢視的「追蹤」交易紀錄(&F)..."
+msgid "Delete Viewed “&Follow Up” Transactions…"
+msgstr "刪除已檢視的「追蹤」交易紀錄(&F)…"
 
 #: mmchecking_list.cpp:698
-msgid "Delete Viewed “&Unreconciled” Transactions..."
-msgstr "刪除已查看過且「尚未對帳」的交易紀錄(&U)..."
+msgid "Delete Viewed “&Unreconciled” Transactions…"
+msgstr "刪除已查看過且「尚未對帳」的交易紀錄(&U)…"
 
 #: mmchecking_list.cpp:700
 msgid "De&lete "
@@ -4407,9 +4407,9 @@ msgstr "確認移動交易紀錄"
 
 #: mmchecking_list.cpp:1752
 #, c-format
-msgid "Moving transaction to..."
-msgid_plural "Moving %i transactions to..."
-msgstr[0] "將%i筆交易紀錄移至..."
+msgid "Moving transaction to…"
+msgid_plural "Moving %i transactions to…"
+msgstr[0] "將%i筆交易紀錄移至…"
 
 #: mmchecking_list.cpp:1756 stocks_list.cpp:312
 msgid "Select the destination Account "
@@ -4488,20 +4488,20 @@ msgid "View Since Statement Date"
 msgstr "從對帳單日期開始檢視"
 
 #: mmcheckingpanel.cpp:67
-msgid "View Transaction Report..."
-msgstr "查閱交易紀錄報表..."
+msgid "View Transaction Report…"
+msgstr "查閱交易紀錄報表…"
 
 #: mmcheckingpanel.cpp:445
-msgid "&New Withdrawal..."
-msgstr "新增提款(&N)..."
+msgid "&New Withdrawal…"
+msgstr "新增提款(&N)…"
 
 #: mmcheckingpanel.cpp:446
-msgid "&New Deposit..."
-msgstr "新增存款(&N)..."
+msgid "&New Deposit…"
+msgstr "新增存款(&N)…"
 
 #: mmcheckingpanel.cpp:447
-msgid "&New Transfer..."
-msgstr "新增轉帳(&N)..."
+msgid "&New Transfer…"
+msgstr "新增轉帳(&N)…"
 
 #: mmcheckingpanel.cpp:576
 msgid "Delete all selected transactions"
@@ -4725,80 +4725,80 @@ msgid "&Import from"
 msgstr "匯入(&I)"
 
 #: mmframe.cpp:1450
-msgid "&CSV Files..."
-msgstr "CSV 檔案(&C)..."
+msgid "&CSV Files…"
+msgstr "CSV 檔案(&C)…"
 
 #: mmframe.cpp:1451
-msgid "&XML Files..."
-msgstr "XML 檔案(&X)..."
+msgid "&XML Files…"
+msgstr "XML 檔案(&X)…"
 
 #: mmframe.cpp:1451 mmframe.cpp:1612
 msgid "Import from XML file (Excel format)"
 msgstr "從 XML 檔案匯入 (Excel 格式)"
 
 #: mmframe.cpp:1453
-msgid "&QIF Files..."
-msgstr "QIF 檔案(&Q)..."
+msgid "&QIF Files…"
+msgstr "QIF 檔案(&Q)…"
 
 #: mmframe.cpp:1456 mmframe.cpp:1619
 msgid "&Export as"
 msgstr "匯出(&E)"
 
 #: mmframe.cpp:1457 mmframe.cpp:1611 mmframe.cpp:1620
-msgid "&CSV File..."
-msgstr "CSV 檔案(&C)..."
+msgid "&CSV File…"
+msgstr "CSV 檔案(&C)…"
 
 #: mmframe.cpp:1458 mmframe.cpp:1612 mmframe.cpp:1621
-msgid "&XML File..."
-msgstr "XML 檔案(&X)..."
+msgid "&XML File…"
+msgstr "XML 檔案(&X)…"
 
 #: mmframe.cpp:1460 mmframe.cpp:1623
-msgid "&MMEX CSV File..."
-msgstr "MMEX CSV 檔案(&M)..."
+msgid "&MMEX CSV File…"
+msgstr "MMEX CSV 檔案(&M)…"
 
 #: mmframe.cpp:1461 mmframe.cpp:1624
-msgid "&JSON File..."
-msgstr "JSON 檔案(&J)..."
+msgid "&JSON File…"
+msgstr "JSON 檔案(&J)…"
 
 #: mmframe.cpp:1462 mmframe.cpp:1614 mmframe.cpp:1625
-msgid "&QIF File..."
-msgstr "QIF 檔案(&Q)..."
+msgid "&QIF File…"
+msgstr "QIF 檔案(&Q)…"
 
 #: mmframe.cpp:1487
-msgid "&Customize Report..."
-msgstr "自訂報表(C)..."
+msgid "&Customize Report…"
+msgstr "自訂報表(C)…"
 
 #: mmframe.cpp:1488
-msgid "&Rename Report..."
-msgstr "重新命名報表(&R)..."
+msgid "&Rename Report…"
+msgstr "重新命名報表(&R)…"
 
 #: mmframe.cpp:1489
-msgid "&Delete Report..."
-msgstr "刪除報表(&D)..."
+msgid "&Delete Report…"
+msgstr "刪除報表(&D)…"
 
 #: mmframe.cpp:1505 mmframe.cpp:1523 mmframe.cpp:1543 mmframe.cpp:1726
-msgid "&Edit Account..."
-msgstr "編輯帳戶(&E)..."
+msgid "&Edit Account…"
+msgstr "編輯帳戶(&E)…"
 
 #: mmframe.cpp:1506 mmframe.cpp:1526 mmframe.cpp:1546 mmframe.cpp:1732
-msgid "&Delete Account..."
-msgstr "刪除帳戶(&D)..."
+msgid "&Delete Account…"
+msgstr "刪除帳戶(&D)…"
 
 #: mmframe.cpp:1508 mmframe.cpp:1528
 msgid "&Launch Account Website"
 msgstr "(&L)開啟帳戶網頁"
 
 #: mmframe.cpp:1509 mmframe.cpp:1529
-msgid "&Attachment Manager..."
+msgid "&Attachment Manager…"
 msgstr "開啟帳戶網頁(&L)"
 
 #: mmframe.cpp:1524 mmframe.cpp:1729
-msgid "&Change Account Type..."
-msgstr "改變帳戶類別(&C)..."
+msgid "&Change Account Type…"
+msgstr "改變帳戶類別(&C)…"
 
 #: mmframe.cpp:1542 mmframe.cpp:1723
-msgid "&New Account..."
-msgstr "建立新帳戶(&N)..."
+msgid "&New Account…"
+msgstr "建立新帳戶(&N)…"
 
 #: mmframe.cpp:1544
 msgid "Account &List"
@@ -4825,24 +4825,24 @@ msgid "Accounts &Visible"
 msgstr "帳戶可見(&V)"
 
 #: mmframe.cpp:1595
-msgid "&New Database..."
-msgstr "新增資料庫(&N)..."
+msgid "&New Database…"
+msgstr "新增資料庫(&N)…"
 
 #: mmframe.cpp:1595 mmframe.cpp:1974 wizard_newdb.cpp:136
 msgid "New Database"
 msgstr "新增資料庫"
 
 #: mmframe.cpp:1596
-msgid "&Open Database...\tCtrl-O"
-msgstr "開啟資料庫...\tCtrl-O"
+msgid "&Open Database…\tCtrl-O"
+msgstr "開啟資料庫…\tCtrl-O"
 
 #: mmframe.cpp:1596 mmframe.cpp:1975
 msgid "Open Database"
 msgstr "開啟資料庫"
 
 #: mmframe.cpp:1597
-msgid "Save Database &As..."
-msgstr "另存新資料庫(&A)..."
+msgid "Save Database &As…"
+msgstr "另存新資料庫(&A)…"
 
 #: mmframe.cpp:1597
 msgid "Save Database As"
@@ -4857,7 +4857,7 @@ msgid "&Clear Recent Files"
 msgstr "清除最近使用清單"
 
 #: mmframe.cpp:1616
-msgid "&WebApp..."
+msgid "&WebApp…"
 msgstr "清除最近使用檔案(&C)"
 
 #: mmframe.cpp:1616
@@ -4869,16 +4869,16 @@ msgid "Export as fixed CSV file"
 msgstr "匯出為固定 CSV 檔案"
 
 #: mmframe.cpp:1627
-msgid "&HTML File..."
-msgstr "HTML 檔案(&H)..."
+msgid "&HTML File…"
+msgstr "HTML 檔案(&H)…"
 
 #: mmframe.cpp:1627
 msgid "Export as HTML file"
 msgstr "匯出為 HTML 檔案"
 
 #: mmframe.cpp:1632
-msgid "&Print..."
-msgstr "列印(&P)..."
+msgid "&Print…"
+msgstr "列印(&P)…"
 
 #: mmframe.cpp:1632
 msgid "Print current view"
@@ -5013,7 +5013,7 @@ msgid "Download Currency and Stock Rates"
 msgstr "下載匯率及股票利率"
 
 #: mmframe.cpp:1751
-msgid "&Payee Manager..."
+msgid "&Payee Manager…"
 msgstr "受款人管理員(&P)"
 
 #: mmframe.cpp:1751 mmframe.cpp:1982 payeedialog.cpp:512
@@ -5021,11 +5021,11 @@ msgid "Payee Manager"
 msgstr "受款人編輯器"
 
 #: mmframe.cpp:1755
-msgid "&Category Manager..."
+msgid "&Category Manager…"
 msgstr "類別管理員(&C)"
 
 #: mmframe.cpp:1759
-msgid "&Tag Manager..."
+msgid "&Tag Manager…"
 msgstr "標記管理員(&T)"
 
 #: mmframe.cpp:1759 mmframe.cpp:1984 tagdialog.h:45
@@ -5033,11 +5033,11 @@ msgid "Tag Manager"
 msgstr "標記管理員"
 
 #: mmframe.cpp:1763
-msgid "Curre&ncy Manager..."
-msgstr "貨幣管理員(&N)..."
+msgid "Curre&ncy Manager…"
+msgstr "貨幣管理員(&N)…"
 
 #: mmframe.cpp:1767
-msgid "&Categories..."
+msgid "&Categories…"
 msgstr "類別(&C)"
 
 #: mmframe.cpp:1768
@@ -5045,16 +5045,16 @@ msgid "Merge categories"
 msgstr "合併類別"
 
 #: mmframe.cpp:1770
-msgid "&Payees..."
-msgstr "受款人(&P)..."
+msgid "&Payees…"
+msgstr "受款人(&P)…"
 
 #: mmframe.cpp:1771
 msgid "Merge payees"
 msgstr "(&P)受款人編輯器"
 
 #: mmframe.cpp:1773
-msgid "&Tags..."
-msgstr "標記(&T)..."
+msgid "&Tags…"
+msgstr "標記(&T)…"
 
 #: mmframe.cpp:1774
 msgid "Merge tags"
@@ -5070,8 +5070,8 @@ msgid "Merge categories, payees, and tags"
 msgstr "合併類別、受款人和標記"
 
 #: mmframe.cpp:1788
-msgid "&Budget Planner..."
-msgstr "預算規劃員(&B)..."
+msgid "&Budget Planner…"
+msgstr "預算規劃員(&B)…"
 
 #: mmframe.cpp:1792
 msgid "&Scheduled Transactions"
@@ -5086,63 +5086,63 @@ msgid "&Assets"
 msgstr "資產(&A)"
 
 #: mmframe.cpp:1802
-msgid "T&heme Manager..."
-msgstr "主題管理員(H)..."
+msgid "T&heme Manager…"
+msgstr "主題管理員(H)…"
 
 #: mmframe.cpp:1802 themes.cpp:143
 msgid "Theme Manager"
 msgstr "主題管理"
 
 #: mmframe.cpp:1808
-msgid "Tra&nsaction Report..."
-msgstr "交易紀錄報表(B)..."
+msgid "Tra&nsaction Report…"
+msgstr "交易紀錄報表(B)…"
 
 #: mmframe.cpp:1814
-msgid "&General Report Manager..."
-msgstr "通用報告管理員(G)..."
+msgid "&General Report Manager…"
+msgstr "通用報告管理員(G)…"
 
 #: mmframe.cpp:1818
-msgid "C&ustom Field Manager..."
-msgstr "自訂欄位管理員(&U)..."
+msgid "C&ustom Field Manager…"
+msgstr "自訂欄位管理員(&U)…"
 
 #: mmframe.cpp:1824
-msgid "Refresh &WebApp..."
-msgstr "重新整理網路程式(&W)..."
+msgid "Refresh &WebApp…"
+msgstr "重新整理網路程式(&W)…"
 
 #: mmframe.cpp:1824 mmframe.cpp:2962 mmframe.cpp:2969
 msgid "Refresh WebApp"
 msgstr "重新整理網路應用程式"
 
 #: mmframe.cpp:1829
-msgid "&Settings...\tAlt-F12"
-msgstr "設定(&S)...\tAlt-F12"
+msgid "&Settings…\tAlt-F12"
+msgstr "設定(&S)…\tAlt-F12"
 
 #: mmframe.cpp:1836
-msgid "&Decrypt Encrypted Database..."
-msgstr "解密已加密資料庫(&D)..."
+msgid "&Decrypt Encrypted Database…"
+msgstr "解密已加密資料庫(&D)…"
 
 #: mmframe.cpp:1837
 msgid "Convert encrypted database to unencrypted database"
 msgstr "將加密資料庫轉換為未加密資料庫"
 
 #: mmframe.cpp:1839
-msgid "Change Encrypted &Password..."
-msgstr "更改加密密碼(&P)..."
+msgid "Change Encrypted &Password…"
+msgstr "更改加密密碼(&P)…"
 
 #: mmframe.cpp:1840
 msgid "Change the password of an encrypted database"
 msgstr "修改加密資料庫的密碼"
 
 #: mmframe.cpp:1842
-msgid "&Optimize Database..."
-msgstr "最佳化資料庫(&O)..."
+msgid "&Optimize Database…"
+msgstr "最佳化資料庫(&O)…"
 
 #: mmframe.cpp:1843
 msgid "Optimize database for space and performance"
 msgstr "最佳化資料庫以清出空間和增進效能"
 
 #: mmframe.cpp:1845
-msgid "Database Check and De&bug..."
+msgid "Database Check and De&bug…"
 msgstr "檢查資料庫及偵錯(&B)"
 
 #: mmframe.cpp:1846
@@ -5591,8 +5591,8 @@ msgid "Downloading stock prices from Yahoo"
 msgstr "從雅虎下載股票價格"
 
 #: mmframe.cpp:3531
-msgid "Please wait..."
-msgstr "請稍等..."
+msgid "Please wait…"
+msgstr "請稍等…"
 
 #: mmframe.cpp:3580 stockspanel.cpp:496
 #, c-format
@@ -7610,11 +7610,11 @@ msgid "Curr. Total Value"
 msgstr "目前現值"
 
 #: stocks_list.cpp:146
-msgid "&New Stock Investment..."
+msgid "&New Stock Investment…"
 msgstr "新的股票投資(&N)"
 
 #: stocks_list.cpp:148
-msgid "&Add Stock Transactions..."
+msgid "&Add Stock Transactions…"
 msgstr "新增股票交易紀錄(&A)"
 
 #: stocks_list.cpp:149
@@ -7622,11 +7622,11 @@ msgid "&View Stock Transactions"
 msgstr "檢視股票交易紀錄(&V)"
 
 #: stocks_list.cpp:151
-msgid "&Edit Stock Investment..."
+msgid "&Edit Stock Investment…"
 msgstr "編輯股票投資(&E)"
 
 #: stocks_list.cpp:153
-msgid "&Delete Stock Investment..."
+msgid "&Delete Stock Investment…"
 msgstr "刪除股票投資(&D)"
 
 #: stocks_list.cpp:156
@@ -7717,8 +7717,8 @@ msgid "Nothing to update"
 msgstr "没有更新的内容"
 
 #: stockspanel.cpp:452
-msgid "Connecting..."
-msgstr "連接中..."
+msgid "Connecting…"
+msgstr "連接中…"
 
 #: stockspanel.cpp:556
 #, c-format
