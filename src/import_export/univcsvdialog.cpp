@@ -1570,7 +1570,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
         if (!wxRemoveFile(fileName))
         {
             return mmErrorDialogs::MessageWarning(this,
-                _("Failed to delete existing file. File may be locked by another program."),
+                _("An error occurred while deleting the existing file. File may be locked by another program."),
                 _("Destination file error"));
         }
     }
