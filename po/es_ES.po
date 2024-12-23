@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-12-20 14:18+0000\n"
-"PO-Revision-Date: 2024-12-23 22:07\n"
+"POT-Creation-Date: 2024-12-23 22:19+0000\n"
+"PO-Revision-Date: 2024-12-23 22:25\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -291,8 +291,8 @@ msgid "Invalid Date"
 msgstr "Fecha no válida"
 
 #: accountdialog.cpp:515
-msgid "Opening date cannot be in the future"
-msgstr "La fecha de apertura no puede ser en el futuro"
+msgid "Opening date is unable to be in the future"
+msgstr ""
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
@@ -577,7 +577,7 @@ msgstr "Corfirme el borrado del Activo"
 
 #: assetspanel.cpp:392
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "MMEX permite mantener activos fijos como coches, casas, terrenos, etc… Cada activo puede tener su valor de apreciación o depreciación por un cierto índice al año, o no cambiar nada. Todos los activos se añaden al valor financiero total."
+msgstr "MMEX permite mantener activos fijos como coches, casas, terrenos, etc... Cada activo puede tener su valor de apreciación o depreciación por un cierto índice al año, o no cambiar nada. Todos los activos se añaden al valor financiero total."
 
 #: assetspanel.cpp:422 assetspanel.h:121 general_report_manager.cpp:1030
 #: mmframe.cpp:495 mmframe.cpp:817 mmframe.cpp:1796 mmframe.cpp:3505
@@ -1637,8 +1637,8 @@ msgid "Edit the name of an existing category"
 msgstr "Editar el nombre de una categoría existente"
 
 #: categdialog.cpp:323
-msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr "Eliminar una categoría existente. La categoría no puede estar en uso por ninguna transacción."
+msgid "Delete an existing category. The category is unable to be used by existing transactions."
+msgstr ""
 
 #: categdialog.cpp:328 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1677,8 +1677,8 @@ msgid "Category Manager: Adding Error"
 msgstr "Administrador de categorías: Error al añadir"
 
 #: categdialog.cpp:427
-msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr "No puede mover una subcategoría a una categoría que ya tiene una subcategoría con ese nombre. Considere cambiarle el nombre antes de moverla."
+msgid "Unable to move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
+msgstr ""
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
@@ -1957,8 +1957,8 @@ msgid "Invalid Entry"
 msgstr "Entrada no válida"
 
 #: currencydialog.cpp:285 currencydialog.cpp:310
-msgid "Grouping character cannot be the same as the decimal character"
-msgstr "El carácter de agrupación no puede ser el mismo que el carácter de decimal"
+msgid "Grouping character is unable to be the same as the decimal character"
+msgstr ""
 
 #: currencydialog.cpp:332
 #, c-format
@@ -2461,8 +2461,8 @@ msgid "When database file opening:"
 msgstr "Cuando se abre el archivo de base de datos:"
 
 #: dbwrapper.cpp:114
-msgid "Can't open file"
-msgstr "No se puede abrir el archivo"
+msgid "Unable to open file"
+msgstr ""
 
 #: dbwrapper.cpp:114
 msgid "You must specify path to another database file"
@@ -2968,8 +2968,8 @@ msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr "Faltan los metadatos '%1$s' en el tema elegido '%2$s'"
 
 #: images_list.cpp:458
-msgid "and more…"
-msgstr "y mucho más…"
+msgid "and more..."
+msgstr "y mucho más..."
 
 #: images_list.cpp:460
 #, c-format
@@ -3764,8 +3764,8 @@ msgid "Show all even the unused currencies"
 msgstr "Mostrar todas incluyendo las divisas no utilizadas"
 
 #: maincurrencydialog.cpp:241
-msgid "Currency History Options"
-msgstr "Opciones del histórico de la divisa"
+msgid "Historical Currency Options"
+msgstr ""
 
 #: maincurrencydialog.cpp:258 stockdialog.cpp:287 stockdialog.cpp:306
 #: stockdialog.cpp:634 stockspanel.cpp:215
@@ -3797,8 +3797,8 @@ msgid "Delete selected Currency Values"
 msgstr "Borrar los valores de divisa seleccionados"
 
 #: maincurrencydialog.cpp:309
-msgid "Delete Currency Values history for unused currencies and days"
-msgstr "Eliminar historial de Valores de divisa para divisas y días no utilizados"
+msgid "Delete Historical Currency Values for unused currencies and days"
+msgstr ""
 
 #: maincurrencydialog.cpp:365
 msgid "Do you really want to delete the selected Currency?"
@@ -3810,10 +3810,9 @@ msgstr "Selección de la divisa base"
 
 #: maincurrencydialog.cpp:435
 #, c-format
-msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
-"click no and enable it or click yes to remove all historic rates for %2$s"
-msgstr "Tasas históricas para %1$s encontradas, pero \"Usar histórico de divisas\" en las opciones está deshabilitado:\n"
-"haga clic en no y habilítelo o haga clic en sí para eliminar todas las tasas históricas de %2$s"
+msgid "Historical rates for %1$s found, but “Use historical currency” in options is disabled:\n"
+"click No and enable it or click Yes to remove all historical rates for %2$s"
+msgstr ""
 
 #: maincurrencydialog.cpp:447
 #, c-format
@@ -3821,14 +3820,13 @@ msgid "Currency History Options: %s"
 msgstr "Opciones del histórico de la divisa: %s"
 
 #: maincurrencydialog.cpp:503
-msgid "Unable to update history currency rates. Please update them manually!"
-msgstr "No se puede actualizar el histórico de tasas de divisas. ¡Por favor, actualícelas manualmente!"
+msgid "Unable to update historical currency rates. Please update them manually!"
+msgstr ""
 
-#: maincurrencydialog.cpp:504 maincurrencydialog.cpp:657
-#: maincurrencydialog.cpp:692 maincurrencydialog.cpp:728
-#: maincurrencydialog.cpp:834
-msgid "Currency history error"
-msgstr "Error del histórico de la divisa"
+#: maincurrencydialog.cpp:504 maincurrencydialog.cpp:692
+#: maincurrencydialog.cpp:728
+msgid "Historical currency error"
+msgstr ""
 
 #: maincurrencydialog.cpp:536
 msgid "Set as Base Currency"
@@ -3837,6 +3835,10 @@ msgstr "Establecer como divisa principal"
 #: maincurrencydialog.cpp:537
 msgid "Online Update Currency Rate"
 msgstr "Actualización online del tipo de cambio"
+
+#: maincurrencydialog.cpp:657 maincurrencydialog.cpp:834
+msgid "Currency history error"
+msgstr "Error del histórico de la divisa"
 
 #: maincurrencydialog.cpp:657
 msgid "No currency selected!"
@@ -3853,12 +3855,12 @@ msgstr "Imposible descargar las tasas de cambio de la divisa %s"
 
 #: maincurrencydialog.cpp:726
 #, c-format
-msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr "Imposible descargar el histórico del símbolo %s. ¡Las tasas de cambio históricas no están disponibles!"
+msgid "Unable to download history for symbol %s. Historical rates unavailable!"
+msgstr ""
 
 #: maincurrencydialog.cpp:788 optionsettingsgeneral.cpp:300
-msgid "Changing base currency will delete all history rates, proceed?"
-msgstr "Cambiar la divisa base eliminará todo el histórico de tasas, ¿Continuar?"
+msgid "Changing base currency will delete all historical rates, proceed?"
+msgstr ""
 
 #: maincurrencydialog.cpp:812
 msgid "Do you want to update today currency rates?"
@@ -3866,12 +3868,12 @@ msgstr "¿Desea actualizar los tipos de cambio de hoy?"
 
 #: maincurrencydialog.cpp:833
 #, c-format
-msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr "No se puede descargar el histórico del símbolo base %s. ¡El histórico no está disponible!"
+msgid "Unable to download history for base symbol %s. Historical rates unavailable!"
+msgstr ""
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:684
-msgid "Could not find base currency symbol!"
-msgstr "¡No se puede encontrar el símbolo de la divisa base!"
+#: maincurrencydialog.cpp:876 util.cpp:684
+msgid "Unable to find base currency symbol!"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:767 mmSimpleDialogs.cpp:779
 msgid "&Clear color"
@@ -4353,8 +4355,8 @@ msgid "Deleted transactions will be temporarily stored and can be restored from 
 msgstr "Las transacciones eliminadas serán almacenadas temporalmente y pueden ser restauradas desde la vista de transacciones eliminadas."
 
 #: mmchecking_list.cpp:1331 mmchecking_list.cpp:1430
-msgid "You cannot undo this action."
-msgstr "Esta acción no se puede deshacer."
+msgid "Unable to undo this action."
+msgstr ""
 
 #: mmchecking_list.cpp:1335 mmchecking_list.cpp:1346 mmchecking_list.cpp:1357
 #: mmchecking_list.cpp:1435
@@ -4443,8 +4445,8 @@ msgid "Not moved"
 msgstr "Sin mover"
 
 #: mmchecking_list.cpp:1796
-msgid "Some transactions could not be moved"
-msgstr "Algunas transacciones no pudieron ser movidas"
+msgid "Unable to move some transactions"
+msgstr ""
 
 #: mmchecking_list.cpp:1863
 msgid "Scheduled transaction saved."
@@ -4592,8 +4594,8 @@ msgid "Days between selected transactions: %d"
 msgstr "Días entre las transacciones seleccionadas: %d"
 
 #: mmcheckingpanel.cpp:1062
-msgid "Scheduled transactions cannot be shown, because the current filter choice extends into the future without limit."
-msgstr "No se pueden mostrar las transacciones programadas porque la opción de filtro actual no tiene límite temporal."
+msgid "Scheduled transactions are unable to be shown, because the current filter choice extends into the future without limit."
+msgstr ""
 
 #: mmcheckingpanel.cpp:1063
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
@@ -4873,11 +4875,11 @@ msgstr "&Limpiar ficheros recientes"
 
 #: mmframe.cpp:1616
 msgid "&WebApp…"
-msgstr "&WebApp…"
+msgstr ""
 
 #: mmframe.cpp:1616
-msgid "Import from WebApp"
-msgstr "Importar desde WebApp"
+msgid "Import from the WebApp"
+msgstr ""
 
 #: mmframe.cpp:1623
 msgid "Export as fixed CSV file"
@@ -5408,8 +5410,8 @@ msgid "&Next →"
 msgstr "&Siguiente →"
 
 #: mmframe.cpp:2223
-msgid "Cannot locate previously opened database.\n"
-msgstr "No se puede localizar la base de datos previamente abierta.\n"
+msgid "Unable to locate previously opened database.\n"
+msgstr ""
 
 #: mmframe.cpp:2225
 msgid "Password not entered for encrypted Database.\n"
@@ -5539,8 +5541,8 @@ msgid "Save database file as"
 msgstr "Guardar base de datos como"
 
 #: mmframe.cpp:2545
-msgid "Can't copy file to itself"
-msgstr "No se puede copiar el fichero a sí mismo"
+msgid "Unable to copy file to itself"
+msgstr ""
 
 #: mmframe.cpp:2558
 msgid "Enter password for new database"
@@ -6272,12 +6274,12 @@ msgstr "Formato derivado de la configuración regional.\n"
 "Déjelo en blanco para establecer el formato manualmente a través de 'Administrador de divisas | Editar'"
 
 #: optionsettingsgeneral.cpp:174
-msgid "Use currency history"
-msgstr "Usar histórico de divisas"
+msgid "Use historical currency"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:176
-msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr "Seleccione para utilizar el histórico de divisas (una tarifa por cada día), deseleccione para utilizar una tarifa fija"
+msgid "Select to use historical currency (one rate for each day), deselect to use a fixed rate"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:180
 msgid "Financial Year"
@@ -7728,6 +7730,10 @@ msgstr "El precio de las acciones se ha actualizado correctamente"
 msgid "Last updated %s"
 msgstr "Última actualización %s"
 
+#: stockspanel.cpp:432
+msgid "Could not find base currency symbol!"
+msgstr "¡No se puede encontrar el símbolo de la divisa base!"
+
 #: stockspanel.cpp:438 util.cpp:708 util.cpp:869
 msgid "Nothing to update"
 msgstr "Nada que actualizar"
@@ -7750,8 +7756,8 @@ msgid "Edit the name of an existing tag"
 msgstr "Editar el nombre de una etiqueta existente"
 
 #: tagdialog.cpp:136
-msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr "Eliminar una etiqueta existente. La etiqueta no puede ser usada por las transacciones existentes."
+msgid "Delete an existing tag. The tag is unable to be used by existing transactions."
+msgstr ""
 
 #: tagdialog.cpp:142
 msgid "Select"
@@ -7880,8 +7886,8 @@ msgid "Not updated"
 msgstr "Sin actualizar"
 
 #: transactionsupdatedialog.cpp:540
-msgid "Some transactions could not be updated"
-msgstr "Algunas transacciones no pudieron ser actualizadas"
+msgid "Unable to update some transactions"
+msgstr ""
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
@@ -8119,24 +8125,24 @@ msgid "Expected response to contain a data or error string"
 msgstr "Se esperaba una respuesta que tuviera datos o una cadena de error"
 
 #: util.cpp:1011
-msgid "Could not find asset for symbol"
-msgstr "No se pudo encontrar el activo del símbolo"
+msgid "Unable to find asset for symbol"
+msgstr ""
 
 #: util.cpp:1046
-msgid "Could not get base currency!"
-msgstr "¡No se pudo obtener la divisa base!"
+msgid "Unable to get base currency!"
+msgstr ""
 
 #: util.cpp:1052
 msgid "USD"
 msgstr "USD"
 
 #: util.cpp:1055
-msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr "No se pudo encontrar la divisa 'USD', necesaria para convertir los precios del historial"
+msgid "Unable to find currency 'USD', required for converting historical prices"
+msgstr ""
 
 #: util.cpp:1076
-msgid "Could not parse price in asset history"
-msgstr "No se pudo analizar el precio en el historial de activos"
+msgid "Unable to parse price in asset history"
+msgstr ""
 
 #: util.cpp:1449
 #, c-format
@@ -8300,8 +8306,8 @@ msgid "Today will be used as the transaction date"
 msgstr "Se utilizará hoy como la fecha de la transacción"
 
 #: webapp.cpp:596 webapp.cpp:630 webappdialog.cpp:338
-msgid "Unable to download attachments from webapp."
-msgstr "No se puede descargar los adjuntos de WebApp."
+msgid "Unable to download attachments from the WebApp."
+msgstr ""
 
 #: webapp.cpp:597
 msgid "Attachments folder not set or unavailable"
@@ -8312,8 +8318,8 @@ msgid "Transaction not downloaded:"
 msgstr "Transacción no descargada:"
 
 #: webapp.cpp:599
-msgid "Please fix attachments folder or delete attachments from WebApp"
-msgstr "Por favor, corrija la carpeta de adjuntos o borre adjuntos de la WebApp"
+msgid "Please fix attachments folder or delete attachments from the WebApp"
+msgstr ""
 
 #: webapp.cpp:600
 msgid "Attachment folder error"
@@ -8348,8 +8354,8 @@ msgid "Import and open all "
 msgstr "Importar y abrir todo "
 
 #: webappdialog.cpp:205
-msgid "Unable to download transactions from webapp."
-msgstr "No se pueden descargar las transacciones desde la aplicación web."
+msgid "Unable to download transactions from the WebApp."
+msgstr ""
 
 #: webappdialog.cpp:206
 msgid "Transactions download error"

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-12-20 14:18+0000\n"
-"PO-Revision-Date: 2024-12-23 22:07\n"
+"POT-Creation-Date: 2024-12-23 22:19+0000\n"
+"PO-Revision-Date: 2024-12-23 22:25\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "Language: be_BY\n"
@@ -291,8 +291,8 @@ msgid "Invalid Date"
 msgstr "Хібная дата"
 
 #: accountdialog.cpp:515
-msgid "Opening date cannot be in the future"
-msgstr "Дата заканчэння ня можа быць у будучыні"
+msgid "Opening date is unable to be in the future"
+msgstr ""
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
@@ -1644,8 +1644,8 @@ msgid "Edit the name of an existing category"
 msgstr "Рыдагаваць назву існуючай катыгорыі"
 
 #: categdialog.cpp:323
-msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr "Выдаліць існуючую катыгорыю. Яна ня мае выкарыстоўвацца ў аперацыях."
+msgid "Delete an existing category. The category is unable to be used by existing transactions."
+msgstr ""
 
 #: categdialog.cpp:328 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1684,8 +1684,8 @@ msgid "Category Manager: Adding Error"
 msgstr ""
 
 #: categdialog.cpp:427
-msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr "Няможна перасунуць падкатыгорыю у катыгорыю, дзе ўжо ёсць падкатыгорыя з такой самай назвай. Трэба спачатку пераназваць."
+msgid "Unable to move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
+msgstr ""
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
@@ -1965,8 +1965,8 @@ msgid "Invalid Entry"
 msgstr "Хібны запіс"
 
 #: currencydialog.cpp:285 currencydialog.cpp:310
-msgid "Grouping character cannot be the same as the decimal character"
-msgstr "Сымбалі групоўкі ня могуць быць такія самыя, як падзяляльнік дробавай часткі"
+msgid "Grouping character is unable to be the same as the decimal character"
+msgstr ""
 
 #: currencydialog.cpp:332
 #, c-format
@@ -2409,7 +2409,7 @@ msgstr "База дадзеных MMEX паспяхова абноўленая �
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr "Мы прапануем аптымізацыю базы дадзеных у меню Прылады → База дадзеных → Аптымізаваць…"
+msgstr "Мы прапануем аптымізацыю базы дадзеных у меню Прылады → База дадзеных → Аптымізаваць..."
 
 #: dbupgrade.cpp:183
 msgid "Load debug file"
@@ -2471,8 +2471,8 @@ msgid "When database file opening:"
 msgstr "Падчас адчынення базы дадзеных:"
 
 #: dbwrapper.cpp:114
-msgid "Can't open file"
-msgstr "Немагчыма адчыніць файл"
+msgid "Unable to open file"
+msgstr ""
 
 #: dbwrapper.cpp:114
 msgid "You must specify path to another database file"
@@ -2980,8 +2980,8 @@ msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr "Метададзеныя '%1$s' адсутнічаюць у абранай тэме '%2$s'"
 
 #: images_list.cpp:458
-msgid "and more…"
-msgstr "і яшчэ…"
+msgid "and more..."
+msgstr "і яшчэ..."
 
 #: images_list.cpp:460
 #, c-format
@@ -3776,8 +3776,8 @@ msgid "Show all even the unused currencies"
 msgstr "Паказаць усе валюты, нават тыя, што не выкарыстоўваюцца"
 
 #: maincurrencydialog.cpp:241
-msgid "Currency History Options"
-msgstr "Налады для гісторыі валютаў"
+msgid "Historical Currency Options"
+msgstr ""
 
 #: maincurrencydialog.cpp:258 stockdialog.cpp:287 stockdialog.cpp:306
 #: stockdialog.cpp:634 stockspanel.cpp:215
@@ -3809,8 +3809,8 @@ msgid "Delete selected Currency Values"
 msgstr "Выдаліць абраныя значэнні курса"
 
 #: maincurrencydialog.cpp:309
-msgid "Delete Currency Values history for unused currencies and days"
-msgstr "Выдаленне гісторыі для валютаў і перыядаў, што не выкарыстоўваюцца"
+msgid "Delete Historical Currency Values for unused currencies and days"
+msgstr ""
 
 #: maincurrencydialog.cpp:365
 msgid "Do you really want to delete the selected Currency?"
@@ -3822,10 +3822,9 @@ msgstr "Выбар асноўнай валюты"
 
 #: maincurrencydialog.cpp:435
 #, c-format
-msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
-"click no and enable it or click yes to remove all historic rates for %2$s"
-msgstr "Знойдзеная гістарыя курсаў для %1$s, але «Выкарыстоўваць гісторыю валютаў» у опцыях ёсць вымкнутае:\n"
-"націсніце «Не» і увамкніце яе або націсніце «Так», каб выдаліць усю гісторыю курсаў для %2$s"
+msgid "Historical rates for %1$s found, but “Use historical currency” in options is disabled:\n"
+"click No and enable it or click Yes to remove all historical rates for %2$s"
+msgstr ""
 
 #: maincurrencydialog.cpp:447
 #, c-format
@@ -3833,14 +3832,13 @@ msgid "Currency History Options: %s"
 msgstr "Налады гісторыі для валюты: %s"
 
 #: maincurrencydialog.cpp:503
-msgid "Unable to update history currency rates. Please update them manually!"
-msgstr "Немагчыма абнавіць курсы валютаў. Калі ласка, абнавіце іх уручную"
+msgid "Unable to update historical currency rates. Please update them manually!"
+msgstr ""
 
-#: maincurrencydialog.cpp:504 maincurrencydialog.cpp:657
-#: maincurrencydialog.cpp:692 maincurrencydialog.cpp:728
-#: maincurrencydialog.cpp:834
-msgid "Currency history error"
-msgstr "Памылка гісторыі валютаў"
+#: maincurrencydialog.cpp:504 maincurrencydialog.cpp:692
+#: maincurrencydialog.cpp:728
+msgid "Historical currency error"
+msgstr ""
 
 #: maincurrencydialog.cpp:536
 msgid "Set as Base Currency"
@@ -3849,6 +3847,10 @@ msgstr "Абраць як асноўную валюту"
 #: maincurrencydialog.cpp:537
 msgid "Online Update Currency Rate"
 msgstr "Абнаўленне курса валютаў анлайн"
+
+#: maincurrencydialog.cpp:657 maincurrencydialog.cpp:834
+msgid "Currency history error"
+msgstr "Памылка гісторыі валютаў"
 
 #: maincurrencydialog.cpp:657
 msgid "No currency selected!"
@@ -3865,12 +3867,12 @@ msgstr "Немагчыма спампаваць курсы валюты %s"
 
 #: maincurrencydialog.cpp:726
 #, c-format
-msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr "Немагчыма спампаваць гісторыю для валюты %s. Гісторыя курсаў недасяжная"
+msgid "Unable to download history for symbol %s. Historical rates unavailable!"
+msgstr ""
 
 #: maincurrencydialog.cpp:788 optionsettingsgeneral.cpp:300
-msgid "Changing base currency will delete all history rates, proceed?"
-msgstr "Змена асноўнай валюты прывядзе да выдалення усёй гісторыі курсаў. Працягнуць?"
+msgid "Changing base currency will delete all historical rates, proceed?"
+msgstr ""
 
 #: maincurrencydialog.cpp:812
 msgid "Do you want to update today currency rates?"
@@ -3878,12 +3880,12 @@ msgstr "Жадаеце абнавіць сённяшнія курсы валют
 
 #: maincurrencydialog.cpp:833
 #, c-format
-msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr "Немагчыма спампаваць гісторыю асноўнай валюты %s. Гісторыя курсаў недасяжная"
+msgid "Unable to download history for base symbol %s. Historical rates unavailable!"
+msgstr ""
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:684
-msgid "Could not find base currency symbol!"
-msgstr "Немагчыма знайсці сымбаль асноўнай валюты"
+#: maincurrencydialog.cpp:876 util.cpp:684
+msgid "Unable to find base currency symbol!"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:767 mmSimpleDialogs.cpp:779
 msgid "&Clear color"
@@ -4038,7 +4040,7 @@ msgstr ""
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr "Парада: MMEX падтрымлівае друк справаздачаў пасля прагляда. Параметры друка можна задаць у меню, Файл → Друкаваць…"
+msgstr "Парада: MMEX падтрымлівае друк справаздачаў пасля прагляда. Параметры друка можна задаць у меню, Файл → Друкаваць..."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
@@ -4379,8 +4381,8 @@ msgid "Deleted transactions will be temporarily stored and can be restored from 
 msgstr "Выдаленыя транзакцыі будуць часова захаваныя і могуць быць адноўленыя са спісу \"Выдаленыя транзакцыі\"."
 
 #: mmchecking_list.cpp:1331 mmchecking_list.cpp:1430
-msgid "You cannot undo this action."
-msgstr "Гэта дзеянне немагчыма скасаваць."
+msgid "Unable to undo this action."
+msgstr ""
 
 #: mmchecking_list.cpp:1335 mmchecking_list.cpp:1346 mmchecking_list.cpp:1357
 #: mmchecking_list.cpp:1435
@@ -4479,7 +4481,7 @@ msgid "Not moved"
 msgstr ""
 
 #: mmchecking_list.cpp:1796
-msgid "Some transactions could not be moved"
+msgid "Unable to move some transactions"
 msgstr ""
 
 #: mmchecking_list.cpp:1863
@@ -4628,7 +4630,7 @@ msgid "Days between selected transactions: %d"
 msgstr "Дзён паміж абранымі аперацыямі: %d"
 
 #: mmcheckingpanel.cpp:1062
-msgid "Scheduled transactions cannot be shown, because the current filter choice extends into the future without limit."
+msgid "Scheduled transactions are unable to be shown, because the current filter choice extends into the future without limit."
 msgstr ""
 
 #: mmcheckingpanel.cpp:1063
@@ -4909,11 +4911,11 @@ msgstr "&Ачысціць спіс нядаўніх файлаў"
 
 #: mmframe.cpp:1616
 msgid "&WebApp…"
-msgstr "&WebApp…"
+msgstr ""
 
 #: mmframe.cpp:1616
-msgid "Import from WebApp"
-msgstr "Імпартаваць з WebApp"
+msgid "Import from the WebApp"
+msgstr ""
 
 #: mmframe.cpp:1623
 msgid "Export as fixed CSV file"
@@ -5444,8 +5446,8 @@ msgid "&Next →"
 msgstr "&Наступны →"
 
 #: mmframe.cpp:2223
-msgid "Cannot locate previously opened database.\n"
-msgstr "Немагчыма адчыніць базу дадзеных, што выкарыстоўвалася раней.\n"
+msgid "Unable to locate previously opened database.\n"
+msgstr ""
 
 #: mmframe.cpp:2225
 msgid "Password not entered for encrypted Database.\n"
@@ -5575,8 +5577,8 @@ msgid "Save database file as"
 msgstr "Захаваць файл базы дадзеных як"
 
 #: mmframe.cpp:2545
-msgid "Can't copy file to itself"
-msgstr "Нельга скапіяваць файл у самога сябе"
+msgid "Unable to copy file to itself"
+msgstr ""
 
 #: mmframe.cpp:2558
 msgid "Enter password for new database"
@@ -6304,12 +6306,12 @@ msgid "Format derived from locale.\n"
 msgstr ""
 
 #: optionsettingsgeneral.cpp:174
-msgid "Use currency history"
-msgstr "Выкарыстоўваць гісторыю валютаў"
+msgid "Use historical currency"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:176
-msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr "Абярыце выкарыстанне гісторыі валютаў (адзін курс на кожны дзень) або скасуйце выбар для выкарыстання фіксаванага курса"
+msgid "Select to use historical currency (one rate for each day), deselect to use a fixed rate"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:180
 msgid "Financial Year"
@@ -7760,6 +7762,10 @@ msgstr "Каціроўкі паспяхова абноўленыя"
 msgid "Last updated %s"
 msgstr "Апошняе абнаўленне %s"
 
+#: stockspanel.cpp:432
+msgid "Could not find base currency symbol!"
+msgstr "Немагчыма знайсці сымбаль асноўнай валюты"
+
 #: stockspanel.cpp:438 util.cpp:708 util.cpp:869
 msgid "Nothing to update"
 msgstr "Няма чаго абнаўляць"
@@ -7782,8 +7788,8 @@ msgid "Edit the name of an existing tag"
 msgstr "Рыдагаваць назву існуючай пазнакі"
 
 #: tagdialog.cpp:136
-msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr "Выдаліць існуючую пазнаку. Яна ня мае выкарыстоўвацца ў аперацыях."
+msgid "Delete an existing tag. The tag is unable to be used by existing transactions."
+msgstr ""
 
 #: tagdialog.cpp:142
 msgid "Select"
@@ -7912,7 +7918,7 @@ msgid "Not updated"
 msgstr ""
 
 #: transactionsupdatedialog.cpp:540
-msgid "Some transactions could not be updated"
+msgid "Unable to update some transactions"
 msgstr ""
 
 #: transactionsupdatedialog.h:42
@@ -8150,24 +8156,24 @@ msgid "Expected response to contain a data or error string"
 msgstr "На запыт чакаўся адказ, што змяшчае радок дадзеных або памылку"
 
 #: util.cpp:1011
-msgid "Could not find asset for symbol"
-msgstr "Немагчыма знайсці актыў для сымбаля"
+msgid "Unable to find asset for symbol"
+msgstr ""
 
 #: util.cpp:1046
-msgid "Could not get base currency!"
-msgstr "Немагчыма атрымаць асноўную валюту"
+msgid "Unable to get base currency!"
+msgstr ""
 
 #: util.cpp:1052
 msgid "USD"
 msgstr "USD"
 
 #: util.cpp:1055
-msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr "Не атрымалася знайсці валюту «USD», неабходную для канвертавання цэнаў у гісторыі"
+msgid "Unable to find currency 'USD', required for converting historical prices"
+msgstr ""
 
 #: util.cpp:1076
-msgid "Could not parse price in asset history"
-msgstr "Аналіз кошта з гісторыі актываў не атрымаўся"
+msgid "Unable to parse price in asset history"
+msgstr ""
 
 #: util.cpp:1449
 #, c-format
@@ -8331,8 +8337,8 @@ msgid "Today will be used as the transaction date"
 msgstr "За дату аперацыі будзе ўзяты сённяшні дзень"
 
 #: webapp.cpp:596 webapp.cpp:630 webappdialog.cpp:338
-msgid "Unable to download attachments from webapp."
-msgstr "Немагчыма спампаваць далучэнні з WebApp."
+msgid "Unable to download attachments from the WebApp."
+msgstr ""
 
 #: webapp.cpp:597
 msgid "Attachments folder not set or unavailable"
@@ -8343,8 +8349,8 @@ msgid "Transaction not downloaded:"
 msgstr "Аперацыя не спампаваная:"
 
 #: webapp.cpp:599
-msgid "Please fix attachments folder or delete attachments from WebApp"
-msgstr "Калі ласка, выпраўце тэчку з далучэннямі або выдаліце далучэнні ў WebApp"
+msgid "Please fix attachments folder or delete attachments from the WebApp"
+msgstr ""
 
 #: webapp.cpp:600
 msgid "Attachment folder error"
@@ -8379,8 +8385,8 @@ msgid "Import and open all "
 msgstr "Імпартаваць і адчыніць усе "
 
 #: webappdialog.cpp:205
-msgid "Unable to download transactions from webapp."
-msgstr "Немагчыма спампаваць аперацыі з WebApp."
+msgid "Unable to download transactions from the WebApp."
+msgstr ""
 
 #: webappdialog.cpp:206
 msgid "Transactions download error"
