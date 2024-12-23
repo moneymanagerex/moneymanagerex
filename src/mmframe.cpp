@@ -2220,9 +2220,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         const wxString note = wxString::Format("%s - %s", mmex::getProgramName(), _("No File opened"));
         this->SetTitle(note);
 
-        wxString msgStr = _("Unable to locate previously opened database.\n");
+        wxString msgStr = _("Unable to find previously opened database.\n");
         if (!passwordCheckPassed)
-            msgStr = _("Password not entered for encrypted Database.\n");
+            msgStr = _("Password not entered for encrypted database.\n");
 
         msgStr << fileName;
         wxMessageBox(msgStr, dialogErrorMessageHeading, wxOK | wxICON_ERROR);
