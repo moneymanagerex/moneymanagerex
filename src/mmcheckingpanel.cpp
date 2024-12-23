@@ -1059,7 +1059,7 @@ void mmCheckingPanel::updateFilterState()
 void mmCheckingPanel::updateScheduledToolTip()
 {
     mmToolTip(m_header_scheduled,
-        !m_scheduled_allowed ? _("Scheduled transactions are unable to be shown, because the current filter choice extends into the future without limit.") :
+        !m_scheduled_allowed ? _("Unable to show scheduled transactions because the current filter choice extends into the future without limit.") :
         !m_scheduled_selected ? _("Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month).") :
         _("Click to hide scheduled transactions."));
 }
