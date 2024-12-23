@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-12-20 14:18+0000\n"
-"PO-Revision-Date: 2024-12-23 22:07\n"
+"POT-Creation-Date: 2024-12-23 22:19+0000\n"
+"PO-Revision-Date: 2024-12-23 22:25\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "Language: he_IL\n"
@@ -291,8 +291,8 @@ msgid "Invalid Date"
 msgstr "תאריך לא תקין"
 
 #: accountdialog.cpp:515
-msgid "Opening date cannot be in the future"
-msgstr "תאריך הפתיחה לא יכול לחול בעתיד"
+msgid "Opening date is unable to be in the future"
+msgstr ""
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
@@ -1643,8 +1643,8 @@ msgid "Edit the name of an existing category"
 msgstr "עריכת שם סוג־אב קיים"
 
 #: categdialog.cpp:323
-msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr "מחיקת  קיים. לא ניתן להשתמש ב עם תנועות הקימות."
+msgid "Delete an existing category. The category is unable to be used by existing transactions."
+msgstr ""
 
 #: categdialog.cpp:328 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1683,8 +1683,8 @@ msgid "Category Manager: Adding Error"
 msgstr "מנהל סוגי־אב: שגיאת הוספה"
 
 #: categdialog.cpp:427
-msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr "לא ניתן להעביר סוג־אב משנה לסוג־אב שמכיל כבר סוג־אב משנה בשם זהה. נא לשקול שינוי שם לפני ההעברה."
+msgid "Unable to move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
+msgstr ""
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
@@ -1965,8 +1965,8 @@ msgid "Invalid Entry"
 msgstr "תנועה לא תקינה"
 
 #: currencydialog.cpp:285 currencydialog.cpp:310
-msgid "Grouping character cannot be the same as the decimal character"
-msgstr "תו קיבוץ לא יכול להיות זהה לתו עשרוני"
+msgid "Grouping character is unable to be the same as the decimal character"
+msgstr ""
 
 #: currencydialog.cpp:332
 #, c-format
@@ -2470,8 +2470,8 @@ msgid "When database file opening:"
 msgstr "בעת פתיחת קובץ מסד נתונים:"
 
 #: dbwrapper.cpp:114
-msgid "Can't open file"
-msgstr "לא ניתן לפתוח קובץ"
+msgid "Unable to open file"
+msgstr ""
 
 #: dbwrapper.cpp:114
 msgid "You must specify path to another database file"
@@ -2979,8 +2979,8 @@ msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr "בערכת הנושא '%2$s' שנבחרה, חסרים נתוני על '%1$s'"
 
 #: images_list.cpp:458
-msgid "and more…"
-msgstr "ועוד…"
+msgid "and more..."
+msgstr "ועוד..."
 
 #: images_list.cpp:460
 #, c-format
@@ -3776,8 +3776,8 @@ msgid "Show all even the unused currencies"
 msgstr "הצגת הכול לרבות מטבעות שאינם בשיוש"
 
 #: maincurrencydialog.cpp:241
-msgid "Currency History Options"
-msgstr "אפשרויות היסטורית מטבעות"
+msgid "Historical Currency Options"
+msgstr ""
 
 #: maincurrencydialog.cpp:258 stockdialog.cpp:287 stockdialog.cpp:306
 #: stockdialog.cpp:634 stockspanel.cpp:215
@@ -3809,8 +3809,8 @@ msgid "Delete selected Currency Values"
 msgstr "מחיקת ערכי מטבע שנבחרו"
 
 #: maincurrencydialog.cpp:309
-msgid "Delete Currency Values history for unused currencies and days"
-msgstr "מחיקת היסטוריית ערכי מטבעות ותאריכים למטבעות שאינם בשימוש"
+msgid "Delete Historical Currency Values for unused currencies and days"
+msgstr ""
 
 #: maincurrencydialog.cpp:365
 msgid "Do you really want to delete the selected Currency?"
@@ -3822,10 +3822,9 @@ msgstr "בחירת מטבע הבסיס"
 
 #: maincurrencydialog.cpp:435
 #, c-format
-msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
-"click no and enable it or click yes to remove all historic rates for %2$s"
-msgstr "נמצאו שערים היסטוריים עבור %1$s אבל, האפשרות 'שימוש בשערים היסטוריים' נוטרלה בהגדרות:\n"
-"נא להקיש על שפעול האפשרות או, הקשה על 'כן' להסרת כל השערים ההיסטוריים עבור %2$s"
+msgid "Historical rates for %1$s found, but “Use historical currency” in options is disabled:\n"
+"click No and enable it or click Yes to remove all historical rates for %2$s"
+msgstr ""
 
 #: maincurrencydialog.cpp:447
 #, c-format
@@ -3833,14 +3832,13 @@ msgid "Currency History Options: %s"
 msgstr "אפשרויות היסטורית מטבעות: %s"
 
 #: maincurrencydialog.cpp:503
-msgid "Unable to update history currency rates. Please update them manually!"
-msgstr "לא ניתן היה לעדכן שערי מטבע היסטוריים. נא לעדכנם באופן ידני!"
+msgid "Unable to update historical currency rates. Please update them manually!"
+msgstr ""
 
-#: maincurrencydialog.cpp:504 maincurrencydialog.cpp:657
-#: maincurrencydialog.cpp:692 maincurrencydialog.cpp:728
-#: maincurrencydialog.cpp:834
-msgid "Currency history error"
-msgstr "שגיאת היסטורית מטבע"
+#: maincurrencydialog.cpp:504 maincurrencydialog.cpp:692
+#: maincurrencydialog.cpp:728
+msgid "Historical currency error"
+msgstr ""
 
 #: maincurrencydialog.cpp:536
 msgid "Set as Base Currency"
@@ -3849,6 +3847,10 @@ msgstr "הגדרה כמטבע הבסיס"
 #: maincurrencydialog.cpp:537
 msgid "Online Update Currency Rate"
 msgstr "עדכון שערי מטח מקוון"
+
+#: maincurrencydialog.cpp:657 maincurrencydialog.cpp:834
+msgid "Currency history error"
+msgstr "שגיאת היסטורית מטבע"
 
 #: maincurrencydialog.cpp:657
 msgid "No currency selected!"
@@ -3865,12 +3867,12 @@ msgstr "אין אפשרות להוריד %s שערי החליפין"
 
 #: maincurrencydialog.cpp:726
 #, c-format
-msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr "אין אפשרות להוריד היסטוריה עבור סמל ניר %s. היסטורית מחירים לא זמינה!"
+msgid "Unable to download history for symbol %s. Historical rates unavailable!"
+msgstr ""
 
 #: maincurrencydialog.cpp:788 optionsettingsgeneral.cpp:300
-msgid "Changing base currency will delete all history rates, proceed?"
-msgstr "שינוי מטבע הבסיס ימחק את כל השערים ההיסטוריים, האם להמשיך?"
+msgid "Changing base currency will delete all historical rates, proceed?"
+msgstr ""
 
 #: maincurrencydialog.cpp:812
 msgid "Do you want to update today currency rates?"
@@ -3878,12 +3880,12 @@ msgstr "האם לעדכן שערי מטבע להיום?"
 
 #: maincurrencydialog.cpp:833
 #, c-format
-msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr "לא ניתן להוריד היסטוריה עבור סמל בסיס %s. היסטורית שערים אינה זמינה!"
+msgid "Unable to download history for base symbol %s. Historical rates unavailable!"
+msgstr ""
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:684
-msgid "Could not find base currency symbol!"
-msgstr "סמל מטבע בסיס לא נמצא!"
+#: maincurrencydialog.cpp:876 util.cpp:684
+msgid "Unable to find base currency symbol!"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:767 mmSimpleDialogs.cpp:779
 msgid "&Clear color"
@@ -4379,8 +4381,8 @@ msgid "Deleted transactions will be temporarily stored and can be restored from 
 msgstr "תנועות שנמחקו יאוחסנו באופן זמני וניתן לשחזרם ממצג 'תנועות שנמחקו'."
 
 #: mmchecking_list.cpp:1331 mmchecking_list.cpp:1430
-msgid "You cannot undo this action."
-msgstr "לא ניתן לבטל פעולה זו."
+msgid "Unable to undo this action."
+msgstr ""
 
 #: mmchecking_list.cpp:1335 mmchecking_list.cpp:1346 mmchecking_list.cpp:1357
 #: mmchecking_list.cpp:1435
@@ -4479,8 +4481,8 @@ msgid "Not moved"
 msgstr "לא הועברו"
 
 #: mmchecking_list.cpp:1796
-msgid "Some transactions could not be moved"
-msgstr "חלק מהתנועות לא ניתנות להעברה"
+msgid "Unable to move some transactions"
+msgstr ""
 
 #: mmchecking_list.cpp:1863
 msgid "Scheduled transaction saved."
@@ -4628,7 +4630,7 @@ msgid "Days between selected transactions: %d"
 msgstr "ימים שבין התנועות שנבחרו: %d"
 
 #: mmcheckingpanel.cpp:1062
-msgid "Scheduled transactions cannot be shown, because the current filter choice extends into the future without limit."
+msgid "Scheduled transactions are unable to be shown, because the current filter choice extends into the future without limit."
 msgstr ""
 
 #: mmcheckingpanel.cpp:1063
@@ -4911,8 +4913,8 @@ msgid "&WebApp…"
 msgstr "יישומון &מרשתת…"
 
 #: mmframe.cpp:1616
-msgid "Import from WebApp"
-msgstr "יבוא מיישומון מרשתת"
+msgid "Import from the WebApp"
+msgstr ""
 
 #: mmframe.cpp:1623
 msgid "Export as fixed CSV file"
@@ -5443,8 +5445,8 @@ msgid "&Next →"
 msgstr "&הבא ←"
 
 #: mmframe.cpp:2223
-msgid "Cannot locate previously opened database.\n"
-msgstr "מסד הנתונים שנפתח לאחרונה לא אותר.\n"
+msgid "Unable to locate previously opened database.\n"
+msgstr ""
 
 #: mmframe.cpp:2225
 msgid "Password not entered for encrypted Database.\n"
@@ -5572,8 +5574,8 @@ msgid "Save database file as"
 msgstr "שמור קובץ מסד נתונים בשם"
 
 #: mmframe.cpp:2545
-msgid "Can't copy file to itself"
-msgstr "לא ניתן להעתיק קובץ לתוך עצמו"
+msgid "Unable to copy file to itself"
+msgstr ""
 
 #: mmframe.cpp:2558
 msgid "Enter password for new database"
@@ -6301,12 +6303,12 @@ msgid "Format derived from locale.\n"
 msgstr ""
 
 #: optionsettingsgeneral.cpp:174
-msgid "Use currency history"
-msgstr "שימוש בהיסטורית מטבעות"
+msgid "Use historical currency"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:176
-msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr "נא לבחור לשימוש בהיסטוריית שערים (שער לכל יום), בטול בחירה לשימוש בשער קבוע"
+msgid "Select to use historical currency (one rate for each day), deselect to use a fixed rate"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:180
 msgid "Financial Year"
@@ -7757,6 +7759,10 @@ msgstr "שערי מניות עודכנו בהצלחה"
 msgid "Last updated %s"
 msgstr "עודכן לאחרונה  %s"
 
+#: stockspanel.cpp:432
+msgid "Could not find base currency symbol!"
+msgstr "סמל מטבע בסיס לא נמצא!"
+
 #: stockspanel.cpp:438 util.cpp:708 util.cpp:869
 msgid "Nothing to update"
 msgstr "לא נמצאו עדכונים"
@@ -7779,8 +7785,8 @@ msgid "Edit the name of an existing tag"
 msgstr "עריכת שם תג קיים"
 
 #: tagdialog.cpp:136
-msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr "מחיקת תג קיים. לא ניתן להשתמש בתג בתנועות הקימות."
+msgid "Delete an existing tag. The tag is unable to be used by existing transactions."
+msgstr ""
 
 #: tagdialog.cpp:142
 msgid "Select"
@@ -7909,7 +7915,7 @@ msgid "Not updated"
 msgstr "לא מעודכן"
 
 #: transactionsupdatedialog.cpp:540
-msgid "Some transactions could not be updated"
+msgid "Unable to update some transactions"
 msgstr ""
 
 #: transactionsupdatedialog.h:42
@@ -8147,24 +8153,24 @@ msgid "Expected response to contain a data or error string"
 msgstr "תגובה צפויה להכלת מחרוזת מידע או שגיאה"
 
 #: util.cpp:1011
-msgid "Could not find asset for symbol"
-msgstr "לא ניתן למצוא נכס לסמל"
+msgid "Unable to find asset for symbol"
+msgstr ""
 
 #: util.cpp:1046
-msgid "Could not get base currency!"
-msgstr "לא ניתן לאחזר מטבע בסיס!"
+msgid "Unable to get base currency!"
+msgstr ""
 
 #: util.cpp:1052
 msgid "USD"
 msgstr "USD"
 
 #: util.cpp:1055
-msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr "מטבע USD לא נמצא, נדרש לשערוך תנועות היסטוריות"
+msgid "Unable to find currency 'USD', required for converting historical prices"
+msgstr ""
 
 #: util.cpp:1076
-msgid "Could not parse price in asset history"
-msgstr "לא ניתן לנתח מחיר בהיסטורית הנכס"
+msgid "Unable to parse price in asset history"
+msgstr ""
 
 #: util.cpp:1449
 #, c-format
@@ -8328,8 +8334,8 @@ msgid "Today will be used as the transaction date"
 msgstr "לתאריך תנועוה, ייעשה שימוש בתאריך 'היום'"
 
 #: webapp.cpp:596 webapp.cpp:630 webappdialog.cpp:338
-msgid "Unable to download attachments from webapp."
-msgstr "לא ניתן להוריד צרופה מי המרשתת."
+msgid "Unable to download attachments from the WebApp."
+msgstr ""
 
 #: webapp.cpp:597
 msgid "Attachments folder not set or unavailable"
@@ -8340,8 +8346,8 @@ msgid "Transaction not downloaded:"
 msgstr "תנועות לא הורדו:"
 
 #: webapp.cpp:599
-msgid "Please fix attachments folder or delete attachments from WebApp"
-msgstr "נא לתקן תקיית צרופות או למחוק צרופות מישומון הרשת"
+msgid "Please fix attachments folder or delete attachments from the WebApp"
+msgstr ""
 
 #: webapp.cpp:600
 msgid "Attachment folder error"
@@ -8376,8 +8382,8 @@ msgid "Import and open all "
 msgstr "יבוא ופתח הכל "
 
 #: webappdialog.cpp:205
-msgid "Unable to download transactions from webapp."
-msgstr "לא ניתן להוריד תנועות מי המרשתת."
+msgid "Unable to download transactions from the WebApp."
+msgstr ""
 
 #: webappdialog.cpp:206
 msgid "Transactions download error"

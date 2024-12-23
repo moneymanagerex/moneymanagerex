@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-12-20 14:18+0000\n"
-"PO-Revision-Date: 2024-12-23 22:07\n"
+"POT-Creation-Date: 2024-12-23 22:19+0000\n"
+"PO-Revision-Date: 2024-12-23 22:23\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian\n"
 "Language: lt_LT\n"
@@ -291,8 +291,8 @@ msgid "Invalid Date"
 msgstr "Klaidinga data"
 
 #: accountdialog.cpp:515
-msgid "Opening date cannot be in the future"
-msgstr "Atidarymo data negali būti ateityje"
+msgid "Opening date is unable to be in the future"
+msgstr ""
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
@@ -1649,8 +1649,8 @@ msgid "Edit the name of an existing category"
 msgstr "Redaguoti egzistuojančios kategorijos pavadinimą"
 
 #: categdialog.cpp:323
-msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr "Ištrinti egzistuojančią kategoriją. Kategorija negali būti naudojama egzistuojančiose operacijose."
+msgid "Delete an existing category. The category is unable to be used by existing transactions."
+msgstr ""
 
 #: categdialog.cpp:328 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1689,7 +1689,7 @@ msgid "Category Manager: Adding Error"
 msgstr ""
 
 #: categdialog.cpp:427
-msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
+msgid "Unable to move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
 msgstr ""
 
 #: categdialog.cpp:428
@@ -1966,8 +1966,8 @@ msgid "Invalid Entry"
 msgstr "Netinkamas įrašas"
 
 #: currencydialog.cpp:285 currencydialog.cpp:310
-msgid "Grouping character cannot be the same as the decimal character"
-msgstr "Grupavimo simbolis negali būti toks pat kaip dešimtainis simbolis"
+msgid "Grouping character is unable to be the same as the decimal character"
+msgstr ""
 
 #: currencydialog.cpp:332
 #, c-format
@@ -2475,8 +2475,8 @@ msgid "When database file opening:"
 msgstr "Kai atidaromas duomenų bazės failas:"
 
 #: dbwrapper.cpp:114
-msgid "Can't open file"
-msgstr "Nepavyksta atverti failo"
+msgid "Unable to open file"
+msgstr ""
 
 #: dbwrapper.cpp:114
 msgid "You must specify path to another database file"
@@ -2983,8 +2983,8 @@ msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr ""
 
 #: images_list.cpp:458
-msgid "and more…"
-msgstr "ir daugiau…"
+msgid "and more..."
+msgstr "ir daugiau..."
 
 #: images_list.cpp:460
 #, c-format
@@ -3779,8 +3779,8 @@ msgid "Show all even the unused currencies"
 msgstr "Rodyti visas net nepanaudotas valiutas"
 
 #: maincurrencydialog.cpp:241
-msgid "Currency History Options"
-msgstr "Valiutų istorijos parinktys"
+msgid "Historical Currency Options"
+msgstr ""
 
 #: maincurrencydialog.cpp:258 stockdialog.cpp:287 stockdialog.cpp:306
 #: stockdialog.cpp:634 stockspanel.cpp:215
@@ -3812,8 +3812,8 @@ msgid "Delete selected Currency Values"
 msgstr "Ištrinkite pasirinktas valiutos vertes"
 
 #: maincurrencydialog.cpp:309
-msgid "Delete Currency Values history for unused currencies and days"
-msgstr "Ištrinkite nenaudojamų valiutų ir dienų valiutų verčių istoriją"
+msgid "Delete Historical Currency Values for unused currencies and days"
+msgstr ""
 
 #: maincurrencydialog.cpp:365
 msgid "Do you really want to delete the selected Currency?"
@@ -3825,8 +3825,8 @@ msgstr "Bazinės valiutos pasirinkimas"
 
 #: maincurrencydialog.cpp:435
 #, c-format
-msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
-"click no and enable it or click yes to remove all historic rates for %2$s"
+msgid "Historical rates for %1$s found, but “Use historical currency” in options is disabled:\n"
+"click No and enable it or click Yes to remove all historical rates for %2$s"
 msgstr ""
 
 #: maincurrencydialog.cpp:447
@@ -3835,14 +3835,13 @@ msgid "Currency History Options: %s"
 msgstr ""
 
 #: maincurrencydialog.cpp:503
-msgid "Unable to update history currency rates. Please update them manually!"
-msgstr "Nepavyko atnaujinti istorijos valiutų kursų. Atnaujinkite juos rankiniu būdu!"
+msgid "Unable to update historical currency rates. Please update them manually!"
+msgstr ""
 
-#: maincurrencydialog.cpp:504 maincurrencydialog.cpp:657
-#: maincurrencydialog.cpp:692 maincurrencydialog.cpp:728
-#: maincurrencydialog.cpp:834
-msgid "Currency history error"
-msgstr "Valiutos istorijos klaida"
+#: maincurrencydialog.cpp:504 maincurrencydialog.cpp:692
+#: maincurrencydialog.cpp:728
+msgid "Historical currency error"
+msgstr ""
 
 #: maincurrencydialog.cpp:536
 msgid "Set as Base Currency"
@@ -3851,6 +3850,10 @@ msgstr "Nustatyti kaip pagrindinę valiutą"
 #: maincurrencydialog.cpp:537
 msgid "Online Update Currency Rate"
 msgstr "Atnaujinti iš interneto valiutų kursą"
+
+#: maincurrencydialog.cpp:657 maincurrencydialog.cpp:834
+msgid "Currency history error"
+msgstr "Valiutos istorijos klaida"
 
 #: maincurrencydialog.cpp:657
 msgid "No currency selected!"
@@ -3867,12 +3870,12 @@ msgstr "Nepavyko atsisiųsti %s valiutos kursų"
 
 #: maincurrencydialog.cpp:726
 #, c-format
-msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr "Nepavyko atsisiųsti simbolio %s istorijos. Istorijos įkainiai neprieinami!"
+msgid "Unable to download history for symbol %s. Historical rates unavailable!"
+msgstr ""
 
 #: maincurrencydialog.cpp:788 optionsettingsgeneral.cpp:300
-msgid "Changing base currency will delete all history rates, proceed?"
-msgstr "Pakeitus bazinę valiutą bus ištrinti visi istorijos kursai. Tęsti?"
+msgid "Changing base currency will delete all historical rates, proceed?"
+msgstr ""
 
 #: maincurrencydialog.cpp:812
 msgid "Do you want to update today currency rates?"
@@ -3880,12 +3883,12 @@ msgstr "Ar norite šiandien atnaujinti valiutų kursus?"
 
 #: maincurrencydialog.cpp:833
 #, c-format
-msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr "Nepavyko atsisiųsti pagrindinio simbolio %s istorijos. Istorijos įkainiai neprieinami!"
+msgid "Unable to download history for base symbol %s. Historical rates unavailable!"
+msgstr ""
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:684
-msgid "Could not find base currency symbol!"
-msgstr "Nepavyko rasti bazinės valiutos simbolio!"
+#: maincurrencydialog.cpp:876 util.cpp:684
+msgid "Unable to find base currency symbol!"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:767 mmSimpleDialogs.cpp:779
 msgid "&Clear color"
@@ -4381,8 +4384,8 @@ msgid "Deleted transactions will be temporarily stored and can be restored from 
 msgstr "Ištrintos operacijos bus laikinai saugomos ir jas bus galima atkurti rodinyje Ištrintos operacijos."
 
 #: mmchecking_list.cpp:1331 mmchecking_list.cpp:1430
-msgid "You cannot undo this action."
-msgstr "Negalite anuliuoti šio veiksmo."
+msgid "Unable to undo this action."
+msgstr ""
 
 #: mmchecking_list.cpp:1335 mmchecking_list.cpp:1346 mmchecking_list.cpp:1357
 #: mmchecking_list.cpp:1435
@@ -4481,7 +4484,7 @@ msgid "Not moved"
 msgstr ""
 
 #: mmchecking_list.cpp:1796
-msgid "Some transactions could not be moved"
+msgid "Unable to move some transactions"
 msgstr ""
 
 #: mmchecking_list.cpp:1863
@@ -4630,7 +4633,7 @@ msgid "Days between selected transactions: %d"
 msgstr "Dienos tarp pasirinktų operacijų: %d"
 
 #: mmcheckingpanel.cpp:1062
-msgid "Scheduled transactions cannot be shown, because the current filter choice extends into the future without limit."
+msgid "Scheduled transactions are unable to be shown, because the current filter choice extends into the future without limit."
 msgstr ""
 
 #: mmcheckingpanel.cpp:1063
@@ -4913,8 +4916,8 @@ msgid "&WebApp…"
 msgstr "&Žiniatinklio programa…"
 
 #: mmframe.cpp:1616
-msgid "Import from WebApp"
-msgstr "Importuoti iš WebApp"
+msgid "Import from the WebApp"
+msgstr ""
 
 #: mmframe.cpp:1623
 msgid "Export as fixed CSV file"
@@ -5444,7 +5447,7 @@ msgid "&Next →"
 msgstr ""
 
 #: mmframe.cpp:2223
-msgid "Cannot locate previously opened database.\n"
+msgid "Unable to locate previously opened database.\n"
 msgstr ""
 
 #: mmframe.cpp:2225
@@ -5570,8 +5573,8 @@ msgid "Save database file as"
 msgstr "Išsaugoti duomenų bazės failą kaip"
 
 #: mmframe.cpp:2545
-msgid "Can't copy file to itself"
-msgstr "Nepavyksta nukopijuoti failo į jį patį"
+msgid "Unable to copy file to itself"
+msgstr ""
 
 #: mmframe.cpp:2558
 msgid "Enter password for new database"
@@ -6286,12 +6289,12 @@ msgid "Format derived from locale.\n"
 msgstr ""
 
 #: optionsettingsgeneral.cpp:174
-msgid "Use currency history"
-msgstr "Naudokite valiutų istoriją"
+msgid "Use historical currency"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:176
-msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr "Pasirinkite, jei norite naudoti valiutų istoriją (vienas kursas kiekvienai dienai), panaikinkite pasirinkimą, jei norite naudoti fiksuotą kursą"
+msgid "Select to use historical currency (one rate for each day), deselect to use a fixed rate"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:180
 msgid "Financial Year"
@@ -7735,6 +7738,10 @@ msgstr "Akcijų kainos sėkmingai atnaujintos"
 msgid "Last updated %s"
 msgstr "Vėliausiai atnaujinta: %s"
 
+#: stockspanel.cpp:432
+msgid "Could not find base currency symbol!"
+msgstr "Nepavyko rasti bazinės valiutos simbolio!"
+
 #: stockspanel.cpp:438 util.cpp:708 util.cpp:869
 msgid "Nothing to update"
 msgstr "Nėra ką naujinti"
@@ -7757,7 +7764,7 @@ msgid "Edit the name of an existing tag"
 msgstr ""
 
 #: tagdialog.cpp:136
-msgid "Delete an existing tag. The tag cannot be used by existing transactions."
+msgid "Delete an existing tag. The tag is unable to be used by existing transactions."
 msgstr ""
 
 #: tagdialog.cpp:142
@@ -7887,7 +7894,7 @@ msgid "Not updated"
 msgstr ""
 
 #: transactionsupdatedialog.cpp:540
-msgid "Some transactions could not be updated"
+msgid "Unable to update some transactions"
 msgstr ""
 
 #: transactionsupdatedialog.h:42
@@ -8124,11 +8131,11 @@ msgid "Expected response to contain a data or error string"
 msgstr ""
 
 #: util.cpp:1011
-msgid "Could not find asset for symbol"
+msgid "Unable to find asset for symbol"
 msgstr ""
 
 #: util.cpp:1046
-msgid "Could not get base currency!"
+msgid "Unable to get base currency!"
 msgstr ""
 
 #: util.cpp:1052
@@ -8136,11 +8143,11 @@ msgid "USD"
 msgstr "USD"
 
 #: util.cpp:1055
-msgid "Could not find currency 'USD', needed for converting history prices"
+msgid "Unable to find currency 'USD', required for converting historical prices"
 msgstr ""
 
 #: util.cpp:1076
-msgid "Could not parse price in asset history"
+msgid "Unable to parse price in asset history"
 msgstr ""
 
 #: util.cpp:1449
@@ -8305,8 +8312,8 @@ msgid "Today will be used as the transaction date"
 msgstr "Šiandien bus naudojama kaip operacijos data"
 
 #: webapp.cpp:596 webapp.cpp:630 webappdialog.cpp:338
-msgid "Unable to download attachments from webapp."
-msgstr "Nepavyksta atsisiųsti priedų iš WebApp."
+msgid "Unable to download attachments from the WebApp."
+msgstr ""
 
 #: webapp.cpp:597
 msgid "Attachments folder not set or unavailable"
@@ -8317,8 +8324,8 @@ msgid "Transaction not downloaded:"
 msgstr "Operacija neatsiųsta:"
 
 #: webapp.cpp:599
-msgid "Please fix attachments folder or delete attachments from WebApp"
-msgstr "Pataisykite priedų aplanką arba ištrinkite priedus iš „WebApp“"
+msgid "Please fix attachments folder or delete attachments from the WebApp"
+msgstr ""
 
 #: webapp.cpp:600
 msgid "Attachment folder error"
@@ -8353,8 +8360,8 @@ msgid "Import and open all "
 msgstr "Importuoti ir atverti viską "
 
 #: webappdialog.cpp:205
-msgid "Unable to download transactions from webapp."
-msgstr "Nepavyko atsisiųsti operacijų iš žiniatinklio programos."
+msgid "Unable to download transactions from the WebApp."
+msgstr ""
 
 #: webappdialog.cpp:206
 msgid "Transactions download error"
