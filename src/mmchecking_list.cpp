@@ -1793,7 +1793,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
                                 , _("Not moved"), skip_trx.size());
                 mmErrorDialogs::MessageWarning(this
                     , detail
-                    , _("Unable to move some transactions"));
+                    , _("Unable to move some transactions."));
             }
             //TODO: enable report to detail transactions that are unable to be moved
             refreshVisualList();
