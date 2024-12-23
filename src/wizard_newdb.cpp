@@ -36,7 +36,7 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
         "Your database file is stored with an extension of .mmb.\n"
         "As this file contains important financial information,\n"
         "we recommended creating daily backups with the Options\n"
-        "setting: 'Backup before opening', and store your backups\n"
+        "setting: “Backup database on startup”, and store your backups\n"
         "in a separate location.\n\n"
         "The database can later be encrypted if required, by\n"
         "using the option: “Save Database As…” and changing the\n"
