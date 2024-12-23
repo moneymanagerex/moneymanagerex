@@ -429,7 +429,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
     wxString base_currency_symbol;
     if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
     {
-        msg = _("Could not find base currency symbol!");
+        msg = _("Unable to find base currency symbol!");
         return false;
     }
 
