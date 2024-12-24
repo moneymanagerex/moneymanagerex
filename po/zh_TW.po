@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2024-12-20 14:18+0000\n"
-"PO-Revision-Date: 2024-12-23 22:07\n"
+"POT-Creation-Date: 2024-12-23 22:19+0000\n"
+"PO-Revision-Date: 2024-12-23 22:23\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Language: zh_TW\n"
@@ -291,8 +291,8 @@ msgid "Invalid Date"
 msgstr "無效的日期"
 
 #: accountdialog.cpp:515
-msgid "Opening date cannot be in the future"
-msgstr "開戶日期不能是在未來。"
+msgid "Opening date is unable to be in the future"
+msgstr ""
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
@@ -1634,8 +1634,8 @@ msgid "Edit the name of an existing category"
 msgstr "編輯已存在類別"
 
 #: categdialog.cpp:323
-msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr "刪除現有的類別。此類別不可以用在現有的交易紀錄上。"
+msgid "Delete an existing category. The category is unable to be used by existing transactions."
+msgstr ""
 
 #: categdialog.cpp:328 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1674,8 +1674,8 @@ msgid "Category Manager: Adding Error"
 msgstr "類別管理員：新增錯誤"
 
 #: categdialog.cpp:427
-msgid "You cannot move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr "您無法將子類別移到已有同名子類別的類別中。移動前嘗試重新命名。"
+msgid "Unable to move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
+msgstr ""
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
@@ -1956,8 +1956,8 @@ msgid "Invalid Entry"
 msgstr "輸入無效"
 
 #: currencydialog.cpp:285 currencydialog.cpp:310
-msgid "Grouping character cannot be the same as the decimal character"
-msgstr "分組字元不能與小數點字元相同"
+msgid "Grouping character is unable to be the same as the decimal character"
+msgstr ""
 
 #: currencydialog.cpp:332
 #, c-format
@@ -2459,8 +2459,8 @@ msgid "When database file opening:"
 msgstr "當資料庫檔案開啟時："
 
 #: dbwrapper.cpp:114
-msgid "Can't open file"
-msgstr "無法開啟檔案"
+msgid "Unable to open file"
+msgstr ""
 
 #: dbwrapper.cpp:114
 msgid "You must specify path to another database file"
@@ -3761,8 +3761,8 @@ msgid "Show all even the unused currencies"
 msgstr "顯示全部，包含未使用的貨幣"
 
 #: maincurrencydialog.cpp:241
-msgid "Currency History Options"
-msgstr "歷史匯率選項"
+msgid "Historical Currency Options"
+msgstr ""
 
 #: maincurrencydialog.cpp:258 stockdialog.cpp:287 stockdialog.cpp:306
 #: stockdialog.cpp:634 stockspanel.cpp:215
@@ -3794,8 +3794,8 @@ msgid "Delete selected Currency Values"
 msgstr "刪除已選擇的貨幣匯率"
 
 #: maincurrencydialog.cpp:309
-msgid "Delete Currency Values history for unused currencies and days"
-msgstr "刪除未使用的幣別和天數的歷史匯率"
+msgid "Delete Historical Currency Values for unused currencies and days"
+msgstr ""
 
 #: maincurrencydialog.cpp:365
 msgid "Do you really want to delete the selected Currency?"
@@ -3807,10 +3807,9 @@ msgstr "基準幣別選擇"
 
 #: maincurrencydialog.cpp:435
 #, c-format
-msgid "Historic rates for %1$s found, but \"Use currency history\" in options is disabled:\n"
-"click no and enable it or click yes to remove all historic rates for %2$s"
-msgstr "找到 %1$s 的歷史匯率，但選項中的「使用歷史匯率」被停用：\n"
-"點擊「否」並啟用它，或點擊「是」刪除 %2$s 的所有歷史匯率"
+msgid "Historical rates for %1$s found, but “Use historical currency” in options is disabled:\n"
+"click No and enable it or click Yes to remove all historical rates for %2$s"
+msgstr ""
 
 #: maincurrencydialog.cpp:447
 #, c-format
@@ -3818,14 +3817,13 @@ msgid "Currency History Options: %s"
 msgstr "貨幣歷史匯率選項：%s"
 
 #: maincurrencydialog.cpp:503
-msgid "Unable to update history currency rates. Please update them manually!"
-msgstr "無法更新歷史貨幣匯率。請手動更新！"
+msgid "Unable to update historical currency rates. Please update them manually!"
+msgstr ""
 
-#: maincurrencydialog.cpp:504 maincurrencydialog.cpp:657
-#: maincurrencydialog.cpp:692 maincurrencydialog.cpp:728
-#: maincurrencydialog.cpp:834
-msgid "Currency history error"
-msgstr "貨幣歷史匯率錯誤"
+#: maincurrencydialog.cpp:504 maincurrencydialog.cpp:692
+#: maincurrencydialog.cpp:728
+msgid "Historical currency error"
+msgstr ""
 
 #: maincurrencydialog.cpp:536
 msgid "Set as Base Currency"
@@ -3834,6 +3832,10 @@ msgstr "設定為基準幣別"
 #: maincurrencydialog.cpp:537
 msgid "Online Update Currency Rate"
 msgstr "線上更新匯率"
+
+#: maincurrencydialog.cpp:657 maincurrencydialog.cpp:834
+msgid "Currency history error"
+msgstr "貨幣歷史匯率錯誤"
 
 #: maincurrencydialog.cpp:657
 msgid "No currency selected!"
@@ -3850,12 +3852,12 @@ msgstr "無法下載 %s 匯率"
 
 #: maincurrencydialog.cpp:726
 #, c-format
-msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr "無法下載貨幣符號 %s 的歷史記錄。歷史匯率無法使用！"
+msgid "Unable to download history for symbol %s. Historical rates unavailable!"
+msgstr ""
 
 #: maincurrencydialog.cpp:788 optionsettingsgeneral.cpp:300
-msgid "Changing base currency will delete all history rates, proceed?"
-msgstr "更改基準貨幣將刪除所有歷史匯率，繼續嗎？"
+msgid "Changing base currency will delete all historical rates, proceed?"
+msgstr ""
 
 #: maincurrencydialog.cpp:812
 msgid "Do you want to update today currency rates?"
@@ -3863,12 +3865,12 @@ msgstr "您是否要更新今天的匯率?"
 
 #: maincurrencydialog.cpp:833
 #, c-format
-msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr "無法下載基準貨幣符號 %s 的歷史記錄。歷史匯率無法使用！"
+msgid "Unable to download history for base symbol %s. Historical rates unavailable!"
+msgstr ""
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:684
-msgid "Could not find base currency symbol!"
-msgstr "找不到基準貨幣符號！"
+#: maincurrencydialog.cpp:876 util.cpp:684
+msgid "Unable to find base currency symbol!"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:767 mmSimpleDialogs.cpp:779
 msgid "&Clear color"
@@ -4343,8 +4345,8 @@ msgid "Deleted transactions will be temporarily stored and can be restored from 
 msgstr "已刪除的交易紀錄將被暫時存儲，並且可以從「已刪除的交易紀錄」檢視中復原。"
 
 #: mmchecking_list.cpp:1331 mmchecking_list.cpp:1430
-msgid "You cannot undo this action."
-msgstr "您無法撤銷恢復此操作。"
+msgid "Unable to undo this action."
+msgstr ""
 
 #: mmchecking_list.cpp:1335 mmchecking_list.cpp:1346 mmchecking_list.cpp:1357
 #: mmchecking_list.cpp:1435
@@ -4428,8 +4430,8 @@ msgid "Not moved"
 msgstr "未有移動"
 
 #: mmchecking_list.cpp:1796
-msgid "Some transactions could not be moved"
-msgstr "某些交易紀錄無法移動。"
+msgid "Unable to move some transactions"
+msgstr ""
 
 #: mmchecking_list.cpp:1863
 msgid "Scheduled transaction saved."
@@ -4577,7 +4579,7 @@ msgid "Days between selected transactions: %d"
 msgstr "所選交易紀錄間隔的天數：%d"
 
 #: mmcheckingpanel.cpp:1062
-msgid "Scheduled transactions cannot be shown, because the current filter choice extends into the future without limit."
+msgid "Scheduled transactions are unable to be shown, because the current filter choice extends into the future without limit."
 msgstr ""
 
 #: mmcheckingpanel.cpp:1063
@@ -4861,8 +4863,8 @@ msgid "&WebApp…"
 msgstr "清除最近使用檔案(&C)"
 
 #: mmframe.cpp:1616
-msgid "Import from WebApp"
-msgstr "從網路應用程式匯入"
+msgid "Import from the WebApp"
+msgstr ""
 
 #: mmframe.cpp:1623
 msgid "Export as fixed CSV file"
@@ -5393,8 +5395,8 @@ msgid "&Next →"
 msgstr "下一步(&N)→"
 
 #: mmframe.cpp:2223
-msgid "Cannot locate previously opened database.\n"
-msgstr "無法找到先前開啟的資料庫。\n"
+msgid "Unable to locate previously opened database.\n"
+msgstr ""
 
 #: mmframe.cpp:2225
 msgid "Password not entered for encrypted Database.\n"
@@ -5524,8 +5526,8 @@ msgid "Save database file as"
 msgstr "另存檔案"
 
 #: mmframe.cpp:2545
-msgid "Can't copy file to itself"
-msgstr "無法將檔案複製到自身"
+msgid "Unable to copy file to itself"
+msgstr ""
 
 #: mmframe.cpp:2558
 msgid "Enter password for new database"
@@ -6256,12 +6258,12 @@ msgstr "格式設定來自於語言環境設定。\n"
 "留空以透過「貨幣管理員 | 編輯」手動設定格式"
 
 #: optionsettingsgeneral.cpp:174
-msgid "Use currency history"
-msgstr "使用貨幣歷史"
+msgid "Use historical currency"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:176
-msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr "選擇使用貨幣歷史記錄(每天一個匯率)，取消選擇以使用固定匯率"
+msgid "Select to use historical currency (one rate for each day), deselect to use a fixed rate"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:180
 msgid "Financial Year"
@@ -7712,6 +7714,10 @@ msgstr "股價已成功的更新"
 msgid "Last updated %s"
 msgstr "最後更新時間 %s"
 
+#: stockspanel.cpp:432
+msgid "Could not find base currency symbol!"
+msgstr "找不到基準貨幣符號！"
+
 #: stockspanel.cpp:438 util.cpp:708 util.cpp:869
 msgid "Nothing to update"
 msgstr "没有更新的内容"
@@ -7734,8 +7740,8 @@ msgid "Edit the name of an existing tag"
 msgstr "編輯現有標記名稱"
 
 #: tagdialog.cpp:136
-msgid "Delete an existing tag. The tag cannot be used by existing transactions."
-msgstr "刪除現有標記。該標記不能被現有交易紀錄使用。"
+msgid "Delete an existing tag. The tag is unable to be used by existing transactions."
+msgstr ""
 
 #: tagdialog.cpp:142
 msgid "Select"
@@ -7864,8 +7870,8 @@ msgid "Not updated"
 msgstr "並未更新"
 
 #: transactionsupdatedialog.cpp:540
-msgid "Some transactions could not be updated"
-msgstr "部份交易紀錄無法更新"
+msgid "Unable to update some transactions"
+msgstr ""
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
@@ -8102,24 +8108,24 @@ msgid "Expected response to contain a data or error string"
 msgstr "預期回應包含資料或錯誤字串"
 
 #: util.cpp:1011
-msgid "Could not find asset for symbol"
-msgstr "找不到股票代碼的資產"
+msgid "Unable to find asset for symbol"
+msgstr ""
 
 #: util.cpp:1046
-msgid "Could not get base currency!"
-msgstr "無法取得基準貨幣！"
+msgid "Unable to get base currency!"
+msgstr ""
 
 #: util.cpp:1052
 msgid "USD"
 msgstr "美元"
 
 #: util.cpp:1055
-msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr "找不到轉換歷史匯率所需的貨幣「USD」"
+msgid "Unable to find currency 'USD', required for converting historical prices"
+msgstr ""
 
 #: util.cpp:1076
-msgid "Could not parse price in asset history"
-msgstr "無法解析資產歷史記錄中的價格"
+msgid "Unable to parse price in asset history"
+msgstr ""
 
 #: util.cpp:1449
 #, c-format
@@ -8283,8 +8289,8 @@ msgid "Today will be used as the transaction date"
 msgstr "將以今天將作為交易紀錄日期"
 
 #: webapp.cpp:596 webapp.cpp:630 webappdialog.cpp:338
-msgid "Unable to download attachments from webapp."
-msgstr "無法從網路應用程式下載附件。"
+msgid "Unable to download attachments from the WebApp."
+msgstr ""
 
 #: webapp.cpp:597
 msgid "Attachments folder not set or unavailable"
@@ -8295,8 +8301,8 @@ msgid "Transaction not downloaded:"
 msgstr "未下載交易紀錄："
 
 #: webapp.cpp:599
-msgid "Please fix attachments folder or delete attachments from WebApp"
-msgstr "請修復附件資料夾或從網路應用程式中刪除附件"
+msgid "Please fix attachments folder or delete attachments from the WebApp"
+msgstr ""
 
 #: webapp.cpp:600
 msgid "Attachment folder error"
@@ -8331,8 +8337,8 @@ msgid "Import and open all "
 msgstr "匯入及開啟全部 "
 
 #: webappdialog.cpp:205
-msgid "Unable to download transactions from webapp."
-msgstr "無法從網路應用程式下載交易紀錄。"
+msgid "Unable to download transactions from the WebApp."
+msgstr ""
 
 #: webappdialog.cpp:206
 msgid "Transactions download error"
