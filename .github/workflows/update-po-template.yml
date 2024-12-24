@@ -21,15 +21,16 @@ jobs:
       - name: Execute update script
         run: |
           : # merge master
+          git config --global user.name 'MMEX'
+          git config --global user.email 'developer@moneymanagerex.org'
+          git config pull.rebase false
           git fetch origin
-          git merge origin/master
+          git merge origin/master --allow-unrelated-histories --strategy-option theirs
           
           : # run the po update script
           bash util/update-po-files.sh
 
           : # add the new template to a commit and check if there are any changes
-          git config --global user.name 'MMEX'
-          git config --global user.email 'developer@moneymanagerex.org'
           git add po/mmex.pot
           echo "CHANGES"="$(git diff --shortstat --cached | awk '{print $4 + $6}')" >> $GITHUB_ENV
           echo $CHANGES
