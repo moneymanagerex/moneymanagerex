@@ -1447,19 +1447,19 @@ void mmGUIFrame::AppendImportMenu(wxMenu& menu)
 {
     wxMenu* importFrom(new wxMenu);
     menu.AppendSubMenu(importFrom, _("&Import from"));
-    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, _("&CSV Files…"));
-    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, _("&XML Files…"), _("Import from XML file (Excel format)"));
+    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&CSV Files…"))));
+    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&XML Files…"))), _("Import from XML file (Excel format)"));
     importFrom->AppendSeparator();
-    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, _("&QIF Files…"));
+    importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&QIF Files…"))));
 
     wxMenu* exportTo(new wxMenu);
     menu.AppendSubMenu(exportTo, _("&Export as"));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, _("&CSV File…"));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, _("&XML File…"));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&CSV File…"))));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&XML File…"))));
     exportTo->AppendSeparator();
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX, _("&MMEX CSV File…"));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, _("&JSON File…"));
-    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, _("&QIF File…"));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&MMEX CSV File…"))));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&JSON File…"))));
+    exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&QIF File…"))));
 }
 
 void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
@@ -1484,9 +1484,9 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
     {
         const wxString data = iData->getString();
         wxLogDebug("MENU FILTER: %s", data);
-        menu.Append(MENU_TREEPOPUP_FILTER_EDIT, _("&Customize Report…"));
-        menu.Append(MENU_TREEPOPUP_FILTER_RENAME, _("&Rename Report…"));
-        menu.Append(MENU_TREEPOPUP_FILTER_DELETE, _("&Delete Report…"));
+        menu.Append(MENU_TREEPOPUP_FILTER_EDIT, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Customize Report…"))));
+        menu.Append(MENU_TREEPOPUP_FILTER_RENAME, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Rename Report…"))));
+        menu.Append(MENU_TREEPOPUP_FILTER_DELETE, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Delete Report…"))));
         PopupMenu(&menu, pt);
         break;
     }
@@ -1502,11 +1502,11 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
         {
-            menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account…"));
-            menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account…"));
+            menu.Append(MENU_TREEPOPUP_EDIT, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Edit Account…"))));
+            menu.Append(MENU_TREEPOPUP_DELETE, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Delete Account…"))));
             menu.AppendSeparator();
             menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
-            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Attachment Manager…"));
+            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Attachment Manager…"))));
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
 
             PopupMenu(&menu, pt);
@@ -1520,13 +1520,13 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
         {
-            menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account…"));
-            menu.Append(MENU_TREEPOPUP_REALLOCATE, _("&Change Account Type…"));
+            menu.Append(MENU_TREEPOPUP_EDIT, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Edit Account…"))));
+            menu.Append(MENU_TREEPOPUP_REALLOCATE, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Change Account Type…"))));
             menu.AppendSeparator();
-            menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account…"));
+            menu.Append(MENU_TREEPOPUP_DELETE, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Delete Account…"))));
             menu.AppendSeparator();
             menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
-            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Attachment Manager…"));
+            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Attachment Manager…"))));
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
             menu.Enable(MENU_TREEPOPUP_REALLOCATE, account->ACCOUNTTYPE != Model_Account::TYPE_STR_SHARES);
             menu.AppendSeparator();
@@ -1539,11 +1539,11 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
     case mmTreeItemData::MENU_FAVORITES:
     case mmTreeItemData::ALL_TRANSACTIONS:
     {
-        menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, _("&New Account…"));
-        menu.Append(MENU_TREEPOPUP_ACCOUNT_EDIT, _("&Edit Account…"));
+        menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Account…"))));
+        menu.Append(MENU_TREEPOPUP_ACCOUNT_EDIT, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Edit Account…"))));
         menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List"));
         menu.AppendSeparator();
-        menu.Append(MENU_TREEPOPUP_ACCOUNT_DELETE, _("&Delete Account…"));
+        menu.Append(MENU_TREEPOPUP_ACCOUNT_DELETE, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Delete Account…"))));
         menu.AppendSeparator();
 
         AppendImportMenu(menu);
@@ -1592,9 +1592,9 @@ void mmGUIFrame::createMenu()
 {
     wxMenu* menu_file = new wxMenu;
 
-    wxMenuItem* menuItemNew = new wxMenuItem(menu_file, MENU_NEW, _("&New Database…"), _("New Database"));
-    wxMenuItem* menuItemOpen = new wxMenuItem(menu_file, MENU_OPEN, _("&Open Database…\tCtrl-O"), _("Open Database"));
-    wxMenuItem* menuItemSaveAs = new wxMenuItem(menu_file, MENU_SAVE_AS, _("Save Database &As…"), _("Save Database As"));
+    wxMenuItem* menuItemNew = new wxMenuItem(menu_file, MENU_NEW, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Database…"))), _("New Database"));
+    wxMenuItem* menuItemOpen = new wxMenuItem(menu_file, MENU_OPEN, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Open Database…\tCtrl-O"))), _("Open Database"));
+    wxMenuItem* menuItemSaveAs = new wxMenuItem(menu_file, MENU_SAVE_AS, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Save Database &As…"))), _("Save Database As"));
     menu_file->Append(menuItemNew);
     menu_file->Append(menuItemOpen);
     menu_file->Append(menuItemSaveAs);
@@ -1608,28 +1608,28 @@ void mmGUIFrame::createMenu()
 
     wxMenu* importMenu = new wxMenu;
     menu_file->Append(MENU_IMPORT, _("&Import from"), importMenu);
-    importMenu->Append(MENU_IMPORT_UNIVCSV, _("&CSV File…"), _("Import from CSV file"));
-    importMenu->Append(MENU_IMPORT_XML, _("&XML File…"), _("Import from XML file (Excel format)"));
+    importMenu->Append(MENU_IMPORT_UNIVCSV, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&CSV File…"))), _("Import from CSV file"));
+    importMenu->Append(MENU_IMPORT_XML, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&XML File…"))), _("Import from XML file (Excel format)"));
     importMenu->AppendSeparator();
-    importMenu->Append(MENU_IMPORT_QIF, _("&QIF File…"), _("Import from QIF file"));
+    importMenu->Append(MENU_IMPORT_QIF, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&QIF File…"))), _("Import from QIF file"));
     importMenu->AppendSeparator();
-    importMenu->Append(MENU_IMPORT_WEBAPP, _("&WebApp…"), _("Import from the WebApp"));
+    importMenu->Append(MENU_IMPORT_WEBAPP, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&WebApp…"))), _("Import from the WebApp"));
 
     wxMenu* exportMenu = new wxMenu;
     menu_file->Append(MENU_EXPORT, _("&Export as"), exportMenu);
-    exportMenu->Append(MENU_EXPORT_CSV, _("&CSV File…"), _("Export as CSV file"));
-    exportMenu->Append(MENU_EXPORT_XML, _("&XML File…"), _("Export as XML file"));
+    exportMenu->Append(MENU_EXPORT_CSV, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&CSV File…"))), _("Export as CSV file"));
+    exportMenu->Append(MENU_EXPORT_XML, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&XML File…"))), _("Export as XML file"));
     exportMenu->AppendSeparator();
-    exportMenu->Append(MENU_EXPORT_MMEX, _("&MMEX CSV File…"), _("Export as fixed CSV file"));
-    exportMenu->Append(MENU_EXPORT_JSON, _("&JSON File…"), _("Export as JSON file"));
-    exportMenu->Append(MENU_EXPORT_QIF, _("&QIF File…"), _("Export as QIF file"));
+    exportMenu->Append(MENU_EXPORT_MMEX, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&MMEX CSV File…"))), _("Export as fixed CSV file"));
+    exportMenu->Append(MENU_EXPORT_JSON, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&JSON File…"))), _("Export as JSON file"));
+    exportMenu->Append(MENU_EXPORT_QIF, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&QIF File…"))), _("Export as QIF file"));
     exportMenu->AppendSeparator();
-    exportMenu->Append(MENU_EXPORT_HTML, _("&HTML File…"), _("Export as HTML file"));
+    exportMenu->Append(MENU_EXPORT_HTML, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&HTML File…"))), _("Export as HTML file"));
 
     menu_file->AppendSeparator();
 
     wxMenuItem* menuItemPrint = new wxMenuItem(menu_file, wxID_PRINT,
-        _("&Print…"), _("Print current view"));
+        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Print…"))), _("Print current view"));
     menu_file->Append(menuItemPrint);
 
     menu_file->AppendSeparator();
@@ -1720,16 +1720,16 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
         , _("Dash&board"), _("Open Dashboard"));
 
     wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT
-        , _("&New Account…"), _("New Account"));
+        , wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Account…"))), _("New Account"));
 
     wxMenuItem* menuItemAcctEdit = new wxMenuItem(menuAccounts, MENU_ACCTEDIT
-        , _("&Edit Account…"), _("Edit Account"));
+        , wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Edit Account…"))), _("Edit Account"));
 
     wxMenuItem* menuItemReallocateAcct = new wxMenuItem(menuAccounts, MENU_ACCOUNT_REALLOCATE
-        , _("&Change Account Type…"), _("Change the account type of an account"));
+        , wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Change Account Type…"))), _("Change the account type of an account"));
 
     wxMenuItem* menuItemAcctDelete = new wxMenuItem(menuAccounts, MENU_ACCTDELETE
-        , _("&Delete Account…"), _("Delete Account from database"));
+        , wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Delete Account…"))), _("Delete Account from database"));
 
     menuAccounts->Append(menuItemAcctList);
     menuAccounts->AppendSeparator();
@@ -1748,29 +1748,29 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemPayee = new wxMenuItem(menuTools
-        , MENU_ORGPAYEE, _("&Payee Manager…"), _("Payee Manager"));
+        , MENU_ORGPAYEE, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Payee Manager…"))), _("Payee Manager"));
     menuTools->Append(menuItemPayee);
 
     wxMenuItem* menuItemCateg = new wxMenuItem(menuTools
-        , MENU_ORGCATEGS, _("&Category Manager…"), _("Category Manager"));
+        , MENU_ORGCATEGS, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Category Manager…"))), _("Category Manager"));
     menuTools->Append(menuItemCateg);
 
     wxMenuItem* menuItemTags = new wxMenuItem(menuTools
-        , MENU_ORGTAGS, _("&Tag Manager…"), _("Tag Manager"));
+        , MENU_ORGTAGS, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Tag Manager…"))), _("Tag Manager"));
     menuTools->Append(menuItemTags);
 
     wxMenuItem* menuItemCurrency = new wxMenuItem(menuTools, MENU_CURRENCY
-        , _("Curre&ncy Manager…"), _("Currency Manager"));
+        , wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Curre&ncy Manager…"))), _("Currency Manager"));
     menuTools->Append(menuItemCurrency);
 
     wxMenuItem* menuItemCategoryRelocation = new wxMenuItem(menuTools
-        , MENU_CATEGORY_RELOCATION, _("&Categories…")
+        , MENU_CATEGORY_RELOCATION, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Categories…")))
         , _("Merge categories"));
     wxMenuItem* menuItemPayeeRelocation = new wxMenuItem(menuTools
-        , MENU_PAYEE_RELOCATION, _("&Payees…")
+        , MENU_PAYEE_RELOCATION, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Payees…")))
         , _("Merge payees"));
     wxMenuItem* menuItemTagRelocation = new wxMenuItem(menuTools
-        , MENU_TAG_RELOCATION, _("&Tags…")
+        , MENU_TAG_RELOCATION, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Tags…")))
         , _("Merge tags"));
     wxMenuItem* menuItemRelocation = new wxMenuItem(menuTools
         , MENU_RELOCATION, _("&Merge")
@@ -1785,7 +1785,7 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemBudgeting = new wxMenuItem(menuTools, MENU_BUDGETSETUPDIALOG
-        , _("&Budget Planner…"), _("Budget Planner"));
+        , wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Budget Planner…"))), _("Budget Planner"));
     menuTools->Append(menuItemBudgeting);
 
     wxMenuItem* menuItemBillsDeposits = new wxMenuItem(menuTools, MENU_BILLSDEPOSITS
@@ -1799,50 +1799,50 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemThemes = new wxMenuItem(menuTools, MENU_THEME_MANAGER
-        , _("T&heme Manager…"), _("Theme Manager"));
+        , wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("T&heme Manager…"))), _("Theme Manager"));
     menuTools->Append(menuItemThemes);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemTransactions = new wxMenuItem(menuTools, MENU_TRANSACTIONREPORT
-        , _("Tra&nsaction Report…"), _("Transaction Report"));
+        , wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Tra&nsaction Report…"))), _("Transaction Report"));
     menuTools->Append(menuItemTransactions);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemGRM = new wxMenuItem(menuTools, wxID_VIEW_LIST
-        , _("&General Report Manager…"), _("General Report Manager"));
+        , wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&General Report Manager…"))), _("General Report Manager"));
     menuTools->Append(menuItemGRM);
 
     wxMenuItem* menuItemCF = new wxMenuItem(menuTools, wxID_BROWSE
-        , _("C&ustom Field Manager…"), _("Custom Field Manager"));
+        , wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("C&ustom Field Manager…"))), _("Custom Field Manager"));
     menuTools->Append(menuItemCF);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemWA = new wxMenuItem(menuTools, MENU_REFRESH_WEBAPP
-        , _("Refresh &WebApp…"), _("Refresh WebApp"));
+        , wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Refresh &WebApp…"))), _("Refresh WebApp"));
     menuTools->Append(menuItemWA);
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemOptions = new wxMenuItem(menuTools, wxID_PREFERENCES
-        , _("&Settings…\tAlt-F12"), _("Settings"));
+        , wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Settings…\tAlt-F12"))), _("Settings"));
     menuTools->Append(menuItemOptions);
 
     menuTools->AppendSeparator();
 
     wxMenu* menuDatabase = new wxMenu;
     wxMenuItem* menuItemConvertDB = new wxMenuItem(menuTools, MENU_CONVERT_ENC_DB
-        , _("&Decrypt Encrypted Database…")
+        , wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Decrypt Encrypted Database…")))
         , _("Convert encrypted database to unencrypted database"));
     wxMenuItem* menuItemChangeEncryptPassword = new wxMenuItem(menuTools, MENU_CHANGE_ENCRYPT_PASSWORD
-        , _("Change Encrypted &Password…")
+        , wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Change Encrypted &Password…")))
         , _("Change the password of an encrypted database"));
     wxMenuItem* menuItemVacuumDB = new wxMenuItem(menuTools, MENU_DB_VACUUM
-        , _("&Optimize Database…")
+        , wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Optimize Database…")))
         , _("Optimize database for space and performance"));
     wxMenuItem* menuItemCheckDB = new wxMenuItem(menuTools, MENU_DB_DEBUG
-        , _("Database Check and De&bug…")
+        , wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Database Check and De&bug…")))
         , _("Generate database report or fix errors"));
     menuDatabase->Append(menuItemConvertDB);
     menuDatabase->Append(menuItemChangeEncryptPassword);
@@ -3528,7 +3528,7 @@ void mmGUIFrame::OnRates(wxCommandEvent& WXUNUSED(event))
             wxBusyInfoFlags()
             .Parent(this)
             .Title(_("Downloading stock prices from Yahoo"))
-            .Text(_("Please wait…"))
+            .Text(wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Please wait…"))))
             .Foreground(*wxWHITE)
             .Background(wxColour(0, 102, 51))
             .Transparency(4 * wxALPHA_OPAQUE / 5)
