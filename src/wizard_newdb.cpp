@@ -32,7 +32,7 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
 {
     page1 = new wxWizardPageSimple(this);
     wxString displayMsg;
-    displayMsg << _("The next pages will help you create a new database.\n\n"
+    displayMsg << wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("The next pages will help you create a new database.\n\n"
         "Your database file is stored with an extension of .mmb. "
         "As this file contains important financial information, "
         "we recommended creating daily backups with the Options "
@@ -40,7 +40,7 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
         "in a separate location.\n\n"
         "The database can later be encrypted if required, by "
         "using the option: “Save Database As…” and changing the "
-        "file type before saving.");
+        "file type before saving.")));
     new wxStaticText(page1, wxID_ANY, displayMsg);
 
     mmNewDatabaseWizardPage* page2 = new mmNewDatabaseWizardPage(this);
