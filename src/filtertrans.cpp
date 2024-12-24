@@ -126,7 +126,7 @@ wxString mmFilterTransactions::getHTML()
     mmHTMLBuilder hb;
     m_trans.clear();
     const auto splits = Model_Splittransaction::instance().get_all();
-    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION));
+    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_STR_TRANSACTION);
     for (const auto& tran : Model_Checking::instance().all()) //TODO: find should be faster
     {
         if (!mmIsRecordMatches(tran, splits)) continue;
@@ -186,7 +186,7 @@ table {
     hb.init(false, extra_style);
     hb.addReportHeader(_("Transaction Details"), 1, false);
 
-    const wxString& AttRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    const wxString& AttRefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
     hb.addDivContainer();
     hb.addTableCellLink("back:",wxString::Format("<< %s", _("Back")));
     hb.endDiv();

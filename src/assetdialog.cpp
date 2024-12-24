@@ -114,7 +114,7 @@ void mmAssetDialog::dataToControls()
     m_notes->SetValue(m_asset->NOTES);
     m_dpc->SetValue(Model_Asset::STARTDATE(m_asset));
     m_value->SetValue(std::abs(m_asset->VALUE));
-    Model_Translink::Data_Set translink = Model_Translink::TranslinkList(Model_Attachment::ASSET, m_asset->ASSETID);
+    Model_Translink::Data_Set translink = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_ASSET, m_asset->ASSETID);
     if (!translink.empty())
     {
         m_value->Enable(false);
@@ -365,7 +365,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
 
     if (old_asset_id < 0)
     {
-        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+        const wxString& RefType = Model_Attachment::REFTYPE_STR_ASSET;
         mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, new_asset_id);
     }
     if (m_transaction_panel->ValidCheckingAccountEntry())
@@ -437,7 +437,7 @@ void mmAssetDialog::OnCancel(wxCommandEvent& /*event*/)
         return;
     else
     {
-        const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+        const wxString& RefType = Model_Attachment::REFTYPE_STR_ASSET;
         if (!this->m_asset)
             mmAttachmentManage::DeleteAllAttachments(RefType, 0);
         EndModal(wxID_CANCEL);
@@ -446,7 +446,7 @@ void mmAssetDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmAssetDialog::OnQuit(wxCloseEvent& /*event*/)
 {
-    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+    const wxString& RefType = Model_Attachment::REFTYPE_STR_ASSET;
     if (!this->m_asset)
         mmAttachmentManage::DeleteAllAttachments(RefType, 0);
     EndModal(wxID_CANCEL);
@@ -454,7 +454,7 @@ void mmAssetDialog::OnQuit(wxCloseEvent& /*event*/)
 
 void mmAssetDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+    const wxString& RefType = Model_Attachment::REFTYPE_STR_ASSET;
     int64 RefId;
     
     if (!this->m_asset)

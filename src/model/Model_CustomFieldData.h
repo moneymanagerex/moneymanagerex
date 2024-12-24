@@ -48,7 +48,7 @@ public:
     static Model_CustomFieldData& instance();
 
 public:
-    std::map<int64, Data_Set> get_all(Model_Attachment::REFTYPE reftype);
+    std::map<int64, Data_Set> get_all(Model_Attachment::REFTYPE_ID reftype);
     Data* get(int64 FieldID, int64 RefID);
     wxArrayString allValue(const int64 FieldID);
     static bool DeleteAllData(const wxString& RefType, int64 RefID);

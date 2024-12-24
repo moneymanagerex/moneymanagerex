@@ -235,7 +235,10 @@ double Model_Asset::valueAtDate(const Data* r, const wxDate date)
 {
     double balance = 0;
     if (date >= STARTDATE(r)) {
-        Model_Translink::Data_Set translink_records = Model_Translink::instance().find(Model_Translink::LINKRECORDID(r->ASSETID), Model_Translink::LINKTYPE(Model_Attachment::reftype_desc(Model_Attachment::ASSET)));
+        Model_Translink::Data_Set translink_records = Model_Translink::instance().find(
+            Model_Translink::LINKRECORDID(r->ASSETID),
+            Model_Translink::LINKTYPE(Model_Attachment::REFTYPE_STR_ASSET)
+        );
         if (!translink_records.empty())
         {
             for (const auto& link : translink_records)

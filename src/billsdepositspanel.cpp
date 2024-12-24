@@ -519,7 +519,7 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     {
         wxString value = bill.NOTES;
         value.Replace("\n", " ");
-        if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), bill.BDID))
+        if (Model_Attachment::NrAttachments(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT, bill.BDID))
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value;
     }
@@ -680,7 +680,7 @@ void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
     {
         int64 BdId = m_bdp->bills_[m_selected_row].BDID;
         Model_Billsdeposits::instance().remove(BdId);
-        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), BdId);
+        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT, BdId);
         m_bdp->do_delete_custom_values(-BdId);
         m_bdp->initVirtualListControl();
         refreshVisualList(m_selected_row);
@@ -717,7 +717,7 @@ void billsDepositsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     if (m_selected_row == -1) return;
 
     int64 RefId = m_bdp->bills_[m_selected_row].BDID;
-    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+    const wxString& RefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
 
     mmAttachmentDialog dlg(this, RefType, RefId);
     dlg.ShowModal();
@@ -729,7 +729,7 @@ void billsDepositsListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
     int64 RefId = m_bdp->bills_[m_selected_row].BDID;
-    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+    const wxString& RefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
 
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
     refreshVisualList(m_bdp->initVirtualListControl(RefId));
@@ -988,6 +988,6 @@ wxString  mmBillsDepositsPanel::BuildPage() const
 
 void mmBillsDepositsPanel::do_delete_custom_values(int64 id)
 {
-    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    const wxString& RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
     Model_CustomFieldData::DeleteAllData(RefType, id);
 }

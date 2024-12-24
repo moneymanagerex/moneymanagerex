@@ -187,10 +187,22 @@ void relocateTagDialog::IsOkOk()
     Model_Tag::Data* dest = Model_Tag::instance().get(cbDestTag_->GetValue());
     if (dest) destTagID_ = dest->TAGID;
     if (source) sourceTagID_ = source->TAGID;
-    int trxs_size = (sourceTagID_ < 0) ? 0 : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION)), Model_Taglink::TAGID(sourceTagID_)).size();
-    int split_size = (sourceTagID_ < 0) ? 0 : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT)), Model_Taglink::TAGID(sourceTagID_)).size();
-    int bills_size = (sourceTagID_ < 0) ? 0 : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT)), Model_Taglink::TAGID(sourceTagID_)).size();
-    int bill_split_size = (sourceTagID_ < 0) ? 0 : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT)), Model_Taglink::TAGID(sourceTagID_)).size();
+    int trxs_size = (sourceTagID_ < 0) ? 0 : Model_Taglink::instance().find(
+        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_TRANSACTION),
+        Model_Taglink::TAGID(sourceTagID_)
+    ).size();
+    int split_size = (sourceTagID_ < 0) ? 0 : Model_Taglink::instance().find(
+        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT),
+        Model_Taglink::TAGID(sourceTagID_)
+    ).size();
+    int bills_size = (sourceTagID_ < 0) ? 0 : Model_Taglink::instance().find(
+        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT),
+        Model_Taglink::TAGID(sourceTagID_)
+    ).size();
+    int bill_split_size = (sourceTagID_ < 0) ? 0 : Model_Taglink::instance().find(
+        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT),
+        Model_Taglink::TAGID(sourceTagID_)
+    ).size();
 
     if (destTagID_ < 0 || sourceTagID_ < 0
         || destTagID_ == sourceTagID_
