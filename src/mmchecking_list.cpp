@@ -40,7 +40,7 @@
 #include <wx/sound.h>
 
 //----------------------------------------------------------------------------
-
+#define wxPLURAL_U8(singular, plural, n) wxPLURAL(wxString::FromUTF8(singular), wxString::FromUTF8(plural), n)
 wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY, TransactionListCtrl::OnListItemActivated)
     EVT_LIST_ITEM_SELECTED(wxID_ANY, TransactionListCtrl::OnListItemSelected)
@@ -487,7 +487,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 
         menu.AppendSeparator();
 
-        menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL(wxString::FromUTF8("&Edit Transaction…"), wxString::FromUTF8("&Edit Transactions…"), selected));
+        menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL_U8("&Edit Transaction…", "&Edit Transactions…", selected));
         if (is_nothing_selected) menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
         menu.Append(MENU_ON_COPY_TRANSACTION, wxPLURAL("&Copy Transaction", "&Copy Transactions", selected));
@@ -505,7 +505,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         menu.Append(MENU_ON_DUPLICATE_TRANSACTION, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("D&uplicate Transaction…"))));
         if (is_nothing_selected || multiselect) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
 
-        menu.Append(MENU_TREEPOPUP_MOVE2, wxPLURAL(wxString::FromUTF8("&Move Transaction…"), wxString::FromUTF8("&Move Transactions…"), selected));
+        menu.Append(MENU_TREEPOPUP_MOVE2, wxPLURAL_U8("&Move Transaction…", "&Move Transactions…", selected));
         if (is_nothing_selected || type_transfer || (Model_Account::money_accounts_num() < 2) || is_foreign)
             menu.Enable(MENU_TREEPOPUP_MOVE2, false);
 
@@ -527,7 +527,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         if (is_nothing_selected || multiselect) menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
     }
     else {
-        menu.Append(MENU_TREEPOPUP_RESTORE, wxPLURAL(wxString::FromUTF8("&Restore selected transaction…"), wxString::FromUTF8("&Restore selected transactions…"), selected));
+        menu.Append(MENU_TREEPOPUP_RESTORE, wxPLURAL_U8("&Restore selected transaction…", "&Restore selected transactions…", selected));
         if (is_nothing_selected) menu.Enable(MENU_TREEPOPUP_RESTORE, false);
         menu.Append(MENU_TREEPOPUP_RESTORE_VIEWED, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Restore &all transactions in current view…"))));
     }
@@ -688,8 +688,8 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 
     menu.AppendSeparator();
     wxMenu* subGlobalOpMenuDelete = new wxMenu();
-    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE2, !m_cp->isTrash_ ? wxPLURAL(wxString::FromUTF8("&Delete selected transaction…"), wxString::FromUTF8("&Delete selected transactions…"), selected)
-                        : wxPLURAL(wxString::FromUTF8("&Permanently delete selected transaction…"), wxString::FromUTF8("&Permanently delete selected transactions…"), selected));
+    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE2, !m_cp->isTrash_ ? wxPLURAL_U8("&Delete selected transaction…", "&Delete selected transactions…", selected)
+                        : wxPLURAL_U8("&Permanently delete selected transaction…", "&Permanently delete selected transactions…", selected));
     if (is_nothing_selected) subGlobalOpMenuDelete->Enable(MENU_TREEPOPUP_DELETE2, false);
     subGlobalOpMenuDelete->AppendSeparator();
     subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_VIEWED, !m_cp->isTrash_ ? wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Delete &all transactions in current view…"))) : wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Permanently delete &all transactions in current view…"))));
@@ -1749,8 +1749,8 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
     if (msgDlg.ShowModal() == wxID_YES)
     {
         const wxString headerMsg = wxString::Format(
-                wxPLURAL(wxString::FromUTF8("Moving transaction to…")
-                , wxString::FromUTF8("Moving %i transactions to…"), sel)
+                wxPLURAL_U8("Moving transaction to…"
+                , "Moving %i transactions to…", sel)
                 , sel);
         mmSingleChoiceDialog scd(this
             , _("Select the destination Account ")
