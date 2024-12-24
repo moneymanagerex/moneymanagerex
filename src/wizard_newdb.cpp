@@ -32,7 +32,8 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
 {
     page1 = new wxWizardPageSimple(this);
     wxString displayMsg;
-    displayMsg << wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("The next pages will help you create a new database.\n\n"
+    displayMsg << wxGetTranslation(wxString::FromUTF8(wxTRANSLATE(
+        "The next pages will help you create a new database.\n\n"
         "Your database file is stored with an extension of .mmb. "
         "As this file contains important financial information, "
         "we recommended creating daily backups with the Options "
