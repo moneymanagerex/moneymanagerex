@@ -2969,8 +2969,8 @@ msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr "Τα Μεταδεδομένα '%1$s' λείπουν από το επιλεγμένο θέμα '%2$s'"
 
 #: images_list.cpp:458
-msgid "and more..."
-msgstr "και πολλά άλλα..."
+msgid "and more…"
+msgstr "και πολλά άλλα…"
 
 #: images_list.cpp:460
 #, c-format

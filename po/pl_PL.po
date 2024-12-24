@@ -2980,8 +2980,8 @@ msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr "Brakuje metadanej '%1$s' w wybranym motywie '%2$s'"
 
 #: images_list.cpp:458
-msgid "and more..."
-msgstr "i wiecej..."
+msgid "and more…"
+msgstr "i wiecej…"
 
 #: images_list.cpp:460
 #, c-format

@@ -2963,8 +2963,8 @@ msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr "所选主题 ’%2$s‘ 中缺少元数据 ’%1$s‘"
 
 #: images_list.cpp:458
-msgid "and more..."
-msgstr "及更多..."
+msgid "and more…"
+msgstr "及更多…"
 
 #: images_list.cpp:460
 #, c-format

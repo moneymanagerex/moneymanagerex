@@ -2968,8 +2968,8 @@ msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr "Seçilen '%2$s' temasında '%1$s' meta verileri eksik"
 
 #: images_list.cpp:458
-msgid "and more..."
-msgstr "ve daha fazlası..."
+msgid "and more…"
+msgstr "ve daha fazlası…"
 
 #: images_list.cpp:460
 #, c-format

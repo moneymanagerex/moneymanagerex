@@ -2971,7 +2971,7 @@ msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr "Metapodaci „%1$s” nedostaju u odabranoj temi „%2$s”"
 
 #: images_list.cpp:458
-msgid "and more..."
+msgid "and more…"
 msgstr "i više …"
 
 #: images_list.cpp:460

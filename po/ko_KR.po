@@ -2962,8 +2962,8 @@ msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr "선택한 '%2$s' 테마에 '%1$s' 메타데이터가 없습니다"
 
 #: images_list.cpp:458
-msgid "and more..."
-msgstr "그리고 더..."
+msgid "and more…"
+msgstr "그리고 더…"
 
 #: images_list.cpp:460
 #, c-format

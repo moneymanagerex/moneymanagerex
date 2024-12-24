@@ -2979,8 +2979,8 @@ msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr "בערכת הנושא '%2$s' שנבחרה, חסרים נתוני על '%1$s'"
 
 #: images_list.cpp:458
-msgid "and more..."
-msgstr "ועוד..."
+msgid "and more…"
+msgstr "ועוד…"
 
 #: images_list.cpp:460
 #, c-format
