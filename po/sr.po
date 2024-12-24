@@ -2958,7 +2958,7 @@ msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr ""
 
 #: images_list.cpp:458
-msgid "and more..."
+msgid "and more…"
 msgstr ""
 
 #: images_list.cpp:460

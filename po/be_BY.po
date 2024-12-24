@@ -2409,7 +2409,7 @@ msgstr "База дадзеных MMEX паспяхова абноўленая �
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools → Database → Optimize"
-msgstr "Мы прапануем аптымізацыю базы дадзеных у меню Прылады → База дадзеных → Аптымізаваць..."
+msgstr "Мы прапануем аптымізацыю базы дадзеных у меню Прылады → База дадзеных → Аптымізаваць…"
 
 #: dbupgrade.cpp:183
 msgid "Load debug file"
@@ -2980,8 +2980,8 @@ msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr "Метададзеныя '%1$s' адсутнічаюць у абранай тэме '%2$s'"
 
 #: images_list.cpp:458
-msgid "and more..."
-msgstr "і яшчэ..."
+msgid "and more…"
+msgstr "і яшчэ…"
 
 #: images_list.cpp:460
 #, c-format
@@ -4040,7 +4040,7 @@ msgstr ""
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."
-msgstr "Парада: MMEX падтрымлівае друк справаздачаў пасля прагляда. Параметры друка можна задаць у меню, Файл → Друкаваць..."
+msgstr "Парада: MMEX падтрымлівае друк справаздачаў пасля прагляда. Параметры друка можна задаць у меню, Файл → Друкаваць…"
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
