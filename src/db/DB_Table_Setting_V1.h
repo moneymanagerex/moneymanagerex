@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
+ *          AUTO GENERATED at 2024-12-25 12:08:56.599985.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -216,6 +216,8 @@ struct DB_Table_SETTING_V1 : public DB_Table
             SETTINGNAME = q.GetString(1); // SETTINGNAME
             SETTINGVALUE = q.GetString(2); // SETTINGVALUE
         }
+
+        Data(const Data& other) = default;
 
         Data& operator=(const Data& other)
         {

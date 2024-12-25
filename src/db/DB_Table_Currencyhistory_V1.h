@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
+ *          AUTO GENERATED at 2024-12-25 12:08:56.599985.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -243,6 +243,8 @@ struct DB_Table_CURRENCYHISTORY_V1 : public DB_Table
             CURRVALUE = q.GetDouble(3); // CURRVALUE
             CURRUPDTYPE = q.GetInt64(4); // CURRUPDTYPE
         }
+
+        Data(const Data& other) = default;
 
         Data& operator=(const Data& other)
         {

@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
+ *          AUTO GENERATED at 2024-12-25 12:08:56.599985.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -217,6 +217,8 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
             INFONAME = q.GetString(1); // INFONAME
             INFOVALUE = q.GetString(2); // INFOVALUE
         }
+
+        Data(const Data& other) = default;
 
         Data& operator=(const Data& other)
         {

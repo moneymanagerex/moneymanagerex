@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
+ *          AUTO GENERATED at 2024-12-25 12:08:56.599985.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -288,6 +288,8 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
             ACTIVE = q.GetInt64(2); // ACTIVE
             PARENTID = q.GetInt64(3); // PARENTID
         }
+
+        Data(const Data& other) = default;
 
         Data& operator=(const Data& other)
         {

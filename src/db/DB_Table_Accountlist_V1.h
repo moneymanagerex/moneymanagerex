@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
+ *          AUTO GENERATED at 2024-12-25 12:08:56.599985.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -439,6 +439,8 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             PAYMENTDUEDATE = q.GetString(19); // PAYMENTDUEDATE
             MINIMUMPAYMENT = q.GetDouble(20); // MINIMUMPAYMENT
         }
+
+        Data(const Data& other) = default;
 
         Data& operator=(const Data& other)
         {

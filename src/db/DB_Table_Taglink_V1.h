@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-12-04 15:54:58.326993.
+ *          AUTO GENERATED at 2024-12-25 12:08:56.599985.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -230,6 +230,8 @@ struct DB_Table_TAGLINK_V1 : public DB_Table
             REFID = q.GetInt64(2); // REFID
             TAGID = q.GetInt64(3); // TAGID
         }
+
+        Data(const Data& other) = default;
 
         Data& operator=(const Data& other)
         {
