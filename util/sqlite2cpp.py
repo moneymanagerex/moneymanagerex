@@ -449,7 +449,7 @@ struct DB_Table_%s : public DB_Table
 '''
         s += '''
         template<typename C>
-        bool match(const C &c) const
+        bool match(const C &) const
         {
             return false;
         }'''

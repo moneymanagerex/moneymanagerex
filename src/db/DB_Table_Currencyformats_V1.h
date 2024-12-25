@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-12-25 12:08:56.599985.
+ *          AUTO GENERATED at 2024-12-25 12:56:03.116570.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -517,7 +517,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         }
 
         template<typename C>
-        bool match(const C &c) const
+        bool match(const C &) const
         {
             return false;
         }
