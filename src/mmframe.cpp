@@ -3317,7 +3317,7 @@ void mmGUIFrame::createAllTransactionsPage()
 
         DoWindowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmCheckingPanel(homePanel_, this, -1, mmID_ALLTRANSACTIONS);
+        panelCurrent_ = new mmCheckingPanel(homePanel_, this, -1, {}, mmID_ALLTRANSACTIONS);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         DoWindowsFreezeThaw(homePanel_);
@@ -3356,7 +3356,7 @@ void mmGUIFrame::createDeletedTransactionsPage()
 
         DoWindowsFreezeThaw(homePanel_);
         wxSizer* sizer = cleanupHomePanel();
-        panelCurrent_ = new mmCheckingPanel(homePanel_, this, -2, mmID_DELETEDTRANSACTIONS);
+        panelCurrent_ = new mmCheckingPanel(homePanel_, this, -2, {}, mmID_DELETEDTRANSACTIONS);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         DoWindowsFreezeThaw(homePanel_);
@@ -3400,7 +3400,7 @@ void mmGUIFrame::createCheckingAccountPage(int64 accountID)
         DoWindowsFreezeThaw(homePanel_);
         creditDisplayed_ = (0 == account->CREDITLIMIT) ? false : true;
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmCheckingPanel(homePanel_, this, accountID, mmID_CHECKING);
+        panelCurrent_ = new mmCheckingPanel(homePanel_, this, accountID, {}, mmID_CHECKING);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         DoWindowsFreezeThaw(homePanel_);
