@@ -434,6 +434,8 @@ struct DB_Table_%s : public DB_Table
         s += '''
         }
 
+        Data(const Data& other) = default;
+
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
@@ -447,7 +449,7 @@ struct DB_Table_%s : public DB_Table
 '''
         s += '''
         template<typename C>
-        bool match(const C &c) const
+        bool match(const C &) const
         {
             return false;
         }'''
