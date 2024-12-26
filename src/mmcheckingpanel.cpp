@@ -805,7 +805,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
                 if (currency)
                     balance += Model_Checking::account_flow(m_listCtrlAccount->m_trans[item], m_AccountID);
                 wxString transdate = m_listCtrlAccount->m_trans[item].TRANSDATE;
-                if (minDate > transdate || maxDate.empty()) minDate = transdate;
+                if (minDate > transdate || minDate.empty()) minDate = transdate;
                 if (maxDate < transdate || maxDate.empty()) maxDate = transdate;
             }
 
