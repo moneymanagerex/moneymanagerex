@@ -114,11 +114,11 @@ mmCheckingPanel::mmCheckingPanel(
     const std::vector<int64> &group_ids, // = {}
     int id                               // = wxID_ANY
 ) :
-    m_panel_id(panel_id),
+    m_checking_id(panel_id),
     m_frame(frame)
 {
     if (isAccount()) {
-        m_account_id = m_panel_id;
+        m_account_id = m_checking_id;
         m_account = Model_Account::instance().get(m_account_id);
         m_currency = Model_Account::currency(m_account);
     }
@@ -161,10 +161,10 @@ bool mmCheckingPanel::Create(
             Model_Setting::instance().ViewTransactions()
         );
         wxString json = Model_Infotable::instance().GetStringInfo(
-            wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_panel_id),
+            wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
             def_view
         );
-        m_trans_filter_dlg = new mmFilterTransactionsDialog(parent, m_panel_id, false, json);
+        m_trans_filter_dlg = new mmFilterTransactionsDialog(parent, m_checking_id, false, json);
         m_bitmapTransFilter->SetToolTip(m_trans_filter_dlg->mmGetDescriptionToolTip());
     }
 
@@ -703,7 +703,7 @@ void mmCheckingPanel::CreateControls()
     showTips();
 }
 
-wxString mmCheckingPanel::panel_title() const
+wxString mmCheckingPanel::GetPanelTitle() const
 {
     if (isAllTrans())
         return wxString::Format(_("All Transactions"));
@@ -721,12 +721,12 @@ wxString mmCheckingPanel::panel_title() const
 
 wxString mmCheckingPanel::BuildPage() const
 {
-    return m_listCtrlAccount->BuildPage((m_account ? panel_title() : ""));
+    return m_listCtrlAccount->BuildPage((m_account ? GetPanelTitle() : ""));
 }
 
 void mmCheckingPanel::setAccountSummary()
 {
-    m_header_text->SetLabelText(panel_title());
+    m_header_text->SetLabelText(GetPanelTitle());
     m_header_credit->Hide();
 
     if (m_account) {
@@ -963,7 +963,7 @@ void mmCheckingPanel::initFilterChoices()
     const wxString& def_view = wxString::Format("{ \"FILTER\": \"%s\" }",
         Model_Setting::instance().ViewTransactions());
     const auto& data = Model_Infotable::instance().GetStringInfo(
-        wxString::Format("CHECK_FILTER_ID_%lld", m_panel_id), def_view);
+        wxString::Format("CHECK_FILTER_ID_%lld", m_checking_id), def_view);
     Document j_doc;
     if (j_doc.Parse(data.utf8_str()).HasParseError()) {
         j_doc.Parse("{}");
@@ -989,7 +989,7 @@ void mmCheckingPanel::saveFilterChoices()
         Model_Setting::instance().ViewTransactions()
     );
     wxString json = Model_Infotable::instance().GetStringInfo(
-        wxString::Format("CHECK_FILTER_ID_%lld", m_panel_id),
+        wxString::Format("CHECK_FILTER_ID_%lld", m_checking_id),
         def_view
     );
 
@@ -1022,7 +1022,7 @@ void mmCheckingPanel::saveFilterChoices()
     }
 
     json = JSON_PrettyFormated(j_doc);
-    Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%lld", m_panel_id), json);
+    Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%lld", m_checking_id), json);
 }
 //----------------------------------------------------------------------------
 
@@ -1112,7 +1112,7 @@ void mmCheckingPanel::updateFilterState()
 void mmCheckingPanel::updateScheduledToolTip()
 {
     mmToolTip(m_header_scheduled,
-        !m_scheduled_enable ? _("Scheduled transactions are unable to be shown, because the current filter choice extends into the future without limit.") :
+        !m_scheduled_enable ? _("Scheduled transactions cannot to be shown, because the current filter choice extends into the future without limit.") :
         !m_scheduled_selected ? _("Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month).") :
         _("Click to hide scheduled transactions."));
 }
@@ -1129,11 +1129,11 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
                 Model_Setting::instance().ViewTransactions()
             );
             wxString json = Model_Infotable::instance().GetStringInfo(
-                wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_panel_id),
+                wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
                 def_view
             );
             m_trans_filter_dlg.reset(
-                new mmFilterTransactionsDialog(this, m_panel_id, false, json)
+                new mmFilterTransactionsDialog(this, m_checking_id, false, json)
             );
         }
 
@@ -1142,7 +1142,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
         if (oldView == FILTER_ID_DIALOG) {
             if (status != wxID_OK)
                 m_trans_filter_dlg.reset(
-                    new mmFilterTransactionsDialog(this, m_panel_id, false, json_settings)
+                    new mmFilterTransactionsDialog(this, m_checking_id, false, json_settings)
                 );
         }
         else {
@@ -1196,7 +1196,7 @@ void mmCheckingPanel::DisplaySplitCategories(Fused_Transaction::IdB fused_id)
     }
     if (splits.empty()) return;
     int tranType = Model_Checking::type_id(fused.TRANSCODE);
-    mmSplitTransactionDialog splitTransDialog(this, splits, m_panel_id, tranType, 0.0, true);
+    mmSplitTransactionDialog splitTransDialog(this, splits, m_checking_id, tranType, 0.0, true);
 
     //splitTransDialog.SetDisplaySplitCategories();
     splitTransDialog.ShowModal();
@@ -1227,7 +1227,7 @@ void mmCheckingPanel::DisplayAccountDetails(int64 account_id)
     wxASSERT (account_id >= 1);
 
     m_listCtrlAccount->setVisibleItemIndex(-1);
-    m_panel_id = account_id;
+    m_checking_id = account_id;
     m_account_id = account_id;
     m_group_ids = {};
     m_account = Model_Account::instance().get(m_account_id);
@@ -1242,11 +1242,11 @@ void mmCheckingPanel::DisplayAccountDetails(int64 account_id)
             Model_Setting::instance().ViewTransactions()
         );
         wxString json = Model_Infotable::instance().GetStringInfo(
-            wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_panel_id),
+            wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
             def_view
         );
         m_trans_filter_dlg.reset(
-            new mmFilterTransactionsDialog(this, m_panel_id, false, json)
+            new mmFilterTransactionsDialog(this, m_checking_id, false, json)
         );
         m_bitmapTransFilter->SetToolTip(
             m_trans_filter_dlg->mmGetDescriptionToolTip()

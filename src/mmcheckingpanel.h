@@ -109,8 +109,8 @@ private:
     static void mmPlayTransactionSound();
 
 private:
-    int64 m_panel_id = -1;
-        //  1..   : single account with id m_panel_id
+    int64 m_checking_id = -1;
+        //  1..   : single account with id m_checking_id
         // -1     : all transactions
         // -2     : deleted transactions
         // -3     : favorite accounts
@@ -128,11 +128,10 @@ private:
     bool m_show_reconciled;
     TransactionListCtrl* m_listCtrlAccount = nullptr;
 
-    int64 m_account_id = -1;                    // applicable if m_panel_id >= 1
-    std::set<int64> m_group_ids = {};           // applicable if m_panel_id <= -3
-    Model_Account::Data* m_account = nullptr;  // non-null if m_panel_id >= 1
-    Model_Currency::Data* m_currency = nullptr;
-        // the account currency if single account, otherwise the base currency
+    int64 m_account_id = -1;                    // applicable if m_checking_id >= 1
+    std::set<int64> m_group_ids = {};           // applicable if m_checking_id <= -3
+    Model_Account::Data* m_account = nullptr;   // non-null if m_checking_id >= 1
+    Model_Currency::Data* m_currency = nullptr; // currency of m_account, or base currency
 
     wxDECLARE_EVENT_TABLE();
     mmGUIFrame* m_frame = nullptr;
@@ -160,7 +159,7 @@ private:
     bool isDeletedTrans() const;
     bool isGroup() const;
     bool isAccount() const;
-    wxString panel_title() const;
+    wxString GetPanelTitle() const;
 
     bool Create(
         wxWindow* parent,
@@ -201,9 +200,9 @@ private:
     void OnSearchTxtEntered(wxCommandEvent& event);
 };
 
-inline bool mmCheckingPanel::isAllTrans() const { return m_panel_id == -1; }
-inline bool mmCheckingPanel::isDeletedTrans() const { return m_panel_id == -2; }
-inline bool mmCheckingPanel::isGroup() const { return m_panel_id <= -3; }
-inline bool mmCheckingPanel::isAccount() const { return m_panel_id >= 1; }
+inline bool mmCheckingPanel::isAllTrans() const { return m_checking_id == -1; }
+inline bool mmCheckingPanel::isDeletedTrans() const { return m_checking_id == -2; }
+inline bool mmCheckingPanel::isGroup() const { return m_checking_id <= -3; }
+inline bool mmCheckingPanel::isAccount() const { return m_checking_id >= 1; }
 
 #endif // MM_EX_CHECKINGPANEL_H_
