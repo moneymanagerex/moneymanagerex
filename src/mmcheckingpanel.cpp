@@ -861,7 +861,6 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
                         m_account_id
                     );
                 wxString transdate = m_listCtrlAccount->m_trans[item].TRANSDATE;
-                // FIXED: maxDate.empty() -> minDate.empty()
                 if (minDate > transdate || minDate.empty()) minDate = transdate;
                 if (maxDate < transdate || maxDate.empty()) maxDate = transdate;
             }
