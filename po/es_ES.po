@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-23 22:19+0000\n"
-"PO-Revision-Date: 2024-12-23 22:25\n"
+"PO-Revision-Date: 2024-12-27 00:52\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -8319,7 +8319,7 @@ msgstr "Transacción no descargada:"
 
 #: webapp.cpp:599
 msgid "Please fix attachments folder or delete attachments from the WebApp"
-msgstr ""
+msgstr "Por favor, arregue la carpeta de archivos adjuntos o elimine los archivos adjuntos de la aplicación web"
 
 #: webapp.cpp:600
 msgid "Attachment folder error"
@@ -8355,7 +8355,7 @@ msgstr "Importar y abrir todo "
 
 #: webappdialog.cpp:205
 msgid "Unable to download transactions from the WebApp."
-msgstr ""
+msgstr "No se pueden descargar las transacciones desde la aplicación web."
 
 #: webappdialog.cpp:206
 msgid "Transactions download error"

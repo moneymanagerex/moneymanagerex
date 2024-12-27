@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-23 22:19+0000\n"
-"PO-Revision-Date: 2024-12-23 22:22\n"
+"PO-Revision-Date: 2024-12-27 00:52\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "Language: el_GR\n"
@@ -2970,7 +2970,7 @@ msgstr "Τα Μεταδεδομένα '%1$s' λείπουν από το επιλ
 
 #: images_list.cpp:458
 msgid "and more…"
-msgstr "και πολλά άλλα…"
+msgstr "και άλλα…"
 
 #: images_list.cpp:460
 #, c-format
