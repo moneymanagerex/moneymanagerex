@@ -129,6 +129,7 @@ private:
     TransactionListCtrl* m_listCtrlAccount = nullptr;
 
     int64 m_account_id = -1;                    // applicable if m_checking_id >= 1
+    int m_account_type = -1;                    // applicable if m_checking_id <= -4
     std::set<int64> m_group_ids = {};           // applicable if m_checking_id <= -3
     Model_Account::Data* m_account = nullptr;   // non-null if m_checking_id >= 1
     Model_Currency::Data* m_currency = nullptr; // currency of m_account, or base currency

@@ -55,10 +55,12 @@ class mmGUIApp;
 class mmGUIFrame : public wxFrame
 {
 public:
+    static wxArrayString ACCOUNT_SECTION;
+    mmGUIApp *m_app;
+
+public:
     mmGUIFrame(mmGUIApp* m_app, const wxString& title, const wxPoint& pos, const wxSize& size);
     ~mmGUIFrame();
-public:
-    mmGUIApp *m_app;
 
 public:
     void setGotoAccountID(int64 account_id, Fused_Transaction::IdRepeat fused_id = {-1, 0});
@@ -82,6 +84,10 @@ public:
     void RefreshNavigationTree();
     void SetNavTreeSelection(wxTreeItemId id);
     wxTreeItemId GetNavTreeSelection() const;
+
+private:
+    static const std::vector<std::pair<Model_Account::TYPE_ID, wxString> > ACCOUNT_SECTION_TABLE;
+    static wxArrayString account_section_all();
 
 private:
     std::vector<WebsiteNews> websiteNewsArray_;

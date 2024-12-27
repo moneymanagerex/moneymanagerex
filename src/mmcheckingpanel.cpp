@@ -123,6 +123,7 @@ mmCheckingPanel::mmCheckingPanel(
         m_currency = Model_Account::currency(m_account);
     }
     else if (isGroup()) {
+        m_account_type = -(m_checking_id.ToLong() + 4);
         m_group_ids = std::set<int64>(group_ids.begin(), group_ids.end());
         m_currency = Model_Currency::GetBaseCurrency();
     }
@@ -706,12 +707,14 @@ void mmCheckingPanel::CreateControls()
 wxString mmCheckingPanel::GetPanelTitle() const
 {
     if (isAllTrans())
-        return wxString::Format(_("All Transactions"));
+        return _("All Transactions");
     else if (isDeletedTrans())
-        return wxString::Format(_("Deleted Transactions"));
+        return _("Deleted Transactions");
     else if (isGroup()) {
-        // TODO
-        return "";
+        if (m_checking_id == -3)
+            return _("Favorites");
+        else
+            return wxGetTranslation(mmGUIFrame::ACCOUNT_SECTION[m_account_type]);
     }
     else if (m_account)
         return wxString::Format(_("Account View: %s"), m_account->ACCOUNTNAME);
@@ -1229,6 +1232,7 @@ void mmCheckingPanel::DisplayAccountDetails(int64 account_id)
     m_listCtrlAccount->setVisibleItemIndex(-1);
     m_checking_id = account_id;
     m_account_id = account_id;
+    m_account_type = -1;
     m_group_ids = {};
     m_account = Model_Account::instance().get(m_account_id);
     m_currency = Model_Account::currency(m_account);
