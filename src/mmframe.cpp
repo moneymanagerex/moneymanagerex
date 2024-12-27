@@ -512,13 +512,17 @@ bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
 void mmGUIFrame::setAccountNavTreeSection(const wxString& accountName)
 {
     if (setAccountInSection(wxTRANSLATE("Favorites"), accountName)) return;
-    if (setAccountInSection(wxTRANSLATE("Bank Accounts"), accountName)) return;
-    if (setAccountInSection(wxTRANSLATE("Credit Card Accounts"), accountName)) return;
-    if (setAccountInSection(wxTRANSLATE("Term Accounts"), accountName)) return;
-    if (setAccountInSection(wxTRANSLATE("Stock Portfolios"), accountName)) return;
-    if (setAccountInSection(wxTRANSLATE("Cash Accounts"), accountName)) return;
-    if (setAccountInSection(wxTRANSLATE("Loan Accounts"), accountName)) return;
-    if (setAccountInSection(wxTRANSLATE("Assets"), accountName)) return;
+    static const std::vector<Model_Account::TYPE_ID> account_types = {
+        Model_Account::TYPE_ID_CHECKING,
+        Model_Account::TYPE_ID_CREDIT_CARD,
+        Model_Account::TYPE_ID_TERM,
+        Model_Account::TYPE_ID_INVESTMENT,
+        Model_Account::TYPE_ID_CASH,
+        Model_Account::TYPE_ID_LOAN,
+        Model_Account::TYPE_ID_ASSET,
+    };
+    for (Model_Account::TYPE_ID account_type : account_types)
+        if (setAccountInSection(ACCOUNT_SECTION[account_type], accountName)) return;
 }
 
 //----------------------------------------------------------------------------
