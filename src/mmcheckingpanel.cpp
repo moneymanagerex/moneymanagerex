@@ -474,7 +474,6 @@ void mmCheckingPanel::OnMouseLeftDown(wxCommandEvent& event)
     wxMenu menu;
     int id = 0;
     for (const auto& item : FILTER_STR) {
-        // FIXED condition: !isAllTrans() -> isAccount()
         if (isAccount() || (FILTER_ID_STATEMENTDATE != id))
             menu.Append(wxID_HIGHEST + id, wxGetTranslation(item));
         id++;
