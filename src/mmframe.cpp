@@ -1091,12 +1091,13 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
         }
         for (const auto& item : ACCOUNT_IMG_TABLE) {
             Model_Account::TYPE_ID itemId = std::get<0>(item);
+            if (itemId == Model_Account::TYPE_ID_ASSET)
+                continue;
             if (!m_nav_tree_ctrl->ItemHasChildren(accountSection[itemId]) ||
                 (itemId == Model_Account::TYPE_ID_SHARES && hideShareAccounts)
             )
                 m_nav_tree_ctrl->Delete(accountSection[itemId]);
         }
-
         if (
             Model_Checking::instance().find(
                 Model_Checking::DELETEDTIME(wxEmptyString, NOT_EQUAL)
@@ -1332,13 +1333,13 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     case  mmTreeItemData::TRASH:
         return createDeletedTransactionsPage();
     case mmTreeItemData::BUDGET:
-        return createBudgetingPage(iData->getData());
+        return createBudgetingPage(iData->getId());
     case mmTreeItemData::REPORT:
         activeReport_ = true;
-        return createReportsPage(iData->get_report(), false);
+        return createReportsPage(iData->getReport(), false);
     case mmTreeItemData::GRM:
         activeReport_ = true;
-        return createReportsPage(iData->get_report(), false);
+        return createReportsPage(iData->getReport(), false);
     case mmTreeItemData::FILTER_REPORT:
     {
         activeReport_ = true;
@@ -1349,13 +1350,13 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     case mmTreeItemData::ACCOUNT:
     {
         DragAcceptFiles(true);
-        Model_Account::Data* account = Model_Account::instance().get(iData->getData());
+        Model_Account::Data* account = Model_Account::instance().get(iData->getId());
         gotoAccountID_ = account->ACCOUNTID;
         return createCheckingAccountPage(gotoAccountID_);
     }
     case mmTreeItemData::STOCK:
     {
-        Model_Account::Data* account = Model_Account::instance().get(iData->getData());
+        Model_Account::Data* account = Model_Account::instance().get(iData->getId());
         gotoAccountID_ = account->ACCOUNTID;
         return createStocksAccountPage(gotoAccountID_);
     }
@@ -1369,8 +1370,8 @@ void mmGUIFrame::OnLaunchAccountWebsite(wxCommandEvent& /*event*/)
 {
     if (selectedItemData_)
     {
-        int64 data = selectedItemData_->getData();
-        Model_Account::Data* account = Model_Account::instance().get(data);
+        int64 id = selectedItemData_->getId();
+        Model_Account::Data* account = Model_Account::instance().get(id);
         if (account)
         {
             wxString website = account->WEBSITE;
@@ -1385,10 +1386,10 @@ void mmGUIFrame::OnAccountAttachments(wxCommandEvent& /*event*/)
 {
     if (selectedItemData_)
     {
-        int64 RefId = selectedItemData_->getData();
-        wxString RefType = Model_Attachment::REFTYPE_STR_BANKACCOUNT;
+        int64 refId = selectedItemData_->getId();
+        wxString refType = Model_Attachment::REFTYPE_STR_BANKACCOUNT;
 
-        mmAttachmentDialog dlg(this, RefType, RefId);
+        mmAttachmentDialog dlg(this, refType, refId);
         dlg.ShowModal();
     }
 }
@@ -1396,12 +1397,10 @@ void mmGUIFrame::OnAccountAttachments(wxCommandEvent& /*event*/)
 //----------------------------------------------------------------------------
 void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
 {
-    if (selectedItemData_)
-    {
-        int64 data = selectedItemData_->getData();
-        Model_Account::Data* account = Model_Account::instance().get(data);
-        if (account)
-        {
+    if (selectedItemData_) {
+        int64 id = selectedItemData_->getId();
+        Model_Account::Data* account = Model_Account::instance().get(id);
+        if (account) {
             mmNewAcctDialog dlg(account, this);
             if (dlg.ShowModal() == wxID_OK) {
                 RefreshNavigationTree();
@@ -1415,7 +1414,7 @@ void mmGUIFrame::OnPopupReallocateAccount(wxCommandEvent& WXUNUSED(event))
 {
     if (selectedItemData_)
     {
-        int64 account_id = selectedItemData_->getData();
+        int64 account_id = selectedItemData_->getId();
         ReallocateAccount(account_id);
     }
 }
@@ -1524,25 +1523,25 @@ void mmGUIFrame::OnPopupEditFilter(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
 {
-    if (selectedItemData_)
-    {
-        int64 data = selectedItemData_->getData();
-        Model_Account::Data* account = Model_Account::instance().get(data);
-        if (account)
-        {
+    if (selectedItemData_) {
+        int64 id = selectedItemData_->getId();
+        Model_Account::Data* account = Model_Account::instance().get(id);
+        if (account) {
             wxString warning_msg = _("Do you really want to delete the account?");
-            if (account->ACCOUNTTYPE == Model_Account::TYPE_STR_INVESTMENT || account->ACCOUNTTYPE == Model_Account::TYPE_STR_SHARES)
-            {
+            if (account->ACCOUNTTYPE == Model_Account::TYPE_STR_INVESTMENT ||
+                account->ACCOUNTTYPE == Model_Account::TYPE_STR_SHARES
+            ) {
                 warning_msg += "\n\n" + _("This will also delete any associated Shares.");
             }
-            wxMessageDialog msgDlg(this
-                , warning_msg
-                , _("Confirm Account Deletion")
-                , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
-            if (msgDlg.ShowModal() == wxID_YES)
-            {
+            wxMessageDialog msgDlg(
+                this, warning_msg, _("Confirm Account Deletion"),
+                wxYES_NO | wxNO_DEFAULT | wxICON_ERROR
+            );
+            if (msgDlg.ShowModal() == wxID_YES) {
                 Model_Account::instance().remove(account->ACCOUNTID);
-                mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_STR_BANKACCOUNT, account->ACCOUNTID);
+                mmAttachmentManage::DeleteAllAttachments(
+                    Model_Attachment::REFTYPE_STR_BANKACCOUNT, account->ACCOUNTID
+                );
                 DoRecreateNavTreeControl(true);
             }
         }
@@ -1623,31 +1622,24 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         return OnGeneralReportManager(e);
     case mmTreeItemData::HELP_REPORT:
         return mmDoHideReportsDialog();
-    case mmTreeItemData::STOCK:
-    {
-        int64 data = iData->getData();
-
-        Model_Account::Data* account = Model_Account::instance().get(data);
-        if (account)
-        {
+    case mmTreeItemData::STOCK: {
+        int64 id = iData->getId();
+        Model_Account::Data* account = Model_Account::instance().get(id);
+        if (account) {
             menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account…"));
             menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account…"));
             menu.AppendSeparator();
             menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
             menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Attachment Manager…"));
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
-
             PopupMenu(&menu, pt);
         }
         break;
     }
-    case mmTreeItemData::ACCOUNT:
-    {
-        int64 data = iData->getData();
-
-        Model_Account::Data* account = Model_Account::instance().get(data);
-        if (account)
-        {
+    case mmTreeItemData::ACCOUNT: {
+        int64 id = iData->getId();
+        Model_Account::Data* account = Model_Account::instance().get(id);
+        if (account) {
             menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account…"));
             menu.Append(MENU_TREEPOPUP_REALLOCATE, _("&Change Account Type…"));
             menu.AppendSeparator();
@@ -1678,10 +1670,22 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
 
         menu.AppendSeparator();
         wxMenu* viewAccounts(new wxMenu);
-        viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWALL, _("&All"))->Check(m_temp_view == VIEW_ACCOUNTS_ALL_STR);
-        viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE, _("&Favorites"))->Check(m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR);
-        viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWOPEN, _("&Open"))->Check(m_temp_view == VIEW_ACCOUNTS_OPEN_STR);
-        viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED, _("&Closed"))->Check(m_temp_view == VIEW_ACCOUNTS_CLOSED_STR);
+        viewAccounts->AppendRadioItem(
+            MENU_TREEPOPUP_ACCOUNT_VIEWALL,
+            _("&All")
+        )->Check(m_temp_view == VIEW_ACCOUNTS_ALL_STR);
+        viewAccounts->AppendRadioItem(
+            MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE,
+            _("&Favorites")
+        )->Check(m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR);
+        viewAccounts->AppendRadioItem(
+            MENU_TREEPOPUP_ACCOUNT_VIEWOPEN,
+            _("&Open")
+        )->Check(m_temp_view == VIEW_ACCOUNTS_OPEN_STR);
+        viewAccounts->AppendRadioItem(
+            MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED,
+            _("&Closed")
+        )->Check(m_temp_view == VIEW_ACCOUNTS_CLOSED_STR);
         menu.AppendSubMenu(viewAccounts, _("Accounts &Visible"));
 
         PopupMenu(&menu, pt);
