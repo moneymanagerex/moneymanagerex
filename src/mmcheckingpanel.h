@@ -55,11 +55,11 @@ public:
 
 public:
     mmCheckingPanel(
-        wxWindow* parent,
         mmGUIFrame* frame,
-        int64 panel_id,
-        const std::vector<int64> &group_ids = std::vector<int64>{},
-        int id = wxID_ANY
+        wxWindow* parent,
+        int winId,
+        int64 checking_id,
+        const std::vector<int64> &group_ids = std::vector<int64>{}
     );
 
     ~mmCheckingPanel();
@@ -164,7 +164,7 @@ private:
 
     bool Create(
         wxWindow* parent,
-        wxWindowID winid = mmID_CHECKING,
+        wxWindowID winId = mmID_CHECKING,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,

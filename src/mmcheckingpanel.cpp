@@ -108,13 +108,13 @@ wxEND_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
 mmCheckingPanel::mmCheckingPanel(
-    wxWindow *parent,
     mmGUIFrame *frame,
-    int64 panel_id,
-    const std::vector<int64> &group_ids, // = {}
-    int id                               // = wxID_ANY
+    wxWindow *parent,
+    int winId,
+    int64 checking_id,
+    const std::vector<int64> &group_ids // = {}
 ) :
-    m_checking_id(panel_id),
+    m_checking_id(checking_id),
     m_frame(frame)
 {
     if (isAccount()) {
@@ -131,7 +131,7 @@ mmCheckingPanel::mmCheckingPanel(
         m_currency = Model_Currency::GetBaseCurrency();
     }
 
-    Create(parent, id);
+    Create(parent, winId);
     Fit();
 }
 
@@ -142,12 +142,12 @@ mmCheckingPanel::~mmCheckingPanel()
 
 bool mmCheckingPanel::Create(
     wxWindow* parent,
-    wxWindowID winid, const wxPoint& pos,
+    wxWindowID winId, const wxPoint& pos,
     const wxSize& size, long style, const wxString& name
 )
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-    if (!wxPanel::Create(parent, winid, pos, size, style, name))
+    if (!wxPanel::Create(parent, winId, pos, size, style, name))
         return false;
 
     this->windowsFreezeThaw();
