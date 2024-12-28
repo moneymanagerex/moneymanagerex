@@ -982,34 +982,49 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
 
     bool hideShareAccounts = Option::instance().HideShareAccounts();
 
-    if (m_db)
-    {
+    if (m_db) {
         /* Start Populating the dynamic data */
         m_temp_view = Model_Setting::instance().GetViewAccounts();
-        wxASSERT(m_temp_view == VIEW_ACCOUNTS_ALL_STR || m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR
-            || m_temp_view == VIEW_ACCOUNTS_OPEN_STR || m_temp_view == VIEW_ACCOUNTS_CLOSED_STR);
+        wxASSERT(
+            m_temp_view == VIEW_ACCOUNTS_ALL_STR ||
+            m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR ||
+            m_temp_view == VIEW_ACCOUNTS_OPEN_STR ||
+            m_temp_view == VIEW_ACCOUNTS_CLOSED_STR
+        );
 
-        for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
-        {
-            if ((m_temp_view == VIEW_ACCOUNTS_OPEN_STR) && (Model_Account::status_id(account) != Model_Account::STATUS_ID_OPEN))
+        for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME)) {
+            if (m_temp_view == VIEW_ACCOUNTS_OPEN_STR &&
+                Model_Account::status_id(account) != Model_Account::STATUS_ID_OPEN
+            )
                 continue;
-            else if (m_temp_view == VIEW_ACCOUNTS_CLOSED_STR && (Model_Account::status_id(account) == Model_Account::STATUS_ID_OPEN))
+            if (m_temp_view == VIEW_ACCOUNTS_CLOSED_STR &&
+                Model_Account::status_id(account) == Model_Account::STATUS_ID_OPEN
+            )
                 continue;
-            else if (m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR && !Model_Account::FAVORITEACCT(account))
+            if (m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR &&
+                !Model_Account::FAVORITEACCT(account)
+            )
+                continue;
+
+            Model_Account::TYPE_ID account_type = Model_Account::type_id(account);
+            if (account_type == Model_Account::TYPE_ID_SHARES && hideShareAccounts)
                 continue;
 
             int selectedImage = Option::instance().AccountImageId(account.ACCOUNTID, false);
 
             wxTreeItemId tacct;
-            Model_Account::TYPE_ID account_type = Model_Account::type_id(account);
-            if (Model_Account::FAVORITEACCT(account) && (Model_Account::status_id(account) == Model_Account::STATUS_ID_OPEN))
-            {
-                if (Model_Account::type_id(account) != Model_Account::TYPE_ID_INVESTMENT &&
-                    (account_type != Model_Account::TYPE_ID_SHARES || !hideShareAccounts))
-                {
-                    tacct = m_nav_tree_ctrl->AppendItem(favorites, account.ACCOUNTNAME, selectedImage, selectedImage);
-                    m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID));
-                }
+            if (Model_Account::FAVORITEACCT(account) &&
+                Model_Account::status_id(account) == Model_Account::STATUS_ID_OPEN &&
+                Model_Account::type_id(account) != Model_Account::TYPE_ID_INVESTMENT
+            ) {
+                tacct = m_nav_tree_ctrl->AppendItem(
+                    favorites, account.ACCOUNTNAME,
+                    selectedImage, selectedImage
+                );
+                m_nav_tree_ctrl->SetItemData(
+                    tacct,
+                    new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID)
+                );
             }
 
             switch (account_type) {
@@ -1020,8 +1035,6 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
             case Model_Account::TYPE_ID_TERM:
             case Model_Account::TYPE_ID_SHARES:
             case Model_Account::TYPE_ID_ASSET:
-                if (account_type == Model_Account::TYPE_ID_SHARES && hideShareAccounts)
-                    break;
                 tacct = m_nav_tree_ctrl->AppendItem(
                     accountSection[account_type],
                     account.ACCOUNTNAME,
@@ -1032,6 +1045,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
                     new mmTreeItemData(mmTreeItemData::ACCOUNT, account.ACCOUNTID)
                 );
                 break;
+
             case Model_Account::TYPE_ID_INVESTMENT: {
                 tacct = m_nav_tree_ctrl->AppendItem(
                     accountSection[Model_Account::TYPE_ID_INVESTMENT],
@@ -1050,7 +1064,8 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
                     if (!Model_Translink::HasShares(stock_entry.STOCKID))
                         continue;
                     wxTreeItemId se = m_nav_tree_ctrl->AppendItem(
-                        tacct, stock_entry.STOCKNAME, selectedImage, selectedImage
+                        tacct, stock_entry.STOCKNAME,
+                        selectedImage, selectedImage
                     );
                     int64 account_id = stock_entry.STOCKID;
                     if (Model_Translink::ShareAccountId(account_id)) {
@@ -1062,6 +1077,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
                 }
                 break;
             }
+
             default:
                 wxASSERT(0);
                 break;
