@@ -141,9 +141,9 @@ mmCheckingPanel::~mmCheckingPanel()
 }
 
 bool mmCheckingPanel::Create(
-    wxWindow* parent,
-    wxWindowID winId, const wxPoint& pos,
-    const wxSize& size, long style, const wxString& name
+    wxWindow* parent, wxWindowID winId,
+    const wxPoint& pos, const wxSize& size,
+    long style, const wxString& name
 )
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
