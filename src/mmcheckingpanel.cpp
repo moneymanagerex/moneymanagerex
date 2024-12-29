@@ -219,13 +219,14 @@ void mmCheckingPanel::filterTable()
         wxDateTime::Now().FormatISOCombined() :
         wxDateTime(23, 59, 59, 999).FormatISOCombined();
 
-    const auto trans_splits = Model_Splittransaction::instance().get_all();
-    const auto trans_tags = Model_Taglink::instance().get_all(transRefType);
-    const auto trans_attachments = Model_Attachment::instance().get_all(
-        Model_Attachment::REFTYPE_ID_TRANSACTION);
     const auto trans = m_account ?
         Model_Account::transaction(m_account) :
         Model_Checking::instance().all();
+    const auto trans_splits = Model_Splittransaction::instance().get_all();
+    const auto trans_tags = Model_Taglink::instance().get_all(transRefType);
+    const auto trans_attachments = Model_Attachment::instance().get_all(
+        Model_Attachment::REFTYPE_ID_TRANSACTION
+    );
 
     std::map<int64, Model_Budgetsplittransaction::Data_Set> bills_splits;
     std::map<int64, Model_Taglink::Data_Set> bills_tags;
@@ -286,6 +287,11 @@ void mmCheckingPanel::filterTable()
             bills_it++;
         }
 
+        if (isGroup() &&
+            m_group_ids.find(tran->ACCOUNTID) == m_group_ids.end() &&
+            m_group_ids.find(tran->TOACCOUNTID) == m_group_ids.end()
+        )
+            continue;
         if (isDeletedTrans() != !tran->DELETEDTIME.IsEmpty())
             continue;
         if (ignore_future && tran_date > today_date)

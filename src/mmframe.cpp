@@ -222,8 +222,7 @@ wxArrayString mmGUIFrame::account_section_all()
 {
     wxArrayString type_section;
     int i = 0;
-    for (const auto& item : ACCOUNT_SECTION_TABLE)
-    {
+    for (const auto& item : ACCOUNT_SECTION_TABLE) {
         wxASSERT_MSG(item.first == i++, "Wrong order in mmGUIFrame::ACCOUNT_SECTION_TABLE");
         type_section.Add(item.second);
     }
@@ -231,12 +230,15 @@ wxArrayString mmGUIFrame::account_section_all()
 }
 //----------------------------------------------------------------------------
 
-mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
-    , const wxPoint& pos
-    , const wxSize& size)
-    : wxFrame(nullptr, wxID_ANY, title, pos, size)
-    , m_app(app)
-    , autoRepeatTransactionsTimer_(this, AUTO_REPEAT_TRANSACTIONS_TIMER_ID)
+mmGUIFrame::mmGUIFrame(
+    mmGUIApp* app,
+    const wxString& title,
+    const wxPoint& pos,
+    const wxSize& size
+) :
+    wxFrame(nullptr, wxID_ANY, title, pos, size),
+    m_app(app),
+    autoRepeatTransactionsTimer_(this, AUTO_REPEAT_TRANSACTIONS_TIMER_ID)
 {
     // tell wxAuiManager to manage this frame
     m_mgr.SetManagedWindow(this);
@@ -251,8 +253,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     // decide if we need to show app start dialog
     bool from_scratch = false;
     wxFileName dbpath = m_app->GetOptParam();
-    if (!dbpath.IsOk())
-    {
+    if (!dbpath.IsOk()) {
         from_scratch = Model_Setting::instance().GetBoolSetting("SHOWBEGINAPP", true);
         if (from_scratch)
             dbpath = wxGetEmptyString();
@@ -300,8 +301,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     m_mgr.Update();
 
     // Show license agreement at first open
-    if (Model_Setting::instance().GetStringSetting(INIDB_SEND_USAGE_STATS, "") == "")
-    {
+    if (Model_Setting::instance().GetStringSetting(INIDB_SEND_USAGE_STATS, "") == "") {
         mmAboutDialog(this, 4).ShowModal();
     }
 
@@ -310,29 +310,24 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
         mmUpdate::checkUpdates(this, true);
 
     //Show appstart
-    if (from_scratch || !dbpath.IsOk())
-    {
+    if (from_scratch || !dbpath.IsOk()) {
         menuEnableItems(false);
         showBeginAppDialog(dbpath.GetFullName().IsEmpty());
     }
-    else
-    {
-        if (openFile(dbpath.GetFullPath(), false))
-        {
+    else {
+        if (openFile(dbpath.GetFullPath(), false)) {
             DoRecreateNavTreeControl(true);
             //setHomePageActive(false);
             mmLoadColorsFromDatabase();
         }
-        else
-        {
+        else {
             resetNavTreeControl();
             cleanupHomePanel();
             showBeginAppDialog(true);
         }
     }
 
-    const wxAcceleratorEntry entries[] =
-    {
+    const wxAcceleratorEntry entries[] = {
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F9, wxID_NEW),
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F5, wxID_REFRESH),
     };
@@ -345,8 +340,9 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
         autocleanDeletedTransactions();
 
         // Refresh stock quotes
-        if (!Model_Stock::instance().all().empty() && Model_Setting::instance().GetBoolSetting("REFRESH_STOCK_QUOTES_ON_OPEN", false))
-        {
+        if (!Model_Stock::instance().all().empty() &&
+            Model_Setting::instance().GetBoolSetting("REFRESH_STOCK_QUOTES_ON_OPEN", false)
+        ) {
             wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_RATES);
             this->GetEventHandler()->AddPendingEvent(evt);
         }
@@ -364,8 +360,7 @@ mmGUIFrame::~mmGUIFrame()
     }
 
     // Report database statistics
-    for (const auto & model : this->m_all_models)
-    {
+    for (const auto & model : this->m_all_models) {
         model->show_statistics();
         Model_Usage::instance().AppendToCache(model->GetTableStatsAsJson());
     }
@@ -389,27 +384,31 @@ void mmGUIFrame::cleanup()
     CloseTheme();
 
     // Backup the database according to user requirements
-    if (Option::instance().DatabaseUpdated() && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
-    {
-        dbUpgrade::BackupDB(m_filename, dbUpgrade::BACKUPTYPE::CLOSE, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
+    if (Option::instance().DatabaseUpdated() &&
+        Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false)
+    ) {
+        dbUpgrade::BackupDB(
+            m_filename,
+            dbUpgrade::BACKUPTYPE::CLOSE,
+            Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4)
+        );
     }
 }
 
 void mmGUIFrame::ShutdownDatabase()
 {
-    if (m_db)
-    {
-        if (!Model_Infotable::instance().cache_.empty()) //Cache empty on InfoTable means instance never initialized
-        {
-            if (!db_lockInPlace)
-                Model_Infotable::instance().Set("ISUSED", false);
-        }
-        m_db->SetCommitHook(nullptr);
-        m_db->Close();
-        m_db.reset();
-        for (auto& model : m_all_models)
-            model->destroyCache();
+    if (!m_db)
+        return;
+
+    if (!Model_Infotable::instance().cache_.empty()) { //Cache empty on InfoTable means instance never initialized
+        if (!db_lockInPlace)
+            Model_Infotable::instance().Set("ISUSED", false);
     }
+    m_db->SetCommitHook(nullptr);
+    m_db->Close();
+    m_db.reset();
+    for (auto& model : m_all_models)
+        model->destroyCache();
 }
 
 void mmGUIFrame::resetNavTreeControl()
@@ -421,10 +420,8 @@ void mmGUIFrame::resetNavTreeControl()
 
 void mmGUIFrame::cleanupNavTreeControl(wxTreeItemId& item)
 {
-    while (item.IsOk())
-    {
-        if (m_nav_tree_ctrl->ItemHasChildren(item))
-        {
+    while (item.IsOk()) {
+        if (m_nav_tree_ctrl->ItemHasChildren(item)) {
             wxTreeItemIdValue cookie;
             wxTreeItemId childitem = m_nav_tree_ctrl->GetFirstChild(item, cookie);
             cleanupNavTreeControl(childitem);
@@ -456,8 +453,7 @@ wxTreeItemId mmGUIFrame::getTreeItemfor(const wxTreeItemId& itemID, const wxStri
     wxTreeItemIdValue treeDummyValue;
     wxTreeItemId navTreeID = m_nav_tree_ctrl->GetFirstChild(itemID, treeDummyValue);
 
-    while (navTreeID.IsOk())
-    {
+    while (navTreeID.IsOk()) {
         const auto text = m_nav_tree_ctrl->GetItemText(navTreeID);
         if (accountName == text)
             break;
@@ -472,14 +468,14 @@ bool mmGUIFrame::setAccountInSection(const wxString& sectionName, const wxString
 {
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     bool accountFound = false;
-    wxTreeItemId rootItem = getTreeItemfor(m_nav_tree_ctrl->GetRootItem()
-        , wxGetTranslation(sectionName));
-    if (rootItem.IsOk() && m_nav_tree_ctrl->ItemHasChildren(rootItem))
-    {
+    wxTreeItemId rootItem = getTreeItemfor(
+        m_nav_tree_ctrl->GetRootItem(),
+        wxGetTranslation(sectionName)
+    );
+    if (rootItem.IsOk() && m_nav_tree_ctrl->ItemHasChildren(rootItem)) {
         m_nav_tree_ctrl->ExpandAllChildren(rootItem);
         wxTreeItemId accountItem = getTreeItemfor(rootItem, accountName);
-        if (accountItem.IsOk())
-        {
+        if (accountItem.IsOk()) {
             // Set the NavTreeCtrl and prevent any event code being executed for now.
             m_nav_tree_ctrl->SelectItem(accountItem);
             //processPendingEvents();
@@ -496,8 +492,7 @@ bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     bool accountNotFound = true;
     wxTreeItemId rootItem = getTreeItemfor(m_nav_tree_ctrl->GetRootItem(), sectionName);
-    if (rootItem.IsOk())
-    {
+    if (rootItem.IsOk()) {
         // Set the NavTreeCtrl and prevent any event code being executed for now.
         m_nav_tree_ctrl->SelectItem(rootItem);
         //processPendingEvents();
@@ -529,8 +524,7 @@ void mmGUIFrame::setAccountNavTreeSection(const wxString& accountName)
 void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 {
     //WebApp check
-    if (mmWebApp::WebApp_CheckEnabled())
-    {
+    if (mmWebApp::WebApp_CheckEnabled()) {
         if (OnRefreshWebApp(true)) {
             mmWebAppDialog dlg(this, true);
             dlg.ShowModal();
@@ -543,18 +537,14 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     bool continueExecution = false;
 
     Model_Billsdeposits& bills = Model_Billsdeposits::instance();
-    for (const auto& q1 : bills.all())
-    {
+    for (const auto& q1 : bills.all()) {
         bills.decode_fields(q1);
-        if (bills.autoExecuteManual() && bills.requireExecution())
-        {
-            if (bills.allowExecution() && bills.AllowTransaction(q1))
-            {
+        if (bills.autoExecuteManual() && bills.requireExecution()) {
+            if (bills.allowExecution() && bills.AllowTransaction(q1)) {
                 continueExecution = true;
                 mmBDDialog repeatTransactionsDlg(this, q1.BDID, false, true);
                 repeatTransactionsDlg.SetDialogHeader(_("Auto Repeat Transactions"));
-                if (repeatTransactionsDlg.ShowModal() == wxID_OK)
-                {
+                if (repeatTransactionsDlg.ShowModal() == wxID_OK) {
                     refreshPanelData();
                 }
                 else // stop repeat executions from occuring
@@ -562,10 +552,8 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             }
         }
 
-        if (bills.autoExecuteSilent() && bills.requireExecution())
-        {
-            if (bills.allowExecution() && bills.AllowTransaction(q1))
-            {
+        if (bills.autoExecuteSilent() && bills.requireExecution()) {
+            if (bills.allowExecution() && bills.AllowTransaction(q1)) {
                 continueExecution = true;
                 Model_Checking::Data* tran = Model_Checking::instance().create();
 
@@ -587,8 +575,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 
                 Model_Splittransaction::Cache checking_splits;
                 std::vector<wxArrayInt64> splitTags;
-                for (const auto &item : Model_Billsdeposits::split(q1))
-                {
+                for (const auto &item : Model_Billsdeposits::split(q1)) {
                     Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
                     split->TRANSID = transID;
                     split->CATEGID = item.CATEGID;
@@ -596,9 +583,10 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                     split->NOTES = item.NOTES;
                     checking_splits.push_back(split);
                     wxArrayInt64 tags;
-                    for (const auto& tag :
-                         Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT),
-                                                        Model_Taglink::REFID(item.SPLITTRANSID)))
+                    for (const auto& tag : Model_Taglink::instance().find(
+                        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT),
+                        Model_Taglink::REFID(item.SPLITTRANSID)
+                    ))
                         tags.push_back(tag.TAGID);
                     splitTags.push_back(tags);
                 }
@@ -607,11 +595,9 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 // Save split tags
                 const wxString& splitRefType = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
 
-                for (size_t i = 0; i < checking_splits.size(); i++)
-                {
+                for (size_t i = 0; i < checking_splits.size(); i++) {
                     Model_Taglink::Data_Set splitTaglinks;
-                    for (const auto& tagId : splitTags.at(i))
-                    {
+                    for (const auto& tagId : splitTags.at(i)) {
                         Model_Taglink::Data* t = Model_Taglink::instance().create();
                         t->REFTYPE = splitRefType;
                         t->REFID = checking_splits[i]->SPLITTRANSID;
@@ -622,10 +608,11 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 }
 
                 // Copy the custom fields to the newly created transaction
-                const auto& customDataSet = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(-q1.BDID));
+                const auto& customDataSet = Model_CustomFieldData::instance().find(
+                    Model_CustomFieldData::REFID(-q1.BDID)
+                );
                 Model_CustomFieldData::instance().Savepoint();
-                for (const auto& entry : customDataSet)
-                {
+                for (const auto& entry : customDataSet) {
                     Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().create();
                     fieldData->FIELDID = entry.FIELDID;
                     fieldData->REFID = transID;
@@ -637,9 +624,10 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 // Save base transaction tags
                 Model_Taglink::Data_Set taglinks;
                 const wxString& txnRefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
-                for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT),
-                                                                      Model_Taglink::REFID(q1.BDID)))
-                {
+                for (const auto& tag : Model_Taglink::instance().find(
+                    Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT),
+                    Model_Taglink::REFID(q1.BDID)
+                )) {
                     Model_Taglink::Data* t = Model_Taglink::instance().create();
                     t->REFTYPE = txnRefType;
                     t->REFID = transID;
@@ -652,8 +640,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
         }
     }
 
-    if (continueExecution)
-    {
+    if (continueExecution) {
         autoRepeatTransactionsTimer_.Start(5, wxTIMER_ONE_SHOT);
     }
     else
@@ -662,13 +649,12 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 //----------------------------------------------------------------------------
 
 /*
-        Save our settings to ini db.
-        */
+    Save our settings to ini db.
+*/
 void mmGUIFrame::saveSettings()
 {
     Model_Setting::instance().Savepoint();
-    if (!m_filename.IsEmpty())
-    {
+    if (!m_filename.IsEmpty()) {
         wxFileName fname(m_filename);
         Model_Setting::instance().Set("LASTFILENAME", fname.GetFullPath());
     }
@@ -777,8 +763,14 @@ void mmGUIFrame::createControls()
     m_nav_tree_ctrl->SetImages(navtree_images_list(navIconSize));
     m_nav_tree_ctrl->SetIndent(10);
 
-    m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
-    m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_ITEM_RIGHT_CLICK, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
+    m_nav_tree_ctrl->Connect(
+        ID_NAVTREECTRL, wxEVT_TREE_SEL_CHANGED,
+        wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this
+    );
+    m_nav_tree_ctrl->Connect(
+        ID_NAVTREECTRL, wxEVT_TREE_ITEM_RIGHT_CLICK,
+        wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this
+    );
     
     homePanel_ = new wxPanel(
         this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
@@ -1323,19 +1315,29 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
 
     case  mmTreeItemData::CHECKING: {
         int64 id = iData->getId();
-        if (id == -1) { // isAllTrans
-            DragAcceptFiles(true);
-            return createCheckingPage(id);
+        std::vector<int64> group_ids = {};
+        if (id <= -3) { // isGroup
+            wxTreeItemIdValue cookie;
+            wxTreeItemId child = m_nav_tree_ctrl->GetFirstChild(selectedItem, cookie);
+            while (child.IsOk()) {
+                mmTreeItemData* childData = dynamic_cast<mmTreeItemData*>(
+                    m_nav_tree_ctrl->GetItemData(child)
+                );
+                if (childData->getType() == mmTreeItemData::CHECKING) {
+                    int64 childId = childData->getId();
+                    if (childId >= 1) // isAccount
+                        group_ids.push_back(childId);
+                }
+                child = m_nav_tree_ctrl->GetNextChild(selectedItem, cookie);
+            }
         }
-        else if (id == -2) { // isDeletedTrans
-            return createCheckingPage(id);
-        }
-        else if (id >= 1) { // isAccount
+        if (id == -1 || id >= 1) // isAllTrans, isAccount
             DragAcceptFiles(true);
+        if (id >= 1) // isAccount
             gotoAccountID_ = id;
-            return createCheckingPage(id);
-        }
-        return;
+        // TODO: enable account groups (wait until feature is tested)
+        if (id <= -3) return;
+        return createCheckingPage(id, group_ids);
     }
 
     case mmTreeItemData::STOCK: {
@@ -2291,8 +2293,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
     wxFileName checkExt(fileName);
     wxString password;
     bool passwordCheckPassed = true;
-    if (checkExt.GetExt().Lower() == "emb" && wxFileName::FileExists(fileName))
-    {
+    if (checkExt.GetExt().Lower() == "emb" && wxFileName::FileExists(fileName)) {
         wxString password_message = wxString::Format(
             _("Please enter password for Database\n\n%s"),
             fileName
@@ -2405,8 +2406,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             Model_Infotable::instance().Set("HIDDEN_CATEGS_ID", "");
         }
     }
-    else if (openingNew) // New Database
-    {
+    else if (openingNew) { // New Database
         // Remove file so we can replace it instead of opening it
         if (wxFileName::FileExists(fileName))
             wxRemoveFile(fileName);
@@ -2438,9 +2438,12 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         OnNewAccount(evt);
         return true;
     }
-    else // open of existing database failed
-    {
-        const wxString note = wxString::Format("%s - %s", mmex::getProgramName(), _("No File opened"));
+    else { // open of existing database failed
+        const wxString note = wxString::Format(
+            "%s - %s",
+            mmex::getProgramName(),
+            _("No File opened")
+        );
         this->SetTitle(note);
 
         wxString msgStr = _("Unable to locate previously opened database.\n");
@@ -3554,7 +3557,7 @@ void mmGUIFrame::createCheckingPage(int64 checking_id, const std::vector<int64> 
         if (checking_id >= 1)
             creditDisplayed_ = newCreditDisplayed;
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmCheckingPanel(this, homePanel_, checking_id);
+        panelCurrent_ = new mmCheckingPanel(this, homePanel_, checking_id, group_ids);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         DoWindowsFreezeThaw(homePanel_);
@@ -3880,8 +3883,7 @@ void mmGUIFrame::RefreshNavigationTree()
         // if we didn't find it search all nodes from root
         if (!navTreeID.IsOk())
             navTreeID = findItemByData(m_nav_tree_ctrl->GetRootItem(), *iData);
-        if (navTreeID.IsOk())
-        {
+        if (navTreeID.IsOk()) {
             m_nav_tree_ctrl->EnsureVisible(navTreeID);
             m_nav_tree_ctrl->SelectItem(navTreeID);
         }
