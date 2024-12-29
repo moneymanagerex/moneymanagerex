@@ -851,7 +851,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     );
     m_nav_tree_ctrl->SetItemBold(favorites, true);
 
-    wxTreeItemId accountSection[ACCOUNT_SECTION_TABLE.size()];
+    wxTreeItemId accountSection[Model_Account::TYPE_ID_size];
     static const std::tuple<Model_Account::TYPE_ID, img> ACCOUNT_IMG_TABLE[] = {
         { Model_Account::TYPE_ID_CHECKING,    img::SAVINGS_ACC_NORMAL_PNG },
         { Model_Account::TYPE_ID_CREDIT_CARD, img::CARD_ACC_NORMAL_PNG },

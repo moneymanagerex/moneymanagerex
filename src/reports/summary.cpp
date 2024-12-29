@@ -112,7 +112,7 @@ double mmReportSummaryByDate::getDayRate(int64 currencyid, const wxDate& date)
 
 wxString mmReportSummaryByDate::getHTMLText()
 {
-    double balancePerDay[Model_Account::TYPE_ID_MAX];
+    double balancePerDay[Model_Account::TYPE_ID_size];
     mmHTMLBuilder   hb;
     wxDate dateStart = wxDate::Today();
     wxDate dateEnd = wxDate::Today();
@@ -125,7 +125,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     std::vector<BalanceEntry> totBalanceData;
 
     GraphData gd;
-    GraphSeries gs_data[Model_Account::TYPE_ID_MAX + 2];    // +2 as we add assets and balance to the end
+    GraphSeries gs_data[Model_Account::TYPE_ID_size + 2];    // +2 as we add assets and balance to the end
 
     std::vector<wxDate> arDates;
 
@@ -234,7 +234,7 @@ wxString mmReportSummaryByDate::getHTMLText()
         totBalanceEntry.values.push_back(balancePerDay[Model_Account::TYPE_ID_SHARES]);
         gs_data[6].values.push_back(balancePerDay[Model_Account::TYPE_ID_SHARES]);
 
-        for (int i = 0; i < Model_Account::TYPE_ID_MAX; i++) {
+        for (int i = 0; i < Model_Account::TYPE_ID_size; i++) {
             if (i != Model_Account::TYPE_ID_INVESTMENT)
                 total += balancePerDay[i];
         }
