@@ -19,7 +19,7 @@ jobs:
         uses: crowdin/github-action@v2.4.0
         with:
           upload_sources: true
-          upload_translations: true
+          upload_translations: false
           crowdin_branch_name: master
         env:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}

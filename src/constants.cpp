@@ -159,6 +159,7 @@ const wxString mmex::weblink::GitHub         = "https://github.com/moneymanagere
 const wxString mmex::weblink::GitHubLogin    = "https://github.com/login";
 const wxString mmex::weblink::YouTube        = "https://www.youtube.com/user/moneymanagerex";
 const wxString mmex::weblink::Slack          = "https://moneymanagerex.slack.com/"; //"http://slack.moneymanagerex.org/";
+const wxString mmex::weblink::AppleAppStore  = "https://iOS.moneymanagerex.org/";
 const wxString mmex::weblink::GooglePlay     = "https://android.moneymanagerex.org/";
 const wxString mmex::weblink::WebApp         = "https://github.com/moneymanagerex/web-money-manager-ex";
 const wxString mmex::weblink::Chiark         = "https://www.chiark.greenend.org.uk/~sgtatham/bugs.html";
