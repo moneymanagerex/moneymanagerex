@@ -121,6 +121,7 @@ private:
     wxTreeCtrl* m_nav_tree_ctrl = nullptr;
     wxMenuBar *menuBar_ = nullptr;
     wxAuiToolBar* toolBar_ = nullptr;
+
 private:
     mmTreeItemData* selectedItemData_ = nullptr;
 
@@ -151,9 +152,10 @@ private:
     wxTreeItemId findItemByData(wxTreeItemId itemId, mmTreeItemData& searchData);
 
     void createHomePage();
-    void createCheckingAccountPage(int64 accountID);
-    void createAllTransactionsPage();
-    void createDeletedTransactionsPage();
+    void createCheckingPage(
+        int64 checking_id,
+        const std::vector<int64> &group_ids = std::vector<int64>{}
+    );
     void createStocksAccountPage(int64 accountID);
 private:
     void createBillsDeposits();

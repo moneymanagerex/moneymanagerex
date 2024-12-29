@@ -1325,16 +1325,15 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
         int64 id = iData->getId();
         if (id == -1) { // isAllTrans
             DragAcceptFiles(true);
-            return createAllTransactionsPage();
+            return createCheckingPage(id);
         }
         else if (id == -2) { // isDeletedTrans
-            return createDeletedTransactionsPage();
+            return createCheckingPage(id);
         }
         else if (id >= 1) { // isAccount
             DragAcceptFiles(true);
-            Model_Account::Data* account = Model_Account::instance().get(id);
-            gotoAccountID_ = account->ACCOUNTID;
-            return createCheckingAccountPage(gotoAccountID_);
+            gotoAccountID_ = id;
+            return createCheckingPage(id);
         }
         return;
     }
@@ -2890,8 +2889,10 @@ void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
     univCSVDialog.ShowModal();
     if (univCSVDialog.isImportCompletedSuccessfully()) {
         Model_Account::Data* account = Model_Account::instance().get(univCSVDialog.ImportedAccountID());
-        createCheckingAccountPage(univCSVDialog.ImportedAccountID());
-        if (account) setAccountNavTreeSection(account->ACCOUNTNAME);
+        if (account) {
+            createCheckingPage(account->ACCOUNTID);
+            setAccountNavTreeSection(account->ACCOUNTNAME);
+        }
     }
 }
 //----------------------------------------------------------------------------
@@ -2907,8 +2908,10 @@ void mmGUIFrame::OnImportXML(wxCommandEvent& /*event*/)
     univCSVDialog.ShowModal();
     if (univCSVDialog.isImportCompletedSuccessfully()) {
         Model_Account::Data* account = Model_Account::instance().get(univCSVDialog.ImportedAccountID());
-        createCheckingAccountPage(univCSVDialog.ImportedAccountID());
-        if (account) setAccountNavTreeSection(account->ACCOUNTNAME);
+        if (account) {
+            createCheckingPage(account->ACCOUNTID);
+            setAccountNavTreeSection(account->ACCOUNTNAME);
+        }
     }
 }
 
@@ -3076,7 +3079,7 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& event)
     gotoTransID_ = { dlg.GetTransactionID(), 0 };
     Model_Account::Data * account = Model_Account::instance().get(gotoAccountID_);
     if (account) {
-        createCheckingAccountPage(gotoAccountID_);
+        createCheckingPage(gotoAccountID_);
         setAccountNavTreeSection(account->ACCOUNTNAME);
     }
 
@@ -3509,118 +3512,49 @@ void mmGUIFrame::createBudgetingPage(int64 budgetYearID)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::createAllTransactionsPage()
-{
+void mmGUIFrame::createCheckingPage(int64 checking_id, const std::vector<int64> &group_ids) {
     StringBuffer json_buffer;
     Writer<StringBuffer> json_writer(json_buffer);
 
     json_writer.StartObject();
     json_writer.Key("module");
-    json_writer.String("All Transactions");
+    json_writer.String(
+        (checking_id == -1) ? "All Transactions" :
+        (checking_id == -2) ? "Deleted Transactions" :
+        (checking_id <= -3) ? "Group Transactions" :
+        "Checking Panel"
+    );
 
     const auto time = wxDateTime::UNow();
-
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    bool done = false;
-    if (panelCurrent_->GetId() == mmID_CHECKING) {
-        mmCheckingPanel* cp = wxDynamicCast(panelCurrent_, mmCheckingPanel);
-        if (cp->isAllTrans()) {
-            cp->RefreshList();
-            done = true;
-        }
-    }
-    if (!done) {
-        DoWindowsFreezeThaw(homePanel_);
-        wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmCheckingPanel(this, homePanel_, -1);
-        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-        homePanel_->Layout();
-        DoWindowsFreezeThaw(homePanel_);
-    }
-
-    json_writer.Key("seconds");
-    json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
-    json_writer.EndObject();
-
-    Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
-
-    menuPrintingEnable(true);
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
-    m_nav_tree_ctrl->SetFocus();
-}
-
-void mmGUIFrame::createDeletedTransactionsPage()
-{
-    StringBuffer json_buffer;
-    Writer<StringBuffer> json_writer(json_buffer);
-
-    json_writer.StartObject();
-    json_writer.Key("module");
-    json_writer.String("Deleted Transactions");
-
-    const auto time = wxDateTime::UNow();
-
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    bool done = false;
-    if (panelCurrent_->GetId() == mmID_CHECKING) {
-        mmCheckingPanel* cp = wxDynamicCast(panelCurrent_, mmCheckingPanel);
-        if (cp->isDeletedTrans()) {
-            cp->RefreshList();
-            done = true;
-        }
-    }
-    if (!done) {
-        DoWindowsFreezeThaw(homePanel_);
-        wxSizer* sizer = cleanupHomePanel();
-        panelCurrent_ = new mmCheckingPanel(this, homePanel_, -2);
-        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-        homePanel_->Layout();
-        DoWindowsFreezeThaw(homePanel_);
-    }
-
-    json_writer.Key("seconds");
-    json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
-    json_writer.EndObject();
-
-    Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
-
-    menuPrintingEnable(true);
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
-    m_nav_tree_ctrl->SetFocus();
-}
-
-void mmGUIFrame::createCheckingAccountPage(int64 accountID)
-{
-    StringBuffer json_buffer;
-    Writer<StringBuffer> json_writer(json_buffer);
-
-    json_writer.StartObject();
-    json_writer.Key("module");
-    json_writer.String("Checking Panel");
-
-    const auto time = wxDateTime::UNow();
-
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
 
     // Check if the credit balance needs to be displayed or not
     // If this differs from before then we need to rebuild
-    Model_Account::Data* account = Model_Account::instance().get(accountID);
-    bool newCreditDisplayed = (account->CREDITLIMIT != 0);
+    bool newCreditDisplayed = false;
+    if (checking_id >= 1) {
+        Model_Account::Data* account = Model_Account::instance().get(checking_id);
+        newCreditDisplayed = (account->CREDITLIMIT != 0);
+    }
 
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     bool done = false;
     if (panelCurrent_->GetId() == mmID_CHECKING) {
         mmCheckingPanel* cp = wxDynamicCast(panelCurrent_, mmCheckingPanel);
-        if (cp->isAccount() && (newCreditDisplayed == creditDisplayed_)) {
+        if ((checking_id == -1 && cp->isAllTrans()) ||
+            (checking_id == -2 && cp->isDeletedTrans()) ||
+            (checking_id >= 1 && cp->isAccount() && newCreditDisplayed == creditDisplayed_)
+        ) {
             cp->RefreshList();
-            cp->DisplayAccountDetails(accountID);
+            if (cp->isAccount())
+                cp->DisplayAccountDetails(checking_id);
             done = true;
         }
     }
     if (!done) {
         DoWindowsFreezeThaw(homePanel_);
-        creditDisplayed_ = newCreditDisplayed;
+        if (checking_id >= 1)
+            creditDisplayed_ = newCreditDisplayed;
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmCheckingPanel(this, homePanel_, accountID);
+        panelCurrent_ = new mmCheckingPanel(this, homePanel_, checking_id);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         DoWindowsFreezeThaw(homePanel_);
@@ -3633,8 +3567,9 @@ void mmGUIFrame::createCheckingAccountPage(int64 accountID)
     Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
 
     menuPrintingEnable(true);
-    if (gotoTransID_.first > 0) {
-        wxDynamicCast(panelCurrent_, mmCheckingPanel)->SetSelectedTransaction(gotoTransID_);
+    if (checking_id >= 1 && gotoTransID_.first > 0) {
+        mmCheckingPanel* cp = wxDynamicCast(panelCurrent_, mmCheckingPanel);
+        cp->SetSelectedTransaction(gotoTransID_);
         gotoTransID_ = { -1, 0 };
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
@@ -3683,7 +3618,7 @@ void mmGUIFrame::OnGotoAccount(wxCommandEvent& WXUNUSED(event))
     if (acc)
         proper_type = Model_Account::type_id(acc) != Model_Account::TYPE_ID_INVESTMENT;
     if (proper_type)
-        createCheckingAccountPage(gotoAccountID_);
+        createCheckingPage(gotoAccountID_);
     m_nav_tree_ctrl->Refresh();
 }
 
