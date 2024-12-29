@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2024-12-23 22:19+0000\n"
-"PO-Revision-Date: 2024-12-27 00:52\n"
+"PO-Revision-Date: 2024-12-23 22:25\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -292,7 +292,7 @@ msgstr "Érvénytelen dátum"
 
 #: accountdialog.cpp:515
 msgid "Opening date is unable to be in the future"
-msgstr "Nem lehet lenni a jövőben a nyitódátumot."
+msgstr ""
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
@@ -1638,7 +1638,7 @@ msgstr "Létező kategória nevének szerkesztése"
 
 #: categdialog.cpp:323
 msgid "Delete an existing category. The category is unable to be used by existing transactions."
-msgstr "Meglévő kategória törlése. A kategória nem használható meglévő ügyletekben."
+msgstr ""
 
 #: categdialog.cpp:328 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1678,7 +1678,7 @@ msgstr "Kategóriakezelő: Hozzáadási hiba"
 
 #: categdialog.cpp:427
 msgid "Unable to move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr "Nem sikerült áthelyezni egy alkategóriát olyan kategóriába, amelyhez már tartozik ilyen nevű alkategória. Költözés előtt fontolja meg az átnevezést."
+msgstr ""
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
@@ -1960,7 +1960,7 @@ msgstr "Érvénytelen bejegyzés"
 
 #: currencydialog.cpp:285 currencydialog.cpp:310
 msgid "Grouping character is unable to be the same as the decimal character"
-msgstr "A csoportosító karakter nem egyezhet meg a decimális karakterrel"
+msgstr ""
 
 #: currencydialog.cpp:332
 #, c-format
@@ -2464,7 +2464,7 @@ msgstr "Amikor az adatbázisfájl megnyílik:"
 
 #: dbwrapper.cpp:114
 msgid "Unable to open file"
-msgstr "Nem sikerült megnyitni a fájlt"
+msgstr ""
 
 #: dbwrapper.cpp:114
 msgid "You must specify path to another database file"
@@ -2971,7 +2971,7 @@ msgstr "A(z) „%1$s”-metaadat hiányzik a kijelölt „%2$s” témában"
 
 #: images_list.cpp:458
 msgid "and more…"
-msgstr "és mások…"
+msgstr "és továbbiak…"
 
 #: images_list.cpp:460
 #, c-format
@@ -3767,7 +3767,7 @@ msgstr "Összes pénznem megjelenítése"
 
 #: maincurrencydialog.cpp:241
 msgid "Historical Currency Options"
-msgstr "Pénznemek előzményeinek beállítások"
+msgstr ""
 
 #: maincurrencydialog.cpp:258 stockdialog.cpp:287 stockdialog.cpp:306
 #: stockdialog.cpp:634 stockspanel.cpp:215
@@ -3800,7 +3800,7 @@ msgstr "A kijelölt valutaárfolyamok törlése"
 
 #: maincurrencydialog.cpp:309
 msgid "Delete Historical Currency Values for unused currencies and days"
-msgstr "Pénznemek előzményeinek értékek törlése a fel nem használt pénznemeknél és napoknál"
+msgstr ""
 
 #: maincurrencydialog.cpp:365
 msgid "Do you really want to delete the selected Currency?"
@@ -3814,7 +3814,7 @@ msgstr "Alappénznem kijelölése"
 #, c-format
 msgid "Historical rates for %1$s found, but “Use historical currency” in options is disabled:\n"
 "click No and enable it or click Yes to remove all historical rates for %2$s"
-msgstr "A(z) %1$s előzmény árfolyamok megtalálhatók, de a „Pénznemek előzményeinek használata” le van tiltva a beállítások között. Kattintson a Nem gombra az engedélyékéhez, vagy kattintson az Igen gombra a(z) %2$s összes előzmény árfolyamának eltávolításához."
+msgstr ""
 
 #: maincurrencydialog.cpp:447
 #, c-format
@@ -3823,12 +3823,12 @@ msgstr "Valutaárfolyam-előzmények beállításai: %s"
 
 #: maincurrencydialog.cpp:503
 msgid "Unable to update historical currency rates. Please update them manually!"
-msgstr "Nem sikerült frissíteni a pénznemárfolyamok előzményeit. Kérem, frissítse kézzel!"
+msgstr ""
 
 #: maincurrencydialog.cpp:504 maincurrencydialog.cpp:692
 #: maincurrencydialog.cpp:728
 msgid "Historical currency error"
-msgstr "Pénznemek előzményeinek hiba"
+msgstr ""
 
 #: maincurrencydialog.cpp:536
 msgid "Set as Base Currency"
@@ -3858,11 +3858,11 @@ msgstr "Nem sikerült letölteni a(z) %s pénznemárfolyamokat"
 #: maincurrencydialog.cpp:726
 #, c-format
 msgid "Unable to download history for symbol %s. Historical rates unavailable!"
-msgstr "Nem sikerült letölteni a(z) %s-jelelőzményeket. Az árfolyamelőzmények nem elérhető!"
+msgstr ""
 
 #: maincurrencydialog.cpp:788 optionsettingsgeneral.cpp:300
 msgid "Changing base currency will delete all historical rates, proceed?"
-msgstr "Alappénznem módosítása törli az összes előzmény árfolyamot, folytatja?"
+msgstr ""
 
 #: maincurrencydialog.cpp:812
 msgid "Do you want to update today currency rates?"
@@ -3871,11 +3871,11 @@ msgstr "Frissíteni szeretné a pénznemárfolyamokat?"
 #: maincurrencydialog.cpp:833
 #, c-format
 msgid "Unable to download history for base symbol %s. Historical rates unavailable!"
-msgstr "Nem sikerült letölteni a(z) %s-alapjelelőzményeket. Az árfolyamelőzmények nem elérhető!"
+msgstr ""
 
 #: maincurrencydialog.cpp:876 util.cpp:684
 msgid "Unable to find base currency symbol!"
-msgstr "Nem sikerült találni az alappénznem jelzését!"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:767 mmSimpleDialogs.cpp:779
 msgid "&Clear color"
@@ -4357,7 +4357,7 @@ msgstr "A törölt ügyletek átmenetileg tárolásra kerülnek, és a Törölt 
 
 #: mmchecking_list.cpp:1331 mmchecking_list.cpp:1430
 msgid "Unable to undo this action."
-msgstr "Nem lehet visszavonni ezt a műveletet."
+msgstr ""
 
 #: mmchecking_list.cpp:1335 mmchecking_list.cpp:1346 mmchecking_list.cpp:1357
 #: mmchecking_list.cpp:1435
@@ -4447,7 +4447,7 @@ msgstr "Nincs áthelyezve"
 
 #: mmchecking_list.cpp:1796
 msgid "Unable to move some transactions"
-msgstr "Nem sikerült áthelyezni egyes ügyleteket."
+msgstr ""
 
 #: mmchecking_list.cpp:1863
 msgid "Scheduled transaction saved."
@@ -4596,7 +4596,7 @@ msgstr "Kijelölt ügyletek között eltelt napok: %d"
 
 #: mmcheckingpanel.cpp:1062
 msgid "Scheduled transactions are unable to be shown, because the current filter choice extends into the future without limit."
-msgstr "Nem sikerült jeleníteni az ütemezett ügyletek mert a jelenlegi szűrőkijelölés korlátlanul kiterjed a jövőre."
+msgstr ""
 
 #: mmcheckingpanel.cpp:1063
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
@@ -4880,7 +4880,7 @@ msgstr "&Webalkalmazás…"
 
 #: mmframe.cpp:1616
 msgid "Import from the WebApp"
-msgstr "Importálás a Webalkalmazásból"
+msgstr ""
 
 #: mmframe.cpp:1623
 msgid "Export as fixed CSV file"
@@ -5412,7 +5412,7 @@ msgstr "&Következő →"
 
 #: mmframe.cpp:2223
 msgid "Unable to locate previously opened database.\n"
-msgstr "Nem sikerült találni a korábban megnyitott adatbázis."
+msgstr ""
 
 #: mmframe.cpp:2225
 msgid "Password not entered for encrypted Database.\n"
@@ -5543,7 +5543,7 @@ msgstr "Adatbázisfájl mentése másként"
 
 #: mmframe.cpp:2545
 msgid "Unable to copy file to itself"
-msgstr "Nem sikerült másolni a fájlt önmagába"
+msgstr ""
 
 #: mmframe.cpp:2558
 msgid "Enter password for new database"
@@ -6275,11 +6275,11 @@ msgstr "Területi beállításból származtatott formátum.\n"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Use historical currency"
-msgstr "Pénznemek előzményeinek használata"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:176
 msgid "Select to use historical currency (one rate for each day), deselect to use a fixed rate"
-msgstr "Jelölje ki a pénznemek előzményeinek használatához (naponként egy árfolyam), fix árfolyam használatához törölje a kijelölést"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:180
 msgid "Financial Year"
@@ -7732,7 +7732,7 @@ msgstr "Utolsó frissítés %s"
 
 #: stockspanel.cpp:432
 msgid "Could not find base currency symbol!"
-msgstr "Nem sikerült találni az alappénznem jelzését!"
+msgstr "Az alappénznem jelzése nem található!"
 
 #: stockspanel.cpp:438 util.cpp:708 util.cpp:869
 msgid "Nothing to update"
@@ -7757,7 +7757,7 @@ msgstr "Létező címke nevének szerkesztése"
 
 #: tagdialog.cpp:136
 msgid "Delete an existing tag. The tag is unable to be used by existing transactions."
-msgstr "Meglévő címke törlése. A címke nem használható meglévő ügyletekben."
+msgstr ""
 
 #: tagdialog.cpp:142
 msgid "Select"
@@ -7887,7 +7887,7 @@ msgstr "Nincs frissítve"
 
 #: transactionsupdatedialog.cpp:540
 msgid "Unable to update some transactions"
-msgstr "Nem sikerült frissíteni egyes ügyleteket."
+msgstr ""
 
 #: transactionsupdatedialog.h:42
 msgid "Multi Transactions Update"
@@ -8125,11 +8125,11 @@ msgstr "A várt válasz adat- vagy hibaüzenetet tartalmaz."
 
 #: util.cpp:1011
 msgid "Unable to find asset for symbol"
-msgstr "Nem sikerült találni az eszköz a szimbólumhoz."
+msgstr ""
 
 #: util.cpp:1046
 msgid "Unable to get base currency!"
-msgstr "Nem sikerült beszerezni az alappénznemet!"
+msgstr ""
 
 #: util.cpp:1052
 msgid "USD"
@@ -8137,11 +8137,11 @@ msgstr "amerikai dollár (USD)"
 
 #: util.cpp:1055
 msgid "Unable to find currency 'USD', required for converting historical prices"
-msgstr "Nem sikerült találni az „USD”-pénznem, amely szükséges az előzmények árának átalakításához"
+msgstr ""
 
 #: util.cpp:1076
 msgid "Unable to parse price in asset history"
-msgstr "Nem sikerült elemezni az árat az eszközelőzményekben"
+msgstr ""
 
 #: util.cpp:1449
 #, c-format
@@ -8306,7 +8306,7 @@ msgstr "A mai nap lesz az ügylet dátuma"
 
 #: webapp.cpp:596 webapp.cpp:630 webappdialog.cpp:338
 msgid "Unable to download attachments from the WebApp."
-msgstr "Nem sikerült letölteni a mellékleteket a Webalkalmazásból."
+msgstr ""
 
 #: webapp.cpp:597
 msgid "Attachments folder not set or unavailable"
@@ -8318,7 +8318,7 @@ msgstr "Az ügylet nincs letöltve:"
 
 #: webapp.cpp:599
 msgid "Please fix attachments folder or delete attachments from the WebApp"
-msgstr "Kérjük, javítsa ki a mellékletek könyvtárát, vagy törölje a mellékleteket a Webalkalmazásból"
+msgstr ""
 
 #: webapp.cpp:600
 msgid "Attachment folder error"
@@ -8354,7 +8354,7 @@ msgstr "Mindent importál és megnyit"
 
 #: webappdialog.cpp:205
 msgid "Unable to download transactions from the WebApp."
-msgstr "Nem sikerült letölteni az ügyleteket a Webalkalmazásból."
+msgstr ""
 
 #: webappdialog.cpp:206
 msgid "Transactions download error"
@@ -8476,10 +8476,10 @@ msgstr "A következő lapok segítenek új adatbázis létrehozásában.\n"
 "Az adatbázist .mmb kiterjesztéssel ellátott fájlban tárolja.\n"
 "Mivel ez a fájl fontos pénzügyi adatokat tartalmaz,\n"
 "javasoljuk naponta mentés készítését a következő opciót\n"
-"bekapcsolva: „Adatbázis biztonsági másolatának készítése indításkor” és\n"
+"bekapcsolva: \"Másolat készítése megnyitás előtt\" és\n"
 "tárolja a másolatokat máshol.\n\n"
 "Ha szükséges, az adatbázis később titkosítható a következő\n"
-"opció: „Adatbázis mentése másként…” és a fájltípus\n"
+"opció: \"Az adatbázis mentése másként…\" és a fájltípus\n"
 "mentés előtti megváltoztatásával."
 
 #: wizard_newdb.cpp:103

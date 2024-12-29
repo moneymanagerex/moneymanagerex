@@ -1876,10 +1876,13 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     wxMenuItem* menuItemGitHub = new wxMenuItem(menuHelp, MENU_GITHUB
         , _("&GitHub"), _("Access open source code repository and track reported bug statuses"));
     wxMenuItem* menuItemWiki = new wxMenuItem(menuHelp, MENU_WIKI
-        , _("W&iki"), _("Read and update MMEX wiki"));
+        , _("Wi&ki"), _("Read and update MMEX wiki"));
     wxMenuItem* menuItemReportIssues = new wxMenuItem(menuHelp, MENU_REPORTISSUES
         , _("&Forum")
         , _("Visit MMEX forum to read and post comments and for support"));
+    wxMenuItem* menuItemAppleAppStore = new wxMenuItem(menuHelp, MENU_APPLE_APPSTORE
+        , _("MMEX for &iOS")
+        , _("Install MMEX on iPads and iPhones"));
     wxMenuItem* menuItemGooglePlay = new wxMenuItem(menuHelp, MENU_GOOGLEPLAY
         , _("MMEX for &Android")
         , _("Install MMEX for Android based smartphones and tablets"));
@@ -1907,6 +1910,7 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     menuCommunity->Append(menuItemNotify);
     menuCommunity->Append(menuItemReportIssues);
     menuCommunity->AppendSeparator();
+    menuCommunity->Append(menuItemAppleAppStore);
     menuCommunity->Append(menuItemGooglePlay);
     menuCommunity->AppendSeparator();
     menuCommunity->Append(menuItemRSS);
@@ -3004,6 +3008,7 @@ void mmGUIFrame::OnSimpleURLOpen(wxCommandEvent& event)
     case MENU_DONATE: url = mmex::weblink::Donate; break;
     case MENU_CROWDIN: url = mmex::weblink::Crowdin; break;
     case MENU_REPORTISSUES: url = mmex::weblink::Forum; break;
+    case MENU_APPLE_APPSTORE: url = mmex::weblink::AppleAppStore; break;
     case MENU_GOOGLEPLAY: url = mmex::weblink::GooglePlay; break;
     case MENU_BUY_COFFEE: url = mmex::weblink::SquareCashGuan; break;
     case MENU_RSS: url = mmex::weblink::NewsRSS; break;
