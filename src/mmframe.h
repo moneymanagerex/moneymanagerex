@@ -325,6 +325,7 @@ private:
         MENU_CROWDIN,
         MENU_REPORTISSUES,
         MENU_BUY_COFFEE,
+        MENU_APPLE_APPSTORE,
         MENU_GOOGLEPLAY,
         MENU_TWITTER, // end range for OnSimpleURLOpen
         MENU_EXPORT_CSV,
