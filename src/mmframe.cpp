@@ -1880,6 +1880,9 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     wxMenuItem* menuItemReportIssues = new wxMenuItem(menuHelp, MENU_REPORTISSUES
         , _("&Forum")
         , _("Visit MMEX forum to read and post comments and for support"));
+    wxMenuItem* menuItemAppleAppStore = new wxMenuItem(menuHelp, MENU_APPLE_APPSTORE
+        , _("MMEX for &iOS")
+        , _("Install MMEX on iPads and iPhones"));
     wxMenuItem* menuItemGooglePlay = new wxMenuItem(menuHelp, MENU_GOOGLEPLAY
         , _("MMEX for &Android")
         , _("Install MMEX for Android based smartphones and tablets"));
@@ -1907,6 +1910,7 @@ wxMenuItem* menuItemResetView = new wxMenuItem(menuView, MENU_VIEW_RESET
     menuCommunity->Append(menuItemNotify);
     menuCommunity->Append(menuItemReportIssues);
     menuCommunity->AppendSeparator();
+    menuCommunity->Append(menuItemAppleAppStore);
     menuCommunity->Append(menuItemGooglePlay);
     menuCommunity->AppendSeparator();
     menuCommunity->Append(menuItemRSS);
