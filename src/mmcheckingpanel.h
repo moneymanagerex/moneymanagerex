@@ -57,12 +57,16 @@ public:
     mmCheckingPanel(
         mmGUIFrame* frame,
         wxWindow* parent,
-        int winId,
         int64 checking_id,
         const std::vector<int64> &group_ids = std::vector<int64>{}
     );
 
     ~mmCheckingPanel();
+
+    bool isAllTrans() const;
+    bool isDeletedTrans() const;
+    bool isGroup() const;
+    bool isAccount() const;
 
     void DisplayAccountDetails(int64 account_id = -1);
         // Refresh account screen with new details
@@ -156,15 +160,10 @@ private:
     wxVector<wxBitmapBundle> m_images;
 
 private:
-    bool isAllTrans() const;
-    bool isDeletedTrans() const;
-    bool isGroup() const;
-    bool isAccount() const;
     wxString GetPanelTitle() const;
 
     bool Create(
         wxWindow* parent,
-        wxWindowID winId = mmID_CHECKING,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,

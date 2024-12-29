@@ -1106,9 +1106,12 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
             Option::instance().HideDeletedTransactions()
         ) {
             m_nav_tree_ctrl->Delete(trash);
-            if (panelCurrent_ && panelCurrent_->GetId() == mmID_DELETEDTRANSACTIONS) {
-                wxCommandEvent event(wxEVT_MENU, MENU_HOMEPAGE);
-                GetEventHandler()->AddPendingEvent(event);
+            if (panelCurrent_ && panelCurrent_->GetId() == mmID_CHECKING) {
+                mmCheckingPanel* cp = wxDynamicCast(panelCurrent_, mmCheckingPanel);
+                if (cp->isDeletedTrans()) {
+                    wxCommandEvent event(wxEVT_MENU, MENU_HOMEPAGE);
+                    GetEventHandler()->AddPendingEvent(event);
+                }
             }
         }
     }
@@ -1205,7 +1208,11 @@ void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)
 void mmGUIFrame::OnDropFiles(wxDropFilesEvent& event)
 {
     int id = panelCurrent_->GetId();
-    if (!(id == mmID_CHECKING || id == mmID_ALLTRANSACTIONS)) return;
+    if (id != mmID_CHECKING)
+        return;
+    mmCheckingPanel* cp = wxDynamicCast(panelCurrent_, mmCheckingPanel);
+    if (!cp->isAllTrans() && !cp->isAccount())
+        return;
     
     if (event.GetNumberOfFiles() > 0) {
         wxString* dropped = event.GetFiles();
@@ -2983,8 +2990,6 @@ void mmGUIFrame::refreshPanelData()
         createHomePage();
         break;
     case mmID_CHECKING:
-    case mmID_ALLTRANSACTIONS:
-    case mmID_DELETEDTRANSACTIONS:
         wxDynamicCast(panelCurrent_, mmCheckingPanel)->RefreshList();
         break;
     case mmID_STOCKS:
@@ -3143,7 +3148,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
 
         // Reset columns of the checking panel in case the time columns was added/removed
         int id = panelCurrent_->GetId();
-        if (id == mmID_CHECKING || id == mmID_ALLTRANSACTIONS || id == mmID_DELETEDTRANSACTIONS)
+        if (id == mmID_CHECKING)
             wxDynamicCast(panelCurrent_, mmCheckingPanel)->ResetColumnView();
 
         const wxString& sysMsg = _("Settings have been updated.") + "\n\n"
@@ -3516,14 +3521,18 @@ void mmGUIFrame::createAllTransactionsPage()
     const auto time = wxDateTime::UNow();
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    if (panelCurrent_->GetId() == mmID_ALLTRANSACTIONS) {
+    bool done = false;
+    if (panelCurrent_->GetId() == mmID_CHECKING) {
         mmCheckingPanel* cp = wxDynamicCast(panelCurrent_, mmCheckingPanel);
-        cp->RefreshList();
+        if (cp->isAllTrans()) {
+            cp->RefreshList();
+            done = true;
+        }
     }
-    else {
+    if (!done) {
         DoWindowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmCheckingPanel(this, homePanel_, mmID_ALLTRANSACTIONS, -1);
+        panelCurrent_ = new mmCheckingPanel(this, homePanel_, -1);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         DoWindowsFreezeThaw(homePanel_);
@@ -3552,14 +3561,18 @@ void mmGUIFrame::createDeletedTransactionsPage()
     const auto time = wxDateTime::UNow();
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    if (panelCurrent_->GetId() == mmID_DELETEDTRANSACTIONS) {
+    bool done = false;
+    if (panelCurrent_->GetId() == mmID_CHECKING) {
         mmCheckingPanel* cp = wxDynamicCast(panelCurrent_, mmCheckingPanel);
-        cp->RefreshList();
+        if (cp->isDeletedTrans()) {
+            cp->RefreshList();
+            done = true;
+        }
     }
-    else {
+    if (!done) {
         DoWindowsFreezeThaw(homePanel_);
         wxSizer* sizer = cleanupHomePanel();
-        panelCurrent_ = new mmCheckingPanel(this, homePanel_, mmID_DELETEDTRANSACTIONS, -2);
+        panelCurrent_ = new mmCheckingPanel(this, homePanel_, -2);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         DoWindowsFreezeThaw(homePanel_);
@@ -3594,16 +3607,20 @@ void mmGUIFrame::createCheckingAccountPage(int64 accountID)
     Model_Account::Data* account = Model_Account::instance().get(accountID);
     bool newCreditDisplayed = (account->CREDITLIMIT != 0);
 
-    if (panelCurrent_->GetId() == mmID_CHECKING && (newCreditDisplayed == creditDisplayed_)) {
+    bool done = false;
+    if (panelCurrent_->GetId() == mmID_CHECKING) {
         mmCheckingPanel* cp = wxDynamicCast(panelCurrent_, mmCheckingPanel);
-        cp->RefreshList();
-        cp->DisplayAccountDetails(accountID);
+        if (cp->isAccount() && (newCreditDisplayed == creditDisplayed_)) {
+            cp->RefreshList();
+            cp->DisplayAccountDetails(accountID);
+            done = true;
+        }
     }
-    else {
+    if (!done) {
         DoWindowsFreezeThaw(homePanel_);
         creditDisplayed_ = newCreditDisplayed;
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmCheckingPanel(this, homePanel_, mmID_CHECKING, accountID);
+        panelCurrent_ = new mmCheckingPanel(this, homePanel_, accountID);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         DoWindowsFreezeThaw(homePanel_);
