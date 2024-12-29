@@ -3008,6 +3008,7 @@ void mmGUIFrame::OnSimpleURLOpen(wxCommandEvent& event)
     case MENU_DONATE: url = mmex::weblink::Donate; break;
     case MENU_CROWDIN: url = mmex::weblink::Crowdin; break;
     case MENU_REPORTISSUES: url = mmex::weblink::Forum; break;
+    case MENU_APPLE_APPSTORE: url = mmex::weblink::AppleAppStore; break;
     case MENU_GOOGLEPLAY: url = mmex::weblink::GooglePlay; break;
     case MENU_BUY_COFFEE: url = mmex::weblink::SquareCashGuan; break;
     case MENU_RSS: url = mmex::weblink::NewsRSS; break;
