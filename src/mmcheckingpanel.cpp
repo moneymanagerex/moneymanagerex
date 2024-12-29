@@ -226,11 +226,11 @@ void mmCheckingPanel::filterTable()
         bills = (isAllAccounts_ || isTrash_) ?
             Model_Billsdeposits::instance().all() :
             Model_Account::billsdeposits(this->m_account);
-        for (int i = 0; i < bills.size(); ++i)
+        for (unsigned int i = 0; i < bills.size(); ++i)
         {
             int limit = 1000;  // this is enough for daily repetitions for one year
             auto dates = Model_Billsdeposits::unroll(bills[i], m_end_date, limit);
-            for (int repeat_num = 1; repeat_num <= dates.size(); ++repeat_num)
+            for (unsigned int repeat_num = 1; repeat_num <= dates.size(); ++repeat_num)
                 bills_index.push_back({i, dates[repeat_num-1], repeat_num});
         }
         std::stable_sort(bills_index.begin(), bills_index.end(),
@@ -1104,7 +1104,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
     RefreshList();
 }
 
-void mmCheckingPanel::OnScheduled(wxCommandEvent& event)
+void mmCheckingPanel::OnScheduled(wxCommandEvent&)
 {
     if (!isTrash_) {
         m_scheduled_selected = m_header_scheduled->GetValue();

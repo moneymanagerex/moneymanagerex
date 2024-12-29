@@ -1938,7 +1938,7 @@ void TransactionListCtrl::doSearchText(const wxString& value)
     while (true)
     {
         g_asc ? selectedItem-- : selectedItem++;
-        if (selectedItem < 0 || selectedItem >= m_trans.size())
+        if (selectedItem < 0 || selectedItem >= static_cast<long>(m_trans.size()))
             break;
 
         wxString test1 = Model_Currency::fromString2CLocale(value);

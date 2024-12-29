@@ -1057,11 +1057,12 @@ void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& event)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnTreeItemCollapsing(wxTreeEvent& event)
+void mmGUIFrame::OnTreeItemCollapsing(wxTreeEvent& /*event*/)
 {
+    /*
     mmTreeItemData* iData =
         dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(event.GetItem()));
-
+*/
     // disallow collapsing of HOME item
     //if (mmTreeItemData::HOME_PAGE == iData->getType())
     //    event.Veto();
