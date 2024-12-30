@@ -263,7 +263,7 @@ private:
     void OnViewAccountsTemporaryChange(wxCommandEvent& event);
 
     void OnTreeItemExpanded(wxTreeEvent& event);
-    void OnTreeItemCollapsing(wxTreeEvent& event);
+    void OnTreeItemCollapsing(wxTreeEvent&);
     void OnTreeItemCollapsed(wxTreeEvent& event);
 
     void OnDropFiles(wxDropFilesEvent& event);

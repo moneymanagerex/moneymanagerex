@@ -179,7 +179,7 @@ private:
     void OnMouseLeftDown(wxCommandEvent& event);
     void OnButtonRightDown(wxMouseEvent& event);
     void OnViewPopupSelected(wxCommandEvent& event);
-    void OnScheduled(wxCommandEvent& event);
+    void OnScheduled(wxCommandEvent&);
     void OnSearchTxtEntered(wxCommandEvent& event);
 
     /* updates the checking panel data */
