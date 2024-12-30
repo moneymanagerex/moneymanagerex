@@ -262,7 +262,7 @@ void Model_Budget::copyBudgetYear(int64 newYearID, int64 baseYearID)
         double yearAmount = getEstimate(false, period_id(data), data.AMOUNT);
         if (optionDeductMonthly && budgetedMonths > 0)
         {
-            budgetEntry->PERIOD = PERIOD_CHOICES[PERIOD_ID_MONTHLY].second;
+            budgetEntry->PERIOD = PERIOD_STR[PERIOD_ID_MONTHLY];
             if (yearDeduction[budgetEntry->CATEGID] / yearAmount < 1)
                 budgetEntry->AMOUNT = (yearAmount - yearDeduction[budgetEntry->CATEGID]) / (12 - budgetedMonths);
             else budgetEntry->AMOUNT = 0;

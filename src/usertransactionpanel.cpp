@@ -351,7 +351,7 @@ void UserTransactionPanel::onSelectedNote(wxCommandEvent& event)
 
 void UserTransactionPanel::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
-    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    const wxString& RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
     int64 RefId = m_transaction_id;
 
     if (RefId < 0)

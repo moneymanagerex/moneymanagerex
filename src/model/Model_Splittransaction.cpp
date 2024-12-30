@@ -53,7 +53,7 @@ Model_Splittransaction& Model_Splittransaction::instance()
 bool Model_Splittransaction::remove(int64 id)
 {
     // Delete all tags for the split before removing it
-    Model_Taglink::instance().DeleteAllTags(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT), id);
+    Model_Taglink::instance().DeleteAllTags(Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT, id);
     return this->remove(id, db_);
 }
 

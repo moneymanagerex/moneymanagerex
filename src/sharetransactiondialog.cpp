@@ -71,7 +71,7 @@ ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Translink
     {
         m_translink_entry = translink_entry;
         m_stock = Model_Stock::instance().get(translink_entry->LINKRECORDID);
-        if (translink_entry->LINKTYPE == Model_Attachment::reftype_desc(Model_Attachment::STOCK))
+        if (translink_entry->LINKTYPE == Model_Attachment::REFTYPE_STR_STOCK)
         {
             m_share_entry = Model_Shareinfo::ShareEntry(translink_entry->CHECKINGACCOUNTID);
         }
@@ -118,7 +118,7 @@ void ShareTransactionDialog::DataToControls()
     m_stock_symbol_ctrl->Enable(false);
     m_notes_ctrl->Enable(false);
 
-    Model_Translink::Data_Set translink_list = Model_Translink::TranslinkList(Model_Attachment::STOCK, m_stock->STOCKID);
+    Model_Translink::Data_Set translink_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_STOCK, m_stock->STOCKID);
 
     if (translink_list.empty())
     {   // Set up the transaction as the first entry.
@@ -330,7 +330,7 @@ void ShareTransactionDialog::CreateControls()
 
 void ShareTransactionDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
-    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
+    const wxString& RefType = Model_Attachment::REFTYPE_STR_STOCK;
     if (!this->m_stock)
         mmAttachmentManage::DeleteAllAttachments(RefType, 0);
     EndModal(wxID_CANCEL);
@@ -339,7 +339,7 @@ void ShareTransactionDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 
 void ShareTransactionDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
-    const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
+    const wxString& RefType = Model_Attachment::REFTYPE_STR_STOCK;
     if (m_stock_id <= 0)
         mmAttachmentManage::DeleteAllAttachments(RefType, 0);
     EndModal(wxID_CANCEL);

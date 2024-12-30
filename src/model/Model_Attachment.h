@@ -26,9 +26,30 @@ class Model_Attachment : public Model<DB_Table_ATTACHMENT_V1>
 {
 public:
     using Model<DB_Table_ATTACHMENT_V1>::get;
-    enum REFTYPE { TRANSACTION = 0, STOCK, ASSET, BANKACCOUNT, BILLSDEPOSIT, PAYEE, TRANSACTIONSPLIT, BILLSDEPOSITSPLIT};
+    enum REFTYPE_ID {
+        REFTYPE_ID_TRANSACTION = 0,
+        REFTYPE_ID_STOCK,
+        REFTYPE_ID_ASSET,
+        REFTYPE_ID_BANKACCOUNT,
+        REFTYPE_ID_BILLSDEPOSIT,
+        REFTYPE_ID_PAYEE,
+        REFTYPE_ID_TRANSACTIONSPLIT,
+        REFTYPE_ID_BILLSDEPOSITSPLIT
+    };
+    static wxArrayString REFTYPE_STR;
+    static const wxString REFTYPE_STR_TRANSACTION;
+    static const wxString REFTYPE_STR_STOCK;
+    static const wxString REFTYPE_STR_ASSET;
+    static const wxString REFTYPE_STR_BANKACCOUNT;
+    static const wxString REFTYPE_STR_BILLSDEPOSIT;
+    static const wxString REFTYPE_STR_PAYEE;
+    static const wxString REFTYPE_STR_TRANSACTIONSPLIT;
+    static const wxString REFTYPE_STR_BILLSDEPOSITSPLIT;
 
-    static const std::vector<std::pair<REFTYPE, wxString> > REFTYPE_CHOICES;
+    static const std::vector<std::pair<REFTYPE_ID, wxString> > REFTYPE_CHOICES;
+
+private:
+    static wxArrayString reftype_str_all();
 
 public:
     Model_Attachment();
@@ -50,9 +71,6 @@ public:
     static Model_Attachment& instance();
 
 public:
-    /** Return all attachments references */
-    wxArrayString all_type();
-
     /** Return a dataset with attachments linked to a specific object */
     const Data_Set FilterAttachments(const wxString& RefType, const int64 RefId);
 
@@ -62,11 +80,8 @@ public:
     /** Return the last attachment number linked to a specific object */
     static int LastAttachmentNumber(const wxString& RefType, const int64 RefId);
 
-    /** Return the description of the choice reftype */
-    static wxString reftype_desc(const int RefTypeEnum);
-
     /** Return a dataset with attachments linked to a specific type*/
-    std::map<int64, Data_Set> get_all(REFTYPE reftype);
+    std::map<int64, Data_Set> get_all(REFTYPE_ID reftype);
 
     /** Return all attachments descriptions*/
     wxArrayString allDescriptions();
