@@ -1622,7 +1622,6 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
                 wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Edit Account…")))
             );
             menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List"));
-            menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List"));
             menu.AppendSeparator();
             menu.Append(
                 MENU_TREEPOPUP_ACCOUNT_DELETE,
