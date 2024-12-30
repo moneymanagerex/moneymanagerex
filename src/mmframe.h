@@ -168,7 +168,7 @@ private:
     /*save Settings LASTFILENAME AUIPERSPECTIVE SIZES*/
     void saveSettings();
     void menuEnableItems(bool enable);
-    wxTreeItemId createNavSection(
+    wxTreeItemId addNavTreeSection(
         const wxTreeItemId& root, const wxString& sectionName, int sectionImg,
         int dataType, int64 dataId = -1
     );

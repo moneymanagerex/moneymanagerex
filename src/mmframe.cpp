@@ -786,7 +786,7 @@ void mmGUIFrame::createControls()
 }
 //----------------------------------------------------------------------------
 
-wxTreeItemId mmGUIFrame::createNavSection(
+wxTreeItemId mmGUIFrame::addNavTreeSection(
     const wxTreeItemId& root, const wxString& sectionName, int sectionImg,
     int dataType, int64 dataId
 ) {
@@ -813,17 +813,17 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
 
     wxTreeItemId root = m_nav_tree_ctrl->AddRoot("Root");
 
-    wxTreeItemId dashboard = createNavSection(
+    wxTreeItemId dashboard = addNavTreeSection(
         root, "Dashboard", img::HOUSE_PNG,
         mmTreeItemData::HOME_PAGE
     );
 
-    wxTreeItemId alltransactions = createNavSection(
+    wxTreeItemId alltransactions = addNavTreeSection(
         root, "All Transactions", img::ALLTRANSACTIONS_PNG,
         mmTreeItemData::CHECKING, -1
     );
 
-    wxTreeItemId favorites = createNavSection(
+    wxTreeItemId favorites = addNavTreeSection(
         root, "Favorites", img::FAVOURITE_PNG,
         mmTreeItemData::CHECKING, -3
     );
@@ -847,18 +847,18 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
             itemId == Model_Account::TYPE_ID_ASSET      ? mmTreeItemData::ASSETS :
             mmTreeItemData::CHECKING;
         int64 dataId = dataType == mmTreeItemData::CHECKING ? -(4+itemId) : -1;
-        accountSection[itemId] = createNavSection(
+        accountSection[itemId] = addNavTreeSection(
             root, ACCOUNT_SECTION[itemId], itemImg,
             dataType, dataId
         );
     }
 
-    wxTreeItemId bills = createNavSection(
+    wxTreeItemId bills = addNavTreeSection(
         root, "Scheduled Transactions", img::SCHEDULE_PNG,
         mmTreeItemData::BILLS
     );
 
-    wxTreeItemId trash = createNavSection(
+    wxTreeItemId trash = addNavTreeSection(
         root, "Deleted Transactions", img::TRASH_PNG,
         mmTreeItemData::CHECKING, -2
     );
@@ -877,25 +877,25 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     m_nav_tree_ctrl->SetItemBold(budgeting, true);
     this->DoUpdateBudgetNavigation(budgeting);
 
-    wxTreeItemId transactionFilter = createNavSection(
+    wxTreeItemId transactionFilter = addNavTreeSection(
         root, "Transaction Report", img::FILTER_PNG,
         mmTreeItemData::FILTER
     );
     this->DoUpdateFilterNavigation(transactionFilter);
 
-    wxTreeItemId reports = createNavSection(
+    wxTreeItemId reports = addNavTreeSection(
         root, "Reports", img::PIECHART_PNG,
         mmTreeItemData::HELP_REPORT
     );
     this->DoUpdateReportNavigation(reports);
 
-    wxTreeItemId grm = createNavSection(
+    wxTreeItemId grm = addNavTreeSection(
         root, "General Report Manager", img::CUSTOMSQL_GRP_PNG,
         mmTreeItemData::HELP_PAGE_GRM
     );
     this->DoUpdateGRMNavigation(grm);
 
-    wxTreeItemId help = createNavSection(
+    wxTreeItemId help = addNavTreeSection(
         root, "Help", img::HELP_PNG,
         mmTreeItemData::HELP_PAGE_MAIN
     );
