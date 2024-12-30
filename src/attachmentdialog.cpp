@@ -503,7 +503,7 @@ bool mmAttachmentManage::DeleteAttachment(const wxString& FileToDelete)
         wxString msgStr = wxString() << _("Attachment not found:") << "\n"
             << "'" << FileToDelete << "'" << "\n"
             << "\n"
-            << _("Do you want to continue and delete attachment on database?") << "\n";
+            << _("Do you want to delete the attachment in the database?") << "\n";
         int DeleteResponse = wxMessageBox(msgStr, _("Delete attachment failed"), wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
         if (DeleteResponse == wxYES)
             return true;
