@@ -509,10 +509,11 @@ void mmAssetsPanel::CreateControls()
     itemBoxSizer5->Add(searchCtrl, 0, wxCENTER, 1);
     mmToolTip(searchCtrl,
         _("Enter any string to find related assets") + "\n\n" +
-         wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria."))) + "\n" +
-        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Use the question mark (?) to find any single character—for example, s?t finds “sat” and “set”."))) + "\n" +
-        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Use the asterisk (*) to find any number of characters—for example, s*d finds “sad” and “started”."))) + "\n" +
-        _("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.")
+        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria."))) + "\n" +
+        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”."))) + "\n" +
+        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”."))) + "\n" +
+        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Use the asterisk (*) at the beginning to find any string in the middle of the sentence."))) + "\n" +
+        _("Use regex: to match using regular expressions."));
     );
 
     //Infobar-mini
