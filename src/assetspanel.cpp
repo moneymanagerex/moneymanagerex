@@ -206,7 +206,7 @@ void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
     if (m_selected_row < 0)    return;
 
     wxMessageDialog msgDlg(this
-        , _("Do you really want to delete the Asset?")
+        , _("Do you want to delete the asset?")
         , _("Confirm Asset Deletion")
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
 
