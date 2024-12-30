@@ -108,7 +108,7 @@ bool Model_Billsdeposits::remove(int64 id)
     for (auto &item : Model_Billsdeposits::split(get(id)))
         Model_Budgetsplittransaction::instance().remove(item.SPLITTRANSID);
     // Delete tags for the scheduled transaction
-    Model_Taglink::instance().DeleteAllTags(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), id);
+    Model_Taglink::instance().DeleteAllTags(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT, id);
     return this->remove(id, db_);
 }
 
@@ -136,7 +136,7 @@ const Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::split(const Da
 const Model_Taglink::Data_Set Model_Billsdeposits::taglink(const Data* r)
 {
     return Model_Taglink::instance().find(
-        Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT)),
+        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT),
         Model_Taglink::REFID(r->BDID));
 }
 
@@ -244,7 +244,7 @@ void Model_Billsdeposits::completeBDInSeries(int64 bdID)
 
     if ((repeats == REPEAT_TYPE::REPEAT_ONCE) || ((repeats < REPEAT_TYPE::REPEAT_IN_X_DAYS || repeats > REPEAT_TYPE::REPEAT_EVERY_X_MONTHS) && numRepeats == 1))
     {
-        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), bdID);
+        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT, bdID);
         remove(bdID);
         return;
     }
@@ -372,7 +372,7 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r) :
     Data(r),
     m_bill_splits(split(r)),
     m_tags(Model_Taglink::instance().find(
-        Model_Taglink::REFTYPE(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT)),
+        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT),
         Model_Taglink::REFID(r.BDID)))
 {
     if (!m_tags.empty()) {
@@ -393,7 +393,7 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r) :
                 + Model_Category::full_name(entry.CATEGID);
 
             wxString splitTags;
-            for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSITSPLIT), entry.SPLITTRANSID))
+            for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT, entry.SPLITTRANSID))
                 splitTags.Append(tag.first + " ");
             if (!splitTags.IsEmpty())
                 TAGNAMES.Append((TAGNAMES.IsEmpty() ? "" : ", ") + splitTags.Trim());

@@ -126,7 +126,7 @@ table {
     hb.DisplayFooter(_("Accounts: ") + accounts_label);
 
     m_noOfCols = (m_transDialog->mmIsHideColumnsChecked()) ? m_transDialog->mmGetHideColumnsID().GetCount() : 11;
-    const wxString& AttRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    const wxString& AttRefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
     const int groupBy = m_transDialog->mmGetGroupBy();
     const int chart = m_transDialog->mmGetChart();
     wxString lastSortLabel = "";
@@ -139,7 +139,7 @@ table {
     std::map<int64, double> grand_total_in_base_curr_extrans; //Grand - Store transactions amount daily converted to base currency - excluding TRANSFERS
     std::map<wxString, double> values_chart; // Store grouped values for chart
 
-    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    const wxString RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
     Model_CustomField::TYPE_ID UDFC01_Type = Model_CustomField::getUDFCType(RefType, "UDFC01");
     Model_CustomField::TYPE_ID UDFC02_Type = Model_CustomField::getUDFCType(RefType, "UDFC02");
     Model_CustomField::TYPE_ID UDFC03_Type = Model_CustomField::getUDFCType(RefType, "UDFC03");
@@ -227,7 +227,7 @@ table {
                 hb.addTableHeaderCell(_("FX Rate"), "Rate text-right");
             if (showColumnById(mmFilterTransactionsDialog::COL_NOTES))
                 hb.addTableHeaderCell(_("Notes"), "Notes");
-            const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+            const auto& ref_type = Model_Attachment::REFTYPE_STR_TRANSACTION;
             int colNo = mmFilterTransactionsDialog::COL_UDFC01;
             for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS())
             {
@@ -267,7 +267,7 @@ table {
         bool is_time_used = Option::instance().UseTransDateTime();
         const wxString mask = is_time_used ? "%Y-%m-%dT%H:%M:%S" : "%Y-%m-%d";
 
-        auto custom_fields_data = Model_CustomFieldData::instance().get_all(Model_Attachment::TRANSACTION);
+        auto custom_fields_data = Model_CustomFieldData::instance().get_all(Model_Attachment::REFTYPE_ID_TRANSACTION);
         while (noOfTrans--)
         {
             hb.startTableRow();
@@ -377,7 +377,7 @@ table {
 
                 // Custom Fields
 
-                const auto matrix = Model_CustomField::getMatrix(Model_Attachment::TRANSACTION);
+                const auto matrix = Model_CustomField::getMatrix(Model_Attachment::REFTYPE_ID_TRANSACTION);
                 int64 udfc01_ref_id = matrix.at("UDFC01");
                 int64 udfc02_ref_id = matrix.at("UDFC02");
                 int64 udfc03_ref_id = matrix.at("UDFC03");
@@ -573,9 +573,9 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
 {
     trans_.clear();
     const auto splits = Model_Splittransaction::instance().get_all();
-    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION));
+    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_STR_TRANSACTION);
     bool combine_splits = dlg.get()->mmIsCombineSplitsChecked();
-    const wxString splitRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTIONSPLIT);
+    const wxString splitRefType = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
     for (const auto& tran : Model_Checking::instance().all())
     {
         Model_Checking::Full_Data full_tran(tran, splits, tags);

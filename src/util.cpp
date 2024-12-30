@@ -1008,7 +1008,7 @@ bool getCoincapInfoFromSymbol(const wxString& symbol, wxString& out_id, double& 
         }
     }
 
-    output = _("Unable to find asset for symbol");
+    output = _("Unable to find asset for symbol.");
     return false;
 }
 
