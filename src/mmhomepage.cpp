@@ -180,7 +180,7 @@ const wxString htmlWidgetTop7Categories::getHTMLText()
         for (const auto& i : topCategoryStats)
         {
             data += "<tr>";
-            data += wxString::Format("<td>%s</td>", (i.first.IsEmpty() ? "…" : i.first));
+            data += wxString::Format("<td>%s</td>", (i.first.IsEmpty() ? wxString::FromUTF8Unchecked("…") : i.first));
             data += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
                 , i.second
                 , Model_Currency::toCurrency(i.second));
@@ -358,7 +358,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
             output += "<td>" + std::get<1>(item);
             wxString notes = std::get<5>(item);
             if (notes.Length() > 150)
-                notes = notes.Left(150) + "…";
+                notes = notes.Left(150) + wxString::FromUTF8Unchecked("…");
             if (!notes.IsEmpty())
                 output += wxString::Format("<br><i>%s</i>", notes);
 
