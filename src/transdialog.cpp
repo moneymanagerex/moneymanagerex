@@ -684,7 +684,7 @@ bool mmTransDialog::ValidateData()
         if (!payee)
         {
             wxMessageDialog msgDlg( this
-                , wxString::Format(_("You have not used this payee name before. Is the name correct?\n%s"), payee_name)
+                , wxString::Format(_("Payee name has not been used before. Is the name correct?\n%s"), payee_name)
                 , _("Confirm payee name")
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
             if (msgDlg.ShowModal() == wxID_YES)
