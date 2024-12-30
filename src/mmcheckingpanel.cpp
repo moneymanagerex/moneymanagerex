@@ -64,7 +64,7 @@ const std::vector<std::pair<mmCheckingPanel::FILTER_ID, wxString> > mmCheckingPa
     { mmCheckingPanel::FILTER_ID_LASTYEAR,       wxString(wxTRANSLATE("View Last Year")) },
     { mmCheckingPanel::FILTER_ID_LASTFINYEAR,    wxString(wxTRANSLATE("View Last Financial Year")) },
     { mmCheckingPanel::FILTER_ID_STATEMENTDATE,  wxString(wxTRANSLATE("View Since Statement Date")) },
-    { mmCheckingPanel::FILTER_ID_DIALOG,         wxString(wxTRANSLATE("View Transaction Report…")) }
+    { mmCheckingPanel::FILTER_ID_DIALOG,         wxString::FromUTF8(wxTRANSLATE("View Transaction Report…")) }
 };
 
 wxArrayString mmCheckingPanel::FILTER_STR = filter_str_all();
@@ -442,9 +442,9 @@ void mmCheckingPanel::OnButtonRightDown(wxMouseEvent& event)
     case wxID_NEW:
     {
         wxMenu menu;
-        menu.Append(Model_Checking::TYPE_ID_WITHDRAWAL, _("&New Withdrawal…"));
-        menu.Append(Model_Checking::TYPE_ID_DEPOSIT, _("&New Deposit…"));
-        menu.Append(Model_Checking::TYPE_ID_TRANSFER, _("&New Transfer…"));
+        menu.Append(Model_Checking::TYPE_ID_WITHDRAWAL, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Withdrawal…"))));
+        menu.Append(Model_Checking::TYPE_ID_DEPOSIT, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Deposit…"))));
+        menu.Append(Model_Checking::TYPE_ID_TRANSFER, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Transfer…"))));
         PopupMenu(&menu);
     }
     default:
@@ -744,7 +744,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
         //Show only first line but full string set as tooltip
         if (miniStr.Find("\n") > 1 && !miniStr.IsEmpty())
         {
-            m_info_panel_mini->SetLabelText(miniStr.substr(0, miniStr.Find("\n")) + " …");
+            m_info_panel_mini->SetLabelText(miniStr.substr(0, miniStr.Find("\n")) + wxString::FromUTF8Unchecked(" …"));
             mmToolTip(m_info_panel_mini, miniStr);
         }
         else
