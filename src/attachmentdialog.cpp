@@ -268,7 +268,7 @@ void mmAttachmentDialog::DeleteAttachment()
     if (attachment)
     {
         int DeleteResponse = wxMessageBox(
-            _("Do you really want to delete this attachment?")
+            _("Do you want to delete this attachment?")
             , _("Confirm Attachment Deletion")
             , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
         if (DeleteResponse == wxYES)
