@@ -198,7 +198,7 @@ void mmUnivCSVDialog::CreateControls()
     m_text_ctrl_->Connect(ID_FILE_NAME
         , wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(mmUnivCSVDialog::OnFileNameEntered), nullptr, this);
 
-    const wxString file_button_label = _("&Browse…");
+    const wxString file_button_label = wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Browse…")));
     wxButton* button_browse = new wxButton(itemPanel6, wxID_BROWSE, file_button_label);
     itemBoxSizer7->Add(button_browse, g_flagsH);
 
@@ -1570,7 +1570,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
         if (!wxRemoveFile(fileName))
         {
             return mmErrorDialogs::MessageWarning(this,
-                _("Failed to delete existing file. File may be locked by another program."),
+                _("An error occurred while deleting the existing file. File may be locked by another program."),
                 _("Destination file error"));
         }
     }

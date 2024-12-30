@@ -82,6 +82,7 @@ namespace weblink
     extern const wxString Slack;
     extern const wxString SquareCashGuan;
     extern const wxString DefStockUrl;
+    extern const wxString AppleAppStore;
     extern const wxString GooglePlay;
     extern const wxString WebApp;
     extern const wxString Chiark;

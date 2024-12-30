@@ -124,7 +124,7 @@ void mmListCtrl::CreateColumns()
     std::vector<PANEL_COLUMN> sortedColumns = {};
     for (unsigned int i = 0; i < columnOrder.size(); i++)
     {
-        int index = std::find(m_real_columns.begin(), m_real_columns.end(), columnOrder[i]) - m_real_columns.begin();
+        unsigned int index = std::find(m_real_columns.begin(), m_real_columns.end(), columnOrder[i]) - m_real_columns.begin();
         if (index < m_columns.size())
             sortedColumns.push_back(m_columns[index]);
     }
@@ -261,7 +261,7 @@ void mmListCtrl::OnHeaderMove(wxCommandEvent& WXUNUSED(event), int direction)
     // find the next visible column
     int distance = direction;
     while (m_ColumnHeaderNbr + distance > 0
-        && m_ColumnHeaderNbr + distance < m_columns.size() - 1
+        && m_ColumnHeaderNbr + distance < static_cast<int>(m_columns.size()) - 1
         && GetColumnWidth(m_ColumnHeaderNbr + distance) == 0)
     {
         distance += direction;

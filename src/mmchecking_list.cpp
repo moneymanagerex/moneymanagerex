@@ -39,7 +39,7 @@
 #include <algorithm>
 #include <wx/sound.h>
 //----------------------------------------------------------------------------
-
+#define wxPLURAL_U8(singular, plural, n) wxPLURAL(wxString::FromUTF8(singular), wxString::FromUTF8(plural), n)
 wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY, TransactionListCtrl::OnListItemActivated)
     EVT_LIST_ITEM_SELECTED(wxID_ANY, TransactionListCtrl::OnListItemSelected)
@@ -518,14 +518,14 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     }
     wxMenu menu;
     if (!m_cp->isDeletedTrans()) {
-        menu.Append(MENU_TREEPOPUP_WITHDRAWAL, _("New &Withdrawal…"));
-        menu.Append(MENU_TREEPOPUP_DEPOSIT, _("New &Deposit…"));
+        menu.Append(MENU_TREEPOPUP_WITHDRAWAL, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("New &Withdrawal…"))));
+        menu.Append(MENU_TREEPOPUP_DEPOSIT, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("New &Deposit…"))));
         if (Model_Account::instance().all_checking_account_names(true).size() > 1)
-            menu.Append(MENU_TREEPOPUP_TRANSFER, _("New &Transfer…"));
+            menu.Append(MENU_TREEPOPUP_TRANSFER, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("New &Transfer…"))));
 
         menu.AppendSeparator();
 
-        menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL("&Edit Transaction…", "&Edit Transactions…", selected));
+        menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL_U8("&Edit Transaction…", "&Edit Transactions…", selected));
         if (is_nothing_selected)
             menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
@@ -548,11 +548,11 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
                 menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
         }
 
-        menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _("D&uplicate Transaction…"));
+        menu.Append(MENU_ON_DUPLICATE_TRANSACTION, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("D&uplicate Transaction…"))));
         if (is_nothing_selected || multiselect)
             menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
 
-        menu.Append(MENU_TREEPOPUP_MOVE2, wxPLURAL("&Move Transaction…", "&Move Transactions…", selected));
+        menu.Append(MENU_TREEPOPUP_MOVE2, wxPLURAL_U8("&Move Transaction…", "&Move Transactions…", selected));
         if (is_nothing_selected || type_transfer || (Model_Account::money_accounts_num() < 2) || is_foreign)
             menu.Enable(MENU_TREEPOPUP_MOVE2, false);
 
@@ -566,19 +566,28 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         if (is_nothing_selected || multiselect || have_category)
             menu.Enable(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, false);
 
-        menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments…"));
+        menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Organize Attachments…"))));
         if (is_nothing_selected || multiselect)
             menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
 
-        menu.Append(MENU_TREEPOPUP_CREATE_REOCCURANCE, _("Create Scheduled T&ransaction…"));
+        menu.Append(
+            MENU_TREEPOPUP_CREATE_REOCCURANCE,
+            wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Create Scheduled T&ransaction…")))
+        );
         if (is_nothing_selected || multiselect)
             menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
     }
     else {
-        menu.Append(MENU_TREEPOPUP_RESTORE, wxPLURAL("&Restore selected transaction…", "&Restore selected transactions…", selected));
+        menu.Append(
+            MENU_TREEPOPUP_RESTORE,
+            wxPLURAL_U8("&Restore selected transaction…", "&Restore selected transactions…", selected)
+        );
         if (is_nothing_selected)
             menu.Enable(MENU_TREEPOPUP_RESTORE, false);
-        menu.Append(MENU_TREEPOPUP_RESTORE_VIEWED, _("Restore &all transactions in current view…"));
+        menu.Append(
+            MENU_TREEPOPUP_RESTORE_VIEWED,
+            wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Restore &all transactions in current view…")))
+        );
     }
     bool columnIsAmount = false;
     unsigned long column = getColumnFromPosition(event.GetX());
@@ -728,8 +737,8 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     subGlobalOpMenuDelete->Append(
         MENU_TREEPOPUP_DELETE2,
         !m_cp->isDeletedTrans() ?
-            wxPLURAL("&Delete selected transaction…", "&Delete selected transactions…", selected) :
-            wxPLURAL("&Permanently delete selected transaction…", "&Permanently delete selected transactions…", selected)
+            wxPLURAL_U8("&Delete selected transaction…", "&Delete selected transactions…", selected) :
+            wxPLURAL_U8("&Permanently delete selected transaction…", "&Permanently delete selected transactions…", selected)
     );
     if (is_nothing_selected)
         subGlobalOpMenuDelete->Enable(MENU_TREEPOPUP_DELETE2, false);
@@ -737,8 +746,8 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     subGlobalOpMenuDelete->Append(
         MENU_TREEPOPUP_DELETE_VIEWED,
         !m_cp->isDeletedTrans() ?
-            _("Delete &all transactions in current view…") :
-            _("Permanently delete &all transactions in current view…")
+            wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Delete &all transactions in current view…"))) :
+            wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Permanently delete &all transactions in current view…")))
     );
     if (!m_cp->isDeletedTrans()) {
         subGlobalOpMenuDelete->Append(
@@ -1781,7 +1790,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
 
     if (msgDlg.ShowModal() == wxID_YES) {
         const wxString headerMsg = wxString::Format(
-                wxPLURAL("Moving transaction to…"
+                wxPLURAL_U8("Moving transaction to…"
                 , "Moving %i transactions to…", sel)
                 , sel);
         mmSingleChoiceDialog scd(this
@@ -1821,7 +1830,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
                                 , _("Not moved"), skip_trx.size());
                 mmErrorDialogs::MessageWarning(this
                     , detail
-                    , _("Unable to move some transactions"));
+                    , _("Unable to move some transactions."));
             }
             //TODO: enable report to detail transactions that are unable to be moved
             refreshVisualList();
@@ -1961,7 +1970,7 @@ void TransactionListCtrl::doSearchText(const wxString& value)
 
     while (true) {
         g_asc ? selectedItem-- : selectedItem++;
-        if (selectedItem < 0 || selectedItem >= m_trans.size())
+        if (selectedItem < 0 || selectedItem >= static_cast<long>(m_trans.size()))
             break;
 
         wxString test1 = Model_Currency::fromString2CLocale(value);

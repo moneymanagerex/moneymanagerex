@@ -275,7 +275,7 @@ private:
     void OnViewAccountsTemporaryChange(wxCommandEvent& event);
 
     void OnTreeItemExpanded(wxTreeEvent& event);
-    void OnTreeItemCollapsing(wxTreeEvent& event);
+    void OnTreeItemCollapsing(wxTreeEvent&);
     void OnTreeItemCollapsed(wxTreeEvent& event);
 
     void OnDropFiles(wxDropFilesEvent& event);
@@ -337,6 +337,7 @@ private:
         MENU_CROWDIN,
         MENU_REPORTISSUES,
         MENU_BUY_COFFEE,
+        MENU_APPLE_APPSTORE,
         MENU_GOOGLEPLAY,
         MENU_TWITTER, // end range for OnSimpleURLOpen
         MENU_EXPORT_CSV,

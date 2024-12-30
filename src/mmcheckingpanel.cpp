@@ -62,7 +62,7 @@ const std::vector<std::pair<mmCheckingPanel::FILTER_ID, wxString> > mmCheckingPa
     { mmCheckingPanel::FILTER_ID_LASTYEAR,       wxString(wxTRANSLATE("View Last Year")) },
     { mmCheckingPanel::FILTER_ID_LASTFINYEAR,    wxString(wxTRANSLATE("View Last Financial Year")) },
     { mmCheckingPanel::FILTER_ID_STATEMENTDATE,  wxString(wxTRANSLATE("View Since Statement Date")) },
-    { mmCheckingPanel::FILTER_ID_DIALOG,         wxString(wxTRANSLATE("View Transaction Report…")) }
+    { mmCheckingPanel::FILTER_ID_DIALOG,         wxString::FromUTF8(wxTRANSLATE("View Transaction Report…")) }
 };
 
 wxArrayString mmCheckingPanel::FILTER_STR = filter_str_all();
@@ -247,10 +247,10 @@ void mmCheckingPanel::filterTable()
         bills = m_account ?
             Model_Account::billsdeposits(m_account) :
             Model_Billsdeposits::instance().all();
-        for (int i = 0; i < bills.size(); ++i) {
+        for (unsigned int i = 0; i < bills.size(); ++i) {
             int limit = 1000;  // this is enough for daily repetitions for one year
             auto dates = Model_Billsdeposits::unroll(bills[i], m_end_date, limit);
-            for (int repeat_num = 1; repeat_num <= dates.size(); ++repeat_num)
+            for (unsigned int repeat_num = 1; repeat_num <= dates.size(); ++repeat_num)
                 bills_index.push_back({i, dates[repeat_num-1], repeat_num});
         }
         std::stable_sort(
@@ -465,9 +465,9 @@ void mmCheckingPanel::OnButtonRightDown(wxMouseEvent& event)
     }
     case wxID_NEW: {
         wxMenu menu;
-        menu.Append(Model_Checking::TYPE_ID_WITHDRAWAL, _("&New Withdrawal…"));
-        menu.Append(Model_Checking::TYPE_ID_DEPOSIT, _("&New Deposit…"));
-        menu.Append(Model_Checking::TYPE_ID_TRANSFER, _("&New Transfer…"));
+        menu.Append(Model_Checking::TYPE_ID_WITHDRAWAL, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Withdrawal…"))));
+        menu.Append(Model_Checking::TYPE_ID_DEPOSIT, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Deposit…"))));
+        menu.Append(Model_Checking::TYPE_ID_TRANSFER, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Transfer…"))));
         PopupMenu(&menu);
     }
     default:
@@ -804,7 +804,9 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
         wxString miniStr = full_tran.info();
         //Show only first line but full string set as tooltip
         if (miniStr.Find("\n") > 1 && !miniStr.IsEmpty()) {
-            m_info_panel_mini->SetLabelText(miniStr.substr(0, miniStr.Find("\n")) + " …");
+            m_info_panel_mini->SetLabelText(
+                miniStr.substr(0, miniStr.Find("\n")) + wxString::FromUTF8Unchecked(" …")
+            );
             mmToolTip(m_info_panel_mini, miniStr);
         }
         else {
@@ -1120,7 +1122,7 @@ void mmCheckingPanel::updateFilterState()
 void mmCheckingPanel::updateScheduledToolTip()
 {
     mmToolTip(m_header_scheduled,
-        !m_scheduled_enable ? _("Scheduled transactions cannot to be shown, because the current filter choice extends into the future without limit.") :
+        !m_scheduled_enable ? _("Unable to show scheduled transactions because the current filter choice extends into the future without limit.") :
         !m_scheduled_selected ? _("Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month).") :
         _("Click to hide scheduled transactions."));
 }
@@ -1171,7 +1173,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
     RefreshList();
 }
 
-void mmCheckingPanel::OnScheduled(wxCommandEvent& event)
+void mmCheckingPanel::OnScheduled(wxCommandEvent&)
 {
     if (!isDeletedTrans()) {
         m_scheduled_selected = m_header_scheduled->GetValue();

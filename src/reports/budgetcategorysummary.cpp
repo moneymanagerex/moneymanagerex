@@ -233,7 +233,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                     
                     std::vector<int> totals_stack;
                     Model_Category::Data_Set subcats = Model_Category::sub_tree(category);
-                    for (int i = 0; i < subcats.size(); i++) {
+                    for (int i = 0; i < static_cast<int>(subcats.size()); i++) {
                         categLevel[subcats[i].CATEGID].first = 1;
                         estimated = budgetStats[subcats[i].CATEGID][budgetMonth];
 
@@ -283,7 +283,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                             }
                             hb.endTableRow();
                             
-                            if (i < subcats.size() - 1) { //not the last subcategory
+                            if (i < static_cast<int>(subcats.size()) - 1) { //not the last subcategory
                                 if (subcats[i].CATEGID == subcats[i + 1].PARENTID) totals_stack.push_back(i); //if next subcategory is our child, queue the total for after the children
                                 else if (subcats[i].PARENTID != subcats[i + 1].PARENTID) { // last sibling -- we've exhausted this branch, so display all the totals we held on to
                                     while (!totals_stack.empty() && subcats[totals_stack.back()].CATEGID != subcats[i + 1].PARENTID) {
