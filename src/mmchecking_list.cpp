@@ -1843,7 +1843,7 @@ void TransactionListCtrl::OnViewOtherAccount(wxCommandEvent& /*event*/)
     int64 gotoAccountID = (m_cp->m_checking_id == tran.ACCOUNTID) ? tran.TOACCOUNTID : tran.ACCOUNTID;
     wxString gotoAccountName = (m_cp->m_checking_id == tran.ACCOUNTID) ? tran.TOACCOUNTNAME : tran.ACCOUNTNAME;   
 
-    m_cp->m_frame->setAccountNavTreeSection(gotoAccountName);
+    m_cp->m_frame->setNavTreeAccount(gotoAccountName);
     m_cp->m_frame->setGotoAccountID(gotoAccountID, id);
     wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
     m_cp->m_frame->GetEventHandler()->AddPendingEvent(event);

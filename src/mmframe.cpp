@@ -286,10 +286,11 @@ mmGUIFrame::mmGUIFrame(
     m_mgr.LoadPerspective(auiPerspective);
 
     // add the toolbars to the manager
-    m_mgr.AddPane(toolBar_, wxAuiPaneInfo().
-        Name("toolbar").ToolbarPane().Top()
+    m_mgr.AddPane(toolBar_, wxAuiPaneInfo()
+        .Name("toolbar").ToolbarPane().Top()
         .LeftDockable(false).RightDockable(false)
-        .Show(Model_Setting::instance().GetBoolSetting("SHOWTOOLBAR", true)));
+        .Show(Model_Setting::instance().GetBoolSetting("SHOWTOOLBAR", true))
+    );
 
     // change look and feel of wxAuiManager
     m_mgr.GetArtProvider()->SetMetric(16, 0);
@@ -447,66 +448,59 @@ void mmGUIFrame::processPendingEvents()
 }
 
 //----------------------------------------------------------------------------
-// returns a wxTreeItemID for the accountName in the navtree section.
-wxTreeItemId mmGUIFrame::getTreeItemfor(const wxTreeItemId& itemID, const wxString& accountName) const
+wxTreeItemId mmGUIFrame::getNavTreeChild(const wxTreeItemId& section, const wxString& childName) const
 {
-    wxTreeItemIdValue treeDummyValue;
-    wxTreeItemId navTreeID = m_nav_tree_ctrl->GetFirstChild(itemID, treeDummyValue);
-
-    while (navTreeID.IsOk()) {
-        const auto text = m_nav_tree_ctrl->GetItemText(navTreeID);
-        if (accountName == text)
+    wxTreeItemIdValue cookie;
+    wxTreeItemId child = m_nav_tree_ctrl->GetFirstChild(section, cookie);
+    while (child.IsOk()) {
+        if (m_nav_tree_ctrl->GetItemText(child) == childName)
             break;
-        else
-            navTreeID = m_nav_tree_ctrl->GetNextChild(itemID, treeDummyValue);
+        child = m_nav_tree_ctrl->GetNextChild(section, cookie);
     }
-    return navTreeID;
+    return child;
 }
 
-//----------------------------------------------------------------------------
-bool mmGUIFrame::setAccountInSection(const wxString& sectionName, const wxString& accountName)
-{
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    bool accountFound = false;
-    wxTreeItemId rootItem = getTreeItemfor(
-        m_nav_tree_ctrl->GetRootItem(),
-        wxGetTranslation(sectionName)
-    );
-    if (rootItem.IsOk() && m_nav_tree_ctrl->ItemHasChildren(rootItem)) {
-        m_nav_tree_ctrl->ExpandAllChildren(rootItem);
-        wxTreeItemId accountItem = getTreeItemfor(rootItem, accountName);
-        if (accountItem.IsOk()) {
-            // Set the NavTreeCtrl and prevent any event code being executed for now.
-            m_nav_tree_ctrl->SelectItem(accountItem);
-            //processPendingEvents();
-            accountFound = true;
-        }
-    }
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
-    return accountFound;
-}
-
-//----------------------------------------------------------------------------
 bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
 {
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    bool accountNotFound = true;
-    wxTreeItemId rootItem = getTreeItemfor(m_nav_tree_ctrl->GetRootItem(), sectionName);
-    if (rootItem.IsOk()) {
+    bool found = false;
+    wxTreeItemId section = getNavTreeChild(m_nav_tree_ctrl->GetRootItem(), sectionName);
+    if (section.IsOk()) {
         // Set the NavTreeCtrl and prevent any event code being executed for now.
-        m_nav_tree_ctrl->SelectItem(rootItem);
+        m_nav_tree_ctrl->SelectItem(section);
         //processPendingEvents();
-        accountNotFound = false;
+        found = true;
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
-
-    return !accountNotFound;
+    return found;
 }
 
-//----------------------------------------------------------------------------
-void mmGUIFrame::setAccountNavTreeSection(const wxString& accountName)
+bool mmGUIFrame::setNavTreeSectionChild(const wxString& sectionName, const wxString& childName)
 {
-    if (setAccountInSection(wxTRANSLATE("Favorites"), accountName)) return;
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
+    bool found = false;
+    wxTreeItemId section = getNavTreeChild(
+        m_nav_tree_ctrl->GetRootItem(),
+        sectionName
+    );
+    if (section.IsOk() && m_nav_tree_ctrl->ItemHasChildren(section)) {
+        m_nav_tree_ctrl->ExpandAllChildren(section);
+        wxTreeItemId child = getNavTreeChild(section, childName);
+        if (child.IsOk()) {
+            // Set the NavTreeCtrl and prevent any event code being executed for now.
+            m_nav_tree_ctrl->SelectItem(child);
+            //processPendingEvents();
+            found = true;
+        }
+    }
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
+    return found;
+}
+
+void mmGUIFrame::setNavTreeAccount(const wxString& accountName)
+{
+    if (setNavTreeSectionChild(_("Favorites"), accountName))
+        return;
     static const std::vector<Model_Account::TYPE_ID> account_types = {
         Model_Account::TYPE_ID_CHECKING,
         Model_Account::TYPE_ID_CREDIT_CARD,
@@ -516,8 +510,11 @@ void mmGUIFrame::setAccountNavTreeSection(const wxString& accountName)
         Model_Account::TYPE_ID_INVESTMENT,
         Model_Account::TYPE_ID_ASSET,
     };
-    for (Model_Account::TYPE_ID account_type : account_types)
-        if (setAccountInSection(ACCOUNT_SECTION[account_type], accountName)) return;
+    for (Model_Account::TYPE_ID account_type : account_types) {
+        const wxString sectionName = wxGetTranslation(ACCOUNT_SECTION[account_type]);
+        if (setNavTreeSectionChild(sectionName, accountName))
+            return;
+    }
 }
 
 //----------------------------------------------------------------------------
@@ -640,17 +637,14 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
         }
     }
 
-    if (continueExecution) {
+    if (continueExecution)
         autoRepeatTransactionsTimer_.Start(5, wxTIMER_ONE_SHOT);
-    }
     else
         refreshPanelData();
 }
 //----------------------------------------------------------------------------
 
-/*
-    Save our settings to ini db.
-*/
+// Save our settings to ini db.
 void mmGUIFrame::saveSettings()
 {
     Model_Setting::instance().Savepoint();
@@ -765,11 +759,13 @@ void mmGUIFrame::createControls()
 
     m_nav_tree_ctrl->Connect(
         ID_NAVTREECTRL, wxEVT_TREE_SEL_CHANGED,
-        wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this
+        wxTreeEventHandler(mmGUIFrame::OnSelChanged),
+        nullptr, this
     );
     m_nav_tree_ctrl->Connect(
         ID_NAVTREECTRL, wxEVT_TREE_ITEM_RIGHT_CLICK,
-        wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this
+        wxTreeEventHandler(mmGUIFrame::OnSelChanged),
+        nullptr, this
     );
     
     homePanel_ = new wxPanel(
@@ -790,6 +786,21 @@ void mmGUIFrame::createControls()
 }
 //----------------------------------------------------------------------------
 
+wxTreeItemId mmGUIFrame::createNavSection(
+    const wxTreeItemId& root, const wxString& sectionName, int sectionImg,
+    int dataType, int64 dataId
+) {
+    wxTreeItemId section = m_nav_tree_ctrl->AppendItem(
+        root, wxGetTranslation(sectionName), sectionImg, sectionImg
+    );
+    m_nav_tree_ctrl->SetItemData(
+        section,
+        new mmTreeItemData(dataType, dataId, sectionName)
+    );
+    m_nav_tree_ctrl->SetItemBold(section, true);
+    return section;
+}
+
 void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
 {
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
@@ -802,49 +813,23 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
 
     wxTreeItemId root = m_nav_tree_ctrl->AddRoot("Root");
 
-    wxString itemName = "";
+    wxTreeItemId dashboard = createNavSection(
+        root, "Dashboard", img::HOUSE_PNG,
+        mmTreeItemData::HOME_PAGE
+    );
 
-    itemName = "Dashboard";
-    wxTreeItemId dashboard = m_nav_tree_ctrl->AppendItem(
-        root,
-        wxGetTranslation(itemName),
-        img::HOUSE_PNG,
-        img::HOUSE_PNG
+    wxTreeItemId alltransactions = createNavSection(
+        root, "All Transactions", img::ALLTRANSACTIONS_PNG,
+        mmTreeItemData::CHECKING, -1
     );
-    m_nav_tree_ctrl->SetItemData(
-        dashboard,
-        new mmTreeItemData(mmTreeItemData::HOME_PAGE, itemName)
-    );
-    m_nav_tree_ctrl->SetItemBold(dashboard, true);
 
-    itemName = "All Transactions";
-    wxTreeItemId alltransactions = m_nav_tree_ctrl->AppendItem(
-        root,
-        wxGetTranslation(itemName),
-        img::ALLTRANSACTIONS_PNG,
-        img::ALLTRANSACTIONS_PNG
+    wxTreeItemId favorites = createNavSection(
+        root, "Favorites", img::FAVOURITE_PNG,
+        mmTreeItemData::CHECKING, -3
     );
-    m_nav_tree_ctrl->SetItemData(
-        alltransactions,
-        new mmTreeItemData(mmTreeItemData::CHECKING, -1, itemName)
-    );
-    m_nav_tree_ctrl->SetItemBold(alltransactions, true);
-
-    itemName = "Favorites";
-    wxTreeItemId favorites = m_nav_tree_ctrl->AppendItem(
-        root,
-        wxGetTranslation(itemName),
-        img::FAVOURITE_PNG,
-        img::FAVOURITE_PNG
-    );
-    m_nav_tree_ctrl->SetItemData(
-        favorites,
-        new mmTreeItemData(mmTreeItemData::CHECKING, -3, itemName)
-    );
-    m_nav_tree_ctrl->SetItemBold(favorites, true);
 
     wxTreeItemId accountSection[Model_Account::TYPE_ID_size];
-    static const std::tuple<Model_Account::TYPE_ID, img> ACCOUNT_IMG_TABLE[] = {
+    static const std::tuple<Model_Account::TYPE_ID, int> ACCOUNT_IMG_TABLE[] = {
         { Model_Account::TYPE_ID_CHECKING,    img::SAVINGS_ACC_NORMAL_PNG },
         { Model_Account::TYPE_ID_CREDIT_CARD, img::CARD_ACC_NORMAL_PNG },
         { Model_Account::TYPE_ID_CASH,        img::CASH_ACC_NORMAL_PNG },
@@ -856,56 +841,32 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     };
     for (const auto& item : ACCOUNT_IMG_TABLE) {
         Model_Account::TYPE_ID itemId = std::get<0>(item);
-        img itemImg = std::get<1>(item);
-        int itemType =
+        int itemImg = std::get<1>(item);
+        int dataType =
             itemId == Model_Account::TYPE_ID_INVESTMENT ? mmTreeItemData::HELP_PAGE_STOCKS :
             itemId == Model_Account::TYPE_ID_ASSET      ? mmTreeItemData::ASSETS :
             mmTreeItemData::CHECKING;
-        itemName = ACCOUNT_SECTION[itemId];
-        accountSection[itemId] = m_nav_tree_ctrl->AppendItem(
-            root,
-            wxGetTranslation(itemName),
-            itemImg, itemImg
+        int64 dataId = dataType == mmTreeItemData::CHECKING ? -(4+itemId) : -1;
+        accountSection[itemId] = createNavSection(
+            root, ACCOUNT_SECTION[itemId], itemImg,
+            dataType, dataId
         );
-        int64 dataId = itemType == mmTreeItemData::CHECKING ? -(4+itemId) : -1;
-        m_nav_tree_ctrl->SetItemData(
-            accountSection[itemId],
-            new mmTreeItemData(itemType, dataId, itemName)
-        );
-        m_nav_tree_ctrl->SetItemBold(accountSection[itemId], true);
     }
 
-    itemName = "Scheduled Transactions";
-    wxTreeItemId bills = m_nav_tree_ctrl->AppendItem(
-        root,
-        wxGetTranslation(itemName),
-        img::SCHEDULE_PNG,
-        img::SCHEDULE_PNG
+    wxTreeItemId bills = createNavSection(
+        root, "Scheduled Transactions", img::SCHEDULE_PNG,
+        mmTreeItemData::BILLS
     );
-    m_nav_tree_ctrl->SetItemData(
-        bills,
-        new mmTreeItemData(mmTreeItemData::BILLS, itemName)
-    );
-    m_nav_tree_ctrl->SetItemBold(bills, true);
 
-    itemName = "Deleted Transactions";
-    wxTreeItemId trash = m_nav_tree_ctrl->AppendItem(
-        root,
-        wxGetTranslation(itemName),
-        img::TRASH_PNG,
-        img::TRASH_PNG
+    wxTreeItemId trash = createNavSection(
+        root, "Deleted Transactions", img::TRASH_PNG,
+        mmTreeItemData::CHECKING, -2
     );
-    m_nav_tree_ctrl->SetItemData(
-        trash,
-        new mmTreeItemData(mmTreeItemData::CHECKING, -2, itemName)
-    );
-    m_nav_tree_ctrl->SetItemBold(trash, true);
 
     // TODO: check mismatch between section name and search data
-    itemName = "Budget Planner";
     wxTreeItemId budgeting = m_nav_tree_ctrl->AppendItem(
         root,
-        wxGetTranslation(itemName),
+        wxGetTranslation("Budget Planner"),
         img::CALENDAR_PNG,
         img::CALENDAR_PNG
     );
@@ -916,62 +877,30 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     m_nav_tree_ctrl->SetItemBold(budgeting, true);
     this->DoUpdateBudgetNavigation(budgeting);
 
-    itemName = "Transaction Report";
-    wxTreeItemId transactionFilter = m_nav_tree_ctrl->AppendItem(
-        root,
-        wxGetTranslation(itemName),
-        img::FILTER_PNG,
-        img::FILTER_PNG
-    );
-    m_nav_tree_ctrl->SetItemBold(transactionFilter, true);
-    m_nav_tree_ctrl->SetItemData(
-        transactionFilter,
-        new mmTreeItemData(mmTreeItemData::FILTER, itemName)
+    wxTreeItemId transactionFilter = createNavSection(
+        root, "Transaction Report", img::FILTER_PNG,
+        mmTreeItemData::FILTER
     );
     this->DoUpdateFilterNavigation(transactionFilter);
 
-    itemName = "Reports";
-    wxTreeItemId reports = m_nav_tree_ctrl->AppendItem(
-        root,
-        wxGetTranslation(itemName),
-        img::PIECHART_PNG,
-        img::PIECHART_PNG
-    );
-    m_nav_tree_ctrl->SetItemBold(reports, true);
-    m_nav_tree_ctrl->SetItemData(
-        reports,
-        new mmTreeItemData(mmTreeItemData::HELP_REPORT, itemName)
+    wxTreeItemId reports = createNavSection(
+        root, "Reports", img::PIECHART_PNG,
+        mmTreeItemData::HELP_REPORT
     );
     this->DoUpdateReportNavigation(reports);
 
-    itemName = "General Report Manager";
-    wxTreeItemId grm = m_nav_tree_ctrl->AppendItem(
-        root,
-        wxGetTranslation(itemName),
-        img::CUSTOMSQL_GRP_PNG,
-        img::CUSTOMSQL_GRP_PNG
-    );
-    m_nav_tree_ctrl->SetItemBold(grm, true);
-    m_nav_tree_ctrl->SetItemData(
-        grm,
-        new mmTreeItemData(mmTreeItemData::HELP_PAGE_GRM, itemName)
+    wxTreeItemId grm = createNavSection(
+        root, "General Report Manager", img::CUSTOMSQL_GRP_PNG,
+        mmTreeItemData::HELP_PAGE_GRM
     );
     this->DoUpdateGRMNavigation(grm);
 
-    ///////////////////////////////////////////////////////////////////
+    wxTreeItemId help = createNavSection(
+        root, "Help", img::HELP_PNG,
+        mmTreeItemData::HELP_PAGE_MAIN
+    );
 
-    itemName = "Help";
-    wxTreeItemId help = m_nav_tree_ctrl->AppendItem(
-        root,
-        wxGetTranslation(itemName),
-        img::HELP_PNG,
-        img::HELP_PNG
-    );
-    m_nav_tree_ctrl->SetItemData(
-        help,
-        new mmTreeItemData(mmTreeItemData::HELP_PAGE_MAIN, itemName)
-    );
-    m_nav_tree_ctrl->SetItemBold(help, true);
+    ///////////////////////////////////////////////////////////////////
 
     bool hideShareAccounts = Option::instance().HideShareAccounts();
 
@@ -1003,19 +932,18 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
             if (account_type == Model_Account::TYPE_ID_SHARES && hideShareAccounts)
                 continue;
 
-            int selectedImage = Option::instance().AccountImageId(account.ACCOUNTID, false);
+            int accountImg = Option::instance().AccountImageId(account.ACCOUNTID, false);
 
-            wxTreeItemId tacct;
+            wxTreeItemId accountItem;
             if (Model_Account::FAVORITEACCT(account) &&
                 Model_Account::status_id(account) == Model_Account::STATUS_ID_OPEN &&
                 Model_Account::type_id(account) != Model_Account::TYPE_ID_INVESTMENT
             ) {
-                tacct = m_nav_tree_ctrl->AppendItem(
-                    favorites, account.ACCOUNTNAME,
-                    selectedImage, selectedImage
+                accountItem = m_nav_tree_ctrl->AppendItem(
+                    favorites, account.ACCOUNTNAME, accountImg, accountImg
                 );
                 m_nav_tree_ctrl->SetItemData(
-                    tacct,
+                    accountItem,
                     new mmTreeItemData(mmTreeItemData::CHECKING, account.ACCOUNTID)
                 );
             }
@@ -1028,42 +956,43 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
             case Model_Account::TYPE_ID_TERM:
             case Model_Account::TYPE_ID_SHARES:
             case Model_Account::TYPE_ID_ASSET:
-                tacct = m_nav_tree_ctrl->AppendItem(
+                accountItem = m_nav_tree_ctrl->AppendItem(
                     accountSection[account_type],
                     account.ACCOUNTNAME,
-                    selectedImage, selectedImage
+                    accountImg, accountImg
                 );
                 m_nav_tree_ctrl->SetItemData(
-                    tacct,
+                    accountItem,
                     new mmTreeItemData(mmTreeItemData::CHECKING, account.ACCOUNTID)
                 );
                 break;
 
             case Model_Account::TYPE_ID_INVESTMENT: {
-                tacct = m_nav_tree_ctrl->AppendItem(
+                accountItem = m_nav_tree_ctrl->AppendItem(
                     accountSection[account_type],
                     account.ACCOUNTNAME,
-                    selectedImage, selectedImage
+                    accountImg, accountImg
                 );
                 m_nav_tree_ctrl->SetItemData(
-                    tacct,
+                    accountItem,
                     new mmTreeItemData(mmTreeItemData::STOCK, account.ACCOUNTID)
                 );
                 // find all the accounts associated with this stock portfolio
-                Model_Stock::Data_Set stock_account_list = Model_Stock::instance().find(Model_Stock::HELDAT(account.ACCOUNTID));
-                std::sort(stock_account_list.begin(), stock_account_list.end(), SorterBySTOCKNAME());
+                Model_Stock::Data_Set stocks = Model_Stock::instance().find(
+                    Model_Stock::HELDAT(account.ACCOUNTID)
+                );
+                std::sort(stocks.begin(), stocks.end(), SorterBySTOCKNAME());
                 // Put the names of the Stock_entry names as children of the stock account.
-                for (const auto& stock_entry : stock_account_list) {
-                    if (!Model_Translink::HasShares(stock_entry.STOCKID))
+                for (const auto& stock : stocks) {
+                    if (!Model_Translink::HasShares(stock.STOCKID))
                         continue;
-                    wxTreeItemId se = m_nav_tree_ctrl->AppendItem(
-                        tacct, stock_entry.STOCKNAME,
-                        selectedImage, selectedImage
+                    wxTreeItemId stockItem = m_nav_tree_ctrl->AppendItem(
+                        accountItem, stock.STOCKNAME, accountImg, accountImg
                     );
-                    int64 account_id = stock_entry.STOCKID;
+                    int64 account_id = stock.STOCKID;
                     if (Model_Translink::ShareAccountId(account_id)) {
                         m_nav_tree_ctrl->SetItemData(
-                            se,
+                            stockItem,
                             new mmTreeItemData(mmTreeItemData::CHECKING, account_id)
                         );
                     }
@@ -1175,7 +1104,6 @@ void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& event)
     if (!iData) return;
     navTreeStateToJson();
 }
-//----------------------------------------------------------------------------
 
 void mmGUIFrame::OnTreeItemCollapsing(wxTreeEvent& event)
 {
@@ -1187,8 +1115,6 @@ void mmGUIFrame::OnTreeItemCollapsing(wxTreeEvent& event)
     //    event.Veto();
 }
 
-//----------------------------------------------------------------------------
-
 void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)
 {
     mmTreeItemData* iData =
@@ -1196,6 +1122,7 @@ void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)
     if (!iData) return;
     navTreeStateToJson();
 }
+//----------------------------------------------------------------------------
 
 void mmGUIFrame::OnDropFiles(wxDropFilesEvent& event)
 {
@@ -1205,33 +1132,36 @@ void mmGUIFrame::OnDropFiles(wxDropFilesEvent& event)
     mmCheckingPanel* cp = wxDynamicCast(panelCurrent_, mmCheckingPanel);
     if (!cp->isAllTrans() && !cp->isAccount())
         return;
-    
-    if (event.GetNumberOfFiles() > 0) {
-        wxString* dropped = event.GetFiles();
-        wxASSERT(dropped);
+    if (event.GetNumberOfFiles() <= 0)
+        return;
 
-        wxString name;
-        wxArrayString files;
-
-        for (int i = 0; i < event.GetNumberOfFiles(); i++) {
-            name = dropped[i];
-            if (wxFileExists(name))
-                files.push_back(name);
-            else if (wxDirExists(name))
-                wxDir::GetAllFiles(name, &files);
-        }
-
-        for (size_t i = 0; i < files.size(); i++) {
-            wxString ext = wxFileName(files[i]).GetExt().MakeLower();
-            if (ext == "csv" || ext == "xml") {
-                mmUnivCSVDialog(this, (ext == "csv" ? mmUnivCSVDialog::DIALOG_TYPE_IMPORT_CSV : mmUnivCSVDialog::DIALOG_TYPE_IMPORT_XML), gotoAccountID_, files[i]).ShowModal();
-            }
-            else if (ext == "qif") {
-                mmQIFImportDialog(this, gotoAccountID_, files[i]).ShowModal();
-            }
-        }
-        refreshPanelData();
+    wxString* dropped = event.GetFiles();
+    wxASSERT(dropped);
+    wxArrayString files;
+    for (int i = 0; i < event.GetNumberOfFiles(); i++) {
+        wxString name = dropped[i];
+        if (wxFileExists(name))
+            files.push_back(name);
+        else if (wxDirExists(name))
+            wxDir::GetAllFiles(name, &files);
     }
+
+    for (size_t i = 0; i < files.size(); i++) {
+        wxString ext = wxFileName(files[i]).GetExt().MakeLower();
+        if (ext == "csv" || ext == "xml") {
+            mmUnivCSVDialog(
+                this, (ext == "csv" ?
+                    mmUnivCSVDialog::DIALOG_TYPE_IMPORT_CSV :
+                    mmUnivCSVDialog::DIALOG_TYPE_IMPORT_XML
+                ),
+                gotoAccountID_, files[i]
+            ).ShowModal();
+        }
+        else if (ext == "qif") {
+            mmQIFImportDialog(this, gotoAccountID_, files[i]).ShowModal();
+        }
+    }
+    refreshPanelData();
 }
 
 void mmGUIFrame::navTreeStateToJson()
@@ -1300,7 +1230,6 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
 
     case mmTreeItemData::HOME_PAGE:
         return createHomePage();
-
     case mmTreeItemData::HELP_PAGE_MAIN:
         return createHelpPage();
     case mmTreeItemData::HELP_PAGE_STOCKS:
@@ -1320,13 +1249,13 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             wxTreeItemIdValue cookie;
             wxTreeItemId child = m_nav_tree_ctrl->GetFirstChild(selectedItem, cookie);
             while (child.IsOk()) {
-                mmTreeItemData* childData = dynamic_cast<mmTreeItemData*>(
+                mmTreeItemData* data = dynamic_cast<mmTreeItemData*>(
                     m_nav_tree_ctrl->GetItemData(child)
                 );
-                if (childData->getType() == mmTreeItemData::CHECKING) {
-                    int64 childId = childData->getId();
-                    if (childId >= 1) // isAccount
-                        group_ids.push_back(childId);
+                if (data->getType() == mmTreeItemData::CHECKING) {
+                    int64 dataId = data->getId();
+                    if (dataId >= 1) // isAccount
+                        group_ids.push_back(dataId);
                 }
                 child = m_nav_tree_ctrl->GetNextChild(selectedItem, cookie);
             }
@@ -1335,8 +1264,6 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             DragAcceptFiles(true);
         if (id >= 1) // isAccount
             gotoAccountID_ = id;
-        // TODO: enable account groups (wait until feature is tested)
-        if (id <= -3) return;
         return createCheckingPage(id, group_ids);
     }
 
@@ -2870,7 +2797,7 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
     if (account_id > 0) {
         setGotoAccountID(account_id);
         Model_Account::Data* account = Model_Account::instance().get(account_id);
-        setAccountNavTreeSection(account->ACCOUNTNAME);
+        setNavTreeAccount(account->ACCOUNTNAME);
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
         this->GetEventHandler()->AddPendingEvent(evt);
     }
@@ -2894,7 +2821,7 @@ void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
         Model_Account::Data* account = Model_Account::instance().get(univCSVDialog.ImportedAccountID());
         if (account) {
             createCheckingPage(account->ACCOUNTID);
-            setAccountNavTreeSection(account->ACCOUNTNAME);
+            setNavTreeAccount(account->ACCOUNTNAME);
         }
     }
 }
@@ -2913,7 +2840,7 @@ void mmGUIFrame::OnImportXML(wxCommandEvent& /*event*/)
         Model_Account::Data* account = Model_Account::instance().get(univCSVDialog.ImportedAccountID());
         if (account) {
             createCheckingPage(account->ACCOUNTID);
-            setAccountNavTreeSection(account->ACCOUNTNAME);
+            setNavTreeAccount(account->ACCOUNTNAME);
         }
     }
 }
@@ -3083,7 +3010,7 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& event)
     Model_Account::Data * account = Model_Account::instance().get(gotoAccountID_);
     if (account) {
         createCheckingPage(gotoAccountID_);
-        setAccountNavTreeSection(account->ACCOUNTNAME);
+        setNavTreeAccount(account->ACCOUNTNAME);
     }
 
     if (i == wxID_NEW)
@@ -3877,7 +3804,7 @@ void mmGUIFrame::RefreshNavigationTree()
     if (iData) {
         // search for the item first under the selected section
         wxTreeItemId navTreeID = sectionName.empty() ? m_nav_tree_ctrl->GetRootItem() :
-            getTreeItemfor(m_nav_tree_ctrl->GetRootItem(), sectionName);
+            getNavTreeChild(m_nav_tree_ctrl->GetRootItem(), sectionName);
         if (navTreeID.IsOk())
             navTreeID = findItemByData(navTreeID, *iData);
         // if we didn't find it search all nodes from root

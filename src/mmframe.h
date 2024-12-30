@@ -74,8 +74,8 @@ public:
     void setHelpFileIndex();
 
 
-    void setAccountNavTreeSection(const wxString& accountName);
     bool setNavTreeSection(const wxString &sectionName);
+    void setNavTreeAccount(const wxString& accountName);
     void menuPrintingEnable(bool enable);
     void OnToggleFullScreen(wxCommandEvent& WXUNUSED(event));
     void OnResetView(wxCommandEvent& WXUNUSED(event));
@@ -125,8 +125,8 @@ private:
 private:
     mmTreeItemData* selectedItemData_ = nullptr;
 
-    wxTreeItemId getTreeItemfor(const wxTreeItemId& itemID, const wxString& accountName) const;
-    bool setAccountInSection(const wxString& sectionName, const wxString& accountName);
+    wxTreeItemId getNavTreeChild(const wxTreeItemId& section, const wxString& childName) const;
+    bool setNavTreeSectionChild(const wxString& sectionName, const wxString& childName);
 
     /* printing */
     int helpFileIndex_ = -1;
@@ -168,6 +168,10 @@ private:
     /*save Settings LASTFILENAME AUIPERSPECTIVE SIZES*/
     void saveSettings();
     void menuEnableItems(bool enable);
+    wxTreeItemId createNavSection(
+        const wxTreeItemId& root, const wxString& sectionName, int sectionImg,
+        int dataType, int64 dataId = -1
+    );
     void DoRecreateNavTreeControl(bool home_page = false);
     void DoUpdateReportNavigation(wxTreeItemId& parent_item);
     void DoUpdateGRMNavigation(wxTreeItemId& parent_item);
