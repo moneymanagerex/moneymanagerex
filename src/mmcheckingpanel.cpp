@@ -458,7 +458,7 @@ void mmCheckingPanel::OnMouseLeftDown(wxCommandEvent& event)
     int id = 0;
     for (const auto& item : FILTER_STR)
     {
-        if (!isAllAccounts_ || (FILTER_ID_STATEMENTDATE != id))
+        if ((!isAllAccounts_ && !isTrash_) || (FILTER_ID_STATEMENTDATE != id))
             menu.Append(wxID_HIGHEST + id, wxGetTranslation(item));
         id++;
     }
