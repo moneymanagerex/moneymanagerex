@@ -1530,8 +1530,8 @@ bool TransactionListCtrl::CheckForClosedAccounts()
     else {
         const wxString text = wxString::Format(
             wxPLURAL("You are about to edit a transaction involving an account that is closed."
-            , "The edit will affect %i transactions involving an account that is closed.", GetSelectedItemCount())
-            , closedTrx) + _("\n\nDo you still want to perform the edit?");
+            , "The edit will affect the %i transactions involving an account that is closed.", GetSelectedItemCount())
+            , closedTrx) + "\n\n" + _("Do you want to perform the edit?");
         if (wxMessageBox(text, _("Closed Account Check"), wxYES_NO | wxICON_WARNING) == wxYES)
             return true;
     }
