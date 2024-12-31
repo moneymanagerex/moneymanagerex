@@ -37,9 +37,9 @@ mmAddAccountWizard::mmAddAccountWizard(wxFrame *frame)
 
     wxString noteString = wxString::Format(
         _("%s models all transactions as belonging to accounts."), mmex::getProgramName()) + "\n\n"
-        + _("The next pages will help you create a new account.\n"
-            "To help you get started, begin by making a list of all\n"
-            "financial institutions where you hold an account.");
+        + _("The next pages will help create a new account.\n"
+            "To help get started, begin by making a list of all\n"
+            "financial institutions where accounts are held.");
 
     new wxStaticText(page1, wxID_ANY, noteString);
 
