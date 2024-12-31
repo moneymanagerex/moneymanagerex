@@ -499,7 +499,7 @@ void mmCategDialog::mmDoDeleteSelectedCategory()
 
     wxMessageDialog msgDlg(this, _("Deleted transactions exist which use this category or one of its descendants.")
             + "\n\n" + _("Deleting the category will also automatically purge the associated deleted transactions.")
-            + "\n\n" + _("Do you wish to continue ?")
+            + "\n\n" + _("Do you want to continue?")
         , _("Confirm Category Deletion"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     if ((deletedTrans.empty() && splits.empty()) || msgDlg.ShowModal() == wxID_YES)
     {
