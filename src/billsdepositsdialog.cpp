@@ -893,7 +893,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     // Ideally 'paid date' should be on or before the 'due date'
     if (m_date_paid->GetValue().GetDateOnly() > m_date_due->GetValue())
-        if (wxMessageBox(_("The payment date is after the due date, is this what you intended?"),
+        if (wxMessageBox(_("The payment date is after the due date. Is this intended?"),
             _("Looks like a late payment"),
             wxYES_NO | wxNO_DEFAULT | wxICON_WARNING) != wxYES)
             return;
