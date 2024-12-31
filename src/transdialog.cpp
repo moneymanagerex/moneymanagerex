@@ -744,10 +744,10 @@ bool mmTransDialog::ValidateData()
     {
         if (dpc_->GetValue() <= Model_Account::DateOf(account->STATEMENTDATE))
         {
-            if (wxMessageBox(_(wxString::Format(
-                "Locked transaction to date: %s\n\n"
-                "Do you wish to continue ? "
-                , mmGetDateForDisplay(account->STATEMENTDATE)))
+            if (wxMessageBox(
+                _("Locked transaction to date: %s") + "\n\n" +
+                _("Do you want to continue?")
+                , mmGetDateForDisplay(account->STATEMENTDATE))
                 , _("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
             {
                 return false;
