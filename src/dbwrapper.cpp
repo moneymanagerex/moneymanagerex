@@ -111,11 +111,11 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
     s << "\n" << wxString::Format("\n%s\n\n", dbpath);
     if (err == SQLITE_CANTOPEN)
     {
-        s << _("Unable to open file") << "\n" << _("You must specify path to another database file") << "\n";
+        s << _("Unable to open file") << "\n" << _("Path required to be specified to another database file.") << "\n";
     }
     else if (err == SQLITE_NOTADB)
     {
-        s << _("An incorrect password given for an encrypted file\nor\nattempt to open a File that is not a database file \n");
+        s << _("An incorrect password was provided for an encrypted file,\nor\nan attempt was made to open a file that is not a database file.\n");
     }
     else
     {
