@@ -809,7 +809,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int64& baseCurrencyID)
         Model_CurrencyHistory::instance().remove(r.id());
     Model_CurrencyHistory::instance().ReleaseSavepoint();
 
-    if (wxMessageBox(_("Do you want to update today currency rates?")
+    if (wxMessageBox(_("Do you want to update the currency rates?")
             , _("Currency Manager")
             , wxYES_NO | wxYES_DEFAULT | wxICON_QUESTION) != wxYES)
         return true;
