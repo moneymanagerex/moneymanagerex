@@ -2676,7 +2676,7 @@ void mmUnivCSVDialog::OnChoiceChanged(wxCommandEvent& event)
     else if (i == wxID_REPLACE)
     {
         if (m_choiceAmountFieldSign->GetSelection() == DefindByType) {
-            wxString depositType = wxGetTextFromUser(_("Please, type the word indicating positive values in your CSV file, e.g. 'credit'"), _("Enter a value"), depositType_);
+            wxString depositType = wxGetTextFromUser(_("Please, type the word indicating positive values in the CSV file, e.g., 'credit'."), _("Enter a value"), depositType_);
             if (!depositType.empty()) {
                 depositType_ = depositType;
             }
