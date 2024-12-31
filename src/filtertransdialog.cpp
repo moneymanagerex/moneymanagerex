@@ -1296,7 +1296,7 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
     int size = m_setting_name->GetCount();
     if (sel >= 0 && size > 0)
     {
-        if (wxMessageBox(_("The selected item will be deleted") + "\n\n" + _("Do you wish to continue?"), _("Settings item deletion"),
+        if (wxMessageBox(_("The selected item will be deleted") + "\n\n" + _("Do you want to continue?"), _("Settings item deletion"),
                          wxYES_NO | wxICON_WARNING) == wxNO)
         {
             return;
