@@ -2179,7 +2179,7 @@ void mmUnivCSVDialog::OnButtonClearClick(wxCommandEvent& WXUNUSED(event))
         wxString preset_name = m_choice_preset_name->GetStringSelection();
         if (wxMessageBox(
             wxString::Format(_("Preset '%s' will be deleted"), preset_name) + "\n\n" +
-            _("Do you wish to continue?")
+            _("Do you want to continue?")
             , _("Delete Preset"), wxYES_NO | wxICON_WARNING) == wxNO)
         {
             return;
