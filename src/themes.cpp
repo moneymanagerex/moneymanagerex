@@ -302,7 +302,7 @@ void mmThemesDialog::OnImport(wxCommandEvent&)
 
     if (wxFileExists(destFile.GetFullPath()))
     {
-        wxString existingThemeText = _("The theme already exists, do you still want to import and overwrite the existing theme?");
+        wxString existingThemeText = _("The theme already exists. Do you want to import and overwrite the existing theme?");
         wxMessageDialog msgDlg(this, existingThemeText, destFile.GetName(),
             wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
         if (msgDlg.ShowModal() == wxID_NO)
