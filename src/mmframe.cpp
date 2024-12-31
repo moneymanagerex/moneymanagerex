@@ -1403,7 +1403,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
         {
-            wxString warning_msg = _("Do you really want to delete the account?");
+            wxString warning_msg = _("Do you want to delete the account?");
             if (account->ACCOUNTTYPE == Model_Account::TYPE_STR_INVESTMENT || account->ACCOUNTTYPE == Model_Account::TYPE_STR_SHARES)
             {
                 warning_msg += "\n\n" + _("This will also delete any associated Shares.");
