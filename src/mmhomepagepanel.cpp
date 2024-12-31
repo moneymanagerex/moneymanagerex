@@ -251,7 +251,7 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
         const Model_Account::Data* account = Model_Account::instance().get(id);
         if (account) {
             m_frame->setGotoAccountID(account->id());
-            m_frame->setAccountNavTreeSection(account->ACCOUNTNAME);
+            m_frame->setNavTreeAccount(account->ACCOUNTNAME);
             wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
             m_frame->GetEventHandler()->AddPendingEvent(event);
         }
@@ -263,7 +263,7 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
         const Model_Account::Data* account = Model_Account::instance().get(id);
         if (account) {
             m_frame->setGotoAccountID(account->id());
-            m_frame->setAccountNavTreeSection(account->ACCOUNTNAME);
+            m_frame->setNavTreeAccount(account->ACCOUNTNAME);
             wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
             m_frame->GetEventHandler()->AddPendingEvent(event);
         }

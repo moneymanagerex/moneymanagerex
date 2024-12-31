@@ -42,7 +42,7 @@ public:
         TYPE_ID_INVESTMENT,
         TYPE_ID_ASSET,
         TYPE_ID_SHARES,
-        TYPE_ID_MAX
+        TYPE_ID_size
     };
     enum STATUS_ID
     {

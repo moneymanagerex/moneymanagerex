@@ -68,12 +68,26 @@ wxString JSON_Formated(rapidjson::Document& j_doc)
 //----------------------------------------------------------------------------
 
 mmTreeItemData::mmTreeItemData(int type, int64 id)
-    : id_(id)
-    , type_(type)
+    : type_(type)
+    , id_(id)
     , report_(nullptr)
 {
-    stringData_ = (wxString::Format("%lld", id));
+    stringData_ = wxString::Format("%lld", id);
 }
+
+mmTreeItemData::mmTreeItemData(int type, const wxString& data)
+    : type_(type)
+    , stringData_(data)
+    , report_(nullptr)
+{}
+
+mmTreeItemData::mmTreeItemData(int type, int64 id, const wxString& data)
+    : type_(type)
+    , id_(id)
+    , stringData_(data)
+    , report_(nullptr)
+{}
+
 mmTreeItemData::mmTreeItemData(const wxString& data, mmPrintableBase* report)
     : type_(mmTreeItemData::REPORT)
     , stringData_(data)
@@ -83,15 +97,11 @@ mmTreeItemData::mmTreeItemData(const wxString& data, mmPrintableBase* report)
     const wxString& settings = Model_Infotable::instance().GetStringInfo(n, "");
     report_->initReportSettings(settings);
 }
+
 mmTreeItemData::mmTreeItemData(mmPrintableBase* report, const wxString& data)
     : type_(mmTreeItemData::GRM)
     , stringData_(data)
     , report_(report)
-{}
-mmTreeItemData::mmTreeItemData(int type, const wxString& data)
-    : type_(type)
-    , stringData_(data)
-    , report_(nullptr)
 {}
 
 //----------------------------------------------------------------------------

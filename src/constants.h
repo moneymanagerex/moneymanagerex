@@ -140,8 +140,6 @@ enum id
     mmID_CATEGORY,
     mmID_PAYEE,
     mmID_SPLIT,
-    mmID_ALLTRANSACTIONS,
-    mmID_DELETEDTRANSACTIONS,
     mmID_BROWSER,
     mmID_REMOVE,
     mmID_COLOR,
