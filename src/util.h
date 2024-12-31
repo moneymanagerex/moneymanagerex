@@ -38,13 +38,14 @@ wxString JSON_Formated(rapidjson::Document& j_doc);
 struct ValuePair
 {
     wxString label;
-    double   amount;
+    double amount;
 };
+
 struct ValueTrio
 {
     wxString color;
     wxString label;
-    double   amount;
+    double amount;
 };
 
 struct WebsiteNews
@@ -78,62 +79,61 @@ inline wxString mmListBoxItem::getName() const { return name_; }
 class mmTreeItemData : public wxTreeItemData
 {
 public:
-    mmTreeItemData(int type, int64 id);
-    mmTreeItemData(const wxString& data, mmPrintableBase* report);
-    mmTreeItemData(mmPrintableBase* report, const wxString& data);
-    mmTreeItemData(int type, const wxString& data);
-    
-    ~mmTreeItemData() {}
-
-    int64 getData() const;
-    const wxString getString() const;
-    mmPrintableBase* get_report() const;
-    bool isReadOnly() const;
-    int getType() const;
     enum {
         HOME_PAGE,
         HELP_PAGE_MAIN,
         HELP_PAGE_STOCKS,
         HELP_PAGE_GRM,
-        HELP_INVESTMENT,
         HELP_BUDGET,
         HELP_REPORT,
+        CHECKING,
         BUDGET,
-        ACCOUNT,
         STOCK,
         REPORT,
         GRM,
-        ALL_TRANSACTIONS,
-        FAVORITES,
         ASSETS,
         BILLS,
-        TRASH,
         FILTER,
         FILTER_REPORT,
-        MENU_ACCOUNT,
-        MENU_FAVORITES,
         MENU_REPORT,
         DO_NOTHING
     };
 
 private:
-    int64 id_ = -1;
     int type_;
+    int64 id_ = -1;
     wxString stringData_;
     wxSharedPtr<mmPrintableBase> report_;
+
+public:
+    mmTreeItemData(int type, int64 id);
+    mmTreeItemData(int type, const wxString& data);
+    mmTreeItemData(int type, int64 id, const wxString& data);
+    mmTreeItemData(const wxString& data, mmPrintableBase* report);
+    mmTreeItemData(mmPrintableBase* report, const wxString& data);
+    
+    ~mmTreeItemData() {}
+
+    int getType() const;
+    int64 getId() const;
+    const wxString getString() const;
+    mmPrintableBase* getReport() const;
+    bool isReadOnly() const;
 };
 
-inline int64 mmTreeItemData::getData() const { return id_; }
-inline const wxString mmTreeItemData::getString() const { return stringData_; }
-inline mmPrintableBase* mmTreeItemData::get_report() const { return report_.get(); }
 inline int mmTreeItemData::getType() const { return type_; }
+inline int64 mmTreeItemData::getId() const { return id_; }
+inline const wxString mmTreeItemData::getString() const { return stringData_; }
+inline mmPrintableBase* mmTreeItemData::getReport() const { return report_.get(); }
+
 inline bool operator==(const mmTreeItemData& lhs, const mmTreeItemData& rhs)
 {
-    return (lhs.getData() == rhs.getData() &&
-        lhs.getString() == rhs.getString() &&
-        lhs.getType() == rhs.getType());
+    return (
+        lhs.getType()   == rhs.getType() &&
+        lhs.getId()     == rhs.getId() &&
+        lhs.getString() == rhs.getString()
+    );
 };
-
 //----------------------------------------------------------------------------
 
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2);

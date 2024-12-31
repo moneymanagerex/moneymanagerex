@@ -617,7 +617,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
             {
                 const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
                 if (account) {
-                    m_frame->setAccountNavTreeSection(account->ACCOUNTNAME);
+                    m_frame->setNavTreeAccount(account->ACCOUNTNAME);
                     m_frame->setGotoAccountID(transaction->ACCOUNTID, { transID, 0 });
                     wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
                     m_frame->GetEventHandler()->AddPendingEvent(event);

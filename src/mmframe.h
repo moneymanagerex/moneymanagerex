@@ -55,10 +55,12 @@ class mmGUIApp;
 class mmGUIFrame : public wxFrame
 {
 public:
+    static wxArrayString ACCOUNT_SECTION;
+    mmGUIApp *m_app;
+
+public:
     mmGUIFrame(mmGUIApp* m_app, const wxString& title, const wxPoint& pos, const wxSize& size);
     ~mmGUIFrame();
-public:
-    mmGUIApp *m_app;
 
 public:
     void setGotoAccountID(int64 account_id, Fused_Transaction::IdRepeat fused_id = {-1, 0});
@@ -72,8 +74,8 @@ public:
     void setHelpFileIndex();
 
 
-    void setAccountNavTreeSection(const wxString& accountName);
     bool setNavTreeSection(const wxString &sectionName);
+    void setNavTreeAccount(const wxString& accountName);
     void menuPrintingEnable(bool enable);
     void OnToggleFullScreen(wxCommandEvent& WXUNUSED(event));
     void OnResetView(wxCommandEvent& WXUNUSED(event));
@@ -82,6 +84,10 @@ public:
     void RefreshNavigationTree();
     void SetNavTreeSelection(wxTreeItemId id);
     wxTreeItemId GetNavTreeSelection() const;
+
+private:
+    static const std::vector<std::pair<Model_Account::TYPE_ID, wxString> > ACCOUNT_SECTION_TABLE;
+    static wxArrayString account_section_all();
 
 private:
     std::vector<WebsiteNews> websiteNewsArray_;
@@ -115,11 +121,12 @@ private:
     wxTreeCtrl* m_nav_tree_ctrl = nullptr;
     wxMenuBar *menuBar_ = nullptr;
     wxAuiToolBar* toolBar_ = nullptr;
+
 private:
     mmTreeItemData* selectedItemData_ = nullptr;
 
-    wxTreeItemId getTreeItemfor(const wxTreeItemId& itemID, const wxString& accountName) const;
-    bool setAccountInSection(const wxString& sectionName, const wxString& accountName);
+    wxTreeItemId getNavTreeChild(const wxTreeItemId& section, const wxString& childName) const;
+    bool setNavTreeSectionChild(const wxString& sectionName, const wxString& childName);
 
     /* printing */
     int helpFileIndex_ = -1;
@@ -145,9 +152,10 @@ private:
     wxTreeItemId findItemByData(wxTreeItemId itemId, mmTreeItemData& searchData);
 
     void createHomePage();
-    void createCheckingAccountPage(int64 accountID);
-    void createAllTransactionsPage();
-    void createDeletedTransactionsPage();
+    void createCheckingPage(
+        int64 checking_id,
+        const std::vector<int64> &group_ids = std::vector<int64>{}
+    );
     void createStocksAccountPage(int64 accountID);
 private:
     void createBillsDeposits();
@@ -160,6 +168,10 @@ private:
     /*save Settings LASTFILENAME AUIPERSPECTIVE SIZES*/
     void saveSettings();
     void menuEnableItems(bool enable);
+    wxTreeItemId addNavTreeSection(
+        const wxTreeItemId& root, const wxString& sectionName, int sectionImg,
+        int dataType, int64 dataId = -1
+    );
     void DoRecreateNavTreeControl(bool home_page = false);
     void DoUpdateReportNavigation(wxTreeItemId& parent_item);
     void DoUpdateGRMNavigation(wxTreeItemId& parent_item);
