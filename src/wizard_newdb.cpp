@@ -41,7 +41,7 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
         "in a separate location.\n\n"
         "The database can later be encrypted if required by "
         "using the setting: “Save Database As…” and changing the "
-        "file type before saving.")));
+        "filetype before saving.")));
     new wxStaticText(page1, wxID_ANY, displayMsg);
 
     mmNewDatabaseWizardPage* page2 = new mmNewDatabaseWizardPage(this);
