@@ -134,11 +134,12 @@ void mmEditPayeeDialog::CreateControls()
     patternTable_Arranger->Add(patternTable_Sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
     mmToolTip(m_patternTable->GetGridWindow(),
         _("Enter any string to match this payee on import.\nPatterns are tested in the order entered here.") + "\n\n" +
-        _("Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria.") + "\n" +
-        _("Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'.") + "\n" +
-        _("Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'.") + "\n" +
-        _("Use the asterisk (*) in the begin to find any string in the middle of the sentence.") + "\n" +
-        _("Use regex: to match using regular expressions."));
+        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria."))) + "\n" +
+        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”."))) + "\n" +
+        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”."))) + "\n" +
+        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Use the asterisk (*) at the beginning to find any string in the middle of the sentence."))) + "\n" +
+        _("Use regex: to match using regular expressions.")
+    );
 
     patternButton_Arranger = new wxBoxSizer(wxVERTICAL);
     //Move up button
@@ -754,7 +755,7 @@ void mmPayeeDialog::DeletePayee()
             wxMessageDialog msgDlg(this
                 , _("Deleted transactions exist which use this payee.")
                     + "\n\n" + _("Deleting the payee will also automatically purge the associated deleted transactions.")
-                    + "\n\n" + _("Do you wish to continue ?")
+                    + "\n\n" + _("Do you want to continue?")
                 , _("Confirm Payee Deletion")
                 , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
             if (deletedTrans.empty() || msgDlg.ShowModal() == wxID_YES)

@@ -673,7 +673,7 @@ void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
     if (m_bdp->bills_.empty()) return;
     if (m_selected_row < 0) return;
 
-    wxMessageDialog msgDlg(this, _("Do you really want to delete the scheduled transaction?")
+    wxMessageDialog msgDlg(this, _("Do you want to delete the scheduled transaction?")
         , _("Confirm Deletion")
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
     if (msgDlg.ShowModal() == wxID_YES)

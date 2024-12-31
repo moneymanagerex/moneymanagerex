@@ -1307,8 +1307,8 @@ void mmGUIFrame::OnPopupDeleteFilter(wxCommandEvent& /*event*/)
     wxString selected = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
 
     if (wxMessageBox(
-        _("The selected item will be deleted") + "\n\n" +
-        _("Do you wish to continue?")
+        _("The selected item will be deleted.") + "\n\n" +
+        _("Do you want to continue?")
         , _("Settings item deletion"), wxYES_NO | wxICON_WARNING) == wxNO)
         return;
 
@@ -1403,7 +1403,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
         {
-            wxString warning_msg = _("Do you really want to delete the account?");
+            wxString warning_msg = _("Do you want to delete the account?");
             if (account->ACCOUNTTYPE == Model_Account::TYPE_STR_INVESTMENT || account->ACCOUNTTYPE == Model_Account::TYPE_STR_SHARES)
             {
                 warning_msg += "\n\n" + _("This will also delete any associated Shares.");
@@ -2282,10 +2282,10 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
             db_lockInPlace = Model_Infotable::instance().GetBoolInfo("ISUSED", false);
             if (db_lockInPlace) {
                 int response = wxMessageBox(_(
-                    "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
+                    "Attempting to open a database that has been marked as opened by another instance of MMEX.\n"
                     "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
                     "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
-                    "Would you like to continue to open this database?")
+                    "Do you want to open the database?")
                     , _("MMEX Instance Check"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
                 if (response == wxNO)
                     return false;
@@ -2441,7 +2441,7 @@ void mmGUIFrame::OnChangeEncryptPassword(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnVacuumDB(wxCommandEvent& /*event*/)
 {
     wxMessageDialog msgDlg(this
-        , wxString::Format("%s\n\n%s", _("Backup database before optimization."), _("Do you want to proceed?"))
+        , wxString::Format("%s\n\n%s", _("Backup database before optimization."), _("Do you want to continue?"))
         , _("DB Optimization"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     if (msgDlg.ShowModal() == wxID_YES)
     {
@@ -2503,7 +2503,7 @@ void mmGUIFrame::OnDebugDB(wxCommandEvent& /*event*/)
     }
 
     wxMessageDialog msgDlg(this
-        , wxString::Format("%s\n\n%s", _("Please use this function only if requested by MMEX support and you have been supplied with a .mmdbg debug file"), _("Do you want to proceed?"))
+        , wxString::Format("%s\n\n%s", _("Please use this function only if requested by MMEX support and an .mmdbg debug file has been supplied."), _("Do you want to continue?"))
         , _("Database Debug"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
 
     msgDlg.SetYesNoLabels(_("&Yes"), _("&No"));
@@ -3630,7 +3630,7 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
     {
         Model_Account::Data* account = Model_Account::instance().get(scd.GetStringSelection());
         wxString deletingAccountName = wxString::Format(
-            _("Are you sure you want to delete\n%1$s account: %2$s?")
+            _("Do you want to delete\n%1$s account: %2$s?")
             , wxGetTranslation(account->ACCOUNTTYPE)
             , account->ACCOUNTNAME);
         wxMessageDialog msgDlg(this, deletingAccountName, _("Confirm Account Deletion"),

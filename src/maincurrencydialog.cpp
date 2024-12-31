@@ -362,7 +362,7 @@ void mmMainCurrencyDialog::OnBtnDelete()
 
     Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
     if (!currency) return;
-    if (wxMessageBox(_("Do you really want to delete the selected Currency?")
+    if (wxMessageBox(_("Do you want to delete the selected currency?")
         , _("Currency Manager")
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR) == wxYES)
     {
@@ -660,7 +660,7 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
     wxString base_currency_symbol;
     wxASSERT_MSG(Model_Currency::GetBaseCurrencySymbol(base_currency_symbol), "Unable to find base currency symbol");
 
-    int msgResult = wxMessageBox(_("Do you want to add also dates without any transaction?")
+    int msgResult = wxMessageBox(_("Do you want to add dates without any details?")
         , _("Currency Manager")
         , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     bool isCheckDate = msgResult == wxNO;
@@ -809,7 +809,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int64& baseCurrencyID)
         Model_CurrencyHistory::instance().remove(r.id());
     Model_CurrencyHistory::instance().ReleaseSavepoint();
 
-    if (wxMessageBox(_("Do you want to update today currency rates?")
+    if (wxMessageBox(_("Do you want to update the currency rates?")
             , _("Currency Manager")
             , wxYES_NO | wxYES_DEFAULT | wxICON_QUESTION) != wxYES)
         return true;

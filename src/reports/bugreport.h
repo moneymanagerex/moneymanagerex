@@ -81,7 +81,7 @@ wxString mmBugReport::getHTMLText()
         _("Include steps to reproduce your problem, attach screenshots where appropriate."),
         wxString::Format(_("Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>.")
             ,  do_href_wrap(mmex::weblink::GitHubLogin)),
-        wxString::Format(_("Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."), do_href_wrap(req.BuildURI()))
+        wxString::Format(_("Finally, report the bug using the GitHub <a href='%s'>online form</a> opened in a web browser."), do_href_wrap(req.BuildURI()))
     };
 
     wxString msg = "<ol>";

@@ -162,7 +162,7 @@ void mmCustomFieldListDialog::DeleteField()
     if (field)
     {
         int DeleteResponse = wxMessageBox(
-            _("Do you really want to delete this custom field and all its data?")
+            _("Do you want to delete the custom field and all its data?")
             , _("Confirm Custom Field Deletion")
             , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
         if (DeleteResponse == wxYES)
@@ -194,7 +194,7 @@ void mmCustomFieldListDialog::UpdateField()
     {
         int Response = wxMessageBox(
             _("Do you want to update blank content?\n"
-                "Press no if you want to abort replace procedure!")
+                "Select No if you want to abort the replace procedure.")
             , _("Update Custom Field Content")
             , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
         if (Response != wxYES)
@@ -206,7 +206,7 @@ void mmCustomFieldListDialog::UpdateField()
     {
         int Response = wxMessageBox(
             _("Do you want to update to blank?\n"
-                "Press no if you want to abort replace procedure!")
+                "Select No if you want to abort the replace procedure.")
             , _("Update Custom Field Content")
             , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
         if (Response != wxYES)

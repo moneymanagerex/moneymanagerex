@@ -285,7 +285,7 @@ void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    wxMessageDialog msgDlg(this, _("Do you really want to delete the stock investment?")
+    wxMessageDialog msgDlg(this, _("Do you want to delete the stock investment?")
         , _("Confirm Stock Investment Deletion")
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
     if (msgDlg.ShowModal() == wxID_YES)
