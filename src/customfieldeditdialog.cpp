@@ -231,7 +231,7 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         {
             int DeleteResponse = wxMessageBox(
                 _("Changing field type will delete all content!") + "\n"
-                + _("Do you want to proceed?") << "\n"
+                + _("Do you want to continue?") << "\n"
                 , _("Custom Field Change")
                 , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
             if (DeleteResponse != wxYES)
