@@ -162,7 +162,7 @@ void mmCustomFieldListDialog::DeleteField()
     if (field)
     {
         int DeleteResponse = wxMessageBox(
-            _("Do you really want to delete this custom field and all its data?")
+            _("Do you want to delete the custom field and all its data?")
             , _("Confirm Custom Field Deletion")
             , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
         if (DeleteResponse == wxYES)
