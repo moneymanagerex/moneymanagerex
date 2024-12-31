@@ -194,7 +194,7 @@ void mmCustomFieldListDialog::UpdateField()
     {
         int Response = wxMessageBox(
             _("Do you want to update blank content?\n"
-                "Select No if you want to abort the replace procedure!")
+                "Select No if you want to abort the replace procedure.")
             , _("Update Custom Field Content")
             , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
         if (Response != wxYES)
@@ -206,7 +206,7 @@ void mmCustomFieldListDialog::UpdateField()
     {
         int Response = wxMessageBox(
             _("Do you want to update to blank?\n"
-                "Select No if you want to abort the replace procedure!")
+                "Select No if you want to abort the replace procedure.")
             , _("Update Custom Field Content")
             , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
         if (Response != wxYES)
