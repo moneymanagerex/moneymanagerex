@@ -758,7 +758,7 @@ void mmCategDialog::OnMenuSelected(wxCommandEvent& event)
     }
     case MENU_ITEM_CLEAR:
     {
-        wxMessageDialog msgDlg(this, _("Are you sure you want to unhide all categories")
+        wxMessageDialog msgDlg(this, _("Do you want to unhide all categories?")
                 , _("Unhide all categories")
                 , wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
         if (msgDlg.ShowModal() == wxID_YES)
