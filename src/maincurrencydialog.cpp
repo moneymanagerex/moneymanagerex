@@ -362,7 +362,7 @@ void mmMainCurrencyDialog::OnBtnDelete()
 
     Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
     if (!currency) return;
-    if (wxMessageBox(_("Do you really want to delete the selected Currency?")
+    if (wxMessageBox(_("Do you want to delete the selected currency?")
         , _("Currency Manager")
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR) == wxYES)
     {
