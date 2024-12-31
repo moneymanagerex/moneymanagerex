@@ -660,7 +660,7 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
     wxString base_currency_symbol;
     wxASSERT_MSG(Model_Currency::GetBaseCurrencySymbol(base_currency_symbol), "Unable to find base currency symbol");
 
-    int msgResult = wxMessageBox(_("Do you want to add also dates without any transaction?")
+    int msgResult = wxMessageBox(_("Do you want to add dates without any details?")
         , _("Currency Manager")
         , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     bool isCheckDate = msgResult == wxNO;
