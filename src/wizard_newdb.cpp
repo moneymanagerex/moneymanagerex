@@ -122,7 +122,7 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     itemUserName_->SetMinSize(wxSize(200,-1));
     itemBoxSizer5->Add(itemUserName_, g_flagsExpand);
 
-    helpMsg = _("(Optional) Specify a title or your name.") + "\n";
+    helpMsg = _("(Optional) Specify a title or name.") + "\n";
     helpMsg += _("Used as a database title for displayed and printed reports.");
     mainSizer->Add(new wxStaticText(this, wxID_ANY, helpMsg), 0, wxALL, 5);
 
