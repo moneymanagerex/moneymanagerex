@@ -1307,8 +1307,8 @@ void mmGUIFrame::OnPopupDeleteFilter(wxCommandEvent& /*event*/)
     wxString selected = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
 
     if (wxMessageBox(
-        _("The selected item will be deleted") + "\n\n" +
-        _("Do you wish to continue?")
+        _("The selected item will be deleted.") + "\n\n" +
+        _("Do you want to continue?")
         , _("Settings item deletion"), wxYES_NO | wxICON_WARNING) == wxNO)
         return;
 
