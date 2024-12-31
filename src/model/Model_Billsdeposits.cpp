@@ -222,8 +222,8 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r)
             "Account: %1$s\n"
             "Current Balance: %2$6.2f\n"
             "Transaction amount: %3$6.2f\n"
-            "%4$s: %5$6.2f\n\n"
-            "Do you wish to continue?"
+            "%4$s: %5$6.2f") + "\n\n" +
+            _("Do you want to continue?")
         );
         message.Printf(message, account->ACCOUNTNAME, current_balance, r.TRANSAMOUNT, limitDescription, limitAmount);
 
