@@ -755,7 +755,7 @@ void mmPayeeDialog::DeletePayee()
             wxMessageDialog msgDlg(this
                 , _("Deleted transactions exist which use this payee.")
                     + "\n\n" + _("Deleting the payee will also automatically purge the associated deleted transactions.")
-                    + "\n\n" + _("Do you wish to continue ?")
+                    + "\n\n" + _("Do you want to continue?")
                 , _("Confirm Payee Deletion")
                 , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
             if (deletedTrans.empty() || msgDlg.ShowModal() == wxID_YES)
