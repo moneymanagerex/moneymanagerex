@@ -1080,7 +1080,7 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& WXUNUSED(event)
     FindSelectedTransactions();
     Fused_Transaction::IdRepeat id = m_selected_id[0];
 
-    mmTransDialog dlg(this, m_cp->m_checking_id, {id.first, id.second != 0}, true);
+    mmTransDialog dlg(this, m_cp->m_account_id, {id.first, id.second != 0}, true);
     if (dlg.ShowModal() != wxID_CANCEL) {
         m_selected_id.clear();
         m_pasted_id.push_back({dlg.GetTransactionID(), 0});
@@ -1630,7 +1630,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
             }
         }
         else {
-            mmTransDialog dlg(this, m_cp->m_checking_id, {id.first, false});
+            mmTransDialog dlg(this, m_cp->m_account_id, {id.first, false});
             if (dlg.ShowModal() != wxID_CANCEL)
                 refreshVisualList();
         }
@@ -1663,7 +1663,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
         break;
     }
 
-    mmTransDialog dlg(this, m_cp->m_checking_id, {0, false}, false, type);
+    mmTransDialog dlg(this, m_cp->m_account_id, {0, false}, false, type);
     int i = dlg.ShowModal();
     if (i != wxID_CANCEL) {
         m_selected_id.clear();
@@ -1849,8 +1849,8 @@ void TransactionListCtrl::OnViewOtherAccount(wxCommandEvent& /*event*/)
         Fused_Transaction::Full_Data(*Model_Checking::instance().get(id.first)) :
         Fused_Transaction::Full_Data(*Model_Billsdeposits::instance().get(id.first));
 
-    int64 gotoAccountID = (m_cp->m_checking_id == tran.ACCOUNTID) ? tran.TOACCOUNTID : tran.ACCOUNTID;
-    wxString gotoAccountName = (m_cp->m_checking_id == tran.ACCOUNTID) ? tran.TOACCOUNTNAME : tran.ACCOUNTNAME;   
+    int64 gotoAccountID = (m_cp->m_account_id == tran.ACCOUNTID) ? tran.TOACCOUNTID : tran.ACCOUNTID;
+    wxString gotoAccountName = (m_cp->m_account_id == tran.ACCOUNTID) ? tran.TOACCOUNTNAME : tran.ACCOUNTNAME;   
 
     m_cp->m_frame->setNavTreeAccount(gotoAccountName);
     m_cp->m_frame->setGotoAccountID(gotoAccountID, id);

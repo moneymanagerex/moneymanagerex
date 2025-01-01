@@ -143,8 +143,7 @@ bool mmCheckingPanel::Create(
     wxWindow* parent,
     const wxPoint& pos, const wxSize& size,
     long style, const wxString& name
-)
-{
+) {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     if (!wxPanel::Create(parent, mmID_CHECKING, pos, size, style, name))
         return false;
@@ -164,7 +163,7 @@ bool mmCheckingPanel::Create(
             wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
             def_view
         );
-        m_trans_filter_dlg = new mmFilterTransactionsDialog(parent, m_checking_id, false, json);
+        m_trans_filter_dlg = new mmFilterTransactionsDialog(parent, m_account_id, false, json);
         m_bitmapTransFilter->SetToolTip(m_trans_filter_dlg->mmGetDescriptionToolTip());
     }
 
@@ -970,14 +969,17 @@ void mmCheckingPanel::OnOpenAttachment(wxCommandEvent& event)
 
 void mmCheckingPanel::initFilterChoices()
 {
-    const wxString& def_view = wxString::Format("{ \"FILTER\": \"%s\" }",
-        Model_Setting::instance().ViewTransactions());
+    const wxString& def_view = wxString::Format(
+        "{ \"FILTER\": \"%s\" }",
+        Model_Setting::instance().ViewTransactions()
+    );
     const auto& data = Model_Infotable::instance().GetStringInfo(
-        wxString::Format("CHECK_FILTER_ID_%lld", m_checking_id), def_view);
+        wxString::Format("CHECK_FILTER_ID_%lld", m_checking_id),
+        def_view
+    );
     Document j_doc;
-    if (j_doc.Parse(data.utf8_str()).HasParseError()) {
+    if (j_doc.Parse(data.utf8_str()).HasParseError())
         j_doc.Parse("{}");
-    }
 
     Value& j_filter = GetValueByPointerWithDefault(j_doc, "/FILTER", "");
     m_filter_id = j_filter.IsString() ?
@@ -1032,7 +1034,10 @@ void mmCheckingPanel::saveFilterChoices()
     }
 
     json = JSON_PrettyFormated(j_doc);
-    Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%lld", m_checking_id), json);
+    Model_Infotable::instance().Set(
+        wxString::Format("CHECK_FILTER_ID_%lld", m_checking_id),
+        json
+    );
 }
 //----------------------------------------------------------------------------
 
@@ -1143,7 +1148,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
                 def_view
             );
             m_trans_filter_dlg.reset(
-                new mmFilterTransactionsDialog(this, m_checking_id, false, json)
+                new mmFilterTransactionsDialog(this, m_account_id, false, json)
             );
         }
 
@@ -1152,7 +1157,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
         if (oldView == FILTER_ID_DIALOG) {
             if (status != wxID_OK)
                 m_trans_filter_dlg.reset(
-                    new mmFilterTransactionsDialog(this, m_checking_id, false, json_settings)
+                    new mmFilterTransactionsDialog(this, m_account_id, false, json_settings)
                 );
         }
         else {
@@ -1206,7 +1211,7 @@ void mmCheckingPanel::DisplaySplitCategories(Fused_Transaction::IdB fused_id)
     }
     if (splits.empty()) return;
     int tranType = Model_Checking::type_id(fused.TRANSCODE);
-    mmSplitTransactionDialog splitTransDialog(this, splits, m_checking_id, tranType, 0.0, true);
+    mmSplitTransactionDialog splitTransDialog(this, splits, m_account_id, tranType, 0.0, true);
 
     //splitTransDialog.SetDisplaySplitCategories();
     splitTransDialog.ShowModal();
@@ -1257,7 +1262,7 @@ void mmCheckingPanel::DisplayAccountDetails(int64 account_id)
             def_view
         );
         m_trans_filter_dlg.reset(
-            new mmFilterTransactionsDialog(this, m_checking_id, false, json)
+            new mmFilterTransactionsDialog(this, m_account_id, false, json)
         );
         m_bitmapTransFilter->SetToolTip(
             m_trans_filter_dlg->mmGetDescriptionToolTip()
