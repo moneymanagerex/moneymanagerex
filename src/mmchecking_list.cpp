@@ -911,7 +911,8 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     m_sortCol = toEColumn(ColumnNr);
     g_sortcol = m_sortCol;
 
-    // If primary sort is DATE then secondary is always ID in the same direction
+    // disabled: If primary sort is DATE then secondary is always ID in the same direction
+    // decouple DATE and ID, since SN may be used instead of ID (see #7080)
     if (false && ColumnNr == COL_DATE) {
         prev_g_sortcol = toEColumn(COL_ID);
         prev_g_asc = m_asc;        

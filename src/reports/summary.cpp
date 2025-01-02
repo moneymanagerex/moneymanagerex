@@ -48,7 +48,7 @@ std::map<wxDate, double> mmReportSummaryByDate::createCheckingBalanceMap(const M
     std::map<wxDate, double> balanceMap;
     double balance = account.INITIALBAL;
 
-    for (const auto& tran : Model_Account::transaction(account))
+    for (const auto& tran : Model_Account::transactionsByDateId(account))
     {
         wxDate date = Model_Checking::TRANSDATE(tran);
         balance += Model_Checking::account_flow(tran, account.ACCOUNTID);

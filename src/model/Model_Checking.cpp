@@ -182,7 +182,7 @@ int Model_Checking::save(std::vector<Data*>& rows)
     return rows.size();
 }
 
-const Model_Checking::Data_Set Model_Checking::allByDate()
+const Model_Checking::Data_Set Model_Checking::allByDateId()
 {
     auto trans = Model_Checking::instance().all();
     std::sort(trans.begin(), trans.end());

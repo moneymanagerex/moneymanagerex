@@ -220,8 +220,8 @@ void mmCheckingPanel::filterTable()
         wxDateTime(23, 59, 59, 999).FormatISOCombined();
 
     const auto trans = m_account ?
-        Model_Account::transaction(m_account) :
-        Model_Checking::instance().allByDate();
+        Model_Account::transactionsByDateId(m_account) :
+        Model_Checking::instance().allByDateId();
     const auto trans_splits = Model_Splittransaction::instance().get_all();
     const auto trans_tags = Model_Taglink::instance().get_all(transRefType);
     const auto trans_attachments = Model_Attachment::instance().get_all(
