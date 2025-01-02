@@ -61,12 +61,14 @@ public:
         explicit Full_Data(const Model_Checking::Data& t);
         Full_Data(const Model_Checking::Data& t,
             const std::map<int64 /* TRANSID */, Split_Data_Set>& splits,
-            const std::map<int64 /* TRANSID */, Taglink_Data_Set>& tags);
+            const std::map<int64 /* TRANSID */, Taglink_Data_Set>& tags
+        );
         Full_Data(const Model_Billsdeposits::Data& r);
         Full_Data(const Model_Billsdeposits::Data& r, wxString date, int repeat_num);
         Full_Data(const Model_Billsdeposits::Data& r, wxString date, int repeat_num,
             const std::map<int64 /* BDID */, Budgetsplit_Data_Set>& budgetsplits,
-            const std::map<int64 /* BDID */, Taglink_Data_Set>& tags);
+            const std::map<int64 /* BDID */, Taglink_Data_Set>& tags
+        );
         ~Full_Data();
 
         int64 m_bdid;
@@ -80,6 +82,15 @@ public:
         bool operator()(const DATA& x, const DATA& y)
         {
             return (!x.m_repeat_num && (y.m_repeat_num || x.TRANSID < y.TRANSID));
+        }
+    };
+
+    struct SorterByFUSEDTRANSSN
+    { 
+        template<class DATA>
+        bool operator()(const DATA& x, const DATA& y)
+        {
+            return (!x.m_repeat_num && (y.m_repeat_num || x.SN < y.SN));
         }
     };
 
