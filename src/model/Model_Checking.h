@@ -199,6 +199,7 @@ public:
     int save(std::vector<Data*>& rows);
     void updateTimestamp(int64 id);
 public:
+    static const Model_Checking::Data_Set allByDate();
     static const Split_Data_Set split(const Data* r);
     static const Split_Data_Set split(const Data& r);
 

@@ -182,6 +182,14 @@ int Model_Checking::save(std::vector<Data*>& rows)
     return rows.size();
 }
 
+const Model_Checking::Data_Set Model_Checking::allByDate()
+{
+    auto trans = Model_Checking::instance().all();
+    std::sort(trans.begin(), trans.end());
+    std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
+    return trans;
+}
+
 const Model_Splittransaction::Data_Set Model_Checking::split(const Data* r)
 {
     return Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r->TRANSID));
