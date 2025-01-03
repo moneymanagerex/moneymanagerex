@@ -190,29 +190,26 @@ void mmCheckingPanel::filterTable()
     m_show_reconciled = false;
     m_account_flow = 0.0;
 
-    const wxString transRefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
-    const wxString splitRefType = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
-    const wxString billsRefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
-    const wxString billsplitRefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT;
+    const wxString tranRefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+    const wxString billRefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
+    const wxString tranSplitRefType = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
+    const wxString billSplitRefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT;
 
-    Model_CustomField::TYPE_ID UDFC01_Type = Model_CustomField::getUDFCType(transRefType, "UDFC01");
-    Model_CustomField::TYPE_ID UDFC02_Type = Model_CustomField::getUDFCType(transRefType, "UDFC02");
-    Model_CustomField::TYPE_ID UDFC03_Type = Model_CustomField::getUDFCType(transRefType, "UDFC03");
-    Model_CustomField::TYPE_ID UDFC04_Type = Model_CustomField::getUDFCType(transRefType, "UDFC04");
-    Model_CustomField::TYPE_ID UDFC05_Type = Model_CustomField::getUDFCType(transRefType, "UDFC05");
-    int UDFC01_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(transRefType, "UDFC01"));
-    int UDFC02_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(transRefType, "UDFC02"));
-    int UDFC03_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(transRefType, "UDFC03"));
-    int UDFC04_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(transRefType, "UDFC04"));
-    int UDFC05_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(transRefType, "UDFC05"));
+    static wxArrayString udfc_fields = Model_CustomField::UDFC_FIELDS();
+    int64 udfc_id[5];
+    Model_CustomField::TYPE_ID udfc_type[5];
+    int udfc_scale[5];
+    for (int i = 0; i < 5; i++) {
+        // note: udfc_fields starts with ""
+        wxString field = udfc_fields[i+1];
+        udfc_id[i] = Model_CustomField::getUDFCID(tranRefType, field);
+        udfc_type[i] = Model_CustomField::getUDFCType(tranRefType, field);
+        udfc_scale[i] = Model_CustomField::getDigitScale(
+            Model_CustomField::getUDFCProperties(tranRefType, field)
+        );
+    }
 
-    auto trans_fields_data = Model_CustomFieldData::instance().get_all(Model_Attachment::REFTYPE_ID_TRANSACTION);
-    const auto matrix = Model_CustomField::getMatrix(Model_Attachment::REFTYPE_ID_TRANSACTION);
-    int64 udfc01_ref_id = matrix.at("UDFC01");
-    int64 udfc02_ref_id = matrix.at("UDFC02");
-    int64 udfc03_ref_id = matrix.at("UDFC03");
-    int64 udfc04_ref_id = matrix.at("UDFC04");
-    int64 udfc05_ref_id = matrix.at("UDFC05");
+    auto tranFieldData = Model_CustomFieldData::instance().get_all(Model_Attachment::REFTYPE_ID_TRANSACTION);
 
     bool ignore_future = Option::instance().getIgnoreFutureTransactions();
     const wxString today_date = Option::instance().UseTransDateTime() ?
@@ -223,7 +220,7 @@ void mmCheckingPanel::filterTable()
         Model_Account::transactionsByDateId(m_account) :
         Model_Checking::instance().allByDateId();
     const auto trans_splits = Model_Splittransaction::instance().get_all();
-    const auto trans_tags = Model_Taglink::instance().get_all(transRefType);
+    const auto trans_tags = Model_Taglink::instance().get_all(tranRefType);
     const auto trans_attachments = Model_Attachment::instance().get_all(
         Model_Attachment::REFTYPE_ID_TRANSACTION
     );
@@ -240,7 +237,7 @@ void mmCheckingPanel::filterTable()
     std::vector<bills_index_t> bills_index;
     if (m_scheduled_enable && m_scheduled_selected) {
         bills_splits = Model_Budgetsplittransaction::instance().get_all();
-        bills_tags = Model_Taglink::instance().get_all(billsRefType);
+        bills_tags = Model_Taglink::instance().get_all(billRefType);
         bills_attachments = Model_Attachment::instance().get_all(
             Model_Attachment::REFTYPE_ID_BILLSDEPOSIT
         );
@@ -348,48 +345,38 @@ void mmCheckingPanel::filterTable()
                 full_tran.ATTACHMENT_DESCRIPTION.Add(entry.DESCRIPTION);
         }
 
-        full_tran.UDFC01_Type = Model_CustomField::TYPE_ID_UNKNOWN;
-        full_tran.UDFC02_Type = Model_CustomField::TYPE_ID_UNKNOWN;
-        full_tran.UDFC03_Type = Model_CustomField::TYPE_ID_UNKNOWN;
-        full_tran.UDFC04_Type = Model_CustomField::TYPE_ID_UNKNOWN;
-        full_tran.UDFC05_Type = Model_CustomField::TYPE_ID_UNKNOWN;
-        full_tran.UDFC01_val = -DBL_MAX;
-        full_tran.UDFC02_val = -DBL_MAX;
-        full_tran.UDFC03_val = -DBL_MAX;
-        full_tran.UDFC04_val = -DBL_MAX;
-        full_tran.UDFC05_val = -DBL_MAX;
+        for (int i = 0; i < 5; i++) {
+            full_tran.UDFC_type[i] = Model_CustomField::TYPE_ID_UNKNOWN;
+            full_tran.UDFC_value[i] = -DBL_MAX;
+        }
 
-        if (repeat_num == 0 && trans_fields_data.find(tran->TRANSID) != trans_fields_data.end()) {
-            for (const auto& udfc : trans_fields_data.at(tran->TRANSID)) {
-                if (udfc.FIELDID == udfc01_ref_id) {
-                    full_tran.UDFC01 = udfc.CONTENT;
-                    full_tran.UDFC01_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC01_Scale);
-                    full_tran.UDFC01_Type = UDFC01_Type;
-                }
-                else if (udfc.FIELDID == udfc02_ref_id) {
-                    full_tran.UDFC02 = udfc.CONTENT;
-                    full_tran.UDFC02_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC02_Scale);
-                    full_tran.UDFC02_Type = UDFC02_Type;
-                }
-                else if (udfc.FIELDID == udfc03_ref_id) {
-                    full_tran.UDFC03 = udfc.CONTENT;
-                    full_tran.UDFC03_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC03_Scale);
-                    full_tran.UDFC03_Type = UDFC03_Type;
-                }
-                else if (udfc.FIELDID == udfc04_ref_id) {
-                    full_tran.UDFC04 = udfc.CONTENT;
-                    full_tran.UDFC04_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC04_Scale);
-                    full_tran.UDFC04_Type = UDFC04_Type;
-                }
-                else if (udfc.FIELDID == udfc05_ref_id) {
-                    full_tran.UDFC05 = udfc.CONTENT;
-                    full_tran.UDFC05_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC05_Scale);
-                    full_tran.UDFC05_Type = UDFC05_Type;
+        if (repeat_num == 0 && tranFieldData.find(tran->TRANSID) != tranFieldData.end()) {
+            for (const auto& udfc : tranFieldData.at(tran->TRANSID)) {
+                for (int i = 0; i < 5; i++) {
+                    if (udfc.FIELDID == udfc_id[i]) {
+                        full_tran.UDFC_type[i] = udfc_type[i];
+                        full_tran.UDFC_content[i] = udfc.CONTENT;
+                        full_tran.UDFC_value[i] = cleanseNumberStringToDouble(
+                            udfc.CONTENT, udfc_scale[i] > 0
+                        );
+                        break;
+                    }
                 }
             }
         }
-        else if (repeat_num > 0) {
-            // not yet implemented: custom fields for scheduled transaction
+        else if (repeat_num > 0 && tranFieldData.find(-full_tran.m_bdid) != tranFieldData.end()) {
+            for (const auto& udfc : tranFieldData.at(-full_tran.m_bdid)) {
+                for (int i = 0; i < 5; i++) {
+                    if (udfc.FIELDID == udfc_id[i]) {
+                        full_tran.UDFC_type[i] = udfc_type[i];
+                        full_tran.UDFC_content[i] = udfc.CONTENT;
+                        full_tran.UDFC_value[i] = cleanseNumberStringToDouble(
+                            udfc.CONTENT, udfc_scale[i] > 0
+                        );
+                        break;
+                    }
+                }
+            }
         }
 
         if (repeat_num == 0)
@@ -442,7 +429,7 @@ void mmCheckingPanel::filterTable()
             }
             full_tran.NOTES.Append((tran->NOTES.IsEmpty() ? "" : " ") + split.NOTES);
             wxString tagnames;
-            const wxString reftype = (repeat_num == 0) ? splitRefType : billsplitRefType;
+            const wxString reftype = (repeat_num == 0) ? tranSplitRefType : billSplitRefType;
             for (const auto& tag : Model_Taglink::instance().get(reftype, split.SPLITTRANSID))
                 tagnames.Append(tag.first + " ");
             if (!tagnames.IsEmpty())
@@ -838,7 +825,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
                 }
             if (full_tran.has_attachment()) {
                 const wxString& refType = Model_Attachment::REFTYPE_STR_TRANSACTION;
-                Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(refType, full_tran.id());
+                Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(refType, full_tran.TRANSID);
                 for (const auto& i : attachments) {
                     notesStr += notesStr.empty() ? "" : "\n";
                     notesStr += _("Attachment") + " " + i.DESCRIPTION + " " + i.FILENAME;
@@ -846,7 +833,22 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
             }
         }
         else {
-            // not yet implemented
+            auto splits = Model_Budgetsplittransaction::instance().find(
+                Model_Budgetsplittransaction::TRANSID(full_tran.m_bdid)
+            );
+            for (const auto& split : splits)
+                if (!split.NOTES.IsEmpty()) {
+                    notesStr += notesStr.empty() ? "" : "\n";
+                    notesStr += split.NOTES;
+                }
+            if (full_tran.has_attachment()) {
+                const wxString& refType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
+                Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(refType, full_tran.m_bdid);
+                for (const auto& i : attachments) {
+                    notesStr += notesStr.empty() ? "" : "\n";
+                    notesStr += _("Attachment") + " " + i.DESCRIPTION + " " + i.FILENAME;
+                }
+            }
         }
         m_info_panel->SetLabelText(notesStr);
     }

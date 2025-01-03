@@ -397,13 +397,7 @@ wxString Model_Checking::status_key(const wxString& r)
 Model_Checking::Full_Data::Full_Data() :
     Data(0), TAGNAMES(""),
     SN(0), ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
-    ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0),
-    UDFC01_val(0), UDFC02_val(0), UDFC03_val(0), UDFC04_val(0), UDFC05_val(0),
-    UDFC01_Type(Model_CustomField::TYPE_ID_UNKNOWN),
-    UDFC02_Type(Model_CustomField::TYPE_ID_UNKNOWN),
-    UDFC03_Type(Model_CustomField::TYPE_ID_UNKNOWN),
-    UDFC04_Type(Model_CustomField::TYPE_ID_UNKNOWN),
-    UDFC05_Type(Model_CustomField::TYPE_ID_UNKNOWN)
+    ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)
 {
 }
 
