@@ -111,6 +111,7 @@ private:
     int m_sort = cols::PAYEE_NAME, m_lastSort = cols::PAYEE_NAME;
     bool refreshRequested_ = false, m_sortReverse = false;
     std::map<int, wxString> ColName_;
+    std::map<long, int64> payee_idx_map_;
 
 private:
     mmPayeeDialog() {}
@@ -126,8 +127,8 @@ private:
     void RemoveDefaultCategory();
     void OnOrganizeAttachments();
     void OnPayeeRelocate();
-    int FindSelectedPayee();
-    void FindSelectedPayees(std::list<int>& indexes);
+    int64 FindSelectedPayee();
+    void FindSelectedPayees(std::list<int64>& indexes);
     void OnCancel(wxCommandEvent& /*event*/);
     void OnOk(wxCommandEvent& /*event*/);
 

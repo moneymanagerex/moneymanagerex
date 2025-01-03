@@ -472,19 +472,16 @@ mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString
     SetAcceleratorTable(tab);
 }
 
-int mmPayeeDialog::FindSelectedPayee()
+int64 mmPayeeDialog::FindSelectedPayee()
 {
     int sel = payeeListBox_->GetFocusedItem();
     if (-1 != sel)
     {
-        wxListItem item;
-        item.SetId(sel);
-        payeeListBox_->GetItem(item);
-        return (item.GetData());
+        return (payee_idx_map_[sel]);
     } else
         return -1;
 }
-void mmPayeeDialog::FindSelectedPayees(std::list<int> & indexes)
+void mmPayeeDialog::FindSelectedPayees(std::list<int64> & indexes)
 {
     long itemIndex = -1;    
 
@@ -492,11 +489,7 @@ void mmPayeeDialog::FindSelectedPayees(std::list<int> & indexes)
           wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND) {
         // Got the selected item index
         wxLogDebug(payeeListBox_->GetItemText(itemIndex));
-
-        wxListItem item;
-        item.SetId(itemIndex);
-        payeeListBox_->GetItem(item);
-        indexes.push_back(item.GetData());
+        indexes.push_back(payee_idx_map_[itemIndex]);
     }
     if (itemIndex == -1 && indexes.empty()) {
         indexes.push_back(-1);
@@ -608,6 +601,7 @@ void mmPayeeDialog::fillControls()
 {
     this->Freeze();
     payeeListBox_->DeleteAllItems();
+    payee_idx_map_.clear();
     m_payee_id = -1;
     
     Model_Payee::Data_Set payees = Model_Payee::instance().FilterPayees(m_maskStr);
@@ -652,7 +646,7 @@ void mmPayeeDialog::fillControls()
     {
         wxListItem item;
         item.SetId(idx);
-        item.SetData(payee.PAYEEID.GetValue());
+        payee_idx_map_[idx] = payee.PAYEEID.GetValue();
         payeeListBox_->InsertItem(item);
         const wxString full_category_name = Model_Category::instance().full_name(payee.CATEGID);
         payeeListBox_->SetItem(idx, 0, payee.PAYEENAME);
@@ -728,10 +722,10 @@ void mmPayeeDialog::EditPayee()
 
 void mmPayeeDialog::DeletePayee()
 {
-    std::list<int> itemsSelected;
+    std::list<int64> itemsSelected;
     FindSelectedPayees(itemsSelected);
 
-    for(int p : itemsSelected) {
+    for(int64 p : itemsSelected) {
         const auto* payee = Model_Payee::instance().get(p);
         if (payee)
         {
@@ -887,7 +881,7 @@ void mmPayeeDialog::OnItemRightClick(wxListEvent& event)
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_EDIT_PAYEE, _("&Edit ")));
     if (!payee) mainMenu.Enable(MENU_EDIT_PAYEE, false);
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_DELETE_PAYEE, _("&Remove ")));
-    std::list<int> selected;
+    std::list<int64> selected;
     FindSelectedPayees(selected);
     if (!payee || selected.front() == -1) mainMenu.Enable(MENU_DELETE_PAYEE, false);
     mainMenu.AppendSeparator();
