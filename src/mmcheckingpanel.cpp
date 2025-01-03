@@ -364,8 +364,19 @@ void mmCheckingPanel::filterTable()
                 }
             }
         }
-        else if (repeat_num > 0) {
-            // not yet implemented: custom fields for scheduled transaction
+        else if (repeat_num > 0 && tranFieldData.find(-full_tran.m_bdid) != tranFieldData.end()) {
+            for (const auto& udfc : tranFieldData.at(-full_tran.m_bdid)) {
+                for (int i = 0; i < 5; i++) {
+                    if (udfc.FIELDID == udfc_id[i]) {
+                        full_tran.UDFC_type[i] = udfc_type[i];
+                        full_tran.UDFC_content[i] = udfc.CONTENT;
+                        full_tran.UDFC_value[i] = cleanseNumberStringToDouble(
+                            udfc.CONTENT, udfc_scale[i] > 0
+                        );
+                        break;
+                    }
+                }
+            }
         }
 
         if (repeat_num == 0)
