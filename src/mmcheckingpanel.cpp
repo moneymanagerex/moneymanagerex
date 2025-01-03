@@ -825,7 +825,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
                 }
             if (full_tran.has_attachment()) {
                 const wxString& refType = Model_Attachment::REFTYPE_STR_TRANSACTION;
-                Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(refType, full_tran.id());
+                Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(refType, full_tran.TRANSID);
                 for (const auto& i : attachments) {
                     notesStr += notesStr.empty() ? "" : "\n";
                     notesStr += _("Attachment") + " " + i.DESCRIPTION + " " + i.FILENAME;
@@ -833,7 +833,22 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
             }
         }
         else {
-            // not yet implemented
+            auto splits = Model_Budgetsplittransaction::instance().find(
+                Model_Budgetsplittransaction::TRANSID(full_tran.m_bdid)
+            );
+            for (const auto& split : splits)
+                if (!split.NOTES.IsEmpty()) {
+                    notesStr += notesStr.empty() ? "" : "\n";
+                    notesStr += split.NOTES;
+                }
+            if (full_tran.has_attachment()) {
+                const wxString& refType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
+                Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(refType, full_tran.m_bdid);
+                for (const auto& i : attachments) {
+                    notesStr += notesStr.empty() ? "" : "\n";
+                    notesStr += _("Attachment") + " " + i.DESCRIPTION + " " + i.FILENAME;
+                }
+            }
         }
         m_info_panel->SetLabelText(notesStr);
     }
