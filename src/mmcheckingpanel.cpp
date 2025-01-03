@@ -184,6 +184,7 @@ void mmCheckingPanel::filterTable()
 {
     m_listCtrlAccount->m_trans.clear();
 
+    int sn = 0; // sequence number
     m_account_balance = m_account ? m_account->INITIALBAL : 0.0;
     m_account_reconciled = m_account_balance;
     m_show_reconciled = false;
@@ -219,8 +220,8 @@ void mmCheckingPanel::filterTable()
         wxDateTime(23, 59, 59, 999).FormatISOCombined();
 
     const auto trans = m_account ?
-        Model_Account::transaction(m_account) :
-        Model_Checking::instance().all();
+        Model_Account::transactionsByDateId(m_account) :
+        Model_Checking::instance().allByDateId();
     const auto trans_splits = Model_Splittransaction::instance().get_all();
     const auto trans_tags = Model_Taglink::instance().get_all(transRefType);
     const auto trans_attachments = Model_Attachment::instance().get_all(
@@ -391,7 +392,13 @@ void mmCheckingPanel::filterTable()
             // not yet implemented: custom fields for scheduled transaction
         }
 
+        if (repeat_num == 0)
+            full_tran.SN = ++sn;
+
         if (!expandSplits) {
+            full_tran.displaySN = (repeat_num == 0) ?
+                wxString::Format("%ld", full_tran.SN) :
+                wxString("");
             m_listCtrlAccount->m_trans.push_back(full_tran);
             if (isAccount())
                 m_account_flow += account_flow;
@@ -405,11 +412,16 @@ void mmCheckingPanel::filterTable()
         for (const auto& split : full_tran.m_splits) {
             if (!m_trans_filter_dlg->mmIsSplitRecordMatches<Model_Splittransaction>(split))
                 continue;
-            if (repeat_num == 0)
+            if (repeat_num == 0) {
                 full_tran.displayID = wxString::Format("%lld", tran->TRANSID) +
                     "." + wxString::Format("%i", splitIndex);
-            else
+                full_tran.displaySN = wxString::Format("%ld", full_tran.SN) +
+                    "." + wxString::Format("%i", splitIndex);
+            }
+            else {
                 full_tran.displayID = ".";
+                full_tran.displaySN = ".";
+            }
             splitIndex++;
             full_tran.CATEGID = split.CATEGID;
             full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
@@ -561,14 +573,14 @@ void mmCheckingPanel::CreateControls()
         isGroup() ? "MULTI" :
         "CHECK";
 
-    long val = m_listCtrlAccount->COL_DEF_SORT;
+    long val = m_listCtrlAccount->COL_def_sort;
     wxString strVal = Model_Setting::instance().GetStringSetting(
         wxString::Format("%s_SORT_COL", m_sortSaveTitle),
         wxString() << val
     );
     if (strVal.ToLong(&val))
         m_listCtrlAccount->g_sortcol = m_listCtrlAccount->toEColumn(val);
-    val = m_listCtrlAccount->COL_DEF_SORT2;
+    val = m_listCtrlAccount->COL_def_sort2;
     strVal = Model_Setting::instance().GetStringSetting(
         wxString::Format("%s_SORT_COL2", m_sortSaveTitle),
         wxString() << val
@@ -738,18 +750,19 @@ void mmCheckingPanel::setAccountSummary()
 
     if (m_account) {
         bool show_displayed_balance_ = (m_transFilterActive || m_filter_id != FILTER_ID_ALL);
-        wxString summaryLine = wxString::Format("%s%s" "%s%s%s" "%s%s%s" "%s%s%s"
-            , _("Account Bal: ")
-            , Model_Account::toCurrency(m_account_balance, m_account)
-            , m_show_reconciled ? "     " : ""
-            , m_show_reconciled ? _("Reconciled Bal: ") : ""
-            , m_show_reconciled ? Model_Account::toCurrency(m_account_reconciled, m_account) : ""
-            , m_show_reconciled ? "     " : ""
-            , m_show_reconciled ? _("Diff: ") : ""
-            , m_show_reconciled ? Model_Account::toCurrency(m_account_balance - m_account_reconciled, m_account) : ""
-            , show_displayed_balance_ ? "     " : ""
-            , show_displayed_balance_ ? _("Filtered Flow: ") : ""
-            , show_displayed_balance_ ? Model_Account::toCurrency(m_account_flow, m_account) : "");
+        wxString summaryLine = wxString::Format("%s%s" "%s%s%s" "%s%s%s" "%s%s%s",
+            _("Account Bal: "),
+            Model_Account::toCurrency(m_account_balance, m_account),
+            m_show_reconciled ? "     " : "",
+            m_show_reconciled ? _("Reconciled Bal: ") : "",
+            m_show_reconciled ? Model_Account::toCurrency(m_account_reconciled, m_account) : "",
+            m_show_reconciled ? "     " : "",
+            m_show_reconciled ? _("Diff: ") : "",
+            m_show_reconciled ? Model_Account::toCurrency(m_account_balance - m_account_reconciled, m_account) : "",
+            show_displayed_balance_ ? "     " : "",
+            show_displayed_balance_ ? _("Filtered Flow: ") : "",
+            show_displayed_balance_ ? Model_Account::toCurrency(m_account_flow, m_account) : ""
+        );
         if (m_account->CREDITLIMIT != 0.0) {
             double limit = 100.0 * ((m_account_balance < 0.0) ? -m_account_balance / m_account->CREDITLIMIT : 0.0);
             summaryLine.Append(

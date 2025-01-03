@@ -90,7 +90,7 @@ void mmReportCashFlow::getTransactions()
 
         m_account_id.push_back(account.ACCOUNTID);
 
-        for (const auto& tran : Model_Account::transaction(account))
+        for (const auto& tran : Model_Account::transactionsByDateId(account))
         {
             wxString strDate = Model_Checking::TRANSDATE(tran).FormatISOCombined();
             // Do not include asset or stock transfers in income expense calculations.

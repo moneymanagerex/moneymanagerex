@@ -182,6 +182,14 @@ int Model_Checking::save(std::vector<Data*>& rows)
     return rows.size();
 }
 
+const Model_Checking::Data_Set Model_Checking::allByDateId()
+{
+    auto trans = Model_Checking::instance().all();
+    std::sort(trans.begin(), trans.end());
+    std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
+    return trans;
+}
+
 const Model_Splittransaction::Data_Set Model_Checking::split(const Data* r)
 {
     return Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r->TRANSID));
@@ -388,7 +396,7 @@ wxString Model_Checking::status_key(const wxString& r)
 
 Model_Checking::Full_Data::Full_Data() :
     Data(0), TAGNAMES(""),
-    ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
+    SN(0), ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
     ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0),
     UDFC01_val(0), UDFC02_val(0), UDFC03_val(0), UDFC04_val(0), UDFC05_val(0),
     UDFC01_Type(Model_CustomField::TYPE_ID_UNKNOWN),
@@ -401,7 +409,7 @@ Model_Checking::Full_Data::Full_Data() :
 
 Model_Checking::Full_Data::Full_Data(const Data& r) :
     Data(r),
-    ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
+    SN(0), ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
     ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0),
     m_splits(Model_Splittransaction::instance().find(
         Model_Splittransaction::TRANSID(r.TRANSID))),
@@ -412,12 +420,13 @@ Model_Checking::Full_Data::Full_Data(const Data& r) :
     fill_data();
 }
 
-Model_Checking::Full_Data::Full_Data(const Data& r
-    , const std::map<int64 /*trans id*/, Model_Splittransaction::Data_Set /*split trans*/ > & splits
-    , const std::map<int64 /*trans id*/, Model_Taglink::Data_Set /*split trans*/ >& tags)
-:
+Model_Checking::Full_Data::Full_Data(
+    const Data& r,
+    const std::map<int64 /* TRANSID */, Model_Splittransaction::Data_Set>& splits,
+    const std::map<int64 /* TRANSID */, Model_Taglink::Data_Set>& tags
+) :
     Data(r),
-    ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
+    SN(0), ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
     ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)
 {
     const auto it = splits.find(this->id());
