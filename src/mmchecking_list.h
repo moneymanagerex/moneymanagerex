@@ -243,14 +243,54 @@ inline void TransactionListCtrl::setVisibleItemIndex(long v) { m_topItemIndex = 
 
 #endif // MM_EX_CHECKING_LIST_H_
 
-inline static bool SorterByUDFC01(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC01 < j.UDFC01); }
-inline static bool SorterByUDFC02(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC02 < j.UDFC02); }
-inline static bool SorterByUDFC03(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC03 < j.UDFC03); }
-inline static bool SorterByUDFC04(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC04 < j.UDFC04); }
-inline static bool SorterByUDFC05(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC05 < j.UDFC05); }
+inline static bool SorterByUDFC01(
+    const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
+) {
+    return (i.UDFC_content[0] < j.UDFC_content[0]);
+}
+inline static bool SorterByUDFC02(
+    const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
+) {
+    return (i.UDFC_content[1] < j.UDFC_content[1]);
+}
+inline static bool SorterByUDFC03(
+    const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
+) {
+    return (i.UDFC_content[2] < j.UDFC_content[2]);
+}
+inline static bool SorterByUDFC04(
+    const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
+) {
+    return (i.UDFC_content[3] < j.UDFC_content[3]);
+}
+inline static bool SorterByUDFC05(
+    const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
+) {
+    return (i.UDFC_content[4] < j.UDFC_content[4]);
+}
 
-inline static bool SorterByUDFC01_val(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC01_val < j.UDFC01_val); }
-inline static bool SorterByUDFC02_val(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC02_val < j.UDFC02_val); }
-inline static bool SorterByUDFC03_val(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC03_val < j.UDFC03_val); }
-inline static bool SorterByUDFC04_val(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC04_val < j.UDFC04_val); }
-inline static bool SorterByUDFC05_val(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC05_val < j.UDFC05_val); }
+inline static bool SorterByUDFC01_val(
+    const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
+) {
+    return (i.UDFC_value[0] < j.UDFC_value[0]);
+}
+inline static bool SorterByUDFC02_val(
+    const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
+) {
+    return (i.UDFC_value[1] < j.UDFC_value[1]);
+}
+inline static bool SorterByUDFC03_val(
+    const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
+) {
+    return (i.UDFC_value[2] < j.UDFC_value[2]);
+}
+inline static bool SorterByUDFC04_val(
+    const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
+) {
+    return (i.UDFC_value[3] < j.UDFC_value[3]);
+}
+inline static bool SorterByUDFC05_val(
+    const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
+) {
+    return (i.UDFC_value[4] < j.UDFC_value[4]);
+}
