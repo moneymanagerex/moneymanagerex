@@ -610,8 +610,8 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
     }
     else if (uri.StartsWith("trxid:", &sData))
     {
-        long transID = -1;
-        if (sData.ToLong(&transID)) {
+        long long transID = -1;
+        if (sData.ToLongLong(&transID)) {
             const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
             if (transaction && transaction->TRANSID > -1)
             {
@@ -627,8 +627,8 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
     }
     else if (uri.StartsWith("trx:", &sData))
     {
-        long transId = -1;
-        if (sData.ToLong(&transId))
+        long long transId = -1;
+        if (sData.ToLongLong(&transId))
         {
             Model_Checking::Data* transaction = Model_Checking::instance().get(transId);
             if (transaction && transaction->TRANSID > -1)
