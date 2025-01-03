@@ -113,11 +113,15 @@ public:
         double ACCOUNT_FLOW;
         double ACCOUNT_BALANCE;
         wxArrayString ATTACHMENT_DESCRIPTION;
-        wxString UDFC01; double UDFC01_val; Model_CustomField::TYPE_ID UDFC01_Type;
-        wxString UDFC02; double UDFC02_val; Model_CustomField::TYPE_ID UDFC02_Type;
-        wxString UDFC03; double UDFC03_val; Model_CustomField::TYPE_ID UDFC03_Type;
-        wxString UDFC04; double UDFC04_val; Model_CustomField::TYPE_ID UDFC04_Type;
-        wxString UDFC05; double UDFC05_val; Model_CustomField::TYPE_ID UDFC05_Type;
+        Model_CustomField::TYPE_ID UDFC_type[5] = {
+            Model_CustomField::TYPE_ID_UNKNOWN,
+            Model_CustomField::TYPE_ID_UNKNOWN,
+            Model_CustomField::TYPE_ID_UNKNOWN,
+            Model_CustomField::TYPE_ID_UNKNOWN,
+            Model_CustomField::TYPE_ID_UNKNOWN
+        };
+        wxString UDFC_content[5];
+        double UDFC_value[5] = {0, 0, 0, 0, 0};
     };
 
     typedef std::vector<Full_Data> Full_Data_Set;
