@@ -77,9 +77,10 @@ public:
     {
         Full_Data();
         explicit Full_Data(const Data& r);
-        Full_Data(const Data& r
-            , const std::map<int64 /*trans id*/, Model_Splittransaction::Data_Set /*split trans*/ > & splits
-            , const std::map<int64 /*trans id*/, Model_Taglink::Data_Set /*split trans*/ >& tags);
+        Full_Data(const Data& r,
+            const std::map<int64 /* TRANSID */, Model_Splittransaction::Data_Set> & splits,
+            const std::map<int64 /* TRANSID */, Model_Taglink::Data_Set> & tags
+        );
         ~Full_Data();
         void fill_data();
         wxString real_payee_name(int64 account_id) const;
@@ -93,27 +94,32 @@ public:
         wxString info() const;
         const wxString to_json();
 
-        Split_Data_Set m_splits;
-        Taglink_Data_Set m_tags;
+        // filled-in by constructor
         wxString displayID;
         wxString ACCOUNTNAME, TOACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
+        Split_Data_Set m_splits;
+        Taglink_Data_Set m_tags;
         wxString TAGNAMES;
 
+        // filled-in by constructor; overwritten by mmCheckingPanel::filterTable()
         int64 ACCOUNTID_W, ACCOUNTID_D;
         double TRANSAMOUNT_W, TRANSAMOUNT_D;
+
+        // filled-in by mmCheckingPanel::filterTable()
+        long SN;
+        wxString displaySN;
         double ACCOUNT_FLOW;
         double ACCOUNT_BALANCE;
         wxArrayString ATTACHMENT_DESCRIPTION;
-
-        // Reserved string variables for custom data
         wxString UDFC01; double UDFC01_val; Model_CustomField::TYPE_ID UDFC01_Type;
         wxString UDFC02; double UDFC02_val; Model_CustomField::TYPE_ID UDFC02_Type;
         wxString UDFC03; double UDFC03_val; Model_CustomField::TYPE_ID UDFC03_Type;
         wxString UDFC04; double UDFC04_val; Model_CustomField::TYPE_ID UDFC04_Type;
         wxString UDFC05; double UDFC05_val; Model_CustomField::TYPE_ID UDFC05_Type;
     };
+
     typedef std::vector<Full_Data> Full_Data_Set;
 
     struct SorterByBALANCE
@@ -193,6 +199,7 @@ public:
     int save(std::vector<Data*>& rows);
     void updateTimestamp(int64 id);
 public:
+    static const Model_Checking::Data_Set allByDateId();
     static const Split_Data_Set split(const Data* r);
     static const Split_Data_Set split(const Data& r);
 

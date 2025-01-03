@@ -84,7 +84,7 @@ wxEND_EVENT_TABLE();
 
 TransactionListCtrl::EColumn TransactionListCtrl::toEColumn(const unsigned long col)
 {
-    EColumn res = COL_DEF_SORT;
+    EColumn res = COL_def_sort;
     if (col < m_real_columns.size())
         res = static_cast<EColumn>(col);
     return res;
@@ -96,6 +96,16 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
     Model_CustomField::TYPE_ID type;
 
     switch (m_real_columns[sortcol]) {
+    case TransactionListCtrl::COL_SN: ascend ?
+        std::stable_sort(
+            this->m_trans.begin(), this->m_trans.end(),
+            Fused_Transaction::SorterByFUSEDTRANSSN()
+        ) :
+        std::stable_sort(
+            this->m_trans.rbegin(), this->m_trans.rend(),
+            Fused_Transaction::SorterByFUSEDTRANSSN()
+        );
+        break;
     case TransactionListCtrl::COL_ID: ascend ?
         std::stable_sort(
             this->m_trans.begin(), this->m_trans.end(),
@@ -345,7 +355,7 @@ TransactionListCtrl::TransactionListCtrl(
 
     resetColumns();
 
-    m_default_sort_column = COL_DEF_SORT;
+    m_default_sort_column = COL_def_sort;
     m_today = Option::instance().UseTransDateTime() ?
         wxDateTime::Now().FormatISOCombined() :
         wxDateTime(23, 59, 59, 999).FormatISOCombined();
@@ -359,6 +369,8 @@ void TransactionListCtrl::resetColumns()
     m_real_columns.clear();
     m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_CENTER, false));
     m_real_columns.push_back(COL_IMGSTATUS);
+    m_columns.push_back(PANEL_COLUMN(_("SN"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true));
+    m_real_columns.push_back(COL_SN);
     m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true));
     m_real_columns.push_back(COL_ID);
     m_columns.push_back(PANEL_COLUMN(_("Date"), 112, wxLIST_FORMAT_LEFT, true));
@@ -602,6 +614,9 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
             && m_cp->m_account_id != m_trans[row].ACCOUNTID;
 
         switch (m_real_columns[column]) {
+        case COL_SN:
+            copyText_ = m_trans[row].displaySN;
+            break;
         case COL_ID:
             copyText_ = m_trans[row].displayID;
             break;
@@ -879,7 +894,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     else
         ColumnNr = m_ColumnHeaderNbr;
 
-    if (0 > ColumnNr || ColumnNr >= COL_MAX || ColumnNr == COL_IMGSTATUS) return;
+    if (0 > ColumnNr || ColumnNr >= COL_size || ColumnNr == COL_IMGSTATUS) return;
 
     /* Clear previous column image */
     if (m_sortCol != ColumnNr) {
@@ -896,8 +911,9 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     m_sortCol = toEColumn(ColumnNr);
     g_sortcol = m_sortCol;
 
-    // If primary sort is DATE then secondary is always ID in the same direction
-    if (ColumnNr == COL_DATE) {
+    // disabled: If primary sort is DATE then secondary is always ID in the same direction
+    // decouple DATE and ID, since SN may be used instead of ID (see #7080)
+    if (false && ColumnNr == COL_DATE) {
         prev_g_sortcol = toEColumn(COL_ID);
         prev_g_asc = m_asc;        
     }
@@ -2047,6 +2063,8 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     wxDateTime datetime;
     wxString dateFormat = Option::instance().getDateFormat();
     switch (realenum ? column : m_real_columns[column]) {
+    case TransactionListCtrl::COL_SN:
+        return fused.displaySN;
     case TransactionListCtrl::COL_ID:
         return fused.displayID;
     case TransactionListCtrl::COL_ACCOUNT:

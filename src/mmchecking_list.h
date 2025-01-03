@@ -67,14 +67,15 @@ public:
         COL_UDFC04,
         COL_UDFC05,
         COL_UPDATEDTIME,
-        COL_MAX, // number of columns
-        COL_DEF_SORT = COL_DATE, // don't omit any columns before this
-        COL_DEF_SORT2 = COL_ID 
+        COL_SN,
+        COL_size, // number of columns
+        COL_def_sort = COL_DATE, // don't omit any columns before this
+        COL_def_sort2 = COL_ID 
     };
     EColumn toEColumn(const unsigned long col);
 
-    EColumn g_sortcol = COL_DEF_SORT; // index of primary column to sort by
-    EColumn prev_g_sortcol = COL_DEF_SORT2; // index of secondary column to sort by
+    EColumn g_sortcol = COL_def_sort; // index of primary column to sort by
+    EColumn prev_g_sortcol = COL_def_sort2; // index of secondary column to sort by
     bool g_asc = true; // asc\desc sorting for primary sort column
     bool prev_g_asc = true; // asc\desc sorting for secondary sort column
 
@@ -224,7 +225,7 @@ private:
     /* The topmost visible item - this will be used to set
     where to display the list again after refresh */
     long m_topItemIndex = -1;
-    EColumn m_sortCol = COL_DEF_SORT;
+    EColumn m_sortCol = COL_def_sort;
     wxString m_today;
     bool m_firstSort = true;
     wxString rightClickFilter_;
