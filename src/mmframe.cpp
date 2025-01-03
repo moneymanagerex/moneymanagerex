@@ -823,6 +823,11 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
         mmTreeItemData::CHECKING, -1
     );
 
+    wxTreeItemId bills = addNavTreeSection(
+        root, "Scheduled Transactions", img::SCHEDULE_PNG,
+        mmTreeItemData::BILLS
+    );
+
     wxTreeItemId favorites = addNavTreeSection(
         root, "Favorites", img::FAVOURITE_PNG,
         mmTreeItemData::CHECKING, -3
@@ -852,16 +857,6 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
             dataType, dataId
         );
     }
-
-    wxTreeItemId bills = addNavTreeSection(
-        root, "Scheduled Transactions", img::SCHEDULE_PNG,
-        mmTreeItemData::BILLS
-    );
-
-    wxTreeItemId trash = addNavTreeSection(
-        root, "Deleted Transactions", img::TRASH_PNG,
-        mmTreeItemData::CHECKING, -2
-    );
 
     // TODO: check mismatch between section name and search data
     wxTreeItemId budgeting = m_nav_tree_ctrl->AppendItem(
@@ -894,6 +889,11 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
         mmTreeItemData::HELP_PAGE_GRM
     );
     this->DoUpdateGRMNavigation(grm);
+
+    wxTreeItemId trash = addNavTreeSection(
+        root, "Deleted Transactions", img::TRASH_PNG,
+        mmTreeItemData::CHECKING, -2
+    );
 
     wxTreeItemId help = addNavTreeSection(
         root, "Help", img::HELP_PNG,
