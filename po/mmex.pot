@@ -57,7 +57,7 @@ msgstr ""
 #: customfieldeditdialog.cpp:194 filtertransdialog.cpp:810
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:366
 #: mmSimpleDialogs.cpp:1097 optiondialog.cpp:160 payeedialog.cpp:158
-#: payeedialog.cpp:598 sharetransactiondialog.cpp:321
+#: payeedialog.cpp:591 sharetransactiondialog.cpp:321
 #: splittransactionsdialog.cpp:104 splittransactionsdialog.cpp:285
 #: tagdialog.cpp:142 transactionsupdatedialog.cpp:276 transdialog.cpp:606
 #: wizard_update.cpp:214
@@ -615,7 +615,7 @@ msgstr ""
 
 #: assetspanel.cpp:487 attachmentdialog.cpp:351 billsdepositspanel.cpp:310
 #: categdialog.cpp:317 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
-#: mmcheckingpanel.cpp:627 payeedialog.cpp:887 stockspanel.cpp:146
+#: mmcheckingpanel.cpp:627 payeedialog.cpp:881 stockspanel.cpp:146
 #: tagdialog.cpp:128
 msgid "&Edit "
 msgstr ""
@@ -636,7 +636,7 @@ msgid "Open attachments"
 msgstr ""
 
 #: assetspanel.cpp:507 assetspanel.cpp:508 categdialog.cpp:302
-#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:686 payeedialog.cpp:594
+#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:686 payeedialog.cpp:587
 #: tagdialog.cpp:113
 msgid "Search"
 msgstr ""
@@ -739,7 +739,7 @@ msgstr ""
 msgid "Attachment Manager | New %s"
 msgstr ""
 
-#: attachmentdialog.cpp:153 customfieldlistdialog.cpp:94 payeedialog.cpp:588
+#: attachmentdialog.cpp:153 customfieldlistdialog.cpp:94 payeedialog.cpp:581
 msgid "Other tools"
 msgstr ""
 
@@ -773,7 +773,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:348 categdialog.cpp:313 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:310 maincurrencydialog.cpp:539
-#: payeedialog.cpp:886 stockdialog.cpp:323 tagdialog.cpp:124
+#: payeedialog.cpp:880 stockdialog.cpp:323 tagdialog.cpp:124
 msgid "&Add "
 msgstr ""
 
@@ -783,7 +783,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:353 customfieldlistdialog.cpp:258
 #: import_export/univcsvdialog.cpp:314 maincurrencydialog.cpp:541
-#: payeedialog.cpp:889
+#: payeedialog.cpp:883
 msgid "&Remove "
 msgstr ""
 
@@ -1746,7 +1746,7 @@ msgstr ""
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
 msgstr ""
 
-#: categdialog.cpp:502 payeedialog.cpp:757 tagdialog.cpp:300
+#: categdialog.cpp:502 payeedialog.cpp:751 tagdialog.cpp:300
 msgid "Do you wish to continue ?"
 msgstr ""
 
@@ -1772,7 +1772,7 @@ msgid "Merge categories completed"
 msgstr ""
 
 #: categdialog.cpp:683 mmframe.cpp:3925 mmframe.cpp:3939 mmframe.cpp:3954
-#: payeedialog.cpp:838
+#: payeedialog.cpp:832
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr ""
@@ -5033,7 +5033,7 @@ msgstr ""
 msgid "&Payee Manager…"
 msgstr ""
 
-#: mmframe.cpp:1932 mmframe.cpp:2167 payeedialog.cpp:512
+#: mmframe.cpp:1932 mmframe.cpp:2167 payeedialog.cpp:505
 msgid "Payee Manager"
 msgstr ""
 
@@ -5668,11 +5668,11 @@ msgstr ""
 msgid "Select new account type for %s"
 msgstr ""
 
-#: mmframe.cpp:3938 payeedialog.cpp:837
+#: mmframe.cpp:3938 payeedialog.cpp:831
 msgid "Merge payees completed"
 msgstr ""
 
-#: mmframe.cpp:3942 payeedialog.cpp:841
+#: mmframe.cpp:3942 payeedialog.cpp:835
 msgid "Merge payees result"
 msgstr ""
 
@@ -6780,51 +6780,51 @@ msgstr ""
 msgid "Match Pattern"
 msgstr ""
 
-#: payeedialog.cpp:740
+#: payeedialog.cpp:734
 msgid "Payee in use."
 msgstr ""
 
-#: payeedialog.cpp:745
+#: payeedialog.cpp:739
 msgid "It will be not removed"
 msgstr ""
 
-#: payeedialog.cpp:747
+#: payeedialog.cpp:741
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
 msgstr ""
 
-#: payeedialog.cpp:749
+#: payeedialog.cpp:743
 msgid "Tools → Merge → Payees"
 msgstr ""
 
-#: payeedialog.cpp:750
+#: payeedialog.cpp:744
 msgid "Payee Manager: Delete Error"
 msgstr ""
 
-#: payeedialog.cpp:755
+#: payeedialog.cpp:749
 msgid "Deleted transactions exist which use this payee."
 msgstr ""
 
-#: payeedialog.cpp:756
+#: payeedialog.cpp:750
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
 msgstr ""
 
-#: payeedialog.cpp:758
+#: payeedialog.cpp:752
 msgid "Confirm Payee Deletion"
 msgstr ""
 
-#: payeedialog.cpp:880
+#: payeedialog.cpp:874
 msgid "Define &Category"
 msgstr ""
 
-#: payeedialog.cpp:882
+#: payeedialog.cpp:876
 msgid "Remove Ca&tegory"
 msgstr ""
 
-#: payeedialog.cpp:895
+#: payeedialog.cpp:889
 msgid "&Attachment Manager"
 msgstr ""
 
-#: payeedialog.cpp:899
+#: payeedialog.cpp:893
 msgid "Merge &Payee"
 msgstr ""
 
