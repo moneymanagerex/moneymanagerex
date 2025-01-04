@@ -139,17 +139,19 @@ table {
     std::map<int64, double> grand_total_in_base_curr_extrans; //Grand - Store transactions amount daily converted to base currency - excluding TRANSFERS
     std::map<wxString, double> values_chart; // Store grouped values for chart
 
-    const wxString RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
-    Model_CustomField::TYPE_ID UDFC01_Type = Model_CustomField::getUDFCType(RefType, "UDFC01");
-    Model_CustomField::TYPE_ID UDFC02_Type = Model_CustomField::getUDFCType(RefType, "UDFC02");
-    Model_CustomField::TYPE_ID UDFC03_Type = Model_CustomField::getUDFCType(RefType, "UDFC03");
-    Model_CustomField::TYPE_ID UDFC04_Type = Model_CustomField::getUDFCType(RefType, "UDFC04");
-    Model_CustomField::TYPE_ID UDFC05_Type = Model_CustomField::getUDFCType(RefType, "UDFC05");
-    int UDFC01_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC01"));
-    int UDFC02_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC02"));
-    int UDFC03_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC03"));
-    int UDFC04_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC04"));
-    int UDFC05_Scale = Model_CustomField::getDigitScale(Model_CustomField::getUDFCProperties(RefType, "UDFC05"));
+    const wxString refType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+    static wxArrayString udfc_fields = Model_CustomField::UDFC_FIELDS();
+    Model_CustomField::TYPE_ID udfc_type[5];
+    int udfc_scale[5];
+    for (int i = 0; i < 5; i++) {
+        // note: udfc_fields starts with ""
+        wxString field = udfc_fields[i+1];
+        udfc_type[i] = Model_CustomField::getUDFCType(refType, field);
+        udfc_scale[i] = Model_CustomField::getDigitScale(
+            Model_CustomField::getUDFCProperties(refType, field)
+        );
+    }
+
     // Display the data for each row
     for (auto& transaction : trans_)
     {
@@ -377,56 +379,37 @@ table {
 
                 // Custom Fields
 
-                const auto matrix = Model_CustomField::getMatrix(Model_Attachment::REFTYPE_ID_TRANSACTION);
-                int64 udfc01_ref_id = matrix.at("UDFC01");
-                int64 udfc02_ref_id = matrix.at("UDFC02");
-                int64 udfc03_ref_id = matrix.at("UDFC03");
-                int64 udfc04_ref_id = matrix.at("UDFC04");
-                int64 udfc05_ref_id = matrix.at("UDFC05");
-
-                transaction.UDFC01_val = -DBL_MAX;
-                transaction.UDFC02_val = -DBL_MAX;
-                transaction.UDFC03_val = -DBL_MAX;
-                transaction.UDFC04_val = -DBL_MAX;
-                transaction.UDFC05_val = -DBL_MAX;
+                int64 udfc_id[5];
+                for (int i = 0; i < 5; i++) {
+                    wxString field = udfc_fields[i+1];
+                    udfc_id[i] = Model_CustomField::getUDFCID(refType, field);
+                    transaction.UDFC_value[i] = -DBL_MAX;
+                }
 
                 if (custom_fields_data.find(transaction.TRANSID) != custom_fields_data.end()) {
                     const auto& udfcs = custom_fields_data.at(transaction.TRANSID);
-                    for (const auto& udfc : udfcs)
-                    {
-                        if (udfc.FIELDID == udfc01_ref_id) {
-                            transaction.UDFC01 = udfc.CONTENT;
-                            transaction.UDFC01_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC01_Scale > 0);
-                        }
-                        else if (udfc.FIELDID == udfc02_ref_id) {
-                            transaction.UDFC02 = udfc.CONTENT;
-                            transaction.UDFC02_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC02_Scale > 0);
-                        }
-                        else if (udfc.FIELDID == udfc03_ref_id) {
-                            transaction.UDFC03 = udfc.CONTENT;
-                            transaction.UDFC03_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC03_Scale > 0);
-                        }
-                        else if (udfc.FIELDID == udfc04_ref_id) {
-                            transaction.UDFC04 = udfc.CONTENT;
-                            transaction.UDFC04_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC04_Scale > 0);
-                        }
-                        else if (udfc.FIELDID == udfc05_ref_id) {
-                            transaction.UDFC05 = udfc.CONTENT;
-                            transaction.UDFC05_val = cleanseNumberStringToDouble(udfc.CONTENT, UDFC05_Scale > 0);
+                    for (const auto& udfc : udfcs) {
+                        for (int i = 0; i < 5; i++) {
+                            if (udfc.FIELDID == udfc_id[i]) {
+                                transaction.UDFC_content[i] = udfc.CONTENT;
+                                transaction.UDFC_value[i] = cleanseNumberStringToDouble(
+                                    udfc.CONTENT, udfc_scale[i] > 0
+                                );
+                                break;
+                            }
                         }
                     }
                 }
 
-                if (showColumnById(mmFilterTransactionsDialog::COL_UDFC01))
-                    UDFCFormatHelper(UDFC01_Type, udfc01_ref_id, transaction.UDFC01, transaction.UDFC01_val, UDFC01_Scale);
-                if (showColumnById(mmFilterTransactionsDialog::COL_UDFC02))
-                    UDFCFormatHelper(UDFC02_Type, udfc02_ref_id, transaction.UDFC02, transaction.UDFC02_val, UDFC02_Scale);
-                if (showColumnById(mmFilterTransactionsDialog::COL_UDFC03))
-                    UDFCFormatHelper(UDFC03_Type, udfc03_ref_id, transaction.UDFC03, transaction.UDFC03_val, UDFC03_Scale);
-                if (showColumnById(mmFilterTransactionsDialog::COL_UDFC04))
-                    UDFCFormatHelper(UDFC04_Type, udfc04_ref_id, transaction.UDFC04, transaction.UDFC04_val, UDFC04_Scale);
-                if (showColumnById(mmFilterTransactionsDialog::COL_UDFC05))
-                    UDFCFormatHelper(UDFC05_Type, udfc05_ref_id, transaction.UDFC05, transaction.UDFC05_val, UDFC05_Scale);                               
+                for (int i = 0; i < 5; i++) {
+                    if (showColumnById(mmFilterTransactionsDialog::COL_UDFC01 + i))
+                        UDFCFormatHelper(
+                            udfc_type[i], udfc_id[i],
+                            transaction.UDFC_content[i],
+                            transaction.UDFC_value[i],
+                            udfc_scale[i]
+                        );
+                }
             }
             hb.endTableRow();
         }

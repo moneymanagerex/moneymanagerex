@@ -708,23 +708,23 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
                 copyText_ = mmGetDateForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
             break;
         case COL_UDFC01:
-            copyText_ = menuItemText = m_trans[row].UDFC01;
+            copyText_ = menuItemText = m_trans[row].UDFC_content[0];
             rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC01"));
             break;
         case COL_UDFC02:
-            copyText_ = menuItemText = m_trans[row].UDFC02;
+            copyText_ = menuItemText = m_trans[row].UDFC_content[1];
             rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC02"));
             break;
         case COL_UDFC03:
-            copyText_ = menuItemText = m_trans[row].UDFC03;
+            copyText_ = menuItemText = m_trans[row].UDFC_content[2];
             rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC03"));
             break;
         case COL_UDFC04:
-            copyText_ = menuItemText = m_trans[row].UDFC04;
+            copyText_ = menuItemText = m_trans[row].UDFC_content[3];
             rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC04"));
             break;
         case COL_UDFC05:
-            copyText_ = menuItemText = m_trans[row].UDFC05;
+            copyText_ = menuItemText = m_trans[row].UDFC_content[4];
             rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC05"));
             break;
         default:
@@ -2115,15 +2115,15 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
             return wxString("");
         return mmGetDateForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
     case TransactionListCtrl::COL_UDFC01:
-        return UDFCFormatHelper(fused.UDFC01_Type, fused.UDFC01);
+        return UDFCFormatHelper(fused.UDFC_type[0], fused.UDFC_content[0]);
     case TransactionListCtrl::COL_UDFC02:
-        return UDFCFormatHelper(fused.UDFC02_Type, fused.UDFC02);
+        return UDFCFormatHelper(fused.UDFC_type[1], fused.UDFC_content[1]);
     case TransactionListCtrl::COL_UDFC03:
-        return UDFCFormatHelper(fused.UDFC03_Type, fused.UDFC03);
+        return UDFCFormatHelper(fused.UDFC_type[2], fused.UDFC_content[2]);
     case TransactionListCtrl::COL_UDFC04:
-        return UDFCFormatHelper(fused.UDFC04_Type, fused.UDFC04);
+        return UDFCFormatHelper(fused.UDFC_type[3], fused.UDFC_content[3]);
     case TransactionListCtrl::COL_UDFC05:
-        return UDFCFormatHelper(fused.UDFC05_Type, fused.UDFC05);
+        return UDFCFormatHelper(fused.UDFC_type[4], fused.UDFC_content[4]);
     case TransactionListCtrl::COL_UPDATEDTIME:
         datetime.ParseISOCombined(fused.LASTUPDATEDTIME);
         if (!datetime.IsValid())
