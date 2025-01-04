@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-01-04 13:05+0000\n"
+"POT-Creation-Date: 2025-01-03 10:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -136,7 +136,7 @@ msgstr ""
 #: filtertransdialog.cpp:688 filtertransdialog.cpp:1922
 #: import_export/qif_export.cpp:635 import_export/qif_import_gui.cpp:93
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:408
-#: payeedialog.cpp:115 payeedialog.cpp:457 reports/transactions.cpp:231
+#: payeedialog.cpp:115 payeedialog.cpp:457 reports/transactions.cpp:229
 #: sharetransactiondialog.cpp:266 splittransactionsdialog.cpp:95
 #: splittransactionsdialog.cpp:355 stockdialog.cpp:247 stocks_list.cpp:114
 #: transactionsupdatedialog.cpp:251 transdialog.cpp:582
@@ -232,7 +232,7 @@ msgstr ""
 msgid "Credit"
 msgstr ""
 
-#: accountdialog.cpp:258 mmcheckingpanel.cpp:756
+#: accountdialog.cpp:258 mmcheckingpanel.cpp:769
 msgid "Credit Limit:"
 msgstr ""
 
@@ -434,7 +434,7 @@ msgstr ""
 #: maincurrencydialog.cpp:270 mmchecking_list.cpp:376
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:275
 #: reports/cashflow.cpp:404 reports/incexpenses.cpp:244 reports/summary.cpp:300
-#: reports/transactions.cpp:209 stockdialog.cpp:280 stockdialog.cpp:634
+#: reports/transactions.cpp:207 stockdialog.cpp:280 stockdialog.cpp:634
 #: stockspanel.cpp:212 transactionsupdatedialog.cpp:130 transdialog.cpp:433
 #: usertransactionpanel.cpp:85 webapp.cpp:565 webappdialog.cpp:138
 #: wizard_update.cpp:140
@@ -511,7 +511,7 @@ msgstr ""
 
 #: assetspanel.cpp:60 billsdepositspanel.cpp:132 filtertrans.cpp:197
 #: import_export/qif_export.cpp:625 import_export/univcsvdialog.cpp:100
-#: mmchecking_list.cpp:374 reports/transactions.cpp:205 stocks_list.cpp:88
+#: mmchecking_list.cpp:374 reports/transactions.cpp:203 stocks_list.cpp:88
 msgid "ID"
 msgstr ""
 
@@ -522,7 +522,7 @@ msgstr ""
 #: import_export/qif_export.cpp:628 import_export/qif_import_gui.cpp:89
 #: import_export/qif_import_gui.cpp:245 import_export/univcsvdialog.cpp:103
 #: maincurrencydialog.cpp:263 mmhomepage.cpp:425 reports/incexpenses.cpp:108
-#: reports/transactions.cpp:225 transactionsupdatedialog.cpp:163
+#: reports/transactions.cpp:223 transactionsupdatedialog.cpp:163
 #: transdialog.cpp:470 usertransactionpanel.cpp:115 webappdialog.cpp:141
 msgid "Type"
 msgstr ""
@@ -596,7 +596,7 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: assetspanel.cpp:473 billsdepositspanel.cpp:306 mmcheckingpanel.cpp:623
+#: assetspanel.cpp:473 billsdepositspanel.cpp:306 mmcheckingpanel.cpp:636
 #: stockspanel.cpp:132
 msgid "&New "
 msgstr ""
@@ -615,13 +615,13 @@ msgstr ""
 
 #: assetspanel.cpp:487 attachmentdialog.cpp:351 billsdepositspanel.cpp:310
 #: categdialog.cpp:317 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
-#: mmcheckingpanel.cpp:627 payeedialog.cpp:887 stockspanel.cpp:146
+#: mmcheckingpanel.cpp:640 payeedialog.cpp:887 stockspanel.cpp:146
 #: tagdialog.cpp:128
 msgid "&Edit "
 msgstr ""
 
 #: assetspanel.cpp:492 billsdepositspanel.cpp:320 budgetyeardialog.cpp:103
-#: categdialog.cpp:321 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:619
+#: categdialog.cpp:321 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:632
 #: stockdialog.cpp:321 stockspanel.cpp:151 tagdialog.cpp:133
 msgid "&Delete "
 msgstr ""
@@ -630,13 +630,13 @@ msgstr ""
 msgid "Delete Asset"
 msgstr ""
 
-#: assetspanel.cpp:500 billsdepositspanel.cpp:338 mmcheckingpanel.cpp:655
+#: assetspanel.cpp:500 billsdepositspanel.cpp:338 mmcheckingpanel.cpp:668
 #: stockspanel.cpp:164
 msgid "Open attachments"
 msgstr ""
 
 #: assetspanel.cpp:507 assetspanel.cpp:508 categdialog.cpp:302
-#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:686 payeedialog.cpp:594
+#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:699 payeedialog.cpp:594
 #: tagdialog.cpp:113
 msgid "Search"
 msgstr ""
@@ -645,22 +645,22 @@ msgstr ""
 msgid "Enter any string to find related assets"
 msgstr ""
 
-#: assetspanel.cpp:512 filtertransdialog.cpp:694 mmcheckingpanel.cpp:690
+#: assetspanel.cpp:512 filtertransdialog.cpp:694 mmcheckingpanel.cpp:703
 #: payeedialog.cpp:137
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
 msgstr ""
 
-#: assetspanel.cpp:513 filtertransdialog.cpp:695 mmcheckingpanel.cpp:691
+#: assetspanel.cpp:513 filtertransdialog.cpp:695 mmcheckingpanel.cpp:704
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
 msgstr ""
 
-#: assetspanel.cpp:514 filtertransdialog.cpp:696 mmcheckingpanel.cpp:692
+#: assetspanel.cpp:514 filtertransdialog.cpp:696 mmcheckingpanel.cpp:705
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
 msgstr ""
 
-#: assetspanel.cpp:515 filtertransdialog.cpp:697 mmcheckingpanel.cpp:693
+#: assetspanel.cpp:515 filtertransdialog.cpp:697 mmcheckingpanel.cpp:706
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr ""
@@ -995,7 +995,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:247 import_export/qif_import_gui.cpp:258
 #: import_export/qif_import_gui.cpp:268 import_export/univcsvdialog.cpp:102
 #: import_export/univcsvdialog.cpp:511 import_export/univcsvdialog.cpp:521
-#: mmchecking_list.cpp:390 reports/transactions.cpp:219
+#: mmchecking_list.cpp:390 reports/transactions.cpp:217
 #: transactionsupdatedialog.cpp:148 transdialog.cpp:449
 #: usertransactionpanel.cpp:153 webappdialog.cpp:140 wizard_update.cpp:140
 msgid "Status"
@@ -1019,7 +1019,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:106 maincurrencydialog.cpp:626
 #: mmchecking_list.cpp:741 mmhomepage.cpp:353 mmhomepage.cpp:427
 #: reports/cashflow.cpp:408 reports/categexp.cpp:218
-#: reports/incexpenses.cpp:109 reports/transactions.cpp:227
+#: reports/incexpenses.cpp:109 reports/transactions.cpp:225
 #: splittransactionsdialog.cpp:88 splittransactionsdialog.cpp:222
 #: transactionsupdatedialog.cpp:181 transdialog.cpp:487
 #: usertransactionpanel.cpp:119 webappdialog.cpp:144
@@ -1041,7 +1041,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:85 import_export/qif_import_gui.cpp:157
 #: import_export/qif_import_gui.cpp:239 import_export/univcsvdialog.cpp:104
 #: mmchecking_list.cpp:385 reports/cashflow.cpp:405
-#: reports/transactions.cpp:215 transdialog.cpp:245 transdialog.cpp:249
+#: reports/transactions.cpp:213 transdialog.cpp:245 transdialog.cpp:249
 #: transdialog.cpp:500 transdialog.cpp:648 usertransactionpanel.cpp:89
 #: webapp.cpp:564 webappdialog.cpp:139
 msgid "Account"
@@ -1063,7 +1063,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:105 import_export/univcsvdialog.cpp:505
 #: mmchecking_list.cpp:388 model/Model_Attachment.cpp:29 payeedialog.cpp:83
 #: payeedialog.cpp:206 payeedialog.cpp:242 reports/cashflow.cpp:406
-#: reports/payee.cpp:136 reports/transactions.cpp:217
+#: reports/payee.cpp:136 reports/transactions.cpp:215
 #: transactionsupdatedialog.cpp:194 transdialog.cpp:246 transdialog.cpp:519
 #: usertransactionpanel.cpp:157 webappdialog.cpp:142
 msgid "Payee"
@@ -1079,7 +1079,7 @@ msgstr ""
 #: mmchecking_list.cpp:392 mmhomepage.cpp:190 payeedialog.cpp:201
 #: reports/budgetcategorysummary.cpp:191 reports/budgetingperf.cpp:131
 #: reports/cashflow.cpp:407 reports/categexp.cpp:217 reports/categexp.cpp:456
-#: reports/transactions.cpp:221 splittransactionsdialog.cpp:81
+#: reports/transactions.cpp:219 splittransactionsdialog.cpp:81
 #: splittransactionsdialog.cpp:220 transactionsupdatedialog.cpp:218
 #: transdialog.cpp:531 transdialog.cpp:663 usertransactionpanel.cpp:164
 #: webappdialog.cpp:143
@@ -1098,7 +1098,7 @@ msgstr ""
 #: filtertransdialog.cpp:1700 filtertransdialog.cpp:1715
 #: filtertransdialog.cpp:1904 import_export/qif_import_gui.cpp:91
 #: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:394
-#: reports/transactions.cpp:223 splittransactionsdialog.cpp:224
+#: reports/transactions.cpp:221 splittransactionsdialog.cpp:224
 #: splittransactionsdialog.cpp:567 transactionsupdatedialog.cpp:229
 #: transactionsupdatedialog.cpp:365 transdialog.cpp:545 transdialog.cpp:644
 msgid "Tags"
@@ -1112,7 +1112,7 @@ msgstr ""
 #: filtertransdialog.cpp:681 filtertransdialog.cpp:1897
 #: import_export/qif_export.cpp:634 import_export/qif_import_gui.cpp:87
 #: import_export/univcsvdialog.cpp:111 mmchecking_list.cpp:382
-#: reports/transactions.cpp:213 transdialog.cpp:558
+#: reports/transactions.cpp:211 transdialog.cpp:558
 #: usertransactionpanel.cpp:177
 msgid "Number"
 msgstr ""
@@ -1133,7 +1133,7 @@ msgstr ""
 #: billsdepositsdialog.cpp:633 filtertrans.cpp:198 filtertransdialog.cpp:701
 #: filtertransdialog.cpp:1083 filtertransdialog.cpp:1929
 #: import_export/qif_import_gui.cpp:340 import_export/univcsvdialog.cpp:451
-#: import_export/univcsvdialog.cpp:1346 reports/transactions.cpp:207
+#: import_export/univcsvdialog.cpp:1346 reports/transactions.cpp:205
 #: transactionsupdatedialog.cpp:242 transactionsupdatedialog.cpp:439
 #: transdialog.cpp:587
 msgid "Color"
@@ -1313,7 +1313,7 @@ msgstr ""
 msgid "Scheduled Transactions"
 msgstr ""
 
-#: billsdepositspanel.cpp:315 mmcheckingpanel.cpp:632
+#: billsdepositspanel.cpp:315 mmcheckingpanel.cpp:645
 msgid "D&uplicate "
 msgstr ""
 
@@ -1321,19 +1321,19 @@ msgstr ""
 msgid "Delete Scheduled Transaction"
 msgstr ""
 
-#: billsdepositspanel.cpp:325 mmcheckingpanel.cpp:640
+#: billsdepositspanel.cpp:325 mmcheckingpanel.cpp:653
 msgid "Ente&r"
 msgstr ""
 
-#: billsdepositspanel.cpp:326 mmcheckingpanel.cpp:641
+#: billsdepositspanel.cpp:326 mmcheckingpanel.cpp:654
 msgid "Enter Next Scheduled Transaction Occurrence"
 msgstr ""
 
-#: billsdepositspanel.cpp:330 mmcheckingpanel.cpp:645
+#: billsdepositspanel.cpp:330 mmcheckingpanel.cpp:658
 msgid "&Skip"
 msgstr ""
 
-#: billsdepositspanel.cpp:331 mmcheckingpanel.cpp:646
+#: billsdepositspanel.cpp:331 mmcheckingpanel.cpp:659
 msgid "Skip Next Scheduled Transaction Occurrence"
 msgstr ""
 
@@ -1868,7 +1868,7 @@ msgstr ""
 msgid "Closed"
 msgstr ""
 
-#: constants.cpp:197 mmcheckingpanel.cpp:718 mmframe.cpp:502
+#: constants.cpp:197 mmcheckingpanel.cpp:731 mmframe.cpp:502
 msgid "Favorites"
 msgstr ""
 
@@ -4187,7 +4187,7 @@ msgid "SN"
 msgstr ""
 
 #: mmchecking_list.cpp:379 model/Model_CustomField.cpp:30
-#: reports/transactions.cpp:211 transactionsupdatedialog.cpp:140
+#: reports/transactions.cpp:209 transactionsupdatedialog.cpp:140
 #: wizard_update.cpp:140
 msgid "Time"
 msgstr ""
@@ -4330,7 +4330,7 @@ msgstr ""
 msgid "Mar&k as"
 msgstr ""
 
-#: mmchecking_list.cpp:822 mmcheckingpanel.cpp:713
+#: mmchecking_list.cpp:822 mmcheckingpanel.cpp:726
 msgid "All Transactions"
 msgstr ""
 
@@ -4517,100 +4517,100 @@ msgstr ""
 msgid "View Transaction Report…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:466
+#: mmcheckingpanel.cpp:479
 msgid "&New Withdrawal…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:467
+#: mmcheckingpanel.cpp:480
 msgid "&New Deposit…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:468
+#: mmcheckingpanel.cpp:481
 msgid "&New Transfer…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:620
+#: mmcheckingpanel.cpp:633
 msgid "Delete all selected transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:624 mmframe.cpp:2165 optionsettingsmisc.cpp:100
+#: mmcheckingpanel.cpp:637 mmframe.cpp:2165 optionsettingsmisc.cpp:100
 #: transdialog.cpp:180
 msgid "New Transaction"
 msgstr ""
 
-#: mmcheckingpanel.cpp:628
+#: mmcheckingpanel.cpp:641
 msgid "Edit all selected transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:633
+#: mmcheckingpanel.cpp:646
 msgid "Duplicate selected transaction"
 msgstr ""
 
-#: mmcheckingpanel.cpp:671
+#: mmcheckingpanel.cpp:684
 msgid "&Restore "
 msgstr ""
 
-#: mmcheckingpanel.cpp:672
+#: mmcheckingpanel.cpp:685
 msgid "Restore selected transaction"
 msgstr ""
 
-#: mmcheckingpanel.cpp:689
+#: mmcheckingpanel.cpp:702
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr ""
 
-#: mmcheckingpanel.cpp:715
+#: mmcheckingpanel.cpp:728
 msgid "Deleted Transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:723
+#: mmcheckingpanel.cpp:736
 #, c-format
 msgid "Account View: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:741
+#: mmcheckingpanel.cpp:754
 msgid "Account Bal: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:744
+#: mmcheckingpanel.cpp:757
 msgid "Reconciled Bal: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:747
+#: mmcheckingpanel.cpp:760
 msgid "Diff: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:750
+#: mmcheckingpanel.cpp:763
 msgid "Filtered Flow: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:831 mmcheckingpanel.cpp:849 webapp.cpp:621
+#: mmcheckingpanel.cpp:844 webapp.cpp:621
 msgid "Attachment"
 msgstr ""
 
-#: mmcheckingpanel.cpp:897
+#: mmcheckingpanel.cpp:895
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr ""
 
-#: mmcheckingpanel.cpp:901
+#: mmcheckingpanel.cpp:899
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:907
+#: mmcheckingpanel.cpp:905
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1145
+#: mmcheckingpanel.cpp:1143
 msgid "Unable to show scheduled transactions because the current filter choice extends into the future without limit."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1146
+#: mmcheckingpanel.cpp:1144
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1147
+#: mmcheckingpanel.cpp:1145
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
@@ -7308,31 +7308,31 @@ msgstr ""
 msgid "Stocks Performance Charts"
 msgstr ""
 
-#: reports/transactions.cpp:229
+#: reports/transactions.cpp:227
 msgid "FX Rate"
 msgstr ""
 
-#: reports/transactions.cpp:445
+#: reports/transactions.cpp:462
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
 msgstr ""
 
-#: reports/transactions.cpp:463
+#: reports/transactions.cpp:480
 msgid "All Transactions excluding Transfers"
 msgstr ""
 
-#: reports/transactions.cpp:504
+#: reports/transactions.cpp:521
 msgid "Statistics"
 msgstr ""
 
-#: reports/transactions.cpp:527
+#: reports/transactions.cpp:544
 msgid "Minimum"
 msgstr ""
 
-#: reports/transactions.cpp:529
+#: reports/transactions.cpp:546
 msgid "Maximum"
 msgstr ""
 
-#: reports/transactions.cpp:531
+#: reports/transactions.cpp:548
 msgid "Average"
 msgstr ""
 
