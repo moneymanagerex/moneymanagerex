@@ -1819,7 +1819,7 @@ void mmUnivCSVDialog::update_preview()
                     colCount++;
                 }
 
-                auto content = pImporter->GetItem(row, col);
+                auto content = pImporter->GetItem(row, col).Trim().Trim(false);
                 
                 // add payee names to list
                 if (row >= firstRow
@@ -2399,7 +2399,7 @@ void mmUnivCSVDialog::validateCategories() {
 void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_holder& holder)
 {
     if (orig_token.IsEmpty()) return;
-    wxString token = orig_token;
+    wxString token = orig_token.Strip(wxString::leading).Strip(wxString::trailing);
 
     double amount;
 
@@ -2460,7 +2460,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             wxStringTokenizer tokenizer = wxStringTokenizer(token, ":");
             while (tokenizer.HasMoreTokens())
             {
-                wxString categname = tokenizer.GetNextToken();
+                wxString categname = tokenizer.GetNextToken().Trim().Trim(false);
                 category = Model_Category::instance().get(categname, parentID);
                 if (!category)
                 {
@@ -2507,7 +2507,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     case UNIV_CSV_TAGS:
     {
         // split the tag string at space characters
-        wxStringTokenizer tokenizer = wxStringTokenizer(token.Trim(false).Trim(), " ");
+        wxStringTokenizer tokenizer = wxStringTokenizer(token, " ");
         while (tokenizer.HasMoreTokens())
         {
             wxString tagname = tokenizer.GetNextToken();
