@@ -650,7 +650,7 @@ void mmPayeeDialog::fillControls()
         payeeListBox_->InsertItem(item);
         const wxString full_category_name = Model_Category::instance().full_name(payee.CATEGID);
         payeeListBox_->SetItem(idx, 0, payee.PAYEENAME);
-        if (!m_init_selected_payee.IsEmpty() && payee.PAYEENAME.CmpNoCase(m_init_selected_payee) <= 0) {
+        if (!m_init_selected_payee.IsEmpty() && payee.PAYEENAME.CmpNoCase(m_init_selected_payee) == 0) {
             payeeListBox_->Select(idx);
         }
         payeeListBox_->SetItem(idx, 1, payee.ACTIVE == 0 ? L"\u2713" : L"");        
