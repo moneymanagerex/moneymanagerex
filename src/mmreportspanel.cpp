@@ -570,13 +570,13 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
         {
             switch (i++) {
             case 0:
-                catID = wxAtoi(tokenizer.GetNextToken());
+                catID = std::stoll(tokenizer.GetNextToken().ToStdString());
                 break;
             case 1:
-                subCatID = wxAtoi(tokenizer.GetNextToken());
+                subCatID = std::stoll(tokenizer.GetNextToken().ToStdString());
                 break;
             case 2:
-                payeeID = wxAtoi(tokenizer.GetNextToken());
+                payeeID = std::stoll(tokenizer.GetNextToken().ToStdString());
                 break;
             default:
                 break;
