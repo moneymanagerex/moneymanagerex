@@ -236,6 +236,12 @@ void TransactionListCtrl::sortTable()
 {
     if (m_trans.empty()) return;
 
+    if (std::find(m_real_columns.begin(), m_real_columns.end(), g_sortcol) == m_real_columns.end())
+        g_sortcol = COL_def_sort;
+
+    if (std::find(m_real_columns.begin(), m_real_columns.end(), prev_g_sortcol) == m_real_columns.end())
+        prev_g_sortcol = COL_def_sort2;
+
     SortTransactions(prev_g_sortcol, prev_g_asc);
     SortTransactions(g_sortcol, g_asc);
 
