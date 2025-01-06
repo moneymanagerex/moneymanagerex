@@ -922,6 +922,11 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
 
 void mmCheckingPanel::showTips()
 {
+    if (m_show_tips) {
+        m_show_tips = false;
+        return;
+    }
+
     if (Option::instance().getShowMoneyTips())
         m_info_panel->SetLabelText(
             wxGetTranslation(wxString::FromUTF8(
@@ -931,6 +936,15 @@ void mmCheckingPanel::showTips()
         );
     else
         m_info_panel->SetLabelText("");
+}
+
+void mmCheckingPanel::showTips(const wxString& tip)
+{
+    if (Option::instance().getShowMoneyTips())
+        m_info_panel->SetLabelText(tip);
+    else
+        m_info_panel->SetLabelText("");
+    m_show_tips = true;
 }
 //----------------------------------------------------------------------------
 

@@ -130,6 +130,7 @@ private:
     double m_account_balance = 0.0;
     double m_account_reconciled = 0.0;
     bool m_show_reconciled;
+    bool m_show_tips = false;
     TransactionListCtrl* m_listCtrlAccount = nullptr;
 
     int64 m_account_id = -1;                    // applicable if m_checking_id >= 1
@@ -180,6 +181,7 @@ private:
 
     /* updates the checking panel data */
     void showTips();
+    void showTips(const wxString& tip);
     void updateScheduledToolTip();
     void updateExtraTransactionData(bool single, int repeat_num, bool foreign);
     void enableButtons(bool edit, bool dup, bool del, bool enter, bool skip, bool attach);

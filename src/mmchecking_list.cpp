@@ -245,7 +245,11 @@ void TransactionListCtrl::sortTable()
         m_columns[prev_g_sortcol].HEADER, prev_g_asc ? L"\u25B2" : L"\u25BC"
     );
     m_cp->m_header_sortOrder->SetLabelText(sortText);
-    
+
+    if (m_real_columns[g_sortcol] == COL_SN || m_real_columns[prev_g_sortcol] == COL_SN) {
+        m_cp->showTips(_("SN (Sequence Number) has the same order as Date/ID."));
+    }
+
     RefreshItems(0, m_trans.size() - 1);
 }
 
