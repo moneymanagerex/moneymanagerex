@@ -222,7 +222,7 @@ void mmUnivCSVDialog::CreateControls()
     if (!account_default_presets.Parse(Model_Infotable::instance().GetStringInfo((IsCSV() ? "CSV_ACCOUNT_PRESETS" : "XML_ACCOUNT_PRESETS"), "{}").utf8_str()).HasParseError())
     {
         for (const auto& member : account_default_presets.GetObject()) {
-            m_acct_default_preset[std::stoi(member.name.GetString())] = member.value.GetString();
+            m_acct_default_preset[std::stoll(member.name.GetString())] = member.value.GetString();
         }
     }
 
