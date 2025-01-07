@@ -616,7 +616,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     unsigned long column = getColumnFromPosition(event.GetX());
     int flags;
     unsigned long row = HitTest(event.GetPosition(), flags);
-    if ((flags & wxLIST_HITTEST_ONITEM) && column < m_columns.size()) {
+    if (row < m_trans.size() && (flags & wxLIST_HITTEST_ONITEM) && column < m_columns.size()) {
         wxString menuItemText;
         wxString refType = Model_Attachment::REFTYPE_STR_TRANSACTION;
         wxDateTime datetime;
