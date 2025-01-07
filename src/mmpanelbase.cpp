@@ -368,7 +368,8 @@ std::vector<int> mmListCtrl::GetColumnOrder()
     std::vector<int> columnOrder;
     for (const auto& col_enum : columnStringList)
     {
-        columnOrder.push_back(std::atoi(col_enum.c_str()));
+        if (std::find(m_real_columns.begin(), m_real_columns.end(), wxAtoi(col_enum)) != m_real_columns.end())
+            columnOrder.push_back(wxAtoi(col_enum));
     }
 
     // add missing column enums
