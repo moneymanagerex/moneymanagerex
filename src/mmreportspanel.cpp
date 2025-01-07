@@ -570,13 +570,13 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
         {
             switch (i++) {
             case 0:
-                catID = wxAtoi(tokenizer.GetNextToken());
+                catID = std::stoll(tokenizer.GetNextToken().ToStdString());
                 break;
             case 1:
-                subCatID = wxAtoi(tokenizer.GetNextToken());
+                subCatID = std::stoll(tokenizer.GetNextToken().ToStdString());
                 break;
             case 2:
-                payeeID = wxAtoi(tokenizer.GetNextToken());
+                payeeID = std::stoll(tokenizer.GetNextToken().ToStdString());
                 break;
             default:
                 break;
@@ -709,14 +709,14 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
         }
            
         //get model budget for yearID and catID
-        Model_Budget::Data_Set budget = Model_Budget::instance().find(Model_Budget::BUDGETYEARID(budgetYearID), Model_Budget::CATEGID(std::stoi(parms[2])));
+        Model_Budget::Data_Set budget = Model_Budget::instance().find(Model_Budget::BUDGETYEARID(budgetYearID), Model_Budget::CATEGID(std::stoll(parms[2])));
         
         Model_Budget::Data* entry = 0;
         if (budget.empty())
         {
             entry = Model_Budget::instance().create();
             entry->BUDGETYEARID = budgetYearID;
-            entry->CATEGID = std::stoi(parms[2]);
+            entry->CATEGID = std::stoll(parms[2]);
             entry->PERIOD = "";
             entry->AMOUNT = 0.0;
             entry->ACTIVE = 1;
