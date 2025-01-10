@@ -621,8 +621,6 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         wxString refType = Model_Attachment::REFTYPE_STR_TRANSACTION;
         wxDateTime datetime;
         wxString dateFormat = Option::instance().getDateFormat();
-        bool is_transfer = Model_Checking::is_transfer(m_trans[row].TRANSCODE)
-            && m_cp->m_account_id != m_trans[row].ACCOUNTID;
 
         switch (m_real_columns[column]) {
         case COL_SN:

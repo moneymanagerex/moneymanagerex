@@ -1505,7 +1505,7 @@ int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tr
 
 int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tran, const std::map<int64, Model_Splittransaction::Data_Set>& splits)
 {
-    const Model_Splittransaction::Data_Set* split;
+    const Model_Splittransaction::Data_Set* split = nullptr;
     const auto& it = splits.find(tran.id());
     if (it != splits.end())
         split = &(it->second);

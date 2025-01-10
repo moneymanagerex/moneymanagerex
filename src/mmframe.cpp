@@ -1562,8 +1562,8 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
     case mmTreeItemData::HELP_REPORT:
         return mmDoHideReportsDialog();
     case mmTreeItemData::STOCK: {
-        int64 id = iData->getId();
-        Model_Account::Data* account = Model_Account::instance().get(id);
+        int64 acct_id = iData->getId();
+        Model_Account::Data* account = Model_Account::instance().get(acct_id);
         if (account) {
             menu.Append(
                 MENU_TREEPOPUP_EDIT,
@@ -1582,9 +1582,9 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         break;
     }
     case mmTreeItemData::CHECKING: {
-        int64 id = iData->getId();
-        if (id >= 1) { // isAccount
-            Model_Account::Data* account = Model_Account::instance().get(id);
+        int64 acct_id = iData->getId();
+        if (acct_id >= 1) { // isAccount
+            Model_Account::Data* account = Model_Account::instance().get(acct_id);
             if (!account)
                 break;
             menu.Append(
@@ -1612,7 +1612,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             AppendImportMenu(menu);
             PopupMenu(&menu, pt);
         }
-        else if (id == -1 || id <= -3) { // isAllTrans, isGroup
+        else if (acct_id == -1 || acct_id <= -3) { // isAllTrans, isGroup
             menu.Append(
                 MENU_TREEPOPUP_ACCOUNT_NEW,
                 wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Account…")))
