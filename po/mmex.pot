@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-01-07 23:32+0000\n"
+"POT-Creation-Date: 2025-01-10 15:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1017,7 +1017,7 @@ msgstr ""
 #: budgetingpanel.cpp:293 filtertrans.cpp:206 filtertransdialog.cpp:1063
 #: filtertransdialog.cpp:1073 import_export/qif_export.cpp:632
 #: import_export/univcsvdialog.cpp:106 maincurrencydialog.cpp:626
-#: mmchecking_list.cpp:752 mmhomepage.cpp:353 mmhomepage.cpp:427
+#: mmchecking_list.cpp:750 mmhomepage.cpp:353 mmhomepage.cpp:427
 #: reports/cashflow.cpp:408 reports/categexp.cpp:218
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:227
 #: splittransactionsdialog.cpp:88 splittransactionsdialog.cpp:222
@@ -2510,7 +2510,7 @@ msgstr ""
 msgid "Reconciled"
 msgstr ""
 
-#: filtertransdialog.cpp:49 mmchecking_list.cpp:1438
+#: filtertransdialog.cpp:49 mmchecking_list.cpp:1436
 #: model/Model_Checking.cpp:41
 msgid "Unreconciled"
 msgstr ""
@@ -2527,7 +2527,7 @@ msgstr ""
 msgid "Duplicate"
 msgstr ""
 
-#: filtertransdialog.cpp:50 mmchecking_list.cpp:1429
+#: filtertransdialog.cpp:50 mmchecking_list.cpp:1427
 #: model/Model_Checking.cpp:44
 msgid "Follow Up"
 msgstr ""
@@ -4273,131 +4273,131 @@ msgstr[1] ""
 msgid "Restore &all transactions in current view…"
 msgstr ""
 
-#: mmchecking_list.cpp:751
+#: mmchecking_list.cpp:749
 #, c-format
 msgid "&Find all transactions with %s '%s'"
 msgstr ""
 
-#: mmchecking_list.cpp:757
+#: mmchecking_list.cpp:755
 msgid "Cop&y Text to Clipboard"
 msgstr ""
 
-#: mmchecking_list.cpp:766
+#: mmchecking_list.cpp:764
 msgid "&Delete selected transaction…"
 msgid_plural "&Delete selected transactions…"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:767
+#: mmchecking_list.cpp:765
 msgid "&Permanently delete selected transaction…"
 msgid_plural "&Permanently delete selected transactions…"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:775
+#: mmchecking_list.cpp:773
 msgid "Delete &all transactions in current view…"
 msgstr ""
 
-#: mmchecking_list.cpp:776
+#: mmchecking_list.cpp:774
 msgid "Permanently delete &all transactions in current view…"
 msgstr ""
 
-#: mmchecking_list.cpp:781
+#: mmchecking_list.cpp:779
 msgid "Delete Viewed “&Follow Up” Transactions…"
 msgstr ""
 
-#: mmchecking_list.cpp:785
+#: mmchecking_list.cpp:783
 msgid "Delete Viewed “&Unreconciled” Transactions…"
 msgstr ""
 
-#: mmchecking_list.cpp:788
+#: mmchecking_list.cpp:786
 msgid "De&lete "
 msgstr ""
 
-#: mmchecking_list.cpp:794
+#: mmchecking_list.cpp:792
 msgid "&Unreconciled"
 msgstr ""
 
-#: mmchecking_list.cpp:797
+#: mmchecking_list.cpp:795
 msgid "&Reconciled"
 msgstr ""
 
-#: mmchecking_list.cpp:800
+#: mmchecking_list.cpp:798
 msgid "&Void"
 msgstr ""
 
-#: mmchecking_list.cpp:803
+#: mmchecking_list.cpp:801
 msgid "&Follow Up"
 msgstr ""
 
-#: mmchecking_list.cpp:806
+#: mmchecking_list.cpp:804
 msgid "D&uplicate"
 msgstr ""
 
-#: mmchecking_list.cpp:809
+#: mmchecking_list.cpp:807
 msgid "Mar&k as"
 msgstr ""
 
-#: mmchecking_list.cpp:833 mmcheckingpanel.cpp:713
+#: mmchecking_list.cpp:831 mmcheckingpanel.cpp:713
 msgid "All Transactions"
 msgstr ""
 
-#: mmchecking_list.cpp:1315
+#: mmchecking_list.cpp:1313
 msgid "Do you really want to restore all of the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1316 mmchecking_list.cpp:1367
+#: mmchecking_list.cpp:1314 mmchecking_list.cpp:1365
 msgid "Confirm Transaction Restore"
 msgstr ""
 
-#: mmchecking_list.cpp:1358
+#: mmchecking_list.cpp:1356
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1411
+#: mmchecking_list.cpp:1409
 msgid "Do you really want to delete all the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1412
+#: mmchecking_list.cpp:1410
 msgid "Do you really want to permanently delete all the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1416 mmchecking_list.cpp:1512
+#: mmchecking_list.cpp:1414 mmchecking_list.cpp:1510
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr ""
 
-#: mmchecking_list.cpp:1417 mmchecking_list.cpp:1511
+#: mmchecking_list.cpp:1415 mmchecking_list.cpp:1509
 msgid "Unable to undo this action."
 msgstr ""
 
-#: mmchecking_list.cpp:1421 mmchecking_list.cpp:1430 mmchecking_list.cpp:1439
-#: mmchecking_list.cpp:1516
+#: mmchecking_list.cpp:1419 mmchecking_list.cpp:1428 mmchecking_list.cpp:1437
+#: mmchecking_list.cpp:1514
 msgid "Confirm Transaction Deletion"
 msgstr ""
 
-#: mmchecking_list.cpp:1429 mmchecking_list.cpp:1438
+#: mmchecking_list.cpp:1427 mmchecking_list.cpp:1436
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1503
+#: mmchecking_list.cpp:1501
 #, c-format
 msgid "Do you really want to permanently delete the selected transaction?"
 msgid_plural "Do you really want to permanently delete %i selected transactions?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1507
+#: mmchecking_list.cpp:1505
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1575
+#: mmchecking_list.cpp:1573
 #, c-format
 msgid ""
 "Locked transaction to date: %s\n"
@@ -4405,67 +4405,67 @@ msgid ""
 "Reconciled transactions."
 msgstr ""
 
-#: mmchecking_list.cpp:1578 transdialog.cpp:751 transdialog.cpp:776
+#: mmchecking_list.cpp:1576 transdialog.cpp:751 transdialog.cpp:776
 msgid "MMEX Transaction Check"
 msgstr ""
 
-#: mmchecking_list.cpp:1607
+#: mmchecking_list.cpp:1605
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1609
+#: mmchecking_list.cpp:1607
 msgid ""
 "\n"
 "\n"
 "Do you still want to perform the edit?"
 msgstr ""
 
-#: mmchecking_list.cpp:1610
+#: mmchecking_list.cpp:1608
 msgid "Closed Account Check"
 msgstr ""
 
-#: mmchecking_list.cpp:1810
+#: mmchecking_list.cpp:1808
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1815
+#: mmchecking_list.cpp:1813
 msgid "Confirm Transaction Move"
 msgstr ""
 
-#: mmchecking_list.cpp:1820
+#: mmchecking_list.cpp:1818
 #, c-format
 msgid "Moving transaction to…"
 msgid_plural "Moving %i transactions to…"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1824 stocks_list.cpp:312
+#: mmchecking_list.cpp:1822 stocks_list.cpp:312
 msgid "Select the destination Account "
 msgstr ""
 
-#: mmchecking_list.cpp:1855
+#: mmchecking_list.cpp:1853
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
 msgstr ""
 
-#: mmchecking_list.cpp:1856
+#: mmchecking_list.cpp:1854
 msgid "Moved"
 msgstr ""
 
-#: mmchecking_list.cpp:1857
+#: mmchecking_list.cpp:1855
 msgid "Not moved"
 msgstr ""
 
-#: mmchecking_list.cpp:1860
+#: mmchecking_list.cpp:1858
 msgid "Unable to move some transactions."
 msgstr ""
 
-#: mmchecking_list.cpp:1927
+#: mmchecking_list.cpp:1925
 msgid "Scheduled transaction saved."
 msgstr ""
 
