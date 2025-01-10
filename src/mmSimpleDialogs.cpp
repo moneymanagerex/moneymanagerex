@@ -610,12 +610,14 @@ mmDatePickerCtrl::mmDatePickerCtrl(wxWindow* parent, wxWindowID id, wxDateTime d
     : wxPanel(parent, id, pos, size, style)
     , dt_(dt), parent_(parent)
 {
+    wxLogDebug(dt.FormatISOCombined());
     if (!dt.IsValid())
         dt_ = wxDateTime::Now();
     wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
     SetSizer(sizer);
     datePicker_ = new wxDatePickerCtrl(this, id, dt, wxDefaultPosition, wxDefaultSize, style);
     datePicker_->SetRange(wxDateTime(), DATE_MAX);
+    SetValue(dt_);
     datePicker_->Bind(wxEVT_DATE_CHANGED, &mmDatePickerCtrl::OnDateChanged, this);
     sizer->Add(datePicker_);
 }
@@ -663,8 +665,8 @@ wxSpinButton* mmDatePickerCtrl::getSpinButton()
 
 void mmDatePickerCtrl::SetValue(const wxDateTime &dt)
 {
-    if (dt > DATE_MAX)
-        datePicker_->SetValue(DATE_MAX);
+    if (dt > DATE_MAX.GetDateOnly())
+        datePicker_->SetValue(DATE_MAX.GetDateOnly());
     else
         datePicker_->SetValue(dt);
 
