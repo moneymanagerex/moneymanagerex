@@ -261,7 +261,7 @@ void mmCheckingPanel::filterTable()
     auto trans_it = trans.begin();
     auto bills_it = bills_index.begin();
     while (trans_it != trans.end() || bills_it != bills_index.end()) {
-        int bill_i;
+        int bill_i = 0;
         wxString tran_date;
         int repeat_num = 0;
         Model_Checking::Data bill_tran;
@@ -295,7 +295,7 @@ void mmCheckingPanel::filterTable()
             break;
 
         // update m_account_balance even if tran is filtered out
-        double account_flow;
+        double account_flow = 0.0;
         if (isAccount()) {
             // assertion: tran->DELETEDTIME.IsEmpty()
             account_flow = Model_Checking::account_flow(tran, m_account_id);
