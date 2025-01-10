@@ -215,6 +215,7 @@ const wxString ATTACHMENTS_FOLDER_APPDATA = "%APPDATA%";
 
 const wxString INIDB_NEWS_LAST_READ_DATE = "NEWS_LAST_READ_DATE";
 
+const wxDateTime DATE_MAX = wxDateTime(32503679999).ToUTC() /* Dec 31, 2999 23:59:59 UTC*/;
 
 const wxString g_fiat_curr()
 {
