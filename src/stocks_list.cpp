@@ -143,16 +143,16 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
     bool hide_menu_item = (m_selected_row < 0);
 
     wxMenu menu;
-    menu.Append(MENU_TREEPOPUP_NEW, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Stock Investment…"))));
+    menu.Append(MENU_TREEPOPUP_NEW, _u("&New Stock Investment…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ADDTRANS, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Add Stock Transactions…"))));
+    menu.Append(MENU_TREEPOPUP_ADDTRANS, _u("&Add Stock Transactions…"));
     menu.Append(MENU_TREEPOPUP_VIEWTRANS, _("&View Stock Transactions"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_EDIT, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Edit Stock Investment…"))));
+    menu.Append(MENU_TREEPOPUP_EDIT, _u("&Edit Stock Investment…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_DELETE, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Delete Stock Investment…"))));
+    menu.Append(MENU_TREEPOPUP_DELETE, _u("&Delete Stock Investment…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Organize Attachments…"))));
+    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _u("&Organize Attachments…"));
     menu.Append(wxID_INDEX, _("Stock &Web Page"));
 
     menu.Enable(MENU_TREEPOPUP_EDIT, !hide_menu_item);

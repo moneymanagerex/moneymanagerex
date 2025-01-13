@@ -69,5 +69,8 @@
 #pragma warning (disable:4100)
 #endif
 
+#define wxPLURAL_U8(singular, plural, n) wxPLURAL(wxString::FromUTF8(singular), wxString::FromUTF8(plural), n)
+#define _u(unicode_string) wxGetTranslation(wxString::FromUTF8(wxTRANSLATE(unicode_string)))
+
 #endif // MM_EX_DEFS_H_
 

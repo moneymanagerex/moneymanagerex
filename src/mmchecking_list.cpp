@@ -39,7 +39,7 @@
 #include <algorithm>
 #include <wx/sound.h>
 //----------------------------------------------------------------------------
-#define wxPLURAL_U8(singular, plural, n) wxPLURAL(wxString::FromUTF8(singular), wxString::FromUTF8(plural), n)
+
 wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY, TransactionListCtrl::OnListItemActivated)
     EVT_LIST_ITEM_SELECTED(wxID_ANY, TransactionListCtrl::OnListItemSelected)
@@ -535,10 +535,10 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     }
     wxMenu menu;
     if (!m_cp->isDeletedTrans()) {
-        menu.Append(MENU_TREEPOPUP_WITHDRAWAL, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("New &Withdrawal…"))));
-        menu.Append(MENU_TREEPOPUP_DEPOSIT, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("New &Deposit…"))));
+        menu.Append(MENU_TREEPOPUP_WITHDRAWAL, _u("New &Withdrawal…"));
+        menu.Append(MENU_TREEPOPUP_DEPOSIT, _u("New &Deposit…"));
         if (Model_Account::instance().all_checking_account_names(true).size() > 1)
-            menu.Append(MENU_TREEPOPUP_TRANSFER, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("New &Transfer…"))));
+            menu.Append(MENU_TREEPOPUP_TRANSFER, _u("New &Transfer…"));
 
         menu.AppendSeparator();
 
@@ -565,7 +565,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
                 menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
         }
 
-        menu.Append(MENU_ON_DUPLICATE_TRANSACTION, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("D&uplicate Transaction…"))));
+        menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _u("D&uplicate Transaction…"));
         if (is_nothing_selected || multiselect)
             menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
 
@@ -583,13 +583,13 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         if (is_nothing_selected || multiselect || have_category)
             menu.Enable(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, false);
 
-        menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Organize Attachments…"))));
+        menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _u("&Organize Attachments…"));
         if (is_nothing_selected || multiselect)
             menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
 
         menu.Append(
             MENU_TREEPOPUP_CREATE_REOCCURANCE,
-            wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Create Scheduled T&ransaction…")))
+            _u("Create Scheduled T&ransaction…")
         );
         if (is_nothing_selected || multiselect)
             menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
@@ -603,7 +603,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
             menu.Enable(MENU_TREEPOPUP_RESTORE, false);
         menu.Append(
             MENU_TREEPOPUP_RESTORE_VIEWED,
-            wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Restore &all transactions in current view…")))
+            _u("Restore &all transactions in current view…")
         );
     }
     bool columnIsAmount = false;
@@ -764,17 +764,17 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     subGlobalOpMenuDelete->Append(
         MENU_TREEPOPUP_DELETE_VIEWED,
         !m_cp->isDeletedTrans() ?
-            wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Delete &all transactions in current view…"))) :
-            wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Permanently delete &all transactions in current view…")))
+            _u("Delete &all transactions in current view…") :
+            _u("Permanently delete &all transactions in current view…")
     );
     if (!m_cp->isDeletedTrans()) {
         subGlobalOpMenuDelete->Append(
             MENU_TREEPOPUP_DELETE_FLAGGED,
-            wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Delete Viewed “&Follow Up” Transactions…")))
+            _u("Delete Viewed “&Follow Up” Transactions…")
         );
         subGlobalOpMenuDelete->Append(
             MENU_TREEPOPUP_DELETE_UNRECONCILED,
-            wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Delete Viewed “&Unreconciled” Transactions…")))
+            _u("Delete Viewed “&Unreconciled” Transactions…")
         );
     }
     menu.Append(MENU_TREEPOPUP_DELETE2, _("De&lete "), subGlobalOpMenuDelete);

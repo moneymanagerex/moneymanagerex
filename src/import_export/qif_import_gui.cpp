@@ -132,7 +132,7 @@ void mmQIFImportDialog::CreateControls()
     file_name_ctrl_->Connect(wxID_FILE
         , wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(mmQIFImportDialog::OnFileNameChanged), nullptr, this);
 
-    button_search_ = new wxButton(file_panel, wxID_OPEN, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Browse…"))));
+    button_search_ = new wxButton(file_panel, wxID_OPEN, _u("&Browse…"));
     itemBoxSizer7->Add(button_search_, g_flagsH);
     button_search_->Connect(wxID_OPEN, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFImportDialog::OnFileSearch), nullptr, this);

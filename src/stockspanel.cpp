@@ -449,7 +449,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
     }
 
     refresh_button_->SetBitmapLabel(mmBitmapBundle(png::LED_YELLOW, mmBitmapButtonSize));
-    stock_details_->SetLabelText(wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Connecting…"))));
+    stock_details_->SetLabelText(_u("Connecting…"));
 
     std::map<wxString, double > stocks_data;
     bool ok = get_yahoo_prices(symbols, stocks_data, base_currency_symbol, msg, yahoo_price_type::SHARES);

@@ -729,18 +729,18 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     Model_Report::Data *report = Model_Report::instance().get(report_id);
 
     wxMenu* samplesMenu = new wxMenu;
-    samplesMenu->Append(ID_NEW_SAMPLE_ASSETS, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Assets…"))));
+    samplesMenu->Append(ID_NEW_SAMPLE_ASSETS, _u("Assets…"));
 
     wxMenu customReportMenu;
-    customReportMenu.Append(ID_NEW_EMPTY, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("New Empty Report…"))));
+    customReportMenu.Append(ID_NEW_EMPTY, _u("New Empty Report…"));
     customReportMenu.Append(wxID_ANY, _("New Sample Report"), samplesMenu);
     customReportMenu.AppendSeparator();
     if (report)
-        customReportMenu.Append(ID_GROUP, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Change Group…"))));
+        customReportMenu.Append(ID_GROUP, _u("Change Group…"));
     else
-        customReportMenu.Append(ID_GROUP, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Rename Group…"))));
+        customReportMenu.Append(ID_GROUP, _u("Rename Group…"));
     customReportMenu.Append(ID_UNGROUP, _("UnGroup"));
-    customReportMenu.Append(ID_RENAME, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Rename Report…"))));
+    customReportMenu.Append(ID_RENAME, _u("Rename Report…"));
     customReportMenu.AppendSeparator();
 
     wxMenuItem* menuItemActive = new wxMenuItem(&customReportMenu, ID_ACTIVE,
@@ -748,7 +748,7 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     customReportMenu.Append(menuItemActive);
 
     customReportMenu.AppendSeparator();
-    customReportMenu.Append(ID_DELETE, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Delete Report…"))));
+    customReportMenu.Append(ID_DELETE, _u("Delete Report…"));
 
     if (report)
     {
