@@ -97,19 +97,19 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
     }
     m_panel->updateExtraAssetData(m_selected_row);
     wxMenu menu;
-    menu.Append(MENU_TREEPOPUP_NEW, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Asset…"))));
+    menu.Append(MENU_TREEPOPUP_NEW, _u("&New Asset…"))));
     menu.AppendSeparator();
-    menu.Append(MENU_ON_DUPLICATE_TRANSACTION, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("D&uplicate Asset…"))));
+    menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _u("D&uplicate Asset…"))));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ADDTRANS, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Add Asset Transaction…"))));
+    menu.Append(MENU_TREEPOPUP_ADDTRANS, _u("&Add Asset Transaction…"))));
     menu.Append(MENU_TREEPOPUP_VIEWTRANS, _("&View Asset Transactions"));
-    menu.Append(MENU_TREEPOPUP_GOTOACCOUNT, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Open Asset Account…"))));
+    menu.Append(MENU_TREEPOPUP_GOTOACCOUNT, _u("&Open Asset Account…"))));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_EDIT, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Edit Asset…"))));
+    menu.Append(MENU_TREEPOPUP_EDIT, _u("&Edit Asset…"))));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_DELETE, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Delete Asset…"))));
+    menu.Append(MENU_TREEPOPUP_DELETE, _u("&Delete Asset…"))));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Organize Attachments…"))));
+    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _u("&Organize Attachments…"))));
     if (m_selected_row < 0)
     {
         menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
@@ -509,10 +509,10 @@ void mmAssetsPanel::CreateControls()
     itemBoxSizer5->Add(searchCtrl, 0, wxCENTER, 1);
     mmToolTip(searchCtrl,
         _("Enter any string to find related assets") + "\n\n" +
-        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria."))) + "\n" +
-        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”."))) + "\n" +
-        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”."))) + "\n" +
-        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Use the asterisk (*) at the beginning to find any string in the middle of the sentence."))) + "\n" +
+        _u("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria."))) + "\n" +
+        _u("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”."))) + "\n" +
+        _u("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”."))) + "\n" +
+        _u("Use the asterisk (*) at the beginning to find any string in the middle of the sentence."))) + "\n" +
         _("Use regex: to match using regular expressions."));
     );
 
