@@ -442,9 +442,9 @@ void mmCheckingPanel::OnButtonRightDown(wxMouseEvent& event)
     case wxID_NEW:
     {
         wxMenu menu;
-        menu.Append(Model_Checking::TYPE_ID_WITHDRAWAL, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Withdrawal…"))));
-        menu.Append(Model_Checking::TYPE_ID_DEPOSIT, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Deposit…"))));
-        menu.Append(Model_Checking::TYPE_ID_TRANSFER, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Transfer…"))));
+        menu.Append(Model_Checking::TYPE_ID_WITHDRAWAL, _u("&New Withdrawal…"));
+        menu.Append(Model_Checking::TYPE_ID_DEPOSIT, _u("&New Deposit…"));
+        menu.Append(Model_Checking::TYPE_ID_TRANSFER, _u("&New Transfer…"));
         PopupMenu(&menu);
     }
     default:
@@ -633,10 +633,10 @@ void mmCheckingPanel::CreateControls()
     sizerHButtons->Add(searchCtrl, g_flagsExpandBorder1);
     mmToolTip(searchCtrl,
         _("Enter any string to find it in the nearest transaction data") + "\n\n" +
-        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria."))) + "\n" +
-        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”."))) + "\n" +
-        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”."))) + "\n" +
-        wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Use the asterisk (*) at the beginning to find any string in the middle of the sentence."))) + "\n" +
+        _u("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
+        _u("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
+        _u("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
+        _u("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.") + "\n" +
         _("Use regex: to match using regular expressions.")
     );
 
