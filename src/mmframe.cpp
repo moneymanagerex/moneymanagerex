@@ -2284,7 +2284,8 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
                 int response = wxMessageBox(_(
                     "Attempting to open a database that has been marked as opened by another instance of MMEX.\n"
                     "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
-                    "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
+                    "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.") +
+                    "\n\n" +
                     "Do you want to open the database?")
                     , _("MMEX Instance Check"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
                 if (response == wxNO)
