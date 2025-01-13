@@ -444,7 +444,7 @@ void mmCategDialog::OnEndDrag(wxTreeEvent& event)
     }
 
     wxString moveMessage = wxString::Format(
-        _("Do you want to to move\n\"%1$s\"\nto:\n\"%2$s\"?")
+        _u("Do you want to to move\n“%1$s”\nto:\n“%2$s”?")
         , Model_Category::full_name(m_dragSourceCATEGID)
         , categID != -1 ? Model_Category::full_name(categID) : _("Top level"));
     wxMessageDialog msgDlg(this, moveMessage, _("Confirm Move"),
