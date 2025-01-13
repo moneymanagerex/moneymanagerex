@@ -19,14 +19,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "mmDateRange.h"
+#include "constants.h"
 #include "option.h"
 #include <wx/intl.h>
 
-#define DATE_MAX 32503679999 /* Dec 31, 2999 23:59:59 UTC*/
-
 mmDateRange::mmDateRange() : today_(wxDateTime::Today())
     , today_end_(wxDateTime(23, 59, 59, 999))
-    , future_(wxDateTime(DATE_MAX).ToUTC())
+    , future_(DATE_MAX)
     , futureIgnored_(false)
 {
     start_date_ = today_;

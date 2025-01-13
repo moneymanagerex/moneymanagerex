@@ -610,11 +610,14 @@ mmDatePickerCtrl::mmDatePickerCtrl(wxWindow* parent, wxWindowID id, wxDateTime d
     : wxPanel(parent, id, pos, size, style)
     , dt_(dt), parent_(parent)
 {
+    wxLogDebug(dt.FormatISOCombined());
     if (!dt.IsValid())
         dt_ = wxDateTime::Now();
     wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
     SetSizer(sizer);
     datePicker_ = new wxDatePickerCtrl(this, id, dt, wxDefaultPosition, wxDefaultSize, style);
+    datePicker_->SetRange(wxDateTime(), DATE_MAX);
+    SetValue(dt_);
     datePicker_->Bind(wxEVT_DATE_CHANGED, &mmDatePickerCtrl::OnDateChanged, this);
     sizer->Add(datePicker_);
 }
@@ -662,9 +665,14 @@ wxSpinButton* mmDatePickerCtrl::getSpinButton()
 
 void mmDatePickerCtrl::SetValue(const wxDateTime &dt)
 {
-    datePicker_->SetValue(dt);
+    if (dt > DATE_MAX.GetDateOnly())
+        datePicker_->SetValue(DATE_MAX.GetDateOnly());
+    else
+        datePicker_->SetValue(dt);
+
     if (timePicker_)
         timePicker_->SetValue(dt);
+
     //trigger date change event
     wxDateEvent dateEvent(this, dt, wxEVT_DATE_CHANGED);
     OnDateChanged(dateEvent);
@@ -717,15 +725,15 @@ wxBoxSizer* mmDatePickerCtrl::mmGetLayoutWithTime()
 
 void mmDatePickerCtrl::OnDateChanged(wxDateEvent& event)
 {
-    if (itemStaticTextWeek_)
-    {
-        wxDateTime dt = event.GetDate();
-        itemStaticTextWeek_->SetLabelText(wxGetTranslation(dt.GetEnglishWeekDayName(dt.GetWeekDay())));
-    }
     if (timePicker_)
         dt_.ParseISOCombined(datePicker_->GetValue().FormatISODate() + "T" + timePicker_->GetValue().FormatISOTime());
     else
         dt_ = datePicker_->GetValue();
+
+    if (itemStaticTextWeek_)
+    {
+        itemStaticTextWeek_->SetLabelText(wxGetTranslation(dt_.GetEnglishWeekDayName(dt_.GetWeekDay())));
+    }
 
     event.SetDate(dt_);
     event.Skip();
