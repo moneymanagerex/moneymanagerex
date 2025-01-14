@@ -472,7 +472,7 @@ void mmCategDialog::showCategDialogDeleteError(bool category)
         deleteCategoryErrMsg << "\n\n" << _("Tip: Change all transactions using this Subcategory to\n"
             "another Category using the merge command:");
 
-    deleteCategoryErrMsg << "\n\n" << wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("Tools → Merge → Categories")));
+    deleteCategoryErrMsg << "\n\n" << _u("Tools → Merge → Categories");
 
     wxMessageBox(deleteCategoryErrMsg, _("Category Manager: Delete Error"), wxOK | wxICON_ERROR);
 }

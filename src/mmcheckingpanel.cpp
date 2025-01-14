@@ -463,9 +463,9 @@ void mmCheckingPanel::OnButtonRightDown(wxMouseEvent& event)
     }
     case wxID_NEW: {
         wxMenu menu;
-        menu.Append(Model_Checking::TYPE_ID_WITHDRAWAL, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Withdrawal…"))));
-        menu.Append(Model_Checking::TYPE_ID_DEPOSIT, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Deposit…"))));
-        menu.Append(Model_Checking::TYPE_ID_TRANSFER, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Transfer…"))));
+        menu.Append(Model_Checking::TYPE_ID_WITHDRAWAL, _u("&New Withdrawal…"));
+        menu.Append(Model_Checking::TYPE_ID_DEPOSIT, _u("&New Deposit…"));
+        menu.Append(Model_Checking::TYPE_ID_TRANSFER, _u("&New Transfer…"));
         PopupMenu(&menu);
     }
     default:

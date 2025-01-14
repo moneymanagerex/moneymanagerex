@@ -97,19 +97,19 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
     }
     m_panel->updateExtraAssetData(m_selected_row);
     wxMenu menu;
-    menu.Append(MENU_TREEPOPUP_NEW, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&New Asset…"))));
+    menu.Append(MENU_TREEPOPUP_NEW, _u("&New Asset…"));
     menu.AppendSeparator();
-    menu.Append(MENU_ON_DUPLICATE_TRANSACTION, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("D&uplicate Asset…"))));
+    menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _u("D&uplicate Asset…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ADDTRANS, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Add Asset Transaction…"))));
+    menu.Append(MENU_TREEPOPUP_ADDTRANS, _u("&Add Asset Transaction…"));
     menu.Append(MENU_TREEPOPUP_VIEWTRANS, _("&View Asset Transactions"));
-    menu.Append(MENU_TREEPOPUP_GOTOACCOUNT, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Open Asset Account…"))));
+    menu.Append(MENU_TREEPOPUP_GOTOACCOUNT, _u("&Open Asset Account…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_EDIT, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Edit Asset…"))));
+    menu.Append(MENU_TREEPOPUP_EDIT, _u("&Edit Asset…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_DELETE, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Delete Asset…"))));
+    menu.Append(MENU_TREEPOPUP_DELETE, _u("&Delete Asset…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, wxGetTranslation(wxString::FromUTF8(wxTRANSLATE("&Organize Attachments…"))));
+    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _u("&Organize Attachments…"));
     if (m_selected_row < 0)
     {
         menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
