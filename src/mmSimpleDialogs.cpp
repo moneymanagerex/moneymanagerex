@@ -610,7 +610,6 @@ mmDatePickerCtrl::mmDatePickerCtrl(wxWindow* parent, wxWindowID id, wxDateTime d
     : wxPanel(parent, id, pos, size, style)
     , dt_(dt), parent_(parent)
 {
-    wxLogDebug(dt.FormatISOCombined());
     if (!dt.IsValid())
         dt_ = wxDateTime::Now();
     wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
