@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-01-13 10:05+0000\n"
+"POT-Creation-Date: 2025-01-17 22:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,7 +56,7 @@ msgstr ""
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:194 filtertransdialog.cpp:808
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:366
-#: mmSimpleDialogs.cpp:1105 optiondialog.cpp:160 payeedialog.cpp:158
+#: mmSimpleDialogs.cpp:1104 optiondialog.cpp:160 payeedialog.cpp:158
 #: payeedialog.cpp:591 sharetransactiondialog.cpp:321
 #: splittransactionsdialog.cpp:104 splittransactionsdialog.cpp:285
 #: tagdialog.cpp:142 transactionsupdatedialog.cpp:276 transdialog.cpp:606
@@ -1917,7 +1917,7 @@ msgstr ""
 msgid "Grouping Char"
 msgstr ""
 
-#: currencydialog.cpp:219 mmSimpleDialogs.cpp:833 model/Model_Asset.cpp:43
+#: currencydialog.cpp:219 mmSimpleDialogs.cpp:832 model/Model_Asset.cpp:43
 #: model/Model_Budget.cpp:29 optionsettingsgeneral.cpp:226
 #: optionsettingsmisc.cpp:107 reports/reportbase.cpp:200
 msgid "None"
@@ -1957,7 +1957,7 @@ msgstr ""
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
 #: import_export/univcsvdialog.cpp:2690 maincurrencydialog.cpp:626
-#: mmSimpleDialogs.cpp:1010
+#: mmSimpleDialogs.cpp:1009
 msgid "Invalid Entry"
 msgstr ""
 
@@ -2993,7 +2993,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr ""
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2248
-#: mmSimpleDialogs.cpp:1020
+#: mmSimpleDialogs.cpp:1019
 msgid "Unable to open file."
 msgstr ""
 
@@ -3665,7 +3665,7 @@ msgstr ""
 msgid "Destination file error"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1582 mmSimpleDialogs.cpp:1028
+#: import_export/univcsvdialog.cpp:1582 mmSimpleDialogs.cpp:1027
 msgid "Invalid Account"
 msgstr ""
 
@@ -3878,108 +3878,108 @@ msgstr ""
 msgid "Unable to find base currency symbol!"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:775 mmSimpleDialogs.cpp:787
+#: mmSimpleDialogs.cpp:774 mmSimpleDialogs.cpp:786
 msgid "&Clear color"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:778 mmSimpleDialogs.cpp:792
+#: mmSimpleDialogs.cpp:777 mmSimpleDialogs.cpp:791
 #, c-format
 msgid "Color #&%i"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:950
+#: mmSimpleDialogs.cpp:949
 msgid "Subtract one year"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:951
+#: mmSimpleDialogs.cpp:950
 msgid "Subtract one month"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:952
+#: mmSimpleDialogs.cpp:951
 msgid "Add one month"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:953
+#: mmSimpleDialogs.cpp:952
 msgid "Add one year"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1009
+#: mmSimpleDialogs.cpp:1008
 #, c-format
 msgid "Entry %s is invalid"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1015
+#: mmSimpleDialogs.cpp:1014
 msgid "Invalid Category"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1015
+#: mmSimpleDialogs.cpp:1014
 msgid "Please select an existing category"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1020
+#: mmSimpleDialogs.cpp:1019
 msgid "File name is empty."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1021
+#: mmSimpleDialogs.cpp:1020
 msgid "Please select the file for this operation."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1031
+#: mmSimpleDialogs.cpp:1030
 msgid "Please select the account for this transaction."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1033
+#: mmSimpleDialogs.cpp:1032
 msgid "Please specify which account the transfer is going to."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1035
+#: mmSimpleDialogs.cpp:1034
 msgid "Selection can be made by using the dropdown button."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1038
+#: mmSimpleDialogs.cpp:1037
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1047
+#: mmSimpleDialogs.cpp:1046
 msgid "Invalid Payee"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1048
+#: mmSimpleDialogs.cpp:1047
 msgid ""
 "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1056 mmSimpleDialogs.cpp:1068
+#: mmSimpleDialogs.cpp:1055 mmSimpleDialogs.cpp:1067
 msgid "Invalid Name"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1059 mmSimpleDialogs.cpp:1071
+#: mmSimpleDialogs.cpp:1058 mmSimpleDialogs.cpp:1070
 msgid "Already exist!"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1061
+#: mmSimpleDialogs.cpp:1060
 msgid "Please type in a non empty name."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1073
+#: mmSimpleDialogs.cpp:1072
 msgid "Please type in a non empty symbol."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1176
+#: mmSimpleDialogs.cpp:1175
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1177
+#: mmSimpleDialogs.cpp:1176
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1777
+#: mmSimpleDialogs.cpp:1776
 #, c-format
 msgid "Create new tag '%s'?"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1777
+#: mmSimpleDialogs.cpp:1776
 msgid "New tag entered"
 msgstr ""
 
