@@ -220,7 +220,7 @@ const Model_Checking::Data_Set Model_Account::transactionsByDateId(const Data*r)
     auto trans = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(r->ACCOUNTID)
         , Model_Checking::TOACCOUNTID(r->ACCOUNTID));
     std::sort(trans.begin(), trans.end());
-    std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
+    std::stable_sort(trans.begin(), trans.end(), Model_Checking::SorterByTRANSDATE_DATE());
 
     return trans;
 }

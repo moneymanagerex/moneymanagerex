@@ -642,7 +642,7 @@ wxString mmAssetsPanel::getItem(long item, long column)
     case COL_VALUE_CURRENT:
         return Model_Currency::toCurrency(Model_Asset::value(asset));
     case COL_DATE:
-        return mmGetDateForDisplay(asset.STARTDATE);
+        return mmGetDateTimeForDisplay(asset.STARTDATE);
     case COL_NOTES:
     {
         wxString full_notes = asset.NOTES;
@@ -810,7 +810,7 @@ void mmAssetsPanel::ViewAssetTrans(const int selected_index)
         if (asset_trans)
         {
             const auto aa = Model_Account::get_account_name(asset_trans->ACCOUNTID);
-            const auto ad = mmGetDateForDisplay(asset_trans->TRANSDATE);
+            const auto ad = mmGetDateTimeForDisplay(asset_trans->TRANSDATE);
             const auto av = Model_Currency::toString(asset_trans->TRANSAMOUNT); //TODO: check if currency needed
             msg << wxString::Format("%s \t%s   \t%s \n", aa, ad, av);
         }

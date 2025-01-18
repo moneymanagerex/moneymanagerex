@@ -167,12 +167,12 @@ void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
         std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByNOTES());
         break;
     case TransactionListCtrl::COL_DATE: ascend ?
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE()) :
-        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByTRANSDATE());
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByTRANSDATE_DATE()) :
+        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByTRANSDATE_DATE());
         break;
     case TransactionListCtrl::COL_TIME: ascend ?
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByTRANSTIME()) :
-        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByTRANSTIME());
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByTRANSDATE_TIME()) :
+        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByTRANSDATE_TIME());
         break;
     case TransactionListCtrl::COL_DELETEDTIME: ascend ?
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByDELETEDTIME()) :
@@ -624,7 +624,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
             copyText_ = m_trans[row].displayID;
             break;
         case COL_DATE: {
-            copyText_ = menuItemText = mmGetDateForDisplay(m_trans[row].TRANSDATE);
+            copyText_ = menuItemText = mmGetDateTimeForDisplay(m_trans[row].TRANSDATE);
             wxString strDate = Model_Checking::TRANSDATE(m_trans[row]).FormatISODate();
             rightClickFilter_ = "{\n\"DATE1\": \"" + strDate + "\",\n\"DATE2\" : \"" + strDate + "T23:59:59" + "\"\n}";
             break;
@@ -703,12 +703,12 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         case COL_DELETEDTIME:
             datetime.ParseISOCombined(m_trans[row].DELETEDTIME);        
             if(datetime.IsValid())
-                copyText_ = mmGetDateForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
+                copyText_ = mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
             break;
         case COL_UPDATEDTIME:
             datetime.ParseISOCombined(m_trans[row].LASTUPDATEDTIME);
             if (datetime.IsValid())
-                copyText_ = mmGetDateForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
+                copyText_ = mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
             break;
         case COL_UDFC01:
             copyText_ = menuItemText = m_trans[row].UDFC_content[0];
@@ -1566,7 +1566,7 @@ bool TransactionListCtrl::TransactionLocked(int64 accountID, const wxString& tra
                 wxMessageBox(_(wxString::Format(
                     _("Locked transaction to date: %s\n\n"
                         "Reconciled transactions.")
-                    , mmGetDateForDisplay(account->STATEMENTDATE)))
+                    , mmGetDateTimeForDisplay(account->STATEMENTDATE)))
                     , _("MMEX Transaction Check"), wxOK | wxICON_WARNING);
                 return true;
             }
@@ -2043,7 +2043,7 @@ wxString UDFCFormatHelper(Model_CustomField::TYPE_ID type, wxString data)
     if (!data.empty()) {
         switch (type) {
         case Model_CustomField::TYPE_ID_DATE:
-            formattedData = mmGetDateForDisplay(data);
+            formattedData = mmGetDateTimeForDisplay(data);
             break;
         case Model_CustomField::TYPE_ID_BOOLEAN:
             v = wxString("TRUE|true|1").Contains(data);
@@ -2116,7 +2116,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         datetime.ParseISOCombined(fused.DELETEDTIME);        
         if(!datetime.IsValid())
             return wxString("");
-        return mmGetDateForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
+        return mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
     case TransactionListCtrl::COL_UDFC01:
         return UDFCFormatHelper(fused.UDFC_type[0], fused.UDFC_content[0]);
     case TransactionListCtrl::COL_UDFC02:
@@ -2131,7 +2131,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         datetime.ParseISOCombined(fused.LASTUPDATEDTIME);
         if (!datetime.IsValid())
             return wxString("");
-        return mmGetDateForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
+        return mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
     }
 
     switch (realenum ? column : m_real_columns[column]) {

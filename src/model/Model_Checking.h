@@ -168,12 +168,20 @@ public:
             return x.TAGNAMES < y.TAGNAMES;
         }
     };
-    struct SorterByTRANSTIME
+    struct SorterByTRANSDATE_DATE
     {
         template <class DATA>
         bool operator()(const DATA& x, const DATA& y)
         {
-            return x.TRANSDATE < y.TRANSDATE;
+            return x.TRANSDATE.Left(10) < y.TRANSDATE.Left(10);
+        }
+    };
+    struct SorterByTRANSDATE_TIME
+    {
+        template <class DATA>
+        bool operator()(const DATA& x, const DATA& y)
+        {
+            return mmGetTimeForDisplay(x.TRANSDATE) < mmGetTimeForDisplay(y.TRANSDATE);
         }
     };
 

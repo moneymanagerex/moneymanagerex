@@ -233,7 +233,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
         if (share_entry && ((share_entry->SHARENUMBER > 0) || (share_entry->SHAREPRICE > 0)))
         {
             stockTxnListCtrl->SetItemData(index, stock_trans.TRANSID.GetValue());
-            stockTxnListCtrl->SetItem(index, 0, mmGetDateForDisplay(stock_trans.TRANSDATE));
+            stockTxnListCtrl->SetItem(index, 0, mmGetDateTimeForDisplay(stock_trans.TRANSDATE));
             stockTxnListCtrl->SetItem(index, 1, share_entry->SHARELOT);
 
             int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().SharePrecision();
@@ -254,7 +254,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
 
         // Update the item fields in case something changed
         Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(txn->TRANSID);
-        stockTxnListCtrl->SetItem(index, 0, mmGetDateForDisplay(txn->TRANSDATE));
+        stockTxnListCtrl->SetItem(index, 0, mmGetDateTimeForDisplay(txn->TRANSDATE));
         stockTxnListCtrl->SetItem(index, 1, share_entry->SHARELOT);
 
         int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().SharePrecision();
@@ -494,7 +494,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
     StocksRefreshStatus_ = true;
 
     strLastUpdate_.Printf(_("%1$s on %2$s"), LastRefreshDT_.FormatTime()
-        , mmGetDateForDisplay(LastRefreshDT_.FormatISODate()));
+        , mmGetDateTimeForDisplay(LastRefreshDT_.FormatISODate()));
     Model_Infotable::instance().Set("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate_);
 
     return true;
