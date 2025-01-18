@@ -81,7 +81,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
             const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, ":");
 
             buffer << inQuotes(wxString::Format("%lld", full_tran.TRANSID), delimiter) << delimiter;
-            buffer << inQuotes(mmGetDateForDisplay(full_tran.TRANSDATE, dateMask), delimiter) << delimiter;
+            buffer << inQuotes(mmGetDateTimeForDisplay(full_tran.TRANSDATE, dateMask), delimiter) << delimiter;
             buffer << inQuotes(full_tran.STATUS, delimiter) << delimiter;
             buffer << inQuotes(full_tran.TRANSCODE, delimiter) << delimiter;
 
@@ -101,7 +101,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
     else
     {
         buffer << inQuotes(wxString::Format("%lld", full_tran.TRANSID), delimiter) << delimiter;
-        buffer << inQuotes(mmGetDateForDisplay(full_tran.TRANSDATE, dateMask), delimiter) << delimiter;
+        buffer << inQuotes(mmGetDateTimeForDisplay(full_tran.TRANSDATE, dateMask), delimiter) << delimiter;
         buffer << inQuotes(full_tran.STATUS, delimiter) << delimiter;
         buffer << inQuotes(full_tran.TRANSCODE, delimiter) << delimiter;
 
@@ -164,7 +164,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
             categ.Append((i > 0 ? ":" : "") + Model_Tag::instance().get(full_tran.m_tags[i].TAGID)->TAGNAME);
     }
 
-    buffer << "D" << mmGetDateForDisplay(full_tran.TRANSDATE, dateMask) << "\n";
+    buffer << "D" << mmGetDateTimeForDisplay(full_tran.TRANSDATE, dateMask) << "\n";
     buffer << "C" << (full_tran.STATUS == Model_Checking::STATUS_KEY_RECONCILED ? "R" : "") << "\n";
     double value = Model_Checking::account_flow(full_tran
         , (reverce ? full_tran.TOACCOUNTID : full_tran.ACCOUNTID));

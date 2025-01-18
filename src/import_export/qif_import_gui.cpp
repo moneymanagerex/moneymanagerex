@@ -689,7 +689,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
                 wxDateTime dtdt;
                 wxString::const_iterator end;
                 if (dtdt.ParseFormat(dateStr, m_dateFormatStr, &end))
-                    dateStr = mmGetDateForDisplay(dtdt.FormatISODate());
+                    dateStr = mmGetDateTimeForDisplay(dtdt.FormatISODate());
                 else
                     dateStr.Prepend("!");
             }

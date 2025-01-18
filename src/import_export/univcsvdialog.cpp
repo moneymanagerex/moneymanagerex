@@ -1647,7 +1647,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                 switch (it.first)
                 {
                 case UNIV_CSV_DATE:
-                    entry = mmGetDateForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(), date_format_);
+                    entry = mmGetDateTimeForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(), date_format_);
                     break;
                 case UNIV_CSV_PAYEE:
                     entry = tran.real_payee_name(fromAccountID);
@@ -1719,7 +1719,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                         {
                             // format date fields
                             if (Model_CustomField::type_id(Model_CustomField::instance().get(data->FIELDID)) == Model_CustomField::TYPE_ID_DATE)
-                                entry = mmGetDateForDisplay(data->CONTENT, date_format_);
+                                entry = mmGetDateTimeForDisplay(data->CONTENT, date_format_);
                             else
                                 entry = data->CONTENT;
                         }
@@ -1965,7 +1965,7 @@ void mmUnivCSVDialog::update_preview()
                             text << wxString::Format("%lld", tran.TRANSID);
                             break;
                         case UNIV_CSV_DATE:
-                            text << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(), date_format_), delimit);
+                            text << inQuotes(mmGetDateTimeForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(), date_format_), delimit);
                             break;
                         case UNIV_CSV_PAYEE:
                             text << inQuotes(tran.real_payee_name(fromAccountID), delimit);
@@ -2031,7 +2031,7 @@ void mmUnivCSVDialog::update_preview()
                                 {
                                     // Format date fields
                                     if (Model_CustomField::type_id(Model_CustomField::instance().get(data->FIELDID)) == Model_CustomField::TYPE_ID_DATE)
-                                        text << inQuotes(mmGetDateForDisplay(data->CONTENT, date_format_), delimit);
+                                        text << inQuotes(mmGetDateTimeForDisplay(data->CONTENT, date_format_), delimit);
                                     else
                                         text << inQuotes(data->CONTENT, delimit);
                                 }

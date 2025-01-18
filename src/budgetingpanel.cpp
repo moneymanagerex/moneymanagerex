@@ -177,7 +177,7 @@ wxString mmBudgetingPanel::GetPanelTitle() const
 
     if (Option::instance().getBudgetDaysOffset() != 0)
     {
-        yearStr = wxString::Format(_("%1$s    Start Date of: %2$s"), yearStr, mmGetDateForDisplay(m_budget_offset_date));
+        yearStr = wxString::Format(_("%1$s    Start Date of: %2$s"), yearStr, mmGetDateTimeForDisplay(m_budget_offset_date));
     }
 
     return wxString::Format(_("Budget Planner for %s"), yearStr);

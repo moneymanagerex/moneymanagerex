@@ -3687,7 +3687,7 @@ void mmGUIFrame::OnRates(wxCommandEvent& WXUNUSED(event))
             Model_StockHistory::instance().ReleaseSavepoint();
             wxString strLastUpdate;
             strLastUpdate.Printf(_("%1$s on %2$s"), wxDateTime::Now().FormatTime()
-                , mmGetDateForDisplay(wxDateTime::Now().FormatISODate()));
+                , mmGetDateTimeForDisplay(wxDateTime::Now().FormatISODate()));
             Model_Infotable::instance().Set("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate);
         }
 

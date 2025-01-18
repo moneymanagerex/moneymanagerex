@@ -152,7 +152,7 @@ mmHTMLBuilder::mmHTMLBuilder()
 {
     today_.date = wxDateTime::Now();
     today_.todays_date = wxString::Format(_("Report Generated %1$s %2$s")
-        , mmGetDateForDisplay(today_.date.FormatISODate())
+        , mmGetDateTimeForDisplay(today_.date.FormatISODate())
         , today_.date.FormatISOTime());
 }
 
@@ -213,8 +213,8 @@ void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDate
     wxString sDate;
     if (withDateRange && startDate.IsValid() && endDate.IsValid()) {
         sDate << wxString::Format(_("From %1$s till %2$s")
-            , mmGetDateForDisplay(startDate.FormatISODate())
-            , withNoEndDate ? _("Future") : mmGetDateForDisplay(endDate.FormatISODate()));
+            , mmGetDateTimeForDisplay(startDate.FormatISODate())
+            , withNoEndDate ? _("Future") : mmGetDateTimeForDisplay(endDate.FormatISODate()));
     }
     else if (!withDateRange) {
         sDate << _("Over Time");
@@ -377,7 +377,7 @@ void mmHTMLBuilder::addTableCellDate(const wxString& iso_date)
 {
     html_ += wxString::Format(tags::TABLE_CELL
         , wxString::Format(" class='text-left' sorttable_customkey = '%s' nowrap", iso_date));
-    html_ += mmGetDateForDisplay(iso_date);
+    html_ += mmGetDateTimeForDisplay(iso_date);
     this->endTableCell();
 }
 
