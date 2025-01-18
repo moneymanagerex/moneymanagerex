@@ -90,142 +90,106 @@ TransactionListCtrl::EColumn TransactionListCtrl::toEColumn(const unsigned long 
     return res;
 }
 
+template<class Compare>
+void TransactionListCtrl::SortBy(Compare comp, bool ascend)
+{
+    if (ascend)
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), comp);
+    else
+        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), comp);
+}
+
 void TransactionListCtrl::SortTransactions(int sortcol, bool ascend)
 {
     const auto& ref_type = Model_Attachment::REFTYPE_STR_TRANSACTION;
     Model_CustomField::TYPE_ID type;
 
     switch (m_real_columns[sortcol]) {
-    case TransactionListCtrl::COL_SN: ascend ?
-        std::stable_sort(
-            this->m_trans.begin(), this->m_trans.end(),
-            Fused_Transaction::SorterByFUSEDTRANSSN()
-        ) :
-        std::stable_sort(
-            this->m_trans.rbegin(), this->m_trans.rend(),
-            Fused_Transaction::SorterByFUSEDTRANSSN()
-        );
+    case TransactionListCtrl::COL_SN:
+        SortBy(Fused_Transaction::SorterByFUSEDTRANSSN(), ascend);
         break;
-    case TransactionListCtrl::COL_ID: ascend ?
-        std::stable_sort(
-            this->m_trans.begin(), this->m_trans.end(),
-            Fused_Transaction::SorterByFUSEDTRANSID()
-        ) :
-        std::stable_sort(
-            this->m_trans.rbegin(), this->m_trans.rend(),
-            Fused_Transaction::SorterByFUSEDTRANSID()
-        );
+    case TransactionListCtrl::COL_ID:
+        SortBy(Fused_Transaction::SorterByFUSEDTRANSID(), ascend);
         break;
-    case TransactionListCtrl::COL_NUMBER: ascend ?
-        std::stable_sort(
-            this->m_trans.begin(), this->m_trans.end(),
-            Model_Checking::SorterByNUMBER()
-        ) :
-        std::stable_sort(
-            this->m_trans.rbegin(), this->m_trans.rend(),
-            Model_Checking::SorterByNUMBER()
-        );
+    case TransactionListCtrl::COL_NUMBER:
+        SortBy(Model_Checking::SorterByNUMBER(), ascend);
         break;
-    case TransactionListCtrl::COL_ACCOUNT: ascend ?
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByACCOUNTNAME()) :
-        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByACCOUNTNAME());
+    case TransactionListCtrl::COL_ACCOUNT:
+        SortBy(SorterByACCOUNTNAME(), ascend);
         break;
-    case TransactionListCtrl::COL_PAYEE_STR: ascend ?
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByPAYEENAME()) :
-        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByPAYEENAME());
+    case TransactionListCtrl::COL_PAYEE_STR:
+        SortBy(SorterByPAYEENAME(), ascend);
         break;
-    case TransactionListCtrl::COL_STATUS: ascend ?
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterBySTATUS()) :
-        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterBySTATUS());
+    case TransactionListCtrl::COL_STATUS:
+        SortBy(SorterBySTATUS(), ascend);
         break;
-    case TransactionListCtrl::COL_CATEGORY: ascend ?
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByCATEGNAME()) :
-        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByCATEGNAME());
+    case TransactionListCtrl::COL_CATEGORY:
+        SortBy(SorterByCATEGNAME(), ascend);
         break;
-    case TransactionListCtrl::COL_TAGS: ascend ?
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByTAGNAMES()) :
-        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByTAGNAMES());
+    case TransactionListCtrl::COL_TAGS:
+        SortBy(Model_Checking::SorterByTAGNAMES(), ascend);
         break;
-    case TransactionListCtrl::COL_WITHDRAWAL: ascend ?
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByWITHDRAWAL()) :
-        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByWITHDRAWAL());
+    case TransactionListCtrl::COL_WITHDRAWAL:
+        SortBy(Model_Checking::SorterByWITHDRAWAL(), ascend);
         break;
-    case TransactionListCtrl::COL_DEPOSIT: ascend ?
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByDEPOSIT()) :
-        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByDEPOSIT());
+    case TransactionListCtrl::COL_DEPOSIT:
+        SortBy(Model_Checking::SorterByDEPOSIT(), ascend);
         break;
-    case TransactionListCtrl::COL_BALANCE: ascend ?
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByBALANCE()) :
-        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByBALANCE());
+    case TransactionListCtrl::COL_BALANCE:
+        SortBy(Model_Checking::SorterByBALANCE(), ascend);
         break;
-    case TransactionListCtrl::COL_CREDIT: ascend ?
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByBALANCE()) :
-        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByBALANCE());
+    case TransactionListCtrl::COL_CREDIT:
+        SortBy(Model_Checking::SorterByBALANCE(), ascend);
         break;
-    case TransactionListCtrl::COL_NOTES: ascend ?
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByNOTES()) :
-        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByNOTES());
+    case TransactionListCtrl::COL_NOTES:
+        SortBy(SorterByNOTES(), ascend);
         break;
-    case TransactionListCtrl::COL_DATE: ascend ?
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByTRANSDATE_DATE()) :
-        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByTRANSDATE_DATE());
+    case TransactionListCtrl::COL_DATE:
+        SortBy(Model_Checking::SorterByTRANSDATE_DATE(), ascend);
         break;
-    case TransactionListCtrl::COL_TIME: ascend ?
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByTRANSDATE_TIME()) :
-        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), Model_Checking::SorterByTRANSDATE_TIME());
+    case TransactionListCtrl::COL_TIME:
+        SortBy(Model_Checking::SorterByTRANSDATE_TIME(), ascend);
         break;
-    case TransactionListCtrl::COL_DELETEDTIME: ascend ?
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByDELETEDTIME()) :
-        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByDELETEDTIME());
+    case TransactionListCtrl::COL_DELETEDTIME:
+        SortBy(SorterByDELETEDTIME(), ascend);
         break;
     case TransactionListCtrl::COL_UDFC01:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC01");
         if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
-            ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC01_val)
-                  : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC01_val);
+            SortBy(SorterByUDFC01_val, ascend);
         else
-            ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC01)
-                  : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC01);
+            SortBy(SorterByUDFC01, ascend);
         break;
     case TransactionListCtrl::COL_UDFC02:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC02");
         if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
-            ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC02_val)
-                  : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC02_val);
+            SortBy(SorterByUDFC02_val, ascend);
         else
-            ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC02)
-                  : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC02);
+            SortBy(SorterByUDFC02, ascend);
         break;
     case TransactionListCtrl::COL_UDFC03:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC03");
         if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
-            ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC03_val)
-                  : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC03_val);
+            SortBy(SorterByUDFC03_val, ascend);
         else
-            ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC03)
-                  : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC03);
+            SortBy(SorterByUDFC03, ascend);
         break;
     case TransactionListCtrl::COL_UDFC04:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC04");
         if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
-            ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC04_val)
-                  : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC04_val);
+            SortBy(SorterByUDFC04_val, ascend);
         else
-            ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC04)
-                  : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC04);
+            SortBy(SorterByUDFC04, ascend);
         break;
     case TransactionListCtrl::COL_UDFC05:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC05");
         if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
-            ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC05_val)
-                  : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC05_val);
+            SortBy(SorterByUDFC05_val, ascend);
         else
-            ascend ? std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC05)
-                  : std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByUDFC05);
+            SortBy(SorterByUDFC05, ascend);
         break;
-    case TransactionListCtrl::COL_UPDATEDTIME: ascend ?
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByLASTUPDATEDTIME()) :
-        std::stable_sort(this->m_trans.rbegin(), this->m_trans.rend(), SorterByLASTUPDATEDTIME());
+    case TransactionListCtrl::COL_UPDATEDTIME:
+        SortBy(SorterByLASTUPDATEDTIME(), ascend);
         break;
     default:
         break;

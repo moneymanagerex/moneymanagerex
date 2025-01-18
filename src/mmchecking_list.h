@@ -217,6 +217,8 @@ private:
     void FindSelectedTransactions();
     bool CheckForClosedAccounts();
     void setExtraTransactionData(const bool single);
+    template<class Compare>
+    void SortBy(Compare comp, bool ascend);
     void SortTransactions(int sortcol, bool ascend);
     void findInAllTransactions(wxCommandEvent&);
     void OnCopyText(wxCommandEvent&);
