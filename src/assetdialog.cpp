@@ -118,8 +118,11 @@ void mmAssetDialog::dataToControls()
 
     // m_asset->VALUECHANGERATE is the rate with daily compounding
     double valueChangeRate = m_asset->VALUECHANGERATE;
-    if (m_compounding != Option::COMPOUNDING_ID_DAY)
+    if (valueChangeType != Model_Asset::CHANGE_ID_NONE &&
+        m_compounding != Option::COMPOUNDING_ID_DAY
+    ) {
         valueChangeRate = convertRate(valueChangeType, valueChangeRate, Option::COMPOUNDING_ID_DAY, m_compounding);
+    }
     m_valueChangeRate->SetValue(valueChangeRate, 3);
     enableDisableRate(valueChangeType != Model_Asset::CHANGE_ID_NONE);
 
