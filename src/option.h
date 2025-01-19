@@ -33,6 +33,15 @@ class Option
 public:
     enum USAGE_TYPE { NONE = 0, LASTUSED, UNUSED, DEFAULT };
     enum THEME_MODE { AUTO = 0, LIGHT, DARK };
+    enum COMPOUNDING_ID {
+        COMPOUNDING_ID_DAY = 0,
+        COMPOUNDING_ID_WEEK,
+        COMPOUNDING_ID_MONTH,
+        COMPOUNDING_ID_YEAR,
+        COMPOUNDING_ID_size
+    };
+    static const std::vector<std::pair<COMPOUNDING_ID, wxString> > COMPOUNDING_NAME;
+    static const std::vector<std::pair<COMPOUNDING_ID, int> > COMPOUNDING_N;
 
 public:
     Option();
@@ -126,6 +135,9 @@ public:
     void SharePrecision(const int value);
     int SharePrecision() const noexcept;
 
+    void AssetCompounding(const int value);
+    int AssetCompounding() const noexcept;
+
     // Allows a year or financial year to start before or after the 1st of the month.
     void setBudgetDaysOffset(const int value);
     int getBudgetDaysOffset() const noexcept;
@@ -205,6 +217,7 @@ private:
     bool m_usageStatistics = true;
     bool m_newsChecking = true;                    //INIDB_CHECK_NEWS
     int m_sharePrecision = 4;
+    int m_assetCompounding = Option::COMPOUNDING_ID_DAY;
 
     int m_theme_mode = Option::AUTO;
     int m_html_font_size = 100;

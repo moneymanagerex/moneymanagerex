@@ -30,6 +30,21 @@
 #include "model/Model_Currency.h"
 #include "model/Model_CurrencyHistory.h"
 
+const std::vector<std::pair<Option::COMPOUNDING_ID, wxString> > Option::COMPOUNDING_NAME =
+{
+    { Option::COMPOUNDING_ID_DAY,   wxString(wxTRANSLATE("Day")) },
+    { Option::COMPOUNDING_ID_WEEK,  wxString(wxTRANSLATE("Week")) },
+    { Option::COMPOUNDING_ID_MONTH, wxString(wxTRANSLATE("Month")) },
+    { Option::COMPOUNDING_ID_YEAR,  wxString(wxTRANSLATE("Year")) },
+};
+const std::vector<std::pair<Option::COMPOUNDING_ID, int> > Option::COMPOUNDING_N =
+{
+    { Option::COMPOUNDING_ID_DAY,   365 },
+    { Option::COMPOUNDING_ID_WEEK,  52 },
+    { Option::COMPOUNDING_ID_MONTH, 12 },
+    { Option::COMPOUNDING_ID_YEAR,  1 },
+};
+
 //----------------------------------------------------------------------------
 Option::Option()
 :   m_dateFormat(mmex::DEFDATEFORMAT)
@@ -51,6 +66,12 @@ void Option::LoadOptions(bool include_infotable)
         m_financialYearStartDayString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");
         m_financialYearStartMonthString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "7");
         m_sharePrecision = Model_Infotable::instance().GetIntInfo("SHARE_PRECISION", 4);
+        wxString assetCompounding = Model_Infotable::instance().GetStringInfo("ASSET_COMPOUNDING", "Day");
+        m_assetCompounding = Option::COMPOUNDING_ID_DAY;
+        for (const auto& a : Option::COMPOUNDING_NAME) if (assetCompounding == a.second) {
+            m_assetCompounding = a.first;
+            break;
+        }
         m_baseCurrency = Model_Infotable::instance().GetInt64Info("BASECURRENCYID", -1);
         m_currencyHistoryEnabled = Model_Infotable::instance().GetBoolInfo(INIDB_USE_CURRENCY_HISTORY, true);
         m_budget_days_offset = Model_Infotable::instance().GetIntInfo("BUDGET_DAYS_OFFSET", 0);
@@ -371,6 +392,17 @@ void Option::SharePrecision(const int value)
 int Option::SharePrecision() const noexcept
 {
     return m_sharePrecision;
+}
+
+void Option::AssetCompounding(const int value)
+{
+    Model_Infotable::instance().Set("ASSET_COMPOUNDING", Option::COMPOUNDING_NAME[value].second);
+    m_assetCompounding = value;
+}
+
+int Option::AssetCompounding() const noexcept
+{
+    return m_assetCompounding;
 }
 
 void Option::SendUsageStatistics(const bool value)
