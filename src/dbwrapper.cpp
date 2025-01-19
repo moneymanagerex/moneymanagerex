@@ -59,7 +59,7 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
             db->ExecuteQuery("select * from INFOTABLE_V1;");
         }
     }
-    catch (const wxSQLite3Exception)
+    catch (const wxSQLite3Exception&)
     {
         
         // Check if database is encrypted with legacy AES128 cipher used prior to 1.8.1

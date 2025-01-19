@@ -299,7 +299,7 @@ void mmSplitTransactionDialog::CreateControls()
 void mmSplitTransactionDialog::FillControls(const int focusRow)
 {
     DoWindowsFreezeThaw(this);
-    for (int row = (focusRow == -1 ? 0 : focusRow); row < m_splits_widgets.size(); row++)
+    for (int row = (focusRow == -1 ? 0 : focusRow); row < static_cast<int>(m_splits_widgets.size()); row++)
     {
         if (row < static_cast<int>(m_splits.size()))
         {
@@ -380,7 +380,7 @@ void mmSplitTransactionDialog::activateNewRow()
     if (row_num_ < (static_cast<int>(m_splits_widgets.size()) - 1)) 
     {
         int row = row_num_ + 1;
-        if (row >= m_splits.size())
+        if (row >= static_cast<int>(m_splits.size()))
         {
             Split s = { -1, 0, {}, "" };
             m_splits.push_back(s);
@@ -400,7 +400,7 @@ void mmSplitTransactionDialog::activateNewRow()
 
 void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 {
-    for (int id=0; id<m_splits.size(); id++)
+    for (int id=0; id<static_cast<int>(m_splits.size()); id++)
         if (!mmDoCheckRow(id))
             return;
 
@@ -427,7 +427,7 @@ void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 
 void mmSplitTransactionDialog::OnAddRow(wxCommandEvent& event)
 {
-    for (int id = 0; id < m_splits.size(); id++) {
+    for (int id = 0; id < static_cast<int>(m_splits.size()); id++) {
         if (!mmDoCheckRow(id))
             return;
     }
@@ -539,7 +539,7 @@ void mmSplitTransactionDialog::OnComboKey(wxKeyEvent& event)
 void mmSplitTransactionDialog::UpdateSplitTotal()
 {
     double total = 0;
-    for (int i=0; i<m_splits.size(); i++)
+    for (int i=0; i<static_cast<int>(m_splits.size()); i++)
     {
         double amount = 0.0;
         if (m_splits_widgets.at(i).amount->GetDouble(amount))
