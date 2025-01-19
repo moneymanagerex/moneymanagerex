@@ -1959,7 +1959,7 @@ mmHtmlWindow::mmHtmlWindow( wxWindow *parent, wxWindowID id, const wxPoint &pos,
     this->Bind(wxEVT_MENU, &mmHtmlWindow::OnMenuSelected, this);
 }
 
-void mmHtmlWindow::OnMouseRightClick(wxMouseEvent& event)
+void mmHtmlWindow::OnMouseRightClick(wxMouseEvent& /*event*/)
 {
     wxMenu menu;
     menu.Append(wxID_HIGHEST + 1, _("Copy all text to clipboard"));
