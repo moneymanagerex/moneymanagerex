@@ -75,7 +75,7 @@ void mmReportTransactions::UDFCFormatHelper(Model_CustomField::TYPE_ID type, int
             bool v = wxString("TRUE|true|1").Contains(data);
             hb.addTableCell(v ? "&check;" : "&cross;", false, true);
         } else
-            hb.addTableCell(type == Model_CustomField::TYPE_ID_DATE && !data.empty() ? mmGetDateForDisplay(data) : data);
+            hb.addTableCell(type == Model_CustomField::TYPE_ID_DATE && !data.empty() ? mmGetDateTimeForDisplay(data) : data);
     }
 }
 
@@ -167,7 +167,7 @@ table {
         else if (groupBy == mmFilterTransactionsDialog::GROUPBY_TYPE)
             sortLabel = wxGetTranslation(transaction.TRANSCODE);
         else if (groupBy == mmFilterTransactionsDialog::GROUPBY_DAY)
-            sortLabel = mmGetDateForDisplay(transaction.TRANSDATE);
+            sortLabel = mmGetDateTimeForDisplay(transaction.TRANSDATE);
         else if (groupBy == mmFilterTransactionsDialog::GROUPBY_MONTH)
             sortLabel = Model_Checking::TRANSDATE(transaction).Format("%Y-%m");
         else if (groupBy == mmFilterTransactionsDialog::GROUPBY_YEAR)
