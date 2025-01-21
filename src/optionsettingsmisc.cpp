@@ -88,13 +88,25 @@ void OptionSettingsMisc::Create()
         , wxSP_ARROW_KEYS, 2, 10, Option::instance().SharePrecision());
     m_share_precision->SetValue(Option::instance().SharePrecision());
     mmToolTip(m_share_precision, _("Set the precision for Share prices"));
-
     share_precision_sizer->Add(m_share_precision, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     m_refresh_quotes_on_open = new wxCheckBox(misc_panel, wxID_REFRESH, _("Refresh at Startup"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_refresh_quotes_on_open->SetValue(Model_Setting::instance().GetBoolSetting("REFRESH_STOCK_QUOTES_ON_OPEN", false));
     share_precision_sizer->Add(m_refresh_quotes_on_open, wxSizerFlags(g_flagsH).Border(wxLEFT, 20));
     othersPanelSizer->Add(share_precision_sizer, g_flagsBorder1V);
+
+    // Asset Compounding
+    wxFlexGridSizer* asset_compounding_sizer = new wxFlexGridSizer(0, 3, 0, 0);
+    asset_compounding_sizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Asset Compounding Period")), g_flagsH);
+    m_asset_compounding = new wxChoice(misc_panel, ID_DIALOG_OPTIONS_ASSET_COMPOUNDING);
+    for (const auto& a : Option::COMPOUNDING_NAME)
+        m_asset_compounding->Append(wxGetTranslation(a.second));
+    m_asset_compounding->SetSelection(Option::instance().AssetCompounding());
+    mmToolTip(m_asset_compounding,
+        _("Select the compounding period for the appreciation/depreciation rate of assets")
+    );
+    asset_compounding_sizer->Add(m_asset_compounding, wxSizerFlags(g_flagsExpand).Proportion(0));
+    othersPanelSizer->Add(asset_compounding_sizer, g_flagsBorder1V);
 
     // New transaction dialog settings
     wxStaticBox* transSettingsStaticBox = new wxStaticBox(misc_panel, wxID_STATIC, _("New Transaction"));
@@ -132,10 +144,8 @@ void OptionSettingsMisc::Create()
 
     wxChoice* default_status = new wxChoice(misc_panel
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS);
-
     for (const auto& i : Model_Checking::STATUS_STR)
         default_status->Append(wxGetTranslation(i), new wxStringClientData(i));
-
     default_status->SetSelection(Option::instance().TransStatusReconciled());
 
     wxArrayString true_false;
@@ -282,6 +292,7 @@ bool OptionSettingsMisc::SaveSettings()
 
     SaveStocksUrl();
     Option::instance().SharePrecision(m_share_precision->GetValue());
+    Option::instance().AssetCompounding(m_asset_compounding->GetSelection());
 
     wxCheckBox* itemCheckBox = static_cast<wxCheckBox*>(FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP));
     Model_Setting::instance().Set("BACKUPDB", itemCheckBox->GetValue());
