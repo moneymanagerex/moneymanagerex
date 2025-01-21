@@ -1556,7 +1556,7 @@ const wxString mmFilterTransactionsDialog::mmGetDescriptionToolTip() const
             {
                 wxDateTime dt;
                 if (mmParseISODate(value, dt))
-                    value = mmGetDateForDisplay(value);
+                    value = mmGetDateTimeForDisplay(value);
             }
             else if (pattern_type.Matches(value))
             {
@@ -1657,7 +1657,7 @@ void mmFilterTransactionsDialog::mmGetDescription(mmHTMLBuilder& hb)
             {
                 wxDateTime dt;
                 if (mmParseISODate(value, dt))
-                    value = mmGetDateForDisplay(value);
+                    value = mmGetDateTimeForDisplay(value);
             }
             else if (pattern_type.Matches(value))
             {

@@ -186,7 +186,7 @@ const Model_Checking::Data_Set Model_Checking::allByDateId()
 {
     auto trans = Model_Checking::instance().all();
     std::sort(trans.begin(), trans.end());
-    std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
+    std::stable_sort(trans.begin(), trans.end(), Model_Checking::SorterByTRANSDATE_DATE());
     return trans;
 }
 
