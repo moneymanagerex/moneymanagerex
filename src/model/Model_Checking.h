@@ -24,6 +24,8 @@
 #include "Model_Splittransaction.h"
 #include "Model_CustomField.h"
 #include "Model_Taglink.h"
+// cannot include "util.h"
+const wxString mmGetTimeForDisplay(const wxString& datetime_iso);
 
 class Model_Checking : public Model<DB_Table_CHECKINGACCOUNT_V1>
 {
@@ -211,7 +213,7 @@ public:
     int save(std::vector<Data*>& rows);
     void updateTimestamp(int64 id);
 public:
-    static const Model_Checking::Data_Set allByDateId();
+    static const Model_Checking::Data_Set allByDateTimeId();
     static const Split_Data_Set split(const Data* r);
     static const Split_Data_Set split(const Data& r);
 

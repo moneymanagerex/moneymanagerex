@@ -217,8 +217,8 @@ void mmCheckingPanel::filterTable()
         wxDateTime(23, 59, 59, 999).FormatISOCombined();
 
     const auto trans = m_account ?
-        Model_Account::transactionsByDateId(m_account) :
-        Model_Checking::instance().allByDateId();
+        Model_Account::transactionsByDateTimeId(m_account) :
+        Model_Checking::instance().allByDateTimeId();
     const auto trans_splits = Model_Splittransaction::instance().get_all();
     const auto trans_tags = Model_Taglink::instance().get_all(tranRefType);
     const auto trans_attachments = Model_Attachment::instance().get_all(
@@ -270,7 +270,7 @@ void mmCheckingPanel::filterTable()
         if (trans_it != trans.end())
             tran_date = Model_Checking::TRANSDATE(*trans_it).FormatISOCombined();
         if (trans_it != trans.end() &&
-            (bills_it == bills_index.end() || tran_date <= std::get<1>(*bills_it))
+            (bills_it == bills_index.end() || tran_date.Left(10) <= std::get<1>(*bills_it).Left(10))
         ) {
             tran = &(*trans_it);
             trans_it++;
@@ -379,13 +379,13 @@ void mmCheckingPanel::filterTable()
             }
         }
 
-        if (repeat_num == 0)
-            full_tran.SN = ++sn;
+        wxString marker = (repeat_num == 0) ? "" : "*";
+        full_tran.SN = ++sn;
+        full_tran.displaySN = wxString::Format("%s%ld", marker, full_tran.SN);
+        if (repeat_num > 0)
+            full_tran.displayID = wxString::Format("%s%ld", marker, full_tran.m_bdid);
 
         if (!expandSplits) {
-            full_tran.displaySN = (repeat_num == 0) ?
-                wxString::Format("%ld", full_tran.SN) :
-                wxString("");
             m_listCtrlAccount->m_trans.push_back(full_tran);
             if (isAccount())
                 m_account_flow += account_flow;
@@ -396,19 +396,13 @@ void mmCheckingPanel::filterTable()
         // assertion: Model_Checking::is_transfer(full_tran.TRANSCODE) == false
         int splitIndex = 1;
         wxString tranTagnames = full_tran.TAGNAMES;
+        wxString tranDisplaySN = full_tran.displaySN;
+        wxString tranDisplayID = full_tran.displayID;
         for (const auto& split : full_tran.m_splits) {
             if (!m_trans_filter_dlg->mmIsSplitRecordMatches<Model_Splittransaction>(split))
                 continue;
-            if (repeat_num == 0) {
-                full_tran.displayID = wxString::Format("%lld", tran->TRANSID) +
-                    "." + wxString::Format("%i", splitIndex);
-                full_tran.displaySN = wxString::Format("%ld", full_tran.SN) +
-                    "." + wxString::Format("%i", splitIndex);
-            }
-            else {
-                full_tran.displayID = ".";
-                full_tran.displaySN = ".";
-            }
+            full_tran.displaySN = tranDisplaySN + "." + wxString::Format("%i", splitIndex);
+            full_tran.displayID = tranDisplayID + "." + wxString::Format("%i", splitIndex);
             splitIndex++;
             full_tran.CATEGID = split.CATEGID;
             full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
