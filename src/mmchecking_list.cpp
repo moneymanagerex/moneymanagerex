@@ -211,9 +211,11 @@ void TransactionListCtrl::sortTable()
     m_cp->m_header_sortOrder->SetLabelText(sortText);
 
     if (m_real_columns[g_sortcol] == COL_SN)
-        m_cp->showTips(_("SN (Sequence Number) has the same order as Date/ID."));
+        m_cp->showTips(_("SN (Sequence Number) has the same order as Date/ID (or Date/Time/ID if Time is enabled)."));
     else if (m_real_columns[g_sortcol] == COL_ID)
         m_cp->showTips(_("ID (identification number) is increasing with the time of creation in the database."));
+    else if (m_real_columns[g_sortcol] == COL_BALANCE)
+        m_cp->showTips(_("Balance is calculated in the order of SN (Sequence Number)."));
 
     RefreshItems(0, m_trans.size() - 1);
 }

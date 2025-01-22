@@ -108,8 +108,8 @@ public:
     static Model_Currency::Data* currency(const Data* r);
     static Model_Currency::Data* currency(const Data& r);
 
-    static const Model_Checking::Data_Set transactionsByDateId(const Data* r);
-    static const Model_Checking::Data_Set transactionsByDateId(const Data& r);
+    static const Model_Checking::Data_Set transactionsByDateTimeId(const Data* r);
+    static const Model_Checking::Data_Set transactionsByDateTimeId(const Data& r);
 
     static const Model_Billsdeposits::Data_Set billsdeposits(const Data* r);
     static const Model_Billsdeposits::Data_Set billsdeposits(const Data& r);
