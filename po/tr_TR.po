@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-01-13 10:05+0000\n"
-"PO-Revision-Date: 2025-01-17 00:51\n"
+"POT-Creation-Date: 2025-01-22 07:52+0000\n"
+"PO-Revision-Date: 2025-01-24 00:51\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "Language: tr_TR\n"
@@ -50,12 +50,12 @@ msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "MMEX kullanımı hakkında genel veriler göndererek bize yardımcı olun."
 
 #: aboutdialog.cpp:247 accountdialog.cpp:296 appstartdialog.cpp:142
-#: assetdialog.cpp:283 attachmentdialog.cpp:146 billsdepositsdialog.cpp:650
+#: assetdialog.cpp:302 attachmentdialog.cpp:146 billsdepositsdialog.cpp:650
 #: budgetentrydialog.cpp:153 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:194 filtertransdialog.cpp:808
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:366
-#: mmSimpleDialogs.cpp:1105 optiondialog.cpp:160 payeedialog.cpp:158
+#: mmSimpleDialogs.cpp:1104 optiondialog.cpp:160 payeedialog.cpp:158
 #: payeedialog.cpp:591 sharetransactiondialog.cpp:321
 #: splittransactionsdialog.cpp:104 splittransactionsdialog.cpp:285
 #: tagdialog.cpp:142 transactionsupdatedialog.cpp:276 transdialog.cpp:606
@@ -129,12 +129,12 @@ msgstr "Sık Kullanılan Hesap"
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
 msgstr "Eğer sık kullandığınız bir hesap ise seçiniz. Bu seçim görüntülemede hesapları filtrelemek için kullanılır."
 
-#: accountdialog.cpp:181 assetdialog.cpp:231 assetspanel.cpp:72
+#: accountdialog.cpp:181 assetdialog.cpp:250 assetspanel.cpp:72
 #: billsdepositsdialog.cpp:628 billsdepositspanel.cpp:162
 #: budgetentrydialog.cpp:144 budgetingpanel.cpp:296 filtertrans.cpp:207
 #: filtertransdialog.cpp:686 filtertransdialog.cpp:1920
 #: import_export/qif_export.cpp:635 import_export/qif_import_gui.cpp:93
-#: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:413
+#: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:379
 #: payeedialog.cpp:115 payeedialog.cpp:457 reports/transactions.cpp:231
 #: sharetransactiondialog.cpp:266 splittransactionsdialog.cpp:95
 #: splittransactionsdialog.cpp:355 stockdialog.cpp:247 stocks_list.cpp:114
@@ -227,11 +227,11 @@ msgstr "Enaz Kalıntı:"
 msgid "Account balance lower limit. Zero to disable"
 msgstr "Hesap kalıntısı limitin altında. Devre dışı bırakmak için sıfırlayın."
 
-#: accountdialog.cpp:250 mmchecking_list.cpp:409
+#: accountdialog.cpp:250 mmchecking_list.cpp:375
 msgid "Credit"
 msgstr "Kredi"
 
-#: accountdialog.cpp:258 mmcheckingpanel.cpp:756
+#: accountdialog.cpp:258 mmcheckingpanel.cpp:750
 msgid "Credit Limit:"
 msgstr "Kredi Limiti:"
 
@@ -394,27 +394,27 @@ msgstr "Bu uygulama için dil değişti. Değişiklik uygulama yeniden başlatı
 msgid "Language change"
 msgstr "Dil değiştirme"
 
-#: assetdialog.cpp:50 assetdialog.cpp:394 assetdialog.h:76 assetspanel.cpp:474
+#: assetdialog.cpp:51 assetdialog.cpp:434 assetdialog.h:82 assetspanel.cpp:474
 msgid "New Asset"
 msgstr "Yeni Varlık"
 
-#: assetdialog.cpp:54 assetspanel.cpp:488
+#: assetdialog.cpp:55 assetspanel.cpp:488
 msgid "Edit Asset"
 msgstr "Varlık Düzenle"
 
-#: assetdialog.cpp:58 assetdialog.cpp:70 assetspanel.cpp:478
+#: assetdialog.cpp:59 assetdialog.cpp:71 assetspanel.cpp:478
 msgid "Add Asset Transaction"
 msgstr "Varlık İşlemi Ekle"
 
-#: assetdialog.cpp:75
+#: assetdialog.cpp:76
 msgid "Edit Asset Transaction"
 msgstr "Varlık İşlemi Düzenle"
 
-#: assetdialog.cpp:167
+#: assetdialog.cpp:173
 msgid "Asset Details"
 msgstr "Varlık Detayları"
 
-#: assetdialog.cpp:177 assetspanel.cpp:62 customfieldeditdialog.cpp:134
+#: assetdialog.cpp:183 assetspanel.cpp:62 customfieldeditdialog.cpp:134
 #: customfieldlistdialog.cpp:48 import_export/qif_import_gui.cpp:244
 #: import_export/qif_import_gui.cpp:257 import_export/qif_import_gui.cpp:267
 #: import_export/univcsvdialog.cpp:510 import_export/univcsvdialog.cpp:520
@@ -422,15 +422,15 @@ msgstr "Varlık Detayları"
 msgid "Name"
 msgstr "Ad"
 
-#: assetdialog.cpp:182
+#: assetdialog.cpp:188
 msgid "Enter the name of the asset"
 msgstr "Varlık adını giriniz"
 
-#: assetdialog.cpp:185 assetspanel.cpp:64 filtertrans.cpp:199
+#: assetdialog.cpp:191 assetspanel.cpp:64 filtertrans.cpp:199
 #: filtertransdialog.cpp:960 filtertransdialog.cpp:967
 #: import_export/qif_export.cpp:626 import_export/qif_import_gui.cpp:86
 #: import_export/univcsvdialog.cpp:101 maincurrencydialog.cpp:253
-#: maincurrencydialog.cpp:270 mmchecking_list.cpp:381
+#: maincurrencydialog.cpp:270 mmchecking_list.cpp:347
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:275
 #: reports/cashflow.cpp:404 reports/incexpenses.cpp:244 reports/summary.cpp:300
 #: reports/transactions.cpp:209 stockdialog.cpp:280 stockdialog.cpp:634
@@ -440,68 +440,76 @@ msgstr "Varlık adını giriniz"
 msgid "Date"
 msgstr "Tarih"
 
-#: assetdialog.cpp:188
+#: assetdialog.cpp:194
 msgid "Specify the date of purchase of asset"
 msgstr "Varlık alış tarihini belirtiniz"
 
-#: assetdialog.cpp:190
+#: assetdialog.cpp:196
 msgid "Asset Type"
 msgstr "Varlık Tipi"
 
-#: assetdialog.cpp:196
+#: assetdialog.cpp:202
 msgid "Select type of asset"
 msgstr "Varlık türünü seçin"
 
-#: assetdialog.cpp:200 import_export/qif_import_gui.cpp:92
+#: assetdialog.cpp:206 import_export/qif_import_gui.cpp:92
 #: maincurrencydialog.cpp:280
 msgid "Value"
 msgstr "Değer"
 
-#: assetdialog.cpp:207
+#: assetdialog.cpp:215
 msgid "Enter the current value of the asset"
 msgstr "Varlığın güncel değerini giriniz"
 
-#: assetdialog.cpp:210
+#: assetdialog.cpp:218
 msgid "Change in Value"
 msgstr "Değerdeki Değişim"
 
-#: assetdialog.cpp:216
+#: assetdialog.cpp:224
 msgid "Specify if the value of the asset changes over time"
 msgstr "Varlığın değeri zamanla değişiyorsa bunu belirtiniz"
 
-#: assetdialog.cpp:220
+#: assetdialog.cpp:228
+msgid "Compounding Period"
+msgstr ""
+
+#: assetdialog.cpp:233
+msgid "Select the compounding period for the appreciation/depreciation rate"
+msgstr ""
+
+#: assetdialog.cpp:238
 msgid "% Rate"
 msgstr "% Oran"
 
-#: assetdialog.cpp:227
+#: assetdialog.cpp:246
 msgid "Enter the rate at which the asset changes its value in percentage per year"
 msgstr "Her yıl varlığın hangi oranda değişeceğini girin"
 
-#: assetdialog.cpp:237
+#: assetdialog.cpp:256
 msgid "Organize attachments of this asset"
 msgstr "Bu varlığın ilişiklerini düzenleyin"
 
-#: assetdialog.cpp:240
+#: assetdialog.cpp:259
 msgid "Enter notes associated with this asset"
 msgstr "Varlıkla ilgili notlar"
 
-#: assetdialog.cpp:246
+#: assetdialog.cpp:265
 msgid "New Transaction Details"
 msgstr "Yeni İşlem Ayrıntıları"
 
-#: assetdialog.cpp:249 sharetransactiondialog.cpp:292
+#: assetdialog.cpp:268 sharetransactiondialog.cpp:292
 msgid "Edit Transaction Details"
 msgstr "İşlem Ayrıntıları Düzenle"
 
-#: assetdialog.cpp:284 constants.cpp:74 sharetransactiondialog.cpp:322
+#: assetdialog.cpp:303 constants.cpp:74 sharetransactiondialog.cpp:322
 msgid "&Cancel "
 msgstr "İ&ptal"
 
-#: assetdialog.cpp:386 sharetransactiondialog.cpp:415
+#: assetdialog.cpp:426 sharetransactiondialog.cpp:415
 msgid "Invalid Transaction"
 msgstr "Geçersiz İşlem"
 
-#: assetdialog.cpp:393
+#: assetdialog.cpp:433
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
 msgstr "Duran Varlık Hesabı bulunamadı.\n\n"
@@ -509,7 +517,7 @@ msgstr "Duran Varlık Hesabı bulunamadı.\n\n"
 
 #: assetspanel.cpp:60 billsdepositspanel.cpp:132 filtertrans.cpp:197
 #: import_export/qif_export.cpp:625 import_export/univcsvdialog.cpp:100
-#: mmchecking_list.cpp:379 reports/transactions.cpp:205 stocks_list.cpp:88
+#: mmchecking_list.cpp:345 reports/transactions.cpp:205 stocks_list.cpp:88
 msgid "ID"
 msgstr "ID"
 
@@ -562,7 +570,7 @@ msgstr "&Varlık Düzenle…"
 msgid "&Delete Asset…"
 msgstr "&Varlık Sil…"
 
-#: assetspanel.cpp:112 billsdepositspanel.cpp:455 mmchecking_list.cpp:586
+#: assetspanel.cpp:112 billsdepositspanel.cpp:455 mmchecking_list.cpp:552
 #: stocks_list.cpp:155
 msgid "&Organize Attachments…"
 msgstr "&Ekleri Düzenle…"
@@ -594,7 +602,7 @@ msgstr "Varlıklar"
 msgid "All"
 msgstr "Tümü"
 
-#: assetspanel.cpp:473 billsdepositspanel.cpp:306 mmcheckingpanel.cpp:623
+#: assetspanel.cpp:473 billsdepositspanel.cpp:306 mmcheckingpanel.cpp:617
 #: stockspanel.cpp:132
 msgid "&New "
 msgstr "&Yeni"
@@ -613,13 +621,13 @@ msgstr "Varlık İşlemlerini Göster"
 
 #: assetspanel.cpp:487 attachmentdialog.cpp:351 billsdepositspanel.cpp:310
 #: categdialog.cpp:317 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
-#: mmcheckingpanel.cpp:627 payeedialog.cpp:881 stockspanel.cpp:146
+#: mmcheckingpanel.cpp:621 payeedialog.cpp:881 stockspanel.cpp:146
 #: tagdialog.cpp:128
 msgid "&Edit "
 msgstr "Düz&enle"
 
 #: assetspanel.cpp:492 billsdepositspanel.cpp:320 budgetyeardialog.cpp:103
-#: categdialog.cpp:321 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:619
+#: categdialog.cpp:321 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:613
 #: stockdialog.cpp:321 stockspanel.cpp:151 tagdialog.cpp:133
 msgid "&Delete "
 msgstr "&Sil"
@@ -628,13 +636,13 @@ msgstr "&Sil"
 msgid "Delete Asset"
 msgstr "Varlık Sil"
 
-#: assetspanel.cpp:500 billsdepositspanel.cpp:338 mmcheckingpanel.cpp:655
+#: assetspanel.cpp:500 billsdepositspanel.cpp:338 mmcheckingpanel.cpp:649
 #: stockspanel.cpp:164
 msgid "Open attachments"
 msgstr "İlişikleri aç"
 
 #: assetspanel.cpp:507 assetspanel.cpp:508 categdialog.cpp:302
-#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:686 payeedialog.cpp:587
+#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:680 payeedialog.cpp:587
 #: tagdialog.cpp:113
 msgid "Search"
 msgstr "Arama"
@@ -643,22 +651,22 @@ msgstr "Arama"
 msgid "Enter any string to find related assets"
 msgstr "İlgili varlığı bulmak için herhangi bir dize giriniz"
 
-#: assetspanel.cpp:512 filtertransdialog.cpp:692 mmcheckingpanel.cpp:690
+#: assetspanel.cpp:512 filtertransdialog.cpp:692 mmcheckingpanel.cpp:684
 #: payeedialog.cpp:137
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
 msgstr "İpuçları: Arama kriterlerinde joker karakterleri kullanabilirsiniz - soru işareti (?), yıldız işareti (*)."
 
-#: assetspanel.cpp:513 filtertransdialog.cpp:693 mmcheckingpanel.cpp:691
+#: assetspanel.cpp:513 filtertransdialog.cpp:693 mmcheckingpanel.cpp:685
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
 msgstr "Herhangi bir karakteri bulmak için soru işaretini kullanın (?) - örneğin, s?t 'sat' ve 'set' bulur."
 
-#: assetspanel.cpp:514 filtertransdialog.cpp:694 mmcheckingpanel.cpp:692
+#: assetspanel.cpp:514 filtertransdialog.cpp:694 mmcheckingpanel.cpp:686
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
 msgstr "Herhangi bir karakteri bulmak için soru işaretini kullanın (?) - örneğin, s? t 'sat' ve 'set' bulur."
 
-#: assetspanel.cpp:515 filtertransdialog.cpp:695 mmcheckingpanel.cpp:693
+#: assetspanel.cpp:515 filtertransdialog.cpp:695 mmcheckingpanel.cpp:687
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
 msgstr "Cümlenin ortasındaki herhangi bir dizeyi bulmak için başlangıçtaki yıldız işaretini (*) kullanın."
@@ -990,7 +998,7 @@ msgstr "İşlemin durumunu belirtiniz"
 #: import_export/qif_import_gui.cpp:247 import_export/qif_import_gui.cpp:258
 #: import_export/qif_import_gui.cpp:268 import_export/univcsvdialog.cpp:102
 #: import_export/univcsvdialog.cpp:511 import_export/univcsvdialog.cpp:521
-#: mmchecking_list.cpp:395 reports/transactions.cpp:219
+#: mmchecking_list.cpp:361 reports/transactions.cpp:219
 #: transactionsupdatedialog.cpp:148 transdialog.cpp:449
 #: usertransactionpanel.cpp:153 webappdialog.cpp:140 wizard_update.cpp:140
 msgid "Status"
@@ -1012,7 +1020,7 @@ msgstr "Gönderen ve alan hesaplarda farklı tutarlara izin ver."
 #: budgetingpanel.cpp:293 filtertrans.cpp:206 filtertransdialog.cpp:1061
 #: filtertransdialog.cpp:1071 import_export/qif_export.cpp:632
 #: import_export/univcsvdialog.cpp:106 maincurrencydialog.cpp:626
-#: mmchecking_list.cpp:744 mmhomepage.cpp:353 mmhomepage.cpp:427
+#: mmchecking_list.cpp:710 mmhomepage.cpp:353 mmhomepage.cpp:427
 #: reports/cashflow.cpp:408 reports/categexp.cpp:218
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:227
 #: splittransactionsdialog.cpp:88 splittransactionsdialog.cpp:222
@@ -1035,7 +1043,7 @@ msgstr ""
 #: filtertransdialog.cpp:1769 import_export/qif_export.cpp:629
 #: import_export/qif_import_gui.cpp:85 import_export/qif_import_gui.cpp:157
 #: import_export/qif_import_gui.cpp:239 import_export/univcsvdialog.cpp:104
-#: mmchecking_list.cpp:390 reports/cashflow.cpp:405
+#: mmchecking_list.cpp:356 reports/cashflow.cpp:405
 #: reports/transactions.cpp:215 transdialog.cpp:245 transdialog.cpp:249
 #: transdialog.cpp:500 transdialog.cpp:648 usertransactionpanel.cpp:89
 #: webapp.cpp:564 webappdialog.cpp:139
@@ -1056,7 +1064,7 @@ msgstr "Alıcı"
 #: filtertransdialog.cpp:1817 import_export/qif_export.cpp:630
 #: import_export/qif_import_gui.cpp:88 import_export/qif_import_gui.cpp:252
 #: import_export/univcsvdialog.cpp:105 import_export/univcsvdialog.cpp:505
-#: mmchecking_list.cpp:393 model/Model_Attachment.cpp:29 payeedialog.cpp:83
+#: mmchecking_list.cpp:359 model/Model_Attachment.cpp:29 payeedialog.cpp:83
 #: payeedialog.cpp:206 payeedialog.cpp:242 reports/cashflow.cpp:406
 #: reports/payee.cpp:136 reports/transactions.cpp:217
 #: transactionsupdatedialog.cpp:194 transdialog.cpp:246 transdialog.cpp:519
@@ -1071,7 +1079,7 @@ msgstr "Alacaklı"
 #: filtertransdialog.cpp:1824 import_export/qif_export.cpp:631
 #: import_export/qif_import_gui.cpp:90 import_export/qif_import_gui.cpp:263
 #: import_export/univcsvdialog.cpp:108 import_export/univcsvdialog.cpp:516
-#: mmchecking_list.cpp:397 mmhomepage.cpp:190 payeedialog.cpp:201
+#: mmchecking_list.cpp:363 mmhomepage.cpp:190 payeedialog.cpp:201
 #: reports/budgetcategorysummary.cpp:191 reports/budgetingperf.cpp:131
 #: reports/cashflow.cpp:407 reports/categexp.cpp:217 reports/categexp.cpp:456
 #: reports/transactions.cpp:221 splittransactionsdialog.cpp:81
@@ -1092,7 +1100,7 @@ msgstr "Parçalı Kategorileri kullan"
 #: filtertransdialog.cpp:1594 filtertransdialog.cpp:1606
 #: filtertransdialog.cpp:1698 filtertransdialog.cpp:1713
 #: filtertransdialog.cpp:1902 import_export/qif_import_gui.cpp:91
-#: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:399
+#: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:365
 #: reports/transactions.cpp:223 splittransactionsdialog.cpp:224
 #: splittransactionsdialog.cpp:567 transactionsupdatedialog.cpp:229
 #: transactionsupdatedialog.cpp:365 transdialog.cpp:545 transdialog.cpp:644
@@ -1106,7 +1114,7 @@ msgstr "Varsa ilişkili işlem veya dekont (çek) no belirtiniz"
 #: billsdepositsdialog.cpp:606 billsdepositspanel.cpp:160 filtertrans.cpp:200
 #: filtertransdialog.cpp:679 filtertransdialog.cpp:1895
 #: import_export/qif_export.cpp:634 import_export/qif_import_gui.cpp:87
-#: import_export/univcsvdialog.cpp:111 mmchecking_list.cpp:387
+#: import_export/univcsvdialog.cpp:111 mmchecking_list.cpp:353
 #: reports/transactions.cpp:213 transdialog.cpp:558
 #: usertransactionpanel.cpp:177
 msgid "Number"
@@ -1182,7 +1190,7 @@ msgstr "Alacaklı adını onayla"
 #: optionsettingsgeneral.cpp:293 optionsettingsgeneral.cpp:318
 #: payeedialog.cpp:201 payeedialog.cpp:206 splittransactionsdialog.cpp:567
 #: transactionsupdatedialog.cpp:365 transactionsupdatedialog.cpp:439
-#: transdialog.cpp:644 transdialog.cpp:648 transdialog.cpp:663 util.cpp:766
+#: transdialog.cpp:644 transdialog.cpp:648 transdialog.cpp:663 util.cpp:822
 msgid "Invalid value"
 msgstr "Geçersiz Değer"
 
@@ -1308,7 +1316,7 @@ msgstr "İpucu: Bu işlemler kullanıcının ödeme tarihinde herhangi bir değe
 msgid "Scheduled Transactions"
 msgstr "Zamanlanmış İşlemler"
 
-#: billsdepositspanel.cpp:315 mmcheckingpanel.cpp:632
+#: billsdepositspanel.cpp:315 mmcheckingpanel.cpp:626
 msgid "D&uplicate "
 msgstr "EşKopya &Oluştur"
 
@@ -1316,19 +1324,19 @@ msgstr "EşKopya &Oluştur"
 msgid "Delete Scheduled Transaction"
 msgstr "Zamanlanmış İşlemi Sil"
 
-#: billsdepositspanel.cpp:325 mmcheckingpanel.cpp:640
+#: billsdepositspanel.cpp:325 mmcheckingpanel.cpp:634
 msgid "Ente&r"
 msgstr "Gi&riş"
 
-#: billsdepositspanel.cpp:326 mmcheckingpanel.cpp:641
+#: billsdepositspanel.cpp:326 mmcheckingpanel.cpp:635
 msgid "Enter Next Scheduled Transaction Occurrence"
 msgstr "Bir Sonraki Zamanlanmış İşlem Oluşumunu Girin"
 
-#: billsdepositspanel.cpp:330 mmcheckingpanel.cpp:645
+#: billsdepositspanel.cpp:330 mmcheckingpanel.cpp:639
 msgid "&Skip"
 msgstr "A&tla"
 
-#: billsdepositspanel.cpp:331 mmcheckingpanel.cpp:646
+#: billsdepositspanel.cpp:331 mmcheckingpanel.cpp:640
 msgid "Skip Next Scheduled Transaction Occurrence"
 msgstr "Bir Sonraki Zamanlanmış İşlem Oluşumunu Atla"
 
@@ -1856,16 +1864,16 @@ msgstr "64 bit"
 msgid "ALL"
 msgstr "TÜMÜ"
 
-#: constants.cpp:195 mmframe.cpp:2160 model/Model_Account.cpp:39
+#: constants.cpp:195 mmframe.cpp:2160 model/Model_Account.cpp:40
 #: model/Model_Asset.cpp:38
 msgid "Open"
 msgstr "Açık"
 
-#: constants.cpp:196 model/Model_Account.cpp:40 model/Model_Asset.cpp:37
+#: constants.cpp:196 model/Model_Account.cpp:41 model/Model_Asset.cpp:37
 msgid "Closed"
 msgstr "Kapalı"
 
-#: constants.cpp:197 mmcheckingpanel.cpp:718 mmframe.cpp:502
+#: constants.cpp:197 mmcheckingpanel.cpp:712 mmframe.cpp:502
 msgid "Favorites"
 msgstr "Sık Kullanılanlar"
 
@@ -1914,9 +1922,9 @@ msgstr "Virgül"
 msgid "Grouping Char"
 msgstr "Gruplama Karakteri"
 
-#: currencydialog.cpp:219 mmSimpleDialogs.cpp:833 model/Model_Asset.cpp:43
+#: currencydialog.cpp:219 mmSimpleDialogs.cpp:832 model/Model_Asset.cpp:43
 #: model/Model_Budget.cpp:29 optionsettingsgeneral.cpp:226
-#: optionsettingsmisc.cpp:107 reports/reportbase.cpp:200
+#: optionsettingsmisc.cpp:119 reports/reportbase.cpp:200
 msgid "None"
 msgstr "Hiçbiri"
 
@@ -1954,7 +1962,7 @@ msgstr "Güncellenmezse tüm değişiklikler kaybolacaktır."
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
 #: import_export/univcsvdialog.cpp:2690 maincurrencydialog.cpp:626
-#: mmSimpleDialogs.cpp:1010
+#: mmSimpleDialogs.cpp:1009
 msgid "Invalid Entry"
 msgstr "Geçersiz Giriş"
 
@@ -2026,7 +2034,7 @@ msgstr "Otomatik tamamlama"
 msgid "Enables autocomplete on custom field"
 msgstr "Özel alanda otomatik tamamlamayı etkinleştir."
 
-#: customfieldeditdialog.cpp:164 optionsettingsview.cpp:222 util.cpp:623
+#: customfieldeditdialog.cpp:164 optionsettingsview.cpp:222 util.cpp:679
 msgid "Default"
 msgstr "Varsayılan"
 
@@ -2507,7 +2515,7 @@ msgstr "Geri"
 msgid "Reconciled"
 msgstr "Onaylanmış"
 
-#: filtertransdialog.cpp:47 mmchecking_list.cpp:1430
+#: filtertransdialog.cpp:47 mmchecking_list.cpp:1396
 #: model/Model_Checking.cpp:41
 msgid "Unreconciled"
 msgstr "Uzlaşma sağlanamamış"
@@ -2524,20 +2532,20 @@ msgstr "Onaylanmışlar Dışındakilerin Tümü"
 msgid "Duplicate"
 msgstr "EşKopya"
 
-#: filtertransdialog.cpp:48 mmchecking_list.cpp:1421
+#: filtertransdialog.cpp:48 mmchecking_list.cpp:1387
 #: model/Model_Checking.cpp:44
 msgid "Follow Up"
 msgstr "Takip Et"
 
-#: filtertransdialog.cpp:51
+#: filtertransdialog.cpp:51 option.cpp:35
 msgid "Day"
 msgstr ""
 
-#: filtertransdialog.cpp:51
+#: filtertransdialog.cpp:51 option.cpp:37
 msgid "Month"
 msgstr ""
 
-#: filtertransdialog.cpp:51
+#: filtertransdialog.cpp:51 option.cpp:38
 msgid "Year"
 msgstr ""
 
@@ -2599,13 +2607,13 @@ msgstr "Tüm alt kategorileri dahil et"
 
 #: filtertransdialog.cpp:652 filtertransdialog.cpp:1565
 #: filtertransdialog.cpp:1666 import_export/univcsvdialog.cpp:114
-#: mmchecking_list.cpp:401 model/Model_Checking.cpp:34 reports/forecast.cpp:81
+#: mmchecking_list.cpp:367 model/Model_Checking.cpp:34 reports/forecast.cpp:81
 msgid "Withdrawal"
 msgstr "Çekilen"
 
 #: filtertransdialog.cpp:653 filtertransdialog.cpp:1567
 #: filtertransdialog.cpp:1668 import_export/univcsvdialog.cpp:115
-#: mmchecking_list.cpp:403 model/Model_Checking.cpp:35 reports/forecast.cpp:79
+#: mmchecking_list.cpp:369 model/Model_Checking.cpp:35 reports/forecast.cpp:79
 msgid "Deposit"
 msgstr "Yatan"
 
@@ -2991,7 +2999,7 @@ msgid "No workable theme found, the installation may be corrupt"
 msgstr "Çalışılabilir bir tema bulunamadı, kurulum bozuk olabilir"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2248
-#: mmSimpleDialogs.cpp:1020
+#: mmSimpleDialogs.cpp:1019
 msgid "Unable to open file."
 msgstr "Dosya açılamadı."
 
@@ -3059,7 +3067,7 @@ msgstr "Parametreler"
 msgid "Log"
 msgstr "Kayıt"
 
-#: import_export/qif_export.cpp:136 optionsettingsmisc.cpp:217
+#: import_export/qif_export.cpp:136 optionsettingsmisc.cpp:227
 msgid "CSV"
 msgstr "CSV"
 
@@ -3383,7 +3391,7 @@ msgstr "AltKategori"
 msgid "Don't Care"
 msgstr "Dikkate Alma"
 
-#: import_export/univcsvdialog.cpp:116 mmchecking_list.cpp:406
+#: import_export/univcsvdialog.cpp:116 mmchecking_list.cpp:372
 #: mmhomepage.cpp:543 mmhomepage.cpp:706 reports/cashflow.cpp:409
 #: reports/summary.cpp:275 reports/summary.cpp:311
 msgid "Balance"
@@ -3501,7 +3509,7 @@ msgstr "Yukarı Taşı"
 msgid "Move Down"
 msgstr "Aşağı Taşı"
 
-#: import_export/univcsvdialog.cpp:571 optionsettingsmisc.cpp:228
+#: import_export/univcsvdialog.cpp:571 optionsettingsmisc.cpp:238
 msgid "Specify the delimiter to use when importing/exporting CSV files"
 msgstr "CVS dosyaları verilirken/alınırken kullanılacak ayracı belirle"
 
@@ -3663,7 +3671,7 @@ msgstr ""
 msgid "Destination file error"
 msgstr "Hedef dosya hatası"
 
-#: import_export/univcsvdialog.cpp:1582 mmSimpleDialogs.cpp:1028
+#: import_export/univcsvdialog.cpp:1582 mmSimpleDialogs.cpp:1027
 msgid "Invalid Account"
 msgstr "Geçersiz Hesap"
 
@@ -3871,112 +3879,112 @@ msgstr "Bugünkü döviz kurlarını güncellemek ister misiniz?"
 msgid "Unable to download history for base symbol %s. Historical rates unavailable!"
 msgstr ""
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:694
+#: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:750
 msgid "Unable to find base currency symbol!"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:775 mmSimpleDialogs.cpp:787
+#: mmSimpleDialogs.cpp:774 mmSimpleDialogs.cpp:786
 msgid "&Clear color"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:778 mmSimpleDialogs.cpp:792
+#: mmSimpleDialogs.cpp:777 mmSimpleDialogs.cpp:791
 #, c-format
 msgid "Color #&%i"
 msgstr ""
 
-#: mmSimpleDialogs.cpp:950
+#: mmSimpleDialogs.cpp:949
 msgid "Subtract one year"
 msgstr "Bir yıl çıkar"
 
-#: mmSimpleDialogs.cpp:951
+#: mmSimpleDialogs.cpp:950
 msgid "Subtract one month"
 msgstr "Bir ay çıkar"
 
-#: mmSimpleDialogs.cpp:952
+#: mmSimpleDialogs.cpp:951
 msgid "Add one month"
 msgstr "Bir ay ekle"
 
-#: mmSimpleDialogs.cpp:953
+#: mmSimpleDialogs.cpp:952
 msgid "Add one year"
 msgstr "Bir yıl ekle"
 
-#: mmSimpleDialogs.cpp:1009
+#: mmSimpleDialogs.cpp:1008
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "%s girişi geçersiz"
 
-#: mmSimpleDialogs.cpp:1015
+#: mmSimpleDialogs.cpp:1014
 msgid "Invalid Category"
 msgstr "Geçersiz Kategori"
 
-#: mmSimpleDialogs.cpp:1015
+#: mmSimpleDialogs.cpp:1014
 msgid "Please select an existing category"
 msgstr "Lütfen mevcut bir kategori seçin"
 
-#: mmSimpleDialogs.cpp:1020
+#: mmSimpleDialogs.cpp:1019
 msgid "File name is empty."
 msgstr "Dosya adı boş. "
 
-#: mmSimpleDialogs.cpp:1021
+#: mmSimpleDialogs.cpp:1020
 msgid "Please select the file for this operation."
 msgstr "Lütfen bu işlem için dosya seçin."
 
-#: mmSimpleDialogs.cpp:1031
+#: mmSimpleDialogs.cpp:1030
 msgid "Please select the account for this transaction."
 msgstr "Lütfen bu işlem için hesap seçin."
 
-#: mmSimpleDialogs.cpp:1033
+#: mmSimpleDialogs.cpp:1032
 msgid "Please specify which account the transfer is going to."
 msgstr "Lütfen aktarımın hangi hesaba gideceğini belirtin."
 
-#: mmSimpleDialogs.cpp:1035
+#: mmSimpleDialogs.cpp:1034
 msgid "Selection can be made by using the dropdown button."
 msgstr "Seçim açılır düğme kullanılarak yapılabilir."
 
-#: mmSimpleDialogs.cpp:1038
+#: mmSimpleDialogs.cpp:1037
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "Düğmeyi etkinleştirmek hesabın seçilebileceği bir seçim kutusu sağlayacak."
 
-#: mmSimpleDialogs.cpp:1047
+#: mmSimpleDialogs.cpp:1046
 msgid "Invalid Payee"
 msgstr "Geçersiz Alacaklı/Satıcı"
 
-#: mmSimpleDialogs.cpp:1048
+#: mmSimpleDialogs.cpp:1047
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "Lütfen yeni bir alacaklı yazın veya\n"
 "açılır düğmeyi kullanarak bir seçim yapın.."
 
-#: mmSimpleDialogs.cpp:1056 mmSimpleDialogs.cpp:1068
+#: mmSimpleDialogs.cpp:1055 mmSimpleDialogs.cpp:1067
 msgid "Invalid Name"
 msgstr "Geçersiz İsim"
 
-#: mmSimpleDialogs.cpp:1059 mmSimpleDialogs.cpp:1071
+#: mmSimpleDialogs.cpp:1058 mmSimpleDialogs.cpp:1070
 msgid "Already exist!"
 msgstr "Zaten var!"
 
-#: mmSimpleDialogs.cpp:1061
+#: mmSimpleDialogs.cpp:1060
 msgid "Please type in a non empty name."
 msgstr "Lütfen boş olmayan bir isim yazın."
 
-#: mmSimpleDialogs.cpp:1073
+#: mmSimpleDialogs.cpp:1072
 msgid "Please type in a non empty symbol."
 msgstr "Lütfen boş olmayan bir sembol yazın."
 
-#: mmSimpleDialogs.cpp:1176
+#: mmSimpleDialogs.cpp:1175
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
 msgstr "Aranacak etiketleri, isteğe bağlı olarak '&' ve '|' operatörleriyle ayırarak girin."
 
-#: mmSimpleDialogs.cpp:1177
+#: mmSimpleDialogs.cpp:1176
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
 msgstr "Ardışık etiketler arasındaki varsayılan operatör AND'dir, Operatörü OR olarak değiştirmek için '|' kullanın."
 
-#: mmSimpleDialogs.cpp:1777
+#: mmSimpleDialogs.cpp:1776
 #, c-format
 msgid "Create new tag '%s'?"
 msgstr "Yeni Etiket Oluştur '%s'?"
 
-#: mmSimpleDialogs.cpp:1777
+#: mmSimpleDialogs.cpp:1776
 msgid "New tag entered"
 msgstr "Yeni etiket girildi"
 
@@ -4175,292 +4183,296 @@ msgstr "Yatırımcıların en yaygın hatası: dikkat çeken şirketleri satın 
 msgid "Common mistake of investors: forgetting to rebalance."
 msgstr "Yatırımcıların ortak hatası: yeniden dengelemeyi unutmak."
 
-#: mmchecking_list.cpp:243
+#: mmchecking_list.cpp:207
 msgid "Sort Order"
 msgstr "Sıralama Düzeni"
 
-#: mmchecking_list.cpp:250
-msgid "SN (Sequence Number) has the same order as Date/ID."
+#: mmchecking_list.cpp:214
+msgid "SN (Sequence Number) has the same order as Date/ID (or Date/Time/ID if Time is enabled)."
 msgstr ""
 
-#: mmchecking_list.cpp:252
+#: mmchecking_list.cpp:216
 msgid "ID (identification number) is increasing with the time of creation in the database."
 msgstr ""
 
-#: mmchecking_list.cpp:377
+#: mmchecking_list.cpp:218
+msgid "Balance is calculated in the order of SN (Sequence Number)."
+msgstr ""
+
+#: mmchecking_list.cpp:343
 msgid "SN"
 msgstr ""
 
-#: mmchecking_list.cpp:384 model/Model_CustomField.cpp:30
+#: mmchecking_list.cpp:350 model/Model_CustomField.cpp:30
 #: reports/transactions.cpp:211 transactionsupdatedialog.cpp:140
 #: wizard_update.cpp:140
 msgid "Time"
 msgstr "Zaman"
 
-#: mmchecking_list.cpp:416
+#: mmchecking_list.cpp:382
 msgid "Deleted On"
 msgstr "Silinme Tarihi"
 
-#: mmchecking_list.cpp:439
+#: mmchecking_list.cpp:405
 msgid "Last Updated"
 msgstr "Son Güncelleme"
 
-#: mmchecking_list.cpp:538
+#: mmchecking_list.cpp:504
 msgid "New &Withdrawal…"
 msgstr ""
 
-#: mmchecking_list.cpp:539
+#: mmchecking_list.cpp:505
 msgid "New &Deposit…"
 msgstr ""
 
-#: mmchecking_list.cpp:541
+#: mmchecking_list.cpp:507
 msgid "New &Transfer…"
 msgstr ""
 
-#: mmchecking_list.cpp:545
+#: mmchecking_list.cpp:511
 msgid "&Edit Transaction…"
 msgid_plural "&Edit Transactions…"
 msgstr[0] "&İşlemi Düzenle…"
 msgstr[1] "&İşlemleri Düzenle…"
 
-#: mmchecking_list.cpp:549
+#: mmchecking_list.cpp:515
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] "İşlemi &Kopyala"
 msgstr[1] "İşlemleri &Kopyala"
 
-#: mmchecking_list.cpp:558
+#: mmchecking_list.cpp:524
 msgid "&Paste Transaction"
 msgstr "İşlemi &Yapıştır"
 
-#: mmchecking_list.cpp:558
+#: mmchecking_list.cpp:524
 #, c-format
 msgid "&Paste Transactions (%d)"
 msgstr "İşlemleri &Yapıştır (%d)"
 
-#: mmchecking_list.cpp:568
+#: mmchecking_list.cpp:534
 msgid "D&uplicate Transaction…"
 msgstr "İşlemlemi &Çoğalt…"
 
-#: mmchecking_list.cpp:572
+#: mmchecking_list.cpp:538
 msgid "&Move Transaction…"
 msgid_plural "&Move Transactions…"
 msgstr[0] "İşlemi &Taşı…"
 msgstr[1] "İşlemleri &Taşı…"
 
-#: mmchecking_list.cpp:578
+#: mmchecking_list.cpp:544
 msgid "&View In Other Account"
 msgstr "&Diğer Hesapta Görüntüle"
 
-#: mmchecking_list.cpp:582
+#: mmchecking_list.cpp:548
 msgid "&View Split Categories"
 msgstr "&Parçalı Kategorileri Göster"
 
-#: mmchecking_list.cpp:592
+#: mmchecking_list.cpp:558
 msgid "Create Scheduled T&ransaction…"
 msgstr "Zamanlanmış İşlem &Oluştur…"
 
-#: mmchecking_list.cpp:600
+#: mmchecking_list.cpp:566
 msgid "&Restore selected transaction…"
 msgid_plural "&Restore selected transactions…"
 msgstr[0] "&Seçilen işlemi geri yükle…"
 msgstr[1] "&Seçilen işlemleri geri yükle…"
 
-#: mmchecking_list.cpp:606
+#: mmchecking_list.cpp:572
 msgid "Restore &all transactions in current view…"
 msgstr ""
 
-#: mmchecking_list.cpp:743
+#: mmchecking_list.cpp:709
 #, c-format
 msgid "&Find all transactions with %s '%s'"
 msgstr "%s '%s' ile tüm işlemleri &bul"
 
-#: mmchecking_list.cpp:749
+#: mmchecking_list.cpp:715
 msgid "Cop&y Text to Clipboard"
 msgstr ""
 
-#: mmchecking_list.cpp:758
+#: mmchecking_list.cpp:724
 msgid "&Delete selected transaction…"
 msgid_plural "&Delete selected transactions…"
 msgstr[0] "&Seçilen işlemi sil…"
 msgstr[1] "&Seçilen işlemleri sil…"
 
-#: mmchecking_list.cpp:759
+#: mmchecking_list.cpp:725
 msgid "&Permanently delete selected transaction…"
 msgid_plural "&Permanently delete selected transactions…"
 msgstr[0] "&Seçilen işlemi kalıcı olarak silin…"
 msgstr[1] "&Seçilen işlemleri kalıcı olarak silin…"
 
-#: mmchecking_list.cpp:767
+#: mmchecking_list.cpp:733
 msgid "Delete &all transactions in current view…"
 msgstr ""
 
-#: mmchecking_list.cpp:768
+#: mmchecking_list.cpp:734
 msgid "Permanently delete &all transactions in current view…"
 msgstr ""
 
-#: mmchecking_list.cpp:773
+#: mmchecking_list.cpp:739
 msgid "Delete Viewed “&Follow Up” Transactions…"
 msgstr ""
 
-#: mmchecking_list.cpp:777
+#: mmchecking_list.cpp:743
 msgid "Delete Viewed “&Unreconciled” Transactions…"
 msgstr ""
 
-#: mmchecking_list.cpp:780
+#: mmchecking_list.cpp:746
 msgid "De&lete "
 msgstr ""
 
-#: mmchecking_list.cpp:786
+#: mmchecking_list.cpp:752
 msgid "&Unreconciled"
 msgstr ""
 
-#: mmchecking_list.cpp:789
+#: mmchecking_list.cpp:755
 msgid "&Reconciled"
 msgstr ""
 
-#: mmchecking_list.cpp:792
+#: mmchecking_list.cpp:758
 msgid "&Void"
 msgstr ""
 
-#: mmchecking_list.cpp:795
+#: mmchecking_list.cpp:761
 msgid "&Follow Up"
 msgstr ""
 
-#: mmchecking_list.cpp:798
+#: mmchecking_list.cpp:764
 msgid "D&uplicate"
 msgstr ""
 
-#: mmchecking_list.cpp:801
+#: mmchecking_list.cpp:767
 msgid "Mar&k as"
 msgstr ""
 
-#: mmchecking_list.cpp:825 mmcheckingpanel.cpp:713
+#: mmchecking_list.cpp:791 mmcheckingpanel.cpp:707
 msgid "All Transactions"
 msgstr "Tüm İşlemler"
 
-#: mmchecking_list.cpp:1307
+#: mmchecking_list.cpp:1273
 msgid "Do you really want to restore all of the transactions shown?"
 msgstr "Gösterilen tüm işlemleri gerçekten geri yüklemek istiyor musunuz?"
 
-#: mmchecking_list.cpp:1308 mmchecking_list.cpp:1359
+#: mmchecking_list.cpp:1274 mmchecking_list.cpp:1325
 msgid "Confirm Transaction Restore"
 msgstr "İşlem Geri Yüklemeyi Onayla"
 
-#: mmchecking_list.cpp:1350
+#: mmchecking_list.cpp:1316
 #, c-format
 msgid "Do you really want to restore the selected transaction?"
 msgid_plural "Do you really want to restore %i selected transactions?"
 msgstr[0] "Seçilen işlemi gerçekten geri yüklemek istiyor musunuz?"
 msgstr[1] "Seçilen %i işlemi gerçekten geri yüklemek istiyor musunuz?"
 
-#: mmchecking_list.cpp:1403
+#: mmchecking_list.cpp:1369
 msgid "Do you really want to delete all the transactions shown?"
 msgstr "Gösterilen tüm işlemleri gerçekten silmek istiyor musunuz?"
 
-#: mmchecking_list.cpp:1404
+#: mmchecking_list.cpp:1370
 msgid "Do you really want to permanently delete all the transactions shown?"
 msgstr "Gösterilen tüm işlemleri gerçekten kalıcı olarak silmek istiyor musunuz?"
 
-#: mmchecking_list.cpp:1408 mmchecking_list.cpp:1504
+#: mmchecking_list.cpp:1374 mmchecking_list.cpp:1470
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr "Silinen işlemler geçici olarak saklanır ve Silinmiş İşlemler görünümünden geri yüklenebilir."
 
-#: mmchecking_list.cpp:1409 mmchecking_list.cpp:1503
+#: mmchecking_list.cpp:1375 mmchecking_list.cpp:1469
 msgid "Unable to undo this action."
 msgstr ""
 
-#: mmchecking_list.cpp:1413 mmchecking_list.cpp:1422 mmchecking_list.cpp:1431
-#: mmchecking_list.cpp:1508
+#: mmchecking_list.cpp:1379 mmchecking_list.cpp:1388 mmchecking_list.cpp:1397
+#: mmchecking_list.cpp:1474
 msgid "Confirm Transaction Deletion"
 msgstr "İşlem Silme Onayı"
 
-#: mmchecking_list.cpp:1421 mmchecking_list.cpp:1430
+#: mmchecking_list.cpp:1387 mmchecking_list.cpp:1396
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr "Gösterilen tüm \"%s\" işlemlerini gerçekten silmek istiyor musunuz?"
 
-#: mmchecking_list.cpp:1495
+#: mmchecking_list.cpp:1461
 #, c-format
 msgid "Do you really want to permanently delete the selected transaction?"
 msgid_plural "Do you really want to permanently delete %i selected transactions?"
 msgstr[0] "Seçilen işlemi gerçekten kalıcı olarak silmek istiyor musunuz?"
 msgstr[1] "Seçtiğim işlemlerin %i'sini gerçekten kalıcı olarak silmek istiyor musunuz?"
 
-#: mmchecking_list.cpp:1499
+#: mmchecking_list.cpp:1465
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
 msgstr[0] "Seçilen işlemi gerçekten silmek istiyor musunuz?"
 msgstr[1] "Seçtiğim işlemlerin %i'sini gerçekten silmek istiyor musunuz?"
 
-#: mmchecking_list.cpp:1567
+#: mmchecking_list.cpp:1533
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "İşlem tarihe sabitlendi: %s\n\n"
 "Onaylanmış işlemler."
 
-#: mmchecking_list.cpp:1570 transdialog.cpp:751 transdialog.cpp:776
+#: mmchecking_list.cpp:1536 transdialog.cpp:751 transdialog.cpp:776
 msgid "MMEX Transaction Check"
 msgstr "MMEX İşlem Kontrolü"
 
-#: mmchecking_list.cpp:1599
+#: mmchecking_list.cpp:1565
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] "Kapatılmış bir hesabı içeren bir işlemi düzenlemek üzeresiniz."
 msgstr[1] "Düzenleme, kapatılan bir hesabı içeren %i işlemlerini etkileyecektir."
 
-#: mmchecking_list.cpp:1601
+#: mmchecking_list.cpp:1567
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr "\n\n"
 "Hala düzenlemeyi yapmak istiyor musun?"
 
-#: mmchecking_list.cpp:1602
+#: mmchecking_list.cpp:1568
 msgid "Closed Account Check"
 msgstr "Kapalı Hesap Kontrolü"
 
-#: mmchecking_list.cpp:1802
+#: mmchecking_list.cpp:1768
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
 msgstr[0] "Seçilen işlemi gerçekten taşımak istiyor musunuz?"
 msgstr[1] "Seçilen işlemlerin %i'sini gerçekten taşımak istiyor musunuz?"
 
-#: mmchecking_list.cpp:1807
+#: mmchecking_list.cpp:1773
 msgid "Confirm Transaction Move"
 msgstr "İşlem Taşımayı Onayla"
 
-#: mmchecking_list.cpp:1812
+#: mmchecking_list.cpp:1778
 #, c-format
 msgid "Moving transaction to…"
 msgid_plural "Moving %i transactions to…"
 msgstr[0] "İşlem şuraya taşınıyor…"
 msgstr[1] "%i işlemler şuraya taşınıyor…"
 
-#: mmchecking_list.cpp:1816 stocks_list.cpp:312
+#: mmchecking_list.cpp:1782 stocks_list.cpp:312
 msgid "Select the destination Account "
 msgstr "Alıcı Hesabı seçin"
 
-#: mmchecking_list.cpp:1847
+#: mmchecking_list.cpp:1813
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
 msgstr ""
 
-#: mmchecking_list.cpp:1848
+#: mmchecking_list.cpp:1814
 msgid "Moved"
 msgstr ""
 
-#: mmchecking_list.cpp:1849
+#: mmchecking_list.cpp:1815
 msgid "Not moved"
 msgstr ""
 
-#: mmchecking_list.cpp:1852
+#: mmchecking_list.cpp:1818
 msgid "Unable to move some transactions."
 msgstr ""
 
-#: mmchecking_list.cpp:1919
+#: mmchecking_list.cpp:1885
 msgid "Scheduled transaction saved."
 msgstr "Zamanlanmış işlem kaydedildi."
 
@@ -4520,100 +4532,100 @@ msgstr "Hesap Kesim Tarihinden Sonrasını Göster"
 msgid "View Transaction Report…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:466
+#: mmcheckingpanel.cpp:460
 msgid "&New Withdrawal…"
 msgstr "&Yeni Para Çekme…"
 
-#: mmcheckingpanel.cpp:467
+#: mmcheckingpanel.cpp:461
 msgid "&New Deposit…"
 msgstr "&Yeni Para Yatırma…"
 
-#: mmcheckingpanel.cpp:468
+#: mmcheckingpanel.cpp:462
 msgid "&New Transfer…"
 msgstr "&Yeni Aktarım…"
 
-#: mmcheckingpanel.cpp:620
+#: mmcheckingpanel.cpp:614
 msgid "Delete all selected transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:624 mmframe.cpp:2165 optionsettingsmisc.cpp:100
+#: mmcheckingpanel.cpp:618 mmframe.cpp:2165 optionsettingsmisc.cpp:112
 #: transdialog.cpp:180
 msgid "New Transaction"
 msgstr "Yeni İşlem"
 
-#: mmcheckingpanel.cpp:628
+#: mmcheckingpanel.cpp:622
 msgid "Edit all selected transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:633
+#: mmcheckingpanel.cpp:627
 msgid "Duplicate selected transaction"
 msgstr "Seçilen işlemin eşkopyasını oluştur"
 
-#: mmcheckingpanel.cpp:671
+#: mmcheckingpanel.cpp:665
 msgid "&Restore "
 msgstr "&Geri Yükle "
 
-#: mmcheckingpanel.cpp:672
+#: mmcheckingpanel.cpp:666
 msgid "Restore selected transaction"
 msgstr "Seçilen işlemi geri yükle"
 
-#: mmcheckingpanel.cpp:689
+#: mmcheckingpanel.cpp:683
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr "En yakın işlem verilerinde bulmak için herhangi bir dize girin"
 
-#: mmcheckingpanel.cpp:715
+#: mmcheckingpanel.cpp:709
 msgid "Deleted Transactions"
 msgstr "Silinen İşlemler"
 
-#: mmcheckingpanel.cpp:723
+#: mmcheckingpanel.cpp:717
 #, c-format
 msgid "Account View: %s"
 msgstr "Hesap Görünümü: %s"
 
-#: mmcheckingpanel.cpp:741
+#: mmcheckingpanel.cpp:735
 msgid "Account Bal: "
 msgstr "Hesap Kal:"
 
-#: mmcheckingpanel.cpp:744
+#: mmcheckingpanel.cpp:738
 msgid "Reconciled Bal: "
 msgstr "Onaylanmış Kal:"
 
-#: mmcheckingpanel.cpp:747
+#: mmcheckingpanel.cpp:741
 msgid "Diff: "
 msgstr "Fark:"
 
-#: mmcheckingpanel.cpp:750
+#: mmcheckingpanel.cpp:744
 msgid "Filtered Flow: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:831 mmcheckingpanel.cpp:849 webapp.cpp:621
+#: mmcheckingpanel.cpp:825 mmcheckingpanel.cpp:843 webapp.cpp:621
 msgid "Attachment"
 msgstr "İlişik"
 
-#: mmcheckingpanel.cpp:897
+#: mmcheckingpanel.cpp:891
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr "Seçilen işlemler: %zu"
 
-#: mmcheckingpanel.cpp:901
+#: mmcheckingpanel.cpp:895
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr "Seçilen işlemler bakiyesi: %s"
 
-#: mmcheckingpanel.cpp:907
+#: mmcheckingpanel.cpp:901
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr "Seçilen işlemler arasındaki günler: %d"
 
-#: mmcheckingpanel.cpp:1159
+#: mmcheckingpanel.cpp:1153
 msgid "Unable to show scheduled transactions because the current filter choice extends into the future without limit."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1160
+#: mmcheckingpanel.cpp:1154
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1161
+#: mmcheckingpanel.cpp:1155
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
@@ -5923,40 +5935,40 @@ msgstr "Grafik:"
 msgid "Show"
 msgstr "Göster"
 
-#: model/Model_Account.cpp:27 model/Model_Asset.cpp:31 reports/summary.cpp:257
+#: model/Model_Account.cpp:28 model/Model_Asset.cpp:31 reports/summary.cpp:257
 #: reports/summary.cpp:301
 msgid "Cash"
 msgstr "Nakit"
 
-#: model/Model_Account.cpp:28
+#: model/Model_Account.cpp:29
 msgid "Checking"
 msgstr "Banka (V.siz/Çek)"
 
-#: model/Model_Account.cpp:29
+#: model/Model_Account.cpp:30
 msgid "Credit Card"
 msgstr "Kredi Kartı"
 
-#: model/Model_Account.cpp:30
+#: model/Model_Account.cpp:31
 msgid "Loan"
 msgstr "Borç"
 
-#: model/Model_Account.cpp:31
+#: model/Model_Account.cpp:32
 msgid "Term"
 msgstr "Vadeli"
 
-#: model/Model_Account.cpp:32
+#: model/Model_Account.cpp:33
 msgid "Investment"
 msgstr "Yatırım"
 
-#: model/Model_Account.cpp:33 model/Model_Attachment.cpp:26
+#: model/Model_Account.cpp:34 model/Model_Attachment.cpp:26
 msgid "Asset"
 msgstr "Varlık"
 
-#: model/Model_Account.cpp:34 stockspanel.cpp:214
+#: model/Model_Account.cpp:35 stockspanel.cpp:214
 msgid "Shares"
 msgstr "Pay (Borsa)"
 
-#: model/Model_Account.cpp:171
+#: model/Model_Account.cpp:172
 msgid "Account Error"
 msgstr "Hesap Hatası"
 
@@ -6098,6 +6110,10 @@ msgstr "SQL betiği:\n"
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
 msgstr "Stok Hatası"
+
+#: option.cpp:36
+msgid "Week"
+msgstr ""
 
 #: optiondialog.cpp:37 optionsettingsattachment.cpp:65 webappdialog.cpp:146
 msgid "Attachments"
@@ -6370,97 +6386,105 @@ msgstr "Fiyat duyarlılığı"
 msgid "Set the precision for Share prices"
 msgstr "Menkul Değer fiyatları için ondalık hane sayısını ayarlayın"
 
-#: optionsettingsmisc.cpp:94
+#: optionsettingsmisc.cpp:93
 msgid "Refresh at Startup"
 msgstr "Başlangıçta Yenile"
 
-#: optionsettingsmisc.cpp:108
+#: optionsettingsmisc.cpp:100
+msgid "Asset Compounding Period"
+msgstr ""
+
+#: optionsettingsmisc.cpp:106
+msgid "Select the compounding period for the appreciation/depreciation rate of assets"
+msgstr ""
+
+#: optionsettingsmisc.cpp:120
 msgid "Last Used"
 msgstr "Son Kullanılan"
 
-#: optionsettingsmisc.cpp:120
+#: optionsettingsmisc.cpp:132
 msgid "Unused"
 msgstr "Kullanılmamış"
 
-#: optionsettingsmisc.cpp:126
+#: optionsettingsmisc.cpp:138
 msgid "Last used for payee"
 msgstr "Alacaklı için son kullanılan"
 
-#: optionsettingsmisc.cpp:127
+#: optionsettingsmisc.cpp:139
 msgid "Use default for payee"
 msgstr "Alacaklı için varsayılanı kullan"
 
-#: optionsettingsmisc.cpp:142
+#: optionsettingsmisc.cpp:152
 msgid "Yes"
 msgstr "Evet"
 
-#: optionsettingsmisc.cpp:143
+#: optionsettingsmisc.cpp:153
 msgid "No"
 msgstr "Hayır"
 
-#: optionsettingsmisc.cpp:152
+#: optionsettingsmisc.cpp:162
 msgid "Default Date"
 msgstr "Varsayılan Tarih"
 
-#: optionsettingsmisc.cpp:154
+#: optionsettingsmisc.cpp:164
 msgid "Default Payee"
 msgstr "Varsayılan Alacaklı"
 
-#: optionsettingsmisc.cpp:156
+#: optionsettingsmisc.cpp:166
 msgid "Default Deposit/Withdrawal Category"
 msgstr "Varsayılan Para Yatırma/Çekme Kategorisi"
 
-#: optionsettingsmisc.cpp:158
+#: optionsettingsmisc.cpp:168
 msgid "Default Transfer Category"
 msgstr "Varsayılan Aktarım Kategorisi"
 
-#: optionsettingsmisc.cpp:160
+#: optionsettingsmisc.cpp:170
 msgid "Default Status"
 msgstr "Varsayılan Durum"
 
-#: optionsettingsmisc.cpp:162
+#: optionsettingsmisc.cpp:172
 msgid "Bulk Transactions"
 msgstr "Toplu İşlemler"
 
-#: optionsettingsmisc.cpp:173
+#: optionsettingsmisc.cpp:183
 msgid "Database"
 msgstr ""
 
-#: optionsettingsmisc.cpp:180
+#: optionsettingsmisc.cpp:190
 msgid "Backup database on startup"
 msgstr ""
 
-#: optionsettingsmisc.cpp:182
+#: optionsettingsmisc.cpp:192
 msgid "When MMEX starts,\n"
 "create the backup database: dbFile_start_YYYY-MM-DD.bak"
 msgstr ""
 
-#: optionsettingsmisc.cpp:187
+#: optionsettingsmisc.cpp:197
 msgid "Backup database on exit"
 msgstr "Çıkışta veritabanını yedekle"
 
-#: optionsettingsmisc.cpp:189
+#: optionsettingsmisc.cpp:199
 msgid "When MMEX shuts down and changes were made to the database,\n"
 "create or update the backup database: dbFile_update_YYYY-MM-DD.bak"
 msgstr ""
 
-#: optionsettingsmisc.cpp:197
+#: optionsettingsmisc.cpp:207
 msgid "Specify max number of backup files"
 msgstr "En fazla yedek dosyası sayısını belirtin."
 
-#: optionsettingsmisc.cpp:200
+#: optionsettingsmisc.cpp:210
 msgid "Max Files"
 msgstr "En çok dosya"
 
-#: optionsettingsmisc.cpp:208
+#: optionsettingsmisc.cpp:218
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
 msgstr "Silinen işlemlerin saklanacağı gün sayısını belirtin. Bundan daha eski olan işlemler, veritabanı açıldığında otomatik olarak temizlenecektir."
 
-#: optionsettingsmisc.cpp:210
+#: optionsettingsmisc.cpp:220
 msgid "Days to retain deleted transactions"
 msgstr "Silinen işlemlerin saklanacağı gün sayısı"
 
-#: optionsettingsmisc.cpp:225
+#: optionsettingsmisc.cpp:235
 msgid "Delimiter"
 msgstr "Ayraç"
 
@@ -7741,7 +7765,7 @@ msgstr "Hisse senedi fiyatları başarılı bir şekilde güncellendi."
 msgid "Last updated %s"
 msgstr "Son güncelleme %s"
 
-#: stockspanel.cpp:438 util.cpp:718 util.cpp:879
+#: stockspanel.cpp:438 util.cpp:774 util.cpp:935
 msgid "Nothing to update"
 msgstr "Güncellenecek birşey yok"
 
@@ -8118,90 +8142,90 @@ msgstr "Çar"
 msgid "Sat"
 msgstr "Cmt"
 
-#: util.cpp:751
+#: util.cpp:807
 msgid "Currency rates have been updated"
 msgstr "Kurlar güncellendi."
 
-#: util.cpp:850 util.cpp:945 util.cpp:951 util.cpp:982 util.cpp:1041
+#: util.cpp:906 util.cpp:1001 util.cpp:1007 util.cpp:1038 util.cpp:1097
 msgid "JSON Parse Error"
 msgstr "JSON Ayrıştırma Hatası"
 
-#: util.cpp:990 util.cpp:1049
+#: util.cpp:1046 util.cpp:1105
 msgid "Expected response to contain a data or error string"
 msgstr "Bir veri veya hata dizesi içermesi beklenen yanıt"
 
-#: util.cpp:1021
+#: util.cpp:1077
 msgid "Unable to find asset for symbol."
 msgstr ""
 
-#: util.cpp:1056
+#: util.cpp:1112
 msgid "Unable to get base currency!"
 msgstr ""
 
-#: util.cpp:1062
+#: util.cpp:1118
 msgid "USD"
 msgstr "USD"
 
-#: util.cpp:1065
+#: util.cpp:1121
 msgid "Unable to find currency 'USD', required for converting historical prices"
 msgstr ""
 
-#: util.cpp:1086
+#: util.cpp:1142
 msgid "Unable to parse price in asset history"
 msgstr ""
 
-#: util.cpp:1459
+#: util.cpp:1515
 #, c-format
 msgid "Version: %s"
 msgstr "Sürüm: %s"
 
-#: util.cpp:1460
+#: util.cpp:1516
 #, c-format
 msgid "Built on: %1$s %2$s"
 msgstr "Üzerine inşa edildi: %1$s %2$s"
 
-#: util.cpp:1461
+#: util.cpp:1517
 #, c-format
 msgid "Database version: %d"
 msgstr "Veritabanı versiyonu: %d"
 
-#: util.cpp:1468
+#: util.cpp:1524
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
 msgstr "Git taahhüdü: %1$s (%2$s)"
 
-#: util.cpp:1471
+#: util.cpp:1527
 #, c-format
 msgid "Git branch: %s"
 msgstr "Git dalı: %s"
 
-#: util.cpp:1475
+#: util.cpp:1531
 msgid "MMEX is using the following support products:"
 msgstr "MMEX izleyen destek yazılımlarını kullanıyor."
 
-#: util.cpp:1492
+#: util.cpp:1548
 msgid "Built with:"
 msgstr "Şunlarla oluşturulmuştur:"
 
-#: util.cpp:1511
+#: util.cpp:1567
 msgid "Running on:"
 msgstr "Ana platform:"
 
-#: util.cpp:1525
+#: util.cpp:1581
 #, c-format
 msgid "System Locale: %s"
 msgstr "Sistem Yerel Ayarı: %s"
 
-#: util.cpp:1526
+#: util.cpp:1582
 #, c-format
 msgid "User Interface Language: %s"
 msgstr "Kullanıcı Arayüzü Dili: %s"
 
-#: util.cpp:1765
+#: util.cpp:1821
 msgid "The complete list of closed issues is available at this link"
 msgstr "Kapatılan konuların tam listesine bu bağlantıdan ulaşabilirsiniz"
 
-#: util.cpp:1965
+#: util.cpp:2021
 msgid "Copy all text to clipboard"
 msgstr ""
 
