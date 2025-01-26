@@ -184,7 +184,7 @@ void OptionSettingsGeneral::Create()
     generalPanelSizer->Add(financialYearStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
     financialYearStaticBoxSizer->Add(financialYearStaticBoxSizerGrid);
 
-    financialYearStaticBoxSizerGrid->Add(new wxStaticText(general_panel, wxID_STATIC, _("Start Day")), g_flagsH);
+    financialYearStaticBoxSizerGrid->Add(new wxStaticText(general_panel, wxID_STATIC, _("First Day")), g_flagsH);
     int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
 
     wxSpinCtrl *textFPSDay = new wxSpinCtrl(general_panel, ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY,
@@ -194,7 +194,7 @@ void OptionSettingsGeneral::Create()
 
     financialYearStaticBoxSizerGrid->Add(textFPSDay, g_flagsH);
 
-    financialYearStaticBoxSizerGrid->Add(new wxStaticText(general_panel, wxID_STATIC, _("Start Month")), g_flagsH);
+    financialYearStaticBoxSizerGrid->Add(new wxStaticText(general_panel, wxID_STATIC, _("First Month")), g_flagsH);
 
     wxArrayString financialMonthsSelection;
     for (wxDateTime::Month m = wxDateTime::Jan; m <= wxDateTime::Dec; m = wxDateTime::Month(m + 1))

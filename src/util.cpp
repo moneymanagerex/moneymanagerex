@@ -290,26 +290,34 @@ void csv2tab_separated_values(wxString& line, const wxString& delimit)
 
 //* Date Functions----------------------------------------------------------*//
 
-static const wxString MONTHS_SHORT[12] =
+const wxString MONTHS[12] =
 {
-    wxTRANSLATE("Jan"), wxTRANSLATE("Feb"), wxTRANSLATE("Mar")
-    , wxTRANSLATE("Apr"), wxTRANSLATE("May"), wxTRANSLATE("Jun")
-    , wxTRANSLATE("Jul"), wxTRANSLATE("Aug"), wxTRANSLATE("Sep")
-    , wxTRANSLATE("Oct"), wxTRANSLATE("Nov"), wxTRANSLATE("Dec")
+    wxTRANSLATE("January"), wxTRANSLATE("February"), wxTRANSLATE("March"),
+    wxTRANSLATE("April"),   wxTRANSLATE("May"),      wxTRANSLATE("June"),
+    wxTRANSLATE("July"),    wxTRANSLATE("August"),   wxTRANSLATE("September"),
+    wxTRANSLATE("October"), wxTRANSLATE("November"), wxTRANSLATE("December")
 };
 
-static const wxString g_days_of_week[7] =
+const wxString MONTHS_SHORT[12] =
 {
-    wxTRANSLATE("Sunday"), wxTRANSLATE("Monday"), wxTRANSLATE("Tuesday")
-    , wxTRANSLATE("Wednesday"), wxTRANSLATE("Thursday"), wxTRANSLATE("Friday")
-    , wxTRANSLATE("Saturday")
+    wxTRANSLATE("Jan"), wxTRANSLATE("Feb"), wxTRANSLATE("Mar"),
+    wxTRANSLATE("Apr"), wxTRANSLATE("May"), wxTRANSLATE("Jun"),
+    wxTRANSLATE("Jul"), wxTRANSLATE("Aug"), wxTRANSLATE("Sep"),
+    wxTRANSLATE("Oct"), wxTRANSLATE("Nov"), wxTRANSLATE("Dec")
 };
 
-static const wxString g_short_days_of_week[7] =
+const wxString g_days_of_week[7] =
 {
-    wxTRANSLATE("Sun"), wxTRANSLATE("Mon"), wxTRANSLATE("Tue")
-    , wxTRANSLATE("Wed"), wxTRANSLATE("Thu"), wxTRANSLATE("Fri")
-    , wxTRANSLATE("Sat")
+    wxTRANSLATE("Sunday"), wxTRANSLATE("Monday"), wxTRANSLATE("Tuesday"),
+    wxTRANSLATE("Wednesday"), wxTRANSLATE("Thursday"), wxTRANSLATE("Friday"),
+    wxTRANSLATE("Saturday")
+};
+
+const wxString g_short_days_of_week[7] =
+{
+    wxTRANSLATE("Sun"), wxTRANSLATE("Mon"), wxTRANSLATE("Tue"),
+    wxTRANSLATE("Wed"), wxTRANSLATE("Thu"), wxTRANSLATE("Fri"),
+    wxTRANSLATE("Sat")
 };
 
 const wxString mmGetDateTimeForDisplay(const wxString &datetime_iso, const wxString& format)
