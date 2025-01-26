@@ -538,7 +538,7 @@ bool mmParseISODate(const wxString& in, wxDateTime& out)
 const wxDateTime getUserDefinedFinancialYear(const bool prevDayRequired)
 {
     long monthNum;
-    Option::instance().FinancialYearStartMonth().ToLong(&monthNum);
+    Option::instance().getFinancialFirstMonth().ToLong(&monthNum);
 
     if (monthNum > 0) //Test required for compatability with previous version
         monthNum--;
@@ -546,7 +546,7 @@ const wxDateTime getUserDefinedFinancialYear(const bool prevDayRequired)
     int year = wxDate::GetCurrentYear();
     if (wxDate::GetCurrentMonth() < monthNum) year--;
 
-    int dayNum = wxAtoi(Option::instance().FinancialYearStartDay());
+    int dayNum = wxAtoi(Option::instance().getFinancialFirstDay());
 
     if (dayNum <= 0 || dayNum > wxDateTime::GetNumberOfDays(static_cast<wxDateTime::Month>(monthNum), year))
         dayNum = 1;
@@ -836,7 +836,7 @@ bool getOnlineCurrencyRates(wxString& msg,const int64 curr_id, const bool used_o
             double new_rate = currency_data[currency_symbol];
             if (new_rate > 0)
             {
-                if(Option::instance().getCurrencyHistoryEnabled())
+                if(Option::instance().getUseCurrencyHistory())
                     Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID, today, new_rate, Model_CurrencyHistory::ONLINE);
                 else
                 {

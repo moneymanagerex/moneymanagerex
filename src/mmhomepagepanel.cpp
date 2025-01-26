@@ -129,7 +129,7 @@ void mmHomePagePanel::PrintPage()
 
 void mmHomePagePanel::insertDataIntoTemplate()
 {
-    m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().getHtmlFontSize());
+    m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().getHtmlScale());
 
     double tBalance = 0.0, tReconciled = 0.0;
     double cardBalance = 0.0, cardReconciled = 0.0;

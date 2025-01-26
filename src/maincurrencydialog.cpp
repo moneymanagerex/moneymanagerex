@@ -69,7 +69,7 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     bEnableSelect_(bEnableSelect)
     , m_maskStr("")
 {
-    bHistoryEnabled_ = Option::instance().getCurrencyHistoryEnabled();
+    bHistoryEnabled_ = Option::instance().getUseCurrencyHistory();
 
     ColName_[CURR_BASE]   = " ";
     ColName_[CURR_SYMBOL] = _("Code");
@@ -791,7 +791,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int64& baseCurrencyID)
             return true;
     }
 
-    Option::instance().setBaseCurrency(baseCurrencyID);
+    Option::instance().setBaseCurrencyID(baseCurrencyID);
 
     //Update baseconvrate
     Model_Currency::instance().Savepoint();

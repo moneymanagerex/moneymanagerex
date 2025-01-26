@@ -231,7 +231,7 @@ void mmAssetDialog::CreateControls()
     for(const auto& a : Option::COMPOUNDING_NAME)
         m_compoundingChoice->Append(wxGetTranslation(a.second));
     mmToolTip(m_compoundingChoice, _("Select the compounding period for the appreciation/depreciation rate"));
-    m_compounding = static_cast<Option::COMPOUNDING_ID>(Option::instance().AssetCompounding());
+    m_compounding = static_cast<Option::COMPOUNDING_ID>(Option::instance().getAssetCompounding());
     m_compoundingChoice->SetSelection(m_compounding);
     itemFlexGridSizer6->Add(m_compoundingChoice, g_flagsExpand);
 

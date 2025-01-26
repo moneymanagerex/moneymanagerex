@@ -100,23 +100,10 @@ extern const wxString VIEW_ACCOUNTS_CLOSED_STR;
 extern const wxString VIEW_ACCOUNTS_FAVORITES_STR;
 
 extern const wxString LANGUAGE_PARAMETER;
-extern const wxString INIDB_USE_CURRENCY_HISTORY;
 extern const wxString INIDB_USE_TRANSACTION_SOUND;
 extern const wxString INIDB_USE_ORG_DATE_COPYPASTE;
 extern const wxString INIDB_USE_ORG_DATE_DUPLICATE;
 extern const wxString INIDB_SEND_USAGE_STATS;
-extern const wxString INIDB_CHECK_NEWS;
-
-extern const wxString INIDB_HIDE_SHARE_ACCOUNTS;
-extern const wxString INIDB_HIDE_DELETED_TRANSACTIONS;
-extern const wxString INIDB_BUDGET_FINANCIAL_YEARS;
-extern const wxString INIDB_BUDGET_INCLUDE_TRANSFERS;
-extern const wxString INIDB_BUDGET_SUMMARY_WITHOUT_CATEG;
-extern const wxString INIDB_BUDGET_OVERRIDE;
-extern const wxString INIDB_BUDGET_DEDUCT_MONTH_FROM_YEAR;
-extern const wxString INIDB_IGNORE_FUTURE_TRANSACTIONS;
-extern const wxString INIDB_SHOW_TOOLTIPS;
-extern const wxString INIDB_SHOW_MONEYTIPS;
 
 extern const wxString ATTACHMENTS_FOLDER_DOCUMENTS;
 extern const wxString ATTACHMENTS_FOLDER_DATABASE;

@@ -123,7 +123,7 @@ void OptionSettingsNet::Create()
 
     m_send_data = new wxCheckBox(network_panel, wxID_ANY
         , _("Send anonymous statistics usage data"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_send_data->SetValue(Option::instance().SendUsageStatistics());
+    m_send_data->SetValue(Option::instance().getSendUsageStats());
     mmToolTip(m_send_data, _("Enable to help us sending anonymous data about MMEX usage."));
 
     usageStaticBoxSizer->Add(m_send_data, g_flagsV);
@@ -136,7 +136,7 @@ void OptionSettingsNet::Create()
 
     m_check_news = new wxCheckBox(network_panel, wxID_ANY
         , _("Check for latest news on startup"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_check_news->SetValue(Option::instance().CheckNewsOnStartup());
+    m_check_news->SetValue(Option::instance().getCheckNews());
     mmToolTip(m_check_news, _("Enable to allow news to be checked on application start"));
     
     newsStaticBoxSizer->Add(m_check_news, g_flagsV);
@@ -214,8 +214,8 @@ bool OptionSettingsNet::SaveSettings()
     wxTextCtrl* WebAppGUID = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID));
     Model_Infotable::instance().Set("WEBAPPGUID", WebAppGUID->GetValue().Trim(false).Trim());
 
-    Option::instance().SendUsageStatistics(m_send_data->GetValue());
-    Option::instance().CheckNewsOnStartup(m_check_news->GetValue());
+    Option::instance().setSendUsageStats(m_send_data->GetValue());
+    Option::instance().setCheckNews(m_check_news->GetValue());
 
     Model_Setting::instance().Set("NETWORKTIMEOUT", m_network_timeout->GetValue());
 

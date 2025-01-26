@@ -262,7 +262,7 @@ mmGUIFrame::mmGUIFrame(
     }
 
     //Read news, if checking enabled
-    if (Option::instance().CheckNewsOnStartup())
+    if (Option::instance().getCheckNews())
         getNewsRSS(websiteNewsArray_);
 
     /* Create the Controls for the frame */
@@ -385,7 +385,7 @@ void mmGUIFrame::cleanup()
     CloseTheme();
 
     // Backup the database according to user requirements
-    if (Option::instance().DatabaseUpdated() &&
+    if (Option::instance().getDatabaseUpdated() &&
         Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false)
     ) {
         dbUpgrade::BackupDB(
@@ -902,7 +902,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
 
     ///////////////////////////////////////////////////////////////////
 
-    bool hideShareAccounts = Option::instance().HideShareAccounts();
+    bool hideShareAccounts = Option::instance().getHideShareAccounts();
 
     if (m_db) {
         /* Start Populating the dynamic data */
@@ -1024,7 +1024,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
             Model_Checking::instance().find(
                 Model_Checking::DELETEDTIME(wxEmptyString, NOT_EQUAL)
             ).empty() ||
-            Option::instance().HideDeletedTransactions()
+            Option::instance().getHideDeletedTransactions()
         ) {
             m_nav_tree_ctrl->Delete(trash);
             if (panelCurrent_ && panelCurrent_->GetId() == mmID_CHECKING) {
@@ -2135,11 +2135,11 @@ void mmGUIFrame::createMenu()
     menuBar_->Append(menuHelp, _("&Help"));
     SetMenuBar(menuBar_);
 
-    menuBar_->Check(MENU_VIEW_HIDE_SHARE_ACCOUNTS, !Option::instance().HideShareAccounts());
-    menuBar_->Check(MENU_VIEW_HIDE_DELETED_TRANSACTIONS, !Option::instance().HideDeletedTransactions());
-    menuBar_->Check(MENU_VIEW_BUDGET_FINANCIAL_YEARS, Option::instance().BudgetFinancialYears());
-    menuBar_->Check(MENU_VIEW_BUDGET_TRANSFER_TOTAL, Option::instance().BudgetIncludeTransfers());
-    menuBar_->Check(MENU_VIEW_BUDGET_CATEGORY_SUMMARY, Option::instance().BudgetReportWithSummaries());
+    menuBar_->Check(MENU_VIEW_HIDE_SHARE_ACCOUNTS, !Option::instance().getHideShareAccounts());
+    menuBar_->Check(MENU_VIEW_HIDE_DELETED_TRANSACTIONS, !Option::instance().getHideDeletedTransactions());
+    menuBar_->Check(MENU_VIEW_BUDGET_FINANCIAL_YEARS, Option::instance().getBudgetFinancialYears());
+    menuBar_->Check(MENU_VIEW_BUDGET_TRANSFER_TOTAL, Option::instance().getBudgetIncludeTransfers());
+    menuBar_->Check(MENU_VIEW_BUDGET_CATEGORY_SUMMARY, Option::instance().getBudgetSummaryWithoutCategories());
     menuBar_->Check(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS, Option::instance().getIgnoreFutureTransactions());
     menuBar_->Check(MENU_VIEW_SHOW_TOOLTIPS, Option::instance().getShowToolTips());
     menuBar_->Check(MENU_VIEW_SHOW_MONEYTIPS, Option::instance().getShowMoneyTips());
@@ -2237,7 +2237,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
     if (m_db) {
         ShutdownDatabase();
         // Backup the database according to user requirements
-        if (Option::instance().DatabaseUpdated() &&
+        if (Option::instance().getDatabaseUpdated() &&
             Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false)
         ) {
             dbUpgrade::BackupDB(
@@ -2245,7 +2245,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
                 dbUpgrade::BACKUPTYPE::CLOSE,
                 Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4)
             );
-            Option::instance().DatabaseUpdated(false);
+            Option::instance().setDatabaseUpdated(false);
         }
     }
 
@@ -2433,7 +2433,7 @@ void mmGUIFrame::SetDataBaseParameters(const wxString& fileName)
     if (m_db) {
         m_filename = fileName;
         /* Set InfoTable Options into memory */
-        Option::instance().LoadOptions();
+        Option::instance().load();
     }
     else {
         m_filename.Clear();
@@ -3100,9 +3100,9 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
     mmOptionsDialog systemOptions(this, this->m_app);
     if (systemOptions.ShowModal() == wxID_OK) {
         //set the View Menu Option items the same as the options saved.
-        menuBar_->FindItem(MENU_VIEW_BUDGET_FINANCIAL_YEARS)->Check(Option::instance().BudgetFinancialYears());
-        menuBar_->FindItem(MENU_VIEW_BUDGET_TRANSFER_TOTAL)->Check(Option::instance().BudgetIncludeTransfers());
-        menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Check(Option::instance().BudgetReportWithSummaries());
+        menuBar_->FindItem(MENU_VIEW_BUDGET_FINANCIAL_YEARS)->Check(Option::instance().getBudgetFinancialYears());
+        menuBar_->FindItem(MENU_VIEW_BUDGET_TRANSFER_TOTAL)->Check(Option::instance().getBudgetIncludeTransfers());
+        menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Check(Option::instance().getBudgetSummaryWithoutCategories());
         menuBar_->FindItem(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS)->Check(Option::instance().getIgnoreFutureTransactions());
         menuBar_->FindItem(MENU_VIEW_SHOW_TOOLTIPS)->Check(Option::instance().getShowToolTips());
         menuBar_->FindItem(MENU_VIEW_SHOW_MONEYTIPS)->Check(Option::instance().getShowMoneyTips());
@@ -3809,13 +3809,13 @@ void mmGUIFrame::OnViewLinksUpdateUI(wxUpdateUIEvent &event)
 
 void mmGUIFrame::OnHideShareAccounts(wxCommandEvent &WXUNUSED(event))
 {
-    Option::instance().HideShareAccounts(!Option::instance().HideShareAccounts());
+    Option::instance().setHideShareAccounts(!Option::instance().getHideShareAccounts());
     RefreshNavigationTree();
 }
 
 void mmGUIFrame::OnHideDeletedTransactions(wxCommandEvent& WXUNUSED(event))
 {
-    Option::instance().HideDeletedTransactions(!Option::instance().HideDeletedTransactions());
+    Option::instance().setHideDeletedTransactions(!Option::instance().getHideDeletedTransactions());
     RefreshNavigationTree();
 }
 
@@ -3881,37 +3881,37 @@ wxTreeItemId mmGUIFrame::findItemByData(wxTreeItemId itemId, mmTreeItemData& sea
 
 void mmGUIFrame::OnViewBudgetFinancialYears(wxCommandEvent& WXUNUSED(event))
 {
-    Option::instance().BudgetFinancialYears(!Option::instance().BudgetFinancialYears());
+    Option::instance().setBudgetFinancialYears(!Option::instance().getBudgetFinancialYears());
     refreshPanelData();
 }
 
 void mmGUIFrame::OnViewBudgetTransferTotal(wxCommandEvent& WXUNUSED(event))
 {
-    Option::instance().BudgetIncludeTransfers(!Option::instance().BudgetIncludeTransfers());
+    Option::instance().setBudgetIncludeTransfers(!Option::instance().getBudgetIncludeTransfers());
     refreshPanelData();
 }
 
 void mmGUIFrame::OnViewBudgetCategorySummary(wxCommandEvent& WXUNUSED(event))
 {
-    Option::instance().BudgetReportWithSummaries(!Option::instance().BudgetReportWithSummaries());
+    Option::instance().setBudgetSummaryWithoutCategories(!Option::instance().getBudgetSummaryWithoutCategories());
     refreshPanelData();
 }
 
 void mmGUIFrame::OnViewIgnoreFutureTransactions(wxCommandEvent& WXUNUSED(event))
 {
-    Option::instance().IgnoreFutureTransactions(!Option::instance().getIgnoreFutureTransactions());
+    Option::instance().setIgnoreFutureTransactions(!Option::instance().getIgnoreFutureTransactions());
     RefreshNavigationTree();
 }
 
 void mmGUIFrame::OnViewShowToolTips(wxCommandEvent& WXUNUSED(event))
 {
-    Option::instance().ShowToolTips(!Option::instance().getShowToolTips());
+    Option::instance().setShowToolTips(!Option::instance().getShowToolTips());
     RefreshNavigationTree();
 }
 
 void mmGUIFrame::OnViewShowMoneyTips(wxCommandEvent& WXUNUSED(event))
 {
-    Option::instance().ShowMoneyTips(!Option::instance().getShowMoneyTips());
+    Option::instance().setShowMoneyTips(!Option::instance().getShowMoneyTips());
     RefreshNavigationTree();
 }
 //----------------------------------------------------------------------------

@@ -122,10 +122,10 @@ void ShareTransactionDialog::DataToControls()
 
     if (translink_list.empty())
     {   // Set up the transaction as the first entry.
-        int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : Option::instance().SharePrecision();
+        int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : Option::instance().getSharePrecision();
         m_share_num_ctrl->SetValue(m_stock->NUMSHARES, precision);
-        m_share_price_ctrl->SetValue(m_stock->PURCHASEPRICE, Option::instance().SharePrecision());
-        m_share_commission_ctrl->SetValue(m_stock->COMMISSION, Option::instance().SharePrecision());
+        m_share_price_ctrl->SetValue(m_stock->PURCHASEPRICE, Option::instance().getSharePrecision());
+        m_share_commission_ctrl->SetValue(m_stock->COMMISSION, Option::instance().getSharePrecision());
         m_transaction_panel->TransactionDate(Model_Stock::PURCHASEDATE(m_stock));
         m_transaction_panel->SetTransactionValue(GetAmount(m_stock->NUMSHARES, m_stock->PURCHASEPRICE
                 , m_stock->COMMISSION), true);
@@ -134,10 +134,10 @@ void ShareTransactionDialog::DataToControls()
     {
         if (m_share_entry)
         {
-            int precision = m_share_entry->SHARENUMBER == floor(m_share_entry->SHARENUMBER) ? 0 : Option::instance().SharePrecision();
+            int precision = m_share_entry->SHARENUMBER == floor(m_share_entry->SHARENUMBER) ? 0 : Option::instance().getSharePrecision();
             m_share_num_ctrl->SetValue(std::abs(m_share_entry->SHARENUMBER), precision);
-            m_share_price_ctrl->SetValue(m_share_entry->SHAREPRICE, Option::instance().SharePrecision());
-            m_share_commission_ctrl->SetValue(m_share_entry->SHARECOMMISSION, Option::instance().SharePrecision());
+            m_share_price_ctrl->SetValue(m_share_entry->SHAREPRICE, Option::instance().getSharePrecision());
+            m_share_commission_ctrl->SetValue(m_share_entry->SHARECOMMISSION, Option::instance().getSharePrecision());
             m_share_lot_ctrl->SetValue(m_share_entry->SHARELOT);
 
             if (m_translink_entry)
@@ -165,7 +165,7 @@ void ShareTransactionDialog::DataToControls()
         else
         {
             m_share_num_ctrl->SetValue(0, 0);
-            m_share_price_ctrl->SetValue(0, Option::instance().SharePrecision());
+            m_share_price_ctrl->SetValue(0, Option::instance().getSharePrecision());
             m_transaction_panel->SetTransactionValue(0, true);
         }
     }
@@ -219,7 +219,7 @@ void ShareTransactionDialog::CreateControls()
     number->SetFont(this->GetFont().Bold());
     m_share_num_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_NUMBER, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    m_share_num_ctrl->SetAltPrecision(Option::instance().SharePrecision());
+    m_share_num_ctrl->SetAltPrecision(Option::instance().getSharePrecision());
     itemFlexGridSizer6->Add(m_share_num_ctrl, g_flagsH);
     mmToolTip(m_share_num_ctrl, _("Enter number of shares held"));
 
@@ -231,7 +231,7 @@ void ShareTransactionDialog::CreateControls()
     pprice->SetFont(this->GetFont().Bold());
     m_share_price_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_PRICE, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    m_share_price_ctrl->SetAltPrecision(Option::instance().SharePrecision());
+    m_share_price_ctrl->SetAltPrecision(Option::instance().getSharePrecision());
     m_share_price_ctrl->SetMinSize(wxSize(150, -1));
     itemFlexGridSizer6->Add(pprice, g_flagsH);
     itemFlexGridSizer6->Add(m_share_price_ctrl, g_flagsH);
@@ -244,7 +244,7 @@ void ShareTransactionDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText(stock_details_panel, wxID_STATIC, _("Commission")), g_flagsH);
     m_share_commission_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_COMMISSION, "0"
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    m_share_commission_ctrl->SetAltPrecision(Option::instance().SharePrecision());
+    m_share_commission_ctrl->SetAltPrecision(Option::instance().getSharePrecision());
     m_share_commission_ctrl->SetMinSize(wxSize(150, -1));
     itemFlexGridSizer6->Add(m_share_commission_ctrl, g_flagsH);
     mmToolTip(m_share_commission_ctrl, _("Enter any commission paid"));

@@ -147,7 +147,7 @@ void UserTransactionPanel::Create()
         m_status_selector->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
 
-    m_status_selector->SetSelection(Option::instance().TransStatusReconciled());
+    m_status_selector->SetSelection(Option::instance().getTransStatusReconciled());
     mmToolTip(m_status_selector, _("Specify the status for this transaction"));
 
     transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Status")), g_flagsH);
@@ -256,7 +256,7 @@ void UserTransactionPanel::DataToControls()
 
 void UserTransactionPanel::SetLastPayeeAndCategory(const int64 account_id)
 {
-    if (Option::instance().TransPayeeSelection() == Option::LASTUSED)
+    if (Option::instance().getTransPayeeNone() == Option::LASTUSED)
     {
         Model_Checking::Data_Set trans_list = Model_Checking::instance().find(Model_Checking::ACCOUNTID(account_id), Model_Checking::TRANSCODE(Model_Checking::TYPE_ID_TRANSFER, NOT_EQUAL));
         if (!trans_list.empty())
@@ -267,7 +267,7 @@ void UserTransactionPanel::SetLastPayeeAndCategory(const int64 account_id)
             if (last_payee) {
                 m_payee->SetLabelText(last_payee->PAYEENAME);
                 m_payee_id = last_payee->PAYEEID;
-                if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED)
+                if ((Option::instance().getTransCategoryNone() == Option::LASTUSED)
                     && (!Model_Category::is_hidden(last_payee->CATEGID)))
                 {
                     m_category_id = last_payee->CATEGID;
@@ -304,7 +304,7 @@ void UserTransactionPanel::OnTransPayeeButton(wxCommandEvent& WXUNUSED(event))
             m_payee->SetLabelText(payee->PAYEENAME);
 
             // Only for new transactions: if user want to autofill last category used for payee and category has not been set.
-            if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED) && (m_category_id < 0) && (m_subcategory_id < 0)
+            if ((Option::instance().getTransCategoryNone() == Option::LASTUSED) && (m_category_id < 0) && (m_subcategory_id < 0)
                         && (!Model_Category::is_hidden(payee->CATEGID)))
             {
                 if (payee->CATEGID > 0)

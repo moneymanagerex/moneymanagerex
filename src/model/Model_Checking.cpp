@@ -599,7 +599,7 @@ void Model_Checking::getEmptyData(Data &data, int64 accountID)
     data.PAYEEID = -1;
     const wxString today_date = wxDate::Now().FormatISOCombined();
     wxString max_trx_date;
-    if (Option::instance().TransDateDefault() != Option::NONE)
+    if (Option::instance().getTransDateDefault() != Option::NONE)
     {
         auto trans = instance().find_or(ACCOUNTID(accountID), TOACCOUNTID(accountID));
 
@@ -616,7 +616,7 @@ void Model_Checking::getEmptyData(Data &data, int64 accountID)
 
     data.TRANSDATE = max_trx_date;
     data.ACCOUNTID = accountID;
-    data.STATUS = STATUS_KEY[Option::instance().TransStatusReconciled()];
+    data.STATUS = STATUS_KEY[Option::instance().getTransStatusReconciled()];
     data.TRANSCODE = TYPE_STR_WITHDRAWAL;
     data.CATEGID = -1;
     data.FOLLOWUPID = -1;

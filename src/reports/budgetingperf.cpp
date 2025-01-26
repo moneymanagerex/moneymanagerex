@@ -42,7 +42,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
 
     int startDay;
     wxDate::Month startMonth;
-    if (Option::instance().BudgetFinancialYears())
+    if (Option::instance().getBudgetFinancialYears())
     {
         GetFinancialYearValues(startDay, startMonth);
     } else
@@ -75,12 +75,12 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     yearEnd.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
 
     // Readjust dates by the Budget Offset Option
-    Option::instance().setBudgetDateOffset(yearBegin);
-    Option::instance().setBudgetDateOffset(yearEnd);
+    Option::instance().addBudgetDateOffset(yearBegin);
+    Option::instance().addBudgetDateOffset(yearEnd);
     mmSpecifiedRange date_range(yearBegin, yearEnd);
 
     bool evaluateTransfer = false;
-    if (Option::instance().BudgetIncludeTransfers())
+    if (Option::instance().getBudgetIncludeTransfers())
     {
         evaluateTransfer = true;
     }
@@ -97,7 +97,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         , Option::instance().getIgnoreFutureTransactions()
         , true
         , (evaluateTransfer ? &budgetAmt : nullptr)
-        , Option::instance().BudgetFinancialYears());
+        , Option::instance().getBudgetFinancialYears());
 
     std::map<int64, std::map<int, double> > budgetStats;
     Model_Budget::instance().getBudgetStats(budgetStats, &date_range, true);
@@ -161,7 +161,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                 std::map<int64, wxString> formattedNames;
                 std::map<int64, std::vector<Model_Category::Data>> categ_children;
 
-                bool budgetDeductMonthly = Option::instance().BudgetDeductMonthly();
+                bool budgetDeductMonthly = Option::instance().getBudgetDeductMonthly();
                 // pull categories from DB and store
                 for (Model_Category::Data category : Model_Category::instance().all(Model_Category::COL_CATEGNAME, false)) {
                     categ_children[category.PARENTID].push_back(category);

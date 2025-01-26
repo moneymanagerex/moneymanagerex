@@ -23,7 +23,7 @@ class CommitCallbackHook : public wxSQLite3Hook
 public:
     virtual bool CommitCallback()
     {
-        Option::instance().DatabaseUpdated(true);
+        Option::instance().setDatabaseUpdated(true);
         return false;
     }
 };
