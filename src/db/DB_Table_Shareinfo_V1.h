@@ -1,7 +1,7 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright: (c) 2013 - 2024 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2013 - 2025 Guan Lisheng (guanlisheng@gmail.com)
  *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *      Copyright: (c) 2022 Mark Whalley (mark@ipx.co.uk)
  *
@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2024-12-25 12:56:03.116570.
+ *          AUTO GENERATED at 2025-01-27 22:25:33.865032.
  *          DO NOT EDIT!
  */
 //=============================================================================
