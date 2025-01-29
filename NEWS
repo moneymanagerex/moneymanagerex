@@ -3,7 +3,9 @@ Version 1.9.0 RC 2
 Released: 2025-01-27
 
 Features:
+* #7136 Difficulty to revert from 1.9.0 to 1.8.1
 * #7131 Balance column gets unreliable when changing the sorting columns
+* #7122 The computing of appreciation/depreciation of assets isn't exact
 * #7112 Cleanup Appveyor build warnings
 * #7109 Sorting transaction by Date and other column which is NOT "ID"
 * #7059 Show transactions panel for an account group
@@ -11,6 +13,8 @@ Features:
 * #6860 Add executions of scheduled transactions in transaction panels
 
 Bugfixes:
+* #7142 All Transactions and Scheduled Transactions Menu Items Missing in latest Beta Version
+* #7130 Stock ticker ^RIYWCT not recognized
 * #7110 Sorting transactions by "Date" and "Id" is not working properly
 * #7102 Crash when blank checking panel area is right clicked in Linux
 * #7099 Column data incorrect when switching between databases
@@ -33,6 +37,7 @@ Bugfixes:
 * #6971 Impossible to open an encrypted database with version 1.8.1
 * #6956 Invalid Total Amount on split transaction
 * #6924 Fatal error occurs when entering date value exceeding the specified value
+* #6917 Translations broken
 * #6871 Database encryption change to AES256
 
 Version 1.8.1

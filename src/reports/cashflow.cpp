@@ -42,8 +42,8 @@ mmReportCashFlow::~mmReportCashFlow()
 double mmReportCashFlow::trueAmount(const Model_Checking::Data& trx)
 {
     double amount = 0.0;
-    bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(), trx.ACCOUNTID) == m_account_id.end();
-    bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(), trx.TOACCOUNTID) == m_account_id.end();
+    bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(), trx.ACCOUNTID) != m_account_id.end();
+    bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(), trx.TOACCOUNTID) != m_account_id.end();
     if (!(isAccountFound && isToAccountFound))
     {
         const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
@@ -107,8 +107,8 @@ void mmReportCashFlow::getTransactions()
     );
     for (auto& trx : transactions) {
         if (!trx.DELETEDTIME.IsEmpty()) continue;
-        bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(), trx.ACCOUNTID) == m_account_id.end();
-        bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(), trx.TOACCOUNTID) == m_account_id.end();
+        bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(), trx.ACCOUNTID) != m_account_id.end();
+        bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(), trx.TOACCOUNTID) != m_account_id.end();
         if (!isAccountFound && !isToAccountFound)
             continue; // skip account
         if (trx.CATEGID == -1) {
@@ -145,8 +145,8 @@ void mmReportCashFlow::getTransactions()
         if (repeats != Model_Billsdeposits::REPEAT_ONCE && (numRepeats == 0 || numRepeats < -1))
             continue;
 
-        bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(), entry.ACCOUNTID) == m_account_id.end();
-        bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(), entry.TOACCOUNTID) == m_account_id.end();
+        bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(), entry.ACCOUNTID) != m_account_id.end();
+        bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(), entry.TOACCOUNTID) != m_account_id.end();
         if (!isAccountFound && !isToAccountFound)
             continue; // skip account
 
