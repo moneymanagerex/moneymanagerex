@@ -104,13 +104,13 @@ public:
 
     // m_financial_first_day
     void loadFinancialFirstDay();
-    void setFinancialFirstDay(const wxString& setting);
-    const wxString& getFinancialFirstDay() const;
+    void setFinancialFirstDay(int value);
+    int getFinancialFirstDay() const;
 
     // m_financial_first_month
     void loadFinancialFirstMonth();
-    void setFinancialFirstMonth(const wxString& setting);
-    const wxString& getFinancialFirstMonth() const;
+    void setFinancialFirstMonth(const wxDateTime::Month value);
+    wxDateTime::Month getFinancialFirstMonth() const;
 
     // m_budget_days_offset: allows a year to start before or after the 1st of the month.
     void loadBudgetDaysOffset();
@@ -266,8 +266,8 @@ private:
     int m_reporting_first_day = 1;                      // REPORTING_FIRSTDAY
     wxDateTime::WeekDay m_reporting_first_weekday =     // REPORTING_FIRST_WEEKDAY
         wxDateTime::WeekDay::Sun;
-    wxString m_financial_first_day;                     // FINANCIAL_YEAR_START_DAY
-    wxString m_financial_first_month;                   // FINANCIAL_YEAR_START_MONTH
+    int m_financial_first_day;                          // FINANCIAL_YEAR_START_DAY
+    wxDateTime::Month m_financial_first_month;          // FINANCIAL_YEAR_START_MONTH
     int m_budget_days_offset = 0;                       // BUDGET_DAYS_OFFSET
     int m_homepage_incexp_range = 0;                    // HOMEPAGE_INCEXP_RANGE
 
@@ -353,12 +353,12 @@ inline wxDateTime::WeekDay Option::getReportingFirstWeekday() const noexcept
     return m_reporting_first_weekday;
 }
 
-inline const wxString& Option::getFinancialFirstDay() const
+inline int Option::getFinancialFirstDay() const
 {
     return m_financial_first_day;
 }
 
-inline const wxString& Option::getFinancialFirstMonth() const {
+inline wxDateTime::Month Option::getFinancialFirstMonth() const {
     return m_financial_first_month;
 }
 

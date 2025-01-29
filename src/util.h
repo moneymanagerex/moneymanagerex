@@ -35,6 +35,29 @@ wxString JSON_PrettyFormated(rapidjson::Document& j_doc);
 //Returns a JSON formatted string from RapidJson DOM
 wxString JSON_Formated(rapidjson::Document& j_doc);
 
+typedef wxString::const_iterator StringIt;
+
+struct StringBuilder
+{
+    wxString buffer = "";
+    bool flag = false;
+
+    void append(const wxString x);
+    void sep(const wxString s = " ");
+    void flush();
+    void reset();
+};
+
+inline void StringBuilder::flush() {
+    flag = false;
+}
+
+inline void StringBuilder::reset() {
+    // make buffer empty, but don't free memory
+    buffer.Empty();
+    flag = false;
+}
+
 struct ValuePair
 {
     wxString label;
