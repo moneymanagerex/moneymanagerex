@@ -66,7 +66,7 @@ void mmReportBudget::GetFinancialYearValues(int& day, wxDateTime::Month& month) 
 {
     day = Option::instance().getFinancialFirstDay();
     month = Option::instance().getFinancialFirstMonth();
-    // #TODO_REF: day is limited to 1..28; the following code is no-op
+    // #7159: day is limited to 1..28; the following code is no-op
     if ((day > 28) && (month == wxDateTime::Feb))
     {
         day = 28;
