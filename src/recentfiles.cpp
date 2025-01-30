@@ -67,7 +67,7 @@ void mmFileHistory::Save()
         if (i < static_cast<int>(GetCount())) {
             historyFile = (i == 0) ?
                 Model_Setting::instance().GetStringSetting("LASTFILENAME", "") :
-                historyFile = GetHistoryFile(i);
+                GetHistoryFile(i);
             wxLogDebug("%s %s", buf, historyFile);
             Model_Setting::instance().Set(buf, historyFile);
         }
