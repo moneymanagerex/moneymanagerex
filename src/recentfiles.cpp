@@ -44,13 +44,13 @@ void mmFileHistory::Load()
     wxString buf, historyFile;
 
     for (int i = GetMaxFiles(); i > 0 ; i--) {
-        if (i == 0) {
-            historyFile = Model_Setting::instance().GetStringSetting("LASTFILENAME", "");
-        }
-        else {
+        //if (i == 0) {
+        //    historyFile = Model_Setting::instance().GetStringSetting("LASTFILENAME", "");
+        //}
+        //else {
             buf.Printf("RECENT_DB_%d", i);
             historyFile = Model_Setting::instance().GetStringSetting(buf, wxEmptyString);
-        }
+        //}
         if (!historyFile.empty()) {
             AddFileToHistory(historyFile);
         }
