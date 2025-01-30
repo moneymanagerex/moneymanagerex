@@ -290,13 +290,13 @@ bool DateRange2::scanLabel(StringIt &str_i, StringIt str_end)
     int f_new = 0;
     int i = 0;     // index into {s,e}{o,p}[] (0: first subrange, 1: second subrange)
     int state = 0; // scan state: 0 (so) 1 (sp) 2 (..) 3 (eo) 4 (ep) 5 (f) 6 (;) 7
-    char token = 0;                     // token (one of [ofp.,;_])
-    int token_o = 0;                    // offset (applicable if token == 'o')
-    PERIOD_ID token_p = PERIOD_ID_none; // period (applicable if token == 'p')
 
     while (1) {
+        char token;                         // one of [ofp.,;_]
+        int token_o = 0;                    // offset (applicable if token == 'o')
+        PERIOD_ID token_p = PERIOD_ID_none; // period (applicable if token == 'p')
         token = scanToken(str_i, str_end, token_o, token_p);
-        //wxLogDebug("DEBUG: state=%d, token=%c", state, token ? token : '0');
+        //wxLogDebug("DEBUG: state=%d, token=%c", state, token);
         if (state == 0 && token == 'o') {
             so_new[i] = token_o;
             state = 1;
