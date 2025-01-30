@@ -40,10 +40,12 @@ public:
         PERIOD_ID_size,
         PERIOD_ID_none = PERIOD_ID_size
     };
+private:
     typedef struct { PERIOD_ID id; wxString label; } PERIOD_INFO_t;
     static const PERIOD_INFO_t PERIOD_INFO[];
-private:
-    static std::unordered_map<char, PERIOD_ID> PERIOD_LABEL_ID;
+    typedef std::unordered_map<char, PERIOD_ID> PERIOD_LABEL_ID_t;
+    static PERIOD_LABEL_ID_t PERIOD_LABEL_ID;
+    static PERIOD_LABEL_ID_t make_period_label_id();
 
 public:
     DateRange2(wxDateTime s = wxInvalidDateTime, wxDateTime t = wxInvalidDateTime);
@@ -65,7 +67,6 @@ protected:
     int f = 0;                              // index in first*[] (0=calendar, 1=financial)
 
 public:
-    static bool init();
     void setT(wxDateTime date = wxInvalidDateTime);
     void setS(wxDateTime date = wxInvalidDateTime);
     wxDateTime getT() const;

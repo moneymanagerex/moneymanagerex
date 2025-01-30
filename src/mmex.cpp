@@ -256,8 +256,7 @@ bool OnInitImpl(mmGUIApp* app)
     /* Load general MMEX Custom Settings */
     Option::instance().load(false);
 
-    // initialize DateRange2
-    ok = ok && DateRange2::init();
+    // checks (only in Debug build)
 #ifndef NDEBUG
     ok = ok && DateRange2::debug();
 #endif
@@ -460,19 +459,17 @@ bool mmGUIApp::OnInit()
 
 int mmGUIApp::OnExit()
 {
-    wxLogDebug("OnExit()");
+    wxLogDebug("{{{ mmGUIApp::OnExit()");
     Model_Usage::Data* usage = Model_Usage::instance().create();
     usage->USAGEDATE = wxDate::Today().FormatISODate();
 
     wxString rj = Model_Usage::instance().To_JSON_String();
-    wxLogDebug("===== mmGUIApp::OnExit ===========================");
     wxLogDebug("RapidJson\n%s", rj);
 
     usage->JSONCONTENT = rj;
     Model_Usage::instance().save(usage);
 
-    if (m_setting_db)
-    {
+    if (m_setting_db) {
         m_setting_db->Close();
         m_setting_db->ShutdownSQLite();
     }
@@ -483,6 +480,7 @@ int mmGUIApp::OnExit()
     // Delete mmex temp folder for current user
     wxFileName::Rmdir(mmex::getTempFolder(), wxPATH_RMDIR_RECURSIVE);
 
+    wxLogDebug("}}}");
     return 0;
 }
 

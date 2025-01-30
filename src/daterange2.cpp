@@ -30,7 +30,17 @@ const DateRange2::PERIOD_INFO_t DateRange2::PERIOD_INFO[] =
     { PERIOD_ID_T, "T" },
     { PERIOD_ID_S, "S" },
 };
-std::unordered_map<char, DateRange2::PERIOD_ID> DateRange2::PERIOD_LABEL_ID = {};
+DateRange2::PERIOD_LABEL_ID_t DateRange2::PERIOD_LABEL_ID = make_period_label_id();
+
+DateRange2::PERIOD_LABEL_ID_t DateRange2::make_period_label_id()
+{
+    PERIOD_LABEL_ID_t period_label_id;
+    for (int i = 0; i < sizeof(PERIOD_INFO)/sizeof(PERIOD_INFO[0]); ++i) {
+        char c = PERIOD_INFO[i].label[0];
+        period_label_id[c] = PERIOD_INFO[i].id;
+    }
+    return period_label_id;
+}
 
 DateRange2::DateRange2(wxDateTime s, wxDateTime t) :
     firstDay{
@@ -439,32 +449,16 @@ DateRange2::DateRange2(
     setT(t_new);
     setS(s_new);
 }
-#endif
 
-bool DateRange2::init()
+bool DateRange2::debug()
 {
     bool ok = true;
+    wxLogDebug("{{{ DateRange2::debug()");
 
     // check order in PERIOD_INFO
     for (int i = 0; i < sizeof(PERIOD_INFO)/sizeof(PERIOD_INFO[0]); i++) {
         wxASSERT_MSG(PERIOD_INFO[i].id == i, "Wrong order in DateRange2::PERIOD_INFO");
     }
-
-    // initialize PERIOD_LABEL_ID
-    PERIOD_LABEL_ID = {};
-    for (int i = 0; i < sizeof(PERIOD_INFO)/sizeof(PERIOD_INFO[0]); ++i) {
-        char c = PERIOD_INFO[i].label[0];
-        PERIOD_LABEL_ID[c] = PERIOD_INFO[i].id;
-    }
-
-    return ok;
-}
-
-#ifndef NDEBUG
-bool DateRange2::debug()
-{
-    bool ok = true;
-    wxLogDebug("{{{ DateRange2::debug()");
 
     wxDateTime t, s;
     t.ParseISOCombined("2025-01-30T00:00:01"); // Thu
