@@ -206,6 +206,8 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
     if (RssDocument.GetRoot()->GetName() != "rss")
         return false;
 
+    wxLogDebug("{{{ getNewsRSS()");
+
     const wxString news_last_read_date_str = Model_Setting::instance().GetStringSetting(INIDB_NEWS_LAST_READ_DATE, "");
     wxDate news_last_read_date;
     if (!news_last_read_date.ParseISODate(news_last_read_date_str))
@@ -247,7 +249,9 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
         RssRoot = RssRoot->GetNext();
     }
 
-    wxLogDebug("getNewsRSS: New articles = %i", static_cast<int>(WebsiteNewsList.size()));
+    wxLogDebug("New articles: %i", static_cast<int>(WebsiteNewsList.size()));
+    wxLogDebug("}}}");
+
     if (WebsiteNewsList.size() == 0)
         return false;
 

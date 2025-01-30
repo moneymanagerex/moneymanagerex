@@ -20,7 +20,7 @@
 #include "option.h"
 #include "daterange2.h"
 
-const DateRange2::PERIOD_INFO DateRange2::PERIOD[] =
+const DateRange2::PERIOD_INFO_t DateRange2::PERIOD_INFO[] =
 {
     { PERIOD_ID_A, "A" },
     { PERIOD_ID_Y, "Y" },
@@ -30,6 +30,7 @@ const DateRange2::PERIOD_INFO DateRange2::PERIOD[] =
     { PERIOD_ID_T, "T" },
     { PERIOD_ID_S, "S" },
 };
+std::unordered_map<char, DateRange2::PERIOD_ID> DateRange2::PERIOD_LABEL_ID = {};
 
 DateRange2::DateRange2(wxDateTime s, wxDateTime t) :
     firstDay{
@@ -204,16 +205,8 @@ void DateRange2::scanWhiteSpace(StringIt &str_i, StringIt str_end)
         str_i++;
 }
 
-char DateRange2::scanToken(StringIt &str_i, StringIt str_end, int &token_o, PERIOD_ID &token_p) {
-    // map from period label (as char) to PERIOD_ID
-    static std::unordered_map<char, PERIOD_ID> label_id;
-    if (label_id.size() == 0) {
-        for (int i = 0; i < sizeof(PERIOD)/sizeof(PERIOD[0]); ++i) {
-            char c = PERIOD[i].label[0];
-            label_id[c] = PERIOD[i].id;
-        }
-    }
-
+char DateRange2::scanToken(StringIt &str_i, StringIt str_end, int &token_o, PERIOD_ID &token_p)
+{
     scanWhiteSpace(str_i, str_end);
     if (str_i == str_end)
         return ';';
@@ -247,8 +240,8 @@ char DateRange2::scanToken(StringIt &str_i, StringIt str_end, int &token_o, PERI
         return 'f';
     }
 
-    auto label_it = label_id.find(c);
-    if (label_it != label_id.end()) {
+    auto label_it = PERIOD_LABEL_ID.find(c);
+    if (label_it != PERIOD_LABEL_ID.end()) {
         str_i++;
         token_p = label_it->second;
         return 'p';
@@ -383,12 +376,12 @@ const wxString DateRange2::getLabel() const
     StringBuilder sb;
 
     // first range
-    wxString sp1_label = PERIOD[sp1].label;
+    wxString sp1_label = PERIOD_INFO[sp1].label;
     if (sp1 == ep1) {
         sb.append(offset_range_str(so1, eo1)); sb.sep(); sb.append(sp1_label);
     }
     else {
-        wxString ep1_label = PERIOD[ep1].label;
+        wxString ep1_label = PERIOD_INFO[ep1].label;
         sb.append(offset_str(so1)); sb.sep(); sb.append(sp1_label);
         sb.sep(); sb.append(".."); sb.sep();
         sb.append(offset_str(eo1)); sb.sep(); sb.append(ep1_label);
@@ -397,12 +390,12 @@ const wxString DateRange2::getLabel() const
     // second range
     if (sp2 != PERIOD_ID_none && ep2 != PERIOD_ID_none) {
         sb.append(","); sb.sep();
-        wxString sp2_label = PERIOD[sp2].label;
+        wxString sp2_label = PERIOD_INFO[sp2].label;
         if (sp2 == ep2) {
             sb.append(offset_range_str(so2, eo2)); sb.sep(); sb.append(sp2_label);
         }
         else {
-            wxString ep2_label = PERIOD[ep2].label;
+            wxString ep2_label = PERIOD_INFO[ep2].label;
             sb.append(offset_str(so2)); sb.sep(); sb.append(sp2_label);
             sb.sep(); sb.append(".."); sb.sep();
             sb.append(offset_str(eo2)); sb.sep(); sb.append(ep2_label);
@@ -433,7 +426,6 @@ const wxString DateRange2::getDescription() const
 }
 
 #ifndef NDEBUG
-
 DateRange2::DateRange2(
     int firstDay_0, int firstDay_1,
     wxDateTime::Month firstMonth_0, wxDateTime::Month firstMonth_1,
@@ -447,28 +439,33 @@ DateRange2::DateRange2(
     setT(t_new);
     setS(s_new);
 }
+#endif
 
-inline wxString dateISO(wxDateTime date)
-{
-    return (date == wxInvalidDateTime) ? "" : date.FormatISODate();
-}
-
-inline wxString dateTimeISO(wxDateTime dateTime)
-{
-    return (dateTime == wxInvalidDateTime) ? "" : dateTime.FormatISOCombined();
-}
-
-bool DateRange2::testOk = DateRange2::test();
-bool DateRange2::test()
+bool DateRange2::init()
 {
     bool ok = true;
 
-    // check order in PERIOD
-    for (int i = 0; i < sizeof(PERIOD)/sizeof(PERIOD[0]); i++) {
-        wxASSERT_MSG(PERIOD[i].id == i, "Wrong order in DateRange2::PERIOD");
+    // check order in PERIOD_INFO
+    for (int i = 0; i < sizeof(PERIOD_INFO)/sizeof(PERIOD_INFO[0]); i++) {
+        wxASSERT_MSG(PERIOD_INFO[i].id == i, "Wrong order in DateRange2::PERIOD_INFO");
     }
 
-    wxLogDebug("==== DateRange2::test()");
+    // initialize PERIOD_LABEL_ID
+    PERIOD_LABEL_ID = {};
+    for (int i = 0; i < sizeof(PERIOD_INFO)/sizeof(PERIOD_INFO[0]); ++i) {
+        char c = PERIOD_INFO[i].label[0];
+        PERIOD_LABEL_ID[c] = PERIOD_INFO[i].id;
+    }
+
+    return ok;
+}
+
+#ifndef NDEBUG
+bool DateRange2::debug()
+{
+    bool ok = true;
+    wxLogDebug("{{{ DateRange2::debug()");
+
     wxDateTime t, s;
     t.ParseISOCombined("2025-01-30T00:00:01"); // Thu
     s.ParseISOCombined("2024-08-30T00:00:01"); // Fri
@@ -478,8 +475,8 @@ bool DateRange2::test()
         wxDateTime::WeekDay::Mon,
         t, s
     );
-    wxLogDebug("INFO: t=[%s]", dateTimeISO(dr.getT()));
-    wxLogDebug("INFO: s=[%s]", dateTimeISO(dr.getS()));
+    //wxLogDebug("INFO: t=[%s]", dateTimeISO(dr.getT()));
+    //wxLogDebug("INFO: s=[%s]", dateTimeISO(dr.getS()));
 
     struct { wxString range; wxString sc; wxString ec; } test1[] = {
         { "A",            "",           "" },
@@ -508,6 +505,7 @@ bool DateRange2::test()
         wxString range = test1[i].range;
         //wxLogDebug("DEBUG in test1[%d] [%s]", i, range);
         if (!dr.setRange(test1[i].range)) {
+            ok = false;
             wxLogDebug("ERROR in test1[%d]: Cannot scan [%s]", i, range);
             continue;
         }
@@ -515,14 +513,18 @@ bool DateRange2::test()
         if (label != range)
             wxLogDebug("INFO in test1[%d]: [%s] -> [%s]", i, range, label);
         wxString sc = dateISO(dr.checking_start());
-        if (sc != test1[i].sc)
+        if (sc != test1[i].sc) {
+            ok = false;
             wxLogDebug("ERROR in test1[%d] [%s]: sc=[%s], expected [%s]", i, range, sc, test1[i].sc);
+        }
         wxString ec = dateISO(dr.checking_end());
-        if (ec != test1[i].ec)
+        if (ec != test1[i].ec) {
+            ok = false;
             wxLogDebug("ERROR in test1[%d] [%s]: ec=[%s], expected [%s]", i, range, ec, test1[i].ec);
+        }
     }
 
+    wxLogDebug("}}}");
     return ok;
 }
-
 #endif

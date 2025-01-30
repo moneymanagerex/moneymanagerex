@@ -225,8 +225,19 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const w
 extern const std::vector<std::pair<wxString, wxString>> g_date_formats_map();
 extern const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding;
 
-inline const wxString mmGetMonthName(const wxDateTime::Month& month) {
+inline const wxString mmGetMonthName(const wxDateTime::Month& month)
+{
     return MONTHS[static_cast<int>(month)];
+}
+
+inline wxString dateISO(wxDateTime date)
+{
+    return (date == wxInvalidDateTime) ? "" : date.FormatISODate();
+}
+
+inline wxString dateTimeISO(wxDateTime dateTime)
+{
+    return (dateTime == wxInvalidDateTime) ? "" : dateTime.FormatISOCombined();
 }
 //----------------------------------------------------------------------------
 
