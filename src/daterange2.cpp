@@ -420,14 +420,14 @@ const wxString DateRange2::getLabel() const
     return sb.buffer;
 }
 
-const wxString DateRange2::getName() const
+const wxString DateRange2::checking_Name() const
 {
     wxString str = getLabel();
     // TODO
     return str;
 }
 
-const wxString DateRange2::getDescription() const
+const wxString DateRange2::checking_Description() const
 {
     static StringBuilder sb;
     sb.reset();
@@ -472,7 +472,7 @@ bool DateRange2::debug()
     //wxLogDebug("INFO: t=[%s]", dateTimeISO(dr.getT()));
     //wxLogDebug("INFO: s=[%s]", dateTimeISO(dr.getS()));
 
-    struct { wxString range; wxString sc; wxString ec; } test1[] = {
+    struct { wxString range; wxString sc; wxString ec; } checking[] = {
         { "A",            "",           "" },
         { "Y",            "2025-01-01", "2025-12-31" },
         { "Q",            "2025-01-01", "2025-03-31" },
@@ -495,26 +495,30 @@ bool DateRange2::debug()
         { "-1 M, Q .. Y", "2024-12-01", "2025-01-31" },
         { "W, -1..+1 Q",  "2024-10-28", "2025-05-04" },
     };
-    for (int i = 0; i < sizeof(test1)/sizeof(test1[0]); ++i) {
-        wxString range = test1[i].range;
-        //wxLogDebug("DEBUG in test1[%d] [%s]", i, range);
-        if (!dr.setRange(test1[i].range)) {
+    for (int i = 0; i < sizeof(checking)/sizeof(checking[0]); ++i) {
+        wxString range = checking[i].range;
+        //wxLogDebug("checking[%d] [%s]", i, range);
+        if (!dr.setRange(checking[i].range)) {
             ok = false;
-            wxLogDebug("ERROR in test1[%d]: Cannot scan [%s]", i, range);
+            wxLogDebug("ERROR in checking[%d]: Cannot scan [%s]", i, range);
             continue;
         }
         wxString label = dr.getLabel();
         if (label != range)
-            wxLogDebug("INFO in test1[%d]: [%s] -> [%s]", i, range, label);
+            wxLogDebug("checking[%d] [%s]: label=[%s]", i, range, label);
         wxString sc = dateISO(dr.checking_start());
-        if (sc != test1[i].sc) {
+        if (sc != checking[i].sc) {
             ok = false;
-            wxLogDebug("ERROR in test1[%d] [%s]: sc=[%s], expected [%s]", i, range, sc, test1[i].sc);
+            wxLogDebug("ERROR in checking[%d] [%s]: sc=[%s], expected [%s]",
+                i, range, sc, checking[i].sc
+            );
         }
         wxString ec = dateISO(dr.checking_end());
-        if (ec != test1[i].ec) {
+        if (ec != checking[i].ec) {
             ok = false;
-            wxLogDebug("ERROR in test1[%d] [%s]: ec=[%s], expected [%s]", i, range, ec, test1[i].ec);
+            wxLogDebug("ERROR in checking[%d] [%s]: ec=[%s], expected [%s]",
+                i, range, ec, checking[i].ec
+            );
         }
     }
 
