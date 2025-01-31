@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-01-22 07:52+0000\n"
-"PO-Revision-Date: 2025-01-24 00:51\n"
+"PO-Revision-Date: 2025-01-31 00:51\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -193,7 +193,7 @@ msgstr "Informations d'accès :"
 
 #: accountdialog.cpp:220
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "Saisissez les informations d'accès, identifiant / mot de passe, à l'établissement financier. - ATTENTION - toute personne ayant accès au fichier .mmb peut voir ces informations !"
+msgstr "Saisissez les informations d'accès, identifiant / mot de passe, à l'établissement financier. Ce n'est pas sûr car quiconque ayant accès au fichier mmb peut voir ces informations."
 
 #: accountdialog.cpp:225
 msgid "Statement"
@@ -217,7 +217,7 @@ msgstr "Date de rapprochement :"
 
 #: accountdialog.cpp:240
 msgid "The date of the transaction lock"
-msgstr "Date du verrouilage de la transaction"
+msgstr "Date du verrouillage de la transaction"
 
 #: accountdialog.cpp:243
 msgid "Minimum Bal:"
@@ -225,7 +225,7 @@ msgstr "Balance mini:"
 
 #: accountdialog.cpp:245
 msgid "Account balance lower limit. Zero to disable"
-msgstr "Limite inférieure du solde du compte. Zéro \"0\" pour désactiver."
+msgstr "Limite inférieure du solde du compte. Zéro pour désactiver"
 
 #: accountdialog.cpp:250 mmchecking_list.cpp:375
 msgid "Credit"
@@ -237,7 +237,7 @@ msgstr "Limite de découvert :"
 
 #: accountdialog.cpp:260
 msgid "Credit limit for the Account. Zero to disable"
-msgstr "Limite de découvert du compte. Zéro \"0\" pour désactiver."
+msgstr "Limite de découvert du compte. Zéro pour désactiver"
 
 #: accountdialog.cpp:263
 msgid "Interest Rate:"
@@ -2920,7 +2920,7 @@ msgstr "Entrer le nom pour le rapport"
 
 #: general_report_manager.cpp:867
 msgid "Delete the Report Title:"
-msgstr "Effacer le titre de rapport:"
+msgstr "Effacer le titre du rapport :"
 
 #: general_report_manager.cpp:906 general_report_manager.cpp:990
 msgid "Enter or choose name for the new report group"
@@ -3841,7 +3841,7 @@ msgstr "Erreur d'historique de devise"
 
 #: maincurrencydialog.cpp:536
 msgid "Set as Base Currency"
-msgstr "Coànfigurer une monnaie de base"
+msgstr "Configurer une monnaie de base"
 
 #: maincurrencydialog.cpp:537
 msgid "Online Update Currency Rate"
@@ -3972,7 +3972,7 @@ msgstr "Merci d'encoder un nom"
 
 #: mmSimpleDialogs.cpp:1072
 msgid "Please type in a non empty symbol."
-msgstr "Entrer un symbole non vide"
+msgstr "Entrer un symbole non vide."
 
 #: mmSimpleDialogs.cpp:1175
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
@@ -4140,11 +4140,11 @@ msgstr "En utilisant  MMEX, il est possible de suivre les fonds d'investissement
 
 #: mmTips.h:63
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
-msgstr "pour créer une nouveau titre, entrer le symbole, le nombre de titres, et le prix d'achat"
+msgstr "Pour créer un nouveau titre, entrer le symbole, le nombre de titres et le prix d'achat."
 
 #: mmTips.h:64
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
-msgstr "exemple de UK (HSBC HLDG) titre : HSBA.L"
+msgstr "Exemple en France (Sanofi) titre : SAN ou FR0000120578"
 
 #: mmTips.h:65 mmTips.h:67
 msgid "Before you start investing, have a fully-funded emergency fund."
@@ -4695,12 +4695,12 @@ msgstr "Comptes à terme"
 
 #: mmframe.cpp:215
 msgid "Stock Portfolios"
-msgstr "Portefeuille de titres"
+msgstr "Portefeuilles de titres"
 
 #: mmframe.cpp:217 mmhomepage.cpp:696 reports/summary.cpp:269
 #: reports/summary.cpp:307
 msgid "Share Accounts"
-msgstr "Comptes Titres"
+msgstr "Comptes de titres"
 
 #: mmframe.cpp:300
 msgid "Navigator"
@@ -4945,11 +4945,11 @@ msgstr "Afficher/Masquer le navigateur"
 
 #: mmframe.cpp:1763
 msgid "&Display Share Accounts"
-msgstr "&Affiche les comptes d'actions"
+msgstr "&Afficher les comptes de titres"
 
 #: mmframe.cpp:1764
 msgid "Show/Hide Share Accounts in Navigator"
-msgstr "Afficher/Masquer le portefeuille de titres dans le navigateur"
+msgstr "Afficher/Masquer les comptes de titres dans le navigateur"
 
 #: mmframe.cpp:1770
 msgid "&Display Deleted Transactions"
@@ -5608,10 +5608,10 @@ msgid "Share Accounts hold Share transactions\n\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
 msgstr "Les comptes de titres servent à la gestion des valeurs mobilières. \n"
-"Les opérations sont créées dans la vue portefeuille des titres, après avoir sélectionné la valeur de la société au sein de la vue associée.\n"
+"Les opérations sont créées dans la vue Portefeuille des titres, après avoir sélectionné la valeur de la société au sein de la vue associée.\n"
 "Ces comptes ne seront visibles qu’après avoir associé des actions à un compte d’émission\n"
-"à l’aide du menu Affichage --> Afficher les comptes d'actions. \n"
-"Les comptes d'actions peuvent contenir également des opérations normales vers un compte ordinaire."
+"Ou à l’aide du menu Affichage --> Afficher les comptes de titres. \n"
+"Les comptes de titres peuvent contenir également des opérations normales vers un compte ordinaire."
 
 #: mmframe.cpp:2928
 msgid "Share Account Creation"
@@ -5960,7 +5960,7 @@ msgstr "Terme"
 
 #: model/Model_Account.cpp:33
 msgid "Investment"
-msgstr "Titres"
+msgstr "Portefeuilles"
 
 #: model/Model_Account.cpp:34 model/Model_Attachment.cpp:26
 msgid "Asset"
@@ -7389,11 +7389,11 @@ msgstr "Symbole de l'action"
 
 #: sharetransactiondialog.cpp:214 stockdialog.cpp:193
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr "Introduire le symbole du titre (option) par exemple: IBM.BE"
+msgstr "Introduire le symbole du titre (optionnel). Par exemple : SAN.PA pour Sanofi coté à Paris"
 
 #: sharetransactiondialog.cpp:217
 msgid "Share Number"
-msgstr "Numéro de l'action"
+msgstr "Nombre d'actions"
 
 #: sharetransactiondialog.cpp:224
 msgid "Enter number of shares held"
@@ -7513,11 +7513,11 @@ msgstr "Entrez la commission payées.\n"
 
 #: stockdialog.cpp:234 stocks_list.cpp:106
 msgid "Curr. Share Price"
-msgstr "Valeur actuelle"
+msgstr "Prix actuel"
 
 #: stockdialog.cpp:238
 msgid "Enter current stock/share price."
-msgstr "Entrer le prix actuel de l’action/stock."
+msgstr "Entrer le prix actuel de l’action."
 
 #: stockdialog.cpp:268
 msgid "Stock History Options"
@@ -7533,7 +7533,7 @@ msgstr "Date du cours"
 
 #: stockdialog.cpp:303
 msgid "Specify the stock/share price date."
-msgstr "Spécifiez la date du cours action/stock."
+msgstr "Spécifiez la date du cours de l'action."
 
 #: stockdialog.cpp:318
 msgid "Download Stock Price history"
@@ -7567,7 +7567,7 @@ msgid "The Company name does not have an associated Share Account.\n\n"
 "Do you want to create a new Share Acccount?\n"
 msgstr "Ce nom d’entreprise n’a pas de compte titre associé.\n\n"
 "Vous pouvez réajuster la dénomination de l'entreprise à un compte titre existant portant le même nom. S’il s’agit d’actions existantes sans un compte titre, il est recommandé qu’un compte soit créé.\n\n"
-"Voulez-vous créer un nouveau compte titre ?\n"
+"Voulez-vous créer un nouveau compte de titres ?\n"
 
 #: stockdialog.cpp:557
 msgid "Stock History CSV Import"
@@ -7575,7 +7575,7 @@ msgstr "Importer l'historique des valeurs d'actions à partir d'un fichier CSV"
 
 #: stockdialog.cpp:558 stockdialog.cpp:574
 msgid "Quotes imported from CSV: "
-msgstr "Cotations importées depuis le CSV :"
+msgstr "Cotations importées depuis le CSV : "
 
 #: stockdialog.cpp:630
 #, c-format
@@ -7669,7 +7669,7 @@ msgstr "Valorisation totale"
 
 #: stocks_list.cpp:108
 msgid "Curr. Total Value"
-msgstr "Valeur totale actuelle "
+msgstr "Valeur totale actuelle"
 
 #: stocks_list.cpp:146
 msgid "&New Stock Investment…"
@@ -7743,7 +7743,7 @@ msgstr "Lot"
 #: stockspanel.cpp:325
 #, c-format
 msgid "Stock Portfolio: %s"
-msgstr "Portefeuille de titre : %s"
+msgstr "Portefeuille de titres : %s"
 
 #: stockspanel.cpp:369
 #, c-format
@@ -7767,7 +7767,7 @@ msgstr "Perte : %s"
 
 #: stockspanel.cpp:410
 msgid "Stock prices successfully updated"
-msgstr "Le cours des actions a été mis à jour."
+msgstr "Le cours des actions a été mis à jour"
 
 #: stockspanel.cpp:412 stockspanel.cpp:598
 #, c-format
@@ -8474,7 +8474,7 @@ msgstr "Les comptes bancaires généraux couvrent une grande variété de types 
 #: wizard_newaccount.cpp:143
 msgid "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
-msgstr "Les comptes d'investissement ou comptes-titres sont spécialisés dans la gestion des valeurs mobilières qui leur sont associées, telles que actions, obligations, SICAV, FCP…"
+msgstr "Les portefeuilles et les comptes de titres sont spécialisés dans la gestion des valeurs mobilières qui leur sont associées, telles qu'actions, obligations, SICAV, FCP."
 
 #: wizard_newaccount.cpp:148
 msgid "Term and Asset accounts are specialized bank accounts.\n"
@@ -8493,7 +8493,7 @@ msgstr "Réglez cette première utilisation en utilisant le menu Outils → Para
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
-msgstr "Nouvel assistant de base de données"
+msgstr "Assistant Nouvelle base de données"
 
 #: wizard_newdb.cpp:36
 msgid "The next pages will help you create a new database.\n\n"

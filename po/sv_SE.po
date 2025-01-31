@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-01-22 07:52+0000\n"
-"PO-Revision-Date: 2025-01-24 00:51\n"
+"PO-Revision-Date: 2025-01-31 00:51\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -471,11 +471,11 @@ msgstr "Ange om värdet på tillgången förändras över tiden"
 
 #: assetdialog.cpp:228
 msgid "Compounding Period"
-msgstr ""
+msgstr "Sammansatt period"
 
 #: assetdialog.cpp:233
 msgid "Select the compounding period for the appreciation/depreciation rate"
-msgstr ""
+msgstr "Välj sammansatt period för uppskattning/avskrivningshastighet"
 
 #: assetdialog.cpp:238
 msgid "% Rate"
@@ -4175,7 +4175,7 @@ msgstr "Sorteringsordning"
 
 #: mmchecking_list.cpp:214
 msgid "SN (Sequence Number) has the same order as Date/ID (or Date/Time/ID if Time is enabled)."
-msgstr ""
+msgstr "SN (Sekvensnummer) har samma ordning som datum/ID (eller datum/tid/ID om tid är aktiverat)."
 
 #: mmchecking_list.cpp:216
 msgid "ID (identification number) is increasing with the time of creation in the database."
@@ -4183,7 +4183,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:218
 msgid "Balance is calculated in the order of SN (Sequence Number)."
-msgstr ""
+msgstr "Saldot beräknas i ordningen av SN (Sekvensnummer)."
 
 #: mmchecking_list.cpp:343
 msgid "SN"
@@ -6085,7 +6085,7 @@ msgstr ""
 
 #: option.cpp:36
 msgid "Week"
-msgstr ""
+msgstr "Vecka"
 
 #: optiondialog.cpp:37 optionsettingsattachment.cpp:65 webappdialog.cpp:146
 msgid "Attachments"
@@ -6364,11 +6364,11 @@ msgstr "Uppdatera vid start"
 
 #: optionsettingsmisc.cpp:100
 msgid "Asset Compounding Period"
-msgstr ""
+msgstr "Tillgång sammansatt period"
 
 #: optionsettingsmisc.cpp:106
 msgid "Select the compounding period for the appreciation/depreciation rate of assets"
-msgstr ""
+msgstr "Välj sammansatt period för uppskattning/avskrivningskurs för tillgångar"
 
 #: optionsettingsmisc.cpp:120
 msgid "Last Used"

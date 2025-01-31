@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-01-22 07:52+0000\n"
-"PO-Revision-Date: 2025-01-24 00:51\n"
+"PO-Revision-Date: 2025-01-31 00:51\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -471,11 +471,11 @@ msgstr "Specificeer of de waarde van de bezitting in de tijd zal veranderen"
 
 #: assetdialog.cpp:228
 msgid "Compounding Period"
-msgstr ""
+msgstr "Samengestelde periode"
 
 #: assetdialog.cpp:233
 msgid "Select the compounding period for the appreciation/depreciation rate"
-msgstr ""
+msgstr "Selecteer de samengestelde periode voor het waarderings-/afschrijvingspercentage"
 
 #: assetdialog.cpp:238
 msgid "% Rate"
@@ -4191,7 +4191,7 @@ msgstr "Sorteervolgorde"
 
 #: mmchecking_list.cpp:214
 msgid "SN (Sequence Number) has the same order as Date/ID (or Date/Time/ID if Time is enabled)."
-msgstr ""
+msgstr "SN (Sequence Nummer) heeft dezelfde volgorde als Datum/ID (of Datum/Tijd/ID als Tijd is ingeschakeld)."
 
 #: mmchecking_list.cpp:216
 msgid "ID (identification number) is increasing with the time of creation in the database."
@@ -4199,7 +4199,7 @@ msgstr "ID (identificatienummer) neemt toe met de tijd van het aanmaken in de da
 
 #: mmchecking_list.cpp:218
 msgid "Balance is calculated in the order of SN (Sequence Number)."
-msgstr ""
+msgstr "Saldo wordt berekend in de volgorde van het SN (sequence nummer)."
 
 #: mmchecking_list.cpp:343
 msgid "SN"
@@ -6120,7 +6120,7 @@ msgstr "Voorraad fout"
 
 #: option.cpp:36
 msgid "Week"
-msgstr ""
+msgstr "Week"
 
 #: optiondialog.cpp:37 optionsettingsattachment.cpp:65 webappdialog.cpp:146
 msgid "Attachments"
@@ -6400,11 +6400,11 @@ msgstr "Vernieuwen bij opstarten"
 
 #: optionsettingsmisc.cpp:100
 msgid "Asset Compounding Period"
-msgstr ""
+msgstr "Periode van activa-samenstelling"
 
 #: optionsettingsmisc.cpp:106
 msgid "Select the compounding period for the appreciation/depreciation rate of assets"
-msgstr ""
+msgstr "Selecteer de samengestelde periode voor de waardestijging/-daling van activa"
 
 #: optionsettingsmisc.cpp:120
 msgid "Last Used"
