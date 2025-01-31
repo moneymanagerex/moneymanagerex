@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-01-22 07:52+0000\n"
-"PO-Revision-Date: 2025-01-24 00:51\n"
+"PO-Revision-Date: 2025-01-31 00:51\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -292,7 +292,7 @@ msgstr "Fecha no válida"
 
 #: accountdialog.cpp:515
 msgid "Opening date is unable to be in the future"
-msgstr ""
+msgstr "La fecha de apertura no puede ser en el futuro"
 
 #: accountdialog.cpp:524
 msgid "Transactions for this account already exist before this date"
@@ -471,11 +471,11 @@ msgstr "Especifique si el valor del activo cambia en el tiempo"
 
 #: assetdialog.cpp:228
 msgid "Compounding Period"
-msgstr ""
+msgstr "Periodo de Combinación"
 
 #: assetdialog.cpp:233
 msgid "Select the compounding period for the appreciation/depreciation rate"
-msgstr ""
+msgstr "Seleccione el período de composición para la tasa de apreciación/depreciación"
 
 #: assetdialog.cpp:238
 msgid "% Rate"
@@ -1646,7 +1646,7 @@ msgstr "Editar el nombre de una categoría existente"
 
 #: categdialog.cpp:323
 msgid "Delete an existing category. The category is unable to be used by existing transactions."
-msgstr ""
+msgstr "Eliminar una categoría existente. La categoría no puede estar en uso por ninguna transacción."
 
 #: categdialog.cpp:328 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1686,7 +1686,7 @@ msgstr "Administrador de categorías: Error al añadir"
 
 #: categdialog.cpp:427
 msgid "Unable to move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
-msgstr ""
+msgstr "No puede mover una subcategoría a una categoría que ya tiene una subcategoría con ese nombre. Considere cambiarle el nombre antes de moverla."
 
 #: categdialog.cpp:428
 msgid "A subcategory with this name already exists"
@@ -1966,7 +1966,7 @@ msgstr "Entrada no válida"
 
 #: currencydialog.cpp:285 currencydialog.cpp:310
 msgid "Grouping character is unable to be the same as the decimal character"
-msgstr ""
+msgstr "El carácter de agrupación no puede ser el mismo que el carácter de decimal"
 
 #: currencydialog.cpp:332
 #, c-format
@@ -2470,7 +2470,7 @@ msgstr "Cuando se abre el archivo de base de datos:"
 
 #: dbwrapper.cpp:114
 msgid "Unable to open file"
-msgstr ""
+msgstr "No se puede abrir el archivo"
 
 #: dbwrapper.cpp:114
 msgid "You must specify path to another database file"
@@ -3665,7 +3665,7 @@ msgstr "¿Sobrescribir archivo existente?"
 
 #: import_export/univcsvdialog.cpp:1573
 msgid "An error occurred while deleting the existing file. File may be locked by another program."
-msgstr ""
+msgstr "Se ha producido un error al eliminar el archivo existente. El archivo puede estar bloqueado por otro programa."
 
 #: import_export/univcsvdialog.cpp:1574
 msgid "Destination file error"
@@ -3773,7 +3773,7 @@ msgstr "Mostrar todas incluyendo las divisas no utilizadas"
 
 #: maincurrencydialog.cpp:241
 msgid "Historical Currency Options"
-msgstr ""
+msgstr "Opciones de divisas históricas"
 
 #: maincurrencydialog.cpp:258 stockdialog.cpp:287 stockdialog.cpp:306
 #: stockdialog.cpp:634 stockspanel.cpp:215
@@ -3806,7 +3806,7 @@ msgstr "Borrar los valores de divisa seleccionados"
 
 #: maincurrencydialog.cpp:309
 msgid "Delete Historical Currency Values for unused currencies and days"
-msgstr ""
+msgstr "Eliminar historial de Valores de divisa para divisas y días no utilizados"
 
 #: maincurrencydialog.cpp:365
 msgid "Do you really want to delete the selected Currency?"
@@ -5255,7 +5255,7 @@ msgstr ""
 
 #: mmframe.cpp:2065
 msgid "MMEX for &iOS"
-msgstr ""
+msgstr "MMEX para & iOS"
 
 #: mmframe.cpp:2066
 msgid "Install MMEX on iPads and iPhones"
