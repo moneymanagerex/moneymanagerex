@@ -88,8 +88,8 @@ public:
     bool scanLabel(StringIt &str_i, StringIt str_end);
     static const wxString scanName(StringIt &str_i, StringIt str_end);
     const wxString getLabel() const;
-    const wxString checking_Name() const;
-    const wxString checking_Description() const;
+    const wxString checking_name() const;
+    const wxString checking_description() const;
 
 private:
     static wxDateTime addOffset(wxDateTime date, int offset, PERIOD_ID period);

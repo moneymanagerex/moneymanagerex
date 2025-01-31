@@ -420,14 +420,14 @@ const wxString DateRange2::getLabel() const
     return sb.buffer;
 }
 
-const wxString DateRange2::checking_Name() const
+const wxString DateRange2::checking_name() const
 {
     wxString str = getLabel();
     // TODO
     return str;
 }
 
-const wxString DateRange2::checking_Description() const
+const wxString DateRange2::checking_description() const
 {
     static StringBuilder sb;
     sb.reset();
