@@ -633,7 +633,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
                     , chartWidth);
     htmlChart += wxString::Format(", title: { text: '%s'}", gd.title);
 
-    wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
+    wxString locale = Model_Infotable::instance().getString("LOCALE", "");
 
     if (locale.IsEmpty())
     {

@@ -65,7 +65,7 @@ mmThemesDialog::ThemeEntry mmThemesDialog::getThemeEntry(const wxString& name)
 
 void mmThemesDialog::addThemes(const wxString& themeDir, bool isSystem)
 {
-    wxString chosenTheme = Model_Setting::instance().Theme();
+    wxString chosenTheme = Model_Setting::instance().getTheme();
     wxDir directory(themeDir);
     wxLogDebug("Scanning Theme Dir [%s]", themeDir);
     if (!directory.IsOpened()) return;
@@ -128,7 +128,7 @@ void mmThemesDialog::addThemes(const wxString& themeDir, bool isSystem)
 
 mmThemesDialog::~mmThemesDialog()
 {
-    Model_Infotable::instance().Set("THEMES_DIALOG_SIZE", GetSize());
+    Model_Infotable::instance().setSize("THEMES_DIALOG_SIZE", GetSize());
 }
 
 mmThemesDialog::mmThemesDialog(wxWindow *parent, const wxString &name)
@@ -211,7 +211,7 @@ void mmThemesDialog::ReadThemes()
     m_themesListBox_->Clear();
     for (const auto &theme : m_themes)
         m_themesListBox_->Append(theme.name);
-    m_themesListBox_->SetStringSelection(Model_Setting::instance().Theme());
+    m_themesListBox_->SetStringSelection(Model_Setting::instance().getTheme());
     m_themesListBox_->Refresh();
     m_themesListBox_->Update();
 }
@@ -348,7 +348,7 @@ void mmThemesDialog::OnUse(wxCommandEvent&)
         wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        Model_Setting::instance().SetTheme(thisTheme.name);
+        Model_Setting::instance().setTheme(thisTheme.name);
         for (auto it = begin(m_themes); it != end(m_themes); ++it)
             it->isChosen = (it->name == thisTheme.name);
     }

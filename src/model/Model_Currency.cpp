@@ -239,7 +239,7 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     static wxString d; //default Locale Support Y/N
 
     if (s_locale.empty()) {
-        s_locale = Model_Infotable::instance().GetStringInfo("LOCALE", " ");
+        s_locale = Model_Infotable::instance().getString("LOCALE", " ");
         if (s_locale.empty()) {
             s_locale = " ";
         }
@@ -349,7 +349,7 @@ const wxString Model_Currency::fromString2CLocale(const wxString &s, const Data*
     wxRegEx pattern(R"([^0-9.,+-/*()])");
     pattern.ReplaceAll(&str, wxEmptyString);
 
-    auto locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
+    auto locale = Model_Infotable::instance().getString("LOCALE", "");
 
     if (locale.empty())
     {

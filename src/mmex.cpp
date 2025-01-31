@@ -250,7 +250,7 @@ bool OnInitImpl(mmGUIApp* app)
     app->GetSettingDB()->Open(file_path);
     Model_Setting::instance(app->GetSettingDB());
 
-    Model_Setting::instance().ShrinkUsageTable();
+    Model_Setting::instance().shrinkUsageTable();
     Model_Usage::instance(app->GetSettingDB());
 
     /* Load general MMEX Custom Settings */
@@ -359,10 +359,10 @@ bool OnInitImpl(mmGUIApp* app)
     int defValH = rect.GetHeight() / 4 * 3;
 
     // Load Dimensions of Window, if not found use the 'sensible' values
-    int valX = Model_Setting::instance().GetIntSetting("ORIGINX", defValX);
-    int valY = Model_Setting::instance().GetIntSetting("ORIGINY", defValY);
-    int valW = Model_Setting::instance().GetIntSetting("SIZEW", defValW);
-    int valH = Model_Setting::instance().GetIntSetting("SIZEH", defValH);
+    int valX = Model_Setting::instance().getInt("ORIGINX", defValX);
+    int valY = Model_Setting::instance().getInt("ORIGINY", defValY);
+    int valW = Model_Setting::instance().getInt("SIZEW", defValW);
+    int valH = Model_Setting::instance().getInt("SIZEH", defValH);
 
     // Check if it 'fits' into any of the windows
     // -- 'fit' means either an exact fit or at least 20% of application is on a visible window)
@@ -415,7 +415,7 @@ bool OnInitImpl(mmGUIApp* app)
     ok = ok && app->m_frame->Show();
 
     /* Was App Maximized? */
-    bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", true);
+    bool isMax = Model_Setting::instance().getBool("ISMAXIMIZED", true);
     if (isMax)
         app->m_frame->Maximize(true);
 

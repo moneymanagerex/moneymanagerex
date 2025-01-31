@@ -157,9 +157,9 @@ bool mmCheckingPanel::Create(
     if (m_transFilterActive) {
         const wxString& def_view = wxString::Format(
             R"({ "FILTER": "%s" })",
-            Model_Setting::instance().ViewTransactions()
+            Model_Setting::instance().getViewTransactions()
         );
-        wxString json = Model_Infotable::instance().GetStringInfo(
+        wxString json = Model_Infotable::instance().getString(
             wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
             def_view
         );
@@ -555,14 +555,14 @@ void mmCheckingPanel::CreateControls()
         "CHECK";
 
     long val = m_listCtrlAccount->COL_def_sort;
-    wxString strVal = Model_Setting::instance().GetStringSetting(
+    wxString strVal = Model_Setting::instance().getString(
         wxString::Format("%s_SORT_COL", m_sortSaveTitle),
         wxString() << val
     );
     if (strVal.ToLong(&val))
         m_listCtrlAccount->g_sortcol = m_listCtrlAccount->toEColumn(val);
     val = m_listCtrlAccount->COL_def_sort2;
-    strVal = Model_Setting::instance().GetStringSetting(
+    strVal = Model_Setting::instance().getRaw(
         wxString::Format("%s_SORT_COL2", m_sortSaveTitle),
         wxString() << val
     );
@@ -570,14 +570,14 @@ void mmCheckingPanel::CreateControls()
         m_listCtrlAccount->prev_g_sortcol = m_listCtrlAccount->toEColumn(val);
 
     val = 1; // asc sorting default
-    strVal = Model_Setting::instance().GetStringSetting(
+    strVal = Model_Setting::instance().getString(
         wxString::Format("%s_ASC", m_sortSaveTitle),
         wxString() << val
     );
     if (strVal.ToLong(&val))
         m_listCtrlAccount->g_asc = val != 0;
     val = 1;
-    strVal = Model_Setting::instance().GetStringSetting(
+    strVal = Model_Setting::instance().getString(
         wxString::Format("%s_ASC2", m_sortSaveTitle),
         wxString() << val
     );
@@ -994,9 +994,9 @@ void mmCheckingPanel::initFilterChoices()
 {
     const wxString& def_view = wxString::Format(
         "{ \"FILTER\": \"%s\" }",
-        Model_Setting::instance().ViewTransactions()
+        Model_Setting::instance().getViewTransactions()
     );
-    const auto& data = Model_Infotable::instance().GetStringInfo(
+    const auto& data = Model_Infotable::instance().getString(
         wxString::Format("CHECK_FILTER_ID_%lld", m_checking_id),
         def_view
     );
@@ -1021,9 +1021,9 @@ void mmCheckingPanel::saveFilterChoices()
 {
    const wxString& def_view = wxString::Format(
         R"({ "FILTER": "%s" })",
-        Model_Setting::instance().ViewTransactions()
+        Model_Setting::instance().getViewTransactions()
     );
-    wxString json = Model_Infotable::instance().GetStringInfo(
+    wxString json = Model_Infotable::instance().getString(
         wxString::Format("CHECK_FILTER_ID_%lld", m_checking_id),
         def_view
     );
@@ -1057,7 +1057,7 @@ void mmCheckingPanel::saveFilterChoices()
     }
 
     json = JSON_PrettyFormated(j_doc);
-    Model_Infotable::instance().Set(
+    Model_Infotable::instance().setString(
         wxString::Format("CHECK_FILTER_ID_%lld", m_checking_id),
         json
     );
@@ -1164,9 +1164,9 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
         if (!m_trans_filter_dlg) {
             const wxString& def_view = wxString::Format(
                 R"({ "FILTER": "%s" })",
-                Model_Setting::instance().ViewTransactions()
+                Model_Setting::instance().getViewTransactions()
             );
-            wxString json = Model_Infotable::instance().GetStringInfo(
+            wxString json = Model_Infotable::instance().getString(
                 wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
                 def_view
             );
@@ -1278,9 +1278,9 @@ void mmCheckingPanel::DisplayAccountDetails(int64 account_id)
     if (m_transFilterActive) {
         const wxString& def_view = wxString::Format(
             "{ \"FILTER\": \"%s\" }",
-            Model_Setting::instance().ViewTransactions()
+            Model_Setting::instance().getViewTransactions()
         );
-        wxString json = Model_Infotable::instance().GetStringInfo(
+        wxString json = Model_Infotable::instance().getString(
             wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
             def_view
         );
@@ -1300,7 +1300,7 @@ void mmCheckingPanel::DisplayAccountDetails(int64 account_id)
 
 void mmCheckingPanel::mmPlayTransactionSound()
 {
-    int play = Model_Setting::instance().GetIntSetting(INIDB_USE_TRANSACTION_SOUND, 0);
+    int play = Model_Setting::instance().getInt(INIDB_USE_TRANSACTION_SOUND, 0);
     if (!play) return;
 
     wxString wav_path = mmex::getPathResource(

@@ -43,7 +43,7 @@ mmTagDialog::mmTagDialog() : isSelection_(false)
 
 mmTagDialog::~mmTagDialog()
 {
-    Model_Infotable::instance().Set("TAG_DIALOG_SIZE", GetSize());
+    Model_Infotable::instance().setSize("TAG_DIALOG_SIZE", GetSize());
 }
 
 mmTagDialog::mmTagDialog(wxWindow* parent, bool isSelection, const wxArrayString& selectedTags) : isSelection_(isSelection), selectedTags_(selectedTags)

@@ -66,7 +66,7 @@ m_payee(payee)
 
 mmEditPayeeDialog::~mmEditPayeeDialog()
 {
-    Model_Infotable::instance().Set("EDITPAYEE_DIALOG_SIZE", GetSize());
+    Model_Infotable::instance().setSize("EDITPAYEE_DIALOG_SIZE", GetSize());
     m_patternTable->GetGridWindow()->Unbind(wxEVT_SIZE, &mmEditPayeeDialog::OnPatternTableSize, this);
 }
 
@@ -439,7 +439,7 @@ wxEND_EVENT_TABLE()
 
 mmPayeeDialog::~mmPayeeDialog()
 {
-    Model_Infotable::instance().Set("PAYEES_DIALOG_SIZE", GetSize());
+    Model_Infotable::instance().setSize("PAYEES_DIALOG_SIZE", GetSize());
 }
 
 mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString& name, const wxString& payee_selected) :

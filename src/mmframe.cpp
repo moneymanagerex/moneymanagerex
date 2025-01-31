@@ -254,7 +254,7 @@ mmGUIFrame::mmGUIFrame(
     bool from_scratch = false;
     wxFileName dbpath = m_app->GetOptParam();
     if (!dbpath.IsOk()) {
-        from_scratch = Model_Setting::instance().GetBoolSetting("SHOWBEGINAPP", true);
+        from_scratch = Model_Setting::instance().getBool("SHOWBEGINAPP", true);
         if (from_scratch)
             dbpath = wxGetEmptyString();
         else
@@ -281,15 +281,14 @@ mmGUIFrame::mmGUIFrame(
     m_recentFiles->Load();
 
     // Load perspective
-    const wxString auiPerspective = Model_Setting::instance()
-        .GetStringSetting("AUIPERSPECTIVE", wxEmptyString);
+    const wxString auiPerspective = Model_Setting::instance().getString("AUIPERSPECTIVE", wxEmptyString);
     m_mgr.LoadPerspective(auiPerspective);
 
     // add the toolbars to the manager
     m_mgr.AddPane(toolBar_, wxAuiPaneInfo()
         .Name("toolbar").ToolbarPane().Top()
         .LeftDockable(false).RightDockable(false)
-        .Show(Model_Setting::instance().GetBoolSetting("SHOWTOOLBAR", true))
+        .Show(Model_Setting::instance().getBool("SHOWTOOLBAR", true))
     );
 
     // change look and feel of wxAuiManager
@@ -302,12 +301,12 @@ mmGUIFrame::mmGUIFrame(
     m_mgr.Update();
 
     // Show license agreement at first open
-    if (Model_Setting::instance().GetStringSetting(INIDB_SEND_USAGE_STATS, "") == "") {
+    if (Model_Setting::instance().getString(INIDB_SEND_USAGE_STATS, "") == "") {
         mmAboutDialog(this, 4).ShowModal();
     }
 
     //Check for new version at startup
-    if (Model_Setting::instance().GetBoolSetting("UPDATECHECK", true))
+    if (Model_Setting::instance().getBool("UPDATECHECK", true))
         mmUpdate::checkUpdates(this, true);
 
     //Show appstart
@@ -342,7 +341,7 @@ mmGUIFrame::mmGUIFrame(
 
         // Refresh stock quotes
         if (!Model_Stock::instance().all().empty() &&
-            Model_Setting::instance().GetBoolSetting("REFRESH_STOCK_QUOTES_ON_OPEN", false)
+            Model_Setting::instance().getBool("REFRESH_STOCK_QUOTES_ON_OPEN", false)
         ) {
             wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_RATES);
             this->GetEventHandler()->AddPendingEvent(evt);
@@ -386,12 +385,12 @@ void mmGUIFrame::cleanup()
 
     // Backup the database according to user requirements
     if (Option::instance().getDatabaseUpdated() &&
-        Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false)
+        Model_Setting::instance().getBool("BACKUPDB_UPDATE", false)
     ) {
         dbUpgrade::BackupDB(
             m_filename,
             dbUpgrade::BACKUPTYPE::CLOSE,
-            Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4)
+            Model_Setting::instance().getInt("MAX_BACKUP_FILES", 4)
         );
     }
 }
@@ -403,7 +402,7 @@ void mmGUIFrame::ShutdownDatabase()
 
     if (!Model_Infotable::instance().cache_.empty()) { //Cache empty on InfoTable means instance never initialized
         if (!db_lockInPlace)
-            Model_Infotable::instance().Set("ISUSED", false);
+            Model_Infotable::instance().setBool("ISUSED", false);
     }
     m_db->SetCommitHook(nullptr);
     m_db->Close();
@@ -650,24 +649,24 @@ void mmGUIFrame::saveSettings()
     Model_Setting::instance().Savepoint();
     if (!m_filename.IsEmpty()) {
         wxFileName fname(m_filename);
-        Model_Setting::instance().Set("LASTFILENAME", fname.GetFullPath());
+        Model_Setting::instance().setString("LASTFILENAME", fname.GetFullPath());
     }
     /* Aui Settings */
-    Model_Setting::instance().Set("AUIPERSPECTIVE", m_mgr.SavePerspective());
+    Model_Setting::instance().setString("AUIPERSPECTIVE", m_mgr.SavePerspective());
 
     // prevent values being saved while window is in an iconised state.
     if (this->IsIconized()) this->Restore();
 
     int value_x = 0, value_y = 0;
     this->GetPosition(&value_x, &value_y);
-    Model_Setting::instance().Set("ORIGINX", value_x);
-    Model_Setting::instance().Set("ORIGINY", value_y);
+    Model_Setting::instance().setInt("ORIGINX", value_x);
+    Model_Setting::instance().setInt("ORIGINY", value_y);
 
     int value_w = 0, value_h = 0;
     this->GetSize(&value_w, &value_h);
-    Model_Setting::instance().Set("SIZEW", value_w);
-    Model_Setting::instance().Set("SIZEH", value_h);
-    Model_Setting::instance().Set("ISMAXIMIZED", this->IsMaximized());
+    Model_Setting::instance().setInt("SIZEW", value_w);
+    Model_Setting::instance().setInt("SIZEH", value_h);
+    Model_Setting::instance().setBool("ISMAXIMIZED", this->IsMaximized());
     Model_Setting::instance().ReleaseSavepoint();
 }
 //----------------------------------------------------------------------------
@@ -906,7 +905,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
 
     if (m_db) {
         /* Start Populating the dynamic data */
-        m_temp_view = Model_Setting::instance().GetViewAccounts();
+        m_temp_view = Model_Setting::instance().getViewAccounts();
         wxASSERT(
             m_temp_view == VIEW_ACCOUNTS_ALL_STR ||
             m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR ||
@@ -1057,7 +1056,7 @@ void mmGUIFrame::loadNavigationTreeItemsStatusFromJson()
     wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
     //m_nav_tree_ctrl->Expand(root);
 
-    const wxString& str = Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", "");
+    const wxString& str = Model_Infotable::instance().getString("NAV_TREE_STATUS", "");
     Document json_doc;
     if (json_doc.Parse(str.utf8_str()).HasParseError()) {
         json_doc.Parse("{}");
@@ -1200,7 +1199,7 @@ void mmGUIFrame::navTreeStateToJson()
     const wxString nav_tree_status = wxString::FromUTF8(json_buffer.GetString());
     wxLogDebug("=========== navTreeStateToJson =============================");
     wxLogDebug(nav_tree_status);
-    Model_Infotable::instance().Set("NAV_TREE_STATUS", nav_tree_status);
+    Model_Infotable::instance().setString("NAV_TREE_STATUS", nav_tree_status);
 }
 //----------------------------------------------------------------------------
 
@@ -1368,15 +1367,15 @@ void mmGUIFrame::OnPopupDeleteFilter(wxCommandEvent& /*event*/)
     wxString selected = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
 
     if (wxMessageBox(
-        _("The selected item will be deleted") + "\n\n" +
-        _("Do you wish to continue?")
-        , _("Settings item deletion"), wxYES_NO | wxICON_WARNING) == wxNO
-    )
+        _("The selected item will be deleted") + "\n\n" + _("Do you wish to continue?"),
+        _("Settings item deletion"),
+        wxYES_NO | wxICON_WARNING
+    ) == wxNO)
         return;
 
-    int sel_json = Model_Infotable::instance().FindLabelInJSON("TRANSACTIONS_FILTER", selected);
-    if (sel_json != wxNOT_FOUND) {
-        Model_Infotable::instance().Erase("TRANSACTIONS_FILTER", sel_json);
+    int i = Model_Infotable::instance().findArrayItem("TRANSACTIONS_FILTER", selected);
+    if (i != wxNOT_FOUND) {
+        Model_Infotable::instance().eraseArrayItem("TRANSACTIONS_FILTER", i);
         RefreshNavigationTree();
     }
 }
@@ -1400,7 +1399,7 @@ void mmGUIFrame::OnPopupRenameFilter(wxCommandEvent& /*event*/)
         new_name = wxGetTextFromUser(_("Setting Name"), _("Please Enter"), selected);
         if (new_name.empty())
             return;
-        if (wxNOT_FOUND == Model_Infotable::instance().FindLabelInJSON("TRANSACTIONS_FILTER", new_name))
+        if (wxNOT_FOUND == Model_Infotable::instance().findArrayItem("TRANSACTIONS_FILTER", new_name))
             nameOK = true;
         else {
             wxString msgStr = wxString() << _("A setting with this name already exists") << "\n"
@@ -1410,9 +1409,9 @@ void mmGUIFrame::OnPopupRenameFilter(wxCommandEvent& /*event*/)
         }
     }
 
-    int sel_json = Model_Infotable::instance().FindLabelInJSON("TRANSACTIONS_FILTER", selected);
-    if (sel_json != wxNOT_FOUND) {
-        Model_Infotable::instance().Erase("TRANSACTIONS_FILTER", sel_json);
+    int i = Model_Infotable::instance().findArrayItem("TRANSACTIONS_FILTER", selected);
+    if (i != wxNOT_FOUND) {
+        Model_Infotable::instance().eraseArrayItem("TRANSACTIONS_FILTER", i);
 
         // Change the name
         Value::MemberIterator v_name = j_doc.FindMember("LABEL");
@@ -1424,7 +1423,7 @@ void mmGUIFrame::OnPopupRenameFilter(wxCommandEvent& /*event*/)
         writer.SetFormatOptions(kFormatSingleLineArray);
         j_doc.Accept(writer);
         data = wxString::FromUTF8(buffer.GetString());
-        Model_Infotable::instance().Prepend("TRANSACTIONS_FILTER", data, -1);
+        Model_Infotable::instance().prependArrayItem("TRANSACTIONS_FILTER", data, -1);
 
         DoRecreateNavTreeControl();
         setNavTreeSection(_("Transaction Report"));
@@ -1441,11 +1440,11 @@ void mmGUIFrame::OnPopupEditFilter(wxCommandEvent& /*event*/)
 
     wxString data = selectedItemData_->getString();
 
-    const auto filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
+    const auto filter_settings = Model_Infotable::instance().getArrayString("TRANSACTIONS_FILTER");
 
     wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, -1, true, data));
     bool is_ok = (dlg->ShowModal() == wxID_OK);
-    if (filter_settings != Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER")) {
+    if (filter_settings != Model_Infotable::instance().getArrayString("TRANSACTIONS_FILTER")) {
         DoRecreateNavTreeControl();
         setNavTreeSection(_("Transaction Report"));
     }
@@ -1663,7 +1662,7 @@ void mmGUIFrame::OnViewAccountsTemporaryChange(wxCommandEvent& e)
 {
     int evt_id = e.GetId();
     //Get current settings for view accounts
-    const wxString vAccts = Model_Setting::instance().GetViewAccounts();
+    const wxString vAccts = Model_Setting::instance().getViewAccounts();
     if (m_temp_view.empty())
         m_temp_view = vAccts;
 
@@ -1682,11 +1681,11 @@ void mmGUIFrame::OnViewAccountsTemporaryChange(wxCommandEvent& e)
         m_temp_view = VIEW_ACCOUNTS_CLOSED_STR;
         break;
     }
-    Model_Setting::instance().SetViewAccounts(m_temp_view);
+    Model_Setting::instance().setViewAccounts(m_temp_view);
     RefreshNavigationTree();
 
     //Restore settings
-    Model_Setting::instance().SetViewAccounts(vAccts);
+    Model_Setting::instance().setViewAccounts(vAccts);
 }
 
 //----------------------------------------------------------------------------
@@ -2238,12 +2237,12 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         ShutdownDatabase();
         // Backup the database according to user requirements
         if (Option::instance().getDatabaseUpdated() &&
-            Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false)
+            Model_Setting::instance().getBool("BACKUPDB_UPDATE", false)
         ) {
             dbUpgrade::BackupDB(
                 m_filename,
                 dbUpgrade::BACKUPTYPE::CLOSE,
-                Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4)
+                Model_Setting::instance().getInt("MAX_BACKUP_FILES", 4)
             );
             Option::instance().setDatabaseUpdated(false);
         }
@@ -2273,11 +2272,11 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         && passwordCheckPassed
     ) {
         /* Do a backup before opening */
-        if (Model_Setting::instance().GetBoolSetting("BACKUPDB", false)) {
+        if (Model_Setting::instance().getBool("BACKUPDB", false)) {
             dbUpgrade::BackupDB(
                 fileName,
                 dbUpgrade::BACKUPTYPE::START,
-                Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4)
+                Model_Setting::instance().getInt("MAX_BACKUP_FILES", 4)
             );
         }
 
@@ -2312,12 +2311,12 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 
         InitializeModelTables();
 
-        wxString UID = Model_Infotable::instance().GetStringInfo("UID", wxEmptyString);
+        wxString UID = Model_Infotable::instance().getString("UID", wxEmptyString);
         if (UID.IsEmpty()) {
-            UID = Model_Setting::instance().GetStringSetting("UUID", wxEmptyString);
-            Model_Infotable::instance().Set("UID", UID);
+            UID = Model_Setting::instance().getString("UUID", wxEmptyString);
+            Model_Infotable::instance().setString("UID", UID);
         }
-        Model_Setting::instance().Set("UID", UID);
+        Model_Setting::instance().setString("UID", UID);
 
         // ** OBSOLETE **
         // Mantained only for really old compatibility reason and replaced by dbupgrade.cpp
@@ -2336,7 +2335,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 
         // WE CAN EVENTUALLY DELETE THIS CODE
         // Get Hidden Categories id from stored INFO string and move to Category/Subcategory tables
-        wxString sSettings = Model_Infotable::instance().GetStringInfo("HIDDEN_CATEGS_ID", "");
+        wxString sSettings = Model_Infotable::instance().getString("HIDDEN_CATEGS_ID", "");
         if (!sSettings.empty()) {
             wxStringTokenizer token(sSettings, ";");
             Model_Category::instance().Savepoint();
@@ -2362,7 +2361,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
                 }
             }
             Model_Category::instance().ReleaseSavepoint();
-            Model_Infotable::instance().Set("HIDDEN_CATEGS_ID", "");
+            Model_Infotable::instance().setString("HIDDEN_CATEGS_ID", "");
         }
     }
     else if (openingNew) { // New Database
@@ -2455,7 +2454,7 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
         }
 
         if (!m_app->GetSilentParam()) {
-            db_lockInPlace = Model_Infotable::instance().GetBoolInfo("ISUSED", false);
+            db_lockInPlace = Model_Infotable::instance().getBool("ISUSED", false);
             if (db_lockInPlace) {
                 int response = wxMessageBox(_(
                     "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
@@ -2468,7 +2467,7 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
             }
         }
 
-        Model_Infotable::instance().Set("ISUSED", true);
+        Model_Infotable::instance().setBool("ISUSED", true);
         db_lockInPlace = false;
         autoRepeatTransactionsTimer_.Start(REPEAT_TRANS_DELAY_TIME, wxTIMER_ONE_SHOT);
     }
@@ -2499,7 +2498,7 @@ void mmGUIFrame::OnNew(wxCommandEvent& /*event*/)
         fileName += ".mmb";
 
     SetDatabaseFile(fileName, true);
-    Model_Setting::instance().Set("LASTFILENAME", fileName);
+    Model_Setting::instance().setString("LASTFILENAME", fileName);
 }
 //----------------------------------------------------------------------------
 
@@ -2520,7 +2519,7 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
         if (m_db) {
             autocleanDeletedTransactions();
             if (!Model_Stock::instance().all().empty() &&
-                Model_Setting::instance().GetBoolSetting("REFRESH_STOCK_QUOTES_ON_OPEN", false)
+                Model_Setting::instance().getBool("REFRESH_STOCK_QUOTES_ON_OPEN", false)
             ) {
                 wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_RATES);
                 this->GetEventHandler()->AddPendingEvent(evt);
@@ -3055,11 +3054,11 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& WXUNUSED(event))
     if (!m_db) return;
     if (Model_Account::instance().all().empty()) return;
 
-    const auto filter_settings = Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER");
+    const auto filter_settings = Model_Infotable::instance().getArrayString("TRANSACTIONS_FILTER");
 
     wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, -1, true));
     bool is_ok = (dlg->ShowModal() == wxID_OK);
-    if (filter_settings != Model_Infotable::instance().GetArrayStringSetting("TRANSACTIONS_FILTER")) {
+    if (filter_settings != Model_Infotable::instance().getArrayString("TRANSACTIONS_FILTER")) {
         DoRecreateNavTreeControl();
     }
     if (is_ok) {
@@ -3206,7 +3205,7 @@ void mmGUIFrame::OnSimpleURLOpen(wxCommandEvent& event)
 
 void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
 {
-    Model_Setting::instance().Set(INIDB_NEWS_LAST_READ_DATE, wxDate::Today().FormatISODate());
+    Model_Setting::instance().setString(INIDB_NEWS_LAST_READ_DATE, wxDate::Today().FormatISODate());
     wxLaunchDefaultBrowser(mmex::weblink::News);
 
     int toolbar_icon_size = Option::instance().getToolbarIconSize();
@@ -3688,7 +3687,7 @@ void mmGUIFrame::OnRates(wxCommandEvent& WXUNUSED(event))
             wxString strLastUpdate;
             strLastUpdate.Printf(_("%1$s on %2$s"), wxDateTime::Now().FormatTime()
                 , mmGetDateTimeForDisplay(wxDateTime::Now().FormatISODate()));
-            Model_Infotable::instance().Set("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate);
+            Model_Infotable::instance().setString("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate);
         }
 
         wxLogDebug("%s", msg);
@@ -3788,7 +3787,7 @@ void mmGUIFrame::OnViewToolbar(wxCommandEvent &event)
 {
     m_mgr.GetPane("toolbar").Show(event.IsChecked());
     m_mgr.Update();
-    Model_Setting::instance().Set("SHOWTOOLBAR", event.IsChecked());
+    Model_Setting::instance().setBool("SHOWTOOLBAR", event.IsChecked());
 }
 
 void mmGUIFrame::OnViewLinks(wxCommandEvent &event)
@@ -3972,7 +3971,7 @@ wxSizer* mmGUIFrame::cleanupHomePanel(bool new_sizer)
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::autocleanDeletedTransactions() {
-    wxDateSpan days = wxDateSpan::Days(Model_Setting::instance().GetIntSetting("DELETED_TRANS_RETAIN_DAYS", 30));
+    wxDateSpan days = wxDateSpan::Days(Model_Setting::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30));
     wxDateTime earliestDate = wxDateTime().Now().ToUTC().Subtract(days);
     Model_Checking::Data_Set deletedTransactions = Model_Checking::instance().find(Model_Checking::DELETEDTIME(earliestDate.FormatISOCombined(), LESS_OR_EQUAL), Model_Checking::DELETEDTIME(wxEmptyString, NOT_EQUAL));
     if (!deletedTransactions.empty()) {
@@ -4057,7 +4056,7 @@ void mmGUIFrame::OnToggleFullScreen(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::OnResetView(wxCommandEvent& WXUNUSED(event))
 {
-    Model_Setting::instance().Set("SHOWTOOLBAR", true);
+    Model_Setting::instance().setBool("SHOWTOOLBAR", true);
     m_mgr.GetPane("toolbar").Show(true).Dock().Top().Position(0);
     m_mgr.GetPane("Navigation").Show(true).Dock().Left();
     m_mgr.Update();

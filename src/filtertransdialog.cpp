@@ -82,7 +82,7 @@ mmFilterTransactionsDialog::~mmFilterTransactionsDialog()
 {
     wxLogDebug("~mmFilterTransactionsDialog");
     if (isReportMode_)
-        Model_Infotable::instance().Set("TRANSACTION_FILTER_SIZE", GetSize());
+        Model_Infotable::instance().setSize("TRANSACTION_FILTER_SIZE", GetSize());
 }
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int64 accountID, bool isReport, wxString selected)
@@ -265,7 +265,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
     wxString s_category = j_category.IsString() ? wxString::FromUTF8(j_category.GetString()) : "";
 
-    const wxString& delimiter = Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":");
+    const wxString& delimiter = Model_Infotable::instance().getString("CATEG_DELIMITER", ":");
     if (delimiter != ":" && s_category.Contains(":"))
     {
         for (const auto& category : Model_Category::all_categories())
@@ -502,8 +502,8 @@ void mmFilterTransactionsDialog::mmDoInitSettingNameChoice(wxString sel) const
         // Add a blank setting at the beginning. This clears all selections if the user chooses it.
         m_setting_name->Append("", new wxStringClientData("{}"));
         // Add the 'Last Used' setting which was the last setting used that wasn't saved
-        m_setting_name->Append(_("Last Unsaved Filter"), new wxStringClientData(Model_Infotable::instance().GetStringInfo(m_filter_key + "_LAST_USED", "")));
-        wxArrayString filter_settings = Model_Infotable::instance().GetArrayStringSetting(m_filter_key, true);
+        m_setting_name->Append(_("Last Unsaved Filter"), new wxStringClientData(Model_Infotable::instance().getString(m_filter_key + "_LAST_USED", "")));
+        wxArrayString filter_settings = Model_Infotable::instance().getArrayString(m_filter_key, true);
         for (const auto& data : filter_settings)
         {
             Document j_doc;
@@ -1300,9 +1300,9 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
             return;
         }
 
-        int sel_json = Model_Infotable::instance().FindLabelInJSON(m_filter_key, mmGetLabelString());
+        int sel_json = Model_Infotable::instance().findArrayItem(m_filter_key, mmGetLabelString());
         if (sel_json != wxNOT_FOUND)
-            Model_Infotable::instance().Erase(m_filter_key, sel_json);
+            Model_Infotable::instance().eraseArrayItem(m_filter_key, sel_json);
 
         m_setting_name->Delete(sel--);
         m_settings_json.clear();
@@ -2108,22 +2108,18 @@ void mmFilterTransactionsDialog::OnSettingsSelected(wxCommandEvent& event)
 
 void mmFilterTransactionsDialog::mmDoUpdateSettings()
 {
-    if (isMultiAccount_)
-    {
-        int sel = m_setting_name->GetSelection();
-        if (sel != wxNOT_FOUND)
-        {
-            sel = Model_Infotable::instance().FindLabelInJSON(m_filter_key, mmGetLabelString());
-            if (sel != wxNOT_FOUND)
-            {
-                m_settings_json = mmGetJsonSetings();
-                Model_Infotable::instance().Update(m_filter_key, sel, m_settings_json);
-            }
+    if (isMultiAccount_ && m_setting_name->GetSelection() != wxNOT_FOUND) {
+        int i = Model_Infotable::instance().findArrayItem(m_filter_key, mmGetLabelString());
+        if (i != wxNOT_FOUND) {
+            m_settings_json = mmGetJsonSetings();
+            Model_Infotable::instance().updateArrayItem(m_filter_key, i, m_settings_json);
         }
     }
-    if (!isReportMode_)
-    {
-        Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_ADV_%lld", accountID_), mmGetJsonSetings());
+    if (!isReportMode_) {
+        Model_Infotable::instance().setString(
+            wxString::Format("CHECK_FILTER_ID_ADV_%lld", accountID_),
+            mmGetJsonSetings()
+        );
     }
 }
 
@@ -2150,7 +2146,7 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
             m_setting_name->Append(user_label);
             m_setting_name->SetStringSelection(user_label);
             m_settings_json = mmGetJsonSetings();
-            Model_Infotable::instance().Prepend(m_filter_key, m_settings_json, -1);
+            Model_Infotable::instance().prependArrayItem(m_filter_key, m_settings_json, -1);
         }
         else if (label == user_label)
         {
@@ -2180,9 +2176,9 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
         }
         else
         {
-            const auto& filter_settings = Model_Infotable::instance().GetArrayStringSetting(m_filter_key);
+            const auto& filter_settings = Model_Infotable::instance().getArrayString(m_filter_key);
             const auto& l = mmGetLabelString();
-            int sel_json = Model_Infotable::instance().FindLabelInJSON(m_filter_key, l);
+            int sel_json = Model_Infotable::instance().findArrayItem(m_filter_key, l);
             const auto& json = sel_json != wxNOT_FOUND ? filter_settings[sel_json] : "";
             m_settings_json = mmGetJsonSetings();
             if (isMultiAccount_ && json != m_settings_json && !label.empty())
@@ -2216,12 +2212,15 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
             StringBuffer buffer;
             Writer<StringBuffer> writer(buffer);
             j_doc.Accept(writer);
-            Model_Infotable::instance().Set(m_filter_key + "_LAST_USED", wxString::FromUTF8(buffer.GetString()));
+            Model_Infotable::instance().setString(
+                m_filter_key + "_LAST_USED",
+                wxString::FromUTF8(buffer.GetString())
+            );
             // Update the settings list with the new data
             mmDoInitSettingNameChoice();
         }
     }
-    Model_Infotable::instance().Set("TRANSACTIONS_FILTER_LAST_USED", m_settings_json);
+    Model_Infotable::instance().setString("TRANSACTIONS_FILTER_LAST_USED", m_settings_json);
 }
 
 void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))

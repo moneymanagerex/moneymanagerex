@@ -72,7 +72,7 @@ void OptionSettingsMisc::Create()
     //list.Add("https://www.marketwatch.com/investing/stock/%s");
     //list.Add("https://www.ifcmarkets.co.in/en/market-data/stocks-prices/%s");
 
-    wxString stockURL = Model_Infotable::instance().GetStringInfo("STOCKURL", mmex::weblink::DefStockUrl);
+    wxString stockURL = Model_Infotable::instance().getString("STOCKURL", mmex::weblink::DefStockUrl);
     wxComboBox* itemListOfURL = new wxComboBox(misc_panel, ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL, ""
         , wxDefaultPosition, wxDefaultSize, list);
     itemListOfURL->SetValue(stockURL);
@@ -91,7 +91,7 @@ void OptionSettingsMisc::Create()
     share_precision_sizer->Add(m_share_precision, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     m_refresh_quotes_on_open = new wxCheckBox(misc_panel, wxID_REFRESH, _("Refresh at Startup"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_refresh_quotes_on_open->SetValue(Model_Setting::instance().GetBoolSetting("REFRESH_STOCK_QUOTES_ON_OPEN", false));
+    m_refresh_quotes_on_open->SetValue(Model_Setting::instance().getBool("REFRESH_STOCK_QUOTES_ON_OPEN", false));
     share_precision_sizer->Add(m_refresh_quotes_on_open, wxSizerFlags(g_flagsH).Border(wxLEFT, 20));
     othersPanelSizer->Add(share_precision_sizer, g_flagsBorder1V);
 
@@ -200,7 +200,7 @@ void OptionSettingsMisc::Create()
         "create or update the backup database: dbFile_update_YYYY-MM-DD.bak"));
     databaseStaticBoxSizer->Add(databaseUpdateCheckBox, g_flagsV);
 
-    int max = Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4);
+    int max = Model_Setting::instance().getInt("MAX_BACKUP_FILES", 4);
     m_max_files = new wxSpinCtrl(misc_panel, wxID_ANY
         , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 999, max);
     m_max_files->SetValue(max);
@@ -211,7 +211,7 @@ void OptionSettingsMisc::Create()
     flex_sizer2->Add(m_max_files, g_flagsH);
     databaseStaticBoxSizer->Add(flex_sizer2);
 
-    int days = Model_Setting::instance().GetIntSetting("DELETED_TRANS_RETAIN_DAYS", 30);
+    int days = Model_Setting::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30);
     m_deleted_trans_retain_days = new wxSpinCtrl(misc_panel, wxID_ANY
         , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 999, days);
     m_deleted_trans_retain_days->SetValue(days);
@@ -222,7 +222,7 @@ void OptionSettingsMisc::Create()
     databaseStaticBoxSizer->Add(flex_sizer3);
 
     //CSV Import
-    const wxString delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
+    const wxString delimiter = Model_Infotable::instance().getString("DELIMITER", mmex::DEFDELIMTER);
 
     wxStaticBox* csvStaticBox = new wxStaticBox(misc_panel, wxID_ANY, _("CSV"));
     SetBoldFont(csvStaticBox);
@@ -260,7 +260,7 @@ void OptionSettingsMisc::SaveStocksUrl()
     wxString stockURL = url->GetValue().Trim(false).Trim();
     if (!stockURL.IsEmpty())
     {
-        Model_Infotable::instance().Set("STOCKURL", stockURL);
+        Model_Infotable::instance().setString("STOCKURL", stockURL);
     }
     else
     {
@@ -295,18 +295,18 @@ bool OptionSettingsMisc::SaveSettings()
     Option::instance().setAssetCompounding(m_asset_compounding->GetSelection());
 
     wxCheckBox* itemCheckBox = static_cast<wxCheckBox*>(FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP));
-    Model_Setting::instance().Set("BACKUPDB", itemCheckBox->GetValue());
+    Model_Setting::instance().setBool("BACKUPDB", itemCheckBox->GetValue());
 
     wxCheckBox* itemCheckBoxUpdate = static_cast<wxCheckBox*>(FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE));
-    Model_Setting::instance().Set("BACKUPDB_UPDATE", itemCheckBoxUpdate->GetValue());
+    Model_Setting::instance().setBool("BACKUPDB_UPDATE", itemCheckBoxUpdate->GetValue());
 
-    Model_Setting::instance().Set("MAX_BACKUP_FILES", m_max_files->GetValue());
-    Model_Setting::instance().Set("DELETED_TRANS_RETAIN_DAYS", m_deleted_trans_retain_days->GetValue());
-    Model_Setting::instance().Set("REFRESH_STOCK_QUOTES_ON_OPEN", m_refresh_quotes_on_open->IsChecked());
+    Model_Setting::instance().setInt("MAX_BACKUP_FILES", m_max_files->GetValue());
+    Model_Setting::instance().setInt("DELETED_TRANS_RETAIN_DAYS", m_deleted_trans_retain_days->GetValue());
+    Model_Setting::instance().setBool("REFRESH_STOCK_QUOTES_ON_OPEN", m_refresh_quotes_on_open->IsChecked());
 
     wxTextCtrl* st = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4));
     const wxString& delim = st->GetValue();
-    if (!delim.IsEmpty()) Model_Infotable::instance().Set("DELIMITER", delim);
+    if (!delim.IsEmpty()) Model_Infotable::instance().setString("DELIMITER", delim);
 
     return true;
 }

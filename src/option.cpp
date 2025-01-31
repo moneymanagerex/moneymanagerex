@@ -120,12 +120,11 @@ void Option::load(bool include_infotable)
 wxLanguage Option::getLanguageID(const bool get_db)
 {
     if (get_db) {
-        auto lang_id = Model_Setting::instance()
-            .GetIntSetting(LANGUAGE_PARAMETER, -1);
+        auto lang_id = Model_Setting::instance().getInt(LANGUAGE_PARAMETER, -1);
 
         if (lang_id == -1) {
             auto lang_canonical = Model_Setting::instance()
-                .GetStringSetting(LANGUAGE_PARAMETER, wxLocale::GetLanguageCanonicalName(wxLANGUAGE_UNKNOWN));
+                .getString(LANGUAGE_PARAMETER, wxLocale::GetLanguageCanonicalName(wxLANGUAGE_UNKNOWN));
 
             for (int lang_code = wxLANGUAGE_DEFAULT; lang_code < wxLANGUAGE_USER_DEFINED; lang_code++) {
                 const auto l = wxLocale::GetLanguageCanonicalName(lang_code);
@@ -145,63 +144,63 @@ wxLanguage Option::getLanguageID(const bool get_db)
 
 void Option::setLocaleName(const wxString& locale)
 {
-    Model_Infotable::instance().Set("LOCALE", locale);
+    Model_Infotable::instance().setString("LOCALE", locale);
     m_locale_name = locale;
 }
 
 void Option::loadDateFormat()
 {
-    m_date_format = Model_Infotable::instance().GetStringInfo("DATEFORMAT", mmex::DEFDATEFORMAT);
+    m_date_format = Model_Infotable::instance().getString("DATEFORMAT", mmex::DEFDATEFORMAT);
 }
 void Option::setDateFormat(const wxString& date_format)
 {
-    Model_Infotable::instance().Set("DATEFORMAT", date_format);
+    Model_Infotable::instance().setString("DATEFORMAT", date_format);
     m_date_format = date_format;
 }
 
 void Option::loadUserName()
 {
-    m_user_name = Model_Infotable::instance().GetStringInfo("USERNAME", "");
+    m_user_name = Model_Infotable::instance().getString("USERNAME", "");
 }
 void Option::setUserName(const wxString& username)
 {
     m_user_name = username;
-    Model_Infotable::instance().Set("USERNAME", username);
+    Model_Infotable::instance().setString("USERNAME", username);
 }
 
 void Option::loadBaseCurrencyID()
 {
-    m_base_currency_id = Model_Infotable::instance().GetInt64Info("BASECURRENCYID", -1);
+    m_base_currency_id = Model_Infotable::instance().getInt64("BASECURRENCYID", -1);
 }
 void Option::setBaseCurrencyID(const int64 base_currency_id)
 {
-    Model_Infotable::instance().Set("BASECURRENCYID", base_currency_id);
+    Model_Infotable::instance().setInt64("BASECURRENCYID", base_currency_id);
     m_base_currency_id = base_currency_id;
 }
 
 void Option::loadUseCurrencyHistory()
 {
-    m_use_currency_history = Model_Infotable::instance().GetBoolInfo("USECURRENCYHISTORY", true);
+    m_use_currency_history = Model_Infotable::instance().getBool("USECURRENCYHISTORY", true);
 }
 void Option::setUseCurrencyHistory(const bool value)
 {
-    Model_Infotable::instance().Set("USECURRENCYHISTORY", value);
+    Model_Infotable::instance().setBool("USECURRENCYHISTORY", value);
     m_use_currency_history = value;
 }
 
 void Option::loadSharePrecision()
 {
-    m_share_precision = Model_Infotable::instance().GetIntInfo("SHARE_PRECISION", 4);
+    m_share_precision = Model_Infotable::instance().getInt("SHARE_PRECISION", 4);
 }
 void Option::setSharePrecision(const int value)
 {
-    Model_Infotable::instance().Set("SHARE_PRECISION", value);
+    Model_Infotable::instance().setInt("SHARE_PRECISION", value);
     m_share_precision = value;
 }
 
 void Option::loadAssetCompounding()
 {
-    wxString assetCompounding = Model_Infotable::instance().GetStringInfo("ASSET_COMPOUNDING", "Day");
+    wxString assetCompounding = Model_Infotable::instance().getString("ASSET_COMPOUNDING", "Day");
     m_asset_compounding = Option::COMPOUNDING_ID_DAY;
     for (const auto& a : Option::COMPOUNDING_NAME) if (assetCompounding == a.second) {
         m_asset_compounding = a.first;
@@ -210,13 +209,13 @@ void Option::loadAssetCompounding()
 }
 void Option::setAssetCompounding(const int value)
 {
-    Model_Infotable::instance().Set("ASSET_COMPOUNDING", Option::COMPOUNDING_NAME[value].second);
+    Model_Infotable::instance().setString("ASSET_COMPOUNDING", Option::COMPOUNDING_NAME[value].second);
     m_asset_compounding = value;
 }
 
 void Option::loadReportingFirstDay()
 {
-    int value = Model_Infotable::instance().GetIntInfo("REPORTING_FIRSTDAY", 1);
+    int value = Model_Infotable::instance().getInt("REPORTING_FIRSTDAY", 1);
     if (value < 1) value = 1;
     if (value > 28) value = 28;
     m_reporting_first_day = value;
@@ -225,13 +224,13 @@ void Option::setReportingFirstDay(int value)
 {
     if (value < 1) value = 1;
     if (value > 28) value = 28;
-    Model_Infotable::instance().Set("REPORTING_FIRSTDAY", value);
+    Model_Infotable::instance().setInt("REPORTING_FIRSTDAY", value);
     m_reporting_first_day = value;
 }
 
 void Option::loadReportingFirstWeekday()
 {
-    wxString valueStr = Model_Infotable::instance().GetStringInfo("REPORTING_FIRST_WEEKDAY", "");
+    wxString valueStr = Model_Infotable::instance().getString("REPORTING_FIRST_WEEKDAY", "");
     m_reporting_first_weekday =
         (valueStr == "Mon") ? wxDateTime::WeekDay::Mon :
         wxDateTime::WeekDay::Sun;
@@ -240,13 +239,13 @@ void Option::setReportingFirstWeekday(wxDateTime::WeekDay value)
 {
     if (value != wxDateTime::WeekDay::Mon)
         value = wxDateTime::WeekDay::Sun;
-    Model_Infotable::instance().Set("REPORTING_FIRST_WEEKDAY", g_short_days_of_week[value]);
+    Model_Infotable::instance().setString("REPORTING_FIRST_WEEKDAY", g_short_days_of_week[value]);
     m_reporting_first_weekday = value;
 }
 
 void Option::loadFinancialFirstDay()
 {
-    int value = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
+    int value = Model_Infotable::instance().getInt("FINANCIAL_YEAR_START_DAY", 1);
     if (value < 1) value = 1;
     if (value > 28) value = 28;
     m_financial_first_day = value;
@@ -255,13 +254,13 @@ void Option::setFinancialFirstDay(int value)
 {
     if (value < 1) value = 1;
     if (value > 28) value = 28;
-    Model_Infotable::instance().Set("FINANCIAL_YEAR_START_DAY", value);
+    Model_Infotable::instance().setInt("FINANCIAL_YEAR_START_DAY", value);
     m_financial_first_day = value;
 }
 
 void Option::loadFinancialFirstMonth()
 {
-    int value = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
+    int value = Model_Infotable::instance().getInt("FINANCIAL_YEAR_START_MONTH", 7);
     if (value < 1) value = 1;
     if (value > 12) value = 12;
     m_financial_first_month = wxDateTime::Month(value - 1);
@@ -269,17 +268,17 @@ void Option::loadFinancialFirstMonth()
 void Option::setFinancialFirstMonth(const wxDateTime::Month value)
 {
     wxString valueStr = wxString::Format("%d", value + 1);
-    Model_Infotable::instance().Set("FINANCIAL_YEAR_START_MONTH", valueStr);
+    Model_Infotable::instance().setString("FINANCIAL_YEAR_START_MONTH", valueStr);
     m_financial_first_month = value;
 }
 
 void Option::loadBudgetDaysOffset()
 {
-    m_budget_days_offset = Model_Infotable::instance().GetIntInfo("BUDGET_DAYS_OFFSET", 0);
+    m_budget_days_offset = Model_Infotable::instance().getInt("BUDGET_DAYS_OFFSET", 0);
 }
 void Option::setBudgetDaysOffset(const int value)
 {
-    Model_Infotable::instance().Set("BUDGET_DAYS_OFFSET", value);
+    Model_Infotable::instance().setInt("BUDGET_DAYS_OFFSET", value);
     m_budget_days_offset = value;
 }
 void Option::addBudgetDateOffset(wxDateTime& date) const
@@ -290,102 +289,102 @@ void Option::addBudgetDateOffset(wxDateTime& date) const
 
 void Option::loadHomePageIncExpRange()
 {
-    m_homepage_incexp_range = Model_Infotable::instance().GetIntInfo("HOMEPAGE_INCEXP_RANGE", 0);
+    m_homepage_incexp_range = Model_Infotable::instance().getInt("HOMEPAGE_INCEXP_RANGE", 0);
 }
 void Option::setHomePageIncExpRange(const int value)
 {
-    Model_Infotable::instance().Set("HOMEPAGE_INCEXP_RANGE", value);
+    Model_Infotable::instance().setInt("HOMEPAGE_INCEXP_RANGE", value);
     m_homepage_incexp_range = value;
 }
 
 void Option::loadHideShareAccounts()
 {
-    m_hide_share_accounts = Model_Setting::instance().GetBoolSetting("HIDE_SHARE_ACCOUNTS", true);
+    m_hide_share_accounts = Model_Setting::instance().getBool("HIDE_SHARE_ACCOUNTS", true);
 }
 void Option::setHideShareAccounts(const bool value)
 {
-    Model_Setting::instance().Set("HIDE_SHARE_ACCOUNTS", value);
+    Model_Setting::instance().setBool("HIDE_SHARE_ACCOUNTS", value);
     m_hide_share_accounts = value;
 }
 
 void Option::loadHideDeletedTransactions()
 {
-    m_hide_deleted_transactions = Model_Setting::instance().GetBoolSetting("HIDE_DELETED_TRANSACTIONS", false);
+    m_hide_deleted_transactions = Model_Setting::instance().getBool("HIDE_DELETED_TRANSACTIONS", false);
 }
 void Option::setHideDeletedTransactions(const bool value)
 {
-    Model_Setting::instance().Set("HIDE_DELETED_TRANSACTIONS", value);
+    Model_Setting::instance().setBool("HIDE_DELETED_TRANSACTIONS", value);
     m_hide_deleted_transactions = value;
 }
 
 void Option::loadBudgetFinancialYears()
 {
-    m_budget_financial_years = Model_Setting::instance().GetBoolSetting("BUDGET_FINANCIAL_YEARS", false);
+    m_budget_financial_years = Model_Setting::instance().getBool("BUDGET_FINANCIAL_YEARS", false);
 }
 void Option::setBudgetFinancialYears(const bool value)
 {
-    Model_Setting::instance().Set("BUDGET_FINANCIAL_YEARS", value);
+    Model_Setting::instance().setBool("BUDGET_FINANCIAL_YEARS", value);
     m_budget_financial_years = value;
 }
 
 void Option::loadBudgetIncludeTransfers()
 {
-    m_budget_include_transfers = Model_Setting::instance().GetBoolSetting("BUDGET_INCLUDE_TRANSFERS", false);
+    m_budget_include_transfers = Model_Setting::instance().getBool("BUDGET_INCLUDE_TRANSFERS", false);
 }
 void Option::setBudgetIncludeTransfers(const bool value)
 {
-    Model_Setting::instance().Set("BUDGET_INCLUDE_TRANSFERS", value);
+    Model_Setting::instance().setBool("BUDGET_INCLUDE_TRANSFERS", value);
     m_budget_include_transfers = value;
 }
 
 void Option::loadBudgetSummaryWithoutCategories()
 {
-    m_budget_summary_without_categories = Model_Setting::instance().GetBoolSetting("BUDGET_SUMMARY_WITHOUT_CATEGORIES", true);
+    m_budget_summary_without_categories = Model_Setting::instance().getBool("BUDGET_SUMMARY_WITHOUT_CATEGORIES", true);
 }
 void Option::setBudgetSummaryWithoutCategories(bool value)
 {
-    Model_Setting::instance().Set("BUDGET_SUMMARY_WITHOUT_CATEGORIES", value);
+    Model_Setting::instance().setBool("BUDGET_SUMMARY_WITHOUT_CATEGORIES", value);
     m_budget_summary_without_categories = value;
 }
 
 void Option::loadBudgetOverride()
 {
-    m_budget_override = Model_Setting::instance().GetBoolSetting("BUDGET_OVERRIDE", false);
+    m_budget_override = Model_Setting::instance().getBool("BUDGET_OVERRIDE", false);
 }
 void Option::setBudgetOverride(const bool value)
 {
-    Model_Setting::instance().Set("BUDGET_OVERRIDE", value);
+    Model_Setting::instance().setBool("BUDGET_OVERRIDE", value);
     m_budget_override = value;
 }
 
 void Option::loadBudgetDeductMonthly()
 {
-    m_budget_deduct_monthly = Model_Setting::instance().GetBoolSetting("BUDGET_DEDUCT_MONTH_FROM_YEAR", false);
+    m_budget_deduct_monthly = Model_Setting::instance().getBool("BUDGET_DEDUCT_MONTH_FROM_YEAR", false);
 }
 void Option::setBudgetDeductMonthly(bool value)
 {
-    Model_Setting::instance().Set("BUDGET_DEDUCT_MONTH_FROM_YEAR", value);
+    Model_Setting::instance().setBool("BUDGET_DEDUCT_MONTH_FROM_YEAR", value);
     m_budget_deduct_monthly = value;
 }
 
 void Option::loadIgnoreFutureTransactions()
 {
-    m_ignore_future_transactions = Model_Setting::instance().GetBoolSetting("IGNORE_FUTURE_TRANSACTIONS", false);
+    m_ignore_future_transactions = Model_Setting::instance().getBool("IGNORE_FUTURE_TRANSACTIONS", false);
 }
 void Option::setIgnoreFutureTransactions(const bool value)
 {
-    Model_Setting::instance().Set("IGNORE_FUTURE_TRANSACTIONS", value);
+    Model_Setting::instance().setBool("IGNORE_FUTURE_TRANSACTIONS", value);
     m_ignore_future_transactions = value;
 }
 
 void Option::loadUseTransDateTime()
 {
-    m_use_trans_datetime = Model_Setting::instance().GetBoolSetting("TRANSACTION_USE_DATE_TIME", false);
+    m_use_trans_datetime = Model_Setting::instance().getBool("TRANSACTION_USE_DATE_TIME", false);
 }
 bool Option::UseTransDateTime(const bool value)
 {
     if (value != m_use_trans_datetime) {
-        Model_Setting::instance().Set("TRANSACTION_USE_DATE_TIME", value);
+        Model_Setting::instance().setBool("TRANSACTION_USE_DATE_TIME", value);
         m_use_trans_datetime = value;
         return true;
     }
@@ -394,162 +393,162 @@ bool Option::UseTransDateTime(const bool value)
 
 void Option::loadShowToolTips()
 {
-    m_show_tooltips = Model_Setting::instance().GetBoolSetting("IGNORE_SHOW_TOOLTIPS", true);
+    m_show_tooltips = Model_Setting::instance().getBool("IGNORE_SHOW_TOOLTIPS", true);
 }
 void Option::setShowToolTips(const bool value)
 {
-    Model_Setting::instance().Set("IGNORE_SHOW_TOOLTIPS", value);
+    Model_Setting::instance().setBool("IGNORE_SHOW_TOOLTIPS", value);
     m_show_tooltips = value;
 }
 
 void Option::loadShowMoneyTips()
 {
-    m_show_moneytips = Model_Setting::instance().GetBoolSetting("IGNORE_SHOW_MONEYTIPS", true);
+    m_show_moneytips = Model_Setting::instance().getBool("IGNORE_SHOW_MONEYTIPS", true);
 }
 void Option::setShowMoneyTips(const bool value)
 {
-    Model_Setting::instance().Set("IGNORE_SHOW_MONEYTIPS", value);
+    Model_Setting::instance().setBool("IGNORE_SHOW_MONEYTIPS", value);
     m_show_moneytips = value;
 }
 
 void Option::loadTransPayeeNone()
 {
     // Read the preference as a string and convert to int
-    m_trans_payee_none = Model_Setting::instance().GetIntSetting("TRANSACTION_PAYEE_NONE", Option::NONE);
+    m_trans_payee_none = Model_Setting::instance().getInt("TRANSACTION_PAYEE_NONE", Option::NONE);
 }
 void Option::setTransPayeeNone(const int value)
 {
-    Model_Setting::instance().Set("TRANSACTION_PAYEE_NONE", value);
+    Model_Setting::instance().setInt("TRANSACTION_PAYEE_NONE", value);
     m_trans_payee_none = value;
 }
 
 void Option::loadTransCategoryNone()
 {
-    m_trans_category_none = Model_Setting::instance().GetIntSetting("TRANSACTION_CATEGORY_NONE", Option::LASTUSED);
+    m_trans_category_none = Model_Setting::instance().getInt("TRANSACTION_CATEGORY_NONE", Option::LASTUSED);
 }
 void Option::setTransCategoryNone(const int value)
 {
-    Model_Setting::instance().Set("TRANSACTION_CATEGORY_NONE", value);
+    Model_Setting::instance().setInt("TRANSACTION_CATEGORY_NONE", value);
     m_trans_category_none = value;
 }
 
 void Option::loadTransCategoryTransferNone()
 {
-    m_trans_category_transfer_none = Model_Setting::instance().GetIntSetting("TRANSACTION_CATEGORY_TRANSFER_NONE", Option::LASTUSED);
+    m_trans_category_transfer_none = Model_Setting::instance().getInt("TRANSACTION_CATEGORY_TRANSFER_NONE", Option::LASTUSED);
 }
 void Option::setTransCategoryTransferNone(const int value)
 {
-    Model_Setting::instance().Set("TRANSACTION_CATEGORY_TRANSFER_NONE", value);
+    Model_Setting::instance().setInt("TRANSACTION_CATEGORY_TRANSFER_NONE", value);
     m_trans_category_transfer_none = value;
 }
 
 void Option::loadBulkTransactions()
 {
-    m_bulk_transactions = Model_Setting::instance().GetBoolSetting("BULK_TRX", false);
+    m_bulk_transactions = Model_Setting::instance().getBool("BULK_TRX", false);
 }
 void Option::setBulkTransactions(const bool value)
 {
-    Model_Setting::instance().Set("BULK_TRX", value);
+    Model_Setting::instance().setBool("BULK_TRX", value);
     m_bulk_transactions = value;
 }
 
 void Option::loadTransStatusReconciled()
 {
-    m_trans_status_reconciled = Model_Setting::instance().GetIntSetting("TRANSACTION_STATUS_RECONCILED", Option::NONE);
+    m_trans_status_reconciled = Model_Setting::instance().getInt("TRANSACTION_STATUS_RECONCILED", Option::NONE);
 }
 void Option::setTransStatusReconciled(const int value)
 {
-    Model_Setting::instance().Set("TRANSACTION_STATUS_RECONCILED", value);
+    Model_Setting::instance().setInt("TRANSACTION_STATUS_RECONCILED", value);
     m_trans_status_reconciled = value;
 }
 
 void Option::loadTransDateDefault()
 {
-    m_trans_date_default = Model_Setting::instance().GetIntSetting("TRANSACTION_DATE_DEFAULT", Option::NONE);
+    m_trans_date_default = Model_Setting::instance().getInt("TRANSACTION_DATE_DEFAULT", Option::NONE);
 }
 void Option::setTransDateDefault(const int value)
 {
-    Model_Setting::instance().Set("TRANSACTION_DATE_DEFAULT", value);
+    Model_Setting::instance().setInt("TRANSACTION_DATE_DEFAULT", value);
     m_trans_date_default = value;
 }
 
 void Option::loadSendUsageStats()
 {
-    m_send_usage_stats = Model_Setting::instance().GetBoolSetting(INIDB_SEND_USAGE_STATS, true);
+    m_send_usage_stats = Model_Setting::instance().getBool(INIDB_SEND_USAGE_STATS, true);
 }
 void Option::setSendUsageStats(const bool value)
 {
-    Model_Setting::instance().Set(INIDB_SEND_USAGE_STATS, value);
+    Model_Setting::instance().setBool(INIDB_SEND_USAGE_STATS, value);
     m_send_usage_stats = value;
 }
 
 void Option::loadCheckNews()
 {
-    m_check_news = Model_Setting::instance().GetBoolSetting("CHECKNEWS", true);
+    m_check_news = Model_Setting::instance().getBool("CHECKNEWS", true);
 }
 void Option::setCheckNews(const bool value)
 {
-    Model_Setting::instance().Set("CHECKNEWS", value);
+    Model_Setting::instance().setBool("CHECKNEWS", value);
     m_check_news = value;
 }
 
 void Option::loadThemeMode()
 {
-    m_theme_mode = Model_Setting::instance().GetIntSetting("THEMEMODE", Option::THEME_MODE::AUTO);
+    m_theme_mode = Model_Setting::instance().getInt("THEMEMODE", Option::THEME_MODE::AUTO);
 }
 void Option::setThemeMode(const int value)
 {
-    Model_Setting::instance().Set("THEMEMODE", value);
+    Model_Setting::instance().setInt("THEMEMODE", value);
     m_theme_mode = value;
 }
 
 void Option::loadHtmlScale()
 {
-    m_html_scale = Model_Setting::instance().GetIntSetting("HTMLSCALE", 100);
+    m_html_scale = Model_Setting::instance().getInt("HTMLSCALE", 100);
 }
 void Option::setHtmlScale(const int value)
 {
-    Model_Setting::instance().Set("HTMLSCALE", value);
+    Model_Setting::instance().setInt("HTMLSCALE", value);
     m_html_scale = value;
 }
 
 void Option::loadFontSize()
 {
-    m_font_size = Model_Setting::instance().GetIntSetting("UI_FONT_SIZE", 0);
+    m_font_size = Model_Setting::instance().getInt("UI_FONT_SIZE", 0);
 }
 void Option::setFontSize(const int value)
 {
-    Model_Setting::instance().Set("UI_FONT_SIZE", value);
+    Model_Setting::instance().setInt("UI_FONT_SIZE", value);
     m_font_size = value;
 }
 
 void Option::loadIconSize()
 {
-    m_icon_size = Model_Setting::instance().GetIntSetting("ICONSIZE", 16);
+    m_icon_size = Model_Setting::instance().getInt("ICONSIZE", 16);
 }
 void Option::setIconSize(const int value)
 {
-    Model_Setting::instance().Set("ICONSIZE", value);
+    Model_Setting::instance().setInt("ICONSIZE", value);
     m_icon_size = value;
 }
 
 void Option::loadToolbarIconSize()
 {
-    m_toolbar_icon_size = Model_Setting::instance().GetIntSetting("TOOLBARICONSIZE", 32);
+    m_toolbar_icon_size = Model_Setting::instance().getInt("TOOLBARICONSIZE", 32);
 }
 void Option::setToolbarIconSize(const int value)
 {
-    Model_Setting::instance().Set("TOOLBARICONSIZE", value);
+    Model_Setting::instance().setInt("TOOLBARICONSIZE", value);
     m_toolbar_icon_size = value;
 }
 
 void Option::loadNavigationIconSize()
 {
-    m_navigation_icon_size = Model_Setting::instance().GetIntSetting("NAVIGATIONICONSIZE", 24);
+    m_navigation_icon_size = Model_Setting::instance().getInt("NAVIGATIONICONSIZE", 24);
 }
 void Option::setNavigationIconSize(const int value)
 {
-    Model_Setting::instance().Set("NAVIGATIONICONSIZE", value);
+    Model_Setting::instance().setInt("NAVIGATIONICONSIZE", value);
     m_navigation_icon_size = value;
 }
 
@@ -577,7 +576,7 @@ int Option::AccountImageId(const int64 account_id, const bool def, const bool ig
 
     int max = acc_img::MAX_ACC_ICON - img::LAST_NAVTREE_PNG;
     int min = 1;
-    int custom_img_id = Model_Infotable::instance().GetIntInfo(wxString::Format("ACC_IMAGE_ID_%lld", account_id), 0);
+    int custom_img_id = Model_Infotable::instance().getInt(wxString::Format("ACC_IMAGE_ID_%lld", account_id), 0);
     if (custom_img_id > max) custom_img_id = custom_img_id - 20; //Bug #963 fix 
     if (!def && (custom_img_id >= min && custom_img_id <= max))
         return custom_img_id + img::LAST_NAVTREE_PNG - 1;
@@ -629,5 +628,8 @@ const wxString Option::getLanguageCode(const bool get_db)
 void Option::setLanguage(const wxLanguage& language)
 {
     m_language = language;
-    Model_Setting::instance().Set(LANGUAGE_PARAMETER, wxLocale::GetLanguageCanonicalName(language));
+    Model_Setting::instance().setString(
+        LANGUAGE_PARAMETER,
+        wxLocale::GetLanguageCanonicalName(language)
+    );
 }

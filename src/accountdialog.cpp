@@ -448,8 +448,10 @@ void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
     int selectedImage = (event.GetId() - wxID_HIGHEST) - img::LAST_NAVTREE_PNG + 1;
     int image_id = Option::instance().AccountImageId(this->m_account->ACCOUNTID, true);
 
-    Model_Infotable::instance().Set(wxString::Format("ACC_IMAGE_ID_%lld", this->m_account->ACCOUNTID)
-        , selectedImage);
+    Model_Infotable::instance().setInt(
+        wxString::Format("ACC_IMAGE_ID_%lld", this->m_account->ACCOUNTID),
+        selectedImage
+    );
     if (selectedImage != 0)
         image_id = selectedImage + img::LAST_NAVTREE_PNG - 1;
 

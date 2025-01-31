@@ -124,7 +124,7 @@ void mmPrintableBase::setReportSettings()
         {
             const wxString& rj_key = wxString::Format("REPORT_%d", ID);
             const wxString& rj_value = wxString::FromUTF8(json_buffer.GetString());
-            Model_Infotable::instance().Set(rj_key, rj_value);
+            Model_Infotable::instance().setString(rj_key, rj_value);
             m_settings = rj_value;
         }
     }

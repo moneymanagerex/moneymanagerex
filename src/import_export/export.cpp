@@ -42,7 +42,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
 {
     wxString buffer = "";
     bool is_transfer = Model_Checking::is_transfer(full_tran.TRANSCODE);
-    const wxString delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
+    const wxString delimiter = Model_Infotable::instance().getString("DELIMITER", mmex::DEFDELIMTER);
 
     wxString categ = full_tran.m_splits.empty() ? Model_Category::full_name(full_tran.CATEGID, ":") : "";
     wxString transNum = full_tran.TRANSACTIONNUMBER;
@@ -449,7 +449,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
 
     if (!attachments.empty())
     {
-        const wxString folder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
+        const wxString folder = Model_Infotable::instance().getString("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
         json_writer.Key("ATTACHMENTS");
         json_writer.StartArray();
         for (const auto &entry : attachments) {
@@ -487,7 +487,7 @@ void mmExportTransaction::getAttachmentsJSON(PrettyWriter<StringBuffer>& json_wr
     if (!allAttachment4Export.empty())
     {
         const wxString RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
-        const wxString folder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
+        const wxString folder = Model_Infotable::instance().getString("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
         const wxString AttachmentsFolder = mmex::getPathAttachment(folder);
 
         json_writer.Key("ATTACHMENTS");
