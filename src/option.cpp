@@ -115,6 +115,7 @@ void Option::load(bool include_infotable)
     loadNavigationIconSize();
     loadBulkTransactions();
     loadFontSize();
+    loadCheckingRange();
 }
 
 wxLanguage Option::getLanguageID(const bool get_db)
@@ -552,6 +553,19 @@ void Option::setNavigationIconSize(const int value)
     m_navigation_icon_size = value;
 }
 
+void Option::loadCheckingRange()
+{
+    m_checking_range_a = Model_Setting::instance().getArrayString("CHECKING_RANGE_A");
+    m_checking_range_m = Model_Setting::instance().getInt("CHECKING_RANGE_M", 0);
+}
+void Option::setCheckingRange(const wxArrayString &a, int m)
+{
+    if (m < 1) m = 0;
+    Model_Setting::instance().setArrayString("CHECKING_RANGE_A", a);
+    Model_Setting::instance().setInt("CHECKING_RANGE_M", m);
+    m_checking_range_a = a;
+    m_checking_range_m = m;
+}
 
 int Option::getHtmlScale() const noexcept
 {
