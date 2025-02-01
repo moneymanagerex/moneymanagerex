@@ -30,8 +30,8 @@ mmTreeItemData::mmTreeItemData(int type, int64 id)
     : type_(type)
     , id_(id)
     , report_(nullptr)
+    , stringData_(wxString::Format("%lld", id))
 {
-    stringData_ = wxString::Format("%lld", id);
 }
 
 mmTreeItemData::mmTreeItemData(int type, const wxString& data)
