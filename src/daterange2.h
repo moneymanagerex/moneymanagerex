@@ -19,6 +19,7 @@
 # pragma once
 
 #include <wx/datetime.h>
+#include <unordered_map>
 #include "primitive.h"
 
 // DateRange2 implements only date calculations, without time.
