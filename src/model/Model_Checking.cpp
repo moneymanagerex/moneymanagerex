@@ -182,11 +182,14 @@ int Model_Checking::save(std::vector<Data*>& rows)
     return rows.size();
 }
 
-const Model_Checking::Data_Set Model_Checking::allByDateId()
+const Model_Checking::Data_Set Model_Checking::allByDateTimeId()
 {
     auto trans = Model_Checking::instance().all();
     std::sort(trans.begin(), trans.end());
-    std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
+    if (Option::instance().UseTransDateTime())
+        std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
+    else
+        std::stable_sort(trans.begin(), trans.end(), Model_Checking::SorterByTRANSDATE_DATE());
     return trans;
 }
 

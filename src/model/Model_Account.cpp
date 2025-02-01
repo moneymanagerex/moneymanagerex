@@ -17,6 +17,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "option.h"
 #include "Model_Account.h"
 #include "Model_Stock.h"
 #include "Model_Translink.h"
@@ -215,19 +216,23 @@ Model_Currency::Data* Model_Account::currency(const Data& r)
     return currency(&r);
 }
 
-const Model_Checking::Data_Set Model_Account::transactionsByDateId(const Data*r)
+const Model_Checking::Data_Set Model_Account::transactionsByDateTimeId(const Data*r)
 {
-    auto trans = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(r->ACCOUNTID)
-        , Model_Checking::TOACCOUNTID(r->ACCOUNTID));
+    auto trans = Model_Checking::instance().find_or(
+        Model_Checking::ACCOUNTID(r->ACCOUNTID),
+        Model_Checking::TOACCOUNTID(r->ACCOUNTID)
+    );
     std::sort(trans.begin(), trans.end());
-    std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
-
+    if (Option::instance().UseTransDateTime())
+        std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
+    else
+        std::stable_sort(trans.begin(), trans.end(), Model_Checking::SorterByTRANSDATE_DATE());
     return trans;
 }
 
-const Model_Checking::Data_Set Model_Account::transactionsByDateId(const Data& r)
+const Model_Checking::Data_Set Model_Account::transactionsByDateTimeId(const Data& r)
 {
-    return transactionsByDateId(&r);
+    return transactionsByDateTimeId(&r);
 }
 
 const Model_Billsdeposits::Data_Set Model_Account::billsdeposits(const Data* r)
@@ -243,7 +248,7 @@ const Model_Billsdeposits::Data_Set Model_Account::billsdeposits(const Data& r)
 double Model_Account::balance(const Data* r)
 {
     double sum = r->INITIALBAL;
-    for (const auto& tran: transactionsByDateId(r))
+    for (const auto& tran: transactionsByDateTimeId(r))
     {
         sum += Model_Checking::account_flow(tran, r->ACCOUNTID); 
     }

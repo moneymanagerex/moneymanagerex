@@ -24,6 +24,8 @@
 #include "Model_Splittransaction.h"
 #include "Model_CustomField.h"
 #include "Model_Taglink.h"
+// cannot include "util.h"
+const wxString mmGetTimeForDisplay(const wxString& datetime_iso);
 
 class Model_Checking : public Model<DB_Table_CHECKINGACCOUNT_V1>
 {
@@ -168,12 +170,20 @@ public:
             return x.TAGNAMES < y.TAGNAMES;
         }
     };
-    struct SorterByTRANSTIME
+    struct SorterByTRANSDATE_DATE
     {
         template <class DATA>
         bool operator()(const DATA& x, const DATA& y)
         {
-            return x.TRANSDATE < y.TRANSDATE;
+            return x.TRANSDATE.Left(10) < y.TRANSDATE.Left(10);
+        }
+    };
+    struct SorterByTRANSDATE_TIME
+    {
+        template <class DATA>
+        bool operator()(const DATA& x, const DATA& y)
+        {
+            return mmGetTimeForDisplay(x.TRANSDATE) < mmGetTimeForDisplay(y.TRANSDATE);
         }
     };
 
@@ -203,7 +213,7 @@ public:
     int save(std::vector<Data*>& rows);
     void updateTimestamp(int64 id);
 public:
-    static const Model_Checking::Data_Set allByDateId();
+    static const Model_Checking::Data_Set allByDateTimeId();
     static const Split_Data_Set split(const Data* r);
     static const Split_Data_Set split(const Data& r);
 
