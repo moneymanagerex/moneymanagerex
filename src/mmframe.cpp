@@ -817,7 +817,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
         root, "Dashboard", img::HOUSE_PNG,
         mmTreeItemData::HOME_PAGE
     );
-/*
+
     wxTreeItemId alltransactions = addNavTreeSection(
         root, "All Transactions", img::ALLTRANSACTIONS_PNG,
         mmTreeItemData::CHECKING, -1
@@ -827,7 +827,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
         root, "Scheduled Transactions", img::SCHEDULE_PNG,
         mmTreeItemData::BILLS
     );
-*/
+
     wxTreeItemId favorites = addNavTreeSection(
         root, "Favorites", img::FAVOURITE_PNG,
         mmTreeItemData::CHECKING, -3
@@ -894,12 +894,12 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
         root, "Deleted Transactions", img::TRASH_PNG,
         mmTreeItemData::CHECKING, -2
     );
-/*
+
     wxTreeItemId help = addNavTreeSection(
         root, "Help", img::HELP_PNG,
         mmTreeItemData::HELP_PAGE_MAIN
     );
-*/
+
     ///////////////////////////////////////////////////////////////////
 
     bool hideShareAccounts = Option::instance().HideShareAccounts();
