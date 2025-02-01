@@ -251,11 +251,10 @@ public:
     void setShowMoneyTips(const bool value);
     bool getShowMoneyTips() const noexcept;
 
-    // m_checking_range_a, m_checking_range_m
+    // m_checking_range
     void loadCheckingRange();
-    void setCheckingRange(const wxArrayString &a, int m);
-    const wxArrayString getCheckingRangeA() const noexcept;
-    int getCheckingRangeM() const noexcept;
+    void setCheckingRange(const wxArrayString &a);
+    const wxArrayString getCheckingRange() const noexcept;
 
 private:
     bool m_database_updated = false;
@@ -303,8 +302,7 @@ private:
     int m_font_size = 0;                                // UI_FONT_SIZE
     int m_toolbar_icon_size = 32;                       // TOOLBARICONSIZE
     int m_navigation_icon_size = 24;                    // NAVIGATIONICONSIZE
-    wxArrayString m_checking_range_a;                   // CHECKING_RANGE_A
-    int m_checking_range_m = 0;                         // CHECKING_RANGE_M
+    wxArrayString m_checking_range;                     // CHECKING_RANGE
 };
 
 inline void Option::setDatabaseUpdated(const bool value)
@@ -509,12 +507,7 @@ inline bool Option::getShowMoneyTips() const noexcept
     return m_show_moneytips;
 }
 
-inline const wxArrayString Option::getCheckingRangeA() const noexcept
+inline const wxArrayString Option::getCheckingRange() const noexcept
 {
-    return m_checking_range_a;
-}
-
-inline int Option::getCheckingRangeM() const noexcept
-{
-    return m_checking_range_m;
+    return m_checking_range;
 }

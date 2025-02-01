@@ -555,16 +555,12 @@ void Option::setNavigationIconSize(const int value)
 
 void Option::loadCheckingRange()
 {
-    m_checking_range_a = Model_Setting::instance().getArrayString("CHECKING_RANGE_A");
-    m_checking_range_m = Model_Setting::instance().getInt("CHECKING_RANGE_M", 0);
+    m_checking_range = Model_Setting::instance().getArrayString("CHECKING_RANGE");
 }
-void Option::setCheckingRange(const wxArrayString &a, int m)
+void Option::setCheckingRange(const wxArrayString &a)
 {
-    if (m < 1) m = 0;
-    Model_Setting::instance().setArrayString("CHECKING_RANGE_A", a);
-    Model_Setting::instance().setInt("CHECKING_RANGE_M", m);
-    m_checking_range_a = a;
-    m_checking_range_m = m;
+    Model_Setting::instance().setArrayString("CHECKING_RANGE", a);
+    m_checking_range = a;
 }
 
 int Option::getHtmlScale() const noexcept
