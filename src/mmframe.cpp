@@ -62,6 +62,7 @@
 #include "themes.h"
 #include "transdialog.h"
 #include "util.h"
+#include "mmTreeItemData.h"
 #include "webapp.h"
 #include "webappdialog.h"
 #include "wizard_newdb.h"

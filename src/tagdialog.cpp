@@ -22,7 +22,12 @@
 #include "constants.h"
 #include "paths.h"
 #include "util.h"
+#include "model/Model_Infotable.h"
+#include "model/Model_Checking.h"
+#include "model/Model_Splittransaction.h"
+#include "model/Model_Attachment.h"
 #include "model/Model_Tag.h"
+#include "model/Model_Taglink.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmTagDialog, wxDialog);
 

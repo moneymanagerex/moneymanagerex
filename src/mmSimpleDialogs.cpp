@@ -18,6 +18,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
+#include "wx/dcbuffer.h"
+#include "wx/popupwin.h"
+#include "wx/spinctrl.h"
+#include <wx/graphics.h>
+#include <wx/renderer.h>
+#include <wx/richtooltip.h>
+
 #include "mmSimpleDialogs.h"
 #include "constants.h"
 #include "images_list.h"
@@ -28,19 +35,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "util.h"
 #include "validators.h"
 
-#include "model/Model_Account.h"
 #include "model/Model_Setting.h"
-
-#include "wx/graphics.h"
-#include <wx/renderer.h>
-#include <wx/richtooltip.h>
+#include "model/Model_Account.h"
+#include "model/Model_Payee.h"
+#include "model/Model_Category.h"
+#include "model/Model_Tag.h"
 
 //------- Pop-up calendar, currently only used for MacOS only
 // See: https://github.com/moneymanagerex/moneymanagerex/issues/3139
-
-#include "wx/dcbuffer.h"
-#include "wx/popupwin.h"
-#include "wx/spinctrl.h"
 
 //----------------------------------------------------------------------------
 // mmCalendarPopup

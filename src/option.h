@@ -20,8 +20,8 @@
 #pragma once
 
 #include "defs.h"
-
-typedef wxLongLong int64;
+#include "primitive.h"
+#include "daterange2.h"
 
 /*
    mmOptions caches the options for MMEX
@@ -42,6 +42,7 @@ public:
     };
     static const std::vector<std::pair<COMPOUNDING_ID, wxString> > COMPOUNDING_NAME;
     static const std::vector<std::pair<COMPOUNDING_ID, int> > COMPOUNDING_N;
+    static const std::vector<std::pair<wxString, wxString> > CHECKING_RANGE_DEFAULT;
 
 public:
     Option();
@@ -251,10 +252,13 @@ public:
     void setShowMoneyTips(const bool value);
     bool getShowMoneyTips() const noexcept;
 
-    // m_checking_range
+    // m_checking_range, m_checking_range_a, m_checking_range_m
     void loadCheckingRange();
     void setCheckingRange(const wxArrayString &a);
+    void parseCheckingRange();
     const wxArrayString getCheckingRange() const noexcept;
+    const std::vector<DateRange2::Spec> getCheckingRangeA() const noexcept;
+    int getCheckingRangeM() const noexcept;
 
 private:
     bool m_database_updated = false;
@@ -303,6 +307,10 @@ private:
     int m_toolbar_icon_size = 32;                       // TOOLBARICONSIZE
     int m_navigation_icon_size = 24;                    // NAVIGATIONICONSIZE
     wxArrayString m_checking_range;                     // CHECKING_RANGE
+
+    // derived
+    std::vector<DateRange2::Spec> m_checking_range_a;   // m_checking_range
+    int m_checking_range_m;                             // m_checking_range
 };
 
 inline void Option::setDatabaseUpdated(const bool value)
@@ -511,3 +519,14 @@ inline const wxArrayString Option::getCheckingRange() const noexcept
 {
     return m_checking_range;
 }
+
+inline const std::vector<DateRange2::Spec> Option::getCheckingRangeA() const noexcept
+{
+    return m_checking_range_a;
+}
+
+inline int Option::getCheckingRangeM() const noexcept
+{
+    return m_checking_range_m;
+}
+

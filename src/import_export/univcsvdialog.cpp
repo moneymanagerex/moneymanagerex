@@ -20,6 +20,16 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include <algorithm>
+#include <cctype>
+#include <string>
+#include <memory>
+#include <regex>
+
+#include <wx/xml/xml.h>
+#include <wx/spinctrl.h>
+#include <wx/display.h>
+
 #include "univcsvdialog.h"
 
 #include "images_list.h"
@@ -35,20 +45,12 @@
 #include "payeedialog.h"
 #include "categdialog.h"
 
-#include "Model_Setting.h"
-#include "Model_Payee.h"
-#include "Model_Category.h"
-#include "Model_Infotable.h"
-
-#include <algorithm>
-#include <cctype>
-#include <string>
-#include <memory>
-#include <regex>
-
-#include <wx/xml/xml.h>
-#include <wx/spinctrl.h>
-#include <wx/display.h>
+#include "model/Model_Setting.h"
+#include "model/Model_Infotable.h"
+#include "model/Model_Payee.h"
+#include "model/Model_Category.h"
+#include "model/Model_CustomFieldData.h"
+#include "model/Model_Tag.h"
 
 enum tab_id {
     DATA_TAB = 1,

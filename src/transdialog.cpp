@@ -19,6 +19,11 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include <wx/numformatter.h>
+#include <wx/timectrl.h>
+#include <wx/collpane.h>
+#include <wx/display.h>
+
 #include "transdialog.h"
 #include "mmcustomdata.h"
 #include "attachmentdialog.h"
@@ -34,20 +39,15 @@
 #include "util.h"
 #include "validators.h"
 #include "webapp.h"
-
 #include "option.h"
+
+#include "model/Model_Setting.h"
 #include "model/Model_Account.h"
-#include "model/Model_Attachment.h"
 #include "model/Model_Category.h"
 #include "model/Model_CurrencyHistory.h"
 #include "model/Model_CustomFieldData.h"
-#include "model/Model_Setting.h"
-
-#include <wx/numformatter.h>
-#include <wx/timectrl.h>
-#include <wx/collpane.h>
-#include <wx/display.h>
-
+#include "model/Model_Attachment.h"
+#include "model/Model_Tag.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmTransDialog, wxDialog);
 

@@ -24,8 +24,11 @@
 #include "paths.h"
 #include "util.h"
 
-#include "model/Model_Attachment.h"
 #include "model/Model_Infotable.h"
+#include "model/Model_Asset.h"
+#include "model/Model_Stock.h"
+#include "model/Model_Payee.h"
+#include "model/Model_Attachment.h"
 
 #include <wx/mimetype.h>
 

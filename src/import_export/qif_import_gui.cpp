@@ -17,6 +17,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
+#include <wx/progdlg.h>
+#include <wx/dataview.h>
+
 #include "qif_import_gui.h"
 #include "qif_import.h"
 #include "export.h"
@@ -29,11 +32,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "payeedialog.h"
 #include "categdialog.h"
 
+#include "model/Model_Setting.h"
 #include "model/Model_Category.h"
 #include "model/Model_Payee.h"
-
-#include <wx/progdlg.h>
-#include <wx/dataview.h>
+#include "model/Model_Tag.h"
 
 enum tab_id {
     LOG_TAB = 1,

@@ -18,6 +18,11 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include <wx/clipbrd.h>
+#include <wx/srchctrl.h>
+#include <algorithm>
+#include <wx/sound.h>
+
 #include "assetdialog.h"
 #include "attachmentdialog.h"
 #include "billsdepositsdialog.h"
@@ -33,11 +38,8 @@
 #include "transactionsupdatedialog.h"
 #include "transdialog.h"
 #include "util.h"
-#include <wx/clipbrd.h>
+#include "model/Model_Setting.h"
 
-#include <wx/srchctrl.h>
-#include <algorithm>
-#include <wx/sound.h>
 //----------------------------------------------------------------------------
 
 wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
