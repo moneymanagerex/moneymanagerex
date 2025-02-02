@@ -20,15 +20,15 @@
 
 #pragma once
 
-#include <wx/clipbrd.h>
-#include <wx/valnum.h>
-#include <map>
-#include <curl/curl.h>
-
 #include "defs.h"
 #include "primitive.h"
 #include "option.h"
 
+#include <algorithm>
+#include <map>
+#include <curl/curl.h>
+#include <wx/clipbrd.h>
+#include <wx/valnum.h>
 #include <rapidjson/document.h>
 
 class mmGUIApp;
