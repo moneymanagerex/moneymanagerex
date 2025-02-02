@@ -24,11 +24,12 @@
 #include <wx/valnum.h>
 #include <map>
 #include <curl/curl.h>
-#include <rapidjson/document.h>
 
 #include "defs.h"
 #include "primitive.h"
 #include "option.h"
+
+#include <rapidjson/document.h>
 
 class mmGUIApp;
 

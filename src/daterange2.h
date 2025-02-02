@@ -79,7 +79,7 @@ public:
         bool parseLabel(StringIt &str_i, StringIt str_end);
         void parseName(StringIt &str_i, StringIt str_end);
         void setName(const wxString &name_new);
-        bool parseSpec(const wxString &str, const wxString &name = "");
+        bool parseSpec(const wxString &str, const wxString &name_new = "");
         const wxString getLabel() const;
         const wxString getName() const;
         const wxString checking_name() const;

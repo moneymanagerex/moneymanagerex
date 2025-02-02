@@ -223,17 +223,17 @@ void DateRange2::Spec::parseName(StringIt &str_i, StringIt str_end)
     name.append(str_i, str_end);
 }
 
-bool DateRange2::Spec::parseSpec(const wxString &str, const wxString &name)
+bool DateRange2::Spec::parseSpec(const wxString &str, const wxString &name_new)
 {
-    Spec spec = Spec();
+    Spec spec_new = Spec();
     StringIt str_i = str.begin();
-    if (!spec.parseLabel(str_i, str.end()))
+    if (!spec_new.parseLabel(str_i, str.end()))
         return false;
-    if (!name.empty())
-        spec.name = name;
+    if (!name_new.empty())
+        spec_new.name = name_new;
     else
-        spec.parseName(str_i, str.end());
-    *this = spec;
+        spec_new.parseName(str_i, str.end());
+    *this = spec_new;
     return true;
 }
 

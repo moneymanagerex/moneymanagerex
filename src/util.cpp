@@ -24,6 +24,16 @@
 #pragma comment(lib,"wldap32.lib")
 #endif
 
+#include <map>
+#include <cwchar>
+#include <locale>
+#include <lua.hpp>
+#include <fmt/core.h>
+#include <wx/display.h>
+#include <wx/sstream.h>
+#include <wx/xml/xml.h>
+#include <wx/fs_mem.h>
+
 #include "build.h"
 #include "util.h"
 #include "constants.h"
@@ -31,19 +41,10 @@
 #include "platfdep.h"
 #include "paths.h"
 #include "validators.h"
-#include "model/Model_Currency.h"
-#include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
+#include "model/Model_Infotable.h"
+#include "model/Model_Currency.h"
 #include "model/Model_CurrencyHistory.h"
-#include <wx/display.h>
-#include <wx/sstream.h>
-#include <wx/xml/xml.h>
-#include <map>
-#include <lua.hpp>
-#include <wx/fs_mem.h>
-#include <fmt/core.h>
-#include <cwchar>
-#include <locale>
 
 using namespace rapidjson;
 
