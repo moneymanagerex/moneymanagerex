@@ -68,17 +68,17 @@ public:
 
     public:
         Spec(
-            int so1 = 0, PERIOD_ID sp1 = PERIOD_ID_A,
-            int eo1 = 0, PERIOD_ID ep1 = PERIOD_ID_A,
-            int so2 = 0, PERIOD_ID sp2 = PERIOD_ID_none,
-            int eo2 = 0, PERIOD_ID ep2 = PERIOD_ID_none,
-            int f = 0, wxString name = ""
+            int so1_new = 0, PERIOD_ID sp1_new = PERIOD_ID_A,
+            int eo1_new = 0, PERIOD_ID ep1_new = PERIOD_ID_A,
+            int so2_new = 0, PERIOD_ID sp2_new = PERIOD_ID_none,
+            int eo2_new = 0, PERIOD_ID ep2_new = PERIOD_ID_none,
+            int f_new = 0, wxString name_new = ""
         );
 
     public:
         bool parseLabel(StringIt &str_i, StringIt str_end);
         void parseName(StringIt &str_i, StringIt str_end);
-        void setName(const wxString &name);
+        void setName(const wxString &name_new);
         bool parseSpec(const wxString &str, const wxString &name = "");
         const wxString getLabel() const;
         const wxString getName() const;
@@ -108,7 +108,7 @@ public:
     void setDateS(wxDateTime date = wxInvalidDateTime);
     wxDateTime getDateT() const;
     wxDateTime getDateS() const;
-    void setSpec(const Spec &spec);
+    void setSpec(const Spec &spec_new);
     bool parseSpec(const wxString &str, const wxString &name = "");
     Spec getSpec() const;
     wxDateTime period_start(wxDateTime date, PERIOD_ID period) const;
@@ -124,19 +124,19 @@ private:
 #ifndef NDEBUG
 private:
     DateRange2(
-        int firstDay_0, int firstDay_1,
-        wxDateTime::Month firstMonth_0, wxDateTime::Month firstMonth_1,
-        wxDateTime::WeekDay firstWeekday,
-        wxDateTime date_t = wxInvalidDateTime, wxDateTime date_s = wxInvalidDateTime
+        int firstDay_new_0, int firstDay_new_1,
+        wxDateTime::Month firstMonth_new_0, wxDateTime::Month firstMonth_new_1,
+        wxDateTime::WeekDay firstWeekday_new,
+        wxDateTime date_t_new = wxInvalidDateTime, wxDateTime date_s_new = wxInvalidDateTime
     );
 public:
     static bool debug();
 #endif
 };
 
-inline void DateRange2::Spec::setName(const wxString &name)
+inline void DateRange2::Spec::setName(const wxString &name_new)
 {
-    this->name = name;
+    name = name_new;
 }
 
 inline const wxString DateRange2::Spec::offset_str(int offset, bool show_zero)
@@ -183,9 +183,9 @@ inline wxDateTime DateRange2::getDateS() const
     return date_s;
 }
 
-inline void DateRange2::setSpec(const DateRange2::Spec &spec)
+inline void DateRange2::setSpec(const DateRange2::Spec &spec_new)
 {
-    this->spec = spec;
+    spec = spec_new;
 }
 
 inline DateRange2::Spec DateRange2::getSpec() const

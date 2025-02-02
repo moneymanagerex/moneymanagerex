@@ -42,26 +42,26 @@ DateRange2::PERIOD_LABEL_ID_t DateRange2::make_period_label_id()
 }
 
 DateRange2::Spec::Spec(
-    int so1, PERIOD_ID sp1,
-    int eo1, PERIOD_ID ep1,
-    int so2, PERIOD_ID sp2,
-    int eo2, PERIOD_ID ep2,
-    int f, wxString name
+    int so1_new, PERIOD_ID sp1_new,
+    int eo1_new, PERIOD_ID ep1_new,
+    int so2_new, PERIOD_ID sp2_new,
+    int eo2_new, PERIOD_ID ep2_new,
+    int f_new, wxString name_new
 ) {
-    this->sp1 = (sp1 == PERIOD_ID_none) ? PERIOD_ID_A : sp1;
-    this->ep1 = (ep1 == PERIOD_ID_none) ? PERIOD_ID_A : ep1;
-    this->so1 = (this->sp1 == PERIOD_ID_A) ? 0 : so1;
-    this->eo1 = (this->ep1 == PERIOD_ID_A) ? 0 : eo1;
-    if (sp2 == PERIOD_ID_none || ep2 == PERIOD_ID_none) {
-        this->sp2 = PERIOD_ID_none; this->so2 = 0;
-        this->ep2 = PERIOD_ID_none; this->eo2 = 0;
+    sp1 = (sp1_new == PERIOD_ID_none) ? PERIOD_ID_A : sp1_new;
+    ep1 = (ep1_new == PERIOD_ID_none) ? PERIOD_ID_A : ep1_new;
+    so1 = (sp1 == PERIOD_ID_A) ? 0 : so1_new;
+    eo1 = (ep1 == PERIOD_ID_A) ? 0 : eo1_new;
+    if (sp2_new == PERIOD_ID_none || ep2_new == PERIOD_ID_none) {
+        sp2 = PERIOD_ID_none; so2 = 0;
+        ep2 = PERIOD_ID_none; eo2 = 0;
     }
     else {
-        this->sp2 = sp2; this->so2 = (this->sp2 == PERIOD_ID_A) ? 0 : so2;
-        this->ep2 = ep2; this->eo2 = (this->ep2 == PERIOD_ID_A) ? 0 : eo2;
+        sp2 = sp2_new; so2 = (sp2 == PERIOD_ID_A) ? 0 : so2_new;
+        ep2 = ep2_new; eo2 = (ep2 == PERIOD_ID_A) ? 0 : eo2_new;
     }
-    this->f = (f == 1) ? 1 : 0;
-    this->name = name;
+    f = (f_new == 1) ? 1 : 0;
+    name = name_new;
 }
 
 void DateRange2::Spec::scanWhiteSpace(StringIt &str_i, StringIt str_end)
@@ -144,9 +144,9 @@ bool DateRange2::Spec::parseLabel(StringIt &str_i, StringIt str_end)
     // subrange = so ".." eo p
     // subrange = o? p
 
-    int so[2] = { 0, 0 }; PERIOD_ID sp[2] = { PERIOD_ID_none, PERIOD_ID_none };
-    int eo[2] = { 0, 0 }; PERIOD_ID ep[2] = { PERIOD_ID_none, PERIOD_ID_none };
-    int f = 0;
+    int so_new[2] = { 0, 0 }; PERIOD_ID sp_new[2] = { PERIOD_ID_none, PERIOD_ID_none };
+    int eo_new[2] = { 0, 0 }; PERIOD_ID ep_new[2] = { PERIOD_ID_none, PERIOD_ID_none };
+    int f_new = 0;
     int i = 0;     // index into {s,e}{o,p}[] (0: first subrange, 1: second subrange)
     int state = 0; // parse state: 0 (so) 1 (sp) 2 (..) 3 (eo) 4 (ep) 5 (f) 6 (;) 7
 
@@ -157,12 +157,12 @@ bool DateRange2::Spec::parseLabel(StringIt &str_i, StringIt str_end)
         token = scanToken(str_i, str_end, token_o, token_p);
         //wxLogDebug("DEBUG: state=%d, token=%c", state, token);
         if (state == 0 && token == 'o') {
-            so[i] = token_o;
+            so_new[i] = token_o;
             state = 1;
             continue;
         }
         if ((state == 0 || state == 1) && token == 'p') {
-            sp[i] = token_p;
+            sp_new[i] = token_p;
             state = 2;
             continue;
         }
@@ -171,20 +171,20 @@ bool DateRange2::Spec::parseLabel(StringIt &str_i, StringIt str_end)
             continue;
         }
         if (state == 3 && token == 'o') {
-            eo[i] = token_o;
+            eo_new[i] = token_o;
             state = 4;
             continue;
         }
         if ((state == 3 || state == 4) && token == 'p') {
-            if (sp[i] == PERIOD_ID_none)
-                sp[i] = token_p;
-            ep[i] = token_p;
+            if (sp_new[i] == PERIOD_ID_none)
+                sp_new[i] = token_p;
+            ep_new[i] = token_p;
             state = 5;
             continue;
         }
         if (state == 2 && ((i == 0 && token == ',') || token == 'f' || token == ';')) {
-            eo[i] = so[i];
-            ep[i] = sp[i];
+            eo_new[i] = so_new[i];
+            ep_new[i] = sp_new[i];
             state = 5;
         }
         if (i == 0 && state == 5 && token == ',') {
@@ -193,7 +193,7 @@ bool DateRange2::Spec::parseLabel(StringIt &str_i, StringIt str_end)
             continue;
         }
         if (state == 5 && token == 'f') {
-            f = 1;
+            f_new = 1;
             state = 6;
             continue;
         }
@@ -209,18 +209,18 @@ bool DateRange2::Spec::parseLabel(StringIt &str_i, StringIt str_end)
         return false;
     }
 
-    this->so1 = so[0]; this->sp1 = sp[0]; this->eo1 = eo[0]; this->ep1 = ep[0];
-    this->so2 = so[1]; this->sp2 = sp[1]; this->eo2 = eo[1]; this->ep2 = ep[1];
-    this->f = f;
+    so1 = so_new[0]; sp1 = sp_new[0]; eo1 = eo_new[0]; ep1 = ep_new[0];
+    so2 = so_new[1]; sp2 = sp_new[1]; eo2 = eo_new[1]; ep2 = ep_new[1];
+    f = f_new;
 
     return true;
 }
 
 void DateRange2::Spec::parseName(StringIt &str_i, StringIt str_end)
 {
-    this->name = "";
+    name = "";
     scanWhiteSpace(str_i, str_end);
-    this->name.append(str_i, str_end);
+    name.append(str_i, str_end);
 }
 
 bool DateRange2::Spec::parseSpec(const wxString &str, const wxString &name)
@@ -326,10 +326,10 @@ DateRange2::DateRange2(wxDateTime date_s, wxDateTime date_t) :
 // return true if parse is successful
 bool DateRange2::parseSpec(const wxString &str, const wxString &name)
 {
-    Spec spec = Spec();
-    if (!spec.parseSpec(str, name))
+    Spec spec_new = Spec();
+    if (!spec_new.parseSpec(str, name))
         return false;
-    this->spec = spec;
+    spec = spec_new;
     return true;
 }
 
@@ -456,18 +456,18 @@ wxDateTime DateRange2::reporting_end() const
 
 #ifndef NDEBUG
 DateRange2::DateRange2(
-    int firstDay_0, int firstDay_1,
-    wxDateTime::Month firstMonth_0, wxDateTime::Month firstMonth_1,
-    wxDateTime::WeekDay firstWeekday,
-    wxDateTime date_t, wxDateTime date_s
+    int firstDay_new_0, int firstDay_new_1,
+    wxDateTime::Month firstMonth_new_0, wxDateTime::Month firstMonth_new_1,
+    wxDateTime::WeekDay firstWeekday_new,
+    wxDateTime date_t_new, wxDateTime date_s_new
 ) :
-    firstDay{firstDay_0, firstDay_1},
-    firstMonth{firstMonth_0, firstMonth_1},
-    firstWeekday(firstWeekday),
+    firstDay{firstDay_new_0, firstDay_new_1},
+    firstMonth{firstMonth_new_0, firstMonth_new_1},
+    firstWeekday(firstWeekday_new),
     spec(Spec())
 {
-    setDateT(date_t);
-    setDateS(date_s);
+    setDateT(date_t_new);
+    setDateS(date_s_new);
 }
 
 bool DateRange2::debug()
