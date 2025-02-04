@@ -387,7 +387,7 @@ wxString mmAttachmentManage::m_PathSep = wxFileName::GetPathSeparator();
 
 const wxString mmAttachmentManage::InfotablePathSetting()
 {
-    return Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
+    return Model_Infotable::instance().getString("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
 }
 
 const wxString mmAttachmentManage::GetAttachmentNoteSign()
@@ -464,7 +464,7 @@ bool mmAttachmentManage::CopyAttachment(const wxString& FileToImport, const wxSt
     }
     else if (wxCopyFile(FileToImport, ImportedFile))
     {
-        if (Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDELETE", false))
+        if (Model_Infotable::instance().getBool("ATTACHMENTSDELETE", false))
             wxRemoveFile(FileToImport);
     }
     else
@@ -477,7 +477,7 @@ bool mmAttachmentManage::DeleteAttachment(const wxString& FileToDelete)
 {
     if (wxFileExists(FileToDelete))
     {
-        if (Model_Infotable::instance().GetBoolInfo("ATTACHMENTSTRASH", false))
+        if (Model_Infotable::instance().getBool("ATTACHMENTSTRASH", false))
         {
             const wxString DeletedAttachmentFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + m_PathSep + "Deleted";
 

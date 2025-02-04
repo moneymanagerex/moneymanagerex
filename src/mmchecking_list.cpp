@@ -780,9 +780,9 @@ void TransactionListCtrl::findInAllTransactions(wxCommandEvent&) {
     if (rightClickFilter_.IsEmpty())
         return;
     // save the filter as the "Advanced" filter for All Transactions
-    Model_Infotable::instance().Set("CHECK_FILTER_ID_ADV_-1", rightClickFilter_);
+    Model_Infotable::instance().setString("CHECK_FILTER_ID_ADV_-1", rightClickFilter_);
     // set All Transactions to use the "Advanced" filter
-    Model_Infotable::instance().Set(
+    Model_Infotable::instance().setString(
         "CHECK_FILTER_ID_-1",
         "{\n\"FILTER\": \"" + mmCheckingPanel::FILTER_STR_DIALOG + "\"\n}"
     );
@@ -886,10 +886,22 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
         prev_g_sortcol = toEColumn(COL_ID);
         prev_g_asc = m_asc;        
     }
-    Model_Setting::instance().Set(wxString::Format("%s_ASC2", m_cp->m_sortSaveTitle), (prev_g_asc ? 1 : 0));
-    Model_Setting::instance().Set(wxString::Format("%s_SORT_COL2", m_cp->m_sortSaveTitle), prev_g_sortcol);
-    Model_Setting::instance().Set(wxString::Format("%s_ASC", m_cp->m_sortSaveTitle), (g_asc ? 1 : 0));
-    Model_Setting::instance().Set(wxString::Format("%s_SORT_COL", m_cp->m_sortSaveTitle), g_sortcol);
+    Model_Setting::instance().setInt(
+        wxString::Format("%s_ASC2", m_cp->m_sortSaveTitle),
+        (prev_g_asc ? 1 : 0)
+    );
+    Model_Setting::instance().setInt(
+        wxString::Format("%s_SORT_COL2", m_cp->m_sortSaveTitle),
+        prev_g_sortcol
+    );
+    Model_Setting::instance().setInt(
+        wxString::Format("%s_ASC", m_cp->m_sortSaveTitle),
+        (g_asc ? 1 : 0)
+    );
+    Model_Setting::instance().setInt(
+        wxString::Format("%s_SORT_COL", m_cp->m_sortSaveTitle),
+        g_sortcol
+    );
 
     refreshVisualList(false);
 
@@ -1125,7 +1137,7 @@ int64 TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
 {
     wxASSERT(m_cp->isAccount());
 
-    bool useOriginalDate = Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_COPYPASTE, false);
+    bool useOriginalDate = Model_Setting::instance().getBool(INIDB_USE_ORG_DATE_COPYPASTE, false);
 
     //TODO: the clone function can't clone split transactions, or custom data
     Model_Checking::Data* copy = Model_Checking::instance().clone(tran); 
@@ -1182,7 +1194,7 @@ int64 TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
     }
 
     // Clone attachments if wanted
-    if (Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDUPLICATE", false)) {
+    if (Model_Infotable::instance().getBool("ATTACHMENTSDUPLICATE", false)) {
         const wxString& RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
         mmAttachmentManage::CloneAllAttachments(RefType, tran->TRANSID, transactionID);
     }
@@ -1362,7 +1374,7 @@ void TransactionListCtrl::OnRestoreTransaction(wxCommandEvent& WXUNUSED(event))
 void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
 {
     auto i = event.GetId();
-    int retainDays = Model_Setting::instance().GetIntSetting("DELETED_TRANS_RETAIN_DAYS", 30);
+    int retainDays = Model_Setting::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30);
 
     if (i == MENU_TREEPOPUP_DELETE_VIEWED) {
         wxString text = !(m_cp->isDeletedTrans() || retainDays == 0)
@@ -1406,7 +1418,7 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
 
 void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
 {
-    int retainDays = Model_Setting::instance().GetIntSetting("DELETED_TRANS_RETAIN_DAYS", 30);
+    int retainDays = Model_Setting::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30);
     wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
     std::set<std::pair<wxString, int64>> assetStockAccts;
     const auto s = Model_Checking::status_key(status);
@@ -1454,7 +1466,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
     if (sel < 1) return;
 
     FindSelectedTransactions();
-    int retainDays = Model_Setting::instance().GetIntSetting("DELETED_TRANS_RETAIN_DAYS", 30);
+    int retainDays = Model_Setting::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30);
 
     //ask if they really want to delete
     wxString text = (m_cp->isDeletedTrans() || retainDays == 0)?

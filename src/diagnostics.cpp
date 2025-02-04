@@ -106,11 +106,11 @@ void mmDiagnosticsDialog::RefreshView()
     html << "<br>";
 
     // Saved dimensions
-    int valX = Model_Setting::instance().GetIntSetting("ORIGINX", -1);
-    int valY = Model_Setting::instance().GetIntSetting("ORIGINY", -1);
-    int valW = Model_Setting::instance().GetIntSetting("SIZEW", -1);
-    int valH = Model_Setting::instance().GetIntSetting("SIZEH", -1);
-    bool is_max = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", "?");
+    int valX = Model_Setting::instance().getInt("ORIGINX", -1);
+    int valY = Model_Setting::instance().getInt("ORIGINY", -1);
+    int valW = Model_Setting::instance().getInt("SIZEW", -1);
+    int valH = Model_Setting::instance().getInt("SIZEH", -1);
+    bool is_max = Model_Setting::instance().getBool("ISMAXIMIZED", "?");
     html << wxString::Format("saved dimensions : x:%i, y:%i, w:%i, h:%i, maximized:%s"
         , valX, valY, valW, valH
         , is_max ? "true" : "false");

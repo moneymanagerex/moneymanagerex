@@ -711,7 +711,7 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tRe
 
     wxString body = "";
     const wxDate today = wxDate::Today();
-    wxString vAccts = Model_Setting::instance().GetViewAccounts();
+    wxString vAccts = Model_Setting::instance().getViewAccounts();
     auto accounts = Model_Account::instance().find(
         Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR[type])
         , Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL));

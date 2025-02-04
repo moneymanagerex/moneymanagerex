@@ -60,12 +60,10 @@ mmUpdateWizard::~mmUpdateWizard()
 {
     clearVFprintedFiles("rep");
     bool isActive = showUpdateCheckBox_->GetValue();
-    if (!isActive) {
-        Model_Setting::instance().Set("UPDATE_LAST_CHECKED_VERSION", top_version_);
-    }
-    else {
-        Model_Setting::instance().Set("UPDATE_LAST_CHECKED_VERSION", ("v" + mmex::version::string).Lower());
-    }
+    Model_Setting::instance().setString(
+        "UPDATE_LAST_CHECKED_VERSION",
+        (!isActive) ? top_version_ : ("v" + mmex::version::string).Lower()
+    );
 }
 
 mmUpdateWizard::mmUpdateWizard(wxWindow* parent, const Document& json_releases, wxArrayInt new_releases, const wxString& top_version)
@@ -106,7 +104,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
         }
 
         bool is_prerelease = (r.HasMember("prerelease") && r["prerelease"].IsBool() && r["prerelease"].GetBool());
-        bool update_stable = Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 0;
+        bool update_stable = Model_Setting::instance().getInt("UPDATESOURCE", 0) == 0;
         if (update_stable && is_prerelease)
             continue;
 
@@ -320,10 +318,8 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
 
     wxString resp;
     CURLcode err_code = http_get_data(url, resp);
-    if (err_code != CURLE_OK)
-    {
-        if (!bSilent)
-        {
+    if (err_code != CURLE_OK) {
+        if (!bSilent) {
             const wxString& msgStr = _("Unable to check for updates!")
                 + "\n\n" + _("Error: ") + curl_easy_strerror(err_code);
             wxMessageBox(msgStr, _("MMEX Update Check"));
@@ -336,10 +332,8 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
     resp = is_stable ? wxString::Format("[%s]", resp) : resp;
     Document json_releases;
     ParseResult res = json_releases.Parse(resp.utf8_str());
-    if (!res || !json_releases.IsArray())
-    {
-        if (!bSilent)
-        {
+    if (!res || !json_releases.IsArray()) {
+        if (!bSilent) {
             const wxString& msgStr = _("Unable to check for updates!")
                 + "\n\n" + _("Error: ")
                 + wxString::FromUTF8(!res ? GetParseError_En(res.Code()) : json_releases.GetString());
@@ -348,23 +342,21 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
         return;
     }
 
-    wxLogDebug("======= mmUpdate::checkUpdates =======");
-
-    bool update_stable = Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 0;
+    wxLogDebug("{{{ mmUpdate::checkUpdates()");
+    bool update_stable = Model_Setting::instance().getInt("UPDATESOURCE", 0) == 0;
     const int _stable = is_stable ? update_stable : 0;
     const wxString current_tag = ("v" + mmex::version::string).Lower();
-    wxString last_checked = Model_Setting::instance().GetStringSetting("UPDATE_LAST_CHECKED_VERSION", current_tag);
+    wxString last_checked = Model_Setting::instance().getString("UPDATE_LAST_CHECKED_VERSION", current_tag);
 
     bool is_update_available = false;
     Version current(current_tag);
     Version top(current_tag);
     wxString top_version;
     Version last(last_checked);
-    wxLogDebug("Current vertion: = %s", current_tag);
+    wxLogDebug("Current vertion: %s", current_tag);
     wxArrayInt new_releases;
     int i = 0;
-    for (auto& r : json_releases.GetArray())
-    {
+    for (auto& r : json_releases.GetArray()) {
         const auto tag_name = wxString::FromUTF8(r["tag_name"].GetString());
         bool prerelease = r["prerelease"].GetBool();
         if (_stable && prerelease) {
@@ -389,12 +381,11 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
         }
         i++;
     }
+    wxLogDebug("}}}");
 
-    if (!bSilent || (is_update_available && !new_releases.empty()))
-    {
+    if (!bSilent || (is_update_available && !new_releases.empty())) {
         mmUpdateWizard* wizard = new mmUpdateWizard(frame, json_releases, new_releases, top_version);
         wizard->CenterOnParent();
         wizard->ShowModal();
     }
-
 }

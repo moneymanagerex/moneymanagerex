@@ -433,7 +433,7 @@ void mmQIFExportDialog::mmExportQIF()
     bool exp_categ = cCategs_->IsChecked();
     bool exp_transactions = (accountsCheckBox_->IsChecked() && selected_accounts_id_.size() > 0);
 
-    const wxString delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
+    const wxString delimiter = Model_Infotable::instance().getString("DELIMITER", mmex::DEFDELIMTER);
 
     wxString sErrorMsg;
     size_t numRecords = 0, numCategories = 0;

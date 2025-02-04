@@ -45,7 +45,7 @@ relocateTagDialog::relocateTagDialog( )
 
 relocateTagDialog::~relocateTagDialog()
 {
-    Model_Infotable::instance().Set("RELOCATETAG_DIALOG_SIZE", GetSize());
+    Model_Infotable::instance().setSize("RELOCATETAG_DIALOG_SIZE", GetSize());
 }
 
 relocateTagDialog::relocateTagDialog(wxWindow* parent, int64 source_tag_id)

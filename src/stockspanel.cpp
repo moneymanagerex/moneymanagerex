@@ -61,7 +61,7 @@ bool mmStocksPanel::Create(wxWindow *parent
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
 
-    strLastUpdate_ = Model_Infotable::instance().GetStringInfo("STOCKS_LAST_REFRESH_DATETIME", "");
+    strLastUpdate_ = Model_Infotable::instance().getString("STOCKS_LAST_REFRESH_DATETIME", "");
     this->windowsFreezeThaw();
 
     Model_Account::Data *account = Model_Account::instance().get(m_account_id);
@@ -236,9 +236,9 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
             stockTxnListCtrl->SetItem(index, 0, mmGetDateTimeForDisplay(stock_trans.TRANSDATE));
             stockTxnListCtrl->SetItem(index, 1, share_entry->SHARELOT);
 
-            int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().SharePrecision();
+            int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().getSharePrecision();
             stockTxnListCtrl->SetItem(index, 2, wxString::FromDouble(share_entry->SHARENUMBER, precision));
-            stockTxnListCtrl->SetItem(index, 3, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().SharePrecision()));
+            stockTxnListCtrl->SetItem(index, 3, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().getSharePrecision()));
             stockTxnListCtrl->SetItem(index, 4, wxString::FromDouble(share_entry->SHARECOMMISSION, 2));
         }
     }
@@ -257,9 +257,9 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
         stockTxnListCtrl->SetItem(index, 0, mmGetDateTimeForDisplay(txn->TRANSDATE));
         stockTxnListCtrl->SetItem(index, 1, share_entry->SHARELOT);
 
-        int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().SharePrecision();
+        int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().getSharePrecision();
         stockTxnListCtrl->SetItem(index, 2, wxString::FromDouble(share_entry->SHARENUMBER, precision));
-        stockTxnListCtrl->SetItem(index, 3, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().SharePrecision()));
+        stockTxnListCtrl->SetItem(index, 3, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().getSharePrecision()));
         stockTxnListCtrl->SetItem(index, 4, wxString::FromDouble(share_entry->SHARECOMMISSION, 2));
 
         // Sort by date 
@@ -495,7 +495,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
 
     strLastUpdate_.Printf(_("%1$s on %2$s"), LastRefreshDT_.FormatTime()
         , mmGetDateTimeForDisplay(LastRefreshDT_.FormatISODate()));
-    Model_Infotable::instance().Set("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate_);
+    Model_Infotable::instance().setString("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate_);
 
     return true;
 }

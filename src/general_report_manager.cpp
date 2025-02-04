@@ -244,7 +244,7 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent, wxSQLite3Databa
 mmGeneralReportManager::~mmGeneralReportManager()
 {
     clearVFprintedFiles("grm");
-    Model_Infotable::instance().Set("GRM_DIALOG_SIZE", GetSize());
+    Model_Infotable::instance().setSize("GRM_DIALOG_SIZE", GetSize());
 }
 
 bool mmGeneralReportManager::Create(wxWindow* parent
