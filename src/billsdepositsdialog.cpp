@@ -494,7 +494,7 @@ void mmBDDialog::CreateControls()
     {
         m_choice_status->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
-    m_choice_status->SetSelection(Option::instance().TransStatusReconciled());
+    m_choice_status->SetSelection(Option::instance().getTransStatusReconciled());
     mmToolTip(m_choice_status, _("Specify the status for the transaction"));
 
     transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Status")), g_flagsH);
@@ -712,8 +712,8 @@ void mmBDDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
         // Only for new/duplicate transactions: if user want to autofill last category used for payee.
         // If this is a Split Transaction, ignore displaying last category for payee
         if (payee->CATEGID != -1 && m_bill_data.local_splits.empty()
-            && (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED ||
-                Option::instance().TransCategorySelectionNonTransfer() == Option::DEFAULT)
+            && (Option::instance().getTransCategoryNone() == Option::LASTUSED ||
+                Option::instance().getTransCategoryNone() == Option::DEFAULT)
             && (!Model_Category::is_hidden(payee->CATEGID) && !Model_Category::is_hidden(payee->CATEGID)))
         {
             m_bill_data.CATEGID = payee->CATEGID;
@@ -1464,7 +1464,7 @@ void mmBDDialog::setCategoryLabel()
         m_bill_data.CATEGID = -1;
     }
     else if (m_transfer && m_new_bill
-        && Option::instance().TransCategorySelectionTransfer() == Option::LASTUSED)
+        && Option::instance().getTransCategoryTransferNone() == Option::LASTUSED)
     {
         Model_Checking::Data_Set transactions = Model_Checking::instance().find(
             Model_Checking::TRANSCODE(Model_Checking::TYPE_ID_TRANSFER, EQUAL)

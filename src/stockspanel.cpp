@@ -236,9 +236,9 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
             stockTxnListCtrl->SetItem(index, 0, mmGetDateTimeForDisplay(stock_trans.TRANSDATE));
             stockTxnListCtrl->SetItem(index, 1, share_entry->SHARELOT);
 
-            int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().SharePrecision();
+            int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().getSharePrecision();
             stockTxnListCtrl->SetItem(index, 2, wxString::FromDouble(share_entry->SHARENUMBER, precision));
-            stockTxnListCtrl->SetItem(index, 3, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().SharePrecision()));
+            stockTxnListCtrl->SetItem(index, 3, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().getSharePrecision()));
             stockTxnListCtrl->SetItem(index, 4, wxString::FromDouble(share_entry->SHARECOMMISSION, 2));
         }
     }
@@ -257,9 +257,9 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
         stockTxnListCtrl->SetItem(index, 0, mmGetDateTimeForDisplay(txn->TRANSDATE));
         stockTxnListCtrl->SetItem(index, 1, share_entry->SHARELOT);
 
-        int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().SharePrecision();
+        int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().getSharePrecision();
         stockTxnListCtrl->SetItem(index, 2, wxString::FromDouble(share_entry->SHARENUMBER, precision));
-        stockTxnListCtrl->SetItem(index, 3, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().SharePrecision()));
+        stockTxnListCtrl->SetItem(index, 3, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().getSharePrecision()));
         stockTxnListCtrl->SetItem(index, 4, wxString::FromDouble(share_entry->SHARECOMMISSION, 2));
 
         // Sort by date 

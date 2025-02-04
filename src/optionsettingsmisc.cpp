@@ -85,8 +85,8 @@ void OptionSettingsMisc::Create()
     share_precision_sizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _("Share Precision")), g_flagsH);
 
     m_share_precision = new wxSpinCtrl(misc_panel, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize
-        , wxSP_ARROW_KEYS, 2, 10, Option::instance().SharePrecision());
-    m_share_precision->SetValue(Option::instance().SharePrecision());
+        , wxSP_ARROW_KEYS, 2, 10, Option::instance().getSharePrecision());
+    m_share_precision->SetValue(Option::instance().getSharePrecision());
     mmToolTip(m_share_precision, _("Set the precision for Share prices"));
     share_precision_sizer->Add(m_share_precision, wxSizerFlags(g_flagsExpand).Proportion(0));
 
@@ -101,7 +101,7 @@ void OptionSettingsMisc::Create()
     m_asset_compounding = new wxChoice(misc_panel, ID_DIALOG_OPTIONS_ASSET_COMPOUNDING);
     for (const auto& a : Option::COMPOUNDING_NAME)
         m_asset_compounding->Append(wxGetTranslation(a.second));
-    m_asset_compounding->SetSelection(Option::instance().AssetCompounding());
+    m_asset_compounding->SetSelection(Option::instance().getAssetCompounding());
     mmToolTip(m_asset_compounding,
         _("Select the compounding period for the appreciation/depreciation rate of assets")
     );
@@ -122,31 +122,31 @@ void OptionSettingsMisc::Create()
     wxChoice* defaultCategoryTransferChoice = new wxChoice(misc_panel
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY_TRANSFER
         , wxDefaultPosition, wxDefaultSize, default_values);
-    defaultCategoryTransferChoice->SetSelection(Option::instance().TransCategorySelectionTransfer());
+    defaultCategoryTransferChoice->SetSelection(Option::instance().getTransCategoryTransferNone());
 
     wxChoice* defaultDateChoice = new wxChoice(misc_panel
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE
         , wxDefaultPosition, wxDefaultSize, default_values);
-    defaultDateChoice->SetSelection(Option::instance().TransDateDefault());
+    defaultDateChoice->SetSelection(Option::instance().getTransDateDefault());
 
     default_values.Add(_("Unused"));
     wxChoice* defaultPayeeChoice = new wxChoice(misc_panel
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE
         , wxDefaultPosition, wxDefaultSize, default_values);
-    defaultPayeeChoice->SetSelection(Option::instance().TransPayeeSelection());
+    defaultPayeeChoice->SetSelection(Option::instance().getTransPayeeNone());
 
     default_values[1] = (_("Last used for payee"));
     default_values.Add(_("Use default for payee"));
     wxChoice* defaultCategoryNonTransferChoice = new wxChoice(misc_panel
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY_NONTRANSFER
         , wxDefaultPosition, wxDefaultSize, default_values);
-    defaultCategoryNonTransferChoice->SetSelection(Option::instance().TransCategorySelectionNonTransfer());
+    defaultCategoryNonTransferChoice->SetSelection(Option::instance().getTransCategoryNone());
 
     wxChoice* default_status = new wxChoice(misc_panel
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS);
     for (const auto& i : Model_Checking::STATUS_STR)
         default_status->Append(wxGetTranslation(i), new wxStringClientData(i));
-    default_status->SetSelection(Option::instance().TransStatusReconciled());
+    default_status->SetSelection(Option::instance().getTransStatusReconciled());
 
     wxArrayString true_false;
     true_false.Add(wxTRANSLATE("Yes"));
@@ -154,7 +154,7 @@ void OptionSettingsMisc::Create()
     wxChoice* bulk_enter = new wxChoice(misc_panel, ID_DIALOG_OPTIONS_BULK_ENTER);
     for (const auto& i : true_false)
         bulk_enter->Append(wxGetTranslation(i), new wxStringClientData(i));
-    bulk_enter->SetSelection(Option::instance().get_bulk_transactions() ? 0 : 1);
+    bulk_enter->SetSelection(Option::instance().getBulkTransactions() ? 0 : 1);
 
     wxFlexGridSizer* newTransflexGridSizer = new wxFlexGridSizer(0, 2, 0, 0);
     newTransflexGridSizer->AddGrowableCol(1, 0);
@@ -273,26 +273,26 @@ void OptionSettingsMisc::SaveStocksUrl()
 bool OptionSettingsMisc::SaveSettings()
 {
     wxChoice* itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE));
-    Option::instance().TransPayeeSelection(itemChoice->GetSelection());
+    Option::instance().setTransPayeeNone(itemChoice->GetSelection());
 
     itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY_NONTRANSFER));
-    Option::instance().TransCategorySelectionNonTransfer(itemChoice->GetSelection());
+    Option::instance().setTransCategoryNone(itemChoice->GetSelection());
 
     itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY_TRANSFER));
-    Option::instance().TransCategorySelectionTransfer(itemChoice->GetSelection());
+    Option::instance().setTransCategoryTransferNone(itemChoice->GetSelection());
 
     itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS));
-    Option::instance().TransStatusReconciled(itemChoice->GetSelection());
+    Option::instance().setTransStatusReconciled(itemChoice->GetSelection());
 
     itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE));
-    Option::instance().TransDateDefault(itemChoice->GetSelection());
+    Option::instance().setTransDateDefault(itemChoice->GetSelection());
 
     itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_BULK_ENTER));
-    Option::instance().set_bulk_transactions(itemChoice->GetSelection() == 0);
+    Option::instance().setBulkTransactions(itemChoice->GetSelection() == 0);
 
     SaveStocksUrl();
-    Option::instance().SharePrecision(m_share_precision->GetValue());
-    Option::instance().AssetCompounding(m_asset_compounding->GetSelection());
+    Option::instance().setSharePrecision(m_share_precision->GetValue());
+    Option::instance().setAssetCompounding(m_asset_compounding->GetSelection());
 
     wxCheckBox* itemCheckBox = static_cast<wxCheckBox*>(FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP));
     Model_Setting::instance().Set("BACKUPDB", itemCheckBox->GetValue());
