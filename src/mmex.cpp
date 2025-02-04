@@ -28,7 +28,6 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Usage.h"
 
-#include "../resources/money.xpm"
 #include <wx/cmdline.h>
 #include <wx/display.h>
 #include <wx/fs_arc.h>
