@@ -123,7 +123,7 @@ void mmBudgetingPanel::OnViewPopupSelected(wxCommandEvent& event)
     else
         wxASSERT(false);
 
-    Model_Infotable::instance().Set("BUDGET_FILTER", currentView_);
+    Model_Infotable::instance().setString("BUDGET_FILTER", currentView_);
 
     RefreshList();
 }
@@ -157,7 +157,7 @@ wxString mmBudgetingPanel::GetPanelTitle() const
     wxString yearStr = Model_Budgetyear::instance().Get(budgetYearID_);
     if ((yearStr.length() < 5))
     {
-        if (Option::instance().BudgetFinancialYears())
+        if (Option::instance().getBudgetFinancialYears())
         {
             long year;
             yearStr.ToLong(&year);
@@ -273,7 +273,7 @@ void mmBudgetingPanel::CreateControls()
     /* Get data from inidb */
     for (int i = 0; i < listCtrlBudget_->GetColumnCount(); ++i)
     {
-        int col_width = Model_Setting::instance().GetIntSetting(wxString::Format(listCtrlBudget_->m_col_width, i)
+        int col_width = Model_Setting::instance().getInt(wxString::Format(listCtrlBudget_->m_col_width, i)
             , listCtrlBudget_->m_columns[i].WIDTH);
         listCtrlBudget_->SetColumnWidth(i, col_width);
     }
@@ -358,19 +358,19 @@ void mmBudgetingPanel::initVirtualListControl()
     mmReportBudget budgetDetails;
 
     bool evaluateTransfer = false;
-    if (Option::instance().BudgetIncludeTransfers())
+    if (Option::instance().getBudgetIncludeTransfers())
     {
         evaluateTransfer = true;
     }
 
-    currentView_ = Model_Infotable::instance().GetStringInfo("BUDGET_FILTER", VIEW_ALL);
+    currentView_ = Model_Infotable::instance().getString("BUDGET_FILTER", VIEW_ALL);
     const wxString budgetYearStr = Model_Budgetyear::instance().Get(budgetYearID_);
     long year = 0;
     budgetYearStr.ToLong(&year);
 
     int startDay = 1;
     wxDate::Month startMonth = wxDateTime::Jan;
-    if (Option::instance().BudgetFinancialYears())
+    if (Option::instance().getBudgetFinancialYears())
         budgetDetails.GetFinancialYearValues(startDay, startMonth);
     wxDateTime dtBegin(startDay, startMonth, year);
     wxDateTime dtEnd = dtBegin;
@@ -385,9 +385,9 @@ void mmBudgetingPanel::initVirtualListControl()
     }
 
     // Readjust dates by the Budget Offset Option
-    Option::instance().setBudgetDateOffset(dtBegin);
+    Option::instance().addBudgetDateOffset(dtBegin);
     m_budget_offset_date = dtBegin.FormatISODate();
-    Option::instance().setBudgetDateOffset(dtEnd);
+    Option::instance().addBudgetDateOffset(dtEnd);
     mmSpecifiedRange date_range(dtBegin, dtEnd);
 
     //Get statistics

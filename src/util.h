@@ -35,6 +35,29 @@ wxString JSON_PrettyFormated(rapidjson::Document& j_doc);
 //Returns a JSON formatted string from RapidJson DOM
 wxString JSON_Formated(rapidjson::Document& j_doc);
 
+typedef wxString::const_iterator StringIt;
+
+struct StringBuilder
+{
+    wxString buffer = "";
+    bool flag = false;
+
+    void append(const wxString x);
+    void sep(const wxString s = " ");
+    void flush();
+    void reset();
+};
+
+inline void StringBuilder::flush() {
+    flag = false;
+}
+
+inline void StringBuilder::reset() {
+    // make buffer empty, but don't free memory
+    buffer.Empty();
+    flag = false;
+}
+
 struct ValuePair
 {
     wxString label;
@@ -187,13 +210,10 @@ void clearVFprintedFiles(const wxString& name);
 const wxRect GetDefaultMonitorRect();
 
 //* Date Functions----------------------------------------------------------*//
-static const wxString MONTHS[12] =
-{
-    wxTRANSLATE("January"), wxTRANSLATE("February"), wxTRANSLATE("March")
-    , wxTRANSLATE("April"), wxTRANSLATE("May"), wxTRANSLATE("June")
-    , wxTRANSLATE("July"), wxTRANSLATE("August"), wxTRANSLATE("September")
-    , wxTRANSLATE("October"), wxTRANSLATE("November"), wxTRANSLATE("December")
-};
+extern const wxString MONTHS[12];
+extern const wxString MONTHS_SHORT[12];
+extern const wxString g_days_of_week[7];
+extern const wxString g_short_days_of_week[7];
 
 const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 const std::map<wxString, wxString> &date_formats_regex();
@@ -205,8 +225,19 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const w
 extern const std::vector<std::pair<wxString, wxString>> g_date_formats_map();
 extern const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding;
 
-inline const wxString mmGetMonthName(const wxDateTime::Month& month) {
+inline const wxString mmGetMonthName(const wxDateTime::Month& month)
+{
     return MONTHS[static_cast<int>(month)];
+}
+
+inline wxString dateISO(wxDateTime date)
+{
+    return (date == wxInvalidDateTime) ? "" : date.FormatISODate();
+}
+
+inline wxString dateTimeISO(wxDateTime dateTime)
+{
+    return (dateTime == wxInvalidDateTime) ? "" : dateTime.FormatISOCombined();
 }
 //----------------------------------------------------------------------------
 

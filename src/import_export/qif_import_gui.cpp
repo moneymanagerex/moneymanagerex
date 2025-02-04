@@ -123,7 +123,7 @@ void mmQIFImportDialog::CreateControls()
     wxStaticText* file_name_label = new wxStaticText(file_panel, wxID_ANY, _("File Name:"));
     itemBoxSizer7->Add(file_name_label, g_flagsH);
 
-    wxArrayString files = Model_Setting::instance().GetArrayStringSetting("RECENT_QIF_FILES");
+    wxArrayString files = Model_Setting::instance().getArrayString("RECENT_QIF_FILES");
     file_name_ctrl_ = new  wxComboBox(file_panel, wxID_FILE, m_FileNameStr, wxDefaultPosition, wxDefaultSize, files, wxTE_PROCESS_ENTER);
     file_name_ctrl_->SetMinSize(wxSize(300, -1));
     itemBoxSizer7->Add(file_name_ctrl_, 1, wxALL | wxGROW, 5);
@@ -392,7 +392,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     m_QIFpayeeNames.clear();
     m_payee_names.clear();
     m_payee_names.Add(_("Unknown"));
-    wxString catDelimiter = Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":");
+    wxString catDelimiter = Model_Infotable::instance().getString("CATEG_DELIMITER", ":");
 
     wxFileInputStream input(m_FileNameStr);
     wxConvAuto conv = g_encoding.at(m_choiceEncoding->GetSelection()).first;
@@ -1689,7 +1689,7 @@ void mmQIFImportDialog::save_file_name()
 {
     wxFileName file(m_FileNameStr);
     if (file.FileExists()) {
-        Model_Setting::instance().Prepend("RECENT_QIF_FILES", m_FileNameStr, 10);
+        Model_Setting::instance().prependArrayItem("RECENT_QIF_FILES", m_FileNameStr, 10);
     }
 }
 

@@ -426,7 +426,7 @@ void mmComboBox::OnKeyPressed(wxKeyEvent& event)
     else if (event.GetId() == mmID_CATEGORY && event.GetUnicodeKey() == ':')
     {
         this->SetEvtHandlerEnabled(false);
-        ChangeValue(text.Trim().Append(Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":")));
+        ChangeValue(text.Trim().Append(Model_Infotable::instance().getString("CATEG_DELIMITER", ":")));
         SetInsertionPointEnd();
         this->SetEvtHandlerEnabled(true);
     }

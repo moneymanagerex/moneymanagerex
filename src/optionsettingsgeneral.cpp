@@ -78,7 +78,7 @@ void OptionSettingsGeneral::Create()
 
     headerStaticBoxSizer->Add(new wxStaticText(general_panel, wxID_STATIC, _("User Name")), g_flagsH);
 
-    wxString userName = Model_Infotable::instance().GetStringInfo("USERNAME", "");
+    wxString userName = Model_Infotable::instance().getString("USERNAME", "");
     wxTextCtrl* userNameTextCtr = new wxTextCtrl(general_panel, ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME, userName);
     userNameTextCtr->SetMinSize(wxSize(200, -1));
     mmToolTip(userNameTextCtr, _("The User Name is used as a title for the database."));
@@ -141,7 +141,7 @@ void OptionSettingsGeneral::Create()
     m_currencyStaticBoxSizer->AddSpacer(10);
 
     { // Locale
-        const wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
+        const wxString locale = Model_Infotable::instance().getString("LOCALE", "");
 
         wxBoxSizer* localeBaseSizer = new wxBoxSizer(wxHORIZONTAL);
         m_currencyStaticBoxSizer->Add(localeBaseSizer, wxSizerFlags(g_flagsV).Border(wxLEFT, 0));
@@ -172,7 +172,7 @@ void OptionSettingsGeneral::Create()
     m_currencyStaticBoxSizer->AddSpacer(15);
 
     m_currency_history = new wxCheckBox(general_panel, wxID_STATIC, _("Use historical currency"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_currency_history->SetValue(Option::instance().getCurrencyHistoryEnabled());
+    m_currency_history->SetValue(Option::instance().getUseCurrencyHistory());
     mmToolTip(m_currency_history, _("Select to use historical currency (one rate for each day), deselect to use a fixed rate"));
     m_currencyStaticBoxSizer->Add(m_currency_history, g_flagsV);
 
@@ -184,8 +184,8 @@ void OptionSettingsGeneral::Create()
     generalPanelSizer->Add(financialYearStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
     financialYearStaticBoxSizer->Add(financialYearStaticBoxSizerGrid);
 
-    financialYearStaticBoxSizerGrid->Add(new wxStaticText(general_panel, wxID_STATIC, _("Start Day")), g_flagsH);
-    int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
+    financialYearStaticBoxSizerGrid->Add(new wxStaticText(general_panel, wxID_STATIC, _("First Day")), g_flagsH);
+    int day = Model_Infotable::instance().getInt("FINANCIAL_YEAR_START_DAY", 1);
 
     wxSpinCtrl *textFPSDay = new wxSpinCtrl(general_panel, ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 31, day);
@@ -194,7 +194,7 @@ void OptionSettingsGeneral::Create()
 
     financialYearStaticBoxSizerGrid->Add(textFPSDay, g_flagsH);
 
-    financialYearStaticBoxSizerGrid->Add(new wxStaticText(general_panel, wxID_STATIC, _("Start Month")), g_flagsH);
+    financialYearStaticBoxSizerGrid->Add(new wxStaticText(general_panel, wxID_STATIC, _("First Month")), g_flagsH);
 
     wxArrayString financialMonthsSelection;
     for (wxDateTime::Month m = wxDateTime::Jan; m <= wxDateTime::Dec; m = wxDateTime::Month(m + 1))
@@ -204,7 +204,7 @@ void OptionSettingsGeneral::Create()
         , wxDefaultPosition, wxSize(100, -1), financialMonthsSelection);
     financialYearStaticBoxSizerGrid->Add(m_month_selection, g_flagsH);
 
-    int monthItem = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
+    int monthItem = Model_Infotable::instance().getInt("FINANCIAL_YEAR_START_MONTH", 7);
     m_month_selection->SetSelection(monthItem - 1);
     mmToolTip(m_month_selection, _("Specify month for start of financial year"));
 
@@ -233,7 +233,7 @@ void OptionSettingsGeneral::Create()
     m_use_sound = new wxChoice(general_panel, wxID_STATIC
         , wxDefaultPosition, wxSize(100, -1)
         , sounds);
-    m_use_sound->SetSelection(Model_Setting::instance().GetIntSetting(INIDB_USE_TRANSACTION_SOUND, 0));
+    m_use_sound->SetSelection(Model_Setting::instance().getInt(INIDB_USE_TRANSACTION_SOUND, 0));
     mmToolTip(m_use_sound, _("Select whether to use sounds when entering transactions"));
     soundBaseSizer->Add(m_use_sound, g_flagsV);
 
@@ -267,10 +267,9 @@ void OptionSettingsGeneral::OnLocaleChanged(wxCommandEvent& /*event*/)
 bool OptionSettingsGeneral::SaveFinancialYearStart()
 {
     //Save Financial Year Start Month
-    int month = 1 + m_month_selection->GetSelection();
-    wxString fysMonthVal = wxString::Format("%d", month);
-    Option::instance().FinancialYearStartMonth(fysMonthVal);
-    int last_month_day = wxDateTime(1, wxDateTime::Month(month - 1), 2015).GetLastMonthDay().GetDay();
+    wxDateTime::Month month = wxDateTime::Month(m_month_selection->GetSelection());
+    Option::instance().setFinancialFirstMonth(month);
+    int last_month_day = wxDateTime(1, month, 2015).GetLastMonthDay().GetDay();
 
     //Save Financial Year Start Day
     wxSpinCtrl* fysDay = static_cast<wxSpinCtrl*>(FindWindow(ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY));
@@ -278,7 +277,7 @@ bool OptionSettingsGeneral::SaveFinancialYearStart()
     if (last_month_day < day)
         day = last_month_day;
 
-    Option::instance().FinancialYearStartDay(wxString::Format("%d", day));
+    Option::instance().setFinancialFirstDay(day);
     return last_month_day < day;
 }
 
@@ -295,7 +294,7 @@ bool OptionSettingsGeneral::SaveSettings()
         }
         m_currency_id = currency_id;
 
-        if (Option::instance().getCurrencyHistoryEnabled())
+        if (Option::instance().getUseCurrencyHistory())
         {
             if (wxMessageBox(_("Changing base currency will delete all historical rates, proceed?")
                 , _("Currency Manager")
@@ -303,30 +302,30 @@ bool OptionSettingsGeneral::SaveSettings()
                 return false;
         }
 
-        Option::instance().setBaseCurrency(m_currency_id);
+        Option::instance().setBaseCurrencyID(m_currency_id);
     }
 
     wxTextCtrl* stun = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME));
-    Option::instance().UserName(stun->GetValue());
+    Option::instance().setUserName(stun->GetValue());
 
     wxComboBox* cbln = static_cast<wxComboBox*>(FindWindow(ID_DIALOG_OPTIONS_LOCALE));
     wxString value;
     if (doFormatDoubleValue(cbln->GetValue(), value)) {
-        Option::instance().LocaleName(cbln->GetValue());
+        Option::instance().setLocaleName(cbln->GetValue());
     }
     else {
         mmErrorDialogs::ToolTip4Object(m_itemListOfLocales, _("Invalid value"), _("Locale"), wxICON_ERROR);
         return false;
     }
 
-    Option::instance().CurrencyHistoryEnabled(m_currency_history->GetValue());
+    Option::instance().setUseCurrencyHistory(m_currency_history->GetValue());
 
     Option::instance().setDateFormat(m_date_format);
     SaveFinancialYearStart();
 
-    Model_Setting::instance().Set(INIDB_USE_ORG_DATE_COPYPASTE, m_use_org_date_copy_paste->GetValue());
-    Model_Setting::instance().Set(INIDB_USE_ORG_DATE_DUPLICATE, m_use_org_date_duplicate->GetValue());
-    Model_Setting::instance().Set(INIDB_USE_TRANSACTION_SOUND, m_use_sound->GetSelection());
+    Model_Setting::instance().setBool(INIDB_USE_ORG_DATE_COPYPASTE, m_use_org_date_copy_paste->GetValue());
+    Model_Setting::instance().setBool(INIDB_USE_ORG_DATE_DUPLICATE, m_use_org_date_duplicate->GetValue());
+    Model_Setting::instance().setInt(INIDB_USE_TRANSACTION_SOUND, m_use_sound->GetSelection());
 
     return true;
 }

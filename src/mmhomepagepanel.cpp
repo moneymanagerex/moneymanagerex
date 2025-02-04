@@ -129,7 +129,7 @@ void mmHomePagePanel::PrintPage()
 
 void mmHomePagePanel::insertDataIntoTemplate()
 {
-    m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().getHtmlFontSize());
+    m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().getHtmlScale());
 
     double tBalance = 0.0, tReconciled = 0.0;
     double cardBalance = 0.0, cardReconciled = 0.0;
@@ -202,7 +202,7 @@ void mmHomePagePanel::insertDataIntoTemplate()
 
 const wxString mmHomePagePanel::getToggles()
 {
-    const wxString json = Model_Infotable::instance().GetStringInfo("HOME_PAGE_STATUS", "{}");
+    const wxString json = Model_Infotable::instance().getString("HOME_PAGE_STATUS", "{}");
     return json;
 }
 
@@ -281,7 +281,7 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         wxString name = url.AfterLast('#');
 
         //Convert the JSON string from database to a json object
-        wxString str = Model_Infotable::instance().GetStringInfo("HOME_PAGE_STATUS", "{}");
+        wxString str = Model_Infotable::instance().getString("HOME_PAGE_STATUS", "{}");
 
         wxLogDebug("======= mmHomePagePanel::OnLinkClicked =======");
         wxLogDebug("Name = %s", name);
@@ -316,6 +316,6 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         wxLogDebug("Saving updated RapidJson\n%s", JSON_PrettyFormated(json_doc));
         wxLogDebug("======= mmHomePagePanel::OnLinkClicked =======");
 
-        Model_Infotable::instance().Set("HOME_PAGE_STATUS", JSON_PrettyFormated(json_doc));
+        Model_Infotable::instance().setString("HOME_PAGE_STATUS", JSON_PrettyFormated(json_doc));
     }
 }

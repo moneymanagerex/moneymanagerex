@@ -76,7 +76,7 @@ mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, const Model_Currency::Data 
     }
 
     // Check if locale will be used in preference
-    const wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
+    const wxString locale = Model_Infotable::instance().getString("LOCALE", "");
     m_locale_used = false;
     if (!locale.empty())
     {
@@ -236,7 +236,7 @@ void mmCurrencyDialog::CreateControls()
         , wxCommandEventHandler(mmCurrencyDialog::OnTextEntered), nullptr, this);
     mctrl_baseConvRate->SetAltPrecision(SCALE);
     wxString ConvRateTooltip = wxEmptyString;
-    if (Option::instance().getCurrencyHistoryEnabled())
+    if (Option::instance().getUseCurrencyHistory())
         ConvRateTooltip = _("Conversion rate will be used in case no currency history has been found for the currency");
     else
         ConvRateTooltip = _("Fixed conversion rate");
