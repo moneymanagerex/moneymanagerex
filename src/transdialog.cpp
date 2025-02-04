@@ -281,7 +281,7 @@ void mmTransDialog::dataToControls()
             }
 
             int64 accountID = cbAccount_->mmGetId();
-            if (m_mode == MODE_NEW && Option::instance().TransPayeeSelection() == Option::LASTUSED
+            if (m_mode == MODE_NEW && Option::instance().getTransPayeeNone() == Option::LASTUSED
                 && (-1 != accountID))
             {
                 Model_Checking::Data_Set transactions = Model_Checking::instance().find(
@@ -293,7 +293,7 @@ void mmTransDialog::dataToControls()
                     cbPayee_->ChangeValue(payee->PAYEENAME);
                 }
             }
-            else if (m_mode == MODE_NEW && Option::instance().TransPayeeSelection() == Option::UNUSED)
+            else if (m_mode == MODE_NEW && Option::instance().getTransPayeeNone() == Option::UNUSED)
             {
                 Model_Payee::Data *payee = Model_Payee::instance().get(_("Unknown"));
                 if (!payee)
@@ -338,7 +338,7 @@ void mmTransDialog::dataToControls()
             m_fused_data.CATEGID = -1;
         }
         else if (m_mode == MODE_NEW && m_transfer
-            && Option::instance().TransCategorySelectionTransfer() == Option::LASTUSED)
+            && Option::instance().getTransCategoryTransferNone() == Option::LASTUSED)
         {
             Model_Checking::Data_Set transactions = Model_Checking::instance().find(
                 Model_Checking::TRANSCODE(Model_Checking::TYPE_ID_TRANSFER, EQUAL));
@@ -705,7 +705,7 @@ bool mmTransDialog::ValidateData()
             m_fused_data.TOACCOUNTID = -1;
         }
 
-        if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED)
+        if ((Option::instance().getTransCategoryNone() == Option::LASTUSED)
             && (!Model_Category::is_hidden(m_fused_data.CATEGID)))
         {
             payee->CATEGID = m_fused_data.CATEGID;
@@ -981,7 +981,7 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
 {
     // Only for new transactions: if user does not want to use categories.
     // If this is a Split Transaction, ignore displaying last category for payee
-    if (m_mode == MODE_NEW && Option::instance().TransCategorySelectionNonTransfer() == Option::UNUSED
+    if (m_mode == MODE_NEW && Option::instance().getTransCategoryNone() == Option::UNUSED
         && m_local_splits.empty())
     {
         Model_Category::Data *category = Model_Category::instance().get(_("Unknown"), int64(-1));
@@ -1008,8 +1008,8 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
 
     // Only for new transactions: if user want to autofill last category used for payee.
     // If this is a Split Transaction, ignore displaying last category for payee
-    if ((Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED ||
-        Option::instance().TransCategorySelectionNonTransfer() == Option::DEFAULT)
+    if ((Option::instance().getTransCategoryNone() == Option::LASTUSED ||
+        Option::instance().getTransCategoryNone() == Option::DEFAULT)
         && m_mode == MODE_NEW && m_local_splits.empty()
         && (!Model_Category::is_hidden(payee->CATEGID)))
     {
@@ -1262,7 +1262,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     Model_Checking::Full_Data trx(tran);
     wxLogDebug("%s", trx.to_json());
 
-    bool loop = Option::instance().get_bulk_transactions();
+    bool loop = Option::instance().getBulkTransactions();
     bool s = (wxGetKeyState(WXK_SHIFT) && !loop) || (!wxGetKeyState(WXK_SHIFT) && loop);
     if (m_mode == MODE_NEW && s)
         return EndModal(wxID_NEW);

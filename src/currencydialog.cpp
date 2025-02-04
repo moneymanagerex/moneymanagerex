@@ -236,7 +236,7 @@ void mmCurrencyDialog::CreateControls()
         , wxCommandEventHandler(mmCurrencyDialog::OnTextEntered), nullptr, this);
     mctrl_baseConvRate->SetAltPrecision(SCALE);
     wxString ConvRateTooltip = wxEmptyString;
-    if (Option::instance().getCurrencyHistoryEnabled())
+    if (Option::instance().getUseCurrencyHistory())
         ConvRateTooltip = _("Conversion rate will be used in case no currency history has been found for the currency");
     else
         ConvRateTooltip = _("Fixed conversion rate");

@@ -119,19 +119,19 @@ void OptionSettingsView::Create()
     viewsPanelSizer->Add(trxStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     m_budget_financial_years = new wxCheckBox(view_panel, wxID_STATIC, _("View Budgets as Financial Years"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_budget_financial_years->SetValue(Option::instance().BudgetFinancialYears());
+    m_budget_financial_years->SetValue(Option::instance().getBudgetFinancialYears());
     trxStaticBoxSizer->Add(m_budget_financial_years, g_flagsV);
 
     m_budget_include_transfers = new wxCheckBox(view_panel, wxID_STATIC
         , _("View Budgets with 'transfer' transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_budget_include_transfers->SetValue(Option::instance().BudgetIncludeTransfers());
+    m_budget_include_transfers->SetValue(Option::instance().getBudgetIncludeTransfers());
     trxStaticBoxSizer->Add(m_budget_include_transfers, g_flagsV);
 
     m_budget_summary_without_category = new wxCheckBox(view_panel, wxID_STATIC
         , _("View Budget Category Report with Summaries")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_budget_summary_without_category->SetValue(Option::instance().BudgetReportWithSummaries());
+    m_budget_summary_without_category->SetValue(Option::instance().getBudgetSummaryWithoutCategories());
     trxStaticBoxSizer->Add(m_budget_summary_without_category, g_flagsV);
 
     // Budget Yearly/Monthly relationship if both exist
@@ -139,7 +139,7 @@ void OptionSettingsView::Create()
         , _("Override yearly budget with monthly budget")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     mmToolTip(m_budget_override, _("If monthly budget exists then use this to override the yearly budget; otherwise combine them"));
-    m_budget_override->SetValue(Option::instance().BudgetOverride());
+    m_budget_override->SetValue(Option::instance().getBudgetOverride());
     trxStaticBoxSizer->Add(m_budget_override, g_flagsV);
 
     // Option to deduct monthly budget from yearly budget for reporting
@@ -147,7 +147,7 @@ void OptionSettingsView::Create()
         , _("Subtract monthly budgets from yearly budget in reporting")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     mmToolTip(m_budget_deduct_monthly, _("Yearly budget will be reduced by the amount budgeted monthly.\nTotal estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."));
-    m_budget_deduct_monthly->SetValue(Option::instance().BudgetDeductMonthly());
+    m_budget_deduct_monthly->SetValue(Option::instance().getBudgetDeductMonthly());
     trxStaticBoxSizer->Add(m_budget_deduct_monthly, g_flagsV);
 
     // Allows a year or financial year to start before or after the 1st of the month.
@@ -267,7 +267,7 @@ void OptionSettingsView::Create()
         , wxSpinEventHandler(OptionSettingsView::OnHTMLScaleSpin), nullptr, this);
 #endif
 
-    int vFontSize = Option::instance().getHtmlFontSize();
+    int vFontSize = Option::instance().getHtmlScale();
     m_scale_factor->SetValue(vFontSize);
     mmToolTip(m_scale_factor, _("Specify which scale factor is used for the report pages"));
     view_sizer2->Add(m_scale_factor, g_flagsH);
@@ -399,7 +399,7 @@ bool OptionSettingsView::SaveSettings()
     Option::instance().setThemeMode(themeMode);
     
     int size = m_scale_factor->GetValue();
-    Option::instance().setHTMLFontSizes(size);
+    Option::instance().setHtmlScale(size);
     int i[4] = { 16, 24, 32, 48 };
     size = m_others_icon_size->GetSelection();
     size = i[size];
@@ -416,16 +416,16 @@ bool OptionSettingsView::SaveSettings()
     size = i[size];
     Option::instance().setToolbarIconSize(size);
 
-    Option::instance().BudgetFinancialYears(m_budget_financial_years->GetValue());
-    Option::instance().BudgetIncludeTransfers(m_budget_include_transfers->GetValue());
-    Option::instance().BudgetReportWithSummaries(m_budget_summary_without_category->GetValue());
-    Option::instance().BudgetOverride(m_budget_override->GetValue());
-    Option::instance().BudgetDeductMonthly(m_budget_deduct_monthly->GetValue());
+    Option::instance().setBudgetFinancialYears(m_budget_financial_years->GetValue());
+    Option::instance().setBudgetIncludeTransfers(m_budget_include_transfers->GetValue());
+    Option::instance().setBudgetSummaryWithoutCategories(m_budget_summary_without_category->GetValue());
+    Option::instance().setBudgetOverride(m_budget_override->GetValue());
+    Option::instance().setBudgetDeductMonthly(m_budget_deduct_monthly->GetValue());
     Option::instance().setBudgetDaysOffset(m_budget_days_offset->GetValue());
     Option::instance().setReportingFirstDay(m_reporting_firstday->GetValue());
-    Option::instance().IgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
-    Option::instance().ShowToolTips(m_showToolTips->GetValue());
-    Option::instance().ShowMoneyTips(m_showMoneyTips->GetValue());
+    Option::instance().setIgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
+    Option::instance().setShowToolTips(m_showToolTips->GetValue());
+    Option::instance().setShowMoneyTips(m_showMoneyTips->GetValue());
     Option::instance().UseTransDateTime(m_use_trans_date_time->GetValue());
 
     mmColors::userDefColor1 = m_UDFCB1->GetBackgroundColour();

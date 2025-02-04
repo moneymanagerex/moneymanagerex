@@ -172,7 +172,7 @@ void OptionSettingsGeneral::Create()
     m_currencyStaticBoxSizer->AddSpacer(15);
 
     m_currency_history = new wxCheckBox(general_panel, wxID_STATIC, _("Use historical currency"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_currency_history->SetValue(Option::instance().getCurrencyHistoryEnabled());
+    m_currency_history->SetValue(Option::instance().getUseCurrencyHistory());
     mmToolTip(m_currency_history, _("Select to use historical currency (one rate for each day), deselect to use a fixed rate"));
     m_currencyStaticBoxSizer->Add(m_currency_history, g_flagsV);
 
@@ -269,7 +269,7 @@ bool OptionSettingsGeneral::SaveFinancialYearStart()
     //Save Financial Year Start Month
     int month = 1 + m_month_selection->GetSelection();
     wxString fysMonthVal = wxString::Format("%d", month);
-    Option::instance().FinancialYearStartMonth(fysMonthVal);
+    Option::instance().setFinancialFirstMonth(fysMonthVal);
     int last_month_day = wxDateTime(1, wxDateTime::Month(month - 1), 2015).GetLastMonthDay().GetDay();
 
     //Save Financial Year Start Day
@@ -278,7 +278,7 @@ bool OptionSettingsGeneral::SaveFinancialYearStart()
     if (last_month_day < day)
         day = last_month_day;
 
-    Option::instance().FinancialYearStartDay(wxString::Format("%d", day));
+    Option::instance().setFinancialFirstDay(wxString::Format("%d", day));
     return last_month_day < day;
 }
 
@@ -295,7 +295,7 @@ bool OptionSettingsGeneral::SaveSettings()
         }
         m_currency_id = currency_id;
 
-        if (Option::instance().getCurrencyHistoryEnabled())
+        if (Option::instance().getUseCurrencyHistory())
         {
             if (wxMessageBox(_("Changing base currency will delete all historical rates, proceed?")
                 , _("Currency Manager")
@@ -303,23 +303,23 @@ bool OptionSettingsGeneral::SaveSettings()
                 return false;
         }
 
-        Option::instance().setBaseCurrency(m_currency_id);
+        Option::instance().setBaseCurrencyID(m_currency_id);
     }
 
     wxTextCtrl* stun = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME));
-    Option::instance().UserName(stun->GetValue());
+    Option::instance().setUserName(stun->GetValue());
 
     wxComboBox* cbln = static_cast<wxComboBox*>(FindWindow(ID_DIALOG_OPTIONS_LOCALE));
     wxString value;
     if (doFormatDoubleValue(cbln->GetValue(), value)) {
-        Option::instance().LocaleName(cbln->GetValue());
+        Option::instance().setLocaleName(cbln->GetValue());
     }
     else {
         mmErrorDialogs::ToolTip4Object(m_itemListOfLocales, _("Invalid value"), _("Locale"), wxICON_ERROR);
         return false;
     }
 
-    Option::instance().CurrencyHistoryEnabled(m_currency_history->GetValue());
+    Option::instance().setUseCurrencyHistory(m_currency_history->GetValue());
 
     Option::instance().setDateFormat(m_date_format);
     SaveFinancialYearStart();

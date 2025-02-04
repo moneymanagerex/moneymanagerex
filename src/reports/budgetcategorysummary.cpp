@@ -44,7 +44,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     // Grab the data 
     int startDay;
     wxDate::Month startMonth;
-    if (Option::instance().BudgetFinancialYears())
+    if (Option::instance().getBudgetFinancialYears())
     {
         GetFinancialYearValues(startDay, startMonth);
     } else
@@ -92,12 +92,12 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         yearEnd.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
 
     // Readjust dates by the Budget Offset Option
-    Option::instance().setBudgetDateOffset(yearBegin);
-    Option::instance().setBudgetDateOffset(yearEnd);
+    Option::instance().addBudgetDateOffset(yearBegin);
+    Option::instance().addBudgetDateOffset(yearEnd);
     mmSpecifiedRange date_range(yearBegin, yearEnd);
 
     bool evaluateTransfer = false;
-    if (Option::instance().BudgetIncludeTransfers())
+    if (Option::instance().getBudgetIncludeTransfers())
     {
         evaluateTransfer = true;
     }
@@ -121,7 +121,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     wxString headingStr = AdjustYearValues(startDay, startMonth, startYear, budget_year);
-    bool amply = Option::instance().BudgetReportWithSummaries();
+    bool amply = Option::instance().getBudgetSummaryWithoutCategories();
     const wxString headerStartupMsg = amply
         ? _("Budget Categories for %s") : _("Budget Category Summary for %s");
 
