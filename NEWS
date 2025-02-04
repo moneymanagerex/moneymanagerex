@@ -13,6 +13,8 @@ Features:
 * #6860 Add executions of scheduled transactions in transaction panels
 
 Bugfixes:
+* #7175 Adapt new dB version
+* #7157 Cash Flow Report for Specific Accounts treats transfers in reverse
 * #7142 All Transactions and Scheduled Transactions Menu Items Missing in latest Beta Version
 * #7130 Stock ticker ^RIYWCT not recognized
 * #7110 Sorting transactions by "Date" and "Id" is not working properly
