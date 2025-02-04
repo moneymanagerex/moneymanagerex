@@ -58,7 +58,7 @@ wxBEGIN_EVENT_TABLE(mmMainCurrencyDialog, wxDialog)
 
 mmMainCurrencyDialog::~mmMainCurrencyDialog()
 {
-    Model_Infotable::instance().Set("CURRENCY_DIALOG_SIZE", GetSize());
+    Model_Infotable::instance().setSize("CURRENCY_DIALOG_SIZE", GetSize());
 }
 
 mmMainCurrencyDialog::mmMainCurrencyDialog(
@@ -69,7 +69,7 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     bEnableSelect_(bEnableSelect)
     , m_maskStr("")
 {
-    bHistoryEnabled_ = Option::instance().getCurrencyHistoryEnabled();
+    bHistoryEnabled_ = Option::instance().getUseCurrencyHistory();
 
     ColName_[CURR_BASE]   = " ";
     ColName_[CURR_SYMBOL] = _("Code");
@@ -113,7 +113,7 @@ void mmMainCurrencyDialog::fillControls()
     int selected_index = currencyListBox_->GetSelectedRow();
     currencyListBox_->DeleteAllItems();
 
-    cbShowAll_->SetValue(Model_Infotable::instance().GetBoolInfo("SHOW_HIDDEN_CURRENCIES", true));
+    cbShowAll_->SetValue(Model_Infotable::instance().getBool("SHOW_HIDDEN_CURRENCIES", true));
 
     int64 base_currency_id = -1;
     if (Model_Currency::GetBaseCurrency()) {
@@ -558,7 +558,7 @@ void mmMainCurrencyDialog::OnItemRightClick(wxDataViewEvent& event)
 
 void mmMainCurrencyDialog::OnShowHiddenChbClick(wxCommandEvent& WXUNUSED(event))
 {
-    Model_Infotable::instance().Set("SHOW_HIDDEN_CURRENCIES", cbShowAll_->IsChecked());
+    Model_Infotable::instance().setBool("SHOW_HIDDEN_CURRENCIES", cbShowAll_->IsChecked());
     fillControls();
 }
 
@@ -791,7 +791,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int64& baseCurrencyID)
             return true;
     }
 
-    Option::instance().setBaseCurrency(baseCurrencyID);
+    Option::instance().setBaseCurrencyID(baseCurrencyID);
 
     //Update baseconvrate
     Model_Currency::instance().Savepoint();

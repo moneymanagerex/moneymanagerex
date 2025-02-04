@@ -17,14 +17,15 @@ Copyright (C) 2021-2023 Mark Whalley (mark@ipx.co.uk)
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include <algorithm>
+#include <cmath>
 #include "mmhomepage.h"
 #include "html_template.h"
 #include "billsdepositspanel.h"
 #include "option.h"
 #include "optionsettingshome.h"
 #include "constants.h"
-#include <algorithm>
-#include <cmath>
+#include "reports/reportbase.h"
 
 #include "model/Model_Stock.h"
 #include "model/Model_StockHistory.h"
@@ -711,7 +712,7 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tRe
 
     wxString body = "";
     const wxDate today = wxDate::Today();
-    wxString vAccts = Model_Setting::instance().GetViewAccounts();
+    wxString vAccts = Model_Setting::instance().getViewAccounts();
     auto accounts = Model_Account::instance().find(
         Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR[type])
         , Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL));

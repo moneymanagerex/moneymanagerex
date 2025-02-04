@@ -66,7 +66,7 @@ m_payee(payee)
 
 mmEditPayeeDialog::~mmEditPayeeDialog()
 {
-    Model_Infotable::instance().Set("EDITPAYEE_DIALOG_SIZE", GetSize());
+    Model_Infotable::instance().setSize("EDITPAYEE_DIALOG_SIZE", GetSize());
     m_patternTable->GetGridWindow()->Unbind(wxEVT_SIZE, &mmEditPayeeDialog::OnPatternTableSize, this);
 }
 
@@ -92,7 +92,7 @@ void mmEditPayeeDialog::CreateControls()
     fgSizer1->Add(m_hidden, g_flagsExpand);
 
     // Category
-    const wxString title = (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED) ?
+    const wxString title = (Option::instance().getTransCategoryNone() == Option::LASTUSED) ?
                                 _("Last Used Category") : _("Default Category");
     fgSizer1->Add(new wxStaticText(this, wxID_STATIC, title), g_flagsH);
     m_category = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize, -1, true);
@@ -439,7 +439,7 @@ wxEND_EVENT_TABLE()
 
 mmPayeeDialog::~mmPayeeDialog()
 {
-    Model_Infotable::instance().Set("PAYEES_DIALOG_SIZE", GetSize());
+    Model_Infotable::instance().setSize("PAYEES_DIALOG_SIZE", GetSize());
 }
 
 mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString& name, const wxString& payee_selected) :
@@ -450,7 +450,7 @@ mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString
 {
     ColName_[PAYEE_NAME] = _("Name");
     ColName_[PAYEE_HIDDEN] = _("Hidden");
-    ColName_[PAYEE_CATEGORY]  = (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED) ?
+    ColName_[PAYEE_CATEGORY]  = (Option::instance().getTransCategoryNone() == Option::LASTUSED) ?
                                 _("Last Used Category") : _("Default Category");
     ColName_[PAYEE_NUMBER] = _("Reference");
     ColName_[PAYEE_WEBSITE] = _("Website");

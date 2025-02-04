@@ -28,8 +28,9 @@
 #include "constants.h"
 #include "webapp.h"
 #include "model/Model_Setting.h"
-#include "model/Model_Payee.h"
 #include "model/Model_Infotable.h"
+#include "model/Model_Payee.h"
+#include "model/Model_CustomFieldData.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmCategDialog, wxDialog);
 wxIMPLEMENT_DYNAMIC_CLASS(mmCategDialogTreeCtrl, wxTreeCtrl);
@@ -67,7 +68,7 @@ int mmCategDialogTreeCtrl::OnCompareItems(const wxTreeItemId& item1, const wxTre
 
 mmCategDialog::~mmCategDialog()
 {
-    Model_Infotable::instance().Set("CATEGORIES_DIALOG_SIZE", GetSize());
+    Model_Infotable::instance().setSize("CATEGORIES_DIALOG_SIZE", GetSize());
 }
 
 mmCategDialog::mmCategDialog()
@@ -116,7 +117,7 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
     fillControls();
 
     m_treeCtrl->CollapseAll();
-    bool expand_categs_tree = Model_Setting::instance().GetBoolSetting("EXPAND_CATEGS_TREE", false);
+    bool expand_categs_tree = Model_Setting::instance().getBool("EXPAND_CATEGS_TREE", false);
     if (expand_categs_tree)
         m_treeCtrl->ExpandAll();
     else
@@ -124,7 +125,7 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
     m_treeCtrl->Expand(root_);
     m_tbExpand->SetValue(expand_categs_tree);
     m_tbCollapse->SetValue(!expand_categs_tree);
-    m_tbShowAll->SetValue(Model_Setting::instance().GetBoolSetting("SHOW_HIDDEN_CATEGS", true));
+    m_tbShowAll->SetValue(Model_Setting::instance().getBool("SHOW_HIDDEN_CATEGS", true));
     saveCurrentCollapseState();
 
     m_maskTextCtrl->SetFocus();
@@ -189,7 +190,7 @@ void mmCategDialog::fillControls()
     m_treeCtrl->SetItemBold(root_, true);
     m_treeCtrl->SetFocus();
     NormalColor_ = m_treeCtrl->GetItemTextColour(root_);
-    bool show_hidden_categs = Model_Setting::instance().GetBoolSetting("SHOW_HIDDEN_CATEGS", true);
+    bool show_hidden_categs = Model_Setting::instance().getBool("SHOW_HIDDEN_CATEGS", true);
 
     const wxString match = m_maskStr + "*";
     wxTreeItemId maincat = root_;
@@ -706,14 +707,14 @@ void mmCategDialog::OnExpandOrCollapseToggle(wxCommandEvent& event)
         m_tbCollapse->SetValue(true);
     }
     m_treeCtrl->EnsureVisible(m_selectedItemId);
-    Model_Setting::instance().Set("EXPAND_CATEGS_TREE", m_tbExpand->GetValue());
+    Model_Setting::instance().setBool("EXPAND_CATEGS_TREE", m_tbExpand->GetValue());
     saveCurrentCollapseState();
     m_processExpandCollapse = true;
 }
 
 void mmCategDialog::OnShowHiddenToggle(wxCommandEvent& /*event*/)
 {
-    Model_Setting::instance().Set("SHOW_HIDDEN_CATEGS", m_tbShowAll->GetValue());
+    Model_Setting::instance().setBool("SHOW_HIDDEN_CATEGS", m_tbShowAll->GetValue());
     fillControls();
 }
 

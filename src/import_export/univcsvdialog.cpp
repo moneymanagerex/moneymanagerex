@@ -20,6 +20,16 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include <algorithm>
+#include <cctype>
+#include <string>
+#include <memory>
+#include <regex>
+
+#include <wx/xml/xml.h>
+#include <wx/spinctrl.h>
+#include <wx/display.h>
+
 #include "univcsvdialog.h"
 
 #include "images_list.h"
@@ -35,20 +45,12 @@
 #include "payeedialog.h"
 #include "categdialog.h"
 
-#include "Model_Setting.h"
-#include "Model_Payee.h"
-#include "Model_Category.h"
-#include "Model_Infotable.h"
-
-#include <algorithm>
-#include <cctype>
-#include <string>
-#include <memory>
-#include <regex>
-
-#include <wx/xml/xml.h>
-#include <wx/spinctrl.h>
-#include <wx/display.h>
+#include "model/Model_Setting.h"
+#include "model/Model_Infotable.h"
+#include "model/Model_Payee.h"
+#include "model/Model_Category.h"
+#include "model/Model_CustomFieldData.h"
+#include "model/Model_Tag.h"
 
 enum tab_id {
     DATA_TAB = 1,
@@ -219,7 +221,7 @@ void mmUnivCSVDialog::CreateControls()
     preset_flex_sizer->Add(preset_label, g_flagsH);
 
     Document account_default_presets;
-    if (!account_default_presets.Parse(Model_Infotable::instance().GetStringInfo((IsCSV() ? "CSV_ACCOUNT_PRESETS" : "XML_ACCOUNT_PRESETS"), "{}").utf8_str()).HasParseError())
+    if (!account_default_presets.Parse(Model_Infotable::instance().getString((IsCSV() ? "CSV_ACCOUNT_PRESETS" : "XML_ACCOUNT_PRESETS"), "{}").utf8_str()).HasParseError())
     {
         for (const auto& member : account_default_presets.GetObject()) {
             m_acct_default_preset[std::stoll(member.name.GetString())] = member.value.GetString();
@@ -607,7 +609,7 @@ void mmUnivCSVDialog::initDateMask()
 void mmUnivCSVDialog::initDelimiter()
 {
     if (delimit_.empty()) {
-        delimit_ = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
+        delimit_ = Model_Infotable::instance().getString("DELIMITER", mmex::DEFDELIMTER);
     }
     m_textDelimiter->ChangeValue(delimit_ == "\t" ? "\\t" : delimit_);
 
@@ -674,7 +676,7 @@ const wxString mmUnivCSVDialog::GetStoredSettings(int id) const
 {
     if (id < 0) return wxEmptyString;
     const wxString& setting_id = m_preset_id.at(m_choice_preset_name->GetString(id));
-    const wxString& settings_string = Model_Setting::instance().GetStringSetting(setting_id, "");
+    const wxString& settings_string = Model_Setting::instance().getString(setting_id, "");
     wxLogDebug("%s \n %s", setting_id, settings_string);
     return settings_string;
 }
@@ -763,7 +765,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     {
         Value& v_delimiter = GetValueByPointerWithDefault(json_doc, "/DELIMITER", "");
         const wxString& de = wxString::FromUTF8(v_delimiter.IsString() ? v_delimiter.GetString() : "");
-        const wxString& def_delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
+        const wxString& def_delimiter = Model_Infotable::instance().getString("DELIMITER", mmex::DEFDELIMTER);
         delimit_ = (de.empty() ? def_delimiter : de);
         initDelimiter();
     }
@@ -1091,7 +1093,7 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
         for (; i < std::max({ static_cast<int>(m_choice_preset_name->GetCount()), 10 }); i++)
         {
             setting_id = wxString::Format(GetSettingsPrfix(), i);
-            if (!Model_Setting::instance().ContainsSetting(setting_id))
+            if (!Model_Setting::instance().contains(setting_id))
                 break;
         }
         m_preset_id[user_label] = setting_id;
@@ -1214,7 +1216,7 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
 
     const wxString json_data = wxString::FromUTF8(json_buffer.GetString());
 
-    Model_Setting::instance().Set(setting_id, json_data);
+    Model_Setting::instance().setString(setting_id, json_data);
 }
 
 void mmUnivCSVDialog::saveAccountPresets()
@@ -1230,7 +1232,10 @@ void mmUnivCSVDialog::saveAccountPresets()
     }
     json_writer.EndObject();
 
-    Model_Infotable::instance().Set((IsCSV() ? "CSV_ACCOUNT_PRESETS" : "XML_ACCOUNT_PRESETS"), wxString::FromUTF8(json_buffer.GetString()));
+    Model_Infotable::instance().setString(
+        (IsCSV() ? "CSV_ACCOUNT_PRESETS" : "XML_ACCOUNT_PRESETS"),
+        wxString::FromUTF8(json_buffer.GetString())
+    );
 }
 
 bool mmUnivCSVDialog::validateData(tran_holder & holder, wxString& message)

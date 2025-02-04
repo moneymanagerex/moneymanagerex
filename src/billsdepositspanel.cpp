@@ -124,8 +124,8 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
     SetAcceleratorTable(tab);
 
     // load the global variables
-    m_selected_col = Model_Setting::instance().GetIntSetting("BD_SORT_COL", m_bdp->col_sort());
-    m_asc = Model_Setting::instance().GetBoolSetting("BD_ASC", true);
+    m_selected_col = Model_Setting::instance().getInt("BD_SORT_COL", m_bdp->col_sort());
+    m_asc = Model_Setting::instance().getBool("BD_ASC", true);
 
     m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT, false));
     m_real_columns.push_back(m_bdp->COL_ICON);
@@ -193,8 +193,8 @@ void billsDepositsListCtrl::OnColClick(wxListEvent& event)
 
     m_selected_col = ColumnNr;
 
-    Model_Setting::instance().Set("BD_ASC", m_asc);
-    Model_Setting::instance().Set("BD_SORT_COL", m_selected_col);
+    Model_Setting::instance().setBool("BD_ASC", m_asc);
+    Model_Setting::instance().setInt("BD_SORT_COL", m_selected_col);
 
     if (m_selected_row >= 0)
         refreshVisualList(m_bdp->initVirtualListControl(m_bdp->bills_[m_selected_row].BDID));

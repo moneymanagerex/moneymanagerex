@@ -74,7 +74,7 @@ mmAppStartDialog::~mmAppStartDialog()
     try
     {
         bool showBeginApp = itemCheckBox->GetValue();
-        Model_Setting::instance().Set("SHOWBEGINAPP", showBeginApp);
+        Model_Setting::instance().setBool("SHOWBEGINAPP", showBeginApp);
     }
     catch (...)
     {
@@ -131,7 +131,7 @@ void mmAppStartDialog::CreateControls()
 
     itemCheckBox = new wxCheckBox(this, wxID_STATIC, _("&Show this dialog box at startup"), wxDefaultPosition,
         wxDefaultSize, wxCHK_2STATE);
-    bool showBeginApp = Model_Setting::instance().GetBoolSetting("SHOWBEGINAPP", true);
+    bool showBeginApp = Model_Setting::instance().getBool("SHOWBEGINAPP", true);
     itemCheckBox->SetValue(showBeginApp);
 
     itemBoxSizer10->Add(itemCheckBox, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);

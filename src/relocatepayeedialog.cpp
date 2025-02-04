@@ -45,7 +45,7 @@ relocatePayeeDialog::relocatePayeeDialog( )
 
 relocatePayeeDialog::~relocatePayeeDialog()
 {
-    Model_Infotable::instance().Set("RELOCATEPAYEE_DIALOG_SIZE", GetSize());
+    Model_Infotable::instance().setSize("RELOCATEPAYEE_DIALOG_SIZE", GetSize());
 }
 
 relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent, int64 source_payee_id)

@@ -32,6 +32,7 @@ Copyright (C) 2021, 2022, 2024 Mark Whalley (mark@ipx.co.uk)
 #include "constants.h"
 #include "util.h"
 #include "paths.h"
+#include "model/Model_Account.h"
 #include "fusedtransaction.h"
 
 //----------------------------------------------------------------------------
@@ -66,8 +67,8 @@ public:
     void setGotoAccountID(int64 account_id, Fused_Transaction::IdRepeat fused_id = {-1, 0});
     bool financialYearIsDifferent()
     {
-        return (Option::instance().FinancialYearStartDay() != "1" ||
-                Option::instance().FinancialYearStartMonth() != "1");
+        return Option::instance().getFinancialFirstDay() != 1 ||
+            Option::instance().getFinancialFirstMonth() != wxDateTime::Month::Jan;
     }
     /// return the index (mmex::EDocFile) to return the correct file.
     int getHelpFileIndex() const;

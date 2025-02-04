@@ -17,6 +17,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include <wx/statline.h>
 #include "categdialog.h"
 #include "constants.h"
 #include "images_list.h"
@@ -26,10 +27,11 @@
 #include "payeedialog.h"
 #include "transactionsupdatedialog.h"
 #include "validators.h"
-#include "Model_Account.h"
-#include "Model_Checking.h"
-#include "Model_Payee.h"
-#include <wx/statline.h>
+#include "model/Model_Account.h"
+#include "model/Model_Currency.h"
+#include "model/Model_CurrencyHistory.h"
+#include "model/Model_Payee.h"
+#include "model/Model_Checking.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(transactionsUpdateDialog, wxDialog);
 

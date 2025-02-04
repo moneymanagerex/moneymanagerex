@@ -80,8 +80,8 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
     // load the global variables
-    m_selected_col = Model_Setting::instance().GetIntSetting("STOCKS_SORT_COL", col_sort());
-    m_asc = Model_Setting::instance().GetBoolSetting("STOCKS_ASC", true);
+    m_selected_col = Model_Setting::instance().getInt("STOCKS_SORT_COL", col_sort());
+    m_asc = Model_Setting::instance().getBool("STOCKS_ASC", true);
 
     m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT, false));
     m_real_columns.push_back(COL_ICON);
@@ -362,7 +362,7 @@ void StocksListCtrl::OnStockWebPage(wxCommandEvent& /*event*/)
 
     if (!stockSymbol.IsEmpty())
     {
-        const wxString& stockURL = Model_Infotable::instance().GetStringInfo("STOCKURL", mmex::weblink::DefStockUrl);
+        const wxString& stockURL = Model_Infotable::instance().getString("STOCKURL", mmex::weblink::DefStockUrl);
         const wxString& httpString = wxString::Format(stockURL, stockSymbol);
         wxLaunchDefaultBrowser(httpString);
     }
@@ -414,8 +414,8 @@ void StocksListCtrl::OnColClick(wxListEvent& event)
 
     m_selected_col = ColumnNr;
 
-    Model_Setting::instance().Set("STOCKS_ASC", m_asc);
-    Model_Setting::instance().Set("STOCKS_SORT_COL", m_selected_col);
+    Model_Setting::instance().setBool("STOCKS_ASC", m_asc);
+    Model_Setting::instance().setInt("STOCKS_SORT_COL", m_selected_col);
 
     int64 trx_id = -1;
     if (m_selected_row>=0) trx_id = m_stocks[m_selected_row].STOCKID;

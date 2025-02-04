@@ -29,6 +29,7 @@
 #include "model/Model_Checking.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_Tag.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(relocateTagDialog, wxDialog);
 
@@ -45,7 +46,7 @@ relocateTagDialog::relocateTagDialog( )
 
 relocateTagDialog::~relocateTagDialog()
 {
-    Model_Infotable::instance().Set("RELOCATETAG_DIALOG_SIZE", GetSize());
+    Model_Infotable::instance().setSize("RELOCATETAG_DIALOG_SIZE", GetSize());
 }
 
 relocateTagDialog::relocateTagDialog(wxWindow* parent, int64 source_tag_id)

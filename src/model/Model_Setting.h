@@ -32,18 +32,14 @@ public:
     ~Model_Setting();
 
 public:
-    /**
-    Initialize the global Model_Setting table on initial call.
-    Resets the global table on subsequent calls.
-    * Return the static instance address for Model_Setting table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
+    // Initialize the global Model_Setting table on initial call.
+    // Resets the global table on subsequent calls.
+    // Return the static instance address for Model_Setting table.
+    // Note: Assigning the address to a local variable can destroy the instance.
     static Model_Setting& instance(wxSQLite3Database* db);
 
-    /**
-    * Return the static instance address for Model_Setting table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
+    // Return the static instance address for Model_Setting table.
+    // Note: Assigning the address to a local variable can destroy the instance.
     static Model_Setting& instance();
     void Savepoint()
     {
@@ -59,39 +55,43 @@ public:
     }
 
 public:
-    // Setter
-    void Set(const wxString& key, int value);
-    void Set(const wxString& key, bool value);
-    void Set(const wxString& key, const wxColour& value);
-    void Set(const wxString& key, const wxString& value);
-    void Prepend(const wxString& key, const wxString& value, int limit);
+    bool contains(const wxString& key);
+
+    void setRaw(const wxString& key, const wxString& newValue);
+    const wxString getRaw(const wxString& key, const wxString& defaultValue);
+
+    void setString(const wxString& key, const wxString& newValue);
+    const wxString getString(const wxString& key, const wxString& defaultValue);
+
+    void setBool(const wxString& key, bool newValue);
+    bool getBool(const wxString& key, bool defaultValue);
+
+    void setInt(const wxString& key, int newValue);
+    int getInt(const wxString& key, int defaultValue);
+
+    void setColour(const wxString& key, const wxColour& newValue);
+    const wxColour getColour(const wxString& key, const wxColour& defaultValue);
+
+    void setArrayString(const wxString& key, const wxArrayString& a);
+    const wxArrayString getArrayString(const wxString& key);
+
+    void prependArrayItem(const wxString& key, const wxString& value, int limit);
 
 public:
-    // Getter
-    bool GetBoolSetting(const wxString& key, bool default_value);
-    int GetIntSetting(const wxString& key, int default_value);
-    const wxString GetStringSetting(const wxString& key, const wxString& default_value);
-    const wxArrayString GetArrayStringSetting(const wxString& key);
+    void setViewAccounts(const wxString& newValue);
+    wxString getViewAccounts();
+    
+    void setTheme(const wxString& newValue);
+    wxString getTheme();
 
+    void setViewTransactions(const wxString& newValue);
+    wxString getViewTransactions();
+    
     wxString getLastDbPath();
 
-    /* Returns true if key setting found */
-    bool ContainsSetting(const wxString& key);
-
-    static row_t to_row_t();
-
 public:
-    wxString GetViewAccounts();
-    void SetViewAccounts(const wxString& value);
-    
-    wxString Theme();
-    void SetTheme(const wxString& value);
-
-
-    wxString ViewTransactions();
-    void SetViewTransactions(const wxString& value);
-    
-    void ShrinkUsageTable();
+    void shrinkUsageTable();
+    static row_t to_row_t();
 };
 
 #endif 
