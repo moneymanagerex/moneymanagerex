@@ -290,26 +290,34 @@ void csv2tab_separated_values(wxString& line, const wxString& delimit)
 
 //* Date Functions----------------------------------------------------------*//
 
-static const wxString MONTHS_SHORT[12] =
+const wxString MONTHS[12] =
 {
-    wxTRANSLATE("Jan"), wxTRANSLATE("Feb"), wxTRANSLATE("Mar")
-    , wxTRANSLATE("Apr"), wxTRANSLATE("May"), wxTRANSLATE("Jun")
-    , wxTRANSLATE("Jul"), wxTRANSLATE("Aug"), wxTRANSLATE("Sep")
-    , wxTRANSLATE("Oct"), wxTRANSLATE("Nov"), wxTRANSLATE("Dec")
+    wxTRANSLATE("January"), wxTRANSLATE("February"), wxTRANSLATE("March"),
+    wxTRANSLATE("April"),   wxTRANSLATE("May"),      wxTRANSLATE("June"),
+    wxTRANSLATE("July"),    wxTRANSLATE("August"),   wxTRANSLATE("September"),
+    wxTRANSLATE("October"), wxTRANSLATE("November"), wxTRANSLATE("December")
 };
 
-static const wxString g_days_of_week[7] =
+const wxString MONTHS_SHORT[12] =
 {
-    wxTRANSLATE("Sunday"), wxTRANSLATE("Monday"), wxTRANSLATE("Tuesday")
-    , wxTRANSLATE("Wednesday"), wxTRANSLATE("Thursday"), wxTRANSLATE("Friday")
-    , wxTRANSLATE("Saturday")
+    wxTRANSLATE("Jan"), wxTRANSLATE("Feb"), wxTRANSLATE("Mar"),
+    wxTRANSLATE("Apr"), wxTRANSLATE("May"), wxTRANSLATE("Jun"),
+    wxTRANSLATE("Jul"), wxTRANSLATE("Aug"), wxTRANSLATE("Sep"),
+    wxTRANSLATE("Oct"), wxTRANSLATE("Nov"), wxTRANSLATE("Dec")
 };
 
-static const wxString g_short_days_of_week[7] =
+const wxString g_days_of_week[7] =
 {
-    wxTRANSLATE("Sun"), wxTRANSLATE("Mon"), wxTRANSLATE("Tue")
-    , wxTRANSLATE("Wed"), wxTRANSLATE("Thu"), wxTRANSLATE("Fri")
-    , wxTRANSLATE("Sat")
+    wxTRANSLATE("Sunday"), wxTRANSLATE("Monday"), wxTRANSLATE("Tuesday"),
+    wxTRANSLATE("Wednesday"), wxTRANSLATE("Thursday"), wxTRANSLATE("Friday"),
+    wxTRANSLATE("Saturday")
+};
+
+const wxString g_short_days_of_week[7] =
+{
+    wxTRANSLATE("Sun"), wxTRANSLATE("Mon"), wxTRANSLATE("Tue"),
+    wxTRANSLATE("Wed"), wxTRANSLATE("Thu"), wxTRANSLATE("Fri"),
+    wxTRANSLATE("Sat")
 };
 
 const wxString mmGetDateTimeForDisplay(const wxString &datetime_iso, const wxString& format)
@@ -538,7 +546,7 @@ bool mmParseISODate(const wxString& in, wxDateTime& out)
 const wxDateTime getUserDefinedFinancialYear(const bool prevDayRequired)
 {
     long monthNum;
-    Option::instance().FinancialYearStartMonth().ToLong(&monthNum);
+    Option::instance().getFinancialFirstMonth().ToLong(&monthNum);
 
     if (monthNum > 0) //Test required for compatability with previous version
         monthNum--;
@@ -546,7 +554,7 @@ const wxDateTime getUserDefinedFinancialYear(const bool prevDayRequired)
     int year = wxDate::GetCurrentYear();
     if (wxDate::GetCurrentMonth() < monthNum) year--;
 
-    int dayNum = wxAtoi(Option::instance().FinancialYearStartDay());
+    int dayNum = wxAtoi(Option::instance().getFinancialFirstDay());
 
     if (dayNum <= 0 || dayNum > wxDateTime::GetNumberOfDays(static_cast<wxDateTime::Month>(monthNum), year))
         dayNum = 1;
@@ -836,7 +844,7 @@ bool getOnlineCurrencyRates(wxString& msg,const int64 curr_id, const bool used_o
             double new_rate = currency_data[currency_symbol];
             if (new_rate > 0)
             {
-                if(Option::instance().getCurrencyHistoryEnabled())
+                if(Option::instance().getUseCurrencyHistory())
                     Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID, today, new_rate, Model_CurrencyHistory::ONLINE);
                 else
                 {

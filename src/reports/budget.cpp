@@ -64,8 +64,8 @@ void mmReportBudget::SetBudgetMonth(wxString budgetYear, wxDateTime& startDate, 
 
 void mmReportBudget::GetFinancialYearValues(int& day, wxDateTime::Month& month) const
 {
-    day = wxAtoi(Option::instance().FinancialYearStartDay());
-    month = static_cast<wxDateTime::Month>(wxAtoi(Option::instance().FinancialYearStartMonth()) - 1);
+    day = wxAtoi(Option::instance().getFinancialFirstDay());
+    month = static_cast<wxDateTime::Month>(wxAtoi(Option::instance().getFinancialFirstMonth()) - 1);
     if ((day > 28) && (month == wxDateTime::Feb))
     {
         day = 28;
@@ -84,7 +84,7 @@ const wxString mmReportBudget::AdjustYearValues(int day, wxDateTime::Month month
     wxString ret = yearStr;
     if ((ret.length() < 5))
     {
-        if (Option::instance().BudgetFinancialYears())
+        if (Option::instance().getBudgetFinancialYears())
         {
             GetFinancialYearValues(day, month);
             ret = wxString::Format(_("Financial Year: %s - %i"), yearStr, (year + 1));
@@ -97,7 +97,7 @@ const wxString mmReportBudget::AdjustYearValues(int day, wxDateTime::Month month
     else
     {
         const wxString month_str = wxGetTranslation(mmGetMonthName(month));
-        if (Option::instance().BudgetFinancialYears())
+        if (Option::instance().getBudgetFinancialYears())
             ret = wxString::Format(_("Financial Year: %i Month: %s"), year, month_str);
         else
             ret = wxString::Format(_("Year: %i Month: %s"), year, month_str);
@@ -108,7 +108,7 @@ const wxString mmReportBudget::AdjustYearValues(int day, wxDateTime::Month month
 
 void mmReportBudget::AdjustYearValues(int day, wxDateTime::Month month, wxDateTime& date) const
 {
-    if (Option::instance().BudgetFinancialYears())
+    if (Option::instance().getBudgetFinancialYears())
     {
         GetFinancialYearValues(day, month);
         SetDateToEndOfYear(day, month, date, false);
@@ -117,7 +117,7 @@ void mmReportBudget::AdjustYearValues(int day, wxDateTime::Month month, wxDateTi
 
 void mmReportBudget::AdjustDateForEndFinancialYear(wxDateTime& date) const
 {
-    if (Option::instance().BudgetFinancialYears())
+    if (Option::instance().getBudgetFinancialYears())
     {
         int day;
         wxDateTime::Month month;

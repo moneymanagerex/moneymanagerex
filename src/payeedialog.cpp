@@ -92,7 +92,7 @@ void mmEditPayeeDialog::CreateControls()
     fgSizer1->Add(m_hidden, g_flagsExpand);
 
     // Category
-    const wxString title = (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED) ?
+    const wxString title = (Option::instance().getTransCategoryNone() == Option::LASTUSED) ?
                                 _("Last Used Category") : _("Default Category");
     fgSizer1->Add(new wxStaticText(this, wxID_STATIC, title), g_flagsH);
     m_category = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize, -1, true);
@@ -450,7 +450,7 @@ mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString
 {
     ColName_[PAYEE_NAME] = _("Name");
     ColName_[PAYEE_HIDDEN] = _("Hidden");
-    ColName_[PAYEE_CATEGORY]  = (Option::instance().TransCategorySelectionNonTransfer() == Option::LASTUSED) ?
+    ColName_[PAYEE_CATEGORY]  = (Option::instance().getTransCategoryNone() == Option::LASTUSED) ?
                                 _("Last Used Category") : _("Default Category");
     ColName_[PAYEE_NUMBER] = _("Reference");
     ColName_[PAYEE_WEBSITE] = _("Website");

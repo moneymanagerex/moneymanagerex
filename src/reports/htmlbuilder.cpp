@@ -169,7 +169,7 @@ void mmHTMLBuilder::init(bool simple, const wxString& extra_style)
     {
         html_ = wxString::Format(tags::HTML
             , mmex::getProgramName()
-            , wxString::Format("%d", Option::instance().getHtmlFontSize())
+            , wxString::Format("%d", Option::instance().getHtmlScale())
             , extra_style);
     }
 }
@@ -177,8 +177,8 @@ void mmHTMLBuilder::init(bool simple, const wxString& extra_style)
 void mmHTMLBuilder::showUserName()
 {
     //Show user name if provided
-    if (Option::instance().UserName() != "")
-        addHeader(2, Option::instance().UserName());
+    if (Option::instance().getUserName() != "")
+        addHeader(2, Option::instance().getUserName());
 }
 
 void mmHTMLBuilder::addReportHeader(const wxString& name, int startDay, bool futureIgnored)

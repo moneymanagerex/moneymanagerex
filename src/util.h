@@ -187,13 +187,10 @@ void clearVFprintedFiles(const wxString& name);
 const wxRect GetDefaultMonitorRect();
 
 //* Date Functions----------------------------------------------------------*//
-static const wxString MONTHS[12] =
-{
-    wxTRANSLATE("January"), wxTRANSLATE("February"), wxTRANSLATE("March")
-    , wxTRANSLATE("April"), wxTRANSLATE("May"), wxTRANSLATE("June")
-    , wxTRANSLATE("July"), wxTRANSLATE("August"), wxTRANSLATE("September")
-    , wxTRANSLATE("October"), wxTRANSLATE("November"), wxTRANSLATE("December")
-};
+extern const wxString MONTHS[12];
+extern const wxString MONTHS_SHORT[12];
+extern const wxString g_days_of_week[7];
+extern const wxString g_short_days_of_week[7];
 
 const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 const std::map<wxString, wxString> &date_formats_regex();
