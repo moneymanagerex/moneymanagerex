@@ -1036,12 +1036,12 @@ void mmCheckingPanel::saveFilterChoices()
     int menu_index = m_transFilterActive ? FILTER_ID_DIALOG : m_filter_id;
     auto menu_item = FILTER_STR[menu_index];
     if (j_doc.HasMember("FILTER")) {
-        j_doc["FILTER"].SetString(menu_item.mb_str(), j_doc.GetAllocator());
+        j_doc["FILTER"].SetString(menu_item.utf8_str(), j_doc.GetAllocator());
     }
     else {
         auto& allocator = j_doc.GetAllocator();
         rapidjson::Value key("FILTER", allocator);
-        rapidjson::Value value(menu_item.mb_str(), allocator);
+        rapidjson::Value value(menu_item.utf8_str(), allocator);
         j_doc.AddMember(key, value, allocator);
     }
 
