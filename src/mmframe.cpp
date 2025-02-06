@@ -1416,7 +1416,7 @@ void mmGUIFrame::OnPopupRenameFilter(wxCommandEvent& /*event*/)
 
         // Change the name
         Value::MemberIterator v_name = j_doc.FindMember("LABEL");
-        v_name->value.SetString(new_name.mb_str(), j_doc.GetAllocator());
+        v_name->value.SetString(new_name.utf8_str(), j_doc.GetAllocator());
         // Serialize the new entry
         StringBuffer buffer;
         buffer.Clear();
