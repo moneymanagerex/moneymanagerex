@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-01-22 07:52+0000\n"
-"PO-Revision-Date: 2025-01-31 00:51\n"
+"PO-Revision-Date: 2025-02-07 11:46\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -937,7 +937,7 @@ msgstr "Détails de l'opération récurrente"
 
 #: billsdepositsdialog.cpp:419
 msgid "Specify the date when this bill or deposit is due"
-msgstr "Indiquez la date de valeur de cette opération "
+msgstr "Indiquez la date de valeur de cette opération"
 
 #: billsdepositsdialog.cpp:420 billsdepositspanel.cpp:136
 msgid "Date Due"
@@ -4067,7 +4067,7 @@ msgstr "N'endossez jamais un prêt. Si l'emprunteur – votre ami, un membre de 
 
 #: mmTips.h:39
 msgid "Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."
-msgstr "Conseils pour les courses : Évitez de faire vos courses d'épicerie lorsque vous avez faim ou que vous êtes stréssé. La faim et le stress peuvent vous faire faire des choses étranges, comme acheter beaucoup de chocolat ou des aliments à la mode. Planifiez plutôt d'aller au magasin quand vous êtes bien nourri et détendu. Ainsi, vous pouvez vous en tenir à votre liste et ne pas dépenser pour de la nourriture dont vous n'avez pas besoin."
+msgstr "Conseils pour les courses : Évitez de faire vos courses d'épicerie lorsque vous avez faim ou que vous êtes stressé. La faim et le stress peuvent vous faire faire des choses étranges, comme acheter beaucoup de chocolat ou des aliments à la mode. Planifiez plutôt d'aller au magasin quand vous êtes bien nourri et détendu. Ainsi, vous pouvez vous en tenir à votre liste et ne pas dépenser pour de la nourriture dont vous n'avez pas besoin."
 
 #: mmTips.h:40
 msgid "Grocery tip: Make a shopping list. A shopping list saves money by helping you avoid buying products you do not need. The simplest way is to track consumables as you use them. Keep a magnetic notepad on the fridge and jot down what you need as you run out."
@@ -4418,7 +4418,7 @@ msgstr "Transaction verrouillée à ce jour : %s\n\n"
 
 #: mmchecking_list.cpp:1536 transdialog.cpp:751 transdialog.cpp:776
 msgid "MMEX Transaction Check"
-msgstr "&Editer l'opération"
+msgstr "Editer l'opération"
 
 #: mmchecking_list.cpp:1565
 #, c-format
@@ -6229,15 +6229,15 @@ msgstr "Lors de la suppression de la pièce jointe, déplacer le fichier au lieu
 
 #: optionsettingsattachment.cpp:178
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
-msgstr "Selectionner pour ne pas effacer le fichier retiré, mais plutôt le déplacer dans le répertoire des fichiers effacés"
+msgstr "Sélectionner pour ne pas effacer le fichier retiré, mais plutôt le déplacer dans le répertoire des fichiers effacés"
 
 #: optionsettingsattachment.cpp:182
 msgid "When duplicating transactions duplicate the attachments also"
-msgstr "When duplicating transactions duplicate the attachments also"
+msgstr "Lors de la duplication d'une opération, dupliquer les pièces jointes également"
 
 #: optionsettingsattachment.cpp:184
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
-msgstr "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
+msgstr "Cocher si vous souhaitez copier les pièces jointes quand une opération est dupliquée ou collée"
 
 #: optionsettingsattachment.cpp:197
 msgid "Choose folder to set as attachments archive"
@@ -6487,11 +6487,11 @@ msgstr "Nombre max de fichiers"
 
 #: optionsettingsmisc.cpp:218
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
-msgstr "Spécifiez le délai de sauvegarde des opérations supprimées, en nombre de jours. Les opérations antérieures à ce délai seront automatiquement purgées à l'ouverture de la base de données."
+msgstr "Spécifiez le délai de rétention des opérations supprimées, en nombre de jours. Les opérations plus anciennes seront automatiquement purgées à l'ouverture de la base de données."
 
 #: optionsettingsmisc.cpp:220
 msgid "Days to retain deleted transactions"
-msgstr "Délai de sauvegarde des opérations supprimées en jours"
+msgstr "Délai de rétention des opérations supprimées en jours"
 
 #: optionsettingsmisc.cpp:235
 msgid "Delimiter"
@@ -7939,7 +7939,7 @@ msgstr "Duplicata du mouvement"
 
 #: transdialog.cpp:182
 msgid "Edit Transaction"
-msgstr "&Editer l'opération"
+msgstr "Éditer l'opération"
 
 #: transdialog.cpp:556
 msgid "Populate Transaction #"
@@ -8512,7 +8512,7 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
 "Options. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr "Spécifiez la devise par défaut à utiliser pour la base de données. La devise par défaut pourra être modifiée ultérieurement dans les Options. Les nouveaux comptes utiliseront cette devise par\n"
+msgstr "Spécifiez la devise principale (ou par défaut) à utiliser pour la base de données. La devise par défaut pourra être modifiée ultérieurement dans les Options. Les nouveaux comptes utiliseront cette devise par\n"
 "par défaut, ce qui peut être modifié en éditant les paramètres du compte."
 
 #: wizard_newdb.cpp:125

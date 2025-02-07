@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-01-22 07:52+0000\n"
-"PO-Revision-Date: 2025-01-24 00:51\n"
+"PO-Revision-Date: 2025-02-07 00:52\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -471,11 +471,11 @@ msgstr "Legen Sie fest, ob sich der Wert des Assets im Laufe der Zeit ändert"
 
 #: assetdialog.cpp:228
 msgid "Compounding Period"
-msgstr ""
+msgstr "Aufstockungszeitraum"
 
 #: assetdialog.cpp:233
 msgid "Select the compounding period for the appreciation/depreciation rate"
-msgstr ""
+msgstr "Wählen Sie die Aufzinsungsperiode für die Aufwertungs-/Abschreibungsrate"
 
 #: assetdialog.cpp:238
 msgid "% Rate"
@@ -4087,48 +4087,48 @@ msgstr "Einkaufstipp: Produzieren Sie weniger Abfall. Bessere Einkaufsgewohnheit
 
 #: mmTips.h:44
 msgid "Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."
-msgstr ""
+msgstr "Einkaufstipp: Lesen Sie die Verkaufsprospekte. Schauen Sie sich die Prospekte der einzelnen Geschäfte an und stimmen Sie die Angebote mit den Artikeln auf Ihrer Liste ab, oder planen Sie Ihre Mahlzeiten entsprechend den Angeboten.  Manchmal ist es kostengünstiger, mehrere Geschäfte in einer Woche zu besuchen, um das beste Angebot zu bekommen."
 
 #: mmTips.h:46
 msgid "Cut back on subscriptions. Do you really need to subscribe to every streaming service? Are you using a paid service enough to justify the expense, or can you survive with the ad-supported free one? Do you need that monthly book club, or can you head to the library once per month instead?"
-msgstr ""
+msgstr "Reduzieren Sie Ihre Abonnements. Müssen Sie wirklich jeden Streaming-Dienst abonnieren? Nutzen Sie einen kostenpflichtigen Dienst genug, um die Ausgaben zu rechtfertigen, oder kommen Sie mit dem werbefinanzierten Gratisdienst aus? Brauchen Sie den monatlichen Buchclub, oder können Sie stattdessen einmal im Monat in die Bibliothek gehen?"
 
 #: mmTips.h:47
 msgid "Use open source alternatives to proprietary software. Search at https://www.opensourcealternative.to/"
-msgstr ""
+msgstr "Verwenden Sie Open-Source-Alternativen zu proprietärer Software. Suche unter https://www.opensourcealternative.to/"
 
 #: mmTips.h:49
 msgid "Parent tip: If you are asked to be a guarantor for a loan for your college student, first check to see if your child has maxed out federal loan, grant, and scholarship options."
-msgstr ""
+msgstr "Tipp für Eltern: Wenn Sie gebeten werden, für ein Darlehen Ihres Schülers zu bürgen, prüfen Sie zunächst, ob Ihr Kind die Möglichkeiten für Bundesdarlehen, Zuschüsse und Stipendien ausgeschöpft hat."
 
 #: mmTips.h:51
 #, c-format
 msgid "Get out of debt tip: Pay yourself 10% first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Tipp zum Schuldenabbau: Zahlen Sie zuerst 10 % an sich selbst. Legen Sie diese Summe auf ein Konto, das nur schwer zu erreichen ist. Stellen Sie sicher, dass es eine lästige Pflicht ist, das Geld abzuheben (Sie müssen zur Bank fahren), damit Sie es nur bewusst und für größere Ausgaben abheben."
 
 #: mmTips.h:52
 msgid "Get out of debt tip: Establish an emergency fund."
-msgstr ""
+msgstr "Tipp zum Schuldenabbau: Legen Sie einen Notfallfonds an."
 
 #: mmTips.h:53
 msgid "Get out of debt tip: Stop acquiring new debt."
-msgstr ""
+msgstr "Tipp zum Schuldenabbau: Keine neuen Schulden mehr machen."
 
 #: mmTips.h:54
 msgid "Get out of debt tip: Create a realistic budget for your expenses."
-msgstr ""
+msgstr "Tipp: um aus der Schulden zu kommen: erstellen Sie ein realistisches Budget für Ihre Ausgaben."
 
 #: mmTips.h:55
 msgid "Get out of debt tip: Spend less than you earn."
-msgstr ""
+msgstr "Tipp: um aus der Schulden zu kommen: geben Sie weniger aus als Sie verdienen."
 
 #: mmTips.h:56
 msgid "Get out of debt tip: Pay more than the minimum."
-msgstr ""
+msgstr "Tipp: um aus der Schulden zu kommen: Zahle mehr als das Minimum."
 
 #: mmTips.h:57
 msgid "Get out of debt tip: If you have a mountain of debt, studies show paying off the smallest debts can give you the confidence to tackle the larger ones."
-msgstr ""
+msgstr "Schuldentipp: Wenn Sie einen Schuldenberg haben, Studien zeigen, dass die Zahlung der kleinsten Schulden kann Ihnen das Vertrauen geben, die größeren zu bewältigen."
 
 #: mmTips.h:58
 msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
@@ -4156,7 +4156,7 @@ msgstr "Bevor Sie investieren, sollten Sie Ihren Cashflow kennen (ein Budget hab
 
 #: mmTips.h:69
 msgid "Before you start investing, pay off consumer debt — especially credit cards."
-msgstr ""
+msgstr "Bevor Sie anfangen, zu investieren, zahlen Sie Verbraucherkredite ab – insbesondere Kreditkarten."
 
 #: mmTips.h:70
 msgid "Before you start investing, make net worth your primary tracking metric."
@@ -4192,7 +4192,7 @@ msgstr "Sortierreihenfolge"
 
 #: mmchecking_list.cpp:214
 msgid "SN (Sequence Number) has the same order as Date/ID (or Date/Time/ID if Time is enabled)."
-msgstr ""
+msgstr "SN (Sequenznummer) hat die gleiche Reihenfolge wie Datum/ID (oder Datum/Uhrzeit/ID, wenn Zeit aktiviert ist)."
 
 #: mmchecking_list.cpp:216
 msgid "ID (identification number) is increasing with the time of creation in the database."
@@ -4200,7 +4200,7 @@ msgstr "Die ID (Identifikationsnummer) steigt mit der Zeit der Erstellung in der
 
 #: mmchecking_list.cpp:218
 msgid "Balance is calculated in the order of SN (Sequence Number)."
-msgstr ""
+msgstr "Der Saldo wird in der Reihenfolge von SN (Sequenznummer) berechnet."
 
 #: mmchecking_list.cpp:343
 msgid "SN"
@@ -6118,7 +6118,7 @@ msgstr "Fehler auf der Aktie"
 
 #: option.cpp:36
 msgid "Week"
-msgstr ""
+msgstr "Woche"
 
 #: optiondialog.cpp:37 optionsettingsattachment.cpp:65 webappdialog.cpp:146
 msgid "Attachments"
@@ -6398,11 +6398,11 @@ msgstr "Beim Start aktualisieren"
 
 #: optionsettingsmisc.cpp:100
 msgid "Asset Compounding Period"
-msgstr ""
+msgstr "Aufstockungszeitraum"
 
 #: optionsettingsmisc.cpp:106
 msgid "Select the compounding period for the appreciation/depreciation rate of assets"
-msgstr ""
+msgstr "Wählen Sie die Aufzinsungsperiode für die Aufwertungs-/Abschreibungsrate"
 
 #: optionsettingsmisc.cpp:120
 msgid "Last Used"
