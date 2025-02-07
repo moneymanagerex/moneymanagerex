@@ -1,6 +1,6 @@
-Version 1.9.0 RC 2
+Version 1.9.0
 ~~~~~~~~~~~~~~~~~~~~
-Released: 2025-01-27
+Released: 2025-02-07
 
 Features:
 * #7136 Difficulty to revert from 1.9.0 to 1.8.1
@@ -13,6 +13,7 @@ Features:
 * #6860 Add executions of scheduled transactions in transaction panels
 
 Bugfixes:
+* #7178 Account filter setting "View Transaction Report..." is not persistent
 * #7175 Adapt new dB version
 * #7157 Cash Flow Report for Specific Accounts treats transfers in reverse
 * #7142 All Transactions and Scheduled Transactions Menu Items Missing in latest Beta Version
