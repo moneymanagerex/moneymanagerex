@@ -142,7 +142,7 @@ const wxString Model_Category::full_name(const Data* category)
 {
     static wxString delimiter;
     if (delimiter.empty()) {
-        delimiter = Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":");
+        delimiter = Model_Infotable::instance().getString("CATEG_DELIMITER", ":");
     }
     if (!category) return "";
     if (category->PARENTID == -1)

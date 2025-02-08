@@ -123,7 +123,7 @@ void mmBudgetingPanel::OnViewPopupSelected(wxCommandEvent& event)
     else
         wxASSERT(false);
 
-    Model_Infotable::instance().Set("BUDGET_FILTER", currentView_);
+    Model_Infotable::instance().setString("BUDGET_FILTER", currentView_);
 
     RefreshList();
 }
@@ -273,7 +273,7 @@ void mmBudgetingPanel::CreateControls()
     /* Get data from inidb */
     for (int i = 0; i < listCtrlBudget_->GetColumnCount(); ++i)
     {
-        int col_width = Model_Setting::instance().GetIntSetting(wxString::Format(listCtrlBudget_->m_col_width, i)
+        int col_width = Model_Setting::instance().getInt(wxString::Format(listCtrlBudget_->m_col_width, i)
             , listCtrlBudget_->m_columns[i].WIDTH);
         listCtrlBudget_->SetColumnWidth(i, col_width);
     }
@@ -363,7 +363,7 @@ void mmBudgetingPanel::initVirtualListControl()
         evaluateTransfer = true;
     }
 
-    currentView_ = Model_Infotable::instance().GetStringInfo("BUDGET_FILTER", VIEW_ALL);
+    currentView_ = Model_Infotable::instance().getString("BUDGET_FILTER", VIEW_ALL);
     const wxString budgetYearStr = Model_Budgetyear::instance().Get(budgetYearID_);
     long year = 0;
     budgetYearStr.ToLong(&year);

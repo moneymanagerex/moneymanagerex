@@ -41,7 +41,7 @@ OptionSettingsHome::OptionSettingsHome()
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastFinancialYear()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmAllTime()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast365Days()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastNDays(Model_Infotable::instance().GetIntInfo("HOMEPAGE_INCEXP_DAYS", 14))));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastNDays(Model_Infotable::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14))));
 
     int sel_id = Option::instance().getHomePageIncExpRange();
     if (sel_id >= static_cast<int>(m_all_date_ranges.size()))
@@ -99,7 +99,7 @@ void OptionSettingsHome::Create()
     m_inc_vs_exp_date_range = m_all_date_ranges[sel_id];
     nDays_ = new wxSpinCtrl(home_panel, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS,
         1, (wxDate::Today() - wxDateTime(1, wxDate::Month::Jan, 1900)).GetDays(),
-        Model_Infotable::instance().GetIntInfo("HOMEPAGE_INCEXP_DAYS", 14));
+        Model_Infotable::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14));
     nDays_->Bind(wxEVT_SPINCTRL, [this](wxSpinEvent& event) {
         dynamic_cast<mmLastNDays*>(m_all_date_ranges.back().get())->SetRange(nDays_->GetValue());
         event.Skip();
@@ -117,7 +117,7 @@ bool OptionSettingsHome::SaveSettings()
     int sel_id = m_incExpChoice->GetSelection();
     Option::instance().setHomePageIncExpRange(sel_id);
     if (sel_id == 15)
-        Model_Infotable::instance().Set("HOMEPAGE_INCEXP_DAYS", nDays_->GetValue());
+        Model_Infotable::instance().setInt("HOMEPAGE_INCEXP_DAYS", nDays_->GetValue());
     return true;
 }
 

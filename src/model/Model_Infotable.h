@@ -31,57 +31,60 @@ public:
     ~Model_Infotable();
 
 public:
-    /**
-    Initialize the global Model_Infotable table on initial call.
-    Resets the global table on subsequent calls.
-    * Return the static instance address for Model_Infotable table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
+    // Initialize the global Model_Infotable table on initial call.
+    // Resets the global table on subsequent calls.
+    // Return the static instance address for Model_Infotable table.
+    // Note: Assigning the address to a local variable can destroy the instance.
     static Model_Infotable& instance(wxSQLite3Database* db);
 
-    /**
-    * Return the static instance address for Model_Infotable table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
+    // Return the static instance address for Model_Infotable table.
+    // Note: Assigning the address to a local variable can destroy the instance.
     static Model_Infotable& instance();
 
 public:
-    // Setter
-    void Set(const wxString& key, int64 value);
-    void Set(const wxString& key, int value);
-    void Set(const wxString& key, bool value);
-    void Set(const wxString& key, const wxDateTime& date);
-    void Set(const wxString& key, const wxString& value);
-    void Set(const wxString& key, const wxColour& value);
-    void Set(const wxString& key, const wxSize& size);
-    void Prepend(const wxString& key, const wxString& value, int limit);
-    void Erase(const wxString& key, int row);
-    void Update(const wxString& key, int row, const wxString& value);
+    bool contains(const wxString& key);
+
+    void setRaw(const wxString& key, const wxString& newValue);
+    wxString getRaw(const wxString& key, const wxString& defaultValue);
+
+    void setString(const wxString& key, const wxString& newValue);
+    wxString getString(const wxString& key, const wxString& defaultValue);
+
+    void setBool(const wxString& key, bool newValue);
+    bool getBool(const wxString& key, bool defaultValue);
+
+    void setInt(const wxString& key, int newValue);
+    int getInt(const wxString& key, int defaultValue);
+
+    void setInt64(const wxString& key, int64 newValue);
+    int64 getInt64(const wxString& key, int64 defaultValue);
+
+    void setSize(const wxString& key, const wxSize& newValue);
+    const wxSize getSize(const wxString& key);
+
+    void setColour(const wxString& key, const wxColour& newValue);
+    const wxColour getColour(const wxString& key, const wxColour& defaultValue = wxColour(255, 255, 255));
+
+    void setDate(const wxString& key, const wxDateTime& newValue);
+
+    void setArrayString(const wxString& key, const wxArrayString& a);
+    const wxArrayString getArrayString(const wxString& key, bool sort = false);
+
+    int findArrayItem(const wxString& key, const wxString& label);
+    void updateArrayItem(const wxString& key, int i, const wxString& newValue);
+    void prependArrayItem(const wxString& key, const wxString& value, int limit);
+    void eraseArrayItem(const wxString& key, int i);
 
 public:
-    // Getter
-    bool GetBoolInfo(const wxString& key, bool default_value);
-    int GetIntInfo(const wxString& key, int default_value);
-    int64 GetInt64Info(const wxString& key, int64 default_value);
-    wxString GetStringInfo(const wxString& key, const wxString& default_value);
-    const wxColour GetColourSetting(const wxString& key, const wxColour& default_value = wxColour(255, 255, 255));
-    const wxArrayString GetArrayStringSetting(const wxString& key, bool sort = false);
-    const wxSize GetSizeSetting(const wxString& key);
+    void setOpenCustomDialog(const wxString& refType, bool newValue);
+    bool getOpenCustomDialog(const wxString& refType);
 
-    /* Returns true if key setting found */
-    bool KeyExists(const wxString& key);
-    /* Check database at minimum revision*/
+    void setCustomDialogSize(const wxString& refType, const wxSize& newValue);
+    wxSize getCustomDialogSize(const wxString& refType);
+
+public:
     bool checkDBVersion();
-
     static loop_t to_loop_t();
-
-public:
-    bool OpenCustomDialog(const wxString& RefType);
-    void SetOpenCustomDialog(const wxString& RefType, bool Status);
-    wxSize CustomDialogSize(const wxString& RefType);
-    void SetCustomDialogSize(const wxString& RefType, const wxSize& Size);
-    //Use to search through a set of JSON data for a particular label
-    int FindLabelInJSON(const wxString& entry, const wxString& labelID);
 };
 
-#endif // 
+#endif

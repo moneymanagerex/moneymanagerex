@@ -71,7 +71,7 @@ mmTransDialog::~mmTransDialog()
     wxSize size = GetSize();
     if (m_custom_fields->IsCustomPanelShown())
         size = wxSize(GetSize().GetWidth() - m_custom_fields->GetMinWidth(), GetSize().GetHeight());
-    Model_Infotable::instance().Set("TRANSACTION_DIALOG_SIZE", size);
+    Model_Infotable::instance().setSize("TRANSACTION_DIALOG_SIZE", size);
 }
 
 void mmTransDialog::SetEventHandlers()
@@ -117,7 +117,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent,
             m_local_splits.push_back({split.CATEGID, split.SPLITTRANSAMOUNT, tags, split.NOTES});
         }
 
-        if (m_mode == MODE_DUP && !Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_DUPLICATE, false))
+        if (m_mode == MODE_DUP && !Model_Setting::instance().getBool(INIDB_USE_ORG_DATE_DUPLICATE, false))
         {
             // Use the empty transaction logic to generate the new date to be used
             Model_Checking::Data emptyTrx;
@@ -139,7 +139,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent,
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELD);
 
     // If duplicate then we may need to copy the attachments
-    if (m_mode == MODE_DUP && Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDUPLICATE", false))
+    if (m_mode == MODE_DUP && Model_Infotable::instance().getBool("ATTACHMENTSDUPLICATE", false))
     {
         const wxString& refType = Model_Attachment::REFTYPE_STR_TRANSACTION;
         mmAttachmentManage::CloneAllAttachments(refType, fused_id.first, -1);

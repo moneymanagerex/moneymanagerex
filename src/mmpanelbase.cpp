@@ -115,7 +115,7 @@ void mmListCtrl::OnItemResize(wxListEvent& event)
     int i = event.GetColumn();
     int width = GetColumnWidth(i);
     if (!m_col_width.IsEmpty())
-        Model_Setting::instance().Set(wxString::Format(m_col_width, GetRealColumn(i)), width);
+        Model_Setting::instance().setInt(wxString::Format(m_col_width, GetRealColumn(i)), width);
 }
 
 void mmListCtrl::CreateColumns()
@@ -136,7 +136,7 @@ void mmListCtrl::CreateColumns()
     {
         int count = GetColumnCount();
         InsertColumn(count, entry.HEADER, entry.FORMAT,
-                     Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, GetRealColumn(count)), entry.WIDTH));
+                     Model_Setting::instance().getInt(wxString::Format(m_col_width, GetRealColumn(count)), entry.WIDTH));
     }
 }
 
@@ -157,7 +157,7 @@ void mmListCtrl::OnColRightClick(wxListEvent& event)
         {
             int id = MENU_HEADER_COLUMN + i;
             submenu->AppendCheckItem(id, m_columns[i].HEADER);
-            int width = Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, GetRealColumn(i)), m_columns[i].WIDTH);
+            int width = Model_Setting::instance().getInt(wxString::Format(m_col_width, GetRealColumn(i)), m_columns[i].WIDTH);
             submenu->Check(id, width != 0);
         }
         menu.AppendSubMenu(submenu, _("Hide/Show Columns"));
@@ -205,7 +205,7 @@ void mmListCtrl::OnHeaderHide(wxCommandEvent& WXUNUSED(event))
     {
         SetColumnWidth(m_ColumnHeaderNbr, 0);
         const wxString parameter_name = wxString::Format(m_col_width, GetRealColumn(m_ColumnHeaderNbr));
-        Model_Setting::instance().Set(parameter_name, 0);
+        Model_Setting::instance().setInt(parameter_name, 0);
     }
 }
 
@@ -301,7 +301,7 @@ void mmListCtrl::OnHeaderReset(wxCommandEvent& WXUNUSED(event))
         if (!m_col_width.IsEmpty())
         {
             parameter_name = wxString::Format(m_col_width, GetRealColumn(i));
-            Model_Setting::instance().Set(parameter_name, GetColumnWidth(i));
+            Model_Setting::instance().setInt(parameter_name, GetColumnWidth(i));
         }
     }
     wxListEvent e;
@@ -322,22 +322,28 @@ void mmListCtrl::OnHeaderColumn(wxCommandEvent& event)
         if (default_width == 0)
             default_width = wxLIST_AUTOSIZE_USEHEADER;
         const wxString parameter_name = wxString::Format(m_col_width, GetRealColumn(columnNbr));
-        int cur_width = Model_Setting::instance().GetIntSetting(parameter_name, default_width);
+        int cur_width = Model_Setting::instance().getInt(parameter_name, default_width);
         int new_width = (cur_width != 0 ? 0 : default_width);
         SetColumnWidth(columnNbr, new_width);
-        Model_Setting::instance().Set(parameter_name, GetColumnWidth(columnNbr));
+        Model_Setting::instance().setInt(parameter_name, GetColumnWidth(columnNbr));
     }
 }
 
 int mmListCtrl::GetColumnWidthSetting(int column_number, int default_size)
 {
-    return Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, GetRealColumn(column_number)), default_size);
+    return Model_Setting::instance().getInt(
+        wxString::Format(m_col_width, GetRealColumn(column_number)),
+        default_size
+    );
 }
 
 void mmListCtrl::SetColumnWidthSetting(int column_number, int column_width)
 {
     if (!m_col_width.IsEmpty())
-        Model_Setting::instance().Set(wxString::Format(m_col_width, GetRealColumn(column_number)), column_width);
+        Model_Setting::instance().setInt(
+            wxString::Format(m_col_width, GetRealColumn(column_number)),
+            column_width
+        );
 }
 
 // Set new column order. Called when closing the dialog using the "OK" button
@@ -347,18 +353,17 @@ void mmListCtrl::SetColumnOrder(std::vector<int> columnList)
         columnList = m_real_columns;
 
     wxString columnOrder;
-    for (int col_enum : columnList)
-    {
+    for (int col_enum : columnList) {
         columnOrder.Append((columnOrder.IsEmpty() ? "" : "|") + wxString::Format("%i", col_enum));
     }
-    Model_Setting::instance().Set(m_col_idstr + "_COLUMNORDER", columnOrder);
+    Model_Setting::instance().setString(m_col_idstr + "_COLUMNORDER", columnOrder);
 }
 
 
 // Get the current column order from the settings, or initialize a default order
 std::vector<int> mmListCtrl::GetColumnOrder()
 {
-    wxArrayString columnStringList = wxSplit(Model_Setting::instance().GetStringSetting(m_col_idstr + "_COLUMNORDER", ""), '|');
+    wxArrayString columnStringList = wxSplit(Model_Setting::instance().getString(m_col_idstr + "_COLUMNORDER", ""), '|');
 
     // if there is no defined setting, use default order of the listctrl
     if(columnStringList.IsEmpty())

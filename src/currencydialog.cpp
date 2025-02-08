@@ -76,7 +76,7 @@ mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, const Model_Currency::Data 
     }
 
     // Check if locale will be used in preference
-    const wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
+    const wxString locale = Model_Infotable::instance().getString("LOCALE", "");
     m_locale_used = false;
     if (!locale.empty())
     {

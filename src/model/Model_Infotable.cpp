@@ -31,10 +31,8 @@ Model_Infotable::~Model_Infotable()
 {
 }
 
-/**
-* Initialize the global Model_Infotable.
-* Reset the Model_Infotable or create the table if it does not exist.
-*/
+// Initialize the global Model_Infotable.
+// Reset the Model_Infotable or create the table if it does not exist.
 Model_Infotable& Model_Infotable::instance(wxSQLite3Database* db)
 {
     Model_Infotable& ins = Singleton<Model_Infotable>::instance();
@@ -42,104 +40,271 @@ Model_Infotable& Model_Infotable::instance(wxSQLite3Database* db)
     ins.destroy_cache();
     ins.ensure(db);
     ins.preload();
-    if (!ins.KeyExists("MMEXVERSION"))
-    {
-        ins.Set("MMEXVERSION", mmex::version::string);
-        ins.Set("DATAVERSION", mmex::DATAVERSION);
-        ins.Set("CREATEDATE", wxDateTime::Now());
-        ins.Set("DATEFORMAT", mmex::DEFDATEFORMAT);
+    if (!ins.contains("MMEXVERSION")) {
+        ins.setString("MMEXVERSION", mmex::version::string);
+        ins.setString("DATAVERSION", mmex::DATAVERSION);
+        ins.setDate("CREATEDATE", wxDateTime::Now());
+        ins.setString("DATEFORMAT", mmex::DEFDATEFORMAT);
     }
-
     return ins;
 }
 
-/** Return the static instance of Model_Infotable */
+// Return the static instance of Model_Infotable
 Model_Infotable& Model_Infotable::instance()
 {
     return Singleton<Model_Infotable>::instance();
 }
 
-// Setter
-void Model_Infotable::Set(const wxString& key, int64 value)
+// Returns true if key setting found
+bool Model_Infotable::contains(const wxString& key)
 {
-    this->Set(key, wxString::Format("%lld", value));
+    return !find(INFONAME(key)).empty();
 }
 
-void Model_Infotable::Set(const wxString& key, int value)
+// Raw (the raw value stored in Infotable is always string)
+void Model_Infotable::setRaw(const wxString& key, const wxString& newValue)
 {
-    this->Set(key, wxString::Format("%d", value));
-}
-
-void Model_Infotable::Set(const wxString& key, bool value)
-{
-    this->Set(key, wxString::Format("%s", value ? "TRUE" : "FALSE"));
-}
-
-void Model_Infotable::Set(const wxString& key, const wxDateTime& date)
-{
-    this->Set(key, date.FormatISODate());
-}
-
-void Model_Infotable::Set(const wxString& key, const wxSize& size)
-{
-    this->Set(key, wxString::Format("%i,%i", size.GetWidth(), size.GetHeight()));
-}
-
-void Model_Infotable::Set(const wxString& key, const wxString& value)
-{
-    Data* info = this->get_one(INFONAME(key));
-    if (!info) // not cached
-    {
-        Data_Set items = this->find(INFONAME(key));
-        if (!items.empty()) info = this->get(items[0].INFOID);
+    // search in cache
+    Data* info = get_one(INFONAME(key));
+    if (!info) {
+        // not found in cache; search in db
+        Data_Set items = find(INFONAME(key));
+        if (!items.empty())
+            info = get(items[0].INFOID);
+        if (!info) {
+            // not found; create
+            info = create();
+            info->INFONAME = key;
+        }
     }
+    info->INFOVALUE = newValue;
+    info->save(db_);
+}
+wxString Model_Infotable::getRaw(const wxString& key, const wxString& defaultValue)
+{
+    // search in cache
+    Data* info = get_one(INFONAME(key));
     if (info)
-    {
-        info->INFOVALUE= value;
-        info->save(this->db_);
-    }
+        return info->INFOVALUE;
+    // search in db
+    Data_Set items = find(INFONAME(key));
+    if (!items.empty())
+        return items[0].INFOVALUE;
+    // not found
+    return defaultValue;
+}
+
+// String
+void Model_Infotable::setString(const wxString& key, const wxString& newValue)
+{
+    setRaw(key, newValue);
+}
+wxString Model_Infotable::getString(const wxString& key, const wxString& defaultValue)
+{
+    return getRaw(key, defaultValue);
+}
+
+// Bool
+void Model_Infotable::setBool(const wxString& key, bool newValue)
+{
+    setRaw(key, wxString::Format("%s", newValue ? "TRUE" : "FALSE"));
+}
+bool Model_Infotable::getBool(const wxString& key, bool defaultValue)
+{
+    const wxString rawValue = getRaw(key, "");
+    if (rawValue == "1" || rawValue.CmpNoCase("TRUE") == 0)
+        return true;
+    else if (rawValue == "0" || rawValue.CmpNoCase("FALSE") == 0)
+        return false;
     else
-    {
-        info = this->create();
-        info->INFONAME = key;
-        info->INFOVALUE = value;
-        info->save(this->db_);
-    }
+        return defaultValue;
 }
 
-void Model_Infotable::Set(const wxString& key, const wxColour& value)
+// Int
+void Model_Infotable::setInt(const wxString& key, int newValue)
 {
-    this->Set(key, wxString::Format("%d,%d,%d", value.Red(), value.Green(), value.Blue()));
+    setRaw(key, wxString::Format("%d", newValue));
+}
+int Model_Infotable::getInt(const wxString& key, int defaultValue)
+{
+    const wxString rawValue = getRaw(key, "");
+    if (!rawValue.IsEmpty() && rawValue.IsNumber())
+        return wxAtoi(rawValue);
+    return defaultValue;
 }
 
-void Model_Infotable::Prepend(const wxString& key, const wxString& value, int limit)
+// Int64
+void Model_Infotable::setInt64(const wxString& key, int64 newValue)
 {
-    Data* setting = this->get_one(INFONAME(key));
-    if (!setting) // not cached
-    {
-        Data_Set items = this->find(INFONAME(key));
-        if (!items.empty()) setting = this->get(items[0].INFOID);
-    }
+    setRaw(key, wxString::Format("%lld", newValue));
+}
+int64 Model_Infotable::getInt64(const wxString& key, int64 defaultValue)
+{
+    const wxString rawValue = getString(key, "");
+    if (!rawValue.IsEmpty() && rawValue.IsNumber())
+        return int64(wxAtol(rawValue));
+    return defaultValue;
+}
 
-    if (!setting)
-    {
-        setting = this->create();
-        setting->INFONAME = key;
+// Size
+void Model_Infotable::setSize(const wxString& key, const wxSize& newValue)
+{
+    setRaw(key, wxString::Format("%i,%i", newValue.GetWidth(), newValue.GetHeight()));
+}
+const wxSize Model_Infotable::getSize(const wxString& key)
+{
+    const wxString rawValue = getRaw(key, "");
+    if (!rawValue.IsEmpty()) {
+        wxRegEx pattern("^([0-9]+),([0-9]+)$");
+        if (pattern.Matches(rawValue)) {
+            const auto& x = pattern.GetMatch(rawValue, 1);
+            const auto& y = pattern.GetMatch(rawValue, 2);
+            return wxSize(wxAtoi(x), wxAtoi(y));
+        }
     }
-    int i = 1;
+    return wxDefaultSize;
+}
+
+// Colour
+void Model_Infotable::setColour(const wxString& key, const wxColour& newValue)
+{
+    setRaw(key, wxString::Format("%d,%d,%d",
+        newValue.Red(), newValue.Green(), newValue.Blue()
+    ));
+}
+const wxColour Model_Infotable::getColour(const wxString& key, const wxColour& defaultValue)
+{
+    const wxString rawValue = getRaw(key, "");
+    if (!rawValue.IsEmpty()) {
+        wxRegEx pattern("([0-9]{1,3}),([0-9]{1,3}),([0-9]{1,3})");
+        if (pattern.Matches(rawValue)) {
+            const wxString r = pattern.GetMatch(rawValue, 1);
+            const wxString g = pattern.GetMatch(rawValue, 2);
+            const wxString b = pattern.GetMatch(rawValue, 3);
+            return wxColour(wxAtoi(r), wxAtoi(g), wxAtoi(b));
+        }
+        else {
+            return wxColour(rawValue);
+        }
+    }
+    return defaultValue;
+}
+
+// Date
+void Model_Infotable::setDate(const wxString& key, const wxDateTime& newValue)
+{
+    setRaw(key, newValue.FormatISODate());
+}
+
+//-------------------------------------------------------------------
+// ArrayString
+void Model_Infotable::setArrayString(const wxString& key, const wxArrayString& a)
+{
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    json_writer.StartArray();
+    for (const auto& value : a) {
+        json_writer.String(value.utf8_str());
+    }
+    json_writer.EndArray();
+    const wxString& json_string = wxString::FromUTF8(json_buffer.GetString());
+    setRaw(key, json_string);
+    wxLogDebug("Model_Infotable::setArrayString(%s): %s", key, json_string);
+}
+
+const wxArrayString Model_Infotable::getArrayString(const wxString& key, bool sort)
+{
+    wxString rawValue = getRaw(key, "");
+    Document j_doc;
+    if (rawValue.IsEmpty() ||
+        j_doc.Parse(rawValue.utf8_str()).HasParseError() ||
+        !j_doc.IsArray()
+    )
+        return wxArrayString();
+
+    wxArrayString a;
+    wxLogDebug("{{{ Model_Infotable::getArrayString(%s)", key);
+    for (rapidjson::SizeType i = 0; i < j_doc.Size(); i++) {
+        wxASSERT(j_doc[i].IsString());
+        const auto value = wxString::FromUTF8(j_doc[i].GetString());
+        wxLogDebug("%s", value);
+        a.Add(value);
+    }
+    wxLogDebug("}}}");
+
+    // Crude sort of JSON (case sensitive), could be improved by actually sorting by a field
+    // but this should be sufficient if you want to sort by first element
+    if (sort)
+        a.Sort();
+    return a;
+}
+
+// Search through a set of JSON data for a particular label
+int Model_Infotable::findArrayItem(const wxString& key, const wxString& label)
+{
+    // Important: do not sort
+    wxArrayString a = Model_Infotable::instance().getArrayString(key);
+    int i = 0;
+    for (const auto& data : a) {
+        Document j_doc;
+        if (j_doc.Parse(data.utf8_str()).HasParseError())
+            j_doc.Parse("{}");
+        Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
+        const wxString& s_label = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
+        if (s_label == label)
+            return i;
+        ++i;
+    }
+    return wxNOT_FOUND;
+}
+
+void Model_Infotable::updateArrayItem(const wxString& key, int i, const wxString& newValue)
+{
+    wxString rawValue = getRaw(key, "");
+    Document j_doc;
+    if (rawValue.IsEmpty() ||
+        j_doc.Parse(rawValue.utf8_str()).HasParseError() ||
+        !j_doc.IsArray()
+    )
+        return;
+
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    json_writer.StartArray();
+    for (SizeType j = 0; j < j_doc.Size(); j++) {
+        json_writer.String(
+            (i == static_cast<int>(j)) ? newValue.utf8_str() : j_doc[j].GetString()
+        );
+    }
+    json_writer.EndArray();
+    const wxString& json_string = wxString::FromUTF8(json_buffer.GetString());
+
+    setRaw(key, json_string);
+    wxLogDebug("Model_Infotable::updateArrayItem(%s, %d): %s", key, i, json_string);
+}
+
+void Model_Infotable::prependArrayItem(const wxString& key, const wxString& value, int limit)
+{
+    Data* info = get_one(INFONAME(key));
+    if (!info) { // not cached
+        Data_Set items = find(INFONAME(key));
+        if (!items.empty())
+            info = get(items[0].INFOID);
+        if (!info) {
+            info = create();
+            info->INFONAME = key;
+        }
+    }
     wxArrayString a;
     if (!value.empty() && limit != 0)
         a.Add(value);
 
     Document j_doc;
-    if (j_doc.Parse(setting->INFOVALUE.utf8_str()).HasParseError()) {
-        j_doc.Parse("[]");
-    }
-
-    if (j_doc.IsArray())
-    {
-        for (auto& v : j_doc.GetArray())
-        {
+    if (!j_doc.Parse(info->INFOVALUE.utf8_str()).HasParseError()
+        && j_doc.IsArray()
+    ) {
+        int i = 1;
+        for (auto& v : j_doc.GetArray()) {
             if (i >= limit && limit != -1) break;
             if (v.IsString()) {
                 const auto item = wxString::FromUTF8(v.GetString());
@@ -154,200 +319,65 @@ void Model_Infotable::Prepend(const wxString& key, const wxString& value, int li
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartArray();
-    for (const auto& entry : a)
-    {
+    for (const auto& entry : a) {
         json_writer.String(entry.utf8_str());
     }
     json_writer.EndArray();
 
-    setting->INFOVALUE = wxString::FromUTF8(json_buffer.GetString());
-    setting->save(this->db_);
+    info->INFOVALUE = wxString::FromUTF8(json_buffer.GetString());
+    info->save(db_);
 }
 
-void Model_Infotable::Erase(const wxString& key, int row)
+void Model_Infotable::eraseArrayItem(const wxString& key, int i)
 {
+    wxString rawValue = getRaw(key, "");
     Document j_doc;
-    if (j_doc.Parse(GetStringInfo(key, "[]").utf8_str()).HasParseError()) {
-        j_doc.Parse("[]");
-    }
+    if (rawValue.IsEmpty() ||
+        j_doc.Parse(rawValue.utf8_str()).HasParseError() ||
+        !j_doc.IsArray()
+    )
+        return;
 
-    if (j_doc.IsArray())
-    {
-        j_doc.Erase(j_doc.Begin() + row);
+    j_doc.Erase(j_doc.Begin() + i);
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    j_doc.Accept(json_writer);
 
-        StringBuffer json_buffer;
-        PrettyWriter<StringBuffer> json_writer(json_buffer);
-        j_doc.Accept(json_writer);
-        const wxString json_string = wxString::FromUTF8(json_buffer.GetString());
-        Set(key, json_string);
-        wxLogDebug(json_string);
-    }
+    const wxString json_string = wxString::FromUTF8(json_buffer.GetString());
+    setRaw(key, json_string);
+    wxLogDebug("Model_Infotable::eraseArrayItem(%s, %d): %s", key, i, json_string);
 }
 
-void Model_Infotable::Update(const wxString& key, int row, const wxString& value)
+//-------------------------------------------------------------------
+// CUSTOMDIALOG_OPEN
+void Model_Infotable::setOpenCustomDialog(const wxString& refType, bool newValue)
 {
-    Document j_doc, j_doc_new;
-    if (j_doc.Parse(GetStringInfo(key, "[]").utf8_str()).HasParseError()) {
-        j_doc.Parse("[]");
-    }
-
-    if (j_doc.IsArray())
-    {
-        StringBuffer json_buffer;
-        PrettyWriter<StringBuffer> json_writer(json_buffer);
-        json_writer.StartArray();
-        for (SizeType i = 0; i < j_doc.Size(); i++)
-        {
-            if (row == static_cast<int>(i))
-                json_writer.String(value.utf8_str());
-            else
-                json_writer.String(j_doc[i].GetString());
-        }
-        json_writer.EndArray();
-
-        const wxString& json_string = wxString::FromUTF8(json_buffer.GetString());
-        Set(key, json_string);
-        wxLogDebug(json_string);
-    }
+    setBool("CUSTOMDIALOG_OPEN:" + refType, newValue);
 }
-
-// Getter
-bool Model_Infotable::GetBoolInfo(const wxString& key, bool default_value)
+bool Model_Infotable::getOpenCustomDialog(const wxString& refType)
 {
-    const wxString value = this->GetStringInfo(key, "");
-    if (value == "1" || value.CmpNoCase("TRUE") == 0)
-        return true;
-    else if (value == "0" || value.CmpNoCase("FALSE") == 0)
-        return false;
-    else
-        return default_value;
+    return getBool("CUSTOMDIALOG_OPEN:" + refType, false);
 }
 
-int Model_Infotable::GetIntInfo(const wxString& key, int default_value)
+// CUSTOMDIALOG_SIZE
+void Model_Infotable::setCustomDialogSize(const wxString& refType, const wxSize& newValue)
 {
-    const wxString value = this->GetStringInfo(key, "");
-    if (!value.IsEmpty() && value.IsNumber())
-        return wxAtoi(value);
-
-    return default_value;
+    wxString rawValue;
+    rawValue << newValue.GetWidth() << ";" << newValue.GetHeight();
+    setRaw("CUSTOMDIALOG_SIZE:" + refType, rawValue);
 }
-
-int64 Model_Infotable::GetInt64Info(const wxString& key, int64 default_value)
+wxSize Model_Infotable::getCustomDialogSize(const wxString& refType)
 {
-    const wxString value = this->GetStringInfo(key, "");
-    if (!value.IsEmpty() && value.IsNumber())
-        return int64(wxAtol(value));
-
-    return default_value;
+    wxString rawValue = getRaw("CUSTOMDIALOG_SIZE:" + refType, "0;0");
+    return wxSize(wxAtoi(rawValue.BeforeFirst(';')), wxAtoi(rawValue.AfterFirst(';')));
 }
 
-wxString Model_Infotable::GetStringInfo(const wxString& key, const wxString& default_value)
-{
-    Data* info = this->get_one(INFONAME(key));
-    if (info)
-        return info->INFOVALUE;
-    else // not cached
-    {
-        Data_Set items = this->find(INFONAME(key));
-        if (!items.empty())
-            return items[0].INFOVALUE;
-    }
-
-    return default_value;
-}
-const wxSize Model_Infotable::GetSizeSetting(const wxString& key)
-{
-    const wxString value = this->GetStringInfo(key, "");
-    if (!value.IsEmpty())
-    {
-        wxRegEx pattern("^([0-9]+),([0-9]+)$");
-        if (pattern.Matches(value))
-        {
-            const auto& x = pattern.GetMatch(value, 1);
-            const auto& y = pattern.GetMatch(value, 2);
-            return wxSize(wxAtoi(x), wxAtoi(y));
-        }
-    }
-    return wxDefaultSize;
-}
-
-const wxColour Model_Infotable::GetColourSetting(const wxString& key, const wxColour& default_value)
-{
-    const wxString value = this->GetStringInfo(key, "");
-    if (!value.IsEmpty())
-    {
-        wxRegEx pattern("([0-9]{1,3}),([0-9]{1,3}),([0-9]{1,3})");
-        if (pattern.Matches(value))
-        {
-            const wxString red = pattern.GetMatch(value, 1);
-            const wxString green = pattern.GetMatch(value, 2);
-            const wxString blue = pattern.GetMatch(value, 3);
-
-            return wxColour(wxAtoi(red), wxAtoi(green), wxAtoi(blue));
-        }
-        else
-        {
-            return wxColour(value);
-        }
-    }
-
-    return default_value;
-}
-
-const wxArrayString Model_Infotable::GetArrayStringSetting(const wxString& key, bool sort)
-{
-    wxString data;
-    Data* setting = this->get_one(INFONAME(key));
-    if (!setting) // not cached
-    {
-        Data_Set items = this->find(INFONAME(key));
-        if (items.empty()) {
-            return wxArrayString();
-        }
-        else {
-            data = items[0].INFOVALUE;
-        }
-    }
-    else
-    {
-        data = setting->INFOVALUE;
-    }
-
-    wxArrayString a;
-    Document j_doc;
-    if (j_doc.Parse(data.utf8_str()).HasParseError()) {
-        j_doc.Parse("[]");
-    }
-
-    if (j_doc.IsArray())
-    {
-        for (rapidjson::SizeType i = 0; i < j_doc.Size(); i++)
-        {
-            wxASSERT(j_doc[i].IsString());
-            const auto item = wxString::FromUTF8(j_doc[i].GetString());
-            wxLogDebug("%s", item);
-            a.Add(item);
-        }
-    }
-
-    // Crude sort of JSON (case sensitive), could be improved by actually sorting by a field
-    // but this should be sufficient if you want to sort by first element
-    if (sort)
-        a.Sort();
-    return a;
-}
-
-/* Returns true if key setting found */
-bool Model_Infotable::KeyExists(const wxString& key)
-{
-    return !this->find(INFONAME(key)).empty();
-}
-
+//-------------------------------------------------------------------
 bool Model_Infotable::checkDBVersion()
 {
-    if (!this->KeyExists("DATAVERSION")) return false;
-
-    return this->GetIntInfo("DATAVERSION", 0) >= mmex::MIN_DATAVERSION;
+    if (!contains("DATAVERSION"))
+        return false;
+    return getInt("DATAVERSION", 0) >= mmex::MIN_DATAVERSION;
 }
 
 loop_t Model_Infotable::to_loop_t()
@@ -356,47 +386,4 @@ loop_t Model_Infotable::to_loop_t()
     for (const auto &r: instance().all())
         loop += r.to_row_t();
     return loop;
-}
-
-//-------------------------------------------------------------------
-bool Model_Infotable::OpenCustomDialog(const wxString& RefType)
-{
-    return GetBoolInfo("CUSTOMDIALOG_OPEN:" + RefType, false);
-}
-
-void Model_Infotable::SetOpenCustomDialog(const wxString& RefType, bool Status)
-{
-    Set("CUSTOMDIALOG_OPEN:" + RefType, Status);
-}
-
-wxSize Model_Infotable::CustomDialogSize(const wxString& RefType)
-{
-    wxString strSize = GetStringInfo("CUSTOMDIALOG_SIZE:" + RefType, "0;0");
-    return wxSize(wxAtoi(strSize.BeforeFirst(';')), wxAtoi(strSize.AfterFirst(';')));
-}
-
-void Model_Infotable::SetCustomDialogSize(const wxString& RefType, const wxSize& Size)
-{
-    wxString strSize;
-    strSize << Size.GetWidth() << ";" << Size.GetHeight();
-    Set("CUSTOMDIALOG_SIZE:" + RefType, strSize);
-}
-
-int Model_Infotable::FindLabelInJSON(const wxString& entry, const wxString& labelID)
-{
-    // Important: Get the unsorted array
-    wxArrayString settings = Model_Infotable::instance().GetArrayStringSetting(entry);
-    int sel = 0;
-    for (const auto& data : settings)
-    {
-        Document j_doc;
-        if (j_doc.Parse(data.utf8_str()).HasParseError())
-            j_doc.Parse("{}");
-        Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
-        const wxString& s_label = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
-        if (s_label == labelID)
-            return sel;
-        ++sel;
-    }
-    return wxNOT_FOUND;
 }

@@ -78,7 +78,7 @@ void OptionSettingsGeneral::Create()
 
     headerStaticBoxSizer->Add(new wxStaticText(general_panel, wxID_STATIC, _("User Name")), g_flagsH);
 
-    wxString userName = Model_Infotable::instance().GetStringInfo("USERNAME", "");
+    wxString userName = Model_Infotable::instance().getString("USERNAME", "");
     wxTextCtrl* userNameTextCtr = new wxTextCtrl(general_panel, ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME, userName);
     userNameTextCtr->SetMinSize(wxSize(200, -1));
     mmToolTip(userNameTextCtr, _("The User Name is used as a title for the database."));
@@ -141,7 +141,7 @@ void OptionSettingsGeneral::Create()
     m_currencyStaticBoxSizer->AddSpacer(10);
 
     { // Locale
-        const wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
+        const wxString locale = Model_Infotable::instance().getString("LOCALE", "");
 
         wxBoxSizer* localeBaseSizer = new wxBoxSizer(wxHORIZONTAL);
         m_currencyStaticBoxSizer->Add(localeBaseSizer, wxSizerFlags(g_flagsV).Border(wxLEFT, 0));
@@ -185,7 +185,7 @@ void OptionSettingsGeneral::Create()
     financialYearStaticBoxSizer->Add(financialYearStaticBoxSizerGrid);
 
     financialYearStaticBoxSizerGrid->Add(new wxStaticText(general_panel, wxID_STATIC, _("First Day")), g_flagsH);
-    int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
+    int day = Model_Infotable::instance().getInt("FINANCIAL_YEAR_START_DAY", 1);
 
     wxSpinCtrl *textFPSDay = new wxSpinCtrl(general_panel, ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 31, day);
@@ -204,7 +204,7 @@ void OptionSettingsGeneral::Create()
         , wxDefaultPosition, wxSize(100, -1), financialMonthsSelection);
     financialYearStaticBoxSizerGrid->Add(m_month_selection, g_flagsH);
 
-    int monthItem = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
+    int monthItem = Model_Infotable::instance().getInt("FINANCIAL_YEAR_START_MONTH", 7);
     m_month_selection->SetSelection(monthItem - 1);
     mmToolTip(m_month_selection, _("Specify month for start of financial year"));
 
@@ -233,7 +233,7 @@ void OptionSettingsGeneral::Create()
     m_use_sound = new wxChoice(general_panel, wxID_STATIC
         , wxDefaultPosition, wxSize(100, -1)
         , sounds);
-    m_use_sound->SetSelection(Model_Setting::instance().GetIntSetting(INIDB_USE_TRANSACTION_SOUND, 0));
+    m_use_sound->SetSelection(Model_Setting::instance().getInt(INIDB_USE_TRANSACTION_SOUND, 0));
     mmToolTip(m_use_sound, _("Select whether to use sounds when entering transactions"));
     soundBaseSizer->Add(m_use_sound, g_flagsV);
 
@@ -323,9 +323,9 @@ bool OptionSettingsGeneral::SaveSettings()
     Option::instance().setDateFormat(m_date_format);
     SaveFinancialYearStart();
 
-    Model_Setting::instance().Set(INIDB_USE_ORG_DATE_COPYPASTE, m_use_org_date_copy_paste->GetValue());
-    Model_Setting::instance().Set(INIDB_USE_ORG_DATE_DUPLICATE, m_use_org_date_duplicate->GetValue());
-    Model_Setting::instance().Set(INIDB_USE_TRANSACTION_SOUND, m_use_sound->GetSelection());
+    Model_Setting::instance().setBool(INIDB_USE_ORG_DATE_COPYPASTE, m_use_org_date_copy_paste->GetValue());
+    Model_Setting::instance().setBool(INIDB_USE_ORG_DATE_DUPLICATE, m_use_org_date_duplicate->GetValue());
+    Model_Setting::instance().setInt(INIDB_USE_TRANSACTION_SOUND, m_use_sound->GetSelection());
 
     return true;
 }

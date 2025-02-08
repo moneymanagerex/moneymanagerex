@@ -265,7 +265,7 @@ const wxString mmex::getPathAttachment(const wxString &attachmentsFolder)
 
     if (AttachmentsFolder.Last() != sep)
         AttachmentsFolder.Append(sep);
-    if (Model_Infotable::instance().GetBoolInfo("ATTACHMENTSSUBFOLDER", true))
+    if (Model_Infotable::instance().getBool("ATTACHMENTSSUBFOLDER", true))
         AttachmentsFolder += wxString::Format("MMEX_%s_Attachments%s", wxFileName::FileName(LastDBPath).GetName(), sep);
 
     return AttachmentsFolder;

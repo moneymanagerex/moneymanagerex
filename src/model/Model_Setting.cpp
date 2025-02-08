@@ -33,10 +33,8 @@ Model_Setting::~Model_Setting()
 {
 }
 
-/**
-* Initialize the global Model_Setting table.
-* Reset the Model_Setting table or create the table if it does not exist.
-*/
+// Initialize the global Model_Setting table.
+// Reset the Model_Setting table or create the table if it does not exist.
 Model_Setting& Model_Setting::instance(wxSQLite3Database* db)
 {
     Model_Setting& ins = Singleton<Model_Setting>::instance();
@@ -44,84 +42,176 @@ Model_Setting& Model_Setting::instance(wxSQLite3Database* db)
     ins.destroy_cache();
     ins.ensure(db);
     ins.preload();
-
     return ins;
 }
 
-/** Return the static instance of Model_Setting table. */
+// Return the static instance of Model_Setting table.
 Model_Setting& Model_Setting::instance()
 {
     return Singleton<Model_Setting>::instance();
 }
 
-// Setter
-void Model_Setting::Set(const wxString& key, int value)
+// Returns true if key setting found
+bool Model_Setting::contains(const wxString& key)
 {
-    this->Set(key, wxString::Format("%d", value));
+    return !find(SETTINGNAME(key)).empty();
 }
 
-void Model_Setting::Set(const wxString& key, bool value)
+// Raw
+void Model_Setting::setRaw(const wxString& key, const wxString& newValue)
 {
-    this->Set(key, wxString::Format("%s", value ? "TRUE" : "FALSE"));
-}
-
-void Model_Setting::Set(const wxString& key, const wxColour& value)
-{
-    this->Set(key, wxString::Format("%d,%d,%d", value.Red(), value.Green(), value.Blue()));
-}
-
-void Model_Setting::Set(const wxString& key, const wxString& value)
-{
-    Data* setting = this->get_one(SETTINGNAME(key));
-    if (!setting) // not cached
-    {
-        Data_Set items = this->find(SETTINGNAME(key));
-        if (!items.empty()) setting = this->get(items[0].SETTINGID, this->db_);
+    // search in cache
+    Data* setting = get_one(SETTINGNAME(key));
+    if (!setting) {
+        // not found in cache; search in db
+        Data_Set items = find(SETTINGNAME(key));
+        if (!items.empty())
+            setting = get(items[0].SETTINGID, db_);
+        if (!setting) {
+            // not found; create
+            setting = create();
+            setting->SETTINGNAME = key;
+        }
     }
+    setting->SETTINGVALUE = newValue;
+    setting->save(db_);
+}
+const wxString Model_Setting::getRaw(const wxString& key, const wxString& defaultValue)
+{
+    // search in cache
+    Data* setting = get_one(SETTINGNAME(key));
     if (setting)
-    {
-        setting->SETTINGVALUE = value;
-        setting->save(this->db_);
-    }
-    else
-    {
-        setting = this->create();
-        setting->SETTINGNAME = key;
-        setting->SETTINGVALUE = value;
-        setting->save(this->db_);
-    }
+        return setting->SETTINGVALUE;
+    // search in db
+    Data_Set items = find(SETTINGNAME(key));
+    if (!items.empty())
+        return items[0].SETTINGVALUE;
+    // not found
+    return defaultValue;
 }
 
-void Model_Setting::Prepend(const wxString& key, const wxString& value, int limit)
+// String
+void Model_Setting::setString(const wxString& key, const wxString& newValue)
+{
+    setRaw(key, newValue);
+}
+const wxString Model_Setting::getString(const wxString& key, const wxString& defaultValue)
+{
+    return getRaw(key, defaultValue);
+}
+
+// Bool
+void Model_Setting::setBool(const wxString& key, bool newValue)
+{
+    setRaw(key, wxString::Format("%s", newValue ? "TRUE" : "FALSE"));
+}
+bool Model_Setting::getBool(const wxString& key, bool defaultValue)
+{
+    wxString rawValue = getRaw(key, "");
+    if (rawValue == "TRUE") return true;
+    if (rawValue == "FALSE") return false;
+    return defaultValue; 
+}
+
+// Int
+void Model_Setting::setInt(const wxString& key, int newValue)
+{
+    setRaw(key, wxString::Format("%d", newValue));
+}
+int Model_Setting::getInt(const wxString& key, int defaultValue)
+{
+    wxString rawValue = getRaw(key, "");
+    if (!rawValue.IsEmpty() && rawValue.IsNumber())
+        return wxAtoi(rawValue);
+    return defaultValue;
+}
+
+// Colour
+void Model_Setting::setColour(const wxString& key, const wxColour& newValue)
+{
+    setRaw(key, wxString::Format("%d,%d,%d",
+        newValue.Red(), newValue.Green(), newValue.Blue()
+    ));
+}
+const wxColour Model_Setting::getColour(const wxString& key, const wxColour& defaultValue)
+{
+    const wxString rawValue = getRaw(key, "");
+    if (!rawValue.IsEmpty()) {
+        wxRegEx pattern("([0-9]{1,3}),([0-9]{1,3}),([0-9]{1,3})");
+        if (pattern.Matches(rawValue)) {
+            const wxString r = pattern.GetMatch(rawValue, 1);
+            const wxString g = pattern.GetMatch(rawValue, 2);
+            const wxString b = pattern.GetMatch(rawValue, 3);
+            return wxColour(wxAtoi(r), wxAtoi(g), wxAtoi(b));
+        }
+        else {
+            return wxColour(rawValue);
+        }
+    }
+    return defaultValue;
+}
+
+//-------------------------------------------------------------------
+// ArrayString
+void Model_Setting::setArrayString(const wxString& key, const wxArrayString& a)
+{
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    json_writer.StartArray();
+    for (const auto& value : a) {
+        json_writer.String(value.utf8_str());
+    }
+    json_writer.EndArray();
+    const wxString& json_string = wxString::FromUTF8(json_buffer.GetString());
+    setRaw(key, json_string);
+    wxLogDebug("Model_Setting::setArrayString(%s): %s", key, json_string);
+}
+
+const wxArrayString Model_Setting::getArrayString(const wxString& key)
+{
+    wxString rawValue = getRaw(key, "");
+    Document j_doc;
+    if (rawValue.IsEmpty() ||
+        j_doc.Parse(rawValue.utf8_str()).HasParseError() ||
+        !j_doc.IsArray()
+    )
+        return wxArrayString();
+
+    wxArrayString a;
+    wxLogDebug("{{{ Model_Setting::getArrayString(%s)", key);
+    for (rapidjson::SizeType i = 0; i < j_doc.Size(); i++) {
+        wxASSERT(j_doc[i].IsString());
+        const auto value = wxString::FromUTF8(j_doc[i].GetString());
+        wxLogDebug("%s", value);
+        a.Add(value);
+    }
+    wxLogDebug("}}}");
+    return a;
+}
+
+void Model_Setting::prependArrayItem(const wxString& key, const wxString& value, int limit)
 {
     if (value.IsEmpty())
         return;
-    Data* setting = this->get_one(SETTINGNAME(key));
-    if (!setting) // not cached
-    {
-        Data_Set items = this->find(SETTINGNAME(key));
-        if (!items.empty()) setting = this->get(items[0].SETTINGID, this->db_);
+    Data* setting = get_one(SETTINGNAME(key));
+    if (!setting) { // not cached
+        Data_Set items = find(SETTINGNAME(key));
+        if (!items.empty())
+        setting = get(items[0].SETTINGID, db_);
+        if (!setting) {
+            setting = create();
+            setting->SETTINGNAME = key;
+        }
     }
-
-    if (!setting)
-    {
-        setting = this->create();
-        setting->SETTINGNAME = key;
-    }
-
-    int i = 1;
     wxArrayString a;
     a.Add(value);
 
     Document j_doc;
-    if (j_doc.Parse(setting->SETTINGVALUE.utf8_str()).HasParseError()) {
-        j_doc.Parse("[]");
-    }
-
-    if (j_doc.IsArray())
-    {
-        for (auto& v : j_doc.GetArray())
-        {
+    if (!j_doc.Parse(setting->SETTINGVALUE.utf8_str()).HasParseError()
+        && j_doc.IsArray()
+    ) {
+        int i = 1;
+        for (auto& v : j_doc.GetArray()) {
             if (i >= limit && limit != -1) break;
             if (v.IsString()) {
                 const auto item = wxString::FromUTF8(v.GetString());
@@ -136,114 +226,85 @@ void Model_Setting::Prepend(const wxString& key, const wxString& value, int limi
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartArray();
-    for (const auto& entry : a)
-    {
+    for (const auto& entry : a) {
         json_writer.String(entry.utf8_str());
     }
     json_writer.EndArray();
 
     setting->SETTINGVALUE = wxString::FromUTF8(json_buffer.GetString());
-    setting->save(this->db_);
+    setting->save(db_);
 }
 
-// Getter
-bool Model_Setting::GetBoolSetting(const wxString& key, bool default_value)
+//-------------------------------------------------------------------
+// VIEWACCOUNTS
+void Model_Setting::setViewAccounts(const wxString& newValue)
 {
-    wxString value = this->GetStringSetting(key, "");
-    if (value == "TRUE") return true;
-    if (value == "FALSE") return false;
-
-    return default_value; 
+    setString("VIEWACCOUNTS", newValue);
 }
-
-int Model_Setting::GetIntSetting(const wxString& key, int default_value)
+wxString Model_Setting::getViewAccounts()
 {
-    wxString value = this->GetStringSetting(key, "");
-    if (!value.IsEmpty() && value.IsNumber()) return wxAtoi(value);
-
-    return default_value;
+    return getString("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
 }
 
-const wxString Model_Setting::GetStringSetting(const wxString& key, const wxString& default_value)
+// THEME
+void Model_Setting::setTheme(const wxString& newValue)
 {
-    Data* setting = this->get_one(SETTINGNAME(key));
-    if (!setting) // not cached
-    {
-        Data_Set items = this->find(SETTINGNAME(key));
-        if (!items.empty()) return items[0].SETTINGVALUE;
-    }
-    else
-    {
-        return setting->SETTINGVALUE;
-    }
-    return default_value;
+    setString("THEME", newValue);
 }
-
-const wxArrayString Model_Setting::GetArrayStringSetting(const wxString& key)
+wxString Model_Setting::getTheme()
 {
-    wxString data;
-    Data* setting = this->get_one(SETTINGNAME(key));
-    if (!setting) // not cached
-    {
-        Data_Set items = this->find(SETTINGNAME(key));
-        if (items.empty()) {
-            return wxArrayString();
-        }
-        else {
-            data = items[0].SETTINGVALUE;
-        }
-    }
-    else
-    {
-        data = setting->SETTINGVALUE;
-    }
-
-    wxArrayString a;
-    Document j_doc;
-    if (j_doc.Parse(data.utf8_str()).HasParseError()) {
-        j_doc.Parse("[]");
-    }
-
-    if (j_doc.IsArray())
-    {
-        for (rapidjson::SizeType i = 0; i < j_doc.Size(); i++)
-        {
-            wxASSERT(j_doc[i].IsString());
-            const auto item = wxString::FromUTF8(j_doc[i].GetString());
-            wxLogDebug("%s", item);
-            a.Add(item);
-        }
-    }
-
-    return a;
+    return getString("THEME", "default");
 }
 
+// VIEWTRANSACTIONS
+void Model_Setting::setViewTransactions(const wxString& value)
+{
+    setString("VIEWTRANSACTIONS", value);
+}
+wxString Model_Setting::getViewTransactions()
+{
+    return getString("VIEWTRANSACTIONS", mmCheckingPanel::FILTER_STR_ALL);
+}
+
+// LASTFILENAME
 wxString Model_Setting::getLastDbPath()
 {
-    wxString path = this->GetStringSetting("LASTFILENAME", "");
-
-    if (!mmex::isPortableMode()) return path;
-
+    wxString path = getString("LASTFILENAME", "");
+    if (!mmex::isPortableMode())
+        return path;
     wxString vol = wxFileName(wxStandardPaths::Get().GetExecutablePath()).GetVolume();
-
-    if (!vol.IsEmpty())
-    {
-
+    if (!vol.IsEmpty()) {
         wxFileName fname(path);
         fname.SetVolume(vol); // database should be on portable device
-
         if (fname.FileExists()) {
             path = fname.GetFullPath();
         }
     }
-
     return path;
 }
 
-/* Returns true if key setting found */
-bool Model_Setting::ContainsSetting(const wxString& key)
+//-------------------------------------------------------------------
+// Trim usage settings in case if values greater than 500k
+void Model_Setting::shrinkUsageTable()
 {
-    return !this->find(SETTINGNAME(key)).empty();
+    const wxULongLong max_size = 524287;
+    const wxULongLong file_size = wxFileName(mmex::getPathUser(mmex::SETTINGS)).GetSize();
+    if (file_size < max_size)
+        return;
+
+    const wxString save_point = "SETTINGS_TRIM_USAGE";
+    wxDate date(wxDate::Now());
+    date.Subtract(wxDateSpan::Months(2));
+    db_->Savepoint(save_point);
+    try {
+        wxString sql = wxString::Format("delete from USAGE_V1 where USAGEDATE < \"%s\";", date.FormatISODate());
+        db_->ExecuteUpdate(sql);
+    }
+    catch (const wxSQLite3Exception& /*e*/) {
+        db_->Rollback(save_point);
+    }
+    db_->ReleaseSavepoint(save_point);
+    db_->Vacuum();
 }
 
 row_t Model_Setting::to_row_t()
@@ -252,64 +313,4 @@ row_t Model_Setting::to_row_t()
     for (const auto &r: instance().all())
         row(r.SETTINGNAME.ToStdWstring()) = r.SETTINGVALUE;
     return row;
-}
-
-//-------------------------------------------------------------------
-wxString Model_Setting::GetViewAccounts()
-{
-    return GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
-}
-
-void Model_Setting::SetViewAccounts(const wxString& value)
-{
-    Set("VIEWACCOUNTS", value);
-}
-
-//-------------------------------------------------------------------
-wxString Model_Setting::Theme()
-{
-    return GetStringSetting("THEME", "default");
-}
-
-void Model_Setting::SetTheme(const wxString& value)
-{
-    Set("THEME", value);
-}
-
-//-------------------------------------------------------------------
-wxString Model_Setting::ViewTransactions()
-{
-    return GetStringSetting("VIEWTRANSACTIONS", mmCheckingPanel::FILTER_STR_ALL);
-}
-
-void Model_Setting::SetViewTransactions(const wxString& value)
-{
-    Set("VIEWTRANSACTIONS", value);
-}
-
-// Trim usage settings in case if values greater than 500k
-void Model_Setting::ShrinkUsageTable()
-{
-    const wxULongLong max_size = 524287;
-    const wxULongLong file_size = wxFileName(mmex::getPathUser(mmex::SETTINGS)).GetSize();
-    if (file_size < max_size)
-    {
-        return;
-    }
-
-    const wxString save_point = "SETTINGS_TRIM_USAGE";
-    wxDate date(wxDate::Now());
-    date.Subtract(wxDateSpan::Months(2));
-    db_->Savepoint(save_point);
-    try
-    {
-        wxString sql = wxString::Format("delete from USAGE_V1 where USAGEDATE < \"%s\";", date.FormatISODate());
-        db_->ExecuteUpdate(sql);
-    }
-    catch (const wxSQLite3Exception& /*e*/)
-    {
-        db_->Rollback(save_point);
-    }
-    db_->ReleaseSavepoint(save_point);
-    db_->Vacuum();
 }

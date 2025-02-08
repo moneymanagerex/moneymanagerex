@@ -78,7 +78,7 @@ void OptionSettingsView::Create()
     viewSizer->Add(viewChoiceSizer);
 
     viewChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _("Accounts Visible")), g_flagsH);
-    const wxString vAccts = Model_Setting::instance().GetViewAccounts();
+    const wxString vAccts = Model_Setting::instance().getViewAccounts();
     wxArrayString view_accounts;
     view_accounts.Add(VIEW_ACCOUNTS_ALL_STR);
     view_accounts.Add(VIEW_ACCOUNTS_OPEN_STR);
@@ -99,7 +99,7 @@ void OptionSettingsView::Create()
     list.Add(": ");
     list.Add(" : ");
 
-    wxString delimiter = Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER",":");
+    wxString delimiter = Model_Infotable::instance().getString("CATEG_DELIMITER",":");
     m_categ_delimiter_list = new wxComboBox(
         panelWindow, wxID_ANY, "", wxDefaultPosition, wxDefaultSize,
         list
@@ -423,13 +423,13 @@ bool OptionSettingsView::SaveSettings()
 {
     auto delimiter = m_categ_delimiter_list->GetValue();
     if (delimiter.empty()) delimiter = ":";
-    Model_Infotable::instance().Set("CATEG_DELIMITER", delimiter);
+    Model_Infotable::instance().setString("CATEG_DELIMITER", delimiter);
 
     wxString accVisible = VIEW_ACCOUNTS_ALL_STR;
     wxStringClientData* visible_acc_obj = static_cast<wxStringClientData*>(m_choice_visible->GetClientObject(m_choice_visible->GetSelection()));
     if (visible_acc_obj)
         accVisible = visible_acc_obj->GetData();
-    Model_Setting::instance().SetViewAccounts(accVisible);
+    Model_Setting::instance().setViewAccounts(accVisible);
 
     int themeMode = m_theme_mode->GetSelection();
     Option::instance().setThemeMode(themeMode);
@@ -475,13 +475,13 @@ bool OptionSettingsView::SaveSettings()
     mmColors::userDefColor6 = m_UDFCB6->GetBackgroundColour();
     mmColors::userDefColor7 = m_UDFCB7->GetBackgroundColour();
 
-    Model_Infotable::instance().Set("USER_COLOR1", mmColors::userDefColor1);
-    Model_Infotable::instance().Set("USER_COLOR2", mmColors::userDefColor2);
-    Model_Infotable::instance().Set("USER_COLOR3", mmColors::userDefColor3);
-    Model_Infotable::instance().Set("USER_COLOR4", mmColors::userDefColor4);
-    Model_Infotable::instance().Set("USER_COLOR5", mmColors::userDefColor5);
-    Model_Infotable::instance().Set("USER_COLOR6", mmColors::userDefColor6);
-    Model_Infotable::instance().Set("USER_COLOR7", mmColors::userDefColor7);
+    Model_Infotable::instance().setColour("USER_COLOR1", mmColors::userDefColor1);
+    Model_Infotable::instance().setColour("USER_COLOR2", mmColors::userDefColor2);
+    Model_Infotable::instance().setColour("USER_COLOR3", mmColors::userDefColor3);
+    Model_Infotable::instance().setColour("USER_COLOR4", mmColors::userDefColor4);
+    Model_Infotable::instance().setColour("USER_COLOR5", mmColors::userDefColor5);
+    Model_Infotable::instance().setColour("USER_COLOR6", mmColors::userDefColor6);
+    Model_Infotable::instance().setColour("USER_COLOR7", mmColors::userDefColor7);
 
     return true;
 }
