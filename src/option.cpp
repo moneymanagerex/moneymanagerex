@@ -21,6 +21,7 @@
 
 #include "option.h"
 #include "constants.h"
+#include "util.h"
 #include "images_list.h"
 #include "singleton.h"
 #include "model/Model_Infotable.h"
@@ -67,6 +68,7 @@ void Option::load(bool include_infotable)
         loadSharePrecision();
         loadAssetCompounding();
         loadReportingFirstDay();
+        loadReportingFirstWeekday();
         loadFinancialFirstDay();
         loadFinancialFirstMonth();
         loadBudgetDaysOffset();
@@ -214,34 +216,61 @@ void Option::setAssetCompounding(const int value)
 
 void Option::loadReportingFirstDay()
 {
-    m_reporting_firstday = Model_Infotable::instance().GetIntInfo("REPORTING_FIRSTDAY", 1);
-    if (m_reporting_firstday < 1) m_reporting_firstday = 1;
-    if (m_reporting_firstday > 28) m_reporting_firstday = 28;
+    int value = Model_Infotable::instance().GetIntInfo("REPORTING_FIRSTDAY", 1);
+    if (value < 1) value = 1;
+    if (value > 28) value = 28;
+    m_reporting_first_day = value;
 }
-void Option::setReportingFirstDay(const int value)
+void Option::setReportingFirstDay(int value)
 {
+    if (value < 1) value = 1;
+    if (value > 28) value = 28;
     Model_Infotable::instance().Set("REPORTING_FIRSTDAY", value);
-    m_reporting_firstday = value;
+    m_reporting_first_day = value;
+}
+
+void Option::loadReportingFirstWeekday()
+{
+    wxString valueStr = Model_Infotable::instance().GetStringInfo("REPORTING_FIRST_WEEKDAY", "");
+    m_reporting_first_weekday =
+        (valueStr == "Mon") ? wxDateTime::WeekDay::Mon :
+        wxDateTime::WeekDay::Sun;
+}
+void Option::setReportingFirstWeekday(wxDateTime::WeekDay value)
+{
+    if (value != wxDateTime::WeekDay::Mon)
+        value = wxDateTime::WeekDay::Sun;
+    Model_Infotable::instance().Set("REPORTING_FIRST_WEEKDAY", g_short_days_of_week[value]);
+    m_reporting_first_weekday = value;
 }
 
 void Option::loadFinancialFirstDay()
 {
-    m_financial_first_day = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");
+    int value = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
+    if (value < 1) value = 1;
+    if (value > 28) value = 28;
+    m_financial_first_day = value;
 }
-void Option::setFinancialFirstDay(const wxString& setting)
+void Option::setFinancialFirstDay(int value)
 {
-    m_financial_first_day = setting;
-    Model_Infotable::instance().Set("FINANCIAL_YEAR_START_DAY", setting);
+    if (value < 1) value = 1;
+    if (value > 28) value = 28;
+    Model_Infotable::instance().Set("FINANCIAL_YEAR_START_DAY", value);
+    m_financial_first_day = value;
 }
 
 void Option::loadFinancialFirstMonth()
 {
-    m_financial_first_month = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "7");
+    int value = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
+    if (value < 1) value = 1;
+    if (value > 12) value = 12;
+    m_financial_first_month = wxDateTime::Month(value - 1);
 }
-void Option::setFinancialFirstMonth(const wxString& setting)
+void Option::setFinancialFirstMonth(const wxDateTime::Month value)
 {
-    m_financial_first_month = setting;
-    Model_Infotable::instance().Set("FINANCIAL_YEAR_START_MONTH", setting);
+    wxString valueStr = wxString::Format("%d", value + 1);
+    Model_Infotable::instance().Set("FINANCIAL_YEAR_START_MONTH", valueStr);
+    m_financial_first_month = value;
 }
 
 void Option::loadBudgetDaysOffset()

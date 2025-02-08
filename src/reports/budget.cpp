@@ -64,8 +64,9 @@ void mmReportBudget::SetBudgetMonth(wxString budgetYear, wxDateTime& startDate, 
 
 void mmReportBudget::GetFinancialYearValues(int& day, wxDateTime::Month& month) const
 {
-    day = wxAtoi(Option::instance().getFinancialFirstDay());
-    month = static_cast<wxDateTime::Month>(wxAtoi(Option::instance().getFinancialFirstMonth()) - 1);
+    day = Option::instance().getFinancialFirstDay();
+    month = Option::instance().getFinancialFirstMonth();
+    // #7159: day is limited to 1..28; the following code is no-op
     if ((day > 28) && (month == wxDateTime::Feb))
     {
         day = 28;

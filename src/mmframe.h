@@ -66,8 +66,8 @@ public:
     void setGotoAccountID(int64 account_id, Fused_Transaction::IdRepeat fused_id = {-1, 0});
     bool financialYearIsDifferent()
     {
-        return (Option::instance().getFinancialFirstDay() != "1" ||
-                Option::instance().getFinancialFirstMonth() != "1");
+        return Option::instance().getFinancialFirstDay() != 1 ||
+            Option::instance().getFinancialFirstMonth() != wxDateTime::Month::Jan;
     }
     /// return the index (mmex::EDocFile) to return the correct file.
     int getHelpFileIndex() const;

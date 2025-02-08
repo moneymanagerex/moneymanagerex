@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-02-08 09:09+0000\n"
+"POT-Creation-Date: 2025-01-22 07:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1863,20 +1863,20 @@ msgstr ""
 msgid "64-bit"
 msgstr ""
 
-#: constants.cpp:192
+#: constants.cpp:194
 msgid "ALL"
 msgstr ""
 
-#: constants.cpp:193 mmframe.cpp:2160 model/Model_Account.cpp:40
+#: constants.cpp:195 mmframe.cpp:2160 model/Model_Account.cpp:40
 #: model/Model_Asset.cpp:38
 msgid "Open"
 msgstr ""
 
-#: constants.cpp:194 model/Model_Account.cpp:41 model/Model_Asset.cpp:37
+#: constants.cpp:196 model/Model_Account.cpp:41 model/Model_Asset.cpp:37
 msgid "Closed"
 msgstr ""
 
-#: constants.cpp:195 mmcheckingpanel.cpp:712 mmframe.cpp:502
+#: constants.cpp:197 mmcheckingpanel.cpp:712 mmframe.cpp:502
 msgid "Favorites"
 msgstr ""
 
@@ -4665,7 +4665,7 @@ msgstr ""
 msgid "CustomField validation error"
 msgstr ""
 
-#: mmex.cpp:177
+#: mmex.cpp:178
 msgid ""
 "Fatal error occured.\n"
 "Application will be terminated."
