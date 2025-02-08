@@ -32,6 +32,7 @@
 
 #include "model/Model_Infotable.h"
 #include "model/Model_Currency.h"
+#include "model/Model_Stock.h"
 #include "model/Model_Attachment.h"
 
 #include <wx/valnum.h>

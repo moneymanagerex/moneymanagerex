@@ -17,14 +17,16 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "Model_Usage.h"
-#include "Model_Setting.h"
-#include "util.h"
-#include "constants.h"
-#include "paths.h"
 #include <wx/platinfo.h>
 #include <wx/thread.h>
 #include <wx/intl.h>
+
+#include "Model_Usage.h"
+#include "Model_Setting.h"
+#include "util.h"
+#include "reports/reportbase.h"
+#include "constants.h"
+#include "paths.h"
 #include "option.h"
 
 Model_Usage::Model_Usage()

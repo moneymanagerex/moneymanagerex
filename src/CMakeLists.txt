@@ -149,6 +149,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     mmTextCtrl.cpp
     mmTextCtrl.h
     mmTips.h
+    mmTreeItemData.cpp
+    mmTreeItemData.h
     option.cpp
     option.h
     optiondialog.cpp
@@ -172,6 +174,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     payeedialog.cpp
     payeedialog.h
     platfdep.h
+    primitive.cpp
+    primitive.h
     recentfiles.cpp
     recentfiles.h
     relocatecategorydialog.cpp

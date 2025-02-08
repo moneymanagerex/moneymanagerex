@@ -24,6 +24,16 @@
 #pragma comment(lib,"wldap32.lib")
 #endif
 
+#include <map>
+#include <cwchar>
+#include <locale>
+#include <lua.hpp>
+#include <fmt/core.h>
+#include <wx/display.h>
+#include <wx/sstream.h>
+#include <wx/xml/xml.h>
+#include <wx/fs_mem.h>
+
 #include "build.h"
 #include "util.h"
 #include "constants.h"
@@ -31,35 +41,12 @@
 #include "platfdep.h"
 #include "paths.h"
 #include "validators.h"
-#include "model/Model_Currency.h"
-#include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
+#include "model/Model_Infotable.h"
+#include "model/Model_Currency.h"
 #include "model/Model_CurrencyHistory.h"
-#include <wx/display.h>
-#include <wx/sstream.h>
-#include <wx/xml/xml.h>
-#include <map>
-#include <lua.hpp>
-#include <wx/fs_mem.h>
-#include <fmt/core.h>
-#include <cwchar>
-#include <locale>
 
 using namespace rapidjson;
-
-void StringBuilder::append(const wxString x) {
-    if (x.empty())
-        return;
-    buffer.Append(x);
-    flag = true;
-}
-
-void StringBuilder::sep(const wxString s) {
-    if (!flag)
-        return;
-    buffer.Append(s);
-    flag = false;
-}
 
 wxString JSON_PrettyFormated(rapidjson::Document& j_doc)
 {
@@ -80,55 +67,6 @@ wxString JSON_Formated(rapidjson::Document& j_doc)
 }
 
 //----------------------------------------------------------------------------
-
-mmTreeItemData::mmTreeItemData(int type, int64 id)
-    : type_(type)
-    , id_(id)
-    , report_(nullptr)
-{
-    stringData_ = wxString::Format("%lld", id);
-}
-
-mmTreeItemData::mmTreeItemData(int type, const wxString& data)
-    : type_(type)
-    , stringData_(data)
-    , report_(nullptr)
-{}
-
-mmTreeItemData::mmTreeItemData(int type, int64 id, const wxString& data)
-    : type_(type)
-    , id_(id)
-    , stringData_(data)
-    , report_(nullptr)
-{}
-
-mmTreeItemData::mmTreeItemData(const wxString& data, mmPrintableBase* report)
-    : type_(mmTreeItemData::REPORT)
-    , stringData_(data)
-    , report_(report)
-{
-    const wxString& n = wxString::Format("REPORT_%d", report_->getReportId());
-    const wxString& settings = Model_Infotable::instance().getString(n, "");
-    report_->initReportSettings(settings);
-}
-
-mmTreeItemData::mmTreeItemData(mmPrintableBase* report, const wxString& data)
-    : type_(mmTreeItemData::GRM)
-    , stringData_(data)
-    , report_(report)
-{}
-
-//----------------------------------------------------------------------------
-
-int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
-{
-    return s1.CmpNoCase(s2);
-}
-
-int CaseInsensitiveLocaleCmp(const wxString &s1, const wxString &s2)
-{
-    return std::wcscoll(s1.Lower().wc_str(),s2.Lower().wc_str());
-}
 
 void correctEmptyFileExt(const wxString& ext, wxString & fileName)
 {
@@ -169,21 +107,6 @@ wxColour mmColors::userDefColor4;
 wxColour mmColors::userDefColor5;
 wxColour mmColors::userDefColor6;
 wxColour mmColors::userDefColor7;
-
-wxColour getUDColour(const int c)
-{
-    switch (c)
-    {
-    case 1: return  mmColors::userDefColor1;
-    case 2: return  mmColors::userDefColor2;
-    case 3: return  mmColors::userDefColor3;
-    case 4: return  mmColors::userDefColor4;
-    case 5: return  mmColors::userDefColor5;
-    case 6: return  mmColors::userDefColor6;
-    case 7: return  mmColors::userDefColor7;
-    }
-    return wxNullColour;
-}
 
 //*-------------------------------------------------------------------------*//
 
@@ -307,36 +230,6 @@ void csv2tab_separated_values(wxString& line, const wxString& delimit)
 }
 
 //* Date Functions----------------------------------------------------------*//
-
-const wxString MONTHS[12] =
-{
-    wxTRANSLATE("January"), wxTRANSLATE("February"), wxTRANSLATE("March"),
-    wxTRANSLATE("April"),   wxTRANSLATE("May"),      wxTRANSLATE("June"),
-    wxTRANSLATE("July"),    wxTRANSLATE("August"),   wxTRANSLATE("September"),
-    wxTRANSLATE("October"), wxTRANSLATE("November"), wxTRANSLATE("December")
-};
-
-const wxString MONTHS_SHORT[12] =
-{
-    wxTRANSLATE("Jan"), wxTRANSLATE("Feb"), wxTRANSLATE("Mar"),
-    wxTRANSLATE("Apr"), wxTRANSLATE("May"), wxTRANSLATE("Jun"),
-    wxTRANSLATE("Jul"), wxTRANSLATE("Aug"), wxTRANSLATE("Sep"),
-    wxTRANSLATE("Oct"), wxTRANSLATE("Nov"), wxTRANSLATE("Dec")
-};
-
-const wxString g_days_of_week[7] =
-{
-    wxTRANSLATE("Sunday"), wxTRANSLATE("Monday"), wxTRANSLATE("Tuesday"),
-    wxTRANSLATE("Wednesday"), wxTRANSLATE("Thursday"), wxTRANSLATE("Friday"),
-    wxTRANSLATE("Saturday")
-};
-
-const wxString g_short_days_of_week[7] =
-{
-    wxTRANSLATE("Sun"), wxTRANSLATE("Mon"), wxTRANSLATE("Tue"),
-    wxTRANSLATE("Wed"), wxTRANSLATE("Thu"), wxTRANSLATE("Fri"),
-    wxTRANSLATE("Sat")
-};
 
 const wxString mmGetDateTimeForDisplay(const wxString &datetime_iso, const wxString& format)
 {
@@ -545,20 +438,6 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
         }
     }
     return false;
-}
-
-bool mmParseISODate(const wxString& in, wxDateTime& out)
-{
-    if (in.IsEmpty() || !(out.ParseDateTime(in) || out.ParseDate(in))) {
-        out = wxDateTime::Today();
-        return false;
-    }
-    int year = out.GetYear();
-    if (year < 50)
-        out.Add(wxDateSpan::Years(2000));
-    else if (year < 100)
-        out.Add(wxDateSpan::Years(1900));
-    return true;
 }
 
 const wxDateTime getUserDefinedFinancialYear(const bool prevDayRequired)
@@ -1642,22 +1521,6 @@ const wxRect GetDefaultMonitorRect()
 }
 
 // ----------------------------------------
-
-const wxString mmTrimAmount(const wxString& value, const wxString& decimal, const wxString& replace_decimal)
-{
-    wxString str;
-    wxString valid_strings = "-0123456789" + decimal;
-    for (const auto& c : value) {
-        if (valid_strings.Contains(c)) {
-            str += c;
-        }
-    }
-    if (!replace_decimal.empty()) {
-        str.Replace(decimal, replace_decimal);
-    }
-    return str;
-}
-
 mmDates::~mmDates()
 {
 }
@@ -1874,44 +1737,11 @@ wxImageList* createImageList(const int size)
 
 }
 
-const wxColor* bestFontColour(const wxColour& background)
-{
-    // http://stackoverflow.com/a/3943023/112731
-
-    int r = static_cast<int>(background.Red());
-    int g = static_cast<int>(background.Green());
-    int b = static_cast<int>(background.Blue());
-    int k = (r * 299 + g * 587 + b * 114);
-
-    wxLogDebug("best FontColour: [%s] -> r=%d, g=%d, b=%d | k: %d"
-        , background.GetAsString(wxC2S_HTML_SYNTAX), r, g, b, k);
-
-    return (k > 149000) ? wxBLACK : wxWHITE;
-}
-
 // Ideally we would use wxToolTip::Enable() to enable or disable tooltips globally.
 // but this only works on some platforms! 
 void mmToolTip(wxWindow* widget, const wxString& tip)
 {
     if (Option::instance().getShowToolTips()) widget->SetToolTip(tip);
-}
-
-int pow10(const int y)
-{
-    switch (y)
-    {
-    case 0: return 1;
-    case 1: return 10;
-    case 2: return 100;
-    case 3: return 1000;
-    case 4: return 10000;
-    case 5: return 100000;
-    case 6: return 1000000;
-    case 7: return 10000000;
-    case 8: return 100000000;
-    case 9: return 1000000000;
-    default: return 10;
-    }
 }
 
 wxString HTMLEncode(const wxString& input)
@@ -2011,16 +1841,6 @@ void mmFontSize(wxWindow* widget)
     {
         widget->SetFont(widget->GetFont().Larger());
     }
-}
-
-bool isValidURI(const wxString& validate)
-{
-    wxString uri = validate.Lower().Trim();
-    wxRegEx pattern(R"(^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$)");
-    if (pattern.Matches(uri))
-        return true;
-
-    return false;
 }
 
 //

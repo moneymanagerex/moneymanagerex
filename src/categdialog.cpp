@@ -28,8 +28,9 @@
 #include "constants.h"
 #include "webapp.h"
 #include "model/Model_Setting.h"
-#include "model/Model_Payee.h"
 #include "model/Model_Infotable.h"
+#include "model/Model_Payee.h"
+#include "model/Model_CustomFieldData.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmCategDialog, wxDialog);
 wxIMPLEMENT_DYNAMIC_CLASS(mmCategDialogTreeCtrl, wxTreeCtrl);

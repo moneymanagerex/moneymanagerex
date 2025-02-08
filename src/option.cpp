@@ -18,7 +18,6 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-
 #include "option.h"
 #include "constants.h"
 #include "util.h"
@@ -44,6 +43,39 @@ const std::vector<std::pair<Option::COMPOUNDING_ID, int> > Option::COMPOUNDING_N
     { Option::COMPOUNDING_ID_WEEK,  52 },
     { Option::COMPOUNDING_ID_MONTH, 12 },
     { Option::COMPOUNDING_ID_YEAR,  1 },
+};
+
+const std::vector<std::pair<wxString, wxString> > Option::CHECKING_RANGE_DEFAULT =
+{
+    { "A",            wxString(wxTRANSLATE("All")) },
+    { "A .. W",       wxString(wxTRANSLATE("All to week")) },
+    { "A .. M",       wxString(wxTRANSLATE("All to month")) },
+    { "A .. Y",       wxString(wxTRANSLATE("All to year")) },
+    { "Y",            wxString(wxTRANSLATE("Current year")) },
+    { "Y F",          wxString(wxTRANSLATE("Current financial year")) },
+    { "Q",            wxString(wxTRANSLATE("Current quarter")) },
+    { "M",            wxString(wxTRANSLATE("Current month")) },
+    { "W",            wxString(wxTRANSLATE("Current week")) },
+    { "T",            wxString(wxTRANSLATE("Today")) },
+    { "S .. A",       wxString(wxTRANSLATE("From statement")) },
+    { "1 S .. A",     wxString(wxTRANSLATE("From 1 day after statement")) },
+    { "",             "" },
+    { "Y .. W",       wxString(wxTRANSLATE("From current year to week")) },
+    { "Y .. M",       wxString(wxTRANSLATE("From current year to month")) },
+    { "M .. W",       wxString(wxTRANSLATE("From current month to week")) },
+    { "-1 Y",         wxString(wxTRANSLATE("Previous year")) },
+    { "-1 M",         wxString(wxTRANSLATE("Previous month")) },
+    { "-1 W",         wxString(wxTRANSLATE("Previous week")) },
+    { "-1 Y .. A",    wxString(wxTRANSLATE("From previous year")) },
+    { "-1 Y .. M",    wxString(wxTRANSLATE("From previous year to month")) },
+    { "-1 M .. A",    wxString(wxTRANSLATE("From previous month")) },
+    { "-1 M .. W",    wxString(wxTRANSLATE("From previous month to week")) },
+    { "-1 W .. A",    wxString(wxTRANSLATE("From previous week")) },
+    { "-1 W .. W",    wxString(wxTRANSLATE("From previous to current week")) },
+    { "T .. A, -1 Y", wxString(wxTRANSLATE("From 1 year ago")) },
+    { "T .. A, -1 Q", wxString(wxTRANSLATE("From 1 quarter ago")) },
+    { "T .. A, -1 M", wxString(wxTRANSLATE("From 1 month ago")) },
+    { "T .. A, -1 W", wxString(wxTRANSLATE("From 1 week ago")) },
 };
 
 //----------------------------------------------------------------------------
@@ -556,11 +588,59 @@ void Option::setNavigationIconSize(const int value)
 void Option::loadCheckingRange()
 {
     m_checking_range = Model_Setting::instance().getArrayString("CHECKING_RANGE");
+    parseCheckingRange();
 }
 void Option::setCheckingRange(const wxArrayString &a)
 {
     Model_Setting::instance().setArrayString("CHECKING_RANGE", a);
     m_checking_range = a;
+    parseCheckingRange();
+}
+void Option::parseCheckingRange()
+{
+    wxLogDebug("{{{ Option::parseCheckingRange()");
+
+    m_checking_range_a.clear();
+    m_checking_range_m = 0;
+
+    for (wxString &str : m_checking_range) {
+        if (str.empty()) {
+            if (m_checking_range_m == 0)
+                m_checking_range_m = m_checking_range_a.size();
+            continue;
+        }
+        DateRange2::Spec spec;
+        if (!spec.parseSpec(str))
+            continue;
+        m_checking_range_a.push_back(spec);
+    }
+
+    if (!m_checking_range_a.empty())
+        goto done;
+
+    for (auto &range : CHECKING_RANGE_DEFAULT) {
+        wxString label = range.first;
+        if (label.empty()) {
+            if (m_checking_range_m == 0)
+                m_checking_range_m = m_checking_range_a.size();
+            continue;
+        }
+        wxString name = wxGetTranslation(range.second);
+        DateRange2::Spec spec;
+        if (!spec.parseSpec(range.first, range.second))
+            continue;
+        m_checking_range_a.push_back(spec);
+    }
+
+    done:
+    if (m_checking_range_m == 0)
+        m_checking_range_m = m_checking_range_a.size();
+
+    wxLogDebug("m=[%d], n=[%zu]", m_checking_range_m, m_checking_range_a.size());
+    for (DateRange2::Spec &spec : m_checking_range_a) {
+        wxLogDebug("label=[%s], name=[%s]", spec.getLabel(), spec.getName());
+    }
+    wxLogDebug("}}}");
 }
 
 int Option::getHtmlScale() const noexcept

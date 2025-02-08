@@ -21,11 +21,14 @@
 #pragma once
 
 #include "defs.h"
-#include "reports/reportbase.h"
-#include <wx/clipbrd.h>
-#include <wx/valnum.h>
+#include "primitive.h"
+#include "option.h"
+
+#include <algorithm>
 #include <map>
 #include <curl/curl.h>
+#include <wx/clipbrd.h>
+#include <wx/valnum.h>
 #include <rapidjson/document.h>
 
 class mmGUIApp;
@@ -34,29 +37,6 @@ class mmGUIApp;
 wxString JSON_PrettyFormated(rapidjson::Document& j_doc);
 //Returns a JSON formatted string from RapidJson DOM
 wxString JSON_Formated(rapidjson::Document& j_doc);
-
-typedef wxString::const_iterator StringIt;
-
-struct StringBuilder
-{
-    wxString buffer = "";
-    bool flag = false;
-
-    void append(const wxString x);
-    void sep(const wxString s = " ");
-    void flush();
-    void reset();
-};
-
-inline void StringBuilder::flush() {
-    flag = false;
-}
-
-inline void StringBuilder::reset() {
-    // make buffer empty, but don't free memory
-    buffer.Empty();
-    flag = false;
-}
 
 struct ValuePair
 {
@@ -99,103 +79,29 @@ inline wxString mmListBoxItem::getName() const { return name_; }
 
 //----------------------------------------------------------------------------
 
-class mmTreeItemData : public wxTreeItemData
-{
-public:
-    enum {
-        HOME_PAGE,
-        HELP_PAGE_MAIN,
-        HELP_PAGE_STOCKS,
-        HELP_PAGE_GRM,
-        HELP_BUDGET,
-        HELP_REPORT,
-        CHECKING,
-        BUDGET,
-        STOCK,
-        REPORT,
-        GRM,
-        ASSETS,
-        BILLS,
-        FILTER,
-        FILTER_REPORT,
-        MENU_REPORT,
-        DO_NOTHING
-    };
-
-private:
-    int type_;
-    int64 id_ = -1;
-    wxString stringData_;
-    wxSharedPtr<mmPrintableBase> report_;
-
-public:
-    mmTreeItemData(int type, int64 id);
-    mmTreeItemData(int type, const wxString& data);
-    mmTreeItemData(int type, int64 id, const wxString& data);
-    mmTreeItemData(const wxString& data, mmPrintableBase* report);
-    mmTreeItemData(mmPrintableBase* report, const wxString& data);
-    
-    ~mmTreeItemData() {}
-
-    int getType() const;
-    int64 getId() const;
-    const wxString getString() const;
-    mmPrintableBase* getReport() const;
-    bool isReadOnly() const;
-};
-
-inline int mmTreeItemData::getType() const { return type_; }
-inline int64 mmTreeItemData::getId() const { return id_; }
-inline const wxString mmTreeItemData::getString() const { return stringData_; }
-inline mmPrintableBase* mmTreeItemData::getReport() const { return report_.get(); }
-
-inline bool operator==(const mmTreeItemData& lhs, const mmTreeItemData& rhs)
-{
-    return (
-        lhs.getType()   == rhs.getType() &&
-        lhs.getId()     == rhs.getId() &&
-        lhs.getString() == rhs.getString()
-    );
-};
-//----------------------------------------------------------------------------
-
-int CaseInsensitiveCmp(const wxString &s1, const wxString &s2);
-struct caseInsensitiveComparator {
-    bool operator()(const wxString& lhs, const wxString& rhs) const {
-        return lhs.CmpNoCase(rhs) < 0;
-    }
-};
-int CaseInsensitiveLocaleCmp(const wxString &s1, const wxString &s2);
 const wxString inQuotes(const wxString& label, const wxString& delimiter);
 void csv2tab_separated_values(wxString& line, const wxString& delimit);
 void correctEmptyFileExt(const wxString& ext, wxString & fileName );
 
 void mmLoadColorsFromDatabase(const bool def = false);
-wxColour getUDColour(const int c);
 
-class mmColors
-{
-public:
-    static wxColour userDefColor1;
-    static wxColour userDefColor2;
-    static wxColour userDefColor3;
-    static wxColour userDefColor4;
-    static wxColour userDefColor5;
-    static wxColour userDefColor6;
-    static wxColour userDefColor7;
-};
 //----------------------------------------------------------------------------
 
 bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList);
 enum yahoo_price_type { FIAT = 0, SHARES };
 bool getOnlineCurrencyRates(wxString& msg, const int64 curr_id = -1, const bool used_only = true);
-bool get_yahoo_prices(std::map<wxString, double>& symbols
-    , std::map<wxString, double>& out
-    , const wxString& base_currency_symbol
-    , wxString& output
-    , int type);
+bool get_yahoo_prices(
+    std::map<wxString, double>& symbols,
+    std::map<wxString, double>& out,
+    const wxString& base_currency_symbol,
+    wxString& output,
+    int type
+);
 bool getCoincapInfoFromSymbol(const wxString& symbol, wxString& out_id, double& price_usd, wxString& output);
-bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std::map<wxDateTime, double> &historical_rates, wxString &msg);
+bool getCoincapAssetHistory(
+    const wxString& asset_id, wxDateTime begin_date,
+    std::map<wxDateTime, double> &historical_rates, wxString &msg
+);
 
 wxString cleanseNumberString(const wxString& str, const bool decimal);
 double cleanseNumberStringToDouble(const wxString& str, const bool decimal);
@@ -210,35 +116,16 @@ void clearVFprintedFiles(const wxString& name);
 const wxRect GetDefaultMonitorRect();
 
 //* Date Functions----------------------------------------------------------*//
-extern const wxString MONTHS[12];
-extern const wxString MONTHS_SHORT[12];
-extern const wxString g_days_of_week[7];
-extern const wxString g_short_days_of_week[7];
 
 const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 const std::map<wxString, wxString> &date_formats_regex();
-bool mmParseISODate(const wxString& in_str, wxDateTime& out_date);
 const wxString mmGetDateTimeForDisplay(const wxString &datetime_iso, const wxString& format = Option::instance().getDateFormat());
 const wxString mmGetDateForDisplay(const wxString &datetime_iso, const wxString& format = Option::instance().getDateFormat());
 const wxString mmGetTimeForDisplay(const wxString& datetime_iso);
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString& sDateMask);
-extern const std::vector<std::pair<wxString, wxString>> g_date_formats_map();
+extern const std::vector<std::pair<wxString, wxString> > g_date_formats_map();
 extern const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding;
 
-inline const wxString mmGetMonthName(const wxDateTime::Month& month)
-{
-    return MONTHS[static_cast<int>(month)];
-}
-
-inline wxString dateISO(wxDateTime date)
-{
-    return (date == wxInvalidDateTime) ? "" : date.FormatISODate();
-}
-
-inline wxString dateTimeISO(wxDateTime dateTime)
-{
-    return (dateTime == wxInvalidDateTime) ? "" : dateTime.FormatISOCombined();
-}
 //----------------------------------------------------------------------------
 
 CURLcode http_get_data(const wxString& site, wxString& output, const wxString& useragent = wxEmptyString);
@@ -247,8 +134,6 @@ CURLcode http_download_file(const wxString& site, const wxString& path);
 CURLcode getYahooFinanceQuotes(const wxString& URL, wxString& json_data);
 
 //----------------------------------------------------------------------------
-
-const wxString mmTrimAmount(const wxString& value, const wxString& decimal, const wxString& replace_decimal ="");
 
 class mmDates
 {
@@ -304,18 +189,12 @@ public:
     const wxString getSeparator() const;
 private:
     std::map<wxString, int> m_separators;
-
 };
-
-const wxColor* bestFontColour(const wxColour& background);
 
 // used where differences occur between platforms
 wxImageList* createImageList(const int size = 0);
 
 void mmToolTip(wxWindow* widget,const wxString& tip);
-
-//fast alternative for pow(10, y)
-int pow10(const int y);
 
 // escape HTML characters
 wxString HTMLEncode(const wxString& input);
@@ -323,17 +202,17 @@ wxString HTMLEncode(const wxString& input);
 void mmSetSize(wxWindow* w);
 void mmFontSize(wxWindow* widget);
 
-bool isValidURI(const wxString& validate);
-
 class mmHtmlWindow : public wxHtmlWindow
 {
 public:
-    mmHtmlWindow (wxWindow *parent
-                    , wxWindowID id=wxID_ANY
-                    , const wxPoint &pos=wxDefaultPosition
-                    , const wxSize &size=wxDefaultSize
-                    , long style=wxHW_DEFAULT_STYLE
-                    , const wxString &name="htmlWindow");
+    mmHtmlWindow(
+        wxWindow *parent,
+        wxWindowID id=wxID_ANY,
+        const wxPoint &pos=wxDefaultPosition,
+        const wxSize &size=wxDefaultSize,
+        long style=wxHW_DEFAULT_STYLE,
+        const wxString &name="htmlWindow"
+    );
 private:
     void OnMouseRightClick(wxMouseEvent&);
     void OnMenuSelected(wxCommandEvent& event);

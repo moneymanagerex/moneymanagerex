@@ -32,6 +32,7 @@ Copyright (C) 2021, 2022, 2024 Mark Whalley (mark@ipx.co.uk)
 #include "constants.h"
 #include "util.h"
 #include "paths.h"
+#include "model/Model_Account.h"
 #include "fusedtransaction.h"
 
 //----------------------------------------------------------------------------

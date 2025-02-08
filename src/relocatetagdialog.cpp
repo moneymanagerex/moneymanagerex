@@ -29,6 +29,7 @@
 #include "model/Model_Checking.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_Tag.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(relocateTagDialog, wxDialog);
 
