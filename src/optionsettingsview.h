@@ -80,6 +80,7 @@ private:
     wxCheckBox* m_use_trans_date_time = nullptr;
     wxSpinCtrl* m_budget_days_offset = nullptr;
     wxSpinCtrl* m_reporting_firstday = nullptr;
+    wxChoice* m_reporting_first_weekday = nullptr;
 
     wxCheckBox* m_showToolTips = nullptr;
     wxCheckBox* m_showMoneyTips = nullptr;

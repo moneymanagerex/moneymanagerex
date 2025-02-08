@@ -21,6 +21,7 @@
 
 #include "option.h"
 #include "constants.h"
+#include "util.h"
 #include "images_list.h"
 #include "singleton.h"
 #include "model/Model_Infotable.h"
@@ -67,6 +68,7 @@ void Option::load(bool include_infotable)
         loadSharePrecision();
         loadAssetCompounding();
         loadReportingFirstDay();
+        loadReportingFirstWeekday();
         loadFinancialFirstDay();
         loadFinancialFirstMonth();
         loadBudgetDaysOffset();
@@ -214,14 +216,28 @@ void Option::setAssetCompounding(const int value)
 
 void Option::loadReportingFirstDay()
 {
-    m_reporting_firstday = Model_Infotable::instance().GetIntInfo("REPORTING_FIRSTDAY", 1);
-    if (m_reporting_firstday < 1) m_reporting_firstday = 1;
-    if (m_reporting_firstday > 28) m_reporting_firstday = 28;
+    m_reporting_first_day = Model_Infotable::instance().GetIntInfo("REPORTING_FIRSTDAY", 1);
+    if (m_reporting_first_day < 1) m_reporting_first_day = 1;
+    if (m_reporting_first_day > 28) m_reporting_first_day = 28;
 }
 void Option::setReportingFirstDay(const int value)
 {
     Model_Infotable::instance().Set("REPORTING_FIRSTDAY", value);
-    m_reporting_firstday = value;
+    m_reporting_first_day = value;
+}
+
+void Option::loadReportingFirstWeekday()
+{
+    wxString valueStr = Model_Infotable::instance().GetStringInfo("REPORTING_FIRST_WEEKDAY", "");
+    m_reporting_first_weekday =
+        (valueStr == "Mon") ? wxDateTime::WeekDay::Mon :
+        wxDateTime::WeekDay::Sun;
+}
+void Option::setReportingFirstWeekday(const wxDateTime::WeekDay value)
+{
+    int i = (value == wxDateTime::WeekDay::Mon) ? 1 : 0;
+    Model_Infotable::instance().Set("REPORTING_FIRST_WEEKDAY", g_short_days_of_week[i]);
+    m_reporting_first_weekday = value;
 }
 
 void Option::loadFinancialFirstDay()
