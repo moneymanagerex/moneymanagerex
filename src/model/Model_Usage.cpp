@@ -208,7 +208,7 @@ void Model_Usage::pageview(const wxWindow* window, const mmPrintableBase* rb, lo
 
 void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle, long plt /* = 0 msec*/)
 {
-    if (!Option::instance().getSendUsageStatistics())
+    if (!Option::instance().doSendUsageStats())
     {
         return;
     }

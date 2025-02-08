@@ -187,8 +187,8 @@ mmLastYear::mmLastYear()
 mmCurrentFinancialYear::mmCurrentFinancialYear()
 : mmDateRange()
 {
-    int day = wxAtoi(Option::instance().FinancialYearStartDay());
-    int month = wxAtoi(Option::instance().FinancialYearStartMonth());
+    int day = wxAtoi(Option::instance().getFinancialFirstDay());
+    int month = wxAtoi(Option::instance().getFinancialFirstMonth());
 
     int this_month = this->start_date_.GetMonth() + 1;
     auto finDate = this->start_date_;

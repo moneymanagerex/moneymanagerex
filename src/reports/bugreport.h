@@ -94,7 +94,7 @@ wxString mmBugReport::getHTMLText()
     report(L"REPORTNAME") = this->getReportTitle();
     report(L"HEADER") = _("Please, follow these instructions before submitting a new bug report:");
     report(L"CONTENTS") = msg;
-    report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().getHtmlFontSize() * 3 / 2);
+    report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().getHtmlScale() * 3 / 2);
 
     wxString out = wxEmptyString;
     try

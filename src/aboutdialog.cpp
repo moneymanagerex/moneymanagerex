@@ -38,7 +38,7 @@ mmAboutDialog::mmAboutDialog()
 mmAboutDialog::~mmAboutDialog()
 {
     const bool v = m_send_data->GetValue();
-    Option::instance().SendUsageStatistics(v);
+    Option::instance().setSendUsageStats(v);
 }
 
 
@@ -242,7 +242,7 @@ void mmAboutDialog::createControls(int tabToOpenNo)
     buttonPanelSizer->Add(m_send_data, g_flagsV);
 
     m_send_data->Show(tabToOpenNo == 4);
-    m_send_data->SetValue(Option::instance().SendUsageStatistics());
+    m_send_data->SetValue(Option::instance().getSendUsageStats());
 
     wxButton* buttonOk = new wxButton(buttonPanel, wxID_OK, _("&OK "));
     buttonOk->SetDefault();

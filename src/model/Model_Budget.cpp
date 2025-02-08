@@ -165,8 +165,8 @@ void Model_Budget::getBudgetStats(
         // Store the yearly budget to use in reporting. Monthly budgets are stored in index 0-11, so use index 12 for year
         budgetStats[budget.CATEGID][12] = yearlyBudgetValue[budget.CATEGID];
     }
-    bool budgetOverride = Option::instance().BudgetOverride();
-    bool budgetDeductMonthly = Option::instance().BudgetDeductMonthly();
+    bool budgetOverride = Option::instance().getBudgetOverride();
+    bool budgetDeductMonthly = Option::instance().getBudgetDeductMonthly();
     for (int month = 0; month < 12; month++)
     {
         const wxString budgetYearMonth = wxString::Format("%s-%02d", year, month + 1);
@@ -233,7 +233,7 @@ void Model_Budget::copyBudgetYear(int64 newYearID, int64 baseYearID)
 {
     std::map<int64, double> yearDeduction;
     int budgetedMonths = 0;
-    bool optionDeductMonthly = Option::instance().BudgetDeductMonthly();
+    bool optionDeductMonthly = Option::instance().getBudgetDeductMonthly();
     const wxString baseBudgetYearName = Model_Budgetyear::instance().get(baseYearID)->BUDGETYEARNAME;
     const wxString newBudgetYearName = Model_Budgetyear::instance().get(newYearID)->BUDGETYEARNAME;
 

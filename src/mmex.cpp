@@ -250,7 +250,7 @@ bool OnInitImpl(mmGUIApp* app)
     Model_Usage::instance(app->GetSettingDB());
 
     /* Load general MMEX Custom Settings */
-    Option::instance().LoadOptions(false);
+    Option::instance().load(false);
 
     /* initialize GUI with best language */
     wxTranslations* trans = new wxTranslations;
