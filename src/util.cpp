@@ -47,6 +47,20 @@
 
 using namespace rapidjson;
 
+void StringBuilder::append(const wxString x) {
+    if (x.empty())
+        return;
+    buffer.Append(x);
+    flag = true;
+}
+
+void StringBuilder::sep(const wxString s) {
+    if (!flag)
+        return;
+    buffer.Append(s);
+    flag = false;
+}
+
 wxString JSON_PrettyFormated(rapidjson::Document& j_doc)
 {
     StringBuffer j_buffer;
@@ -192,6 +206,8 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
     if (RssDocument.GetRoot()->GetName() != "rss")
         return false;
 
+    wxLogDebug("{{{ getNewsRSS()");
+
     const wxString news_last_read_date_str = Model_Setting::instance().GetStringSetting(INIDB_NEWS_LAST_READ_DATE, "");
     wxDate news_last_read_date;
     if (!news_last_read_date.ParseISODate(news_last_read_date_str))
@@ -233,7 +249,9 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
         RssRoot = RssRoot->GetNext();
     }
 
-    wxLogDebug("getNewsRSS: New articles = %i", static_cast<int>(WebsiteNewsList.size()));
+    wxLogDebug("New articles: %i", static_cast<int>(WebsiteNewsList.size()));
+    wxLogDebug("}}}");
+
     if (WebsiteNewsList.size() == 0)
         return false;
 
@@ -545,21 +563,15 @@ bool mmParseISODate(const wxString& in, wxDateTime& out)
 
 const wxDateTime getUserDefinedFinancialYear(const bool prevDayRequired)
 {
-    long monthNum;
-    Option::instance().getFinancialFirstMonth().ToLong(&monthNum);
-
-    if (monthNum > 0) //Test required for compatability with previous version
-        monthNum--;
-
+    int day = Option::instance().getFinancialFirstDay();
+    wxDateTime::Month month = Option::instance().getFinancialFirstMonth();
     int year = wxDate::GetCurrentYear();
-    if (wxDate::GetCurrentMonth() < monthNum) year--;
 
-    int dayNum = wxAtoi(Option::instance().getFinancialFirstDay());
+    if (wxDate::GetCurrentMonth() < month) year--;
+    if (day < 1 || day > wxDateTime::GetNumberOfDays(month, year))
+        day = 1;
 
-    if (dayNum <= 0 || dayNum > wxDateTime::GetNumberOfDays(static_cast<wxDateTime::Month>(monthNum), year))
-        dayNum = 1;
-
-    wxDateTime financialYear(dayNum, static_cast<wxDateTime::Month>(monthNum), year);
+    wxDateTime financialYear(day, month, year);
     if (prevDayRequired)
         financialYear.Subtract(wxDateSpan::Day());
     return financialYear;

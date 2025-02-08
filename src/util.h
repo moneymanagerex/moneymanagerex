@@ -35,6 +35,29 @@ wxString JSON_PrettyFormated(rapidjson::Document& j_doc);
 //Returns a JSON formatted string from RapidJson DOM
 wxString JSON_Formated(rapidjson::Document& j_doc);
 
+typedef wxString::const_iterator StringIt;
+
+struct StringBuilder
+{
+    wxString buffer = "";
+    bool flag = false;
+
+    void append(const wxString x);
+    void sep(const wxString s = " ");
+    void flush();
+    void reset();
+};
+
+inline void StringBuilder::flush() {
+    flag = false;
+}
+
+inline void StringBuilder::reset() {
+    // make buffer empty, but don't free memory
+    buffer.Empty();
+    flag = false;
+}
+
 struct ValuePair
 {
     wxString label;
@@ -202,8 +225,19 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const w
 extern const std::vector<std::pair<wxString, wxString>> g_date_formats_map();
 extern const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding;
 
-inline const wxString mmGetMonthName(const wxDateTime::Month& month) {
+inline const wxString mmGetMonthName(const wxDateTime::Month& month)
+{
     return MONTHS[static_cast<int>(month)];
+}
+
+inline wxString dateISO(wxDateTime date)
+{
+    return (date == wxInvalidDateTime) ? "" : date.FormatISODate();
+}
+
+inline wxString dateTimeISO(wxDateTime dateTime)
+{
+    return (dateTime == wxInvalidDateTime) ? "" : dateTime.FormatISOCombined();
 }
 //----------------------------------------------------------------------------
 

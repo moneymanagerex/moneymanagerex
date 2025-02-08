@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef FUSEDTRANSACTION_H
-#define FUSEDTRANSACTION_H
+#ifndef MM_EX_FUSED_TRANSACTION_H_
+#define MM_EX_FUSED_TRANSACTION_H_
 
 #include "Model.h"
 #include "Model_Checking.h"
