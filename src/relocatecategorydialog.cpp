@@ -42,7 +42,7 @@ relocateCategoryDialog::relocateCategoryDialog()
 
 relocateCategoryDialog::~relocateCategoryDialog()
 {
-    Model_Infotable::instance().Set("RELOCATECATEG_DIALOG_SIZE", GetSize());
+    Model_Infotable::instance().setSize("RELOCATECATEG_DIALOG_SIZE", GetSize());
 }
 
 relocateCategoryDialog::relocateCategoryDialog(wxWindow* parent

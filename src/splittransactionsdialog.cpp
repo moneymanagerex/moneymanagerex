@@ -64,7 +64,7 @@ mmEditSplitOther::mmEditSplitOther(wxWindow *parent, Model_Currency::Data* curre
 
 mmEditSplitOther::~mmEditSplitOther()
 {
-    Model_Infotable::instance().Set("EDITSPLITOTHER_DIALOG_SIZE", GetSize());
+    Model_Infotable::instance().setSize("EDITSPLITOTHER_DIALOG_SIZE", GetSize());
 }
 
 void mmEditSplitOther::CreateControls()
@@ -149,7 +149,7 @@ mmSplitTransactionDialog::mmSplitTransactionDialog( )
 
 mmSplitTransactionDialog::~mmSplitTransactionDialog()
 {
-    Model_Infotable::instance().Set("SPLITTRANSACTION_DIALOG_SIZE", GetSize());
+    Model_Infotable::instance().setSize("SPLITTRANSACTION_DIALOG_SIZE", GetSize());
 }
 
 mmSplitTransactionDialog::mmSplitTransactionDialog(wxWindow* parent

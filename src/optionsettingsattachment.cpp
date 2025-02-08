@@ -78,7 +78,9 @@ void OptionSettingsAttachment::Create()
     wxBoxSizer* attachDefinedSizer = new wxBoxSizer(wxHORIZONTAL);
     attachmentStaticBoxSizer->Add(attachDefinedSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    const wxString attachmentFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
+    const wxString attachmentFolder = Model_Infotable::instance().getString(
+        "ATTACHMENTSFOLDER:" + mmPlatformType(), ""
+    );
     m_old_path = mmex::getPathAttachment(attachmentFolder);
 
     wxArrayString list;
@@ -124,9 +126,15 @@ void OptionSettingsAttachment::Create()
     attachmentStaticBoxSizer->Add(attachmentStaticBoxSizerInfo, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     const wxString FolderNotSet = _("Not set yet");
-    const wxString attachmentFolderWin = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Win", FolderNotSet);
-    const wxString attachmentFolderMac = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Mac", FolderNotSet);
-    const wxString attachmentFolderUnix = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Uni", FolderNotSet);
+    const wxString attachmentFolderWin = Model_Infotable::instance().getString(
+        "ATTACHMENTSFOLDER:Win", FolderNotSet
+    );
+    const wxString attachmentFolderMac = Model_Infotable::instance().getString(
+        "ATTACHMENTSFOLDER:Mac", FolderNotSet
+    );
+    const wxString attachmentFolderUnix = Model_Infotable::instance().getString(
+        "ATTACHMENTSFOLDER:Uni", FolderNotSet
+    );
 
     const auto os = mmPlatformType();
     if (os != "win")
@@ -160,7 +168,7 @@ void OptionSettingsAttachment::Create()
 
     m_attachments_subfolder = new wxCheckBox(attachment_panel, ID_DIALOG_OPTIONS_CHECKBOX_ATTACHMENTSSUBFOLDER
         , cbAttachmentsSubfolder_desc, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_attachments_subfolder->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSSUBFOLDER", true));
+    m_attachments_subfolder->SetValue(Model_Infotable::instance().getBool("ATTACHMENTSSUBFOLDER", true));
     attachmentStaticBoxSizer->Add(m_attachments_subfolder, g_flagsV);
     attachmentStaticBoxSizer->Add(new wxStaticText(attachment_panel, wxID_STATIC, subFolder), g_flagsV);
 
@@ -168,19 +176,19 @@ void OptionSettingsAttachment::Create()
 
     m_delete_attachments = new wxCheckBox(attachment_panel, wxID_STATIC,
         _("Delete file after import"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_delete_attachments->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDELETE", false));
+    m_delete_attachments->SetValue(Model_Infotable::instance().getBool("ATTACHMENTSDELETE", false));
     mmToolTip(m_delete_attachments, _("Select to delete file after import in attachments archive"));
     attachmentStaticBoxSizer->Add(m_delete_attachments, g_flagsV);
 
     m_trash_attachments = new wxCheckBox(attachment_panel, wxID_STATIC,
         _("When remove attachment, move file instead of delete"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_trash_attachments->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSTRASH", false));
+    m_trash_attachments->SetValue(Model_Infotable::instance().getBool("ATTACHMENTSTRASH", false));
     mmToolTip(m_trash_attachments, _("Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"));
     attachmentStaticBoxSizer->Add(m_trash_attachments, g_flagsV);
 
     m_duplicate_attachments = new wxCheckBox(attachment_panel, wxID_STATIC,
         _("When duplicating transactions duplicate the attachments also"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_duplicate_attachments->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDUPLICATE", false));
+    m_duplicate_attachments->SetValue(Model_Infotable::instance().getBool("ATTACHMENTSDUPLICATE", false));
     mmToolTip(m_trash_attachments, _("Select if you want to copy the attachments to new transactions when they are duplicated or pasted"));
     attachmentStaticBoxSizer->Add(m_duplicate_attachments, g_flagsV);
 
@@ -215,7 +223,10 @@ void OptionSettingsAttachment::OnAttachmentsPathChanged(wxCommandEvent& WXUNUSED
 
 void OptionSettingsAttachment::OnAttachmentsSubfolderChanged(wxCommandEvent& event)
 {
-    Model_Infotable::instance().Set("ATTACHMENTSSUBFOLDER", m_attachments_subfolder->GetValue());
+    Model_Infotable::instance().setBool(
+        "ATTACHMENTSSUBFOLDER",
+        m_attachments_subfolder->GetValue()
+    );
     OnAttachmentsPathChanged(event);
 }
 
@@ -261,10 +272,13 @@ bool OptionSettingsAttachment::SaveSettings()
         }
     }
 
-    Model_Infotable::instance().Set("ATTACHMENTSFOLDER:" + mmPlatformType(), m_attachments_path->GetValue().Trim());
-    Model_Infotable::instance().Set("ATTACHMENTSDELETE", m_delete_attachments->GetValue());
-    Model_Infotable::instance().Set("ATTACHMENTSTRASH", m_trash_attachments->GetValue());
-    Model_Infotable::instance().Set("ATTACHMENTSDUPLICATE", m_duplicate_attachments->GetValue());
+    Model_Infotable::instance().setString(
+        "ATTACHMENTSFOLDER:" + mmPlatformType(),
+        m_attachments_path->GetValue().Trim()
+    );
+    Model_Infotable::instance().setBool("ATTACHMENTSDELETE", m_delete_attachments->GetValue());
+    Model_Infotable::instance().setBool("ATTACHMENTSTRASH", m_trash_attachments->GetValue());
+    Model_Infotable::instance().setBool("ATTACHMENTSDUPLICATE", m_duplicate_attachments->GetValue());
 
     return true;
 }

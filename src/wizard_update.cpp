@@ -60,12 +60,10 @@ mmUpdateWizard::~mmUpdateWizard()
 {
     clearVFprintedFiles("rep");
     bool isActive = showUpdateCheckBox_->GetValue();
-    if (!isActive) {
-        Model_Setting::instance().Set("UPDATE_LAST_CHECKED_VERSION", top_version_);
-    }
-    else {
-        Model_Setting::instance().Set("UPDATE_LAST_CHECKED_VERSION", ("v" + mmex::version::string).Lower());
-    }
+    Model_Setting::instance().setString(
+        "UPDATE_LAST_CHECKED_VERSION",
+        (!isActive) ? top_version_ : ("v" + mmex::version::string).Lower()
+    );
 }
 
 mmUpdateWizard::mmUpdateWizard(wxWindow* parent, const Document& json_releases, wxArrayInt new_releases, const wxString& top_version)
@@ -106,7 +104,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
         }
 
         bool is_prerelease = (r.HasMember("prerelease") && r["prerelease"].IsBool() && r["prerelease"].GetBool());
-        bool update_stable = Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 0;
+        bool update_stable = Model_Setting::instance().getInt("UPDATESOURCE", 0) == 0;
         if (update_stable && is_prerelease)
             continue;
 
@@ -345,10 +343,10 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
     }
 
     wxLogDebug("{{{ mmUpdate::checkUpdates()");
-    bool update_stable = Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 0;
+    bool update_stable = Model_Setting::instance().getInt("UPDATESOURCE", 0) == 0;
     const int _stable = is_stable ? update_stable : 0;
     const wxString current_tag = ("v" + mmex::version::string).Lower();
-    wxString last_checked = Model_Setting::instance().GetStringSetting("UPDATE_LAST_CHECKED_VERSION", current_tag);
+    wxString last_checked = Model_Setting::instance().getString("UPDATE_LAST_CHECKED_VERSION", current_tag);
 
     bool is_update_available = false;
     Version current(current_tag);

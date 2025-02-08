@@ -34,13 +34,13 @@ const wxString WebAppParam::ApiExpectedVersion = "1.0.1";
 //Internal constants
 const wxString mmWebApp::getUrl()
 {
-    wxString Url = Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
+    wxString Url = Model_Infotable::instance().getString("WEBAPPURL", "");
     return Url;
 }
 
 const wxString mmWebApp::getGuid()
 {
-    return Model_Infotable::instance().GetStringInfo("WEBAPPGUID", "");
+    return Model_Infotable::instance().getString("WEBAPPGUID", "");
 }
 
 //Parameters used in services.php
@@ -91,8 +91,8 @@ bool mmWebApp::returnResult(int& ErrorCode, wxString& outputMessage)
 //Check if WebApp is enabled
 bool mmWebApp::WebApp_CheckEnabled()
 {
-    if (Model_Infotable::instance().GetStringInfo("WEBAPPURL", "") != wxEmptyString
-        && Model_Infotable::instance().GetStringInfo("WEBAPPGUID", "") != wxEmptyString)
+    if (Model_Infotable::instance().getString("WEBAPPURL", "") != wxEmptyString
+        && Model_Infotable::instance().getString("WEBAPPGUID", "") != wxEmptyString)
         return true;
     else
         return false;

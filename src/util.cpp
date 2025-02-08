@@ -108,7 +108,7 @@ mmTreeItemData::mmTreeItemData(const wxString& data, mmPrintableBase* report)
     , report_(report)
 {
     const wxString& n = wxString::Format("REPORT_%d", report_->getReportId());
-    const wxString& settings = Model_Infotable::instance().GetStringInfo(n, "");
+    const wxString& settings = Model_Infotable::instance().getString(n, "");
     report_->initReportSettings(settings);
 }
 
@@ -153,13 +153,13 @@ const wxString inQuotes(const wxString& l, const wxString& delimiter)
 
 void mmLoadColorsFromDatabase(const bool def)
     {
-    mmColors::userDefColor1 = def ? wxColour(246, 144, 144) : Model_Infotable::instance().GetColourSetting("USER_COLOR1", wxColour(246, 144, 144));
-    mmColors::userDefColor2 = def ? wxColour(229, 196, 146) : Model_Infotable::instance().GetColourSetting("USER_COLOR2", wxColour(229, 196, 146));
-    mmColors::userDefColor3 = def ? wxColour(245, 237, 149) : Model_Infotable::instance().GetColourSetting("USER_COLOR3", wxColour(245, 237, 149));
-    mmColors::userDefColor4 = def ? wxColour(186, 226, 185) : Model_Infotable::instance().GetColourSetting("USER_COLOR4", wxColour(186, 226, 185));
-    mmColors::userDefColor5 = def ? wxColour(135, 190, 219) : Model_Infotable::instance().GetColourSetting("USER_COLOR5", wxColour(135, 190, 219));
-    mmColors::userDefColor6 = def ? wxColour(172, 167, 239) : Model_Infotable::instance().GetColourSetting("USER_COLOR6", wxColour(172, 167, 239));
-    mmColors::userDefColor7 = def ? wxColour(212, 138, 215) : Model_Infotable::instance().GetColourSetting("USER_COLOR7", wxColour(212, 138, 215));
+    mmColors::userDefColor1 = def ? wxColour(246, 144, 144) : Model_Infotable::instance().getColour("USER_COLOR1", wxColour(246, 144, 144));
+    mmColors::userDefColor2 = def ? wxColour(229, 196, 146) : Model_Infotable::instance().getColour("USER_COLOR2", wxColour(229, 196, 146));
+    mmColors::userDefColor3 = def ? wxColour(245, 237, 149) : Model_Infotable::instance().getColour("USER_COLOR3", wxColour(245, 237, 149));
+    mmColors::userDefColor4 = def ? wxColour(186, 226, 185) : Model_Infotable::instance().getColour("USER_COLOR4", wxColour(186, 226, 185));
+    mmColors::userDefColor5 = def ? wxColour(135, 190, 219) : Model_Infotable::instance().getColour("USER_COLOR5", wxColour(135, 190, 219));
+    mmColors::userDefColor6 = def ? wxColour(172, 167, 239) : Model_Infotable::instance().getColour("USER_COLOR6", wxColour(172, 167, 239));
+    mmColors::userDefColor7 = def ? wxColour(212, 138, 215) : Model_Infotable::instance().getColour("USER_COLOR7", wxColour(212, 138, 215));
 }
 
 wxColour mmColors::userDefColor1;
@@ -208,7 +208,7 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 
     wxLogDebug("{{{ getNewsRSS()");
 
-    const wxString news_last_read_date_str = Model_Setting::instance().GetStringSetting(INIDB_NEWS_LAST_READ_DATE, "");
+    const wxString news_last_read_date_str = Model_Setting::instance().getString(INIDB_NEWS_LAST_READ_DATE, "");
     wxDate news_last_read_date;
     if (!news_last_read_date.ParseISODate(news_last_read_date_str))
         news_last_read_date = wxDateTime::Today().Subtract(wxDateSpan::Year());
@@ -1254,15 +1254,15 @@ static int log_libcurl_debug(CURL *handle,const curl_infotype type, char *data,c
 #endif
 
 void curl_set_common_options(CURL* curl, const wxString& useragent = wxEmptyString) {
-    wxString proxyName = Model_Setting::instance().GetStringSetting("PROXYIP", "");
+    wxString proxyName = Model_Setting::instance().getString("PROXYIP", "");
     if (!proxyName.IsEmpty())
     {
-        int proxyPort = Model_Setting::instance().GetIntSetting("PROXYPORT", 0);
+        int proxyPort = Model_Setting::instance().getInt("PROXYPORT", 0);
         const wxString& proxySettings = wxString::Format("%s:%d", proxyName, proxyPort);
         curl_easy_setopt(curl, CURLOPT_PROXY, static_cast<const char*>(proxySettings.mb_str()));
     }
 
-    int networkTimeout = Model_Setting::instance().GetIntSetting("NETWORKTIMEOUT", 10); // default 10 secs
+    int networkTimeout = Model_Setting::instance().getInt("NETWORKTIMEOUT", 10); // default 10 secs
     curl_easy_setopt(curl, CURLOPT_TIMEOUT, networkTimeout);
 
     if (useragent.IsEmpty())
@@ -1383,8 +1383,8 @@ CURLcode getYahooFinanceQuotes(const wxString& URL, wxString& output) {
     struct curlBuff crumb{nullptr, 0};
     struct curlBuff quote{nullptr, 0};
 
-    wxString savedCookie = Model_Setting::instance().GetStringSetting("YAHOO_FINANCE_COOKIE", "");
-    wxString savedCrumb = Model_Setting::instance().GetStringSetting("YAHOO_FINANCE_CRUMB", "");
+    wxString savedCookie = Model_Setting::instance().getString("YAHOO_FINANCE_COOKIE", "");
+    wxString savedCrumb = Model_Setting::instance().getString("YAHOO_FINANCE_CRUMB", "");
 
     // Request to get cookies and save them to the cookie buffer
     curl_set_common_options(curl);
@@ -1462,8 +1462,8 @@ CURLcode getYahooFinanceQuotes(const wxString& URL, wxString& output) {
                                 curl_slist_free_all(cookies);
                             }
 
-                            Model_Setting::instance().Set("YAHOO_FINANCE_COOKIE", cookieJar);
-                            Model_Setting::instance().Set("YAHOO_FINANCE_CRUMB", wxString::FromUTF8(crumb.memory));
+                            Model_Setting::instance().setString("YAHOO_FINANCE_COOKIE", cookieJar);
+                            Model_Setting::instance().setString("YAHOO_FINANCE_CRUMB", wxString::FromUTF8(crumb.memory));
                         }
                         free(newQuote.memory);
                     }
@@ -1742,7 +1742,7 @@ mmSeparator::~mmSeparator()
 
 mmSeparator::mmSeparator()
 {
-    const auto& def_delim = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
+    const auto& def_delim = Model_Infotable::instance().getString("DELIMITER", mmex::DEFDELIMTER);
     m_separators[";"] = 0;
     m_separators[","] = 0;
     m_separators["\t"] = 0;
@@ -1942,53 +1942,53 @@ void mmSetSize(wxWindow* w)
     wxSize my_size;
 
     if (name == "Split Transaction Dialog") {
-        my_size = Model_Infotable::instance().GetSizeSetting("SPLITTRANSACTION_DIALOG_SIZE");
+        my_size = Model_Infotable::instance().getSize("SPLITTRANSACTION_DIALOG_SIZE");
         my_size.SetHeight(w->GetSize().GetHeight());  // Do not touch the height
     }
     else if (name == "Organize Categories") {
-        my_size = Model_Infotable::instance().GetSizeSetting("CATEGORIES_DIALOG_SIZE");
+        my_size = Model_Infotable::instance().getSize("CATEGORIES_DIALOG_SIZE");
     }
     else if (name == "mmPayeeDialog") {
-        my_size = Model_Infotable::instance().GetSizeSetting("PAYEES_DIALOG_SIZE");
+        my_size = Model_Infotable::instance().getSize("PAYEES_DIALOG_SIZE");
     }
     else if (name == "Organize Currencies") {
-        my_size = Model_Infotable::instance().GetSizeSetting("CURRENCY_DIALOG_SIZE");
+        my_size = Model_Infotable::instance().getSize("CURRENCY_DIALOG_SIZE");
     }
     else if (name == "Column Order Dialog") {
-        my_size = Model_Infotable::instance().GetSizeSetting("COLUMNORDER_DIALOG_SIZE");
+        my_size = Model_Infotable::instance().getSize("COLUMNORDER_DIALOG_SIZE");
     }
     else if (name == "Themes Dialog") {
-        my_size = Model_Infotable::instance().GetSizeSetting("THEMES_DIALOG_SIZE");
+        my_size = Model_Infotable::instance().getSize("THEMES_DIALOG_SIZE");
     }
     else if (name == "General Reports Manager") {
-        my_size = Model_Infotable::instance().GetSizeSetting("GRM_DIALOG_SIZE");
+        my_size = Model_Infotable::instance().getSize("GRM_DIALOG_SIZE");
     } 
     else if (name == "mmEditPayeeDialog") {
-        my_size = Model_Infotable::instance().GetSizeSetting("EDITPAYEE_DIALOG_SIZE"); 
+        my_size = Model_Infotable::instance().getSize("EDITPAYEE_DIALOG_SIZE"); 
     }
     else if (name == "mmEditSplitOther") {
-        my_size = Model_Infotable::instance().GetSizeSetting("EDITSPLITOTHER_DIALOG_SIZE"); 
+        my_size = Model_Infotable::instance().getSize("EDITSPLITOTHER_DIALOG_SIZE"); 
     }
     else if (name == "Transactions Dialog") {
-        my_size = Model_Infotable::instance().GetSizeSetting("TRANSACTION_DIALOG_SIZE");
+        my_size = Model_Infotable::instance().getSize("TRANSACTION_DIALOG_SIZE");
     }
     else if (name == "Merge categories") {
-        my_size = Model_Infotable::instance().GetSizeSetting("RELOCATECATEG_DIALOG_SIZE");
+        my_size = Model_Infotable::instance().getSize("RELOCATECATEG_DIALOG_SIZE");
     }
     else if (name == "Merge payees") {
-        my_size = Model_Infotable::instance().GetSizeSetting("RELOCATEPAYEE_DIALOG_SIZE");
+        my_size = Model_Infotable::instance().getSize("RELOCATEPAYEE_DIALOG_SIZE");
     }
     else if (name == "Scheduled Transaction Dialog") {
-        my_size = Model_Infotable::instance().GetSizeSetting("RECURRINGTRANS_DIALOG_SIZE");
+        my_size = Model_Infotable::instance().getSize("RECURRINGTRANS_DIALOG_SIZE");
     }
     else if (name == "Transaction Filter") {
-        my_size = Model_Infotable::instance().GetSizeSetting("TRANSACTION_FILTER_SIZE");
+        my_size = Model_Infotable::instance().getSize("TRANSACTION_FILTER_SIZE");
     }
     else if (name == "Organize Tags") {
-        my_size = Model_Infotable::instance().GetSizeSetting("TAG_DIALOG_SIZE");
+        my_size = Model_Infotable::instance().getSize("TAG_DIALOG_SIZE");
     }
     else if (name == "Merge tags") {
-        my_size = Model_Infotable::instance().GetSizeSetting("RELOCATETAG_DIALOG_SIZE");
+        my_size = Model_Infotable::instance().getSize("RELOCATETAG_DIALOG_SIZE");
     }
 
     wxSharedPtr<wxDisplay> display(new wxDisplay(w->GetParent()));

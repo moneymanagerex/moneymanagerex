@@ -61,7 +61,7 @@ bool mmStocksPanel::Create(wxWindow *parent
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
 
-    strLastUpdate_ = Model_Infotable::instance().GetStringInfo("STOCKS_LAST_REFRESH_DATETIME", "");
+    strLastUpdate_ = Model_Infotable::instance().getString("STOCKS_LAST_REFRESH_DATETIME", "");
     this->windowsFreezeThaw();
 
     Model_Account::Data *account = Model_Account::instance().get(m_account_id);
@@ -495,7 +495,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
 
     strLastUpdate_.Printf(_("%1$s on %2$s"), LastRefreshDT_.FormatTime()
         , mmGetDateTimeForDisplay(LastRefreshDT_.FormatISODate()));
-    Model_Infotable::instance().Set("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate_);
+    Model_Infotable::instance().setString("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate_);
 
     return true;
 }

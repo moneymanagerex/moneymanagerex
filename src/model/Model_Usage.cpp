@@ -111,8 +111,8 @@ wxString Model_Usage::To_JSON_String() const
 
 std::pair<wxString /*UUID*/, wxString /*UID*/> uuid()
 {
-    wxString UUID = Model_Setting::instance().GetStringSetting("UUID", wxEmptyString);
-    wxString UID = Model_Setting::instance().GetStringSetting("UID", wxEmptyString);
+    wxString UUID = Model_Setting::instance().getString("UUID", wxEmptyString);
+    wxString UID = Model_Setting::instance().getString("UID", wxEmptyString);
 
     if (!UUID.IsEmpty() && !UID.IsEmpty())
         return std::make_pair(UUID, UID);
@@ -121,18 +121,18 @@ std::pair<wxString /*UUID*/, wxString /*UID*/> uuid()
     {
         wxDateTime now = wxDateTime::UNow();
         UUID = UID = wxString::Format("%s_%s", wxPlatformInfo::Get().GetPortIdShortName(), now.Format("%Y%m%d%H%M%S%l"));
-        Model_Setting::instance().Set("UUID", UUID);
-        Model_Setting::instance().Set("UID", UID);
+        Model_Setting::instance().setString("UUID", UUID);
+        Model_Setting::instance().setString("UID", UID);
     }
     else if (UUID.IsEmpty())
     {
         UUID = UID;
-        Model_Setting::instance().Set("UUID", UUID);
+        Model_Setting::instance().setString("UUID", UUID);
     }
     else if (UID.IsEmpty())
     {
         UID = UUID;
-        Model_Setting::instance().Set("UID", UID);
+        Model_Setting::instance().setString("UID", UID);
     }
 
     return std::make_pair(UUID, UID);

@@ -79,8 +79,8 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
 
     // load the global variables
     m_default_sort_column = m_panel->col_sort();
-    m_selected_col = Model_Setting::instance().GetIntSetting("ASSETS_SORT_COL", m_default_sort_column);
-    m_asc = Model_Setting::instance().GetBoolSetting("ASSETS_ASC", true);
+    m_selected_col = Model_Setting::instance().getInt("ASSETS_SORT_COL", m_default_sort_column);
+    m_asc = Model_Setting::instance().getBool("ASSETS_ASC", true);
 }
 
 void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
@@ -334,8 +334,8 @@ void mmAssetsListCtrl::OnColClick(wxListEvent& event)
     item.SetImage(m_asc ? mmAssetsPanel::ICON_UPARROW : mmAssetsPanel::ICON_DOWNARROW);
     SetColumn(m_selected_col, item);
 
-    Model_Setting::instance().Set("ASSETS_ASC", m_asc);
-    Model_Setting::instance().Set("ASSETS_SORT_COL", m_selected_col);
+    Model_Setting::instance().setBool("ASSETS_ASC", m_asc);
+    Model_Setting::instance().setInt("ASSETS_SORT_COL", m_selected_col);
 
     int64 trx_id = -1;
     if (m_selected_row>=0) trx_id = m_panel->m_assets[m_selected_row].ASSETID;

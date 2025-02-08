@@ -414,7 +414,7 @@ bool checkThemeContents(wxArrayString *filesinTheme)
         const wxString realName = (darkFound && darkMode) ? neededFiles[i].AfterLast('-') : neededFiles[i];
         if (wxNOT_FOUND == filesinTheme->Index(realName)) {
             wxMessageBox(wxString::Format(_("File '%1$s' missing or invalid in chosen theme '%2$s'")
-                , neededFiles[i], Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
+                , neededFiles[i], Model_Setting::instance().getTheme()), _("Warning"), wxOK | wxICON_WARNING);
             success = false;
         }
     }
@@ -425,7 +425,7 @@ bool checkThemeContents(wxArrayString *filesinTheme)
         if (std::get<2>(it.second) && mmThemeMetaString(it.first).IsEmpty())
         {
             wxMessageBox(wxString::Format(_("Metadata '%1$s' missing in chosen theme '%2$s'")
-                , std::get<0>(it.second), Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
+                , std::get<0>(it.second), Model_Setting::instance().getTheme()), _("Warning"), wxOK | wxICON_WARNING);
             success = false;
         }
     }
@@ -460,17 +460,17 @@ bool checkThemeContents(wxArrayString *filesinTheme)
             missingIcons << " " << _u("and more…");
         }
         wxMessageBox(wxString::Format(_("There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s")
-            , erroredIcons, Model_Setting::instance().Theme(), missingIcons), _("Warning"), wxOK | wxICON_WARNING);
+            , erroredIcons, Model_Setting::instance().getTheme(), missingIcons), _("Warning"), wxOK | wxICON_WARNING);
     }
     return success;
 }
 
 void reverttoDefaultTheme()
 {
-    Model_Setting::instance().SetTheme("default");
+    Model_Setting::instance().setTheme("default");
     darkFound = false;
-    processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme(), true);
-    processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme(), false);  
+    processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().getTheme(), true);
+    processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().getTheme(), false);  
 }
 
 void LoadTheme()
@@ -481,21 +481,21 @@ void LoadTheme()
 
     // Scan first for metadata then for the icons and other files
     darkFound = false;
-    if (processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme(), true))
-        processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme(), false);
+    if (processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().getTheme(), true))
+        processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().getTheme(), false);
     else
-        if (processThemes(mmex::getPathUser(mmex::USERTHEMEDIR), Model_Setting::instance().Theme(), true))
-            processThemes(mmex::getPathUser(mmex::USERTHEMEDIR), Model_Setting::instance().Theme(), false);
+        if (processThemes(mmex::getPathUser(mmex::USERTHEMEDIR), Model_Setting::instance().getTheme(), true))
+            processThemes(mmex::getPathUser(mmex::USERTHEMEDIR), Model_Setting::instance().getTheme(), false);
         else
         {
             wxMessageBox(wxString::Format(_("Theme %s not found, it may no longer be supported. Reverting to default theme")
-                , Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
+                , Model_Setting::instance().getTheme()), _("Warning"), wxOK | wxICON_WARNING);
             reverttoDefaultTheme();
         }
     
     if (!checkThemeContents(filesInVFS.get()))
     {
-        wxMessageBox(wxString::Format(_("Theme %s has missing items and is incompatible. Reverting to default theme"), Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
+        wxMessageBox(wxString::Format(_("Theme %s has missing items and is incompatible. Reverting to default theme"), Model_Setting::instance().getTheme()), _("Warning"), wxOK | wxICON_WARNING);
         reverttoDefaultTheme();
         if (!checkThemeContents(filesInVFS.get()))
         {

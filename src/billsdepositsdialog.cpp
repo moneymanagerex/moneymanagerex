@@ -98,7 +98,7 @@ mmBDDialog::~mmBDDialog()
     wxSize size = GetSize();
     if (m_custom_fields->IsCustomPanelShown())
         size = wxSize(GetSize().GetWidth() - m_custom_fields->GetMinWidth(), GetSize().GetHeight());
-    Model_Infotable::instance().Set("RECURRINGTRANS_DIALOG_SIZE", size);
+    Model_Infotable::instance().setSize("RECURRINGTRANS_DIALOG_SIZE", size);
 }
 
 mmBDDialog::mmBDDialog(wxWindow* parent, int64 bdID, bool duplicate, bool enterOccur)
@@ -146,7 +146,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int64 bdID, bool duplicate, bool enterO
         }
 
         // If duplicate then we may need to copy the attachments
-        if (m_dup_bill && Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDUPLICATE", false))
+        if (m_dup_bill && Model_Infotable::instance().getBool("ATTACHMENTSDUPLICATE", false))
         {
             const wxString& RefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
             mmAttachmentManage::CloneAllAttachments(RefType, bdID, 0);

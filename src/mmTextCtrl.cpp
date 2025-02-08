@@ -126,7 +126,7 @@ wxChar mmTextCtrl::GetDecimalPoint()
 {
     wxString dp;
 
-    auto localeStr = Model_Infotable::instance().GetStringInfo("LOCALE", "");
+    auto localeStr = Model_Infotable::instance().getString("LOCALE", "");
 
     // If there is no defined locale, use the currency decimal
     if (localeStr.empty())
