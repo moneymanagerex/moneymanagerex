@@ -304,6 +304,6 @@ public:
                     , long style=wxHW_DEFAULT_STYLE
                     , const wxString &name="htmlWindow");
 private:
-    void OnMouseRightClick(wxMouseEvent& event);
+    void OnMouseRightClick(wxMouseEvent&);
     void OnMenuSelected(wxCommandEvent& event);
 };
