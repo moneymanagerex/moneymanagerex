@@ -143,7 +143,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
         i++;
     }
 
-    auto version = new_releases.empty() ? _("You already have the latest version") : _("A new version of MMEX is available!");
+    auto version = new_releases.empty() ? _("MMEX is up to date.") : _("A new version of MMEX is available.");
     if (!new_releases.empty()) {
 
         const auto ver_num = new_tag.Mid(1);
@@ -175,7 +175,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
 #endif
     }
 
-    wxString header = wxString::Format(_("Your version is %s"), mmex::version::string);
+    wxString header = wxString::Format(_("Version: %s"), mmex::version::string);
     html = wxString::Format(update_template, header, version, html);
 
     wxBoxSizer *page1_sizer = new wxBoxSizer(wxVERTICAL);
