@@ -302,7 +302,7 @@ void mmThemesDialog::OnImport(wxCommandEvent&)
 
     if (wxFileExists(destFile.GetFullPath()))
     {
-        wxString existingThemeText = _("The theme already exists, do you still want to import and overwrite the existing theme?");
+        wxString existingThemeText = _("The theme already exists. Do you want to import and overwrite the existing theme?");
         wxMessageDialog msgDlg(this, existingThemeText, destFile.GetName(),
             wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
         if (msgDlg.ShowModal() == wxID_NO)
@@ -324,7 +324,7 @@ void mmThemesDialog::OnImport(wxCommandEvent&)
 void mmThemesDialog::OnDelete(wxCommandEvent&)
 {
     ThemeEntry thisTheme = getThemeEntry(m_themesListBox_->GetString(m_themesListBox_->GetSelection()));
-    wxString deletingThemeText = _("Are you sure you want to delete this theme? If you want to use it again you will need to re-import it.");
+    wxString deletingThemeText = _("Do you want to delete the theme? If you want to use it again you will need to re-import it.");
     wxMessageDialog msgDlg(this, deletingThemeText, thisTheme.name,
         wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
     if (msgDlg.ShowModal() == wxID_YES)
@@ -343,7 +343,7 @@ void mmThemesDialog::OnDelete(wxCommandEvent&)
 void mmThemesDialog::OnUse(wxCommandEvent&)
 {
     ThemeEntry thisTheme = getThemeEntry(m_themesListBox_->GetString(m_themesListBox_->GetSelection()));
-    wxString changingThemeText = _("Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started.");
+    wxString changingThemeText = _("Do you want to use the theme? Please note that this will only take effect when MMEX is re-started.");
     wxMessageDialog msgDlg(this, changingThemeText, thisTheme.name,
         wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
     if (msgDlg.ShowModal() == wxID_YES)
