@@ -344,7 +344,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
         if (!cbPayee_->mmIsValid()) {
             wxMessageDialog msgDlg(this
-                , wxString::Format(_("You have not used this payee name before. Is the name correct?\n%s"), cbPayee_->GetValue())
+                , wxString::Format(_("Payee name has not been used before. Is the name correct?\n%s"), cbPayee_->GetValue())
                 , _("Confirm payee name")
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
             if (msgDlg.ShowModal() == wxID_YES)
