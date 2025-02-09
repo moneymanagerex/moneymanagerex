@@ -1284,7 +1284,7 @@ void TransactionListCtrl::OnRestoreViewedTransaction(wxCommandEvent&)
 {
     wxMessageDialog msgDlg(
         this,
-        _("Do you really want to restore all of the transactions shown?"),
+        _("Do you want to restore all of the transactions shown?"),
         _("Confirm Transaction Restore"),
         wxYES_NO | wxNO_DEFAULT | wxICON_ERROR
     );
@@ -1324,11 +1324,11 @@ void TransactionListCtrl::OnRestoreTransaction(wxCommandEvent& WXUNUSED(event))
 
     FindSelectedTransactions();
 
-    //ask if they really want to restore
+    //ask if they want to restore
     const wxString text = wxString::Format(
         wxPLURAL(
-            "Do you really want to restore the selected transaction?",
-            "Do you really want to restore %i selected transactions?", sel
+            "Do you want to restore the selected transaction?",
+            "Do you want to restore the %i selected transactions?", sel
         ),
         sel
     );
@@ -1380,8 +1380,8 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
 
     if (i == MENU_TREEPOPUP_DELETE_VIEWED) {
         wxString text = !(m_cp->isDeletedTrans() || retainDays == 0)
-            ? _("Do you really want to delete all the transactions shown?")
-            : _("Do you really want to permanently delete all the transactions shown?");
+            ? _("Do you want to delete all the transactions shown?")
+            : _("Do you want to permanently delete all the transactions shown?");
 
         text += "\n\n";
         text += !(m_cp->isDeletedTrans() || retainDays == 0)
@@ -1398,7 +1398,7 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
     }
     else if (i == MENU_TREEPOPUP_DELETE_FLAGGED) {
         wxMessageDialog msgDlg(this
-            , wxString::Format(_("Do you really want to delete all the \"%s\" transactions shown?"), _("Follow Up"))
+            , wxString::Format(_u("Do you want to delete all the “%s” transactions shown?"), _("Follow Up"))
             , _("Confirm Transaction Deletion")
             , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
         if (msgDlg.ShowModal() == wxID_YES) {
@@ -1407,7 +1407,7 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
     }
     else if (i == MENU_TREEPOPUP_DELETE_UNRECONCILED) {
         wxMessageDialog msgDlg(this
-            , wxString::Format(_("Do you really want to delete all the \"%s\" transactions shown?"), _("Unreconciled"))
+            , wxString::Format(_("Do you want to delete all the “%s” transactions shown?"), _("Unreconciled"))
             , _("Confirm Transaction Deletion")
             , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
         if (msgDlg.ShowModal() == wxID_YES) {
@@ -1470,14 +1470,14 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
     FindSelectedTransactions();
     int retainDays = Model_Setting::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30);
 
-    //ask if they really want to delete
+    //ask if they want to delete
     wxString text = (m_cp->isDeletedTrans() || retainDays == 0)?
-        wxString::Format(wxPLURAL("Do you really want to permanently delete the selected transaction?"
-        , "Do you really want to permanently delete %i selected transactions?", sel)
+        wxString::Format(wxPLURAL("Do you want to permanently delete the selected transaction?"
+        , "Do you want to permanently delete the %i selected transactions?", sel)
         , sel)
         :
-        wxString::Format(wxPLURAL("Do you really want to delete the selected transaction?"
-            , "Do you really want to delete %i selected transactions?", sel)
+        wxString::Format(wxPLURAL("Do you want to delete the selected transaction?"
+            , "Do you want to delete the %i selected transactions?", sel)
             , sel);
     text += "\n\n";
     text += _((m_cp->isDeletedTrans() || retainDays == 0) ? _("Unable to undo this action.")
@@ -1578,7 +1578,7 @@ bool TransactionListCtrl::CheckForClosedAccounts()
         const wxString text = wxString::Format(
             wxPLURAL("You are about to edit a transaction involving an account that is closed."
             , "The edit will affect %i transactions involving an account that is closed.", GetSelectedItemCount())
-            , closedTrx) + _("\n\nDo you still want to perform the edit?");
+            , closedTrx) + "\n\n" + _("Do you want to perform the edit?");
         if (wxMessageBox(text, _("Closed Account Check"), wxYES_NO | wxICON_WARNING) == wxYES)
             return true;
     }
@@ -1777,10 +1777,10 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
     FindSelectedTransactions();
     int sel = GetSelectedItemCount();
 
-    //ask if they really want to move
+    //ask if they want to move
     const wxString text = wxString::Format(
-        wxPLURAL("Do you really want to move the selected transaction?"
-            , "Do you really want to move %i selected transactions?", sel)
+        wxPLURAL("Do you want to move the selected transaction?"
+            , "Do you want to move the %i selected transactions?", sel)
         , sel);
     wxMessageDialog msgDlg(this
         , text
