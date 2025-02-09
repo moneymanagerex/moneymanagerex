@@ -206,7 +206,7 @@ void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
     if (m_selected_row < 0)    return;
 
     wxMessageDialog msgDlg(this
-        , _("Do you really want to delete the Asset?")
+        , _("Do you want to delete the asset?")
         , _("Confirm Asset Deletion")
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
 
@@ -389,7 +389,7 @@ bool mmAssetsPanel::Create(wxWindow *parent
     this->windowsFreezeThaw();
 
     auto start = wxDateTime::UNow();
-    tips_ = _("MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth.");
+    tips_ = _("MMEX allows fixed assets like cars, houses, land, and others to be tracked. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth.");
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -509,10 +509,10 @@ void mmAssetsPanel::CreateControls()
     itemBoxSizer5->Add(searchCtrl, 0, wxCENTER, 1);
     mmToolTip(searchCtrl,
         _("Enter any string to find related assets") + "\n\n" +
-        _("Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria.") + "\n" +
-        _("Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'.") + "\n" +
-        _("Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'.") + "\n" +
-        _("Use the asterisk (*) in the begin to find any string in the middle of the sentence.")
+        _u("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
+        _u("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
+        _u("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
+        _u("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.")
     );
 
     //Infobar-mini
