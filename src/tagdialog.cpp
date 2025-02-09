@@ -302,7 +302,7 @@ void mmTagDialog::OnDelete(wxCommandEvent& WXUNUSED(event))
         }
         wxMessageDialog msgDlg(this, wxString::Format(_("Deleted transactions exist which use tag '%s'."), tag->TAGNAME)
                 + "\n\n" + _("Deleting the tag will also automatically purge the associated deleted transactions.")
-                + "\n\n" + _("Do you wish to continue ?")
+                + "\n\n" + _("Do you want to continue?")
                 , _("Confirm Tag Deletion"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
         
         if (tag_used == 0 || (tag_used == -1 && msgDlg.ShowModal() == wxID_YES))
