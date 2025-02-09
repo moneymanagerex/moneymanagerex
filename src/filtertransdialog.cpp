@@ -689,11 +689,11 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     notesEdit_ = new wxTextCtrl(itemPanel, wxID_ANY);
     itemPanelSizer->Add(notesEdit_, g_flagsExpand);
     mmToolTip(notesEdit_, _("Enter any string to find it in transaction notes") + "\n\n" +
-                              _("Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria.") + "\n" +
-                              _("Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'.") + "\n" +
-                              _("Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'.") + "\n" +
-                              _("Use the asterisk (*) in the begin to find any string in the middle of the sentence.") + "\n" +
-                              _("Use regex: to match using regular expressions."));
+        _u("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
+        _u("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
+        _u("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
+        _u("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.") + "\n" +
+        _("Use regex: to match using regular expressions."));
 
     // Colour
     colorCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Color"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
@@ -1294,7 +1294,7 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
     int size = m_setting_name->GetCount();
     if (sel >= 0 && size > 0)
     {
-        if (wxMessageBox(_("The selected item will be deleted") + "\n\n" + _("Do you wish to continue?"), _("Settings item deletion"),
+        if (wxMessageBox(_("The selected item will be deleted") + "\n\n" + _("Do you want to continue?"), _("Settings item deletion"),
                          wxYES_NO | wxICON_WARNING) == wxNO)
         {
             return;
