@@ -746,7 +746,7 @@ bool mmTransDialog::ValidateData()
         {
             if (wxMessageBox(_(wxString::Format(
                 "Locked transaction to date: %s\n\n"
-                "Do you wish to continue ? "
+                "Do you want to continue?"
                 , mmGetDateTimeForDisplay(account->STATEMENTDATE)))
                 , _("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
             {
@@ -1196,7 +1196,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         != Model_Account::currency(Model_Account::instance().get(m_fused_data.TOACCOUNTID))))
     {
         wxMessageDialog msgDlg( this
-            , _("The two accounts have different currencies but you have not defined an advanced transaction. Is this correct?")
+            , _("The two accounts have different currencies, but no advanced transaction is defined. Is this correct?")
             , _("Currencies are different")
             , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
         if (msgDlg.ShowModal() == wxID_NO)
