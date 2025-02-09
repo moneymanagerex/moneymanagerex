@@ -231,7 +231,7 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         {
             int DeleteResponse = wxMessageBox(
                 _("Changing field type will delete all content!") + "\n"
-                + _("Do you want to proceed?") << "\n"
+                + _("Do you want to continue?") << "\n"
                 , _("Custom Field Change")
                 , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
             if (DeleteResponse != wxYES)
@@ -252,8 +252,8 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         if (DataSet.size() > 0)
         {
             int DeleteResponse = wxMessageBox(
-                _("You have modified choices: ones removed will be cleaned!") + "\n"
-                + _("Do you want to proceed?") << "\n"
+                _("Modified choices available: ones removed will be cleaned!") + "\n"
+                + _("Do you want to continue?") << "\n"
                 , _("Custom Field Change")
                 , wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
             if (DeleteResponse != wxYES)
