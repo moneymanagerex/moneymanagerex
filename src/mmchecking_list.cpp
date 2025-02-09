@@ -1407,7 +1407,7 @@ void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
     }
     else if (i == MENU_TREEPOPUP_DELETE_UNRECONCILED) {
         wxMessageDialog msgDlg(this
-            , wxString::Format(_("Do you want to delete all the “%s” transactions shown?"), _("Unreconciled"))
+            , wxString::Format(_u("Do you want to delete all the “%s” transactions shown?"), _("Unreconciled"))
             , _("Confirm Transaction Deletion")
             , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
         if (msgDlg.ShowModal() == wxID_YES) {
