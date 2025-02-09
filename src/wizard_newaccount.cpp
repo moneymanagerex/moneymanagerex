@@ -37,9 +37,9 @@ mmAddAccountWizard::mmAddAccountWizard(wxFrame *frame)
 
     wxString noteString = wxString::Format(
         _("%s models all transactions as belonging to accounts."), mmex::getProgramName()) + "\n\n"
-        + _("The next pages will help you create a new account.\n"
-            "To help you get started, begin by making a list of all\n"
-            "financial institutions where you hold an account.");
+        + _("The next pages will help create a new account.\n"
+            "To help get started, begin by making a list of all\n"
+            "financial institutions where accounts are held.");
 
     new wxStaticText(page1, wxID_ANY, noteString);
 
@@ -134,7 +134,7 @@ mmAddAccountTypePage::mmAddAccountTypePage(mmAddAccountWizard *parent)
     mainSizer->Add( itemChoiceType_, 0 /* No stretching*/, wxALL, 5 /* Border Size */);
 
     wxString textMsg = "\n";
-    textMsg << _("Select the type of account you want to create:") << "\n\n"
+    textMsg << _("Select the type of account to create:") << "\n\n"
             << _("General bank accounts cover a wide variety of account\n"
             "types like Cash, Checking, Loans, and Credit cards.");
     mainSizer->Add(new wxStaticText(this, wxID_ANY, textMsg), 0, wxALL, 5);
@@ -147,7 +147,7 @@ mmAddAccountTypePage::mmAddAccountTypePage(mmAddAccountWizard *parent)
     textMsg = "\n";
     textMsg << _("Term and Asset accounts are specialized bank accounts.\n"
         "They are intended for monitoring Assets or Term Deposits and Bonds\n"
-        "where typically you have regular money coming in and out, outside\n"
+        "where typically regular money goes in and comes out, outside\n"
         "the general income stream.");
     mainSizer->Add( new wxStaticText(this, wxID_ANY,textMsg), 0, wxALL, 5);
 
