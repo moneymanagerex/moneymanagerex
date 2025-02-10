@@ -454,7 +454,7 @@ void mmBDDialog::CreateControls()
 
     wxIntegerValidator<int> intValidator(nullptr, wxNUM_VAL_ZERO_AS_BLANK);
     intValidator.SetMin(0);
-    textNumRepeats_ = new wxTextCtrl(this, ID_DIALOG_BD_TEXTCTRL_NUM_TIMES, "", wxDefaultPosition, m_date_due->GetSize(), 0, intValidator);
+    textNumRepeats_ = new wxTextCtrl(this, ID_DIALOG_BD_TEXTCTRL_NUM_TIMES, "", wxDefaultPosition, wxDefaultSize, 0, intValidator);
     repeatTimesBoxSizer->Add(textNumRepeats_, g_flagsH);
     textNumRepeats_->SetMaxLength(12);
     setRepeatDetails();
