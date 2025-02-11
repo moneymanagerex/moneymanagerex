@@ -475,8 +475,7 @@ void mmStockDialog::OnSave(wxCommandEvent & /*event*/)
         Model_Account::Data* share_account = Model_Account::instance().get(m_stock_name_ctrl->GetValue());
         if (!share_account && !m_edit)
         {
-            if (wxMessageBox(_("Share Account not found.\n\n"
-                "Do you want to create one?")
+            if (wxMessageBox(_("Share Account not found.") + "\n\n" + _("Do you want to create one?")
                 , _("New Stock Investment"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
             {
                 CreateShareAccount(account, stockName, m_stock->PURCHASEDATE);
@@ -484,11 +483,13 @@ void mmStockDialog::OnSave(wxCommandEvent & /*event*/)
         }
         else if (!share_account)
         {
-            if (wxMessageBox(_(
-                "The Company name does not have an associated Share Account.\n\n"
-                "You may want to readjust the Company Name to an existing Share Account with the same name. "
-                "If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
-                "Do you want to create a new Share Acccount?\n")
+            if (wxMessageBox(
+                _("The company name does not have an associated share account.") +
+                "\n\n" +
+                _("You may want to rename the company name to an existing share account with the same name. "
+                "If this is an existing stock without a share account, it is recommended that a share account be created.") +
+                "\n\n" +
+                _("Do you want to create a new Share Acccount?")
                 , _("Edit Stock Investment"), wxYES_NO | wxICON_WARNING) == wxYES)
             {
                 CreateShareAccount(account, stockName, m_stock->PURCHASEDATE);

@@ -32,16 +32,16 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
 {
     page1 = new wxWizardPageSimple(this);
     wxString displayMsg;
-    displayMsg << wxGetTranslation(wxString::FromUTF8(wxTRANSLATE(
-        "The next pages will help you create a new database.\n\n"
-        "Your database file is stored with an extension of .mmb. "
-        "As this file contains important financial information, "
-        "we recommended creating daily backups with the Options "
-        "setting: “Backup database on startup”, and store your backups "
+    displayMsg << _u(
+        "The next pages will help create a new database.\n\n"
+        "The database file is stored with an extension of .mmb. "
+        "As this file contains important financial data, "
+        "it is recommended to create daily backups with the setting "
+        "“Backup database on startup” and store the backups "
         "in a separate location.\n\n"
-        "The database can later be encrypted if required, by "
-        "using the option: “Save Database As…” and changing the "
-        "file type before saving.")));
+        "The database can later be encrypted if required by "
+        "using the setting: “Save Database As…” and changing the "
+        "filetype before saving.");
     new wxStaticText(page1, wxID_ANY, displayMsg);
 
     mmNewDatabaseWizardPage* page2 = new mmNewDatabaseWizardPage(this);
@@ -122,7 +122,7 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     itemUserName_->SetMinSize(wxSize(200,-1));
     itemBoxSizer5->Add(itemUserName_, g_flagsExpand);
 
-    helpMsg = _("(Optional) Specify a title or your name.") + "\n";
+    helpMsg = _("(Optional) Specify a title or name.") + "\n";
     helpMsg += _("Used as a database title for displayed and printed reports.");
     mainSizer->Add(new wxStaticText(this, wxID_ANY, helpMsg), 0, wxALL, 5);
 
