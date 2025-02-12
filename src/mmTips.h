@@ -55,7 +55,7 @@ static const wxString TIPS [] =
     wxTRANSLATE("Get out of debt tip: Spend less than you earn."),
     wxTRANSLATE("Get out of debt tip: Pay more than the minimum."),
     wxTRANSLATE("Get out of debt tip: If you have a mountain of debt, studies show paying off the smallest debts can give you the confidence to tackle the larger ones."),
-    wxTRANSLATE("Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is on your list.")
+    wxTRANSLATE("Before going to a shop and buying something, take the time to make a list of what you really need. In the shop, only buy what is on your list.")
 };
 
 static const wxString STOCKTIPS[] = {
