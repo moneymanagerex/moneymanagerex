@@ -216,7 +216,7 @@ void mmOptionsDialog::OnApply(wxCommandEvent& /*event*/)
     int selected_page = m_listbook->GetSelection();
     if (m_panel_list[selected_page]->SaveSettings())
     {
-        const wxString& msg = wxString::Format(_("%s page has been saved."), _(s_pagetitle[selected_page]));
+        const wxString& msg = wxString::Format(_("%s page has been saved."), wxGetTranslation(s_pagetitle[selected_page]));
         wxMessageBox(msg, _("Settings"));
     }
 
