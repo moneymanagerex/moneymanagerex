@@ -145,9 +145,9 @@ mmAddAccountTypePage::mmAddAccountTypePage(mmAddAccountWizard *parent)
     mainSizer->Add( new wxStaticText(this, wxID_ANY,textMsg), 0, wxALL, 5);
 
     textMsg = "\n";
-    textMsg << _("Term and Asset accounts are specialized bank accounts.\n"
-        "They are intended for monitoring Assets or Term Deposits and Bonds\n"
-        "where typically regular money goes in and comes out, outside\n"
+    textMsg << _("Term and asset accounts are specialized bank accounts. "
+        "They are intended for monitoring assets or term deposits and bonds "
+        "where typically regular money goes in and comes out, outside "
         "the general income stream.");
     mainSizer->Add( new wxStaticText(this, wxID_ANY,textMsg), 0, wxALL, 5);
 
