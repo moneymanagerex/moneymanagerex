@@ -430,7 +430,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     Model_Account::Data* asset_account = Model_Account::instance().get(name);
     if (is_new && !asset_account) {
         if (wxMessageBox(
-            _("Asset Account not found.\n\nDo you want to create one?"),
+            _("Asset account not found.) + "\n\n" + _("Do you want to create one?"),
             _("New Asset"), wxYES_NO | wxICON_INFORMATION
         ) == wxYES) {
             CreateAssetAccount();
