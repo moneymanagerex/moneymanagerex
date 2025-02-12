@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 static const wxString TIPS [] =
 {
-    wxTRANSLATE("Recommendation: Always backup the .mmb database file regularly."),
+    wxTRANSLATE("Recommendation: Back up the .mmb database file regularly."),
     wxTRANSLATE("Recommendation: If upgrading to a new version of MMEX, ensure the .mmb database file is backed up before doing so."),
     wxTRANSLATE("Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."),
     wxTRANSLATE("Tip: Remember to make backups of the .mmb database file."),
