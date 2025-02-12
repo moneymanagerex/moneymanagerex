@@ -475,7 +475,7 @@ void mmStockDialog::OnSave(wxCommandEvent & /*event*/)
         Model_Account::Data* share_account = Model_Account::instance().get(m_stock_name_ctrl->GetValue());
         if (!share_account && !m_edit)
         {
-            if (wxMessageBox(_("Share Account not found.") + "\n\n" + _("Do you want to create one?")
+            if (wxMessageBox(_("Share account not found.") + "\n\n" + _("Do you want to create one?")
                 , _("New Stock Investment"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
             {
                 CreateShareAccount(account, stockName, m_stock->PURCHASEDATE);
@@ -723,11 +723,11 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 
     if (err_code != CURLE_OK)
     {
-        if (sOutput.empty()) sOutput = _("Stock history not found!");
+        if (sOutput.empty()) sOutput = _("Stock history not found.");
         return mmErrorDialogs::MessageError(this, sOutput, _("Stock History Error"));
     }
 
-    sOutput = _("Stock history not found!");
+    sOutput = _("Stock history not found.");
 
     while (true)
     {
