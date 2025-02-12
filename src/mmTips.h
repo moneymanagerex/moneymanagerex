@@ -23,7 +23,7 @@ static const wxString TIPS [] =
     wxTRANSLATE("Recommendation: If upgrading to a new version of MMEX, ensure the .mmb database file is backed up before doing so."),
     wxTRANSLATE("Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."),
     wxTRANSLATE("Tip: Remember to make backups of the .mmb database file."),
-    wxTRANSLATE("Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So ensure that if you are storing any sensitive financial information it is properly guarded."),
+    wxTRANSLATE("Tip: The .mmb database file is not encrypted. That means anyone else having the proper know-how can actually open the file and read the contents. So ensure that if you are storing any sensitive financial information, it is properly guarded."),
     wxTRANSLATE("Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."),
     wxTRANSLATE("Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."),
     wxTRANSLATE("Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."),
