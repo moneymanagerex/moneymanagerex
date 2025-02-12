@@ -489,7 +489,7 @@ void mmStockDialog::OnSave(wxCommandEvent & /*event*/)
                 _("You may want to rename the company name to an existing share account with the same name. "
                 "If this is an existing stock without a share account, it is recommended that a share account be created.") +
                 "\n\n" +
-                _("Do you want to create a new Share Acccount?")
+                _("Do you want to create a new share account?")
                 , _("Edit Stock Investment"), wxYES_NO | wxICON_WARNING) == wxYES)
             {
                 CreateShareAccount(account, stockName, m_stock->PURCHASEDATE);
