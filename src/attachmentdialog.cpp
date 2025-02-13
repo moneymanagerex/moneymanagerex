@@ -69,7 +69,7 @@ mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefTyp
             << "'" << AttachmentsFolder << "'" << "\n"
             << "\n"
             << _("Please verify that above path is correct") << "\n";
-        wxMessageBox(msgStr, _("Attachments folder not found"), wxICON_ERROR);
+        wxMessageBox(msgStr, _("Attachments folder not found."), wxICON_ERROR);
     }
 }
 

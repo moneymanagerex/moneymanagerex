@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-02-13 14:57+0000\n"
+"POT-Creation-Date: 2025-02-11 21:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4239,11 +4239,13 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: mmchecking_list.cpp:526
-#, c-format
 msgid "&Paste Transaction"
-msgid_plural "&Paste Transactions (%d)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
+
+#: mmchecking_list.cpp:526
+#, c-format
+msgid "&Paste Transactions (%d)"
+msgstr ""
 
 #: mmchecking_list.cpp:536
 msgid "D&uplicate Transaction…"
@@ -8207,14 +8209,6 @@ msgstr ""
 
 #: transdialog.cpp:577 usertransactionpanel.cpp:185
 msgid "Manage transaction attachments"
-msgstr ""
-
-#: transdialog.cpp:748
-#, c-format
-msgid ""
-"Locked transaction to date: %s\n"
-"\n"
-"Do you want to continue?"
 msgstr ""
 
 #: transdialog.cpp:774

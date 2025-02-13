@@ -488,7 +488,7 @@ void LoadTheme()
             processThemes(mmex::getPathUser(mmex::USERTHEMEDIR), Model_Setting::instance().getTheme(), false);
         else
         {
-            wxMessageBox(wxString::Format(_("Theme %s not found, it may no longer be supported. Reverting to default theme")
+            wxMessageBox(wxString::Format(_("Theme %s not found; it may no longer be supported. Reverting to the default theme.")
                 , Model_Setting::instance().getTheme()), _("Warning"), wxOK | wxICON_WARNING);
             reverttoDefaultTheme();
         }

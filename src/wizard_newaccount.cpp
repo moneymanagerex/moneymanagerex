@@ -37,9 +37,9 @@ mmAddAccountWizard::mmAddAccountWizard(wxFrame *frame)
 
     wxString noteString = wxString::Format(
         _("%s models all transactions as belonging to accounts."), mmex::getProgramName()) + "\n\n"
-        + _("The next pages will help create a new account.\n"
-            "To help get started, begin by making a list of all\n"
-            "financial institutions where accounts are held.");
+        + _("The next pages will help create a new account. "
+            "To help get started, begin by making a list of all the "
+            "financial institutions where the accounts are held.");
 
     new wxStaticText(page1, wxID_ANY, noteString);
 
@@ -145,9 +145,9 @@ mmAddAccountTypePage::mmAddAccountTypePage(mmAddAccountWizard *parent)
     mainSizer->Add( new wxStaticText(this, wxID_ANY,textMsg), 0, wxALL, 5);
 
     textMsg = "\n";
-    textMsg << _("Term and Asset accounts are specialized bank accounts.\n"
-        "They are intended for monitoring Assets or Term Deposits and Bonds\n"
-        "where typically regular money goes in and comes out, outside\n"
+    textMsg << _("Term and asset accounts are specialized bank accounts. "
+        "They are intended for monitoring assets or term deposits and bonds "
+        "where typically regular money goes in and comes out, outside "
         "the general income stream.");
     mainSizer->Add( new wxStaticText(this, wxID_ANY,textMsg), 0, wxALL, 5);
 

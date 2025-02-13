@@ -4028,7 +4028,7 @@ void mmGUIFrame::OnRecentFiles(wxCommandEvent& event)
     }
     else {
         wxMessageBox(
-            wxString::Format(_("File %s not found"), file_name),
+            wxString::Format(_("File %s not found."), file_name),
             _("Error"),
             wxOK | wxICON_ERROR
         );

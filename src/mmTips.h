@@ -19,11 +19,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 static const wxString TIPS [] =
 {
-    wxTRANSLATE("Recommendation: Always backup the .mmb database file regularly."),
+    wxTRANSLATE("Recommendation: Back up the .mmb database file regularly."),
     wxTRANSLATE("Recommendation: If upgrading to a new version of MMEX, ensure the .mmb database file is backed up before doing so."),
     wxTRANSLATE("Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."),
     wxTRANSLATE("Tip: Remember to make backups of the .mmb database file."),
-    wxTRANSLATE("Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So ensure that if you are storing any sensitive financial information it is properly guarded."),
+    wxTRANSLATE("Tip: The .mmb database file is not encrypted. That means anyone else having the proper know-how can actually open the file and read the contents. So ensure that if you are storing any sensitive financial information, it is properly guarded."),
     wxTRANSLATE("Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."),
     wxTRANSLATE("Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."),
     wxTRANSLATE("Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."),
@@ -34,7 +34,7 @@ static const wxString TIPS [] =
     wxTRANSLATE("Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."),
     wxTRANSLATE("Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"),
 
-    wxTRANSLATE("Never endorse a loan. If the borrower—a friend, a family member, a significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."),
+    wxTRANSLATE("Never endorse a loan. If the borrower—a friend, a family member, a significant other, or whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."),
 
     wxTRANSLATE("Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."),
     wxTRANSLATE("Grocery tip: Make a shopping list. A shopping list saves money by helping you avoid buying products you do not need. The simplest way is to track consumables as you use them. Keep a magnetic notepad on the fridge and jot down what you need as you run out."),
@@ -55,7 +55,7 @@ static const wxString TIPS [] =
     wxTRANSLATE("Get out of debt tip: Spend less than you earn."),
     wxTRANSLATE("Get out of debt tip: Pay more than the minimum."),
     wxTRANSLATE("Get out of debt tip: If you have a mountain of debt, studies show paying off the smallest debts can give you the confidence to tackle the larger ones."),
-    wxTRANSLATE("Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is on your list.")
+    wxTRANSLATE("Before going to a shop and buying something, take the time to make a list of what you really need. In the shop, only buy what is on your list.")
 };
 
 static const wxString STOCKTIPS[] = {

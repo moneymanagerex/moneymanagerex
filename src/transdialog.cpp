@@ -770,9 +770,8 @@ bool mmTransDialog::ValidateData()
                 (account->MINIMUMBALANCE != 0 && new_value < account->MINIMUMBALANCE) ||
                 (account->CREDITLIMIT != 0 && new_value < -(account->CREDITLIMIT));
 
-            if (abort_transaction && wxMessageBox(_(
-                "This transaction will exceed your account limit.\n\n"
-                "Do you wish to continue?")
+            if (abort_transaction && wxMessageBox(
+                _("This transaction will exceed the account limit.") + "\n\n" + _("Do you want to continue?")
                 , _("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
             {
                 return false;
