@@ -898,6 +898,8 @@ struct DB_Column
     {}
 };
 
+static int64 ticks_last_ = 0;
+    
 struct DB_Table
 {
     DB_Table(): hit_(0), miss_(0), skip_(0) {};
@@ -922,6 +924,10 @@ struct DB_Table
     {
         // Get the current time in milliseconds as wxLongLong
         wxLongLong ticks = wxDateTime::UNow().GetValue();
+        // Ensure uniqueness from last generated value
+        if (ticks <= ticks_last_)
+            ticks = ticks_last_ + 1;
+        ticks_last_ = ticks;
         // Generate a random 3-digit number (0 to 999)
         std::random_device rd;
         std::mt19937 gen(rd());
