@@ -523,7 +523,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
             menu.Append(
                 MENU_ON_PASTE_TRANSACTION,
                 wxString::Format(
-                    wxPLURAL(_("&Paste Transaction"), _("&Paste Transactions (%d)"),
+                    wxPLURAL("&Paste Transaction", "&Paste Transactions (%d)",
                         (toPaste < 2) ? 1 : toPaste
                     ),
                     toPaste
@@ -1480,7 +1480,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
             , "Do you want to delete the %i selected transactions?", sel)
             , sel);
     text += "\n\n";
-    text += _((m_cp->isDeletedTrans() || retainDays == 0) ? _("Unable to undo this action.")
+    text += ((m_cp->isDeletedTrans() || retainDays == 0) ? _("Unable to undo this action.")
         : _("Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."));
 
     wxMessageDialog msgDlg(this
@@ -1543,10 +1543,10 @@ bool TransactionListCtrl::TransactionLocked(int64 accountID, const wxString& tra
         wxDateTime transaction_date;
         if (transaction_date.ParseDate(transdate)) {
             if (transaction_date <= Model_Account::DateOf(account->STATEMENTDATE)) {
-                wxMessageBox(_(wxString::Format(
+                wxMessageBox(wxString::Format(
                     _("Locked transaction to date: %s\n\n"
-                        "Reconciled transactions.")
-                    , mmGetDateTimeForDisplay(account->STATEMENTDATE)))
+                      "Reconciled transactions.")
+                    , mmGetDateTimeForDisplay(account->STATEMENTDATE))
                     , _("MMEX Transaction Check"), wxOK | wxICON_WARNING);
                 return true;
             }

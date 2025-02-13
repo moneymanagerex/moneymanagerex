@@ -84,7 +84,7 @@ wxString mmReportMyUsage::getHTMLText()
              {
                  const wxString rep_name_1 = pattern.GetMatch(rep_name, 1);
                  const wxString rep_name_2 = pattern.GetMatch(rep_name, 3);
-                 module += " / " + _(rep_name_1) + (rep_name_2.empty() ? "" : " - " + _(rep_name_2));
+                 module += " / " + wxGetTranslation(rep_name_1) + (rep_name_2.empty() ? "" : " - " + wxGetTranslation(rep_name_2));
              }
              else
              {

@@ -594,7 +594,7 @@ void mmStocksPanel::enableEditDeleteButtons(bool en)
     if (!en)
     {
         if (Option::instance().getShowMoneyTips())
-            stock_details_->SetLabelText(_(STOCKTIPS[rand() % (sizeof(STOCKTIPS) / sizeof(wxString))]));
+            stock_details_->SetLabelText(wxGetTranslation(STOCKTIPS[rand() % (sizeof(STOCKTIPS) / sizeof(wxString))]));
         stock_details_short_->SetLabelText(wxString::Format(_("Last updated %s"), strLastUpdate_));
     }
 }
