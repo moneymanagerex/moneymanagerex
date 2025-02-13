@@ -28,7 +28,7 @@ static const wxString TIPS [] =
     wxTRANSLATE("Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."),
     wxTRANSLATE("Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."),
     wxTRANSLATE("Tip: MMEX runtime behavior can be changed by modifying the settings in Options."),
-    wxTRANSLATE("Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."),
+    wxTRANSLATE("Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions required and then select print from the menu."),
     wxTRANSLATE("Tip: Set the currency exchange rates if there are accounts with different currencies."),
 
     wxTRANSLATE("Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."),
