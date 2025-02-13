@@ -262,7 +262,7 @@ bool OptionSettingsAttachment::SaveSettings()
             {
                 if (!wxRenameFile(attachmentsFolderOld, attachmentsFolder))
                     wxMessageBox(
-                    wxString::Format("%s\n\n", _("Error moving attachments folder: please move it manually!")) +
+                    wxString::Format("%s\n\n", _("An error occurred while moving the attachments folder. Please move it manually.")) +
                     wxString::Format("%s: %s\n", _("Origin"), mmex::getPathAttachment(m_old_path)) +
                     wxString::Format("%s: %s", _("Destination"), attachmentsFolder)
                     , _("Attachments folder migration")
