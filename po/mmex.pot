@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-02-11 21:56+0000\n"
+"POT-Creation-Date: 2025-02-13 14:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -511,10 +511,11 @@ msgid "Invalid Transaction"
 msgstr ""
 
 #: assetdialog.cpp:433
-msgid ""
-"Asset Account not found.\n"
-"\n"
-"Do you want to create one?"
+msgid "Asset account not found."
+msgstr ""
+
+#: assetdialog.cpp:433 stockdialog.cpp:478
+msgid "Do you want to create one?"
 msgstr ""
 
 #: assetspanel.cpp:60 billsdepositspanel.cpp:132 filtertrans.cpp:197
@@ -729,7 +730,7 @@ msgid "Please verify that above path is correct"
 msgstr ""
 
 #: attachmentdialog.cpp:72
-msgid "Attachments folder not found"
+msgid "Attachments folder not found."
 msgstr ""
 
 #: attachmentdialog.cpp:112
@@ -993,7 +994,7 @@ msgstr ""
 msgid "Date Paid"
 msgstr ""
 
-#: billsdepositsdialog.cpp:498 filtertransdialog.cpp:644 transdialog.cpp:1334
+#: billsdepositsdialog.cpp:498 filtertransdialog.cpp:644 transdialog.cpp:1333
 msgid "Specify the status for the transaction"
 msgstr ""
 
@@ -1009,7 +1010,7 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: billsdepositsdialog.cpp:506 transdialog.cpp:1335
+#: billsdepositsdialog.cpp:506 transdialog.cpp:1334
 msgid "Specify the type of transactions to be created."
 msgstr ""
 
@@ -1017,7 +1018,7 @@ msgstr ""
 msgid "&Advanced"
 msgstr ""
 
-#: billsdepositsdialog.cpp:510 transdialog.cpp:1338
+#: billsdepositsdialog.cpp:510 transdialog.cpp:1337
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr ""
 
@@ -1034,7 +1035,7 @@ msgstr ""
 msgid "Amount"
 msgstr ""
 
-#: billsdepositsdialog.cpp:532 transdialog.cpp:1320
+#: billsdepositsdialog.cpp:532 transdialog.cpp:1319
 msgid "Specify the transfer amount in the To Account"
 msgstr ""
 
@@ -1095,7 +1096,7 @@ msgid "Category"
 msgstr ""
 
 #: billsdepositsdialog.cpp:587 billsdepositsdialog.cpp:1452 transdialog.cpp:537
-#: transdialog.cpp:1297
+#: transdialog.cpp:1296
 msgid "Use split Categories"
 msgstr ""
 
@@ -1112,7 +1113,7 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
-#: billsdepositsdialog.cpp:604 transdialog.cpp:1336
+#: billsdepositsdialog.cpp:604 transdialog.cpp:1335
 msgid "Specify any associated check number or transaction number"
 msgstr ""
 
@@ -1147,7 +1148,7 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: billsdepositsdialog.cpp:640 transdialog.cpp:594 transdialog.cpp:1337
+#: billsdepositsdialog.cpp:640 transdialog.cpp:594 transdialog.cpp:1336
 #: usertransactionpanel.cpp:201
 msgid "Specify any text notes you want to add to this transaction."
 msgstr ""
@@ -1256,7 +1257,7 @@ msgstr ""
 msgid "Specify where the transaction is going to"
 msgstr ""
 
-#: billsdepositsdialog.h:132 transdialog.cpp:1329
+#: billsdepositsdialog.h:132 transdialog.cpp:1328
 msgid "Specify where the transaction is coming from"
 msgstr ""
 
@@ -1264,7 +1265,7 @@ msgstr ""
 msgid "Specify which account the transfer is going to"
 msgstr ""
 
-#: billsdepositsdialog.h:134 transdialog.cpp:1324 usertransactionpanel.cpp:123
+#: billsdepositsdialog.h:134 transdialog.cpp:1323 usertransactionpanel.cpp:123
 msgid "Specify the amount for this transaction"
 msgstr ""
 
@@ -1758,7 +1759,7 @@ msgstr ""
 #: customfieldeditdialog.cpp:256 filtertransdialog.cpp:1297
 #: import_export/univcsvdialog.cpp:2187 mmframe.cpp:1371 mmframe.cpp:2633
 #: mmframe.cpp:2700 model/Model_Billsdeposits.cpp:226 payeedialog.cpp:752
-#: tagdialog.cpp:305
+#: tagdialog.cpp:305 transdialog.cpp:774
 msgid "Do you want to continue?"
 msgstr ""
 
@@ -2140,20 +2141,14 @@ msgstr ""
 msgid "Update Custom Field Content"
 msgstr ""
 
-#: customfieldlistdialog.cpp:196
+#: customfieldlistdialog.cpp:196 customfieldlistdialog.cpp:208
 msgid ""
-"Do you want to update blank content?\n"
+"Do you want to update blank custom field content?\n"
 "Select No if you want to abort the replace procedure."
 msgstr ""
 
 #: customfieldlistdialog.cpp:204
 msgid "Replace with"
-msgstr ""
-
-#: customfieldlistdialog.cpp:208
-msgid ""
-"Do you want to update to blank?\n"
-"Select No if you want to abort the replace procedure."
 msgstr ""
 
 #: customfieldlistdialog.cpp:224
@@ -2409,7 +2404,7 @@ msgid "MMEX database succesfully upgraded to version %i"
 msgstr ""
 
 #: dbupgrade.cpp:121
-msgid "It is recommended to optimize the database with Tools → Database → Optimize."
+msgid "It is recommended to optimize the database with Tools → Database → Optimize Database…"
 msgstr ""
 
 #: dbupgrade.cpp:183
@@ -2483,7 +2478,7 @@ msgstr ""
 msgid ""
 "An incorrect password was provided for an encrypted file,\n"
 "or\n"
-"an attempt was made to open a file that is not a database file.\n"
+"an attempt was made to open a file that is not a database file."
 msgstr ""
 
 #: dbwrapper.cpp:122 import_export/qif_import_gui.cpp:1165 webapp.cpp:120
@@ -2982,7 +2977,7 @@ msgstr ""
 
 #: images_list.cpp:491
 #, c-format
-msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
+msgid "Theme %s not found; it may no longer be supported. Reverting to the default theme."
 msgstr ""
 
 #: images_list.cpp:498
@@ -3225,7 +3220,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:1841 import_export/univcsvdialog.cpp:1842
 #: import_export/univcsvdialog.cpp:1857 import_export/univcsvdialog.cpp:2085
 #: themes.cpp:235 transdialog.cpp:298 transdialog.cpp:302 transdialog.cpp:308
-#: transdialog.cpp:987 transdialog.cpp:991 transdialog.cpp:998 webapp.cpp:417
+#: transdialog.cpp:986 transdialog.cpp:990 transdialog.cpp:997 webapp.cpp:417
 #: webapp.cpp:426
 msgid "Unknown"
 msgstr ""
@@ -4004,7 +3999,7 @@ msgid ""
 msgstr ""
 
 #: mmTips.h:22
-msgid "Recommendation: Always backup the .mmb database file regularly."
+msgid "Recommendation: Back up the .mmb database file regularly."
 msgstr ""
 
 #: mmTips.h:23
@@ -4020,7 +4015,7 @@ msgid "Tip: Remember to make backups of the .mmb database file."
 msgstr ""
 
 #: mmTips.h:26
-msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So ensure that if you are storing any sensitive financial information it is properly guarded."
+msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know-how can actually open the file and read the contents. So ensure that if you are storing any sensitive financial information, it is properly guarded."
 msgstr ""
 
 #: mmTips.h:27
@@ -4056,7 +4051,7 @@ msgid "Category Manager tip: Pressing 2 key combination will cycle through all c
 msgstr ""
 
 #: mmTips.h:37
-msgid "Never endorse a loan. If the borrower—a friend, a family member, a significant other, whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
+msgid "Never endorse a loan. If the borrower—a friend, a family member, a significant other, or whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
 msgstr ""
 
 #: mmTips.h:39
@@ -4125,7 +4120,7 @@ msgid "Get out of debt tip: If you have a mountain of debt, studies show paying 
 msgstr ""
 
 #: mmTips.h:58
-msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is on your list."
+msgid "Before going to a shop and buying something, take the time to make a list of what you really need. In the shop, only buy what is on your list."
 msgstr ""
 
 #: mmTips.h:62
@@ -4239,13 +4234,11 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: mmchecking_list.cpp:526
-msgid "&Paste Transaction"
-msgstr ""
-
-#: mmchecking_list.cpp:526
 #, c-format
-msgid "&Paste Transactions (%d)"
-msgstr ""
+msgid "&Paste Transaction"
+msgid_plural "&Paste Transactions (%d)"
+msgstr[0] ""
+msgstr[1] ""
 
 #: mmchecking_list.cpp:536
 msgid "D&uplicate Transaction…"
@@ -4411,7 +4404,7 @@ msgid ""
 "Reconciled transactions."
 msgstr ""
 
-#: mmchecking_list.cpp:1550 transdialog.cpp:751 transdialog.cpp:776
+#: mmchecking_list.cpp:1550 transdialog.cpp:751 transdialog.cpp:775
 msgid "MMEX Transaction Check"
 msgstr ""
 
@@ -5703,7 +5696,7 @@ msgstr ""
 
 #: mmframe.cpp:4031
 #, c-format
-msgid "File %s not found"
+msgid "File %s not found."
 msgstr ""
 
 #: mmframereport.cpp:81
@@ -6041,7 +6034,7 @@ msgstr ""
 #: model/Model_Billsdeposits.cpp:221
 #, c-format
 msgid ""
-"A scheduled transaction will exceed your account limit.\n"
+"A scheduled transaction will exceed the account limit.\n"
 "\n"
 "Account: %1$s\n"
 "Current Balance: %2$6.2f\n"
@@ -7812,11 +7805,7 @@ msgid "Held At"
 msgstr ""
 
 #: stockdialog.cpp:478
-msgid "Do you want to create one?"
-msgstr ""
-
-#: stockdialog.cpp:478
-msgid "Share Account not found."
+msgid "Share account not found."
 msgstr ""
 
 #: stockdialog.cpp:487
@@ -7828,7 +7817,7 @@ msgid "You may want to rename the company name to an existing share account with
 msgstr ""
 
 #: stockdialog.cpp:492
-msgid "Do you want to create a new Share Acccount?"
+msgid "Do you want to create a new share account?"
 msgstr ""
 
 #: stockdialog.cpp:558
@@ -7910,7 +7899,7 @@ msgid "Specify interval of stock history"
 msgstr ""
 
 #: stockdialog.cpp:726 stockdialog.cpp:730
-msgid "Stock history not found!"
+msgid "Stock history not found."
 msgstr ""
 
 #: stockdialog.cpp:727 stockdialog.cpp:839
@@ -8211,42 +8200,47 @@ msgstr ""
 msgid "Manage transaction attachments"
 msgstr ""
 
-#: transdialog.cpp:774
+#: transdialog.cpp:748
+#, c-format
 msgid ""
-"This transaction will exceed your account limit.\n"
+"Locked transaction to date: %s\n"
 "\n"
-"Do you wish to continue?"
+"Do you want to continue?"
 msgstr ""
 
-#: transdialog.cpp:1199
+#: transdialog.cpp:774
+msgid "This transaction will exceed the account limit."
+msgstr ""
+
+#: transdialog.cpp:1198
 msgid "The two accounts have different currencies, but no advanced transaction is defined. Is this correct?"
 msgstr ""
 
-#: transdialog.cpp:1200
+#: transdialog.cpp:1199
 msgid "Currencies are different"
 msgstr ""
 
-#: transdialog.cpp:1315
+#: transdialog.cpp:1314
 msgid "Specify account the money is taken from"
 msgstr ""
 
-#: transdialog.cpp:1316
+#: transdialog.cpp:1315
 msgid "Specify account the money is moved to"
 msgstr ""
 
-#: transdialog.cpp:1317
+#: transdialog.cpp:1316
 msgid "Specify the transfer amount in the From Account."
 msgstr ""
 
-#: transdialog.cpp:1325
+#: transdialog.cpp:1324
 msgid "Specify account for the transaction"
 msgstr ""
 
-#: transdialog.cpp:1327
+#: transdialog.cpp:1326
 msgid "Specify to whom the transaction is going to"
 msgstr ""
 
-#: transdialog.cpp:1333 usertransactionpanel.cpp:80
+#: transdialog.cpp:1332 usertransactionpanel.cpp:80
 msgid "Specify the date of the transaction"
 msgstr ""
 
@@ -8441,7 +8435,7 @@ msgstr ""
 
 #: webapp.cpp:494
 #, c-format
-msgid "Account '%s' not found!"
+msgid "Account '%s' not found."
 msgstr ""
 
 #: webapp.cpp:496
@@ -8545,10 +8539,7 @@ msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #: wizard_newaccount.cpp:40
-msgid ""
-"The next pages will help create a new account.\n"
-"To help get started, begin by making a list of all\n"
-"financial institutions where accounts are held."
+msgid "The next pages will help create a new account. To help get started, begin by making a list of all the financial institutions where the accounts are held."
 msgstr ""
 
 #: wizard_newaccount.cpp:87
@@ -8594,11 +8585,7 @@ msgid ""
 msgstr ""
 
 #: wizard_newaccount.cpp:148
-msgid ""
-"Term and Asset accounts are specialized bank accounts.\n"
-"They are intended for monitoring Assets or Term Deposits and Bonds\n"
-"where typically regular money goes in and comes out, outside\n"
-"the general income stream."
+msgid "Term and asset accounts are specialized bank accounts. They are intended for monitoring assets or term deposits and bonds where typically regular money goes in and comes out, outside the general income stream."
 msgstr ""
 
 #: wizard_newaccount.cpp:164
