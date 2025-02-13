@@ -27,9 +27,9 @@ static const wxString TIPS [] =
     wxTRANSLATE("Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."),
     wxTRANSLATE("Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."),
     wxTRANSLATE("Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File → Print."),
-    wxTRANSLATE("Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."),
+    wxTRANSLATE("Tip: MMEX runtime behavior can be changed by modifying the settings in Options."),
     wxTRANSLATE("Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."),
-    wxTRANSLATE("Tip: Set exchange rate for currencies in case if you have accounts with different currencies."),
+    wxTRANSLATE("Tip: Set the currency exchange rates if there are accounts with different currencies."),
 
     wxTRANSLATE("Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."),
     wxTRANSLATE("Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"),
@@ -43,7 +43,7 @@ static const wxString TIPS [] =
     wxTRANSLATE("Grocery tip: Reduce waste. Adopting better grocery shopping habits is one way to cut back on wasted food and money. Make a list of everything you throw out without using, such as spoiled leftovers or soggy lettuce, to get a sense of the full scale of the issue."),
     wxTRANSLATE("Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."),
 
-    wxTRANSLATE("Cut back on subscriptions. Do you really need to subscribe to every streaming service? Are you using a paid service enough to justify the expense, or can you survive with the ad-supported free one? Do you need that monthly book club, or can you head to the library once per month instead?"),
+    wxTRANSLATE("Cut back on subscriptions. Is a subscription to every streaming service required? Is the paid service expense required, or is an advertising-supported free service sufficient? Is the book club membership required, or is a visit to the library once per month sufficient?"),
     wxTRANSLATE("Use open source alternatives to proprietary software. Search at https://www.opensourcealternative.to/"),
 
     wxTRANSLATE("Parent tip: If you are asked to be a guarantor for a loan for your college student, first check to see if your child has maxed out federal loan, grant, and scholarship options."),
