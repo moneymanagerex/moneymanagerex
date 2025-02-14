@@ -1696,7 +1696,7 @@ void mmGUIFrame::createMenu()
     wxMenu* menu_file = new wxMenu;
 
     wxMenuItem* menuItemNew = new wxMenuItem(menu_file, MENU_NEW, _u("&New Database…"), _("New Database"));
-    wxMenuItem* menuItemOpen = new wxMenuItem(menu_file, MENU_OPEN, _u("&Open Database…\tCtrl-O"), _("Open Database"));
+    wxMenuItem* menuItemOpen = new wxMenuItem(menu_file, MENU_OPEN, _u("&Open Database…") + "\tCtrl-O", _("Open Database"));
     wxMenuItem* menuItemSaveAs = new wxMenuItem(menu_file, MENU_SAVE_AS, _u("Save Database &As…"), _("Save Database As"));
     menu_file->Append(menuItemNew);
     menu_file->Append(menuItemOpen);
@@ -1738,7 +1738,7 @@ void mmGUIFrame::createMenu()
     menu_file->AppendSeparator();
 
     wxMenuItem* menuItemQuit = new wxMenuItem(menu_file, wxID_EXIT,
-        _("E&xit\tCtrl+Q"), _("Quit this program"));
+        _("E&xit") + "\tCtrl-Q", _("Quit this program"));
     menu_file->Append(menuItemQuit);
 
     // Create the required menu items
