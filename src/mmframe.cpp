@@ -2956,7 +2956,7 @@ void mmGUIFrame::refreshPanelData()
         createHomePage();
         break;
     case mmID_CHECKING:
-        wxDynamicCast(panelCurrent_, mmCheckingPanel)->RefreshList();
+        wxDynamicCast(panelCurrent_, mmCheckingPanel)->refreshList();
         break;
     case mmID_STOCKS:
         wxDynamicCast(panelCurrent_, mmStocksPanel)->RefreshList();
@@ -3115,7 +3115,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         // Reset columns of the checking panel in case the time columns was added/removed
         int id = panelCurrent_->GetId();
         if (id == mmID_CHECKING)
-            wxDynamicCast(panelCurrent_, mmCheckingPanel)->ResetColumnView();
+            wxDynamicCast(panelCurrent_, mmCheckingPanel)->resetColumnView();
 
         const wxString& sysMsg = _("Settings have been updated.") + "\n\n"
             + _("Some settings take effect only after an application restart.");
@@ -3507,9 +3507,9 @@ void mmGUIFrame::createCheckingPage(int64 checking_id, const std::vector<int64> 
             (checking_id == -2 && cp->isDeletedTrans()) ||
             (checking_id >= 1 && cp->isAccount() && newCreditDisplayed == creditDisplayed_)
         ) {
-            cp->RefreshList();
+            cp->refreshList();
             if (cp->isAccount())
-                cp->DisplayAccountDetails(checking_id);
+                cp->loadAccount(checking_id);
             done = true;
         }
     }
@@ -3533,7 +3533,7 @@ void mmGUIFrame::createCheckingPage(int64 checking_id, const std::vector<int64> 
     menuPrintingEnable(true);
     if (checking_id >= 1 && gotoTransID_.first > 0) {
         mmCheckingPanel* cp = wxDynamicCast(panelCurrent_, mmCheckingPanel);
-        cp->SetSelectedTransaction(gotoTransID_);
+        cp->setSelectedTransaction(gotoTransID_);
         gotoTransID_ = { -1, 0 };
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);

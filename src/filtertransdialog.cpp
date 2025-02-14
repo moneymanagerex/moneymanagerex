@@ -1532,7 +1532,7 @@ int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Dat
 const wxString mmFilterTransactionsDialog::mmGetDescriptionToolTip() const
 {
     wxString buffer;
-    wxString data = mmGetJsonSetings(true);
+    wxString data = mmGetJsonSettings(true);
     Document j_doc;
     if (j_doc.Parse(data.utf8_str()).HasParseError())
     {
@@ -1631,7 +1631,7 @@ void mmFilterTransactionsDialog::mmGetDescription(mmHTMLBuilder& hb)
 {
     hb.addHeader(4, _("Filtering Details: "));
     // Extract the parameters from the transaction dialog and add them to the report.
-    wxString data = mmGetJsonSetings(true);
+    wxString data = mmGetJsonSettings(true);
     Document j_doc;
     if (j_doc.Parse(data.utf8_str()).HasParseError())
     {
@@ -1744,7 +1744,7 @@ const wxString mmFilterTransactionsDialog::mmGetTypes() const
     return type;
 }
 
-const wxString mmFilterTransactionsDialog::mmGetJsonSetings(bool i18n) const
+const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
 {
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
@@ -2111,14 +2111,14 @@ void mmFilterTransactionsDialog::mmDoUpdateSettings()
     if (isMultiAccount_ && m_setting_name->GetSelection() != wxNOT_FOUND) {
         int i = Model_Infotable::instance().findArrayItem(m_filter_key, mmGetLabelString());
         if (i != wxNOT_FOUND) {
-            m_settings_json = mmGetJsonSetings();
+            m_settings_json = mmGetJsonSettings();
             Model_Infotable::instance().updateArrayItem(m_filter_key, i, m_settings_json);
         }
     }
     if (!isReportMode_) {
         Model_Infotable::instance().setString(
             wxString::Format("CHECK_FILTER_ID_ADV_%lld", accountID_),
-            mmGetJsonSetings()
+            mmGetJsonSettings()
         );
     }
 }
@@ -2145,7 +2145,7 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
         {
             m_setting_name->Append(user_label);
             m_setting_name->SetStringSelection(user_label);
-            m_settings_json = mmGetJsonSetings();
+            m_settings_json = mmGetJsonSettings();
             Model_Infotable::instance().prependArrayItem(m_filter_key, m_settings_json, -1);
         }
         else if (label == user_label)
@@ -2170,7 +2170,7 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
             // Named filters are updated automatically in the "All Transactions" panel
             if (m_setting_name->GetStringSelection() == "")
             {
-                m_settings_json = mmGetJsonSetings();
+                m_settings_json = mmGetJsonSettings();
                 updateLastUsed = true;
             }
         }
@@ -2180,7 +2180,7 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
             const auto& l = mmGetLabelString();
             int sel_json = Model_Infotable::instance().findArrayItem(m_filter_key, l);
             const auto& json = sel_json != wxNOT_FOUND ? filter_settings[sel_json] : "";
-            m_settings_json = mmGetJsonSetings();
+            m_settings_json = mmGetJsonSettings();
             if (isMultiAccount_ && json != m_settings_json && !label.empty())
             {
                 if (wxMessageBox(_("Filter settings have changed") + "\n" + _("Do you want to save them before continuing?") + "\n\n", _("Please confirm"),

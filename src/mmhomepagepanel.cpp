@@ -275,47 +275,40 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
 void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
 {
     const wxString& url = wxURI::Unescape(event.GetURL());
+    if (!url.Contains("#"))
+        return;
 
-    if (url.Contains("#"))
-    {
-        wxString name = url.AfterLast('#');
+    wxLogDebug("{{{ mmHomePagePanel::OnLinkClicked()");
+    wxString name = url.AfterLast('#');
+    wxLogDebug("Name = %s", name);
 
-        //Convert the JSON string from database to a json object
-        wxString str = Model_Infotable::instance().getString("HOME_PAGE_STATUS", "{}");
+    //Convert the JSON string from database to a json object
+    const wxString key = "HOME_PAGE_STATUS";
+    wxString j_str = Model_Infotable::instance().getString(key, "{}");
+    Document j_doc;
+    if (j_doc.Parse(j_str.c_str()).HasParseError())
+        return;
 
-        wxLogDebug("======= mmHomePagePanel::OnLinkClicked =======");
-        wxLogDebug("Name = %s", name);
+    Document::AllocatorType& json_allocator = j_doc.GetAllocator();
+    wxLogDebug("Old %s:\n%s", key, JSON_PrettyFormated(j_doc));
 
-        Document json_doc;
-        if (json_doc.Parse(str.c_str()).HasParseError())
-            return;
+    const wxString type[] = { "TOP_CATEGORIES", "INVEST", "ACCOUNTS_INFO"
+        ,"CARD_ACCOUNTS_INFO" ,"CASH_ACCOUNTS_INFO", "LOAN_ACCOUNTS_INFO"
+        , "TERM_ACCOUNTS_INFO", "ASSETS", "SHARE_ACCOUNTS_INFO"
+        , "CURRENCY_RATES", "BILLS_AND_DEPOSITS" };
 
-        Document::AllocatorType& json_allocator = json_doc.GetAllocator();
-        wxLogDebug("RapidJson Input\n%s", JSON_PrettyFormated(json_doc));
-
-        const wxString type[] = { "TOP_CATEGORIES", "INVEST", "ACCOUNTS_INFO"
-            ,"CARD_ACCOUNTS_INFO" ,"CASH_ACCOUNTS_INFO", "LOAN_ACCOUNTS_INFO"
-            , "TERM_ACCOUNTS_INFO", "ASSETS", "SHARE_ACCOUNTS_INFO"
-            , "CURRENCY_RATES", "BILLS_AND_DEPOSITS" };
-
-        for (const auto& entry : type)
-        {
-            if (name != entry) continue;
-
-            Value v_type(entry.c_str(), json_allocator);
-            if (json_doc.HasMember(v_type) && json_doc[v_type].IsBool())
-            {
-                json_doc[v_type] = !json_doc[v_type].GetBool();
-            }
-            else
-            {
-                json_doc.AddMember(v_type, true, json_allocator);
-            }
+    for (const auto& entry : type) {
+        if (name != entry) continue;
+        Value v_type(entry.c_str(), json_allocator);
+        if (j_doc.HasMember(v_type) && j_doc[v_type].IsBool()) {
+            j_doc[v_type] = !j_doc[v_type].GetBool();
         }
-
-        wxLogDebug("Saving updated RapidJson\n%s", JSON_PrettyFormated(json_doc));
-        wxLogDebug("======= mmHomePagePanel::OnLinkClicked =======");
-
-        Model_Infotable::instance().setString("HOME_PAGE_STATUS", JSON_PrettyFormated(json_doc));
+        else {
+            j_doc.AddMember(v_type, true, json_allocator);
+        }
     }
+
+    wxLogDebug("New %s:\n%s", key, JSON_PrettyFormated(j_doc));
+    Model_Infotable::instance().setJdoc(key, j_doc);
+    wxLogDebug("}}}");
 }

@@ -118,7 +118,7 @@ public:
     const wxString mmGetEndDate() const;
     int mmGetStartDay() const;
     bool mmIsFutureIgnored() const;
-    const wxString mmGetJsonSetings(bool i18n = false) const;
+    const wxString mmGetJsonSettings(bool i18n = false) const;
     const wxString mmGetLabelString() const;
 
 private:

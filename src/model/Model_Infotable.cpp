@@ -197,6 +197,25 @@ void Model_Infotable::setDate(const wxString& key, const wxDateTime& newValue)
 }
 
 //-------------------------------------------------------------------
+// Jdoc
+void Model_Infotable::setJdoc(const wxString& key, Document& newValue)
+{
+    wxString j_str = JSON_PrettyFormated(newValue);
+    setRaw(key, j_str);
+}
+void Model_Infotable::setJdoc(const wxString& key, StringBuffer& newValue)
+{
+    wxString j_str = wxString::FromUTF8(newValue.GetString());
+    setRaw(key, j_str);
+}
+Document Model_Infotable::getJdoc(const wxString& key, const wxString& defaultValue)
+{
+    Document j_doc;
+    wxString j_str = getRaw(key, defaultValue);
+    j_doc.Parse(j_str.utf8_str());
+    return j_doc;
+}
+
 // ArrayString
 void Model_Infotable::setArrayString(const wxString& key, const wxArrayString& a)
 {

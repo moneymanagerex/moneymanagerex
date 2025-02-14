@@ -627,7 +627,7 @@ void Option::parseCheckingRange()
         }
         wxString name = wxGetTranslation(range.second);
         DateRange2::Spec spec;
-        if (!spec.parseSpec(range.first, range.second))
+        if (!spec.parseSpec(label, name))
             continue;
         m_checking_range_a.push_back(spec);
     }

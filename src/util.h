@@ -33,10 +33,10 @@
 
 class mmGUIApp;
 
-//Returns a JSON formatted string in readable form
 wxString JSON_PrettyFormated(rapidjson::Document& j_doc);
-//Returns a JSON formatted string from RapidJson DOM
 wxString JSON_Formated(rapidjson::Document& j_doc);
+bool JSON_GetStringValue(rapidjson::Document& j_doc, const rapidjson::MemoryStream::Ch* name, wxString& value);
+bool JSON_GetBoolValue(rapidjson::Document& j_doc, const rapidjson::MemoryStream::Ch* name, bool& value);
 
 struct ValuePair
 {
