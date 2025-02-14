@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-02-13 14:57+0000\n"
+"POT-Creation-Date: 2025-02-14 08:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -994,7 +994,7 @@ msgstr ""
 msgid "Date Paid"
 msgstr ""
 
-#: billsdepositsdialog.cpp:498 filtertransdialog.cpp:644 transdialog.cpp:1333
+#: billsdepositsdialog.cpp:498 filtertransdialog.cpp:644 transdialog.cpp:1332
 msgid "Specify the status for the transaction"
 msgstr ""
 
@@ -1010,7 +1010,7 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: billsdepositsdialog.cpp:506 transdialog.cpp:1334
+#: billsdepositsdialog.cpp:506 transdialog.cpp:1333
 msgid "Specify the type of transactions to be created."
 msgstr ""
 
@@ -1018,7 +1018,7 @@ msgstr ""
 msgid "&Advanced"
 msgstr ""
 
-#: billsdepositsdialog.cpp:510 transdialog.cpp:1337
+#: billsdepositsdialog.cpp:510 transdialog.cpp:1336
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr ""
 
@@ -1035,7 +1035,7 @@ msgstr ""
 msgid "Amount"
 msgstr ""
 
-#: billsdepositsdialog.cpp:532 transdialog.cpp:1319
+#: billsdepositsdialog.cpp:532 transdialog.cpp:1318
 msgid "Specify the transfer amount in the To Account"
 msgstr ""
 
@@ -1096,7 +1096,7 @@ msgid "Category"
 msgstr ""
 
 #: billsdepositsdialog.cpp:587 billsdepositsdialog.cpp:1452 transdialog.cpp:537
-#: transdialog.cpp:1296
+#: transdialog.cpp:1295
 msgid "Use split Categories"
 msgstr ""
 
@@ -1113,7 +1113,7 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
-#: billsdepositsdialog.cpp:604 transdialog.cpp:1335
+#: billsdepositsdialog.cpp:604 transdialog.cpp:1334
 msgid "Specify any associated check number or transaction number"
 msgstr ""
 
@@ -1148,7 +1148,7 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: billsdepositsdialog.cpp:640 transdialog.cpp:594 transdialog.cpp:1336
+#: billsdepositsdialog.cpp:640 transdialog.cpp:594 transdialog.cpp:1335
 #: usertransactionpanel.cpp:201
 msgid "Specify any text notes you want to add to this transaction."
 msgstr ""
@@ -1257,7 +1257,7 @@ msgstr ""
 msgid "Specify where the transaction is going to"
 msgstr ""
 
-#: billsdepositsdialog.h:132 transdialog.cpp:1328
+#: billsdepositsdialog.h:132 transdialog.cpp:1327
 msgid "Specify where the transaction is coming from"
 msgstr ""
 
@@ -1265,7 +1265,7 @@ msgstr ""
 msgid "Specify which account the transfer is going to"
 msgstr ""
 
-#: billsdepositsdialog.h:134 transdialog.cpp:1323 usertransactionpanel.cpp:123
+#: billsdepositsdialog.h:134 transdialog.cpp:1322 usertransactionpanel.cpp:123
 msgid "Specify the amount for this transaction"
 msgstr ""
 
@@ -1759,7 +1759,7 @@ msgstr ""
 #: customfieldeditdialog.cpp:256 filtertransdialog.cpp:1297
 #: import_export/univcsvdialog.cpp:2187 mmframe.cpp:1371 mmframe.cpp:2633
 #: mmframe.cpp:2700 model/Model_Billsdeposits.cpp:226 payeedialog.cpp:752
-#: tagdialog.cpp:305 transdialog.cpp:774
+#: tagdialog.cpp:305 transdialog.cpp:748 transdialog.cpp:773
 msgid "Do you want to continue?"
 msgstr ""
 
@@ -3220,7 +3220,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:1841 import_export/univcsvdialog.cpp:1842
 #: import_export/univcsvdialog.cpp:1857 import_export/univcsvdialog.cpp:2085
 #: themes.cpp:235 transdialog.cpp:298 transdialog.cpp:302 transdialog.cpp:308
-#: transdialog.cpp:986 transdialog.cpp:990 transdialog.cpp:997 webapp.cpp:417
+#: transdialog.cpp:985 transdialog.cpp:989 transdialog.cpp:996 webapp.cpp:417
 #: webapp.cpp:426
 msgid "Unknown"
 msgstr ""
@@ -4015,7 +4015,7 @@ msgid "Tip: Remember to make backups of the .mmb database file."
 msgstr ""
 
 #: mmTips.h:26
-msgid "Tip: The .mmb database file is not encrypted. That means anyone else having the proper know-how can actually open the file and read the contents. So ensure that if you are storing any sensitive financial information, it is properly guarded."
+msgid "Tip: If the .mmb database file is unencrypted, anyone who has the knowledge can open the database file and read the contents. Ensure that any sensitive financial information stored is properly secured."
 msgstr ""
 
 #: mmTips.h:27
@@ -4031,15 +4031,15 @@ msgid "Tip: MMEX supports printing of all reports that can be viewed. The print 
 msgstr ""
 
 #: mmTips.h:30
-msgid "Tip: You can modify some runtime behavior of MMEX by changing the settings in Options."
+msgid "Tip: MMEX runtime behavior can be changed by modifying the settings in Options."
 msgstr ""
 
 #: mmTips.h:31
-msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
+msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions required and then select print from the menu."
 msgstr ""
 
 #: mmTips.h:32
-msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
+msgid "Tip: Set the currency exchange rates if there are accounts with different currencies."
 msgstr ""
 
 #: mmTips.h:34
@@ -4059,7 +4059,7 @@ msgid "Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and s
 msgstr ""
 
 #: mmTips.h:40
-msgid "Grocery tip: Make a shopping list. A shopping list saves money by helping you avoid buying products you do not need. The simplest way is to track consumables as you use them. Keep a magnetic notepad on the fridge and jot down what you need as you run out."
+msgid "Grocery tip: Make a shopping list. A shopping list saves money by helping to avoid buying products that are not required. The simplest way is to track consumables as they are used. A magnetic notepad on the fridge can help to write down items that need to be bought."
 msgstr ""
 
 #: mmTips.h:41
@@ -4079,7 +4079,7 @@ msgid "Grocery tip: Read sales flyers. Review each store’s flyer and match wha
 msgstr ""
 
 #: mmTips.h:46
-msgid "Cut back on subscriptions. Do you really need to subscribe to every streaming service? Are you using a paid service enough to justify the expense, or can you survive with the ad-supported free one? Do you need that monthly book club, or can you head to the library once per month instead?"
+msgid "Cut back on subscriptions. Is a subscription to every streaming service required? Is the paid service expense required, or is an advertising-supported free service sufficient? Is the book club membership required, or is a visit to the library once per month sufficient?"
 msgstr ""
 
 #: mmTips.h:47
@@ -4104,7 +4104,7 @@ msgid "Get out of debt tip: Stop acquiring new debt."
 msgstr ""
 
 #: mmTips.h:54
-msgid "Get out of debt tip: Create a realistic budget for your expenses."
+msgid "Get out of debt tip: Create a realistic budget for the expenses."
 msgstr ""
 
 #: mmTips.h:55
@@ -4135,43 +4135,43 @@ msgstr ""
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
 msgstr ""
 
-#: mmTips.h:65 mmTips.h:67
-msgid "Before you start investing, have a fully-funded emergency fund."
+#: mmTips.h:65
+msgid "Before starting to invest, have a fully funded emergency fund."
+msgstr ""
+
+#: mmTips.h:66
+msgid "Before starting to invest, know your cash flow (have a budget)."
+msgstr ""
+
+#: mmTips.h:67
+msgid "Before starting to invest, pay off consumer debt—especially credit cards."
 msgstr ""
 
 #: mmTips.h:68
-msgid "Before you start investing, know your cash flow (have a budget)."
+msgid "Before starting to invest, make net worth the primary tracking metric."
 msgstr ""
 
 #: mmTips.h:69
-msgid "Before you start investing, pay off consumer debt — especially credit cards."
+msgid "Before starting to invest, clarify the goals and the priorities."
 msgstr ""
 
 #: mmTips.h:70
-msgid "Before you start investing, make net worth your primary tracking metric."
+msgid "Before starting to invest, understand the investing basics."
 msgstr ""
 
 #: mmTips.h:71
-msgid "Before you start investing, clarify your goals and priorities."
+msgid "Common mistake of investors: only buying known companies."
 msgstr ""
 
 #: mmTips.h:72
-msgid "Before you start investing, ensure you understand investing basics."
+msgid "Common mistake of investors: only buying companies you like."
 msgstr ""
 
 #: mmTips.h:73
-msgid "Common mistake of investors: only buying companies you know."
+msgid "Common mistake of investors: only buying buzzworthy companies."
 msgstr ""
 
 #: mmTips.h:74
-msgid "Common mistake of investors: buying companies you like."
-msgstr ""
-
-#: mmTips.h:75
-msgid "Common mistake of investors: buying buzzworthy companies."
-msgstr ""
-
-#: mmTips.h:76
 msgid "Common mistake of investors: forgetting to rebalance."
 msgstr ""
 
@@ -4404,7 +4404,7 @@ msgid ""
 "Reconciled transactions."
 msgstr ""
 
-#: mmchecking_list.cpp:1550 transdialog.cpp:751 transdialog.cpp:775
+#: mmchecking_list.cpp:1550 transdialog.cpp:750 transdialog.cpp:774
 msgid "MMEX Transaction Check"
 msgstr ""
 
@@ -6356,7 +6356,7 @@ msgid "Attachments folder migration"
 msgstr ""
 
 #: optionsettingsattachment.cpp:265
-msgid "Error moving attachments folder: please move it manually!"
+msgid "An error occurred while moving the attachments folder. Please move it manually."
 msgstr ""
 
 #: optionsettingsattachment.cpp:266
@@ -7272,7 +7272,7 @@ msgid "Bug Report"
 msgstr ""
 
 #: reports/bugreport.h:68
-msgid "Replace this text (marked with >) with detailed description of your problem."
+msgid "Replace this text (marked with >) with detailed description of the problem."
 msgstr ""
 
 #: reports/bugreport.h:69
@@ -7280,7 +7280,7 @@ msgid "Please do not remove information attached below this text."
 msgstr ""
 
 #: reports/bugreport.h:74
-msgid "Use Help → Check for Updates in MMEX to get latest version, where your problem might be already fixed."
+msgid "Use Help → Check for Updates in MMEX to get the latest version, where the problem might be already fixed."
 msgstr ""
 
 #: reports/bugreport.h:75
@@ -7295,7 +7295,7 @@ msgstr ""
 
 #: reports/bugreport.h:78
 #, c-format
-msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
+msgid "Please, join the community on <a href='%s'>Slack</a>. Here you can also pose the question and learn the latest news."
 msgstr ""
 
 #: reports/bugreport.h:79
@@ -7304,11 +7304,11 @@ msgid "Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."
 msgstr ""
 
 #: reports/bugreport.h:80
-msgid "Come up with a descriptive name for your problem."
+msgid "Provide a descriptive name for the problem."
 msgstr ""
 
 #: reports/bugreport.h:81
-msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
+msgid "Include steps to reproduce the problem; attach screenshots where appropriate."
 msgstr ""
 
 #: reports/bugreport.h:82
@@ -8202,45 +8202,42 @@ msgstr ""
 
 #: transdialog.cpp:748
 #, c-format
-msgid ""
-"Locked transaction to date: %s\n"
-"\n"
-"Do you want to continue?"
+msgid "Lock transaction to date: %s"
 msgstr ""
 
-#: transdialog.cpp:774
-msgid "This transaction will exceed the account limit."
+#: transdialog.cpp:773
+msgid "The transaction will exceed the account limit."
 msgstr ""
 
-#: transdialog.cpp:1198
+#: transdialog.cpp:1197
 msgid "The two accounts have different currencies, but no advanced transaction is defined. Is this correct?"
 msgstr ""
 
-#: transdialog.cpp:1199
+#: transdialog.cpp:1198
 msgid "Currencies are different"
 msgstr ""
 
-#: transdialog.cpp:1314
+#: transdialog.cpp:1313
 msgid "Specify account the money is taken from"
 msgstr ""
 
-#: transdialog.cpp:1315
+#: transdialog.cpp:1314
 msgid "Specify account the money is moved to"
 msgstr ""
 
-#: transdialog.cpp:1316
+#: transdialog.cpp:1315
 msgid "Specify the transfer amount in the From Account."
 msgstr ""
 
-#: transdialog.cpp:1324
+#: transdialog.cpp:1323
 msgid "Specify account for the transaction"
 msgstr ""
 
-#: transdialog.cpp:1326
+#: transdialog.cpp:1325
 msgid "Specify to whom the transaction is going to"
 msgstr ""
 
-#: transdialog.cpp:1332 usertransactionpanel.cpp:80
+#: transdialog.cpp:1331 usertransactionpanel.cpp:80
 msgid "Specify the date of the transaction"
 msgstr ""
 
@@ -8435,7 +8432,7 @@ msgstr ""
 
 #: webapp.cpp:494
 #, c-format
-msgid "Account '%s' not found."
+msgid "Account %s not found."
 msgstr ""
 
 #: webapp.cpp:496
@@ -8458,7 +8455,7 @@ msgid "Unable to download attachments from the WebApp."
 msgstr ""
 
 #: webapp.cpp:597
-msgid "Attachments folder not set or unavailable"
+msgid "Attachments folder not set or unavailable."
 msgstr ""
 
 #: webapp.cpp:598
@@ -8466,7 +8463,7 @@ msgid "Transaction not downloaded:"
 msgstr ""
 
 #: webapp.cpp:599
-msgid "Please fix attachments folder or delete attachments from the WebApp"
+msgid "Please fix the attachments folder or delete the attachments from the WebApp."
 msgstr ""
 
 #: webapp.cpp:600
