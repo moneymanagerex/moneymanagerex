@@ -64,7 +64,7 @@ static const wxString STOCKTIPS[] = {
     wxTRANSLATE("Sample of UK (HSBC HLDG) share: HSBA.L"),
     wxTRANSLATE("Before starting to invest, have a fully funded emergency fund."),
     wxTRANSLATE("Before starting to invest, know your cash flow (have a budget)."),
-    wxTRANSLATE("Before starting to invest, pay off consumer debt — especially credit cards."),
+    wxTRANSLATE("Before starting to invest, pay off consumer debt—especially credit cards."),
     wxTRANSLATE("Before starting to invest, make net worth the primary tracking metric."),
     wxTRANSLATE("Before starting to invest, clarify the goals and the priorities."),
     wxTRANSLATE("Before starting to invest, understand the investing basics."),
