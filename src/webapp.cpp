@@ -491,7 +491,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
             }
         }
 
-        wxString msgStr = wxString::Format(_("Account '%s' not found."), WebAppTrans.Account)
+        wxString msgStr = wxString::Format(_("Account %s not found."), WebAppTrans.Account)
             << "\n\n"
             << wxString::Format(_("Transaction will be inserted with the first bank account:\n"
             "'%s' and marked as  'Follow Up'")
@@ -594,9 +594,9 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
                 DeskNewTrID = -1;
 
                 wxString msgStr = wxString() << _("Unable to download attachments from the WebApp.") << "\n"
-                    << _("Attachments folder not set or unavailable") << "\n" << "\n"
+                    << _("Attachments folder not set or unavailable.") << "\n" << "\n"
                     << _("Transaction not downloaded:") << "\n"
-                    << _("Please fix attachments folder or delete attachments from the WebApp") << "\n";
+                    << _("Please fix the attachments folder or delete the attachments from the WebApp.") << "\n";
                 wxMessageBox(msgStr, _("Attachment folder error"), wxICON_ERROR);
             }
             else
