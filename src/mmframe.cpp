@@ -1738,7 +1738,7 @@ void mmGUIFrame::createMenu()
     menu_file->AppendSeparator();
 
     wxMenuItem* menuItemQuit = new wxMenuItem(menu_file, wxID_EXIT,
-        _("E&xit\tCtrl-Q"), _("Quit this program"));
+        _("E&xit\tCtrl+Q"), _("Quit this program"));
     menu_file->Append(menuItemQuit);
 
     // Create the required menu items
