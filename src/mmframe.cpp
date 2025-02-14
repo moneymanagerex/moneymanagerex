@@ -1753,7 +1753,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemLinks = new wxMenuItem(
         menuView,
         MENU_VIEW_LINKS,
-        _("&Navigator\tF5"),
+        _("&Navigator") + "\tF5",
         _("Show/Hide Navigator"),
         wxITEM_CHECK
     );
@@ -1834,7 +1834,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemToggleFullscreen = new wxMenuItem(
         menuView,
         MENU_VIEW_TOGGLE_FULLSCREEN,
-        _("&Full Screen\tF11"),
+        _("&Full Screen") + "\tF11",
         _("Toggle full screen"),
         wxITEM_CHECK
     );
@@ -2007,7 +2007,7 @@ void mmGUIFrame::createMenu()
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemOptions = new wxMenuItem(menuTools, wxID_PREFERENCES
-        , _u("&Settings…\tAlt-F12"), _("Settings"));
+        , _u("&Settings…") + "\tAlt-F12", _("Settings"));
     menuTools->Append(menuItemOptions);
 
     menuTools->AppendSeparator();
@@ -2037,7 +2037,7 @@ void mmGUIFrame::createMenu()
     wxMenu* menuHelp = new wxMenu;
 
     wxMenuItem* menuItemHelp = new wxMenuItem(menuTools, wxID_HELP,
-        _("&Help\tF1"), _("Show Help"));
+        _("&Help") + "\tF1", _("Show Help"));
     menuHelp->Append(menuItemHelp);
 
     //Community Submenu
@@ -2191,14 +2191,14 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(MENU_RATES, _("Download Rates"), mmBitmapBundle(png::CURRATES, toolbar_icon_size), _("Download currency and stock rates"));
 
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Full Screen\tF11"), mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _("Toggle full screen"));
+    toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Full Screen") + "\tF11", mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _("Toggle full screen"));
 
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_PRINT, _("&Print"), mmBitmapBundle(png::PRINT, toolbar_icon_size), _("Print"));
 
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_ABOUT, _("&About"), mmBitmapBundle(png::ABOUT, toolbar_icon_size), _("About"));
-    toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), mmBitmapBundle(png::HELP, toolbar_icon_size), _("Help"));
+    toolBar_->AddTool(wxID_HELP, _("&Help") + "\tF1", mmBitmapBundle(png::HELP, toolbar_icon_size), _("Help"));
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
