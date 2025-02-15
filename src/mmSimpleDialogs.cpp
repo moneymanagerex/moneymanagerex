@@ -1784,6 +1784,13 @@ bool mmTagTextCtrl::Validate(const wxString& tagText)
                 // Save the new tag to reference
                 tag_map_[tag] = newTag->TAGID;
                 tagCheckListBox_->Append(tag);
+
+                // Generate an event to tell the parent that a new tag has been added
+                // This is necessary for dialogs that contain multiple tag controls (e.g. split transaction)
+                // since the parent must reinitialize other tag controls to include the new tag
+                wxListEvent evt(wxEVT_COMMAND_LIST_INSERT_ITEM);
+                evt.SetId(GetId());
+                GetEventHandler()->AddPendingEvent(evt);
             }
             else
             {
