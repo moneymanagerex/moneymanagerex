@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-02-15 09:19+0000\n"
+"POT-Creation-Date: 2025-02-15 09:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4858,7 +4858,7 @@ msgid "New Database"
 msgstr ""
 
 #: mmframe.cpp:1699
-msgid "&Open Database…\tCtrl-O"
+msgid "&Open Database…"
 msgstr ""
 
 #: mmframe.cpp:1699 mmframe.cpp:2160
@@ -4910,7 +4910,7 @@ msgid "Print current view"
 msgstr ""
 
 #: mmframe.cpp:1741
-msgid "E&xit\tCtrl-Q"
+msgid "E&xit"
 msgstr ""
 
 #: mmframe.cpp:1741
@@ -4926,7 +4926,7 @@ msgid "Show/Hide the toolbar"
 msgstr ""
 
 #: mmframe.cpp:1756
-msgid "&Navigator\tF5"
+msgid "&Navigator"
 msgstr ""
 
 #: mmframe.cpp:1757
@@ -4998,7 +4998,7 @@ msgid "Show Money Tips"
 msgstr ""
 
 #: mmframe.cpp:1837
-msgid "&Full Screen\tF11"
+msgid "&Full Screen"
 msgstr ""
 
 #: mmframe.cpp:1838 mmframe.cpp:2194
@@ -5139,7 +5139,7 @@ msgid "Refresh WebApp"
 msgstr ""
 
 #: mmframe.cpp:2010
-msgid "&Settings…\tAlt-F12"
+msgid "&Settings…"
 msgstr ""
 
 #: mmframe.cpp:2017
@@ -5182,8 +5182,8 @@ msgstr ""
 msgid "Database management"
 msgstr ""
 
-#: mmframe.cpp:2040 mmframe.cpp:2201
-msgid "&Help\tF1"
+#: mmframe.cpp:2040 mmframe.cpp:2135 mmframe.cpp:2201
+msgid "&Help"
 msgstr ""
 
 #: mmframe.cpp:2040
@@ -5358,10 +5358,6 @@ msgstr ""
 msgid "&View"
 msgstr ""
 
-#: mmframe.cpp:2135
-msgid "&Help"
-msgstr ""
-
 #: mmframe.cpp:2159 mmframe.cpp:2165
 msgid "New"
 msgstr ""
@@ -5387,7 +5383,7 @@ msgid "Download currency and stock rates"
 msgstr ""
 
 #: mmframe.cpp:2194
-msgid "Full Screen\tF11"
+msgid "Full Screen"
 msgstr ""
 
 #: mmframe.cpp:2197
