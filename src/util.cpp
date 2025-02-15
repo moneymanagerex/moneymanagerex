@@ -48,22 +48,46 @@
 
 using namespace rapidjson;
 
+// Return a JSON formatted string in readable form
 wxString JSON_PrettyFormated(rapidjson::Document& j_doc)
 {
     StringBuffer j_buffer;
     PrettyWriter<StringBuffer> j_writer(j_buffer);
     j_doc.Accept(j_writer);
-
     return wxString::FromUTF8(j_buffer.GetString());
 }
 
+// Returns a JSON formatted string from RapidJson DOM
 wxString JSON_Formated(rapidjson::Document& j_doc)
 {
     StringBuffer j_buffer;
     Writer<StringBuffer> j_writer(j_buffer);
     j_doc.Accept(j_writer);
-
     return wxString::FromUTF8(j_buffer.GetString());
+}
+
+// Get a string value from RapidJson DOM
+bool JSON_GetStringValue(Document& j_doc, const MemoryStream::Ch* name, wxString& value)
+{
+    if (!j_doc.HasMember(name))
+        return false;
+    Value& j_value = j_doc[name];
+    if (!j_value.IsString())
+        return false;
+    value = wxString::FromUTF8(j_value.GetString());
+    return true;
+}
+
+// Get a bool value from RapidJson DOM
+bool JSON_GetBoolValue(Document& j_doc, const MemoryStream::Ch* name, bool& value)
+{
+    if (!j_doc.HasMember(name))
+        return false;
+    Value& j_value = j_doc[name];
+    if (!j_value.IsBool())
+        return false;
+    value = j_value.GetBool();
+    return true;
 }
 
 //----------------------------------------------------------------------------

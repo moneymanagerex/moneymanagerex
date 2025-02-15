@@ -84,9 +84,6 @@ public:
     void setTheme(const wxString& newValue);
     wxString getTheme();
 
-    void setViewTransactions(const wxString& newValue);
-    wxString getViewTransactions();
-    
     wxString getLastDbPath();
 
 public:

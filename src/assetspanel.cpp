@@ -316,13 +316,16 @@ bool mmAssetsListCtrl::EditAsset(Model_Asset::Data* pEntry)
 void mmAssetsListCtrl::OnColClick(wxListEvent& event)
 {
     int ColumnNr;
-    if (event.GetId() != MENU_HEADER_SORT)
-         ColumnNr = event.GetColumn();
+    if (event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET)
+        ColumnNr = event.GetColumn();
     else
-         ColumnNr = m_ColumnHeaderNbr;
+        ColumnNr = m_ColumnHeaderNbr;
     if (0 > ColumnNr || ColumnNr >= m_panel->col_max() || ColumnNr == 0) return;
 
-    if (m_selected_col == ColumnNr && event.GetId() != MENU_HEADER_SORT) m_asc = !m_asc;
+    if (m_selected_col == ColumnNr &&
+        event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET
+    )
+        m_asc = !m_asc;
 
     wxListItem item;
     item.SetMask(wxLIST_MASK_IMAGE);
