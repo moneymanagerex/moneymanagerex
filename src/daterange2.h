@@ -80,8 +80,10 @@ public:
         void parseName(StringIt &str_i, StringIt str_end);
         void setName(const wxString &name_new);
         bool parseSpec(const wxString &str, const wxString &name_new = "");
+        bool hasPeriodS() const;
         const wxString getLabel() const;
         const wxString getName() const;
+        const wxString getLabelName() const;
         const wxString checking_name() const;
         const wxString checking_description() const;
 
@@ -96,12 +98,12 @@ public:
     DateRange2(wxDateTime date_s = wxInvalidDateTime, wxDateTime date_t = wxInvalidDateTime);
 
 protected:
-    const int firstDay[2];                  // first day in PERIOD_ID_[YQM] (1..28)
-    const wxDateTime::Month firstMonth[2];  // first month in PERIOD_ID_[YQ] (0..11)
-    const wxDateTime::WeekDay firstWeekday; // first weekday in PERIOD_ID_W (0=Sun, 1=Mon)
-    wxDateTime date_t;                      // the date of PERIOD_ID_T
-    wxDateTime date_s;                      // the date of PERIOD_ID_S
-    Spec spec;                              // range specification
+    int firstDay[2];                  // first day in PERIOD_ID_[YQM] (1..28)
+    wxDateTime::Month firstMonth[2];  // first month in PERIOD_ID_[YQ] (0..11)
+    wxDateTime::WeekDay firstWeekday; // first weekday in PERIOD_ID_W (0=Sun, 1=Mon)
+    wxDateTime date_t;                // the date of PERIOD_ID_T
+    wxDateTime date_s;                // the date of PERIOD_ID_S
+    Spec spec;                        // range specification
 
 public:
     void setDateT(wxDateTime date = wxInvalidDateTime);
@@ -111,12 +113,21 @@ public:
     void setSpec(const Spec &spec_new);
     bool parseSpec(const wxString &str, const wxString &name = "");
     Spec getSpec() const;
+    const wxString getLabel() const;
+    const wxString getName() const;
+    const wxString getLabelName() const;
     wxDateTime period_start(wxDateTime date, PERIOD_ID period) const;
     wxDateTime period_end(wxDateTime date, PERIOD_ID period) const;
     wxDateTime checking_start() const;
     wxDateTime checking_end() const;
     wxDateTime reporting_start() const;
     wxDateTime reporting_end() const;
+    const wxString checking_start_str() const;
+    const wxString checking_end_str() const;
+    const wxString reporting_start_str() const;
+    const wxString reporting_end_str() const;
+    const wxString checking_tooltip() const;
+    const wxString reporting_tooltip() const;
 
 private:
     static wxDateTime addOffset(wxDateTime date, int offset, PERIOD_ID period);
@@ -137,6 +148,13 @@ public:
 inline void DateRange2::Spec::setName(const wxString &name_new)
 {
     name = name_new;
+}
+
+inline bool DateRange2::Spec::hasPeriodS() const
+{
+    return
+        sp1 == PERIOD_ID_S || ep1 == PERIOD_ID_S ||
+        sp2 == PERIOD_ID_S || ep2 == PERIOD_ID_S;
 }
 
 inline const wxString DateRange2::Spec::offset_str(int offset, bool show_zero)
@@ -191,5 +209,40 @@ inline void DateRange2::setSpec(const DateRange2::Spec &spec_new)
 inline DateRange2::Spec DateRange2::getSpec() const
 {
     return spec;
+}
+
+inline const wxString DateRange2::getLabel() const
+{
+    return spec.getLabel();
+}
+
+inline const wxString DateRange2::getName() const
+{
+    return spec.getName();
+}
+
+inline const wxString DateRange2::getLabelName() const
+{
+    return spec.getLabelName();
+}
+
+inline const wxString DateRange2::checking_start_str() const
+{
+    return dateISOStart(checking_start());
+}
+
+inline const wxString DateRange2::checking_end_str() const
+{
+    return dateISOEnd(checking_end());
+}
+
+inline const wxString DateRange2::reporting_start_str() const
+{
+    return dateISOStart(reporting_start());
+}
+
+inline const wxString DateRange2::reporting_end_str() const
+{
+    return dateISOEnd(reporting_end());
 }
 

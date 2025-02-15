@@ -23,6 +23,7 @@
 #include "Model.h"
 #include "db/DB_Table_Infotable_V1.h"
 #include "defs.h"
+#include "util.h"
 
 class Model_Infotable : public Model<DB_Table_INFOTABLE_V1>
 {
@@ -66,6 +67,10 @@ public:
     const wxColour getColour(const wxString& key, const wxColour& defaultValue = wxColour(255, 255, 255));
 
     void setDate(const wxString& key, const wxDateTime& newValue);
+
+    void setJdoc(const wxString& key, Document& newValue);
+    void setJdoc(const wxString& key, StringBuffer& newValue);
+    Document getJdoc(const wxString& key, const wxString& defaultValue);
 
     void setArrayString(const wxString& key, const wxArrayString& a);
     const wxArrayString getArrayString(const wxString& key, bool sort = false);
