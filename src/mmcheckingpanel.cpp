@@ -246,11 +246,11 @@ void mmCheckingPanel::createControls()
     wxString prefix = sortPrefix();
     m_listCtrlAccount->g_sortCol1 = Model_Setting::instance().getInt(
         wxString::Format("%s_SORT_COL", prefix),
-        m_listCtrlAccount->GetColumnOrder(m_listCtrlAccount->COL_def_sort)
+        m_listCtrlAccount->getColumnNr(m_listCtrlAccount->LIST_COL_def_sort1)
     );
     m_listCtrlAccount->g_sortCol2 = Model_Setting::instance().getInt(
         wxString::Format("%s_SORT_COL2", prefix),
-        m_listCtrlAccount->GetColumnOrder(m_listCtrlAccount->COL_def_sort2)
+        m_listCtrlAccount->getColumnNr(m_listCtrlAccount->LIST_COL_def_sort2)
     );
     m_listCtrlAccount->g_sortAsc1 = Model_Setting::instance().getInt(
         wxString::Format("%s_ASC", prefix),

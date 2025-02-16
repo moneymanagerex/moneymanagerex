@@ -27,8 +27,6 @@
 #include "model/allmodel.h"
 #include <wx/srchctrl.h>
 
-/*******************************************************/
-
 wxBEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   mmAssetsListCtrl::OnListItemActivated)
     EVT_LIST_ITEM_SELECTED(wxID_ANY,    mmAssetsListCtrl::OnListItemSelected)
@@ -47,38 +45,36 @@ wxBEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
 
     EVT_LIST_KEY_DOWN(wxID_ANY, mmAssetsListCtrl::OnListKeyDown)
 wxEND_EVENT_TABLE()
-/*******************************************************/
 
-mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindowID winid)
-: mmListCtrl(parent, winid)
-, m_panel(cp)
+const std::vector<ListColumnInfo> mmAssetsListCtrl::col_info_all()
+{
+    return {
+        { " ",                25,                        wxLIST_FORMAT_LEFT,  false },
+        { _("ID"),            wxLIST_AUTOSIZE,           wxLIST_FORMAT_RIGHT, true },
+        { _("Name"),          150,                       wxLIST_FORMAT_LEFT,  true },
+        { _("Date"),          wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _("Type"),          wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _("Initial Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _("Current Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _("Notes"),         450,                       wxLIST_FORMAT_LEFT,  true },
+    };
+}
+
+mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindowID winid) :
+    mmListCtrl(parent, winid),
+    m_panel(cp)
 {
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
+    m_columns = col_info_all();
+    for (int i = 0; i < LIST_COL_size; ++i)
+        m_column_order.push_back(i);
+    m_col_width_fmt = "ASSETS_COL%d_WIDTH";
+    m_col_type_str = "ASSETS";
 
-    m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT, false));
-    m_real_columns.push_back(m_panel->COL_ICON);
-    m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true));
-    m_real_columns.push_back(m_panel->COL_ID);
-    m_columns.push_back(PANEL_COLUMN(_("Name"), 150, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_panel->COL_NAME);
-    m_columns.push_back(PANEL_COLUMN(_("Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_panel->COL_DATE);
-    m_columns.push_back(PANEL_COLUMN(_("Type"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_panel->COL_TYPE);
-    m_columns.push_back(PANEL_COLUMN(_("Initial Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
-    m_real_columns.push_back(m_panel->COL_VALUE_INITIAL);
-    m_columns.push_back(PANEL_COLUMN(_("Current Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
-    m_real_columns.push_back(m_panel->COL_VALUE_CURRENT);
-    m_columns.push_back(PANEL_COLUMN(_("Notes"), 450, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_panel->COL_NOTES);
-
-    m_col_width = "ASSETS_COL%d_WIDTH";
-    m_col_idstr = "ASSETS";
-
-    CreateColumns();
+    createColumns();
 
     // load the global variables
-    m_default_sort_column = m_panel->col_sort();
+    m_default_sort_column = col_sort();
     m_selected_col = Model_Setting::instance().getInt("ASSETS_SORT_COL", m_default_sort_column);
     m_asc = Model_Setting::instance().getBool("ASSETS_ASC", true);
 }
@@ -141,7 +137,7 @@ void mmAssetsListCtrl::OnListLeftClick(wxMouseEvent& event)
 
 wxString mmAssetsListCtrl::OnGetItemText(long item, long column) const
 {
-    return m_panel->getItem(item, m_real_columns[column]);
+    return m_panel->getItem(item, m_column_order[column]);
 }
 
 void mmAssetsListCtrl::OnListItemSelected(wxListEvent& event)
@@ -320,7 +316,7 @@ void mmAssetsListCtrl::OnColClick(wxListEvent& event)
         ColumnNr = event.GetColumn();
     else
         ColumnNr = m_ColumnHeaderNbr;
-    if (0 > ColumnNr || ColumnNr >= m_panel->col_max() || ColumnNr == 0) return;
+    if (0 > ColumnNr || ColumnNr >= col_size() || ColumnNr == 0) return;
 
     if (m_selected_col == ColumnNr &&
         event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET
@@ -355,7 +351,6 @@ void mmAssetsListCtrl::OnEndLabelEdit(wxListEvent& event)
     RefreshItems(event.GetIndex(), event.GetIndex());
 }
 
-/*******************************************************/
 BEGIN_EVENT_TABLE(mmAssetsPanel, wxPanel)
     EVT_BUTTON(wxID_NEW, mmAssetsPanel::OnNewAsset)
     EVT_BUTTON(wxID_EDIT, mmAssetsPanel::OnEditAsset)
@@ -368,7 +363,6 @@ BEGIN_EVENT_TABLE(mmAssetsPanel, wxPanel)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmAssetsPanel::OnSearchTxtEntered)
     EVT_TEXT_ENTER(wxID_FIND, mmAssetsPanel::OnSearchTxtEntered)
 END_EVENT_TABLE()
-/*******************************************************/
 
 mmAssetsPanel::mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid, const wxString& name)
     : m_frame(frame)
@@ -536,28 +530,28 @@ void mmAssetsPanel::sortTable()
     std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterBySTARTDATE());
     switch (this->m_listCtrlAssets->m_selected_col)
     {
-    case COL_ID:
+    case mmAssetsListCtrl::LIST_COL_ID:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETID());
         break;
-    case COL_NAME:
+    case mmAssetsListCtrl::LIST_COL_NAME:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETNAME());
         break;
-    case COL_TYPE:
+    case mmAssetsListCtrl::LIST_COL_TYPE:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETTYPE());
         break;
-    case COL_VALUE_INITIAL:
+    case mmAssetsListCtrl::LIST_COL_VALUE_INITIAL:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByVALUE());
         break;
-    case COL_VALUE_CURRENT:
+    case mmAssetsListCtrl::LIST_COL_VALUE_CURRENT:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end()
             , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
             {
                 return Model_Asset::value(x) < Model_Asset::value(y);
             });
         break;
-    case COL_DATE:
+    case mmAssetsListCtrl::LIST_COL_DATE:
         break;
-    case COL_NOTES:
+    case mmAssetsListCtrl::LIST_COL_NOTES:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByNOTES());
     default:
         break;
@@ -632,21 +626,21 @@ wxString mmAssetsPanel::getItem(long item, long column)
     const Model_Asset::Data& asset = this->m_assets[item];
     switch (column)
     {
-    case COL_ICON:
+    case mmAssetsListCtrl::LIST_COL_ICON:
         return "";
-    case COL_ID:
+    case mmAssetsListCtrl::LIST_COL_ID:
         return wxString::Format("%lld", asset.ASSETID).Trim();
-    case COL_NAME:
+    case mmAssetsListCtrl::LIST_COL_NAME:
         return asset.ASSETNAME;
-    case COL_TYPE:
+    case mmAssetsListCtrl::LIST_COL_TYPE:
         return wxGetTranslation(asset.ASSETTYPE);
-    case COL_VALUE_INITIAL:
+    case mmAssetsListCtrl::LIST_COL_VALUE_INITIAL:
         return Model_Currency::toCurrency(asset.VALUE);
-    case COL_VALUE_CURRENT:
+    case mmAssetsListCtrl::LIST_COL_VALUE_CURRENT:
         return Model_Currency::toCurrency(Model_Asset::value(asset));
-    case COL_DATE:
+    case mmAssetsListCtrl::LIST_COL_DATE:
         return mmGetDateTimeForDisplay(asset.STARTDATE);
-    case COL_NOTES:
+    case mmAssetsListCtrl::LIST_COL_NOTES:
     {
         wxString full_notes = asset.NOTES;
         full_notes.Replace("\n", " ");
@@ -754,7 +748,7 @@ void mmAssetsPanel::OnSearchTxtEntered(wxCommandEvent& event)
     while (selectedItem > 0 && selectedItem <= last)
     {
         m_listCtrlAssets->m_asc ? selectedItem-- : selectedItem++;
-        const wxString t = getItem(selectedItem, COL_NOTES).Lower();
+        const wxString t = getItem(selectedItem, mmAssetsListCtrl::LIST_COL_NOTES).Lower();
         if (t.Matches(search_string + "*"))
         {
             //First of all any items should be unselected

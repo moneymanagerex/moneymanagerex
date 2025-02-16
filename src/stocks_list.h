@@ -34,6 +34,31 @@ class StocksListCtrl: public mmListCtrl
     wxDECLARE_EVENT_TABLE();
 
 public:
+    enum LIST_COL
+    {
+        LIST_COL_ICON = 0,
+        LIST_COL_ID,
+        LIST_COL_DATE,
+        LIST_COL_NAME,
+        LIST_COL_SYMBOL,
+        LIST_COL_NUMBER,
+        LIST_COL_PRICE,
+        LIST_COL_VALUE,
+        LIST_COL_REAL_GAIN_LOSS,
+        LIST_COL_GAIN_LOSS,
+        LIST_COL_CURRENT,
+        LIST_COL_CURRVALUE,
+        LIST_COL_PRICEDATE,
+        LIST_COL_COMMISSION,
+        LIST_COL_NOTES,
+        LIST_COL_size, // number of columns
+    };
+
+private:
+    static const std::vector<ListColumnInfo> col_info_all();
+    int col_sort();
+
+public:
     StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID winid = wxID_ANY);
     ~StocksListCtrl();
 
@@ -47,7 +72,6 @@ public:
     void OnOpenAttachment(wxCommandEvent& event);
     long get_selectedIndex();
     int getColumnsNumber();
-    int col_sort();
     wxString getStockInfo(int selectedIndex) const;
     /* Helper Functions/data */
     Model_Stock::Data_Set m_stocks;
@@ -69,25 +93,7 @@ private:
     void OnListItemSelected(wxListEvent& event);
 
     mmStocksPanel* m_stock_panel;
-    enum EColumn
-    {
-        COL_ICON = 0,
-        COL_ID,
-        COL_DATE,
-        COL_NAME,
-        COL_SYMBOL,
-        COL_NUMBER,
-        COL_PRICE,
-        COL_VALUE,
-        COL_REAL_GAIN_LOSS,
-        COL_GAIN_LOSS,
-        COL_CURRENT,
-        COL_CURRVALUE,
-        COL_PRICEDATE,
-        COL_COMMISSION,
-        COL_NOTES,
-        COL_MAX, // number of columns
-    };
+
     double GetGainLoss(long item) const;
     static double getGainLoss(const Model_Stock::Data& stock);
     double GetRealGainLoss(long item) const;
@@ -96,7 +102,7 @@ private:
 };
 
 inline long StocksListCtrl::get_selectedIndex() { return m_selected_row; }
-inline int StocksListCtrl::getColumnsNumber() { return COL_MAX; }
-inline int StocksListCtrl::col_sort() { return COL_DATE; }
+inline int StocksListCtrl::getColumnsNumber() { return LIST_COL_size; }
+inline int StocksListCtrl::col_sort() { return LIST_COL_DATE; }
 
 #endif

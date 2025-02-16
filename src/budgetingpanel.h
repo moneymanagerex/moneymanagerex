@@ -32,10 +32,27 @@ class mmGUIFrame;
 class budgetingListCtrl : public mmListCtrl
 {
     DECLARE_NO_COPY_CLASS(budgetingListCtrl)
-        wxDECLARE_EVENT_TABLE();
+    wxDECLARE_EVENT_TABLE();
+
+public:
+    enum LIST_COL
+    {
+        LIST_COL_ICON = 0,
+        LIST_COL_CATEGORY,
+        LIST_COL_FREQUENCY,
+        LIST_COL_AMOUNT,
+        LIST_COL_ESTIMATED,
+        LIST_COL_ACTUAL,
+        LIST_COL_NOTES,
+        LIST_COL_size, // number of columns
+    };
+
+private:
+    static const std::vector<ListColumnInfo> col_info_all();
 
 public:
     budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, const wxWindowID id);
+    void createColumns_();
 
 public:
     /* required overrides for virtual style list control */
@@ -68,7 +85,6 @@ public:
 
     /* updates the checking panel data */
     void initVirtualListControl();
-    int col_max() { return COL_MAX; }
 
     /* Getter for Virtual List Control */
     wxString getItem(long item, long column);
@@ -140,17 +156,5 @@ private:
     /* Event handlers for Buttons */
     void OnViewPopupSelected(wxCommandEvent& event);
     void OnMouseLeftDown(wxCommandEvent& event);
-
-    enum EColumn
-    {
-        COL_ICON = 0,
-        COL_CATEGORY,
-        COL_FREQUENCY,
-        COL_AMOUNT,
-        COL_ESTIMATED,
-        COL_ACTUAL,
-        COL_NOTES,
-        COL_MAX, // number of columns
-    };
 };
 
