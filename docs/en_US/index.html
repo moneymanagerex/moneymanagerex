@@ -97,7 +97,7 @@
         <li>
             Nonproprietary
             <a href="https://www.sqlite.org/" target="_blank">SQLite</a>
-            database with
+            database with optional
             <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard" target="_blank">Advanced Encryption Standard (AES)</a>
         </li>
         <li>Cross-platform, available for
@@ -205,7 +205,7 @@
         The database that MMEX generates, known as the <dfn><code>.mmb</code> file</dfn>,
         becomes an important file for you to maintain. Depending on
         circumstances, security features such as encryption can be
-        employed, <s>which is recognized as a <code>.emb</code> file</s>. This is where we can
+        employed, which is recognized as a <code>.emb</code> file. This is where we can
         attach a password to the database, and will require a password
         every time MMEX is opened.
     </p>
@@ -270,8 +270,15 @@
     <p>
         The database name will be displayed on the title bar which helps
         remind you which database file is open.
-        <s>The new <code>.mmb</code> database file is not encrypted.</s>
+        The new <code>.mmb</code> database file is not encrypted.
     </p>
+	<p>
+		To encrypt the database open in MMEX, use the
+		<kbd><samp>File</samp> → <samp>Save Database As…</samp></kbd> menu,
+		enter the file name and select the type <samp>Encrypted MMEX Database (.emb)</samp>.
+		It is possible to revert to an unencrypted database by using the same menu
+		and selecting the type "MMEX Database (.mmb)".
+	</p>
 
     <h2>Creating New Accounts</h2>
     <p>

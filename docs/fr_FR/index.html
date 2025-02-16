@@ -94,8 +94,8 @@
         <li>
             Base de données
             <a href="https://www.sqlite.org/" target="_blank">SQLite</a>
-            non-propriétaire <s>avec chiffrement
-            <a href="https://fr.wikipedia.org/wiki/Advanced_Encryption_Standard" target="_blank">Advanced Encryption Standard (AES)</a></s>
+            non-propriétaire avec chiffrement optionnel
+            <a href="https://fr.wikipedia.org/wiki/Advanced_Encryption_Standard" target="_blank">Advanced Encryption Standard (AES)</a>
         </li>
         <li>Multi-plateforme, disponible pour
             <a href="https://moneymanagerex.org/docs/downloads/compatibility/" target="_blank">ordinateur de bureau</a>
@@ -189,14 +189,15 @@
 
     <h3>Recommandations</h3>
     <aside class="sticky notes">
-        La base de données n'étant pas chiffrée (version 1.18.1), assurez-vous de bien protéger
-		l'accès au <dfn>fichier <code>.mmb</code></dfn> et à ses copies de sauvegarde.
-		Toute personne ayant accès à ces fichiers et disposant des connaissances suffisantes
-		peut accéder facilement aux informations contenues.
+        Si vous cryptez votre base de données, retenez bien votre mot de passe.
     </aside>
     <p>
         La base de données que produit MMEX, vue comme un <dfn>fichier <code>.mmb</code></dfn>,
-		devient un fichier important à maintenir.
+		devient un fichier important à maintenir. Selon les
+        circonstances, des fonctions de sécurité comme le chiffrement peuvent être employées,
+		dans ce cas la base de données sera un fichier <code>.emb</code>. Un mot de passe
+        sera alors attaché à la base de données, et ce mot de passe devra être fourni
+        chaque fois que MMEX sera ouvert.
     </p>
     <p>
         Comme pour tout système informatique, les données que nous produisons sont importantes pour nous et
@@ -208,11 +209,11 @@
 		et que le système s'arrête.
     </p>
     <ul>
-        <li>Faites une copie de sauvegarde de votre fichier <code>.mmb</code> régulièrement.</li>
+        <li>Faites une copie de sauvegarde de votre fichier <code>.mmb</code> ou <code>.emb</code> régulièrement.</li>
         <li>Conservez toujours des copies de sauvegarde sur d'autres supports pour vous protéger des pannes matérielles.</li>
         <li>
             Quand vous passez sur une nouvelle version de MMEX, faites au préalable
-			une copie de sauvegarde de votre fichier <code>.mmb</code>.
+			une copie de sauvegarde de votre fichier <code>.mmb</code> ou <code>.emb</code>.
         </li>
         <li>Utilisez le Menu <kbd><samp>Outils</samp> → <samp>Paramètres…</samp></kbd>
             pour régler les options de sauvegarde de la base de données.</li>
@@ -254,7 +255,15 @@
     <p>
         Le nom de la base de données est affiché dans la barre de titre,
 		ce qui vous permet de savoir quelle base est ouverte.
+        La nouvelle base de données <code>.mmb</code> n'est pas chiffrée.</s>
     </p>
+	<p>
+		Pour chiffrer la base de données ouverte dans MMEX, utilisez le menu
+		<kbd><samp>Fichier</samp> → <samp>Enregistrer la base de données sous…</samp></kbd>,
+		indiquez le nom du fichier et sélectionnez le type "Base de données chiffrée MMEX (.emb)".
+		Il est possible de revenir à une base de données non chiffrée en utilisant le même menu
+		et en sélectionnant le type "Base de données MMEX (.mmb)".
+	</p>
 	
 	<h2>Créer de nouveaux comptes</h2>
 	<p>
@@ -1565,9 +1574,9 @@ PBank Of Mortgage Payee
     <p>Oui. Vos données sont en parfaite sécurité.</p>
     <p>
         Les données sont stockées sur votre PC (ou votre clé USB si vous utilisez MMEX en version portable).
-		<s>Pour améliorer leur protection, les données peuvent dorénavant être chiffrées.
+		Pour améliorer leur protection, les données peuvent dorénavant être chiffrées.
 		Cela applique un mot de passe au fichier de base de données, et il peut seulement être ouvert
-		par MMEX, ou tout autre logiciel, si vous connaissez le mot de passe.</s>
+		par MMEX, ou tout autre logiciel, si vous connaissez le mot de passe.
     </p>
 
     <h3>MMEX peut-il être utilisé sur une clé USB&nbsp;?</h3>
