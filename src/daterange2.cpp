@@ -290,6 +290,16 @@ const wxString DateRange2::Spec::getLabel() const
     return sb.buffer;
 }
 
+const wxString DateRange2::Spec::getLabelName() const
+{
+    wxString s = getLabel();
+    if (!name.empty()) {
+        s.append("; ");
+        s.append(name);
+    }
+    return s;
+}
+
 const wxString DateRange2::Spec::checking_name() const
 {
     wxString str = getLabel();
@@ -301,6 +311,7 @@ const wxString DateRange2::Spec::checking_description() const
 {
     static StringBuilder sb;
     sb.reset();
+    sb.append(getLabel());
     // TODO
     return sb.buffer;
 }
@@ -454,6 +465,32 @@ wxDateTime DateRange2::reporting_end() const
     return wxInvalidDateTime;
 }
 
+const wxString DateRange2::checking_tooltip() const
+{
+    static StringBuilder sb;
+    sb.reset();
+
+    wxDateTime date1 = checking_start();
+    wxDateTime date2 = checking_end();
+    if (date1 != wxInvalidDateTime)
+        sb.append(dateISO(date1));
+    sb.sep(); sb.append(".."); sb.sep();
+    if (date2 != wxInvalidDateTime)
+        sb.append(dateISO(date2));
+    sb.flush();
+
+    sb.append("\n");
+    sb.append(spec.checking_description());
+    return sb.buffer;
+}
+
+const wxString DateRange2::reporting_tooltip() const
+{
+    // TODO
+    return "";
+}
+
+
 #ifndef NDEBUG
 DateRange2::DateRange2(
     int firstDay_new_0, int firstDay_new_1,
@@ -523,7 +560,7 @@ bool DateRange2::debug()
             wxLogDebug("ERROR in checking[%d]: Cannot parse [%s]", i, spec);
             continue;
         }
-        wxString label = dr.getSpec().getLabel();
+        wxString label = dr.getLabel();
         if (label != spec)
             wxLogDebug("checking[%d] [%s]: label=[%s]", i, spec, label);
         wxString sc = dateISO(dr.checking_start());

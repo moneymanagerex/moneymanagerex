@@ -31,18 +31,16 @@ class mmCheckingPanel;
 class TransactionListCtrl : public mmListCtrl
 {
 public:
-    TransactionListCtrl(mmCheckingPanel* cp
-        , wxWindow* parent
-        , const wxWindowID id = wxID_ANY);
-
+    TransactionListCtrl(
+        mmCheckingPanel* cp,
+        wxWindow* parent,
+        const wxWindowID id = wxID_ANY
+    );
     ~TransactionListCtrl();
 
-    Fused_Transaction::Full_Data_Set m_trans;
-    void markSelectedTransaction();
-    void DeleteTransactionsByStatus(const wxString& status);
-    void resetColumns();
+private:
+    friend class mmCheckingPanel;
 
-public:
     enum EColumn
     {
         COL_IMGSTATUS = 0,
@@ -72,62 +70,10 @@ public:
         COL_def_sort = COL_DATE, // don't omit any columns before this
         COL_def_sort2 = COL_ID 
     };
-    EColumn toEColumn(const unsigned long col);
 
-    EColumn g_sortcol = COL_def_sort; // index of primary column to sort by
-    EColumn prev_g_sortcol = COL_def_sort2; // index of secondary column to sort by
-    bool g_asc = true; // asc\desc sorting for primary sort column
-    bool prev_g_asc = true; // asc\desc sorting for secondary sort column
-
-    bool getSortOrder() const;
-    EColumn getSortColumn() const { return m_sortCol; }
-
-    void setSortOrder(bool asc) { m_asc = asc; }
-    void setSortColumn(EColumn col) { m_sortCol = col; }
-    void setVisibleItemIndex(long v);
-
-    void setColumnImage(EColumn col, int image);
-public:
-    void OnNewTransaction(wxCommandEvent& event);
-    void OnDeleteTransaction(wxCommandEvent& event);
-    void OnRestoreTransaction(wxCommandEvent& event);
-    void OnDeleteViewedTransaction(wxCommandEvent& event);
-    void OnRestoreViewedTransaction(wxCommandEvent&);
-    void OnEditTransaction(wxCommandEvent& event);
-    void OnDuplicateTransaction(wxCommandEvent& event);
-    void OnEnterScheduled(wxCommandEvent& event);
-    void OnSkipScheduled(wxCommandEvent& event);
-    void OnSetUserColour(wxCommandEvent& event);
-    void OnMoveTransaction(wxCommandEvent& event);
-    void OnOpenAttachment(wxCommandEvent& event);
-    void OnViewOtherAccount(wxCommandEvent& event);
-    // Displays the split categories for the selected transaction
-    void OnViewSplitTransaction(wxCommandEvent& event);
-    void OnOrganizeAttachments(wxCommandEvent& event);
-    void OnCreateReoccurance(wxCommandEvent& event);
-    void refreshVisualList(bool filter = true);
-    void sortTable();
-public:
-    std::vector<Fused_Transaction::IdRepeat> getSelectedForCopy() const;
-    std::vector<Fused_Transaction::IdRepeat> getSelectedId() const;
-    void setSelectedID(Fused_Transaction::IdRepeat sel_id);
-    void doSearchText(const wxString& value);
-    /* Getter for Virtual List Control */
-    const wxString getItem(long item, long column, bool realenum = false) const;
-
-protected:
-    /* Sort Columns */
-    virtual void OnColClick(wxListEvent& event);
-
-private:
-    void markItem(long selectedItem);
-
-    std::vector<Fused_Transaction::IdRepeat> m_selectedForCopy; // the copied transactions (held for pasting)
-    std::vector<Fused_Transaction::IdRepeat> m_pasted_id;       // the last pasted transactions
-    std::vector<Fused_Transaction::IdRepeat> m_selected_id;     // the selected transactions
     enum
     {
-        MENU_TREEPOPUP_MARKRECONCILED = wxID_HIGHEST + 150,
+        MENU_TREEPOPUP_MARKRECONCILED = wxID_HIGHEST + 200,
         MENU_TREEPOPUP_MARKUNRECONCILED,
         MENU_TREEPOPUP_MARKVOID,
         MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP,
@@ -154,14 +100,14 @@ private:
         MENU_ON_ENTER_SCHEDULED,
         MENU_ON_SKIP_SCHEDULED,
 
-        MENU_ON_SET_UDC0, //Default color
-        MENU_ON_SET_UDC1, //User defined color 1
-        MENU_ON_SET_UDC2, //User defined color 2
-        MENU_ON_SET_UDC3, //User defined color 3
-        MENU_ON_SET_UDC4, //User defined color 4
-        MENU_ON_SET_UDC5, //User defined color 5
-        MENU_ON_SET_UDC6, //User defined color 6
-        MENU_ON_SET_UDC7, //User defined color 7
+        MENU_ON_SET_UDC0, // default color
+        MENU_ON_SET_UDC1, // user-defined color 1
+        MENU_ON_SET_UDC2, // user-defined color 2
+        MENU_ON_SET_UDC3, // user-defined color 3
+        MENU_ON_SET_UDC4, // user-defined color 4
+        MENU_ON_SET_UDC5, // user-defined color 5
+        MENU_ON_SET_UDC6, // user-defined color 6
+        MENU_ON_SET_UDC7, // user-defined color 7
 
         MENU_TREEPOPUP_WITHDRAWAL,
         MENU_TREEPOPUP_DEPOSIT,
@@ -176,72 +122,133 @@ private:
         MENU_TREEPOPUP_RESTORE_VIEWED,
         ID_PANEL_CHECKING_STATIC_BITMAP_VIEW,
     };
+
 private:
-    DECLARE_NO_COPY_CLASS(TransactionListCtrl)
-    wxDECLARE_EVENT_TABLE();
-
-    mmCheckingPanel* m_cp = nullptr;
-
-    wxSharedPtr<wxListItemAttr> m_attr1;  // style1
-    wxSharedPtr<wxListItemAttr> m_attr2;  // style2
-    wxSharedPtr<wxListItemAttr> m_attr3;  // style, for future dates
-    wxSharedPtr<wxListItemAttr> m_attr4;  // style, for future dates
-    wxSharedPtr<wxListItemAttr> m_attr11; // user defined style 1
-    wxSharedPtr<wxListItemAttr> m_attr12; // user defined style 2
-    wxSharedPtr<wxListItemAttr> m_attr13; // user defined style 3
-    wxSharedPtr<wxListItemAttr> m_attr14; // user defined style 4
-    wxSharedPtr<wxListItemAttr> m_attr15; // user defined style 5
-    wxSharedPtr<wxListItemAttr> m_attr16; // user defined style 6
-    wxSharedPtr<wxListItemAttr> m_attr17; // user defined style 7
-
-    /* required overrides for virtual style list control */
-    virtual wxString OnGetItemText(long item, long column) const;
-    virtual int OnGetItemColumnImage(long item, long column) const;
-    virtual wxListItemAttr* OnGetItemAttr(long item) const;
-
-    void OnMouseRightClick(wxMouseEvent& event);
-    void OnListLeftClick(wxMouseEvent& event);
-    void OnListItemSelected(wxListEvent&);
-    void OnListItemDeSelected(wxListEvent&);
-    void OnListItemActivated(wxListEvent& event);
-    void OnMarkTransaction(wxCommandEvent& event);
-    void OnListKeyDown(wxListEvent& event);
-    void OnChar(wxKeyEvent& event);
-    void OnSelectAll(wxCommandEvent& WXUNUSED(event));
-    void OnCopy(wxCommandEvent& WXUNUSED(event));
-    void OnPaste(wxCommandEvent& WXUNUSED(event));
-    void OnListItemFocused(wxListEvent& WXUNUSED(event));
-    int64 OnPaste(Model_Checking::Data* tran);
-
-    bool TransactionLocked(int64 AccountID, const wxString& transdate);
-    void FindSelectedTransactions();
-    bool CheckForClosedAccounts();
-    void setExtraTransactionData(const bool single);
-    template<class Compare>
-    void SortBy(Compare comp, bool ascend);
-    void SortTransactions(int sortcol, bool ascend);
-    void findInAllTransactions(wxCommandEvent&);
-    void OnCopyText(wxCommandEvent&);
-    int getColumnFromPosition(int xPos);
-private:
-    /* The topmost visible item - this will be used to set
-    where to display the list again after refresh */
-    long m_topItemIndex = -1;
-    EColumn m_sortCol = COL_def_sort;
+    Fused_Transaction::Full_Data_Set m_trans;
+    long m_topItemIndex = -1; // where to display the list again after refresh
+    int g_sortCol1 = COL_def_sort;  // 0-based number of primary sorting column
+    int g_sortCol2 = COL_def_sort2; // 0-based number of secondary sorting column
+    bool g_sortAsc1 = true;         // asc/desc order for primary sorting column
+    bool g_sortAsc2 = true;         // asc/desc order for secondary sorting column
     wxString m_today;
     bool m_firstSort = true;
     wxString rightClickFilter_;
     wxString copyText_;
+    std::vector<Fused_Transaction::IdRepeat> m_selectedForCopy; // copied transactions
+    std::vector<Fused_Transaction::IdRepeat> m_pasted_id;       // last pasted transactions
+    std::vector<Fused_Transaction::IdRepeat> m_selected_id;     // selected transactions
+
+    DECLARE_NO_COPY_CLASS(TransactionListCtrl)
+    wxDECLARE_EVENT_TABLE();
+    mmCheckingPanel* m_cp = nullptr;
+    wxSharedPtr<wxListItemAttr> m_attr1;  // style 1
+    wxSharedPtr<wxListItemAttr> m_attr2;  // style 2
+    wxSharedPtr<wxListItemAttr> m_attr3;  // style 3 (reserved)
+    wxSharedPtr<wxListItemAttr> m_attr4;  // style 4 (reserved)
+    wxSharedPtr<wxListItemAttr> m_attr11; // user-defined style 1
+    wxSharedPtr<wxListItemAttr> m_attr12; // user-defined style 2
+    wxSharedPtr<wxListItemAttr> m_attr13; // user-defined style 3
+    wxSharedPtr<wxListItemAttr> m_attr14; // user-defined style 4
+    wxSharedPtr<wxListItemAttr> m_attr15; // user-defined style 5
+    wxSharedPtr<wxListItemAttr> m_attr16; // user-defined style 6
+    wxSharedPtr<wxListItemAttr> m_attr17; // user-defined style 7
+
+private:
+    void resetColumns();
+    void refreshVisualList(bool filter = true);
+    void sortTable();
+    template<class Compare>
+    void sortBy(Compare comp, bool ascend);
+    void sortTransactions(int sortcol, bool ascend);
+
+private:
+    // required overrides for virtual style list control
+    virtual wxString OnGetItemText(long item, long column) const;
+    virtual int OnGetItemColumnImage(long item, long column) const;
+    virtual wxListItemAttr* OnGetItemAttr(long item) const;
+
+protected:
+    virtual void OnColClick(wxListEvent& event);
+
+private:
+    void onChar(wxKeyEvent& event);
+    void onListLeftClick(wxMouseEvent& event);
+    void onMouseRightClick(wxMouseEvent& event);
+
+    void onListItemActivated(wxListEvent& event);
+    void onListItemSelected(wxListEvent&);
+    void onListItemDeSelected(wxListEvent&);
+    void onListItemFocused(wxListEvent& WXUNUSED(event));
+    void onListKeyDown(wxListEvent& event);
+
+    void onNewTransaction(wxCommandEvent& event);
+    void onDeleteTransaction(wxCommandEvent& event);
+    void onRestoreTransaction(wxCommandEvent& event);
+    void onRestoreViewedTransaction(wxCommandEvent&);
+    void onEditTransaction(wxCommandEvent& event);
+    void onMoveTransaction(wxCommandEvent& event);
+    void onViewOtherAccount(wxCommandEvent& event);
+    void onViewSplitTransaction(wxCommandEvent& event);
+    void onOrganizeAttachments(wxCommandEvent& event);
+    void onCreateReoccurance(wxCommandEvent& event);
+    void onFind(wxCommandEvent&);
+    void onCopyText(wxCommandEvent&);
+    void onMarkTransaction(wxCommandEvent& event);
+    void onDeleteViewedTransaction(wxCommandEvent& event);
+
+    void onSelectAll(wxCommandEvent& WXUNUSED(event));
+    void onCopy(wxCommandEvent& WXUNUSED(event));
+    void onPaste(wxCommandEvent& WXUNUSED(event));
+    int64 onPaste(Model_Checking::Data* tran);
+    void onDuplicateTransaction(wxCommandEvent& event);
+    void onEnterScheduled(wxCommandEvent& event);
+    void onSkipScheduled(wxCommandEvent& event);
+    void onSetUserColour(wxCommandEvent& event);
+    void onOpenAttachment(wxCommandEvent& event);
+
+private:
+    const wxString getItem(long item, long column, bool realenum = false) const;
+    void setColumnImage(int col, int image);
+    void setExtraTransactionData(const bool single);
+    void markItem(long selectedItem);
+    void setSelectedId(Fused_Transaction::IdRepeat sel_id);
+    std::vector<Fused_Transaction::IdRepeat> getSelectedId() const;
+    std::vector<Fused_Transaction::IdRepeat> getSelectedForCopy() const;
+    void findSelectedTransactions();
+    void setSortOrder(bool asc);
+    bool getSortOrder() const;
+    int getColumnFromPosition(int xPos);
+    void doSearchText(const wxString& value);
+    void setVisibleItemIndex(long v);
+    void markSelectedTransaction();
+    void deleteTransactionsByStatus(const wxString& status);
+    bool checkForClosedAccounts();
+    bool checkTransactionLocked(int64 AccountID, const wxString& transdate);
 };
 
 //----------------------------------------------------------------------------
 
-inline bool TransactionListCtrl::getSortOrder() const { return m_asc; }
-inline std::vector<Fused_Transaction::IdRepeat> TransactionListCtrl::getSelectedForCopy() const { return m_selectedForCopy; }
+inline void TransactionListCtrl::setSortOrder(bool asc)
+{
+    m_asc = asc;
+}
+inline bool TransactionListCtrl::getSortOrder() const {
+    return m_asc;
+}
 
-inline std::vector<Fused_Transaction::IdRepeat> TransactionListCtrl::getSelectedId() const { return m_selected_id; }
+inline std::vector<Fused_Transaction::IdRepeat> TransactionListCtrl::getSelectedId() const
+{
+    return m_selected_id;
+}
+inline std::vector<Fused_Transaction::IdRepeat> TransactionListCtrl::getSelectedForCopy() const
+{
+    return m_selectedForCopy;
+}
 
-inline void TransactionListCtrl::setVisibleItemIndex(long v) { m_topItemIndex = v; }
+inline void TransactionListCtrl::setVisibleItemIndex(long v)
+{
+    m_topItemIndex = v;
+}
 
 #endif // MM_EX_CHECKING_LIST_H_
 
@@ -250,21 +257,25 @@ inline static bool SorterByUDFC01(
 ) {
     return (i.UDFC_content[0] < j.UDFC_content[0]);
 }
+
 inline static bool SorterByUDFC02(
     const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
 ) {
     return (i.UDFC_content[1] < j.UDFC_content[1]);
 }
+
 inline static bool SorterByUDFC03(
     const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
 ) {
     return (i.UDFC_content[2] < j.UDFC_content[2]);
 }
+
 inline static bool SorterByUDFC04(
     const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
 ) {
     return (i.UDFC_content[3] < j.UDFC_content[3]);
 }
+
 inline static bool SorterByUDFC05(
     const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
 ) {
@@ -276,23 +287,28 @@ inline static bool SorterByUDFC01_val(
 ) {
     return (i.UDFC_value[0] < j.UDFC_value[0]);
 }
+
 inline static bool SorterByUDFC02_val(
     const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
 ) {
     return (i.UDFC_value[1] < j.UDFC_value[1]);
 }
+
 inline static bool SorterByUDFC03_val(
     const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
 ) {
     return (i.UDFC_value[2] < j.UDFC_value[2]);
 }
+
 inline static bool SorterByUDFC04_val(
     const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
 ) {
     return (i.UDFC_value[3] < j.UDFC_value[3]);
 }
+
 inline static bool SorterByUDFC05_val(
     const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j
 ) {
     return (i.UDFC_value[4] < j.UDFC_value[4]);
 }
+

@@ -1696,7 +1696,7 @@ void mmGUIFrame::createMenu()
     wxMenu* menu_file = new wxMenu;
 
     wxMenuItem* menuItemNew = new wxMenuItem(menu_file, MENU_NEW, _u("&New Database…"), _("New Database"));
-    wxMenuItem* menuItemOpen = new wxMenuItem(menu_file, MENU_OPEN, _u("&Open Database…\tCtrl-O"), _("Open Database"));
+    wxMenuItem* menuItemOpen = new wxMenuItem(menu_file, MENU_OPEN, _u("&Open Database…") + "\tCtrl-O", _("Open Database"));
     wxMenuItem* menuItemSaveAs = new wxMenuItem(menu_file, MENU_SAVE_AS, _u("Save Database &As…"), _("Save Database As"));
     menu_file->Append(menuItemNew);
     menu_file->Append(menuItemOpen);
@@ -1738,7 +1738,7 @@ void mmGUIFrame::createMenu()
     menu_file->AppendSeparator();
 
     wxMenuItem* menuItemQuit = new wxMenuItem(menu_file, wxID_EXIT,
-        _("E&xit\tCtrl-Q"), _("Quit this program"));
+        _("E&xit") + "\tCtrl-Q", _("Quit this program"));
     menu_file->Append(menuItemQuit);
 
     // Create the required menu items
@@ -1753,7 +1753,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemLinks = new wxMenuItem(
         menuView,
         MENU_VIEW_LINKS,
-        _("&Navigator\tF5"),
+        _("&Navigator") + "\tF5",
         _("Show/Hide Navigator"),
         wxITEM_CHECK
     );
@@ -1834,7 +1834,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemToggleFullscreen = new wxMenuItem(
         menuView,
         MENU_VIEW_TOGGLE_FULLSCREEN,
-        _("&Full Screen\tF11"),
+        _("&Full Screen") + "\tF11",
         _("Toggle full screen"),
         wxITEM_CHECK
     );
@@ -2007,7 +2007,7 @@ void mmGUIFrame::createMenu()
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemOptions = new wxMenuItem(menuTools, wxID_PREFERENCES
-        , _u("&Settings…\tAlt-F12"), _("Settings"));
+        , _u("&Settings…") + "\tAlt-F12", _("Settings"));
     menuTools->Append(menuItemOptions);
 
     menuTools->AppendSeparator();
@@ -2037,7 +2037,7 @@ void mmGUIFrame::createMenu()
     wxMenu* menuHelp = new wxMenu;
 
     wxMenuItem* menuItemHelp = new wxMenuItem(menuTools, wxID_HELP,
-        _("&Help\tF1"), _("Show Help"));
+        _("&Help") + "\tF1", _("Show Help"));
     menuHelp->Append(menuItemHelp);
 
     //Community Submenu
@@ -2191,14 +2191,14 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(MENU_RATES, _("Download Rates"), mmBitmapBundle(png::CURRATES, toolbar_icon_size), _("Download currency and stock rates"));
 
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Full Screen\tF11"), mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _("Toggle full screen"));
+    toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Full Screen") + "\tF11", mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _("Toggle full screen"));
 
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_PRINT, _("&Print"), mmBitmapBundle(png::PRINT, toolbar_icon_size), _("Print"));
 
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_ABOUT, _("&About"), mmBitmapBundle(png::ABOUT, toolbar_icon_size), _("About"));
-    toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), mmBitmapBundle(png::HELP, toolbar_icon_size), _("Help"));
+    toolBar_->AddTool(wxID_HELP, _("&Help") + "\tF1", mmBitmapBundle(png::HELP, toolbar_icon_size), _("Help"));
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
@@ -2956,7 +2956,7 @@ void mmGUIFrame::refreshPanelData()
         createHomePage();
         break;
     case mmID_CHECKING:
-        wxDynamicCast(panelCurrent_, mmCheckingPanel)->RefreshList();
+        wxDynamicCast(panelCurrent_, mmCheckingPanel)->refreshList();
         break;
     case mmID_STOCKS:
         wxDynamicCast(panelCurrent_, mmStocksPanel)->RefreshList();
@@ -3115,7 +3115,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         // Reset columns of the checking panel in case the time columns was added/removed
         int id = panelCurrent_->GetId();
         if (id == mmID_CHECKING)
-            wxDynamicCast(panelCurrent_, mmCheckingPanel)->ResetColumnView();
+            wxDynamicCast(panelCurrent_, mmCheckingPanel)->resetColumnView();
 
         const wxString& sysMsg = _("Settings have been updated.") + "\n\n"
             + _("Some settings take effect only after an application restart.");
@@ -3507,9 +3507,9 @@ void mmGUIFrame::createCheckingPage(int64 checking_id, const std::vector<int64> 
             (checking_id == -2 && cp->isDeletedTrans()) ||
             (checking_id >= 1 && cp->isAccount() && newCreditDisplayed == creditDisplayed_)
         ) {
-            cp->RefreshList();
+            cp->refreshList();
             if (cp->isAccount())
-                cp->DisplayAccountDetails(checking_id);
+                cp->loadAccount(checking_id);
             done = true;
         }
     }
@@ -3533,7 +3533,7 @@ void mmGUIFrame::createCheckingPage(int64 checking_id, const std::vector<int64> 
     menuPrintingEnable(true);
     if (checking_id >= 1 && gotoTransID_.first > 0) {
         mmCheckingPanel* cp = wxDynamicCast(panelCurrent_, mmCheckingPanel);
-        cp->SetSelectedTransaction(gotoTransID_);
+        cp->setSelectedTransaction(gotoTransID_);
         gotoTransID_ = { -1, 0 };
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);

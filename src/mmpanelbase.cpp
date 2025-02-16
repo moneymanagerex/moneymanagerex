@@ -69,9 +69,15 @@ wxListItemAttr* mmListCtrl::OnGetItemAttr(long row) const
     return (row % 2) ? attr2_.get() : attr1_.get();
 }
 
-int mmListCtrl::GetRealColumn(int col)
+int mmListCtrl::GetRealColumn(int col_order) const
 {
-    return (0 == m_real_columns.size()) ? col : m_real_columns[col];
+    return m_real_columns.empty() ? col_order : m_real_columns[col_order];
+}
+
+int mmListCtrl::GetColumnOrder(int col_id) const
+{
+    return m_real_columns.empty() ? col_id :
+        std::find(m_real_columns.begin(), m_real_columns.end(), col_id) - m_real_columns.begin();
 }
 
 wxString mmListCtrl::BuildPage(const wxString &title) const
@@ -305,7 +311,7 @@ void mmListCtrl::OnHeaderReset(wxCommandEvent& WXUNUSED(event))
         }
     }
     wxListEvent e;
-    e.SetId(MENU_HEADER_SORT);
+    e.SetId(MENU_HEADER_RESET);
     m_ColumnHeaderNbr = m_default_sort_column;
     m_asc = true;
     OnColClick(e);

@@ -75,7 +75,8 @@ protected:
     void OnHeaderSort(wxCommandEvent& event);
     void OnHeaderReset(wxCommandEvent& WXUNUSED(event));
     void OnHeaderMove(wxCommandEvent& WXUNUSED(event), int direction);
-    int GetRealColumn(int col);
+    int GetRealColumn(int col_order) const;
+    int GetColumnOrder(int col_id) const;
     int m_ColumnHeaderNbr = -1;
     enum {
         HEADER = 0,

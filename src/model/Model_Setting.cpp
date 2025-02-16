@@ -256,16 +256,6 @@ wxString Model_Setting::getTheme()
     return getString("THEME", "default");
 }
 
-// VIEWTRANSACTIONS
-void Model_Setting::setViewTransactions(const wxString& value)
-{
-    setString("VIEWTRANSACTIONS", value);
-}
-wxString Model_Setting::getViewTransactions()
-{
-    return getString("VIEWTRANSACTIONS", mmCheckingPanel::FILTER_STR_ALL);
-}
-
 // LASTFILENAME
 wxString Model_Setting::getLastDbPath()
 {

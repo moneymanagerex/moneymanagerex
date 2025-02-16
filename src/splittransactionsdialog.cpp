@@ -137,6 +137,7 @@ EVT_CHILD_FOCUS(mmSplitTransactionDialog::OnFocusChange)
 EVT_BUTTON(wxID_OK, mmSplitTransactionDialog::OnOk)
 EVT_BUTTON(mmID_SPLIT, mmSplitTransactionDialog::OnAddRow)
 EVT_BUTTON(mmID_REMOVE, mmSplitTransactionDialog::OnRemoveRow)
+EVT_LIST_INSERT_ITEM(wxID_ANY, mmSplitTransactionDialog::OnNewTagCreated)
 wxEND_EVENT_TABLE()
 
 // Used to determine if we need to refresh the tag text ctrl after
@@ -476,6 +477,19 @@ void mmSplitTransactionDialog::OnTextEntered(wxCommandEvent& event)
         UpdateSplitTotal();
     }
     event.Skip();
+}
+
+void mmSplitTransactionDialog::OnNewTagCreated(wxListEvent& event)
+{
+    // Get the ID of the tag control that had a new tag added
+    int id = event.GetId();
+
+    // Loop through all split rows and reinitialize all other tag controls to pick up the new tag
+    for (auto row : m_splits_widgets)
+    {
+        if (row.tags->GetId() != id)
+            row.tags->Reinitialize();
+    }
 }
 
 void mmSplitTransactionDialog::OnOtherButton(wxCommandEvent& event)
