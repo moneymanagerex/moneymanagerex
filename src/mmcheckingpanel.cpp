@@ -402,6 +402,7 @@ void mmCheckingPanel::updateHeader()
                 _("Credit Limit:"),
                 limit
             ));
+            m_header_credit->SetRange(std::max(100.0, limit));
             m_header_credit->SetValue(limit);
             m_header_credit->Show();
         }
