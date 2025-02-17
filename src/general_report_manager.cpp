@@ -30,6 +30,8 @@
 #include "option.h"
 #include "reports/reportbase.h"
 
+#include "rapidjson/error/en.h"
+
 #include "model/Model_Infotable.h"
 #include "model/Model_Report.h"
 
@@ -38,6 +40,8 @@
 #include <wx/sstream.h>
 #include <wx/zipstrm.h>
 #include <wx/wxsqlite3.h>
+
+using namespace rapidjson;
 
 static const wxString SAMPLE_ASSETS_LUA =
 R"(local total_balance = 0
@@ -224,6 +228,7 @@ wxBEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
     EVT_TREE_SEL_CHANGED(ID_REPORT_LIST, mmGeneralReportManager::OnSelChanged)
     EVT_TREE_ITEM_MENU(ID_REPORT_LIST, mmGeneralReportManager::OnItemRightClick)
     EVT_MENU(wxID_ANY, mmGeneralReportManager::OnMenuSelected)
+    EVT_BUTTON(ID_GITHUB_SYNC, mmGeneralReportManager::OnSyncFromGitHub)
 wxEND_EVENT_TABLE()
 
 sqlListCtrl::sqlListCtrl(mmGeneralReportManager* grm, wxWindow *parent, wxWindowID winid)
@@ -386,6 +391,11 @@ void mmGeneralReportManager::CreateControls()
     m_buttonSaveAs = new wxButton(button_panel, wxID_SAVEAS, _("&Export"));
     buttonPanelSizer->Add(m_buttonSaveAs, g_flagsH);
     mmToolTip(m_buttonSaveAs, _("Export the report to a new file."));
+    buttonPanelSizer->AddSpacer(50);
+
+    m_buttonSync = new wxButton(button_panel, ID_GITHUB_SYNC, _("&Sync from GitHub"));
+    buttonPanelSizer->Add(m_buttonSync, g_flagsH);
+    mmToolTip(m_buttonSync, _("Fetch latest reports from GitHub repository"));
     buttonPanelSizer->AddSpacer(50);
 
     m_buttonSave = new wxButton(button_panel, wxID_SAVE, _("&Save "));
@@ -1269,4 +1279,105 @@ void mmGeneralReportManager::OnNewWindow(wxWebViewEvent& evt)
     }
 
     evt.Skip();
+}
+
+void mmGeneralReportManager::OnSyncFromGitHub(wxCommandEvent& WXUNUSED(event))
+{
+    wxString url = mmex::weblink::GeneralReport + "/v1/reports.json";
+
+    wxString json_data;
+    if (http_get_data(url, json_data) != CURLE_OK)
+    {
+        wxLogError("Failed to fetch data from %s", url);
+        return;
+    }
+
+    // Parse JSON data using rapidjson
+    rapidjson::Document document;
+    if (document.Parse(json_data.ToStdString().c_str()).HasParseError()) {
+        wxLogError("Failed to parse JSON: %s", GetParseError_En(document.GetParseError()));
+        return;
+    }
+
+    // Ensure the document has the expected structure
+    if (!document.IsObject() || !document.HasMember("reportGroups") || !document["reportGroups"].IsArray()) {
+        wxLogError("Invalid JSON format: Missing or malformed 'reportGroups' array.");
+        return;
+    }
+
+    // Process each report group
+    const rapidjson::Value& reportGroups = document["reportGroups"];
+    for (rapidjson::SizeType i = 0; i < reportGroups.Size(); ++i) {
+        const rapidjson::Value& reportGroup = reportGroups[i];
+
+        // Extract report group details
+        if (reportGroup.HasMember("name") && reportGroup.HasMember("reports") && reportGroup["reports"].IsArray()) {
+            wxString groupName = wxString::FromUTF8(reportGroup["name"].GetString());
+            const rapidjson::Value& reports = reportGroup["reports"];
+
+            // Process each report within the report group
+            for (rapidjson::SizeType j = 0; j < reports.Size(); ++j) {
+                const rapidjson::Value& report = reports[j];
+
+                if (report.HasMember("name") && report.HasMember("path")) {
+                    wxString reportName = wxString::FromUTF8(report["name"].GetString());
+                    wxString reportPath = wxString::FromUTF8(report["path"].GetString());
+
+                    // Download the SQL content and store the report
+                    DownloadAndStoreReport(groupName, reportName, reportPath);
+                } else {
+                    wxLogError("Missing required fields in report JSON");
+                }
+            }
+        } else {
+            wxLogError("Invalid report group format: Missing or malformed 'reports' array.");
+        }
+    }
+
+    wxMessageBox("Reports have been successfully synchronized and stored.", "Sync Successful", wxOK | wxICON_INFORMATION);
+}
+
+
+void mmGeneralReportManager::DownloadAndStoreReport(const wxString& groupName, const wxString& reportName, const wxString& reportPath)
+{
+    wxString sql, lua, htt, txt;
+
+    // Construct the full URL to fetch the SQL content
+    wxString sqlUrl = mmex::weblink::GeneralReport + "/" + "packages" + "/" + reportPath;
+    if (http_get_data(wxURI(sqlUrl).BuildURI(), sql) != CURLE_OK) {
+        wxLogError("Failed to fetch SQL data from %s", sqlUrl);
+        return;
+    }
+
+    wxString luaUrl = mmex::weblink::GeneralReport + "/" + "packages" + "/" + groupName + "/" + reportName + "/" + "luacontent.lua";
+    wxLogDebug(luaUrl);
+    if (http_get_data(wxURI(luaUrl).BuildURI(), lua) != CURLE_OK) {
+        wxLogError("Failed to fetch SQL data from %s", luaUrl);
+        return;
+    }
+
+    wxString httUrl = mmex::weblink::GeneralReport +  "/" + "packages" + "/" + groupName + "/" + reportName + "/" + "template.htt";
+    if (http_get_data(wxURI(httUrl).BuildURI(), htt) != CURLE_OK) {
+        wxLogError("Failed to fetch SQL data from %s", httUrl);
+        return;
+    }
+
+    wxString txtUrl = mmex::weblink::GeneralReport + "/" + "packages" + "/" + groupName + "/" + reportName + "/" + "description.txt";
+    if (http_get_data(wxURI(txtUrl).BuildURI(), txt) != CURLE_OK) {
+        wxLogError("Failed to fetch SQL data from %s", txtUrl);
+        return;
+    }
+
+    Model_Report::Data *report = Model_Report::instance().get(reportName);
+
+    if (!report) report = Model_Report::instance().create();
+    report->GROUPNAME = groupName;
+    report->REPORTNAME = reportName;
+    report->SQLCONTENT = sql;
+    report->LUACONTENT = lua;
+    report->TEMPLATECONTENT = htt;
+    report->DESCRIPTION = txt;
+    report->ACTIVE = 1;
+
+    m_selectedReportID = Model_Report::instance().save(report);
 }
