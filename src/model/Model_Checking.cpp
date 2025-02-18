@@ -31,18 +31,18 @@
 
 const std::vector<std::pair<Model_Checking::TYPE_ID, wxString> > Model_Checking::TYPE_CHOICES =
 {
-    { Model_Checking::TYPE_ID_WITHDRAWAL, _n("Withdrawal") },
-    { Model_Checking::TYPE_ID_DEPOSIT,    _n("Deposit") },
-    { Model_Checking::TYPE_ID_TRANSFER,   _n("Transfer") }
+    { TYPE_ID_WITHDRAWAL, _n("Withdrawal") },
+    { TYPE_ID_DEPOSIT,    _n("Deposit") },
+    { TYPE_ID_TRANSFER,   _n("Transfer") }
 };
 
 const std::vector<std::tuple<Model_Checking::STATUS_ID, wxString, wxString> > Model_Checking::STATUS_CHOICES =
 {
-    { Model_Checking::STATUS_ID_NONE,       wxString(""),  _n("Unreconciled") },
-    { Model_Checking::STATUS_ID_RECONCILED, wxString("R"), _n("Reconciled") },
-    { Model_Checking::STATUS_ID_VOID,       wxString("V"), _n("Void") },
-    { Model_Checking::STATUS_ID_FOLLOWUP,   wxString("F"), _n("Follow Up") },
-    { Model_Checking::STATUS_ID_DUPLICATE,  wxString("D"), _n("Duplicate") }
+    { STATUS_ID_NONE,       wxString(""),  _n("Unreconciled") },
+    { STATUS_ID_RECONCILED, wxString("R"), _n("Reconciled") },
+    { STATUS_ID_VOID,       wxString("V"), _n("Void") },
+    { STATUS_ID_FOLLOWUP,   wxString("F"), _n("Follow Up") },
+    { STATUS_ID_DUPLICATE,  wxString("D"), _n("Duplicate") }
 };
 
 wxArrayString Model_Checking::TYPE_STR = type_str_all();

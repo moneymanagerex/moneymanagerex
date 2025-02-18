@@ -23,14 +23,14 @@
 
 const std::vector<std::pair<Model_CustomField::TYPE_ID, wxString> > Model_CustomField::TYPE_CHOICES =
 {
-    { Model_CustomField::TYPE_ID_STRING,       _n("String") },
-    { Model_CustomField::TYPE_ID_INTEGER,      _n("Integer") },
-    { Model_CustomField::TYPE_ID_DECIMAL,      _n("Decimal") },
-    { Model_CustomField::TYPE_ID_BOOLEAN,      _n("Boolean") },
-    { Model_CustomField::TYPE_ID_DATE,         _n("Date") },
-    { Model_CustomField::TYPE_ID_TIME,         _n("Time") },
-    { Model_CustomField::TYPE_ID_SINGLECHOICE, _n("SingleChoice") },
-    { Model_CustomField::TYPE_ID_MULTICHOICE,  _n("MultiChoice") }
+    { TYPE_ID_STRING,       _n("String") },
+    { TYPE_ID_INTEGER,      _n("Integer") },
+    { TYPE_ID_DECIMAL,      _n("Decimal") },
+    { TYPE_ID_BOOLEAN,      _n("Boolean") },
+    { TYPE_ID_DATE,         _n("Date") },
+    { TYPE_ID_TIME,         _n("Time") },
+    { TYPE_ID_SINGLECHOICE, _n("SingleChoice") },
+    { TYPE_ID_MULTICHOICE,  _n("MultiChoice") }
 };
 
 wxArrayString Model_CustomField::TYPE_STR = type_str_all();
