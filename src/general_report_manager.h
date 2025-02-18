@@ -101,12 +101,16 @@ private:
     const wxString getTemplate(wxString& sql);
     void OnNewWindow(wxWebViewEvent& evt);
 
+    void OnSyncFromGitHub(wxCommandEvent& WXUNUSED(event));
+    void DownloadAndStoreReport(const wxString& groupName, const wxString& reportName, const wxString& reportPath);
+
     std::vector <std::vector <wxString> > m_sqlQueryData;
 
     wxSQLite3Database* m_db = nullptr;
     wxWebView* browser_ = nullptr;
 
     wxButton* m_buttonOpen = nullptr;
+    wxButton* m_buttonSync = nullptr;
     wxButton* m_buttonSave = nullptr;
     wxButton* m_buttonSaveAs = nullptr;
     wxButton* m_buttonRun = nullptr;
@@ -145,6 +149,7 @@ private:
         ID_TEMPLATE,
         ID_DESCRIPTION,
         ID_REPORT_LIST,
+        ID_GITHUB_SYNC,
         ID_ACTIVE
     };
 

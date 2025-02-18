@@ -91,6 +91,7 @@ namespace weblink
     extern const wxString YahooQuotesHistory;
     extern const wxString CoinCapSearch;
     extern const wxString CoinCapHistory;
+    extern const wxString GeneralReport;
 } // namespace weblink
 } // namespace mmex
 

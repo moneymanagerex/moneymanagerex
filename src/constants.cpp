@@ -181,6 +181,8 @@ const wxString mmex::weblink::CoinCapSearch = "http://api.coincap.io/v2/assets?s
 // Valid intervals: [m1, m5, m15, m30, h1, h2, h6, h12, d1]
 const wxString mmex::weblink::CoinCapHistory = "http://api.coincap.io/v2/assets/%s/history?interval=%s&start=%lld&end=%lld";
 
+const wxString mmex::weblink::GeneralReport = "https://moneymanagerex.org/general-reports/";
+
 /* End namespace weblink */
 
 const wxString LANGUAGE_PARAMETER = "LANGUAGE";
