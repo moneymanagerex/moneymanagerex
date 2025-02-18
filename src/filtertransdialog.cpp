@@ -218,7 +218,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
         // If no accounts are explicitly selected, turn off the Account filter and set selection to "All"
         if (m_selected_accounts_id.empty())
         {
-            bSelectedAccounts_->SetLabelText(_("All"));
+            bSelectedAccounts_->SetLabelText(_t("All"));
             accountCheckBox_->SetValue(false);
             bSelectedAccounts_->Disable();
         }
@@ -510,7 +510,7 @@ void mmFilterTransactionsDialog::mmDoInitSettingNameChoice(wxString sel) const
         // Add a blank setting at the beginning. This clears all selections if the user chooses it.
         m_setting_name->Append("", new wxStringClientData("{}"));
         // Add the 'Last Used' setting which was the last setting used that wasn't saved
-        m_setting_name->Append(_("Last Unsaved Filter"), new wxStringClientData(Model_Infotable::instance().getString(m_filter_key + "_LAST_USED", "")));
+        m_setting_name->Append(_t("Last Unsaved Filter"), new wxStringClientData(Model_Infotable::instance().getString(m_filter_key + "_LAST_USED", "")));
         wxArrayString filter_settings = Model_Infotable::instance().getArrayString(m_filter_key, true);
         for (const auto& data : filter_settings)
         {
@@ -557,7 +557,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     /******************************************************************************
      Items Panel
     *******************************************************************************/
-    wxStaticBox* static_box_sizer = new wxStaticBox(this, wxID_ANY, _("Specify"));
+    wxStaticBox* static_box_sizer = new wxStaticBox(this, wxID_ANY, _t("Specify"));
     wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(static_box_sizer, wxVERTICAL);
     box_sizer2->Add(itemStaticBoxSizer4, g_flagsExpand);
 
@@ -574,16 +574,16 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     itemPanelSizer->AddGrowableCol(1, 1);
 
     // Account
-    accountCheckBox_ = new wxCheckBox(itemPanel, ID_ACCOUNT_CB, _("Account"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    accountCheckBox_ = new wxCheckBox(itemPanel, ID_ACCOUNT_CB, _t("Account"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(accountCheckBox_, g_flagsH);
 
-    bSelectedAccounts_ = new wxButton(itemPanel, wxID_STATIC, _("All"));
+    bSelectedAccounts_ = new wxButton(itemPanel, wxID_STATIC, _t("All"));
     bSelectedAccounts_->SetMinSize(wxSize(180, -1));
     bSelectedAccounts_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmFilterTransactionsDialog::OnAccountsButton), nullptr, this);
     itemPanelSizer->Add(bSelectedAccounts_, g_flagsExpand);
 
     // Period Range
-    datesCheckBox_ = new wxCheckBox(itemPanel, ID_PERIOD_CB, _("Period Range"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    datesCheckBox_ = new wxCheckBox(itemPanel, ID_PERIOD_CB, _t("Period Range"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(datesCheckBox_, g_flagsH);
 
     rangeChoice_ = new wxChoice(itemPanel, ID_DATE_RANGE);
@@ -595,7 +595,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     itemPanelSizer->Add(rangeChoice_, g_flagsExpand);
 
     // Date Range
-    dateRangeCheckBox_ = new wxCheckBox(itemPanel, ID_DATE_RANGE_CB, _("Date Range"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    dateRangeCheckBox_ = new wxCheckBox(itemPanel, ID_DATE_RANGE_CB, _t("Date Range"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(dateRangeCheckBox_, g_flagsH);
 
     fromDateCtrl_ = new mmDatePickerCtrl(itemPanel, wxID_FIRST, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
@@ -608,7 +608,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     itemPanelSizer->Add(dateSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     // Payee
-    payeeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Payee"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    payeeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Payee"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(payeeCheckBox_, g_flagsH);
 
     cbPayee_ = new mmComboBoxPayee(itemPanel, mmID_PAYEE);
@@ -617,7 +617,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     itemPanelSizer->Add(cbPayee_, g_flagsExpand);
 
     // Category
-    categoryCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Category"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    categoryCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Category"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(categoryCheckBox_, g_flagsH);
 
     categoryComboBox_ = new mmComboBoxCategory(itemPanel, mmID_CATEGORY);
@@ -626,21 +626,21 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     itemPanelSizer->Add(categoryComboBox_, g_flagsExpand);
 
     // Category sub-category checkbox
-    categorySubCatCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Include all subcategories"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    categorySubCatCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Include all subcategories"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     categorySubCatCheckBox_->Bind(wxEVT_CHECKBOX, &mmFilterTransactionsDialog::OnCategoryChange, this);
 
     itemPanelSizer->AddSpacer(1);
     itemPanelSizer->Add(categorySubCatCheckBox_, g_flagsExpand);
 
     // Tags
-    tagCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Tags"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    tagCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Tags"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(tagCheckBox_, g_flagsH);
 
     tagTextCtrl_ = new mmTagTextCtrl(itemPanel, wxID_ANY, true);
     itemPanelSizer->Add(tagTextCtrl_, g_flagsExpand);
 
     // Status
-    statusCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Status"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    statusCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Status"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(statusCheckBox_, g_flagsH);
 
     choiceStatus_ = new wxChoice(itemPanel, wxID_ANY);
@@ -649,18 +649,18 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
         choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
 
     itemPanelSizer->Add(choiceStatus_, g_flagsExpand);
-    mmToolTip(choiceStatus_, _("Specify the status for the transaction"));
+    mmToolTip(choiceStatus_, _t("Specify the status for the transaction"));
 
     // Type
-    typeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Type"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    typeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Type"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
     wxFlexGridSizer* typeSizer = new wxFlexGridSizer(0, 2, 0, 0);
     typeSizer->AddGrowableCol(0, 1);
     typeSizer->AddGrowableCol(1, 1);
-    cbTypeWithdrawal_ = new wxCheckBox(itemPanel, wxID_ANY, _("Withdrawal"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    cbTypeDeposit_ = new wxCheckBox(itemPanel, wxID_ANY, _("Deposit"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    cbTypeTransferTo_ = new wxCheckBox(itemPanel, wxID_ANY, _("Transfer Out"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    cbTypeTransferFrom_ = new wxCheckBox(itemPanel, wxID_ANY, _("Transfer In"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbTypeWithdrawal_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Withdrawal"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbTypeDeposit_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Deposit"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbTypeTransferTo_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Transfer Out"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbTypeTransferFrom_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Transfer In"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
     itemPanelSizer->Add(typeCheckBox_, g_flagsH);
     itemPanelSizer->Add(typeSizer, g_flagsExpand);
@@ -671,7 +671,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     typeSizer->AddSpacer(2);
 
     // Amount
-    amountRangeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Amount Range"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    amountRangeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Amount Range"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(amountRangeCheckBox_, g_flagsH);
 
     amountMinEdit_ = new mmTextCtrl(itemPanel, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
@@ -684,27 +684,27 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     itemPanelSizer->Add(amountSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     // Number
-    transNumberCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Number"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    transNumberCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Number"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(transNumberCheckBox_, g_flagsH);
 
     transNumberEdit_ = new wxTextCtrl(itemPanel, wxID_ANY);
     itemPanelSizer->Add(transNumberEdit_, g_flagsExpand);
 
     // Notes
-    notesCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Notes"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    notesCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Notes"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(notesCheckBox_, g_flagsH);
 
     notesEdit_ = new wxTextCtrl(itemPanel, wxID_ANY);
     itemPanelSizer->Add(notesEdit_, g_flagsExpand);
-    mmToolTip(notesEdit_, _("Enter any string to find it in transaction notes") + "\n\n" +
+    mmToolTip(notesEdit_, _t("Enter any string to find it in transaction notes") + "\n\n" +
         _tu("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
         _tu("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
         _tu("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
         _tu("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.") + "\n" +
-        _("Use regex: to match using regular expressions."));
+        _t("Use regex: to match using regular expressions."));
 
     // Colour
-    colorCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Color"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    colorCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Color"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(colorCheckBox_, g_flagsH);
 
     colorButton_ = new mmColorButton(itemPanel, wxID_HIGHEST);
@@ -723,7 +723,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     wxPanel* presPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     if (isReportMode_)
     {
-        wxStaticBox* static_box_sizer_pres = new wxStaticBox(this, wxID_ANY, _("Presentation Options"));
+        wxStaticBox* static_box_sizer_pres = new wxStaticBox(this, wxID_ANY, _t("Presentation Options"));
         wxStaticBoxSizer* itemStaticBoxSizer_pres = new wxStaticBoxSizer(static_box_sizer_pres, wxVERTICAL);
         box_sizer2->Add(itemStaticBoxSizer_pres, wxSizerFlags(g_flagsExpand).Proportion(0));
         itemStaticBoxSizer_pres->Add(presPanel, g_flagsExpand);
@@ -737,7 +737,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     presBoxSizer->Add(presPanelSizer, g_flagsExpand);
 
     // Hide columns
-    showColumnsCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Hide Columns"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    showColumnsCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _t("Hide Columns"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     presPanelSizer->Add(showColumnsCheckBox_, g_flagsH);
 
     bHideColumns_ = new wxButton(presPanel, ID_DIALOG_COLUMNS, "");
@@ -746,7 +746,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     presPanelSizer->Add(bHideColumns_, g_flagsExpand);
 
     // Group By
-    groupByCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Group By"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    groupByCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _t("Group By"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     presPanelSizer->Add(groupByCheckBox_, g_flagsH);
 
     bGroupBy_ = new wxChoice(presPanel, wxID_ANY);
@@ -755,10 +755,10 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
         bGroupBy_->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
     presPanelSizer->Add(bGroupBy_, g_flagsExpand);
-    mmToolTip(bGroupBy_, _("Specify how the report should be grouped"));
+    mmToolTip(bGroupBy_, _t("Specify how the report should be grouped"));
 
     // Chart
-    chartCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Chart"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    chartCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _t("Chart"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     presPanelSizer->Add(chartCheckBox_, g_flagsH);
 
     bChart_ = new wxChoice(presPanel, wxID_ANY);
@@ -767,13 +767,13 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
         bChart_->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
     presPanelSizer->Add(bChart_, g_flagsExpand);
-    mmToolTip(bChart_, _("Specify which chart will be included in the report"));
+    mmToolTip(bChart_, _t("Specify which chart will be included in the report"));
 
     // Compress Splits
-    combineSplitsCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _("Combine Splits"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    combineSplitsCheckBox_ = new wxCheckBox(presPanel, wxID_ANY, _t("Combine Splits"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     combineSplitsCheckBox_->SetMinSize(wxSize(-1, bGroupBy_->GetSize().GetHeight()));
     presPanelSizer->Add(combineSplitsCheckBox_, g_flagsH);
-    mmToolTip(combineSplitsCheckBox_, _("Display split transactions as a single row"));
+    mmToolTip(combineSplitsCheckBox_, _t("Display split transactions as a single row"));
 
     // Settings
     wxBoxSizer* settings_box_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -782,7 +782,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
 
     if (isMultiAccount_)
     {
-        wxStaticText* settings = new wxStaticText(this, wxID_ANY, _("Settings"));
+        wxStaticText* settings = new wxStaticText(this, wxID_ANY, _t("Settings"));
         settings_box_sizer->Add(settings, g_flagsH);
         settings_box_sizer->AddSpacer(5);
     }
@@ -795,11 +795,11 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     settings_box_sizer->AddSpacer(5);
     m_btnSaveAs = new wxBitmapButton(this, wxID_SAVEAS, mmBitmapBundle(png::SAVE, mmBitmapButtonSize));
     settings_box_sizer->Add(m_btnSaveAs, g_flagsH);
-    mmToolTip(m_btnSaveAs, _("Save active values into current Preset selection"));
+    mmToolTip(m_btnSaveAs, _t("Save active values into current Preset selection"));
     m_btnSaveAs->Connect(wxID_SAVEAS, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmFilterTransactionsDialog::OnSaveSettings), nullptr, this);
 
     m_itemButtonClear = new wxBitmapButton(this, wxID_CLEAR, mmBitmapBundle(png::CLEAR, mmBitmapButtonSize));
-    mmToolTip(m_itemButtonClear, _("Delete current Preset selection"));
+    mmToolTip(m_itemButtonClear, _t("Delete current Preset selection"));
     settings_box_sizer->Add(m_itemButtonClear, g_flagsH);
 
     box_sizer2->Add(settings_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0).Proportion(0));
@@ -813,13 +813,13 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     wxBoxSizer* button_sizer = new wxBoxSizer(wxHORIZONTAL);
     button_panel->SetSizer(button_sizer);
 
-    wxButton* button_ok = new wxButton(button_panel, wxID_OK, _("&OK "));
+    wxButton* button_ok = new wxButton(button_panel, wxID_OK, _t("&OK "));
 
     wxButton* button_cancel = new wxButton(button_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     button_cancel->SetFocus();
 
     wxBitmapButton* button_hide = new wxBitmapButton(button_panel, ID_BTN_CUSTOMFIELDS, mmBitmapBundle(png::RIGHTARROW, mmBitmapButtonSize));
-    mmToolTip(button_hide, _("Show/Hide custom fields window"));
+    mmToolTip(button_hide, _t("Show/Hide custom fields window"));
     if (m_custom_fields->GetCustomFieldsCount() == 0)
     {
         button_hide->Hide();
@@ -886,17 +886,17 @@ void mmFilterTransactionsDialog::setTransferTypeCheckBoxes()
     {
         cbTypeTransferFrom_->Show();
         cbTypeTransferFrom_->Enable();
-        cbTypeTransferTo_->SetLabel(_("Transfer Out"));
+        cbTypeTransferTo_->SetLabel(_t("Transfer Out"));
         Layout();
         bSelectedAccounts_->Enable(accountCheckBox_->IsEnabled());
     }
     else
     {
         m_selected_accounts_id.clear();
-        bSelectedAccounts_->SetLabelText(_("All"));
+        bSelectedAccounts_->SetLabelText(_t("All"));
         cbTypeTransferFrom_->Hide();
         cbTypeTransferFrom_->Disable();
-        cbTypeTransferTo_->SetLabel(_("Transfer"));
+        cbTypeTransferTo_->SetLabel(_t("Transfer"));
         Layout();
         bSelectedAccounts_->Disable();
     }
@@ -955,7 +955,7 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
 {
     if (accountCheckBox_->IsChecked() && m_selected_accounts_id.empty())
     {
-        mmErrorDialogs::ToolTip4Object(bSelectedAccounts_, _("Account"), _("Invalid value"), wxICON_ERROR);
+        mmErrorDialogs::ToolTip4Object(bSelectedAccounts_, _t("Account"), _t("Invalid value"), wxICON_ERROR);
         return false;
     }
 
@@ -965,14 +965,14 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
         {
             const auto today = wxDate::Today().FormatISOCombined();
             int id = m_begin_date >= today ? fromDateCtrl_->GetId() : toDateControl_->GetId();
-            mmErrorDialogs::ToolTip4Object(FindWindow(id), _("Date"), _("Invalid value"), wxICON_ERROR);
+            mmErrorDialogs::ToolTip4Object(FindWindow(id), _t("Date"), _t("Invalid value"), wxICON_ERROR);
             return false;
         }
     }
 
     if (datesCheckBox_->IsChecked() && rangeChoice_->GetSelection() == wxNOT_FOUND)
     {
-        mmErrorDialogs::ToolTip4Object(rangeChoice_, _("Date"), _("Invalid value"), wxICON_ERROR);
+        mmErrorDialogs::ToolTip4Object(rangeChoice_, _t("Date"), _t("Invalid value"), wxICON_ERROR);
         return false;
     }
 
@@ -983,7 +983,7 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
 
         if (value.empty())
         {
-            mmErrorDialogs::ToolTip4Object(categoryComboBox_, _("Empty value"), _("Payee"), wxICON_ERROR);
+            mmErrorDialogs::ToolTip4Object(categoryComboBox_, _t("Empty value"), _t("Payee"), wxICON_ERROR);
             return false;
         }
 
@@ -1002,10 +1002,10 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
             }
             if (ok == false)
             {
-                if (wxMessageBox(wxString::Format(_("This name does not currently match any payees.\n"
+                if (wxMessageBox(wxString::Format(_t("This name does not currently match any payees.\n"
                                                     "Do you want to continue to use it?\n%s"),
                                                   value),
-                                 _("Invalid value"), wxYES_NO | wxICON_INFORMATION) == wxNO)
+                                 _t("Invalid value"), wxYES_NO | wxICON_INFORMATION) == wxNO)
                 {
                     return false;
                 }
@@ -1020,26 +1020,26 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
         const auto& value = categoryComboBox_->mmGetPattern();
         if (value.empty())
         {
-            mmErrorDialogs::ToolTip4Object(categoryComboBox_, _("Empty value"), _("Category"), wxICON_ERROR);
+            mmErrorDialogs::ToolTip4Object(categoryComboBox_, _t("Empty value"), _t("Category"), wxICON_ERROR);
             return false;
         }
         wxRegEx pattern(value, wxRE_ADVANCED);
         if (!pattern.IsValid() || m_selected_categories_id.empty())
         {
-            mmErrorDialogs::ToolTip4Object(categoryComboBox_, _("Invalid value"), _("Category"), wxICON_ERROR);
+            mmErrorDialogs::ToolTip4Object(categoryComboBox_, _t("Invalid value"), _t("Category"), wxICON_ERROR);
             return false;
         }
     }
 
     if (mmIsStatusChecked() && choiceStatus_->GetSelection() == wxNOT_FOUND)
     {
-        mmErrorDialogs::ToolTip4Object(choiceStatus_, _("Invalid value"), _("Status"), wxICON_ERROR);
+        mmErrorDialogs::ToolTip4Object(choiceStatus_, _t("Invalid value"), _t("Status"), wxICON_ERROR);
         return false;
     }
 
     if (mmIsTypeChecked() && mmGetTypes().empty())
     {
-        mmErrorDialogs::ToolTip4Object(cbTypeWithdrawal_, _("Invalid value"), _("Type"), wxICON_ERROR);
+        mmErrorDialogs::ToolTip4Object(cbTypeWithdrawal_, _t("Invalid value"), _t("Type"), wxICON_ERROR);
         return false;
     }
 
@@ -1047,12 +1047,12 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
     {
         if (!tagTextCtrl_->IsValid())
         {
-            mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _("Invalid value"), _("Tags"), wxICON_ERROR);
+            mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _t("Invalid value"), _t("Tags"), wxICON_ERROR);
             return false;
         }
         else if (tagTextCtrl_->GetTagIDs().empty())
         {
-            mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _("Empty value"), _("Tags"), wxICON_ERROR);
+            mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _t("Empty value"), _t("Tags"), wxICON_ERROR);
             return false;
         }
     }
@@ -1066,7 +1066,7 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
         if (!amountMinEdit_->Calculate(currency_precision))
         {
             amountMinEdit_->GetDouble(min_amount);
-            mmErrorDialogs::ToolTip4Object(amountMinEdit_, _("Invalid value"), _("Amount"), wxICON_ERROR);
+            mmErrorDialogs::ToolTip4Object(amountMinEdit_, _t("Invalid value"), _t("Amount"), wxICON_ERROR);
             return false;
         }
 
@@ -1076,7 +1076,7 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
             amountMaxEdit_->GetDouble(max_amount);
             if (max_amount < min_amount)
             {
-                mmErrorDialogs::ToolTip4Object(amountMaxEdit_, _("Invalid value"), _("Amount"), wxICON_ERROR);
+                mmErrorDialogs::ToolTip4Object(amountMaxEdit_, _t("Invalid value"), _t("Amount"), wxICON_ERROR);
                 return false;
             }
         }
@@ -1086,7 +1086,7 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
     {
         if (m_color_value < 1 || m_color_value > 7)
         {
-            mmErrorDialogs::ToolTip4Object(colorButton_, _("Invalid value"), _("Color"), wxICON_ERROR);
+            mmErrorDialogs::ToolTip4Object(colorButton_, _t("Invalid value"), _t("Color"), wxICON_ERROR);
             return false;
         }
     }
@@ -1095,20 +1095,20 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
     {
         if (m_selected_columns_id.empty())
         {
-            mmErrorDialogs::ToolTip4Object(bHideColumns_, _("Invalid value"), _("Hide Columns"), wxICON_ERROR);
+            mmErrorDialogs::ToolTip4Object(bHideColumns_, _t("Invalid value"), _t("Hide Columns"), wxICON_ERROR);
             return false;
         }
     }
 
     if (groupByCheckBox_->IsChecked() && bGroupBy_->GetSelection() == wxNOT_FOUND)
     {
-        mmErrorDialogs::ToolTip4Object(bGroupBy_, _("Invalid value"), _("Group By"), wxICON_ERROR);
+        mmErrorDialogs::ToolTip4Object(bGroupBy_, _t("Invalid value"), _t("Group By"), wxICON_ERROR);
         return false;
     }
 
     if (chartCheckBox_->IsChecked() && bChart_->GetSelection() == wxNOT_FOUND)
     {
-        mmErrorDialogs::ToolTip4Object(bChart_, _("Invalid value"), _("Chart"), wxICON_ERROR);
+        mmErrorDialogs::ToolTip4Object(bChart_, _t("Invalid value"), _t("Chart"), wxICON_ERROR);
         return false;
     }
 
@@ -1176,7 +1176,7 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
         }
     }
 
-    mmMultiChoiceDialog s_col(this, _("Hide Report Columns"), "", column_names);
+    mmMultiChoiceDialog s_col(this, _t("Hide Report Columns"), "", column_names);
     s_col.SetSelections(hiddenCols);
 
     wxString baloon = "";
@@ -1302,7 +1302,7 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
     int size = m_setting_name->GetCount();
     if (sel >= 0 && size > 0)
     {
-        if (wxMessageBox(_("The selected item will be deleted") + "\n\n" + _("Do you want to continue?"), _("Settings item deletion"),
+        if (wxMessageBox(_t("The selected item will be deleted") + "\n\n" + _t("Do you want to continue?"), _t("Settings item deletion"),
                          wxYES_NO | wxICON_WARNING) == wxNO)
         {
             return;
@@ -1570,13 +1570,13 @@ const wxString mmFilterTransactionsDialog::mmGetDescriptionToolTip() const
             {
                 wxString temp;
                 if (value.Contains("W"))
-                    temp += (temp.empty() ? "" : ", ") + _("Withdrawal");
+                    temp += (temp.empty() ? "" : ", ") + _t("Withdrawal");
                 if (value.Contains("D"))
-                    temp += (temp.empty() ? "" : ", ") + _("Deposit");
+                    temp += (temp.empty() ? "" : ", ") + _t("Deposit");
                 if (value.Contains("F"))
-                    temp += (temp.empty() ? "" : ", ") + _("Transfer In");
+                    temp += (temp.empty() ? "" : ", ") + _t("Transfer In");
                 if (value.Contains("T"))
-                    temp += (temp.empty() ? "" : ", ") + (mmGetAccountsID().empty() ? _("Transfer") : _("Transfer Out"));
+                    temp += (temp.empty() ? "" : ", ") + (mmGetAccountsID().empty() ? _t("Transfer") : _t("Transfer Out"));
                 value = temp;
             }
             break;
@@ -1628,7 +1628,7 @@ const wxString mmFilterTransactionsDialog::mmGetDescriptionToolTip() const
             break;
         }
         if (value.IsEmpty())
-            value = _("Empty value");
+            value = _t("Empty value");
         buffer += value.Append("\n");
     }
 
@@ -1637,7 +1637,7 @@ const wxString mmFilterTransactionsDialog::mmGetDescriptionToolTip() const
 
 void mmFilterTransactionsDialog::mmGetDescription(mmHTMLBuilder& hb)
 {
-    hb.addHeader(4, _("Filtering Details: "));
+    hb.addHeader(4, _t("Filtering Details: "));
     // Extract the parameters from the transaction dialog and add them to the report.
     wxString data = mmGetJsonSettings(true);
     Document j_doc;
@@ -1671,13 +1671,13 @@ void mmFilterTransactionsDialog::mmGetDescription(mmHTMLBuilder& hb)
             {
                 wxString temp;
                 if (value.Contains("W"))
-                    temp += (temp.empty() ? "" : ", ") + _("Withdrawal");
+                    temp += (temp.empty() ? "" : ", ") + _t("Withdrawal");
                 if (value.Contains("D"))
-                    temp += (temp.empty() ? "" : ", ") + _("Deposit");
+                    temp += (temp.empty() ? "" : ", ") + _t("Deposit");
                 if (value.Contains("F"))
-                    temp += (temp.empty() ? "" : ", ") + _("Transfer In");
+                    temp += (temp.empty() ? "" : ", ") + _t("Transfer In");
                 if (value.Contains("T"))
-                    temp += (temp.empty() ? "" : ", ") + (mmGetAccountsID().empty() ? _("Transfer") : _("Transfer Out"));
+                    temp += (temp.empty() ? "" : ", ") + (mmGetAccountsID().empty() ? _t("Transfer") : _t("Transfer Out"));
                 value = temp;
             }
             buffer += wxString::Format("<kbd><samp><b>%s:</b> %s</samp></kbd>\n", name, wxGetTranslation(value));
@@ -1767,14 +1767,14 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
 
     if (!label.empty())
     {
-        json_writer.Key((i18n ? _("Label") : "LABEL").utf8_str());
+        json_writer.Key((i18n ? _t("Label") : "LABEL").utf8_str());
         json_writer.String(label.utf8_str());
     }
 
     // Account
     if (accountCheckBox_->IsChecked() && !m_selected_accounts_id.empty())
     {
-        json_writer.Key((i18n ? _("Account") : "ACCOUNT").utf8_str());
+        json_writer.Key((i18n ? _t("Account") : "ACCOUNT").utf8_str());
         json_writer.StartArray();
         for (const auto& acc : m_selected_accounts_id)
         {
@@ -1798,9 +1798,9 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
             from_date = fromDateCtrl_->GetValue().FormatISODate();
             to_date = toDateControl_->GetValue().FormatISODate();
         }
-        json_writer.Key((i18n ? _("Since") : "DATE1").utf8_str());
+        json_writer.Key((i18n ? _t("Since") : "DATE1").utf8_str());
         json_writer.String(from_date.utf8_str());
-        json_writer.Key((i18n ? _("Before") : "DATE2").utf8_str());
+        json_writer.Key((i18n ? _t("Before") : "DATE2").utf8_str());
         json_writer.String(to_date.utf8_str());
     }
 
@@ -1813,7 +1813,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
             const wxSharedPtr<mmDateRange> date_range = m_all_date_ranges.at(sel);
             if (date_range)
             {
-                json_writer.Key((i18n ? _("Period") : "PERIOD").utf8_str());
+                json_writer.Key((i18n ? _t("Period") : "PERIOD").utf8_str());
                 json_writer.String(date_range->title().utf8_str());
             }
         }
@@ -1822,14 +1822,14 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
     // Payee
     if (payeeCheckBox_->IsChecked())
     {
-        json_writer.Key((i18n ? _("Payee") : "PAYEE").utf8_str());
+        json_writer.Key((i18n ? _t("Payee") : "PAYEE").utf8_str());
         json_writer.String(cbPayee_->GetValue().utf8_str());
     }
 
     // Category
     if (categoryCheckBox_->IsChecked())
     {
-        json_writer.Key((i18n ? _("Category") : "CATEGORY").utf8_str());
+        json_writer.Key((i18n ? _t("Category") : "CATEGORY").utf8_str());
         if (categoryComboBox_->mmIsValid())
         {
             int64 categ = categoryComboBox_->mmGetCategoryId();
@@ -1845,7 +1845,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
     // Sub Category inclusion
     if (categoryCheckBox_->IsChecked())
     {
-        json_writer.Key((i18n ? _("Include all subcategories") : "SUBCATEGORYINCLUDE").utf8_str());
+        json_writer.Key((i18n ? _t("Include all subcategories") : "SUBCATEGORYINCLUDE").utf8_str());
         json_writer.Bool(categorySubCatCheckBox_->GetValue());
     }
 
@@ -1860,7 +1860,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
             status = s[item];
         if (!status.empty())
         {
-            json_writer.Key((i18n ? _("Status") : "STATUS").utf8_str());
+            json_writer.Key((i18n ? _t("Status") : "STATUS").utf8_str());
             json_writer.String((i18n ? wxGetTranslation(status) : status).utf8_str());
         }
     }
@@ -1871,7 +1871,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
         wxString type = mmGetTypes();
         if (!type.empty())
         {
-            json_writer.Key((i18n ? _("Type") : "TYPE").utf8_str());
+            json_writer.Key((i18n ? _t("Type") : "TYPE").utf8_str());
             json_writer.String(type.utf8_str());
         }
     }
@@ -1883,7 +1883,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
         {
             double amount_min;
             amountMinEdit_->GetDouble(amount_min);
-            json_writer.Key((i18n ? _("Amount Min.") : "AMOUNT_MIN").utf8_str());
+            json_writer.Key((i18n ? _t("Amount Min.") : "AMOUNT_MIN").utf8_str());
             json_writer.Double(amount_min);
         }
 
@@ -1891,7 +1891,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
         {
             double amount_max;
             amountMaxEdit_->GetDouble(amount_max);
-            json_writer.Key((i18n ? _("Amount Max.") : "AMOUNT_MAX").utf8_str());
+            json_writer.Key((i18n ? _t("Amount Max.") : "AMOUNT_MAX").utf8_str());
             json_writer.Double(amount_max);
         }
     }
@@ -1900,14 +1900,14 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
     if (transNumberCheckBox_->IsChecked())
     {
         const wxString num = transNumberEdit_->GetValue();
-        json_writer.Key((i18n ? _("Number") : "NUMBER").utf8_str());
+        json_writer.Key((i18n ? _t("Number") : "NUMBER").utf8_str());
         json_writer.String(num.utf8_str());
     }
 
     // Tags
     if (tagCheckBox_->IsChecked() && !tagTextCtrl_->IsEmpty())
     {
-        json_writer.Key((i18n ? _("Tags") : "TAGS").utf8_str());
+        json_writer.Key((i18n ? _t("Tags") : "TAGS").utf8_str());
         json_writer.StartArray();
 
         for (const auto& tag : tagTextCtrl_->GetTagStrings())
@@ -1925,14 +1925,14 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
     if (notesCheckBox_->IsChecked())
     {
         wxString notes = notesEdit_->GetValue();
-        json_writer.Key((i18n ? _("Notes") : "NOTES").utf8_str());
+        json_writer.Key((i18n ? _t("Notes") : "NOTES").utf8_str());
         json_writer.String(notes.utf8_str());
     }
 
     // Colour
     if (colorCheckBox_->IsChecked())
     {
-        json_writer.Key((i18n ? _("Color") : "COLOR").utf8_str());
+        json_writer.Key((i18n ? _t("Color") : "COLOR").utf8_str());
         json_writer.Int(m_color_value);
     }
 
@@ -1958,7 +1958,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
     // Hide Columns
     if (showColumnsCheckBox_->IsChecked() && !m_selected_columns_id.empty())
     {
-        json_writer.Key((i18n ? _("Hide Columns") : "COLUMN").utf8_str());
+        json_writer.Key((i18n ? _t("Hide Columns") : "COLUMN").utf8_str());
         json_writer.StartArray();
         for (const auto& acc : m_selected_columns_id)
             json_writer.Int(acc);
@@ -1971,7 +1971,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
         const wxString groupBy = bGroupBy_->GetStringSelection();
         if (!groupBy.empty())
         {
-            json_writer.Key((i18n ? _("Group By") : "GROUPBY").utf8_str());
+            json_writer.Key((i18n ? _t("Group By") : "GROUPBY").utf8_str());
             json_writer.String(groupBy.utf8_str());
         }
     }
@@ -1982,7 +1982,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
         const wxString chart = bChart_->GetStringSelection();
         if (!chart.empty())
         {
-            json_writer.Key((i18n ? _("Chart") : "CHART").utf8_str());
+            json_writer.Key((i18n ? _t("Chart") : "CHART").utf8_str());
             json_writer.String(chart.utf8_str());
         }
     }
@@ -1991,7 +1991,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
     const bool combineSplits = combineSplitsCheckBox_->IsChecked();
     if (combineSplits)
     {
-        json_writer.Key((i18n ? _("Combine Splits") : "COMBINE_SPLITS").utf8_str());
+        json_writer.Key((i18n ? _t("Combine Splits") : "COMBINE_SPLITS").utf8_str());
         json_writer.Bool(combineSplits);
     }
 
@@ -2138,7 +2138,7 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
 
     if (is_user_request)
     {
-        user_label = wxGetTextFromUser(_("Setting Name"), _("Please Enter"), label);
+        user_label = wxGetTextFromUser(_t("Setting Name"), _t("Please Enter"), label);
 
         if (user_label.empty())
             return;
@@ -2162,7 +2162,7 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
         }
         else
         {
-            if (wxMessageBox(_("The entered name is already in use"), _("Warning"), wxOK | wxICON_WARNING) == wxOK)
+            if (wxMessageBox(_t("The entered name is already in use"), _t("Warning"), wxOK | wxICON_WARNING) == wxOK)
             {
             }
         }
@@ -2191,7 +2191,7 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
             m_settings_json = mmGetJsonSettings();
             if (isMultiAccount_ && json != m_settings_json && !label.empty())
             {
-                if (wxMessageBox(_("Filter settings have changed") + "\n" + _("Do you want to save them before continuing?") + "\n\n", _("Please confirm"),
+                if (wxMessageBox(_t("Filter settings have changed") + "\n" + _t("Do you want to save them before continuing?") + "\n\n", _t("Please confirm"),
                                  wxYES_NO | wxICON_WARNING) == wxYES)
                 {
                     mmDoUpdateSettings();
@@ -2241,7 +2241,7 @@ void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
 
 void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
 {
-    mmMultiChoiceDialog s_acc(this, _("Choose Accounts"), "", m_accounts_name);
+    mmMultiChoiceDialog s_acc(this, _t("Choose Accounts"), "", m_accounts_name);
 
     wxString baloon = "";
     wxArrayInt selected_items;
@@ -2273,7 +2273,7 @@ void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event
 
     if (m_selected_accounts_id.empty())
     {
-        bSelectedAccounts_->SetLabelText(_("All"));
+        bSelectedAccounts_->SetLabelText(_t("All"));
         accountCheckBox_->SetValue(false);
         bSelectedAccounts_->Disable();
     }

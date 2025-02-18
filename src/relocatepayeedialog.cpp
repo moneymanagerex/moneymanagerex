@@ -84,7 +84,7 @@ void relocatePayeeDialog::CreateControls()
     flagsExpand.Align(wxALIGN_LEFT).Border(wxALL, 5).Expand();
 
     wxStaticText* headerText = new wxStaticText( this, wxID_STATIC
-        , _("Merge Payees"));
+        , _t("Merge Payees"));
     wxStaticLine* lineTop = new wxStaticLine(this,wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
@@ -96,7 +96,7 @@ void relocatePayeeDialog::CreateControls()
     cbDestPayee_->SetMinSize(wxSize(200, -1));
 
     cbDeleteSourcePayee_ = new wxCheckBox(this, wxID_ANY
-        , _("&Delete source payee after merge"));
+        , _t("&Delete source payee after merge"));
 
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
@@ -109,8 +109,8 @@ void relocatePayeeDialog::CreateControls()
     boxSizer->Add(headerText, g_flagsV);
     boxSizer->Add(lineTop, flagsExpand);
 
-    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("Source:")), flagsH);
-    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("Target:")), flagsH);
+    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_t("Source:")), flagsH);
+    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_t("Target:")), flagsH);
     request_sizer->Add(cbSourcePayee_, flagsExpand);
     request_sizer->Add(cbDestPayee_, flagsExpand);
 
@@ -128,8 +128,8 @@ void relocatePayeeDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     boxSizer->Add(lineBottom, flagsExpand);
 
-    wxButton* okButton = new wxButton(this, wxID_OK, _("&Merge"));
-    wxButton* cancelButton = new wxButton(this, wxID_CANCEL, _("&Close"));
+    wxButton* okButton = new wxButton(this, wxID_OK, _t("&Merge"));
+    wxButton* cancelButton = new wxButton(this, wxID_CANCEL, _t("&Close"));
 
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonBoxSizer->Add(okButton, flagsH);
@@ -148,12 +148,12 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     const auto& source_payee_name = cbSourcePayee_->GetValue();
     const auto& destination_payee_name = cbDestPayee_->GetValue();
-    const wxString& info = wxString::Format(_("From %1$s to %2$s")
+    const wxString& info = wxString::Format(_t("From %1$s to %2$s")
         , source_payee_name
         , destination_payee_name);
 
-    int ans = wxMessageBox(_("Please Confirm:") + "\n" + info
-        , _("Merge payees confirmation")
+    int ans = wxMessageBox(_t("Please Confirm:") + "\n" + info
+        , _t("Merge payees confirmation")
         , wxOK | wxCANCEL | wxICON_INFORMATION);
 
     if (ans == wxOK)
@@ -205,8 +205,8 @@ void relocatePayeeDialog::IsOkOk()
     }
 
     wxString msgStr = wxString()
-        << wxString::Format(_("Records found in transactions: %i"), trxs_size) << "\n"
-        << wxString::Format(_("Records found in scheduled transactions: %i"), bills_size);
+        << wxString::Format(_t("Records found in transactions: %i"), trxs_size) << "\n"
+        << wxString::Format(_t("Records found in scheduled transactions: %i"), bills_size);
 
     m_info->SetLabel(msgStr);
 

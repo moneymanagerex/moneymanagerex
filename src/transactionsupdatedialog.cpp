@@ -121,7 +121,7 @@ void transactionsUpdateDialog::CreateControls()
     box_sizer1->Add(box_sizer2, g_flagsExpand);
     box_sizer1->Add(custom_fields_box_sizer, g_flagsExpand);
 
-    wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _("Specify"));
+    wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _t("Specify"));
     wxStaticBoxSizer* box_sizer_left = new wxStaticBoxSizer(static_box, wxVERTICAL);
     wxFlexGridSizer* grid_sizer = new wxFlexGridSizer(0, 2, 0, 0);
     grid_sizer->AddGrowableCol(1, 1);
@@ -129,7 +129,7 @@ void transactionsUpdateDialog::CreateControls()
     box_sizer2->Add(box_sizer_left, g_flagsExpand);
 
     // Date --------------------------------------------
-    m_date_checkbox = new wxCheckBox(this, wxID_ANY, _("Date")
+    m_date_checkbox = new wxCheckBox(this, wxID_ANY, _t("Date")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_dpc = new mmDatePickerCtrl(this, wxID_ANY);
     grid_sizer->Add(m_date_checkbox, g_flagsH);
@@ -139,7 +139,7 @@ void transactionsUpdateDialog::CreateControls()
     if (Option::instance().UseTransDateTime())
     {
         // Time --------------------------------------------
-        m_time_checkbox = new wxCheckBox(this, wxID_ANY, _("Time"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+        m_time_checkbox = new wxCheckBox(this, wxID_ANY, _t("Time"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
         m_time_ctrl = new wxTimePickerCtrl(this, wxID_ANY);
         grid_sizer->Add(m_time_checkbox, g_flagsH);
         grid_sizer->Add(m_time_ctrl, g_flagsH);
@@ -147,7 +147,7 @@ void transactionsUpdateDialog::CreateControls()
     }
 
     // Status --------------------------------------------
-    m_status_checkbox = new wxCheckBox(this, wxID_ANY, _("Status")
+    m_status_checkbox = new wxCheckBox(this, wxID_ANY, _t("Status")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
     m_status_choice = new wxChoice(this, wxID_ANY
@@ -162,7 +162,7 @@ void transactionsUpdateDialog::CreateControls()
     grid_sizer->Add(m_status_choice, g_flagsH);
 
     // Type --------------------------------------------
-    m_type_checkbox = new wxCheckBox(this, wxID_ANY, _("Type")
+    m_type_checkbox = new wxCheckBox(this, wxID_ANY, _t("Type")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
     m_type_choice = new wxChoice(this, ID_TRANS_TYPE
@@ -180,7 +180,7 @@ void transactionsUpdateDialog::CreateControls()
     grid_sizer->Add(m_type_choice, g_flagsH);
 
     // Amount Field --------------------------------------------
-    m_amount_checkbox = new wxCheckBox(this, wxID_ANY, _("Amount")
+    m_amount_checkbox = new wxCheckBox(this, wxID_ANY, _t("Amount")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_amount_checkbox->Enable(!m_hasSplits);
 
@@ -193,7 +193,7 @@ void transactionsUpdateDialog::CreateControls()
     grid_sizer->Add(m_amount_ctrl, g_flagsExpand);
 
     // Payee --------------------------------------------
-    m_payee_checkbox = new wxCheckBox(this, wxID_ANY, _("Payee")
+    m_payee_checkbox = new wxCheckBox(this, wxID_ANY, _t("Payee")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_payee_checkbox->Enable(!m_hasTransfers);
 
@@ -205,7 +205,7 @@ void transactionsUpdateDialog::CreateControls()
     grid_sizer->Add(cbPayee_, g_flagsExpand);
 
     // Transfer to account --------------------------------------------
-    m_transferAcc_checkbox = new wxCheckBox(this, wxID_ANY, _("Transfer To")
+    m_transferAcc_checkbox = new wxCheckBox(this, wxID_ANY, _t("Transfer To")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_transferAcc_checkbox->Enable(!m_hasNonTransfers);
 
@@ -217,7 +217,7 @@ void transactionsUpdateDialog::CreateControls()
     grid_sizer->Add(cbAccount_, g_flagsExpand);
 
     // Category -------------------------------------------------
-    m_categ_checkbox = new wxCheckBox(this, wxID_VIEW_DETAILS, _("Category")
+    m_categ_checkbox = new wxCheckBox(this, wxID_VIEW_DETAILS, _t("Category")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_categ_checkbox->Enable(!m_hasSplits);
 
@@ -228,8 +228,8 @@ void transactionsUpdateDialog::CreateControls()
     grid_sizer->Add(cbCategory_, g_flagsExpand);
 
     // Tags ------------------------------------------------------
-    tag_checkbox_ = new wxCheckBox(this, wxID_ANY, _("Tags"));
-    tag_append_checkbox_ = new wxCheckBox(this, wxID_ANY, _("Append"));
+    tag_checkbox_ = new wxCheckBox(this, wxID_ANY, _t("Tags"));
+    tag_append_checkbox_ = new wxCheckBox(this, wxID_ANY, _t("Append"));
     tag_append_checkbox_->SetValue(true);
     tag_append_checkbox_->Enable(false);
 
@@ -241,18 +241,18 @@ void transactionsUpdateDialog::CreateControls()
     grid_sizer->Add(tagTextCtrl_, g_flagsExpand);
 
     // Colours --------------------------------------------
-    m_color_checkbox = new wxCheckBox(this, wxID_VIEW_DETAILS, _("Color")
+    m_color_checkbox = new wxCheckBox(this, wxID_VIEW_DETAILS, _t("Color")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     bColours_ = new mmColorButton(this, wxID_HIGHEST, cbCategory_->GetSize());
-    mmToolTip(bColours_, _("User Colors"));
+    mmToolTip(bColours_, _t("User Colors"));
     grid_sizer->Add(m_color_checkbox, g_flagsH);
     grid_sizer->Add(bColours_, g_flagsExpand);
     bColours_->Enable(false);
 
     // Notes --------------------------------------------
-    m_notes_checkbox = new wxCheckBox(this, wxID_ANY, _("Notes")
+    m_notes_checkbox = new wxCheckBox(this, wxID_ANY, _t("Notes")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_append_checkbox = new wxCheckBox(this, wxID_ANY, _("Append")
+    m_append_checkbox = new wxCheckBox(this, wxID_ANY, _t("Append")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_append_checkbox->SetValue(true);
 
@@ -275,14 +275,14 @@ void transactionsUpdateDialog::CreateControls()
     wxStdDialogButtonSizer* button_sizer = new wxStdDialogButtonSizer;
     button_panel->SetSizer(button_sizer);
 
-    wxButton* button_ok = new wxButton(button_panel, wxID_OK, _("&OK "));
+    wxButton* button_ok = new wxButton(button_panel, wxID_OK, _t("&OK "));
     wxButton* button_cancel = new wxButton(button_panel
         , wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     button_cancel->SetFocus();
 
     wxBitmapButton* button_hide = new wxBitmapButton(button_panel
         , ID_BTN_CUSTOMFIELDS, mmBitmapBundle(png::RIGHTARROW, mmBitmapButtonSize));
-    mmToolTip(button_hide, _("Show/Hide custom fields window"));
+    mmToolTip(button_hide, _t("Show/Hide custom fields window"));
     if (m_custom_fields->GetCustomFieldsCount() == 0) {
         button_hide->Hide();
     }
@@ -344,8 +344,8 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
         if (!cbPayee_->mmIsValid()) {
             wxMessageDialog msgDlg(this
-                , wxString::Format(_("Payee name has not been used before. Is the name correct?\n%s"), cbPayee_->GetValue())
-                , _("Confirm payee name")
+                , wxString::Format(_t("Payee name has not been used before. Is the name correct?\n%s"), cbPayee_->GetValue())
+                , _t("Confirm payee name")
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
             if (msgDlg.ShowModal() == wxID_YES)
             {
@@ -364,7 +364,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
 
     if (tag_checkbox_->IsChecked() && !tagTextCtrl_->IsValid())
-        return  mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _("Invalid value"), _("Tags"), wxICON_ERROR);
+        return  mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _t("Invalid value"), _t("Tags"), wxICON_ERROR);
 
     if (m_transferAcc_checkbox->IsChecked())
     {
@@ -438,7 +438,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         if (m_color_checkbox->IsChecked()) {
             int color_id = bColours_->GetColorId();
             if (color_id < 0 || color_id > 7) {
-                return mmErrorDialogs::ToolTip4Object(bColours_, _("Color"), _("Invalid value"), wxICON_ERROR);
+                return mmErrorDialogs::ToolTip4Object(bColours_, _t("Color"), _t("Invalid value"), wxICON_ERROR);
             }
             trx->COLOR = color_id == 0 ? -1 : color_id ; 
         }
@@ -534,12 +534,12 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     if (!skip_trx.empty())
     {
         const wxString detail = wxString::Format("%s\n%s: %zu\n%s: %zu"
-                        , _("This is due to some elements of the transaction or account detail not allowing the update")
-                        , _("Updated"), m_transaction_id.size() - skip_trx.size()
-                        , _("Not updated"), skip_trx.size());
+                        , _t("This is due to some elements of the transaction or account detail not allowing the update")
+                        , _t("Updated"), m_transaction_id.size() - skip_trx.size()
+                        , _t("Not updated"), skip_trx.size());
         mmErrorDialogs::MessageWarning(this
             , detail
-            , _("Unable to update some transactions."));
+            , _t("Unable to update some transactions."));
     }
     //TODO: enable report to detail transactions that are unable to be updated
 

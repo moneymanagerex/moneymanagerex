@@ -157,8 +157,8 @@ void mmOptionsDialog::CreateControls()
     buttonPanel->SetSizer(buttonPanelSizer);
     mainDialogSizer->Add(buttonPanel, wxSizerFlags(g_flagsV).Center());
 
-    wxButton* itemButtonOK = new wxButton(buttonPanel, wxID_OK, _("&OK "));
-    wxButton* itemButtonApply = new wxButton(buttonPanel, wxID_APPLY, _("&Apply "));
+    wxButton* itemButtonOK = new wxButton(buttonPanel, wxID_OK, _t("&OK "));
+    wxButton* itemButtonApply = new wxButton(buttonPanel, wxID_APPLY, _t("&Apply "));
     wxButton* itemButtonCancel = new wxButton(buttonPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     buttonPanelSizer->Add(itemButtonOK, g_flagsH);
     buttonPanelSizer->Add(itemButtonApply, g_flagsH);
@@ -216,8 +216,8 @@ void mmOptionsDialog::OnApply(wxCommandEvent& /*event*/)
     int selected_page = m_listbook->GetSelection();
     if (m_panel_list[selected_page]->SaveSettings())
     {
-        const wxString& msg = wxString::Format(_("%s page has been saved."), wxGetTranslation(s_pagetitle[selected_page]));
-        wxMessageBox(msg, _("Settings"));
+        const wxString& msg = wxString::Format(_t("%s page has been saved."), wxGetTranslation(s_pagetitle[selected_page]));
+        wxMessageBox(msg, _t("Settings"));
     }
 
     Model_Setting::instance().ReleaseSavepoint();

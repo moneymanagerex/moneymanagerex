@@ -70,9 +70,9 @@ bool dbUpgrade::UpgradeToVersion(wxSQLite3Database * db, int version)
         }
         catch (const wxSQLite3Exception& e)
         {
-            wxMessageBox(wxString::Format(_("MMEX database upgrade to version %i failed!"), version) + "\n\n"
-                + _("Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support") + "\n\n"
-                + e.GetMessage(), _("MMEX database upgrade"), wxOK | wxICON_ERROR);
+            wxMessageBox(wxString::Format(_t("MMEX database upgrade to version %i failed!"), version) + "\n\n"
+                + _t("Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support") + "\n\n"
+                + e.GetMessage(), _t("MMEX database upgrade"), wxOK | wxICON_ERROR);
             db->Rollback("MMEX_Upgrade");
             return false;
         }
@@ -104,9 +104,9 @@ bool dbUpgrade::UpgradeDB(wxSQLite3Database * db, const wxString& DbFileName)
 
     if (ver == -1 || ver > dbLatestVersion)
     {
-        wxMessageBox(_("MMEX database error!") + "\n\n"
-            + wxString::Format(_("MMEX database version %i doesn't work with this MMEX version.\nPlease upgrade MMEX to newer version."), ver)
-            , _("MMEX database upgrade"), wxOK | wxICON_ERROR);
+        wxMessageBox(_t("MMEX database error!") + "\n\n"
+            + wxString::Format(_t("MMEX database version %i doesn't work with this MMEX version.\nPlease upgrade MMEX to newer version."), ver)
+            , _t("MMEX database upgrade"), wxOK | wxICON_ERROR);
         return false;
     }
 
@@ -117,9 +117,9 @@ bool dbUpgrade::UpgradeDB(wxSQLite3Database * db, const wxString& DbFileName)
             return false;
     }
 
-    wxMessageBox(wxString::Format(_("MMEX database succesfully upgraded to version %i"), ver) + "\n\n"
+    wxMessageBox(wxString::Format(_t("MMEX database succesfully upgraded to version %i"), ver) + "\n\n"
         + _tu("It is recommended to optimize the database with Tools → Database → Optimize Database…")
-            , _("MMEX database upgrade"), wxOK | wxICON_INFORMATION);
+            , _t("MMEX database upgrade"), wxOK | wxICON_INFORMATION);
 
     return true;
 }
@@ -180,14 +180,14 @@ void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKe
 
 void dbUpgrade::SqlFileDebug(wxSQLite3Database * db)
 {
-    wxFileDialog fileDlgLoad(nullptr,_("Load debug file"),"","","MMDBG Files(*.mmdbg)|*.mmdbg", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+    wxFileDialog fileDlgLoad(nullptr,_t("Load debug file"),"","","MMDBG Files(*.mmdbg)|*.mmdbg", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
     if (fileDlgLoad.ShowModal() != wxID_OK)
         return;
 
     wxString filePath = fileDlgLoad.GetPath();
     if (wxFileName(filePath).GetExt().MakeLower() != "mmdbg")
     {
-        wxMessageBox(_("Wrong file type!"), _("MMEX debug error"), wxOK | wxICON_ERROR);
+        wxMessageBox(_t("Wrong file type!"), _t("MMEX debug error"), wxOK | wxICON_ERROR);
         return;
     }
 
@@ -224,25 +224,25 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database * db)
                 }
                 catch (const wxSQLite3Exception& e)
                 {
-                    wxMessageBox(_("Query error, please contact MMEX support!") + "\n\n" + e.GetMessage(), _("MMEX debug error"), wxOK | wxICON_ERROR);
+                    wxMessageBox(_t("Query error, please contact MMEX support!") + "\n\n" + e.GetMessage(), _t("MMEX debug error"), wxOK | wxICON_ERROR);
                     return;
                 }
                 
             }
             else
             {
-                wxMessageBox(_("Invalid file content, please contact MMEX support!"), _("MMEX debug error"), wxOK | wxICON_ERROR);
+                wxMessageBox(_t("Invalid file content, please contact MMEX support!"), _t("MMEX debug error"), wxOK | wxICON_ERROR);
                 return;
             }
         }
 
         txtLog << wxTextFile::GetEOL() << wxTextFile::GetEOL() << wxTextFile::GetEOL() << getProgramDescription();
 
-        wxTextEntryDialog dlg(nullptr, _("Send this log to MMEX support team:\npress OK to save to file or Cancel to exit"),
-            _("MMEX debug"), txtLog, wxOK | wxCANCEL | wxCENTRE | wxTE_MULTILINE);
+        wxTextEntryDialog dlg(nullptr, _t("Send this log to MMEX support team:\npress OK to save to file or Cancel to exit"),
+            _t("MMEX debug"), txtLog, wxOK | wxCANCEL | wxCENTRE | wxTE_MULTILINE);
         if (dlg.ShowModal() == wxID_OK)
         {
-            wxFileDialog fileDlgSave(nullptr, _("Save debug file"), "", "", "*.txt", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+            wxFileDialog fileDlgSave(nullptr, _t("Save debug file"), "", "", "*.txt", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
             if (fileDlgSave.ShowModal() == wxID_OK)
             {
                 wxFile file(fileDlgSave.GetPath(), wxFile::write);
@@ -275,18 +275,18 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database * db)
                 }
                 catch (const wxSQLite3Exception& e)
                 {
-                    wxMessageBox(_("Query error, please contact MMEX support!") + "\n\n" + e.GetMessage(), _("MMEX debug error"), wxOK | wxICON_ERROR);
+                    wxMessageBox(_t("Query error, please contact MMEX support!") + "\n\n" + e.GetMessage(), _t("MMEX debug error"), wxOK | wxICON_ERROR);
                     db->Rollback("MMEX_Debug");
                     return;
                 }
             }
         }
         db->ReleaseSavepoint("MMEX_Debug");
-        wxMessageBox(_("DB maintenance completed, please close and re-open MMEX!"), _("MMEX debug"), wxOK | wxICON_INFORMATION);
+        wxMessageBox(_t("DB maintenance completed, please close and re-open MMEX!"), _t("MMEX debug"), wxOK | wxICON_INFORMATION);
     }
     else
     {
-        wxMessageBox(_("Invalid file content, please contact MMEX support!"), _("MMEX debug error"), wxOK | wxICON_ERROR);
+        wxMessageBox(_t("Invalid file content, please contact MMEX support!"), _t("MMEX debug error"), wxOK | wxICON_ERROR);
         return;
     }
 }

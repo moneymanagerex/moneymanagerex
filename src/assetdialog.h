@@ -79,7 +79,7 @@ private:
     UserTransactionPanel* m_transaction_panel = nullptr;
     Model_Translink::Data* m_transfer_entry = nullptr;
     Model_Checking::Data* m_checking_entry = nullptr;
-    wxString m_dialog_heading = _("New Asset");
+    wxString m_dialog_heading = _t("New Asset");
     bool m_hidden_trans_entry = true;
     bool assetRichText = true;
 

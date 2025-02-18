@@ -62,7 +62,7 @@ mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int64 ref_id,
 
 bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 {
-    m_static_box = new wxStaticBox(m_dialog, wxID_ANY, _("Custom fields"));
+    m_static_box = new wxStaticBox(m_dialog, wxID_ANY, _t("Custom fields"));
     wxStaticBoxSizer* box_sizer_right = new wxStaticBoxSizer(m_static_box, wxVERTICAL);
     box_sizer->Add(box_sizer_right, g_flagsExpand);
 
@@ -153,9 +153,9 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         case Model_CustomField::TYPE_ID_BOOLEAN:
         {
             wxRadioButton* CustomBooleanF = new wxRadioButton(scrolled_window, controlID
-                , _("False"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
+                , _t("False"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
             wxRadioButton* CustomBooleanT = new wxRadioButton(scrolled_window, controlID + 1
-                , _("True"), wxDefaultPosition, wxDefaultSize);
+                , _t("True"), wxDefaultPosition, wxDefaultSize);
 
             const auto& data = fieldData->CONTENT;
             if (!data.empty())
@@ -306,7 +306,7 @@ void mmCustomData::OnMultiChoice(wxCommandEvent& event)
     wxString data = label;
     if (init != -1)
     {
-        wxSharedPtr<wxMultiChoiceDialog> MultiChoice(new wxMultiChoiceDialog(this, _("Please select"), _("Multi Choice"), all_choices));
+        wxSharedPtr<wxMultiChoiceDialog> MultiChoice(new wxMultiChoiceDialog(this, _t("Please select"), _t("Multi Choice"), all_choices));
         MultiChoice->SetSelections(arr_selections);
 
         if (MultiChoice->ShowModal() == wxID_OK)
@@ -789,10 +789,10 @@ bool mmCustomData::ValidateCustomValues(int64)
 
             if (!regEx.Matches(data))
             {
-                mmErrorDialogs::MessageError(this, wxString::Format(_("Unable to save custom field \"%1$s\":\nvalue \"%2$s\" "
+                mmErrorDialogs::MessageError(this, wxString::Format(_t("Unable to save custom field \"%1$s\":\nvalue \"%2$s\" "
                     "does not match RegEx validation \"%3$s\"")
                     , field.DESCRIPTION, data, regExStr)
-                    , _("CustomField validation error"));
+                    , _t("CustomField validation error"));
                 is_valid = false;
                 continue;
             }

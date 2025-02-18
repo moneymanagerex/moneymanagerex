@@ -773,10 +773,10 @@ void mmColorButton::OnMenuSelected(wxCommandEvent& event)
     if (GetSize().GetX() > 40)
     {
         if (m_color_value <= 0) {
-            SetLabel(wxString::Format(_("&Clear color")));
+            SetLabel(wxString::Format(_t("&Clear color")));
         }
         else {
-            SetLabel(wxString::Format(_("Color #&%i"), m_color_value));
+            SetLabel(wxString::Format(_t("Color #&%i"), m_color_value));
         }
     }
     event.Skip();
@@ -785,12 +785,12 @@ void mmColorButton::OnMenuSelected(wxCommandEvent& event)
 void mmColorButton::OnColourButton(wxCommandEvent& event)
 {
     wxMenu mainMenu;
-    wxMenuItem* menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST, wxString::Format(_("&Clear color"), 0));
+    wxMenuItem* menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST, wxString::Format(_t("&Clear color"), 0));
     mainMenu.Append(menuItem);
 
     for (int i = 1; i <= 7; ++i)
     {
-        menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST + i, wxString::Format(_("Color #&%i"), i));
+        menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST + i, wxString::Format(_t("Color #&%i"), i));
 #ifdef __WXMSW__
         menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
         menuItem->SetTextColour(*bestFontColour(getUDColour(i)));
@@ -947,10 +947,10 @@ bool mmDateYearMonth::Create(wxWindow* parent, wxWindowID id)
     wxButton* button12Right = new wxButton(this, wxID_FORWARD, ">>");
     button12Right->SetMinSize(wxSize(y, -1));
 
-    mmToolTip(button12Left, _("Subtract one year"));
-    mmToolTip(buttonLeft, _("Subtract one month"));
-    mmToolTip(buttonRight, _("Add one month"));
-    mmToolTip(button12Right, _("Add one year"));
+    mmToolTip(button12Left, _t("Subtract one year"));
+    mmToolTip(buttonLeft, _t("Subtract one month"));
+    mmToolTip(buttonRight, _t("Add one month"));
+    mmToolTip(button12Right, _t("Add one year"));
 
     box_sizer->Add(button12Left);
     box_sizer->Add(buttonLeft);
@@ -1006,36 +1006,36 @@ void mmErrorDialogs::MessageWarning(wxWindow *parent
 
 void mmErrorDialogs::MessageInvalid(wxWindow *parent, const wxString &message)
 {
-    const wxString& msg = wxString::Format(_("Entry %s is invalid"), message, wxICON_ERROR);
-    MessageError(parent, msg, _("Invalid Entry"));
+    const wxString& msg = wxString::Format(_t("Entry %s is invalid"), message, wxICON_ERROR);
+    MessageError(parent, msg, _t("Invalid Entry"));
 }
 
 void mmErrorDialogs::InvalidCategory(wxWindow *win)
 {
-    ToolTip4Object(win, _("Please select an existing category"), _("Invalid Category"), wxICON_ERROR);
+    ToolTip4Object(win, _t("Please select an existing category"), _t("Invalid Category"), wxICON_ERROR);
 }
 
 void mmErrorDialogs::InvalidFile(wxWindow *object, bool open)
 {
-    const wxString errorHeader = open ? _("Unable to open file.") : _("File name is empty.");
-    const wxString errorMessage = _("Please select the file for this operation.");
+    const wxString errorHeader = open ? _t("Unable to open file.") : _t("File name is empty.");
+    const wxString errorMessage = _t("Please select the file for this operation.");
 
     ToolTip4Object(object, errorMessage, errorHeader, wxICON_ERROR);
 }
 
 void mmErrorDialogs::InvalidAccount(wxWindow *object, bool transfer, TOOL_TIP tm)
 {
-    const wxString errorHeader = _("Invalid Account");
+    const wxString errorHeader = _t("Invalid Account");
     wxString errorMessage;
     if (!transfer)
-        errorMessage = _("Please select the account for this transaction.");
+        errorMessage = _t("Please select the account for this transaction.");
     else
-        errorMessage = _("Please specify which account the transfer is going to.");
+        errorMessage = _t("Please specify which account the transfer is going to.");
 
-    wxString errorTips = _("Selection can be made by using the dropdown button.");
+    wxString errorTips = _t("Selection can be made by using the dropdown button.");
     if (tm == TOOL_TIP::MESSAGE_POPUP_BOX)
     {
-        errorTips = _("Activating the button will provide a selection box where the account can be selected.");
+        errorTips = _t("Activating the button will provide a selection box where the account can be selected.");
     }
     errorMessage = errorMessage + "\n\n" + errorTips + "\n";
 
@@ -1044,8 +1044,8 @@ void mmErrorDialogs::InvalidAccount(wxWindow *object, bool transfer, TOOL_TIP tm
 
 void mmErrorDialogs::InvalidPayee(wxWindow *object)
 {
-    const wxString errorHeader = _("Invalid Payee");
-    const wxString errorMessage = _("Please type in a new payee,\n"
+    const wxString errorHeader = _t("Invalid Payee");
+    const wxString errorMessage = _t("Please type in a new payee,\n"
         "or make a selection using the dropdown button.")
         + "\n";
     ToolTip4Object(object, errorMessage, errorHeader, wxICON_ERROR);
@@ -1053,24 +1053,24 @@ void mmErrorDialogs::InvalidPayee(wxWindow *object)
 
 void mmErrorDialogs::InvalidName(wxTextCtrl *textBox, bool alreadyexist)
 {
-    const wxString errorHeader = _("Invalid Name");
+    const wxString errorHeader = _t("Invalid Name");
     wxString errorMessage;
     if (alreadyexist)
-        errorMessage = _("Already exist!");
+        errorMessage = _t("Already exist!");
     else
-        errorMessage = _("Please type in a non empty name.");
+        errorMessage = _t("Please type in a non empty name.");
 
     ToolTip4Object(textBox, errorMessage, errorHeader, wxICON_ERROR);
 }
 
 void mmErrorDialogs::InvalidSymbol(wxTextCtrl *textBox, bool alreadyexist)
 {
-    const wxString errorHeader = _("Invalid Name");
+    const wxString errorHeader = _t("Invalid Name");
     wxString errorMessage;
     if (alreadyexist)
-        errorMessage = _("Already exist!");
+        errorMessage = _t("Already exist!");
     else
-        errorMessage = _("Please type in a non empty symbol.");
+        errorMessage = _t("Please type in a non empty symbol.");
 
     ToolTip4Object(textBox, errorMessage, errorHeader, wxICON_ERROR);
 }
@@ -1102,7 +1102,7 @@ mmMultiChoiceDialog::mmMultiChoiceDialog(
     SetIcon(mmex::getProgramIcon());
 
     wxButton* ok = static_cast<wxButton*>(FindWindow(wxID_OK));
-    if (ok) ok->SetLabel(_("&OK "));
+    if (ok) ok->SetLabel(_t("&OK "));
     wxButton* ca = static_cast<wxButton*>(FindWindow(wxID_CANCEL));
     if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
     Fit();
@@ -1173,8 +1173,8 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     textCtrl_ = new wxStyledTextCtrl(this, wxID_DEFAULT, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
     if (operatorAllowed_)
         mmToolTip(textCtrl_,
-            _("Enter tags to search, optionally separated by the operators '&' and '|'.") + "\n" +
-            _("The default operator between consecutive tags is AND, use '|' to change the operator to OR.")
+            _t("Enter tags to search, optionally separated by the operators '&' and '|'.") + "\n" +
+            _t("The default operator between consecutive tags is AND, use '|' to change the operator to OR.")
         );
     // Set options for the text ctrl
     textCtrl_->SetLexer(wxSTC_LEX_NULL);
@@ -1774,7 +1774,7 @@ bool mmTagTextCtrl::Validate(const wxString& tagText)
         if (tag_map_.find(tag) == tag_map_.end())
         {
             // Prompt user to create a new tag
-            if (wxMessageDialog(nullptr, wxString::Format(_("Create new tag '%s'?"), tag), _("New tag entered"), wxYES_NO).ShowModal() == wxID_YES)
+            if (wxMessageDialog(nullptr, wxString::Format(_t("Create new tag '%s'?"), tag), _t("New tag entered"), wxYES_NO).ShowModal() == wxID_YES)
             {
                 Model_Tag::Data* newTag = Model_Tag::instance().create();
                 newTag->TAGNAME = tag;

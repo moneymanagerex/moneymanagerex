@@ -123,10 +123,10 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     wxString headingStr = AdjustYearValues(startDay, startMonth, startYear, budget_year);
     bool amply = Option::instance().getBudgetSummaryWithoutCategories();
     const wxString headerStartupMsg = amply
-        ? _("Budget Categories for %s") : _("Budget Category Summary for %s");
+        ? _t("Budget Categories for %s") : _t("Budget Category Summary for %s");
 
     headingStr = wxString::Format(headerStartupMsg
-        , headingStr + "<br>" + _("(Estimated vs. Actual)"));
+        , headingStr + "<br>" + _t("(Estimated vs. Actual)"));
     hb.addReportHeader(headingStr, 1, Option::instance().getIgnoreFutureTransactions());
     hb.DisplayDateHeading(yearBegin, yearEnd);
     // Prime the filter
@@ -145,8 +145,8 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         for (const auto& category : categs)
         {
             wxString categName = category.CATEGNAME;
-            gsEstimated.name = _("Estimated");
-            gsActual.name = _("Actual");
+            gsEstimated.name = _t("Estimated");
+            gsActual.name = _t("Actual");
 
             gd.title = categName;
             gd.labels.push_back(category.CATEGNAME);
@@ -188,9 +188,9 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             {
                 hb.startTableRow();
                 {
-                    hb.addTableHeaderCell(_("Category"));
-                    hb.addTableHeaderCell(_("Estimated"), "text-right");
-                    hb.addTableHeaderCell(_("Actual"), "text-right");
+                    hb.addTableHeaderCell(_t("Category"));
+                    hb.addTableHeaderCell(_t("Estimated"), "text-right");
+                    hb.addTableHeaderCell(_t("Actual"), "text-right");
                 }
                 hb.endTableRow();
             }
@@ -343,22 +343,22 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             {
                 hb.startTotalTableRow();
                 {
-                    hb.addTableCell(_("Estimated Income:"));
+                    hb.addTableCell(_t("Estimated Income:"));
                     hb.addMoneyCell(estIncome);
-                    hb.addTableCell(_("Actual Income:"));
+                    hb.addTableCell(_t("Actual Income:"));
                     hb.addMoneyCell(actIncome);
-                    hb.addTableCell(_("Difference Income:"));
+                    hb.addTableCell(_t("Difference Income:"));
                     hb.addMoneyCell(difIncome);
                 }
                 hb.endTableRow();
 
                 hb.startTotalTableRow();
                 {
-                    hb.addTableCell(_("Estimated Expenses:"));
+                    hb.addTableCell(_t("Estimated Expenses:"));
                     hb.addMoneyCell(estExpenses);
-                    hb.addTableCell(_("Actual Expenses:"));
+                    hb.addTableCell(_t("Actual Expenses:"));
                     hb.addMoneyCell(actExpenses);
-                    hb.addTableCell(_("Difference Expenses:"));
+                    hb.addTableCell(_t("Difference Expenses:"));
                     hb.addMoneyCell(difExpense);
                 }
                 hb.endTableRow();

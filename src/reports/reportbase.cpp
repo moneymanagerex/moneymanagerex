@@ -193,13 +193,13 @@ const wxString mmPrintableBase::getAccountNames() const
     }
     else
     {
-        accountsMsg << _("All Accounts");
+        accountsMsg << _t("All Accounts");
     }
 
     if (accountsMsg.empty()) {
-        accountsMsg = _("None");
+        accountsMsg = _t("None");
     }
-    accountsMsg.Prepend(_("Accounts: "));
+    accountsMsg.Prepend(_t("Accounts: "));
     return accountsMsg;
 }
 
@@ -227,7 +227,7 @@ void mmPrintableBase::setAccounts(int selection, const wxString& name)
             }
 
             auto parent = wxWindow::FindWindowById(mmID_REPORTS);
-            mmMultiChoiceDialog mcd(parent ? parent : 0, _("Choose Accounts"), wxGetTranslation(m_title), accounts);
+            mmMultiChoiceDialog mcd(parent ? parent : 0, _t("Choose Accounts"), wxGetTranslation(m_title), accounts);
 
             if (selectedAccountArray_ && !selectedAccountArray_->IsEmpty())
             {

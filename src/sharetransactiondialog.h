@@ -40,7 +40,7 @@ public:
 
 private:
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY
-        , const wxString& caption = _("Edit Share Transaction")
+        , const wxString& caption = _t("Edit Share Transaction")
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
         , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);

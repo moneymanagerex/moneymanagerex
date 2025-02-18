@@ -272,10 +272,10 @@ wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
             hb.startThead();
             {
                 hb.startTableRow();
-                hb.addTableHeaderCell(_("Date"));
-                hb.addTableHeaderCell(_("Total"), "text-right");
-                hb.addTableHeaderCell(_("Difference"), "text-right");
-                hb.addTableHeaderCell(_("Cumulative Difference"), "text-right");
+                hb.addTableHeaderCell(_t("Date"));
+                hb.addTableHeaderCell(_t("Total"), "text-right");
+                hb.addTableHeaderCell(_t("Difference"), "text-right");
+                hb.addTableHeaderCell(_t("Cumulative Difference"), "text-right");
                 hb.endTableRow();
             }
             hb.endThead();
@@ -401,13 +401,13 @@ wxString mmReportCashFlowTransactions::getHTMLText()
     hb.startTable();
     hb.startThead();
     hb.startTableRow();
-    hb.addTableHeaderCell(_("Date"));
-    hb.addTableHeaderCell(_("Account"));
-    hb.addTableHeaderCell(_("Payee"));
-    hb.addTableHeaderCell(_("Category"));
-    hb.addTableHeaderCell(_("Amount"), "text-right");
-    hb.addTableHeaderCell(_("Balance"), "text-right");
-    hb.addTableHeaderCell(_("Cumulative Difference"), "text-right");
+    hb.addTableHeaderCell(_t("Date"));
+    hb.addTableHeaderCell(_t("Account"));
+    hb.addTableHeaderCell(_t("Payee"));
+    hb.addTableHeaderCell(_t("Category"));
+    hb.addTableHeaderCell(_t("Amount"), "text-right");
+    hb.addTableHeaderCell(_t("Balance"), "text-right");
+    hb.addTableHeaderCell(_t("Cumulative Difference"), "text-right");
     hb.endTableRow();
     hb.endThead();
     hb.startTbody();

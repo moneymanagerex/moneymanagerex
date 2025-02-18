@@ -87,12 +87,12 @@ _n("&OK ");
 #endif
 
 //bug #5590
-const wxString grm_menu_undo = _("Undo");
-const wxString grm_menu_redo = _("Redo");
-const wxString grm_menu_cut = _("Cut");
-const wxString grm_menu_copy = _("Copy");
-const wxString grm_menu_paste = _("Paste");
-const wxString grm_menu_selall = _("Select All");
+const wxString grm_menu_undo = _t("Undo");
+const wxString grm_menu_redo = _t("Redo");
+const wxString grm_menu_cut = _t("Cut");
+const wxString grm_menu_copy = _t("Copy");
+const wxString grm_menu_paste = _t("Paste");
+const wxString grm_menu_selall = _t("Select All");
 
 //---------------------------------------------------------------------------
 int mmex::MIN_DATAVERSION = 2;
@@ -108,7 +108,7 @@ const wxString mmex::getTitleProgramVersion()
 {
     const wxString architecture =
 #if defined(_WIN64) || defined(__x86_64__)
-        _("64-bit");
+        _t("64-bit");
 #else
         "";
 #endif

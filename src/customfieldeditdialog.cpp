@@ -110,7 +110,7 @@ void mmCustomFieldEditDialog::CreateControls()
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxVERTICAL);
     itemBoxSizer2->Add(itemBoxSizer3, g_flagsExpand);
 
-    wxStaticBox* itemStaticBoxSizer4Static = new wxStaticBox(this, wxID_ANY, _("Custom Field Details"));
+    wxStaticBox* itemStaticBoxSizer4Static = new wxStaticBox(this, wxID_ANY, _t("Custom Field Details"));
     wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(itemStaticBoxSizer4Static, wxVERTICAL);
     itemBoxSizer3->Add(itemStaticBoxSizer4, g_flagsExpand);
 
@@ -121,68 +121,68 @@ void mmCustomFieldEditDialog::CreateControls()
     itemFlexGridSizer6->AddGrowableCol(1, 1);
     itemPanel5->SetSizer(itemFlexGridSizer6);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Attribute of")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Attribute of")), g_flagsH);
     m_itemReference = new wxChoice(itemPanel5, wxID_HIGHEST);
     for (const auto& type : Model_Attachment::REFTYPE_CHOICES) {
         if (type.first != Model_Attachment::REFTYPE_ID_BILLSDEPOSIT)
             m_itemReference->Append(wxGetTranslation(type.second), new wxStringClientData(type.second));
     }
-    mmToolTip(m_itemReference, _("Select the item that the custom field is associated with"));
+    mmToolTip(m_itemReference, _t("Select the item that the custom field is associated with"));
     itemFlexGridSizer6->Add(m_itemReference, g_flagsExpand);
     m_itemReference->Enable(false);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Name")), g_flagsExpand);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Name")), g_flagsExpand);
     m_itemDescription = new wxTextCtrl(itemPanel5, wxID_ANY);
     m_itemDescription->SetMinSize(wxSize(150, -1));
 
-    mmToolTip(m_itemDescription, _("Enter the name of the custom field"));
+    mmToolTip(m_itemDescription, _t("Enter the name of the custom field"));
     itemFlexGridSizer6->Add(m_itemDescription, g_flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Field Type")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Field Type")), g_flagsH);
     m_itemType = new wxChoice(itemPanel5, wxID_HIGHEST);
     for (const auto& type : Model_CustomField::TYPE_STR)
         m_itemType->Append(wxGetTranslation(type), new wxStringClientData(type));
-    mmToolTip(m_itemType, _("Select type of custom field"));
+    mmToolTip(m_itemType, _t("Select type of custom field"));
     itemFlexGridSizer6->Add(m_itemType, g_flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Tooltip")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Tooltip")), g_flagsH);
     m_itemTooltip = new wxTextCtrl(itemPanel5, wxID_ANY, "");
-    mmToolTip(m_itemTooltip, _("Enter the tooltip that will be shown"));
+    mmToolTip(m_itemTooltip, _t("Enter the tooltip that will be shown"));
     itemFlexGridSizer6->Add(m_itemTooltip, g_flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("RegEx")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("RegEx")), g_flagsH);
     m_itemRegEx = new wxTextCtrl(itemPanel5, wxID_ANY, R"(^.+$)");
-    mmToolTip(m_itemRegEx, _("Enter the RegEx to validate field"));
+    mmToolTip(m_itemRegEx, _t("Enter the RegEx to validate field"));
     itemFlexGridSizer6->Add(m_itemRegEx, g_flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Autocomplete")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Autocomplete")), g_flagsH);
     m_itemAutocomplete = new wxCheckBox(itemPanel5, wxID_STATIC, "", wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_itemAutocomplete->SetValue(FALSE);
-    mmToolTip(m_itemAutocomplete, _("Enables autocomplete on custom field"));
+    mmToolTip(m_itemAutocomplete, _t("Enables autocomplete on custom field"));
     itemFlexGridSizer6->Add(m_itemAutocomplete, g_flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Default")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Default")), g_flagsH);
     m_itemDefault = new wxTextCtrl(itemPanel5, wxID_ANY, "");
-    m_itemDefault->SetToolTip(_("Enter the default for this field\n"
+    m_itemDefault->SetToolTip(_t("Enter the default for this field\n"
         "For date/time insert 'Now' to make current date/time as default"));
     itemFlexGridSizer6->Add(m_itemDefault, g_flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Choices")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Choices")), g_flagsH);
     m_itemChoices = new wxTextCtrl(itemPanel5, wxID_ANY, "");
-    mmToolTip(m_itemChoices, _("Enter the choices for this field separated with a semicolon"));
+    mmToolTip(m_itemChoices, _t("Enter the choices for this field separated with a semicolon"));
     itemFlexGridSizer6->Add(m_itemChoices, g_flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Digits scale")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Digits scale")), g_flagsH);
     m_itemDigitScale = new wxSpinCtrl(itemPanel5, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 20, 0);
-    mmToolTip(m_itemDigitScale, _("Enter the decimal digits scale allowed"));
+    mmToolTip(m_itemDigitScale, _t("Enter the decimal digits scale allowed"));
     itemFlexGridSizer6->Add(m_itemDigitScale, g_flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Panel's column")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Panel's column")), g_flagsH);
     m_itemUDFC = new wxChoice(itemPanel5, wxID_APPLY);
     for (const auto& type : Model_CustomField::getUDFCList(m_field)) {
         m_itemUDFC->Append(wxGetTranslation(type), new wxStringClientData(type));
     }
-    mmToolTip(m_itemUDFC, _("Select a value to represent the item on a panel"));
+    mmToolTip(m_itemUDFC, _t("Select a value to represent the item on a panel"));
     itemFlexGridSizer6->Add(m_itemUDFC, g_flagsExpand);
 
     wxPanel* itemPanel27 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
@@ -191,7 +191,7 @@ void mmCustomFieldEditDialog::CreateControls()
     wxBoxSizer* itemBoxSizer28 = new wxBoxSizer(wxHORIZONTAL);
     itemPanel27->SetSizer(itemBoxSizer28);
 
-    wxButton* itemButton29 = new wxButton(itemPanel27, wxID_OK, _("&OK "));
+    wxButton* itemButton29 = new wxButton(itemPanel27, wxID_OK, _t("&OK "));
     itemBoxSizer28->Add(itemButton29, g_flagsH);
 
     wxButton* itemButton30 = new wxButton(itemPanel27, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
@@ -217,7 +217,7 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     int itemType = m_itemType->GetSelection();
     if (ArrChoices.IsEmpty() && (itemType == Model_CustomField::TYPE_ID_SINGLECHOICE || itemType == Model_CustomField::TYPE_ID_MULTICHOICE))
     {
-        return mmErrorDialogs::ToolTip4Object(m_itemChoices, _("Empty value"), _("Choices"));
+        return mmErrorDialogs::ToolTip4Object(m_itemChoices, _t("Empty value"), _t("Choices"));
     }
 
     if (!this->m_field)
@@ -230,9 +230,9 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         if (DataSet.size() > 0)
         {
             int DeleteResponse = wxMessageBox(
-                _("Changing field type will delete all content!") + "\n"
-                + _("Do you want to continue?") << "\n"
-                , _("Custom Field Change")
+                _t("Changing field type will delete all content!") + "\n"
+                + _t("Do you want to continue?") << "\n"
+                , _t("Custom Field Change")
                 , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
             if (DeleteResponse != wxYES)
                 return;
@@ -252,9 +252,9 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         if (DataSet.size() > 0)
         {
             int DeleteResponse = wxMessageBox(
-                _("Modified choices available: ones removed will be cleaned!") + "\n"
-                + _("Do you want to continue?") << "\n"
-                , _("Custom Field Change")
+                _t("Modified choices available: ones removed will be cleaned!") + "\n"
+                + _t("Do you want to continue?") << "\n"
+                , _t("Custom Field Change")
                 , wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
             if (DeleteResponse != wxYES)
                 return;

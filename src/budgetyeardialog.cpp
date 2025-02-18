@@ -43,7 +43,7 @@ mmBudgetYearDialog::mmBudgetYearDialog(wxWindow* parent)
     budgetYearID_ = -1;
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("Budget Editor"), wxDefaultPosition, wxSize(500, 300), style);
+    Create(parent, wxID_ANY, _t("Budget Editor"), wxDefaultPosition, wxSize(500, 300), style);
 }
 
 bool mmBudgetYearDialog::Create(wxWindow* parent, wxWindowID id,
@@ -90,19 +90,19 @@ void mmBudgetYearDialog::CreateControls()
     itemBoxSizer2->Add(itemBoxSizer5, 1, wxGROW|wxALL, 5);
 
     wxButton* itemButton7 = new wxButton(this, wxID_ADD
-        , _("Add &Year"));
+        , _t("Add &Year"));
     itemBoxSizer5->Add(itemButton7, 0, wxALIGN_CENTER_VERTICAL);
-    mmToolTip(itemButton7, _("Add a new budget year"));
+    mmToolTip(itemButton7, _t("Add a new budget year"));
 
     wxButton* itemBudgetMonth = new wxButton(this, ID_ADD_MONTH
-        , _("Add &Month"));
+        , _t("Add &Month"));
     itemBoxSizer5->Add(itemBudgetMonth, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, 5);
-    mmToolTip(itemBudgetMonth, _("Add a new budget month"));
+    mmToolTip(itemBudgetMonth, _t("Add a new budget month"));
 
     wxButton* itemButtonDelete = new wxButton(this, wxID_DELETE
-        , _("&Delete "));
+        , _t("&Delete "));
     itemBoxSizer5->Add(itemButtonDelete, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, 5);
-    mmToolTip(itemButtonDelete, _("Delete existing budget"));
+    mmToolTip(itemButtonDelete, _t("Delete existing budget"));
 
     wxStaticLine* line = new wxStaticLine(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     itemBoxSizer2->Add(line, 0, wxGROW | wxALL, 5);
@@ -113,7 +113,7 @@ void mmBudgetYearDialog::CreateControls()
     wxBoxSizer* itemButtonSizer = new wxBoxSizer(wxHORIZONTAL);
     itemPanel25->SetSizer(itemButtonSizer);
 
-    wxButton* itemButtonOK = new wxButton(itemPanel25, wxID_OK, _("&OK "));
+    wxButton* itemButtonOK = new wxButton(itemPanel25, wxID_OK, _t("&OK "));
     itemButtonSizer->Add(itemButtonOK, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT | wxBOTTOM, 5);
 
     wxButton* itemButtonCancel = new wxButton(itemPanel25, wxID_CANCEL, wxGetTranslation(g_CancelLabel));

@@ -206,27 +206,27 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r)
     if (account->MINIMUMBALANCE != 0 && new_balance < account->MINIMUMBALANCE)
     {
         allow_transaction = false;
-        limitDescription = _("Minimum Balance");
+        limitDescription = _t("Minimum Balance");
         limitAmount = account->MINIMUMBALANCE;
     }
     else if (account->CREDITLIMIT != 0 && new_balance < -(account->CREDITLIMIT))
     {
         allow_transaction = false;
-        limitDescription = _("Credit Limit");
+        limitDescription = _t("Credit Limit");
         limitAmount = account->CREDITLIMIT;
     }
 
     if (!allow_transaction)
     {
-        wxString message = _("A scheduled transaction will exceed the account limit.\n\n"
+        wxString message = _t("A scheduled transaction will exceed the account limit.\n\n"
             "Account: %1$s\n"
             "Current Balance: %2$6.2f\n"
             "Transaction amount: %3$6.2f\n"
             "%4$s: %5$6.2f") + "\n\n" +
-            _("Do you want to continue?");
+            _t("Do you want to continue?");
         message.Printf(message, account->ACCOUNTNAME, current_balance, r.TRANSAMOUNT, limitDescription, limitAmount);
 
-        if (wxMessageBox(message, _("MMEX Scheduled Transaction Check"), wxYES_NO | wxICON_WARNING) == wxYES)
+        if (wxMessageBox(message, _t("MMEX Scheduled Transaction Check"), wxYES_NO | wxICON_WARNING) == wxYES)
             allow_transaction = true;
     }
 

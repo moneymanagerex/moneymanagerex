@@ -91,7 +91,7 @@ wxString Model_Asset::get_asset_name(int64 asset_id)
     if (asset)
         return asset->ASSETNAME;
     else
-        return _("Asset Error");
+        return _t("Asset Error");
 }
 
 wxArrayString Model_Asset::type_str_all()

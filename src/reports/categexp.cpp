@@ -150,7 +150,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
             gsExpenses.values.push_back({ i.second });
             gdExpenses.labels.push_back(i.first);
         }
-        gsExpenses.name = _("Expenses");
+        gsExpenses.name = _t("Expenses");
         gdExpenses.series.push_back(gsExpenses);
     }
     if (!income_vector.empty())
@@ -163,7 +163,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
             gsIncome.values.push_back({ i.second });
             gdIncome.labels.push_back(i.first);
         }
-        gsIncome.name = _("Income");
+        gsIncome.name = _t("Income");
         gdIncome.series.push_back(gsIncome);
     }
 
@@ -185,7 +185,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
         if (!gdExpenses.series.empty())
         {
 
-            gdExpenses.title = _("Expenses");
+            gdExpenses.title = _t("Expenses");
             gdExpenses.type = GraphData::PIE;
             hb.addChart(gdExpenses);
 
@@ -193,7 +193,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
         if (!gdIncome.series.empty())
         {
 
-            gdIncome.title = _("Income");
+            gdIncome.title = _t("Income");
             gdIncome.type = GraphData::PIE;
             hb.addChart(gdIncome);
 
@@ -203,9 +203,9 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.addDivContainer("shadow"); // Table Container
     {
         hb.addDivContainer();
-        hb.addText(wxString::Format("<button onclick=\"collapseAllToggles()\">%s</button>", _("Collapse All")));
-        hb.addText(wxString::Format("<button onclick=\"expandAllToggles()\">%s</button>", _("Expand All")));
-        //hb.addText(wxString::Format("<button onclick=\"expandAllToggles()\" style=\"float: right;\">%s</button>", _("Export")));
+        hb.addText(wxString::Format("<button onclick=\"collapseAllToggles()\">%s</button>", _t("Collapse All")));
+        hb.addText(wxString::Format("<button onclick=\"expandAllToggles()\">%s</button>", _t("Expand All")));
+        //hb.addText(wxString::Format("<button onclick=\"expandAllToggles()\" style=\"float: right;\">%s</button>", _t("Export")));
         hb.endDiv();
 
         hb.startTable();
@@ -214,9 +214,9 @@ wxString mmReportCategoryExpenses::getHTMLText()
             {
                 hb.startTableRow();
                 {
-                    hb.addTableHeaderCell(_("Category"));
-                    hb.addTableHeaderCell(_("Amount"), "text-right");
-                    hb.addTableHeaderCell(_("Total"), "text-right");
+                    hb.addTableHeaderCell(_t("Category"));
+                    hb.addTableHeaderCell(_t("Amount"), "text-right");
+                    hb.addTableHeaderCell(_t("Total"), "text-right");
                 }
                 hb.endTableRow();
             }
@@ -280,10 +280,10 @@ wxString mmReportCategoryExpenses::getHTMLText()
             {
                 if (type_ == SUMMARY)
                 {
-                    hb.addTotalRow(_("Total Expenses:"), span, group_total[-1][0]);
-                    hb.addTotalRow(_("Total Income:"), span, group_total[-2][0]);
+                    hb.addTotalRow(_t("Total Expenses:"), span, group_total[-1][0]);
+                    hb.addTotalRow(_t("Total Income:"), span, group_total[-2][0]);
                 }
-                hb.addTotalRow(_("Grand Total:"), span, group_total[-1][0] + group_total[-2][0]);
+                hb.addTotalRow(_t("Grand Total:"), span, group_total[-1][0] + group_total[-2][0]);
             }
             hb.endTfoot();
         }
@@ -421,9 +421,9 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
             gd.labels.push_back(label);
         }
 
-        data_difference.name = _("Difference");
-        data_negative.name = _("Expenses");
-        data_positive.name = _("Income");
+        data_difference.name = _t("Difference");
+        data_negative.name = _t("Expenses");
+        data_positive.name = _t("Income");
 
         data_difference.type = "line";
         data_positive.type = "column";
@@ -453,7 +453,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
             {
                 hb.startTableRow();
                 {
-                    hb.addTableHeaderCell(_("Category"));
+                    hb.addTableHeaderCell(_t("Category"));
 
                     for (int i = 0; i < MONTHS_IN_PERIOD; i++)
                     {
@@ -461,7 +461,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
                         hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth()
                             , wxDateTime::Name_Abbr)) + wxString::Format("<br>%i", d.GetYear()), "text-right");
                     }
-                    hb.addTableHeaderCell(_("Overall"), "text-right");
+                    hb.addTableHeaderCell(_t("Overall"), "text-right");
                 }
                 hb.endTableRow();
             }
@@ -492,9 +492,9 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
             hb.startTfoot();
             {
                 std::map<int, wxString> totalLabels;
-                totalLabels[INCOME] = _("Incomes");
-                totalLabels[EXPENSES] = _("Expenses");
-                totalLabels[TOTAL] = _("Total");
+                totalLabels[INCOME] = _t("Incomes");
+                totalLabels[EXPENSES] = _t("Expenses");
+                totalLabels[TOTAL] = _t("Total");
                 for (const auto& print_totals : totals)
                 {
                     hb.startTotalTableRow();

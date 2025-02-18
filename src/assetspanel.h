@@ -122,7 +122,7 @@ public:
     Model_Asset::Data_Set m_assets;
     Model_Asset::TYPE_ID m_filter_type;
 
-    wxString BuildPage() const { return m_listCtrlAssets->BuildPage(_("Assets")); }
+    wxString BuildPage() const { return m_listCtrlAssets->BuildPage(_t("Assets")); }
 
     void AddAssetTrans(const int selected_index);
     void ViewAssetTrans(const int selected_index);

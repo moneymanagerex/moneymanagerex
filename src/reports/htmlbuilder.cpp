@@ -151,7 +151,7 @@ namespace tags
 mmHTMLBuilder::mmHTMLBuilder()
 {
     today_.date = wxDateTime::Now();
-    today_.todays_date = wxString::Format(_("Report Generated %1$s %2$s")
+    today_.todays_date = wxString::Format(_t("Report Generated %1$s %2$s")
         , mmGetDateTimeForDisplay(today_.date.FormatISODate())
         , today_.date.FormatISOTime());
 }
@@ -212,12 +212,12 @@ void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDate
 {
     wxString sDate;
     if (withDateRange && startDate.IsValid() && endDate.IsValid()) {
-        sDate << wxString::Format(_("From %1$s till %2$s")
+        sDate << wxString::Format(_t("From %1$s till %2$s")
             , mmGetDateTimeForDisplay(startDate.FormatISODate())
-            , withNoEndDate ? _("Future") : mmGetDateTimeForDisplay(endDate.FormatISODate()));
+            , withNoEndDate ? _t("Future") : mmGetDateTimeForDisplay(endDate.FormatISODate()));
     }
     else if (!withDateRange) {
-        sDate << _("Over Time");
+        sDate << _t("Over Time");
     }
     else
         wxASSERT(false);
@@ -241,21 +241,21 @@ void mmHTMLBuilder::addReportCurrency()
     wxString base_currency_symbol;
     wxASSERT_MSG(Model_Currency::GetBaseCurrencySymbol(base_currency_symbol), "Could not find base currency symbol");
 
-    addHeader(5, wxString::Format("%s: %s", _("Currency"), base_currency_symbol));  
+    addHeader(5, wxString::Format("%s: %s", _t("Currency"), base_currency_symbol));  
 }
 
 void mmHTMLBuilder::addOffsetIndication(int startDay)
 {       
     if (startDay > 1)
         addHeader(5, wxString::Format ("%s: %d"
-            , _("User specified start day")
+            , _t("User specified start day")
             , startDay));
 }
 
 void mmHTMLBuilder::addFutureIgnoredIndication(bool ignore)
 {       
     if (ignore)
-        addHeader(5, _("Future Transactions have been ignored"));
+        addHeader(5, _t("Future Transactions have been ignored"));
 }
 
 void mmHTMLBuilder::addDateNow()

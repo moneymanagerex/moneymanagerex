@@ -86,7 +86,7 @@ void relocateCategoryDialog::CreateControls()
     flagsExpand.Align(wxALIGN_LEFT).Border(wxALL, 5).Expand();
 
     wxStaticText* headerText = new wxStaticText(this, wxID_STATIC
-        , _("Merge Categories"));
+        , _t("Merge Categories"));
     wxStaticLine* lineTop = new wxStaticLine(this, wxID_STATIC);
 
     cbSourceCategory_ = new mmComboBoxCategory(this, wxID_LAST);
@@ -99,7 +99,7 @@ void relocateCategoryDialog::CreateControls()
     cbDestCategory_->SetMinSize(wxSize(200, -1));
 
     cbDeleteSourceCategory_ = new wxCheckBox(this, wxID_ANY
-        , _("&Delete source category after merge (if source category has no subcategories)"));
+        , _t("&Delete source category after merge (if source category has no subcategories)"));
 
     wxStaticLine* lineBottom = new wxStaticLine(this, wxID_STATIC);
 
@@ -115,8 +115,8 @@ void relocateCategoryDialog::CreateControls()
     boxSizer->Add(headerText, g_flagsV);
     boxSizer->Add(lineTop, g_flagsExpand);
 
-    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Source:")), flagsH);
-    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Target:")), flagsH);
+    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _t("Source:")), flagsH);
+    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _t("Target:")), flagsH);
     request_sizer->Add(cbSourceCategory_, flagsExpand);
     request_sizer->Add(cbDestCategory_, flagsExpand);
 
@@ -130,8 +130,8 @@ void relocateCategoryDialog::CreateControls()
     wxStaticLine* lineBottom2 = new wxStaticLine(this, wxID_STATIC);
     boxSizer->Add(lineBottom2, flagsExpand);
 
-    wxButton* okButton = new wxButton(this, wxID_OK, _("&Merge"));
-    wxButton* cancelButton = new wxButton(this, wxID_CANCEL, _("&Close"));
+    wxButton* okButton = new wxButton(this, wxID_OK, _t("&Merge"));
+    wxButton* cancelButton = new wxButton(this, wxID_CANCEL, _t("&Close"));
     cancelButton-> SetFocus();
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonBoxSizer->Add(okButton, flagsH);
@@ -150,12 +150,12 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     const auto& source_category_name = cbSourceCategory_->GetValue();
     const auto& destination_category_name = cbDestCategory_->GetValue();
-    const wxString& info = wxString::Format(_("From %1$s to %2$s")
+    const wxString& info = wxString::Format(_t("From %1$s to %2$s")
         , source_category_name
         , destination_category_name);
 
-    if (wxMessageBox(_("Please Confirm:") + "\n" + info
-        , _("Merge categories confirmation"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
+    if (wxMessageBox(_t("Please Confirm:") + "\n" + info
+        , _t("Merge categories confirmation"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
     {
         auto transactions = Model_Checking::instance()
             .find(Model_Checking::CATEGID(m_sourceCatID));
@@ -252,12 +252,12 @@ void relocateCategoryDialog::IsOkOk()
     const int total = trxs_size + checks_size + bills_size + budget_split_size + payees_size + budget_size;
 
     wxString msgStr = wxString()
-        << wxString::Format(_("Records found in transactions: %i"), trxs_size) << "\n"
-        << wxString::Format(_("Records found in split transactions: %i"), checks_size) << "\n"
-        << wxString::Format(_("Records found in scheduled transactions: %i"), bills_size) << "\n"
-        << wxString::Format(_("Records found in scheduled split transactions: %i"), budget_split_size) << "\n"
-        << wxString::Format(_("Records found as default payee category: %i"), payees_size) << "\n"
-        << wxString::Format(_("Records found in budget: %i"), budget_size);
+        << wxString::Format(_t("Records found in transactions: %i"), trxs_size) << "\n"
+        << wxString::Format(_t("Records found in split transactions: %i"), checks_size) << "\n"
+        << wxString::Format(_t("Records found in scheduled transactions: %i"), bills_size) << "\n"
+        << wxString::Format(_t("Records found in scheduled split transactions: %i"), budget_split_size) << "\n"
+        << wxString::Format(_t("Records found as default payee category: %i"), payees_size) << "\n"
+        << wxString::Format(_t("Records found in budget: %i"), budget_size);
 
     m_info->SetLabel(msgStr);
 

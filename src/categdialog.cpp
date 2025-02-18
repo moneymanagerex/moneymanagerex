@@ -185,7 +185,7 @@ void mmCategDialog::fillControls()
 {
     m_processExpandCollapse = false;
     m_treeCtrl->DeleteAllItems();
-    root_ = m_treeCtrl->AddRoot(_("Categories"));
+    root_ = m_treeCtrl->AddRoot(_t("Categories"));
     m_selectedItemId = root_;
     m_treeCtrl->SetItemBold(root_, true);
     m_treeCtrl->SetFocus();
@@ -256,21 +256,21 @@ void mmCategDialog::CreateControls()
         , wxID_REPLACE_ALL, mmBitmapBundle(png::RELOCATION, mmBitmapButtonSize));
     m_buttonRelocate->Connect(wxID_REPLACE_ALL, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmCategDialog::OnCategoryRelocation), nullptr, this);
-    mmToolTip(m_buttonRelocate, _("Merge Categories"));
+    mmToolTip(m_buttonRelocate, _t("Merge Categories"));
 
-    m_tbCollapse = new wxToggleButton(this, ID_COLLAPSE, _("C&ollapse All"), wxDefaultPosition
+    m_tbCollapse = new wxToggleButton(this, ID_COLLAPSE, _t("C&ollapse All"), wxDefaultPosition
         , wxDefaultSize);
     m_tbCollapse->Connect(wxID_ANY, wxEVT_TOGGLEBUTTON,
         wxCommandEventHandler(mmCategDialog::OnExpandOrCollapseToggle), nullptr, this);
 
-    m_tbExpand = new wxToggleButton(this, ID_EXPAND, _("E&xpand All"), wxDefaultPosition
+    m_tbExpand = new wxToggleButton(this, ID_EXPAND, _t("E&xpand All"), wxDefaultPosition
         , wxDefaultSize);
     m_tbExpand->Connect(wxID_ANY, wxEVT_TOGGLEBUTTON,
         wxCommandEventHandler(mmCategDialog::OnExpandOrCollapseToggle), nullptr, this);
 
-    m_tbShowAll = new wxToggleButton(this, wxID_SELECTALL, _("&Show All"), wxDefaultPosition
+    m_tbShowAll = new wxToggleButton(this, wxID_SELECTALL, _t("&Show All"), wxDefaultPosition
         , wxDefaultSize);
-    mmToolTip(m_tbShowAll, _("Show all hidden categories"));
+    mmToolTip(m_tbShowAll, _t("Show all hidden categories"));
     m_tbShowAll->Connect(wxID_SELECTALL, wxEVT_TOGGLEBUTTON
         , wxCommandEventHandler(mmCategDialog::OnShowHiddenToggle), nullptr, this);
 
@@ -300,7 +300,7 @@ void mmCategDialog::CreateControls()
     searchPanel->SetSizer(search_sizer);
 
     m_maskTextCtrl = new wxSearchCtrl(searchPanel, wxID_FIND);
-    search_sizer->Add(new wxStaticText(searchPanel, wxID_STATIC, _("Search")), g_flagsH);
+    search_sizer->Add(new wxStaticText(searchPanel, wxID_STATIC, _t("Search")), g_flagsH);
     search_sizer->Add(m_maskTextCtrl, g_flagsExpand);
 
     wxPanel* buttonsPanel = new wxPanel(this, wxID_ANY);
@@ -311,24 +311,24 @@ void mmCategDialog::CreateControls()
     wxStdDialogButtonSizer* itemBoxSizer66 = new wxStdDialogButtonSizer;
     buttonsSizer->Add(itemBoxSizer66, wxSizerFlags(g_flagsV).Border(wxALL, 0).Center());
 
-    m_buttonAdd = new wxButton(buttonsPanel, wxID_ADD, _("&Add "));
+    m_buttonAdd = new wxButton(buttonsPanel, wxID_ADD, _t("&Add "));
     itemBoxSizer66->Add(m_buttonAdd, g_flagsH);
-    mmToolTip(m_buttonAdd, _("Add a new category"));
+    mmToolTip(m_buttonAdd, _t("Add a new category"));
 
-    m_buttonEdit = new wxButton(buttonsPanel, wxID_EDIT, _("&Edit "));
+    m_buttonEdit = new wxButton(buttonsPanel, wxID_EDIT, _t("&Edit "));
     itemBoxSizer66->Add(m_buttonEdit, g_flagsH);
-    mmToolTip(m_buttonEdit, _("Edit the name of an existing category"));
+    mmToolTip(m_buttonEdit, _t("Edit the name of an existing category"));
 
-    m_buttonDelete = new wxButton(buttonsPanel, wxID_REMOVE, _("&Delete "));
+    m_buttonDelete = new wxButton(buttonsPanel, wxID_REMOVE, _t("&Delete "));
     itemBoxSizer66->Add(m_buttonDelete, g_flagsH);
-    mmToolTip(m_buttonDelete, _("Delete an existing category. The category is unable to be used by existing transactions."));
+    mmToolTip(m_buttonDelete, _t("Delete an existing category. The category is unable to be used by existing transactions."));
 
     wxStdDialogButtonSizer* itemBoxSizer9 = new wxStdDialogButtonSizer;
     buttonsSizer->Add(itemBoxSizer9, wxSizerFlags(g_flagsV).Border(wxALL, 0).Center());
 
-    m_buttonSelect = new wxButton(buttonsPanel, wxID_OK, _("&Select"));
+    m_buttonSelect = new wxButton(buttonsPanel, wxID_OK, _t("&Select"));
     itemBoxSizer9->Add(m_buttonSelect, g_flagsH);
-    mmToolTip(m_buttonSelect, _("Select the currently selected category as the selected category for the transaction"));
+    mmToolTip(m_buttonSelect, _t("Select the currently selected category as the selected category for the transaction"));
 
     //Some interfaces has no any close buttons, it may confuse user. Cancel button added
     wxButton* itemCancelButton = new wxButton(buttonsPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
@@ -341,10 +341,10 @@ bool mmCategDialog::validateName(wxString name)
 {
     if (wxNOT_FOUND != name.Find(':'))
     {
-        wxString errMsg = _("Name contains category delimiter.");
-        errMsg << "\n\n" << _("The colon (:) character is used to separate categories and subcategories"
+        wxString errMsg = _t("Name contains category delimiter.");
+        errMsg << "\n\n" << _t("The colon (:) character is used to separate categories and subcategories"
             " and therefore should not be used in the name");
-        wxMessageBox(errMsg, _("Category Manager: Invalid Name"), wxOK | wxICON_ERROR);
+        wxMessageBox(errMsg, _t("Category Manager: Invalid Name"), wxOK | wxICON_ERROR);
         return false;
     }
     return true;
@@ -352,8 +352,8 @@ bool mmCategDialog::validateName(wxString name)
 
 void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
 {
-    wxString prompt_msg = _("Enter the name for the new category:");
-    const wxString& text = wxGetTextFromUser(prompt_msg, _("Add Category"), "");
+    wxString prompt_msg = _t("Enter the name for the new category:");
+    const wxString& text = wxGetTextFromUser(prompt_msg, _t("Add Category"), "");
     if (text.IsEmpty() || !validateName(text))
         return;
     Model_Category::Data* selectedCategory = dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(m_selectedItemId))->getCategData();
@@ -364,7 +364,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         const auto& categories = Model_Category::instance().find(Model_Category::CATEGNAME(text), Model_Category::PARENTID(-1));
         if (!categories.empty())
         {
-            wxMessageBox(_("A category with this name already exists for the parent"), _("Category Manager: Adding Error"), wxOK | wxICON_ERROR);
+            wxMessageBox(_t("A category with this name already exists for the parent"), _t("Category Manager: Adding Error"), wxOK | wxICON_ERROR);
             return;
         }
         category->PARENTID = -1;
@@ -373,7 +373,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         const auto& categories = Model_Category::instance().find(Model_Category::CATEGNAME(text), Model_Category::PARENTID(selectedCategory->CATEGID));
         if (!categories.empty())
         {
-            wxMessageBox(_("A category with this name already exists for the parent"), _("Category Manager: Adding Error"), wxOK | wxICON_ERROR);
+            wxMessageBox(_t("A category with this name already exists for the parent"), _t("Category Manager: Adding Error"), wxOK | wxICON_ERROR);
             return;
         }
         category->PARENTID = selectedCategory->CATEGID;
@@ -425,8 +425,8 @@ void mmCategDialog::OnEndDrag(wxTreeEvent& event)
 
     if (!Model_Category::instance().find(Model_Category::CATEGNAME(sourceCat->CATEGNAME), Model_Category::PARENTID(categID)).empty() && sourceCat->PARENTID != categID)
     {
-        wxMessageBox(_("Unable to move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving.")
-            , _("A subcategory with this name already exists")
+        wxMessageBox(_t("Unable to move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving.")
+            , _t("A subcategory with this name already exists")
             , wxOK | wxICON_ERROR);
         return;
     }
@@ -438,7 +438,7 @@ void mmCategDialog::OnEndDrag(wxTreeEvent& event)
         if (subcat.CATEGID == categID)
         {
             wxMessageBox(wxString::Format("Unable to move a category to one of its own descendants.\n\nConsider first relocating subcategory %s to move the subtree.", subtree_root)
-                , _("Target category is a descendant")
+                , _t("Target category is a descendant")
                 , wxOK | wxICON_ERROR);
             return;
         }
@@ -447,8 +447,8 @@ void mmCategDialog::OnEndDrag(wxTreeEvent& event)
     wxString moveMessage = wxString::Format(
         _tu("Do you want to move\n“%1$s”\nto:\n“%2$s”?")
         , Model_Category::full_name(m_dragSourceCATEGID)
-        , categID != -1 ? Model_Category::full_name(categID) : _("Top level"));
-    wxMessageDialog msgDlg(this, moveMessage, _("Confirm Move"),
+        , categID != -1 ? Model_Category::full_name(categID) : _t("Top level"));
+    wxMessageDialog msgDlg(this, moveMessage, _t("Confirm Move"),
         wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
     if (msgDlg.ShowModal() != wxID_YES)
         return;
@@ -465,17 +465,17 @@ void mmCategDialog::OnEndDrag(wxTreeEvent& event)
 
 void mmCategDialog::showCategDialogDeleteError(bool category)
 {
-    wxString deleteCategoryErrMsg = category ? _("Category in use.") : _("Subcategory in use.");
+    wxString deleteCategoryErrMsg = category ? _t("Category in use.") : _t("Subcategory in use.");
     if (category)
-        deleteCategoryErrMsg << "\n\n" << _("Tip: Change all transactions using this Category to\n"
+        deleteCategoryErrMsg << "\n\n" << _t("Tip: Change all transactions using this Category to\n"
             "another Category using the merge command:");
     else
-        deleteCategoryErrMsg << "\n\n" << _("Tip: Change all transactions using this Subcategory to\n"
+        deleteCategoryErrMsg << "\n\n" << _t("Tip: Change all transactions using this Subcategory to\n"
             "another Category using the merge command:");
 
     deleteCategoryErrMsg << "\n\n" << _tu("Tools → Merge → Categories");
 
-    wxMessageBox(deleteCategoryErrMsg, _("Category Manager: Delete Error"), wxOK | wxICON_ERROR);
+    wxMessageBox(deleteCategoryErrMsg, _t("Category Manager: Delete Error"), wxOK | wxICON_ERROR);
 }
 
 void mmCategDialog::mmDoDeleteSelectedCategory()
@@ -498,10 +498,10 @@ void mmCategDialog::mmDoDeleteSelectedCategory()
         }
     }
 
-    wxMessageDialog msgDlg(this, _("Deleted transactions exist which use this category or one of its descendants.")
-            + "\n\n" + _("Deleting the category will also automatically purge the associated deleted transactions.")
-            + "\n\n" + _("Do you want to continue?")
-        , _("Confirm Category Deletion"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+    wxMessageDialog msgDlg(this, _t("Deleted transactions exist which use this category or one of its descendants.")
+            + "\n\n" + _t("Deleting the category will also automatically purge the associated deleted transactions.")
+            + "\n\n" + _t("Do you want to continue?")
+        , _t("Confirm Category Deletion"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     if ((deletedTrans.empty() && splits.empty()) || msgDlg.ShowModal() == wxID_YES)
     {
         if(!(deletedTrans.empty() && splits.empty())){
@@ -610,8 +610,8 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
         return;
 
     const wxString old_name = m_treeCtrl->GetItemText(m_selectedItemId);
-    const wxString msg = wxString::Format(_("Enter a new name for '%s'"), old_name);
-    wxString text = wxGetTextFromUser(msg, _("Edit Category"), old_name);
+    const wxString msg = wxString::Format(_t("Enter a new name for '%s'"), old_name);
+    wxString text = wxGetTextFromUser(msg, _t("Edit Category"), old_name);
     if (text.IsEmpty() || old_name == text || !validateName(text)) {
         return;
     }
@@ -622,8 +622,8 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::CATEGNAME(text), Model_Category::PARENTID(category->PARENTID));
     if (!categories.empty())
     {
-        wxString errMsg = _("A category with this name already exists for the parent");
-        wxMessageBox(errMsg, _("Category Manager: Editing Error"), wxOK | wxICON_ERROR);
+        wxString errMsg = _t("A category with this name already exists for the parent");
+        wxMessageBox(errMsg, _t("Category Manager: Editing Error"), wxOK | wxICON_ERROR);
         return;
     }
     category->CATEGNAME = text;
@@ -680,10 +680,10 @@ void mmCategDialog::OnCategoryRelocation(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
-        msgStr << _("Merge categories completed") << "\n\n"
-            << wxString::Format(_("Records have been updated in the database: %i"),
+        msgStr << _t("Merge categories completed") << "\n\n"
+            << wxString::Format(_t("Records have been updated in the database: %i"),
                 dlg.updatedCategoriesCount());
-        wxMessageBox(msgStr, _("Merge categories result"));
+        wxMessageBox(msgStr, _t("Merge categories result"));
         m_refresh_requested = true;
         fillControls();
     }
@@ -759,8 +759,8 @@ void mmCategDialog::OnMenuSelected(wxCommandEvent& event)
     }
     case MENU_ITEM_CLEAR:
     {
-        wxMessageDialog msgDlg(this, _("Do you want to unhide all categories?")
-                , _("Unhide all categories")
+        wxMessageDialog msgDlg(this, _t("Do you want to unhide all categories?")
+                , _t("Unhide all categories")
                 , wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
         if (msgDlg.ShowModal() == wxID_YES)
         {
@@ -788,13 +788,13 @@ void mmCategDialog::OnMenuSelected(wxCommandEvent& event)
 void mmCategDialog::OnItemRightClick(wxTreeEvent& event)
 {
     wxMenu mainMenu;
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_HIDE, _("Hide Selected Category")));
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_UNHIDE, _("Unhide Selected Category")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_HIDE, _t("Hide Selected Category")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_UNHIDE, _t("Unhide Selected Category")));
     mainMenu.AppendSeparator();
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_DELETE, _("Remove Category")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_DELETE, _t("Remove Category")));
 
     mainMenu.AppendSeparator();
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_CLEAR, _("Clear Settings")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_CLEAR, _t("Clear Settings")));
     bool bItemHidden = (m_treeCtrl->GetItemTextColour(m_selectedItemId) != NormalColor_);
     mainMenu.Enable(MENU_ITEM_HIDE, !bItemHidden && (m_selectedItemId != root_));
     mainMenu.Enable(MENU_ITEM_UNHIDE, bItemHidden && (m_selectedItemId != root_));

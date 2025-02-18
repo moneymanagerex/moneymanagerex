@@ -670,7 +670,7 @@ bool getOnlineCurrencyRates(wxString& msg,const int64 curr_id, const bool used_o
 
     if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
     {
-        msg = _("Unable to find base currency symbol!");
+        msg = _t("Unable to find base currency symbol!");
         return false;
     }
 
@@ -694,7 +694,7 @@ bool getOnlineCurrencyRates(wxString& msg,const int64 curr_id, const bool used_o
 
     if (fiat.empty())
     {
-        msg = _("Nothing to update");
+        msg = _t("Nothing to update");
         return false;
     }
 
@@ -727,7 +727,7 @@ bool getOnlineCurrencyRates(wxString& msg,const int64 curr_id, const bool used_o
     }
 
     const auto b = Model_Currency::GetBaseCurrency();
-    msg << _("Currency rates have been updated");
+    msg << _t("Currency rates have been updated");
     msg << "\n\n";
     for (const auto & item : fiat)
     {
@@ -742,7 +742,7 @@ bool getOnlineCurrencyRates(wxString& msg,const int64 curr_id, const bool used_o
         }
         else
         {
-            msg << wxString::Format("%s\t%s\t\t%s\n", symbol, value0_str, _("Invalid value"));
+            msg << wxString::Format("%s\t%s\t\t%s\n", symbol, value0_str, _t("Invalid value"));
         }
     }
 
@@ -826,7 +826,7 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
 
     Document json_doc;
     if (json_doc.Parse(json_data.utf8_str()).HasParseError()) {
-        output = _("JSON Parse Error");
+        output = _t("JSON Parse Error");
         return false;
     }
 
@@ -855,7 +855,7 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
             Value e = r["result"].GetArray();
 
             if (e.Empty()) {
-                output = _("Nothing to update");
+                output = _t("Nothing to update");
                 return false;
             }
 
@@ -921,13 +921,13 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
             }
         }
         else {
-            output = _("JSON Parse Error");
+            output = _t("JSON Parse Error");
             return false;
         }
     }
     else
     {
-        output = _("JSON Parse Error");
+        output = _t("JSON Parse Error");
         return false;
     }
 
@@ -958,7 +958,7 @@ bool getCoincapInfoFromSymbol(const wxString& symbol, wxString& out_id, double& 
 
     Document json_doc;
     if (json_doc.Parse(json_data.utf8_str()).HasParseError()) {
-        output = _("JSON Parse Error");
+        output = _t("JSON Parse Error");
         return false;
     }
     
@@ -966,7 +966,7 @@ bool getCoincapInfoFromSymbol(const wxString& symbol, wxString& out_id, double& 
         if (json_doc.HasMember("error") && json_doc["error"].IsString()) {
             output = wxString::Format("Error from coincap API: %s", json_doc["error"].GetString());
         } else {
-            output = _("Expected response to contain a data or error string");
+            output = _t("Expected response to contain a data or error string");
         }
         
         return false;
@@ -997,7 +997,7 @@ bool getCoincapInfoFromSymbol(const wxString& symbol, wxString& out_id, double& 
         }
     }
 
-    output = _("Unable to find asset for symbol.");
+    output = _t("Unable to find asset for symbol.");
     return false;
 }
 
@@ -1017,7 +1017,7 @@ bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std
 
     Document json_doc;
     if (json_doc.Parse(json_data.utf8_str()).HasParseError()) {
-        msg = _("JSON Parse Error");
+        msg = _t("JSON Parse Error");
         return false;
     }
 
@@ -1025,23 +1025,23 @@ bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std
         if (json_doc.HasMember("error") && json_doc["error"].IsString()) {
             msg = wxString::Format("Error from coincap API: %s", json_doc["error"].GetString());
         } else {
-            msg = _("Expected response to contain a data or error string");
+            msg = _t("Expected response to contain a data or error string");
         }
         return false;
     }
 
     wxString baseCurrencySymbol;
     if (!Model_Currency::GetBaseCurrencySymbol(baseCurrencySymbol)) {
-        msg = _("Unable to get base currency!");
+        msg = _t("Unable to get base currency!");
         return false;
     }
 
     // prices in USD are multiplied by this value to convert them to the base currency
     double multiplier = 1.0;
-    if (baseCurrencySymbol != _("USD")) {
+    if (baseCurrencySymbol != _t("USD")) {
         auto usd = Model_Currency::instance().GetCurrencyRecord("USD");
         if (usd == nullptr) {
-            msg = _("Unable to find currency 'USD', required for converting historical prices");
+            msg = _t("Unable to find currency 'USD', required for converting historical prices");
             return false;
         }
 
@@ -1062,7 +1062,7 @@ bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std
             auto priceUSD = wxString::FromUTF8(entry["priceUsd"].GetString());
 
             if (!priceUSD.ToCDouble(&price_usd)) {
-                msg = _("Unable to parse price in asset history");
+                msg = _t("Unable to parse price in asset history");
                 return false;
             }
 
@@ -1435,23 +1435,23 @@ const wxString getProgramDescription(const int type)
 #endif
 
     wxString description;
-    description << bull << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << eol
-        << bull << wxString::Format(simple ? "Built: %1$s %2$s" : _("Built on: %1$s %2$s"), build_date, BUILD_TIME) << eol
-        << bull << wxString::Format(simple ? "db %d" : _("Database version: %d"), mmex::version::getDbLatestVersion())
+    description << bull << wxString::Format(simple ? "Version: %s" : _t("Version: %s"), mmex::getTitleProgramVersion()) << eol
+        << bull << wxString::Format(simple ? "Built: %1$s %2$s" : _t("Built on: %1$s %2$s"), build_date, BUILD_TIME) << eol
+        << bull << wxString::Format(simple ? "db %d" : _t("Database version: %d"), mmex::version::getDbLatestVersion())
 #if WXSQLITE3_HAVE_CODEC
         << " (aes256cbc-hmac-sha512)"
 #endif
         << eol
 
 #ifdef GIT_COMMIT_HASH
-        << bull << wxString::Format(simple ? "git %1$s (%2$s)" : _("Git commit: %1$s (%2$s)"), GIT_COMMIT_HASH, GIT_COMMIT_DATE) << eol
+        << bull << wxString::Format(simple ? "git %1$s (%2$s)" : _t("Git commit: %1$s (%2$s)"), GIT_COMMIT_HASH, GIT_COMMIT_DATE) << eol
 #endif
 #ifdef GIT_BRANCH
-        << bull << wxString::Format(simple ? "%s" : _("Git branch: %s"), GIT_BRANCH) << eol
+        << bull << wxString::Format(simple ? "%s" : _t("Git branch: %s"), GIT_BRANCH) << eol
 #endif
         << eol
 
-        << (simple ? "Libs:" : _("MMEX is using the following support products:")) << eol
+        << (simple ? "Libs:" : _t("MMEX is using the following support products:")) << eol
         << bull + wxVERSION_STRING
         << wxString::Format(" (%s %d.%d)",
             wxPlatformInfo::Get().GetPortIdName(),
@@ -1468,7 +1468,7 @@ const wxString getProgramDescription(const int type)
         << bull + "apexcharts.js" << eol
         << eol
 
-        << (simple ? "Built with:" : _("Built with:")) << eol
+        << (simple ? "Built with:" : _t("Built with:")) << eol
         << bull + CMAKE_VERSION << eol
         << bull + MAKE_VERSION << eol
 
@@ -1487,7 +1487,7 @@ const wxString getProgramDescription(const int type)
         << bull + CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION << eol
 #endif
         << eol
-        << (simple ? "OS:" : _("Running on:")) << eol
+        << (simple ? "OS:" : _t("Running on:")) << eol
 
 #ifdef LINUX_DISTRO_STRING
         << bull + LINUX_DISTRO_STRING << eol
@@ -1501,8 +1501,8 @@ const wxString getProgramDescription(const int type)
 #ifdef __LINUX__
         << bull + desktop_environment << " (" << session_type << ")" << eol
 #endif
-        << bull << wxString::Format(simple ? "System Locale: %s" : _("System Locale: %s"), std::locale("").name()) << eol
-        << bull << wxString::Format(simple ? "User Interface Language: %s" : _("User Interface Language: %s"), wxTranslations::Get()->GetBestTranslation("mmex") + "." + wxLocale::GetSystemEncodingName()) << eol;
+        << bull << wxString::Format(simple ? "System Locale: %s" : _t("System Locale: %s"), std::locale("").name()) << eol
+        << bull << wxString::Format(simple ? "User Interface Language: %s" : _t("User Interface Language: %s"), wxTranslations::Get()->GetBestTranslation("mmex") + "." + wxLocale::GetSystemEncodingName()) << eol;
 
     for (unsigned int i = 0; i < wxDisplay::GetCount(); i++)
     {
@@ -1725,7 +1725,7 @@ const wxString md2html(const wxString& md)
 
     wxRegEx re(R"(https:\/\/github\.com\/moneymanagerex\/moneymanagerex\/milestone\/(\d+)\?closed=1)", wxRE_EXTENDED);
     re.Replace(&body, R"(<a href="https://github.com/moneymanagerex/moneymanagerex/milestone/\1?closed=1" target="_blank">The complete list of closed issues is available at this link</a>)");
-    body.Replace("The complete list of closed issues is available at this link", _("The complete list of closed issues is available at this link"));
+    body.Replace("The complete list of closed issues is available at this link", _t("The complete list of closed issues is available at this link"));
 
     // img with link
     // skip images hosted via unsupported https
@@ -1882,7 +1882,7 @@ mmHtmlWindow::mmHtmlWindow( wxWindow *parent, wxWindowID id, const wxPoint &pos,
 void mmHtmlWindow::OnMouseRightClick(wxMouseEvent& /*event*/)
 {
     wxMenu menu;
-    menu.Append(wxID_HIGHEST + 1, _("Copy all text to clipboard"));
+    menu.Append(wxID_HIGHEST + 1, _t("Copy all text to clipboard"));
     PopupMenu(&menu);
 
 }

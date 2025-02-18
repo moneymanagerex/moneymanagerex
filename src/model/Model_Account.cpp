@@ -169,7 +169,7 @@ wxString Model_Account::get_account_name(int64 account_id)
     if (account)
         return account->ACCOUNTNAME;
     else
-        return _("Account Error");
+        return _t("Account Error");
 }
 
 /** Remove the Data record instance from memory and the database. */

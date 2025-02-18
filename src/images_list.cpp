@@ -323,8 +323,8 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                         wxString metaData(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
                         if (metaData_doc.Parse(metaData.utf8_str()).HasParseError()) {
                             wxMessageBox(
-                                wxString::Format(_("Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."), thisTheme),
-                                _("Warning"),
+                                wxString::Format(_t("Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."), thisTheme),
+                                _t("Warning"),
                                 wxOK | wxICON_WARNING
                             );
                         }
@@ -413,8 +413,8 @@ bool checkThemeContents(wxArrayString *filesinTheme)
     {
         const wxString realName = (darkFound && darkMode) ? neededFiles[i].AfterLast('-') : neededFiles[i];
         if (wxNOT_FOUND == filesinTheme->Index(realName)) {
-            wxMessageBox(wxString::Format(_("File '%1$s' missing or invalid in chosen theme '%2$s'")
-                , neededFiles[i], Model_Setting::instance().getTheme()), _("Warning"), wxOK | wxICON_WARNING);
+            wxMessageBox(wxString::Format(_t("File '%1$s' missing or invalid in chosen theme '%2$s'")
+                , neededFiles[i], Model_Setting::instance().getTheme()), _t("Warning"), wxOK | wxICON_WARNING);
             success = false;
         }
     }
@@ -424,8 +424,8 @@ bool checkThemeContents(wxArrayString *filesinTheme)
     {
         if (std::get<2>(it.second) && mmThemeMetaString(it.first).IsEmpty())
         {
-            wxMessageBox(wxString::Format(_("Metadata '%1$s' missing in chosen theme '%2$s'")
-                , std::get<0>(it.second), Model_Setting::instance().getTheme()), _("Warning"), wxOK | wxICON_WARNING);
+            wxMessageBox(wxString::Format(_t("Metadata '%1$s' missing in chosen theme '%2$s'")
+                , std::get<0>(it.second), Model_Setting::instance().getTheme()), _t("Warning"), wxOK | wxICON_WARNING);
             success = false;
         }
     }
@@ -459,8 +459,8 @@ bool checkThemeContents(wxArrayString *filesinTheme)
         if (erroredIcons > maxCutOff) {
             missingIcons << " " << _tu("and more…");
         }
-        wxMessageBox(wxString::Format(_("There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s")
-            , erroredIcons, Model_Setting::instance().getTheme(), missingIcons), _("Warning"), wxOK | wxICON_WARNING);
+        wxMessageBox(wxString::Format(_t("There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s")
+            , erroredIcons, Model_Setting::instance().getTheme(), missingIcons), _t("Warning"), wxOK | wxICON_WARNING);
     }
     return success;
 }
@@ -488,20 +488,20 @@ void LoadTheme()
             processThemes(mmex::getPathUser(mmex::USERTHEMEDIR), Model_Setting::instance().getTheme(), false);
         else
         {
-            wxMessageBox(wxString::Format(_("Theme %s not found; it may no longer be supported. Reverting to the default theme.")
-                , Model_Setting::instance().getTheme()), _("Warning"), wxOK | wxICON_WARNING);
+            wxMessageBox(wxString::Format(_t("Theme %s not found; it may no longer be supported. Reverting to the default theme.")
+                , Model_Setting::instance().getTheme()), _t("Warning"), wxOK | wxICON_WARNING);
             reverttoDefaultTheme();
         }
     
     if (!checkThemeContents(filesInVFS.get()))
     {
-        wxMessageBox(wxString::Format(_("Theme %s has missing items and is incompatible. Reverting to default theme"), Model_Setting::instance().getTheme()), _("Warning"), wxOK | wxICON_WARNING);
+        wxMessageBox(wxString::Format(_t("Theme %s has missing items and is incompatible. Reverting to default theme"), Model_Setting::instance().getTheme()), _t("Warning"), wxOK | wxICON_WARNING);
         reverttoDefaultTheme();
         if (!checkThemeContents(filesInVFS.get()))
         {
             // Time to give up as we couldn't find a workable theme
-            wxMessageBox(_("No workable theme found, the installation may be corrupt")
-                , _("Error"), wxOK | wxICON_ERROR);
+            wxMessageBox(_t("No workable theme found, the installation may be corrupt")
+                , _t("Error"), wxOK | wxICON_ERROR);
             exit(EXIT_FAILURE);
         }
     } 

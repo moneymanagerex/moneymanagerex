@@ -216,9 +216,9 @@ void TransactionListCtrl::resetColumns()
 {
     m_columns.clear();
     m_columns.push_back({" ", 25, wxLIST_FORMAT_CENTER, false});
-    m_columns.push_back({_("SN"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true});
-    m_columns.push_back({_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true});
-    m_columns.push_back({_("Date"), 112, wxLIST_FORMAT_LEFT, true});
+    m_columns.push_back({_t("SN"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true});
+    m_columns.push_back({_t("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true});
+    m_columns.push_back({_t("Date"), 112, wxLIST_FORMAT_LEFT, true});
 
     m_column_order.clear();
     m_column_order.push_back(LIST_COL_IMGSTATUS);
@@ -227,24 +227,24 @@ void TransactionListCtrl::resetColumns()
     m_column_order.push_back(LIST_COL_DATE);
 
     if (Option::instance().UseTransDateTime()) {
-        m_columns.push_back({_("Time"), 70, wxLIST_FORMAT_LEFT, true});
+        m_columns.push_back({_t("Time"), 70, wxLIST_FORMAT_LEFT, true});
         m_column_order.push_back(LIST_COL_TIME);
     }
 
-    m_columns.push_back({_("Number"), 70, wxLIST_FORMAT_LEFT, true});
+    m_columns.push_back({_t("Number"), 70, wxLIST_FORMAT_LEFT, true});
     m_column_order.push_back(LIST_COL_NUMBER);
 
     if (!m_cp->isAccount()) {
-        m_columns.push_back({_("Account"), 100, wxLIST_FORMAT_LEFT, true});
+        m_columns.push_back({_t("Account"), 100, wxLIST_FORMAT_LEFT, true});
         m_column_order.push_back(LIST_COL_ACCOUNT);
     }
 
-    m_columns.push_back({_("Payee"), 150, wxLIST_FORMAT_LEFT, true});
-    m_columns.push_back({_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_CENTER, true});
-    m_columns.push_back({_("Category"), 150, wxLIST_FORMAT_LEFT, true});
-    m_columns.push_back({_("Tags"), 250, wxLIST_FORMAT_LEFT, true});
-    m_columns.push_back({_("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true});
-    m_columns.push_back({_("Deposit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true});
+    m_columns.push_back({_t("Payee"), 150, wxLIST_FORMAT_LEFT, true});
+    m_columns.push_back({_t("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_CENTER, true});
+    m_columns.push_back({_t("Category"), 150, wxLIST_FORMAT_LEFT, true});
+    m_columns.push_back({_t("Tags"), 250, wxLIST_FORMAT_LEFT, true});
+    m_columns.push_back({_t("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true});
+    m_columns.push_back({_t("Deposit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true});
 
     m_column_order.push_back(LIST_COL_PAYEE_STR);
     m_column_order.push_back(LIST_COL_STATUS);
@@ -254,19 +254,19 @@ void TransactionListCtrl::resetColumns()
     m_column_order.push_back(LIST_COL_DEPOSIT);
 
     if (m_cp->isAccount()) {
-        m_columns.push_back({_("Balance"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true});
+        m_columns.push_back({_t("Balance"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true});
         m_column_order.push_back(LIST_COL_BALANCE);
         if (m_cp->m_account->CREDITLIMIT != 0) {
-            m_columns.push_back({_("Credit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true});
+            m_columns.push_back({_t("Credit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true});
             m_column_order.push_back(LIST_COL_CREDIT);
         }
     }
 
-    m_columns.push_back({_("Notes"), 250, wxLIST_FORMAT_LEFT, true});
+    m_columns.push_back({_t("Notes"), 250, wxLIST_FORMAT_LEFT, true});
     m_column_order.push_back(LIST_COL_NOTES);
 
     if (m_cp->isDeletedTrans()) {
-        m_columns.push_back({_("Deleted On"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT, true});
+        m_columns.push_back({_t("Deleted On"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT, true});
         m_column_order.push_back(LIST_COL_DELETEDTIME);
     }
 
@@ -290,7 +290,7 @@ void TransactionListCtrl::resetColumns()
         i++;
     }
 
-    m_columns.push_back({_("Last Updated"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT, true});
+    m_columns.push_back({_t("Last Updated"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT, true});
     m_column_order.push_back(LIST_COL_UPDATEDTIME);
 
     createColumns();
@@ -362,18 +362,18 @@ void TransactionListCtrl::sortTable()
     sortTransactions(g_sortCol1, g_sortAsc1);
 
     wxString sortText = wxString::Format(
-        "%s: %s %s / %s %s", _("Sort Order"),
+        "%s: %s %s / %s %s", _t("Sort Order"),
         m_columns[g_sortCol1].header, g_sortAsc1 ? L"\u25B2" : L"\u25BC",
         m_columns[g_sortCol2].header, g_sortAsc2 ? L"\u25B2" : L"\u25BC"
     );
     m_cp->m_header_sortOrder->SetLabelText(sortText);
 
     if (m_column_order[g_sortCol1] == LIST_COL_SN)
-        m_cp->showTips(_("SN (Sequence Number) has the same order as Date/ID (or Date/Time/ID if Time is enabled)."));
+        m_cp->showTips(_t("SN (Sequence Number) has the same order as Date/ID (or Date/Time/ID if Time is enabled)."));
     else if (m_column_order[g_sortCol1] == LIST_COL_ID)
-        m_cp->showTips(_("ID (identification number) is increasing with the time of creation in the database."));
+        m_cp->showTips(_t("ID (identification number) is increasing with the time of creation in the database."));
     else if (m_column_order[g_sortCol1] == LIST_COL_BALANCE)
-        m_cp->showTips(_("Balance is calculated in the order of SN (Sequence Number)."));
+        m_cp->showTips(_t("Balance is calculated in the order of SN (Sequence Number)."));
 
     RefreshItems(0, m_trans.size() - 1);
 }
@@ -711,11 +711,11 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
 
         menu.AppendSeparator();
 
-        menu.Append(MENU_TREEPOPUP_VIEW_OTHER_ACCOUNT, _("&View In Other Account"));
+        menu.Append(MENU_TREEPOPUP_VIEW_OTHER_ACCOUNT, _t("&View In Other Account"));
         if (!m_cp->isAccount() || is_nothing_selected || multiselect || is_foreign || !type_transfer)
             menu.Enable(MENU_TREEPOPUP_VIEW_OTHER_ACCOUNT, false);
 
-        menu.Append(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, _("&View Split Categories"));
+        menu.Append(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, _t("&View Split Categories"));
         if (is_nothing_selected || multiselect || have_category)
             menu.Enable(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, false);
 
@@ -876,13 +876,13 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
                 if (menuItemText.length() > 30)
                     menuItemText = menuItemText.SubString(0, 30).Append(L"\u2026");
                 menu.Append(MENU_TREEPOPUP_FIND, wxString::Format(
-                    _("&Find all transactions with %s '%s'"),
-                    (columnIsAmount ? _("Amount") : m_columns[column].header),
+                    _t("&Find all transactions with %s '%s'"),
+                    (columnIsAmount ? _t("Amount") : m_columns[column].header),
                     menuItemText
                 ));
             }
             if (!copyText_.IsEmpty())
-                menu.Append(MENU_TREEPOPUP_COPYTEXT, _("Cop&y Text to Clipboard"));
+                menu.Append(MENU_TREEPOPUP_COPYTEXT, _t("Cop&y Text to Clipboard"));
         }
     }
 
@@ -913,28 +913,28 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
             _tu("Delete Viewed “&Unreconciled” Transactions…")
         );
     }
-    menu.Append(MENU_TREEPOPUP_DELETE2, _("De&lete "), subGlobalOpMenuDelete);
+    menu.Append(MENU_TREEPOPUP_DELETE2, _t("De&lete "), subGlobalOpMenuDelete);
 
     if (!m_cp->isDeletedTrans()) {
         menu.AppendSeparator();
 
         wxMenu* subGlobalOpMenuMark = new wxMenu();
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("&Unreconciled"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _t("&Unreconciled"));
         if (is_nothing_selected)
             subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKUNRECONCILED, false);
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("&Reconciled"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _t("&Reconciled"));
         if (is_nothing_selected)
             subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("&Void"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _t("&Void"));
         if (is_nothing_selected)
             subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKVOID, false);
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("&Follow Up"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _t("&Follow Up"));
         if (is_nothing_selected)
             subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, false);
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("D&uplicate"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _t("D&uplicate"));
         if (is_nothing_selected)
             subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
-        menu.AppendSubMenu(subGlobalOpMenuMark, _("Mar&k as"));
+        menu.AppendSubMenu(subGlobalOpMenuMark, _t("Mar&k as"));
 
         // Disable menu items not ment for foreign transactions
         if (is_foreign) {
@@ -1091,12 +1091,12 @@ void TransactionListCtrl::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
             , "Do you want to delete the %i selected transactions?", sel)
             , sel);
     text += "\n\n";
-    text += ((m_cp->isDeletedTrans() || retainDays == 0) ? _("Unable to undo this action.")
-        : _("Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."));
+    text += ((m_cp->isDeletedTrans() || retainDays == 0) ? _t("Unable to undo this action.")
+        : _t("Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."));
 
     wxMessageDialog msgDlg(this
         , text
-        , _("Confirm Transaction Deletion")
+        , _t("Confirm Transaction Deletion")
         , wxYES_NO | wxYES_DEFAULT | (m_cp->isDeletedTrans() ? wxICON_ERROR : wxICON_WARNING));
 
     if (msgDlg.ShowModal() == wxID_YES) {
@@ -1166,7 +1166,7 @@ void TransactionListCtrl::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
     wxMessageDialog msgDlg(
         this,
         text,
-        _("Confirm Transaction Restore"),
+        _t("Confirm Transaction Restore"),
         wxYES_NO | wxYES_DEFAULT | wxICON_WARNING
     );
 
@@ -1207,8 +1207,8 @@ void TransactionListCtrl::onRestoreViewedTransaction(wxCommandEvent&)
 {
     wxMessageDialog msgDlg(
         this,
-        _("Do you want to restore all of the transactions shown?"),
-        _("Confirm Transaction Restore"),
+        _t("Do you want to restore all of the transactions shown?"),
+        _t("Confirm Transaction Restore"),
         wxYES_NO | wxNO_DEFAULT | wxICON_ERROR
     );
     if (msgDlg.ShowModal() == wxID_YES) {
@@ -1308,7 +1308,7 @@ void TransactionListCtrl::onMoveTransaction(wxCommandEvent& /*event*/)
         , sel);
     wxMessageDialog msgDlg(this
         , text
-        , _("Confirm Transaction Move")
+        , _t("Confirm Transaction Move")
         , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR);
 
     if (msgDlg.ShowModal() == wxID_YES) {
@@ -1317,7 +1317,7 @@ void TransactionListCtrl::onMoveTransaction(wxCommandEvent& /*event*/)
                 , "Moving %i transactions to…", sel)
                 , sel);
         mmSingleChoiceDialog scd(this
-            , _("Select the destination Account ")
+            , _t("Select the destination Account ")
             , headerMsg
             , Model_Account::instance().all_checking_account_names());
         if (scd.ShowModal() == wxID_OK) {
@@ -1348,12 +1348,12 @@ void TransactionListCtrl::onMoveTransaction(wxCommandEvent& /*event*/)
             Model_Checking::instance().ReleaseSavepoint();
             if (!skip_trx.empty()) {
                 const wxString detail = wxString::Format("%s\n%s: %zu\n%s: %zu"
-                                , _("This is due to some elements of the transaction or account detail not allowing the move")
-                                , _("Moved"), m_selected_id.size() - skip_trx.size()
-                                , _("Not moved"), skip_trx.size());
+                                , _t("This is due to some elements of the transaction or account detail not allowing the move")
+                                , _t("Moved"), m_selected_id.size() - skip_trx.size()
+                                , _t("Not moved"), skip_trx.size());
                 mmErrorDialogs::MessageWarning(this
                     , detail
-                    , _("Unable to move some transactions."));
+                    , _t("Unable to move some transactions."));
             }
             //TODO: enable report to detail transactions that are unable to be moved
             refreshVisualList();
@@ -1416,7 +1416,7 @@ void TransactionListCtrl::onCreateReoccurance(wxCommandEvent& /*event*/)
         mmBDDialog dlg(this, 0, false, false);
         dlg.SetDialogParameters(id.first);
         if (dlg.ShowModal() == wxID_OK)
-            wxMessageBox(_("Scheduled transaction saved."));
+            wxMessageBox(_t("Scheduled transaction saved."));
     }
 }
 
@@ -1503,17 +1503,17 @@ void TransactionListCtrl::onDeleteViewedTransaction(wxCommandEvent& event)
 
     if (i == MENU_TREEPOPUP_DELETE_VIEWED) {
         wxString text = !(m_cp->isDeletedTrans() || retainDays == 0)
-            ? _("Do you want to delete all the transactions shown?")
-            : _("Do you want to permanently delete all the transactions shown?");
+            ? _t("Do you want to delete all the transactions shown?")
+            : _t("Do you want to permanently delete all the transactions shown?");
 
         text += "\n\n";
         text += !(m_cp->isDeletedTrans() || retainDays == 0)
-            ? _("Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view.")
-            : _("Unable to undo this action.");
+            ? _t("Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view.")
+            : _t("Unable to undo this action.");
 
         wxMessageDialog msgDlg(this
             , text
-            , _("Confirm Transaction Deletion")
+            , _t("Confirm Transaction Deletion")
             , wxYES_NO | wxNO_DEFAULT | (m_cp->isDeletedTrans() ? wxICON_ERROR : wxICON_WARNING));
         if (msgDlg.ShowModal() == wxID_YES) {
             deleteTransactionsByStatus("");
@@ -1521,8 +1521,8 @@ void TransactionListCtrl::onDeleteViewedTransaction(wxCommandEvent& event)
     }
     else if (i == MENU_TREEPOPUP_DELETE_FLAGGED) {
         wxMessageDialog msgDlg(this
-            , wxString::Format(_tu("Do you want to delete all the “%s” transactions shown?"), _("Follow Up"))
-            , _("Confirm Transaction Deletion")
+            , wxString::Format(_tu("Do you want to delete all the “%s” transactions shown?"), _t("Follow Up"))
+            , _t("Confirm Transaction Deletion")
             , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
         if (msgDlg.ShowModal() == wxID_YES) {
             deleteTransactionsByStatus(Model_Checking::STATUS_STR_FOLLOWUP);
@@ -1530,8 +1530,8 @@ void TransactionListCtrl::onDeleteViewedTransaction(wxCommandEvent& event)
     }
     else if (i == MENU_TREEPOPUP_DELETE_UNRECONCILED) {
         wxMessageDialog msgDlg(this
-            , wxString::Format(_tu("Do you want to delete all the “%s” transactions shown?"), _("Unreconciled"))
-            , _("Confirm Transaction Deletion")
+            , wxString::Format(_tu("Do you want to delete all the “%s” transactions shown?"), _t("Unreconciled"))
+            , _t("Confirm Transaction Deletion")
             , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
         if (msgDlg.ShowModal() == wxID_YES) {
             deleteTransactionsByStatus(Model_Checking::STATUS_STR_NONE);
@@ -2159,8 +2159,8 @@ bool TransactionListCtrl::checkForClosedAccounts()
         const wxString text = wxString::Format(
             wxPLURAL("You are about to edit a transaction involving an account that is closed."
             , "The edit will affect %i transactions involving an account that is closed.", GetSelectedItemCount())
-            , closedTrx) + "\n\n" + _("Do you want to perform the edit?");
-        if (wxMessageBox(text, _("Closed Account Check"), wxYES_NO | wxICON_WARNING) == wxYES)
+            , closedTrx) + "\n\n" + _t("Do you want to perform the edit?");
+        if (wxMessageBox(text, _t("Closed Account Check"), wxYES_NO | wxICON_WARNING) == wxYES)
             return true;
     }
     return false;
@@ -2174,10 +2174,10 @@ bool TransactionListCtrl::checkTransactionLocked(int64 accountID, const wxString
         if (transaction_date.ParseDate(transdate)) {
             if (transaction_date <= Model_Account::DateOf(account->STATEMENTDATE)) {
                 wxMessageBox(wxString::Format(
-                    _("Locked transaction to date: %s\n\n"
+                    _t("Locked transaction to date: %s\n\n"
                       "Reconciled transactions.")
                     , mmGetDateTimeForDisplay(account->STATEMENTDATE))
-                    , _("MMEX Transaction Check"), wxOK | wxICON_WARNING);
+                    , _t("MMEX Transaction Check"), wxOK | wxICON_WARNING);
                 return true;
             }
         }

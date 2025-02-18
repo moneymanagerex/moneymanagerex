@@ -52,7 +52,7 @@ wxString Model_Stock::get_stock_name(int64 stock_id)
     if (stock)
         return stock->STOCKNAME;
     else
-        return _("Stock Error");
+        return _t("Stock Error");
 }
 
 /** Return the static instance of Model_Stock table */

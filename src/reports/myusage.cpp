@@ -99,7 +99,7 @@ wxString mmReportMyUsage::getHTMLText()
     }
 
     if (usage_by_module.empty()) {
-        usage_by_module[_("Empty value")] = 0;
+        usage_by_module[_t("Empty value")] = 0;
     }
 
     std::map<int, wxString> usage_by_frequency;
@@ -142,7 +142,7 @@ wxString mmReportMyUsage::getHTMLText()
             gd.labels.push_back(stats.first);
         }
 
-        data_usage.name = _("Reports");
+        data_usage.name = _t("Reports");
         gd.series.push_back(data_usage);
 
         if (!gd.series.empty())
@@ -159,8 +159,8 @@ wxString mmReportMyUsage::getHTMLText()
             hb.startThead();
             {
                 hb.startTableRow();
-                hb.addTableHeaderCell(_("Reports"));
-                hb.addTableHeaderCell(_("Frequency"), "text-right");
+                hb.addTableHeaderCell(_t("Reports"));
+                hb.addTableHeaderCell(_t("Frequency"), "text-right");
                 hb.endTableRow();
                 hb.endThead();
             }

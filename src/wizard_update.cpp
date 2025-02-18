@@ -72,7 +72,7 @@ mmUpdateWizard::mmUpdateWizard(wxWindow* parent, const Document& json_releases, 
 
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
 
-    bool isDialogCreated = wxDialog::Create(parent, wxID_ANY, _("Update Wizard")
+    bool isDialogCreated = wxDialog::Create(parent, wxID_ANY, _t("Update Wizard")
         , wxDefaultPosition, wxDefaultSize
         , wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, "mmUpdateWizard");
 
@@ -100,7 +100,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
     {
         if (!isHistory && new_releases.Index(i) == wxNOT_FOUND) {
             isHistory = true;
-            separator = wxString::Format("<h3> %s </h3>", _("Historical releases:"));
+            separator = wxString::Format("<h3> %s </h3>", _t("Historical releases:"));
         }
 
         bool is_prerelease = (r.HasMember("prerelease") && r["prerelease"].IsBool() && r["prerelease"].GetBool());
@@ -108,7 +108,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
         if (update_stable && is_prerelease)
             continue;
 
-        const auto prerelease = !is_prerelease ? _("Stable") : _("Unstable");
+        const auto prerelease = !is_prerelease ? _t("Stable") : _t("Unstable");
 
         const auto html_url = (r.HasMember("html_url") && r["html_url"].IsString())
             ? wxString::FromUTF8(r["html_url"].GetString()) : "";
@@ -135,7 +135,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
         const wxString link = wxString::Format(R"(<a href="%s" target="_blank">%s</a>)", html_url, tag);
 
         html += wxString::Format("%s<table class='table'><thead><tr><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr></thead>\n"
-            , separator, _("Version"), _("Status"), _("Date"), _("Time"));
+            , separator, _t("Version"), _t("Status"), _t("Date"), _t("Time"));
         html += wxString::Format("<tbody><tr class='success'><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>"
             "<tr class='active'><td colspan='4'>%s</td></tr><tbody></table>\n\n"
             , link, prerelease, pd, time, body);
@@ -143,7 +143,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
         i++;
     }
 
-    auto version = new_releases.empty() ? _("MMEX is up to date.") : _("A new version of MMEX is available.");
+    auto version = new_releases.empty() ? _t("MMEX is up to date.") : _t("A new version of MMEX is available.");
     if (!new_releases.empty()) {
 
         const auto ver_num = new_tag.Mid(1);
@@ -175,7 +175,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
 #endif
     }
 
-    wxString header = wxString::Format(_("Version: %s"), mmex::version::string);
+    wxString header = wxString::Format(_t("Version: %s"), mmex::version::string);
     html = wxString::Format(update_template, header, version, html);
 
     wxBoxSizer *page1_sizer = new wxBoxSizer(wxVERTICAL);
@@ -203,13 +203,13 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
     const auto name = getVFname4print("rep", html);
     browser->LoadURL(name);
 
-    const wxString showAppStartString = wxString::Format(_("&Show this dialog box at startup"));
+    const wxString showAppStartString = wxString::Format(_t("&Show this dialog box at startup"));
     showUpdateCheckBox_ = new wxCheckBox(this, wxID_ANY, showAppStartString, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     showUpdateCheckBox_->SetValue(true);
     page1_sizer->Add(showUpdateCheckBox_, g_flagsV);
 
 
-    wxButton* buttonOk = new wxButton(this, wxID_OK, _("&OK "));
+    wxButton* buttonOk = new wxButton(this, wxID_OK, _t("&OK "));
     page1_sizer->Add(buttonOk, g_flagsCenter);
 
     buttonOk->SetDefault();
@@ -320,9 +320,9 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
     CURLcode err_code = http_get_data(url, resp);
     if (err_code != CURLE_OK) {
         if (!bSilent) {
-            const wxString& msgStr = _("Unable to check for updates!")
-                + "\n\n" + _("Error: ") + curl_easy_strerror(err_code);
-            wxMessageBox(msgStr, _("MMEX Update Check"));
+            const wxString& msgStr = _t("Unable to check for updates!")
+                + "\n\n" + _t("Error: ") + curl_easy_strerror(err_code);
+            wxMessageBox(msgStr, _t("MMEX Update Check"));
         }
         return;
     }
@@ -334,10 +334,10 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
     ParseResult res = json_releases.Parse(resp.utf8_str());
     if (!res || !json_releases.IsArray()) {
         if (!bSilent) {
-            const wxString& msgStr = _("Unable to check for updates!")
-                + "\n\n" + _("Error: ")
+            const wxString& msgStr = _t("Unable to check for updates!")
+                + "\n\n" + _t("Error: ")
                 + wxString::FromUTF8(!res ? GetParseError_En(res.Code()) : json_releases.GetString());
-            wxMessageBox(msgStr, _("MMEX Update Check"));
+            wxMessageBox(msgStr, _t("MMEX Update Check"));
         }
         return;
     }

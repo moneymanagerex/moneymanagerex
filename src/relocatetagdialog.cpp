@@ -85,7 +85,7 @@ void relocateTagDialog::CreateControls()
     flagsExpand.Align(wxALIGN_LEFT).Border(wxALL, 5).Expand();
 
     wxStaticText* headerText = new wxStaticText( this, wxID_STATIC
-        , _("Merge Tags"));
+        , _t("Merge Tags"));
     wxStaticLine* lineTop = new wxStaticLine(this,wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
@@ -99,7 +99,7 @@ void relocateTagDialog::CreateControls()
     cbDestTag_->SetMinSize(wxSize(200, -1));
 
     cbDeleteSourceTag_ = new wxCheckBox(this, wxID_ANY
-        , _("&Delete source tag after merge"));
+        , _t("&Delete source tag after merge"));
 
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
@@ -112,8 +112,8 @@ void relocateTagDialog::CreateControls()
     boxSizer->Add(headerText, g_flagsV);
     boxSizer->Add(lineTop, flagsExpand);
 
-    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("Source:")), flagsH);
-    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("Target:")), flagsH);
+    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_t("Source:")), flagsH);
+    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_t("Target:")), flagsH);
     request_sizer->Add(cbSourceTag_, flagsExpand);
     request_sizer->Add(cbDestTag_, flagsExpand);
 
@@ -131,8 +131,8 @@ void relocateTagDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     boxSizer->Add(lineBottom, flagsExpand);
 
-    wxButton* okButton = new wxButton(this, wxID_OK, _("&Merge"));
-    wxButton* cancelButton = new wxButton(this, wxID_CANCEL, _("&Close"));
+    wxButton* okButton = new wxButton(this, wxID_OK, _t("&Merge"));
+    wxButton* cancelButton = new wxButton(this, wxID_CANCEL, _t("&Close"));
 
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonBoxSizer->Add(okButton, flagsH);
@@ -151,12 +151,12 @@ void relocateTagDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     const auto& source_tag_name = cbSourceTag_->GetValue();
     const auto& destination_tag_name = cbDestTag_->GetValue();
-    const wxString& info = wxString::Format(_("From %1$s to %2$s")
+    const wxString& info = wxString::Format(_t("From %1$s to %2$s")
         , source_tag_name
         , destination_tag_name);
 
-    int ans = wxMessageBox(_("Please Confirm:") + "\n" + info
-        , _("Merge tags confirmation")
+    int ans = wxMessageBox(_t("Please Confirm:") + "\n" + info
+        , _t("Merge tags confirmation")
         , wxOK | wxCANCEL | wxICON_INFORMATION);
 
     if (ans == wxOK)
@@ -212,10 +212,10 @@ void relocateTagDialog::IsOkOk()
     }
 
     wxString msgStr = wxString()
-        << wxString::Format(_("Records found in transactions: %i"), trxs_size) << "\n"
-        << wxString::Format(_("Records found in split transactions: %i"), split_size) << "\n"
-        << wxString::Format(_("Records found in scheduled transactions: %i"), bills_size) << "\n"
-        << wxString::Format(_("Records found in scheduled split transactions: %i"), bill_split_size);
+        << wxString::Format(_t("Records found in transactions: %i"), trxs_size) << "\n"
+        << wxString::Format(_t("Records found in split transactions: %i"), split_size) << "\n"
+        << wxString::Format(_t("Records found in scheduled transactions: %i"), bills_size) << "\n"
+        << wxString::Format(_t("Records found in scheduled split transactions: %i"), bill_split_size);
 
     m_info->SetLabel(msgStr);
 

@@ -280,7 +280,7 @@ mmLastNDays::mmLastNDays(int days)
         .Subtract(wxDateSpan::Days(days))
         .Add(wxDateSpan::Days(1));
     // no change to end_date_
-    this->title_ = wxString::Format(_("Last %i Days"), days);
+    this->title_ = wxString::Format(_t("Last %i Days"), days);
 }
 
 void mmLastNDays::SetRange(int days)
@@ -292,7 +292,7 @@ void mmLastNDays::SetRange(int days)
         .Add(wxDateSpan::Days(1));
     // no change to end_date_
     // update title
-    this->title_ = wxString::Format(_("Last %i Days"), days);
+    this->title_ = wxString::Format(_t("Last %i Days"), days);
 }
 
 mmSinseToday::mmSinseToday() : mmDateRange()

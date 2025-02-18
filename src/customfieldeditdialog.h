@@ -19,6 +19,7 @@
 #ifndef MM_EX_CUSTOMFIELDEDITDIALOG_H_
 #define MM_EX_CUSTOMFIELDEDITDIALOG_H_
 
+#include "defs.h"
 #include <wx/dialog.h>
 #include "Model_CustomField.h"
 class wxChoice;
@@ -38,7 +39,7 @@ public:
 private:
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
-        , const wxString& caption = _("New/Edit Custom Field")
+        , const wxString& caption = _t("New/Edit Custom Field")
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
         , long style = wxCAPTION | wxSYSTEM_MENU | wxRESIZE_BORDER | wxCLOSE_BOX);

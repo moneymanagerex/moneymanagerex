@@ -109,16 +109,16 @@ wxString mmReportSummaryStocks::getHTMLText()
             {
                 hb.startTableRow();
                 {
-                    hb.addTableHeaderCell(_("Name"));
-                    hb.addTableHeaderCell(_("Symbol"));
-                    hb.addTableHeaderCell(_("Purchase Date"));
-                    hb.addTableHeaderCell(_("Quantity"), "text-right");
-                    hb.addTableHeaderCell(_("Initial Value"), "text-right");
-                    hb.addTableHeaderCell(_("Current Price"), "text-right");
-                    hb.addTableHeaderCell(_("Commission"), "text-right");
-                    hb.addTableHeaderCell(_("Realized Gain/Loss"), "text-right");
-                    hb.addTableHeaderCell(_("Unrealized Gain/Loss"), "text-right");
-                    hb.addTableHeaderCell(_("Current Value"), "text-right");
+                    hb.addTableHeaderCell(_t("Name"));
+                    hb.addTableHeaderCell(_t("Symbol"));
+                    hb.addTableHeaderCell(_t("Purchase Date"));
+                    hb.addTableHeaderCell(_t("Quantity"), "text-right");
+                    hb.addTableHeaderCell(_t("Initial Value"), "text-right");
+                    hb.addTableHeaderCell(_t("Current Price"), "text-right");
+                    hb.addTableHeaderCell(_t("Commission"), "text-right");
+                    hb.addTableHeaderCell(_t("Realized Gain/Loss"), "text-right");
+                    hb.addTableHeaderCell(_t("Unrealized Gain/Loss"), "text-right");
+                    hb.addTableHeaderCell(_t("Current Value"), "text-right");
                 }
                 hb.endTableRow();
             }
@@ -160,7 +160,7 @@ wxString mmReportSummaryStocks::getHTMLText()
                     }
                     hb.startTotalTableRow();
                     {
-                        hb.addTableCell(_("Total:"));
+                        hb.addTableCell(_t("Total:"));
                         hb.addEmptyTableCell(6);
                         hb.addCurrencyCell(acct.realgainloss, currency);
                         hb.addCurrencyCell(acct.unrealgainloss, currency);
@@ -180,7 +180,7 @@ wxString mmReportSummaryStocks::getHTMLText()
                 double forex_unreal_gain_loss = std::round((m_unreal_gain_loss_sum_total - m_unreal_gain_loss_excl_forex) * scale) / scale;
 
                 hb.startTotalTableRow();
-                hb.addTableCell(_("Grand Total:"));
+                hb.addTableCell(_t("Grand Total:"));
                 hb.addEmptyTableCell(6);
 
                 hb.startTableCell(" style='text-align:right;' nowrap");

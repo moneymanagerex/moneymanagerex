@@ -48,7 +48,7 @@ mmDiagnosticsDialog::mmDiagnosticsDialog(wxWindow* parent, bool is_maximized)
     , m_is_max(is_maximized)
 {
 
-    createWindow(parent, _("Diagnostics"));
+    createWindow(parent, _t("Diagnostics"));
 }
 
 bool mmDiagnosticsDialog::createWindow(wxWindow* parent
@@ -85,7 +85,7 @@ void mmDiagnosticsDialog::CreateControls()
     bSizer0->Add(bSizer01, g_flagsExpand);
 
     wxBoxSizer* bSizer02 = new wxBoxSizer(wxHORIZONTAL);
-    m_okButton = new wxButton(this, wxID_OK, _("&Close"));
+    m_okButton = new wxButton(this, wxID_OK, _t("&Close"));
     bSizer02->Add(m_okButton, 0, wxALL, 5);
     bSizer0->Add(bSizer02, g_flagsCenter);
 
@@ -98,7 +98,7 @@ void mmDiagnosticsDialog::RefreshView()
     wxString html;
 
     html << "<p><b>";
-    html << _("Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program.");
+    html << _t("Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program.");
     html << "</b></p>";
 
     html << "<p>";

@@ -46,7 +46,7 @@ public:
 private:
     /// Dialog Creation - Used by constructor
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
-        const wxString& caption = _("Settings"),
+        const wxString& caption = _t("Settings"),
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX);
