@@ -133,16 +133,16 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
     bool hide_menu_item = (m_selected_row < 0);
 
     wxMenu menu;
-    menu.Append(MENU_TREEPOPUP_NEW, _u("&New Stock Investment…"));
+    menu.Append(MENU_TREEPOPUP_NEW, _tu("&New Stock Investment…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ADDTRANS, _u("&Add Stock Transactions…"));
+    menu.Append(MENU_TREEPOPUP_ADDTRANS, _tu("&Add Stock Transactions…"));
     menu.Append(MENU_TREEPOPUP_VIEWTRANS, _("&View Stock Transactions"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_EDIT, _u("&Edit Stock Investment…"));
+    menu.Append(MENU_TREEPOPUP_EDIT, _tu("&Edit Stock Investment…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_DELETE, _u("&Delete Stock Investment…"));
+    menu.Append(MENU_TREEPOPUP_DELETE, _tu("&Delete Stock Investment…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _u("&Organize Attachments…"));
+    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _tu("&Organize Attachments…"));
     menu.Append(wxID_INDEX, _("Stock &Web Page"));
 
     menu.Enable(MENU_TREEPOPUP_EDIT, !hide_menu_item);

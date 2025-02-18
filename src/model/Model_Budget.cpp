@@ -26,15 +26,15 @@
 
 const std::vector<std::pair<Model_Budget::PERIOD_ID, wxString> > Model_Budget::PERIOD_CHOICES =
 {
-    { Model_Budget::PERIOD_ID_NONE,       wxString(wxTRANSLATE("None")) },
-    { Model_Budget::PERIOD_ID_WEEKLY,     wxString(wxTRANSLATE("Weekly")) },
-    { Model_Budget::PERIOD_ID_BIWEEKLY,   wxString(wxTRANSLATE("Fortnightly")) },
-    { Model_Budget::PERIOD_ID_MONTHLY,    wxString(wxTRANSLATE("Monthly")) },
-    { Model_Budget::PERIOD_ID_BIMONTHLY,  wxString(wxTRANSLATE("Every 2 Months")) },
-    { Model_Budget::PERIOD_ID_QUARTERLY,  wxString(wxTRANSLATE("Quarterly")) },
-    { Model_Budget::PERIOD_ID_HALFYEARLY, wxString(wxTRANSLATE("Half-Yearly")) },
-    { Model_Budget::PERIOD_ID_YEARLY,     wxString(wxTRANSLATE("Yearly")) },
-    { Model_Budget::PERIOD_ID_DAILY,      wxString(wxTRANSLATE("Daily")) }
+    { Model_Budget::PERIOD_ID_NONE,       _n("None") },
+    { Model_Budget::PERIOD_ID_WEEKLY,     _n("Weekly") },
+    { Model_Budget::PERIOD_ID_BIWEEKLY,   _n("Fortnightly") },
+    { Model_Budget::PERIOD_ID_MONTHLY,    _n("Monthly") },
+    { Model_Budget::PERIOD_ID_BIMONTHLY,  _n("Every 2 Months") },
+    { Model_Budget::PERIOD_ID_QUARTERLY,  _n("Quarterly") },
+    { Model_Budget::PERIOD_ID_HALFYEARLY, _n("Half-Yearly") },
+    { Model_Budget::PERIOD_ID_YEARLY,     _n("Yearly") },
+    { Model_Budget::PERIOD_ID_DAILY,      _n("Daily") }
 };
 
 wxArrayString Model_Budget::PERIOD_STR = period_str_all();

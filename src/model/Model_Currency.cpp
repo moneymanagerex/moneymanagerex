@@ -35,8 +35,8 @@ static wxString s_use_locale;
 
 const std::vector<std::pair<Model_Currency::TYPE_ID, wxString> > Model_Currency::TYPE_CHOICES =
 {
-    { Model_Currency::TYPE_ID_FIAT,   wxString(wxTRANSLATE("Fiat")) },
-    { Model_Currency::TYPE_ID_CRYPTO, wxString(wxTRANSLATE("Crypto")) }
+    { Model_Currency::TYPE_ID_FIAT,   _n("Fiat") },
+    { Model_Currency::TYPE_ID_CRYPTO, _n("Crypto") }
 };
 
 wxArrayString Model_Currency::TYPE_STR = type_str_all();

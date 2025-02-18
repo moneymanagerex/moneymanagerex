@@ -44,15 +44,23 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 static const wxString COLUMN_NAMES[] = { "ID", "Color", "Date", "Number", "Account", "Payee", "Status", "Category", "Type", "Amount",
                                          "Notes", "UDFC01", "UDFC02", "UDFC03", "UDFC04", "UDFC05", "Tags", "FX Rate", "Time" };
 
-static const wxString TRANSACTION_STATUSES[] = { wxTRANSLATE("Unreconciled"), wxTRANSLATE("Reconciled"), wxTRANSLATE("Void"),
-                                                 wxTRANSLATE("Follow Up"),    wxTRANSLATE("Duplicate"),  wxTRANSLATE("All Except Reconciled") };
+static const wxString TRANSACTION_STATUSES[] = {
+    _n("Unreconciled"),
+    _n("Reconciled"),
+    _n("Void"),
+    _n("Follow Up"),
+    _n("Duplicate"),
+    _n("All Except Reconciled")
+};
 
-static const wxString GROUPBY_OPTIONS[] = { wxTRANSLATE("Account"), wxTRANSLATE("Payee"), wxTRANSLATE("Category"), wxTRANSLATE("Type"),
-                                            wxTRANSLATE("Day"),     wxTRANSLATE("Month"), wxTRANSLATE("Year") };
+static const wxString GROUPBY_OPTIONS[] = {
+    _n("Account"), _n("Payee"), _n("Category"), _n("Type"), _n("Day"), _n("Month"), _n("Year")
+};
 
-static const wxString CHART_OPTIONS[] = { wxTRANSLATE("Bar"), wxTRANSLATE("Line"), wxTRANSLATE("Line DateTime"),
-                                            wxTRANSLATE("Pie"),    wxTRANSLATE("Donut"), wxTRANSLATE("Radar"),
-                                            wxTRANSLATE("Bar Line"), wxTRANSLATE("Stacked Bar Line"), wxTRANSLATE("Stacked Area")};
+static const wxString CHART_OPTIONS[] = {
+    _n("Bar"), _n("Line"), _n("Line DateTime"), _n("Pie"), _n("Donut"), _n("Radar"),
+    _n("Bar Line"), _n("Stacked Bar Line"), _n("Stacked Area")
+};
 // Keep options aligned with HtmlBuilder GraphData::type
 
 // Used to determine if we need to refresh the tag text ctrl after
@@ -689,10 +697,10 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     notesEdit_ = new wxTextCtrl(itemPanel, wxID_ANY);
     itemPanelSizer->Add(notesEdit_, g_flagsExpand);
     mmToolTip(notesEdit_, _("Enter any string to find it in transaction notes") + "\n\n" +
-        _u("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
-        _u("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
-        _u("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
-        _u("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.") + "\n" +
+        _tu("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
+        _tu("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
+        _tu("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
+        _tu("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.") + "\n" +
         _("Use regex: to match using regular expressions."));
 
     // Colour

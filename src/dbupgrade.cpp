@@ -118,7 +118,7 @@ bool dbUpgrade::UpgradeDB(wxSQLite3Database * db, const wxString& DbFileName)
     }
 
     wxMessageBox(wxString::Format(_("MMEX database succesfully upgraded to version %i"), ver) + "\n\n"
-        + _u("It is recommended to optimize the database with Tools → Database → Optimize Database…")
+        + _tu("It is recommended to optimize the database with Tools → Database → Optimize Database…")
             , _("MMEX database upgrade"), wxOK | wxICON_INFORMATION);
 
     return true;

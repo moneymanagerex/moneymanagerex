@@ -445,7 +445,7 @@ void mmCategDialog::OnEndDrag(wxTreeEvent& event)
     }
 
     wxString moveMessage = wxString::Format(
-        _u("Do you want to move\n“%1$s”\nto:\n“%2$s”?")
+        _tu("Do you want to move\n“%1$s”\nto:\n“%2$s”?")
         , Model_Category::full_name(m_dragSourceCATEGID)
         , categID != -1 ? Model_Category::full_name(categID) : _("Top level"));
     wxMessageDialog msgDlg(this, moveMessage, _("Confirm Move"),
@@ -473,7 +473,7 @@ void mmCategDialog::showCategDialogDeleteError(bool category)
         deleteCategoryErrMsg << "\n\n" << _("Tip: Change all transactions using this Subcategory to\n"
             "another Category using the merge command:");
 
-    deleteCategoryErrMsg << "\n\n" << _u("Tools → Merge → Categories");
+    deleteCategoryErrMsg << "\n\n" << _tu("Tools → Merge → Categories");
 
     wxMessageBox(deleteCategoryErrMsg, _("Category Manager: Delete Error"), wxOK | wxICON_ERROR);
 }

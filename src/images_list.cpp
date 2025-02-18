@@ -457,7 +457,7 @@ bool checkThemeContents(wxArrayString *filesinTheme)
     {
         missingIcons.RemoveLast(2);
         if (erroredIcons > maxCutOff) {
-            missingIcons << " " << _u("and more…");
+            missingIcons << " " << _tu("and more…");
         }
         wxMessageBox(wxString::Format(_("There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s")
             , erroredIcons, Model_Setting::instance().getTheme(), missingIcons), _("Warning"), wxOK | wxICON_WARNING);

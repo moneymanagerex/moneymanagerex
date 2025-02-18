@@ -356,10 +356,10 @@ void mmCheckingPanel::createControls()
     sizerHButtons->Add(searchCtrl, g_flagsExpandBorder1);
     mmToolTip(searchCtrl,
         _("Enter any string to find it in the nearest transaction data") + "\n\n" +
-        _u("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
-        _u("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
-        _u("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
-        _u("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.") + "\n" +
+        _tu("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
+        _tu("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
+        _tu("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
+        _tu("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.") + "\n" +
         _("Use regex: to match using regular expressions.")
     );
 
@@ -1200,9 +1200,9 @@ void mmCheckingPanel::onButtonRightDown(wxMouseEvent& event)
     }
     case wxID_NEW: {
         wxMenu menu;
-        menu.Append(Model_Checking::TYPE_ID_WITHDRAWAL, _u("&New Withdrawal…"));
-        menu.Append(Model_Checking::TYPE_ID_DEPOSIT, _u("&New Deposit…"));
-        menu.Append(Model_Checking::TYPE_ID_TRANSFER, _u("&New Transfer…"));
+        menu.Append(Model_Checking::TYPE_ID_WITHDRAWAL, _tu("&New Withdrawal…"));
+        menu.Append(Model_Checking::TYPE_ID_DEPOSIT, _tu("&New Deposit…"));
+        menu.Append(Model_Checking::TYPE_ID_TRANSFER, _tu("&New Transfer…"));
         PopupMenu(&menu);
     }
     default:

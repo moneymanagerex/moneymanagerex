@@ -829,14 +829,13 @@ mmChoiceAmountMask::mmChoiceAmountMask(wxWindow* parent, wxWindowID id)
     : wxChoice(parent, id)
 {
     static const std::vector <std::pair<wxString, wxString> > DATA = {
-          {".", "."}
-        , {",", ","}
-        , {wxTRANSLATE("None"), ""}
+        { ".", "." },
+        { ",", "," },
+        { _n("None"), "" }
     };
 
     for (const auto& entry : DATA) {
-        this->Append(wxGetTranslation(entry.first)
-            , new wxStringClientData(entry.second));
+        this->Append(wxGetTranslation(entry.first), new wxStringClientData(entry.second));
     }
 
     Model_Currency::Data* base_currency = Model_Currency::GetBaseCurrency();

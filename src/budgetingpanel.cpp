@@ -46,12 +46,12 @@ enum
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF,
 };
 
-static const wxString VIEW_ALL = wxTRANSLATE("View All Budget Categories");
-static const wxString VIEW_NON_ZERO = wxTRANSLATE("View Non-Zero Budget Categories");
-static const wxString VIEW_PLANNED = wxTRANSLATE("View Planned Budget Categories");
-static const wxString VIEW_INCOME = wxTRANSLATE("View Income Budget Categories");
-static const wxString VIEW_EXPENSE = wxTRANSLATE("View Expense Budget Categories");
-static const wxString VIEW_SUMM = wxTRANSLATE("View Budget Category Summary");
+static const wxString VIEW_ALL      = _n("View All Budget Categories");
+static const wxString VIEW_NON_ZERO = _n("View Non-Zero Budget Categories");
+static const wxString VIEW_PLANNED  = _n("View Planned Budget Categories");
+static const wxString VIEW_INCOME   = _n("View Income Budget Categories");
+static const wxString VIEW_EXPENSE  = _n("View Expense Budget Categories");
+static const wxString VIEW_SUMM     = _n("View Budget Category Summary");
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(mmBudgetingPanel, wxPanel)

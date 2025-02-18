@@ -33,7 +33,7 @@
 #include <algorithm>
 
 mmReportSummaryStocks::mmReportSummaryStocks()
-    : mmPrintableBase(wxTRANSLATE("Summary of Stocks"))
+    : mmPrintableBase(_n("Summary of Stocks"))
 {
     setReportParameters(Reports::StocksReportSummary);
 }
@@ -241,7 +241,7 @@ wxString mmReportSummaryStocks::getHTMLText()
 }
 
 mmReportChartStocks::mmReportChartStocks()
-    : mmPrintableBase(wxTRANSLATE("Stocks Performance Charts"))
+    : mmPrintableBase(_n("Stocks Performance Charts"))
 {
     setReportParameters(Reports::StocksReportPerformance);
 }

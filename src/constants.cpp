@@ -69,21 +69,21 @@ const wxSizerFlags g_flagsExpandBorder1 = wxSizerFlags().Align(wxALIGN_LEFT | wx
 
 const wxString g_CancelLabel =
 #if defined(__APPLE__)
-    wxTRANSLATE("Cancel");
+    _n("Cancel");
 #else
-    wxTRANSLATE("&Cancel ");
+    _n("&Cancel ");
 #endif
 const wxString g_CloseLabel =
 #if defined(__APPLE__)
-    wxTRANSLATE("Close");
+    _n("Close");
 #else
-    wxTRANSLATE("&Close ");
+    _n("&Close ");
 #endif
 const wxString g_OkLabel =
 #if defined(__APPLE__)
-wxTRANSLATE("OK");
+_n("OK");
 #else
-wxTRANSLATE("&OK ");
+_n("&OK ");
 #endif
 
 //bug #5590
@@ -189,10 +189,10 @@ const wxString INIDB_USE_ORG_DATE_COPYPASTE = "USEORIGDATEONCOPYPASTE";
 const wxString INIDB_USE_ORG_DATE_DUPLICATE = "USEORIGDATEONDUPLICATE";
 const wxString INIDB_SEND_USAGE_STATS = "SENDUSAGESTATS";
 
-const wxString VIEW_ACCOUNTS_ALL_STR = wxTRANSLATE("ALL");
-const wxString VIEW_ACCOUNTS_OPEN_STR = wxTRANSLATE("Open");
-const wxString VIEW_ACCOUNTS_CLOSED_STR = wxTRANSLATE("Closed");
-const wxString VIEW_ACCOUNTS_FAVORITES_STR = wxTRANSLATE("Favorites");
+const wxString VIEW_ACCOUNTS_ALL_STR       = _n("ALL");
+const wxString VIEW_ACCOUNTS_OPEN_STR      = _n("Open");
+const wxString VIEW_ACCOUNTS_CLOSED_STR    = _n("Closed");
+const wxString VIEW_ACCOUNTS_FAVORITES_STR = _n("Favorites");
 
 const wxString ATTACHMENTS_FOLDER_DOCUMENTS = "%DOCUMENTS%";
 const wxString ATTACHMENTS_FOLDER_DATABASE = "%DATABASE%";

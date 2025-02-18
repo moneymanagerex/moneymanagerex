@@ -93,19 +93,19 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
     }
     m_panel->updateExtraAssetData(m_selected_row);
     wxMenu menu;
-    menu.Append(MENU_TREEPOPUP_NEW, _u("&New Asset…"));
+    menu.Append(MENU_TREEPOPUP_NEW, _tu("&New Asset…"));
     menu.AppendSeparator();
-    menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _u("D&uplicate Asset…"));
+    menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _tu("D&uplicate Asset…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ADDTRANS, _u("&Add Asset Transaction…"));
+    menu.Append(MENU_TREEPOPUP_ADDTRANS, _tu("&Add Asset Transaction…"));
     menu.Append(MENU_TREEPOPUP_VIEWTRANS, _("&View Asset Transactions"));
-    menu.Append(MENU_TREEPOPUP_GOTOACCOUNT, _u("&Open Asset Account…"));
+    menu.Append(MENU_TREEPOPUP_GOTOACCOUNT, _tu("&Open Asset Account…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_EDIT, _u("&Edit Asset…"));
+    menu.Append(MENU_TREEPOPUP_EDIT, _tu("&Edit Asset…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_DELETE, _u("&Delete Asset…"));
+    menu.Append(MENU_TREEPOPUP_DELETE, _tu("&Delete Asset…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _u("&Organize Attachments…"));
+    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _tu("&Organize Attachments…"));
     if (m_selected_row < 0)
     {
         menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
@@ -506,10 +506,10 @@ void mmAssetsPanel::CreateControls()
     itemBoxSizer5->Add(searchCtrl, 0, wxCENTER, 1);
     mmToolTip(searchCtrl,
         _("Enter any string to find related assets") + "\n\n" +
-        _u("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
-        _u("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
-        _u("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
-        _u("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.")
+        _tu("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
+        _tu("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
+        _tu("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
+        _tu("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.")
     );
 
     //Infobar-mini
@@ -702,7 +702,7 @@ void mmAssetsPanel::OnMouseLeftDown (wxCommandEvent& event)
 {
     int i = 0;
     wxMenu menu;
-    menu.Append(++i, wxGetTranslation(wxTRANSLATE("All")));
+    menu.Append(++i, _("All"));
 
     for (const auto& type: Model_Asset::TYPE_STR)
     {

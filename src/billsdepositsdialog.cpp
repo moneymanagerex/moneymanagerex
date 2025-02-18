@@ -42,23 +42,23 @@
 // the order in gui may be different than the database encoding order.
 const std::vector<std::pair<int, wxString> > mmBDDialog::BILLSDEPOSITS_REPEATS =
 {
-    { Model_Billsdeposits::REPEAT_ONCE, wxTRANSLATE("Once")},
-    { Model_Billsdeposits::REPEAT_WEEKLY, wxTRANSLATE("Weekly")},
-    { Model_Billsdeposits::REPEAT_BI_WEEKLY, wxTRANSLATE("Fortnightly")},
-    { Model_Billsdeposits::REPEAT_MONTHLY, wxTRANSLATE("Monthly")},
-    { Model_Billsdeposits::REPEAT_BI_MONTHLY, wxTRANSLATE("Every 2 Months")},
-    { Model_Billsdeposits::REPEAT_QUARTERLY, wxTRANSLATE("Quarterly")},
-    { Model_Billsdeposits::REPEAT_HALF_YEARLY, wxTRANSLATE("Half-Yearly")},
-    { Model_Billsdeposits::REPEAT_YEARLY, wxTRANSLATE("Yearly")},
-    { Model_Billsdeposits::REPEAT_FOUR_MONTHLY, wxTRANSLATE("Four Months")},
-    { Model_Billsdeposits::REPEAT_FOUR_WEEKLY, wxTRANSLATE("Four Weeks")},
-    { Model_Billsdeposits::REPEAT_DAILY, wxTRANSLATE("Daily")},
-    { Model_Billsdeposits::REPEAT_IN_X_DAYS, wxTRANSLATE("In (n) Days")},
-    { Model_Billsdeposits::REPEAT_IN_X_MONTHS, wxTRANSLATE("In (n) Months")},
-    { Model_Billsdeposits::REPEAT_EVERY_X_DAYS, wxTRANSLATE("Every (n) Days")},
-    { Model_Billsdeposits::REPEAT_EVERY_X_MONTHS, wxTRANSLATE("Every (n) Months")},
-    { Model_Billsdeposits::REPEAT_MONTHLY_LAST_DAY, wxTRANSLATE("Monthly (last day)")},
-    { Model_Billsdeposits::REPEAT_MONTHLY_LAST_BUSINESS_DAY, wxTRANSLATE("Monthly (last business day)")}
+    { Model_Billsdeposits::REPEAT_ONCE,                      _n("Once") },
+    { Model_Billsdeposits::REPEAT_WEEKLY,                    _n("Weekly") },
+    { Model_Billsdeposits::REPEAT_BI_WEEKLY,                 _n("Fortnightly") },
+    { Model_Billsdeposits::REPEAT_MONTHLY,                   _n("Monthly") },
+    { Model_Billsdeposits::REPEAT_BI_MONTHLY,                _n("Every 2 Months") },
+    { Model_Billsdeposits::REPEAT_QUARTERLY,                 _n("Quarterly") },
+    { Model_Billsdeposits::REPEAT_HALF_YEARLY,               _n("Half-Yearly") },
+    { Model_Billsdeposits::REPEAT_YEARLY,                    _n("Yearly") },
+    { Model_Billsdeposits::REPEAT_FOUR_MONTHLY,              _n("Four Months") },
+    { Model_Billsdeposits::REPEAT_FOUR_WEEKLY,               _n("Four Weeks") },
+    { Model_Billsdeposits::REPEAT_DAILY,                     _n("Daily") },
+    { Model_Billsdeposits::REPEAT_IN_X_DAYS,                 _n("In (n) Days") },
+    { Model_Billsdeposits::REPEAT_IN_X_MONTHS,               _n("In (n) Months") },
+    { Model_Billsdeposits::REPEAT_EVERY_X_DAYS,              _n("Every (n) Days") },
+    { Model_Billsdeposits::REPEAT_EVERY_X_MONTHS,            _n("Every (n) Months") },
+    { Model_Billsdeposits::REPEAT_MONTHLY_LAST_DAY,          _n("Monthly (last day)") },
+    { Model_Billsdeposits::REPEAT_MONTHLY_LAST_BUSINESS_DAY, _n("Monthly (last business day)") }
 };
 
 // Used to determine if we need to refresh the tag text ctrl after

@@ -32,7 +32,7 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
 {
     page1 = new wxWizardPageSimple(this);
     wxString displayMsg;
-    displayMsg << _u(
+    displayMsg << _tu(
         "The next pages will help create a new database.\n\n"
         "The database file is stored with an extension of .mmb. "
         "As this file contains important financial data, "

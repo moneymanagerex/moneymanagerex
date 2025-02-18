@@ -33,8 +33,8 @@
 #include "optionsettingsnet.h"
 #include "optionsettingsmisc.h"
 
-static const char * const s_pagetitle[] = {
-    wxTRANSLATE("General"), wxTRANSLATE("View"), wxTRANSLATE("Dashboard"), wxTRANSLATE("Attachments"), wxTRANSLATE("Network"), wxTRANSLATE("Other")
+static const wxString const s_pagetitle[] = {
+    _n("General"), _n("View"), _n("Dashboard"), _n("Attachments"), _n("Network"), _n("Other")
 };
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmOptionsDialog, wxDialog)

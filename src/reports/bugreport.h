@@ -53,7 +53,7 @@ private:
 };
 
 mmBugReport::mmBugReport()
-    : mmPrintableBase(wxTRANSLATE("Bug Report"))
+    : mmPrintableBase(_n("Bug Report"))
 {
 }
 
@@ -71,7 +71,7 @@ wxString mmBugReport::getHTMLText()
     wxURI req = mmex::weblink::BugReport + "/new?body=" + info + "\n<hr>" + diag;
 
     const wxString texts[] = {
-        _u("Use Help → Check for Updates in MMEX to get the latest version, where the problem might be already fixed."),
+        _tu("Use Help → Check for Updates in MMEX to get the latest version, where the problem might be already fixed."),
         wxString::Format(_("Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one.")
             ,  do_href_wrap(mmex::weblink::BugReport)),
         wxString::Format(_("As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions.") , do_href_wrap(mmex::weblink::Forum)),

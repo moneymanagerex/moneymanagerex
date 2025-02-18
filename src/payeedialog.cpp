@@ -134,10 +134,10 @@ void mmEditPayeeDialog::CreateControls()
     patternTable_Arranger->Add(patternTable_Sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
     mmToolTip(m_patternTable->GetGridWindow(),
         _("Enter any string to match this payee on import.\nPatterns are tested in the order entered here.") + "\n\n" +
-        _u("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
-        _u("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
-        _u("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
-        _u("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.") + "\n" +
+        _tu("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
+        _tu("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
+        _tu("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
+        _tu("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.") + "\n" +
         _("Use regex: to match using regular expressions.")
     );
 
@@ -741,7 +741,7 @@ void mmPayeeDialog::DeletePayee()
                     << "\n\n"
                     << _("Tip: Change all transactions using this Payee to another Payee"
                         " using the merge command:")
-                    << "\n\n" << _u("Tools → Merge → Payees");
+                    << "\n\n" << _tu("Tools → Merge → Payees");
                 wxMessageBox(deletePayeeErrMsg, _("Payee Manager: Delete Error"), wxOK | wxICON_ERROR);
                 continue;
             }

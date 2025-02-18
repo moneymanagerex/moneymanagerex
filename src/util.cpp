@@ -599,16 +599,16 @@ const std::vector<std::pair<wxString, wxString> > g_date_formats_map()
 }
 
 const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding = {
-    { 0, { wxConvAuto(wxFONTENCODING_SYSTEM), wxTRANSLATE("Default") } }
-    , { 1, { wxConvAuto(wxFONTENCODING_UTF8), "UTF-8" } }
-    , { 2, { wxConvAuto(wxFONTENCODING_CP1250), "1250" } }
-    , { 3, { wxConvAuto(wxFONTENCODING_CP1251), "1251" } }
-    , { 4, { wxConvAuto(wxFONTENCODING_CP1252), "1252" } }
-    , { 5, { wxConvAuto(wxFONTENCODING_CP1253), "1253" } }
-    , { 6, { wxConvAuto(wxFONTENCODING_CP1254), "1254" } }
-    , { 7, { wxConvAuto(wxFONTENCODING_CP1255), "1255" } }
-    , { 8, { wxConvAuto(wxFONTENCODING_CP1256), "1256" } }
-    , { 9, { wxConvAuto(wxFONTENCODING_CP1257), "1257" } }
+    { 0, { wxConvAuto(wxFONTENCODING_SYSTEM), _n("Default") } },
+    { 1, { wxConvAuto(wxFONTENCODING_UTF8),   "UTF-8" } },
+    { 2, { wxConvAuto(wxFONTENCODING_CP1250), "1250" } },
+    { 3, { wxConvAuto(wxFONTENCODING_CP1251), "1251" } },
+    { 4, { wxConvAuto(wxFONTENCODING_CP1252), "1252" } },
+    { 5, { wxConvAuto(wxFONTENCODING_CP1253), "1253" } },
+    { 6, { wxConvAuto(wxFONTENCODING_CP1254), "1254" } },
+    { 7, { wxConvAuto(wxFONTENCODING_CP1255), "1255" } },
+    { 8, { wxConvAuto(wxFONTENCODING_CP1256), "1256" } },
+    { 9, { wxConvAuto(wxFONTENCODING_CP1257), "1257" } }
 };
 
 wxString cleanseNumberString(const wxString& str,const bool decimal)

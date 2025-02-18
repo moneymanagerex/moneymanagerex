@@ -324,10 +324,10 @@ void OptionSettingsView::Create()
     uiIconSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _("Others Icon Size")), g_flagsH);
 
     const wxString settings_choice[] = {
-        wxTRANSLATE("Small (16 px)"),
-        wxTRANSLATE("Normal (24 px)"),
-        wxTRANSLATE("Large (32 px)"),
-        wxTRANSLATE("Huge (48 px)")
+        _n("Small (16 px)"),
+        _n("Normal (24 px)"),
+        _n("Large (32 px)"),
+        _n("Huge (48 px)")
     };
 
     m_toolbar_icon_size = new wxChoice(panelWindow, wxID_RESIZE_FRAME);

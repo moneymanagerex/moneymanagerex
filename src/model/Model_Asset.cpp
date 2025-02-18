@@ -23,32 +23,32 @@
 
 const std::vector<std::pair<Model_Asset::TYPE_ID, wxString> > Model_Asset::TYPE_CHOICES = 
 {
-    { Model_Asset::TYPE_ID_PROPERTY,  wxString(wxTRANSLATE("Property")) },
-    { Model_Asset::TYPE_ID_AUTO,      wxString(wxTRANSLATE("Automobile")) },
-    { Model_Asset::TYPE_ID_HOUSE,     wxString(wxTRANSLATE("Household Object")) },
-    { Model_Asset::TYPE_ID_ART,       wxString(wxTRANSLATE("Art")) },
-    { Model_Asset::TYPE_ID_JEWELLERY, wxString(wxTRANSLATE("Jewellery")) },
-    { Model_Asset::TYPE_ID_CASH,      wxString(wxTRANSLATE("Cash")) },
-    { Model_Asset::TYPE_ID_OTHER,     wxString(wxTRANSLATE("Other")) }
+    { Model_Asset::TYPE_ID_PROPERTY,  _n("Property") },
+    { Model_Asset::TYPE_ID_AUTO,      _n("Automobile") },
+    { Model_Asset::TYPE_ID_HOUSE,     _n("Household Object") },
+    { Model_Asset::TYPE_ID_ART,       _n("Art") },
+    { Model_Asset::TYPE_ID_JEWELLERY, _n("Jewellery") },
+    { Model_Asset::TYPE_ID_CASH,      _n("Cash") },
+    { Model_Asset::TYPE_ID_OTHER,     _n("Other") }
 };
 
 const std::vector<std::pair<Model_Asset::STATUS_ID, wxString> > Model_Asset::STATUS_CHOICES = 
 {
-    { Model_Asset::STATUS_ID_CLOSED, wxString(wxTRANSLATE("Closed")) },
-    { Model_Asset::STATUS_ID_OPEN,   wxString(wxTRANSLATE("Open")) }
+    { Model_Asset::STATUS_ID_CLOSED, _n("Closed") },
+    { Model_Asset::STATUS_ID_OPEN,   _n("Open") }
 };
 
 const std::vector<std::pair<Model_Asset::CHANGE_ID, wxString> > Model_Asset::CHANGE_CHOICES = 
 {
-    { Model_Asset::CHANGE_ID_NONE,       wxString(wxTRANSLATE("None")) },
-    { Model_Asset::CHANGE_ID_APPRECIATE, wxString(wxTRANSLATE("Appreciates")) },
-    { Model_Asset::CHANGE_ID_DEPRECIATE, wxString(wxTRANSLATE("Depreciates")) }
+    { Model_Asset::CHANGE_ID_NONE,       _n("None") },
+    { Model_Asset::CHANGE_ID_APPRECIATE, _n("Appreciates") },
+    { Model_Asset::CHANGE_ID_DEPRECIATE, _n("Depreciates") }
 };
 
 const std::vector<std::pair<Model_Asset::CHANGEMODE_ID, wxString> > Model_Asset::CHANGEMODE_CHOICES = 
 {
-    { Model_Asset::CHANGEMODE_ID_PERCENTAGE, wxString(wxTRANSLATE("Percentage")) },
-    { Model_Asset::CHANGEMODE_ID_LINEAR,     wxString(wxTRANSLATE("Linear")) }
+    { Model_Asset::CHANGEMODE_ID_PERCENTAGE, _n("Percentage") },
+    { Model_Asset::CHANGEMODE_ID_LINEAR,     _n("Linear") }
 };
 
 wxArrayString Model_Asset::TYPE_STR = type_str_all();

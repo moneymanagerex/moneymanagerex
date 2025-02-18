@@ -99,23 +99,23 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     decimal_(Model_Currency::GetBaseCurrency()->DECIMAL_POINT),
     depositType_(Model_Checking::TYPE_STR_DEPOSIT)
 {
-    CSVFieldName_[UNIV_CSV_ID] = wxTRANSLATE("ID");
-    CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
-    CSVFieldName_[UNIV_CSV_STATUS] = wxTRANSLATE("Status");
-    CSVFieldName_[UNIV_CSV_TYPE] = wxTRANSLATE("Type");
-    CSVFieldName_[UNIV_CSV_ACCOUNT] = wxTRANSLATE("Account");
-    CSVFieldName_[UNIV_CSV_PAYEE] = wxTRANSLATE("Payee");
-    CSVFieldName_[UNIV_CSV_AMOUNT] = wxTRANSLATE("Amount");
-    CSVFieldName_[UNIV_CSV_CURRENCY] = wxTRANSLATE("Currency");
-    CSVFieldName_[UNIV_CSV_CATEGORY] = wxTRANSLATE("Category");
-    CSVFieldName_[UNIV_CSV_SUBCATEGORY] = wxTRANSLATE("SubCategory");
-    CSVFieldName_[UNIV_CSV_TAGS] = wxTRANSLATE("Tags");
-    CSVFieldName_[UNIV_CSV_TRANSNUM] = wxTRANSLATE("Number");
-    CSVFieldName_[UNIV_CSV_NOTES] = wxTRANSLATE("Notes");
-    CSVFieldName_[UNIV_CSV_DONTCARE] = wxTRANSLATE("Don't Care");
-    CSVFieldName_[UNIV_CSV_WITHDRAWAL] = wxTRANSLATE("Withdrawal");
-    CSVFieldName_[UNIV_CSV_DEPOSIT] = wxTRANSLATE("Deposit");
-    CSVFieldName_[UNIV_CSV_BALANCE] = wxTRANSLATE("Balance");   
+    CSVFieldName_[UNIV_CSV_ID]          = _n("ID");
+    CSVFieldName_[UNIV_CSV_DATE]        = _n("Date");
+    CSVFieldName_[UNIV_CSV_STATUS]      = _n("Status");
+    CSVFieldName_[UNIV_CSV_TYPE]        = _n("Type");
+    CSVFieldName_[UNIV_CSV_ACCOUNT]     = _n("Account");
+    CSVFieldName_[UNIV_CSV_PAYEE]       = _n("Payee");
+    CSVFieldName_[UNIV_CSV_AMOUNT]      = _n("Amount");
+    CSVFieldName_[UNIV_CSV_CURRENCY]    = _n("Currency");
+    CSVFieldName_[UNIV_CSV_CATEGORY]    = _n("Category");
+    CSVFieldName_[UNIV_CSV_SUBCATEGORY] = _n("SubCategory");
+    CSVFieldName_[UNIV_CSV_TAGS]        = _n("Tags");
+    CSVFieldName_[UNIV_CSV_TRANSNUM]    = _n("Number");
+    CSVFieldName_[UNIV_CSV_NOTES]       = _n("Notes");
+    CSVFieldName_[UNIV_CSV_DONTCARE]    = _n("Don't Care");
+    CSVFieldName_[UNIV_CSV_WITHDRAWAL]  = _n("Withdrawal");
+    CSVFieldName_[UNIV_CSV_DEPOSIT]     = _n("Deposit");
+    CSVFieldName_[UNIV_CSV_BALANCE]     = _n("Balance");   
 
     wxString header;
     switch (dialogType_)
@@ -200,7 +200,7 @@ void mmUnivCSVDialog::CreateControls()
     m_text_ctrl_->Connect(ID_FILE_NAME
         , wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(mmUnivCSVDialog::OnFileNameEntered), nullptr, this);
 
-    const wxString file_button_label = _u("&Browse…");
+    const wxString file_button_label = _tu("&Browse…");
     wxButton* button_browse = new wxButton(itemPanel6, wxID_BROWSE, file_button_label);
     itemBoxSizer7->Add(button_browse, g_flagsH);
 

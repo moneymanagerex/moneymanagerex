@@ -47,24 +47,23 @@ enum
 
 const wxString BILLSDEPOSITS_REPEATS[] =
 {
-    wxTRANSLATE("Once"),
-    wxTRANSLATE("Weekly"),
-    wxTRANSLATE("Fortnightly"),
-    wxTRANSLATE("Monthly"),
-    wxTRANSLATE("Every 2 Months"),
-    wxTRANSLATE("Quarterly"),
-    wxTRANSLATE("Half-Yearly"),
-    wxTRANSLATE("Yearly"),
-    wxTRANSLATE("Four Months"),
-    wxTRANSLATE("Four Weeks"),
-    wxTRANSLATE("Daily"),
-    wxTRANSLATE("In %s Days"),
-    wxTRANSLATE("In %s Months"),
-    wxTRANSLATE("Every %s Days"),
-    wxTRANSLATE("Every %s Months"),
-    wxTRANSLATE("Monthly (last day)"),
-    wxTRANSLATE("Monthly (last business day)")
-
+    _n("Once"),
+    _n("Weekly"),
+    _n("Fortnightly"),
+    _n("Monthly"),
+    _n("Every 2 Months"),
+    _n("Quarterly"),
+    _n("Half-Yearly"),
+    _n("Yearly"),
+    _n("Four Months"),
+    _n("Four Weeks"),
+    _n("Daily"),
+    _n("In %s Days"),
+    _n("In %s Months"),
+    _n("Every %s Days"),
+    _n("Every %s Months"),
+    _n("Monthly (last day)"),
+    _n("Monthly (last business day)")
 };
 
 /*******************************************************/
@@ -435,17 +434,17 @@ void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
     m_bdp->updateBottomPanelData(m_selected_row);
     bool item_active = (m_selected_row >= 0);
     wxMenu menu;
-    menu.Append(MENU_POPUP_BD_ENTER_OCCUR, _u("Enter next Occurrence…"));
+    menu.Append(MENU_POPUP_BD_ENTER_OCCUR, _tu("Enter next Occurrence…"));
     menu.AppendSeparator();
     menu.Append(MENU_POPUP_BD_SKIP_OCCUR, _("Skip next Occurrence"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_NEW, _u("&New Scheduled Transaction…"));
-    menu.Append(MENU_TREEPOPUP_EDIT, _u("&Edit Scheduled Transaction…"));
-    menu.Append(MENU_TREEPOPUP_DUPLICATE, _u("D&uplicate Scheduled Transaction…"));
+    menu.Append(MENU_TREEPOPUP_NEW, _tu("&New Scheduled Transaction…"));
+    menu.Append(MENU_TREEPOPUP_EDIT, _tu("&Edit Scheduled Transaction…"));
+    menu.Append(MENU_TREEPOPUP_DUPLICATE, _tu("D&uplicate Scheduled Transaction…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_DELETE, _u("&Delete Scheduled Transaction…"));
+    menu.Append(MENU_TREEPOPUP_DELETE, _tu("&Delete Scheduled Transaction…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _u("&Organize Attachments…"));
+    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _tu("&Organize Attachments…"));
 
     menu.Enable(MENU_POPUP_BD_ENTER_OCCUR, item_active);
     menu.Enable(MENU_POPUP_BD_SKIP_OCCUR, item_active);

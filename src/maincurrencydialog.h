@@ -75,7 +75,7 @@ private:
 
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
-        , const wxString& caption = wxTRANSLATE("Currency Manager")
+        , const wxString& caption = _n("Currency Manager")
         , const wxString& name = "Organize Currencies"
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize

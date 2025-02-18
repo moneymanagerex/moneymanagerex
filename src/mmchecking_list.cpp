@@ -671,10 +671,10 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
     }
     wxMenu menu;
     if (!m_cp->isDeletedTrans()) {
-        menu.Append(MENU_TREEPOPUP_WITHDRAWAL, _u("New &Withdrawal…"));
-        menu.Append(MENU_TREEPOPUP_DEPOSIT, _u("New &Deposit…"));
+        menu.Append(MENU_TREEPOPUP_WITHDRAWAL, _tu("New &Withdrawal…"));
+        menu.Append(MENU_TREEPOPUP_DEPOSIT, _tu("New &Deposit…"));
         if (Model_Account::instance().all_checking_account_names(true).size() > 1)
-            menu.Append(MENU_TREEPOPUP_TRANSFER, _u("New &Transfer…"));
+            menu.Append(MENU_TREEPOPUP_TRANSFER, _tu("New &Transfer…"));
 
         menu.AppendSeparator();
 
@@ -701,7 +701,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
                 menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
         }
 
-        menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _u("D&uplicate Transaction…"));
+        menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _tu("D&uplicate Transaction…"));
         if (is_nothing_selected || multiselect)
             menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
 
@@ -719,13 +719,13 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
         if (is_nothing_selected || multiselect || have_category)
             menu.Enable(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, false);
 
-        menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _u("&Organize Attachments…"));
+        menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _tu("&Organize Attachments…"));
         if (is_nothing_selected || multiselect)
             menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
 
         menu.Append(
             MENU_TREEPOPUP_CREATE_REOCCURANCE,
-            _u("Create Scheduled T&ransaction…")
+            _tu("Create Scheduled T&ransaction…")
         );
         if (is_nothing_selected || multiselect)
             menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
@@ -739,7 +739,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
             menu.Enable(MENU_TREEPOPUP_RESTORE, false);
         menu.Append(
             MENU_TREEPOPUP_RESTORE_VIEWED,
-            _u("Restore &all transactions in current view…")
+            _tu("Restore &all transactions in current view…")
         );
     }
     bool columnIsAmount = false;
@@ -900,17 +900,17 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
     subGlobalOpMenuDelete->Append(
         MENU_TREEPOPUP_DELETE_VIEWED,
         !m_cp->isDeletedTrans() ?
-            _u("Delete &all transactions in current view…") :
-            _u("Permanently delete &all transactions in current view…")
+            _tu("Delete &all transactions in current view…") :
+            _tu("Permanently delete &all transactions in current view…")
     );
     if (!m_cp->isDeletedTrans()) {
         subGlobalOpMenuDelete->Append(
             MENU_TREEPOPUP_DELETE_FLAGGED,
-            _u("Delete Viewed “&Follow Up” Transactions…")
+            _tu("Delete Viewed “&Follow Up” Transactions…")
         );
         subGlobalOpMenuDelete->Append(
             MENU_TREEPOPUP_DELETE_UNRECONCILED,
-            _u("Delete Viewed “&Unreconciled” Transactions…")
+            _tu("Delete Viewed “&Unreconciled” Transactions…")
         );
     }
     menu.Append(MENU_TREEPOPUP_DELETE2, _("De&lete "), subGlobalOpMenuDelete);
@@ -1521,7 +1521,7 @@ void TransactionListCtrl::onDeleteViewedTransaction(wxCommandEvent& event)
     }
     else if (i == MENU_TREEPOPUP_DELETE_FLAGGED) {
         wxMessageDialog msgDlg(this
-            , wxString::Format(_u("Do you want to delete all the “%s” transactions shown?"), _("Follow Up"))
+            , wxString::Format(_tu("Do you want to delete all the “%s” transactions shown?"), _("Follow Up"))
             , _("Confirm Transaction Deletion")
             , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
         if (msgDlg.ShowModal() == wxID_YES) {
@@ -1530,7 +1530,7 @@ void TransactionListCtrl::onDeleteViewedTransaction(wxCommandEvent& event)
     }
     else if (i == MENU_TREEPOPUP_DELETE_UNRECONCILED) {
         wxMessageDialog msgDlg(this
-            , wxString::Format(_u("Do you want to delete all the “%s” transactions shown?"), _("Unreconciled"))
+            , wxString::Format(_tu("Do you want to delete all the “%s” transactions shown?"), _("Unreconciled"))
             , _("Confirm Transaction Deletion")
             , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
         if (msgDlg.ShowModal() == wxID_YES) {
