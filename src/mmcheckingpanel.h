@@ -74,7 +74,7 @@ public:
     void displaySplitCategories(Fused_Transaction::IdB fused_id);
 
 private:
-    friend class TransactionListCtrl; // needs access to m_core, initdb_, ...
+    friend class TransactionListCtrl;
 
     enum FILTER_ID
     {
@@ -83,6 +83,7 @@ private:
         FILTER_ID_size
     };
 
+    wxDECLARE_EVENT_TABLE();
     enum
     {
         mmID_FILTER = wxID_HIGHEST + 50,
@@ -128,7 +129,6 @@ private:
     // set by showTips()
     bool m_show_tips = false;
 
-    wxDECLARE_EVENT_TABLE();
     mmGUIFrame* m_frame = nullptr;
     wxButton* m_bitmapTransFilter = nullptr;
     wxButton* m_btnNew = nullptr;

@@ -35,6 +35,33 @@ class billsDepositsListCtrl: public mmListCtrl
     wxDECLARE_EVENT_TABLE();
 
 public:
+    enum LIST_COL
+    {
+        LIST_COL_ICON = 0,
+        LIST_COL_ID,
+        LIST_COL_PAYMENT_DATE,
+        LIST_COL_DUE_DATE,
+        LIST_COL_ACCOUNT,
+        LIST_COL_PAYEE,
+        LIST_COL_STATUS,
+        LIST_COL_CATEGORY,
+        LIST_COL_TAGS,
+        LIST_COL_TYPE,
+        LIST_COL_AMOUNT,
+        LIST_COL_FREQUENCY,
+        LIST_COL_REPEATS,
+        LIST_COL_AUTO,
+        LIST_COL_DAYS,
+        LIST_COL_NUMBER,
+        LIST_COL_NOTES,
+        LIST_COL_size, // number of columns
+    };
+
+private:
+    static const std::vector<ListColumnInfo> col_info_all();
+    int col_sort();
+
+public:
     billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow *parent, wxWindowID winid = wxID_ANY);
     ~billsDepositsListCtrl();
 
@@ -86,28 +113,6 @@ public:
         ICON_DOWNARROW
     };
 
-    enum EColumn
-    {
-        COL_ICON = 0,
-        COL_ID,
-        COL_PAYMENT_DATE,
-        COL_DUE_DATE,
-        COL_ACCOUNT,
-        COL_PAYEE,
-        COL_STATUS,
-        COL_CATEGORY,
-        COL_TAGS,
-        COL_TYPE,
-        COL_AMOUNT,
-        COL_FREQUENCY,
-        COL_REPEATS,
-        COL_AUTO,
-        COL_DAYS,
-        COL_NUMBER,
-        COL_NOTES,
-        COL_MAX, // number of columns
-    };
-
     mmBillsDepositsPanel(wxWindow *parent
         , wxWindowID winid = wxID_ANY
         , const wxPoint& pos = wxDefaultPosition
@@ -127,7 +132,6 @@ public:
     wxString getItem(long item, long column);
     void RefreshList();
     int getColumnsNumber();
-    int col_sort();
 
     const wxString GetFrequency(const Model_Billsdeposits::Data* item) const;
     int GetNumRepeats(const Model_Billsdeposits::Data* item) const;
@@ -175,8 +179,9 @@ private:
     wxArrayString tips_;
 };
 
-inline wxDate mmBillsDepositsPanel::getToday() const { return m_today; }
-inline int mmBillsDepositsPanel::getColumnsNumber() { return COL_MAX; }
-inline int mmBillsDepositsPanel::col_sort() { return COL_PAYMENT_DATE; }
-#endif
+inline int billsDepositsListCtrl::col_sort() { return LIST_COL_PAYMENT_DATE; }
 
+inline wxDate mmBillsDepositsPanel::getToday() const { return m_today; }
+inline int mmBillsDepositsPanel::getColumnsNumber() { return billsDepositsListCtrl::LIST_COL_size; }
+
+#endif

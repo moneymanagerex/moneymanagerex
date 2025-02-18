@@ -31,6 +31,25 @@ class mmAssetsListCtrl: public mmListCtrl
     wxDECLARE_EVENT_TABLE();
 
 public:
+    enum LIST_COL
+    {
+        LIST_COL_ICON = 0,
+        LIST_COL_ID,
+        LIST_COL_NAME,
+        LIST_COL_DATE,
+        LIST_COL_TYPE,
+        LIST_COL_VALUE_INITIAL,
+        LIST_COL_VALUE_CURRENT,
+        LIST_COL_NOTES,
+        LIST_COL_size, // number of columns
+    };
+
+private:
+    static const std::vector<ListColumnInfo> col_info_all();
+    int col_size() { return LIST_COL_size; }
+    int col_sort() { return LIST_COL_DATE; }
+
+public:
     mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindowID winid = wxID_ANY);
 
     void OnNewAsset(wxCommandEvent& event);
@@ -93,19 +112,6 @@ public:
         ICON_DOWNARROW
     };
 
-    enum EColumn
-    {
-        COL_ICON = 0,
-        COL_ID,
-        COL_NAME,
-        COL_DATE,
-        COL_TYPE,
-        COL_VALUE_INITIAL,
-        COL_VALUE_CURRENT,
-        COL_NOTES,
-        COL_MAX, // number of columns
-    };
-
     mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid, const wxString& name="mmAssetsPanel");
     mmGUIFrame* m_frame = nullptr;
 
@@ -115,8 +121,6 @@ public:
 
     Model_Asset::Data_Set m_assets;
     Model_Asset::TYPE_ID m_filter_type;
-    int col_max() { return COL_MAX; }
-    int col_sort() { return COL_DATE; }
 
     wxString BuildPage() const { return m_listCtrlAssets->BuildPage(_("Assets")); }
 

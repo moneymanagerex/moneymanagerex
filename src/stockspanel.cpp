@@ -572,7 +572,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
             , sTotalDifference, sTotalNumShares
             , Model_Currency::toCurrency(stocktotalgainloss)
             , Model_Currency::toStringNoFormatting(stocktotalPercentage, nullptr, 2)
-            , OnGetItemText(selectedIndex, static_cast<long>(COL_NOTES)));
+            , OnGetItemText(selectedIndex, static_cast<long>(LIST_COL_NOTES)));
     }
     return additionInfo;
 }

@@ -24,64 +24,42 @@
 #include "wx/event.h"
 #include <wx/webview.h>
 #include <wx/webviewfshandler.h>
-//----------------------------------------------------------------------------
 
-struct PANEL_COLUMN
-{
-    PANEL_COLUMN(const wxString & header, int width, int format, bool sortable)
-        : HEADER(header), WIDTH(width), FORMAT(format), SORTABLE(sortable)
-    {}
-    wxString HEADER;
-    int WIDTH;
-    int FORMAT;
-    bool SORTABLE;
-};
+typedef struct {
+    wxString header;
+    int width;
+    int format;
+    bool sortable;
+} ListColumnInfo;
 
 class mmListCtrl : public wxListCtrl
 {
-    wxDECLARE_EVENT_TABLE();
+public:
+    std::vector<int> m_column_order;       // map: col_nr -> col_id
+    std::vector<ListColumnInfo> m_columns; // map: col_nr -> ListColumnInfo
+    int m_default_sort_column = -1;
+    bool m_asc = true;
+    long m_selected_row = -1;
+    int m_selected_col = 0;
+    wxString m_col_width_fmt;
+    wxString m_col_type_str;
+    wxSharedPtr<wxListItemAttr> attr1_, attr2_; // style1, style2
 
 public:
     mmListCtrl(wxWindow *parent, wxWindowID winid);
     virtual ~mmListCtrl();
 
-    wxSharedPtr<wxListItemAttr> attr1_, attr2_; // style1, style2
-    long m_selected_row = -1;
-    int m_selected_col = 0;
-    bool m_asc = true;
-    std::vector<PANEL_COLUMN> m_columns;
-    std::vector<int> m_real_columns; // map from actual column to EColumn when list can have optional columns
-    wxString m_col_width;
-    wxString m_col_idstr;
-    int m_default_sort_column = -1;
-
     virtual wxListItemAttr* OnGetItemAttr(long row) const;
-    wxString BuildPage(const wxString &title) const;
-    int GetColumnWidthSetting(int column_number, int default_size = wxLIST_AUTOSIZE);
-    void SetColumnWidthSetting(int column_number, int column_width);
 
-    void SetColumnOrder(std::vector<int> columnList);
-    std::vector<int> GetColumnOrder();
+    void saveColumnOrder(std::vector<int> columnList);
+    std::vector<int> loadColumnOrder();
+    void saveColumnWidth(int column_number, int column_width);
+    int loadColumnWidth(int column_number, int default_size = wxLIST_AUTOSIZE);
+    wxString BuildPage(const wxString &title) const;
 
 protected:
-    void CreateColumns();
-    void OnItemResize(wxListEvent& event);
-    virtual void OnColClick(wxListEvent& event);
-    void OnColRightClick(wxListEvent& event);
-    /* Headers Right Click*/
-    void PopupSelected(wxCommandEvent& event);
-    void OnHeaderColumn(wxCommandEvent& event);
-    void OnHeaderHide(wxCommandEvent& WXUNUSED(event));
-    void OnHeaderSort(wxCommandEvent& event);
-    void OnHeaderReset(wxCommandEvent& WXUNUSED(event));
-    void OnHeaderMove(wxCommandEvent& WXUNUSED(event), int direction);
-    int GetRealColumn(int col_order) const;
-    int GetColumnOrder(int col_id) const;
-    int m_ColumnHeaderNbr = -1;
+    wxDECLARE_EVENT_TABLE();
     enum {
-        HEADER = 0,
-        WIDTH,
-        FORMAT,
         MENU_HEADER_HIDE = wxID_HIGHEST + 2000,
         MENU_HEADER_SORT,
         MENU_HEADER_RESET,
@@ -89,7 +67,29 @@ protected:
         MENU_HEADER_MOVE_RIGHT,
         MENU_HEADER_COLUMN, // Must be last in list
     };
+
+protected:
+    int m_ColumnHeaderNbr = -1;
+
+protected:
+    void createColumns();
+    int getColumnId(int col_nr) const;
+    int getColumnNr(int col_id) const;
+
+    virtual void OnColClick(wxListEvent& event);
+
+    void onItemResize(wxListEvent& event);
+    void onColRightClick(wxListEvent& event);
+    // Headers Right Click
+    void onHeaderPopup(wxCommandEvent& event);
+    void onHeaderColumn(wxCommandEvent& event);
+    void onHeaderHide(wxCommandEvent& WXUNUSED(event));
+    void onHeaderSort(wxCommandEvent& event);
+    void onHeaderReset(wxCommandEvent& WXUNUSED(event));
+    void onHeaderMove(wxCommandEvent& WXUNUSED(event), int direction);
 };
+
+//----------------------------------------------------------------------------
 
 class mmPanelBase : public wxPanel
 {
@@ -99,8 +99,8 @@ public:
 
     virtual wxString BuildPage() const;
     virtual void PrintPage();
-    void windowsFreezeThaw();
-
     virtual void sortTable() = 0;
+
+    void windowsFreezeThaw();
 };
-//----------------------------------------------------------------------------
+
