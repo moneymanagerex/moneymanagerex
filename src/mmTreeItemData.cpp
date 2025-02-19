@@ -29,8 +29,8 @@
 mmTreeItemData::mmTreeItemData(int type, int64 id)
     : type_(type)
     , id_(id)
-    , report_(nullptr)
     , stringData_(wxString::Format("%lld", id))
+    , report_(nullptr)
 {
 }
 

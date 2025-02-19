@@ -33,7 +33,7 @@
 #include "optionsettingsnet.h"
 #include "optionsettingsmisc.h"
 
-static const wxString const s_pagetitle[] = {
+static const wxArrayString s_pagetitle = {
     _n("General"), _n("View"), _n("Dashboard"), _n("Attachments"), _n("Network"), _n("Other")
 };
 

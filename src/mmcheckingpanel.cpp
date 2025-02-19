@@ -1051,10 +1051,10 @@ void mmCheckingPanel::onFilterPopup(wxCommandEvent& event)
     }
 
     menu.AppendSeparator();
-    if (i < m_date_range_a.size()) {
+    if (i < int(m_date_range_a.size())) {
         wxMenu* menu_more(new wxMenu);
         menu.AppendSubMenu(menu_more, _t("More date ranges…"));
-        while (i < m_date_range_a.size()) {
+        while (i < int(m_date_range_a.size())) {
             menu_more->Append(mmID_FILTER_DATE_MIN + i, m_date_range_a[i].getName());
             i++;
         }
@@ -1070,7 +1070,7 @@ void mmCheckingPanel::onFilterPopup(wxCommandEvent& event)
 void mmCheckingPanel::onFilterDate(wxCommandEvent& event)
 {
     int i = event.GetId() - mmID_FILTER_DATE_MIN;
-    if (i < 0 || i >= m_date_range_a.size())
+    if (i < 0 || i >= int(m_date_range_a.size()))
         return;
 
     setFilterDate(m_date_range_a[i]);
@@ -1078,7 +1078,7 @@ void mmCheckingPanel::onFilterDate(wxCommandEvent& event)
     refreshList();
 }
 
-void mmCheckingPanel::onFilterAdvanced(wxCommandEvent& event)
+void mmCheckingPanel::onFilterAdvanced(wxCommandEvent& WXUNUSED(event))
 {
     if (!m_trans_filter_dlg) {
         wxString j_str = Model_Infotable::instance().getString(
@@ -1106,7 +1106,7 @@ void mmCheckingPanel::onFilterAdvanced(wxCommandEvent& event)
     refreshList();
 }
 
-void mmCheckingPanel::onEditDateRanges(wxCommandEvent& event)
+void mmCheckingPanel::onEditDateRanges(wxCommandEvent& WXUNUSED(event))
 {
     wxLogDebug("mmCheckingPanel::onEditDateRanges(): not yet implemented");
 }

@@ -568,7 +568,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
         sortAsc = (sortCol == g_sortCol1) ? !g_sortAsc1 : g_sortAsc1;
     }
 
-    if (sortCol < 0 || sortCol >= m_column_order.size() ||
+    if (sortCol < 0 || sortCol >= int(m_column_order.size()) ||
         getColumnId(sortCol) == LIST_COL_IMGSTATUS
     )
         return;

@@ -818,12 +818,12 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
         mmTreeItemData::HOME_PAGE
     );
 
-    wxTreeItemId alltransactions = addNavTreeSection(
+    addNavTreeSection(
         root, "All Transactions", img::ALLTRANSACTIONS_PNG,
         mmTreeItemData::CHECKING, -1
     );
 
-    wxTreeItemId bills = addNavTreeSection(
+    addNavTreeSection(
         root, "Scheduled Transactions", img::SCHEDULE_PNG,
         mmTreeItemData::BILLS
     );
@@ -895,7 +895,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
         mmTreeItemData::CHECKING, -2
     );
 
-    wxTreeItemId help = addNavTreeSection(
+    addNavTreeSection(
         root, "Help", img::HELP_PNG,
         mmTreeItemData::HELP_PAGE_MAIN
     );
