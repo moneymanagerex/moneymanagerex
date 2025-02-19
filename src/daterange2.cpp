@@ -34,7 +34,7 @@ DateRange2::PERIOD_LABEL_ID_t DateRange2::PERIOD_LABEL_ID = make_period_label_id
 DateRange2::PERIOD_LABEL_ID_t DateRange2::make_period_label_id()
 {
     PERIOD_LABEL_ID_t period_label_id;
-    for (int i = 0; i < sizeof(PERIOD_INFO)/sizeof(PERIOD_INFO[0]); ++i) {
+    for (int i = 0; i < int(sizeof(PERIOD_INFO)/sizeof(PERIOD_INFO[0])); ++i) {
         char c = PERIOD_INFO[i].label[0];
         period_label_id[c] = PERIOD_INFO[i].id;
     }
@@ -513,7 +513,7 @@ bool DateRange2::debug()
     wxLogDebug("{{{ DateRange2::debug()");
 
     // check order in PERIOD_INFO
-    for (int i = 0; i < sizeof(PERIOD_INFO)/sizeof(PERIOD_INFO[0]); i++) {
+    for (int i = 0; i < int(sizeof(PERIOD_INFO)/sizeof(PERIOD_INFO[0])); i++) {
         wxASSERT_MSG(PERIOD_INFO[i].id == i, "Wrong order in DateRange2::PERIOD_INFO");
     }
 
@@ -552,7 +552,7 @@ bool DateRange2::debug()
         { "-1 M, Q .. Y", "2024-12-01", "2025-01-31" },
         { "W, -1..+1 Q",  "2024-10-28", "2025-05-04" },
     };
-    for (int i = 0; i < sizeof(checking)/sizeof(checking[0]); ++i) {
+    for (int i = 0; i < int(sizeof(checking)/sizeof(checking[0])); ++i) {
         wxString spec = checking[i].spec;
         //wxLogDebug("checking[%d] [%s]", i, spec);
         if (!dr.parseSpec(spec)) {
