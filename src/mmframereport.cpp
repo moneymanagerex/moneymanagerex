@@ -223,7 +223,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 
     ///////////////////////////////////////////////////////////////////
 
-    Model_Account::Data_Set investments_account = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR_INVESTMENT, EQUAL));
+    Model_Account::Data_Set investments_account = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT, EQUAL));
     if (!investments_account.empty())
     {
         if (hidden_reports.Index("Stocks Report") == wxNOT_FOUND)

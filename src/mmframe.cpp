@@ -82,7 +82,7 @@
 #include <wx/busyinfo.h>
 #include <stack>
 
- //----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 
 int REPEAT_TRANS_DELAY_TIME = 3000; // 3 seconds
 //----------------------------------------------------------------------------
@@ -581,7 +581,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                     checking_splits.push_back(split);
                     wxArrayInt64 tags;
                     for (const auto& tag : Model_Taglink::instance().find(
-                        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT),
+                        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT),
                         Model_Taglink::REFID(item.SPLITTRANSID)
                     ))
                         tags.push_back(tag.TAGID);
@@ -590,7 +590,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 Model_Splittransaction::instance().save(checking_splits);
 
                 // Save split tags
-                const wxString& splitRefType = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
+                const wxString& splitRefType = Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT;
 
                 for (size_t i = 0; i < checking_splits.size(); i++) {
                     Model_Taglink::Data_Set splitTaglinks;
@@ -620,9 +620,9 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 
                 // Save base transaction tags
                 Model_Taglink::Data_Set taglinks;
-                const wxString& txnRefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+                const wxString& txnRefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
                 for (const auto& tag : Model_Taglink::instance().find(
-                    Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT),
+                    Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT),
                     Model_Taglink::REFID(q1.BDID)
                 )) {
                     Model_Taglink::Data* t = Model_Taglink::instance().create();
@@ -1322,7 +1322,7 @@ void mmGUIFrame::OnAccountAttachments(wxCommandEvent& /*event*/)
     if (!selectedItemData_)
         return;
 
-    wxString refType = Model_Attachment::REFTYPE_STR_BANKACCOUNT;
+    wxString refType = Model_Attachment::REFTYPE_NAME_BANKACCOUNT;
     int64 refId = selectedItemData_->getId();
     mmAttachmentDialog dlg(this, refType, refId);
     dlg.ShowModal();
@@ -1468,8 +1468,8 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
         return;
 
     wxString warning_msg = _t("Do you want to delete the account?");
-    if (account->ACCOUNTTYPE == Model_Account::TYPE_STR_INVESTMENT ||
-        account->ACCOUNTTYPE == Model_Account::TYPE_STR_SHARES
+    if (account->ACCOUNTTYPE == Model_Account::TYPE_NAME_INVESTMENT ||
+        account->ACCOUNTTYPE == Model_Account::TYPE_NAME_SHARES
     ) {
         warning_msg += "\n\n" + _t("This will also delete any associated Shares.");
     }
@@ -1480,7 +1480,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
     if (msgDlg.ShowModal() == wxID_YES) {
         Model_Account::instance().remove(account->ACCOUNTID);
         mmAttachmentManage::DeleteAllAttachments(
-            Model_Attachment::REFTYPE_STR_BANKACCOUNT, account->ACCOUNTID
+            Model_Attachment::REFTYPE_NAME_BANKACCOUNT, account->ACCOUNTID
         );
         DoRecreateNavTreeControl(true);
     }
@@ -1607,7 +1607,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
                 _tu("&Attachment Manager…")
             );
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
-            menu.Enable(MENU_TREEPOPUP_REALLOCATE, account->ACCOUNTTYPE != Model_Account::TYPE_STR_SHARES);
+            menu.Enable(MENU_TREEPOPUP_REALLOCATE, account->ACCOUNTTYPE != Model_Account::TYPE_NAME_SHARES);
             menu.AppendSeparator();
             AppendImportMenu(menu);
             PopupMenu(&menu, pt);
@@ -2909,7 +2909,7 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
         Model_Account::Data* account = Model_Account::instance().get(wizard->acctID_);
         mmNewAcctDialog dlg(account, this);
         dlg.ShowModal();
-        if (account->ACCOUNTTYPE == Model_Account::TYPE_STR_ASSET) {
+        if (account->ACCOUNTTYPE == Model_Account::TYPE_NAME_ASSET) {
             wxMessageBox(_t(
                 "Asset Accounts hold Asset transactions\n\n"
                 "Asset transactions are created within the Assets View\n"
@@ -2918,7 +2918,7 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
             ), _t("Asset Account Creation"));
         }
 
-        if (account->ACCOUNTTYPE == Model_Account::TYPE_STR_SHARES) {
+        if (account->ACCOUNTTYPE == Model_Account::TYPE_NAME_SHARES) {
             wxMessageBox(_tu(
                 "Share Accounts hold Share transactions\n\n"
                 "Share transactions are created within the Stock Portfolio View\n"
@@ -3737,7 +3737,7 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
             wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
         if (msgDlg.ShowModal() == wxID_YES) {
             Model_Account::instance().remove(account->id());
-            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_STR_BANKACCOUNT, account->id());
+            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_NAME_BANKACCOUNT, account->id());
         }
     }
     DoRecreateNavTreeControl(true);
@@ -3762,19 +3762,21 @@ void mmGUIFrame::OnReallocateAccount(wxCommandEvent& WXUNUSED(event))
 void mmGUIFrame::ReallocateAccount(int64 accountID)
 {
     Model_Account::Data* account = Model_Account::instance().get(accountID);
-
-    wxArrayString types = Model_Account::TYPE_STR;
-    types.Remove(Model_Account::TYPE_STR_INVESTMENT);
-    types.Remove(account->ACCOUNTTYPE);
-    wxArrayString t;
+    int accountTypeId = Model_Account::type_id(account);
+    wxArrayString types;
+    for (int i = 0; i < Model_Account::TYPE_ID_size; ++i) {
+        if (i != Model_Account::TYPE_ID_INVESTMENT && i != accountTypeId)
+            types.Add(Model_Account::type_name(i));
+    }
+    wxArrayString types_loc;
     for (const auto &entry : types)
-        t.Add(wxGetTranslation(entry));
+        types_loc.Add(wxGetTranslation(entry));
 
     mmSingleChoiceDialog type_choice(
         this,
         wxString::Format(_t("Select new account type for %s"), account->ACCOUNTNAME),
         _t("Change Account Type"),
-        t
+        types_loc
     );
 
     if (type_choice.ShowModal() == wxID_OK) {
@@ -3986,7 +3988,7 @@ void mmGUIFrame::autocleanDeletedTransactions() {
             Model_Checking::instance().remove(transaction.TRANSID);
 
             // remove also any attachments for the transaction
-            const wxString& RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+            const wxString& RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
             mmAttachmentManage::DeleteAllAttachments(RefType, transaction.TRANSID);
 
             // remove also any custom fields for the transaction

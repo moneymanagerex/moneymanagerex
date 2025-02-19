@@ -361,10 +361,10 @@ void mmReportsPanel::CreateControls()
             m_accounts = new wxChoice(itemPanel3, ID_CHOICE_ACCOUNTS);
             m_accounts->Append(_t("All Accounts"));
             m_accounts->Append(_tu("Specific Accounts…"));
-            for (const auto& e : Model_Account::TYPE_CHOICES)
-            {
-                if (e.first != Model_Account::TYPE_ID_INVESTMENT) {
-                    m_accounts->Append(wxGetTranslation(e.second), new wxStringClientData(e.second));
+            for (int i = 0; i < Model_Account::TYPE_ID_size; ++i) {
+                if (i != Model_Account::TYPE_ID_INVESTMENT) {
+                    wxString type = Model_Account::type_name(i);
+                    m_accounts->Append(wxGetTranslation(type), new wxStringClientData(type));
                 }
             }
             m_accounts->SetSelection(rb_->getAccountSelection());
@@ -636,7 +636,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
                 if (Model_Checking::foreignTransaction(*transaction))
                 {
                     Model_Translink::Data translink = Model_Translink::TranslinkRecord(transId);
-                    if (translink.LINKTYPE == Model_Attachment::REFTYPE_STR_STOCK)
+                    if (translink.LINKTYPE == Model_Attachment::REFTYPE_NAME_STOCK)
                     {
                         ShareTransactionDialog dlg(m_frame, &translink, transaction);
                         if (dlg.ShowModal() == wxID_OK)
@@ -672,11 +672,11 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
     else if (uri.StartsWith("attachment:", &sData))
     {
         const wxString RefType = sData.BeforeFirst('|');
-        int RefId = wxAtoi(sData.AfterFirst('|'));
+        int refId = wxAtoi(sData.AfterFirst('|'));
 
-        if (Model_Attachment::REFTYPE_STR.Index(RefType) != wxNOT_FOUND && RefId > 0)
+        if (Model_Attachment::reftype_id(RefType) != -1 && refId > 0)
         {
-            mmAttachmentManage::OpenAttachmentFromPanelIcon(m_frame, RefType, RefId);
+            mmAttachmentManage::OpenAttachmentFromPanelIcon(m_frame, RefType, refId);
             const auto name = getVFname4print("rep", getPrintableBase()->getHTMLText());
             browser_->LoadURL(name);
         }

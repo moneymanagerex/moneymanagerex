@@ -131,13 +131,13 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int64 bdID, bool duplicate, bool enterO
         m_bill_data.COLOR = bill->COLOR;
         wxArrayInt64 billtags;
         for (const auto& tag : Model_Taglink::instance().find(
-            Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT),
+            Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT),
             Model_Taglink::REFID(bill->BDID)
         ))
             billtags.push_back(tag.TAGID);
         m_bill_data.TAGS = billtags;
         //
-        const wxString& splitRefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT;
+        const wxString& splitRefType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT;
         for (const auto& item : Model_Billsdeposits::split(bill)) {
             wxArrayInt64 splittags;
             for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(splitRefType), Model_Taglink::REFID(item.SPLITTRANSID)))
@@ -148,12 +148,12 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int64 bdID, bool duplicate, bool enterO
         // If duplicate then we may need to copy the attachments
         if (m_dup_bill && Model_Infotable::instance().getBool("ATTACHMENTSDUPLICATE", false))
         {
-            const wxString& RefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
+            const wxString& RefType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
             mmAttachmentManage::CloneAllAttachments(RefType, bdID, 0);
         }
     }
 
-    m_transfer = (m_bill_data.TRANSCODE == Model_Checking::TYPE_STR_TRANSFER);
+    m_transfer = (m_bill_data.TRANSCODE == Model_Checking::TYPE_NAME_TRANSFER);
 
     int64 ref_id = m_dup_bill ?  -bdID : (m_new_bill ? 0 : -m_bill_data.BDID);
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELDS);
@@ -207,11 +207,11 @@ void mmBDDialog::dataToControls()
     }
     setRepeatType(Model_Billsdeposits::REPEAT_MONTHLY);
 
-    for (const auto& i : Model_Checking::TYPE_STR)
-    {
-        if (i == Model_Checking::TYPE_STR_TRANSFER && Model_Account::instance().all().size() < 2)
+    for (int i = 0; i < Model_Checking::TYPE_ID_size; ++i) {
+        if (i == Model_Checking::TYPE_ID_TRANSFER && Model_Account::instance().all().size() < 2)
             break;
-        m_choice_transaction_type->Append(wxGetTranslation(i), new wxStringClientData(i));
+        wxString type = Model_Checking::type_name(i);
+        m_choice_transaction_type->Append(wxGetTranslation(type), new wxStringClientData(type));
     }
     m_choice_transaction_type->SetSelection(Model_Checking::TYPE_ID_WITHDRAWAL);
 
@@ -332,7 +332,7 @@ void mmBDDialog::SetDialogHeader(const wxString& header)
 void mmBDDialog::SetDialogParameters(int64 trx_id)
 {
     const auto split = Model_Splittransaction::instance().get_all();
-    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT);
+    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT);
     //const auto trx = Model_Checking::instance().find(Model_Checking::TRANSID(trx_id)).at(0);
     const auto trx = Model_Checking::instance().get(trx_id);
     Model_Checking::Full_Data t(*trx, split, tags);
@@ -341,7 +341,7 @@ void mmBDDialog::SetDialogParameters(int64 trx_id)
 
     m_bill_data.TRANSCODE = t.TRANSCODE;
     m_choice_transaction_type->SetSelection(Model_Checking::type_id(t.TRANSCODE));
-    m_transfer = (m_bill_data.TRANSCODE == Model_Checking::TYPE_STR_TRANSFER);
+    m_transfer = (m_bill_data.TRANSCODE == Model_Checking::TYPE_NAME_TRANSFER);
     updateControlsForTransType();
 
     m_bill_data.TRANSAMOUNT = t.TRANSAMOUNT;
@@ -490,9 +490,9 @@ void mmBDDialog::CreateControls()
     // Status --------------------------------------------
     m_choice_status = new wxChoice(this, ID_DIALOG_TRANS_STATUS);
 
-    for (const auto& i : Model_Checking::STATUS_STR)
-    {
-        m_choice_status->Append(wxGetTranslation(i), new wxStringClientData(i));
+    for (int i = 0; i < Model_Checking::STATUS_ID_size; ++i) {
+        wxString status = Model_Checking::status_name(i);
+        m_choice_status->Append(wxGetTranslation(status), new wxStringClientData(status));
     }
     m_choice_status->SetSelection(Option::instance().getTransStatusReconciled());
     mmToolTip(m_choice_status, _t("Specify the status for the transaction"));
@@ -680,7 +680,7 @@ void mmBDDialog::CreateControls()
 
 void mmBDDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
+    const wxString& RefType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
     if (m_bill_data.BDID != 0)
         mmAttachmentManage::DeleteAllAttachments(RefType, m_bill_data.BDID);
     EndModal(wxID_CANCEL);
@@ -698,7 +698,7 @@ void mmBDDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
     }
 #endif
 
-    const wxString& RefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
+    const wxString& RefType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
     if (m_bill_data.BDID != 0)
         mmAttachmentManage::DeleteAllAttachments(RefType, m_bill_data.BDID);
     EndModal(wxID_CANCEL);
@@ -807,7 +807,7 @@ void mmBDDialog::OnComboKey(wxKeyEvent& event)
 
 void mmBDDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
+    const wxString& RefType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
     mmAttachmentDialog dlg(this, RefType, m_bill_data.BDID);
     dlg.ShowModal();
 }
@@ -1053,7 +1053,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         bill->ACCOUNTID = m_bill_data.ACCOUNTID;
         bill->TOACCOUNTID = m_bill_data.TOACCOUNTID;
         bill->PAYEEID = m_bill_data.PAYEEID;
-        bill->TRANSCODE = Model_Checking::TYPE_STR[m_choice_transaction_type->GetSelection()];
+        bill->TRANSCODE = Model_Checking::type_name(m_choice_transaction_type->GetSelection());
         bill->TRANSAMOUNT = m_bill_data.TRANSAMOUNT;
         bill->STATUS = m_bill_data.STATUS;
         bill->TRANSACTIONNUMBER = m_bill_data.TRANSACTIONNUMBER;
@@ -1081,7 +1081,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         Model_Budgetsplittransaction::instance().update(splt, m_trans_id);
 
         // Save split tags
-        const wxString& splitRefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT;
+        const wxString& splitRefType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT;
 
         for (size_t i = 0; i < m_bill_data.local_splits.size(); i++)
         {
@@ -1097,7 +1097,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             Model_Taglink::instance().update(splitTaglinks, splitRefType, splt.at(i).SPLITTRANSID);
         }
 
-        const wxString& RefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
+        const wxString& RefType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
         mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, m_trans_id);
 
         // Save base transaction tags
@@ -1135,7 +1135,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             tran->ACCOUNTID = m_bill_data.ACCOUNTID;
             tran->TOACCOUNTID = m_bill_data.TOACCOUNTID;
             tran->PAYEEID = m_bill_data.PAYEEID;
-            tran->TRANSCODE = Model_Checking::TYPE_STR[m_choice_transaction_type->GetSelection()];
+            tran->TRANSCODE = Model_Checking::type_name(m_choice_transaction_type->GetSelection());
             tran->TRANSAMOUNT = m_bill_data.TRANSAMOUNT;
             tran->STATUS = m_bill_data.STATUS;
             tran->TRANSACTIONNUMBER = m_bill_data.TRANSACTIONNUMBER;
@@ -1160,7 +1160,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             Model_Splittransaction::instance().update(checking_splits, trans_id);
 
             // Save split tags
-            const wxString& splitRefType = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
+            const wxString& splitRefType = Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT;
 
             for (size_t i = 0; i < m_bill_data.local_splits.size(); i++)
             {
@@ -1179,8 +1179,8 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             //Custom Data
             m_custom_fields->SaveCustomValues(trans_id);
 
-            const wxString& oldRefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
-            const wxString& newRefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+            const wxString& oldRefType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
+            const wxString& newRefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
             mmAttachmentManage::RelocateAllAttachments(oldRefType, m_bill_data.BDID, newRefType, trans_id);
 
             // Save base transaction tags

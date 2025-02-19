@@ -82,9 +82,9 @@ void mmAttachmentDialog::Create(wxWindow* parent, const wxString& name)
     if (m_RefId > 0)
     {
         int refEnum = 0;
-        for(const auto& pair : Model_Attachment::REFTYPE_CHOICES)
-        {
-            if(pair.second == m_RefType)
+        for (int i = 0; i < Model_Attachment::REFTYPE_ID_size; ++i) {
+            wxString reftype = Model_Attachment::reftype_name(i);
+            if (reftype == m_RefType)
                 break;
             refEnum++;
         }
@@ -222,7 +222,7 @@ void mmAttachmentDialog::AddAttachment(wxString FilePath)
         m_attachment_id = Model_Attachment::instance().save(NewAttachment);
         m_attachment_id = NewAttachment->ATTACHMENTID;
 
-        if (m_RefType == Model_Attachment::REFTYPE_STR_TRANSACTION)
+        if (m_RefType == Model_Attachment::REFTYPE_NAME_TRANSACTION)
             Model_Checking::instance().updateTimestamp(m_RefId);
     }
 
@@ -258,7 +258,7 @@ void mmAttachmentDialog::EditAttachment()
         m_attachment_id = Model_Attachment::instance().save(attachment);
         m_attachment_id = attachment->ATTACHMENTID;
 
-        if (attachment->REFTYPE == Model_Attachment::REFTYPE_STR_TRANSACTION)
+        if (attachment->REFTYPE == Model_Attachment::REFTYPE_NAME_TRANSACTION)
             Model_Checking::instance().updateTimestamp(attachment->REFID);
 
         fillControls();
@@ -279,7 +279,7 @@ void mmAttachmentDialog::DeleteAttachment()
             const wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + attachment->REFTYPE;
             if (mmAttachmentManage::DeleteAttachment(AttachmentsFolder + m_PathSep + attachment->FILENAME))
             {
-                if (attachment->REFTYPE == Model_Attachment::REFTYPE_STR_TRANSACTION)
+                if (attachment->REFTYPE == Model_Attachment::REFTYPE_NAME_TRANSACTION)
                     Model_Checking::instance().updateTimestamp(attachment->REFID);
                 Model_Attachment::instance().remove(m_attachment_id);
             }
@@ -542,7 +542,7 @@ bool mmAttachmentManage::DeleteAllAttachments(const wxString& RefType, int64 Ref
         Model_Attachment::instance().remove(entry.ATTACHMENTID);
     }
 
-    if (RefType == Model_Attachment::REFTYPE_STR_TRANSACTION)
+    if (RefType == Model_Attachment::REFTYPE_NAME_TRANSACTION)
         Model_Checking::instance().updateTimestamp(RefId);
 
     return true;
@@ -569,9 +569,9 @@ bool mmAttachmentManage::RelocateAllAttachments(const wxString& OldRefType, int6
     }
     Model_Attachment::instance().save(attachments);
 
-    if (OldRefType == Model_Attachment::REFTYPE_STR_TRANSACTION)
+    if (OldRefType == Model_Attachment::REFTYPE_NAME_TRANSACTION)
         Model_Checking::instance().updateTimestamp(OldRefId);
-    if (NewRefType == Model_Attachment::REFTYPE_STR_TRANSACTION)
+    if (NewRefType == Model_Attachment::REFTYPE_NAME_TRANSACTION)
         Model_Checking::instance().updateTimestamp(NewRefId);
 
     return true;
@@ -595,7 +595,7 @@ bool mmAttachmentManage::CloneAllAttachments(const wxString& RefType, int64 OldR
         Model_Attachment::instance().save(NewAttachment);
     }
 
-    if (RefType == Model_Attachment::REFTYPE_STR_TRANSACTION)
+    if (RefType == Model_Attachment::REFTYPE_NAME_TRANSACTION)
         Model_Checking::instance().updateTimestamp(NewRefId);
 
     return true;

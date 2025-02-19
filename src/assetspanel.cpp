@@ -116,7 +116,7 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
         menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
     }
 
-    const auto& asset_accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR_ASSET));
+    const auto& asset_accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_ASSET));
     menu.Enable(MENU_TREEPOPUP_GOTOACCOUNT, !asset_accounts.empty());
     menu.Enable(MENU_TREEPOPUP_VIEWTRANS, !asset_accounts.empty());
 
@@ -210,7 +210,7 @@ void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
     {
         const Model_Asset::Data& asset = m_panel->m_assets[m_selected_row];
         Model_Asset::instance().remove(asset.ASSETID);
-        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_STR_ASSET, asset.ASSETID);
+        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_NAME_ASSET, asset.ASSETID);
         Model_Translink::RemoveTransLinkRecords(Model_Attachment::REFTYPE_ID_ASSET, asset.ASSETID);
 
         m_panel->initVirtualListControl(-1, m_selected_col, m_asc);
@@ -266,7 +266,7 @@ void mmAssetsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0) return;
 
-    wxString RefType = Model_Attachment::REFTYPE_STR_ASSET;
+    wxString RefType = Model_Attachment::REFTYPE_NAME_ASSET;
     int64 RefId = m_panel->m_assets[m_selected_row].ASSETID;
 
     mmAttachmentDialog dlg(this, RefType, RefId);
@@ -279,7 +279,7 @@ void mmAssetsListCtrl::OnOpenAttachment(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0) return;
 
-    wxString RefType = Model_Attachment::REFTYPE_STR_ASSET;
+    wxString RefType = Model_Attachment::REFTYPE_NAME_ASSET;
     int64 RefId = m_panel->m_assets[m_selected_row].ASSETID;
 
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
@@ -644,7 +644,7 @@ wxString mmAssetsPanel::getItem(long item, long column)
     {
         wxString full_notes = asset.NOTES;
         full_notes.Replace("\n", " ");
-        if (Model_Attachment::NrAttachments(Model_Attachment::REFTYPE_STR_ASSET, asset.ASSETID))
+        if (Model_Attachment::NrAttachments(Model_Attachment::REFTYPE_NAME_ASSET, asset.ASSETID))
             full_notes = full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return full_notes;
     }
@@ -704,8 +704,8 @@ void mmAssetsPanel::OnMouseLeftDown (wxCommandEvent& event)
     wxMenu menu;
     menu.Append(++i, _t("All"));
 
-    for (const auto& type: Model_Asset::TYPE_STR)
-    {
+    for (int typeId = 0; typeId < Model_Asset::TYPE_ID_size; ++typeId) {
+        wxString type = Model_Asset::type_name(typeId);
         menu.Append(++i, wxGetTranslation(type));
     }
     PopupMenu(&menu);
@@ -727,7 +727,7 @@ void mmAssetsPanel::OnViewPopupSelected(wxCommandEvent& event)
     {
         this->m_filter_type = Model_Asset::TYPE_ID(evt - 1);
         m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
-        m_bitmapTransFilter->SetLabel(wxGetTranslation(Model_Asset::TYPE_STR[evt - 1]));
+        m_bitmapTransFilter->SetLabel(wxGetTranslation(Model_Asset::type_name(evt - 1)));
     }
 
     int64 trx_id = -1;

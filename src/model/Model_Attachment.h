@@ -19,8 +19,9 @@
 #ifndef MODEL_ATTACHMENT_H
 #define MODEL_ATTACHMENT_H
 
-#include "Model.h"
+#include "choices.h"
 #include "db/DB_Table_Attachment_V1.h"
+#include "Model.h"
 
 class Model_Attachment : public Model<DB_Table_ATTACHMENT_V1>
 {
@@ -34,22 +35,21 @@ public:
         REFTYPE_ID_BILLSDEPOSIT,
         REFTYPE_ID_PAYEE,
         REFTYPE_ID_TRANSACTIONSPLIT,
-        REFTYPE_ID_BILLSDEPOSITSPLIT
+        REFTYPE_ID_BILLSDEPOSITSPLIT,
+        REFTYPE_ID_size
     };
-    static wxArrayString REFTYPE_STR;
-    static const wxString REFTYPE_STR_TRANSACTION;
-    static const wxString REFTYPE_STR_STOCK;
-    static const wxString REFTYPE_STR_ASSET;
-    static const wxString REFTYPE_STR_BANKACCOUNT;
-    static const wxString REFTYPE_STR_BILLSDEPOSIT;
-    static const wxString REFTYPE_STR_PAYEE;
-    static const wxString REFTYPE_STR_TRANSACTIONSPLIT;
-    static const wxString REFTYPE_STR_BILLSDEPOSITSPLIT;
+    static const wxString REFTYPE_NAME_TRANSACTION;
+    static const wxString REFTYPE_NAME_STOCK;
+    static const wxString REFTYPE_NAME_ASSET;
+    static const wxString REFTYPE_NAME_BANKACCOUNT;
+    static const wxString REFTYPE_NAME_BILLSDEPOSIT;
+    static const wxString REFTYPE_NAME_PAYEE;
+    static const wxString REFTYPE_NAME_TRANSACTIONSPLIT;
+    static const wxString REFTYPE_NAME_BILLSDEPOSITSPLIT;
 
-    static const std::vector<std::pair<REFTYPE_ID, wxString> > REFTYPE_CHOICES;
-
-private:
-    static wxArrayString reftype_str_all();
+    static ChoicesName REFTYPE_CHOICES;
+    static const wxString reftype_name(int id);
+    static int reftype_id(const wxString& name, int default_id = -1);
 
 public:
     Model_Attachment();
@@ -87,4 +87,16 @@ public:
     wxArrayString allDescriptions();
 };
 
-#endif // 
+//----------------------------------------------------------------------------
+
+inline const wxString Model_Attachment::reftype_name(int id)
+{
+    return REFTYPE_CHOICES.getName(id);
+}
+
+inline int Model_Attachment::reftype_id(const wxString& name, int default_id)
+{
+    return REFTYPE_CHOICES.findName(name, default_id);
+}
+
+#endif

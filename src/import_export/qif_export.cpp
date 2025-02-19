@@ -80,7 +80,7 @@ void mmQIFExportDialog::fillControls()
     accounts_id_.clear();
 
     Model_Account::Data_Set all_accounts = Model_Account::instance().find(
-            Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR_INVESTMENT, NOT_EQUAL)
+            Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT, NOT_EQUAL)
     );
 
     for (const auto& a : all_accounts)
@@ -261,7 +261,7 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
     int i = 0;
     wxArrayInt s;
     Model_Account::Data_Set all_accounts = Model_Account::instance().find(
-        Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR_INVESTMENT, NOT_EQUAL)
+        Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT, NOT_EQUAL)
     );
 
     for (const auto& a : all_accounts)
@@ -467,7 +467,7 @@ void mmQIFExportDialog::mmExportQIF()
 
     std::map<int64 /*account ID*/, wxString> allAccounts4Export;
     wxArrayInt64 allPayees4Export;
-    const wxString RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+    const wxString RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
     wxArrayInt64 allAttachments4Export;
     wxArrayInt64 allCustomFields4Export;
     wxArrayInt64 allTags4Export;
@@ -486,7 +486,7 @@ void mmQIFExportDialog::mmExportQIF()
             , 100, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
 
         const auto splits = Model_Splittransaction::instance().get_all();
-        const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_STR_TRANSACTION);
+        const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_NAME_TRANSACTION);
 
         const wxString begin_date = fromDateCtrl_->GetValue().FormatISODate();
         const wxString end_date = toDateCtrl_->GetValue().FormatISODate();
@@ -524,7 +524,7 @@ void mmQIFExportDialog::mmExportQIF()
                 mmExportTransaction::getTransactionJSON(json_writer, full_tran);
                 allAccounts4Export[account_id] = "";
                 if (std::find(allPayees4Export.begin(), allPayees4Export.begin(), full_tran.PAYEEID) == allPayees4Export.end()
-                    && full_tran.TRANSCODE != Model_Checking::TYPE_STR_TRANSFER) {
+                    && full_tran.TRANSCODE != Model_Checking::TYPE_NAME_TRANSFER) {
                     allPayees4Export.push_back(full_tran.PAYEEID);
                 }
 
@@ -549,7 +549,7 @@ void mmQIFExportDialog::mmExportQIF()
                 // store tags from the splits
                 for (const auto& split : full_tran.m_splits)
                 {
-                    for (const auto& taglink : Model_Taglink::instance().get(Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT, split.SPLITTRANSID))
+                    for (const auto& taglink : Model_Taglink::instance().get(Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT, split.SPLITTRANSID))
                     {
                         if (std::find(allTags4Export.begin(), allTags4Export.end(), taglink.second) == allTags4Export.end())
                             allTags4Export.push_back(taglink.second);

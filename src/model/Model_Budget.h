@@ -20,8 +20,9 @@
 #ifndef MODEL_BUDGET_H
 #define MODEL_BUDGET_H
 
-#include "Model.h"
+#include "choices.h"
 #include "db/DB_Table_Budgettable_V1.h"
+#include "Model.h"
 #include "reports/mmDateRange.h"
 #include <float.h>
 
@@ -58,18 +59,18 @@ public:
         PERIOD_ID_HALFYEARLY,
         PERIOD_ID_YEARLY,
         PERIOD_ID_DAILY,
-        PERIOD_ID_MAX
+        PERIOD_ID_size
     };
-    static wxArrayString PERIOD_STR;
 
 private:
-    static const std::vector<std::pair<PERIOD_ID, wxString> > PERIOD_CHOICES;
-    static wxArrayString period_str_all();
+    static ChoicesName PERIOD_CHOICES;
 
 public:
-    static wxArrayString period_loc_all();
+    static const wxString period_name(int id);
+    static int period_id(const wxString& name, int default_id = PERIOD_ID_NONE);
     static PERIOD_ID period_id(const Data* r);
     static PERIOD_ID period_id(const Data& r);
+
     static DB_Table_BUDGETTABLE_V1::PERIOD PERIOD(PERIOD_ID period, OP op = EQUAL);
 
     static void getBudgetEntry(int64 budgetYearID,
@@ -84,4 +85,26 @@ public:
     static double getEstimate(bool is_monthly, const PERIOD_ID period, const double amount);
 };
 
-#endif // 
+//----------------------------------------------------------------------------
+
+inline const wxString Model_Budget::period_name(int id)
+{
+    return PERIOD_CHOICES.getName(id);
+}
+
+inline int Model_Budget::period_id(const wxString& name, int default_id)
+{
+    return PERIOD_CHOICES.findName(name, default_id);
+}
+
+inline Model_Budget::PERIOD_ID Model_Budget::period_id(const Data* r)
+{
+    return static_cast<PERIOD_ID>(period_id(r->PERIOD));
+}
+
+inline Model_Budget::PERIOD_ID Model_Budget::period_id(const Data& r)
+{
+    return period_id(&r);
+}
+
+#endif

@@ -143,7 +143,7 @@ void mmFilterTransactionsDialog::mmDoInitVariables()
 
     m_accounts_name.clear();
     const auto accounts = Model_Account::instance().find(
-        Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR_INVESTMENT, NOT_EQUAL));
+        Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT, NOT_EQUAL));
     for (const auto& acc : accounts)
     {
         m_accounts_name.push_back(acc.ACCOUNTNAME);
@@ -422,7 +422,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
 
     // Custom Fields
     bool is_custom_found = false;
-    const wxString RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+    const wxString RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
     for (const auto& i : Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType)))
     {
         const auto entry = wxString::Format("CUSTOM%lld", i.FIELDID);
@@ -1250,21 +1250,21 @@ bool mmFilterTransactionsDialog::mmIsStatusMatches(const wxString& itemStatus) c
 bool mmFilterTransactionsDialog::mmIsTypeMaches(const wxString& typeState, int64 accountid, int64 toaccountid) const
 {
     bool result = false;
-    if (typeState == Model_Checking::TYPE_STR_TRANSFER && cbTypeTransferTo_->GetValue() &&
+    if (typeState == Model_Checking::TYPE_NAME_TRANSFER && cbTypeTransferTo_->GetValue() &&
         (!mmIsAccountChecked() || std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), accountid) != m_selected_accounts_id.end()))
     {
         result = true;
     }
-    else if (typeState == Model_Checking::TYPE_STR_TRANSFER && cbTypeTransferFrom_->GetValue() &&
+    else if (typeState == Model_Checking::TYPE_NAME_TRANSFER && cbTypeTransferFrom_->GetValue() &&
              (!mmIsAccountChecked() || std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), toaccountid) != m_selected_accounts_id.end()))
     {
         result = true;
     }
-    else if (typeState == Model_Checking::TYPE_STR_WITHDRAWAL && cbTypeWithdrawal_->IsChecked())
+    else if (typeState == Model_Checking::TYPE_NAME_WITHDRAWAL && cbTypeWithdrawal_->IsChecked())
     {
         result = true;
     }
-    else if (typeState == Model_Checking::TYPE_STR_DEPOSIT && cbTypeDeposit_->IsChecked())
+    else if (typeState == Model_Checking::TYPE_NAME_DEPOSIT && cbTypeDeposit_->IsChecked())
     {
         result = true;
     }
@@ -1369,11 +1369,11 @@ bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int64 r
     // If we have a split, merge the transaciton tags so that an AND condition captures cases
     // where one tag is on the base txn and the other is on the split
     std::map<wxString, int64> txnTagnames;
-    if (refType == Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT)
-        txnTagnames = Model_Taglink::instance().get(Model_Attachment::REFTYPE_STR_TRANSACTION,
+    if (refType == Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT)
+        txnTagnames = Model_Taglink::instance().get(Model_Attachment::REFTYPE_NAME_TRANSACTION,
                                                     Model_Splittransaction::instance().get(refId)->TRANSID);
-    else if (refType == Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT)
-        txnTagnames = Model_Taglink::instance().get(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT,
+    else if (refType == Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT)
+        txnTagnames = Model_Taglink::instance().get(Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT,
                                                     Model_Budgetsplittransaction::instance().get(refId)->TRANSID);
 
     if (mergeSplitTags)
@@ -1381,23 +1381,23 @@ bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int64 r
         // Merge transaction tags and split tags. This is necessary when checking
         // if a split record matches the filter since we are using mmIsRecordMatches
         // to validate the split which gives it the wrong refType & refId
-        if (refType == Model_Attachment::REFTYPE_STR_TRANSACTION)
+        if (refType == Model_Attachment::REFTYPE_NAME_TRANSACTION)
         {
             // Loop through checking splits and merge tags for each SPLITTRANSID
             for (const auto& split : Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(refId)))
             {
                 std::map<wxString, int64> splitTagnames =
-                    Model_Taglink::instance().get(Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT, split.SPLITTRANSID);
+                    Model_Taglink::instance().get(Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT, split.SPLITTRANSID);
                 txnTagnames.insert(splitTagnames.begin(), splitTagnames.end());
             }
         }
-        else if (refType == Model_Attachment::REFTYPE_STR_BILLSDEPOSIT)
+        else if (refType == Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT)
         {
             // Loop through scheduled txn splits and merge tags for each SPLITTRANSID
             for (const auto& split : Model_Budgetsplittransaction::instance().find(Model_Budgetsplittransaction::TRANSID(refId)))
             {
                 std::map<wxString, int64> splitTagnames =
-                    Model_Taglink::instance().get(Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT, split.SPLITTRANSID);
+                    Model_Taglink::instance().get(Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT, split.SPLITTRANSID);
                 txnTagnames.insert(splitTagnames.begin(), splitTagnames.end());
             }
         }
@@ -1462,9 +1462,9 @@ template <class MODEL, class DATA> bool mmFilterTransactionsDialog::mmIsRecordMa
         wxString refType;
         // Check the Data type to determine the tag RefType
         if (typeid(tran).hash_code() == typeid(Model_Checking::Data).hash_code())
-            refType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+            refType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
         else if (typeid(tran).hash_code() == typeid(Model_Billsdeposits::Data).hash_code())
-            refType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
+            refType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
         if (!mmIsTagMatches(refType, tran.id(), mergeSplitTags))
             ok = false;
     }
@@ -1477,11 +1477,11 @@ template <class MODEL, class DATA> bool mmFilterTransactionsDialog::mmIsSplitRec
 
     if (typeid(split).hash_code() == typeid(Model_Splittransaction::Data).hash_code())
     {
-        refType = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
+        refType = Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT;
     }
     else if (typeid(split).hash_code() == typeid(Model_Budgetsplittransaction::Data).hash_code())
     {
-        refType = Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT;
+        refType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT;
     }
 
     if (mmIsTagsChecked() && !mmIsTagMatches(refType, split.SPLITTRANSID))
@@ -1852,12 +1852,12 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
     // Status
     if (statusCheckBox_->IsChecked())
     {
-        wxArrayString s = Model_Checking::STATUS_STR;
-        s.Add(wxTRANSLATE("All Except Reconciled"));
         int item = choiceStatus_->GetSelection();
         wxString status;
-        if (0 <= item && static_cast<size_t>(item) < s.size())
-            status = s[item];
+        if (0 <= item && item < Model_Checking::STATUS_ID_size)
+            status = Model_Checking::status_name(item);
+        else if (item == Model_Checking::STATUS_ID_size)
+            status = _n("All Except Reconciled");
         if (!status.empty())
         {
             json_writer.Key((i18n ? _t("Status") : "STATUS").utf8_str());

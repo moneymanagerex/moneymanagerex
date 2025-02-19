@@ -20,8 +20,7 @@
 #include "Model_Attachment.h"
 #include <wx/string.h>
 
-const std::vector<std::pair<Model_Attachment::REFTYPE_ID, wxString> > Model_Attachment::REFTYPE_CHOICES =
-{
+ChoicesName Model_Attachment::REFTYPE_CHOICES = ChoicesName({
     { REFTYPE_ID_TRANSACTION,       _n("Transaction") },
     { REFTYPE_ID_STOCK,             _n("Stock") },
     { REFTYPE_ID_ASSET,             _n("Asset") },
@@ -30,16 +29,15 @@ const std::vector<std::pair<Model_Attachment::REFTYPE_ID, wxString> > Model_Atta
     { REFTYPE_ID_PAYEE,             _n("Payee") },
     { REFTYPE_ID_TRANSACTIONSPLIT,  _n("TransactionSplit") },
     { REFTYPE_ID_BILLSDEPOSITSPLIT, _n("RecurringTransactionSplit") },
-};
-wxArrayString Model_Attachment::REFTYPE_STR = reftype_str_all();
-const wxString Model_Attachment::REFTYPE_STR_TRANSACTION       = REFTYPE_STR[REFTYPE_ID_TRANSACTION];
-const wxString Model_Attachment::REFTYPE_STR_STOCK             = REFTYPE_STR[REFTYPE_ID_STOCK];
-const wxString Model_Attachment::REFTYPE_STR_ASSET             = REFTYPE_STR[REFTYPE_ID_ASSET];
-const wxString Model_Attachment::REFTYPE_STR_BANKACCOUNT       = REFTYPE_STR[REFTYPE_ID_BANKACCOUNT];
-const wxString Model_Attachment::REFTYPE_STR_BILLSDEPOSIT      = REFTYPE_STR[REFTYPE_ID_BILLSDEPOSIT];
-const wxString Model_Attachment::REFTYPE_STR_PAYEE             = REFTYPE_STR[REFTYPE_ID_PAYEE];
-const wxString Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT  = REFTYPE_STR[REFTYPE_ID_TRANSACTIONSPLIT];
-const wxString Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT = REFTYPE_STR[REFTYPE_ID_BILLSDEPOSITSPLIT];
+});
+const wxString Model_Attachment::REFTYPE_NAME_TRANSACTION       = reftype_name(REFTYPE_ID_TRANSACTION);
+const wxString Model_Attachment::REFTYPE_NAME_STOCK             = reftype_name(REFTYPE_ID_STOCK);
+const wxString Model_Attachment::REFTYPE_NAME_ASSET             = reftype_name(REFTYPE_ID_ASSET);
+const wxString Model_Attachment::REFTYPE_NAME_BANKACCOUNT       = reftype_name(REFTYPE_ID_BANKACCOUNT);
+const wxString Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT      = reftype_name(REFTYPE_ID_BILLSDEPOSIT);
+const wxString Model_Attachment::REFTYPE_NAME_PAYEE             = reftype_name(REFTYPE_ID_PAYEE);
+const wxString Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT  = reftype_name(REFTYPE_ID_TRANSACTIONSPLIT);
+const wxString Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT = reftype_name(REFTYPE_ID_BILLSDEPOSITSPLIT);
 
 Model_Attachment::Model_Attachment()
 : Model<DB_Table_ATTACHMENT_V1>()
@@ -68,18 +66,6 @@ Model_Attachment& Model_Attachment::instance(wxSQLite3Database* db)
 Model_Attachment& Model_Attachment::instance()
 {
     return Singleton<Model_Attachment>::instance();
-}
-
-wxArrayString Model_Attachment::reftype_str_all()
-{
-    wxArrayString reftype;
-    int i = 0;
-    for (const auto& item : REFTYPE_CHOICES)
-    {
-        wxASSERT_MSG(item.first == i++, "Wrong order in Model_Attachment::REFTYPE_CHOICES");
-        reftype.Add(item.second);
-    }
-    return reftype;
 }
 
 /** Return a dataset with attachments linked to a specific object */
@@ -121,7 +107,7 @@ int Model_Attachment::LastAttachmentNumber(const wxString& RefType, const int64 
 std::map<int64, Model_Attachment::Data_Set> Model_Attachment::get_all(REFTYPE_ID reftype)
 {
     std::map<int64, Model_Attachment::Data_Set> data;
-    wxString reftype_str = Model_Attachment::REFTYPE_STR[reftype];
+    wxString reftype_str = Model_Attachment::reftype_name(reftype);
     for (const auto & attachment : this->find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(reftype_str)))
     {
         data[attachment.REFID].push_back(attachment);

@@ -595,7 +595,7 @@ wxString mmBudgetingPanel::getItem(long item, long column)
         if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second)
         {
             Model_Budget::PERIOD_ID period = budgetPeriod_[budget_[item].first];
-            return wxGetTranslation(Model_Budget::PERIOD_STR[period]);
+            return wxGetTranslation(Model_Budget::period_name(period));
         }
         return wxEmptyString;
     }
