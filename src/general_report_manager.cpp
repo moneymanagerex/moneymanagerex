@@ -281,7 +281,7 @@ void mmGeneralReportManager::fillControls()
     viewControls(false);
     SetEvtHandlerEnabled(false);
     m_treeCtrl->DeleteAllItems();
-    m_rootItem = m_treeCtrl->AddRoot(_("Reports"));
+    m_rootItem = m_treeCtrl->AddRoot(_t("Reports"));
     m_selectedItemID = m_rootItem;
     m_treeCtrl->SetItemBold(m_rootItem, true);
     auto records = Model_Report::instance().all();
@@ -379,26 +379,26 @@ void mmGeneralReportManager::CreateControls()
     button_panel->SetSizer(buttonPanelSizer);
 
     //
-    m_buttonOpen = new wxButton(button_panel, wxID_OPEN, _("&Import"));
+    m_buttonOpen = new wxButton(button_panel, wxID_OPEN, _t("&Import"));
     buttonPanelSizer->Add(m_buttonOpen, g_flagsH);
-    mmToolTip(m_buttonOpen, _("Locate and load a report file."));
+    mmToolTip(m_buttonOpen, _t("Locate and load a report file."));
 
-    m_buttonSaveAs = new wxButton(button_panel, wxID_SAVEAS, _("&Export"));
+    m_buttonSaveAs = new wxButton(button_panel, wxID_SAVEAS, _t("&Export"));
     buttonPanelSizer->Add(m_buttonSaveAs, g_flagsH);
-    mmToolTip(m_buttonSaveAs, _("Export the report to a new file."));
+    mmToolTip(m_buttonSaveAs, _t("Export the report to a new file."));
     buttonPanelSizer->AddSpacer(50);
 
-    m_buttonSave = new wxButton(button_panel, wxID_SAVE, _("&Save "));
+    m_buttonSave = new wxButton(button_panel, wxID_SAVE, _t("&Save "));
     buttonPanelSizer->Add(m_buttonSave, g_flagsH);
-    mmToolTip(m_buttonSave, _("Save changes."));
+    mmToolTip(m_buttonSave, _t("Save changes."));
 
-    m_buttonRun = new wxButton(button_panel, wxID_EXECUTE, _("&Run"));
+    m_buttonRun = new wxButton(button_panel, wxID_EXECUTE, _t("&Run"));
     buttonPanelSizer->Add(m_buttonRun, g_flagsH);
-    mmToolTip(m_buttonRun, _("Run selected report."));
+    mmToolTip(m_buttonRun, _t("Run selected report."));
 
     wxButton* button_Close = new wxButton(button_panel, wxID_CLOSE, wxGetTranslation(g_CloseLabel));
     buttonPanelSizer->Add(button_Close, g_flagsH);
-    //mmToolTip(button_Close, _("Save changes before closing. Changes without Save will be lost."));
+    //mmToolTip(button_Close, _t("Save changes before closing. Changes without Save will be lost."));
 
 }
 
@@ -406,7 +406,7 @@ void mmGeneralReportManager::createOutputTab(wxNotebook* editors_notebook, int t
 {
     //Output
     wxPanel* out_tab = new wxPanel(editors_notebook, wxID_ANY);
-    editors_notebook->InsertPage(type, out_tab, _("Output"));
+    editors_notebook->InsertPage(type, out_tab, _t("Output"));
     wxBoxSizer* out_sizer = new wxBoxSizer(wxVERTICAL);
     out_tab->SetSizer(out_sizer);
 
@@ -429,10 +429,10 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
 {
     wxString label;
     switch (type) {
-    case ID_SQL_CONTENT: label = _("SQL"); break;
-    case ID_LUA_CONTENT: label = _("Lua");  break;
-    case ID_TEMPLATE: label = _("Template");  break;
-    case ID_DESCRIPTION: label = _("Description"); break;
+    case ID_SQL_CONTENT: label = _t("SQL"); break;
+    case ID_LUA_CONTENT: label = _t("Lua");  break;
+    case ID_TEMPLATE: label = _t("Template");  break;
+    case ID_DESCRIPTION: label = _t("Description"); break;
     //default: ;
     }
     if (FindWindow(type + MAGIC_NUM)) return;
@@ -484,8 +484,8 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
         pnl2->SetSizer(bSizerp2);
 
         wxBoxSizer *box_sizer2 = new wxBoxSizer(wxHORIZONTAL);
-        wxButton* buttonPlay = new wxButton(pnl2, ID_TEST, _("&Test"));
-        wxButton* buttonNewTemplate = new wxButton(pnl2, wxID_NEW, _("Create Template"));
+        wxButton* buttonPlay = new wxButton(pnl2, ID_TEST, _t("&Test"));
+        wxButton* buttonNewTemplate = new wxButton(pnl2, wxID_NEW, _t("Create Template"));
         wxStaticText *info = new wxStaticText(pnl2, wxID_INFO, "");
         buttonNewTemplate->Enable(false);
         box_sizer2->Add(buttonPlay);
@@ -564,7 +564,7 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& WXUNUSED(event))
     }
     else
     {
-        info->SetLabelText(_("SQL Syntax Error") + " (" + SqlError + ")");
+        info->SetLabelText(_t("SQL Syntax Error") + " (" + SqlError + ")");
     }
 }
 
@@ -595,9 +595,9 @@ void mmGeneralReportManager::OnImportReportEvt(wxCommandEvent& WXUNUSED(event))
 
 void mmGeneralReportManager::importReport()
 {
-    const wxString reportFileName = wxFileSelector(_("Load report file:")
+    const wxString reportFileName = wxFileSelector(_t("Load report file:")
         , mmex::getPathResource(mmex::REPORTS), wxEmptyString, wxEmptyString
-        , _("General Report Manager files (*.grm)")+"|*.grm|"+_("ZIP files (*.zip)")+"|*.zip"
+        , _t("General Report Manager files (*.grm)")+"|*.grm|"+_t("ZIP files (*.zip)")+"|*.zip"
         , wxFD_FILE_MUST_EXIST);
 
     if (reportFileName.empty()) return;
@@ -661,8 +661,8 @@ bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
         }
         else
         {
-            wxString msg = wxString() << _("Unable to open file:") << "\n" << "'" << reportFileName << "'" << "\n" << "\n";
-            wxMessageBox(msg, _("General Report Manager"), wxOK | wxICON_ERROR);
+            wxString msg = wxString() << _t("Unable to open file:") << "\n" << "'" << reportFileName << "'" << "\n" << "\n";
+            wxMessageBox(msg, _t("General Report Manager"), wxOK | wxICON_ERROR);
             return false;
         }
     }
@@ -729,26 +729,26 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     Model_Report::Data *report = Model_Report::instance().get(report_id);
 
     wxMenu* samplesMenu = new wxMenu;
-    samplesMenu->Append(ID_NEW_SAMPLE_ASSETS, _u("Assets…"));
+    samplesMenu->Append(ID_NEW_SAMPLE_ASSETS, _tu("Assets…"));
 
     wxMenu customReportMenu;
-    customReportMenu.Append(ID_NEW_EMPTY, _u("New Empty Report…"));
-    customReportMenu.Append(wxID_ANY, _("New Sample Report"), samplesMenu);
+    customReportMenu.Append(ID_NEW_EMPTY, _tu("New Empty Report…"));
+    customReportMenu.Append(wxID_ANY, _t("New Sample Report"), samplesMenu);
     customReportMenu.AppendSeparator();
     if (report)
-        customReportMenu.Append(ID_GROUP, _u("Change Group…"));
+        customReportMenu.Append(ID_GROUP, _tu("Change Group…"));
     else
-        customReportMenu.Append(ID_GROUP, _u("Rename Group…"));
-    customReportMenu.Append(ID_UNGROUP, _("UnGroup"));
-    customReportMenu.Append(ID_RENAME, _u("Rename Report…"));
+        customReportMenu.Append(ID_GROUP, _tu("Rename Group…"));
+    customReportMenu.Append(ID_UNGROUP, _t("UnGroup"));
+    customReportMenu.Append(ID_RENAME, _tu("Rename Report…"));
     customReportMenu.AppendSeparator();
 
     wxMenuItem* menuItemActive = new wxMenuItem(&customReportMenu, ID_ACTIVE,
-        _("Active"), _("Show/Hide report in Navigator"), wxITEM_CHECK);
+        _t("Active"), _t("Show/Hide report in Navigator"), wxITEM_CHECK);
     customReportMenu.Append(menuItemActive);
 
     customReportMenu.AppendSeparator();
-    customReportMenu.Append(ID_DELETE, _u("Delete Report…"));
+    customReportMenu.Append(ID_DELETE, _tu("Delete Report…"));
 
     if (report)
     {
@@ -845,8 +845,8 @@ void mmGeneralReportManager::renameReport(int64 id)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
-        wxString label = wxGetTextFromUser(_("Enter the name for the report")
-            , _("General Report Manager"), report->REPORTNAME);
+        wxString label = wxGetTextFromUser(_t("Enter the name for the report")
+            , _t("General Report Manager"), report->REPORTNAME);
         label.Trim();
 
         if (Model_Report::instance().find(Model_Report::REPORTNAME(label)).empty()
@@ -864,7 +864,7 @@ bool mmGeneralReportManager::DeleteReport(int64 id)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
-        wxString msg = wxString() << _("Delete the Report Title:")
+        wxString msg = wxString() << _t("Delete the Report Title:")
             << "\n\n"
             << report->REPORTNAME;
         int iError = wxMessageBox(msg, "General Reports Manager", wxYES_NO | wxICON_ERROR);
@@ -903,8 +903,8 @@ bool mmGeneralReportManager::changeReportGroup(int64 id, bool ungroup)
         }
         else
         {
-            mmDialogComboBoxAutocomplete dlg(this, _("Enter or choose name for the new report group"),
-                _("Change report group"), report->GROUPNAME, Model_Report::instance().allGroupNames());
+            mmDialogComboBoxAutocomplete dlg(this, _t("Enter or choose name for the new report group"),
+                _t("Change report group"), report->GROUPNAME, Model_Report::instance().allGroupNames());
 
             if (dlg.ShowModal() == wxID_OK)
             {
@@ -920,8 +920,8 @@ bool mmGeneralReportManager::changeReportGroup(int64 id, bool ungroup)
 
 bool mmGeneralReportManager::renameReportGroup(const wxString& GroupName)
 {
-    mmDialogComboBoxAutocomplete dlg(this, _("Enter or choose name for the new group"),
-        _("Rename Group"), GroupName, Model_Report::instance().allGroupNames());
+    mmDialogComboBoxAutocomplete dlg(this, _t("Enter or choose name for the new group"),
+        _t("Rename Group"), GroupName, Model_Report::instance().allGroupNames());
 
     if (dlg.ShowModal() == wxID_OK)
     {
@@ -987,8 +987,8 @@ void mmGeneralReportManager::newReport(int sample)
     wxString group_name;
     if (m_selectedItemID == m_rootItem)
     {
-        mmDialogComboBoxAutocomplete dlg(this, _("Enter or choose name for the new report group")
-            , _("Add Report Group"), "", Model_Report::instance().allGroupNames());
+        mmDialogComboBoxAutocomplete dlg(this, _t("Enter or choose name for the new report group")
+            , _t("Add Report Group"), "", Model_Report::instance().allGroupNames());
         if (dlg.ShowModal() == wxID_OK)
             group_name = dlg.getText();
         else
@@ -1001,33 +1001,33 @@ void mmGeneralReportManager::newReport(int sample)
 
 
     const wxDateTime now = wxDateTime::Now();
-    wxString report_name = wxString::Format(_("New Report %s"), now.Format("%Y%m%d%H%M%S"));
+    wxString report_name = wxString::Format(_t("New Report %s"), now.Format("%Y%m%d%H%M%S"));
 
     int max_attempts = 3;
     for (int i = 0; i < max_attempts; i++)
     {
-        report_name = wxGetTextFromUser(_("Enter the name for the report")
-            , _("General Report Manager"), report_name);
+        report_name = wxGetTextFromUser(_t("Enter the name for the report")
+            , _t("General Report Manager"), report_name);
 
         if (report_name.empty())
             return; //Canceled by user
         if (!report_name.empty() && Model_Report::instance().find(Model_Report::REPORTNAME(report_name)).empty())
             break;
         if (i == max_attempts - 1)
-            return mmErrorDialogs::MessageError(this, _("A report with this name already exists"), _("New Report"));
+            return mmErrorDialogs::MessageError(this, _t("A report with this name already exists"), _t("New Report"));
     }
 
     wxString sqlContent, luaContent, httContent, description;
     switch (sample) {
     case ID_NEW_EMPTY:
         sqlContent = ""; luaContent = ""; httContent = "";
-        description = _("New Report");
+        description = _t("New Report");
         break;
     case ID_NEW_SAMPLE_ASSETS:
         sqlContent = SAMPLE_ASSETS_SQL;
         luaContent = SAMPLE_ASSETS_LUA;
         httContent = SAMPLE_ASSETS_HTT;
-        description = _("Assets");
+        description = _t("Assets");
         break;
     }
 
@@ -1053,10 +1053,10 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& WXUNUSED(event))
     {
         wxString file_name = report->REPORTNAME + ".grm";
         wxFileDialog dlg(this
-            , _("Choose file to Save As Report")
+            , _t("Choose file to Save As Report")
             , wxEmptyString
             , file_name
-            , _("General Report Manager files (*.grm)")+"|*.grm|"+_("ZIP files (*.zip)")+"|*.zip"
+            , _t("General Report Manager files (*.grm)")+"|*.grm|"+_t("ZIP files (*.zip)")+"|*.zip"
             , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
             );
 
@@ -1231,7 +1231,7 @@ const wxString mmGeneralReportManager::getTemplate(wxString& sql)
             body += wxString::Format("        <td><TMPL_VAR \"%s\"></td>\n", col.first);
     }
 
-    wxString params = rep_params.empty() ? "" : _("Parameters:");
+    wxString params = rep_params.empty() ? "" : _t("Parameters:");
     for (const auto& entry : rep_params)
     {
         for (const auto & item : Model_Report::getParamNames()) {

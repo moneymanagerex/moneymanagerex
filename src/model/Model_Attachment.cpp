@@ -16,19 +16,20 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defs.h"
 #include "Model_Attachment.h"
 #include <wx/string.h>
 
 const std::vector<std::pair<Model_Attachment::REFTYPE_ID, wxString> > Model_Attachment::REFTYPE_CHOICES =
 {
-    { Model_Attachment::REFTYPE_ID_TRANSACTION,       wxTRANSLATE("Transaction") },
-    { Model_Attachment::REFTYPE_ID_STOCK,             wxTRANSLATE("Stock") },
-    { Model_Attachment::REFTYPE_ID_ASSET,             wxTRANSLATE("Asset") },
-    { Model_Attachment::REFTYPE_ID_BANKACCOUNT,       wxTRANSLATE("BankAccount") },
-    { Model_Attachment::REFTYPE_ID_BILLSDEPOSIT,      wxTRANSLATE("RecurringTransaction") },
-    { Model_Attachment::REFTYPE_ID_PAYEE,             wxTRANSLATE("Payee") },
-    { Model_Attachment::REFTYPE_ID_TRANSACTIONSPLIT,  wxTRANSLATE("TransactionSplit") },
-    { Model_Attachment::REFTYPE_ID_BILLSDEPOSITSPLIT, wxTRANSLATE("RecurringTransactionSplit") },
+    { REFTYPE_ID_TRANSACTION,       _n("Transaction") },
+    { REFTYPE_ID_STOCK,             _n("Stock") },
+    { REFTYPE_ID_ASSET,             _n("Asset") },
+    { REFTYPE_ID_BANKACCOUNT,       _n("BankAccount") },
+    { REFTYPE_ID_BILLSDEPOSIT,      _n("RecurringTransaction") },
+    { REFTYPE_ID_PAYEE,             _n("Payee") },
+    { REFTYPE_ID_TRANSACTIONSPLIT,  _n("TransactionSplit") },
+    { REFTYPE_ID_BILLSDEPOSITSPLIT, _n("RecurringTransactionSplit") },
 };
 wxArrayString Model_Attachment::REFTYPE_STR = reftype_str_all();
 const wxString Model_Attachment::REFTYPE_STR_TRANSACTION       = REFTYPE_STR[REFTYPE_ID_TRANSACTION];

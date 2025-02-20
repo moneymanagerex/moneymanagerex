@@ -25,20 +25,20 @@
 
 const std::vector<std::pair<Model_Account::TYPE_ID, wxString> > Model_Account::TYPE_CHOICES =
 {
-    { Model_Account::TYPE_ID_CASH,        wxString(wxTRANSLATE("Cash")) },
-    { Model_Account::TYPE_ID_CHECKING,    wxString(wxTRANSLATE("Checking")) },
-    { Model_Account::TYPE_ID_CREDIT_CARD, wxString(wxTRANSLATE("Credit Card")) },
-    { Model_Account::TYPE_ID_LOAN,        wxString(wxTRANSLATE("Loan")) },
-    { Model_Account::TYPE_ID_TERM,        wxString(wxTRANSLATE("Term")) },
-    { Model_Account::TYPE_ID_INVESTMENT,  wxString(wxTRANSLATE("Investment")) },
-    { Model_Account::TYPE_ID_ASSET,       wxString(wxTRANSLATE("Asset")) },
-    { Model_Account::TYPE_ID_SHARES,      wxString(wxTRANSLATE("Shares")) },
+    { TYPE_ID_CASH,        _n("Cash") },
+    { TYPE_ID_CHECKING,    _n("Checking") },
+    { TYPE_ID_CREDIT_CARD, _n("Credit Card") },
+    { TYPE_ID_LOAN,        _n("Loan") },
+    { TYPE_ID_TERM,        _n("Term") },
+    { TYPE_ID_INVESTMENT,  _n("Investment") },
+    { TYPE_ID_ASSET,       _n("Asset") },
+    { TYPE_ID_SHARES,      _n("Shares") },
 };
 
 const std::vector<std::pair<Model_Account::STATUS_ID, wxString> > Model_Account::STATUS_CHOICES =
 {
-    { Model_Account::STATUS_ID_OPEN,   wxString(wxTRANSLATE("Open")) },
-    { Model_Account::STATUS_ID_CLOSED, wxString(wxTRANSLATE("Closed")) }
+    { STATUS_ID_OPEN,   _n("Open") },
+    { STATUS_ID_CLOSED, _n("Closed") }
 };
 
 wxArrayString Model_Account::TYPE_STR = type_str_all();
@@ -169,7 +169,7 @@ wxString Model_Account::get_account_name(int64 account_id)
     if (account)
         return account->ACCOUNTNAME;
     else
-        return _("Account Error");
+        return _t("Account Error");
 }
 
 /** Remove the Data record instance from memory and the database. */

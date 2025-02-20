@@ -106,7 +106,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     std::map<int64, double> actualTotal;
     std::map<int64, double> estimateTotal;
 
-    const wxString& headingStr = wxString::Format(_("Budget Performance for %s"),
+    const wxString& headingStr = wxString::Format(_t("Budget Performance for %s"),
         AdjustYearValues(startDay
             , startMonth, startYear, budget_year)
     );
@@ -128,7 +128,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             {
                 hb.startTableRow();
                 {
-                    hb.addTableHeaderCell(_("Category"));
+                    hb.addTableHeaderCell(_t("Category"));
                     for (int yidx = 0; yidx < 12; yidx++)
                     {
                         actualTotal[yidx] = 0;
@@ -139,7 +139,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                             wxDateTime::GetEnglishMonthName(wxDateTime::Month(m)
                                 , wxDateTime::Name_Abbr)), "text-center", 1);
                     }
-                    hb.addTableHeaderCell(_("Total"), "text-center", 2);
+                    hb.addTableHeaderCell(_t("Total"), "text-center", 2);
                 }
                 hb.endTableRow();
                 hb.startTableRow();
@@ -147,10 +147,10 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                     hb.addEmptyTableCell();
                     for (int yidx = 0; yidx < 12; yidx++)
                     {
-                        hb.addTableCell(_("Est.") + "<BR>" + _("Act."), false, false);
+                        hb.addTableCell(_t("Est.") + "<BR>" + _t("Act."), false, false);
                     }
-                    hb.addTableCell(_("Est.") + "<BR>" + _("Act."), false, false);
-                    hb.addTableCell(_("%"), false, false);
+                    hb.addTableCell(_t("Est.") + "<BR>" + _t("Act."), false, false);
+                    hb.addTableCell(_t("%"), false, false);
                 }
                 hb.endTableRow();
             }
@@ -350,9 +350,9 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                     hb.startTotalTableRow();
 
                     hb.addTableCell(wxString::Format("%s<br>%s<br>%s"
-                        ,_("Estimated:")
-                        ,_("Actual:")
-                        ,_("Difference: ")));
+                        ,_t("Estimated:")
+                        ,_t("Actual:")
+                        ,_t("Difference: ")));
 
                     double estimateGrandTotal = 0;
                     double actualGrandTotal = 0;

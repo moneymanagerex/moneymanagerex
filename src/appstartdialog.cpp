@@ -98,38 +98,38 @@ void mmAppStartDialog::CreateControls()
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxVERTICAL);
     itemBoxSizer3->Add(itemBoxSizer5, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 5);
 
-    wxButton* itemButton61 = new wxButton(this, wxID_FILE1, _("Open Last Opened &Database"));
+    wxButton* itemButton61 = new wxButton(this, wxID_FILE1, _t("Open Last Opened &Database"));
     itemBoxSizer5->Add(itemButton61, 0, wxGROW | wxALL, 5);
 
-    wxButton* itemButton6 = new wxButton(this, wxID_NEW, _("&New Database"));
-    mmToolTip(itemButton6, _("Create new MMEX database file"));
+    wxButton* itemButton6 = new wxButton(this, wxID_NEW, _t("&New Database"));
+    mmToolTip(itemButton6, _t("Create new MMEX database file"));
     itemBoxSizer5->Add(itemButton6, 0, wxGROW | wxALL, 5);
 
-    wxButton* itemButton7 = new wxButton(this, wxID_OPEN, _("Open &Existing Database"));
-    mmToolTip(itemButton7, _("Open MMEX database file"));
+    wxButton* itemButton7 = new wxButton(this, wxID_OPEN, _t("Open &Existing Database"));
+    mmToolTip(itemButton7, _t("Open MMEX database file"));
     itemBoxSizer5->Add(itemButton7, 0, wxGROW | wxALL, 5);
 
-    wxButton* itemButton8 = new wxButton(this, wxID_SETUP , _("User Interface &Language"));
-    mmToolTip(itemButton8, _("Change user interface language"));
+    wxButton* itemButton8 = new wxButton(this, wxID_SETUP , _t("User Interface &Language"));
+    mmToolTip(itemButton8, _t("Change user interface language"));
     itemBoxSizer5->Add(itemButton8, 0, wxGROW | wxALL, 5);
 
-    wxButton* itemButton9 = new wxButton(this, wxID_HELP, _("&User Manual"));
-    mmToolTip(itemButton9, _("Read MMEX user manual"));
+    wxButton* itemButton9 = new wxButton(this, wxID_HELP, _t("&User Manual"));
+    mmToolTip(itemButton9, _t("Read MMEX user manual"));
     itemBoxSizer5->Add(itemButton9, 0, wxGROW | wxALL, 5);
 
-    wxButton* itemButton10 = new wxButton(this, wxID_INDEX, _("&Website"));
-    const wxString s = wxString::Format(_("Visit MMEX website for the latest news and updates"));
+    wxButton* itemButton10 = new wxButton(this, wxID_INDEX, _t("&Website"));
+    const wxString s = wxString::Format(_t("Visit MMEX website for the latest news and updates"));
     mmToolTip(itemButton10, s);
     itemBoxSizer5->Add(itemButton10, 0, wxGROW | wxALL, 5);
 
-    wxButton* itemButton11 = new wxButton(this, wxID_FORWARD, _("&Forum"));
-    mmToolTip(itemButton11, _("Visit MMEX forum to read and post comments and for support"));
+    wxButton* itemButton11 = new wxButton(this, wxID_FORWARD, _t("&Forum"));
+    mmToolTip(itemButton11, _t("Visit MMEX forum to read and post comments and for support"));
     itemBoxSizer5->Add(itemButton11, 0, wxGROW | wxALL, 5);
 
     wxBoxSizer* itemBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer10, 0, wxALIGN_LEFT | wxALL, 5);
 
-    itemCheckBox = new wxCheckBox(this, wxID_STATIC, _("&Show this dialog box at startup"), wxDefaultPosition,
+    itemCheckBox = new wxCheckBox(this, wxID_STATIC, _t("&Show this dialog box at startup"), wxDefaultPosition,
         wxDefaultSize, wxCHK_2STATE);
     bool showBeginApp = Model_Setting::instance().getBool("SHOWBEGINAPP", true);
     itemCheckBox->SetValue(showBeginApp);
@@ -139,8 +139,8 @@ void mmAppStartDialog::CreateControls()
     wxStaticLine* line = new wxStaticLine(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     itemBoxSizer2->Add(line, 0, wxGROW | wxALL, 5);
 
-    m_buttonClose = new wxButton(this, wxID_OK, _("&OK "));
-    m_buttonExit = new wxButton(this, wxID_EXIT, _("E&xit "));
+    m_buttonClose = new wxButton(this, wxID_OK, _t("&OK "));
+    m_buttonExit = new wxButton(this, wxID_EXIT, _t("E&xit "));
 
     m_buttonClose->Show(true);
     m_buttonExit->Show(false);
@@ -156,7 +156,7 @@ void mmAppStartDialog::CreateControls()
     }
     else
     {
-        mmToolTip(itemButton61, wxString::Format(_("Open the previously opened database: %s"), val));
+        mmToolTip(itemButton61, wxString::Format(_t("Open the previously opened database: %s"), val));
     }
 }
 
@@ -205,7 +205,7 @@ void mmAppStartDialog::OnButtonAppstartChangeLanguage( wxCommandEvent& /*event*/
             langs[wxGetTranslation(info->Description)] = std::make_pair(info->Language, info->CanonicalName);
     }
 
-    langChoices.Add(_("System default"));
+    langChoices.Add(_t("System default"));
     int current = -1;
     int i = 1;
     for (auto &lang : langs)
@@ -218,7 +218,7 @@ void mmAppStartDialog::OnButtonAppstartChangeLanguage( wxCommandEvent& /*event*/
     if ((current < 0)) // Must be wxLANGUAGE_DEFAULT
         current = 0;
 
-    mmSingleChoiceDialog lang_choice(this, _("Change user interface language"), _("User Interface Language"), langChoices);
+    mmSingleChoiceDialog lang_choice(this, _t("Change user interface language"), _t("User Interface Language"), langChoices);
     if (lang_choice.ShowModal() == wxID_OK)
     {
         auto selected = lang_choice.GetStringSelection();
@@ -226,9 +226,9 @@ void mmAppStartDialog::OnButtonAppstartChangeLanguage( wxCommandEvent& /*event*/
         wxLanguage lang = static_cast<wxLanguage>(langNo);
         if (lang != m_app->getGUILanguage() && m_app->setGUILanguage(lang))
         mmErrorDialogs::MessageWarning(this
-            , _("The language for this application has been changed. "
+            , _t("The language for this application has been changed. "
                 "The change will take effect the next time the application is started.")
-            , _("Language change"));
+            , _t("Language change"));
     }
 }
 

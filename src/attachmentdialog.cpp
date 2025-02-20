@@ -50,8 +50,8 @@ mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefTyp
     , m_RefId(RefId)
 {
     if (debug_) ColName_[ATTACHMENT_ID] = "#";
-    ColName_[ATTACHMENT_DESCRIPTION] = _("Description");
-    ColName_[ATTACHMENT_FILENAME] = _("File");
+    ColName_[ATTACHMENT_DESCRIPTION] = _t("Description");
+    ColName_[ATTACHMENT_FILENAME] = _t("File");
 
     Create(parent, name);
 
@@ -59,17 +59,17 @@ mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefTyp
 
     if (AttachmentsFolder == wxEmptyString)
     {
-        wxString msgStr = wxString() << _("Attachment folder not defined.") << "\n"
-            << _u("Please set it in Tools → Settings… → Attachments") << "\n";
-        wxMessageBox(msgStr, _("Attachment folder not defined"), wxICON_ERROR);
+        wxString msgStr = wxString() << _t("Attachment folder not defined.") << "\n"
+            << _tu("Please set it in Tools → Settings… → Attachments") << "\n";
+        wxMessageBox(msgStr, _t("Attachment folder not defined"), wxICON_ERROR);
     }
     else if (!wxDirExists(AttachmentsFolder))
     {
-        wxString msgStr = wxString() << _("Unable to find attachments folder:") << "\n"
+        wxString msgStr = wxString() << _t("Unable to find attachments folder:") << "\n"
             << "'" << AttachmentsFolder << "'" << "\n"
             << "\n"
-            << _("Please verify that above path is correct") << "\n";
-        wxMessageBox(msgStr, _("Attachments folder not found."), wxICON_ERROR);
+            << _t("Please verify that above path is correct") << "\n";
+        wxMessageBox(msgStr, _t("Attachments folder not found."), wxICON_ERROR);
     }
 }
 
@@ -109,11 +109,11 @@ void mmAttachmentDialog::Create(wxWindow* parent, const wxString& name)
             RefName = "";
         }       
         if (RefName.IsEmpty())
-            WindowTitle = wxString::Format(_("Attachment Manager | %s | %lld"), wxGetTranslation(m_RefType), m_RefId);
+            WindowTitle = wxString::Format(_t("Attachment Manager | %s | %lld"), wxGetTranslation(m_RefType), m_RefId);
         else
-            WindowTitle = wxString::Format(_("Attachment Manager | %1$s | %2$s"), wxGetTranslation(m_RefType), RefName);
+            WindowTitle = wxString::Format(_t("Attachment Manager | %1$s | %2$s"), wxGetTranslation(m_RefType), RefName);
     } else
-        WindowTitle = wxString::Format(_("Attachment Manager | New %s"), wxGetTranslation(m_RefType));
+        WindowTitle = wxString::Format(_t("Attachment Manager | New %s"), wxGetTranslation(m_RefType));
 
     if (!wxDialog::Create(parent, wxID_ANY, WindowTitle, wxDefaultPosition, wxDefaultSize, style, name))
         return;
@@ -146,14 +146,14 @@ void mmAttachmentDialog::CreateControls()
     wxStdDialogButtonSizer* buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxButton* buttonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
+    wxButton* buttonOK = new wxButton(buttons_panel, wxID_OK, _t("&OK "));
     wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     buttons_sizer->Add(buttonOK, g_flagsH);
     buttons_sizer->Add(btnCancel, g_flagsH);
 
     wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel
         , wxID_APPLY, mmBitmapBundle(png::MORE_OPTIONS, mmBitmapButtonSize));
-    mmToolTip(magicButton, _("Other tools"));
+    mmToolTip(magicButton, _t("Other tools"));
     buttons_sizer->Add(magicButton, g_flagsH);
 
     Center();
@@ -185,7 +185,7 @@ void mmAttachmentDialog::AddAttachment(wxString FilePath)
 {
     if (FilePath.empty())
     {
-        FilePath = wxFileSelector(_("Import attachment:")
+        FilePath = wxFileSelector(_t("Import attachment:")
             , wxEmptyString, wxEmptyString, wxEmptyString
             , "All Files |*.*"
             , wxFD_FILE_MUST_EXIST);
@@ -196,8 +196,8 @@ void mmAttachmentDialog::AddAttachment(wxString FilePath)
     const wxString attachmentFileName = wxFileName(FilePath).GetName();
     const wxString attachmentFileExtension = wxFileName(FilePath).GetExt().MakeLower();
     
-    mmDialogComboBoxAutocomplete dlg(this, _("Enter a description for the new attachment:") + wxString::Format("\n(%s)", FilePath),
-        _("Attachment Manager: Add Attachment"), attachmentFileName, Model_Attachment::instance().allDescriptions());
+    mmDialogComboBoxAutocomplete dlg(this, _t("Enter a description for the new attachment:") + wxString::Format("\n(%s)", FilePath),
+        _t("Attachment Manager: Add Attachment"), attachmentFileName, Model_Attachment::instance().allDescriptions());
 
     if (dlg.ShowModal() != wxID_OK)
         return;
@@ -243,8 +243,8 @@ void mmAttachmentDialog::EditAttachment()
     Model_Attachment::Data *attachment = Model_Attachment::instance().get(m_attachment_id);
     if (attachment)
     {
-        mmDialogComboBoxAutocomplete dlg(this, _("Enter a new description for the attachment:"),
-            _("Attachment Manager: Edit Attachment"), attachment->DESCRIPTION,
+        mmDialogComboBoxAutocomplete dlg(this, _t("Enter a new description for the attachment:"),
+            _t("Attachment Manager: Edit Attachment"), attachment->DESCRIPTION,
             Model_Attachment::instance().allDescriptions());
 
         if (dlg.ShowModal() != wxID_OK)
@@ -271,8 +271,8 @@ void mmAttachmentDialog::DeleteAttachment()
     if (attachment)
     {
         int DeleteResponse = wxMessageBox(
-            _("Do you want to delete this attachment?")
-            , _("Confirm Attachment Deletion")
+            _t("Do you want to delete this attachment?")
+            , _t("Confirm Attachment Deletion")
             , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
         if (DeleteResponse == wxYES)
         {
@@ -348,12 +348,12 @@ void mmAttachmentDialog::OnItemRightClick(wxDataViewEvent& event)
 
     wxMenu* mainMenu = new wxMenu;
     if (attachment) mainMenu->SetTitle(attachment->DESCRIPTION);
-    mainMenu->Append(new wxMenuItem(mainMenu, MENU_NEW_ATTACHMENT, _("&Add ")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_NEW_ATTACHMENT, _t("&Add ")));
     mainMenu->AppendSeparator();
-    mainMenu->Append(new wxMenuItem(mainMenu, MENU_OPEN_ATTACHMENT, _("&Open ")));
-    mainMenu->Append(new wxMenuItem(mainMenu, MENU_EDIT_ATTACHMENT, _("&Edit ")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_OPEN_ATTACHMENT, _t("&Open ")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_EDIT_ATTACHMENT, _t("&Edit ")));
     if (!attachment) mainMenu->Enable(MENU_EDIT_ATTACHMENT, false);
-    mainMenu->Append(new wxMenuItem(mainMenu, MENU_DELETE_ATTACHMENT, _("&Remove ")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_DELETE_ATTACHMENT, _t("&Remove ")));
     
     //Disable buttons
     const wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
@@ -395,16 +395,16 @@ const wxString mmAttachmentManage::InfotablePathSetting()
 
 const wxString mmAttachmentManage::GetAttachmentNoteSign()
 {
-    return wxString::Format("[%s] ",_("Att."));
+    return wxString::Format("[%s] ",_t("Att."));
 }
 
 bool mmAttachmentManage::CreateReadmeFile(const wxString& FolderPath)
 {
     wxString ReadmeFilePath = FolderPath + m_PathSep + "readme.txt";
     wxString ReadmeText;
-    ReadmeText << _("This directory and its files are automatically managed by MMEX.") << wxTextFile::GetEOL();
+    ReadmeText << _t("This directory and its files are automatically managed by MMEX.") << wxTextFile::GetEOL();
     ReadmeText << wxTextFile::GetEOL();
-    ReadmeText << _("Please do not remove, rename or modify manually directories and files.") << wxTextFile::GetEOL();
+    ReadmeText << _t("Please do not remove, rename or modify manually directories and files.") << wxTextFile::GetEOL();
 
     if (wxFileExists(ReadmeFilePath))
     {
@@ -449,19 +449,19 @@ bool mmAttachmentManage::CopyAttachment(const wxString& FileToImport, const wxSt
         const auto &attachments = Model_Attachment::instance().find(Model_Attachment::FILENAME(wxFileNameFromPath(ImportedFile)));
         if (attachments.empty())
         {
-            wxString msgStr = wxString() << _("Destination file already exist:") << "\n"
+            wxString msgStr = wxString() << _t("Destination file already exist:") << "\n"
                 << "'" << ImportedFile << "'" << "\n"
                 << "\n"
-                << _("File not found in attachments. Please delete or rename it.") << "\n";
-            wxMessageBox(msgStr, _("Destination file already exist"), wxICON_ERROR);
+                << _t("File not found in attachments. Please delete or rename it.") << "\n";
+            wxMessageBox(msgStr, _t("Destination file already exist"), wxICON_ERROR);
         }
         else
         {
-            wxString msgStr = wxString() << _("Destination file already exist:") << "\n"
+            wxString msgStr = wxString() << _t("Destination file already exist:") << "\n"
                 << "'" << ImportedFile << "'" << "\n"
                 << "\n"
-                << _("File already found in attachments") << "\n";
-            wxMessageBox(msgStr, _("Destination file already exist"), wxICON_ERROR);
+                << _t("File already found in attachments") << "\n";
+            wxMessageBox(msgStr, _t("Destination file already exist"), wxICON_ERROR);
         }
         return false;
     }
@@ -503,11 +503,11 @@ bool mmAttachmentManage::DeleteAttachment(const wxString& FileToDelete)
     }
     else
     {
-        wxString msgStr = wxString() << _("Attachment not found:") << "\n"
+        wxString msgStr = wxString() << _t("Attachment not found:") << "\n"
             << "'" << FileToDelete << "'" << "\n"
             << "\n"
-            << _("Do you want to delete the attachment in the database?") << "\n";
-        int DeleteResponse = wxMessageBox(msgStr, _("Delete attachment failed"), wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
+            << _t("Do you want to delete the attachment in the database?") << "\n";
+        int DeleteResponse = wxMessageBox(msgStr, _t("Delete attachment failed"), wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
         if (DeleteResponse == wxYES)
             return true;
         else
@@ -520,11 +520,11 @@ bool mmAttachmentManage::OpenAttachment(const wxString& FileToOpen)
 {
     if (!wxFileExists(FileToOpen))
     {
-        wxString msgStr = wxString() << _("Unable to open file:") << "\n"
+        wxString msgStr = wxString() << _t("Unable to open file:") << "\n"
             << "'" << FileToOpen << "'" << "\n"
             << "\n"
-            << _("Please verify that file exists and user has rights to read it.") << "\n";
-        wxMessageBox(msgStr, _("Open attachment failed"), wxICON_ERROR);
+            << _t("Please verify that file exists and user has rights to read it.") << "\n";
+        wxMessageBox(msgStr, _t("Open attachment failed"), wxICON_ERROR);
         return false;
     }
 

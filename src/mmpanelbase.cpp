@@ -235,16 +235,16 @@ void mmListCtrl::onColRightClick(wxListEvent& event)
         int width = Model_Setting::instance().getInt(key, m_columns[i].width);
         submenu->Check(id, width != 0);
     }
-    menu.AppendSubMenu(submenu, _("Hide/Show Columns"));
-    menu.Append(MENU_HEADER_HIDE, _("Hide this column"));
+    menu.AppendSubMenu(submenu, _t("Hide/Show Columns"));
+    menu.Append(MENU_HEADER_HIDE, _t("Hide this column"));
     if (m_default_sort_column >= 0 && m_columns[m_ColumnHeaderNbr].sortable)
-        menu.Append(MENU_HEADER_SORT, _("Order by this column"));
+        menu.Append(MENU_HEADER_SORT, _t("Order by this column"));
     // Do not show e.g. for Assets root list. Only for sublists.
     if (m_column_order.size() > 0) {
-        menu.Append(MENU_HEADER_MOVE_LEFT, _("Move column left"));
-        menu.Append(MENU_HEADER_MOVE_RIGHT, _("Move column right"));
+        menu.Append(MENU_HEADER_MOVE_LEFT, _t("Move column left"));
+        menu.Append(MENU_HEADER_MOVE_RIGHT, _t("Move column right"));
     }
-    menu.Append(MENU_HEADER_RESET, _("Reset columns"));
+    menu.Append(MENU_HEADER_RESET, _t("Reset columns"));
     PopupMenu(&menu);
     this->SetFocus();
 }

@@ -42,7 +42,7 @@ public:
     }
     mmQIFImportDialog(wxWindow* parent, int64 account_id, const wxString& file_path = wxEmptyString);
 
-    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& caption = _("Import from QIF file"), const wxPoint& pos = wxDefaultPosition,
+    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& caption = _t("Import from QIF file"), const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize, long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX);
 
     wxString OnGetItemText(long item, long column) const;

@@ -61,7 +61,7 @@ public:
 private:
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
-        , const wxString& caption = _("General Report Manager")
+        , const wxString& caption = _t("General Report Manager")
         , const wxString& name = "General Reports Manager"
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize

@@ -85,7 +85,7 @@ bool mmTextCtrl::Calculate(int alt_precision)
         {
             err = pattern.GetMatch(err, 1);
         }
-        mmErrorDialogs::ToolTip4Object(this, err, _("Invalid Value"));
+        mmErrorDialogs::ToolTip4Object(this, err, _t("Invalid Value"));
         this->ChangeValue(str);
         return false;
     }
@@ -111,10 +111,10 @@ bool mmTextCtrl::checkValue(double &amount, bool positive_value)
     if (!GetDouble(amount) || (positive_value && amount < 0))
     {
         mmErrorDialogs::ToolTip4Object(this
-            , wxString(positive_value ? _("Please enter a positive or calculated value.") : _("Please enter a calculated value."))
+            , wxString(positive_value ? _t("Please enter a positive or calculated value.") : _t("Please enter a calculated value."))
             + "\n\n"
-            + _("Tip: For calculations, enter expressions like (2+2)*(2+2)\nCalculations will be evaluated and the result used as the entry.")
-            , _("Invalid Amount.")
+            + _t("Tip: For calculations, enter expressions like (2+2)*(2+2)\nCalculations will be evaluated and the result used as the entry.")
+            , _t("Invalid Amount.")
             , wxICON_ERROR);
         //SetFocus();
         return false;

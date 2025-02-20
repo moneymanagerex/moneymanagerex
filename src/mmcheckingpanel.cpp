@@ -285,34 +285,34 @@ void mmCheckingPanel::createControls()
     wxBoxSizer* sizerHButtons = new wxBoxSizer(wxHORIZONTAL);
     sizerVFooter->Add(sizerHButtons, wxSizerFlags(g_flagsExpandBorder1).Proportion(0));
 
-    m_btnDelete = new wxButton(panelFooter, wxID_REMOVE, _("&Delete "));
-    mmToolTip(m_btnDelete, _("Delete all selected transactions"));
+    m_btnDelete = new wxButton(panelFooter, wxID_REMOVE, _t("&Delete "));
+    mmToolTip(m_btnDelete, _t("Delete all selected transactions"));
 
     if (!isDeletedTrans()) {
-        m_btnNew = new wxButton(panelFooter, wxID_NEW, _("&New "));
-        mmToolTip(m_btnNew, _("New Transaction"));
+        m_btnNew = new wxButton(panelFooter, wxID_NEW, _t("&New "));
+        mmToolTip(m_btnNew, _t("New Transaction"));
         sizerHButtons->Add(m_btnNew, 0, wxRIGHT, 2);
 
-        m_btnEdit = new wxButton(panelFooter, wxID_EDIT, _("&Edit "));
-        mmToolTip(m_btnEdit, _("Edit all selected transactions"));
+        m_btnEdit = new wxButton(panelFooter, wxID_EDIT, _t("&Edit "));
+        mmToolTip(m_btnEdit, _t("Edit all selected transactions"));
         sizerHButtons->Add(m_btnEdit, 0, wxRIGHT, 2);
         m_btnEdit->Enable(false);
 
-        m_btnDuplicate = new wxButton(panelFooter, wxID_DUPLICATE, _("D&uplicate "));
-        mmToolTip(m_btnDuplicate, _("Duplicate selected transaction"));
+        m_btnDuplicate = new wxButton(panelFooter, wxID_DUPLICATE, _t("D&uplicate "));
+        mmToolTip(m_btnDuplicate, _t("Duplicate selected transaction"));
         sizerHButtons->Add(m_btnDuplicate, 0, wxRIGHT, 2);
         m_btnDuplicate->Enable(false);
 
         sizerHButtons->Add(m_btnDelete, 0, wxRIGHT, 2);
         m_btnDelete->Enable(false);
 
-        m_btnEnter = new wxButton(panelFooter, wxID_PASTE, _("Ente&r"));
-        mmToolTip(m_btnEnter, _("Enter Next Scheduled Transaction Occurrence"));
+        m_btnEnter = new wxButton(panelFooter, wxID_PASTE, _t("Ente&r"));
+        mmToolTip(m_btnEnter, _t("Enter Next Scheduled Transaction Occurrence"));
         sizerHButtons->Add(m_btnEnter, 0, wxRIGHT, 2);
         m_btnEnter->Enable(false);
 
-        m_btnSkip = new wxButton(panelFooter, wxID_IGNORE, _("&Skip"));
-        mmToolTip(m_btnSkip, _("Skip Next Scheduled Transaction Occurrence"));
+        m_btnSkip = new wxButton(panelFooter, wxID_IGNORE, _t("&Skip"));
+        mmToolTip(m_btnSkip, _t("Skip Next Scheduled Transaction Occurrence"));
         sizerHButtons->Add(m_btnSkip, 0, wxRIGHT, 2);
         m_btnSkip->Enable(false);
 
@@ -321,7 +321,7 @@ void mmCheckingPanel::createControls()
             panelFooter, wxID_FILE, mmBitmapBundle(png::CLIP), wxDefaultPosition,
             wxSize(30, btnDupSize.GetY())
         );
-        mmToolTip(m_btnAttachment, _("Open attachments"));
+        mmToolTip(m_btnAttachment, _t("Open attachments"));
         sizerHButtons->Add(m_btnAttachment, 0, wxRIGHT, 5);
         m_btnAttachment->Enable(false);
 
@@ -337,8 +337,8 @@ void mmCheckingPanel::createControls()
         );
     }
     else {
-        m_btnRestore = new wxButton(panelFooter, wxID_UNDELETE, _("&Restore "));
-        mmToolTip(m_btnRestore, _("Restore selected transaction"));
+        m_btnRestore = new wxButton(panelFooter, wxID_UNDELETE, _t("&Restore "));
+        mmToolTip(m_btnRestore, _t("Restore selected transaction"));
         sizerHButtons->Add(m_btnRestore, 0, wxRIGHT, 5);
         m_btnRestore->Enable(false);
 
@@ -352,15 +352,15 @@ void mmCheckingPanel::createControls()
         wxSize(100, m_btnDelete->GetSize().GetHeight()),
         wxTE_NOHIDESEL, wxDefaultValidator
     );
-    searchCtrl->SetDescriptiveText(_("Search"));
+    searchCtrl->SetDescriptiveText(_t("Search"));
     sizerHButtons->Add(searchCtrl, g_flagsExpandBorder1);
     mmToolTip(searchCtrl,
-        _("Enter any string to find it in the nearest transaction data") + "\n\n" +
-        _u("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
-        _u("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
-        _u("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
-        _u("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.") + "\n" +
-        _("Use regex: to match using regular expressions.")
+        _t("Enter any string to find it in the nearest transaction data") + "\n\n" +
+        _tu("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
+        _tu("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
+        _tu("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
+        _tu("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.") + "\n" +
+        _t("Use regex: to match using regular expressions.")
     );
 
     // Infobar-mini
@@ -383,23 +383,23 @@ void mmCheckingPanel::updateHeader()
     m_header_credit->Hide();
     if (m_account) {
         wxString summary = wxString::Format("%s%s",
-            _("Account Bal: "),
+            _t("Account Bal: "),
             Model_Account::toCurrency(m_balance, m_account)
         );
         if (m_show_reconciled) summary.Append(wxString::Format("     %s%s     %s%s",
-            _("Reconciled Bal: "),
+            _t("Reconciled Bal: "),
             Model_Account::toCurrency(m_reconciled_balance, m_account),
-            _("Diff: "),
+            _t("Diff: "),
             Model_Account::toCurrency(m_balance - m_reconciled_balance, m_account)
         ));
         summary.Append(wxString::Format("     %s%s",
-            _("Filtered Flow: "),
+            _t("Filtered Flow: "),
             Model_Account::toCurrency(m_flow, m_account)
         ));
         if (m_account->CREDITLIMIT != 0.0) {
             double limit = 100.0 * ((m_balance < 0.0) ? -m_balance / m_account->CREDITLIMIT : 0.0);
             summary.Append(wxString::Format("   %s %.1f%%",
-                _("Credit Limit:"),
+                _t("Credit Limit:"),
                 limit
             ));
             m_header_credit->SetRange(std::max(100.0, limit));
@@ -417,7 +417,7 @@ void mmCheckingPanel::updateFilter()
 
     wxString label = (m_filter_id == FILTER_ID_DATE) ?
         m_date_range.getName() :
-        _("Advanced filter");
+        _t("Advanced filter");
     m_bitmapTransFilter->SetLabel(label);
     m_bitmapTransFilter->SetBitmap(m_filter_id == FILTER_ID_ADVANCED ?
         mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize) :
@@ -518,7 +518,7 @@ void mmCheckingPanel::loadFilterSettings()
             break;
         }
         if (date_spec.getName().empty())
-            date_spec.setName(_("(Date range)"));
+            date_spec.setName(_t("(Date range)"));
     }
     m_date_range = DateRange2();
     if (isAccount()) m_date_range.setDateS(
@@ -895,7 +895,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
                 Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(refType, full_tran.TRANSID);
                 for (const auto& i : attachments) {
                     notesStr += notesStr.empty() ? "" : "\n";
-                    notesStr += _("Attachment") + " " + i.DESCRIPTION + " " + i.FILENAME;
+                    notesStr += _t("Attachment") + " " + i.DESCRIPTION + " " + i.FILENAME;
                 }
             }
         }
@@ -913,7 +913,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
                 Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(refType, full_tran.m_bdid);
                 for (const auto& i : attachments) {
                     notesStr += notesStr.empty() ? "" : "\n";
-                    notesStr += _("Attachment") + " " + i.DESCRIPTION + " " + i.FILENAME;
+                    notesStr += _t("Attachment") + " " + i.DESCRIPTION + " " + i.FILENAME;
                 }
             }
         }
@@ -961,17 +961,17 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
             int days = max_date.Subtract(min_date).GetDays();
 
             wxString msg;
-            msg = wxString::Format(_("Transactions selected: %zu"), selected.size());
+            msg = wxString::Format(_t("Transactions selected: %zu"), selected.size());
             msg += "\n";
             if (currency) {
                 msg += wxString::Format(
-                    _("Selected transactions balance: %s"),
+                    _t("Selected transactions balance: %s"),
                     Model_Currency::toCurrency(flow, currency)
                 );
                 msg += "\n";
             }
             msg += wxString::Format(
-                _("Days between selected transactions: %d"),
+                _t("Days between selected transactions: %d"),
                 days
             );
 #ifdef __WXMAC__    // See issue #2914
@@ -1034,9 +1034,9 @@ void mmCheckingPanel::showTips(const wxString& tip)
 void mmCheckingPanel::updateScheduledToolTip()
 {
     mmToolTip(m_header_scheduled,
-        !m_scheduled_enable ? _("Unable to show scheduled transactions because the current filter choice extends into the future without limit.") :
-        !m_scheduled_selected ? _("Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month).") :
-        _("Click to hide scheduled transactions."));
+        !m_scheduled_enable ? _t("Unable to show scheduled transactions because the current filter choice extends into the future without limit.") :
+        !m_scheduled_selected ? _t("Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month).") :
+        _t("Click to hide scheduled transactions."));
 }
 
 //----------------------------------------------------------------------------
@@ -1051,16 +1051,16 @@ void mmCheckingPanel::onFilterPopup(wxCommandEvent& event)
     }
 
     menu.AppendSeparator();
-    if (i < m_date_range_a.size()) {
+    if (i < int(m_date_range_a.size())) {
         wxMenu* menu_more(new wxMenu);
-        menu.AppendSubMenu(menu_more, _("More date ranges…"));
-        while (i < m_date_range_a.size()) {
+        menu.AppendSubMenu(menu_more, _t("More date ranges…"));
+        while (i < int(m_date_range_a.size())) {
             menu_more->Append(mmID_FILTER_DATE_MIN + i, m_date_range_a[i].getName());
             i++;
         }
     }
-    // TODO: menu.Append(mmID_EDIT_DATE_RANGES, _("Edit date ranges…"));
-    menu.Append(mmID_FILTER_ADVANCED, _("Advanced filter…"));
+    // TODO: menu.Append(mmID_EDIT_DATE_RANGES, _t("Edit date ranges…"));
+    menu.Append(mmID_FILTER_ADVANCED, _t("Advanced filter…"));
 
     PopupMenu(&menu);
     m_bitmapTransFilter->Layout();
@@ -1070,7 +1070,7 @@ void mmCheckingPanel::onFilterPopup(wxCommandEvent& event)
 void mmCheckingPanel::onFilterDate(wxCommandEvent& event)
 {
     int i = event.GetId() - mmID_FILTER_DATE_MIN;
-    if (i < 0 || i >= m_date_range_a.size())
+    if (i < 0 || i >= int(m_date_range_a.size()))
         return;
 
     setFilterDate(m_date_range_a[i]);
@@ -1078,7 +1078,7 @@ void mmCheckingPanel::onFilterDate(wxCommandEvent& event)
     refreshList();
 }
 
-void mmCheckingPanel::onFilterAdvanced(wxCommandEvent& event)
+void mmCheckingPanel::onFilterAdvanced(wxCommandEvent& WXUNUSED(event))
 {
     if (!m_trans_filter_dlg) {
         wxString j_str = Model_Infotable::instance().getString(
@@ -1106,7 +1106,7 @@ void mmCheckingPanel::onFilterAdvanced(wxCommandEvent& event)
     refreshList();
 }
 
-void mmCheckingPanel::onEditDateRanges(wxCommandEvent& event)
+void mmCheckingPanel::onEditDateRanges(wxCommandEvent& WXUNUSED(event))
 {
     wxLogDebug("mmCheckingPanel::onEditDateRanges(): not yet implemented");
 }
@@ -1200,9 +1200,9 @@ void mmCheckingPanel::onButtonRightDown(wxMouseEvent& event)
     }
     case wxID_NEW: {
         wxMenu menu;
-        menu.Append(Model_Checking::TYPE_ID_WITHDRAWAL, _u("&New Withdrawal…"));
-        menu.Append(Model_Checking::TYPE_ID_DEPOSIT, _u("&New Deposit…"));
-        menu.Append(Model_Checking::TYPE_ID_TRANSFER, _u("&New Transfer…"));
+        menu.Append(Model_Checking::TYPE_ID_WITHDRAWAL, _tu("&New Withdrawal…"));
+        menu.Append(Model_Checking::TYPE_ID_DEPOSIT, _tu("&New Deposit…"));
+        menu.Append(Model_Checking::TYPE_ID_TRANSFER, _tu("&New Transfer…"));
         PopupMenu(&menu);
     }
     default:
@@ -1215,17 +1215,17 @@ void mmCheckingPanel::onButtonRightDown(wxMouseEvent& event)
 wxString mmCheckingPanel::getPanelTitle() const
 {
     if (isAllTrans())
-        return _("All Transactions");
+        return _t("All Transactions");
     else if (isDeletedTrans())
-        return _("Deleted Transactions");
+        return _t("Deleted Transactions");
     else if (isGroup()) {
         if (m_checking_id == -3)
-            return _("Favorites");
+            return _t("Favorites");
         else
             return wxGetTranslation(mmGUIFrame::ACCOUNT_SECTION[m_account_type]);
     }
     else if (m_account)
-        return wxString::Format(_("Account View: %s"), m_account->ACCOUNTNAME);
+        return wxString::Format(_t("Account View: %s"), m_account->ACCOUNTNAME);
     else
         return "";
 }

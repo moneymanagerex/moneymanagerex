@@ -196,7 +196,7 @@ void mmReportsPanel::CreateControls()
         if (rp & rb_->RepParams::DATE_RANGE)
         {
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
-                , wxID_ANY, _("Period:"));
+                , wxID_ANY, _t("Period:"));
             mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
@@ -252,7 +252,7 @@ void mmReportsPanel::CreateControls()
         else if (rp & rb_->RepParams::SINGLE_DATE)
         {
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
-                , wxID_ANY, _("Date:"));
+                , wxID_ANY, _t("Date:"));
             mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
@@ -268,7 +268,7 @@ void mmReportsPanel::CreateControls()
         else if (rp & rb_->RepParams::MONTHES)
         {
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
-                , wxID_ANY, _("Date:"));
+                , wxID_ANY, _t("Date:"));
             mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
@@ -284,7 +284,7 @@ void mmReportsPanel::CreateControls()
         if (rp & rb_->RepParams::TIME)
         {
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
-                , wxID_ANY, _("Time:"));
+                , wxID_ANY, _t("Time:"));
             mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
@@ -299,7 +299,7 @@ void mmReportsPanel::CreateControls()
         {
             cleanupmem_ = true;
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
-                , wxID_ANY, _("Year:"));
+                , wxID_ANY, _t("Year:"));
             mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
@@ -322,7 +322,7 @@ void mmReportsPanel::CreateControls()
         {
             cleanupmem_ = true;
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
-                , wxID_ANY, _("Budget:"));
+                , wxID_ANY, _t("Budget:"));
             mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
@@ -354,13 +354,13 @@ void mmReportsPanel::CreateControls()
 
         if (rp & rb_->RepParams::ACCOUNTS_LIST)
         {
-            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3, wxID_ANY, _("Accounts:"));
+            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3, wxID_ANY, _t("Accounts:"));
             mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
             m_accounts = new wxChoice(itemPanel3, ID_CHOICE_ACCOUNTS);
-            m_accounts->Append(_("All Accounts"));
-            m_accounts->Append(_u("Specific Accounts…"));
+            m_accounts->Append(_t("All Accounts"));
+            m_accounts->Append(_tu("Specific Accounts…"));
             for (const auto& e : Model_Account::TYPE_CHOICES)
             {
                 if (e.first != Model_Account::TYPE_ID_INVESTMENT) {
@@ -376,7 +376,7 @@ void mmReportsPanel::CreateControls()
         if (rp & rb_->RepParams::FORWARD_MONTHS)
         {
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
-                , wxID_ANY, _("Future Months:"));
+                , wxID_ANY, _t("Future Months:"));
             mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
@@ -391,13 +391,13 @@ void mmReportsPanel::CreateControls()
         if (rp & rb_->RepParams::CHART)
         {
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
-                , wxID_ANY, _("Chart:"));
+                , wxID_ANY, _t("Chart:"));
             mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
             m_chart = new wxChoice(itemPanel3, ID_CHOICE_CHART);
-            m_chart->Append(_("Show"));
-            m_chart->Append(_("Hide"));
+            m_chart->Append(_t("Show"));
+            m_chart->Append(_t("Hide"));
             m_chart->SetSelection(rb_->getChartSelection());
 
             itemBoxSizerHeader->Add(m_chart, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);

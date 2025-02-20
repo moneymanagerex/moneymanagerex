@@ -39,7 +39,7 @@ public:
 private:
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
-        , const wxString& caption = wxTRANSLATE("Multi Transactions Update")
+        , const wxString& caption = _n("Multi Transactions Update")
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxSize(500, 300)
         , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);

@@ -32,7 +32,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 
 mmReportIncomeExpenses::mmReportIncomeExpenses()
-    : mmPrintableBase(wxTRANSLATE("Income vs. Expenses Summary"))
+    : mmPrintableBase(_n("Income vs. Expenses Summary"))
 {
     setReportParameters(Reports::IncomevsExpensesSummary);
 }
@@ -82,10 +82,10 @@ wxString mmReportIncomeExpenses::getHTMLText()
     GraphSeries gs;
 
     gs.values = { income_expenses_pair.first };
-    gs.name = _("Income");
+    gs.name = _t("Income");
     gd.series.push_back(gs);
     gs.values = { income_expenses_pair.second };
-    gs.name = _("Expenses");
+    gs.name = _t("Expenses");
     gd.series.push_back(gs);
 
     gd.labels.push_back(m_date_range->local_title());
@@ -105,16 +105,16 @@ wxString mmReportIncomeExpenses::getHTMLText()
             hb.startThead();
             {
                 hb.startTableRow();
-                    hb.addTableHeaderCell(_("Type"));
-                    hb.addTableHeaderCell(_("Amount"), "text-right");
+                    hb.addTableHeaderCell(_t("Type"));
+                    hb.addTableHeaderCell(_t("Amount"), "text-right");
                 hb.endTableRow();
             }
             hb.endThead();
             hb.startTbody();
             {
-                hb.addTableRow(_("Income:"), income_expenses_pair.first);
-                hb.addTableRow(_("Expenses:"), income_expenses_pair.second);
-                hb.addTotalRow(_("Difference:"), 2, income_expenses_pair.first - income_expenses_pair.second);
+                hb.addTableRow(_t("Income:"), income_expenses_pair.first);
+                hb.addTableRow(_t("Expenses:"), income_expenses_pair.second);
+                hb.addTotalRow(_t("Difference:"), 2, income_expenses_pair.first - income_expenses_pair.second);
             }
             hb.endTbody();
         }
@@ -130,7 +130,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
 }
 
 mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly()
-    : mmPrintableBase(wxTRANSLATE("Income vs. Expenses Monthly"))
+    : mmPrintableBase(_n("Income vs. Expenses Monthly"))
 {
     setReportParameters(Reports::IncomevsExpensesMonthly);
 }
@@ -208,10 +208,10 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
             gd.labels.push_back(label);
         }
 
-        data_performance.name = _("Cumulative");
-        data_difference.name = _("Difference");
-        data_positive.name = _("Income");
-        data_negative.name = _("Expenses");
+        data_performance.name = _t("Cumulative");
+        data_difference.name = _t("Difference");
+        data_positive.name = _t("Income");
+        data_negative.name = _t("Expenses");
 
         data_performance.type = "line";
         data_difference.type = "line";
@@ -241,11 +241,11 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         hb.startThead();
         {
             hb.startTableRow();
-            hb.addTableHeaderCell(_("Date"));
-            hb.addTableHeaderCell(_("Income"), "text-right");
-            hb.addTableHeaderCell(_("Expenses"), "text-right");
-            hb.addTableHeaderCell(_("Difference"), "text-right");
-            hb.addTableHeaderCell(_("Cumulative"), "text-right");
+            hb.addTableHeaderCell(_t("Date"));
+            hb.addTableHeaderCell(_t("Income"), "text-right");
+            hb.addTableHeaderCell(_t("Expenses"), "text-right");
+            hb.addTableHeaderCell(_t("Difference"), "text-right");
+            hb.addTableHeaderCell(_t("Cumulative"), "text-right");
             hb.endTableRow();
         }
         hb.endThead();
@@ -277,7 +277,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         totals.push_back(total_income - total_expenses);
         totals.push_back(total_income - total_expenses);
 
-        hb.addMoneyTotalRow(_("Total:"), 5, totals);
+        hb.addMoneyTotalRow(_t("Total:"), 5, totals);
     }
     hb.endTable();
 

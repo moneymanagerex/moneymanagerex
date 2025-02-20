@@ -63,20 +63,20 @@ const std::vector<ListColumnInfo> StocksListCtrl::col_info_all()
 {
     return {
         { " ",                       25,                        wxLIST_FORMAT_LEFT,  false },
-        { _("ID"),                   wxLIST_AUTOSIZE,           wxLIST_FORMAT_RIGHT, true },
-        { _("*Date"),                wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
-        { _("Company Name"),         wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
-        { _("Symbol"),               wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
-        { _("Share Total"),          wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _("Avg Share Price"),      wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _("Total Cost"),           wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _("Realized Gain/Loss"),   wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _("Unrealized Gain/Loss"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _("Curr. Share Price"),    wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _("Curr. Total Value"),    wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _("Price Date"),           wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
-        { _("Commission"),           wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _("Notes"),                wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("ID"),                   wxLIST_AUTOSIZE,           wxLIST_FORMAT_RIGHT, true },
+        { _t("*Date"),                wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Company Name"),         wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Symbol"),               wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Share Total"),          wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Avg Share Price"),      wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Total Cost"),           wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Realized Gain/Loss"),   wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Unrealized Gain/Loss"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Curr. Share Price"),    wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Curr. Total Value"),    wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Price Date"),           wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Commission"),           wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Notes"),                wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
     };
 }
 
@@ -133,17 +133,17 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
     bool hide_menu_item = (m_selected_row < 0);
 
     wxMenu menu;
-    menu.Append(MENU_TREEPOPUP_NEW, _u("&New Stock Investment…"));
+    menu.Append(MENU_TREEPOPUP_NEW, _tu("&New Stock Investment…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ADDTRANS, _u("&Add Stock Transactions…"));
-    menu.Append(MENU_TREEPOPUP_VIEWTRANS, _("&View Stock Transactions"));
+    menu.Append(MENU_TREEPOPUP_ADDTRANS, _tu("&Add Stock Transactions…"));
+    menu.Append(MENU_TREEPOPUP_VIEWTRANS, _t("&View Stock Transactions"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_EDIT, _u("&Edit Stock Investment…"));
+    menu.Append(MENU_TREEPOPUP_EDIT, _tu("&Edit Stock Investment…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_DELETE, _u("&Delete Stock Investment…"));
+    menu.Append(MENU_TREEPOPUP_DELETE, _tu("&Delete Stock Investment…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _u("&Organize Attachments…"));
-    menu.Append(wxID_INDEX, _("Stock &Web Page"));
+    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _tu("&Organize Attachments…"));
+    menu.Append(wxID_INDEX, _t("Stock &Web Page"));
 
     menu.Enable(MENU_TREEPOPUP_EDIT, !hide_menu_item);
     menu.Enable(MENU_TREEPOPUP_ADDTRANS, !hide_menu_item);
@@ -285,8 +285,8 @@ void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    wxMessageDialog msgDlg(this, _("Do you want to delete the stock investment?")
-        , _("Confirm Stock Investment Deletion")
+    wxMessageDialog msgDlg(this, _t("Do you want to delete the stock investment?")
+        , _t("Confirm Stock Investment Deletion")
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
     if (msgDlg.ShowModal() == wxID_YES)
     {
@@ -308,8 +308,8 @@ void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
     if (accounts.empty()) return;
 
     const Model_Account::Data* from_account = Model_Account::instance().get(m_stock_panel->m_account_id);
-    wxString headerMsg = wxString::Format(_("Moving Transaction from %s to"), from_account->ACCOUNTNAME);
-    mmSingleChoiceDialog scd(this, _("Select the destination Account "), headerMsg , accounts);
+    wxString headerMsg = wxString::Format(_t("Moving Transaction from %s to"), from_account->ACCOUNTNAME);
+    mmSingleChoiceDialog scd(this, _t("Select the destination Account "), headerMsg , accounts);
 
     int64 toAccountID = -1;
     int error_code = scd.ShowModal();

@@ -77,19 +77,19 @@ void UserTransactionPanel::Create()
 
     // Trans Date --------------------------------------------
     m_date_selector = new mmDatePickerCtrl(this, ID_TRANS_DATE_SELECTOR);
-    mmToolTip(m_date_selector, _("Specify the date of the transaction"));
+    mmToolTip(m_date_selector, _t("Specify the date of the transaction"));
 
     wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
     date_sizer->Add(m_date_selector->mmGetLayout());
 
-    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Date")), g_flagsH);
+    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _t("Date")), g_flagsH);
     transPanelSizer->Add(date_sizer);
 
     // Account ------------------------------------------------
-    transPanelSizer->Add(new wxStaticText(this, ID_TRANS_ACCOUNT_BUTTON_TEXT, _("Account")), g_flagsH);
-    m_account = new wxButton(this, ID_TRANS_ACCOUNT_BUTTON, _("Select Account")
+    transPanelSizer->Add(new wxStaticText(this, ID_TRANS_ACCOUNT_BUTTON_TEXT, _t("Account")), g_flagsH);
+    m_account = new wxButton(this, ID_TRANS_ACCOUNT_BUTTON, _t("Select Account")
         , wxDefaultPosition, std_size);
-    mmToolTip(m_account, _("Specify the associated Account that will contain this transaction"));
+    mmToolTip(m_account, _t("Specify the associated Account that will contain this transaction"));
     transPanelSizer->Add(m_account, g_flagsH);
 
     // Type --------------------------------------------
@@ -101,26 +101,26 @@ void UserTransactionPanel::Create()
     }
 
     m_type_selector->SetSelection(Model_Checking::TYPE_ID_WITHDRAWAL);
-    mmToolTip(m_type_selector, _("Withdraw funds from or deposit funds to this Account."));
+    mmToolTip(m_type_selector, _t("Withdraw funds from or deposit funds to this Account."));
 
-    m_transfer = new wxCheckBox(this, ID_TRANS_TRANSFER, _("&Transfer")
+    m_transfer = new wxCheckBox(this, ID_TRANS_TRANSFER, _t("&Transfer")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     CheckingType(Model_Translink::AS_TRANSFER);
-    mmToolTip(m_transfer, _("Funds transfer from/to this account. Uncheck to set as Expense/Income."));
+    mmToolTip(m_transfer, _t("Funds transfer from/to this account. Uncheck to set as Expense/Income."));
 
     wxBoxSizer* type_sizer = new wxBoxSizer(wxHORIZONTAL);
     type_sizer->Add(m_type_selector, g_flagsH);
     type_sizer->Add(m_transfer, g_flagsH);
 
-    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Type")), g_flagsH);
+    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _t("Type")), g_flagsH);
     transPanelSizer->Add(type_sizer);
 
     // Amount ------------------------------------------------
-    wxStaticText* entered_amount_text = new wxStaticText(this, wxID_STATIC, _("Amount"));
+    wxStaticText* entered_amount_text = new wxStaticText(this, wxID_STATIC, _t("Amount"));
     m_entered_amount = new mmTextCtrl(this, ID_TRANS_ENTERED_AMOUNT, ""
         , wxDefaultPosition, std_half_size, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
-    mmToolTip(m_entered_amount, _("Specify the amount for this transaction"));
+    mmToolTip(m_entered_amount, _t("Specify the amount for this transaction"));
 
     Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
     if (m_account_id > 0)
@@ -129,7 +129,7 @@ void UserTransactionPanel::Create()
     }
     m_trans_currency = new wxButton(this, ID_TRANS_CURRENCY_BUTTON, currency->CURRENCY_SYMBOL
         , wxDefaultPosition, std_half_size);
-    mmToolTip(m_trans_currency, _("Currency used for this transaction."));
+    mmToolTip(m_trans_currency, _t("Currency used for this transaction."));
 
     wxBoxSizer* entered_amount_sizer = new wxBoxSizer(wxHORIZONTAL);
     entered_amount_sizer->Add(m_entered_amount, g_flagsH);
@@ -148,23 +148,23 @@ void UserTransactionPanel::Create()
     }
 
     m_status_selector->SetSelection(Option::instance().getTransStatusReconciled());
-    mmToolTip(m_status_selector, _("Specify the status for this transaction"));
+    mmToolTip(m_status_selector, _t("Specify the status for this transaction"));
 
-    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Status")), g_flagsH);
+    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _t("Status")), g_flagsH);
     transPanelSizer->Add(m_status_selector, g_flagsH);
 
     // Payee ------------------------------------------------
-    wxStaticText* payee_button_text = new wxStaticText(this, ID_TRANS_PAYEE_BUTTON_TEXT, _("Payee"));
-    m_payee = new wxButton(this, ID_TRANS_PAYEE_BUTTON, _("Select Payee"), wxDefaultPosition, std_size, 0);
-    mmToolTip(m_payee, _("Specify a person, Company or Organisation for this transaction."));
+    wxStaticText* payee_button_text = new wxStaticText(this, ID_TRANS_PAYEE_BUTTON_TEXT, _t("Payee"));
+    m_payee = new wxButton(this, ID_TRANS_PAYEE_BUTTON, _t("Select Payee"), wxDefaultPosition, std_size, 0);
+    mmToolTip(m_payee, _t("Specify a person, Company or Organisation for this transaction."));
     transPanelSizer->Add(payee_button_text, g_flagsH);
     transPanelSizer->Add(m_payee, g_flagsH);
 
     // Category ---------------------------------------------
-    wxStaticText* category_button_text = new wxStaticText(this, wxID_STATIC, _("Category"));
-    m_category = new wxButton(this, ID_TRANS_CATEGORY_BUTTON, _("Select Category")
+    wxStaticText* category_button_text = new wxStaticText(this, wxID_STATIC, _t("Category"));
+    m_category = new wxButton(this, ID_TRANS_CATEGORY_BUTTON, _t("Select Category")
         , wxDefaultPosition, std_size, 0);
-    mmToolTip(m_category, _("Specify the category for this transaction"));
+    mmToolTip(m_category, _t("Specify the category for this transaction"));
 
     transPanelSizer->Add(category_button_text, g_flagsH);
     transPanelSizer->Add(m_category, g_flagsH);
@@ -172,24 +172,24 @@ void UserTransactionPanel::Create()
     // Number ---------------------------------------------
     m_entered_number = new wxTextCtrl(this, ID_TRANS_ENTERED_NUMBER, ""
         , wxDefaultPosition, std_size);
-    mmToolTip(m_entered_number, _("Specify a transaction code or associated check details"));
+    mmToolTip(m_entered_number, _t("Specify a transaction code or associated check details"));
 
-    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), g_flagsH);
+    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _t("Number")), g_flagsH);
     transPanelSizer->Add(m_entered_number, g_flagsH);
 
     // Notes ---------------------------------------------
-    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flagsH);
+    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _t("Notes")), g_flagsH);
 
     // Attachment ---------------------------------------------
     m_attachment = new wxBitmapButton(this, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));
-    mmToolTip(m_attachment, _("Manage transaction attachments"));
+    mmToolTip(m_attachment, _t("Manage transaction attachments"));
     //TODO: m_attachment Enable/disable
     //m_attachment->Enable(false);
 
     // Frequent Notes ---------------------------------------------
     frequent_notes = new wxButton(this, ID_TRANS_FREQUENT_NOTES, "..."
         , wxDefaultPosition, wxSize(m_attachment->GetSize().GetX(), -1));
-    mmToolTip(frequent_notes, _("Select one of the frequently used notes"));
+    mmToolTip(frequent_notes, _t("Select one of the frequently used notes"));
     frequent_notes->Connect(ID_TRANS_FREQUENT_NOTES
         , wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(UserTransactionPanel::OnFrequentNotes), nullptr, this);
 
@@ -198,7 +198,7 @@ void UserTransactionPanel::Create()
     right_align_sizer->Add(frequent_notes, g_flagsH);
 
     m_entered_notes = new wxTextCtrl(this, ID_TRANS_ENTERED_NOTES, "", wxDefaultPosition, wxSize(220, 96), wxTE_MULTILINE);
-    mmToolTip(m_entered_notes, _("Specify any text notes you want to add to this transaction."));
+    mmToolTip(m_entered_notes, _t("Specify any text notes you want to add to this transaction."));
 
     transPanelSizer->Add(right_align_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT).Border(wxALL, 0));
     main_panel_sizer->Add(m_entered_notes, wxSizerFlags(g_flagsExpand).Border(wxTOP, 5));
@@ -282,8 +282,8 @@ void UserTransactionPanel::OnTransAccountButton(wxCommandEvent& WXUNUSED(event))
 {
     const auto& accounts = Model_Account::instance().all_checking_account_names();
     mmSingleChoiceDialog scd(this
-        , _("Select the required account")
-        , _("Account Selection")
+        , _t("Select the required account")
+        , _t("Account Selection")
         , accounts);
 
     if (scd.ShowModal() == wxID_OK)
@@ -448,7 +448,7 @@ int64 UserTransactionPanel::SaveChecking()
     const Model_Account::Data* account = Model_Account::instance().get(m_account_id);
     if (trxDate.FormatISODate() < account->INITIALDATE)
     {
-        mmErrorDialogs::ToolTip4Object(m_account, _("The opening date for the account is later than the date of this transaction"), _("Invalid Date"));
+        mmErrorDialogs::ToolTip4Object(m_account, _t("The opening date for the account is later than the date of this transaction"), _t("Invalid Date"));
         return -1;
     }  
 

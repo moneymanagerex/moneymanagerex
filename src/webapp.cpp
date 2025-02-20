@@ -108,17 +108,17 @@ bool mmWebApp::WebApp_CheckGuid()
         return true;
     else if (outputMessage == WebAppParam::MessageWrongGuid)
     {
-        wxString msgStr = wxString() << _("Wrong WebApp GUID:") << "\n"
-            << _("please check it in network options.") << "\n";
-        wxMessageBox(msgStr, _("Wrong WebApp settings"), wxICON_ERROR);
+        wxString msgStr = wxString() << _t("Wrong WebApp GUID:") << "\n"
+            << _t("please check it in network options.") << "\n";
+        wxMessageBox(msgStr, _t("Wrong WebApp settings"), wxICON_ERROR);
         return false;
     }
     else
     {
-        wxString msgStr = wxString() << _("Unable to connect to WebApp:") << "\n"
-            << _("Please check settings and/or Internet connection.") << "\n\n"
-            << wxString::Format(_("Error: %s"), "\n" + outputMessage + "\n");
-        wxMessageBox(msgStr, _("WebApp connection error"), wxICON_ERROR);
+        wxString msgStr = wxString() << _t("Unable to connect to WebApp:") << "\n"
+            << _t("Please check settings and/or Internet connection.") << "\n\n"
+            << wxString::Format(_t("Error: %s"), "\n" + outputMessage + "\n");
+        wxMessageBox(msgStr, _t("WebApp connection error"), wxICON_ERROR);
         return false;
     }
 }
@@ -128,10 +128,10 @@ bool mmWebApp::WebApp_CheckApiVersion()
 {
     if (mmWebApp::WebApp_getApiVersion() != WebAppParam::ApiExpectedVersion)
     {
-        wxString msgStr = _("Wrong WebApp API version:") + "\n"
-            + wxString::Format(_("WebApp   API version: %s"), mmWebApp::WebApp_getApiVersion()) + "\n"
-            + wxString::Format(_("Expected API version: %s"), WebAppParam::ApiExpectedVersion) + "\n";
-        wxMessageBox(msgStr, _("Wrong WebApp API version"), wxICON_ERROR);
+        wxString msgStr = _t("Wrong WebApp API version:") + "\n"
+            + wxString::Format(_t("WebApp   API version: %s"), mmWebApp::WebApp_getApiVersion()) + "\n"
+            + wxString::Format(_t("Expected API version: %s"), WebAppParam::ApiExpectedVersion) + "\n";
+        wxMessageBox(msgStr, _t("Wrong WebApp API version"), wxICON_ERROR);
         return false;
     }
     else
@@ -414,7 +414,7 @@ bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_,
             if (trx.HasMember("Payee") && trx["Payee"].IsString()) {
                 wxString Payee = wxString::FromUTF8(trx["Payee"].GetString());
                 if (Payee == "None" || Payee.IsEmpty()) {
-                    Payee = _("Unknown");
+                    Payee = _t("Unknown");
                 }
                 WebTran.Payee = Payee;
             }
@@ -423,7 +423,7 @@ bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_,
                 wxString Category = wxString::FromUTF8(trx["Category"].GetString());
                 Category.Replace(":", "|");
                 if (Category == "None" || Category.IsEmpty()) {
-                    Category = _("Unknown");
+                    Category = _t("Unknown");
                 }
                 WebTran.Category = Category;
             }
@@ -491,12 +491,12 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
             }
         }
 
-        wxString msgStr = wxString::Format(_("Account %s not found."), WebAppTrans.Account)
+        wxString msgStr = wxString::Format(_t("Account %s not found."), WebAppTrans.Account)
             << "\n\n"
-            << wxString::Format(_("Transaction will be inserted with the first bank account:\n"
+            << wxString::Format(_t("Transaction will be inserted with the first bank account:\n"
             "'%s' and marked as  'Follow Up'")
             , accountName) << "\n";
-        wxMessageBox(msgStr, _("Wrong WebApp account"), wxICON_ERROR);
+        wxMessageBox(msgStr, _t("Wrong WebApp account"), wxICON_ERROR);
     }
 
     //Search ToAccount
@@ -561,11 +561,11 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
             (ToAccount && trxDate < ToAccount->INITIALDATE))
     {
         wxString msgStr = wxString::Format("%s: %s / %s: %s\n\n%s\n%s"
-                            , _("Account"), accountName
-                            , _("Date"), trxDate
-                            , _("The opening date for the account is later than the date of this transaction")
-                            , _("Today will be used as the transaction date"));
-        wxMessageBox(msgStr, _("Invalid Date"), wxICON_ERROR);
+                            , _t("Account"), accountName
+                            , _t("Date"), trxDate
+                            , _t("The opening date for the account is later than the date of this transaction")
+                            , _t("Today will be used as the transaction date"));
+        wxMessageBox(msgStr, _t("Invalid Date"), wxICON_ERROR);
         trxDate = wxDate::Today().FormatISOCombined();
     }
     desktopNewTransaction->TRANSDATE = trxDate;
@@ -593,11 +593,11 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
                 Model_Checking::instance().remove(DeskNewTrID);
                 DeskNewTrID = -1;
 
-                wxString msgStr = wxString() << _("Unable to download attachments from the WebApp.") << "\n"
-                    << _("Attachments folder not set or unavailable.") << "\n" << "\n"
-                    << _("Transaction not downloaded:") << "\n"
-                    << _("Please fix the attachments folder or delete the attachments from the WebApp.") << "\n";
-                wxMessageBox(msgStr, _("Attachment folder error"), wxICON_ERROR);
+                wxString msgStr = wxString() << _t("Unable to download attachments from the WebApp.") << "\n"
+                    << _t("Attachments folder not set or unavailable.") << "\n" << "\n"
+                    << _t("Transaction not downloaded:") << "\n"
+                    << _t("Please fix the attachments folder or delete the attachments from the WebApp.") << "\n";
+                wxMessageBox(msgStr, _t("Attachment folder error"), wxICON_ERROR);
             }
             else
             {
@@ -618,7 +618,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
                         Model_Attachment::Data* NewAttachment = Model_Attachment::instance().create();
                         NewAttachment->REFTYPE = Model_Attachment::REFTYPE_STR_TRANSACTION;
                         NewAttachment->REFID = DeskNewTrID;
-                        NewAttachment->DESCRIPTION = _("Attachment") + "_" << AttachmentNr;
+                        NewAttachment->DESCRIPTION = _t("Attachment") + "_" << AttachmentNr;
                         NewAttachment->FILENAME = DesktopAttachmentName;
                         Model_Attachment::instance().save(NewAttachment);
                     }
@@ -627,10 +627,10 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
                         Model_Checking::instance().remove(DeskNewTrID);
                         DeskNewTrID = -1;
 
-                        wxString msgStr = wxString() << _("Unable to download attachments from the WebApp.") << "\n"
+                        wxString msgStr = wxString() << _t("Unable to download attachments from the WebApp.") << "\n"
                             << CurlError << "\n" << "\n"
-                            << _("Transaction not downloaded: please retry to download transactions") << "\n";
-                        wxMessageBox(msgStr, _("Attachment download error"), wxICON_ERROR);
+                            << _t("Transaction not downloaded: please retry to download transactions") << "\n";
+                        wxMessageBox(msgStr, _t("Attachment download error"), wxICON_ERROR);
                         break;
                     }
 

@@ -46,12 +46,12 @@ enum
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF,
 };
 
-static const wxString VIEW_ALL = wxTRANSLATE("View All Budget Categories");
-static const wxString VIEW_NON_ZERO = wxTRANSLATE("View Non-Zero Budget Categories");
-static const wxString VIEW_PLANNED = wxTRANSLATE("View Planned Budget Categories");
-static const wxString VIEW_INCOME = wxTRANSLATE("View Income Budget Categories");
-static const wxString VIEW_EXPENSE = wxTRANSLATE("View Expense Budget Categories");
-static const wxString VIEW_SUMM = wxTRANSLATE("View Budget Category Summary");
+static const wxString VIEW_ALL      = _n("View All Budget Categories");
+static const wxString VIEW_NON_ZERO = _n("View Non-Zero Budget Categories");
+static const wxString VIEW_PLANNED  = _n("View Planned Budget Categories");
+static const wxString VIEW_INCOME   = _n("View Income Budget Categories");
+static const wxString VIEW_EXPENSE  = _n("View Expense Budget Categories");
+static const wxString VIEW_SUMM     = _n("View Budget Category Summary");
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(mmBudgetingPanel, wxPanel)
@@ -68,13 +68,13 @@ wxEND_EVENT_TABLE()
 const std::vector<ListColumnInfo> budgetingListCtrl::col_info_all()
 {
     return {
-        { _("Icon"),      wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  false },
-        { _("Category"),  wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _("Frequency"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _("Amount"),    wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _("Estimated"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _("Actual"),    wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _("Notes"),     wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Icon"),      wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  false },
+        { _t("Category"),  wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Frequency"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Amount"),    wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Estimated"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Actual"),    wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Notes"),     wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
     };
 }
 
@@ -184,25 +184,25 @@ wxString mmBudgetingPanel::GetPanelTitle() const
             long year;
             yearStr.ToLong(&year);
             year++;
-            yearStr = wxString::Format(_("Financial Year: %s - %li"), yearStr, year);
+            yearStr = wxString::Format(_t("Financial Year: %s - %li"), yearStr, year);
         }
         else
         {
-            yearStr = wxString::Format(_("Year: %s"), yearStr);
+            yearStr = wxString::Format(_t("Year: %s"), yearStr);
         }
     }
     else
     {
-        yearStr = wxString::Format(_("Month: %s"), yearStr);
+        yearStr = wxString::Format(_t("Month: %s"), yearStr);
         yearStr += wxString::Format(" (%s)", m_monthName);
     }
 
     if (Option::instance().getBudgetDaysOffset() != 0)
     {
-        yearStr = wxString::Format(_("%1$s    Start Date of: %2$s"), yearStr, mmGetDateTimeForDisplay(m_budget_offset_date));
+        yearStr = wxString::Format(_t("%1$s    Start Date of: %2$s"), yearStr, mmGetDateTimeForDisplay(m_budget_offset_date));
     }
 
-    return wxString::Format(_("Budget Planner for %s"), yearStr);
+    return wxString::Format(_t("Budget Planner for %s"), yearStr);
 }
 
 void mmBudgetingPanel::UpdateBudgetHeading()
@@ -259,20 +259,20 @@ void mmBudgetingPanel::CreateControls()
     expenses_diff_ = new wxStaticText(itemPanel3
         , ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF, "$");
 
-    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _("Income: ")));
-    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _("Estimated: ")));
+    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Income: ")));
+    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Estimated: ")));
     itemIncomeSizer->Add(income_estimated_);
-    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _("Actual: ")));
+    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Actual: ")));
     itemIncomeSizer->Add(income_actual_);
-    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _("Difference: ")));
+    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Difference: ")));
     itemIncomeSizer->Add(income_diff_);
 
-    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _("Expenses: ")));
-    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _("Estimated: ")));
+    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Expenses: ")));
+    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Estimated: ")));
     itemIncomeSizer->Add(expenses_estimated_);
-    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _("Actual: ")));
+    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Actual: ")));
     itemIncomeSizer->Add(expenses_actual_);
-    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _("Difference: ")));
+    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Difference: ")));
     itemIncomeSizer->Add(expenses_diff_);
     /* ---------------------- */
 
