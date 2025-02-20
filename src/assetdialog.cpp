@@ -196,8 +196,10 @@ void mmAssetDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _t("Asset Type")), g_flagsH);
 
     m_assetType = new wxChoice(asset_details_panel, wxID_STATIC);
-    for (const auto& a : Model_Asset::TYPE_STR)
-        m_assetType->Append(wxGetTranslation(a), new wxStringClientData(a));
+    for (int i = 0; i < Model_Asset::TYPE_ID_size; ++i) {
+        wxString type = Model_Asset::type_name(i);
+        m_assetType->Append(wxGetTranslation(type), new wxStringClientData(type));
+    }
 
     mmToolTip(m_assetType, _t("Select type of asset"));
     m_assetType->SetSelection(Model_Asset::TYPE_ID_PROPERTY);
@@ -218,8 +220,10 @@ void mmAssetDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _t("Change in Value")), g_flagsH);
 
     m_valueChange = new wxChoice(asset_details_panel, IDC_COMBO_TYPE);
-    for(const auto& a : Model_Asset::CHANGE_STR)
-        m_valueChange->Append(wxGetTranslation(a));
+    for (int i = 0; i < Model_Asset::CHANGE_ID_size; ++i) {
+        wxString change = Model_Asset::change_name(i);
+        m_valueChange->Append(wxGetTranslation(change));
+    }
 
     mmToolTip(m_valueChange, _t("Specify if the value of the asset changes over time"));
     m_valueChange->SetSelection(Model_Asset::CHANGE_ID_NONE);
@@ -395,11 +399,11 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     m_asset->STARTDATE        = m_dpc->GetValue().FormatISODate();
     m_asset->NOTES            = m_notes->GetValue().Trim();
     m_asset->ASSETNAME        = name;
-    m_asset->ASSETSTATUS      = Model_Asset::STATUS_STR[Model_Asset::STATUS_ID_OPEN];
-    m_asset->VALUECHANGEMODE  = Model_Asset::CHANGEMODE_STR[Model_Asset::CHANGEMODE_ID_PERCENTAGE];  
+    m_asset->ASSETSTATUS      = Model_Asset::status_name(Model_Asset::STATUS_ID_OPEN);
+    m_asset->VALUECHANGEMODE  = Model_Asset::changemode_name(Model_Asset::CHANGEMODE_ID_PERCENTAGE);  
     m_asset->CURRENCYID       = -1; 
     m_asset->VALUE            = value;
-    m_asset->VALUECHANGE      = Model_Asset::CHANGE_STR[valueChangeType];
+    m_asset->VALUECHANGE      = Model_Asset::change_name(valueChangeType);
     m_asset->VALUECHANGERATE  = valueChangeRate;
     m_asset->ASSETTYPE        = asset_type;
 
@@ -407,7 +411,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     int64 new_asset_id = Model_Asset::instance().save(m_asset);
 
     if (old_asset_id < 0) {
-        const wxString& RefType = Model_Attachment::REFTYPE_STR_ASSET;
+        const wxString& RefType = Model_Attachment::REFTYPE_NAME_ASSET;
         mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, new_asset_id);
     }
     if (m_transaction_panel->ValidCheckingAccountEntry()) {
@@ -454,9 +458,9 @@ void mmAssetDialog::CreateAssetAccount()
 {
     Model_Account::Data* asset_account = Model_Account::instance().create();
     asset_account->ACCOUNTNAME = m_asset->ASSETNAME;
-    asset_account->ACCOUNTTYPE = Model_Account::TYPE_STR_ASSET;
+    asset_account->ACCOUNTTYPE = Model_Account::TYPE_NAME_ASSET;
     asset_account->FAVORITEACCT = "TRUE";
-    asset_account->STATUS = Model_Account::STATUS_STR_OPEN;
+    asset_account->STATUS = Model_Account::STATUS_NAME_OPEN;
     asset_account->INITIALBAL = 0;
     asset_account->INITIALDATE = wxDate::Today().FormatISODate();
     asset_account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;
@@ -477,7 +481,7 @@ void mmAssetDialog::OnCancel(wxCommandEvent& /*event*/)
         return;
     else
     {
-        const wxString& RefType = Model_Attachment::REFTYPE_STR_ASSET;
+        const wxString& RefType = Model_Attachment::REFTYPE_NAME_ASSET;
         if (!this->m_asset)
             mmAttachmentManage::DeleteAllAttachments(RefType, 0);
         EndModal(wxID_CANCEL);
@@ -486,7 +490,7 @@ void mmAssetDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmAssetDialog::OnQuit(wxCloseEvent& /*event*/)
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_STR_ASSET;
+    const wxString& RefType = Model_Attachment::REFTYPE_NAME_ASSET;
     if (!this->m_asset)
         mmAttachmentManage::DeleteAllAttachments(RefType, 0);
     EndModal(wxID_CANCEL);
@@ -494,7 +498,7 @@ void mmAssetDialog::OnQuit(wxCloseEvent& /*event*/)
 
 void mmAssetDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_STR_ASSET;
+    const wxString& RefType = Model_Attachment::REFTYPE_NAME_ASSET;
     int64 RefId;
     
     if (!this->m_asset)

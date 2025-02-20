@@ -509,7 +509,7 @@ void mmCategDialog::mmDoDeleteSelectedCategory()
             Model_Splittransaction::instance().Savepoint();
             Model_Attachment::instance().Savepoint();
             Model_CustomFieldData::instance().Savepoint();
-            const wxString& RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+            const wxString& RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
             for (auto& split : splits) {
                 Model_Checking::instance().remove(split.TRANSID);
                 mmAttachmentManage::DeleteAllAttachments(RefType, split.TRANSID);

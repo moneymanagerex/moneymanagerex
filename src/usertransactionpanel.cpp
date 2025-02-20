@@ -94,10 +94,11 @@ void UserTransactionPanel::Create()
 
     // Type --------------------------------------------
     m_type_selector = new wxChoice(this, wxID_VIEW_DETAILS, wxDefaultPosition, std_half_size);
-    for (const auto& i : Model_Checking::TYPE_STR)
-    {
-        if (i != Model_Checking::TYPE_STR_TRANSFER)
-            m_type_selector->Append(wxGetTranslation(i), new wxStringClientData(i));
+    for (int i = 0; i < Model_Checking::TYPE_ID_size; ++i) {
+        if (i != Model_Checking::TYPE_ID_TRANSFER) {
+            wxString type = Model_Checking::type_name(i);
+            m_type_selector->Append(wxGetTranslation(type), new wxStringClientData(type));
+        }
     }
 
     m_type_selector->SetSelection(Model_Checking::TYPE_ID_WITHDRAWAL);
@@ -142,9 +143,9 @@ void UserTransactionPanel::Create()
     m_status_selector = new wxChoice(this, ID_TRANS_STATUS_SELECTOR
         , wxDefaultPosition, std_half_size);
 
-    for (const auto& i : Model_Checking::STATUS_STR)
-    {
-        m_status_selector->Append(wxGetTranslation(i), new wxStringClientData(i));
+    for (int i = 0; i < Model_Checking::STATUS_ID_size; ++i) {
+        wxString status = Model_Checking::status_name(i);
+        m_status_selector->Append(wxGetTranslation(status), new wxStringClientData(status));
     }
 
     m_status_selector->SetSelection(Option::instance().getTransStatusReconciled());
@@ -351,7 +352,7 @@ void UserTransactionPanel::onSelectedNote(wxCommandEvent& event)
 
 void UserTransactionPanel::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+    const wxString& RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
     int64 RefId = m_transaction_id;
 
     if (RefId < 0)
@@ -460,7 +461,7 @@ int64 UserTransactionPanel::SaveChecking()
     m_checking_entry->TOACCOUNTID = CheckingType();
 
     m_checking_entry->PAYEEID = m_payee_id;
-    m_checking_entry->TRANSCODE = Model_Checking::TYPE_STR[TransactionType()];
+    m_checking_entry->TRANSCODE = Model_Checking::type_name(TransactionType());
     m_checking_entry->TRANSAMOUNT = initial_amount;
     m_checking_entry->STATUS = m_status_selector->GetStringSelection().Mid(0, 1);
     m_checking_entry->TRANSACTIONNUMBER = m_entered_number->GetValue();

@@ -606,7 +606,7 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map<int, wxString> &t
             {
                 isTransfer = true;
                 trx[Category] = _t("Transfer") + (!tags.IsEmpty() ? "/" + tags : "");
-                trx[TrxType] = Model_Checking::TYPE_STR_TRANSFER;
+                trx[TrxType] = Model_Checking::TYPE_NAME_TRANSFER;
                 trx[ToAccountName] = toAccName;
                 trx[Memo] += (trx[Memo].empty() ? "" : "\n") + trx[Payee];
                 if (m_QIFaccounts.find(toAccName) == m_QIFaccounts.end())
@@ -652,9 +652,9 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map<int, wxString> &t
     wxString amtStr = (trx.find(Amount) == trx.end() ? "" : trx[Amount]);
     if (!isTransfer) {
         if (amtStr.Mid(0, 1) == "-")
-            trx[TrxType] = Model_Checking::TYPE_STR_WITHDRAWAL;
+            trx[TrxType] = Model_Checking::TYPE_NAME_WITHDRAWAL;
         else if (!amtStr.empty())
-            trx[TrxType] = Model_Checking::TYPE_STR_DEPOSIT;
+            trx[TrxType] = Model_Checking::TYPE_NAME_DEPOSIT;
     }
 
     return !amtStr.empty();
@@ -699,7 +699,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             data.push_back(wxVariant(dateStr));
             data.push_back(wxVariant(trx.find(TransNumber) != trx.end() ? trx.at(TransNumber) : ""));
             const wxString type = (trx.find(TrxType) != trx.end() ? trx.at(TrxType) : "");
-            if (type == Model_Checking::TYPE_STR_TRANSFER)
+            if (type == Model_Checking::TYPE_NAME_TRANSFER)
                 data.push_back(wxVariant(trx.find(ToAccountName) != trx.end() ? trx.at(ToAccountName) : ""));
             else
                 data.push_back(wxVariant(trx.find(Payee) != trx.end() ? trx.at(Payee) : ""));
@@ -1070,7 +1070,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         Model_Checking::Cache transfer_to_data_set;
         Model_Checking::Cache transfer_from_data_set;
         int count = 0;
-        const wxString& transferStr = Model_Checking::TYPE_STR_TRANSFER;
+        const wxString& transferStr = Model_Checking::TYPE_NAME_TRANSFER;
 
         const auto begin_date = toDateCtrl_->GetValue().FormatISODate();
         const auto end_date = fromDateCtrl_->GetValue().FormatISODate();
@@ -1116,7 +1116,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 Model_Taglink::Cache taglinks;
                 if (!tagStr.IsEmpty())
                 {
-                    wxString reftype = Model_Attachment::REFTYPE_STR_TRANSACTION;
+                    wxString reftype = Model_Attachment::REFTYPE_NAME_TRANSACTION;
                     wxStringTokenizer tagTokens = wxStringTokenizer(tagStr, ":");
                     while (tagTokens.HasMoreTokens())
                     {
@@ -1483,7 +1483,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
             if (!tagStr.IsEmpty())
             {
                 Model_Taglink::Cache splitTaglinks;
-                wxString reftype = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
+                wxString reftype = Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT;
                 wxStringTokenizer tagTokens = wxStringTokenizer(tagStr, ":");
                 while (tagTokens.HasMoreTokens())
                 {
@@ -1565,11 +1565,11 @@ int64 mmQIFImportDialog::getOrCreateAccounts()
             Model_Account::Data *account = Model_Account::instance().create();
 
             account->FAVORITEACCT = "TRUE";
-            account->STATUS = Model_Account::STATUS_STR_OPEN;
+            account->STATUS = Model_Account::STATUS_NAME_OPEN;
 
             const auto type = item.second.find(AccountType) != item.second.end() ? item.second.at(AccountType) : "";
             account->ACCOUNTTYPE = mmExportTransaction::mm_acc_type(type);
-            //Model_Account::TYPE_STR_CHECKING;
+            //Model_Account::TYPE_NAME_CHECKING;
             account->ACCOUNTNAME = item.first;
             account->INITIALBAL = 0;
             account->INITIALDATE = wxDate::Today().FormatISODate();

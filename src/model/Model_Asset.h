@@ -20,9 +20,10 @@
 #ifndef MODEL_ASSET_H
 #define MODEL_ASSET_H
 
-#include "Model.h"
+#include "choices.h"
 #include "db/DB_Table_Assets_V1.h"
-#include "Model_Currency.h" // detect base currency
+#include "Model.h"
+#include "Model_Currency.h"
 
 class Model_Asset : public Model<DB_Table_ASSETS_V1>
 {
@@ -35,36 +36,32 @@ public:
         TYPE_ID_ART,
         TYPE_ID_JEWELLERY,
         TYPE_ID_CASH,
-        TYPE_ID_OTHER
+        TYPE_ID_OTHER,
+        TYPE_ID_size
     };
     enum STATUS_ID {
         STATUS_ID_CLOSED = 0,
-        STATUS_ID_OPEN
+        STATUS_ID_OPEN,
+        STATUS_ID_size
     };
     enum CHANGE_ID
     {
         CHANGE_ID_NONE = 0,
         CHANGE_ID_APPRECIATE,
-        CHANGE_ID_DEPRECIATE
+        CHANGE_ID_DEPRECIATE,
+        CHANGE_ID_size
     };
     enum CHANGEMODE_ID {
         CHANGEMODE_ID_PERCENTAGE = 0,
-        CHANGEMODE_ID_LINEAR
+        CHANGEMODE_ID_LINEAR,
+        CHANGEMODE_ID_size
     };
-    static wxArrayString TYPE_STR;
-    static wxArrayString STATUS_STR;
-    static wxArrayString CHANGE_STR;
-    static wxArrayString CHANGEMODE_STR;
 
 private:
-    static const std::vector<std::pair<TYPE_ID, wxString> > TYPE_CHOICES;
-    static const std::vector<std::pair<STATUS_ID, wxString> > STATUS_CHOICES;
-    static const std::vector<std::pair<CHANGE_ID, wxString> > CHANGE_CHOICES;
-    static const std::vector<std::pair<CHANGEMODE_ID, wxString> > CHANGEMODE_CHOICES;
-    static wxArrayString type_str_all();
-    static wxArrayString status_str_all();
-    static wxArrayString change_str_all();
-    static wxArrayString changemode_str_all();
+    static ChoicesName TYPE_CHOICES;
+    static ChoicesName STATUS_CHOICES;
+    static ChoicesName CHANGE_CHOICES;
+    static ChoicesName CHANGEMODE_CHOICES;
 
 public:
     Model_Asset();
@@ -95,12 +92,23 @@ public:
     static wxDate STARTDATE(const Data* r);
     static wxDate STARTDATE(const Data& r);
 
+    static const wxString type_name(int id);
+    static int type_id(const wxString& name, int default_id = -1);
     static TYPE_ID type_id(const Data* r);
     static TYPE_ID type_id(const Data& r);
+
+    static const wxString status_name(int id);
+    static int status_id(const wxString& name, int default_id = -1);
     static STATUS_ID status_id(const Data* r);
     static STATUS_ID status_id(const Data& r);
+
+    static const wxString change_name(int id);
+    static int change_id(const wxString& name, int default_id = -1);
     static CHANGE_ID change_id(const Data* r);
     static CHANGE_ID change_id(const Data& r);
+
+    static const wxString changemode_name(int id);
+    static int changemode_id(const wxString& name, int default_id = -1);
     static CHANGEMODE_ID changemode_id(const Data* r);
     static CHANGEMODE_ID changemode_id(const Data& r);
 
@@ -114,4 +122,86 @@ public:
     double valueAtDate(const Data* r, const wxDate date);
 };
 
-#endif // 
+//----------------------------------------------------------------------------
+
+inline const wxString Model_Asset::type_name(int id)
+{
+    return TYPE_CHOICES.getName(id);
+}
+
+inline int Model_Asset::type_id(const wxString& name, int default_id)
+{
+    return TYPE_CHOICES.findName(name, default_id);
+}
+
+inline Model_Asset::TYPE_ID Model_Asset::type_id(const Data* asset)
+{
+    return static_cast<TYPE_ID>(type_id(asset->ASSETTYPE));
+}
+
+inline Model_Asset::TYPE_ID Model_Asset::type_id(const Data& asset)
+{
+    return type_id(&asset);
+}
+
+inline const wxString Model_Asset::status_name(int id)
+{
+    return STATUS_CHOICES.getName(id);
+}
+
+inline int Model_Asset::status_id(const wxString& name, int default_id)
+{
+    return STATUS_CHOICES.findName(name, default_id);
+}
+
+inline Model_Asset::STATUS_ID Model_Asset::status_id(const Data* asset)
+{
+    return static_cast<STATUS_ID>(status_id(asset->ASSETSTATUS));
+}
+
+inline Model_Asset::STATUS_ID Model_Asset::status_id(const Data& asset)
+{
+    return status_id(&asset);
+}
+
+inline const wxString Model_Asset::change_name(int id)
+{
+    return CHANGE_CHOICES.getName(id);
+}
+
+inline int Model_Asset::change_id(const wxString& name, int default_id)
+{
+    return CHANGE_CHOICES.findName(name, default_id);
+}
+
+inline Model_Asset::CHANGE_ID Model_Asset::change_id(const Data* asset)
+{
+    return static_cast<CHANGE_ID>(change_id(asset->VALUECHANGE));
+}
+
+inline Model_Asset::CHANGE_ID Model_Asset::change_id(const Data& asset)
+{
+    return change_id(&asset);
+}
+
+inline const wxString Model_Asset::changemode_name(int id)
+{
+    return CHANGEMODE_CHOICES.getName(id);
+}
+
+inline int Model_Asset::changemode_id(const wxString& name, int default_id)
+{
+    return CHANGEMODE_CHOICES.findName(name, default_id);
+}
+
+inline Model_Asset::CHANGEMODE_ID Model_Asset::changemode_id(const Data* asset)
+{
+    return static_cast<CHANGEMODE_ID>(changemode_id(asset->VALUECHANGEMODE));
+}
+
+inline Model_Asset::CHANGEMODE_ID Model_Asset::changemode_id(const Data& asset)
+{
+    return changemode_id(&asset);
+}
+
+#endif

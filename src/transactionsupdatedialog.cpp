@@ -152,8 +152,10 @@ void transactionsUpdateDialog::CreateControls()
 
     m_status_choice = new wxChoice(this, wxID_ANY
         , wxDefaultPosition, wxDefaultSize);
-    for (const auto& i : Model_Checking::STATUS_STR)
-        m_status_choice->Append(wxGetTranslation(i), new wxStringClientData(i));
+    for (int i = 0; i < Model_Checking::STATUS_ID_size; ++i) {
+        wxString status = Model_Checking::status_name(i);
+        m_status_choice->Append(wxGetTranslation(status), new wxStringClientData(status));
+    }
 
     m_status_choice->Enable(false);
     m_status_choice->Select(0);
@@ -167,10 +169,11 @@ void transactionsUpdateDialog::CreateControls()
 
     m_type_choice = new wxChoice(this, ID_TRANS_TYPE
         , wxDefaultPosition, wxDefaultSize);
-    for (const auto& i : Model_Checking::TYPE_STR)
-    {
-        if (!(m_hasSplits && (Model_Checking::TYPE_STR_TRANSFER == i)))
-            m_type_choice->Append(wxGetTranslation(i), new wxStringClientData(i));
+    for (int i = 0; i < Model_Checking::TYPE_ID_size; ++i) {
+        if (!(m_hasSplits && i == Model_Checking::TYPE_ID_TRANSFER)) {
+            wxString type = Model_Checking::type_name(i);
+            m_type_choice->Append(wxGetTranslation(type), new wxStringClientData(type));
+        }
     }
     m_type_choice->Enable(false);
     m_type_choice->Select(0);
@@ -325,7 +328,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     {
         wxStringClientData* type_obj = static_cast<wxStringClientData*>(m_type_choice->GetClientObject(m_type_choice->GetSelection()));
         type = type_obj->GetData();
-        if (Model_Checking::TYPE_STR_TRANSFER == type)
+        if (Model_Checking::TYPE_NAME_TRANSFER == type)
         {
             if  (m_hasNonTransfers && !m_transferAcc_checkbox->IsChecked())
                 return mmErrorDialogs::InvalidAccount(m_transferAcc_checkbox, true);
@@ -457,7 +460,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         // Update tags
         if (tag_checkbox_->IsChecked()) {
             Model_Taglink::Data_Set taglinks;
-            const wxString& refType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+            const wxString& refType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
             wxArrayInt64 tagIds = tagTextCtrl_->GetTagIDs();
 
             if (tag_append_checkbox_->IsChecked()) {
@@ -549,7 +552,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void transactionsUpdateDialog::SetPayeeTransferControls()
 {
     wxStringClientData* trans_obj = static_cast<wxStringClientData*>(m_type_choice->GetClientObject(m_type_choice->GetSelection()));
-    bool transfer = (Model_Checking::TYPE_STR_TRANSFER == trans_obj->GetData());
+    bool transfer = (Model_Checking::TYPE_NAME_TRANSFER == trans_obj->GetData());
 
     m_payee_checkbox->Enable(!transfer);
     m_transferAcc_checkbox->Enable(transfer);

@@ -144,8 +144,10 @@ void OptionSettingsMisc::Create()
 
     wxChoice* default_status = new wxChoice(misc_panel
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS);
-    for (const auto& i : Model_Checking::STATUS_STR)
-        default_status->Append(wxGetTranslation(i), new wxStringClientData(i));
+    for (int i = 0; i < Model_Checking::STATUS_ID_size; ++i) {
+        wxString status = Model_Checking::status_name(i);
+        default_status->Append(wxGetTranslation(status), new wxStringClientData(status));
+    }
     default_status->SetSelection(Option::instance().getTransStatusReconciled());
 
     wxArrayString true_false;

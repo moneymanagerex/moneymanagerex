@@ -43,7 +43,7 @@ wxEND_EVENT_TABLE()
 
 mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomField::Data* field)
     : m_field(field)
-    , m_fieldRefType(Model_Attachment::REFTYPE_STR_TRANSACTION)
+    , m_fieldRefType(Model_Attachment::REFTYPE_NAME_TRANSACTION)
 {
     this->SetFont(parent->GetFont());
     Create(parent);
@@ -123,9 +123,11 @@ void mmCustomFieldEditDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Attribute of")), g_flagsH);
     m_itemReference = new wxChoice(itemPanel5, wxID_HIGHEST);
-    for (const auto& type : Model_Attachment::REFTYPE_CHOICES) {
-        if (type.first != Model_Attachment::REFTYPE_ID_BILLSDEPOSIT)
-            m_itemReference->Append(wxGetTranslation(type.second), new wxStringClientData(type.second));
+    for (int i = 0; i < Model_Attachment::REFTYPE_ID_size; ++i) {
+        if (i != Model_Attachment::REFTYPE_ID_BILLSDEPOSIT) {
+            wxString reftype = Model_Attachment::reftype_name(i);
+            m_itemReference->Append(wxGetTranslation(reftype), new wxStringClientData(reftype));
+        }
     }
     mmToolTip(m_itemReference, _t("Select the item that the custom field is associated with"));
     itemFlexGridSizer6->Add(m_itemReference, g_flagsExpand);
@@ -140,8 +142,10 @@ void mmCustomFieldEditDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Field Type")), g_flagsH);
     m_itemType = new wxChoice(itemPanel5, wxID_HIGHEST);
-    for (const auto& type : Model_CustomField::TYPE_STR)
+    for (int i = 0; i < Model_CustomField::TYPE_ID_size; ++i) {
+        wxString type = Model_CustomField::type_name(i);
         m_itemType->Append(wxGetTranslation(type), new wxStringClientData(type));
+    }
     mmToolTip(m_itemType, _t("Select type of custom field"));
     itemFlexGridSizer6->Add(m_itemType, g_flagsExpand);
 
@@ -224,7 +228,7 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     {
         this->m_field = Model_CustomField::instance().create();
     }
-    else if (m_field->TYPE != Model_CustomField::TYPE_STR[m_itemType->GetSelection()])
+    else if (m_field->TYPE != Model_CustomField::type_name(m_itemType->GetSelection()))
     {
         auto DataSet = Model_CustomFieldData::instance().find(Model_CustomFieldData::FIELDID(m_field->FIELDID));
         if (DataSet.size() > 0)
@@ -280,7 +284,7 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     m_field->REFTYPE = m_fieldRefType;
     m_field->DESCRIPTION = name;
-    m_field->TYPE = Model_CustomField::TYPE_STR[m_itemType->GetSelection()];
+    m_field->TYPE = Model_CustomField::type_name(m_itemType->GetSelection());
     m_field->PROPERTIES = Model_CustomField::formatProperties(
         m_itemTooltip->GetValue(),
         regexp,

@@ -130,9 +130,11 @@ void mmNewAcctDialog::CreateControls()
     grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _t("Account Type:")), g_flagsH);
 
     wxChoice* itemChoice61 = new wxChoice(this, ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
-    for (const auto& type : Model_Account::TYPE_STR)
+    for (int i = 0; i < Model_Account::TYPE_ID_size; ++i) {
+        wxString type = Model_Account::type_name(i);
         itemChoice61->Append(wxGetTranslation(type), new wxStringClientData(type));
-    if (Model_Account::TYPE_STR.Index(m_account->ACCOUNTTYPE) == wxNOT_FOUND)
+    }
+    if (Model_Account::type_id(m_account->ACCOUNTTYPE, -1) == -1)
         itemChoice61->Append(m_account->ACCOUNTTYPE);
     mmToolTip(itemChoice61, _t("Specify the type of account to be created."));
     grid_sizer->Add(itemChoice61, g_flagsExpand);
@@ -141,8 +143,10 @@ void mmNewAcctDialog::CreateControls()
     grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _t("Account Status:")), g_flagsH);
 
     wxChoice* itemChoice6 = new wxChoice(this, ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS);
-    for (const auto& status : Model_Account::STATUS_STR)
+    for (int i = 0; i < Model_Account::STATUS_ID_size; ++i) {
+        wxString status = Model_Account::status_name(i);
         itemChoice6->Append(wxGetTranslation(status), new wxStringClientData(status));
+    }
     mmToolTip(itemChoice6, _t("Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."));
     grid_sizer->Add(itemChoice6, g_flagsExpand);
     itemChoice6->SetSelection(0);
@@ -419,7 +423,7 @@ void mmNewAcctDialog::OnCurrency(wxCommandEvent& /*event*/)
 
 void mmNewAcctDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-    wxString RefType = Model_Attachment::REFTYPE_STR_BANKACCOUNT;
+    wxString RefType = Model_Attachment::REFTYPE_NAME_BANKACCOUNT;
     mmAttachmentDialog dlg(this, RefType, m_account->ACCOUNTID);
     dlg.ShowModal();
 }
@@ -547,7 +551,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     wxTextCtrl* textCtrlContact = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT));
 
     wxChoice* choice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS));
-    m_account->STATUS = Model_Account::STATUS_STR[choice->GetSelection()];
+    m_account->STATUS = Model_Account::status_name(choice->GetSelection());
 
     wxCheckBox* itemCheckBox = static_cast<wxCheckBox*>(FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT));
     m_account->FAVORITEACCT = itemCheckBox->IsChecked() ? "TRUE" : "FALSE";

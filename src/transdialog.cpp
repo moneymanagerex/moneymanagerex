@@ -105,8 +105,8 @@ mmTransDialog::mmTransDialog(wxWindow* parent,
         // a bill can only be duplicated
         m_mode = (duplicate || fused_id.second) ? MODE_DUP : MODE_EDIT;
         const wxString& splitRefType = (m_fused_data.m_repeat_num == 0) ?
-            Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT :
-            Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT;
+            Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT :
+            Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT;
         for (const auto& split : Fused_Transaction::split(m_fused_data)) {
             wxArrayInt64 tags;
             for (const auto& tag : Model_Taglink::instance().find(
@@ -128,7 +128,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent,
     else {
         m_mode = MODE_NEW;
         Model_Checking::getEmptyData(m_fused_data, account_id);
-        m_fused_data.TRANSCODE = Model_Checking::TYPE_STR[type];
+        m_fused_data.TRANSCODE = Model_Checking::type_name(type);
     }
 
     m_transfer = Model_Checking::type_id(m_fused_data.TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER;
@@ -141,7 +141,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent,
     // If duplicate then we may need to copy the attachments
     if (m_mode == MODE_DUP && Model_Infotable::instance().getBool("ATTACHMENTSDUPLICATE", false))
     {
-        const wxString& refType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+        const wxString& refType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
         mmAttachmentManage::CloneAllAttachments(refType, fused_id.first, -1);
     }
 
@@ -368,8 +368,8 @@ void mmTransDialog::dataToControls()
         wxArrayInt64 tagIds;
         for (const auto& tag : Model_Taglink::instance().find(
             Model_Taglink::REFTYPE((m_fused_data.m_repeat_num == 0) ?
-                Model_Attachment::REFTYPE_STR_TRANSACTION :
-                Model_Attachment::REFTYPE_STR_BILLSDEPOSIT),
+                Model_Attachment::REFTYPE_NAME_TRANSACTION :
+                Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT),
             Model_Taglink::REFID((m_fused_data.m_repeat_num == 0) ?
                 m_fused_data.TRANSID :
                 m_fused_data.m_bdid))
@@ -442,8 +442,9 @@ void mmTransDialog::CreateControls()
     // Status --------------------------------------------
     choiceStatus_ = new wxChoice(this, ID_DIALOG_TRANS_STATUS);
 
-    for (const auto& i : Model_Checking::STATUS_STR) {
-        choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
+    for (int i = 0; i < Model_Checking::STATUS_ID_size; ++i) {
+        wxString status = Model_Checking::status_name(i);
+        choiceStatus_->Append(wxGetTranslation(status), new wxStringClientData(status));
     }
 
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _t("Status")), g_flagsH);
@@ -453,11 +454,12 @@ void mmTransDialog::CreateControls()
     // Type --------------------------------------------
     transaction_type_ = new wxChoice(this, ID_DIALOG_TRANS_TYPE);
 
-    for (const auto& i : Model_Checking::TYPE_STR)
-    {
-        if (i != Model_Checking::TYPE_STR_TRANSFER || Model_Account::instance().all().size() > 1)
-        {
-            transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
+    for (int i = 0; i < Model_Checking::TYPE_ID_size; ++i) {
+        if (i != Model_Checking::TYPE_ID_TRANSFER ||
+            Model_Account::instance().all().size() > 1
+        ) {
+            wxString type = Model_Checking::type_name(i);
+            transaction_type_->Append(wxGetTranslation(type), new wxStringClientData(type));
         }
     }
 
@@ -758,8 +760,8 @@ bool mmTransDialog::ValidateData()
     if (m_mode != MODE_EDIT)
     {
         if (m_fused_data.STATUS != Model_Checking::STATUS_KEY_VOID &&
-            (m_fused_data.TRANSCODE == Model_Checking::TYPE_STR_WITHDRAWAL ||
-             m_fused_data.TRANSCODE == Model_Checking::TYPE_STR_TRANSFER) &&
+            (m_fused_data.TRANSCODE == Model_Checking::TYPE_NAME_WITHDRAWAL ||
+             m_fused_data.TRANSCODE == Model_Checking::TYPE_NAME_TRANSFER) &&
             (account->MINIMUMBALANCE != 0 || account->CREDITLIMIT != 0))
         {
             const double fromAccountBalance = Model_Account::balance(account);
@@ -1114,8 +1116,8 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
 void mmTransDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
     const wxString& refType = (m_fused_data.m_repeat_num == 0) ?
-        Model_Attachment::REFTYPE_STR_TRANSACTION :
-        Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
+        Model_Attachment::REFTYPE_NAME_TRANSACTION :
+        Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
     int64 transID = (m_mode == MODE_DUP) ? -1 : m_fused_data.TRANSID;
     mmAttachmentDialog dlg(this, refType, transID);
     dlg.ShowModal();
@@ -1222,7 +1224,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     Model_Splittransaction::instance().update(splt, m_fused_data.TRANSID);
 
     // Save split tags
-    const wxString& splitRefType = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
+    const wxString& splitRefType = Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT;
 
     for (unsigned int i = 0; i < m_local_splits.size(); i++)
     {
@@ -1237,7 +1239,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
         Model_Taglink::instance().update(splitTaglinks, splitRefType, splt.at(i).SPLITTRANSID);
     }
-    const wxString& RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+    const wxString& RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
     if (m_mode != MODE_EDIT) {
         mmAttachmentManage::RelocateAllAttachments(RefType, -1, RefType, m_fused_data.TRANSID);
     }
@@ -1280,7 +1282,7 @@ void mmTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 #endif
 
     if (m_mode != MODE_EDIT) {
-        const wxString& RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+        const wxString& RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
         mmAttachmentManage::DeleteAllAttachments(RefType, -1);
         Model_CustomFieldData::instance().DeleteAllData(RefType, -1);
     }
@@ -1338,7 +1340,7 @@ void mmTransDialog::SetTooltips()
 
 void mmTransDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+    const wxString& RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
     if (m_mode != MODE_EDIT) {
         mmAttachmentManage::DeleteAllAttachments(RefType, -1);
         Model_CustomFieldData::instance().DeleteAllData(RefType, -1);

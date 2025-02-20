@@ -97,7 +97,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     m_account_id(account_id),
     m_file_path(file_path),
     decimal_(Model_Currency::GetBaseCurrency()->DECIMAL_POINT),
-    depositType_(Model_Checking::TYPE_STR_DEPOSIT)
+    depositType_(Model_Checking::TYPE_NAME_DEPOSIT)
 {
     CSVFieldName_[UNIV_CSV_ID]          = _n("ID");
     CSVFieldName_[UNIV_CSV_DATE]        = _n("Date");
@@ -286,7 +286,7 @@ void mmUnivCSVDialog::CreateControls()
         csvFieldCandicate_->Append(wxGetTranslation(it.second), new mmListBoxItem(it.first, it.second));
 
     //Custom Fields
-    Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::REFTYPE(Model_Attachment::REFTYPE_STR_TRANSACTION));
+    Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::REFTYPE(Model_Attachment::REFTYPE_NAME_TRANSACTION));
     if (!fields.empty())
     {
         std::sort(fields.begin(), fields.end(), SorterByDESCRIPTION());
@@ -1365,7 +1365,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     m_reverce_sign = m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsWithdrawal;
     // A place to store all rejected rows to display after import
     wxString rejectedRows;
-    wxString reftype = Model_Attachment::REFTYPE_STR_TRANSACTION;
+    wxString reftype = Model_Attachment::REFTYPE_NAME_TRANSACTION;
     for (long nLines = firstRow; nLines < lastRow; nLines++)
     {
         const wxString& progressMsg = wxString::Format(_t("Transactions imported to account %s: %ld")
@@ -1587,7 +1587,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
         return mmErrorDialogs::ToolTip4Object(m_choice_account_, _t("Invalid Account"), _t("Error"));
 
     const auto split = Model_Splittransaction::instance().get_all();
-    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_STR_TRANSACTION);
+    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_NAME_TRANSACTION);
     int64 fromAccountID = from_account->ACCOUNTID;
 
     long numRecords = 0;
@@ -1683,7 +1683,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                 case UNIV_CSV_TAGS:
                 {
                     wxString splitTags;
-                    for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT, splt.SPLITTRANSID))
+                    for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT, splt.SPLITTRANSID))
                         splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
                     entry = tran.TAGNAMES;
                     if (!splitTags.IsEmpty())
@@ -1710,7 +1710,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                     itemType = ITransactionsFile::TYPE_NUMBER;
                     break;
                 case UNIV_CSV_TYPE:
-                    entry = Model_Checking::TYPE_STR[Model_Checking::type_id(pBankTransaction)];
+                    entry = Model_Checking::type_name(Model_Checking::type_id(pBankTransaction));
                     break;
                 case UNIV_CSV_ID:
                     entry = wxString::Format("%lld", tran.TRANSID);
@@ -1908,7 +1908,7 @@ void mmUnivCSVDialog::update_preview()
         if (from_account)
         {
             const auto split = Model_Splittransaction::instance().get_all();
-            const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_STR_TRANSACTION);
+            const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_NAME_TRANSACTION);
             int64 fromAccountID = from_account->ACCOUNTID;
             size_t count = 0;
             int row = 0;
@@ -2003,7 +2003,7 @@ void mmUnivCSVDialog::update_preview()
                         {
                             wxString splitTags;
                             for (const auto& tag :
-                                 Model_Taglink::instance().get(Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT, splt.SPLITTRANSID))
+                                 Model_Taglink::instance().get(Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT, splt.SPLITTRANSID))
                                 splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
                             text << inQuotes(tran.TAGNAMES + (tran.TAGNAMES.IsEmpty() ? "" : " ") + splitTags, delimit);
                             break;
@@ -2443,7 +2443,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
 
         if (find_if(csvFieldOrder_.begin(), csvFieldOrder_.end(), [](const std::pair<int, int>& element) {return element.first == UNIV_CSV_TYPE; }) == csvFieldOrder_.end()) {
             if ((amount > 0.0 && !m_reverce_sign) || (amount <= 0.0 && m_reverce_sign)) {
-                holder.Type = Model_Checking::TYPE_STR_DEPOSIT;
+                holder.Type = Model_Checking::TYPE_NAME_DEPOSIT;
             }
         }
 
@@ -2556,7 +2556,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             break;
 
         holder.Amount = fabs(amount);
-        holder.Type = Model_Checking::TYPE_STR_WITHDRAWAL;
+        holder.Type = Model_Checking::TYPE_NAME_WITHDRAWAL;
         break;
 
     case UNIV_CSV_DEPOSIT:
@@ -2574,7 +2574,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             break;
 
         holder.Amount = fabs(amount);
-        holder.Type = Model_Checking::TYPE_STR_DEPOSIT;
+        holder.Type = Model_Checking::TYPE_NAME_DEPOSIT;
         break;
 
         // A number of type options are supported to make amount positive 
@@ -2584,7 +2584,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         {
             if (depositType_.CmpNoCase(token) == 0)
             {
-                holder.Type = Model_Checking::TYPE_STR_DEPOSIT;
+                holder.Type = Model_Checking::TYPE_NAME_DEPOSIT;
                 break;
             }
         }
@@ -2592,7 +2592,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         {
             for (const wxString entry : { "debit", "deposit", "+" }) {
                 if (entry.CmpNoCase(token) == 0) {
-                    holder.Type = Model_Checking::TYPE_STR_DEPOSIT;
+                    holder.Type = Model_Checking::TYPE_NAME_DEPOSIT;
                     break;
                 }
             }
@@ -2804,7 +2804,7 @@ bool mmUnivCSVDialog::validateCustomFieldData(int64 fieldId, wxString& value, wx
     if (!value.IsEmpty())
     {
         const Model_CustomField::Data* data = Model_CustomField::instance().get(fieldId);
-        wxString type_string = Model_CustomField::TYPE_STR[Model_CustomField::type_id(data)];
+        wxString type_string = Model_CustomField::type_name(Model_CustomField::type_id(data));
         switch (Model_CustomField::type_id(data))
         {
             // Check if string can be read as an integer. Will fail if passed a double.

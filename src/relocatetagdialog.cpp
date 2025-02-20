@@ -189,19 +189,19 @@ void relocateTagDialog::IsOkOk()
     if (dest) destTagID_ = dest->TAGID;
     if (source) sourceTagID_ = source->TAGID;
     int trxs_size = (sourceTagID_ < 0) ? 0 : Model_Taglink::instance().find(
-        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_TRANSACTION),
+        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_TRANSACTION),
         Model_Taglink::TAGID(sourceTagID_)
     ).size();
     int split_size = (sourceTagID_ < 0) ? 0 : Model_Taglink::instance().find(
-        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT),
+        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT),
         Model_Taglink::TAGID(sourceTagID_)
     ).size();
     int bills_size = (sourceTagID_ < 0) ? 0 : Model_Taglink::instance().find(
-        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT),
+        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT),
         Model_Taglink::TAGID(sourceTagID_)
     ).size();
     int bill_split_size = (sourceTagID_ < 0) ? 0 : Model_Taglink::instance().find(
-        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT),
+        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT),
         Model_Taglink::TAGID(sourceTagID_)
     ).size();
 

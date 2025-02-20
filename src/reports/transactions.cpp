@@ -126,7 +126,7 @@ table {
     hb.DisplayFooter(_t("Accounts: ") + accounts_label);
 
     m_noOfCols = (m_transDialog->mmIsHideColumnsChecked()) ? m_transDialog->mmGetHideColumnsID().GetCount() : 11;
-    const wxString& AttRefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+    const wxString& AttRefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
     const int groupBy = m_transDialog->mmGetGroupBy();
     const int chart = m_transDialog->mmGetChart();
     wxString lastSortLabel = "";
@@ -139,7 +139,7 @@ table {
     std::map<int64, double> grand_total_in_base_curr_extrans; //Grand - Store transactions amount daily converted to base currency - excluding TRANSFERS
     std::map<wxString, double> values_chart; // Store grouped values for chart
 
-    const wxString refType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+    const wxString refType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
     static wxArrayString udfc_fields = Model_CustomField::UDFC_FIELDS();
     Model_CustomField::TYPE_ID udfc_type[5];
     int udfc_scale[5];
@@ -229,7 +229,7 @@ table {
                 hb.addTableHeaderCell(_t("FX Rate"), "Rate text-right");
             if (showColumnById(mmFilterTransactionsDialog::COL_NOTES))
                 hb.addTableHeaderCell(_t("Notes"), "Notes");
-            const auto& ref_type = Model_Attachment::REFTYPE_STR_TRANSACTION;
+            const auto& ref_type = Model_Attachment::REFTYPE_NAME_TRANSACTION;
             int colNo = mmFilterTransactionsDialog::COL_UDFC01;
             for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS())
             {
@@ -556,9 +556,9 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
 {
     trans_.clear();
     const auto splits = Model_Splittransaction::instance().get_all();
-    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_STR_TRANSACTION);
+    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_NAME_TRANSACTION);
     bool combine_splits = dlg.get()->mmIsCombineSplitsChecked();
-    const wxString splitRefType = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
+    const wxString splitRefType = Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT;
     for (const auto& tran : Model_Checking::instance().all())
     {
         Model_Checking::Full_Data full_tran(tran, splits, tags);

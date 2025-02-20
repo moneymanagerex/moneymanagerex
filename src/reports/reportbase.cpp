@@ -153,9 +153,9 @@ void mmPrintableBase::restoreReportSettings()
     int selection = 0;
     if (j_doc.HasMember("ACCOUNTSELECTION") && j_doc["ACCOUNTSELECTION"].IsInt()) {
         selection = j_doc["ACCOUNTSELECTION"].GetInt();
-        if (selection > (Model_Account::TYPE_STR.Count() + 2)) selection = 0;
+        if (selection > (Model_Account::TYPE_ID_size + 2)) selection = 0;
     }
-    if (selection > (Model_Account::TYPE_STR.Count() + 2))
+    if (selection > (Model_Account::TYPE_ID_size + 2))
         selection = 0;
 
     accountArray_ = selectedAccountArray_ = nullptr;
@@ -171,7 +171,7 @@ void mmPrintableBase::restoreReportSettings()
         }
         accountArray_ = selectedAccountArray_ = accountSelections;
     } else if (selection > 1)
-        setAccounts(selection, Model_Account::TYPE_STR[selection - 2]);
+        setAccounts(selection, Model_Account::type_name(selection - 2));
 
     m_account_selection = selection;
 }
@@ -218,10 +218,10 @@ void mmPrintableBase::setAccounts(int selection, const wxString& name)
         {
             wxArrayString accounts;
             auto a = Model_Account::instance().find(
-                Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR_INVESTMENT, NOT_EQUAL));
+                Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT, NOT_EQUAL));
             std::stable_sort(a.begin(), a.end(), SorterByACCOUNTNAME());
             for (const auto& item : a) {
-                if (m_only_active && item.STATUS != Model_Account::STATUS_STR_OPEN)
+                if (m_only_active && item.STATUS != Model_Account::STATUS_NAME_OPEN)
                     continue;
                 accounts.Add(item.ACCOUNTNAME);
             }

@@ -20,8 +20,9 @@
 #ifndef MODEL_CURRENCY_H
 #define MODEL_CURRENCY_H
 
-#include "Model.h"
+#include "choices.h"
 #include "db/DB_Table_Currencyformats_V1.h"
+#include "Model.h"
 #include "Model_Infotable.h" // detect base currency setting BASECURRENCYID
 #include <map>
 
@@ -51,21 +52,22 @@ public:
     enum TYPE_ID
     {
         TYPE_ID_FIAT = 0,
-        TYPE_ID_CRYPTO
+        TYPE_ID_CRYPTO,
+        TYPE_ID_size
     };
-    static wxArrayString TYPE_STR;
-    static const wxString TYPE_STR_FIAT;
-    static const wxString TYPE_STR_CRYPTO;
+    static const wxString TYPE_NAME_FIAT;
+    static const wxString TYPE_NAME_CRYPTO;
 
 private:
-    static const std::vector<std::pair<TYPE_ID, wxString> > TYPE_CHOICES;
-    static wxArrayString type_str_all();
+    static ChoicesName TYPE_CHOICES;
 
 public:
+    static const wxString type_name(int id);
+    static int type_id(const wxString& name, int default_id = TYPE_ID_FIAT);
     static TYPE_ID type_id(const Data* r);
     static TYPE_ID type_id(const Data& r);
-    static DB_Table_CURRENCYFORMATS_V1::CURRENCY_TYPE CURRENCY_TYPE(TYPE_ID currencytype, OP op = EQUAL);
 
+    static DB_Table_CURRENCYFORMATS_V1::CURRENCY_TYPE CURRENCY_TYPE(TYPE_ID currencytype, OP op = EQUAL);
     const wxArrayString all_currency_names();
     const std::map<wxString, int64>  all_currency();
     const wxArrayString all_currency_symbols();
@@ -102,4 +104,27 @@ public:
     static int precision(const Data& r);
     static int precision(int64 account_id);
 };
-#endif // 
+
+//----------------------------------------------------------------------------
+
+inline const wxString Model_Currency::type_name(int id)
+{
+    return TYPE_CHOICES.getName(id);
+}
+
+inline int Model_Currency::type_id(const wxString& name, int default_id)
+{
+    return TYPE_CHOICES.findName(name, default_id);
+}
+
+inline Model_Currency::TYPE_ID Model_Currency::type_id(const Data* r)
+{
+    return static_cast<TYPE_ID>(type_id(r->CURRENCY_TYPE));
+}
+
+inline Model_Currency::TYPE_ID Model_Currency::type_id(const Data& r)
+{
+    return type_id(&r);
+}
+
+#endif

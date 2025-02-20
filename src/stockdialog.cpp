@@ -344,7 +344,7 @@ void mmStockDialog::CreateControls()
 
 void mmStockDialog::OnQuit(wxCloseEvent& /*event*/)
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_STR_STOCK;
+    const wxString& RefType = Model_Attachment::REFTYPE_NAME_STOCK;
     if (!m_edit)
         mmAttachmentManage::DeleteAllAttachments(RefType, 0);
     EndModal(wxID_CANCEL);
@@ -352,7 +352,7 @@ void mmStockDialog::OnQuit(wxCloseEvent& /*event*/)
 
 void mmStockDialog::OnCancel(wxCommandEvent& /*event*/)
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_STR_STOCK;
+    const wxString& RefType = Model_Attachment::REFTYPE_NAME_STOCK;
     if (m_stock_id <= 0)
         mmAttachmentManage::DeleteAllAttachments(RefType, 0);
     EndModal(wxID_CANCEL);
@@ -360,7 +360,7 @@ void mmStockDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmStockDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-    const wxString RefType = Model_Attachment::REFTYPE_STR_STOCK;
+    const wxString RefType = Model_Attachment::REFTYPE_NAME_STOCK;
     int64 RefId = m_stock_id;
 
     if (RefId < 0)
@@ -462,7 +462,7 @@ void mmStockDialog::OnSave(wxCommandEvent & /*event*/)
 
     if (!m_edit)
     {
-        const wxString RefType = Model_Attachment::REFTYPE_STR_STOCK;
+        const wxString RefType = Model_Attachment::REFTYPE_NAME_STOCK;
         mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, m_stock->STOCKID);
     }
 
@@ -506,10 +506,10 @@ void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account, const
     if (name.empty()) return;
     Model_Account::Data* share_account = Model_Account::instance().create();
     share_account->ACCOUNTNAME = name;
-    share_account->ACCOUNTTYPE = Model_Account::TYPE_STR_SHARES;
+    share_account->ACCOUNTTYPE = Model_Account::TYPE_NAME_SHARES;
 
     share_account->FAVORITEACCT = "TRUE";
-    share_account->STATUS = Model_Account::STATUS_STR_OPEN;
+    share_account->STATUS = Model_Account::STATUS_NAME_OPEN;
     share_account->INITIALBAL = 0;
     share_account->INITIALDATE = openingDate;
     share_account->CURRENCYID = stock_account->CURRENCYID;

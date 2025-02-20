@@ -714,8 +714,9 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tRe
     const wxDate today = wxDate::Today();
     wxString vAccts = Model_Setting::instance().getViewAccounts();
     auto accounts = Model_Account::instance().find(
-        Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR[type])
-        , Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL));
+        Model_Account::ACCOUNTTYPE(Model_Account::type_name(type)),
+        Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL)
+    );
     std::stable_sort(accounts.begin(), accounts.end(), SorterByACCOUNTNAME());
     for (const auto& account : accounts)
     {

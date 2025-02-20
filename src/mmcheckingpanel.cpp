@@ -599,10 +599,10 @@ void mmCheckingPanel::filterList()
     m_reconciled_balance = m_balance;
     m_show_reconciled = false;
 
-    const wxString tranRefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
-    const wxString billRefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
-    const wxString tranSplitRefType = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
-    const wxString billSplitRefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT;
+    const wxString tranRefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+    const wxString billRefType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
+    const wxString tranSplitRefType = Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT;
+    const wxString billSplitRefType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT;
 
     static wxArrayString udfc_fields = Model_CustomField::UDFC_FIELDS();
     int64 udfc_id[5];
@@ -891,7 +891,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
                     notesStr += split.NOTES;
                 }
             if (full_tran.has_attachment()) {
-                const wxString& refType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+                const wxString& refType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
                 Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(refType, full_tran.TRANSID);
                 for (const auto& i : attachments) {
                     notesStr += notesStr.empty() ? "" : "\n";
@@ -909,7 +909,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
                     notesStr += split.NOTES;
                 }
             if (full_tran.has_attachment()) {
-                const wxString& refType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
+                const wxString& refType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
                 Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(refType, full_tran.m_bdid);
                 for (const auto& i : attachments) {
                     notesStr += notesStr.empty() ? "" : "\n";
@@ -1190,8 +1190,8 @@ void mmCheckingPanel::onButtonRightDown(wxMouseEvent& event)
         auto selected_id = m_listCtrlAccount->getSelectedId();
         if (selected_id.size() == 1) {
             const wxString refType = !selected_id[0].second ?
-                Model_Attachment::REFTYPE_STR_TRANSACTION :
-                Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
+                Model_Attachment::REFTYPE_NAME_TRANSACTION :
+                Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
             mmAttachmentDialog dlg(this, refType, selected_id[0].first);
             dlg.ShowModal();
             refreshList();

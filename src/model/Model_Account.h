@@ -20,9 +20,10 @@
 #ifndef MODEL_ACCOUNT_H
 #define MODEL_ACCOUNT_H
 
-#include "Model.h"
+#include "choices.h"
 #include "db/DB_Table_Accountlist_V1.h"
-#include "Model_Currency.h" // detect base currency
+#include "Model.h"
+#include "Model_Currency.h"
 #include "Model_Checking.h"
 #include "Model_Billsdeposits.h"
 
@@ -47,28 +48,23 @@ public:
     enum STATUS_ID
     {
         STATUS_ID_OPEN = 0,
-        STATUS_ID_CLOSED
+        STATUS_ID_CLOSED,
+        STATUS_ID_size
     };
-    static wxArrayString TYPE_STR;
-    static const wxString TYPE_STR_CASH;
-    static const wxString TYPE_STR_CHECKING;
-    static const wxString TYPE_STR_CREDIT_CARD;
-    static const wxString TYPE_STR_LOAN;
-    static const wxString TYPE_STR_TERM;
-    static const wxString TYPE_STR_INVESTMENT;
-    static const wxString TYPE_STR_ASSET;
-    static const wxString TYPE_STR_SHARES;
-    static wxArrayString STATUS_STR;
-    static const wxString STATUS_STR_OPEN;
-    static const wxString STATUS_STR_CLOSED;
+    static const wxString TYPE_NAME_CASH;
+    static const wxString TYPE_NAME_CHECKING;
+    static const wxString TYPE_NAME_CREDIT_CARD;
+    static const wxString TYPE_NAME_LOAN;
+    static const wxString TYPE_NAME_TERM;
+    static const wxString TYPE_NAME_INVESTMENT;
+    static const wxString TYPE_NAME_ASSET;
+    static const wxString TYPE_NAME_SHARES;
+    static const wxString STATUS_NAME_OPEN;
+    static const wxString STATUS_NAME_CLOSED;
 
 public:
-    static const std::vector<std::pair<TYPE_ID, wxString> > TYPE_CHOICES;
-    static const std::vector<std::pair<STATUS_ID, wxString> > STATUS_CHOICES;
-
-private:
-    static wxArrayString type_str_all();
-    static wxArrayString status_str_all();
+    static ChoicesName TYPE_CHOICES;
+    static ChoicesName STATUS_CHOICES;
 
 public:
     Model_Account();
@@ -124,12 +120,16 @@ public:
     static wxString toString(double value, const Data* r, int precision = 2);
     static wxString toString(double value, const Data& r, int precision = 2);
 
+    static const wxString type_name(int id);
+    static int type_id(const wxString& name, int default_id = TYPE_ID_CHECKING);
+    static TYPE_ID type_id(const Data* account);
+    static TYPE_ID type_id(const Data& account);
+
+    static const wxString status_name(int id);
+    static int status_id(const wxString& name, int default_id = STATUS_ID_CLOSED);
     static STATUS_ID status_id(const Data* account);
     static STATUS_ID status_id(const Data& account);
     static DB_Table_ACCOUNTLIST_V1::STATUS STATUS(STATUS_ID status, OP op = EQUAL);
-
-    static TYPE_ID type_id(const Data* account);
-    static TYPE_ID type_id(const Data& account);
 
     static bool FAVORITEACCT(const Data* r);
     static bool FAVORITEACCT(const Data& r);
@@ -150,7 +150,56 @@ public:
 
 };
 
-inline wxDateTime Model_Account::get_date_by_string(const wxString& date_str) { return Model::to_date(date_str); }
-inline bool Model_Account::is_positive(int value) { return value > 0 ? true : false; }
+//----------------------------------------------------------------------------
 
-#endif // 
+inline const wxString Model_Account::type_name(int id)
+{
+    return TYPE_CHOICES.getName(id);
+}
+
+inline int Model_Account::type_id(const wxString& name, int default_id)
+{
+    return TYPE_CHOICES.findName(name, default_id);
+}
+
+inline Model_Account::TYPE_ID Model_Account::type_id(const Data* account)
+{
+    return static_cast<TYPE_ID>(type_id(account->ACCOUNTTYPE));
+}
+
+inline Model_Account::TYPE_ID Model_Account::type_id(const Data& account)
+{
+    return type_id(&account);
+}
+
+inline const wxString Model_Account::status_name(int id)
+{
+    return STATUS_CHOICES.getName(id);
+}
+
+inline int Model_Account::status_id(const wxString& name, int default_id)
+{
+    return STATUS_CHOICES.findName(name, default_id);
+}
+
+inline Model_Account::STATUS_ID Model_Account::status_id(const Data* account)
+{
+    return static_cast<STATUS_ID>(status_id(account->STATUS));
+}
+
+inline Model_Account::STATUS_ID Model_Account::status_id(const Data& account)
+{
+    return status_id(&account);
+}
+
+inline wxDateTime Model_Account::get_date_by_string(const wxString& date_str)
+{
+    return Model::to_date(date_str);
+}
+
+inline bool Model_Account::is_positive(int value)
+{
+    return value > 0 ? true : false;
+}
+
+#endif
