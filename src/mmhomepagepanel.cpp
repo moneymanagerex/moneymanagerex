@@ -186,7 +186,7 @@ void mmHomePagePanel::insertDataIntoTemplate()
     m_frames["INCOME_VS_EXPENSES_COLORS"] = wxString::Format("'%s', '%s'", mmThemeMetaString(meta::COLOR_REPORT_CREDIT)
                                                 , mmThemeMetaString(meta::COLOR_REPORT_DEBIT));
 
-    htmlWidgetBillsAndDeposits bills_and_deposits(_("Upcoming Transactions"));
+    htmlWidgetBillsAndDeposits bills_and_deposits(_t("Upcoming Transactions"));
     m_frames["BILLS_AND_DEPOSITS"] = bills_and_deposits.getHTMLText();
 
     htmlWidgetTop7Categories top_trx;
@@ -234,13 +234,13 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
     }
     else if (uri.StartsWith("assets:", &sData))
     {
-        m_frame->setNavTreeSection(_("Assets"));
+        m_frame->setNavTreeSection(_t("Assets"));
         wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
         m_frame->GetEventHandler()->AddPendingEvent(event);
     }
     else if (uri.StartsWith("billsdeposits:", &sData))
     {
-        m_frame->setNavTreeSection(_("Scheduled Transactions"));
+        m_frame->setNavTreeSection(_t("Scheduled Transactions"));
         wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
         m_frame->GetEventHandler()->AddPendingEvent(event);
     }

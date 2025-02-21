@@ -69,8 +69,11 @@
 #pragma warning (disable:4100)
 #endif
 
+#define _n(string) wxString(wxTRANSLATE(string))
+#define _t(string) _(string)
+#define _nu(string_utf8) wxString::FromUTF8(wxTRANSLATE(string_utf8))
+#define _tu(string_utf8) wxGetTranslation(wxString::FromUTF8(wxTRANSLATE(string_utf8)))
 #define wxPLURAL_U8(singular, plural, n) wxPLURAL(wxString::FromUTF8(singular), wxString::FromUTF8(plural), n)
-#define _u(unicode_string) wxGetTranslation(wxString::FromUTF8(wxTRANSLATE(unicode_string)))
 
 #endif // MM_EX_DEFS_H_
 

@@ -65,7 +65,6 @@ wxDate Model_Billsdeposits::TRANSDATE(const Data* r)
 {
     return Model::to_date(r->TRANSDATE);
 }
-
 wxDate Model_Billsdeposits::TRANSDATE(const Data& r)
 {
     return Model::to_date(r.TRANSDATE);
@@ -75,28 +74,27 @@ wxDate Model_Billsdeposits::NEXTOCCURRENCEDATE(const Data* r)
 {
     return Model::to_date(r->NEXTOCCURRENCEDATE);
 }
-
 wxDate Model_Billsdeposits::NEXTOCCURRENCEDATE(const Data& r)
 {
     return Model::to_date(r.NEXTOCCURRENCEDATE);
 }
 
-Model_Checking::TYPE_ID Model_Billsdeposits::type_id(const Data& r)
-{
-    return Model_Checking::type_id(r.TRANSCODE);
-}
 Model_Checking::TYPE_ID Model_Billsdeposits::type_id(const Data* r)
 {
-    return Model_Checking::type_id(r->TRANSCODE);
+    return static_cast<Model_Checking::TYPE_ID>(Model_Checking::type_id(r->TRANSCODE));
+}
+Model_Checking::TYPE_ID Model_Billsdeposits::type_id(const Data& r)
+{
+    return type_id(&r);
 }
 
-Model_Checking::STATUS_ID Model_Billsdeposits::status_id(const Data& r)
-{
-    return Model_Checking::status_id(r.STATUS);
-}
 Model_Checking::STATUS_ID Model_Billsdeposits::status_id(const Data* r)
 {
-    return Model_Checking::status_id(r->STATUS);
+    return static_cast<Model_Checking::STATUS_ID>(Model_Checking::status_id(r->STATUS));
+}
+Model_Checking::STATUS_ID Model_Billsdeposits::status_id(const Data& r)
+{
+    return status_id(&r);
 }
 
 /**
@@ -108,18 +106,18 @@ bool Model_Billsdeposits::remove(int64 id)
     for (auto &item : Model_Billsdeposits::split(get(id)))
         Model_Budgetsplittransaction::instance().remove(item.SPLITTRANSID);
     // Delete tags for the scheduled transaction
-    Model_Taglink::instance().DeleteAllTags(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT, id);
+    Model_Taglink::instance().DeleteAllTags(Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT, id);
     return this->remove(id, db_);
 }
 
 DB_Table_BILLSDEPOSITS_V1::STATUS Model_Billsdeposits::STATUS(Model_Checking::STATUS_ID status, OP op)
 {
-    return DB_Table_BILLSDEPOSITS_V1::STATUS(Model_Checking::STATUS_KEY[status], op);
+    return DB_Table_BILLSDEPOSITS_V1::STATUS(Model_Checking::status_key(status), op);
 }
 
 DB_Table_BILLSDEPOSITS_V1::TRANSCODE Model_Billsdeposits::TRANSCODE(Model_Checking::TYPE_ID type, OP op)
 {
-    return DB_Table_BILLSDEPOSITS_V1::TRANSCODE(Model_Checking::TYPE_STR[type], op);
+    return DB_Table_BILLSDEPOSITS_V1::TRANSCODE(Model_Checking::type_name(type), op);
 }
 
 const Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::split(const Data* r)
@@ -136,7 +134,7 @@ const Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::split(const Da
 const Model_Taglink::Data_Set Model_Billsdeposits::taglink(const Data* r)
 {
     return Model_Taglink::instance().find(
-        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT),
+        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT),
         Model_Taglink::REFID(r->BDID));
 }
 
@@ -188,7 +186,7 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r)
 {
     if (r.STATUS == Model_Checking::STATUS_KEY_VOID)
         return true;
-    if (r.TRANSCODE != Model_Checking::TYPE_STR_WITHDRAWAL && r.TRANSCODE != Model_Checking::TYPE_STR_TRANSFER)
+    if (r.TRANSCODE != Model_Checking::TYPE_NAME_WITHDRAWAL && r.TRANSCODE != Model_Checking::TYPE_NAME_TRANSFER)
         return true;
 
     const int64 acct_id = r.ACCOUNTID;
@@ -206,27 +204,27 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r)
     if (account->MINIMUMBALANCE != 0 && new_balance < account->MINIMUMBALANCE)
     {
         allow_transaction = false;
-        limitDescription = _("Minimum Balance");
+        limitDescription = _t("Minimum Balance");
         limitAmount = account->MINIMUMBALANCE;
     }
     else if (account->CREDITLIMIT != 0 && new_balance < -(account->CREDITLIMIT))
     {
         allow_transaction = false;
-        limitDescription = _("Credit Limit");
+        limitDescription = _t("Credit Limit");
         limitAmount = account->CREDITLIMIT;
     }
 
     if (!allow_transaction)
     {
-        wxString message = _("A scheduled transaction will exceed the account limit.\n\n"
+        wxString message = _t("A scheduled transaction will exceed the account limit.\n\n"
             "Account: %1$s\n"
             "Current Balance: %2$6.2f\n"
             "Transaction amount: %3$6.2f\n"
             "%4$s: %5$6.2f") + "\n\n" +
-            _("Do you want to continue?");
+            _t("Do you want to continue?");
         message.Printf(message, account->ACCOUNTNAME, current_balance, r.TRANSAMOUNT, limitDescription, limitAmount);
 
-        if (wxMessageBox(message, _("MMEX Scheduled Transaction Check"), wxYES_NO | wxICON_WARNING) == wxYES)
+        if (wxMessageBox(message, _t("MMEX Scheduled Transaction Check"), wxYES_NO | wxICON_WARNING) == wxYES)
             allow_transaction = true;
     }
 
@@ -243,7 +241,7 @@ void Model_Billsdeposits::completeBDInSeries(int64 bdID)
 
     if ((repeats == REPEAT_TYPE::REPEAT_ONCE) || ((repeats < REPEAT_TYPE::REPEAT_IN_X_DAYS || repeats > REPEAT_TYPE::REPEAT_EVERY_X_MONTHS) && numRepeats == 1))
     {
-        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT, bdID);
+        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT, bdID);
         remove(bdID);
         return;
     }
@@ -371,7 +369,7 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r) :
     Data(r),
     m_bill_splits(split(r)),
     m_tags(Model_Taglink::instance().find(
-        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT),
+        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT),
         Model_Taglink::REFID(r.BDID)))
 {
     if (!m_tags.empty()) {
@@ -392,7 +390,7 @@ Model_Billsdeposits::Full_Data::Full_Data(const Data& r) :
                 + Model_Category::full_name(entry.CATEGID);
 
             wxString splitTags;
-            for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT, entry.SPLITTRANSID))
+            for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT, entry.SPLITTRANSID))
                 splitTags.Append(tag.first + " ");
             if (!splitTags.IsEmpty())
                 TAGNAMES.Append((TAGNAMES.IsEmpty() ? "" : ", ") + splitTags.Trim());

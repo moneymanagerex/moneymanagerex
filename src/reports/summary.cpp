@@ -130,7 +130,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     std::vector<wxDate> arDates;
 
     hb.init();
-    const auto name = wxString::Format(_("Accounts Balance - %s"), mode_ == MONTHLY ? _("Monthly Report") : _("Yearly Report"));
+    const auto name = wxString::Format(_t("Accounts Balance - %s"), mode_ == MONTHLY ? _t("Monthly Report") : _t("Yearly Report"));
     hb.addReportHeader(name);
 
     currencyDateRateCache.clear();
@@ -254,25 +254,25 @@ wxString mmReportSummaryByDate::getHTMLText()
     //Chart
     if (getChartSelection() == 0)
     {
-        gs_data[0].name = _("Cash");
+        gs_data[0].name = _t("Cash");
         gs_data[0].type = "column";
-        gs_data[1].name = _("Bank Accounts");
+        gs_data[1].name = _t("Bank Accounts");
         gs_data[1].type = "column";        
-        gs_data[2].name = _("Credit Card Accounts");
+        gs_data[2].name = _t("Credit Card Accounts");
         gs_data[2].type = "column";   
-        gs_data[3].name = _("Loan Accounts");
+        gs_data[3].name = _t("Loan Accounts");
         gs_data[3].type = "column";   
-        gs_data[4].name = _("Term Accounts");
+        gs_data[4].name = _t("Term Accounts");
         gs_data[4].type = "column";   
-        gs_data[5].name = _("Asset Accounts");
+        gs_data[5].name = _t("Asset Accounts");
         gs_data[5].type = "column";   
-        gs_data[6].name = _("Share Accounts");
+        gs_data[6].name = _t("Share Accounts");
         gs_data[6].type = "column";
-        gs_data[7].name = _("Assets");
+        gs_data[7].name = _t("Assets");
         gs_data[7].type = "column";
-        gs_data[8].name = _("Stocks");
+        gs_data[8].name = _t("Stocks");
         gs_data[8].type = "column";   
-        gs_data[9].name = _("Balance");
+        gs_data[9].name = _t("Balance");
         gs_data[9].type = "line";  
 
         for (const auto& entry : totBalanceData)
@@ -297,18 +297,18 @@ wxString mmReportSummaryByDate::getHTMLText()
             {
                 hb.startTableRow();
                 {
-                    hb.addTableHeaderCell(_("Date"));
-                    hb.addTableHeaderCell(_("Cash"), "text-right");
-                    hb.addTableHeaderCell(_("Bank Accounts"), "text-right");
-                    hb.addTableHeaderCell(_("Credit Card Accounts"), "text-right");
-                    hb.addTableHeaderCell(_("Loan Accounts"), "text-right");
-                    hb.addTableHeaderCell(_("Term Accounts"), "text-right");
-                    hb.addTableHeaderCell(_("Asset Accounts"), "text-right");
-                    hb.addTableHeaderCell(_("Share Accounts"), "text-right");
-                    hb.addTableHeaderCell(_("Total"), "text-right");
-                    hb.addTableHeaderCell(_("Assets"), "text-right");
-                    hb.addTableHeaderCell(_("Stocks"), "text-right");
-                    hb.addTableHeaderCell(_("Balance"), "text-right");
+                    hb.addTableHeaderCell(_t("Date"));
+                    hb.addTableHeaderCell(_t("Cash"), "text-right");
+                    hb.addTableHeaderCell(_t("Bank Accounts"), "text-right");
+                    hb.addTableHeaderCell(_t("Credit Card Accounts"), "text-right");
+                    hb.addTableHeaderCell(_t("Loan Accounts"), "text-right");
+                    hb.addTableHeaderCell(_t("Term Accounts"), "text-right");
+                    hb.addTableHeaderCell(_t("Asset Accounts"), "text-right");
+                    hb.addTableHeaderCell(_t("Share Accounts"), "text-right");
+                    hb.addTableHeaderCell(_t("Total"), "text-right");
+                    hb.addTableHeaderCell(_t("Assets"), "text-right");
+                    hb.addTableHeaderCell(_t("Stocks"), "text-right");
+                    hb.addTableHeaderCell(_t("Balance"), "text-right");
                 }
                 hb.endTableRow();
             }

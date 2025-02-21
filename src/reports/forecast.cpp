@@ -27,7 +27,7 @@
 
 class mm_html_template;
 
-mmReportForecast::mmReportForecast(): mmPrintableBase(wxTRANSLATE("Forecast"))
+mmReportForecast::mmReportForecast(): mmPrintableBase(_n("Forecast"))
 {
     setReportParameters(Reports::ForecastReport);
 }
@@ -76,9 +76,9 @@ wxString mmReportForecast::getHTMLText()
         gsWithdrawal.values.push_back(kv.second.first);
         gsDeposit.values.push_back(kv.second.second);
     }
-    gsDeposit.name = _("Deposit");
+    gsDeposit.name = _t("Deposit");
     gd.series.push_back(gsDeposit);
-    gsWithdrawal.name = _("Withdrawal");
+    gsWithdrawal.name = _t("Withdrawal");
     gd.series.push_back(gsWithdrawal);
 
     gd.type = GraphData::LINE_DATETIME;

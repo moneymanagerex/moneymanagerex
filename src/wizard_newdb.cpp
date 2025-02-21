@@ -27,12 +27,12 @@ BEGIN_EVENT_TABLE(mmNewDatabaseWizard, wxWizard)
 END_EVENT_TABLE()
 
 mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
-    : wxWizard(frame, wxID_ANY, _("New Database Wizard")
+    : wxWizard(frame, wxID_ANY, _t("New Database Wizard")
         , wxBitmap(addacctwiz_xpm), wxDefaultPosition, wxDEFAULT_DIALOG_STYLE)
 {
     page1 = new wxWizardPageSimple(this);
     wxString displayMsg;
-    displayMsg << _u(
+    displayMsg << _tu(
         "The next pages will help create a new database.\n\n"
         "The database file is stored with an extension of .mmb. "
         "As this file contains important financial data, "
@@ -88,7 +88,7 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     : wxWizardPageSimple(parent)
     , parent_(parent)
 {
-    wxString currName = _("Set Currency");
+    wxString currName = _t("Set Currency");
     const auto base_currency = Model_Currency::instance().GetBaseCurrency();
     if (base_currency)
     {
@@ -101,10 +101,10 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
 
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
 
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Base Currency for account")), 0, wxALL, 5);
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, _t("Base Currency for account")), 0, wxALL, 5);
     mainSizer->Add(itemButtonCurrency_, 0 /* No stretching */, wxALL, 5 /* Border size */);
 
-    wxString helpMsg = _("Specify the base (or default) currency to be used for the\n"
+    wxString helpMsg = _t("Specify the base (or default) currency to be used for the\n"
         "database. The base currency can later be changed in\n"
         "Options. New accounts, will use this currency by\n"
         "default, and can be changed when editing account details.");
@@ -115,15 +115,15 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
     mainSizer->Add(itemBoxSizer5, 0, wxALIGN_LEFT | wxALL, 5);
 
-    wxStaticText* itemStaticText6 = new wxStaticText(this, wxID_STATIC, _("User Name"));
+    wxStaticText* itemStaticText6 = new wxStaticText(this, wxID_STATIC, _t("User Name"));
     itemBoxSizer5->Add(itemStaticText6, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     itemUserName_ = new wxTextCtrl(this, wxID_ANY);
     itemUserName_->SetMinSize(wxSize(200,-1));
     itemBoxSizer5->Add(itemUserName_, g_flagsExpand);
 
-    helpMsg = _("(Optional) Specify a title or name.") + "\n";
-    helpMsg += _("Used as a database title for displayed and printed reports.");
+    helpMsg = _t("(Optional) Specify a title or name.") + "\n";
+    helpMsg += _t("Used as a database title for displayed and printed reports.");
     mainSizer->Add(new wxStaticText(this, wxID_ANY, helpMsg), 0, wxALL, 5);
 
     SetSizer(mainSizer);
@@ -134,7 +134,7 @@ bool mmNewDatabaseWizardPage::TransferDataFromWindow()
 {
     if (currencyID_ == -1)
     {
-        wxMessageBox(_("Base Currency Not Set"), _("New Database"), wxOK | wxICON_WARNING, this);
+        wxMessageBox(_t("Base Currency Not Set"), _t("New Database"), wxOK | wxICON_WARNING, this);
         return false;
     }
     wxString userName = itemUserName_->GetValue().Trim();

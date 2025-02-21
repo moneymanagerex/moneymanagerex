@@ -140,7 +140,7 @@ mmThemesDialog::mmThemesDialog(wxWindow *parent, const wxString &name)
 void mmThemesDialog::Create(wxWindow* parent, const wxString &name)
 {
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
-    if (!wxDialog::Create(parent, wxID_ANY, _("Theme Manager")
+    if (!wxDialog::Create(parent, wxID_ANY, _t("Theme Manager")
         , wxDefaultPosition, wxDefaultSize, style, name))
     {
         return;
@@ -186,13 +186,13 @@ void mmThemesDialog::CreateControls()
     splittermain->SplitVertically(pnl1, pnl2);
 
     wxBoxSizer* bSizer02 = new wxBoxSizer(wxHORIZONTAL);
-    m_importButton = new wxButton(this, ID_DIALOG_THEME_IMPORT, _("&Import"));
+    m_importButton = new wxButton(this, ID_DIALOG_THEME_IMPORT, _t("&Import"));
     bSizer02->Add(m_importButton, 0, wxALL, 5);
-    m_deleteButton = new wxButton(this, ID_DIALOG_THEME_DELETE, _("&Delete"));
+    m_deleteButton = new wxButton(this, ID_DIALOG_THEME_DELETE, _t("&Delete"));
     bSizer02->Add(m_deleteButton, 0, wxALL, 5);
-    m_useButton = new wxButton(this, ID_DIALOG_THEME_USE, _("&Use"));
+    m_useButton = new wxButton(this, ID_DIALOG_THEME_USE, _t("&Use"));
     bSizer02->Add(m_useButton, 0, wxALL, 5);
-    m_okButton = new wxButton(this, wxID_OK, _("&Close"));
+    m_okButton = new wxButton(this, wxID_OK, _t("&Close"));
     bSizer02->Add(m_okButton, 0, wxALL, 5);
 
     bSizer0->Add(bSizer02, g_flagsCenter);
@@ -232,11 +232,11 @@ void mmThemesDialog::RefreshView()
 
     // author
     j_grab = GetValueByPointerWithDefault(j_doc, "/theme/author", "");
-    const wxString& s_author = j_grab.IsString() ? wxString::FromUTF8(j_grab.GetString()) : _("Unknown");
+    const wxString& s_author = j_grab.IsString() ? wxString::FromUTF8(j_grab.GetString()) : _t("Unknown");
 
     // description
     j_grab = GetValueByPointerWithDefault(j_doc, "/theme/description", "");
-    const wxString& s_description = j_grab.IsString() ? wxString::FromUTF8(j_grab.GetString()) : _("No description available");
+    const wxString& s_description = j_grab.IsString() ? wxString::FromUTF8(j_grab.GetString()) : _t("No description available");
 
     // url
     j_grab = GetValueByPointerWithDefault(j_doc, "/theme/url", "");
@@ -282,7 +282,7 @@ void mmThemesDialog::OnThemeView(wxCommandEvent&)
 
 void mmThemesDialog::OnImport(wxCommandEvent&)
 {
-    wxString fileName = wxFileSelector(_("Choose theme file to import")
+    wxString fileName = wxFileSelector(_t("Choose theme file to import")
         , wxEmptyString, wxEmptyString, wxEmptyString
         , "MMX Theme (*.mmextheme)|*.mmextheme"
         , wxFD_FILE_MUST_EXIST | wxFD_OPEN
@@ -302,7 +302,7 @@ void mmThemesDialog::OnImport(wxCommandEvent&)
 
     if (wxFileExists(destFile.GetFullPath()))
     {
-        wxString existingThemeText = _("The theme already exists. Do you want to import and overwrite the existing theme?");
+        wxString existingThemeText = _t("The theme already exists. Do you want to import and overwrite the existing theme?");
         wxMessageDialog msgDlg(this, existingThemeText, destFile.GetName(),
             wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
         if (msgDlg.ShowModal() == wxID_NO)
@@ -312,8 +312,8 @@ void mmThemesDialog::OnImport(wxCommandEvent&)
     wxLogDebug("Theme import: Copying\n%s\nto\n%s", fileName, destFile.GetFullPath());
     if (!wxCopyFile(fileName, destFile.GetFullPath()))
     {
-        wxString copyFailedText = _("Something went wrong importing the theme");
-        wxMessageBox(copyFailedText, _("Error"), wxOK | wxICON_ERROR);
+        wxString copyFailedText = _t("Something went wrong importing the theme");
+        wxMessageBox(copyFailedText, _t("Error"), wxOK | wxICON_ERROR);
     }
 
     ReadThemes();
@@ -324,15 +324,15 @@ void mmThemesDialog::OnImport(wxCommandEvent&)
 void mmThemesDialog::OnDelete(wxCommandEvent&)
 {
     ThemeEntry thisTheme = getThemeEntry(m_themesListBox_->GetString(m_themesListBox_->GetSelection()));
-    wxString deletingThemeText = _("Do you want to delete the theme? If you want to use it again you will need to re-import it.");
+    wxString deletingThemeText = _t("Do you want to delete the theme? If you want to use it again you will need to re-import it.");
     wxMessageDialog msgDlg(this, deletingThemeText, thisTheme.name,
         wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
     if (msgDlg.ShowModal() == wxID_YES)
     {
         if (!wxRemoveFile(thisTheme.fullPath))
         {
-            wxString deleteFailedText = _("Something went wrong when attempting to delete the theme");
-            wxMessageBox(deleteFailedText, _("Error"), wxOK | wxICON_ERROR);
+            wxString deleteFailedText = _t("Something went wrong when attempting to delete the theme");
+            wxMessageBox(deleteFailedText, _t("Error"), wxOK | wxICON_ERROR);
         }
     }
     ReadThemes();
@@ -343,7 +343,7 @@ void mmThemesDialog::OnDelete(wxCommandEvent&)
 void mmThemesDialog::OnUse(wxCommandEvent&)
 {
     ThemeEntry thisTheme = getThemeEntry(m_themesListBox_->GetString(m_themesListBox_->GetSelection()));
-    wxString changingThemeText = _("Do you want to use the theme? Please note that this will only take effect when MMEX is re-started.");
+    wxString changingThemeText = _t("Do you want to use the theme? Please note that this will only take effect when MMEX is re-started.");
     wxMessageDialog msgDlg(this, changingThemeText, thisTheme.name,
         wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
     if (msgDlg.ShowModal() == wxID_YES)

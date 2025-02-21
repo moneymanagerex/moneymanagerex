@@ -41,35 +41,36 @@ public:
 private:
     friend class mmCheckingPanel;
 
-    enum EColumn
+    enum LIST_COL
     {
-        COL_IMGSTATUS = 0,
-        COL_ID,
-        COL_DATE,
-        COL_TIME,
-        COL_NUMBER,
-        COL_ACCOUNT,
-        COL_PAYEE_STR,
-        COL_STATUS,
-        COL_CATEGORY,
-        COL_TAGS,
-        COL_WITHDRAWAL,
-        COL_DEPOSIT,
-        COL_BALANCE,
-        COL_CREDIT,
-        COL_NOTES,
-        COL_DELETEDTIME,
-        COL_UDFC01,
-        COL_UDFC02,
-        COL_UDFC03,
-        COL_UDFC04,
-        COL_UDFC05,
-        COL_UPDATEDTIME,
-        COL_SN,
-        COL_size, // number of columns
-        COL_def_sort = COL_DATE, // don't omit any columns before this
-        COL_def_sort2 = COL_ID 
+        LIST_COL_IMGSTATUS = 0,
+        LIST_COL_ID,
+        LIST_COL_DATE,
+        LIST_COL_TIME,
+        LIST_COL_NUMBER,
+        LIST_COL_ACCOUNT,
+        LIST_COL_PAYEE_STR,
+        LIST_COL_STATUS,
+        LIST_COL_CATEGORY,
+        LIST_COL_TAGS,
+        LIST_COL_WITHDRAWAL,
+        LIST_COL_DEPOSIT,
+        LIST_COL_BALANCE,
+        LIST_COL_CREDIT,
+        LIST_COL_NOTES,
+        LIST_COL_DELETEDTIME,
+        LIST_COL_UDFC01,
+        LIST_COL_UDFC02,
+        LIST_COL_UDFC03,
+        LIST_COL_UDFC04,
+        LIST_COL_UDFC05,
+        LIST_COL_UPDATEDTIME,
+        LIST_COL_SN,
+        LIST_COL_size, // number of columns
+        LIST_COL_def_sort1 = LIST_COL_DATE,
+        LIST_COL_def_sort2 = LIST_COL_ID 
     };
+    static const std::vector<ListColumnInfo> col_info_all();
 
     enum
     {
@@ -126,8 +127,8 @@ private:
 private:
     Fused_Transaction::Full_Data_Set m_trans;
     long m_topItemIndex = -1; // where to display the list again after refresh
-    int g_sortCol1 = COL_def_sort;  // 0-based number of primary sorting column
-    int g_sortCol2 = COL_def_sort2; // 0-based number of secondary sorting column
+    int g_sortCol1 = LIST_COL_def_sort1; // 0-based number of primary sorting column
+    int g_sortCol2 = LIST_COL_def_sort2; // 0-based number of secondary sorting column
     bool g_sortAsc1 = true;         // asc/desc order for primary sorting column
     bool g_sortAsc2 = true;         // asc/desc order for secondary sorting column
     wxString m_today;

@@ -29,40 +29,35 @@
 #include "attachmentdialog.h"
 #include "util.h"
 
-const std::vector<std::pair<Model_Checking::TYPE_ID, wxString> > Model_Checking::TYPE_CHOICES =
-{
-    { Model_Checking::TYPE_ID_WITHDRAWAL, wxString(wxTRANSLATE("Withdrawal")) },
-    { Model_Checking::TYPE_ID_DEPOSIT,    wxString(wxTRANSLATE("Deposit")) },
-    { Model_Checking::TYPE_ID_TRANSFER,   wxString(wxTRANSLATE("Transfer")) }
-};
+ChoicesName Model_Checking::TYPE_CHOICES = ChoicesName({
+    { TYPE_ID_WITHDRAWAL, _n("Withdrawal") },
+    { TYPE_ID_DEPOSIT,    _n("Deposit") },
+    { TYPE_ID_TRANSFER,   _n("Transfer") }
+});
 
-const std::vector<std::tuple<Model_Checking::STATUS_ID, wxString, wxString> > Model_Checking::STATUS_CHOICES =
-{
-    { Model_Checking::STATUS_ID_NONE,       wxString(""),  wxString(wxTRANSLATE("Unreconciled")) },
-    { Model_Checking::STATUS_ID_RECONCILED, wxString("R"), wxString(wxTRANSLATE("Reconciled")) },
-    { Model_Checking::STATUS_ID_VOID,       wxString("V"), wxString(wxTRANSLATE("Void")) },
-    { Model_Checking::STATUS_ID_FOLLOWUP,   wxString("F"), wxString(wxTRANSLATE("Follow Up")) },
-    { Model_Checking::STATUS_ID_DUPLICATE,  wxString("D"), wxString(wxTRANSLATE("Duplicate")) }
-};
+ChoicesKeyName Model_Checking::STATUS_CHOICES = ChoicesKeyName({
+    { STATUS_ID_NONE,       "",  _n("Unreconciled") },
+    { STATUS_ID_RECONCILED, "R", _n("Reconciled") },
+    { STATUS_ID_VOID,       "V", _n("Void") },
+    { STATUS_ID_FOLLOWUP,   "F", _n("Follow Up") },
+    { STATUS_ID_DUPLICATE,  "D", _n("Duplicate") }
+});
 
-wxArrayString Model_Checking::TYPE_STR = type_str_all();
-const wxString Model_Checking::TYPE_STR_WITHDRAWAL = TYPE_STR[TYPE_ID_WITHDRAWAL];
-const wxString Model_Checking::TYPE_STR_DEPOSIT    = TYPE_STR[TYPE_ID_DEPOSIT];
-const wxString Model_Checking::TYPE_STR_TRANSFER   = TYPE_STR[TYPE_ID_TRANSFER];
+const wxString Model_Checking::TYPE_NAME_WITHDRAWAL = type_name(TYPE_ID_WITHDRAWAL);
+const wxString Model_Checking::TYPE_NAME_DEPOSIT    = type_name(TYPE_ID_DEPOSIT);
+const wxString Model_Checking::TYPE_NAME_TRANSFER   = type_name(TYPE_ID_TRANSFER);
 
-wxArrayString Model_Checking::STATUS_KEY = status_key_all();
-const wxString Model_Checking::STATUS_KEY_NONE       = STATUS_KEY[STATUS_ID_NONE];
-const wxString Model_Checking::STATUS_KEY_RECONCILED = STATUS_KEY[STATUS_ID_RECONCILED];
-const wxString Model_Checking::STATUS_KEY_VOID       = STATUS_KEY[STATUS_ID_VOID];
-const wxString Model_Checking::STATUS_KEY_FOLLOWUP   = STATUS_KEY[STATUS_ID_FOLLOWUP];
-const wxString Model_Checking::STATUS_KEY_DUPLICATE  = STATUS_KEY[STATUS_ID_DUPLICATE];
+const wxString Model_Checking::STATUS_KEY_NONE       = status_key(STATUS_ID_NONE);
+const wxString Model_Checking::STATUS_KEY_RECONCILED = status_key(STATUS_ID_RECONCILED);
+const wxString Model_Checking::STATUS_KEY_VOID       = status_key(STATUS_ID_VOID);
+const wxString Model_Checking::STATUS_KEY_FOLLOWUP   = status_key(STATUS_ID_FOLLOWUP);
+const wxString Model_Checking::STATUS_KEY_DUPLICATE  = status_key(STATUS_ID_DUPLICATE);
 
-wxArrayString Model_Checking::STATUS_STR = status_str_all();
-const wxString Model_Checking::STATUS_STR_NONE       = STATUS_STR[STATUS_ID_NONE];
-const wxString Model_Checking::STATUS_STR_RECONCILED = STATUS_STR[STATUS_ID_RECONCILED];
-const wxString Model_Checking::STATUS_STR_VOID       = STATUS_STR[STATUS_ID_VOID];
-const wxString Model_Checking::STATUS_STR_FOLLOWUP   = STATUS_STR[STATUS_ID_FOLLOWUP];
-const wxString Model_Checking::STATUS_STR_DUPLICATE  = STATUS_STR[STATUS_ID_DUPLICATE];
+const wxString Model_Checking::STATUS_NAME_NONE       = status_name(STATUS_ID_NONE);
+const wxString Model_Checking::STATUS_NAME_RECONCILED = status_name(STATUS_ID_RECONCILED);
+const wxString Model_Checking::STATUS_NAME_VOID       = status_name(STATUS_ID_VOID);
+const wxString Model_Checking::STATUS_NAME_FOLLOWUP   = status_name(STATUS_ID_FOLLOWUP);
+const wxString Model_Checking::STATUS_NAME_DUPLICATE  = status_name(STATUS_ID_DUPLICATE);
 
 Model_Checking::Model_Checking() : Model<DB_Table_CHECKINGACCOUNT_V1>()
 {
@@ -70,42 +65,6 @@ Model_Checking::Model_Checking() : Model<DB_Table_CHECKINGACCOUNT_V1>()
 
 Model_Checking::~Model_Checking()
 {
-}
-
-wxArrayString Model_Checking::type_str_all()
-{
-    wxArrayString types;
-    int i = 0;
-    for (const auto& r : TYPE_CHOICES)
-    {
-        wxASSERT_MSG(r.first == i++, "Wrong order in Model_Checking::TYPE_CHOICES");
-        types.Add(r.second);
-    }
-    return types;
-}
-
-wxArrayString Model_Checking::status_key_all()
-{
-    wxArrayString status;
-    int i = 0;
-    for (const auto& r : STATUS_CHOICES)
-    {
-        wxASSERT_MSG(std::get<0>(r) == i++, "Wrong order in Model_Checking::STATUS_CHOICES");
-        status.Add(std::get<1>(r));
-    }
-    return status;
-}
-
-wxArrayString Model_Checking::status_str_all()
-{
-    wxArrayString status;
-    int i = 0;
-    for (const auto& r : STATUS_CHOICES)
-    {
-        wxASSERT_MSG(std::get<0>(r) == i++, "Wrong order in Model_Checking::STATUS_CHOICES");
-        status.Add(std::get<2>(r));
-    }
-    return status;
 }
 
 /**
@@ -136,7 +95,7 @@ bool Model_Checking::remove(int64 id)
         Model_Splittransaction::instance().remove(r.SPLITTRANSID);
     if(foreignTransaction(*instance().get(id))) Model_Translink::RemoveTranslinkEntry(id);
 
-    const wxString& RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+    const wxString& RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
     // remove all attachments
     mmAttachmentManage::DeleteAllAttachments(RefType, id);
     // remove all custom fields for the transaction
@@ -205,12 +164,12 @@ const Model_Splittransaction::Data_Set Model_Checking::split(const Data& r)
 
 DB_Table_CHECKINGACCOUNT_V1::STATUS Model_Checking::STATUS(STATUS_ID status, OP op)
 {
-    return DB_Table_CHECKINGACCOUNT_V1::STATUS(STATUS_KEY[status], op);
+    return DB_Table_CHECKINGACCOUNT_V1::STATUS(status_key(status), op);
 }
 
 DB_Table_CHECKINGACCOUNT_V1::TRANSCODE Model_Checking::TRANSCODE(TYPE_ID type, OP op)
 {
-    return DB_Table_CHECKINGACCOUNT_V1::TRANSCODE(TYPE_STR[type], op);
+    return DB_Table_CHECKINGACCOUNT_V1::TRANSCODE(type_name(type), op);
 }
 
 DB_Table_CHECKINGACCOUNT_V1::TRANSACTIONNUMBER Model_Checking::TRANSACTIONNUMBER(const wxString& num, OP op)
@@ -243,63 +202,6 @@ wxDateTime Model_Checking::TRANSDATE(const Data* r)
 wxDateTime Model_Checking::TRANSDATE(const Data& r)
 {
     return Model::to_date(r.TRANSDATE);
-}
-
-Model_Checking::TYPE_ID Model_Checking::type_id(const wxString& r)
-{
-    if (r.empty()) return TYPE_ID_WITHDRAWAL;
-    static std::unordered_map<wxString, TYPE_ID> cache;
-    const auto it = cache.find(r);
-    if (it != cache.end()) return it->second;
-
-    for (const auto& t : TYPE_CHOICES)
-    {
-        if (r.CmpNoCase(t.second) == 0)
-        {
-            cache.insert(std::make_pair(r, t.first));
-            return t.first;
-        }
-    }
-
-    cache.insert(std::make_pair(r, TYPE_ID_WITHDRAWAL));
-    return TYPE_ID_WITHDRAWAL;
-}
-Model_Checking::TYPE_ID Model_Checking::type_id(const Data& r)
-{
-    return type_id(r.TRANSCODE);
-}
-Model_Checking::TYPE_ID Model_Checking::type_id(const Data* r)
-{
-    return type_id(r->TRANSCODE);
-}
-
-Model_Checking::STATUS_ID Model_Checking::status_id(const wxString& r)
-{
-    static std::unordered_map<wxString, STATUS_ID> cache;
-    const auto it = cache.find(r);
-    if (it != cache.end()) return it->second;
-
-    for (const auto & s : STATUS_CHOICES)
-    {
-        if (r.CmpNoCase(std::get<1>(s)) == 0 || r.CmpNoCase(std::get<2>(s)) == 0)
-        {
-            STATUS_ID ret = std::get<0>(s);
-            cache.insert(std::make_pair(r, ret));
-            return ret;
-        }
-    }
-
-    STATUS_ID ret = STATUS_ID_NONE;
-    cache.insert(std::make_pair(r, ret));
-    return ret;
-}
-Model_Checking::STATUS_ID Model_Checking::status_id(const Data& r)
-{
-    return status_id(r.STATUS);
-}
-Model_Checking::STATUS_ID Model_Checking::status_id(const Data* r)
-{
-    return status_id(r->STATUS);
 }
 
 double Model_Checking::account_flow(const Data* r, int64 account_id)
@@ -392,11 +294,6 @@ bool Model_Checking::is_deposit(const Data* r)
     return is_deposit(r->TRANSCODE);
 }
 
-wxString Model_Checking::status_key(const wxString& r)
-{
-    return STATUS_KEY[status_id(r)];
-}
-
 Model_Checking::Full_Data::Full_Data() :
     Data(0), TAGNAMES(""),
     SN(0), ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
@@ -411,7 +308,7 @@ Model_Checking::Full_Data::Full_Data(const Data& r) :
     m_splits(Model_Splittransaction::instance().find(
         Model_Splittransaction::TRANSID(r.TRANSID))),
     m_tags(Model_Taglink::instance().find(
-        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_STR_TRANSACTION),
+        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_TRANSACTION),
         Model_Taglink::REFID(r.TRANSID)))
 {
     fill_data();
@@ -616,8 +513,8 @@ void Model_Checking::getEmptyData(Data &data, int64 accountID)
 
     data.TRANSDATE = max_trx_date;
     data.ACCOUNTID = accountID;
-    data.STATUS = STATUS_KEY[Option::instance().getTransStatusReconciled()];
-    data.TRANSCODE = TYPE_STR_WITHDRAWAL;
+    data.STATUS = status_key(Option::instance().getTransStatusReconciled());
+    data.TRANSCODE = TYPE_NAME_WITHDRAWAL;
     data.CATEGID = -1;
     data.FOLLOWUPID = -1;
     data.TRANSAMOUNT = 0;
@@ -729,7 +626,7 @@ const wxString Model_Checking::Full_Data::to_json()
 
 bool Model_Checking::foreignTransaction(const Data& data)
 {
-    return (data.TOACCOUNTID > 0) && (data.TRANSCODE == TYPE_STR_DEPOSIT || data.TRANSCODE == TYPE_STR_WITHDRAWAL);
+    return (data.TOACCOUNTID > 0) && (data.TRANSCODE == TYPE_NAME_DEPOSIT || data.TRANSCODE == TYPE_NAME_WITHDRAWAL);
 }
 
 bool Model_Checking::foreignTransactionAsTransfer(const Data& data)

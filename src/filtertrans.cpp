@@ -126,7 +126,7 @@ wxString mmFilterTransactions::getHTML()
     mmHTMLBuilder hb;
     m_trans.clear();
     const auto splits = Model_Splittransaction::instance().get_all();
-    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_STR_TRANSACTION);
+    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_NAME_TRANSACTION);
     for (const auto& tran : Model_Checking::instance().all()) //TODO: find should be faster
     {
         if (!mmIsRecordMatches(tran, splits)) continue;
@@ -184,27 +184,27 @@ table {
 )";
 
     hb.init(false, extra_style);
-    hb.addReportHeader(_("Transaction Details"), 1, false);
+    hb.addReportHeader(_t("Transaction Details"), 1, false);
 
-    const wxString& AttRefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+    const wxString& AttRefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
     hb.addDivContainer();
-    hb.addTableCellLink("back:",wxString::Format("<< %s", _("Back")));
+    hb.addTableCellLink("back:",wxString::Format("<< %s", _t("Back")));
     hb.endDiv();
     hb.addDivContainer("shadow");
     hb.startSortTable();
     hb.startThead();
     hb.startTableRow();
-    hb.addTableHeaderCell(_("ID"), "ID text-right");
-    hb.addTableHeaderCell(_("Color"), "Color text-center");
-    hb.addTableHeaderCell(_("Date"), "Date");
-    hb.addTableHeaderCell(_("Number"), "Number");
-    hb.addTableHeaderCell(_("Account"), "Account");
-    hb.addTableHeaderCell(_("Payee"), "Payee");
-    hb.addTableHeaderCell(_("Status"), "Status text-center");
-    hb.addTableHeaderCell(_("Category"), "Category");
-    hb.addTableHeaderCell(_("Type"), "Type");
-    hb.addTableHeaderCell(_("Amount"), "Amount text-right");
-    hb.addTableHeaderCell(_("Notes"), "Notes");
+    hb.addTableHeaderCell(_t("ID"), "ID text-right");
+    hb.addTableHeaderCell(_t("Color"), "Color text-center");
+    hb.addTableHeaderCell(_t("Date"), "Date");
+    hb.addTableHeaderCell(_t("Number"), "Number");
+    hb.addTableHeaderCell(_t("Account"), "Account");
+    hb.addTableHeaderCell(_t("Payee"), "Payee");
+    hb.addTableHeaderCell(_t("Status"), "Status text-center");
+    hb.addTableHeaderCell(_t("Category"), "Category");
+    hb.addTableHeaderCell(_t("Type"), "Type");
+    hb.addTableHeaderCell(_t("Amount"), "Amount text-right");
+    hb.addTableHeaderCell(_t("Notes"), "Notes");
     hb.endTableRow();
     hb.endThead();
     hb.startTbody();

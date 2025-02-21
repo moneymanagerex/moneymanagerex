@@ -44,17 +44,14 @@ enum
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_EST,
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_ACT,
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF,
-    MENU_HEADER_HIDE,
-    MENU_HEADER_SORT,
-    MENU_HEADER_RESET,
 };
 
-static const wxString VIEW_ALL = wxTRANSLATE("View All Budget Categories");
-static const wxString VIEW_NON_ZERO = wxTRANSLATE("View Non-Zero Budget Categories");
-static const wxString VIEW_PLANNED = wxTRANSLATE("View Planned Budget Categories");
-static const wxString VIEW_INCOME = wxTRANSLATE("View Income Budget Categories");
-static const wxString VIEW_EXPENSE = wxTRANSLATE("View Expense Budget Categories");
-static const wxString VIEW_SUMM = wxTRANSLATE("View Budget Category Summary");
+static const wxString VIEW_ALL      = _n("View All Budget Categories");
+static const wxString VIEW_NON_ZERO = _n("View Non-Zero Budget Categories");
+static const wxString VIEW_PLANNED  = _n("View Planned Budget Categories");
+static const wxString VIEW_INCOME   = _n("View Income Budget Categories");
+static const wxString VIEW_EXPENSE  = _n("View Expense Budget Categories");
+static const wxString VIEW_SUMM     = _n("View Budget Category Summary");
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(mmBudgetingPanel, wxPanel)
@@ -67,6 +64,31 @@ EVT_LIST_ITEM_SELECTED(wxID_ANY, budgetingListCtrl::OnListItemSelected)
 EVT_LIST_ITEM_ACTIVATED(wxID_ANY, budgetingListCtrl::OnListItemActivated)
 wxEND_EVENT_TABLE()
 /*******************************************************/
+
+const std::vector<ListColumnInfo> budgetingListCtrl::col_info_all()
+{
+    return {
+        { _t("Icon"),      wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  false },
+        { _t("Category"),  wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Frequency"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Amount"),    wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Estimated"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Actual"),    wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Notes"),     wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+    };
+}
+
+void budgetingListCtrl::createColumns_()
+{
+    InsertColumn(LIST_COL_ICON, (" "));
+    InsertColumn(LIST_COL_CATEGORY, m_columns[LIST_COL_CATEGORY].header);
+    InsertColumn(LIST_COL_FREQUENCY, m_columns[LIST_COL_FREQUENCY].header);
+    InsertColumn(LIST_COL_AMOUNT, m_columns[LIST_COL_AMOUNT].header, wxLIST_FORMAT_RIGHT);
+    InsertColumn(LIST_COL_ESTIMATED, m_columns[LIST_COL_ESTIMATED].header, wxLIST_FORMAT_RIGHT);
+    InsertColumn(LIST_COL_ACTUAL, m_columns[LIST_COL_ACTUAL].header, wxLIST_FORMAT_RIGHT);
+    InsertColumn(LIST_COL_NOTES, m_columns[LIST_COL_NOTES].header, wxLIST_FORMAT_LEFT);
+}
+
 mmBudgetingPanel::mmBudgetingPanel(int64 budgetYearID
     , wxWindow *parent, mmGUIFrame *frame
     , wxWindowID winid
@@ -162,25 +184,25 @@ wxString mmBudgetingPanel::GetPanelTitle() const
             long year;
             yearStr.ToLong(&year);
             year++;
-            yearStr = wxString::Format(_("Financial Year: %s - %li"), yearStr, year);
+            yearStr = wxString::Format(_t("Financial Year: %s - %li"), yearStr, year);
         }
         else
         {
-            yearStr = wxString::Format(_("Year: %s"), yearStr);
+            yearStr = wxString::Format(_t("Year: %s"), yearStr);
         }
     }
     else
     {
-        yearStr = wxString::Format(_("Month: %s"), yearStr);
+        yearStr = wxString::Format(_t("Month: %s"), yearStr);
         yearStr += wxString::Format(" (%s)", m_monthName);
     }
 
     if (Option::instance().getBudgetDaysOffset() != 0)
     {
-        yearStr = wxString::Format(_("%1$s    Start Date of: %2$s"), yearStr, mmGetDateTimeForDisplay(m_budget_offset_date));
+        yearStr = wxString::Format(_t("%1$s    Start Date of: %2$s"), yearStr, mmGetDateTimeForDisplay(m_budget_offset_date));
     }
 
-    return wxString::Format(_("Budget Planner for %s"), yearStr);
+    return wxString::Format(_t("Budget Planner for %s"), yearStr);
 }
 
 void mmBudgetingPanel::UpdateBudgetHeading()
@@ -237,20 +259,20 @@ void mmBudgetingPanel::CreateControls()
     expenses_diff_ = new wxStaticText(itemPanel3
         , ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF, "$");
 
-    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _("Income: ")));
-    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _("Estimated: ")));
+    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Income: ")));
+    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Estimated: ")));
     itemIncomeSizer->Add(income_estimated_);
-    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _("Actual: ")));
+    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Actual: ")));
     itemIncomeSizer->Add(income_actual_);
-    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _("Difference: ")));
+    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Difference: ")));
     itemIncomeSizer->Add(income_diff_);
 
-    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _("Expenses: ")));
-    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _("Estimated: ")));
+    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Expenses: ")));
+    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Estimated: ")));
     itemIncomeSizer->Add(expenses_estimated_);
-    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _("Actual: ")));
+    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Actual: ")));
     itemIncomeSizer->Add(expenses_actual_);
-    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _("Difference: ")));
+    itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Difference: ")));
     itemIncomeSizer->Add(expenses_diff_);
     /* ---------------------- */
 
@@ -262,19 +284,13 @@ void mmBudgetingPanel::CreateControls()
     listCtrlBudget_ = new budgetingListCtrl(this, this, wxID_ANY);
 
     listCtrlBudget_->SetSmallImages(images);
-    listCtrlBudget_->InsertColumn(COL_ICON, (" "));
-    listCtrlBudget_->InsertColumn(COL_CATEGORY, listCtrlBudget_->m_columns[COL_CATEGORY].HEADER);
-    listCtrlBudget_->InsertColumn(COL_FREQUENCY, listCtrlBudget_->m_columns[COL_FREQUENCY].HEADER);
-    listCtrlBudget_->InsertColumn(COL_AMOUNT, listCtrlBudget_->m_columns[COL_AMOUNT].HEADER, wxLIST_FORMAT_RIGHT);
-    listCtrlBudget_->InsertColumn(COL_ESTIMATED, listCtrlBudget_->m_columns[COL_ESTIMATED].HEADER, wxLIST_FORMAT_RIGHT);
-    listCtrlBudget_->InsertColumn(COL_ACTUAL, listCtrlBudget_->m_columns[COL_ACTUAL].HEADER, wxLIST_FORMAT_RIGHT);
-    listCtrlBudget_->InsertColumn(COL_NOTES, listCtrlBudget_->m_columns[COL_NOTES].HEADER, wxLIST_FORMAT_LEFT);
+    listCtrlBudget_->createColumns_();
 
     /* Get data from inidb */
     for (int i = 0; i < listCtrlBudget_->GetColumnCount(); ++i)
     {
-        int col_width = Model_Setting::instance().getInt(wxString::Format(listCtrlBudget_->m_col_width, i)
-            , listCtrlBudget_->m_columns[i].WIDTH);
+        int col_width = Model_Setting::instance().getInt(wxString::Format(listCtrlBudget_->m_col_width_fmt, i)
+            , listCtrlBudget_->m_columns[i].width);
         listCtrlBudget_->SetColumnWidth(i, col_width);
     }
     itemBoxSizer2->Add(listCtrlBudget_.get(), 1, wxGROW | wxALL, 1);
@@ -287,16 +303,9 @@ budgetingListCtrl::budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, con
 {
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
-    m_columns.push_back(PANEL_COLUMN(_("Icon"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, false));
-    m_columns.push_back(PANEL_COLUMN(_("Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
-    m_columns.push_back(PANEL_COLUMN(_("Frequency"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
-    m_columns.push_back(PANEL_COLUMN(_("Amount"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
-    m_columns.push_back(PANEL_COLUMN(_("Estimated"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
-    m_columns.push_back(PANEL_COLUMN(_("Actual"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
-    m_columns.push_back(PANEL_COLUMN(_("Notes"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
-
-    m_col_width = "BUDGET_COL%d_WIDTH";
-    m_col_idstr = "BUDGET";
+    m_columns = col_info_all();
+    m_col_width_fmt = "BUDGET_COL%d_WIDTH";
+    m_col_type_str = "BUDGET";
 }
 
 void mmBudgetingPanel::sortTable()
@@ -566,9 +575,9 @@ wxString mmBudgetingPanel::getItem(long item, long column)
 {
     switch (column)
     {
-    case COL_ICON:
+    case budgetingListCtrl::LIST_COL_ICON:
         return " ";
-    case COL_CATEGORY:
+    case budgetingListCtrl::LIST_COL_CATEGORY:
     {
         Model_Category::Data* category = Model_Category::instance().get(budget_[item].first > 0
             ? budget_[item].first : budget_[item].second);
@@ -581,16 +590,16 @@ wxString mmBudgetingPanel::getItem(long item, long column)
         }
         return wxEmptyString;
     }
-    case COL_FREQUENCY:
+    case budgetingListCtrl::LIST_COL_FREQUENCY:
     {
         if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second)
         {
             Model_Budget::PERIOD_ID period = budgetPeriod_[budget_[item].first];
-            return wxGetTranslation(Model_Budget::PERIOD_STR[period]);
+            return wxGetTranslation(Model_Budget::period_name(period));
         }
         return wxEmptyString;
     }
-    case COL_AMOUNT:
+    case budgetingListCtrl::LIST_COL_AMOUNT:
     {
         if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second)
         {
@@ -599,7 +608,7 @@ wxString mmBudgetingPanel::getItem(long item, long column)
         }
         return wxEmptyString;
     }
-    case COL_ESTIMATED:
+    case budgetingListCtrl::LIST_COL_ESTIMATED:
     {
         if (budget_[item].first < 0)
         {
@@ -613,7 +622,7 @@ wxString mmBudgetingPanel::getItem(long item, long column)
         }
         return wxEmptyString;
     }
-    case COL_ACTUAL:
+    case budgetingListCtrl::LIST_COL_ACTUAL:
     {
         if (budget_[item].first < 0)
         {
@@ -628,7 +637,7 @@ wxString mmBudgetingPanel::getItem(long item, long column)
         }
         return wxEmptyString;
     }
-    case COL_NOTES:
+    case budgetingListCtrl::LIST_COL_NOTES:
         if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second)
         {
             wxString value = budgetNotes_[budget_[item].second >= 0 ? budget_[item].second

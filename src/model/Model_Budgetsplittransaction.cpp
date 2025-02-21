@@ -61,7 +61,7 @@ double Model_Budgetsplittransaction::get_total(const Data_Set& rows)
 bool Model_Budgetsplittransaction::remove(int64 id)
 {
     // Delete all tags for the split before removing it
-    Model_Taglink::instance().DeleteAllTags(Model_Attachment::REFTYPE_STR_BILLSDEPOSITSPLIT, id);
+    Model_Taglink::instance().DeleteAllTags(Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT, id);
     return this->remove(id, db_);
 }
 

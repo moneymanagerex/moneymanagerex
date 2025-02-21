@@ -67,7 +67,7 @@ Model_Translink::Data* Model_Translink::SetAssetTranslink(const int64 asset_id
     , const CHECKING_TYPE checking_type)
 {
     return SetTranslink(checking_id, checking_type
-        , Model_Attachment::REFTYPE_STR_ASSET, asset_id);
+        , Model_Attachment::REFTYPE_NAME_ASSET, asset_id);
 }
 
 Model_Translink::Data* Model_Translink::SetStockTranslink(const int64 stock_id
@@ -75,7 +75,7 @@ Model_Translink::Data* Model_Translink::SetStockTranslink(const int64 stock_id
     , const CHECKING_TYPE checking_type)
 {
     return SetTranslink(checking_id, checking_type
-        , Model_Attachment::REFTYPE_STR_STOCK, stock_id);
+        , Model_Attachment::REFTYPE_NAME_STOCK, stock_id);
 }
 
 Model_Translink::Data* Model_Translink::SetTranslink(const int64 checking_id
@@ -103,7 +103,7 @@ Model_Translink::Data_Set Model_Translink::TranslinkList(Model_Attachment::REFTY
     , const int64 link_entry_id)
 {
     Model_Translink::Data_Set translink_list = Model_Translink::instance().find(
-        Model_Translink::LINKTYPE(Model_Attachment::REFTYPE_STR[link_table])
+        Model_Translink::LINKTYPE(Model_Attachment::reftype_name(link_table))
         , Model_Translink::LINKRECORDID(link_entry_id));
 
     return translink_list;
@@ -146,13 +146,13 @@ void Model_Translink::RemoveTranslinkEntry(const int64 checking_account_id)
     Model_Shareinfo::RemoveShareEntry(translink.CHECKINGACCOUNTID);
     Model_Translink::instance().remove(translink.TRANSLINKID);
 
-    if (translink.LINKTYPE == Model_Attachment::REFTYPE_STR_ASSET)
+    if (translink.LINKTYPE == Model_Attachment::REFTYPE_NAME_ASSET)
     {
         Model_Asset::Data* asset_entry = Model_Asset::instance().get(translink.LINKRECORDID);
         UpdateAssetValue(asset_entry);
     }
 
-    if (translink.LINKTYPE == Model_Attachment::REFTYPE_STR_STOCK)
+    if (translink.LINKTYPE == Model_Attachment::REFTYPE_NAME_STOCK)
     {
         Model_Stock::Data* stock_entry = Model_Stock::instance().get(translink.LINKRECORDID);
         UpdateStockValue(stock_entry);
@@ -227,7 +227,7 @@ void Model_Translink::UpdateAssetValue(Model_Asset::Data* asset_entry)
             Model_Currency::Data* asset_currency = Model_Account::currency(Model_Account::instance().get(asset_trans->ACCOUNTID));
             const double conv_rate = Model_CurrencyHistory::getDayRate(asset_currency->CURRENCYID, asset_trans->TRANSDATE);
 
-            if (asset_trans->TRANSCODE == Model_Checking::TYPE_STR_DEPOSIT)
+            if (asset_trans->TRANSCODE == Model_Checking::TYPE_NAME_DEPOSIT)
             {
                 new_value -= asset_trans->TRANSAMOUNT * conv_rate; // Withdrawal from asset value
             }

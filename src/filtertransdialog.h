@@ -162,7 +162,7 @@ private:
     /// Creation
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
-        , const wxString& caption = _("Customize Transaction Report")
+        , const wxString& caption = _t("Customize Transaction Report")
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
         , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX

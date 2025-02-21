@@ -75,9 +75,9 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
                 db->ExecuteQuery("select * from INFOTABLE_V1;");
             }
 
-            wxMessageDialog msgDlg(nullptr, _("The default cipher algorithm has changed from AES-128 to AES-256 for compatibility with the MMEX mobile apps.")
-                + "\n\n" + _("Rekeying with the new cipher will prevent opening this database in older versions of MMEX.")
-                + "\n\n" + _("Do you want to update the database?"), _("Opening MMEX Database – Warning"), wxYES_NO | wxICON_WARNING);
+            wxMessageDialog msgDlg(nullptr, _t("The default cipher algorithm has changed from AES-128 to AES-256 for compatibility with the MMEX mobile apps.")
+                + "\n\n" + _t("Rekeying with the new cipher will prevent opening this database in older versions of MMEX.")
+                + "\n\n" + _t("Do you want to update the database?"), _t("Opening MMEX Database – Warning"), wxYES_NO | wxICON_WARNING);
             if (msgDlg.ShowModal() == wxID_YES)
             {
                 if (db->ExecuteQuery("PRAGMA page_size;").GetInt(0) < 4096)
@@ -107,22 +107,22 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
     db->Close();
     db.reset();
 
-    wxString s = _("When database file opening:");
+    wxString s = _t("When database file opening:");
     s << "\n" << wxString::Format("\n%s\n\n", dbpath);
     if (err == SQLITE_CANTOPEN)
     {
-        s << _("Unable to open file") << "\n" << _("Path required to be specified to another database file.") << "\n";
+        s << _t("Unable to open file") << "\n" << _t("Path required to be specified to another database file.") << "\n";
     }
     else if (err == SQLITE_NOTADB)
     {
-        s << _("An incorrect password was provided for an encrypted file,\nor\nan attempt was made to open a file that is not a database file.") << "\n";
+        s << _t("An incorrect password was provided for an encrypted file,\nor\nan attempt was made to open a file that is not a database file.") << "\n";
     }
     else
     {
-        s << wxString::Format(_("Error: %s"), wxString() << err << "\n" << errStr << "\n");
+        s << wxString::Format(_t("Error: %s"), wxString() << err << "\n" << errStr << "\n");
     }
 
-    wxMessageDialog msgDlg(nullptr, s, _("Opening MMEX Database – Error"), wxOK | wxICON_ERROR);
+    wxMessageDialog msgDlg(nullptr, s, _t("Opening MMEX Database – Error"), wxOK | wxICON_ERROR);
     msgDlg.ShowModal();
 
     return db; // return a nullptr database pointer

@@ -65,7 +65,7 @@ public:
 
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
-        , const wxString& caption = _("Category Manager")
+        , const wxString& caption = _t("Category Manager")
         , const wxString& name = "Organize Categories"
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize

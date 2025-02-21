@@ -27,8 +27,6 @@
 #include "model/allmodel.h"
 #include <wx/srchctrl.h>
 
-/*******************************************************/
-
 wxBEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   mmAssetsListCtrl::OnListItemActivated)
     EVT_LIST_ITEM_SELECTED(wxID_ANY,    mmAssetsListCtrl::OnListItemSelected)
@@ -47,38 +45,36 @@ wxBEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
 
     EVT_LIST_KEY_DOWN(wxID_ANY, mmAssetsListCtrl::OnListKeyDown)
 wxEND_EVENT_TABLE()
-/*******************************************************/
 
-mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindowID winid)
-: mmListCtrl(parent, winid)
-, m_panel(cp)
+const std::vector<ListColumnInfo> mmAssetsListCtrl::col_info_all()
+{
+    return {
+        { " ",                25,                        wxLIST_FORMAT_LEFT,  false },
+        { _t("ID"),            wxLIST_AUTOSIZE,           wxLIST_FORMAT_RIGHT, true },
+        { _t("Name"),          150,                       wxLIST_FORMAT_LEFT,  true },
+        { _t("Date"),          wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Type"),          wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Initial Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Current Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Notes"),         450,                       wxLIST_FORMAT_LEFT,  true },
+    };
+}
+
+mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindowID winid) :
+    mmListCtrl(parent, winid),
+    m_panel(cp)
 {
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
+    m_columns = col_info_all();
+    for (int i = 0; i < LIST_COL_size; ++i)
+        m_column_order.push_back(i);
+    m_col_width_fmt = "ASSETS_COL%d_WIDTH";
+    m_col_type_str = "ASSETS";
 
-    m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT, false));
-    m_real_columns.push_back(m_panel->COL_ICON);
-    m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true));
-    m_real_columns.push_back(m_panel->COL_ID);
-    m_columns.push_back(PANEL_COLUMN(_("Name"), 150, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_panel->COL_NAME);
-    m_columns.push_back(PANEL_COLUMN(_("Date"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_panel->COL_DATE);
-    m_columns.push_back(PANEL_COLUMN(_("Type"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_panel->COL_TYPE);
-    m_columns.push_back(PANEL_COLUMN(_("Initial Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
-    m_real_columns.push_back(m_panel->COL_VALUE_INITIAL);
-    m_columns.push_back(PANEL_COLUMN(_("Current Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
-    m_real_columns.push_back(m_panel->COL_VALUE_CURRENT);
-    m_columns.push_back(PANEL_COLUMN(_("Notes"), 450, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_panel->COL_NOTES);
-
-    m_col_width = "ASSETS_COL%d_WIDTH";
-    m_col_idstr = "ASSETS";
-
-    CreateColumns();
+    createColumns();
 
     // load the global variables
-    m_default_sort_column = m_panel->col_sort();
+    m_default_sort_column = col_sort();
     m_selected_col = Model_Setting::instance().getInt("ASSETS_SORT_COL", m_default_sort_column);
     m_asc = Model_Setting::instance().getBool("ASSETS_ASC", true);
 }
@@ -97,19 +93,19 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
     }
     m_panel->updateExtraAssetData(m_selected_row);
     wxMenu menu;
-    menu.Append(MENU_TREEPOPUP_NEW, _u("&New Asset…"));
+    menu.Append(MENU_TREEPOPUP_NEW, _tu("&New Asset…"));
     menu.AppendSeparator();
-    menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _u("D&uplicate Asset…"));
+    menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _tu("D&uplicate Asset…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ADDTRANS, _u("&Add Asset Transaction…"));
-    menu.Append(MENU_TREEPOPUP_VIEWTRANS, _("&View Asset Transactions"));
-    menu.Append(MENU_TREEPOPUP_GOTOACCOUNT, _u("&Open Asset Account…"));
+    menu.Append(MENU_TREEPOPUP_ADDTRANS, _tu("&Add Asset Transaction…"));
+    menu.Append(MENU_TREEPOPUP_VIEWTRANS, _t("&View Asset Transactions"));
+    menu.Append(MENU_TREEPOPUP_GOTOACCOUNT, _tu("&Open Asset Account…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_EDIT, _u("&Edit Asset…"));
+    menu.Append(MENU_TREEPOPUP_EDIT, _tu("&Edit Asset…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_DELETE, _u("&Delete Asset…"));
+    menu.Append(MENU_TREEPOPUP_DELETE, _tu("&Delete Asset…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _u("&Organize Attachments…"));
+    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _tu("&Organize Attachments…"));
     if (m_selected_row < 0)
     {
         menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
@@ -120,7 +116,7 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
         menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
     }
 
-    const auto& asset_accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR_ASSET));
+    const auto& asset_accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_ASSET));
     menu.Enable(MENU_TREEPOPUP_GOTOACCOUNT, !asset_accounts.empty());
     menu.Enable(MENU_TREEPOPUP_VIEWTRANS, !asset_accounts.empty());
 
@@ -141,7 +137,7 @@ void mmAssetsListCtrl::OnListLeftClick(wxMouseEvent& event)
 
 wxString mmAssetsListCtrl::OnGetItemText(long item, long column) const
 {
-    return m_panel->getItem(item, m_real_columns[column]);
+    return m_panel->getItem(item, m_column_order[column]);
 }
 
 void mmAssetsListCtrl::OnListItemSelected(wxListEvent& event)
@@ -206,15 +202,15 @@ void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
     if (m_selected_row < 0)    return;
 
     wxMessageDialog msgDlg(this
-        , _("Do you want to delete the asset?")
-        , _("Confirm Asset Deletion")
+        , _t("Do you want to delete the asset?")
+        , _t("Confirm Asset Deletion")
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
 
     if (msgDlg.ShowModal() == wxID_YES)
     {
         const Model_Asset::Data& asset = m_panel->m_assets[m_selected_row];
         Model_Asset::instance().remove(asset.ASSETID);
-        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_STR_ASSET, asset.ASSETID);
+        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_NAME_ASSET, asset.ASSETID);
         Model_Translink::RemoveTransLinkRecords(Model_Attachment::REFTYPE_ID_ASSET, asset.ASSETID);
 
         m_panel->initVirtualListControl(-1, m_selected_col, m_asc);
@@ -270,7 +266,7 @@ void mmAssetsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0) return;
 
-    wxString RefType = Model_Attachment::REFTYPE_STR_ASSET;
+    wxString RefType = Model_Attachment::REFTYPE_NAME_ASSET;
     int64 RefId = m_panel->m_assets[m_selected_row].ASSETID;
 
     mmAttachmentDialog dlg(this, RefType, RefId);
@@ -283,7 +279,7 @@ void mmAssetsListCtrl::OnOpenAttachment(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0) return;
 
-    wxString RefType = Model_Attachment::REFTYPE_STR_ASSET;
+    wxString RefType = Model_Attachment::REFTYPE_NAME_ASSET;
     int64 RefId = m_panel->m_assets[m_selected_row].ASSETID;
 
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
@@ -320,7 +316,7 @@ void mmAssetsListCtrl::OnColClick(wxListEvent& event)
         ColumnNr = event.GetColumn();
     else
         ColumnNr = m_ColumnHeaderNbr;
-    if (0 > ColumnNr || ColumnNr >= m_panel->col_max() || ColumnNr == 0) return;
+    if (0 > ColumnNr || ColumnNr >= col_size() || ColumnNr == 0) return;
 
     if (m_selected_col == ColumnNr &&
         event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET
@@ -355,7 +351,6 @@ void mmAssetsListCtrl::OnEndLabelEdit(wxListEvent& event)
     RefreshItems(event.GetIndex(), event.GetIndex());
 }
 
-/*******************************************************/
 BEGIN_EVENT_TABLE(mmAssetsPanel, wxPanel)
     EVT_BUTTON(wxID_NEW, mmAssetsPanel::OnNewAsset)
     EVT_BUTTON(wxID_EDIT, mmAssetsPanel::OnEditAsset)
@@ -368,7 +363,6 @@ BEGIN_EVENT_TABLE(mmAssetsPanel, wxPanel)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmAssetsPanel::OnSearchTxtEntered)
     EVT_TEXT_ENTER(wxID_FIND, mmAssetsPanel::OnSearchTxtEntered)
 END_EVENT_TABLE()
-/*******************************************************/
 
 mmAssetsPanel::mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid, const wxString& name)
     : m_frame(frame)
@@ -392,7 +386,7 @@ bool mmAssetsPanel::Create(wxWindow *parent
     this->windowsFreezeThaw();
 
     auto start = wxDateTime::UNow();
-    tips_ = _("MMEX allows fixed assets like cars, houses, land, and others to be tracked. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth.");
+    tips_ = _t("MMEX allows fixed assets like cars, houses, land, and others to be tracked. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth.");
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -422,7 +416,7 @@ void mmAssetsPanel::CreateControls()
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
 
-    wxStaticText* itemStaticText9 = new wxStaticText(headerPanel, wxID_STATIC, _("Assets"));
+    wxStaticText* itemStaticText9 = new wxStaticText(headerPanel, wxID_STATIC, _t("Assets"));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerVHeader->Add(itemStaticText9, g_flagsBorder1V);
 
@@ -431,7 +425,7 @@ void mmAssetsPanel::CreateControls()
 
     m_bitmapTransFilter = new wxButton(headerPanel, wxID_FILE2);
     m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
-    m_bitmapTransFilter->SetLabel(_("All"));
+    m_bitmapTransFilter->SetLabel(_t("All"));
     m_bitmapTransFilter->SetMinSize(wxSize(150, -1));
     itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
 
@@ -473,49 +467,49 @@ void mmAssetsPanel::CreateControls()
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer4->Add(itemBoxSizer5, g_flagsBorder1V);
 
-    wxButton* itemButton6 = new wxButton( assets_panel, wxID_NEW, _("&New "));
-    mmToolTip(itemButton6, _("New Asset"));
+    wxButton* itemButton6 = new wxButton( assets_panel, wxID_NEW, _t("&New "));
+    mmToolTip(itemButton6, _t("New Asset"));
     itemBoxSizer5->Add(itemButton6, 0, wxRIGHT, 5);
 
-    wxButton* add_trans_btn = new wxButton(assets_panel, wxID_ADD, _("&Add Trans "));
-    mmToolTip(add_trans_btn, _("Add Asset Transaction"));
+    wxButton* add_trans_btn = new wxButton(assets_panel, wxID_ADD, _t("&Add Trans "));
+    mmToolTip(add_trans_btn, _t("Add Asset Transaction"));
     itemBoxSizer5->Add(add_trans_btn, 0, wxRIGHT, 5);
     add_trans_btn->Enable(false);
 
-    wxButton* view_trans_btn = new wxButton(assets_panel, wxID_VIEW_DETAILS, _("&View Trans "));
-    mmToolTip(view_trans_btn, _("View Asset Transactions"));
+    wxButton* view_trans_btn = new wxButton(assets_panel, wxID_VIEW_DETAILS, _t("&View Trans "));
+    mmToolTip(view_trans_btn, _t("View Asset Transactions"));
     itemBoxSizer5->Add(view_trans_btn, 0, wxRIGHT, 5);
     view_trans_btn->Enable(false);
 
-    wxButton* itemButton81 = new wxButton( assets_panel, wxID_EDIT, _("&Edit "));
-    mmToolTip(itemButton81, _("Edit Asset"));
+    wxButton* itemButton81 = new wxButton( assets_panel, wxID_EDIT, _t("&Edit "));
+    mmToolTip(itemButton81, _t("Edit Asset"));
     itemBoxSizer5->Add(itemButton81, 0, wxRIGHT, 5);
     itemButton81->Enable(false);
 
-    wxButton* itemButton7 = new wxButton( assets_panel, wxID_DELETE, _("&Delete "));
-    mmToolTip(itemButton7, _("Delete Asset"));
+    wxButton* itemButton7 = new wxButton( assets_panel, wxID_DELETE, _t("&Delete "));
+    mmToolTip(itemButton7, _t("Delete Asset"));
     itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 5);
     itemButton7->Enable(false);
 
     wxBitmapButton* attachment_button_ = new wxBitmapButton(assets_panel
         , wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize), wxDefaultPosition,
         wxSize(30, itemButton7->GetSize().GetY()));
-    mmToolTip(attachment_button_, _("Open attachments"));
+    mmToolTip(attachment_button_, _t("Open attachments"));
     itemBoxSizer5->Add(attachment_button_, 0, wxRIGHT, 5);
     attachment_button_->Enable(false);
 
     wxSearchCtrl* searchCtrl = new wxSearchCtrl(assets_panel
         , wxID_FIND, wxEmptyString, wxDefaultPosition
         , wxSize(100, itemButton7->GetSize().GetHeight())
-        , wxTE_PROCESS_ENTER, wxDefaultValidator, _("Search"));
-    searchCtrl->SetHint(_("Search"));
+        , wxTE_PROCESS_ENTER, wxDefaultValidator, _t("Search"));
+    searchCtrl->SetHint(_t("Search"));
     itemBoxSizer5->Add(searchCtrl, 0, wxCENTER, 1);
     mmToolTip(searchCtrl,
-        _("Enter any string to find related assets") + "\n\n" +
-        _u("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
-        _u("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
-        _u("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
-        _u("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.")
+        _t("Enter any string to find related assets") + "\n\n" +
+        _tu("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
+        _tu("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
+        _tu("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
+        _tu("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.")
     );
 
     //Infobar-mini
@@ -536,28 +530,28 @@ void mmAssetsPanel::sortTable()
     std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterBySTARTDATE());
     switch (this->m_listCtrlAssets->m_selected_col)
     {
-    case COL_ID:
+    case mmAssetsListCtrl::LIST_COL_ID:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETID());
         break;
-    case COL_NAME:
+    case mmAssetsListCtrl::LIST_COL_NAME:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETNAME());
         break;
-    case COL_TYPE:
+    case mmAssetsListCtrl::LIST_COL_TYPE:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETTYPE());
         break;
-    case COL_VALUE_INITIAL:
+    case mmAssetsListCtrl::LIST_COL_VALUE_INITIAL:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByVALUE());
         break;
-    case COL_VALUE_CURRENT:
+    case mmAssetsListCtrl::LIST_COL_VALUE_CURRENT:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end()
             , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
             {
                 return Model_Asset::value(x) < Model_Asset::value(y);
             });
         break;
-    case COL_DATE:
+    case mmAssetsListCtrl::LIST_COL_DATE:
         break;
-    case COL_NOTES:
+    case mmAssetsListCtrl::LIST_COL_NOTES:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByNOTES());
     default:
         break;
@@ -586,7 +580,7 @@ int mmAssetsPanel::initVirtualListControl(int64 id, int col, bool asc)
 
     double balance = 0.0;
     for (const auto& asset: this->m_assets) balance += Model_Asset::value(asset); 
-    header_text_->SetLabelText(wxString::Format(_("Total: %s"), Model_Currency::toCurrency(balance))); // balance
+    header_text_->SetLabelText(wxString::Format(_t("Total: %s"), Model_Currency::toCurrency(balance))); // balance
 
     int selected_item = 0;
     for (const auto& asset: this->m_assets)
@@ -632,25 +626,25 @@ wxString mmAssetsPanel::getItem(long item, long column)
     const Model_Asset::Data& asset = this->m_assets[item];
     switch (column)
     {
-    case COL_ICON:
+    case mmAssetsListCtrl::LIST_COL_ICON:
         return "";
-    case COL_ID:
+    case mmAssetsListCtrl::LIST_COL_ID:
         return wxString::Format("%lld", asset.ASSETID).Trim();
-    case COL_NAME:
+    case mmAssetsListCtrl::LIST_COL_NAME:
         return asset.ASSETNAME;
-    case COL_TYPE:
+    case mmAssetsListCtrl::LIST_COL_TYPE:
         return wxGetTranslation(asset.ASSETTYPE);
-    case COL_VALUE_INITIAL:
+    case mmAssetsListCtrl::LIST_COL_VALUE_INITIAL:
         return Model_Currency::toCurrency(asset.VALUE);
-    case COL_VALUE_CURRENT:
+    case mmAssetsListCtrl::LIST_COL_VALUE_CURRENT:
         return Model_Currency::toCurrency(Model_Asset::value(asset));
-    case COL_DATE:
+    case mmAssetsListCtrl::LIST_COL_DATE:
         return mmGetDateTimeForDisplay(asset.STARTDATE);
-    case COL_NOTES:
+    case mmAssetsListCtrl::LIST_COL_NOTES:
     {
         wxString full_notes = asset.NOTES;
         full_notes.Replace("\n", " ");
-        if (Model_Attachment::NrAttachments(Model_Attachment::REFTYPE_STR_ASSET, asset.ASSETID))
+        if (Model_Attachment::NrAttachments(Model_Attachment::REFTYPE_NAME_ASSET, asset.ASSETID))
             full_notes = full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return full_notes;
     }
@@ -669,7 +663,7 @@ void mmAssetsPanel::updateExtraAssetData(int selIndex)
         enableEditDeleteButtons(true);
         const auto& change_rate = (Model_Asset::change_id(asset) != Model_Asset::CHANGE_ID_NONE)
             ? wxString::Format("%.2f %%", asset.VALUECHANGERATE) : "";
-        const wxString& miniInfo = " " + wxString::Format(_("Change in Value: %1$s %2$s")
+        const wxString& miniInfo = " " + wxString::Format(_t("Change in Value: %1$s %2$s")
             , wxGetTranslation(asset.VALUECHANGE), change_rate);
 
         st->SetLabelText(asset.NOTES);
@@ -708,10 +702,10 @@ void mmAssetsPanel::OnMouseLeftDown (wxCommandEvent& event)
 {
     int i = 0;
     wxMenu menu;
-    menu.Append(++i, wxGetTranslation(wxTRANSLATE("All")));
+    menu.Append(++i, _t("All"));
 
-    for (const auto& type: Model_Asset::TYPE_STR)
-    {
+    for (int typeId = 0; typeId < Model_Asset::TYPE_ID_size; ++typeId) {
+        wxString type = Model_Asset::type_name(typeId);
         menu.Append(++i, wxGetTranslation(type));
     }
     PopupMenu(&menu);
@@ -725,7 +719,7 @@ void mmAssetsPanel::OnViewPopupSelected(wxCommandEvent& event)
 
     if (evt == 0)
     {
-        m_bitmapTransFilter->SetLabel(_("All"));
+        m_bitmapTransFilter->SetLabel(_t("All"));
         m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
         this->m_filter_type = Model_Asset::TYPE_ID(-1);
     }
@@ -733,7 +727,7 @@ void mmAssetsPanel::OnViewPopupSelected(wxCommandEvent& event)
     {
         this->m_filter_type = Model_Asset::TYPE_ID(evt - 1);
         m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
-        m_bitmapTransFilter->SetLabel(wxGetTranslation(Model_Asset::TYPE_STR[evt - 1]));
+        m_bitmapTransFilter->SetLabel(wxGetTranslation(Model_Asset::type_name(evt - 1)));
     }
 
     int64 trx_id = -1;
@@ -754,7 +748,7 @@ void mmAssetsPanel::OnSearchTxtEntered(wxCommandEvent& event)
     while (selectedItem > 0 && selectedItem <= last)
     {
         m_listCtrlAssets->m_asc ? selectedItem-- : selectedItem++;
-        const wxString t = getItem(selectedItem, COL_NOTES).Lower();
+        const wxString t = getItem(selectedItem, mmAssetsListCtrl::LIST_COL_NOTES).Lower();
         if (t.Matches(search_string + "*"))
         {
             //First of all any items should be unselected
@@ -784,10 +778,10 @@ void mmAssetsPanel::AddAssetTrans(const int selected_index)
         Model_Translink::Data_Set translist = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_ASSET, asset->ASSETID);
         if (!translist.empty())
         {
-            wxMessageBox(_(
+            wxMessageBox(_t(
                 "This asset does not have its own account\n\n"
                 "Multiple transactions for this asset are not recommended.")
-                , _("Asset Management"), wxOK | wxICON_INFORMATION);
+                , _t("Asset Management"), wxOK | wxICON_INFORMATION);
 
             return; // abort process
         }
@@ -806,7 +800,7 @@ void mmAssetsPanel::ViewAssetTrans(const int selected_index)
     Model_Translink::Data_Set asset_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_ASSET, asset->ASSETID);
 
     // TODO create a panel to display all the information on one screen
-    wxString msg = _("Account \t Date\t   Value\n\n");
+    wxString msg = _t("Account \t Date\t   Value\n\n");
     for (const auto &asset_entry : asset_list)
     {
         Model_Checking::Data* asset_trans = Model_Checking::instance().get(asset_entry.CHECKINGACCOUNTID);

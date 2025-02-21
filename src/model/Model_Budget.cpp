@@ -24,20 +24,17 @@
 #include "db/DB_Table_Budgettable_V1.h"
 #include "option.h"
 
-const std::vector<std::pair<Model_Budget::PERIOD_ID, wxString> > Model_Budget::PERIOD_CHOICES =
-{
-    { Model_Budget::PERIOD_ID_NONE,       wxString(wxTRANSLATE("None")) },
-    { Model_Budget::PERIOD_ID_WEEKLY,     wxString(wxTRANSLATE("Weekly")) },
-    { Model_Budget::PERIOD_ID_BIWEEKLY,   wxString(wxTRANSLATE("Fortnightly")) },
-    { Model_Budget::PERIOD_ID_MONTHLY,    wxString(wxTRANSLATE("Monthly")) },
-    { Model_Budget::PERIOD_ID_BIMONTHLY,  wxString(wxTRANSLATE("Every 2 Months")) },
-    { Model_Budget::PERIOD_ID_QUARTERLY,  wxString(wxTRANSLATE("Quarterly")) },
-    { Model_Budget::PERIOD_ID_HALFYEARLY, wxString(wxTRANSLATE("Half-Yearly")) },
-    { Model_Budget::PERIOD_ID_YEARLY,     wxString(wxTRANSLATE("Yearly")) },
-    { Model_Budget::PERIOD_ID_DAILY,      wxString(wxTRANSLATE("Daily")) }
-};
-
-wxArrayString Model_Budget::PERIOD_STR = period_str_all();
+ChoicesName Model_Budget::PERIOD_CHOICES = ChoicesName({
+    { PERIOD_ID_NONE,       _n("None") },
+    { PERIOD_ID_WEEKLY,     _n("Weekly") },
+    { PERIOD_ID_BIWEEKLY,   _n("Fortnightly") },
+    { PERIOD_ID_MONTHLY,    _n("Monthly") },
+    { PERIOD_ID_BIMONTHLY,  _n("Every 2 Months") },
+    { PERIOD_ID_QUARTERLY,  _n("Quarterly") },
+    { PERIOD_ID_HALFYEARLY, _n("Half-Yearly") },
+    { PERIOD_ID_YEARLY,     _n("Yearly") },
+    { PERIOD_ID_DAILY,      _n("Daily") }
+});
 
 Model_Budget::Model_Budget()
     : Model<DB_Table_BUDGETTABLE_V1>()
@@ -68,45 +65,9 @@ Model_Budget& Model_Budget::instance()
     return Singleton<Model_Budget>::instance();
 }
 
-wxArrayString Model_Budget::period_str_all()
-{
-    wxArrayString period;
-    int i = 0;
-    for (const auto& item : PERIOD_CHOICES)
-    {
-        wxASSERT_MSG(item.first == i++, "Wrong order in Model_Budget::PERIOD_CHOICES");
-        period.Add(item.second);
-    }
-    return period;
-}
-
-wxArrayString Model_Budget::period_loc_all()
-{
-    wxArrayString period;
-    for (const auto& item : PERIOD_CHOICES)
-    {
-        period.Add(wxGetTranslation(item.second));
-    }
-    return period;
-}
-
-Model_Budget::PERIOD_ID Model_Budget::period_id(const Data* r)
-{
-    for (const auto &entry : PERIOD_CHOICES)
-    {
-        if (r->PERIOD.CmpNoCase(entry.second) == 0) return entry.first;
-    }
-    return PERIOD_ID_NONE;
-}
-
-Model_Budget::PERIOD_ID Model_Budget::period_id(const Data& r)
-{
-    return period_id(&r);
-}
-
 DB_Table_BUDGETTABLE_V1::PERIOD Model_Budget::PERIOD(PERIOD_ID period, OP op)
 {
-    return DB_Table_BUDGETTABLE_V1::PERIOD(PERIOD_STR[period], op);
+    return DB_Table_BUDGETTABLE_V1::PERIOD(period_name(period), op);
 }
 
 void Model_Budget::getBudgetEntry(int64 budgetYearID
@@ -262,7 +223,7 @@ void Model_Budget::copyBudgetYear(int64 newYearID, int64 baseYearID)
         double yearAmount = getEstimate(false, period_id(data), data.AMOUNT);
         if (optionDeductMonthly && budgetedMonths > 0)
         {
-            budgetEntry->PERIOD = PERIOD_STR[PERIOD_ID_MONTHLY];
+            budgetEntry->PERIOD = period_name(PERIOD_ID_MONTHLY);
             if (yearDeduction[budgetEntry->CATEGID] / yearAmount < 1)
                 budgetEntry->AMOUNT = (yearAmount - yearDeduction[budgetEntry->CATEGID]) / (12 - budgetedMonths);
             else budgetEntry->AMOUNT = 0;
@@ -273,7 +234,7 @@ void Model_Budget::copyBudgetYear(int64 newYearID, int64 baseYearID)
 
 double Model_Budget::getEstimate(bool is_monthly, const PERIOD_ID period, const double amount)
 {
-    int p[PERIOD_ID_MAX] = { 0, 52, 26, 12, 6, 4, 2, 1, 365 };
+    int p[PERIOD_ID_size] = { 0, 52, 26, 12, 6, 4, 2, 1, 365 };
     double estimated = amount * p[period];
     if (is_monthly) estimated = estimated / 12;
     return estimated;
