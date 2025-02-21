@@ -785,7 +785,7 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     customReportMenu.Append(ID_DELETE, _tu("Delete Report…"));
 
     customReportMenu.AppendSeparator();
-    customReportMenu.Append(ID_SYNC, _u("Sync Report…"));
+    customReportMenu.Append(ID_SYNC, _tu("Sync Report…"));
 
     if (report)
     {
