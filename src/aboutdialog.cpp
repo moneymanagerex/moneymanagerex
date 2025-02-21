@@ -45,7 +45,7 @@ mmAboutDialog::~mmAboutDialog()
 mmAboutDialog::mmAboutDialog(wxWindow* parent, int tabToOpenNo)
 {
     const wxString caption = (tabToOpenNo == 4)
-        ? _("License agreement")
+        ? _t("License agreement")
         : wxString::Format("%s %s", ::mmex::getProgramName(), ::mmex::getTitleProgramVersion());
     createWindow(parent, caption, tabToOpenNo);
 }
@@ -178,27 +178,27 @@ void mmAboutDialog::createControls(int tabToOpenNo)
     aboutNotebook->SetMinSize(wxSize(400, 500));
 
     wxPanel* aboutTab = new wxPanel(aboutNotebook, wxID_ANY);
-    aboutNotebook->AddPage(aboutTab, _("About"));
+    aboutNotebook->AddPage(aboutTab, _t("About"));
     wxBoxSizer *aboutSizer = new wxBoxSizer(wxVERTICAL);
     aboutTab->SetSizer(aboutSizer);
 
     wxPanel* authorsTab = new wxPanel(aboutNotebook, wxID_ANY);
-    aboutNotebook->AddPage(authorsTab, _("Authors"));
+    aboutNotebook->AddPage(authorsTab, _t("Authors"));
     wxBoxSizer *authorsSizer = new wxBoxSizer(wxVERTICAL);
     authorsTab->SetSizer(authorsSizer);
 
     wxPanel* sponsorsTab = new wxPanel(aboutNotebook, wxID_ANY);
-    aboutNotebook->AddPage(sponsorsTab, _("Sponsors"));
+    aboutNotebook->AddPage(sponsorsTab, _t("Sponsors"));
     wxBoxSizer *sponsorsSizer = new wxBoxSizer(wxVERTICAL);
     sponsorsTab->SetSizer(sponsorsSizer);
 
     wxPanel* licenseTab = new wxPanel(aboutNotebook, wxID_ANY);
-    aboutNotebook->AddPage(licenseTab, _("License"));
+    aboutNotebook->AddPage(licenseTab, _t("License"));
     wxBoxSizer *licenseSizer = new wxBoxSizer(wxVERTICAL);
     licenseTab->SetSizer(licenseSizer);
 
     wxPanel* privacyTab = new wxPanel(aboutNotebook, wxID_ANY);
-    aboutNotebook->AddPage(privacyTab, _("Privacy"));
+    aboutNotebook->AddPage(privacyTab, _t("Privacy"));
     wxBoxSizer *privacySizer = new wxBoxSizer(wxVERTICAL);
     privacyTab->SetSizer(privacySizer);
 
@@ -236,15 +236,15 @@ void mmAboutDialog::createControls(int tabToOpenNo)
     buttonPanel->SetSizer(buttonPanelSizer);
 
     m_send_data = new wxCheckBox(buttonPanel, wxID_ANY
-        , _("Send anonymous statistics usage data"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    mmToolTip(m_send_data, _("Enable to help us sending anonymous data about MMEX usage."));
+        , _t("Send anonymous statistics usage data"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    mmToolTip(m_send_data, _t("Enable to help us sending anonymous data about MMEX usage."));
 
     buttonPanelSizer->Add(m_send_data, g_flagsV);
 
     m_send_data->Show(tabToOpenNo == 4);
     m_send_data->SetValue(Option::instance().getSendUsageStats());
 
-    wxButton* buttonOk = new wxButton(buttonPanel, wxID_OK, _("&OK "));
+    wxButton* buttonOk = new wxButton(buttonPanel, wxID_OK, _t("&OK "));
     buttonOk->SetDefault();
     buttonOk->SetFocus();
     buttonPanelSizer->Add(buttonOk, g_flagsCenter);

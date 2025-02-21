@@ -91,32 +91,29 @@ bool isValidURI(const wxString& validate)
 
 const wxString MONTHS[12] =
 {
-    wxTRANSLATE("January"), wxTRANSLATE("February"), wxTRANSLATE("March"),
-    wxTRANSLATE("April"),   wxTRANSLATE("May"),      wxTRANSLATE("June"),
-    wxTRANSLATE("July"),    wxTRANSLATE("August"),   wxTRANSLATE("September"),
-    wxTRANSLATE("October"), wxTRANSLATE("November"), wxTRANSLATE("December")
+    _n("January"), _n("February"), _n("March"),
+    _n("April"),   _n("May"),      _n("June"),
+    _n("July"),    _n("August"),   _n("September"),
+    _n("October"), _n("November"), _n("December")
 };
 
 const wxString MONTHS_SHORT[12] =
 {
-    wxTRANSLATE("Jan"), wxTRANSLATE("Feb"), wxTRANSLATE("Mar"),
-    wxTRANSLATE("Apr"), wxTRANSLATE("May"), wxTRANSLATE("Jun"),
-    wxTRANSLATE("Jul"), wxTRANSLATE("Aug"), wxTRANSLATE("Sep"),
-    wxTRANSLATE("Oct"), wxTRANSLATE("Nov"), wxTRANSLATE("Dec")
+    _n("Jan"), _n("Feb"), _n("Mar"),
+    _n("Apr"), _n("May"), _n("Jun"),
+    _n("Jul"), _n("Aug"), _n("Sep"),
+    _n("Oct"), _n("Nov"), _n("Dec")
 };
 
 const wxString g_days_of_week[7] =
 {
-    wxTRANSLATE("Sunday"), wxTRANSLATE("Monday"), wxTRANSLATE("Tuesday"),
-    wxTRANSLATE("Wednesday"), wxTRANSLATE("Thursday"), wxTRANSLATE("Friday"),
-    wxTRANSLATE("Saturday")
+    _n("Sunday"), _n("Monday"), _n("Tuesday"), _n("Wednesday"),
+    _n("Thursday"), _n("Friday"), _n("Saturday")
 };
 
 const wxString g_short_days_of_week[7] =
 {
-    wxTRANSLATE("Sun"), wxTRANSLATE("Mon"), wxTRANSLATE("Tue"),
-    wxTRANSLATE("Wed"), wxTRANSLATE("Thu"), wxTRANSLATE("Fri"),
-    wxTRANSLATE("Sat")
+    _n("Sun"), _n("Mon"), _n("Tue"), _n("Wed"), _n("Thu"), _n("Fri"), _n("Sat")
 };
 
 bool mmParseISODate(const wxString& in, wxDateTime& out)

@@ -43,11 +43,11 @@ wxEND_EVENT_TABLE()
 
 mmCustomFieldListDialog::mmCustomFieldListDialog (wxWindow* parent)
 {
-    if (debug_) ColName_[FIELD_ID] = _("#");
-    ColName_[FIELD_REF] = _("Attribute of");
-    ColName_[FIELD_NAME] = _("Name");
-    ColName_[FIELD_TYPE] = _("Type");
-    ColName_[FIELD_PROPERTIES] = _("Properties");
+    if (debug_) ColName_[FIELD_ID] = _t("#");
+    ColName_[FIELD_REF] = _t("Attribute of");
+    ColName_[FIELD_NAME] = _t("Name");
+    ColName_[FIELD_TYPE] = _t("Type");
+    ColName_[FIELD_PROPERTIES] = _t("Properties");
 
     this->SetFont(parent->GetFont());
     Create(parent);
@@ -58,7 +58,7 @@ void mmCustomFieldListDialog::Create(wxWindow* parent)
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
 
-    wxString WindowTitle = wxString::Format(_("Custom Field Manager"));
+    wxString WindowTitle = wxString::Format(_t("Custom Field Manager"));
     if (!wxDialog::Create(parent, wxID_ANY, WindowTitle, wxDefaultPosition, wxDefaultSize, style))
         return;
     CreateControls();
@@ -91,7 +91,7 @@ void mmCustomFieldListDialog::CreateControls()
     buttons_sizer->Add(btnClose, g_flagsH);
 
     wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel, wxID_APPLY, mmBitmapBundle(png::MORE_OPTIONS, mmBitmapButtonSize));
-    mmToolTip(magicButton, _("Other tools"));
+    mmToolTip(magicButton, _t("Other tools"));
     buttons_sizer->Add(magicButton, g_flagsH);
 
     this->SetSizer(mainBoxSizer);
@@ -162,8 +162,8 @@ void mmCustomFieldListDialog::DeleteField()
     if (field)
     {
         int DeleteResponse = wxMessageBox(
-            _("Do you want to delete the custom field and all its data?")
-            , _("Confirm Custom Field Deletion")
+            _t("Do you want to delete the custom field and all its data?")
+            , _t("Confirm Custom Field Deletion")
             , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
         if (DeleteResponse == wxYES)
         {
@@ -181,33 +181,33 @@ void mmCustomFieldListDialog::UpdateField()
         return;
 
     int UpdateResponse = wxMessageBox(
-        wxString::Format(_("This function will bulk search & replace for \"%s\" custom field values\n"
+        wxString::Format(_t("This function will bulk search & replace for \"%s\" custom field values\n"
             "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
             "Please consider that there isn't any validation!"),field->DESCRIPTION)
-        , _("Confirm Custom Field Content Update")
+        , _t("Confirm Custom Field Content Update")
         , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     if (UpdateResponse != wxYES)
         return;
 
-    const wxString txtSearch = wxGetTextFromUser(_("Find what"), _("Update Custom Field Content"));
+    const wxString txtSearch = wxGetTextFromUser(_t("Find what"), _t("Update Custom Field Content"));
     if (txtSearch == "")
     {
         int Response = wxMessageBox(
-            _("Do you want to update blank custom field content?\n"
+            _t("Do you want to update blank custom field content?\n"
                 "Select No if you want to abort the replace procedure.")
-            , _("Update Custom Field Content")
+            , _t("Update Custom Field Content")
             , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
         if (Response != wxYES)
             return;
     }
 
-    const wxString txtReplace = wxGetTextFromUser(_("Replace with"), _("Update Custom Field Content"));
+    const wxString txtReplace = wxGetTextFromUser(_t("Replace with"), _t("Update Custom Field Content"));
     if (txtReplace == "")
     {
         int Response = wxMessageBox(
-            _("Do you want to update blank custom field content?\n"
+            _t("Do you want to update blank custom field content?\n"
                 "Select No if you want to abort the replace procedure.")
-            , _("Update Custom Field Content")
+            , _t("Update Custom Field Content")
             , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
         if (Response != wxYES)
             return;
@@ -222,7 +222,7 @@ void mmCustomFieldListDialog::UpdateField()
     Model_CustomFieldData::instance().save(data);
 
     wxMessageBox(wxString::Format(wxPLURAL("%zu occurrence founded and replaced!", "%zu occurrences founded and replaced!", data.size()), data.size())
-        , _("Update Custom Field Content"), wxOK | wxICON_INFORMATION);
+        , _t("Update Custom Field Content"), wxOK | wxICON_INFORMATION);
 }
 
 void mmCustomFieldListDialog::OnMenuSelected(wxCommandEvent& event)
@@ -252,11 +252,11 @@ void mmCustomFieldListDialog::OnItemRightClick(wxDataViewEvent& event)
 
     wxMenu* mainMenu = new wxMenu;
     if (field) mainMenu->SetTitle(field->DESCRIPTION);
-    mainMenu->Append(new wxMenuItem(mainMenu, MENU_NEW_FIELD, _("&Add ")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_NEW_FIELD, _t("&Add ")));
     mainMenu->AppendSeparator();
-    mainMenu->Append(new wxMenuItem(mainMenu, MENU_EDIT_FIELD, _("&Edit ")));
-    mainMenu->Append(new wxMenuItem(mainMenu, MENU_DELETE_FIELD, _("&Remove ")));
-    mainMenu->Append(new wxMenuItem(mainMenu, MENU_UPDATE_FIELD, _("&Bulk content update ")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_EDIT_FIELD, _t("&Edit ")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_DELETE_FIELD, _t("&Remove ")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_UPDATE_FIELD, _t("&Bulk content update ")));
     if (!field)
     {
         mainMenu->Enable(MENU_EDIT_FIELD, false);

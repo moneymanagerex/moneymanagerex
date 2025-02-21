@@ -76,10 +76,10 @@ public:
         int64 BDID = 0;
         // This relates the 'Date Due' field.
         wxString TRANSDATE = wxDateTime::Now().FormatISOCombined();
-        wxString STATUS = Model_Checking::STATUS_STR_NONE;
+        wxString STATUS = Model_Checking::STATUS_NAME_NONE;
         int64 ACCOUNTID = -1;
         int64 TOACCOUNTID = -1;
-        wxString TRANSCODE = Model_Checking::TYPE_STR_WITHDRAWAL;
+        wxString TRANSCODE = Model_Checking::TYPE_NAME_WITHDRAWAL;
         int64 CATEGID = -1;
         double TRANSAMOUNT = 0;
         double TOTRANSAMOUNT = 0;

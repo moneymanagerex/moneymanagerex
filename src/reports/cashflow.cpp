@@ -78,7 +78,7 @@ void mmReportCashFlow::getTransactions()
 
     // Get initial Balance as of today
     for (const auto& account : Model_Account::instance().find(
-        Model_Account::ACCOUNTTYPE(Model_Account::TYPE_STR_INVESTMENT, NOT_EQUAL),
+        Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT, NOT_EQUAL),
         Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL)
     )) {
         if (accountArray_ && std::find(accountArray_->begin(), accountArray_->end(), account.ACCOUNTNAME) == accountArray_->end()) {
@@ -272,10 +272,10 @@ wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
             hb.startThead();
             {
                 hb.startTableRow();
-                hb.addTableHeaderCell(_("Date"));
-                hb.addTableHeaderCell(_("Total"), "text-right");
-                hb.addTableHeaderCell(_("Difference"), "text-right");
-                hb.addTableHeaderCell(_("Cumulative Difference"), "text-right");
+                hb.addTableHeaderCell(_t("Date"));
+                hb.addTableHeaderCell(_t("Total"), "text-right");
+                hb.addTableHeaderCell(_t("Difference"), "text-right");
+                hb.addTableHeaderCell(_t("Cumulative Difference"), "text-right");
                 hb.endTableRow();
             }
             hb.endThead();
@@ -330,7 +330,7 @@ wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
 //--------- Cash Flow - Daily
 
 mmReportCashFlowDaily::mmReportCashFlowDaily()
-    : mmReportCashFlow(wxTRANSLATE("Cash Flow - Daily"))
+    : mmReportCashFlow(_n("Cash Flow - Daily"))
 {
     this->setForwardMonths(12);
     setReportParameters(Reports::DailyCashFlow);
@@ -344,7 +344,7 @@ wxString mmReportCashFlowDaily::getHTMLText()
 //--------- Cash Flow - Monthly
 
 mmReportCashFlowMonthly::mmReportCashFlowMonthly()
-    : mmReportCashFlow(wxTRANSLATE("Cash Flow - Monthly"))
+    : mmReportCashFlow(_n("Cash Flow - Monthly"))
 {
     this->setForwardMonths(120);
     setReportParameters(Reports::MonthlyCashFlow);
@@ -358,7 +358,7 @@ wxString mmReportCashFlowMonthly::getHTMLText()
 //--------- Cash Flow - Transactions
 
 mmReportCashFlowTransactions::mmReportCashFlowTransactions()
-    : mmReportCashFlow(wxTRANSLATE("Cash Flow - Transactions"))
+    : mmReportCashFlow(_n("Cash Flow - Transactions"))
 {
     setReportParameters(Reports::TransactionsCashFlow);
 }
@@ -401,13 +401,13 @@ wxString mmReportCashFlowTransactions::getHTMLText()
     hb.startTable();
     hb.startThead();
     hb.startTableRow();
-    hb.addTableHeaderCell(_("Date"));
-    hb.addTableHeaderCell(_("Account"));
-    hb.addTableHeaderCell(_("Payee"));
-    hb.addTableHeaderCell(_("Category"));
-    hb.addTableHeaderCell(_("Amount"), "text-right");
-    hb.addTableHeaderCell(_("Balance"), "text-right");
-    hb.addTableHeaderCell(_("Cumulative Difference"), "text-right");
+    hb.addTableHeaderCell(_t("Date"));
+    hb.addTableHeaderCell(_t("Account"));
+    hb.addTableHeaderCell(_t("Payee"));
+    hb.addTableHeaderCell(_t("Category"));
+    hb.addTableHeaderCell(_t("Amount"), "text-right");
+    hb.addTableHeaderCell(_t("Balance"), "text-right");
+    hb.addTableHeaderCell(_t("Cumulative Difference"), "text-right");
     hb.endTableRow();
     hb.endThead();
     hb.startTbody();

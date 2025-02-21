@@ -47,24 +47,23 @@ enum
 
 const wxString BILLSDEPOSITS_REPEATS[] =
 {
-    wxTRANSLATE("Once"),
-    wxTRANSLATE("Weekly"),
-    wxTRANSLATE("Fortnightly"),
-    wxTRANSLATE("Monthly"),
-    wxTRANSLATE("Every 2 Months"),
-    wxTRANSLATE("Quarterly"),
-    wxTRANSLATE("Half-Yearly"),
-    wxTRANSLATE("Yearly"),
-    wxTRANSLATE("Four Months"),
-    wxTRANSLATE("Four Weeks"),
-    wxTRANSLATE("Daily"),
-    wxTRANSLATE("In %s Days"),
-    wxTRANSLATE("In %s Months"),
-    wxTRANSLATE("Every %s Days"),
-    wxTRANSLATE("Every %s Months"),
-    wxTRANSLATE("Monthly (last day)"),
-    wxTRANSLATE("Monthly (last business day)")
-
+    _n("Once"),
+    _n("Weekly"),
+    _n("Fortnightly"),
+    _n("Monthly"),
+    _n("Every 2 Months"),
+    _n("Quarterly"),
+    _n("Half-Yearly"),
+    _n("Yearly"),
+    _n("Four Months"),
+    _n("Four Weeks"),
+    _n("Daily"),
+    _n("In %s Days"),
+    _n("In %s Months"),
+    _n("Every %s Days"),
+    _n("Every %s Months"),
+    _n("Monthly (last day)"),
+    _n("Monthly (last business day)")
 };
 
 /*******************************************************/
@@ -98,6 +97,29 @@ EVT_LIST_KEY_DOWN(wxID_ANY,   billsDepositsListCtrl::OnListKeyDown)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
+const std::vector<ListColumnInfo> billsDepositsListCtrl::col_info_all()
+{
+    return {
+        { " ",              25,                        wxLIST_FORMAT_LEFT,  false },
+        { _t("ID"),          wxLIST_AUTOSIZE,           wxLIST_FORMAT_RIGHT, true },
+        { _t("Date Paid"),   wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Date Due"),    wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Account"),     wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Payee"),       wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Status"),      wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Category"),    wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Tags"),        200,                       wxLIST_FORMAT_LEFT,  true },
+        { _t("Type"),        wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Amount"),      wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Frequency"),   wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Repetitions"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
+        { _t("Autorepeat"),  wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Payment"),     wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Number"),      wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
+        { _t("Notes"),       150,                       wxLIST_FORMAT_LEFT,  true },
+    };
+}
+
 billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow *parent, wxWindowID winid)
     : mmListCtrl(parent, winid)
     , m_bdp(bdp)
@@ -124,49 +146,17 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
     SetAcceleratorTable(tab);
 
     // load the global variables
-    m_selected_col = Model_Setting::instance().getInt("BD_SORT_COL", m_bdp->col_sort());
+    m_selected_col = Model_Setting::instance().getInt("BD_SORT_COL", col_sort());
     m_asc = Model_Setting::instance().getBool("BD_ASC", true);
 
-    m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT, false));
-    m_real_columns.push_back(m_bdp->COL_ICON);
-    m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_RIGHT, true));
-    m_real_columns.push_back(m_bdp->COL_ID);
-    m_columns.push_back(PANEL_COLUMN(_("Date Paid"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_bdp->COL_PAYMENT_DATE);
-    m_columns.push_back(PANEL_COLUMN(_("Date Due"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_bdp->COL_DUE_DATE);
-    m_columns.push_back(PANEL_COLUMN(_("Account"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_bdp->COL_ACCOUNT);
-    m_columns.push_back(PANEL_COLUMN(_("Payee"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_bdp->COL_PAYEE);
-    m_columns.push_back(PANEL_COLUMN(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_bdp->COL_STATUS);
-    m_columns.push_back(PANEL_COLUMN(_("Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_bdp->COL_CATEGORY);
-    m_columns.push_back(PANEL_COLUMN(_("Tags"), 200, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_bdp->COL_TAGS);
-    m_columns.push_back(PANEL_COLUMN(_("Type"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_bdp->COL_TYPE);
-    m_columns.push_back(PANEL_COLUMN(_("Amount"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
-    m_real_columns.push_back(m_bdp->COL_AMOUNT);
-    m_columns.push_back(PANEL_COLUMN(_("Frequency"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_bdp->COL_FREQUENCY);
-    m_columns.push_back(PANEL_COLUMN(_("Repetitions"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true));
-    m_real_columns.push_back(m_bdp->COL_REPEATS);
-    m_columns.push_back(PANEL_COLUMN(_("Autorepeat"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_bdp->COL_AUTO);
-    m_columns.push_back(PANEL_COLUMN(_("Payment"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_bdp->COL_DAYS);
-    m_columns.push_back(PANEL_COLUMN(_("Number"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_bdp->COL_NUMBER);
-    m_columns.push_back(PANEL_COLUMN(_("Notes"), 150, wxLIST_FORMAT_LEFT, true));
-    m_real_columns.push_back(m_bdp->COL_NOTES);
+    m_columns = col_info_all();
+    for (int i = 0; i < LIST_COL_size; ++i)
+        m_column_order.push_back(i);
+    m_col_width_fmt = "BD_COL%d_WIDTH";
+    m_col_type_str = "BD";
+    m_default_sort_column = col_sort();
 
-    m_col_width = "BD_COL%d_WIDTH";
-    m_col_idstr = "BD";
-    m_default_sort_column = m_bdp->col_sort();
-
-    CreateColumns();
+    createColumns();
 
 }
 
@@ -208,10 +198,10 @@ mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid
     , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
 {
     m_today = wxDate::Today();
-    this->tips_.Add(_("MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits,"
+    this->tips_.Add(_t("MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits,"
         " or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur,"
         " and appears on the Dashboard 14 days before the transaction is due."));
-    this->tips_.Add(_("Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."));
+    this->tips_.Add(_t("Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."));
 
     Create(parent, winid, pos, size, style, name);
 }
@@ -257,7 +247,7 @@ void mmBillsDepositsPanel::CreateControls()
     headerPanel->SetSizer(itemBoxSizerVHeader);
 
     wxStaticText* itemStaticText9 = new wxStaticText(headerPanel, wxID_ANY
-        , _("Scheduled Transactions"));
+        , _t("Scheduled Transactions"));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerVHeader->Add(itemStaticText9, g_flagsBorder1V);
 
@@ -270,7 +260,7 @@ void mmBillsDepositsPanel::CreateControls()
 
     m_bitmapTransFilter = new wxButton(headerPanel, wxID_FILE2);
     m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
-    m_bitmapTransFilter->SetLabel(_("Transaction Filter"));
+    m_bitmapTransFilter->SetLabel(_t("Transaction Filter"));
     itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
     */
 
@@ -305,39 +295,39 @@ void mmBillsDepositsPanel::CreateControls()
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer4->Add(itemBoxSizer5, g_flagsBorder1V);
 
-    wxButton* itemButtonNew = new wxButton(bdPanel, wxID_NEW, _("&New "));
-    mmToolTip(itemButtonNew, _("New Scheduled Transaction"));
+    wxButton* itemButtonNew = new wxButton(bdPanel, wxID_NEW, _t("&New "));
+    mmToolTip(itemButtonNew, _t("New Scheduled Transaction"));
     itemBoxSizer5->Add(itemButtonNew, 0, wxRIGHT, 2);
 
-    wxButton* itemButton81 = new wxButton(bdPanel, wxID_EDIT, _("&Edit "));
-    mmToolTip(itemButton81, _("Edit Scheduled Transaction"));
+    wxButton* itemButton81 = new wxButton(bdPanel, wxID_EDIT, _t("&Edit "));
+    mmToolTip(itemButton81, _t("Edit Scheduled Transaction"));
     itemBoxSizer5->Add(itemButton81, 0, wxRIGHT, 2);
     itemButton81->Enable(false);
 
-    wxButton* itemButton82 = new wxButton(bdPanel, wxID_DUPLICATE, _("D&uplicate "));
-    mmToolTip(itemButton82, _("Duplicate Scheduled Transaction"));
+    wxButton* itemButton82 = new wxButton(bdPanel, wxID_DUPLICATE, _t("D&uplicate "));
+    mmToolTip(itemButton82, _t("Duplicate Scheduled Transaction"));
     itemBoxSizer5->Add(itemButton82, 0, wxRIGHT, 2);
     itemButton82->Enable(false);
 
-    wxButton* itemButton7 = new wxButton(bdPanel, wxID_DELETE, _("&Delete "));
-    mmToolTip(itemButton7, _("Delete Scheduled Transaction"));
+    wxButton* itemButton7 = new wxButton(bdPanel, wxID_DELETE, _t("&Delete "));
+    mmToolTip(itemButton7, _t("Delete Scheduled Transaction"));
     itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 2);
     itemButton7->Enable(false);
 
-    wxButton* itemButton8 = new wxButton(bdPanel, wxID_PASTE, _("Ente&r"));
-    mmToolTip(itemButton8, _("Enter Next Scheduled Transaction Occurrence"));
+    wxButton* itemButton8 = new wxButton(bdPanel, wxID_PASTE, _t("Ente&r"));
+    mmToolTip(itemButton8, _t("Enter Next Scheduled Transaction Occurrence"));
     itemBoxSizer5->Add(itemButton8, 0, wxRIGHT, 2);
     itemButton8->Enable(false);
 
-    wxButton* buttonSkipTrans = new wxButton(bdPanel, wxID_IGNORE, _("&Skip"));
-    mmToolTip(buttonSkipTrans, _("Skip Next Scheduled Transaction Occurrence"));
+    wxButton* buttonSkipTrans = new wxButton(bdPanel, wxID_IGNORE, _t("&Skip"));
+    mmToolTip(buttonSkipTrans, _t("Skip Next Scheduled Transaction Occurrence"));
     itemBoxSizer5->Add(buttonSkipTrans, 0, wxRIGHT, 2);
     buttonSkipTrans->Enable(false);
 
     wxBitmapButton* btnAttachment_ = new wxBitmapButton(bdPanel, wxID_FILE
         , mmBitmapBundle(png::CLIP, mmBitmapButtonSize), wxDefaultPosition
         , wxSize(30, itemButton8->GetSize().GetY()));
-    mmToolTip(btnAttachment_, _("Open attachments"));
+    mmToolTip(btnAttachment_, _t("Open attachments"));
     itemBoxSizer5->Add(btnAttachment_, 0, wxRIGHT, 2);
     btnAttachment_->Enable(false);
 
@@ -444,17 +434,17 @@ void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
     m_bdp->updateBottomPanelData(m_selected_row);
     bool item_active = (m_selected_row >= 0);
     wxMenu menu;
-    menu.Append(MENU_POPUP_BD_ENTER_OCCUR, _u("Enter next Occurrence…"));
+    menu.Append(MENU_POPUP_BD_ENTER_OCCUR, _tu("Enter next Occurrence…"));
     menu.AppendSeparator();
-    menu.Append(MENU_POPUP_BD_SKIP_OCCUR, _("Skip next Occurrence"));
+    menu.Append(MENU_POPUP_BD_SKIP_OCCUR, _t("Skip next Occurrence"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_NEW, _u("&New Scheduled Transaction…"));
-    menu.Append(MENU_TREEPOPUP_EDIT, _u("&Edit Scheduled Transaction…"));
-    menu.Append(MENU_TREEPOPUP_DUPLICATE, _u("D&uplicate Scheduled Transaction…"));
+    menu.Append(MENU_TREEPOPUP_NEW, _tu("&New Scheduled Transaction…"));
+    menu.Append(MENU_TREEPOPUP_EDIT, _tu("&Edit Scheduled Transaction…"));
+    menu.Append(MENU_TREEPOPUP_DUPLICATE, _tu("D&uplicate Scheduled Transaction…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_DELETE, _u("&Delete Scheduled Transaction…"));
+    menu.Append(MENU_TREEPOPUP_DELETE, _tu("&Delete Scheduled Transaction…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _u("&Organize Attachments…"));
+    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _tu("&Organize Attachments…"));
 
     menu.Enable(MENU_POPUP_BD_ENTER_OCCUR, item_active);
     menu.Enable(MENU_POPUP_BD_SKIP_OCCUR, item_active);
@@ -472,29 +462,29 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     const Model_Billsdeposits::Full_Data& bill = this->bills_.at(item);
     switch (column)
     {
-    case COL_ID:
+    case billsDepositsListCtrl::LIST_COL_ID:
         return wxString::Format("%lld", bill.BDID).Trim();
-    case COL_PAYMENT_DATE:
+    case billsDepositsListCtrl::LIST_COL_PAYMENT_DATE:
         return mmGetDateTimeForDisplay(bill.TRANSDATE);
-    case COL_DUE_DATE:
+    case billsDepositsListCtrl::LIST_COL_DUE_DATE:
         return mmGetDateTimeForDisplay(bill.NEXTOCCURRENCEDATE);
-    case COL_ACCOUNT:
+    case billsDepositsListCtrl::LIST_COL_ACCOUNT:
         return bill.ACCOUNTNAME;
-    case COL_PAYEE:
+    case billsDepositsListCtrl::LIST_COL_PAYEE:
         return bill.real_payee_name();
-    case COL_STATUS:
+    case billsDepositsListCtrl::LIST_COL_STATUS:
         return bill.STATUS;
-    case COL_CATEGORY:
+    case billsDepositsListCtrl::LIST_COL_CATEGORY:
         return bill.CATEGNAME;
-    case COL_TAGS:
+    case billsDepositsListCtrl::LIST_COL_TAGS:
         return bill.TAGNAMES;
-    case COL_TYPE:
+    case billsDepositsListCtrl::LIST_COL_TYPE:
         return wxGetTranslation(bill.TRANSCODE);
-    case COL_AMOUNT:
+    case billsDepositsListCtrl::LIST_COL_AMOUNT:
         return Model_Account::toCurrency(bill.TRANSAMOUNT, Model_Account::instance().get(bill.ACCOUNTID));
-    case COL_FREQUENCY:
+    case billsDepositsListCtrl::LIST_COL_FREQUENCY:
         return GetFrequency(&bill);
-    case COL_REPEATS:
+    case billsDepositsListCtrl::LIST_COL_REPEATS:
     {
         int numRepeats = GetNumRepeats(&bill);
         if (numRepeats > 0)
@@ -504,24 +494,24 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
         else
             return L"\x2015";  // HORIZONTAL BAR
     }
-    case COL_AUTO:
+    case billsDepositsListCtrl::LIST_COL_AUTO:
     {
         int autoExecute = bill.REPEATS.GetValue() / BD_REPEATS_MULTIPLEX_BASE;
         wxString repeatSTR =
-            (autoExecute == Model_Billsdeposits::REPEAT_AUTO_SILENT) ? _("Automated") :
-            (autoExecute == Model_Billsdeposits::REPEAT_AUTO_MANUAL) ? _("Suggested") :
-            _("Manual");
+            (autoExecute == Model_Billsdeposits::REPEAT_AUTO_SILENT) ? _t("Automated") :
+            (autoExecute == Model_Billsdeposits::REPEAT_AUTO_MANUAL) ? _t("Suggested") :
+            _t("Manual");
         return repeatSTR;
     }
-    case COL_DAYS:
+    case billsDepositsListCtrl::LIST_COL_DAYS:
         return GetRemainingDays(&bill);
-    case COL_NUMBER:
+    case billsDepositsListCtrl::LIST_COL_NUMBER:
         return bill.TRANSACTIONNUMBER;
-    case COL_NOTES:
+    case billsDepositsListCtrl::LIST_COL_NOTES:
     {
         wxString value = bill.NOTES;
         value.Replace("\n", " ");
-        if (Model_Attachment::NrAttachments(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT, bill.BDID))
+        if (Model_Attachment::NrAttachments(Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT, bill.BDID))
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value;
     }
@@ -565,7 +555,7 @@ const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits:
     int repeats = item->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
     if (repeats >= Model_Billsdeposits::REPEAT_IN_X_DAYS && repeats <= Model_Billsdeposits::REPEAT_EVERY_X_MONTHS && item->NUMOCCURRENCES < 0)
     {
-        return _("Inactive");
+        return _t("Inactive");
     }
     
     int daysRemaining = Model_Billsdeposits::TRANSDATE(item)
@@ -583,7 +573,7 @@ const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits:
 
 wxString billsDepositsListCtrl::OnGetItemText(long item, long column) const
 {
-    return m_bdp->getItem(item, m_real_columns[column]);
+    return m_bdp->getItem(item, m_column_order[column]);
 }
 
 void billsDepositsListCtrl::OnListItemSelected(wxListEvent& event)
@@ -675,14 +665,14 @@ void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
     if (m_bdp->bills_.empty()) return;
     if (m_selected_row < 0) return;
 
-    wxMessageDialog msgDlg(this, _("Do you want to delete the scheduled transaction?")
-        , _("Confirm Deletion")
+    wxMessageDialog msgDlg(this, _t("Do you want to delete the scheduled transaction?")
+        , _t("Confirm Deletion")
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
     if (msgDlg.ShowModal() == wxID_YES)
     {
         int64 BdId = m_bdp->bills_[m_selected_row].BDID;
         Model_Billsdeposits::instance().remove(BdId);
-        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_STR_BILLSDEPOSIT, BdId);
+        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT, BdId);
         m_bdp->do_delete_custom_values(-BdId);
         m_bdp->initVirtualListControl();
         refreshVisualList(m_selected_row);
@@ -719,7 +709,7 @@ void billsDepositsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     if (m_selected_row == -1) return;
 
     int64 RefId = m_bdp->bills_[m_selected_row].BDID;
-    const wxString& RefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
+    const wxString& RefType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
 
     mmAttachmentDialog dlg(this, RefType, RefId);
     dlg.ShowModal();
@@ -731,7 +721,7 @@ void billsDepositsListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
     int64 RefId = m_bdp->bills_[m_selected_row].BDID;
-    const wxString& RefType = Model_Attachment::REFTYPE_STR_BILLSDEPOSIT;
+    const wxString& RefType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
 
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
     refreshVisualList(m_bdp->initVirtualListControl(RefId));
@@ -780,34 +770,34 @@ void mmBillsDepositsPanel::sortTable()
     std::sort(bills_.begin(), bills_.end());
     switch (listCtrlAccount_->m_selected_col)
     {
-    case COL_ID:
+    case billsDepositsListCtrl::LIST_COL_ID:
         std::stable_sort(bills_.begin(), bills_.end(), SorterByBDID());
         break;
-    case COL_PAYMENT_DATE:
+    case billsDepositsListCtrl::LIST_COL_PAYMENT_DATE:
         std::stable_sort(bills_.begin(), bills_.end(), SorterByTRANSDATE());
         break;
-    case COL_DUE_DATE:
+    case billsDepositsListCtrl::LIST_COL_DUE_DATE:
         std::stable_sort(bills_.begin(), bills_.end(), SorterByNEXTOCCURRENCEDATE());
         break;
-    case COL_ACCOUNT:
+    case billsDepositsListCtrl::LIST_COL_ACCOUNT:
         std::stable_sort(bills_.begin(), bills_.end(), SorterByACCOUNTNAME());
         break;
-    case COL_PAYEE:
+    case billsDepositsListCtrl::LIST_COL_PAYEE:
         std::stable_sort(bills_.begin(), bills_.end(), SorterByPAYEENAME());
         break;
-    case COL_STATUS:
+    case billsDepositsListCtrl::LIST_COL_STATUS:
         std::stable_sort(bills_.begin(), bills_.end(), SorterBySTATUS());
         break;
-    case COL_CATEGORY:
+    case billsDepositsListCtrl::LIST_COL_CATEGORY:
         std::stable_sort(bills_.begin(), bills_.end(), SorterByCATEGNAME());
         break;
-    case COL_TYPE:
+    case billsDepositsListCtrl::LIST_COL_TYPE:
         std::stable_sort(bills_.begin(), bills_.end(), SorterByTRANSCODE());
         break;
-    case COL_AMOUNT:
+    case billsDepositsListCtrl::LIST_COL_AMOUNT:
         std::stable_sort(bills_.begin(), bills_.end(), SorterByTRANSAMOUNT());
         break;
-    case COL_FREQUENCY:
+    case billsDepositsListCtrl::LIST_COL_FREQUENCY:
         std::stable_sort(bills_.begin(), bills_.end()
             , [&](const Model_Billsdeposits::Full_Data& x, const Model_Billsdeposits::Full_Data& y)
         {
@@ -816,7 +806,7 @@ void mmBillsDepositsPanel::sortTable()
             return x_text < y_text;
         });
         break;
-    case COL_REPEATS:
+    case billsDepositsListCtrl::LIST_COL_REPEATS:
         std::stable_sort(bills_.begin(), bills_.end()
             , [&](const Model_Billsdeposits::Full_Data& x, const Model_Billsdeposits::Full_Data& y)
         {
@@ -829,7 +819,7 @@ void mmBillsDepositsPanel::sortTable()
                 return xn == Model_Billsdeposits::REPEAT_NUM_INFINITY && yn == Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
         });
         break;
-    case COL_DAYS:
+    case billsDepositsListCtrl::LIST_COL_DAYS:
         std::stable_sort(bills_.begin(), bills_.end()
             , [&](const Model_Billsdeposits::Data& x, const Model_Billsdeposits::Data& y)
         {
@@ -861,7 +851,7 @@ void mmBillsDepositsPanel::sortTable()
             return ((!x_useText && !y_useText) ? x_num < y_num : x_text < y_text);
         });
         break;
-    case COL_NOTES:
+    case billsDepositsListCtrl::LIST_COL_NOTES:
         std::stable_sort(bills_.begin(), bills_.end(), SorterByNOTES());
         break;
     default:
@@ -985,11 +975,11 @@ void mmBillsDepositsPanel::OnFilterTransactions(wxCommandEvent& WXUNUSED(event))
 
 wxString  mmBillsDepositsPanel::BuildPage() const
 {
-    return listCtrlAccount_->BuildPage(_("Scheduled Transactions"));
+    return listCtrlAccount_->BuildPage(_t("Scheduled Transactions"));
 }
 
 void mmBillsDepositsPanel::do_delete_custom_values(int64 id)
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+    const wxString& RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
     Model_CustomFieldData::DeleteAllData(RefType, id);
 }

@@ -16,23 +16,21 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defs.h"
 #include "Model_CustomField.h"
 #include "Model_CustomFieldData.h"
 #include <wx/string.h>
 
-const std::vector<std::pair<Model_CustomField::TYPE_ID, wxString> > Model_CustomField::TYPE_CHOICES =
-{
-    { Model_CustomField::TYPE_ID_STRING,       wxString(wxTRANSLATE("String")) },
-    { Model_CustomField::TYPE_ID_INTEGER,      wxString(wxTRANSLATE("Integer")) },
-    { Model_CustomField::TYPE_ID_DECIMAL,      wxString(wxTRANSLATE("Decimal")) },
-    { Model_CustomField::TYPE_ID_BOOLEAN,      wxString(wxTRANSLATE("Boolean")) },
-    { Model_CustomField::TYPE_ID_DATE,         wxString(wxTRANSLATE("Date")) },
-    { Model_CustomField::TYPE_ID_TIME,         wxString(wxTRANSLATE("Time")) },
-    { Model_CustomField::TYPE_ID_SINGLECHOICE, wxString(wxTRANSLATE("SingleChoice")) },
-    { Model_CustomField::TYPE_ID_MULTICHOICE,  wxString(wxTRANSLATE("MultiChoice")) }
-};
-
-wxArrayString Model_CustomField::TYPE_STR = type_str_all();
+ChoicesName Model_CustomField::TYPE_CHOICES = ChoicesName({
+    { TYPE_ID_STRING,       _n("String") },
+    { TYPE_ID_INTEGER,      _n("Integer") },
+    { TYPE_ID_DECIMAL,      _n("Decimal") },
+    { TYPE_ID_BOOLEAN,      _n("Boolean") },
+    { TYPE_ID_DATE,         _n("Date") },
+    { TYPE_ID_TIME,         _n("Time") },
+    { TYPE_ID_SINGLECHOICE, _n("SingleChoice") },
+    { TYPE_ID_MULTICHOICE,  _n("MultiChoice") }
+});
 
 Model_CustomField::Model_CustomField()
     : Model<DB_Table_CUSTOMFIELD_V1>()
@@ -67,7 +65,7 @@ Model_CustomField& Model_CustomField::instance()
 //const Model_CustomField::Data_Set Model_CustomField::GetFields(Model_Attachment::REFTYPE_ID RefType)
 //{
 //    Data_Set fields;
-//    wxString reftype_str = Model_Attachment::REFTYPE_STR[RefType];
+//    wxString reftype_str = Model_Attachment::reftype_name(RefType);
 //    for (const auto & field : this->find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(RefType)))
 //    {
 //        fields.push_back(field);
@@ -85,42 +83,10 @@ bool Model_CustomField::Delete(const int64& FieldID)
     return this->remove(FieldID, db_);
 }
 
-Model_CustomField::TYPE_ID Model_CustomField::type_id(const wxString& value)
-{
-    for (const auto& item : TYPE_CHOICES)
-    {
-        if (item.second.CmpNoCase(value) == 0)
-            return item.first;
-    }
-    return TYPE_ID_UNKNOWN;
-}
-
-Model_CustomField::TYPE_ID Model_CustomField::type_id(const Data* r)
-{
-    return type_id(r->TYPE);
-}
-
-Model_CustomField::TYPE_ID Model_CustomField::type_id(const Data& r)
-{
-    return type_id(&r);
-}
-
-const wxArrayString Model_CustomField::type_str_all()
-{
-    wxArrayString types;
-    int i = 0;
-    for (const auto& item : TYPE_CHOICES)
-    {
-        wxASSERT_MSG(item.first == i++, "Wrong order in Model_CustomField::TYPE_CHOICES");
-        types.Add(item.second);
-    }
-    return types;
-}
-
-const wxString Model_CustomField::getTooltip(const wxString& Properties)
+const wxString Model_CustomField::getTooltip(const wxString& properties)
 {
     Document json_doc;
-    if (!json_doc.Parse(Properties.utf8_str()).HasParseError())
+    if (!json_doc.Parse(properties.utf8_str()).HasParseError())
     {
         if (json_doc.HasMember("Tooltip") && json_doc["Tooltip"].IsString()) {
             Value& s = json_doc["Tooltip"];
@@ -130,16 +96,15 @@ const wxString Model_CustomField::getTooltip(const wxString& Properties)
     return "";
 }
 
-int Model_CustomField::getReference(const wxString& Properties)
+int Model_CustomField::getReference(const wxString& properties)
 {
-    int ref_type_id = Model_Attachment::REFTYPE_STR.Index(Properties);
-    return ref_type_id;
+    return Model_Attachment::reftype_id(properties);
 }
 
-const wxString Model_CustomField::getRegEx(const wxString& Properties)
+const wxString Model_CustomField::getRegEx(const wxString& properties)
 {
     Document json_doc;
-    if (!json_doc.Parse(Properties.utf8_str()).HasParseError())
+    if (!json_doc.Parse(properties.utf8_str()).HasParseError())
     {
         if (json_doc.HasMember("RegEx") && json_doc["RegEx"].IsString()) {
             Value& s = json_doc["RegEx"];
@@ -149,10 +114,10 @@ const wxString Model_CustomField::getRegEx(const wxString& Properties)
     return "";
 }
 
-bool Model_CustomField::getAutocomplete(const wxString& Properties)
+bool Model_CustomField::getAutocomplete(const wxString& properties)
 {
     Document json_doc;
-    if (!json_doc.Parse(Properties.utf8_str()).HasParseError())
+    if (!json_doc.Parse(properties.utf8_str()).HasParseError())
     {
         if (json_doc.HasMember("Autocomplete") && json_doc["Autocomplete"].IsBool()) {
             Value& b = json_doc["Autocomplete"];
@@ -162,10 +127,10 @@ bool Model_CustomField::getAutocomplete(const wxString& Properties)
     return false;
 }
 
-const wxString Model_CustomField::getDefault(const wxString& Properties)
+const wxString Model_CustomField::getDefault(const wxString& properties)
 {
     Document json_doc;
-    if (!json_doc.Parse(Properties.utf8_str()).HasParseError())
+    if (!json_doc.Parse(properties.utf8_str()).HasParseError())
     {
         if (json_doc.HasMember("Default") && json_doc["Default"].IsString()) {
             Value& s = json_doc["Default"];
@@ -175,11 +140,11 @@ const wxString Model_CustomField::getDefault(const wxString& Properties)
     return "";
 }
 
-const wxArrayString Model_CustomField::getChoices(const wxString& Properties)
+const wxArrayString Model_CustomField::getChoices(const wxString& properties)
 {
     wxArrayString choices;
     Document json_doc;
-    if (!json_doc.Parse(Properties.utf8_str()).HasParseError())
+    if (!json_doc.Parse(properties.utf8_str()).HasParseError())
     {
         if (json_doc.HasMember("Choice") && json_doc["Choice"].IsArray())
         {
@@ -194,10 +159,10 @@ const wxArrayString Model_CustomField::getChoices(const wxString& Properties)
     return choices;
 }
 
-const wxString Model_CustomField::getUDFC(const wxString& Properties)
+const wxString Model_CustomField::getUDFC(const wxString& properties)
 {
     Document json_doc;
-    if (!json_doc.Parse(Properties.utf8_str()).HasParseError())
+    if (!json_doc.Parse(properties.utf8_str()).HasParseError())
     {
         if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString()) {
             Value& s = json_doc["UDFC"];
@@ -210,7 +175,7 @@ const wxString Model_CustomField::getUDFC(const wxString& Properties)
 const std::map<wxString, int64> Model_CustomField::getMatrix(Model_Attachment::REFTYPE_ID reftype)
 {
     std::map<wxString, int64> m;
-    const wxString& reftype_str = Model_Attachment::REFTYPE_STR[reftype];
+    const wxString& reftype_str = Model_Attachment::reftype_name(reftype);
     for (const auto& entry : UDFC_FIELDS())
     {
         if (entry.empty()) continue;
@@ -274,7 +239,7 @@ Model_CustomField::TYPE_ID Model_CustomField::getUDFCType(const wxString& ref_ty
                 Value& s = json_doc["UDFC"];
                 const wxString& desc = s.GetString();
                 if (desc == name) {
-                    return type_id(item.TYPE);
+                    return static_cast<TYPE_ID>(type_id(item.TYPE));
                 }
             }
         }
@@ -317,7 +282,7 @@ const wxArrayString Model_CustomField::UDFC_FIELDS()
 
 const wxArrayString Model_CustomField::getUDFCList(DB_Table_CUSTOMFIELD_V1::Data* r)
 {
-    const wxString& ref_type = Model_Attachment::REFTYPE_STR_TRANSACTION;
+    const wxString& ref_type = Model_Attachment::REFTYPE_NAME_TRANSACTION;
     const auto& a = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(ref_type));
 
     wxArrayString choices = UDFC_FIELDS();
@@ -355,10 +320,10 @@ const wxArrayString Model_CustomField::getUDFCList(DB_Table_CUSTOMFIELD_V1::Data
     return choices;
 }
 
-int Model_CustomField::getDigitScale(const wxString& Properties)
+int Model_CustomField::getDigitScale(const wxString& properties)
 {
     Document json_doc;
-    if (!json_doc.Parse(Properties.utf8_str()).HasParseError())
+    if (!json_doc.Parse(properties.utf8_str()).HasParseError())
     {
         if (json_doc.HasMember("DigitScale") && json_doc["DigitScale"].IsInt()) {
             Value& s = json_doc["DigitScale"];

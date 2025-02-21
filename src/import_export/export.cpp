@@ -183,7 +183,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         buffer << "M" << notes << "\n";
     }
 
-    wxString reftype = Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT;
+    wxString reftype = Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT;
     for (const auto &split_entry : full_tran.m_splits)
     {
         double valueSplit = split_entry.SPLITTRANSAMOUNT;
@@ -277,11 +277,10 @@ const std::unordered_map<wxString, int> mmExportTransaction::m_QIFaccountTypes =
 
 const wxString mmExportTransaction::qif_acc_type(const wxString& mmex_type)
 {
+    int mmex_typeId = Model_Account::type_id(mmex_type, -1);
     wxString qif_acc_type = m_QIFaccountTypes.begin()->first;
-    for (const auto &item : m_QIFaccountTypes)
-    {
-        if (item.second == Model_Account::TYPE_STR.Index(mmex_type))
-        {
+    for (const auto &item : m_QIFaccountTypes) {
+        if (item.second == mmex_typeId) {
             qif_acc_type = item.first;
             break;
         }
@@ -291,12 +290,12 @@ const wxString mmExportTransaction::qif_acc_type(const wxString& mmex_type)
 
 const wxString mmExportTransaction::mm_acc_type(const wxString& qif_type)
 {
-    wxString mm_acc_type = Model_Account::TYPE_STR_CASH;
+    wxString mm_acc_type = Model_Account::TYPE_NAME_CASH;
     for (const auto &item : m_QIFaccountTypes)
     {
         if (item.first == qif_type)
         {
-            mm_acc_type = Model_Account::TYPE_STR[item.second];
+            mm_acc_type = Model_Account::type_name(item.second);
             break;
         }
     }
@@ -435,7 +434,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
             json_writer.Double(valueSplit);
             json_writer.Key("TAGS");
             json_writer.StartArray();
-            for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::REFTYPE_STR_TRANSACTIONSPLIT, split_entry.SPLITTRANSID))
+            for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT, split_entry.SPLITTRANSID))
                 json_writer.Int64(tag.second.GetValue());
             json_writer.EndArray();
             json_writer.EndObject();
@@ -444,7 +443,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
         json_writer.EndArray();
     }
 
-    const wxString RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+    const wxString RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
     Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(RefType, full_tran.id());
 
     if (!attachments.empty())
@@ -486,7 +485,7 @@ void mmExportTransaction::getAttachmentsJSON(PrettyWriter<StringBuffer>& json_wr
 
     if (!allAttachment4Export.empty())
     {
-        const wxString RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+        const wxString RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
         const wxString folder = Model_Infotable::instance().getString("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
         const wxString AttachmentsFolder = mmex::getPathAttachment(folder);
 
@@ -523,7 +522,7 @@ void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_w
 
     if (!allCustomFields4Export.empty())
     {
-        const wxString RefType = Model_Attachment::REFTYPE_STR_TRANSACTION;
+        const wxString RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
 
         json_writer.Key("CUSTOM_FIELDS");
         json_writer.StartObject();

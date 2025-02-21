@@ -69,7 +69,7 @@ void OptionSettingsView::Create()
     mainSizer->Add(panelWindow, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     // View Options
-    wxStaticBox* viewBox = new wxStaticBox(panelWindow, wxID_STATIC, _("View"));
+    wxStaticBox* viewBox = new wxStaticBox(panelWindow, wxID_STATIC, _t("View"));
     SetBoldFont(viewBox);
     wxStaticBoxSizer* viewSizer = new wxStaticBoxSizer(viewBox, wxVERTICAL);
     panelSizer->Add(viewSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
@@ -77,7 +77,7 @@ void OptionSettingsView::Create()
     wxFlexGridSizer* viewChoiceSizer = new wxFlexGridSizer(0, 2, 0, 5);
     viewSizer->Add(viewChoiceSizer);
 
-    viewChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _("Accounts Visible")), g_flagsH);
+    viewChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Accounts Visible")), g_flagsH);
     const wxString vAccts = Model_Setting::instance().getViewAccounts();
     wxArrayString view_accounts;
     view_accounts.Add(VIEW_ACCOUNTS_ALL_STR);
@@ -90,10 +90,10 @@ void OptionSettingsView::Create()
         if (entry == vAccts)
             m_choice_visible->SetStringSelection(wxGetTranslation(entry));
     }
-    mmToolTip(m_choice_visible, _("Specify which accounts are visible"));
+    mmToolTip(m_choice_visible, _t("Specify which accounts are visible"));
     viewChoiceSizer->Add(m_choice_visible, g_flagsH);
 
-    viewChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _("Category Delimiter")), g_flagsH);
+    viewChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Category Delimiter")), g_flagsH);
     wxArrayString list;
     list.Add(":");
     list.Add(": ");
@@ -109,7 +109,7 @@ void OptionSettingsView::Create()
 
     m_showToolTips = new wxCheckBox(
         panelWindow, wxID_STATIC,
-        _("Show Tooltips"),
+        _t("Show Tooltips"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
     );
     m_showToolTips->SetValue(Option::instance().getShowToolTips());
@@ -117,21 +117,21 @@ void OptionSettingsView::Create()
 
     m_showMoneyTips = new wxCheckBox(
         panelWindow, wxID_STATIC,
-        _("Show Money Tips"),
+        _t("Show Money Tips"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
     );
     m_showMoneyTips->SetValue(Option::instance().getShowMoneyTips());
     viewChoiceSizer->Add(m_showMoneyTips, g_flagsH);
 
     // Transaction/Budget options
-    wxStaticBox* trxBox = new wxStaticBox(panelWindow, wxID_STATIC, _("Transaction/Budget"));
+    wxStaticBox* trxBox = new wxStaticBox(panelWindow, wxID_STATIC, _t("Transaction/Budget"));
     SetBoldFont(trxBox);
     wxStaticBoxSizer* trxSizer = new wxStaticBoxSizer(trxBox, wxVERTICAL);
     panelSizer->Add(trxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     m_budget_financial_years = new wxCheckBox(
         panelWindow, wxID_STATIC,
-        _("View Budgets as Financial Years"),
+        _t("View Budgets as Financial Years"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
     );
     m_budget_financial_years->SetValue(Option::instance().getBudgetFinancialYears());
@@ -139,7 +139,7 @@ void OptionSettingsView::Create()
 
     m_budget_include_transfers = new wxCheckBox(
         panelWindow, wxID_STATIC,
-        _("View Budgets with 'transfer' transactions"),
+        _t("View Budgets with 'transfer' transactions"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
     );
     m_budget_include_transfers->SetValue(Option::instance().getBudgetIncludeTransfers());
@@ -147,7 +147,7 @@ void OptionSettingsView::Create()
 
     m_budget_summary_without_category = new wxCheckBox(
         panelWindow, wxID_STATIC,
-        _("View Budget Category Report with Summaries"),
+        _t("View Budget Category Report with Summaries"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
     );
     m_budget_summary_without_category->SetValue(Option::instance().getBudgetSummaryWithoutCategories());
@@ -156,66 +156,66 @@ void OptionSettingsView::Create()
     // Budget Yearly/Monthly relationship if both exist
     m_budget_override = new wxCheckBox(
         panelWindow, wxID_STATIC,
-        _("Override yearly budget with monthly budget"),
+        _t("Override yearly budget with monthly budget"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
     );
-    mmToolTip(m_budget_override, _("If monthly budget exists then use this to override the yearly budget; otherwise combine them"));
+    mmToolTip(m_budget_override, _t("If monthly budget exists then use this to override the yearly budget; otherwise combine them"));
     m_budget_override->SetValue(Option::instance().getBudgetOverride());
     trxSizer->Add(m_budget_override, g_flagsV);
 
     // Option to deduct monthly budget from yearly budget for reporting
     m_budget_deduct_monthly = new wxCheckBox(
         panelWindow, wxID_STATIC,
-        _("Subtract monthly budgets from yearly budget in reporting"),
+        _t("Subtract monthly budgets from yearly budget in reporting"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
     );
-    mmToolTip(m_budget_deduct_monthly, _("Yearly budget will be reduced by the amount budgeted monthly.\nTotal estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."));
+    mmToolTip(m_budget_deduct_monthly, _t("Yearly budget will be reduced by the amount budgeted monthly.\nTotal estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."));
     m_budget_deduct_monthly->SetValue(Option::instance().getBudgetDeductMonthly());
     trxSizer->Add(m_budget_deduct_monthly, g_flagsV);
 
     wxFlexGridSizer* trxChoiceSizer = new wxFlexGridSizer(0, 2, 0, 5);
     trxSizer->Add(trxChoiceSizer);
 
-    trxChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _("Budget Offset (days)")), g_flagsH);
+    trxChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Budget Offset (days)")), g_flagsH);
     m_budget_days_offset = new wxSpinCtrl(
         panelWindow, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize,
         wxSP_ARROW_KEYS, -30, +30
     );
-    mmToolTip(m_budget_days_offset, _("Adjusts the first day of month (normally 1st) for budget calculations"));
+    mmToolTip(m_budget_days_offset, _t("Adjusts the first day of month (normally 1st) for budget calculations"));
     m_budget_days_offset->SetValue(Option::instance().getBudgetDaysOffset());
     trxChoiceSizer->Add(m_budget_days_offset, g_flagsH);
 
-    trxChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _("First Day of Month")), g_flagsH);
+    trxChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("First Day of Month")), g_flagsH);
     m_reporting_firstday = new wxSpinCtrl(
         panelWindow, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize,
         wxSP_ARROW_KEYS, 1, 28
     );
-    mmToolTip(m_reporting_firstday, _("Adjusts the first day of month for reporting"));
+    mmToolTip(m_reporting_firstday, _t("Adjusts the first day of month for reporting"));
     m_reporting_firstday->SetValue(Option::instance().getReportingFirstDay());
     trxChoiceSizer->Add(m_reporting_firstday, g_flagsH);
 
-    trxChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _("First Weekday")), g_flagsH);
+    trxChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("First Weekday")), g_flagsH);
     m_reporting_first_weekday = new wxChoice(panelWindow, wxID_ANY);
     m_reporting_first_weekday->Append(wxGetTranslation(g_days_of_week[0]));
     m_reporting_first_weekday->Append(wxGetTranslation(g_days_of_week[1]));
     m_reporting_first_weekday->SetSelection(Option::instance().getReportingFirstWeekday());
-    mmToolTip(m_reporting_first_weekday, _("Adjusts the first day of week for filtering and reporting"));
+    mmToolTip(m_reporting_first_weekday, _t("Adjusts the first day of week for filtering and reporting"));
     trxChoiceSizer->Add(m_reporting_first_weekday, g_flagsH);
 
     m_ignore_future_transactions = new wxCheckBox(
         panelWindow, wxID_STATIC,
-        _("Ignore Future Transactions"),
+        _t("Ignore Future Transactions"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
     );
     m_ignore_future_transactions->SetValue(Option::instance().getIgnoreFutureTransactions());
     trxSizer->Add(m_ignore_future_transactions, g_flagsV);
 
-    m_use_trans_date_time = new wxCheckBox(panelWindow, wxID_ANY, _("Use 'Time' in transaction recording/reporting"));
+    m_use_trans_date_time = new wxCheckBox(panelWindow, wxID_ANY, _t("Use 'Time' in transaction recording/reporting"));
     m_use_trans_date_time->SetValue(Option::instance().UseTransDateTime());
     trxSizer->Add(m_use_trans_date_time, g_flagsV);
 
     // Colours settings
-    wxStaticBox* colorsBox = new wxStaticBox(panelWindow, wxID_ANY, _("Transaction Colors"));
+    wxStaticBox* colorsBox = new wxStaticBox(panelWindow, wxID_ANY, _t("Transaction Colors"));
     SetBoldFont(colorsBox);
     wxStaticBoxSizer* colorsSizer = new wxStaticBoxSizer(colorsBox, wxHORIZONTAL);
     panelSizer->Add(colorsSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
@@ -249,12 +249,12 @@ void OptionSettingsView::Create()
     m_UDFCB7->SetBackgroundColour(mmColors::userDefColor7);
     colorsSizer->Add(m_UDFCB7, g_flagsH);
 
-    wxButton* reset = new wxButton(panelWindow, wxID_REDO, _("Default"), wxDefaultPosition, wxDefaultSize, 0);
+    wxButton* reset = new wxButton(panelWindow, wxID_REDO, _t("Default"), wxDefaultPosition, wxDefaultSize, 0);
     m_UDFCB7->SetBackgroundColour(mmColors::userDefColor7);
     colorsSizer->Add(reset, g_flagsH);
 
     // User Interface (UI) Appearance
-    wxStaticBox* uiBox = new wxStaticBox(panelWindow, wxID_STATIC, _("User Interface"));
+    wxStaticBox* uiBox = new wxStaticBox(panelWindow, wxID_STATIC, _t("User Interface"));
     SetBoldFont(uiBox);
     wxStaticBoxSizer* uiSizer = new wxStaticBoxSizer(uiBox, wxVERTICAL);
     panelSizer->Add(uiSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
@@ -262,25 +262,25 @@ void OptionSettingsView::Create()
     wxFlexGridSizer* uiStyleSizer = new wxFlexGridSizer(0, 2, 0, 5);
     uiSizer->Add(uiStyleSizer);
 
-    uiStyleSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _("Style Template")), g_flagsH);
-    m_theme_manager = new wxButton(panelWindow, ID_DIALOG_THEMEMANAGER, _("Open Theme Manager"));
+    uiStyleSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Style Template")), g_flagsH);
+    m_theme_manager = new wxButton(panelWindow, ID_DIALOG_THEMEMANAGER, _t("Open Theme Manager"));
     uiStyleSizer->Add(m_theme_manager, g_flagsH);
 
-    uiStyleSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _("Theme")), g_flagsH);
+    uiStyleSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Theme")), g_flagsH);
     wxArrayString theme_mode_values;
-    theme_mode_values.Add(_("System"));
-    theme_mode_values.Add(_("Light"));
-    theme_mode_values.Add(_("Dark"));
+    theme_mode_values.Add(_t("System"));
+    theme_mode_values.Add(_t("Light"));
+    theme_mode_values.Add(_t("Dark"));
 
     m_theme_mode = new wxChoice(
         panelWindow, wxID_RESIZE_FRAME, wxDefaultPosition, wxDefaultSize,
         theme_mode_values
     );
-    mmToolTip(m_theme_mode, _("Specify preferred theme variant to use if supported"));
+    mmToolTip(m_theme_mode, _t("Specify preferred theme variant to use if supported"));
     m_theme_mode->SetSelection(Option::instance().getThemeMode());
     uiStyleSizer->Add(m_theme_mode, g_flagsH);
 
-    uiStyleSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _("HTML Scale Factor")), g_flagsH);
+    uiStyleSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("HTML Scale Factor")), g_flagsH);
     htmlScaleMax = 300;
     htmlScaleMin = 25;
     m_scale_factor = new wxSpinCtrl(
@@ -298,15 +298,15 @@ void OptionSettingsView::Create()
 
     int vFontSize = Option::instance().getHtmlScale();
     m_scale_factor->SetValue(vFontSize);
-    mmToolTip(m_scale_factor, _("Specify which scale factor is used for the report pages"));
+    mmToolTip(m_scale_factor, _t("Specify which scale factor is used for the report pages"));
     uiStyleSizer->Add(m_scale_factor, g_flagsH);
 
-    uiStyleSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _("Font Size")), g_flagsH);
+    uiStyleSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Font Size")), g_flagsH);
     wxArrayString font_choice;
-    font_choice.Add(_("Normal"));
-    font_choice.Add(_("Enlarged"));
-    font_choice.Add(_("Large"));
-    font_choice.Add(_("Huge"));
+    font_choice.Add(_t("Normal"));
+    font_choice.Add(_t("Enlarged"));
+    font_choice.Add(_t("Large"));
+    font_choice.Add(_t("Huge"));
 
     m_font_size_chooser = new wxChoice(
         panelWindow, wxID_RESIZE_FRAME, wxDefaultPosition, wxDefaultSize,
@@ -319,15 +319,15 @@ void OptionSettingsView::Create()
     wxFlexGridSizer* uiIconSizer = new wxFlexGridSizer(0, 3, 0, 5);
     uiSizer->Add(uiIconSizer);
 
-    uiIconSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _("Toolbar Icon Size")), g_flagsH);
-    uiIconSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _("Navigator Icon Size")), g_flagsH);
-    uiIconSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _("Others Icon Size")), g_flagsH);
+    uiIconSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Toolbar Icon Size")), g_flagsH);
+    uiIconSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Navigator Icon Size")), g_flagsH);
+    uiIconSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Others Icon Size")), g_flagsH);
 
     const wxString settings_choice[] = {
-        wxTRANSLATE("Small (16 px)"),
-        wxTRANSLATE("Normal (24 px)"),
-        wxTRANSLATE("Large (32 px)"),
-        wxTRANSLATE("Huge (48 px)")
+        _n("Small (16 px)"),
+        _n("Normal (24 px)"),
+        _n("Large (32 px)"),
+        _n("Huge (48 px)")
     };
 
     m_toolbar_icon_size = new wxChoice(panelWindow, wxID_RESIZE_FRAME);

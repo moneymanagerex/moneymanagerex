@@ -55,7 +55,7 @@ public:
 
 private:
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
-        const wxString& caption = _("New Scheduled Transaction"),
+        const wxString& caption = _t("New Scheduled Transaction"),
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX,
@@ -128,11 +128,11 @@ private:
 
     std::vector<wxString> frequentNotes_;
 
-    const wxString payeeWithdrawalTip_ = _("Specify where the transaction is going to");
-    const wxString payeeDepositTip_ = _("Specify where the transaction is coming from");
-    const wxString payeeTransferTip_ = _("Specify which account the transfer is going to");
-    const wxString amountNormalTip_ = _("Specify the amount for this transaction");
-    const wxString amountTransferTip_ = _("Specify the amount to be transferred");
+    const wxString payeeWithdrawalTip_ = _t("Specify where the transaction is going to");
+    const wxString payeeDepositTip_ = _t("Specify where the transaction is coming from");
+    const wxString payeeTransferTip_ = _t("Specify which account the transfer is going to");
+    const wxString amountNormalTip_ = _t("Specify the amount for this transaction");
+    const wxString amountTransferTip_ = _t("Specify the amount to be transferred");
 private:
     void setTooltips();
     void setCategoryLabel();

@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <algorithm>
 
 mmReportPayeeExpenses::mmReportPayeeExpenses()
-    : mmPrintableBase(wxTRANSLATE("Payee Report"))
+    : mmPrintableBase(_n("Payee Report"))
     , positiveTotal_(0.0)
     , negativeTotal_(0.0)
 {
@@ -116,7 +116,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
             gd.labels.push_back(stats.label);
         }
 
-        data_usage.name = _("Payees");
+        data_usage.name = _t("Payees");
         gd.series.push_back(data_usage);
         
         if (!gd.series.empty())
@@ -133,10 +133,10 @@ wxString mmReportPayeeExpenses::getHTMLText()
             hb.startThead();
             {
                 hb.startTableRow();
-                hb.addTableHeaderCell(_("Payee"));
-                hb.addTableHeaderCell(_("Incomes"), "text-right");
-                hb.addTableHeaderCell(_("Expenses"), "text-right");
-                hb.addTableHeaderCell(_("Difference"), "text-right");
+                hb.addTableHeaderCell(_t("Payee"));
+                hb.addTableHeaderCell(_t("Incomes"), "text-right");
+                hb.addTableHeaderCell(_t("Expenses"), "text-right");
+                hb.addTableHeaderCell(_t("Difference"), "text-right");
                 hb.endTableRow();
             }
             hb.endThead();
@@ -164,7 +164,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
                 totals.push_back(positiveTotal_);
                 totals.push_back(negativeTotal_);
                 totals.push_back(positiveTotal_ + negativeTotal_);
-                hb.addMoneyTotalRow(_("Total:"), 4, totals);
+                hb.addMoneyTotalRow(_t("Total:"), 4, totals);
             }
             hb.endTfoot();
         }

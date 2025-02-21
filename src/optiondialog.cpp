@@ -33,8 +33,8 @@
 #include "optionsettingsnet.h"
 #include "optionsettingsmisc.h"
 
-static const char * const s_pagetitle[] = {
-    wxTRANSLATE("General"), wxTRANSLATE("View"), wxTRANSLATE("Dashboard"), wxTRANSLATE("Attachments"), wxTRANSLATE("Network"), wxTRANSLATE("Other")
+static const wxArrayString s_pagetitle = {
+    _n("General"), _n("View"), _n("Dashboard"), _n("Attachments"), _n("Network"), _n("Other")
 };
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmOptionsDialog, wxDialog)
@@ -157,8 +157,8 @@ void mmOptionsDialog::CreateControls()
     buttonPanel->SetSizer(buttonPanelSizer);
     mainDialogSizer->Add(buttonPanel, wxSizerFlags(g_flagsV).Center());
 
-    wxButton* itemButtonOK = new wxButton(buttonPanel, wxID_OK, _("&OK "));
-    wxButton* itemButtonApply = new wxButton(buttonPanel, wxID_APPLY, _("&Apply "));
+    wxButton* itemButtonOK = new wxButton(buttonPanel, wxID_OK, _t("&OK "));
+    wxButton* itemButtonApply = new wxButton(buttonPanel, wxID_APPLY, _t("&Apply "));
     wxButton* itemButtonCancel = new wxButton(buttonPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     buttonPanelSizer->Add(itemButtonOK, g_flagsH);
     buttonPanelSizer->Add(itemButtonApply, g_flagsH);
@@ -216,8 +216,8 @@ void mmOptionsDialog::OnApply(wxCommandEvent& /*event*/)
     int selected_page = m_listbook->GetSelection();
     if (m_panel_list[selected_page]->SaveSettings())
     {
-        const wxString& msg = wxString::Format(_("%s page has been saved."), wxGetTranslation(s_pagetitle[selected_page]));
-        wxMessageBox(msg, _("Settings"));
+        const wxString& msg = wxString::Format(_t("%s page has been saved."), wxGetTranslation(s_pagetitle[selected_page]));
+        wxMessageBox(msg, _t("Settings"));
     }
 
     Model_Setting::instance().ReleaseSavepoint();

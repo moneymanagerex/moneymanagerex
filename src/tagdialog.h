@@ -21,6 +21,7 @@
 #ifndef MM_EX_TAGDIALOG_H_
 #define MM_EX_TAGDIALOG_H_
 
+#include "defs.h"
 #include "wx/dialog.h"
 #include <wx/srchctrl.h>
 #include <wx/listbox.h>
@@ -42,7 +43,7 @@ public:
 
 private:
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
-        const wxString& caption = _("Tag Manager"),
+        const wxString& caption = _t("Tag Manager"),
         const wxString& name = "Organize Tags",
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,

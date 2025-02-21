@@ -78,7 +78,7 @@ wxString Model_Payee::get_payee_name(int64 payee_id)
     if (payee)
         return payee->PAYEENAME;
     else
-        return _("Payee Error");
+        return _t("Payee Error");
 }
 
 bool Model_Payee::remove(int64 id)

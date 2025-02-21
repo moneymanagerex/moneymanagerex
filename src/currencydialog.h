@@ -45,7 +45,7 @@ public:
 
 private:
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
-        const wxString& caption = _("Currency Manager"),
+        const wxString& caption = _t("Currency Manager"),
         const wxString& name = "Currency Manager",
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,

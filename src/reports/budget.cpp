@@ -88,20 +88,20 @@ const wxString mmReportBudget::AdjustYearValues(int day, wxDateTime::Month month
         if (Option::instance().getBudgetFinancialYears())
         {
             GetFinancialYearValues(day, month);
-            ret = wxString::Format(_("Financial Year: %s - %i"), yearStr, (year + 1));
+            ret = wxString::Format(_t("Financial Year: %s - %i"), yearStr, (year + 1));
         }
         else
         {
-            ret = wxString::Format(_("Year: %s"), yearStr);
+            ret = wxString::Format(_t("Year: %s"), yearStr);
         }
     }
     else
     {
         const wxString month_str = wxGetTranslation(mmGetMonthName(month));
         if (Option::instance().getBudgetFinancialYears())
-            ret = wxString::Format(_("Financial Year: %i Month: %s"), year, month_str);
+            ret = wxString::Format(_t("Financial Year: %i Month: %s"), year, month_str);
         else
-            ret = wxString::Format(_("Year: %i Month: %s"), year, month_str);
+            ret = wxString::Format(_t("Year: %i Month: %s"), year, month_str);
     }
 
     return ret;
