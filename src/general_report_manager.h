@@ -58,6 +58,7 @@ public:
     mmGeneralReportManager(wxWindow* parent, wxSQLite3Database* db);
     wxString OnGetItemText(long item, long column) const;
 
+    bool syncReport(int64 id);
 private:
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
@@ -82,10 +83,11 @@ private:
     void OnItemRightClick(wxTreeEvent& event);
     void OnRightClick(wxMouseEvent& event);
     void OnSelChanged(wxTreeEvent& event);
+    void OnSyncReportComplete(wxCommandEvent& event);
     //void OnLabelChanged(wxTreeEvent& event);
     void viewControls(bool enable);
     void renameReport(int64 id);
-    bool DeleteReport(int64 id);
+    bool deleteReport(int64 id);
     bool changeReportGroup(int64 id, bool ungroup);
     void changeReportState(int64 id);
     bool renameReportGroup(const wxString& GroupName);
@@ -138,6 +140,7 @@ private:
         ID_NEW_SAMPLE_STOCKS,
         ID_NEW_SAMPLE_STATS,
         ID_DELETE,
+        ID_SYNC,
         ID_RENAME,
         ID_GROUP,
         ID_UNGROUP,
