@@ -36,12 +36,33 @@
 #include "model/Model_Report.h"
 
 #include <memory>
+#include <wx/thread.h>
 #include <wx/richtooltip.h>
 #include <wx/sstream.h>
 #include <wx/zipstrm.h>
 #include <wx/wxsqlite3.h>
 
 using namespace rapidjson;
+
+class mmGeneralReportManager;
+class SyncReportThread : public wxThread
+{
+public:
+    SyncReportThread(int64 id, mmGeneralReportManager* manager)
+        : wxThread(wxTHREAD_DETACHED), m_id(id), m_manager(manager) {}
+
+protected:
+    virtual ExitCode Entry() override
+    {
+        bool success = m_manager->syncReport(m_id);  // Execute syncReport
+        wxQueueEvent(wxTheApp->GetTopWindow(), new wxCommandEvent(wxEVT_COMMAND_BUTTON_CLICKED));  // Notify UI thread
+        return static_cast<ExitCode>(0);
+    }
+
+private:
+    int64 m_id;
+    mmGeneralReportManager* m_manager;
+};
 
 static const wxString SAMPLE_ASSETS_LUA =
 R"(local total_balance = 0
@@ -229,6 +250,7 @@ wxBEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
     EVT_TREE_ITEM_MENU(ID_REPORT_LIST, mmGeneralReportManager::OnItemRightClick)
     EVT_MENU(wxID_ANY, mmGeneralReportManager::OnMenuSelected)
     EVT_BUTTON(ID_GITHUB_SYNC, mmGeneralReportManager::OnSyncFromGitHub)
+    EVT_BUTTON(wxID_ANY, mmGeneralReportManager::OnSyncReportComplete)  // Handle button click event
 wxEND_EVENT_TABLE()
 
 sqlListCtrl::sqlListCtrl(mmGeneralReportManager* grm, wxWindow *parent, wxWindowID winid)
@@ -393,10 +415,12 @@ void mmGeneralReportManager::CreateControls()
     mmToolTip(m_buttonSaveAs, _t("Export the report to a new file."));
     buttonPanelSizer->AddSpacer(50);
 
-    m_buttonSync = new wxButton(button_panel, ID_GITHUB_SYNC, _t("&Sync from GitHub"));
+/*
+    m_buttonSync = new wxButton(button_panel, ID_GITHUB_SYNC, _("&Sync from GitHub"));
     buttonPanelSizer->Add(m_buttonSync, g_flagsH);
     mmToolTip(m_buttonSync, _("Fetch latest reports from GitHub repository"));
     buttonPanelSizer->AddSpacer(50);
+*/
 
     m_buttonSave = new wxButton(button_panel, wxID_SAVE, _t("&Save "));
     buttonPanelSizer->Add(m_buttonSave, g_flagsH);
@@ -760,6 +784,9 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     customReportMenu.AppendSeparator();
     customReportMenu.Append(ID_DELETE, _tu("Delete Report…"));
 
+    customReportMenu.AppendSeparator();
+    customReportMenu.Append(ID_SYNC, _tu("Sync Report…"));
+
     if (report)
     {
         customReportMenu.Enable(ID_UNGROUP, !report->GROUPNAME.empty());
@@ -772,8 +799,9 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
 
         customReportMenu.Enable(ID_UNGROUP, false);
         customReportMenu.Enable(ID_RENAME, false);
-        customReportMenu.Enable(ID_DELETE, false);
         customReportMenu.Enable(ID_ACTIVE, false);
+        customReportMenu.Enable(ID_DELETE, false);
+        customReportMenu.Enable(ID_SYNC, false);
     }
     PopupMenu(&customReportMenu);
 }
@@ -869,7 +897,26 @@ void mmGeneralReportManager::renameReport(int64 id)
     }
 }
 
-bool mmGeneralReportManager::DeleteReport(int64 id)
+bool mmGeneralReportManager::syncReport(int64 id)
+{
+    Model_Report::Data * report = Model_Report::instance().get(id);
+    if (report)
+    {
+        wxString msg = wxString() << _("Pull Report Title:")
+            << "\n"
+            << report->REPORTNAME;
+        int iError = wxMessageBox(msg, "General Reports Manager", wxYES_NO | wxICON_ERROR);
+        if (iError == wxYES)
+        {
+            DownloadAndStoreReport(report->GROUPNAME, report->REPORTNAME, "");
+            fillControls();
+            return true;
+        }
+    }
+    return false;
+}
+
+bool mmGeneralReportManager::deleteReport(int64 id)
 {
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
@@ -970,7 +1017,16 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
                 this->renameReport(report_id);
                 break;
             case ID_DELETE:
-                this->DeleteReport(report_id);
+                this->deleteReport(report_id);
+                break;
+            case ID_SYNC:
+                this->syncReport(report_id);
+                // Create and start sync thread
+                {
+                    // SyncReportThread* thread = new SyncReportThread(report_id, this);
+                    // thread->Create();
+                    // thread->Run();
+                }
                 break;
             case ID_GROUP:
                 this->changeReportGroup(report_id, false);
@@ -1281,6 +1337,12 @@ void mmGeneralReportManager::OnNewWindow(wxWebViewEvent& evt)
     evt.Skip();
 }
 
+// Event handler implementation
+void mmGeneralReportManager::OnSyncReportComplete(wxCommandEvent& event)
+{
+    wxMessageBox("Report sync completed successfully.", "Sync Complete", wxOK | wxICON_INFORMATION);
+}
+
 void mmGeneralReportManager::OnSyncFromGitHub(wxCommandEvent& WXUNUSED(event))
 {
     wxString url = mmex::weblink::GeneralReport + "/v1/reports.json";
@@ -1337,13 +1399,12 @@ void mmGeneralReportManager::OnSyncFromGitHub(wxCommandEvent& WXUNUSED(event))
     wxMessageBox("Reports have been successfully synchronized and stored.", "Sync Successful", wxOK | wxICON_INFORMATION);
 }
 
-
 void mmGeneralReportManager::DownloadAndStoreReport(const wxString& groupName, const wxString& reportName, const wxString& reportPath)
 {
     wxString sql, lua, htt, txt;
 
     // Construct the full URL to fetch the SQL content
-    wxString sqlUrl = mmex::weblink::GeneralReport + "/" + "packages" + "/" + reportPath;
+    wxString sqlUrl = mmex::weblink::GeneralReport + "/" + "packages" + "/" + groupName + "/" + reportName + "/" + "sqlcontent.sql" ;
     if (http_get_data(wxURI(sqlUrl).BuildURI(), sql) != CURLE_OK) {
         wxLogError("Failed to fetch SQL data from %s", sqlUrl);
         return;
@@ -1381,3 +1442,4 @@ void mmGeneralReportManager::DownloadAndStoreReport(const wxString& groupName, c
 
     m_selectedReportID = Model_Report::instance().save(report);
 }
+
