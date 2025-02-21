@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-02-21 08:18+0000\n"
+"POT-Creation-Date: 2025-02-21 08:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -268,7 +268,11 @@ msgstr ""
 msgid "Hide Columns"
 msgstr ""
 
-#: general_report_manager.cpp:540
+#: general_report_manager.cpp:398
+msgid "Fetch latest reports from GitHub repository"
+msgstr ""
+
+#: general_report_manager.cpp:550
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
