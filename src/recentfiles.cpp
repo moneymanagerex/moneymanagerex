@@ -27,10 +27,10 @@ mmFileHistory::mmFileHistory(size_t maxFiles, wxWindowID idBase)
 
 mmFileHistory::~mmFileHistory()
 {
-    this->Save();
+    this->SaveHistory();
 }
 
-void mmFileHistory::Clear()
+void mmFileHistory::ClearHistory()
 {
     const int count = GetCount();
     for (int i = 0; i < count; i++)
@@ -39,7 +39,7 @@ void mmFileHistory::Clear()
     }
 }
 
-void mmFileHistory::Load()
+void mmFileHistory::LoadHistory()
 {
     wxString buf, historyFile;
 
@@ -57,9 +57,9 @@ void mmFileHistory::Load()
     }
 }
 
-void mmFileHistory::Save()
+void mmFileHistory::SaveHistory()
 {
-    wxLogDebug("{{{ mmFileHistory::Save()");
+    wxLogDebug("{{{ mmFileHistory::SaveHistory()");
     Model_Setting::instance().Savepoint();
     wxString buf, historyFile;
     for (int i = 0; i < GetMaxFiles(); i++) {

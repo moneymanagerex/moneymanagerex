@@ -47,7 +47,7 @@ public:
     virtual ~mmCalculatorPopup();
 
     void SetValue(wxString& value); 
-    void SetFocus();
+    void SetFocus() override;
     void SetTarget(mmTextCtrl* target);
 
     virtual void Popup(wxWindow* focus = NULL) override
@@ -424,7 +424,7 @@ public:
         const wxSize& size = wxDefaultSize, long style = 0
     );
     bool IsValid();
-    bool Validate(const wxString& tagText = wxEmptyString);
+    bool ValidateTagText(const wxString& tagText = wxEmptyString);
     const wxArrayInt64 GetTagIDs() const;
     const wxArrayString GetTagStrings();
     void Reinitialize();
@@ -466,7 +466,7 @@ private:
     wxColour bgColorDisabled_ = wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE);
 };
 
-inline bool mmTagTextCtrl::IsValid() { return Validate(); }
+inline bool mmTagTextCtrl::IsValid() { return ValidateTagText(); }
 inline const wxArrayString mmTagTextCtrl::GetTagStrings() { return parseTags(textCtrl_->GetText()); }
 inline void mmTagTextCtrl::Reinitialize() { init(); }
 inline void mmTagTextCtrl::SetText(const wxString& text) { textCtrl_->SetText(text); }

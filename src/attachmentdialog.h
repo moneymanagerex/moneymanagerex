@@ -53,8 +53,8 @@ private:
 
     int64 m_attachment_id = -1;
     std::map<int, wxString> ColName_;
-    wxButton* btnCancel_ = nullptr;
-    wxButton* button_OK_ = nullptr;
+    //wxButton* btnCancel_ = nullptr;
+    //wxButton* button_OK_ = nullptr;
     wxString m_PathSep = wxFileName::GetPathSeparator();
 
     wxString m_RefType;

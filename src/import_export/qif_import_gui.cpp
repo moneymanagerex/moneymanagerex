@@ -1695,7 +1695,7 @@ void mmQIFImportDialog::save_file_name()
     }
 }
 
-void mmQIFImportDialog::OnMenuSelected(wxCommandEvent& event)
+void mmQIFImportDialog::OnMenuSelected(wxCommandEvent& WXUNUSED(event))
 {
     mmColorBtn_->Enable(false);
     colorCheckBox_->SetValue(false);

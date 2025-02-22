@@ -66,7 +66,7 @@ private:
     wxCheckBox* cbDeleteSourceCategory_ = nullptr;
     wxStaticText* m_info = nullptr;
 
-    wxButton* m_buttonDest = nullptr;
+    //wxButton* m_buttonDest = nullptr;
     int m_changedRecords = 0;
 };
 

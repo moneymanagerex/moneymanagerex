@@ -62,7 +62,7 @@ private:
     wxBoxSizer* mainBoxSizer_ = nullptr;
     wxFlexGridSizer* loadingSizer_ = nullptr;
     wxDataViewListCtrl* webtranListBox_ = nullptr;
-    wxSearchCtrl* m_maskTextCtrl = nullptr;
+    //wxSearchCtrl* m_maskTextCtrl = nullptr;
     wxTextCtrl* url_text_ = nullptr;
     wxTextCtrl* guid_text_ = nullptr;
     wxBitmapButton* net_button_ = nullptr;

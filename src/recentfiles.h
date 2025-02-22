@@ -28,9 +28,9 @@ public:
     ~mmFileHistory();
 
 public:
-    void Clear();
-    void Load();
-    void Save();
+    void ClearHistory();
+    void LoadHistory();
+    void SaveHistory();
 };
 
 #endif

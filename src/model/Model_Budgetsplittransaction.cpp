@@ -100,7 +100,7 @@ int Model_Budgetsplittransaction::update(Data_Set& rows, int64 transactionID)
         instance().save(split_items);
 
         // Send back the new SPLITTRANSID which is needed to update taglinks
-        for (int i = 0; i < rows.size(); i++)
+        for (int i = 0; i < static_cast<int>(rows.size()); i++)
             rows.at(i).SPLITTRANSID = split_items.at(i).SPLITTRANSID;
     }
     return rows.size();

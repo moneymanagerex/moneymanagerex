@@ -1429,7 +1429,7 @@ void mmTagTextCtrl::OnDropDown(wxCommandEvent& )
 #ifndef __WXMAC__    
     if (!popupWindow_->dismissedByButton_)
     {
-        Validate();
+        ValidateTagText();
         wxPoint pos = ClientToScreen(textCtrl_->GetPosition());
         pos.y += (textCtrl_->GetSize().GetHeight() + panelHeight_) / 2;
         pos.x -= textOffset_;
@@ -1485,7 +1485,7 @@ void mmTagTextCtrl::OnKeyPressed(wxKeyEvent& event)
             textCtrl_->AutoCompComplete();
         }
 
-        Validate();
+        ValidateTagText();
         return;
     }
     else if (keyCode == WXK_TAB && !event.AltDown())
@@ -1502,7 +1502,7 @@ void mmTagTextCtrl::OnKeyPressed(wxKeyEvent& event)
     {
         textCtrl_->AutoCompCancel();
         textCtrl_->InsertText(textCtrl_->GetInsertionPoint(), " ");
-        Validate();
+        ValidateTagText();
         return;
     }
     event.Skip();
@@ -1579,13 +1579,13 @@ void mmTagTextCtrl::OnPopupCheckboxSelected(wxCommandEvent& event)
             pos = end + 1;
         }
     }
-    Validate();
+    ValidateTagText();
 }
 
 void mmTagTextCtrl::OnPaste(wxStyledTextEvent& event)
 {
     wxString currText = textCtrl_->GetText();
-    Validate(currText.insert(textCtrl_->GetInsertionPoint(), event.GetString()));
+    ValidateTagText(currText.insert(textCtrl_->GetInsertionPoint(), event.GetString()));
     event.SetString("");
 }
 
@@ -1593,7 +1593,7 @@ void mmTagTextCtrl::OnKillFocus(wxFocusEvent& event)
 {
     textCtrl_->AutoCompCancel();
     // Remove any non-tags
-    Validate();
+    ValidateTagText();
     wxString tagString;
     wxArrayString tags = parseTags(textCtrl_->GetText());
     for (const auto& tag : tags)
@@ -1744,7 +1744,7 @@ void mmTagTextCtrl::OnPaintButton(wxPaintEvent& )
 }
 
 /* Validates all tags passed in tagText, or the contents of the text control if tagText is blank */
-bool mmTagTextCtrl::Validate(const wxString& tagText)
+bool mmTagTextCtrl::ValidateTagText(const wxString& tagText)
 {
     // Clear stored tags
     tags_.clear();
