@@ -83,7 +83,7 @@ private:
     void OnItemRightClick(wxTreeEvent& event);
     void OnRightClick(wxMouseEvent& event);
     void OnSelChanged(wxTreeEvent& event);
-    void OnSyncReportComplete(wxCommandEvent& event);
+    void OnSyncReportComplete(wxCommandEvent&);
     //void OnLabelChanged(wxTreeEvent& event);
     void viewControls(bool enable);
     void renameReport(int64 id);

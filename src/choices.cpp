@@ -30,7 +30,7 @@ ChoicesName::~ChoicesName()
 
 const wxString ChoicesName::getName(int id) const
 {
-    wxASSERT(id >= 0 && id < array.size());
+    wxASSERT(id >= 0 && id < static_cast<int>(array.size()));
     wxASSERT(array[id].id == id);
     return array[id].name;
 }
@@ -64,14 +64,14 @@ ChoicesKeyName::~ChoicesKeyName()
 
 const wxString ChoicesKeyName::getKey(int id) const
 {
-    wxASSERT(id >= 0 && id < array.size());
+    wxASSERT(id >= 0 && id < static_cast<int>(array.size()));
     wxASSERT(array[id].id == id);
     return array[id].key;
 }
 
 const wxString ChoicesKeyName::getName(int id) const
 {
-    wxASSERT(id >= 0 && id < array.size());
+    wxASSERT(id >= 0 && id < static_cast<int>(array.size()));
     wxASSERT(array[id].id == id);
     return array[id].name;
 }

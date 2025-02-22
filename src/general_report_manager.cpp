@@ -1338,7 +1338,7 @@ void mmGeneralReportManager::OnNewWindow(wxWebViewEvent& evt)
 }
 
 // Event handler implementation
-void mmGeneralReportManager::OnSyncReportComplete(wxCommandEvent& event)
+void mmGeneralReportManager::OnSyncReportComplete(wxCommandEvent&)
 {
     wxMessageBox("Report sync completed successfully.", "Sync Complete", wxOK | wxICON_INFORMATION);
 }
@@ -1399,7 +1399,7 @@ void mmGeneralReportManager::OnSyncFromGitHub(wxCommandEvent& WXUNUSED(event))
     wxMessageBox("Reports have been successfully synchronized and stored.", "Sync Successful", wxOK | wxICON_INFORMATION);
 }
 
-void mmGeneralReportManager::DownloadAndStoreReport(const wxString& groupName, const wxString& reportName, const wxString& reportPath)
+void mmGeneralReportManager::DownloadAndStoreReport(const wxString& groupName, const wxString& reportName, [[maybe_unused]] const wxString& reportPath)
 {
     wxString sql, lua, htt, txt;
 
