@@ -477,6 +477,7 @@ void mmCheckingPanel::setFilterAdvanced()
 
 void mmCheckingPanel::loadFilterSettings()
 {
+    m_date_range_a.clear();
     m_date_range_m = -1;
     int src_i = 0;
     int src_m = Option::instance().getCheckingRangeM();
