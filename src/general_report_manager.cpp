@@ -1095,14 +1095,14 @@ void mmGeneralReportManager::showHelp()
     browser_->LoadURL(url);
 }
 
-wxString mmGeneralReportManager::OnGetItemText(long item, long column) const
+wxString mmGeneralReportManager::OnGetItemText(long item, long col_nr) const
 {
-    return m_sqlQueryData.at(item).at(column);
+    return m_sqlQueryData.at(item).at(col_nr);
 }
 
-wxString sqlListCtrl::OnGetItemText(long item, long column) const
+wxString sqlListCtrl::OnGetItemText(long item, long col_nr) const
 {
-    return m_grm->OnGetItemText(item, column);
+    return m_grm->OnGetItemText(item, col_nr);
 }
 
 void mmGeneralReportManager::OnClose(wxCommandEvent& WXUNUSED(event))

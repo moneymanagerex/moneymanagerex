@@ -27,27 +27,38 @@ class wxButton;
 /* Custom ListCtrl class that implements virtual LC style */
 class mmAssetsListCtrl: public mmListCtrl
 {
-    DECLARE_NO_COPY_CLASS(mmAssetsListCtrl)
-    wxDECLARE_EVENT_TABLE();
-
 public:
-    enum LIST_COL
+    enum LISTCOL_ID
     {
-        LIST_COL_ICON = 0,
-        LIST_COL_ID,
-        LIST_COL_NAME,
-        LIST_COL_DATE,
-        LIST_COL_TYPE,
-        LIST_COL_VALUE_INITIAL,
-        LIST_COL_VALUE_CURRENT,
-        LIST_COL_NOTES,
-        LIST_COL_size, // number of columns
+        LISTCOL_ID_ICON = 0,
+        LISTCOL_ID_ID,
+        LISTCOL_ID_NAME,
+        LISTCOL_ID_DATE,
+        LISTCOL_ID_TYPE,
+        LISTCOL_ID_VALUE_INITIAL,
+        LISTCOL_ID_VALUE_CURRENT,
+        LISTCOL_ID_NOTES,
+        LISTCOL_ID_size, // number of columns
     };
 
 private:
-    static const std::vector<ListColumnInfo> col_info_all();
-    int col_size() { return LIST_COL_size; }
-    int col_sort() { return LIST_COL_DATE; }
+    DECLARE_NO_COPY_CLASS(mmAssetsListCtrl)
+    wxDECLARE_EVENT_TABLE();
+    enum {
+        MENU_TREEPOPUP_NEW = wxID_HIGHEST + 1200,
+        MENU_TREEPOPUP_ADDTRANS,
+        MENU_TREEPOPUP_VIEWTRANS,
+        MENU_TREEPOPUP_GOTOACCOUNT,
+        MENU_TREEPOPUP_EDIT,
+        MENU_TREEPOPUP_DELETE,
+        MENU_ON_DUPLICATE_TRANSACTION,
+        MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
+    };
+
+private:
+    static const std::vector<ListColumnInfo> LISTCOL_INFO;
+    mmAssetsPanel* m_panel = nullptr;
+    long m_selected_row = -1;
 
 public:
     mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindowID winid = wxID_ANY);
@@ -68,10 +79,8 @@ protected:
     virtual void OnColClick(wxListEvent& event);
 
 private:
-    mmAssetsPanel* m_panel = nullptr;
-
     /* required overrides for virtual style list control */
-    virtual wxString OnGetItemText(long item, long column) const;
+    virtual wxString OnGetItemText(long item, long col_nr) const;
     virtual int OnGetItemImage(long item) const;
 
     void OnMouseRightClick(wxMouseEvent& event);
@@ -81,17 +90,6 @@ private:
     void OnListItemSelected(wxListEvent& event);
     void OnEndLabelEdit(wxListEvent& event);
     bool EditAsset(Model_Asset::Data* pEntry);
-
-    enum {
-        MENU_TREEPOPUP_NEW = wxID_HIGHEST + 1200,
-        MENU_TREEPOPUP_ADDTRANS,
-        MENU_TREEPOPUP_VIEWTRANS,
-        MENU_TREEPOPUP_GOTOACCOUNT,
-        MENU_TREEPOPUP_EDIT,
-        MENU_TREEPOPUP_DELETE,
-        MENU_ON_DUPLICATE_TRANSACTION,
-        MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
-    };
 };
 
 class mmAssetsPanel : public mmPanelBase
@@ -117,12 +115,12 @@ public:
 
     void updateExtraAssetData(int selIndex);
     int initVirtualListControl(int64 trx_id = -1, int col = 0, bool asc = true);
-    wxString getItem(long item, long column);
+    wxString getItem(long item, int col_id);
 
     Model_Asset::Data_Set m_assets;
     Model_Asset::TYPE_ID m_filter_type;
 
-    wxString BuildPage() const { return m_listCtrlAssets->BuildPage(_t("Assets")); }
+    wxString BuildPage() const { return m_lc->BuildPage(_t("Assets")); }
 
     void AddAssetTrans(const int selected_index);
     void ViewAssetTrans(const int selected_index);
@@ -133,7 +131,7 @@ private:
     void enableEditDeleteButtons(bool enable);
     void OnSearchTxtEntered(wxCommandEvent& event);
     
-    mmAssetsListCtrl* m_listCtrlAssets = nullptr;
+    mmAssetsListCtrl* m_lc = nullptr;
     wxButton* m_bitmapTransFilter = nullptr;
     wxStaticText* header_text_ = nullptr;
 
@@ -155,7 +153,7 @@ private:
     void OnViewAssetTrans(wxCommandEvent& event);
 
     void OnViewPopupSelected(wxCommandEvent& event);
-    void sortTable();
+    void sortList();
     void SetAccountParameters(const Model_Account::Data* account);
 
 private:
@@ -166,4 +164,4 @@ private:
     };
 };
 
-inline void mmAssetsPanel::RefreshList(){ m_listCtrlAssets->doRefreshItems(); }
+inline void mmAssetsPanel::RefreshList(){ m_lc->doRefreshItems(); }

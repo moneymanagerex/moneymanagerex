@@ -28,55 +28,48 @@
 #include <wx/srchctrl.h>
 
 wxBEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
-    EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   mmAssetsListCtrl::OnListItemActivated)
-    EVT_LIST_ITEM_SELECTED(wxID_ANY,    mmAssetsListCtrl::OnListItemSelected)
-    EVT_LIST_END_LABEL_EDIT(wxID_ANY,   mmAssetsListCtrl::OnEndLabelEdit)
     EVT_RIGHT_DOWN(mmAssetsListCtrl::OnMouseRightClick)
     EVT_LEFT_DOWN(mmAssetsListCtrl::OnListLeftClick)
 
-    EVT_MENU(MENU_TREEPOPUP_NEW,    mmAssetsListCtrl::OnNewAsset)
-    EVT_MENU(MENU_TREEPOPUP_EDIT,   mmAssetsListCtrl::OnEditAsset)
-    EVT_MENU(MENU_TREEPOPUP_ADDTRANS, mmAssetsListCtrl::OnAddAssetTrans)
-    EVT_MENU(MENU_TREEPOPUP_VIEWTRANS, mmAssetsListCtrl::OnViewAssetTrans)
-    EVT_MENU(MENU_TREEPOPUP_GOTOACCOUNT, mmAssetsListCtrl::OnGotoAssetAccount)
-    EVT_MENU(MENU_TREEPOPUP_DELETE, mmAssetsListCtrl::OnDeleteAsset)
-    EVT_MENU(MENU_ON_DUPLICATE_TRANSACTION, mmAssetsListCtrl::OnDuplicateAsset)
-    EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, mmAssetsListCtrl::OnOrganizeAttachments)
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, mmAssetsListCtrl::OnListItemActivated)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY,  mmAssetsListCtrl::OnListItemSelected)
+    EVT_LIST_END_LABEL_EDIT(wxID_ANY, mmAssetsListCtrl::OnEndLabelEdit)
+    EVT_LIST_KEY_DOWN(wxID_ANY,       mmAssetsListCtrl::OnListKeyDown)
 
-    EVT_LIST_KEY_DOWN(wxID_ANY, mmAssetsListCtrl::OnListKeyDown)
+    EVT_MENU(MENU_TREEPOPUP_NEW,                  mmAssetsListCtrl::OnNewAsset)
+    EVT_MENU(MENU_TREEPOPUP_EDIT,                 mmAssetsListCtrl::OnEditAsset)
+    EVT_MENU(MENU_TREEPOPUP_ADDTRANS,             mmAssetsListCtrl::OnAddAssetTrans)
+    EVT_MENU(MENU_TREEPOPUP_VIEWTRANS,            mmAssetsListCtrl::OnViewAssetTrans)
+    EVT_MENU(MENU_TREEPOPUP_GOTOACCOUNT,          mmAssetsListCtrl::OnGotoAssetAccount)
+    EVT_MENU(MENU_TREEPOPUP_DELETE,               mmAssetsListCtrl::OnDeleteAsset)
+    EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, mmAssetsListCtrl::OnOrganizeAttachments)
+    EVT_MENU(MENU_ON_DUPLICATE_TRANSACTION,       mmAssetsListCtrl::OnDuplicateAsset)
 wxEND_EVENT_TABLE()
 
-const std::vector<ListColumnInfo> mmAssetsListCtrl::col_info_all()
-{
-    return {
-        { " ",                25,                        wxLIST_FORMAT_LEFT,  false },
-        { _t("ID"),            wxLIST_AUTOSIZE,           wxLIST_FORMAT_RIGHT, true },
-        { _t("Name"),          150,                       wxLIST_FORMAT_LEFT,  true },
-        { _t("Date"),          wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
-        { _t("Type"),          wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
-        { _t("Initial Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _t("Current Value"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _t("Notes"),         450,                       wxLIST_FORMAT_LEFT,  true },
-    };
-}
+const std::vector<ListColumnInfo> mmAssetsListCtrl::LISTCOL_INFO = {
+    { LISTCOL_ID_ICON,          true, _n("Icon"),          25,  _FL, false },
+    { LISTCOL_ID_ID,            true, _n("ID"),            _WA, _FR, true },
+    { LISTCOL_ID_NAME,          true, _n("Name"),          150, _FL, true },
+    { LISTCOL_ID_DATE,          true, _n("Date"),          _WH, _FL, true },
+    { LISTCOL_ID_TYPE,          true, _n("Type"),          _WH, _FL, true },
+    { LISTCOL_ID_VALUE_INITIAL, true, _n("Initial Value"), _WH, _FR, true },
+    { LISTCOL_ID_VALUE_CURRENT, true, _n("Current Value"), _WH, _FR, true },
+    { LISTCOL_ID_NOTES,         true, _n("Notes"),         450, _FL, true },
+};
 
 mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindowID winid) :
     mmListCtrl(parent, winid),
     m_panel(cp)
 {
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
-    m_columns = col_info_all();
-    for (int i = 0; i < LIST_COL_size; ++i)
-        m_column_order.push_back(i);
-    m_col_width_fmt = "ASSETS_COL%d_WIDTH";
-    m_col_type_str = "ASSETS";
 
+    o_col_order_prefix = "ASSETS";
+    o_col_width_prefix = "ASSETS_COL";
+    o_sort_prefix = "ASSETS";
+    m_col_id_info = LISTCOL_INFO;
+    m_col_nr_id = ListColumnInfo::getId(LISTCOL_INFO);
+    m_sort_col_id = { LISTCOL_ID_DATE };
     createColumns();
-
-    // load the global variables
-    m_default_sort_column = col_sort();
-    m_selected_col = Model_Setting::instance().getInt("ASSETS_SORT_COL", m_default_sort_column);
-    m_asc = Model_Setting::instance().getBool("ASSETS_ASC", true);
 }
 
 void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
@@ -135,9 +128,9 @@ void mmAssetsListCtrl::OnListLeftClick(wxMouseEvent& event)
     event.Skip();
 }
 
-wxString mmAssetsListCtrl::OnGetItemText(long item, long column) const
+wxString mmAssetsListCtrl::OnGetItemText(long item, long col_nr) const
 {
-    return m_panel->getItem(item, m_column_order[column]);
+    return m_panel->getItem(item, getColId(col_nr));
 }
 
 void mmAssetsListCtrl::OnListItemSelected(wxListEvent& event)
@@ -176,12 +169,12 @@ void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& /*event*/)
 
 void mmAssetsListCtrl::doRefreshItems(int64 trx_id)
 {
-    int selectedIndex = m_panel->initVirtualListControl(trx_id, m_selected_col, m_asc);
+    int selectedIndex = m_panel->initVirtualListControl(trx_id, getSortColNr(), getSortAsc());
 
     long cnt = static_cast<long>(m_panel->m_assets.size());
 
     if (selectedIndex >= cnt || selectedIndex < 0)
-        selectedIndex = m_asc ? cnt - 1 : 0;
+        selectedIndex = getSortAsc() ? cnt - 1 : 0;
 
     if (cnt>0)
         RefreshItems(0, cnt > 0 ? --cnt : 0);
@@ -213,7 +206,7 @@ void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_NAME_ASSET, asset.ASSETID);
         Model_Translink::RemoveTransLinkRecords(Model_Attachment::REFTYPE_ID_ASSET, asset.ASSETID);
 
-        m_panel->initVirtualListControl(-1, m_selected_col, m_asc);
+        m_panel->initVirtualListControl(-1, getSortColNr(), getSortAsc());
         m_selected_row = -1;
         m_panel->updateExtraAssetData(m_selected_row);
     }
@@ -311,30 +304,30 @@ bool mmAssetsListCtrl::EditAsset(Model_Asset::Data* pEntry)
 
 void mmAssetsListCtrl::OnColClick(wxListEvent& event)
 {
-    int ColumnNr;
+    int col_nr;
     if (event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET)
-        ColumnNr = event.GetColumn();
+        col_nr = event.GetColumn();
     else
-        ColumnNr = m_ColumnHeaderNbr;
-    if (0 > ColumnNr || ColumnNr >= col_size() || ColumnNr == 0) return;
+        col_nr = m_col_nr;
+    if (!isValidColNr(col_nr) || col_nr == 0)
+        return;
 
-    if (m_selected_col == ColumnNr &&
+    if (getSortColNr() == col_nr &&
         event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET
     )
-        m_asc = !m_asc;
+        m_sort_asc[0] = !m_sort_asc[0];
 
     wxListItem item;
     item.SetMask(wxLIST_MASK_IMAGE);
     item.SetImage(-1);
-    SetColumn(m_selected_col, item);
+    SetColumn(getSortColNr(), item);
 
-    m_selected_col = ColumnNr;
+    m_sort_col_id[0] = getColId(col_nr);
 
-    item.SetImage(m_asc ? mmAssetsPanel::ICON_UPARROW : mmAssetsPanel::ICON_DOWNARROW);
-    SetColumn(m_selected_col, item);
+    item.SetImage(getSortAsc() ? mmAssetsPanel::ICON_UPARROW : mmAssetsPanel::ICON_DOWNARROW);
+    SetColumn(getSortColNr(), item);
 
-    Model_Setting::instance().setBool("ASSETS_ASC", m_asc);
-    Model_Setting::instance().setInt("ASSETS_SORT_COL", m_selected_col);
+    savePreferences();
 
     int64 trx_id = -1;
     if (m_selected_row>=0) trx_id = m_panel->m_assets[m_selected_row].ASSETID;
@@ -391,9 +384,9 @@ bool mmAssetsPanel::Create(wxWindow *parent
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    initVirtualListControl(-1, m_listCtrlAssets->m_selected_col, m_listCtrlAssets->m_asc);
+    initVirtualListControl(-1, m_lc->getSortColNr(), m_lc->getSortAsc());
     if (!this->m_assets.empty())
-        m_listCtrlAssets->EnsureVisible(this->m_assets.size() - 1);
+        m_lc->EnsureVisible(this->m_assets.size() - 1);
 
     this->windowsFreezeThaw();
     GetSizer()->Fit(this);
@@ -437,7 +430,7 @@ void mmAssetsPanel::CreateControls()
     wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow( this, wxID_STATIC,
         wxDefaultPosition, wxSize(200, 200), wxSP_3DBORDER|wxSP_3DSASH|wxNO_BORDER);
 
-    m_listCtrlAssets = new mmAssetsListCtrl(this, itemSplitterWindow10, wxID_ANY);
+    m_lc = new mmAssetsListCtrl(this, itemSplitterWindow10, wxID_ANY);
 
     wxVector<wxBitmapBundle> images;
     images.push_back(mmBitmapBundle(png::PROPERTY));
@@ -450,13 +443,13 @@ void mmAssetsPanel::CreateControls()
     images.push_back(mmBitmapBundle(png::UPARROW));
     images.push_back(mmBitmapBundle(png::DOWNARROW));
 
-    m_listCtrlAssets->SetSmallImages(images);
+    m_lc->SetSmallImages(images);
 
     wxPanel* assets_panel = new wxPanel(itemSplitterWindow10, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
     mmThemeMetaColour(assets_panel, meta::COLOR_LISTPANEL);
 
-    itemSplitterWindow10->SplitHorizontally(m_listCtrlAssets, assets_panel);
+    itemSplitterWindow10->SplitHorizontally(m_lc, assets_panel);
     itemSplitterWindow10->SetMinimumPaneSize(100);
     itemSplitterWindow10->SetSashGravity(1.0);
     itemBoxSizer9->Add(itemSplitterWindow10, g_flagsExpandBorder1);
@@ -524,59 +517,59 @@ void mmAssetsPanel::CreateControls()
     updateExtraAssetData(-1);
 }
 
-void mmAssetsPanel::sortTable()
+void mmAssetsPanel::sortList()
 {
     std::sort(this->m_assets.begin(), this->m_assets.end());
     std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterBySTARTDATE());
-    switch (this->m_listCtrlAssets->m_selected_col)
+    switch (this->m_lc->m_sort_col_id[0])
     {
-    case mmAssetsListCtrl::LIST_COL_ID:
+    case mmAssetsListCtrl::LISTCOL_ID_ID:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETID());
         break;
-    case mmAssetsListCtrl::LIST_COL_NAME:
+    case mmAssetsListCtrl::LISTCOL_ID_NAME:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETNAME());
         break;
-    case mmAssetsListCtrl::LIST_COL_TYPE:
+    case mmAssetsListCtrl::LISTCOL_ID_TYPE:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETTYPE());
         break;
-    case mmAssetsListCtrl::LIST_COL_VALUE_INITIAL:
+    case mmAssetsListCtrl::LISTCOL_ID_VALUE_INITIAL:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByVALUE());
         break;
-    case mmAssetsListCtrl::LIST_COL_VALUE_CURRENT:
+    case mmAssetsListCtrl::LISTCOL_ID_VALUE_CURRENT:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end()
             , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
             {
                 return Model_Asset::value(x) < Model_Asset::value(y);
             });
         break;
-    case mmAssetsListCtrl::LIST_COL_DATE:
+    case mmAssetsListCtrl::LISTCOL_ID_DATE:
         break;
-    case mmAssetsListCtrl::LIST_COL_NOTES:
+    case mmAssetsListCtrl::LISTCOL_ID_NOTES:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByNOTES());
     default:
         break;
     }
 
-    if (!this->m_listCtrlAssets->m_asc) std::reverse(this->m_assets.begin(), this->m_assets.end());
+    if (!this->m_lc->getSortAsc()) std::reverse(this->m_assets.begin(), this->m_assets.end());
 }
 
 int mmAssetsPanel::initVirtualListControl(int64 id, int col, bool asc)
 {
     /* Clear all the records */
-    m_listCtrlAssets->DeleteAllItems();
+    m_lc->DeleteAllItems();
 
     wxListItem item;
     item.SetMask(wxLIST_MASK_IMAGE);
     item.SetImage(asc ? ICON_UPARROW : ICON_DOWNARROW);
-    m_listCtrlAssets->SetColumn(col, item);
+    m_lc->SetColumn(col, item);
 
     if (this->m_filter_type == Model_Asset::TYPE_ID(-1)) // ALL
         this->m_assets = Model_Asset::instance().all();
     else
         this->m_assets = Model_Asset::instance().find(Model_Asset::ASSETTYPE(m_filter_type));
-    this->sortTable();
+    this->sortList();
 
-    m_listCtrlAssets->SetItemCount(this->m_assets.size());
+    m_lc->SetItemCount(this->m_assets.size());
 
     double balance = 0.0;
     for (const auto& asset: this->m_assets) balance += Model_Asset::value(asset); 
@@ -593,55 +586,53 @@ int mmAssetsPanel::initVirtualListControl(int64 id, int col, bool asc)
 
 void mmAssetsPanel::OnDeleteAsset(wxCommandEvent& event)
 {
-    m_listCtrlAssets->OnDeleteAsset(event);
+    m_lc->OnDeleteAsset(event);
 }
 
 void mmAssetsPanel::OnNewAsset(wxCommandEvent& event)
 {
-    m_listCtrlAssets->OnNewAsset(event);
+    m_lc->OnNewAsset(event);
 }
 
 void mmAssetsPanel::OnEditAsset(wxCommandEvent& event)
 {
-    m_listCtrlAssets->OnEditAsset(event);
+    m_lc->OnEditAsset(event);
 }
 
 void mmAssetsPanel::OnAddAssetTrans(wxCommandEvent& event)
 {
-    m_listCtrlAssets->OnAddAssetTrans(event);
+    m_lc->OnAddAssetTrans(event);
 }
 
 void mmAssetsPanel::OnViewAssetTrans(wxCommandEvent& event)
 {
-    m_listCtrlAssets->OnViewAssetTrans(event);
+    m_lc->OnViewAssetTrans(event);
 }
 
 void mmAssetsPanel::OnOpenAttachment(wxCommandEvent& event)
 {
-    m_listCtrlAssets->OnOpenAttachment(event);
+    m_lc->OnOpenAttachment(event);
 }
 
-wxString mmAssetsPanel::getItem(long item, long column)
+wxString mmAssetsPanel::getItem(long item, int col_id)
 {
     const Model_Asset::Data& asset = this->m_assets[item];
-    switch (column)
-    {
-    case mmAssetsListCtrl::LIST_COL_ICON:
+    switch (col_id) {
+    case mmAssetsListCtrl::LISTCOL_ID_ICON:
         return "";
-    case mmAssetsListCtrl::LIST_COL_ID:
+    case mmAssetsListCtrl::LISTCOL_ID_ID:
         return wxString::Format("%lld", asset.ASSETID).Trim();
-    case mmAssetsListCtrl::LIST_COL_NAME:
+    case mmAssetsListCtrl::LISTCOL_ID_NAME:
         return asset.ASSETNAME;
-    case mmAssetsListCtrl::LIST_COL_TYPE:
+    case mmAssetsListCtrl::LISTCOL_ID_TYPE:
         return wxGetTranslation(asset.ASSETTYPE);
-    case mmAssetsListCtrl::LIST_COL_VALUE_INITIAL:
+    case mmAssetsListCtrl::LISTCOL_ID_VALUE_INITIAL:
         return Model_Currency::toCurrency(asset.VALUE);
-    case mmAssetsListCtrl::LIST_COL_VALUE_CURRENT:
+    case mmAssetsListCtrl::LISTCOL_ID_VALUE_CURRENT:
         return Model_Currency::toCurrency(Model_Asset::value(asset));
-    case mmAssetsListCtrl::LIST_COL_DATE:
+    case mmAssetsListCtrl::LISTCOL_ID_DATE:
         return mmGetDateTimeForDisplay(asset.STARTDATE);
-    case mmAssetsListCtrl::LIST_COL_NOTES:
-    {
+    case mmAssetsListCtrl::LISTCOL_ID_NOTES: {
         wxString full_notes = asset.NOTES;
         full_notes.Replace("\n", " ");
         if (Model_Attachment::NrAttachments(Model_Attachment::REFTYPE_NAME_ASSET, asset.ASSETID))
@@ -731,7 +722,7 @@ void mmAssetsPanel::OnViewPopupSelected(wxCommandEvent& event)
     }
 
     int64 trx_id = -1;
-    m_listCtrlAssets->doRefreshItems(trx_id);
+    m_lc->doRefreshItems(trx_id);
     updateExtraAssetData(-1);
 }
 
@@ -740,25 +731,25 @@ void mmAssetsPanel::OnSearchTxtEntered(wxCommandEvent& event)
     const wxString search_string = event.GetString().Lower();
     if (search_string.IsEmpty()) return;
 
-    long last = m_listCtrlAssets->GetItemCount();
-    long selectedItem = m_listCtrlAssets->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+    long last = m_lc->GetItemCount();
+    long selectedItem = m_lc->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
     if (selectedItem < 0) //nothing selected
-        selectedItem = m_listCtrlAssets->m_asc ? last - 1 : 0;
+        selectedItem = m_lc->getSortAsc() ? last - 1 : 0;
 
     while (selectedItem > 0 && selectedItem <= last)
     {
-        m_listCtrlAssets->m_asc ? selectedItem-- : selectedItem++;
-        const wxString t = getItem(selectedItem, mmAssetsListCtrl::LIST_COL_NOTES).Lower();
+        m_lc->getSortAsc() ? selectedItem-- : selectedItem++;
+        const wxString t = getItem(selectedItem, mmAssetsListCtrl::LISTCOL_ID_NOTES).Lower();
         if (t.Matches(search_string + "*"))
         {
             //First of all any items should be unselected
-            long cursel = m_listCtrlAssets->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+            long cursel = m_lc->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
             if (cursel != wxNOT_FOUND)
-                m_listCtrlAssets->SetItemState(cursel, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+                m_lc->SetItemState(cursel, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
 
             //Then finded item will be selected
-            m_listCtrlAssets->SetItemState(selectedItem, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-            m_listCtrlAssets->EnsureVisible(selectedItem);
+            m_lc->SetItemState(selectedItem, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+            m_lc->EnsureVisible(selectedItem);
             break;
         }
     }
@@ -789,7 +780,7 @@ void mmAssetsPanel::AddAssetTrans(const int selected_index)
 
     if (asset_dialog.ShowModal() == wxID_OK)
     {
-        m_listCtrlAssets->doRefreshItems(selected_index);
+        m_lc->doRefreshItems(selected_index);
         updateExtraAssetData(selected_index);
     }
 }

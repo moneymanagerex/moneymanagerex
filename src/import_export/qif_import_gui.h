@@ -127,19 +127,19 @@ private:
     std::map<std::pair <int64, wxString>, std::map<int, std::pair<wxString, wxRegEx>> > payeeMatchPatterns_;
     bool payeeRegExInitialized_ = false;
 
-    enum LIST_COL
+    enum LISTCOL_ID
     {
-        LIST_COL_ID = 0,
-        LIST_COL_ACCOUNT,
-        LIST_COL_DATE,
-        LIST_COL_NUMBER,
-        LIST_COL_PAYEE,
-        LIST_COL_TYPE,
-        LIST_COL_CATEGORY,
-        LIST_COL_TAGS,
-        LIST_COL_VALUE,
-        LIST_COL_NOTES,
-        LIST_COL_size, // number of columns
+        LISTCOL_ID_ID = 0,
+        LISTCOL_ID_ACCOUNT,
+        LISTCOL_ID_DATE,
+        LISTCOL_ID_NUMBER,
+        LISTCOL_ID_PAYEE,
+        LISTCOL_ID_TYPE,
+        LISTCOL_ID_CATEGORY,
+        LISTCOL_ID_TAGS,
+        LISTCOL_ID_VALUE,
+        LISTCOL_ID_NOTES,
+        LISTCOL_ID_size, // number of columns
     };
     enum {
         ID_ACCOUNT = wxID_HIGHEST + 1

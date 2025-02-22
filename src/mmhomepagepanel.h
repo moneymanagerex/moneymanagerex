@@ -57,7 +57,7 @@ private:
     wxString GetHomePageText() const;
     wxWebView* browser_ = nullptr;
     void createControls();
-    void sortTable() {}
+    void sortList() {}
     void OnNewWindow(wxWebViewEvent& evt);
 
     wxString m_templateText;
