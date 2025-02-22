@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-XGETTEXT_ARGS="-k_ -kN_ -kwxGetTranslation -kwxTRANSLATE -kwxPLURAL:1,2 -kwxPLURAL_U8:1,2 -k_u\
+XGETTEXT_ARGS="-k_ -kN_ -kwxGetTranslation -kwxTRANSLATE -kwxPLURAL:1,2 -kwxPLURAL_U8:1,2 -k_u -k_n -k_nu -k_t -k_tu\
                --language=C++ \
                --sort-by-file \
                --add-comments=TRANSLATORS \
