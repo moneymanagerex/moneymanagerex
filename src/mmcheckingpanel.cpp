@@ -522,9 +522,9 @@ void mmCheckingPanel::saveFilterSettings()
     }
     else {
         auto& allocator = j_doc.GetAllocator();
-        rapidjson::Value key("FILTER", allocator);
+        rapidjson::Value field_key("FILTER", allocator);
         rapidjson::Value value(filter.utf8_str(), allocator);
-        j_doc.AddMember(key, value, allocator);
+        j_doc.AddMember(field_key, value, allocator);
     }
 
     if (m_filter_id == FILTER_ID_DATE) {
@@ -534,9 +534,9 @@ void mmCheckingPanel::saveFilterSettings()
         }
         else {
             auto& allocator = j_doc.GetAllocator();
-            rapidjson::Value key("DATE", allocator);
+            rapidjson::Value field_key("DATE", allocator);
             rapidjson::Value value(date.utf8_str(), allocator);
-            j_doc.AddMember(key, value, allocator);
+            j_doc.AddMember(field_key, value, allocator);
         }
     }
 
@@ -546,8 +546,8 @@ void mmCheckingPanel::saveFilterSettings()
         }
         else {
             auto& allocator = j_doc.GetAllocator();
-            rapidjson::Value key("SCHEDULED", allocator);
-            j_doc.AddMember(key, m_scheduled_selected, allocator);
+            rapidjson::Value field_key("SCHEDULED", allocator);
+            j_doc.AddMember(field_key, m_scheduled_selected, allocator);
         }
     }
 

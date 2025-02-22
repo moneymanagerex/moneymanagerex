@@ -405,7 +405,7 @@ void mmListCtrl::onHeaderShow(wxCommandEvent& event)
     // move cur_nr to the right of m_col_nr
     while (cur_nr != m_col_nr && cur_nr != m_col_nr + 1) {
         int new_nr = cur_nr + (cur_nr < m_col_nr ? 1 : -1);
-        int cur_id = getColId(cur_nr);
+        cur_id = getColId(cur_nr);
         int new_id = getColId(new_nr);
         wxLogDebug("mmListCtrl::onHeaderShow(): swap columns %d (%s) <-> %d (%s)",
             cur_nr, m_col_id_info[cur_id].header,
@@ -417,7 +417,7 @@ void mmListCtrl::onHeaderShow(wxCommandEvent& event)
         cur_item.SetAlign(static_cast<wxListColumnFormat>(m_col_id_info[cur_id].format));
         new_item.SetText(getColHeader(new_id));
         new_item.SetAlign(static_cast<wxListColumnFormat>(m_col_id_info[new_id].format));
-        int cur_width = GetColumnWidth(cur_nr);
+        cur_width = GetColumnWidth(cur_nr);
         int new_width = GetColumnWidth(new_nr);
         SetColumn(cur_nr, new_item); SetColumnWidth(cur_nr, new_width);
         SetColumn(new_nr, cur_item); SetColumnWidth(new_nr, cur_width);
@@ -437,7 +437,7 @@ void mmListCtrl::onHeaderMove(wxCommandEvent& WXUNUSED(event), int direction)
     #ifdef wxHAS_LISTCTRL_COLUMN_ORDER
     // on Windows the visual order can differ from the array order due to drag/drop
     // so we need to realign them before adjusting the column orders programatically
-    std::vector<int> new_nr_order;
+    wxArrayInt new_nr_order;
     std::vector<int> new_nr_id;
     bool col_found = false;
     for (int new_nr = 0; new_nr < getColNrSize(); ++new_nr) {
