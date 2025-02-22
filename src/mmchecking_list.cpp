@@ -732,12 +732,10 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
         );
     }
     bool columnIsAmount = false;
-    unsigned long col_nr = getColumnFromPosition(event.GetX());
+    int col_nr = static_cast<int>(getColumnFromPosition(event.GetX()));
     int flags;
     unsigned long row = HitTest(event.GetPosition(), flags);
-    if (row < m_trans.size() && (flags & wxLIST_HITTEST_ONITEM) &&
-        col_nr < static_cast<int>(getColNrSize())
-    ) {
+    if (row < m_trans.size() && (flags & wxLIST_HITTEST_ONITEM) && col_nr < getColNrSize()) {
         int col_id = getColId(col_nr);
         wxString menuItemText;
         wxString refType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
