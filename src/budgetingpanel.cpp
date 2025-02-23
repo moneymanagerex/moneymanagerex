@@ -53,41 +53,25 @@ static const wxString VIEW_INCOME   = _n("View Income Budget Categories");
 static const wxString VIEW_EXPENSE  = _n("View Expense Budget Categories");
 static const wxString VIEW_SUMM     = _n("View Budget Category Summary");
 
-/*******************************************************/
 wxBEGIN_EVENT_TABLE(mmBudgetingPanel, wxPanel)
-EVT_BUTTON(wxID_FILE2, mmBudgetingPanel::OnMouseLeftDown)
-EVT_MENU(wxID_ANY, mmBudgetingPanel::OnViewPopupSelected)
+    EVT_BUTTON(wxID_FILE2, mmBudgetingPanel::OnMouseLeftDown)
+    EVT_MENU(wxID_ANY,     mmBudgetingPanel::OnViewPopupSelected)
 wxEND_EVENT_TABLE()
-/*******************************************************/
+
 wxBEGIN_EVENT_TABLE(budgetingListCtrl, mmListCtrl)
-EVT_LIST_ITEM_SELECTED(wxID_ANY, budgetingListCtrl::OnListItemSelected)
-EVT_LIST_ITEM_ACTIVATED(wxID_ANY, budgetingListCtrl::OnListItemActivated)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY,  budgetingListCtrl::OnListItemSelected)
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, budgetingListCtrl::OnListItemActivated)
 wxEND_EVENT_TABLE()
-/*******************************************************/
 
-const std::vector<ListColumnInfo> budgetingListCtrl::col_info_all()
-{
-    return {
-        { _t("Icon"),      wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  false },
-        { _t("Category"),  wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _t("Frequency"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _t("Amount"),    wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _t("Estimated"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _t("Actual"),    wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _t("Notes"),     wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
-    };
-}
-
-void budgetingListCtrl::createColumns_()
-{
-    InsertColumn(LIST_COL_ICON, (" "));
-    InsertColumn(LIST_COL_CATEGORY, m_columns[LIST_COL_CATEGORY].header);
-    InsertColumn(LIST_COL_FREQUENCY, m_columns[LIST_COL_FREQUENCY].header);
-    InsertColumn(LIST_COL_AMOUNT, m_columns[LIST_COL_AMOUNT].header, wxLIST_FORMAT_RIGHT);
-    InsertColumn(LIST_COL_ESTIMATED, m_columns[LIST_COL_ESTIMATED].header, wxLIST_FORMAT_RIGHT);
-    InsertColumn(LIST_COL_ACTUAL, m_columns[LIST_COL_ACTUAL].header, wxLIST_FORMAT_RIGHT);
-    InsertColumn(LIST_COL_NOTES, m_columns[LIST_COL_NOTES].header, wxLIST_FORMAT_LEFT);
-}
+const std::vector<ListColumnInfo> budgetingListCtrl::LIST_INFO = {
+    { LIST_ID_ICON,      true, _n("Icon"),      _WH, _FL, false },
+    { LIST_ID_CATEGORY,  true, _n("Category"),  _WH, _FL, false },
+    { LIST_ID_FREQUENCY, true, _n("Frequency"), _WH, _FL, false },
+    { LIST_ID_AMOUNT,    true, _n("Amount"),    _WH, _FR, false },
+    { LIST_ID_ESTIMATED, true, _n("Estimated"), _WH, _FR, false },
+    { LIST_ID_ACTUAL,    true, _n("Actual"),    _WH, _FR, false },
+    { LIST_ID_NOTES,     true, _n("Notes"),     _WH, _FL, false },
+};
 
 mmBudgetingPanel::mmBudgetingPanel(int64 budgetYearID
     , wxWindow *parent, mmGUIFrame *frame
@@ -95,7 +79,7 @@ mmBudgetingPanel::mmBudgetingPanel(int64 budgetYearID
     , const wxPoint& pos, const wxSize& size
     , long style, const wxString& name)
     : m_frame(frame)
-    , listCtrlBudget_(nullptr)
+    , m_lc(nullptr)
     , budgetYearID_(budgetYearID)
 {
     Create(parent, winid, pos, size, style, name);
@@ -115,7 +99,7 @@ bool mmBudgetingPanel::Create(wxWindow *parent
 
     initVirtualListControl();
     if (!budget_.empty())
-        listCtrlBudget_->EnsureVisible(0);
+        m_lc->EnsureVisible(0);
 
     this->windowsFreezeThaw();
     Model_Usage::instance().pageview(this);
@@ -153,10 +137,10 @@ void mmBudgetingPanel::OnViewPopupSelected(wxCommandEvent& event)
 void mmBudgetingPanel::RefreshList()
 {
     initVirtualListControl();
-    listCtrlBudget_->Refresh();
-    listCtrlBudget_->Update();
+    m_lc->Refresh();
+    m_lc->Update();
     if (!budget_.empty())
-        listCtrlBudget_->EnsureVisible(0);
+        m_lc->EnsureVisible(0);
 }
 
 void mmBudgetingPanel::OnMouseLeftDown(wxCommandEvent& event)
@@ -281,34 +265,30 @@ void mmBudgetingPanel::CreateControls()
     images.push_back(mmBitmapBundle(png::VOID_STAT));
     images.push_back(mmBitmapBundle(png::FOLLOW_UP));
 
-    listCtrlBudget_ = new budgetingListCtrl(this, this, wxID_ANY);
+    m_lc = new budgetingListCtrl(this, this, wxID_ANY);
+    m_lc->SetSmallImages(images);
+    m_lc->createColumns();
 
-    listCtrlBudget_->SetSmallImages(images);
-    listCtrlBudget_->createColumns_();
-
-    /* Get data from inidb */
-    for (int i = 0; i < listCtrlBudget_->GetColumnCount(); ++i)
-    {
-        int col_width = Model_Setting::instance().getInt(wxString::Format(listCtrlBudget_->m_col_width_fmt, i)
-            , listCtrlBudget_->m_columns[i].width);
-        listCtrlBudget_->SetColumnWidth(i, col_width);
-    }
-    itemBoxSizer2->Add(listCtrlBudget_.get(), 1, wxGROW | wxALL, 1);
+    itemBoxSizer2->Add(m_lc.get(), 1, wxGROW | wxALL, 1);
 }
 
-budgetingListCtrl::budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, const wxWindowID id)
-    : mmListCtrl(parent, id)
-    , attr3_(new wxListItemAttr(wxNullColour, mmThemeMetaColour(meta::COLOR_LISTTOTAL), wxNullFont))
-    , cp_(cp)
+budgetingListCtrl::budgetingListCtrl(
+    mmBudgetingPanel* cp, wxWindow *parent, const wxWindowID id
+) :
+    mmListCtrl(parent, id),
+    attr3_(new wxListItemAttr(
+        wxNullColour, mmThemeMetaColour(meta::COLOR_LISTTOTAL), wxNullFont
+    )),
+    cp_(cp)
 {
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
-    m_columns = col_info_all();
-    m_col_width_fmt = "BUDGET_COL%d_WIDTH";
-    m_col_type_str = "BUDGET";
+    m_setting_name = "BUDGET";
+    m_col_id_info = LIST_INFO;
+    o_col_width_prefix = "BUDGET_COL";
 }
 
-void mmBudgetingPanel::sortTable()
+void mmBudgetingPanel::sortList()
 {
     //TODO: Sort budget panel
 }
@@ -490,7 +470,7 @@ void mmBudgetingPanel::initVirtualListControl()
                         {
                             budget_.push_back(std::make_pair(-1, subcats[totals_queue.back()].CATEGID));
                             size_t transCatTotalIndex = budget_.size() - 1;
-                            listCtrlBudget_->RefreshItem(transCatTotalIndex);
+                            m_lc->RefreshItem(transCatTotalIndex);
                         }
                         totals_queue.pop_back();
                     }
@@ -503,7 +483,7 @@ void mmBudgetingPanel::initVirtualListControl()
                     {
                         budget_.push_back(std::make_pair(-1, subcats[totals_queue.back()].CATEGID));
                         size_t transCatTotalIndex = budget_.size() - 1;
-                        listCtrlBudget_->RefreshItem(transCatTotalIndex);
+                        m_lc->RefreshItem(transCatTotalIndex);
                     }
                     totals_queue.pop_back();
                 }
@@ -515,11 +495,11 @@ void mmBudgetingPanel::initVirtualListControl()
         {
             budget_.push_back(std::make_pair(-1, category.CATEGID));
             size_t transCatTotalIndex = budget_.size() - 1;
-            listCtrlBudget_->RefreshItem(transCatTotalIndex);
+            m_lc->RefreshItem(transCatTotalIndex);
         }
     }
 
-    listCtrlBudget_->SetItemCount(budget_.size());
+    m_lc->SetItemCount(budget_.size());
 
     wxString est_amount, act_amount, diff_amount;
     est_amount = Model_Currency::toCurrency(estIncome);
@@ -571,14 +551,12 @@ void budgetingListCtrl::OnListItemSelected(wxListEvent& event)
     selectedIndex_ = event.GetIndex();
 }
 
-wxString mmBudgetingPanel::getItem(long item, long column)
+wxString mmBudgetingPanel::getItem(long item, int col_id)
 {
-    switch (column)
-    {
-    case budgetingListCtrl::LIST_COL_ICON:
+    switch (col_id) {
+    case budgetingListCtrl::LIST_ID_ICON:
         return " ";
-    case budgetingListCtrl::LIST_COL_CATEGORY:
-    {
+    case budgetingListCtrl::LIST_ID_CATEGORY: {
         Model_Category::Data* category = Model_Category::instance().get(budget_[item].first > 0
             ? budget_[item].first : budget_[item].second);
         if (category) {
@@ -590,56 +568,45 @@ wxString mmBudgetingPanel::getItem(long item, long column)
         }
         return wxEmptyString;
     }
-    case budgetingListCtrl::LIST_COL_FREQUENCY:
-    {
-        if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second)
-        {
+    case budgetingListCtrl::LIST_ID_FREQUENCY: {
+        if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second) {
             Model_Budget::PERIOD_ID period = budgetPeriod_[budget_[item].first];
             return wxGetTranslation(Model_Budget::period_name(period));
         }
         return wxEmptyString;
     }
-    case budgetingListCtrl::LIST_COL_AMOUNT:
-    {
-        if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second)
-        {
+    case budgetingListCtrl::LIST_ID_AMOUNT: {
+        if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second) {
             double amt = budgetAmt_[budget_[item].first];
             return Model_Currency::toCurrency(amt);
         }
         return wxEmptyString;
     }
-    case budgetingListCtrl::LIST_COL_ESTIMATED:
-    {
-        if (budget_[item].first < 0)
-        {
+    case budgetingListCtrl::LIST_ID_ESTIMATED: {
+        if (budget_[item].first < 0) {
             double estimated = budgetTotals_[budget_[item].second].first;
             return Model_Currency::toCurrency(estimated);
         }
-        else if (displayDetails_[budget_[item].first].second)
-        {
+        else if (displayDetails_[budget_[item].first].second) {
             double estimated = getEstimate(budget_[item].first);
             return Model_Currency::toCurrency(estimated);
         }
         return wxEmptyString;
     }
-    case budgetingListCtrl::LIST_COL_ACTUAL:
-    {
-        if (budget_[item].first < 0)
-        {
+    case budgetingListCtrl::LIST_ID_ACTUAL: {
+        if (budget_[item].first < 0) {
             double actual = budgetTotals_[budget_[item].second].second;
             return Model_Currency::toCurrency(actual);
         }
-        else if (displayDetails_[budget_[item].first].second)
-        {
+        else if (displayDetails_[budget_[item].first].second) {
             double actual = categoryStats_[budget_[item].second >= 0 ? budget_[item].second
                 : budget_[item].first][0];
             return Model_Currency::toCurrency(actual);
         }
         return wxEmptyString;
     }
-    case budgetingListCtrl::LIST_COL_NOTES:
-        if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second)
-        {
+    case budgetingListCtrl::LIST_ID_NOTES:
+        if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second) {
             wxString value = budgetNotes_[budget_[item].second >= 0 ? budget_[item].second
                 : budget_[item].first];
             value.Replace("\n", " ");
@@ -690,9 +657,9 @@ int mmBudgetingPanel::GetItemImage(long item) const
     }
 }
 
-wxString budgetingListCtrl::OnGetItemText(long item, long column) const
+wxString budgetingListCtrl::OnGetItemText(long item, long col_nr) const
 {
-    return cp_->getItem(item, column);
+    return cp_->getItem(item, getColId(static_cast<int>(col_nr)));
 }
 
 wxListItemAttr* budgetingListCtrl::OnGetItemAttr(long item) const
@@ -747,8 +714,8 @@ void mmBudgetingPanel::OnListItemActivated(int selectedIndex)
     if (dlg.ShowModal() == wxID_OK)
     {
         initVirtualListControl();
-        listCtrlBudget_->Refresh();
-        listCtrlBudget_->Update();
-        listCtrlBudget_->EnsureVisible(selectedIndex);
+        m_lc->Refresh();
+        m_lc->Update();
+        m_lc->EnsureVisible(selectedIndex);
     }
 }

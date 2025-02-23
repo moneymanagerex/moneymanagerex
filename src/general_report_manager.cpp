@@ -54,8 +54,12 @@ public:
 protected:
     virtual ExitCode Entry() override
     {
-        bool success = m_manager->syncReport(m_id);  // Execute syncReport
-        wxQueueEvent(wxTheApp->GetTopWindow(), new wxCommandEvent(wxEVT_COMMAND_BUTTON_CLICKED));  // Notify UI thread
+        m_manager->syncReport(m_id);
+        // Notify UI thread
+        wxQueueEvent(
+            wxTheApp->GetTopWindow(),
+            new wxCommandEvent(wxEVT_COMMAND_BUTTON_CLICKED)
+        );
         return static_cast<ExitCode>(0);
     }
 
@@ -1151,14 +1155,14 @@ void mmGeneralReportManager::showHelp()
     browser_->LoadURL(url);
 }
 
-wxString mmGeneralReportManager::OnGetItemText(long item, long column) const
+wxString mmGeneralReportManager::OnGetItemText(long item, long col_nr) const
 {
-    return m_sqlQueryData.at(item).at(column);
+    return m_sqlQueryData.at(item).at(col_nr);
 }
 
-wxString sqlListCtrl::OnGetItemText(long item, long column) const
+wxString sqlListCtrl::OnGetItemText(long item, long col_nr) const
 {
-    return m_grm->OnGetItemText(item, column);
+    return m_grm->OnGetItemText(item, col_nr);
 }
 
 void mmGeneralReportManager::OnClose(wxCommandEvent& WXUNUSED(event))
@@ -1338,7 +1342,7 @@ void mmGeneralReportManager::OnNewWindow(wxWebViewEvent& evt)
 }
 
 // Event handler implementation
-void mmGeneralReportManager::OnSyncReportComplete(wxCommandEvent&)
+void mmGeneralReportManager::OnSyncReportComplete(wxCommandEvent& WXUNUSED(event))
 {
     wxMessageBox("Report sync completed successfully.", "Sync Complete", wxOK | wxICON_INFORMATION);
 }

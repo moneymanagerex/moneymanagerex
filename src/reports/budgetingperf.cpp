@@ -150,7 +150,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         hb.addTableCell(_t("Est.") + "<BR>" + _t("Act."), false, false);
                     }
                     hb.addTableCell(_t("Est.") + "<BR>" + _t("Act."), false, false);
-                    hb.addTableCell(_t("%"), false, false);
+                    hb.addTableCell("%", false, false);
                 }
                 hb.endTableRow();
             }

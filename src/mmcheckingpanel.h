@@ -64,7 +64,6 @@ public:
     bool isDeletedTrans() const;
     bool isGroup() const;
     bool isAccount() const;
-    wxString sortPrefix() const;
 
     void loadAccount(int64 account_id = -1);
     void refreshList();
@@ -147,7 +146,7 @@ private:
     wxStaticText* m_info_panel = nullptr;
     wxStaticText* m_info_panel_mini = nullptr;
     wxVector<wxBitmapBundle> m_images;
-    TransactionListCtrl* m_listCtrlAccount = nullptr;
+    TransactionListCtrl* m_lc = nullptr;
     wxSharedPtr<mmFilterTransactionsDialog> m_trans_filter_dlg;
 
 private:
@@ -167,7 +166,7 @@ private:
     void loadFilterSettings();
     void saveFilterSettings();
     void filterList();
-    void sortTable();
+    void sortList();
     void updateExtraTransactionData(bool single, int repeat_num, bool foreign);
     void enableButtons(bool edit, bool dup, bool del, bool enter, bool skip, bool attach);
     void showTips();
@@ -199,12 +198,5 @@ inline bool mmCheckingPanel::isAllTrans() const { return m_checking_id == -1; }
 inline bool mmCheckingPanel::isDeletedTrans() const { return m_checking_id == -2; }
 inline bool mmCheckingPanel::isGroup() const { return m_checking_id <= -3; }
 inline bool mmCheckingPanel::isAccount() const { return m_checking_id >= 1; }
-inline wxString mmCheckingPanel::sortPrefix() const {
-    return
-        isAllTrans() ? "ALLTRANS" :
-        isDeletedTrans() ? "DELETED" :
-        isGroup() ? "MULTI" :
-        "CHECK";
-}
 
 #endif // MM_EX_CHECKINGPANEL_H_

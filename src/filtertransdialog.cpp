@@ -386,7 +386,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
             }
         }
         tagTextCtrl_->SetText(s_tag);
-        tagTextCtrl_->Validate();
+        tagTextCtrl_->ValidateTagText();
         tagCheckBox_->SetValue(true);
     }
     else

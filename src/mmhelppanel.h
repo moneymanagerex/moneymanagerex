@@ -53,7 +53,7 @@ private:
         , const wxString& name = "mmHelpPanel");
 
     void CreateControls();
-    virtual void sortTable();
+    virtual void sortList();
 
     void OnHelpPageBack(wxCommandEvent& event);
     void OnHelpPageForward(wxCommandEvent& event);

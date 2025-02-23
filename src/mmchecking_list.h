@@ -41,36 +41,34 @@ public:
 private:
     friend class mmCheckingPanel;
 
-    enum LIST_COL
+    enum LIST_ID
     {
-        LIST_COL_IMGSTATUS = 0,
-        LIST_COL_ID,
-        LIST_COL_DATE,
-        LIST_COL_TIME,
-        LIST_COL_NUMBER,
-        LIST_COL_ACCOUNT,
-        LIST_COL_PAYEE_STR,
-        LIST_COL_STATUS,
-        LIST_COL_CATEGORY,
-        LIST_COL_TAGS,
-        LIST_COL_WITHDRAWAL,
-        LIST_COL_DEPOSIT,
-        LIST_COL_BALANCE,
-        LIST_COL_CREDIT,
-        LIST_COL_NOTES,
-        LIST_COL_DELETEDTIME,
-        LIST_COL_UDFC01,
-        LIST_COL_UDFC02,
-        LIST_COL_UDFC03,
-        LIST_COL_UDFC04,
-        LIST_COL_UDFC05,
-        LIST_COL_UPDATEDTIME,
-        LIST_COL_SN,
-        LIST_COL_size, // number of columns
-        LIST_COL_def_sort1 = LIST_COL_DATE,
-        LIST_COL_def_sort2 = LIST_COL_ID 
+        LIST_ID_ICON = 0,
+        LIST_ID_ID,
+        LIST_ID_DATE,
+        LIST_ID_TIME,
+        LIST_ID_NUMBER,
+        LIST_ID_ACCOUNT,
+        LIST_ID_PAYEE_STR,
+        LIST_ID_STATUS,
+        LIST_ID_CATEGORY,
+        LIST_ID_TAGS,
+        LIST_ID_WITHDRAWAL,
+        LIST_ID_DEPOSIT,
+        LIST_ID_BALANCE,
+        LIST_ID_CREDIT,
+        LIST_ID_NOTES,
+        LIST_ID_DELETEDTIME,
+        LIST_ID_UDFC01,
+        LIST_ID_UDFC02,
+        LIST_ID_UDFC03,
+        LIST_ID_UDFC04,
+        LIST_ID_UDFC05,
+        LIST_ID_UPDATEDTIME,
+        LIST_ID_SN,
+        LIST_ID_size
     };
-    static const std::vector<ListColumnInfo> col_info_all();
+    static const std::vector<ListColumnInfo> LIST_INFO;
 
     enum
     {
@@ -127,10 +125,6 @@ private:
 private:
     Fused_Transaction::Full_Data_Set m_trans;
     long m_topItemIndex = -1; // where to display the list again after refresh
-    int g_sortCol1 = LIST_COL_def_sort1; // 0-based number of primary sorting column
-    int g_sortCol2 = LIST_COL_def_sort2; // 0-based number of secondary sorting column
-    bool g_sortAsc1 = true;         // asc/desc order for primary sorting column
-    bool g_sortAsc2 = true;         // asc/desc order for secondary sorting column
     wxString m_today;
     bool m_firstSort = true;
     wxString rightClickFilter_;
@@ -155,17 +149,17 @@ private:
     wxSharedPtr<wxListItemAttr> m_attr17; // user-defined style 7
 
 private:
-    void resetColumns();
+    void setColumnsInfo();
     void refreshVisualList(bool filter = true);
-    void sortTable();
+    void sortList();
     template<class Compare>
     void sortBy(Compare comp, bool ascend);
-    void sortTransactions(int sortcol, bool ascend);
+    void sortTransactions(int col_id, bool ascend);
 
 private:
     // required overrides for virtual style list control
-    virtual wxString OnGetItemText(long item, long column) const;
-    virtual int OnGetItemColumnImage(long item, long column) const;
+    virtual wxString OnGetItemText(long item, long col_nr) const;
+    virtual int OnGetItemColumnImage(long item, long col_nr) const;
     virtual wxListItemAttr* OnGetItemAttr(long item) const;
 
 protected:
@@ -208,7 +202,7 @@ private:
     void onOpenAttachment(wxCommandEvent& event);
 
 private:
-    const wxString getItem(long item, long column, bool realenum = false) const;
+    const wxString getItem(long item, int col_id) const;
     void setColumnImage(int col, int image);
     void setExtraTransactionData(const bool single);
     void markItem(long selectedItem);
@@ -216,8 +210,6 @@ private:
     std::vector<Fused_Transaction::IdRepeat> getSelectedId() const;
     std::vector<Fused_Transaction::IdRepeat> getSelectedForCopy() const;
     void findSelectedTransactions();
-    void setSortOrder(bool asc);
-    bool getSortOrder() const;
     int getColumnFromPosition(int xPos);
     void doSearchText(const wxString& value);
     void setVisibleItemIndex(long v);
@@ -228,14 +220,6 @@ private:
 };
 
 //----------------------------------------------------------------------------
-
-inline void TransactionListCtrl::setSortOrder(bool asc)
-{
-    m_asc = asc;
-}
-inline bool TransactionListCtrl::getSortOrder() const {
-    return m_asc;
-}
 
 inline std::vector<Fused_Transaction::IdRepeat> TransactionListCtrl::getSelectedId() const
 {

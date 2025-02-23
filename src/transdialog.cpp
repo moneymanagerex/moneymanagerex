@@ -1072,7 +1072,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         Split s;
         s.SPLITTRANSAMOUNT = m_fused_data.TRANSAMOUNT;
         s.CATEGID = cbCategory_->mmGetCategoryId();
-        tagTextCtrl_->Validate();
+        tagTextCtrl_->ValidateTagText();
         s.TAGS = tagTextCtrl_->GetTagIDs();
         s.NOTES = textNotes_->GetValue();
         m_local_splits.push_back(s);

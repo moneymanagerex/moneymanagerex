@@ -271,7 +271,7 @@ mmGUIFrame::mmGUIFrame(
     LoadTheme();
     createMenu();    
     createControls();
-    CreateToolBar();
+    createToolBar();
 
 #if wxUSE_STATUSBAR
     CreateStatusBar();
@@ -279,7 +279,7 @@ mmGUIFrame::mmGUIFrame(
     m_recentFiles = new mmFileHistory(); // TODO Max files
     m_recentFiles->SetMenuPathStyle(wxFH_PATH_SHOW_ALWAYS);
     m_recentFiles->UseMenu(m_menuRecentFiles);
-    m_recentFiles->Load();
+    m_recentFiles->LoadHistory();
 
     // Load perspective
     const wxString auiPerspective = Model_Setting::instance().getString("AUIPERSPECTIVE", wxEmptyString);
@@ -2146,7 +2146,7 @@ void mmGUIFrame::createMenu()
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::CreateToolBar()
+void mmGUIFrame::createToolBar()
 {
     const int toolbar_icon_size = Option::instance().getToolbarIconSize();
     const long style = wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL | wxAUI_TB_PLAIN_BACKGROUND;
@@ -4041,7 +4041,7 @@ void mmGUIFrame::OnRecentFiles(wxCommandEvent& event)
 
 void mmGUIFrame::OnClearRecentFiles(wxCommandEvent& /*event*/)
 {
-    m_recentFiles->Clear();
+    m_recentFiles->ClearHistory();
     m_recentFiles->AddFileToHistory(m_filename);
 }
 
