@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2015 James Higley
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 George Ef (george.a.ef@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -20,74 +21,218 @@
 
 #pragma once
 
+#include <unordered_set>
 #include "util.h"
-#include "wx/event.h"
+#include <wx/event.h>
 #include <wx/webview.h>
 #include <wx/webviewfshandler.h>
 
-typedef struct {
+// short names for wx macros
+#define _WA wxLIST_AUTOSIZE
+#define _WH wxLIST_AUTOSIZE_USEHEADER
+#define _FL wxLIST_FORMAT_LEFT
+#define _FR wxLIST_FORMAT_RIGHT
+#define _FC wxLIST_FORMAT_CENTER
+
+struct ListColumnInfo
+{
+    int id;
+    bool translate;
     wxString header;
-    int width;
+    int default_width;
     int format;
     bool sortable;
-} ListColumnInfo;
+
+    static const std::vector<int> getListId(const std::vector<ListColumnInfo>& a_info);
+};
+
+//----------------------------------------------------------------------------
 
 class mmListCtrl : public wxListCtrl
 {
+protected:
+    wxDECLARE_EVENT_TABLE();
+    enum {
+        MENU_HEADER_SORT = wxID_HIGHEST + 2000,
+        MENU_HEADER_TOGGLE_MIN,
+        MENU_HEADER_TOGGLE_MAX = MENU_HEADER_TOGGLE_MIN + 99,
+        MENU_HEADER_HIDE,
+        MENU_HEADER_SHOW_MIN,
+        MENU_HEADER_SHOW_MAX = MENU_HEADER_SHOW_MIN + 99,
+        MENU_HEADER_MOVE_LEFT,
+        MENU_HEADER_MOVE_RIGHT,
+        MENU_HEADER_RESET,
+    };
+
 public:
-    std::vector<int> m_column_order;       // map: col_nr -> col_id
-    std::vector<ListColumnInfo> m_columns; // map: col_nr -> ListColumnInfo
-    int m_default_sort_column = -1;
-    bool m_asc = true;
-    long m_selected_row = -1;
-    int m_selected_col = 0;
-    wxString m_col_width_fmt;
-    wxString m_col_type_str;
-    wxSharedPtr<wxListItemAttr> attr1_, attr2_; // style1, style2
+    // configured by constructor (cannot be updated)
+    const wxSharedPtr<wxListItemAttr> attr1_, attr2_; // style1, style2
+
+    // configured by constructor (but may be updated)
+    wxString m_setting_name;                   // name for settings
+    wxString o_col_order_prefix;               // v1.9.0 prefix for column order
+    wxString o_col_width_prefix;               // v1.9.0 prefix for column width
+    wxString o_sort_prefix;                    // v1.9.0 prefix for sort
+    std::vector<ListColumnInfo> m_col_id_info; // map: col_id -> col_info
+    std::unordered_set<int> m_col_id_disabled; // set: col_id -> isDisabled
+
+    // dynamic
+    std::vector<int> m_col_nr_id;              // map: col_nr -> col_id; or empty
+    std::vector<int> m_col_id_width;           // map: col_id -> col_width (lazy)
+    std::unordered_set<int> m_col_id_hidden;   // set: col_id -> isHidden
+    std::vector<int> m_sort_col_id;            // sorting col_id; can be empty
+    std::vector<bool> m_sort_asc;              // sorting direction
+    int m_col_nr = -1;                         // updated by onColRightClick()
+
+private:
+    std::vector<int> c_sort_col_nr;            // sorting col_nr (cache)
 
 public:
     mmListCtrl(wxWindow *parent, wxWindowID winid);
     virtual ~mmListCtrl();
 
-    virtual wxListItemAttr* OnGetItemAttr(long row) const;
-
-    void saveColumnOrder(std::vector<int> columnList);
-    std::vector<int> loadColumnOrder();
-    void saveColumnWidth(int column_number, int column_width);
-    int loadColumnWidth(int column_number, int default_size = wxLIST_AUTOSIZE);
+    void createColumns();
     wxString BuildPage(const wxString &title) const;
 
-protected:
-    wxDECLARE_EVENT_TABLE();
-    enum {
-        MENU_HEADER_HIDE = wxID_HIGHEST + 2000,
-        MENU_HEADER_SORT,
-        MENU_HEADER_RESET,
-        MENU_HEADER_MOVE_LEFT,
-        MENU_HEADER_MOVE_RIGHT,
-        MENU_HEADER_COLUMN, // Must be last in list
-    };
+public:
+    int getColIdSize() const;
+    int getColNrSize() const;
+    bool isValidColId(int col_id) const;
+    bool isValidColNr(int col_nr) const;
+    int getColId(int col_nr) const;
+    int getColNr(int col_id) const;
+    const wxString getColHeader(int col_id, bool show_icon = false) const;
+    bool isDisabledColId(int col_id) const;
+    bool isDisabledColNr(int col_nr) const;
+    bool isHiddenColId(int col_id) const;
+    bool isHiddenColNr(int col_nr) const;
+    int getSortColId(int i = 0) const;
+    int getSortColNr(int i = 0);
+    bool getSortAsc(int i = 0) const;
+    void savePreferences();
+    void loadPreferences();
+
+private:
+    int cacheSortColNr(int i);
+    void shiftColumn(int col_nr, int offset);
+
+    // backwards compatibility
+    const wxString getColOrderKey_v190() const;
+    const wxString getColWidthKey_v190(int col_id) const;
+    const wxString getSortColKey_v190(int i = 0) const;
+    const wxString getSortAscKey_v190(int i = 0) const;
+    void savePreferences_v190();
+    void loadPreferences_v190();
+    void saveBoolInt(const wxString& key, bool value, bool isInt);
+    bool loadBoolInt(const wxString& key, bool default_value, bool isInt) const;
 
 protected:
-    int m_ColumnHeaderNbr = -1;
-
-protected:
-    void createColumns();
-    int getColumnId(int col_nr) const;
-    int getColumnNr(int col_id) const;
-
+    virtual wxListItemAttr* OnGetItemAttr(long row) const;
     virtual void OnColClick(wxListEvent& event);
 
+private:
     void onItemResize(wxListEvent& event);
     void onColRightClick(wxListEvent& event);
     // Headers Right Click
     void onHeaderPopup(wxCommandEvent& event);
-    void onHeaderColumn(wxCommandEvent& event);
-    void onHeaderHide(wxCommandEvent& WXUNUSED(event));
     void onHeaderSort(wxCommandEvent& event);
+    void onHeaderToggle(wxCommandEvent& event);
+    void onHeaderHide(wxCommandEvent& WXUNUSED(event));
+    void onHeaderShow(wxCommandEvent& WXUNUSED(event));
+    void onHeaderMove(wxCommandEvent& WXUNUSED(event), int dir);
     void onHeaderReset(wxCommandEvent& WXUNUSED(event));
-    void onHeaderMove(wxCommandEvent& WXUNUSED(event), int direction);
 };
+
+inline int mmListCtrl::getColIdSize() const
+{
+    return static_cast<int>(m_col_id_info.size());
+}
+
+inline int mmListCtrl::getColNrSize() const
+{
+    return !m_col_nr_id.empty() ?
+        static_cast<int>(m_col_nr_id.size()) :
+        static_cast<int>(m_col_id_info.size());
+}
+
+inline bool mmListCtrl::isValidColId(int col_id) const
+{
+    return (col_id >= 0 && col_id < getColIdSize());
+}
+
+inline bool mmListCtrl::isValidColNr(int col_nr) const
+{
+    return (col_nr >= 0 && col_nr < getColNrSize());
+}
+
+inline int mmListCtrl::getColId(int col_nr) const
+{
+    return m_col_nr_id.empty() ? col_nr : m_col_nr_id[col_nr];
+}
+
+inline int mmListCtrl::getColNr(int col_id) const
+{
+    return m_col_nr_id.empty() ? col_id :
+        std::find(m_col_nr_id.begin(), m_col_nr_id.end(), col_id) - m_col_nr_id.begin();
+}
+
+inline bool mmListCtrl::isDisabledColId(int col_id) const
+{
+    return m_col_id_disabled.find(col_id) != m_col_id_disabled.end();
+}
+
+inline bool mmListCtrl::isDisabledColNr(int col_nr) const
+{
+    return isDisabledColId(getColId(col_nr));
+}
+
+inline bool mmListCtrl::isHiddenColId(int col_id) const
+{
+    return m_col_id_hidden.find(col_id) != m_col_id_hidden.end();
+}
+
+inline bool mmListCtrl::isHiddenColNr(int col_nr) const
+{
+    return isHiddenColId(getColId(col_nr));
+}
+
+inline int mmListCtrl::getSortColId(int i) const
+{
+    return m_sort_col_id[i];
+}
+
+inline int mmListCtrl::getSortColNr(int i)
+{
+    int col_id = m_sort_col_id[i];
+    int col_nr = c_sort_col_nr[i];
+    return (isValidColNr(col_nr) && getColId(col_nr) == col_id) ? col_nr :
+        cacheSortColNr(i);
+}
+
+inline bool mmListCtrl::getSortAsc(int i) const
+{
+    return m_sort_asc[i];
+}
+
+inline const wxString mmListCtrl::getColOrderKey_v190() const
+{
+    return o_col_order_prefix + "_COLUMNORDER";
+}
+
+inline const wxString mmListCtrl::getColWidthKey_v190(int col_id) const
+{
+    return wxString::Format(o_col_width_prefix + "%d_WIDTH", col_id);
+}
+
+inline const wxString mmListCtrl::getSortColKey_v190(int i) const
+{
+    return wxString::Format("%s_SORT_COL%s", o_sort_prefix, (i == 1 ? "2" : ""));
+}
+
+inline const wxString mmListCtrl::getSortAscKey_v190(int i) const
+{
+    return wxString::Format("%s_ASC%s", o_sort_prefix, (i == 1 ? "2" : ""));
+}
 
 //----------------------------------------------------------------------------
 
@@ -99,7 +244,7 @@ public:
 
     virtual wxString BuildPage() const;
     virtual void PrintPage();
-    virtual void sortTable() = 0;
+    virtual void sortList() = 0;
 
     void windowsFreezeThaw();
 };

@@ -261,7 +261,6 @@ wxString mmReportChartStocks::getHTMLText()
         hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), true);
 
     wxTimeSpan dist;
-    wxDate precDateDt = wxInvalidDateTime;
     wxArrayString symbols;
     for (const auto& stock : Model_Stock::instance().all(Model_Stock::COL_SYMBOL))
     {

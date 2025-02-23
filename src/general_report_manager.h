@@ -38,9 +38,8 @@ class sqlListCtrl : public mmListCtrl
     wxDECLARE_NO_COPY_CLASS(sqlListCtrl);
 public:
 
-    sqlListCtrl(mmGeneralReportManager *grm, wxWindow *parent
-        , const wxWindowID id);
-    virtual wxString OnGetItemText(long item, long column) const;
+    sqlListCtrl(mmGeneralReportManager *grm, wxWindow *parent, const wxWindowID id);
+    virtual wxString OnGetItemText(long item, long col_nr) const;
 private:
     mmGeneralReportManager* m_grm;
 };
@@ -56,7 +55,7 @@ public:
     ~mmGeneralReportManager();
 
     mmGeneralReportManager(wxWindow* parent, wxSQLite3Database* db);
-    wxString OnGetItemText(long item, long column) const;
+    wxString OnGetItemText(long item, long col_nr) const;
 
     bool syncReport(int64 id);
 private:
@@ -112,7 +111,7 @@ private:
     wxWebView* browser_ = nullptr;
 
     wxButton* m_buttonOpen = nullptr;
-    wxButton* m_buttonSync = nullptr;
+    //wxButton* m_buttonSync = nullptr;
     wxButton* m_buttonSave = nullptr;
     wxButton* m_buttonSaveAs = nullptr;
     wxButton* m_buttonRun = nullptr;

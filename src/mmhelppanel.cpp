@@ -93,7 +93,7 @@ void mmHelpPanel::CreateControls()
     itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 1);
 }
 
-void mmHelpPanel::sortTable()
+void mmHelpPanel::sortList()
 {
 }
 

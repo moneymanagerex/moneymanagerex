@@ -51,7 +51,7 @@ public:
         const wxString& name = "mmReportsPanel");
 
     void CreateControls();
-    void sortTable() {}
+    void sortList() {}
 
     bool saveReportText(bool initial = true);
     mmPrintableBase* getPrintableBase();

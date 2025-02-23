@@ -45,48 +45,45 @@ enum class ico { GAIN, LOSS, ARROW_UP, ARROW_DOWN };
 /*******************************************************/
 
 wxBEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
-    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, StocksListCtrl::OnListItemActivated)
-    EVT_LIST_ITEM_SELECTED(wxID_ANY, StocksListCtrl::OnListItemSelected)
-    EVT_LIST_KEY_DOWN(wxID_ANY, StocksListCtrl::OnListKeyDown)
-    EVT_MENU(MENU_TREEPOPUP_NEW, StocksListCtrl::OnNewStocks)
-    EVT_MENU(MENU_TREEPOPUP_EDIT, StocksListCtrl::OnEditStocks)
-    EVT_MENU(MENU_TREEPOPUP_ADDTRANS, StocksListCtrl::OnEditStocks)
-    EVT_MENU(MENU_TREEPOPUP_VIEWTRANS, StocksListCtrl::OnEditStocks)
-    EVT_MENU(MENU_TREEPOPUP_DELETE, StocksListCtrl::OnDeleteStocks)
-    EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, StocksListCtrl::OnOrganizeAttachments)
-    EVT_MENU(wxID_INDEX, StocksListCtrl::OnStockWebPage)
-    EVT_RIGHT_DOWN(StocksListCtrl::OnMouseRightClick)
     EVT_LEFT_DOWN(StocksListCtrl::OnListLeftClick)
+    EVT_RIGHT_DOWN(StocksListCtrl::OnMouseRightClick)
+
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, StocksListCtrl::OnListItemActivated)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY,  StocksListCtrl::OnListItemSelected)
+    EVT_LIST_KEY_DOWN(wxID_ANY,       StocksListCtrl::OnListKeyDown)
+
+    EVT_MENU(MENU_TREEPOPUP_NEW,                  StocksListCtrl::OnNewStocks)
+    EVT_MENU(MENU_TREEPOPUP_EDIT,                 StocksListCtrl::OnEditStocks)
+    EVT_MENU(MENU_TREEPOPUP_ADDTRANS,             StocksListCtrl::OnEditStocks)
+    EVT_MENU(MENU_TREEPOPUP_VIEWTRANS,            StocksListCtrl::OnEditStocks)
+    EVT_MENU(MENU_TREEPOPUP_DELETE,               StocksListCtrl::OnDeleteStocks)
+    EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, StocksListCtrl::OnOrganizeAttachments)
+    EVT_MENU(wxID_INDEX,                          StocksListCtrl::OnStockWebPage)
 wxEND_EVENT_TABLE()
 
-const std::vector<ListColumnInfo> StocksListCtrl::col_info_all()
-{
-    return {
-        { " ",                       25,                        wxLIST_FORMAT_LEFT,  false },
-        { _t("ID"),                   wxLIST_AUTOSIZE,           wxLIST_FORMAT_RIGHT, true },
-        { _t("*Date"),                wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
-        { _t("Company Name"),         wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
-        { _t("Symbol"),               wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
-        { _t("Share Total"),          wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _t("Avg Share Price"),      wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _t("Total Cost"),           wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _t("Realized Gain/Loss"),   wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _t("Unrealized Gain/Loss"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _t("Curr. Share Price"),    wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _t("Curr. Total Value"),    wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _t("Price Date"),           wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
-        { _t("Commission"),           wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT, true },
-        { _t("Notes"),                wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT,  true },
-    };
-}
+const std::vector<ListColumnInfo> StocksListCtrl::LIST_INFO = {
+    { LIST_ID_ICON,           true, _n("Icon"),                 25,  _FL, false },
+    { LIST_ID_ID,             true, _n("ID"),                   _WA, _FR, true },
+    { LIST_ID_DATE,           true, _n("*Date"),                _WH, _FL, true },
+    { LIST_ID_NAME,           true, _n("Company Name"),         _WH, _FL, true },
+    { LIST_ID_SYMBOL,         true, _n("Symbol"),               _WH, _FL, true },
+    { LIST_ID_NUMBER,         true, _n("Share Total"),          _WH, _FR, true },
+    { LIST_ID_PRICE,          true, _n("Avg Share Price"),      _WH, _FR, true },
+    { LIST_ID_VALUE,          true, _n("Total Cost"),           _WH, _FR, true },
+    { LIST_ID_REAL_GAIN_LOSS, true, _n("Realized Gain/Loss"),   _WH, _FR, true },
+    { LIST_ID_GAIN_LOSS,      true, _n("Unrealized Gain/Loss"), _WH, _FR, true },
+    { LIST_ID_CURRENT,        true, _n("Curr. Share Price"),    _WH, _FR, true },
+    { LIST_ID_CURRVALUE,      true, _n("Curr. Total Value"),    _WH, _FR, true },
+    { LIST_ID_PRICEDATE,      true, _n("Price Date"),           _WH, _FL, true },
+    { LIST_ID_COMMISSION,     true, _n("Commission"),           _WH, _FR, true },
+    { LIST_ID_NOTES,          true, _n("Notes"),                _WH, _FL, true },
+};
 
-StocksListCtrl::~StocksListCtrl()
-{
-}
-
-StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID winid)
-    : mmListCtrl(parent, winid)
-    , m_stock_panel(cp)
+StocksListCtrl::StocksListCtrl(
+    mmStocksPanel* cp, wxWindow *parent, wxWindowID winid
+) :
+    mmListCtrl(parent, winid),
+    m_stock_panel(cp)
 {
     wxVector<wxBitmapBundle> images;
     images.push_back(mmBitmapBundle(png::PROFIT));
@@ -97,23 +94,22 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     SetSmallImages(images);
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
-    // load the global variables
-    m_selected_col = Model_Setting::instance().getInt("STOCKS_SORT_COL", col_sort());
-    m_asc = Model_Setting::instance().getBool("STOCKS_ASC", true);
-
-    m_columns = col_info_all();
-    for (int i = 0; i < LIST_COL_size; ++i)
-        m_column_order.push_back(i);
-    m_col_width_fmt = "STOCKS_COL%d_WIDTH";
-    m_col_type_str = "STOCKS";
-    m_default_sort_column = col_sort();
-
+    m_setting_name = "STOCKS";
+    o_col_order_prefix = "STOCKS";
+    o_col_width_prefix = "STOCKS_COL";
+    o_sort_prefix = "STOCKS";
+    m_col_id_info = LIST_INFO;
+    m_col_nr_id = ListColumnInfo::getListId(LIST_INFO);
+    m_sort_col_id = { col_sort() };
     createColumns();
 
-    initVirtualListControl(-1, m_selected_col, m_asc);
+    initVirtualListControl(-1, getSortColNr(), getSortAsc());
     if (!m_stocks.empty())
         EnsureVisible(m_stocks.size() - 1);
+}
 
+StocksListCtrl::~StocksListCtrl()
+{
 }
 
 void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
@@ -157,38 +153,39 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
     this->SetFocus();
 }
 
-wxString StocksListCtrl::OnGetItemText(long item, long column) const
+wxString StocksListCtrl::OnGetItemText(long item, long col_nr) const
 {
-    switch (m_column_order[column]) {
-    case LIST_COL_ID:
+    int col_id = getColId(static_cast<int>(col_nr));
+    switch (col_id) {
+    case LIST_ID_ID:
         return wxString::Format("%lld", m_stocks[item].STOCKID).Trim();
-    case LIST_COL_DATE:
+    case LIST_ID_DATE:
         return mmGetDateTimeForDisplay(m_stocks[item].PURCHASEDATE);
-    case LIST_COL_NAME:
+    case LIST_ID_NAME:
         return m_stocks[item].STOCKNAME;
-    case LIST_COL_SYMBOL:
+    case LIST_ID_SYMBOL:
         return m_stocks[item].SYMBOL;
-    case LIST_COL_NUMBER: {
+    case LIST_ID_NUMBER: {
         int precision = m_stocks[item].NUMSHARES == floor(m_stocks[item].NUMSHARES) ? 0 : 4;
         return Model_Currency::toString(m_stocks[item].NUMSHARES, m_stock_panel->m_currency, precision);
     }
-    case LIST_COL_PRICE:
+    case LIST_ID_PRICE:
         return Model_Currency::toString(m_stocks[item].PURCHASEPRICE, m_stock_panel->m_currency, 4);
-    case LIST_COL_VALUE:
+    case LIST_ID_VALUE:
         return Model_Currency::toString(m_stocks[item].VALUE, m_stock_panel->m_currency);
-    case LIST_COL_REAL_GAIN_LOSS:
+    case LIST_ID_REAL_GAIN_LOSS:
         return Model_Currency::toString(GetRealGainLoss(item), m_stock_panel->m_currency);
-    case LIST_COL_GAIN_LOSS:
+    case LIST_ID_GAIN_LOSS:
         return Model_Currency::toString(GetGainLoss(item), m_stock_panel->m_currency);
-    case LIST_COL_CURRENT:
+    case LIST_ID_CURRENT:
         return Model_Currency::toString(m_stocks[item].CURRENTPRICE, m_stock_panel->m_currency, 4);
-    case LIST_COL_CURRVALUE:
+    case LIST_ID_CURRVALUE:
         return Model_Currency::toString(Model_Stock::CurrentValue(m_stocks[item]), m_stock_panel->m_currency);
-    case LIST_COL_PRICEDATE:
+    case LIST_ID_PRICEDATE:
         return mmGetDateTimeForDisplay(Model_Stock::instance().lastPriceDate(&m_stocks[item]));
-    case LIST_COL_COMMISSION:
+    case LIST_ID_COMMISSION:
         return Model_Currency::toString(m_stocks[item].COMMISSION, m_stock_panel->m_currency);
-    case LIST_COL_NOTES: {
+    case LIST_ID_NOTES: {
         wxString full_notes = m_stocks[item].NOTES;
         full_notes.Replace("\n", " ");
         if (Model_Attachment::NrAttachments(Model_Attachment::REFTYPE_NAME_STOCK, m_stocks[item].STOCKID))
@@ -398,27 +395,27 @@ void StocksListCtrl::OnListItemActivated(wxListEvent& event)
 
 void StocksListCtrl::OnColClick(wxListEvent& event)
 {
-    int ColumnNr;
+    int col_nr;
     if (event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET)
-        ColumnNr = event.GetColumn();
+        col_nr = event.GetColumn();
     else
-        ColumnNr = m_ColumnHeaderNbr;
-    if (0 >= ColumnNr || ColumnNr >= getColumnsNumber()) return;
+        col_nr = m_col_nr;
+    if (!isValidColNr(col_nr))
+        return;
 
-    if (m_selected_col == ColumnNr &&
+    if (getSortColNr() == col_nr &&
         event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET
     )
-        m_asc = !m_asc;
+        m_sort_asc[0] = !m_sort_asc[0];
 
     wxListItem item;
     item.SetMask(wxLIST_MASK_IMAGE);
     item.SetImage(-1);
-    SetColumn(m_selected_col, item);
+    SetColumn(getSortColNr(), item);
 
-    m_selected_col = ColumnNr;
+    m_sort_col_id[0] = getColId(col_nr);
 
-    Model_Setting::instance().setBool("STOCKS_ASC", m_asc);
-    Model_Setting::instance().setInt("STOCKS_SORT_COL", m_selected_col);
+    savePreferences();
 
     int64 trx_id = -1;
     if (m_selected_row>=0) trx_id = m_stocks[m_selected_row].STOCKID;
@@ -428,11 +425,11 @@ void StocksListCtrl::OnColClick(wxListEvent& event)
 
 void StocksListCtrl::doRefreshItems(int64 trx_id)
 {
-    int selectedIndex = initVirtualListControl(trx_id, m_selected_col, m_asc);
+    int selectedIndex = initVirtualListControl(trx_id, getSortColNr(), getSortAsc());
     long cnt = static_cast<long>(m_stocks.size());
 
     if (selectedIndex >= cnt || selectedIndex < 0)
-        selectedIndex = m_asc ? cnt - 1 : 0;
+        selectedIndex = getSortAsc() ? cnt - 1 : 0;
 
     if (cnt>0)
     {
@@ -464,7 +461,7 @@ int StocksListCtrl::initVirtualListControl(int64 trx_id, int col, bool asc)
     }
 
     m_stocks = Model_Stock::instance().find(Model_Stock::HELDAT(m_stock_panel->m_account_id));
-    sortTable();
+    sortList();
 
     int cnt = 0, selected_item = -1;
     for (auto& stock : m_stocks)
@@ -484,54 +481,54 @@ int StocksListCtrl::initVirtualListControl(int64 trx_id, int col, bool asc)
     return selected_item;
 }
 
-void StocksListCtrl::sortTable()
+void StocksListCtrl::sortList()
 {
     std::sort(m_stocks.begin(), m_stocks.end());
-    switch (m_selected_col)
+    switch (getSortColId())
     {
-    case StocksListCtrl::LIST_COL_ID:
+    case StocksListCtrl::LIST_ID_ID:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySTOCKID());
         break;
-    case StocksListCtrl::LIST_COL_DATE:
+    case StocksListCtrl::LIST_ID_DATE:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByPURCHASEDATE());
         break;
-    case StocksListCtrl::LIST_COL_NAME:
+    case StocksListCtrl::LIST_ID_NAME:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySTOCKNAME());
         break;
-    case StocksListCtrl::LIST_COL_SYMBOL:
+    case StocksListCtrl::LIST_ID_SYMBOL:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySYMBOL());
         break;
-    case StocksListCtrl::LIST_COL_NUMBER:
+    case StocksListCtrl::LIST_ID_NUMBER:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByNUMSHARES());
         break;
-    case StocksListCtrl::LIST_COL_PRICE:
+    case StocksListCtrl::LIST_ID_PRICE:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByPURCHASEPRICE());
         break;
-    case StocksListCtrl::LIST_COL_VALUE:
+    case StocksListCtrl::LIST_ID_VALUE:
         std::stable_sort(m_stocks.begin(), m_stocks.end()
             , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
             {
                 return x.VALUE < y.VALUE;
             });
         break;
-    case StocksListCtrl::LIST_COL_REAL_GAIN_LOSS:
+    case StocksListCtrl::LIST_ID_REAL_GAIN_LOSS:
         std::stable_sort(m_stocks.begin(), m_stocks.end()
             , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
         {
             return getRealGainLoss(x) < getRealGainLoss(y);
         });
         break;
-    case StocksListCtrl::LIST_COL_GAIN_LOSS:
+    case StocksListCtrl::LIST_ID_GAIN_LOSS:
         std::stable_sort(m_stocks.begin(), m_stocks.end()
             , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
             {
                 return getGainLoss(x) < getGainLoss(y);
             });
         break;
-    case StocksListCtrl::LIST_COL_CURRENT:
+    case StocksListCtrl::LIST_ID_CURRENT:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByCURRENTPRICE());
         break;
-    case StocksListCtrl::LIST_COL_CURRVALUE:
+    case StocksListCtrl::LIST_ID_CURRVALUE:
         std::stable_sort(m_stocks.begin(), m_stocks.end()
             , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
             {
@@ -540,17 +537,17 @@ void StocksListCtrl::sortTable()
                 return valueX < valueY;
             });
         break;
-    case StocksListCtrl::LIST_COL_PRICEDATE:
+    case StocksListCtrl::LIST_ID_PRICEDATE:
         //TODO
         break;
-    case StocksListCtrl::LIST_COL_COMMISSION:
+    case StocksListCtrl::LIST_ID_COMMISSION:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByCOMMISSION());
         break;
-    case StocksListCtrl::LIST_COL_NOTES:
+    case StocksListCtrl::LIST_ID_NOTES:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByNOTES());
         break;
     default:
         break;
     }
-    if (!m_asc) std::reverse(m_stocks.begin(), m_stocks.end());
+    if (!getSortAsc()) std::reverse(m_stocks.begin(), m_stocks.end());
 }

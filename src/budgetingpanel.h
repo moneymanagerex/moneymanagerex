@@ -35,28 +35,27 @@ class budgetingListCtrl : public mmListCtrl
     wxDECLARE_EVENT_TABLE();
 
 public:
-    enum LIST_COL
+    enum LIST_ID
     {
-        LIST_COL_ICON = 0,
-        LIST_COL_CATEGORY,
-        LIST_COL_FREQUENCY,
-        LIST_COL_AMOUNT,
-        LIST_COL_ESTIMATED,
-        LIST_COL_ACTUAL,
-        LIST_COL_NOTES,
-        LIST_COL_size, // number of columns
+        LIST_ID_ICON = 0,
+        LIST_ID_CATEGORY,
+        LIST_ID_FREQUENCY,
+        LIST_ID_AMOUNT,
+        LIST_ID_ESTIMATED,
+        LIST_ID_ACTUAL,
+        LIST_ID_NOTES,
+        LIST_ID_size, // number of columns
     };
 
 private:
-    static const std::vector<ListColumnInfo> col_info_all();
+    static const std::vector<ListColumnInfo> LIST_INFO;
 
 public:
     budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, const wxWindowID id);
-    void createColumns_();
 
 public:
     /* required overrides for virtual style list control */
-    virtual wxString OnGetItemText(long item, long column) const;
+    virtual wxString OnGetItemText(long item, long col_nr) const;
     virtual wxListItemAttr *OnGetItemAttr(long item) const;
     virtual int OnGetItemImage(long item) const;
 
@@ -87,7 +86,7 @@ public:
     void initVirtualListControl();
 
     /* Getter for Virtual List Control */
-    wxString getItem(long item, long column);
+    wxString getItem(long item, int col_id);
 
     void DisplayBudgetingDetails(int64 budgetYearID);
     int64 GetBudgetYearID()
@@ -107,7 +106,7 @@ public:
 
     void RefreshList();
 
-    wxString BuildPage() const { return listCtrlBudget_->BuildPage(GetPanelTitle()); }
+    wxString BuildPage() const { return m_lc->BuildPage(GetPanelTitle()); }
 
 private:
     enum EIcons
@@ -126,7 +125,7 @@ private:
     std::map<int64, wxString> budgetNotes_;
     std::map<int64, std::map<int,double> > categoryStats_;
     bool monthlyBudget_;
-    wxSharedPtr<budgetingListCtrl> listCtrlBudget_;
+    wxSharedPtr<budgetingListCtrl> m_lc;
     wxString currentView_;
     int64 budgetYearID_;
     wxString m_monthName;
@@ -147,7 +146,7 @@ private:
         , const wxString& name = "mmBudgetingPanel");
 
     void CreateControls();
-    void sortTable();
+    void sortList();
     bool DisplayEntryAllowed(int64 categoryID, int64 subcategoryID);
     void UpdateBudgetHeading();
     double getEstimate(int64 category) const;

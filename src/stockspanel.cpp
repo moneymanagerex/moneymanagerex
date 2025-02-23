@@ -112,13 +112,13 @@ void mmStocksPanel::CreateControls()
         , wxID_ANY, wxDefaultPosition, wxSize(200, 200)
         , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
 
-    listCtrlAccount_ = new StocksListCtrl(this, itemSplitterWindow10, wxID_ANY);
+    m_lc = new StocksListCtrl(this, itemSplitterWindow10, wxID_ANY);
 
     wxPanel* BottomPanel = new wxPanel(itemSplitterWindow10, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
     mmThemeMetaColour(BottomPanel, meta::COLOR_LISTPANEL);
 
-    itemSplitterWindow10->SplitHorizontally(listCtrlAccount_, BottomPanel);
+    itemSplitterWindow10->SplitHorizontally(m_lc, BottomPanel);
     itemSplitterWindow10->SetMinimumPaneSize(100);
     itemSplitterWindow10->SetSashGravity(1.0);
     itemBoxSizer9->Add(itemSplitterWindow10, g_flagsExpandBorder1);
@@ -184,11 +184,11 @@ void mmStocksPanel::CreateControls()
 
 void mmStocksPanel::AddStockTransaction(int selectedIndex)
 {
-    Model_Stock::Data* stock = &listCtrlAccount_->m_stocks[selectedIndex];
+    Model_Stock::Data* stock = &m_lc->m_stocks[selectedIndex];
     ShareTransactionDialog dlg(this, stock);
     if (dlg.ShowModal() == wxID_OK)
     {
-        listCtrlAccount_->doRefreshItems(dlg.m_stock_id);
+        m_lc->doRefreshItems(dlg.m_stock_id);
         updateExtraStocksData(selectedIndex);
     }
 }
@@ -202,7 +202,7 @@ void mmStocksPanel::OnListItemActivated(int selectedIndex)
 //TODO: improve View Stock Transactions
 void mmStocksPanel::ViewStockTransactions(int selectedIndex)
 {
-    Model_Stock::Data* stock = &listCtrlAccount_->m_stocks[selectedIndex];
+    Model_Stock::Data* stock = &m_lc->m_stocks[selectedIndex];
     
     wxDialog dlg(this, wxID_ANY, _t("View Stock Transactions") + wxString::Format(": %s - %s", Model_Account::get_account_name(stock->HELDAT), stock->SYMBOL), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
     dlg.SetIcon(mmex::getProgramIcon());
@@ -328,7 +328,7 @@ wxString mmStocksPanel::GetPanelTitle(const Model_Account::Data& account) const
 wxString mmStocksPanel::BuildPage() const
 { 
     const Model_Account::Data* account = Model_Account::instance().get(m_account_id);
-    return listCtrlAccount_->BuildPage((account ? GetPanelTitle(*account) : ""));
+    return m_lc->BuildPage((account ? GetPanelTitle(*account) : ""));
 }
 
 const wxString mmStocksPanel::Total_Shares()
@@ -378,27 +378,27 @@ void mmStocksPanel::updateHeader()
 
 void mmStocksPanel::OnDeleteStocks(wxCommandEvent& event)
 {
-    listCtrlAccount_->OnDeleteStocks(event);
+    m_lc->OnDeleteStocks(event);
 }
 
 void mmStocksPanel::OnMoveStocks(wxCommandEvent& event)
 {
-    listCtrlAccount_->OnMoveStocks(event);
+    m_lc->OnMoveStocks(event);
 }
 
 void mmStocksPanel::OnNewStocks(wxCommandEvent& event)
 {
-    listCtrlAccount_->OnNewStocks(event);
+    m_lc->OnNewStocks(event);
 }
 
 void mmStocksPanel::OnEditStocks(wxCommandEvent& event)
 {
-    listCtrlAccount_->OnEditStocks(event);
+    m_lc->OnEditStocks(event);
 }
 
 void mmStocksPanel::OnOpenAttachment(wxCommandEvent& event)
 {
-    listCtrlAccount_->OnOpenAttachment(event);
+    m_lc->OnOpenAttachment(event);
 }
 
 void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
@@ -433,7 +433,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
         return false;
     }
 
-    if (listCtrlAccount_->m_stocks.empty())
+    if (m_lc->m_stocks.empty())
     {
         msg = _t("Nothing to update");
         return false;
@@ -505,7 +505,7 @@ void mmStocksPanel::updateExtraStocksData(int selectedIndex)
     enableEditDeleteButtons(selectedIndex >= 0);
     if (selectedIndex >= 0)
     {
-        const wxString additionInfo = listCtrlAccount_->getStockInfo(selectedIndex);
+        const wxString additionInfo = m_lc->getStockInfo(selectedIndex);
         stock_details_->SetLabelText(additionInfo);
     }
 }
@@ -572,7 +572,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
             , sTotalDifference, sTotalNumShares
             , Model_Currency::toCurrency(stocktotalgainloss)
             , Model_Currency::toStringNoFormatting(stocktotalPercentage, nullptr, 2)
-            , OnGetItemText(selectedIndex, static_cast<long>(LIST_COL_NOTES)));
+            , OnGetItemText(selectedIndex, static_cast<long>(LIST_ID_NOTES)));
     }
     return additionInfo;
 }
@@ -601,10 +601,10 @@ void mmStocksPanel::enableEditDeleteButtons(bool en)
 
 void mmStocksPanel::call_dialog(int selectedIndex)
 {
-    Model_Stock::Data* stock = &listCtrlAccount_->m_stocks[selectedIndex];
+    Model_Stock::Data* stock = &m_lc->m_stocks[selectedIndex];
     mmStockDialog dlg(this, m_frame, stock, m_account_id);
     dlg.ShowModal();
-    listCtrlAccount_->doRefreshItems(dlg.m_stock_id);
+    m_lc->doRefreshItems(dlg.m_stock_id);
 }
 
 void mmStocksPanel::DisplayAccountDetails(int64 accountID)
@@ -617,15 +617,15 @@ void mmStocksPanel::DisplayAccountDetails(int64 accountID)
 
     updateHeader();
     enableEditDeleteButtons(false);
-    listCtrlAccount_->initVirtualListControl();
+    m_lc->initVirtualListControl();
 
 }
 
 void mmStocksPanel::RefreshList()
 {
     int64 selected_id = -1;
-    if (listCtrlAccount_->get_selectedIndex() > -1)
-        selected_id = listCtrlAccount_->m_stocks[listCtrlAccount_->get_selectedIndex()].STOCKID;
-    listCtrlAccount_->doRefreshItems(selected_id);
+    if (m_lc->get_selectedIndex() > -1)
+        selected_id = m_lc->m_stocks[m_lc->get_selectedIndex()].STOCKID;
+    m_lc->doRefreshItems(selected_id);
 }
 

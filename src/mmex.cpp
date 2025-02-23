@@ -508,5 +508,6 @@ bool mmGUIApp::OSXOnShouldTerminate()
     bool modalExists = findModal(GetTopWindow());
     if (!modalExists)
         this->GetTopWindow()->Close();
+    return true;
 }
 #endif

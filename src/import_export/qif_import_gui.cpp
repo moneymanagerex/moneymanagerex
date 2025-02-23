@@ -83,16 +83,16 @@ bool mmQIFImportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& 
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style);
 
-    ColName_[LIST_COL_ID] = "#";
-    ColName_[LIST_COL_ACCOUNT] = _t("Account");
-    ColName_[LIST_COL_DATE] = _t("Date");
-    ColName_[LIST_COL_NUMBER] = _t("Number");
-    ColName_[LIST_COL_PAYEE] = _t("Payee");
-    ColName_[LIST_COL_TYPE] = _t("Type");
-    ColName_[LIST_COL_CATEGORY] = _t("Category");
-    ColName_[LIST_COL_TAGS] = _t("Tags");
-    ColName_[LIST_COL_VALUE] = _t("Value");
-    ColName_[LIST_COL_NOTES] = _t("Notes");
+    ColName_[LIST_ID_ID] = "#";
+    ColName_[LIST_ID_ACCOUNT] = _t("Account");
+    ColName_[LIST_ID_DATE] = _t("Date");
+    ColName_[LIST_ID_NUMBER] = _t("Number");
+    ColName_[LIST_ID_PAYEE] = _t("Payee");
+    ColName_[LIST_ID_TYPE] = _t("Type");
+    ColName_[LIST_ID_CATEGORY] = _t("Category");
+    ColName_[LIST_ID_TAGS] = _t("Tags");
+    ColName_[LIST_ID_VALUE] = _t("Value");
+    ColName_[LIST_ID_NOTES] = _t("Notes");
 
     CreateControls();
     if (m_FileNameStr != wxEmptyString)
@@ -224,16 +224,16 @@ void mmQIFImportDialog::CreateControls()
 
     dataListBox_ = new wxDataViewListCtrl(data_tab, wxID_ANY);
     dataListBox_->SetMinSize(wxSize(100, 200));
-    dataListBox_->AppendTextColumn(ColName_[LIST_COL_ID], wxDATAVIEW_CELL_INERT, 40, wxALIGN_RIGHT);
-    dataListBox_->AppendTextColumn(ColName_[LIST_COL_ACCOUNT], wxDATAVIEW_CELL_INERT, 120, wxALIGN_LEFT);
-    dataListBox_->AppendTextColumn(ColName_[LIST_COL_DATE], wxDATAVIEW_CELL_INERT, 90, wxALIGN_RIGHT);
-    dataListBox_->AppendTextColumn(ColName_[LIST_COL_NUMBER], wxDATAVIEW_CELL_INERT, 80, wxALIGN_RIGHT);
-    dataListBox_->AppendTextColumn(ColName_[LIST_COL_PAYEE], wxDATAVIEW_CELL_INERT, 120, wxALIGN_LEFT);
-    dataListBox_->AppendTextColumn(ColName_[LIST_COL_TYPE], wxDATAVIEW_CELL_INERT, 60, wxALIGN_LEFT);
-    dataListBox_->AppendTextColumn(ColName_[LIST_COL_CATEGORY], wxDATAVIEW_CELL_INERT, 140, wxALIGN_LEFT);
-    dataListBox_->AppendTextColumn(ColName_[LIST_COL_TAGS], wxDATAVIEW_CELL_INERT, 140, wxALIGN_LEFT);
-    dataListBox_->AppendTextColumn(ColName_[LIST_COL_VALUE], wxDATAVIEW_CELL_INERT, 100, wxALIGN_RIGHT);
-    dataListBox_->AppendTextColumn(ColName_[LIST_COL_NOTES], wxDATAVIEW_CELL_INERT, 300, wxALIGN_LEFT);
+    dataListBox_->AppendTextColumn(ColName_[LIST_ID_ID], wxDATAVIEW_CELL_INERT, 40, wxALIGN_RIGHT);
+    dataListBox_->AppendTextColumn(ColName_[LIST_ID_ACCOUNT], wxDATAVIEW_CELL_INERT, 120, wxALIGN_LEFT);
+    dataListBox_->AppendTextColumn(ColName_[LIST_ID_DATE], wxDATAVIEW_CELL_INERT, 90, wxALIGN_RIGHT);
+    dataListBox_->AppendTextColumn(ColName_[LIST_ID_NUMBER], wxDATAVIEW_CELL_INERT, 80, wxALIGN_RIGHT);
+    dataListBox_->AppendTextColumn(ColName_[LIST_ID_PAYEE], wxDATAVIEW_CELL_INERT, 120, wxALIGN_LEFT);
+    dataListBox_->AppendTextColumn(ColName_[LIST_ID_TYPE], wxDATAVIEW_CELL_INERT, 60, wxALIGN_LEFT);
+    dataListBox_->AppendTextColumn(ColName_[LIST_ID_CATEGORY], wxDATAVIEW_CELL_INERT, 140, wxALIGN_LEFT);
+    dataListBox_->AppendTextColumn(ColName_[LIST_ID_TAGS], wxDATAVIEW_CELL_INERT, 140, wxALIGN_LEFT);
+    dataListBox_->AppendTextColumn(ColName_[LIST_ID_VALUE], wxDATAVIEW_CELL_INERT, 100, wxALIGN_RIGHT);
+    dataListBox_->AppendTextColumn(ColName_[LIST_ID_NOTES], wxDATAVIEW_CELL_INERT, 300, wxALIGN_LEFT);
     data_sizer->Add(dataListBox_, g_flagsExpand);
 
     //Accounts
@@ -1695,7 +1695,7 @@ void mmQIFImportDialog::save_file_name()
     }
 }
 
-void mmQIFImportDialog::OnMenuSelected(wxCommandEvent& event)
+void mmQIFImportDialog::OnMenuSelected(wxCommandEvent& WXUNUSED(event))
 {
     mmColorBtn_->Enable(false);
     colorCheckBox_->SetValue(false);

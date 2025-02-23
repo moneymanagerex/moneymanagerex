@@ -77,10 +77,10 @@ public:
     mmGUIFrame* m_frame;
 
 private:
-    StocksListCtrl* listCtrlAccount_ = nullptr;
+    StocksListCtrl* m_lc = nullptr;
     wxStaticText* stock_details_ = nullptr;
     void call_dialog(int selectedIndex);
-    void sortTable() {}
+    void sortList() {}
     const wxString Total_Shares();
 
     wxStaticText* header_text_ = nullptr;

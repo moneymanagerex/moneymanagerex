@@ -296,20 +296,20 @@ bool Model_Checking::is_deposit(const Data* r)
 
 Model_Checking::Full_Data::Full_Data() :
     Data(0), TAGNAMES(""),
-    SN(0), ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
-    ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)
+    ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
+    SN(0), ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)
 {
 }
 
 Model_Checking::Full_Data::Full_Data(const Data& r) :
     Data(r),
-    SN(0), ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
-    ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0),
     m_splits(Model_Splittransaction::instance().find(
         Model_Splittransaction::TRANSID(r.TRANSID))),
     m_tags(Model_Taglink::instance().find(
         Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_TRANSACTION),
-        Model_Taglink::REFID(r.TRANSID)))
+        Model_Taglink::REFID(r.TRANSID))),
+    ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
+    SN(0), ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)
 {
     fill_data();
 }
@@ -320,8 +320,8 @@ Model_Checking::Full_Data::Full_Data(
     const std::map<int64 /* TRANSID */, Model_Taglink::Data_Set>& tags
 ) :
     Data(r),
-    SN(0), ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
-    ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)
+    ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
+    SN(0), ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)
 {
     const auto it = splits.find(this->id());
     if (it != splits.end()) m_splits = it->second;

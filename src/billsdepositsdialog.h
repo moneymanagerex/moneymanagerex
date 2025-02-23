@@ -97,7 +97,7 @@ private:
     mmTextCtrl* toTextAmount_ = nullptr;
     mmTextCtrl* calcTarget_ = nullptr;
     wxTextCtrl* textNotes_ = nullptr;
-    wxTextCtrl* textCategory_ = nullptr;
+    //wxTextCtrl* textCategory_ = nullptr;
     wxTextCtrl* textNumRepeats_ = nullptr;
     mmComboBoxCategory* cbCategory_ = nullptr;
     wxBitmapButton* bSplit_ = nullptr;

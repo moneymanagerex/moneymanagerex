@@ -207,7 +207,7 @@ wxString mmReportSummaryByDate::getHTMLText()
         if (mode_ == YEARLY)
             begin_date.SetMonth(wxDateTime::Jan);
 
-        for (int j = 0; j < sizeof(balancePerDay) / sizeof(*balancePerDay); j++)
+        for (int j = 0; j < static_cast<int>(sizeof(balancePerDay) / sizeof(*balancePerDay)); j++)
             balancePerDay[j] = 0.0;
 
         for (const auto& account : Model_Account::instance().all())
