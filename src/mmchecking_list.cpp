@@ -302,6 +302,11 @@ void TransactionListCtrl::setColumnsInfo()
     m_sort_col_id = { LIST_ID_DATE, LIST_ID_ID };
 }
 
+int TransactionListCtrl::getSortIcon(bool asc) const
+{
+    return asc ? mmCheckingPanel::ICON_DESC : mmCheckingPanel::ICON_ASC;
+}
+
 void TransactionListCtrl::refreshVisualList(bool filter)
 {
     wxLogDebug("refreshVisualList: %i selected, filter: %d", GetSelectedItemCount(), filter);
@@ -322,11 +327,6 @@ void TransactionListCtrl::refreshVisualList(bool filter)
     this->SetEvtHandlerEnabled(false);
     Hide();
 
-    // decide whether top or down icon needs to be shown
-    setColumnImage(
-        getSortColNr(0),
-        getSortAsc(0) ? mmCheckingPanel::ICON_DESC : mmCheckingPanel::ICON_ASC
-    );
     if (filter)
         m_cp->filterList();
     SetItemCount(m_trans.size());
@@ -564,11 +564,11 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     int col_nr;
     bool sortAsc;
     if (event.GetId() == MENU_HEADER_SORT) {
-        col_nr = m_col_nr;
+        col_nr = m_sel_col_nr;
         sortAsc = m_sort_asc[0];
     }
     else if (event.GetId() == MENU_HEADER_RESET) {
-        col_nr = m_col_nr;
+        col_nr = m_sel_col_nr;
         sortAsc = true;
         m_sort_asc[0] = true;
     }
@@ -581,7 +581,6 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
         return;
 
     if (col_nr != getSortColNr(0)) {
-        setColumnImage(getSortColNr(0), -1); // clear previous column image
         m_sort_col_id[1] = m_sort_col_id[0];
         m_sort_asc[1] = m_sort_asc[0];
     }
@@ -590,13 +589,14 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
 
     // #7080: Decouple DATE and ID, since SN may be used instead of ID.
     /*
-    // If primary is DATE, then set secondary to ID in the same direction
-    if (getSortColId(0) == LIST_ID_DATE) {
-        m_sort_col_id[1] = LIST_ID_ID;
-        m_sort_asc[1] = m_sort_asc[0];        
-    }
+        // If primary is DATE, then set secondary to ID in the same direction
+        if (getSortColId(0) == LIST_ID_DATE) {
+            m_sort_col_id[1] = LIST_ID_ID;
+            m_sort_asc[1] = m_sort_asc[0];
+        }
     */
 
+    updateSortIcon();
     savePreferences();
 
     refreshVisualList(false);
@@ -840,7 +840,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
             rightClickFilter_ = "{\n\"NOTES\": \"" + menuItemText + "\"\n}";
             break;
         case LIST_ID_DELETEDTIME:
-            datetime.ParseISOCombined(m_trans[row].DELETEDTIME);        
+            datetime.ParseISOCombined(m_trans[row].DELETEDTIME);
             if(datetime.IsValid())
                 copyText_ = mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
             break;
@@ -1237,7 +1237,7 @@ void TransactionListCtrl::onRestoreViewedTransaction(wxCommandEvent&)
             }
         }
     }
-    
+
     refreshVisualList();
     m_cp->m_frame->RefreshNavigationTree();
 }
@@ -1375,7 +1375,7 @@ void TransactionListCtrl::onViewOtherAccount(wxCommandEvent& /*event*/)
         Fused_Transaction::Full_Data(*Model_Billsdeposits::instance().get(id.first));
 
     int64 gotoAccountID = (m_cp->m_account_id == tran.ACCOUNTID) ? tran.TOACCOUNTID : tran.ACCOUNTID;
-    wxString gotoAccountName = (m_cp->m_account_id == tran.ACCOUNTID) ? tran.TOACCOUNTNAME : tran.ACCOUNTNAME;   
+    wxString gotoAccountName = (m_cp->m_account_id == tran.ACCOUNTID) ? tran.TOACCOUNTNAME : tran.ACCOUNTNAME;
 
     m_cp->m_frame->setNavTreeAccount(gotoAccountName);
     m_cp->m_frame->setGotoAccountID(gotoAccountID, id);
@@ -1597,7 +1597,7 @@ void TransactionListCtrl::onPaste(wxCommandEvent& WXUNUSED(event))
     // we can't paste with multiple accounts open, deleted items, or if there is nothing to paste
     if (!m_cp->isAccount() || m_selectedForCopy.size() < 1)
         return;
-    
+
     findSelectedTransactions();
     Model_Checking::instance().Savepoint();
     m_pasted_id.clear();    // make sure the list is empty before we paste
@@ -1728,7 +1728,7 @@ void TransactionListCtrl::onSetUserColour(wxCommandEvent& event)
 {
     if (m_cp->isDeletedTrans())
         return;
-    
+
     findSelectedTransactions();
     int user_color_id = event.GetId();
     user_color_id -= MENU_ON_SET_UDC0;
@@ -1855,7 +1855,7 @@ const wxString TransactionListCtrl::getItem(long item, int col_id) const
         }
         return value.Trim();
     case LIST_ID_DELETEDTIME:
-        datetime.ParseISOCombined(fused.DELETEDTIME);        
+        datetime.ParseISOCombined(fused.DELETEDTIME);
         if(!datetime.IsValid())
             return wxString("");
         return mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
@@ -1915,15 +1915,6 @@ const wxString TransactionListCtrl::getItem(long item, int col_id) const
     }
 
     return value;
-}
-
-void TransactionListCtrl::setColumnImage(int col, int image)
-{
-    wxListItem item;
-    item.SetMask(wxLIST_MASK_IMAGE);
-    item.SetImage(image);
-
-    SetColumn(col, item);
 }
 
 void TransactionListCtrl::setExtraTransactionData(const bool single)

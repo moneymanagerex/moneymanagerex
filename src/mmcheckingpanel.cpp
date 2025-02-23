@@ -240,7 +240,6 @@ void mmCheckingPanel::createControls()
     m_lc = new TransactionListCtrl(this, splitterListFooter);
     m_lc->SetSmallImages(m_images);
     m_lc->SetNormalImages(m_images);
-    m_lc->setColumnImage(m_lc->getSortColNr(0), (m_lc->getSortAsc(0) ? ICON_ASC : ICON_DESC));
 
     wxPanel* panelFooter = new wxPanel(
         splitterListFooter, wxID_ANY, wxDefaultPosition, wxDefaultSize,

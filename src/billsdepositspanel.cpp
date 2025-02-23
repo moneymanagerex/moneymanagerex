@@ -158,28 +158,28 @@ billsDepositsListCtrl::~billsDepositsListCtrl()
     wxLogDebug("Exit billsDepositsListCtrl");
 }
 
+int billsDepositsListCtrl::getSortIcon(bool asc) const
+{
+    return asc ? mmBillsDepositsPanel::ICON_UPARROW : mmBillsDepositsPanel::ICON_DOWNARROW;
+}
+
 void billsDepositsListCtrl::OnColClick(wxListEvent& event)
 {
     int col_nr;
     if (event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET)
         col_nr = event.GetColumn();
     else
-        col_nr = m_col_nr;
+        col_nr = m_sel_col_nr;
     if (!isValidColNr(col_nr) || col_nr == 0)
         return;
 
-    if (getSortColNr() == col_nr &&
-        event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET
-    )
+    int col_id = getColId(col_nr);
+    if (m_sort_col_id[0] != col_id)
+        m_sort_col_id[0] = col_id;
+    else if (event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET)
         m_sort_asc[0] = !m_sort_asc[0];
 
-    wxListItem item;
-    item.SetMask(wxLIST_MASK_IMAGE);
-    item.SetImage(-1);
-    SetColumn(getSortColNr(), item);
-
-    m_sort_col_id[0] = getColId(col_nr);
-
+    updateSortIcon();
     savePreferences();
 
     if (m_selected_row >= 0)
@@ -340,11 +340,6 @@ void mmBillsDepositsPanel::CreateControls()
 int mmBillsDepositsPanel::initVirtualListControl(int64 id)
 {
     m_lc->DeleteAllItems();
-
-    wxListItem item;
-    item.SetMask(wxLIST_MASK_IMAGE);
-    item.SetImage(m_lc->getSortAsc() ? ICON_UPARROW : ICON_DOWNARROW);
-    m_lc->SetColumn(m_lc->getSortColNr(), item);
 
     bills_.clear();
     const auto split = Model_Budgetsplittransaction::instance().get_all();

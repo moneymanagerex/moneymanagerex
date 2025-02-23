@@ -79,13 +79,14 @@ public:
     // dynamic
     std::vector<int> m_col_nr_id;              // map: col_nr -> col_id; or empty
     std::vector<int> m_col_id_width;           // map: col_id -> col_width (lazy)
-    std::unordered_set<int> m_col_id_hidden;   // set: col_id -> isHidden
+    std::unordered_set<int> m_col_id_hidden;   // map (set): col_id -> isHidden
     std::vector<int> m_sort_col_id;            // sorting col_id; can be empty
     std::vector<bool> m_sort_asc;              // sorting direction
-    int m_col_nr = -1;                         // updated by onColRightClick()
+    int m_sel_col_nr = -1;                     // set by onColRightClick()
 
 private:
     std::vector<int> c_sort_col_nr;            // sorting col_nr (cache)
+    int c_icon_col_nr = -1;                    // sort icon col_nr (cache)
 
 public:
     mmListCtrl(wxWindow *parent, wxWindowID winid);
@@ -113,9 +114,6 @@ public:
     void loadPreferences();
 
 private:
-    int cacheSortColNr(int i);
-    void shiftColumn(int col_nr, int offset);
-
     // backwards compatibility
     const wxString getColOrderKey_v190() const;
     const wxString getColWidthKey_v190(int col_id) const;
@@ -126,11 +124,18 @@ private:
     void saveBoolInt(const wxString& key, bool value, bool isInt);
     bool loadBoolInt(const wxString& key, bool default_value, bool isInt) const;
 
+private:
+    int cacheSortColNr(int i);
+
 protected:
     virtual wxListItemAttr* OnGetItemAttr(long row) const;
     virtual void OnColClick(wxListEvent& event);
+    virtual int getSortIcon(bool asc) const;
+    void updateSortIcon();
 
 private:
+    void shiftColumn(int col_nr, int offset);
+
     void onItemResize(wxListEvent& event);
     void onColRightClick(wxListEvent& event);
     // Headers Right Click

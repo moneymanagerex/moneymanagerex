@@ -76,12 +76,13 @@ public:
     void doRefreshItems(int64 trx_id = -1);
 
 protected:
-    virtual void OnColClick(wxListEvent& event);
+    virtual int getSortIcon(bool asc) const override;
+    virtual void OnColClick(wxListEvent& event) override;
 
 private:
     /* required overrides for virtual style list control */
-    virtual wxString OnGetItemText(long item, long col_nr) const;
-    virtual int OnGetItemImage(long item) const;
+    virtual wxString OnGetItemText(long item, long col_nr) const override;
+    virtual int OnGetItemImage(long item) const override;
 
     void OnMouseRightClick(wxMouseEvent& event);
     void OnListLeftClick(wxMouseEvent& event);
@@ -114,7 +115,7 @@ public:
     mmGUIFrame* m_frame = nullptr;
 
     void updateExtraAssetData(int selIndex);
-    int initVirtualListControl(int64 trx_id = -1, int col = 0, bool asc = true);
+    int initVirtualListControl(int64 trx_id = -1);
     wxString getItem(long item, int col_id);
 
     Model_Asset::Data_Set m_assets;

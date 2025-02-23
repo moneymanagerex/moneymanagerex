@@ -77,16 +77,17 @@ public:
     void RefreshList();
 
 protected:
-    virtual void OnColClick(wxListEvent& event);
-    virtual wxListItemAttr *OnGetItemAttr(long item) const;
+    virtual int getSortIcon(bool asc) const override;
+    virtual void OnColClick(wxListEvent& event) override;
+    virtual wxListItemAttr *OnGetItemAttr(long item) const override;
 
 private:
     static int col_sort();
     void refreshVisualList(int selected_index = -1);
 
     /* required overrides for virtual style list control */
-    virtual wxString OnGetItemText(long item, long col_nr) const;
-    virtual int OnGetItemImage(long item) const;
+    virtual wxString OnGetItemText(long item, long col_nr) const override;
+    virtual int OnGetItemImage(long item) const override;
 
     void OnItemRightClick(wxMouseEvent& event);
     void OnListLeftClick(wxMouseEvent& event);

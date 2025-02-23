@@ -76,6 +76,7 @@ void mmListCtrl::createColumns()
         if (isDisabledColId(col_id) || isHiddenColId(col_id)) col_width = 0;
         InsertColumn(col_nr, getColHeader(col_id), col_info.format, col_width);
     }
+    updateSortIcon();
 }
 
 wxString mmListCtrl::BuildPage(const wxString &title) const
@@ -125,18 +126,6 @@ const wxString mmListCtrl::getColHeader(int col_id, bool show_icon) const
     if (!show_icon && col_id == 0 && col_info.header == "Icon")
         return " ";
     return col_info.translate ? wxGetTranslation(col_info.header) : col_info.header;
-}
-
-//----------------------------------------------------------------------------
-
-wxListItemAttr* mmListCtrl::OnGetItemAttr(long row) const
-{
-    return (row % 2) ? attr2_.get() : attr1_.get();
-}
-
-void mmListCtrl::OnColClick(wxListEvent& WXUNUSED(event))
-{
-    // To be implemented in derived class
 }
 
 //----------------------------------------------------------------------------
@@ -318,6 +307,91 @@ int mmListCtrl::cacheSortColNr(int i)
 
 //----------------------------------------------------------------------------
 
+wxListItemAttr* mmListCtrl::OnGetItemAttr(long row) const
+{
+    return (row % 2) ? attr2_.get() : attr1_.get();
+}
+
+void mmListCtrl::OnColClick(wxListEvent& WXUNUSED(event))
+{
+    // To be implemented in derived class
+}
+
+int mmListCtrl::getSortIcon(bool WXUNUSED(asc)) const
+{
+    return -1;
+}
+
+void mmListCtrl::updateSortIcon()
+{
+    if (m_sort_col_id.empty())
+        return;
+
+    wxListItem item;
+    item.SetMask(wxLIST_MASK_IMAGE);
+
+    // clear sort icon in c_icon_col_nr
+    if (isValidColNr(c_icon_col_nr)) {
+        item.SetImage(-1);
+        SetColumn(c_icon_col_nr, item);
+    }
+
+    c_icon_col_nr = getSortColNr();
+
+    // show sort icon in c_icon_col_nr
+    if (isValidColNr(c_icon_col_nr)) {
+        item.SetImage(getSortIcon(getSortAsc()));
+        SetColumn(c_icon_col_nr, item);
+    }
+}
+
+//----------------------------------------------------------------------------
+
+void mmListCtrl::shiftColumn(int col_nr, int offset)
+{
+    if (m_col_nr_id.empty() || offset == 0)
+        return;
+
+    int col_id = m_col_nr_id[col_nr];
+    wxLogDebug("mmListCtrl::shiftColumn(): save column %d (%s)",
+        col_nr, m_col_id_info[col_id].header
+    );
+    wxListItem col_item;
+    col_item.SetText(getColHeader(col_id));
+    col_item.SetAlign(static_cast<wxListColumnFormat>(m_col_id_info[col_id].format));
+    int col_width = GetColumnWidth(col_nr);
+
+    int dir = offset > 0 ? 1 : -1;
+    int dst_nr = col_nr;
+    while (offset != 0) {
+        int src_nr = dst_nr + dir;
+        if (!isValidColNr(src_nr))
+            break;
+        int src_id = m_col_nr_id[src_nr];
+        wxLogDebug("mmListCtrl::shiftColumn(): move column %d (%s) -> %d",
+            src_nr, m_col_id_info[src_id].header, dst_nr
+        );
+        wxListItem src_item;
+        src_item.SetText(getColHeader(src_id));
+        src_item.SetAlign(static_cast<wxListColumnFormat>(m_col_id_info[src_id].format));
+        int src_width = GetColumnWidth(src_nr);
+        SetColumn(dst_nr, src_item);
+        SetColumnWidth(dst_nr, src_width);
+        m_col_nr_id[dst_nr] = src_id;
+        dst_nr = src_nr;
+        offset -= dir;
+    }
+
+    wxLogDebug("mmListCtrl::shiftColumn(): restore column (%s) -> %d",
+        m_col_id_info[col_id].header, dst_nr
+    );
+    SetColumn(dst_nr, col_item);
+    SetColumnWidth(dst_nr, col_width);
+    m_col_nr_id[dst_nr] = col_id;
+}
+
+//----------------------------------------------------------------------------
+
 void mmListCtrl::onItemResize(wxListEvent& event)
 {
     // update m_col_id_width but do not save in Setting
@@ -329,8 +403,8 @@ void mmListCtrl::onItemResize(wxListEvent& event)
 
 void mmListCtrl::onColRightClick(wxListEvent& event)
 {
-    m_col_nr = event.GetColumn();
-    if (!isValidColNr(m_col_nr))
+    m_sel_col_nr = event.GetColumn();
+    if (!isValidColNr(m_sel_col_nr))
         return;
 
     wxMenu menu;
@@ -367,13 +441,13 @@ void mmListCtrl::onColRightClick(wxListEvent& event)
         }
         if (found)
             menu.AppendSubMenu(menu_show, _t("Move hidden column"));
-        if (m_col_nr > 0)
+        if (m_sel_col_nr > 0)
             menu.Append(MENU_HEADER_MOVE_LEFT, _t("Move column left"));
-        if (m_col_nr < getColNrSize() - 1)
+        if (m_sel_col_nr < getColNrSize() - 1)
             menu.Append(MENU_HEADER_MOVE_RIGHT, _t("Move column right"));
     }
 
-    if (m_col_id_info[getColId(m_col_nr)].sortable)
+    if (m_col_id_info[getColId(m_sel_col_nr)].sortable)
         menu.Append(MENU_HEADER_SORT, _t("Sort by this column"));
 
     menu.Append(MENU_HEADER_RESET, _t("Reset column widths"));
@@ -433,64 +507,21 @@ void mmListCtrl::onHeaderToggle(wxCommandEvent& event)
 
 void mmListCtrl::onHeaderHide(wxCommandEvent& WXUNUSED(event))
 {
-    if (!isValidColNr(m_col_nr))
+    if (!isValidColNr(m_sel_col_nr))
         return;
     Freeze();
-    int col_id = getColId(m_col_nr);
-    m_col_id_width[col_id] = GetColumnWidth(m_col_nr);
+    int col_id = getColId(m_sel_col_nr);
+    m_col_id_width[col_id] = GetColumnWidth(m_sel_col_nr);
     m_col_id_hidden.insert(col_id);
-    SetColumnWidth(m_col_nr, 0);
+    SetColumnWidth(m_sel_col_nr, 0);
     savePreferences();
     Thaw();
-}
-
-void mmListCtrl::shiftColumn(int col_nr, int offset)
-{
-    if (m_col_nr_id.empty() || offset == 0)
-        return;
-
-    int col_id = m_col_nr_id[col_nr];
-    wxLogDebug("mmListCtrl::shiftColumn(): save column %d (%s)",
-        col_nr, m_col_id_info[col_id].header
-    );
-    wxListItem col_item;
-    col_item.SetText(getColHeader(col_id));
-    col_item.SetAlign(static_cast<wxListColumnFormat>(m_col_id_info[col_id].format));
-    int col_width = GetColumnWidth(col_nr);
-
-    int dir = offset > 0 ? 1 : -1;
-    int dst_nr = col_nr;
-    while (offset != 0) {
-        int src_nr = dst_nr + dir;
-        if (!isValidColNr(src_nr))
-            break;
-        int src_id = m_col_nr_id[src_nr];
-        wxLogDebug("mmListCtrl::shiftColumn(): move column %d (%s) -> %d",
-            src_nr, m_col_id_info[src_id].header, dst_nr
-        );
-        wxListItem src_item;
-        src_item.SetText(getColHeader(src_id));
-        src_item.SetAlign(static_cast<wxListColumnFormat>(m_col_id_info[src_id].format));
-        int src_width = GetColumnWidth(src_nr);
-        SetColumn(dst_nr, src_item);
-        SetColumnWidth(dst_nr, src_width);
-        m_col_nr_id[dst_nr] = src_id;
-        dst_nr = src_nr;
-        offset -= dir;
-    }
-
-    wxLogDebug("mmListCtrl::shiftColumn(): restore column (%s) -> %d",
-        m_col_id_info[col_id].header, dst_nr
-    );
-    SetColumn(dst_nr, col_item);
-    SetColumnWidth(dst_nr, col_width);
-    m_col_nr_id[dst_nr] = col_id;
 }
 
 void mmListCtrl::onHeaderShow(wxCommandEvent& event)
 {
     int col_nr = event.GetId() - MENU_HEADER_SHOW_MIN;
-    if (m_col_nr_id.empty() || !isValidColNr(m_col_nr) || !isValidColNr(col_nr))
+    if (m_col_nr_id.empty() || !isValidColNr(m_sel_col_nr) || !isValidColNr(col_nr))
         return;
     Freeze();
 
@@ -501,11 +532,12 @@ void mmListCtrl::onHeaderShow(wxCommandEvent& event)
     if (col_width == 0) col_width = m_col_id_info[col_id].default_width;
     SetColumnWidth(col_nr, col_width);
 
-    // move col_nr to the right of m_col_nr
-    int offset = m_col_nr - col_nr;
+    // move col_nr to the right of m_sel_col_nr
+    int offset = m_sel_col_nr - col_nr;
     if (offset < 0) offset++;
     shiftColumn(col_nr, offset);
 
+    updateSortIcon();
     savePreferences();
     Thaw();
 }
@@ -527,10 +559,10 @@ void mmListCtrl::onHeaderMove(wxCommandEvent& WXUNUSED(event), int dir)
         new_nr_order.push_back(new_nr);
         // get the true index from the visual column position
         int cur_nr = GetColumnIndexFromOrder(new_nr);
-        // update m_col_nr
-        if (!col_found && m_col_nr == cur_nr) {
+        // update m_sel_col_nr
+        if (!col_found && m_sel_col_nr == cur_nr) {
             col_found = true;
-            m_col_nr = new_nr;
+            m_sel_col_nr = new_nr;
         }
         int new_id = m_col_nr_id[cur_nr];
         ListColumnInfo new_info = m_col_id_info[new_id];
@@ -546,14 +578,15 @@ void mmListCtrl::onHeaderMove(wxCommandEvent& WXUNUSED(event), int dir)
     m_col_nr_id = new_nr_id;
     #endif
 
-    // find the next visible column after m_col_nr in direction dir
-    int dst_nr = m_col_nr;
+    // find the next visible column after m_sel_col_nr in direction dir
+    int dst_nr = m_sel_col_nr;
     do { dst_nr += dir; } while (
         isValidColNr(dst_nr) && (isDisabledColNr(dst_nr) || isHiddenColNr(dst_nr))
     );
-    // shift m_col_nr to dst_nr
+    // shift m_sel_col_nr to dst_nr
     if (isValidColNr(dst_nr)) {
-        shiftColumn(m_col_nr, dst_nr - m_col_nr);
+        shiftColumn(m_sel_col_nr, dst_nr - m_sel_col_nr);
+        updateSortIcon();
         savePreferences();
     }
 

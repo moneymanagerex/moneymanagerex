@@ -158,12 +158,13 @@ private:
 
 private:
     // required overrides for virtual style list control
-    virtual wxString OnGetItemText(long item, long col_nr) const;
-    virtual int OnGetItemColumnImage(long item, long col_nr) const;
-    virtual wxListItemAttr* OnGetItemAttr(long item) const;
+    virtual wxString OnGetItemText(long item, long col_nr) const override;
+    virtual int OnGetItemColumnImage(long item, long col_nr) const override;
+    virtual wxListItemAttr* OnGetItemAttr(long item) const override;
 
 protected:
-    virtual void OnColClick(wxListEvent& event);
+    virtual int getSortIcon(bool asc) const override;
+    virtual void OnColClick(wxListEvent& event) override;
 
 private:
     void onChar(wxKeyEvent& event);
@@ -203,7 +204,6 @@ private:
 
 private:
     const wxString getItem(long item, int col_id) const;
-    void setColumnImage(int col, int image);
     void setExtraTransactionData(const bool single);
     void markItem(long selectedItem);
     void setSelectedId(Fused_Transaction::IdRepeat sel_id);
