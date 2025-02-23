@@ -143,7 +143,7 @@ void mmListCtrl::OnColClick(wxListEvent& WXUNUSED(event))
 
 void mmListCtrl::savePreferences()
 {
-    //savePreferences_v190();
+    savePreferences_v190();
     if (m_setting_name.empty())
         return;
 
