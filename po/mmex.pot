@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-02-23 21:18+0000\n"
+"POT-Creation-Date: 2025-02-23 21:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1881,7 +1881,7 @@ msgstr ""
 msgid "Closed"
 msgstr ""
 
-#: constants.cpp:197 mmcheckingpanel.cpp:1199 mmframe.cpp:502
+#: constants.cpp:197 mmcheckingpanel.cpp:1198 mmframe.cpp:502
 msgid "Favorites"
 msgstr ""
 
@@ -4425,7 +4425,7 @@ msgstr ""
 msgid "Scheduled transaction saved."
 msgstr ""
 
-#: mmchecking_list.cpp:1439 mmcheckingpanel.cpp:1194
+#: mmchecking_list.cpp:1439 mmcheckingpanel.cpp:1193
 msgid "All Transactions"
 msgstr ""
 
@@ -4518,66 +4518,66 @@ msgstr ""
 msgid "Advanced filter"
 msgstr ""
 
-#: mmcheckingpanel.cpp:497
+#: mmcheckingpanel.cpp:496
 msgid "(Date range)"
 msgstr ""
 
-#: mmcheckingpanel.cpp:874 mmcheckingpanel.cpp:892 webapp.cpp:621
+#: mmcheckingpanel.cpp:873 mmcheckingpanel.cpp:891 webapp.cpp:621
 msgid "Attachment"
 msgstr ""
 
-#: mmcheckingpanel.cpp:940
+#: mmcheckingpanel.cpp:939
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr ""
 
-#: mmcheckingpanel.cpp:944
+#: mmcheckingpanel.cpp:943
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:950
+#: mmcheckingpanel.cpp:949
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1013
+#: mmcheckingpanel.cpp:1012
 msgid "Unable to show scheduled transactions because the current filter choice extends into the future without limit."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1014
+#: mmcheckingpanel.cpp:1013
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1015
+#: mmcheckingpanel.cpp:1014
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1032
+#: mmcheckingpanel.cpp:1031
 msgid "More date ranges…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1039
+#: mmcheckingpanel.cpp:1038
 msgid "Advanced filter…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1179
+#: mmcheckingpanel.cpp:1178
 msgid "&New Withdrawal…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1180
+#: mmcheckingpanel.cpp:1179
 msgid "&New Deposit…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1181
+#: mmcheckingpanel.cpp:1180
 msgid "&New Transfer…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1196
+#: mmcheckingpanel.cpp:1195
 msgid "Deleted Transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1204
+#: mmcheckingpanel.cpp:1203
 #, c-format
 msgid "Account View: %s"
 msgstr ""
