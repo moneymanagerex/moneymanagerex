@@ -41,36 +41,34 @@ public:
 private:
     friend class mmCheckingPanel;
 
-    enum LISTCOL_ID
+    enum LIST_ID
     {
-        LISTCOL_ID_ICON = 0,
-        LISTCOL_ID_ID,
-        LISTCOL_ID_DATE,
-        LISTCOL_ID_TIME,
-        LISTCOL_ID_NUMBER,
-        LISTCOL_ID_ACCOUNT,
-        LISTCOL_ID_PAYEE_STR,
-        LISTCOL_ID_STATUS,
-        LISTCOL_ID_CATEGORY,
-        LISTCOL_ID_TAGS,
-        LISTCOL_ID_WITHDRAWAL,
-        LISTCOL_ID_DEPOSIT,
-        LISTCOL_ID_BALANCE,
-        LISTCOL_ID_CREDIT,
-        LISTCOL_ID_NOTES,
-        LISTCOL_ID_DELETEDTIME,
-        LISTCOL_ID_UDFC01,
-        LISTCOL_ID_UDFC02,
-        LISTCOL_ID_UDFC03,
-        LISTCOL_ID_UDFC04,
-        LISTCOL_ID_UDFC05,
-        LISTCOL_ID_UPDATEDTIME,
-        LISTCOL_ID_SN,
-        LISTCOL_ID_size, // number of columns
-        LISTCOL_ID_def_sort1 = LISTCOL_ID_DATE,
-        LISTCOL_ID_def_sort2 = LISTCOL_ID_ID 
+        LIST_ID_ICON = 0,
+        LIST_ID_ID,
+        LIST_ID_DATE,
+        LIST_ID_TIME,
+        LIST_ID_NUMBER,
+        LIST_ID_ACCOUNT,
+        LIST_ID_PAYEE_STR,
+        LIST_ID_STATUS,
+        LIST_ID_CATEGORY,
+        LIST_ID_TAGS,
+        LIST_ID_WITHDRAWAL,
+        LIST_ID_DEPOSIT,
+        LIST_ID_BALANCE,
+        LIST_ID_CREDIT,
+        LIST_ID_NOTES,
+        LIST_ID_DELETEDTIME,
+        LIST_ID_UDFC01,
+        LIST_ID_UDFC02,
+        LIST_ID_UDFC03,
+        LIST_ID_UDFC04,
+        LIST_ID_UDFC05,
+        LIST_ID_UPDATEDTIME,
+        LIST_ID_SN,
+        LIST_ID_size
     };
-    static const std::vector<ListColumnInfo> LISTCOL_INFO;
+    static const std::vector<ListColumnInfo> LIST_INFO;
 
     enum
     {
@@ -151,7 +149,7 @@ private:
     wxSharedPtr<wxListItemAttr> m_attr17; // user-defined style 7
 
 private:
-    void getColumnsInfo();
+    void setColumnsInfo();
     void refreshVisualList(bool filter = true);
     void sortList();
     template<class Compare>

@@ -34,31 +34,31 @@ class StocksListCtrl: public mmListCtrl
     wxDECLARE_EVENT_TABLE();
 
 public:
-    enum LISTCOL_ID
+    enum LIST_ID
     {
-        LISTCOL_ID_ICON = 0,
-        LISTCOL_ID_ID,
-        LISTCOL_ID_DATE,
-        LISTCOL_ID_NAME,
-        LISTCOL_ID_SYMBOL,
-        LISTCOL_ID_NUMBER,
-        LISTCOL_ID_PRICE,
-        LISTCOL_ID_VALUE,
-        LISTCOL_ID_REAL_GAIN_LOSS,
-        LISTCOL_ID_GAIN_LOSS,
-        LISTCOL_ID_CURRENT,
-        LISTCOL_ID_CURRVALUE,
-        LISTCOL_ID_PRICEDATE,
-        LISTCOL_ID_COMMISSION,
-        LISTCOL_ID_NOTES,
-        LISTCOL_ID_size, // number of columns
+        LIST_ID_ICON = 0,
+        LIST_ID_ID,
+        LIST_ID_DATE,
+        LIST_ID_NAME,
+        LIST_ID_SYMBOL,
+        LIST_ID_NUMBER,
+        LIST_ID_PRICE,
+        LIST_ID_VALUE,
+        LIST_ID_REAL_GAIN_LOSS,
+        LIST_ID_GAIN_LOSS,
+        LIST_ID_CURRENT,
+        LIST_ID_CURRVALUE,
+        LIST_ID_PRICEDATE,
+        LIST_ID_COMMISSION,
+        LIST_ID_NOTES,
+        LIST_ID_size, // number of columns
     };
 
 public:
     Model_Stock::Data_Set m_stocks;
 
 private:
-    static const std::vector<ListColumnInfo> LISTCOL_INFO;
+    static const std::vector<ListColumnInfo> LIST_INFO;
     mmStocksPanel* m_stock_panel;
     long m_selected_row = -1;
 
@@ -101,7 +101,7 @@ private:
     void OnListItemSelected(wxListEvent& event);
 };
 
-inline int StocksListCtrl::col_sort() { return LISTCOL_ID_DATE; }
+inline int StocksListCtrl::col_sort() { return LIST_ID_DATE; }
 inline long StocksListCtrl::get_selectedIndex() { return m_selected_row; }
 
 #endif

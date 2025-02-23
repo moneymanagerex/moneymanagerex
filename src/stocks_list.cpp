@@ -61,22 +61,22 @@ wxBEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
     EVT_MENU(wxID_INDEX,                          StocksListCtrl::OnStockWebPage)
 wxEND_EVENT_TABLE()
 
-const std::vector<ListColumnInfo> StocksListCtrl::LISTCOL_INFO = {
-    { LISTCOL_ID_ICON,           true, _n("Icon"),                 25,  _FL, false },
-    { LISTCOL_ID_ID,             true, _n("ID"),                   _WA, _FR, true },
-    { LISTCOL_ID_DATE,           true, _n("*Date"),                _WH, _FL, true },
-    { LISTCOL_ID_NAME,           true, _n("Company Name"),         _WH, _FL, true },
-    { LISTCOL_ID_SYMBOL,         true, _n("Symbol"),               _WH, _FL, true },
-    { LISTCOL_ID_NUMBER,         true, _n("Share Total"),          _WH, _FR, true },
-    { LISTCOL_ID_PRICE,          true, _n("Avg Share Price"),      _WH, _FR, true },
-    { LISTCOL_ID_VALUE,          true, _n("Total Cost"),           _WH, _FR, true },
-    { LISTCOL_ID_REAL_GAIN_LOSS, true, _n("Realized Gain/Loss"),   _WH, _FR, true },
-    { LISTCOL_ID_GAIN_LOSS,      true, _n("Unrealized Gain/Loss"), _WH, _FR, true },
-    { LISTCOL_ID_CURRENT,        true, _n("Curr. Share Price"),    _WH, _FR, true },
-    { LISTCOL_ID_CURRVALUE,      true, _n("Curr. Total Value"),    _WH, _FR, true },
-    { LISTCOL_ID_PRICEDATE,      true, _n("Price Date"),           _WH, _FL, true },
-    { LISTCOL_ID_COMMISSION,     true, _n("Commission"),           _WH, _FR, true },
-    { LISTCOL_ID_NOTES,          true, _n("Notes"),                _WH, _FL, true },
+const std::vector<ListColumnInfo> StocksListCtrl::LIST_INFO = {
+    { LIST_ID_ICON,           true, _n("Icon"),                 25,  _FL, false },
+    { LIST_ID_ID,             true, _n("ID"),                   _WA, _FR, true },
+    { LIST_ID_DATE,           true, _n("*Date"),                _WH, _FL, true },
+    { LIST_ID_NAME,           true, _n("Company Name"),         _WH, _FL, true },
+    { LIST_ID_SYMBOL,         true, _n("Symbol"),               _WH, _FL, true },
+    { LIST_ID_NUMBER,         true, _n("Share Total"),          _WH, _FR, true },
+    { LIST_ID_PRICE,          true, _n("Avg Share Price"),      _WH, _FR, true },
+    { LIST_ID_VALUE,          true, _n("Total Cost"),           _WH, _FR, true },
+    { LIST_ID_REAL_GAIN_LOSS, true, _n("Realized Gain/Loss"),   _WH, _FR, true },
+    { LIST_ID_GAIN_LOSS,      true, _n("Unrealized Gain/Loss"), _WH, _FR, true },
+    { LIST_ID_CURRENT,        true, _n("Curr. Share Price"),    _WH, _FR, true },
+    { LIST_ID_CURRVALUE,      true, _n("Curr. Total Value"),    _WH, _FR, true },
+    { LIST_ID_PRICEDATE,      true, _n("Price Date"),           _WH, _FL, true },
+    { LIST_ID_COMMISSION,     true, _n("Commission"),           _WH, _FR, true },
+    { LIST_ID_NOTES,          true, _n("Notes"),                _WH, _FL, true },
 };
 
 StocksListCtrl::StocksListCtrl(
@@ -94,11 +94,12 @@ StocksListCtrl::StocksListCtrl(
     SetSmallImages(images);
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
+    m_setting_name = "STOCKS";
     o_col_order_prefix = "STOCKS";
     o_col_width_prefix = "STOCKS_COL";
     o_sort_prefix = "STOCKS";
-    m_col_id_info = LISTCOL_INFO;
-    m_col_nr_id = ListColumnInfo::getId(LISTCOL_INFO);
+    m_col_id_info = LIST_INFO;
+    m_col_nr_id = ListColumnInfo::getListId(LIST_INFO);
     m_sort_col_id = { col_sort() };
     createColumns();
 
@@ -156,35 +157,35 @@ wxString StocksListCtrl::OnGetItemText(long item, long col_nr) const
 {
     int col_id = getColId(static_cast<int>(col_nr));
     switch (col_id) {
-    case LISTCOL_ID_ID:
+    case LIST_ID_ID:
         return wxString::Format("%lld", m_stocks[item].STOCKID).Trim();
-    case LISTCOL_ID_DATE:
+    case LIST_ID_DATE:
         return mmGetDateTimeForDisplay(m_stocks[item].PURCHASEDATE);
-    case LISTCOL_ID_NAME:
+    case LIST_ID_NAME:
         return m_stocks[item].STOCKNAME;
-    case LISTCOL_ID_SYMBOL:
+    case LIST_ID_SYMBOL:
         return m_stocks[item].SYMBOL;
-    case LISTCOL_ID_NUMBER: {
+    case LIST_ID_NUMBER: {
         int precision = m_stocks[item].NUMSHARES == floor(m_stocks[item].NUMSHARES) ? 0 : 4;
         return Model_Currency::toString(m_stocks[item].NUMSHARES, m_stock_panel->m_currency, precision);
     }
-    case LISTCOL_ID_PRICE:
+    case LIST_ID_PRICE:
         return Model_Currency::toString(m_stocks[item].PURCHASEPRICE, m_stock_panel->m_currency, 4);
-    case LISTCOL_ID_VALUE:
+    case LIST_ID_VALUE:
         return Model_Currency::toString(m_stocks[item].VALUE, m_stock_panel->m_currency);
-    case LISTCOL_ID_REAL_GAIN_LOSS:
+    case LIST_ID_REAL_GAIN_LOSS:
         return Model_Currency::toString(GetRealGainLoss(item), m_stock_panel->m_currency);
-    case LISTCOL_ID_GAIN_LOSS:
+    case LIST_ID_GAIN_LOSS:
         return Model_Currency::toString(GetGainLoss(item), m_stock_panel->m_currency);
-    case LISTCOL_ID_CURRENT:
+    case LIST_ID_CURRENT:
         return Model_Currency::toString(m_stocks[item].CURRENTPRICE, m_stock_panel->m_currency, 4);
-    case LISTCOL_ID_CURRVALUE:
+    case LIST_ID_CURRVALUE:
         return Model_Currency::toString(Model_Stock::CurrentValue(m_stocks[item]), m_stock_panel->m_currency);
-    case LISTCOL_ID_PRICEDATE:
+    case LIST_ID_PRICEDATE:
         return mmGetDateTimeForDisplay(Model_Stock::instance().lastPriceDate(&m_stocks[item]));
-    case LISTCOL_ID_COMMISSION:
+    case LIST_ID_COMMISSION:
         return Model_Currency::toString(m_stocks[item].COMMISSION, m_stock_panel->m_currency);
-    case LISTCOL_ID_NOTES: {
+    case LIST_ID_NOTES: {
         wxString full_notes = m_stocks[item].NOTES;
         full_notes.Replace("\n", " ");
         if (Model_Attachment::NrAttachments(Model_Attachment::REFTYPE_NAME_STOCK, m_stocks[item].STOCKID))
@@ -485,49 +486,49 @@ void StocksListCtrl::sortList()
     std::sort(m_stocks.begin(), m_stocks.end());
     switch (getSortColId())
     {
-    case StocksListCtrl::LISTCOL_ID_ID:
+    case StocksListCtrl::LIST_ID_ID:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySTOCKID());
         break;
-    case StocksListCtrl::LISTCOL_ID_DATE:
+    case StocksListCtrl::LIST_ID_DATE:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByPURCHASEDATE());
         break;
-    case StocksListCtrl::LISTCOL_ID_NAME:
+    case StocksListCtrl::LIST_ID_NAME:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySTOCKNAME());
         break;
-    case StocksListCtrl::LISTCOL_ID_SYMBOL:
+    case StocksListCtrl::LIST_ID_SYMBOL:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySYMBOL());
         break;
-    case StocksListCtrl::LISTCOL_ID_NUMBER:
+    case StocksListCtrl::LIST_ID_NUMBER:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByNUMSHARES());
         break;
-    case StocksListCtrl::LISTCOL_ID_PRICE:
+    case StocksListCtrl::LIST_ID_PRICE:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByPURCHASEPRICE());
         break;
-    case StocksListCtrl::LISTCOL_ID_VALUE:
+    case StocksListCtrl::LIST_ID_VALUE:
         std::stable_sort(m_stocks.begin(), m_stocks.end()
             , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
             {
                 return x.VALUE < y.VALUE;
             });
         break;
-    case StocksListCtrl::LISTCOL_ID_REAL_GAIN_LOSS:
+    case StocksListCtrl::LIST_ID_REAL_GAIN_LOSS:
         std::stable_sort(m_stocks.begin(), m_stocks.end()
             , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
         {
             return getRealGainLoss(x) < getRealGainLoss(y);
         });
         break;
-    case StocksListCtrl::LISTCOL_ID_GAIN_LOSS:
+    case StocksListCtrl::LIST_ID_GAIN_LOSS:
         std::stable_sort(m_stocks.begin(), m_stocks.end()
             , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
             {
                 return getGainLoss(x) < getGainLoss(y);
             });
         break;
-    case StocksListCtrl::LISTCOL_ID_CURRENT:
+    case StocksListCtrl::LIST_ID_CURRENT:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByCURRENTPRICE());
         break;
-    case StocksListCtrl::LISTCOL_ID_CURRVALUE:
+    case StocksListCtrl::LIST_ID_CURRVALUE:
         std::stable_sort(m_stocks.begin(), m_stocks.end()
             , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
             {
@@ -536,13 +537,13 @@ void StocksListCtrl::sortList()
                 return valueX < valueY;
             });
         break;
-    case StocksListCtrl::LISTCOL_ID_PRICEDATE:
+    case StocksListCtrl::LIST_ID_PRICEDATE:
         //TODO
         break;
-    case StocksListCtrl::LISTCOL_ID_COMMISSION:
+    case StocksListCtrl::LIST_ID_COMMISSION:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByCOMMISSION());
         break;
-    case StocksListCtrl::LISTCOL_ID_NOTES:
+    case StocksListCtrl::LIST_ID_NOTES:
         std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByNOTES());
         break;
     default:

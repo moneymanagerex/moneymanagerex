@@ -35,20 +35,20 @@ class budgetingListCtrl : public mmListCtrl
     wxDECLARE_EVENT_TABLE();
 
 public:
-    enum LISTCOL_ID
+    enum LIST_ID
     {
-        LISTCOL_ID_ICON = 0,
-        LISTCOL_ID_CATEGORY,
-        LISTCOL_ID_FREQUENCY,
-        LISTCOL_ID_AMOUNT,
-        LISTCOL_ID_ESTIMATED,
-        LISTCOL_ID_ACTUAL,
-        LISTCOL_ID_NOTES,
-        LISTCOL_ID_size, // number of columns
+        LIST_ID_ICON = 0,
+        LIST_ID_CATEGORY,
+        LIST_ID_FREQUENCY,
+        LIST_ID_AMOUNT,
+        LIST_ID_ESTIMATED,
+        LIST_ID_ACTUAL,
+        LIST_ID_NOTES,
+        LIST_ID_size, // number of columns
     };
 
 private:
-    static const std::vector<ListColumnInfo> LISTCOL_INFO;
+    static const std::vector<ListColumnInfo> LIST_INFO;
 
 public:
     budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, const wxWindowID id);

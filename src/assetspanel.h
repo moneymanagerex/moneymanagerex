@@ -28,17 +28,17 @@ class wxButton;
 class mmAssetsListCtrl: public mmListCtrl
 {
 public:
-    enum LISTCOL_ID
+    enum LIST_ID
     {
-        LISTCOL_ID_ICON = 0,
-        LISTCOL_ID_ID,
-        LISTCOL_ID_NAME,
-        LISTCOL_ID_DATE,
-        LISTCOL_ID_TYPE,
-        LISTCOL_ID_VALUE_INITIAL,
-        LISTCOL_ID_VALUE_CURRENT,
-        LISTCOL_ID_NOTES,
-        LISTCOL_ID_size, // number of columns
+        LIST_ID_ICON = 0,
+        LIST_ID_ID,
+        LIST_ID_NAME,
+        LIST_ID_DATE,
+        LIST_ID_TYPE,
+        LIST_ID_VALUE_INITIAL,
+        LIST_ID_VALUE_CURRENT,
+        LIST_ID_NOTES,
+        LIST_ID_size, // number of columns
     };
 
 private:
@@ -56,7 +56,7 @@ private:
     };
 
 private:
-    static const std::vector<ListColumnInfo> LISTCOL_INFO;
+    static const std::vector<ListColumnInfo> LIST_INFO;
     mmAssetsPanel* m_panel = nullptr;
     long m_selected_row = -1;
 

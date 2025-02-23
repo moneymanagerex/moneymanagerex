@@ -64,7 +64,6 @@ public:
     bool isDeletedTrans() const;
     bool isGroup() const;
     bool isAccount() const;
-    wxString sortPrefix() const;
 
     void loadAccount(int64 account_id = -1);
     void refreshList();
@@ -199,12 +198,5 @@ inline bool mmCheckingPanel::isAllTrans() const { return m_checking_id == -1; }
 inline bool mmCheckingPanel::isDeletedTrans() const { return m_checking_id == -2; }
 inline bool mmCheckingPanel::isGroup() const { return m_checking_id <= -3; }
 inline bool mmCheckingPanel::isAccount() const { return m_checking_id >= 1; }
-inline wxString mmCheckingPanel::sortPrefix() const {
-    return
-        isAllTrans() ? "ALLTRANS" :
-        isDeletedTrans() ? "DELETED" :
-        isGroup() ? "MULTI" :
-        "CHECK";
-}
 
 #endif // MM_EX_CHECKINGPANEL_H_

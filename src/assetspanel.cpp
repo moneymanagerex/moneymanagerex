@@ -46,15 +46,15 @@ wxBEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
     EVT_MENU(MENU_ON_DUPLICATE_TRANSACTION,       mmAssetsListCtrl::OnDuplicateAsset)
 wxEND_EVENT_TABLE()
 
-const std::vector<ListColumnInfo> mmAssetsListCtrl::LISTCOL_INFO = {
-    { LISTCOL_ID_ICON,          true, _n("Icon"),          25,  _FL, false },
-    { LISTCOL_ID_ID,            true, _n("ID"),            _WA, _FR, true },
-    { LISTCOL_ID_NAME,          true, _n("Name"),          150, _FL, true },
-    { LISTCOL_ID_DATE,          true, _n("Date"),          _WH, _FL, true },
-    { LISTCOL_ID_TYPE,          true, _n("Type"),          _WH, _FL, true },
-    { LISTCOL_ID_VALUE_INITIAL, true, _n("Initial Value"), _WH, _FR, true },
-    { LISTCOL_ID_VALUE_CURRENT, true, _n("Current Value"), _WH, _FR, true },
-    { LISTCOL_ID_NOTES,         true, _n("Notes"),         450, _FL, true },
+const std::vector<ListColumnInfo> mmAssetsListCtrl::LIST_INFO = {
+    { LIST_ID_ICON,          true, _n("Icon"),          25,  _FL, false },
+    { LIST_ID_ID,            true, _n("ID"),            _WA, _FR, true },
+    { LIST_ID_NAME,          true, _n("Name"),          150, _FL, true },
+    { LIST_ID_DATE,          true, _n("Date"),          _WH, _FL, true },
+    { LIST_ID_TYPE,          true, _n("Type"),          _WH, _FL, true },
+    { LIST_ID_VALUE_INITIAL, true, _n("Initial Value"), _WH, _FR, true },
+    { LIST_ID_VALUE_CURRENT, true, _n("Current Value"), _WH, _FR, true },
+    { LIST_ID_NOTES,         true, _n("Notes"),         450, _FL, true },
 };
 
 mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindowID winid) :
@@ -63,12 +63,13 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
 {
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
+    m_setting_name = "ASSETS";
     o_col_order_prefix = "ASSETS";
     o_col_width_prefix = "ASSETS_COL";
     o_sort_prefix = "ASSETS";
-    m_col_id_info = LISTCOL_INFO;
-    m_col_nr_id = ListColumnInfo::getId(LISTCOL_INFO);
-    m_sort_col_id = { LISTCOL_ID_DATE };
+    m_col_id_info = LIST_INFO;
+    m_col_nr_id = ListColumnInfo::getListId(LIST_INFO);
+    m_sort_col_id = { LIST_ID_DATE };
     createColumns();
 }
 
@@ -523,28 +524,28 @@ void mmAssetsPanel::sortList()
     std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterBySTARTDATE());
     switch (this->m_lc->m_sort_col_id[0])
     {
-    case mmAssetsListCtrl::LISTCOL_ID_ID:
+    case mmAssetsListCtrl::LIST_ID_ID:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETID());
         break;
-    case mmAssetsListCtrl::LISTCOL_ID_NAME:
+    case mmAssetsListCtrl::LIST_ID_NAME:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETNAME());
         break;
-    case mmAssetsListCtrl::LISTCOL_ID_TYPE:
+    case mmAssetsListCtrl::LIST_ID_TYPE:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETTYPE());
         break;
-    case mmAssetsListCtrl::LISTCOL_ID_VALUE_INITIAL:
+    case mmAssetsListCtrl::LIST_ID_VALUE_INITIAL:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByVALUE());
         break;
-    case mmAssetsListCtrl::LISTCOL_ID_VALUE_CURRENT:
+    case mmAssetsListCtrl::LIST_ID_VALUE_CURRENT:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end()
             , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
             {
                 return Model_Asset::value(x) < Model_Asset::value(y);
             });
         break;
-    case mmAssetsListCtrl::LISTCOL_ID_DATE:
+    case mmAssetsListCtrl::LIST_ID_DATE:
         break;
-    case mmAssetsListCtrl::LISTCOL_ID_NOTES:
+    case mmAssetsListCtrl::LIST_ID_NOTES:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByNOTES());
     default:
         break;
@@ -618,21 +619,21 @@ wxString mmAssetsPanel::getItem(long item, int col_id)
 {
     const Model_Asset::Data& asset = this->m_assets[item];
     switch (col_id) {
-    case mmAssetsListCtrl::LISTCOL_ID_ICON:
+    case mmAssetsListCtrl::LIST_ID_ICON:
         return "";
-    case mmAssetsListCtrl::LISTCOL_ID_ID:
+    case mmAssetsListCtrl::LIST_ID_ID:
         return wxString::Format("%lld", asset.ASSETID).Trim();
-    case mmAssetsListCtrl::LISTCOL_ID_NAME:
+    case mmAssetsListCtrl::LIST_ID_NAME:
         return asset.ASSETNAME;
-    case mmAssetsListCtrl::LISTCOL_ID_TYPE:
+    case mmAssetsListCtrl::LIST_ID_TYPE:
         return wxGetTranslation(asset.ASSETTYPE);
-    case mmAssetsListCtrl::LISTCOL_ID_VALUE_INITIAL:
+    case mmAssetsListCtrl::LIST_ID_VALUE_INITIAL:
         return Model_Currency::toCurrency(asset.VALUE);
-    case mmAssetsListCtrl::LISTCOL_ID_VALUE_CURRENT:
+    case mmAssetsListCtrl::LIST_ID_VALUE_CURRENT:
         return Model_Currency::toCurrency(Model_Asset::value(asset));
-    case mmAssetsListCtrl::LISTCOL_ID_DATE:
+    case mmAssetsListCtrl::LIST_ID_DATE:
         return mmGetDateTimeForDisplay(asset.STARTDATE);
-    case mmAssetsListCtrl::LISTCOL_ID_NOTES: {
+    case mmAssetsListCtrl::LIST_ID_NOTES: {
         wxString full_notes = asset.NOTES;
         full_notes.Replace("\n", " ");
         if (Model_Attachment::NrAttachments(Model_Attachment::REFTYPE_NAME_ASSET, asset.ASSETID))
@@ -739,7 +740,7 @@ void mmAssetsPanel::OnSearchTxtEntered(wxCommandEvent& event)
     while (selectedItem > 0 && selectedItem <= last)
     {
         m_lc->getSortAsc() ? selectedItem-- : selectedItem++;
-        const wxString t = getItem(selectedItem, mmAssetsListCtrl::LISTCOL_ID_NOTES).Lower();
+        const wxString t = getItem(selectedItem, mmAssetsListCtrl::LIST_ID_NOTES).Lower();
         if (t.Matches(search_string + "*"))
         {
             //First of all any items should be unselected

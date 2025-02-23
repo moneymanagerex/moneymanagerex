@@ -43,7 +43,7 @@ struct ListColumnInfo
     int format;
     bool sortable;
 
-    static const std::vector<int> getId(const std::vector<ListColumnInfo>& a_info);
+    static const std::vector<int> getListId(const std::vector<ListColumnInfo>& a_info);
 };
 
 //----------------------------------------------------------------------------
@@ -69,15 +69,17 @@ public:
     const wxSharedPtr<wxListItemAttr> attr1_, attr2_; // style1, style2
 
     // configured by constructor (but may be updated)
+    wxString m_setting_name;                   // name for settings
     wxString o_col_order_prefix;               // v1.9.0 prefix for column order
     wxString o_col_width_prefix;               // v1.9.0 prefix for column width
     wxString o_sort_prefix;                    // v1.9.0 prefix for sort
     std::vector<ListColumnInfo> m_col_id_info; // map: col_id -> col_info
+    std::unordered_set<int> m_col_id_disabled; // set: col_id -> isDisabled
 
     // dynamic
     std::vector<int> m_col_nr_id;              // map: col_nr -> col_id; or empty
     std::vector<int> m_col_id_width;           // map: col_id -> col_width (lazy)
-    std::unordered_set<int> m_col_id_hidden;   // set: col_id -> hidden
+    std::unordered_set<int> m_col_id_hidden;   // set: col_id -> isHidden
     std::vector<int> m_sort_col_id;            // sorting col_id; can be empty
     std::vector<bool> m_sort_asc;              // sorting direction
     int m_col_nr = -1;                         // updated by onColRightClick()
@@ -100,8 +102,10 @@ public:
     int getColId(int col_nr) const;
     int getColNr(int col_id) const;
     const wxString getColHeader(int col_id, bool show_icon = false) const;
+    bool isDisabledColId(int col_id) const;
+    bool isDisabledColNr(int col_nr) const;
     bool isHiddenColId(int col_id) const;
-    bool isHiddenColNr(int col_id) const;
+    bool isHiddenColNr(int col_nr) const;
     int getSortColId(int i = 0) const;
     int getSortColNr(int i = 0);
     bool getSortAsc(int i = 0) const;
@@ -110,6 +114,7 @@ public:
 
 private:
     int cacheSortColNr(int i);
+    void shiftColumn(int col_nr, int offset);
 
     // backwards compatibility
     const wxString getColOrderKey_v190() const;
@@ -134,7 +139,7 @@ private:
     void onHeaderToggle(wxCommandEvent& event);
     void onHeaderHide(wxCommandEvent& WXUNUSED(event));
     void onHeaderShow(wxCommandEvent& WXUNUSED(event));
-    void onHeaderMove(wxCommandEvent& WXUNUSED(event), int direction);
+    void onHeaderMove(wxCommandEvent& WXUNUSED(event), int dir);
     void onHeaderReset(wxCommandEvent& WXUNUSED(event));
 };
 
@@ -152,7 +157,7 @@ inline int mmListCtrl::getColNrSize() const
 
 inline bool mmListCtrl::isValidColId(int col_id) const
 {
-    return (col_id >= 0 && col_id < static_cast<int>(m_col_id_info.size()));
+    return (col_id >= 0 && col_id < getColIdSize());
 }
 
 inline bool mmListCtrl::isValidColNr(int col_nr) const
@@ -169,6 +174,16 @@ inline int mmListCtrl::getColNr(int col_id) const
 {
     return m_col_nr_id.empty() ? col_id :
         std::find(m_col_nr_id.begin(), m_col_nr_id.end(), col_id) - m_col_nr_id.begin();
+}
+
+inline bool mmListCtrl::isDisabledColId(int col_id) const
+{
+    return m_col_id_disabled.find(col_id) != m_col_id_disabled.end();
+}
+
+inline bool mmListCtrl::isDisabledColNr(int col_nr) const
+{
+    return isDisabledColId(getColId(col_nr));
 }
 
 inline bool mmListCtrl::isHiddenColId(int col_id) const

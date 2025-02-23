@@ -63,14 +63,14 @@ wxBEGIN_EVENT_TABLE(budgetingListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY, budgetingListCtrl::OnListItemActivated)
 wxEND_EVENT_TABLE()
 
-const std::vector<ListColumnInfo> budgetingListCtrl::LISTCOL_INFO = {
-    { LISTCOL_ID_ICON,      true, _n("Icon"),      _WH, _FL, false },
-    { LISTCOL_ID_CATEGORY,  true, _n("Category"),  _WH, _FL, false },
-    { LISTCOL_ID_FREQUENCY, true, _n("Frequency"), _WH, _FL, false },
-    { LISTCOL_ID_AMOUNT,    true, _n("Amount"),    _WH, _FR, false },
-    { LISTCOL_ID_ESTIMATED, true, _n("Estimated"), _WH, _FR, false },
-    { LISTCOL_ID_ACTUAL,    true, _n("Actual"),    _WH, _FR, false },
-    { LISTCOL_ID_NOTES,     true, _n("Notes"),     _WH, _FL, false },
+const std::vector<ListColumnInfo> budgetingListCtrl::LIST_INFO = {
+    { LIST_ID_ICON,      true, _n("Icon"),      _WH, _FL, false },
+    { LIST_ID_CATEGORY,  true, _n("Category"),  _WH, _FL, false },
+    { LIST_ID_FREQUENCY, true, _n("Frequency"), _WH, _FL, false },
+    { LIST_ID_AMOUNT,    true, _n("Amount"),    _WH, _FR, false },
+    { LIST_ID_ESTIMATED, true, _n("Estimated"), _WH, _FR, false },
+    { LIST_ID_ACTUAL,    true, _n("Actual"),    _WH, _FR, false },
+    { LIST_ID_NOTES,     true, _n("Notes"),     _WH, _FL, false },
 };
 
 mmBudgetingPanel::mmBudgetingPanel(int64 budgetYearID
@@ -283,7 +283,8 @@ budgetingListCtrl::budgetingListCtrl(
 {
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
-    m_col_id_info = LISTCOL_INFO;
+    m_setting_name = "BUDGET";
+    m_col_id_info = LIST_INFO;
     o_col_width_prefix = "BUDGET_COL";
 }
 
@@ -553,9 +554,9 @@ void budgetingListCtrl::OnListItemSelected(wxListEvent& event)
 wxString mmBudgetingPanel::getItem(long item, int col_id)
 {
     switch (col_id) {
-    case budgetingListCtrl::LISTCOL_ID_ICON:
+    case budgetingListCtrl::LIST_ID_ICON:
         return " ";
-    case budgetingListCtrl::LISTCOL_ID_CATEGORY: {
+    case budgetingListCtrl::LIST_ID_CATEGORY: {
         Model_Category::Data* category = Model_Category::instance().get(budget_[item].first > 0
             ? budget_[item].first : budget_[item].second);
         if (category) {
@@ -567,21 +568,21 @@ wxString mmBudgetingPanel::getItem(long item, int col_id)
         }
         return wxEmptyString;
     }
-    case budgetingListCtrl::LISTCOL_ID_FREQUENCY: {
+    case budgetingListCtrl::LIST_ID_FREQUENCY: {
         if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second) {
             Model_Budget::PERIOD_ID period = budgetPeriod_[budget_[item].first];
             return wxGetTranslation(Model_Budget::period_name(period));
         }
         return wxEmptyString;
     }
-    case budgetingListCtrl::LISTCOL_ID_AMOUNT: {
+    case budgetingListCtrl::LIST_ID_AMOUNT: {
         if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second) {
             double amt = budgetAmt_[budget_[item].first];
             return Model_Currency::toCurrency(amt);
         }
         return wxEmptyString;
     }
-    case budgetingListCtrl::LISTCOL_ID_ESTIMATED: {
+    case budgetingListCtrl::LIST_ID_ESTIMATED: {
         if (budget_[item].first < 0) {
             double estimated = budgetTotals_[budget_[item].second].first;
             return Model_Currency::toCurrency(estimated);
@@ -592,7 +593,7 @@ wxString mmBudgetingPanel::getItem(long item, int col_id)
         }
         return wxEmptyString;
     }
-    case budgetingListCtrl::LISTCOL_ID_ACTUAL: {
+    case budgetingListCtrl::LIST_ID_ACTUAL: {
         if (budget_[item].first < 0) {
             double actual = budgetTotals_[budget_[item].second].second;
             return Model_Currency::toCurrency(actual);
@@ -604,7 +605,7 @@ wxString mmBudgetingPanel::getItem(long item, int col_id)
         }
         return wxEmptyString;
     }
-    case budgetingListCtrl::LISTCOL_ID_NOTES:
+    case budgetingListCtrl::LIST_ID_NOTES:
         if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second) {
             wxString value = budgetNotes_[budget_[item].second >= 0 ? budget_[item].second
                 : budget_[item].first];

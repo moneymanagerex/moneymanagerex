@@ -35,30 +35,30 @@ class billsDepositsListCtrl: public mmListCtrl
     wxDECLARE_EVENT_TABLE();
 
 public:
-    enum LISTCOL_ID
+    enum LIST_ID
     {
-        LISTCOL_ID_ICON = 0,
-        LISTCOL_ID_ID,
-        LISTCOL_ID_PAYMENT_DATE,
-        LISTCOL_ID_DUE_DATE,
-        LISTCOL_ID_ACCOUNT,
-        LISTCOL_ID_PAYEE,
-        LISTCOL_ID_STATUS,
-        LISTCOL_ID_CATEGORY,
-        LISTCOL_ID_TAGS,
-        LISTCOL_ID_TYPE,
-        LISTCOL_ID_AMOUNT,
-        LISTCOL_ID_FREQUENCY,
-        LISTCOL_ID_REPEATS,
-        LISTCOL_ID_AUTO,
-        LISTCOL_ID_DAYS,
-        LISTCOL_ID_NUMBER,
-        LISTCOL_ID_NOTES,
-        LISTCOL_ID_size, // number of columns
+        LIST_ID_ICON = 0,
+        LIST_ID_ID,
+        LIST_ID_PAYMENT_DATE,
+        LIST_ID_DUE_DATE,
+        LIST_ID_ACCOUNT,
+        LIST_ID_PAYEE,
+        LIST_ID_STATUS,
+        LIST_ID_CATEGORY,
+        LIST_ID_TAGS,
+        LIST_ID_TYPE,
+        LIST_ID_AMOUNT,
+        LIST_ID_FREQUENCY,
+        LIST_ID_REPEATS,
+        LIST_ID_AUTO,
+        LIST_ID_DAYS,
+        LIST_ID_NUMBER,
+        LIST_ID_NOTES,
+        LIST_ID_size, // number of columns
     };
 
 private:
-    static const std::vector<ListColumnInfo> LISTCOL_INFO;
+    static const std::vector<ListColumnInfo> LIST_INFO;
     mmBillsDepositsPanel* m_bdp;
     long m_selected_row = -1;
 
@@ -178,7 +178,7 @@ private:
     wxArrayString tips_;
 };
 
-inline int billsDepositsListCtrl::col_sort() { return LISTCOL_ID_PAYMENT_DATE; }
+inline int billsDepositsListCtrl::col_sort() { return LIST_ID_PAYMENT_DATE; }
 
 inline wxDate mmBillsDepositsPanel::getToday() const { return m_today; }
 

@@ -1213,7 +1213,7 @@ wxString mmCheckingPanel::BuildPage() const
 void mmCheckingPanel::resetColumnView()
 {
     m_lc->DeleteAllColumns();
-    m_lc->getColumnsInfo();
+    m_lc->setColumnsInfo();
     m_lc->createColumns();
     m_lc->refreshVisualList();
 }

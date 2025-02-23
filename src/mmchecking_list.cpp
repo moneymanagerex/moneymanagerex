@@ -92,30 +92,30 @@ wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
     )
 wxEND_EVENT_TABLE();
 
-const std::vector<ListColumnInfo> TransactionListCtrl::LISTCOL_INFO = {
-    { LISTCOL_ID_ICON,        true, _n("Icon"),         25,  _FC, false },
-    { LISTCOL_ID_ID,          true, _n("ID"),           _WA, _FR, true },
-    { LISTCOL_ID_DATE,        true, _n("Date"),         112, _FL, true },
-    { LISTCOL_ID_TIME,        true, _n("Time"),         70,  _FL, true },
-    { LISTCOL_ID_NUMBER,      true, _n("Number"),       70,  _FL, true },
-    { LISTCOL_ID_ACCOUNT,     true, _n("Account"),      100, _FL, true },
-    { LISTCOL_ID_PAYEE_STR,   true, _n("Payee"),        150, _FL, true },
-    { LISTCOL_ID_STATUS,      true, _n("Status"),       _WH, _FC, true },
-    { LISTCOL_ID_CATEGORY,    true, _n("Category"),     150, _FL, true },
-    { LISTCOL_ID_TAGS,        true, _n("Tags"),         250, _FL, true },
-    { LISTCOL_ID_WITHDRAWAL,  true, _n("Withdrawal"),   _WH, _FR, true },
-    { LISTCOL_ID_DEPOSIT,     true, _n("Deposit"),      _WH, _FR, true },
-    { LISTCOL_ID_BALANCE,     true, _n("Balance"),      _WH, _FR, true },
-    { LISTCOL_ID_CREDIT,      true, _n("Credit"),       _WH, _FR, true },
-    { LISTCOL_ID_NOTES,       true, _n("Notes"),        250, _FL, true },
-    { LISTCOL_ID_DELETEDTIME, true, _n("Deleted On"),   _WA, _FL, true },
-    { LISTCOL_ID_UDFC01,      false, "",                100, _FL, true },
-    { LISTCOL_ID_UDFC02,      false, "",                100, _FL, true },
-    { LISTCOL_ID_UDFC03,      false, "",                100, _FL, true },
-    { LISTCOL_ID_UDFC04,      false, "",                100, _FL, true },
-    { LISTCOL_ID_UDFC05,      false, "",                100, _FL, true },
-    { LISTCOL_ID_UPDATEDTIME, true, _n("Last Updated"), _WA, _FL, true },
-    { LISTCOL_ID_SN,          true, _n("SN"),           _WA, _FR, true },
+const std::vector<ListColumnInfo> TransactionListCtrl::LIST_INFO = {
+    { LIST_ID_ICON,        true, _n("Icon"),         25,  _FC, false },
+    { LIST_ID_ID,          true, _n("ID"),           _WA, _FR, true },
+    { LIST_ID_DATE,        true, _n("Date"),         112, _FL, true },
+    { LIST_ID_TIME,        true, _n("Time"),         70,  _FL, true },
+    { LIST_ID_NUMBER,      true, _n("Number"),       70,  _FL, true },
+    { LIST_ID_ACCOUNT,     true, _n("Account"),      100, _FL, true },
+    { LIST_ID_PAYEE_STR,   true, _n("Payee"),        150, _FL, true },
+    { LIST_ID_STATUS,      true, _n("Status"),       _WH, _FC, true },
+    { LIST_ID_CATEGORY,    true, _n("Category"),     150, _FL, true },
+    { LIST_ID_TAGS,        true, _n("Tags"),         250, _FL, true },
+    { LIST_ID_WITHDRAWAL,  true, _n("Withdrawal"),   _WH, _FR, true },
+    { LIST_ID_DEPOSIT,     true, _n("Deposit"),      _WH, _FR, true },
+    { LIST_ID_BALANCE,     true, _n("Balance"),      _WH, _FR, true },
+    { LIST_ID_CREDIT,      true, _n("Credit"),       _WH, _FR, true },
+    { LIST_ID_NOTES,       true, _n("Notes"),        250, _FL, true },
+    { LIST_ID_DELETEDTIME, true, _n("Deleted On"),   _WA, _FL, true },
+    { LIST_ID_UDFC01,      false, "",                100, _FL, true },
+    { LIST_ID_UDFC02,      false, "",                100, _FL, true },
+    { LIST_ID_UDFC03,      false, "",                100, _FL, true },
+    { LIST_ID_UDFC04,      false, "",                100, _FL, true },
+    { LIST_ID_UDFC05,      false, "",                100, _FL, true },
+    { LIST_ID_UPDATEDTIME, true, _n("Last Updated"), _WA, _FL, true },
+    { LIST_ID_SN,          true, _n("SN"),           _WA, _FR, true },
 };
 
 //----------------------------------------------------------------------------
@@ -210,20 +210,7 @@ TransactionListCtrl::TransactionListCtrl(
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
     SetAcceleratorTable(tab);
 
-    // V2 used as now maps to real column names and this resets everything to default
-    // to avoid strange column widths when this code version is first
-    if (m_cp->m_account) {
-        o_col_order_prefix = m_cp->m_account->ACCOUNTTYPE.Upper();
-        o_col_order_prefix.Replace(" ", "_");
-        o_col_width_prefix = "CHECK2_COLV2";
-    }
-    else {
-        o_col_order_prefix = "ALLTRANS";
-        o_col_width_prefix = "ALLTRANS_COLV2";
-    }
-    o_sort_prefix = m_cp->sortPrefix();
-    getColumnsInfo();
-    m_sort_col_id = { LISTCOL_ID_def_sort1, LISTCOL_ID_def_sort2 };
+    setColumnsInfo();
     createColumns();
 
     m_today = Option::instance().UseTransDateTime() ?
@@ -238,39 +225,63 @@ TransactionListCtrl::~TransactionListCtrl()
 
 //----------------------------------------------------------------------------
 
-void TransactionListCtrl::getColumnsInfo()
+void TransactionListCtrl::setColumnsInfo()
 {
-    m_col_id_info = LISTCOL_INFO;
-
-    m_col_nr_id.clear();
-    m_col_nr_id.push_back(LISTCOL_ID_ICON);
-    m_col_nr_id.push_back(LISTCOL_ID_SN);
-    m_col_nr_id.push_back(LISTCOL_ID_ID);
-    m_col_nr_id.push_back(LISTCOL_ID_DATE);
-    if (Option::instance().UseTransDateTime())
-        m_col_nr_id.push_back(LISTCOL_ID_TIME);
-    m_col_nr_id.push_back(LISTCOL_ID_NUMBER);
-    if (!m_cp->isAccount())
-        m_col_nr_id.push_back(LISTCOL_ID_ACCOUNT);
-    m_col_nr_id.push_back(LISTCOL_ID_PAYEE_STR);
-    m_col_nr_id.push_back(LISTCOL_ID_STATUS);
-    m_col_nr_id.push_back(LISTCOL_ID_CATEGORY);
-    m_col_nr_id.push_back(LISTCOL_ID_TAGS);
-    m_col_nr_id.push_back(LISTCOL_ID_WITHDRAWAL);
-    m_col_nr_id.push_back(LISTCOL_ID_DEPOSIT);
-    if (m_cp->isAccount()) {
-        m_col_nr_id.push_back(LISTCOL_ID_BALANCE);
-        if (m_cp->m_account->CREDITLIMIT != 0)
-            m_col_nr_id.push_back(LISTCOL_ID_CREDIT);
+    if (m_cp->isDeletedTrans()) {
+        m_setting_name = "DELETED";
+        o_col_order_prefix = "ALLTRANS";
+        o_col_width_prefix = "ALLTRANS_COLV2";
+        o_sort_prefix = "DELETED";
     }
-    m_col_nr_id.push_back(LISTCOL_ID_NOTES);
+    else if (m_cp->isAccount()) {
+        m_setting_name = "TRANS1";
+        o_col_order_prefix = m_cp->m_account->ACCOUNTTYPE.Upper();
+        o_col_order_prefix.Replace(" ", "_");
+        o_col_width_prefix = "CHECK2_COLV2";
+        o_sort_prefix = "CHECK";
+    }
+    else {
+        m_setting_name = "TRANS2";
+        o_col_order_prefix = "ALLTRANS";
+        o_col_width_prefix = "ALLTRANS_COLV2";
+        o_sort_prefix = m_cp->isGroup() ? "MULTI" : "ALLTRANS";
+    }
+
+    m_col_id_info = LIST_INFO;
+    m_col_id_disabled.clear();
+    m_col_nr_id.clear();
+
+    if (!Option::instance().UseTransDateTime())
+        m_col_id_disabled.insert(LIST_ID_TIME);
+    if (m_cp->isAccount() && m_cp->m_account->CREDITLIMIT == 0)
+        m_col_id_disabled.insert(LIST_ID_CREDIT);
+
+    m_col_nr_id.push_back(LIST_ID_ICON);
+    m_col_nr_id.push_back(LIST_ID_SN);
+    m_col_nr_id.push_back(LIST_ID_ID);
+    m_col_nr_id.push_back(LIST_ID_DATE);
+    m_col_nr_id.push_back(LIST_ID_TIME);
+    m_col_nr_id.push_back(LIST_ID_NUMBER);
+    if (!m_cp->isAccount())
+        m_col_nr_id.push_back(LIST_ID_ACCOUNT);
+    m_col_nr_id.push_back(LIST_ID_PAYEE_STR);
+    m_col_nr_id.push_back(LIST_ID_STATUS);
+    m_col_nr_id.push_back(LIST_ID_CATEGORY);
+    m_col_nr_id.push_back(LIST_ID_TAGS);
+    m_col_nr_id.push_back(LIST_ID_WITHDRAWAL);
+    m_col_nr_id.push_back(LIST_ID_DEPOSIT);
+    if (m_cp->isAccount()) {
+        m_col_nr_id.push_back(LIST_ID_BALANCE);
+        m_col_nr_id.push_back(LIST_ID_CREDIT);
+    }
+    m_col_nr_id.push_back(LIST_ID_NOTES);
     if (m_cp->isDeletedTrans())
-        m_col_nr_id.push_back(LISTCOL_ID_DELETEDTIME);
+        m_col_nr_id.push_back(LIST_ID_DELETEDTIME);
 
     const auto& ref_type = Model_Attachment::REFTYPE_NAME_TRANSACTION;
-    int col_id = LISTCOL_ID_UDFC01;
+    int col_id = LIST_ID_UDFC01;
     for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS()) {
-        if (col_id > LISTCOL_ID_UDFC05) break;
+        if (col_id > LIST_ID_UDFC05) break;
         if (udfc_entry.empty()) continue;
 
         const auto& name = Model_CustomField::getUDFCName(ref_type, udfc_entry);
@@ -286,7 +297,9 @@ void TransactionListCtrl::getColumnsInfo()
         col_id++;
     }
 
-    m_col_nr_id.push_back(LISTCOL_ID_UPDATEDTIME);
+    m_col_nr_id.push_back(LIST_ID_UPDATEDTIME);
+
+    m_sort_col_id = { LIST_ID_DATE, LIST_ID_ID };
 }
 
 void TransactionListCtrl::refreshVisualList(bool filter)
@@ -364,11 +377,11 @@ void TransactionListCtrl::sortList()
     );
     m_cp->m_header_sortOrder->SetLabelText(sortText);
 
-    if (getSortColId(0) == LISTCOL_ID_SN)
+    if (getSortColId(0) == LIST_ID_SN)
         m_cp->showTips(_t("SN (Sequence Number) has the same order as Date/ID (or Date/Time/ID if Time is enabled)."));
-    else if (getSortColId(0) == LISTCOL_ID_ID)
+    else if (getSortColId(0) == LIST_ID_ID)
         m_cp->showTips(_t("ID (identification number) is increasing with the time of creation in the database."));
-    else if (getSortColId(0) == LISTCOL_ID_BALANCE)
+    else if (getSortColId(0) == LIST_ID_BALANCE)
         m_cp->showTips(_t("Balance is calculated in the order of SN (Sequence Number)."));
 
     RefreshItems(0, m_trans.size() - 1);
@@ -389,90 +402,90 @@ void TransactionListCtrl::sortTransactions(int col_id, bool ascend)
     Model_CustomField::TYPE_ID type;
 
     switch (col_id) {
-    case TransactionListCtrl::LISTCOL_ID_SN:
+    case TransactionListCtrl::LIST_ID_SN:
         sortBy(Fused_Transaction::SorterByFUSEDTRANSSN(), ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_ID:
+    case TransactionListCtrl::LIST_ID_ID:
         sortBy(Fused_Transaction::SorterByFUSEDTRANSID(), ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_NUMBER:
+    case TransactionListCtrl::LIST_ID_NUMBER:
         sortBy(Model_Checking::SorterByNUMBER(), ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_ACCOUNT:
+    case TransactionListCtrl::LIST_ID_ACCOUNT:
         sortBy(SorterByACCOUNTNAME(), ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_PAYEE_STR:
+    case TransactionListCtrl::LIST_ID_PAYEE_STR:
         sortBy(SorterByPAYEENAME(), ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_STATUS:
+    case TransactionListCtrl::LIST_ID_STATUS:
         sortBy(SorterBySTATUS(), ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_CATEGORY:
+    case TransactionListCtrl::LIST_ID_CATEGORY:
         sortBy(SorterByCATEGNAME(), ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_TAGS:
+    case TransactionListCtrl::LIST_ID_TAGS:
         sortBy(Model_Checking::SorterByTAGNAMES(), ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_WITHDRAWAL:
+    case TransactionListCtrl::LIST_ID_WITHDRAWAL:
         sortBy(Model_Checking::SorterByWITHDRAWAL(), ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_DEPOSIT:
+    case TransactionListCtrl::LIST_ID_DEPOSIT:
         sortBy(Model_Checking::SorterByDEPOSIT(), ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_BALANCE:
+    case TransactionListCtrl::LIST_ID_BALANCE:
         sortBy(Model_Checking::SorterByBALANCE(), ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_CREDIT:
+    case TransactionListCtrl::LIST_ID_CREDIT:
         sortBy(Model_Checking::SorterByBALANCE(), ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_NOTES:
+    case TransactionListCtrl::LIST_ID_NOTES:
         sortBy(SorterByNOTES(), ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_DATE:
+    case TransactionListCtrl::LIST_ID_DATE:
         sortBy(Model_Checking::SorterByTRANSDATE_DATE(), ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_TIME:
+    case TransactionListCtrl::LIST_ID_TIME:
         sortBy(Model_Checking::SorterByTRANSDATE_TIME(), ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_DELETEDTIME:
+    case TransactionListCtrl::LIST_ID_DELETEDTIME:
         sortBy(SorterByDELETEDTIME(), ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_UDFC01:
+    case TransactionListCtrl::LIST_ID_UDFC01:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC01");
         if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
             sortBy(SorterByUDFC01_val, ascend);
         else
             sortBy(SorterByUDFC01, ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_UDFC02:
+    case TransactionListCtrl::LIST_ID_UDFC02:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC02");
         if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
             sortBy(SorterByUDFC02_val, ascend);
         else
             sortBy(SorterByUDFC02, ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_UDFC03:
+    case TransactionListCtrl::LIST_ID_UDFC03:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC03");
         if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
             sortBy(SorterByUDFC03_val, ascend);
         else
             sortBy(SorterByUDFC03, ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_UDFC04:
+    case TransactionListCtrl::LIST_ID_UDFC04:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC04");
         if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
             sortBy(SorterByUDFC04_val, ascend);
         else
             sortBy(SorterByUDFC04, ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_UDFC05:
+    case TransactionListCtrl::LIST_ID_UDFC05:
         type = Model_CustomField::getUDFCType(ref_type, "UDFC05");
         if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
             sortBy(SorterByUDFC05_val, ascend);
         else
             sortBy(SorterByUDFC05, ascend);
         break;
-    case TransactionListCtrl::LISTCOL_ID_UPDATEDTIME:
+    case TransactionListCtrl::LIST_ID_UPDATEDTIME:
         sortBy(SorterByLASTUPDATEDTIME(), ascend);
         break;
     default:
@@ -494,10 +507,10 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long col_nr) const
         return -1;
 
     int col_id = getColId(static_cast<int>(col_nr));
-    if (col_id != LISTCOL_ID_ICON)
+    if (col_id != LIST_ID_ICON)
         return -1;
 
-    wxString status = getItem(item, LISTCOL_ID_STATUS);
+    wxString status = getItem(item, LIST_ID_STATUS);
     if (status.length() > 1) status = status.Mid(2, 1);
 
     if (status == Model_Checking::STATUS_KEY_FOLLOWUP)
@@ -564,7 +577,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
         sortAsc = (col_nr == getSortColNr(0)) ? !m_sort_asc[0] : m_sort_asc[0];
     }
 
-    if (!isValidColNr(col_nr) || getColId(col_nr) == LISTCOL_ID_ICON)
+    if (!isValidColNr(col_nr) || getColId(col_nr) == LIST_ID_ICON)
         return;
 
     if (col_nr != getSortColNr(0)) {
@@ -578,8 +591,8 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     // #7080: Decouple DATE and ID, since SN may be used instead of ID.
     /*
     // If primary is DATE, then set secondary to ID in the same direction
-    if (getSortColId(0) == LISTCOL_ID_DATE) {
-        m_sort_col_id[1] = LISTCOL_ID_ID;
+    if (getSortColId(0) == LIST_ID_DATE) {
+        m_sort_col_id[1] = LIST_ID_ID;
         m_sort_asc[1] = m_sort_asc[0];        
     }
     */
@@ -743,45 +756,45 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
         wxString dateFormat = Option::instance().getDateFormat();
 
         switch (col_id) {
-        case LISTCOL_ID_SN:
+        case LIST_ID_SN:
             copyText_ = m_trans[row].displaySN;
             break;
-        case LISTCOL_ID_ID:
+        case LIST_ID_ID:
             copyText_ = m_trans[row].displayID;
             break;
-        case LISTCOL_ID_DATE: {
+        case LIST_ID_DATE: {
             copyText_ = menuItemText = mmGetDateTimeForDisplay(m_trans[row].TRANSDATE);
             wxString strDate = Model_Checking::TRANSDATE(m_trans[row]).FormatISODate();
             rightClickFilter_ = "{\n\"DATE1\": \"" + strDate + "\",\n\"DATE2\" : \"" + strDate + "T23:59:59" + "\"\n}";
             break;
         }
-        case LISTCOL_ID_NUMBER:
+        case LIST_ID_NUMBER:
             copyText_ = menuItemText = m_trans[row].TRANSACTIONNUMBER;
             rightClickFilter_ = "{\n\"NUMBER\": \"" + menuItemText + "\"\n}";
             break;
-        case LISTCOL_ID_ACCOUNT:
+        case LIST_ID_ACCOUNT:
             copyText_ = menuItemText = m_trans[row].ACCOUNTNAME;
             rightClickFilter_ = "{\n\"ACCOUNT\": [\n\"" + menuItemText + "\"\n]\n}";
             break;
-        case LISTCOL_ID_PAYEE_STR:
+        case LIST_ID_PAYEE_STR:
             copyText_ = m_trans[row].PAYEENAME;
             if (!Model_Checking::is_transfer(m_trans[row].TRANSCODE)) {
                 menuItemText = m_trans[row].PAYEENAME;
                 rightClickFilter_ = "{\n\"PAYEE\": \"" + menuItemText + "\"\n}";
             }
             break;
-        case LISTCOL_ID_STATUS:
+        case LIST_ID_STATUS:
             copyText_ = menuItemText = Model_Checking::status_name(m_trans[row].STATUS);
             rightClickFilter_ = "{\n\"STATUS\": \"" + menuItemText + "\"\n}";
             break;
-        case LISTCOL_ID_CATEGORY:
+        case LIST_ID_CATEGORY:
             copyText_ = m_trans[row].CATEGNAME;
             if (!m_trans[row].has_split()) {
                 menuItemText = m_trans[row].CATEGNAME;
                 rightClickFilter_ = "{\n\"CATEGORY\": \"" + menuItemText + "\",\n\"SUBCATEGORYINCLUDE\": false\n}";
             }
             break;
-        case LISTCOL_ID_TAGS:
+        case LIST_ID_TAGS:
             if (!m_trans[row].has_split() && m_trans[row].has_tags()) {
                 copyText_ = menuItemText = m_trans[row].TAGNAMES;
                 // build the tag filter json
@@ -791,7 +804,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
                 rightClickFilter_ += "\n]\n}";
             }
             break;
-        case LISTCOL_ID_WITHDRAWAL: {
+        case LIST_ID_WITHDRAWAL: {
             columnIsAmount = true;
             Model_Account::Data* account = Model_Account::instance().get(m_trans[row].ACCOUNTID_W);
             Model_Currency::Data* currency = account ? Model_Currency::instance().get(account->CURRENCYID) : nullptr;
@@ -802,7 +815,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
             }
             break;
         }
-        case LISTCOL_ID_DEPOSIT: {
+        case LIST_ID_DEPOSIT: {
             columnIsAmount = true;
             Model_Account::Data* account = Model_Account::instance().get(m_trans[row].ACCOUNTID_D);
             Model_Currency::Data* currency = account ? Model_Currency::instance().get(account->CURRENCYID) : nullptr;
@@ -813,46 +826,46 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
             }
             break;
         }
-        case LISTCOL_ID_BALANCE:
+        case LIST_ID_BALANCE:
             copyText_ = Model_Currency::toString(m_trans[row].ACCOUNT_BALANCE, m_cp->m_currency);
             break;
-        case LISTCOL_ID_CREDIT:
+        case LIST_ID_CREDIT:
             copyText_ = Model_Currency::toString(
                 m_cp->m_account->CREDITLIMIT + m_trans[row].ACCOUNT_BALANCE,
                 m_cp->m_currency
             );
             break;
-        case LISTCOL_ID_NOTES:
+        case LIST_ID_NOTES:
             copyText_ = menuItemText = m_trans[row].NOTES;
             rightClickFilter_ = "{\n\"NOTES\": \"" + menuItemText + "\"\n}";
             break;
-        case LISTCOL_ID_DELETEDTIME:
+        case LIST_ID_DELETEDTIME:
             datetime.ParseISOCombined(m_trans[row].DELETEDTIME);        
             if(datetime.IsValid())
                 copyText_ = mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
             break;
-        case LISTCOL_ID_UPDATEDTIME:
+        case LIST_ID_UPDATEDTIME:
             datetime.ParseISOCombined(m_trans[row].LASTUPDATEDTIME);
             if (datetime.IsValid())
                 copyText_ = mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
             break;
-        case LISTCOL_ID_UDFC01:
+        case LIST_ID_UDFC01:
             copyText_ = menuItemText = m_trans[row].UDFC_content[0];
             rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC01"));
             break;
-        case LISTCOL_ID_UDFC02:
+        case LIST_ID_UDFC02:
             copyText_ = menuItemText = m_trans[row].UDFC_content[1];
             rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC02"));
             break;
-        case LISTCOL_ID_UDFC03:
+        case LIST_ID_UDFC03:
             copyText_ = menuItemText = m_trans[row].UDFC_content[2];
             rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC03"));
             break;
-        case LISTCOL_ID_UDFC04:
+        case LIST_ID_UDFC04:
             copyText_ = menuItemText = m_trans[row].UDFC_content[3];
             rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC04"));
             break;
-        case LISTCOL_ID_UDFC05:
+        case LIST_ID_UDFC05:
             copyText_ = menuItemText = m_trans[row].UDFC_content[4];
             rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", Model_CustomField::getUDFCID(refType, "UDFC05"));
             break;
@@ -1786,33 +1799,36 @@ const wxString TransactionListCtrl::getItem(long item, int col_id) const
 {
     if (item < 0 || item >= static_cast<int>(m_trans.size()))
         return "";
+    // TODO: add isHiddenColId(col_id)
+    if (isDisabledColId(col_id))
+        return "";
     const Fused_Transaction::Full_Data& fused = m_trans.at(item);
 
     wxString value = wxEmptyString;
     wxDateTime datetime;
     wxString dateFormat = Option::instance().getDateFormat();
     switch (col_id) {
-    case TransactionListCtrl::LISTCOL_ID_SN:
+    case LIST_ID_SN:
         return fused.displaySN;
-    case TransactionListCtrl::LISTCOL_ID_ID:
+    case LIST_ID_ID:
         return fused.displayID;
-    case TransactionListCtrl::LISTCOL_ID_ACCOUNT:
+    case LIST_ID_ACCOUNT:
         return fused.ACCOUNTNAME;
-    case TransactionListCtrl::LISTCOL_ID_DATE:
+    case LIST_ID_DATE:
         return mmGetDateForDisplay(fused.TRANSDATE);
-    case TransactionListCtrl::LISTCOL_ID_TIME:
+    case LIST_ID_TIME:
         return mmGetTimeForDisplay(fused.TRANSDATE);
-    case TransactionListCtrl::LISTCOL_ID_NUMBER:
+    case LIST_ID_NUMBER:
         return fused.TRANSACTIONNUMBER;
-    case TransactionListCtrl::LISTCOL_ID_CATEGORY:
+    case LIST_ID_CATEGORY:
         return fused.CATEGNAME;
-    case TransactionListCtrl::LISTCOL_ID_PAYEE_STR:
+    case LIST_ID_PAYEE_STR:
         return fused.is_foreign_transfer() ?
             (Model_Checking::type_id(fused.TRANSCODE) == Model_Checking::TYPE_ID_DEPOSIT ? "< " : "> ") + fused.PAYEENAME :
             fused.PAYEENAME;
-    case TransactionListCtrl::LISTCOL_ID_STATUS:
+    case LIST_ID_STATUS:
         return fused.is_foreign() ? "< " + fused.STATUS : fused.STATUS;
-    case TransactionListCtrl::LISTCOL_ID_NOTES: {
+    case LIST_ID_NOTES: {
         value = fused.NOTES;
         if (!fused.displayID.Contains(".")) {
             for (const auto& split : fused.m_splits)
@@ -1823,7 +1839,7 @@ const wxString TransactionListCtrl::getItem(long item, int col_id) const
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value.Trim(false);
     }
-    case TransactionListCtrl::LISTCOL_ID_TAGS:
+    case LIST_ID_TAGS:
         value = fused.TAGNAMES;
         if (!fused.displayID.Contains(".")) {
             const wxString splitRefType = Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT;
@@ -1838,22 +1854,22 @@ const wxString TransactionListCtrl::getItem(long item, int col_id) const
             }
         }
         return value.Trim();
-    case TransactionListCtrl::LISTCOL_ID_DELETEDTIME:
+    case LIST_ID_DELETEDTIME:
         datetime.ParseISOCombined(fused.DELETEDTIME);        
         if(!datetime.IsValid())
             return wxString("");
         return mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
-    case TransactionListCtrl::LISTCOL_ID_UDFC01:
+    case LIST_ID_UDFC01:
         return UDFCFormatHelper(fused.UDFC_type[0], fused.UDFC_content[0]);
-    case TransactionListCtrl::LISTCOL_ID_UDFC02:
+    case LIST_ID_UDFC02:
         return UDFCFormatHelper(fused.UDFC_type[1], fused.UDFC_content[1]);
-    case TransactionListCtrl::LISTCOL_ID_UDFC03:
+    case LIST_ID_UDFC03:
         return UDFCFormatHelper(fused.UDFC_type[2], fused.UDFC_content[2]);
-    case TransactionListCtrl::LISTCOL_ID_UDFC04:
+    case LIST_ID_UDFC04:
         return UDFCFormatHelper(fused.UDFC_type[3], fused.UDFC_content[3]);
-    case TransactionListCtrl::LISTCOL_ID_UDFC05:
+    case LIST_ID_UDFC05:
         return UDFCFormatHelper(fused.UDFC_type[4], fused.UDFC_content[4]);
-    case TransactionListCtrl::LISTCOL_ID_UPDATEDTIME:
+    case LIST_ID_UPDATEDTIME:
         datetime.ParseISOCombined(fused.LASTUPDATEDTIME);
         if (!datetime.IsValid())
             return wxString("");
@@ -1861,7 +1877,7 @@ const wxString TransactionListCtrl::getItem(long item, int col_id) const
     }
 
     switch (col_id) {
-    case TransactionListCtrl::LISTCOL_ID_WITHDRAWAL:
+    case LIST_ID_WITHDRAWAL:
         if (!m_cp->isAccount()) {
             Model_Account::Data* account = Model_Account::instance().get(fused.ACCOUNTID_W);
             Model_Currency::Data* currency = account ?
@@ -1875,7 +1891,7 @@ const wxString TransactionListCtrl::getItem(long item, int col_id) const
         if (!value.IsEmpty() && Model_Checking::status_id(fused.STATUS) == Model_Checking::STATUS_ID_VOID)
             value = "* " + value;
         return value;
-    case TransactionListCtrl::LISTCOL_ID_DEPOSIT:
+    case LIST_ID_DEPOSIT:
         if (!m_cp->isAccount()) {
             Model_Account::Data* account = Model_Account::instance().get(fused.ACCOUNTID_D);
             Model_Currency::Data* currency = account ?
@@ -1889,9 +1905,9 @@ const wxString TransactionListCtrl::getItem(long item, int col_id) const
         if (!value.IsEmpty() && Model_Checking::status_id(fused.STATUS) == Model_Checking::STATUS_ID_VOID)
             value = "* " + value;
         return value;
-    case TransactionListCtrl::LISTCOL_ID_BALANCE:
+    case LIST_ID_BALANCE:
         return Model_Currency::toString(fused.ACCOUNT_BALANCE, m_cp->m_currency);
-    case TransactionListCtrl::LISTCOL_ID_CREDIT:
+    case LIST_ID_CREDIT:
         return Model_Currency::toString(
             m_cp->m_account->CREDITLIMIT + fused.ACCOUNT_BALANCE,
             m_cp->m_currency
@@ -2024,9 +2040,9 @@ void TransactionListCtrl::doSearchText(const wxString& value)
         }
 
         for (const auto& t : {
-            LISTCOL_ID_NOTES, LISTCOL_ID_NUMBER, LISTCOL_ID_PAYEE_STR, LISTCOL_ID_CATEGORY,
-            LISTCOL_ID_DATE, LISTCOL_ID_TAGS, LISTCOL_ID_DELETEDTIME, LISTCOL_ID_UDFC01,
-            LISTCOL_ID_UDFC02, LISTCOL_ID_UDFC03, LISTCOL_ID_UDFC04, LISTCOL_ID_UDFC05
+            LIST_ID_NOTES, LIST_ID_NUMBER, LIST_ID_PAYEE_STR, LIST_ID_CATEGORY,
+            LIST_ID_DATE, LIST_ID_TAGS, LIST_ID_DELETEDTIME, LIST_ID_UDFC01,
+            LIST_ID_UDFC02, LIST_ID_UDFC03, LIST_ID_UDFC04, LIST_ID_UDFC05
         }) {
             const auto test = getItem(selectedItem, t).Lower();
             if (test.empty())

@@ -43,7 +43,7 @@ wxEND_EVENT_TABLE()
 
 mmCustomFieldListDialog::mmCustomFieldListDialog (wxWindow* parent)
 {
-    if (debug_) ColName_[FIELD_ID] = _t("#");
+    if (debug_) ColName_[FIELD_ID] = "#";
     ColName_[FIELD_REF] = _t("Attribute of");
     ColName_[FIELD_NAME] = _t("Name");
     ColName_[FIELD_TYPE] = _t("Type");

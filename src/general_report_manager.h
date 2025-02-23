@@ -111,7 +111,7 @@ private:
     wxWebView* browser_ = nullptr;
 
     wxButton* m_buttonOpen = nullptr;
-    wxButton* m_buttonSync = nullptr;
+    //wxButton* m_buttonSync = nullptr;
     wxButton* m_buttonSave = nullptr;
     wxButton* m_buttonSaveAs = nullptr;
     wxButton* m_buttonRun = nullptr;

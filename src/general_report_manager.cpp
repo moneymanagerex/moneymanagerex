@@ -54,8 +54,12 @@ public:
 protected:
     virtual ExitCode Entry() override
     {
-        bool success = m_manager->syncReport(m_id);  // Execute syncReport
-        wxQueueEvent(wxTheApp->GetTopWindow(), new wxCommandEvent(wxEVT_COMMAND_BUTTON_CLICKED));  // Notify UI thread
+        m_manager->syncReport(m_id);
+        // Notify UI thread
+        wxQueueEvent(
+            wxTheApp->GetTopWindow(),
+            new wxCommandEvent(wxEVT_COMMAND_BUTTON_CLICKED)
+        );
         return static_cast<ExitCode>(0);
     }
 
@@ -1338,7 +1342,7 @@ void mmGeneralReportManager::OnNewWindow(wxWebViewEvent& evt)
 }
 
 // Event handler implementation
-void mmGeneralReportManager::OnSyncReportComplete(wxCommandEvent& event)
+void mmGeneralReportManager::OnSyncReportComplete(wxCommandEvent& WXUNUSED(event))
 {
     wxMessageBox("Report sync completed successfully.", "Sync Complete", wxOK | wxICON_INFORMATION);
 }
