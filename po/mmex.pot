@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-02-24 08:49+0000\n"
+"POT-Creation-Date: 2025-02-23 21:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -232,7 +232,7 @@ msgstr ""
 msgid "Credit"
 msgstr ""
 
-#: accountdialog.cpp:263 mmcheckingpanel.cpp:376
+#: accountdialog.cpp:263 mmcheckingpanel.cpp:377
 msgid "Credit Limit:"
 msgstr ""
 
@@ -395,15 +395,15 @@ msgstr ""
 msgid "Language change"
 msgstr ""
 
-#: assetdialog.cpp:51 assetdialog.cpp:438 assetdialog.h:82 assetspanel.cpp:462
+#: assetdialog.cpp:51 assetdialog.cpp:438 assetdialog.h:82 assetspanel.cpp:465
 msgid "New Asset"
 msgstr ""
 
-#: assetdialog.cpp:55 assetspanel.cpp:476
+#: assetdialog.cpp:55 assetspanel.cpp:479
 msgid "Edit Asset"
 msgstr ""
 
-#: assetdialog.cpp:59 assetdialog.cpp:71 assetspanel.cpp:466
+#: assetdialog.cpp:59 assetdialog.cpp:71 assetspanel.cpp:469
 msgid "Add Asset Transaction"
 msgstr ""
 
@@ -550,59 +550,59 @@ msgstr ""
 msgid "Current Value"
 msgstr ""
 
-#: assetspanel.cpp:95
+#: assetspanel.cpp:90
 msgid "&New Asset…"
 msgstr ""
 
-#: assetspanel.cpp:97
+#: assetspanel.cpp:92
 msgid "D&uplicate Asset…"
 msgstr ""
 
-#: assetspanel.cpp:99
+#: assetspanel.cpp:94
 msgid "&Add Asset Transaction…"
 msgstr ""
 
-#: assetspanel.cpp:100
+#: assetspanel.cpp:95
 msgid "&View Asset Transactions"
 msgstr ""
 
-#: assetspanel.cpp:101
+#: assetspanel.cpp:96
 msgid "&Open Asset Account…"
 msgstr ""
 
-#: assetspanel.cpp:103
+#: assetspanel.cpp:98
 msgid "&Edit Asset…"
 msgstr ""
 
-#: assetspanel.cpp:105
+#: assetspanel.cpp:100
 msgid "&Delete Asset…"
 msgstr ""
 
-#: assetspanel.cpp:107 billsdepositspanel.cpp:436 mmchecking_list.cpp:724
-#: stocks_list.cpp:146
+#: assetspanel.cpp:102 billsdepositspanel.cpp:441 mmchecking_list.cpp:724
+#: stocks_list.cpp:141
 msgid "&Organize Attachments…"
 msgstr ""
 
-#: assetspanel.cpp:204
+#: assetspanel.cpp:199
 msgid "Do you want to delete the asset?"
 msgstr ""
 
-#: assetspanel.cpp:205
+#: assetspanel.cpp:200
 msgid "Confirm Asset Deletion"
 msgstr ""
 
-#: assetspanel.cpp:380
+#: assetspanel.cpp:383
 msgid "MMEX allows fixed assets like cars, houses, land, and others to be tracked. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr ""
 
-#: assetspanel.cpp:410 assetspanel.h:124 general_report_manager.cpp:1100
+#: assetspanel.cpp:413 assetspanel.h:123 general_report_manager.cpp:1100
 #: mmframe.cpp:217 mmframe.cpp:1977 mmframe.cpp:3621 mmhomepage.cpp:538
 #: mmhomepage.cpp:586 mmhomepagepanel.cpp:237 reports/summary.cpp:271
 #: reports/summary.cpp:309
 msgid "Assets"
 msgstr ""
 
-#: assetspanel.cpp:419 assetspanel.cpp:689 assetspanel.cpp:706
+#: assetspanel.cpp:422 assetspanel.cpp:697 assetspanel.cpp:714
 #: filtertransdialog.cpp:221 filtertransdialog.cpp:580
 #: filtertransdialog.cpp:896 filtertransdialog.cpp:2276
 #: import_export/qif_export.cpp:75 import_export/qif_export.cpp:76
@@ -610,97 +610,97 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: assetspanel.cpp:461 billsdepositspanel.cpp:292 mmcheckingpanel.cpp:266
+#: assetspanel.cpp:464 billsdepositspanel.cpp:292 mmcheckingpanel.cpp:267
 #: stockspanel.cpp:132
 msgid "&New "
 msgstr ""
 
-#: assetspanel.cpp:465 stockspanel.cpp:136
+#: assetspanel.cpp:468 stockspanel.cpp:136
 msgid "&Add Trans "
 msgstr ""
 
-#: assetspanel.cpp:470 stockspanel.cpp:141
+#: assetspanel.cpp:473 stockspanel.cpp:141
 msgid "&View Trans "
 msgstr ""
 
-#: assetspanel.cpp:471
+#: assetspanel.cpp:474
 msgid "View Asset Transactions"
 msgstr ""
 
-#: assetspanel.cpp:475 attachmentdialog.cpp:354 billsdepositspanel.cpp:296
+#: assetspanel.cpp:478 attachmentdialog.cpp:354 billsdepositspanel.cpp:296
 #: categdialog.cpp:318 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
-#: mmcheckingpanel.cpp:270 payeedialog.cpp:882 stockspanel.cpp:146
+#: mmcheckingpanel.cpp:271 payeedialog.cpp:882 stockspanel.cpp:146
 #: tagdialog.cpp:133
 msgid "&Edit "
 msgstr ""
 
-#: assetspanel.cpp:480 billsdepositspanel.cpp:306 budgetyeardialog.cpp:103
-#: categdialog.cpp:322 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:262
+#: assetspanel.cpp:483 billsdepositspanel.cpp:306 budgetyeardialog.cpp:103
+#: categdialog.cpp:322 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:263
 #: stockdialog.cpp:321 stockspanel.cpp:151 tagdialog.cpp:138
 msgid "&Delete "
 msgstr ""
 
-#: assetspanel.cpp:481
+#: assetspanel.cpp:484
 msgid "Delete Asset"
 msgstr ""
 
-#: assetspanel.cpp:488 billsdepositspanel.cpp:324 mmcheckingpanel.cpp:298
+#: assetspanel.cpp:491 billsdepositspanel.cpp:324 mmcheckingpanel.cpp:299
 #: stockspanel.cpp:164
 msgid "Open attachments"
 msgstr ""
 
-#: assetspanel.cpp:495 assetspanel.cpp:496 categdialog.cpp:303
-#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:329 payeedialog.cpp:588
+#: assetspanel.cpp:498 assetspanel.cpp:499 categdialog.cpp:303
+#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:330 payeedialog.cpp:588
 #: tagdialog.cpp:118
 msgid "Search"
 msgstr ""
 
-#: assetspanel.cpp:499
+#: assetspanel.cpp:502
 msgid "Enter any string to find related assets"
 msgstr ""
 
-#: assetspanel.cpp:500 filtertransdialog.cpp:700 mmcheckingpanel.cpp:333
+#: assetspanel.cpp:503 filtertransdialog.cpp:700 mmcheckingpanel.cpp:334
 #: payeedialog.cpp:137
 msgid "Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria."
 msgstr ""
 
-#: assetspanel.cpp:501 filtertransdialog.cpp:701 mmcheckingpanel.cpp:334
+#: assetspanel.cpp:504 filtertransdialog.cpp:701 mmcheckingpanel.cpp:335
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”."
 msgstr ""
 
-#: assetspanel.cpp:502 filtertransdialog.cpp:702 mmcheckingpanel.cpp:335
+#: assetspanel.cpp:505 filtertransdialog.cpp:702 mmcheckingpanel.cpp:336
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”."
 msgstr ""
 
-#: assetspanel.cpp:503 filtertransdialog.cpp:703 mmcheckingpanel.cpp:336
+#: assetspanel.cpp:506 filtertransdialog.cpp:703 mmcheckingpanel.cpp:337
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) at the beginning to find any string in the middle of the sentence."
 msgstr ""
 
-#: assetspanel.cpp:569 stockspanel.cpp:370 stockspanel.cpp:557
+#: assetspanel.cpp:577 stockspanel.cpp:370 stockspanel.cpp:557
 #, c-format
 msgid "Total: %s"
 msgstr ""
 
-#: assetspanel.cpp:650
+#: assetspanel.cpp:658
 #, c-format
 msgid "Change in Value: %1$s %2$s"
 msgstr ""
 
-#: assetspanel.cpp:766
+#: assetspanel.cpp:774
 msgid ""
 "This asset does not have its own account\n"
 "\n"
 "Multiple transactions for this asset are not recommended."
 msgstr ""
 
-#: assetspanel.cpp:768
+#: assetspanel.cpp:776
 msgid "Asset Management"
 msgstr ""
 
-#: assetspanel.cpp:787
+#: assetspanel.cpp:795
 msgid ""
 "Account \t Date\t   Value\n"
 "\n"
@@ -1321,12 +1321,12 @@ msgstr ""
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr ""
 
-#: billsdepositspanel.cpp:244 billsdepositspanel.cpp:963 mmframe.cpp:3439
+#: billsdepositspanel.cpp:244 billsdepositspanel.cpp:968 mmframe.cpp:3439
 #: mmhomepagepanel.cpp:243
 msgid "Scheduled Transactions"
 msgstr ""
 
-#: billsdepositspanel.cpp:301 mmcheckingpanel.cpp:275
+#: billsdepositspanel.cpp:301 mmcheckingpanel.cpp:276
 msgid "D&uplicate "
 msgstr ""
 
@@ -1334,88 +1334,88 @@ msgstr ""
 msgid "Delete Scheduled Transaction"
 msgstr ""
 
-#: billsdepositspanel.cpp:311 mmcheckingpanel.cpp:283
+#: billsdepositspanel.cpp:311 mmcheckingpanel.cpp:284
 msgid "Ente&r"
 msgstr ""
 
-#: billsdepositspanel.cpp:312 mmcheckingpanel.cpp:284
+#: billsdepositspanel.cpp:312 mmcheckingpanel.cpp:285
 msgid "Enter Next Scheduled Transaction Occurrence"
 msgstr ""
 
-#: billsdepositspanel.cpp:316 mmcheckingpanel.cpp:288
+#: billsdepositspanel.cpp:316 mmcheckingpanel.cpp:289
 msgid "&Skip"
 msgstr ""
 
-#: billsdepositspanel.cpp:317 mmcheckingpanel.cpp:289
+#: billsdepositspanel.cpp:317 mmcheckingpanel.cpp:290
 msgid "Skip Next Scheduled Transaction Occurrence"
 msgstr ""
 
-#: billsdepositspanel.cpp:426
+#: billsdepositspanel.cpp:431
 msgid "Enter next Occurrence…"
 msgstr ""
 
-#: billsdepositspanel.cpp:428
+#: billsdepositspanel.cpp:433
 msgid "Skip next Occurrence"
 msgstr ""
 
-#: billsdepositspanel.cpp:430
+#: billsdepositspanel.cpp:435
 msgid "&New Scheduled Transaction…"
 msgstr ""
 
-#: billsdepositspanel.cpp:431
+#: billsdepositspanel.cpp:436
 msgid "&Edit Scheduled Transaction…"
 msgstr ""
 
-#: billsdepositspanel.cpp:432
+#: billsdepositspanel.cpp:437
 msgid "D&uplicate Scheduled Transaction…"
 msgstr ""
 
-#: billsdepositspanel.cpp:434
+#: billsdepositspanel.cpp:439
 msgid "&Delete Scheduled Transaction…"
 msgstr ""
 
-#: billsdepositspanel.cpp:487
+#: billsdepositspanel.cpp:492
 msgid "Automated"
 msgstr ""
 
-#: billsdepositspanel.cpp:488
+#: billsdepositspanel.cpp:493
 msgid "Suggested"
 msgstr ""
 
-#: billsdepositspanel.cpp:489
+#: billsdepositspanel.cpp:494
 msgid "Manual"
 msgstr ""
 
-#: billsdepositspanel.cpp:543
+#: billsdepositspanel.cpp:548
 msgid "Inactive"
 msgstr ""
 
-#: billsdepositspanel.cpp:552 mmhomepage.cpp:312
+#: billsdepositspanel.cpp:557 mmhomepage.cpp:312
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
 msgstr[0] ""
 msgstr[1] ""
 
-#: billsdepositspanel.cpp:553 mmhomepage.cpp:310
+#: billsdepositspanel.cpp:558 mmhomepage.cpp:310
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
 msgstr[0] ""
 msgstr[1] ""
 
-#: billsdepositspanel.cpp:554 mmhomepage.cpp:309
+#: billsdepositspanel.cpp:559 mmhomepage.cpp:309
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
 msgstr[0] ""
 msgstr[1] ""
 
-#: billsdepositspanel.cpp:653
+#: billsdepositspanel.cpp:658
 msgid "Do you want to delete the scheduled transaction?"
 msgstr ""
 
-#: billsdepositspanel.cpp:654
+#: billsdepositspanel.cpp:659
 msgid "Confirm Deletion"
 msgstr ""
 
@@ -1881,7 +1881,7 @@ msgstr ""
 msgid "Closed"
 msgstr ""
 
-#: constants.cpp:197 mmcheckingpanel.cpp:1198 mmframe.cpp:502
+#: constants.cpp:197 mmcheckingpanel.cpp:1199 mmframe.cpp:502
 msgid "Favorites"
 msgstr ""
 
@@ -2628,7 +2628,7 @@ msgstr ""
 msgid "Enter any string to find it in transaction notes"
 msgstr ""
 
-#: filtertransdialog.cpp:704 mmcheckingpanel.cpp:337 payeedialog.cpp:141
+#: filtertransdialog.cpp:704 mmcheckingpanel.cpp:338 payeedialog.cpp:141
 msgid "Use regex: to match using regular expressions."
 msgstr ""
 
@@ -4401,7 +4401,7 @@ msgid_plural "Moving %i transactions to…"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1323 stocks_list.cpp:314
+#: mmchecking_list.cpp:1323 stocks_list.cpp:309
 msgid "Select the destination Account "
 msgstr ""
 
@@ -4425,7 +4425,7 @@ msgstr ""
 msgid "Scheduled transaction saved."
 msgstr ""
 
-#: mmchecking_list.cpp:1439 mmcheckingpanel.cpp:1193
+#: mmchecking_list.cpp:1439 mmcheckingpanel.cpp:1194
 msgid "All Transactions"
 msgstr ""
 
@@ -4442,22 +4442,22 @@ msgstr ""
 msgid "Do you want to delete all the “%s” transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:2157
+#: mmchecking_list.cpp:2166
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:2159
+#: mmchecking_list.cpp:2168
 msgid "Do you want to perform the edit?"
 msgstr ""
 
-#: mmchecking_list.cpp:2160
+#: mmchecking_list.cpp:2169
 msgid "Closed Account Check"
 msgstr ""
 
-#: mmchecking_list.cpp:2174
+#: mmchecking_list.cpp:2183
 #, c-format
 msgid ""
 "Locked transaction to date: %s\n"
@@ -4465,119 +4465,119 @@ msgid ""
 "Reconciled transactions."
 msgstr ""
 
-#: mmchecking_list.cpp:2177 transdialog.cpp:752 transdialog.cpp:776
+#: mmchecking_list.cpp:2186 transdialog.cpp:752 transdialog.cpp:776
 msgid "MMEX Transaction Check"
 msgstr ""
 
-#: mmcheckingpanel.cpp:263
+#: mmcheckingpanel.cpp:264
 msgid "Delete all selected transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:267 mmframe.cpp:2165 optionsettingsmisc.cpp:112
+#: mmcheckingpanel.cpp:268 mmframe.cpp:2165 optionsettingsmisc.cpp:112
 #: transdialog.cpp:180
 msgid "New Transaction"
 msgstr ""
 
-#: mmcheckingpanel.cpp:271
+#: mmcheckingpanel.cpp:272
 msgid "Edit all selected transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:276
+#: mmcheckingpanel.cpp:277
 msgid "Duplicate selected transaction"
 msgstr ""
 
-#: mmcheckingpanel.cpp:314
+#: mmcheckingpanel.cpp:315
 msgid "&Restore "
 msgstr ""
 
-#: mmcheckingpanel.cpp:315
+#: mmcheckingpanel.cpp:316
 msgid "Restore selected transaction"
 msgstr ""
 
-#: mmcheckingpanel.cpp:332
+#: mmcheckingpanel.cpp:333
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr ""
 
-#: mmcheckingpanel.cpp:360
+#: mmcheckingpanel.cpp:361
 msgid "Account Bal: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:364
+#: mmcheckingpanel.cpp:365
 msgid "Reconciled Bal: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:366
+#: mmcheckingpanel.cpp:367
 msgid "Diff: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:370
+#: mmcheckingpanel.cpp:371
 msgid "Filtered Flow: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:394
+#: mmcheckingpanel.cpp:395
 msgid "Advanced filter"
 msgstr ""
 
-#: mmcheckingpanel.cpp:496
+#: mmcheckingpanel.cpp:497
 msgid "(Date range)"
 msgstr ""
 
-#: mmcheckingpanel.cpp:873 mmcheckingpanel.cpp:891 webapp.cpp:621
+#: mmcheckingpanel.cpp:874 mmcheckingpanel.cpp:892 webapp.cpp:621
 msgid "Attachment"
 msgstr ""
 
-#: mmcheckingpanel.cpp:939
+#: mmcheckingpanel.cpp:940
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr ""
 
-#: mmcheckingpanel.cpp:943
+#: mmcheckingpanel.cpp:944
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:949
+#: mmcheckingpanel.cpp:950
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1012
+#: mmcheckingpanel.cpp:1013
 msgid "Unable to show scheduled transactions because the current filter choice extends into the future without limit."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1013
+#: mmcheckingpanel.cpp:1014
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1014
+#: mmcheckingpanel.cpp:1015
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1031
+#: mmcheckingpanel.cpp:1032
 msgid "More date ranges…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1038
+#: mmcheckingpanel.cpp:1039
 msgid "Advanced filter…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1178
+#: mmcheckingpanel.cpp:1179
 msgid "&New Withdrawal…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1179
+#: mmcheckingpanel.cpp:1180
 msgid "&New Deposit…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1180
+#: mmcheckingpanel.cpp:1181
 msgid "&New Transfer…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1195
+#: mmcheckingpanel.cpp:1196
 msgid "Deleted Transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1203
+#: mmcheckingpanel.cpp:1204
 #, c-format
 msgid "Account View: %s"
 msgstr ""
@@ -5821,31 +5821,31 @@ msgstr ""
 msgid "Upcoming Transactions"
 msgstr ""
 
-#: mmpanelbase.cpp:423
+#: mmpanelbase.cpp:349
 msgid "Hide/Show column"
 msgstr ""
 
-#: mmpanelbase.cpp:424
+#: mmpanelbase.cpp:350
 msgid "Hide this column"
 msgstr ""
 
-#: mmpanelbase.cpp:443
+#: mmpanelbase.cpp:369
 msgid "Move hidden column"
 msgstr ""
 
-#: mmpanelbase.cpp:445
+#: mmpanelbase.cpp:371
 msgid "Move column left"
 msgstr ""
 
-#: mmpanelbase.cpp:447
+#: mmpanelbase.cpp:373
 msgid "Move column right"
 msgstr ""
 
-#: mmpanelbase.cpp:451
+#: mmpanelbase.cpp:377
 msgid "Sort by this column"
 msgstr ""
 
-#: mmpanelbase.cpp:453
+#: mmpanelbase.cpp:379
 msgid "Reset column widths"
 msgstr ""
 
@@ -7882,39 +7882,39 @@ msgstr ""
 msgid "Curr. Total Value"
 msgstr ""
 
-#: stocks_list.cpp:137
+#: stocks_list.cpp:132
 msgid "&New Stock Investment…"
 msgstr ""
 
-#: stocks_list.cpp:139
+#: stocks_list.cpp:134
 msgid "&Add Stock Transactions…"
 msgstr ""
 
-#: stocks_list.cpp:140
+#: stocks_list.cpp:135
 msgid "&View Stock Transactions"
 msgstr ""
 
-#: stocks_list.cpp:142
+#: stocks_list.cpp:137
 msgid "&Edit Stock Investment…"
 msgstr ""
 
-#: stocks_list.cpp:144
+#: stocks_list.cpp:139
 msgid "&Delete Stock Investment…"
 msgstr ""
 
-#: stocks_list.cpp:147
+#: stocks_list.cpp:142
 msgid "Stock &Web Page"
 msgstr ""
 
-#: stocks_list.cpp:290
+#: stocks_list.cpp:285
 msgid "Do you want to delete the stock investment?"
 msgstr ""
 
-#: stocks_list.cpp:291
+#: stocks_list.cpp:286
 msgid "Confirm Stock Investment Deletion"
 msgstr ""
 
-#: stocks_list.cpp:313
+#: stocks_list.cpp:308
 #, c-format
 msgid "Moving Transaction from %s to"
 msgstr ""
