@@ -400,20 +400,17 @@ void StocksListCtrl::OnListItemActivated(wxListEvent& event)
 
 void StocksListCtrl::OnColClick(wxListEvent& event)
 {
-    int col_nr;
-    if (event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET)
-        col_nr = event.GetColumn();
-    else
-        col_nr = m_sel_col_nr;
+    int col_nr = (event.GetId() == MENU_HEADER_SORT) ? m_sel_col_nr : event.GetColumn();
     if (!isValidColNr(col_nr))
         return;
-
     int col_id = getColId(col_nr);
+    if (col_id == LIST_ID_ICON)
+        return;
+
     if (m_sort_col_id[0] != col_id)
         m_sort_col_id[0] = col_id;
-    else if (event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET)
+    else if (event.GetId() != MENU_HEADER_SORT)
         m_sort_asc[0] = !m_sort_asc[0];
-
     updateSortIcon();
     savePreferences();
 
