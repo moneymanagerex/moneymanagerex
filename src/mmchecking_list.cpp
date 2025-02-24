@@ -565,7 +565,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     if (!isValidColNr(col_nr))
         return;
     int col_id = getColId(col_nr);
-    if (col_id == LIST_ID_ICON)
+    if (!m_col_id_info[col_id].sortable)
         return;
 
     if (m_sort_col_id[0] != col_id) {
