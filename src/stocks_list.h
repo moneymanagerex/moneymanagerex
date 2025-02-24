@@ -69,7 +69,7 @@ public:
     void doRefreshItems(int64 trx_id = -1);
     long get_selectedIndex();
     wxString getStockInfo(int selectedIndex) const;
-    int initVirtualListControl(int64 trx_id = -1, int col = 0, bool asc = true);
+    int initVirtualListControl(int64 trx_id = -1);
 
     void OnNewStocks(wxCommandEvent& event);
     void OnDeleteStocks(wxCommandEvent& event);
@@ -88,13 +88,14 @@ private:
     void sortList();
 
     // required overrides for virtual style list control
-    virtual wxString OnGetItemText(long item, long col_nr) const;
-    virtual int OnGetItemImage(long item) const;
+    virtual int getSortIcon(bool asc) const override;
+    virtual wxString OnGetItemText(long item, long col_nr) const override;
+    virtual int OnGetItemImage(long item) const override;
+    void OnColClick(wxListEvent& event) override;
 
     void OnMouseRightClick(wxMouseEvent& event);
     void OnListLeftClick(wxMouseEvent& event);
     void OnListItemActivated(wxListEvent& event);
-    void OnColClick(wxListEvent& event);
     void OnMarkTransaction(wxCommandEvent& event);
     void OnMarkAllTransactions(wxCommandEvent& event);
     void OnListKeyDown(wxListEvent& event);

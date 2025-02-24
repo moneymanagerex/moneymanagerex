@@ -73,6 +73,11 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
     createColumns();
 }
 
+int mmAssetsListCtrl::getSortIcon(bool asc) const
+{
+    return asc ? mmAssetsPanel::ICON_UPARROW : mmAssetsPanel::ICON_DOWNARROW;
+}
+
 void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
 {
     if (m_selected_row > -1)
@@ -170,7 +175,7 @@ void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& /*event*/)
 
 void mmAssetsListCtrl::doRefreshItems(int64 trx_id)
 {
-    int selectedIndex = m_panel->initVirtualListControl(trx_id, getSortColNr(), getSortAsc());
+    int selectedIndex = m_panel->initVirtualListControl(trx_id);
 
     long cnt = static_cast<long>(m_panel->m_assets.size());
 
@@ -207,7 +212,7 @@ void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_NAME_ASSET, asset.ASSETID);
         Model_Translink::RemoveTransLinkRecords(Model_Attachment::REFTYPE_ID_ASSET, asset.ASSETID);
 
-        m_panel->initVirtualListControl(-1, getSortColNr(), getSortAsc());
+        m_panel->initVirtualListControl();
         m_selected_row = -1;
         m_panel->updateExtraAssetData(m_selected_row);
     }
@@ -309,25 +314,17 @@ void mmAssetsListCtrl::OnColClick(wxListEvent& event)
     if (event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET)
         col_nr = event.GetColumn();
     else
-        col_nr = m_col_nr;
+        col_nr = m_sel_col_nr;
     if (!isValidColNr(col_nr) || col_nr == 0)
         return;
 
-    if (getSortColNr() == col_nr &&
-        event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET
-    )
+    int col_id = getColId(col_nr);
+    if (m_sort_col_id[0] != col_id)
+        m_sort_col_id[0] = col_id;
+    else if (event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET)
         m_sort_asc[0] = !m_sort_asc[0];
 
-    wxListItem item;
-    item.SetMask(wxLIST_MASK_IMAGE);
-    item.SetImage(-1);
-    SetColumn(getSortColNr(), item);
-
-    m_sort_col_id[0] = getColId(col_nr);
-
-    item.SetImage(getSortAsc() ? mmAssetsPanel::ICON_UPARROW : mmAssetsPanel::ICON_DOWNARROW);
-    SetColumn(getSortColNr(), item);
-
+    updateSortIcon();
     savePreferences();
 
     int64 trx_id = -1;
@@ -385,7 +382,7 @@ bool mmAssetsPanel::Create(wxWindow *parent
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    initVirtualListControl(-1, m_lc->getSortColNr(), m_lc->getSortAsc());
+    initVirtualListControl();
     if (!this->m_assets.empty())
         m_lc->EnsureVisible(this->m_assets.size() - 1);
 
@@ -522,7 +519,7 @@ void mmAssetsPanel::sortList()
 {
     std::sort(this->m_assets.begin(), this->m_assets.end());
     std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterBySTARTDATE());
-    switch (this->m_lc->m_sort_col_id[0])
+    switch (this->m_lc->getSortColId())
     {
     case mmAssetsListCtrl::LIST_ID_ID:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETID());
@@ -554,15 +551,10 @@ void mmAssetsPanel::sortList()
     if (!this->m_lc->getSortAsc()) std::reverse(this->m_assets.begin(), this->m_assets.end());
 }
 
-int mmAssetsPanel::initVirtualListControl(int64 id, int col, bool asc)
+int mmAssetsPanel::initVirtualListControl(int64 id)
 {
     /* Clear all the records */
     m_lc->DeleteAllItems();
-
-    wxListItem item;
-    item.SetMask(wxLIST_MASK_IMAGE);
-    item.SetImage(asc ? ICON_UPARROW : ICON_DOWNARROW);
-    m_lc->SetColumn(col, item);
 
     if (this->m_filter_type == Model_Asset::TYPE_ID(-1)) // ALL
         this->m_assets = Model_Asset::instance().all();

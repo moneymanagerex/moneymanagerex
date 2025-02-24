@@ -103,13 +103,18 @@ StocksListCtrl::StocksListCtrl(
     m_sort_col_id = { col_sort() };
     createColumns();
 
-    initVirtualListControl(-1, getSortColNr(), getSortAsc());
+    initVirtualListControl();
     if (!m_stocks.empty())
         EnsureVisible(m_stocks.size() - 1);
 }
 
 StocksListCtrl::~StocksListCtrl()
 {
+}
+
+int StocksListCtrl::getSortIcon(bool asc) const
+{
+    return asc ? static_cast<int>(ico::ARROW_DOWN) : static_cast<int>(ico::ARROW_UP);
 }
 
 void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
@@ -399,22 +404,17 @@ void StocksListCtrl::OnColClick(wxListEvent& event)
     if (event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET)
         col_nr = event.GetColumn();
     else
-        col_nr = m_col_nr;
+        col_nr = m_sel_col_nr;
     if (!isValidColNr(col_nr))
         return;
 
-    if (getSortColNr() == col_nr &&
-        event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET
-    )
+    int col_id = getColId(col_nr);
+    if (m_sort_col_id[0] != col_id)
+        m_sort_col_id[0] = col_id;
+    else if (event.GetId() != MENU_HEADER_SORT && event.GetId() != MENU_HEADER_RESET)
         m_sort_asc[0] = !m_sort_asc[0];
 
-    wxListItem item;
-    item.SetMask(wxLIST_MASK_IMAGE);
-    item.SetImage(-1);
-    SetColumn(getSortColNr(), item);
-
-    m_sort_col_id[0] = getColId(col_nr);
-
+    updateSortIcon();
     savePreferences();
 
     int64 trx_id = -1;
@@ -425,7 +425,7 @@ void StocksListCtrl::OnColClick(wxListEvent& event)
 
 void StocksListCtrl::doRefreshItems(int64 trx_id)
 {
-    int selectedIndex = initVirtualListControl(trx_id, getSortColNr(), getSortAsc());
+    int selectedIndex = initVirtualListControl(trx_id);
     long cnt = static_cast<long>(m_stocks.size());
 
     if (selectedIndex >= cnt || selectedIndex < 0)
@@ -446,19 +446,11 @@ void StocksListCtrl::doRefreshItems(int64 trx_id)
     }
 }
 
-int StocksListCtrl::initVirtualListControl(int64 trx_id, int col, bool asc)
+int StocksListCtrl::initVirtualListControl(int64 trx_id)
 {
     m_stock_panel->updateHeader();
     /* Clear all the records */
     DeleteAllItems();
-
-    if (col > 0)
-    {
-        wxListItem item;
-        item.SetMask(wxLIST_MASK_IMAGE);
-        item.SetImage(asc ? static_cast<int>(ico::ARROW_DOWN) : static_cast<int>(ico::ARROW_UP));
-        SetColumn(col, item);
-    }
 
     m_stocks = Model_Stock::instance().find(Model_Stock::HELDAT(m_stock_panel->m_account_id));
     sortList();
