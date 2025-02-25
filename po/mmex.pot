@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-02-25 08:30+0000\n"
+"POT-Creation-Date: 2025-02-25 16:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1459,7 +1459,7 @@ msgid "Frequency:"
 msgstr ""
 
 #: budgetentrydialog.cpp:140
-msgid "Specify the frequency of the expense or income"
+msgid "Specify the income or expense frequency"
 msgstr ""
 
 #: budgetentrydialog.cpp:143 import_export/univcsvdialog.cpp:410
