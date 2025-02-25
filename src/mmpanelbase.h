@@ -100,13 +100,18 @@ public:
     int getColNrSize() const;
     bool isValidColId(int col_id) const;
     bool isValidColNr(int col_nr) const;
-    int getColId(int col_nr) const;
-    int getColNr(int col_id) const;
+    int getColId_Nr(int col_nr) const;
+    int getColNr_Id(int col_id) const;
+    int getColNr_Vo(int col_vo) const;
+    int getColVo_Nr(int col_nr) const;
+    int getColId_Vo(int col_vo) const;
+    int getColVo_Id(int col_id) const;
     const wxString getColHeader(int col_id, bool show_icon = false) const;
     bool isDisabledColId(int col_id) const;
     bool isDisabledColNr(int col_nr) const;
     bool isHiddenColId(int col_id) const;
     bool isHiddenColNr(int col_nr) const;
+    bool isHiddenColVo(int col_vo) const;
     int getSortColId(int i = 0) const;
     int getSortColNr(int i = 0);
     bool getSortAsc(int i = 0) const;
@@ -134,7 +139,7 @@ protected:
     void updateSortIcon();
 
 private:
-    void shiftColumn(int col_nr, int offset);
+    void shiftColumn(int col_vo, int offset);
 
     void onItemResize(wxListEvent& event);
     void onColRightClick(wxListEvent& event);
@@ -170,15 +175,47 @@ inline bool mmListCtrl::isValidColNr(int col_nr) const
     return (col_nr >= 0 && col_nr < getColNrSize());
 }
 
-inline int mmListCtrl::getColId(int col_nr) const
+inline int mmListCtrl::getColId_Nr(int col_nr) const
 {
     return m_col_nr_id.empty() ? col_nr : m_col_nr_id[col_nr];
 }
 
-inline int mmListCtrl::getColNr(int col_id) const
+inline int mmListCtrl::getColNr_Id(int col_id) const
 {
     return m_col_nr_id.empty() ? col_id :
         std::find(m_col_nr_id.begin(), m_col_nr_id.end(), col_id) - m_col_nr_id.begin();
+}
+
+inline int mmListCtrl::getColNr_Vo(int col_vo) const
+{
+    // Return the column number (inedx) from the visual order.
+    // The column number and the visual order are always equal on Linux/macOS,
+    // but on Windows they may differ due to drag/drop actions.
+    #ifdef wxHAS_LISTCTRL_COLUMN_ORDER
+        return GetColumnIndexFromOrder(col_vo);
+    #else
+        return col_vo;
+    #endif
+}
+
+inline int mmListCtrl::getColVo_Nr(int col_nr) const
+{
+    // Return the visual order from the column number (inedx).
+    #ifdef wxHAS_LISTCTRL_COLUMN_ORDER
+        return GetColumnOrder(col_nr);
+    #else
+        return col_nr;
+    #endif
+}
+
+inline int mmListCtrl::getColId_Vo(int col_vo) const
+{
+    return getColId_Nr(getColNr_Vo(col_vo));
+}
+
+inline int mmListCtrl::getColVo_Id(int col_id) const
+{
+    return getColVo_Nr(getColNr_Id(col_id));
 }
 
 inline bool mmListCtrl::isDisabledColId(int col_id) const
@@ -188,7 +225,7 @@ inline bool mmListCtrl::isDisabledColId(int col_id) const
 
 inline bool mmListCtrl::isDisabledColNr(int col_nr) const
 {
-    return isDisabledColId(getColId(col_nr));
+    return isDisabledColId(getColId_Nr(col_nr));
 }
 
 inline bool mmListCtrl::isHiddenColId(int col_id) const
@@ -198,7 +235,12 @@ inline bool mmListCtrl::isHiddenColId(int col_id) const
 
 inline bool mmListCtrl::isHiddenColNr(int col_nr) const
 {
-    return isHiddenColId(getColId(col_nr));
+    return isHiddenColId(getColId_Nr(col_nr));
+}
+
+inline bool mmListCtrl::isHiddenColVo(int col_vo) const
+{
+    return isHiddenColId(getColId_Vo(col_vo));
 }
 
 inline int mmListCtrl::getSortColId(int i) const
@@ -210,7 +252,7 @@ inline int mmListCtrl::getSortColNr(int i)
 {
     int col_id = m_sort_col_id[i];
     int col_nr = c_sort_col_nr[i];
-    return (isValidColNr(col_nr) && getColId(col_nr) == col_id) ? col_nr :
+    return (isValidColNr(col_nr) && getColId_Nr(col_nr) == col_id) ? col_nr :
         cacheSortColNr(i);
 }
 

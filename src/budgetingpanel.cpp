@@ -659,7 +659,7 @@ int mmBudgetingPanel::GetItemImage(long item) const
 
 wxString budgetingListCtrl::OnGetItemText(long item, long col_nr) const
 {
-    return cp_->getItem(item, getColId(static_cast<int>(col_nr)));
+    return cp_->getItem(item, getColId_Nr(static_cast<int>(col_nr)));
 }
 
 wxListItemAttr* budgetingListCtrl::OnGetItemAttr(long item) const

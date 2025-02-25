@@ -136,7 +136,7 @@ void mmAssetsListCtrl::OnListLeftClick(wxMouseEvent& event)
 
 wxString mmAssetsListCtrl::OnGetItemText(long item, long col_nr) const
 {
-    return m_panel->getItem(item, getColId(col_nr));
+    return m_panel->getItem(item, getColId_Nr(col_nr));
 }
 
 void mmAssetsListCtrl::OnListItemSelected(wxListEvent& event)
@@ -313,7 +313,7 @@ void mmAssetsListCtrl::OnColClick(wxListEvent& event)
     int col_nr = (event.GetId() == MENU_HEADER_SORT) ? m_sel_col_nr : event.GetColumn();
     if (!isValidColNr(col_nr))
         return;
-    int col_id = getColId(col_nr);
+    int col_id = getColId_Nr(col_nr);
     if (!m_col_id_info[col_id].sortable)
         return;
 

@@ -497,7 +497,7 @@ void TransactionListCtrl::sortTransactions(int col_id, bool ascend)
 
 wxString TransactionListCtrl::OnGetItemText(long item, long col_nr) const
 {
-    return getItem(item, getColId(static_cast<int>(col_nr)));
+    return getItem(item, getColId_Nr(static_cast<int>(col_nr)));
 }
 
 // Returns the icon to be shown for each transaction for the required column
@@ -506,7 +506,7 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long col_nr) const
     if (m_trans.empty())
         return -1;
 
-    int col_id = getColId(static_cast<int>(col_nr));
+    int col_id = getColId_Nr(static_cast<int>(col_nr));
     if (col_id != LIST_ID_ICON)
         return -1;
 
@@ -564,7 +564,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     int col_nr = (event.GetId() == MENU_HEADER_SORT) ?  m_sel_col_nr : event.GetColumn();
     if (!isValidColNr(col_nr))
         return;
-    int col_id = getColId(col_nr);
+    int col_id = getColId_Nr(col_nr);
     if (!m_col_id_info[col_id].sortable)
         return;
 
@@ -739,7 +739,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
     int flags;
     unsigned long row = HitTest(event.GetPosition(), flags);
     if (row < m_trans.size() && (flags & wxLIST_HITTEST_ONITEM) && col_nr < getColNrSize()) {
-        int col_id = getColId(col_nr);
+        int col_id = getColId_Nr(col_nr);
         wxString menuItemText;
         wxString refType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
         wxDateTime datetime;
@@ -1568,8 +1568,9 @@ void TransactionListCtrl::onCopy(wxCommandEvent& WXUNUSED(event))
         wxString data = "";
         for (int row = 0; row < GetItemCount(); row++) {
             if (GetItemState(row, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED) {
-                for (int col_nr = 0; col_nr < getColNrSize(); ++col_nr) {
-                    if (GetColumnWidth(col_nr) > 0) {
+                for (int col_vo = 0; col_vo < getColNrSize(); ++col_vo) {
+                    int col_nr = getColNr_Vo(col_vo);
+                    if (!isHiddenColNr(col_nr)) {
                         data += inQuotes(OnGetItemText(row, col_nr), seperator);
                         data += seperator;
                     }
