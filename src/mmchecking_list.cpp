@@ -561,31 +561,21 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
 void TransactionListCtrl::OnColClick(wxListEvent& event)
 {
     findSelectedTransactions();
-    int col_nr;
-    bool sortAsc;
-    if (event.GetId() == MENU_HEADER_SORT) {
-        col_nr = m_sel_col_nr;
-        sortAsc = m_sort_asc[0];
-    }
-    else if (event.GetId() == MENU_HEADER_RESET) {
-        col_nr = m_sel_col_nr;
-        sortAsc = true;
-        m_sort_asc[0] = true;
-    }
-    else {
-        col_nr = event.GetColumn();
-        sortAsc = (col_nr == getSortColNr(0)) ? !m_sort_asc[0] : m_sort_asc[0];
-    }
-
-    if (!isValidColNr(col_nr) || getColId(col_nr) == LIST_ID_ICON)
+    int col_nr = (event.GetId() == MENU_HEADER_SORT) ?  m_sel_col_nr : event.GetColumn();
+    if (!isValidColNr(col_nr))
+        return;
+    int col_id = getColId(col_nr);
+    if (!m_col_id_info[col_id].sortable)
         return;
 
-    if (col_nr != getSortColNr(0)) {
+    if (m_sort_col_id[0] != col_id) {
         m_sort_col_id[1] = m_sort_col_id[0];
         m_sort_asc[1] = m_sort_asc[0];
+        m_sort_col_id[0] = col_id;
     }
-    m_sort_col_id[0] = getColId(col_nr);
-    m_sort_asc[0] = sortAsc;
+    else if (event.GetId() != MENU_HEADER_SORT) {
+        m_sort_asc[0] = !m_sort_asc[0];
+    }
 
     // #7080: Decouple DATE and ID, since SN may be used instead of ID.
     /*
