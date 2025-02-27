@@ -423,19 +423,21 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     // Custom Fields
     bool is_custom_found = false;
     const wxString RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+    int field_index = 0;
     for (const auto& i : Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType)))
     {
         const auto entry = wxString::Format("CUSTOM%lld", i.FIELDID);
         if (j_doc.HasMember(entry.c_str()))
         {
             const auto value = j_doc[const_cast<char*>(static_cast<const char*>(entry.mb_str()))].GetString();
-            m_custom_fields->SetStringValue(i.FIELDID, value, true);
+            m_custom_fields->SetStringValue(field_index, value, true);
             is_custom_found = true;
         }
         else
         {
-            m_custom_fields->SetStringValue(i.FIELDID, "");
+            m_custom_fields->SetStringValue(field_index, "");
         }
+        field_index++;
     }
 
     /*******************************************************
