@@ -62,7 +62,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
         }
         double convRate = 1;
         // We got this far, get the currency conversion rate for this account
-        if (account) convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID,transaction.TRANSDATE);
+        if (account) convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID, transaction.TRANSDATE);
 
         if (Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_DEPOSIT)
             income_expenses_pair.first += transaction.TRANSAMOUNT * convRate;

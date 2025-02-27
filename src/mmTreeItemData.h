@@ -37,7 +37,7 @@ public:
         HELP_REPORT,
         CHECKING,
         BUDGET,
-        STOCK,
+        INVESTMENT,
         REPORT,
         GRM,
         ASSETS,
