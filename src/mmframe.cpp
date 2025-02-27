@@ -975,7 +975,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
                 );
                 m_nav_tree_ctrl->SetItemData(
                     accountItem,
-                    new mmTreeItemData(mmTreeItemData::STOCK, account.ACCOUNTID)
+                    new mmTreeItemData(mmTreeItemData::INVESTMENT, account.ACCOUNTID)
                 );
                 // find all the accounts associated with this stock portfolio
                 Model_Stock::Data_Set stocks = Model_Stock::instance().find(
@@ -1268,7 +1268,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
         return createCheckingPage(id, group_ids);
     }
 
-    case mmTreeItemData::STOCK: {
+    case mmTreeItemData::INVESTMENT: {
         Model_Account::Data* account = Model_Account::instance().get(iData->getId());
         gotoAccountID_ = account->ACCOUNTID;
         return createStocksAccountPage(gotoAccountID_);
@@ -1561,7 +1561,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         return OnGeneralReportManager(e);
     case mmTreeItemData::HELP_REPORT:
         return mmDoHideReportsDialog();
-    case mmTreeItemData::STOCK: {
+    case mmTreeItemData::INVESTMENT: {
         int64 acct_id = iData->getId();
         Model_Account::Data* account = Model_Account::instance().get(acct_id);
         if (account) {
