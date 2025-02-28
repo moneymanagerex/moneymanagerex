@@ -73,13 +73,13 @@ public:
     wxString o_col_order_prefix;               // v1.9.0 prefix for column order
     wxString o_col_width_prefix;               // v1.9.0 prefix for column width
     wxString o_sort_prefix;                    // v1.9.0 prefix for sort
-    std::vector<ListColumnInfo> m_col_id_info; // map: col_id -> col_info
-    std::unordered_set<int> m_col_id_disabled; // set: col_id -> isDisabled
+    std::vector<ListColumnInfo> m_col_info_id; // map: col_id -> col_info
+    std::unordered_set<int> m_col_disabled_id; // set: col_id -> isDisabled
 
     // dynamic
-    std::vector<int> m_col_nr_id;              // map: col_nr -> col_id; or empty
-    std::vector<int> m_col_id_width;           // map: col_id -> col_width (lazy)
-    std::unordered_set<int> m_col_id_hidden;   // map (set): col_id -> isHidden
+    std::vector<int> m_col_id_nr;              // map: col_nr -> col_id; or empty
+    std::vector<int> m_col_width_id;           // map: col_id -> col_width (lazy)
+    std::unordered_set<int> m_col_hidden_id;   // map (set): col_id -> isHidden
     std::vector<int> m_sort_col_id;            // sorting col_id; can be empty
     std::vector<bool> m_sort_asc;              // sorting direction
     int m_sel_col_nr = -1;                     // set by onColRightClick()
@@ -155,14 +155,14 @@ private:
 
 inline int mmListCtrl::getColIdSize() const
 {
-    return static_cast<int>(m_col_id_info.size());
+    return static_cast<int>(m_col_info_id.size());
 }
 
 inline int mmListCtrl::getColNrSize() const
 {
-    return !m_col_nr_id.empty() ?
-        static_cast<int>(m_col_nr_id.size()) :
-        static_cast<int>(m_col_id_info.size());
+    return !m_col_id_nr.empty() ?
+        static_cast<int>(m_col_id_nr.size()) :
+        static_cast<int>(m_col_info_id.size());
 }
 
 inline bool mmListCtrl::isValidColId(int col_id) const
@@ -177,13 +177,13 @@ inline bool mmListCtrl::isValidColNr(int col_nr) const
 
 inline int mmListCtrl::getColId_Nr(int col_nr) const
 {
-    return m_col_nr_id.empty() ? col_nr : m_col_nr_id[col_nr];
+    return m_col_id_nr.empty() ? col_nr : m_col_id_nr[col_nr];
 }
 
 inline int mmListCtrl::getColNr_Id(int col_id) const
 {
-    return m_col_nr_id.empty() ? col_id :
-        std::find(m_col_nr_id.begin(), m_col_nr_id.end(), col_id) - m_col_nr_id.begin();
+    return m_col_id_nr.empty() ? col_id :
+        std::find(m_col_id_nr.begin(), m_col_id_nr.end(), col_id) - m_col_id_nr.begin();
 }
 
 inline int mmListCtrl::getColNr_Vo(int col_vo) const
@@ -220,7 +220,7 @@ inline int mmListCtrl::getColVo_Id(int col_id) const
 
 inline bool mmListCtrl::isDisabledColId(int col_id) const
 {
-    return m_col_id_disabled.find(col_id) != m_col_id_disabled.end();
+    return m_col_disabled_id.find(col_id) != m_col_disabled_id.end();
 }
 
 inline bool mmListCtrl::isDisabledColNr(int col_nr) const
@@ -230,7 +230,7 @@ inline bool mmListCtrl::isDisabledColNr(int col_nr) const
 
 inline bool mmListCtrl::isHiddenColId(int col_id) const
 {
-    return m_col_id_hidden.find(col_id) != m_col_id_hidden.end();
+    return m_col_hidden_id.find(col_id) != m_col_hidden_id.end();
 }
 
 inline bool mmListCtrl::isHiddenColNr(int col_nr) const

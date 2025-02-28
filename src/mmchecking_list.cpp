@@ -247,36 +247,36 @@ void TransactionListCtrl::setColumnsInfo()
         o_sort_prefix = m_cp->isGroup() ? "MULTI" : "ALLTRANS";
     }
 
-    m_col_id_info = LIST_INFO;
-    m_col_id_disabled.clear();
-    m_col_nr_id.clear();
+    m_col_info_id = LIST_INFO;
+    m_col_disabled_id.clear();
+    m_col_id_nr.clear();
 
     if (!Option::instance().UseTransDateTime())
-        m_col_id_disabled.insert(LIST_ID_TIME);
+        m_col_disabled_id.insert(LIST_ID_TIME);
     if (m_cp->isAccount() && m_cp->m_account->CREDITLIMIT == 0)
-        m_col_id_disabled.insert(LIST_ID_CREDIT);
+        m_col_disabled_id.insert(LIST_ID_CREDIT);
 
-    m_col_nr_id.push_back(LIST_ID_ICON);
-    m_col_nr_id.push_back(LIST_ID_SN);
-    m_col_nr_id.push_back(LIST_ID_ID);
-    m_col_nr_id.push_back(LIST_ID_DATE);
-    m_col_nr_id.push_back(LIST_ID_TIME);
-    m_col_nr_id.push_back(LIST_ID_NUMBER);
+    m_col_id_nr.push_back(LIST_ID_ICON);
+    m_col_id_nr.push_back(LIST_ID_SN);
+    m_col_id_nr.push_back(LIST_ID_ID);
+    m_col_id_nr.push_back(LIST_ID_DATE);
+    m_col_id_nr.push_back(LIST_ID_TIME);
+    m_col_id_nr.push_back(LIST_ID_NUMBER);
     if (!m_cp->isAccount())
-        m_col_nr_id.push_back(LIST_ID_ACCOUNT);
-    m_col_nr_id.push_back(LIST_ID_PAYEE_STR);
-    m_col_nr_id.push_back(LIST_ID_STATUS);
-    m_col_nr_id.push_back(LIST_ID_CATEGORY);
-    m_col_nr_id.push_back(LIST_ID_TAGS);
-    m_col_nr_id.push_back(LIST_ID_WITHDRAWAL);
-    m_col_nr_id.push_back(LIST_ID_DEPOSIT);
+        m_col_id_nr.push_back(LIST_ID_ACCOUNT);
+    m_col_id_nr.push_back(LIST_ID_PAYEE_STR);
+    m_col_id_nr.push_back(LIST_ID_STATUS);
+    m_col_id_nr.push_back(LIST_ID_CATEGORY);
+    m_col_id_nr.push_back(LIST_ID_TAGS);
+    m_col_id_nr.push_back(LIST_ID_WITHDRAWAL);
+    m_col_id_nr.push_back(LIST_ID_DEPOSIT);
     if (m_cp->isAccount()) {
-        m_col_nr_id.push_back(LIST_ID_BALANCE);
-        m_col_nr_id.push_back(LIST_ID_CREDIT);
+        m_col_id_nr.push_back(LIST_ID_BALANCE);
+        m_col_id_nr.push_back(LIST_ID_CREDIT);
     }
-    m_col_nr_id.push_back(LIST_ID_NOTES);
+    m_col_id_nr.push_back(LIST_ID_NOTES);
     if (m_cp->isDeletedTrans())
-        m_col_nr_id.push_back(LIST_ID_DELETEDTIME);
+        m_col_id_nr.push_back(LIST_ID_DELETEDTIME);
 
     const auto& ref_type = Model_Attachment::REFTYPE_NAME_TRANSACTION;
     int col_id = LIST_ID_UDFC01;
@@ -286,18 +286,18 @@ void TransactionListCtrl::setColumnsInfo()
 
         const auto& name = Model_CustomField::getUDFCName(ref_type, udfc_entry);
         if (!name.IsEmpty() && name != udfc_entry) {
-            m_col_id_info[col_id].header = name;
+            m_col_info_id[col_id].header = name;
             const auto& type = Model_CustomField::getUDFCType(ref_type, udfc_entry);
             if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
-                m_col_id_info[col_id].format = _FR;
+                m_col_info_id[col_id].format = _FR;
             else if (type == Model_CustomField::TYPE_ID_BOOLEAN)
-                m_col_id_info[col_id].format = _FC;
-            m_col_nr_id.push_back(col_id);
+                m_col_info_id[col_id].format = _FC;
+            m_col_id_nr.push_back(col_id);
         }
         col_id++;
     }
 
-    m_col_nr_id.push_back(LIST_ID_UPDATEDTIME);
+    m_col_id_nr.push_back(LIST_ID_UPDATEDTIME);
 
     m_sort_col_id = { LIST_ID_DATE, LIST_ID_ID };
 }
@@ -565,7 +565,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     if (!isValidColNr(col_nr))
         return;
     int col_id = getColId_Nr(col_nr);
-    if (!m_col_id_info[col_id].sortable)
+    if (!m_col_info_id[col_id].sortable)
         return;
 
     if (m_sort_col_id[0] != col_id) {
@@ -735,7 +735,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
         );
     }
     bool columnIsAmount = false;
-    int col_nr = getColumnFromPosition(event.GetX());
+    int col_nr = getColNr_X(event.GetX());
     int flags;
     unsigned long row = HitTest(event.GetPosition(), flags);
     if (row < m_trans.size() && (flags & wxLIST_HITTEST_ONITEM) && col_nr < getColNrSize()) {
@@ -1968,16 +1968,17 @@ void TransactionListCtrl::findSelectedTransactions()
     }
 }
 
-int TransactionListCtrl::getColumnFromPosition(int xPos)
+int TransactionListCtrl::getColNr_X(int xPos)
 {
-    int column = 0;
+    int col_vo = 0;
     int x = -GetScrollPos(wxHORIZONTAL);
-    for (column = 0; column < GetColumnCount(); column++) {
-        x += GetColumnWidth(column);
+    for (col_vo = 0; col_vo < GetColumnCount(); col_vo++) {
+        x += GetColumnWidth(getColNr_Vo(col_vo));
         if (x >= xPos) break;
     }
-    if (!(column < GetColumnCount())) return -1;
-    return column;
+    if (col_vo >= GetColumnCount())
+        return -1;
+    return getColNr_Vo(col_vo);
 }
 
 void TransactionListCtrl::doSearchText(const wxString& value)

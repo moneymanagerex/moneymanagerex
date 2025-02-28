@@ -67,8 +67,8 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
     o_col_order_prefix = "ASSETS";
     o_col_width_prefix = "ASSETS_COL";
     o_sort_prefix = "ASSETS";
-    m_col_id_info = LIST_INFO;
-    m_col_nr_id = ListColumnInfo::getListId(LIST_INFO);
+    m_col_info_id = LIST_INFO;
+    m_col_id_nr = ListColumnInfo::getListId(LIST_INFO);
     m_sort_col_id = { LIST_ID_DATE };
     createColumns();
 }
@@ -314,7 +314,7 @@ void mmAssetsListCtrl::OnColClick(wxListEvent& event)
     if (!isValidColNr(col_nr))
         return;
     int col_id = getColId_Nr(col_nr);
-    if (!m_col_id_info[col_id].sortable)
+    if (!m_col_info_id[col_id].sortable)
         return;
 
     if (m_sort_col_id[0] != col_id)

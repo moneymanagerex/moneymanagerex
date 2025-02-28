@@ -210,7 +210,7 @@ private:
     std::vector<Fused_Transaction::IdRepeat> getSelectedId() const;
     std::vector<Fused_Transaction::IdRepeat> getSelectedForCopy() const;
     void findSelectedTransactions();
-    int getColumnFromPosition(int xPos);
+    int getColNr_X(int xPos);
     void doSearchText(const wxString& value);
     void setVisibleItemIndex(long v);
     void markSelectedTransaction();

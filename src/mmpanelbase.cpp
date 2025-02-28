@@ -71,8 +71,8 @@ void mmListCtrl::createColumns()
     loadPreferences();
     for (int col_nr = 0; col_nr < getColNrSize(); ++col_nr) {
         int col_id = getColId_Nr(col_nr);
-        ListColumnInfo col_info = m_col_id_info[col_id];
-        int col_width = m_col_id_width[col_id];
+        ListColumnInfo col_info = m_col_info_id[col_id];
+        int col_width = m_col_width_id[col_id];
         if (isDisabledColId(col_id) || isHiddenColId(col_id)) col_width = 0;
         InsertColumn(col_nr, getColHeader(col_id), col_info.format, col_width);
     }
@@ -124,7 +124,7 @@ wxString mmListCtrl::BuildPage(const wxString &title) const
 
 const wxString mmListCtrl::getColHeader(int col_id, bool show_icon) const
 {
-    ListColumnInfo col_info = m_col_id_info[col_id];
+    ListColumnInfo col_info = m_col_info_id[col_id];
     if (!show_icon && col_id == 0 && col_info.header == "Icon")
         return " ";
     return col_info.translate ? wxGetTranslation(col_info.header) : col_info.header;
@@ -142,24 +142,24 @@ void mmListCtrl::savePreferences()
     Writer<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
 
-    if (!m_col_nr_id.empty()) {
-        json_writer.Key("col_nr_id");
+    if (!m_col_id_nr.empty()) {
+        json_writer.Key("col_id_vo");
         json_writer.StartArray();
         for (int col_vo = 0; col_vo < getColNrSize(); ++col_vo)
             json_writer.Int(getColId_Vo(col_vo));
         json_writer.EndArray();
     }
 
-    if (static_cast<int>(m_col_id_width.size()) == getColIdSize()) {
-        json_writer.Key("col_id_width");
+    if (static_cast<int>(m_col_width_id.size()) == getColIdSize()) {
+        json_writer.Key("col_width_id");
         json_writer.StartArray();
         for (int col_id = 0; col_id < getColIdSize(); ++col_id)
-            json_writer.Int(m_col_id_width[col_id]);
+            json_writer.Int(m_col_width_id[col_id]);
         json_writer.EndArray();
     }
 
-    if (!m_col_id_hidden.empty()) {
-        json_writer.Key("col_id_hidden");
+    if (!m_col_hidden_id.empty()) {
+        json_writer.Key("col_hidden_id");
         json_writer.StartArray();
         for (int col_id = 0; col_id < getColIdSize(); ++col_id)
             if (isHiddenColId(col_id)) json_writer.Int(col_id);
@@ -193,15 +193,15 @@ void mmListCtrl::loadPreferences()
 
 void mmListCtrl::savePreferences_v190()
 {
-    // save m_col_nr_id
-    if (!m_col_nr_id.empty() && !o_col_order_prefix.empty()) {
+    // save m_col_id_nr
+    if (!m_col_id_nr.empty() && !o_col_order_prefix.empty()) {
         wxString order_str;
-        for (int col_id : m_col_nr_id)
+        for (int col_id : m_col_id_nr)
             order_str.Append((order_str.IsEmpty() ? "" : "|") + wxString::Format("%i", col_id));
         Model_Setting::instance().setString(getColOrderKey_v190(), order_str);
     }
 
-    // save m_col_id_width, m_col_id_hidden
+    // save m_col_width_id, m_col_hidden_id
     if (!o_col_width_prefix.IsEmpty()) {
         for (int col_nr = 0; col_nr < GetColumnCount(); ++col_nr) {
             int col_id = getColId_Nr(col_nr);
@@ -221,33 +221,33 @@ void mmListCtrl::savePreferences_v190()
 
 void mmListCtrl::loadPreferences_v190()
 {
-    // load m_col_nr_id if columns can be ordered
-    if (!m_col_nr_id.empty() && !o_col_order_prefix.empty()) {
+    // load m_col_id_nr if columns can be ordered
+    if (!m_col_id_nr.empty() && !o_col_order_prefix.empty()) {
         wxString order_str = Model_Setting::instance().getString(getColOrderKey_v190(), "");
-        wxArrayString col_nr_idstr = wxSplit(order_str, '|');
-        std::vector<int> col_nr_id;
-        for (const auto& col_idstr : col_nr_idstr) {
+        wxArrayString col_idstr_nr = wxSplit(order_str, '|');
+        std::vector<int> col_id_nr;
+        for (const auto& col_idstr : col_idstr_nr) {
             int col_id = wxAtoi(col_idstr);
             if (isValidColId(col_id) &&
-                std::find(m_col_nr_id.begin(), m_col_nr_id.end(), col_id) != m_col_nr_id.end() &&
-                std::find(col_nr_id.begin(), col_nr_id.end(), col_id) == col_nr_id.end()
+                std::find(m_col_id_nr.begin(), m_col_id_nr.end(), col_id) != m_col_id_nr.end() &&
+                std::find(col_id_nr.begin(), col_id_nr.end(), col_id) == col_id_nr.end()
             )
-                col_nr_id.push_back(col_id);
+                col_id_nr.push_back(col_id);
         }
-        // assertion: col_nr_id is a subset of m_col_nr_id
-        for (int col_id : m_col_nr_id) {
-            if (std::find(col_nr_id.begin(), col_nr_id.end(), col_id) == col_nr_id.end())
-                col_nr_id.push_back(col_id);
+        // assertion: col_id_nr is a subset of m_col_id_nr
+        for (int col_id : m_col_id_nr) {
+            if (std::find(col_id_nr.begin(), col_id_nr.end(), col_id) == col_id_nr.end())
+                col_id_nr.push_back(col_id);
         }
-        // assertion: col_nr_id is a permutation of m_col_nr_id
-        m_col_nr_id = col_nr_id;
+        // assertion: col_id_nr is a permutation of m_col_id_nr
+        m_col_id_nr = col_id_nr;
     }
 
-    // load m_col_id_width, m_col_id_hidden
-    m_col_id_width.clear();
-    m_col_id_hidden.clear();
+    // load m_col_width_id, m_col_hidden_id
+    m_col_width_id.clear();
+    m_col_hidden_id.clear();
     for (int col_id = 0; col_id < getColIdSize(); ++col_id) {
-        ListColumnInfo col_info = m_col_id_info[col_id];
+        ListColumnInfo col_info = m_col_info_id[col_id];
         int col_width = col_info.default_width;
         if (!o_col_width_prefix.empty()) {
             col_width = Model_Setting::instance().getInt(
@@ -255,10 +255,10 @@ void mmListCtrl::loadPreferences_v190()
             );
         }
         if (col_width == 0) {
-            m_col_id_hidden.insert(col_id);
+            m_col_hidden_id.insert(col_id);
             col_width = col_info.default_width;
         }
-        m_col_id_width.push_back(col_width);
+        m_col_width_id.push_back(col_width);
     }
 
     // load m_sort_col_id, m_sort_asc
@@ -351,17 +351,17 @@ void mmListCtrl::updateSortIcon()
 
 void mmListCtrl::shiftColumn(int col_vo, int offset)
 {
-    if (m_col_nr_id.empty() || offset == 0)
+    if (m_col_id_nr.empty() || offset == 0)
         return;
 
     int col_nr = getColNr_Vo(col_vo);
-    int col_id = m_col_nr_id[col_nr];
+    int col_id = m_col_id_nr[col_nr];
     wxLogDebug("mmListCtrl::shiftColumn(): save column %d:%d (%s)",
-        col_vo, col_nr, m_col_id_info[col_id].header
+        col_vo, col_nr, m_col_info_id[col_id].header
     );
     wxListItem col_item;
     col_item.SetText(getColHeader(col_id));
-    col_item.SetAlign(static_cast<wxListColumnFormat>(m_col_id_info[col_id].format));
+    col_item.SetAlign(static_cast<wxListColumnFormat>(m_col_info_id[col_id].format));
     int col_width = GetColumnWidth(col_nr);
 
     int dir = offset > 0 ? 1 : -1;
@@ -372,39 +372,39 @@ void mmListCtrl::shiftColumn(int col_vo, int offset)
         int src_nr = getColNr_Vo(src_vo);
         if (!isValidColNr(src_nr))
             break;
-        int src_id = m_col_nr_id[src_nr];
+        int src_id = m_col_id_nr[src_nr];
         wxLogDebug("mmListCtrl::shiftColumn(): move column %d:%d (%s) -> %d:%d",
-            src_vo, src_nr, m_col_id_info[src_id].header, dst_vo, dst_nr
+            src_vo, src_nr, m_col_info_id[src_id].header, dst_vo, dst_nr
         );
         wxListItem src_item;
         src_item.SetText(getColHeader(src_id));
-        src_item.SetAlign(static_cast<wxListColumnFormat>(m_col_id_info[src_id].format));
+        src_item.SetAlign(static_cast<wxListColumnFormat>(m_col_info_id[src_id].format));
         int src_width = GetColumnWidth(src_nr);
         SetColumn(dst_nr, src_item);
         SetColumnWidth(dst_nr, src_width);
-        m_col_nr_id[dst_nr] = src_id;
+        m_col_id_nr[dst_nr] = src_id;
         dst_vo = src_vo;
         dst_nr = src_nr;
         offset -= dir;
     }
 
     wxLogDebug("mmListCtrl::shiftColumn(): restore column (%s) -> %d:%d",
-        m_col_id_info[col_id].header, dst_vo, dst_nr
+        m_col_info_id[col_id].header, dst_vo, dst_nr
     );
     SetColumn(dst_nr, col_item);
     SetColumnWidth(dst_nr, col_width);
-    m_col_nr_id[dst_nr] = col_id;
+    m_col_id_nr[dst_nr] = col_id;
 }
 
 //----------------------------------------------------------------------------
 
 void mmListCtrl::onItemResize(wxListEvent& event)
 {
-    // update m_col_id_width but do not save in Setting
+    // update m_col_width_id but do not save in Setting
     int col_nr = event.GetColumn();
     int col_id = getColId_Nr(col_nr);
     int col_width = GetColumnWidth(col_nr);
-    m_col_id_width[col_id] = col_width;
+    m_col_width_id[col_id] = col_width;
 }
 
 void mmListCtrl::onColRightClick(wxListEvent& event)
@@ -431,7 +431,7 @@ void mmListCtrl::onColRightClick(wxListEvent& event)
     menu.Append(MENU_HEADER_HIDE, _t("Hide this column"));
 
     // move columns
-    if (m_col_nr_id.size() > 0) {
+    if (m_col_id_nr.size() > 0) {
         wxMenu *menu_show = new wxMenu;
         bool found = false;
         for (int col_vo = 0; col_vo < getColNrSize(); col_vo++) {
@@ -455,7 +455,7 @@ void mmListCtrl::onColRightClick(wxListEvent& event)
             menu.Append(MENU_HEADER_MOVE_RIGHT, _t("Move column right"));
     }
 
-    if (m_col_id_info[getColId_Nr(m_sel_col_nr)].sortable)
+    if (m_col_info_id[getColId_Nr(m_sel_col_nr)].sortable)
         menu.Append(MENU_HEADER_SORT, _t("Sort by this column"));
 
     menu.Append(MENU_HEADER_RESET, _t("Reset column widths"));
@@ -499,13 +499,13 @@ void mmListCtrl::onHeaderToggle(wxCommandEvent& event)
     int col_id = getColId_Nr(col_nr);
     int new_width;
     if (isHiddenColId(col_id)) {
-        m_col_id_hidden.erase(col_id);
-        new_width = m_col_id_width[col_id];
-        if (new_width == 0) new_width = m_col_id_info[col_id].default_width;
+        m_col_hidden_id.erase(col_id);
+        new_width = m_col_width_id[col_id];
+        if (new_width == 0) new_width = m_col_info_id[col_id].default_width;
     }
     else {
-        m_col_id_width[col_id] = GetColumnWidth(col_nr);
-        m_col_id_hidden.insert(col_id);
+        m_col_width_id[col_id] = GetColumnWidth(col_nr);
+        m_col_hidden_id.insert(col_id);
         new_width = 0;
     }
     SetColumnWidth(col_nr, new_width);
@@ -519,8 +519,8 @@ void mmListCtrl::onHeaderHide(wxCommandEvent& WXUNUSED(event))
         return;
     Freeze();
     int col_id = getColId_Nr(m_sel_col_nr);
-    m_col_id_width[col_id] = GetColumnWidth(m_sel_col_nr);
-    m_col_id_hidden.insert(col_id);
+    m_col_width_id[col_id] = GetColumnWidth(m_sel_col_nr);
+    m_col_hidden_id.insert(col_id);
     SetColumnWidth(m_sel_col_nr, 0);
     savePreferences();
     Thaw();
@@ -529,15 +529,15 @@ void mmListCtrl::onHeaderHide(wxCommandEvent& WXUNUSED(event))
 void mmListCtrl::onHeaderShow(wxCommandEvent& event)
 {
     int col_nr = event.GetId() - MENU_HEADER_SHOW_MIN;
-    if (m_col_nr_id.empty() || !isValidColNr(m_sel_col_nr) || !isValidColNr(col_nr))
+    if (m_col_id_nr.empty() || !isValidColNr(m_sel_col_nr) || !isValidColNr(col_nr))
         return;
     Freeze();
 
     // show col_nr
     int col_id = getColId_Nr(col_nr);
-    m_col_id_hidden.erase(col_id);
-    int col_width = m_col_id_width[col_id];
-    if (col_width == 0) col_width = m_col_id_info[col_id].default_width;
+    m_col_hidden_id.erase(col_id);
+    int col_width = m_col_width_id[col_id];
+    if (col_width == 0) col_width = m_col_info_id[col_id].default_width;
     SetColumnWidth(col_nr, col_width);
 
     // move col_nr to the right of m_sel_col_nr
@@ -553,7 +553,7 @@ void mmListCtrl::onHeaderShow(wxCommandEvent& event)
 
 void mmListCtrl::onHeaderMove(wxCommandEvent& WXUNUSED(event), int dir)
 {
-    if (m_col_nr_id.empty())
+    if (m_col_id_nr.empty())
         return;
     Freeze();
 
@@ -578,13 +578,13 @@ void mmListCtrl::onHeaderMove(wxCommandEvent& WXUNUSED(event), int dir)
 void mmListCtrl::onHeaderReset(wxCommandEvent& WXUNUSED(event))
 {
     Freeze();
-    m_col_id_hidden.clear();
+    m_col_hidden_id.clear();
     for (int col_nr = 0; col_nr < getColNrSize(); ++col_nr) {
         int col_id = getColId_Nr(col_nr);
         if (isDisabledColId(col_id))
             continue;
-        int col_width = m_col_id_info[col_id].default_width;
-        m_col_id_width[col_id] = col_width;
+        int col_width = m_col_info_id[col_id].default_width;
+        m_col_width_id[col_id] = col_width;
         SetColumnWidth(col_nr, col_width);
     }
     savePreferences();

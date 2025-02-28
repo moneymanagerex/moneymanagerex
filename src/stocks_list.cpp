@@ -98,8 +98,8 @@ StocksListCtrl::StocksListCtrl(
     o_col_order_prefix = "STOCKS";
     o_col_width_prefix = "STOCKS_COL";
     o_sort_prefix = "STOCKS";
-    m_col_id_info = LIST_INFO;
-    m_col_nr_id = ListColumnInfo::getListId(LIST_INFO);
+    m_col_info_id = LIST_INFO;
+    m_col_id_nr = ListColumnInfo::getListId(LIST_INFO);
     m_sort_col_id = { col_sort() };
     createColumns();
 
@@ -404,7 +404,7 @@ void StocksListCtrl::OnColClick(wxListEvent& event)
     if (!isValidColNr(col_nr))
         return;
     int col_id = getColId_Nr(col_nr);
-    if (!m_col_id_info[col_id].sortable)
+    if (!m_col_info_id[col_id].sortable)
         return;
 
     if (m_sort_col_id[0] != col_id)

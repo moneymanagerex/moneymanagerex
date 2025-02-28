@@ -284,7 +284,7 @@ budgetingListCtrl::budgetingListCtrl(
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
     m_setting_name = "BUDGET";
-    m_col_id_info = LIST_INFO;
+    m_col_info_id = LIST_INFO;
     o_col_width_prefix = "BUDGET_COL";
 }
 
