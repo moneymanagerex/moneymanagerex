@@ -72,6 +72,10 @@ public:
     void setColour(const wxString& key, const wxColour& newValue);
     const wxColour getColour(const wxString& key, const wxColour& defaultValue);
 
+    void setJdoc(const wxString& key, Document& newValue);
+    void setJdoc(const wxString& key, StringBuffer& newValue);
+    Document getJdoc(const wxString& key, const wxString& defaultValue);
+
     void setArrayString(const wxString& key, const wxArrayString& a);
     const wxArrayString getArrayString(const wxString& key);
 

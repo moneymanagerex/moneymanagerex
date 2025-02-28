@@ -152,6 +152,25 @@ const wxColour Model_Setting::getColour(const wxString& key, const wxColour& def
 }
 
 //-------------------------------------------------------------------
+// Jdoc
+void Model_Setting::setJdoc(const wxString& key, Document& newValue)
+{
+    wxString j_str = JSON_PrettyFormated(newValue);
+    setRaw(key, j_str);
+}
+void Model_Setting::setJdoc(const wxString& key, StringBuffer& newValue)
+{
+    wxString j_str = wxString::FromUTF8(newValue.GetString());
+    setRaw(key, j_str);
+}
+Document Model_Setting::getJdoc(const wxString& key, const wxString& defaultValue)
+{
+    Document j_doc;
+    wxString j_str = getRaw(key, defaultValue);
+    j_doc.Parse(j_str.utf8_str());
+    return j_doc;
+}
+
 // ArrayString
 void Model_Setting::setArrayString(const wxString& key, const wxArrayString& a)
 {

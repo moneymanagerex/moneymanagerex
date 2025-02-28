@@ -41,7 +41,7 @@ const std::vector<int> ListColumnInfo::getListId(const std::vector<ListColumnInf
 
 //----------------------------------------------------------------------------
 
-mmListCtrl::mmListCtrl(wxWindow *parent, wxWindowID winid) :
+mmListCtrl::mmListCtrl(wxWindow* parent, wxWindowID winid) :
     wxListCtrl(
         parent, winid, wxDefaultPosition, wxDefaultSize,
         wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_VIRTUAL | wxLC_SINGLE_SEL | wxLC_AUTOARRANGE
@@ -134,13 +134,14 @@ const wxString mmListCtrl::getColHeader(int col_id, bool show_icon) const
 
 void mmListCtrl::savePreferences()
 {
-    savePreferences_v190();
     if (m_setting_name.empty())
         return;
 
     StringBuffer json_buffer;
     Writer<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
+    json_writer.Key("version");
+    json_writer.Int(m_setting_version);
 
     if (!m_col_id_nr.empty()) {
         json_writer.Key("col_id_vo");
@@ -187,8 +188,91 @@ void mmListCtrl::savePreferences()
 
 void mmListCtrl::loadPreferences()
 {
-    loadPreferences_v190();
-    savePreferences();
+    const wxString& key = "LIST_" + m_setting_name;
+    Document json_doc = Model_Setting::instance().getJdoc(key, "{}");
+    int version = 0;
+    if (!json_doc.HasParseError()) {
+        JSON_GetIntValue(json_doc, "version", version);
+    }
+
+    if (version < 1) {
+        loadPreferences_v190();
+        savePreferences();
+        return;
+    }
+    else if (version != m_setting_version) {
+        return;
+    }
+
+    // load m_col_id_nr if columns can be ordered
+    Value* col_id_a = JSON_GetValue(json_doc, "col_id_vo");
+    if (!m_col_id_nr.empty() && col_id_a != nullptr && col_id_a->IsArray()) {
+        std::vector<int> col_id_nr;
+        for (SizeType i = 0; i < col_id_a->Size(); ++i) {
+            int col_id = (*col_id_a)[i].GetInt();
+            if (isValidColId(col_id) &&
+                std::find(m_col_id_nr.begin(), m_col_id_nr.end(), col_id) != m_col_id_nr.end() &&
+                std::find(col_id_nr.begin(), col_id_nr.end(), col_id) == col_id_nr.end()
+            )
+                col_id_nr.push_back(col_id);
+        }
+        // assertion: col_id_nr is a subset of m_col_id_nr
+        for (int col_id : m_col_id_nr) {
+            if (std::find(col_id_nr.begin(), col_id_nr.end(), col_id) == col_id_nr.end())
+                col_id_nr.push_back(col_id);
+        }
+        // assertion: col_id_nr is a permutation of m_col_id_nr
+        m_col_id_nr = col_id_nr;
+    }
+
+    // load m_col_width_id
+    m_col_width_id.clear();
+    Value* col_width_a = JSON_GetValue(json_doc, "col_width_id");
+    if (col_width_a != nullptr && col_width_a->IsArray()) {
+        for (SizeType col_id = 0; col_id < col_width_a->Size(); ++col_id) {
+            if (static_cast<int>(col_id) >= getColIdSize())
+                break;
+            int col_width = (*col_width_a)[col_id].GetInt();
+            m_col_width_id.push_back(col_width);
+        }
+    }
+    for (int col_id = static_cast<int>(m_col_width_id.size()); col_id < getColIdSize(); ++col_id) {
+        int col_width = m_col_info_id[col_id].default_width;
+        m_col_width_id.push_back(col_width);
+    }
+
+    // load m_col_hidden_id
+    m_col_hidden_id.clear();
+    Value* col_hidden_a = JSON_GetValue(json_doc, "col_hidden_id");
+    if (col_hidden_a != nullptr && col_hidden_a->IsArray()) {
+        for (SizeType i = 0; i < col_hidden_a->Size(); ++i) {
+            int col_id = (*col_hidden_a)[i].GetInt();
+            if (isValidColId(col_id))
+                m_col_hidden_id.insert(col_id);
+        }
+    }
+
+    // load m_sort_col_id, m_sort_asc
+    if (c_sort_col_nr.size() != m_sort_col_id.size())
+        c_sort_col_nr = std::vector<int>(m_sort_col_id.size(), -1);
+    if (m_sort_asc.size() != m_sort_col_id.size())
+        m_sort_asc = std::vector<bool>(m_sort_col_id.size(), true);
+    Value* sort_col_a = JSON_GetValue(json_doc, "sort_col_id");
+    Value* sort_asc_a = JSON_GetValue(json_doc, "sort_asc");
+    if (sort_col_a != nullptr && sort_col_a->IsArray() &&
+        sort_asc_a != nullptr && sort_asc_a->IsArray() &&
+        sort_col_a->Size() == sort_asc_a->Size()
+    ) {
+        for (SizeType i = 0; i < sort_col_a->Size(); ++i) {
+            if (static_cast<int>(i) >= static_cast<int>(m_sort_col_id.size()))
+                break;
+            int col_id = (*sort_col_a)[i].GetInt();
+            if (isValidColId(col_id)) {
+                m_sort_col_id[i] = col_id;
+                m_sort_asc[i] = (*sort_asc_a)[i].GetBool();
+            }
+        }
+    }
 }
 
 void mmListCtrl::savePreferences_v190()
@@ -415,7 +499,7 @@ void mmListCtrl::onColRightClick(wxListEvent& event)
 
     wxMenu menu;
     // hide and show columns
-    wxMenu *menu_toggle = new wxMenu;
+    wxMenu* menu_toggle = new wxMenu;
     for (int col_vo = 0; col_vo < getColNrSize(); col_vo++) {
         int col_nr = getColNr_Vo(col_vo);
         int col_id = getColId_Nr(col_nr);
@@ -432,7 +516,7 @@ void mmListCtrl::onColRightClick(wxListEvent& event)
 
     // move columns
     if (m_col_id_nr.size() > 0) {
-        wxMenu *menu_show = new wxMenu;
+        wxMenu* menu_show = new wxMenu;
         bool found = false;
         for (int col_vo = 0; col_vo < getColNrSize(); col_vo++) {
             int col_nr = getColNr_Vo(col_vo);
@@ -610,7 +694,7 @@ wxString mmPanelBase::BuildPage() const
 void mmPanelBase::PrintPage()
 {
     //this->Freeze();
-    wxWebView * htmlWindow = wxWebView::New(this, wxID_ANY);
+    wxWebView*  htmlWindow = wxWebView::New(this, wxID_ANY);
     htmlWindow->SetPage(BuildPage(), "");
     htmlWindow->GetPageSource(); // Needed to generate the page - at least on Mac anyway!
     htmlWindow->Print();

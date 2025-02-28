@@ -35,8 +35,10 @@ class mmGUIApp;
 
 wxString JSON_PrettyFormated(rapidjson::Document& j_doc);
 wxString JSON_Formated(rapidjson::Document& j_doc);
-bool JSON_GetStringValue(rapidjson::Document& j_doc, const rapidjson::MemoryStream::Ch* name, wxString& value);
+rapidjson::Value* JSON_GetValue(rapidjson::Document& j_doc, const rapidjson::MemoryStream::Ch* name);
 bool JSON_GetBoolValue(rapidjson::Document& j_doc, const rapidjson::MemoryStream::Ch* name, bool& value);
+bool JSON_GetIntValue(rapidjson::Document& j_doc, const rapidjson::MemoryStream::Ch* name, int& value);
+bool JSON_GetStringValue(rapidjson::Document& j_doc, const rapidjson::MemoryStream::Ch* name, wxString& value);
 
 struct ValuePair
 {

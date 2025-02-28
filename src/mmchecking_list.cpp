@@ -235,8 +235,8 @@ void TransactionListCtrl::setColumnsInfo()
     }
     else if (m_cp->isAccount()) {
         m_setting_name = "TRANS1";
-        o_col_order_prefix = m_cp->m_account->ACCOUNTTYPE.Upper();
-        o_col_order_prefix.Replace(" ", "_");
+        // note: migrate from CHECKING_COLUMNORDER for all account types
+        o_col_order_prefix = "CHECKING";
         o_col_width_prefix = "CHECK2_COLV2";
         o_sort_prefix = "CHECK";
     }
@@ -244,7 +244,8 @@ void TransactionListCtrl::setColumnsInfo()
         m_setting_name = "TRANS2";
         o_col_order_prefix = "ALLTRANS";
         o_col_width_prefix = "ALLTRANS_COLV2";
-        o_sort_prefix = m_cp->isGroup() ? "MULTI" : "ALLTRANS";
+        // note: MULTI_{SORT_COL,ASC}*` are ignored (not migrated)
+        o_sort_prefix = "ALLTRANS";
     }
 
     m_col_info_id = LIST_INFO;

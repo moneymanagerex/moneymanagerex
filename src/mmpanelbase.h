@@ -65,6 +65,9 @@ protected:
     };
 
 public:
+    // const
+    const int m_setting_version = 1;
+
     // configured by constructor (cannot be updated)
     const wxSharedPtr<wxListItemAttr> attr1_, attr2_; // style1, style2
 
