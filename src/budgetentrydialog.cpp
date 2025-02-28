@@ -137,7 +137,7 @@ void mmBudgetEntryDialog::CreateControls()
         period
     );
     itemGridSizer2->Add(m_choiceItem, g_flagsExpand);
-    mmToolTip(m_choiceItem, _t("Specify the frequency of the expense or deposit"));
+    mmToolTip(m_choiceItem, _t("Specify the income or expense frequency"));
     m_choiceItem->Connect(wxID_ANY, wxEVT_CHAR, wxKeyEventHandler(mmBudgetEntryDialog::onChoiceChar), nullptr, this);
 
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _t("Amount:")), g_flagsH);
