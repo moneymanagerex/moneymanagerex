@@ -191,11 +191,11 @@ inline int mmListCtrl::getColNr_Id(int col_id) const
 
 inline int mmListCtrl::getColNr_Vo(int col_vo) const
 {
-    // Return the column number (inedx) from the visual order.
+    // Return the column number (index) from the visual order.
     // The column number and the visual order are always equal on Linux/macOS,
     // but on Windows they may differ due to drag/drop actions.
     #ifdef wxHAS_LISTCTRL_COLUMN_ORDER
-        return GetColumnIndexFromOrder(col_vo);
+        return GetColumnCount() == 0 ? col_vo : GetColumnIndexFromOrder(col_vo);
     #else
         return col_vo;
     #endif
@@ -203,9 +203,9 @@ inline int mmListCtrl::getColNr_Vo(int col_vo) const
 
 inline int mmListCtrl::getColVo_Nr(int col_nr) const
 {
-    // Return the visual order from the column number (inedx).
+    // Return the visual order from the column number (index).
     #ifdef wxHAS_LISTCTRL_COLUMN_ORDER
-        return GetColumnOrder(col_nr);
+        return GetColumnCount() == 0 ? col_nr : GetColumnOrder(col_nr);
     #else
         return col_nr;
     #endif

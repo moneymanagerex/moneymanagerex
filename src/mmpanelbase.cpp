@@ -651,7 +651,7 @@ void mmListCtrl::onHeaderMove(wxCommandEvent& WXUNUSED(event), int dir)
     );
     // shift src_vo to dst_vo
     if (isValidColNr(dst_nr)) {
-        shiftColumn(src_vo, dst_nr - src_vo);
+        shiftColumn(src_vo, dst_vo - src_vo);
         updateSortIcon();
         savePreferences();
     }
