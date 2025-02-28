@@ -402,6 +402,7 @@ void mmStockDialog::OnSave(wxCommandEvent & /*event*/)
         return;
     }
     
+    // TODO unique
     const wxString stockSymbol = m_stock_symbol_ctrl->GetValue();
     if (stockSymbol.empty())
     {
