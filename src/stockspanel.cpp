@@ -358,6 +358,8 @@ void mmStocksPanel::updateHeader()
         initVal = account->INITIALBAL;
         investment_balance = Model_Account::investment_balance(account);
     }
+
+    // TODO get its Shares Accounts' balance
     double originalVal = investment_balance.second;
     double total = investment_balance.first; 
 
