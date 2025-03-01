@@ -66,16 +66,12 @@ wxString JSON_Formated(rapidjson::Document& j_doc)
     return wxString::FromUTF8(j_buffer.GetString());
 }
 
-// Get a string value from RapidJson DOM
-bool JSON_GetStringValue(Document& j_doc, const MemoryStream::Ch* name, wxString& value)
+// Get a value from RapidJson DOM
+Value* JSON_GetValue(Document& j_doc, const MemoryStream::Ch* name)
 {
     if (!j_doc.HasMember(name))
-        return false;
-    Value& j_value = j_doc[name];
-    if (!j_value.IsString())
-        return false;
-    value = wxString::FromUTF8(j_value.GetString());
-    return true;
+        return nullptr;
+    return &j_doc[name];
 }
 
 // Get a bool value from RapidJson DOM
@@ -87,6 +83,30 @@ bool JSON_GetBoolValue(Document& j_doc, const MemoryStream::Ch* name, bool& valu
     if (!j_value.IsBool())
         return false;
     value = j_value.GetBool();
+    return true;
+}
+
+// Get an int value from RapidJson DOM
+bool JSON_GetIntValue(Document& j_doc, const MemoryStream::Ch* name, int& value)
+{
+    if (!j_doc.HasMember(name))
+        return false;
+    Value& j_value = j_doc[name];
+    if (!j_value.IsInt())
+        return false;
+    value = j_value.GetInt();
+    return true;
+}
+
+// Get a string value from RapidJson DOM
+bool JSON_GetStringValue(Document& j_doc, const MemoryStream::Ch* name, wxString& value)
+{
+    if (!j_doc.HasMember(name))
+        return false;
+    Value& j_value = j_doc[name];
+    if (!j_value.IsString())
+        return false;
+    value = wxString::FromUTF8(j_value.GetString());
     return true;
 }
 

@@ -98,8 +98,8 @@ StocksListCtrl::StocksListCtrl(
     o_col_order_prefix = "STOCKS";
     o_col_width_prefix = "STOCKS_COL";
     o_sort_prefix = "STOCKS";
-    m_col_id_info = LIST_INFO;
-    m_col_nr_id = ListColumnInfo::getListId(LIST_INFO);
+    m_col_info_id = LIST_INFO;
+    m_col_id_nr = ListColumnInfo::getListId(LIST_INFO);
     m_sort_col_id = { col_sort() };
     createColumns();
 
@@ -160,7 +160,7 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
 
 wxString StocksListCtrl::OnGetItemText(long item, long col_nr) const
 {
-    int col_id = getColId(static_cast<int>(col_nr));
+    int col_id = getColId_Nr(static_cast<int>(col_nr));
     switch (col_id) {
     case LIST_ID_ID:
         return wxString::Format("%lld", m_stocks[item].STOCKID).Trim();
@@ -403,8 +403,8 @@ void StocksListCtrl::OnColClick(wxListEvent& event)
     int col_nr = (event.GetId() == MENU_HEADER_SORT) ? m_sel_col_nr : event.GetColumn();
     if (!isValidColNr(col_nr))
         return;
-    int col_id = getColId(col_nr);
-    if (!m_col_id_info[col_id].sortable)
+    int col_id = getColId_Nr(col_nr);
+    if (!m_col_info_id[col_id].sortable)
         return;
 
     if (m_sort_col_id[0] != col_id)

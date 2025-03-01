@@ -284,7 +284,7 @@ budgetingListCtrl::budgetingListCtrl(
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
     m_setting_name = "BUDGET";
-    m_col_id_info = LIST_INFO;
+    m_col_info_id = LIST_INFO;
     o_col_width_prefix = "BUDGET_COL";
 }
 
@@ -659,7 +659,7 @@ int mmBudgetingPanel::GetItemImage(long item) const
 
 wxString budgetingListCtrl::OnGetItemText(long item, long col_nr) const
 {
-    return cp_->getItem(item, getColId(static_cast<int>(col_nr)));
+    return cp_->getItem(item, getColId_Nr(static_cast<int>(col_nr)));
 }
 
 wxListItemAttr* budgetingListCtrl::OnGetItemAttr(long item) const
