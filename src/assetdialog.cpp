@@ -459,15 +459,12 @@ void mmAssetDialog::CreateAssetAccount()
     Model_Account::Data* asset_account = Model_Account::instance().create();
     asset_account->ACCOUNTNAME = m_asset->ASSETNAME;
     asset_account->ACCOUNTTYPE = Model_Account::TYPE_NAME_ASSET;
-    asset_account->FAVORITEACCT = "TRUE";
+    asset_account->FAVORITEACCT = "FALSE";
     asset_account->STATUS = Model_Account::STATUS_NAME_OPEN;
     asset_account->INITIALBAL = 0;
     asset_account->INITIALDATE = wxDate::Today().FormatISODate();
     asset_account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;
     Model_Account::instance().save(asset_account);
-
-    mmNewAcctDialog account_dialog(asset_account, this);
-    account_dialog.ShowModal();
 
     mmAssetDialog asset_dialog(this, m_asset, true);
     asset_dialog.SetTransactionAccountName(m_asset->ASSETNAME);
