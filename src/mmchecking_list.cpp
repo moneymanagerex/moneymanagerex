@@ -1942,7 +1942,7 @@ void TransactionListCtrl::setSelectedId(Fused_Transaction::IdRepeat sel_id)
 { 
     int i = 0;
     for (const auto& fused : m_trans) {
-        if (fused.m_repeat_num == sel_id.first && fused.TRANSID == sel_id.first) {
+        if (fused.m_repeat_num == sel_id.second && fused.TRANSID == sel_id.first) {
             SetItemState(i, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
             SetItemState(i, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
             m_topItemIndex = i;
