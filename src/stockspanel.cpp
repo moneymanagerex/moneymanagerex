@@ -212,17 +212,16 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
     stockTxnListCtrl->AppendColumn(_t("Date"));
     stockTxnListCtrl->AppendColumn(_t("Lot"));
     stockTxnListCtrl->AppendColumn(_t("Shares"), wxLIST_FORMAT_RIGHT);
+    stockTxnListCtrl->AppendColumn(_t("Change"));
     stockTxnListCtrl->AppendColumn(_t("Price"), wxLIST_FORMAT_RIGHT);
     stockTxnListCtrl->AppendColumn(_t("Commission"), wxLIST_FORMAT_RIGHT);
     topsizer->Add(stockTxnListCtrl, wxSizerFlags(g_flagsExpand).TripleBorder());
 
-    const Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_STOCK, stock->STOCKID);
     Model_Checking::Data_Set checking_list;
-    for (const auto &trans : stock_list)
-    {
-        Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
-        if (checking_entry && checking_entry->DELETEDTIME.IsEmpty()) checking_list.push_back(*checking_entry);
-    }
+
+    const Model_Account::Data* share_account = Model_Account::instance().get(stock->STOCKNAME);
+    if (share_account)
+        checking_list = Model_Checking::instance().find(Model_Checking::ACCOUNTID(share_account->ACCOUNTID), Model_Checking::TRANSCODE(Model_Checking::TYPE_ID_TRANSFER, NOT_EQUAL));
     std::stable_sort(checking_list.begin(), checking_list.end(), SorterByTRANSDATE());
 
     int row = 0;
@@ -238,8 +237,9 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
 
             int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().getSharePrecision();
             stockTxnListCtrl->SetItem(index, 2, wxString::FromDouble(share_entry->SHARENUMBER, precision));
-            stockTxnListCtrl->SetItem(index, 3, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().getSharePrecision()));
-            stockTxnListCtrl->SetItem(index, 4, wxString::FromDouble(share_entry->SHARECOMMISSION, 2));
+            stockTxnListCtrl->SetItem(index, 3, stock_trans.TRANSCODE);
+            stockTxnListCtrl->SetItem(index, 4, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().getSharePrecision()));
+            stockTxnListCtrl->SetItem(index, 5, wxString::FromDouble(share_entry->SHARECOMMISSION, 2));
         }
     }
 
@@ -358,6 +358,8 @@ void mmStocksPanel::updateHeader()
         initVal = account->INITIALBAL;
         investment_balance = Model_Account::investment_balance(account);
     }
+
+    // TODO get its Shares Accounts' balance
     double originalVal = investment_balance.second;
     double total = investment_balance.first; 
 

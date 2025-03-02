@@ -981,21 +981,27 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
                 Model_Stock::Data_Set stocks = Model_Stock::instance().find(
                     Model_Stock::HELDAT(account.ACCOUNTID)
                 );
+
                 std::sort(stocks.begin(), stocks.end(), SorterBySTOCKNAME());
+                // Remove duplicates
+                auto last = std::unique(stocks.begin(), stocks.end(), [](const Model_Stock::Data& a, const Model_Stock::Data& b) {
+                    return a.STOCKNAME == b.STOCKNAME;  // Remove duplicates based on stock name
+                });
+                // Erase the duplicates
+                stocks.erase(last, stocks.end());
+
                 // Put the names of the Stock_entry names as children of the stock account.
                 for (const auto& stock : stocks) {
-                    if (!Model_Translink::HasShares(stock.STOCKID))
+                    Model_Account::Data* share_account = Model_Account::instance().get(stock.STOCKNAME);
+                    if (!share_account)
                         continue;
                     wxTreeItemId stockItem = m_nav_tree_ctrl->AppendItem(
                         accountItem, stock.STOCKNAME, accountImg, accountImg
                     );
-                    int64 account_id = stock.STOCKID;
-                    if (Model_Translink::ShareAccountId(account_id)) {
-                        m_nav_tree_ctrl->SetItemData(
-                            stockItem,
-                            new mmTreeItemData(mmTreeItemData::CHECKING, account_id)
-                        );
-                    }
+                    m_nav_tree_ctrl->SetItemData(
+                        stockItem,
+                        new mmTreeItemData(mmTreeItemData::CHECKING, share_account->ACCOUNTID)
+                    );
                 }
                 break;
             }

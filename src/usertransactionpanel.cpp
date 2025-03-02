@@ -106,7 +106,7 @@ void UserTransactionPanel::Create()
 
     m_transfer = new wxCheckBox(this, ID_TRANS_TRANSFER, _t("&Transfer")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    CheckingType(Model_Translink::AS_TRANSFER);
+    CheckingType(Model_Translink::AS_INCOME_EXPENSE);
     mmToolTip(m_transfer, _t("Funds transfer from/to this account. Uncheck to set as Expense/Income."));
 
     wxBoxSizer* type_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -433,9 +433,9 @@ Model_Translink::CHECKING_TYPE UserTransactionPanel::CheckingType()
 
 void UserTransactionPanel::CheckingType(Model_Translink::CHECKING_TYPE ct)
 {
-    m_transfer->SetValue(true);
-    if (ct == Model_Translink::AS_INCOME_EXPENSE) {
-        m_transfer->SetValue(false);
+    m_transfer->SetValue(false);
+    if (ct == Model_Translink::AS_TRANSFER) {
+        m_transfer->SetValue(true);
     }
 }
 
