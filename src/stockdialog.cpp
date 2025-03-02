@@ -509,15 +509,12 @@ void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account, const
     share_account->ACCOUNTNAME = name;
     share_account->ACCOUNTTYPE = Model_Account::TYPE_NAME_SHARES;
 
-    share_account->FAVORITEACCT = "TRUE";
+    share_account->FAVORITEACCT = "FALSE";
     share_account->STATUS = Model_Account::STATUS_NAME_OPEN;
     share_account->INITIALBAL = 0;
     share_account->INITIALDATE = openingDate;
     share_account->CURRENCYID = stock_account->CURRENCYID;
     Model_Account::instance().save(share_account);
-
-    mmNewAcctDialog account_dialog(share_account, this);
-    account_dialog.ShowModal();
 
     ShareTransactionDialog share_dialog(this, m_stock);
     share_dialog.ShowModal();
