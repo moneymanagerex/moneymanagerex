@@ -31,6 +31,9 @@ msgstr "hr-HR hrvatski (Hrvatska)"
 msgid "Czech (Czechia)"
 msgstr "cs-CZ čeština (Česko)"
 
+msgid "Danish (Denmark)"
+msgstr "da-DK Dansk (Danmark)"
+
 msgid "Dutch (Netherlands)"
 msgstr "nl-NL Nederlands (Nederland)"
 
@@ -39,6 +42,9 @@ msgstr "en-GB English (British)"
 
 msgid "English (United States)"
 msgstr "en-US English"
+
+msgid "Faroese (Faroe Islands)"
+msgstr "fo-FO Føroyskt (Føroyar)"
 
 msgid "French (France)"
 msgstr "fr-FR Français (France)"
@@ -72,6 +78,9 @@ msgstr "ko-KR 한국어 (한국)"
 
 msgid "Lithuanian (Lithuania)"
 msgstr "lt-LT lietuvių (Lietuva)"
+
+msgid "Persian (Iran)"
+msgstr "fa-IR فارسی (ایران)"
 
 msgid "Polish (Poland)"
 msgstr "pl-PL polski (Polska)"
