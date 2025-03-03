@@ -495,6 +495,9 @@ void mmStockDialog::OnSave(wxCommandEvent & /*event*/)
             {
                 CreateShareAccount(account, stockName, m_stock->PURCHASEDATE);
             }
+        } else {
+            ShareTransactionDialog share_dialog(this, m_stock);
+            share_dialog.ShowModal();
         }
     }
 
