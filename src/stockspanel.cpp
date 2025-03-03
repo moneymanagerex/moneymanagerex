@@ -346,7 +346,7 @@ const wxString mmStocksPanel::Total_Shares()
 void mmStocksPanel::updateHeader()
 {
     const Model_Account::Data* account = Model_Account::instance().get(m_account_id);
-    double initVal = 0;
+    double cashBalance = 0;
     // + Transfered from other accounts - Transfered to other accounts
 
     //Get Stock Investment Account Balance as Init Amount + sum (Value) - sum (Purchase Price)
@@ -354,8 +354,7 @@ void mmStocksPanel::updateHeader()
     if (account)
     {
         header_text_->SetLabelText(GetPanelTitle(*account));
-        //Get Init Value of the account
-        initVal = account->INITIALBAL;
+        cashBalance = Model_Account::balance(account);
         investment_balance = Model_Account::investment_balance(account);
     }
 
@@ -369,7 +368,7 @@ void mmStocksPanel::updateHeader()
         : 0.0;
     const wxString lbl = wxString::Format("%s     %s     %s     %s (%s %%)"
         , wxString::Format(_t("Total Shares: %s"), Total_Shares())
-        , wxString::Format(_t("Total: %s"), Model_Currency::toCurrency(total + initVal, m_currency))
+        , wxString::Format(_t("Total: %s"), Model_Currency::toCurrency(total + cashBalance, m_currency))
         , wxString::Format(_t("Invested: %s"), Model_Currency::toCurrency(originalVal, m_currency))
         , wxString::Format(total > originalVal ? _t("Gain: %s") : _t("Loss: %s"), diffStr)
         , Model_Currency::toString(diffPercents, m_currency, 2));

@@ -95,11 +95,11 @@ const wxString htmlWidgetStocks::getHTMLText()
                 , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME,
                 account.WEBSITE.empty() ? "" : wxString::Format("&nbsp;&nbsp;&nbsp;&nbsp;(<a href='%s' oncontextmenu='return false;' target='_blank'>WWW</a>)", account.WEBSITE));
             body += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
-                , stockStats[account.ACCOUNTID].first
-                , Model_Account::toCurrency(stockStats[account.ACCOUNTID].first, &account));
-            body += wxString::Format("<td colspan='2' class='money' sorttable_customkey='%f'>%s</td>"
                 , stockStats[account.ACCOUNTID].second
                 , Model_Account::toCurrency(stockStats[account.ACCOUNTID].second, &account));
+            body += wxString::Format("<td colspan='2' class='money' sorttable_customkey='%f'>%s</td>"
+                , stockStats[account.ACCOUNTID].first
+                , Model_Account::toCurrency(stockStats[account.ACCOUNTID].first, &account));
             body += "</tr>";
         }
 
@@ -123,24 +123,13 @@ void htmlWidgetStocks::calculate_stats(std::map<int64, std::pair<double, double>
     this->grand_gain_lost_ = 0;
     const auto &stocks = Model_Stock::instance().all();
     const wxDate today = wxDate::Today();
-    for (const auto& stock : stocks)
+    for (const auto& account: Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT, EQUAL)))
     {
-        double conv_rate = 1;
-        Model_Account::Data *account = Model_Account::instance().get(stock.HELDAT);
-        if (account)
-        {
-            conv_rate = Model_CurrencyHistory::getDayRate(account->CURRENCYID, today);
-        }
-        std::pair<double, double>& values = stockStats[stock.HELDAT];
-        double current_value = Model_Stock::CurrentValue(stock);
-        double gain_lost = current_value - Model_Stock::InvestmentValue(stock);
-        values.first += gain_lost;
-        values.second += current_value;
-        if (account && account->STATUS == VIEW_ACCOUNTS_OPEN_STR)
-        {
-            grand_total_ += current_value * conv_rate;
-            grand_gain_lost_ += Model_Stock::UnrealGainLoss(stock, true);
-        }
+        stockStats[account.ACCOUNTID] = Model_Account::investment_balance(account);
+        stockStats[account.ACCOUNTID].second = stockStats[account.ACCOUNTID].first - stockStats[account.ACCOUNTID].second;
+        stockStats[account.ACCOUNTID].first +=  Model_Account::balance(account);
+        grand_gain_lost_ += stockStats[account.ACCOUNTID].second;
+        grand_total_ += stockStats[account.ACCOUNTID].first;
     }
 }
 
