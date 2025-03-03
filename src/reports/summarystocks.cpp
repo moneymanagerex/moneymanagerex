@@ -113,7 +113,7 @@ wxString mmReportSummaryStocks::getHTMLText()
                     hb.addTableHeaderCell(_t("Symbol"));
                     hb.addTableHeaderCell(_t("Purchase Date"));
                     hb.addTableHeaderCell(_t("Quantity"), "text-right");
-                    hb.addTableHeaderCell(_t("Initial Value"), "text-right");
+                    hb.addTableHeaderCell(_t("Total Cost"), "text-right");
                     hb.addTableHeaderCell(_t("Current Price"), "text-right");
                     hb.addTableHeaderCell(_t("Commission"), "text-right");
                     hb.addTableHeaderCell(_t("Realized Gain/Loss"), "text-right");
