@@ -60,7 +60,7 @@ void  mmReportSummaryStocks::RefreshData()
         account.name = a.ACCOUNTNAME;
         account.realgainloss = 0.0;
         account.unrealgainloss = 0.0;
-        account.total = Model_Account::investment_balance(a).first + Model_Account::balance(a);
+        account.total = Model_Account::investment_balance(a).first;
         account.data.clear();
 
         for (const auto& stock : Model_Stock::instance().find(Model_Stock::HELDAT(a.ACCOUNTID)))
