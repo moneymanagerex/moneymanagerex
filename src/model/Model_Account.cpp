@@ -88,7 +88,7 @@ wxArrayString Model_Account::all_checking_account_names(bool skip_closed)
     {
         if (skip_closed && status_id(account) == STATUS_ID_CLOSED)
             continue;
-        if (type_id(account) == TYPE_ID_INVESTMENT)
+        if (type_id(account) == TYPE_ID_SHARES)
             continue;
         if (account.ACCOUNTNAME.empty())
             continue;
@@ -104,7 +104,7 @@ const std::map<wxString, int64> Model_Account::all_accounts(bool skip_closed)
     {
         if (skip_closed && status_id(account) == STATUS_ID_CLOSED)
             continue;
-        if (type_id(account) == TYPE_ID_INVESTMENT)
+        if (type_id(account) == TYPE_ID_SHARES)
             continue;
         if (account.ACCOUNTNAME.empty())
             continue;
@@ -223,6 +223,14 @@ double Model_Account::balance(const Data* r)
     for (const auto& tran: transactionsByDateTimeId(r))
     {
         sum += Model_Checking::account_flow(tran, r->ACCOUNTID); 
+    }
+
+    // all held stocks
+    for (const auto& stock: Model_Stock::instance().find(Model_Stock::HELDAT(r->ACCOUNTID)))
+    {
+        Data* share_account = Model_Account::instance().get(stock.STOCKNAME); // hard-linked shares account
+        if (share_account)
+            sum += Model_Account::balance(share_account);
     }
     return sum;
 }
