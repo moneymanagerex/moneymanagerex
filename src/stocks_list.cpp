@@ -136,7 +136,7 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
     wxMenu menu;
     menu.Append(MENU_TREEPOPUP_NEW, _tu("&New Stock Investment…"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ADDTRANS, _tu("&Add Stock Transactions…"));
+    menu.Append(MENU_TREEPOPUP_ADDTRANS, _tu("&Adjust Trade"));
     menu.Append(MENU_TREEPOPUP_VIEWTRANS, _t("&View Stock Transactions"));
     menu.AppendSeparator();
     menu.Append(MENU_TREEPOPUP_EDIT, _tu("&Edit Stock Investment…"));
