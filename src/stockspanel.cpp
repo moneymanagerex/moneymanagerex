@@ -133,7 +133,7 @@ void mmStocksPanel::CreateControls()
     mmToolTip(itemButton6, _t("New Stock Investment"));
     BoxSizerHBottom->Add(itemButton6, 0, wxRIGHT, 5);
 
-    wxButton* add_trans_btn = new wxButton(BottomPanel, wxID_ADD, _t("&Add Trans "));
+    wxButton* add_trans_btn = new wxButton(BottomPanel, wxID_ADD, _t("&Adjust Trade "));
     mmToolTip(add_trans_btn, _t("Add Stock Transactions"));
     BoxSizerHBottom->Add(add_trans_btn, 0, wxRIGHT, 5);
     add_trans_btn->Enable(false);
@@ -259,7 +259,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
 
         int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().getSharePrecision();
         stockTxnListCtrl->SetItem(index, 2, wxString::FromDouble(share_entry->SHARENUMBER, precision));
-        stockTxnListCtrl->SetItem(index, 3, stock_trans.TRANSCODE);
+        stockTxnListCtrl->SetItem(index, 3, txn->TRANSCODE);
         stockTxnListCtrl->SetItem(index, 4, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().getSharePrecision()));
         stockTxnListCtrl->SetItem(index, 5, wxString::FromDouble(share_entry->SHARECOMMISSION, 2));
 
