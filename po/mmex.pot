@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-03-04 06:26+0000\n"
+"POT-Creation-Date: 2025-03-03 07:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -615,7 +615,7 @@ msgstr ""
 msgid "&New "
 msgstr ""
 
-#: assetspanel.cpp:462
+#: assetspanel.cpp:462 stockspanel.cpp:136
 msgid "&Add Trans "
 msgstr ""
 
@@ -679,7 +679,7 @@ msgstr ""
 msgid "Use the asterisk (*) at the beginning to find any string in the middle of the sentence."
 msgstr ""
 
-#: assetspanel.cpp:566 stockspanel.cpp:371 stockspanel.cpp:560
+#: assetspanel.cpp:566 stockspanel.cpp:370 stockspanel.cpp:559
 #, c-format
 msgid "Total: %s"
 msgstr ""
@@ -1242,8 +1242,8 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1391 images_list.cpp:504
 #: import_export/univcsvdialog.cpp:1587 maincurrencydialog.cpp:482
-#: mmframe.cpp:4040 splittransactionsdialog.cpp:414 stockspanel.cpp:424
-#: stockspanel.cpp:425 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
+#: mmframe.cpp:4040 splittransactionsdialog.cpp:414 stockspanel.cpp:423
+#: stockspanel.cpp:424 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
 msgstr ""
@@ -3263,7 +3263,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:772 import_export/qif_import_gui.cpp:803
 #: import_export/univcsvdialog.cpp:2096 import_export/univcsvdialog.cpp:2110
-#: stockspanel.cpp:489
+#: stockspanel.cpp:488
 msgid "Missing"
 msgstr ""
 
@@ -3875,7 +3875,7 @@ msgstr ""
 msgid "Unable to download history for base symbol %s. Historical rates unavailable!"
 msgstr ""
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:435 util.cpp:693
+#: maincurrencydialog.cpp:876 stockspanel.cpp:434 util.cpp:693
 msgid "Unable to find base currency symbol!"
 msgstr ""
 
@@ -5597,7 +5597,7 @@ msgstr ""
 msgid "Please wait…"
 msgstr ""
 
-#: mmframe.cpp:3696 stockspanel.cpp:499
+#: mmframe.cpp:3696 stockspanel.cpp:498
 #, c-format
 msgid "%1$s on %2$s"
 msgstr ""
@@ -7919,10 +7919,6 @@ msgstr ""
 msgid "Moving Transaction from %s to"
 msgstr ""
 
-#: stockspanel.cpp:136
-msgid "&Adjust Trade "
-msgstr ""
-
 #: stockspanel.cpp:137
 msgid "Add Stock Transactions"
 msgstr ""
@@ -7959,54 +7955,54 @@ msgstr ""
 msgid "Change"
 msgstr ""
 
-#: stockspanel.cpp:326
+#: stockspanel.cpp:325
 #, c-format
 msgid "Stock Portfolio: %s"
 msgstr ""
 
-#: stockspanel.cpp:372
+#: stockspanel.cpp:371
 #, c-format
 msgid "Total Shares: %s"
 msgstr ""
 
-#: stockspanel.cpp:373
+#: stockspanel.cpp:372
 #, c-format
 msgid "Market Value: %s"
 msgstr ""
 
-#: stockspanel.cpp:374
+#: stockspanel.cpp:373
 #, c-format
 msgid "Invested: %s"
 msgstr ""
 
-#: stockspanel.cpp:375
+#: stockspanel.cpp:374
 #, c-format
 msgid "Gain: %s"
 msgstr ""
 
-#: stockspanel.cpp:375
+#: stockspanel.cpp:374
 #, c-format
 msgid "Loss: %s"
 msgstr ""
 
-#: stockspanel.cpp:413
+#: stockspanel.cpp:412
 msgid "Stock prices successfully updated"
 msgstr ""
 
-#: stockspanel.cpp:415 stockspanel.cpp:601
+#: stockspanel.cpp:414 stockspanel.cpp:600
 #, c-format
 msgid "Last updated %s"
 msgstr ""
 
-#: stockspanel.cpp:441 util.cpp:717 util.cpp:878
+#: stockspanel.cpp:440 util.cpp:717 util.cpp:878
 msgid "Nothing to update"
 msgstr ""
 
-#: stockspanel.cpp:455
+#: stockspanel.cpp:454
 msgid "Connecting…"
 msgstr ""
 
-#: stockspanel.cpp:559
+#: stockspanel.cpp:558
 #, c-format
 msgid "Symbol: %s"
 msgstr ""

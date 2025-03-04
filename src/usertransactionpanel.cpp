@@ -96,7 +96,7 @@ void UserTransactionPanel::Create()
     m_type_selector = new wxChoice(this, wxID_VIEW_DETAILS, wxDefaultPosition, std_half_size);
     for (int i = 0; i < Model_Checking::TYPE_ID_size; ++i) {
         if (i != Model_Checking::TYPE_ID_TRANSFER) {
-            wxString type = Model_Checking::type_name(i);
+            wxString type = Model_Checking::trade_type_name(i);
             m_type_selector->Append(wxGetTranslation(type), new wxStringClientData(type));
         }
     }
@@ -148,7 +148,7 @@ void UserTransactionPanel::Create()
         m_status_selector->Append(wxGetTranslation(status), new wxStringClientData(status));
     }
 
-    m_status_selector->SetSelection(Option::instance().getTransStatusReconciled());
+    m_status_selector->SetSelection(Model_Checking::STATUS_ID_RECONCILED);
     mmToolTip(m_status_selector, _t("Specify the status for this transaction"));
 
     transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _t("Status")), g_flagsH);
