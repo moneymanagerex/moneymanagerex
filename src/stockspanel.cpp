@@ -259,8 +259,9 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
 
         int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().getSharePrecision();
         stockTxnListCtrl->SetItem(index, 2, wxString::FromDouble(share_entry->SHARENUMBER, precision));
-        stockTxnListCtrl->SetItem(index, 3, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().getSharePrecision()));
-        stockTxnListCtrl->SetItem(index, 4, wxString::FromDouble(share_entry->SHARECOMMISSION, 2));
+        stockTxnListCtrl->SetItem(index, 3, stock_trans.TRANSCODE);
+        stockTxnListCtrl->SetItem(index, 4, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().getSharePrecision()));
+        stockTxnListCtrl->SetItem(index, 5, wxString::FromDouble(share_entry->SHARECOMMISSION, 2));
 
         // Sort by date 
         stockTxnListCtrl->SortItems(
