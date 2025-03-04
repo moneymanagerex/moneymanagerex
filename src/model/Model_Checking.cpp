@@ -35,6 +35,11 @@ ChoicesName Model_Checking::TYPE_CHOICES = ChoicesName({
     { TYPE_ID_TRANSFER,   _n("Transfer") }
 });
 
+ChoicesName Model_Checking::TRADE_TYPE_CHOICES = ChoicesName({
+    { TYPE_ID_WITHDRAWAL,  _n("Buy") },
+    { TYPE_ID_DEPOSIT, _n("Sell") }
+});
+
 ChoicesKeyName Model_Checking::STATUS_CHOICES = ChoicesKeyName({
     { STATUS_ID_NONE,       "",  _n("Unreconciled") },
     { STATUS_ID_RECONCILED, "R", _n("Reconciled") },

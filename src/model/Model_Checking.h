@@ -69,6 +69,7 @@ public:
 
 private:
     static ChoicesName TYPE_CHOICES;
+    static ChoicesName TRADE_TYPE_CHOICES;
     static ChoicesKeyName STATUS_CHOICES;
 
 public:
@@ -224,6 +225,7 @@ public:
 
 public:
     static const wxString type_name(int id);
+    static const wxString trade_type_name(int id);
     static int type_id(const wxString& name, int default_id = TYPE_ID_WITHDRAWAL);
     static TYPE_ID type_id(const Data* r);
     static TYPE_ID type_id(const Data& r);
@@ -266,6 +268,11 @@ public:
 inline const wxString Model_Checking::type_name(int id)
 {
     return TYPE_CHOICES.getName(id);
+}
+
+inline const wxString Model_Checking::trade_type_name(int id)
+{
+    return TRADE_TYPE_CHOICES.getName(id);
 }
 
 inline int Model_Checking::type_id(const wxString& name, int default_id)
