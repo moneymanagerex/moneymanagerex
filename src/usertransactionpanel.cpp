@@ -148,7 +148,7 @@ void UserTransactionPanel::Create()
         m_status_selector->Append(wxGetTranslation(status), new wxStringClientData(status));
     }
 
-    m_status_selector->SetSelection(Option::instance().getTransStatusReconciled());
+    m_status_selector->SetSelection(Model_Checking::STATUS_ID_RECONCILED);
     mmToolTip(m_status_selector, _t("Specify the status for this transaction"));
 
     transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _t("Status")), g_flagsH);
