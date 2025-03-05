@@ -22,6 +22,7 @@
 #include "Model_Stock.h"
 #include "Model_Translink.h"
 #include "Model_Shareinfo.h"
+#include <unordered_set>
 
 ChoicesName Model_Account::TYPE_CHOICES = ChoicesName({
     { TYPE_ID_CASH,        _n("Cash") },
@@ -225,12 +226,16 @@ double Model_Account::balance(const Data* r)
         sum += Model_Checking::account_flow(tran, r->ACCOUNTID); 
     }
 
-    // all held stocks
+    // all held stocks (remove duplicates)
+    std::unordered_set<wxString> processedStockNames;
     for (const auto& stock: Model_Stock::instance().find(Model_Stock::HELDAT(r->ACCOUNTID)))
     {
-        Data* share_account = Model_Account::instance().get(stock.STOCKNAME); // hard-linked shares account
-        if (share_account)
-            sum += Model_Account::balance(share_account);
+        if (processedStockNames.insert(stock.STOCKNAME).second) // only process unique STOCKNAME
+        {
+            Data* share_account = Model_Account::instance().get(stock.STOCKNAME); // hard-linked shares account
+            if (share_account)
+                sum += Model_Account::balance(share_account);
+        }
     }
     return sum;
 }
