@@ -247,7 +247,7 @@ double Model_Account::balance(const Data& r)
 
 std::pair<double, double> Model_Account::investment_balance(const Data* r)
 {
-    std::pair<double /*origianl input value*/, double /**/> sum;
+    std::pair<double /*market value*/, double /*invest value*/> sum;
     for (const auto& stock: Model_Stock::instance().find(Model_Stock::HELDAT(r->ACCOUNTID)))
     {
         sum.first += Model_Stock::CurrentValue(stock);

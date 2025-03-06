@@ -217,20 +217,19 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
     stockTxnListCtrl->AppendColumn(_t("Commission"), wxLIST_FORMAT_RIGHT);
     topsizer->Add(stockTxnListCtrl, wxSizerFlags(g_flagsExpand).TripleBorder());
 
+    Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_STOCK, stock->STOCKID);
     Model_Checking::Data_Set checking_list;
-
-    const Model_Account::Data* share_account = Model_Account::instance().get(stock->STOCKNAME);
-    if (share_account)
-        checking_list = Model_Checking::instance().find(Model_Checking::ACCOUNTID(share_account->ACCOUNTID), Model_Checking::TRANSCODE(Model_Checking::TYPE_ID_TRANSFER, NOT_EQUAL));
+    for (const auto &trans : stock_list)
+    {
+        Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
+        if (checking_entry && checking_entry->DELETEDTIME.IsEmpty()) checking_list.push_back(*checking_entry);
+    }
     std::stable_sort(checking_list.begin(), checking_list.end(), SorterByTRANSDATE());
 
     int row = 0;
     for (const auto& stock_trans : checking_list)
     {
         Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(stock_trans.TRANSID);
-        Model_Translink::Data link = Model_Translink::TranslinkRecord(stock_trans.TRANSID);
-        if (link.LINKRECORDID != stock->STOCKID)
-            continue;
         long index = stockTxnListCtrl->InsertItem(row++, "");
         if (share_entry && ((share_entry->SHARENUMBER > 0) || (share_entry->SHAREPRICE > 0)))
         {
