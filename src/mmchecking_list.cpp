@@ -1132,7 +1132,7 @@ void TransactionListCtrl::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
         if (!assetStockAccts.empty()) {
             for (const auto& i : assetStockAccts) {
                 if (i.first == "Asset") Model_Translink::UpdateAssetValue(Model_Asset::instance().get(i.second));
-                else if (i.first == "Stock") Model_Translink::UpdateStockValue(Model_Stock::instance().get(i.second));
+                else if (i.first == "Stock") Model_Stock::UpdatePosition(Model_Stock::instance().get(i.second));
             }
         }
     }
@@ -1188,7 +1188,7 @@ void TransactionListCtrl::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
                 if (i.first == "Asset")
                     Model_Translink::UpdateAssetValue(Model_Asset::instance().get(i.second));
                 else if (i.first == "Stock")
-                    Model_Translink::UpdateStockValue(Model_Stock::instance().get(i.second));
+                    Model_Stock::UpdatePosition(Model_Stock::instance().get(i.second));
             }
         }
     }
@@ -1224,7 +1224,7 @@ void TransactionListCtrl::onRestoreViewedTransaction(wxCommandEvent&)
                 if (i.first == "Asset")
                     Model_Translink::UpdateAssetValue(Model_Asset::instance().get(i.second));
                 else if (i.first == "Stock")
-                    Model_Translink::UpdateStockValue(Model_Stock::instance().get(i.second));
+                    Model_Stock::UpdatePosition(Model_Stock::instance().get(i.second));
             }
         }
     }
@@ -2116,7 +2116,7 @@ void TransactionListCtrl::deleteTransactionsByStatus(const wxString& status)
     if (!assetStockAccts.empty()) {
         for (const auto& i : assetStockAccts) {
             if (i.first == "Asset") Model_Translink::UpdateAssetValue(Model_Asset::instance().get(i.second));
-            else if (i.first == "Stock") Model_Translink::UpdateStockValue(Model_Stock::instance().get(i.second));
+            else if (i.first == "Stock") Model_Stock::UpdatePosition(Model_Stock::instance().get(i.second));
         }
     }
 

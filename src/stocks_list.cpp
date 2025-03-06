@@ -461,7 +461,7 @@ int StocksListCtrl::initVirtualListControl(int64 trx_id)
             break;
         }
         if (!stock.PURCHASEPRICE) {
-            Model_Translink::UpdateStockValue(&stock);
+            Model_Stock::UpdatePosition(&stock);
         }
         ++cnt;
     }

@@ -404,7 +404,7 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
         Model_Shareinfo::ShareEntry(checking_id, num_shares, share_price, commission, m_share_lot_ctrl->GetValue());
 
-        Model_Translink::UpdateStockValue(m_stock);
+        Model_Stock::UpdatePosition(m_stock);
         if (!loyalty_shares)
         {
             Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, m_transaction_panel->TransactionDate(), share_price, Model_StockHistory::MANUAL);
