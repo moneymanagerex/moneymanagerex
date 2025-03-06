@@ -89,6 +89,14 @@ public:
     Returns the total stock balance at a given date
     */
     double getDailyBalanceAt(const Model_Account::Data *account, const wxDate& date);
+
+    /*
+    stock_entry.PURCHASEPRICE = avg price of shares purchased.
+    stock_entry.NUMSHARES = total amount of shares purchased.
+    stock_entry.VALUE     = value of shares based on:
+    ... share_entry.SHARENUMBER * share_entry.SHAREPRICE
+    */
+    static void UpdatePosition(Model_Stock::Data* stock_entry);
 };
 
 #endif // 

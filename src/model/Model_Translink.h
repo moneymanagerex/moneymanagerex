@@ -87,13 +87,6 @@ public:
     /* Remove the checking account entry and its associated transfer transaction. */
     static void RemoveTranslinkEntry(const int64 checking_account_id);
 
-    /*
-    stock_entry.PURCHASEPRICE = avg price of shares purchased.
-    stock_entry.NUMSHARES = total amount of shares purchased.
-    stock_entry.VALUE     = value of shares based on:
-    ... share_entry.SHARENUMBER * share_entry.SHAREPRICE
-    */
-    static void UpdateStockValue(Model_Stock::Data* stock_entry);
     static void UpdateAssetValue(Model_Asset::Data* asset_entry);
 
     /* Return true with the account id of the first share entry in the stock translink list */
