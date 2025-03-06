@@ -227,8 +227,11 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
     int row = 0;
     for (const auto& stock_trans : checking_list)
     {
-        long index = stockTxnListCtrl->InsertItem(row++, "");
         Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(stock_trans.TRANSID);
+        Model_Translink::Data link = Model_Translink::TranslinkRecord(stock_trans.TRANSID);
+        if (link.LINKRECORDID != stock->STOCKID)
+            continue;
+        long index = stockTxnListCtrl->InsertItem(row++, "");
         if (share_entry && ((share_entry->SHARENUMBER > 0) || (share_entry->SHAREPRICE > 0)))
         {
             stockTxnListCtrl->SetItemData(index, stock_trans.TRANSID.GetValue());
@@ -359,20 +362,19 @@ void mmStocksPanel::updateHeader()
         investment_balance = Model_Account::investment_balance(account);
     }
 
-    // TODO get its Shares Accounts' balance
-    double originalVal = investment_balance.second;
-    double total = investment_balance.first; 
+    double InvestedVal = investment_balance.second;
+    double marketValue = investment_balance.first;
 
-    const wxString& diffStr = Model_Currency::toCurrency(total > originalVal ? total - originalVal : originalVal - total, m_currency);
-    double diffPercents = originalVal != 0.0
-        ? (total > originalVal ? total / originalVal*100.0 - 100.0 : -(total / originalVal*100.0 - 100.0))
+    const wxString& diffStr = Model_Currency::toCurrency(marketValue > InvestedVal ? marketValue - InvestedVal : InvestedVal - marketValue, m_currency);
+    double diffPercents = InvestedVal != 0.0
+        ? (marketValue > InvestedVal ? marketValue / InvestedVal*100.0 - 100.0 : -(marketValue / InvestedVal*100.0 - 100.0))
         : 0.0;
     const wxString lbl = wxString::Format("%s     %s     %s     %s     %s (%s %%)"
-        , wxString::Format(_t("Total: %s"), Model_Currency::toCurrency(total + cashBalance, m_currency))
-        , wxString::Format(_t("Total Shares: %s"), Total_Shares())
-        , wxString::Format(_t("Market Value: %s"), Model_Currency::toCurrency(total, m_currency))
-        , wxString::Format(_t("Invested: %s"), Model_Currency::toCurrency(originalVal, m_currency))
-        , wxString::Format(total > originalVal ? _t("Gain: %s") : _t("Loss: %s"), diffStr)
+        , wxString::Format(_t("Total: %s"), Model_Currency::toCurrency(marketValue + cashBalance, m_currency))
+        , wxString::Format(_t("Cash Balance: %s"), Model_Currency::toCurrency(cashBalance, m_currency))
+        , wxString::Format(_t("Market Value: %s"), Model_Currency::toCurrency(marketValue, m_currency))
+        , wxString::Format(_t("Invested: %s"), Model_Currency::toCurrency(InvestedVal, m_currency))
+        , wxString::Format(marketValue > InvestedVal ? _t("Gain: %s") : _t("Loss: %s"), diffStr)
         , Model_Currency::toString(diffPercents, m_currency, 2));
 
     header_total_->SetLabelText(lbl);
