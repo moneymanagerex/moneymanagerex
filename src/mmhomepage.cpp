@@ -121,15 +121,17 @@ void htmlWidgetStocks::calculate_stats(std::map<int64, std::pair<double, double>
 {
     this->grand_total_ = 0;
     this->grand_gain_lost_ = 0;
-    const auto &stocks = Model_Stock::instance().all();
     const wxDate today = wxDate::Today();
     for (const auto& account: Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT, EQUAL)))
     {
         stockStats[account.ACCOUNTID] = Model_Account::investment_balance(account);
         stockStats[account.ACCOUNTID].second = stockStats[account.ACCOUNTID].first - stockStats[account.ACCOUNTID].second;
         stockStats[account.ACCOUNTID].first +=  Model_Account::balance(account);
-        grand_gain_lost_ += stockStats[account.ACCOUNTID].second;
-        grand_total_ += stockStats[account.ACCOUNTID].first;
+
+        // in base currency
+        double conv_rate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, today);
+        grand_gain_lost_ += stockStats[account.ACCOUNTID].second * conv_rate;
+        grand_total_ += stockStats[account.ACCOUNTID].first * conv_rate;
     }
 }
 
