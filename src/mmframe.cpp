@@ -81,6 +81,7 @@
 #include <wx/fs_mem.h>
 #include <wx/busyinfo.h>
 #include <stack>
+#include <unordered_set>
 
 //----------------------------------------------------------------------------
 
@@ -977,31 +978,27 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
                     accountItem,
                     new mmTreeItemData(mmTreeItemData::INVESTMENT, account.ACCOUNTID)
                 );
-                // find all the accounts associated with this stock portfolio
-                Model_Stock::Data_Set stocks = Model_Stock::instance().find(
-                    Model_Stock::HELDAT(account.ACCOUNTID)
-                );
 
+                // Cash Ledger
+                wxTreeItemId stockItem = m_nav_tree_ctrl->AppendItem(accountItem, _n("Cash Ledger"), accountImg, accountImg);
+                m_nav_tree_ctrl->SetItemData(stockItem, new mmTreeItemData(mmTreeItemData::CHECKING, account.ACCOUNTID));
+
+                // find all the accounts associated with this stock portfolio
+                // just to keep compatibility for legacy Shares account data
+                Model_Stock::Data_Set stocks = Model_Stock::instance().find(Model_Stock::HELDAT(account.ACCOUNTID));
                 std::sort(stocks.begin(), stocks.end(), SorterBySTOCKNAME());
-                // Remove duplicates
-                auto last = std::unique(stocks.begin(), stocks.end(), [](const Model_Stock::Data& a, const Model_Stock::Data& b) {
-                    return a.STOCKNAME == b.STOCKNAME;  // Remove duplicates based on stock name
-                });
-                // Erase the duplicates
-                stocks.erase(last, stocks.end());
 
                 // Put the names of the Stock_entry names as children of the stock account.
-                for (const auto& stock : stocks) {
+                std::unordered_set<wxString> processedStockNames;
+                for (const auto& stock : stocks)
+                {
+                    if (!processedStockNames.insert(stock.STOCKNAME).second)
+                        continue;
                     Model_Account::Data* share_account = Model_Account::instance().get(stock.STOCKNAME);
                     if (!share_account)
                         continue;
-                    wxTreeItemId stockItem = m_nav_tree_ctrl->AppendItem(
-                        accountItem, stock.STOCKNAME, accountImg, accountImg
-                    );
-                    m_nav_tree_ctrl->SetItemData(
-                        stockItem,
-                        new mmTreeItemData(mmTreeItemData::CHECKING, share_account->ACCOUNTID)
-                    );
+                    wxTreeItemId stockItem = m_nav_tree_ctrl->AppendItem(accountItem, stock.STOCKNAME, accountImg, accountImg);
+                    m_nav_tree_ctrl->SetItemData(stockItem, new mmTreeItemData(mmTreeItemData::CHECKING, share_account->ACCOUNTID));
                 }
                 break;
             }

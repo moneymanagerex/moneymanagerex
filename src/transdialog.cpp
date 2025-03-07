@@ -719,8 +719,7 @@ bool mmTransDialog::ValidateData()
     {
         const Model_Account::Data *to_account = Model_Account::instance().get(cbToAccount_->GetValue());
 
-        if (!to_account || to_account->ACCOUNTID == m_fused_data.ACCOUNTID
-            || Model_Account::type_id(to_account) == Model_Account::TYPE_ID_INVESTMENT)
+        if (!to_account || to_account->ACCOUNTID == m_fused_data.ACCOUNTID)
         {
             mmErrorDialogs::InvalidAccount(cbToAccount_, true);
             return false;

@@ -470,36 +470,8 @@ void mmStockDialog::OnSave(wxCommandEvent & /*event*/)
     Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, wxDate::Today(), m_stock->CURRENTPRICE, Model_StockHistory::MANUAL);
     ShowStockHistory();
 
-    if (!stockName.empty())
-    {
-
-        Model_Account::Data* share_account = Model_Account::instance().get(m_stock_name_ctrl->GetValue());
-        if (!share_account && !m_edit)
-        {
-            if (wxMessageBox(_t("Share account not found.") + "\n\n" + _t("Do you want to create one?")
-                , _t("New Stock Investment"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
-            {
-                CreateShareAccount(account, stockName, m_stock->PURCHASEDATE);
-            }
-        }
-        else if (!share_account)
-        {
-            if (wxMessageBox(
-                _t("The company name does not have an associated share account.") +
-                "\n\n" +
-                _t("You may want to rename the company name to an existing share account with the same name. "
-                "If this is an existing stock without a share account, it is recommended that a share account be created.") +
-                "\n\n" +
-                _t("Do you want to create a new share account?")
-                , _t("Edit Stock Investment"), wxYES_NO | wxICON_WARNING) == wxYES)
-            {
-                CreateShareAccount(account, stockName, m_stock->PURCHASEDATE);
-            }
-        } else {
-            ShareTransactionDialog share_dialog(this, m_stock);
-            share_dialog.ShowModal();
-        }
-    }
+    ShareTransactionDialog share_dialog(this, m_stock);
+    share_dialog.ShowModal();
 
     m_edit = true;
     UpdateControls();
