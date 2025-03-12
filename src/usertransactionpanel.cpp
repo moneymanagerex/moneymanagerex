@@ -458,7 +458,7 @@ int64 UserTransactionPanel::SaveChecking()
     }
 
     m_checking_entry->ACCOUNTID = m_account_id;
-    m_checking_entry->TOACCOUNTID = CheckingType();
+    m_checking_entry->TOACCOUNTID = -1;
 
     m_checking_entry->PAYEEID = m_payee_id;
     m_checking_entry->TRANSCODE = Model_Checking::type_name(TransactionType());
