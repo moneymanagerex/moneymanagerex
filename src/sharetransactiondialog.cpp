@@ -305,7 +305,7 @@ void ShareTransactionDialog::CreateControls()
     }
     else {
         wxString acc_held = Model_Account::get_account_name(m_stock->HELDAT);
-        m_transaction_panel->SetTransactionNumber(m_stock->SYMBOL);
+        m_transaction_panel->SetTransactionNumber(m_stock->STOCKID.ToString() + "_" + m_stock->SYMBOL);
         m_transaction_panel->SetTransactionAccount(acc_held);
     }
 

@@ -106,6 +106,7 @@ void UserTransactionPanel::Create()
 
     m_transfer = new wxCheckBox(this, ID_TRANS_TRANSFER, _t("&Transfer")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_transfer->Hide();
     CheckingType(Model_Translink::AS_INCOME_EXPENSE);
     mmToolTip(m_transfer, _t("Funds transfer from/to this account. Uncheck to set as Expense/Income."));
 
