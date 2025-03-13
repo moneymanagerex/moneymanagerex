@@ -286,7 +286,7 @@ void mmAssetDialog::CreateControls()
     {
         if (m_asset)
         {
-            m_transaction_panel->SetTransactionNumber(m_asset->ASSETNAME);
+            m_transaction_panel->SetTransactionNumber(m_asset->ASSETID.ToString() + "_" + m_asset->ASSETNAME);
             m_transaction_panel->CheckingType(Model_Translink::AS_INCOME_EXPENSE);
         }
     }
