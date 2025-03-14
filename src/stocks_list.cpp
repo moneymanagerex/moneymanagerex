@@ -147,7 +147,7 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.Append(wxID_INDEX, _t("Stock &Web Page"));
 
     menu.Enable(MENU_TREEPOPUP_EDIT, !hide_menu_item);
-    menu.Enable(MENU_TREEPOPUP_ADDTRANS, !hide_menu_item);
+    menu.Enable(MENU_TREEPOPUP_ADDTRANS, !hide_menu_item && m_stocks[m_selected_row].NUMSHARES > 0);
     menu.Enable(MENU_TREEPOPUP_VIEWTRANS, !hide_menu_item);
     menu.Enable(MENU_TREEPOPUP_DELETE, !hide_menu_item);
     menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, !hide_menu_item);
