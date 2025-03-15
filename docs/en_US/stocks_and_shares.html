@@ -33,16 +33,19 @@
         Initializing Stocks and Shares is initially a two stage process.
     </p>
     <ol>
-        <li>First we create the Stock Entry and the associated Share Account.</li>
-        <li>We add the initial Shares information to our Share Account.</li>
+        <li>First we create the Investment Account to represent your stock exchange or broker. e.g. HKEX or NASDAQ.</li>
+        <li>We add the initial Shares information to our Investment Account.</li>
     </ol>
     <p>
-        Any subsequent transactions involving Share movements is accessed via the
-        company in the Stock Portfolio view.
+    	Any subsequent share transactions are recorded under the company in the Stock Portfolio view.
+        <ol>
+            <li>Fixed Amount / NET is used in MMEX </li>
+            <li><b>NET_BUY</b>: amount of money for which you bought shares including COMMISSION, equal to GROSS_BUY + COMMISSION</li>
+            <li><b>NET_SALE</b>: amount of money received from the sale, equal to GROSS_SALE − COMMISSION</li>
+        </ol>
     </p>
     <p>
-        Any transaction associated with our normal accounts is done via the Account View using the associated Shares
-        Account.
+        Any transaction associated with our cash accounts is settled through the Investment Account’s Cash Ledger.
     </p>
 
     <h3>Creating a Stock Portfolio for our Stocks</h3>
@@ -51,29 +54,29 @@
         account of type: <b>Investment</b>.
     </p>
     <p>
-        The name for this account would generally be the name of the Stock
-        Broker. In our example we have selected the stock broker being called
-        <q>Yahoo Finance</q>.
+        The name for this account would generally be the name of the stock exchange or Stock
+        Broker. In our example we have selected the stock exchange being called
+        <q>HKEX</q>.
     </p>
     <p>
         This account would appear in the Navigator under the heading
         <b>Stock Portfolios</b>. When we expand the Stock Portfolios branch
-        in the Navigator, we would see our newly created Stock Portfolio
+        in the Navigator, we would see our newly created Stock Portfolio(Investment)
         account.
     </p>
     <p>
-        Selecting our new account <q>Yahoo Finance</q> opens the view: Stock
-        Portfolio: Yahoo Finance. In this view we can now add the stocks that
+        Selecting our new account <q>HKEX</q> opens the view: Stock
+        Portfolio: HKEX. In this view we can now add the stocks that
         we own.
     </p>
 
-    <h3>Adding Stocks to our Stock Portfolio</h3>
+    <h3>Adding Stocks(Initial purchase) to our Stock Portfolio</h3>
     <p>
         We refer to Stocks as the companies that we have purchased shares.
     </p>
     <p>
         Let us say that we purchase shares in two companies from out stock
-        broker <q>Yahoo Finance</q>, we would create new entries in the stock
+        exchange <q>HKEX</q>, we would create new entries in the stock
         portfolio view for our companies.
     </p>
     <p>
@@ -89,8 +92,7 @@
     </aside>
     <dl>
         <dt>Company Name</dt>
-        <dd>This will also allow us to create a Share Account for this company of the same
-            name.</dd>
+        <dd>This will also allow us to track different LOTs for the same stock symbol.</dd>
         <dd>Example: Alpha Corporation</dd>
         <dt>Stock Symbol</dt>
         <dd><q>APC</q> being the Stock Exchange code, <q>AX</q> being the Stock
@@ -99,11 +101,12 @@
         <dt>Share Number</dt>
         <dd>The initial number of shares</dd>
         <dt>Share Price</dt>
-        <dd>This is the cost per share</dd>
+        <dd>This is the cost per share (gross price) </dd>
         <dt>Commission</dt>
         <dd>This is generally the remaining value for incomplete shares</dd>
-        <dd>Example: Purchase of $1,000.00 worth of shares at $2.35 per share,
-            gives us 425 shares and $1.25 as commission.</dd>
+        <dd>Example: Purchase of 100 shares at $40 per share, it will cost us $4,050 and $50 as commission, and net buy price is $40.5 per share</dd>
+        <dt>Account</dt>
+        <dd>This would be the associated Invesetment acount that was initially created, it would decrease -$4,050 </dd>
     </dl>
 
     <img class="shadow" alt='New Stock Investment example'
@@ -112,71 +115,37 @@
     <aside class="sticky notes">
         Save before close to keep any changes!
     </aside>
-    <p>
-        Saving this entry, the Share Account and Share Linkage can be set up.
-    </p>
-    <p>
-        Subsequent use of this dialog allows us to update the share price for
-        this stock. When aditional shares have been purchased, this price will
-        affect all shares.
-    </p>
-
-    <h3>Adding Initial Shares to our Stock</h3>
-    <p>
-        Now that we have created the initial Stock entry, we need to Add a
-        Transaction to our Stock to create the initial Shares entry. The
-        initial share information is transferred to our new share transaction.
-    </p>
-    <p>
-        Here we would add extra information similar to a normal transaction.
-    </p>
-    <dl>
-        <dt>Account</dt>
-        <dd>This would be the associated Share Account created when the Stock
-            was initially created. If this was not done, any other account can
-            be used for this transaction.</dd>
-        <dd>In order to keep track of transactions, it is recommended to reuse the previous Investment account</dd>
-        <dt>Type</dt>
-        <dd>Withdrawal from the share account represents a deposit to the actual shares.</dd>
-        <dd>Deposit from the share account represents a withdrawal to the actual shares.</dd>
-        <dt>Transfer</dt>
-        <dd>All Share transactions are in effect transfers to and from actual
-            share investments depending on the transaction being a purchase or
-            sale of shares.</dd>
-        <dd>If the transaction is required to be accounted as an expense or as
-            income, we would then remove the transfer selection.</dd>
-    </dl>
-    <img class="shadow" alt='Addition of Shares to our transaction'
-         src='../en_US/stock_shares_new_shares.png'>
 
     <h3>Adding Subsequent Share Entries to our Stock</h3>
     <p>
+        a recommended way is to add a new LOT.
         Purchase or sale of shares is achieved by accessing the stock entry
-        in the Stock Portfolio view and adding new transaction.
+        in the Stock Portfolio view and adjusting trade.
     </p>
+
+    <h3>Sell Share Entries to our Stock</h3>
     <p>
-        Here we need to add the share information and control the purchase or
-        sale via the transaction section of the share entry:
+        Sale of shares is achieved by accessing the stock entry in the Stock Portfolio view and adjusting trade.
     </p>
     <dl>
-        <dt>Share Purchase</dt>
-        <dd>Transaction type is Withdrawal</dd>
-        <dt>Share Sale</dt>
-        <dd>Transaction type is Deposit</dd>
+        <dt>Commission</dt>
+        <dd>This is generally the remaining value for incomplete shares</dd>
+        <dd>Example: Sales of 100 shares at $55.15 per share, it will give us $5,415 and $100 as commission</dd>
+        <dt>Account</dt>
+        <dd>This would be the associated Invesetment acount that was initially created, it would increase +$5,415 </dd>
+
     </dl>
+    <img class="shadow" alt='Sell Stock Investment example'
+         src='../en_US/xiaomi_sell.png'>
+
 
     <h2>Stock Portfolio Account</h2>
     <p>
         Our Stock Portfolio Account now displays a summary of the Stocks we have.
     </p>
     <ul>
-        <li>The stock broker name is used to define the Stock Investment name.</li>
+        <li>The stock exchange or broker name is used to define the Stock Investment name.</li>
         <li>The companies we buy shares from become the share name</li>
-        <li>Shares are generally associated with a Share Account having the
-            same name as the company name.</li>
-        <li>The Shares Accounts heading can be seen by using the menu
-            <kbd><samp>View</samp> &rarr; <samp>Display Share Accounts</samp>
-            </kbd></li>
     </ul>
     <h4>Example</h4>
     <p>
@@ -185,7 +154,7 @@
         meaningless in this view.
     </p>
     <img class="shadow" alt='Stock Portfolio view containing our new Stocks'
-        src='../en_US/stock_shares_portfolio.png'>
+        src='../en_US/HKEX_position.png'>
     <p>
         Note: Initial share price is not listed in this view.
         This is because the share price becomes meaningless in a summary
@@ -199,41 +168,11 @@
         share transactions using the View Transactions
     </p>
     <img class="shadow" alt='Stock list from Portfolio view for our stock'
-         src='../en_US/stock_shares_view_transactions.png'>
-
-    <h2>Share Accounts</h2>
-
-    <p>
-        A <dfn>Share account</dfn> contain the transactions that are
-        associated with this company stock.
-    </p>
-    <p>
-        Initially we would set aside money for investment in Stocks and
-        Shares. This is achieved by transferring money from our general
-        accounts to a Share account.
-    </p>
-    <p>
-        As shares are purchased and dividends received, we can now keep track
-        of our investment over time.
-    </p>
-    <p>
-        In a transactions, we can also use the company name as a Payee. It is
-        also advisable to create categories of:
-    </p>
-    <ul>
-        <li>Share: Purchase</li>
-        <li>Share: Dividend</li>
-        <li>Share: Sale</li>
-    </ul>
-
-    <p>Stock list from Portfolio view for our stock:</p>
-    <img class="shadow" alt='Account View for the Share Account: Alpha Corp'
-         src='../en_US/stock_shares_share_account.png'>
+         src='../en_US/HKEX_xiaomi_stock_txn.png'>
 
     <h2>Adding Dividends to our Shares</h2>
     <p>
-        Accessing our share account, we can add ordinary transactions to our
-        shares account.
+        Accessing our investment account, we can add ordinary transactions to it
     </p>
     <ul>
         <li>A share dividend transaction becomes a normal transaction.</li>
@@ -242,6 +181,13 @@
         <li>Actual commissions paid to a stock broker should also
             be recorded as a separate transaction.</li>
     </ul>
+
+    <h2>V2 changes and migration</h2>
+    <ol>
+        <li>Simplify the hierarchy by organizing it as Investment Account → Stocks (or LOTs) and deprecating the Shares Account.</li>
+        <li>Add a Cash Ledger for each Investment Account to track its cash flow.</li>
+        <li>The Legacy Shares Account will be treated as a sibling of the Cash Ledger, and you can update its transactions in the Investment Account to complete the migration.</li>
+    </ol>
 
     <footer><p><small>
         Copyright &copy; 2005-2009 Madhan Kanagavel<br>
