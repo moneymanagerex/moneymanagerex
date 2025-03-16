@@ -23,14 +23,13 @@
 
     <h2>Stocks, Shares and Share Dividend Management</h2>
     <p>
-        The terms Stocks and Shares generally mean the same thing but
-        depending on how we use these terms, could mean something different.
+        The terms ‘Stocks’ and ‘Shares’ are often used interchangeably, but in this context, they have distinct meanings.
         Here we refer to <dfn>Stocks</dfn> as companies, and <dfn>Shares</dfn>
         as units of value within the company. Generally we would obtain
         Stocks via a Stock Broker and purchase or sell shares in the company.
     </p>
     <p>
-        Initializing Stocks and Shares is initially a two stage process.
+        Setting up Stocks and Shares is a two-step process.
     </p>
     <ol>
         <li>First we create the Investment Account to represent your stock exchange or broker. e.g. HKEX or NASDAQ.</li>
@@ -40,8 +39,8 @@
     	Any subsequent share transactions are recorded under the company in the Stock Portfolio view.
         <ol>
             <li>Fixed Amount / NET is used in MMEX </li>
-            <li><b>NET_BUY</b>: amount of money for which you bought shares including COMMISSION, equal to GROSS_BUY + COMMISSION</li>
-            <li><b>NET_SALE</b>: amount of money received from the sale, equal to GROSS_SALE − COMMISSION</li>
+            <li><b>NET_BUY</b>: Total cost including commission = GROSS_BUY + COMMISSION</li>
+            <li><b>NET_SALE</b>: Total received after commission = GROSS_SALE - COMMISSION</li>
         </ol>
     </p>
     <p>
@@ -65,17 +64,17 @@
         account.
     </p>
     <p>
-        Selecting our new account <q>HKEX</q> opens the view: Stock
-        Portfolio: HKEX. In this view we can now add the stocks that
-        we own.
+        Selecting the new <q>HKEX</q> account opens the Stock Portfolio view.
     </p>
+
+    <img class="shadow" alt='Create Investment acount example' src='../en_US/HKEX_inv.png'>
 
     <h3>Adding Stocks(Initial purchase) to our Stock Portfolio</h3>
     <p>
         We refer to Stocks as the companies that we have purchased shares.
     </p>
     <p>
-        Let us say that we purchase shares in two companies from out stock
+        Let us say that we purchase shares in two companies from our stock
         exchange <q>HKEX</q>, we would create new entries in the stock
         portfolio view for our companies.
     </p>
@@ -95,9 +94,10 @@
         <dd>This will also allow us to track different LOTs for the same stock symbol.</dd>
         <dd>Example: Alpha Corporation</dd>
         <dt>Stock Symbol</dt>
-        <dd><q>APC</q> being the Stock Exchange code, <q>AX</q> being the Stock
-            Exchange to obtain current share value information</dd>
-        <dd>Example: APC.AX</dd>
+        <dd>
+            <q>APC</q> is the Stock Exchange code, and <q>AX</q> represents the Stock Exchange where you can obtain the current share value information.<br>
+            Example: <a href="https://finance.yahoo.com/quote/APC.AX" target="_blank" rel="noopener noreferrer">APC.AX</a>
+        </dd>
         <dt>Share Number</dt>
         <dd>The initial number of shares</dd>
         <dt>Share Price</dt>
@@ -106,7 +106,7 @@
         <dd>This is generally the remaining value for incomplete shares</dd>
         <dd>Example: Purchase of 100 shares at $40 per share, it will cost us $4,050 and $50 as commission, and net buy price is $40.5 per share</dd>
         <dt>Account</dt>
-        <dd>This would be the associated Invesetment acount that was initially created, it would decrease -$4,050 </dd>
+        <dd>This would be the associated Investment account that was initially created, it would decrease -$4,050 </dd>
     </dl>
 
     <img class="shadow" alt='New Stock Investment example'
@@ -132,12 +132,10 @@
         <dd>This is generally the remaining value for incomplete shares</dd>
         <dd>Example: Sales of 100 shares at $55.15 per share, it will give us $5,415 and $100 as commission</dd>
         <dt>Account</dt>
-        <dd>This would be the associated Invesetment acount that was initially created, it would increase +$5,415 </dd>
+        <dd>This would be the associated Investment acount that was initially created, it would increase +$5,415 </dd>
 
     </dl>
-    <img class="shadow" alt='Sell Stock Investment example'
-         src='../en_US/xiaomi_sell.png'>
-
+    <img class="shadow" alt='Sell Stock Investment example' src='../en_US/xiaomi_sell.png'>
 
     <h2>Stock Portfolio Account</h2>
     <p>
