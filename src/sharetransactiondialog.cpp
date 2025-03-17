@@ -74,6 +74,7 @@ ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Translink
         if (translink_entry->LINKTYPE == Model_Attachment::REFTYPE_NAME_STOCK)
         {
             m_share_entry = Model_Shareinfo::ShareEntry(translink_entry->CHECKINGACCOUNTID);
+            if (m_share_entry->SHARELOT.IsEmpty()) m_share_entry->SHARELOT = m_stock->STOCKID.ToString();
         }
     }
 
@@ -116,6 +117,7 @@ void ShareTransactionDialog::DataToControls()
 
     m_stock_name_ctrl->Enable(false);
     m_stock_symbol_ctrl->Enable(false);
+    m_share_lot_ctrl->Enable(false);
     m_notes_ctrl->Enable(false);
 
     Model_Translink::Data_Set translink_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_STOCK, m_stock->STOCKID);
@@ -126,6 +128,7 @@ void ShareTransactionDialog::DataToControls()
         m_share_num_ctrl->SetValue(m_stock->NUMSHARES, precision);
         m_share_price_ctrl->SetValue(m_stock->PURCHASEPRICE, Option::instance().getSharePrecision());
         m_share_commission_ctrl->SetValue(m_stock->COMMISSION, Option::instance().getSharePrecision());
+        m_share_lot_ctrl->SetValue(m_stock->STOCKID.ToString());
         m_transaction_panel->TransactionDate(Model_Stock::PURCHASEDATE(m_stock));
         m_transaction_panel->SetTransactionValue(GetAmount(m_stock->NUMSHARES, m_stock->PURCHASEPRICE
                 , m_stock->COMMISSION), true);
@@ -152,11 +155,11 @@ void ShareTransactionDialog::DataToControls()
                     m_transaction_panel->SetTransactionStatus(Model_Checking::status_id(checking_entry));
                     m_transaction_panel->SetTransactionPayee(checking_entry->PAYEEID);
                     m_transaction_panel->SetTransactionCategory(checking_entry->CATEGID);
-                    if (!checking_entry->DELETEDTIME.IsEmpty()) {
+                    if (!checking_entry->DELETEDTIME.IsEmpty()) 
+                    {
                         m_share_num_ctrl->Enable(false);
                         m_share_price_ctrl->Enable(false);
                         m_share_commission_ctrl->Enable(false);
-                        m_share_lot_ctrl->Enable(false);
                         web_button->Enable(false);
                     }
                 }
@@ -166,6 +169,7 @@ void ShareTransactionDialog::DataToControls()
         {
             m_share_num_ctrl->SetValue(0, 0);
             m_share_price_ctrl->SetValue(0, Option::instance().getSharePrecision());
+            m_share_lot_ctrl->SetValue(m_stock->STOCKID.ToString());
             m_transaction_panel->SetTransactionValue(0, true);
         }
     }
@@ -213,6 +217,16 @@ void ShareTransactionDialog::CreateControls()
     itemFlexGridSizer6->Add(m_stock_symbol_ctrl, g_flagsH);
     mmToolTip(m_stock_symbol_ctrl, _t("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
 
+    //Share Lot
+    wxStaticText* lot_text = new wxStaticText(stock_details_panel, wxID_STATIC, _t("Share Lot"));
+    itemFlexGridSizer6->Add(lot_text, g_flagsH);
+    lot_text->SetFont(this->GetFont().Bold());
+
+    m_share_lot_ctrl = new wxTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_LOT
+        , "", wxDefaultPosition, wxSize(150, -1), 0);
+    itemFlexGridSizer6->Add(m_share_lot_ctrl, g_flagsH);
+    mmToolTip(m_share_lot_ctrl, _t("Enter the LOT that this parcel os shares belong to"));
+
     //Share Unit Number 
     wxStaticText* number = new wxStaticText(stock_details_panel, wxID_STATIC, _t("Share Number"));
     itemFlexGridSizer6->Add(number, g_flagsH);
@@ -251,16 +265,6 @@ void ShareTransactionDialog::CreateControls()
 
     m_share_commission_ctrl->Connect(ID_STOCKTRANS_SHARE_COMMISSION, wxEVT_COMMAND_TEXT_UPDATED
         , wxCommandEventHandler(ShareTransactionDialog::CalculateAmount), nullptr, this);
-
-    //Share Lot
-    wxStaticText* lot_text = new wxStaticText(stock_details_panel, wxID_STATIC, _t("Share Lot"));
-    itemFlexGridSizer6->Add(lot_text, g_flagsH);
-    lot_text->SetFont(this->GetFont().Bold());
-
-    m_share_lot_ctrl = new wxTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_LOT
-        , "", wxDefaultPosition, wxSize(150, -1), 0);
-    itemFlexGridSizer6->Add(m_share_lot_ctrl, g_flagsH);
-    mmToolTip(m_share_lot_ctrl, _t("Enter the LOT that this parcel os shares belong to"));
 
     //Notes
     itemFlexGridSizer6->Add(new wxStaticText(stock_details_panel, wxID_STATIC, _t("Notes")), g_flagsH);
