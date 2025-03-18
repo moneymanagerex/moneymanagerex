@@ -541,7 +541,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     double stockDifference = stockCurrentPrice - stockPurchasePrice;
 
     double stocktotalDifference = stockCurrentPrice - stockavgPurchasePrice;
-    //Commision don't calculates here
+    // Commission don't calculates here
     const wxString& stockPercentage = (stockPurchasePrice != 0.0)
         ? wxString::Format("(%s %%)", Model_Currency::toStringNoFormatting(
             ((stockCurrentPrice / stockPurchasePrice - 1.0) * 100.0), nullptr, 2))
