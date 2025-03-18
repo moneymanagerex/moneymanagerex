@@ -61,6 +61,7 @@ public:
     static const wxString get_tooltip(const std::vector<Split>& local_splits, const Model_Currency::Data* currency);
     std::map<int64, Model_Splittransaction::Data_Set> get_all();
     int update(Data_Set& rows, int64 transactionID);
+    int update(const std::vector<Split>& rows, int64 transactionID);
     bool remove(int64 id);
 };
 

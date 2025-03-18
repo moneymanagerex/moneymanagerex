@@ -116,5 +116,6 @@ private:
         ID_TRANS_FREQUENT_NOTES,
         ID_TRANS_TRANSFER,
         ID_TRANS_CURRENCY_BUTTON,
+        mmID_CATEGORY_SPLIT,
     };
 };

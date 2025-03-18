@@ -164,12 +164,19 @@ void UserTransactionPanel::Create()
 
     // Category ---------------------------------------------
     wxStaticText* category_button_text = new wxStaticText(this, wxID_STATIC, _t("Category"));
+    transPanelSizer->Add(category_button_text, g_flagsH);
+
     m_category = new wxButton(this, ID_TRANS_CATEGORY_BUTTON, _t("Select Category")
-        , wxDefaultPosition, std_size, 0);
+        , wxDefaultPosition, std_half_size, 0);
     mmToolTip(m_category, _t("Specify the category for this transaction"));
 
-    transPanelSizer->Add(category_button_text, g_flagsH);
-    transPanelSizer->Add(m_category, g_flagsH);
+    wxBitmapButton* bSplit_ = new wxBitmapButton(this, mmID_CATEGORY_SPLIT, mmBitmapBundle(png::NEW_TRX, mmBitmapButtonSize));
+    bSplit_->Hide(); // TODO
+    wxBoxSizer* split_sizer = new wxBoxSizer(wxHORIZONTAL);
+    split_sizer->Add(m_category, g_flagsH);
+    split_sizer->Add(bSplit_, g_flagsH);
+
+    transPanelSizer->Add(split_sizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     // Number ---------------------------------------------
     m_entered_number = new wxTextCtrl(this, ID_TRANS_ENTERED_NUMBER, ""
