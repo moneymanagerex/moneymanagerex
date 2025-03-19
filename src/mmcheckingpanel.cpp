@@ -355,7 +355,8 @@ void mmCheckingPanel::updateHeader()
 {
     m_header_text->SetLabelText(getPanelTitle());
     m_header_credit->Hide();
-    if (m_account) {
+    if (m_account)
+    {
         wxString summary = wxString::Format("%s%s",
             _t("Account Bal: "),
             Model_Account::toCurrency(m_balance, m_account)
@@ -379,6 +380,12 @@ void mmCheckingPanel::updateHeader()
             m_header_credit->SetRange(std::max(100.0, limit));
             m_header_credit->SetValue(limit);
             m_header_credit->Show();
+        }
+        if (Model_Account::type_id(m_account) == Model_Account::TYPE_ID_INVESTMENT || Model_Account::type_id(m_account) == Model_Account::TYPE_ID_ASSET) 
+        {
+            std::pair<double, double> investment_bal = Model_Account::investment_balance(m_account);
+            summary.Append(wxString::Format("     %s%s", _t("Market Value: "), Model_Account::toCurrency(investment_bal.first, m_account)));
+            summary.Append(wxString::Format("     %s%s", _t("Invested: "), Model_Account::toCurrency(investment_bal.second, m_account)));
         }
         m_header_balance->SetLabelText(summary);
     }
