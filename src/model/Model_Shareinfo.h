@@ -20,6 +20,7 @@
 #pragma once
 
 #include "Model.h"
+#include "Model_Splittransaction.h"
 #include "db/DB_Table_Shareinfo_V1.h"
 
 class Model_Shareinfo : public Model<DB_Table_SHAREINFO_V1>
@@ -59,6 +60,7 @@ public:
         , double share_number
         , double share_price
         , double share_commission
+        , const std::vector<Split>& commission_splits
         , const wxString& share_lot);
 
     /* Remove the share entry if it exists */
