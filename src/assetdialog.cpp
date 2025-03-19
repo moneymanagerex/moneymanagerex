@@ -112,6 +112,7 @@ void mmAssetDialog::dataToControls()
     m_dpc->SetValue(Model_Asset::STARTDATE(m_asset));
     m_assetType->SetSelection(Model_Asset::type_id(m_asset));
     m_value->SetValue(std::abs(m_asset->VALUE));
+    m_curr_val->SetValue(Model_Asset::value(m_asset));
 
     int valueChangeType = Model_Asset::change_id(m_asset);
     m_valueChange->SetSelection(valueChangeType);
@@ -205,7 +206,7 @@ void mmAssetDialog::CreateControls()
     m_assetType->SetSelection(Model_Asset::TYPE_ID_PROPERTY);
     itemFlexGridSizer6->Add(m_assetType, g_flagsExpand);
 
-    wxStaticText* v = new wxStaticText(asset_details_panel, wxID_STATIC, _t("Value"));
+    wxStaticText* v = new wxStaticText(asset_details_panel, wxID_STATIC, _t("Initial Value"));
     itemFlexGridSizer6->Add(v, g_flagsH);
     v->SetFont(this->GetFont().Bold());
 
@@ -216,6 +217,19 @@ void mmAssetDialog::CreateControls()
     );
     mmToolTip(m_value, _t("Enter the current value of the asset"));
     itemFlexGridSizer6->Add(m_value, g_flagsExpand);
+
+    wxStaticText* c = new wxStaticText(asset_details_panel, wxID_STATIC, _t("Current Value"));
+    itemFlexGridSizer6->Add(c, g_flagsH);
+    c->SetFont(this->GetFont().Bold());
+
+    m_curr_val = new mmTextCtrl(
+        asset_details_panel, IDC_CURR_VAL, wxGetEmptyString(),
+        wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER,
+        mmCalcValidator()
+    );
+    m_curr_val->Enable(false);
+    mmToolTip(m_curr_val, _t("The current value of the asset"));
+    itemFlexGridSizer6->Add(m_curr_val, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _t("Change in Value")), g_flagsH);
 

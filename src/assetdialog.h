@@ -68,6 +68,7 @@ private:
     mmDatePickerCtrl* m_dpc = nullptr;
     wxTextCtrl* m_notes = nullptr;
     mmTextCtrl* m_value = nullptr;
+    mmTextCtrl* m_curr_val = nullptr;
     wxChoice* m_valueChange = nullptr;
     wxStaticText* m_compoundingLabel = nullptr;
     wxChoice* m_compoundingChoice = nullptr;
@@ -87,6 +88,7 @@ private:
     {
         IDC_COMBO_TYPE = wxID_HIGHEST + 1100,
         IDC_VALUE,
+        IDC_CURR_VAL,
         IDC_COMPOUNDING,
         IDC_RATE,
         IDC_NOTES,
