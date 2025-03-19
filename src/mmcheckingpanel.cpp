@@ -1239,8 +1239,7 @@ void mmCheckingPanel::displaySplitCategories(Fused_Transaction::IdB fused_id)
         splits.push_back(s);
     }
     if (splits.empty()) return;
-    int tranType = Model_Checking::type_id(fused.TRANSCODE);
-    mmSplitTransactionDialog splitTransDialog(this, splits, m_account_id, tranType, 0.0, true);
+    mmSplitTransactionDialog splitTransDialog(this, splits, m_account_id, true);
 
     //splitTransDialog.SetDisplaySplitCategories();
     splitTransDialog.ShowModal();

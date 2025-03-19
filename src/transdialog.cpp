@@ -1077,11 +1077,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         m_local_splits.push_back(s);
     }
 
-    bool isDeposit = Model_Checking::is_deposit(m_fused_data.TRANSCODE);
-    mmSplitTransactionDialog dlg(this, m_local_splits
-        , m_fused_data.ACCOUNTID
-        , isDeposit ? Model_Checking::TYPE_ID_DEPOSIT : Model_Checking::TYPE_ID_WITHDRAWAL
-        , m_fused_data.TRANSAMOUNT);
+    mmSplitTransactionDialog dlg(this, m_local_splits, m_fused_data.ACCOUNTID);
 
     if (dlg.ShowModal() == wxID_OK)
     {

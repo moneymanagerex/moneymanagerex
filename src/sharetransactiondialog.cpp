@@ -490,9 +490,7 @@ void ShareTransactionDialog::OnDeductibleSplit(wxCommandEvent& event)
         m_local_deductible_splits.push_back({0, commission, wxArrayInt64(), ""});
     }
 
-    mmSplitTransactionDialog dlg(this, m_local_deductible_splits 
-        , m_stock->HELDAT
-        , Model_Checking::TYPE_ID_DEPOSIT);
+    mmSplitTransactionDialog dlg(this, m_local_deductible_splits, m_stock->HELDAT);
 
     if (dlg.ShowModal() == wxID_OK)
     {
