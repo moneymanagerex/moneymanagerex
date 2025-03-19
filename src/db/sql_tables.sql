@@ -7,7 +7,7 @@
 CREATE TABLE ACCOUNTLIST_V1(
 ACCOUNTID integer primary key
 , ACCOUNTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE
-, ACCOUNTTYPE TEXT NOT NULL /* Checking, Term, Investment, Credit Card */
+, ACCOUNTTYPE TEXT NOT NULL /* Cash, Checking, Term, Investment, Credit Card, Loan, Asset, Shares */
 , ACCOUNTNUM TEXT
 , STATUS TEXT NOT NULL /* Open, Closed */
 , NOTES TEXT
@@ -167,6 +167,16 @@ INSERT INTO CATEGORY_V1 VALUES(54,'Investment Income',1,51);
 INSERT INTO CATEGORY_V1 VALUES(55,'Other Income',1,-1);
 INSERT INTO CATEGORY_V1 VALUES(56,'Other Expenses',1,-1);
 INSERT INTO CATEGORY_V1 VALUES(57,'Transfer',1,-1);
+INSERT INTO CATEGORY_V1 VALUES(58, 'Investment', 1, -1);
+INSERT INTO CATEGORY_V1 VALUES(59, 'Purchase', 1, 58);           -- Buying
+INSERT INTO CATEGORY_V1 VALUES(60, 'Sale', 1, 58);               -- Selling
+INSERT INTO CATEGORY_V1 VALUES(61, 'Dividend', 1, 58);           -- Dividend
+INSERT INTO CATEGORY_V1 VALUES(62, 'Capital Gains', 1, 58);      -- Capital gains
+INSERT INTO CATEGORY_V1 VALUES(63, 'Brokerage Fees', 1, 58);     -- Brokerage fees
+INSERT INTO CATEGORY_V1 VALUES(64, 'Interest', 1, 58);           -- Investment interest
+INSERT INTO CATEGORY_V1 VALUES(65, 'Taxes', 1, 58);              -- Investment taxes
+INSERT INTO CATEGORY_V1 VALUES(66, 'Split', 1, 58);              -- Stock split
+INSERT INTO CATEGORY_V1 VALUES(67, 'Merger', 1, 58);             -- Stock merger
 
 -- Describe CHECKINGACCOUNT_V1
 CREATE TABLE CHECKINGACCOUNT_V1(
