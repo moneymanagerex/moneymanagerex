@@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "payeedialog.h"
 #include "categdialog.h"
 #include "attachmentdialog.h"
+#include "splittransactionsdialog.h"
 
 #include "model/allmodel.h"
 
@@ -36,6 +37,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 wxBEGIN_EVENT_TABLE(UserTransactionPanel, wxPanel)
 EVT_BUTTON(ID_TRANS_ACCOUNT_BUTTON, UserTransactionPanel::OnTransAccountButton)
 EVT_BUTTON(ID_TRANS_PAYEE_BUTTON, UserTransactionPanel::OnTransPayeeButton)
+EVT_BUTTON(mmID_CATEGORY_SPLIT, UserTransactionPanel::OnCategs)
 EVT_BUTTON(ID_TRANS_CATEGORY_BUTTON, UserTransactionPanel::OnTransCategoryButton)
 EVT_MENU(wxID_ANY, UserTransactionPanel::onSelectedNote)
 EVT_BUTTON(wxID_FILE, UserTransactionPanel::OnAttachments)
@@ -54,8 +56,18 @@ UserTransactionPanel::UserTransactionPanel(wxWindow *parent
     , long style, const wxString &name)
     : m_checking_entry(checking_entry)
 {
-    wxPanel::Create(parent, win_id, pos, size, style, name);
-    Create();
+    if (m_checking_entry)
+    {
+        for (const auto& split: Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(m_checking_entry->TRANSID)))
+        {
+            wxArrayInt64 tags;
+            for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT), Model_Taglink::REFID(split.SPLITTRANSID)))
+                tags.push_back(tag.TAGID);
+            m_local_splits.push_back({split.CATEGID, split.SPLITTRANSAMOUNT, tags, split.NOTES});
+        }
+    }
+
+    Create(parent, win_id, pos, size, style, name);
     DataToControls();
     Model_Usage::instance().pageview(this);
 }
@@ -64,8 +76,15 @@ UserTransactionPanel::~UserTransactionPanel()
 {
 }
 
-void UserTransactionPanel::Create()
+bool UserTransactionPanel::Create(wxWindow* parent
+    , wxWindowID win_id
+    , const wxPoint &pos
+    , const wxSize &size
+    , long style
+    , const wxString &name)
 {
+    wxPanel::Create(parent, win_id, pos, size, style, name);
+
     const wxSize std_size(230, -1);
     const wxSize std_half_size(110, -1);
 
@@ -94,8 +113,10 @@ void UserTransactionPanel::Create()
 
     // Type --------------------------------------------
     m_type_selector = new wxChoice(this, wxID_VIEW_DETAILS, wxDefaultPosition, std_half_size);
-    for (int i = 0; i < Model_Checking::TYPE_ID_size; ++i) {
-        if (i != Model_Checking::TYPE_ID_TRANSFER) {
+    for (int i = 0; i < Model_Checking::TYPE_ID_size; ++i)
+    {
+        if (i != Model_Checking::TYPE_ID_TRANSFER)
+        {
             wxString type = Model_Checking::trade_type_name(i);
             m_type_selector->Append(wxGetTranslation(type), new wxStringClientData(type));
         }
@@ -144,7 +165,8 @@ void UserTransactionPanel::Create()
     m_status_selector = new wxChoice(this, ID_TRANS_STATUS_SELECTOR
         , wxDefaultPosition, std_half_size);
 
-    for (int i = 0; i < Model_Checking::STATUS_ID_size; ++i) {
+    for (int i = 0; i < Model_Checking::STATUS_ID_size; ++i)
+    {
         wxString status = Model_Checking::status_name(i);
         m_status_selector->Append(wxGetTranslation(status), new wxStringClientData(status));
     }
@@ -166,8 +188,7 @@ void UserTransactionPanel::Create()
     wxStaticText* category_button_text = new wxStaticText(this, wxID_STATIC, _t("Category"));
     transPanelSizer->Add(category_button_text, g_flagsH);
 
-    m_category = new wxButton(this, ID_TRANS_CATEGORY_BUTTON, _t("Select Category")
-        , wxDefaultPosition, std_half_size, 0);
+    m_category = new mmComboBoxCategory(this, ID_TRANS_CATEGORY_BUTTON, std_half_size, -1 /*TODO*/, true);
     mmToolTip(m_category, _t("Specify the category for this transaction"));
 
     wxBitmapButton* bSplit_ = new wxBitmapButton(this, mmID_CATEGORY_SPLIT, mmBitmapBundle(png::NEW_TRX, mmBitmapButtonSize));
@@ -211,6 +232,8 @@ void UserTransactionPanel::Create()
 
     transPanelSizer->Add(right_align_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT).Border(wxALL, 0));
     main_panel_sizer->Add(m_entered_notes, wxSizerFlags(g_flagsExpand).Border(wxTOP, 5));
+
+    return true;
 }
 
 void UserTransactionPanel::DataToControls()
@@ -245,6 +268,15 @@ void UserTransactionPanel::DataToControls()
     m_entered_number->SetValue(m_checking_entry->TRANSACTIONNUMBER);
     m_entered_notes->SetValue(m_checking_entry->NOTES);
 
+    bool has_split = !(m_local_splits.size() <= 1);
+    if (has_split)
+    {
+        m_category->Enable(!has_split);
+        m_category->SetLabelText(_t("Split Transaction"));
+
+        SetTransactionValue(Model_Splittransaction::get_total(m_local_splits));
+    }
+
     if (!m_checking_entry->DELETEDTIME.IsEmpty())
     {
         m_date_selector->Enable(false);
@@ -273,7 +305,8 @@ void UserTransactionPanel::SetLastPayeeAndCategory(const int64 account_id)
             int last_trans_pos = trans_list.size() - 1;
 
             Model_Payee::Data* last_payee = Model_Payee::instance().get(trans_list.at(last_trans_pos).PAYEEID);
-            if (last_payee) {
+            if (last_payee)
+            {
                 m_payee->SetLabelText(last_payee->PAYEENAME);
                 m_payee_id = last_payee->PAYEEID;
                 if ((Option::instance().getTransCategoryNone() == Option::LASTUSED)
@@ -487,3 +520,47 @@ int UserTransactionPanel::TransactionType()
 {
     return m_type_selector->GetSelection();
 }
+
+
+void UserTransactionPanel::OnCategs(wxCommandEvent& WXUNUSED(event))
+{
+    if (m_local_splits.empty() && m_category->mmIsValid())
+    {
+        Split s;
+
+        m_entered_amount->GetDouble(s.SPLITTRANSAMOUNT);
+
+        s.CATEGID = m_category->mmGetCategoryId();
+        s.NOTES = m_entered_notes->GetValue();
+        m_local_splits.push_back(s);
+    }
+
+    mmSplitTransactionDialog dlg(this, m_local_splits, m_account_id);
+
+    if (dlg.ShowModal() == wxID_OK)
+    {
+        m_local_splits = dlg.mmGetResult();
+
+        if (m_local_splits.size() == 1)
+        {
+            m_category->SetLabelText(Model_Category::full_name(m_local_splits[0].CATEGID));
+            m_entered_amount-> SetValue(m_local_splits[0].SPLITTRANSAMOUNT);
+            m_entered_notes->SetValue(m_local_splits[0].NOTES);
+
+            m_local_splits.clear();
+        }
+
+        if (m_local_splits.empty())
+        {
+            m_category->Enable(true);
+        }
+        else
+        {
+            m_entered_amount->SetValue(Model_Splittransaction::get_total(m_local_splits));
+
+            m_category->Enable(false);
+            m_category->SetLabelText(_t("Split Transaction"));
+        }
+    }
+}
+
