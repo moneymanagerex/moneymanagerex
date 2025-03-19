@@ -567,7 +567,7 @@ int mmAssetsPanel::initVirtualListControl(int64 id)
         initial += asset.VALUE;
         balance += Model_Asset::value(asset);
     }
-    header_text_->SetLabelText(wxString::Format(_t("Total: %s, Initaial: %s"), Model_Currency::toCurrency(balance), Model_Currency::toCurrency(initial))); // balance
+    header_text_->SetLabelText(wxString::Format(_t("Total: %s, Initial: %s"), Model_Currency::toCurrency(balance), Model_Currency::toCurrency(initial))); // balance
 
     int selected_item = 0;
     for (const auto& asset: this->m_assets)
