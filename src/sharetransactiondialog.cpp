@@ -28,6 +28,7 @@
 
 #include "model/Model_Account.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_Category.h"
 #include "model/Model_StockHistory.h"
 #include "usertransactionpanel.h"
 #include "splittransactionsdialog.h"
@@ -487,7 +488,17 @@ void ShareTransactionDialog::OnDeductibleSplit(wxCommandEvent& event)
         double commission = 0;
         m_share_commission_ctrl->GetDouble(commission);
 
-        m_local_deductible_splits.push_back({0, commission, wxArrayInt64(), ""});
+        Model_Category::Data* category = Model_Category::instance().get(_("Investment"), int64(-1L));
+        if (!category)
+        {
+            category = Model_Category::instance().create();
+            category->CATEGNAME = _("Investment");
+            category->ACTIVE = 1;
+            category->PARENTID = -1;
+
+            Model_Category::instance().save(category);
+        }
+        m_local_deductible_splits.push_back({category->CATEGID, commission, wxArrayInt64(), ""});
     }
 
     mmSplitTransactionDialog dlg(this, m_local_deductible_splits, m_stock->HELDAT);
