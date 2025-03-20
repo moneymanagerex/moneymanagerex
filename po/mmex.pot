@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-03-19 02:09+0000\n"
+"POT-Creation-Date: 2025-03-20 10:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,13 +51,13 @@ msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr ""
 
 #: aboutdialog.cpp:247 accountdialog.cpp:301 appstartdialog.cpp:142
-#: assetdialog.cpp:306 attachmentdialog.cpp:149 billsdepositsdialog.cpp:650
+#: assetdialog.cpp:320 attachmentdialog.cpp:149 billsdepositsdialog.cpp:650
 #: budgetentrydialog.cpp:160 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:198 filtertransdialog.cpp:818
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:368
 #: mmSimpleDialogs.cpp:1105 optiondialog.cpp:160 payeedialog.cpp:159
-#: payeedialog.cpp:592 sharetransactiondialog.cpp:357
+#: payeedialog.cpp:592 sharetransactiondialog.cpp:359
 #: splittransactionsdialog.cpp:104 splittransactionsdialog.cpp:282
 #: tagdialog.cpp:147 transactionsupdatedialog.cpp:281 transdialog.cpp:608
 #: wizard_update.cpp:212
@@ -130,17 +130,17 @@ msgstr ""
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
 msgstr ""
 
-#: accountdialog.cpp:186 assetdialog.cpp:254 assetspanel.cpp:57
+#: accountdialog.cpp:186 assetdialog.cpp:268 assetspanel.cpp:57
 #: billsdepositsdialog.cpp:628 billsdepositspanel.cpp:118
 #: budgetentrydialog.cpp:151 budgetingpanel.cpp:73 filtertrans.cpp:207
 #: filtertransdialog.cpp:696 filtertransdialog.cpp:1930
 #: import_export/qif_export.cpp:635 import_export/qif_import_gui.cpp:95
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:110
 #: payeedialog.cpp:115 payeedialog.cpp:458 reports/transactions.cpp:231
-#: sharetransactiondialog.cpp:304 splittransactionsdialog.cpp:95
+#: sharetransactiondialog.cpp:305 splittransactionsdialog.cpp:95
 #: splittransactionsdialog.cpp:352 stockdialog.cpp:247 stocks_list.cpp:79
 #: transactionsupdatedialog.cpp:256 transdialog.cpp:584
-#: usertransactionpanel.cpp:190 webappdialog.cpp:145
+#: usertransactionpanel.cpp:211 webappdialog.cpp:145
 msgid "Notes"
 msgstr ""
 
@@ -232,7 +232,7 @@ msgstr ""
 msgid "Credit"
 msgstr ""
 
-#: accountdialog.cpp:263 mmcheckingpanel.cpp:376
+#: accountdialog.cpp:263 mmcheckingpanel.cpp:377
 msgid "Credit Limit:"
 msgstr ""
 
@@ -287,7 +287,7 @@ msgstr ""
 #: accountdialog.cpp:522 accountdialog.cpp:531 accountdialog.cpp:536
 #: accountdialog.cpp:543 billsdepositsdialog.cpp:1041
 #: billsdepositsdialog.cpp:1044 stockdialog.cpp:415 transdialog.cpp:658
-#: transdialog.cpp:731 usertransactionpanel.cpp:460 webapp.cpp:568
+#: transdialog.cpp:731 usertransactionpanel.cpp:493 webapp.cpp:568
 msgid "Invalid Date"
 msgstr ""
 
@@ -395,7 +395,7 @@ msgstr ""
 msgid "Language change"
 msgstr ""
 
-#: assetdialog.cpp:51 assetdialog.cpp:438 assetdialog.h:82 assetspanel.cpp:459
+#: assetdialog.cpp:51 assetdialog.cpp:452 assetdialog.h:83 assetspanel.cpp:459
 msgid "New Asset"
 msgstr ""
 
@@ -411,11 +411,11 @@ msgstr ""
 msgid "Edit Asset Transaction"
 msgstr ""
 
-#: assetdialog.cpp:173
+#: assetdialog.cpp:174
 msgid "Asset Details"
 msgstr ""
 
-#: assetdialog.cpp:183 assetspanel.cpp:52 customfieldeditdialog.cpp:136
+#: assetdialog.cpp:184 assetspanel.cpp:52 customfieldeditdialog.cpp:136
 #: customfieldlistdialog.cpp:48 import_export/qif_import_gui.cpp:246
 #: import_export/qif_import_gui.cpp:259 import_export/qif_import_gui.cpp:269
 #: import_export/univcsvdialog.cpp:512 import_export/univcsvdialog.cpp:522
@@ -423,11 +423,11 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: assetdialog.cpp:188
+#: assetdialog.cpp:189
 msgid "Enter the name of the asset"
 msgstr ""
 
-#: assetdialog.cpp:191 assetspanel.cpp:53 filtertrans.cpp:199
+#: assetdialog.cpp:192 assetspanel.cpp:53 filtertrans.cpp:199
 #: filtertransdialog.cpp:970 filtertransdialog.cpp:977
 #: import_export/qif_export.cpp:626 import_export/qif_import_gui.cpp:88
 #: import_export/univcsvdialog.cpp:103 maincurrencydialog.cpp:253
@@ -436,85 +436,93 @@ msgstr ""
 #: reports/cashflow.cpp:404 reports/incexpenses.cpp:244 reports/summary.cpp:300
 #: reports/transactions.cpp:209 stockdialog.cpp:280 stockdialog.cpp:607
 #: stockspanel.cpp:212 transactionsupdatedialog.cpp:132 transdialog.cpp:433
-#: usertransactionpanel.cpp:85 webapp.cpp:565 webappdialog.cpp:138
+#: usertransactionpanel.cpp:104 webapp.cpp:565 webappdialog.cpp:138
 #: wizard_update.cpp:138
 msgid "Date"
 msgstr ""
 
-#: assetdialog.cpp:194
+#: assetdialog.cpp:195
 msgid "Specify the date of purchase of asset"
 msgstr ""
 
-#: assetdialog.cpp:196
+#: assetdialog.cpp:197
 msgid "Asset Type"
 msgstr ""
 
-#: assetdialog.cpp:204
+#: assetdialog.cpp:205
 msgid "Select type of asset"
 msgstr ""
 
-#: assetdialog.cpp:208 import_export/qif_import_gui.cpp:94
-#: maincurrencydialog.cpp:280
-msgid "Value"
+#: assetdialog.cpp:209 assetspanel.cpp:55 mmhomepage.cpp:578
+msgid "Initial Value"
 msgstr ""
 
-#: assetdialog.cpp:217
+#: assetdialog.cpp:218
 msgid "Enter the current value of the asset"
 msgstr ""
 
-#: assetdialog.cpp:220
+#: assetdialog.cpp:221 assetspanel.cpp:56 mmhomepage.cpp:579
+#: reports/summarystocks.cpp:121 stockdialog.cpp:242
+msgid "Current Value"
+msgstr ""
+
+#: assetdialog.cpp:231
+msgid "The current value of the asset"
+msgstr ""
+
+#: assetdialog.cpp:234
 msgid "Change in Value"
 msgstr ""
 
-#: assetdialog.cpp:228
+#: assetdialog.cpp:242
 msgid "Specify if the value of the asset changes over time"
 msgstr ""
 
-#: assetdialog.cpp:232
+#: assetdialog.cpp:246
 msgid "Compounding Period"
 msgstr ""
 
-#: assetdialog.cpp:237
+#: assetdialog.cpp:251
 msgid "Select the compounding period for the appreciation/depreciation rate"
 msgstr ""
 
-#: assetdialog.cpp:242
+#: assetdialog.cpp:256
 msgid "% Rate"
 msgstr ""
 
-#: assetdialog.cpp:250
+#: assetdialog.cpp:264
 msgid "Enter the rate at which the asset changes its value in percentage per year"
 msgstr ""
 
-#: assetdialog.cpp:260
+#: assetdialog.cpp:274
 msgid "Organize attachments of this asset"
 msgstr ""
 
-#: assetdialog.cpp:263
+#: assetdialog.cpp:277
 msgid "Enter notes associated with this asset"
 msgstr ""
 
-#: assetdialog.cpp:269
+#: assetdialog.cpp:283
 msgid "New Transaction Details"
 msgstr ""
 
-#: assetdialog.cpp:272 sharetransactiondialog.cpp:329
+#: assetdialog.cpp:286 sharetransactiondialog.cpp:330
 msgid "Edit Transaction Details"
 msgstr ""
 
-#: assetdialog.cpp:307 constants.cpp:74 sharetransactiondialog.cpp:358
+#: assetdialog.cpp:321 constants.cpp:74 sharetransactiondialog.cpp:360
 msgid "&Cancel "
 msgstr ""
 
-#: assetdialog.cpp:430 sharetransactiondialog.cpp:451
+#: assetdialog.cpp:444 sharetransactiondialog.cpp:453
 msgid "Invalid Transaction"
 msgstr ""
 
-#: assetdialog.cpp:437
+#: assetdialog.cpp:451
 msgid "Asset account not found."
 msgstr ""
 
-#: assetdialog.cpp:437
+#: assetdialog.cpp:451
 msgid "Do you want to create one?"
 msgstr ""
 
@@ -537,17 +545,8 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:247 import_export/univcsvdialog.cpp:105
 #: maincurrencydialog.cpp:263 mmhomepage.cpp:417 reports/incexpenses.cpp:108
 #: reports/transactions.cpp:225 transactionsupdatedialog.cpp:167
-#: transdialog.cpp:472 usertransactionpanel.cpp:117 webappdialog.cpp:141
+#: transdialog.cpp:472 usertransactionpanel.cpp:138 webappdialog.cpp:141
 msgid "Type"
-msgstr ""
-
-#: assetspanel.cpp:55 mmhomepage.cpp:578
-msgid "Initial Value"
-msgstr ""
-
-#: assetspanel.cpp:56 mmhomepage.cpp:579 reports/summarystocks.cpp:121
-#: stockdialog.cpp:242
-msgid "Current Value"
 msgstr ""
 
 #: assetspanel.cpp:95
@@ -602,7 +601,7 @@ msgstr ""
 msgid "Assets"
 msgstr ""
 
-#: assetspanel.cpp:416 assetspanel.cpp:686 assetspanel.cpp:703
+#: assetspanel.cpp:416 assetspanel.cpp:690 assetspanel.cpp:707
 #: filtertransdialog.cpp:221 filtertransdialog.cpp:582
 #: filtertransdialog.cpp:898 filtertransdialog.cpp:2278
 #: import_export/qif_export.cpp:75 import_export/qif_export.cpp:76
@@ -679,28 +678,28 @@ msgstr ""
 msgid "Use the asterisk (*) at the beginning to find any string in the middle of the sentence."
 msgstr ""
 
-#: assetspanel.cpp:566 stockspanel.cpp:372 stockspanel.cpp:561
+#: assetspanel.cpp:570
 #, c-format
-msgid "Total: %s"
+msgid "Total: %s, Initial: %s"
 msgstr ""
 
-#: assetspanel.cpp:647
+#: assetspanel.cpp:651
 #, c-format
 msgid "Change in Value: %1$s %2$s"
 msgstr ""
 
-#: assetspanel.cpp:763
+#: assetspanel.cpp:767
 msgid ""
 "This asset does not have its own account\n"
 "\n"
 "Multiple transactions for this asset are not recommended."
 msgstr ""
 
-#: assetspanel.cpp:765
+#: assetspanel.cpp:769
 msgid "Asset Management"
 msgstr ""
 
-#: assetspanel.cpp:784
+#: assetspanel.cpp:788
 msgid ""
 "Account \t Date\t   Value\n"
 "\n"
@@ -1011,7 +1010,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:513 import_export/univcsvdialog.cpp:523
 #: mmchecking_list.cpp:103 reports/transactions.cpp:219
 #: transactionsupdatedialog.cpp:150 transdialog.cpp:450
-#: usertransactionpanel.cpp:155 webappdialog.cpp:140 wizard_update.cpp:138
+#: usertransactionpanel.cpp:177 webappdialog.cpp:140 wizard_update.cpp:138
 msgid "Status"
 msgstr ""
 
@@ -1035,7 +1034,7 @@ msgstr ""
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:227
 #: splittransactionsdialog.cpp:88 splittransactionsdialog.cpp:219
 #: transactionsupdatedialog.cpp:186 transdialog.cpp:489
-#: usertransactionpanel.cpp:121 webappdialog.cpp:144
+#: usertransactionpanel.cpp:142 webappdialog.cpp:144
 msgid "Amount"
 msgstr ""
 
@@ -1055,7 +1054,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:241 import_export/univcsvdialog.cpp:106
 #: mmchecking_list.cpp:101 reports/cashflow.cpp:405
 #: reports/transactions.cpp:215 transdialog.cpp:245 transdialog.cpp:249
-#: transdialog.cpp:502 transdialog.cpp:650 usertransactionpanel.cpp:89
+#: transdialog.cpp:502 transdialog.cpp:650 usertransactionpanel.cpp:108
 #: webapp.cpp:564 webappdialog.cpp:139
 msgid "Account"
 msgstr ""
@@ -1078,7 +1077,7 @@ msgstr ""
 #: payeedialog.cpp:207 payeedialog.cpp:243 reports/cashflow.cpp:406
 #: reports/payee.cpp:136 reports/transactions.cpp:217
 #: transactionsupdatedialog.cpp:199 transdialog.cpp:246 transdialog.cpp:521
-#: usertransactionpanel.cpp:159 webappdialog.cpp:142
+#: usertransactionpanel.cpp:181 webappdialog.cpp:142
 msgid "Payee"
 msgstr ""
 
@@ -1094,7 +1093,7 @@ msgstr ""
 #: reports/cashflow.cpp:407 reports/categexp.cpp:217 reports/categexp.cpp:456
 #: reports/transactions.cpp:221 splittransactionsdialog.cpp:81
 #: splittransactionsdialog.cpp:217 transactionsupdatedialog.cpp:223
-#: transdialog.cpp:533 transdialog.cpp:665 usertransactionpanel.cpp:166
+#: transdialog.cpp:533 transdialog.cpp:665 usertransactionpanel.cpp:188
 #: webappdialog.cpp:143
 msgid "Category"
 msgstr ""
@@ -1126,11 +1125,11 @@ msgstr ""
 #: import_export/qif_export.cpp:634 import_export/qif_import_gui.cpp:89
 #: import_export/univcsvdialog.cpp:113 mmchecking_list.cpp:100
 #: reports/transactions.cpp:213 transdialog.cpp:560
-#: usertransactionpanel.cpp:186
+#: usertransactionpanel.cpp:207
 msgid "Number"
 msgstr ""
 
-#: billsdepositsdialog.cpp:613 transdialog.cpp:567 usertransactionpanel.cpp:201
+#: billsdepositsdialog.cpp:613 transdialog.cpp:567 usertransactionpanel.cpp:222
 msgid "Select one of the frequently used notes"
 msgstr ""
 
@@ -1153,7 +1152,7 @@ msgid "Color"
 msgstr ""
 
 #: billsdepositsdialog.cpp:640 transdialog.cpp:596 transdialog.cpp:1332
-#: usertransactionpanel.cpp:210
+#: usertransactionpanel.cpp:231
 msgid "Specify any text notes you want to add to this transaction."
 msgstr ""
 
@@ -1206,7 +1205,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1041 billsdepositsdialog.cpp:1044
 #: import_export/univcsvdialog.cpp:1424 stockdialog.cpp:415 transdialog.cpp:658
-#: transdialog.cpp:731 usertransactionpanel.cpp:460 webapp.cpp:566
+#: transdialog.cpp:731 usertransactionpanel.cpp:493 webapp.cpp:566
 msgid "The opening date for the account is later than the date of this transaction"
 msgstr ""
 
@@ -1249,7 +1248,8 @@ msgid "Error"
 msgstr ""
 
 #: billsdepositsdialog.cpp:1462 splittransactionsdialog.h:80
-#: transdialog.cpp:335
+#: transdialog.cpp:335 usertransactionpanel.cpp:275
+#: usertransactionpanel.cpp:562
 msgid "Split Transaction"
 msgstr ""
 
@@ -1269,7 +1269,7 @@ msgstr ""
 msgid "Specify which account the transfer is going to"
 msgstr ""
 
-#: billsdepositsdialog.h:134 transdialog.cpp:1319 usertransactionpanel.cpp:125
+#: billsdepositsdialog.h:134 transdialog.cpp:1319 usertransactionpanel.cpp:146
 msgid "Specify the amount for this transaction"
 msgstr ""
 
@@ -1881,7 +1881,7 @@ msgstr ""
 msgid "Closed"
 msgstr ""
 
-#: constants.cpp:197 mmcheckingpanel.cpp:1198 mmframe.cpp:503
+#: constants.cpp:197 mmcheckingpanel.cpp:1205 mmframe.cpp:503
 msgid "Favorites"
 msgstr ""
 
@@ -2319,7 +2319,7 @@ msgstr ""
 msgid "Sightseeing"
 msgstr ""
 
-#: db/DB_Table_Category_V1.h:156
+#: db/DB_Table_Category_V1.h:156 db/DB_Table_Category_V1.h:177
 msgid "Taxes"
 msgstr ""
 
@@ -2368,6 +2368,43 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:478 import_export/qif_import_gui.cpp:608
 #: model/Model_Checking.cpp:35
 msgid "Transfer"
+msgstr ""
+
+#: db/DB_Table_Category_V1.h:170 model/Model_Account.cpp:33
+#: sharetransactiondialog.cpp:492 sharetransactiondialog.cpp:496
+msgid "Investment"
+msgstr ""
+
+#: db/DB_Table_Category_V1.h:171
+msgid "Purchase"
+msgstr ""
+
+#: db/DB_Table_Category_V1.h:172
+msgid "Sale"
+msgstr ""
+
+#: db/DB_Table_Category_V1.h:173
+msgid "Dividend"
+msgstr ""
+
+#: db/DB_Table_Category_V1.h:174
+msgid "Capital Gains"
+msgstr ""
+
+#: db/DB_Table_Category_V1.h:175
+msgid "Brokerage Fees"
+msgstr ""
+
+#: db/DB_Table_Category_V1.h:176
+msgid "Interest"
+msgstr ""
+
+#: db/DB_Table_Category_V1.h:178
+msgid "Split"
+msgstr ""
+
+#: db/DB_Table_Category_V1.h:179
+msgid "Merger"
 msgstr ""
 
 #: dbupgrade.cpp:73
@@ -3185,6 +3222,10 @@ msgstr ""
 #: import_export/qif_export.cpp:678
 #, c-format
 msgid "Number of accounts exported: %zu"
+msgstr ""
+
+#: import_export/qif_import_gui.cpp:94 maincurrencydialog.cpp:280
+msgid "Value"
 msgstr ""
 
 #: import_export/qif_import_gui.cpp:147 import_export/univcsvdialog.cpp:387
@@ -4425,7 +4466,7 @@ msgstr ""
 msgid "Scheduled transaction saved."
 msgstr ""
 
-#: mmchecking_list.cpp:1430 mmcheckingpanel.cpp:1193
+#: mmchecking_list.cpp:1430 mmcheckingpanel.cpp:1200
 msgid "All Transactions"
 msgstr ""
 
@@ -4498,86 +4539,94 @@ msgstr ""
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr ""
 
-#: mmcheckingpanel.cpp:360
+#: mmcheckingpanel.cpp:361
 msgid "Account Bal: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:364
+#: mmcheckingpanel.cpp:365
 msgid "Reconciled Bal: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:366
+#: mmcheckingpanel.cpp:367
 msgid "Diff: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:370
+#: mmcheckingpanel.cpp:371
 msgid "Filtered Flow: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:394
+#: mmcheckingpanel.cpp:387
+msgid "Market Value: "
+msgstr ""
+
+#: mmcheckingpanel.cpp:388
+msgid "Invested: "
+msgstr ""
+
+#: mmcheckingpanel.cpp:401
 msgid "Advanced filter"
 msgstr ""
 
-#: mmcheckingpanel.cpp:496
+#: mmcheckingpanel.cpp:503
 msgid "(Date range)"
 msgstr ""
 
-#: mmcheckingpanel.cpp:873 mmcheckingpanel.cpp:891 webapp.cpp:621
+#: mmcheckingpanel.cpp:880 mmcheckingpanel.cpp:898 webapp.cpp:621
 msgid "Attachment"
 msgstr ""
 
-#: mmcheckingpanel.cpp:939
+#: mmcheckingpanel.cpp:946
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr ""
 
-#: mmcheckingpanel.cpp:943
+#: mmcheckingpanel.cpp:950
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:949
+#: mmcheckingpanel.cpp:956
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1012
+#: mmcheckingpanel.cpp:1019
 msgid "Unable to show scheduled transactions because the current filter choice extends into the future without limit."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1013
+#: mmcheckingpanel.cpp:1020
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1014
+#: mmcheckingpanel.cpp:1021
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1031
+#: mmcheckingpanel.cpp:1038
 msgid "More date ranges…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1038
+#: mmcheckingpanel.cpp:1045
 msgid "Advanced filter…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1178
+#: mmcheckingpanel.cpp:1185
 msgid "&New Withdrawal…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1179
+#: mmcheckingpanel.cpp:1186
 msgid "&New Deposit…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1180
+#: mmcheckingpanel.cpp:1187
 msgid "&New Transfer…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1195
+#: mmcheckingpanel.cpp:1202
 msgid "Deleted Transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1203
+#: mmcheckingpanel.cpp:1210
 #, c-format
 msgid "Account View: %s"
 msgstr ""
@@ -5917,10 +5966,6 @@ msgstr ""
 
 #: model/Model_Account.cpp:32
 msgid "Term"
-msgstr ""
-
-#: model/Model_Account.cpp:33
-msgid "Investment"
 msgstr ""
 
 #: model/Model_Account.cpp:34 model/Model_Attachment.cpp:26
@@ -7591,83 +7636,83 @@ msgstr ""
 msgid "Average"
 msgstr ""
 
-#: sharetransactiondialog.cpp:63
+#: sharetransactiondialog.cpp:64
 msgid "Add Share Transaction"
 msgstr ""
 
-#: sharetransactiondialog.cpp:70 sharetransactiondialog.h:43
+#: sharetransactiondialog.cpp:71 sharetransactiondialog.h:43
 msgid "Edit Share Transaction"
 msgstr ""
 
-#: sharetransactiondialog.cpp:220 stockdialog.cpp:169
+#: sharetransactiondialog.cpp:221 stockdialog.cpp:169
 msgid "Stock Investment Details"
 msgstr ""
 
-#: sharetransactiondialog.cpp:230 stockdialog.cpp:180 stocks_list.cpp:68
+#: sharetransactiondialog.cpp:231 stockdialog.cpp:180 stocks_list.cpp:68
 msgid "Company Name"
 msgstr ""
 
-#: sharetransactiondialog.cpp:234 stockdialog.cpp:183
+#: sharetransactiondialog.cpp:235 stockdialog.cpp:183
 msgid "Enter the stock company name"
 msgstr ""
 
-#: sharetransactiondialog.cpp:237 stockdialog.cpp:186
+#: sharetransactiondialog.cpp:238 stockdialog.cpp:186
 msgid "Stock Symbol"
 msgstr ""
 
-#: sharetransactiondialog.cpp:244 stockdialog.cpp:193
+#: sharetransactiondialog.cpp:245 stockdialog.cpp:193
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
 msgstr ""
 
-#: sharetransactiondialog.cpp:247
+#: sharetransactiondialog.cpp:248
 msgid "Share Lot"
 msgstr ""
 
-#: sharetransactiondialog.cpp:254
+#: sharetransactiondialog.cpp:255
 msgid "Enter the LOT that this parcel os shares belong to"
 msgstr ""
 
-#: sharetransactiondialog.cpp:257
+#: sharetransactiondialog.cpp:258
 msgid "Share Number"
 msgstr ""
 
-#: sharetransactiondialog.cpp:264
+#: sharetransactiondialog.cpp:265
 msgid "Enter number of shares held"
 msgstr ""
 
-#: sharetransactiondialog.cpp:270
+#: sharetransactiondialog.cpp:271
 msgid "Share Price"
 msgstr ""
 
-#: sharetransactiondialog.cpp:278
+#: sharetransactiondialog.cpp:279
 msgid "Enter the current value for a single share unit"
 msgstr ""
 
-#: sharetransactiondialog.cpp:284 stockdialog.cpp:226
+#: sharetransactiondialog.cpp:285 stockdialog.cpp:226
 msgid "Deductible Comm."
 msgstr ""
 
-#: sharetransactiondialog.cpp:294
+#: sharetransactiondialog.cpp:295
 msgid "Enter any commission paid"
 msgstr ""
 
-#: sharetransactiondialog.cpp:298 sharetransactiondialog.cpp:510
+#: sharetransactiondialog.cpp:299 sharetransactiondialog.cpp:522
 msgid "Use Deductible Comm. split Categories"
 msgstr ""
 
-#: sharetransactiondialog.cpp:308 stockdialog.cpp:251
+#: sharetransactiondialog.cpp:309 stockdialog.cpp:251
 msgid "Manage stock attachments"
 msgstr ""
 
-#: sharetransactiondialog.cpp:313 stockdialog.cpp:253
+#: sharetransactiondialog.cpp:314 stockdialog.cpp:253
 msgid "Display the web page for the specified Stock symbol"
 msgstr ""
 
-#: sharetransactiondialog.cpp:323 stockdialog.cpp:260
+#: sharetransactiondialog.cpp:324 stockdialog.cpp:260
 msgid "Enter notes associated with this investment"
 msgstr ""
 
-#: sharetransactiondialog.cpp:329
+#: sharetransactiondialog.cpp:330
 msgid "Add Transaction Details"
 msgstr ""
 
@@ -7963,6 +8008,11 @@ msgstr ""
 msgid "Stock Portfolio: %s"
 msgstr ""
 
+#: stockspanel.cpp:372 stockspanel.cpp:561
+#, c-format
+msgid "Total: %s"
+msgstr ""
+
 #: stockspanel.cpp:373
 #, c-format
 msgid "Cash Balance: %s"
@@ -8168,7 +8218,7 @@ msgstr ""
 msgid "Populate Transaction #"
 msgstr ""
 
-#: transdialog.cpp:579 usertransactionpanel.cpp:194
+#: transdialog.cpp:579 usertransactionpanel.cpp:215
 msgid "Manage transaction attachments"
 msgstr ""
 
@@ -8209,7 +8259,7 @@ msgstr ""
 msgid "Specify to whom the transaction is going to"
 msgstr ""
 
-#: transdialog.cpp:1328 usertransactionpanel.cpp:80
+#: transdialog.cpp:1328 usertransactionpanel.cpp:99
 msgid "Specify the date of the transaction"
 msgstr ""
 
@@ -8217,60 +8267,60 @@ msgstr ""
 msgid "Transactions Dialog"
 msgstr ""
 
-#: usertransactionpanel.cpp:90
+#: usertransactionpanel.cpp:109
 msgid "Select Account"
 msgstr ""
 
-#: usertransactionpanel.cpp:92
+#: usertransactionpanel.cpp:111
 msgid "Specify the associated Account that will contain this transaction"
 msgstr ""
 
-#: usertransactionpanel.cpp:105
+#: usertransactionpanel.cpp:126
 msgid "Withdraw funds from or deposit funds to this Account."
 msgstr ""
 
-#: usertransactionpanel.cpp:107
+#: usertransactionpanel.cpp:128
 msgid "&Transfer"
 msgstr ""
 
-#: usertransactionpanel.cpp:111
+#: usertransactionpanel.cpp:132
 msgid "Funds transfer from/to this account. Uncheck to set as Expense/Income."
 msgstr ""
 
-#: usertransactionpanel.cpp:134
+#: usertransactionpanel.cpp:155
 msgid "Currency used for this transaction."
 msgstr ""
 
-#: usertransactionpanel.cpp:153
+#: usertransactionpanel.cpp:175
 msgid "Specify the status for this transaction"
 msgstr ""
 
-#: usertransactionpanel.cpp:160
+#: usertransactionpanel.cpp:182
 msgid "Select Payee"
 msgstr ""
 
-#: usertransactionpanel.cpp:161
+#: usertransactionpanel.cpp:183
 msgid "Specify a person, Company or Organisation for this transaction."
 msgstr ""
 
-#: usertransactionpanel.cpp:169
-msgid "Select Category"
-msgstr ""
-
-#: usertransactionpanel.cpp:171
+#: usertransactionpanel.cpp:192
 msgid "Specify the category for this transaction"
 msgstr ""
 
-#: usertransactionpanel.cpp:184
+#: usertransactionpanel.cpp:205
 msgid "Specify a transaction code or associated check details"
 msgstr ""
 
-#: usertransactionpanel.cpp:294
+#: usertransactionpanel.cpp:327
 msgid "Select the required account"
 msgstr ""
 
-#: usertransactionpanel.cpp:295
+#: usertransactionpanel.cpp:328
 msgid "Account Selection"
+msgstr ""
+
+#: usertransactionpanel.h:44 usertransactionpanel.h:79
+msgid "UserTransactionPanel"
 msgstr ""
 
 #: util.cpp:750
