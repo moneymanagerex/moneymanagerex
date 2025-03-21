@@ -249,7 +249,8 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
         wxLongLong_t id = -1;
         sData.ToLongLong(&id);
         const Model_Account::Data* account = Model_Account::instance().get(id);
-        if (account) {
+        if (account)
+        {
             m_frame->setGotoAccountID(account->id());
             m_frame->setNavTreeAccount(account->ACCOUNTNAME);
             wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
@@ -261,7 +262,8 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
         wxLongLong_t id = -1;
         sData.ToLongLong(&id);
         const Model_Account::Data* account = Model_Account::instance().get(id);
-        if (account) {
+        if (account)
+        {
             m_frame->setGotoAccountID(account->id());
             m_frame->setNavTreeAccount(account->ACCOUNTNAME);
             wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);

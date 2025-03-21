@@ -114,10 +114,12 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
         menu.Enable(MENU_TREEPOPUP_DELETE, false);
         menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
     }
-
-    const auto& asset_accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_ASSET));
-    menu.Enable(MENU_TREEPOPUP_GOTOACCOUNT, !asset_accounts.empty());
-    menu.Enable(MENU_TREEPOPUP_VIEWTRANS, !asset_accounts.empty());
+    else
+    {
+        auto asset_account = Model_Account::instance().get(m_panel->m_assets[m_selected_row].ASSETNAME);  // ASSETNAME <=> ACCOUNTNAME
+        menu.Enable(MENU_TREEPOPUP_GOTOACCOUNT, asset_account);
+        menu.Enable(MENU_TREEPOPUP_VIEWTRANS, asset_account);
+    }
 
     PopupMenu(&menu, event.GetPosition());
 }
@@ -781,23 +783,7 @@ void mmAssetsPanel::AddAssetTrans(const int selected_index)
 
 void mmAssetsPanel::ViewAssetTrans(const int selected_index)
 {
-    Model_Asset::Data* asset = &m_assets[selected_index];
-    Model_Translink::Data_Set asset_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_ASSET, asset->ASSETID);
-
-    // TODO create a panel to display all the information on one screen
-    wxString msg = _t("Account \t Date\t   Value\n\n");
-    for (const auto &asset_entry : asset_list)
-    {
-        Model_Checking::Data* asset_trans = Model_Checking::instance().get(asset_entry.CHECKINGACCOUNTID);
-        if (asset_trans)
-        {
-            const auto aa = Model_Account::get_account_name(asset_trans->ACCOUNTID);
-            const auto ad = mmGetDateTimeForDisplay(asset_trans->TRANSDATE);
-            const auto av = Model_Currency::toString(asset_trans->TRANSAMOUNT); //TODO: check if currency needed
-            msg << wxString::Format("%s \t%s   \t%s \n", aa, ad, av);
-        }
-    }
-    wxMessageBox(msg, "Viewing Asset Transactions");
+    GotoAssetAccount(selected_index);
 }
 
 void mmAssetsPanel::GotoAssetAccount(const int selected_index)
