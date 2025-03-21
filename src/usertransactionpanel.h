@@ -83,7 +83,7 @@ private:
 
     void OnTransAccountButton(wxCommandEvent& WXUNUSED(event));
     void OnTransPayeeButton(wxCommandEvent& WXUNUSED(event));
-    void OnTransCategoryButton(wxCommandEvent& WXUNUSED(event));
+    void OnTransCategoryCombobox(wxCommandEvent& WXUNUSED(event));
     void OnCategs(wxCommandEvent& event);
 
     void OnFrequentNotes(wxCommandEvent& event);
@@ -118,7 +118,7 @@ private:
         ID_TRANS_ACCOUNT_BUTTON,
         ID_TRANS_PAYEE_BUTTON_TEXT,
         ID_TRANS_PAYEE_BUTTON,
-        ID_TRANS_CATEGORY_BUTTON,
+        ID_TRANS_CATEGORY_COMBOBOX,
         ID_TRANS_ENTERED_NUMBER,
         ID_TRANS_ENTERED_AMOUNT,
         ID_TRANS_ENTERED_NOTES,
