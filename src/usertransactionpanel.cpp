@@ -38,7 +38,7 @@ wxBEGIN_EVENT_TABLE(UserTransactionPanel, wxPanel)
 EVT_BUTTON(ID_TRANS_ACCOUNT_BUTTON, UserTransactionPanel::OnTransAccountButton)
 EVT_BUTTON(ID_TRANS_PAYEE_BUTTON, UserTransactionPanel::OnTransPayeeButton)
 EVT_BUTTON(mmID_CATEGORY_SPLIT, UserTransactionPanel::OnCategs)
-EVT_BUTTON(ID_TRANS_CATEGORY_BUTTON, UserTransactionPanel::OnTransCategoryButton)
+EVT_COMBOBOX(ID_TRANS_CATEGORY_COMBOBOX, UserTransactionPanel::OnTransCategoryCombobox)
 EVT_MENU(wxID_ANY, UserTransactionPanel::onSelectedNote)
 EVT_BUTTON(wxID_FILE, UserTransactionPanel::OnAttachments)
 wxEND_EVENT_TABLE()
@@ -188,7 +188,7 @@ bool UserTransactionPanel::Create(wxWindow* parent
     wxStaticText* category_button_text = new wxStaticText(this, wxID_STATIC, _t("Category"));
     transPanelSizer->Add(category_button_text, g_flagsH);
 
-    m_category = new mmComboBoxCategory(this, ID_TRANS_CATEGORY_BUTTON, std_half_size, -1 /*TODO*/, true);
+    m_category = new mmComboBoxCategory(this, ID_TRANS_CATEGORY_COMBOBOX, std_half_size, m_category_id, true);
     mmToolTip(m_category, _t("Specify the category for this transaction"));
 
     wxBitmapButton* bSplit_ = new wxBitmapButton(this, mmID_CATEGORY_SPLIT, mmBitmapBundle(png::NEW_TRX, mmBitmapButtonSize));
@@ -359,7 +359,7 @@ void UserTransactionPanel::OnTransPayeeButton(wxCommandEvent& WXUNUSED(event))
     }
 }
 
-void UserTransactionPanel::OnTransCategoryButton(wxCommandEvent& WXUNUSED(event))
+void UserTransactionPanel::OnTransCategoryCombobox(wxCommandEvent& WXUNUSED(event))
 {
     mmCategDialog dlg(this, true, m_category_id);
     if (dlg.ShowModal() == wxID_OK)
