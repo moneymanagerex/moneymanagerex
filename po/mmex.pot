@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-03-21 07:00+0000\n"
+"POT-Creation-Date: 2025-03-21 13:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -453,7 +453,7 @@ msgstr ""
 msgid "Select type of asset"
 msgstr ""
 
-#: assetdialog.cpp:209 assetspanel.cpp:55 mmhomepage.cpp:578
+#: assetdialog.cpp:209 assetspanel.cpp:55 mmhomepage.cpp:577
 msgid "Initial Value"
 msgstr ""
 
@@ -461,7 +461,7 @@ msgstr ""
 msgid "Enter the current value of the asset"
 msgstr ""
 
-#: assetdialog.cpp:221 assetspanel.cpp:56 mmhomepage.cpp:579
+#: assetdialog.cpp:221 assetspanel.cpp:56 mmhomepage.cpp:578
 #: reports/summarystocks.cpp:121 stockdialog.cpp:242
 msgid "Current Value"
 msgstr ""
@@ -596,7 +596,7 @@ msgstr ""
 
 #: assetspanel.cpp:409 assetspanel.h:124 general_report_manager.cpp:1100
 #: mmframe.cpp:218 mmframe.cpp:1980 mmframe.cpp:3624 mmhomepage.cpp:529
-#: mmhomepage.cpp:577 mmhomepagepanel.cpp:237 reports/summary.cpp:271
+#: mmhomepage.cpp:576 mmhomepagepanel.cpp:237 reports/summary.cpp:271
 #: reports/summary.cpp:309
 msgid "Assets"
 msgstr ""
@@ -2539,7 +2539,7 @@ msgstr ""
 msgid "Unreconciled"
 msgstr ""
 
-#: filtertransdialog.cpp:49 mmhomepage.cpp:526 mmhomepage.cpp:697
+#: filtertransdialog.cpp:49 mmhomepage.cpp:526 mmhomepage.cpp:698
 #: model/Model_Checking.cpp:45
 msgid "Reconciled"
 msgstr ""
@@ -3422,7 +3422,7 @@ msgid "Don't Care"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:118 mmchecking_list.cpp:108
-#: mmhomepage.cpp:535 mmhomepage.cpp:698 reports/cashflow.cpp:409
+#: mmhomepage.cpp:535 mmhomepage.cpp:699 reports/cashflow.cpp:409
 #: reports/summary.cpp:275 reports/summary.cpp:311
 msgid "Balance"
 msgstr ""
@@ -4662,26 +4662,26 @@ msgid ""
 "Application will be terminated."
 msgstr ""
 
-#: mmframe.cpp:212 mmhomepage.cpp:681
+#: mmframe.cpp:212 mmhomepage.cpp:682
 msgid "Cash Accounts"
 msgstr ""
 
-#: mmframe.cpp:213 mmhomepage.cpp:682 reports/summary.cpp:259
+#: mmframe.cpp:213 mmhomepage.cpp:683 reports/summary.cpp:259
 #: reports/summary.cpp:302
 msgid "Bank Accounts"
 msgstr ""
 
-#: mmframe.cpp:214 mmhomepage.cpp:683 reports/summary.cpp:261
+#: mmframe.cpp:214 mmhomepage.cpp:684 reports/summary.cpp:261
 #: reports/summary.cpp:303
 msgid "Credit Card Accounts"
 msgstr ""
 
-#: mmframe.cpp:215 mmhomepage.cpp:684 reports/summary.cpp:263
+#: mmframe.cpp:215 mmhomepage.cpp:685 reports/summary.cpp:263
 #: reports/summary.cpp:304
 msgid "Loan Accounts"
 msgstr ""
 
-#: mmframe.cpp:216 mmhomepage.cpp:685 reports/summary.cpp:265
+#: mmframe.cpp:216 mmhomepage.cpp:686 reports/summary.cpp:265
 #: reports/summary.cpp:305
 msgid "Term Accounts"
 msgstr ""
@@ -4690,7 +4690,7 @@ msgstr ""
 msgid "Stock Portfolios"
 msgstr ""
 
-#: mmframe.cpp:219 mmhomepage.cpp:688 reports/summary.cpp:269
+#: mmframe.cpp:219 mmhomepage.cpp:689 reports/summary.cpp:269
 #: reports/summary.cpp:307
 msgid "Share Accounts"
 msgstr ""
@@ -5710,7 +5710,7 @@ msgstr ""
 msgid "General Group Report"
 msgstr ""
 
-#: mmframereport.cpp:108 mmhomepage.cpp:842 model/Model_Report.cpp:410
+#: mmframereport.cpp:108 mmhomepage.cpp:843 model/Model_Report.cpp:410
 #: reports/bugreport.h:110
 msgid "Caught exception"
 msgstr ""
@@ -5793,7 +5793,7 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
-#: mmhomepage.cpp:109 mmhomepage.cpp:621 mmhomepage.cpp:737
+#: mmhomepage.cpp:109 mmhomepage.cpp:622 mmhomepage.cpp:738
 #: reports/incexpenses.cpp:280 reports/payee.cpp:167
 #: reports/summarystocks.cpp:163 splittransactionsdialog.cpp:260
 msgid "Total:"
@@ -5848,19 +5848,19 @@ msgstr ""
 msgid "Total Net Worth"
 msgstr ""
 
-#: mmhomepage.cpp:613
+#: mmhomepage.cpp:614
 msgid "Other Assets"
 msgstr ""
 
-#: mmhomepage.cpp:686
+#: mmhomepage.cpp:687
 msgid "Investment Accounts"
 msgstr ""
 
-#: mmhomepage.cpp:687 reports/summary.cpp:267 reports/summary.cpp:306
+#: mmhomepage.cpp:688 reports/summary.cpp:267 reports/summary.cpp:306
 msgid "Asset Accounts"
 msgstr ""
 
-#: mmhomepage.cpp:828
+#: mmhomepage.cpp:829
 msgid "Currency Exchange Rates"
 msgstr ""
 
