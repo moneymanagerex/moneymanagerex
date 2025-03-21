@@ -564,11 +564,10 @@ htmlWidgetGrandTotals::~htmlWidgetGrandTotals()
 
 const wxString htmlWidgetAssets::getHTMLText()
 {
-    Model_Asset::Data_Set assets = Model_Asset::instance().all();
-    if (assets.empty())
+    Model_Account::Data_Set asset_accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_ASSET));
+    if (asset_accounts.empty())
         return wxEmptyString;
-    std::stable_sort(assets.begin(), assets.end(), SorterByVALUE());
-    std::reverse(assets.begin(), assets.end());
+    std::stable_sort(asset_accounts.begin(), asset_accounts.end(), SorterByACCOUNTNAME());
 
     static const int MAX_ASSETS = 10;
     wxString output = "";
@@ -586,10 +585,12 @@ const wxString htmlWidgetAssets::getHTMLText()
     double initialTotal = 0.0;
     double currentDisplayed = 0.0;
     double currentTotal = 0.0;
-    for (const auto& asset : assets)
+    for (const auto& asset_account : asset_accounts)
     {
-        double initial = asset.VALUE;
-        double current = Model_Asset::value(asset);
+        auto cash_bal = Model_Account::balance(asset_account);
+        auto inv_bal = Model_Account::investment_balance(asset_account);
+        double initial = inv_bal.second;
+        double current = inv_bal.first + cash_bal;
         initialTotal += initial;
         currentTotal += current;
         if (rows++ < MAX_ASSETS)
@@ -598,7 +599,7 @@ const wxString htmlWidgetAssets::getHTMLText()
             currentDisplayed += current;
             output += "<tr>";
             output += wxString::Format("<td sorttable_customkey='*%s*'>%s</td>\n"
-                , asset.ASSETNAME, asset.ASSETNAME);
+                , asset_account.ACCOUNTNAME, asset_account.ACCOUNTNAME);
             output += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
                 , initial, Model_Currency::toCurrency(initial));
             output += wxString::Format("<td colspan='2' class='money' sorttable_customkey='%f'>%s</td>\n"
