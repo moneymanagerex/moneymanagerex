@@ -1536,6 +1536,18 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
         }
 
     }
+
+    // Check for transaction number and look for duplicates
+    if (!trx->TRANSACTIONNUMBER.empty())
+    {
+        const auto existing_transactions = Model_Checking::instance().find(
+            Model_Checking::TRANSACTIONNUMBER(trx->TRANSACTIONNUMBER),
+            Model_Checking::DELETEDTIME(wxEmptyString, EQUAL));
+
+        if (!existing_transactions.empty())
+            trx->STATUS = Model_Checking::STATUS_KEY_DUPLICATE;
+    }
+
     return true;
 }
 
