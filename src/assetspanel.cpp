@@ -566,8 +566,9 @@ int mmAssetsPanel::initVirtualListControl(int64 id)
     double initial = 0.0, balance = 0.0;
     for (const auto& asset: this->m_assets)
     {
-        initial += asset.VALUE;
-        balance += Model_Asset::value(asset);
+        auto bal = Model_Asset::value(asset);
+        initial += bal.first;
+        balance += bal.second;
     }
     header_text_->SetLabelText(wxString::Format(_t("Total: %s, Initial: %s"), Model_Currency::toCurrency(balance), Model_Currency::toCurrency(initial))); // balance
 
@@ -623,9 +624,9 @@ wxString mmAssetsPanel::getItem(long item, int col_id)
     case mmAssetsListCtrl::LIST_ID_TYPE:
         return wxGetTranslation(asset.ASSETTYPE);
     case mmAssetsListCtrl::LIST_ID_VALUE_INITIAL:
-        return Model_Currency::toCurrency(asset.VALUE);
+        return Model_Currency::toCurrency(Model_Asset::value(asset).first);
     case mmAssetsListCtrl::LIST_ID_VALUE_CURRENT:
-        return Model_Currency::toCurrency(Model_Asset::value(asset));
+        return Model_Currency::toCurrency(Model_Asset::value(asset).second);
     case mmAssetsListCtrl::LIST_ID_DATE:
         return mmGetDateTimeForDisplay(asset.STARTDATE);
     case mmAssetsListCtrl::LIST_ID_NOTES: {
