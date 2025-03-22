@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-03-22 13:04+0000\n"
+"POT-Creation-Date: 2025-03-21 13:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,7 +51,7 @@ msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr ""
 
 #: aboutdialog.cpp:247 accountdialog.cpp:301 appstartdialog.cpp:142
-#: assetdialog.cpp:322 attachmentdialog.cpp:149 billsdepositsdialog.cpp:650
+#: assetdialog.cpp:320 attachmentdialog.cpp:149 billsdepositsdialog.cpp:650
 #: budgetentrydialog.cpp:160 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:198 filtertransdialog.cpp:818
@@ -130,7 +130,7 @@ msgstr ""
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
 msgstr ""
 
-#: accountdialog.cpp:186 assetdialog.cpp:270 assetspanel.cpp:57
+#: accountdialog.cpp:186 assetdialog.cpp:268 assetspanel.cpp:57
 #: billsdepositsdialog.cpp:628 billsdepositspanel.cpp:118
 #: budgetentrydialog.cpp:151 budgetingpanel.cpp:73 filtertrans.cpp:207
 #: filtertransdialog.cpp:696 filtertransdialog.cpp:1930
@@ -395,7 +395,7 @@ msgstr ""
 msgid "Language change"
 msgstr ""
 
-#: assetdialog.cpp:51 assetdialog.cpp:454 assetdialog.h:83 assetspanel.cpp:461
+#: assetdialog.cpp:51 assetdialog.cpp:452 assetdialog.h:83 assetspanel.cpp:461
 msgid "New Asset"
 msgstr ""
 
@@ -411,11 +411,11 @@ msgstr ""
 msgid "Edit Asset Transaction"
 msgstr ""
 
-#: assetdialog.cpp:176
+#: assetdialog.cpp:174
 msgid "Asset Details"
 msgstr ""
 
-#: assetdialog.cpp:186 assetspanel.cpp:52 customfieldeditdialog.cpp:136
+#: assetdialog.cpp:184 assetspanel.cpp:52 customfieldeditdialog.cpp:136
 #: customfieldlistdialog.cpp:48 import_export/qif_import_gui.cpp:246
 #: import_export/qif_import_gui.cpp:259 import_export/qif_import_gui.cpp:269
 #: import_export/univcsvdialog.cpp:512 import_export/univcsvdialog.cpp:522
@@ -423,11 +423,11 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: assetdialog.cpp:191
+#: assetdialog.cpp:189
 msgid "Enter the name of the asset"
 msgstr ""
 
-#: assetdialog.cpp:194 assetspanel.cpp:53 filtertrans.cpp:199
+#: assetdialog.cpp:192 assetspanel.cpp:53 filtertrans.cpp:199
 #: filtertransdialog.cpp:970 filtertransdialog.cpp:977
 #: import_export/qif_export.cpp:626 import_export/qif_import_gui.cpp:88
 #: import_export/univcsvdialog.cpp:103 maincurrencydialog.cpp:253
@@ -441,88 +441,88 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: assetdialog.cpp:197
+#: assetdialog.cpp:195
 msgid "Specify the date of purchase of asset"
 msgstr ""
 
-#: assetdialog.cpp:199
+#: assetdialog.cpp:197
 msgid "Asset Type"
 msgstr ""
 
-#: assetdialog.cpp:207
+#: assetdialog.cpp:205
 msgid "Select type of asset"
 msgstr ""
 
-#: assetdialog.cpp:211 assetspanel.cpp:55 mmhomepage.cpp:577
+#: assetdialog.cpp:209 assetspanel.cpp:55 mmhomepage.cpp:577
 msgid "Initial Value"
 msgstr ""
 
-#: assetdialog.cpp:220
+#: assetdialog.cpp:218
 msgid "Enter the current value of the asset"
 msgstr ""
 
-#: assetdialog.cpp:223 assetspanel.cpp:56 mmhomepage.cpp:578
+#: assetdialog.cpp:221 assetspanel.cpp:56 mmhomepage.cpp:578
 #: reports/summarystocks.cpp:121 stockdialog.cpp:242
 msgid "Current Value"
 msgstr ""
 
-#: assetdialog.cpp:233
+#: assetdialog.cpp:231
 msgid "The current value of the asset"
 msgstr ""
 
-#: assetdialog.cpp:236
+#: assetdialog.cpp:234
 msgid "Change in Value"
 msgstr ""
 
-#: assetdialog.cpp:244
+#: assetdialog.cpp:242
 msgid "Specify if the value of the asset changes over time"
 msgstr ""
 
-#: assetdialog.cpp:248
+#: assetdialog.cpp:246
 msgid "Compounding Period"
 msgstr ""
 
-#: assetdialog.cpp:253
+#: assetdialog.cpp:251
 msgid "Select the compounding period for the appreciation/depreciation rate"
 msgstr ""
 
-#: assetdialog.cpp:258
+#: assetdialog.cpp:256
 msgid "% Rate"
 msgstr ""
 
-#: assetdialog.cpp:266
+#: assetdialog.cpp:264
 msgid "Enter the rate at which the asset changes its value in percentage per year"
 msgstr ""
 
-#: assetdialog.cpp:276
+#: assetdialog.cpp:274
 msgid "Organize attachments of this asset"
 msgstr ""
 
-#: assetdialog.cpp:279
+#: assetdialog.cpp:277
 msgid "Enter notes associated with this asset"
 msgstr ""
 
-#: assetdialog.cpp:285
+#: assetdialog.cpp:283
 msgid "New Transaction Details"
 msgstr ""
 
-#: assetdialog.cpp:288 sharetransactiondialog.cpp:330
+#: assetdialog.cpp:286 sharetransactiondialog.cpp:330
 msgid "Edit Transaction Details"
 msgstr ""
 
-#: assetdialog.cpp:323 constants.cpp:74 sharetransactiondialog.cpp:360
+#: assetdialog.cpp:321 constants.cpp:74 sharetransactiondialog.cpp:360
 msgid "&Cancel "
 msgstr ""
 
-#: assetdialog.cpp:446 sharetransactiondialog.cpp:453
+#: assetdialog.cpp:444 sharetransactiondialog.cpp:453
 msgid "Invalid Transaction"
 msgstr ""
 
-#: assetdialog.cpp:453
+#: assetdialog.cpp:451
 msgid "Asset account not found."
 msgstr ""
 
-#: assetdialog.cpp:453
+#: assetdialog.cpp:451
 msgid "Do you want to create one?"
 msgstr ""
 
@@ -601,7 +601,7 @@ msgstr ""
 msgid "Assets"
 msgstr ""
 
-#: assetspanel.cpp:418 assetspanel.cpp:693 assetspanel.cpp:710
+#: assetspanel.cpp:418 assetspanel.cpp:692 assetspanel.cpp:709
 #: filtertransdialog.cpp:221 filtertransdialog.cpp:582
 #: filtertransdialog.cpp:898 filtertransdialog.cpp:2278
 #: import_export/qif_export.cpp:75 import_export/qif_export.cpp:76
@@ -678,24 +678,24 @@ msgstr ""
 msgid "Use the asterisk (*) at the beginning to find any string in the middle of the sentence."
 msgstr ""
 
-#: assetspanel.cpp:573
+#: assetspanel.cpp:572
 #, c-format
 msgid "Total: %s, Initial: %s"
 msgstr ""
 
-#: assetspanel.cpp:654
+#: assetspanel.cpp:653
 #, c-format
 msgid "Change in Value: %1$s %2$s"
 msgstr ""
 
-#: assetspanel.cpp:770
+#: assetspanel.cpp:769
 msgid ""
 "This asset does not have its own account\n"
 "\n"
 "Multiple transactions for this asset are not recommended."
 msgstr ""
 
-#: assetspanel.cpp:772
+#: assetspanel.cpp:771
 msgid "Asset Management"
 msgstr ""
 
