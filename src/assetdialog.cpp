@@ -111,8 +111,10 @@ void mmAssetDialog::dataToControls()
         m_assetName->Enable(false);
     m_dpc->SetValue(Model_Asset::STARTDATE(m_asset));
     m_assetType->SetSelection(Model_Asset::type_id(m_asset));
-    m_value->SetValue(std::abs(m_asset->VALUE));
-    m_curr_val->SetValue(Model_Asset::value(m_asset));
+
+    auto bal = Model_Asset::value(m_asset);
+    m_value->SetValue(bal.first);
+    m_curr_val->SetValue(bal.second);
 
     int valueChangeType = Model_Asset::change_id(m_asset);
     m_valueChange->SetSelection(valueChangeType);
