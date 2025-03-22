@@ -90,7 +90,7 @@ double Model_Asset::balance()
     double balance = 0.0;
     for (const auto& r: this->all())
     {
-        balance += value(r);
+        balance += value(r).second;
     }
     return balance;
 }
@@ -120,20 +120,21 @@ Model_Currency::Data* Model_Asset::currency(const Data* /* r */)
     return Model_Currency::instance().GetBaseCurrency();
 }
 
-double Model_Asset::value(const Data* r)
+std::pair<double, double> Model_Asset::value(const Data* r)
 {
     return instance().valueAtDate(r, wxDate::Today());
 }
 
-double Model_Asset::value(const Data& r)
+std::pair<double, double> Model_Asset::value(const Data& r)
 {
     return instance().valueAtDate(&r, wxDate::Today());
 }
 
-double Model_Asset::valueAtDate(const Data* r, const wxDate date)
+std::pair<double, double> Model_Asset::valueAtDate(const Data* r, const wxDate date)
 {
-    double balance = 0;
-    if (date >= STARTDATE(r)) {
+    std::pair<double /*initial*/, double /*market*/> balance;
+    if (date >= STARTDATE(r))
+    {
         Model_Translink::Data_Set translink_records = Model_Translink::instance().find(
             Model_Translink::LINKRECORDID(r->ASSETID),
             Model_Translink::LINKTYPE(Model_Attachment::REFTYPE_NAME_ASSET)
@@ -148,6 +149,12 @@ double Model_Asset::valueAtDate(const Data* r, const wxDate date)
                 {
                     double amount = -1 * Model_Checking::account_flow(tran, tran->ACCOUNTID) *
                         Model_CurrencyHistory::getDayRate(Model_Account::instance().get(tran->ACCOUNTID)->CURRENCYID, tranDate);
+
+                    if (amount < 0) // sale, try best to keep principal
+                        balance.first += std::min(balance.second + amount, 0.0);
+                    else
+                        balance.first += amount;
+
                     wxTimeSpan diff_time = date - tranDate;
                     double diff_time_in_days = static_cast<double>(diff_time.GetDays());
 
@@ -165,12 +172,13 @@ double Model_Asset::valueAtDate(const Data* r, const wxDate date)
                         break;
                     }
 
-                    balance += amount;
+                    balance.second += amount;
                 }
             }
         }
-        else {
-            balance = r->VALUE;
+        else 
+        {
+            balance = {r->VALUE, r->VALUE};
             wxTimeSpan diff_time = date - STARTDATE(r);
             double diff_time_in_days = static_cast<double>(diff_time.GetDays());
 
@@ -179,10 +187,10 @@ double Model_Asset::valueAtDate(const Data* r, const wxDate date)
             case CHANGE_ID_NONE:
                 break;
             case CHANGE_ID_APPRECIATE:
-                balance *= pow(1.0 + (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
+                balance.second *= pow(1.0 + (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
                 break;
             case CHANGE_ID_DEPRECIATE:
-                balance *= pow(1.0 - (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
+                balance.second *= pow(1.0 - (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
                 break;
             default:
                 break;

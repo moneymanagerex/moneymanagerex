@@ -216,7 +216,7 @@ wxString mmReportSummaryByDate::getHTMLText()
         }
 
         for (const auto& asset : Model_Asset::instance().all()) {
-            assetBalance += Model_Asset::instance().valueAtDate(&asset, end_date) * getDayRate(asset.CURRENCYID, end_date);
+            assetBalance += Model_Asset::instance().valueAtDate(&asset, end_date).second * getDayRate(asset.CURRENCYID, end_date);
         }
 
         totBalanceEntry.values.push_back(balancePerDay[Model_Account::TYPE_ID_CASH]);

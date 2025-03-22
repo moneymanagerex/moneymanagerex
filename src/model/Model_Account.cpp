@@ -245,8 +245,9 @@ std::pair<double, double> Model_Account::investment_balance(const Data* r)
 
     for (const auto& asset: Model_Asset::instance().find(Model_Asset::ASSETNAME(r->ACCOUNTNAME)))
     {
-        sum.first += Model_Asset::value(asset);
-        sum.second += asset.VALUE;
+        auto asset_bal = Model_Asset::value(asset);
+        sum.first += asset_bal.second;
+        sum.second += asset_bal.first;
     }
     return sum;
 }
