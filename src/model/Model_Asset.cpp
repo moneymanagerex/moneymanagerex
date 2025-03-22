@@ -141,42 +141,64 @@ std::pair<double, double> Model_Asset::valueAtDate(const Data* r, const wxDate d
         );
         if (!translink_records.empty())
         {
+            Model_Checking::Data_Set trans;
             for (const auto& link : translink_records)
             {
                 const Model_Checking::Data* tran = Model_Checking::instance().get(link.CHECKINGACCOUNTID);
+                if(tran) trans.push_back(*tran);
+            }
+
+            std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
+
+            wxDate last = date;
+            for (const auto& tran: trans)
+            {
                 const wxDate tranDate = Model_Checking::TRANSDATE(tran);
-                if (tranDate <= date)
+                if (tranDate > date) break;
+
+                if (last == date) last = tranDate;
+                if (last < tranDate)
                 {
-                    double amount = -1 * Model_Checking::account_flow(tran, tran->ACCOUNTID) *
-                        Model_CurrencyHistory::getDayRate(Model_Account::instance().get(tran->ACCOUNTID)->CURRENCYID, tranDate);
-
-                    if (amount < 0) // sale, use unrealized g/l, and try best to keep the principal
-                    {
-                        double unrealized_gl = balance.second -  balance.first;
-                        balance.first += std::min(unrealized_gl + amount, 0.0);
-                    }
-                    else
-                        balance.first += amount;
-
-                    wxTimeSpan diff_time = date - tranDate;
+                    wxTimeSpan diff_time = tranDate - last;
                     double diff_time_in_days = static_cast<double>(diff_time.GetDays());
 
-                    switch (change_id(r))
+                    int changeType = change_id(r);
+                    if (changeType == CHANGE_ID_APPRECIATE)
                     {
-                    case CHANGE_ID_NONE:
-                        break;
-                    case CHANGE_ID_APPRECIATE:
-                        amount *= pow(1.0 + (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
-                        break;
-                    case CHANGE_ID_DEPRECIATE:
-                        amount *= pow(1.0 - (r->VALUECHANGERATE / 36500.0), diff_time_in_days);
-                        break;
-                    default:
-                        break;
+                        balance.second *= exp((r->VALUECHANGERATE / 36500.0) * diff_time_in_days);
+                    }
+                    else if (changeType == CHANGE_ID_DEPRECIATE)
+                    {
+                        balance.second *= exp((-r->VALUECHANGERATE / 36500.0) * diff_time_in_days);
                     }
 
-                    balance.second += amount;
+                    last = tranDate;
                 }
+
+                double amount = -1 * Model_Checking::account_flow(tran, tran.ACCOUNTID) *
+                    Model_CurrencyHistory::getDayRate(Model_Account::instance().get(tran.ACCOUNTID)->CURRENCYID, tranDate);
+
+                if (amount < 0) // sale, use unrealized g/l, and try best to keep the principal
+                {
+                    double unrealized_gl = balance.second -  balance.first;
+                    balance.first += std::min(unrealized_gl + amount, 0.0);
+                }
+                else
+                    balance.first += amount;
+
+                balance.second += amount;
+            }
+
+            wxTimeSpan diff_time = date - last;
+            double diff_time_in_days = static_cast<double>(diff_time.GetDays());
+            int changeType = change_id(r);
+            if (changeType == CHANGE_ID_APPRECIATE)
+            {
+                balance.second *= exp((r->VALUECHANGERATE / 36500.0) * diff_time_in_days);
+            }
+            else if (changeType == CHANGE_ID_DEPRECIATE)
+            {
+                balance.second *= exp((-r->VALUECHANGERATE / 36500.0) * diff_time_in_days);
             }
         }
         else 
