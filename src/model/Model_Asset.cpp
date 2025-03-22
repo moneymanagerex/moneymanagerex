@@ -150,8 +150,11 @@ std::pair<double, double> Model_Asset::valueAtDate(const Data* r, const wxDate d
                     double amount = -1 * Model_Checking::account_flow(tran, tran->ACCOUNTID) *
                         Model_CurrencyHistory::getDayRate(Model_Account::instance().get(tran->ACCOUNTID)->CURRENCYID, tranDate);
 
-                    if (amount < 0) // sale, try best to keep principal
-                        balance.first += std::min(balance.second + amount, 0.0);
+                    if (amount < 0) // sale, use unrealized g/l, and try best to keep the principal
+                    {
+                        double unrealized_gl = balance.second -  balance.first;
+                        balance.first += std::min(unrealized_gl + amount, 0.0);
+                    }
                     else
                         balance.first += amount;
 
