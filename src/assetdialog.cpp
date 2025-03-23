@@ -146,6 +146,8 @@ void mmAssetDialog::dataToControls()
         m_dpc->Enable(false);
         m_assetType->Enable(false);
         m_value->Enable(false);
+        m_valueChange->Enable(false);
+        m_valueChange->Enable(false);
     }
 
     if (m_checking_entry && !m_checking_entry->DELETEDTIME.IsEmpty()) {
