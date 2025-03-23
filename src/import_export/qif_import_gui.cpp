@@ -296,6 +296,9 @@ void mmQIFImportDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     payeeMatchAddNotes_->Disable();
 
+    // Check for duplicate transactions :
+    dupTransCheckBox_ = new wxCheckBox(this, wxID_ANY, _t("Flag duplicates (same transaction number)")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
     // Date Format Settings
     m_dateFormatStr = Option::instance().getDateFormat();
@@ -319,6 +322,9 @@ void mmQIFImportDialog::CreateControls()
     flex_sizer_b->AddSpacer(1);
     flex_sizer_b->Add(payeeIsNotesCheckBox_, g_flagsBorder1H);
     flex_sizer_b->Add(payeeMatchAddNotes_, g_flagsBorder1H);
+    flex_sizer_b->AddSpacer(1);
+    flex_sizer_b->Add(dupTransCheckBox_, g_flagsBorder1H);
+    flex_sizer_b->AddSpacer(1);
     flex_sizer_b->AddSpacer(1);
 
     wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -1538,7 +1544,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
     }
 
     // Check for transaction number and look for duplicates
-    if (!trx->TRANSACTIONNUMBER.empty())
+    if (dupTransCheckBox_->IsChecked() && !trx->TRANSACTIONNUMBER.empty())
     {
         const auto existing_transactions = Model_Checking::instance().find(
             Model_Checking::TRANSACTIONNUMBER(trx->TRANSACTIONNUMBER),
