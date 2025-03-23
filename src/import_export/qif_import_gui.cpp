@@ -203,6 +203,27 @@ void mmQIFImportDialog::CreateControls()
     flex_sizer2->Add(dateToCheckBox_, g_flagsH);
     flex_sizer2->Add(toDateCtrl_, g_flagsH);
 
+    // Duplicate Transactions Method
+    dupTransCheckBox_ = new wxCheckBox(static_box, wxID_FILE3, _t("Duplicates")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    dupTransMethod_ = new wxChoice(static_box, wxID_ANY);
+    dupTransMethod_->Append(_t("By transaction number"));
+    dupTransMethod_->Append(_t("By date and amount"));
+    dupTransMethod_->SetSelection(0);
+    dupTransMethod_->Enable(false);
+    flex_sizer2->Add(dupTransCheckBox_, g_flagsH);
+    flex_sizer2->Add(dupTransMethod_, g_flagsH);
+
+    // Duplicate Transactions Action
+    wxStaticText* dupTransActionLabel = new wxStaticText(static_box, wxID_STATIC, _t("Action"));
+    dupTransAction_ = new wxChoice(static_box, wxID_ANY);
+    dupTransAction_->Append(_t("Skip"));
+    dupTransAction_->Append(_t("Flag as duplicate"));
+    dupTransAction_->SetSelection(0);
+    dupTransAction_->Enable(false);
+    flex_sizer2->Add(dupTransActionLabel, g_flagsH);
+    flex_sizer2->Add(dupTransAction_, g_flagsH);
+
     //Data viewer ----------------------------------------------
     wxNotebook* qif_notebook = new wxNotebook(this
         , wxID_FILE9, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
@@ -296,18 +317,6 @@ void mmQIFImportDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     payeeMatchAddNotes_->Disable();
 
-    // Check for duplicate transactions :
-    wxStaticText* dupTransLabel = new wxStaticText(this, wxID_ANY, _t("Check for duplicate transactions"));
-    dupTransMethod_ = new wxChoice(this, wxID_ANY);
-    dupTransMethod_->Append(_t("No"));
-    dupTransMethod_->Append(_t("By transaction number"));
-    dupTransMethod_->Append(_t("By date and amount"));
-    dupTransMethod_->SetSelection(0);
-    dupTransAction_ = new wxChoice(this, wxID_ANY);
-    dupTransAction_->Append(_t("Skip"));
-    dupTransAction_->Append(_t("Flag as duplicate"));
-    dupTransAction_->SetSelection(0);
-
     // Date Format Settings
     m_dateFormatStr = Option::instance().getDateFormat();
 
@@ -331,14 +340,6 @@ void mmQIFImportDialog::CreateControls()
     flex_sizer_b->AddSpacer(1);
     flex_sizer_b->Add(payeeIsNotesCheckBox_, g_flagsBorder1H);
     flex_sizer_b->Add(payeeMatchAddNotes_, g_flagsBorder1H);
-    flex_sizer_b->AddSpacer(1);
-
-    wxBoxSizer* dupTransSizer = new wxBoxSizer(wxHORIZONTAL);
-    dupTransSizer->Add(dupTransLabel, g_flagsBorder1H);
-    dupTransSizer->Add(dupTransMethod_, g_flagsBorder1H);
-    dupTransSizer->Add(dupTransAction_, g_flagsBorder1H);
-    flex_sizer_b->Add(dupTransSizer, g_flagsBorder1H);
-    flex_sizer_b->AddSpacer(1);
     flex_sizer_b->AddSpacer(1);
 
     wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -935,6 +936,10 @@ void mmQIFImportDialog::OnCheckboxClick(wxCommandEvent& event)
     case wxID_FILE9:
         fromDateCtrl_->Enable(dateFromCheckBox_->IsChecked());
         toDateCtrl_->Enable(dateToCheckBox_->IsChecked());
+        return;
+    case wxID_FILE3:
+        dupTransMethod_->Enable(dupTransCheckBox_->IsChecked());
+        dupTransAction_->Enable(dupTransCheckBox_->IsChecked());
         return;
     case wxID_FILE6:
         t = t | PAYEE_TAB;
@@ -1556,15 +1561,14 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
 
     }
 
-    // Check for transaction number and handle duplicates according to user choice
-    int dupMethod = dupTransMethod_->GetSelection();
-    int dupAction = dupTransAction_->GetSelection();
-
-    if (dupMethod != 0) // If duplicate checking is enabled (not "No")
+    // Check for duplicates according to user choice
+    if (dupTransCheckBox_->IsChecked())
     {
         bool isDuplicate = false;
+        int dupMethod = dupTransMethod_->GetSelection();
+        int dupAction = dupTransAction_->GetSelection();
 
-        if (dupMethod == 1) // By transaction number
+        if (dupMethod == 0) // By transaction number
         {
             if (!trx->TRANSACTIONNUMBER.empty())
             {
@@ -1575,7 +1579,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
                 isDuplicate = !existing_transactions.empty();
             }
         }
-        else if (dupMethod == 2) // By date and amount
+        else if (dupMethod == 1) // By date and amount
         {
             const auto existing_transactions = Model_Checking::instance().find(
                 Model_Checking::TRANSDATE(trx->TRANSDATE),

@@ -124,6 +124,7 @@ private:
     mmColorButton* mmColorBtn_ = nullptr;
     wxChoice* dupTransMethod_ = nullptr;
     wxChoice* dupTransAction_ = nullptr;
+    wxCheckBox* dupTransCheckBox_ = nullptr;
 
     bool payeeIsNotes_ = false; //Include payee field in notes
     std::map<std::pair <int64, wxString>, std::map<int, std::pair<wxString, wxRegEx>> > payeeMatchPatterns_;
