@@ -122,7 +122,7 @@ private:
     mmChoiceAmountMask* m_choiceDecimalSeparator = nullptr;
     wxCheckBox* colorCheckBox_ = nullptr;
     mmColorButton* mmColorBtn_ = nullptr;
-    wxCheckBox* dupTransCheckBox_ = nullptr;
+    wxChoice* dupTransChoice_ = nullptr;
 
     bool payeeIsNotes_ = false; //Include payee field in notes
     std::map<std::pair <int64, wxString>, std::map<int, std::pair<wxString, wxRegEx>> > payeeMatchPatterns_;

@@ -297,8 +297,12 @@ void mmQIFImportDialog::CreateControls()
     payeeMatchAddNotes_->Disable();
 
     // Check for duplicate transactions :
-    dupTransCheckBox_ = new wxCheckBox(this, wxID_ANY, _t("Flag duplicates (same transaction number)")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    wxStaticText* dupTransLabel = new wxStaticText(this, wxID_ANY, _t("Existing transactions (same trx number)"));
+    dupTransChoice_ = new wxChoice(this, wxID_ANY);
+    dupTransChoice_->Append(_t("No special treatment"));
+    dupTransChoice_->Append(_t("Flag as duplicate"));
+    dupTransChoice_->Append(_t("Skip"));
+    dupTransChoice_->SetSelection(0);
 
     // Date Format Settings
     m_dateFormatStr = Option::instance().getDateFormat();
@@ -317,13 +321,17 @@ void mmQIFImportDialog::CreateControls()
         , wxCommandEventHandler(mmQIFImportDialog::OnDateMaskChange), nullptr, this);
 
     wxFlexGridSizer* flex_sizer_b = new wxFlexGridSizer(0, 3, 0, 0);
+
     flex_sizer_b->Add(accountNumberCheckBox_, g_flagsBorder1H);
     flex_sizer_b->Add(payeeMatchCheckBox_, g_flagsBorder1H);
     flex_sizer_b->AddSpacer(1);
     flex_sizer_b->Add(payeeIsNotesCheckBox_, g_flagsBorder1H);
     flex_sizer_b->Add(payeeMatchAddNotes_, g_flagsBorder1H);
     flex_sizer_b->AddSpacer(1);
-    flex_sizer_b->Add(dupTransCheckBox_, g_flagsBorder1H);
+    wxBoxSizer* dupTransSizer = new wxBoxSizer(wxHORIZONTAL);
+    dupTransSizer->Add(dupTransLabel, g_flagsBorder1H);
+    dupTransSizer->Add(dupTransChoice_, g_flagsBorder1H);
+    flex_sizer_b->Add(dupTransSizer, g_flagsBorder1H);
     flex_sizer_b->AddSpacer(1);
     flex_sizer_b->AddSpacer(1);
 
@@ -1543,15 +1551,24 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
 
     }
 
-    // Check for transaction number and look for duplicates
-    if (dupTransCheckBox_->IsChecked() && !trx->TRANSACTIONNUMBER.empty())
+    // Check for transaction number and handle duplicates according to user choice
+    int dupChoice = dupTransChoice_->GetSelection();
+    if (dupChoice != 0 && !trx->TRANSACTIONNUMBER.empty())
     {
         const auto existing_transactions = Model_Checking::instance().find(
             Model_Checking::TRANSACTIONNUMBER(trx->TRANSACTIONNUMBER),
             Model_Checking::DELETEDTIME(wxEmptyString, EQUAL));
 
         if (!existing_transactions.empty())
-            trx->STATUS = Model_Checking::STATUS_KEY_DUPLICATE;
+        {
+            if (dupChoice == 2) // Skip
+            {
+                msg = _t("Transaction skipped as duplicate");
+                return false;
+            }
+            else if (dupChoice == 1) // Flag as duplicate
+                trx->STATUS = Model_Checking::STATUS_KEY_DUPLICATE;
+        }
     }
 
     return true;
