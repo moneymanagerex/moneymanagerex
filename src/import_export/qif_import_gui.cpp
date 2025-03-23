@@ -181,27 +181,34 @@ void mmQIFImportDialog::CreateControls()
     //Filtering Details --------------------------------------------
     wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _t("Filtering Details:"));
     wxStaticBoxSizer* filter_sizer = new wxStaticBoxSizer(static_box, wxVERTICAL);
-    wxFlexGridSizer* flex_sizer2 = new wxFlexGridSizer(0, 2, 0, 0);
-    filter_sizer->Add(flex_sizer2, g_flagsExpand);
+
+    // Create a horizontal sizer to hold the date and duplicate columns
+    wxBoxSizer* filter_grid_sizer = new wxBoxSizer(wxHORIZONTAL);
+    filter_sizer->Add(filter_grid_sizer, g_flagsExpand);
+
+    // Left column for dates
+    wxFlexGridSizer* dates_sizer = new wxFlexGridSizer(0, 2, 0, 0);
 
     // From Date
     dateFromCheckBox_ = new wxCheckBox(static_box, wxID_FILE8, _t("From Date")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     fromDateCtrl_ = new mmDatePickerCtrl(static_box, wxID_STATIC, wxDefaultDateTime
         , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
-    fromDateCtrl_->SetMinSize(wxSize(150, -1));
     fromDateCtrl_->Enable(false);
-    flex_sizer2->Add(dateFromCheckBox_, g_flagsH);
-    flex_sizer2->Add(fromDateCtrl_, g_flagsH);
+    dates_sizer->Add(dateFromCheckBox_, g_flagsH);
+    dates_sizer->Add(fromDateCtrl_, g_flagsH);
 
     // To Date
     dateToCheckBox_ = new wxCheckBox(static_box, wxID_FILE9, _t("To Date")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     toDateCtrl_ = new mmDatePickerCtrl(static_box, wxID_STATIC, wxDefaultDateTime
-        , wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN);
+        , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
     toDateCtrl_->Enable(false);
-    flex_sizer2->Add(dateToCheckBox_, g_flagsH);
-    flex_sizer2->Add(toDateCtrl_, g_flagsH);
+    dates_sizer->Add(dateToCheckBox_, g_flagsH);
+    dates_sizer->Add(toDateCtrl_, g_flagsH);
+
+    // Right column for duplicates
+    wxFlexGridSizer* dup_sizer = new wxFlexGridSizer(0, 2, 0, 0);
 
     // Duplicate Transactions Method
     dupTransCheckBox_ = new wxCheckBox(static_box, wxID_FILE3, _t("Duplicates")
@@ -211,8 +218,8 @@ void mmQIFImportDialog::CreateControls()
     dupTransMethod_->Append(_t("By date and amount"));
     dupTransMethod_->SetSelection(0);
     dupTransMethod_->Enable(false);
-    flex_sizer2->Add(dupTransCheckBox_, g_flagsH);
-    flex_sizer2->Add(dupTransMethod_, g_flagsH);
+    dup_sizer->Add(dupTransCheckBox_, g_flagsH);
+    dup_sizer->Add(dupTransMethod_, g_flagsH);
 
     // Duplicate Transactions Action
     wxStaticText* dupTransActionLabel = new wxStaticText(static_box, wxID_STATIC, _t("Action"));
@@ -221,8 +228,17 @@ void mmQIFImportDialog::CreateControls()
     dupTransAction_->Append(_t("Flag as duplicate"));
     dupTransAction_->SetSelection(0);
     dupTransAction_->Enable(false);
-    flex_sizer2->Add(dupTransActionLabel, g_flagsH);
-    flex_sizer2->Add(dupTransAction_, g_flagsH);
+    dup_sizer->Add(dupTransActionLabel, g_flagsH);
+    dup_sizer->Add(dupTransAction_, g_flagsH);
+
+    filter_grid_sizer->Add(dates_sizer, g_flagsH);
+
+    // Add vertical line separator
+    wxStaticLine* vline = new wxStaticLine(static_box, wxID_ANY, wxDefaultPosition,
+        wxDefaultSize, wxLI_VERTICAL);
+    filter_grid_sizer->Add(vline, wxSizerFlags().Left().Border(wxLEFT | wxRIGHT, 5).Expand());
+
+    filter_grid_sizer->Add(dup_sizer, g_flagsH);
 
     //Data viewer ----------------------------------------------
     wxNotebook* qif_notebook = new wxNotebook(this
