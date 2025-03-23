@@ -93,7 +93,7 @@ Model_Translink::Data* Model_Translink::SetTranslink(const int64 checking_id
     set the checking type as AS_INCOME_EXPENSE = 32701 or AS_TRANSFER
     */
     Model_Checking::Data* checking_entry = Model_Checking::instance().get(checking_id);
-    checking_entry->TOACCOUNTID = checking_type;
+    // checking_entry->TOACCOUNTID = checking_type;
     Model_Checking::instance().save(checking_entry);
 
     return translink;

@@ -139,7 +139,7 @@ void mmAssetDialog::dataToControls()
 
     // Set up the transaction if this is the first entry.
     if (translink.empty())
-        m_transaction_panel->SetTransactionValue(m_asset->VALUE);
+        m_transaction_panel->SetTransactionValue(bal.first);
 
     if (!m_hidden_trans_entry) {
         m_assetName->Enable(false);

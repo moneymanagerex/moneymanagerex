@@ -24,7 +24,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "images_list.h"
 #include "util.h"
 
-#include "maincurrencydialog.h"
 #include "mmSimpleDialogs.h"
 #include "payeedialog.h"
 #include "categdialog.h"
@@ -50,11 +49,13 @@ UserTransactionPanel::UserTransactionPanel()
 
 UserTransactionPanel::UserTransactionPanel(wxWindow *parent
     , Model_Checking::Data* checking_entry
+    , bool enable_revalue
     , wxWindowID win_id
     , const wxPoint &pos
     , const wxSize &size
     , long style, const wxString &name)
     : m_checking_entry(checking_entry)
+    , m_enable_revalue(enable_revalue)
 {
     if (m_checking_entry)
     {
@@ -112,10 +113,10 @@ bool UserTransactionPanel::Create(wxWindow* parent
     transPanelSizer->Add(m_account, g_flagsH);
 
     // Type --------------------------------------------
-    m_type_selector = new wxChoice(this, wxID_VIEW_DETAILS, wxDefaultPosition, std_half_size);
+    m_type_selector = new wxChoice(this, ID_TRANS_TYPE, wxDefaultPosition, std_half_size);
     for (int i = 0; i < Model_Checking::TYPE_ID_size; ++i)
     {
-        if (i != Model_Checking::TYPE_ID_TRANSFER)
+        if (i != Model_Checking::TYPE_ID_TRANSFER || this->m_enable_revalue)
         {
             wxString type = Model_Checking::trade_type_name(i);
             m_type_selector->Append(wxGetTranslation(type), new wxStringClientData(type));
@@ -483,11 +484,10 @@ void UserTransactionPanel::CheckingType(Model_Translink::CHECKING_TYPE ct)
 int64 UserTransactionPanel::SaveChecking()
 {
     double initial_amount = 0;
-    wxDateTime trxDate = m_date_selector->GetValue();
-
     m_entered_amount->checkValue(initial_amount);
     
     const Model_Account::Data* account = Model_Account::instance().get(m_account_id);
+    wxDateTime trxDate = m_date_selector->GetValue();
     if (trxDate.FormatISODate() < account->INITIALDATE)
     {
         mmErrorDialogs::ToolTip4Object(m_account, _t("The opening date for the account is later than the date of this transaction"), _t("Invalid Date"));
@@ -499,7 +499,7 @@ int64 UserTransactionPanel::SaveChecking()
     }
 
     m_checking_entry->ACCOUNTID = m_account_id;
-    m_checking_entry->TOACCOUNTID = -1;
+    m_checking_entry->TOACCOUNTID = TransactionType() == Model_Checking::TYPE_ID_TRANSFER ? m_account_id : -1; // Self Transfer as Revaluation
 
     m_checking_entry->PAYEEID = m_payee_id;
     m_checking_entry->TRANSCODE = Model_Checking::type_name(TransactionType());
@@ -544,7 +544,7 @@ void UserTransactionPanel::OnCategs(wxCommandEvent& WXUNUSED(event))
         if (m_local_splits.size() == 1)
         {
             m_category->SetLabelText(Model_Category::full_name(m_local_splits[0].CATEGID));
-            m_entered_amount-> SetValue(m_local_splits[0].SPLITTRANSAMOUNT);
+            m_entered_amount->SetValue(m_local_splits[0].SPLITTRANSAMOUNT);
             m_entered_notes->SetValue(m_local_splits[0].NOTES);
 
             m_local_splits.clear();
