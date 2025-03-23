@@ -1261,7 +1261,10 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         joinSplit(trx_data_set, m_splitDataSets);
         saveSplit();
 
-        sMsg = _t("Import finished successfully") + "\n" + wxString::Format(_t("Total Imported: %zu"), trx_data_set.size());
+        sMsg = _t("Import finished successfully") + "\n" +
+            wxString::Format(_t("Total Imported: %zu"), trx_data_set.size()) + "\n" +
+            wxString::Format(_t("Duplicates Detected: %zu"), m_duplicateTransactions.size());
+
         trx_data_set.clear();
         vQIF_trxs_.clear();
         btnOK_->Enable(false);
