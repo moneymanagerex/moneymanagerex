@@ -37,6 +37,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Payee.h"
 #include "model/Model_Tag.h"
 
+#include "reports/mmDateRange.h"
+
 enum tab_id {
     LOG_TAB = 1,
     TRX_TAB = 2,
@@ -216,6 +218,7 @@ void mmQIFImportDialog::CreateControls()
     dupTransMethod_ = new wxChoice(static_box, wxID_ANY);
     dupTransMethod_->Append(_t("By transaction number"));
     dupTransMethod_->Append(_t("By amount and exact date"));
+    dupTransMethod_->Append(_t("By amount and nearby date"));
     dupTransMethod_->SetSelection(0);
     dupTransMethod_->Enable(false);
     dup_sizer->Add(dupTransCheckBox_, g_flagsH);
@@ -1596,11 +1599,34 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
                 isDuplicate = !existing_transactions.empty();
             }
         }
-        else if (dupMethod == 1) // By amount and exact date
+        else if (dupMethod == 1 || dupMethod == 2) // By amount and date (exact or nearby)
         {
+            wxDateTime startDate, endDate;
+            wxString trxDateStr = trx->TRANSDATE;
+
+            if (dupMethod == 1) // exact date
+            {
+                startDate = endDate = wxDateTime();
+                startDate.ParseISODate(trxDateStr);
+                endDate = startDate;
+            }
+            else // nearby date
+            {
+                wxDateTime trxDate;
+                trxDate.ParseISODate(trxDateStr);
+                startDate = trxDate;
+                endDate = trxDate;
+                startDate.Subtract(wxDateSpan::Days(4));
+                endDate.Add(wxDateSpan::Days(2));
+            }
+
+            wxString startDateStr = startDate.FormatISODate() + "T00:00:00";
+            wxString endDateStr = mmDateRange::getDayEnd(endDate).FormatISOCombined();
+
             const auto potential_matches = Model_Checking::instance().find(
-                Model_Checking::TRANSDATE(trx->TRANSDATE),
                 Model_Checking::TRANSAMOUNT(trx->TRANSAMOUNT),
+                Model_Checking::TRANSDATE(startDateStr, GREATER_OR_EQUAL),
+                Model_Checking::TRANSDATE(endDateStr, LESS_OR_EQUAL),
                 Model_Checking::DELETEDTIME(wxEmptyString, EQUAL));
 
             for (const auto& existingTrx : potential_matches)
