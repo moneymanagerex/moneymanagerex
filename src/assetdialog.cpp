@@ -139,13 +139,15 @@ void mmAssetDialog::dataToControls()
 
     // Set up the transaction if this is the first entry.
     if (translink.empty())
-        m_transaction_panel->SetTransactionValue(m_asset->VALUE);
+        m_transaction_panel->SetTransactionValue(bal.first);
 
     if (!m_hidden_trans_entry) {
         m_assetName->Enable(false);
         m_dpc->Enable(false);
         m_assetType->Enable(false);
         m_value->Enable(false);
+        m_valueChange->Enable(false);
+        m_valueChange->Enable(false);
     }
 
     if (m_checking_entry && !m_checking_entry->DELETEDTIME.IsEmpty()) {
