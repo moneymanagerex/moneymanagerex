@@ -215,7 +215,7 @@ void mmQIFImportDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     dupTransMethod_ = new wxChoice(static_box, wxID_ANY);
     dupTransMethod_->Append(_t("By transaction number"));
-    dupTransMethod_->Append(_t("By date and amount"));
+    dupTransMethod_->Append(_t("By amount and exact date"));
     dupTransMethod_->SetSelection(0);
     dupTransMethod_->Enable(false);
     dup_sizer->Add(dupTransCheckBox_, g_flagsH);
@@ -430,6 +430,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     m_QIFpayeeNames.clear();
     m_payee_names.clear();
     m_payee_names.Add(_t("Unknown"));
+    m_duplicateTransactions.clear();  // Clear the list of matched transactions
     wxString catDelimiter = Model_Infotable::instance().getString("CATEG_DELIMITER", ":");
 
     wxFileInputStream input(m_FileNameStr);
@@ -1595,14 +1596,23 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
                 isDuplicate = !existing_transactions.empty();
             }
         }
-        else if (dupMethod == 1) // By date and amount
+        else if (dupMethod == 1) // By amount and exact date
         {
-            const auto existing_transactions = Model_Checking::instance().find(
+            const auto potential_matches = Model_Checking::instance().find(
                 Model_Checking::TRANSDATE(trx->TRANSDATE),
                 Model_Checking::TRANSAMOUNT(trx->TRANSAMOUNT),
                 Model_Checking::DELETEDTIME(wxEmptyString, EQUAL));
 
-            isDuplicate = !existing_transactions.empty();
+            for (const auto& existingTrx : potential_matches)
+            {
+                bool alreadyMatched = m_duplicateTransactions.find(existingTrx.TRANSID) != m_duplicateTransactions.end();
+                if (!alreadyMatched)
+                {
+                    isDuplicate = true;
+                    m_duplicateTransactions.insert(existingTrx.TRANSID);
+                    break;
+                }
+            }
         }
 
         if (isDuplicate)

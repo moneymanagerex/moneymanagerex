@@ -130,6 +130,8 @@ private:
     std::map<std::pair <int64, wxString>, std::map<int, std::pair<wxString, wxRegEx>> > payeeMatchPatterns_;
     bool payeeRegExInitialized_ = false;
 
+    std::set<int64> m_duplicateTransactions; // Keep track of matched transaction IDs
+
     enum LIST_ID
     {
         LIST_ID_ID = 0,
