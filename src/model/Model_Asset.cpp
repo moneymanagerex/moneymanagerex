@@ -187,6 +187,13 @@ std::pair<double, double> Model_Asset::valueAtDate(const Data* r, const wxDate d
                     balance.first += amount;
 
                 balance.second += amount;
+
+                // Self Transfer as Revaluation
+                if (tran.ACCOUNTID == tran.TOACCOUNTID && Model_Checking::type_id(tran.TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER)
+                {
+                    // TODO honor TRANSAMOUNT => TOTRANSAMOUNT
+                    balance.second = tran.TOTRANSAMOUNT;
+                }
             }
 
             wxTimeSpan diff_time = date - last;

@@ -37,6 +37,7 @@ public:
 
     UserTransactionPanel(wxWindow *parent
         , Model_Checking::Data* checking_entry
+        , bool enable_revalue = false
         , wxWindowID win_id = wxID_ANY
         , const wxPoint &pos = wxDefaultPosition
         , const wxSize &size = wxDefaultSize
@@ -63,6 +64,7 @@ public:
 
 private:
     Model_Checking::Data* m_checking_entry = nullptr;
+    bool m_enable_revalue = false;
     int64 m_transaction_id = -1;
 
     int64 m_account_id = -1;
@@ -125,6 +127,7 @@ private:
         ID_TRANS_FREQUENT_NOTES,
         ID_TRANS_TRANSFER,
         ID_TRANS_CURRENCY_BUTTON,
+        ID_TRANS_TYPE,
         mmID_CATEGORY_SPLIT,
     };
 };
