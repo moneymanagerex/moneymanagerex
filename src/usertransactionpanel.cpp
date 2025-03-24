@@ -362,6 +362,11 @@ void UserTransactionPanel::OnTransPayeeButton(wxCommandEvent& WXUNUSED(event))
 
 void UserTransactionPanel::OnTransCategoryCombobox(wxCommandEvent& WXUNUSED(event))
 {
+    if (!m_category->GetValue().empty())
+    {
+        m_category_id = m_category->mmGetCategoryId();
+        return;
+    }
     mmCategDialog dlg(this, true, m_category_id);
     if (dlg.ShowModal() == wxID_OK)
     {
