@@ -480,7 +480,7 @@ void mmAssetDialog::CreateAssetAccount()
     asset_account->FAVORITEACCT = "FALSE";
     asset_account->STATUS = Model_Account::STATUS_NAME_OPEN;
     asset_account->INITIALBAL = 0;
-    asset_account->INITIALDATE = wxDate::Today().FormatISODate();
+    asset_account->INITIALDATE = m_asset->STARTDATE;
     asset_account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;
     Model_Account::instance().save(asset_account);
 
