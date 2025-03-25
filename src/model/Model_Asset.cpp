@@ -145,7 +145,7 @@ std::pair<double, double> Model_Asset::valueAtDate(const Data* r, const wxDate d
             for (const auto& link : translink_records)
             {
                 const Model_Checking::Data* tran = Model_Checking::instance().get(link.CHECKINGACCOUNTID);
-                if(tran) trans.push_back(*tran);
+                if(tran && tran->DELETEDTIME.IsEmpty()) trans.push_back(*tran);
             }
 
             std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
