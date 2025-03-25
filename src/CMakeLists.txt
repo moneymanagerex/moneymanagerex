@@ -224,6 +224,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
 
     import_export/export.cpp
     import_export/export.h
+    import_export/ofx_import_gui.cpp
+    import_export/ofx_import_gui.h
     import_export/parsers.cpp
     import_export/parsers.h
     import_export/qif_export.cpp
@@ -352,7 +354,7 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     "platfdep_${MMEX_PLATFDEP}"
 
     "${MACOSX_APP_ICON_FILE}"
-    "${MMEX_RC}")
+    "${MMEX_RC}" "../3rd/tinyxml2/tinyxml2.cpp" "../3rd/tinyxml2/tinyxml2 (2).h")
 
 if(MSVC AND MSVC_VERSION LESS 1800)
     message(SEND_ERROR "MSVC version too old. Please use VS2013 (12.0) or later for required C++11 features.")
@@ -393,6 +395,9 @@ target_link_libraries(${MMEX_EXE} PUBLIC
     fmt
     LuaGlue
     Lua)
+
+find_package(tinyxml2 CONFIG REQUIRED)
+target_link_libraries(${MMEX_EXE} PRIVATE tinyxml2::tinyxml2)
 
 if(MSVC)
     # Based on this http://stackoverflow.com/a/8294669
