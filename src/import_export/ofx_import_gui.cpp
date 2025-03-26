@@ -64,11 +64,11 @@ END_EVENT_TABLE()
 wxString DecodeHTMLEntities(const wxString& input)
 {
     wxString result = input;
-    result.Replace("&", "&");
-    result.Replace("<", "<");
-    result.Replace(">", ">");
-    result.Replace("\"", "\"");
-    result.Replace("'", "'");
+    result.Replace("&amp;", "&");
+    result.Replace("&lt;", "<");
+    result.Replace("&gt;", ">");
+    result.Replace("&quot;", "\"");
+    result.Replace("&apos;", "'");
     return result;
 }
 
