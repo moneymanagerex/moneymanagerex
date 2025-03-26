@@ -111,6 +111,7 @@ void mmAssetDialog::dataToControls()
         m_assetName->Enable(false);
     m_dpc->SetValue(Model_Asset::STARTDATE(m_asset));
     m_assetType->SetSelection(Model_Asset::type_id(m_asset));
+    if (Model_Account::instance().get(m_asset->ASSETTYPE)) m_assetType->Enable(false);
 
     auto bal = Model_Asset::value(m_asset);
     m_value->SetValue(bal.first);
@@ -475,7 +476,7 @@ void mmAssetDialog::SetTransactionDate()
 void mmAssetDialog::CreateAssetAccount()
 {
     Model_Account::Data* asset_account = Model_Account::instance().create();
-    asset_account->ACCOUNTNAME = m_asset->ASSETNAME;
+    asset_account->ACCOUNTNAME = m_asset->ASSETTYPE;
     asset_account->ACCOUNTTYPE = Model_Account::TYPE_NAME_ASSET;
     asset_account->FAVORITEACCT = "FALSE";
     asset_account->STATUS = Model_Account::STATUS_NAME_OPEN;
@@ -485,7 +486,7 @@ void mmAssetDialog::CreateAssetAccount()
     Model_Account::instance().save(asset_account);
 
     mmAssetDialog asset_dialog(this, m_asset, true);
-    asset_dialog.SetTransactionAccountName(m_asset->ASSETNAME);
+    asset_dialog.SetTransactionAccountName(m_asset->ASSETTYPE);
     asset_dialog.SetTransactionDate();
     asset_dialog.ShowModal();
 }
