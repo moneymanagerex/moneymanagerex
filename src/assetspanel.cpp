@@ -117,6 +117,7 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
     else
     {
         auto asset_account = Model_Account::instance().get(m_panel->m_assets[m_selected_row].ASSETNAME);  // ASSETNAME <=> ACCOUNTNAME
+        if (asset_account) asset_account = Model_Account::instance().get(m_panel->m_assets[m_selected_row].ASSETTYPE);  // ASSETTYPE <=> ACCOUNTNAME
         menu.Enable(MENU_TREEPOPUP_GOTOACCOUNT, asset_account);
         menu.Enable(MENU_TREEPOPUP_VIEWTRANS, asset_account);
     }
@@ -757,14 +758,15 @@ void mmAssetsPanel::AddAssetTrans(const int selected_index)
     Model_Asset::Data* asset = &m_assets[selected_index];
     mmAssetDialog asset_dialog(this, asset, true);
     Model_Account::Data* account = Model_Account::instance().get(asset->ASSETNAME);
-    if (account)
+    Model_Account::Data* account2 = Model_Account::instance().get(asset->ASSETTYPE);
+    if (account || account2)
     {
-        asset_dialog.SetTransactionAccountName(asset->ASSETNAME);
+        asset_dialog.SetTransactionAccountName(account ? asset->ASSETNAME : asset->ASSETTYPE);
     }
     else
     {
         Model_Translink::Data_Set translist = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_ASSET, asset->ASSETID);
-        if (!translist.empty())
+        if (translist.empty())
         {
             wxMessageBox(_t(
                 "This asset does not have its own account\n\n"

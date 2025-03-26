@@ -243,7 +243,7 @@ std::pair<double, double> Model_Account::investment_balance(const Data* r)
         sum.second += Model_Stock::InvestmentValue(stock);
     }
 
-    for (const auto& asset: Model_Asset::instance().find(Model_Asset::ASSETNAME(r->ACCOUNTNAME)))
+    for (const auto& asset: Model_Asset::instance().find_or(Model_Asset::ASSETNAME(r->ACCOUNTNAME), Model_Asset::ASSETTYPE(static_cast<Model_Asset::TYPE_ID>(Model_Asset::type_id(r->ACCOUNTNAME)))))
     {
         auto asset_bal = Model_Asset::value(asset);
         sum.first += asset_bal.second;
