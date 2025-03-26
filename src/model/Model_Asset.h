@@ -119,7 +119,7 @@ public:
     /** Returns the calculated current value */
     static std::pair<double, double> value(const Data& r);
     /** Returns the calculated value at a given date */
-    std::pair<double, double> valueAtDate(const Data* r, const wxDate date);
+    std::pair<double, double> valueAtDate(const Data* r, const wxDate& date);
 };
 
 //----------------------------------------------------------------------------
