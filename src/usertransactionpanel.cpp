@@ -38,7 +38,6 @@ EVT_BUTTON(ID_TRANS_ACCOUNT_BUTTON, UserTransactionPanel::OnTransAccountButton)
 EVT_BUTTON(ID_TRANS_PAYEE_BUTTON, UserTransactionPanel::OnTransPayeeButton)
 EVT_BUTTON(mmID_CATEGORY_SPLIT, UserTransactionPanel::OnCategs)
 EVT_COMBOBOX(ID_TRANS_CATEGORY_COMBOBOX, UserTransactionPanel::OnTransCategoryCombobox)
-EVT_MENU(wxID_ANY, UserTransactionPanel::onSelectedNote)
 EVT_BUTTON(wxID_FILE, UserTransactionPanel::OnAttachments)
 wxEND_EVENT_TABLE()
 /*******************************************************/
@@ -70,6 +69,7 @@ UserTransactionPanel::UserTransactionPanel(wxWindow *parent
 
     Create(parent, win_id, pos, size, style, name);
     DataToControls();
+    BindEventsAndTrigger();
     Model_Usage::instance().pageview(this);
 }
 
@@ -126,6 +126,7 @@ bool UserTransactionPanel::Create(wxWindow* parent
     m_type_selector->SetSelection(Model_Checking::TYPE_ID_WITHDRAWAL);
     mmToolTip(m_type_selector, _t("Withdraw funds from or deposit funds to this Account."));
 
+    // transfer indicator (deprecated)
     m_transfer = new wxCheckBox(this, ID_TRANS_TRANSFER, _t("&Transfer")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_transfer->Hide();
@@ -179,10 +180,10 @@ bool UserTransactionPanel::Create(wxWindow* parent
     transPanelSizer->Add(m_status_selector, g_flagsH);
 
     // Payee ------------------------------------------------
-    wxStaticText* payee_button_text = new wxStaticText(this, ID_TRANS_PAYEE_BUTTON_TEXT, _t("Payee"));
+    m_payee_text = new wxStaticText(this, ID_TRANS_PAYEE_BUTTON_TEXT, _t("Payee"));
     m_payee = new wxButton(this, ID_TRANS_PAYEE_BUTTON, _t("Select Payee"), wxDefaultPosition, std_size, 0);
     mmToolTip(m_payee, _t("Specify a person, Company or Organisation for this transaction."));
-    transPanelSizer->Add(payee_button_text, g_flagsH);
+    transPanelSizer->Add(m_payee_text, g_flagsH);
     transPanelSizer->Add(m_payee, g_flagsH);
 
     // Category ---------------------------------------------
@@ -218,15 +219,13 @@ bool UserTransactionPanel::Create(wxWindow* parent
     //m_attachment->Enable(false);
 
     // Frequent Notes ---------------------------------------------
-    frequent_notes = new wxButton(this, ID_TRANS_FREQUENT_NOTES, "..."
+    m_frequent_notes = new wxButton(this, ID_TRANS_FREQUENT_NOTES, "..."
         , wxDefaultPosition, wxSize(m_attachment->GetSize().GetX(), -1));
-    mmToolTip(frequent_notes, _t("Select one of the frequently used notes"));
-    frequent_notes->Connect(ID_TRANS_FREQUENT_NOTES
-        , wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(UserTransactionPanel::OnFrequentNotes), nullptr, this);
+    mmToolTip(m_frequent_notes, _t("Select one of the frequently used notes"));
 
     wxBoxSizer* right_align_sizer = new wxBoxSizer(wxHORIZONTAL);
     right_align_sizer->Add(m_attachment, g_flagsH);
-    right_align_sizer->Add(frequent_notes, g_flagsH);
+    right_align_sizer->Add(m_frequent_notes, g_flagsH);
 
     m_entered_notes = new wxTextCtrl(this, ID_TRANS_ENTERED_NOTES, "", wxDefaultPosition, wxSize(220, 96), wxTE_MULTILINE);
     mmToolTip(m_entered_notes, _t("Specify any text notes you want to add to this transaction."));
@@ -292,8 +291,24 @@ void UserTransactionPanel::DataToControls()
         m_entered_number->Enable(false);
         m_attachment->Enable(false);
         m_entered_notes->Enable(false);
-        frequent_notes->Enable(false);
+        m_frequent_notes->Enable(false);
     }
+}
+
+void UserTransactionPanel::BindEventsAndTrigger()
+{
+    m_type_selector->Bind(wxEVT_CHOICE, [this](wxCommandEvent& event)
+    {
+        int selection = m_type_selector->GetSelection();
+        m_payee_text->Show(selection != Model_Checking::TYPE_ID_TRANSFER);
+        m_payee->Show(selection != Model_Checking::TYPE_ID_TRANSFER);
+
+        this->Layout();
+    });
+    wxCommandEvent evt(wxEVT_CHOICE, ID_TRANS_TYPE);
+    wxPostEvent(m_type_selector, evt);
+
+    m_frequent_notes->Bind(wxEVT_BUTTON, &UserTransactionPanel::OnFrequentNotes, this);
 }
 
 void UserTransactionPanel::SetLastPayeeAndCategory(const int64 account_id)
@@ -377,24 +392,24 @@ void UserTransactionPanel::OnTransCategoryCombobox(wxCommandEvent& WXUNUSED(even
 
 void UserTransactionPanel::OnFrequentNotes(wxCommandEvent& WXUNUSED(event))
 {
-    Model_Checking::getFrequentUsedNotes(m_frequent_notes);
+    std::vector<wxString> frequent_notes;
+    Model_Checking::getFrequentUsedNotes(frequent_notes);
     wxMenu menu;
     int id = wxID_HIGHEST;
-    for (const auto& entry : m_frequent_notes)
+    for (const auto& entry : frequent_notes)
     {
         const wxString& label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
-        menu.Append(++id, label);
+        int menu_id = ++id;
+        menu.Append(menu_id, label);
+        Bind(wxEVT_MENU, [this, notes = frequent_notes, i = menu_id - wxID_HIGHEST](wxCommandEvent&)
+        {
+            if (i > 0 && i <= static_cast<int>(notes.size()))
+            m_entered_notes->ChangeValue(notes[i - 1]);
+        }, menu_id);
     }
 
-    if (!m_frequent_notes.empty())
+    if (!frequent_notes.empty())
         PopupMenu(&menu);
-}
-
-void UserTransactionPanel::onSelectedNote(wxCommandEvent& event)
-{
-    int i = event.GetId() - wxID_HIGHEST;
-    if (i > 0 && i <= static_cast<int>(m_frequent_notes.size()))
-        m_entered_notes->ChangeValue(m_frequent_notes[i - 1]);
 }
 
 void UserTransactionPanel::OnAttachments(wxCommandEvent& WXUNUSED(event))
@@ -411,7 +426,7 @@ void UserTransactionPanel::OnAttachments(wxCommandEvent& WXUNUSED(event))
 
 bool UserTransactionPanel::ValidCheckingAccountEntry()
 {
-    return (m_account_id != -1) && (m_payee_id != -1) && (m_category_id != -1) && (!m_entered_amount->GetValue().IsEmpty());
+    return (m_account_id != -1) && (m_payee_id != -1 || TransactionType() == Model_Checking::TYPE_ID_TRANSFER) && (m_category_id != -1) && (!m_entered_amount->GetValue().IsEmpty());
 }
 
 wxDateTime UserTransactionPanel::TransactionDate()
