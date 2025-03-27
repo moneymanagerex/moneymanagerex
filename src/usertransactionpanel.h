@@ -81,6 +81,7 @@ private:
     , const wxString &name = _t("UserTransactionPanel"));
 
     void DataToControls();
+    void BindEventsAndTrigger();
     void SetLastPayeeAndCategory(const int64 account_id);
 
     void OnTransAccountButton(wxCommandEvent& WXUNUSED(event));
@@ -89,7 +90,6 @@ private:
     void OnCategs(wxCommandEvent& event);
 
     void OnFrequentNotes(wxCommandEvent& event);
-    void onSelectedNote(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& WXUNUSED(event));
 
 private:
@@ -101,13 +101,13 @@ private:
     mmTextCtrl* m_entered_amount = nullptr;
     wxCheckBox* m_transfer = nullptr;
     wxButton* m_trans_currency = nullptr;
+    wxStaticText* m_payee_text = nullptr;
     wxButton* m_payee = nullptr;
     mmComboBoxCategory* m_category = nullptr;
     wxTextCtrl* m_entered_number = nullptr;
     wxTextCtrl* m_entered_notes = nullptr;
-    std::vector<wxString> m_frequent_notes;
     wxBitmapButton* m_attachment = nullptr;
-    wxButton* frequent_notes = nullptr;
+    wxButton* m_frequent_notes = nullptr;
 
     std::vector<Split> m_local_splits;
 
