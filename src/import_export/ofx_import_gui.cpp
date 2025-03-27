@@ -98,8 +98,7 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     mainSizer->Add(new wxStaticText(this, wxID_ANY, etaText), 0, wxALL, 5);
 
     // Transaction info
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Transaction Number: %s"), fitid)), 0, wxLEFT | wxRIGHT | wxTOP, 5);
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("FITID: %s"), fitid)), 0, wxLEFT | wxRIGHT | wxBOTTOM, 5);
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Transaction Number (FITID): %s"), fitid)), 0, wxLEFT | wxRIGHT | wxTOP, 5);
     mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Date: %s"), date)), 0, wxALL, 5);
     mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Amount: %s"), amount)), 0, wxALL, 5);
     mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Type: %s"), transType)), 0, wxALL, 5);
