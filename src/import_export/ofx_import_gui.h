@@ -1,7 +1,7 @@
 #ifndef OFX_IMPORT_GUI_H_
 #define OFX_IMPORT_GUI_H_
 
-#include "tinyxml2.h"
+#include <wx/xml/xml.h>
 #include <map>
 #include <wx/grid.h>
 #include <wx/wx.h>
@@ -129,7 +129,7 @@ private:
     void OnBrowse(wxCommandEvent& event);
     void OnImport(wxCommandEvent& event);
     bool ParseOFX(const wxString& filePath, std::vector<OFXImportResult>& importResults, OFXImportStats& stats);
-    bool ImportTransactions(tinyxml2::XMLElement* banktranlist, wxLongLong accountID, std::vector<OFXImportResult>& results, OFXImportStats& stats);
+    bool ImportTransactions(wxXmlNode* banktranlist, wxLongLong accountID, std::vector<OFXImportResult>& results, OFXImportStats& stats); // Update parameter type
     wxString getPayeeName(const wxString& memo, bool& usedRegex, wxString& matchedPattern);
 
     wxTextCtrl* fileNameCtrl_;
@@ -140,6 +140,7 @@ private:
     wxLongLong importStartTime_;
     std::map<wxString, wxString> payeeRegexMap_;
 };
+
 
 class mmOFXImportSummaryDialog : public wxDialog
 {

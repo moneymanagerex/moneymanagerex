@@ -18,7 +18,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "tinyxml2.cpp"
+#include <wx/sstream.h>
+#include <wx/xml/xml.h>
 #include <wx/grid.h>
 
 #include "model/Model_Account.h"
@@ -1045,6 +1046,7 @@ bool mmOFXImportDialog::ParseOFX(const wxString& filePath, std::vector<OFXImport
     wxFile file(filePath);
     if (!file.IsOpened())
     {
+        wxLogError("Failed to open OFX file: %s", filePath);
         return false;
     }
 
@@ -1053,59 +1055,181 @@ bool mmOFXImportDialog::ParseOFX(const wxString& filePath, std::vector<OFXImport
     wxCharBuffer buffer(length);
     file.Read(buffer.data(), length);
     fileContent = wxString::FromUTF8(buffer.data(), length);
+    file.Close();
 
+    wxLogDebug("Raw OFX content (first 500 chars): %s", fileContent.Left(500));
+
+    // Preprocess OFX content
     wxString xmlContent = fileContent;
     xmlContent.Replace("\r\n", "\n");
     xmlContent.Replace("\r", "\n");
-    wxString newXmlContent;
+
+    // Remove SGML header
+    int ofxStart = xmlContent.Find("<OFX>");
+    if (ofxStart == wxNOT_FOUND)
+    {
+        wxLogError("No <OFX> tag found in file: %s", filePath);
+        return false;
+    }
+    xmlContent = xmlContent.Mid(ofxStart);
+
+    // Build a well-formed XML string
+    wxString newXmlContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     wxStringTokenizer tokenizer(xmlContent, "\n");
+    wxArrayString openTags; // Stack to track open tags
+
     while (tokenizer.HasMoreTokens())
     {
         wxString currentLine = tokenizer.GetNextToken().Trim().Trim(false);
-        if (currentLine.StartsWith("<") && !currentLine.StartsWith("</") && !currentLine.EndsWith(">"))
+        if (currentLine.IsEmpty())
+            continue;
+
+        wxLogDebug("Processing line: %s", currentLine);
+
+        if (currentLine.StartsWith("</")) // Closing tag
         {
-            wxString tag = currentLine.SubString(1, currentLine.Length() - 1);
-            if (tag.Contains(">"))
+            wxString tag = currentLine.AfterFirst('/').BeforeFirst('>');
+            if (!openTags.IsEmpty() && openTags.Last() == tag)
             {
-                tag = tag.BeforeFirst('>');
+                openTags.RemoveAt(openTags.GetCount() - 1); // Pop the matching tag
+                newXmlContent << currentLine << "\n";
+                wxLogDebug("Closed tag: %s", tag);
             }
-            newXmlContent << currentLine << "\n";
-            if (!tag.IsEmpty() && tag != "OFX" && tag != "SIGNONMSGSRSV1" && tag != "SONRS" && tag != "STATUS" && tag != "BANKMSGSRSV1" && tag != "STMTTRNRS" &&
-                tag != "STMTRS" && tag != "BANKACCTFROM" && tag != "BANKTRANLIST" && tag != "STMTTRN" && tag != "LEDGERBAL" && tag != "AVAILBAL")
+            else
             {
-                newXmlContent << "</" << tag << ">\n";
+                wxLogDebug("Unmatched closing tag ignored: %s", tag);
+                // Optionally, we could add error handling here
+            }
+        }
+        else if (currentLine.StartsWith("<") && !currentLine.EndsWith("/>")) // Opening tag
+        {
+            wxString tag = currentLine.AfterFirst('<').BeforeFirst('>');
+            if (tag.Contains(" "))
+                tag = tag.BeforeFirst(' '); // Strip attributes
+            if (!tag.IsEmpty())
+            {
+                // Check if the line already contains content (e.g., <CODE>0)
+                wxString content = currentLine.AfterFirst('>').Trim(false);
+                if (!content.IsEmpty() && !content.StartsWith("<"))
+                {
+                    // This is a tag with immediate content, so close it immediately
+                    newXmlContent << currentLine << "</" << tag << ">\n";
+                    wxLogDebug("Added tag with content: %s", tag);
+                }
+                else
+                {
+                    // Standard opening tag
+                    openTags.Add(tag);
+                    newXmlContent << currentLine << "\n";
+                    wxLogDebug("Added opening tag: %s", tag);
+                }
             }
         }
         else
         {
+            // Self-closing or already complete tag
             newXmlContent << currentLine << "\n";
+            wxLogDebug("Added complete line: %s", currentLine);
         }
     }
 
-    tinyxml2::XMLDocument doc;
-    if (doc.Parse(newXmlContent.mb_str()) != tinyxml2::XML_SUCCESS)
+    // Close any remaining open tags
+    for (int i = openTags.GetCount() - 1; i >= 0; --i)
     {
+        wxString tag = openTags[i];
+        newXmlContent << "</" << tag << ">\n";
+        wxLogDebug("Added missing closing tag: %s", tag);
+    }
+
+    wxLogDebug("Preprocessed XML content (first 1000 chars): %s", newXmlContent.Left(1000));
+
+    // Parse with wxXmlDocument
+    wxXmlDocument doc;
+    wxStringInputStream input(newXmlContent);
+    if (!doc.Load(input))
+    {
+        wxLogError("Failed to parse preprocessed OFX XML content from file: %s", filePath);
         return false;
     }
 
-    tinyxml2::XMLElement* root = doc.FirstChildElement("OFX");
-    if (!root)
+    wxXmlNode* root = doc.GetRoot();
+    if (!root || root->GetName() != "OFX")
+    {
+        wxLogError("No <OFX> root element found after preprocessing in file: %s", filePath);
         return false;
-    tinyxml2::XMLElement* bankmsgs = root->FirstChildElement("BANKMSGSRSV1");
+    }
+
+    // Debug the XML tree
+    wxXmlNode* child = root->GetChildren();
+    wxString foundTags;
+    while (child)
+    {
+        if (child->GetType() == wxXML_ELEMENT_NODE)
+        {
+            foundTags << child->GetName() << " ";
+            wxLogDebug("Child of <OFX>: %s", child->GetName());
+        }
+        child = child->GetNext();
+    }
+    wxLogDebug("All children of <OFX>: %s", foundTags);
+
+    wxXmlNode* bankmsgs = root->GetChildren();
+    while (bankmsgs)
+    {
+        if (bankmsgs->GetType() == wxXML_ELEMENT_NODE && bankmsgs->GetName().Upper() == "BANKMSGSRSV1")
+            break;
+        bankmsgs = bankmsgs->GetNext();
+    }
     if (!bankmsgs)
+    {
+        wxLogError("No <BANKMSGSRSV1> element found in file: %s", filePath);
         return false;
-    tinyxml2::XMLElement* stmttrnrs = bankmsgs->FirstChildElement("STMTTRNRS");
+    }
+
+    wxXmlNode* stmttrnrs = bankmsgs->GetChildren();
+    while (stmttrnrs)
+    {
+        if (stmttrnrs->GetType() == wxXML_ELEMENT_NODE && stmttrnrs->GetName().Upper() == "STMTTRNRS")
+            break;
+        stmttrnrs = stmttrnrs->GetNext();
+    }
     if (!stmttrnrs)
+    {
+        wxLogError("No <STMTTRNRS> element found in file: %s", filePath);
         return false;
-    tinyxml2::XMLElement* stmtrs = stmttrnrs->FirstChildElement("STMTRS");
+    }
+
+    wxXmlNode* stmtrs = stmttrnrs->GetChildren();
+    while (stmtrs)
+    {
+        if (stmtrs->GetType() == wxXML_ELEMENT_NODE && stmtrs->GetName().Upper() == "STMTRS")
+            break;
+        stmtrs = stmtrs->GetNext();
+    }
     if (!stmtrs)
+    {
+        wxLogError("No <STMTRS> element found in file: %s", filePath);
         return false;
-    tinyxml2::XMLElement* banktranlist = stmtrs->FirstChildElement("BANKTRANLIST");
+    }
+
+    wxXmlNode* banktranlist = stmtrs->GetChildren();
+    while (banktranlist)
+    {
+        if (banktranlist->GetType() == wxXML_ELEMENT_NODE && banktranlist->GetName().Upper() == "BANKTRANLIST")
+            break;
+        banktranlist = banktranlist->GetNext();
+    }
     if (!banktranlist)
+    {
+        wxLogError("No <BANKTRANLIST> element found in file: %s", filePath);
         return false;
+    }
 
     return ImportTransactions(banktranlist, account_id_, importResults, stats);
 }
+
+
+
 
 wxString mmOFXImportDialog::getPayeeName(const wxString& memo, bool& usedRegex, wxString& matchedPattern)
 {
@@ -1158,8 +1282,7 @@ wxString mmOFXImportDialog::getPayeeName(const wxString& memo, bool& usedRegex, 
     return payeeName;
 }
 
-bool mmOFXImportDialog::ImportTransactions(tinyxml2::XMLElement* banktranlist, wxLongLong accountID, std::vector<OFXImportResult>& results,
-                                           OFXImportStats& stats)
+bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong accountID, std::vector<OFXImportResult>& results, OFXImportStats& stats)
 {
     Model_Account::Data* account = Model_Account::instance().get(accountID.GetValue());
     if (!account)
@@ -1175,26 +1298,44 @@ bool mmOFXImportDialog::ImportTransactions(tinyxml2::XMLElement* banktranlist, w
     stats.totalTransactions = 0;
 
     int totalTransactions = 0;
-    for (tinyxml2::XMLElement* stmttrn = banktranlist->FirstChildElement("STMTTRN"); stmttrn; stmttrn = stmttrn->NextSiblingElement("STMTTRN"))
+    for (wxXmlNode* node = banktranlist->GetChildren(); node; node = node->GetNext())
     {
-        totalTransactions++;
+        if (node->GetType() == wxXML_ELEMENT_NODE && node->GetName().Upper() == "STMTTRN")
+            totalTransactions++;
     }
 
     int transactionIndex = 0;
-    for (tinyxml2::XMLElement* stmttrn = banktranlist->FirstChildElement("STMTTRN"); stmttrn; stmttrn = stmttrn->NextSiblingElement("STMTTRN"))
+    for (wxXmlNode* stmttrn = banktranlist->GetChildren(); stmttrn; stmttrn = stmttrn->GetNext())
     {
-        const char* fitid = stmttrn->FirstChildElement("FITID") ? stmttrn->FirstChildElement("FITID")->GetText() : "";
-        const char* dtposted = stmttrn->FirstChildElement("DTPOSTED") ? stmttrn->FirstChildElement("DTPOSTED")->GetText() : "";
-        const char* trnamt = stmttrn->FirstChildElement("TRNAMT") ? stmttrn->FirstChildElement("TRNAMT")->GetText() : "0";
-        const char* memo = stmttrn->FirstChildElement("MEMO") ? stmttrn->FirstChildElement("MEMO")->GetText() : "Unknown Payee";
+        if (stmttrn->GetType() != wxXML_ELEMENT_NODE || stmttrn->GetName().Upper() != "STMTTRN")
+            continue;
+
+        wxString fitid, dtposted, trnamt, memo;
+        wxXmlNode* child = stmttrn->GetChildren();
+        while (child)
+        {
+            if (child->GetType() == wxXML_ELEMENT_NODE)
+            {
+                wxString name = child->GetName().Upper();
+                if (name == "FITID")
+                    fitid = child->GetNodeContent();
+                else if (name == "DTPOSTED")
+                    dtposted = child->GetNodeContent();
+                else if (name == "TRNAMT")
+                    trnamt = child->GetNodeContent();
+                else if (name == "MEMO")
+                    memo = child->GetNodeContent();
+            }
+            child = child->GetNext();
+        }
 
         OFXImportResult result;
-        result.fitid = wxString::FromUTF8(fitid);
-        result.date = dtposted ? wxString(dtposted).Left(8) : wxEmptyString;
-        result.amount = wxString::FromUTF8(trnamt);
-        result.ofxPayee = wxString::FromUTF8(memo);
+        result.fitid = fitid;
+        result.date = dtposted.IsEmpty() ? wxEmptyString : dtposted.Left(8);
+        result.amount = trnamt.IsEmpty() ? "0" : trnamt;
+        result.ofxPayee = memo.IsEmpty() ? "Unknown Payee" : memo;
 
-        if (!fitid || !dtposted || !trnamt)
+        if (fitid.IsEmpty() || dtposted.IsEmpty() || trnamt.IsEmpty())
         {
             result.imported = false;
             result.category = "N/A";
@@ -1205,33 +1346,8 @@ bool mmOFXImportDialog::ImportTransactions(tinyxml2::XMLElement* banktranlist, w
             continue;
         }
 
-        wxString trnamtStr(trnamt);
-        trnamtStr.Trim(true).Trim(false);
-        double amount = 0.0;
-        if (!trnamtStr.ToDouble(&amount))
-        {
-            result.imported = false;
-            result.category = "N/A";
-            result.transType = "N/A";
-            results.push_back(result);
-            stats.totalTransactions++;
-            transactionIndex++;
-            continue;
-        }
-
-        wxDateTime date;
-        if (!date.ParseFormat(wxString(dtposted).Left(8), "%Y%m%d"))
-        {
-            result.imported = false;
-            result.category = "N/A";
-            result.transType = "N/A";
-            results.push_back(result);
-            stats.totalTransactions++;
-            transactionIndex++;
-            continue;
-        }
-
-        wxString fitidStr = wxString::FromUTF8(fitid);
+        // Check for duplicates or transfers using FITID
+        wxString fitidStr = fitid;
         Model_Checking::Data_Set existingTxs = Model_Checking::instance().find(Model_Checking::TRANSACTIONNUMBER(fitidStr));
         Model_Checking::Data* existingTx = nullptr;
         bool isTransfer = false;
@@ -1265,6 +1381,7 @@ bool mmOFXImportDialog::ImportTransactions(tinyxml2::XMLElement* banktranlist, w
             continue;
         }
 
+        // Handle transfers
         if (isTransfer && existingTx)
         {
             for (auto& tx : existingTxs)
@@ -1278,10 +1395,14 @@ bool mmOFXImportDialog::ImportTransactions(tinyxml2::XMLElement* banktranlist, w
 
             existingTx->TRANSCODE = Model_Checking::TYPE_NAME_TRANSFER;
             existingTx->TOACCOUNTID = account->ACCOUNTID;
+            double amount;
+            trnamt.ToDouble(&amount);
             existingTx->TOTRANSAMOUNT = (existingTx->TRANSAMOUNT < 0) ? -existingTx->TRANSAMOUNT : existingTx->TRANSAMOUNT;
             existingTx->TRANSAMOUNT = existingTx->TOTRANSAMOUNT;
             existingTx->PAYEEID = -1;
             existingTx->CATEGID = static_cast<int>(transferCategId_);
+            wxDateTime date;
+            date.ParseFormat(dtposted.Left(8), "%Y%m%d");
             existingTx->TRANSDATE = date.FormatISOCombined();
             wxLongLong txId = Model_Checking::instance().save(existingTx);
             result.imported = (txId.GetValue() > 0);
@@ -1298,28 +1419,53 @@ bool mmOFXImportDialog::ImportTransactions(tinyxml2::XMLElement* banktranlist, w
             continue;
         }
 
+        // Process new transaction
+        double amount;
+        if (!trnamt.ToDouble(&amount))
+        {
+            result.imported = false;
+            result.category = "N/A";
+            result.transType = "N/A";
+            results.push_back(result);
+            stats.totalTransactions++;
+            transactionIndex++;
+            continue;
+        }
+
+        wxDateTime date;
+        if (!date.ParseFormat(dtposted.Left(8), "%Y%m%d"))
+        {
+            result.imported = false;
+            result.category = "N/A";
+            result.transType = "N/A";
+            results.push_back(result);
+            stats.totalTransactions++;
+            transactionIndex++;
+            continue;
+        }
+
         wxString transType = (amount >= 0) ? "Deposit" : "Withdrawal";
         bool usedRegex = false;
         wxString matchedPattern;
-        wxString payeeName = getPayeeName(wxString::FromUTF8(memo), usedRegex, matchedPattern);
+        wxString payeeName = getPayeeName(memo, usedRegex, matchedPattern);
         result.usedRegex = usedRegex;
         result.importedPayee = payeeName;
         result.regexPattern = matchedPattern;
 
         wxLongLong payeeId = -1;
-        long long categId = -1; // Default to -1 (Uncategorized)
+        long long categId = -1;
         Model_Payee::Data* payee = Model_Payee::instance().get_one(Model_Payee::PAYEENAME(payeeName));
         bool payeeExisted = (payee != nullptr);
 
         if (!payee)
         {
-            mmPayeeSelectionDialog payeeDlg(this, wxString::FromUTF8(memo), payeeName, fitidStr, date.FormatISODate(), wxString::Format("%.2f", amount),
+            mmPayeeSelectionDialog payeeDlg(this, memo, payeeName, fitidStr, date.FormatISODate(), wxString::Format("%.2f", amount),
                                             transType, transactionIndex, totalTransactions, importStartTime_);
             int modalResult = payeeDlg.ShowModal();
             if (modalResult == wxID_OK)
             {
                 wxString selectedPayee = payeeDlg.GetSelectedPayee();
-                categId = payeeDlg.GetSelectedCategoryID(); // Get user-selected category from dialog
+                categId = payeeDlg.GetSelectedCategoryID();
                 if (!payeeDlg.IsCreateNewPayee())
                 {
                     payee = Model_Payee::instance().get_one(Model_Payee::PAYEENAME(selectedPayee));
@@ -1335,32 +1481,29 @@ bool mmOFXImportDialog::ImportTransactions(tinyxml2::XMLElement* banktranlist, w
                 {
                     payeeId = payee->PAYEEID;
                     result.importedPayee = payee->PAYEENAME;
-                    // If updatePayeeCategory_ is true, the payee’s CATEGID is already updated in the dialog
-                    // But we use the dialog’s categId regardless
                 }
             }
             else
             {
-                break;
+                break; // User canceled
             }
         }
         else if (usedRegex)
         {
             payeeId = payee->PAYEEID;
-            categId = payee->CATEGID.GetValue(); // Use payee’s default for auto-imported
+            categId = payee->CATEGID.GetValue();
             result.importedPayee = payee->PAYEENAME;
             stats.autoImportedCount++;
         }
         else
         {
-            // For existing payee without regex, prompt user
-            mmPayeeSelectionDialog payeeDlg(this, wxString::FromUTF8(memo), payeeName, fitidStr, date.FormatISODate(), wxString::Format("%.2f", amount),
+            mmPayeeSelectionDialog payeeDlg(this, memo, payeeName, fitidStr, date.FormatISODate(), wxString::Format("%.2f", amount),
                                             transType, transactionIndex, totalTransactions, importStartTime_);
             int modalResult = payeeDlg.ShowModal();
             if (modalResult == wxID_OK)
             {
                 wxString selectedPayee = payeeDlg.GetSelectedPayee();
-                categId = payeeDlg.GetSelectedCategoryID(); // Get user-selected category
+                categId = payeeDlg.GetSelectedCategoryID();
                 payee = Model_Payee::instance().get_one(Model_Payee::PAYEENAME(selectedPayee));
                 if (payee)
                 {
@@ -1371,7 +1514,7 @@ bool mmOFXImportDialog::ImportTransactions(tinyxml2::XMLElement* banktranlist, w
             }
             else
             {
-                break;
+                break; // User canceled
             }
         }
 
@@ -1392,10 +1535,9 @@ bool mmOFXImportDialog::ImportTransactions(tinyxml2::XMLElement* banktranlist, w
         newTx->TRANSDATE = date.FormatISOCombined();
         newTx->TRANSACTIONNUMBER = fitidStr;
         newTx->PAYEEID = payeeId.GetValue();
-        newTx->CATEGID = categId; // Use the category from the dialog or payee (for auto-import)
+        newTx->CATEGID = categId;
         newTx->STATUS = Model_Checking::STATUS_KEY_NONE;
-        newTx->NOTES = wxString::FromUTF8(memo);
-
+        newTx->NOTES = memo;
 
         if (amount >= 0)
         {
@@ -1425,6 +1567,9 @@ bool mmOFXImportDialog::ImportTransactions(tinyxml2::XMLElement* banktranlist, w
 
     return true;
 }
+
+
+
 
 mmOFXImportSummaryDialog::mmOFXImportSummaryDialog(wxWindow* parent, const std::vector<OFXImportResult>& results, const OFXImportStats& stats,
                                                    wxLongLong importStartTime)
