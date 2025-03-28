@@ -443,7 +443,10 @@ void TransactionListCtrl::sortTransactions(int col_id, bool ascend)
         sortBy(SorterByNOTES(), ascend);
         break;
     case TransactionListCtrl::LIST_ID_DATE:
-        sortBy(Model_Checking::SorterByTRANSDATE_DATE(), ascend);
+        if (Option::instance().UseTransDateTime())
+            sortBy(SorterByTRANSDATE(), ascend);
+        else
+            sortBy(Model_Checking::SorterByTRANSDATE_DATE(), ascend);
         break;
     case TransactionListCtrl::LIST_ID_TIME:
         sortBy(Model_Checking::SorterByTRANSDATE_TIME(), ascend);
