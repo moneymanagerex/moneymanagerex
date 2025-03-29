@@ -18,18 +18,18 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include <wx/sstream.h>
+#include "ofx_import_gui.h"
 #include <wx/xml/xml.h>
+#include <wx/sstream.h>
 #include <wx/grid.h>
-
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
 #include "model/Model_Checking.h"
 #include "model/Model_Payee.h"
-#include "ofx_import_gui.h"
 #include "rapidjson/stringbuffer.h"
 #include "rapidjson/writer.h"
 #include <climits>
+#include <wx/event.h> // Added for event handling
 #include <wx/file.h>
 #include <wx/filedlg.h>
 #include <wx/log.h>
@@ -38,16 +38,16 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/settings.h>
 #include <wx/timectrl.h>
 
-BEGIN_EVENT_TABLE(mmOFXImportDialog, wxDialog)
+wxBEGIN_EVENT_TABLE(mmOFXImportDialog, wxDialog)
 EVT_BUTTON(wxID_OPEN, mmOFXImportDialog::OnBrowse)
 EVT_BUTTON(wxID_OK, mmOFXImportDialog::OnImport)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
-BEGIN_EVENT_TABLE(mmOFXImportSummaryDialog, wxDialog)
+wxBEGIN_EVENT_TABLE(mmOFXImportSummaryDialog, wxDialog)
 EVT_BUTTON(wxID_OK, mmOFXImportSummaryDialog::OnOK)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
-BEGIN_EVENT_TABLE(mmPayeeSelectionDialog, wxDialog)
+wxBEGIN_EVENT_TABLE(mmPayeeSelectionDialog, wxDialog)
 EVT_RADIOBUTTON(ID_USE_EXISTING, mmPayeeSelectionDialog::OnUseExistingPayee)
 EVT_RADIOBUTTON(ID_CREATE_NEW, mmPayeeSelectionDialog::OnCreateNewPayee)
 EVT_CHECKBOX(wxID_ANY, mmPayeeSelectionDialog::OnUpdateRegex)
@@ -56,11 +56,12 @@ EVT_CHOICE(wxID_ANY, mmPayeeSelectionDialog::OnPayeeChoice)
 EVT_BUTTON(ID_TITLE_CASE, mmPayeeSelectionDialog::OnTitleCase)
 EVT_GRID_LABEL_LEFT_CLICK(mmPayeeSelectionDialog::OnGridLabelLeftClick)
 EVT_BUTTON(ID_UPDATE_CATEGORY, mmPayeeSelectionDialog::OnUpdateCategoryToggle)
-EVT_BUTTON(ID_INSERT_ROW, mmPayeeSelectionDialog::OnInsertRow) // Added
-EVT_BUTTON(ID_DELETE_ROW, mmPayeeSelectionDialog::OnDeleteRow) // Added
-END_EVENT_TABLE()
-
-
+EVT_BUTTON(ID_INSERT_ROW, mmPayeeSelectionDialog::OnInsertRow)
+EVT_BUTTON(ID_DELETE_ROW, mmPayeeSelectionDialog::OnDeleteRow)
+EVT_CHOICE(wxID_ANY, mmPayeeSelectionDialog::OnCategorySelection)
+EVT_SET_FOCUS(mmPayeeSelectionDialog::OnCategoryFocus)
+EVT_INIT_DIALOG(mmPayeeSelectionDialog::OnInitDialog)
+wxEND_EVENT_TABLE()
 
 wxString DecodeHTMLEntities(const wxString& input)
 {
@@ -73,7 +74,6 @@ wxString DecodeHTMLEntities(const wxString& input)
     return result;
 }
 
-// mmPayeeSelectionDialog Implementation
 mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString& memo, const wxString& suggestedPayeeName, const wxString& fitid,
                                                const wxString& date, const wxString& amount, const wxString& transType, int currentTransaction,
                                                int totalTransactions, wxLongLong importStartTime)
@@ -81,8 +81,9 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
       selectedPayee_(suggestedPayeeName), regexPattern_(memo), shouldUpdateRegex_(false), categoryChoice_(nullptr), currentTransaction_(currentTransaction),
       totalTransactions_(totalTransactions), importStartTime_(importStartTime), updatePayeeCategory_(false), okButton_(nullptr), existingPayeeLabel_(nullptr),
       newPayeeLabel_(nullptr), payeeSizer_(nullptr), initialCategoryId_(-1), memoAdded_(false), insertRowButton_(nullptr), deleteRowButton_(nullptr),
-      categoryManuallyChanged_(false)
+      categoryManuallyChanged_(false), categoryMap(), suggestedPayeeName_(suggestedPayeeName)
 {
+
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
     // Progress and ETA
@@ -117,10 +118,20 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     payeeSizer_ = new wxBoxSizer(wxVERTICAL);
     existingPayeeLabel_ = new wxStaticText(this, wxID_ANY, _("Select Existing Payee:"));
     payeeChoice_ = new wxChoice(this, wxID_ANY);
-    for (const auto& payee : Model_Payee::instance().all(Model_Payee::COL_PAYEENAME))
+    Model_Payee::Data_Set payees = Model_Payee::instance().all(Model_Payee::COL_PAYEENAME);
+    int suggestedIndex = -1;
+    for (size_t i = 0; i < payees.size(); ++i)
     {
-        payeeChoice_->Append(payee.PAYEENAME);
+        const auto& payee = payees[i];
+        wxString displayName = payee.PAYEENAME;
+        payeeChoice_->Append(displayName, new wxInt64ClientData(payee.PAYEEID.GetValue()));
+        if (payee.PAYEENAME == suggestedPayeeName && suggestedIndex == -1)
+            suggestedIndex = i;
     }
+    if (suggestedIndex != -1)
+        payeeChoice_->SetSelection(suggestedIndex);
+    else if (!payees.empty())
+        payeeChoice_->SetSelection(0);
     payeeSizer_->Add(existingPayeeLabel_, 0, wxLEFT | wxRIGHT | wxTOP, 5);
     payeeSizer_->Add(payeeChoice_, 0, wxALL | wxEXPAND, 2);
 
@@ -132,27 +143,24 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     newPayeeInnerSizer->Add(newPayeeTextCtrl_, 1, wxEXPAND, 0);
     newPayeeInnerSizer->Add(titleCaseButton_, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, 5);
 
-    // Initially add only existing payee controls to payeeSizer_
     mainSizer->Add(payeeSizer_, 0, wxEXPAND);
 
-    // Select Category
     categoryChoice_ = new wxChoice(this, wxID_ANY);
     categoryChoice_->Append(_("Uncategorized"), new wxStringClientData("-1"));
     Model_Category::Data_Set categories = Model_Category::instance().all(Model_Category::COL_CATEGNAME);
     categoryMap.clear();
     for (const auto& cat : categories)
     {
-        categoryMap[cat.CATEGID.GetValue()] = cat; // Fixed: Use GetValue()
+        categoryMap[cat.CATEGID.GetValue()] = cat;
     }
     for (const auto& cat : categories)
     {
-        if (cat.PARENTID.GetValue() == -1) // Fixed: Use GetValue()
+        if (cat.PARENTID.GetValue() == -1)
         {
             AddCategoryToChoice(categoryChoice_, cat.CATEGID.GetValue(), categoryMap, 0);
         }
     }
     categoryChoice_->SetSelection(0);
-    wxLogDebug("Category choice initialized with %u items, selected index: %d", categoryChoice_->GetCount(), categoryChoice_->GetSelection());
 
     updateCategoryButton_ = new wxButton(this, ID_UPDATE_CATEGORY, "P", wxDefaultPosition, wxSize(25, -1));
     updateCategoryButton_->SetToolTip(_("Toggle to update payee's default category (P) or apply to this transaction only"));
@@ -162,7 +170,6 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Select Category for Payee:")), 0, wxLEFT | wxRIGHT | wxTOP, 5);
     mainSizer->Add(categoryButtonSizer, 0, wxALL | wxEXPAND, 2);
 
-    // Regex Patterns
     updateRegexCheckBox_ = new wxCheckBox(this, wxID_ANY, _("Define/Update Regex Patterns"));
     mainSizer->Add(updateRegexCheckBox_, 0, wxALL, 5);
 
@@ -171,8 +178,6 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     regexGrid_->SetColLabelValue(0, _("Regex Pattern"));
     regexGrid_->SetDefaultColSize(300);
     regexGrid_->SetColMinimalWidth(0, 50);
-    regexGrid_->SetRowSize(0, regexGrid_->GetDefaultRowSize());
-    regexGrid_->SetRowSize(1, regexGrid_->GetDefaultRowSize());
     regexGrid_->EnableGridLines(true);
     regexGrid_->EnableEditing(true);
     regexGrid_->SetDefaultCellBackgroundColour(*wxWHITE);
@@ -181,7 +186,6 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Edit Regex Patterns:")), 0, wxLEFT | wxRIGHT | wxTOP, 5);
     mainSizer->Add(regexGrid_, 1, wxALL | wxEXPAND, 2);
 
-    // Add Insert and Delete buttons for the regex grid
     wxBoxSizer* regexButtonSizer = new wxBoxSizer(wxHORIZONTAL);
     insertRowButton_ = new wxButton(this, ID_INSERT_ROW, _("Insert Row"));
     deleteRowButton_ = new wxButton(this, ID_DELETE_ROW, _("Delete Row"));
@@ -189,10 +193,8 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     regexButtonSizer->Add(deleteRowButton_, 0, wxRIGHT, 5);
     mainSizer->Add(regexButtonSizer, 0, wxLEFT | wxRIGHT | wxBOTTOM, 5);
 
-    // Buttons
     wxBoxSizer* buttonSizer = new wxBoxSizer(wxHORIZONTAL);
     okButton_ = new wxButton(this, wxID_OK, _("OK"));
-    wxLogDebug("okButton_ created at %p", okButton_);
     buttonSizer->Add(okButton_, 0, wxALL, 5);
     buttonSizer->Add(new wxButton(this, wxID_CANCEL, _("Cancel")), 0, wxALL, 5);
     mainSizer->Add(buttonSizer, 0, wxALIGN_CENTER | wxALL, 5);
@@ -202,7 +204,6 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     SetSize(wxSize(450, 680));
     Layout();
 
-    // Initial state
     payeeChoice_->Enable(true);
     existingPayeeLabel_->Show(true);
     payeeChoice_->Show(true);
@@ -211,19 +212,16 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     newPayeeLabel_->Show(false);
     newPayeeInnerSizer->Show(false);
     updateCategoryButton_->Enable(true);
-    updateCategoryButton_->Show(true);
     updateRegexCheckBox_->Enable(true);
     regexGrid_->EnableEditing(updateRegexCheckBox_->IsChecked());
     regexGrid_->Enable(false);
     insertRowButton_->Enable(false);
     deleteRowButton_->Enable(false);
 
-    // Bind after all controls are initialized
     newPayeeTextCtrl_->Bind(wxEVT_TEXT, &mmPayeeSelectionDialog::UpdateOKButton, this);
     categoryChoice_->Bind(wxEVT_CHOICE, &mmPayeeSelectionDialog::OnCategorySelection, this);
     categoryChoice_->Bind(wxEVT_SET_FOCUS, &mmPayeeSelectionDialog::OnCategoryFocus, this);
 
-    // Bind the size event to dynamically resize the grid column
     regexGrid_->Bind(wxEVT_SIZE,
                      [this](wxSizeEvent& event)
                      {
@@ -233,53 +231,50 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
                          int availableWidth = dialogWidth - padding - scrollbarWidth - 50;
 
                          if (availableWidth > 50)
-                         {
                              regexGrid_->SetColSize(0, availableWidth);
-                         }
                          else
-                         {
                              regexGrid_->SetColSize(0, 50);
-                         }
                          regexGrid_->ForceRefresh();
                          event.Skip();
                      });
 
-    // Initial column size adjustment
     int dialogWidth = GetClientSize().GetWidth();
     int scrollbarWidth = wxSystemSettings::GetMetric(wxSYS_VSCROLL_X);
     int padding = (10 * 2 + 2 * 2);
     int initialWidth = dialogWidth - padding - scrollbarWidth - 50;
     if (initialWidth > 50)
-    {
         regexGrid_->SetColSize(0, initialWidth);
-    }
     else
-    {
         regexGrid_->SetColSize(0, 50);
-    }
     regexGrid_->ForceRefresh();
 
-    wxLogDebug("Calling UpdateOKButton from constructor");
     UpdateOKButton(wxCommandEvent());
-    wxLogDebug("UpdateOKButton completed in constructor");
 
-    LoadRegexPatterns(suggestedPayeeName);
+    wxInt64ClientData* suggestedPayeeIdData = nullptr;
+    if (!suggestedPayeeName.IsEmpty())
+    {
+        Model_Payee::Data_Set payees = Model_Payee::instance().all(Model_Payee::COL_PAYEENAME);
+        for (size_t i = 0; i < payees.size(); ++i)
+        {
+            if (payees[i].PAYEENAME == suggestedPayeeName)
+            {
+                suggestedPayeeIdData = new wxInt64ClientData(payees[i].PAYEEID.GetValue());
+                break;
+            }
+        }
+    }
+    //LoadRegexPatterns(suggestedPayeeIdData);
+    //delete suggestedPayeeIdData;
     regexGrid_->SetScrollRate(10, 10);
 
-    // Set the initial category ID
     initialCategoryId_ = GetSelectedCategoryID();
-    wxLogDebug("Initial category ID set to: %lld", initialCategoryId_);
 }
 
-
-// New event handler for category selection changes
 void mmPayeeSelectionDialog::OnCategorySelection(wxCommandEvent& event)
 {
     int sel = categoryChoice_->GetSelection();
     long long selectedCategoryId = GetSelectedCategoryID();
-    wxLogDebug("OnCategorySelection: Selected index: %d, Category: %s (ID: %lld)", sel, GetSelectedCategory(), selectedCategoryId);
-
-    if (selectedCategoryId == -1) // "Uncategorized"
+    if (selectedCategoryId == -1)
     {
         updateCategoryButton_->Enable(false);
         updateCategoryButton_->SetToolTip(_("Cannot set 'Uncategorized' as the default category for the payee"));
@@ -289,47 +284,51 @@ void mmPayeeSelectionDialog::OnCategorySelection(wxCommandEvent& event)
         updateCategoryButton_->Enable(true);
         updateCategoryButton_->SetToolTip(_("Toggle to update payee's default category (P) or apply to this transaction only"));
     }
-
-    categoryManuallyChanged_ = true; // Mark as manually changed
-    wxLogDebug("Set categoryManuallyChanged_ to true due to category selection");
-
+    categoryManuallyChanged_ = true;
     event.Skip();
 }
+
+void mmPayeeSelectionDialog::OnInitDialog(wxInitDialogEvent& event)
+{
+    wxInt64ClientData* suggestedPayeeIdData = nullptr;
+    if (!suggestedPayeeName_.IsEmpty())
+    {
+        Model_Payee::Data_Set payees = Model_Payee::instance().all(Model_Payee::COL_PAYEENAME);
+        for (size_t i = 0; i < payees.size(); ++i)
+        {
+            if (payees[i].PAYEENAME == suggestedPayeeName_)
+            {
+                suggestedPayeeIdData = new wxInt64ClientData(payees[i].PAYEEID.GetValue());
+                break;
+            }
+        }
+    }
+    LoadRegexPatterns(suggestedPayeeIdData);
+    delete suggestedPayeeIdData;
+    regexGrid_->SetScrollRate(10, 10);
+    event.Skip();
+}
+
 
 
 void mmPayeeSelectionDialog::OnCategoryFocus(wxFocusEvent& event)
 {
-    wxLogDebug("categoryChoice_ received focus, current selection: %d (%s)", categoryChoice_->GetSelection(), categoryChoice_->GetStringSelection());
     event.Skip();
 }
 
-
-
-
-
 void mmPayeeSelectionDialog::UpdateOKButton(wxCommandEvent& /*event*/)
 {
-    wxLogDebug("UpdateOKButton called, okButton_ = %p", okButton_);
     if (okButton_)
     {
         if (useExistingRadio_->GetValue())
-        {
             okButton_->Enable(!payeeChoice_->GetStringSelection().IsEmpty());
-        }
         else
-        {
             okButton_->Enable(!newPayeeTextCtrl_->GetValue().IsEmpty());
-        }
-    }
-    else
-    {
-        wxLogError("okButton_ is null in UpdateOKButton!");
     }
 }
 
 void mmPayeeSelectionDialog::OnUseExistingPayee(wxCommandEvent& /*event*/)
 {
-    wxLogDebug("Switched to 'Use Existing Payee'");
     payeeSizer_->Detach(newPayeeLabel_);
     payeeSizer_->Detach(newPayeeTextCtrl_->GetContainingSizer());
     payeeSizer_->Insert(0, existingPayeeLabel_, 0, wxLEFT | wxRIGHT | wxTOP, 5);
@@ -348,31 +347,25 @@ void mmPayeeSelectionDialog::OnUseExistingPayee(wxCommandEvent& /*event*/)
     updateRegexCheckBox_->Enable(true);
     updateRegexCheckBox_->SetValue(false);
     shouldUpdateRegex_ = false;
-    memoAdded_ = false; // Reset memoAdded_ since we're reloading the grid
+    memoAdded_ = false;
     regexGrid_->EnableEditing(updateRegexCheckBox_->IsChecked());
     regexGrid_->Enable(true);
-    insertRowButton_->Enable(updateRegexCheckBox_->IsChecked());                                    // Update button state
-    deleteRowButton_->Enable(updateRegexCheckBox_->IsChecked() && regexGrid_->GetNumberRows() > 0); // Update button state
+    insertRowButton_->Enable(updateRegexCheckBox_->IsChecked());
+    deleteRowButton_->Enable(updateRegexCheckBox_->IsChecked() && regexGrid_->GetNumberRows() > 0);
     selectedPayee_ = payeeChoice_->GetStringSelection();
 
     if (regexGrid_->GetNumberRows() > 0)
-    {
         regexGrid_->DeleteRows(0, regexGrid_->GetNumberRows());
-    }
     regexGrid_->AppendRows(1);
-    LoadRegexPatterns(selectedPayee_);
+    wxInt64ClientData* clientData = dynamic_cast<wxInt64ClientData*>(payeeChoice_->GetClientObject(payeeChoice_->GetSelection()));
+    LoadRegexPatterns(clientData);
     UpdateOKButton(wxCommandEvent());
     OnPayeeChoice(wxCommandEvent());
     Layout();
 }
 
-
-
-
-
 void mmPayeeSelectionDialog::OnCreateNewPayee(wxCommandEvent& /*event*/)
 {
-    wxLogDebug("Switched to 'Create New Payee', current category selection: %d", categoryChoice_->GetSelection());
     payeeSizer_->Detach(existingPayeeLabel_);
     payeeSizer_->Detach(payeeChoice_);
     payeeSizer_->Insert(0, newPayeeLabel_, 0, wxLEFT | wxRIGHT | wxTOP, 5);
@@ -393,56 +386,113 @@ void mmPayeeSelectionDialog::OnCreateNewPayee(wxCommandEvent& /*event*/)
     shouldUpdateRegex_ = true;
     regexGrid_->EnableEditing(true);
     regexGrid_->Enable(true);
-    insertRowButton_->Enable(true);                            // Grid is editable
-    deleteRowButton_->Enable(regexGrid_->GetNumberRows() > 0); // Depends on row count
+    insertRowButton_->Enable(true);
+    deleteRowButton_->Enable(regexGrid_->GetNumberRows() > 0);
     selectedPayee_ = newPayeeTextCtrl_->GetValue();
 
     if (regexGrid_->GetNumberRows() > 0)
-    {
         regexGrid_->DeleteRows(0, regexGrid_->GetNumberRows());
-    }
     regexGrid_->AppendRows(1);
     regexGrid_->SetCellValue(0, 0, regexPattern_);
-    deleteRowButton_->Enable(regexGrid_->GetNumberRows() > 0); // Update after adding row
+    deleteRowButton_->Enable(regexGrid_->GetNumberRows() > 0);
     UpdateOKButton(wxCommandEvent());
     Layout();
 }
-
-
-
 
 void mmPayeeSelectionDialog::OnUpdateCategoryToggle(wxCommandEvent& /*event*/)
 {
     updatePayeeCategory_ = !updatePayeeCategory_;
     updateCategoryButton_->SetLabel(updatePayeeCategory_ ? "P*" : "P");
-    wxLogDebug("Category update toggle set to: %s", updatePayeeCategory_ ? "Update Payee" : "This Transaction Only");
 }
 
 void mmPayeeSelectionDialog::OnUpdateRegex(wxCommandEvent& /*event*/)
 {
     shouldUpdateRegex_ = updateRegexCheckBox_->IsChecked();
+    wxLogDebug("OnUpdateRegex: shouldUpdateRegex_ = %d, rows = %d", shouldUpdateRegex_, regexGrid_->GetNumberRows());
     regexGrid_->EnableEditing(shouldUpdateRegex_);
-    regexGrid_->Enable(true);
-    insertRowButton_->Enable(shouldUpdateRegex_);                                    // Enable insert when grid is editable
-    deleteRowButton_->Enable(shouldUpdateRegex_ && regexGrid_->GetNumberRows() > 0); // Enable delete when grid is editable and has rows
-    if (shouldUpdateRegex_ && useExistingRadio_->GetValue() && !memoAdded_)
+    regexGrid_->Enable(shouldUpdateRegex_);
+    insertRowButton_->Enable(shouldUpdateRegex_);
+    deleteRowButton_->Enable(shouldUpdateRegex_ && regexGrid_->GetNumberRows() > 0);
+
+    if (shouldUpdateRegex_)
     {
-        regexGrid_->AppendRows(1);
-        int newRow = regexGrid_->GetNumberRows() - 1;
-        regexGrid_->SetCellValue(newRow, 0, regexPattern_); // Add memo
-        memoAdded_ = true;                                  // Mark the memo as added
-        wxLogDebug("Added memo row for existing payee at row %d: %s", newRow, regexPattern_);
-        deleteRowButton_->Enable(shouldUpdateRegex_ && regexGrid_->GetNumberRows() > 0); // Update delete button state
+        if (useExistingRadio_->GetValue() && !memoAdded_)
+        {
+            wxLogDebug("OnUpdateRegex: Adding memo, current rows = %d", regexGrid_->GetNumberRows());
+            if (regexGrid_->GetNumberRows() == 0 || (regexGrid_->GetNumberRows() > 0 && regexGrid_->GetCellValue(0, 0).IsEmpty()))
+            {
+                if (regexGrid_->GetNumberRows() == 0)
+                {
+                    regexGrid_->AppendRows(1);
+                    regexGrid_->ForceRefresh();
+                }
+                if (0 < regexGrid_->GetNumberRows() && 0 < regexGrid_->GetNumberCols())
+                {
+                    regexGrid_->SetCellValue(0, 0, regexPattern_);
+                }
+            }
+            else if (regexGrid_->GetNumberRows() > 0)
+            {
+                regexGrid_->AppendRows(1);
+                int newRow = regexGrid_->GetNumberRows() - 1;
+                if (newRow < regexGrid_->GetNumberRows() && 0 < regexGrid_->GetNumberCols())
+                {
+                    regexGrid_->SetCellValue(newRow, 0, regexPattern_);
+                }
+            }
+            memoAdded_ = true;
+            wxLogDebug("OnUpdateRegex: Memo added, now %d rows", regexGrid_->GetNumberRows());
+            regexGrid_->ForceRefresh();
+        }
     }
+    else
+    {
+        wxLogDebug("OnUpdateRegex: Resetting grid, current rows = %d", regexGrid_->GetNumberRows());
+        if (useExistingRadio_->GetValue())
+        {
+            wxInt64ClientData* clientData = dynamic_cast<wxInt64ClientData*>(payeeChoice_->GetClientObject(payeeChoice_->GetSelection()));
+            LoadRegexPatterns(clientData);
+        }
+        else
+        {
+            if (regexGrid_->GetNumberRows() > 0)
+            {
+                regexGrid_->DeleteRows(0, regexGrid_->GetNumberRows());
+                regexGrid_->ForceRefresh();
+            }
+            regexGrid_->AppendRows(1);
+            if (0 < regexGrid_->GetNumberRows() && 0 < regexGrid_->GetNumberCols())
+            {
+                regexGrid_->SetCellValue(0, 0, regexPattern_);
+            }
+            regexGrid_->ForceRefresh();
+        }
+        memoAdded_ = false;
+        wxLogDebug("OnUpdateRegex: Reset complete, now %d rows", regexGrid_->GetNumberRows());
+    }
+
+    deleteRowButton_->Enable(shouldUpdateRegex_ && regexGrid_->GetNumberRows() > 0);
 }
+
+
 
 void mmPayeeSelectionDialog::OnPayeeChoice(wxCommandEvent& event)
 {
-    wxString selectedPayee = payeeChoice_->GetStringSelection();
-    wxLogDebug("OnPayeeChoice triggered for '%s'", selectedPayee);
+    int selection = payeeChoice_->GetSelection();
+    if (selection == wxNOT_FOUND)
+        return;
 
-    Model_Payee::Data* payee = Model_Payee::instance().get(selectedPayee);
-    if (payee && !categoryManuallyChanged_) // Only update if not manually changed
+    wxString selectedPayeeName = payeeChoice_->GetString(selection);
+    wxInt64ClientData* clientData = dynamic_cast<wxInt64ClientData*>(payeeChoice_->GetClientObject(selection));
+    if (!clientData)
+    {
+        wxLogError("No client data for payee '%s'", selectedPayeeName);
+        return;
+    }
+
+    int64_t payeeId = clientData->GetValue();
+    Model_Payee::Data* payee = Model_Payee::instance().get(payeeId);
+    if (payee && !categoryManuallyChanged_)
     {
         long long payeeCategoryId = payee->CATEGID.GetValue();
         for (unsigned int i = 0; i < categoryChoice_->GetCount(); ++i)
@@ -453,64 +503,45 @@ void mmPayeeSelectionDialog::OnPayeeChoice(wxCommandEvent& event)
                 long long categId;
                 if (data->GetData().ToLongLong(&categId) && categId == payeeCategoryId)
                 {
-                    wxLogDebug("Set categoryChoice_ to index %u (ID: %lld, Name: %s) for payee '%s'", i, categId, categoryChoice_->GetString(i), selectedPayee);
                     categoryChoice_->SetSelection(i);
                     break;
                 }
             }
         }
     }
-    else if (!payee)
+    else if (!payee && !categoryManuallyChanged_)
     {
-        if (!categoryManuallyChanged_) // Only reset to Uncategorized if not manually changed
-        {
-            categoryChoice_->SetSelection(0);
-            wxLogDebug("No payee data found for '%s', defaulting to Uncategorized", selectedPayee);
-        }
-    }
-    else
-    {
-        wxLogDebug("Preserving manually changed category for payee '%s'", selectedPayee);
+        categoryChoice_->SetSelection(0);
     }
 
-    // Reset the flag only when a new payee is intentionally selected
-    if (event.GetEventType() == wxEVT_CHOICE) // Ensure this is a direct user selection
+    if (event.GetEventType() == wxEVT_CHOICE)
     {
-        categoryManuallyChanged_ = false; // Reset when switching to existing payee mode
-        wxLogDebug("Reset categoryManuallyChanged_ to false in OnUseExistingPayee");
+        categoryManuallyChanged_ = false;
+    }
+
+    if (useExistingRadio_->GetValue())
+    {
+        LoadRegexPatterns(clientData);
     }
 
     UpdateOKButton(event);
     event.Skip();
 }
 
-
-
-
-
 void mmPayeeSelectionDialog::OnInsertRow(wxCommandEvent& /*event*/)
 {
     if (!regexGrid_->IsEnabled() || !regexGrid_->IsEditable())
-    {
-        wxLogDebug("Insert Row button clicked, but grid is not editable");
         return;
-    }
 
-    // Insert a new row at the end
     regexGrid_->AppendRows(1);
-    wxLogDebug("Inserted new row at index %d", regexGrid_->GetNumberRows() - 1);
-    deleteRowButton_->Enable(regexGrid_->GetNumberRows() > 0); // Update delete button state
+    deleteRowButton_->Enable(regexGrid_->GetNumberRows() > 0);
 }
 
 void mmPayeeSelectionDialog::OnDeleteRow(wxCommandEvent& /*event*/)
 {
     if (!regexGrid_->IsEnabled() || !regexGrid_->IsEditable())
-    {
-        wxLogDebug("Delete Row button clicked, but grid is not editable");
         return;
-    }
 
-    // Get the selected row (use the first selected row if multiple are selected)
     wxArrayInt selectedRows = regexGrid_->GetSelectedRows();
     if (selectedRows.IsEmpty())
     {
@@ -520,8 +551,7 @@ void mmPayeeSelectionDialog::OnDeleteRow(wxCommandEvent& /*event*/)
 
     int rowToDelete = selectedRows[0];
     regexGrid_->DeleteRows(rowToDelete, 1);
-    wxLogDebug("Deleted row %d", rowToDelete);
-    deleteRowButton_->Enable(regexGrid_->GetNumberRows() > 0); // Update delete button state
+    deleteRowButton_->Enable(regexGrid_->GetNumberRows() > 0);
 }
 
 void mmPayeeSelectionDialog::OnTitleCase(wxCommandEvent& /*event*/)
@@ -546,7 +576,6 @@ void mmPayeeSelectionDialog::OnTitleCase(wxCommandEvent& /*event*/)
         }
     }
     newPayeeTextCtrl_->SetValue(result);
-    wxLogDebug("Converted '%s' to Title Case: '%s'", text, result);
 }
 
 void mmPayeeSelectionDialog::OnOK(wxCommandEvent& event)
@@ -566,9 +595,7 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& event)
     }
 
     long long selectedCategoryId = GetSelectedCategoryID();
-    wxLogDebug("OnOK: Selected payee '%s', Category ID: %lld", selectedPayee_, selectedCategoryId);
 
-    // For existing payee, check if category has changed when updatePayeeCategory_ is true
     bool shouldUpdateCategory = updatePayeeCategory_;
     Model_Payee::Data* payee = Model_Payee::instance().get_one(Model_Payee::PAYEENAME(selectedPayee_));
 
@@ -576,16 +603,8 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& event)
     {
         if (selectedCategoryId != payee->CATEGID.GetValue())
         {
-            wxLogDebug("Category ID %lld for payee '%s' differs from current (ID: %lld), updating", selectedCategoryId, selectedPayee_,
-                       payee->CATEGID.GetValue());
             payee->CATEGID = selectedCategoryId;
             Model_Payee::instance().save(payee);
-            wxLogDebug("Updated existing payee '%s' category to ID: %lld in database", payee->PAYEENAME, payee->CATEGID.GetValue());
-        }
-        else
-        {
-            wxLogDebug("Category ID %lld for payee '%s' matches existing (ID: %lld), no update needed", selectedCategoryId, selectedPayee_,
-                       payee->CATEGID.GetValue());
         }
     }
 
@@ -635,13 +654,11 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& event)
                 payee = Model_Payee::instance().create();
                 payee->PAYEENAME = selectedPayee_;
                 payee->CATEGID = selectedCategoryId;
-                wxLogDebug("Creating new payee '%s' with Category ID: %lld", selectedPayee_, payee->CATEGID.GetValue());
             }
             if (payee)
             {
                 payee->PATTERN = regexPattern_;
                 Model_Payee::instance().save(payee);
-                wxLogDebug("Payee '%s' saved with updated regex. Verifying: CATEGID = %lld", payee->PAYEENAME, payee->CATEGID.GetValue());
             }
         }
         else
@@ -654,25 +671,17 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& event)
         payee = Model_Payee::instance().create();
         payee->PAYEENAME = selectedPayee_;
         payee->CATEGID = selectedCategoryId;
-        wxLogDebug("Creating new payee '%s' (no regex) with Category ID: %lld", selectedPayee_, payee->CATEGID.GetValue());
         Model_Payee::instance().save(payee);
-        wxLogDebug("Payee '%s' saved (no regex). Verifying: CATEGID = %lld", payee->PAYEENAME, payee->CATEGID.GetValue());
     }
 
-    // Refresh regex mappings if needed
     mmOFXImportDialog* parentDialog = dynamic_cast<mmOFXImportDialog*>(GetParent());
     if (parentDialog && (shouldUpdateRegex_ || (payee && shouldUpdateCategory)))
     {
         parentDialog->loadRegexMappings();
-        wxLogDebug("Updated regex mappings in mmOFXImportDialog after saving payee '%s'", selectedPayee_);
     }
 
     EndModal(wxID_OK);
 }
-
-
-
-
 
 void mmPayeeSelectionDialog::OnGridLabelLeftClick(wxGridEvent& event)
 {
@@ -682,24 +691,72 @@ void mmPayeeSelectionDialog::OnGridLabelLeftClick(wxGridEvent& event)
     {
         wxString cellValue = regexGrid_->GetCellValue(row, col);
         if (!cellValue.IsEmpty())
-        {
             regexGrid_->SetToolTip(cellValue);
-        }
         else
-        {
             regexGrid_->UnsetToolTip();
-        }
     }
     event.Skip();
 }
 
-void mmPayeeSelectionDialog::LoadRegexPatterns(const wxString& payeeName)
+void mmPayeeSelectionDialog::LoadRegexPatterns(wxInt64ClientData* payeeIdData)
 {
-    // Only delete rows if there are rows to delete
+    wxLogDebug("LoadRegexPatterns: Starting with %d rows", regexGrid_->GetNumberRows());
     if (regexGrid_->GetNumberRows() > 0)
     {
         regexGrid_->DeleteRows(0, regexGrid_->GetNumberRows());
+        regexGrid_->ForceRefresh(); // Ensure grid updates its state
     }
+    wxLogDebug("LoadRegexPatterns: Cleared to %d rows", regexGrid_->GetNumberRows());
+
+    int64_t payeeId = payeeIdData ? payeeIdData->GetValue() : -1;
+    Model_Payee::Data* payee = (payeeId >= 0) ? Model_Payee::instance().get(payeeId) : nullptr;
+    if (payee && !payee->PATTERN.IsEmpty())
+    {
+        rapidjson::Document j_doc;
+        j_doc.Parse(payee->PATTERN.mb_str());
+        if (!j_doc.HasParseError() && j_doc.IsObject())
+        {
+            int row = 0;
+            for (rapidjson::Value::ConstMemberIterator itr = j_doc.MemberBegin(); itr != j_doc.MemberEnd(); ++itr)
+            {
+                if (itr->value.IsString())
+                {
+                    wxString pattern = wxString::FromUTF8(itr->value.GetString());
+                    if (!pattern.IsEmpty())
+                    {
+                        regexGrid_->AppendRows(1);
+                        if (row < regexGrid_->GetNumberRows() && 0 < regexGrid_->GetNumberCols())
+                        {
+                            regexGrid_->SetCellValue(row, 0, pattern);
+                            row++;
+                        }
+                    }
+                }
+            }
+            if (row > 0)
+            {
+                wxLogDebug("LoadRegexPatterns: Loaded %d patterns", row);
+                regexGrid_->ForceRefresh();
+                return;
+            }
+        }
+    }
+
+    regexGrid_->AppendRows(1);
+    if (0 < regexGrid_->GetNumberRows() && 0 < regexGrid_->GetNumberCols())
+    {
+        regexGrid_->SetCellValue(0, 0, "");
+    }
+    wxLogDebug("LoadRegexPatterns: Set 1 blank row, now %d rows", regexGrid_->GetNumberRows());
+    regexGrid_->ForceRefresh();
+}
+
+
+
+void mmPayeeSelectionDialog::LoadRegexPatterns(const wxString& payeeName)
+{
+    if (regexGrid_->GetNumberRows() > 0)
+        regexGrid_->DeleteRows(0, regexGrid_->GetNumberRows());
 
     Model_Payee::Data* payee = Model_Payee::instance().get_one(Model_Payee::PAYEENAME(payeeName));
     if (payee && !payee->PATTERN.IsEmpty())
@@ -722,82 +779,40 @@ void mmPayeeSelectionDialog::LoadRegexPatterns(const wxString& payeeName)
                     }
                 }
             }
+            if (row > 0)
+                return;
         }
     }
-    // Do not add memo here for existing payees; handled in OnUpdateRegex or OnCreateNewPayee
-}
 
+    regexGrid_->AppendRows(1);
+    regexGrid_->SetCellValue(0, 0, "");
+    regexGrid_->SetCellValue(1, 0, "");
+}
 
 void mmPayeeSelectionDialog::AddCategoryToChoice(wxChoice* choice, long long categId, const std::map<long long, Model_Category::Data>& categoryMap, int level)
 {
     auto it = categoryMap.find(categId);
     if (it == categoryMap.end())
-    {
-        wxLogDebug("Category ID %lld not found in category map", categId);
         return;
-    }
 
     const Model_Category::Data& category = it->second;
     wxString indent;
     for (int i = 0; i < level; ++i)
-    {
-        indent += "  "; // Add two spaces for each level of indentation
-    }
+        indent += "  ";
     wxString itemText = indent + category.CATEGNAME;
 
     wxString clientData = wxString::Format("%lld", categId);
     choice->Append(itemText, new wxStringClientData(clientData));
-    wxLogDebug("Added category to choice: %s (ID: %lld, Index: %u)", itemText, categId, choice->GetCount() - 1);
 
     for (const auto& child : categoryMap)
     {
         if (child.second.PARENTID.GetValue() == categId)
-        {
             AddCategoryToChoice(choice, child.first, categoryMap, level + 1);
-        }
     }
 }
 
+// No duplicate definitions of GetSelectedCategory or GetSelectedCategoryID here
 
-wxString mmPayeeSelectionDialog::GetSelectedCategory() const
-{
-    int sel = categoryChoice_->GetSelection();
-    if (sel == 0)
-        return _("Uncategorized");
-    return categoryChoice_->GetString(sel).Trim(false);
-}
-
-long long mmPayeeSelectionDialog::GetSelectedCategoryID() const
-{
-    int sel = categoryChoice_->GetSelection();
-    if (sel == wxNOT_FOUND)
-    {
-        wxLogDebug("No category selected in mmPayeeSelectionDialog");
-        return -1;
-    }
-    wxClientData* baseData = categoryChoice_->GetClientObject(sel);
-    if (!baseData)
-    {
-        wxLogDebug("No client data for selected category at index %d in mmPayeeSelectionDialog", sel);
-        return -1;
-    }
-    wxStringClientData* data = dynamic_cast<wxStringClientData*>(baseData);
-    if (!data)
-    {
-        wxLogDebug("Failed to cast client data to wxStringClientData for selection at index %d", sel);
-        return -1;
-    }
-    long long categId;
-    if (!data->GetData().ToLongLong(&categId))
-    {
-        wxLogDebug("Failed to convert category ID string '%s' to long long for selection at index %d", data->GetData(), sel);
-        return -1;
-    }
-    wxLogDebug("Selected category ID: %lld (Name: %s)", categId, categoryChoice_->GetString(sel));
-    return categId;
-}
-
-// mmOFXImportDialog Implementation
 mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
     : wxDialog(parent, wxID_ANY, _("Import OFX File"), wxDefaultPosition, wxSize(500, 230), wxCAPTION | wxCLOSE_BOX | wxMINIMIZE_BOX), fileNameCtrl_(nullptr),
       accountDropDown_(nullptr), account_id_(0), payeeRegExCheckBox_(nullptr), transferCategId_(-1), importStartTime_(0)
@@ -859,13 +874,11 @@ mmOFXImportDialog::~mmOFXImportDialog()
 void mmOFXImportDialog::loadRegexMappings()
 {
     payeeRegexMap_.clear();
-    wxLogDebug("Loading regex mappings from PAYEE_V1...");
     Model_Payee::Data_Set payees = Model_Payee::instance().all();
     for (const auto& payee : payees)
     {
         if (!payee.PATTERN.IsEmpty())
         {
-            wxLogDebug("Processing payee '%s' with PATTERN: %s", payee.PAYEENAME, payee.PATTERN);
             rapidjson::Document j_doc;
             j_doc.Parse(payee.PATTERN.mb_str());
             if (!j_doc.HasParseError() && j_doc.IsObject())
@@ -875,7 +888,6 @@ void mmOFXImportDialog::loadRegexMappings()
                     if (itr->value.IsString())
                     {
                         wxString pattern = wxString::FromUTF8(itr->value.GetString());
-                        wxLogDebug("Extracted pattern from key '%s': '%s'", itr->name.GetString(), pattern);
                         if (!pattern.IsEmpty())
                         {
                             wxString normalizedPattern = pattern;
@@ -883,27 +895,16 @@ void mmOFXImportDialog::loadRegexMappings()
                             {
                                 normalizedPattern.Replace("*", ".*", true);
                                 normalizedPattern.Replace("..*", ".*", true);
-                                wxLogDebug("Normalized '*' to '.*': '%s'", normalizedPattern);
                             }
                             payeeRegexMap_[normalizedPattern] = payee.PAYEENAME;
-                            wxLogDebug("Loaded: '%s' (original: '%s') -> '%s'", normalizedPattern, pattern, payee.PAYEENAME);
                         }
                     }
                 }
             }
-            else
-            {
-                wxLogDebug("Failed to parse PATTERN JSON for payee '%s': %s (Error at offset %zu)", payee.PAYEENAME, payee.PATTERN, j_doc.GetErrorOffset());
-            }
         }
     }
-
-    wxLogDebug("Final payeeRegexMap_ contents:");
-    for (const auto& pair : payeeRegexMap_)
-    {
-        wxLogDebug("Pattern: '%s' -> Payee: '%s'", pair.first, pair.second);
-    }
 }
+
 
 void mmOFXImportDialog::OnBrowse(wxCommandEvent& /*event*/)
 {
@@ -911,13 +912,16 @@ void mmOFXImportDialog::OnBrowse(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         fileNameCtrl_->SetValue(dlg.GetPath());
-
+        //fileNameCtrl_->ShowPosition(fileNameCtrl_->GetLastPosition());
         wxFile file(dlg.GetPath());
         if (!file.IsOpened())
         {
             wxLogError("Failed to open OFX file: %s", dlg.GetPath());
             return;
         }
+        long pos = fileNameCtrl_->XYToPosition(fileNameCtrl_->GetLineLength(0), 0);
+        fileNameCtrl_->SetInsertionPoint(pos);
+        fileNameCtrl_->ShowPosition(pos); // Ensure the view scrolls to this position
 
         wxString fileContent;
         wxFileOffset length = file.Length();
@@ -1591,8 +1595,8 @@ mmOFXImportSummaryDialog::mmOFXImportSummaryDialog(wxWindow* parent, const std::
                                                                   "- Automatically Imported (via Regex): %d\n"
                                                                   "- New Payees Created: %d\n"
                                                                   "- Manually Allocated to Payees: %d\n"
-                                                                  "- Time Taken: %.2f seconds"),
-                                                                totalTransactions_, autoImportedCount_, newPayeesCreated_, manuallyAllocated_, elapsedTimeSec));
+                                                                  "- Time Taken: %s"),
+                                                                totalTransactions_, autoImportedCount_, newPayeesCreated_, manuallyAllocated_, FormatTimeTaken(elapsedTimeSec)));
     mainSizer->Add(statsText, 0, wxALL | wxEXPAND, 10);
 
     scrolledWindow = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxVSCROLL);
@@ -1687,4 +1691,36 @@ void mmOFXImportSummaryDialog::OnGridMouseWheel(wxMouseEvent& event)
 void mmOFXImportSummaryDialog::OnOK(wxCommandEvent& /*event*/)
 {
     EndModal(wxID_OK);
+}
+
+
+wxString mmOFXImportSummaryDialog::FormatTimeTaken(double seconds) const
+{
+    int hours = static_cast<int>(seconds / 3600);            // Total hours
+    int remainingSeconds = static_cast<int>(seconds) % 3600; // Seconds after hours
+    int minutes = remainingSeconds / 60;                     // Minutes from remaining seconds
+    int secs = remainingSeconds % 60;                        // Seconds after minutes
+
+    wxString result;
+    if (hours > 0)
+    {
+        result += wxString::Format(_("%d hours"), hours);
+    }
+    if (minutes > 0 || hours > 0) // Show minutes if there are hours, even if minutes is 0
+    {
+        if (!result.IsEmpty())
+            result += " ";
+        result += wxString::Format(_("%d minutes"), minutes);
+    }
+    if (secs > 0 || minutes > 0 || hours > 0) // Show seconds if there are hours or minutes, even if seconds is 0
+    {
+        if (!result.IsEmpty())
+            result += " ";
+        result += wxString::Format(_("%d seconds"), secs);
+    }
+    if (result.IsEmpty()) // If all components are 0, show 0sec
+    {
+        result = wxString::Format(_("0 sec"));
+    }
+    return result;
 }
