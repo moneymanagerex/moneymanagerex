@@ -224,6 +224,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
 
     import_export/export.cpp
     import_export/export.h
+    import_export/ofx_import_gui.cpp
+    import_export/ofx_import_gui.h
     import_export/parsers.cpp
     import_export/parsers.h
     import_export/qif_export.cpp
@@ -393,6 +395,8 @@ target_link_libraries(${MMEX_EXE} PUBLIC
     fmt
     LuaGlue
     Lua)
+
+
 
 if(MSVC)
     # Based on this http://stackoverflow.com/a/8294669

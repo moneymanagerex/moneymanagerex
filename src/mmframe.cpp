@@ -75,6 +75,7 @@
 #include "import_export/qif_export.h"
 #include "import_export/qif_import_gui.h"
 #include "import_export/univcsvdialog.h"
+#include "import_export/ofx_import_gui.h"
 
 #include "model/allmodel.h"
 
@@ -98,6 +99,7 @@ EVT_MENU(MENU_EXPORT_QIF, mmGUIFrame::OnExportToQIF)
 EVT_MENU(MENU_EXPORT_JSON, mmGUIFrame::OnExportToJSON)
 EVT_MENU(MENU_EXPORT_MMEX, mmGUIFrame::OnExportToMMEX)
 EVT_MENU(MENU_IMPORT_QIF, mmGUIFrame::OnImportQIF)
+EVT_MENU(MENU_IMPORT_OFX, mmGUIFrame::OnImportOFX)
 EVT_MENU(MENU_IMPORT_UNIVCSV, mmGUIFrame::OnImportUniversalCSV)
 EVT_MENU(MENU_IMPORT_XML, mmGUIFrame::OnImportXML)
 EVT_MENU(MENU_IMPORT_WEBAPP, mmGUIFrame::OnImportWebApp)
@@ -1719,6 +1721,8 @@ void mmGUIFrame::createMenu()
     importMenu->AppendSeparator();
     importMenu->Append(MENU_IMPORT_QIF, _tu("&QIF File…"), _t("Import from QIF file"));
     importMenu->AppendSeparator();
+    importMenu->Append(MENU_IMPORT_OFX, _("&OFX File..."));
+    importMenu->AppendSeparator();
     importMenu->Append(MENU_IMPORT_WEBAPP, _tu("&WebApp…"), _t("Import from the WebApp"));
 
     wxMenu* exportMenu = new wxMenu;
@@ -2843,6 +2847,16 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
 
 }
 //----------------------------------------------------------------------------
+
+void mmGUIFrame::OnImportOFX(wxCommandEvent& /*event*/)
+{
+    mmOFXImportDialog dlg(this);
+    dlg.ShowModal();
+    refreshPanelData();
+}
+
+//----------------------------------------------------------------------------
+
 
 void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
 {
