@@ -228,6 +228,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     import_export/ofx_import_gui.h
     import_export/parsers.cpp
     import_export/parsers.h
+    import_export/payeematchandmerge.cpp
+    import_export/payeematchandmerge.h
     import_export/qif_export.cpp
     import_export/qif_export.h
     import_export/qif_import.cpp
