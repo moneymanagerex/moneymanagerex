@@ -39,6 +39,11 @@ bool PayeeMatchAndMerge::MatchPayee(const wxString& payeeName, PayeeMatchMode mo
     results.clear();
 
     ExactMatch(payeeName, results);
+
+    if (results.size() == 1 && results[0].PayeeID > 0) // Exact match found
+    {
+        return true;
+    }
     if (results.size() < 1) // No exact match
     {
         RegexMatch(payeeName, results);
@@ -122,16 +127,14 @@ void PayeeMatchAndMerge::FuzzyMatch(const wxString& payeeName, std::vector<Payee
         double similarity = 1.0 - static_cast<double>(distance) / maxLen;
         double confidence = similarity * 100.0;
 
-        if (confidence >= 50.0) // Threshold
-        {
-            PayeeMatchResult result;
-            result.PayeeID = payee.PAYEEID.GetValue();
-            result.Name = payee.PAYEENAME;
-            result.LastUsedCategoryID = payee.CATEGID.GetValue();
-            result.MatchConfidence = confidence;
-            result.matchMethod = "Fuzzy"; // Set match method
-            results.push_back(result);
-        }
+        // No hardcoded threshold here; let ImportTransactions handle it
+        PayeeMatchResult result;
+        result.PayeeID = payee.PAYEEID.GetValue();
+        result.Name = payee.PAYEENAME;
+        result.LastUsedCategoryID = payee.CATEGID.GetValue();
+        result.MatchConfidence = confidence;
+        result.matchMethod = "Fuzzy";
+        results.push_back(result);
     }
 }
 

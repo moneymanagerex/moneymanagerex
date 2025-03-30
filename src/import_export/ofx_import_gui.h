@@ -21,15 +21,25 @@ struct OFXImportResult
     wxString category;
     wxString transType;
     bool imported;
-    wxString matchMethod;
+    wxString matchMode;
+    double matchConfidence;
 };
 
 struct OFXImportStats
 {
-    int autoImportedCount = 0;
-    int newPayeesCreated = 0;
-    int manuallyAllocated = 0;
-    int totalTransactions = 0;
+    int totalTransactions;
+    int autoImportedCount;
+    int newPayeesCreated;
+    int manuallyAllocated;
+    int skippedDuplicates;    // Added for duplicate transactions
+    int skippedErrors;        // Added for parsing or save errors
+    int skippedManual;        // Added for manual cancellations
+    int importedTransactions; // Added to track successful imports
+    OFXImportStats()
+        : totalTransactions(0), autoImportedCount(0), newPayeesCreated(0), manuallyAllocated(0), skippedDuplicates(0), skippedErrors(0), skippedManual(0),
+          importedTransactions(0)
+    {
+    }
 };
 
 class wxInt64ClientData : public wxClientData
@@ -72,13 +82,10 @@ public:
     {
         return createNewRadio_->GetValue();
     }
-
     bool ShouldCancelImport() const
     {
         return shouldCancelImport_;
     }
-
-
     wxString GetSelectedCategory() const
     {
         int sel = categoryChoice_->GetSelection();
@@ -114,6 +121,7 @@ private:
         ID_INSERT_ROW,
         ID_DELETE_ROW
     };
+
     bool shouldCancelImport_ = false;
     void OnInitDialog(wxInitDialogEvent& event);
     void OnUseExistingPayee(wxCommandEvent& event);
@@ -133,8 +141,9 @@ private:
     void LoadRegexPatterns(wxInt64ClientData* payeeIdData);
     void LoadRegexPatterns(const wxString& payeeName);
     void AddCategoryToChoice(wxChoice* choice, long long categId, const std::map<long long, Model_Category::Data>& categoryMap, int level);
+
     double matchConfidence_;
-    int totalTransactions_; 
+    int totalTransactions_;
     wxString matchMethod_;
     wxStaticText* confidenceLabel_;
     wxString suggestedPayeeName_;
@@ -164,10 +173,12 @@ private:
     int newTransactions_;
     wxLongLong importStartTime_;
     bool categoryManuallyChanged_;
+    wxString memo_;
 };
 
 class mmOFXImportDialog : public wxDialog
 {
+    wxDECLARE_EVENT_TABLE();
 
 public:
     mmOFXImportDialog(wxWindow* parent);
@@ -177,6 +188,7 @@ public:
 private:
     void OnBrowse(wxCommandEvent& event);
     void OnImport(wxCommandEvent& event);
+    void OnUseFuzzyMatchingToggled(wxCommandEvent& event);
     bool ParseOFX(const wxString& filePath, std::vector<OFXImportResult>& importResults, OFXImportStats& stats);
     bool ImportTransactions(wxXmlNode* banktranlist, wxLongLong accountID, std::vector<OFXImportResult>& results, OFXImportStats& stats);
     wxString getPayeeName(const wxString& memo, bool& usedRegex, wxString& regexPattern, double& matchConfidence, wxString& matchMethod);
@@ -185,15 +197,16 @@ private:
     wxChoice* accountDropDown_;
     wxLongLong account_id_;
     wxCheckBox* payeeRegExCheckBox_;
+    wxCheckBox* useFuzzyMatchingCheckBox_;
+    wxChoice* fuzzyConfidenceChoice_;
+    wxCheckBox* markFuzzyFollowUpCheckBox_;
     long long transferCategId_;
     wxLongLong importStartTime_;
     std::map<wxString, wxString> payeeRegexMap_;
-    wxString selectedPayee_; // Declared here
-
-    wxDECLARE_EVENT_TABLE();
+    wxString selectedPayee_;
+    double GetMinFuzzyConfidence() const;
+    wxCheckBox* promptFuzzyConfirmationCheckBox_;
 };
-
-
 
 class mmOFXImportSummaryDialog : public wxDialog
 {
