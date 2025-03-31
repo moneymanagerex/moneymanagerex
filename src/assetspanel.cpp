@@ -801,6 +801,9 @@ void mmAssetsPanel::ViewAssetTrans(int selectedIndex)
     wxListCtrl* assetTxnListCtrl = this->InitAssetTxnListCtrl(parent);
     topsizer->Add(assetTxnListCtrl, wxSizerFlags(g_flagsExpand).TripleBorder());
 
+    // Bind events here
+    BindAssetListEvents(assetTxnListCtrl);
+
     // Load asset transactions
     LoadAssetTransactions(assetTxnListCtrl, asset->ASSETID);
 
@@ -824,6 +827,7 @@ wxListCtrl* mmAssetsPanel::InitAssetTxnListCtrl(wxWindow* parent)
 
     listCtrl->AppendColumn(_t("Account"), wxLIST_FORMAT_LEFT, 120);
     listCtrl->AppendColumn(_t("Date"), wxLIST_FORMAT_LEFT, 100);
+    listCtrl->AppendColumn(_t("Trade Type"), wxLIST_FORMAT_LEFT, 100);
     listCtrl->AppendColumn(_t("Value"), wxLIST_FORMAT_RIGHT, 120);
 
     return listCtrl;
@@ -835,26 +839,23 @@ void mmAssetsPanel::LoadAssetTransactions(wxListCtrl* listCtrl, int64 assetId)
     Model_Translink::Data_Set assetList = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_ASSET, assetId);
 
     int row = 0;
-    for (const auto& assetEntry : assetList) {
+    for (const auto& assetEntry : assetList)
+    {
         auto* assetTrans = Model_Checking::instance().get(assetEntry.CHECKINGACCOUNTID);
         if (!assetTrans) continue;
 
-        wxString accountName = Model_Account::get_account_name(assetTrans->ACCOUNTID);
-        wxString date = mmGetDateTimeForDisplay(assetTrans->TRANSDATE);
-        wxString value = Model_Currency::toString(assetTrans->TRANSAMOUNT); // Consider currency handling
-
         long index = listCtrl->InsertItem(row++, "");
-        listCtrl->SetItem(index, 0, accountName);
-        listCtrl->SetItem(index, 1, date);
-        listCtrl->SetItem(index, 2, value);
+        listCtrl->SetItemData(index, assetTrans->TRANSID.GetValue());
+        FillAssetListRow(listCtrl, index, *assetTrans);
     }
 }
 
 void mmAssetsPanel::FillAssetListRow(wxListCtrl* listCtrl, long index, const Model_Checking::Data& txn)
 {
-    listCtrl->SetItem(index, 0, mmGetDateTimeForDisplay(txn.TRANSDATE));
-    listCtrl->SetItem(index, 1, Model_Account::get_account_name(txn.ACCOUNTID));
-    listCtrl->SetItem(index, 2, Model_Currency::toString(txn.TRANSAMOUNT));
+    listCtrl->SetItem(index, 0, Model_Account::get_account_name(txn.ACCOUNTID));
+    listCtrl->SetItem(index, 1, mmGetDateTimeForDisplay(txn.TRANSDATE));
+    listCtrl->SetItem(index, 2, Model_Checking::trade_type_name(Model_Checking::type_id(txn.TRANSCODE)));
+    listCtrl->SetItem(index, 3, Model_Currency::toString(txn.TRANSAMOUNT));
 //    listCtrl->SetItem(index, 3, Model_Currency::get_currency_symbol(txn.CURRENCYID));
 }
 
