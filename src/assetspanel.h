@@ -125,6 +125,11 @@ public:
 
     void AddAssetTrans(const int selected_index);
     void ViewAssetTrans(const int selected_index);
+    wxListCtrl* InitAssetTxnListCtrl(wxWindow* parent);
+    void LoadAssetTransactions(wxListCtrl* listCtrl, int64 assetId);
+    void FillAssetListRow(wxListCtrl* listCtrl, long index, const Model_Checking::Data& txn);
+    void BindAssetListEvents(wxListCtrl* listCtrl);
+    void CopySelectedRowsToClipboard(wxListCtrl* listCtrl);
     void GotoAssetAccount(const int selected_index);
     void RefreshList();
 
