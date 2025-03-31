@@ -784,9 +784,131 @@ void mmAssetsPanel::AddAssetTrans(const int selected_index)
     }
 }
 
-void mmAssetsPanel::ViewAssetTrans(const int selected_index)
+void mmAssetsPanel::ViewAssetTrans(int selectedIndex)
 {
-    GotoAssetAccount(selected_index);
+    Model_Asset::Data* asset = &m_assets[selectedIndex];
+
+    wxDialog dlg(this, wxID_ANY,
+                 _t("View Asset Transactions") + ": " + asset->ASSETNAME,
+                 wxDefaultPosition, wxDefaultSize,
+                 wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
+
+    dlg.SetIcon(mmex::getProgramIcon());
+    wxWindow* parent = dlg.GetMainWindowOfCompositeControl();
+    wxBoxSizer* topsizer = new wxBoxSizer(wxVERTICAL);
+
+    // Initialize list control
+    wxListCtrl* assetTxnListCtrl = this->InitAssetTxnListCtrl(parent);
+    topsizer->Add(assetTxnListCtrl, wxSizerFlags(g_flagsExpand).TripleBorder());
+
+    // Load asset transactions
+    LoadAssetTransactions(assetTxnListCtrl, asset->ASSETID);
+
+    // Add buttons
+    wxSizer* buttonSizer = dlg.CreateSeparatedButtonSizer(wxOK);
+    if (buttonSizer) {
+        topsizer->Add(buttonSizer, wxSizerFlags().Expand().DoubleBorder(wxLEFT | wxRIGHT | wxBOTTOM));
+    }
+
+    dlg.SetSizerAndFit(topsizer);
+    dlg.SetInitialSize(wxSize(600, 400)); // Set default size
+    dlg.Center();
+    dlg.ShowModal();
+}
+
+// Initialize the list control
+wxListCtrl* mmAssetsPanel::InitAssetTxnListCtrl(wxWindow* parent)
+{
+    wxListCtrl* listCtrl = new wxListCtrl(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                          wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_AUTOARRANGE);
+
+    listCtrl->AppendColumn(_t("Account"), wxLIST_FORMAT_LEFT, 120);
+    listCtrl->AppendColumn(_t("Date"), wxLIST_FORMAT_LEFT, 100);
+    listCtrl->AppendColumn(_t("Value"), wxLIST_FORMAT_RIGHT, 120);
+
+    return listCtrl;
+}
+
+// Load asset transactions into the list control
+void mmAssetsPanel::LoadAssetTransactions(wxListCtrl* listCtrl, int64 assetId)
+{
+    Model_Translink::Data_Set assetList = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_ASSET, assetId);
+
+    int row = 0;
+    for (const auto& assetEntry : assetList) {
+        auto* assetTrans = Model_Checking::instance().get(assetEntry.CHECKINGACCOUNTID);
+        if (!assetTrans) continue;
+
+        wxString accountName = Model_Account::get_account_name(assetTrans->ACCOUNTID);
+        wxString date = mmGetDateTimeForDisplay(assetTrans->TRANSDATE);
+        wxString value = Model_Currency::toString(assetTrans->TRANSAMOUNT); // Consider currency handling
+
+        long index = listCtrl->InsertItem(row++, "");
+        listCtrl->SetItem(index, 0, accountName);
+        listCtrl->SetItem(index, 1, date);
+        listCtrl->SetItem(index, 2, value);
+    }
+}
+
+void mmAssetsPanel::FillAssetListRow(wxListCtrl* listCtrl, long index, const Model_Checking::Data& txn)
+{
+    listCtrl->SetItem(index, 0, mmGetDateTimeForDisplay(txn.TRANSDATE));
+    listCtrl->SetItem(index, 1, Model_Account::get_account_name(txn.ACCOUNTID));
+    listCtrl->SetItem(index, 2, Model_Currency::toString(txn.TRANSAMOUNT));
+//    listCtrl->SetItem(index, 3, Model_Currency::get_currency_symbol(txn.CURRENCYID));
+}
+
+void mmAssetsPanel::BindAssetListEvents(wxListCtrl* listCtrl)
+{
+    listCtrl->Bind(wxEVT_LIST_ITEM_ACTIVATED, [listCtrl, this](wxListEvent& event) {
+        long index = event.GetIndex();
+        auto* txn = Model_Checking::instance().get(event.GetData());
+        if (!txn) return;
+
+        auto link = Model_Translink::TranslinkRecord(txn->TRANSID);
+        mmAssetDialog dlg(listCtrl, this->m_frame, &link, txn);
+        dlg.ShowModal();
+
+        this->FillAssetListRow(listCtrl, index, *txn);
+
+        listCtrl->SortItems([](wxIntPtr item1, wxIntPtr item2, wxIntPtr) -> int {
+            auto date1 = Model_Checking::TRANSDATE(Model_Checking::instance().get(item1));
+            auto date2 = Model_Checking::TRANSDATE(Model_Checking::instance().get(item2));
+            return date1.IsEarlierThan(date2) ? -1 : (date1.IsLaterThan(date2) ? 1 : 0);
+        }, 0);
+    });
+
+    listCtrl->Bind(wxEVT_CHAR, [listCtrl, this](wxKeyEvent& event) {
+        if (event.GetKeyCode() == WXK_CONTROL_C) {
+            CopySelectedRowsToClipboard(listCtrl);
+        } else if (event.GetKeyCode() == WXK_CONTROL_A) {
+            for (int row = 0; row < listCtrl->GetItemCount(); row++)
+                listCtrl->SetItemState(row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+        }
+    });
+}
+
+void mmAssetsPanel::CopySelectedRowsToClipboard(wxListCtrl* listCtrl)
+{
+    if (!wxTheClipboard->Open()) return;
+
+    wxString data;
+    const wxString separator = "\t";
+
+    for (int row = 0; row < listCtrl->GetItemCount(); row++) {
+        if (listCtrl->GetItemState(row, wxLIST_STATE_SELECTED) != wxLIST_STATE_SELECTED)
+            continue;
+
+        for (int col = 0; col < listCtrl->GetColumnCount(); col++) {
+            if (listCtrl->GetColumnWidth(col) > 0) {
+                data += listCtrl->GetItemText(row, col) + separator;
+            }
+        }
+        data += "\n";
+    }
+
+    wxTheClipboard->SetData(new wxTextDataObject(data));
+    wxTheClipboard->Close();
 }
 
 void mmAssetsPanel::GotoAssetAccount(const int selected_index)
