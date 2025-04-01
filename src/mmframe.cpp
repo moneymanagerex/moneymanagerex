@@ -340,6 +340,7 @@ mmGUIFrame::mmGUIFrame(
     const wxAcceleratorEntry entries[] = {
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F9, wxID_NEW),
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F5, wxID_REFRESH),
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F6, MENU_VIEW_LINKS),
     };
 
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
@@ -1764,7 +1765,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemLinks = new wxMenuItem(
         menuView,
         MENU_VIEW_LINKS,
-        _t("&Navigator") + "\tF5",
+        _t("&Navigator") + "\tF6",
         _t("Show/Hide Navigator"),
         wxITEM_CHECK
     );
