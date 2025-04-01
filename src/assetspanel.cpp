@@ -808,9 +808,6 @@ void mmAssetsPanel::ViewAssetTrans(int selectedIndex)
     // Bind events here
     BindAssetListEvents(assetTxnListCtrl);
 
-    // Bind events here
-    BindAssetListEvents(assetTxnListCtrl);
-
     // Load asset transactions
     LoadAssetTransactions(assetTxnListCtrl, asset->ASSETID);
 
