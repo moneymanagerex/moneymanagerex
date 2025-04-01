@@ -243,10 +243,10 @@ wxListCtrl* mmStocksPanel::InitStockTxnListCtrl(wxWindow* parent)
     wxListCtrl* listCtrl = new wxListCtrl(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, 
                                           wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_AUTOARRANGE);
 
-    listCtrl->AppendColumn(_t("Date"), wxLIST_FORMAT_LEFT, 120);
-    listCtrl->AppendColumn(_t("Lot"), wxLIST_FORMAT_LEFT, 80);
+    listCtrl->AppendColumn(_t("Date"), wxLIST_FORMAT_LEFT, 100);
+    listCtrl->AppendColumn(_t("Lot"), wxLIST_FORMAT_LEFT, 140);
     listCtrl->AppendColumn(_t("Shares"), wxLIST_FORMAT_RIGHT, 100);
-    listCtrl->AppendColumn(_t("Trade Type"), wxLIST_FORMAT_LEFT, 120);
+    listCtrl->AppendColumn(_t("Trade Type"), wxLIST_FORMAT_LEFT, 80);
     listCtrl->AppendColumn(_t("Price"), wxLIST_FORMAT_RIGHT, 100);
     listCtrl->AppendColumn(_t("Commission"), wxLIST_FORMAT_RIGHT, 100);
 
