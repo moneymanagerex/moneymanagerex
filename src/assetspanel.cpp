@@ -531,13 +531,17 @@ void mmAssetsPanel::sortList()
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETTYPE());
         break;
     case mmAssetsListCtrl::LIST_ID_VALUE_INITIAL:
-        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByVALUE());
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end()
+            , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
+            {
+                return Model_Asset::value(x).first < Model_Asset::value(y).first;
+            });
         break;
     case mmAssetsListCtrl::LIST_ID_VALUE_CURRENT:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end()
             , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
             {
-                return Model_Asset::value(x) < Model_Asset::value(y);
+                return Model_Asset::value(x).second < Model_Asset::value(y).second;
             });
         break;
     case mmAssetsListCtrl::LIST_ID_DATE:
@@ -800,6 +804,9 @@ void mmAssetsPanel::ViewAssetTrans(int selectedIndex)
     // Initialize list control
     wxListCtrl* assetTxnListCtrl = this->InitAssetTxnListCtrl(parent);
     topsizer->Add(assetTxnListCtrl, wxSizerFlags(g_flagsExpand).TripleBorder());
+
+    // Bind events here
+    BindAssetListEvents(assetTxnListCtrl);
 
     // Bind events here
     BindAssetListEvents(assetTxnListCtrl);
