@@ -138,7 +138,25 @@
                         chart: { type : 'bar', foreColor: '<TMPL_VAR INCOME_VS_EXPENSES_FORECOLOR>', toolbar : { show : false } },
                         dataLabels : { enabled : false },
                         colors: [ <TMPL_VAR INCOME_VS_EXPENSES_COLORS> ],
-                        tooltip : { theme : "dark" },
+                        tooltip: { 
+                            theme: "dark",
+                            y: {
+                                formatter: function(value) {
+                                var options = {
+                                    useGrouping: true,
+                                    minimumFractionDigits: <TMPL_VAR INCOME_VS_EXPENSES_CURR_SCALE>,
+                                    maximumFractionDigits: <TMPL_VAR INCOME_VS_EXPENSES_CURR_SCALE>,
+                                    groupingSeparator: '<TMPL_VAR INCOME_VS_EXPENSES_CURR_GROUP_SEPARATOR>',
+                                    decimalSeparator: '<TMPL_VAR INCOME_VS_EXPENSES_CURR_DECIMAL_POINT>'
+                                };
+
+                                    var formatted = value.toLocaleString('<TMPL_VAR LOCALE>', options);
+                                    return '<TMPL_VAR INCOME_VS_EXPENSES_CURR_PFX_SYMBOL>' + formatted + '<TMPL_VAR INCOME_VS_EXPENSES_CURR_SFX_SYMBOL>';
+                                }
+                            }
+                        },
+
+
                         xaxis : { labels : { show : false }, categories : [ive_json[9]]},
                         series : [
                             {
