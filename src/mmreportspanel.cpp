@@ -561,9 +561,9 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
     {
         wxStringTokenizer tokenizer(sData, ":");
         int i =0;
-        int catID = -1;
-        int subCatID = -1;
-        int payeeID = -1;
+        int64 catID = -1;
+        int64 subCatID = -1;
+        int64 payeeID = -1;
         // categoryID, subcategoryID, payeeID
         //      subcategoryID = -2 means inlude all sub categories for the given category
         while ( tokenizer.HasMoreTokens() )
