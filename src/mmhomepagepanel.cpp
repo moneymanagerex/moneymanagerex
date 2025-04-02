@@ -131,6 +131,20 @@ void mmHomePagePanel::insertDataIntoTemplate()
 {
     m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().getHtmlScale());
 
+    // Get curreny details to pass to report for Apexcharts
+    int64 baseCurrencyID = Option::instance().getBaseCurrencyID();
+    Model_Currency::Data* baseCurrency = Model_Currency::instance().get(baseCurrencyID);
+
+    // Get locale to pass to reports for Apexcharts
+    wxString locale = Model_Infotable::instance().getString("LOCALE", "en-US"); // Stay blank of not set, currency override handled in Apexcharts call.
+    wxString adjustedLocale = locale;
+    if (adjustedLocale == "")
+    {
+        adjustedLocale = "en-US";
+    }
+    adjustedLocale.Replace("_", "-");
+    m_frames["LOCALE"] = adjustedLocale;
+
     double tBalance = 0.0, tReconciled = 0.0;
     double cardBalance = 0.0, cardReconciled = 0.0;
     double termBalance = 0.0, termReconciled = 0.0;
@@ -185,6 +199,12 @@ void mmHomePagePanel::insertDataIntoTemplate()
     m_frames["INCOME_VS_EXPENSES_FORECOLOR"] = mmThemeMetaString(meta::COLOR_REPORT_FORECOLOR);
     m_frames["INCOME_VS_EXPENSES_COLORS"] = wxString::Format("'%s', '%s'", mmThemeMetaString(meta::COLOR_REPORT_CREDIT)
                                                 , mmThemeMetaString(meta::COLOR_REPORT_DEBIT));
+    m_frames["INCOME_VS_EXPENSES_CURR_PFX_SYMBOL"] = baseCurrency ? baseCurrency->PFX_SYMBOL : "$";
+    m_frames["INCOME_VS_EXPENSES_CURR_SFX_SYMBOL"] = baseCurrency ? baseCurrency->SFX_SYMBOL : "";
+    m_frames["INCOME_VS_EXPENSES_CURR_GROUP_SEPARATOR"] = baseCurrency ? baseCurrency->GROUP_SEPARATOR : ",";
+    m_frames["INCOME_VS_EXPENSES_CURR_DECIMAL_POINT"] = baseCurrency ? baseCurrency->DECIMAL_POINT : ".";
+    m_frames["INCOME_VS_EXPENSES_CURR_SCALE"] = baseCurrency ? wxString::Format("%d", static_cast<int>(log10(baseCurrency->SCALE.GetValue()))) : "";
+
 
     htmlWidgetBillsAndDeposits bills_and_deposits(_t("Upcoming Transactions"));
     m_frames["BILLS_AND_DEPOSITS"] = bills_and_deposits.getHTMLText();
