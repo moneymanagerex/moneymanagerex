@@ -82,7 +82,7 @@ wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
         mmCheckingPanel::onNewTransaction
     )
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::onSearchTxtEntered)
-wxEND_EVENT_TABLE()
+    wxEND_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
 
@@ -347,6 +347,14 @@ void mmCheckingPanel::createControls()
         wxTE_MULTILINE | wxTE_WORDWRAP
     );
     sizerVFooter->Add(m_info_panel, g_flagsExpandBorder1);
+    mmToolTip(m_info_panel, _t("Click to copy to clipboard"));
+
+    m_info_panel->Bind(wxEVT_LEFT_DOWN,
+                       [this, infoPanel = m_info_panel](wxMouseEvent& event)
+                       {
+                           onInfoPanelClick(event, infoPanel);
+                       });
+
     //Show tips when no any transaction selected
     showTips();
 }
@@ -899,6 +907,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
                 }
             }
         }
+        m_info_panel_selectedbal.clear(); // Not displaying any selected transactions in m_info_panel, clear selected transaction balance var
         m_info_panel->SetLabelText(notesStr);
     }
     else /* !single */ {
@@ -943,12 +952,13 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
             int days = max_date.Subtract(min_date).GetDays();
 
             wxString msg;
+            wxString selectedBal = Model_Currency::toCurrency(flow, currency);
+            m_info_panel_selectedbal = selectedBal;
             msg = wxString::Format(_t("Transactions selected: %zu"), selected.size());
             msg += "\n";
             if (currency) {
                 msg += wxString::Format(
-                    _t("Selected transactions balance: %s"),
-                    Model_Currency::toCurrency(flow, currency)
+                    _t("Selected transactions balance: %s"), selectedBal
                 );
                 msg += "\n";
             }
@@ -959,7 +969,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
 #ifdef __WXMAC__    // See issue #2914
             msg = "";
 #endif
-            m_info_panel->SetLabelText(msg);
+            m_info_panel->SetLabelText(msg);         
         }
         else /* selected.size() == 0 */ {
             enableButtons(false, false, false, false, false, false);
@@ -988,6 +998,8 @@ void mmCheckingPanel::enableButtons(bool edit, bool dup, bool del, bool enter, b
 
 void mmCheckingPanel::showTips()
 {
+    m_info_panel_selectedbal.clear(); // Not displaying any selected transactions in m_info_panel, clear selected transaction balance var
+
     if (m_show_tips) {
         m_show_tips = false;
         return;
@@ -1006,6 +1018,7 @@ void mmCheckingPanel::showTips()
 
 void mmCheckingPanel::showTips(const wxString& tip)
 {
+    m_info_panel_selectedbal.clear(); // Not displaying any selected transactions in m_info_panel, clear selected transaction balance var
     if (Option::instance().getShowMoneyTips())
         m_info_panel->SetLabelText(tip);
     else
@@ -1191,6 +1204,33 @@ void mmCheckingPanel::onButtonRightDown(wxMouseEvent& event)
         break;
     }
 }
+
+void mmCheckingPanel::onInfoPanelClick(wxMouseEvent& event, wxStaticText* infoPanel)
+{
+    wxString clipboardValue = "";
+    if (!m_info_panel_selectedbal.IsEmpty())
+    {
+        clipboardValue = m_info_panel_selectedbal;
+    }
+    else
+    {
+        clipboardValue = infoPanel->GetLabel();
+    }
+    if (!clipboardValue.IsEmpty())
+    {
+        // Copy to clipboard
+        if (wxTheClipboard->Open())
+        {
+            wxTheClipboard->SetData(new wxTextDataObject(clipboardValue));
+            wxTheClipboard->Close();
+            this->Layout();
+        }
+        m_info_panel_selectedbal.empty();
+    }
+
+    event.Skip();
+}
+
 
 //----------------------------------------------------------------------------
 
