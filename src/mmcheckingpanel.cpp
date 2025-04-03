@@ -82,7 +82,7 @@ wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
         mmCheckingPanel::onNewTransaction
     )
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::onSearchTxtEntered)
-wxEND_EVENT_TABLE()
+    wxEND_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
 
