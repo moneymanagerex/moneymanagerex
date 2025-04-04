@@ -98,7 +98,7 @@ void mmEditSplitOther::CreateControls()
     fgSizer1->Add(m_Notes, g_flagsExpand);
     mmToolTip(m_Notes, _t("Enter notes to describe this split transaction"));
 
-    //Buttons
+    // Buttons
     wxBoxSizer* bSizer3 = new wxBoxSizer(wxHORIZONTAL);
     bSizer1->Add(bSizer3, wxSizerFlags(g_flagsV).Center());
     wxButton* itemButtonOK = new wxButton(this, wxID_OK, _t("&OK "));
@@ -156,13 +156,9 @@ mmSplitTransactionDialog::~mmSplitTransactionDialog()
 mmSplitTransactionDialog::mmSplitTransactionDialog(wxWindow* parent
     , std::vector<Split>& split
     , int64 accountID
-    , int transType
-    , double totalAmount
     , bool is_view_only
 )
     : m_orig_splits(split)
-    , totalAmount_(totalAmount)
-    , transType_(transType)
     , row_num_(static_cast<int>(split.size()))
     , is_view_only_(is_view_only)
 {
@@ -406,11 +402,11 @@ void mmSplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
             return;
 
     //Check total amount - should be positive
-    totalAmount_ = 0;
+    double totalAmount = 0;
     for (const auto& entry : m_splits)
-        totalAmount_ += entry.SPLITTRANSAMOUNT;
-    totalAmount_ = std::round(totalAmount_ * m_currency->SCALE.GetValue()) / m_currency->SCALE.GetValue();
-    if (totalAmount_ < 0) {
+        totalAmount += entry.SPLITTRANSAMOUNT;
+    totalAmount = std::round(totalAmount * m_currency->SCALE.GetValue()) / m_currency->SCALE.GetValue();
+    if (totalAmount < 0) {
         return mmErrorDialogs::MessageError(this, _t("Invalid Total Amount"), _t("Error"));
     }
 

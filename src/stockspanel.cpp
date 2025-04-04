@@ -203,124 +203,153 @@ void mmStocksPanel::OnListItemActivated(int selectedIndex)
 void mmStocksPanel::ViewStockTransactions(int selectedIndex)
 {
     Model_Stock::Data* stock = &m_lc->m_stocks[selectedIndex];
-    
-    wxDialog dlg(this, wxID_ANY, _t("View Stock Transactions") + wxString::Format(": %s - %s", Model_Account::get_account_name(stock->HELDAT), stock->SYMBOL), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
+
+    wxDialog dlg(this, wxID_ANY,
+                 _t("View Stock Transactions") + ": " +
+                 Model_Account::get_account_name(stock->HELDAT) + " - " + stock->SYMBOL,
+                 wxDefaultPosition, wxDefaultSize,
+                 wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
+
     dlg.SetIcon(mmex::getProgramIcon());
     wxWindow* parent = dlg.GetMainWindowOfCompositeControl();
     wxBoxSizer* topsizer = new wxBoxSizer(wxVERTICAL);
-    wxListCtrl* stockTxnListCtrl = new wxListCtrl(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_AUTOARRANGE);
-    stockTxnListCtrl->AppendColumn(_t("Date"));
-    stockTxnListCtrl->AppendColumn(_t("Lot"));
-    stockTxnListCtrl->AppendColumn(_t("Shares"), wxLIST_FORMAT_RIGHT);
-    stockTxnListCtrl->AppendColumn(_t("Trade Type"));
-    stockTxnListCtrl->AppendColumn(_t("Price"), wxLIST_FORMAT_RIGHT);
-    stockTxnListCtrl->AppendColumn(_t("Commission"), wxLIST_FORMAT_RIGHT);
+
+    // Initialize list control
+    wxListCtrl* stockTxnListCtrl = InitStockTxnListCtrl(parent);
     topsizer->Add(stockTxnListCtrl, wxSizerFlags(g_flagsExpand).TripleBorder());
 
-    Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_STOCK, stock->STOCKID);
+    // Load stock transactions
+    LoadStockTransactions(stockTxnListCtrl, stock->STOCKID);
+
+    // Bind list events
+    BindListEvents(stockTxnListCtrl);
+
+    // Add buttons
+    wxSizer* buttonSizer = dlg.CreateSeparatedButtonSizer(wxOK);
+    if (buttonSizer) {
+        topsizer->Add(buttonSizer, wxSizerFlags().Expand().DoubleBorder(wxLEFT | wxRIGHT | wxBOTTOM));
+    }
+
+    dlg.SetSizerAndFit(topsizer);
+    dlg.SetInitialSize(wxSize(600, 400)); // Set default size
+    dlg.Center();
+    dlg.ShowModal();
+    RefreshList();
+}
+
+// Initialize the list control
+wxListCtrl* mmStocksPanel::InitStockTxnListCtrl(wxWindow* parent)
+{
+    wxListCtrl* listCtrl = new wxListCtrl(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, 
+                                          wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_AUTOARRANGE);
+
+    listCtrl->AppendColumn(_t("Date"), wxLIST_FORMAT_LEFT, 100);
+    listCtrl->AppendColumn(_t("Lot"), wxLIST_FORMAT_LEFT, 140);
+    listCtrl->AppendColumn(_t("Shares"), wxLIST_FORMAT_RIGHT, 100);
+    listCtrl->AppendColumn(_t("Trade Type"), wxLIST_FORMAT_LEFT, 80);
+    listCtrl->AppendColumn(_t("Price"), wxLIST_FORMAT_RIGHT, 100);
+    listCtrl->AppendColumn(_t("Commission"), wxLIST_FORMAT_RIGHT, 100);
+
+    return listCtrl;
+}
+
+// Load stock transactions into the list control
+void mmStocksPanel::LoadStockTransactions(wxListCtrl* listCtrl, int64 stockId)
+{
+    Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_STOCK, stockId);
     Model_Checking::Data_Set checking_list;
-    for (const auto &trans : stock_list)
-    {
-        Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
-        if (checking_entry && checking_entry->DELETEDTIME.IsEmpty()) checking_list.push_back(*checking_entry);
+
+    for (const auto& trans : stock_list) {
+        auto* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
+        if (checking_entry && checking_entry->DELETEDTIME.IsEmpty()) {
+            checking_list.push_back(*checking_entry);
+        }
     }
     std::stable_sort(checking_list.begin(), checking_list.end(), SorterByTRANSDATE());
 
     int row = 0;
-    for (const auto& stock_trans : checking_list)
-    {
-        Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(stock_trans.TRANSID);
-        long index = stockTxnListCtrl->InsertItem(row++, "");
-        if (share_entry && ((share_entry->SHARENUMBER > 0) || (share_entry->SHAREPRICE > 0)))
-        {
-            stockTxnListCtrl->SetItemData(index, stock_trans.TRANSID.GetValue());
-            stockTxnListCtrl->SetItem(index, 0, mmGetDateTimeForDisplay(stock_trans.TRANSDATE));
-            stockTxnListCtrl->SetItem(index, 1, share_entry->SHARELOT);
+    for (const auto& stock_trans : checking_list) {
+        auto* share_entry = Model_Shareinfo::ShareEntry(stock_trans.TRANSID);
+        if (!share_entry || (share_entry->SHARENUMBER <= 0 && share_entry->SHAREPRICE <= 0))
+            continue;
 
-            int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().getSharePrecision();
-            stockTxnListCtrl->SetItem(index, 2, wxString::FromDouble(share_entry->SHARENUMBER, precision));
-            stockTxnListCtrl->SetItem(index, 3, Model_Checking::trade_type_name(Model_Checking::type_id(stock_trans.TRANSCODE)));
-            stockTxnListCtrl->SetItem(index, 4, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().getSharePrecision()));
-            stockTxnListCtrl->SetItem(index, 5, wxString::FromDouble(share_entry->SHARECOMMISSION, 2));
-        }
+        long index = listCtrl->InsertItem(row++, "");
+        listCtrl->SetItemData(index, stock_trans.TRANSID.GetValue());
+        FillListRow(listCtrl, index, stock_trans, *share_entry);
     }
+}
 
-    // Double click on a row will open the sharetransactiondialog
-    stockTxnListCtrl->Bind(wxEVT_LIST_ITEM_ACTIVATED, [stockTxnListCtrl](wxListEvent& event) {
-        // Display the dialog
+// Fill list row with stock transaction data
+void mmStocksPanel::FillListRow(wxListCtrl* listCtrl, long index, const Model_Checking::Data& txn, const Model_Shareinfo::Data& share_entry)
+{
+    listCtrl->SetItem(index, 0, mmGetDateTimeForDisplay(txn.TRANSDATE));
+    listCtrl->SetItem(index, 1, share_entry.SHARELOT);
+
+    int precision = share_entry.SHARENUMBER == floor(share_entry.SHARENUMBER) ? 0 : Option::instance().getSharePrecision();
+    listCtrl->SetItem(index, 2, wxString::FromDouble(share_entry.SHARENUMBER, precision));
+    listCtrl->SetItem(index, 3, Model_Checking::trade_type_name(Model_Checking::type_id(txn.TRANSCODE)));
+    listCtrl->SetItem(index, 4, wxString::FromDouble(share_entry.SHAREPRICE, Option::instance().getSharePrecision()));
+    listCtrl->SetItem(index, 5, wxString::FromDouble(share_entry.SHARECOMMISSION, 2));
+}
+
+// Bind list control events
+void mmStocksPanel::BindListEvents(wxListCtrl* listCtrl)
+{
+    listCtrl->Bind(wxEVT_LIST_ITEM_ACTIVATED, [listCtrl, this](wxListEvent& event) {
         long index = event.GetIndex();
-        Model_Checking::Data* txn = Model_Checking::instance().get(event.GetData());
-        Model_Translink::Data link = Model_Translink::TranslinkRecord(txn->TRANSID);
-        ShareTransactionDialog dlg(stockTxnListCtrl, &link, txn);
+        auto* txn = Model_Checking::instance().get(event.GetData());
+        if (!txn) return;
+
+        auto link = Model_Translink::TranslinkRecord(txn->TRANSID);
+        ShareTransactionDialog dlg(listCtrl, &link, txn);
         dlg.ShowModal();
 
-        // Update the item fields in case something changed
-        Model_Shareinfo::Data* share_entry = Model_Shareinfo::ShareEntry(txn->TRANSID);
-        stockTxnListCtrl->SetItem(index, 0, mmGetDateTimeForDisplay(txn->TRANSDATE));
-        stockTxnListCtrl->SetItem(index, 1, share_entry->SHARELOT);
+        // Update the modified row
+        auto* share_entry = Model_Shareinfo::ShareEntry(txn->TRANSID);
+        if (share_entry) {
+            this->FillListRow(listCtrl, index, *txn, *share_entry);
+        }
 
-        int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().getSharePrecision();
-        stockTxnListCtrl->SetItem(index, 2, wxString::FromDouble(share_entry->SHARENUMBER, precision));
-        stockTxnListCtrl->SetItem(index, 3, Model_Checking::trade_type_name(Model_Checking::type_id(txn->TRANSCODE)));
-        stockTxnListCtrl->SetItem(index, 4, wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().getSharePrecision()));
-        stockTxnListCtrl->SetItem(index, 5, wxString::FromDouble(share_entry->SHARECOMMISSION, 2));
-
-        // Sort by date 
-        stockTxnListCtrl->SortItems(
-            [](wxIntPtr item1, wxIntPtr item2, wxIntPtr) -> int
-            {
-                wxDate date1 = Model_Checking::TRANSDATE(Model_Checking::instance().get(item1));
-                wxDate date2 = Model_Checking::TRANSDATE(Model_Checking::instance().get(item2));
-
-                if (date1.IsEarlierThan(date2))
-                    return -1;
-                if (date1.IsLaterThan(date2))
-                    return 1;
-                return 0;
-            },
-            0);
+        // Re-sort the list
+        listCtrl->SortItems([](wxIntPtr item1, wxIntPtr item2, wxIntPtr) -> int {
+            auto date1 = Model_Checking::TRANSDATE(Model_Checking::instance().get(item1));
+            auto date2 = Model_Checking::TRANSDATE(Model_Checking::instance().get(item2));
+            return date1.IsEarlierThan(date2) ? -1 : (date1.IsLaterThan(date2) ? 1 : 0);
+        }, 0);
     });
 
-    stockTxnListCtrl->Bind(wxEVT_CHAR, [stockTxnListCtrl](wxKeyEvent& event) {
+    listCtrl->Bind(wxEVT_CHAR, [listCtrl, this](wxKeyEvent& event) {
         if (event.GetKeyCode() == WXK_CONTROL_C) {
-            if (wxTheClipboard->Open())
-            {
-                const wxString seperator = "\t";
-                wxString data = "";
-                for (int row = 0; row < stockTxnListCtrl->GetItemCount(); row++)
-                {
-                    if (stockTxnListCtrl->GetItemState(row, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
-                    {
-                        for (int column = 0; column < stockTxnListCtrl->GetColumnCount(); column++)
-                        {
-                            if (stockTxnListCtrl->GetColumnWidth(column) > 0) {
-                                data += inQuotes(stockTxnListCtrl->GetItemText(row, column), seperator);
-                                data += seperator;
-                            }
-                        }
-                        data += "\n";
-                    }
-                }
-                wxTheClipboard->SetData(new wxTextDataObject(data));
-                wxTheClipboard->Close();
+            CopySelectedRowsToClipboard(listCtrl);
+        } else if (event.GetKeyCode() == WXK_CONTROL_A) {
+            for (int row = 0; row < listCtrl->GetItemCount(); row++)
+                listCtrl->SetItemState(row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+        }
+    });
+}
+
+// Copy selected rows to the clipboard
+void mmStocksPanel::CopySelectedRowsToClipboard(wxListCtrl* listCtrl)
+{
+    if (!wxTheClipboard->Open()) return;
+
+    wxString data;
+    const wxString separator = "\t";
+
+    for (int row = 0; row < listCtrl->GetItemCount(); row++) {
+        if (listCtrl->GetItemState(row, wxLIST_STATE_SELECTED) != wxLIST_STATE_SELECTED)
+            continue;
+
+        for (int col = 0; col < listCtrl->GetColumnCount(); col++) {
+            if (listCtrl->GetColumnWidth(col) > 0) {
+                data += listCtrl->GetItemText(row, col) + separator;
             }
         }
-        else if (event.GetKeyCode() == WXK_CONTROL_A) {
-            for (int row = 0; row < stockTxnListCtrl->GetItemCount(); row++)
-                stockTxnListCtrl->SetItemState(row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-        }
-    });
-
-    wxSizer* buttonSizer = dlg.CreateSeparatedButtonSizer(wxOK);
-    if (buttonSizer)
-    {
-        topsizer->Add(buttonSizer, wxSizerFlags().Expand().DoubleBorder(wxLEFT | wxRIGHT | wxBOTTOM));
+        data += "\n";
     }
-    dlg.SetSizerAndFit(topsizer);
-    dlg.SetInitialSize(wxSize(470, -1));
-    dlg.Center();
-    dlg.ShowModal();
-    RefreshList();
+
+    wxTheClipboard->SetData(new wxTextDataObject(data));
+    wxTheClipboard->Close();
 }
 
 wxString mmStocksPanel::GetPanelTitle(const Model_Account::Data& account) const
@@ -541,7 +570,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     double stockDifference = stockCurrentPrice - stockPurchasePrice;
 
     double stocktotalDifference = stockCurrentPrice - stockavgPurchasePrice;
-    //Commision don't calculates here
+    // Commission don't calculates here
     const wxString& stockPercentage = (stockPurchasePrice != 0.0)
         ? wxString::Format("(%s %%)", Model_Currency::toStringNoFormatting(
             ((stockCurrentPrice / stockPurchasePrice - 1.0) * 100.0), nullptr, 2))

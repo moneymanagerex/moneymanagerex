@@ -145,6 +145,7 @@ private:
     wxStaticText* m_header_balance = nullptr;
     wxStaticText* m_info_panel = nullptr;
     wxStaticText* m_info_panel_mini = nullptr;
+    wxString m_info_panel_selectedbal; 
     wxVector<wxBitmapBundle> m_images;
     TransactionListCtrl* m_lc = nullptr;
     wxSharedPtr<mmFilterTransactionsDialog> m_trans_filter_dlg;
@@ -189,6 +190,7 @@ private:
     void onOpenAttachment(wxCommandEvent& event);
     void onSearchTxtEntered(wxCommandEvent& event);
     void onButtonRightDown(wxMouseEvent& event);
+    void onInfoPanelClick(wxMouseEvent& event, wxStaticText* infoPanel);
 
     wxString getPanelTitle() const;
     static void mmPlayTransactionSound();

@@ -152,6 +152,12 @@ void mmListCtrl::savePreferences()
     }
 
     if (static_cast<int>(m_col_width_id.size()) == getColIdSize()) {
+        for (int col_nr = 0; col_nr < GetColumnCount(); ++col_nr) {
+            int col_id = getColId_Nr(col_nr);
+            int new_width = GetColumnWidth(col_nr);
+            if (new_width != 0)
+                m_col_width_id[col_id] = new_width;
+        }
         json_writer.Key("col_width_id");
         json_writer.StartArray();
         for (int col_id = 0; col_id < getColIdSize(); ++col_id)

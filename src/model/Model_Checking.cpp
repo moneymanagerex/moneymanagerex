@@ -37,7 +37,8 @@ ChoicesName Model_Checking::TYPE_CHOICES = ChoicesName({
 
 ChoicesName Model_Checking::TRADE_TYPE_CHOICES = ChoicesName({
     { TYPE_ID_WITHDRAWAL,  _n("Buy") },
-    { TYPE_ID_DEPOSIT, _n("Sell") }
+    { TYPE_ID_DEPOSIT, _n("Sell") },
+    { TYPE_ID_TRANSFER, _n("Revalue") }
 });
 
 ChoicesKeyName Model_Checking::STATUS_CHOICES = ChoicesKeyName({
@@ -211,6 +212,8 @@ wxDateTime Model_Checking::TRANSDATE(const Data& r)
 
 double Model_Checking::account_flow(const Data* r, int64 account_id)
 {
+    if (r->ACCOUNTID == r->TOACCOUNTID)
+        return 0.0;  // Self Transfer as Revaluation
     if (Model_Checking::status_id(r->STATUS) == Model_Checking::STATUS_ID_VOID || !r->DELETEDTIME.IsEmpty())
         return 0.0;
     if (account_id == r->ACCOUNTID && type_id(r->TRANSCODE) == TYPE_ID_WITHDRAWAL)

@@ -1260,7 +1260,7 @@ void TransactionListCtrl::onEditTransaction(wxCommandEvent& /*event*/)
         if (checkTransactionLocked(checking_entry->ACCOUNTID, checking_entry->TRANSDATE))
             return;
 
-        if (Model_Checking::foreignTransaction(*checking_entry)) {
+        if (!Model_Translink::instance().find(Model_Translink::CHECKINGACCOUNTID(id.first)).empty()) {
             Model_Translink::Data translink = Model_Translink::TranslinkRecord(id.first);
             if (translink.LINKTYPE == Model_Attachment::REFTYPE_NAME_STOCK) {
                 ShareTransactionDialog dlg(this, &translink, checking_entry);

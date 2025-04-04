@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2025-02-04 16:22:14.834591.
+ *          AUTO GENERATED at 2025-03-19 09:54:52.159613.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -167,6 +167,16 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('55', '%s', '1', '-1')", _("Other Income")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('56', '%s', '1', '-1')", _("Other Expenses")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('57', '%s', '1', '-1')", _("Transfer")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('58', '%s', '1', '-1')", _("Investment")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('59', '%s', '1', '58')", _("Purchase")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('60', '%s', '1', '58')", _("Sale")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('61', '%s', '1', '58')", _("Dividend")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('62', '%s', '1', '58')", _("Capital Gains")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('63', '%s', '1', '58')", _("Brokerage Fees")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('64', '%s', '1', '58')", _("Interest")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('65', '%s', '1', '58')", _("Taxes")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('66', '%s', '1', '58')", _("Split")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CATEGORY_V1 VALUES ('67', '%s', '1', '58')", _("Merger")));
         db->Commit();
     }
     

@@ -23,11 +23,11 @@
 
 #include "stocks_list.h"
 #include "mmpanelbase.h"
-#include <wx/tglbtn.h>
+#include "model/Model_Shareinfo.h"
 #include "mmframe.h"
 
 class wxListEvent;
-class mmStocksPanel;
+class Model_Shareinfo;
 
 class mmStocksPanel : public mmPanelBase
 {
@@ -66,6 +66,11 @@ public:
     //void OnViewPopupSelected(wxCommandEvent& event);
 
     void ViewStockTransactions(int selectedIndex);
+    wxListCtrl* InitStockTxnListCtrl(wxWindow* parent);
+    void LoadStockTransactions(wxListCtrl* listCtrl, int64 stockId);
+    void FillListRow(wxListCtrl* listCtrl, long index, const Model_Checking::Data& txn, const Model_Shareinfo::Data& share_entry);
+    void BindListEvents(wxListCtrl* listCtrl);
+    void CopySelectedRowsToClipboard(wxListCtrl* listCtrl);
 
     int64 m_account_id = -1;
     Model_Currency::Data * m_currency = nullptr;

@@ -37,11 +37,12 @@ public:
 
     UserTransactionPanel(wxWindow *parent
         , Model_Checking::Data* checking_entry
+        , bool enable_revalue = false
         , wxWindowID win_id = wxID_ANY
         , const wxPoint &pos = wxDefaultPosition
         , const wxSize &size = wxDefaultSize
         , long style = wxTAB_TRAVERSAL
-        , const wxString &name = "UserTransactionPanel");
+        , const wxString &name = _t("UserTransactionPanel"));
 
     ~UserTransactionPanel();
 
@@ -63,6 +64,7 @@ public:
 
 private:
     Model_Checking::Data* m_checking_entry = nullptr;
+    bool m_enable_revalue = false;
     int64 m_transaction_id = -1;
 
     int64 m_account_id = -1;
@@ -71,16 +73,23 @@ private:
     int64 m_subcategory_id = -1;
 
 private:
-    void Create();
+    bool Create(wxWindow* parent
+    , wxWindowID id = wxID_ANY
+    , const wxPoint &pos = wxDefaultPosition
+    , const wxSize &size = wxDefaultSize
+    , long style = wxTAB_TRAVERSAL
+    , const wxString &name = _t("UserTransactionPanel"));
+
     void DataToControls();
+    void BindEventsAndTrigger();
     void SetLastPayeeAndCategory(const int64 account_id);
 
     void OnTransAccountButton(wxCommandEvent& WXUNUSED(event));
     void OnTransPayeeButton(wxCommandEvent& WXUNUSED(event));
-    void OnTransCategoryButton(wxCommandEvent& WXUNUSED(event));
+    void OnTransCategoryCombobox(wxCommandEvent& WXUNUSED(event));
+    void OnCategs(wxCommandEvent& event);
 
     void OnFrequentNotes(wxCommandEvent& event);
-    void onSelectedNote(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& WXUNUSED(event));
 
 private:
@@ -92,14 +101,16 @@ private:
     mmTextCtrl* m_entered_amount = nullptr;
     wxCheckBox* m_transfer = nullptr;
     wxButton* m_trans_currency = nullptr;
+    wxStaticText* m_payee_text = nullptr;
     wxButton* m_payee = nullptr;
-    wxButton* m_category = nullptr;
+    mmComboBoxCategory* m_category = nullptr;
     wxTextCtrl* m_entered_number = nullptr;
     wxTextCtrl* m_entered_notes = nullptr;
-    std::vector<wxString> m_frequent_notes;
     wxBitmapButton* m_attachment = nullptr;
-    wxButton* frequent_notes = nullptr;
- 
+    wxButton* m_frequent_notes = nullptr;
+
+    std::vector<Split> m_local_splits;
+
     enum
     {
         ID_TRANS_DATE_SELECTOR = wxID_HIGHEST + 10,
@@ -109,12 +120,14 @@ private:
         ID_TRANS_ACCOUNT_BUTTON,
         ID_TRANS_PAYEE_BUTTON_TEXT,
         ID_TRANS_PAYEE_BUTTON,
-        ID_TRANS_CATEGORY_BUTTON,
+        ID_TRANS_CATEGORY_COMBOBOX,
         ID_TRANS_ENTERED_NUMBER,
         ID_TRANS_ENTERED_AMOUNT,
         ID_TRANS_ENTERED_NOTES,
         ID_TRANS_FREQUENT_NOTES,
         ID_TRANS_TRANSFER,
         ID_TRANS_CURRENCY_BUTTON,
+        ID_TRANS_TYPE,
+        mmID_CATEGORY_SPLIT,
     };
 };

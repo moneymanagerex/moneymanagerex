@@ -131,6 +131,22 @@ int Model_Splittransaction::update(Data_Set& rows, int64 transactionID)
     return rows.size();
 }
 
+int Model_Splittransaction::update(const std::vector<Split>& rows, int64 transactionID)
+{
+
+    Data_Set splits;
+    for (const auto& entry : rows)
+    {
+        Model_Splittransaction::Data *s = instance().create();
+        s->CATEGID = entry.CATEGID;
+        s->SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;
+        s->NOTES = entry.NOTES;
+        splits.push_back(*s);
+    }
+
+    return this->update(splits, transactionID);
+}
+
 const wxString Model_Splittransaction::get_tooltip(const std::vector<Split>& rows, const Model_Currency::Data* currency)
 {
     wxString split_tooltip = "";

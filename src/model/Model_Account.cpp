@@ -226,17 +226,6 @@ double Model_Account::balance(const Data* r)
         sum += Model_Checking::account_flow(tran, r->ACCOUNTID); 
     }
 
-    // all held stocks (remove duplicates)
-    std::unordered_set<wxString> processedStockNames;
-    for (const auto& stock: Model_Stock::instance().find(Model_Stock::HELDAT(r->ACCOUNTID)))
-    {
-        if (processedStockNames.insert(stock.STOCKNAME).second) // only process unique STOCKNAME
-        {
-            Data* share_account = Model_Account::instance().get(stock.STOCKNAME); // hard-linked shares account
-            if (share_account)
-                sum += Model_Account::balance(share_account);
-        }
-    }
     return sum;
 }
 
@@ -252,6 +241,13 @@ std::pair<double, double> Model_Account::investment_balance(const Data* r)
     {
         sum.first += Model_Stock::CurrentValue(stock);
         sum.second += Model_Stock::InvestmentValue(stock);
+    }
+
+    for (const auto& asset: Model_Asset::instance().find_or(Model_Asset::ASSETNAME(r->ACCOUNTNAME), DB_Table_ASSETS_V1::ASSETTYPE(r->ACCOUNTNAME)))
+    {
+        auto asset_bal = Model_Asset::value(asset);
+        sum.first += asset_bal.second;
+        sum.second += asset_bal.first;
     }
     return sum;
 }

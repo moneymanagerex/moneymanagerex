@@ -115,11 +115,11 @@ public:
     /** Returns the base currency Data record pointer*/
     static Model_Currency::Data* currency(const Data* /* r */);
     /** Returns the calculated current value */
-    static double value(const Data* r);
+    static std::pair<double, double> value(const Data* r);
     /** Returns the calculated current value */
-    static double value(const Data& r);
+    static std::pair<double, double> value(const Data& r);
     /** Returns the calculated value at a given date */
-    double valueAtDate(const Data* r, const wxDate date);
+    std::pair<double, double> valueAtDate(const Data* r, const wxDate& date);
 };
 
 //----------------------------------------------------------------------------

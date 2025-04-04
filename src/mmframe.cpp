@@ -293,7 +293,15 @@ mmGUIFrame::mmGUIFrame(
         .Name("toolbar").ToolbarPane().Top()
         .LeftDockable(false).RightDockable(false)
         .Show(Model_Setting::instance().getBool("SHOWTOOLBAR", true))
-    );
+        .DockFixed(false)                                               
+        .Top()
+        .MinSize(wxSize(-1, toolBar_->GetSize().GetHeight())) 
+        .MaxSize(wxSize(-1, toolBar_->GetSize().GetHeight())) 
+        .Position(0)
+        .Row(0)
+        .Layer(0)
+        .Resizable(true)
+        );                          
 
     // change look and feel of wxAuiManager
     m_mgr.GetArtProvider()->SetMetric(16, 0);
@@ -334,6 +342,7 @@ mmGUIFrame::mmGUIFrame(
     const wxAcceleratorEntry entries[] = {
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F9, wxID_NEW),
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F5, wxID_REFRESH),
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F6, MENU_VIEW_LINKS),
     };
 
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
@@ -1612,7 +1621,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
                 _tu("&Attachment Manager…")
             );
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
-            menu.Enable(MENU_TREEPOPUP_REALLOCATE, account->ACCOUNTTYPE != Model_Account::TYPE_NAME_SHARES);
+            menu.Enable(MENU_TREEPOPUP_REALLOCATE, account->ACCOUNTTYPE != Model_Account::TYPE_NAME_SHARES && account->ACCOUNTTYPE != Model_Account::TYPE_NAME_INVESTMENT && account->ACCOUNTTYPE != Model_Account::TYPE_NAME_ASSET);
             menu.AppendSeparator();
             AppendImportMenu(menu);
             PopupMenu(&menu, pt);
@@ -1760,7 +1769,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemLinks = new wxMenuItem(
         menuView,
         MENU_VIEW_LINKS,
-        _t("&Navigator") + "\tF5",
+        _t("&Navigator") + "\tF6",
         _t("Show/Hide Navigator"),
         wxITEM_CHECK
     );
@@ -2179,31 +2188,32 @@ void mmGUIFrame::createToolBar()
     toolBar_->AddTool(MENU_TRANSACTIONREPORT, _t("Transaction Report"), mmBitmapBundle(png::FILTER, toolbar_icon_size), _t("Transaction Report"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_VIEW_LIST, _t("General Report Manager"), mmBitmapBundle(png::GRM, toolbar_icon_size), _t("General Report Manager"));
-    toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_PREFERENCES, _t("&Settings"), mmBitmapBundle(png::OPTIONS, toolbar_icon_size), _t("Settings"));
-    toolBar_->AddSeparator();
-
-    wxString news_array;
-    for (const auto& entry : websiteNewsArray_) {
-        news_array += entry.Title + "\n";
-    }
-    if (news_array.empty()) {
-        news_array = _t("News");
-    }
-    const auto news_ico = (websiteNewsArray_.size() > 0)
-        ? mmBitmapBundle(png::NEW_NEWS, toolbar_icon_size)
-        : mmBitmapBundle(png::NEWS, toolbar_icon_size);
-    toolBar_->AddTool(MENU_ANNOUNCEMENTMAILING, _t("News"), news_ico, news_array);
-
     toolBar_->AddTool(MENU_RATES, _t("Download Rates"), mmBitmapBundle(png::CURRATES, toolbar_icon_size), _t("Download currency and stock rates"));
 
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _t("Full Screen") + "\tF11", mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _t("Toggle full screen"));
-
-    toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_PRINT, _t("&Print"), mmBitmapBundle(png::PRINT, toolbar_icon_size), _t("Print"));
+    toolBar_->AddSeparator();
+
+    toolBar_->AddStretchSpacer();
 
     toolBar_->AddSeparator();
+    toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _t("Full Screen") + "\tF11", mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _t("Toggle full screen"));
+    toolBar_->AddTool(wxID_PREFERENCES, _t("&Settings"), mmBitmapBundle(png::OPTIONS, toolbar_icon_size), _t("Settings"));
+    toolBar_->AddSeparator();
+
+
+    wxString news_array;
+    for (const auto& entry : websiteNewsArray_)
+    {
+        news_array += entry.Title + "\n";
+    }
+    if (news_array.empty())
+    {
+        news_array = _t("News");
+    }
+    const auto news_ico = (websiteNewsArray_.size() > 0) ? mmBitmapBundle(png::NEW_NEWS, toolbar_icon_size) : mmBitmapBundle(png::NEWS, toolbar_icon_size);
+
+    toolBar_->AddTool(MENU_ANNOUNCEMENTMAILING, _t("News"), news_ico, news_array);
     toolBar_->AddTool(wxID_ABOUT, _t("&About"), mmBitmapBundle(png::ABOUT, toolbar_icon_size), _t("About"));
     toolBar_->AddTool(wxID_HELP, _t("&Help") + "\tF1", mmBitmapBundle(png::HELP, toolbar_icon_size), _t("Help"));
 

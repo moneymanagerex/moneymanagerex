@@ -73,6 +73,7 @@ void Model_Shareinfo::ShareEntry(int64 checking_id
     , double share_number
     , double share_price
     , double share_commission
+    , const std::vector<Split>& commission_splits
     , const wxString& share_lot)
 {
     bool updateTimestamp = false;
@@ -96,7 +97,9 @@ void Model_Shareinfo::ShareEntry(int64 checking_id
     share_entry->SHAREPRICE = share_price;
     share_entry->SHARECOMMISSION = share_commission;
     share_entry->SHARELOT = share_lot;
-    Model_Shareinfo::instance().save(share_entry);
+    auto id = Model_Shareinfo::instance().save(share_entry);
+
+    Model_Splittransaction::instance().update(commission_splits, id);
 
     if(updateTimestamp || !share_entry->equals(&old_entry))
         Model_Checking::instance().updateTimestamp(checking_id);

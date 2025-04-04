@@ -111,7 +111,11 @@ void mmAssetDialog::dataToControls()
         m_assetName->Enable(false);
     m_dpc->SetValue(Model_Asset::STARTDATE(m_asset));
     m_assetType->SetSelection(Model_Asset::type_id(m_asset));
-    m_value->SetValue(std::abs(m_asset->VALUE));
+    if (Model_Account::instance().get(m_asset->ASSETTYPE)) m_assetType->Enable(false);
+
+    auto bal = Model_Asset::value(m_asset);
+    m_value->SetValue(bal.first);
+    m_curr_val->SetValue(bal.second);
 
     int valueChangeType = Model_Asset::change_id(m_asset);
     m_valueChange->SetSelection(valueChangeType);
@@ -136,13 +140,15 @@ void mmAssetDialog::dataToControls()
 
     // Set up the transaction if this is the first entry.
     if (translink.empty())
-        m_transaction_panel->SetTransactionValue(m_asset->VALUE);
+        m_transaction_panel->SetTransactionValue(bal.first);
 
     if (!m_hidden_trans_entry) {
         m_assetName->Enable(false);
         m_dpc->Enable(false);
         m_assetType->Enable(false);
         m_value->Enable(false);
+        m_valueChange->Enable(false);
+        m_valueChange->Enable(false);
     }
 
     if (m_checking_entry && !m_checking_entry->DELETEDTIME.IsEmpty()) {
@@ -205,7 +211,7 @@ void mmAssetDialog::CreateControls()
     m_assetType->SetSelection(Model_Asset::TYPE_ID_PROPERTY);
     itemFlexGridSizer6->Add(m_assetType, g_flagsExpand);
 
-    wxStaticText* v = new wxStaticText(asset_details_panel, wxID_STATIC, _t("Value"));
+    wxStaticText* v = new wxStaticText(asset_details_panel, wxID_STATIC, _t("Initial Value"));
     itemFlexGridSizer6->Add(v, g_flagsH);
     v->SetFont(this->GetFont().Bold());
 
@@ -216,6 +222,19 @@ void mmAssetDialog::CreateControls()
     );
     mmToolTip(m_value, _t("Enter the current value of the asset"));
     itemFlexGridSizer6->Add(m_value, g_flagsExpand);
+
+    wxStaticText* c = new wxStaticText(asset_details_panel, wxID_STATIC, _t("Current Value"));
+    itemFlexGridSizer6->Add(c, g_flagsH);
+    c->SetFont(this->GetFont().Bold());
+
+    m_curr_val = new mmTextCtrl(
+        asset_details_panel, IDC_CURR_VAL, wxGetEmptyString(),
+        wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER,
+        mmCalcValidator()
+    );
+    m_curr_val->Enable(false);
+    mmToolTip(m_curr_val, _t("The current value of the asset"));
+    itemFlexGridSizer6->Add(m_curr_val, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _t("Change in Value")), g_flagsH);
 
@@ -286,7 +305,7 @@ void mmAssetDialog::CreateControls()
     {
         if (m_asset)
         {
-            m_transaction_panel->SetTransactionNumber(m_asset->ASSETNAME);
+            m_transaction_panel->SetTransactionNumber(m_asset->ASSETID.ToString() + "_" + m_asset->ASSETNAME);
             m_transaction_panel->CheckingType(Model_Translink::AS_INCOME_EXPENSE);
         }
     }
@@ -457,17 +476,17 @@ void mmAssetDialog::SetTransactionDate()
 void mmAssetDialog::CreateAssetAccount()
 {
     Model_Account::Data* asset_account = Model_Account::instance().create();
-    asset_account->ACCOUNTNAME = m_asset->ASSETNAME;
+    asset_account->ACCOUNTNAME = m_asset->ASSETTYPE;
     asset_account->ACCOUNTTYPE = Model_Account::TYPE_NAME_ASSET;
     asset_account->FAVORITEACCT = "FALSE";
     asset_account->STATUS = Model_Account::STATUS_NAME_OPEN;
     asset_account->INITIALBAL = 0;
-    asset_account->INITIALDATE = wxDate::Today().FormatISODate();
+    asset_account->INITIALDATE = m_asset->STARTDATE;
     asset_account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;
     Model_Account::instance().save(asset_account);
 
     mmAssetDialog asset_dialog(this, m_asset, true);
-    asset_dialog.SetTransactionAccountName(m_asset->ASSETNAME);
+    asset_dialog.SetTransactionAccountName(m_asset->ASSETTYPE);
     asset_dialog.SetTransactionDate();
     asset_dialog.ShowModal();
 }

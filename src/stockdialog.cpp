@@ -223,7 +223,7 @@ void mmStockDialog::CreateControls()
     mmToolTip(m_purchase_price_ctrl, _t("Enter the initial price per share.\nUsed when creating the initial Share transaction."));
     m_purchase_price_ctrl->Enable(initial_stock_transaction);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("*Commission")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Deductible Comm.")), g_flagsH);
     m_commission_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_COMMISSION, "0"
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(m_commission_ctrl, g_flagsExpand);
@@ -465,14 +465,13 @@ void mmStockDialog::OnSave(wxCommandEvent & /*event*/)
     {
         const wxString RefType = Model_Attachment::REFTYPE_NAME_STOCK;
         mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, m_stock->STOCKID);
+        ShareTransactionDialog share_dialog(this, m_stock);
+        share_dialog.ShowModal();
     }
 
     Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, wxDate::Today(), m_stock->CURRENTPRICE, Model_StockHistory::MANUAL);
     ShowStockHistory();
-
-    ShareTransactionDialog share_dialog(this, m_stock);
-    share_dialog.ShowModal();
-
+    
     m_edit = true;
     UpdateControls();
 }

@@ -114,10 +114,13 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
         menu.Enable(MENU_TREEPOPUP_DELETE, false);
         menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
     }
-
-    const auto& asset_accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_ASSET));
-    menu.Enable(MENU_TREEPOPUP_GOTOACCOUNT, !asset_accounts.empty());
-    menu.Enable(MENU_TREEPOPUP_VIEWTRANS, !asset_accounts.empty());
+    else
+    {
+        auto asset_account = Model_Account::instance().get(m_panel->m_assets[m_selected_row].ASSETNAME);  // ASSETNAME <=> ACCOUNTNAME
+        if (!asset_account) asset_account = Model_Account::instance().get(m_panel->m_assets[m_selected_row].ASSETTYPE);  // ASSETTYPE <=> ACCOUNTNAME
+        menu.Enable(MENU_TREEPOPUP_GOTOACCOUNT, asset_account);
+        menu.Enable(MENU_TREEPOPUP_VIEWTRANS, asset_account);
+    }
 
     PopupMenu(&menu, event.GetPosition());
 }
@@ -528,13 +531,17 @@ void mmAssetsPanel::sortList()
         std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETTYPE());
         break;
     case mmAssetsListCtrl::LIST_ID_VALUE_INITIAL:
-        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByVALUE());
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end()
+            , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
+            {
+                return Model_Asset::value(x).first < Model_Asset::value(y).first;
+            });
         break;
     case mmAssetsListCtrl::LIST_ID_VALUE_CURRENT:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end()
             , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
             {
-                return Model_Asset::value(x) < Model_Asset::value(y);
+                return Model_Asset::value(x).second < Model_Asset::value(y).second;
             });
         break;
     case mmAssetsListCtrl::LIST_ID_DATE:
@@ -561,9 +568,14 @@ int mmAssetsPanel::initVirtualListControl(int64 id)
 
     m_lc->SetItemCount(this->m_assets.size());
 
-    double balance = 0.0;
-    for (const auto& asset: this->m_assets) balance += Model_Asset::value(asset); 
-    header_text_->SetLabelText(wxString::Format(_t("Total: %s"), Model_Currency::toCurrency(balance))); // balance
+    double initial = 0.0, balance = 0.0;
+    for (const auto& asset: this->m_assets)
+    {
+        auto bal = Model_Asset::value(asset);
+        initial += bal.first;
+        balance += bal.second;
+    }
+    header_text_->SetLabelText(wxString::Format("%s, %s", wxString::Format(_t("Total: %s"), Model_Currency::toCurrency(balance)),  wxString::Format(_t("Initial: %s"), Model_Currency::toCurrency(initial)))); // balance
 
     int selected_item = 0;
     for (const auto& asset: this->m_assets)
@@ -617,9 +629,9 @@ wxString mmAssetsPanel::getItem(long item, int col_id)
     case mmAssetsListCtrl::LIST_ID_TYPE:
         return wxGetTranslation(asset.ASSETTYPE);
     case mmAssetsListCtrl::LIST_ID_VALUE_INITIAL:
-        return Model_Currency::toCurrency(asset.VALUE);
+        return Model_Currency::toCurrency(Model_Asset::value(asset).first);
     case mmAssetsListCtrl::LIST_ID_VALUE_CURRENT:
-        return Model_Currency::toCurrency(Model_Asset::value(asset));
+        return Model_Currency::toCurrency(Model_Asset::value(asset).second);
     case mmAssetsListCtrl::LIST_ID_DATE:
         return mmGetDateTimeForDisplay(asset.STARTDATE);
     case mmAssetsListCtrl::LIST_ID_NOTES: {
@@ -750,14 +762,15 @@ void mmAssetsPanel::AddAssetTrans(const int selected_index)
     Model_Asset::Data* asset = &m_assets[selected_index];
     mmAssetDialog asset_dialog(this, asset, true);
     Model_Account::Data* account = Model_Account::instance().get(asset->ASSETNAME);
-    if (account)
+    Model_Account::Data* account2 = Model_Account::instance().get(asset->ASSETTYPE);
+    if (account || account2)
     {
-        asset_dialog.SetTransactionAccountName(asset->ASSETNAME);
+        asset_dialog.SetTransactionAccountName(account ? asset->ASSETNAME : asset->ASSETTYPE);
     }
     else
     {
         Model_Translink::Data_Set translist = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_ASSET, asset->ASSETID);
-        if (!translist.empty())
+        if (translist.empty())
         {
             wxMessageBox(_t(
                 "This asset does not have its own account\n\n"
@@ -775,25 +788,132 @@ void mmAssetsPanel::AddAssetTrans(const int selected_index)
     }
 }
 
-void mmAssetsPanel::ViewAssetTrans(const int selected_index)
+void mmAssetsPanel::ViewAssetTrans(int selectedIndex)
 {
-    Model_Asset::Data* asset = &m_assets[selected_index];
-    Model_Translink::Data_Set asset_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_ASSET, asset->ASSETID);
+    Model_Asset::Data* asset = &m_assets[selectedIndex];
 
-    // TODO create a panel to display all the information on one screen
-    wxString msg = _t("Account \t Date\t   Value\n\n");
-    for (const auto &asset_entry : asset_list)
-    {
-        Model_Checking::Data* asset_trans = Model_Checking::instance().get(asset_entry.CHECKINGACCOUNTID);
-        if (asset_trans)
-        {
-            const auto aa = Model_Account::get_account_name(asset_trans->ACCOUNTID);
-            const auto ad = mmGetDateTimeForDisplay(asset_trans->TRANSDATE);
-            const auto av = Model_Currency::toString(asset_trans->TRANSAMOUNT); //TODO: check if currency needed
-            msg << wxString::Format("%s \t%s   \t%s \n", aa, ad, av);
-        }
+    wxDialog dlg(this, wxID_ANY,
+                 _t("View Asset Transactions") + ": " + asset->ASSETNAME,
+                 wxDefaultPosition, wxDefaultSize,
+                 wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
+
+    dlg.SetIcon(mmex::getProgramIcon());
+    wxWindow* parent = dlg.GetMainWindowOfCompositeControl();
+    wxBoxSizer* topsizer = new wxBoxSizer(wxVERTICAL);
+
+    // Initialize list control
+    wxListCtrl* assetTxnListCtrl = this->InitAssetTxnListCtrl(parent);
+    topsizer->Add(assetTxnListCtrl, wxSizerFlags(g_flagsExpand).TripleBorder());
+
+    // Bind events here
+    BindAssetListEvents(assetTxnListCtrl);
+
+    // Load asset transactions
+    LoadAssetTransactions(assetTxnListCtrl, asset->ASSETID);
+
+    // Add buttons
+    wxSizer* buttonSizer = dlg.CreateSeparatedButtonSizer(wxOK);
+    if (buttonSizer) {
+        topsizer->Add(buttonSizer, wxSizerFlags().Expand().DoubleBorder(wxLEFT | wxRIGHT | wxBOTTOM));
     }
-    wxMessageBox(msg, "Viewing Asset Transactions");
+
+    dlg.SetSizerAndFit(topsizer);
+    dlg.SetInitialSize(wxSize(600, 400)); // Set default size
+    dlg.Center();
+    dlg.ShowModal();
+}
+
+// Initialize the list control
+wxListCtrl* mmAssetsPanel::InitAssetTxnListCtrl(wxWindow* parent)
+{
+    wxListCtrl* listCtrl = new wxListCtrl(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                          wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_AUTOARRANGE);
+
+    listCtrl->AppendColumn(_t("Account"), wxLIST_FORMAT_LEFT, 120);
+    listCtrl->AppendColumn(_t("Date"), wxLIST_FORMAT_LEFT, 100);
+    listCtrl->AppendColumn(_t("Trade Type"), wxLIST_FORMAT_LEFT, 100);
+    listCtrl->AppendColumn(_t("Value"), wxLIST_FORMAT_RIGHT, 120);
+
+    return listCtrl;
+}
+
+// Load asset transactions into the list control
+void mmAssetsPanel::LoadAssetTransactions(wxListCtrl* listCtrl, int64 assetId)
+{
+    Model_Translink::Data_Set assetList = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_ASSET, assetId);
+
+    int row = 0;
+    for (const auto& assetEntry : assetList)
+    {
+        auto* assetTrans = Model_Checking::instance().get(assetEntry.CHECKINGACCOUNTID);
+        if (!assetTrans) continue;
+
+        long index = listCtrl->InsertItem(row++, "");
+        listCtrl->SetItemData(index, assetTrans->TRANSID.GetValue());
+        FillAssetListRow(listCtrl, index, *assetTrans);
+    }
+}
+
+void mmAssetsPanel::FillAssetListRow(wxListCtrl* listCtrl, long index, const Model_Checking::Data& txn)
+{
+    listCtrl->SetItem(index, 0, Model_Account::get_account_name(txn.ACCOUNTID));
+    listCtrl->SetItem(index, 1, mmGetDateTimeForDisplay(txn.TRANSDATE));
+    listCtrl->SetItem(index, 2, Model_Checking::trade_type_name(Model_Checking::type_id(txn.TRANSCODE)));
+    listCtrl->SetItem(index, 3, Model_Currency::toString(txn.TRANSAMOUNT));
+//    listCtrl->SetItem(index, 3, Model_Currency::get_currency_symbol(txn.CURRENCYID));
+}
+
+void mmAssetsPanel::BindAssetListEvents(wxListCtrl* listCtrl)
+{
+    listCtrl->Bind(wxEVT_LIST_ITEM_ACTIVATED, [listCtrl, this](wxListEvent& event) {
+        long index = event.GetIndex();
+        auto* txn = Model_Checking::instance().get(event.GetData());
+        if (!txn) return;
+
+        auto link = Model_Translink::TranslinkRecord(txn->TRANSID);
+        mmAssetDialog dlg(listCtrl, this->m_frame, &link, txn);
+        dlg.ShowModal();
+
+        this->FillAssetListRow(listCtrl, index, *txn);
+
+        listCtrl->SortItems([](wxIntPtr item1, wxIntPtr item2, wxIntPtr) -> int {
+            auto date1 = Model_Checking::TRANSDATE(Model_Checking::instance().get(item1));
+            auto date2 = Model_Checking::TRANSDATE(Model_Checking::instance().get(item2));
+            return date1.IsEarlierThan(date2) ? -1 : (date1.IsLaterThan(date2) ? 1 : 0);
+        }, 0);
+    });
+
+    listCtrl->Bind(wxEVT_CHAR, [listCtrl, this](wxKeyEvent& event) {
+        if (event.GetKeyCode() == WXK_CONTROL_C) {
+            CopySelectedRowsToClipboard(listCtrl);
+        } else if (event.GetKeyCode() == WXK_CONTROL_A) {
+            for (int row = 0; row < listCtrl->GetItemCount(); row++)
+                listCtrl->SetItemState(row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+        }
+    });
+}
+
+void mmAssetsPanel::CopySelectedRowsToClipboard(wxListCtrl* listCtrl)
+{
+    if (!wxTheClipboard->Open()) return;
+
+    wxString data;
+    const wxString separator = "\t";
+
+    for (int row = 0; row < listCtrl->GetItemCount(); row++) {
+        if (listCtrl->GetItemState(row, wxLIST_STATE_SELECTED) != wxLIST_STATE_SELECTED)
+            continue;
+
+        for (int col = 0; col < listCtrl->GetColumnCount(); col++) {
+            if (listCtrl->GetColumnWidth(col) > 0) {
+                data += listCtrl->GetItemText(row, col) + separator;
+            }
+        }
+        data += "\n";
+    }
+
+    wxTheClipboard->SetData(new wxTextDataObject(data));
+    wxTheClipboard->Close();
 }
 
 void mmAssetsPanel::GotoAssetAccount(const int selected_index)
