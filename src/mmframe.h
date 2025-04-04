@@ -201,6 +201,7 @@ private:
     void OnImportUniversalCSV(wxCommandEvent& event);
     void OnImportXML(wxCommandEvent& event);
     void OnImportQIF(wxCommandEvent& event);
+    void OnImportOFX(wxCommandEvent& event);
     void OnImportWebApp(wxCommandEvent& event);
     void OnPrintPage(wxCommandEvent& WXUNUSED(event));
     void OnQuit(wxCommandEvent& event);
@@ -355,6 +356,7 @@ private:
 
         MENU_IMPORT_MMNETCSV,
         MENU_IMPORT_QIF,
+        MENU_IMPORT_OFX,
         MENU_ACCTEDIT,
         MENU_ACCTDELETE,
         MENU_TRANSACTIONREPORT,
