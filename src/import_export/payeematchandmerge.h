@@ -13,6 +13,7 @@ struct PayeeMatchResult
     long long LastUsedCategoryID; // Last category ID used with this payee
     double MatchConfidence;       // Confidence score (0.0 to 100.0)
     wxString matchMethod;   // New field: "Exact", "Regex", "Fuzzy"
+    wxString regexPattern; // Return the regex pattern that was a successful match
 };
 
 enum class PayeeMatchMode
