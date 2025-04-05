@@ -106,6 +106,7 @@ void PayeeMatchAndMerge::RegexMatch(const wxString& payeeName, std::vector<Payee
                 result.LastUsedCategoryID = payee.CATEGID.GetValue();
                 result.MatchConfidence = 90.0;
                 result.matchMethod = "Regex"; // Set match method
+                result.regexPattern = pattern;
                 results.push_back(result);
                 break; // Move to next payee
             }
@@ -176,7 +177,7 @@ void PayeeMatchAndMerge::LoadRegexPatterns(const Model_Payee::Data& payee, std::
                 wxString pattern = wxString::FromUTF8(itr->value.GetString());
                 if (!pattern.IsEmpty())
                 {
-                    if (pattern.Contains("*"))
+                    if (pattern.Contains("*")) // May need to account for a wildcard mid-string.
                     {
                         pattern.Replace("*", ".*", true);
                         pattern.Replace("..*", ".*", true);

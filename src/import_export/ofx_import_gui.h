@@ -18,6 +18,7 @@ struct OFXImportResult
     wxString importedPayee;
     bool usedRegex;
     wxString regexPattern;
+    wxString matchRegexPattern;
     wxString category;
     wxString transType;
     bool imported;
@@ -191,7 +192,8 @@ private:
     void OnUseFuzzyMatchingToggled(wxCommandEvent& event);
     bool ParseOFX(const wxString& filePath, std::vector<OFXImportResult>& importResults, OFXImportStats& stats);
     bool ImportTransactions(wxXmlNode* banktranlist, wxLongLong accountID, std::vector<OFXImportResult>& results, OFXImportStats& stats);
-    wxString getPayeeName(const wxString& memo, bool& usedRegex, wxString& regexPattern, double& matchConfidence, wxString& matchMethod);
+    wxString getPayeeName(const wxString& memo, bool& usedRegex, wxString& regexPattern, double& matchConfidence, wxString& matchMethod,
+                          wxString& matchRegexPattern);
 
     wxTextCtrl* fileNameCtrl_;
     wxChoice* accountDropDown_;

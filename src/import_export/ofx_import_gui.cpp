@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "rapidjson/stringbuffer.h"
 #include "rapidjson/writer.h"
 #include <climits>
-#include <wx/event.h> // Added for event handling
+#include <wx/event.h>
 #include <wx/file.h>
 #include <wx/filedlg.h>
 #include <wx/log.h>
@@ -94,31 +94,12 @@ void mmPayeeSelectionDialog::OnCategorySelection(wxCommandEvent& event)
         updateCategoryButton_->Enable(true);
         updateCategoryButton_->SetToolTip(_("Toggle to update payee's default category (P) or apply to this transaction only"));
     }
-    categoryManuallyChanged_ = true;
-    event.Skip();
+    categoryManuallyChanged_ = true; // Mark as manually changed
+    wxLogDebug("Category manually changed to '%s' (ID=%lld)", categoryChoice_->GetString(sel), selectedCategoryId);
 }
-
-
-
 
 void mmPayeeSelectionDialog::OnInitDialog(wxInitDialogEvent& event)
 {
-    wxInt64ClientData* suggestedPayeeIdData = nullptr;
-    if (!suggestedPayeeName_.IsEmpty())
-    {
-        Model_Payee::Data_Set payees = Model_Payee::instance().all(Model_Payee::COL_PAYEENAME);
-        for (size_t i = 0; i < payees.size(); ++i)
-        {
-            if (payees[i].PAYEENAME == suggestedPayeeName_)
-            {
-                suggestedPayeeIdData = new wxInt64ClientData(payees[i].PAYEEID.GetValue());
-                break;
-            }
-        }
-    }
-    LoadRegexPatterns(suggestedPayeeIdData);
-    delete suggestedPayeeIdData;
-    regexGrid_->SetScrollRate(10, 10);
     event.Skip();
 }
 
@@ -292,60 +273,6 @@ void mmPayeeSelectionDialog::OnUpdateRegex(wxCommandEvent& /*event*/)
     deleteRowButton_->Enable(shouldUpdateRegex_ && regexGrid_->GetNumberRows() > 0);
 }
 
-void mmPayeeSelectionDialog::OnPayeeChoice(wxCommandEvent& event)
-{
-    int selection = payeeChoice_->GetSelection();
-    if (selection == wxNOT_FOUND || selection == 0) // Blank entry
-        return;
-
-    wxString selectedPayeeName = payeeChoice_->GetString(selection);
-    wxInt64ClientData* clientData = dynamic_cast<wxInt64ClientData*>(payeeChoice_->GetClientObject(selection));
-    if (!clientData)
-    {
-        wxLogError("No client data for payee '%s'", selectedPayeeName);
-        return;
-    }
-
-
-    int64_t payeeId = clientData->GetValue();
-    Model_Payee::Data* payee = Model_Payee::instance().get(payeeId);
-    if (payee && !categoryManuallyChanged_)
-    {
-        long long payeeCategoryId = payee->CATEGID.GetValue();
-        for (unsigned int i = 0; i < categoryChoice_->GetCount(); ++i)
-        {
-            wxStringClientData* data = dynamic_cast<wxStringClientData*>(categoryChoice_->GetClientObject(i));
-            if (data)
-            {
-                long long categId;
-                if (data->GetData().ToLongLong(&categId) && categId == payeeCategoryId)
-                {
-                    categoryChoice_->SetSelection(i);
-                    break;
-                }
-            }
-        }
-        // If no match found, default to Uncategorized
-        if (categoryChoice_->GetSelection() == wxNOT_FOUND)
-        {
-            categoryChoice_->SetSelection(0); // Assuming 0 is "Uncategorized"
-        }
-    }
-    else if (!payee && !categoryManuallyChanged_)
-    {
-        categoryChoice_->SetSelection(0); // Default to Uncategorized
-    }
-
-    if (useExistingRadio_->GetValue())
-    {
-        LoadRegexPatterns(clientData);
-    }
-
-    UpdateOKButton(event);
-    categoryManuallyChanged_ = false; // Reset after updating
-    event.Skip();
-}
-
 void mmPayeeSelectionDialog::OnInsertRow(wxCommandEvent& /*event*/)
 {
     if (!regexGrid_->IsEnabled() || !regexGrid_->IsEditable())
@@ -406,7 +333,7 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& event)
             wxMessageBox(_("Please select an existing payee."), _("Error"), wxOK | wxICON_ERROR);
             return;
         }
-        selectedPayee_ = payeeChoice_->GetStringSelection();
+        selectedPayee_ = payeeChoice_->GetString(selection);
     }
     else
     {
@@ -419,20 +346,22 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& event)
         return;
     }
 
-
     long long selectedCategoryId = GetSelectedCategoryID();
     bool shouldUpdateCategory = updatePayeeCategory_;
     Model_Payee::Data* payee = Model_Payee::instance().get_one(Model_Payee::PAYEENAME(selectedPayee_));
 
-    if (useExistingRadio_->GetValue() && shouldUpdateCategory && payee)
+    // Handle existing payee category update
+    if (useExistingRadio_->GetValue() && shouldUpdateCategory && payee && categoryManuallyChanged_)
     {
         if (selectedCategoryId != payee->CATEGID.GetValue())
         {
             payee->CATEGID = selectedCategoryId;
             Model_Payee::instance().save(payee);
+            wxLogDebug("Updated payee '%s' category to ID=%lld", selectedPayee_, selectedCategoryId);
         }
     }
 
+    // Handle regex pattern updates
     if (shouldUpdateRegex_)
     {
         std::vector<wxString> patterns;
@@ -441,7 +370,7 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& event)
             wxString pattern = regexGrid_->GetCellValue(i, 0).Trim().Trim(false);
             if (!pattern.IsEmpty())
             {
-                if (pattern.Contains("*"))
+                if (pattern.Contains("*")) // We should check if the apostrophe is mid-string I think. Needs some more refactoring.
                 {
                     pattern.Replace("*", ".*", true);
                     pattern.Replace("..*", ".*", true);
@@ -485,11 +414,17 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& event)
             {
                 payee->PATTERN = regexPattern_;
                 Model_Payee::instance().save(payee);
+                wxLogDebug("Saved regex pattern for payee '%s'", selectedPayee_);
             }
         }
         else
         {
             regexPattern_ = "{}";
+            if (payee)
+            {
+                payee->PATTERN = regexPattern_;
+                Model_Payee::instance().save(payee);
+            }
         }
     }
     else if (createNewRadio_->GetValue() && !payee)
@@ -498,12 +433,26 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& event)
         payee->PAYEENAME = selectedPayee_;
         payee->CATEGID = selectedCategoryId;
         Model_Payee::instance().save(payee);
+        wxLogDebug("Created new payee '%s' with category ID=%lld", selectedPayee_, selectedCategoryId);
     }
 
+    // Reset categoryManuallyChanged_ if not persisting the change
+    if (!shouldUpdateCategory)
+    {
+        categoryManuallyChanged_ = false;
+        wxLogDebug("Reset categoryManuallyChanged_ to false as category update not persisted");
+    }
+    else if (shouldUpdateCategory && payee)
+    {
+        wxLogDebug("Keeping categoryManuallyChanged_ = true as category was updated for payee '%s'", selectedPayee_);
+    }
+
+    // Notify parent dialog to reload regex mappings if necessary
     mmOFXImportDialog* parentDialog = dynamic_cast<mmOFXImportDialog*>(GetParent());
     if (parentDialog && (shouldUpdateRegex_ || (payee && shouldUpdateCategory)))
     {
         parentDialog->loadRegexMappings();
+        wxLogDebug("Triggered parent dialog to reload regex mappings");
     }
 
     EndModal(wxID_OK);
@@ -641,7 +590,294 @@ void mmPayeeSelectionDialog::AddCategoryToChoice(wxChoice* choice, long long cat
     }
 }
 
-// No duplicate definitions of GetSelectedCategory or GetSelectedCategoryID here
+mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString& memo, const wxString& suggestedPayeeName, const wxString& fitid,
+                                               const wxString& date, const wxString& amount, const wxString& transType, int currentTransaction,
+                                               int newTransactions, wxLongLong importStartTime, double matchConfidence, const wxString& matchMethod,
+                                               int totalTransactions)
+    : wxDialog(parent, wxID_ANY, _("Payee Confirmation Required"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER),
+      suggestedPayeeName_(suggestedPayeeName), matchConfidence_(matchConfidence), matchMethod_(matchMethod), confidenceLabel_(nullptr),
+      useExistingRadio_(nullptr), createNewRadio_(nullptr), payeeChoice_(nullptr), newPayeeTextCtrl_(nullptr), titleCaseButton_(nullptr),
+      categoryChoice_(nullptr), updateRegexCheckBox_(nullptr), regexGrid_(nullptr), okButton_(nullptr), updateCategoryButton_(nullptr),
+      insertRowButton_(nullptr), deleteRowButton_(nullptr), existingPayeeLabel_(nullptr), newPayeeLabel_(nullptr), payeeSizer_(nullptr),
+      selectedPayee_(suggestedPayeeName), regexPattern_(memo), shouldUpdateRegex_(false), updatePayeeCategory_(false), memoAdded_(false),
+      initialCategoryId_(-1), currentTransaction_(currentTransaction), newTransactions_(newTransactions), importStartTime_(importStartTime),
+      categoryManuallyChanged_(false), totalTransactions_(totalTransactions), memo_(memo)
+{
+    wxLogDebug("PayeeSelectionDialog: Initialized with current=%d, new=%d, total=%d", currentTransaction_, newTransactions_, totalTransactions_);
+
+    wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
+
+    // Progress and ETA
+    wxLongLong currentTime = wxGetUTCTimeMillis();
+    double elapsedTimeSec = (currentTime - importStartTime_).ToDouble() / 1000.0;
+    double avgTimePerTrans = (currentTransaction_ > 0) ? elapsedTimeSec / currentTransaction_ : 0.0;
+    int remainingTrans = totalTransactions_ - currentTransaction_;
+    double estimatedTimeSec = avgTimePerTrans * remainingTrans;
+    double estimatedTimeMin = estimatedTimeSec / 60.0;
+
+    wxStaticText* progressLabel = new wxStaticText(
+        this, wxID_ANY, wxString::Format(_("Transaction %d of %d (%d total in file)"), currentTransaction_ + 1, newTransactions_, totalTransactions_));
+    mainSizer->Add(progressLabel, 0, wxALL, 5);
+    wxString etaText = (avgTimePerTrans > 0) ? wxString::Format(_("Estimated completion time: %.1f minutes"), estimatedTimeMin) : _("Estimating time...");
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, etaText), 0, wxALL, 5);
+
+    // Transaction info
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Transaction Number (FITID): %s"), fitid)), 0, wxLEFT | wxRIGHT | wxTOP, 5);
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Date: %s"), date)), 0, wxALL, 5);
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Amount: %s"), amount)), 0, wxALL, 5);
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Type: %s"), transType)), 0, wxALL, 5);
+
+    // Create regex grid but don't yet add sizer
+    regexGrid_ = new wxGrid(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL);
+    regexGrid_->CreateGrid(1, 1);
+    regexGrid_->SetColLabelValue(0, _("Regex Pattern"));
+    regexGrid_->SetDefaultColSize(300);
+    regexGrid_->SetColMinimalWidth(0, 50);
+    regexGrid_->EnableGridLines(true);
+    regexGrid_->EnableEditing(true);
+    regexGrid_->SetDefaultCellBackgroundColour(*wxWHITE);
+    regexGrid_->SetLabelBackgroundColour(GetBackgroundColour());
+    regexGrid_->SetDefaultEditor(new wxGridCellTextEditor());
+    regexGrid_->SetScrollRate(10, 10);
+
+    // Show original memo and match result
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Memo: %s"), memo_)), 0, wxALL, 5);
+    if (matchMethod_ == "None" || suggestedPayeeName_ == memo_)
+    {
+        mainSizer->Add(new wxStaticText(this, wxID_ANY, _("No matching payee found.")), 0, wxALL, 5);
+        confidenceLabel_ = new wxStaticText(this, wxID_ANY, wxString::Format(_("Match Confidence: %.1f%% (%s)"), matchConfidence_, matchMethod_));
+        mainSizer->Add(confidenceLabel_, 0, wxALL, 5);
+    }
+    else if (matchConfidence_ > 50.0) // Show suggested payee and confidence only if confidence > 50%
+    {
+        mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Suggested Payee: '%s'"), suggestedPayeeName_)), 0, wxALL, 5);
+        confidenceLabel_ = new wxStaticText(this, wxID_ANY, wxString::Format(_("Match Confidence: %.1f%% (%s)"), matchConfidence_, matchMethod_));
+        mainSizer->Add(confidenceLabel_, 0, wxALL, 5);
+
+        // Load regex patterns for the suggested payee
+        wxInt64ClientData* suggestedPayeeIdData = nullptr;
+        if (!suggestedPayeeName_.IsEmpty())
+        {
+            Model_Payee::Data_Set payees = Model_Payee::instance().all(Model_Payee::COL_PAYEENAME);
+            for (size_t i = 0; i < payees.size(); ++i)
+            {
+                if (payees[i].PAYEENAME == suggestedPayeeName_)
+                {
+                    suggestedPayeeIdData = new wxInt64ClientData(payees[i].PAYEEID.GetValue());
+                    break;
+                }
+            }
+        }
+        LoadRegexPatterns(suggestedPayeeIdData);
+        delete suggestedPayeeIdData;
+    }
+    // If confidence <= 50%, neither suggested payee nor confidence is shown
+
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Do you want to use an existing payee or create a new one?")), 0, wxALL, 5);
+
+    useExistingRadio_ = new wxRadioButton(this, ID_USE_EXISTING, _("Use Existing Payee"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
+    createNewRadio_ = new wxRadioButton(this, ID_CREATE_NEW, _("Create New Payee"));
+    useExistingRadio_->SetValue(true);
+    mainSizer->Add(useExistingRadio_, 0, wxALL, 5);
+    mainSizer->Add(createNewRadio_, 0, wxALL, 5);
+
+    // Payee Selection Section
+    payeeSizer_ = new wxBoxSizer(wxVERTICAL);
+    existingPayeeLabel_ = new wxStaticText(this, wxID_ANY, _("Select Existing Payee:"));
+    payeeChoice_ = new wxChoice(this, wxID_ANY);
+    Model_Payee::Data_Set payees = Model_Payee::instance().all(Model_Payee::COL_PAYEENAME);
+
+    // Add a blank entry as the first item with ID -1
+    payeeChoice_->Append("", new wxInt64ClientData(-1));
+    int suggestedPayeeIndex = wxNOT_FOUND;
+
+    for (size_t i = 0; i < payees.size(); ++i)
+    {
+        int index = payeeChoice_->Append(payees[i].PAYEENAME, new wxInt64ClientData(payees[i].PAYEEID.GetValue()));
+        // Only pre-select the suggested payee if confidence > 50%
+        if (matchConfidence_ > 50.0 && payees[i].PAYEENAME.IsSameAs(suggestedPayeeName_, false))
+            suggestedPayeeIndex = index;
+    }
+
+    // Set selection only if we have a suggested payee with confidence > 50%
+    if (suggestedPayeeIndex != wxNOT_FOUND)
+    {
+        payeeChoice_->SetSelection(suggestedPayeeIndex);
+        wxLogDebug("PayeeSelectionDialog: Pre-selected suggested payee '%s' at index %d (confidence %.1f%%)", suggestedPayeeName_, suggestedPayeeIndex,
+                   matchConfidence_);
+    }
+    else
+    {
+        payeeChoice_->SetSelection(0); // Select the blank entry by default
+        wxLogDebug("PayeeSelectionDialog: No pre-selection (confidence %.1f%% ≤ 50%% or no match), defaulting to blank entry", matchConfidence_);
+    }
+
+    payeeSizer_->Add(existingPayeeLabel_, 0, wxLEFT | wxRIGHT | wxTOP, 5);
+    payeeSizer_->Add(payeeChoice_, 0, wxALL | wxEXPAND, 2);
+
+    newPayeeLabel_ = new wxStaticText(this, wxID_ANY, _("New Payee Name:"));
+    newPayeeTextCtrl_ = new wxTextCtrl(this, wxID_ANY, memo_); // Changed from suggestedPayeeName_ to memo_
+    titleCaseButton_ = new wxButton(this, ID_TITLE_CASE, "T", wxDefaultPosition, wxSize(25, -1));
+    titleCaseButton_->SetToolTip(_("Convert to Title Case"));
+    wxBoxSizer* newPayeeInnerSizer = new wxBoxSizer(wxHORIZONTAL);
+    newPayeeInnerSizer->Add(newPayeeTextCtrl_, 1, wxEXPAND, 0);
+    newPayeeInnerSizer->Add(titleCaseButton_, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, 5);
+
+    mainSizer->Add(payeeSizer_, 0, wxEXPAND);
+
+    categoryChoice_ = new wxChoice(this, wxID_ANY);
+    categoryChoice_->Append(_("Uncategorized"), new wxStringClientData("-1"));
+    Model_Category::Data_Set categories = Model_Category::instance().all(Model_Category::COL_CATEGNAME);
+    categoryMap.clear();
+    for (const auto& cat : categories)
+    {
+        categoryMap[cat.CATEGID.GetValue()] = cat;
+    }
+    for (const auto& cat : categories)
+    {
+        if (cat.PARENTID.GetValue() == -1)
+            AddCategoryToChoice(categoryChoice_, cat.CATEGID.GetValue(), categoryMap, 0);
+    }
+    categoryChoice_->SetSelection(0);
+
+    updateCategoryButton_ = new wxButton(this, ID_UPDATE_CATEGORY, "P", wxDefaultPosition, wxSize(25, -1));
+    updateCategoryButton_->SetToolTip(_("Toggle to update payee's default category (P) or apply to this transaction only"));
+    wxBoxSizer* categoryButtonSizer = new wxBoxSizer(wxHORIZONTAL);
+    categoryButtonSizer->Add(categoryChoice_, 1, wxEXPAND, 0);
+    categoryButtonSizer->Add(updateCategoryButton_, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, 5);
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Select Category for Payee:")), 0, wxLEFT | wxRIGHT | wxTOP, 5);
+    mainSizer->Add(categoryButtonSizer, 0, wxALL | wxEXPAND, 2);
+
+    updateRegexCheckBox_ = new wxCheckBox(this, wxID_ANY, _("Define/Update Regex Patterns"));
+    mainSizer->Add(updateRegexCheckBox_, 0, wxALL, 5);
+
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Edit Regex Patterns:")), 0, wxLEFT | wxRIGHT | wxTOP, 5);
+    mainSizer->Add(regexGrid_, 1, wxALL | wxEXPAND, 2);
+
+    wxBoxSizer* regexButtonSizer = new wxBoxSizer(wxHORIZONTAL);
+    insertRowButton_ = new wxButton(this, ID_INSERT_ROW, _("Insert Row"));
+    deleteRowButton_ = new wxButton(this, ID_DELETE_ROW, _("Delete Row"));
+    regexButtonSizer->Add(insertRowButton_, 0, wxRIGHT, 5);
+    regexButtonSizer->Add(deleteRowButton_, 0, wxRIGHT, 5);
+    mainSizer->Add(regexButtonSizer, 0, wxLEFT | wxRIGHT | wxBOTTOM, 5);
+
+    wxBoxSizer* buttonSizer = new wxBoxSizer(wxHORIZONTAL);
+    okButton_ = new wxButton(this, wxID_OK, _("OK"));
+    buttonSizer->Add(okButton_, 0, wxALL, 5);
+    buttonSizer->Add(new wxButton(this, wxID_CANCEL, _("Cancel")), 0, wxALL, 5);
+    mainSizer->Add(buttonSizer, 0, wxALIGN_CENTER | wxALL, 5);
+
+    SetSizer(mainSizer);
+    SetMinSize(wxSize(450, 680));
+    SetSize(wxSize(450, 680));
+    Layout();
+
+    payeeChoice_->Enable(true);
+    existingPayeeLabel_->Show(true);
+    payeeChoice_->Show(true);
+    newPayeeTextCtrl_->Enable(false);
+    titleCaseButton_->Enable(false);
+    newPayeeLabel_->Show(false);
+    newPayeeInnerSizer->Show(false);
+    updateCategoryButton_->Enable(true);
+    updateRegexCheckBox_->Enable(true);
+    regexGrid_->EnableEditing(updateRegexCheckBox_->IsChecked());
+    regexGrid_->Enable(false);
+    insertRowButton_->Enable(false);
+    deleteRowButton_->Enable(false);
+
+    newPayeeTextCtrl_->Bind(wxEVT_TEXT, &mmPayeeSelectionDialog::UpdateOKButton, this);
+    categoryChoice_->Bind(wxEVT_CHOICE, &mmPayeeSelectionDialog::OnCategorySelection, this);
+    categoryChoice_->Bind(wxEVT_SET_FOCUS, &mmPayeeSelectionDialog::OnCategoryFocus, this);
+
+    regexGrid_->Bind(wxEVT_SIZE,
+                     [this](wxSizeEvent& event)
+                     {
+                         int dialogWidth = GetClientSize().GetWidth();
+                         int scrollbarWidth = wxSystemSettings::GetMetric(wxSYS_VSCROLL_X);
+                         int padding = (10 * 2 + 2 * 2);
+                         int availableWidth = dialogWidth - padding - scrollbarWidth - 50;
+
+                         if (availableWidth > 50)
+                             regexGrid_->SetColSize(0, availableWidth);
+                         else
+                             regexGrid_->SetColSize(0, 50);
+                         regexGrid_->ForceRefresh();
+                         event.Skip();
+                     });
+
+    int dialogWidth = GetClientSize().GetWidth();
+    int scrollbarWidth = wxSystemSettings::GetMetric(wxSYS_VSCROLL_X);
+    int padding = (10 * 2 + 2 * 2);
+    int initialWidth = dialogWidth - padding - scrollbarWidth - 50;
+    if (initialWidth > 50)
+        regexGrid_->SetColSize(0, initialWidth);
+    else
+        regexGrid_->SetColSize(0, 50);
+    regexGrid_->ForceRefresh();
+
+    UpdateOKButton(wxCommandEvent());
+}
+
+void mmPayeeSelectionDialog::OnPayeeChoice(wxCommandEvent& event)
+{
+    int selection = payeeChoice_->GetSelection();
+    if (selection == wxNOT_FOUND || selection == 0) // Blank entry
+        return;
+
+    wxString selectedPayeeName = payeeChoice_->GetString(selection);
+    wxInt64ClientData* clientData = dynamic_cast<wxInt64ClientData*>(payeeChoice_->GetClientObject(selection));
+    if (!clientData)
+    {
+        wxLogError("No client data for payee '%s'", selectedPayeeName);
+        return;
+    }
+
+    int64_t payeeId = clientData->GetValue();
+    Model_Payee::Data* payee = Model_Payee::instance().get(payeeId);
+    if (payee)
+    {
+        // Always update the category to the payee's default, regardless of manual changes
+        long long payeeCategoryId = payee->CATEGID.GetValue();
+        for (unsigned int i = 0; i < categoryChoice_->GetCount(); ++i)
+        {
+            wxStringClientData* data = dynamic_cast<wxStringClientData*>(categoryChoice_->GetClientObject(i));
+            if (data)
+            {
+                long long categId;
+                if (data->GetData().ToLongLong(&categId) && categId == payeeCategoryId)
+                {
+                    categoryChoice_->SetSelection(i);
+                    wxLogDebug("Reset category to '%s' (ID=%lld) for payee '%s'", categoryChoice_->GetString(i), categId, selectedPayeeName);
+                    break;
+                }
+            }
+        }
+        // If no match found, default to Uncategorized
+        if (categoryChoice_->GetSelection() == wxNOT_FOUND)
+        {
+            categoryChoice_->SetSelection(0); // Assuming 0 is "Uncategorized"
+            wxLogDebug("No matching category found for payee '%s', set to Uncategorized", selectedPayeeName);
+        }
+    }
+    else
+    {
+        // If payee not found, default to Uncategorized
+        categoryChoice_->SetSelection(0);
+        wxLogDebug("Payee '%s' not found, set category to Uncategorized", selectedPayeeName);
+    }
+
+    if (useExistingRadio_->GetValue())
+    {
+        LoadRegexPatterns(clientData);
+    }
+
+    UpdateOKButton(event);
+    // Reset categoryManuallyChanged_ to false since we're overriding any manual change
+    categoryManuallyChanged_ = false;
+    wxLogDebug("Reset categoryManuallyChanged_ to false after payee change to '%s'", selectedPayeeName);
+    event.Skip();
+}
 
 mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
     : wxDialog(parent, wxID_ANY, _("Import OFX File"), wxDefaultPosition, wxSize(500, 360), wxCAPTION | wxCLOSE_BOX | wxMINIMIZE_BOX), fileNameCtrl_(nullptr),
@@ -680,11 +916,11 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
 
     mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Minimum Fuzzy Match Confidence Level:")), 0, wxALL, 5);
     fuzzyConfidenceChoice_ = new wxChoice(this, wxID_ANY);
-    for (int i = 100; i >= 39; i -= 1)
+    for (int i = 100; i >= 40; i -= 1)
     {
         wxString label = wxString::Format("%d%%", i);
         fuzzyConfidenceChoice_->Append(label, new wxStringClientData(wxString::Format("%d", i)));
-        if (i == 90)
+        if (i == 85)
             fuzzyConfidenceChoice_->SetSelection(fuzzyConfidenceChoice_->GetCount() - 1);
     }
     fuzzyConfidenceChoice_->Enable(useFuzzyMatchingCheckBox_->IsChecked());
@@ -709,7 +945,6 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
     SetMaxSize(wxSize(-1, 360));
     Layout();
 
-    //browseButton->Bind(wxEVT_BUTTON, &mmOFXImportDialog::OnBrowse, this); //Do we need this here?
     useFuzzyMatchingCheckBox_->Bind(wxEVT_CHECKBOX, &mmOFXImportDialog::OnUseFuzzyMatchingToggled, this);
 
     Model_Category::Data_Set transferCats = Model_Category::instance().find(Model_Category::CATEGNAME("Transfer"));
@@ -1119,7 +1354,7 @@ bool mmOFXImportDialog::ParseOFX(const wxString& filePath, std::vector<OFXImport
     return ImportTransactions(banktranlist, account_id_, importResults, stats);
 }
 
-wxString mmOFXImportDialog::getPayeeName(const wxString& memo, bool& usedRegex, wxString& regexPattern, double& matchConfidence, wxString& matchMethod)
+wxString mmOFXImportDialog::getPayeeName(const wxString& memo, bool& usedRegex, wxString& regexPattern, double& matchConfidence, wxString& matchMethod, wxString& matchRegexPattern)
 {
     wxLogDebug("getPayeeName: Starting with memo='%s'", memo);
 
@@ -1131,6 +1366,7 @@ wxString mmOFXImportDialog::getPayeeName(const wxString& memo, bool& usedRegex, 
     regexPattern = wxEmptyString;
     matchConfidence = 0.0;
     matchMethod = "None";
+    matchRegexPattern = "";
 
     if (matchFound && !matchResults.empty())
     {
@@ -1140,6 +1376,10 @@ wxString mmOFXImportDialog::getPayeeName(const wxString& memo, bool& usedRegex, 
         matchConfidence = bestMatch.MatchConfidence;
         matchMethod = bestMatch.matchMethod;
         usedRegex = (matchMethod == "Regex");
+        if (usedRegex == true)
+        {
+            matchRegexPattern = bestMatch.regexPattern;
+        }
 
         wxLogDebug("getPayeeName: Best match from PayeeMatchAndMerge: Name='%s', ID=%lld, Method='%s', Confidence=%.1f%%", candidatePayeeName, candidatePayeeID,
                    matchMethod, matchConfidence);
@@ -1230,7 +1470,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
     double minFuzzyConfidence = GetMinFuzzyConfidence();
     bool markFuzzyFollowUp = markFuzzyFollowUpCheckBox_->IsChecked();
 
-    stats = OFXImportStats(); // Reset all stats to 0
+    stats = OFXImportStats();
     int totalTransactions = 0;
     int newTransactions = 0;
     for (wxXmlNode* stmttrn = banktranlist->GetChildren(); stmttrn; stmttrn = stmttrn->GetNext())
@@ -1243,17 +1483,17 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
             {
                 if (trnNode->GetName().Upper() == "FITID")
                 {
-                    fitid = trnNode->GetNodeContent();
+                    fitid = trnNode->GetNodeContent().Trim(true).Trim(false);
                     break;
                 }
             }
+            // Check if this FITID exists in the current account first
             if (!Model_Checking::instance().find(Model_Checking::TRANSACTIONNUMBER(fitid), Model_Checking::ACCOUNTID(account->ACCOUNTID.GetValue())).empty())
-                continue;
+                continue; // Skip if duplicate in current account
             newTransactions++;
         }
     }
     stats.totalTransactions = totalTransactions;
-    wxLogDebug("ImportTransactions: Total=%d, New=%d", totalTransactions, newTransactions);
 
     int transactionIndex = 0;
     for (wxXmlNode* stmttrn = banktranlist->GetChildren(); stmttrn; stmttrn = stmttrn->GetNext())
@@ -1266,7 +1506,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
         {
             wxString nodeName = trnNode->GetName().Upper();
             if (nodeName == "FITID")
-                fitid = trnNode->GetNodeContent();
+                fitid = trnNode->GetNodeContent().Trim(true).Trim(false);
             else if (nodeName == "DTPOSTED")
                 dtposted = trnNode->GetNodeContent();
             else if (nodeName == "TRNAMT")
@@ -1283,23 +1523,11 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
 
         OFXImportResult result;
         result.fitid = fitid;
-        result.date = dtposted.IsEmpty() ? wxEmptyString : dtposted.Left(8);
-        result.amount = trnamt.IsEmpty() ? "0" : trnamt;
+        result.date = dtposted.Left(8);
+        result.amount = trnamt;
         result.ofxPayee = memo.IsEmpty() ? "Unknown Payee" : memo;
         result.matchMode = "None";
         result.matchConfidence = 0.0;
-
-        Model_Checking::Data_Set existingTrans =
-            Model_Checking::instance().find(Model_Checking::TRANSACTIONNUMBER(result.fitid), Model_Checking::ACCOUNTID(account->ACCOUNTID.GetValue()));
-        if (!existingTrans.empty())
-        {
-            result.imported = false;
-            result.importedPayee = "DUPLICATE";
-            result.matchMode = "None";
-            stats.skippedDuplicates++;
-            results.push_back(result);
-            continue;
-        }
 
         double amount;
         if (!trnamt.ToDouble(&amount))
@@ -1319,245 +1547,250 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
             continue;
         }
 
-        wxString transType = (amount >= 0) ? "Deposit" : "Withdrawal";
-        result.transType = transType;
-        double matchConfidence = 0.0;
-        wxString matchMethod;
-        bool usedRegex;
-        wxString payeeName = getPayeeName(memo, usedRegex, result.regexPattern, matchConfidence, matchMethod);
-        result.importedPayee = payeeName;
-        result.matchMode = matchMethod;
-        result.matchConfidence = matchConfidence;
-
-        Model_Payee::Data* payee = Model_Payee::instance().get_one(Model_Payee::PAYEENAME(payeeName));
-        bool payeeExisted = (payee != nullptr);
-
         Model_Checking::Data* transaction = Model_Checking::instance().create();
-        wxLogDebug("Created transaction at %p for FITID='%s'", transaction, result.fitid);
-        transaction->ACCOUNTID = account->ACCOUNTID.GetValue();
+        transaction->ACCOUNTID = account->ACCOUNTID;
         transaction->TRANSACTIONNUMBER = result.fitid;
         transaction->TRANSDATE = date.FormatISODate();
-        transaction->TRANSAMOUNT = fabs(amount); // Use absolute value as per MMEX convention
-        transaction->TRANSCODE = transType;
+        transaction->TRANSAMOUNT = fabs(amount);
         transaction->NOTES = memo;
 
-        bool promptForConfirmation = false;
-        if (!payeeExisted && matchMethod != "Exact")
+        bool isTransfer = false;
+        // Check for existing transaction in the current account first
+        Model_Checking::Data_Set sameAccountTrans =
+            Model_Checking::instance().find(Model_Checking::TRANSACTIONNUMBER(fitid), Model_Checking::ACCOUNTID(account->ACCOUNTID));
+        if (!sameAccountTrans.empty())
         {
-            promptForConfirmation = true; // No payee found and not an exact match
-        }
-        else if (matchMethod == "Fuzzy")
-        {
-            if (matchConfidence < minFuzzyConfidence)
-            {
-                promptForConfirmation = true; // Fuzzy match below threshold
-            }
-            else if (promptFuzzyConfirmationCheckBox_->IsChecked())
-            {
-                promptForConfirmation = true; // Fuzzy match above threshold with confirmation enabled
-            }
+            result.imported = false;
+            result.importedPayee = "DUPLICATE";
+            stats.skippedDuplicates++;
+            results.push_back(result);
+            //transactionIndex++;
+            continue; // Skip if duplicate in current account
         }
 
-        if (promptForConfirmation)
+        // Only check other accounts if no duplicate in current account
+        Model_Checking::Data_Set allExistingTrans = Model_Checking::instance().find(Model_Checking::TRANSACTIONNUMBER(fitid));
+        if (!allExistingTrans.empty())
         {
-            wxLogDebug("Showing dialog: transactionIndex=%d, totalTransactions=%d, matchMethod='%s', confidence=%.1f, min=%.1f", transactionIndex,
-                       newTransactions, matchMethod, matchConfidence, minFuzzyConfidence);
-            mmPayeeSelectionDialog payeeDlg(this, memo, payeeName, fitid, date.FormatISODate(), wxString::Format("%.2f", amount), transType, transactionIndex,
-                                            newTransactions, importStartTime_, matchConfidence, matchMethod, totalTransactions);
-            int modalResult = payeeDlg.ShowModal();
-            if (modalResult == wxID_OK)
+            for (auto& existing : allExistingTrans)
             {
-                payeeName = payeeDlg.GetSelectedPayee();
-                selectedPayee_ = payeeName;
-                payee = Model_Payee::instance().get_one(Model_Payee::PAYEENAME(payeeName));
-                if (payeeDlg.IsCreateNewPayee() && !payee)
+                // Check if this FITID is already a transfer involving the current account
+                if (existing.TRANSCODE == "Transfer" &&
+                    (existing.ACCOUNTID == account->ACCOUNTID || existing.TOACCOUNTID == account->ACCOUNTID))
+                {
+                    result.imported = false;
+                    result.transType = "";
+                    result.importedPayee = "DUPLICATE";
+                    result.category = "";
+                    result.matchMode = "None";
+                    stats.autoImportedCount++;
+                    wxLogDebug("FITID='%s' already a transfer involving %lld, skipped", fitid, account->ACCOUNTID);
+                    isTransfer = true;
+                    results.push_back(result);
+                    transactionIndex++;
+                    break;
+                }
+                else if (existing.ACCOUNTID != account->ACCOUNTID)
+                {
+                    // Potential new transfer
+                    double existingAmount = existing.TRANSAMOUNT;
+                    wxDateTime existingDate;
+                    existingDate.ParseISODate(existing.TRANSDATE);
+                    double adjustedExistingAmount = (existing.TRANSCODE == "Withdrawal") ? -existingAmount : existingAmount;
+
+                    double compAmt = fabs(adjustedExistingAmount + amount);
+                    int compDate = abs((date - existingDate).GetDays());
+                    if (compAmt < 0.01 && compDate <= 7)
+                    {
+                        if (existing.TRANSCODE == "Transfer")
+                        {
+                            wxLogWarning("FITID='%s' is a transfer from %lld to %lld, not updating", fitid, existing.ACCOUNTID,
+                                         existing.TOACCOUNTID);
+                            stats.skippedErrors++;
+                            result.imported = false;
+                            result.importedPayee = "TRANSFER CONFLICT";
+                            isTransfer = true;
+                        }
+                        else
+                        {
+                            if (existing.TRANSCODE == "Withdrawal" && amount > 0)
+                            {
+                                existing.TRANSCODE = "Transfer";
+                                existing.TOACCOUNTID = account->ACCOUNTID;
+                                existing.TRANSAMOUNT = existingAmount;
+                                existing.TOTRANSAMOUNT = amount;
+                            }
+                            else if (existing.TRANSCODE == "Deposit" && amount < 0)
+                            {
+                                existing.TRANSCODE = "Transfer";
+                                existing.ACCOUNTID = account->ACCOUNTID;
+                                existing.TOACCOUNTID = existing.ACCOUNTID;
+                                existing.TRANSAMOUNT = fabs(amount);
+                                existing.TOTRANSAMOUNT = existingAmount;
+                            }
+                            else
+                            {
+                                wxLogWarning("FITID='%s' incompatible (Existing=%s, New=%.2f), skipping", fitid, existing.TRANSCODE, amount);
+                                stats.skippedErrors++;
+                                result.imported = false;
+                                result.importedPayee = "TRANSFER ERROR";
+                                isTransfer = true;
+                                results.push_back(result);
+                                transactionIndex++;
+                                break;
+                            }
+
+                            existing.PAYEEID = -1;
+                            existing.CATEGID = transferCategId_;
+                            existing.NOTES = "Existing: " + existing.NOTES + "\nUpdated: " + memo;
+
+                            try
+                            {
+                                Model_Checking::instance().save(&existing);
+                                result.imported = true;
+                                result.transType = "Transfer";
+                                result.importedPayee = Model_Account::instance().get(existing.ACCOUNTID)->ACCOUNTNAME;
+                                result.category = "Transfer";
+                                result.matchMode = "Transfer";
+                                stats.autoImportedCount++;
+                                wxLogDebug("Updated FITID='%s' to Transfer from %lld to %lld", fitid, existing.ACCOUNTID, existing.TOACCOUNTID);
+                            }
+                            catch (const wxSQLite3Exception& e)
+                            {
+                                wxLogError("Failed to update FITID='%s': %s", fitid, e.GetMessage());
+                                result.imported = false;
+                                stats.skippedErrors++;
+                            }
+                            isTransfer = true;
+                        }
+                        results.push_back(result);
+                        transactionIndex++;
+                        break;
+                    }
+                }
+            }
+            if (isTransfer)
+                continue; // Skip creating a new transaction
+        }
+
+        if (!isTransfer)
+        {
+            transaction->TRANSCODE = (amount >= 0) ? "Deposit" : "Withdrawal";
+            result.transType = transaction->TRANSCODE;
+
+            double matchConfidence = 0.0;
+            wxString matchMethod;
+            bool usedRegex;
+            wxString matchRegexPattern;
+            wxString payeeName = getPayeeName(memo, usedRegex, result.regexPattern, matchConfidence, matchMethod, matchRegexPattern);
+            result.importedPayee = payeeName;
+            result.matchMode = matchMethod;
+            result.matchConfidence = matchConfidence;
+
+            if (usedRegex && matchRegexPattern)
+            {
+                result.matchRegexPattern = matchRegexPattern;
+            }
+
+            Model_Payee::Data* payee = Model_Payee::instance().get_one(Model_Payee::PAYEENAME(payeeName));
+            bool payeeExisted = (payee != nullptr);
+
+            bool promptForConfirmation = false;
+            if (!payeeExisted && matchMethod != "Exact")
+                promptForConfirmation = true;
+            else if (matchMethod == "Fuzzy" && (matchConfidence < minFuzzyConfidence || promptFuzzyConfirmationCheckBox_->IsChecked()))
+                promptForConfirmation = true;
+
+            if (promptForConfirmation)
+            {
+                mmPayeeSelectionDialog payeeDlg(this, memo, payeeName, fitid, date.FormatISODate(), wxString::Format("%.2f", amount), transaction->TRANSCODE,
+                                                transactionIndex, newTransactions, importStartTime_, matchConfidence, matchMethod, totalTransactions);
+                if (payeeDlg.ShowModal() == wxID_OK)
+                {
+                    payeeName = payeeDlg.GetSelectedPayee();
+                    result.importedPayee = payeeName;
+                    payee = Model_Payee::instance().get_one(Model_Payee::PAYEENAME(payeeName));
+                    if (payeeDlg.IsCreateNewPayee() && !payee)
+                    {
+                        Model_Payee::Data* newPayee = Model_Payee::instance().create();
+                        newPayee->PAYEENAME = payeeName;
+                        newPayee->CATEGID = payeeDlg.GetSelectedCategoryID();
+                        Model_Payee::instance().save(newPayee);
+                        transaction->PAYEEID = newPayee->PAYEEID;
+                        stats.newPayeesCreated++;
+                    }
+                    else if (payee)
+                    {
+                        transaction->PAYEEID = payee->PAYEEID;
+                        if (payeeDlg.ShouldUpdatePayeeCategory())
+                        {
+                            payee->CATEGID = payeeDlg.GetSelectedCategoryID();
+                            Model_Payee::instance().save(payee);
+                        }
+                    }
+                    transaction->CATEGID = payeeDlg.GetSelectedCategoryID();
+                    Model_Category::Data* category = Model_Category::instance().get(transaction->CATEGID);
+                    result.category = category ? category->CATEGNAME : "Uncategorized";
+                    if (payeeDlg.ShouldUpdateRegex() && payee)
+                    {
+                        payee->PATTERN = payeeDlg.GetRegexPattern();
+                        Model_Payee::instance().save(payee);
+                        result.regexPattern = payee->PATTERN;
+                    }
+                    stats.manuallyAllocated++;
+                    result.imported = true;
+                    result.matchMode = "Manual";
+                }
+                else
+                {
+                    stats.skippedManual++;
+                    result.imported = false;
+                    result.importedPayee = "CANCELED";
+                    results.push_back(result);
+                    if (payeeDlg.ShouldCancelImport())
+                        return false;
+                    transactionIndex++;
+                    continue;
+                }
+            }
+            else if (matchMethod == "Regex" || matchMethod == "Exact" || (matchMethod == "Fuzzy" && matchConfidence >= minFuzzyConfidence))
+            {
+                if (payee)
+                {
+                    transaction->PAYEEID = payee->PAYEEID;
+                    transaction->CATEGID = payee->CATEGID;
+                    transaction->STATUS = (matchMethod == "Fuzzy" && markFuzzyFollowUp) ? "F" : "";
+                    Model_Category::Data* category = Model_Category::instance().get(transaction->CATEGID);
+                    result.category = category ? category->CATEGNAME : "Uncategorized";
+                    stats.autoImportedCount++;
+                    result.imported = true;
+                }
+                else if (matchMethod == "Exact")
                 {
                     Model_Payee::Data* newPayee = Model_Payee::instance().create();
                     newPayee->PAYEENAME = payeeName;
-                    newPayee->CATEGID = payeeDlg.GetSelectedCategoryID();
-                    try
-                    {
-                        Model_Payee::instance().save(newPayee);
-                        transaction->PAYEEID = newPayee->PAYEEID.GetValue();
-                        stats.newPayeesCreated++;
-                        wxLogDebug("Created new payee: '%s', PAYEEID=%lld, NewPayeesCreated=%d", payeeName, newPayee->PAYEEID.GetValue(),
-                                   stats.newPayeesCreated);
-                    }
-                    catch (const wxSQLite3Exception& e)
-                    {
-                        wxLogError("Failed to save new payee '%s': %s", payeeName, e.GetMessage());
-                        stats.skippedErrors++;
-                        result.imported = false;
-                    }
-                }
-                else if (payee)
-                {
-                    transaction->PAYEEID = payee->PAYEEID.GetValue();
-                    if (payeeDlg.ShouldUpdatePayeeCategory())
-                    {
-                        payee->CATEGID = payeeDlg.GetSelectedCategoryID();
-                        Model_Payee::instance().save(payee);
-                    }
-                    wxLogDebug("Using existing payee: '%s', PAYEEID=%lld", payeeName, payee->PAYEEID.GetValue());
-                }
-                else
-                {
-                    wxLogError("Payee '%s' not found after dialog confirmation", payeeName);
-                    transaction->PAYEEID = -1;
-                }
-                transaction->CATEGID = payeeDlg.GetSelectedCategoryID();
-                Model_Category::Data* category = Model_Category::instance().get(static_cast<int>(transaction->CATEGID.GetValue()));
-                if (category)
-                {
-                    result.category = category->CATEGNAME;
-                }
-                else
-                {
-                    Model_Category::Data* defaultCat = Model_Category::instance().get("Uncategorized", -1LL);
-                    if (!defaultCat)
-                    {
-                        defaultCat = Model_Category::instance().create();
-                        defaultCat->CATEGNAME = "Uncategorized";
-                        defaultCat->PARENTID = -1;
-                        Model_Category::instance().save(defaultCat);
-                    }
-                    transaction->CATEGID = defaultCat->CATEGID.GetValue();
-                    result.category = defaultCat->CATEGNAME;
-                }
-                if (payeeDlg.ShouldUpdateRegex() && payee)
-                {
-                    payee->PATTERN = payeeDlg.GetRegexPattern();
-                    Model_Payee::instance().save(payee);
-                    result.regexPattern = payee->PATTERN;
-                }
-                stats.manuallyAllocated++;
-                result.imported = true;
-                result.matchMode = "Manual";
-                result.importedPayee = payeeName;
-            }
-            else
-            {
-                stats.skippedManual++;
-                result.imported = false;
-                result.importedPayee = "CANCELED";
-                result.matchMode = "None";
-                results.push_back(result);
-                if (payeeDlg.ShouldCancelImport())
-                {
-                    wxLogDebug("User canceled entire import at transaction %d", transactionIndex);
-                    return false;
-                }
-                transactionIndex++;
-                continue;
-            }
-        }
-        else if (matchMethod == "Regex")
-        {
-            if (payee)
-            {
-                transaction->PAYEEID = payee->PAYEEID.GetValue();
-                transaction->CATEGID = payee->CATEGID.GetValue();
-                transaction->STATUS = "F";
-                Model_Category::Data* category = Model_Category::instance().get(static_cast<int>(transaction->CATEGID.GetValue()));
-                if (category)
-                {
-                    result.category = category->CATEGNAME;
-                }
-                else
-                {
-                    Model_Category::Data* defaultCat = Model_Category::instance().get("Uncategorized", -1LL);
-                    if (!defaultCat)
-                    {
-                        defaultCat = Model_Category::instance().create();
-                        defaultCat->CATEGNAME = "Uncategorized";
-                        defaultCat->PARENTID = -1;
-                        Model_Category::instance().save(defaultCat);
-                    }
-                    transaction->CATEGID = defaultCat->CATEGID.GetValue();
-                    result.category = defaultCat->CATEGNAME;
-                }
-                stats.autoImportedCount++;
-                result.imported = true;
-                result.importedPayee = payeeName;
-                wxLogDebug("Auto-imported Regex match: payee='%s', PAYEEID=%lld, FITID='%s'", payeeName, payee->PAYEEID.GetValue(), fitid);
-            }
-            else
-            {
-                wxLogError("Regex match but payee '%s' not found", payeeName);
-                transaction->PAYEEID = -1;
-                stats.skippedErrors++;
-                result.imported = false;
-            }
-        }
-        else
-        { // Exact or Fuzzy (if above threshold and no prompt required)
-            if (payee)
-            {
-                transaction->PAYEEID = payee->PAYEEID.GetValue();
-                transaction->CATEGID = payee->CATEGID.GetValue();
-                if (matchMethod == "Fuzzy" && markFuzzyFollowUp)
-                {
-                    transaction->STATUS = "F";
-                }
-                else
-                {
-                    transaction->STATUS = "";
-                }
-                Model_Category::Data* category = Model_Category::instance().get(static_cast<int>(transaction->CATEGID.GetValue()));
-                if (category)
-                {
-                    result.category = category->CATEGNAME;
-                }
-                else
-                {
-                    Model_Category::Data* defaultCat = Model_Category::instance().get("Uncategorized", -1LL);
-                    if (!defaultCat)
-                    {
-                        defaultCat = Model_Category::instance().create();
-                        defaultCat->CATEGNAME = "Uncategorized";
-                        defaultCat->PARENTID = -1;
-                        Model_Category::instance().save(defaultCat);
-                    }
-                    transaction->CATEGID = defaultCat->CATEGID.GetValue();
-                    result.category = defaultCat->CATEGNAME;
-                }
-                stats.autoImportedCount++;
-                result.imported = true;
-                result.importedPayee = payeeName;
-                wxLogDebug("Auto-imported %s match: payee='%s', PAYEEID=%lld, FITID='%s'", matchMethod, payeeName, payee->PAYEEID.GetValue(), fitid);
-            }
-            else if (matchMethod == "Exact")
-            {
-                Model_Payee::Data* newPayee = Model_Payee::instance().create();
-                newPayee->PAYEENAME = payeeName;
-                newPayee->CATEGID = -1; // Default to Uncategorized
-                try
-                {
+                    newPayee->CATEGID = -1;
                     Model_Payee::instance().save(newPayee);
-                    transaction->PAYEEID = newPayee->PAYEEID.GetValue();
-                    transaction->CATEGID = newPayee->CATEGID.GetValue();
-                    transaction->STATUS = "";
+                    transaction->PAYEEID = newPayee->PAYEEID;
+                    transaction->CATEGID = newPayee->CATEGID;
                     stats.newPayeesCreated++;
                     stats.autoImportedCount++;
                     result.imported = true;
-                    result.importedPayee = payeeName;
-                    result.category = "Uncategorized";
-                    wxLogDebug("Created and auto-imported exact match payee: '%s', PAYEEID=%lld, FITID='%s'", payeeName, newPayee->PAYEEID.GetValue(), fitid);
+                    Model_Category::Data* category = Model_Category::instance().get(transaction->CATEGID);
+                    result.category = category ? category->CATEGNAME : "Uncategorized";
                 }
-                catch (const wxSQLite3Exception& e)
+                else
                 {
-                    wxLogError("Failed to save new exact match payee '%s': %s", payeeName, e.GetMessage());
-                    transaction->PAYEEID = -1;
                     stats.skippedErrors++;
                     result.imported = false;
+                    result.importedPayee = "PAYEE ERROR";
                 }
             }
             else
             {
-                wxLogError("%s match but payee '%s' not found", matchMethod, payeeName);
-                transaction->PAYEEID = -1;
                 stats.skippedErrors++;
                 result.imported = false;
+                result.importedPayee = "PAYEE ERROR";
             }
         }
 
@@ -1567,30 +1800,23 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
             {
                 Model_Checking::instance().save(transaction);
                 stats.importedTransactions++;
-                wxLogDebug("Transaction saved with payee '%s', PAYEEID=%lld, category ID=%lld, status='%s' at %p", result.importedPayee,
-                           transaction->PAYEEID.GetValue(), transaction->CATEGID.GetValue(), transaction->STATUS, transaction);
+                wxLogDebug("Imported: FITID='%s', Type='%s', Payee='%s', Mode='%s'", fitid, result.transType, result.importedPayee, result.matchMode);
             }
             catch (const wxSQLite3Exception& e)
             {
-                wxLogError("Failed to save transaction FITID='%s' at %p: %s", fitid, transaction, e.GetMessage());
+                wxLogError("Failed to save transaction FITID='%s': %s", fitid, e.GetMessage());
                 stats.skippedErrors++;
                 result.imported = false;
             }
         }
 
-        // No manual deletion of transaction; left in cache for destroy_cache() to handle
-
         results.push_back(result);
-        transactionIndex++;
+        if (result.imported)
+          transactionIndex++;
     }
 
-    wxLogDebug(
-        "Final stats: Total=%d, Imported=%d, AutoImported=%d, NewPayees=%d, ManuallyAllocated=%d, SkippedErrors=%d, SkippedManual=%d, SkippedDuplicates=%d",
-        stats.totalTransactions, stats.importedTransactions, stats.autoImportedCount, stats.newPayeesCreated, stats.manuallyAllocated, stats.skippedErrors,
-        stats.skippedManual, stats.skippedDuplicates);
     return stats.totalTransactions > 0;
 }
-
 
 mmOFXImportSummaryDialog::mmOFXImportSummaryDialog(wxWindow* parent, const std::vector<OFXImportResult>& results, const OFXImportStats& stats,
                                                    wxLongLong importStartTime)
@@ -1632,30 +1858,49 @@ mmOFXImportSummaryDialog::mmOFXImportSummaryDialog(wxWindow* parent, const std::
     grid->SetColLabelValue(7, _("Category"));
     grid->SetColLabelValue(8, _("Transaction Type"));
 
+/* We can sort results by uncommenting this block, and changing results in the below for loop to sortedResults
+
+    // Create a copy of results to sort
+    std::vector<OFXImportResult> sortedResults = results;
+
+    for (const auto& result : sortedResults)
+    // Sort by date in descending order
+    std::sort(sortedResults.begin(), sortedResults.end(),
+             [](const OFXImportResult& a, const OFXImportResult& b)
+             {
+                 return a.date > b.date; // Assumes date is YYYYMMDD, which sorts lexicographically
+             });
+*/
     int row = 0;
     for (const auto& result : results)
     {
         grid->AppendRows(1);
+
+        wxString dateFormatted = result.date;
+        if (dateFormatted.Len() == 8) // Ensure it’s in YYYYMMDD format
+        {
+            dateFormatted = dateFormatted.Mid(0, 4) + "-" + dateFormatted.Mid(4, 2) + "-" + dateFormatted.Mid(6, 2);
+        }
+
         grid->SetCellValue(row, 0, result.fitid);
-        grid->SetCellValue(row, 1, result.date);
+        grid->SetCellValue(row, 1, dateFormatted);
         grid->SetCellValue(row, 2, result.amount);
         grid->SetCellValue(row, 3, result.ofxPayee);
         grid->SetCellValue(row, 4, result.importedPayee);
         grid->SetCellValue(row, 5, result.matchMode);
 
         // Set Match Pattern/Confidence based on match mode
-        if (result.matchMode == "Fuzzy")
+        if (result.matchMode == "Regex" && !result.matchRegexPattern.IsEmpty())
         {
-            // Assuming matchConfidence is added to OFXImportResult (see below)
-            grid->SetCellValue(row, 6, wxString::Format("%.1f%%", result.matchConfidence));
+            grid->SetCellValue(row, 6, wxString::Format("%s", result.matchRegexPattern));
         }
-        else if (result.matchMode == "Regex")
+        else if (result.matchMode == "Fuzzy" && result.matchConfidence > 0.0)
         {
-            grid->SetCellValue(row, 6, result.regexPattern);
+            grid->SetCellValue(row, 6, wxString::Format("Fuzzy: %.0f%%", result.matchConfidence));
         }
         else
         {
-            grid->SetCellValue(row, 6, wxEmptyString); // None, Exact, Manual
+        //    grid->SetCellValue(row, 6, result.matchMode); // Exact, Manual, or other
         }
 
         grid->SetCellValue(row, 7, result.category);
@@ -1756,212 +2001,3 @@ wxString mmOFXImportSummaryDialog::FormatTimeTaken(double seconds) const
 }
 
 
-mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString& memo, const wxString& suggestedPayeeName, const wxString& fitid,
-                                               const wxString& date, const wxString& amount, const wxString& transType, int currentTransaction,
-                                               int newTransactions, wxLongLong importStartTime, double matchConfidence, const wxString& matchMethod,
-                                               int totalTransactions)
-    : wxDialog(parent, wxID_ANY, _("Payee Confirmation Required"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER),
-      suggestedPayeeName_(suggestedPayeeName), matchConfidence_(matchConfidence), matchMethod_(matchMethod), confidenceLabel_(nullptr),
-      useExistingRadio_(nullptr), createNewRadio_(nullptr), payeeChoice_(nullptr), newPayeeTextCtrl_(nullptr), titleCaseButton_(nullptr),
-      categoryChoice_(nullptr), updateRegexCheckBox_(nullptr), regexGrid_(nullptr), okButton_(nullptr), updateCategoryButton_(nullptr),
-      insertRowButton_(nullptr), deleteRowButton_(nullptr), existingPayeeLabel_(nullptr), newPayeeLabel_(nullptr), payeeSizer_(nullptr),
-      selectedPayee_(suggestedPayeeName), regexPattern_(memo), shouldUpdateRegex_(false), updatePayeeCategory_(false), memoAdded_(false),
-      initialCategoryId_(-1), currentTransaction_(currentTransaction), newTransactions_(newTransactions), importStartTime_(importStartTime),
-      categoryManuallyChanged_(false), totalTransactions_(totalTransactions), memo_(memo)
-{
-    wxLogDebug("PayeeSelectionDialog: Initialized with current=%d, new=%d, total=%d", currentTransaction_, newTransactions_, totalTransactions_);
-
-    wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
-
-    // Progress and ETA
-    wxLongLong currentTime = wxGetUTCTimeMillis();
-    double elapsedTimeSec = (currentTime - importStartTime_).ToDouble() / 1000.0;
-    double avgTimePerTrans = (currentTransaction_ > 0) ? elapsedTimeSec / currentTransaction_ : 0.0;
-    int remainingTrans = totalTransactions_ - currentTransaction_;
-    double estimatedTimeSec = avgTimePerTrans * remainingTrans;
-    double estimatedTimeMin = estimatedTimeSec / 60.0;
-
-    wxStaticText* progressLabel = new wxStaticText(
-        this, wxID_ANY, wxString::Format(_("Transaction %d of %d (%d total in file)"), currentTransaction_ + 1, newTransactions_, totalTransactions_));
-    mainSizer->Add(progressLabel, 0, wxALL, 5);
-    wxString etaText = (avgTimePerTrans > 0) ? wxString::Format(_("Estimated completion time: %.1f minutes"), estimatedTimeMin) : _("Estimating time...");
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, etaText), 0, wxALL, 5);
-
-    // Transaction info
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Transaction Number (FITID): %s"), fitid)), 0, wxLEFT | wxRIGHT | wxTOP, 5);
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Date: %s"), date)), 0, wxALL, 5);
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Amount: %s"), amount)), 0, wxALL, 5);
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Type: %s"), transType)), 0, wxALL, 5);
-
-    // Show original memo and match result
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Memo: %s"), memo_)), 0, wxALL, 5);
-    if (matchMethod_ == "None" || suggestedPayeeName_ == memo_)
-    {
-        mainSizer->Add(new wxStaticText(this, wxID_ANY, _("No matching payee found.")), 0, wxALL, 5);
-        confidenceLabel_ = new wxStaticText(this, wxID_ANY, wxString::Format(_("Match Confidence: %.1f%% (%s)"), matchConfidence_, matchMethod_));
-        mainSizer->Add(confidenceLabel_, 0, wxALL, 5);
-    }
-    else if (matchConfidence_ > 50.0) // Show suggested payee and confidence only if confidence > 50%
-    {
-        mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Suggested Payee: '%s'"), suggestedPayeeName_)), 0, wxALL, 5);
-        confidenceLabel_ = new wxStaticText(this, wxID_ANY, wxString::Format(_("Match Confidence: %.1f%% (%s)"), matchConfidence_, matchMethod_));
-        mainSizer->Add(confidenceLabel_, 0, wxALL, 5);
-    }
-    // If confidence <= 50%, neither suggested payee nor confidence is shown
-
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Do you want to use an existing payee or create a new one?")), 0, wxALL, 5);
-
-    useExistingRadio_ = new wxRadioButton(this, ID_USE_EXISTING, _("Use Existing Payee"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
-    createNewRadio_ = new wxRadioButton(this, ID_CREATE_NEW, _("Create New Payee"));
-    useExistingRadio_->SetValue(true);
-    mainSizer->Add(useExistingRadio_, 0, wxALL, 5);
-    mainSizer->Add(createNewRadio_, 0, wxALL, 5);
-
-    // Payee Selection Section
-    // Payee Selection Section
-    payeeSizer_ = new wxBoxSizer(wxVERTICAL);
-    existingPayeeLabel_ = new wxStaticText(this, wxID_ANY, _("Select Existing Payee:"));
-    payeeChoice_ = new wxChoice(this, wxID_ANY);
-    Model_Payee::Data_Set payees = Model_Payee::instance().all(Model_Payee::COL_PAYEENAME);
-
-    // Add a blank entry as the first item with ID -1
-    payeeChoice_->Append("", new wxInt64ClientData(-1));
-    int suggestedPayeeIndex = wxNOT_FOUND;
-
-    for (size_t i = 0; i < payees.size(); ++i)
-    {
-        int index = payeeChoice_->Append(payees[i].PAYEENAME, new wxInt64ClientData(payees[i].PAYEEID.GetValue()));
-        // Only pre-select the suggested payee if confidence > 50%
-        if (matchConfidence_ > 50.0 && payees[i].PAYEENAME.IsSameAs(suggestedPayeeName_, false))
-            suggestedPayeeIndex = index;
-    }
-
-    // Set selection only if we have a suggested payee with confidence > 50%
-    if (suggestedPayeeIndex != wxNOT_FOUND)
-    {
-        payeeChoice_->SetSelection(suggestedPayeeIndex);
-        wxLogDebug("PayeeSelectionDialog: Pre-selected suggested payee '%s' at index %d (confidence %.1f%%)", suggestedPayeeName_, suggestedPayeeIndex,
-                   matchConfidence_);
-    }
-    else
-    {
-        payeeChoice_->SetSelection(0); // Select the blank entry by default
-        wxLogDebug("PayeeSelectionDialog: No pre-selection (confidence %.1f%% ≤ 50%% or no match), defaulting to blank entry", matchConfidence_);
-    }
-
-    payeeSizer_->Add(existingPayeeLabel_, 0, wxLEFT | wxRIGHT | wxTOP, 5);
-    payeeSizer_->Add(payeeChoice_, 0, wxALL | wxEXPAND, 2);
-
-    newPayeeLabel_ = new wxStaticText(this, wxID_ANY, _("New Payee Name:"));
-    newPayeeTextCtrl_ = new wxTextCtrl(this, wxID_ANY, memo_); // Changed from suggestedPayeeName_ to memo_
-    titleCaseButton_ = new wxButton(this, ID_TITLE_CASE, "T", wxDefaultPosition, wxSize(25, -1));
-    titleCaseButton_->SetToolTip(_("Convert to Title Case"));
-    wxBoxSizer* newPayeeInnerSizer = new wxBoxSizer(wxHORIZONTAL);
-    newPayeeInnerSizer->Add(newPayeeTextCtrl_, 1, wxEXPAND, 0);
-    newPayeeInnerSizer->Add(titleCaseButton_, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, 5);
-
-    mainSizer->Add(payeeSizer_, 0, wxEXPAND);
-
-    categoryChoice_ = new wxChoice(this, wxID_ANY);
-    categoryChoice_->Append(_("Uncategorized"), new wxStringClientData("-1"));
-    Model_Category::Data_Set categories = Model_Category::instance().all(Model_Category::COL_CATEGNAME);
-    categoryMap.clear();
-    for (const auto& cat : categories)
-    {
-        categoryMap[cat.CATEGID.GetValue()] = cat;
-    }
-    for (const auto& cat : categories)
-    {
-        if (cat.PARENTID.GetValue() == -1)
-            AddCategoryToChoice(categoryChoice_, cat.CATEGID.GetValue(), categoryMap, 0);
-    }
-    categoryChoice_->SetSelection(0);
-
-    updateCategoryButton_ = new wxButton(this, ID_UPDATE_CATEGORY, "P", wxDefaultPosition, wxSize(25, -1));
-    updateCategoryButton_->SetToolTip(_("Toggle to update payee's default category (P) or apply to this transaction only"));
-    wxBoxSizer* categoryButtonSizer = new wxBoxSizer(wxHORIZONTAL);
-    categoryButtonSizer->Add(categoryChoice_, 1, wxEXPAND, 0);
-    categoryButtonSizer->Add(updateCategoryButton_, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, 5);
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Select Category for Payee:")), 0, wxLEFT | wxRIGHT | wxTOP, 5);
-    mainSizer->Add(categoryButtonSizer, 0, wxALL | wxEXPAND, 2);
-
-    updateRegexCheckBox_ = new wxCheckBox(this, wxID_ANY, _("Define/Update Regex Patterns"));
-    mainSizer->Add(updateRegexCheckBox_, 0, wxALL, 5);
-
-    regexGrid_ = new wxGrid(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL);
-    regexGrid_->CreateGrid(2, 1);
-    regexGrid_->SetColLabelValue(0, _("Regex Pattern"));
-    regexGrid_->SetDefaultColSize(300);
-    regexGrid_->SetColMinimalWidth(0, 50);
-    regexGrid_->EnableGridLines(true);
-    regexGrid_->EnableEditing(true);
-    regexGrid_->SetDefaultCellBackgroundColour(*wxWHITE);
-    regexGrid_->SetLabelBackgroundColour(GetBackgroundColour());
-    regexGrid_->SetDefaultEditor(new wxGridCellTextEditor());
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Edit Regex Patterns:")), 0, wxLEFT | wxRIGHT | wxTOP, 5);
-    mainSizer->Add(regexGrid_, 1, wxALL | wxEXPAND, 2);
-
-    wxBoxSizer* regexButtonSizer = new wxBoxSizer(wxHORIZONTAL);
-    insertRowButton_ = new wxButton(this, ID_INSERT_ROW, _("Insert Row"));
-    deleteRowButton_ = new wxButton(this, ID_DELETE_ROW, _("Delete Row"));
-    regexButtonSizer->Add(insertRowButton_, 0, wxRIGHT, 5);
-    regexButtonSizer->Add(deleteRowButton_, 0, wxRIGHT, 5);
-    mainSizer->Add(regexButtonSizer, 0, wxLEFT | wxRIGHT | wxBOTTOM, 5);
-
-    wxBoxSizer* buttonSizer = new wxBoxSizer(wxHORIZONTAL);
-    okButton_ = new wxButton(this, wxID_OK, _("OK"));
-    buttonSizer->Add(okButton_, 0, wxALL, 5);
-    buttonSizer->Add(new wxButton(this, wxID_CANCEL, _("Cancel")), 0, wxALL, 5);
-    mainSizer->Add(buttonSizer, 0, wxALIGN_CENTER | wxALL, 5);
-
-    SetSizer(mainSizer);
-    SetMinSize(wxSize(450, 680));
-    SetSize(wxSize(450, 680));
-    Layout();
-
-    payeeChoice_->Enable(true);
-    existingPayeeLabel_->Show(true);
-    payeeChoice_->Show(true);
-    newPayeeTextCtrl_->Enable(false);
-    titleCaseButton_->Enable(false);
-    newPayeeLabel_->Show(false);
-    newPayeeInnerSizer->Show(false); // Changed from newPayeeTextCtrl_->GetContainingSizer()->Show(false)
-    updateCategoryButton_->Enable(true);
-    updateRegexCheckBox_->Enable(true);
-    regexGrid_->EnableEditing(updateRegexCheckBox_->IsChecked());
-    regexGrid_->Enable(false);
-    insertRowButton_->Enable(false);
-    deleteRowButton_->Enable(false);
-
-    newPayeeTextCtrl_->Bind(wxEVT_TEXT, &mmPayeeSelectionDialog::UpdateOKButton, this);
-    categoryChoice_->Bind(wxEVT_CHOICE, &mmPayeeSelectionDialog::OnCategorySelection, this);
-    categoryChoice_->Bind(wxEVT_SET_FOCUS, &mmPayeeSelectionDialog::OnCategoryFocus, this);
-
-    regexGrid_->Bind(wxEVT_SIZE,
-                     [this](wxSizeEvent& event)
-                     {
-                         int dialogWidth = GetClientSize().GetWidth();
-                         int scrollbarWidth = wxSystemSettings::GetMetric(wxSYS_VSCROLL_X);
-                         int padding = (10 * 2 + 2 * 2);
-                         int availableWidth = dialogWidth - padding - scrollbarWidth - 50;
-
-                         if (availableWidth > 50)
-                             regexGrid_->SetColSize(0, availableWidth);
-                         else
-                             regexGrid_->SetColSize(0, 50);
-                         regexGrid_->ForceRefresh();
-                         event.Skip();
-                     });
-
-    int dialogWidth = GetClientSize().GetWidth();
-    int scrollbarWidth = wxSystemSettings::GetMetric(wxSYS_VSCROLL_X);
-    int padding = (10 * 2 + 2 * 2);
-    int initialWidth = dialogWidth - padding - scrollbarWidth - 50;
-    if (initialWidth > 50)
-        regexGrid_->SetColSize(0, initialWidth);
-    else
-        regexGrid_->SetColSize(0, 50);
-    regexGrid_->ForceRefresh();
-
-    UpdateOKButton(wxCommandEvent());
-}

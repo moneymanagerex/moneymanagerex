@@ -31,6 +31,3 @@
 [submodule "general-reports"]
 	path = general-reports
 	url = https://github.com/moneymanagerex/general-reports
-[submodule "3rd/tinyxml2"]
-	path = 3rd/tinyxml2
-	url = https://github.com/leethomason/tinyxml2/
