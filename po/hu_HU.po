@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-02-27 14:42+0000\n"
-"PO-Revision-Date: 2025-02-28 00:54\n"
+"POT-Creation-Date: 2025-04-02 23:29+0000\n"
+"PO-Revision-Date: 2025-04-04 00:56\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "License agreement"
 msgstr "Licencszerződés"
 
-#: aboutdialog.cpp:181 mmframe.cpp:2200
+#: aboutdialog.cpp:181 mmframe.cpp:2213
 msgid "About"
 msgstr "Névjegy"
 
@@ -50,20 +50,20 @@ msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "Engedélyezze az MMEX használatáról adatok anonim küldését, hogy segítsen nekünk."
 
 #: aboutdialog.cpp:247 accountdialog.cpp:301 appstartdialog.cpp:142
-#: assetdialog.cpp:306 attachmentdialog.cpp:149 billsdepositsdialog.cpp:650
+#: assetdialog.cpp:325 attachmentdialog.cpp:149 billsdepositsdialog.cpp:650
 #: budgetentrydialog.cpp:160 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:198 filtertransdialog.cpp:818
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:368
 #: mmSimpleDialogs.cpp:1105 optiondialog.cpp:160 payeedialog.cpp:159
-#: payeedialog.cpp:592 sharetransactiondialog.cpp:321
-#: splittransactionsdialog.cpp:104 splittransactionsdialog.cpp:286
+#: payeedialog.cpp:592 sharetransactiondialog.cpp:359
+#: splittransactionsdialog.cpp:104 splittransactionsdialog.cpp:282
 #: tagdialog.cpp:147 transactionsupdatedialog.cpp:281 transdialog.cpp:608
 #: wizard_update.cpp:212
 msgid "&OK "
 msgstr "&Rendben "
 
-#: accountdialog.cpp:96 mmframe.cpp:1898
+#: accountdialog.cpp:96 mmframe.cpp:1910
 msgid "Edit Account"
 msgstr "Számla szerkesztése"
 
@@ -94,7 +94,7 @@ msgstr "A számla tevékenységének kijelölése. A legtöbb számításhoz és
 #: accountdialog.cpp:154
 #, c-format
 msgid "Initial Balance: %s"
-msgstr "Kezdő egyenleg: %s "
+msgstr "Kezdeti egyenleg: %s"
 
 #: accountdialog.cpp:157
 msgid "Enter the initial balance in this account."
@@ -129,17 +129,17 @@ msgstr "Kedvenc számla"
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
 msgstr "Határozza meg, hogy ez egy gyakran használt számla-e. Ezt a számlák megjelenítésénél szűrésre használják."
 
-#: accountdialog.cpp:186 assetdialog.cpp:254 assetspanel.cpp:57
+#: accountdialog.cpp:186 assetdialog.cpp:273 assetspanel.cpp:57
 #: billsdepositsdialog.cpp:628 billsdepositspanel.cpp:118
 #: budgetentrydialog.cpp:151 budgetingpanel.cpp:73 filtertrans.cpp:207
 #: filtertransdialog.cpp:696 filtertransdialog.cpp:1930
 #: import_export/qif_export.cpp:635 import_export/qif_import_gui.cpp:95
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:110
 #: payeedialog.cpp:115 payeedialog.cpp:458 reports/transactions.cpp:231
-#: sharetransactiondialog.cpp:266 splittransactionsdialog.cpp:95
-#: splittransactionsdialog.cpp:356 stockdialog.cpp:247 stocks_list.cpp:79
+#: sharetransactiondialog.cpp:305 splittransactionsdialog.cpp:95
+#: splittransactionsdialog.cpp:352 stockdialog.cpp:247 stocks_list.cpp:79
 #: transactionsupdatedialog.cpp:256 transdialog.cpp:584
-#: usertransactionpanel.cpp:182 webappdialog.cpp:145
+#: usertransactionpanel.cpp:213 webappdialog.cpp:145
 msgid "Notes"
 msgstr "Megjegyzések"
 
@@ -231,7 +231,7 @@ msgstr "Számlaegyenleg alsó határa. Nulla a kikapcsoláshoz"
 msgid "Credit"
 msgstr "Hitel"
 
-#: accountdialog.cpp:263 mmcheckingpanel.cpp:376
+#: accountdialog.cpp:263 mmcheckingpanel.cpp:377
 msgid "Credit Limit:"
 msgstr "Hitelkeret:"
 
@@ -285,8 +285,8 @@ msgstr "Adjon meg egy érvényes URL-címet"
 
 #: accountdialog.cpp:522 accountdialog.cpp:531 accountdialog.cpp:536
 #: accountdialog.cpp:543 billsdepositsdialog.cpp:1041
-#: billsdepositsdialog.cpp:1044 stockdialog.cpp:414 transdialog.cpp:658
-#: transdialog.cpp:732 usertransactionpanel.cpp:452 webapp.cpp:568
+#: billsdepositsdialog.cpp:1044 stockdialog.cpp:415 transdialog.cpp:658
+#: transdialog.cpp:731 usertransactionpanel.cpp:513 webapp.cpp:568
 msgid "Invalid Date"
 msgstr "Érvénytelen dátum"
 
@@ -306,7 +306,7 @@ msgstr "Ehhez a számlához már léteztek részvényvásárlás(ok) ezen dátum
 msgid "Scheduled transactions for this account are scheduled before this date."
 msgstr "Ehhez a számlához tartozó ütemezett ügyletek ütemezése ezen dátum előtt történik."
 
-#: accountdialog.h:41 mmframe.cpp:1891 mmframe.cpp:2162
+#: accountdialog.h:41 mmframe.cpp:1903 mmframe.cpp:2174
 #: wizard_newaccount.cpp:87 wizard_newaccount.cpp:94 wizard_newaccount.cpp:168
 msgid "New Account"
 msgstr "Új számla"
@@ -331,11 +331,11 @@ msgstr "&Létező adatbázis megnyitása"
 msgid "Open MMEX database file"
 msgstr "MMEX-adatbázisfájl megnyitása"
 
-#: appstartdialog.cpp:112 mmframe.cpp:1856
+#: appstartdialog.cpp:112 mmframe.cpp:1868
 msgid "User Interface &Language"
 msgstr "Felhasználói felület n&yelve"
 
-#: appstartdialog.cpp:113 appstartdialog.cpp:221 mmframe.cpp:1857
+#: appstartdialog.cpp:113 appstartdialog.cpp:221 mmframe.cpp:1869
 #: optionsettingsgeneral.cpp:100
 msgid "Change user interface language"
 msgstr "Felhasználói felület nyelvének módosítása"
@@ -348,19 +348,19 @@ msgstr "&Felhasználói kézikönyv"
 msgid "Read MMEX user manual"
 msgstr "MMEX felhasználói kézikönyv elolvasása"
 
-#: appstartdialog.cpp:120 mmframe.cpp:2045
+#: appstartdialog.cpp:120 mmframe.cpp:2057
 msgid "&Website"
 msgstr "&Honlap"
 
-#: appstartdialog.cpp:121 mmframe.cpp:2046
+#: appstartdialog.cpp:121 mmframe.cpp:2058
 msgid "Visit MMEX website for the latest news and updates"
 msgstr "MMEX-webhely meglátogassa a legfrissebb hírekért és frissítésekért"
 
-#: appstartdialog.cpp:125 mmframe.cpp:2062
+#: appstartdialog.cpp:125 mmframe.cpp:2074
 msgid "&Forum"
 msgstr "&Fórum"
 
-#: appstartdialog.cpp:126 mmframe.cpp:2063
+#: appstartdialog.cpp:126 mmframe.cpp:2075
 msgid "Visit MMEX forum to read and post comments and for support"
 msgstr "MMEX-fórum látogatása megjegyzések olvasásához és közzétételéhez, valamint támogatásért"
 
@@ -377,7 +377,7 @@ msgstr "&Kilépés "
 msgid "Open the previously opened database: %s"
 msgstr "Korábban megnyitott adatbázis megnyitása: %s"
 
-#: appstartdialog.cpp:208 mmframe.cpp:1863 mmframe.cpp:3276
+#: appstartdialog.cpp:208 mmframe.cpp:1875 mmframe.cpp:3289
 #: optionsettingsgeneral.cpp:90 optionsettingsgeneral.cpp:372
 msgid "System default"
 msgstr "Rendszerbeli alapértelmezés"
@@ -386,23 +386,23 @@ msgstr "Rendszerbeli alapértelmezés"
 msgid "User Interface Language"
 msgstr "Felhasználói felület nyelve"
 
-#: appstartdialog.cpp:229 mmframe.cpp:4080 optionsettingsgeneral.cpp:362
+#: appstartdialog.cpp:229 mmframe.cpp:4093 optionsettingsgeneral.cpp:362
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Megváltozott az alkalmazás nyelve. A módosítás az alkalmazás következő indításakor lép életbe."
 
-#: appstartdialog.cpp:231 mmframe.cpp:4082 optionsettingsgeneral.cpp:364
+#: appstartdialog.cpp:231 mmframe.cpp:4095 optionsettingsgeneral.cpp:364
 msgid "Language change"
 msgstr "Nyelv módosítása"
 
-#: assetdialog.cpp:51 assetdialog.cpp:438 assetdialog.h:82 assetspanel.cpp:459
+#: assetdialog.cpp:51 assetdialog.cpp:457 assetdialog.h:83 assetspanel.cpp:462
 msgid "New Asset"
 msgstr "Új vagyontárgy"
 
-#: assetdialog.cpp:55 assetspanel.cpp:473
+#: assetdialog.cpp:55 assetspanel.cpp:476
 msgid "Edit Asset"
 msgstr "Eszköz szerkesztése"
 
-#: assetdialog.cpp:59 assetdialog.cpp:71 assetspanel.cpp:463
+#: assetdialog.cpp:59 assetdialog.cpp:71 assetspanel.cpp:466
 msgid "Add Asset Transaction"
 msgstr "Eszközügylet hozzáadása"
 
@@ -410,11 +410,11 @@ msgstr "Eszközügylet hozzáadása"
 msgid "Edit Asset Transaction"
 msgstr "Eszközügylet szerkesztése"
 
-#: assetdialog.cpp:173
+#: assetdialog.cpp:179
 msgid "Asset Details"
 msgstr "Eszköz részletei"
 
-#: assetdialog.cpp:183 assetspanel.cpp:52 customfieldeditdialog.cpp:136
+#: assetdialog.cpp:189 assetspanel.cpp:52 customfieldeditdialog.cpp:136
 #: customfieldlistdialog.cpp:48 import_export/qif_import_gui.cpp:246
 #: import_export/qif_import_gui.cpp:259 import_export/qif_import_gui.cpp:269
 #: import_export/univcsvdialog.cpp:512 import_export/univcsvdialog.cpp:522
@@ -422,98 +422,106 @@ msgstr "Eszköz részletei"
 msgid "Name"
 msgstr "Név"
 
-#: assetdialog.cpp:188
+#: assetdialog.cpp:194
 msgid "Enter the name of the asset"
 msgstr "Eszköz nevének megadása"
 
-#: assetdialog.cpp:191 assetspanel.cpp:53 filtertrans.cpp:199
-#: filtertransdialog.cpp:970 filtertransdialog.cpp:977
+#: assetdialog.cpp:197 assetspanel.cpp:53 assetspanel.cpp:833
+#: filtertrans.cpp:199 filtertransdialog.cpp:970 filtertransdialog.cpp:977
 #: import_export/qif_export.cpp:626 import_export/qif_import_gui.cpp:88
 #: import_export/univcsvdialog.cpp:103 maincurrencydialog.cpp:253
 #: maincurrencydialog.cpp:270 mmchecking_list.cpp:98
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:275
 #: reports/cashflow.cpp:404 reports/incexpenses.cpp:244 reports/summary.cpp:300
-#: reports/transactions.cpp:209 stockdialog.cpp:280 stockdialog.cpp:635
-#: stockspanel.cpp:212 transactionsupdatedialog.cpp:132 transdialog.cpp:433
-#: usertransactionpanel.cpp:85 webapp.cpp:565 webappdialog.cpp:138
+#: reports/transactions.cpp:209 stockdialog.cpp:280 stockdialog.cpp:607
+#: stockspanel.cpp:246 transactionsupdatedialog.cpp:132 transdialog.cpp:433
+#: usertransactionpanel.cpp:105 webapp.cpp:565 webappdialog.cpp:138
 #: wizard_update.cpp:138
 msgid "Date"
 msgstr "Dátum"
 
-#: assetdialog.cpp:194
+#: assetdialog.cpp:200
 msgid "Specify the date of purchase of asset"
-msgstr "Eszköz vásárlás dátumának megadása"
+msgstr "Eszköz beszerzés dátumának megadása"
 
-#: assetdialog.cpp:196
+#: assetdialog.cpp:202
 msgid "Asset Type"
 msgstr "Vagyontárgy típusa"
 
-#: assetdialog.cpp:204
+#: assetdialog.cpp:210
 msgid "Select type of asset"
 msgstr "Válassza ki az eszköz típusát"
 
-#: assetdialog.cpp:208 import_export/qif_import_gui.cpp:94
-#: maincurrencydialog.cpp:280
-msgid "Value"
-msgstr "Érték"
+#: assetdialog.cpp:214 assetspanel.cpp:55 mmhomepage.cpp:577
+msgid "Initial Value"
+msgstr "Kezdőérték"
 
-#: assetdialog.cpp:217
+#: assetdialog.cpp:223
 msgid "Enter the current value of the asset"
 msgstr "Eszköz jelenértékének megadása"
 
-#: assetdialog.cpp:220
+#: assetdialog.cpp:226 assetspanel.cpp:56 mmhomepage.cpp:578
+#: reports/summarystocks.cpp:121 stockdialog.cpp:242
+msgid "Current Value"
+msgstr "Jelenlegi érték"
+
+#: assetdialog.cpp:236
+msgid "The current value of the asset"
+msgstr "Eszköz jelenértéke"
+
+#: assetdialog.cpp:239
 msgid "Change in Value"
 msgstr "Értékváltozás"
 
-#: assetdialog.cpp:228
+#: assetdialog.cpp:247
 msgid "Specify if the value of the asset changes over time"
 msgstr "Adja meg, hogy az eszköz értéke idővel változik-e"
 
-#: assetdialog.cpp:232
+#: assetdialog.cpp:251
 msgid "Compounding Period"
 msgstr "Összetételi időszak"
 
-#: assetdialog.cpp:237
+#: assetdialog.cpp:256
 msgid "Select the compounding period for the appreciation/depreciation rate"
 msgstr "Összetételi időszak kijelölése a felértékelődés/amortizáció mértékéhez"
 
-#: assetdialog.cpp:242
+#: assetdialog.cpp:261
 msgid "% Rate"
 msgstr "Árfolyam"
 
-#: assetdialog.cpp:250
+#: assetdialog.cpp:269
 msgid "Enter the rate at which the asset changes its value in percentage per year"
 msgstr "Írd be a vagyontárgy éves értékváltozása értékét százalékos formában"
 
-#: assetdialog.cpp:260
+#: assetdialog.cpp:279
 msgid "Organize attachments of this asset"
 msgstr "Eszközhöz tartozó mellékletek rendszerezése"
 
-#: assetdialog.cpp:263
+#: assetdialog.cpp:282
 msgid "Enter notes associated with this asset"
 msgstr "Írja be az eszközhöz kapcsolódó megjegyzéseket"
 
-#: assetdialog.cpp:269
+#: assetdialog.cpp:288
 msgid "New Transaction Details"
 msgstr "Új ügylet részletei"
 
-#: assetdialog.cpp:272 sharetransactiondialog.cpp:292
+#: assetdialog.cpp:291 sharetransactiondialog.cpp:330
 msgid "Edit Transaction Details"
 msgstr "Ügylet részleteinek szerkesztése"
 
-#: assetdialog.cpp:307 constants.cpp:74 sharetransactiondialog.cpp:322
+#: assetdialog.cpp:326 constants.cpp:74 sharetransactiondialog.cpp:360
 msgid "&Cancel "
 msgstr "Elvet"
 
-#: assetdialog.cpp:430 sharetransactiondialog.cpp:415
+#: assetdialog.cpp:449 sharetransactiondialog.cpp:453
 msgid "Invalid Transaction"
 msgstr "Érvénytelen ügylet"
 
-#: assetdialog.cpp:437
+#: assetdialog.cpp:456
 msgid "Asset account not found."
 msgstr "Eszközszámla nem található."
 
-#: assetdialog.cpp:437 stockdialog.cpp:478
+#: assetdialog.cpp:456
 msgid "Do you want to create one?"
 msgstr "Szeretne létrehozni egyet?"
 
@@ -534,20 +542,11 @@ msgstr "Azon."
 #: filtertransdialog.cpp:1876 import_export/qif_export.cpp:134
 #: import_export/qif_export.cpp:628 import_export/qif_import_gui.cpp:91
 #: import_export/qif_import_gui.cpp:247 import_export/univcsvdialog.cpp:105
-#: maincurrencydialog.cpp:263 mmhomepage.cpp:426 reports/incexpenses.cpp:108
+#: maincurrencydialog.cpp:263 mmhomepage.cpp:417 reports/incexpenses.cpp:108
 #: reports/transactions.cpp:225 transactionsupdatedialog.cpp:167
-#: transdialog.cpp:472 usertransactionpanel.cpp:116 webappdialog.cpp:141
+#: transdialog.cpp:472 usertransactionpanel.cpp:140 webappdialog.cpp:141
 msgid "Type"
 msgstr "Típus"
-
-#: assetspanel.cpp:55 mmhomepage.cpp:587 reports/summarystocks.cpp:116
-msgid "Initial Value"
-msgstr "Kezdőérték"
-
-#: assetspanel.cpp:56 mmhomepage.cpp:588 reports/summarystocks.cpp:121
-#: stockdialog.cpp:242
-msgid "Current Value"
-msgstr "Jelenlegi érték"
 
 #: assetspanel.cpp:95
 msgid "&New Asset…"
@@ -577,31 +576,31 @@ msgstr "Eszköz s&zerkesztése…"
 msgid "&Delete Asset…"
 msgstr "Eszköz &törlése…"
 
-#: assetspanel.cpp:107 billsdepositspanel.cpp:433 mmchecking_list.cpp:714
+#: assetspanel.cpp:107 billsdepositspanel.cpp:433 mmchecking_list.cpp:715
 #: stocks_list.cpp:146
 msgid "&Organize Attachments…"
 msgstr "Mellékletek &rendszerezése…"
 
-#: assetspanel.cpp:204
+#: assetspanel.cpp:207
 msgid "Do you want to delete the asset?"
 msgstr "Szeretné törölni az eszközt?"
 
-#: assetspanel.cpp:205
+#: assetspanel.cpp:208
 msgid "Confirm Asset Deletion"
 msgstr "Vagyontárgy törlésének jóváhagyása"
 
-#: assetspanel.cpp:377
+#: assetspanel.cpp:380
 msgid "MMEX allows fixed assets like cars, houses, land, and others to be tracked. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr "Az MMEX lehetővé teszi a tárgyi eszközök, például autók, házak, földek és egyebek nyomon követését. Minden eszköz értéke felértékelődik egy bizonyos ütemben évente, értékcsökkenést egy bizonyos mértékben évente, vagy nem változik az értéke. A teljes vagyont hozzáadjuk az Ön teljes pénzügyi értékéhez."
 
-#: assetspanel.cpp:407 assetspanel.h:124 general_report_manager.cpp:1100
-#: mmframe.cpp:217 mmframe.cpp:1977 mmframe.cpp:3621 mmhomepage.cpp:538
-#: mmhomepage.cpp:586 mmhomepagepanel.cpp:237 reports/summary.cpp:271
+#: assetspanel.cpp:410 assetspanel.h:124 general_report_manager.cpp:1100
+#: mmframe.cpp:218 mmframe.cpp:1989 mmframe.cpp:3634 mmhomepage.cpp:529
+#: mmhomepage.cpp:576 mmhomepagepanel.cpp:257 reports/summary.cpp:271
 #: reports/summary.cpp:309
 msgid "Assets"
 msgstr "Eszközök"
 
-#: assetspanel.cpp:416 assetspanel.cpp:686 assetspanel.cpp:703
+#: assetspanel.cpp:419 assetspanel.cpp:698 assetspanel.cpp:715
 #: filtertransdialog.cpp:221 filtertransdialog.cpp:582
 #: filtertransdialog.cpp:898 filtertransdialog.cpp:2278
 #: import_export/qif_export.cpp:75 import_export/qif_export.cpp:76
@@ -609,98 +608,121 @@ msgstr "Eszközök"
 msgid "All"
 msgstr "Összes"
 
-#: assetspanel.cpp:458 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:266
+#: assetspanel.cpp:461 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:266
 #: stockspanel.cpp:132
 msgid "&New "
 msgstr "&Új "
 
-#: assetspanel.cpp:462 stockspanel.cpp:136
+#: assetspanel.cpp:465
 msgid "&Add Trans "
 msgstr "Ügyelt &hozzáadása "
 
-#: assetspanel.cpp:467 stockspanel.cpp:141
+#: assetspanel.cpp:470 stockspanel.cpp:141
 msgid "&View Trans "
 msgstr "Ügylet &megjelenítés"
 
-#: assetspanel.cpp:468
+#: assetspanel.cpp:471 assetspanel.cpp:796
 msgid "View Asset Transactions"
 msgstr "Eszközügyletek megjelenítése"
 
-#: assetspanel.cpp:472 attachmentdialog.cpp:354 billsdepositspanel.cpp:293
+#: assetspanel.cpp:475 attachmentdialog.cpp:354 billsdepositspanel.cpp:293
 #: categdialog.cpp:318 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
 #: mmcheckingpanel.cpp:270 payeedialog.cpp:882 stockspanel.cpp:146
 #: tagdialog.cpp:133
 msgid "&Edit "
 msgstr "S&zerkesztés "
 
-#: assetspanel.cpp:477 billsdepositspanel.cpp:303 budgetyeardialog.cpp:103
+#: assetspanel.cpp:480 billsdepositspanel.cpp:303 budgetyeardialog.cpp:103
 #: categdialog.cpp:322 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:262
 #: stockdialog.cpp:321 stockspanel.cpp:151 tagdialog.cpp:138
 msgid "&Delete "
 msgstr "Törlés"
 
-#: assetspanel.cpp:478
+#: assetspanel.cpp:481
 msgid "Delete Asset"
 msgstr "Eszköz törlése"
 
-#: assetspanel.cpp:485 billsdepositspanel.cpp:321 mmcheckingpanel.cpp:298
+#: assetspanel.cpp:488 billsdepositspanel.cpp:321 mmcheckingpanel.cpp:298
 #: stockspanel.cpp:164
 msgid "Open attachments"
 msgstr "Mellékletek megnyitása"
 
-#: assetspanel.cpp:492 assetspanel.cpp:493 categdialog.cpp:303
+#: assetspanel.cpp:495 assetspanel.cpp:496 categdialog.cpp:303
 #: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:329 payeedialog.cpp:588
 #: tagdialog.cpp:118
 msgid "Search"
 msgstr "Keres"
 
-#: assetspanel.cpp:496
+#: assetspanel.cpp:499
 msgid "Enter any string to find related assets"
 msgstr "Írjon be bármit a kapcsolódó eszközök megkereséséhez"
 
-#: assetspanel.cpp:497 filtertransdialog.cpp:702 mmcheckingpanel.cpp:333
+#: assetspanel.cpp:500 filtertransdialog.cpp:702 mmcheckingpanel.cpp:333
 #: payeedialog.cpp:137
 msgid "Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria."
 msgstr "Tippek: Helyettesítő karakterek—kérdőjel (?), csillag (*)—használhatók a keresési feltételekben."
 
-#: assetspanel.cpp:498 filtertransdialog.cpp:703 mmcheckingpanel.cpp:334
+#: assetspanel.cpp:501 filtertransdialog.cpp:703 mmcheckingpanel.cpp:334
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”."
 msgstr "Használja a kérdőjelet (?) egyetlen karakter megkereséséhez—például a „s?t” a „sat” és „set” kifejezést keresi."
 
-#: assetspanel.cpp:499 filtertransdialog.cpp:704 mmcheckingpanel.cpp:335
+#: assetspanel.cpp:502 filtertransdialog.cpp:704 mmcheckingpanel.cpp:335
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”."
 msgstr "A csillag (*) segítségével tetszőleges számú karaktert kereshet—például az „s*d” a „sad” és „started” szavakat keresi."
 
-#: assetspanel.cpp:500 filtertransdialog.cpp:705 mmcheckingpanel.cpp:336
+#: assetspanel.cpp:503 filtertransdialog.cpp:705 mmcheckingpanel.cpp:336
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) at the beginning to find any string in the middle of the sentence."
 msgstr "Használja a csillagot (*) az elején, hogy megtalálja a mondat közepén található karakterláncot."
 
-#: assetspanel.cpp:566 stockspanel.cpp:370 stockspanel.cpp:557
+#: assetspanel.cpp:578
+#, c-format
+msgid "Initial: %s"
+msgstr "Kezdeti: %s"
+
+#: assetspanel.cpp:578 stockspanel.cpp:401 stockspanel.cpp:590
 #, c-format
 msgid "Total: %s"
 msgstr "Összesen: %s"
 
-#: assetspanel.cpp:647
+#: assetspanel.cpp:659
 #, c-format
 msgid "Change in Value: %1$s %2$s"
 msgstr "Értékváltozás: %1$s %2$s"
 
-#: assetspanel.cpp:763
+#: assetspanel.cpp:776
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
 msgstr "Ennek az eszköznek nincs saját számlája\n\n"
 "Többszörös ügylet ezzel az eszközzel nem ajánlott."
 
-#: assetspanel.cpp:765
+#: assetspanel.cpp:778
 msgid "Asset Management"
 msgstr "Vagyonkezelés"
 
-#: assetspanel.cpp:784
-msgid "Account \t Date\t   Value\n\n"
-msgstr "Számla \tDátum\t  Érték\n\n"
+#: assetspanel.cpp:832 billsdepositsdialog.cpp:549 billsdepositsdialog.cpp:836
+#: billsdepositsdialog.cpp:849 billsdepositspanel.cpp:106 filtertrans.cpp:201
+#: filtertransdialog.cpp:57 filtertransdialog.cpp:579 filtertransdialog.cpp:960
+#: filtertransdialog.cpp:1779 import_export/qif_export.cpp:629
+#: import_export/qif_import_gui.cpp:87 import_export/qif_import_gui.cpp:159
+#: import_export/qif_import_gui.cpp:241 import_export/univcsvdialog.cpp:106
+#: mmchecking_list.cpp:101 reports/cashflow.cpp:405
+#: reports/transactions.cpp:215 transdialog.cpp:245 transdialog.cpp:249
+#: transdialog.cpp:502 transdialog.cpp:650 usertransactionpanel.cpp:109
+#: webapp.cpp:564 webappdialog.cpp:139
+msgid "Account"
+msgstr "Számla"
+
+#: assetspanel.cpp:834 stockspanel.cpp:249
+msgid "Trade Type"
+msgstr "Kereskedés típusa"
+
+#: assetspanel.cpp:835 import_export/qif_import_gui.cpp:94
+#: maincurrencydialog.cpp:280
+msgid "Value"
+msgstr "Érték"
 
 #: attachmentdialog.cpp:53 general_report_manager.cpp:473
 msgid "Description"
@@ -995,7 +1017,7 @@ msgstr "Adja meg azt a dátumot, amikor a felhasználót felkérik az ügyletbe"
 msgid "Date Paid"
 msgstr "Fizetés dátuma"
 
-#: billsdepositsdialog.cpp:498 filtertransdialog.cpp:654 transdialog.cpp:1334
+#: billsdepositsdialog.cpp:498 filtertransdialog.cpp:654 transdialog.cpp:1329
 msgid "Specify the status for the transaction"
 msgstr "Ügylet állapotának megadása"
 
@@ -1007,11 +1029,11 @@ msgstr "Ügylet állapotának megadása"
 #: import_export/univcsvdialog.cpp:513 import_export/univcsvdialog.cpp:523
 #: mmchecking_list.cpp:103 reports/transactions.cpp:219
 #: transactionsupdatedialog.cpp:150 transdialog.cpp:450
-#: usertransactionpanel.cpp:154 webappdialog.cpp:140 wizard_update.cpp:138
+#: usertransactionpanel.cpp:179 webappdialog.cpp:140 wizard_update.cpp:138
 msgid "Status"
 msgstr "Állapot"
 
-#: billsdepositsdialog.cpp:506 transdialog.cpp:1335
+#: billsdepositsdialog.cpp:506 transdialog.cpp:1330
 msgid "Specify the type of transactions to be created."
 msgstr "Létrehozandó ügyletek típusának megadása."
 
@@ -1019,42 +1041,29 @@ msgstr "Létrehozandó ügyletek típusának megadása."
 msgid "&Advanced"
 msgstr "&Haladó"
 
-#: billsdepositsdialog.cpp:510 transdialog.cpp:1338
+#: billsdepositsdialog.cpp:510 transdialog.cpp:1333
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Engedélyezi a származtató és a cél számlákon eltérő összeg szerepeltetését."
 
 #: billsdepositsdialog.cpp:521 billsdepositspanel.cpp:112 budgetingpanel.cpp:70
 #: filtertrans.cpp:206 filtertransdialog.cpp:1071 filtertransdialog.cpp:1081
 #: import_export/qif_export.cpp:632 import_export/univcsvdialog.cpp:108
-#: maincurrencydialog.cpp:626 mmchecking_list.cpp:873 mmhomepage.cpp:354
-#: mmhomepage.cpp:428 reports/cashflow.cpp:408 reports/categexp.cpp:218
+#: maincurrencydialog.cpp:626 mmchecking_list.cpp:874 mmhomepage.cpp:345
+#: mmhomepage.cpp:419 reports/cashflow.cpp:408 reports/categexp.cpp:218
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:227
-#: splittransactionsdialog.cpp:88 splittransactionsdialog.cpp:223
+#: splittransactionsdialog.cpp:88 splittransactionsdialog.cpp:219
 #: transactionsupdatedialog.cpp:186 transdialog.cpp:489
-#: usertransactionpanel.cpp:120 webappdialog.cpp:144
+#: usertransactionpanel.cpp:144 webappdialog.cpp:144
 msgid "Amount"
 msgstr "Összeg"
 
-#: billsdepositsdialog.cpp:532 transdialog.cpp:1320
+#: billsdepositsdialog.cpp:532 transdialog.cpp:1315
 msgid "Specify the transfer amount in the To Account"
 msgstr "Átutalás összegének megadása a célszámlára"
 
 #: billsdepositsdialog.cpp:543 transdialog.cpp:496
 msgid "Open Calculator"
 msgstr "Számológép megnyitása"
-
-#: billsdepositsdialog.cpp:549 billsdepositsdialog.cpp:836
-#: billsdepositsdialog.cpp:849 billsdepositspanel.cpp:106 filtertrans.cpp:201
-#: filtertransdialog.cpp:57 filtertransdialog.cpp:579 filtertransdialog.cpp:960
-#: filtertransdialog.cpp:1779 import_export/qif_export.cpp:629
-#: import_export/qif_import_gui.cpp:87 import_export/qif_import_gui.cpp:159
-#: import_export/qif_import_gui.cpp:241 import_export/univcsvdialog.cpp:106
-#: mmchecking_list.cpp:101 reports/cashflow.cpp:405
-#: reports/transactions.cpp:215 transdialog.cpp:245 transdialog.cpp:249
-#: transdialog.cpp:502 transdialog.cpp:650 usertransactionpanel.cpp:89
-#: webapp.cpp:564 webappdialog.cpp:139
-msgid "Account"
-msgstr "Számla"
 
 #: billsdepositsdialog.cpp:554
 msgid "Specify the Account that will own the scheduled transaction"
@@ -1074,7 +1083,7 @@ msgstr "Hova"
 #: payeedialog.cpp:207 payeedialog.cpp:243 reports/cashflow.cpp:406
 #: reports/payee.cpp:136 reports/transactions.cpp:217
 #: transactionsupdatedialog.cpp:199 transdialog.cpp:246 transdialog.cpp:521
-#: usertransactionpanel.cpp:158 webappdialog.cpp:142
+#: usertransactionpanel.cpp:183 webappdialog.cpp:142
 msgid "Payee"
 msgstr "Kedvezményezett"
 
@@ -1085,18 +1094,18 @@ msgstr "Kedvezményezett"
 #: filtertransdialog.cpp:1834 import_export/qif_export.cpp:631
 #: import_export/qif_import_gui.cpp:92 import_export/qif_import_gui.cpp:265
 #: import_export/univcsvdialog.cpp:110 import_export/univcsvdialog.cpp:518
-#: mmchecking_list.cpp:104 mmhomepage.cpp:191 payeedialog.cpp:202
+#: mmchecking_list.cpp:104 mmhomepage.cpp:182 payeedialog.cpp:202
 #: reports/budgetcategorysummary.cpp:191 reports/budgetingperf.cpp:131
 #: reports/cashflow.cpp:407 reports/categexp.cpp:217 reports/categexp.cpp:456
 #: reports/transactions.cpp:221 splittransactionsdialog.cpp:81
-#: splittransactionsdialog.cpp:221 transactionsupdatedialog.cpp:223
-#: transdialog.cpp:533 transdialog.cpp:665 usertransactionpanel.cpp:165
+#: splittransactionsdialog.cpp:217 transactionsupdatedialog.cpp:223
+#: transdialog.cpp:533 transdialog.cpp:665 usertransactionpanel.cpp:190
 #: webappdialog.cpp:143
 msgid "Category"
 msgstr "Kategória"
 
 #: billsdepositsdialog.cpp:587 billsdepositsdialog.cpp:1452 transdialog.cpp:539
-#: transdialog.cpp:1297
+#: transdialog.cpp:1292
 msgid "Use split Categories"
 msgstr "Kategóriafelosztás használata"
 
@@ -1107,13 +1116,13 @@ msgstr "Kategóriafelosztás használata"
 #: filtertransdialog.cpp:1708 filtertransdialog.cpp:1723
 #: filtertransdialog.cpp:1912 import_export/qif_import_gui.cpp:93
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:105
-#: reports/transactions.cpp:223 splittransactionsdialog.cpp:225
-#: splittransactionsdialog.cpp:581 transactionsupdatedialog.cpp:234
+#: reports/transactions.cpp:223 splittransactionsdialog.cpp:221
+#: splittransactionsdialog.cpp:577 transactionsupdatedialog.cpp:234
 #: transactionsupdatedialog.cpp:370 transdialog.cpp:547 transdialog.cpp:646
 msgid "Tags"
 msgstr "Címkék"
 
-#: billsdepositsdialog.cpp:604 transdialog.cpp:1336
+#: billsdepositsdialog.cpp:604 transdialog.cpp:1331
 msgid "Specify any associated check number or transaction number"
 msgstr "Vonatkozó csekk vagy ügylet számának megadása"
 
@@ -1122,11 +1131,11 @@ msgstr "Vonatkozó csekk vagy ügylet számának megadása"
 #: import_export/qif_export.cpp:634 import_export/qif_import_gui.cpp:89
 #: import_export/univcsvdialog.cpp:113 mmchecking_list.cpp:100
 #: reports/transactions.cpp:213 transdialog.cpp:560
-#: usertransactionpanel.cpp:178
+#: usertransactionpanel.cpp:209
 msgid "Number"
 msgstr "Szám"
 
-#: billsdepositsdialog.cpp:613 transdialog.cpp:567 usertransactionpanel.cpp:193
+#: billsdepositsdialog.cpp:613 transdialog.cpp:567 usertransactionpanel.cpp:224
 msgid "Select one of the frequently used notes"
 msgstr "Válassza ki a gyakran használt megjegyzések egyikét"
 
@@ -1148,8 +1157,8 @@ msgstr "Az ütemezett ügylethez tartozó mellékletek rendszerezése"
 msgid "Color"
 msgstr "Szín"
 
-#: billsdepositsdialog.cpp:640 transdialog.cpp:596 transdialog.cpp:1337
-#: usertransactionpanel.cpp:202
+#: billsdepositsdialog.cpp:640 transdialog.cpp:596 transdialog.cpp:1332
+#: usertransactionpanel.cpp:231
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Adja meg, milyen szöveges megjegyzést akar az ügylethez adni."
 
@@ -1194,15 +1203,15 @@ msgstr "Kedvezményezett nevének megerősítése"
 #: filtertransdialog.cpp:1100 filtertransdialog.cpp:1107
 #: filtertransdialog.cpp:1113 import_export/univcsvdialog.cpp:1351
 #: optionsettingsgeneral.cpp:292 optionsettingsgeneral.cpp:317
-#: payeedialog.cpp:202 payeedialog.cpp:207 splittransactionsdialog.cpp:581
+#: payeedialog.cpp:202 payeedialog.cpp:207 splittransactionsdialog.cpp:577
 #: transactionsupdatedialog.cpp:370 transactionsupdatedialog.cpp:444
-#: transdialog.cpp:646 transdialog.cpp:650 transdialog.cpp:665 util.cpp:745
+#: transdialog.cpp:646 transdialog.cpp:650 transdialog.cpp:665 util.cpp:765
 msgid "Invalid value"
 msgstr "Érvénytelen érték"
 
 #: billsdepositsdialog.cpp:1041 billsdepositsdialog.cpp:1044
-#: import_export/univcsvdialog.cpp:1424 stockdialog.cpp:414 transdialog.cpp:658
-#: transdialog.cpp:732 usertransactionpanel.cpp:452 webapp.cpp:566
+#: import_export/univcsvdialog.cpp:1424 stockdialog.cpp:415 transdialog.cpp:658
+#: transdialog.cpp:731 usertransactionpanel.cpp:513 webapp.cpp:566
 msgid "The opening date for the account is later than the date of this transaction"
 msgstr "A számla nyitási dátuma későbbi, mint az ügylet dátuma"
 
@@ -1238,14 +1247,15 @@ msgstr "Adja meg hányszor kell fizetni.\n"
 
 #: billsdepositsdialog.cpp:1391 images_list.cpp:504
 #: import_export/univcsvdialog.cpp:1587 maincurrencydialog.cpp:482
-#: mmframe.cpp:4034 splittransactionsdialog.cpp:414 stockspanel.cpp:421
-#: stockspanel.cpp:422 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
+#: mmframe.cpp:4047 splittransactionsdialog.cpp:410 stockspanel.cpp:454
+#: stockspanel.cpp:455 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
 msgstr "Hiba"
 
-#: billsdepositsdialog.cpp:1462 splittransactionsdialog.h:82
-#: transdialog.cpp:335
+#: billsdepositsdialog.cpp:1462 splittransactionsdialog.h:80
+#: transdialog.cpp:335 usertransactionpanel.cpp:275
+#: usertransactionpanel.cpp:582
 msgid "Split Transaction"
 msgstr "Ügylet felosztása"
 
@@ -1257,7 +1267,7 @@ msgstr "Új, ütemezett ügylet"
 msgid "Specify where the transaction is going to"
 msgstr "Ügylet címzettjének megadása"
 
-#: billsdepositsdialog.h:132 transdialog.cpp:1329
+#: billsdepositsdialog.h:132 transdialog.cpp:1324
 msgid "Specify where the transaction is coming from"
 msgstr "Adja meg hogy az ügylet honnan ered"
 
@@ -1265,7 +1275,7 @@ msgstr "Adja meg hogy az ügylet honnan ered"
 msgid "Specify which account the transfer is going to"
 msgstr "Átutalást fogadó számla megadása"
 
-#: billsdepositsdialog.h:134 transdialog.cpp:1324 usertransactionpanel.cpp:124
+#: billsdepositsdialog.h:134 transdialog.cpp:1319 usertransactionpanel.cpp:148
 msgid "Specify the amount for this transaction"
 msgstr "Ügylethez tartozó összeg megadása"
 
@@ -1305,7 +1315,7 @@ msgstr "Ismétlések"
 msgid "Autorepeat"
 msgstr "Automatikus ismétlés"
 
-#: billsdepositspanel.cpp:116 mmhomepage.cpp:354
+#: billsdepositspanel.cpp:116 mmhomepage.cpp:345
 msgid "Payment"
 msgstr "Kifizetés"
 
@@ -1317,8 +1327,8 @@ msgstr "Az MMEX lehetővé teszi a rendszeres fizetések ügyletként történő
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr "Tipp: ezek a tranzakciók aktiválandóvá tehetők - így akár az összeg az esedékesség napján módosítható."
 
-#: billsdepositspanel.cpp:241 billsdepositspanel.cpp:960 mmframe.cpp:3439
-#: mmhomepagepanel.cpp:243
+#: billsdepositspanel.cpp:241 billsdepositspanel.cpp:960 mmframe.cpp:3452
+#: mmhomepagepanel.cpp:263
 msgid "Scheduled Transactions"
 msgstr "Ütemezett ügyletek"
 
@@ -1386,21 +1396,21 @@ msgstr "Kézikönyv"
 msgid "Inactive"
 msgstr "Inaktív"
 
-#: billsdepositspanel.cpp:549 mmhomepage.cpp:312
+#: billsdepositspanel.cpp:549 mmhomepage.cpp:303
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
 msgstr[0] "%d napja lejárt!"
 msgstr[1] "%d napja lejárt!"
 
-#: billsdepositspanel.cpp:550 mmhomepage.cpp:310
+#: billsdepositspanel.cpp:550 mmhomepage.cpp:301
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
 msgstr[0] "%d nap késés!"
 msgstr[1] "%d nap késés!"
 
-#: billsdepositspanel.cpp:551 mmhomepage.cpp:309
+#: billsdepositspanel.cpp:551 mmhomepage.cpp:300
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
@@ -1439,7 +1449,7 @@ msgstr "Típus: "
 msgid "Expense"
 msgstr "Kiadás"
 
-#: budgetentrydialog.cpp:121 db/DB_Table_Category_V1.h:163 mmhomepage.cpp:430
+#: budgetentrydialog.cpp:121 db/DB_Table_Category_V1.h:163 mmhomepage.cpp:421
 #: reports/categexp.cpp:166 reports/categexp.cpp:196 reports/categexp.cpp:426
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
 #: reports/incexpenses.cpp:245
@@ -1755,9 +1765,9 @@ msgstr "A kategória törlésével a hozzá tartozó törölt ügyletek is önm�
 
 #: categdialog.cpp:503 customfieldeditdialog.cpp:238
 #: customfieldeditdialog.cpp:260 filtertransdialog.cpp:1307
-#: import_export/univcsvdialog.cpp:2187 mmframe.cpp:1371 mmframe.cpp:2633
-#: mmframe.cpp:2700 model/Model_Billsdeposits.cpp:224 payeedialog.cpp:752
-#: tagdialog.cpp:305 transdialog.cpp:750 transdialog.cpp:775
+#: import_export/univcsvdialog.cpp:2187 mmframe.cpp:1383 mmframe.cpp:2646
+#: mmframe.cpp:2713 model/Model_Billsdeposits.cpp:224 payeedialog.cpp:752
+#: tagdialog.cpp:305 transdialog.cpp:749 transdialog.cpp:774
 msgid "Do you want to continue?"
 msgstr "Folytatja?"
 
@@ -1778,17 +1788,17 @@ msgstr "Kategória szerkesztése"
 msgid "Category Manager: Editing Error"
 msgstr "Kategóriakezelő: Szerkesztési hiba"
 
-#: categdialog.cpp:683 mmframe.cpp:3927
+#: categdialog.cpp:683 mmframe.cpp:3940
 msgid "Merge categories completed"
 msgstr "Kategóriák egyesítése befejeződött"
 
-#: categdialog.cpp:684 mmframe.cpp:3928 mmframe.cpp:3942 mmframe.cpp:3957
+#: categdialog.cpp:684 mmframe.cpp:3941 mmframe.cpp:3955 mmframe.cpp:3970
 #: payeedialog.cpp:833
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Adatbázis-bejegyzések frissítve: %i"
 
-#: categdialog.cpp:686 mmframe.cpp:3930
+#: categdialog.cpp:686 mmframe.cpp:3943
 msgid "Merge categories result"
 msgstr "Kategóriák egyesítésének eredménye"
 
@@ -1816,7 +1826,7 @@ msgstr "Kategória eltávolítása"
 msgid "Clear Settings"
 msgstr "Beállítások törlése"
 
-#: categdialog.h:68 mmframe.cpp:1936 mmframe.cpp:2168
+#: categdialog.h:68 mmframe.cpp:1948 mmframe.cpp:2180
 msgid "Category Manager"
 msgstr "Kategóriakezelő"
 
@@ -1870,16 +1880,16 @@ msgstr "64 bites"
 msgid "ALL"
 msgstr "ÖSSZES"
 
-#: constants.cpp:195 mmframe.cpp:2160 model/Model_Account.cpp:38
+#: constants.cpp:195 mmframe.cpp:2172 model/Model_Account.cpp:39
 #: model/Model_Asset.cpp:36
 msgid "Open"
 msgstr "Nyitva"
 
-#: constants.cpp:196 model/Model_Account.cpp:39 model/Model_Asset.cpp:35
+#: constants.cpp:196 model/Model_Account.cpp:40 model/Model_Asset.cpp:35
 msgid "Closed"
 msgstr "Bezárt"
 
-#: constants.cpp:197 mmcheckingpanel.cpp:1198 mmframe.cpp:502
+#: constants.cpp:197 mmcheckingpanel.cpp:1205 mmframe.cpp:512
 msgid "Favorites"
 msgstr "Kedvencek"
 
@@ -1987,8 +1997,8 @@ msgstr "(Területi beállítás használata)"
 
 #: currencydialog.h:48 maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:664 maincurrencydialog.cpp:789
-#: maincurrencydialog.cpp:813 maincurrencydialog.h:78 mmframe.cpp:1944
-#: mmframe.cpp:2170 optionsettingsgeneral.cpp:300
+#: maincurrencydialog.cpp:813 maincurrencydialog.h:78 mmframe.cpp:1956
+#: mmframe.cpp:2182 optionsettingsgeneral.cpp:300
 msgid "Currency Manager"
 msgstr "Pénznemkezelő"
 
@@ -2040,7 +2050,7 @@ msgstr "Automatikus kiegészítés"
 msgid "Enables autocomplete on custom field"
 msgstr "Felhasználói mezőkben az automatikus kiegészítés engedélyezése"
 
-#: customfieldeditdialog.cpp:168 optionsettingsview.cpp:252 util.cpp:602
+#: customfieldeditdialog.cpp:168 optionsettingsview.cpp:252 util.cpp:622
 msgid "Default"
 msgstr "Alapértelmezett"
 
@@ -2101,7 +2111,7 @@ msgstr "Egyéni mező - új vagy szerkesztés"
 msgid "Properties"
 msgstr "Tulajdonságok"
 
-#: customfieldlistdialog.cpp:61 mmframe.cpp:1999
+#: customfieldlistdialog.cpp:61 mmframe.cpp:2011
 msgid "Custom Field Manager"
 msgstr "Egyéni mezőkezelő"
 
@@ -2318,7 +2328,7 @@ msgstr "Szállás"
 msgid "Sightseeing"
 msgstr "Városnézés"
 
-#: db/DB_Table_Category_V1.h:156
+#: db/DB_Table_Category_V1.h:156 db/DB_Table_Category_V1.h:177
 msgid "Taxes"
 msgstr "Adók"
 
@@ -2369,6 +2379,43 @@ msgstr "Egyéb kiadás"
 msgid "Transfer"
 msgstr "Átutalás"
 
+#: db/DB_Table_Category_V1.h:170 model/Model_Account.cpp:33
+#: sharetransactiondialog.cpp:492 sharetransactiondialog.cpp:496
+msgid "Investment"
+msgstr "Befektetés"
+
+#: db/DB_Table_Category_V1.h:171
+msgid "Purchase"
+msgstr "Beszerzés"
+
+#: db/DB_Table_Category_V1.h:172
+msgid "Sale"
+msgstr "Eladás"
+
+#: db/DB_Table_Category_V1.h:173
+msgid "Dividend"
+msgstr "Osztalék"
+
+#: db/DB_Table_Category_V1.h:174
+msgid "Capital Gains"
+msgstr "Tőkenyereség"
+
+#: db/DB_Table_Category_V1.h:175
+msgid "Brokerage Fees"
+msgstr "Közvetítési díjak"
+
+#: db/DB_Table_Category_V1.h:176
+msgid "Interest"
+msgstr "Kamat"
+
+#: db/DB_Table_Category_V1.h:178
+msgid "Split"
+msgstr "Felosztás"
+
+#: db/DB_Table_Category_V1.h:179
+msgid "Merger"
+msgstr "Egyesülés"
+
 #: dbupgrade.cpp:73
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
@@ -2407,7 +2454,7 @@ msgid "Load debug file"
 msgstr "Hibafájl betöltése"
 
 #: dbupgrade.cpp:190 dbupgrade.cpp:227 dbupgrade.cpp:234 dbupgrade.cpp:278
-#: dbupgrade.cpp:289 mmframe.cpp:2672
+#: dbupgrade.cpp:289 mmframe.cpp:2685
 msgid "MMEX debug error"
 msgstr "MMEX hibakeresési hiba"
 
@@ -2415,7 +2462,7 @@ msgstr "MMEX hibakeresési hiba"
 msgid "Wrong file type!"
 msgstr "Hibás fájltípus!"
 
-#: dbupgrade.cpp:227 dbupgrade.cpp:278 mmframe.cpp:2671
+#: dbupgrade.cpp:227 dbupgrade.cpp:278 mmframe.cpp:2684
 msgid "Query error, please contact MMEX support!"
 msgstr "Lekérdezési hiba, vegye fel a kapcsolatot az MMEX-szel!"
 
@@ -2482,7 +2529,7 @@ msgstr "Helytelen jelszót adtak meg egy titkosított fájlhoz,\n"
 msgid "Error: %s"
 msgstr "Hiba: %s"
 
-#: dbwrapper.cpp:125 mmframe.cpp:2267
+#: dbwrapper.cpp:125 mmframe.cpp:2280
 msgid "Opening MMEX Database – Error"
 msgstr "MMEX-adatbázis megnyitása – Hiba"
 
@@ -2503,26 +2550,26 @@ msgstr "A fejlesztők kérhetik, hogy itt adjon meg adatokat, hogy segítsen a k
 msgid "Back"
 msgstr "Vissza"
 
-#: filtertransdialog.cpp:48 mmchecking_list.cpp:1526
-#: model/Model_Checking.cpp:39
+#: filtertransdialog.cpp:48 mmchecking_list.cpp:1527
+#: model/Model_Checking.cpp:45
 msgid "Unreconciled"
 msgstr "Nincs egyeztetve"
 
-#: filtertransdialog.cpp:49 mmhomepage.cpp:535 mmhomepage.cpp:706
-#: model/Model_Checking.cpp:40
+#: filtertransdialog.cpp:49 mmhomepage.cpp:526 mmhomepage.cpp:698
+#: model/Model_Checking.cpp:46
 msgid "Reconciled"
 msgstr "Egyeztetve"
 
-#: filtertransdialog.cpp:50 model/Model_Checking.cpp:41
+#: filtertransdialog.cpp:50 model/Model_Checking.cpp:47
 msgid "Void"
 msgstr "Érvénytelen"
 
-#: filtertransdialog.cpp:51 mmchecking_list.cpp:1517
-#: model/Model_Checking.cpp:42
+#: filtertransdialog.cpp:51 mmchecking_list.cpp:1518
+#: model/Model_Checking.cpp:48
 msgid "Follow Up"
 msgstr "Követés"
 
-#: filtertransdialog.cpp:52 model/Model_Checking.cpp:43
+#: filtertransdialog.cpp:52 model/Model_Checking.cpp:49
 msgid "Duplicate"
 msgstr "Megkettőzés"
 
@@ -2667,7 +2714,7 @@ msgstr "Felosztások egyesítése"
 msgid "Display split transactions as a single row"
 msgstr "Felosztott ügyletek megjelenítése egyetlen sorban"
 
-#: filtertransdialog.cpp:787 mmframe.cpp:2010 mmframe.cpp:2176 mmframe.cpp:3122
+#: filtertransdialog.cpp:787 mmframe.cpp:2022 mmframe.cpp:2197 mmframe.cpp:3135
 #: optiondialog.cpp:220 optiondialog.h:49
 msgid "Settings"
 msgstr "Beállítások"
@@ -2693,7 +2740,7 @@ msgstr "Ez a név jelenleg nem egyezik egyetlen kedvezményezettel sem.\n"
 msgid "Hide Report Columns"
 msgstr "Üres oszlopok elrejtése"
 
-#: filtertransdialog.cpp:1307 mmframe.cpp:1372
+#: filtertransdialog.cpp:1307 mmframe.cpp:1384
 msgid "Settings item deletion"
 msgstr "Beállítások elem törlése"
 
@@ -2729,11 +2776,11 @@ msgstr "Legkisebb összeg"
 msgid "Amount Max."
 msgstr "Legnagyobb összeg"
 
-#: filtertransdialog.cpp:2143 mmframe.cpp:1400
+#: filtertransdialog.cpp:2143 mmframe.cpp:1412
 msgid "Please Enter"
 msgstr "Kérjük, adja meg"
 
-#: filtertransdialog.cpp:2143 mmframe.cpp:1400
+#: filtertransdialog.cpp:2143 mmframe.cpp:1412
 msgid "Setting Name"
 msgstr "Beállítás neve"
 
@@ -2768,7 +2815,7 @@ msgstr "Számlák kiválasztása"
 msgid "Customize Transaction Report"
 msgstr "Ügyletekjelentés testreszabása"
 
-#: general_report_manager.cpp:315 mmframe.cpp:3225 mmframereport.cpp:317
+#: general_report_manager.cpp:315 mmframe.cpp:3238 mmframereport.cpp:317
 #: reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
 msgstr "Jelentések"
@@ -2854,8 +2901,8 @@ msgid "ZIP files (*.zip)"
 msgstr "ZIP fájlok (*.zip)"
 
 #: general_report_manager.cpp:703 general_report_manager.cpp:891
-#: general_report_manager.cpp:1080 general_report_manager.h:64 mmframe.cpp:1995
-#: mmframe.cpp:2174
+#: general_report_manager.cpp:1080 general_report_manager.h:64 mmframe.cpp:2007
+#: mmframe.cpp:2186
 msgid "General Report Manager"
 msgstr "Általános jelentéskezelő"
 
@@ -3000,7 +3047,7 @@ msgid "Unable to open file."
 msgstr "A fájlt nem lehet megnyitni!"
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:100
-#: import_export/univcsvdialog.cpp:1358 mmframe.cpp:2847 mmframe.cpp:2866
+#: import_export/univcsvdialog.cpp:1358 mmframe.cpp:2860 mmframe.cpp:2879
 msgid "Universal CSV Import"
 msgstr "Univerzális CSV importálása"
 
@@ -3042,16 +3089,16 @@ msgid "Transactions"
 msgstr "Ügyletek"
 
 #: import_export/qif_export.cpp:49 import_export/qif_export.cpp:680
-#: mmframe.cpp:1728
+#: mmframe.cpp:1740
 msgid "Export as QIF file"
 msgstr "Exportálás QIF-fájlként"
 
-#: import_export/qif_export.cpp:50 mmframe.cpp:1727
+#: import_export/qif_export.cpp:50 mmframe.cpp:1739
 msgid "Export as JSON file"
 msgstr "Exportálás JSON-fájlként"
 
 #: import_export/qif_export.cpp:51 import_export/univcsvdialog.cpp:127
-#: mmframe.cpp:1723
+#: mmframe.cpp:1735
 msgid "Export as CSV file"
 msgstr "Exportálás CSV-fájlként"
 
@@ -3075,8 +3122,8 @@ msgstr "JSON"
 msgid "QIF"
 msgstr "QIF"
 
-#: import_export/qif_export.cpp:152 mmframe.cpp:3706 mmframe.cpp:3710
-#: mmframe.cpp:3724 mmframe.cpp:3728
+#: import_export/qif_export.cpp:152 mmframe.cpp:3719 mmframe.cpp:3723
+#: mmframe.cpp:3737 mmframe.cpp:3741
 msgid "Accounts"
 msgstr "Számlák"
 
@@ -3225,7 +3272,7 @@ msgstr "Mérkőzés részletei hozzáadásának a Jegyzetekhez"
 #: import_export/univcsvdialog.cpp:1841 import_export/univcsvdialog.cpp:1842
 #: import_export/univcsvdialog.cpp:1857 import_export/univcsvdialog.cpp:2085
 #: themes.cpp:235 transdialog.cpp:298 transdialog.cpp:302 transdialog.cpp:308
-#: transdialog.cpp:987 transdialog.cpp:991 transdialog.cpp:998 webapp.cpp:417
+#: transdialog.cpp:986 transdialog.cpp:990 transdialog.cpp:997 webapp.cpp:417
 #: webapp.cpp:426
 msgid "Unknown"
 msgstr "Ismeretlen"
@@ -3264,7 +3311,7 @@ msgstr "Nyomja meg a Rendben gombot a folytatáshoz"
 
 #: import_export/qif_import_gui.cpp:772 import_export/qif_import_gui.cpp:803
 #: import_export/univcsvdialog.cpp:2096 import_export/univcsvdialog.cpp:2110
-#: stockspanel.cpp:486
+#: stockspanel.cpp:519
 msgid "Missing"
 msgstr "Hiányzó"
 
@@ -3332,7 +3379,7 @@ msgid "Imported transactions discarded by user!"
 msgstr "Importált tranzakciók a felhasználó elvetette!"
 
 #: import_export/qif_import_gui.cpp:1232 import_export/qif_import_gui.h:45
-#: mmframe.cpp:1717
+#: mmframe.cpp:1729
 msgid "Import from QIF file"
 msgstr "Importálás QIF-fájlból"
 
@@ -3388,12 +3435,12 @@ msgid "Don't Care"
 msgstr "Lényegtelen"
 
 #: import_export/univcsvdialog.cpp:118 mmchecking_list.cpp:108
-#: mmhomepage.cpp:544 mmhomepage.cpp:707 reports/cashflow.cpp:409
+#: mmhomepage.cpp:535 mmhomepage.cpp:699 reports/cashflow.cpp:409
 #: reports/summary.cpp:275 reports/summary.cpp:311
 msgid "Balance"
 msgstr "Egyenleg"
 
-#: import_export/univcsvdialog.cpp:124 mmframe.cpp:1714
+#: import_export/univcsvdialog.cpp:124 mmframe.cpp:1726
 msgid "Import from CSV file"
 msgstr "Importálás CSV-fájlból"
 
@@ -3401,7 +3448,7 @@ msgstr "Importálás CSV-fájlból"
 msgid "Import from XML file"
 msgstr "Importálás XML-fájlból"
 
-#: import_export/univcsvdialog.cpp:133 mmframe.cpp:1724
+#: import_export/univcsvdialog.cpp:133 mmframe.cpp:1736
 msgid "Export as XML file"
 msgstr "Exportálás XML-fájlként"
 
@@ -3635,7 +3682,7 @@ msgstr "Hibás: %ld"
 msgid "Log file written to: %s"
 msgstr "Naplófájl ide írva: %s"
 
-#: import_export/univcsvdialog.cpp:1505 stockdialog.cpp:639
+#: import_export/univcsvdialog.cpp:1505 stockdialog.cpp:611
 msgid "Please confirm saving"
 msgstr "Mentés megerősítése"
 
@@ -3681,7 +3728,7 @@ msgstr "Exportált ügyletek: %ld"
 msgid "Preset '%s' will be deleted"
 msgstr "A(z) „%s” előbeállítás törlődik"
 
-#: import_export/univcsvdialog.cpp:2219 stockdialog.cpp:545
+#: import_export/univcsvdialog.cpp:2219 stockdialog.cpp:517
 msgid "Choose CSV data file to import"
 msgstr "Válasszon CSV-adatfájlt az importhoz"
 
@@ -3772,7 +3819,7 @@ msgid "Historical Currency Options"
 msgstr "Pénznemek előzményeinek beállítások"
 
 #: maincurrencydialog.cpp:258 stockdialog.cpp:287 stockdialog.cpp:306
-#: stockdialog.cpp:635 stockspanel.cpp:215
+#: stockdialog.cpp:607 stockspanel.cpp:250
 msgid "Price"
 msgstr "Ár"
 
@@ -3875,7 +3922,7 @@ msgstr "Szeretné frissíteni a pénznemárfolyamokat?"
 msgid "Unable to download history for base symbol %s. Historical rates unavailable!"
 msgstr "Nem sikerült letölteni a(z) %s-alapjelelőzményeket. Az árfolyamelőzmények nem elérhető!"
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:432 util.cpp:673
+#: maincurrencydialog.cpp:876 stockspanel.cpp:465 util.cpp:693
 msgid "Unable to find base currency symbol!"
 msgstr "Nem sikerült találni az alappénznem jelzését!"
 
@@ -3983,7 +4030,7 @@ msgstr "Új „%s” címke létrehozása?"
 msgid "New tag entered"
 msgstr "Új címke lett megadva"
 
-#: mmTextCtrl.cpp:88 splittransactionsdialog.cpp:601
+#: mmTextCtrl.cpp:88 splittransactionsdialog.cpp:597
 msgid "Invalid Value"
 msgstr "Érvénytelen érték"
 
@@ -4196,274 +4243,274 @@ msgstr "Utolsó frissítés"
 msgid "SN"
 msgstr "Sorszám"
 
-#: mmchecking_list.cpp:374
+#: mmchecking_list.cpp:375
 msgid "Sorted by"
 msgstr "Rendezési szempont"
 
-#: mmchecking_list.cpp:381
+#: mmchecking_list.cpp:382
 msgid "SN (Sequence Number) has the same order as Date/ID (or Date/Time/ID if Time is enabled)."
 msgstr "A sorszám sorrendje megegyezik a dátum/azonosító sorrendjével (vagy a dátum/idő/azonosító sorrendje, ha az idő engedélyezett)."
 
-#: mmchecking_list.cpp:383
+#: mmchecking_list.cpp:384
 msgid "ID (identification number) is increasing with the time of creation in the database."
 msgstr "Az azonosító szám az adatbázisban való létrehozás idejével növekszik."
 
-#: mmchecking_list.cpp:385
+#: mmchecking_list.cpp:386
 msgid "Balance is calculated in the order of SN (Sequence Number)."
 msgstr "Az egyenleg kiszámítása a sorszám szerinti sorrendben történik."
 
-#: mmchecking_list.cpp:666
+#: mmchecking_list.cpp:667
 msgid "New &Withdrawal…"
 msgstr "Új &kivétel…"
 
-#: mmchecking_list.cpp:667
+#: mmchecking_list.cpp:668
 msgid "New &Deposit…"
 msgstr "Új &betét…"
 
-#: mmchecking_list.cpp:669
+#: mmchecking_list.cpp:670
 msgid "New &Transfer…"
 msgstr "Új &átutalás…"
 
-#: mmchecking_list.cpp:673
+#: mmchecking_list.cpp:674
 msgid "&Edit Transaction…"
 msgid_plural "&Edit Transactions…"
 msgstr[0] "Ügylet s&zerkesztése…"
 msgstr[1] "Ügyletek s&zerkesztése…"
 
-#: mmchecking_list.cpp:677
+#: mmchecking_list.cpp:678
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] "Ügylet &másolása"
 msgstr[1] "Ügyletek &másolása"
 
-#: mmchecking_list.cpp:686
+#: mmchecking_list.cpp:687
 #, c-format
 msgid "&Paste Transaction"
 msgid_plural "&Paste Transactions (%d)"
 msgstr[0] "Ügylet &beillesztése"
 msgstr[1] "Ügyletek &beillesztése (%d)"
 
-#: mmchecking_list.cpp:696
+#: mmchecking_list.cpp:697
 msgid "D&uplicate Transaction…"
 msgstr "Ügylet meg&kettőzése…"
 
-#: mmchecking_list.cpp:700
+#: mmchecking_list.cpp:701
 msgid "&Move Transaction…"
 msgid_plural "&Move Transactions…"
 msgstr[0] "Ügylet &áthelyezése…"
 msgstr[1] "Ügyletek &áthelyezése…"
 
-#: mmchecking_list.cpp:706
+#: mmchecking_list.cpp:707
 msgid "&View In Other Account"
 msgstr "Más számlában &megjelenítés"
 
-#: mmchecking_list.cpp:710
+#: mmchecking_list.cpp:711
 msgid "&View Split Categories"
 msgstr "Felosztott kategóriák &megjelenítése"
 
-#: mmchecking_list.cpp:720
+#: mmchecking_list.cpp:721
 msgid "Create Scheduled T&ransaction…"
 msgstr "Ütemezett ügylet létre&hozása…"
 
-#: mmchecking_list.cpp:728
+#: mmchecking_list.cpp:729
 msgid "&Restore selected transaction…"
 msgid_plural "&Restore selected transactions…"
 msgstr[0] "Kijelölt ügylet &visszaállítása…"
 msgstr[1] "Kijelölt ügyletek &visszaállítása…"
 
-#: mmchecking_list.cpp:734
+#: mmchecking_list.cpp:735
 msgid "Restore &all transactions in current view…"
 msgstr "Öss&zes ügylet visszaállítása a jelenlegi nézetben…"
 
-#: mmchecking_list.cpp:872
+#: mmchecking_list.cpp:873
 #, c-format
 msgid "&Find all transactions with %s '%s'"
 msgstr "Minden ügylet keresése a következővel: %s „%s”"
 
-#: mmchecking_list.cpp:878
+#: mmchecking_list.cpp:879
 msgid "Cop&y Text to Clipboard"
 msgstr "S&zöveg másolása a vágólapra"
 
-#: mmchecking_list.cpp:887
+#: mmchecking_list.cpp:888
 msgid "&Delete selected transaction…"
 msgid_plural "&Delete selected transactions…"
 msgstr[0] "Kijelölt ügylet &törlése…"
 msgstr[1] "Kijelölt ügyletek &törlése…"
 
-#: mmchecking_list.cpp:888
+#: mmchecking_list.cpp:889
 msgid "&Permanently delete selected transaction…"
 msgid_plural "&Permanently delete selected transactions…"
 msgstr[0] "Kijelölt ügylet &végleges törlése…"
 msgstr[1] "Kijelölt ügyletek &végleges törlése…"
 
-#: mmchecking_list.cpp:896
+#: mmchecking_list.cpp:897
 msgid "Delete &all transactions in current view…"
 msgstr "Öss&zes ügylet törlése a jelenlegi nézetben…"
 
-#: mmchecking_list.cpp:897
+#: mmchecking_list.cpp:898
 msgid "Permanently delete &all transactions in current view…"
 msgstr "Öss&zes ügylet végleges törlése a jelenlegi nézetben…"
 
-#: mmchecking_list.cpp:902
+#: mmchecking_list.cpp:903
 msgid "Delete Viewed “&Follow Up” Transactions…"
 msgstr "Megtekintett „&Követés” ügyletek törlése…"
 
-#: mmchecking_list.cpp:906
+#: mmchecking_list.cpp:907
 msgid "Delete Viewed “&Unreconciled” Transactions…"
 msgstr "Megtekintett „&Nincs egyeztetve” ügyletek törlése…"
 
-#: mmchecking_list.cpp:909
+#: mmchecking_list.cpp:910
 msgid "De&lete "
 msgstr "&Törlés"
 
-#: mmchecking_list.cpp:915
+#: mmchecking_list.cpp:916
 msgid "&Unreconciled"
 msgstr "&Nincs egyeztetve"
 
-#: mmchecking_list.cpp:918
+#: mmchecking_list.cpp:919
 msgid "&Reconciled"
 msgstr "&Egyeztetve"
 
-#: mmchecking_list.cpp:921
+#: mmchecking_list.cpp:922
 msgid "&Void"
 msgstr "&Érvénytelen"
 
-#: mmchecking_list.cpp:924
+#: mmchecking_list.cpp:925
 msgid "&Follow Up"
 msgstr "&Követés"
 
-#: mmchecking_list.cpp:927
+#: mmchecking_list.cpp:928
 msgid "D&uplicate"
 msgstr "Meg&kettőzés"
 
-#: mmchecking_list.cpp:930
+#: mmchecking_list.cpp:931
 msgid "Mar&k as"
 msgstr "Meg&jelölés mint"
 
-#: mmchecking_list.cpp:1079
+#: mmchecking_list.cpp:1080
 #, c-format
 msgid "Do you want to permanently delete the selected transaction?"
 msgid_plural "Do you want to permanently delete the %i selected transactions?"
 msgstr[0] "Szeretné véglegesen törölni a kijelölt ügyletet?"
 msgstr[1] "Szeretné véglegesen törölni a(z) %i kijelölt ügyletet?"
 
-#: mmchecking_list.cpp:1083
+#: mmchecking_list.cpp:1084
 #, c-format
 msgid "Do you want to delete the selected transaction?"
 msgid_plural "Do you want to delete the %i selected transactions?"
 msgstr[0] "Szeretné törölni a kijelölt ügyletet?"
 msgstr[1] "Szeretné törölni a(z) %i kijelölt ügyletet?"
 
-#: mmchecking_list.cpp:1087 mmchecking_list.cpp:1505
+#: mmchecking_list.cpp:1088 mmchecking_list.cpp:1506
 msgid "Unable to undo this action."
 msgstr "Nem lehet visszavonni ezt a műveletet."
 
-#: mmchecking_list.cpp:1088 mmchecking_list.cpp:1504
+#: mmchecking_list.cpp:1089 mmchecking_list.cpp:1505
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr "A törölt ügyletek átmenetileg tárolásra kerülnek, és a Törölt ügyletek nézetből visszaállíthatók."
 
-#: mmchecking_list.cpp:1092 mmchecking_list.cpp:1509 mmchecking_list.cpp:1518
-#: mmchecking_list.cpp:1527
+#: mmchecking_list.cpp:1093 mmchecking_list.cpp:1510 mmchecking_list.cpp:1519
+#: mmchecking_list.cpp:1528
 msgid "Confirm Transaction Deletion"
 msgstr "Ügylet törlésének megerősítése"
 
-#: mmchecking_list.cpp:1153
+#: mmchecking_list.cpp:1154
 #, c-format
 msgid "Do you want to restore the selected transaction?"
 msgid_plural "Do you want to restore the %i selected transactions?"
 msgstr[0] "Szeretné visszaállítani a kijelölt ügyletet?"
 msgstr[1] "Szeretné visszaállítani a(z) %i kijelölt ügyletet?"
 
-#: mmchecking_list.cpp:1162 mmchecking_list.cpp:1204
+#: mmchecking_list.cpp:1163 mmchecking_list.cpp:1205
 msgid "Confirm Transaction Restore"
 msgstr "Ügylet visszaállításának megerősítése"
 
-#: mmchecking_list.cpp:1203
+#: mmchecking_list.cpp:1204
 msgid "Do you want to restore all of the transactions shown?"
 msgstr "Szeretné visszaállítani az összes megjelenített ügyletet?"
 
-#: mmchecking_list.cpp:1299
+#: mmchecking_list.cpp:1300
 #, c-format
 msgid "Do you want to move the selected transaction?"
 msgid_plural "Do you want to move the %i selected transactions?"
 msgstr[0] "Szeretné áthelyezni a kijelölt ügyletet?"
 msgstr[1] "Szeretné áthelyezni a(z) %i kijelölt ügyletet?"
 
-#: mmchecking_list.cpp:1304
+#: mmchecking_list.cpp:1305
 msgid "Confirm Transaction Move"
 msgstr "Ügylet áthelyezésének megerősítése"
 
-#: mmchecking_list.cpp:1309
+#: mmchecking_list.cpp:1310
 #, c-format
 msgid "Moving transaction to…"
 msgid_plural "Moving %i transactions to…"
 msgstr[0] "Ügylet áthelyezése ide…"
 msgstr[1] "%i ügylet áthelyezése ide…"
 
-#: mmchecking_list.cpp:1313 stocks_list.cpp:314
+#: mmchecking_list.cpp:1314 stocks_list.cpp:314
 msgid "Select the destination Account "
 msgstr "Válassza ki a célszámlát"
 
-#: mmchecking_list.cpp:1344
+#: mmchecking_list.cpp:1345
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
 msgstr "Ennek az az oka, hogy az ügylet vagy a számlarészlet egyes elemei nem teszik lehetővé az áthelyezést"
 
-#: mmchecking_list.cpp:1345
+#: mmchecking_list.cpp:1346
 msgid "Moved"
 msgstr "Áthelyezve"
 
-#: mmchecking_list.cpp:1346
+#: mmchecking_list.cpp:1347
 msgid "Not moved"
 msgstr "Nincs áthelyezve"
 
-#: mmchecking_list.cpp:1349
+#: mmchecking_list.cpp:1350
 msgid "Unable to move some transactions."
 msgstr "Nem sikerült áthelyezni egyes ügyleteket."
 
-#: mmchecking_list.cpp:1412
+#: mmchecking_list.cpp:1413
 msgid "Scheduled transaction saved."
 msgstr "Ütemezett ügylet mentve."
 
-#: mmchecking_list.cpp:1429 mmcheckingpanel.cpp:1193
+#: mmchecking_list.cpp:1430 mmcheckingpanel.cpp:1200
 msgid "All Transactions"
 msgstr "Minden ügylet"
 
-#: mmchecking_list.cpp:1499
+#: mmchecking_list.cpp:1500
 msgid "Do you want to delete all the transactions shown?"
 msgstr "Szeretné törölni az összes megjelenített ügyletet?"
 
-#: mmchecking_list.cpp:1500
+#: mmchecking_list.cpp:1501
 msgid "Do you want to permanently delete all the transactions shown?"
 msgstr "Szeretné véglegesen törölni az összes megjelenített ügyletet?"
 
-#: mmchecking_list.cpp:1517 mmchecking_list.cpp:1526
+#: mmchecking_list.cpp:1518 mmchecking_list.cpp:1527
 #, c-format
 msgid "Do you want to delete all the “%s” transactions shown?"
 msgstr "Szeretné törölni az összes megjelenített „%s” ügyletet?"
 
-#: mmchecking_list.cpp:2147
+#: mmchecking_list.cpp:2150
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] "Ügylet szerkesztése lezárt számlával."
 msgstr[1] "%i ügylet szerkesztése lezárt számlával."
 
-#: mmchecking_list.cpp:2149
+#: mmchecking_list.cpp:2152
 msgid "Do you want to perform the edit?"
 msgstr "Szeretné végrehajtani a szerkesztést?"
 
-#: mmchecking_list.cpp:2150
+#: mmchecking_list.cpp:2153
 msgid "Closed Account Check"
 msgstr "Bezárt folyószámla"
 
-#: mmchecking_list.cpp:2164
+#: mmchecking_list.cpp:2167
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "A mai napig zárolt ügyletek: %s\n\n"
 "Egyeztetett ügyletek."
 
-#: mmchecking_list.cpp:2167 transdialog.cpp:752 transdialog.cpp:776
+#: mmchecking_list.cpp:2170 transdialog.cpp:751 transdialog.cpp:775
 msgid "MMEX Transaction Check"
 msgstr "MMEX tranzakció ellenőrzés"
 
@@ -4471,7 +4518,7 @@ msgstr "MMEX tranzakció ellenőrzés"
 msgid "Delete all selected transactions"
 msgstr "Összes kijelölt ügylet törlése"
 
-#: mmcheckingpanel.cpp:267 mmframe.cpp:2165 optionsettingsmisc.cpp:112
+#: mmcheckingpanel.cpp:267 mmframe.cpp:2177 optionsettingsmisc.cpp:112
 #: transdialog.cpp:180
 msgid "New Transaction"
 msgstr "Új ügylet"
@@ -4496,86 +4543,94 @@ msgstr "Kijelölt ügylet visszaállítása"
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr "Írja be, aminek a legközelebbi előfordulását keresi az ügyletek adataiban"
 
-#: mmcheckingpanel.cpp:360
+#: mmcheckingpanel.cpp:361
 msgid "Account Bal: "
 msgstr "Számlaegyenleg: "
 
-#: mmcheckingpanel.cpp:364
+#: mmcheckingpanel.cpp:365
 msgid "Reconciled Bal: "
 msgstr "Egyeztetett egyenleg: "
 
-#: mmcheckingpanel.cpp:366
+#: mmcheckingpanel.cpp:367
 msgid "Diff: "
 msgstr "Különb.: "
 
-#: mmcheckingpanel.cpp:370
+#: mmcheckingpanel.cpp:371
 msgid "Filtered Flow: "
 msgstr "Szűrt adatfolyam: "
 
-#: mmcheckingpanel.cpp:394
+#: mmcheckingpanel.cpp:387
+msgid "Market Value: "
+msgstr "Piaci érték: "
+
+#: mmcheckingpanel.cpp:388
+msgid "Invested: "
+msgstr "Befektetett: "
+
+#: mmcheckingpanel.cpp:401
 msgid "Advanced filter"
 msgstr "Haladó szűrő"
 
-#: mmcheckingpanel.cpp:496
+#: mmcheckingpanel.cpp:503
 msgid "(Date range)"
 msgstr "(Időtartomány)"
 
-#: mmcheckingpanel.cpp:873 mmcheckingpanel.cpp:891 webapp.cpp:621
+#: mmcheckingpanel.cpp:880 mmcheckingpanel.cpp:898 webapp.cpp:621
 msgid "Attachment"
 msgstr "Melléklet"
 
-#: mmcheckingpanel.cpp:939
+#: mmcheckingpanel.cpp:946
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr "Kijelölt ügyletek: %zu"
 
-#: mmcheckingpanel.cpp:943
+#: mmcheckingpanel.cpp:950
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr "Kijelölt ügyletek egyenlege: %s"
 
-#: mmcheckingpanel.cpp:949
+#: mmcheckingpanel.cpp:956
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr "Kijelölt ügyletek között eltelt napok: %d"
 
-#: mmcheckingpanel.cpp:1012
+#: mmcheckingpanel.cpp:1019
 msgid "Unable to show scheduled transactions because the current filter choice extends into the future without limit."
 msgstr "Nem sikerült jeleníteni az ütemezett ügyletek mert a jelenlegi szűrőkijelölés korlátlanul kiterjed a jövőre."
 
-#: mmcheckingpanel.cpp:1013
+#: mmcheckingpanel.cpp:1020
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr "Kattintson az ütemezett ügyletek megjelenítéséhez. Ez a jellemző a jövőbe nyúló szűrőkijelölésekkel működik a legjobban (pl. Jelenlegi hónap)."
 
-#: mmcheckingpanel.cpp:1014
+#: mmcheckingpanel.cpp:1021
 msgid "Click to hide scheduled transactions."
 msgstr "Kattintson az ütemezett ügyletek elrejtéséhez."
 
-#: mmcheckingpanel.cpp:1031
+#: mmcheckingpanel.cpp:1038
 msgid "More date ranges…"
 msgstr "További dátumtartományok…"
 
-#: mmcheckingpanel.cpp:1038
+#: mmcheckingpanel.cpp:1045
 msgid "Advanced filter…"
 msgstr "Haladó szűrő…"
 
-#: mmcheckingpanel.cpp:1178
+#: mmcheckingpanel.cpp:1185
 msgid "&New Withdrawal…"
 msgstr "&Új kivétel…"
 
-#: mmcheckingpanel.cpp:1179
+#: mmcheckingpanel.cpp:1186
 msgid "&New Deposit…"
 msgstr "&Új betét…"
 
-#: mmcheckingpanel.cpp:1180
+#: mmcheckingpanel.cpp:1187
 msgid "&New Transfer…"
 msgstr "&Új átutalás…"
 
-#: mmcheckingpanel.cpp:1195
+#: mmcheckingpanel.cpp:1202
 msgid "Deleted Transactions"
 msgstr "Törölt ügyletek"
 
-#: mmcheckingpanel.cpp:1203
+#: mmcheckingpanel.cpp:1210
 #, c-format
 msgid "Account View: %s"
 msgstr "Számlanézet: %s"
@@ -4617,793 +4672,797 @@ msgid "Fatal error occured.\n"
 msgstr "Végzetes hiba!\n"
 "Az alkalmazás le fog állni."
 
-#: mmframe.cpp:211 mmhomepage.cpp:690
+#: mmframe.cpp:212 mmhomepage.cpp:682
 msgid "Cash Accounts"
 msgstr "Készpénzszámlák"
 
-#: mmframe.cpp:212 mmhomepage.cpp:691 reports/summary.cpp:259
+#: mmframe.cpp:213 mmhomepage.cpp:683 reports/summary.cpp:259
 #: reports/summary.cpp:302
 msgid "Bank Accounts"
 msgstr "Bankszámlák"
 
-#: mmframe.cpp:213 mmhomepage.cpp:692 reports/summary.cpp:261
+#: mmframe.cpp:214 mmhomepage.cpp:684 reports/summary.cpp:261
 #: reports/summary.cpp:303
 msgid "Credit Card Accounts"
 msgstr "Hitelkártya-számlák"
 
-#: mmframe.cpp:214 mmhomepage.cpp:693 reports/summary.cpp:263
+#: mmframe.cpp:215 mmhomepage.cpp:685 reports/summary.cpp:263
 #: reports/summary.cpp:304
 msgid "Loan Accounts"
 msgstr "Hitelszámlák"
 
-#: mmframe.cpp:215 mmhomepage.cpp:694 reports/summary.cpp:265
+#: mmframe.cpp:216 mmhomepage.cpp:686 reports/summary.cpp:265
 #: reports/summary.cpp:305
 msgid "Term Accounts"
 msgstr "Lekötött betét számlák"
 
-#: mmframe.cpp:216
+#: mmframe.cpp:217
 msgid "Stock Portfolios"
 msgstr "Részvény portfóliók"
 
-#: mmframe.cpp:218 mmhomepage.cpp:697 reports/summary.cpp:269
+#: mmframe.cpp:219 mmhomepage.cpp:689 reports/summary.cpp:269
 #: reports/summary.cpp:307
 msgid "Share Accounts"
 msgstr "Értékpapírszámlák"
 
-#: mmframe.cpp:300
+#: mmframe.cpp:309
 msgid "Navigator"
 msgstr "Navigátor"
 
-#: mmframe.cpp:301
+#: mmframe.cpp:310
 msgid "Toolbar"
 msgstr "Eszköztár"
 
-#: mmframe.cpp:543
+#: mmframe.cpp:553
 msgid "Auto Repeat Transactions"
 msgstr "Automatikusan ismétlődő ügyletek"
 
-#: mmframe.cpp:864 mmframe.cpp:1969 mmframe.cpp:3083
+#: mmframe.cpp:874 mmframe.cpp:1981 mmframe.cpp:3096
 msgid "Budget Planner"
 msgstr "Költségvetés-tervező"
 
-#: mmframe.cpp:1371
+#: mmframe.cpp:992
+msgid "Cash Ledger"
+msgstr "Készpénzes főkönyv"
+
+#: mmframe.cpp:1383
 msgid "The selected item will be deleted."
 msgstr "A kijelölt elem törlésére kerül sor."
 
-#: mmframe.cpp:1406
+#: mmframe.cpp:1418
 msgid "A setting with this name already exists"
 msgstr "Már létezik ilyen nevű beállítás"
 
-#: mmframe.cpp:1408
+#: mmframe.cpp:1420
 msgid "Please specify a new name for the setting"
 msgstr "Kérjük, adjon meg egy új nevet a beállításnak"
 
-#: mmframe.cpp:1409
+#: mmframe.cpp:1421
 msgid "Name in use"
 msgstr "A név használatban van"
 
-#: mmframe.cpp:1430 mmframe.cpp:1450 mmframe.cpp:1989 mmframe.cpp:2172
-#: mmframe.cpp:3068
+#: mmframe.cpp:1442 mmframe.cpp:1462 mmframe.cpp:2001 mmframe.cpp:2184
+#: mmframe.cpp:3081
 msgid "Transaction Report"
 msgstr "Ügyletekjelentés"
 
-#: mmframe.cpp:1470
+#: mmframe.cpp:1482
 msgid "Do you want to delete the account?"
 msgstr "Szeretné törölni a számlát?"
 
-#: mmframe.cpp:1474
+#: mmframe.cpp:1486
 msgid "This will also delete any associated Shares."
 msgstr "Ezzel az összes kapcsolódó részvényt is törölni fogja."
 
-#: mmframe.cpp:1477 mmframe.cpp:3736
+#: mmframe.cpp:1489 mmframe.cpp:3749
 msgid "Confirm Account Deletion"
 msgstr "Számla törlésének megerősítése"
 
-#: mmframe.cpp:1498
+#: mmframe.cpp:1510
 msgid "MMEX has been opened without an active database."
 msgstr "Az MMEX-et aktív adatbázis nélkül nyitották meg."
 
-#: mmframe.cpp:1499
+#: mmframe.cpp:1511
 msgid "MMEX: Menu Popup Error"
 msgstr "MMEX: felugró menü hiba"
 
-#: mmframe.cpp:1517 mmframe.cpp:1713
+#: mmframe.cpp:1529 mmframe.cpp:1725
 msgid "&Import from"
 msgstr "&Importálás forrása"
 
-#: mmframe.cpp:1518
+#: mmframe.cpp:1530
 msgid "&CSV Files…"
 msgstr "&CSV-fájlok…"
 
-#: mmframe.cpp:1519
+#: mmframe.cpp:1531
 msgid "&XML Files…"
 msgstr "&XML-fájlok…"
 
-#: mmframe.cpp:1519 mmframe.cpp:1715
+#: mmframe.cpp:1531 mmframe.cpp:1727
 msgid "Import from XML file (Excel format)"
 msgstr "Importálás Excel formátumú XML-fájlból"
 
-#: mmframe.cpp:1521
+#: mmframe.cpp:1533
 msgid "&QIF Files…"
 msgstr "&QIF-fájlok…"
 
-#: mmframe.cpp:1524 mmframe.cpp:1722
+#: mmframe.cpp:1536 mmframe.cpp:1734
 msgid "&Export as"
 msgstr "&Exportálás másként"
 
-#: mmframe.cpp:1525 mmframe.cpp:1714 mmframe.cpp:1723
+#: mmframe.cpp:1537 mmframe.cpp:1726 mmframe.cpp:1735
 msgid "&CSV File…"
 msgstr "&CSV-fájl…"
 
-#: mmframe.cpp:1526 mmframe.cpp:1715 mmframe.cpp:1724
+#: mmframe.cpp:1538 mmframe.cpp:1727 mmframe.cpp:1736
 msgid "&XML File…"
 msgstr "&XML-fájl…"
 
-#: mmframe.cpp:1528 mmframe.cpp:1726
+#: mmframe.cpp:1540 mmframe.cpp:1738
 msgid "&MMEX CSV File…"
 msgstr "&MMEX CSV-fájl…"
 
-#: mmframe.cpp:1529 mmframe.cpp:1727
+#: mmframe.cpp:1541 mmframe.cpp:1739
 msgid "&JSON File…"
 msgstr "&JSON-fájl…"
 
-#: mmframe.cpp:1530 mmframe.cpp:1717 mmframe.cpp:1728
+#: mmframe.cpp:1542 mmframe.cpp:1729 mmframe.cpp:1740
 msgid "&QIF File…"
 msgstr "&QIF-fájl…"
 
-#: mmframe.cpp:1553
+#: mmframe.cpp:1565
 msgid "&Customize Report…"
 msgstr "Jelentés &testreszabása…"
 
-#: mmframe.cpp:1554
+#: mmframe.cpp:1566
 msgid "&Rename Report…"
 msgstr "Jelentés át&nevezése…"
 
-#: mmframe.cpp:1555
+#: mmframe.cpp:1567
 msgid "&Delete Report…"
 msgstr "Jelentés &törlése…"
 
-#: mmframe.cpp:1570 mmframe.cpp:1592 mmframe.cpp:1622 mmframe.cpp:1897
+#: mmframe.cpp:1582 mmframe.cpp:1604 mmframe.cpp:1634 mmframe.cpp:1909
 msgid "&Edit Account…"
 msgstr "Számla s&zerkesztése…"
 
-#: mmframe.cpp:1574 mmframe.cpp:1601 mmframe.cpp:1628 mmframe.cpp:1911
+#: mmframe.cpp:1586 mmframe.cpp:1613 mmframe.cpp:1640 mmframe.cpp:1923
 msgid "&Delete Account…"
 msgstr "Számla &törlése…"
 
-#: mmframe.cpp:1577 mmframe.cpp:1604
+#: mmframe.cpp:1589 mmframe.cpp:1616
 msgid "&Launch Account Website"
 msgstr "Számla honlapjának &megnyitása"
 
-#: mmframe.cpp:1578 mmframe.cpp:1607
+#: mmframe.cpp:1590 mmframe.cpp:1619
 msgid "&Attachment Manager…"
 msgstr "&Mellékletkezelő…"
 
-#: mmframe.cpp:1596 mmframe.cpp:1904
+#: mmframe.cpp:1608 mmframe.cpp:1916
 msgid "&Change Account Type…"
 msgstr "Számlatípus &módosítása…"
 
-#: mmframe.cpp:1618 mmframe.cpp:1890
+#: mmframe.cpp:1630 mmframe.cpp:1902
 msgid "&New Account…"
 msgstr "&Új számla…"
 
-#: mmframe.cpp:1624
+#: mmframe.cpp:1636
 msgid "Account &List"
 msgstr "S&zámlalista"
 
-#: mmframe.cpp:1638
+#: mmframe.cpp:1650
 msgid "&All"
 msgstr "&Összes"
 
-#: mmframe.cpp:1642
+#: mmframe.cpp:1654
 msgid "&Favorites"
 msgstr "&Kedvencek"
 
-#: mmframe.cpp:1646
+#: mmframe.cpp:1658
 msgid "&Open"
 msgstr "&Nyitva"
 
-#: mmframe.cpp:1650
+#: mmframe.cpp:1662
 msgid "&Closed"
 msgstr "&Bezárt"
 
-#: mmframe.cpp:1652
+#: mmframe.cpp:1664
 msgid "Accounts &Visible"
 msgstr "&Látható számlák"
 
-#: mmframe.cpp:1698
+#: mmframe.cpp:1710
 msgid "&New Database…"
 msgstr "&Új adatbázis…"
 
-#: mmframe.cpp:1698 mmframe.cpp:2159 wizard_newdb.cpp:137
+#: mmframe.cpp:1710 mmframe.cpp:2171 wizard_newdb.cpp:137
 msgid "New Database"
 msgstr "Új adatbázis"
 
-#: mmframe.cpp:1699
+#: mmframe.cpp:1711
 msgid "&Open Database…"
 msgstr "Adatbázis &megnyitása…"
 
-#: mmframe.cpp:1699 mmframe.cpp:2160
+#: mmframe.cpp:1711 mmframe.cpp:2172
 msgid "Open Database"
 msgstr "Adatbázis megnyitása"
 
-#: mmframe.cpp:1700
+#: mmframe.cpp:1712
 msgid "Save Database &As…"
 msgstr "Adatbázis mentése &másként…"
 
-#: mmframe.cpp:1700
+#: mmframe.cpp:1712
 msgid "Save Database As"
 msgstr "Adatbázis mentése másként"
 
-#: mmframe.cpp:1707
+#: mmframe.cpp:1719
 msgid "&Recent Files"
 msgstr "Legutóbbi &fájlok"
 
-#: mmframe.cpp:1708
+#: mmframe.cpp:1720
 msgid "&Clear Recent Files"
 msgstr "Legutóbbi fájlok &törlése"
 
-#: mmframe.cpp:1719
+#: mmframe.cpp:1731
 msgid "&WebApp…"
 msgstr "&Webalkalmazás…"
 
-#: mmframe.cpp:1719
+#: mmframe.cpp:1731
 msgid "Import from the WebApp"
 msgstr "Importálás a Webalkalmazásból"
 
-#: mmframe.cpp:1726
+#: mmframe.cpp:1738
 msgid "Export as fixed CSV file"
 msgstr "Exportálás rögzített CSV-fájlként"
 
-#: mmframe.cpp:1730
+#: mmframe.cpp:1742
 msgid "&HTML File…"
 msgstr "&HTML-fájl…"
 
-#: mmframe.cpp:1730
+#: mmframe.cpp:1742
 msgid "Export as HTML file"
 msgstr "Exportálás HTML-fájlként"
 
-#: mmframe.cpp:1735
+#: mmframe.cpp:1747
 msgid "&Print…"
 msgstr "&Nyomtatás…"
 
-#: mmframe.cpp:1735
+#: mmframe.cpp:1747
 msgid "Print current view"
 msgstr "Jelenlegi nézet nyomtatása"
 
-#: mmframe.cpp:1741
+#: mmframe.cpp:1753
 msgid "E&xit"
 msgstr "&Kilépés"
 
-#: mmframe.cpp:1741
+#: mmframe.cpp:1753
 msgid "Quit this program"
 msgstr "A program bezárása"
 
-#: mmframe.cpp:1749
+#: mmframe.cpp:1761
 msgid "&Toolbar"
 msgstr "Eszköztár"
 
-#: mmframe.cpp:1750
+#: mmframe.cpp:1762
 msgid "Show/Hide the toolbar"
 msgstr "Eszköztár megjelenítése/elrejtése"
 
-#: mmframe.cpp:1756
+#: mmframe.cpp:1768
 msgid "&Navigator"
 msgstr "&Navigátor"
 
-#: mmframe.cpp:1757
+#: mmframe.cpp:1769
 msgid "Show/Hide Navigator"
 msgstr "Navigátor megjelenítése/elrejtése"
 
-#: mmframe.cpp:1763
+#: mmframe.cpp:1775
 msgid "&Display Share Accounts"
 msgstr "Értékpapírszámlák &megjelenítése"
 
-#: mmframe.cpp:1764
+#: mmframe.cpp:1776
 msgid "Show/Hide Share Accounts in Navigator"
 msgstr "Értékpapírszámlák megjelenítése/elrejtése a Navigátorban"
 
-#: mmframe.cpp:1770
+#: mmframe.cpp:1782
 msgid "&Display Deleted Transactions"
 msgstr "Törölt ügyletek &megjelenítése"
 
-#: mmframe.cpp:1771
+#: mmframe.cpp:1783
 msgid "Show/Hide Deleted Transactions in Navigator"
 msgstr "Törölt ügyletek megjelenítése/elrejtése a Navigátorban"
 
-#: mmframe.cpp:1777
+#: mmframe.cpp:1789
 msgid "Budgets: As Financial &Years"
 msgstr "Költségvetések: pénzügyi &évenként"
 
-#: mmframe.cpp:1778
+#: mmframe.cpp:1790
 msgid "Display Budgets in Financial Year Format"
 msgstr "Költségkeretek megjelenítése pénzügyi év formátumban"
 
-#: mmframe.cpp:1784
+#: mmframe.cpp:1796
 msgid "Budgets: &Include Transfers in Totals"
 msgstr "&Költségvetések: az átutalások beszámítása a végösszegbe"
 
-#: mmframe.cpp:1785
+#: mmframe.cpp:1797
 msgid "Include the transfer transactions in the Budget Totals"
 msgstr "Átutalások beszámítása a költségvetés végösszegébe"
 
-#: mmframe.cpp:1791
+#: mmframe.cpp:1803
 msgid "Budget Category Report: with &Summaries"
 msgstr "Költségvetési kategóriák jelentés: &összesítéssel"
 
-#: mmframe.cpp:1792
+#: mmframe.cpp:1804
 msgid "Include the category summaries in the Budget Category Summary"
 msgstr "A kategóriák összesítéseit foglalja bele Költségvetési kategóriák összesítőbe"
 
-#: mmframe.cpp:1798
+#: mmframe.cpp:1810
 msgid "Ignore F&uture Transactions"
 msgstr "Jövőbeni ügyletek &figyelmen kívül hagyása"
 
-#: mmframe.cpp:1799
+#: mmframe.cpp:1811
 msgid "Ignore Future transactions"
 msgstr "Jövőbeni ügyletek figyelmen kívül hagyása"
 
-#: mmframe.cpp:1805
+#: mmframe.cpp:1817
 msgid "Show T&ooltips"
 msgstr "Elem&leírások megjelenítése"
 
-#: mmframe.cpp:1806 optionsettingsview.cpp:112
+#: mmframe.cpp:1818 optionsettingsview.cpp:112
 msgid "Show Tooltips"
 msgstr "Elemleírások megjelenítése"
 
-#: mmframe.cpp:1812
+#: mmframe.cpp:1824
 msgid "Show &Money Tips"
 msgstr "&Pénzzel kapcsolatos tippek megjelenítése"
 
-#: mmframe.cpp:1813 optionsettingsview.cpp:120
+#: mmframe.cpp:1825 optionsettingsview.cpp:120
 msgid "Show Money Tips"
 msgstr "Pénzzel kapcsolatos tippek megjelenítése"
 
-#: mmframe.cpp:1837
+#: mmframe.cpp:1849
 msgid "&Full Screen"
 msgstr "&Teljes képernyő"
 
-#: mmframe.cpp:1838 mmframe.cpp:2194
+#: mmframe.cpp:1850 mmframe.cpp:2196
 msgid "Toggle full screen"
 msgstr "Teljes képernyős ki-/bekapcsolása"
 
-#: mmframe.cpp:1847
+#: mmframe.cpp:1859
 msgid "&Reset View"
 msgstr "Né&zet visszaállítása"
 
-#: mmframe.cpp:1848
+#: mmframe.cpp:1860
 msgid "Reset view and dock tools"
 msgstr "Nézet és rögzítés eszközök visszaállítása"
 
-#: mmframe.cpp:1883
+#: mmframe.cpp:1895
 msgid "Dash&board"
 msgstr "&Irányítópult"
 
-#: mmframe.cpp:1884 mmframe.cpp:2163
+#: mmframe.cpp:1896 mmframe.cpp:2175
 msgid "Open Dashboard"
 msgstr "Irányítópult megnyitása"
 
-#: mmframe.cpp:1905
+#: mmframe.cpp:1917
 msgid "Change the account type of an account"
 msgstr "Számlatípus módosítása"
 
-#: mmframe.cpp:1912
+#: mmframe.cpp:1924
 msgid "Delete Account from database"
 msgstr "Számla törlése az adatbázisból."
 
-#: mmframe.cpp:1926
+#: mmframe.cpp:1938
 msgid "Download &Rates"
 msgstr "Ár&folyamok letöltése"
 
-#: mmframe.cpp:1926
+#: mmframe.cpp:1938
 msgid "Download Currency and Stock Rates"
 msgstr "Pénznem- és részvényárfolyamok letöltése"
 
-#: mmframe.cpp:1932
+#: mmframe.cpp:1944
 msgid "&Payee Manager…"
 msgstr "Ked&vezményezettkezelő…"
 
-#: mmframe.cpp:1932 mmframe.cpp:2167 payeedialog.cpp:506
+#: mmframe.cpp:1944 mmframe.cpp:2179 payeedialog.cpp:506
 msgid "Payee Manager"
 msgstr "Kedvezményezettkezelő"
 
-#: mmframe.cpp:1936
+#: mmframe.cpp:1948
 msgid "&Category Manager…"
 msgstr "&Kategóriakezelő…"
 
-#: mmframe.cpp:1940
+#: mmframe.cpp:1952
 msgid "&Tag Manager…"
 msgstr "&Címkekezelő…"
 
-#: mmframe.cpp:1940 mmframe.cpp:2169 tagdialog.h:46
+#: mmframe.cpp:1952 mmframe.cpp:2181 tagdialog.h:46
 msgid "Tag Manager"
 msgstr "Címkekezelő"
 
-#: mmframe.cpp:1944
+#: mmframe.cpp:1956
 msgid "Curre&ncy Manager…"
 msgstr "&Pénznemkezelő…"
 
-#: mmframe.cpp:1948
+#: mmframe.cpp:1960
 msgid "&Categories…"
 msgstr "&Kategóriák…"
 
-#: mmframe.cpp:1949
+#: mmframe.cpp:1961
 msgid "Merge categories"
 msgstr "Kategóriák egyesítése"
 
-#: mmframe.cpp:1951
+#: mmframe.cpp:1963
 msgid "&Payees…"
 msgstr "Ked&vezményezettek…"
 
-#: mmframe.cpp:1952
+#: mmframe.cpp:1964
 msgid "Merge payees"
 msgstr "Kedvezményezettek egyesítése"
 
-#: mmframe.cpp:1954
+#: mmframe.cpp:1966
 msgid "&Tags…"
 msgstr "&Címkék…"
 
-#: mmframe.cpp:1955
+#: mmframe.cpp:1967
 msgid "Merge tags"
 msgstr "Címkék egyesítése"
 
-#: mmframe.cpp:1957 relocatecategorydialog.cpp:133 relocatepayeedialog.cpp:131
+#: mmframe.cpp:1969 relocatecategorydialog.cpp:133 relocatepayeedialog.cpp:131
 #: relocatetagdialog.cpp:134
 msgid "&Merge"
 msgstr "E&gyesítés"
 
-#: mmframe.cpp:1958
+#: mmframe.cpp:1970
 msgid "Merge categories, payees, and tags"
 msgstr "Kategóriák, kedvezményezettek és címkék egyesítése"
 
-#: mmframe.cpp:1969
+#: mmframe.cpp:1981
 msgid "&Budget Planner…"
 msgstr "Költ&ségvetés-tervező…"
 
-#: mmframe.cpp:1973
+#: mmframe.cpp:1985
 msgid "&Scheduled Transactions"
 msgstr "&Ütemezett ügyletek"
 
-#: mmframe.cpp:1973
+#: mmframe.cpp:1985
 msgid "Bills and Deposits"
 msgstr "Számlák és betétek"
 
-#: mmframe.cpp:1977
+#: mmframe.cpp:1989
 msgid "&Assets"
 msgstr "Eszközök"
 
-#: mmframe.cpp:1983
+#: mmframe.cpp:1995
 msgid "T&heme Manager…"
 msgstr "&Témakezelő…"
 
-#: mmframe.cpp:1983 themes.cpp:143
+#: mmframe.cpp:1995 themes.cpp:143
 msgid "Theme Manager"
 msgstr "Témakezelő"
 
-#: mmframe.cpp:1989
+#: mmframe.cpp:2001
 msgid "Tra&nsaction Report…"
 msgstr "Üg&yletekjelentés…"
 
-#: mmframe.cpp:1995
+#: mmframe.cpp:2007
 msgid "&General Report Manager…"
 msgstr "Általános &jelentéskezelő…"
 
-#: mmframe.cpp:1999
+#: mmframe.cpp:2011
 msgid "C&ustom Field Manager…"
 msgstr "Egyéni &mezőkezelő…"
 
-#: mmframe.cpp:2005
+#: mmframe.cpp:2017
 msgid "Refresh &WebApp…"
 msgstr "&Webalkalmazás frissítése…"
 
-#: mmframe.cpp:2005 mmframe.cpp:3149 mmframe.cpp:3157
+#: mmframe.cpp:2017 mmframe.cpp:3162 mmframe.cpp:3170
 msgid "Refresh WebApp"
 msgstr "Webalkalmazás frissítése"
 
-#: mmframe.cpp:2010
+#: mmframe.cpp:2022
 msgid "&Settings…"
 msgstr "&Beállítások…"
 
-#: mmframe.cpp:2017
+#: mmframe.cpp:2029
 msgid "&Decrypt Encrypted Database…"
 msgstr "Titkosított adatbázis &visszafejtése…"
 
-#: mmframe.cpp:2018
+#: mmframe.cpp:2030
 msgid "Convert encrypted database to unencrypted database"
 msgstr "A titkosított adatbázis átalakítása titkosítatlan adatbázissá"
 
-#: mmframe.cpp:2020
+#: mmframe.cpp:2032
 msgid "Change Encrypted &Password…"
 msgstr "Titkosítási &jelszó módosítása…"
 
-#: mmframe.cpp:2021
+#: mmframe.cpp:2033
 msgid "Change the password of an encrypted database"
 msgstr "Titkosított adatbázis jelszavának módosítása"
 
-#: mmframe.cpp:2023
+#: mmframe.cpp:2035
 msgid "&Optimize Database…"
 msgstr "Adatbázis &optimalizálása…"
 
-#: mmframe.cpp:2024
+#: mmframe.cpp:2036
 msgid "Optimize database for space and performance"
 msgstr "Adatbázis optimalizálása a méret és a működés érdekében"
 
-#: mmframe.cpp:2026
+#: mmframe.cpp:2038
 msgid "Database Check and De&bug…"
 msgstr "Adatbázis ellenőrzése és hi&bakeresése…"
 
-#: mmframe.cpp:2027
+#: mmframe.cpp:2039
 msgid "Generate database report or fix errors"
 msgstr "Adatbázis-jelentés készítése, vagy hibajavítás."
 
-#: mmframe.cpp:2032
+#: mmframe.cpp:2044
 msgid "&Database"
 msgstr "&Adatbázis"
 
-#: mmframe.cpp:2033
+#: mmframe.cpp:2045
 msgid "Database management"
 msgstr "Adatbáziskezelés"
 
-#: mmframe.cpp:2040 mmframe.cpp:2135 mmframe.cpp:2201
+#: mmframe.cpp:2052 mmframe.cpp:2147 mmframe.cpp:2214
 msgid "&Help"
 msgstr "Súgó"
 
-#: mmframe.cpp:2040
+#: mmframe.cpp:2052
 msgid "Show Help"
 msgstr "Súgó"
 
-#: mmframe.cpp:2048
+#: mmframe.cpp:2060
 msgid "Face&book"
 msgstr "Face&book"
 
-#: mmframe.cpp:2048
+#: mmframe.cpp:2060
 msgid "Visit MMEX Facebook page"
 msgstr "MMEX Facebook oldalának meglátogassa"
 
-#: mmframe.cpp:2050
+#: mmframe.cpp:2062
 msgid "&Crowdin"
 msgstr "&Crowdin"
 
-#: mmframe.cpp:2050
+#: mmframe.cpp:2062
 msgid "Help translate MMEX on Crowdin"
 msgstr "MMEX fordításának segítségében Crowdin rendszeren"
 
-#: mmframe.cpp:2052
+#: mmframe.cpp:2064
 msgid "&X"
 msgstr "&X"
 
-#: mmframe.cpp:2052
+#: mmframe.cpp:2064
 msgid "Follow MMEX on X"
 msgstr "MMEX kövesse az X-en"
 
-#: mmframe.cpp:2054
+#: mmframe.cpp:2066
 msgid "&YouTube"
 msgstr "&YouTube"
 
-#: mmframe.cpp:2054
+#: mmframe.cpp:2066
 msgid "Watch MMEX videos on YouTube"
 msgstr "MMEX videók megtekintése a YouTube-on"
 
-#: mmframe.cpp:2056
+#: mmframe.cpp:2068
 msgid "&Slack"
 msgstr "&Slack"
 
-#: mmframe.cpp:2056
+#: mmframe.cpp:2068
 msgid "Communicate with the MMEX team online"
 msgstr "MMEX csapatával online kommunikálása"
 
-#: mmframe.cpp:2058
+#: mmframe.cpp:2070
 msgid "&GitHub"
 msgstr "&GitHub"
 
-#: mmframe.cpp:2058
+#: mmframe.cpp:2070
 msgid "Access open source code repository and track reported bug statuses"
 msgstr "Lépj be a forráskód tárolójába és kövesd a jelentett hiba státuszát"
 
-#: mmframe.cpp:2060
+#: mmframe.cpp:2072
 msgid "Read and update MMEX wiki"
 msgstr "MMEX-wiki olvasása és frissítése"
 
-#: mmframe.cpp:2060
+#: mmframe.cpp:2072
 msgid "Wi&ki"
 msgstr "Wi&ki"
 
-#: mmframe.cpp:2065
+#: mmframe.cpp:2077
 msgid "MMEX for &iOS"
 msgstr "MMEX &iOS rendszerekhez"
 
-#: mmframe.cpp:2066
+#: mmframe.cpp:2078
 msgid "Install MMEX on iPads and iPhones"
 msgstr "MMEX-alkalmazás telepítése iPad és iPhone eszközökre"
 
-#: mmframe.cpp:2068
+#: mmframe.cpp:2080
 msgid "MMEX for &Android"
 msgstr "MMEX &Android rendszerekhez"
 
-#: mmframe.cpp:2069
+#: mmframe.cpp:2081
 msgid "Install MMEX for Android based smartphones and tablets"
 msgstr "MMEX telepítés Android alapú okostelefonokra és táblagépekre"
 
-#: mmframe.cpp:2071
+#: mmframe.cpp:2083
 msgid "&Newsletter"
 msgstr "&Hírlevél"
 
-#: mmframe.cpp:2072
+#: mmframe.cpp:2084
 msgid "Visit the MMEX blog to view announcements"
 msgstr "MMEX-blog látogatása a közlemények megtekintéséhez"
 
-#: mmframe.cpp:2074
+#: mmframe.cpp:2086
 msgid "&RSS Feed"
 msgstr "&RSS-hírcsatorna"
 
-#: mmframe.cpp:2074
+#: mmframe.cpp:2086
 msgid "Connect RSS web feed to news aggregator"
 msgstr "RSS-hírcsatorna csatlakoztatása a hírgyűjtőhöz"
 
-#: mmframe.cpp:2076
+#: mmframe.cpp:2088
 msgid "Make a &Donation"
 msgstr "A&dományozás"
 
-#: mmframe.cpp:2077
+#: mmframe.cpp:2089
 msgid "Donate to the MMEX team to support infrastructure and development"
 msgstr "Adományozzon az MMEX csapatának az infrastruktúra és a fejlesztés támogatására"
 
-#: mmframe.cpp:2079
+#: mmframe.cpp:2091
 msgid "&Buy us a Coffee"
 msgstr "&Vásároljon nekünk egy kávét"
 
-#: mmframe.cpp:2080
+#: mmframe.cpp:2092
 msgid "Buy a key developer a coffee"
 msgstr "Vásároljon egy főfejlesztőnek egy kávét"
 
-#: mmframe.cpp:2083
+#: mmframe.cpp:2095
 msgid "&Community"
 msgstr "Közösség"
 
-#: mmframe.cpp:2084
+#: mmframe.cpp:2096
 msgid "Stay in touch with MMEX community"
 msgstr "Maradj kapcsolatban az MMEX-közösséggel"
 
-#: mmframe.cpp:2109
+#: mmframe.cpp:2121
 msgid "Report a &Bug"
 msgstr "&Hiba bejelentése"
 
-#: mmframe.cpp:2110
+#: mmframe.cpp:2122
 msgid "Report an error in application to the developers"
 msgstr "Jelentsen be egy alkalmazás hibát a fejlesztőknek"
 
-#: mmframe.cpp:2114
+#: mmframe.cpp:2126
 msgid "View &Diagnostics"
 msgstr "&Diagnosztika megtekintése"
 
-#: mmframe.cpp:2115
+#: mmframe.cpp:2127
 msgid "Help provide information to the developers"
 msgstr "Információkkal segítsd a fejlesztőket"
 
-#: mmframe.cpp:2119
+#: mmframe.cpp:2131
 msgid "&Show App Start Dialog"
 msgstr "Alkalmazásindítási párbeszédpanel &megjelenítése"
 
-#: mmframe.cpp:2119
+#: mmframe.cpp:2131
 msgid "App Start Dialog"
 msgstr "Alkalmazásindítás párbeszédpanel"
 
-#: mmframe.cpp:2123
+#: mmframe.cpp:2135
 msgid "Check For Updates"
 msgstr "Frissítések keresése"
 
-#: mmframe.cpp:2123
+#: mmframe.cpp:2135
 msgid "Check for &Updates"
 msgstr "&Frissítések keresése"
 
-#: mmframe.cpp:2127 mmframe.cpp:2200
+#: mmframe.cpp:2139 mmframe.cpp:2213
 msgid "&About"
 msgstr "&Névjegy"
 
-#: mmframe.cpp:2127
+#: mmframe.cpp:2139
 msgid "About dialog"
 msgstr "Névjegy párbeszédpanel"
 
-#: mmframe.cpp:2131
+#: mmframe.cpp:2143
 msgid "&File"
 msgstr "&Fájl"
 
-#: mmframe.cpp:2132
+#: mmframe.cpp:2144
 msgid "&Accounts"
 msgstr "S&zámlák"
 
-#: mmframe.cpp:2133
+#: mmframe.cpp:2145
 msgid "&Tools"
 msgstr "&Eszközök"
 
-#: mmframe.cpp:2134
+#: mmframe.cpp:2146
 msgid "&View"
 msgstr "&Nézet"
 
-#: mmframe.cpp:2159 mmframe.cpp:2165
+#: mmframe.cpp:2171 mmframe.cpp:2177
 msgid "New"
 msgstr "Új"
 
-#: mmframe.cpp:2163 optiondialog.cpp:37
+#: mmframe.cpp:2175 optiondialog.cpp:37
 msgid "Dashboard"
 msgstr "Irányítópult"
 
-#: mmframe.cpp:2176
-msgid "&Settings"
-msgstr "&Beállítások"
-
-#: mmframe.cpp:2184 mmframe.cpp:2189 mmframe.cpp:3218 optionsettingsnet.cpp:132
-msgid "News"
-msgstr "Hírek"
-
-#: mmframe.cpp:2191
+#: mmframe.cpp:2187
 msgid "Download Rates"
 msgstr "Árfolyamok letöltése"
 
-#: mmframe.cpp:2191
+#: mmframe.cpp:2187
 msgid "Download currency and stock rates"
 msgstr "Pénznem- és részvényárfolyamok letöltése"
 
-#: mmframe.cpp:2194
+#: mmframe.cpp:2190
+msgid "&Print"
+msgstr "&Nyomtatás"
+
+#: mmframe.cpp:2190
+msgid "Print"
+msgstr "Nyomtatás"
+
+#: mmframe.cpp:2196
 msgid "Full Screen"
 msgstr "Teljes képernyő"
 
 #: mmframe.cpp:2197
-msgid "&Print"
-msgstr "&Nyomtatás"
+msgid "&Settings"
+msgstr "&Beállítások"
 
-#: mmframe.cpp:2197
-msgid "Print"
-msgstr "Nyomtatás"
+#: mmframe.cpp:2208 mmframe.cpp:2212 mmframe.cpp:3231 optionsettingsnet.cpp:132
+msgid "News"
+msgstr "Hírek"
 
-#: mmframe.cpp:2201 mmframe.cpp:2889 mmframe.cpp:3175 mmhelppanel.cpp:69
+#: mmframe.cpp:2214 mmframe.cpp:2902 mmframe.cpp:3188 mmhelppanel.cpp:69
 msgid "Help"
 msgstr "Súgó"
 
-#: mmframe.cpp:2257
+#: mmframe.cpp:2270
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
 msgstr "Kérjük, adja meg az adatbázis jelszavát\n\n"
 "%s"
 
-#: mmframe.cpp:2261 mmframe.cpp:2549 mmframe.cpp:2760
+#: mmframe.cpp:2274 mmframe.cpp:2562 mmframe.cpp:2773
 msgid "MMEX: Encrypted Database"
 msgstr "MMEX: titkosított adatbázis"
 
-#: mmframe.cpp:2301
+#: mmframe.cpp:2314
 msgid "Have MMEX support provided a debug/patch file?"
 msgstr "Az MMEX-támogatás biztosított hibakeresési/javító fájlt?"
 
-#: mmframe.cpp:2301
+#: mmframe.cpp:2314
 msgid "MMEX upgrade"
 msgstr "MMEX frissítése"
 
-#: mmframe.cpp:2325 mmframe.cpp:2404
+#: mmframe.cpp:2338 mmframe.cpp:2417
 msgid "No File opened"
 msgstr "Nincs nyitott fájl"
 
-#: mmframe.cpp:2327
+#: mmframe.cpp:2340
 msgid "Sorry. The Database version is too old or Database password is incorrect"
 msgstr "Elnézést! Vagy az adatbázis verziója túl régi, vagy a jelszó hibás"
 
-#: mmframe.cpp:2392
+#: mmframe.cpp:2405
 msgid "&Next →"
 msgstr "&Következő →"
 
-#: mmframe.cpp:2408
+#: mmframe.cpp:2421
 msgid "Unable to find previously opened database.\n"
 msgstr "Nem sikerült találni a korábban megnyitott adatbázis.\n"
 
-#: mmframe.cpp:2410
+#: mmframe.cpp:2423
 msgid "Password not entered for encrypted database.\n"
 msgstr "A titkosított adatbázis jelszava nincs megadva.\n"
 
-#: mmframe.cpp:2429
+#: mmframe.cpp:2442
 msgid "portable mode"
 msgstr "hordozható mód"
 
-#: mmframe.cpp:2461
+#: mmframe.cpp:2474
 msgid "Attempting to open a database that has been marked as opened by another instance of MMEX.\n"
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX."
@@ -5411,83 +5470,83 @@ msgstr "Egy másik MMEX-példány által megnyitottként megjelölt adatbázist 
 "Az adatvesztés és az ütközések elkerülése érdekében erősen ajánlott, hogy zárjon be minden olyan alkalmazást, amely esetleg használja az adatbázist.\n\n"
 "Ha semmi más nem fut, lehetséges, hogy az adatbázis az MMEX korábbi használata során bekövetkezett összeomlás miatt nyitva maradt."
 
-#: mmframe.cpp:2465
+#: mmframe.cpp:2478
 msgid "Do you want to open the database?"
 msgstr "Szeretné megnyitni az adatbázist?"
 
-#: mmframe.cpp:2466
+#: mmframe.cpp:2479
 msgid "MMEX Instance Check"
 msgstr "MMEX-példány ellenőrzése"
 
-#: mmframe.cpp:2487
+#: mmframe.cpp:2500
 msgid "Choose database file to create"
 msgstr "Válassza ki a létrehozandó adatbázisfájlt"
 
-#: mmframe.cpp:2490 mmframe.cpp:2513 mmframe.cpp:2559 mmframe.cpp:2727
+#: mmframe.cpp:2503 mmframe.cpp:2526 mmframe.cpp:2572 mmframe.cpp:2740
 msgid "MMEX Database"
 msgstr "MMEX-adatbázis"
 
-#: mmframe.cpp:2511
+#: mmframe.cpp:2524
 msgid "Choose database file to open"
 msgstr "Válassza ki a megnyitni kívánt adatbázis"
 
-#: mmframe.cpp:2513 mmframe.cpp:2539 mmframe.cpp:2727
+#: mmframe.cpp:2526 mmframe.cpp:2552 mmframe.cpp:2740
 msgid "Encrypted MMEX Database"
 msgstr "Titkosított MMEX-adatbázis"
 
-#: mmframe.cpp:2537
+#: mmframe.cpp:2550
 msgid "Choose Encrypted database file to open"
 msgstr "Válassza ki a megnyitni kívánt titkosított adatbázist"
 
-#: mmframe.cpp:2548
+#: mmframe.cpp:2561
 msgid "Enter password for database"
 msgstr "Írja be az adatbázis jelszavát"
 
-#: mmframe.cpp:2556
+#: mmframe.cpp:2569
 msgid "Choose database file to Save As"
 msgstr "A másképp mentéshez válasszon adatbázisfájlt"
 
-#: mmframe.cpp:2582
+#: mmframe.cpp:2595
 msgid "Converted database!"
 msgstr "Átalakított adatbázis!"
 
-#: mmframe.cpp:2582
+#: mmframe.cpp:2595
 msgid "MMEX message"
 msgstr "MMEX-üzenet"
 
-#: mmframe.cpp:2588
+#: mmframe.cpp:2601
 msgid "MMEX: Encryption Password Change"
 msgstr "MMEX: titkosítási jelszó módosítása"
 
-#: mmframe.cpp:2590
+#: mmframe.cpp:2603
 msgid "New password for database:"
 msgstr "Új jelszó az adatbázishoz:"
 
-#: mmframe.cpp:2599
+#: mmframe.cpp:2612
 msgid "New password must not be empty."
 msgstr "Az új jelszó nem lehet üres."
 
-#: mmframe.cpp:2607
+#: mmframe.cpp:2620
 msgid "Please confirm new password"
 msgstr "Új jelszó megerősítése"
 
-#: mmframe.cpp:2618
+#: mmframe.cpp:2631
 msgid "Password change completed"
 msgstr "Jelszó megváltoztatva"
 
-#: mmframe.cpp:2621
+#: mmframe.cpp:2634
 msgid "Confirm password failed."
 msgstr "A jelszó megerősítése sikertelen."
 
-#: mmframe.cpp:2633
+#: mmframe.cpp:2646
 msgid "Backup database before optimization."
 msgstr "Adatbázis biztonsági mentése az optimalizálás előtt."
 
-#: mmframe.cpp:2634 mmframe.cpp:2647
+#: mmframe.cpp:2647 mmframe.cpp:2660
 msgid "DB Optimization"
 msgstr "Adatbázis optimalizálása"
 
-#: mmframe.cpp:2642
+#: mmframe.cpp:2655
 #, c-format
 msgid "Database Optimization Completed!\n\n"
 "Size before: %1$s\n"
@@ -5496,47 +5555,47 @@ msgstr "Adatbázis optimalizálása befejezve\n\n"
 "Méret előtte: %1$s\n"
 "Méret utána: %2$s\n"
 
-#: mmframe.cpp:2680
+#: mmframe.cpp:2693
 msgid "Database Check"
 msgstr "Adatbázis ellenőrzése"
 
-#: mmframe.cpp:2680
+#: mmframe.cpp:2693
 msgid "Result of database integrity check:"
 msgstr "Adatbázis épségének ellenőrzésének eredménye:"
 
-#: mmframe.cpp:2699
+#: mmframe.cpp:2712
 msgid "Please use this function only if requested by MMEX support and an .mmdbg debug file has been supplied."
 msgstr "Kérjük, csak akkor használja ezt a funkciót, ha az MMEX támogatás kéri, és egy .mmdbg-hibakeresőfájl is rendelkezésre áll."
 
-#: mmframe.cpp:2702
+#: mmframe.cpp:2715
 msgid "Database Debug"
 msgstr "Adatbázis hibakeresése"
 
-#: mmframe.cpp:2706
+#: mmframe.cpp:2719
 msgid "&No"
 msgstr "&Nem"
 
-#: mmframe.cpp:2706
+#: mmframe.cpp:2719
 msgid "&Yes"
 msgstr "&Igen"
 
-#: mmframe.cpp:2724 mmframe.cpp:2747
+#: mmframe.cpp:2737 mmframe.cpp:2760
 msgid "Save database file as"
 msgstr "Adatbázisfájl mentése másként"
 
-#: mmframe.cpp:2746
+#: mmframe.cpp:2759
 msgid "Unable to copy file to itself"
 msgstr "Nem sikerült másolni a fájlt önmagába"
 
-#: mmframe.cpp:2760
+#: mmframe.cpp:2773
 msgid "Enter password for new database"
 msgstr "Adjon meg jelszót az új adatbázishoz"
 
-#: mmframe.cpp:2847 mmframe.cpp:2866
+#: mmframe.cpp:2860 mmframe.cpp:2879
 msgid "No account available to import"
 msgstr "Nincs importálásható számla"
 
-#: mmframe.cpp:2914
+#: mmframe.cpp:2927
 msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n\n"
@@ -5545,11 +5604,11 @@ msgstr "A vagyoni számlák az eszközökhöz kapcsolódó tranzakciókat tartal
 "Az eszközökkel kapcsolatos ügyletek a Vagyonnézetben, a nézeten belül, az eszköz kiválasztását követően, hozhatok létre.\n\n"
 "A vagyonszámlák a többi számlán végezhető szokásos ügyleteket is tartalmazhatnak."
 
-#: mmframe.cpp:2918
+#: mmframe.cpp:2931
 msgid "Asset Account Creation"
 msgstr "Eszközszámla létrehozása"
 
-#: mmframe.cpp:2923
+#: mmframe.cpp:2936
 msgid "Share Accounts hold Share transactions\n\n"
 "Share transactions are created within the Stock Portfolio View\n"
 "after the selection of the Company Stock within the associated view.\n\n"
@@ -5563,96 +5622,96 @@ msgstr "Értékpapírszámlák az értékpapírügyleteket tartalmazzák\n\n"
 "vagy a menüben Nézet → Értékpapírszámlák megjelenítése kiválasztásával.\n"
 "Az Értékpapírszámlák az egyéb számlákon szokásos ügyleteket is tartalmazhatnak."
 
-#: mmframe.cpp:2929
+#: mmframe.cpp:2942
 msgid "Share Account Creation"
 msgstr "Értékpapírszámla létrehozása"
 
-#: mmframe.cpp:3120
+#: mmframe.cpp:3133
 msgid "Settings have been updated."
 msgstr "Beállítások frissítve."
 
-#: mmframe.cpp:3121
+#: mmframe.cpp:3134
 msgid "Some settings take effect only after an application restart."
 msgstr "Néhány beállítás csak az alkalmazás újraindítása után lép érvénybe."
 
-#: mmframe.cpp:3149
+#: mmframe.cpp:3162
 msgid "Accounts, Payees, and Categories Updated"
 msgstr "Számlák, Kedvezményezettek és Kategóriák frissítve"
 
-#: mmframe.cpp:3156
+#: mmframe.cpp:3169
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr "Hiba történt a Webalkalmazás frissítésekor. Kérjük, ellenőrizze a Webkiszolgáló- és Webalkalmazás-beállításokat."
 
-#: mmframe.cpp:3294
+#: mmframe.cpp:3307
 msgid "Choose HTML file to Export"
 msgstr "Válasszon HTML-fájlt az exporthoz"
 
-#: mmframe.cpp:3646 mmframe.cpp:3653
+#: mmframe.cpp:3659 mmframe.cpp:3666
 msgid "Downloading stock prices from Yahoo"
 msgstr "Részvényárfolyamok letöltése Yahoo-ról"
 
-#: mmframe.cpp:3647
+#: mmframe.cpp:3660
 msgid "Please wait…"
 msgstr "Kérem várjon…"
 
-#: mmframe.cpp:3690 stockspanel.cpp:496
+#: mmframe.cpp:3703 stockspanel.cpp:529
 #, c-format
 msgid "%1$s on %2$s"
 msgstr "%1$s/%2$s"
 
-#: mmframe.cpp:3706
+#: mmframe.cpp:3719
 msgid "No account available to edit!"
 msgstr "Nincs szerkeszthető számla!"
 
-#: mmframe.cpp:3710
+#: mmframe.cpp:3723
 msgid "Choose Account to Edit"
 msgstr "Válassza ki a szerkesztendő számlát"
 
-#: mmframe.cpp:3724
+#: mmframe.cpp:3737
 msgid "No account available to delete!"
 msgstr "Nincs törölhető számla!"
 
-#: mmframe.cpp:3728
+#: mmframe.cpp:3741
 msgid "Choose Account to Delete"
 msgstr "Válassza ki a törlendő számlát"
 
-#: mmframe.cpp:3732
+#: mmframe.cpp:3745
 #, c-format
 msgid "Do you you want to delete\n"
 "%1$s account: %2$s?"
 msgstr "Szeretné törölni a(z)\n"
 "%1$s-számlát: %2$s?"
 
-#: mmframe.cpp:3751 mmframe.cpp:3778
+#: mmframe.cpp:3764 mmframe.cpp:3791
 msgid "Change Account Type"
 msgstr "Számlatípus módosítása"
 
-#: mmframe.cpp:3751
+#: mmframe.cpp:3764
 msgid "Select account"
 msgstr "Számla kijelölése"
 
-#: mmframe.cpp:3777
+#: mmframe.cpp:3790
 #, c-format
 msgid "Select new account type for %s"
 msgstr "%s-számlatípus módosításának kijelölése"
 
-#: mmframe.cpp:3941 payeedialog.cpp:832
+#: mmframe.cpp:3954 payeedialog.cpp:832
 msgid "Merge payees completed"
 msgstr "Kedvezményezettek egyesítése befejeződött"
 
-#: mmframe.cpp:3945 payeedialog.cpp:836
+#: mmframe.cpp:3958 payeedialog.cpp:836
 msgid "Merge payees result"
 msgstr "Kedvezményezettek egyesítésének eredménye"
 
-#: mmframe.cpp:3956
+#: mmframe.cpp:3969
 msgid "Merge tags completed"
 msgstr "Címkék egyesítése befejeződött"
 
-#: mmframe.cpp:3960
+#: mmframe.cpp:3973
 msgid "Merge tags result"
 msgstr "Címkék egyesítésének eredménye"
 
-#: mmframe.cpp:4033
+#: mmframe.cpp:4046
 #, c-format
 msgid "File %s not found."
 msgstr "%s fájl nem található."
@@ -5661,7 +5720,7 @@ msgstr "%s fájl nem található."
 msgid "General Group Report"
 msgstr "Fő Csoportjelentés"
 
-#: mmframereport.cpp:108 mmhomepage.cpp:851 model/Model_Report.cpp:410
+#: mmframereport.cpp:108 mmhomepage.cpp:843 model/Model_Report.cpp:410
 #: reports/bugreport.h:110
 msgid "Caught exception"
 msgstr "Kivétel értelmezve"
@@ -5670,7 +5729,7 @@ msgstr "Kivétel értelmezve"
 msgid "Cash Flow"
 msgstr "Pénzforgalom"
 
-#: mmframereport.cpp:147 mmframereport.cpp:234 mmhomepage.cpp:191
+#: mmframereport.cpp:147 mmframereport.cpp:234 mmhomepage.cpp:182
 msgid "Summary"
 msgstr "Összegzés"
 
@@ -5744,106 +5803,106 @@ msgstr "Nyereség/veszteség"
 msgid "Total"
 msgstr "Összesen"
 
-#: mmhomepage.cpp:109 mmhomepage.cpp:630 mmhomepage.cpp:746
+#: mmhomepage.cpp:109 mmhomepage.cpp:622 mmhomepage.cpp:738
 #: reports/incexpenses.cpp:280 reports/payee.cpp:167
-#: reports/summarystocks.cpp:163 splittransactionsdialog.cpp:264
+#: reports/summarystocks.cpp:163 splittransactionsdialog.cpp:260
 msgid "Total:"
 msgstr "Összesen: "
 
-#: mmhomepage.cpp:163
+#: mmhomepage.cpp:154
 #, c-format
 msgid "Top Withdrawals: %s"
 msgstr "Legnagyobb kivételek: %s"
 
-#: mmhomepage.cpp:354
+#: mmhomepage.cpp:345
 msgid "Account/Payee"
 msgstr "Számla/kedvezményezett"
 
-#: mmhomepage.cpp:424
+#: mmhomepage.cpp:415
 #, c-format
 msgid "Income vs. Expenses: %s"
 msgstr "Bevételek/kiadások: %s"
 
-#: mmhomepage.cpp:434 reports/categexp.cpp:153 reports/categexp.cpp:188
+#: mmhomepage.cpp:425 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:425 reports/categexp.cpp:496 reports/incexpenses.cpp:88
 #: reports/incexpenses.cpp:214 reports/incexpenses.cpp:246
 #: reports/payee.cpp:138
 msgid "Expenses"
 msgstr "Kiadás"
 
-#: mmhomepage.cpp:438 reports/incexpenses.cpp:117
+#: mmhomepage.cpp:429 reports/incexpenses.cpp:117
 msgid "Difference:"
 msgstr "Különbözet: "
 
-#: mmhomepage.cpp:442
+#: mmhomepage.cpp:433
 msgid "Income/Expenses"
 msgstr "Bevétel/kiadások"
 
-#: mmhomepage.cpp:466
+#: mmhomepage.cpp:457
 msgid "Transaction Statistics"
 msgstr "Ügyleti statisztikák"
 
-#: mmhomepage.cpp:513
+#: mmhomepage.cpp:504
 msgid "Follow Up On Transactions: "
 msgstr "Egyeztetendő ügyletek: "
 
-#: mmhomepage.cpp:517
+#: mmhomepage.cpp:508
 msgid "Total Transactions: "
 msgstr "Ügyletek összesen: "
 
-#: mmhomepage.cpp:541 model/Model_Attachment.cpp:25
+#: mmhomepage.cpp:532 model/Model_Attachment.cpp:25
 msgid "Stock"
 msgstr "Részvény"
 
-#: mmhomepage.cpp:551
+#: mmhomepage.cpp:542
 msgid "Total Net Worth"
 msgstr "Teljes nettó érték"
 
-#: mmhomepage.cpp:622
+#: mmhomepage.cpp:614
 msgid "Other Assets"
 msgstr "Egyéb eszközök"
 
-#: mmhomepage.cpp:695
+#: mmhomepage.cpp:687
 msgid "Investment Accounts"
 msgstr "Befektetési számlák"
 
-#: mmhomepage.cpp:696 reports/summary.cpp:267 reports/summary.cpp:306
+#: mmhomepage.cpp:688 reports/summary.cpp:267 reports/summary.cpp:306
 msgid "Asset Accounts"
 msgstr "Eszközszámlák"
 
-#: mmhomepage.cpp:837
+#: mmhomepage.cpp:829
 msgid "Currency Exchange Rates"
 msgstr "Pénznemárfolyamok"
 
-#: mmhomepagepanel.cpp:189
+#: mmhomepagepanel.cpp:209
 msgid "Upcoming Transactions"
 msgstr "Esedékes ügyletek"
 
-#: mmpanelbase.cpp:423
+#: mmpanelbase.cpp:520
 msgid "Hide/Show column"
 msgstr "Oszlop elrejtése/megjelenítése"
 
-#: mmpanelbase.cpp:424
+#: mmpanelbase.cpp:521
 msgid "Hide this column"
 msgstr "Oszlop elrejtése"
 
-#: mmpanelbase.cpp:443
+#: mmpanelbase.cpp:541
 msgid "Move hidden column"
 msgstr "Rejtett oszlop áthelyezése"
 
-#: mmpanelbase.cpp:445
+#: mmpanelbase.cpp:543
 msgid "Move column left"
 msgstr "Oszlop mozgatása balra"
 
-#: mmpanelbase.cpp:447
+#: mmpanelbase.cpp:545
 msgid "Move column right"
 msgstr "Oszlop mozgatása jobbra"
 
-#: mmpanelbase.cpp:451
+#: mmpanelbase.cpp:549
 msgid "Sort by this column"
 msgstr "Rendezés ezen oszlop szerint"
 
-#: mmpanelbase.cpp:453
+#: mmpanelbase.cpp:551
 msgid "Reset column widths"
 msgstr "Oszlopszélességek visszaállítása"
 
@@ -5892,40 +5951,36 @@ msgstr "Grafikon:"
 msgid "Show"
 msgstr "Megjelenítés"
 
-#: model/Model_Account.cpp:27 model/Model_Asset.cpp:30 reports/summary.cpp:257
+#: model/Model_Account.cpp:28 model/Model_Asset.cpp:30 reports/summary.cpp:257
 #: reports/summary.cpp:301
 msgid "Cash"
 msgstr "Készpénz"
 
-#: model/Model_Account.cpp:28
+#: model/Model_Account.cpp:29
 msgid "Checking"
 msgstr "Ellenőrzés"
 
-#: model/Model_Account.cpp:29
+#: model/Model_Account.cpp:30
 msgid "Credit Card"
 msgstr "Hitelkártya"
 
-#: model/Model_Account.cpp:30
+#: model/Model_Account.cpp:31
 msgid "Loan"
 msgstr "Kölcsön"
 
-#: model/Model_Account.cpp:31
+#: model/Model_Account.cpp:32
 msgid "Term"
 msgstr "Lekötött betét"
 
-#: model/Model_Account.cpp:32
-msgid "Investment"
-msgstr "Befektetés"
-
-#: model/Model_Account.cpp:33 model/Model_Attachment.cpp:26
+#: model/Model_Account.cpp:34 model/Model_Attachment.cpp:26
 msgid "Asset"
 msgstr "Eszköz"
 
-#: model/Model_Account.cpp:34 stockspanel.cpp:214
+#: model/Model_Account.cpp:35 stockspanel.cpp:248
 msgid "Shares"
 msgstr "Részvények"
 
-#: model/Model_Account.cpp:144
+#: model/Model_Account.cpp:145
 msgid "Account Error"
 msgstr "Számolási hiba"
 
@@ -6009,6 +6064,18 @@ msgstr "Ütemezett ügylet meghaladja a számlakorlátot.\n\n"
 #: model/Model_Billsdeposits.cpp:227
 msgid "MMEX Scheduled Transaction Check"
 msgstr "MMEX ütemezett ügyletek ellenőrzése"
+
+#: model/Model_Checking.cpp:39
+msgid "Buy"
+msgstr "Vásárlás"
+
+#: model/Model_Checking.cpp:40
+msgid "Sell"
+msgstr "Eladás"
+
+#: model/Model_Checking.cpp:41
+msgid "Revalue"
+msgstr "Átértékelés"
 
 #: model/Model_Currency.cpp:37
 msgid "Fiat"
@@ -7433,7 +7500,7 @@ msgstr "Legutóbbi 12 hónap"
 msgid "Current Year"
 msgstr "Jelenlegi év"
 
-#: reports/mmDateRange.cpp:172 stockdialog.cpp:680
+#: reports/mmDateRange.cpp:172 stockdialog.cpp:652
 msgid "Current Year to Date"
 msgstr "Jelenlegi év a mai napig"
 
@@ -7501,7 +7568,7 @@ msgstr "Számlák: "
 #: reports/summary.cpp:133
 #, c-format
 msgid "Accounts Balance - %s"
-msgstr "Számlák egyenlege - %s"
+msgstr "Számlaegyenleg - %s"
 
 #: reports/summary.cpp:133
 msgid "Monthly Report"
@@ -7515,7 +7582,7 @@ msgstr "Éves jelentés"
 msgid "Summary of Stocks"
 msgstr "Befektetések összegzése"
 
-#: reports/summarystocks.cpp:113 stockdialog.cpp:408 stocks_list.cpp:69
+#: reports/summarystocks.cpp:113 stockdialog.cpp:409 stocks_list.cpp:69
 msgid "Symbol"
 msgstr "Jel"
 
@@ -7527,12 +7594,15 @@ msgstr "Beszerzés dátuma"
 msgid "Quantity"
 msgstr "Mennyiség"
 
+#: reports/summarystocks.cpp:116 stocks_list.cpp:72
+msgid "Total Cost"
+msgstr "Összes költség"
+
 #: reports/summarystocks.cpp:117
 msgid "Current Price"
 msgstr "Jelenlegi ár"
 
-#: reports/summarystocks.cpp:118 sharetransactiondialog.cpp:244
-#: stocks_list.cpp:78 stockspanel.cpp:216
+#: reports/summarystocks.cpp:118 stocks_list.cpp:78 stockspanel.cpp:251
 msgid "Commission"
 msgstr "Jutalék"
 
@@ -7576,77 +7646,85 @@ msgstr "Legfeljebb"
 msgid "Average"
 msgstr "Átlag"
 
-#: sharetransactiondialog.cpp:61 sharetransactiondialog.cpp:68
+#: sharetransactiondialog.cpp:64
 msgid "Add Share Transaction"
 msgstr "Részvényügylet hozzáadása"
 
-#: sharetransactiondialog.cpp:190 stockdialog.cpp:169
+#: sharetransactiondialog.cpp:71 sharetransactiondialog.h:43
+msgid "Edit Share Transaction"
+msgstr "Részvényügylet szerkesztése"
+
+#: sharetransactiondialog.cpp:221 stockdialog.cpp:169
 msgid "Stock Investment Details"
 msgstr "Értékpapírbefektetés részletei"
 
-#: sharetransactiondialog.cpp:200 stockdialog.cpp:180 stocks_list.cpp:68
+#: sharetransactiondialog.cpp:231 stockdialog.cpp:180 stocks_list.cpp:68
 msgid "Company Name"
 msgstr "Cégnév"
 
-#: sharetransactiondialog.cpp:204 stockdialog.cpp:183
+#: sharetransactiondialog.cpp:235 stockdialog.cpp:183
 msgid "Enter the stock company name"
 msgstr "Részvénytársaság nevének megadása"
 
-#: sharetransactiondialog.cpp:207 stockdialog.cpp:186
+#: sharetransactiondialog.cpp:238 stockdialog.cpp:186
 msgid "Stock Symbol"
 msgstr "Értékpapírjelzés"
 
-#: sharetransactiondialog.cpp:214 stockdialog.cpp:193
+#: sharetransactiondialog.cpp:245 stockdialog.cpp:193
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
 msgstr "Értékpapírjelzés megadása. (Nem kötelező) Tegye hozzá a tőzsdéét is. pl. IBM.BE"
 
-#: sharetransactiondialog.cpp:217
-msgid "Share Number"
-msgstr "Értékpapír száma"
-
-#: sharetransactiondialog.cpp:224
-msgid "Enter number of shares held"
-msgstr "Adja meg a birtokolt részvények darabszámát"
-
-#: sharetransactiondialog.cpp:230
-msgid "Share Price"
-msgstr "Részvényárfolyam"
-
-#: sharetransactiondialog.cpp:238
-msgid "Enter the current value for a single share unit"
-msgstr "Részvénység jelenlegi egységár megadása"
-
-#: sharetransactiondialog.cpp:250
-msgid "Enter any commission paid"
-msgstr "Adja meg a kifizetett jutalékot"
-
-#: sharetransactiondialog.cpp:256
+#: sharetransactiondialog.cpp:248
 msgid "Share Lot"
 msgstr "Részvénycsomag"
 
-#: sharetransactiondialog.cpp:263
+#: sharetransactiondialog.cpp:255
 msgid "Enter the LOT that this parcel os shares belong to"
 msgstr "Adja meg azt a csomagot, amelyhez ez a részvénycsomag tartozik"
 
-#: sharetransactiondialog.cpp:270 stockdialog.cpp:251
+#: sharetransactiondialog.cpp:258
+msgid "Share Number"
+msgstr "Értékpapír száma"
+
+#: sharetransactiondialog.cpp:265
+msgid "Enter number of shares held"
+msgstr "Adja meg a birtokolt részvények darabszámát"
+
+#: sharetransactiondialog.cpp:271
+msgid "Share Price"
+msgstr "Részvényárfolyam"
+
+#: sharetransactiondialog.cpp:279
+msgid "Enter the current value for a single share unit"
+msgstr "Részvénység jelenlegi egységár megadása"
+
+#: sharetransactiondialog.cpp:285 stockdialog.cpp:226
+msgid "Deductible Comm."
+msgstr "Levonható jutalék"
+
+#: sharetransactiondialog.cpp:295
+msgid "Enter any commission paid"
+msgstr "Adja meg a kifizetett jutalékot"
+
+#: sharetransactiondialog.cpp:299 sharetransactiondialog.cpp:522
+msgid "Use Deductible Comm. split Categories"
+msgstr "Levonható jutalék osztott kategóriák használatával"
+
+#: sharetransactiondialog.cpp:309 stockdialog.cpp:251
 msgid "Manage stock attachments"
 msgstr "Értékpapír mellékleteinek kezelése"
 
-#: sharetransactiondialog.cpp:275 stockdialog.cpp:253
+#: sharetransactiondialog.cpp:314 stockdialog.cpp:253
 msgid "Display the web page for the specified Stock symbol"
 msgstr "Honlap megjelenítése a megadott értékpapírjelzéséhez"
 
-#: sharetransactiondialog.cpp:285 stockdialog.cpp:260
+#: sharetransactiondialog.cpp:324 stockdialog.cpp:260
 msgid "Enter notes associated with this investment"
 msgstr "Írja be a befektetéshez tartozó megjegyzéseket"
 
-#: sharetransactiondialog.cpp:290
+#: sharetransactiondialog.cpp:330
 msgid "Add Transaction Details"
 msgstr "Ügylet részleteinek hozzáadása"
-
-#: sharetransactiondialog.h:43
-msgid "Edit Share Transaction"
-msgstr "Részvényügylet szerkesztése"
 
 #: splittransactionsdialog.cpp:53
 msgid "Edit Split Detail"
@@ -7656,27 +7734,27 @@ msgstr "Felosztás részleteinek szerkesztése"
 msgid "Enter notes to describe this split transaction"
 msgstr "Írjon be megjegyzéseket a felosztott ügylet leírásához"
 
-#: splittransactionsdialog.cpp:252
+#: splittransactionsdialog.cpp:248
 msgid "&Add Split"
 msgstr "Felosztás &hozzáadása"
 
-#: splittransactionsdialog.cpp:257
+#: splittransactionsdialog.cpp:253
 msgid "&Remove Split"
 msgstr "Felosztás &eltávolítása"
 
-#: splittransactionsdialog.cpp:414
+#: splittransactionsdialog.cpp:410
 msgid "Invalid Total Amount"
 msgstr "Érvénytelen végösszeg"
 
-#: splittransactionsdialog.cpp:601
+#: splittransactionsdialog.cpp:597
 msgid "Please enter a valid monetary amount"
 msgstr "Adjon meg egy érvényes pénzösszeget"
 
-#: stockdialog.cpp:125 stockdialog.cpp:493 stockspanel.cpp:147
+#: stockdialog.cpp:125 stockspanel.cpp:147
 msgid "Edit Stock Investment"
 msgstr "Értékpapírbefektetés szerkesztése"
 
-#: stockdialog.cpp:125 stockdialog.cpp:479 stockspanel.cpp:133
+#: stockdialog.cpp:125 stockspanel.cpp:133
 msgid "New Stock Investment"
 msgstr "Új értékpapírbefektetés"
 
@@ -7688,7 +7766,7 @@ msgstr "*Dátum"
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
 msgstr "Értékpapírbefektetés kezdő dátumának megadása\n"
-"Az induló részvényügylet létrehozásakor használja."
+"A kezdeti részvény-ügylet létrehozásakor használatos."
 
 #: stockdialog.cpp:205
 msgid "*Share Number"
@@ -7698,7 +7776,7 @@ msgstr "*Részvény száma"
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
 msgstr "Részvények darabszámának megadása.\n"
-"Az induló részvény-ügylet létrehozásakor használja."
+"A kezdeti részvény-ügylet létrehozásakor használatos."
 
 #: stockdialog.cpp:216
 msgid "*Share Price"
@@ -7708,17 +7786,13 @@ msgstr "*Részvényár"
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
 msgstr "Részvények darabárának megadása.\n"
-"Az induló részvény-ügylet létrehozásakor használja."
-
-#: stockdialog.cpp:226
-msgid "*Commission"
-msgstr "*Jutalék"
+"A kezdeti részvény-ügylet létrehozásakor használatos."
 
 #: stockdialog.cpp:231
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
 msgstr "Fizetett jutalékok megadása.\n"
-"Az induló részvény-ügylet létrehozásakor használja."
+"A kezdeti részvény-ügylet létrehozásakor használatos."
 
 #: stockdialog.cpp:234 stocks_list.cpp:75
 msgid "Curr. Share Price"
@@ -7764,105 +7838,89 @@ msgstr "Részvényár hozzáadása az árfolyamtörténethez"
 msgid "Held At"
 msgstr "Számlavezető"
 
-#: stockdialog.cpp:478
-msgid "Share account not found."
-msgstr "Értékpapírszámla nem található."
-
-#: stockdialog.cpp:487
-msgid "The company name does not have an associated share account."
-msgstr "A cégnévhez nem tartozik társított értékpapírszámla."
-
-#: stockdialog.cpp:489
-msgid "You may want to rename the company name to an existing share account with the same name. If this is an existing stock without a share account, it is recommended that a share account be created."
-msgstr "Érdemes lehet átnevezni a cégnevet egy meglévő, azonos nevű értékpapírszámlára. Ha ez egy részvényszámla nélküli meglévő részvény, akkor ajánlatos egy értékpapírszámla létrehozása."
-
-#: stockdialog.cpp:492
-msgid "Do you want to create a new share account?"
-msgstr "Szeretne létrehozni egy új értékpapírszámlát?"
-
-#: stockdialog.cpp:558
+#: stockdialog.cpp:530
 msgid "Stock History CSV Import"
 msgstr "Részvényár időrendi kimutatásának importálása CSV-ben"
 
-#: stockdialog.cpp:559 stockdialog.cpp:575
+#: stockdialog.cpp:531 stockdialog.cpp:547
 msgid "Quotes imported from CSV: "
 msgstr "CSV-fájlból importált bejegyzések: "
 
-#: stockdialog.cpp:631
+#: stockdialog.cpp:603
 #, c-format
 msgid "Total Lines : %ld"
 msgstr "Összes sor: %ld"
 
-#: stockdialog.cpp:633
+#: stockdialog.cpp:605
 #, c-format
 msgid "Total Imported : %ld"
 msgstr "Összesen importálva: %ld"
 
-#: stockdialog.cpp:641
+#: stockdialog.cpp:613
 msgid "Importing CSV"
 msgstr "CSV importálása"
 
-#: stockdialog.cpp:672 stockdialog.cpp:702
+#: stockdialog.cpp:644 stockdialog.cpp:674
 msgid "5 Days"
 msgstr "5 nap"
 
-#: stockdialog.cpp:673 stockdialog.cpp:704
+#: stockdialog.cpp:645 stockdialog.cpp:676
 msgid "1 Month"
 msgstr "1 hónap"
 
-#: stockdialog.cpp:674 stockdialog.cpp:705
+#: stockdialog.cpp:646 stockdialog.cpp:677
 msgid "3 Months"
 msgstr "3 hónap"
 
-#: stockdialog.cpp:675
+#: stockdialog.cpp:647
 msgid "6 Months"
 msgstr "6 hónap"
 
-#: stockdialog.cpp:676
+#: stockdialog.cpp:648
 msgid "1 Year"
 msgstr "1 év"
 
-#: stockdialog.cpp:677
+#: stockdialog.cpp:649
 msgid "2 Years"
 msgstr "2 év"
 
-#: stockdialog.cpp:678
+#: stockdialog.cpp:650
 msgid "5 Years"
 msgstr "5 év"
 
-#: stockdialog.cpp:679
+#: stockdialog.cpp:651
 msgid "10 Years"
 msgstr "10 év"
 
-#: stockdialog.cpp:681
+#: stockdialog.cpp:653
 msgid "Max"
 msgstr "Legnagyobb"
 
-#: stockdialog.cpp:687
+#: stockdialog.cpp:659
 msgid "Specify type frequency of stock history"
 msgstr "Értékpapír előzmények időbeni hatályának megadása"
 
-#: stockdialog.cpp:688 stockdialog.cpp:712
+#: stockdialog.cpp:660 stockdialog.cpp:684
 msgid "Stock History Update"
 msgstr "Részvénytörténet frissítése"
 
-#: stockdialog.cpp:701
+#: stockdialog.cpp:673
 msgid "1 Day"
 msgstr "1 nap"
 
-#: stockdialog.cpp:703
+#: stockdialog.cpp:675
 msgid "1 Week"
 msgstr "1 hét"
 
-#: stockdialog.cpp:711
+#: stockdialog.cpp:683
 msgid "Specify interval of stock history"
 msgstr "Értékpapír előzmény intervallumának megadása"
 
-#: stockdialog.cpp:726 stockdialog.cpp:730
+#: stockdialog.cpp:698 stockdialog.cpp:702
 msgid "Stock history not found."
 msgstr "Részvényelőzmények nem található."
 
-#: stockdialog.cpp:727 stockdialog.cpp:839
+#: stockdialog.cpp:699 stockdialog.cpp:811
 msgid "Stock History Error"
 msgstr "Hiba a részvénytörténetben"
 
@@ -7874,10 +7932,6 @@ msgstr "Értékpapír összes "
 msgid "Avg Share Price"
 msgstr "Átlagos részvényárfolyam"
 
-#: stocks_list.cpp:72
-msgid "Total Cost"
-msgstr "Összes költség"
-
 #: stocks_list.cpp:76
 msgid "Curr. Total Value"
 msgstr "Akt. összérték"
@@ -7887,8 +7941,8 @@ msgid "&New Stock Investment…"
 msgstr "&Új értékpapírbefektetés…"
 
 #: stocks_list.cpp:139
-msgid "&Add Stock Transactions…"
-msgstr "Értékpapírügyletek &hozzáadása…"
+msgid "&Adjust Trade"
+msgstr "&Kereskedés helyesbítése"
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
@@ -7919,11 +7973,15 @@ msgstr "Értékpapírbefektetés törlésének megerősítése"
 msgid "Moving Transaction from %s to"
 msgstr "Ügylet áthelyezése %s helyről ide:"
 
+#: stockspanel.cpp:136
+msgid "&Adjust Trade "
+msgstr "&Kereskedés helyesbítése "
+
 #: stockspanel.cpp:137
 msgid "Add Stock Transactions"
 msgstr "Értékpapírügyletek hozzáadása"
 
-#: stockspanel.cpp:142 stockspanel.cpp:207
+#: stockspanel.cpp:142 stockspanel.cpp:208
 msgid "View Stock Transactions"
 msgstr "Részvényügyletek mutatása"
 
@@ -7947,53 +8005,58 @@ msgstr "Frissítés"
 msgid "Refresh Stock Prices from Yahoo"
 msgstr "Részvényárfolyamok frissítése Yahoo-ról"
 
-#: stockspanel.cpp:213
+#: stockspanel.cpp:247
 msgid "Lot"
 msgstr "Csomag"
 
-#: stockspanel.cpp:325
+#: stockspanel.cpp:357
 #, c-format
 msgid "Stock Portfolio: %s"
 msgstr "Részvény-portfólió: %s"
 
-#: stockspanel.cpp:369
+#: stockspanel.cpp:402
 #, c-format
-msgid "Total Shares: %s"
-msgstr "Összes részvény: %s"
+msgid "Cash Balance: %s"
+msgstr "Készpénzegyenleg: %s"
 
-#: stockspanel.cpp:371
+#: stockspanel.cpp:403
+#, c-format
+msgid "Market Value: %s"
+msgstr "Piaci érték: %s"
+
+#: stockspanel.cpp:404
 #, c-format
 msgid "Invested: %s"
 msgstr "Befektetve: %s"
 
-#: stockspanel.cpp:372
+#: stockspanel.cpp:405
 #, c-format
 msgid "Gain: %s"
 msgstr "Hozam: %s"
 
-#: stockspanel.cpp:372
+#: stockspanel.cpp:405
 #, c-format
 msgid "Loss: %s"
 msgstr "Veszteség: %s"
 
-#: stockspanel.cpp:410
+#: stockspanel.cpp:443
 msgid "Stock prices successfully updated"
 msgstr "Részvényárfolyamok sikeresen frissítve"
 
-#: stockspanel.cpp:412 stockspanel.cpp:598
+#: stockspanel.cpp:445 stockspanel.cpp:631
 #, c-format
 msgid "Last updated %s"
 msgstr "Utolsó frissítés %s"
 
-#: stockspanel.cpp:438 util.cpp:697 util.cpp:858
+#: stockspanel.cpp:471 util.cpp:717 util.cpp:878
 msgid "Nothing to update"
 msgstr "Nincs mit frissíteni"
 
-#: stockspanel.cpp:452
+#: stockspanel.cpp:485
 msgid "Connecting…"
 msgstr "Kapcsolódás…"
 
-#: stockspanel.cpp:556
+#: stockspanel.cpp:589
 #, c-format
 msgid "Symbol: %s"
 msgstr "Jel: %s"
@@ -8156,48 +8219,48 @@ msgstr "Ügylet szerkesztése"
 msgid "Populate Transaction #"
 msgstr "Ügyletszám közzététele"
 
-#: transdialog.cpp:579 usertransactionpanel.cpp:186
+#: transdialog.cpp:579 usertransactionpanel.cpp:217
 msgid "Manage transaction attachments"
 msgstr "Ügylet mellékleteinek kezelése"
 
-#: transdialog.cpp:750
+#: transdialog.cpp:749
 #, c-format
 msgid "Lock transaction to date: %s"
 msgstr "Ügylet zárolása a dátumig: %s"
 
-#: transdialog.cpp:775
+#: transdialog.cpp:774
 msgid "The transaction will exceed the account limit."
 msgstr "Ügylet túllépi a számlakorlátot."
 
-#: transdialog.cpp:1199
+#: transdialog.cpp:1194
 msgid "The two accounts have different currencies, but no advanced transaction is defined. Is this correct?"
 msgstr "A két számla pénzneme eltérő, de nincs speciális tranzakció meghatározva. Ez helyes?"
 
-#: transdialog.cpp:1200
+#: transdialog.cpp:1195
 msgid "Currencies are different"
 msgstr "Pénznemek különbözőek"
 
-#: transdialog.cpp:1315
+#: transdialog.cpp:1310
 msgid "Specify account the money is taken from"
 msgstr "Átutalást indító számlának megadása"
 
-#: transdialog.cpp:1316
+#: transdialog.cpp:1311
 msgid "Specify account the money is moved to"
 msgstr "Átutalást fogadó számlának megadása"
 
-#: transdialog.cpp:1317
+#: transdialog.cpp:1312
 msgid "Specify the transfer amount in the From Account."
 msgstr "Átutalás összegének megadása az eredeztető számlán."
 
-#: transdialog.cpp:1325
+#: transdialog.cpp:1320
 msgid "Specify account for the transaction"
 msgstr "Ügylet tartozó számla megadása"
 
-#: transdialog.cpp:1327
+#: transdialog.cpp:1322
 msgid "Specify to whom the transaction is going to"
 msgstr "Ügylet címzettjének megadása"
 
-#: transdialog.cpp:1333 usertransactionpanel.cpp:80
+#: transdialog.cpp:1328 usertransactionpanel.cpp:100
 msgid "Specify the date of the transaction"
 msgstr "Ügylet dátumának megadása"
 
@@ -8205,146 +8268,146 @@ msgstr "Ügylet dátumának megadása"
 msgid "Transactions Dialog"
 msgstr "Ügyletek"
 
-#: usertransactionpanel.cpp:90
+#: usertransactionpanel.cpp:110
 msgid "Select Account"
 msgstr "Számla kiválasztása"
 
-#: usertransactionpanel.cpp:92
+#: usertransactionpanel.cpp:112
 msgid "Specify the associated Account that will contain this transaction"
 msgstr "Hozzátartozó számlának megadása, ami az ügyletet tartalmazni fogja"
 
-#: usertransactionpanel.cpp:105
+#: usertransactionpanel.cpp:127
 msgid "Withdraw funds from or deposit funds to this Account."
 msgstr "Erről a számláról tőke kivonása, vagy oda elhelyezése."
 
-#: usertransactionpanel.cpp:107
+#: usertransactionpanel.cpp:130
 msgid "&Transfer"
 msgstr "Átutalás "
 
-#: usertransactionpanel.cpp:110
+#: usertransactionpanel.cpp:134
 msgid "Funds transfer from/to this account. Uncheck to set as Expense/Income."
 msgstr "Alapok átvitele innen, vagy erre a számlára. Vedd ki a jelölést a Kiadás/bevétel beállításához."
 
-#: usertransactionpanel.cpp:133
+#: usertransactionpanel.cpp:157
 msgid "Currency used for this transaction."
 msgstr "A tranzakció során használt pénznem."
 
-#: usertransactionpanel.cpp:152
+#: usertransactionpanel.cpp:177
 msgid "Specify the status for this transaction"
 msgstr "Ügylet állapotának megadása"
 
-#: usertransactionpanel.cpp:159
+#: usertransactionpanel.cpp:184
 msgid "Select Payee"
 msgstr "Kedvezményezett kiválasztása"
 
-#: usertransactionpanel.cpp:160
+#: usertransactionpanel.cpp:185
 msgid "Specify a person, Company or Organisation for this transaction."
 msgstr "Személy, cég vagy szervezet megadása az ügylethez."
 
-#: usertransactionpanel.cpp:166
-msgid "Select Category"
-msgstr "Kategória kiválasztása"
-
-#: usertransactionpanel.cpp:168
+#: usertransactionpanel.cpp:194
 msgid "Specify the category for this transaction"
 msgstr "Kategóriá megadása az ügylethez"
 
-#: usertransactionpanel.cpp:176
+#: usertransactionpanel.cpp:207
 msgid "Specify a transaction code or associated check details"
 msgstr "Ügyletkód vagy a kapcsolódó csekk részleteinek megadása"
 
-#: usertransactionpanel.cpp:286
+#: usertransactionpanel.cpp:343
 msgid "Select the required account"
 msgstr "Válassza ki a megfelelő számlát"
 
-#: usertransactionpanel.cpp:287
+#: usertransactionpanel.cpp:344
 msgid "Account Selection"
 msgstr "Számla kiválasztása"
 
-#: util.cpp:730
+#: usertransactionpanel.h:45 usertransactionpanel.h:81
+msgid "UserTransactionPanel"
+msgstr "Felhasználói ügyletek panel"
+
+#: util.cpp:750
 msgid "Currency rates have been updated"
 msgstr "Pénznemárfolyamok frissítésre kerültek"
 
-#: util.cpp:829 util.cpp:924 util.cpp:930 util.cpp:961 util.cpp:1020
+#: util.cpp:849 util.cpp:944 util.cpp:950 util.cpp:981 util.cpp:1040
 msgid "JSON Parse Error"
 msgstr "JSON-elemzési hiba"
 
-#: util.cpp:969 util.cpp:1028
+#: util.cpp:989 util.cpp:1048
 msgid "Expected response to contain a data or error string"
 msgstr "A várt válasz adat- vagy hibaüzenetet tartalmaz."
 
-#: util.cpp:1000
+#: util.cpp:1020
 msgid "Unable to find asset for symbol."
 msgstr "Nem sikerült találni az eszköz a szimbólumhoz."
 
-#: util.cpp:1035
+#: util.cpp:1055
 msgid "Unable to get base currency!"
 msgstr "Nem sikerült beszerezni az alappénznemet!"
 
-#: util.cpp:1041
+#: util.cpp:1061
 msgid "USD"
 msgstr "amerikai dollár (USD)"
 
-#: util.cpp:1044
+#: util.cpp:1064
 msgid "Unable to find currency 'USD', required for converting historical prices"
 msgstr "Nem sikerült találni az „USD”-pénznem, amely szükséges az előzmények árának átalakításához"
 
-#: util.cpp:1065
+#: util.cpp:1085
 msgid "Unable to parse price in asset history"
 msgstr "Nem sikerült elemezni az árat az eszközelőzményekben"
 
-#: util.cpp:1438 wizard_update.cpp:178
+#: util.cpp:1458 wizard_update.cpp:178
 #, c-format
 msgid "Version: %s"
 msgstr "Verzió: %s"
 
-#: util.cpp:1439
+#: util.cpp:1459
 #, c-format
 msgid "Built on: %1$s %2$s"
 msgstr "Készítési időpont: %1$s, %2$s"
 
-#: util.cpp:1440
+#: util.cpp:1460
 #, c-format
 msgid "Database version: %d"
 msgstr "Adatbázis verziója: %d"
 
-#: util.cpp:1447
+#: util.cpp:1467
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
 msgstr "Git-végrehajtás: %1$s (%2$s)"
 
-#: util.cpp:1450
+#: util.cpp:1470
 #, c-format
 msgid "Git branch: %s"
 msgstr "Git-ág: %s"
 
-#: util.cpp:1454
+#: util.cpp:1474
 msgid "MMEX is using the following support products:"
 msgstr "MMEX a következő támogatási termékeket használja:"
 
-#: util.cpp:1471
+#: util.cpp:1491
 msgid "Built with:"
 msgstr "Összeállítás a következőkkel:"
 
-#: util.cpp:1490
+#: util.cpp:1510
 msgid "Running on:"
 msgstr "Fut a következőn:"
 
-#: util.cpp:1504
+#: util.cpp:1524
 #, c-format
 msgid "System Locale: %s"
 msgstr "Rendszer területi beállítása: %s"
 
-#: util.cpp:1505
+#: util.cpp:1525
 #, c-format
 msgid "User Interface Language: %s"
 msgstr "Felhasználói felület nyelve: %s"
 
-#: util.cpp:1728
+#: util.cpp:1748
 msgid "The complete list of closed issues is available at this link"
 msgstr "A lezárt problémák teljes listája ezen a hivatkozáson érhető el"
 
-#: util.cpp:1885
+#: util.cpp:1905
 msgid "Copy all text to clipboard"
 msgstr "Összes szöveg másolása a vágólapra"
 
