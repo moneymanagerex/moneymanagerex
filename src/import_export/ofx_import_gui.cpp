@@ -1623,8 +1623,8 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                             else if (existing.TRANSCODE == "Deposit" && amount < 0)
                             {
                                 existing.TRANSCODE = "Transfer";
-                                existing.ACCOUNTID = account->ACCOUNTID;
                                 existing.TOACCOUNTID = existing.ACCOUNTID;
+                                existing.ACCOUNTID = account->ACCOUNTID;
                                 existing.TRANSAMOUNT = fabs(amount);
                                 existing.TOTRANSAMOUNT = existingAmount;
                             }
