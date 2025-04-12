@@ -297,7 +297,7 @@ void UserTransactionPanel::DataToControls()
 
 void UserTransactionPanel::BindEventsAndTrigger()
 {
-    m_type_selector->Bind(wxEVT_CHOICE, [this](wxCommandEvent& event)
+    m_type_selector->Bind(wxEVT_CHOICE, [this](wxCommandEvent&)
     {
         int selection = m_type_selector->GetSelection();
         m_payee_text->Show(selection != Model_Checking::TYPE_ID_TRANSFER);
