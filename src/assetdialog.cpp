@@ -295,7 +295,7 @@ void mmAssetDialog::CreateControls()
     wxStaticBoxSizer* transaction_frame_sizer = new wxStaticBoxSizer(m_transaction_frame, wxVERTICAL);
     right_sizer->Add(transaction_frame_sizer, g_flagsV);
 
-    m_transaction_panel = new UserTransactionPanel(this, m_checking_entry, wxID_STATIC);
+    m_transaction_panel = new UserTransactionPanel(this, m_checking_entry, false, wxID_STATIC);
     transaction_frame_sizer->Add(m_transaction_panel, g_flagsV);
     if (m_transfer_entry && m_checking_entry)
     {

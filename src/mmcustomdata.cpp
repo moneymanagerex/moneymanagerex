@@ -603,11 +603,10 @@ void mmCustomData::ResetWidgetsChanged()
 
 void mmCustomData::ClearSettings()
 {
-    int field_index = 0;
-    for (const auto &field : m_fields)
+    for (unsigned int field_index = 0 ; field_index < m_fields.size() ; field_index++ )
     {
         SetStringValue(field_index, "");
-        wxWindowID labelID = GetBaseID() + field_index++ * FIELDMULTIPLIER + CONTROLOFFSET;
+        wxWindowID labelID = GetBaseID() + field_index * FIELDMULTIPLIER + CONTROLOFFSET;
         wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(labelID, m_dialog));
         if (cb)
             cb->SetValue(false);
