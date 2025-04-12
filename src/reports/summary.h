@@ -62,7 +62,7 @@ private:
     std::map<wxDate, double> createCheckingBalanceMap(const Model_Account::Data& account);
     double getCheckingDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
     double getInvestingDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
-    double getDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
+    std::pair<double, double> getDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
     double getDayRate(int64 currencyid, const wxDate& date);
 };
 
