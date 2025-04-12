@@ -143,6 +143,7 @@ wxString mmReportSummaryByDate::getHTMLText()
         const wxDate accountOpeningDate = Model_Account::get_date_by_string(account.INITIALDATE);
         if (accountOpeningDate.IsEarlierThan(dateStart))
             dateStart = accountOpeningDate;
+        accountsBalanceMap[account.ACCOUNTID] = createCheckingBalanceMap(account);
         if (Model_Account::type_id(account) == Model_Account::TYPE_ID_INVESTMENT)
         {
             Model_Stock::Data_Set stocks = Model_Stock::instance().find(Model_Stock::HELDAT(account.id()));
@@ -160,10 +161,6 @@ wxString mmReportSummaryByDate::getHTMLText()
                 std::reverse(histItem.stockHist.begin(), histItem.stockHist.end());
                 arHistory.push_back(histItem);
             }
-        }
-        else
-        {
-            accountsBalanceMap[account.ACCOUNTID] = createCheckingBalanceMap(account);
         }
     }
 
