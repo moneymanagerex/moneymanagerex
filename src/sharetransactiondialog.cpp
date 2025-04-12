@@ -68,9 +68,9 @@ ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Stock::Da
 }
 
 ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Translink::Data* translink_entry, Model_Checking::Data* checking_entry)
-    : m_dialog_heading(_t("Edit Share Transaction"))
-    , m_translink_entry(translink_entry)
+    : m_dialog_heading(_t("Edit Share Transaction"))    
     , m_checking_entry(checking_entry)
+    , m_translink_entry(translink_entry)
 {
     if (m_translink_entry)
     {
@@ -482,7 +482,7 @@ void ShareTransactionDialog::CalculateAmount(wxCommandEvent& WXUNUSED(event))
         m_transaction_panel->SetTransactionValue(GetAmount(share_num, share_price, share_commission));
     }
 }
-void ShareTransactionDialog::OnDeductibleSplit(wxCommandEvent& event) 
+void ShareTransactionDialog::OnDeductibleSplit(wxCommandEvent&)
 {
     if (m_local_deductible_splits.empty())
     {
