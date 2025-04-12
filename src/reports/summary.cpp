@@ -112,7 +112,6 @@ double mmReportSummaryByDate::getDayRate(int64 currencyid, const wxDate& date)
 
 wxString mmReportSummaryByDate::getHTMLText()
 {
-    std::pair<double /*cash bal*/, double /*market bal*/> balancePerDay[Model_Account::TYPE_ID_size] = {};
     mmHTMLBuilder   hb;
     wxDate dateStart = wxDate::Today();
     wxDate dateEnd = wxDate::Today();
@@ -191,7 +190,6 @@ wxString mmReportSummaryByDate::getHTMLText()
     }
     std::reverse(arDates.begin(), arDates.end());
 
-
     for (const auto & end_date : arDates)
     {
         double total = 0.0;
@@ -204,6 +202,7 @@ wxString mmReportSummaryByDate::getHTMLText()
         if (mode_ == YEARLY)
             begin_date.SetMonth(wxDateTime::Jan);
 
+        std::pair<double /*cash bal*/, double /*market bal*/> balancePerDay[Model_Account::TYPE_ID_size] = {};
         for (const auto& account : Model_Account::instance().all())
         {
             balancePerDay[Model_Account::type_id(account)].first += getDailyBalanceAt(&account, end_date).first * getDayRate(account.CURRENCYID, end_date);
