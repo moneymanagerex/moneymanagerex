@@ -409,6 +409,7 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& event)
                 payee = Model_Payee::instance().create();
                 payee->PAYEENAME = selectedPayee_;
                 payee->CATEGID = selectedCategoryId;
+                payee->ACTIVE = 1;
             }
             if (payee)
             {
@@ -432,6 +433,7 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& event)
         payee = Model_Payee::instance().create();
         payee->PAYEENAME = selectedPayee_;
         payee->CATEGID = selectedCategoryId;
+        payee->ACTIVE = 1;
         Model_Payee::instance().save(payee);
         wxLogDebug("Created new payee '%s' with category ID=%lld", selectedPayee_, selectedCategoryId);
     }
@@ -1715,6 +1717,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                         Model_Payee::Data* newPayee = Model_Payee::instance().create();
                         newPayee->PAYEENAME = payeeName;
                         newPayee->CATEGID = payeeDlg.GetSelectedCategoryID();
+                        newPayee->ACTIVE = 1;
                         Model_Payee::instance().save(newPayee);
                         transaction->PAYEEID = newPayee->PAYEEID;
                         stats.newPayeesCreated++;
@@ -1764,20 +1767,6 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                     result.category = category ? category->CATEGNAME : "Uncategorized";
                     stats.autoImportedCount++;
                     result.imported = true;
-                }
-                else if (matchMethod == "Exact")
-                {
-                    Model_Payee::Data* newPayee = Model_Payee::instance().create();
-                    newPayee->PAYEENAME = payeeName;
-                    newPayee->CATEGID = -1;
-                    Model_Payee::instance().save(newPayee);
-                    transaction->PAYEEID = newPayee->PAYEEID;
-                    transaction->CATEGID = newPayee->CATEGID;
-                    stats.newPayeesCreated++;
-                    stats.autoImportedCount++;
-                    result.imported = true;
-                    Model_Category::Data* category = Model_Category::instance().get(transaction->CATEGID);
-                    result.category = category ? category->CATEGNAME : "Uncategorized";
                 }
                 else
                 {
