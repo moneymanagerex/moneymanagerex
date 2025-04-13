@@ -62,7 +62,6 @@ static const wxString TOP_CATEGS = R"(
 htmlWidgetStocks::htmlWidgetStocks()
     : title_(_t("Stocks"))
 {
-    grand_gain_lost_ = 0.0;
     grand_total_ = 0.0;
 }
 
@@ -72,34 +71,54 @@ htmlWidgetStocks::~htmlWidgetStocks()
 
 const wxString htmlWidgetStocks::getHTMLText()
 {
+    double grand_gain_lost    = 0;
+    double grand_market_value = 0;  // Track the grand total of market values
+    double grand_cash_balance = 0;  // Track the grand total of cash balances
+    const wxDate today = wxDate::Today();
+
     wxString output = "";
-    std::map<int64, std::pair<double, double> > stockStats;
-    calculate_stats(stockStats);
-    if (!stockStats.empty())
+    const auto &accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT, EQUAL));
+    if (!accounts.empty())
     {
         output = R"(<div class="shadow">)";
-        output += "<table class ='sortable table'><col style='width: 50%'><col style='width: 25%'><col style='width: 25%'><thead><tr class='active'><th>\n";
-        output += _t("Stocks") + "</th><th class = 'text-right'>" + _t("Gain/Loss");
-        output += "</th>\n<th class='text-right'>" + _t("Total") + "</th>\n";
+        output += "<table class ='sortable table'><col style='width: 50%'><col style='width: 12.5%'><col style='width: 12.5%'><col style='width: 12.5%'><col style='width: 12.5%'><thead><tr class='active'><th>\n";
+        output += _t("Stocks") + "</th><th class = 'text-right'>" + _t("Gain/Loss") + "</th>\n";
+        output += "<th class='text-right'>" + _t("Market Value") + "</th>\n";
+        output += "<th class='text-right'>" + _t("Cash Balance") + "</th>\n";
+        output += "<th class='text-right'>" + _t("Total") + "</th>\n";
         output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#%s' oncontextmenu='return false;'>[-]</a></th>\n"
             , "INVEST", "INVEST", "INVEST");
         output += "</tr></thead><tbody id='INVEST'>\n";
-        const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
         wxString body = "";
         for (const auto& account : accounts)
         {
-            if (Model_Account::type_id(account) != Model_Account::TYPE_ID_INVESTMENT) continue;
             if (Model_Account::status_id(account) != Model_Account::STATUS_ID_OPEN) continue;
+            
+            double conv_rate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, today);
+            auto inv_bal = Model_Account::investment_balance(account);
+            double cash_bal = Model_Account::balance(account);
+    
+            grand_gain_lost    += (inv_bal.first - inv_bal.second) * conv_rate;
+            grand_market_value += inv_bal.first * conv_rate;
+            grand_cash_balance += cash_bal * conv_rate;
+            grand_total_       += (inv_bal.first + cash_bal) * conv_rate; 
+
             body += "<tr>";
             body += wxString::Format("<td sorttable_customkey='*%s*'><a href='stock:%lld' oncontextmenu='return false;' target='_blank'>%s</a>%s</td>\n"
                 , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME,
                 account.WEBSITE.empty() ? "" : wxString::Format("&nbsp;&nbsp;&nbsp;&nbsp;(<a href='%s' oncontextmenu='return false;' target='_blank'>WWW</a>)", account.WEBSITE));
             body += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
-                , stockStats[account.ACCOUNTID].second
-                , Model_Account::toCurrency(stockStats[account.ACCOUNTID].second, &account));
+                , inv_bal.first - inv_bal.second
+                , Model_Account::toCurrency(inv_bal.first - inv_bal.second, &account));
+            body += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
+                , inv_bal.first
+                , Model_Account::toCurrency(inv_bal.first, &account));
+            body += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
+                , cash_bal
+                , Model_Account::toCurrency(cash_bal, &account));
             body += wxString::Format("<td colspan='2' class='money' sorttable_customkey='%f'>%s</td>"
-                , stockStats[account.ACCOUNTID].first
-                , Model_Account::toCurrency(stockStats[account.ACCOUNTID].first, &account));
+                , inv_bal.first + cash_bal
+                , Model_Account::toCurrency(inv_bal.first + cash_bal, &account));
             body += "</tr>";
         }
 
@@ -108,7 +127,11 @@ const wxString htmlWidgetStocks::getHTMLText()
             output += body;
             output += "</tbody><tfoot><tr class = 'total'><td>" + _t("Total:") + "</td>";
             output += wxString::Format("<td class='money'>%s</td>"
-                , Model_Currency::toCurrency(grand_gain_lost_));
+                , Model_Currency::toCurrency(grand_gain_lost));
+            output += wxString::Format("<td class='money'>%s</td>"
+                , Model_Currency::toCurrency(grand_market_value));
+            output += wxString::Format("<td class='money'>%s</td>"
+                , Model_Currency::toCurrency(grand_cash_balance));
             output += wxString::Format("<td colspan='2' class='money'>%s</td></tr></tfoot></table>\n"
                 , Model_Currency::toCurrency(grand_total_));
             output += "</div>";
@@ -117,32 +140,9 @@ const wxString htmlWidgetStocks::getHTMLText()
     return output;
 }
 
-void htmlWidgetStocks::calculate_stats(std::map<int64, std::pair<double, double> > &stockStats)
-{
-    this->grand_total_ = 0;
-    this->grand_gain_lost_ = 0;
-    const wxDate today = wxDate::Today();
-    for (const auto& account: Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT, EQUAL)))
-    {
-        stockStats[account.ACCOUNTID] = Model_Account::investment_balance(account);
-        stockStats[account.ACCOUNTID].second = stockStats[account.ACCOUNTID].first - stockStats[account.ACCOUNTID].second;
-        stockStats[account.ACCOUNTID].first +=  Model_Account::balance(account);
-
-        // in base currency
-        double conv_rate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, today);
-        grand_gain_lost_ += stockStats[account.ACCOUNTID].second * conv_rate;
-        grand_total_ += stockStats[account.ACCOUNTID].first * conv_rate;
-    }
-}
-
 double htmlWidgetStocks::get_total()
 {
     return grand_total_;
-}
-
-double htmlWidgetStocks::get_total_gein_lost()
-{
-    return grand_gain_lost_;
 }
 
 ////////////////////////////////////////////////////////

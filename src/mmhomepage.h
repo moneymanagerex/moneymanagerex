@@ -31,7 +31,6 @@ public:
     ~htmlWidgetStocks();
     htmlWidgetStocks();
     double get_total();
-    double get_total_gein_lost();
 
     const wxString getHTMLText();
 
@@ -39,8 +38,6 @@ protected:
 
     wxString title_;
     double grand_total_;
-    double grand_gain_lost_;
-    void calculate_stats(std::map<int64, std::pair<double, double> > &stockStats);
 };
 
 class htmlWidgetTop7Categories
