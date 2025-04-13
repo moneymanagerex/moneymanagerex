@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-04-12 22:54+0000\n"
+"POT-Creation-Date: 2025-04-02 23:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -232,7 +232,7 @@ msgstr ""
 msgid "Credit"
 msgstr ""
 
-#: accountdialog.cpp:263 mmcheckingpanel.cpp:385
+#: accountdialog.cpp:263 mmcheckingpanel.cpp:377
 msgid "Credit Limit:"
 msgstr ""
 
@@ -433,7 +433,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:103 maincurrencydialog.cpp:253
 #: maincurrencydialog.cpp:270 mmchecking_list.cpp:98
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:275
-#: reports/cashflow.cpp:404 reports/incexpenses.cpp:244 reports/summary.cpp:296
+#: reports/cashflow.cpp:404 reports/incexpenses.cpp:244 reports/summary.cpp:300
 #: reports/transactions.cpp:209 stockdialog.cpp:280 stockdialog.cpp:607
 #: stockspanel.cpp:246 transactionsupdatedialog.cpp:132 transdialog.cpp:433
 #: usertransactionpanel.cpp:105 webapp.cpp:565 webappdialog.cpp:138
@@ -596,8 +596,8 @@ msgstr ""
 
 #: assetspanel.cpp:410 assetspanel.h:124 general_report_manager.cpp:1100
 #: mmframe.cpp:218 mmframe.cpp:1989 mmframe.cpp:3634 mmhomepage.cpp:529
-#: mmhomepage.cpp:576 mmhomepagepanel.cpp:257 reports/summary.cpp:267
-#: reports/summary.cpp:305
+#: mmhomepage.cpp:576 mmhomepagepanel.cpp:257 reports/summary.cpp:271
+#: reports/summary.cpp:309
 msgid "Assets"
 msgstr ""
 
@@ -1889,7 +1889,7 @@ msgstr ""
 msgid "Closed"
 msgstr ""
 
-#: constants.cpp:197 mmcheckingpanel.cpp:1245 mmframe.cpp:512
+#: constants.cpp:197 mmcheckingpanel.cpp:1205 mmframe.cpp:512
 msgid "Favorites"
 msgstr ""
 
@@ -3433,7 +3433,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:118 mmchecking_list.cpp:108
 #: mmhomepage.cpp:535 mmhomepage.cpp:699 reports/cashflow.cpp:409
-#: reports/summary.cpp:271 reports/summary.cpp:307
+#: reports/summary.cpp:275 reports/summary.cpp:311
 msgid "Balance"
 msgstr ""
 
@@ -4470,7 +4470,7 @@ msgstr ""
 msgid "Scheduled transaction saved."
 msgstr ""
 
-#: mmchecking_list.cpp:1430 mmcheckingpanel.cpp:1240
+#: mmchecking_list.cpp:1430 mmcheckingpanel.cpp:1200
 msgid "All Transactions"
 msgstr ""
 
@@ -4543,98 +4543,94 @@ msgstr ""
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr ""
 
-#: mmcheckingpanel.cpp:350
-msgid "Click to copy to clipboard"
-msgstr ""
-
-#: mmcheckingpanel.cpp:369
+#: mmcheckingpanel.cpp:361
 msgid "Account Bal: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:373
+#: mmcheckingpanel.cpp:365
 msgid "Reconciled Bal: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:375
+#: mmcheckingpanel.cpp:367
 msgid "Diff: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:379
+#: mmcheckingpanel.cpp:371
 msgid "Filtered Flow: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:395
+#: mmcheckingpanel.cpp:387
 msgid "Market Value: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:396
+#: mmcheckingpanel.cpp:388
 msgid "Invested: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:409
+#: mmcheckingpanel.cpp:401
 msgid "Advanced filter"
 msgstr ""
 
-#: mmcheckingpanel.cpp:511
+#: mmcheckingpanel.cpp:503
 msgid "(Date range)"
 msgstr ""
 
-#: mmcheckingpanel.cpp:888 mmcheckingpanel.cpp:906 webapp.cpp:621
+#: mmcheckingpanel.cpp:880 mmcheckingpanel.cpp:898 webapp.cpp:621
 msgid "Attachment"
 msgstr ""
 
-#: mmcheckingpanel.cpp:957
+#: mmcheckingpanel.cpp:946
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr ""
 
-#: mmcheckingpanel.cpp:961
+#: mmcheckingpanel.cpp:950
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:966
+#: mmcheckingpanel.cpp:956
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1032
+#: mmcheckingpanel.cpp:1019
 msgid "Unable to show scheduled transactions because the current filter choice extends into the future without limit."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1033
+#: mmcheckingpanel.cpp:1020
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1034
+#: mmcheckingpanel.cpp:1021
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1051
+#: mmcheckingpanel.cpp:1038
 msgid "More date ranges…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1058
+#: mmcheckingpanel.cpp:1045
 msgid "Advanced filter…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1198
+#: mmcheckingpanel.cpp:1185
 msgid "&New Withdrawal…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1199
+#: mmcheckingpanel.cpp:1186
 msgid "&New Deposit…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1200
+#: mmcheckingpanel.cpp:1187
 msgid "&New Transfer…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1242
+#: mmcheckingpanel.cpp:1202
 msgid "Deleted Transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1250
+#: mmcheckingpanel.cpp:1210
 #, c-format
 msgid "Account View: %s"
 msgstr ""
@@ -4659,14 +4655,14 @@ msgstr ""
 msgid "Please select"
 msgstr ""
 
-#: mmcustomdata.cpp:796
+#: mmcustomdata.cpp:797
 #, c-format
 msgid ""
 "Unable to save custom field \"%1$s\":\n"
 "value \"%2$s\" does not match RegEx validation \"%3$s\""
 msgstr ""
 
-#: mmcustomdata.cpp:799
+#: mmcustomdata.cpp:800
 msgid "CustomField validation error"
 msgstr ""
 
@@ -4680,23 +4676,23 @@ msgstr ""
 msgid "Cash Accounts"
 msgstr ""
 
-#: mmframe.cpp:213 mmhomepage.cpp:683 reports/summary.cpp:255
-#: reports/summary.cpp:298
+#: mmframe.cpp:213 mmhomepage.cpp:683 reports/summary.cpp:259
+#: reports/summary.cpp:302
 msgid "Bank Accounts"
 msgstr ""
 
-#: mmframe.cpp:214 mmhomepage.cpp:684 reports/summary.cpp:257
-#: reports/summary.cpp:299
+#: mmframe.cpp:214 mmhomepage.cpp:684 reports/summary.cpp:261
+#: reports/summary.cpp:303
 msgid "Credit Card Accounts"
 msgstr ""
 
-#: mmframe.cpp:215 mmhomepage.cpp:685 reports/summary.cpp:259
-#: reports/summary.cpp:300
+#: mmframe.cpp:215 mmhomepage.cpp:685 reports/summary.cpp:263
+#: reports/summary.cpp:304
 msgid "Loan Accounts"
 msgstr ""
 
-#: mmframe.cpp:216 mmhomepage.cpp:686 reports/summary.cpp:261
-#: reports/summary.cpp:301
+#: mmframe.cpp:216 mmhomepage.cpp:686 reports/summary.cpp:265
+#: reports/summary.cpp:305
 msgid "Term Accounts"
 msgstr ""
 
@@ -4704,7 +4700,8 @@ msgstr ""
 msgid "Stock Portfolios"
 msgstr ""
 
-#: mmframe.cpp:219 mmhomepage.cpp:689
+#: mmframe.cpp:219 mmhomepage.cpp:689 reports/summary.cpp:269
+#: reports/summary.cpp:307
 msgid "Share Accounts"
 msgstr ""
 
@@ -5792,8 +5789,8 @@ msgstr ""
 msgid "&Forward"
 msgstr ""
 
-#: mmhomepage.cpp:63 mmhomepage.cpp:82 reports/summary.cpp:269
-#: reports/summary.cpp:306
+#: mmhomepage.cpp:63 mmhomepage.cpp:82 reports/summary.cpp:273
+#: reports/summary.cpp:310
 msgid "Stocks"
 msgstr ""
 
@@ -5802,7 +5799,7 @@ msgid "Gain/Loss"
 msgstr ""
 
 #: mmhomepage.cpp:83 reports/budgetingperf.cpp:142 reports/cashflow.cpp:276
-#: reports/categexp.cpp:219 reports/categexp.cpp:497 reports/summary.cpp:304
+#: reports/categexp.cpp:219 reports/categexp.cpp:497 reports/summary.cpp:308
 msgid "Total"
 msgstr ""
 
@@ -5865,11 +5862,11 @@ msgstr ""
 msgid "Other Assets"
 msgstr ""
 
-#: mmhomepage.cpp:687 reports/summary.cpp:265 reports/summary.cpp:303
+#: mmhomepage.cpp:687
 msgid "Investment Accounts"
 msgstr ""
 
-#: mmhomepage.cpp:688 reports/summary.cpp:263 reports/summary.cpp:302
+#: mmhomepage.cpp:688 reports/summary.cpp:267 reports/summary.cpp:306
 msgid "Asset Accounts"
 msgstr ""
 
@@ -5954,8 +5951,8 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: model/Model_Account.cpp:28 model/Model_Asset.cpp:30 reports/summary.cpp:253
-#: reports/summary.cpp:297
+#: model/Model_Account.cpp:28 model/Model_Asset.cpp:30 reports/summary.cpp:257
+#: reports/summary.cpp:301
 msgid "Cash"
 msgstr ""
 
