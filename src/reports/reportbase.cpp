@@ -217,8 +217,7 @@ void mmPrintableBase::setAccounts(int selection, const wxString& name)
         case 1: // Select Accounts
         {
             wxArrayString accounts;
-            auto a = Model_Account::instance().find(
-                Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT, NOT_EQUAL));
+            auto a = Model_Account::instance().all();
             std::stable_sort(a.begin(), a.end(), SorterByACCOUNTNAME());
             for (const auto& item : a) {
                 if (m_only_active && item.STATUS != Model_Account::STATUS_NAME_OPEN)
