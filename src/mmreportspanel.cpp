@@ -362,10 +362,8 @@ void mmReportsPanel::CreateControls()
             m_accounts->Append(_t("All Accounts"));
             m_accounts->Append(_tu("Specific Accounts…"));
             for (int i = 0; i < Model_Account::TYPE_ID_size; ++i) {
-                if (i != Model_Account::TYPE_ID_INVESTMENT) {
-                    wxString type = Model_Account::type_name(i);
-                    m_accounts->Append(wxGetTranslation(type), new wxStringClientData(type));
-                }
+                wxString type = Model_Account::type_name(i);
+                m_accounts->Append(wxGetTranslation(type), new wxStringClientData(type));
             }
             m_accounts->SetSelection(rb_->getAccountSelection());
 
