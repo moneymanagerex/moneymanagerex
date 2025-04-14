@@ -449,7 +449,12 @@ int StocksListCtrl::initVirtualListControl(int64 trx_id)
     /* Clear all the records */
     DeleteAllItems();
 
-    m_stocks = Model_Stock::instance().find(Model_Stock::HELDAT(m_stock_panel->m_account_id));
+    // TODO
+    int currentSelection = m_stock_panel->getFilter();
+    if (currentSelection)
+        m_stocks = Model_Stock::instance().find(Model_Stock::HELDAT(m_stock_panel->m_account_id), Model_Stock::NUMSHARES(0.0, GREATER));
+    else
+        m_stocks = Model_Stock::instance().find(Model_Stock::HELDAT(m_stock_panel->m_account_id));
     sortList();
 
     int cnt = 0, selected_item = -1;

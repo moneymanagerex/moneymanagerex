@@ -99,12 +99,24 @@ void mmStocksPanel::CreateControls()
     header_text_ = new wxStaticText(headerPanel, wxID_STATIC, "");
     header_text_->SetFont(this->GetFont().Larger().Bold());
 
+    m_choiceFilter = new wxChoice(headerPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, nullptr);
+    m_choiceFilter->Append(_t("All"));
+    m_choiceFilter->Append(_T("Non-Zero Shares"));
+    m_choiceFilter->SetMinSize(wxSize(150, -1));
+    m_choiceFilter->SetSelection(0);
+
+    m_choiceFilter->Bind(wxEVT_CHOICE, [this](wxCommandEvent& event)
+    {
+        RefreshList();
+    });
+
     header_total_ = new wxStaticText(headerPanel, wxID_STATIC, "");
 
     wxBoxSizer* itemBoxSizerHHeader = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizerHHeader->Add(header_text_, 1, wxALIGN_CENTER_VERTICAL | wxALL, 1);
 
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader, 1, wxEXPAND, 1);
+    itemBoxSizerVHeader->Add(m_choiceFilter, g_flagsBorder1H);
     itemBoxSizerVHeader->Add(header_total_, 1, wxALL, 1);
 
     /* ---------------------- */
@@ -660,5 +672,10 @@ void mmStocksPanel::RefreshList()
     if (m_lc->get_selectedIndex() > -1)
         selected_id = m_lc->m_stocks[m_lc->get_selectedIndex()].STOCKID;
     m_lc->doRefreshItems(selected_id);
+}
+
+int mmStocksPanel::getFilter()
+{
+    return m_choiceFilter->GetSelection();
 }
 
