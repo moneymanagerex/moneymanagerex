@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-04-14 05:18+0000\n"
+"POT-Creation-Date: 2025-04-02 23:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -232,7 +232,7 @@ msgstr ""
 msgid "Credit"
 msgstr ""
 
-#: accountdialog.cpp:263 mmcheckingpanel.cpp:385
+#: accountdialog.cpp:263 mmcheckingpanel.cpp:377
 msgid "Credit Limit:"
 msgstr ""
 
@@ -395,15 +395,15 @@ msgstr ""
 msgid "Language change"
 msgstr ""
 
-#: assetdialog.cpp:51 assetdialog.cpp:457 assetdialog.h:83 assetspanel.cpp:461
+#: assetdialog.cpp:51 assetdialog.cpp:457 assetdialog.h:83 assetspanel.cpp:462
 msgid "New Asset"
 msgstr ""
 
-#: assetdialog.cpp:55 assetspanel.cpp:475
+#: assetdialog.cpp:55 assetspanel.cpp:476
 msgid "Edit Asset"
 msgstr ""
 
-#: assetdialog.cpp:59 assetdialog.cpp:71 assetspanel.cpp:465
+#: assetdialog.cpp:59 assetdialog.cpp:71 assetspanel.cpp:466
 msgid "Add Asset Transaction"
 msgstr ""
 
@@ -427,13 +427,13 @@ msgstr ""
 msgid "Enter the name of the asset"
 msgstr ""
 
-#: assetdialog.cpp:197 assetspanel.cpp:53 assetspanel.cpp:848
+#: assetdialog.cpp:197 assetspanel.cpp:53 assetspanel.cpp:833
 #: filtertrans.cpp:199 filtertransdialog.cpp:970 filtertransdialog.cpp:977
 #: import_export/qif_export.cpp:626 import_export/qif_import_gui.cpp:88
 #: import_export/univcsvdialog.cpp:103 maincurrencydialog.cpp:253
 #: maincurrencydialog.cpp:270 mmchecking_list.cpp:98
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:275
-#: reports/cashflow.cpp:404 reports/incexpenses.cpp:244 reports/summary.cpp:295
+#: reports/cashflow.cpp:404 reports/incexpenses.cpp:244 reports/summary.cpp:300
 #: reports/transactions.cpp:209 stockdialog.cpp:280 stockdialog.cpp:607
 #: stockspanel.cpp:246 transactionsupdatedialog.cpp:132 transdialog.cpp:433
 #: usertransactionpanel.cpp:105 webapp.cpp:565 webappdialog.cpp:138
@@ -590,18 +590,18 @@ msgstr ""
 msgid "Confirm Asset Deletion"
 msgstr ""
 
-#: assetspanel.cpp:379
+#: assetspanel.cpp:380
 msgid "MMEX allows fixed assets like cars, houses, land, and others to be tracked. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr ""
 
-#: assetspanel.cpp:409 assetspanel.h:124 general_report_manager.cpp:1100
+#: assetspanel.cpp:410 assetspanel.h:124 general_report_manager.cpp:1100
 #: mmframe.cpp:218 mmframe.cpp:1989 mmframe.cpp:3634 mmhomepage.cpp:529
-#: mmhomepage.cpp:576 mmhomepagepanel.cpp:257 reports/summary.cpp:266
-#: reports/summary.cpp:304
+#: mmhomepage.cpp:576 mmhomepagepanel.cpp:257 reports/summary.cpp:271
+#: reports/summary.cpp:309
 msgid "Assets"
 msgstr ""
 
-#: assetspanel.cpp:418 assetspanel.cpp:697 assetspanel.cpp:714
+#: assetspanel.cpp:419 assetspanel.cpp:698 assetspanel.cpp:715
 #: filtertransdialog.cpp:221 filtertransdialog.cpp:582
 #: filtertransdialog.cpp:898 filtertransdialog.cpp:2278
 #: import_export/qif_export.cpp:75 import_export/qif_export.cpp:76
@@ -609,102 +609,102 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:266
+#: assetspanel.cpp:461 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:266
 #: stockspanel.cpp:132
 msgid "&New "
 msgstr ""
 
-#: assetspanel.cpp:464
+#: assetspanel.cpp:465
 msgid "&Add Trans "
 msgstr ""
 
-#: assetspanel.cpp:469 stockspanel.cpp:141
+#: assetspanel.cpp:470 stockspanel.cpp:141
 msgid "&View Trans "
 msgstr ""
 
-#: assetspanel.cpp:470 assetspanel.cpp:811
+#: assetspanel.cpp:471 assetspanel.cpp:796
 msgid "View Asset Transactions"
 msgstr ""
 
-#: assetspanel.cpp:474 attachmentdialog.cpp:354 billsdepositspanel.cpp:293
+#: assetspanel.cpp:475 attachmentdialog.cpp:354 billsdepositspanel.cpp:293
 #: categdialog.cpp:318 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
 #: mmcheckingpanel.cpp:270 payeedialog.cpp:882 stockspanel.cpp:146
 #: tagdialog.cpp:133
 msgid "&Edit "
 msgstr ""
 
-#: assetspanel.cpp:479 billsdepositspanel.cpp:303 budgetyeardialog.cpp:103
+#: assetspanel.cpp:480 billsdepositspanel.cpp:303 budgetyeardialog.cpp:103
 #: categdialog.cpp:322 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:262
 #: stockdialog.cpp:321 stockspanel.cpp:151 tagdialog.cpp:138
 msgid "&Delete "
 msgstr ""
 
-#: assetspanel.cpp:480
+#: assetspanel.cpp:481
 msgid "Delete Asset"
 msgstr ""
 
-#: assetspanel.cpp:487 billsdepositspanel.cpp:321 mmcheckingpanel.cpp:298
+#: assetspanel.cpp:488 billsdepositspanel.cpp:321 mmcheckingpanel.cpp:298
 #: stockspanel.cpp:164
 msgid "Open attachments"
 msgstr ""
 
-#: assetspanel.cpp:494 assetspanel.cpp:495 categdialog.cpp:303
+#: assetspanel.cpp:495 assetspanel.cpp:496 categdialog.cpp:303
 #: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:329 payeedialog.cpp:588
 #: tagdialog.cpp:118
 msgid "Search"
 msgstr ""
 
-#: assetspanel.cpp:498
+#: assetspanel.cpp:499
 msgid "Enter any string to find related assets"
 msgstr ""
 
-#: assetspanel.cpp:499 filtertransdialog.cpp:702 mmcheckingpanel.cpp:333
+#: assetspanel.cpp:500 filtertransdialog.cpp:702 mmcheckingpanel.cpp:333
 #: payeedialog.cpp:137
 msgid "Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria."
 msgstr ""
 
-#: assetspanel.cpp:500 filtertransdialog.cpp:703 mmcheckingpanel.cpp:334
+#: assetspanel.cpp:501 filtertransdialog.cpp:703 mmcheckingpanel.cpp:334
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”."
 msgstr ""
 
-#: assetspanel.cpp:501 filtertransdialog.cpp:704 mmcheckingpanel.cpp:335
+#: assetspanel.cpp:502 filtertransdialog.cpp:704 mmcheckingpanel.cpp:335
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”."
 msgstr ""
 
-#: assetspanel.cpp:502 filtertransdialog.cpp:705 mmcheckingpanel.cpp:336
+#: assetspanel.cpp:503 filtertransdialog.cpp:705 mmcheckingpanel.cpp:336
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) at the beginning to find any string in the middle of the sentence."
 msgstr ""
 
-#: assetspanel.cpp:577
+#: assetspanel.cpp:578
 #, c-format
 msgid "Initial: %s"
 msgstr ""
 
-#: assetspanel.cpp:577 stockspanel.cpp:401 stockspanel.cpp:590
+#: assetspanel.cpp:578 stockspanel.cpp:401 stockspanel.cpp:590
 #, c-format
 msgid "Total: %s"
 msgstr ""
 
-#: assetspanel.cpp:658
+#: assetspanel.cpp:659
 #, c-format
 msgid "Change in Value: %1$s %2$s"
 msgstr ""
 
-#: assetspanel.cpp:791
+#: assetspanel.cpp:776
 msgid ""
 "This asset does not have its own account\n"
 "\n"
 "Multiple transactions for this asset are not recommended."
 msgstr ""
 
-#: assetspanel.cpp:793
+#: assetspanel.cpp:778
 msgid "Asset Management"
 msgstr ""
 
-#: assetspanel.cpp:847 billsdepositsdialog.cpp:549 billsdepositsdialog.cpp:836
+#: assetspanel.cpp:832 billsdepositsdialog.cpp:549 billsdepositsdialog.cpp:836
 #: billsdepositsdialog.cpp:849 billsdepositspanel.cpp:106 filtertrans.cpp:201
 #: filtertransdialog.cpp:57 filtertransdialog.cpp:579 filtertransdialog.cpp:960
 #: filtertransdialog.cpp:1779 import_export/qif_export.cpp:629
@@ -717,11 +717,11 @@ msgstr ""
 msgid "Account"
 msgstr ""
 
-#: assetspanel.cpp:849 stockspanel.cpp:249
+#: assetspanel.cpp:834 stockspanel.cpp:249
 msgid "Trade Type"
 msgstr ""
 
-#: assetspanel.cpp:850 import_export/qif_import_gui.cpp:94
+#: assetspanel.cpp:835 import_export/qif_import_gui.cpp:94
 #: maincurrencydialog.cpp:280
 msgid "Value"
 msgstr ""
@@ -1889,7 +1889,7 @@ msgstr ""
 msgid "Closed"
 msgstr ""
 
-#: constants.cpp:197 mmcheckingpanel.cpp:1245 mmframe.cpp:512
+#: constants.cpp:197 mmcheckingpanel.cpp:1205 mmframe.cpp:512
 msgid "Favorites"
 msgstr ""
 
@@ -2804,7 +2804,7 @@ msgstr ""
 msgid "Please confirm"
 msgstr ""
 
-#: filtertransdialog.cpp:2246 reports/reportbase.cpp:229
+#: filtertransdialog.cpp:2246 reports/reportbase.cpp:230
 msgid "Choose Accounts"
 msgstr ""
 
@@ -3293,7 +3293,7 @@ msgstr ""
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:358
+#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:357
 msgid "Accounts:"
 msgstr ""
 
@@ -3433,7 +3433,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:118 mmchecking_list.cpp:108
 #: mmhomepage.cpp:535 mmhomepage.cpp:699 reports/cashflow.cpp:409
-#: reports/summary.cpp:270 reports/summary.cpp:306
+#: reports/summary.cpp:275 reports/summary.cpp:311
 msgid "Balance"
 msgstr ""
 
@@ -4470,7 +4470,7 @@ msgstr ""
 msgid "Scheduled transaction saved."
 msgstr ""
 
-#: mmchecking_list.cpp:1430 mmcheckingpanel.cpp:1240
+#: mmchecking_list.cpp:1430 mmcheckingpanel.cpp:1200
 msgid "All Transactions"
 msgstr ""
 
@@ -4543,98 +4543,94 @@ msgstr ""
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr ""
 
-#: mmcheckingpanel.cpp:350
-msgid "Click to copy to clipboard"
-msgstr ""
-
-#: mmcheckingpanel.cpp:369
+#: mmcheckingpanel.cpp:361
 msgid "Account Bal: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:373
+#: mmcheckingpanel.cpp:365
 msgid "Reconciled Bal: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:375
+#: mmcheckingpanel.cpp:367
 msgid "Diff: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:379
+#: mmcheckingpanel.cpp:371
 msgid "Filtered Flow: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:395
+#: mmcheckingpanel.cpp:387
 msgid "Market Value: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:396
+#: mmcheckingpanel.cpp:388
 msgid "Invested: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:409
+#: mmcheckingpanel.cpp:401
 msgid "Advanced filter"
 msgstr ""
 
-#: mmcheckingpanel.cpp:511
+#: mmcheckingpanel.cpp:503
 msgid "(Date range)"
 msgstr ""
 
-#: mmcheckingpanel.cpp:888 mmcheckingpanel.cpp:906 webapp.cpp:621
+#: mmcheckingpanel.cpp:880 mmcheckingpanel.cpp:898 webapp.cpp:621
 msgid "Attachment"
 msgstr ""
 
-#: mmcheckingpanel.cpp:957
+#: mmcheckingpanel.cpp:946
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr ""
 
-#: mmcheckingpanel.cpp:961
+#: mmcheckingpanel.cpp:950
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:966
+#: mmcheckingpanel.cpp:956
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1032
+#: mmcheckingpanel.cpp:1019
 msgid "Unable to show scheduled transactions because the current filter choice extends into the future without limit."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1033
+#: mmcheckingpanel.cpp:1020
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1034
+#: mmcheckingpanel.cpp:1021
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1051
+#: mmcheckingpanel.cpp:1038
 msgid "More date ranges…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1058
+#: mmcheckingpanel.cpp:1045
 msgid "Advanced filter…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1198
+#: mmcheckingpanel.cpp:1185
 msgid "&New Withdrawal…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1199
+#: mmcheckingpanel.cpp:1186
 msgid "&New Deposit…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1200
+#: mmcheckingpanel.cpp:1187
 msgid "&New Transfer…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1242
+#: mmcheckingpanel.cpp:1202
 msgid "Deleted Transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1250
+#: mmcheckingpanel.cpp:1210
 #, c-format
 msgid "Account View: %s"
 msgstr ""
@@ -4659,14 +4655,14 @@ msgstr ""
 msgid "Please select"
 msgstr ""
 
-#: mmcustomdata.cpp:796
+#: mmcustomdata.cpp:797
 #, c-format
 msgid ""
 "Unable to save custom field \"%1$s\":\n"
 "value \"%2$s\" does not match RegEx validation \"%3$s\""
 msgstr ""
 
-#: mmcustomdata.cpp:799
+#: mmcustomdata.cpp:800
 msgid "CustomField validation error"
 msgstr ""
 
@@ -4680,23 +4676,23 @@ msgstr ""
 msgid "Cash Accounts"
 msgstr ""
 
-#: mmframe.cpp:213 mmhomepage.cpp:683 reports/summary.cpp:254
-#: reports/summary.cpp:297
+#: mmframe.cpp:213 mmhomepage.cpp:683 reports/summary.cpp:259
+#: reports/summary.cpp:302
 msgid "Bank Accounts"
 msgstr ""
 
-#: mmframe.cpp:214 mmhomepage.cpp:684 reports/summary.cpp:256
-#: reports/summary.cpp:298
+#: mmframe.cpp:214 mmhomepage.cpp:684 reports/summary.cpp:261
+#: reports/summary.cpp:303
 msgid "Credit Card Accounts"
 msgstr ""
 
-#: mmframe.cpp:215 mmhomepage.cpp:685 reports/summary.cpp:258
-#: reports/summary.cpp:299
+#: mmframe.cpp:215 mmhomepage.cpp:685 reports/summary.cpp:263
+#: reports/summary.cpp:304
 msgid "Loan Accounts"
 msgstr ""
 
-#: mmframe.cpp:216 mmhomepage.cpp:686 reports/summary.cpp:260
-#: reports/summary.cpp:300
+#: mmframe.cpp:216 mmhomepage.cpp:686 reports/summary.cpp:265
+#: reports/summary.cpp:305
 msgid "Term Accounts"
 msgstr ""
 
@@ -4704,7 +4700,8 @@ msgstr ""
 msgid "Stock Portfolios"
 msgstr ""
 
-#: mmframe.cpp:219 mmhomepage.cpp:689
+#: mmframe.cpp:219 mmhomepage.cpp:689 reports/summary.cpp:269
+#: reports/summary.cpp:307
 msgid "Share Accounts"
 msgstr ""
 
@@ -5748,7 +5745,7 @@ msgstr ""
 msgid "Forecast Report"
 msgstr ""
 
-#: mmframereport.cpp:169 optionsettingshome.cpp:79
+#: mmframereport.cpp:169 optionsettingshome.cpp:78
 msgid "Income vs. Expenses"
 msgstr ""
 
@@ -5780,7 +5777,7 @@ msgstr ""
 msgid "Stocks Report"
 msgstr ""
 
-#: mmframereport.cpp:317 mmreportspanel.cpp:399
+#: mmframereport.cpp:317 mmreportspanel.cpp:400
 msgid "Hide"
 msgstr ""
 
@@ -5792,29 +5789,21 @@ msgstr ""
 msgid "&Forward"
 msgstr ""
 
-#: mmhomepage.cpp:63 mmhomepage.cpp:85 reports/summary.cpp:268
-#: reports/summary.cpp:305
+#: mmhomepage.cpp:63 mmhomepage.cpp:82 reports/summary.cpp:273
+#: reports/summary.cpp:310
 msgid "Stocks"
 msgstr ""
 
-#: mmhomepage.cpp:85
+#: mmhomepage.cpp:82
 msgid "Gain/Loss"
 msgstr ""
 
-#: mmhomepage.cpp:86
-msgid "Market Value"
-msgstr ""
-
-#: mmhomepage.cpp:87
-msgid "Cash Balance"
-msgstr ""
-
-#: mmhomepage.cpp:88 reports/budgetingperf.cpp:142 reports/cashflow.cpp:276
-#: reports/categexp.cpp:219 reports/categexp.cpp:497 reports/summary.cpp:303
+#: mmhomepage.cpp:83 reports/budgetingperf.cpp:142 reports/cashflow.cpp:276
+#: reports/categexp.cpp:219 reports/categexp.cpp:497 reports/summary.cpp:308
 msgid "Total"
 msgstr ""
 
-#: mmhomepage.cpp:128 mmhomepage.cpp:622 mmhomepage.cpp:738
+#: mmhomepage.cpp:109 mmhomepage.cpp:622 mmhomepage.cpp:738
 #: reports/incexpenses.cpp:280 reports/payee.cpp:167
 #: reports/summarystocks.cpp:163 splittransactionsdialog.cpp:260
 msgid "Total:"
@@ -5873,11 +5862,11 @@ msgstr ""
 msgid "Other Assets"
 msgstr ""
 
-#: mmhomepage.cpp:687 reports/summary.cpp:264 reports/summary.cpp:302
+#: mmhomepage.cpp:687
 msgid "Investment Accounts"
 msgstr ""
 
-#: mmhomepage.cpp:688 reports/summary.cpp:262 reports/summary.cpp:301
+#: mmhomepage.cpp:688 reports/summary.cpp:267 reports/summary.cpp:306
 msgid "Asset Accounts"
 msgstr ""
 
@@ -5925,45 +5914,45 @@ msgstr ""
 msgid "Period:"
 msgstr ""
 
-#: mmreportspanel.cpp:256 mmreportspanel.cpp:272 model/Model_Report.cpp:87
+#: mmreportspanel.cpp:255 mmreportspanel.cpp:271 model/Model_Report.cpp:87
 msgid "Date:"
 msgstr ""
 
-#: mmreportspanel.cpp:288 model/Model_Report.cpp:89
+#: mmreportspanel.cpp:287 model/Model_Report.cpp:89
 msgid "Time:"
 msgstr ""
 
-#: mmreportspanel.cpp:303 model/Model_Report.cpp:90
+#: mmreportspanel.cpp:302 model/Model_Report.cpp:90
 msgid "Year:"
 msgstr ""
 
-#: mmreportspanel.cpp:326
+#: mmreportspanel.cpp:325
 msgid "Budget:"
 msgstr ""
 
-#: mmreportspanel.cpp:363 reports/reportbase.cpp:196
+#: mmreportspanel.cpp:362 reports/reportbase.cpp:196
 #: reports/transactions.cpp:87
 msgid "All Accounts"
 msgstr ""
 
-#: mmreportspanel.cpp:364
+#: mmreportspanel.cpp:363
 msgid "Specific Accounts…"
 msgstr ""
 
-#: mmreportspanel.cpp:378
+#: mmreportspanel.cpp:379
 msgid "Future Months:"
 msgstr ""
 
-#: mmreportspanel.cpp:393
+#: mmreportspanel.cpp:394
 msgid "Chart:"
 msgstr ""
 
-#: mmreportspanel.cpp:398
+#: mmreportspanel.cpp:399
 msgid "Show"
 msgstr ""
 
-#: model/Model_Account.cpp:28 model/Model_Asset.cpp:30 reports/summary.cpp:252
-#: reports/summary.cpp:296
+#: model/Model_Account.cpp:28 model/Model_Asset.cpp:30 reports/summary.cpp:257
+#: reports/summary.cpp:301
 msgid "Cash"
 msgstr ""
 
@@ -6258,10 +6247,6 @@ msgstr ""
 msgid "From 1 week ago"
 msgstr ""
 
-#: option.cpp:79
-msgid "Year before last"
-msgstr ""
-
 #: optiondialog.cpp:37 optionsettingsattachment.cpp:65 webappdialog.cpp:146
 msgid "Attachments"
 msgstr ""
@@ -6514,7 +6499,7 @@ msgstr ""
 msgid "Bad locale name"
 msgstr ""
 
-#: optionsettingshome.cpp:92
+#: optionsettingshome.cpp:91
 msgid "Last N Days"
 msgstr ""
 
@@ -7449,7 +7434,7 @@ msgstr ""
 msgid "Future"
 msgstr ""
 
-#: reports/htmlbuilder.cpp:220 reports/mmDateRange.cpp:260
+#: reports/htmlbuilder.cpp:220 reports/mmDateRange.cpp:248
 msgid "Over Time"
 msgstr ""
 
@@ -7521,52 +7506,48 @@ msgstr ""
 msgid "Previous Year"
 msgstr ""
 
-#: reports/mmDateRange.cpp:196
-msgid "Year Before Last"
-msgstr ""
-
-#: reports/mmDateRange.cpp:227
+#: reports/mmDateRange.cpp:215
 msgid "Current Financial Year"
 msgstr ""
 
-#: reports/mmDateRange.cpp:237
+#: reports/mmDateRange.cpp:225
 msgid "Current Financial Year to Date"
 msgstr ""
 
-#: reports/mmDateRange.cpp:247
+#: reports/mmDateRange.cpp:235
 msgid "Previous Financial Year"
 msgstr ""
 
-#: reports/mmDateRange.cpp:271
+#: reports/mmDateRange.cpp:259
 msgid "Custom"
 msgstr ""
 
-#: reports/mmDateRange.cpp:285
+#: reports/mmDateRange.cpp:273
 msgid "1 Year Ago to Date"
 msgstr ""
 
-#: reports/mmDateRange.cpp:295 reports/mmDateRange.cpp:307
+#: reports/mmDateRange.cpp:283 reports/mmDateRange.cpp:295
 #, c-format
 msgid "Last %i Days"
 msgstr ""
 
-#: reports/mmDateRange.cpp:313
+#: reports/mmDateRange.cpp:301
 msgid "Since Today"
 msgstr ""
 
-#: reports/mmDateRange.cpp:322
+#: reports/mmDateRange.cpp:310
 msgid "Since 1 Month Ago"
 msgstr ""
 
-#: reports/mmDateRange.cpp:331
+#: reports/mmDateRange.cpp:319
 msgid "Since 3 Months Ago"
 msgstr ""
 
-#: reports/mmDateRange.cpp:339
+#: reports/mmDateRange.cpp:327
 msgid "Since Start of This Year"
 msgstr ""
 
-#: reports/mmDateRange.cpp:346
+#: reports/mmDateRange.cpp:334
 msgid "Since Start of Financial Year"
 msgstr ""
 
@@ -7582,16 +7563,16 @@ msgstr ""
 msgid "Accounts: "
 msgstr ""
 
-#: reports/summary.cpp:132
+#: reports/summary.cpp:133
 #, c-format
 msgid "Accounts Balance - %s"
 msgstr ""
 
-#: reports/summary.cpp:132
+#: reports/summary.cpp:133
 msgid "Monthly Report"
 msgstr ""
 
-#: reports/summary.cpp:132
+#: reports/summary.cpp:133
 msgid "Yearly Report"
 msgstr ""
 
