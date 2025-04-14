@@ -352,7 +352,6 @@ BEGIN_EVENT_TABLE(mmAssetsPanel, wxPanel)
     EVT_BUTTON(wxID_FILE2, mmAssetsPanel::OnMouseLeftDown)
     EVT_MENU(wxID_ANY, mmAssetsPanel::OnViewPopupSelected)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmAssetsPanel::OnSearchTxtEntered)
-    EVT_TEXT_ENTER(wxID_FIND, mmAssetsPanel::OnSearchTxtEntered)
 END_EVENT_TABLE()
 
 mmAssetsPanel::mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid, const wxString& name)
@@ -734,15 +733,20 @@ void mmAssetsPanel::OnSearchTxtEntered(wxCommandEvent& event)
     if (search_string.IsEmpty()) return;
 
     long last = m_lc->GetItemCount();
+    if (last == 0) return;  // No items to search
+
     long selectedItem = m_lc->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-    if (selectedItem < 0) //nothing selected
+    if (selectedItem == wxNOT_FOUND)
         selectedItem = m_lc->getSortAsc() ? last - 1 : 0;
 
-    while (selectedItem > 0 && selectedItem <= last)
-    {
-        m_lc->getSortAsc() ? selectedItem-- : selectedItem++;
+    // Disable event handling to prevent interference during state changes
+    SetEvtHandlerEnabled(false);
+
+    long startItem = selectedItem;  // To track the start of the loop and avoid infinite loop
+
+    do {
         const wxString t = getItem(selectedItem, mmAssetsListCtrl::LIST_ID_NOTES).Lower();
-        if (t.Matches(search_string + "*"))
+        if (t.Contains(search_string))
         {
             //First of all any items should be unselected
             long cursel = m_lc->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
@@ -754,7 +758,18 @@ void mmAssetsPanel::OnSearchTxtEntered(wxCommandEvent& event)
             m_lc->EnsureVisible(selectedItem);
             break;
         }
-    }
+
+        m_lc->getSortAsc() ? selectedItem-- : selectedItem++;
+        // Ensure the index wraps around (looping)
+        if (selectedItem < 0)
+            selectedItem = last - 1; // Wrap to the last item
+        else if (selectedItem >= last)
+            selectedItem = 0; // Wrap to the first item
+
+    } while (selectedItem != startItem); // Loop until we come back to the starting point
+
+    // Re-enable event handling after the operation
+    SetEvtHandlerEnabled(true);
 }
 
 void mmAssetsPanel::AddAssetTrans(const int selected_index)
