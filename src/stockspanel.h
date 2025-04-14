@@ -81,8 +81,12 @@ public:
     wxString BuildPage() const;
     mmGUIFrame* m_frame;
 
+public:
+    int getFilter();
+
 private:
     StocksListCtrl* m_lc = nullptr;
+    wxChoice* m_choiceFilter = nullptr;
     wxStaticText* stock_details_ = nullptr;
     void call_dialog(int selectedIndex);
     void sortList() {}
@@ -99,7 +103,6 @@ private:
     wxString strLastUpdate_;
     bool StocksRefreshStatus_;
     wxDateTime LastRefreshDT_;
-
 };
 
 #endif
