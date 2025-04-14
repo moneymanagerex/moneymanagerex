@@ -184,6 +184,18 @@ mmLastYear::mmLastYear()
     this->title_ = _n("Previous Year");
 }
 
+mmLastYearBefore::mmLastYearBefore()
+: mmDateRange()
+{
+    this->findBeginOfMonth();
+    this->start_date_.SetMonth(wxDateTime::Jan);
+    this->start_date_.Subtract(wxDateSpan::Years(2));
+    this->end_date_ = this->start_date_;
+    this->end_date_.Add(wxDateSpan::Months(11));
+    this->findEndOfMonth();
+    this->title_ = _n("Year Before Last");
+}
+
 mmCurrentFinancialYear::mmCurrentFinancialYear()
 : mmDateRange()
 {

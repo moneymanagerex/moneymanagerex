@@ -76,6 +76,7 @@ const std::vector<std::pair<wxString, wxString> > Option::CHECKING_RANGE_DEFAULT
     { "T .. A, -1 Q", _n("From 1 quarter ago") },
     { "T .. A, -1 M", _n("From 1 month ago") },
     { "T .. A, -1 W", _n("From 1 week ago") },
+    { "-2 Y",         _n("Year before last") },
 };
 
 //----------------------------------------------------------------------------

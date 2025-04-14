@@ -131,6 +131,12 @@ public:
     mmLastYear();
 };
 
+class mmLastYearBefore: public mmDateRange
+{
+public:
+    mmLastYearBefore();
+};
+
 class mmCurrentFinancialYear: public mmDateRange
 {
 public:
