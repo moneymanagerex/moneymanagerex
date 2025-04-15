@@ -733,42 +733,36 @@ void mmAssetsPanel::OnSearchTxtEntered(wxCommandEvent& event)
     if (search_string.IsEmpty()) return;
 
     long last = m_lc->GetItemCount();
-    if (last == 0) return;  // No items to search
+    if (last == 0) return;
 
     long selectedItem = m_lc->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
     if (selectedItem == wxNOT_FOUND)
-        selectedItem = m_lc->getSortAsc() ? last - 1 : 0;
+        selectedItem = 0;
+    else
+        selectedItem = (selectedItem + 1) % last;
 
-    // Disable event handling to prevent interference during state changes
+    long startItem = selectedItem;
+
     SetEvtHandlerEnabled(false);
-
-    long startItem = selectedItem;  // To track the start of the loop and avoid infinite loop
 
     do {
         const wxString t = getItem(selectedItem, mmAssetsListCtrl::LIST_ID_NOTES).Lower();
         if (t.Contains(search_string))
         {
-            //First of all any items should be unselected
             long cursel = m_lc->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
             if (cursel != wxNOT_FOUND)
                 m_lc->SetItemState(cursel, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
 
-            //Then finded item will be selected
-            m_lc->SetItemState(selectedItem, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+            m_lc->SetItemState(selectedItem, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED,
+                                              wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
             m_lc->EnsureVisible(selectedItem);
             break;
         }
 
-        m_lc->getSortAsc() ? selectedItem-- : selectedItem++;
-        // Ensure the index wraps around (looping)
-        if (selectedItem < 0)
-            selectedItem = last - 1; // Wrap to the last item
-        else if (selectedItem >= last)
-            selectedItem = 0; // Wrap to the first item
+        selectedItem = (selectedItem + 1) % last;
 
-    } while (selectedItem != startItem); // Loop until we come back to the starting point
+    } while (selectedItem != startItem);
 
-    // Re-enable event handling after the operation
     SetEvtHandlerEnabled(true);
 }
 
