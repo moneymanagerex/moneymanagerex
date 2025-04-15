@@ -567,65 +567,76 @@ const wxString htmlWidgetAssets::getHTMLText()
     Model_Account::Data_Set asset_accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_ASSET));
     if (asset_accounts.empty())
         return wxEmptyString;
+
     std::stable_sort(asset_accounts.begin(), asset_accounts.end(), SorterByACCOUNTNAME());
 
     static const int MAX_ASSETS = 10;
-    wxString output = "";
-    output = R"(<div class="shadow">)";
-    output += "<table class ='sortable table'><col style='width: 50%'><col style='width: 25%'><col style='width: 25%'><thead><tr class='active'>\n";
-    output += "<th>" + _t("Assets") + "</th>";
-    output += "<th class='text-right'>" + _t("Initial Value") + "</th>\n";
-    output += "<th class='text-right'>" + _t("Current Value") + "</th>\n";
-    output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#%s' oncontextmenu='return false;'>[-]</a></th>\n"
-        , "ASSETS", "ASSETS", "ASSETS");
-    output += "</tr></thead><tbody id='ASSETS'>\n";
+    wxString output;
+    output << R"(<div class="shadow">)"
+           << R"(<table class='sortable table'><col style='width: 50%'><col style='width: 12.5%'><col style='width: 12.5%'><col style='width: 12.5%'><col style='width: 12.5%'>)"
+           << "<thead><tr class='active'>\n"
+           << "<th>" << _t("Assets") << "</th>"
+           << "<th class='text-right'>" << _t("Initial Value") << "</th>\n"
+           << "<th class='text-right'>" << _t("Current Value") << "</th>\n"
+           << "<th class='text-right'>" << _t("Cash Balance") << "</th>\n"
+           << "<th class='text-right'>" << _t("Total") << "</th>\n"
+           << wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#%s' oncontextmenu='return false;'>[-]</a></th>\n",
+                               "ASSETS", "ASSETS", "ASSETS")
+           << "</tr></thead><tbody id='ASSETS'>\n";
 
     int rows = 0;
-    double initialDisplayed = 0.0;
-    double initialTotal = 0.0;
-    double currentDisplayed = 0.0;
-    double currentTotal = 0.0;
-    for (const auto& asset_account : asset_accounts)
+    double initialDisplayed = 0.0, initialTotal = 0.0;
+    double currentDisplayed = 0.0, currentTotal = 0.0;
+    double cashDisplayed = 0.0, cashTotal = 0.0;
+
+    auto renderRow = [](const wxString& name, double initial, double current, double cash, bool isTotalRow = false) -> wxString {
+        wxString row;
+        row << "<tr>";
+        row << wxString::Format("<td sorttable_customkey='*%s*'>%s</td>\n", name, name);
+        row << wxString::Format("<td class='money' sorttable_customkey='%.2f'>%s</td>\n", initial, Model_Currency::toCurrency(initial));
+        row << wxString::Format("<td class='money' sorttable_customkey='%.2f'>%s</td>\n", current, Model_Currency::toCurrency(current));
+        row << wxString::Format("<td class='money' sorttable_customkey='%.2f'>%s</td>\n", cash, Model_Currency::toCurrency(cash));
+        row << wxString::Format("<td colspan='2' class='money' sorttable_customkey='%.2f'>%s</td>\n", current + cash, Model_Currency::toCurrency(current + cash));
+        row << "</tr>\n";
+        return row;
+    };
+
+    for (const auto& asset : asset_accounts)
     {
-        auto cash_bal = Model_Account::balance(asset_account);
-        auto inv_bal = Model_Account::investment_balance(asset_account);
-        double initial = inv_bal.second;
-        double current = inv_bal.first + cash_bal;
+        double cash = Model_Account::balance(asset);
+        auto inv = Model_Account::investment_balance(asset);
+        double current = inv.first;
+        double initial = inv.second;
+
         initialTotal += initial;
         currentTotal += current;
+        cashTotal += cash;
+
         if (rows++ < MAX_ASSETS)
         {
             initialDisplayed += initial;
             currentDisplayed += current;
-            output += "<tr>";
-            output += wxString::Format("<td sorttable_customkey='*%s*'>%s</td>\n"
-                , asset_account.ACCOUNTNAME, asset_account.ACCOUNTNAME);
-            output += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
-                , initial, Model_Currency::toCurrency(initial));
-            output += wxString::Format("<td colspan='2' class='money' sorttable_customkey='%f'>%s</td>\n"
-                , current, Model_Currency::toCurrency(current));
-            output += "</tr>";
+            cashDisplayed += cash;
+            output << renderRow(asset.ACCOUNTNAME, initial, current, cash);
         }
     }
+
     if (rows > MAX_ASSETS)
-    {       
-            output += "<tr>";
-            output += wxString::Format("<td sorttable_customkey='*%s*'>%s (%i)</td>\n"
-                , _t("Other Assets"), _t("Other Assets"), rows - MAX_ASSETS);
-            output += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
-                , initialTotal - initialDisplayed, Model_Currency::toCurrency(initialTotal - initialDisplayed));
-            output += wxString::Format("<td colspan='2' class='money' sorttable_customkey='%f'>%s</td>\n"
-                , currentTotal - currentDisplayed, Model_Currency::toCurrency(currentTotal - currentDisplayed));
-            output += "</tr>";
+    {
+        wxString otherAssets = _t("Other Assets");
+        output << renderRow(wxString::Format("%s (%d)", otherAssets, rows - MAX_ASSETS),
+                            initialTotal - initialDisplayed,
+                            currentTotal - currentDisplayed,
+                            cashTotal - cashDisplayed);
     }
 
-    output += "</tbody><tfoot><tr class = 'total'><td>" + _t("Total:") + "</td>";
-    output += wxString::Format("<td class='money'>%s</td>\n"
-        , Model_Currency::toCurrency(initialTotal));
-    output += wxString::Format("<td colspan='2' class='money'>%s</td></tr></tfoot></table>\n"
-        , Model_Currency::toCurrency(currentTotal));
-
-    output += "</div>";
+    output << "<tfoot><tr class='total'><td>" << _t("Total:") << "</td>\n"
+           << wxString::Format("<td class='money'>%s</td>\n", Model_Currency::toCurrency(initialTotal))
+           << wxString::Format("<td class='money'>%s</td>\n", Model_Currency::toCurrency(currentTotal))
+           << wxString::Format("<td class='money'>%s</td>\n", Model_Currency::toCurrency(cashTotal))
+           << wxString::Format("<td colspan='2' class='money'>%s</td></tr></tfoot></table>\n",
+                               Model_Currency::toCurrency(currentTotal + cashTotal))
+           << "</div>";
 
     return output;
 }
