@@ -400,7 +400,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     wxConvAuto conv = g_encoding.at(m_choiceEncoding->GetSelection()).first;
     wxTextInputStream text(input, "\x09", conv);
 
-    wxProgressDialog progressDlg(_t("Please wait…"), _t("Scanning")
+    wxProgressDialog progressDlg(_tu("Please wait…"), _t("Scanning")
         , 0, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
 
     wxLongLong start = wxGetUTCTimeMillis();
@@ -1052,7 +1052,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     {
         getOrCreateAccounts();
         int nTransactions = vQIF_trxs_.size();
-        wxProgressDialog progressDlg(_t("Please wait…"), _t("Importing")
+        wxProgressDialog progressDlg(_tu("Please wait…"), _t("Importing")
             , nTransactions + 1, this, wxPD_APP_MODAL | wxPD_CAN_ABORT | wxPD_AUTO_HIDE);
         progressDlg.Update(1, _t("Importing Accounts"));
         bool is_webbapp_enabled = mmWebApp::MMEX_WebApp_UpdateAccount();
