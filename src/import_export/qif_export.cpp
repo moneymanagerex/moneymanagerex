@@ -482,7 +482,7 @@ void mmQIFExportDialog::mmExportQIF()
         /* Array to store QIF tarts for selected accounts */
         std::map<int64 /*account ID*/, wxString> extraTransfers;
 
-        wxProgressDialog progressDlg(_t("Please wait…"), _t("Exporting")
+        wxProgressDialog progressDlg(_tu("Please wait…"), _t("Exporting")
             , 100, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
 
         const auto splits = Model_Splittransaction::instance().get_all();
