@@ -42,7 +42,7 @@ jobs:
           tar -xjf wxWidgets-${{steps.init.outputs.wxVer}}.tar.bz2
           mv wxWidgets-${{steps.init.outputs.wxVer}} wxWidgets
           cd wxWidgets
-          mkdir build-linux && cd build-linux
+          mkdir -p build-linux && cd build-linux
           ../configure --disable-shared --enable-cxx11 --with-cxx=11 --enable-webview --with-gtk=3 --enable-unicode --enable-intl
           make -j$(nproc)
 
@@ -69,12 +69,12 @@ jobs:
         id: mmex-build
         run: |
           cd $GITHUB_WORKSPACE
-          mkdir build
+          mkdir -p build
           cd build
           cmake ..
           export MAKEFLAGS=-j$(nproc)
           cmake --build . --target package
-          mkdir /home/runner/work/moneymanagerex/moneymanagerex/build/AppDir
+          mkdir -p /home/runner/work/moneymanagerex/moneymanagerex/build/AppDir
           make install DESTDIR=/home/runner/work/moneymanagerex/moneymanagerex/build/AppDir
           echo "artifact_name=$(ls mmex*.deb)" >> $GITHUB_OUTPUT
           
