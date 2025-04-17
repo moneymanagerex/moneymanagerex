@@ -28,6 +28,7 @@ jobs:
           libgtk-3-dev liblua5.3-dev libcurl4-openssl-dev libwebkit2gtk-4.1-dev wget appstream fuse
           
       - name: Restore wxWidgets Cache
+        if: false
         id: restore-cache-wxWidgets
         uses: actions/cache/restore@v4
         with:
@@ -35,7 +36,7 @@ jobs:
           key: wxWidgets-${{steps.init.outputs.wxVer}}-${{ matrix.os }}
             
       - name: Build wxWidgets
-        # if: steps.restore-cache-wxWidgets.outputs.cache-hit != 'true'
+        if: steps.restore-cache-wxWidgets.outputs.cache-hit != 'true'
         run: |
           cd /home/runner/work
           wget https://github.com/wxWidgets/wxWidgets/releases/download/v${{steps.init.outputs.wxVer}}/wxWidgets-${{steps.init.outputs.wxVer}}.tar.bz2
@@ -47,7 +48,7 @@ jobs:
           make -j$(nproc)
 
       - name: Save wxWidgets Cache
-        # if: steps.restore-cache-wxWidgets.outputs.cache-hit != 'true'
+        if: steps.restore-cache-wxWidgets.outputs.cache-hit != 'true'
         id: save-cache-wxWidgets
         uses: actions/cache/save@v4
         with:
