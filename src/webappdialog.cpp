@@ -419,7 +419,8 @@ void mmWebAppDialog::ImportAllWebTr(const bool open)
 {
     for (int i = 0; i < webtranListBox_->GetItemCount(); i++)
     {
-        int64 WebTrID = wxAtoi(webtranListBox_->GetTextValue(i, WEBTRAN_ID));
+        long long WebTrID;
+        webtranListBox_->GetTextValue(i, WEBTRAN_ID).ToLongLong(&WebTrID);
         mmWebAppDialog::ImportWebTr(WebTrID, open);
     }
 }

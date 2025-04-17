@@ -378,7 +378,7 @@ bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_,
             Value trx = m.value.GetObject();
 
             if (trx.HasMember("ID") && trx["ID"].IsString()) {
-                WebTran.ID = wxAtoi(trx["ID"].GetString());
+                WebTran.ID = std::stoll(trx["ID"].GetString());
             }
 
             if (trx.HasMember("Date") && trx["Date"].IsString()) {
