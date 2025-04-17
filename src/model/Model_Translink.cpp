@@ -52,13 +52,13 @@ Model_Translink& Model_Translink::instance()
 
 Model_Translink::CHECKING_TYPE Model_Translink::type_checking(const int64 tt)
 {
-    if (tt == AS_TRANSFER)
+    if (tt == AS_INCOME_EXPENSE || tt == -1)
     {
-        return AS_TRANSFER;
+        return AS_INCOME_EXPENSE;
     }
     else
     {
-        return AS_INCOME_EXPENSE;
+        return AS_TRANSFER;
     }
 }
 

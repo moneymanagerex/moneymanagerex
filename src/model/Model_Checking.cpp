@@ -639,7 +639,7 @@ bool Model_Checking::foreignTransaction(const Data& data)
 
 bool Model_Checking::foreignTransactionAsTransfer(const Data& data)
 {
-    return foreignTransaction(data) && (data.TOACCOUNTID == Model_Translink::AS_TRANSFER);
+    return foreignTransaction(data) && (data.TOACCOUNTID == Model_Translink::AS_TRANSFER || data.TOACCOUNTID == data.ACCOUNTID);
 }
 
 void Model_Checking::updateTimestamp(int64 id)

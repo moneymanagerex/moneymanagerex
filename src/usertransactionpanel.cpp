@@ -126,10 +126,9 @@ bool UserTransactionPanel::Create(wxWindow* parent
     m_type_selector->SetSelection(Model_Checking::TYPE_ID_WITHDRAWAL);
     mmToolTip(m_type_selector, _t("Withdraw funds from or deposit funds to this Account."));
 
-    // transfer indicator (deprecated)
+    // transfer indicator (refined)
     m_transfer = new wxCheckBox(this, ID_TRANS_TRANSFER, _t("&Transfer")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_transfer->Hide();
     CheckingType(Model_Translink::AS_INCOME_EXPENSE);
     mmToolTip(m_transfer, _t("Funds transfer from/to this account. Uncheck to set as Expense/Income."));
 
@@ -519,7 +518,7 @@ int64 UserTransactionPanel::SaveChecking()
     }
 
     m_checking_entry->ACCOUNTID = m_account_id;
-    m_checking_entry->TOACCOUNTID = TransactionType() == Model_Checking::TYPE_ID_TRANSFER ? m_account_id : -1; // Self Transfer as Revaluation
+    m_checking_entry->TOACCOUNTID = (TransactionType() == Model_Checking::TYPE_ID_TRANSFER || CheckingType() == Model_Translink::AS_TRANSFER)? m_account_id : -1; // Self Transfer as Revaluation
 
     m_checking_entry->PAYEEID = m_payee_id;
     m_checking_entry->TRANSCODE = Model_Checking::type_name(TransactionType());
