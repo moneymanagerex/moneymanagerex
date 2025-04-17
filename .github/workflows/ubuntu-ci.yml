@@ -28,12 +28,11 @@ jobs:
           libgtk-3-dev liblua5.3-dev libcurl4-openssl-dev libwebkit2gtk-4.1-dev wget appstream fuse
           
       - name: Restore wxWidgets Cache
-       # if: false
         id: restore-cache-wxWidgets
         uses: actions/cache/restore@v4
         with:
           path: /home/runner/work/wxWidgets
-          key: wxWidgets-${{steps.init.outputs.wxVer}}-${{ matrix.os }}
+          key: wxWidgets-${{steps.init.outputs.wxVer}}-${{ matrix.os }}-v2
             
       - name: Build wxWidgets
         if: steps.restore-cache-wxWidgets.outputs.cache-hit != 'true'
@@ -53,7 +52,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: /home/runner/work/wxWidgets
-          key: wxWidgets-${{steps.init.outputs.wxVer}}-${{ matrix.os }}
+          key: wxWidgets-${{steps.init.outputs.wxVer}}-${{ matrix.os }}-v2
           
       - name: Install wxWidgets
         run: |
