@@ -671,7 +671,8 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
     else if (uri.StartsWith("attachment:", &sData))
     {
         const wxString RefType = sData.BeforeFirst('|');
-        int refId = wxAtoi(sData.AfterFirst('|'));
+        long long refId;
+        sData.AfterFirst('|').ToLongLong(&refId);
 
         if (Model_Attachment::reftype_id(RefType) != -1 && refId > 0)
         {
