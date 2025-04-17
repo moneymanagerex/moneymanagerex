@@ -97,7 +97,7 @@ jobs:
       #    upload-signing-artifacts: true
 
       - name: Generate AppImage
-        if: ${{ matrix.os == 'ubuntu-20.04' }}
+        if: ${{ matrix.os == 'ubuntu-22.04' }}
         id: appimage-build
         run: |
           cd /home/runner/work/moneymanagerex/moneymanagerex/build
@@ -109,14 +109,14 @@ jobs:
           echo "artifact_name=$(ls MMEX*.AppImage)" >> $GITHUB_OUTPUT
 
       - name: Upload AppImage
-        if: ${{ matrix.os == 'ubuntu-20.04' && github.event_name == 'pull_request'}}
+        if: ${{ matrix.os == 'ubuntu-22.04' && github.event_name == 'pull_request'}}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.appimage-build.outputs.artifact_name }}
           path: ${{ github.workspace }}/build/MMEX*.AppImage
       
       #- name: Sign and Upload AppImage
-      #  if: ${{ matrix.os == 'ubuntu-20.04' && github.event_name == 'push' && github.repository == 'moneymanagerex/moneymanagerex'}}
+      #  if: ${{ matrix.os == 'ubuntu-22.04' && github.event_name == 'push' && github.repository == 'moneymanagerex/moneymanagerex'}}
       #  uses: sigstore/gh-action-sigstore-python@v2.1.1
       #  with:
       #    inputs: ${{ github.workspace }}/build/MMEX*.AppImage
