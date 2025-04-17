@@ -402,8 +402,7 @@ void mmStocksPanel::updateHeader()
         investment_balance = Model_Account::investment_balance(account);
     }
 
-    double InvestedVal = investment_balance.second;
-    double marketValue = investment_balance.first;
+    auto [marketValue, InvestedVal] = investment_balance;
 
     const wxString& diffStr = Model_Currency::toCurrency(marketValue > InvestedVal ? marketValue - InvestedVal : InvestedVal - marketValue, m_currency);
     double diffPercents = InvestedVal != 0.0
