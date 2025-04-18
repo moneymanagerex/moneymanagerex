@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2025-03-19 09:54:52.159613.
+ *          AUTO GENERATED at 2025-04-18 09:44:08.259284.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -473,7 +473,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
         }
 
         /** Save the record instance in memory to the database. */
-        bool save(wxSQLite3Database* db)
+        bool save(wxSQLite3Database* db, bool force_insert = false)
         {
             if (db && db->IsReadOnly()) return false;
             if (!table_ || !db) 
@@ -540,10 +540,10 @@ struct DB_Table_STOCK_V1 : public DB_Table
     * Either create a new record or update the existing record.
     * Remove old record from the memory table (cache)
     */
-    bool save(Self::Data* entity, wxSQLite3Database* db)
+    bool save(Self::Data* entity, wxSQLite3Database* db, bool force_insert = false)
     {
         wxString sql = wxEmptyString;
-        if (entity->id() <= 0) //  new & insert
+        if (entity->id() <= 0 || force_insert) //  new & insert
         {
             sql = "INSERT INTO STOCK_V1(HELDAT, PURCHASEDATE, STOCKNAME, SYMBOL, NUMSHARES, PURCHASEPRICE, NOTES, CURRENTPRICE, VALUE, COMMISSION, STOCKID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         }
