@@ -147,6 +147,7 @@ build_script:
 - if %configuration%==Debug
     set "cmake_def=-DCMAKE_INSTALL_DEBUG_LIBRARIES=ON -DCMAKE_INSTALL_DEBUG_LIBRARIES_ONLY=ON"
 - set "cmake_def=%cmake_def% -DCMAKE_PREFIX_PATH=%curlLibFolder%"
+- set "cmake_def=%cmake_def% -DCMAKE_CXX_STANDARD=17 -DCMAKE_CXX_STANDARD_REQUIRED=ON"
 - if %platform:~-2%==64 (
     cmake --graphviz=mmex.dot -T %tool% -G "Visual Studio %gen%" -A %platform% %cmake_def% ..
   ) else (
