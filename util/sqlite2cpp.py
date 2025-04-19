@@ -753,8 +753,7 @@ struct DB_Table_%s : public DB_Table
             return nullptr;
         }
 
-        Index_By_Id::iterator it = index_by_id_.find(id);
-        if (it != index_by_id_.end())
+        if (auto it = index_by_id_.find(id); it != index_by_id_.end())
         {
             ++ hit_;
             return it->second;
@@ -1023,10 +1022,7 @@ bool match(const DATA* data, const Arg1& arg1)
 template<class DATA, typename Arg1, typename... Args>
 bool match(const DATA* data, const Arg1& arg1, const Args&... args)
 {
-    if (data->match(arg1)) 
-        return match(data, args...);
-    else
-        return false; // Short-circuit evaluation
+    return (data->match(args) && ...);
 }
 '''
     for field in sorted(fields):
