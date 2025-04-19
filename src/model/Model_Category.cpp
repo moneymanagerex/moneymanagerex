@@ -283,7 +283,7 @@ void Model_Category::getCategoryStats(
     for (int m = 0; m < columns; m++)
     {
         const wxDateTime d = start_date.Add(wxDateSpan::Months(m));
-        monthMap.push_back(std::make_pair(d,m));
+        monthMap.emplace_back(d, m);
     }
     std::reverse(monthMap.begin(), monthMap.end());
 

@@ -1117,7 +1117,7 @@ void TransactionListCtrl::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
                 Model_Checking::instance().save(trx);
                 Model_Translink::Data_Set translink = Model_Translink::instance().find(Model_Translink::CHECKINGACCOUNTID(trx->TRANSID));
                 if (!translink.empty()) {
-                    assetStockAccts.insert(std::make_pair(translink.at(0).LINKTYPE, translink.at(0).LINKRECORDID));
+                    assetStockAccts.emplace(translink.at(0).LINKTYPE, translink.at(0).LINKRECORDID);
                 }
             }
             m_selectedForCopy.erase(std::remove(m_selectedForCopy.begin(), m_selectedForCopy.end(), id)
@@ -1175,10 +1175,7 @@ void TransactionListCtrl::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
                     Model_Translink::CHECKINGACCOUNTID(trx->TRANSID)
                 );
                 if (!translink.empty()) {
-                    assetStockAccts.insert(std::make_pair(
-                        translink.at(0).LINKTYPE,
-                        translink.at(0).LINKRECORDID
-                    ));
+                    assetStockAccts.emplace(translink.at(0).LINKTYPE, translink.at(0).LINKRECORDID);
                 }
             }
         }
@@ -1216,7 +1213,7 @@ void TransactionListCtrl::onRestoreViewedTransaction(wxCommandEvent&)
                 Model_Translink::CHECKINGACCOUNTID(trx->TRANSID)
             );
             if (!translink.empty()) {
-                assetStockAccts.insert(std::make_pair(translink.at(0).LINKTYPE, translink.at(0).LINKRECORDID));
+                assetStockAccts.emplace(translink.at(0).LINKTYPE, translink.at(0).LINKRECORDID);
             }
         }
         if (!assetStockAccts.empty()) {
@@ -2107,7 +2104,7 @@ void TransactionListCtrl::deleteTransactionsByStatus(const wxString& status)
                 Model_Checking::instance().save(trx);
                 Model_Translink::Data_Set translink = Model_Translink::instance().find(Model_Translink::CHECKINGACCOUNTID(trx->TRANSID));
                 if (!translink.empty()) {
-                    assetStockAccts.insert(std::make_pair(translink.at(0).LINKTYPE, translink.at(0).LINKRECORDID));
+                    assetStockAccts.emplace(translink.at(0).LINKTYPE, translink.at(0).LINKRECORDID);
                 }
             }
         }

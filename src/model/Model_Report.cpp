@@ -97,7 +97,7 @@ const std::vector<std::pair<wxString, wxString>> Model_Report::getParamNames()
     std::vector<std::pair<wxString, wxString>> v;
     for (const auto& entry : SqlPlaceHolders())
     {
-        v.push_back(std::make_pair(entry.label, entry.name));
+        v.emplace_back(entry.label, entry.name);
     }
     return v;
 }
