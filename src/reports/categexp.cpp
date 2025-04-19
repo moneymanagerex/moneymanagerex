@@ -130,11 +130,11 @@ wxString mmReportCategoryExpenses::getHTMLText()
             {
                 if (entry.amount < 0)
                 {
-                    expense_vector.push_back(std::make_pair(Model_Category::full_name(entry.catID), entry.amount));
+                    expense_vector.emplace_back(Model_Category::full_name(entry.catID), entry.amount);
                 }
                 else if (entry.amount > 0)
                 {
-                    income_vector.push_back(std::make_pair(Model_Category::full_name(entry.catID), entry.amount));
+                    income_vector.emplace_back(Model_Category::full_name(entry.catID), entry.amount);
                 }
             }
         }

@@ -1190,11 +1190,7 @@ bool mmGeneralReportManager::getColumns(const wxString& sql, std::vector<std::pa
 
     for (int i = 0; i < columnCount; ++i)
     {
-        std::pair<wxString, int> col_and_type;
-        col_and_type.second = q.GetColumnType(i);
-        col_and_type.first = q.GetColumnName(i);
-
-        colHeaders.push_back(col_and_type);
+        colHeaders.emplace_back(q.GetColumnName(i), q.GetColumnType(i));
     }
     return true;
 }
@@ -1223,7 +1219,7 @@ void mmGeneralReportManager::getSqlTableInfo(std::vector<std::pair<wxString, wxA
                 while (qColumns.NextRow())
                     column_names.push_back(qColumns.GetAsString(1));
 
-                sqlTableInfo.push_back(std::make_pair(table_name, column_names));
+                sqlTableInfo.emplace_back(table_name, column_names);
             }
             catch (const wxSQLite3Exception &e)
             {
@@ -1265,8 +1261,8 @@ bool mmGeneralReportManager::getSqlQuery(/*in*/ wxString& sql
     {
         std::vector<wxString> row;
         for (int i = 0; i < columnCount; ++i)
-            row.push_back(q.GetAsString(i));
-        sqlQueryData.push_back(row);
+            row.emplace_back(q.GetAsString(i));
+        sqlQueryData.emplace_back(row);
     }
     return true;
 }
