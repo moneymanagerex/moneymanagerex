@@ -724,9 +724,8 @@ struct DB_Table_%s : public DB_Table
     template<typename... Args>
     Self::Data* get_one(const Args& ... args)
     {
-        for (Index_By_Id::iterator it = index_by_id_.begin(); it != index_by_id_.end(); ++ it)
+        for (auto& [_, item] : index_by_id_)
         {
-            Self::Data* item = it->second;
             if (item->id() > 0 && match(item, args...)) 
             {
                 ++ hit_;
