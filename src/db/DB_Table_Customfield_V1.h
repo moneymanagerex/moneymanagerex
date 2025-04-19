@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2025-04-18 09:44:08.259284.
+ *          AUTO GENERATED at 2025-04-19 13:00:37.989546.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -531,8 +531,7 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
             return nullptr;
         }
 
-        Index_By_Id::iterator it = index_by_id_.find(id);
-        if (it != index_by_id_.end())
+        if (auto it = index_by_id_.find(id); it != index_by_id_.end())
         {
             ++ hit_;
             return it->second;
