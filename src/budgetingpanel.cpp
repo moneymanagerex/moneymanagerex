@@ -413,7 +413,7 @@ void mmBudgetingPanel::initVirtualListControl()
         budgetTotals_[category.CATEGID].second = actual;
 
         if (DisplayEntryAllowed(category.CATEGID, -1))
-            budget_.push_back(std::make_pair(category.CATEGID, -1));
+            budget_.emplace_back(category.CATEGID, -1);
 
         std::vector<int> totals_queue;
         //now a depth-first walk of the subtree of this root category
@@ -459,16 +459,16 @@ void mmBudgetingPanel::initVirtualListControl()
 
             // add the subcategory row to the display list
             if (DisplayEntryAllowed(subcats[i].CATEGID, -1))
-                budget_.push_back(std::make_pair(subcats[i].CATEGID, -1));
+                budget_.emplace_back(subcats[i].CATEGID, -1);
 
             // check if we need to show any total rows before the next subcategory
             if (i < static_cast<int>(subcats.size()) - 1) { //not the last subcategory
-                if (subcats[i].CATEGID == subcats[i + 1].PARENTID) totals_queue.push_back(i); //if next subcategory is our child, queue the total for after the children
+                if (subcats[i].CATEGID == subcats[i + 1].PARENTID) totals_queue.emplace_back(i); //if next subcategory is our child, queue the total for after the children
                 else if (subcats[i].PARENTID != subcats[i + 1].PARENTID) { // last sibling -- we've exhausted this branch, so display all the totals we held on to
                     while (!totals_queue.empty() && subcats[totals_queue.back()].CATEGID != subcats[i + 1].PARENTID) {
                         if (DisplayEntryAllowed(-1, subcats[totals_queue.back()].CATEGID))
                         {
-                            budget_.push_back(std::make_pair(-1, subcats[totals_queue.back()].CATEGID));
+                            budget_.emplace_back(-1, subcats[totals_queue.back()].CATEGID);
                             size_t transCatTotalIndex = budget_.size() - 1;
                             m_lc->RefreshItem(transCatTotalIndex);
                         }
@@ -481,7 +481,7 @@ void mmBudgetingPanel::initVirtualListControl()
                 while (!totals_queue.empty()) {
                     if (DisplayEntryAllowed(-1, subcats[totals_queue.back()].CATEGID))
                     {
-                        budget_.push_back(std::make_pair(-1, subcats[totals_queue.back()].CATEGID));
+                        budget_.emplace_back(-1, subcats[totals_queue.back()].CATEGID);
                         size_t transCatTotalIndex = budget_.size() - 1;
                         m_lc->RefreshItem(transCatTotalIndex);
                     }
@@ -493,7 +493,7 @@ void mmBudgetingPanel::initVirtualListControl()
         // show the total of the category after all subcats have been shown
         if (DisplayEntryAllowed(-1, category.CATEGID))
         {
-            budget_.push_back(std::make_pair(-1, category.CATEGID));
+            budget_.emplace_back(-1, category.CATEGID);
             size_t transCatTotalIndex = budget_.size() - 1;
             m_lc->RefreshItem(transCatTotalIndex);
         }
