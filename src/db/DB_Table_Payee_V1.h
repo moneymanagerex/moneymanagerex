@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2025-04-18 09:44:08.259284.
+ *          AUTO GENERATED at 2025-04-19 13:44:07.860873.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -575,9 +575,8 @@ struct DB_Table_PAYEE_V1 : public DB_Table
     template<typename... Args>
     Self::Data* get_one(const Args& ... args)
     {
-        for (Index_By_Id::iterator it = index_by_id_.begin(); it != index_by_id_.end(); ++ it)
+        for (auto& [_, item] : index_by_id_)
         {
-            Self::Data* item = it->second;
             if (item->id() > 0 && match(item, args...)) 
             {
                 ++ hit_;
@@ -602,8 +601,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             return nullptr;
         }
 
-        Index_By_Id::iterator it = index_by_id_.find(id);
-        if (it != index_by_id_.end())
+        if (auto it = index_by_id_.find(id); it != index_by_id_.end())
         {
             ++ hit_;
             return it->second;
