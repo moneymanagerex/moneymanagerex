@@ -214,25 +214,25 @@ void mmWebAppDialog::fillControls()
     for (const auto& WebTran : WebAppTransactions_)
     {
         wxVector<wxVariant> data;
-        data.push_back(wxVariant(wxString::Format(wxT("%lld"), WebTran.ID))); //WEBTRAN_ID
-        data.push_back(wxVariant(mmGetDateTimeForDisplay(WebTran.Date.FormatISODate()))); //WEBTRAN_DATE
-        data.push_back(wxVariant(WebTran.Account)); //WEBTRAN_ACCOUNT
-        data.push_back(wxVariant(WebTran.Status)); //WEBTRAN_STATUS
-        data.push_back(wxVariant(wxGetTranslation(WebTran.Type))); //WEBTRAN_TYPE
+        data.emplace_back(wxString::Format(wxT("%lld"), WebTran.ID)); //WEBTRAN_ID
+        data.emplace_back(mmGetDateTimeForDisplay(WebTran.Date.FormatISODate())); //WEBTRAN_DATE
+        data.emplace_back(WebTran.Account); //WEBTRAN_ACCOUNT
+        data.emplace_back(WebTran.Status); //WEBTRAN_STATUS
+        data.emplace_back(wxGetTranslation(WebTran.Type)); //WEBTRAN_TYPE
 
         wxString Payee = WebTran.Type != "Transfer" ? WebTran.Payee : "> " + WebTran.ToAccount;
-        data.push_back(wxVariant(Payee)); //WEBTRAN_PAYEE
+        data.emplace_back(Payee); //WEBTRAN_PAYEE
 
         wxString Category = WebTran.Category;
         if (WebTran.SubCategory != wxEmptyString) Category += ":" + WebTran.SubCategory;
-        data.push_back(wxVariant(Category)); //WEBTRAN_CATEGORY
+        data.emplace_back(Category); //WEBTRAN_CATEGORY
 
         Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
         wxString Amount = Model_Currency::toStringNoFormatting(WebTran.Amount, currency, Model_Currency::precision(currency));
-        data.push_back(wxVariant(Amount)); //WEBTRAN_AMOUNT
+        data.emplace_back(Amount); //WEBTRAN_AMOUNT
 
-        data.push_back(wxVariant(WebTran.Notes)); //WEBTRAN_NOTES
-        data.push_back(wxVariant(WebTran.Attachments)); //WEBTRAN_ATTACHMENTS
+        data.emplace_back(WebTran.Notes); //WEBTRAN_NOTES
+        data.emplace_back(WebTran.Attachments); //WEBTRAN_ATTACHMENTS
         webtranListBox_->AppendItem(data, static_cast<wxUIntPtr>(WebTran.ID.GetValue()));
     }
 
