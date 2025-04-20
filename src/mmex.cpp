@@ -489,9 +489,9 @@ int mmGUIApp::OnExit()
 bool findModal(wxWindow* w)
 {
     wxWindowList& children = w->GetChildren();
-    for (wxWindowList::Node* node = children.GetFirst(); node; node = node->GetNext())
+    for ( wxWindowList::compatibility_iterator it = children.GetFirst(); it; it = it->GetNext() )
     {
-        wxWindow* current = static_cast<wxWindow*>(node->GetData());
+        wxWindow* current = static_cast<wxWindow*>(it->GetData());
         wxLogDebug("  Name [%s]", current->GetName());
         if (current->IsKindOf(CLASSINFO(wxDialog)))
             return true;
