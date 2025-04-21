@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2025-04-19 13:44:07.860873.
+ *          AUTO GENERATED at 2025-04-21 15:32:55.694774.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -347,7 +347,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS_V1 : public DB_Table
                 return false;
             }
 
-            return table_->save(this, db);
+            return table_->save(this, db, force_insert);
         }
 
         /** Remove the record instance from memory and the database. */
