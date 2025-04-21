@@ -227,7 +227,7 @@ Current stable version that has been tested with MMEX is v3.2.7
         mkdir build-cocoa
         cd build-cocoa
         export MAKEFLAGS=-j4
-        ../configure --disable-shared --with-cxx=17 \
+        ../configure --disable-shared --with-cxx=20 \
         --with-macosx-version-min=11.0 \
         --without-libtiff \
         --enable-universal-binary=arm64,x86_64
