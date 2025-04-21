@@ -476,15 +476,16 @@ void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, 
     std::map <wxString, std::pair<int, wxString> > counterMap;
     for (const auto& entry : notes)
     {
-        counterMap[entry.NOTES].first--;
-        if (entry.TRANSDATE > counterMap[entry.NOTES].second)
-            counterMap[entry.NOTES].second = entry.TRANSDATE;
+        auto& counter = counterMap[entry.NOTES];
+        counter.first--;
+        if (entry.TRANSDATE > counter.second)
+            counter.second = entry.TRANSDATE;
     }
 
     // Convert to vector
     std::vector<std::tuple<int, wxString, wxString> > vec;
-    for (const auto& entry : counterMap)
-        vec.push_back(std::make_tuple(entry.second.first, entry.second.second, entry.first));
+    for (const auto& [note, counter] : counterMap)
+        vec.emplace_back(counter.first, counter.second, note);
 
     // Sort by frequency then date
     std::sort(vec.begin(), vec.end(), CompareUsedNotes);
