@@ -85,7 +85,7 @@ modules:
   - name: wxWidgets
     config-opts:
       - --disable-shared
-      - --with-cxx=17
+      - --with-cxx=20
       - --enable-webview
       - --with-gtk=3
       - --enable-unicode
