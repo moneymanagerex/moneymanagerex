@@ -32,7 +32,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: /home/runner/work/wxWidgets
-          key: wxWidgets-${{steps.init.outputs.wxVer}}-${{ matrix.os }}-v2
+          key: wxWidgets-${{steps.init.outputs.wxVer}}-${{ matrix.os }}-v3
             
       - name: Build wxWidgets
         if: steps.restore-cache-wxWidgets.outputs.cache-hit != 'true'
@@ -43,7 +43,7 @@ jobs:
           mv wxWidgets-${{steps.init.outputs.wxVer}} wxWidgets
           cd wxWidgets
           mkdir -p build-linux && cd build-linux
-          ../configure --disable-shared --with-cxx=17 --enable-webview --with-gtk=3 --enable-unicode --enable-intl
+          ../configure --disable-shared --with-cxx=20 --enable-webview --with-gtk=3 --enable-unicode --enable-intl
           make -j$(nproc)
 
       - name: Save wxWidgets Cache
@@ -52,7 +52,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: /home/runner/work/wxWidgets
-          key: wxWidgets-${{steps.init.outputs.wxVer}}-${{ matrix.os }}-v2
+          key: wxWidgets-${{steps.init.outputs.wxVer}}-${{ matrix.os }}-v3
           
       - name: Install wxWidgets
         run: |

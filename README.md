@@ -146,7 +146,7 @@ simplicity and user-friendliness – an application that can be used everyday.
 
 ## Credits
 
-MMEX is mainly written in C++17 and uses the following open-source packages:
+MMEX is mainly written in C++20 and uses the following open-source packages:
 * [wxWidgets] 3.0+ 
 * [wxSqlite3] 
 * [SQLite3] 
