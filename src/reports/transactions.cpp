@@ -46,17 +46,16 @@ mmReportTransactions::~mmReportTransactions()
 void mmReportTransactions::displayTotals(const std::map<int64, double>& total, std::map<int64, double>& total_in_base_curr, int noOfCols)
 {
     double grand_total = 0;
-    for (const auto& curr_total : total)
+    for (const auto& [curr_id, curr_total]: total)
     {
-        const auto curr = Model_Currency::instance().get(curr_total.first);
+        const auto curr = Model_Currency::instance().get(curr_id);
         const bool isBaseCurr = (curr->CURRENCY_SYMBOL == Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL);
-        grand_total += total_in_base_curr[curr_total.first];
+        grand_total += total_in_base_curr[curr_id];
         if (total.size() > 1 || !isBaseCurr)
         {
-            const wxString totalStr_curr = isBaseCurr ? "" : Model_Currency::toCurrency(curr_total.second, curr);
-            const wxString totalStr = Model_Currency::toCurrency(total_in_base_curr[curr_total.first], Model_Currency::GetBaseCurrency());
-            const std::vector<wxString> v{ totalStr_curr,  totalStr };
-            hb.addTotalRow(curr->CURRENCY_SYMBOL, noOfCols, v);
+            const wxString totalStr_curr = isBaseCurr ? "" : Model_Currency::toCurrency(curr_total, curr);
+            const wxString totalStr = Model_Currency::toCurrency(total_in_base_curr[curr_id], Model_Currency::GetBaseCurrency());
+            hb.addTotalRow(curr->CURRENCY_SYMBOL, noOfCols, { totalStr_curr,  totalStr });
         }
     }
     const wxString totalStr = Model_Currency::toCurrency(grand_total, Model_Currency::GetBaseCurrency());
