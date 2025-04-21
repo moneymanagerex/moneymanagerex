@@ -43,7 +43,7 @@ mmReportTransactions::~mmReportTransactions()
         m_transDialog->Destroy();
 }
 
-void mmReportTransactions::displayTotals(std::map<int64, double> total, std::map<int64, double> total_in_base_curr, int noOfCols)
+void mmReportTransactions::displayTotals(const std::map<int64, double>& total, std::map<int64, double>& total_in_base_curr, int noOfCols)
 {
     double grand_total = 0;
     for (const auto& curr_total : total)
@@ -189,7 +189,7 @@ table {
                 if (chart > -1)
                 {
                     double value_chart = std::accumulate(total_in_base_curr.begin(), total_in_base_curr.end(), static_cast<double>(0),
-                                                         [](const double previous, decltype(*total_in_base_curr.begin()) p) { return previous + p.second; });
+                                                         [](double previous, const auto& p) { return previous + p.second; });
                     values_chart[lastSortLabel] += value_chart;
                 }
                 total.clear();
@@ -423,8 +423,8 @@ table {
         displayTotals(total, total_in_base_curr, m_noOfCols);
         if (chart > -1)
         {
-            double value_chart = std::accumulate(total_in_base_curr.begin(), total_in_base_curr.end(), 0,
-                                                 [](const double previous, decltype(*total_in_base_curr.begin()) p) { return previous + p.second; });
+            double value_chart = std::accumulate(total_in_base_curr.begin(), total_in_base_curr.end(), 0.0,
+                                                 [](double previous, const auto& p) { return previous + p.second; });
             values_chart[lastSortLabel] += value_chart;
         }
     }
@@ -482,10 +482,10 @@ table {
     {
         GraphData gd;
         GraphSeries gs;
-        for (const auto& kv : values_chart)
+        for (const auto& [k, v] : values_chart)
         {
-            gd.labels.push_back(kv.first);
-            gs.values.push_back(kv.second);
+            gd.labels.push_back(k);
+            gs.values.push_back(v);
         }
         gd.series.push_back(gs);
         //gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_DELTA) };
@@ -511,18 +511,16 @@ table {
                 {
                     auto statsMin = std::min_element
                     (values_chart.begin(), values_chart.end(),
-                    [](const std::pair<wxString, double>& p1, const std::pair<wxString, double>& p2) {
-                            return p1.second < p2.second;
-                        }
-                    );
+                    [](const auto& p1, const auto& p2) {
+                        return p1.second < p2.second;
+                    });
                     auto statsMax = std::max_element
                     (values_chart.begin(), values_chart.end(),
-                    [](const std::pair<wxString, double>& p1, const std::pair<wxString, double>& p2) {
-                            return p1.second < p2.second;
-                        }
-                    );
+                    [](const auto& p1, const auto& p2) {
+                        return p1.second < p2.second;
+                    });
                     double statsAvg = std::accumulate(values_chart.begin(), values_chart.end(), 0,
-                        [](const double previous, decltype(*values_chart.begin()) p) { return previous + p.second; });
+                        [](double previous, const auto & p) { return previous + p.second; });
                     statsAvg = values_chart.size() > 0 ? statsAvg / values_chart.size() : 0;
                     hb.addTotalRow(_t("Minimum") + " >> " + statsMin->first, 2,
                         std::vector<wxString>{ Model_Currency::toCurrency(statsMin->second, Model_Currency::GetBaseCurrency()) });
@@ -590,8 +588,8 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
                     full_tran.NOTES.Append((tran.NOTES.IsEmpty() ? "" : " ") + split.NOTES);
 
                     wxString tagnames;
-                    for (const auto& tag : Model_Taglink::instance().get(splitRefType, split.SPLITTRANSID))
-                        tagnames.Append(tag.first + " ");
+                    for (const auto& [tag_name, _] : Model_Taglink::instance().get(splitRefType, split.SPLITTRANSID))
+                        tagnames.Append(tag_name + " ");
                     if (!tagnames.IsEmpty())
                         full_tran.TAGNAMES.Append((full_tran.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
 
