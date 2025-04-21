@@ -1297,6 +1297,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
         wxSharedPtr<mmFilterTransactionsDialog> dlg(
             new mmFilterTransactionsDialog(this, iData->getString())
         );
+        /// FIXME memory leak
         mmReportTransactions* rs = new mmReportTransactions(dlg);
         return createReportsPage(rs, true);
     }
