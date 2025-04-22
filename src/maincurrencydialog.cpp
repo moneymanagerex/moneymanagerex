@@ -597,7 +597,7 @@ void mmMainCurrencyDialog::ShowCurrencyHistory()
         {
             wxListItem item;
             item.SetId(idx);
-            item.SetData((void*)d.CURRHISTID.GetValue());
+            item.SetData(reinterpret_cast<void*>(d.CURRHISTID.GetValue()));
             valueListBox_->InsertItem(item);
             const wxString dispAmount = Model_Currency::toString(d.CURRVALUE, currency, 6);
             valueListBox_->SetItem(idx, 0, mmGetDateTimeForDisplay(d.CURRDATE));
