@@ -1021,7 +1021,7 @@ bool match(const DATA* data, const Arg1& arg1)
 template<class DATA, typename Arg1, typename... Args>
 bool match(const DATA* data, const Arg1& arg1, const Args&... args)
 {
-    return (data->match(arg1) && (data->match(args) && ...));
+    return (data->match(arg1) && ... && data->match(args));
 }
 '''
     for field in sorted(fields):
