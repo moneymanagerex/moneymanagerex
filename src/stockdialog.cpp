@@ -498,7 +498,7 @@ void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account, const
 void mmStockDialog::OnListItemSelected(wxListEvent& event)
 {
     long selectedIndex = event.GetIndex();
-    long histId = m_price_listbox->GetItemData(selectedIndex);
+    int64 histId = m_price_listbox->GetItemData(selectedIndex);
     Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
     Model_StockHistory::Data *histData = Model_StockHistory::instance().get(histId);
 
@@ -909,7 +909,7 @@ void mmStockDialog::ShowStockHistory()
         {
             wxListItem item;
             item.SetId(static_cast<long>(idx));
-            item.SetData(histData.at(idx).HISTID.GetValue());
+            item.SetData((void*)histData.at(idx).HISTID.GetValue());
             m_price_listbox->InsertItem(item);
             const wxDate dtdt = Model_StockHistory::DATE(histData.at(idx));
             const wxString dispAmount = Model_Account::toString(histData.at(idx).VALUE, account, Option::instance().getSharePrecision());

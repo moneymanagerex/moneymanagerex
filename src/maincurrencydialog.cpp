@@ -597,7 +597,7 @@ void mmMainCurrencyDialog::ShowCurrencyHistory()
         {
             wxListItem item;
             item.SetId(idx);
-            item.SetData(d.CURRHISTID.GetValue());
+            item.SetData((void*)d.CURRHISTID.GetValue());
             valueListBox_->InsertItem(item);
             const wxString dispAmount = Model_Currency::toString(d.CURRVALUE, currency, 6);
             valueListBox_->SetItem(idx, 0, mmGetDateTimeForDisplay(d.CURRDATE));
@@ -761,7 +761,7 @@ void mmMainCurrencyDialog::OnHistoryDeleteUnused(wxCommandEvent& WXUNUSED(event)
 void mmMainCurrencyDialog::OnHistorySelected(wxListEvent& event)
 {
     long selectedIndex = event.GetIndex();
-    long histId = valueListBox_->GetItemData(selectedIndex);
+    int64 histId = valueListBox_->GetItemData(selectedIndex);
     Model_CurrencyHistory::Data *histData = Model_CurrencyHistory::instance().get(histId);
 
     if (histData->CURRHISTID > 0)
