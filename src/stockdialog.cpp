@@ -909,7 +909,7 @@ void mmStockDialog::ShowStockHistory()
         {
             wxListItem item;
             item.SetId(static_cast<long>(idx));
-            item.SetData((void*)histData.at(idx).HISTID.GetValue());
+            item.SetData(reinterpret_cast<void*>(histData.at(idx).HISTID.GetValue()));
             m_price_listbox->InsertItem(item);
             const wxDate dtdt = Model_StockHistory::DATE(histData.at(idx));
             const wxString dispAmount = Model_Account::toString(histData.at(idx).VALUE, account, Option::instance().getSharePrecision());
