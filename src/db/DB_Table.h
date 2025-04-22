@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2025-04-21 15:32:55.694774.
+ *          AUTO GENERATED at 2025-04-22 17:07:55.135258.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -166,14 +166,8 @@ const typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool
     return result;
 }
 
-template<class DATA, typename Arg1>
-bool match(const DATA* data, const Arg1& arg1)
-{
-    return data->match(arg1);
-}
-
-template<class DATA, typename Arg1, typename... Args>
-bool match(const DATA* data, const Arg1& arg1, const Args&... args)
+template<class DATA, typename... Args>
+bool match(const DATA* data, const Args&... args)
 {
     return (data->match(args) && ...);
 }
