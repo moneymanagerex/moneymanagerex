@@ -20,25 +20,6 @@
 #include "Model_Attachment.h"
 #include <wx/string.h>
 
-ChoicesName Model_Attachment::REFTYPE_CHOICES = ChoicesName({
-    { REFTYPE_ID_TRANSACTION,       _n("Transaction") },
-    { REFTYPE_ID_STOCK,             _n("Stock") },
-    { REFTYPE_ID_ASSET,             _n("Asset") },
-    { REFTYPE_ID_BANKACCOUNT,       _n("BankAccount") },
-    { REFTYPE_ID_BILLSDEPOSIT,      _n("RecurringTransaction") },
-    { REFTYPE_ID_PAYEE,             _n("Payee") },
-    { REFTYPE_ID_TRANSACTIONSPLIT,  _n("TransactionSplit") },
-    { REFTYPE_ID_BILLSDEPOSITSPLIT, _n("RecurringTransactionSplit") },
-});
-const wxString Model_Attachment::REFTYPE_NAME_TRANSACTION       = reftype_name(REFTYPE_ID_TRANSACTION);
-const wxString Model_Attachment::REFTYPE_NAME_STOCK             = reftype_name(REFTYPE_ID_STOCK);
-const wxString Model_Attachment::REFTYPE_NAME_ASSET             = reftype_name(REFTYPE_ID_ASSET);
-const wxString Model_Attachment::REFTYPE_NAME_BANKACCOUNT       = reftype_name(REFTYPE_ID_BANKACCOUNT);
-const wxString Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT      = reftype_name(REFTYPE_ID_BILLSDEPOSIT);
-const wxString Model_Attachment::REFTYPE_NAME_PAYEE             = reftype_name(REFTYPE_ID_PAYEE);
-const wxString Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT  = reftype_name(REFTYPE_ID_TRANSACTIONSPLIT);
-const wxString Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT = reftype_name(REFTYPE_ID_BILLSDEPOSITSPLIT);
-
 Model_Attachment::Model_Attachment()
 : Model<DB_Table_ATTACHMENT_V1>()
 {
