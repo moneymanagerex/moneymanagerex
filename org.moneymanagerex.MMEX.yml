@@ -26,9 +26,9 @@ finish-args:
 modules:
   - name: wxWidgets
     config-opts:
+      - --enable-std_containers
       - --disable-shared
-      - --enable-cxx11
-      - --with-cxx=11
+      - --with-cxx=20
       - --enable-webview
       - --with-gtk=3
       - --enable-unicode
