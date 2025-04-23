@@ -189,7 +189,7 @@ bool UserTransactionPanel::Create(wxWindow* parent
     wxStaticText* category_button_text = new wxStaticText(this, wxID_STATIC, _t("Category"));
     transPanelSizer->Add(category_button_text, g_flagsH);
 
-    m_category = new mmComboBoxCategory(this, ID_TRANS_CATEGORY_COMBOBOX, std_half_size, m_category_id, true);
+    m_category = new mmComboBoxCategory(this, ID_TRANS_CATEGORY_COMBOBOX, std_size, m_category_id, true);
     mmToolTip(m_category, _t("Specify the category for this transaction"));
 
     wxBitmapButton* bSplit_ = new wxBitmapButton(this, mmID_CATEGORY_SPLIT, mmBitmapBundle(png::NEW_TRX, mmBitmapButtonSize));
