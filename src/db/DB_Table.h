@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2025-04-19 13:44:07.860873.
+ *          AUTO GENERATED at 2025-04-22 20:00:47.834896.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -175,7 +175,7 @@ bool match(const DATA* data, const Arg1& arg1)
 template<class DATA, typename Arg1, typename... Args>
 bool match(const DATA* data, const Arg1& arg1, const Args&... args)
 {
-    return (data->match(args) && ...);
+    return (data->match(arg1) && ... && data->match(args));
 }
 
 struct SorterByACCESSINFO

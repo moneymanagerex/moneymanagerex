@@ -215,7 +215,7 @@ void mmCategDialog::fillControls()
                 m_treeCtrl->SetItemTextColour(maincat, wxColour("GREY"));
             if (m_categ_id == category.CATEGID)
                 m_selectedItemId = maincat;
-            if (m_maskStr.IsEmpty() && (m_categoryVisible.count(category.CATEGID) > 0) && !m_categoryVisible.at(category.CATEGID))
+            if (m_maskStr.IsEmpty() && (m_categoryVisible.contains(category.CATEGID)) && !m_categoryVisible.at(category.CATEGID))
                 m_treeCtrl->CollapseAllChildren(maincat);
             else m_treeCtrl->ExpandAllChildren(maincat);
         }

@@ -544,7 +544,7 @@ struct DB_Table_%s : public DB_Table
                 return false;
             }
 
-            return table_->save(this, db);
+            return table_->save(this, db, force_insert);
         }
 
         /** Remove the record instance from memory and the database. */
@@ -1021,7 +1021,7 @@ bool match(const DATA* data, const Arg1& arg1)
 template<class DATA, typename Arg1, typename... Args>
 bool match(const DATA* data, const Arg1& arg1, const Args&... args)
 {
-    return (data->match(args) && ...);
+    return (data->match(arg1) && ... && data->match(args));
 }
 '''
     for field in sorted(fields):
