@@ -265,6 +265,8 @@ public:
             this->hit_, this->miss_, this->skip_);
     }
 
+    static wxString refName() = delete;
+
 public:
     enum REFTYPE_ID {
         REFTYPE_ID_TRANSACTION = 0,

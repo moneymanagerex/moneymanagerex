@@ -148,6 +148,10 @@ public:
 
     const Data_Set FilterAccounts(const wxString& account_pattern, bool skip_closed = false);
 
+    static wxString refName()
+    {
+        return REFTYPE_NAME_BANKACCOUNT;
+    }
 };
 
 //----------------------------------------------------------------------------
