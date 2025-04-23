@@ -33,7 +33,6 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Stock.h"
-#include "model/Model_Attachment.h"
 
 #include <wx/valnum.h>
 
@@ -423,7 +422,7 @@ void mmNewAcctDialog::OnCurrency(wxCommandEvent& /*event*/)
 
 void mmNewAcctDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-    wxString RefType = Model_Attachment::REFTYPE_NAME_BANKACCOUNT;
+    wxString RefType = Model_Account::REFTYPE_NAME_BANKACCOUNT;
     mmAttachmentDialog dlg(this, RefType, m_account->ACCOUNTID);
     dlg.ShowModal();
 }
