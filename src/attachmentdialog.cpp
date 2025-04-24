@@ -82,7 +82,7 @@ void mmAttachmentDialog::Create(wxWindow* parent, const wxString& name)
     if (m_RefId > 0)
     {
         int refEnum = 0;
-        for (int i = 0; i < Model_Attachment::REFTYPE_ID_size; ++i) {
+        for (int i = 0; i < Model_Attachment::REFTYPE_ID_COUNT; ++i) {
             wxString reftype = Model_Attachment::reftype_name(i);
             if (reftype == m_RefType)
                 break;
