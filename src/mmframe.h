@@ -351,7 +351,7 @@ private:
         MENU_CURRENCY,
         MENU_RATES,
         MENU_LANG,
-        MENU_LANG_MAX = MENU_LANG + wxLANGUAGE_USER_DEFINED,
+        MENU_LANG_MAX = MENU_LANG + static_cast<int>(wxLANGUAGE_USER_DEFINED),
 
         MENU_IMPORT_MMNETCSV,
         MENU_IMPORT_QIF,

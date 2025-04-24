@@ -1006,7 +1006,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
                     Model_Account::Data* share_account = Model_Account::instance().get(stock.STOCKNAME);
                     if (!share_account)
                         continue;
-                    wxTreeItemId stockItem = m_nav_tree_ctrl->AppendItem(accountItem, stock.STOCKNAME, accountImg, accountImg);
+                    stockItem = m_nav_tree_ctrl->AppendItem(accountItem, stock.STOCKNAME, accountImg, accountImg);
                     m_nav_tree_ctrl->SetItemData(stockItem, new mmTreeItemData(mmTreeItemData::CHECKING, share_account->ACCOUNTID));
                 }
                 break;

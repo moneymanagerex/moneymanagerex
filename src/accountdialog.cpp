@@ -58,7 +58,7 @@ EVT_BUTTON(wxID_OK, mmNewAcctDialog::OnOk)
 EVT_BUTTON(wxID_CANCEL, mmNewAcctDialog::OnCancel)
 EVT_BUTTON(ID_DIALOG_NEWACCT_BUTTON_CURRENCY, mmNewAcctDialog::OnCurrency)
 EVT_BUTTON(wxID_FILE, mmNewAcctDialog::OnAttachments)
-EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + acc_img::MAX_ACC_ICON, mmNewAcctDialog::OnCustonImage)
+EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + static_cast<int>(acc_img::MAX_ACC_ICON), mmNewAcctDialog::OnCustonImage)
 EVT_CHOICE(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS, mmNewAcctDialog::OnAccountStatus)
 wxEND_EVENT_TABLE()
 
@@ -431,7 +431,7 @@ void mmNewAcctDialog::OnAttachments(wxCommandEvent& /*event*/)
 void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
 {
     wxMenu mainMenu;
-    wxMenuItem* menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST + acc_img::ACC_ICON_MONEY - 1, _t("Default Image"));
+    wxMenuItem* menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST + static_cast<int>(acc_img::ACC_ICON_MONEY) - 1, _t("Default Image"));
 
     menuItem->SetBitmap(m_images.at(Option::instance().AccountImageId(this->m_account->ACCOUNTID, true)));
     mainMenu.Append(menuItem);
