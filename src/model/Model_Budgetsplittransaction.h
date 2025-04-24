@@ -50,6 +50,9 @@ public:
     std::map<int64, Data_Set> get_all();
     int update(Data_Set& rows, int64 transactionID);
     bool remove(int64 id);
+
+public:
+    inline static wxString refTypeName = REFTYPE_NAME_BILLSDEPOSITSPLIT;
 };
 
 #endif // 

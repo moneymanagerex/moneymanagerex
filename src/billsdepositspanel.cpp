@@ -493,7 +493,7 @@ wxString mmBillsDepositsPanel::getItem(long item, int col_id)
     case billsDepositsListCtrl::LIST_ID_NOTES: {
         wxString value = bill.NOTES;
         value.Replace("\n", " ");
-        if (Model_Attachment::NrAttachments(Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT, bill.BDID))
+        if (Model_Attachment::NrAttachments(Model_Billsdeposits::refTypeName, bill.BDID))
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value;
     }
@@ -654,7 +654,7 @@ void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
     {
         int64 BdId = m_bdp->bills_[m_selected_row].BDID;
         Model_Billsdeposits::instance().remove(BdId);
-        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT, BdId);
+        mmAttachmentManage::DeleteAllAttachments(Model_Billsdeposits::refTypeName, BdId);
         m_bdp->do_delete_custom_values(-BdId);
         m_bdp->initVirtualListControl();
         refreshVisualList(m_selected_row);
@@ -691,7 +691,7 @@ void billsDepositsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     if (m_selected_row == -1) return;
 
     int64 RefId = m_bdp->bills_[m_selected_row].BDID;
-    const wxString& RefType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
+    const wxString& RefType = Model_Billsdeposits::refTypeName;
 
     mmAttachmentDialog dlg(this, RefType, RefId);
     dlg.ShowModal();
@@ -703,7 +703,7 @@ void billsDepositsListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
     int64 RefId = m_bdp->bills_[m_selected_row].BDID;
-    const wxString& RefType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
+    const wxString& RefType = Model_Billsdeposits::refTypeName;
 
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
     refreshVisualList(m_bdp->initVirtualListControl(RefId));
@@ -962,6 +962,6 @@ wxString  mmBillsDepositsPanel::BuildPage() const
 
 void mmBillsDepositsPanel::do_delete_custom_values(int64 id)
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+    const wxString& RefType = Model_Checking::refTypeName;
     Model_CustomFieldData::DeleteAllData(RefType, id);
 }

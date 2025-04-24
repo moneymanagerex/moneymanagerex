@@ -61,7 +61,7 @@ UserTransactionPanel::UserTransactionPanel(wxWindow *parent
         for (const auto& split: Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(m_checking_entry->TRANSID)))
         {
             wxArrayInt64 tags;
-            for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT), Model_Taglink::REFID(split.SPLITTRANSID)))
+            for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Splittransaction::refTypeName), Model_Taglink::REFID(split.SPLITTRANSID)))
                 tags.push_back(tag.TAGID);
             m_local_splits.push_back({split.CATEGID, split.SPLITTRANSAMOUNT, tags, split.NOTES});
         }
@@ -413,7 +413,7 @@ void UserTransactionPanel::OnFrequentNotes(wxCommandEvent& WXUNUSED(event))
 
 void UserTransactionPanel::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+    const wxString& RefType = Model_Checking::refTypeName;
     int64 RefId = m_transaction_id;
 
     if (RefId < 0)

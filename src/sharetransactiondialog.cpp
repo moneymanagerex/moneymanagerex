@@ -27,7 +27,6 @@
 #include "validators.h"
 
 #include "model/Model_Account.h"
-#include "model/Model_Attachment.h"
 #include "model/Model_Category.h"
 #include "model/Model_StockHistory.h"
 #include "usertransactionpanel.h"
@@ -75,7 +74,7 @@ ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Translink
     if (m_translink_entry)
     {
         m_stock = Model_Stock::instance().get(m_translink_entry->LINKRECORDID);
-        if (m_translink_entry->LINKTYPE == Model_Attachment::REFTYPE_NAME_STOCK)
+        if (m_translink_entry->LINKTYPE == Model_Stock::refTypeName)
         {
             m_share_entry = Model_Shareinfo::ShareEntry(m_translink_entry->CHECKINGACCOUNTID);
             if (m_share_entry->SHARELOT.IsEmpty()) m_share_entry->SHARELOT = m_stock->STOCKID.ToString();
@@ -83,7 +82,7 @@ ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Translink
             for (const auto& split: Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(m_share_entry->SHAREINFOID))) 
             {
                 wxArrayInt64 tags;
-                for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT), Model_Taglink::REFID(split.SPLITTRANSID)))
+                for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Splittransaction::refTypeName), Model_Taglink::REFID(split.SPLITTRANSID)))
                     tags.push_back(tag.TAGID);
                 m_local_deductible_splits.push_back({split.CATEGID, split.SPLITTRANSAMOUNT, tags, split.NOTES});
             }
@@ -95,7 +94,7 @@ ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Translink
         for (const auto& split: Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(m_checking_entry->TRANSID))) 
         {
             wxArrayInt64 tags;
-            for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT), Model_Taglink::REFID(split.SPLITTRANSID)))
+            for (const auto& tag : Model_Taglink::instance().find(Model_Taglink::REFTYPE(Model_Splittransaction::refTypeName), Model_Taglink::REFID(split.SPLITTRANSID)))
                 tags.push_back(tag.TAGID);
             m_local_non_deductible_splits.push_back({split.CATEGID, split.SPLITTRANSAMOUNT, tags, split.NOTES});
         }
@@ -139,7 +138,7 @@ void ShareTransactionDialog::DataToControls()
     m_share_lot_ctrl->Enable(false);
     m_notes_ctrl->Enable(false);
 
-    Model_Translink::Data_Set translink_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_STOCK, m_stock->STOCKID);
+    Model_Translink::Data_Set translink_list = Model_Translink::TranslinkList<Model_Stock>(m_stock->STOCKID);
 
     if (translink_list.empty())
     {   // Set up the transaction as the first entry.
@@ -368,7 +367,7 @@ void ShareTransactionDialog::CreateControls()
 
 void ShareTransactionDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_NAME_STOCK;
+    const wxString& RefType = Model_Stock::refTypeName;
     if (!this->m_stock)
         mmAttachmentManage::DeleteAllAttachments(RefType, 0);
     EndModal(wxID_CANCEL);
@@ -377,7 +376,7 @@ void ShareTransactionDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 
 void ShareTransactionDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_NAME_STOCK;
+    const wxString& RefType = Model_Stock::refTypeName;
     if (m_stock_id <= 0)
         mmAttachmentManage::DeleteAllAttachments(RefType, 0);
     EndModal(wxID_CANCEL);

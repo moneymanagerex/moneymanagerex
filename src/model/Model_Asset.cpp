@@ -137,7 +137,7 @@ std::pair<double, double> Model_Asset::valueAtDate(const Data* r, const wxDate& 
 
     Model_Translink::Data_Set translink_records = Model_Translink::instance().find(
         Model_Translink::LINKRECORDID(r->ASSETID),
-        Model_Translink::LINKTYPE(Model_Attachment::REFTYPE_NAME_ASSET)
+        Model_Translink::LINKTYPE(this->refTypeName)
     );
 
     double dailyRate = r->VALUECHANGERATE / 36500.0;

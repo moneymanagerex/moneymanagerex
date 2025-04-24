@@ -69,8 +69,8 @@ public:
     select * from TRANSLINK_V1 where LINKTYPE = "Asset" AND LINKRECORDID = link_id;
     select * from TRANSLINK_V1 where LINKTYPE = "Stock" AND LINKRECORDID = link_id;
     */
-    static Model_Translink::Data_Set TranslinkList(Model_Attachment::REFTYPE_ID link_table
-        , const int64 link_id);
+    template <typename T>
+    static Model_Translink::Data_Set TranslinkList(const int64 link_id);
 
     static bool HasShares(const int64 stock_id);
 
@@ -82,7 +82,8 @@ public:
     static Model_Translink::Data TranslinkRecord(const int64 checking_id);
 
     /* Remove all records associated with the Translink list */
-    static void RemoveTransLinkRecords(Model_Attachment::REFTYPE_ID table_type, const int64 entry_id);
+    template <typename T>
+    static void RemoveTransLinkRecords(const int64 entry_id);
  
     /* Remove the checking account entry and its associated transfer transaction. */
     static void RemoveTranslinkEntry(const int64 checking_account_id);

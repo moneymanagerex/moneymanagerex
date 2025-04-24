@@ -222,7 +222,7 @@ void mmAttachmentDialog::AddAttachment(wxString FilePath)
         m_attachment_id = Model_Attachment::instance().save(NewAttachment);
         m_attachment_id = NewAttachment->ATTACHMENTID;
 
-        if (m_RefType == Model_Attachment::REFTYPE_NAME_TRANSACTION)
+        if (m_RefType == Model_Checking::refTypeName)
             Model_Checking::instance().updateTimestamp(m_RefId);
     }
 
@@ -258,7 +258,7 @@ void mmAttachmentDialog::EditAttachment()
         m_attachment_id = Model_Attachment::instance().save(attachment);
         m_attachment_id = attachment->ATTACHMENTID;
 
-        if (attachment->REFTYPE == Model_Attachment::REFTYPE_NAME_TRANSACTION)
+        if (attachment->REFTYPE == Model_Checking::refTypeName)
             Model_Checking::instance().updateTimestamp(attachment->REFID);
 
         fillControls();
@@ -279,7 +279,7 @@ void mmAttachmentDialog::DeleteAttachment()
             const wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + attachment->REFTYPE;
             if (mmAttachmentManage::DeleteAttachment(AttachmentsFolder + m_PathSep + attachment->FILENAME))
             {
-                if (attachment->REFTYPE == Model_Attachment::REFTYPE_NAME_TRANSACTION)
+                if (attachment->REFTYPE == Model_Checking::refTypeName)
                     Model_Checking::instance().updateTimestamp(attachment->REFID);
                 Model_Attachment::instance().remove(m_attachment_id);
             }
@@ -542,7 +542,7 @@ bool mmAttachmentManage::DeleteAllAttachments(const wxString& RefType, int64 Ref
         Model_Attachment::instance().remove(entry.ATTACHMENTID);
     }
 
-    if (RefType == Model_Attachment::REFTYPE_NAME_TRANSACTION)
+    if (RefType == Model_Checking::refTypeName)
         Model_Checking::instance().updateTimestamp(RefId);
 
     return true;
@@ -569,9 +569,9 @@ bool mmAttachmentManage::RelocateAllAttachments(const wxString& OldRefType, int6
     }
     Model_Attachment::instance().save(attachments);
 
-    if (OldRefType == Model_Attachment::REFTYPE_NAME_TRANSACTION)
+    if (OldRefType == Model_Checking::refTypeName)
         Model_Checking::instance().updateTimestamp(OldRefId);
-    if (NewRefType == Model_Attachment::REFTYPE_NAME_TRANSACTION)
+    if (NewRefType == Model_Checking::refTypeName)
         Model_Checking::instance().updateTimestamp(NewRefId);
 
     return true;
@@ -595,7 +595,7 @@ bool mmAttachmentManage::CloneAllAttachments(const wxString& RefType, int64 OldR
         Model_Attachment::instance().save(NewAttachment);
     }
 
-    if (RefType == Model_Attachment::REFTYPE_NAME_TRANSACTION)
+    if (RefType == Model_Checking::refTypeName)
         Model_Checking::instance().updateTimestamp(NewRefId);
 
     return true;

@@ -460,7 +460,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         // Update tags
         if (tag_checkbox_->IsChecked()) {
             Model_Taglink::Data_Set taglinks;
-            const wxString& refType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+            const wxString& refType = Model_Checking::refTypeName;
             wxArrayInt64 tagIds = tagTextCtrl_->GetTagIDs();
 
             if (tag_append_checkbox_->IsChecked()) {

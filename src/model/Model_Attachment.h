@@ -58,7 +58,7 @@ public:
     static int LastAttachmentNumber(const wxString& RefType, const int64 RefId);
 
     /** Return a dataset with attachments linked to a specific type*/
-    std::map<int64, Data_Set> get_all(REFTYPE_ID reftype);
+    std::map<int64, Data_Set> get_all(const wxString& reftype);
 
     /** Return all attachments descriptions*/
     wxArrayString allDescriptions();

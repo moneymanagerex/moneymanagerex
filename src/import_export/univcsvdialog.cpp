@@ -286,7 +286,7 @@ void mmUnivCSVDialog::CreateControls()
         csvFieldCandicate_->Append(wxGetTranslation(it.second), new mmListBoxItem(it.first, it.second));
 
     //Custom Fields
-    Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::REFTYPE(Model_Attachment::REFTYPE_NAME_TRANSACTION));
+    Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::REFTYPE(Model_Checking::refTypeName));
     if (!fields.empty())
     {
         std::sort(fields.begin(), fields.end(), SorterByDESCRIPTION());
@@ -1365,7 +1365,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     m_reverce_sign = m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsWithdrawal;
     // A place to store all rejected rows to display after import
     wxString rejectedRows;
-    wxString reftype = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+    wxString reftype = Model_Checking::refTypeName;
     for (long nLines = firstRow; nLines < lastRow; nLines++)
     {
         const wxString& progressMsg = wxString::Format(_t("Transactions imported to account %s: %ld")
@@ -1587,7 +1587,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
         return mmErrorDialogs::ToolTip4Object(m_choice_account_, _t("Invalid Account"), _t("Error"));
 
     const auto split = Model_Splittransaction::instance().get_all();
-    const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_NAME_TRANSACTION);
+    const auto tags = Model_Taglink::instance().get_all(Model_Checking::refTypeName);
     int64 fromAccountID = from_account->ACCOUNTID;
 
     long numRecords = 0;
@@ -1683,7 +1683,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                 case UNIV_CSV_TAGS:
                 {
                     wxString splitTags;
-                    for (const auto& tag : Model_Taglink::instance().get(Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT, splt.SPLITTRANSID))
+                    for (const auto& tag : Model_Taglink::instance().get(Model_Splittransaction::refTypeName, splt.SPLITTRANSID))
                         splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
                     entry = tran.TAGNAMES;
                     if (!splitTags.IsEmpty())
@@ -1908,7 +1908,7 @@ void mmUnivCSVDialog::update_preview()
         if (from_account)
         {
             const auto split = Model_Splittransaction::instance().get_all();
-            const auto tags = Model_Taglink::instance().get_all(Model_Attachment::REFTYPE_NAME_TRANSACTION);
+            const auto tags = Model_Taglink::instance().get_all(Model_Checking::refTypeName);
             int64 fromAccountID = from_account->ACCOUNTID;
             size_t count = 0;
             int row = 0;
@@ -2003,7 +2003,7 @@ void mmUnivCSVDialog::update_preview()
                         {
                             wxString splitTags;
                             for (const auto& tag :
-                                 Model_Taglink::instance().get(Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT, splt.SPLITTRANSID))
+                                 Model_Taglink::instance().get(Model_Splittransaction::refTypeName, splt.SPLITTRANSID))
                                 splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
                             text << inQuotes(tran.TAGNAMES + (tran.TAGNAMES.IsEmpty() ? "" : " ") + splitTags, delimit);
                             break;

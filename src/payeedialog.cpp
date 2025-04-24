@@ -759,7 +759,7 @@ void mmPayeeDialog::DeletePayee()
                     Model_Splittransaction::instance().Savepoint();
                     Model_Attachment::instance().Savepoint();
                     Model_CustomFieldData::instance().Savepoint();
-                    const wxString& RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+                    const wxString& RefType = Model_Checking::refTypeName;
 
                     for (auto& tran : deletedTrans) {
                         Model_Checking::instance().remove(tran.TRANSID);
@@ -774,7 +774,7 @@ void mmPayeeDialog::DeletePayee()
                 }
 
                 Model_Payee::instance().remove(p);
-                mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_NAME_PAYEE, p);
+                mmAttachmentManage::DeleteAllAttachments(Model_Payee::refTypeName, p);
                 m_payee_id = -1;
                 refreshRequested_ = true;
                 fillControls();
@@ -815,7 +815,7 @@ void mmPayeeDialog::RemoveDefaultCategory()
 
 void mmPayeeDialog::OnOrganizeAttachments()
 {
-    wxString RefType = Model_Attachment::REFTYPE_NAME_PAYEE;
+    wxString RefType = Model_Payee::refTypeName;
 
     mmAttachmentDialog dlg(this, RefType, m_payee_id);
     dlg.ShowModal();
