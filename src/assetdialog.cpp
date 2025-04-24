@@ -27,7 +27,6 @@
 #include "util.h"
 #include "validators.h"
 
-#include "model/Model_Attachment.h"
 #include "usertransactionpanel.h"
 #include "accountdialog.h"
 #include "mmframe.h"
@@ -132,9 +131,7 @@ void mmAssetDialog::dataToControls()
 
     m_notes->SetValue(m_asset->NOTES);
 
-    Model_Translink::Data_Set translink = Model_Translink::TranslinkList(
-        Model_Attachment::REFTYPE_ID_ASSET, m_asset->ASSETID
-    );
+    Model_Translink::Data_Set translink = Model_Translink::TranslinkList<Model_Asset>(m_asset->ASSETID);
     if (!translink.empty())
         m_value->Enable(false);
 
@@ -430,7 +427,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     int64 new_asset_id = Model_Asset::instance().save(m_asset);
 
     if (old_asset_id < 0) {
-        const wxString& RefType = Model_Attachment::REFTYPE_NAME_ASSET;
+        const wxString& RefType = Model_Asset::refTypeName;
         mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, new_asset_id);
     }
     if (m_transaction_panel->ValidCheckingAccountEntry()) {
@@ -497,7 +494,7 @@ void mmAssetDialog::OnCancel(wxCommandEvent& /*event*/)
         return;
     else
     {
-        const wxString& RefType = Model_Attachment::REFTYPE_NAME_ASSET;
+        const wxString& RefType = Model_Asset::refTypeName;
         if (!this->m_asset)
             mmAttachmentManage::DeleteAllAttachments(RefType, 0);
         EndModal(wxID_CANCEL);
@@ -506,7 +503,7 @@ void mmAssetDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmAssetDialog::OnQuit(wxCloseEvent& /*event*/)
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_NAME_ASSET;
+    const wxString& RefType = Model_Asset::refTypeName;
     if (!this->m_asset)
         mmAttachmentManage::DeleteAllAttachments(RefType, 0);
     EndModal(wxID_CANCEL);
@@ -514,7 +511,7 @@ void mmAssetDialog::OnQuit(wxCloseEvent& /*event*/)
 
 void mmAssetDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_NAME_ASSET;
+    const wxString& RefType = Model_Asset::refTypeName;
     int64 RefId;
     
     if (!this->m_asset)

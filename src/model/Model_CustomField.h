@@ -20,7 +20,6 @@
 
 #include "choices.h"
 #include "Model.h"
-#include "Model_Attachment.h"
 #include "db/DB_Table_Customfield_V1.h"
 
 class Model_CustomField : public Model<DB_Table_CUSTOMFIELD_V1>
@@ -73,7 +72,6 @@ public:
     bool Delete(const int64& FieldID);
     static const wxString getRegEx(const wxString& properties);
     static const wxString getTooltip(const wxString& properties);
-    static int getReference(const wxString& properties);
     static bool getAutocomplete(const wxString& properties);
     static const wxString getDefault(const wxString& properties);
     static const wxArrayString getChoices(const wxString& properties);
@@ -83,7 +81,7 @@ public:
     static TYPE_ID getUDFCType(const wxString& ref_type, const wxString& name);
     static const wxString getUDFCProperties(const wxString& ref_type, const wxString& name);
     static int64 getUDFCID(const wxString& ref_type, const wxString& name);
-    static const std::map<wxString, int64> getMatrix(Model_Attachment::REFTYPE_ID reftype);
+    static const std::map<wxString, int64> getMatrix(const wxString& reftype);
     static int getDigitScale(const wxString& Properties);
     static const wxString formatProperties(const wxString& Tooltip, const wxString& RegEx
         , bool Autocomplete, const wxString& Default, const wxArrayString& Choices

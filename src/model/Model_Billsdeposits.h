@@ -174,6 +174,9 @@ public:
 
     void completeBDInSeries(int64 bdID);
     static const wxDateTime nextOccurDate(int type, int numRepeats, wxDateTime nextOccurDate, bool reverse = false);
+
+public:
+    inline static wxString refTypeName = REFTYPE_NAME_BILLSDEPOSIT;
 };
 
 #endif // 

@@ -635,7 +635,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
                 if (Model_Checking::foreignTransaction(*transaction))
                 {
                     Model_Translink::Data translink = Model_Translink::TranslinkRecord(transId);
-                    if (translink.LINKTYPE == Model_Attachment::REFTYPE_NAME_STOCK)
+                    if (translink.LINKTYPE == Model_Stock::refTypeName)
                     {
                         ShareTransactionDialog dlg(m_frame, &translink, transaction);
                         if (dlg.ShowModal() == wxID_OK)

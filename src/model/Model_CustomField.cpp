@@ -19,6 +19,7 @@
 #include "defs.h"
 #include "Model_CustomField.h"
 #include "Model_CustomFieldData.h"
+#include "Model_Checking.h"
 #include <wx/string.h>
 
 ChoicesName Model_CustomField::TYPE_CHOICES = ChoicesName({
@@ -96,11 +97,6 @@ const wxString Model_CustomField::getTooltip(const wxString& properties)
     return "";
 }
 
-int Model_CustomField::getReference(const wxString& properties)
-{
-    return Model_Attachment::reftype_id(properties);
-}
-
 const wxString Model_CustomField::getRegEx(const wxString& properties)
 {
     Document json_doc;
@@ -172,14 +168,13 @@ const wxString Model_CustomField::getUDFC(const wxString& properties)
     return "";
 }
 
-const std::map<wxString, int64> Model_CustomField::getMatrix(Model_Attachment::REFTYPE_ID reftype)
+const std::map<wxString, int64> Model_CustomField::getMatrix(const wxString& reftype)
 {
     std::map<wxString, int64> m;
-    const wxString& reftype_str = Model_Attachment::reftype_name(reftype);
     for (const auto& entry : UDFC_FIELDS())
     {
         if (entry.empty()) continue;
-        m[entry] = getUDFCID(reftype_str, entry);
+        m[entry] = getUDFCID(reftype, entry);
     }
     return m;
 }
@@ -282,7 +277,7 @@ const wxArrayString Model_CustomField::UDFC_FIELDS()
 
 const wxArrayString Model_CustomField::getUDFCList(DB_Table_CUSTOMFIELD_V1::Data* r)
 {
-    const wxString& ref_type = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+    const wxString& ref_type = Model_Checking::refTypeName;
     const auto& a = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(ref_type));
 
     wxArrayString choices = UDFC_FIELDS();

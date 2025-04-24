@@ -85,11 +85,10 @@ int Model_Attachment::LastAttachmentNumber(const wxString& RefType, const int64 
 }
 
 /** Return a dataset with attachments linked to a specific type*/
-std::map<int64, Model_Attachment::Data_Set> Model_Attachment::get_all(REFTYPE_ID reftype)
+std::map<int64, Model_Attachment::Data_Set> Model_Attachment::get_all(const wxString& reftype)
 {
     std::map<int64, Model_Attachment::Data_Set> data;
-    wxString reftype_str = Model_Attachment::reftype_name(reftype);
-    for (const auto & attachment : this->find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(reftype_str)))
+    for (const auto & attachment : this->find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(reftype)))
     {
         data[attachment.REFID].push_back(attachment);
     }

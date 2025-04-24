@@ -27,6 +27,7 @@
 #include "paths.h"
 #include "constants.h"
 #include "webapp.h"
+#include "model/Model_Attachment.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
@@ -509,7 +510,7 @@ void mmCategDialog::mmDoDeleteSelectedCategory()
             Model_Splittransaction::instance().Savepoint();
             Model_Attachment::instance().Savepoint();
             Model_CustomFieldData::instance().Savepoint();
-            const wxString& RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+            const wxString& RefType = Model_Checking::refTypeName;
             for (auto& split : splits) {
                 Model_Checking::instance().remove(split.TRANSID);
                 mmAttachmentManage::DeleteAllAttachments(RefType, split.TRANSID);

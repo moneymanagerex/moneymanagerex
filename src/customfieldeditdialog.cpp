@@ -26,7 +26,6 @@ Copyright (C) 2020 - 2022 Nikolay Akimov
 #include "paths.h"
 #include "util.h"
 
-#include "Model_Attachment.h"
 #include "Model_CustomField.h"
 #include "Model_CustomFieldData.h"
 
@@ -43,7 +42,7 @@ wxEND_EVENT_TABLE()
 
 mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomField::Data* field)
     : m_field(field)
-    , m_fieldRefType(Model_Attachment::REFTYPE_NAME_TRANSACTION)
+    , m_fieldRefType(Model_Checking::refTypeName)
 {
     this->SetFont(parent->GetFont());
     Create(parent);
@@ -76,7 +75,7 @@ void mmCustomFieldEditDialog::dataToControls()
     {
         m_itemDescription->SetValue(m_field->DESCRIPTION);
         m_itemType->SetSelection(Model_CustomField::type_id(m_field));
-        m_itemReference->SetSelection(Model_CustomField::getReference(m_field->REFTYPE));
+        m_itemReference->SetSelection(Model_CustomField::reftype_id(m_field->REFTYPE));
         m_itemTooltip->SetValue(Model_CustomField::getTooltip(m_field->PROPERTIES));
         m_itemRegEx->SetValue(Model_CustomField::getRegEx(m_field->PROPERTIES));
         m_itemAutocomplete->SetValue(Model_CustomField::getAutocomplete(m_field->PROPERTIES));
@@ -94,7 +93,7 @@ void mmCustomFieldEditDialog::dataToControls()
     }
     else
     {
-        m_itemReference->SetSelection(Model_CustomField::getReference(m_fieldRefType));
+        m_itemReference->SetSelection(Model_CustomField::reftype_id(m_fieldRefType));
         m_itemType->SetSelection(Model_CustomField::TYPE_ID_STRING);
         m_itemUDFC->SetSelection(0);
     }
@@ -123,9 +122,9 @@ void mmCustomFieldEditDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Attribute of")), g_flagsH);
     m_itemReference = new wxChoice(itemPanel5, wxID_HIGHEST);
-    for (int i = 0; i < Model_Attachment::REFTYPE_ID_size; ++i) {
-        if (i != Model_Attachment::REFTYPE_ID_BILLSDEPOSIT) {
-            wxString reftype = Model_Attachment::reftype_name(i);
+    for (int i = 0; i < Model_CustomField::REFTYPE_ID_size; ++i) {
+        if (i != Model_CustomField::REFTYPE_ID_BILLSDEPOSIT) {
+            wxString reftype = Model_CustomField::reftype_name(i);
             m_itemReference->Append(wxGetTranslation(reftype), new wxStringClientData(reftype));
         }
     }

@@ -193,7 +193,7 @@ wxString StocksListCtrl::OnGetItemText(long item, long col_nr) const
     case LIST_ID_NOTES: {
         wxString full_notes = m_stocks[item].NOTES;
         full_notes.Replace("\n", " ");
-        if (Model_Attachment::NrAttachments(Model_Attachment::REFTYPE_NAME_STOCK, m_stocks[item].STOCKID))
+        if (Model_Attachment::NrAttachments(Model_Stock::refTypeName, m_stocks[item].STOCKID))
             full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return full_notes;
     }
@@ -293,8 +293,8 @@ void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
     if (msgDlg.ShowModal() == wxID_YES)
     {
         Model_Stock::instance().remove(m_stocks[m_selected_row].STOCKID);
-        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_NAME_STOCK, m_stocks[m_selected_row].STOCKID);
-        Model_Translink::RemoveTransLinkRecords(Model_Attachment::REFTYPE_ID_STOCK, m_stocks[m_selected_row].STOCKID);
+        mmAttachmentManage::DeleteAllAttachments(Model_Stock::refTypeName, m_stocks[m_selected_row].STOCKID);
+        Model_Translink::RemoveTransLinkRecords<Model_Stock>(m_stocks[m_selected_row].STOCKID);
         DeleteItem(m_selected_row);
         doRefreshItems(-1);
         m_stock_panel->m_frame->RefreshNavigationTree();
@@ -348,7 +348,7 @@ void StocksListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0) return;
 
-    wxString RefType = Model_Attachment::REFTYPE_NAME_STOCK;
+    wxString RefType = Model_Stock::refTypeName;
     int64 RefId = m_stocks[m_selected_row].STOCKID;
 
     mmAttachmentDialog dlg(this, RefType, RefId);
@@ -374,7 +374,7 @@ void StocksListCtrl::OnOpenAttachment(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0) return;
 
-    wxString RefType = Model_Attachment::REFTYPE_NAME_STOCK;
+    wxString RefType = Model_Stock::refTypeName;
     int64 RefId = m_stocks[m_selected_row].STOCKID;
 
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);

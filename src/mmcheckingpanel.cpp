@@ -589,10 +589,10 @@ void mmCheckingPanel::filterList()
     m_reconciled_balance = m_balance;
     m_show_reconciled = false;
 
-    const wxString tranRefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
-    const wxString billRefType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
-    const wxString tranSplitRefType = Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT;
-    const wxString billSplitRefType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT;
+    const wxString tranRefType = Model_Checking::refTypeName;
+    const wxString billRefType = Model_Billsdeposits::refTypeName;
+    const wxString tranSplitRefType = Model_Splittransaction::refTypeName;
+    const wxString billSplitRefType = Model_Budgetsplittransaction::refTypeName;
 
     static wxArrayString udfc_fields = Model_CustomField::UDFC_FIELDS();
     int64 udfc_id[5];
@@ -608,7 +608,7 @@ void mmCheckingPanel::filterList()
         );
     }
 
-    auto tranFieldData = Model_CustomFieldData::instance().get_all(Model_Attachment::REFTYPE_ID_TRANSACTION);
+    auto tranFieldData = Model_CustomFieldData::instance().get_all(Model_Checking::refTypeName);
 
     bool ignore_future = Option::instance().getIgnoreFutureTransactions();
     const wxString today_date = Option::instance().UseTransDateTime() ?
@@ -620,9 +620,7 @@ void mmCheckingPanel::filterList()
         Model_Checking::instance().allByDateTimeId();
     const auto trans_splits = Model_Splittransaction::instance().get_all();
     const auto trans_tags = Model_Taglink::instance().get_all(tranRefType);
-    const auto trans_attachments = Model_Attachment::instance().get_all(
-        Model_Attachment::REFTYPE_ID_TRANSACTION
-    );
+    const auto trans_attachments = Model_Attachment::instance().get_all(Model_Checking::refTypeName);
 
     std::map<int64, Model_Budgetsplittransaction::Data_Set> bills_splits;
     std::map<int64, Model_Taglink::Data_Set> bills_tags;
@@ -637,9 +635,7 @@ void mmCheckingPanel::filterList()
     if (m_scheduled_enable && m_scheduled_selected) {
         bills_splits = Model_Budgetsplittransaction::instance().get_all();
         bills_tags = Model_Taglink::instance().get_all(billRefType);
-        bills_attachments = Model_Attachment::instance().get_all(
-            Model_Attachment::REFTYPE_ID_BILLSDEPOSIT
-        );
+        bills_attachments = Model_Attachment::instance().get_all(Model_Billsdeposits::refTypeName);
         bills = m_account ?
             Model_Account::billsdeposits(m_account) :
             Model_Billsdeposits::instance().all();
@@ -881,7 +877,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
                     notesStr += split.NOTES;
                 }
             if (full_tran.has_attachment()) {
-                const wxString& refType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+                const wxString& refType = Model_Checking::refTypeName;
                 Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(refType, full_tran.TRANSID);
                 for (const auto& i : attachments) {
                     notesStr += notesStr.empty() ? "" : "\n";
@@ -899,7 +895,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
                     notesStr += split.NOTES;
                 }
             if (full_tran.has_attachment()) {
-                const wxString& refType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
+                const wxString& refType = Model_Billsdeposits::refTypeName;
                 Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(refType, full_tran.m_bdid);
                 for (const auto& i : attachments) {
                     notesStr += notesStr.empty() ? "" : "\n";
@@ -1185,8 +1181,8 @@ void mmCheckingPanel::onButtonRightDown(wxMouseEvent& event)
         auto selected_id = m_lc->getSelectedId();
         if (selected_id.size() == 1) {
             const wxString refType = !selected_id[0].second ?
-                Model_Attachment::REFTYPE_NAME_TRANSACTION :
-                Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
+                Model_Checking::refTypeName :
+                Model_Billsdeposits::refTypeName;
             mmAttachmentDialog dlg(this, refType, selected_id[0].first);
             dlg.ShowModal();
             refreshList();

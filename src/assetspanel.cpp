@@ -212,8 +212,8 @@ void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
     {
         const Model_Asset::Data& asset = m_panel->m_assets[m_selected_row];
         Model_Asset::instance().remove(asset.ASSETID);
-        mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_NAME_ASSET, asset.ASSETID);
-        Model_Translink::RemoveTransLinkRecords(Model_Attachment::REFTYPE_ID_ASSET, asset.ASSETID);
+        mmAttachmentManage::DeleteAllAttachments(Model_Asset::refTypeName, asset.ASSETID);
+        Model_Translink::RemoveTransLinkRecords<Model_Asset>(asset.ASSETID);
 
         m_panel->initVirtualListControl();
         m_selected_row = -1;
@@ -268,7 +268,7 @@ void mmAssetsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0) return;
 
-    wxString RefType = Model_Attachment::REFTYPE_NAME_ASSET;
+    wxString RefType = Model_Asset::refTypeName;
     int64 RefId = m_panel->m_assets[m_selected_row].ASSETID;
 
     mmAttachmentDialog dlg(this, RefType, RefId);
@@ -281,7 +281,7 @@ void mmAssetsListCtrl::OnOpenAttachment(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0) return;
 
-    wxString RefType = Model_Attachment::REFTYPE_NAME_ASSET;
+    wxString RefType = Model_Asset::refTypeName;
     int64 RefId = m_panel->m_assets[m_selected_row].ASSETID;
 
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
@@ -636,7 +636,7 @@ wxString mmAssetsPanel::getItem(long item, int col_id)
     case mmAssetsListCtrl::LIST_ID_NOTES: {
         wxString full_notes = asset.NOTES;
         full_notes.Replace("\n", " ");
-        if (Model_Attachment::NrAttachments(Model_Attachment::REFTYPE_NAME_ASSET, asset.ASSETID))
+        if (Model_Attachment::NrAttachments(Model_Asset::refTypeName, asset.ASSETID))
             full_notes = full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return full_notes;
     }
@@ -778,7 +778,7 @@ void mmAssetsPanel::AddAssetTrans(const int selected_index)
     }
     else
     {
-        Model_Translink::Data_Set translist = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_ASSET, asset->ASSETID);
+        Model_Translink::Data_Set translist = Model_Translink::TranslinkList<Model_Asset>(asset->ASSETID);
         if (translist.empty())
         {
             wxMessageBox(_t(
@@ -849,7 +849,7 @@ wxListCtrl* mmAssetsPanel::InitAssetTxnListCtrl(wxWindow* parent)
 // Load asset transactions into the list control
 void mmAssetsPanel::LoadAssetTransactions(wxListCtrl* listCtrl, int64 assetId)
 {
-    Model_Translink::Data_Set assetList = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_ASSET, assetId);
+    Model_Translink::Data_Set assetList = Model_Translink::TranslinkList<Model_Asset>(assetId);
 
     int row = 0;
     for (const auto& assetEntry : assetList)
@@ -935,7 +935,7 @@ void mmAssetsPanel::GotoAssetAccount(const int selected_index)
     }
     else
     {
-        Model_Translink::Data_Set asset_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_ASSET, asset->ASSETID);
+        Model_Translink::Data_Set asset_list = Model_Translink::TranslinkList<Model_Asset>(asset->ASSETID);
         for (const auto &asset_entry : asset_list)
         {
             Model_Checking::Data* asset_trans = Model_Checking::instance().get(asset_entry.CHECKINGACCOUNTID);

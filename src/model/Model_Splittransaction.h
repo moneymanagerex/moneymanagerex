@@ -63,6 +63,9 @@ public:
     int update(Data_Set& rows, int64 transactionID);
     int update(const std::vector<Split>& rows, int64 transactionID);
     bool remove(int64 id);
+
+public:
+    inline static const wxString refTypeName = REFTYPE_NAME_TRANSACTIONSPLIT;
 };
 
 #endif // 

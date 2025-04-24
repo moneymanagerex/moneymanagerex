@@ -188,7 +188,7 @@ double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const 
 
         double numShares = 0.0;
 
-        Model_Translink::Data_Set linkrecords = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_STOCK, stock.STOCKID);
+        Model_Translink::Data_Set linkrecords = Model_Translink::TranslinkList<Model_Stock>(stock.STOCKID);
         for (const auto& linkrecord : linkrecords)
         {
             Model_Checking::Data* txn = Model_Checking::instance().get(linkrecord.CHECKINGACCOUNTID);
@@ -218,7 +218,7 @@ to base currency.
 double Model_Stock::RealGainLoss(const Data* r, bool to_base_curr)
 {
     Model_Currency::Data* currency = Model_Account::currency(Model_Account::instance().get(r->HELDAT));
-    Model_Translink::Data_Set trans_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_STOCK, r->STOCKID);
+    Model_Translink::Data_Set trans_list = Model_Translink::TranslinkList<Model_Stock>(r->STOCKID);
     double real_gain_loss = 0;
     double total_shares = 0;
     double total_initial_value = 0;
@@ -289,7 +289,7 @@ double Model_Stock::UnrealGainLoss(const Data* r, bool to_base_curr)
     {
         Model_Currency::Data* currency = Model_Account::currency(Model_Account::instance().get(r->HELDAT));
         double conv_rate = Model_CurrencyHistory::getDayRate(currency->CURRENCYID);
-        Model_Translink::Data_Set trans_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_STOCK, r->STOCKID);
+        Model_Translink::Data_Set trans_list = Model_Translink::TranslinkList<Model_Stock>(r->STOCKID);
         if (!trans_list.empty())
         {
             double total_shares = 0;
@@ -356,7 +356,7 @@ void Model_Stock::UpdateCurrentPrice(const wxString& symbol, const double price)
 
 void Model_Stock::UpdatePosition(Model_Stock::Data* stock_entry)
 {
-    Model_Translink::Data_Set trans_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_STOCK, stock_entry->STOCKID);
+    Model_Translink::Data_Set trans_list = Model_Translink::TranslinkList<Model_Stock>(stock_entry->STOCKID);
     double total_shares = 0;
     double total_initial_value = 0;
     double total_commission = 0;

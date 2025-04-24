@@ -422,7 +422,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
 
     // Custom Fields
     bool is_custom_found = false;
-    const wxString RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+    const wxString RefType = Model_Checking::refTypeName;
     int field_index = 0;
     for (const auto& i : Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType)))
     {
@@ -1371,11 +1371,11 @@ bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int64 r
     // If we have a split, merge the transaciton tags so that an AND condition captures cases
     // where one tag is on the base txn and the other is on the split
     std::map<wxString, int64> txnTagnames;
-    if (refType == Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT)
-        txnTagnames = Model_Taglink::instance().get(Model_Attachment::REFTYPE_NAME_TRANSACTION,
+    if (refType == Model_Splittransaction::refTypeName)
+        txnTagnames = Model_Taglink::instance().get(Model_Checking::refTypeName,
                                                     Model_Splittransaction::instance().get(refId)->TRANSID);
-    else if (refType == Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT)
-        txnTagnames = Model_Taglink::instance().get(Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT,
+    else if (refType == Model_Budgetsplittransaction::refTypeName)
+        txnTagnames = Model_Taglink::instance().get(Model_Billsdeposits::refTypeName,
                                                     Model_Budgetsplittransaction::instance().get(refId)->TRANSID);
 
     if (mergeSplitTags)
@@ -1383,23 +1383,23 @@ bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int64 r
         // Merge transaction tags and split tags. This is necessary when checking
         // if a split record matches the filter since we are using mmIsRecordMatches
         // to validate the split which gives it the wrong refType & refId
-        if (refType == Model_Attachment::REFTYPE_NAME_TRANSACTION)
+        if (refType == Model_Checking::refTypeName)
         {
             // Loop through checking splits and merge tags for each SPLITTRANSID
             for (const auto& split : Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(refId)))
             {
                 std::map<wxString, int64> splitTagnames =
-                    Model_Taglink::instance().get(Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT, split.SPLITTRANSID);
+                    Model_Taglink::instance().get(Model_Splittransaction::refTypeName, split.SPLITTRANSID);
                 txnTagnames.insert(splitTagnames.begin(), splitTagnames.end());
             }
         }
-        else if (refType == Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT)
+        else if (refType == Model_Billsdeposits::refTypeName)
         {
             // Loop through scheduled txn splits and merge tags for each SPLITTRANSID
             for (const auto& split : Model_Budgetsplittransaction::instance().find(Model_Budgetsplittransaction::TRANSID(refId)))
             {
                 std::map<wxString, int64> splitTagnames =
-                    Model_Taglink::instance().get(Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT, split.SPLITTRANSID);
+                    Model_Taglink::instance().get(Model_Budgetsplittransaction::refTypeName, split.SPLITTRANSID);
                 txnTagnames.insert(splitTagnames.begin(), splitTagnames.end());
             }
         }
@@ -1464,9 +1464,9 @@ template <class MODEL, class DATA> bool mmFilterTransactionsDialog::mmIsRecordMa
         wxString refType;
         // Check the Data type to determine the tag RefType
         if (typeid(tran).hash_code() == typeid(Model_Checking::Data).hash_code())
-            refType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+            refType = Model_Checking::refTypeName;
         else if (typeid(tran).hash_code() == typeid(Model_Billsdeposits::Data).hash_code())
-            refType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
+            refType = Model_Billsdeposits::refTypeName;
         if (!mmIsTagMatches(refType, tran.id(), mergeSplitTags))
             ok = false;
     }
@@ -1479,11 +1479,11 @@ template <class MODEL, class DATA> bool mmFilterTransactionsDialog::mmIsSplitRec
 
     if (typeid(split).hash_code() == typeid(Model_Splittransaction::Data).hash_code())
     {
-        refType = Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT;
+        refType = Model_Splittransaction::refTypeName;
     }
     else if (typeid(split).hash_code() == typeid(Model_Budgetsplittransaction::Data).hash_code())
     {
-        refType = Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT;
+        refType = Model_Budgetsplittransaction::refTypeName;
     }
 
     if (mmIsTagsChecked() && !mmIsTagMatches(refType, split.SPLITTRANSID))

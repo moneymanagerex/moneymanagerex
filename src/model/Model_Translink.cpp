@@ -67,7 +67,7 @@ Model_Translink::Data* Model_Translink::SetAssetTranslink(const int64 asset_id
     , const CHECKING_TYPE checking_type)
 {
     return SetTranslink(checking_id, checking_type
-        , Model_Attachment::REFTYPE_NAME_ASSET, asset_id);
+        , Model_Asset::refTypeName, asset_id);
 }
 
 Model_Translink::Data* Model_Translink::SetStockTranslink(const int64 stock_id
@@ -75,7 +75,7 @@ Model_Translink::Data* Model_Translink::SetStockTranslink(const int64 stock_id
     , const CHECKING_TYPE checking_type)
 {
     return SetTranslink(checking_id, checking_type
-        , Model_Attachment::REFTYPE_NAME_STOCK, stock_id);
+        , Model_Stock::refTypeName, stock_id);
 }
 
 Model_Translink::Data* Model_Translink::SetTranslink(const int64 checking_id
@@ -99,11 +99,11 @@ Model_Translink::Data* Model_Translink::SetTranslink(const int64 checking_id
     return translink;
 }
 
-Model_Translink::Data_Set Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID link_table
-    , const int64 link_entry_id)
+template <typename T>
+Model_Translink::Data_Set Model_Translink::TranslinkList(const int64 link_entry_id)
 {
     Model_Translink::Data_Set translink_list = Model_Translink::instance().find(
-        Model_Translink::LINKTYPE(Model_Attachment::reftype_name(link_table))
+        Model_Translink::LINKTYPE(T::refTypeName)
         , Model_Translink::LINKRECORDID(link_entry_id));
 
     return translink_list;
@@ -111,7 +111,7 @@ Model_Translink::Data_Set Model_Translink::TranslinkList(Model_Attachment::REFTY
 
 bool Model_Translink::HasShares(const int64 stock_id)
 {
-    if (TranslinkList(Model_Attachment::REFTYPE_ID_STOCK, stock_id).empty())
+    if (TranslinkList<Model_Stock>(stock_id).empty())
     {
         return false;
     }
@@ -132,13 +132,18 @@ Model_Translink::Data Model_Translink::TranslinkRecord(const int64 checking_id)
     }
 }
 
-void Model_Translink::RemoveTransLinkRecords(Model_Attachment::REFTYPE_ID table_type, const int64 entry_id)
+template <typename T>
+void Model_Translink::RemoveTransLinkRecords(const int64 entry_id)
 {
-    for (const auto& translink : TranslinkList(table_type, entry_id))
+    for (const auto& translink : TranslinkList<T>(entry_id))
     {
         Model_Checking::instance().remove(translink.CHECKINGACCOUNTID);
     }
 }
+
+// Explicit Instantiation
+template void Model_Translink::RemoveTransLinkRecords<Model_Asset>(const int64);
+template void Model_Translink::RemoveTransLinkRecords<Model_Stock>(const int64);
 
 void Model_Translink::RemoveTranslinkEntry(const int64 checking_account_id)
 {
@@ -146,13 +151,13 @@ void Model_Translink::RemoveTranslinkEntry(const int64 checking_account_id)
     Model_Shareinfo::RemoveShareEntry(translink.CHECKINGACCOUNTID);
     Model_Translink::instance().remove(translink.TRANSLINKID);
 
-    if (translink.LINKTYPE == Model_Attachment::REFTYPE_NAME_ASSET)
+    if (translink.LINKTYPE == Model_Asset::refTypeName)
     {
         Model_Asset::Data* asset_entry = Model_Asset::instance().get(translink.LINKRECORDID);
         UpdateAssetValue(asset_entry);
     }
 
-    if (translink.LINKTYPE == Model_Attachment::REFTYPE_NAME_STOCK)
+    if (translink.LINKTYPE == Model_Stock::refTypeName)
     {
         Model_Stock::Data* stock_entry = Model_Stock::instance().get(translink.LINKRECORDID);
         Model_Stock::UpdatePosition(stock_entry);
@@ -161,7 +166,7 @@ void Model_Translink::RemoveTranslinkEntry(const int64 checking_account_id)
 
 void Model_Translink::UpdateAssetValue(Model_Asset::Data* asset_entry)
 {
-    Data_Set trans_list = TranslinkList(Model_Attachment::REFTYPE_ID_ASSET, asset_entry->ASSETID);
+    Data_Set trans_list = TranslinkList<Model_Asset>(asset_entry->ASSETID);
     double new_value = 0;
     for (const auto &trans : trans_list)
     {
@@ -191,7 +196,7 @@ void Model_Translink::UpdateAssetValue(Model_Asset::Data* asset_entry)
 
 bool Model_Translink::ShareAccountId(int64& stock_entry_id)
 {
-    Model_Translink::Data_Set stock_translink_list = TranslinkList(Model_Attachment::REFTYPE_ID_STOCK, stock_entry_id);
+    Model_Translink::Data_Set stock_translink_list = TranslinkList<Model_Stock>(stock_entry_id);
 
     if (!stock_translink_list.empty())
     {
