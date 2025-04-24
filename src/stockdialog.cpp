@@ -154,7 +154,7 @@ void mmStockDialog::CreateControls()
     bool initial_stock_transaction = true;
     if (m_stock)
     {
-        if (!Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_STOCK, m_stock->STOCKID).empty())
+        if (!Model_Translink::TranslinkList<Model_Stock>(m_stock->STOCKID).empty())
         {
             initial_stock_transaction = false;
         }
@@ -344,7 +344,7 @@ void mmStockDialog::CreateControls()
 
 void mmStockDialog::OnQuit(wxCloseEvent& /*event*/)
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_NAME_STOCK;
+    const wxString& RefType = Model_Stock::refTypeName;
     if (!m_edit)
         mmAttachmentManage::DeleteAllAttachments(RefType, 0);
     EndModal(wxID_CANCEL);
@@ -352,7 +352,7 @@ void mmStockDialog::OnQuit(wxCloseEvent& /*event*/)
 
 void mmStockDialog::OnCancel(wxCommandEvent& /*event*/)
 {
-    const wxString& RefType = Model_Attachment::REFTYPE_NAME_STOCK;
+    const wxString& RefType = Model_Stock::refTypeName;
     if (m_stock_id <= 0)
         mmAttachmentManage::DeleteAllAttachments(RefType, 0);
     EndModal(wxID_CANCEL);
@@ -360,7 +360,7 @@ void mmStockDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmStockDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-    const wxString RefType = Model_Attachment::REFTYPE_NAME_STOCK;
+    const wxString RefType = Model_Stock::refTypeName;
     int64 RefId = m_stock_id;
 
     if (RefId < 0)
@@ -463,7 +463,7 @@ void mmStockDialog::OnSave(wxCommandEvent & /*event*/)
 
     if (!m_edit)
     {
-        const wxString RefType = Model_Attachment::REFTYPE_NAME_STOCK;
+        const wxString RefType = Model_Stock::refTypeName;
         mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, m_stock->STOCKID);
         ShareTransactionDialog share_dialog(this, m_stock);
         share_dialog.ShowModal();

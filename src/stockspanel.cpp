@@ -268,7 +268,7 @@ wxListCtrl* mmStocksPanel::InitStockTxnListCtrl(wxWindow* parent)
 // Load stock transactions into the list control
 void mmStocksPanel::LoadStockTransactions(wxListCtrl* listCtrl, int64 stockId)
 {
-    Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList(Model_Attachment::REFTYPE_ID_STOCK, stockId);
+    Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList<Model_Stock>(stockId);
     Model_Checking::Data_Set checking_list;
 
     for (const auto& trans : stock_list) {

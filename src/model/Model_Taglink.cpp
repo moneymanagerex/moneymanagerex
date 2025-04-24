@@ -123,9 +123,9 @@ int Model_Taglink::update(const Data_Set& rows, const wxString& refType, int64 r
 
     if (updateTimestamp)
     {
-        if (refType == Model_Attachment::REFTYPE_NAME_TRANSACTION)
+        if (refType == Model_Checking::refTypeName)
             Model_Checking::instance().updateTimestamp(refId);
-        else if (refType == Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT)
+        else if (refType == Model_Splittransaction::refTypeName)
             Model_Checking::instance().updateTimestamp(Model_Splittransaction::instance().get(refId)->TRANSID);
     }
 

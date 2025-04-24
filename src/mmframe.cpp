@@ -591,7 +591,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                     checking_splits.push_back(split);
                     wxArrayInt64 tags;
                     for (const auto& tag : Model_Taglink::instance().find(
-                        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_BILLSDEPOSITSPLIT),
+                        Model_Taglink::REFTYPE(Model_Budgetsplittransaction::refTypeName),
                         Model_Taglink::REFID(item.SPLITTRANSID)
                     ))
                         tags.push_back(tag.TAGID);
@@ -600,7 +600,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 Model_Splittransaction::instance().save(checking_splits);
 
                 // Save split tags
-                const wxString& splitRefType = Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT;
+                const wxString& splitRefType = Model_Splittransaction::refTypeName;
 
                 for (size_t i = 0; i < checking_splits.size(); i++) {
                     Model_Taglink::Data_Set splitTaglinks;
@@ -630,9 +630,9 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 
                 // Save base transaction tags
                 Model_Taglink::Data_Set taglinks;
-                const wxString& txnRefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+                const wxString& txnRefType = Model_Checking::refTypeName;
                 for (const auto& tag : Model_Taglink::instance().find(
-                    Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT),
+                    Model_Taglink::REFTYPE(Model_Billsdeposits::refTypeName),
                     Model_Taglink::REFID(q1.BDID)
                 )) {
                     Model_Taglink::Data* t = Model_Taglink::instance().create();
@@ -1335,7 +1335,7 @@ void mmGUIFrame::OnAccountAttachments(wxCommandEvent& /*event*/)
     if (!selectedItemData_)
         return;
 
-    wxString refType = Model_Attachment::REFTYPE_NAME_BANKACCOUNT;
+    wxString refType = Model_Account::refTypeName;
     int64 refId = selectedItemData_->getId();
     mmAttachmentDialog dlg(this, refType, refId);
     dlg.ShowModal();
@@ -1493,7 +1493,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
     if (msgDlg.ShowModal() == wxID_YES) {
         Model_Account::instance().remove(account->ACCOUNTID);
         mmAttachmentManage::DeleteAllAttachments(
-            Model_Attachment::REFTYPE_NAME_BANKACCOUNT, account->ACCOUNTID
+            Model_Account::refTypeName, account->ACCOUNTID
         );
         DoRecreateNavTreeControl(true);
     }
@@ -3751,7 +3751,7 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
             wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
         if (msgDlg.ShowModal() == wxID_YES) {
             Model_Account::instance().remove(account->id());
-            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::REFTYPE_NAME_BANKACCOUNT, account->id());
+            mmAttachmentManage::DeleteAllAttachments(Model_Account::refTypeName, account->id());
         }
     }
     DoRecreateNavTreeControl(true);
@@ -4002,7 +4002,7 @@ void mmGUIFrame::autocleanDeletedTransactions() {
             Model_Checking::instance().remove(transaction.TRANSID);
 
             // remove also any attachments for the transaction
-            const wxString& RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+            const wxString& RefType = Model_Checking::refTypeName;
             mmAttachmentManage::DeleteAllAttachments(RefType, transaction.TRANSID);
 
             // remove also any custom fields for the transaction

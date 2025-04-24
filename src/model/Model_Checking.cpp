@@ -101,7 +101,7 @@ bool Model_Checking::remove(int64 id)
         Model_Splittransaction::instance().remove(r.SPLITTRANSID);
     if(foreignTransaction(*instance().get(id))) Model_Translink::RemoveTranslinkEntry(id);
 
-    const wxString& RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+    const wxString& RefType = Model_Checking::refTypeName;
     // remove all attachments
     mmAttachmentManage::DeleteAllAttachments(RefType, id);
     // remove all custom fields for the transaction
@@ -314,7 +314,7 @@ Model_Checking::Full_Data::Full_Data(const Data& r) :
     m_splits(Model_Splittransaction::instance().find(
         Model_Splittransaction::TRANSID(r.TRANSID))),
     m_tags(Model_Taglink::instance().find(
-        Model_Taglink::REFTYPE(Model_Attachment::REFTYPE_NAME_TRANSACTION),
+        Model_Taglink::REFTYPE(Model_Checking::refTypeName),
         Model_Taglink::REFID(r.TRANSID))),
     ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
     SN(0), ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)

@@ -25,7 +25,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "validators.h"
 #include "Model_Currency.h"
 #include "Model_CustomFieldData.h"
-#include "Model_Attachment.h"
 
 #include <wx/timectrl.h>
 #include <wx/collpane.h>
@@ -54,7 +53,7 @@ mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int64 ref
 
 mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int64 ref_id, wxWindowID base_id)
     : mmCustomData(dialog
-        , Model_Attachment::REFTYPE_NAME_TRANSACTION
+        , Model_Checking::refTypeName
         , ref_id)
 {
     SetBaseID(base_id);
@@ -507,7 +506,7 @@ bool mmCustomData::SaveCustomValues(int64 ref_id)
 
     Model_CustomFieldData::instance().ReleaseSavepoint();
 
-    if (updateTimestamp && m_ref_type == Model_Attachment::REFTYPE_NAME_TRANSACTION)
+    if (updateTimestamp && m_ref_type == Model_Checking::refTypeName)
         Model_Checking::instance().updateTimestamp(ref_id);        
 
     return true;
@@ -558,7 +557,7 @@ void mmCustomData::UpdateCustomValues(int64 ref_id)
 
     Model_CustomFieldData::instance().ReleaseSavepoint();
 
-    if (updateTimestamp && m_ref_type == Model_Attachment::REFTYPE_NAME_TRANSACTION)
+    if (updateTimestamp && m_ref_type == Model_Checking::refTypeName)
         Model_Checking::instance().updateTimestamp(ref_id);        
 }
 

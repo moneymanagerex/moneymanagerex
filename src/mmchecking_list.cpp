@@ -279,7 +279,7 @@ void TransactionListCtrl::setColumnsInfo()
     if (m_cp->isDeletedTrans())
         m_col_id_nr.push_back(LIST_ID_DELETEDTIME);
 
-    const auto& ref_type = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+    const auto& ref_type = Model_Checking::refTypeName;
     int col_id = LIST_ID_UDFC01;
     for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS()) {
         if (col_id > LIST_ID_UDFC05) break;
@@ -399,7 +399,7 @@ void TransactionListCtrl::sortBy(Compare comp, bool ascend)
 
 void TransactionListCtrl::sortTransactions(int col_id, bool ascend)
 {
-    const auto& ref_type = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+    const auto& ref_type = Model_Checking::refTypeName;
     Model_CustomField::TYPE_ID type;
 
     switch (col_id) {
@@ -742,7 +742,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
     if (row < m_trans.size() && (flags & wxLIST_HITTEST_ONITEM) && col_nr < getColNrSize()) {
         int col_id = getColId_Nr(col_nr);
         wxString menuItemText;
-        wxString refType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+        wxString refType = Model_Checking::refTypeName;
         wxDateTime datetime;
         wxString dateFormat = Option::instance().getDateFormat();
 
@@ -1259,12 +1259,12 @@ void TransactionListCtrl::onEditTransaction(wxCommandEvent& /*event*/)
 
         if (!Model_Translink::instance().find(Model_Translink::CHECKINGACCOUNTID(id.first)).empty()) {
             Model_Translink::Data translink = Model_Translink::TranslinkRecord(id.first);
-            if (translink.LINKTYPE == Model_Attachment::REFTYPE_NAME_STOCK) {
+            if (translink.LINKTYPE == Model_Stock::refTypeName) {
                 ShareTransactionDialog dlg(this, &translink, checking_entry);
                 if (dlg.ShowModal() == wxID_OK)
                     refreshVisualList();
             }
-            else if (translink.LINKTYPE == Model_Attachment::REFTYPE_NAME_ASSET) {
+            else if (translink.LINKTYPE == Model_Asset::refTypeName) {
                 mmAssetDialog dlg(this, m_cp->m_frame, &translink, checking_entry);
                 if (dlg.ShowModal() == wxID_OK)
                     refreshVisualList();
@@ -1389,8 +1389,8 @@ void TransactionListCtrl::onOrganizeAttachments(wxCommandEvent& /*event*/)
     Fused_Transaction::IdRepeat id = m_selected_id[0];
 
     const wxString refType = !id.second ?
-        Model_Attachment::REFTYPE_NAME_TRANSACTION :
-        Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
+        Model_Checking::refTypeName :
+        Model_Billsdeposits::refTypeName;
     mmAttachmentDialog dlg(this, refType, id.first);
     dlg.ShowModal();
     refreshVisualList();
@@ -1619,7 +1619,7 @@ int64 TransactionListCtrl::onPaste(Model_Checking::Data* tran)
 
     // Clone transaction tags
     Model_Taglink::Cache copy_taglinks;
-    wxString reftype = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+    wxString reftype = Model_Checking::refTypeName;
     for (const auto& link : Model_Taglink::instance().find(Model_Taglink::REFTYPE(reftype), Model_Taglink::REFID(tran->TRANSID))) {
         Model_Taglink::Data* taglink = Model_Taglink::instance().clone(&link);
         taglink->REFID = transactionID;
@@ -1627,7 +1627,7 @@ int64 TransactionListCtrl::onPaste(Model_Checking::Data* tran)
     }
 
     // Clone split transactions
-    reftype = Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT;
+    reftype = Model_Splittransaction::refTypeName;
     for (const auto& split_item : Model_Checking::split(tran)) {
         Model_Splittransaction::Data *copy_split_item = Model_Splittransaction::instance().clone(&split_item);
         copy_split_item->TRANSID = transactionID;
@@ -1663,7 +1663,7 @@ int64 TransactionListCtrl::onPaste(Model_Checking::Data* tran)
 
     // Clone attachments if wanted
     if (Model_Infotable::instance().getBool("ATTACHMENTSDUPLICATE", false)) {
-        const wxString& RefType = Model_Attachment::REFTYPE_NAME_TRANSACTION;
+        const wxString& RefType = Model_Checking::refTypeName;
         mmAttachmentManage::CloneAllAttachments(RefType, tran->TRANSID, transactionID);
     }
 
@@ -1756,8 +1756,8 @@ void TransactionListCtrl::onOpenAttachment(wxCommandEvent& WXUNUSED(event))
     Fused_Transaction::IdRepeat id = m_selected_id[0];
 
     const wxString refType = !id.second ?
-        Model_Attachment::REFTYPE_NAME_TRANSACTION :
-        Model_Attachment::REFTYPE_NAME_BILLSDEPOSIT;
+        Model_Checking::refTypeName :
+        Model_Billsdeposits::refTypeName;
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, refType, id.first);
     refreshVisualList();
 }
@@ -1831,7 +1831,7 @@ const wxString TransactionListCtrl::getItem(long item, int col_id) const
     case LIST_ID_TAGS:
         value = fused.TAGNAMES;
         if (!fused.displayID.Contains(".")) {
-            const wxString splitRefType = Model_Attachment::REFTYPE_NAME_TRANSACTIONSPLIT;
+            const wxString splitRefType = Model_Splittransaction::refTypeName;
             for (const auto& split : fused.m_splits) {
                 wxString tagnames;
                 std::map<wxString, int64> tags = Model_Taglink::instance().get(splitRefType, split.SPLITTRANSID);

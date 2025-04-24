@@ -261,6 +261,9 @@ public:
     static void putDataToTransaction(Data *r, const Data &data);
     static bool foreignTransaction(const Data& data);
     static bool foreignTransactionAsTransfer(const Data& data);
+
+public:
+    inline static wxString refTypeName = REFTYPE_NAME_TRANSACTION;
 };
 
 //----------------------------------------------------------------------------
