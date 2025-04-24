@@ -70,7 +70,8 @@ init:
 - set "gen=17 2022" & set "tool=v%comp%%xp%,host=x64"
 
 cache:
-- '%wxwin%\lib -> ..\MSVC_ver.txt'
+- '%wxwin%\lib -> .appveyor.yml'
+- '%wxwin%\include -> .appveyor.yml'
 - '%curlLibFolder%'
 - '%CLCACHE_DIR% -> ..\MSVC_ver.txt'
 
@@ -80,16 +81,8 @@ install:
 - copy clcache\clcache-%clcVer%\clcache.exe clcache\clcache-%clcVer%\cl.exe
 - if exist %APPVEYOR_BUILD_FOLDER%\clcache\clcache-%clcVer%\cl.exe set "PATH=%APPVEYOR_BUILD_FOLDER%\clcache\clcache-%clcVer%;%PATH%"
 - clcache -s
-# wxWidgets, try to download pre-compiled version first
-- if %wxShared%==1 (
-    curl -fsL --fail-early
-      -O %wxURL%/wxMSW-%wxVer%_vc%wxComp%%wxSuff%_Dev.7z
-      -O %wxURL%/wxWidgets-%wxVer%-headers.7z &&
-    if %configuration%==Release
-      curl -fsL -O %wxURL%/wxMSW-%wxVer%_vc%wxComp%%wxSuff%_ReleaseDLL.7z
-  ) || exit 0
-- if not exist wxMSW-%wxVer%_vc%wxComp%%wxSuff%_Dev.7z
-    curl -fsSL -O %wxURL%/wxWidgets-%wxVer%.7z
+# wxWidgets
+- curl -fsSL -O %wxURL%/wxWidgets-%wxVer%.7z
 - 7z x -y "-o%wxwin%" wx*-%wxVer%*.7z
 # wxWidgets, build script from build/tools/msvs/officialbuild.bat
 - if %configuration%==Release set "wxConf=BUILD=release"
@@ -99,7 +92,7 @@ install:
     cd %wxwin%\build\msw &&
     nmake /nologo /s /f makefile.vc %wxConf% COMPILER_VERSION=%comp%%xp%
       TARGET_CPU=%platform% DEBUG_INFO=default SHARED=%wxShared% VENDOR=mmex %wxFlags%
-      wxUSE_UNSAFE_WXSTRING_CONV=0
+      wxUSE_UNSAFE_WXSTRING_CONV=0 wxUSE_STD_CONTAINERS=1
   )
 # libcurl
 - if %configuration%==Debug (
