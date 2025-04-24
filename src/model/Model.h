@@ -275,7 +275,7 @@ public:
         REFTYPE_ID_PAYEE,
         REFTYPE_ID_TRANSACTIONSPLIT,
         REFTYPE_ID_BILLSDEPOSITSPLIT,
-        REFTYPE_ID_size
+        REFTYPE_ID_COUNT
     };
 
     inline static ChoicesName REFTYPE_CHOICES = ChoicesName({
