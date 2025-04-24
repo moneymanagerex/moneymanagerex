@@ -665,7 +665,7 @@ int Option::AccountImageId(const int64 account_id, const bool def, const bool ig
     if (!def && !ignoreClosure && (acctStatus == "Closed"))
         return img::ACCOUNT_CLOSED_PNG;
 
-    int max = acc_img::MAX_ACC_ICON - img::LAST_NAVTREE_PNG;
+    int max = acc_img::MAX_ACC_ICON - static_cast<int>(img::LAST_NAVTREE_PNG);
     int min = 1;
     int custom_img_id = Model_Infotable::instance().getInt(wxString::Format("ACC_IMAGE_ID_%lld", account_id), 0);
     if (custom_img_id > max) custom_img_id = custom_img_id - 20; //Bug #963 fix 
