@@ -90,9 +90,9 @@ install:
 - if not exist "%wxLibFolder%" (
     echo Building wxWidgets %wxVer% &
     cd %wxwin%\build\msw &&
-    nmake /nologo /s /f makefile.vc %wxConf% COMPILER_VERSION=%comp%%xp%
+    nmake /nologo /s /f makefile.vc %wxConf% CXXFLAGS=/std:c++20 COMPILER_VERSION=%comp%%xp%
       TARGET_CPU=%platform% DEBUG_INFO=default SHARED=%wxShared% VENDOR=mmex %wxFlags%
-      wxUSE_UNSAFE_WXSTRING_CONV=0 wxUSE_STL=1 wxUSE_STD_CONTAINERS=1
+      wxUSE_UNSAFE_WXSTRING_CONV=0 wxUSE_STD_CONTAINERS=1 
   )
 # libcurl
 - if %configuration%==Debug (
