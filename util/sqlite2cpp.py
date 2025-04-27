@@ -376,14 +376,14 @@ struct DB_Table_%s : public DB_Table
             %s = id;
         }
 
-        bool operator < (const Data& r) const
+        auto operator<=>(const Data& other) const
         {
-            return this->id() < r.id();
+            return this->id().GetValue() <=> other.id().GetValue();
         }
-        
-        bool operator < (const Data* r) const
+
+        auto operator<=>(const Data* other) const
         {
-            return this->id() < r->id();
+            return this->id().GetValue() <=> other->id().GetValue();
         }
 ''' % (self._primay_key, self._primay_key)
 
@@ -918,10 +918,10 @@ struct DB_Table
         db->ExecuteUpdate("DROP TABLE IF EXISTS " + this->name());
     }
 
-    static wxLongLong newId()
+    static int64 newId()
     {
-        // Get the current time in milliseconds as wxLongLong
-        wxLongLong ticks = wxDateTime::UNow().GetValue();
+        // Get the current time in milliseconds as wxLongLong/int64
+        int64 ticks = wxDateTime::UNow().GetValue();
         // Ensure uniqueness from last generated value
         if (ticks <= ticks_last_)
             ticks = ticks_last_ + 1;
