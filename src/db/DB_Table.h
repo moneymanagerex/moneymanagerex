@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2025-04-22 20:00:47.834896.
+ *          AUTO GENERATED at 2025-04-27 10:42:05.082216.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -72,10 +72,10 @@ struct DB_Table
         db->ExecuteUpdate("DROP TABLE IF EXISTS " + this->name());
     }
 
-    static wxLongLong newId()
+    static int64 newId()
     {
-        // Get the current time in milliseconds as wxLongLong
-        wxLongLong ticks = wxDateTime::UNow().GetValue();
+        // Get the current time in milliseconds as wxLongLong/int64
+        int64 ticks = wxDateTime::UNow().GetValue();
         // Ensure uniqueness from last generated value
         if (ticks <= ticks_last_)
             ticks = ticks_last_ + 1;

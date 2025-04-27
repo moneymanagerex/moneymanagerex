@@ -12,7 +12,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2025-04-21 15:32:55.694774.
+ *          AUTO GENERATED at 2025-04-27 10:42:05.082216.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -263,14 +263,14 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             ASSETID = id;
         }
 
-        bool operator < (const Data& r) const
+        auto operator<=>(const Data& other) const
         {
-            return this->id() < r.id();
+            return this->id().GetValue() <=> other.id().GetValue();
         }
-        
-        bool operator < (const Data* r) const
+
+        auto operator<=>(const Data* other) const
         {
-            return this->id() < r->id();
+            return this->id().GetValue() <=> other->id().GetValue();
         }
 
         bool equals(const Data* r) const
