@@ -28,8 +28,12 @@ ChoicesName::~ChoicesName()
 {
 }
 
-const wxString ChoicesName::getName(int id) const
+const wxString ChoicesName::getName(const int id)
 {
+    // Small hack helping to avoid crashes of inline definitions that make program crash here
+    if(id >= static_cast<int>(array.size()))
+        array.resize(id+1);
+
     wxASSERT(id >= 0 && id < static_cast<int>(array.size()));
     wxASSERT(array[id].id == id);
     return array[id].name;
