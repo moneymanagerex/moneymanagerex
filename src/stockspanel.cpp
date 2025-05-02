@@ -105,7 +105,7 @@ void mmStocksPanel::CreateControls()
     m_choiceFilter->SetMinSize(wxSize(150, -1));
     m_choiceFilter->SetSelection(0);
 
-    m_choiceFilter->Bind(wxEVT_CHOICE, [this](wxCommandEvent&)
+    m_choiceFilter->Bind(wxEVT_CHOICE, [this](wxCommandEvent& [[maybe_unused]] event)
     {
         RefreshList();
     });
