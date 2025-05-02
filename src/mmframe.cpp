@@ -223,8 +223,7 @@ wxArrayString mmGUIFrame::ACCOUNT_SECTION = account_section_all();
 wxArrayString mmGUIFrame::account_section_all()
 {
     wxArrayString type_section;
-    int i = 0;
-    for (const auto& item : ACCOUNT_SECTION_TABLE) {
+    for (int i = 0; const auto& item : ACCOUNT_SECTION_TABLE) {
         wxASSERT_MSG(item.first == i++, "Wrong order in mmGUIFrame::ACCOUNT_SECTION_TABLE");
         type_section.Add(item.second);
     }
