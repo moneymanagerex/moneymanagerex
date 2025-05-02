@@ -270,7 +270,7 @@ void Model_Category::getCategoryStats(
     , bool WXUNUSED(ignoreFuture) //TODO: deprecated
     , bool group_by_month
     , std::map<int64, double> *budgetAmt
-    , bool fin_months)
+    , [[maybe_unused]] bool fin_months)
 {
     //Initialization
     //Set std::map with zerros

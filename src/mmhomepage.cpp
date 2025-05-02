@@ -589,7 +589,7 @@ const wxString htmlWidgetAssets::getHTMLText()
     double currentDisplayed = 0.0, currentTotal = 0.0;
     double cashDisplayed = 0.0, cashTotal = 0.0;
 
-    auto renderRow = [](const wxString& name, double initial, double current, double cash, bool isTotalRow = false) -> wxString {
+    auto renderRow = [](const wxString& name, double initial, double current, double cash) -> wxString {
         wxString row;
         row << "<tr>";
         row << wxString::Format("<td sorttable_customkey='*%s*'>%s</td>\n", name, name);
