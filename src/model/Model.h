@@ -98,7 +98,41 @@ public:
 
 protected:
     wxSQLite3Database* db_;
+
+public:
+    enum REFTYPE_ID {
+        REFTYPE_ID_TRANSACTION = 0,
+        REFTYPE_ID_STOCK,
+        REFTYPE_ID_ASSET,
+        REFTYPE_ID_BANKACCOUNT,
+        REFTYPE_ID_BILLSDEPOSIT,
+        REFTYPE_ID_PAYEE,
+        REFTYPE_ID_TRANSACTIONSPLIT,
+        REFTYPE_ID_BILLSDEPOSITSPLIT,
+        REFTYPE_ID_size
+    };
+
+    static ChoicesName REFTYPE_CHOICES;
+    static const wxString REFTYPE_NAME_TRANSACTION;
+    static const wxString REFTYPE_NAME_STOCK;
+    static const wxString REFTYPE_NAME_ASSET;
+    static const wxString REFTYPE_NAME_BANKACCOUNT;
+    static const wxString REFTYPE_NAME_BILLSDEPOSIT;
+    static const wxString REFTYPE_NAME_PAYEE;
+    static const wxString REFTYPE_NAME_TRANSACTIONSPLIT;
+    static const wxString REFTYPE_NAME_BILLSDEPOSITSPLIT;
+    static const wxString reftype_name(int id);
+    static int reftype_id(const wxString& name, int default_id = -1);
 };
+
+inline const wxString ModelBase::reftype_name(int id)
+{
+    return REFTYPE_CHOICES.getName(id);
+}
+inline int ModelBase::reftype_id(const wxString& name, int default_id)
+{
+    return REFTYPE_CHOICES.findName(name, default_id);
+}
 
 template<class DB_TABLE>
 class Model : public ModelBase, public DB_TABLE
@@ -264,45 +298,4 @@ public:
             this->index_by_id_.size(),
             this->hit_, this->miss_, this->skip_);
     }
-
-public:
-    enum REFTYPE_ID {
-        REFTYPE_ID_TRANSACTION = 0,
-        REFTYPE_ID_STOCK,
-        REFTYPE_ID_ASSET,
-        REFTYPE_ID_BANKACCOUNT,
-        REFTYPE_ID_BILLSDEPOSIT,
-        REFTYPE_ID_PAYEE,
-        REFTYPE_ID_TRANSACTIONSPLIT,
-        REFTYPE_ID_BILLSDEPOSITSPLIT,
-        REFTYPE_ID_size
-    };
-
-    inline static ChoicesName REFTYPE_CHOICES = ChoicesName({
-        { REFTYPE_ID_TRANSACTION,       _n("Transaction") },
-        { REFTYPE_ID_STOCK,             _n("Stock") },
-        { REFTYPE_ID_ASSET,             _n("Asset") },
-        { REFTYPE_ID_BANKACCOUNT,       _n("BankAccount") },
-        { REFTYPE_ID_BILLSDEPOSIT,      _n("RecurringTransaction") },
-        { REFTYPE_ID_PAYEE,             _n("Payee") },
-        { REFTYPE_ID_TRANSACTIONSPLIT,  _n("TransactionSplit") },
-        { REFTYPE_ID_BILLSDEPOSITSPLIT, _n("RecurringTransactionSplit") },
-    });
-    inline static const wxString reftype_name(int id)
-    {
-        return REFTYPE_CHOICES.getName(id);
-    }
-    inline static int reftype_id(const wxString& name, int default_id = -1)
-    {
-        return REFTYPE_CHOICES.findName(name, default_id);
-    }
-
-    inline static const wxString REFTYPE_NAME_TRANSACTION       = reftype_name(REFTYPE_ID_TRANSACTION);
-    inline static const wxString REFTYPE_NAME_STOCK             = reftype_name(REFTYPE_ID_STOCK);
-    inline static const wxString REFTYPE_NAME_ASSET             = reftype_name(REFTYPE_ID_ASSET);
-    inline static const wxString REFTYPE_NAME_BANKACCOUNT       = reftype_name(REFTYPE_ID_BANKACCOUNT);
-    inline static const wxString REFTYPE_NAME_BILLSDEPOSIT      = reftype_name(REFTYPE_ID_BILLSDEPOSIT);
-    inline static const wxString REFTYPE_NAME_PAYEE             = reftype_name(REFTYPE_ID_PAYEE);
-    inline static const wxString REFTYPE_NAME_TRANSACTIONSPLIT  = reftype_name(REFTYPE_ID_TRANSACTIONSPLIT);
-    inline static const wxString REFTYPE_NAME_BILLSDEPOSITSPLIT = reftype_name(REFTYPE_ID_BILLSDEPOSITSPLIT);
 };
