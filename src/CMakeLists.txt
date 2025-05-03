@@ -322,6 +322,7 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     model/Model_CustomFieldData.cpp
     model/Model_CustomFieldData.h
     model/Model_CustomField.h
+    model/Model.cpp
     model/Model.h
     model/Model_Infotable.cpp
     model/Model_Infotable.h
