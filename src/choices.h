@@ -34,7 +34,7 @@ public:
     ChoicesName(const std::vector<Item>& array_, bool nocase_ = true);
     ~ChoicesName();
 
-    const wxString getName(int id) const;
+    const wxString getName(const int id);
     int findName(const wxString& name, int default_id);
 };
 
