@@ -26,7 +26,7 @@ public:
     struct Item { int id; wxString name; };
 
 private:
-    /*const*/ std::vector<Item> array;
+    const std::vector<Item> array;
     const bool nocase;
     std::unordered_map<wxString, int> name_id; // cache for findName()
 

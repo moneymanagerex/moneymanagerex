@@ -278,23 +278,28 @@ public:
         REFTYPE_ID_size
     };
 
-    inline static ChoicesName REFTYPE_CHOICES = ChoicesName({
-        { REFTYPE_ID_TRANSACTION,       _n("Transaction") },
-        { REFTYPE_ID_STOCK,             _n("Stock") },
-        { REFTYPE_ID_ASSET,             _n("Asset") },
-        { REFTYPE_ID_BANKACCOUNT,       _n("BankAccount") },
-        { REFTYPE_ID_BILLSDEPOSIT,      _n("RecurringTransaction") },
-        { REFTYPE_ID_PAYEE,             _n("Payee") },
-        { REFTYPE_ID_TRANSACTIONSPLIT,  _n("TransactionSplit") },
-        { REFTYPE_ID_BILLSDEPOSITSPLIT, _n("RecurringTransactionSplit") },
-    });
+    static ChoicesName &REFTYPE_CHOICES()
+    {
+        static ChoicesName choices = ChoicesName({
+           { REFTYPE_ID_TRANSACTION,       _n("Transaction") },
+           { REFTYPE_ID_STOCK,             _n("Stock") },
+           { REFTYPE_ID_ASSET,             _n("Asset") },
+           { REFTYPE_ID_BANKACCOUNT,       _n("BankAccount") },
+           { REFTYPE_ID_BILLSDEPOSIT,      _n("RecurringTransaction") },
+           { REFTYPE_ID_PAYEE,             _n("Payee") },
+           { REFTYPE_ID_TRANSACTIONSPLIT,  _n("TransactionSplit") },
+           { REFTYPE_ID_BILLSDEPOSITSPLIT, _n("RecurringTransactionSplit") },
+           });
+        return choices;
+    }
+
     inline static const wxString reftype_name(int id)
     {
-        return REFTYPE_CHOICES.getName(id);
+        return REFTYPE_CHOICES().getName(id);
     }
     inline static int reftype_id(const wxString& name, int default_id = -1)
     {
-        return REFTYPE_CHOICES.findName(name, default_id);
+        return REFTYPE_CHOICES().findName(name, default_id);
     }
 
     inline static const wxString REFTYPE_NAME_TRANSACTION       = reftype_name(REFTYPE_ID_TRANSACTION);
