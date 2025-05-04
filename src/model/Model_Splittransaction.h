@@ -65,7 +65,7 @@ public:
     bool remove(int64 id);
 
 public:
-    inline static const wxString refTypeName = REFTYPE_NAME_TRANSACTIONSPLIT;
+    static const wxString refTypeName;
 };
 
 #endif // 

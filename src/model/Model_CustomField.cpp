@@ -66,7 +66,7 @@ Model_CustomField& Model_CustomField::instance()
 //const Model_CustomField::Data_Set Model_CustomField::GetFields(Model_Attachment::REFTYPE_ID RefType)
 //{
 //    Data_Set fields;
-//    wxString reftype_str = Model_Attachment::reftype_name(RefType);
+//    wxString reftype_str = ModelBase::reftype_name(RefType);
 //    for (const auto & field : this->find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(RefType)))
 //    {
 //        fields.push_back(field);

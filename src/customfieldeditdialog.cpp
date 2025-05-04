@@ -124,7 +124,7 @@ void mmCustomFieldEditDialog::CreateControls()
     m_itemReference = new wxChoice(itemPanel5, wxID_HIGHEST);
     for (int i = 0; i < Model_CustomField::REFTYPE_ID_size; ++i) {
         if (i != Model_CustomField::REFTYPE_ID_BILLSDEPOSIT) {
-            wxString reftype = Model_CustomField::reftype_name(i);
+            wxString reftype = ModelBase::reftype_name(i);
             m_itemReference->Append(wxGetTranslation(reftype), new wxStringClientData(reftype));
         }
     }
