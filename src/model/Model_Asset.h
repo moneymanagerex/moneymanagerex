@@ -122,7 +122,7 @@ public:
     std::pair<double, double> valueAtDate(const Data* r, const wxDate& date);
 
 public:
-    inline static const wxString refTypeName = REFTYPE_NAME_ASSET;
+    static const wxString refTypeName;
 };
 
 //----------------------------------------------------------------------------

@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "model/Model.h"
+#include "model/allmodel.h"
 
 ChoicesName ModelBase::REFTYPE_CHOICES = ChoicesName({
     { REFTYPE_ID_TRANSACTION,       _n("Transaction") },
@@ -37,4 +38,15 @@ const wxString ModelBase::REFTYPE_NAME_BILLSDEPOSIT      = reftype_name(REFTYPE_
 const wxString ModelBase::REFTYPE_NAME_PAYEE             = reftype_name(REFTYPE_ID_PAYEE);
 const wxString ModelBase::REFTYPE_NAME_TRANSACTIONSPLIT  = reftype_name(REFTYPE_ID_TRANSACTIONSPLIT);
 const wxString ModelBase::REFTYPE_NAME_BILLSDEPOSITSPLIT = reftype_name(REFTYPE_ID_BILLSDEPOSITSPLIT);
+
+// Model_*::refTypeName are initialized here because they depend on REFTYPE_NAME_,
+// which depend on REFTYPE_CHOICES.
+const wxString Model_Account::refTypeName                = REFTYPE_NAME_BANKACCOUNT;
+const wxString Model_Asset::refTypeName                  = REFTYPE_NAME_ASSET;
+const wxString Model_Stock::refTypeName                  = REFTYPE_NAME_STOCK;
+const wxString Model_Payee::refTypeName                  = REFTYPE_NAME_PAYEE;
+const wxString Model_Checking::refTypeName               = REFTYPE_NAME_TRANSACTION;
+const wxString Model_Splittransaction::refTypeName       = REFTYPE_NAME_TRANSACTIONSPLIT;
+const wxString Model_Billsdeposits::refTypeName          = REFTYPE_NAME_BILLSDEPOSIT;
+const wxString Model_Budgetsplittransaction::refTypeName = REFTYPE_NAME_BILLSDEPOSITSPLIT;
 

@@ -129,6 +129,7 @@ inline const wxString ModelBase::reftype_name(int id)
 {
     return REFTYPE_CHOICES.getName(id);
 }
+
 inline int ModelBase::reftype_id(const wxString& name, int default_id)
 {
     return REFTYPE_CHOICES.findName(name, default_id);
