@@ -32,7 +32,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: /home/runner/work/wxWidgets
-          key: wxWidgets-${{steps.init.outputs.wxVer}}-${{ matrix.os }}-v4
+          key: wxWidgets-${{steps.init.outputs.wxVer}}-${{ matrix.os }}-v3
             
       - name: Build wxWidgets
         if: steps.restore-cache-wxWidgets.outputs.cache-hit != 'true'
@@ -52,7 +52,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: /home/runner/work/wxWidgets
-          key: wxWidgets-${{steps.init.outputs.wxVer}}-${{ matrix.os }}-v4
+          key: wxWidgets-${{steps.init.outputs.wxVer}}-${{ matrix.os }}-v3
           
       - name: Install wxWidgets
         run: |
