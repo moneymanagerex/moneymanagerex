@@ -55,7 +55,7 @@ init:
 - echo %clver% > ..\MSVC_ver.txt
 # Set wxWidgets library paths
 - if %platform:~-2%==64 set wxSuff=_x64
-- set "wxLibFolder=%wxwin%\lib\vc%wxComp%%wxSuff%"
+- set "wxLibFolder=%wxwin%\lib\vc%wxSuff%"
 - if %wxShared%==0 (set wxLibFolder=%wxLibFolder%_lib)
   else (set wxLibFolder=%wxLibFolder%_dll)
 # Set curl library paths
@@ -85,14 +85,24 @@ install:
 - curl -fsSL -O %wxURL%/wxWidgets-%wxVer%.7z
 - 7z x -y "-o%wxwin%" wx*-%wxVer%*.7z
 # wxWidgets, build script from build/tools/msvs/officialbuild.bat
-- if %configuration%==Release set "wxConf=BUILD=release"
-- if not %platform:~-2%==64 set "wxFlags=CPPFLAGS=/arch:SSE CFLAGS=/arch:SSE"
+- if not %platform:~-2%==64 (
+    set "wxFlags=CPPFLAGS=/arch:SSE CFLAGS=/arch:SSE" &&
+    set "cmake_gen=-DCMAKE_GENERATOR_PLATFORM=WIN32"
+  ) else (set "cmake_gen=-DCMAKE_GENERATOR_PLATFORM=x64")                                                                                        
 - if not exist "%wxLibFolder%" (
-    echo Building wxWidgets %wxVer% &
-    cd %wxwin%\build\msw &&
-    nmake /nologo /s /f makefile.vc %wxConf% CXXFLAGS=/std:c++20 COMPILER_VERSION=%comp%%xp%
-      TARGET_CPU=%platform% DEBUG_INFO=default SHARED=%wxShared% VENDOR=mmex %wxFlags%
-      wxUSE_UNSAFE_WXSTRING_CONV=0 wxUSE_STD_CONTAINERS=1 
+    echo Building wxWidgets %wxVer% &&                                                                                
+    cd %wxwin% &&
+    cmake . -G "NMake Makefiles"
+      -DCMAKE_BUILD_TYPE=%configuration% 
+      -DCMAKE_CXX_STANDARD=20 
+      -DCMAKE_CXX_STANDARD_REQUIRED=ON 
+      -DwxBUILD_SHARED=%wxShared% 
+      -DwxBUILD_OPTIMISE=ON 
+      -DwxUSE_STD_CONTAINERS=ON 
+      -DwxUSE_UNSAFE_WXSTRING_CONV=OFF 
+      -DwxBUILD_VENDOR=mmex 
+      -S . -B . &&
+    cmake --build .
   )
 # libcurl
 - if %configuration%==Debug (
@@ -103,24 +113,13 @@ install:
     echo Building libcurl %curlVer% &
     git clone -q --depth=1 -b curl-%curlVer% --single-branch https://github.com/curl/curl.git %curldir%-src &&
     mkdir %curldir%-src\build && cd %curldir%-src\build &&
-    (if %platform:~-2%==64 (
-      cmake -T %tool% -G "Visual Studio %gen%" -A %platform% %curlConf%
+    cmake -T %tool% -G "Visual Studio %gen%" %cmake_gen% %curlConf%
         -DBUILD_CURL_EXE=OFF
         -DHTTP_ONLY=ON
         -DENABLE_MANUAL=OFF
         -DCURL_USE_SCHANNEL=ON
         -DBUILD_TESTING=OFF
-        -DCMAKE_INSTALL_PREFIX=%curlLibFolder% ..
-    ) else (
-      cmake -T %tool% -G "Visual Studio %gen%"
-        -DCMAKE_GENERATOR_PLATFORM=WIN32
-        -DBUILD_CURL_EXE=OFF
-        -DHTTP_ONLY=ON
-        -DENABLE_MANUAL=OFF
-        -DCURL_USE_SCHANNEL=ON
-        -DBUILD_TESTING=OFF
-        -DCMAKE_INSTALL_PREFIX=%curlLibFolder%
-        .. )) &&
+        -DCMAKE_INSTALL_PREFIX=%curlLibFolder% .. &&
     cmake --build . --target install --config %configuration%
       -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64 %curlFlags%
   )
@@ -141,11 +140,7 @@ build_script:
     set "cmake_def=-DCMAKE_INSTALL_DEBUG_LIBRARIES=ON -DCMAKE_INSTALL_DEBUG_LIBRARIES_ONLY=ON"
 - set "cmake_def=%cmake_def% -DCMAKE_PREFIX_PATH=%curlLibFolder%"
 - set "cmake_def=%cmake_def% -DCMAKE_CXX_STANDARD=20 -DCMAKE_CXX_STANDARD_REQUIRED=ON"
-- if %platform:~-2%==64 (
-    cmake --graphviz=mmex.dot -T %tool% -G "Visual Studio %gen%" -A %platform% %cmake_def% ..
-  ) else (
-    cmake --graphviz=mmex.dot -T %tool% -G "Visual Studio %gen%" -DCMAKE_GENERATOR_PLATFORM=WIN32 %cmake_def% ..
-  )
+- cmake --graphviz=mmex.dot -T %tool% -G "Visual Studio %gen%" %cmake_gen% %cmake_def% ..
 - cmake --build . --target package --config %configuration%
     -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
 
