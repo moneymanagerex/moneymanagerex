@@ -604,7 +604,7 @@ if(WIN32)
         # check custom build name vs original one
         foreach(m_dll ${MMEX_WXDLLS})
             set(m_dll "${wxWidgets_LIB_DIR}/${m_dll}")
-            foreach(m_ext vc_mmex.dll vc_custom.dll vc_x64_custom.dll "${WXDLLSUFF}" NOTFOUND)
+            foreach(m_ext vc_mmex.dll vc_custom.dll vc_x64_mmex.dll vc_x64_custom.dll "${WXDLLSUFF}" NOTFOUND)
                 if(EXISTS "${m_dll}_${m_ext}")
                     list(APPEND CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS "${m_dll}_${m_ext}")
                     break()
