@@ -96,6 +96,7 @@ install:
       -DCMAKE_BUILD_TYPE=%configuration% 
       -DCMAKE_CXX_STANDARD=20 
       -DCMAKE_CXX_STANDARD_REQUIRED=ON 
+      -DwxWidgets_USE_REL_AND_DBG=0
       -DwxBUILD_SHARED=%wxShared% 
       -DwxBUILD_OPTIMISE=ON 
       -DwxUSE_STD_CONTAINERS=ON 
