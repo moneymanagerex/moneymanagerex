@@ -95,8 +95,7 @@ install:
     cmake . -G "NMake Makefiles"
       -DCMAKE_BUILD_TYPE=%configuration% 
       -DCMAKE_CXX_STANDARD=20 
-      -DCMAKE_CXX_STANDARD_REQUIRED=ON 
-      -DwxWidgets_USE_REL_AND_DBG=0
+      -DCMAKE_CXX_STANDARD_REQUIRED=ON
       -DwxBUILD_SHARED=%wxShared% 
       -DwxBUILD_OPTIMISE=ON 
       -DwxUSE_STD_CONTAINERS=ON 
@@ -139,7 +138,7 @@ build_script:
 - mkdir build & cd build
 - if %configuration%==Debug
     set "cmake_def=-DCMAKE_INSTALL_DEBUG_LIBRARIES=ON -DCMAKE_INSTALL_DEBUG_LIBRARIES_ONLY=ON"
-- set "cmake_def=%cmake_def% -DCMAKE_PREFIX_PATH=%curlLibFolder%"
+- set "cmake_def=%cmake_def% -DCMAKE_PREFIX_PATH=%curlLibFolder% -DwxWidgets_USE_REL_AND_DBG=0"
 - set "cmake_def=%cmake_def% -DCMAKE_CXX_STANDARD=20 -DCMAKE_CXX_STANDARD_REQUIRED=ON"
 - cmake --graphviz=mmex.dot -T %tool% -G "Visual Studio %gen%" %cmake_gen% %cmake_def% ..
 - cmake --build . --target package --config %configuration%
