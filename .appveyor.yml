@@ -94,11 +94,9 @@ install:
     cd %wxwin% &&
     cmake . -G "NMake Makefiles"
       -DCMAKE_BUILD_TYPE=%configuration% 
-      -DCMAKE_CXX_STANDARD=20 
-      -DCMAKE_CXX_STANDARD_REQUIRED=ON
       -DwxBUILD_SHARED=%wxShared% 
       -DwxBUILD_OPTIMISE=ON 
-      -DwxUSE_STD_CONTAINERS=ON 
+      -DwxUSE_STL=ON 
       -DwxUSE_UNSAFE_WXSTRING_CONV=OFF 
       -DwxBUILD_VENDOR=mmex 
       -S . -B . &&
