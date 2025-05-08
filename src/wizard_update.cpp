@@ -355,7 +355,8 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
     Version last(last_checked);
     wxLogDebug("Current vertion: %s", current_tag);
     wxArrayInt new_releases;
-    for (int i = 0; auto& r : json_releases.GetArray()) {
+    int i = 0;
+    for (auto& r : json_releases.GetArray()) {
         const auto tag_name = wxString::FromUTF8(r["tag_name"].GetString());
         bool prerelease = r["prerelease"].GetBool();
         if (_stable && prerelease) {
