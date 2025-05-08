@@ -137,7 +137,7 @@ build_script:
 - if %configuration%==Debug
     set "cmake_def=-DCMAKE_INSTALL_DEBUG_LIBRARIES=ON -DCMAKE_INSTALL_DEBUG_LIBRARIES_ONLY=ON"
 - set "cmake_def=%cmake_def% -DCMAKE_PREFIX_PATH=%curlLibFolder% -DwxWidgets_USE_REL_AND_DBG=0"
-- set "cmake_def=%cmake_def% -DCMAKE_CXX_STANDARD=17 -DCMAKE_CXX_STANDARD_REQUIRED=ON"
+- set "cmake_def=%cmake_def% -DCMAKE_CXX_STANDARD=20 -DCMAKE_CXX_STANDARD_REQUIRED=ON"
 - cmake --graphviz=mmex.dot -T %tool% -G "Visual Studio %gen%" %cmake_gen% %cmake_def% ..
 - cmake --build . --target package --config %configuration%
     -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
