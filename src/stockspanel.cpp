@@ -279,7 +279,8 @@ void mmStocksPanel::LoadStockTransactions(wxListCtrl* listCtrl, int64 stockId)
     }
     std::stable_sort(checking_list.begin(), checking_list.end(), SorterByTRANSDATE());
 
-    for (int row = 0; const auto& stock_trans : checking_list)
+    int row = 0;
+    for (const auto& stock_trans : checking_list)
     {
         auto* share_entry = Model_Shareinfo::ShareEntry(stock_trans.TRANSID);
         if (!share_entry || (share_entry->SHARENUMBER <= 0 && share_entry->SHAREPRICE <= 0))
