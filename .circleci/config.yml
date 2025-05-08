@@ -86,7 +86,7 @@ modules:
     config-opts:
       - --enable-std_containers
       - --disable-shared
-      - --with-cxx=20
+      - --with-cxx=17
       - --enable-webview
       - --with-gtk=3
       - --enable-unicode

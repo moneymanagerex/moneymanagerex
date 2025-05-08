@@ -376,14 +376,14 @@ struct DB_Table_%s : public DB_Table
             %s = id;
         }
 
-        auto operator<=>(const Data& other) const
+        auto operator < (const Data& other) const
         {
-            return this->id().GetValue() <=> other.id().GetValue();
+            return this->id() < other.id();
         }
 
-        auto operator<=>(const Data* other) const
+        auto operator < (const Data* other) const
         {
-            return this->id().GetValue() <=> other->id().GetValue();
+            return this->id() < other->id();
         }
 ''' % (self._primay_key, self._primay_key)
 
