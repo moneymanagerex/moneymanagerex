@@ -851,7 +851,8 @@ void mmAssetsPanel::LoadAssetTransactions(wxListCtrl* listCtrl, int64 assetId)
 {
     Model_Translink::Data_Set assetList = Model_Translink::TranslinkList<Model_Asset>(assetId);
 
-    for (int row = 0; const auto& assetEntry : assetList)
+    int row = 0;
+    for (const auto& assetEntry : assetList)
     {
         auto* assetTrans = Model_Checking::instance().get(assetEntry.CHECKINGACCOUNTID);
         if (!assetTrans) continue;
