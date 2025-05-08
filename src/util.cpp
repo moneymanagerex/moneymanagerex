@@ -423,7 +423,8 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
             static std::map<wxString, wxString> monCache;
             if (monCache.empty())
             {
-                for (int i = 1; const auto& m : MONTHS_SHORT) {
+                int i = 1;
+                for (const auto& m : MONTHS_SHORT) {
                     monCache[m] = wxString::Format("%02d", i);
                     monCache[wxGetTranslation(m)] = wxString::Format("%02d", i);
                     i++;
