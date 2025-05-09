@@ -459,6 +459,10 @@ bool mmGUIApp::OnInit()
 int mmGUIApp::OnExit()
 {
     wxLogDebug("{{{ mmGUIApp::OnExit()");
+
+    if (!m_frame->IsBeingDeleted())
+        m_frame->Destroy();
+
     Model_Usage::Data* usage = Model_Usage::instance().create();
     usage->USAGEDATE = wxDate::Today().FormatISODate();
 
