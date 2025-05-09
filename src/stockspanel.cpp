@@ -116,7 +116,7 @@ void mmStocksPanel::CreateControls()
     itemBoxSizerHHeader->Add(header_text_, 1, wxALIGN_CENTER_VERTICAL | wxALL, 1);
 
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader, 1, wxEXPAND, 1);
-    itemBoxSizerVHeader->Add(m_choiceFilter, g_flagsBorder1H);
+    itemBoxSizerVHeader->Add(m_choiceFilter, g_flagsBorder1V);
     itemBoxSizerVHeader->Add(header_total_, 1, wxALL, 1);
 
     /* ---------------------- */
