@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-05-09 13:28+0000\n"
-"PO-Revision-Date: 2025-05-09 15:05\n"
+"PO-Revision-Date: 2025-05-12 17:32\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -680,7 +680,7 @@ msgstr "Use el asterisco (*) al principio para encontrar cualquier cadena de car
 #: assetspanel.cpp:577
 #, c-format
 msgid "Initial: %s"
-msgstr ""
+msgstr "Inicial: %s"
 
 #: assetspanel.cpp:577 stockspanel.cpp:413 stockspanel.cpp:602
 #, c-format
@@ -717,7 +717,7 @@ msgstr "Cuenta"
 
 #: assetspanel.cpp:843 stockspanel.cpp:261
 msgid "Trade Type"
-msgstr ""
+msgstr "Tipo de operación"
 
 #: assetspanel.cpp:844 import_export/qif_import_gui.cpp:94
 #: maincurrencydialog.cpp:280
@@ -1185,7 +1185,8 @@ msgstr "Parece un retraso en el pago"
 #, c-format
 msgid "Payee name has not been used before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "El nombre del beneficiario no se había usado anteriormente. ¿Es correcto?\n"
+"%s"
 
 #: billsdepositsdialog.cpp:941 transactionsupdatedialog.cpp:351
 #: transdialog.cpp:690
@@ -1418,7 +1419,7 @@ msgstr[1] "%d días restantes"
 
 #: billsdepositspanel.cpp:650
 msgid "Do you want to delete the scheduled transaction?"
-msgstr ""
+msgstr "¿Desea eliminar la transacción programada?"
 
 #: billsdepositspanel.cpp:651
 msgid "Confirm Deletion"
@@ -1801,7 +1802,7 @@ msgstr "Resultado de la combinación de categorías"
 
 #: categdialog.cpp:763
 msgid "Do you want to unhide all categories?"
-msgstr ""
+msgstr "¿Desea mostrar todas las categorías?"
 
 #: categdialog.cpp:764
 msgid "Unhide all categories"
@@ -2098,7 +2099,7 @@ msgstr "Cambio de campo personalizado"
 
 #: customfieldeditdialog.cpp:258
 msgid "Modified choices available: ones removed will be cleaned!"
-msgstr ""
+msgstr "Opciones modificadas disponibles: se quitarán las opciones eliminadas"
 
 #: customfieldeditdialog.h:42
 msgid "New/Edit Custom Field"
@@ -2382,19 +2383,19 @@ msgstr "Inversión"
 
 #: db/DB_Table_Category_V1.h:171
 msgid "Purchase"
-msgstr ""
+msgstr "Compra"
 
 #: db/DB_Table_Category_V1.h:172
 msgid "Sale"
-msgstr ""
+msgstr "Venta"
 
 #: db/DB_Table_Category_V1.h:173
 msgid "Dividend"
-msgstr ""
+msgstr "Dividendo"
 
 #: db/DB_Table_Category_V1.h:174
 msgid "Capital Gains"
-msgstr ""
+msgstr "Incrementos de capital"
 
 #: db/DB_Table_Category_V1.h:175
 msgid "Brokerage Fees"
