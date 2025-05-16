@@ -37,8 +37,7 @@ const wxString ChoicesName::getName(int id) const
 
 int ChoicesName::findName(const wxString& name, int default_id)
 {
-    const auto it = name_id.find(name);
-    if (it != name_id.end())
+    if (const auto it = name_id.find(name); it != name_id.end())
         return it->second;
 
     int id = default_id;
@@ -78,8 +77,7 @@ const wxString ChoicesKeyName::getName(int id) const
 
 int ChoicesKeyName::findKeyName(const wxString& keyOrName, int default_id)
 {
-    const auto it = keyOrName_id.find(keyOrName);
-    if (it != keyOrName_id.end())
+    if (const auto it = keyOrName_id.find(keyOrName); it != keyOrName_id.end())
         return it->second;
 
     int id = default_id;
