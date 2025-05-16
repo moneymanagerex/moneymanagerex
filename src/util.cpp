@@ -300,8 +300,7 @@ const wxString mmGetDateTimeForDisplay(const wxString &datetime_iso, const wxStr
     }
 
     // If datetime_iso is in cache, return the stored formatted string.
-    auto it = cache.find(datetime_iso);
-    if (it != cache.end())
+    if (auto it = cache.find(datetime_iso); it != cache.end())
         return it->second;
 
     // Format date.
@@ -360,8 +359,7 @@ const wxString mmGetDateForDisplay(const wxString &datetime_iso, const wxString&
     wxString date_iso = datetime_iso.Left(10);
 
     // If date_iso is in cache, return the stored formatted string.
-    auto it = cache.find(date_iso);
-    if (it != cache.end())
+    if (auto it = cache.find(date_iso); it != cache.end())
         return it->second;
 
     // Format date.
