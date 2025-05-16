@@ -397,8 +397,7 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
     wxString mask_str = sDateMask;
 
     static std::unordered_map<wxString, wxDate> cache;
-    const auto it = cache.find(str_date);
-    if (it != cache.end())
+    if (const auto it = cache.find(str_date); it != cache.end())
     {
         date = it->second;
         return true;

@@ -331,11 +331,9 @@ Model_Checking::Full_Data::Full_Data(
     ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
     SN(0), ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)
 {
-    const auto it = splits.find(this->id());
-    if (it != splits.end()) m_splits = it->second;
+    if (const auto it = splits.find(this->id()); it != splits.end()) m_splits = it->second;
 
-    const auto tag_it = tags.find(this->id());
-    if (tag_it != tags.end()) m_tags = tag_it->second;
+    if (const auto tag_it = tags.find(this->id()); tag_it != tags.end()) m_tags = tag_it->second;
 
     fill_data();
 }

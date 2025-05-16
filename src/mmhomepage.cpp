@@ -207,11 +207,9 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
             continue;
 
         bool withdrawal = Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_WITHDRAWAL;
-        const auto it = split.find(trx.TRANSID);
-
         double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
 
-        if (it == split.end())
+        if (const auto it = split.find(trx.TRANSID); it == split.end())
         {
             int64 category = trx.CATEGID;
             if (withdrawal)
