@@ -1645,9 +1645,8 @@ void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
         int wordEnd = textCtrl_->WordEndPosition(position, true);
         wxString word = textCtrl_->GetTextRange(wordStart, wordEnd);
 
-        auto it = tag_map_.find(word);
         // If the word is a valid tag, color it
-        if (it != tag_map_.end())
+        if (auto it = tag_map_.find(word); it != tag_map_.end())
         {
             textCtrl_->StartStyling(wordStart);
             textCtrl_->SetStyling(wordEnd - wordStart, 1);
@@ -1846,8 +1845,7 @@ wxArrayString mmTagTextCtrl::parseTags(const wxString& tagString)
 
         if (tagUsed) continue;
 
-        auto it = tag_map_.find(token);
-        if (it != tag_map_.end())
+        if (auto it = tag_map_.find(token); it != tag_map_.end())
             // case correction for existing tag
             tags.push_back((*it).first);
         else
