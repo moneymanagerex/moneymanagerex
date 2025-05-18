@@ -21,7 +21,7 @@ jobs:
       - name: Install Dependencies
         id: init
         run: |
-          echo "wxVer=3.2.7" >> $GITHUB_OUTPUT
+          echo "wxVer=3.2.8" >> $GITHUB_OUTPUT
           sudo apt update
           sudo apt install -y --no-install-recommends \
           cmake build-essential libssl-dev gettext git pkg-config lsb-release file ccache \
@@ -43,7 +43,7 @@ jobs:
           mv wxWidgets-${{steps.init.outputs.wxVer}} wxWidgets
           cd wxWidgets
           mkdir -p build-linux && cd build-linux
-          ../configure --disable-shared --with-cxx=20 --enable-webview --with-gtk=3 --enable-unicode --enable-intl
+          ../configure --enable-std_containers --disable-shared --with-cxx=17 --enable-webview --with-gtk=3 --enable-unicode --enable-intl
           make -j$(nproc)
 
       - name: Save wxWidgets Cache

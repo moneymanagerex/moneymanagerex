@@ -225,7 +225,7 @@ if(NOT wxSQLite3_FOUND OR NOT (WXSQLITE3_HAVE_CODEC OR MMEX_ENCRYPTION_OPTIONAL)
     endif()
 
     if(NOT MSVC) # wxSQLite3 security ext doesn't require C 99 for MSVC
-        if((NOT LINUX) OR (NOT ";aarch64;arm;arm64;armv8b;armv8l;" MATCHES ";${CMAKE_HOST_SYSTEM_PROCESSOR};"))
+        if(NOT ";aarch64;arm;arm64;armv8b;armv8l;" MATCHES ";${CMAKE_HOST_SYSTEM_PROCESSOR};")
             set (CMAKE_C_FLAGS "-msse4.2 -maes")
         endif()
         if(";${CMAKE_C_COMPILE_FEATURES};" MATCHES ";c_std_99;")

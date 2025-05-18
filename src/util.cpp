@@ -300,8 +300,7 @@ const wxString mmGetDateTimeForDisplay(const wxString &datetime_iso, const wxStr
     }
 
     // If datetime_iso is in cache, return the stored formatted string.
-    auto it = cache.find(datetime_iso);
-    if (it != cache.end())
+    if (auto it = cache.find(datetime_iso); it != cache.end())
         return it->second;
 
     // Format date.
@@ -360,8 +359,7 @@ const wxString mmGetDateForDisplay(const wxString &datetime_iso, const wxString&
     wxString date_iso = datetime_iso.Left(10);
 
     // If date_iso is in cache, return the stored formatted string.
-    auto it = cache.find(date_iso);
-    if (it != cache.end())
+    if (auto it = cache.find(date_iso); it != cache.end())
         return it->second;
 
     // Format date.
@@ -399,8 +397,7 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
     wxString mask_str = sDateMask;
 
     static std::unordered_map<wxString, wxDate> cache;
-    const auto it = cache.find(str_date);
-    if (it != cache.end())
+    if (const auto it = cache.find(str_date); it != cache.end())
     {
         date = it->second;
         return true;
@@ -423,7 +420,8 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
             static std::map<wxString, wxString> monCache;
             if (monCache.empty())
             {
-                for (int i = 1; const auto& m : MONTHS_SHORT) {
+                int i = 1;
+                for (const auto& m : MONTHS_SHORT) {
                     monCache[m] = wxString::Format("%02d", i);
                     monCache[wxGetTranslation(m)] = wxString::Format("%02d", i);
                     i++;
@@ -750,13 +748,13 @@ bool getOnlineCurrencyRates(wxString& msg,const int64 curr_id, const bool used_o
     msg << "\n\n";
     for (const auto & item : fiat)
     {
-        const wxString value0_str(fmt::format("{:>{}}", Model_Currency::toString(item.second, b, 4).mb_str(), 20));
-        const wxString symbol(fmt::format("{:<{}}", item.first.mb_str(), 10));
+        const wxString value0_str(fmt::format("{:>{}}", fmt::string_view(Model_Currency::toString(item.second, b, 4).mb_str()), 20));
+        const wxString symbol(fmt::format("{:<{}}", fmt::string_view(item.first.mb_str()), 10));
 
         if (currency_data.find(item.first) != currency_data.end())
         {
             auto value1 = currency_data[item.first];
-            const wxString value1_str(fmt::format("{:>{}}", Model_Currency::toString(value1, b, 4).mb_str(), 20));
+            const wxString value1_str(fmt::format("{:>{}}", fmt::string_view(Model_Currency::toString(value1, b, 4).mb_str()), 20));
             msg << wxString::Format("%s\t%s\t\t%s\n", symbol, value0_str, value1_str);
         }
         else

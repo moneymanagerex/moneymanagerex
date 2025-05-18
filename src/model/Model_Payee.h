@@ -73,7 +73,7 @@ public:
     static bool is_used(const Data& record);
 
 public:
-    inline static wxString refTypeName = REFTYPE_NAME_PAYEE;
+    static const wxString refTypeName;
 };
 
 #endif // 

@@ -853,7 +853,7 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
         }
         wxListItem item;
         item.SetId(i);
-        item.SetData(histID.GetValue());
+        item.SetData(reinterpret_cast<void*>(histID.GetValue()));
         m_price_listbox->InsertItem(item);
     }
     if (i != m_price_listbox->GetItemCount())

@@ -95,7 +95,8 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
     bool isHistory = false;
     wxString html, separator = " ", new_html_url, new_tag;
 
-    for (int i = 0; auto& r : json_releases.GetArray())
+    int i = 0;
+    for (auto& r : json_releases.GetArray())
     {
         if (!isHistory && new_releases.Index(i) == wxNOT_FOUND) {
             isHistory = true;
@@ -354,7 +355,8 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
     Version last(last_checked);
     wxLogDebug("Current vertion: %s", current_tag);
     wxArrayInt new_releases;
-    for (int i = 0; auto& r : json_releases.GetArray()) {
+    int i = 0;
+    for (auto& r : json_releases.GetArray()) {
         const auto tag_name = wxString::FromUTF8(r["tag_name"].GetString());
         bool prerelease = r["prerelease"].GetBool();
         if (_stable && prerelease) {

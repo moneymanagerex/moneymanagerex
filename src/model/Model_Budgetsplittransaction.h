@@ -52,7 +52,7 @@ public:
     bool remove(int64 id);
 
 public:
-    inline static wxString refTypeName = REFTYPE_NAME_BILLSDEPOSITSPLIT;
+    static const wxString refTypeName;
 };
 
 #endif // 

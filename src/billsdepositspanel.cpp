@@ -889,8 +889,7 @@ wxListItemAttr* billsDepositsListCtrl::OnGetItemAttr(long item) const
     if (color_id > 0)
     {
         color_id = std::min(7, color_id);
-        const auto it = cache.find(color_id);
-        if (it != cache.end())
+        if (const auto it = cache.find(color_id); it != cache.end())
             return it->second.get();
         else {
             switch (color_id)

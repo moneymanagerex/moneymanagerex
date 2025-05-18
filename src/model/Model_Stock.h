@@ -99,7 +99,7 @@ public:
     static void UpdatePosition(Model_Stock::Data* stock_entry);
 
 public:
-    inline static wxString refTypeName = REFTYPE_NAME_STOCK;
+    static const wxString refTypeName;
 };
 
 #endif // 

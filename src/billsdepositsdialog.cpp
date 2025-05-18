@@ -697,7 +697,7 @@ void mmBDDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
     }
 #endif
 
-    const wxString& RefType = Model_Billsdeposits::refTypeName;
+    const wxString RefType = Model_Billsdeposits::refTypeName;
     if (m_bill_data.BDID != 0)
         mmAttachmentManage::DeleteAllAttachments(RefType, m_bill_data.BDID);
     EndModal(wxID_CANCEL);
