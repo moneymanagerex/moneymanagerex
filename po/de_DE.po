@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-05-09 13:28+0000\n"
-"PO-Revision-Date: 2025-05-09 15:05\n"
+"POT-Creation-Date: 2025-05-21 01:59+0000\n"
+"PO-Revision-Date: 2025-05-30 01:00\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -119,7 +119,7 @@ msgstr "Währung wählen"
 
 #: accountdialog.cpp:172
 msgid "Specify the currency to be used by this account."
-msgstr "Währung, in der die Buchhaltung geführt wird."
+msgstr "Kontowährung festlegen."
 
 #: accountdialog.cpp:175
 msgid "Favorite Account"
@@ -253,7 +253,7 @@ msgstr "Mindestzahlung:"
 
 #: accountdialog.cpp:295
 msgid "Organize attachments of this account"
-msgstr "Beilagen für dieses Konto verwalten"
+msgstr "Anlagen für dieses Konto verwalten"
 
 #: accountdialog.cpp:434
 msgid "Default Image"
@@ -452,7 +452,7 @@ msgstr "Vermögensart"
 msgid "Select type of asset"
 msgstr "Art des Vermögens wählen"
 
-#: assetdialog.cpp:211 assetspanel.cpp:55 mmhomepage.cpp:579
+#: assetdialog.cpp:211 assetspanel.cpp:55 mmhomepage.cpp:577
 msgid "Initial Value"
 msgstr "Anfangswert"
 
@@ -460,7 +460,7 @@ msgstr "Anfangswert"
 msgid "Enter the current value of the asset"
 msgstr "Wert dieses Vermögensgegenstandes beziffern"
 
-#: assetdialog.cpp:223 assetspanel.cpp:56 mmhomepage.cpp:580
+#: assetdialog.cpp:223 assetspanel.cpp:56 mmhomepage.cpp:578
 #: reports/summarystocks.cpp:121 stockdialog.cpp:242
 msgid "Current Value"
 msgstr "Aktueller Wert"
@@ -495,7 +495,7 @@ msgstr "Geben Sie den Kurs ein, zu dem sich der Wert der Anlage in Prozent pro J
 
 #: assetdialog.cpp:276
 msgid "Organize attachments of this asset"
-msgstr "Anhänge für diesen Vermögenswert verwalten"
+msgstr "Anlagen für diesen Vermögenswert verwalten"
 
 #: assetdialog.cpp:279
 msgid "Enter notes associated with this asset"
@@ -542,7 +542,7 @@ msgstr "ID"
 #: filtertransdialog.cpp:1876 import_export/qif_export.cpp:134
 #: import_export/qif_export.cpp:628 import_export/qif_import_gui.cpp:91
 #: import_export/qif_import_gui.cpp:247 import_export/univcsvdialog.cpp:105
-#: maincurrencydialog.cpp:263 mmhomepage.cpp:417 reports/incexpenses.cpp:108
+#: maincurrencydialog.cpp:263 mmhomepage.cpp:415 reports/incexpenses.cpp:108
 #: reports/transactions.cpp:224 transactionsupdatedialog.cpp:167
 #: transdialog.cpp:472 usertransactionpanel.cpp:139 webappdialog.cpp:141
 msgid "Type"
@@ -579,7 +579,7 @@ msgstr "&Vermögenswert löschen…"
 #: assetspanel.cpp:107 billsdepositspanel.cpp:433 mmchecking_list.cpp:715
 #: stocks_list.cpp:146
 msgid "&Organize Attachments…"
-msgstr "&Beilage verwalten…"
+msgstr "&Anlagen verwalten…"
 
 #: assetspanel.cpp:207
 msgid "Do you want to delete the asset?"
@@ -594,8 +594,8 @@ msgid "MMEX allows fixed assets like cars, houses, land, and others to be tracke
 msgstr "Vermögenswerte werden zu Ihrem finanziellen Gesamtwert addiert. Mit MMEX können Sie das Anlagevermögen wie Autos, Häuser, Grundstücke und andere Anlagen verfolgen. Jede Anlage kann ihren Wert durch eine bestimmte Rate pro Jahr ändern."
 
 #: assetspanel.cpp:409 assetspanel.h:124 general_report_manager.cpp:1100
-#: mmframe.cpp:218 mmframe.cpp:1990 mmframe.cpp:3635 mmhomepage.cpp:529
-#: mmhomepage.cpp:578 mmhomepagepanel.cpp:257 reports/summary.cpp:266
+#: mmframe.cpp:218 mmframe.cpp:1990 mmframe.cpp:3635 mmhomepage.cpp:527
+#: mmhomepage.cpp:576 mmhomepagepanel.cpp:257 reports/summary.cpp:266
 #: reports/summary.cpp:304
 msgid "Assets"
 msgstr "Vermögenswerte"
@@ -645,7 +645,7 @@ msgstr "Vermögenswert löschen"
 #: assetspanel.cpp:487 billsdepositspanel.cpp:321 mmcheckingpanel.cpp:298
 #: stockspanel.cpp:176
 msgid "Open attachments"
-msgstr "Anhang öffnen"
+msgstr "Anlage öffnen"
 
 #: assetspanel.cpp:494 assetspanel.cpp:495 categdialog.cpp:304
 #: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:329 payeedialog.cpp:588
@@ -734,19 +734,19 @@ msgstr "Datei"
 
 #: attachmentdialog.cpp:62
 msgid "Attachment folder not defined."
-msgstr "Anhangsverzeichnis nicht definiert."
+msgstr "Anlagenverzeichnis nicht definiert."
 
 #: attachmentdialog.cpp:63
 msgid "Please set it in Tools → Settings… → Attachments"
-msgstr "Bitte setzen Sie es unter Extras → Einstellungen… → Anhänge"
+msgstr "Bitte setzen Sie es unter Extras → Einstellungen… → Anlagen"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined"
-msgstr "Anhangsverzeichnis nicht definiert"
+msgstr "Anlagenverzeichnis nicht definiert"
 
 #: attachmentdialog.cpp:68
 msgid "Unable to find attachments folder:"
-msgstr "Kann Anhangsordner nicht finden:"
+msgstr "Kann Anlagenverzeichnis nicht finden:"
 
 #: attachmentdialog.cpp:71
 msgid "Please verify that above path is correct"
@@ -754,22 +754,22 @@ msgstr "Bitte überprüfen ob das angegebene Verzeichnis stimmt"
 
 #: attachmentdialog.cpp:72
 msgid "Attachments folder not found."
-msgstr "Ordner für Anhänge nicht gefunden."
+msgstr "Anlagenverzeichnis nicht gefunden."
 
 #: attachmentdialog.cpp:112
 #, c-format
 msgid "Attachment Manager | %s | %lld"
-msgstr "Anhang-Manager | %s | %lld"
+msgstr "Anlagen-Manager | %s | %lld"
 
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr "Anhang-Manager | %1$s | %2$s"
+msgstr "Anlagen-Manager | %1$s | %2$s"
 
 #: attachmentdialog.cpp:116
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr "Anhang-Manager | %s"
+msgstr "Anlagen-Manager | %s"
 
 #: attachmentdialog.cpp:156 customfieldlistdialog.cpp:94 payeedialog.cpp:582
 msgid "Other tools"
@@ -777,31 +777,31 @@ msgstr "Andere Tools"
 
 #: attachmentdialog.cpp:188
 msgid "Import attachment:"
-msgstr "Anhänge importieren:"
+msgstr "Anlagen importieren:"
 
 #: attachmentdialog.cpp:199
 msgid "Enter a description for the new attachment:"
-msgstr "Geben Sie eine Beschreibung für den neuen Anhang ein:"
+msgstr "Geben Sie eine Beschreibung für die neue Anlage ein:"
 
 #: attachmentdialog.cpp:200
 msgid "Attachment Manager: Add Attachment"
-msgstr "Anhang Manager: Anhang hinzufügen"
+msgstr "Anlagen-Manager: Anlage hinzufügen"
 
 #: attachmentdialog.cpp:246
 msgid "Enter a new description for the attachment:"
-msgstr "Geben Sie eine neue Beschreibung für den Anhang ein:"
+msgstr "Geben Sie eine neue Beschreibung für die Anlage ein:"
 
 #: attachmentdialog.cpp:247
 msgid "Attachment Manager: Edit Attachment"
-msgstr "Anhang Manager: Anhang bearbeiten"
+msgstr "Anlagen-Manager: Anlagen bearbeiten"
 
 #: attachmentdialog.cpp:274
 msgid "Do you want to delete this attachment?"
-msgstr "Möchten Sie diesen Anhang löschen?"
+msgstr "Möchten Sie diese Anlage löschen?"
 
 #: attachmentdialog.cpp:275
 msgid "Confirm Attachment Deletion"
-msgstr "Löschung des Anhangs bestätigen"
+msgstr "Löschung der Anlage bestätigen"
 
 #: attachmentdialog.cpp:351 categdialog.cpp:315 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:312 maincurrencydialog.cpp:539
@@ -837,7 +837,7 @@ msgstr "Zieldatei existiert bereits:"
 
 #: attachmentdialog.cpp:455
 msgid "File not found in attachments. Please delete or rename it."
-msgstr "Datei nicht gefunden in den Anhängen. Bitte löschen oder umbenennen."
+msgstr "Datei wurde in den Anlagen nicht gefunden. Bitte löschen oder umbenennen."
 
 #: attachmentdialog.cpp:456 attachmentdialog.cpp:464
 msgid "Destination file already exist"
@@ -845,19 +845,19 @@ msgstr "Zieldatei existiert bereits"
 
 #: attachmentdialog.cpp:463
 msgid "File already found in attachments"
-msgstr "Datei bereits in den Anhängen"
+msgstr "Datei ist bereits in den Anlagen"
 
 #: attachmentdialog.cpp:506
 msgid "Attachment not found:"
-msgstr "Anhang nicht gefunden:"
+msgstr "Anlage nicht gefunden:"
 
 #: attachmentdialog.cpp:509
 msgid "Do you want to delete the attachment in the database?"
-msgstr "Möchten Sie den Anhang in der Datenbank löschen?"
+msgstr "Möchten Sie die Anlage in der Datenbank löschen?"
 
 #: attachmentdialog.cpp:510
 msgid "Delete attachment failed"
-msgstr "Löschen des Anhangs fehlgeschlagen"
+msgstr "Löschen der Anlage fehlgeschlagen"
 
 #: attachmentdialog.cpp:523 general_report_manager.cpp:702
 msgid "Unable to open file:"
@@ -865,11 +865,11 @@ msgstr "Kann Datei nicht öffnen:"
 
 #: attachmentdialog.cpp:526
 msgid "Please verify that file exists and user has rights to read it."
-msgstr "Bitte überprüfen ob das File existiert und der Benutzer die nötigen Zugriffsrechte hat."
+msgstr "Bitte überprüfen ob die Datei existiert und der Benutzer die nötigen Zugriffsrechte hat."
 
 #: attachmentdialog.cpp:527
 msgid "Open attachment failed"
-msgstr "Anhang öffnen fehlgeschlagen"
+msgstr "Öffnen der Anlage fehlgeschlagen"
 
 #: billsdepositsdialog.cpp:44 billsdepositspanel.cpp:50
 msgid "Once"
@@ -1048,8 +1048,8 @@ msgstr "Erlaubt die Einstellung der verschiedenen Mengen in der VON-und ZU-Konte
 #: billsdepositsdialog.cpp:520 billsdepositspanel.cpp:112 budgetingpanel.cpp:70
 #: filtertrans.cpp:206 filtertransdialog.cpp:1071 filtertransdialog.cpp:1081
 #: import_export/qif_export.cpp:632 import_export/univcsvdialog.cpp:108
-#: maincurrencydialog.cpp:626 mmchecking_list.cpp:874 mmhomepage.cpp:345
-#: mmhomepage.cpp:419 reports/cashflow.cpp:408 reports/categexp.cpp:218
+#: maincurrencydialog.cpp:626 mmchecking_list.cpp:874 mmhomepage.cpp:343
+#: mmhomepage.cpp:417 reports/cashflow.cpp:408 reports/categexp.cpp:218
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:226
 #: splittransactionsdialog.cpp:88 splittransactionsdialog.cpp:219
 #: transactionsupdatedialog.cpp:186 transdialog.cpp:489
@@ -1146,7 +1146,7 @@ msgstr "Benutzer-Farben"
 
 #: billsdepositsdialog.cpp:622
 msgid "Organize attachments of this scheduled transaction"
-msgstr "Verwalten der Anhänge dieser Buchung"
+msgstr "Anlagen zu dieser Buchung verwalten"
 
 #: billsdepositsdialog.cpp:632 filtertrans.cpp:198 filtertransdialog.cpp:709
 #: filtertransdialog.cpp:1091 filtertransdialog.cpp:1937
@@ -1205,7 +1205,7 @@ msgstr "Namen des Zahlungsempfängers bestätigen"
 #: optionsettingsgeneral.cpp:292 optionsettingsgeneral.cpp:317
 #: payeedialog.cpp:202 payeedialog.cpp:207 splittransactionsdialog.cpp:577
 #: transactionsupdatedialog.cpp:370 transactionsupdatedialog.cpp:444
-#: transdialog.cpp:646 transdialog.cpp:650 transdialog.cpp:665 util.cpp:765
+#: transdialog.cpp:646 transdialog.cpp:650 transdialog.cpp:665 util.cpp:762
 msgid "Invalid value"
 msgstr "Ungültiger Wert"
 
@@ -1315,7 +1315,7 @@ msgstr "Wiederholungen"
 msgid "Autorepeat"
 msgstr "Automatische Wiederholung"
 
-#: billsdepositspanel.cpp:116 mmhomepage.cpp:345
+#: billsdepositspanel.cpp:116 mmhomepage.cpp:343
 msgid "Payment"
 msgstr "Zahlung"
 
@@ -1327,7 +1327,7 @@ msgstr "Mit MMEX können regelmäßige Zahlungen als Transaktionen eingerichtet 
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr "Tipp: Diese Buchungen können so aufgesetzt werden, dass der Benutzer das Fälligkeitsdatum auf jeden beliebigen Wert setzen kann."
 
-#: billsdepositspanel.cpp:241 billsdepositspanel.cpp:960 mmframe.cpp:3453
+#: billsdepositspanel.cpp:241 billsdepositspanel.cpp:959 mmframe.cpp:3453
 #: mmhomepagepanel.cpp:263
 msgid "Scheduled Transactions"
 msgstr "Geplante Transaktionen"
@@ -1396,21 +1396,21 @@ msgstr "Manuell"
 msgid "Inactive"
 msgstr "Inaktiv"
 
-#: billsdepositspanel.cpp:549 mmhomepage.cpp:303
+#: billsdepositspanel.cpp:549 mmhomepage.cpp:301
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
 msgstr[0] "%d Tag/e überfällig!"
 msgstr[1] "%d Tage überfällig!"
 
-#: billsdepositspanel.cpp:550 mmhomepage.cpp:301
+#: billsdepositspanel.cpp:550 mmhomepage.cpp:299
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
 msgstr[0] "%d Tag Verzögerung!"
 msgstr[1] "%d Tage Verzögerung!"
 
-#: billsdepositspanel.cpp:551 mmhomepage.cpp:300
+#: billsdepositspanel.cpp:551 mmhomepage.cpp:298
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
@@ -1449,7 +1449,7 @@ msgstr "Typ:"
 msgid "Expense"
 msgstr "Ausgaben"
 
-#: budgetentrydialog.cpp:121 db/DB_Table_Category_V1.h:163 mmhomepage.cpp:421
+#: budgetentrydialog.cpp:121 db/DB_Table_Category_V1.h:163 mmhomepage.cpp:419
 #: reports/categexp.cpp:166 reports/categexp.cpp:196 reports/categexp.cpp:426
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
 #: reports/incexpenses.cpp:245
@@ -2050,7 +2050,7 @@ msgstr "Auto-Vervollständigung"
 msgid "Enables autocomplete on custom field"
 msgstr "Aktiviert die automatische Vervollständigung für ein benutzerdefiniertes Feld"
 
-#: customfieldeditdialog.cpp:167 optionsettingsview.cpp:252 util.cpp:622
+#: customfieldeditdialog.cpp:167 optionsettingsview.cpp:252 util.cpp:619
 msgid "Default"
 msgstr "Standard"
 
@@ -2557,7 +2557,7 @@ msgstr "Zurück"
 msgid "Unreconciled"
 msgstr "Ungeprüft"
 
-#: filtertransdialog.cpp:49 mmhomepage.cpp:526 mmhomepage.cpp:709
+#: filtertransdialog.cpp:49 mmhomepage.cpp:524 mmhomepage.cpp:707
 #: model/Model_Checking.cpp:46
 msgid "Reconciled"
 msgstr "Überprüft"
@@ -3437,7 +3437,7 @@ msgid "Don't Care"
 msgstr "Ist mir egal"
 
 #: import_export/univcsvdialog.cpp:118 mmchecking_list.cpp:108
-#: mmhomepage.cpp:535 mmhomepage.cpp:710 reports/cashflow.cpp:409
+#: mmhomepage.cpp:533 mmhomepage.cpp:708 reports/cashflow.cpp:409
 #: reports/summary.cpp:270 reports/summary.cpp:306
 msgid "Balance"
 msgstr "Kontostand"
@@ -3925,7 +3925,7 @@ msgstr "Möchten Sie die Wechselkurse aktualisieren?"
 msgid "Unable to download history for base symbol %s. Historical rates unavailable!"
 msgstr "Der Verlauf für das Symbol %s kann nicht heruntergeladen werden. Vorherige Kurse sind nicht verfügbar!"
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:477 util.cpp:693
+#: maincurrencydialog.cpp:876 stockspanel.cpp:477 util.cpp:690
 msgid "Unable to find base currency symbol!"
 msgstr "Konnte das Basiswährungssymbol nicht finden!"
 
@@ -4025,12 +4025,12 @@ msgstr "Geben Sie Suchtags ein, optional getrennt durch die Operatoren '&' und '
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
 msgstr "Der Standard-Operator zwischen aufeinanderfolgenden Tags ist AND, verwenden Sie '|', um den Operator auf OR zu ändern."
 
-#: mmSimpleDialogs.cpp:1777
+#: mmSimpleDialogs.cpp:1776
 #, c-format
 msgid "Create new tag '%s'?"
 msgstr "Neues Schlagwort '%s' erstellen?"
 
-#: mmSimpleDialogs.cpp:1777
+#: mmSimpleDialogs.cpp:1776
 msgid "New tag entered"
 msgstr "Neues Schlagwort eingegeben"
 
@@ -4585,7 +4585,7 @@ msgstr "(Zeitraum)"
 
 #: mmcheckingpanel.cpp:884 mmcheckingpanel.cpp:902 webapp.cpp:621
 msgid "Attachment"
-msgstr "Anhang"
+msgstr "Anlage"
 
 #: mmcheckingpanel.cpp:953
 #, c-format
@@ -4680,26 +4680,26 @@ msgid "Fatal error occured.\n"
 msgstr "Ein schwerer Fehler ist aufgetreten.\n"
 "Die Anwendung wird beendet."
 
-#: mmframe.cpp:212 mmhomepage.cpp:693
+#: mmframe.cpp:212 mmhomepage.cpp:691
 msgid "Cash Accounts"
 msgstr "Bargeldkonto"
 
-#: mmframe.cpp:213 mmhomepage.cpp:694 reports/summary.cpp:254
+#: mmframe.cpp:213 mmhomepage.cpp:692 reports/summary.cpp:254
 #: reports/summary.cpp:297
 msgid "Bank Accounts"
 msgstr "Bankkonten"
 
-#: mmframe.cpp:214 mmhomepage.cpp:695 reports/summary.cpp:256
+#: mmframe.cpp:214 mmhomepage.cpp:693 reports/summary.cpp:256
 #: reports/summary.cpp:298
 msgid "Credit Card Accounts"
 msgstr "Kreditkartenkonten"
 
-#: mmframe.cpp:215 mmhomepage.cpp:696 reports/summary.cpp:258
+#: mmframe.cpp:215 mmhomepage.cpp:694 reports/summary.cpp:258
 #: reports/summary.cpp:299
 msgid "Loan Accounts"
 msgstr "Kreditkonten"
 
-#: mmframe.cpp:216 mmhomepage.cpp:697 reports/summary.cpp:260
+#: mmframe.cpp:216 mmhomepage.cpp:695 reports/summary.cpp:260
 #: reports/summary.cpp:300
 msgid "Term Accounts"
 msgstr "Terminkonten"
@@ -4708,7 +4708,7 @@ msgstr "Terminkonten"
 msgid "Stock Portfolios"
 msgstr "Aktienportfolios"
 
-#: mmframe.cpp:219 mmhomepage.cpp:700
+#: mmframe.cpp:219 mmhomepage.cpp:698
 msgid "Share Accounts"
 msgstr "Aktienkonten"
 
@@ -5722,7 +5722,7 @@ msgstr "Datei %s nicht gefunden."
 msgid "General Group Report"
 msgstr "Allgemeiner Gruppenbericht"
 
-#: mmframereport.cpp:108 mmhomepage.cpp:854 model/Model_Report.cpp:410
+#: mmframereport.cpp:108 mmhomepage.cpp:852 model/Model_Report.cpp:410
 #: reports/bugreport.h:110
 msgid "Caught exception"
 msgstr "Abgefangene Ausnahme"
@@ -5804,17 +5804,17 @@ msgstr "Gewinn/Verlust"
 msgid "Market Value"
 msgstr "Marktwert"
 
-#: mmhomepage.cpp:87 mmhomepage.cpp:581
+#: mmhomepage.cpp:87 mmhomepage.cpp:579
 msgid "Cash Balance"
 msgstr "Kontostand"
 
-#: mmhomepage.cpp:88 mmhomepage.cpp:582 reports/budgetingperf.cpp:142
+#: mmhomepage.cpp:88 mmhomepage.cpp:580 reports/budgetingperf.cpp:142
 #: reports/cashflow.cpp:276 reports/categexp.cpp:219 reports/categexp.cpp:497
 #: reports/summary.cpp:303
 msgid "Total"
 msgstr "Gesamt"
 
-#: mmhomepage.cpp:128 mmhomepage.cpp:633 mmhomepage.cpp:749
+#: mmhomepage.cpp:128 mmhomepage.cpp:631 mmhomepage.cpp:747
 #: reports/incexpenses.cpp:280 reports/payee.cpp:167
 #: reports/summarystocks.cpp:163 splittransactionsdialog.cpp:260
 msgid "Total:"
@@ -5825,63 +5825,63 @@ msgstr "Gesamt:"
 msgid "Top Withdrawals: %s"
 msgstr "Top Auszahlungen: %s"
 
-#: mmhomepage.cpp:345
+#: mmhomepage.cpp:343
 msgid "Account/Payee"
 msgstr "Konto / Zahlungsempfänger"
 
-#: mmhomepage.cpp:415
+#: mmhomepage.cpp:413
 #, c-format
 msgid "Income vs. Expenses: %s"
 msgstr "Einnahmen vs Ausgaben: %s"
 
-#: mmhomepage.cpp:425 reports/categexp.cpp:153 reports/categexp.cpp:188
+#: mmhomepage.cpp:423 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:425 reports/categexp.cpp:496 reports/incexpenses.cpp:88
 #: reports/incexpenses.cpp:214 reports/incexpenses.cpp:246
 #: reports/payee.cpp:138
 msgid "Expenses"
 msgstr "Ausgaben"
 
-#: mmhomepage.cpp:429 reports/incexpenses.cpp:117
+#: mmhomepage.cpp:427 reports/incexpenses.cpp:117
 msgid "Difference:"
 msgstr "Differenz:"
 
-#: mmhomepage.cpp:433
+#: mmhomepage.cpp:431
 msgid "Income/Expenses"
 msgstr "Einnahmen/Ausgaben"
 
-#: mmhomepage.cpp:457
+#: mmhomepage.cpp:455
 msgid "Transaction Statistics"
 msgstr "Buchungsstatistik"
 
-#: mmhomepage.cpp:504
+#: mmhomepage.cpp:502
 msgid "Follow Up On Transactions: "
 msgstr "Anstehende Buchungen:"
 
-#: mmhomepage.cpp:508
+#: mmhomepage.cpp:506
 msgid "Total Transactions: "
 msgstr "Buchungen insgesamt:"
 
-#: mmhomepage.cpp:532 model/Model.cpp:24
+#: mmhomepage.cpp:530 model/Model.cpp:24
 msgid "Stock"
 msgstr "Wertpapier"
 
-#: mmhomepage.cpp:542
+#: mmhomepage.cpp:540
 msgid "Total Net Worth"
 msgstr "Gesamt Nettowert"
 
-#: mmhomepage.cpp:626
+#: mmhomepage.cpp:624
 msgid "Other Assets"
 msgstr "Sonstige Vermögenswerte"
 
-#: mmhomepage.cpp:698 reports/summary.cpp:264 reports/summary.cpp:302
+#: mmhomepage.cpp:696 reports/summary.cpp:264 reports/summary.cpp:302
 msgid "Investment Accounts"
 msgstr "Anlagekonten"
 
-#: mmhomepage.cpp:699 reports/summary.cpp:262 reports/summary.cpp:301
+#: mmhomepage.cpp:697 reports/summary.cpp:262 reports/summary.cpp:301
 msgid "Asset Accounts"
 msgstr "Anlagenkonten"
 
-#: mmhomepage.cpp:840
+#: mmhomepage.cpp:838
 msgid "Currency Exchange Rates"
 msgstr "Wechselkurse"
 
@@ -6268,7 +6268,7 @@ msgstr "Vorletztes Jahr"
 
 #: optiondialog.cpp:37 optionsettingsattachment.cpp:65 webappdialog.cpp:146
 msgid "Attachments"
-msgstr "Beilagen"
+msgstr "Anlagen"
 
 #: optiondialog.cpp:37
 msgid "General"
@@ -6294,11 +6294,11 @@ msgstr "%s Seite wurde gespeichert."
 #: optionsettingsattachment.cpp:72
 #, c-format
 msgid "Attachment archive folder for %s only:"
-msgstr "Beilagenarchiveordner nur für %s"
+msgstr "Anlagenarchivordner nur für %s:"
 
 #: optionsettingsattachment.cpp:76
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr "Jedes Betriebssystem (Win, Mac, Unix) hat seinen Anhangs-Ordner"
+msgstr "Jedes Betriebssystem (Windows, Mac, Unix) hat sein eigenes Anlagenverzeichnis"
 
 #: optionsettingsattachment.cpp:98
 msgid "Browse for folder"
@@ -6306,11 +6306,11 @@ msgstr "Verzeichnis auswählen"
 
 #: optionsettingsattachment.cpp:104 optionsettingsattachment.cpp:220
 msgid "Real path:"
-msgstr "Pfad: "
+msgstr "Pfad:"
 
 #: optionsettingsattachment.cpp:109
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr "Legende (kann als Variablen am Anfang des obigen Pfades verwendet werden)"
+msgstr "Legende (kann als Variable am Anfang des obigen Pfades verwendet werden)"
 
 #: optionsettingsattachment.cpp:114
 #, c-format
@@ -6330,11 +6330,11 @@ msgstr "%s : Ordner der .MMB Datenbankdatei"
 #: optionsettingsattachment.cpp:117
 #, c-format
 msgid "%s : MMEX Application data folder"
-msgstr "%s : MMEX-Anwendungsdatenordner"
+msgstr "%s : MMEX Anwendungsdatenverzeichnis"
 
 #: optionsettingsattachment.cpp:123
 msgid "Other OS folders "
-msgstr "andere Verzeichnisse"
+msgstr "Andere Verzeichnisse "
 
 #: optionsettingsattachment.cpp:128
 msgid "Not set yet"
@@ -6357,15 +6357,15 @@ msgstr "Unix-Ordner: %s"
 
 #: optionsettingsattachment.cpp:167
 msgid "Create and use Attachments subfolder"
-msgstr "Erstellen und verwenden Sie den Anhang-Unterordner"
+msgstr "Erstellen und verwenden Sie den Anlagen-Unterordner"
 
 #: optionsettingsattachment.cpp:178
 msgid "Delete file after import"
-msgstr "Datei löschen nach Import"
+msgstr "Datei nach Import löschen"
 
 #: optionsettingsattachment.cpp:180
 msgid "Select to delete file after import in attachments archive"
-msgstr "Wählen Sie, um die Datei nach dem Import ins Attachments Archiv zu löschen."
+msgstr "Wählen Sie, um die Datei nach dem Import ins Anlagenarchiv zu löschen"
 
 #: optionsettingsattachment.cpp:184
 msgid "When remove attachment, move file instead of delete"
@@ -6373,35 +6373,35 @@ msgstr "Wenn die Beilage gelöscht wird, Datei verschieben statt löschen"
 
 #: optionsettingsattachment.cpp:186
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
-msgstr "Auswählen, um Datei nicht zu löschen, wenn Anlage entfernt wird, sondern diese stattdessen in Unterordner 'gelöscht' zu verschieben"
+msgstr "Auswählen, um Datei nicht zu löschen, wenn Anlage entfernt wird, sondern diese stattdessen in den Unterordner 'gelöscht' verschieben"
 
 #: optionsettingsattachment.cpp:190
 msgid "When duplicating transactions duplicate the attachments also"
-msgstr "Beim Duplizieren von Transaktionen werden auch die Anhänge dupliziert"
+msgstr "Beim Duplizieren von Transaktionen werden auch die Anlagen dupliziert"
 
 #: optionsettingsattachment.cpp:192
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
-msgstr "Auswählen, wenn die Anhänge zu neuen Transaktionen kopiert oder eingefügt werden sollen"
+msgstr "Auswählen, wenn die Anlagen zu neuen Transaktionen kopiert oder eingefügt werden sollen"
 
 #: optionsettingsattachment.cpp:205
 msgid "Choose folder to set as attachments archive"
-msgstr "Wählen Sie den Ordner um die Anhänge zu archivieren"
+msgstr "Wählen Sie das Verzeichnis für das Anlagenarchiv"
 
 #: optionsettingsattachment.cpp:249
 msgid "Attachments folder"
-msgstr "Ordner für Dateianhänge"
+msgstr "Verzeichnis für Dateianlagen"
 
 #: optionsettingsattachment.cpp:249
 msgid "Attachments folder it's not writable!"
-msgstr "Ordner Dateianhänge ist nicht beschreibbar!"
+msgstr "Verzeichnis für Dateianlagen ist nicht beschreibbar!"
 
 #: optionsettingsattachment.cpp:257
 msgid "Attachments path has been changed!"
-msgstr "Der Pfad für Anhänge wurde geändert!"
+msgstr "Der Pfad für die Anlagen wurde geändert!"
 
 #: optionsettingsattachment.cpp:259 optionsettingsattachment.cpp:268
 msgid "Attachments folder migration"
-msgstr "Anhangsverzeichnis Migration"
+msgstr "Migration des Anlagenverzeichnisses"
 
 #: optionsettingsattachment.cpp:265
 msgid "An error occurred while moving the attachments folder. Please move it manually."
@@ -6652,7 +6652,7 @@ msgstr "URL"
 
 #: optionsettingsnet.cpp:78
 msgid "Specify the Web App URL without final slash"
-msgstr "Beilagen zu diesen Konto organisieren"
+msgstr "Web APP URL ohne Schrägstrich am Ende angeben"
 
 #: optionsettingsnet.cpp:81 webappdialog.cpp:101
 msgid "GUID"
@@ -7007,7 +7007,7 @@ msgstr "Ka&tegorie löschen"
 
 #: payeedialog.cpp:890
 msgid "&Attachment Manager"
-msgstr "&Anhang Verwaltung"
+msgstr "&Anlagenverwaltung"
 
 #: payeedialog.cpp:894
 msgid "Merge &Payee"
@@ -7734,7 +7734,7 @@ msgstr "Abzugsfähige Kommissionssplit-Kategorien verwenden"
 
 #: sharetransactiondialog.cpp:308 stockdialog.cpp:251
 msgid "Manage stock attachments"
-msgstr "Aktien Beilagen verwalten"
+msgstr "Aktienanlagen verwalten"
 
 #: sharetransactiondialog.cpp:313 stockdialog.cpp:253
 msgid "Display the web page for the specified Stock symbol"
@@ -8070,7 +8070,7 @@ msgstr "Aktienkurse erfolgreich aktualisiert"
 msgid "Last updated %s"
 msgstr "Letzte Aktualisierung %s"
 
-#: stockspanel.cpp:483 util.cpp:717 util.cpp:878
+#: stockspanel.cpp:483 util.cpp:714 util.cpp:875
 msgid "Nothing to update"
 msgstr "Nichts zu aktualisieren"
 
@@ -8243,7 +8243,7 @@ msgstr "Ausfüllen von Buchung #"
 
 #: transdialog.cpp:579 usertransactionpanel.cpp:216
 msgid "Manage transaction attachments"
-msgstr "Verwalten von Buchungs-Beilagen"
+msgstr "Buchungsanlagen verwalten"
 
 #: transdialog.cpp:749
 #, c-format
@@ -8346,90 +8346,90 @@ msgstr "Kontoauswahl"
 msgid "UserTransactionPanel"
 msgstr "BenutzerTransaktionsfeld"
 
-#: util.cpp:750
+#: util.cpp:747
 msgid "Currency rates have been updated"
 msgstr "Währungskurse wurden aktualisiert"
 
-#: util.cpp:849 util.cpp:944 util.cpp:950 util.cpp:981 util.cpp:1040
+#: util.cpp:846 util.cpp:941 util.cpp:947 util.cpp:978 util.cpp:1037
 msgid "JSON Parse Error"
 msgstr "JSON-Parse-Fehler"
 
-#: util.cpp:989 util.cpp:1048
+#: util.cpp:986 util.cpp:1045
 msgid "Expected response to contain a data or error string"
 msgstr "Erwartete Antwort wird einen Daten- oder Fehlerstring enthalten"
 
-#: util.cpp:1020
+#: util.cpp:1017
 msgid "Unable to find asset for symbol."
 msgstr "Kein Vermögenswert für das Symbol gefunden."
 
-#: util.cpp:1055
+#: util.cpp:1052
 msgid "Unable to get base currency!"
 msgstr "Basiswährung konnte nicht abgerufen werden!"
 
-#: util.cpp:1061
+#: util.cpp:1058
 msgid "USD"
 msgstr "USD"
 
-#: util.cpp:1064
+#: util.cpp:1061
 msgid "Unable to find currency 'USD', required for converting historical prices"
 msgstr "Währung 'USD' konnte nicht gefunden werden, benötigt um historische Preise zu konvertieren"
 
-#: util.cpp:1085
+#: util.cpp:1082
 msgid "Unable to parse price in asset history"
 msgstr "Preis in der Anlagenhistorie kann nicht analysiert werden"
 
-#: util.cpp:1458 wizard_update.cpp:178
+#: util.cpp:1455 wizard_update.cpp:178
 #, c-format
 msgid "Version: %s"
 msgstr "Version: %s"
 
-#: util.cpp:1459
+#: util.cpp:1456
 #, c-format
 msgid "Built on: %1$s %2$s"
 msgstr "Erstellt am: %1$s %2$s"
 
-#: util.cpp:1460
+#: util.cpp:1457
 #, c-format
 msgid "Database version: %d"
 msgstr "Datenbankversion: %d"
 
-#: util.cpp:1467
+#: util.cpp:1464
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
 msgstr "Git-Eintrag: %1$s (%2$s)"
 
-#: util.cpp:1470
+#: util.cpp:1467
 #, c-format
 msgid "Git branch: %s"
 msgstr "Git Zweig: %s"
 
-#: util.cpp:1474
+#: util.cpp:1471
 msgid "MMEX is using the following support products:"
 msgstr "MMEX verwendet folgene Unterstützungsprodukte:"
 
-#: util.cpp:1491
+#: util.cpp:1488
 msgid "Built with:"
 msgstr "erstellt mit:"
 
-#: util.cpp:1510
+#: util.cpp:1507
 msgid "Running on:"
 msgstr "Läuft auf:"
 
-#: util.cpp:1524
+#: util.cpp:1521
 #, c-format
 msgid "System Locale: %s"
 msgstr "Systemsprache: %s"
 
-#: util.cpp:1525
+#: util.cpp:1522
 #, c-format
 msgid "User Interface Language: %s"
 msgstr "Sprache der Benutzeroberfläche: %s"
 
-#: util.cpp:1748
+#: util.cpp:1745
 msgid "The complete list of closed issues is available at this link"
 msgstr "Die vollständige Liste der abgeschlossenen Fälle finden Sie unter diesem Link"
 
-#: util.cpp:1905
+#: util.cpp:1902
 msgid "Copy all text to clipboard"
 msgstr "Alle Texte in die Zwischenablage kopieren"
 
@@ -8501,7 +8501,7 @@ msgstr "Konnte Anhänge von der Webapp nicht herunterladen."
 
 #: webapp.cpp:597
 msgid "Attachments folder not set or unavailable."
-msgstr "Anhangsverzeichnis nicht gesetzt oder ungültig."
+msgstr "Anlagenverzeichnis nicht gesetzt oder ungültig."
 
 #: webapp.cpp:598
 msgid "Transaction not downloaded:"
@@ -8509,11 +8509,11 @@ msgstr "Buchung nicht heruntergeladen:"
 
 #: webapp.cpp:599
 msgid "Please fix the attachments folder or delete the attachments from the WebApp."
-msgstr "Bitte korrigieren Sie den Ordner für Anhänge oder löschen Sie Anhänge aus der WebApp."
+msgstr "Bitte korrigieren Sie das Anlagenverzeichnis oder löschen Sie die Anlagen aus der WebApp."
 
 #: webapp.cpp:600
 msgid "Attachment folder error"
-msgstr "Anhangsverzeichnisfehler"
+msgstr "Anlagenverzeichnisfehler"
 
 #: webapp.cpp:632
 msgid "Transaction not downloaded: please retry to download transactions"
@@ -8521,7 +8521,7 @@ msgstr "Transaktion nicht heruntergeladen: Bitte versuchen Sie erneut, Transakti
 
 #: webapp.cpp:633 webappdialog.cpp:339
 msgid "Attachment download error"
-msgstr "Herunterladen des Anhangs fehlgeschlagen"
+msgstr "Herunterladen der Anlage ist fehlgeschlagen"
 
 #: webappdialog.cpp:68
 msgid "Import WebApp transactions"
@@ -8561,7 +8561,7 @@ msgstr "WebApp Verbindungsfehler"
 
 #: webappdialog.cpp:407
 msgid "Open Attachment"
-msgstr "Anhang öffnen"
+msgstr "Anlage öffnen"
 
 #: webappdialog.cpp:409
 msgid "Import and open"
