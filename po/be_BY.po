@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-05-09 13:28+0000\n"
-"PO-Revision-Date: 2025-05-09 15:04\n"
+"POT-Creation-Date: 2025-05-21 01:59+0000\n"
+"PO-Revision-Date: 2025-05-30 00:59\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "Language: be_BY\n"
@@ -452,7 +452,7 @@ msgstr "Тып актыва"
 msgid "Select type of asset"
 msgstr "Абярыце тып актыва"
 
-#: assetdialog.cpp:211 assetspanel.cpp:55 mmhomepage.cpp:579
+#: assetdialog.cpp:211 assetspanel.cpp:55 mmhomepage.cpp:577
 msgid "Initial Value"
 msgstr "Пачатковае значэнне"
 
@@ -460,7 +460,7 @@ msgstr "Пачатковае значэнне"
 msgid "Enter the current value of the asset"
 msgstr "Напішыце бягучы кошт актыва"
 
-#: assetdialog.cpp:223 assetspanel.cpp:56 mmhomepage.cpp:580
+#: assetdialog.cpp:223 assetspanel.cpp:56 mmhomepage.cpp:578
 #: reports/summarystocks.cpp:121 stockdialog.cpp:242
 msgid "Current Value"
 msgstr "Бягучае значэнне"
@@ -542,7 +542,7 @@ msgstr "ID"
 #: filtertransdialog.cpp:1876 import_export/qif_export.cpp:134
 #: import_export/qif_export.cpp:628 import_export/qif_import_gui.cpp:91
 #: import_export/qif_import_gui.cpp:247 import_export/univcsvdialog.cpp:105
-#: maincurrencydialog.cpp:263 mmhomepage.cpp:417 reports/incexpenses.cpp:108
+#: maincurrencydialog.cpp:263 mmhomepage.cpp:415 reports/incexpenses.cpp:108
 #: reports/transactions.cpp:224 transactionsupdatedialog.cpp:167
 #: transdialog.cpp:472 usertransactionpanel.cpp:139 webappdialog.cpp:141
 msgid "Type"
@@ -594,8 +594,8 @@ msgid "MMEX allows fixed assets like cars, houses, land, and others to be tracke
 msgstr ""
 
 #: assetspanel.cpp:409 assetspanel.h:124 general_report_manager.cpp:1100
-#: mmframe.cpp:218 mmframe.cpp:1990 mmframe.cpp:3635 mmhomepage.cpp:529
-#: mmhomepage.cpp:578 mmhomepagepanel.cpp:257 reports/summary.cpp:266
+#: mmframe.cpp:218 mmframe.cpp:1990 mmframe.cpp:3635 mmhomepage.cpp:527
+#: mmhomepage.cpp:576 mmhomepagepanel.cpp:257 reports/summary.cpp:266
 #: reports/summary.cpp:304
 msgid "Assets"
 msgstr "Актывы"
@@ -1048,8 +1048,8 @@ msgstr "Ручное пазначэнне сумы, што будзе перал
 #: billsdepositsdialog.cpp:520 billsdepositspanel.cpp:112 budgetingpanel.cpp:70
 #: filtertrans.cpp:206 filtertransdialog.cpp:1071 filtertransdialog.cpp:1081
 #: import_export/qif_export.cpp:632 import_export/univcsvdialog.cpp:108
-#: maincurrencydialog.cpp:626 mmchecking_list.cpp:874 mmhomepage.cpp:345
-#: mmhomepage.cpp:419 reports/cashflow.cpp:408 reports/categexp.cpp:218
+#: maincurrencydialog.cpp:626 mmchecking_list.cpp:874 mmhomepage.cpp:343
+#: mmhomepage.cpp:417 reports/cashflow.cpp:408 reports/categexp.cpp:218
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:226
 #: splittransactionsdialog.cpp:88 splittransactionsdialog.cpp:219
 #: transactionsupdatedialog.cpp:186 transdialog.cpp:489
@@ -1204,7 +1204,7 @@ msgstr "Спраўдзіце імя платніка"
 #: optionsettingsgeneral.cpp:292 optionsettingsgeneral.cpp:317
 #: payeedialog.cpp:202 payeedialog.cpp:207 splittransactionsdialog.cpp:577
 #: transactionsupdatedialog.cpp:370 transactionsupdatedialog.cpp:444
-#: transdialog.cpp:646 transdialog.cpp:650 transdialog.cpp:665 util.cpp:765
+#: transdialog.cpp:646 transdialog.cpp:650 transdialog.cpp:665 util.cpp:762
 msgid "Invalid value"
 msgstr "Хібнае значэнне"
 
@@ -1313,7 +1313,7 @@ msgstr "Паўтарэнні"
 msgid "Autorepeat"
 msgstr "Аўтапаўтор"
 
-#: billsdepositspanel.cpp:116 mmhomepage.cpp:345
+#: billsdepositspanel.cpp:116 mmhomepage.cpp:343
 msgid "Payment"
 msgstr "Аплата"
 
@@ -1325,7 +1325,7 @@ msgstr "MMEX дазваляе планаваць аперацыі з рэгул�
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr "Падказка: Гэтыя аперацыі можна наладзіць для аўтаматычнай актывацыі, дазваляючы карыстальніку паказаць любыя значэнні ў дату сплаты."
 
-#: billsdepositspanel.cpp:241 billsdepositspanel.cpp:960 mmframe.cpp:3453
+#: billsdepositspanel.cpp:241 billsdepositspanel.cpp:959 mmframe.cpp:3453
 #: mmhomepagepanel.cpp:263
 msgid "Scheduled Transactions"
 msgstr ""
@@ -1394,7 +1394,7 @@ msgstr "Уручную"
 msgid "Inactive"
 msgstr "Неактыўны"
 
-#: billsdepositspanel.cpp:549 mmhomepage.cpp:303
+#: billsdepositspanel.cpp:549 mmhomepage.cpp:301
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
@@ -1403,7 +1403,7 @@ msgstr[1] "%d дні пратырміноўкі!"
 msgstr[2] "%d дзён пратырміноўкі!"
 msgstr[3] "%d дзень пратырміноўкі!"
 
-#: billsdepositspanel.cpp:550 mmhomepage.cpp:301
+#: billsdepositspanel.cpp:550 mmhomepage.cpp:299
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
@@ -1412,7 +1412,7 @@ msgstr[1] "%d дні затрымкі!"
 msgstr[2] "%d дзён затрымкі!"
 msgstr[3] "%d дзень затрымкі!"
 
-#: billsdepositspanel.cpp:551 mmhomepage.cpp:300
+#: billsdepositspanel.cpp:551 mmhomepage.cpp:298
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
@@ -1453,7 +1453,7 @@ msgstr "Тып:"
 msgid "Expense"
 msgstr "Выдатак"
 
-#: budgetentrydialog.cpp:121 db/DB_Table_Category_V1.h:163 mmhomepage.cpp:421
+#: budgetentrydialog.cpp:121 db/DB_Table_Category_V1.h:163 mmhomepage.cpp:419
 #: reports/categexp.cpp:166 reports/categexp.cpp:196 reports/categexp.cpp:426
 #: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
 #: reports/incexpenses.cpp:245
@@ -2050,7 +2050,7 @@ msgstr "Аўтазапаўненне"
 msgid "Enables autocomplete on custom field"
 msgstr "Увамкнуць аўтазапаўненне карыстальніцкага поля"
 
-#: customfieldeditdialog.cpp:167 optionsettingsview.cpp:252 util.cpp:622
+#: customfieldeditdialog.cpp:167 optionsettingsview.cpp:252 util.cpp:619
 msgid "Default"
 msgstr "Па змаўчанні"
 
@@ -2554,7 +2554,7 @@ msgstr "Назад"
 msgid "Unreconciled"
 msgstr "Няўзгодненая"
 
-#: filtertransdialog.cpp:49 mmhomepage.cpp:526 mmhomepage.cpp:709
+#: filtertransdialog.cpp:49 mmhomepage.cpp:524 mmhomepage.cpp:707
 #: model/Model_Checking.cpp:46
 msgid "Reconciled"
 msgstr "Узгодненая"
@@ -3436,7 +3436,7 @@ msgid "Don't Care"
 msgstr "Пляваць"
 
 #: import_export/univcsvdialog.cpp:118 mmchecking_list.cpp:108
-#: mmhomepage.cpp:535 mmhomepage.cpp:710 reports/cashflow.cpp:409
+#: mmhomepage.cpp:533 mmhomepage.cpp:708 reports/cashflow.cpp:409
 #: reports/summary.cpp:270 reports/summary.cpp:306
 msgid "Balance"
 msgstr "Баланс"
@@ -3923,7 +3923,7 @@ msgstr ""
 msgid "Unable to download history for base symbol %s. Historical rates unavailable!"
 msgstr ""
 
-#: maincurrencydialog.cpp:876 stockspanel.cpp:477 util.cpp:693
+#: maincurrencydialog.cpp:876 stockspanel.cpp:477 util.cpp:690
 msgid "Unable to find base currency symbol!"
 msgstr ""
 
@@ -4023,12 +4023,12 @@ msgstr ""
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
 msgstr ""
 
-#: mmSimpleDialogs.cpp:1777
+#: mmSimpleDialogs.cpp:1776
 #, c-format
 msgid "Create new tag '%s'?"
 msgstr "Стварыць новую пазнаку '%s'?"
 
-#: mmSimpleDialogs.cpp:1777
+#: mmSimpleDialogs.cpp:1776
 msgid "New tag entered"
 msgstr "Новая пазнака ёсць дадазеная"
 
@@ -4704,26 +4704,26 @@ msgid "Fatal error occured.\n"
 msgstr "Сталася непапраўная памылка.\n"
 "Дадатак будзе спынены."
 
-#: mmframe.cpp:212 mmhomepage.cpp:693
+#: mmframe.cpp:212 mmhomepage.cpp:691
 msgid "Cash Accounts"
 msgstr "Наяўныя рахункі"
 
-#: mmframe.cpp:213 mmhomepage.cpp:694 reports/summary.cpp:254
+#: mmframe.cpp:213 mmhomepage.cpp:692 reports/summary.cpp:254
 #: reports/summary.cpp:297
 msgid "Bank Accounts"
 msgstr "Банкаўскія рахункі"
 
-#: mmframe.cpp:214 mmhomepage.cpp:695 reports/summary.cpp:256
+#: mmframe.cpp:214 mmhomepage.cpp:693 reports/summary.cpp:256
 #: reports/summary.cpp:298
 msgid "Credit Card Accounts"
 msgstr "Карткавыя рахункі"
 
-#: mmframe.cpp:215 mmhomepage.cpp:696 reports/summary.cpp:258
+#: mmframe.cpp:215 mmhomepage.cpp:694 reports/summary.cpp:258
 #: reports/summary.cpp:299
 msgid "Loan Accounts"
 msgstr "Рахункі пазыкаў"
 
-#: mmframe.cpp:216 mmhomepage.cpp:697 reports/summary.cpp:260
+#: mmframe.cpp:216 mmhomepage.cpp:695 reports/summary.cpp:260
 #: reports/summary.cpp:300
 msgid "Term Accounts"
 msgstr "Тырміновыя рахункі"
@@ -4732,7 +4732,7 @@ msgstr "Тырміновыя рахункі"
 msgid "Stock Portfolios"
 msgstr "Фондавыя партфелі"
 
-#: mmframe.cpp:219 mmhomepage.cpp:700
+#: mmframe.cpp:219 mmhomepage.cpp:698
 msgid "Share Accounts"
 msgstr "Паявыя Рахункі (рахункі акцыяў)"
 
@@ -5747,7 +5747,7 @@ msgstr "Файл %s ня знойдзены."
 msgid "General Group Report"
 msgstr "Групавая справаздача"
 
-#: mmframereport.cpp:108 mmhomepage.cpp:854 model/Model_Report.cpp:410
+#: mmframereport.cpp:108 mmhomepage.cpp:852 model/Model_Report.cpp:410
 #: reports/bugreport.h:110
 msgid "Caught exception"
 msgstr "Сталася выключэнне"
@@ -5829,17 +5829,17 @@ msgstr "Атрымана/Згублена"
 msgid "Market Value"
 msgstr ""
 
-#: mmhomepage.cpp:87 mmhomepage.cpp:581
+#: mmhomepage.cpp:87 mmhomepage.cpp:579
 msgid "Cash Balance"
 msgstr ""
 
-#: mmhomepage.cpp:88 mmhomepage.cpp:582 reports/budgetingperf.cpp:142
+#: mmhomepage.cpp:88 mmhomepage.cpp:580 reports/budgetingperf.cpp:142
 #: reports/cashflow.cpp:276 reports/categexp.cpp:219 reports/categexp.cpp:497
 #: reports/summary.cpp:303
 msgid "Total"
 msgstr "Агулам"
 
-#: mmhomepage.cpp:128 mmhomepage.cpp:633 mmhomepage.cpp:749
+#: mmhomepage.cpp:128 mmhomepage.cpp:631 mmhomepage.cpp:747
 #: reports/incexpenses.cpp:280 reports/payee.cpp:167
 #: reports/summarystocks.cpp:163 splittransactionsdialog.cpp:260
 msgid "Total:"
@@ -5850,63 +5850,63 @@ msgstr "Агулам:"
 msgid "Top Withdrawals: %s"
 msgstr "Найбольш спісанняў: %s"
 
-#: mmhomepage.cpp:345
+#: mmhomepage.cpp:343
 msgid "Account/Payee"
 msgstr "Рахунак / Платнік"
 
-#: mmhomepage.cpp:415
+#: mmhomepage.cpp:413
 #, c-format
 msgid "Income vs. Expenses: %s"
 msgstr ""
 
-#: mmhomepage.cpp:425 reports/categexp.cpp:153 reports/categexp.cpp:188
+#: mmhomepage.cpp:423 reports/categexp.cpp:153 reports/categexp.cpp:188
 #: reports/categexp.cpp:425 reports/categexp.cpp:496 reports/incexpenses.cpp:88
 #: reports/incexpenses.cpp:214 reports/incexpenses.cpp:246
 #: reports/payee.cpp:138
 msgid "Expenses"
 msgstr "Выдаткі"
 
-#: mmhomepage.cpp:429 reports/incexpenses.cpp:117
+#: mmhomepage.cpp:427 reports/incexpenses.cpp:117
 msgid "Difference:"
 msgstr "Розніца:"
 
-#: mmhomepage.cpp:433
+#: mmhomepage.cpp:431
 msgid "Income/Expenses"
 msgstr "Прыбыткі і выдаткі"
 
-#: mmhomepage.cpp:457
+#: mmhomepage.cpp:455
 msgid "Transaction Statistics"
 msgstr "Статыстыка аперацыяў"
 
-#: mmhomepage.cpp:504
+#: mmhomepage.cpp:502
 msgid "Follow Up On Transactions: "
 msgstr "Дапрацаваць аперацыі: "
 
-#: mmhomepage.cpp:508
+#: mmhomepage.cpp:506
 msgid "Total Transactions: "
 msgstr "Аперацыяў агулам: "
 
-#: mmhomepage.cpp:532 model/Model.cpp:24
+#: mmhomepage.cpp:530 model/Model.cpp:24
 msgid "Stock"
 msgstr "Акцыя"
 
-#: mmhomepage.cpp:542
+#: mmhomepage.cpp:540
 msgid "Total Net Worth"
 msgstr "Агульная вартасць"
 
-#: mmhomepage.cpp:626
+#: mmhomepage.cpp:624
 msgid "Other Assets"
 msgstr "Іншыя актывы"
 
-#: mmhomepage.cpp:698 reports/summary.cpp:264 reports/summary.cpp:302
+#: mmhomepage.cpp:696 reports/summary.cpp:264 reports/summary.cpp:302
 msgid "Investment Accounts"
 msgstr "Рахункі інвестыцыяў"
 
-#: mmhomepage.cpp:699 reports/summary.cpp:262 reports/summary.cpp:301
+#: mmhomepage.cpp:697 reports/summary.cpp:262 reports/summary.cpp:301
 msgid "Asset Accounts"
 msgstr "Рахункі актываў"
 
-#: mmhomepage.cpp:840
+#: mmhomepage.cpp:838
 msgid "Currency Exchange Rates"
 msgstr "Курсы абмена валютаў"
 
@@ -8087,7 +8087,7 @@ msgstr "Каціроўкі паспяхова абноўленыя"
 msgid "Last updated %s"
 msgstr "Апошняе абнаўленне %s"
 
-#: stockspanel.cpp:483 util.cpp:717 util.cpp:878
+#: stockspanel.cpp:483 util.cpp:714 util.cpp:875
 msgid "Nothing to update"
 msgstr "Няма чаго абнаўляць"
 
@@ -8363,90 +8363,90 @@ msgstr "Выбар рахунка"
 msgid "UserTransactionPanel"
 msgstr ""
 
-#: util.cpp:750
+#: util.cpp:747
 msgid "Currency rates have been updated"
 msgstr "Курсы валютаў абноўленыя"
 
-#: util.cpp:849 util.cpp:944 util.cpp:950 util.cpp:981 util.cpp:1040
+#: util.cpp:846 util.cpp:941 util.cpp:947 util.cpp:978 util.cpp:1037
 msgid "JSON Parse Error"
 msgstr "Памылка аналіза JSON"
 
-#: util.cpp:989 util.cpp:1048
+#: util.cpp:986 util.cpp:1045
 msgid "Expected response to contain a data or error string"
 msgstr "На запыт чакаўся адказ, што змяшчае радок дадзеных або памылку"
 
-#: util.cpp:1020
+#: util.cpp:1017
 msgid "Unable to find asset for symbol."
 msgstr ""
 
-#: util.cpp:1055
+#: util.cpp:1052
 msgid "Unable to get base currency!"
 msgstr ""
 
-#: util.cpp:1061
+#: util.cpp:1058
 msgid "USD"
 msgstr "USD"
 
-#: util.cpp:1064
+#: util.cpp:1061
 msgid "Unable to find currency 'USD', required for converting historical prices"
 msgstr ""
 
-#: util.cpp:1085
+#: util.cpp:1082
 msgid "Unable to parse price in asset history"
 msgstr ""
 
-#: util.cpp:1458 wizard_update.cpp:178
+#: util.cpp:1455 wizard_update.cpp:178
 #, c-format
 msgid "Version: %s"
 msgstr "Вэрсія: %s"
 
-#: util.cpp:1459
+#: util.cpp:1456
 #, c-format
 msgid "Built on: %1$s %2$s"
 msgstr "Сабрана: %1$s %2$s"
 
-#: util.cpp:1460
+#: util.cpp:1457
 #, c-format
 msgid "Database version: %d"
 msgstr "Вэрсія базы дадзеных: %d"
 
-#: util.cpp:1467
+#: util.cpp:1464
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
 msgstr "Git каміт: %1$s (%2$s)"
 
-#: util.cpp:1470
+#: util.cpp:1467
 #, c-format
 msgid "Git branch: %s"
 msgstr "Галінка Git: %s"
 
-#: util.cpp:1474
+#: util.cpp:1471
 msgid "MMEX is using the following support products:"
 msgstr "MMEX выкарыстоўвае наступныя прадукты:"
 
-#: util.cpp:1491
+#: util.cpp:1488
 msgid "Built with:"
 msgstr "Сабрана з дапамогай:"
 
-#: util.cpp:1510
+#: util.cpp:1507
 msgid "Running on:"
 msgstr "Працуе на:"
 
-#: util.cpp:1524
+#: util.cpp:1521
 #, c-format
 msgid "System Locale: %s"
 msgstr ""
 
-#: util.cpp:1525
+#: util.cpp:1522
 #, c-format
 msgid "User Interface Language: %s"
 msgstr ""
 
-#: util.cpp:1748
+#: util.cpp:1745
 msgid "The complete list of closed issues is available at this link"
 msgstr ""
 
-#: util.cpp:1905
+#: util.cpp:1902
 msgid "Copy all text to clipboard"
 msgstr ""
 
