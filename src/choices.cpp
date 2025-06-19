@@ -28,7 +28,7 @@ ChoicesName::~ChoicesName()
 {
 }
 
-const wxString ChoicesName::getName(int id) const
+const wxString ChoicesName::getName(const int id)
 {
     wxASSERT(id >= 0 && id < static_cast<int>(array.size()));
     wxASSERT(array[id].id == id);

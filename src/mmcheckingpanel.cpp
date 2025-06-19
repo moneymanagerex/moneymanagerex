@@ -573,12 +573,14 @@ void mmCheckingPanel::saveFilterSettings()
 
 void mmCheckingPanel::refreshList()
 {
-    m_lc->refreshVisualList();
+    if(m_lc)
+        m_lc->refreshVisualList();
 }
 
 void mmCheckingPanel::filterList()
 {
-    m_lc->m_trans.clear();
+    if(m_lc)
+        m_lc->m_trans.clear();
 
     wxString date_start_str = m_date_range.checking_start_str();
     wxString date_end_str = m_date_range.checking_end_str();
@@ -779,6 +781,7 @@ void mmCheckingPanel::filterList()
             full_tran.displayID = wxString::Format("%s%ld", marker, full_tran.m_bdid);
 
         if (!expandSplits) {
+
             m_lc->m_trans.push_back(full_tran);
             if (isAccount())
                 m_flow += account_flow;
