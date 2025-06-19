@@ -919,16 +919,18 @@ void mmQIFImportDialog::OnCheckboxClick(wxCommandEvent& event)
         return;
     case wxID_FILE6:
         t = t | PAYEE_TAB;
-        break;
+        break;        
     case wxID_FILE7:
         t = t | PAYEE_TAB;
         payeeIsNotes_ = payeeIsNotesCheckBox_->IsChecked();
         if (!m_FileNameStr.IsEmpty())
             mmReadQIFFile(); //TODO: 1:Why read file again? 2:In future may be def payee in settings
+        [[fallthrough]];
     case mmID_PAYEE:
         payeeMatchAddNotes_->Enable(payeeMatchCheckBox_->IsChecked());
         payeeMatchAddNotes_->SetValue(false);
         t = t | PAYEE_TAB;
+        [[fallthrough]];
     case wxID_FILE5:
     {
         t = t | ACC_TAB;
@@ -952,6 +954,7 @@ void mmQIFImportDialog::OnCheckboxClick(wxCommandEvent& event)
             accountCheckBox_->SetValue(false);
             m_accountNameStr = "";
         }
+        break;
     }
     }
 
