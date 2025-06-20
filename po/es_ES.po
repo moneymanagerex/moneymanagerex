@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-05-21 01:59+0000\n"
-"PO-Revision-Date: 2025-05-30 01:00\n"
+"PO-Revision-Date: 2025-06-20 01:01\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2399,19 +2399,19 @@ msgstr "Incrementos de capital"
 
 #: db/DB_Table_Category_V1.h:175
 msgid "Brokerage Fees"
-msgstr ""
+msgstr "Gastos de correduría"
 
 #: db/DB_Table_Category_V1.h:176
 msgid "Interest"
-msgstr ""
+msgstr "Interés"
 
 #: db/DB_Table_Category_V1.h:178
 msgid "Split"
-msgstr ""
+msgstr "Dividir"
 
 #: db/DB_Table_Category_V1.h:179
 msgid "Merger"
-msgstr ""
+msgstr "Fusionar"
 
 #: dbupgrade.cpp:73
 #, c-format
@@ -2946,7 +2946,7 @@ msgstr "Borrar informe…"
 
 #: general_report_manager.cpp:792
 msgid "Sync Report…"
-msgstr ""
+msgstr "Sincronizar informe…"
 
 #: general_report_manager.cpp:890 general_report_manager.cpp:1079
 msgid "Enter the name for the report"
@@ -4565,15 +4565,15 @@ msgstr "Flujo filtrado: "
 
 #: mmcheckingpanel.cpp:395
 msgid "Market Value: "
-msgstr ""
+msgstr "Valor del mercado: "
 
 #: mmcheckingpanel.cpp:396
 msgid "Invested: "
-msgstr ""
+msgstr "Invertido: "
 
 #: mmcheckingpanel.cpp:409
 msgid "Advanced filter"
-msgstr ""
+msgstr "Filtro avanzado"
 
 #: mmcheckingpanel.cpp:511
 msgid "(Date range)"
@@ -4616,7 +4616,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:1054
 msgid "Advanced filter…"
-msgstr ""
+msgstr "Filtro avanzado…"
 
 #: mmcheckingpanel.cpp:1194
 msgid "&New Withdrawal…"
@@ -4883,7 +4883,7 @@ msgstr "Nueva base de datos"
 
 #: mmframe.cpp:1712
 msgid "&Open Database…"
-msgstr ""
+msgstr "&Abrir base de datos…"
 
 #: mmframe.cpp:1712 mmframe.cpp:2173
 msgid "Open Database"
@@ -5797,11 +5797,11 @@ msgstr "Ganancia/Pérdida"
 
 #: mmhomepage.cpp:86
 msgid "Market Value"
-msgstr ""
+msgstr "Valor de mercado"
 
 #: mmhomepage.cpp:87 mmhomepage.cpp:579
 msgid "Cash Balance"
-msgstr ""
+msgstr "Saldo de efectivo"
 
 #: mmhomepage.cpp:88 mmhomepage.cpp:580 reports/budgetingperf.cpp:142
 #: reports/cashflow.cpp:276 reports/categexp.cpp:219 reports/categexp.cpp:497
@@ -5894,7 +5894,7 @@ msgstr "Ocultar esta columna"
 
 #: mmpanelbase.cpp:541
 msgid "Move hidden column"
-msgstr ""
+msgstr "Mover columna oculta"
 
 #: mmpanelbase.cpp:543
 msgid "Move column left"
@@ -6069,11 +6069,11 @@ msgstr "Comprobación de transacciones programadas en MMEX"
 
 #: model/Model_Checking.cpp:39
 msgid "Buy"
-msgstr ""
+msgstr "Comprar"
 
 #: model/Model_Checking.cpp:40
 msgid "Sell"
-msgstr ""
+msgstr "Vender"
 
 #: model/Model_Checking.cpp:41
 msgid "Revalue"
@@ -8467,7 +8467,7 @@ msgstr "Versión API de la WebApp errónea"
 #: webapp.cpp:494
 #, c-format
 msgid "Account %s not found."
-msgstr ""
+msgstr "No se ha encontrado la cuenta %s."
 
 #: webapp.cpp:496
 #, c-format
@@ -8602,7 +8602,7 @@ msgstr "Tipo de cuenta"
 
 #: wizard_newaccount.cpp:139
 msgid "Select the type of account to create:"
-msgstr ""
+msgstr "Seleccione el tipo de cuenta a crear:"
 
 #: wizard_newaccount.cpp:140
 msgid "General bank accounts cover a wide variety of account\n"

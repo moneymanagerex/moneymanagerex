@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-05-21 01:59+0000\n"
-"PO-Revision-Date: 2025-05-30 01:00\n"
+"PO-Revision-Date: 2025-06-13 01:02\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -467,7 +467,7 @@ msgstr "Aktualna wartość"
 
 #: assetdialog.cpp:233
 msgid "The current value of the asset"
-msgstr ""
+msgstr "Bieżąca wartość aktywów"
 
 #: assetdialog.cpp:236
 msgid "Change in Value"
@@ -479,11 +479,11 @@ msgstr "Określ jak wartość aktywów zmienia się w czasie"
 
 #: assetdialog.cpp:248
 msgid "Compounding Period"
-msgstr ""
+msgstr "Okres kapitalizacji"
 
 #: assetdialog.cpp:253
 msgid "Select the compounding period for the appreciation/depreciation rate"
-msgstr ""
+msgstr "Wybierz okres kapitalizacji dla stawki amortyzacji/wzrostu"
 
 #: assetdialog.cpp:258
 msgid "% Rate"
@@ -519,11 +519,11 @@ msgstr "Nieprawidłowa transakcja"
 
 #: assetdialog.cpp:453
 msgid "Asset account not found."
-msgstr ""
+msgstr "Nie znaleziono konta aktywów."
 
 #: assetdialog.cpp:453
 msgid "Do you want to create one?"
-msgstr ""
+msgstr "Czy chcesz utworzyć?"
 
 #: assetspanel.cpp:50 billsdepositspanel.cpp:102 budgetingpanel.cpp:67
 #: mmchecking_list.cpp:96 stocks_list.cpp:65
@@ -797,7 +797,7 @@ msgstr "Menedżer załączników: Edytuj załącznik"
 
 #: attachmentdialog.cpp:274
 msgid "Do you want to delete this attachment?"
-msgstr ""
+msgstr "Czy chcesz usunąć ten załącznik?"
 
 #: attachmentdialog.cpp:275
 msgid "Confirm Attachment Deletion"
@@ -853,7 +853,7 @@ msgstr "Załącznik nie znaleziony:"
 
 #: attachmentdialog.cpp:509
 msgid "Do you want to delete the attachment in the database?"
-msgstr ""
+msgstr "Czy chcesz usunąć załącznik z bazy danych?"
 
 #: attachmentdialog.cpp:510
 msgid "Delete attachment failed"
@@ -1424,7 +1424,7 @@ msgstr[3] "Pozostało %d dni"
 
 #: billsdepositspanel.cpp:650
 msgid "Do you want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Czy chcesz usunąć zaplanowaną transakcję?"
 
 #: billsdepositspanel.cpp:651
 msgid "Confirm Deletion"
@@ -2392,11 +2392,11 @@ msgstr "inwestycyjne"
 
 #: db/DB_Table_Category_V1.h:171
 msgid "Purchase"
-msgstr ""
+msgstr "Zakup"
 
 #: db/DB_Table_Category_V1.h:172
 msgid "Sale"
-msgstr ""
+msgstr "Sprzedaż"
 
 #: db/DB_Table_Category_V1.h:173
 msgid "Dividend"
@@ -2412,15 +2412,15 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:176
 msgid "Interest"
-msgstr ""
+msgstr "Odsetki"
 
 #: db/DB_Table_Category_V1.h:178
 msgid "Split"
-msgstr ""
+msgstr "Podział"
 
 #: db/DB_Table_Category_V1.h:179
 msgid "Merger"
-msgstr ""
+msgstr "Scalenie"
 
 #: dbupgrade.cpp:73
 #, c-format
@@ -2625,7 +2625,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:62
 msgid "Stacked Area"
-msgstr ""
+msgstr "Obszar złożony"
 
 #: filtertransdialog.cpp:62
 msgid "Stacked Bar Line"
@@ -3915,7 +3915,7 @@ msgstr "Nie można pobrać kursów waluty %s"
 #: maincurrencydialog.cpp:726
 #, c-format
 msgid "Unable to download history for symbol %s. Historical rates unavailable!"
-msgstr ""
+msgstr "Nie można pobrać historii dla symbolu %s. Historyczne stawki są niedostępne!"
 
 #: maincurrencydialog.cpp:788 optionsettingsgeneral.cpp:299
 msgid "Changing base currency will delete all historical rates, proceed?"
@@ -4059,7 +4059,7 @@ msgstr "Tip: Aby obliczyć, wprowadź wyrażenie takie jak: (2+2)*(2+2)\n"
 
 #: mmTips.h:22
 msgid "Recommendation: Back up the .mmb database file regularly."
-msgstr ""
+msgstr "Zalecenie: Regularnie twórz kopię zapasową pliku bazy danych .mmb."
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, ensure the .mmb database file is backed up before doing so."
@@ -4103,7 +4103,7 @@ msgstr ""
 
 #: mmTips.h:34
 msgid "Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr ""
+msgstr "Wskazówka dla menedżera kategorii: Naciśnięcie klawisza „H” spowoduje przełączanie się między wszystkimi kategoriami zaczynającymi się na literę h."
 
 #: mmTips.h:35
 msgid "Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
@@ -4111,76 +4111,76 @@ msgstr ""
 
 #: mmTips.h:37
 msgid "Never endorse a loan. If the borrower—a friend, a family member, a significant other, or whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
-msgstr ""
+msgstr "Nigdy nie popieraj pożyczki. Jeśli pożyczkobiorca — przyjaciel, członek rodziny, druga połówka lub ktokolwiek inny — nie spłaca rat, Twój wynik kredytowy spadnie, pożyczkodawca może domagać się od Ciebie pieniędzy, a to prawdopodobnie zniszczy Twoją relację. Ponadto, jeśli bank wymaga poręczyciela, bank nie ufa tej osobie w kwestii dokonywania płatności."
 
 #: mmTips.h:39
 msgid "Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."
-msgstr ""
+msgstr "Wskazówka dotycząca zakupów spożywczych: Unikaj zakupów spożywczych, gdy jesteś głodny lub zestresowany. Głód i stres mogą sprawić, że będziesz robić dziwne rzeczy, takie jak kupowanie dużej ilości czekolady lub przetworzonej żywności. Zaplanuj pójście do sklepu, gdy jesteś najedzony i zrelaksowany. W ten sposób możesz trzymać się swojej listy i nie wydawać za dużo na jedzenie, którego nie potrzebujesz."
 
 #: mmTips.h:40
 msgid "Grocery tip: Make a shopping list. A shopping list saves money by helping to avoid buying products that are not required. The simplest way is to track consumables as they are used. A magnetic notepad on the fridge can help to write down items that need to be bought."
-msgstr ""
+msgstr "Wskazówka dotycząca zakupów spożywczych: Zrób listę zakupów. Lista zakupów pozwala zaoszczędzić pieniądze, ponieważ pomaga unikać kupowania produktów, których nie potrzebujesz. Najprostszym sposobem jest śledzenie materiałów eksploatacyjnych w miarę ich zużycia. Magnetyczny notatnik na lodówce może pomóc w spisywaniu rzeczy, które trzeba kupić."
 
 #: mmTips.h:41
 msgid "Grocery tip: Buy fruits and vegetables in season."
-msgstr ""
+msgstr "Wskazówka dotycząca zakupów spożywczych: Kupuj owoce i warzywa sezonowe."
 
 #: mmTips.h:42
 msgid "Grocery tip: Ensure your family consumes everything you purchase. Every month or so, hold a pantry challenge during which you use up as many pantry goods as possible before you shop again. A pantry challenge cuts down on waste and lets you get a sense of how much you are overbuying."
-msgstr ""
+msgstr "Wskazówka dotycząca zakupów spożywczych: Upewnij się, że Twoja rodzina zjada wszystko, co kupujesz. Co miesiąc lub dwa organizuj wyzwanie spiżarniane, podczas którego zużyjesz jak najwięcej produktów spiżarnianych, zanim znowu pójdziesz na zakupy. Wyzwanie spiżarniane ogranicza marnotrawstwo i pozwala Ci zorientować się, ile kupujesz za dużo."
 
 #: mmTips.h:43
 msgid "Grocery tip: Reduce waste. Adopting better grocery shopping habits is one way to cut back on wasted food and money. Make a list of everything you throw out without using, such as spoiled leftovers or soggy lettuce, to get a sense of the full scale of the issue."
-msgstr ""
+msgstr "Wskazówka dotycząca zakupów spożywczych: Ogranicz marnotrawstwo. Przyjęcie lepszych nawyków robienia zakupów spożywczych to jeden ze sposobów na ograniczenie marnowania żywności i pieniędzy. Zrób listę wszystkiego, co wyrzucasz bez użycia, np. zepsutych resztek lub rozmiękłej sałaty, aby uzyskać pełny obraz problemu."
 
 #: mmTips.h:44
 msgid "Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."
-msgstr ""
+msgstr "Wskazówka dotycząca zakupów spożywczych: Czytaj ulotki promocyjne. Przejrzyj ulotki każdego sklepu i dopasuj to, co jest w promocji, do tego, co jest na Twojej liście lub zaplanuj posiłki wokół artykułów objętych promocją. Czasami bardziej opłacalne jest odwiedzenie kilku sklepów w ciągu jednego tygodnia, aby uzyskać najlepszą wartość."
 
 #: mmTips.h:46
 msgid "Cut back on subscriptions. Is a subscription to every streaming service required? Is the paid service expense required, or is an advertising-supported free service sufficient? Is the book club membership required, or is a visit to the library once per month sufficient?"
-msgstr ""
+msgstr "Ogranicz subskrypcje. Czy subskrypcja każdej usługi streamingowej jest wymagana? Czy wymagany jest płatny koszt usługi, czy wystarczy darmowa usługa wspierana reklamami? Czy wymagane jest członkostwo w klubie książki, czy wystarczy wizyta w bibliotece raz w miesiącu?"
 
 #: mmTips.h:47
 msgid "Use open source alternatives to proprietary software. Search at https://www.opensourcealternative.to/"
-msgstr ""
+msgstr "Użyj alternatyw open source dla zastrzeżonego oprogramowania. Szukaj na https://www.opensourcealternative.to/"
 
 #: mmTips.h:49
 msgid "Parent tip: If you are asked to be a guarantor for a loan for your college student, first check to see if your child has maxed out federal loan, grant, and scholarship options."
-msgstr ""
+msgstr "Wskazówka dla rodziców: Jeśli zostaniesz poproszony o poręczenie pożyczki dla swojego uczącego się dziecka, sprawdź najpierw, czy Twoje dziecko wykorzystało już w pełni rządowe dotacje, granty i stypendia."
 
 #: mmTips.h:51
 #, c-format
 msgid "Get out of debt tip: Pay yourself 10% first. Put this into an account that is hard to touch. Ensure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Wskazówka dotycząca wyjścia z długów: Najpierw wypłać sobie 10%. Wpłać to na konto, którego trudno dotknąć. Upewnij się, że wypłacenie pieniędzy jest uciążliwe (np. musisz jechać do banku), dzięki czemu będziesz korzystać z nich tylko świadomie i na większe wydatki."
 
 #: mmTips.h:52
 msgid "Get out of debt tip: Establish an emergency fund."
-msgstr ""
+msgstr "Wskazówka dotycząca wyjścia z długów: Utwórz fundusz awaryjny."
 
 #: mmTips.h:53
 msgid "Get out of debt tip: Stop acquiring new debt."
-msgstr ""
+msgstr "Wskazówka dotycząca wyjścia z długów: Przestań zaciągać nowe długi."
 
 #: mmTips.h:54
 msgid "Get out of debt tip: Create a realistic budget for the expenses."
-msgstr ""
+msgstr "Wskazówka dotycząca wyjścia z długów: Utwórz realistyczny budżet wydatków."
 
 #: mmTips.h:55
 msgid "Get out of debt tip: Spend less than you earn."
-msgstr ""
+msgstr "Wskazówka dotycząca wyjścia z długów: Wydawaj mniej niż zarabiasz."
 
 #: mmTips.h:56
 msgid "Get out of debt tip: Pay more than the minimum."
-msgstr ""
+msgstr "Wskazówka dotycząca wyjścia z długów: Zapłać więcej niż minimum."
 
 #: mmTips.h:57
 msgid "Get out of debt tip: If you have a mountain of debt, studies show paying off the smallest debts can give you the confidence to tackle the larger ones."
-msgstr ""
+msgstr "Wskazówka dotycząca wyjścia z długów: Badania pokazują, że jeśli masz górę długów, spłacanie najmniejszych zobowiązań może dodać ci pewności siebie potrzebnej do poradzenia sobie z większymi."
 
 #: mmTips.h:58
 msgid "Before going to a shop and buying something, take the time to make a list of what you really need. In the shop, only buy what is on your list."
-msgstr ""
+msgstr "Zanim pójdziesz do sklepu i coś kupisz, poświęć chwilę na zrobienie listy tego, czego naprawdę potrzebujesz. W sklepie kupuj tylko to, co jest na liście."
 
 #: mmTips.h:62
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
@@ -4196,39 +4196,39 @@ msgstr "Przykład brytyjskiej akcji (HSBC HLDG): HSBA.L"
 
 #: mmTips.h:65
 msgid "Before starting to invest, have a fully funded emergency fund."
-msgstr ""
+msgstr "Zanim zaczniesz inwestować, musisz mieć w pełni zabezpieczony fundusz awaryjny."
 
 #: mmTips.h:66
 msgid "Before starting to invest, know your cash flow (have a budget)."
-msgstr ""
+msgstr "Zanim zaczniesz inwestować, poznaj swój przepływ środków pieniężnych (sporządź budżet)."
 
 #: mmTips.h:67
 msgid "Before starting to invest, pay off consumer debt—especially credit cards."
-msgstr ""
+msgstr "Zanim zaczniesz inwestować, spłać zobowiązania konsumenckie, zwłaszcza te związane z kartami kredytowymi."
 
 #: mmTips.h:68
 msgid "Before starting to invest, make net worth the primary tracking metric."
-msgstr ""
+msgstr "Zanim zaczniesz inwestować, śledź przede wszystkim wartość swojego majątku netto."
 
 #: mmTips.h:69
 msgid "Before starting to invest, clarify the goals and the priorities."
-msgstr ""
+msgstr "Zanim zaczniesz inwestować, określ swoje cele i priorytety."
 
 #: mmTips.h:70
 msgid "Before starting to invest, understand the investing basics."
-msgstr ""
+msgstr "Zanim zaczniesz inwestować, zapoznaj się z podstawami inwestowania."
 
 #: mmTips.h:71
 msgid "Common mistake of investors: only buying known companies."
-msgstr ""
+msgstr "Częsty błąd inwestorów: kupowanie tylko znanych spółek."
 
 #: mmTips.h:72
 msgid "Common mistake of investors: only buying companies you like."
-msgstr ""
+msgstr "Częsty błąd inwestorów: kupowanie tylko tych spółek, które ci się podobają."
 
 #: mmTips.h:73
 msgid "Common mistake of investors: only buying buzzworthy companies."
-msgstr ""
+msgstr "Częsty błąd inwestorów: kupowanie tylko popularnych spółek."
 
 #: mmTips.h:74
 msgid "Common mistake of investors: forgetting to rebalance."
@@ -4254,7 +4254,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:375
 msgid "Sorted by"
-msgstr ""
+msgstr "Posortowane według"
 
 #: mmchecking_list.cpp:382
 msgid "SN (Sequence Number) has the same order as Date/ID (or Date/Time/ID if Time is enabled)."
@@ -4430,7 +4430,7 @@ msgstr[3] ""
 
 #: mmchecking_list.cpp:1088 mmchecking_list.cpp:1503
 msgid "Unable to undo this action."
-msgstr ""
+msgstr "Nie można cofnąć tej czynności."
 
 #: mmchecking_list.cpp:1089 mmchecking_list.cpp:1502
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
@@ -4445,10 +4445,10 @@ msgstr "Potwierdź usunięcie transakcji"
 #, c-format
 msgid "Do you want to restore the selected transaction?"
 msgid_plural "Do you want to restore the %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Czy chcesz przywrócić wybraną transakcję?"
+msgstr[1] "Czy chcesz przywrócić %i wybrane transakcje?"
+msgstr[2] "Czy chcesz przywrócić %i wybranych transakcji?"
+msgstr[3] "Czy chcesz przywrócić %i wybrane transakcje?"
 
 #: mmchecking_list.cpp:1163 mmchecking_list.cpp:1202
 msgid "Confirm Transaction Restore"
@@ -4456,7 +4456,7 @@ msgstr "Potwierdź przywracanie transakcji"
 
 #: mmchecking_list.cpp:1201
 msgid "Do you want to restore all of the transactions shown?"
-msgstr ""
+msgstr "Czy chcesz przywrócić wszystkie wyświetlone transakcje?"
 
 #: mmchecking_list.cpp:1297
 #, c-format
@@ -5098,11 +5098,11 @@ msgstr "Pobierz kursy walut i akcji"
 
 #: mmframe.cpp:1945
 msgid "&Payee Manager…"
-msgstr ""
+msgstr "&Menedżer odbiorców…"
 
 #: mmframe.cpp:1945 mmframe.cpp:2180 payeedialog.cpp:506
 msgid "Payee Manager"
-msgstr ""
+msgstr "Menedżer odbiorców"
 
 #: mmframe.cpp:1949
 msgid "&Category Manager…"
@@ -6567,7 +6567,7 @@ msgstr "Odśwież przy uruchomieniu"
 
 #: optionsettingsmisc.cpp:100
 msgid "Asset Compounding Period"
-msgstr ""
+msgstr "Okres kapitalizacji aktywów"
 
 #: optionsettingsmisc.cpp:106
 msgid "Select the compounding period for the appreciation/depreciation rate of assets"
@@ -7028,11 +7028,11 @@ msgstr ""
 
 #: payeedialog.cpp:890
 msgid "&Attachment Manager"
-msgstr ""
+msgstr "Menedżer z&ałączników"
 
 #: payeedialog.cpp:894
 msgid "Merge &Payee"
-msgstr ""
+msgstr "&Połącz odbiorcę"
 
 #: primitive.cpp:94
 msgid "February"
@@ -7245,7 +7245,7 @@ msgstr "Zapis znaleziony w budżecie: %i"
 
 #: relocatepayeedialog.cpp:87 relocatepayeedialog.h:42
 msgid "Merge Payees"
-msgstr ""
+msgstr "Połącz odbiorców"
 
 #: relocatepayeedialog.cpp:99
 msgid "&Delete source payee after merge"
