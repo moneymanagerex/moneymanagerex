@@ -19,7 +19,6 @@
  ********************************************************/
 
 #include <wx/clipbrd.h>
-#include <wx/srchctrl.h>
 #include <algorithm>
 #include <wx/sound.h>
 
@@ -671,7 +670,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
 
         menu.AppendSeparator();
 
-        menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL_U8("&Edit Transaction…", "&Edit Transactions…", selected));
+        menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL("&Edit Transaction…", "&Edit Transactions…", selected));
         if (is_nothing_selected)
             menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
@@ -698,7 +697,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
         if (is_nothing_selected || multiselect)
             menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
 
-        menu.Append(MENU_TREEPOPUP_MOVE2, wxPLURAL_U8("&Move Transaction…", "&Move Transactions…", selected));
+        menu.Append(MENU_TREEPOPUP_MOVE2, wxPLURAL("&Move Transaction…", "&Move Transactions…", selected));
         if (is_nothing_selected || type_transfer || (Model_Account::money_accounts_num() < 2) || is_foreign)
             menu.Enable(MENU_TREEPOPUP_MOVE2, false);
 
@@ -726,7 +725,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
     else {
         menu.Append(
             MENU_TREEPOPUP_RESTORE,
-            wxPLURAL_U8("&Restore selected transaction…", "&Restore selected transactions…", selected)
+            wxPLURAL("&Restore selected transaction…", "&Restore selected transactions…", selected)
         );
         if (is_nothing_selected)
             menu.Enable(MENU_TREEPOPUP_RESTORE, false);
@@ -885,8 +884,8 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
     subGlobalOpMenuDelete->Append(
         MENU_TREEPOPUP_DELETE2,
         !m_cp->isDeletedTrans() ?
-            wxPLURAL_U8("&Delete selected transaction…", "&Delete selected transactions…", selected) :
-            wxPLURAL_U8("&Permanently delete selected transaction…", "&Permanently delete selected transactions…", selected)
+            wxPLURAL("&Delete selected transaction…", "&Delete selected transactions…", selected) :
+            wxPLURAL("&Permanently delete selected transaction…", "&Permanently delete selected transactions…", selected)
     );
     if (is_nothing_selected)
         subGlobalOpMenuDelete->Enable(MENU_TREEPOPUP_DELETE2, false);
@@ -1304,7 +1303,7 @@ void TransactionListCtrl::onMoveTransaction(wxCommandEvent& /*event*/)
 
     if (msgDlg.ShowModal() == wxID_YES) {
         const wxString headerMsg = wxString::Format(
-                wxPLURAL_U8("Moving transaction to…"
+                wxPLURAL("Moving transaction to…"
                 , "Moving %i transactions to…", sel)
                 , sel);
         mmSingleChoiceDialog scd(this
@@ -1452,7 +1451,6 @@ void TransactionListCtrl::onMarkTransaction(wxCommandEvent& event)
     findSelectedTransactions();
     int evt = event.GetId();
     //bool bRefreshRequired = false;
-    wxString org_status = "";
     wxString status = "";
     switch (evt) {
     case MENU_TREEPOPUP_MARKRECONCILED:         status = Model_Checking::STATUS_KEY_RECONCILED; break;
