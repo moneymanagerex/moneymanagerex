@@ -27,7 +27,7 @@ environment:
   curldir: C:\curl-$(curlVer)
   curlStatic: ON
   # wxWidgets config
-  wxVer: 3.2.8
+  wxVer: 3.3.0
   wxComp: 14x
   wxwin: C:\wxWidgets-$(wxVer)-$(configuration)
   wxShared: 0
