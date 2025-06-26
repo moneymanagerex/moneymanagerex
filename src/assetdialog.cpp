@@ -29,7 +29,6 @@
 
 #include "usertransactionpanel.h"
 #include "accountdialog.h"
-#include "mmframe.h"
 
 #include <wx/valnum.h>
 
