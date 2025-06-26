@@ -3286,8 +3286,7 @@ void mmGUIFrame::showBeginAppDialog(bool fromScratch)
         break;
     }
     case wxID_SETUP: {
-        auto language = Option::instance().getLanguageID(true);
-        const auto langName = language == wxLANGUAGE_DEFAULT ? _t("System default") : wxLocale::GetLanguageName(language);
+        // auto language = Option::instance().getLanguageID(true);
         break;
     }
     case wxID_EXIT:
@@ -3473,7 +3472,7 @@ void mmGUIFrame::createBudgetingPage(int64 budgetYearID)
     else {
         DoWindowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmBudgetingPanel(budgetYearID, homePanel_, this, mmID_BUDGET);
+        panelCurrent_ = new mmBudgetingPanel(budgetYearID, homePanel_, mmID_BUDGET);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         DoWindowsFreezeThaw(homePanel_);

@@ -1414,7 +1414,6 @@ bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int64 r
     wxArrayString tags = tagTextCtrl_->GetTagStrings();
     for (int i = 0; i < static_cast<int>(tags.GetCount()); i++)
     {
-        wxString tag = tags.Item(i);
         // if the tag is the "OR" operator, fetch the next tag and compare with OR
         if (tags.Item(i) == "|" && i++ < static_cast<int>(tags.GetCount()) - 1)
             match |= tagnames.find(tags.Item(i)) != tagnames.end();
@@ -1585,7 +1584,6 @@ const wxString mmFilterTransactionsDialog::mmGetDescriptionToolTip() const
         }
         case kNumberType:
         {
-            wxString temp;
             double d = itr->value.GetDouble();
             if (static_cast<int>(d) == d)
                 value = wxString::Format("%i", static_cast<int>(d));

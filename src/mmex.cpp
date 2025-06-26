@@ -279,7 +279,6 @@ bool OnInitImpl(mmGUIApp* app)
     wxDir::GetAllFiles(res_dir, &files_array);
     for (const auto& source_file : files_array)
     {
-        wxString data;
         if (wxFileName::FileExists(source_file))
         {
             const auto file_name = wxFileName(source_file).GetFullName();

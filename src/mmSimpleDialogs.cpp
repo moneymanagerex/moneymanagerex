@@ -797,7 +797,6 @@ void mmColorButton::OnColourButton(wxCommandEvent& event)
 #endif
         wxBitmap bitmap(mmBitmapBundle(png::EMPTY, mmBitmapButtonSize).GetDefaultSize());
         wxMemoryDC memoryDC(bitmap);
-        wxRect rect(memoryDC.GetSize());
 
         memoryDC.SetBackground(wxBrush(getUDColour(i)));
         memoryDC.Clear();

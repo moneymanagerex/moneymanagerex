@@ -274,7 +274,7 @@ void StocksListCtrl::OnListKeyDown(wxListEvent& event)
 
 void StocksListCtrl::OnNewStocks(wxCommandEvent& /*event*/)
 {
-    mmStockDialog dlg(this, m_stock_panel->m_frame, nullptr, m_stock_panel->m_account_id);
+    mmStockDialog dlg(this, nullptr, m_stock_panel->m_account_id);
     dlg.ShowModal();
     if (Model_Stock::instance().get(dlg.m_stock_id))
     {

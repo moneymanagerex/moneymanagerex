@@ -295,7 +295,6 @@ double Model_Stock::UnrealGainLoss(const Data* r, bool to_base_curr)
             double total_shares = 0;
             double total_initial_value = 0;
             double avg_share_price = 0;
-            wxString earliest_date = wxDate::Today().FormatISODate();
 
             Model_Checking::Data_Set checking_list;
             for (const auto &trans : trans_list)

@@ -665,7 +665,6 @@ void mmQIFImportDialog::refreshTabs(int tabs)
     int num = 0;
     if (tabs & TRX_TAB)
     {
-        wxString acc;
         dataListBox_->DeleteAllItems();
         for (const auto& trx : vQIF_trxs_)
         {

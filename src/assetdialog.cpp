@@ -63,9 +63,8 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset, const b
     Create(parent, wxID_ANY, m_dialog_heading);
 }
 
-mmAssetDialog::mmAssetDialog(wxWindow* parent, mmGUIFrame* gui_frame, Model_Translink::Data* transfer_entry, Model_Checking::Data* checking_entry)
-    : m_gui_frame(gui_frame)
-    , m_transfer_entry(transfer_entry)
+mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Translink::Data* transfer_entry, Model_Checking::Data* checking_entry)
+    : m_transfer_entry(transfer_entry)
     , m_checking_entry(checking_entry)
     , m_dialog_heading (_t("Add Asset Transaction"))
     , m_hidden_trans_entry(false)

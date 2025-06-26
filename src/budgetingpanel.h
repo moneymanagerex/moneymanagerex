@@ -26,7 +26,6 @@
 class wxListCtrl;
 class wxListEvent;
 class mmBudgetingPanel;
-class mmGUIFrame;
 
 /* Custom ListCtrl class that implements virtual LC style */
 class budgetingListCtrl : public mmListCtrl
@@ -74,7 +73,7 @@ class mmBudgetingPanel : public mmPanelBase
 
 public:
     mmBudgetingPanel(int64 budgetYearID
-        , wxWindow *parent, mmGUIFrame *frame
+        , wxWindow *parent
         , wxWindowID winid = wxID_ANY
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
@@ -116,7 +115,6 @@ private:
         ICON_FOLLOWUP
     };
 
-    mmGUIFrame* m_frame = nullptr;
     std::vector<std::pair<int64, int64> > budget_;
     std::map<int64, std::pair<int, bool > > displayDetails_; //map categid to level of the category, whether category is visible, and whether any subtree is visible 
     std::map<int64, std::pair<double, double> > budgetTotals_;

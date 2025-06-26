@@ -1264,7 +1264,7 @@ void TransactionListCtrl::onEditTransaction(wxCommandEvent& /*event*/)
                     refreshVisualList();
             }
             else if (translink.LINKTYPE == Model_Asset::refTypeName) {
-                mmAssetDialog dlg(this, m_cp->m_frame, &translink, checking_entry);
+                mmAssetDialog dlg(this, &translink, checking_entry);
                 if (dlg.ShowModal() == wxID_OK)
                     refreshVisualList();
             }
