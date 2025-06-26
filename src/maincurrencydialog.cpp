@@ -618,8 +618,6 @@ void mmMainCurrencyDialog::OnHistoryAdd(wxCommandEvent& /*event*/)
 {
     if (m_currency_id <= 0) return;
 
-    wxString listStr;
-    wxDateTime dt;
     double dPrice = 0.0;
     wxString currentPriceStr = valueTextBox_->GetValue().Trim();
     if (!Model_Currency::fromString(currentPriceStr, dPrice, Model_Currency::instance().get(m_currency_id)) || (dPrice < 0.0))

@@ -880,7 +880,7 @@ void mmAssetsPanel::BindAssetListEvents(wxListCtrl* listCtrl)
         if (!txn) return;
 
         auto link = Model_Translink::TranslinkRecord(txn->TRANSID);
-        mmAssetDialog dlg(listCtrl, this->m_frame, &link, txn);
+        mmAssetDialog dlg(listCtrl, &link, txn);
         dlg.ShowModal();
 
         this->FillAssetListRow(listCtrl, index, *txn);

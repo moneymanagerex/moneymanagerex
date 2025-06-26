@@ -48,7 +48,6 @@ public:
     virtual bool TransferDataFromWindow();
 
 private:
-    mmNewDatabaseWizard* parent_ = nullptr;
     wxButton* itemButtonCurrency_ = nullptr;
     wxTextCtrl* itemUserName_ = nullptr;
     int64 currencyID_ = -1;

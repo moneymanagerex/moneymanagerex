@@ -24,7 +24,7 @@
 #include "images_list.h"
 #include "option.h"
 #include "mmex.h"
-#include "mmframe.h"
+#include "constants.h"
 #include "reports/budget.h"
 #include "reports/mmDateRange.h"
 #include "model/allmodel.h"
@@ -74,12 +74,11 @@ const std::vector<ListColumnInfo> budgetingListCtrl::LIST_INFO = {
 };
 
 mmBudgetingPanel::mmBudgetingPanel(int64 budgetYearID
-    , wxWindow *parent, mmGUIFrame *frame
+    , wxWindow *parent
     , wxWindowID winid
     , const wxPoint& pos, const wxSize& size
     , long style, const wxString& name)
-    : m_frame(frame)
-    , m_lc(nullptr)
+    : m_lc(nullptr)
     , budgetYearID_(budgetYearID)
 {
     Create(parent, winid, pos, size, style, name);

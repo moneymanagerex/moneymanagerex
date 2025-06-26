@@ -60,7 +60,6 @@ mmStockDialog::mmStockDialog( )
 }
 
 mmStockDialog::mmStockDialog(wxWindow* parent
-    , mmGUIFrame* gui_frame
     , Model_Stock::Data* stock
     , int64 accountID
     , const wxString& name
@@ -68,7 +67,6 @@ mmStockDialog::mmStockDialog(wxWindow* parent
     : m_stock(stock)
     , m_edit(stock ? true: false)
     , m_account_id(accountID)
-    , m_gui_frame(gui_frame)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(400, 300), style, name);

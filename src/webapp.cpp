@@ -477,7 +477,6 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     else
     {
         TrStatus = Model_Checking::STATUS_KEY_FOLLOWUP;
-        wxString FistAccountName;
 
         //Search first bank account
         for (const auto &FirstAccount : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))

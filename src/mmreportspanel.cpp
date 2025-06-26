@@ -646,7 +646,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
                     }
                     else
                     {
-                        mmAssetDialog dlg(m_frame, m_frame, &translink, transaction);
+                        mmAssetDialog dlg(m_frame, &translink, transaction);
                         if (dlg.ShowModal() == wxID_OK)
                         {
                             rb_->getHTMLText();

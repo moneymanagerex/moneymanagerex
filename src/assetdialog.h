@@ -35,7 +35,7 @@ class mmAssetDialog : public wxDialog
 public:
     mmAssetDialog(){};
     mmAssetDialog(wxWindow *parent, Model_Asset::Data* asset, const bool trans_data = false);
-    mmAssetDialog(wxWindow *parent, mmGUIFrame* gui_frame, Model_Translink::Data* transfer_entry, Model_Checking::Data* checking_entry);
+    mmAssetDialog(wxWindow *parent, Model_Translink::Data* transfer_entry, Model_Checking::Data* checking_entry);
 
     Model_Asset::Data* m_asset = nullptr;
     void SetTransactionAccountName(const wxString& account_name);
@@ -62,7 +62,6 @@ private:
     void CreateAssetAccount();
     void HideTransactionPanel();
 private:
-    mmGUIFrame* m_gui_frame = nullptr;
     wxChoice*  m_assetType = nullptr;
     wxTextCtrl* m_assetName = nullptr;
     mmDatePickerCtrl* m_dpc = nullptr;

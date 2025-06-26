@@ -35,7 +35,6 @@ class mmStockDialog : public wxDialog
 public:
     mmStockDialog();
     mmStockDialog(wxWindow* parent
-        , mmGUIFrame* gui_frame
         , Model_Stock::Data* stock
         , int64 accountID
         , const wxString& name = "mmStockDialog"
@@ -88,7 +87,6 @@ private:
     Model_Stock::Data* m_stock = nullptr;
     bool m_edit = false;
     int64 m_account_id = -1;
-    mmGUIFrame* m_gui_frame = nullptr;
     enum
     {
         ID_DPC_STOCK_PDATE = wxID_HIGHEST + 800,
