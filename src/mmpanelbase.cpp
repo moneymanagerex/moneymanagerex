@@ -493,8 +493,9 @@ void mmListCtrl::onItemResize(wxListEvent& event)
     // update m_col_width_id but do not save in Setting
     int col_nr = event.GetColumn();
     int col_id = getColId_Nr(col_nr);
-    int col_width = GetColumnWidth(col_nr);
-    m_col_width_id[col_id] = col_width;
+    if (m_col_width_id.size() > static_cast<long unsigned int>(col_id)) {  // Prevent seg fault!
+        m_col_width_id[col_id] = GetColumnWidth(col_nr);
+    }
 }
 
 void mmListCtrl::onColRightClick(wxListEvent& event)
