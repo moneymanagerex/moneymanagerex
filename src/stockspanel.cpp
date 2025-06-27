@@ -261,6 +261,7 @@ wxListCtrl* mmStocksPanel::InitStockTxnListCtrl(wxWindow* parent)
     listCtrl->AppendColumn(_t("Trade Type"), wxLIST_FORMAT_LEFT, 80);
     listCtrl->AppendColumn(_t("Price"), wxLIST_FORMAT_RIGHT, 100);
     listCtrl->AppendColumn(_t("Commission"), wxLIST_FORMAT_RIGHT, 100);
+    listCtrl->AppendColumn(_t("Total"), wxLIST_FORMAT_RIGHT, 100);
 
     return listCtrl;
 }
@@ -303,6 +304,8 @@ void mmStocksPanel::FillListRow(wxListCtrl* listCtrl, long index, const Model_Ch
     listCtrl->SetItem(index, 3, Model_Checking::trade_type_name(Model_Checking::type_id(txn.TRANSCODE)));
     listCtrl->SetItem(index, 4, wxString::FromDouble(share_entry.SHAREPRICE, Option::instance().getSharePrecision()));
     listCtrl->SetItem(index, 5, wxString::FromDouble(share_entry.SHARECOMMISSION, 2));
+    double total = share_entry.SHARENUMBER * share_entry.SHAREPRICE + share_entry.SHARECOMMISSION;
+    listCtrl->SetItem(index, 6, wxString::FromDouble(total, 2));
 }
 
 // Bind list control events
