@@ -59,7 +59,7 @@ wxEND_EVENT_TABLE()
 mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int64 account_id, const wxString& file_path)
     : m_FileNameStr(file_path)
     , m_today(wxDate::Today())
-    , m_fresh(wxDate::Today().Subtract(wxDateSpan::Months(1)))     
+    , m_fresh(wxDate::Today().Subtract(wxDateSpan::Months(1)))
 {
     decimal_ = Model_Currency::GetBaseCurrency()->DECIMAL_POINT;
     payeeIsNotes_ = false;
@@ -506,7 +506,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
 
             if (lineType == MemoSplit)
                 data.Prepend(wxString::Format("%lld:", split_id));
-            
+
             trx[lineType] += prefix + data;
         }
 
@@ -924,12 +924,14 @@ void mmQIFImportDialog::OnCheckboxClick(wxCommandEvent& event)
         payeeIsNotes_ = payeeIsNotesCheckBox_->IsChecked();
         if (!m_FileNameStr.IsEmpty())
             mmReadQIFFile(); //TODO: 1:Why read file again? 2:In future may be def payee in settings
+        [[fallthrough]];    // is this intended ??
+    case wxID_FILE5:
     case mmID_PAYEE:
         payeeMatchAddNotes_->Enable(payeeMatchCheckBox_->IsChecked());
         payeeMatchAddNotes_->SetValue(false);
         t = t | PAYEE_TAB;
-    case wxID_FILE5:
-    {
+    //case wxID_FILE5:    // duplicated case and fall through => is this really the intention?
+    //{
         t = t | ACC_TAB;
         if (accountCheckBox_->IsChecked()
             && !Model_Account::instance().all_checking_account_names().empty())
@@ -951,7 +953,7 @@ void mmQIFImportDialog::OnCheckboxClick(wxCommandEvent& event)
             accountCheckBox_->SetValue(false);
             m_accountNameStr = "";
         }
-    }
+    // }
     }
 
     refreshTabs(t);
@@ -1095,7 +1097,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                     continue;
                 if (dateToCheckBox_->IsChecked() && strDate > end_date)
                     continue;
-                
+
                 Model_Account::Data* account = Model_Account::instance().get(trx->ACCOUNTID);
                 Model_Account::Data* toAccount = Model_Account::instance().get(trx->TOACCOUNTID);
 
@@ -1240,7 +1242,7 @@ void mmQIFImportDialog::saveSplit()
 
     Model_Splittransaction::instance().Savepoint();
     Model_Taglink::instance().Savepoint();
-    // Work through each group of splits 
+    // Work through each group of splits
     for (int i = 0; i < static_cast<int>(m_splitDataSets.size()); i++)
     {
         // and each split in the group
@@ -1437,7 +1439,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
     wxRegEx regex(" ?: ?");
     if (t.find(CategorySplit) != t.end())
     {
-        Model_Splittransaction::Cache split;       
+        Model_Splittransaction::Cache split;
         wxStringTokenizer categToken(t[CategorySplit], "\n");
         wxStringTokenizer amtToken((t.find(AmountSplit) != t.end() ? t[AmountSplit] : ""), "\n");
         wxString notes = t.find(MemoSplit) != t.end() ? t[MemoSplit] : "";
@@ -1604,7 +1606,7 @@ int64 mmQIFImportDialog::getOrCreateAccounts()
 void mmQIFImportDialog::getOrCreatePayees()
 {
     Model_Payee::instance().Savepoint();
-    
+
     for (const auto& item : m_payee_names)
     {
         // check if this payee exists
@@ -1618,7 +1620,7 @@ void mmQIFImportDialog::getOrCreatePayees()
         wxString sMsg = wxString::Format(_t("Added payee: %s"), item);
         log_field_->AppendText(wxString() << sMsg << "\n");
         m_QIFpayeeNames[item] = std::make_tuple(Model_Payee::instance().save(p), p->PAYEENAME, "");
-        
+
     }
 
     Model_Payee::instance().ReleaseSavepoint();
