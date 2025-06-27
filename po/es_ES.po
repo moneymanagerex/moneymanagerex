@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-05-21 01:59+0000\n"
-"PO-Revision-Date: 2025-05-30 01:00\n"
+"PO-Revision-Date: 2025-06-27 01:03\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -43,7 +43,7 @@ msgstr "Privacidad"
 
 #: aboutdialog.cpp:239 optionsettingsnet.cpp:125
 msgid "Send anonymous statistics usage data"
-msgstr "Envíe datos de las estadísticas de uso anonimas"
+msgstr "Envíe datos de las estadísticas de uso anónimas"
 
 #: aboutdialog.cpp:240 optionsettingsnet.cpp:127
 msgid "Enable to help us sending anonymous data about MMEX usage."
@@ -61,7 +61,7 @@ msgstr "Nos ayuda enviando datos anónimos sobre el uso de MMEX."
 #: tagdialog.cpp:146 transactionsupdatedialog.cpp:281 transdialog.cpp:608
 #: wizard_update.cpp:212
 msgid "&OK "
-msgstr "&Aceptar "
+msgstr "Aceptar "
 
 #: accountdialog.cpp:95 mmframe.cpp:1911
 msgid "Edit Account"
@@ -193,7 +193,7 @@ msgstr "Información de acceso:"
 
 #: accountdialog.cpp:224
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "Introduzca cualquier contraseña/información de acceso para la entidad financiera. Esto no es seguro ya que cualquiera con acceso al archivo mmb puede acceder a ella."
+msgstr "Introduzca cualquier contraseña/información de acceso para la entidad financiera. Esto no es seguro porque cualquiera con acceso al archivo puede acceder a ella."
 
 #: accountdialog.cpp:229
 msgid "Statement"
@@ -313,7 +313,7 @@ msgstr "Nueva Cuenta"
 
 #: appstartdialog.cpp:101
 msgid "Open Last Opened &Database"
-msgstr "Abrir la última &base de datos utilizada"
+msgstr "Abrir la última &Database de datos utilizada"
 
 #: appstartdialog.cpp:104
 msgid "&New Database"
@@ -2147,7 +2147,8 @@ msgstr "Actualizar el contenido del campo personalizado"
 #: customfieldlistdialog.cpp:196 customfieldlistdialog.cpp:208
 msgid "Do you want to update blank custom field content?\n"
 "Select No if you want to abort the replace procedure."
-msgstr ""
+msgstr "¿Desea actualizar el contenido en blanco del campo personalizado?|\n"
+"Seleccione No si desea abortar el procedimiento de reemplazo."
 
 #: customfieldlistdialog.cpp:204
 msgid "Replace with"
@@ -2399,19 +2400,19 @@ msgstr "Incrementos de capital"
 
 #: db/DB_Table_Category_V1.h:175
 msgid "Brokerage Fees"
-msgstr ""
+msgstr "Gastos de correduría"
 
 #: db/DB_Table_Category_V1.h:176
 msgid "Interest"
-msgstr ""
+msgstr "Interés"
 
 #: db/DB_Table_Category_V1.h:178
 msgid "Split"
-msgstr ""
+msgstr "Dividir"
 
 #: db/DB_Table_Category_V1.h:179
 msgid "Merger"
-msgstr ""
+msgstr "Fusionar"
 
 #: dbupgrade.cpp:73
 #, c-format
@@ -2946,7 +2947,7 @@ msgstr "Borrar informe…"
 
 #: general_report_manager.cpp:792
 msgid "Sync Report…"
-msgstr ""
+msgstr "Sincronizar informe…"
 
 #: general_report_manager.cpp:890 general_report_manager.cpp:1079
 msgid "Enter the name for the report"
@@ -2954,7 +2955,7 @@ msgstr "Indicar el nombre para el informe"
 
 #: general_report_manager.cpp:909
 msgid "Pull Report Title:"
-msgstr ""
+msgstr "Título del Reporte:"
 
 #: general_report_manager.cpp:928
 msgid "Delete the Report Title:"
@@ -3028,7 +3029,7 @@ msgstr "Hay %1$d iconos no válidos o inexistentes en el tema elegido '%2$s': %3
 #: images_list.cpp:491
 #, c-format
 msgid "Theme %s not found; it may no longer be supported. Reverting to the default theme."
-msgstr ""
+msgstr "Tema %s no encontrado, puede ser que ya no sea compatible. Revirtiendo al tema por defecto."
 
 #: images_list.cpp:498
 #, c-format
@@ -3756,7 +3757,7 @@ msgstr "Introduzca un valor"
 
 #: import_export/univcsvdialog.cpp:2684
 msgid "Please, type the word indicating positive values in the CSV file, e.g., 'credit'."
-msgstr ""
+msgstr "Por favor, escriba la palabra que indica valores positivos en su archivo CSV, por ejemplo 'crédito'."
 
 #: import_export/univcsvdialog.cpp:2694
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
@@ -3851,7 +3852,7 @@ msgstr "Eliminar historial de Valores de divisa para divisas y días no utilizad
 
 #: maincurrencydialog.cpp:365
 msgid "Do you want to delete the selected currency?"
-msgstr ""
+msgstr "¿Desea eliminar la divisa seleccionada?"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -3896,7 +3897,7 @@ msgstr "¡No hay divisa selecionada!"
 
 #: maincurrencydialog.cpp:663
 msgid "Do you want to add dates without any details?"
-msgstr ""
+msgstr "¿Desea añadir fechas sin ningún dato?"
 
 #: maincurrencydialog.cpp:690
 #, c-format
@@ -4062,11 +4063,11 @@ msgstr "Recomendación: Use copiar (Ctrl+C) y pegar (Ctrl+V) para las transaccio
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of the .mmb database file."
-msgstr ""
+msgstr "Consejo: Recuerde hacer copias de seguridad del archivo de base de datos."
 
 #: mmTips.h:26
 msgid "Tip: If the .mmb database file is unencrypted, anyone who has the knowledge can open the database file and read the contents. Ensure that any sensitive financial information stored is properly secured."
-msgstr ""
+msgstr "Consejo: Si el archivo de base de datos no está cifrado, cualquiera que tenga el conocimiento puede abrir el archivo de base de datos y leer el contenido. Asegurar que cualquier información financiera sensible almacenada esté debidamente asegurada."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
@@ -4086,11 +4087,11 @@ msgstr "Consejo: El comportamiento de tiempo de ejecución de MMEX se puede camb
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions required and then select print from the menu."
-msgstr ""
+msgstr "Consejo: Para imprimir un extracto con transacciones cumpliendo unos determinados criterios, utilice el filtro de transacciones para elegir aquellas que desea y luego lo imprime desde el menú."
 
 #: mmTips.h:32
 msgid "Tip: Set the currency exchange rates if there are accounts with different currencies."
-msgstr ""
+msgstr "Consejo: Establezca los tipos de cambio de la moneda si hay cuentas con diferentes divisas."
 
 #: mmTips.h:34
 msgid "Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."
@@ -4155,7 +4156,7 @@ msgstr "Consejo para salir del endeudamiento: Deje de adquirir nuevas deudas."
 
 #: mmTips.h:54
 msgid "Get out of debt tip: Create a realistic budget for the expenses."
-msgstr ""
+msgstr "Consejo para salir del endeudamiento: Cree un presupuesto realista para sus gastos."
 
 #: mmTips.h:55
 msgid "Get out of debt tip: Spend less than you earn."
@@ -4187,27 +4188,27 @@ msgstr "Ejemplo de una cotización del IBEX: SAN.MC"
 
 #: mmTips.h:65
 msgid "Before starting to invest, have a fully funded emergency fund."
-msgstr ""
+msgstr "Antes de empezar a invertir, tenga un fondo de emergencia bien financiado."
 
 #: mmTips.h:66
 msgid "Before starting to invest, know your cash flow (have a budget)."
-msgstr ""
+msgstr "Antes de empezar a invertir, conozca su flujo de efectivo (tenga un presupuesto)."
 
 #: mmTips.h:67
 msgid "Before starting to invest, pay off consumer debt—especially credit cards."
-msgstr ""
+msgstr "Antes de empezar a invertir, pague las deudas de consumo, especialmente las tarjetas de crédito."
 
 #: mmTips.h:68
 msgid "Before starting to invest, make net worth the primary tracking metric."
-msgstr ""
+msgstr "Antes de empezar a invertir, haga que el patrimonio neto sea su métrica principal de seguimiento."
 
 #: mmTips.h:69
 msgid "Before starting to invest, clarify the goals and the priorities."
-msgstr ""
+msgstr "Antes de empezar a invertir, clarifique los objetivos y las prioridades."
 
 #: mmTips.h:70
 msgid "Before starting to invest, understand the investing basics."
-msgstr ""
+msgstr "Antes de empezar a invertir, entienda los conceptos básicos de inversión."
 
 #: mmTips.h:71
 msgid "Common mistake of investors: only buying known companies."
@@ -4219,7 +4220,7 @@ msgstr "Error común de los inversores: invertir en empresas que les gustan."
 
 #: mmTips.h:73
 msgid "Common mistake of investors: only buying buzzworthy companies."
-msgstr ""
+msgstr "Error común de los inversores: invertir en empresas populares."
 
 #: mmTips.h:74
 msgid "Common mistake of investors: forgetting to rebalance."
@@ -4486,7 +4487,7 @@ msgstr ""
 #: mmchecking_list.cpp:1515 mmchecking_list.cpp:1524
 #, c-format
 msgid "Do you want to delete all the “%s” transactions shown?"
-msgstr ""
+msgstr "¿Desea eliminar todas las transacciones de “%s” mostradas?"
 
 #: mmchecking_list.cpp:2147
 #, c-format
@@ -4497,7 +4498,7 @@ msgstr[1] "La edición afectará a %i transacciones de una cuenta que está cerr
 
 #: mmchecking_list.cpp:2149
 msgid "Do you want to perform the edit?"
-msgstr ""
+msgstr "¿Desea realizar la edición?"
 
 #: mmchecking_list.cpp:2150
 msgid "Closed Account Check"
@@ -4545,7 +4546,7 @@ msgstr "Introduzca cualquier texto para encontrarlo en los datos de transacción
 
 #: mmcheckingpanel.cpp:350
 msgid "Click to copy to clipboard"
-msgstr ""
+msgstr "Haga clic para copiar al portapapeles"
 
 #: mmcheckingpanel.cpp:369
 msgid "Account Bal: "
@@ -4565,15 +4566,15 @@ msgstr "Flujo filtrado: "
 
 #: mmcheckingpanel.cpp:395
 msgid "Market Value: "
-msgstr ""
+msgstr "Valor del mercado: "
 
 #: mmcheckingpanel.cpp:396
 msgid "Invested: "
-msgstr ""
+msgstr "Invertido: "
 
 #: mmcheckingpanel.cpp:409
 msgid "Advanced filter"
-msgstr ""
+msgstr "Filtro avanzado"
 
 #: mmcheckingpanel.cpp:511
 msgid "(Date range)"
@@ -4612,11 +4613,11 @@ msgstr "Haga clic para ocultar las transacciones programadas."
 
 #: mmcheckingpanel.cpp:1047
 msgid "More date ranges…"
-msgstr ""
+msgstr "Más rangos de fechas…"
 
 #: mmcheckingpanel.cpp:1054
 msgid "Advanced filter…"
-msgstr ""
+msgstr "Filtro avanzado…"
 
 #: mmcheckingpanel.cpp:1194
 msgid "&New Withdrawal…"
@@ -4726,7 +4727,7 @@ msgstr "Planificador del presupuesto"
 
 #: mmframe.cpp:992
 msgid "Cash Ledger"
-msgstr ""
+msgstr "Libro de efectivo"
 
 #: mmframe.cpp:1384
 msgid "The selected item will be deleted."
@@ -4751,7 +4752,7 @@ msgstr "Informe de transacciones"
 
 #: mmframe.cpp:1483
 msgid "Do you want to delete the account?"
-msgstr ""
+msgstr "¿Está seguro de que desea eliminar la cuenta?"
 
 #: mmframe.cpp:1487
 msgid "This will also delete any associated Shares."
@@ -4883,7 +4884,7 @@ msgstr "Nueva base de datos"
 
 #: mmframe.cpp:1712
 msgid "&Open Database…"
-msgstr ""
+msgstr "&Abrir base de datos…"
 
 #: mmframe.cpp:1712 mmframe.cpp:2173
 msgid "Open Database"
@@ -5473,7 +5474,7 @@ msgstr ""
 
 #: mmframe.cpp:2479
 msgid "Do you want to open the database?"
-msgstr ""
+msgstr "¿Desea abrir la base de datos?"
 
 #: mmframe.cpp:2480
 msgid "MMEX Instance Check"
@@ -5566,7 +5567,7 @@ msgstr "Resultado de la verificación de la integridad de la base de datos:"
 
 #: mmframe.cpp:2713
 msgid "Please use this function only if requested by MMEX support and an .mmdbg debug file has been supplied."
-msgstr ""
+msgstr "Por favor, utilice esta función únicamente si es solicitada por el soporte MMEX y se ha proporcionado un archivo de depuración."
 
 #: mmframe.cpp:2716
 msgid "Database Debug"
@@ -5677,7 +5678,8 @@ msgstr "Seleccionar la cuenta a borrar"
 #, c-format
 msgid "Do you you want to delete\n"
 "%1$s account: %2$s?"
-msgstr ""
+msgstr "¿Está seguro de querer borrar\n"
+"la cuenta %1$s: %2$s?"
 
 #: mmframe.cpp:3765 mmframe.cpp:3792
 msgid "Change Account Type"
@@ -5797,11 +5799,11 @@ msgstr "Ganancia/Pérdida"
 
 #: mmhomepage.cpp:86
 msgid "Market Value"
-msgstr ""
+msgstr "Valor de mercado"
 
 #: mmhomepage.cpp:87 mmhomepage.cpp:579
 msgid "Cash Balance"
-msgstr ""
+msgstr "Saldo de efectivo"
 
 #: mmhomepage.cpp:88 mmhomepage.cpp:580 reports/budgetingperf.cpp:142
 #: reports/cashflow.cpp:276 reports/categexp.cpp:219 reports/categexp.cpp:497
@@ -5894,7 +5896,7 @@ msgstr "Ocultar esta columna"
 
 #: mmpanelbase.cpp:541
 msgid "Move hidden column"
-msgstr ""
+msgstr "Mover columna oculta"
 
 #: mmpanelbase.cpp:543
 msgid "Move column left"
@@ -6061,7 +6063,11 @@ msgid "A scheduled transaction will exceed the account limit.\n\n"
 "Current Balance: %2$6.2f\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f"
-msgstr ""
+msgstr "Una transacción programada excederá el límite de su cuenta.\n\n"
+"Cuenta: %1$s\n"
+"Saldo actual: %2$6.2f\n"
+"Cantidad de la transacción: %3$6.2f\n"
+"%4$s: %5$6.2f"
 
 #: model/Model_Billsdeposits.cpp:227
 msgid "MMEX Scheduled Transaction Check"
@@ -6069,15 +6075,15 @@ msgstr "Comprobación de transacciones programadas en MMEX"
 
 #: model/Model_Checking.cpp:39
 msgid "Buy"
-msgstr ""
+msgstr "Comprar"
 
 #: model/Model_Checking.cpp:40
 msgid "Sell"
-msgstr ""
+msgstr "Vender"
 
 #: model/Model_Checking.cpp:41
 msgid "Revalue"
-msgstr ""
+msgstr "Valoración"
 
 #: model/Model_Currency.cpp:37
 msgid "Fiat"
@@ -6254,7 +6260,7 @@ msgstr "Desde hace 1 semana"
 
 #: option.cpp:79
 msgid "Year before last"
-msgstr ""
+msgstr "Año antes del último"
 
 #: optiondialog.cpp:37 optionsettingsattachment.cpp:65 webappdialog.cpp:146
 msgid "Attachments"
@@ -7329,7 +7335,7 @@ msgstr "Como usted sabe, <a href='%s'>un foro</a> para usuarios está disponible
 #: reports/bugreport.h:78
 #, c-format
 msgid "Please, join the community on <a href='%s'>Slack</a>. Here you can also pose the question and learn the latest news."
-msgstr ""
+msgstr "Por favor, únase a la comunidad en <a href='%s'>Slack</a>. Aquí también puedes plantear la pregunta y aprender las últimas noticias."
 
 #: reports/bugreport.h:79
 #, c-format
@@ -7342,7 +7348,7 @@ msgstr "Proporcione un nombre descriptivo para el problema."
 
 #: reports/bugreport.h:81
 msgid "Include steps to reproduce the problem; attach screenshots where appropriate."
-msgstr ""
+msgstr "Incluya pasos para reproducir su problema, adjunte capturas de pantalla cuando sea apropiado."
 
 #: reports/bugreport.h:82
 #, c-format
@@ -7516,7 +7522,7 @@ msgstr "El año pasado"
 
 #: reports/mmDateRange.cpp:196
 msgid "Year Before Last"
-msgstr ""
+msgstr "Año antes del último"
 
 #: reports/mmDateRange.cpp:227
 msgid "Current Financial Year"
@@ -7928,7 +7934,7 @@ msgstr "Especificar el intervalo del histórico de la acción"
 
 #: stockdialog.cpp:698 stockdialog.cpp:702
 msgid "Stock history not found."
-msgstr ""
+msgstr "No se ha encontrado el histórico de acciones."
 
 #: stockdialog.cpp:699 stockdialog.cpp:811
 msgid "Stock History Error"
@@ -7952,7 +7958,7 @@ msgstr "&Nueva compra de acciones…"
 
 #: stocks_list.cpp:139
 msgid "&Adjust Trade"
-msgstr ""
+msgstr "Ajustar Comercio"
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
@@ -7972,7 +7978,7 @@ msgstr "Página &web de la acción"
 
 #: stocks_list.cpp:290
 msgid "Do you want to delete the stock investment?"
-msgstr ""
+msgstr "¿Desea eliminar la compra de acciones?"
 
 #: stocks_list.cpp:291
 msgid "Confirm Stock Investment Deletion"
@@ -7985,7 +7991,7 @@ msgstr "Moviendo transacción de %s a"
 
 #: stockspanel.cpp:148
 msgid "&Adjust Trade "
-msgstr ""
+msgstr "Ajustar Comercio "
 
 #: stockspanel.cpp:149
 msgid "Add Stock Transactions"
@@ -8171,7 +8177,7 @@ msgstr "Elija un archivo de tema para importar"
 
 #: themes.cpp:305
 msgid "The theme already exists. Do you want to import and overwrite the existing theme?"
-msgstr ""
+msgstr "El tema ya existe, ¿desea importarlo y sobrescribir el tema existente?"
 
 #: themes.cpp:315
 msgid "Something went wrong importing the theme"
@@ -8179,7 +8185,7 @@ msgstr "Algo salió mal importando el tema"
 
 #: themes.cpp:327
 msgid "Do you want to delete the theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "¿Desea eliminar este tema? Tendrá que volver a importarlo si quiere usarlo de nuevo."
 
 #: themes.cpp:334
 msgid "Something went wrong when attempting to delete the theme"
@@ -8187,7 +8193,7 @@ msgstr "Algo salió mal al intentar eliminar el tema"
 
 #: themes.cpp:346
 msgid "Do you want to use the theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "¿Desea utilizar este tema? Tenga en cuenta que solo tendrá efecto después de reiniciar MMEX."
 
 #: transactionsupdatedialog.cpp:211
 msgid "Transfer To"
@@ -8244,7 +8250,7 @@ msgstr "La transacción excederá el límite de la cuenta."
 
 #: transdialog.cpp:1194
 msgid "The two accounts have different currencies, but no advanced transaction is defined. Is this correct?"
-msgstr ""
+msgstr "Las dos cuentas tienen diferentes monedas, pero no se ha definido ninguna transacción avanzada. ¿Es esto correcto?"
 
 #: transdialog.cpp:1195
 msgid "Currencies are different"
@@ -8333,7 +8339,7 @@ msgstr "Selección de cuenta"
 
 #: usertransactionpanel.h:45 usertransactionpanel.h:81
 msgid "UserTransactionPanel"
-msgstr ""
+msgstr "Panel de transacciones del Usuario"
 
 #: util.cpp:747
 msgid "Currency rates have been updated"
@@ -8467,7 +8473,7 @@ msgstr "Versión API de la WebApp errónea"
 #: webapp.cpp:494
 #, c-format
 msgid "Account %s not found."
-msgstr ""
+msgstr "No se ha encontrado la cuenta %s."
 
 #: webapp.cpp:496
 #, c-format
@@ -8498,7 +8504,7 @@ msgstr "Transacción no descargada:"
 
 #: webapp.cpp:599
 msgid "Please fix the attachments folder or delete the attachments from the WebApp."
-msgstr ""
+msgstr "Por favor, arregle la carpeta de archivos adjuntos o elimine los archivos adjuntos de la aplicación web."
 
 #: webapp.cpp:600
 msgid "Attachment folder error"
@@ -8572,7 +8578,9 @@ msgstr "%s modelos de todas las transacciones como pertenecientes\n"
 
 #: wizard_newaccount.cpp:40
 msgid "The next pages will help create a new account. To help get started, begin by making a list of all the financial institutions where the accounts are held."
-msgstr ""
+msgstr "Las siguientes páginas le ayudarán a crear una nueva cuenta.\n"
+"Para ayudarle al inicio, comience haciendo una lista de todas\n"
+"las instituciones financieras donde tiene una cuenta."
 
 #: wizard_newaccount.cpp:87
 msgid "Account Name Invalid"
@@ -8602,7 +8610,7 @@ msgstr "Tipo de cuenta"
 
 #: wizard_newaccount.cpp:139
 msgid "Select the type of account to create:"
-msgstr ""
+msgstr "Seleccione el tipo de cuenta a crear:"
 
 #: wizard_newaccount.cpp:140
 msgid "General bank accounts cover a wide variety of account\n"
@@ -8618,7 +8626,7 @@ msgstr "Las cuentas de inversión son cuentas especializadas que solo\n"
 
 #: wizard_newaccount.cpp:150
 msgid "Term and asset accounts are specialized bank accounts. They are intended for monitoring assets or term deposits and bonds where typically regular money goes in and comes out, outside the general income stream."
-msgstr ""
+msgstr "Las cuentas de términos y activos son cuentas bancarias especializadas. Están destinados a supervisar los activos o depósitos a término y los bonos donde normalmente entra y sale dinero regular, fuera del flujo general de ingresos."
 
 #: wizard_newaccount.cpp:166
 msgid "Base Account Currency Not set."
@@ -8636,7 +8644,15 @@ msgstr "Asistente para nueva base de datos"
 msgid "The next pages will help create a new database.\n\n"
 "The database file is stored with an extension of .mmb. As this file contains important financial data, it is recommended to create daily backups with the setting “Backup database on startup” and store the backups in a separate location.\n\n"
 "The database can later be encrypted if required by using the setting: “Save Database As…” and changing the filetype before saving."
-msgstr ""
+msgstr "Las siguientes páginas le ayudarán a crear una nueva base de datos.\n\n"
+"El archivo de la base de datos se almacena con la extensión .mmb.\n"
+"Como este archivo contiene información financiera importante,\n"
+"le recomendamos crear copias de seguridad diarias con las Opciones\n"
+"de configuración: 'Copia de seguridad antes de abrir', y almacenando\n"
+"estas copias de seguridad en una localización diferente.\n\n"
+"La base de datos .mmb. se puede cifrar más tarde usando\n"
+"la opción: 'Guardar base de datos como' y cambiando el tipo de\n"
+"archivo antes de guardarla."
 
 #: wizard_newdb.cpp:104
 msgid "Base Currency for account"
