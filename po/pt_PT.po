@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-05-21 01:59+0000\n"
-"PO-Revision-Date: 2025-05-30 01:00\n"
+"PO-Revision-Date: 2025-06-20 01:01\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -483,7 +483,7 @@ msgstr ""
 
 #: assetdialog.cpp:253
 msgid "Select the compounding period for the appreciation/depreciation rate"
-msgstr ""
+msgstr "Selecione o período do investimento para a taxa de apreensão/depreciação"
 
 #: assetdialog.cpp:258
 msgid "% Rate"
