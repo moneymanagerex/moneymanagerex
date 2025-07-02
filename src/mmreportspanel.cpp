@@ -128,7 +128,7 @@ bool mmReportsPanel::saveReportText(bool initial)
             wxStringClientData* obj =
                 static_cast<wxStringClientData*>(m_date_ranges->GetClientObject(selectedItem));
             if (obj) id_str = obj->GetData();
-            int id = wxAtoi(id_str);
+            int64 id = std::stoll(id_str.ToStdString());
             rb_->setSelection(id);
         }
     }
