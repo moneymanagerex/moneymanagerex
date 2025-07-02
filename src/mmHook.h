@@ -31,7 +31,7 @@ public:
 class UpdateCallbackHook : public wxSQLite3Hook
 {
 public:
-    virtual void UpdateCallback (wxUpdateType type, const wxString& database, const wxString& table, wxLongLong rowid)
+    virtual void UpdateCallback (wxUpdateType type, [[maybe_unused]] const wxString& database, [[maybe_unused]] const wxString& table, [[maybe_unused]] wxLongLong rowid)
     {
         switch (type)
         {

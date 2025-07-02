@@ -71,7 +71,7 @@ mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent)
 {
     m_images = navtree_images_list();
     m_currencyID = m_account->CURRENCYID;
-    Model_Currency::Data* currency = Model_Currency::instance().get(m_currencyID);
+    [[maybe_unused]] Model_Currency::Data* currency = Model_Currency::instance().get(m_currencyID);
     wxASSERT(currency);
 
     this->SetFont(parent->GetFont());
@@ -353,13 +353,13 @@ void mmNewAcctDialog::fillControls()
 
     m_credit_limit_ctrl->SetCurrency(Model_Account::currency(m_account));
     m_credit_limit_ctrl->SetValue(m_account->CREDITLIMIT);
-    
+
     m_interest_rate_ctrl->SetValue(m_account->INTERESTRATE, 2);
 
     if (!m_account->PAYMENTDUEDATE.empty()) {
         m_payment_due_date_ctrl->SetValue(Model_Account::DateOf(m_account->PAYMENTDUEDATE));
     }
-    
+
     m_minimum_payment_ctrl->SetCurrency(Model_Account::currency(m_account));
     m_minimum_payment_ctrl->SetValue(m_account->MINIMUMPAYMENT);
 
@@ -396,7 +396,7 @@ void mmNewAcctDialog::OnCurrency(wxCommandEvent& /*event*/)
         bn->SetLabelText(currency->CURRENCYNAME);
 
         double value;
-        
+
         m_initbalance_ctrl->SetCurrency(currency);
         if (m_initbalance_ctrl->checkValue(value, false))
             m_initbalance_ctrl->SetValue(value);
@@ -404,7 +404,7 @@ void mmNewAcctDialog::OnCurrency(wxCommandEvent& /*event*/)
         m_credit_limit_ctrl->SetCurrency(currency);
         if (m_credit_limit_ctrl->checkValue(value, false))
             m_credit_limit_ctrl->SetValue(value);
-        
+
         m_minimum_balance_ctrl->SetCurrency(currency);
         if (m_minimum_balance_ctrl->checkValue(value, false))
             m_minimum_balance_ctrl->SetValue(value);
@@ -528,12 +528,12 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
                                                                             ,DB_Table_CHECKINGACCOUNT_V1::TOACCOUNTID(m_account->ACCOUNTID, EQUAL));
         if (!all_trans_check1.empty() || !all_trans_check2.empty())
             return mmErrorDialogs::ToolTip4Object(m_initdate_ctrl, _t("Transactions for this account already exist before this date"), _t("Invalid Date"));
-        
+
         const Model_Stock::Data_Set all_trans_stock = Model_Stock::instance().find(DB_Table_STOCK_V1::PURCHASEDATE(openingDate, LESS)
                                                    ,DB_Table_STOCK_V1::HELDAT(m_account->ACCOUNTID, EQUAL));
         if (!all_trans_stock.empty())
             return mmErrorDialogs::ToolTip4Object(m_initdate_ctrl, _t("Stock purchases for this account already exist before this date"), _t("Invalid Date"));
-        
+
         const Model_Billsdeposits::Data_Set all_trans_bd1 = Model_Billsdeposits::instance().find(DB_Table_BILLSDEPOSITS_V1::TRANSDATE(openingDate, LESS)
                                                    ,DB_Table_BILLSDEPOSITS_V1::ACCOUNTID(m_account->ACCOUNTID, EQUAL));
         const Model_Billsdeposits::Data_Set all_trans_bd2 = Model_Billsdeposits::instance().find(DB_Table_BILLSDEPOSITS_V1::TRANSDATE(openingDate, LESS)

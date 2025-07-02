@@ -125,8 +125,9 @@ void mmBudgetingPanel::OnViewPopupSelected(wxCommandEvent& event)
         currentView_ = VIEW_EXPENSE;
     else if (evt == MENU_VIEW_SUMMARYBUDGETENTRIES)
         currentView_ = VIEW_SUMM;
-    else
+    else {
         wxASSERT(false);
+    }
 
     Model_Infotable::instance().setString("BUDGET_FILTER", currentView_);
 
@@ -406,7 +407,7 @@ void mmBudgetingPanel::initVirtualListControl()
             else
                 actIncome += actual;
         }
-        
+
 
         budgetTotals_[category.CATEGID].first = estimated;
         budgetTotals_[category.CATEGID].second = actual;

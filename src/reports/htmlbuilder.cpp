@@ -219,8 +219,9 @@ void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDate
     else if (!withDateRange) {
         sDate << _t("Over Time");
     }
-    else
+    else {
         wxASSERT(false);
+    }
 
     wxString t = wxString::Format(tags::HEADER, 4, sDate, 4);
     this->html_.Replace("<TMPL_VAR DATE_HEADING>", t);
@@ -241,11 +242,11 @@ void mmHTMLBuilder::addReportCurrency()
     wxString base_currency_symbol;
     wxASSERT_MSG(Model_Currency::GetBaseCurrencySymbol(base_currency_symbol), "Could not find base currency symbol");
 
-    addHeader(5, wxString::Format("%s: %s", _t("Currency"), base_currency_symbol));  
+    addHeader(5, wxString::Format("%s: %s", _t("Currency"), base_currency_symbol));
 }
 
 void mmHTMLBuilder::addOffsetIndication(int startDay)
-{       
+{
     if (startDay > 1)
         addHeader(5, wxString::Format ("%s: %d"
             , _t("User specified start day")
@@ -253,7 +254,7 @@ void mmHTMLBuilder::addOffsetIndication(int startDay)
 }
 
 void mmHTMLBuilder::addFutureIgnoredIndication(bool ignore)
-{       
+{
     if (ignore)
         addHeader(5, _t("Future Transactions have been ignored"));
 }
@@ -580,7 +581,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     int k = pow10(precision);
     wxString htmlChart, htmlPieData;
     wxString divid = wxString::Format("apex%i", rand()); // Generate unique identifier for each graph
- 
+
     // Chart Type and Series type
     wxString gtype;
     int chartWidth = 95;
@@ -623,11 +624,11 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
                 chartWidth = 70;
     }
 
-    addDivContainer("shadowGraph"); 
+    addDivContainer("shadowGraph");
 
-    htmlChart += wxString::Format("chart: { animations: { enabled: false }, type: '%s', %s foreColor: '%s', toolbar: { tools: { download: false } }, width: '%i%%' }" 
+    htmlChart += wxString::Format("chart: { animations: { enabled: false }, type: '%s', %s foreColor: '%s', toolbar: { tools: { download: false } }, width: '%i%%' }"
                     , gtype
-                    , (gd.type == GraphData::STACKEDAREA || 
+                    , (gd.type == GraphData::STACKEDAREA ||
                        gd.type == GraphData::STACKEDBARLINE) ? "stacked: true," : ""
                     , mmThemeMetaString(meta::COLOR_REPORT_FORECOLOR)
                     , chartWidth);
@@ -649,11 +650,11 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             locale.Replace(".UTF-8", "");
     }
 
-    if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
+    if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT)
     {
         htmlChart += ", plotOptions: { pie: { customScale: 0.8 } }";
     }
-    
+
     wxString toolTipFormatter = wxString::Format(", y: { formatter: function(value, opts) { return value.toLocaleString(%s, {minimumFractionDigits: %i, maximumFractionDigits: %i});}}", locale, precision, precision);
 
     htmlChart += wxString::Format(", tooltip: { theme: 'dark' %s }\n", toolTipFormatter);
@@ -671,7 +672,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             wxString::Format("var localizedValues = opts.w.globals.series.map(function(value){ return value.toLocaleString(%s, {minimumFractionDigits: %i, "
                              "maximumFractionDigits: %i});});",
                              locale, precision, precision)
-                                                                                                                                                                    
+
             + "var valueLength = localizedValues.reduce(function(a, b) {return Math.max(a, b.length) }, 0) + 1;" +
             wxString::Format("var value = chart_%s[opts.seriesIndex].toLocaleString(%s, {minimumFractionDigits: %i, maximumFractionDigits: %i});", divid, locale, precision, precision) +
             "value = new Array((valueLength - value.toString().length)*2 + value.split((1000).toLocaleString(" + wxString::Format("%s", locale) + ").charAt(1)).length - 1).join('&nbsp;') + value;"
@@ -697,12 +698,12 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
 
     wxString categories;
     first = true;
-    for (const auto& entry : gd.labels) 
+    for (const auto& entry : gd.labels)
     {
         wxString label = entry;
         label.Replace("'","\\'"); // Need to escape the quotes!
         categories += wxString::Format("%s'%s'", first ? "":",", label);
-        first = false; 
+        first = false;
     }
 
     // Pie/donut charts just have a single series / data, and mixed have a single set of labels
@@ -744,7 +745,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             }
             first = false;
         }
-        if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
+        if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT)
             seriesList = seriesEntries;
         else
         {
@@ -777,9 +778,9 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         "<script>\n"
         "%s; var options = { %s };\n"
         "var chart = new ApexCharts(document.querySelector('#%s'), options); chart.render();\n"
-        "</script>\n", 
+        "</script>\n",
         divid, gtype, htmlPieData, htmlChart, divid));
-    
+
     endDiv();
 }
 

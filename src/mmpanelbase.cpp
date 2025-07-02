@@ -81,21 +81,25 @@ void mmListCtrl::createColumns()
 
 wxString mmListCtrl::BuildPage(const wxString &title) const
 {
-    const wxString eol = wxTextFile::GetEOL();
-    wxString text = eol;
-    text << "<head>" + eol + "<title>" + title + "</title>" + eol;
-    text << "<meta charset = 'utf-8'>" + eol + "</head>" + eol;
-    text << "<body>" << eol;
-    text << wxString::Format(
-        "<table border=%s cellpadding=4 cellspacing=0 >",
-        (GetWindowStyle() & wxLC_HRULES) || (GetWindowStyle() & wxLC_VRULES) ? "1" : "0"
-    ) + eol;
+    static const wxString eol = wxTextFile::GetEOL();
 
-    text << "<tr>" << eol;
+    wxString text;
+    text << "<!DOCTYPE html>" << eol
+         << "<html>" << eol
+         << "<head>" << eol
+         << "<title>" << title << "</title>" << eol
+         << "<meta charset = 'utf-8'>" << eol
+         << "</head>" + eol
+         << "<body>" << eol
+         << "<table border="
+         << ((GetWindowStyle() & wxLC_HRULES) || (GetWindowStyle() & wxLC_VRULES) ? "1" : "0") << " cellpadding=4 cellspacing=0 >" << eol
+         << "<tr>" << eol;
+
     for (int col_vo = 0; col_vo < GetColumnCount(); ++col_vo) {
         int col_nr = getColNr_Vo(col_vo);
-        if (isDisabledColNr(col_nr))
+        if (isDisabledColNr(col_nr)) {
             continue;
+        }
         wxListItem col_item;
         col_item.SetMask(wxLIST_MASK_TEXT);
         GetColumn(col_nr, col_item);
@@ -104,18 +108,19 @@ wxString mmListCtrl::BuildPage(const wxString &title) const
     text << "</tr>" << eol;
 
     for (int row_nr = 0; row_nr < GetItemCount(); ++row_nr) {
-        text << "<tr>" << eol;
+        text << eol << "<tr>" << eol;
         for (int col_vo = 0; col_vo < GetColumnCount(); ++col_vo) {
             int col_nr = getColNr_Vo(col_vo);
-            if (isDisabledColNr(col_nr))
+            if (isDisabledColNr(col_nr)) {
                 continue;
+            }
             text << "<td>" << wxListCtrl::GetItemText(row_nr, col_nr) << "</td>" << eol;
         }
-        text << eol << "</tr>" << eol;
+        text << "</tr>" << eol;
     }
-    text << "</table>" << eol;
-    text << "</body>" << eol;
-    text = wxString::Format("<!DOCTYPE html>%s<html>%s</html>%s", eol, text, eol);
+    text << "</table>" << eol
+         << "</body>" << eol
+         << "</html>" << eol;
 
     return text;
 }
