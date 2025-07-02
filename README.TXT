@@ -5,7 +5,7 @@ Money Manager Ex (MMEX) ist eine kostenlose, quelloffene,
 plattformübergreifende, einfach zu bedienende persönliche
 Finanzsoftware. Sie hilft in erster Linie dabei, die eigenen Finanzen
 zu organisieren und den Überblick wo, wann und wie das Geld ausgegeben
-wird.
+wird zu behalten.
 
 MMEX enthält alle grundlegenden Funktionen, die sich 90% der Benutzer
 von einer Anwendung für persönliche Finanzen wünschen. Die Design-Ziele
@@ -83,7 +83,7 @@ pl polski
 =========
 
 Money Manager Ex (MMEX) to program rozwijany jako open source służący do
-zarządzania domowym budżetem i finansami osobistymi. 
+zarządzania domowym budżetem i finansami osobistymi.
 
 Aplikacja doskonale nadaje się do obliczania osobistego budżetu, wszyscy
 użytkownicy którzy posiadają konta bankowe, lokaty, udziały w
@@ -94,7 +94,7 @@ Wydatki oraz przychody można podzielić według kategorii dzięki czemu
 zarządzanie nimi jest zdecydowanie łatwiejsze. W ten sposób można
 zaplanować własny budżet na cały rok. Program posiada moduł
 rozbudowanych raportów które określają w jaki sposób użytkownik zarządza
-finansami i w jaki sposób wydaje pieniądze. 
+finansami i w jaki sposób wydaje pieniądze.
 
 MMEX posiada polski interfejs oraz daje możliwość wyboru polskiej
 waluty.
@@ -106,11 +106,11 @@ ru Русский
 ==========
 
 Money Manager Ex (MMEX) - бесплатная, с открытым исходным кодом,
-мультиплатформенная программа для персонального учёта финансов. 
+мультиплатформенная программа для персонального учёта финансов.
 Она поможет Вам знать, когда, сколько и на что были потрачены деньги.
 
-MMEX включает функции, которые 90% пользователей хотят видеть 
-в программе учёта финансов. Принципы реализации – легковесность, 
+MMEX включает функции, которые 90% пользователей хотят видеть
+в программе учёта финансов. Принципы реализации – легковесность,
 простота выполнения операций, дружелюбность к пользователю.
 
 https://moneymanagerex.org/
