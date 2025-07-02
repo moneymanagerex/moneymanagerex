@@ -601,6 +601,8 @@ const wxString htmlWidgetAssets::getHTMLText()
 
     for (const auto& asset : asset_accounts)
     {
+        if (Model_Account::status_id(asset) != Model_Account::STATUS_ID_OPEN) continue;
+
         double cash = Model_Account::balance(asset);
         auto inv = Model_Account::investment_balance(asset);
         double current = inv.first;
