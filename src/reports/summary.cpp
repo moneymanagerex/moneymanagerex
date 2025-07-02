@@ -53,7 +53,7 @@ std::map<wxDate, double> mmReportSummaryByDate::createCheckingBalanceMap(const M
         wxDate date = Model_Checking::TRANSDATE(tran);
         balance += Model_Checking::account_flow(tran, account.ACCOUNTID);
         balanceMap[date] = balance;
-    } 
+    }
     return balanceMap;
 }
 
@@ -252,23 +252,23 @@ wxString mmReportSummaryByDate::getHTMLText()
         gs_data[0].name = _t("Cash");
         gs_data[0].type = "column";
         gs_data[1].name = _t("Bank Accounts");
-        gs_data[1].type = "column";        
+        gs_data[1].type = "column";
         gs_data[2].name = _t("Credit Card Accounts");
-        gs_data[2].type = "column";   
+        gs_data[2].type = "column";
         gs_data[3].name = _t("Loan Accounts");
-        gs_data[3].type = "column";   
+        gs_data[3].type = "column";
         gs_data[4].name = _t("Term Accounts");
         gs_data[4].type = "column";   
         gs_data[5].name = _t("Asset Accounts");
-        gs_data[5].type = "column";   
+        gs_data[5].type = "column";
         gs_data[6].name = _t("Investment Accounts");
         gs_data[6].type = "column";
         gs_data[7].name = _t("Assets");
         gs_data[7].type = "column";
         gs_data[8].name = _t("Stocks");
-        gs_data[8].type = "column";   
+        gs_data[8].type = "column";
         gs_data[9].name = _t("Balance");
-        gs_data[9].type = "line";  
+        gs_data[9].type = "line";
 
         for (const auto& entry : totBalanceData)
         {
@@ -280,7 +280,7 @@ wxString mmReportSummaryByDate::getHTMLText()
         for (const auto& gs : gs_data)
             gd.series.push_back(gs);
 
-        gd.type = GraphData::STACKEDBARLINE; 
+        gd.type = GraphData::STACKEDBARLINE;
         hb.addChart(gd);
     }
 
@@ -328,7 +328,7 @@ wxString mmReportSummaryByDate::getHTMLText()
         hb.endTable();
     }
     hb.endDiv();
-    
+
     hb.end();
 
     //wxLogDebug("======= mmReportSummaryByDateMontly::getHTMLText =======");
@@ -348,3 +348,4 @@ mmReportSummaryByDateYearly::mmReportSummaryByDateYearly()
 {
     setReportParameters(Reports::YearlySummaryofAccounts);
 }
+

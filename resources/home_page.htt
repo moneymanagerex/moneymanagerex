@@ -52,7 +52,7 @@
         <tr valign="top">
             <td width="50%">
                 <div class='shadow'>
-                
+
                 <!--Accounts-->
 
                 <TMPL_VAR ACCOUNTS_INFO>
@@ -62,7 +62,7 @@
                 <TMPL_VAR TERM_ACCOUNTS_INFO>
                 <TMPL_VAR SHARE_ACCOUNTS_INFO>
                 </div>
-                
+
                 <!--Stocks-->
                 <TMPL_VAR STOCKS_INFO>
                 <!--Assets-->
@@ -138,7 +138,7 @@
                         chart: { type : 'bar', foreColor: '<TMPL_VAR INCOME_VS_EXPENSES_FORECOLOR>', toolbar : { show : false } },
                         dataLabels : { enabled : false },
                         colors: [ <TMPL_VAR INCOME_VS_EXPENSES_COLORS> ],
-                        tooltip: { 
+                        tooltip: {
                             theme: "dark",
                             y: {
                                 formatter: function(value) {

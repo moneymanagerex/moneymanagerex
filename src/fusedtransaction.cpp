@@ -98,8 +98,9 @@ Fused_Transaction::Data::Data(const Model_Billsdeposits::Data& r)
 Fused_Transaction::Data::Data(const Model_Billsdeposits::Data& r, wxString date, int repeat_num)
     : Model_Checking::Data(execute_bill(r, date)), m_bdid(r.BDID), m_repeat_num(repeat_num)
 {
-    if (m_repeat_num < 1)
+    if (m_repeat_num < 1) {
         wxFAIL;
+    }
 }
 
 Fused_Transaction::Data::~Data()
@@ -130,8 +131,9 @@ Fused_Transaction::Full_Data::Full_Data(const Model_Billsdeposits::Data& r,
     Model_Checking::Full_Data(execute_bill_full(r, date), {}, {}),
     m_bdid(r.BDID), m_repeat_num(repeat_num)
 {
-    if (m_repeat_num < 1)
+    if (m_repeat_num < 1) {
         wxFAIL;
+    }
 
     m_splits = execute_splits(Model_Billsdeposits::split(r));
 
@@ -149,8 +151,9 @@ Fused_Transaction::Full_Data::Full_Data(const Model_Billsdeposits::Data& r,
     Model_Checking::Full_Data(execute_bill_full(r, date), {}, {}),
     m_bdid(r.BDID), m_repeat_num(repeat_num)
 {
-    if (m_repeat_num < 1)
+    if (m_repeat_num < 1) {
         wxFAIL;
+    }
 
     const auto budgetsplits_it = budgetsplits.find(m_bdid);
     if (budgetsplits_it != budgetsplits.end()) {

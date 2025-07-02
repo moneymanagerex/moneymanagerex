@@ -93,15 +93,15 @@ const wxString htmlWidgetStocks::getHTMLText()
         for (const auto& account : accounts)
         {
             if (Model_Account::status_id(account) != Model_Account::STATUS_ID_OPEN) continue;
-            
+
             double conv_rate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, today);
             auto inv_bal = Model_Account::investment_balance(account);
             double cash_bal = Model_Account::balance(account);
-    
+
             grand_gain_lost    += (inv_bal.first - inv_bal.second) * conv_rate;
             grand_market_value += inv_bal.first * conv_rate;
             grand_cash_balance += cash_bal * conv_rate;
-            grand_total_       += (inv_bal.first + cash_bal) * conv_rate; 
+            grand_total_       += (inv_bal.first + cash_bal) * conv_rate;
 
             body += "<tr>";
             body += wxString::Format("<td sorttable_customkey='*%s*'><a href='stock:%lld' oncontextmenu='return false;' target='_blank'>%s</a>%s</td>\n"
@@ -715,6 +715,7 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tRe
 
     wxString body = "";
     const wxDate today = wxDate::Today();
+    double tabBalance = 0.0, tabReconciled = 0.0;
     wxString vAccts = Model_Setting::instance().getViewAccounts();
     auto accounts = Model_Account::instance().find(
         Model_Account::ACCOUNTTYPE(Model_Account::type_name(type)),
@@ -728,8 +729,8 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tRe
         double currency_rate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, today);
         double bal = account.INITIALBAL + accountStats_[account.ACCOUNTID].second; //Model_Account::balance(account);
         double reconciledBal = account.INITIALBAL + accountStats_[account.ACCOUNTID].first;
-        tBalance += bal * currency_rate;
-        tReconciled += reconciledBal * currency_rate;
+        tabBalance += bal * currency_rate;
+        tabReconciled += reconciledBal * currency_rate;
 
         // show the actual amount in that account
         if (((vAccts == VIEW_ACCOUNTS_OPEN_STR && Model_Account::status_id(account) == Model_Account::STATUS_ID_OPEN) ||
@@ -747,9 +748,12 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tRe
     }
     output += body;
     output += "</tbody><tfoot><tr class ='total'><td>" + _t("Total:") + "</td>\n";
-    output += "<td class='money'>" + Model_Currency::toCurrency(tReconciled) + "</td>\n";
-    output += "<td class='money' colspan='2'>" + Model_Currency::toCurrency(tBalance) + "</td></tr></tfoot></table>\n";
+    output += "<td class='money'>" + Model_Currency::toCurrency(tabReconciled) + "</td>\n";
+    output += "<td class='money' colspan='2'>" + Model_Currency::toCurrency(tabBalance) + "</td></tr></tfoot></table>\n";
     if (body.empty()) output.clear();
+
+    tBalance += tabBalance;
+    tReconciled += tabReconciled;
 
     return output;
 }
