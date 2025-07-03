@@ -608,6 +608,10 @@ msgstr "Vermögenswerte"
 msgid "All"
 msgstr "Alle"
 
+#: stockspanel.cpp:104
+msgid "Non-Zero Shares"
+msgstr "Bestand > 0"
+
 #: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:266
 #: stockspanel.cpp:144
 msgid "&New "
