@@ -609,6 +609,10 @@ msgstr ""
 msgid "All"
 msgstr ""
 
+#: stockspanel.cpp:104
+msgid "Non-Zero Shares"
+msgstr ""
+
 #: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:266
 #: stockspanel.cpp:144
 msgid "&New "

@@ -41,7 +41,7 @@ mmReportCategoryExpenses::~mmReportCategoryExpenses()
 {
 }
 
-double mmReportCategoryExpenses::AppendData(const std::vector<mmReportCategoryExpenses::data_holder> &data, std::map<int64, std::map<int, double>> &categoryStats, const DB_Table_CATEGORY_V1::Data* category, int64 groupID, int level) {
+double mmReportCategoryExpenses::AppendData([[maybe_unused]] const std::vector<mmReportCategoryExpenses::data_holder> &data, std::map<int64, std::map<int, double>> &categoryStats, const DB_Table_CATEGORY_V1::Data* category, int64 groupID, int level) {
     double amt = categoryStats[category->CATEGID][0];
     if (type_ == COME && amt < 0.0) amt = 0;
     if (type_ == GOES && amt > 0.0) amt = 0;
@@ -78,7 +78,7 @@ void  mmReportCategoryExpenses::RefreshData()
         double amt = categoryStats[category.CATEGID][0];
         if (type_ == COME && amt < 0.0) amt = 0;
         if (type_ == GOES && amt > 0.0) amt = 0;
-        
+
         auto subcategories = Model_Category::sub_category(category);
         std::stable_sort(subcategories.begin(), subcategories.end(), SorterByCATEGNAME());
         std::reverse(subcategories.begin(), subcategories.end());
@@ -105,7 +105,7 @@ bool DataSorter(const ValueTrio& x, const ValueTrio& y)
 
 wxString mmReportCategoryExpenses::getHTMLText()
 {
-    // Grab the data   
+    // Grab the data
     RefreshData();
 
     // Data is presorted by name
@@ -117,7 +117,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
     std::vector<std::pair<wxString, double>> income_vector;
     std::map <int64, int> group_counter;
     std::map <int64, std::map<int64, double>> group_total;
-    
+
     for (const auto& entry : sortedData)
     {
         if (entry.subCatID != -1 || entry.level == 0) group_counter[entry.catID] = 1;

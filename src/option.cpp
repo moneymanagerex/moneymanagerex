@@ -140,7 +140,7 @@ void Option::load(bool include_infotable)
     loadTransDateDefault();
     loadSendUsageStats();
     loadCheckNews();
-    
+
     loadThemeMode();
     loadHtmlScale();
     loadIconSize();
@@ -172,7 +172,7 @@ wxLanguage Option::getLanguageID(const bool get_db)
             m_language = static_cast<wxLanguage>(lang_id);
         }
     }
-   
+
     return m_language;
 }
 
@@ -638,7 +638,7 @@ void Option::parseCheckingRange()
         m_checking_range_m = m_checking_range_a.size();
 
     wxLogDebug("m=[%d], n=[%zu]", m_checking_range_m, m_checking_range_a.size());
-    for (DateRange2::Spec &spec : m_checking_range_a) {
+    for ([[maybe_unused]] DateRange2::Spec &spec : m_checking_range_a) {
         wxLogDebug("label=[%s], name=[%s]", spec.getLabel(), spec.getName());
     }
     wxLogDebug("}}}");
@@ -668,7 +668,7 @@ int Option::AccountImageId(const int64 account_id, const bool def, const bool ig
     int max = acc_img::MAX_ACC_ICON - static_cast<int>(img::LAST_NAVTREE_PNG);
     int min = 1;
     int custom_img_id = Model_Infotable::instance().getInt(wxString::Format("ACC_IMAGE_ID_%lld", account_id), 0);
-    if (custom_img_id > max) custom_img_id = custom_img_id - 20; //Bug #963 fix 
+    if (custom_img_id > max) custom_img_id = custom_img_id - 20; //Bug #963 fix
     if (!def && (custom_img_id >= min && custom_img_id <= max))
         return custom_img_id + img::LAST_NAVTREE_PNG - 1;
 

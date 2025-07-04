@@ -143,13 +143,13 @@ std::pair<double, double> Model_Asset::valueAtDate(const Data* r, const wxDate& 
     double dailyRate = r->VALUECHANGERATE / 36500.0;
     int changeType = change_id(r);
 
-    auto applyChangeRate = [changeType, dailyRate](double& value, double days) 
+    auto applyChangeRate = [changeType, dailyRate](double& value, double days)
     {
-        if (changeType == CHANGE_ID_APPRECIATE) 
+        if (changeType == CHANGE_ID_APPRECIATE)
         {
             value *= exp(dailyRate * days);
-        } 
-        else if (changeType == CHANGE_ID_DEPRECIATE) 
+        }
+        else if (changeType == CHANGE_ID_DEPRECIATE)
         {
             value *= exp(-dailyRate * days);
         }
@@ -169,6 +169,10 @@ std::pair<double, double> Model_Asset::valueAtDate(const Data* r, const wxDate& 
         wxDate last = date;
         for (const auto& tran: trans)
         {
+            if (tran.ACCOUNTID < 0) {
+              continue;
+            }
+
             const wxDate tranDate = Model_Checking::TRANSDATE(tran);
             if (tranDate > date) break;
 
@@ -179,14 +183,17 @@ std::pair<double, double> Model_Asset::valueAtDate(const Data* r, const wxDate& 
                 last = tranDate;
             }
 
-            double amount = -1 * Model_Checking::account_flow(tran, tran.ACCOUNTID) *
+            double accflow = Model_Checking::account_flow(tran, tran.ACCOUNTID);
+            double amount = -1 * accflow *
                 Model_CurrencyHistory::getDayRate(Model_Account::instance().get(tran.ACCOUNTID)->CURRENCYID, tranDate);
+            //double amount = -1 * Model_Checking::account_flow(tran, tran.ACCOUNTID) *
+            //    Model_CurrencyHistory::getDayRate(Model_Account::instance().get(tran.ACCOUNTID)->CURRENCYID, tranDate);
 
-            if (amount >= 0) 
-            { 
+            if (amount >= 0)
+            {
                 balance.first += amount;
             }
-            else 
+            else
             {
                 double unrealized_gl = balance.second - balance.first;
                 balance.first += std::min(unrealized_gl + amount, 0.0);

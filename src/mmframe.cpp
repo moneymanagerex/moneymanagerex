@@ -223,7 +223,7 @@ wxArrayString mmGUIFrame::ACCOUNT_SECTION = account_section_all();
 wxArrayString mmGUIFrame::account_section_all()
 {
     wxArrayString type_section;
-    int i = 0;
+    [[maybe_unused]] int i = 0;
     for (const auto& item : ACCOUNT_SECTION_TABLE) {
         wxASSERT_MSG(item.first == i++, "Wrong order in mmGUIFrame::ACCOUNT_SECTION_TABLE");
         type_section.Add(item.second);
@@ -270,7 +270,7 @@ mmGUIFrame::mmGUIFrame(
     /* Create the Controls for the frame */
     mmFontSize(this);
     LoadTheme();
-    createMenu();    
+    createMenu();
     createControls();
     createToolBar();
 
@@ -291,15 +291,15 @@ mmGUIFrame::mmGUIFrame(
         .Name("toolbar").ToolbarPane().Top()
         .LeftDockable(false).RightDockable(false)
         .Show(Model_Setting::instance().getBool("SHOWTOOLBAR", true))
-        .DockFixed(false)                                               
+        .DockFixed(false)
         .Top()
-        .MinSize(wxSize(-1, toolBar_->GetSize().GetHeight())) 
-        .MaxSize(wxSize(-1, toolBar_->GetSize().GetHeight())) 
+        .MinSize(wxSize(-1, toolBar_->GetSize().GetHeight()))
+        .MaxSize(wxSize(-1, toolBar_->GetSize().GetHeight()))
         .Position(0)
         .Row(0)
         .Layer(0)
         .Resizable(true)
-        );                          
+        );
 
     // change look and feel of wxAuiManager
     m_mgr.GetArtProvider()->SetMetric(16, 0);
@@ -627,7 +627,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                     Model_CustomFieldData::instance().save(fieldData);
                 }
                 Model_CustomFieldData::instance().ReleaseSavepoint();
-                
+
                 // Save base transaction tags
                 Model_Taglink::Data_Set taglinks;
                 const wxString& txnRefType = Model_Checking::refTypeName;
@@ -777,7 +777,7 @@ void mmGUIFrame::createControls()
         wxTreeEventHandler(mmGUIFrame::OnSelChanged),
         nullptr, this
     );
-    
+
     homePanel_ = new wxPanel(
         this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
         wxTAB_TRAVERSAL | wxTR_SINGLE | wxNO_BORDER
@@ -1055,7 +1055,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     m_nav_tree_ctrl->Update();
 
     /* issue #4778 */
-#if !defined(__WXMSW__) 
+#if !defined(__WXMSW__)
     m_nav_tree_ctrl->SetFocus();
 #endif
 
@@ -1860,7 +1860,7 @@ void mmGUIFrame::createMenu()
         _t("&Reset View"),
         _t("Reset view and dock tools")
     );
-    menuView->Append(menuItemResetView);   
+    menuView->Append(menuItemResetView);
 
     menuView->AppendSeparator();
     wxMenuItem* menuItemLanguage = new wxMenuItem(
@@ -2402,7 +2402,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             return false;
         }
 
-        wxButton* next = static_cast<wxButton*>(wizard->FindWindow(wxID_FORWARD)); //FIXME: 
+        wxButton* next = static_cast<wxButton*>(wizard->FindWindow(wxID_FORWARD)); //FIXME:
         if (next) next->SetLabel(_tu("&Next →"));
 
         SetDataBaseParameters(fileName);
@@ -2457,7 +2457,7 @@ void mmGUIFrame::SetDataBaseParameters(const wxString& fileName)
 //----------------------------------------------------------------------------
 
 bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxString &password)
-{ 
+{
     menuBar_->FindItem(MENU_CHANGE_ENCRYPT_PASSWORD)->Enable(false);
     if (createDataStore(fileName, password, openingNew)) {
         m_recentFiles->AddFileToHistory(fileName);
@@ -3036,7 +3036,7 @@ void mmGUIFrame::OnOrgTags(wxCommandEvent& /*event*/)
         refreshPanelData();
         RefreshNavigationTree();
     }
-    
+
 }
 //----------------------------------------------------------------------------
 

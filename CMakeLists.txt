@@ -479,7 +479,7 @@ add_subdirectory(src)
 
 function(create_zip output_file input_files working_dir)
     add_custom_command(
-        COMMAND ${CMAKE_COMMAND} -E tar "cf" "${output_file}" --format=zip -- ${input_files} 
+        COMMAND ${CMAKE_COMMAND} -E tar "cf" "${output_file}" --format=zip -- ${input_files}
         WORKING_DIRECTORY "${working_dir}"
         OUTPUT  "${output_file}"
         DEPENDS ${input_files}
@@ -512,9 +512,9 @@ GETSUBDIRS(GRMGROUPDIR "${PROJECT_SOURCE_DIR}/general-reports/packages/")
 FOREACH(GRMGROUP ${GRMGROUPDIR})
     GETSUBDIRS(GRMDIR "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/")
     FOREACH(GRMNAME ${GRMDIR})
-        set(GRM_DEFAULT_FILES   "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/description.txt" 
-                                "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/luacontent.lua" 
-                                "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/sqlcontent.sql" 
+        set(GRM_DEFAULT_FILES   "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/description.txt"
+                                "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/luacontent.lua"
+                                "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/sqlcontent.sql"
                                 "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/template.htt"
         )
         create_zip("${CMAKE_CURRENT_BINARY_DIR}/${GRMGROUP}-${GRMNAME}.grm" "${GRM_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/")
@@ -650,8 +650,8 @@ install(FILES
 # Resources
 install(FILES
     3rd/ChartNew.js/ChartNew.js
-    3rd/ChartNew.js/Add-ins/format.js 
-    3rd/apexcharts.js/dist/apexcharts.min.js  
+    3rd/ChartNew.js/Add-ins/format.js
+    3rd/apexcharts.js/dist/apexcharts.min.js
     resources/ie-polyfill/polyfill.min.js
     resources/ie-polyfill/classlist.min.js
     resources/ie-polyfill/resize-observer.js
@@ -688,7 +688,7 @@ if(LINUX)
     set(APPSTREAM_MAJOR_VERSION ${CMAKE_MATCH_1})
     set(APPSTREAM_MINOR_VERSION ${CMAKE_MATCH_2})
     set(APPSTREAM_PATCH_VERSION ${CMAKE_MATCH_3})
-    
+
     # AppStream version < 0.12.9 does not have function news-to-metainfo, so just copy metainfo directly
     if(APPSTREAM_MAJOR_VERSION EQUAL 0 AND (APPSTREAM_MINOR_VERSION LESS 12 OR (APPSTREAM_MINOR_VERSION EQUAL 12 AND APPSTREAM_PATCH_VERSION LESS 9)))
         message(STATUS "AppStream version ${APPSTREAM_VERSION} < 0.12.9. Skipping merge of NEWS into Metainfo.")
@@ -749,7 +749,7 @@ endif()
 if(CMAKE_PREFIX_PATH)
     file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}/bin/libcurl.dll" CURL_LIBPATH)
     if(EXISTS "${CURL_LIBPATH}")
-        install(FILES 
+        install(FILES
             "${CURL_LIBPATH}"
             DESTINATION "${MMEX_BIN_DIR}")
     endif()
@@ -768,7 +768,7 @@ set(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/resources/mmex.ico")
 set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/license.txt")
 set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.TXT")
 # TODO: do we package Debug builds with stripped binaries?
-set(CPACK_STRIP_FILES ON)
+set(CPACK_STRIP_FILES OFF)
 set(CPACK_DEBIAN_PACKAGE_SECTION misc)
 set(CPACK_DEBIAN_PACKAGE_PRIORITY extra)
 set(CPACK_DEBIAN_PACKAGE_HOMEPAGE http://www.moneymanagerex.org/)
@@ -795,7 +795,7 @@ set(CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION
 # set(CPACK_RPM_DEBUGINFO_FILE_NAME RPM-DEFAULT)
 
 if(LINUX)
-    if(LINUX_DISTRO STREQUAL "Ubuntu" OR LINUX_DISTRO STREQUAL "Debian" OR LINUX_DISTRO STREQUAL "LinuxMint" OR LINUX_DISTRO STREQUAL "Raspbian")
+    if(LINUX_DISTRO STREQUAL "Ubuntu" OR LINUX_DISTRO STREQUAL "Debian" OR LINUX_DISTRO STREQUAL "Linuxmint" OR LINUX_DISTRO STREQUAL "Raspbian")
         set(CPACK_GENERATOR DEB)
         set(CPACK_DEBIAN_PACKAGE_RELEASE "${LINUX_DISTRO_STRING}")
     elseif(LINUX_DISTRO STREQUAL "Fedora")

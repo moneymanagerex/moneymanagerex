@@ -101,7 +101,7 @@ void mmStocksPanel::CreateControls()
 
     m_choiceFilter = new wxChoice(headerPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, nullptr);
     m_choiceFilter->Append(_t("All"));
-    m_choiceFilter->Append(_T("Non-Zero Shares"));
+    m_choiceFilter->Append(_t("Non-Zero Shares"));
     m_choiceFilter->SetMinSize(wxSize(150, -1));
     m_choiceFilter->SetSelection(0);
 

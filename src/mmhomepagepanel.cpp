@@ -137,48 +137,26 @@ void mmHomePagePanel::insertDataIntoTemplate()
 
     // Get locale to pass to reports for Apexcharts
     wxString locale = Model_Infotable::instance().getString("LOCALE", "en-US"); // Stay blank of not set, currency override handled in Apexcharts call.
-    wxString adjustedLocale = locale;
-    if (adjustedLocale == "")
+    if (locale == "")
     {
-        adjustedLocale = "en-US";
+        locale = "en-US";
     }
-    adjustedLocale.Replace("_", "-");
-    m_frames["LOCALE"] = adjustedLocale;
+    locale.Replace("_", "-");
+    m_frames["LOCALE"] = locale;
 
     double tBalance = 0.0, tReconciled = 0.0;
-    double cardBalance = 0.0, cardReconciled = 0.0;
-    double termBalance = 0.0, termReconciled = 0.0;
-    double cashBalance = 0.0, cashReconciled = 0.0;
-    double loanBalance = 0.0, loanReconciled = 0.0;
-    double shareBalance = 0.0, shareReconciled = 0.0;
-    double assetBalance = 0.0, assetReconciled = 0.0;
-
-    htmlWidgetAccounts account_stats;
-    m_frames["ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_CHECKING);
-    m_frames["CARD_ACCOUNTS_INFO"] = account_stats.displayAccounts(cardBalance, cardReconciled, Model_Account::TYPE_ID_CREDIT_CARD);
-    tBalance += cardBalance;
-    tReconciled += cardReconciled;
 
     // Accounts
-    m_frames["CASH_ACCOUNTS_INFO"] = account_stats.displayAccounts(cashBalance, cashReconciled, Model_Account::TYPE_ID_CASH);
-    tBalance += cashBalance;
-    tReconciled += cashReconciled;
+    htmlWidgetAccounts account_stats;
+    m_frames["ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_CHECKING);
+    m_frames["CARD_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_CREDIT_CARD);
+    m_frames["CASH_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_CASH);
+    m_frames["LOAN_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_LOAN);
+    m_frames["TERM_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_TERM);
 
-    m_frames["LOAN_ACCOUNTS_INFO"] = account_stats.displayAccounts(loanBalance, loanReconciled, Model_Account::TYPE_ID_LOAN);
-    tBalance += loanBalance;
-    tReconciled += loanReconciled;
+    account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_ASSET);
+    account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_SHARES);
 
-    m_frames["TERM_ACCOUNTS_INFO"] = account_stats.displayAccounts(termBalance, termReconciled, Model_Account::TYPE_ID_TERM);
-    tBalance += termBalance;
-    tReconciled += termReconciled;
-
-    account_stats.displayAccounts(assetBalance, assetReconciled, Model_Account::TYPE_ID_ASSET);
-    tBalance += assetBalance;
-    tReconciled += assetReconciled;
-
-    account_stats.displayAccounts(shareBalance, shareReconciled, Model_Account::TYPE_ID_SHARES);
-    tBalance += shareBalance;
-    tReconciled += shareReconciled;
 
     //Stocks
     htmlWidgetStocks stocks_widget;

@@ -79,7 +79,7 @@ Model_Translink::Data* Model_Translink::SetStockTranslink(const int64 stock_id
 }
 
 Model_Translink::Data* Model_Translink::SetTranslink(const int64 checking_id
-    , const CHECKING_TYPE checking_type
+    , [[maybe_unused]] const CHECKING_TYPE checking_type
     , const wxString& link_type, const int64 link_record_id)
 {
     Model_Translink::Data* translink = Model_Translink::instance().create();
@@ -183,7 +183,7 @@ void Model_Translink::UpdateAssetValue(Model_Asset::Data* asset_entry)
             else
             {
                 new_value += asset_trans->TRANSAMOUNT * conv_rate;  // Deposit to asset value
-            }  
+            }
         }
     }
 

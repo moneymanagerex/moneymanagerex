@@ -593,7 +593,7 @@ void mmBDDialog::CreateControls()
 
     wxStaticText* tag_label = new wxStaticText(this, wxID_ANY, _t("Tags"));
     tagTextCtrl_ = new mmTagTextCtrl(this);
-    
+
     transPanelSizer->Add(tag_label, g_flagsH);
     transPanelSizer->Add(tagTextCtrl_, g_flagsExpand);
     transPanelSizer->AddSpacer(1);
@@ -1038,7 +1038,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     const Model_Account::Data* toAccount = Model_Account::instance().get(m_bill_data.TOACCOUNTID);
     if (m_bill_data.TRANSDATE < account->INITIALDATE)
         return mmErrorDialogs::ToolTip4Object(cbAccount_, _t("The opening date for the account is later than the date of this transaction"), _t("Invalid Date"));
-  
+
     if (toAccount && (m_bill_data.TRANSDATE < toAccount->INITIALDATE))
         return mmErrorDialogs::ToolTip4Object(cbToAccount_, _t("The opening date for the account is later than the date of this transaction"), _t("Invalid Date"));
 
@@ -1353,8 +1353,9 @@ void mmBDDialog::setRepeatType(int repeatType)
                 unsigned int j = BILLSDEPOSITS_REPEATS.at(i).first;
                 if (j < BILLSDEPOSITS_REPEATS.size() && index.at(j) == -1)
                     index.at(j) = i;
-                else
+                else {
                     wxFAIL;
+                }
             }
         }
 
