@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2016, 2020 Nikolay Akimov
  Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -38,7 +39,7 @@
 #include <wx/valnum.h>
 
 using namespace rapidjson;
-    
+
 IMPLEMENT_DYNAMIC_CLASS(mmStockDialog, wxDialog)
 
 wxBEGIN_EVENT_TABLE(mmStockDialog, wxDialog)
@@ -114,17 +115,19 @@ void mmStockDialog::DataToControls()
     m_history_price_ctrl->SetValue(m_stock->CURRENTPRICE, account, currency_precision);
     m_commission_ctrl->SetValue(m_stock->COMMISSION, account, currency_precision);
     m_current_price_ctrl->SetValue(m_stock->CURRENTPRICE, account, currency_precision);
-    
+
     ShowStockHistory();
 }
 
 void mmStockDialog::UpdateControls()
 {
     this->SetTitle(m_edit ? _t("Edit Stock Investment") : _t("New Stock Investment"));
-    Model_Account::Data* account = Model_Account::instance().get(m_account_id);
+    if (m_account_id > -1) {  // do not use for overview
+        Model_Account::Data* account = Model_Account::instance().get(m_account_id);
 
-    if (m_stock) {
-        m_value_investment->SetLabelText(Model_Account::toCurrency(Model_Stock::instance().CurrentValue(m_stock), account));
+        if (m_stock) {
+            m_value_investment->SetLabelText(Model_Account::toCurrency(Model_Stock::instance().CurrentValue(m_stock), account));
+        }
     }
 
     //Disable history buttons on new stocks
@@ -399,7 +402,7 @@ void mmStockDialog::OnSave(wxCommandEvent & /*event*/)
         mmErrorDialogs::MessageInvalid(this, _t("Held At"));
         return;
     }
-    
+
     // TODO unique
     const wxString stockSymbol = m_stock_symbol_ctrl->GetValue();
     if (stockSymbol.empty())
@@ -407,11 +410,11 @@ void mmStockDialog::OnSave(wxCommandEvent & /*event*/)
         mmErrorDialogs::MessageInvalid(this, _t("Symbol"));
         return;
     }
-        
+
     const wxString pdate = m_purchase_date_ctrl->GetValue().FormatISODate();
     if (pdate < account->INITIALDATE)
         return mmErrorDialogs::ToolTip4Object(m_purchase_date_ctrl, _t("The opening date for the account is later than the date of this transaction"), _t("Invalid Date"));
-  
+
     const wxString stockName = m_stock_name_ctrl->GetValue();
     const wxString notes = m_notes_ctrl->GetValue();
 
@@ -469,7 +472,7 @@ void mmStockDialog::OnSave(wxCommandEvent & /*event*/)
 
     Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, wxDate::Today(), m_stock->CURRENTPRICE, Model_StockHistory::MANUAL);
     ShowStockHistory();
-    
+
     m_edit = true;
     UpdateControls();
 }
@@ -559,10 +562,10 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
 
             const wxString& delimiter = Model_Infotable::instance().getString("DELIMITER", mmex::DEFDELIMTER);
             csv2tab_separated_values(line, delimiter);
-            wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);  
+            wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
             if (static_cast<int>(tkz.CountTokens()) < 2)
                 continue;
-            
+
             std::vector<wxString> tokens;
             while (tkz.HasMoreTokens())
             {
@@ -596,11 +599,11 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
             countImported++;
         }
 
-        progressDlg->Destroy();       
+        progressDlg->Destroy();
 
-        wxString msg = wxString::Format(_t("Total Lines : %ld"), countNumTotal); 
+        wxString msg = wxString::Format(_t("Total Lines : %ld"), countNumTotal);
         msg << "\n";
-        msg << wxString::Format(_t("Total Imported : %ld"), countImported); 
+        msg << wxString::Format(_t("Total Imported : %ld"), countImported);
         msg << "\n";
         msg << _t("Date") << "              " << _t("Price");
         msg << "\n";
@@ -612,17 +615,17 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
         {
             canceledbyuser = true;
         }
- 
+
         // Since all database transactions are only in memory,
         if (!canceledbyuser)
         {
-            // we need to save them to the database. 
+            // we need to save them to the database.
             for (auto &d : stockData)
                 Model_StockHistory::instance().save(d);
             // show the data
             ShowStockHistory();
         }
-        else 
+        else
         {
             //TODO: and discard the database changes.
         }

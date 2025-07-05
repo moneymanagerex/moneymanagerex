@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2010-2021 Nikolay Akimov
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -68,7 +69,7 @@ public:
 
     void doRefreshItems(int64 trx_id = -1);
     long get_selectedIndex();
-    wxString getStockInfo(int selectedIndex) const;
+    wxString getStockInfo(int selectedIndex, bool addtotal) const;
     int initVirtualListControl(int64 trx_id = -1);
 
     void OnNewStocks(wxCommandEvent& event);
