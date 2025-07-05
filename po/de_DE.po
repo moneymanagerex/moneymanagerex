@@ -8048,10 +8048,14 @@ msgstr "Los"
 msgid "Stock Portfolio: %s"
 msgstr "Wertpapierdepot: %s"
 
+#: stockspanel.cpp:409
+msgid "Stock Portfolios Overview"
+msgstr "Wertpapierübersicht"
+
 #: stockspanel.cpp:414
 #, c-format
 msgid "Cash Balance: %s"
-msgstr "Zahlungsbilanz: %s"
+msgstr "Kontostand: %s"
 
 #: stockspanel.cpp:415
 #, c-format

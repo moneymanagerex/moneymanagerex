@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
  Copyright (C) 2016 Stefano Giorgio
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -36,6 +37,8 @@ Model_Translink::~Model_Translink()
 */
 Model_Translink& Model_Translink::instance(wxSQLite3Database* db)
 {
+    g_db_ = db;  // store for internal use
+
     Model_Translink& ins = Singleton<Model_Translink>::instance();
     ins.db_ = db;
     ins.destroy_cache();
@@ -213,3 +216,36 @@ bool Model_Translink::ShareAccountId(int64& stock_entry_id)
     return false;
 }
 
+
+const Model_Translink::Data_Set Model_Translink::getSpecialSQL(TransSQLQueryName queryname, wxString par)
+{
+    Data_Set result;
+    try
+    {
+        wxString query_special;
+
+        switch(queryname) {
+            case ALL_LINKS_BY_SYMBOL:
+                query_special = "SELECT * FROM TRANSLINK_V1 WHERE LINKRECORDID IN (SELECT STOCKID FROM STOCK_V1 WHERE SYMBOL = \"" + par + "\")";
+                break;
+
+            default:
+                return result; // return empty!
+        }
+
+        wxSQLite3ResultSet q = g_db_->ExecuteQuery(query_special);
+
+        while(q.NextRow())
+        {
+            Self::Data entity(q, this);
+            result.push_back(std::move(entity));
+        }
+        q.Finalize();
+    }
+    catch(const wxSQLite3Exception &e)
+    {
+        wxLogError("%s: Exception %s", this->name().utf8_str(), e.GetMessage().utf8_str());
+    }
+
+    return result;
+}
