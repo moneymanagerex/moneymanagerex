@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-06-30 21:33+0000\n"
-"PO-Revision-Date: 2025-07-04 01:02\n"
+"PO-Revision-Date: 2025-07-11 01:04\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -523,7 +523,7 @@ msgstr "Asset account not found."
 
 #: assetdialog.cpp:451
 msgid "Do you want to create one?"
-msgstr ""
+msgstr "?"
 
 #: assetspanel.cpp:50 billsdepositspanel.cpp:102 budgetingpanel.cpp:67
 #: mmchecking_list.cpp:95 stocks_list.cpp:65
