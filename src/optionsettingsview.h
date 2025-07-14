@@ -58,8 +58,8 @@ private:
     wxButton* m_UDFCB5 = nullptr;
     wxButton* m_UDFCB6 = nullptr;
     wxButton* m_UDFCB7 = nullptr;
-    
-    
+
+
     wxButton* m_theme_manager = nullptr;
     wxChoice* m_theme_mode = nullptr;
     wxChoice* m_font_size_chooser = nullptr;
@@ -81,6 +81,9 @@ private:
     wxSpinCtrl* m_budget_days_offset = nullptr;
     wxSpinCtrl* m_reporting_firstday = nullptr;
     wxChoice* m_reporting_first_weekday = nullptr;
+
+    wxCheckBox* m_doNotColorFuture = nullptr;
+    wxCheckBox* m_doSpecialColorReconciled = nullptr;
 
     wxCheckBox* m_showToolTips = nullptr;
     wxCheckBox* m_showMoneyTips = nullptr;

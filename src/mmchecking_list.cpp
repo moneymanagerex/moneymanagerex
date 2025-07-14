@@ -152,6 +152,21 @@ TransactionListCtrl::TransactionListCtrl(
         mmThemeMetaColour(meta::COLOR_LISTFUTURE),
         wxNullColour, wxNullFont
     )),
+    m_attr5(new wxListItemAttr(
+        *bestFontColour(m_cp->isAllTrans() ?
+            mmThemeMetaColour(meta::COLOR_LISTALT0A) :
+            mmThemeMetaColour(meta::COLOR_LISTALT0)
+        ),
+        m_cp->isAllTrans() ?
+            mmThemeMetaColour(meta::COLOR_LISTALT0A) :
+            mmThemeMetaColour(meta::COLOR_LISTALT0),
+        wxNullFont.Bold()
+    )),
+    m_attr6(new wxListItemAttr(
+        *bestFontColour(mmThemeMetaColour(meta::COLOR_LIST)),
+        mmThemeMetaColour(meta::COLOR_LIST),
+        wxNullFont.Bold()
+    )),
     m_attr11(new wxListItemAttr(
         *bestFontColour(mmColors::userDefColor1),
         mmColors::userDefColor1,
@@ -186,6 +201,41 @@ TransactionListCtrl::TransactionListCtrl(
         *bestFontColour(mmColors::userDefColor7),
         mmColors::userDefColor7,
         wxNullFont
+    )),
+    m_attr21(new wxListItemAttr(
+        *bestFontColour(mmColors::userDefColor1),
+        mmColors::userDefColor1,
+        wxNullFont.Bold()
+    )),
+    m_attr22(new wxListItemAttr(
+        *bestFontColour(mmColors::userDefColor2),
+        mmColors::userDefColor2,
+        wxNullFont.Bold()
+    )),
+    m_attr23(new wxListItemAttr(
+        *bestFontColour(mmColors::userDefColor3),
+        mmColors::userDefColor3,
+        wxNullFont.Bold()
+    )),
+    m_attr24(new wxListItemAttr(
+        *bestFontColour(mmColors::userDefColor4),
+        mmColors::userDefColor4,
+        wxNullFont.Bold()
+    )),
+    m_attr25(new wxListItemAttr(
+        *bestFontColour(mmColors::userDefColor5),
+        mmColors::userDefColor5,
+        wxNullFont.Bold()
+    )),
+    m_attr26(new wxListItemAttr(
+        *bestFontColour(mmColors::userDefColor6),
+        mmColors::userDefColor6,
+        wxNullFont.Bold()
+    )),
+    m_attr27(new wxListItemAttr(
+        *bestFontColour(mmColors::userDefColor7),
+        mmColors::userDefColor7,
+        wxNullFont.Bold()
     ))
 {
     wxASSERT(m_cp);
@@ -217,6 +267,9 @@ TransactionListCtrl::TransactionListCtrl(
         wxDateTime(23, 59, 59, 999).FormatISOCombined();
 
     SetSingleStyle(wxLC_SINGLE_SEL, false);
+
+    doNotColorFutureTransactions = Model_Setting::instance().getBool("DO_NOT_COLOR_FUTURE_TRANSACTIONS", true);
+    doSpecialColorReconciledTransactions = Model_Setting::instance().getBool("SPECIAL_COLOR_RECONCILED_TRANSACTIONS", true);
 }
 
 TransactionListCtrl::~TransactionListCtrl()
@@ -531,31 +584,34 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
 {
     if (item < 0 || item >= static_cast<int>(m_trans.size())) return 0;
 
-    wxString strDate = Model_Checking::TRANSDATE(m_trans[item]).FormatISOCombined();
-    bool in_the_future = (strDate > m_today);
+    bool in_the_future = Model_Checking::TRANSDATE(m_trans[item]).FormatISOCombined() > m_today;
+    if (doNotColorFutureTransactions && in_the_future) {
+        return (item % 2 ? m_attr3.get() : m_attr4.get());
+    }
+
+    bool mark_not_reconciled = doSpecialColorReconciledTransactions && !in_the_future && m_trans[item].STATUS != Model_Checking::STATUS_KEY_RECONCILED;
 
     // apply alternating background pattern
     int user_color_id = m_trans[item].COLOR.GetValue();
-    if (user_color_id < 0) user_color_id = 0;
-    else if (user_color_id > 7) user_color_id = 0;
-
-    if (user_color_id == 0) {
+    if (user_color_id < 0 || user_color_id > 7) {
+        user_color_id = 0;
+    }
+    switch (user_color_id) {
+    case 0:
         if (in_the_future) {
             return (item % 2 ? m_attr3.get() : m_attr4.get());
         }
-        return (item % 2 ? m_attr1.get() : m_attr2.get());
+        break;
+    case 1: return mark_not_reconciled ? m_attr21.get() : m_attr11.get();
+    case 2: return mark_not_reconciled ? m_attr22.get() : m_attr12.get();
+    case 3: return mark_not_reconciled ? m_attr23.get() : m_attr13.get();
+    case 4: return mark_not_reconciled ? m_attr24.get() : m_attr14.get();
+    case 5: return mark_not_reconciled ? m_attr25.get() : m_attr15.get();
+    case 6: return mark_not_reconciled ? m_attr26.get() : m_attr16.get();
+    case 7: return mark_not_reconciled ? m_attr27.get() : m_attr17.get();
     }
 
-    switch (user_color_id) {
-    case 1: return m_attr11.get();
-    case 2: return m_attr12.get();
-    case 3: return m_attr13.get();
-    case 4: return m_attr14.get();
-    case 5: return m_attr15.get();
-    case 6: return m_attr16.get();
-    case 7: return m_attr17.get();
-    }
-    return (item % 2 ? m_attr1.get() : m_attr2.get());
+    return mark_not_reconciled ? (item % 2 ? m_attr5.get() : m_attr6.get()) : (item % 2 ? m_attr1.get() : m_attr2.get());
 }
 
 void TransactionListCtrl::OnColClick(wxListEvent& event)
@@ -1606,7 +1662,7 @@ int64 TransactionListCtrl::onPaste(Model_Checking::Data* tran)
     bool useOriginalDate = Model_Setting::instance().getBool(INIDB_USE_ORG_DATE_COPYPASTE, false);
 
     //TODO: the clone function can't clone split transactions, or custom data
-    Model_Checking::Data* copy = Model_Checking::instance().clone(tran); 
+    Model_Checking::Data* copy = Model_Checking::instance().clone(tran);
     if (!useOriginalDate) copy->TRANSDATE = wxDateTime::Now().FormatISOCombined();
     if (Model_Checking::type_id(copy->TRANSCODE) != Model_Checking::TYPE_ID_TRANSFER ||
         (m_cp->m_account_id != copy->ACCOUNTID && m_cp->m_account_id != copy->TOACCOUNTID)
@@ -1934,7 +1990,7 @@ void TransactionListCtrl::markItem(long selectedItem)
 }
 
 void TransactionListCtrl::setSelectedId(Fused_Transaction::IdRepeat sel_id)
-{ 
+{
     int i = 0;
     for (const auto& fused : m_trans) {
         if (fused.m_repeat_num == sel_id.second && fused.TRANSID == sel_id.first) {
@@ -2169,4 +2225,3 @@ bool TransactionListCtrl::checkTransactionLocked(int64 accountID, const wxString
     }
     return false;
 }
-

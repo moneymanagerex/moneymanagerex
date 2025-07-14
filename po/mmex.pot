@@ -5013,6 +5013,14 @@ msgstr ""
 msgid "Show T&ooltips"
 msgstr ""
 
+#: optionsettingsview.cpp:112
+msgid "Do not use color for future transactions"
+msgstr ""
+
+#: optionsettingsview.cpp:118
+msgid "Emphasize not reconciled transactions"
+msgstr ""
+
 #: mmframe.cpp:1819 optionsettingsview.cpp:112
 msgid "Show Tooltips"
 msgstr ""

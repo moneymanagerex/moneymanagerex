@@ -5013,6 +5013,14 @@ msgstr "Z&ukünftige Buchungen ignorieren"
 msgid "Ignore Future transactions"
 msgstr "Zukünftige Buchungen ignorieren"
 
+#: optionsettingsview.cpp:112
+msgid "Do not use color for future transactions"
+msgstr "Keine Farben für zukünftige Buchungen benutzen"
+
+#: optionsettingsview.cpp:118
+msgid "Emphasize not reconciled transactions"
+msgstr "Nicht bestätigte Buchungen herausheben"
+
 #: mmframe.cpp:1818
 msgid "Show T&ooltips"
 msgstr "T&ooltips anzeigen"

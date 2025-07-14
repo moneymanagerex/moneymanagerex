@@ -84,9 +84,9 @@
         <li>Budgeting and cash flow forecasting</li>
         <li>Simple one-click reporting with graphs and charts</li>
         <li>
-            Import data from 
+            Import data from
             <a href="https://en.wikipedia.org/wiki/Comma-separated_values" target="_blank">Comma-Separated Values (CSV)</a>
-            and 
+            and
             <a href="https://en.wikipedia.org/wiki/Quicken_Interchange_Format" target="_blank">Quicken Interchange Format (QIF)</a>
             files
         </li>
@@ -118,7 +118,7 @@
             <a href="https://github.com/moneymanagerex/moneymanagerex/blob/master/po/common.po" target="_blank">User interface language</a>
         </li>
     </ul>
-    
+
     <h2>Working towards better Financial Health</h2>
     <p>
         Becoming organized financially requires some amount of
@@ -483,8 +483,8 @@
     </p>
     <ul>
         <li>
-            Using menu 
-            <kbd><samp>Accounts</samp> → 
+            Using menu
+            <kbd><samp>Accounts</samp> →
                 <samp>Edit Account…</samp></kbd>:
             The list of account will be displayed where the
             required account is selected.
@@ -921,7 +921,7 @@
         <li>There is no known limit on the depth of nested subcategories.</li>
     </ul>
 
-    
+
     <h2>Working with Tags</h2>
     <p>
         TODO, some information is available here:
@@ -1064,7 +1064,7 @@
         using the right-click contextual menu in the account view.
     </p>
 
-    
+
     <h3>Importing from XML Files</h3>
     <aside class="sticky notes">
         Import is done from the first worksheet in the workbook.
@@ -1216,8 +1216,8 @@ PBank Of Mortgage Payee
         The transactions from an account can be exported to a single XML file.
     </aside>
     <p>
-        MMEX can export as an XML file. The XML format is compliant with, 
-        and can be read by, spreadsheet programs such as 
+        MMEX can export as an XML file. The XML format is compliant with,
+        and can be read by, spreadsheet programs such as
         <a href="https://www.libreoffice.org/" target="_blank">LibreOffice Calc</a>.
         The general format is the same as CSV.
     </p>
@@ -1468,14 +1468,19 @@ PBank Of Mortgage Payee
     </p>
 
     <h2>Settings</h2>
-
+    <aside class="sticky notes">
+        Some settings require after a change a restart of the program to be effective.
+    </aside>
     <p>
         You can modify some runtime behavior of MMEX by changing the
-        options in the Settings.
+        options in the Settings dialog.
     </p>
     <p>
-        Access from the menu with <kbd><samp>Tools</samp> →
-        <samp>Settings…</samp></kbd>.
+        It is accessed from the menu with <kbd><samp>Tools</samp> →
+        <samp>Settings…</samp></kbd> or from the tool bar.
+    </p>
+    <p>
+        The dialog window is divided in panels, which structure the settings and can be invoked by the symbols on the left side.
     </p>
 
     <h3>General Panel</h3>
@@ -1505,16 +1510,54 @@ PBank Of Mortgage Payee
     </dl>
 
     <h3>View Panel</h3>
+    <p>
+        These settings control the appearance of the MMEX. It is subdivided in several sections:
+    </p>
+
+    <h4>View</h4>
     <dl>
-        <dt>Transactions Visible</dt>
-        <dd>This determines which transactions are seen as default
-            in the Account View.</dd>
+        <dt>Accounts Visible</dt>
+        <dd>This determines which accounts depending on their states are visible in the navigator.</dd>
+
+        <dt>Category delimiter</dt>
+        <dd>Determines how subcategories are delimited.</dd>
+
+        <dt>Do not use colors for future transactions</dt>
+        <dd>Disables the use of transaction specific colors, which have a date in the future.</dd>
+
+        <dt>Emphasize not reconciled transactions</dt>
+        <dd>All transactions which are not in the reconciled state are emphasized. This allows a faster overview.</dd>
+
+        <dt>Show Tooltips</dt>
+        <dd>Enables tooltips in all the controls.</dd>
+
+        <dt>Show money tips</dt>
+        <dd>Enables randomly selected money tips in the transaction view.</dd>
+    </dl>
+
+    <h4>Transaction/Budget</h4>
+    tbd.
+
+    <h4>Transaction Colors</h4>
+    Allows the definition of individual colors, which can mark transactions. The <samp>Default</samp> button resets
+    the defintions to original ones.
+
+    <h4>User Interface</h4>
+    <dl>
+        <dt>Style template</dt>
+        <dd>Calls the theme manager to select a theme for MMEX.</dd>
+
+        <dt>Theme</dt>
+        <dd>Allows to change between light and dark thems.</dd>
+
         <dt>HTML scale factor</dt>
-        <dd>This will set the font size being used on the Dashboard and
-            in Reports.</dd>
-        <dt>User Colors</dt>
-        <dd>Allows the user to modify colors in MMEX to suit the user’s
-            style.</dd>
+        <dd>This will set the font scaling used in the dashboard and reports.</dd>
+
+        <dt>Font size</dt>
+        <dd>This will set the font size used in the dashboard and reports.</dd>
+
+        <dt>Toolbar/Navigator/Others Icon Size</dt>
+        <dd>Fine tuning of the icon sizes used.</dd>
     </dl>
 
     <h3>Dashboard Panel</h3>
@@ -1631,13 +1674,13 @@ PBank Of Mortgage Payee
 
     <h3>Is the MMEX database structure documented somewhere?</h3>
     <p>
-        The database structure is documented at 
+        The database structure is documented at
         <a href="https://github.com/moneymanagerex/database" target="_blank">https://github.com/moneymanagerex/database</a>,
         the diagram is up-to-date for the current MMEX database version (v19).
         Clicking on it leads to the
         <a href="https://dbdiagram.io/d/640ba8f4296d97641d871522" target="_blank">interactive version</a>.
     </p>
-    
+
     <h3>Is the <code>.mmb</code> format proprietary?</h3>
 
     <p>No, <code>.mmb</code> file is not proprietary.</p>
