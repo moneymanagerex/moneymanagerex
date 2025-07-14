@@ -140,6 +140,8 @@ private:
     wxSharedPtr<wxListItemAttr> m_attr2;  // style 2
     wxSharedPtr<wxListItemAttr> m_attr3;  // style 3 (reserved)
     wxSharedPtr<wxListItemAttr> m_attr4;  // style 4 (reserved)
+    wxSharedPtr<wxListItemAttr> m_attr5;  // style 5 (reserved for not reconciled)
+    wxSharedPtr<wxListItemAttr> m_attr6;  // style 6 (reserved for not reconciled))
     wxSharedPtr<wxListItemAttr> m_attr11; // user-defined style 1
     wxSharedPtr<wxListItemAttr> m_attr12; // user-defined style 2
     wxSharedPtr<wxListItemAttr> m_attr13; // user-defined style 3
@@ -147,6 +149,16 @@ private:
     wxSharedPtr<wxListItemAttr> m_attr15; // user-defined style 5
     wxSharedPtr<wxListItemAttr> m_attr16; // user-defined style 6
     wxSharedPtr<wxListItemAttr> m_attr17; // user-defined style 7
+    wxSharedPtr<wxListItemAttr> m_attr21; // user-defined style 1 for not reconciled))
+    wxSharedPtr<wxListItemAttr> m_attr22; // user-defined style 2 for not reconciled))
+    wxSharedPtr<wxListItemAttr> m_attr23; // user-defined style 3 for not reconciled))
+    wxSharedPtr<wxListItemAttr> m_attr24; // user-defined style 4 for not reconciled))
+    wxSharedPtr<wxListItemAttr> m_attr25; // user-defined style 5 for not reconciled))
+    wxSharedPtr<wxListItemAttr> m_attr26; // user-defined style 6 for not reconciled))
+    wxSharedPtr<wxListItemAttr> m_attr27; // user-defined style 7 for not reconciled))
+
+    bool doNotColorFutureTransactions;
+    bool doSpecialColorReconciledTransactions;
 
 private:
     void setColumnsInfo();
@@ -296,4 +308,3 @@ inline static bool SorterByUDFC05_val(
 ) {
     return (i.UDFC_value[4] < j.UDFC_value[4]);
 }
-

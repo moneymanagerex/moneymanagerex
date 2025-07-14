@@ -128,6 +128,8 @@ void Option::load(bool include_infotable)
     loadBudgetDeductMonthly();
     loadIgnoreFutureTransactions();
     loadUseTransDateTime();
+    loadDoNotColorFuture();
+    loadDoSpecialColorReconciled();
     loadShowToolTips();
     loadShowMoneyTips();
     loadTransPayeeNone();
@@ -423,6 +425,26 @@ bool Option::UseTransDateTime(const bool value)
         return true;
     }
     return false;
+}
+
+void Option::loadDoNotColorFuture()
+{
+    m_do_not_color_future = Model_Setting::instance().getBool("DO_NOT_COLOR_FUTURE_TRANSACTIONS", true);
+}
+void Option::setDoNotColorFuture(const bool value)
+{
+    Model_Setting::instance().setBool("DO_NOT_COLOR_FUTURE_TRANSACTIONS", value);
+    m_do_not_color_future = value;
+}
+
+void Option::loadDoSpecialColorReconciled()
+{
+    m_do_special_color_reconciled = Model_Setting::instance().getBool("SPECIAL_COLOR_RECONCILED_TRANSACTIONS", true);
+}
+void Option::setDoSpecialColorReconciled(const bool value)
+{
+    Model_Setting::instance().setBool("SPECIAL_COLOR_RECONCILED_TRANSACTIONS", value);
+    m_do_special_color_reconciled = value;
 }
 
 void Option::loadShowToolTips()

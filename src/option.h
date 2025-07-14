@@ -242,6 +242,16 @@ public:
     void setIgnoreFutureTransactions(const bool value);
     bool getIgnoreFutureTransactions() const noexcept;
 
+    // m_doNotColorFuture
+    void loadDoNotColorFuture();
+    void setDoNotColorFuture(const bool value);
+    bool getDoNotColorFuture() const noexcept;
+
+    // m_doSpecialColorReconciled
+    void loadDoSpecialColorReconciled();
+    void setDoSpecialColorReconciled(const bool value);
+    bool getDoSpecialColorReconciled() const noexcept;
+
     // m_show_tooltips
     void loadShowToolTips();
     void setShowToolTips(const bool value);
@@ -290,6 +300,8 @@ private:
     bool m_budget_override = false;                     // BUDGET_OVERRIDE
     bool m_budget_deduct_monthly = false;               // BUDGET_DEDUCT_MONTH_FROM_YEAR
     bool m_ignore_future_transactions = false;          // IGNORE_FUTURE_TRANSACTIONS
+    bool m_do_not_color_future = true;                  // DO_NOT_COLOR_FUTURE_TRANSACTIONS
+    bool m_do_special_color_reconciled = true;          // SPECIAL_COLOR_RECONCILED_TRANSACTIONS
     bool m_show_tooltips = true;                        // IGNORE_SHOW_TOOLTIPS
     bool m_show_moneytips = true;                       // IGNORE_SHOW_MONEYTIPS
     bool m_use_trans_datetime = false;                  // TRANSACTION_USE_DATE_TIME
@@ -505,6 +517,16 @@ inline bool Option::getIgnoreFutureTransactions() const noexcept
     return m_ignore_future_transactions;
 }
 
+inline bool Option::getDoNotColorFuture() const noexcept
+{
+    return m_do_not_color_future;
+}
+
+inline bool Option::getDoSpecialColorReconciled() const noexcept
+{
+    return m_do_special_color_reconciled;
+}
+
 inline bool Option::getShowToolTips() const noexcept
 {
     return m_show_tooltips;
@@ -529,4 +551,3 @@ inline int Option::getCheckingRangeM() const noexcept
 {
     return m_checking_range_m;
 }
-

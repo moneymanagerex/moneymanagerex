@@ -107,6 +107,22 @@ void OptionSettingsView::Create()
     m_categ_delimiter_list->SetValue(delimiter);
     viewChoiceSizer->Add(m_categ_delimiter_list, g_flagsH);
 
+    m_doNotColorFuture = new wxCheckBox(
+        panelWindow, wxID_STATIC,
+        _t("Do not use color for future transactions"),
+        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
+    );
+    m_doNotColorFuture->SetValue(Option::instance().getDoNotColorFuture());
+    viewChoiceSizer->Add(m_doNotColorFuture, g_flagsH);
+
+    m_doSpecialColorReconciled = new wxCheckBox(
+        panelWindow, wxID_STATIC,
+        _t("Emphasize not reconciled transactions"),
+        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
+    );
+    m_doSpecialColorReconciled->SetValue(Option::instance().getDoSpecialColorReconciled());
+    viewChoiceSizer->Add(m_doSpecialColorReconciled, g_flagsH);
+
     m_showToolTips = new wxCheckBox(
         panelWindow, wxID_STATIC,
         _t("Show Tooltips"),
@@ -433,7 +449,7 @@ bool OptionSettingsView::SaveSettings()
 
     int themeMode = m_theme_mode->GetSelection();
     Option::instance().setThemeMode(themeMode);
-    
+
     int size = m_scale_factor->GetValue();
     Option::instance().setHtmlScale(size);
     int i[4] = { 16, 24, 32, 48 };
@@ -463,6 +479,9 @@ bool OptionSettingsView::SaveSettings()
         static_cast<wxDateTime::WeekDay>(m_reporting_first_weekday->GetSelection())
     );
     Option::instance().setIgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
+    Option::instance().setDoNotColorFuture(m_doNotColorFuture->GetValue());
+    Option::instance().setDoSpecialColorReconciled(m_doSpecialColorReconciled->GetValue());
+
     Option::instance().setShowToolTips(m_showToolTips->GetValue());
     Option::instance().setShowMoneyTips(m_showMoneyTips->GetValue());
     Option::instance().UseTransDateTime(m_use_trans_date_time->GetValue());
