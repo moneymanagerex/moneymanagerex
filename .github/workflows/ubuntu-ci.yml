@@ -43,7 +43,7 @@ jobs:
           mv wxWidgets-${{steps.init.outputs.wxVer}} wxWidgets
           cd wxWidgets
           mkdir -p build-linux && cd build-linux
-          ../configure --enable-std_containers --disable-shared --with-cxx=17 --enable-webview --with-gtk=3 --enable-unicode --enable-intl
+          ../configure --enable-std_containers --disable-shared --with-cxx=17 --enable-webview --with-gtk=3 --enable-intl
           make -j$(nproc)
 
       - name: Save wxWidgets Cache
