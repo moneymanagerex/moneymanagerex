@@ -6,7 +6,7 @@ command: mmex
 cleanup:
   - /bin/wx-config
   - /bin/wxrc
-  - /bin/wxrc-3.2
+  - /bin/wxrc-3.3
   - /include
   - /lib/*.a
   - /lib/pkgconfig
@@ -31,12 +31,11 @@ modules:
       - --with-cxx=17
       - --enable-webview
       - --with-gtk=3
-      - --enable-unicode
       - --enable-intl
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.8/wxWidgets-3.2.8.tar.bz2
-        sha256: c74784904109d7229e6894c85cfa068f1106a4a07c144afd78af41f373ee0fe6
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.0/wxWidgets-3.3.0.tar.bz2
+        sha256: 492f5eb8a58715f2602f31025c3eaa20d71a3ec8e052c7a9d33153966b4badca
         x-checker-data:
           type: json
           url: https://api.github.com/repos/wxWidgets/wxWidgets/releases/latest
