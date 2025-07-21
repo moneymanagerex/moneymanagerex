@@ -21,7 +21,7 @@ jobs:
       - name: Install Dependencies
         id: init
         run: |
-          echo "wxVer=3.3.0" >> $GITHUB_OUTPUT
+          echo "wxVer=3.3.1" >> $GITHUB_OUTPUT
           sudo apt update
           sudo apt install -y --no-install-recommends \
           cmake build-essential libssl-dev gettext git pkg-config lsb-release file ccache \
