@@ -157,9 +157,6 @@ private:
     wxSharedPtr<wxListItemAttr> m_attr26; // user-defined style 6 for not reconciled))
     wxSharedPtr<wxListItemAttr> m_attr27; // user-defined style 7 for not reconciled))
 
-    bool doNotColorFutureTransactions;
-    bool doSpecialColorReconciledTransactions;
-
 private:
     void setColumnsInfo();
     void refreshVisualList(bool filter = true);

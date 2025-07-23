@@ -38,6 +38,7 @@
 #include "transdialog.h"
 #include "util.h"
 #include "model/Model_Setting.h"
+#include "option.h"
 
 //----------------------------------------------------------------------------
 
@@ -267,9 +268,6 @@ TransactionListCtrl::TransactionListCtrl(
         wxDateTime(23, 59, 59, 999).FormatISOCombined();
 
     SetSingleStyle(wxLC_SINGLE_SEL, false);
-
-    doNotColorFutureTransactions = Model_Setting::instance().getBool("DO_NOT_COLOR_FUTURE_TRANSACTIONS", true);
-    doSpecialColorReconciledTransactions = Model_Setting::instance().getBool("SPECIAL_COLOR_RECONCILED_TRANSACTIONS", true);
 }
 
 TransactionListCtrl::~TransactionListCtrl()
@@ -585,11 +583,11 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
     if (item < 0 || item >= static_cast<int>(m_trans.size())) return 0;
 
     bool in_the_future = Model_Checking::TRANSDATE(m_trans[item]).FormatISOCombined() > m_today;
-    if (doNotColorFutureTransactions && in_the_future) {
+    if (in_the_future && Option::instance().getDoNotColorFuture()) {
         return (item % 2 ? m_attr3.get() : m_attr4.get());
     }
 
-    bool mark_not_reconciled = doSpecialColorReconciledTransactions && !in_the_future && m_trans[item].STATUS != Model_Checking::STATUS_KEY_RECONCILED;
+    bool mark_not_reconciled = Option::instance().getDoSpecialColorReconciled() && !in_the_future && m_trans[item].STATUS != Model_Checking::STATUS_KEY_RECONCILED;
 
     // apply alternating background pattern
     int user_color_id = m_trans[item].COLOR.GetValue();
