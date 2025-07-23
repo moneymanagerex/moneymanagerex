@@ -141,7 +141,7 @@ private:
     wxSharedPtr<wxListItemAttr> m_attr3;  // style 3 (reserved)
     wxSharedPtr<wxListItemAttr> m_attr4;  // style 4 (reserved)
     wxSharedPtr<wxListItemAttr> m_attr5;  // style 5 (reserved for not reconciled)
-    wxSharedPtr<wxListItemAttr> m_attr6;  // style 6 (reserved for not reconciled))
+    wxSharedPtr<wxListItemAttr> m_attr6;  // style 6 (reserved for not reconciled)
     wxSharedPtr<wxListItemAttr> m_attr11; // user-defined style 1
     wxSharedPtr<wxListItemAttr> m_attr12; // user-defined style 2
     wxSharedPtr<wxListItemAttr> m_attr13; // user-defined style 3
