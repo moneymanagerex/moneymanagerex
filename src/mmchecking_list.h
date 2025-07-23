@@ -151,7 +151,7 @@ private:
     wxSharedPtr<wxListItemAttr> m_attr17; // user-defined style 7
     wxSharedPtr<wxListItemAttr> m_attr21; // user-defined style 1 for not reconciled
     wxSharedPtr<wxListItemAttr> m_attr22; // user-defined style 2 for not reconciled
-    wxSharedPtr<wxListItemAttr> m_attr23; // user-defined style 3 for not reconciled))
+    wxSharedPtr<wxListItemAttr> m_attr23; // user-defined style 3 for not reconciled
     wxSharedPtr<wxListItemAttr> m_attr24; // user-defined style 4 for not reconciled
     wxSharedPtr<wxListItemAttr> m_attr25; // user-defined style 5 for not reconciled))
     wxSharedPtr<wxListItemAttr> m_attr26; // user-defined style 6 for not reconciled))
