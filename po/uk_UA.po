@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-06-30 21:33+0000\n"
-"PO-Revision-Date: 2025-07-04 01:02\n"
+"PO-Revision-Date: 2025-07-18 01:05\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -333,7 +333,7 @@ msgstr ""
 
 #: appstartdialog.cpp:112 mmframe.cpp:1869
 msgid "User Interface &Language"
-msgstr ""
+msgstr "&Інтерфейс користувача та мова"
 
 #: appstartdialog.cpp:113 appstartdialog.cpp:221 mmframe.cpp:1870
 #: optionsettingsgeneral.cpp:100
@@ -607,6 +607,10 @@ msgstr "Майно"
 #: import_export/qif_export.cpp:154 option.cpp:50 stockspanel.cpp:103
 msgid "All"
 msgstr "Всі"
+
+#: stockspanel.cpp:104
+msgid "Non-Zero Shares"
+msgstr ""
 
 #: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:266
 #: stockspanel.cpp:144
