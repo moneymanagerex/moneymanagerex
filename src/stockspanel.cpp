@@ -419,7 +419,7 @@ void mmStocksPanel::updateHeader()
         }
     }
     else {
-        header_text_->SetLabelText(wxString::Format(_t("Stock Portfolios Overview")));
+        header_text_->SetLabelText(_t("Stock Portfolios Overview"));
         Model_Stock::Data_Set stocktotalvalues = Model_Stock::instance().getSpecial(
                 Model_Stock::ALL_STOCKS_TOTALS,
                 getFilter() // ? GREATER : GREATER_OR_EQUAL)
