@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-06-30 21:33+0000\n"
-"PO-Revision-Date: 2025-07-18 01:05\n"
+"PO-Revision-Date: 2025-07-25 01:05\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "Language: el_GR\n"
@@ -5004,6 +5004,14 @@ msgstr "Να αγνοηθούν μελλοντικές συναλλαγές"
 #: mmframe.cpp:1818
 msgid "Show T&ooltips"
 msgstr "Εμφάνιση Υ&ποδείξεων"
+
+#: optionsettingsview.cpp:112
+msgid "Do not use color for future transactions"
+msgstr "Χωρίς χρήση χρώματος για μελλοντικές συναλλαγές"
+
+#: optionsettingsview.cpp:118
+msgid "Emphasize not reconciled transactions"
+msgstr "Δώστε έμφαση στις μη συμφιλιωμένες συναλλαγές"
 
 #: mmframe.cpp:1819 optionsettingsview.cpp:112
 msgid "Show Tooltips"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-06-30 21:33+0000\n"
-"PO-Revision-Date: 2025-07-18 01:05\n"
+"PO-Revision-Date: 2025-07-25 01:05\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "Language: sr_SP\n"
@@ -5008,6 +5008,14 @@ msgstr ""
 
 #: mmframe.cpp:1818
 msgid "Show T&ooltips"
+msgstr ""
+
+#: optionsettingsview.cpp:112
+msgid "Do not use color for future transactions"
+msgstr ""
+
+#: optionsettingsview.cpp:118
+msgid "Emphasize not reconciled transactions"
 msgstr ""
 
 #: mmframe.cpp:1819 optionsettingsview.cpp:112

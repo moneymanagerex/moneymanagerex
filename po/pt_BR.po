@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-06-30 21:33+0000\n"
-"PO-Revision-Date: 2025-07-18 01:05\n"
+"PO-Revision-Date: 2025-07-25 01:05\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -610,7 +610,7 @@ msgstr "Todos"
 
 #: stockspanel.cpp:104
 msgid "Non-Zero Shares"
-msgstr ""
+msgstr "Ações não zeradas"
 
 #: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:266
 #: stockspanel.cpp:144
@@ -5006,6 +5006,14 @@ msgstr "Ignorar Transações Futuras"
 #: mmframe.cpp:1818
 msgid "Show T&ooltips"
 msgstr "Mostrar &Dicas"
+
+#: optionsettingsview.cpp:112
+msgid "Do not use color for future transactions"
+msgstr ""
+
+#: optionsettingsview.cpp:118
+msgid "Emphasize not reconciled transactions"
+msgstr ""
 
 #: mmframe.cpp:1819 optionsettingsview.cpp:112
 msgid "Show Tooltips"
