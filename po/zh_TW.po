@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-06-30 21:33+0000\n"
-"PO-Revision-Date: 2025-07-18 01:05\n"
+"PO-Revision-Date: 2025-07-25 01:05\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Language: zh_TW\n"
@@ -4988,6 +4988,14 @@ msgstr "忽略未來交易紀錄"
 #: mmframe.cpp:1818
 msgid "Show T&ooltips"
 msgstr "顯示小提示(&T)"
+
+#: optionsettingsview.cpp:112
+msgid "Do not use color for future transactions"
+msgstr ""
+
+#: optionsettingsview.cpp:118
+msgid "Emphasize not reconciled transactions"
+msgstr ""
 
 #: mmframe.cpp:1819 optionsettingsview.cpp:112
 msgid "Show Tooltips"

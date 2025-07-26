@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-06-30 21:33+0000\n"
-"PO-Revision-Date: 2025-07-18 01:05\n"
+"PO-Revision-Date: 2025-07-25 01:05\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -610,7 +610,7 @@ msgstr "Todas"
 
 #: stockspanel.cpp:104
 msgid "Non-Zero Shares"
-msgstr ""
+msgstr "Acciones no nulas"
 
 #: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:266
 #: stockspanel.cpp:144
@@ -4135,7 +4135,7 @@ msgstr "Consejos para la compra: Leer los catálogos de ofertas. Revise los cat�
 
 #: mmTips.h:46
 msgid "Cut back on subscriptions. Is a subscription to every streaming service required? Is the paid service expense required, or is an advertising-supported free service sufficient? Is the book club membership required, or is a visit to the library once per month sufficient?"
-msgstr ""
+msgstr "Recorte en las suscripciones. ¿Es necesaria una suscripción a cada servicio de streaming o es suficiente un servicio gratuito con anuncios? ¿Es necesario pertenecer al club de libros o es suficiente una visita a la biblioteca una vez al mes?"
 
 #: mmTips.h:47
 msgid "Use open source alternatives to proprietary software. Search at https://www.opensourcealternative.to/"
@@ -4148,7 +4148,7 @@ msgstr "Sugerencia para padres: Si se le pide que sea el aval para un préstamo 
 #: mmTips.h:51
 #, c-format
 msgid "Get out of debt tip: Pay yourself 10% first. Put this into an account that is hard to touch. Ensure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Consejo para salir del endeudamiento: Guárdese el 10% en primer lugar. Póngalo en una cuenta con la que sea más difícil operar. Asegúrese que es engorroso sacar el dinero (como tener que ir en coche al banco), así sólo lo usará para gastos importantes."
 
 #: mmTips.h:52
 msgid "Get out of debt tip: Establish an emergency fund."
@@ -4176,7 +4176,7 @@ msgstr "Consejo para salir del endeudamiento: si tiene una montaña de deudas, l
 
 #: mmTips.h:58
 msgid "Before going to a shop and buying something, take the time to make a list of what you really need. In the shop, only buy what is on your list."
-msgstr ""
+msgstr "Antes de ir a una tienda y comprar algo: tómese algo de tiempo para hacer una lista de lo que realmente necesite. En la tienda compre solo lo que haya en la lista."
 
 #: mmTips.h:62
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
@@ -4403,8 +4403,8 @@ msgstr[1] "¿Desea eliminar permanentemente las %i transacciones seleccionadas?"
 #, c-format
 msgid "Do you want to delete the selected transaction?"
 msgid_plural "Do you want to delete the %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "¿Desea eliminar la transacción seleccionada?"
+msgstr[1] "¿Desea eliminar las %i transacciones seleccionadas?"
 
 #: mmchecking_list.cpp:1087 mmchecking_list.cpp:1501
 msgid "Unable to undo this action."
@@ -4423,8 +4423,8 @@ msgstr "Confirmar borrado de transacción"
 #, c-format
 msgid "Do you want to restore the selected transaction?"
 msgid_plural "Do you want to restore the %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "¿Desea restaurar la transacción seleccionada?"
+msgstr[1] "¿Desea restaurar las %i transacciones seleccionadas?"
 
 #: mmchecking_list.cpp:1162 mmchecking_list.cpp:1201
 msgid "Confirm Transaction Restore"
@@ -4432,14 +4432,14 @@ msgstr "Confirmar la restauración"
 
 #: mmchecking_list.cpp:1200
 msgid "Do you want to restore all of the transactions shown?"
-msgstr ""
+msgstr "¿Desea restaurar todas las transacciones mostradas?"
 
 #: mmchecking_list.cpp:1296
 #, c-format
 msgid "Do you want to move the selected transaction?"
 msgid_plural "Do you want to move the %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "¿Desea mover la transacción seleccionada?"
+msgstr[1] "¿Desea mover las %i transacciones seleccionadas?"
 
 #: mmchecking_list.cpp:1301
 msgid "Confirm Transaction Move"
@@ -4482,11 +4482,11 @@ msgstr "Todas las transacciones"
 
 #: mmchecking_list.cpp:1495
 msgid "Do you want to delete all the transactions shown?"
-msgstr ""
+msgstr "¿Desea eliminar todas las transacciones mostradas?"
 
 #: mmchecking_list.cpp:1496
 msgid "Do you want to permanently delete all the transactions shown?"
-msgstr ""
+msgstr "¿Desea eliminar permanentemente todas las transacciones mostradas?"
 
 #: mmchecking_list.cpp:1513 mmchecking_list.cpp:1522
 #, c-format
@@ -5014,6 +5014,14 @@ msgstr "Ignorar transacciones futuras"
 msgid "Show T&ooltips"
 msgstr "Mostrar i&nformación"
 
+#: optionsettingsview.cpp:112
+msgid "Do not use color for future transactions"
+msgstr ""
+
+#: optionsettingsview.cpp:118
+msgid "Emphasize not reconciled transactions"
+msgstr ""
+
 #: mmframe.cpp:1819 optionsettingsview.cpp:112
 msgid "Show Tooltips"
 msgstr "Mostrar información"
@@ -5474,7 +5482,9 @@ msgstr "modo portátil"
 msgid "Attempting to open a database that has been marked as opened by another instance of MMEX.\n"
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX."
-msgstr ""
+msgstr "La base de datos que está intentando abrir está marcada como abierta por otra instancia de MMEX.\n"
+"Para evitar pérdidas de datos o conflictos, se recomienda encarecidamente que cierre todas las demás aplicaciones que puedan estar utilizando la base de datos.\n\n"
+"Si no se está ejecutando nada más, es posible que la base de datos se haya quedado marcada como abierta como resultado de un bloqueo durante el uso anterior de MMEX."
 
 #: mmframe.cpp:2479
 msgid "Do you want to open the database?"
@@ -7720,7 +7730,7 @@ msgstr "Introduce el valor actual para una sola unidad de la acción"
 
 #: sharetransactiondialog.cpp:284 stockdialog.cpp:224
 msgid "Deductible Comm."
-msgstr ""
+msgstr "Comisión deducible"
 
 #: sharetransactiondialog.cpp:294
 msgid "Enter any commission paid"
@@ -7728,7 +7738,7 @@ msgstr "Introduzca la comisión pagada"
 
 #: sharetransactiondialog.cpp:298 sharetransactiondialog.cpp:521
 msgid "Use Deductible Comm. split Categories"
-msgstr ""
+msgstr "Usar categorías divididas para comisiones deducibles"
 
 #: sharetransactiondialog.cpp:308 stockdialog.cpp:249
 msgid "Manage stock attachments"

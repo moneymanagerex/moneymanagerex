@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-06-30 21:33+0000\n"
-"PO-Revision-Date: 2025-07-18 01:05\n"
+"PO-Revision-Date: 2025-07-25 01:05\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -5013,17 +5013,17 @@ msgstr "Z&ukünftige Buchungen ignorieren"
 msgid "Ignore Future transactions"
 msgstr "Zukünftige Buchungen ignorieren"
 
-#: optionsettingsview.cpp:112
-msgid "Do not use color for future transactions"
-msgstr "Keine Farben für zukünftige Buchungen benutzen"
-
-#: optionsettingsview.cpp:118
-msgid "Emphasize not reconciled transactions"
-msgstr "Nicht bestätigte Buchungen herausheben"
-
 #: mmframe.cpp:1818
 msgid "Show T&ooltips"
 msgstr "T&ooltips anzeigen"
+
+#: optionsettingsview.cpp:112
+msgid "Do not use color for future transactions"
+msgstr ""
+
+#: optionsettingsview.cpp:118
+msgid "Emphasize not reconciled transactions"
+msgstr ""
 
 #: mmframe.cpp:1819 optionsettingsview.cpp:112
 msgid "Show Tooltips"
