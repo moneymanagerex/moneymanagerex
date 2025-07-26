@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
  Copyright (C) 2016 Stefano Giorgio
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -29,6 +30,8 @@ class Model_Translink : public Model<DB_Table_TRANSLINK_V1>
 {
 public:
     enum CHECKING_TYPE { AS_INCOME_EXPENSE = 32701, AS_TRANSFER }; /* Transfers ignore accounting */
+
+    enum TransSQLQueryName {ALL_LINKS_BY_SYMBOL};
 
 public:
     Model_Translink();
@@ -75,7 +78,7 @@ public:
     static bool HasShares(const int64 stock_id);
 
     /*
-    Return the link record for the checking account 
+    Return the link record for the checking account
     Equivalent SQL statements:
     select * from TRANSLINK_V1 where CHECKINGACCOUNTID = checking_id;
     */
@@ -84,7 +87,7 @@ public:
     /* Remove all records associated with the Translink list */
     template <typename T>
     static void RemoveTransLinkRecords(const int64 entry_id);
- 
+
     /* Remove the checking account entry and its associated transfer transaction. */
     static void RemoveTranslinkEntry(const int64 checking_account_id);
 
@@ -93,8 +96,12 @@ public:
     /* Return true with the account id of the first share entry in the stock translink list */
     static bool ShareAccountId(int64& stock_entry_id);
 
+    const Model_Translink::Data_Set getSpecialSQL(TransSQLQueryName queryname, wxString par);
+
 private:
 
     static Model_Translink::Data* SetTranslink(const int64 checking_id, const CHECKING_TYPE checking_type
         , const wxString& link_type, const int64 link_record_id);
+
+    inline static wxSQLite3Database* g_db_;  // db ref
 };

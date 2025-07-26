@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2010-2021 Nikolay Akimov
  Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -131,7 +132,7 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
     }
     m_stock_panel->OnListItemSelected(m_selected_row);
 
-    bool hide_menu_item = (m_selected_row < 0);
+    bool enable_menu_item = m_selected_row > -1 && m_stock_panel->m_account_id > -1;
 
     wxMenu menu;
     menu.Append(MENU_TREEPOPUP_NEW, _tu("&New Stock Investment…"));
@@ -146,12 +147,13 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _tu("&Organize Attachments…"));
     menu.Append(wxID_INDEX, _t("Stock &Web Page"));
 
-    menu.Enable(MENU_TREEPOPUP_EDIT, !hide_menu_item);
-    menu.Enable(MENU_TREEPOPUP_ADDTRANS, !hide_menu_item && m_stocks[m_selected_row].NUMSHARES > 0);
-    menu.Enable(MENU_TREEPOPUP_VIEWTRANS, !hide_menu_item);
-    menu.Enable(MENU_TREEPOPUP_DELETE, !hide_menu_item);
-    menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, !hide_menu_item);
-    menu.Enable(wxID_INDEX, !hide_menu_item);
+    menu.Enable(MENU_TREEPOPUP_NEW, m_stock_panel->m_account_id > -1);
+    menu.Enable(MENU_TREEPOPUP_EDIT,  m_selected_row > -1);
+    menu.Enable(MENU_TREEPOPUP_ADDTRANS, enable_menu_item && m_stocks[m_selected_row].NUMSHARES > 0);
+    menu.Enable(MENU_TREEPOPUP_VIEWTRANS, m_selected_row > -1);
+    menu.Enable(MENU_TREEPOPUP_DELETE, enable_menu_item);
+    menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, enable_menu_item);
+    menu.Enable(wxID_INDEX, m_selected_row > -1);
 
     PopupMenu(&menu, event.GetPosition());
 
@@ -304,7 +306,7 @@ void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
 void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
-    
+
     const auto& accounts = Model_Account::instance().find(
         Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT));
     if (accounts.empty()) return;
@@ -385,8 +387,10 @@ void StocksListCtrl::OnListItemActivated(wxListEvent& event)
 {
     if ((event.GetId() == wxID_ADD) || (event.GetId() == MENU_TREEPOPUP_ADDTRANS))
     {
-        m_stock_panel->AddStockTransaction(m_selected_row);
-        m_stock_panel->m_frame->RefreshNavigationTree();
+        if (m_stock_panel->AddStockTransaction(m_selected_row) == wxID_OK)
+        {
+            m_stock_panel->m_frame->RefreshNavigationTree();
+        }
     }
     else if ((event.GetId() == wxID_VIEW_DETAILS) || (event.GetId() == MENU_TREEPOPUP_VIEWTRANS))
     {
@@ -450,11 +454,18 @@ int StocksListCtrl::initVirtualListControl(int64 trx_id)
     DeleteAllItems();
 
     // TODO
-    int currentSelection = m_stock_panel->getFilter();
-    if (currentSelection)
-        m_stocks = Model_Stock::instance().find(Model_Stock::HELDAT(m_stock_panel->m_account_id), Model_Stock::NUMSHARES(0.0, GREATER));
-    else
-        m_stocks = Model_Stock::instance().find(Model_Stock::HELDAT(m_stock_panel->m_account_id));
+    if (m_stock_panel->m_account_id > -1 ) {
+        m_stocks = Model_Stock::instance().find(
+                        Model_Stock::HELDAT(m_stock_panel->m_account_id),
+                        Model_Stock::NUMSHARES(0.0, m_stock_panel->getFilter() ? GREATER : GREATER_OR_EQUAL)
+                );
+    }
+    else { // create summary
+        m_stocks = Model_Stock::instance().getSpecial(
+                        Model_Stock::ALL_STOCKS_COMBINED_BY_SYMBOL,
+                        m_stock_panel->getFilter() // ? GREATER : GREATER_OR_EQUAL)
+                );
+    }
     sortList();
 
     int cnt = 0, selected_item = -1;
