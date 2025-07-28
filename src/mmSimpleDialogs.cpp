@@ -2,6 +2,7 @@
 Copyright (C) 2014 Gabriele-V
 Copyright (C) 2015, 2016, 2020, 2022 Nikolay Akimov
 Copyright (C) 2022, 2023 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2025 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -126,7 +127,7 @@ mmCalculatorPopup::mmCalculatorPopup(wxWindow* parent, mmTextCtrl* target) : wxP
 
     wxGridSizer* buttonSizer;
     buttonSizer = new wxGridSizer(5, 4, 0, 0);
-    
+
     button_lparen_ = new wxButton(panel, wxID_ANY, "(", wxDefaultPosition, btnSize);
     button_lparen_->Bind(wxEVT_BUTTON, &mmCalculatorPopup::OnButtonPressed, this);
     button_lparen_->SetFont(font);
@@ -328,7 +329,7 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
           auto_complete.Add(item.first);
       }
       auto_complete.Sort(CaseInsensitiveLocaleCmp);
-   
+
        this->AutoComplete(auto_complete);
        if (!auto_complete.empty()) {
            wxString selection = GetValue();
@@ -340,7 +341,7 @@ void mmComboBox::OnSetFocus(wxFocusEvent& event)
        if (auto_complete.GetCount() == 1) {
            Select(0);
        }
-       is_initialized_ = true;   
+       is_initialized_ = true;
    }
     event.Skip();
 }
@@ -474,7 +475,7 @@ mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id
     , wxSize size, int64 accountID, bool excludeClosed)
     : mmComboBox(parent, id, size)
     , accountID_(accountID)
-    , excludeClosed_(excludeClosed)     
+    , excludeClosed_(excludeClosed)
 {
     init();
     wxArrayString choices;
@@ -501,7 +502,7 @@ mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id
                     , wxSize size, int64 payeeID, bool excludeHidden)
     : mmComboBox(parent, id, size)
     , payeeID_(payeeID)
-    , excludeHidden_(excludeHidden)    
+    , excludeHidden_(excludeHidden)
 {
     init();
     wxArrayString choices;
@@ -570,7 +571,7 @@ void mmComboBoxCategory::init()
 // excludeHidden = set to true if hidden categories should be excluded
 mmComboBoxCategory::mmComboBoxCategory(wxWindow* parent, wxWindowID id
                     , wxSize size, int64 catID, bool excludeHidden)
-    : mmComboBox(parent, id, size)    
+    : mmComboBox(parent, id, size)
     , catID_(catID)
     , excludeHidden_(excludeHidden)
 {
@@ -751,6 +752,11 @@ void mmDatePickerCtrl::OnDateSpin(wxSpinEvent&)
         GetEventHandler()->AddPendingEvent(evt);
         spinButton_->SetValue(0);
     }
+}
+
+bool mmDatePickerCtrl::isItMyDateControl(wxObject *obj)
+{
+    return obj && static_cast <wxDatePickerCtrl*>(obj) == datePicker_;
 }
 
 /*/////////////////////////////////////////////////////////////*/
@@ -1425,7 +1431,7 @@ void mmTagTextCtrl::OnFocusChange(wxFocusEvent& event)
 
 void mmTagTextCtrl::OnDropDown(wxCommandEvent& )
 {
-#ifndef __WXMAC__    
+#ifndef __WXMAC__
     if (!popupWindow_->dismissedByButton_)
     {
         ValidateTagText();
@@ -1653,7 +1659,7 @@ void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
 
         position = wordEnd + 1;
     }
-    
+
 #ifndef __WXMAC__
     // paint a TextCtrl over the background -- not currently used on macOS due to dark mode bug
     wxWindowDC dc(this);
@@ -1714,7 +1720,7 @@ void mmTagTextCtrl::OnPaintButton(wxPaintEvent& )
     wxPaintDC dc(btn_dropdown_);
 
     wxRect rect = btn_dropdown_->GetClientRect();
-    
+
     // Figure out what style the button needs
     long style = wxCONTROL_NONE;
     if (popupWindow_->IsShown())

@@ -4514,6 +4514,10 @@ msgstr ""
 msgid "MMEX Transaction Check"
 msgstr ""
 
+#: mmcheckingpanel.cpp:234
+msgid "Filter…"
+msgstr ""
+
 #: mmcheckingpanel.cpp:263
 msgid "Delete all selected transactions"
 msgstr ""
@@ -4596,6 +4600,10 @@ msgstr ""
 #: mmcheckingpanel.cpp:962
 #, c-format
 msgid "Days between selected transactions: %d"
+msgstr ""
+
+#: mmcheckingpanel.cpp:1159
+msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr ""
 
 #: mmcheckingpanel.cpp:1028
@@ -6633,6 +6641,14 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:237
 msgid "Delimiter"
+msgstr ""
+
+#: optionsettingsmisc.cpp:253
+msgid "Enable combined filter handling"
+msgstr ""
+
+#: optionsettingsmisc.cpp:255
+msgid "Switch to one filter control for date and attributes"
 msgstr ""
 
 #: optionsettingsnet.cpp:65

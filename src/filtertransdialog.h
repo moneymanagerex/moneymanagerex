@@ -168,6 +168,7 @@ private:
         , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX
         , const wxString& name = "Transaction Filter"
     );
+
 private:
     /// Creates the controls and sizers
     void mmDoCreateControls();
@@ -182,6 +183,7 @@ private:
     void OnCategoryChange(wxEvent& event);
     void OnButtonOkClick(wxCommandEvent& event);
     void OnButtonCancelClick(wxCommandEvent& event);
+    void OnButtonResetClick(wxCommandEvent& WXUNUSED(event));
     void OnButtonClearClick(wxCommandEvent& event);
     void OnSettingsSelected(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
@@ -209,6 +211,7 @@ private:
     mmComboBoxCategory* categoryComboBox_ = nullptr;
     wxCheckBox* categorySubCatCheckBox_ = nullptr;
     wxCheckBox* statusCheckBox_ = nullptr;
+
 private:
     wxChoice* choiceStatus_ = nullptr;
     wxCheckBox* typeCheckBox_ = nullptr;
@@ -237,6 +240,8 @@ private:
     wxCheckBox* chartCheckBox_ = nullptr;
     wxChoice* bChart_ = nullptr;
     wxCheckBox* combineSplitsCheckBox_ = nullptr;
+    wxButton* buttonReset  = nullptr;
+
 private:
     wxString m_settings_json;
     std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
@@ -245,6 +250,7 @@ private:
     wxString m_filter_key;
     int m_startDay = 0;
     bool m_futureIgnored = false;
+    bool m_use_date_filter;
     int m_color_value = -1;
     wxString m_payee_str;
 
@@ -276,8 +282,8 @@ inline int mmFilterTransactionsDialog::mmGetStartDay() const { return m_startDay
 inline bool mmFilterTransactionsDialog::mmIsFutureIgnored() const { return m_futureIgnored; }
 inline const wxArrayInt64 mmFilterTransactionsDialog::mmGetAccountsID() const { return m_selected_accounts_id; }
 inline const wxArrayInt mmFilterTransactionsDialog::mmGetHideColumnsID() const { return m_selected_columns_id; }
-inline bool mmFilterTransactionsDialog::mmIsDateRangeChecked() const { return dateRangeCheckBox_->GetValue(); }
-inline bool mmFilterTransactionsDialog::mmIsRangeChecked() const { return datesCheckBox_->IsChecked(); }
+inline bool mmFilterTransactionsDialog::mmIsDateRangeChecked() const { return m_use_date_filter && dateRangeCheckBox_->GetValue(); }
+inline bool mmFilterTransactionsDialog::mmIsRangeChecked() const { return m_use_date_filter && datesCheckBox_->IsChecked(); }
 inline const wxString mmFilterTransactionsDialog::mmGetNumber() const { return transNumberEdit_->GetValue(); }
 inline const wxString mmFilterTransactionsDialog::mmGetNotes() const { return notesEdit_->GetValue(); }
 inline bool mmFilterTransactionsDialog::mmIsHideColumnsChecked() const { return showColumnsCheckBox_->IsChecked(); }

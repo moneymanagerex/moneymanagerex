@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
  Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -90,6 +91,12 @@ public:
 public:
     bool checkDBVersion();
     static loop_t to_loop_t();
+
+public:
+    // static support functions
+    static void saveFilterString(Document &sdoc, const char* skey, wxString svalue);
+    static void saveFilterBool(Document &sdoc, const char* skey, bool bvalue);
+    static void saveFilterInt(Document &sdoc, const char* skey, int ivalue);
 };
 
 #endif

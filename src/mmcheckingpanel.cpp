@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2014 - 2021 Nikolay Akimov
  Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -52,9 +53,12 @@ const std::vector<std::pair<mmCheckingPanel::FILTER_ID, wxString> > mmCheckingPa
 {
     { mmCheckingPanel::FILTER_ID_DATE,     wxString("Date") },
     { mmCheckingPanel::FILTER_ID_ADVANCED, wxString("Advanced") },
+    { mmCheckingPanel::FILTER_ID_DATE_RANGE, wxString("DateRange") },
+    { mmCheckingPanel::FILTER_ID_DATE_PICKER, wxString("DatePicker") },
+    { mmCheckingPanel::FILTER_ID_size, wxString("") },
 };
 
-const wxString mmCheckingPanel::FILTER_NAME_DATE     = FILTER_NAME[FILTER_ID_DATE].second;
+//const wxString mmCheckingPanel::FILTER_NAME_DATE     = FILTER_NAME[FILTER_ID_DATE].second;
 const wxString mmCheckingPanel::FILTER_NAME_ADVANCED = FILTER_NAME[FILTER_ID_ADVANCED].second;
 
 //----------------------------------------------------------------------------
@@ -69,6 +73,7 @@ wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     EVT_BUTTON(wxID_IGNORE,          mmCheckingPanel::onSkipScheduled)
     EVT_BUTTON(wxID_FILE,            mmCheckingPanel::onOpenAttachment)
     EVT_BUTTON(mmID_FILTER,          mmCheckingPanel::onFilterPopup)
+    EVT_BUTTON(mmID_FILTER_TRANSACTION_DETAIL, mmCheckingPanel::onFilterAdvanced)
     EVT_MENU(mmID_FILTER_ADVANCED,   mmCheckingPanel::onFilterAdvanced)
     EVT_MENU(mmID_EDIT_DATE_RANGES,  mmCheckingPanel::onEditDateRanges)
     EVT_TOGGLEBUTTON(mmID_SCHEDULED, mmCheckingPanel::onScheduled)
@@ -82,6 +87,8 @@ wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
         mmCheckingPanel::onNewTransaction
     )
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::onSearchTxtEntered)
+    EVT_DATE_CHANGED(mmID_DATE_PICK_LOW,  mmCheckingPanel::onDatePickLow)
+    EVT_DATE_CHANGED(mmID_DATE_PICK_HIGH,  mmCheckingPanel::onDatePickHigh)
     wxEND_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
@@ -108,13 +115,14 @@ mmCheckingPanel::mmCheckingPanel(
     else {
         m_currency = Model_Currency::GetBaseCurrency();
     }
+    m_use_dedicated_filter = !Option::instance().getUseCombinedTransactionFilter();
     loadFilterSettings();
 
     create(parent);
     Fit();
 }
 
-// We cannon use OnClose() event because this class deletes via DestroyChildren() of its parent.
+// We cannot use OnClose() event because this class deletes via DestroyChildren() of its parent.
 mmCheckingPanel::~mmCheckingPanel()
 {
 }
@@ -130,8 +138,8 @@ bool mmCheckingPanel::create(
 
     this->windowsFreezeThaw();
     createControls();
-    updateFilter();
-    if (m_filter_id == FILTER_ID_ADVANCED) {
+    updateFilter(true);
+    if (m_filter_id == FILTER_ID_ADVANCED || m_filter_id_ext == FILTER_ID_ADVANCED) {
         wxString j_str = Model_Infotable::instance().getString(
             wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
             "{}"
@@ -161,7 +169,7 @@ void mmCheckingPanel::loadAccount(int64 account_id)
     loadFilterSettings();
 
     updateFilter();
-    if (m_filter_id == FILTER_ID_ADVANCED) {
+    if (m_filter_id == FILTER_ID_ADVANCED || m_filter_id_ext == FILTER_ID_ADVANCED) {
         wxString j_str = Model_Infotable::instance().getString(
             wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
             "{}"
@@ -205,6 +213,31 @@ void mmCheckingPanel::createControls()
     m_bitmapTransFilter = new wxButton(this, mmID_FILTER);
     m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
     sizerHCtrl->Add(m_bitmapTransFilter, g_flagsH);
+
+    if (m_use_dedicated_filter) {
+        m_bitmapTransFilter->SetMinSize(wxSize(200 + Option::instance().getIconSize() * 2, -1));
+
+        DateRange2 tmprange = DateRange2();
+        tmprange.setSpec(m_date_range_a[0]);  // set to all
+
+        fromDateCtrl = new wxDatePickerCtrl(this, mmID_DATE_PICK_LOW, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
+        fromDateCtrl->SetValue(tmprange.checking_start());
+        fromDateCtrl->SetRange(wxInvalidDateTime, wxDateTime::Now());
+        sizerHCtrl->Add(fromDateCtrl, g_flagsH);
+
+        toDateCtrl = new wxDatePickerCtrl(this, mmID_DATE_PICK_HIGH, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
+        toDateCtrl->SetValue(tmprange.checking_end());
+        sizerHCtrl->Add(toDateCtrl, g_flagsH);
+
+        m_btnTransDetailFilter = new wxButton(this, mmID_FILTER_TRANSACTION_DETAIL, _tu("Filter…"));  // Filter for transaction details
+        m_btnTransDetailFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
+        m_btnTransDetailFilter->SetMinSize(wxSize(150 + Option::instance().getIconSize() * 2, -1));
+        sizerHCtrl->Add(m_btnTransDetailFilter, g_flagsH);
+    }
+    else {
+        sizerHCtrl->AddSpacer(10);
+    }
+
     if (!isDeletedTrans()) {
         sizerHCtrl->AddSpacer(15);
         const auto& size = m_bitmapTransFilter->GetSize().GetY();
@@ -389,7 +422,7 @@ void mmCheckingPanel::updateHeader()
             m_header_credit->SetValue(limit);
             m_header_credit->Show();
         }
-        if (Model_Account::type_id(m_account) == Model_Account::TYPE_ID_INVESTMENT || Model_Account::type_id(m_account) == Model_Account::TYPE_ID_ASSET) 
+        if (Model_Account::type_id(m_account) == Model_Account::TYPE_ID_INVESTMENT || Model_Account::type_id(m_account) == Model_Account::TYPE_ID_ASSET)
         {
             std::pair<double, double> investment_bal = Model_Account::investment_balance(m_account);
             summary.Append(wxString::Format("     %s%s", _t("Market Value: "), Model_Account::toCurrency(investment_bal.first, m_account)));
@@ -400,26 +433,49 @@ void mmCheckingPanel::updateHeader()
     this->Layout();
 }
 
-void mmCheckingPanel::updateFilter()
+void mmCheckingPanel::updateFilter(bool firstinit)
 {
-    m_bitmapTransFilter->UnsetToolTip();
+    if (m_use_dedicated_filter) {
+        if (m_filter_id == FILTER_ID_DATE_RANGE) {
+            m_bitmapTransFilter->SetLabel(m_current_date_range.getName());
+            m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
+            fromDateCtrl->SetValue(m_current_date_range.checking_start());
+            toDateCtrl->SetValue(m_current_date_range.checking_end());
+        }
+        else if (m_filter_id == FILTER_ID_DATE_PICKER) {
+            m_bitmapTransFilter->SetLabel(_t("Date range"));
+            m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
+            if (firstinit) {
+                fromDateCtrl->SetValue(m_current_date_range.getDateS());
+                toDateCtrl->SetValue(m_current_date_range.getDateT());
+            }
+        }
+        else if (firstinit) {
+            m_current_date_range.setSpec(m_date_range_a[0]); // init with 'all'
+            m_bitmapTransFilter->SetLabel(m_current_date_range.getName());
+        }
 
-    wxString label = (m_filter_id == FILTER_ID_DATE) ?
-        m_date_range.getName() :
-        _t("Advanced filter");
-    m_bitmapTransFilter->SetLabel(label);
-    m_bitmapTransFilter->SetBitmap(m_filter_id == FILTER_ID_ADVANCED ?
-        mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize) :
-        mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize)
-    );
+    }
+    else {
+        m_bitmapTransFilter->UnsetToolTip();
 
-    wxSize buttonSize(wxDefaultSize);
-    buttonSize.IncTo(GetTextExtent(label));
-    int width = buttonSize.GetWidth();
-    if (width < 200) width = 200;
-    m_bitmapTransFilter->SetMinSize(
-        wxSize(width + Option::instance().getIconSize() * 2, -1)
-    );
+        wxString label = (m_filter_id == FILTER_ID_DATE) ?
+            m_current_date_range.getName() :
+            _t("Advanced filter");
+        m_bitmapTransFilter->SetLabel(label);
+        m_bitmapTransFilter->SetBitmap(m_filter_id == FILTER_ID_ADVANCED ?
+            mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize) :
+            mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize)
+        );
+
+        wxSize buttonSize(wxDefaultSize);
+        buttonSize.IncTo(GetTextExtent(label));
+        int width = buttonSize.GetWidth();
+        if (width < 200) width = 200;
+        m_bitmapTransFilter->SetMinSize(
+            wxSize(width + Option::instance().getIconSize() * 2, -1)
+        );
+    }
 
     if (!isDeletedTrans()) {
         m_header_scheduled->SetValue(m_scheduled_selected);
@@ -430,22 +486,35 @@ void mmCheckingPanel::updateFilter()
 
 void mmCheckingPanel::updateFilterTooltip()
 {
-    wxString tooltip = (m_filter_id == FILTER_ID_ADVANCED) ?
-        m_trans_filter_dlg->mmGetDescriptionToolTip() :
-        m_date_range.checking_tooltip();
-    m_bitmapTransFilter->SetToolTip(tooltip);
+    if (m_use_dedicated_filter) {
+        if (m_trans_filter_dlg && m_trans_filter_dlg->mmIsSomethingChecked()) {
+            m_btnTransDetailFilter->SetToolTip(m_trans_filter_dlg->mmGetDescriptionToolTip());
+        }
+        else {
+            m_btnTransDetailFilter->UnsetToolTip();
+        }
+        m_btnTransDetailFilter->SetBitmap(mmBitmapBundle(m_filter_id_ext == FILTER_ID_ADVANCED && m_trans_filter_dlg && m_trans_filter_dlg->mmIsSomethingChecked() ?
+                                                             png::TRANSFILTER_ACTIVE : png::TRANSFILTER,
+                                                         mmBitmapButtonSize));
+    }
+    else {
+        wxString tooltip = (m_filter_id == FILTER_ID_ADVANCED) ?
+            m_trans_filter_dlg->mmGetDescriptionToolTip() :
+            m_current_date_range.checking_tooltip();
+        m_bitmapTransFilter->SetToolTip(tooltip);
+    }
 }
 
 void mmCheckingPanel::setFilterDate(DateRange2::Spec& spec)
 {
     m_filter_id = FILTER_ID_DATE;
-    m_date_range = DateRange2();
-    if (isAccount()) m_date_range.setDateS(
+    m_current_date_range = DateRange2();
+    if (isAccount()) m_current_date_range.setDateS(
         Model_Account::DateOf(m_account->STATEMENTDATE)
     );
-    m_date_range.setSpec(spec);
+    m_current_date_range.setSpec(spec);
     m_scheduled_enable = (!isDeletedTrans() &&
-        m_date_range.checking_end() != wxInvalidDateTime
+        m_current_date_range.checking_end() != wxInvalidDateTime
     );
     saveFilterSettings();
     updateFilter();
@@ -454,9 +523,9 @@ void mmCheckingPanel::setFilterDate(DateRange2::Spec& spec)
 void mmCheckingPanel::setFilterAdvanced()
 {
     m_filter_id = FILTER_ID_ADVANCED;
-    m_date_range = DateRange2();
+    m_current_date_range = DateRange2();
     m_scheduled_enable = (!isDeletedTrans() &&
-        m_date_range.checking_end() != wxInvalidDateTime
+        m_current_date_range.checking_end() != wxInvalidDateTime
     );
     saveFilterSettings();
     updateFilter();
@@ -466,104 +535,157 @@ void mmCheckingPanel::setFilterAdvanced()
 
 void mmCheckingPanel::loadFilterSettings()
 {
+    Document j_doc;
     m_date_range_a.clear();
     m_date_range_m = -1;
+    m_scheduled_selected = false;
+
     int src_i = 0;
     int src_m = Option::instance().getCheckingRangeM();
     for (const auto& spec : Option::instance().getCheckingRangeA()) {
-        if (m_date_range_a.size() > mmID_FILTER_DATE_MAX - mmID_FILTER_DATE_MIN)
+        if (m_date_range_a.size() > mmID_FILTER_DATE_MAX - mmID_FILTER_DATE_MIN) {
             break;
-        if (src_i == src_m)
+        }
+        if (src_i == src_m) {
             m_date_range_m = m_date_range_a.size();
+        }
         if (isAccount() || !spec.hasPeriodS()) {
             m_date_range_a.push_back(spec);
         }
         src_i++;
     }
-    if (m_date_range_m < 0)
+    if (m_date_range_m < 0) {
         m_date_range_m = m_date_range_a.size();
-
-    wxString key = wxString::Format("CHECK_FILTER_%lld", m_checking_id);
-    Document j_doc = Model_Infotable::instance().getJdoc(key, "{}");
-    if (j_doc.HasParseError())
-        j_doc.Parse("{}");
-
-    m_filter_id = FILTER_ID_DATE;
-    wxString j_filter;
-    if (JSON_GetStringValue(j_doc, "FILTER", j_filter)) {
-        for (int i = 0; i < FILTER_ID_size; ++i) if (FILTER_NAME[i].second == j_filter) {
-            m_filter_id = static_cast<FILTER_ID>(i);
-            break;
-        }
     }
 
-    DateRange2::Spec date_spec = DateRange2::Spec();
-    if (m_filter_id == FILTER_ID_DATE) {
-        wxString j_date;
-        if (JSON_GetStringValue(j_doc, "DATE", j_date))
-            date_spec.parseSpec(j_date);
-        wxString date_label = date_spec.getLabel();
-        for (auto& spec : m_date_range_a) if (spec.getLabel() == date_label) {
-            date_spec.setName(spec.getName());
-            break;
+    if (m_use_dedicated_filter) {
+        j_doc = Model_Infotable::instance().getJdoc("CHECK_FILTER_ALL", "{}");
+        int fid = 0;
+        if (JSON_GetIntValue(j_doc, "FILTER_ID", fid)) {
+            m_filter_id = static_cast<FILTER_ID>(fid);
         }
-        if (date_spec.getName().empty())
-            date_spec.setName(_t("(Date range)"));
-    }
-    m_date_range = DateRange2();
-    if (isAccount()) m_date_range.setDateS(
-        Model_Account::DateOf(m_account->STATEMENTDATE)
-    );
-    m_date_range.setSpec(date_spec);
+        if (m_filter_id == FILTER_ID_DATE_RANGE) {
+            wxString j_filter;
+            if (JSON_GetStringValue(j_doc, "FILTER_DATE", j_filter)) {
+                // get range spec:
+                bool notfound = true;
+                for (const auto& spec : m_date_range_a) {
+                    if (spec.getName() == j_filter) {
+                        m_current_date_range.setSpec(spec);
+                        notfound = false;
+                        break;
+                    }
+                }
+                if (notfound) {
+                    m_current_date_range.setSpec(m_date_range_a[0]); // init with 'all'
+                }
+            }
+        }
+        else if (m_filter_id == FILTER_ID_DATE_PICKER) {
+            wxString p_filter;
+            wxDateTime newdate;
+            wxString::const_iterator end;
+            if (JSON_GetStringValue(j_doc, "FILTER_DATE_BEGIN", p_filter)) {
+                m_current_date_range.setDateS(newdate.ParseFormat(p_filter, "%Y-%m-%d", &end) ? newdate : wxInvalidDateTime);
+            }
+            if (JSON_GetStringValue(j_doc, "FILTER_DATE_END", p_filter)) {
+                m_current_date_range.setDateT(newdate.ParseFormat(p_filter, "%Y-%m-%d", &end) ? newdate : wxInvalidDateTime);
+            }
+        }
 
-    m_scheduled_enable = false;
-    m_scheduled_selected = false;
-    if (!isDeletedTrans()) {
-        m_scheduled_enable = (m_date_range.checking_end() != wxInvalidDateTime);
-        JSON_GetBoolValue(j_doc, "SCHEDULED", m_scheduled_selected);
+        if (!isDeletedTrans()) {
+            JSON_GetBoolValue(j_doc, "SCHEDULED", m_scheduled_selected);
+        }
+
+        j_doc = Model_Infotable::instance().getJdoc(wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id), "{}");
+        bool isext = false;
+        JSON_GetBoolValue(j_doc, "FILTER_ADVANCED", isext);
+
+        m_filter_id_ext = isext ? FILTER_ID_ADVANCED : FILTER_ID_size;
+    }
+    else {
+        j_doc = Model_Infotable::instance().getJdoc(wxString::Format("CHECK_FILTER_%lld", m_checking_id), "{}");
+        m_filter_id = FILTER_ID_DATE;
+        wxString j_filter;
+        if (JSON_GetStringValue(j_doc, "FILTER", j_filter)) {
+            for (int i = 0; i < FILTER_ID_size; ++i) if (FILTER_NAME[i].second == j_filter) {
+                m_filter_id = static_cast<FILTER_ID>(i);
+                break;
+            }
+        }
+
+        DateRange2::Spec date_spec = DateRange2::Spec();
+        if (m_filter_id == FILTER_ID_DATE) {
+            wxString j_date;
+            if (JSON_GetStringValue(j_doc, "DATE", j_date)) {
+                date_spec.parseSpec(j_date);
+            }
+            wxString date_label = date_spec.getLabel();
+            for (auto& spec : m_date_range_a) if (spec.getLabel() == date_label) {
+                date_spec.setName(spec.getName());
+                break;
+            }
+            if (date_spec.getName().empty()) {
+                date_spec.setName(_t("(Date range)"));
+            }
+        }
+        m_current_date_range = DateRange2();
+        if (isAccount()) {
+            m_current_date_range.setDateS(Model_Account::DateOf(m_account->STATEMENTDATE));
+        }
+        m_current_date_range.setSpec(date_spec);
+        if (!isDeletedTrans()) {
+            JSON_GetBoolValue(j_doc, "SCHEDULED", m_scheduled_selected);
+        }
+    }
+    updateScheduledEnable();
+}
+
+void  mmCheckingPanel::updateScheduledEnable()
+{
+    if (m_use_dedicated_filter) {
+        m_scheduled_enable = !(isDeletedTrans() ||
+          (m_filter_id == FILTER_ID_DATE_PICKER ? m_current_date_range.getDateT().IsValid() && m_current_date_range.getDateT() < wxDateTime::Today() :
+                                                  m_current_date_range.checking_end().IsValid() && m_current_date_range.checking_end() < wxDateTime::Today())
+                                                || (!m_current_date_range.getDateT().IsValid() && m_current_date_range.getDateS().IsValid() && m_current_date_range.getDateS() < wxDateTime::Today()));
+    }
+    else {
+        m_scheduled_enable = !(isDeletedTrans() || (m_current_date_range.checking_end() == wxInvalidDateTime));
     }
 }
 
 void mmCheckingPanel::saveFilterSettings()
 {
-    wxString key = wxString::Format("CHECK_FILTER_%lld", m_checking_id);
-    Document j_doc = Model_Infotable::instance().getJdoc(key, "{}");
-    if (j_doc.HasParseError())
-        j_doc.Parse("{}");
+    Document j_doc;
+    wxString key;
+    if (m_use_dedicated_filter) {
+        key = "CHECK_FILTER_ALL";
+        j_doc = Model_Infotable::instance().getJdoc(key, "{}");
+        Model_Infotable::saveFilterInt(j_doc, "FILTER_ID", m_filter_id);
+        Model_Infotable::saveFilterString(j_doc, "FILTER_NAME", FILTER_NAME[m_filter_id].second);
+        Model_Infotable::saveFilterString(j_doc, "FILTER_DATE", m_current_date_range.getSpec().getName());
+        Model_Infotable::saveFilterString(j_doc, "FILTER_DATE_BEGIN", fromDateCtrl->GetValue().IsValid() ? fromDateCtrl->GetValue().FormatISODate() : "");
+        Model_Infotable::saveFilterString(j_doc, "FILTER_DATE_END", toDateCtrl->GetValue().IsValid() ? toDateCtrl->GetValue().FormatISODate() : "");
+        if (!isDeletedTrans()) {
+            Model_Infotable::saveFilterBool(j_doc, "SCHEDULED", m_scheduled_selected);
+        }
+        Model_Infotable::instance().setJdoc(key, j_doc);
 
-    wxString filter = FILTER_NAME[m_filter_id].second;
-    if (j_doc.HasMember("FILTER")) {
-        j_doc["FILTER"].SetString(filter.utf8_str(), j_doc.GetAllocator());
+        key = wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id);
+        j_doc = Model_Infotable::instance().getJdoc(key, "{}");
+        Model_Infotable::saveFilterBool(j_doc, "FILTER_ADVANCED", m_filter_id_ext == FILTER_ID_ADVANCED);
+        Model_Infotable::saveFilterString(j_doc, "FILTER_ADVANCED_SETTINGS", m_filter_id_ext == FILTER_ID_ADVANCED ? m_trans_filter_dlg->mmGetJsonSettings(false) : "");
     }
     else {
-        auto& allocator = j_doc.GetAllocator();
-        rapidjson::Value field_key("FILTER", allocator);
-        rapidjson::Value value(filter.utf8_str(), allocator);
-        j_doc.AddMember(field_key, value, allocator);
+        key = wxString::Format("CHECK_FILTER_%lld", m_checking_id);
+        j_doc = Model_Infotable::instance().getJdoc(key, "{}");
+        Model_Infotable::saveFilterString(j_doc, "FILTER", FILTER_NAME[m_filter_id].second);
+        if (m_filter_id == FILTER_ID_DATE) {
+            Model_Infotable::saveFilterString(j_doc, "DATE", m_current_date_range.getLabelName());
+        }
+        if (!isDeletedTrans()) {
+        Model_Infotable::saveFilterBool(j_doc, "SCHEDULED", m_scheduled_selected);
     }
-
-    if (m_filter_id == FILTER_ID_DATE) {
-        wxString date = m_date_range.getLabelName();
-        if (j_doc.HasMember("DATE")) {
-            j_doc["DATE"].SetString(date.utf8_str(), j_doc.GetAllocator());
-        }
-        else {
-            auto& allocator = j_doc.GetAllocator();
-            rapidjson::Value field_key("DATE", allocator);
-            rapidjson::Value value(date.utf8_str(), allocator);
-            j_doc.AddMember(field_key, value, allocator);
-        }
-    }
-
-    if (!isDeletedTrans()) {
-        if (j_doc.HasMember("SCHEDULED")) {
-            j_doc["SCHEDULED"].SetBool(m_scheduled_selected);
-        }
-        else {
-            auto& allocator = j_doc.GetAllocator();
-            rapidjson::Value field_key("SCHEDULED", allocator);
-            j_doc.AddMember(field_key, m_scheduled_selected, allocator);
-        }
     }
 
     Model_Infotable::instance().setJdoc(key, j_doc);
@@ -578,10 +700,24 @@ void mmCheckingPanel::refreshList()
 
 void mmCheckingPanel::filterList()
 {
+    wxString date_start_str, date_end_str;
+
     m_lc->m_trans.clear();
 
-    wxString date_start_str = m_date_range.checking_start_str();
-    wxString date_end_str = m_date_range.checking_end_str();
+    if (m_use_dedicated_filter) {
+        if (m_filter_id == FILTER_ID_DATE_PICKER) {
+            date_start_str = (fromDateCtrl->GetValue().IsValid() ? fromDateCtrl->GetValue() : wxDateTime(static_cast<time_t>(0))).FormatISODate();
+            date_end_str = (toDateCtrl->GetValue().IsValid() ? toDateCtrl->GetValue() : (wxDateTime::Now() + wxTimeSpan::Days(30))).FormatISODate() + "~";
+        }
+        else {
+            date_start_str = m_current_date_range.checking_start_str();
+            date_end_str = m_current_date_range.checking_end().IsValid() ? m_current_date_range.checking_end_str() : (wxDateTime::Now() + wxTimeSpan::Days(30)).FormatISODate() + "~";
+        }
+    }
+    else {
+        date_start_str = m_current_date_range.checking_start_str();
+        date_end_str = m_current_date_range.checking_end_str();
+    }
 
     int sn = 0; // sequence number
     m_flow = 0.0;
@@ -709,12 +845,14 @@ void mmCheckingPanel::filterList()
             Fused_Transaction::Full_Data(bills[bill_i], tran_date, repeat_num, bills_splits, bills_tags);
 
         bool expandSplits = false;
-        if (m_filter_id == FILTER_ID_ADVANCED) {
+        if (m_filter_id == FILTER_ID_ADVANCED || m_filter_id_ext == FILTER_ID_ADVANCED) {
             int txnMatch = m_trans_filter_dlg->mmIsRecordMatches(*tran, full_tran.m_splits);
-            if (!txnMatch)
-                continue;
-            if (txnMatch < static_cast<int>(full_tran.m_splits.size()) + 1)
-                expandSplits = true;
+            if (txnMatch) {
+                expandSplits = (txnMatch < static_cast<int>(full_tran.m_splits.size()) + 1);
+            }
+            else {
+              continue;
+            }
         }
 
         full_tran.PAYEENAME = full_tran.real_payee_name(m_account_id);
@@ -785,15 +923,17 @@ void mmCheckingPanel::filterList()
             continue;
         }
         // else {
-        // assertion: m_filter_id == FILTER_ID_ADVANCED
+        // assertion: m_filter_id == FILTER_ID_ADVANCED || m_filter_id_ext == FILTER_ID_ADVANCED
         // assertion: Model_Checking::is_transfer(full_tran.TRANSCODE) == false
         int splitIndex = 1;
         wxString tranTagnames = full_tran.TAGNAMES;
         wxString tranDisplaySN = full_tran.displaySN;
         wxString tranDisplayID = full_tran.displayID;
         for (const auto& split : full_tran.m_splits) {
-            if (!m_trans_filter_dlg->mmIsSplitRecordMatches<Model_Splittransaction>(split))
-                continue;
+            if (m_filter_id == FILTER_ID_ADVANCED || m_filter_id_ext == FILTER_ID_ADVANCED) {
+              if (!m_trans_filter_dlg->mmIsSplitRecordMatches<Model_Splittransaction>(split))
+                  continue;
+            }
             full_tran.displaySN = tranDisplaySN + "." + wxString::Format("%i", splitIndex);
             full_tran.displayID = tranDisplayID + "." + wxString::Format("%i", splitIndex);
             splitIndex++;
@@ -805,11 +945,14 @@ void mmCheckingPanel::filterList()
             Model_Checking::Data splitWithTxnNotes = full_tran;
             Model_Checking::Data splitWithSplitNotes = full_tran;
             splitWithSplitNotes.NOTES = split.NOTES;
-            if (
-                !m_trans_filter_dlg->mmIsRecordMatches<Model_Checking>(splitWithSplitNotes, true) && 
-                !m_trans_filter_dlg->mmIsRecordMatches<Model_Checking>(splitWithTxnNotes, true)
-            )
+            if (m_filter_id == FILTER_ID_ADVANCED || m_filter_id_ext == FILTER_ID_ADVANCED) {
+              if (
+                  !m_trans_filter_dlg->mmIsRecordMatches<Model_Checking>(splitWithSplitNotes, true) &&
+                  !m_trans_filter_dlg->mmIsRecordMatches<Model_Checking>(splitWithTxnNotes, true)
+              ) {
                 continue;
+              }
+            }
             if (isAccount()) {
                 full_tran.ACCOUNT_FLOW = Model_Checking::account_flow(splitWithTxnNotes, m_account_id);
                 m_flow += full_tran.ACCOUNT_FLOW;
@@ -823,7 +966,6 @@ void mmCheckingPanel::filterList()
                 full_tran.TAGNAMES.Append((full_tran.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
             m_lc->m_trans.push_back(full_tran);
         }
-        // }
     }
 }
 
@@ -965,7 +1107,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
 #ifdef __WXMAC__    // See issue #2914
             msg = "";
 #endif
-            m_info_panel->SetLabelText(msg);         
+            m_info_panel->SetLabelText(msg);
         }
         else /* selected.size() == 0 */ {
             enableButtons(false, false, false, false, false, false);
@@ -1025,7 +1167,9 @@ void mmCheckingPanel::showTips(const wxString& tip)
 void mmCheckingPanel::updateScheduledToolTip()
 {
     mmToolTip(m_header_scheduled,
-        !m_scheduled_enable ? _t("Unable to show scheduled transactions because the current filter choice extends into the future without limit.") :
+        !m_scheduled_enable ?
+        (m_use_dedicated_filter ? _t("Scheduled transactions are not available, because the current filter ends in the past") :
+                            _t("Unable to show scheduled transactions because the current filter choice extends into the future without limit.")) :
         !m_scheduled_selected ? _t("Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month).") :
         _t("Click to hide scheduled transactions."));
 }
@@ -1041,7 +1185,9 @@ void mmCheckingPanel::onFilterPopup(wxCommandEvent& event)
         i++;
     }
 
-    menu.AppendSeparator();
+    if (i +1 < static_cast<int>(m_date_range_a.size())) { //only add separator if there are more entries
+        menu.AppendSeparator();
+    }
     if (i < static_cast<int>(m_date_range_a.size())) {
         wxMenu* menu_more(new wxMenu);
         menu.AppendSubMenu(menu_more, _tu("More date ranges…"));
@@ -1050,8 +1196,11 @@ void mmCheckingPanel::onFilterPopup(wxCommandEvent& event)
             i++;
         }
     }
-    // TODO: menu.Append(mmID_EDIT_DATE_RANGES, _tu("Edit date ranges…"));
-    menu.Append(mmID_FILTER_ADVANCED, _tu("Advanced filter…"));
+
+    if (!m_use_dedicated_filter) {
+        // TODO: menu.Append(mmID_EDIT_DATE_RANGES, _tu("Edit date ranges…"));
+        menu.Append(mmID_FILTER_ADVANCED, _tu("Advanced filter…"));
+    }
 
     PopupMenu(&menu);
     m_bitmapTransFilter->Layout();
@@ -1064,8 +1213,57 @@ void mmCheckingPanel::onFilterDate(wxCommandEvent& event)
     if (i < 0 || i >= static_cast<int>(m_date_range_a.size()))
         return;
 
-    setFilterDate(m_date_range_a[i]);
-    updateFilterTooltip();
+    if (m_use_dedicated_filter) {
+        m_filter_id = FILTER_ID_DATE_RANGE;
+        m_current_date_range = DateRange2();
+        if (isAccount()) {
+            m_current_date_range.setDateS(Model_Account::DateOf(m_account->STATEMENTDATE));
+        }
+        m_current_date_range.setSpec(m_date_range_a[i]);
+        updateScheduledEnable();
+        saveFilterSettings();
+        updateFilter();
+
+        m_bitmapTransFilter->SetLabel(m_current_date_range.getName());
+        m_bitmapTransFilter->SetBitmap(mmBitmapBundle((i > 0 ? png::TRANSFILTER_ACTIVE : png::TRANSFILTER), mmBitmapButtonSize));
+
+        fromDateCtrl->SetValue(m_current_date_range.checking_start());
+        toDateCtrl->SetValue(m_current_date_range.checking_end());
+    }
+    else {
+        setFilterDate(m_date_range_a[i]);
+        updateFilterTooltip();
+    }
+    refreshList();
+}
+
+void mmCheckingPanel::onDatePickLow(wxDateEvent& event) {
+    // Check if low date < = high date
+    if (toDateCtrl->GetValue().IsValid() && event.GetDate().IsLaterThan(toDateCtrl->GetValue())) {
+        wxLogDebug("onDatePickLow to Date =>: %s", event.GetDate().FormatISODate());
+        toDateCtrl->SetValue(event.GetDate());
+    }
+    datePickProceed();
+}
+
+void mmCheckingPanel::onDatePickHigh(wxDateEvent& event) {
+    // Check if high date <= low date
+    if (fromDateCtrl->GetValue().IsValid() && event.GetDate().IsEarlierThan(fromDateCtrl->GetValue())) {
+        fromDateCtrl->SetValue(event.GetDate());
+    }
+    datePickProceed();
+}
+
+void mmCheckingPanel::datePickProceed() {
+    m_bitmapTransFilter->SetLabel(_t("Date range"));
+    m_filter_id = FILTER_ID_DATE_PICKER;
+    m_current_date_range.setDateS(fromDateCtrl->GetValue().IsValid() ? fromDateCtrl->GetValue() : wxDateTime(static_cast<time_t>(0)));
+    m_current_date_range.setDateT(toDateCtrl->GetValue().IsValid() ? toDateCtrl->GetValue() : wxDateTime::Now().Add(wxDateSpan(0,0,0,30)));
+
+    m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
+    updateScheduledEnable();
+    saveFilterSettings();
+    updateFilter();
     refreshList();
 }
 
@@ -1083,17 +1281,41 @@ void mmCheckingPanel::onFilterAdvanced(wxCommandEvent& WXUNUSED(event))
     const wxString save_j_str = m_trans_filter_dlg->mmGetJsonSettings();
     int status = m_trans_filter_dlg->ShowModal();
     if (status != wxID_OK) {
-        if (m_filter_id == FILTER_ID_ADVANCED) m_trans_filter_dlg.reset(
-            new mmFilterTransactionsDialog(this, m_account_id, false, save_j_str)
-        );
-        return;
-    }
-    if (m_filter_id != FILTER_ID_ADVANCED && !m_trans_filter_dlg->mmIsSomethingChecked()) {
+        if (m_filter_id == FILTER_ID_ADVANCED || m_filter_id_ext == FILTER_ID_ADVANCED) {
+            m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, m_account_id, false, save_j_str));
+            if (m_use_dedicated_filter) {
+                if (m_trans_filter_dlg->mmIsSomethingChecked()) {
+                    m_filter_id_ext = FILTER_ID_ADVANCED;
+                    m_btnTransDetailFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
+                }
+                else {
+                    m_filter_id_ext = FILTER_ID_size;  // reset to unused value
+                    m_btnTransDetailFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
+                }
+            }
+        }
         return;
     }
 
-    setFilterAdvanced();
-    m_bitmapTransFilter->SetToolTip(m_trans_filter_dlg->mmGetDescriptionToolTip());
+    if (m_use_dedicated_filter) {
+        if (m_trans_filter_dlg->mmIsSomethingChecked()) {
+            m_filter_id_ext = FILTER_ID_ADVANCED;
+            m_btnTransDetailFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
+        }
+        else {
+            m_filter_id_ext = FILTER_ID_size;  // reset to unused value
+            m_btnTransDetailFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
+        }
+        saveFilterSettings();
+        updateFilterTooltip();
+    }
+    else {
+        if (m_filter_id != FILTER_ID_ADVANCED && !m_trans_filter_dlg->mmIsSomethingChecked()) {
+            return;
+        }
+        setFilterAdvanced();
+        m_bitmapTransFilter->SetToolTip(m_trans_filter_dlg->mmGetDescriptionToolTip());
+    }
     refreshList();
 }
 
@@ -1303,3 +1525,8 @@ void mmCheckingPanel::mmPlayTransactionSound()
         registerSound.Play(wxSOUND_ASYNC);
 }
 
+
+//--- static support function -----------------------------------------------------
+wxString mmCheckingPanel::getFilterName(FILTER_ID id) {
+    return mmCheckingPanel::FILTER_NAME[id].second;
+}
