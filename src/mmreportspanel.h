@@ -77,6 +77,7 @@ public:
         ID_FILTER_PERIOD,
         ID_FILTER_DATE_MIN,
         ID_FILTER_DATE_MAX = ID_FILTER_DATE_MIN + 99,
+        ID_EDIT_DATE_RANGES,
     };
 
 private:
@@ -108,6 +109,7 @@ private:
     void OnShiftPressed(wxCommandEvent& event);
     void OnPeriodSelectPopup(wxCommandEvent& event);
     void onFilterDateMenu(wxCommandEvent& event);
+    void onEditDateRanges(wxCommandEvent& event);
 
     void updateFilter();
 

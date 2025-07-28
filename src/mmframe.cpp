@@ -35,6 +35,7 @@
 #include "categdialog.h"
 #include "constants.h"
 #include "customfieldlistdialog.h"
+#include "daterangedialog.h"
 #include "dbcheck.h"
 #include "dbupgrade.h"
 #include "dbwrapper.h"
@@ -138,6 +139,7 @@ EVT_MENU(MENU_REFRESH_WEBAPP, mmGUIFrame::OnRefreshWebApp)
 EVT_MENU(wxID_BROWSE, mmGUIFrame::OnCustomFieldsManager)
 EVT_MENU(wxID_VIEW_LIST, mmGUIFrame::OnGeneralReportManager)
 EVT_MENU(MENU_THEME_MANAGER, mmGUIFrame::OnThemeManager)
+EVT_MENU(MENU_DATE_RANGE_MANAGER, mmGUIFrame::OnDateRangeManager)
 EVT_MENU(MENU_TREEPOPUP_LAUNCHWEBSITE, mmGUIFrame::OnLaunchAccountWebsite)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, mmGUIFrame::OnAccountAttachments)
 EVT_MENU(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbar)
@@ -703,6 +705,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_RATES)->Enable(enable);
     menuBar_->FindItem(MENU_ORGTAGS)->Enable(enable);
     menuBar_->FindItem(MENU_THEME_MANAGER)->Enable(enable);
+    menuBar_->FindItem(MENU_DATE_RANGE_MANAGER)->Enable(enable);
 
     menuBar_->FindItem(MENU_IMPORT)->Enable(enable);
     menuBar_->FindItem(wxID_PRINT)->Enable(enable);
@@ -1996,6 +1999,8 @@ void mmGUIFrame::createMenu()
         , _tu("T&heme Manager…"), _t("Theme Manager"));
     menuTools->Append(menuItemThemes);
 
+    menuTools->Append(new wxMenuItem(menuTools, MENU_DATE_RANGE_MANAGER, _tu("Date Range Manager…"), _t("Date Range Manager")));
+
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemTransactions = new wxMenuItem(menuTools, MENU_TRANSACTIONREPORT
@@ -3152,6 +3157,17 @@ void mmGUIFrame::OnThemeManager(wxCommandEvent& /*event*/)
 {
     mmThemesDialog dlg(this);
     dlg.ShowModal();
+}
+
+void mmGUIFrame::OnDateRangeManager(wxCommandEvent& WXUNUSED(event))
+{
+    std::vector<DateRange2::Spec> m_date_range_a = {};
+    int m_date_range_m;
+    mmCheckingPanel::loadDateRanges(&m_date_range_a, &m_date_range_m, true);
+    mmDateRangeDialog dlg(this, &m_date_range_a, &m_date_range_m);
+    if (dlg.ShowModal() == wxID_OK) {
+        refreshPanelData();
+    }
 }
 
 bool mmGUIFrame::OnRefreshWebApp(bool is_silent)

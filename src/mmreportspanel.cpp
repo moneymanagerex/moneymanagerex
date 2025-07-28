@@ -29,6 +29,7 @@
 #include "platfdep.h"
 #include "sharetransactiondialog.h"
 #include "transdialog.h"
+#include "daterangedialog.h"
 #include "util.h"
 #include "reports/htmlbuilder.h"
 #include "model/allmodel.h"
@@ -50,6 +51,7 @@ wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_SPINCTRL(ID_CHOICE_FORWARD_MONTHS, mmReportsPanel::OnForwardMonthsChangedSpin)
     EVT_TEXT_ENTER(ID_CHOICE_FORWARD_MONTHS, mmReportsPanel::OnForwardMonthsChangedText)
     EVT_BUTTON(ID_FILTER_PERIOD, mmReportsPanel::OnPeriodSelectPopup)
+    EVT_MENU(ID_EDIT_DATE_RANGES,  mmReportsPanel::onEditDateRanges)
     EVT_MENU_RANGE(
         ID_FILTER_DATE_MIN,
         ID_FILTER_DATE_MAX,
@@ -121,7 +123,7 @@ bool mmReportsPanel::saveReportText(bool initial)
     if (m_use_dedicated_filter) {
         if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_RANGE || m_filter_id == mmCheckingPanel::FILTER_ID_DATE_PICKER) {
             mmDateRange* date_range = new mmDateRange();
-            if (rb_->report_parameters() & rb_->RepParams::DATE_RANGE)
+            if (rb_->report_parameters() & mmPrintableBase::RepParams::DATE_RANGE)
             {
                 wxDateTime td = m_start_date->GetValue();
                 date_range->start_date(td);
@@ -911,6 +913,8 @@ void mmReportsPanel::OnPeriodSelectPopup(wxCommandEvent& event)
             i++;
         }
     }
+    menu.AppendSeparator();
+    menu.Append(ID_EDIT_DATE_RANGES, _tu("Edit date ranges…"));
 
     PopupMenu(&menu);
     event.Skip();
@@ -944,6 +948,48 @@ void mmReportsPanel::updateFilter()
         else if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_PICKER) {
             m_bitmapDataPeriodFilterBtn->SetLabel(_t("Date range"));
             m_bitmapDataPeriodFilterBtn->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
+        }
+    }
+}
+
+void mmReportsPanel::onEditDateRanges(wxCommandEvent& WXUNUSED(event))
+{
+    mmDateRangeDialog dlg(this, &m_date_range_a, &m_date_range_m);
+    if (dlg.ShowModal() == wxID_OK) {
+        if (m_date_range_a.size() == 0) {
+            int src_i = 0;
+            int src_m = Option::instance().getCheckingRangeM();
+            for (const auto& spec : Option::instance().getCheckingRangeA()) {
+                if (m_date_range_a.size() > ID_FILTER_DATE_MAX - ID_FILTER_DATE_MIN) {
+                    break;
+                }
+                if (src_i == src_m) {
+                    m_date_range_m = m_date_range_a.size();
+                }
+                if (!spec.hasPeriodS()) {
+                    m_date_range_a.push_back(spec);
+                }
+                src_i++;
+            }
+        }
+        // Verify if current filter is still valid otherwise reset to "ALL"
+        if (m_use_dedicated_filter && m_filter_id == mmCheckingPanel::FILTER_ID_DATE_RANGE) {
+            wxString curname = m_current_date_range.getName();
+            bool isDeleted = true;
+            for (const auto& spec : m_date_range_a) {
+                if (spec.getName() == curname) {
+                    isDeleted = false;
+                    break;
+                }
+            }
+            if (isDeleted) {
+                m_current_date_range = DateRange2();
+                m_current_date_range.setSpec(m_date_range_a[0]);
+
+                m_filter_id = mmCheckingPanel::FILTER_ID_DATE_RANGE;
+                updateFilter();
+                saveFilterSettings();
+            }
         }
     }
 }

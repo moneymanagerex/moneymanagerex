@@ -40,6 +40,7 @@
 #include "sharetransactiondialog.h"
 #include "assetdialog.h"
 #include "billsdepositsdialog.h"
+#include "daterangedialog.h"
 #include <wx/clipbrd.h>
 #include <float.h>
 
@@ -536,28 +537,9 @@ void mmCheckingPanel::setFilterAdvanced()
 void mmCheckingPanel::loadFilterSettings()
 {
     Document j_doc;
-    m_date_range_a.clear();
-    m_date_range_m = -1;
     m_scheduled_selected = false;
 
-    int src_i = 0;
-    int src_m = Option::instance().getCheckingRangeM();
-    for (const auto& spec : Option::instance().getCheckingRangeA()) {
-        if (m_date_range_a.size() > mmID_FILTER_DATE_MAX - mmID_FILTER_DATE_MIN) {
-            break;
-        }
-        if (src_i == src_m) {
-            m_date_range_m = m_date_range_a.size();
-        }
-        if (isAccount() || !spec.hasPeriodS()) {
-            m_date_range_a.push_back(spec);
-        }
-        src_i++;
-    }
-    if (m_date_range_m < 0) {
-        m_date_range_m = m_date_range_a.size();
-    }
-
+    loadDateRanges(&m_date_range_a, &m_date_range_m, isAccount());
     if (m_use_dedicated_filter) {
         j_doc = Model_Infotable::instance().getJdoc("CHECK_FILTER_ALL", "{}");
         int fid = 0;
@@ -1197,7 +1179,11 @@ void mmCheckingPanel::onFilterPopup(wxCommandEvent& event)
         }
     }
 
-    if (!m_use_dedicated_filter) {
+    if (m_use_dedicated_filter) {
+        menu.AppendSeparator();
+        menu.Append(mmID_EDIT_DATE_RANGES, _tu("Edit date ranges…"));
+    }
+    else {
         // TODO: menu.Append(mmID_EDIT_DATE_RANGES, _tu("Edit date ranges…"));
         menu.Append(mmID_FILTER_ADVANCED, _tu("Advanced filter…"));
     }
@@ -1321,7 +1307,40 @@ void mmCheckingPanel::onFilterAdvanced(wxCommandEvent& WXUNUSED(event))
 
 void mmCheckingPanel::onEditDateRanges(wxCommandEvent& WXUNUSED(event))
 {
-    wxLogDebug("mmCheckingPanel::onEditDateRanges(): not yet implemented");
+    mmDateRangeDialog dlg(this, &m_date_range_a, &m_date_range_m);
+    if (dlg.ShowModal() == wxID_OK) {
+        if (m_date_range_a.size() == 0) {
+            int src_i = 0;
+            int src_m = Option::instance().getCheckingRangeM();
+            for (const auto& spec : Option::instance().getCheckingRangeA()) {
+                if (m_date_range_a.size() > mmID_FILTER_DATE_MAX - mmID_FILTER_DATE_MIN) {
+                    break;
+                }
+                if (src_i == src_m) {
+                    m_date_range_m = m_date_range_a.size();
+                }
+                if (isAccount() || !spec.hasPeriodS()) {
+                    m_date_range_a.push_back(spec);
+                }
+                src_i++;
+            }
+        }
+        // Verify if current filter is still valid otherwise reset to "ALL"
+        if (m_use_dedicated_filter && m_filter_id == FILTER_ID_DATE_RANGE) {
+            wxString curname = m_current_date_range.getName();
+            bool isDeleted = true;
+            for (const auto& spec : m_date_range_a) {
+                if (spec.getName() == curname) {
+                    isDeleted = false;
+                    break;
+                }
+            }
+            if (isDeleted) {
+                wxCommandEvent evt = wxCommandEvent(wxEVT_NULL, mmID_FILTER_DATE_MIN);
+                onFilterDate(evt);
+            }
+        }
+    }
 }
 
 void mmCheckingPanel::onScheduled(wxCommandEvent&)
@@ -1529,4 +1548,26 @@ void mmCheckingPanel::mmPlayTransactionSound()
 //--- static support function -----------------------------------------------------
 wxString mmCheckingPanel::getFilterName(FILTER_ID id) {
     return mmCheckingPanel::FILTER_NAME[id].second;
+}
+
+void mmCheckingPanel::loadDateRanges(std::vector<DateRange2::Spec>* date_range_ptr, int* range_m, bool isaccount) {
+    date_range_ptr->clear();
+    *range_m = -1;
+    int src_i = 0;
+    int src_m = Option::instance().getCheckingRangeM();
+    for (const auto& spec : Option::instance().getCheckingRangeA()) {
+        if (date_range_ptr->size() > mmID_FILTER_DATE_MAX - mmID_FILTER_DATE_MIN) {
+            break;
+        }
+        if (src_i == src_m) {
+            *range_m = date_range_ptr->size();
+        }
+        if (isaccount || !spec.hasPeriodS()) {
+            date_range_ptr->push_back(spec);
+        }
+        src_i++;
+    }
+    if (*range_m < 0) {
+        *range_m = date_range_ptr->size();
+    }
 }

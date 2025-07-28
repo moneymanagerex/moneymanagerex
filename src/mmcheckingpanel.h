@@ -85,6 +85,8 @@ public:
 
     //static support function
     static wxString getFilterName(FILTER_ID id);
+    static void loadDateRanges(std::vector<DateRange2::Spec>* date_range_ptr, int* range_m, bool isaccount);
+
 
 private:
     friend class TransactionListCtrl;

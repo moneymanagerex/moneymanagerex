@@ -520,7 +520,7 @@ void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
             break;
         default:
             break;
-    } 
+    }
 }
 
 void mmMainCurrencyDialog::OnItemRightClick(wxDataViewEvent& event)
@@ -554,7 +554,7 @@ void mmMainCurrencyDialog::OnItemRightClick(wxDataViewEvent& event)
     PopupMenu(mainMenu);
     delete mainMenu;
     event.Skip();
-} 
+}
 
 void mmMainCurrencyDialog::OnShowHiddenChbClick(wxCommandEvent& WXUNUSED(event))
 {
@@ -850,7 +850,7 @@ bool mmMainCurrencyDialog::ConvertHistoryRates(const std::vector<CurrencyHistory
 
         Rate.BaseCurrency = BaseCurrencySymbol;
         Rate.Date = CurrencyHistoryBce.Date;
-            
+
         ConvertedRates.push_back(Rate);
     }
     return true;
