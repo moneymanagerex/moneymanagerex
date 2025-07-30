@@ -3,6 +3,7 @@
  Copyright (C) 2016 Stefano Giorgio
  Copyright (C) 2016 - 2022 Nikolay Akimov
  Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 KLaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -680,8 +681,9 @@ void mmBDDialog::CreateControls()
 void mmBDDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Billsdeposits::refTypeName;
-    if (m_bill_data.BDID != 0)
+    if (m_enter_occur && m_bill_data.BDID != 0) {
         mmAttachmentManage::DeleteAllAttachments(RefType, m_bill_data.BDID);
+    }
     EndModal(wxID_CANCEL);
 }
 
@@ -698,8 +700,9 @@ void mmBDDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 #endif
 
     const wxString RefType = Model_Billsdeposits::refTypeName;
-    if (m_bill_data.BDID != 0)
+    if (m_enter_occur && m_bill_data.BDID != 0) {
         mmAttachmentManage::DeleteAllAttachments(RefType, m_bill_data.BDID);
+    }
     EndModal(wxID_CANCEL);
 }
 
