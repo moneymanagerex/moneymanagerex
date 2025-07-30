@@ -19,7 +19,6 @@
 #include "daterangeeditdialog.h"
 #include "constants.h"
 #include "images_list.h"
-#include <wx/spinbutt.h>
 
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmDateRangeEditDialog, wxDialog);

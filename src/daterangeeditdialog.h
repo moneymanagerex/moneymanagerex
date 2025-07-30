@@ -20,7 +20,6 @@
 
 #include "daterange2.h"
 #include <wx/dataview.h>
-#include <wx/dialog.h>
 
 
 class mmDateRangeEditDialog: public wxDialog

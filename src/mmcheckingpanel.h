@@ -29,7 +29,6 @@ Copyright (C) 2025 Klaus Wich
 #include "fusedtransaction.h"
 #include "reports/mmDateRange.h"
 #include "model/Model_Account.h"
-#include <wx/datectrl.h>
 #include <map>
 //----------------------------------------------------------------------------
 class mmCheckingPanel;
