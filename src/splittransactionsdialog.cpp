@@ -117,7 +117,7 @@ void mmEditSplitOther::fillControls()
 }
 
 void mmEditSplitOther::OnOk(wxCommandEvent& /*event*/)
-{   
+{
     m_split->NOTES = m_Notes->GetValue();
     EndModal(wxID_OK);
 }
@@ -372,23 +372,22 @@ void mmSplitTransactionDialog::createNewRow(const bool enabled)
     }
 }
 
-void mmSplitTransactionDialog::activateNewRow()  
+void mmSplitTransactionDialog::activateNewRow()
 {
-    if (row_num_ < (static_cast<int>(m_splits_widgets.size()) - 1)) 
-    {
-        int row = row_num_ + 1;
-        if (row >= static_cast<int>(m_splits.size()))
+    if (row_num_ < (static_cast<int>(m_splits_widgets.size()) - 1)) {
+        row_num_ = row_num_ + 1;
+        if (row_num_ >= static_cast<int>(m_splits.size()))
         {
             Split s = { -1, 0, {}, "" };
             m_splits.push_back(s);
         }
-        m_splits_widgets.at(row).category->Enable(true);
-        m_splits_widgets.at(row).amount->Enable(true);
-        m_splits_widgets.at(row).tags->Enable(true);
-        m_splits_widgets.at(row).other->Enable(true);
-        m_splits_widgets.at(row).category->SetFocus();
-    } else
-    {
+        m_splits_widgets.at(row_num_).category->Enable(true);
+        m_splits_widgets.at(row_num_).amount->Enable(true);
+        m_splits_widgets.at(row_num_).tags->Enable(true);
+        m_splits_widgets.at(row_num_).other->Enable(true);
+        m_splits_widgets.at(row_num_).category->SetFocus();
+    }
+    else {
         createNewRow(true);
         Split s = { -1, 0, {}, "" };
         m_splits.push_back(s);
@@ -428,7 +427,7 @@ void mmSplitTransactionDialog::OnAddRow(wxCommandEvent& event)
         if (!mmDoCheckRow(id))
             return;
     }
-    
+
     activateNewRow();
     FillControls();
 
@@ -443,7 +442,7 @@ void mmSplitTransactionDialog::OnRemoveRow(wxCommandEvent&)
     for (int id=0; id<static_cast<int>(m_splits.size()); id++)
         if ((id != row_num_) && !mmDoCheckRow(id))
             return;
-            
+
     m_splits.erase(m_splits.begin() + row_num_ );
     if (row_num_ > 0)
         row_num_--;
@@ -495,7 +494,7 @@ void mmSplitTransactionDialog::OnOtherButton(wxCommandEvent& event)
     {
         mmEditSplitOther dlg(this, m_currency, &m_splits.at(row));
         dlg.ShowModal();
-        UpdateExtraInfo(row);   
+        UpdateExtraInfo(row);
     }
     event.Skip();
 }
@@ -526,7 +525,7 @@ void mmSplitTransactionDialog::OnComboKey(wxKeyEvent& event)
                     }
                 }
                 category = Model_Category::full_name(dlg.getCategId());
-                if (dlg.getRefreshRequested()) 
+                if (dlg.getRefreshRequested())
                     cbc->mmDoReInitialize();
                 cbc->ChangeValue(category);
                 DoWindowsFreezeThaw(this);
@@ -568,7 +567,7 @@ void mmSplitTransactionDialog::UpdateExtraInfo(int row)
     else
         m_splits_widgets.at(row).other->SetBitmap(mmBitmapBundle(png::RECONCILED,mmBitmapButtonSize));
 
-    m_splits_widgets.at(row).other->SetToolTip(m_splits.at(row).NOTES);   
+    m_splits_widgets.at(row).other->SetToolTip(m_splits.at(row).NOTES);
 }
 
 bool mmSplitTransactionDialog::mmDoCheckRow(int row)
@@ -578,7 +577,7 @@ bool mmSplitTransactionDialog::mmDoCheckRow(int row)
         return false;
     }
 
-    if (m_splits_widgets.at(row).category->GetValue().empty() && 
+    if (m_splits_widgets.at(row).category->GetValue().empty() &&
         m_splits_widgets.at(row).amount->GetValue().empty() &&
         m_splits_widgets.at(row).tags->GetTagIDs().empty() &&
         m_splits.at(row).NOTES.IsEmpty())
@@ -593,7 +592,7 @@ bool mmSplitTransactionDialog::mmDoCheckRow(int row)
     }
 
     if (!m_splits_widgets.at(row).amount->Calculate()) {
-            mmErrorDialogs::ToolTip4Object(m_splits_widgets.at(row).amount, 
+            mmErrorDialogs::ToolTip4Object(m_splits_widgets.at(row).amount,
                                 _t("Please enter a valid monetary amount"), _t("Invalid Value"));
             return false;
     }
