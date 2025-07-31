@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-07-31 09:49+0000\n"
+"POT-Creation-Date: 2025-07-31 14:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1119,7 +1119,7 @@ msgstr ""
 #: filtertransdialog.cpp:1910 import_export/qif_import_gui.cpp:93
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:105
 #: reports/transactions.cpp:222 splittransactionsdialog.cpp:221
-#: splittransactionsdialog.cpp:577 transactionsupdatedialog.cpp:234
+#: splittransactionsdialog.cpp:576 transactionsupdatedialog.cpp:234
 #: transactionsupdatedialog.cpp:370 transdialog.cpp:547 transdialog.cpp:646
 msgid "Tags"
 msgstr ""
@@ -1205,7 +1205,7 @@ msgstr ""
 #: filtertransdialog.cpp:1100 filtertransdialog.cpp:1107
 #: filtertransdialog.cpp:1113 import_export/univcsvdialog.cpp:1351
 #: optionsettingsgeneral.cpp:292 optionsettingsgeneral.cpp:317
-#: payeedialog.cpp:202 payeedialog.cpp:207 splittransactionsdialog.cpp:577
+#: payeedialog.cpp:202 payeedialog.cpp:207 splittransactionsdialog.cpp:576
 #: transactionsupdatedialog.cpp:370 transactionsupdatedialog.cpp:444
 #: transdialog.cpp:646 transdialog.cpp:650 transdialog.cpp:665 util.cpp:762
 msgid "Invalid value"
@@ -1249,7 +1249,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1394 images_list.cpp:504
 #: import_export/univcsvdialog.cpp:1587 maincurrencydialog.cpp:482
-#: mmframe.cpp:4047 splittransactionsdialog.cpp:410 stockspanel.cpp:469
+#: mmframe.cpp:4047 splittransactionsdialog.cpp:409 stockspanel.cpp:469
 #: stockspanel.cpp:470 themes.cpp:316 themes.cpp:335 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Error"
@@ -4097,7 +4097,7 @@ msgstr ""
 msgid "New tag entered"
 msgstr ""
 
-#: mmTextCtrl.cpp:88 splittransactionsdialog.cpp:597
+#: mmTextCtrl.cpp:88 splittransactionsdialog.cpp:596
 msgid "Invalid Value"
 msgstr ""
 
@@ -7860,11 +7860,11 @@ msgstr ""
 msgid "&Remove Split"
 msgstr ""
 
-#: splittransactionsdialog.cpp:410
+#: splittransactionsdialog.cpp:409
 msgid "Invalid Total Amount"
 msgstr ""
 
-#: splittransactionsdialog.cpp:597
+#: splittransactionsdialog.cpp:596
 msgid "Please enter a valid monetary amount"
 msgstr ""
 
