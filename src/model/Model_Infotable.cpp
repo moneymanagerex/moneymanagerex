@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
  Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
-
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -213,8 +213,12 @@ Document Model_Infotable::getJdoc(const wxString& key, const wxString& defaultVa
     Document j_doc;
     wxString j_str = getRaw(key, defaultValue);
     j_doc.Parse(j_str.utf8_str());
+    if (j_doc.HasParseError()) {
+        j_doc.Parse(defaultValue.utf8_str());
+    }
     return j_doc;
 }
+
 
 // ArrayString
 void Model_Infotable::setArrayString(const wxString& key, const wxArrayString& a)
@@ -406,3 +410,41 @@ loop_t Model_Infotable::to_loop_t()
         loop += r.to_row_t();
     return loop;
 }
+
+//--- static support functions ---------------------------------------------
+void Model_Infotable::saveFilterString(Document &sdoc, const char* skey, wxString svalue)
+{
+    if (sdoc.HasMember(skey)) {
+        sdoc[skey].SetString(svalue.utf8_str(), sdoc.GetAllocator());
+    }
+    else {
+        auto& allocator = sdoc.GetAllocator();
+        rapidjson::Value field_key(skey, allocator);
+        rapidjson::Value value(svalue.utf8_str(), allocator);
+        sdoc.AddMember(field_key, value, allocator);
+    }
+};
+
+void Model_Infotable::saveFilterBool(Document &sdoc, const char* skey, bool bvalue)
+{
+    if (sdoc.HasMember(skey)) {
+        sdoc[skey].SetBool(bvalue);
+    }
+    else {
+        auto& allocator = sdoc.GetAllocator();
+        rapidjson::Value field_key(skey, allocator);
+        sdoc.AddMember(field_key, bvalue, allocator);
+    }
+};
+
+void Model_Infotable::saveFilterInt(Document &sdoc, const char* skey, int ivalue)
+{
+    if (sdoc.HasMember(skey)) {
+        sdoc[skey].SetInt(ivalue);
+    }
+    else {
+        auto& allocator = sdoc.GetAllocator();
+        rapidjson::Value field_key(skey, allocator);
+        sdoc.AddMember(field_key, ivalue, allocator);
+    }
+};

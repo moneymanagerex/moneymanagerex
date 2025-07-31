@@ -100,6 +100,10 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     customfieldlistdialog.h
     daterange2.cpp
     daterange2.h
+    daterangedialog.cpp
+    daterangedialog.h
+    daterangeeditdialog.cpp
+    daterangeeditdialog.h
     dbcheck.cpp
     dbcheck.h
     dbupgrade.cpp

@@ -130,6 +130,7 @@ void Option::load(bool include_infotable)
     loadUseTransDateTime();
     loadDoNotColorFuture();
     loadDoSpecialColorReconciled();
+    loadUseCombinedTransactionFilter();
     loadShowToolTips();
     loadShowMoneyTips();
     loadTransPayeeNone();
@@ -446,6 +447,17 @@ void Option::setDoSpecialColorReconciled(const bool value)
     Model_Setting::instance().setBool("SPECIAL_COLOR_RECONCILED_TRANSACTIONS", value);
     m_do_special_color_reconciled = value;
 }
+
+void Option::loadUseCombinedTransactionFilter()
+{
+    m_use_combined_transaction_filter = Model_Setting::instance().getBool("USE_COMBINED_TRANSACTION_FILTER", true);
+}
+void Option::setUseCombinedTransactionFilter(const bool value)
+{
+    Model_Setting::instance().setBool("USE_COMBINED_TRANSACTION_FILTER", value);
+    m_use_combined_transaction_filter = value;
+}
+
 
 void Option::loadShowToolTips()
 {

@@ -2166,6 +2166,74 @@ msgstr[1] ""
 msgid "&Bulk content update "
 msgstr ""
 
+#: daterangedialog.cpp:50
+msgid "Manage date ranges"
+msgstr ""
+
+#: daterangedialog.cpp:126
+msgid "Restore default ranges"
+msgstr ""
+
+#: daterangedialog.cpp:215
+msgid "Do you want to delete the selected date range?"
+msgstr ""
+
+#: daterangedialog.cpp:217
+msgid "Delete date range"
+msgstr ""
+
+#: daterangedialog.cpp:274
+msgid "Do you really want to restore the default ranges?\n\nAll customization will be lost!"
+msgstr ""
+
+#: daterangedialog.cpp:278
+msgid "Default date ranges"
+msgstr ""
+
+#: daterangeeditdialog.cpp:47
+msgid "New date range"
+msgstr ""
+
+#: daterangeeditdialog.cpp:47
+msgid "Edit date range"
+msgstr ""
+
+#: daterangeeditdialog.cpp:61
+msgid "Quarter"
+msgstr ""
+
+#: daterangeeditdialog.cpp:65
+msgid "Statement date"
+msgstr ""
+
+#: daterangeeditdialog.cpp:79
+msgid "Range:"
+msgstr ""
+
+#: daterangeeditdialog.cpp:80
+msgid " to "
+msgstr ""
+
+#: daterangeeditdialog.cpp:95
+msgid "Range code:"
+msgstr ""
+
+#: daterangeeditdialog.cpp:126
+msgid "Range is OK:"
+msgstr ""
+
+#: daterangeeditdialog.cpp:132, 147
+msgid "Invalid date range definition"
+msgstr ""
+
+#: daterangeeditdialog.cpp:143
+msgid "Name must not be empty"
+msgstr ""
+
+#: daterangeeditdialog.cpp:157
+msgid "Definition error"
+msgstr ""
+
 #: db/DB_Table_Category_V1.h:113
 msgid "Bills"
 msgstr ""
@@ -4514,6 +4582,10 @@ msgstr ""
 msgid "MMEX Transaction Check"
 msgstr ""
 
+#: mmcheckingpanel.cpp:234
+msgid "Filter…"
+msgstr ""
+
 #: mmcheckingpanel.cpp:263
 msgid "Delete all selected transactions"
 msgstr ""
@@ -4598,6 +4670,10 @@ msgstr ""
 msgid "Days between selected transactions: %d"
 msgstr ""
 
+#: mmcheckingpanel.cpp:1159
+msgid "Scheduled transactions are not available, because the current filter ends in the past"
+msgstr ""
+
 #: mmcheckingpanel.cpp:1028
 msgid "Unable to show scheduled transactions because the current filter choice extends into the future without limit."
 msgstr ""
@@ -4612,6 +4688,10 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:1047
 msgid "More date ranges…"
+msgstr ""
+
+#: mmcheckingpanel.cpp:1194
+msgid "Edit date ranges…"
 msgstr ""
 
 #: mmcheckingpanel.cpp:1054
@@ -5140,6 +5220,14 @@ msgstr ""
 
 #: mmframe.cpp:1996 themes.cpp:143
 msgid "Theme Manager"
+msgstr ""
+
+#: mmframe.cpp:1996
+msgid "Date Range Manager…"
+msgstr ""
+
+#: mmframe.cpp:1996 themes.cpp:143
+msgid "Date Range Manager"
 msgstr ""
 
 #: mmframe.cpp:2002
@@ -6633,6 +6721,14 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:237
 msgid "Delimiter"
+msgstr ""
+
+#: optionsettingsmisc.cpp:253
+msgid "Enable combined filter handling"
+msgstr ""
+
+#: optionsettingsmisc.cpp:255
+msgid "Switch to one filter control for date and attributes"
 msgstr ""
 
 #: optionsettingsnet.cpp:65

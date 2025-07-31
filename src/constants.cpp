@@ -134,7 +134,7 @@ const wxString mmex::weblink::addReferralToURL(const wxString& BaseURL, const wx
     to divide direct access from access through desktop app links
     https://support.google.com/analytics/answer/1033867?hl=en
     */
-    
+
     const wxString url = wxString::Format("%s?utm_campaign=Application_Desktop&utm_source=%s&utm_medium=MMEX_v%s"
         , BaseURL, CampSource, mmex::version::string);
 
@@ -174,7 +174,7 @@ const wxString mmex::weblink::YahooQuotes = "https://query1.finance.yahoo.com/v7
    Valid intervals: [1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo]*/
 const wxString mmex::weblink::YahooQuotesHistory = "https://query1.finance.yahoo.com/v8/finance/chart/%s?%s&fields=currency";
 
-// coincap asset search by symbol and id 
+// coincap asset search by symbol and id
 const wxString mmex::weblink::CoinCapSearch = "http://api.coincap.io/v2/assets?search=%s";
 
 // coincap asset price history, all values in USD

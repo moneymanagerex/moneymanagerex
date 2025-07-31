@@ -3,6 +3,7 @@ Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2011, 2012 Stefano Giorgio
 Copyright (C) 2013, 2014 Nikolay Akimov
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -50,6 +51,15 @@ public:
         ICON_ASC,
     };
 
+    enum FILTER_ID
+    {
+        FILTER_ID_DATE = 0,
+        FILTER_ID_ADVANCED,
+        FILTER_ID_DATE_RANGE,
+        FILTER_ID_DATE_PICKER,
+        FILTER_ID_size
+    };
+
 public:
     mmCheckingPanel(
         mmGUIFrame* frame,
@@ -72,15 +82,14 @@ public:
     void setSelectedTransaction(Fused_Transaction::IdRepeat fused_id);
     void displaySplitCategories(Fused_Transaction::IdB fused_id);
 
+    //static support function
+    static wxString getFilterName(FILTER_ID id);
+    static void loadDateRanges(std::vector<DateRange2::Spec>* date_range_ptr, int* range_m, bool isaccount);
+
+
 private:
     friend class TransactionListCtrl;
 
-    enum FILTER_ID
-    {
-        FILTER_ID_DATE = 0,
-        FILTER_ID_ADVANCED,
-        FILTER_ID_size
-    };
 
     wxDECLARE_EVENT_TABLE();
     enum
@@ -89,6 +98,9 @@ private:
         mmID_FILTER_DATE_MIN,
         mmID_FILTER_DATE_MAX = mmID_FILTER_DATE_MIN + 99,
         mmID_FILTER_ADVANCED,
+        mmID_FILTER_TRANSACTION_DETAIL,
+        mmID_DATE_PICK_LOW,
+        mmID_DATE_PICK_HIGH,
         mmID_EDIT_DATE_RANGES,
         mmID_SCHEDULED,
     };
@@ -115,7 +127,8 @@ private:
 
     // set by gui
     FILTER_ID m_filter_id;
-    DateRange2 m_date_range = DateRange2();
+    FILTER_ID m_filter_id_ext;
+    DateRange2 m_current_date_range = DateRange2();
     bool m_scheduled_enable;
     bool m_scheduled_selected;
 
@@ -128,8 +141,13 @@ private:
     // set by showTips()
     bool m_show_tips = false;
 
+    bool m_use_dedicated_filter;
+
     mmGUIFrame* m_frame = nullptr;
     wxButton* m_bitmapTransFilter = nullptr;
+    wxDatePickerCtrl* fromDateCtrl = nullptr;
+    wxDatePickerCtrl* toDateCtrl = nullptr;
+    wxButton* m_btnTransDetailFilter = nullptr;
     wxButton* m_btnNew = nullptr;
     wxButton* m_btnEdit = nullptr;
     wxButton* m_btnDuplicate = nullptr;
@@ -145,7 +163,7 @@ private:
     wxStaticText* m_header_balance = nullptr;
     wxStaticText* m_info_panel = nullptr;
     wxStaticText* m_info_panel_mini = nullptr;
-    wxString m_info_panel_selectedbal; 
+    wxString m_info_panel_selectedbal;
     wxVector<wxBitmapBundle> m_images;
     TransactionListCtrl* m_lc = nullptr;
     wxSharedPtr<mmFilterTransactionsDialog> m_trans_filter_dlg;
@@ -156,11 +174,11 @@ private:
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = "mmCheckingPanel" 
+        const wxString& name = "mmCheckingPanel"
     );
     void createControls();
     void updateHeader();
-    void updateFilter();
+    void updateFilter(bool firstinit = false);
     void updateFilterTooltip();
     void setFilterDate(DateRange2::Spec& spec);
     void setFilterAdvanced();
@@ -172,10 +190,14 @@ private:
     void enableButtons(bool edit, bool dup, bool del, bool enter, bool skip, bool attach);
     void showTips();
     void showTips(const wxString& tip);
+    void updateScheduledEnable();
     void updateScheduledToolTip();
+    void datePickProceed();
 
     void onFilterPopup(wxCommandEvent& event);
     void onFilterDate(wxCommandEvent& event);
+    void onDatePickLow(wxDateEvent& event);
+    void onDatePickHigh(wxDateEvent& event);
     void onFilterAdvanced(wxCommandEvent& event);
     void onEditDateRanges(wxCommandEvent& event);
     void onScheduled(wxCommandEvent& event);

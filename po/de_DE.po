@@ -606,7 +606,7 @@ msgstr "Vermögenswerte"
 #: import_export/qif_export.cpp:75 import_export/qif_export.cpp:76
 #: import_export/qif_export.cpp:154 option.cpp:50 stockspanel.cpp:103
 msgid "All"
-msgstr "Alle"
+msgstr "Alles"
 
 #: stockspanel.cpp:104
 msgid "Non-Zero Shares"
@@ -2170,6 +2170,74 @@ msgstr[1] "%zu Vorkommnisse gefunden und ersetzt!"
 #: customfieldlistdialog.cpp:259
 msgid "&Bulk content update "
 msgstr "&Masseninhalt-Update "
+
+#: daterangedialog.cpp:50
+msgid "Manage date ranges"
+msgstr "Datumsbereiche verwalten"
+
+#: daterangedialog.cpp:126
+msgid "Restore default ranges"
+msgstr "Auf Standard zurücksetzen"
+
+#: daterangedialog.cpp:215
+msgid "Do you want to delete the selected date range?"
+msgstr "Soll der ausgewählte Datumsbereich gelöscht werden?"
+
+#: daterangedialog.cpp:217
+msgid "Delete date range"
+msgstr "Datumsbereich löschen"
+
+#: daterangedialog.cpp:274
+msgid "Do you really want to restore the default ranges?\n\nAll customization will be lost!"
+msgstr "Sollen wirklich die Standarddatumsbereiche wiederhergestellt werden?\n\nAlle Anpassungen gehen damit verloren!"
+
+#: daterangedialog.cpp:278
+msgid "Default date ranges"
+msgstr "Standarddatumsbereiche"
+
+#: daterangeeditdialog.cpp:47
+msgid "New date range"
+msgstr "Neuer Datumsbereich"
+
+#: daterangeeditdialog.cpp:47
+msgid "Edit date range"
+msgstr "Datumsbereich bearbeiten"
+
+#: daterangeeditdialog.cpp:61
+msgid "Quarter"
+msgstr "Quartal"
+
+#: daterangeeditdialog.cpp:65
+msgid "Statement date"
+msgstr "Auszugsdatum"
+
+#: daterangeeditdialog.cpp:79
+msgid "Range:"
+msgstr "Bereich:"
+
+#: daterangeeditdialog.cpp:80cd Built
+msgid " to "
+msgstr "bis"
+
+#: daterangeeditdialog.cpp:95
+msgid "Range code:"
+msgstr "Bereichsdefinition:"
+
+#: daterangeeditdialog.cpp:126
+msgid "Range is ok:"
+msgstr "Gültiger Datumsbereich:"
+
+#: daterangeeditdialog.cpp:132, 147
+msgid "Invalid date range definition"
+msgstr "Ungültige Datumsbereichsdefinition"
+
+#: daterangeeditdialog.cpp:143
+msgid "Name must not be empty"
+msgstr "Name darf nicht leer sein"
+
+#: daterangeeditdialog.cpp:157
+msgid "Definition error"
+msgstr "Definitionsfehler"
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Bills"
@@ -4522,6 +4590,10 @@ msgstr "Transaktion bis zum Datum gesperrt: %s\n\n"
 msgid "MMEX Transaction Check"
 msgstr "MMEX Transaktionsprüfung"
 
+#: mmcheckingpanel.cpp:234
+msgid "Filter…"
+msgstr "Filter…"
+
 #: mmcheckingpanel.cpp:263
 msgid "Delete all selected transactions"
 msgstr "Alle ausgewählten Buchungen löschen"
@@ -4606,13 +4678,17 @@ msgstr "Ausgewählter Buchungssaldo: %s"
 msgid "Days between selected transactions: %d"
 msgstr "Tage zwischen ausgewählten Buchungen: %d"
 
+#: mmcheckingpanel.cpp:1159
+msgid "Scheduled transactions are not available, because the current filter ends in the past"
+msgstr "Geplante Transaktionen können nicht angezeigt werden, da der aktuelle Filter in der Vergangenheit endet."
+
 #: mmcheckingpanel.cpp:1028
 msgid "Unable to show scheduled transactions because the current filter choice extends into the future without limit."
 msgstr "Geplante Transaktionen können nicht angezeigt werden, da sich die aktuelle Filterauswahl uneingeschränkt auf die Zukunft erstreckt."
 
 #: mmcheckingpanel.cpp:1029
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
-msgstr "Klicken Sie hier, um geplante Transaktionen anzuzeigen. Diese Funktion funktioniert am besten mit Filterwahlen, die sich in die Zukunft erstrecken (z.B. Aktueller Monat)."
+msgstr "Klicken, um geplante Transaktionen anzuzeigen. Diese Funktion funktioniert am besten mit Filterwahlen, die sich in die Zukunft erstrecken (z.B. Aktueller Monat)."
 
 #: mmcheckingpanel.cpp:1030
 msgid "Click to hide scheduled transactions."
@@ -4621,6 +4697,10 @@ msgstr "Klicken, um geplante Transaktionen auszublenden."
 #: mmcheckingpanel.cpp:1047
 msgid "More date ranges…"
 msgstr "Weitere Datumsbereiche…"
+
+#: mmcheckingpanel.cpp:1194
+msgid "Edit date ranges…"
+msgstr "Datumsauswahl bearbeiten…"
 
 #: mmcheckingpanel.cpp:1054
 msgid "Advanced filter…"
@@ -4646,6 +4726,10 @@ msgstr "Gelöschte Transaktionen"
 #, c-format
 msgid "Account View: %s"
 msgstr "Kontoansicht: %s"
+
+#: mmcheckingpanel.cpp:1257
+msgid "Date range"
+msgstr "Datumsbereich"
 
 #: mmcustomdata.cpp:64
 msgid "Custom fields"
@@ -5157,6 +5241,14 @@ msgstr "T&heme-Manager…"
 #: mmframe.cpp:1996 themes.cpp:143
 msgid "Theme Manager"
 msgstr "Designs verwalten"
+
+#: mmframe.cpp:1996
+msgid "Date Range Manager…"
+msgstr "Datumsbereiche verwalten…"
+
+#: mmframe.cpp:1996 themes.cpp:143
+msgid "Date Range Manager"
+msgstr "Datumsbereiche verwalten"
 
 #: mmframe.cpp:2002
 msgid "Tra&nsaction Report…"
@@ -6192,7 +6284,7 @@ msgstr "Laufendes Quartal"
 
 #: option.cpp:57
 msgid "Current month"
-msgstr "Aktueller Monat"
+msgstr "Laufender Monat"
 
 #: option.cpp:58
 msgid "Current week"
@@ -6204,11 +6296,11 @@ msgstr "Heute"
 
 #: option.cpp:60
 msgid "From statement"
-msgstr "Von der Anweisung"
+msgstr "Ab Auszugsdatum"
 
 #: option.cpp:61
 msgid "From 1 day after statement"
-msgstr "Ab 1 Tag nach Abrechnung"
+msgstr "Ab 1 Tag nach Auszugsdatum"
 
 #: option.cpp:63
 msgid "From current year to week"
@@ -6224,19 +6316,19 @@ msgstr "Vom aktuellem Monat zu Woche"
 
 #: option.cpp:66
 msgid "Previous year"
-msgstr "Vorjahr"
+msgstr "Letztes Jahr"
 
 #: option.cpp:67
-msgid "Previous month"
-msgstr "Vormonat"
+msgid "Previous quarter"
+msgstr "Letztes Quartal"
 
 #: option.cpp:68
 msgid "Previous week"
-msgstr "Vorherige Woche"
+msgstr "Letzte Woche"
 
 #: option.cpp:69
 msgid "From previous year"
-msgstr "Vom Vorjahr"
+msgstr "Ab dem Vorjahr"
 
 #: option.cpp:70
 msgid "From previous year to month"
@@ -6244,7 +6336,7 @@ msgstr "Von Vorjahr zu Monat"
 
 #: option.cpp:71
 msgid "From previous month"
-msgstr "Vom Vormonat"
+msgstr "Ab dem Vormonat"
 
 #: option.cpp:72
 msgid "From previous month to week"
@@ -6252,7 +6344,7 @@ msgstr "Vom Vormonat zu Woche"
 
 #: option.cpp:73
 msgid "From previous week"
-msgstr "Vom Vormonat"
+msgstr "Ab der Vorwoche"
 
 #: option.cpp:74
 msgid "From previous to current week"
@@ -6260,19 +6352,19 @@ msgstr "Von vorheriger bis aktueller Woche"
 
 #: option.cpp:75
 msgid "From 1 year ago"
-msgstr "Vor 1 Jahr"
+msgstr "Letzten 12 Monate"
 
 #: option.cpp:76
 msgid "From 1 quarter ago"
-msgstr "Vor 1 Quartal"
+msgstr "Letzten 3 Monate"
 
 #: option.cpp:77
 msgid "From 1 month ago"
-msgstr "Vor 1 Monat"
+msgstr "Letzten 4 Wochen"
 
 #: option.cpp:78
 msgid "From 1 week ago"
-msgstr "Vor 1 Woche"
+msgstr "Letzten 7 Tage"
 
 #: option.cpp:79
 msgid "Year before last"
@@ -6653,6 +6745,14 @@ msgstr "Tage für die Aufbewahrung gelöschter Transaktionen"
 #: optionsettingsmisc.cpp:237
 msgid "Delimiter"
 msgstr "Trennzeichen"
+
+#: optionsettingsmisc.cpp:253
+msgid "Enable combined transaction filter"
+msgstr "Kombinierte Buchungsfilter verwenden"
+
+#: optionsettingsmisc.cpp:255
+msgid "Switch to one filter control for date and attributes"
+msgstr "Aktiviert ein kombinierten Filterelement für Datum und Buchungsattribute"
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp"
@@ -8726,4 +8826,3 @@ msgstr "Fehler "
 #: wizard_update.cpp:325 wizard_update.cpp:340
 msgid "MMEX Update Check"
 msgstr "MMEX Update Überprüfung"
-

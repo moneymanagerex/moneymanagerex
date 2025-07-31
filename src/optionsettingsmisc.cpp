@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2014 Stefano Giorgio
 Copyright (C) 2020 - 2022 Nikolay Akimov
+Copyright (C) 2025 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -111,7 +112,7 @@ void OptionSettingsMisc::Create()
     // New transaction dialog settings
     wxStaticBox* transSettingsStaticBox = new wxStaticBox(misc_panel, wxID_STATIC, _t("New Transaction"));
     SetBoldFont(transSettingsStaticBox);
-    
+
     wxStaticBoxSizer* transSettingsStaticBoxSizer = new wxStaticBoxSizer(transSettingsStaticBox, wxVERTICAL);
     othersPanelSizer->Add(transSettingsStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
@@ -241,6 +242,19 @@ void OptionSettingsMisc::Create()
     textDelimiter4->SetMaxLength(1);
     csvStaticBoxSizerGrid->Add(textDelimiter4, g_flagsH);
 
+    // Filter Settings
+    wxStaticBox* filterStaticBox = new wxStaticBox(misc_panel, wxID_STATIC, _t("Filter"));
+    SetBoldFont(filterStaticBox);
+    wxStaticBoxSizer* filterStaticBoxSizer = new wxStaticBoxSizer(filterStaticBox, wxVERTICAL);
+
+    othersPanelSizer->Add(filterStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+
+    m_use_combined_transaction_filter = new wxCheckBox(misc_panel, ID_DIALOG_OPTIONS_CHK_FILTER
+        , _t("Enable combined transaction filter"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_use_combined_transaction_filter->SetValue(Option::instance().getUseCombinedTransactionFilter());
+    m_use_combined_transaction_filter->SetToolTip(_t("Switch to one filter control for date and attributes"));
+    filterStaticBoxSizer->Add(m_use_combined_transaction_filter, g_flagsV);
+
     wxCommandEvent evt;
     OptionSettingsMisc::OnBackupChanged(evt);
 
@@ -305,6 +319,8 @@ bool OptionSettingsMisc::SaveSettings()
     Model_Setting::instance().setInt("MAX_BACKUP_FILES", m_max_files->GetValue());
     Model_Setting::instance().setInt("DELETED_TRANS_RETAIN_DAYS", m_deleted_trans_retain_days->GetValue());
     Model_Setting::instance().setBool("REFRESH_STOCK_QUOTES_ON_OPEN", m_refresh_quotes_on_open->IsChecked());
+
+    Option::instance().setUseCombinedTransactionFilter(m_use_combined_transaction_filter->IsChecked());
 
     wxTextCtrl* st = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4));
     const wxString& delim = st->GetValue();
