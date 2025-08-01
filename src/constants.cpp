@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2009 VaDiM
 Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2025 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -189,6 +190,7 @@ const wxString LANGUAGE_PARAMETER = "LANGUAGE";
 const wxString INIDB_USE_TRANSACTION_SOUND = "USETRANSSOUND";
 const wxString INIDB_USE_ORG_DATE_COPYPASTE = "USEORIGDATEONCOPYPASTE";
 const wxString INIDB_USE_ORG_DATE_DUPLICATE = "USEORIGDATEONDUPLICATE";
+const wxString INIDB_USE_ORG_STATE_DUPLICATE_PASTE = "USEORIGSTATEONDUPLICATEPASTE";
 const wxString INIDB_SEND_USAGE_STATS = "SENDUSAGESTATS";
 
 const wxString VIEW_ACCOUNTS_ALL_STR       = _n("ALL");

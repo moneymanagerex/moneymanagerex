@@ -1658,14 +1658,18 @@ int64 TransactionListCtrl::onPaste(Model_Checking::Data* tran)
     wxASSERT(m_cp->isAccount());
 
     bool useOriginalDate = Model_Setting::instance().getBool(INIDB_USE_ORG_DATE_COPYPASTE, false);
+    bool useOriginalState = Model_Setting::instance().getBool(INIDB_USE_ORG_STATE_DUPLICATE_PASTE, false);
 
     //TODO: the clone function can't clone split transactions, or custom data
     Model_Checking::Data* copy = Model_Checking::instance().clone(tran);
     if (!useOriginalDate) copy->TRANSDATE = wxDateTime::Now().FormatISOCombined();
+    if (!useOriginalState) {
+        copy->STATUS = Model_Checking::status_key(Option::instance().getTransStatusReconciled()); // Use default status on copy insert
+    }
     if (Model_Checking::type_id(copy->TRANSCODE) != Model_Checking::TYPE_ID_TRANSFER ||
         (m_cp->m_account_id != copy->ACCOUNTID && m_cp->m_account_id != copy->TOACCOUNTID)
     )
-        copy->ACCOUNTID = m_cp->m_account_id;
+    copy->ACCOUNTID = m_cp->m_account_id;
     int64 transactionID = Model_Checking::instance().save(copy);
     m_pasted_id.push_back({transactionID, 0});   // add the newly pasted transaction
 

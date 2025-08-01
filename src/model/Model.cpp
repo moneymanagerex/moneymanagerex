@@ -49,4 +49,3 @@ const wxString Model_Checking::refTypeName               = REFTYPE_NAME_TRANSACT
 const wxString Model_Splittransaction::refTypeName       = REFTYPE_NAME_TRANSACTIONSPLIT;
 const wxString Model_Billsdeposits::refTypeName          = REFTYPE_NAME_BILLSDEPOSIT;
 const wxString Model_Budgetsplittransaction::refTypeName = REFTYPE_NAME_BILLSDEPOSITSPLIT;
-

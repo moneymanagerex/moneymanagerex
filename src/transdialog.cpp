@@ -3,6 +3,7 @@
  Copyright (C) 2011-2022 Nikolay Akimov
  Copyright (C) 2011-2017 Stefano Giorgio [stef145g]
  Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -210,7 +211,8 @@ void mmTransDialog::dataToControls()
 
     if (!skip_status_init_) //Status
     {
-        m_status = m_fused_data.STATUS;
+        bool useOriginalState = m_mode != MODE_DUP || Model_Setting::instance().getBool(INIDB_USE_ORG_STATE_DUPLICATE_PASTE, false);
+        m_status = useOriginalState? m_fused_data.STATUS : Model_Checking::status_key(Option::instance().getTransStatusReconciled());
         choiceStatus_->SetSelection(Model_Checking::status_id(m_status));
         skip_status_init_ = true;
     }
@@ -568,7 +570,7 @@ void mmTransDialog::CreateControls()
     bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), nullptr, this);
-    
+
     // Colours
     bColours_ = new mmColorButton(this, wxID_LOWEST, bAuto->GetSize());
     mmToolTip(bColours_, _t("User Colors"));

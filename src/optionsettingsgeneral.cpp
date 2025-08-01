@@ -2,6 +2,7 @@
 Copyright (C) 2014 Stefano Giorgio
 Copyright (C) 2016, 2017, 2020 - 2022 Nikolay Akimov
 Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2025 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -211,16 +212,25 @@ void OptionSettingsGeneral::Create()
     // Misc settings
     generalPanelSizer->AddSpacer(15);
 
+    wxStaticBox* transactioCopyStaticBox = new wxStaticBox(general_panel, wxID_ANY, _t("Transaction"));
+    SetBoldFont(transactioCopyStaticBox);
+    wxStaticBoxSizer* transactioCopyStaticBoxSizer = new wxStaticBoxSizer(transactioCopyStaticBox, wxVERTICAL);
+    generalPanelSizer->Add(transactioCopyStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+
     m_use_org_date_copy_paste = new wxCheckBox(general_panel, wxID_STATIC, _t("Use Original Date when Pasting Transactions"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_use_org_date_copy_paste->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_ORG_DATE_COPYPASTE, false));
     mmToolTip(m_use_org_date_copy_paste, _t("Select whether to use the original transaction date or current date when copying/pasting transactions"));
-    generalPanelSizer->Add(m_use_org_date_copy_paste, g_flagsV);
+    transactioCopyStaticBoxSizer->Add(m_use_org_date_copy_paste, g_flagsV);
 
     m_use_org_date_duplicate = new wxCheckBox(general_panel, wxID_STATIC, _t("Use Original Date when Duplicating Transactions"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_use_org_date_duplicate->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_ORG_DATE_DUPLICATE, false));
     mmToolTip(m_use_org_date_duplicate, _t("Select whether to use the original transaction date or current date when duplicating transactions"));
-    generalPanelSizer->Add(m_use_org_date_duplicate, g_flagsV);
+    transactioCopyStaticBoxSizer->Add(m_use_org_date_duplicate, g_flagsV);
 
+    m_use_org_state_duplicate_paste = new wxCheckBox(general_panel, wxID_STATIC, _t("Use Original State when Duplicating or Pasting Transactions"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_use_org_state_duplicate_paste->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_ORG_STATE_DUPLICATE_PASTE, true));
+    mmToolTip(m_use_org_state_duplicate_paste, _t("Select whether to use the original state or default state when duplicating or copy and paste transactions"));
+    transactioCopyStaticBoxSizer->Add(m_use_org_state_duplicate_paste, g_flagsV);
 
     wxArrayString sounds;
     sounds.Add(_t("None"));
@@ -228,7 +238,7 @@ void OptionSettingsGeneral::Create()
     sounds.Add("cash.wav");
 
     wxBoxSizer* soundBaseSizer = new wxBoxSizer(wxHORIZONTAL);
-    generalPanelSizer->Add(soundBaseSizer, wxSizerFlags(g_flagsV).Border(wxLEFT, 0));
+    transactioCopyStaticBoxSizer->Add(soundBaseSizer, wxSizerFlags(g_flagsV).Border(wxLEFT, 0));
     soundBaseSizer->Add(new wxStaticText(general_panel, wxID_STATIC, _t("Transaction Sound")), g_flagsH);
     m_use_sound = new wxChoice(general_panel, wxID_STATIC
         , wxDefaultPosition, wxSize(100, -1)
@@ -325,6 +335,7 @@ bool OptionSettingsGeneral::SaveSettings()
 
     Model_Setting::instance().setBool(INIDB_USE_ORG_DATE_COPYPASTE, m_use_org_date_copy_paste->GetValue());
     Model_Setting::instance().setBool(INIDB_USE_ORG_DATE_DUPLICATE, m_use_org_date_duplicate->GetValue());
+    Model_Setting::instance().setBool(INIDB_USE_ORG_STATE_DUPLICATE_PASTE, m_use_org_state_duplicate_paste->GetValue());
     Model_Setting::instance().setInt(INIDB_USE_TRANSACTION_SOUND, m_use_sound->GetSelection());
 
     return true;
