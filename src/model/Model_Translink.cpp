@@ -226,14 +226,16 @@ const Model_Translink::Data_Set Model_Translink::getSpecialSQL(TransSQLQueryName
 
         switch(queryname) {
             case ALL_LINKS_BY_SYMBOL:
-                query_special = "SELECT * FROM TRANSLINK_V1 WHERE LINKRECORDID IN (SELECT STOCKID FROM STOCK_V1 WHERE SYMBOL = \"" + par + "\")";
+                query_special = "SELECT * FROM TRANSLINK_V1 WHERE LINKRECORDID IN (SELECT STOCKID FROM STOCK_V1 WHERE SYMBOL = ?)";
                 break;
 
             default:
                 return result; // return empty!
         }
 
-        wxSQLite3ResultSet q = g_db_->ExecuteQuery(query_special);
+        wxSQLite3Statement sqlStmt = g_db_->PrepareStatement(query_special);
+        sqlStmt.Bind(1, par);
+        wxSQLite3ResultSet q = sqlStmt.ExecuteQuery();
 
         while(q.NextRow())
         {
