@@ -6623,6 +6623,14 @@ msgstr "Originaldatum bei der Duplizierung von Buchungen verwenden"
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
 msgstr "Wählen Sie hier aus, ob das aktuelle oder das Original-Datum beim Kopieren/Einfügen einer Buchung verwendet werden soll"
 
+#: optionsettingsgeneral.cpp:230
+msgid "Use Original State when Duplicating or Pasting Transactions"
+msgstr "Orginalstatus beim Duplizieren oder Kopieren und Einfügen einer Buchung verwenden"
+
+#: optionsettingsgeneral.cpp:232
+msgid "Select whether to use the original state or default state when duplicating or copy and paste transactions"
+msgstr "Wählen Sie hier aus, ob der Buchungsstatus oder der Standardstatus beim Kopieren/Einfügen einer Buchung verwendet werden soll"
+
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
 msgstr "Buchungston"

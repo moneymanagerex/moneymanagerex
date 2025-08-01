@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 Stefano Giorgio
+Copyright (C) 2025 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -69,6 +70,7 @@ private:
 
     wxCheckBox* m_use_org_date_copy_paste = nullptr;
     wxCheckBox* m_use_org_date_duplicate = nullptr;
+    wxCheckBox* m_use_org_state_duplicate_paste = nullptr;
     wxChoice* m_use_sound = nullptr;
 
     enum

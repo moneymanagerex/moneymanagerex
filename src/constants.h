@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2009 VaDiM
 Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2025 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -105,6 +106,7 @@ extern const wxString LANGUAGE_PARAMETER;
 extern const wxString INIDB_USE_TRANSACTION_SOUND;
 extern const wxString INIDB_USE_ORG_DATE_COPYPASTE;
 extern const wxString INIDB_USE_ORG_DATE_DUPLICATE;
+extern const wxString INIDB_USE_ORG_STATE_DUPLICATE_PASTE;
 extern const wxString INIDB_SEND_USAGE_STATS;
 
 extern const wxString ATTACHMENTS_FOLDER_DOCUMENTS;
@@ -147,5 +149,4 @@ enum id
     MENU_VIEW_SHOW_MONEYTIPS,
     MENU_VIEW_TOGGLE_FULLSCREEN,
     mmID_MAX,
-
 };

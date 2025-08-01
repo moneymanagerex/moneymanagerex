@@ -6619,6 +6619,14 @@ msgstr ""
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
 msgstr ""
 
+#: optionsettingsgeneral.cpp:230
+msgid "Use Original State when Duplicating or Pasting Transactions"
+msgstr ""
+
+#: optionsettingsgeneral.cpp:232
+msgid "Select whether to use the original state or default state when duplicating or copy and paste transactions"
+msgstr ""
+
 #: optionsettingsgeneral.cpp:232
 msgid "Transaction Sound"
 msgstr ""
