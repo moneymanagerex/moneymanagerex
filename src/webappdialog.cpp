@@ -213,7 +213,8 @@ void mmWebAppDialog::fillControls()
 
     for (const auto& WebTran : WebAppTransactions_)
     {
-        wxVector<wxVariant> data;
+        //wxVector<wxVariant> data;
+        std::vector<wxVariant> data;
         data.emplace_back(wxString::Format(wxT("%lld"), WebTran.ID)); //WEBTRAN_ID
         data.emplace_back(mmGetDateTimeForDisplay(WebTran.Date.FormatISODate())); //WEBTRAN_DATE
         data.emplace_back(WebTran.Account); //WEBTRAN_ACCOUNT
@@ -233,7 +234,10 @@ void mmWebAppDialog::fillControls()
 
         data.emplace_back(WebTran.Notes); //WEBTRAN_NOTES
         data.emplace_back(WebTran.Attachments); //WEBTRAN_ATTACHMENTS
-        webtranListBox_->AppendItem(data, static_cast<wxUIntPtr>(WebTran.ID.GetValue()));
+
+        wxVector<wxVariant> wxData;
+        std::copy(data.begin(), data.end(), wxData.begin());
+        webtranListBox_->AppendItem(wxData, static_cast<wxUIntPtr>(WebTran.ID.GetValue()));
     }
 
     if (!WebAppTransactions_.empty())
