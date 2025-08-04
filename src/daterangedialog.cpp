@@ -49,10 +49,12 @@ mmDateRangeDialog::mmDateRangeDialog(wxWindow* parent, std::vector<DateRange2::S
     m_subMenuBeginPtr = subMenuBeginPtr;
     m_subMenuBegin = *subMenuBeginPtr;
     this->SetFont(parent->GetFont());
-    Create(parent, -1, _t("Manage date ranges"), wxDefaultPosition, wxSize(500, 600), wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX, "");
+    Create(parent, -1, _t("Manage date ranges"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX, "");
     CreateControls();
     SetIcon(mmex::getProgramIcon());
     fillControls();
+    GetSizer()->SetSizeHints(this);
+    SetSize(500,700);
     Centre();
 }
 
