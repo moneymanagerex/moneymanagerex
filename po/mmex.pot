@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-01 13:51+0000\n"
+"POT-Creation-Date: 2025-08-05 17:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -602,7 +602,7 @@ msgid "Assets"
 msgstr ""
 
 #: assetspanel.cpp:418 assetspanel.cpp:697 assetspanel.cpp:714
-#: daterangedialog.cpp:266 daterangeeditdialog.cpp:59 filtertransdialog.cpp:225
+#: daterangedialog.cpp:268 daterangeeditdialog.cpp:59 filtertransdialog.cpp:225
 #: filtertransdialog.cpp:588 filtertransdialog.cpp:913
 #: filtertransdialog.cpp:2317 import_export/qif_export.cpp:75
 #: import_export/qif_export.cpp:76 import_export/qif_export.cpp:154
@@ -1831,7 +1831,7 @@ msgstr ""
 msgid "Category Manager"
 msgstr ""
 
-#: constants.cpp:73 daterangedialog.cpp:133 daterangeeditdialog.cpp:105
+#: constants.cpp:73 daterangedialog.cpp:135 daterangeeditdialog.cpp:105
 msgid "Cancel"
 msgstr ""
 
@@ -2171,50 +2171,50 @@ msgstr ""
 msgid "Manage date ranges"
 msgstr ""
 
-#: daterangedialog.cpp:99
+#: daterangedialog.cpp:101
 msgid "Top"
 msgstr ""
 
-#: daterangedialog.cpp:108
+#: daterangedialog.cpp:110
 msgid "Edit"
 msgstr ""
 
-#: daterangedialog.cpp:116
+#: daterangedialog.cpp:118
 msgid "Bottom"
 msgstr ""
 
-#: daterangedialog.cpp:122 mmframe.cpp:2177 mmframe.cpp:2183
+#: daterangedialog.cpp:124 mmframe.cpp:2177 mmframe.cpp:2183
 msgid "New"
 msgstr ""
 
-#: daterangedialog.cpp:125 webappdialog.cpp:410
+#: daterangedialog.cpp:127 webappdialog.cpp:414
 msgid "Delete"
 msgstr ""
 
-#: daterangedialog.cpp:131 daterangeeditdialog.cpp:104
+#: daterangedialog.cpp:133 daterangeeditdialog.cpp:104
 msgid "Save"
 msgstr ""
 
-#: daterangedialog.cpp:132
+#: daterangedialog.cpp:134
 msgid "Restore default ranges"
 msgstr ""
 
-#: daterangedialog.cpp:225
+#: daterangedialog.cpp:227
 msgid "Do you want to delete the selected date range?"
 msgstr ""
 
-#: daterangedialog.cpp:226
+#: daterangedialog.cpp:228
 msgid "Delete date range"
 msgstr ""
 
-#: daterangedialog.cpp:292
+#: daterangedialog.cpp:294
 msgid ""
 "Do you really want to restore the default ranges?\n"
 "\n"
 "All customization will be lost!"
 msgstr ""
 
-#: daterangedialog.cpp:293
+#: daterangedialog.cpp:295
 msgid "Default date ranges"
 msgstr ""
 
@@ -3732,7 +3732,7 @@ msgid "Amount field or both Withdrawal and Deposit fields are required."
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:1311 import_export/univcsvdialog.cpp:1506
-#: webappdialog.cpp:408
+#: webappdialog.cpp:412
 msgid "Import"
 msgstr ""
 
@@ -8648,7 +8648,7 @@ msgstr ""
 msgid "Today will be used as the transaction date"
 msgstr ""
 
-#: webapp.cpp:595 webapp.cpp:629 webappdialog.cpp:338
+#: webapp.cpp:595 webapp.cpp:629 webappdialog.cpp:342
 msgid "Unable to download attachments from the WebApp."
 msgstr ""
 
@@ -8672,7 +8672,7 @@ msgstr ""
 msgid "Transaction not downloaded: please retry to download transactions"
 msgstr ""
 
-#: webapp.cpp:632 webappdialog.cpp:339
+#: webapp.cpp:632 webappdialog.cpp:343
 msgid "Attachment download error"
 msgstr ""
 
@@ -8704,19 +8704,19 @@ msgstr ""
 msgid "Transactions download error"
 msgstr ""
 
-#: webappdialog.cpp:311
+#: webappdialog.cpp:315
 msgid "Unable to insert transaction in MMEX database"
 msgstr ""
 
-#: webappdialog.cpp:312
+#: webappdialog.cpp:316
 msgid "WebApp communication error"
 msgstr ""
 
-#: webappdialog.cpp:407
+#: webappdialog.cpp:411
 msgid "Open Attachment"
 msgstr ""
 
-#: webappdialog.cpp:409
+#: webappdialog.cpp:413
 msgid "Import and open"
 msgstr ""
 
