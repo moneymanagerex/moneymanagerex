@@ -90,8 +90,8 @@ void mmDateRangeDialog::CreateControls()
     mainPanelSizer->Add(itemBoxVleft, g_flagsExpand);
 
     m_dateRangesLb = new wxDataViewListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxDV_ROW_LINES | wxDV_NO_HEADER);
-    m_dateRangesLb->AppendTextColumn("");
-    m_dateRangesLb->AppendTextColumn("");
+    m_dateRangesLb->AppendTextColumn("", wxDATAVIEW_CELL_INERT, wxCOL_WIDTH_AUTOSIZE, wxALIGN_LEFT);
+    m_dateRangesLb->AppendTextColumn("", wxDATAVIEW_CELL_INERT, wxCOL_WIDTH_AUTOSIZE, wxALIGN_LEFT);
     itemBoxVleft->Add(m_dateRangesLb, g_flagsExpand);
 
     wxBoxSizer* itemBoxVright = new wxBoxSizer(wxVERTICAL);
