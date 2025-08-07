@@ -40,6 +40,7 @@ mmExportTransaction::~mmExportTransaction()
 const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full_Data& full_tran
     , const wxString& dateMask, bool reverce)
 {
+    auto account_id = full_tran.ACCOUNTID;
     wxString buffer = "";
     bool is_transfer = Model_Checking::is_transfer(full_tran.TRANSCODE);
     const wxString delimiter = Model_Infotable::instance().getString("DELIMITER", mmex::DEFDELIMTER);
@@ -56,6 +57,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
 
     if (is_transfer)
     {
+        account_id = reverce ? full_tran.ACCOUNTID : full_tran.TOACCOUNTID;
         const auto acc_to = Model_Account::instance().get(full_tran.TOACCOUNTID);
         const auto curr_to = Model_Currency::instance().get(acc_to->CURRENCYID);
 
@@ -109,8 +111,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
 
         buffer << inQuotes(payee, delimiter) << delimiter;
         buffer << inQuotes(categ, delimiter) << delimiter;
-        double value = Model_Checking::account_flow(full_tran
-            , (reverce ? full_tran.ACCOUNTID : full_tran.TOACCOUNTID));
+        double value = Model_Checking::account_flow(full_tran, account_id);
         const wxString& s = wxString::FromCDouble(value, 2);
         buffer << inQuotes(s, delimiter) << delimiter;
         buffer << inQuotes(currency, delimiter) << delimiter;
