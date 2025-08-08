@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-07-31 22:24+0000\n"
-"PO-Revision-Date: 2025-08-01 01:14\n"
+"POT-Creation-Date: 2025-08-05 17:54+0000\n"
+"PO-Revision-Date: 2025-08-08 01:08\n"
 "Last-Translator: \n"
 "Language-Team: Faroese\n"
 "Language: fo_FO\n"
@@ -52,13 +52,13 @@ msgstr ""
 #: aboutdialog.cpp:247 accountdialog.cpp:300 appstartdialog.cpp:142
 #: assetdialog.cpp:320 attachmentdialog.cpp:149 billsdepositsdialog.cpp:650
 #: budgetentrydialog.cpp:160 budgetyeardialog.cpp:116
-#: budgetyearentrydialog.cpp:128 constants.cpp:86 currencydialog.cpp:259
+#: budgetyearentrydialog.cpp:128 constants.cpp:87 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:197 filtertransdialog.cpp:827
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:368
 #: mmSimpleDialogs.cpp:1110 optiondialog.cpp:160 payeedialog.cpp:159
 #: payeedialog.cpp:592 sharetransactiondialog.cpp:358
 #: splittransactionsdialog.cpp:104 splittransactionsdialog.cpp:282
-#: tagdialog.cpp:146 transactionsupdatedialog.cpp:281 transdialog.cpp:608
+#: tagdialog.cpp:146 transactionsupdatedialog.cpp:281 transdialog.cpp:610
 #: wizard_update.cpp:212
 msgid "&OK "
 msgstr ""
@@ -138,7 +138,7 @@ msgstr ""
 #: payeedialog.cpp:115 payeedialog.cpp:458 reports/transactions.cpp:230
 #: sharetransactiondialog.cpp:304 splittransactionsdialog.cpp:95
 #: splittransactionsdialog.cpp:352 stockdialog.cpp:245 stocks_list.cpp:79
-#: transactionsupdatedialog.cpp:256 transdialog.cpp:584
+#: transactionsupdatedialog.cpp:256 transdialog.cpp:586
 #: usertransactionpanel.cpp:212 webappdialog.cpp:145
 msgid "Notes"
 msgstr ""
@@ -270,7 +270,7 @@ msgstr ""
 
 #: accountdialog.cpp:507 import_export/qif_export.cpp:633
 #: import_export/qif_import_gui.cpp:248 import_export/univcsvdialog.cpp:109
-#: optionsettingsgeneral.cpp:123 optionsettingsgeneral.cpp:292
+#: optionsettingsgeneral.cpp:124 optionsettingsgeneral.cpp:302
 #: reports/htmlbuilder.cpp:245
 msgid "Currency"
 msgstr ""
@@ -285,8 +285,8 @@ msgstr ""
 
 #: accountdialog.cpp:521 accountdialog.cpp:530 accountdialog.cpp:535
 #: accountdialog.cpp:542 billsdepositsdialog.cpp:1043
-#: billsdepositsdialog.cpp:1046 stockdialog.cpp:413 transdialog.cpp:658
-#: transdialog.cpp:731 usertransactionpanel.cpp:512 webapp.cpp:567
+#: billsdepositsdialog.cpp:1046 stockdialog.cpp:413 transdialog.cpp:660
+#: transdialog.cpp:733 usertransactionpanel.cpp:512 webapp.cpp:567
 msgid "Invalid Date"
 msgstr ""
 
@@ -336,7 +336,7 @@ msgid "User Interface &Language"
 msgstr ""
 
 #: appstartdialog.cpp:113 appstartdialog.cpp:221 mmframe.cpp:1873
-#: optionsettingsgeneral.cpp:100
+#: optionsettingsgeneral.cpp:101
 msgid "Change user interface language"
 msgstr ""
 
@@ -377,20 +377,20 @@ msgstr ""
 msgid "Open the previously opened database: %s"
 msgstr ""
 
-#: appstartdialog.cpp:208 mmframe.cpp:1879 optionsettingsgeneral.cpp:90
-#: optionsettingsgeneral.cpp:372
+#: appstartdialog.cpp:208 mmframe.cpp:1879 optionsettingsgeneral.cpp:91
+#: optionsettingsgeneral.cpp:383
 msgid "System default"
 msgstr ""
 
-#: appstartdialog.cpp:221 optionsettingsgeneral.cpp:92
+#: appstartdialog.cpp:221 optionsettingsgeneral.cpp:93
 msgid "User Interface Language"
 msgstr ""
 
-#: appstartdialog.cpp:229 mmframe.cpp:4109 optionsettingsgeneral.cpp:362
+#: appstartdialog.cpp:229 mmframe.cpp:4109 optionsettingsgeneral.cpp:373
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr ""
 
-#: appstartdialog.cpp:231 mmframe.cpp:4111 optionsettingsgeneral.cpp:364
+#: appstartdialog.cpp:231 mmframe.cpp:4111 optionsettingsgeneral.cpp:375
 msgid "Language change"
 msgstr ""
 
@@ -434,7 +434,7 @@ msgstr ""
 #: model/Model_CustomField.cpp:30 reports/cashflow.cpp:275
 #: reports/cashflow.cpp:404 reports/incexpenses.cpp:244 reports/summary.cpp:295
 #: reports/transactions.cpp:208 stockdialog.cpp:278 stockdialog.cpp:605
-#: stockspanel.cpp:258 transactionsupdatedialog.cpp:132 transdialog.cpp:433
+#: stockspanel.cpp:258 transactionsupdatedialog.cpp:132 transdialog.cpp:435
 #: usertransactionpanel.cpp:105 webapp.cpp:564 webappdialog.cpp:138
 #: wizard_update.cpp:138
 msgid "Date"
@@ -509,7 +509,7 @@ msgstr ""
 msgid "Edit Transaction Details"
 msgstr ""
 
-#: assetdialog.cpp:321 constants.cpp:74 sharetransactiondialog.cpp:359
+#: assetdialog.cpp:321 constants.cpp:75 sharetransactiondialog.cpp:359
 msgid "&Cancel "
 msgstr ""
 
@@ -544,7 +544,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:247 import_export/univcsvdialog.cpp:105
 #: maincurrencydialog.cpp:263 mmhomepage.cpp:415 reports/incexpenses.cpp:108
 #: reports/transactions.cpp:224 transactionsupdatedialog.cpp:167
-#: transdialog.cpp:472 usertransactionpanel.cpp:139 webappdialog.cpp:141
+#: transdialog.cpp:474 usertransactionpanel.cpp:139 webappdialog.cpp:141
 msgid "Type"
 msgstr ""
 
@@ -601,7 +601,7 @@ msgid "Assets"
 msgstr ""
 
 #: assetspanel.cpp:418 assetspanel.cpp:697 assetspanel.cpp:714
-#: daterangedialog.cpp:266 daterangeeditdialog.cpp:59 filtertransdialog.cpp:225
+#: daterangedialog.cpp:268 daterangeeditdialog.cpp:59 filtertransdialog.cpp:225
 #: filtertransdialog.cpp:588 filtertransdialog.cpp:913
 #: filtertransdialog.cpp:2317 import_export/qif_export.cpp:75
 #: import_export/qif_export.cpp:76 import_export/qif_export.cpp:154
@@ -709,8 +709,8 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:87 import_export/qif_import_gui.cpp:159
 #: import_export/qif_import_gui.cpp:241 import_export/univcsvdialog.cpp:106
 #: mmchecking_list.cpp:101 reports/cashflow.cpp:405
-#: reports/transactions.cpp:214 transdialog.cpp:245 transdialog.cpp:249
-#: transdialog.cpp:502 transdialog.cpp:650 usertransactionpanel.cpp:109
+#: reports/transactions.cpp:214 transdialog.cpp:247 transdialog.cpp:251
+#: transdialog.cpp:504 transdialog.cpp:652 usertransactionpanel.cpp:109
 #: webapp.cpp:563 webappdialog.cpp:139
 msgid "Account"
 msgstr ""
@@ -1005,7 +1005,7 @@ msgstr ""
 msgid "The requested payment will occur without user interaction"
 msgstr ""
 
-#: billsdepositsdialog.cpp:476 filtertrans.cpp:187 transdialog.cpp:425
+#: billsdepositsdialog.cpp:476 filtertrans.cpp:187 transdialog.cpp:427
 msgid "Transaction Details"
 msgstr ""
 
@@ -1017,7 +1017,7 @@ msgstr ""
 msgid "Date Paid"
 msgstr ""
 
-#: billsdepositsdialog.cpp:498 filtertransdialog.cpp:663 transdialog.cpp:1329
+#: billsdepositsdialog.cpp:498 filtertransdialog.cpp:663 transdialog.cpp:1331
 msgid "Specify the status for the transaction"
 msgstr ""
 
@@ -1028,20 +1028,20 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:270 import_export/univcsvdialog.cpp:104
 #: import_export/univcsvdialog.cpp:513 import_export/univcsvdialog.cpp:523
 #: mmchecking_list.cpp:103 reports/transactions.cpp:218
-#: transactionsupdatedialog.cpp:150 transdialog.cpp:450
+#: transactionsupdatedialog.cpp:150 transdialog.cpp:452
 #: usertransactionpanel.cpp:178 webappdialog.cpp:140 wizard_update.cpp:138
 msgid "Status"
 msgstr ""
 
-#: billsdepositsdialog.cpp:506 transdialog.cpp:1330
+#: billsdepositsdialog.cpp:506 transdialog.cpp:1332
 msgid "Specify the type of transactions to be created."
 msgstr ""
 
-#: billsdepositsdialog.cpp:507 transdialog.cpp:467
+#: billsdepositsdialog.cpp:507 transdialog.cpp:469
 msgid "&Advanced"
 msgstr ""
 
-#: billsdepositsdialog.cpp:510 transdialog.cpp:1333
+#: billsdepositsdialog.cpp:510 transdialog.cpp:1335
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr ""
 
@@ -1052,16 +1052,16 @@ msgstr ""
 #: mmhomepage.cpp:417 reports/cashflow.cpp:408 reports/categexp.cpp:218
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:226
 #: splittransactionsdialog.cpp:88 splittransactionsdialog.cpp:219
-#: transactionsupdatedialog.cpp:186 transdialog.cpp:489
+#: transactionsupdatedialog.cpp:186 transdialog.cpp:491
 #: usertransactionpanel.cpp:143 webappdialog.cpp:144
 msgid "Amount"
 msgstr ""
 
-#: billsdepositsdialog.cpp:532 transdialog.cpp:1315
+#: billsdepositsdialog.cpp:532 transdialog.cpp:1317
 msgid "Specify the transfer amount in the To Account"
 msgstr ""
 
-#: billsdepositsdialog.cpp:543 transdialog.cpp:496
+#: billsdepositsdialog.cpp:543 transdialog.cpp:498
 msgid "Open Calculator"
 msgstr ""
 
@@ -1069,7 +1069,7 @@ msgstr ""
 msgid "Specify the Account that will own the scheduled transaction"
 msgstr ""
 
-#: billsdepositsdialog.cpp:559 transdialog.cpp:242 transdialog.cpp:512
+#: billsdepositsdialog.cpp:559 transdialog.cpp:244 transdialog.cpp:514
 msgid "To"
 msgstr ""
 
@@ -1082,7 +1082,7 @@ msgstr ""
 #: mmchecking_list.cpp:102 model/Model.cpp:28 payeedialog.cpp:83
 #: payeedialog.cpp:207 payeedialog.cpp:243 reports/cashflow.cpp:406
 #: reports/payee.cpp:136 reports/transactions.cpp:216
-#: transactionsupdatedialog.cpp:199 transdialog.cpp:246 transdialog.cpp:521
+#: transactionsupdatedialog.cpp:199 transdialog.cpp:248 transdialog.cpp:523
 #: usertransactionpanel.cpp:182 webappdialog.cpp:142
 msgid "Payee"
 msgstr ""
@@ -1099,13 +1099,13 @@ msgstr ""
 #: reports/cashflow.cpp:407 reports/categexp.cpp:217 reports/categexp.cpp:456
 #: reports/transactions.cpp:220 splittransactionsdialog.cpp:81
 #: splittransactionsdialog.cpp:217 transactionsupdatedialog.cpp:223
-#: transdialog.cpp:533 transdialog.cpp:665 usertransactionpanel.cpp:189
+#: transdialog.cpp:535 transdialog.cpp:667 usertransactionpanel.cpp:189
 #: webappdialog.cpp:143
 msgid "Category"
 msgstr ""
 
-#: billsdepositsdialog.cpp:587 billsdepositsdialog.cpp:1455 transdialog.cpp:539
-#: transdialog.cpp:1292
+#: billsdepositsdialog.cpp:587 billsdepositsdialog.cpp:1455 transdialog.cpp:541
+#: transdialog.cpp:1294
 msgid "Use split Categories"
 msgstr ""
 
@@ -1118,11 +1118,11 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:105
 #: reports/transactions.cpp:222 splittransactionsdialog.cpp:221
 #: splittransactionsdialog.cpp:576 transactionsupdatedialog.cpp:234
-#: transactionsupdatedialog.cpp:370 transdialog.cpp:547 transdialog.cpp:646
+#: transactionsupdatedialog.cpp:370 transdialog.cpp:549 transdialog.cpp:648
 msgid "Tags"
 msgstr ""
 
-#: billsdepositsdialog.cpp:604 transdialog.cpp:1331
+#: billsdepositsdialog.cpp:604 transdialog.cpp:1333
 msgid "Specify any associated check number or transaction number"
 msgstr ""
 
@@ -1130,17 +1130,17 @@ msgstr ""
 #: filtertransdialog.cpp:698 filtertransdialog.cpp:1944
 #: import_export/qif_export.cpp:634 import_export/qif_import_gui.cpp:89
 #: import_export/univcsvdialog.cpp:113 mmchecking_list.cpp:100
-#: reports/transactions.cpp:212 transdialog.cpp:560
+#: reports/transactions.cpp:212 transdialog.cpp:562
 #: usertransactionpanel.cpp:208
 msgid "Number"
 msgstr ""
 
-#: billsdepositsdialog.cpp:613 transdialog.cpp:567 usertransactionpanel.cpp:223
+#: billsdepositsdialog.cpp:613 transdialog.cpp:569 usertransactionpanel.cpp:223
 msgid "Select one of the frequently used notes"
 msgstr ""
 
 #: billsdepositsdialog.cpp:619 transactionsupdatedialog.cpp:250
-#: transdialog.cpp:574
+#: transdialog.cpp:576
 msgid "User Colors"
 msgstr ""
 
@@ -1153,22 +1153,22 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:342 import_export/univcsvdialog.cpp:453
 #: import_export/univcsvdialog.cpp:1351 reports/transactions.cpp:206
 #: transactionsupdatedialog.cpp:247 transactionsupdatedialog.cpp:444
-#: transdialog.cpp:589
+#: transdialog.cpp:591
 msgid "Color"
 msgstr ""
 
-#: billsdepositsdialog.cpp:640 transdialog.cpp:596 transdialog.cpp:1332
+#: billsdepositsdialog.cpp:640 transdialog.cpp:598 transdialog.cpp:1334
 #: usertransactionpanel.cpp:230
 msgid "Specify any text notes you want to add to this transaction."
 msgstr ""
 
 #: billsdepositsdialog.cpp:657 filtertransdialog.cpp:833
-#: transactionsupdatedialog.cpp:288 transdialog.cpp:612
+#: transactionsupdatedialog.cpp:288 transdialog.cpp:614
 msgid "Show/Hide custom fields window"
 msgstr ""
 
 #: billsdepositsdialog.cpp:829 billsdepositsdialog.cpp:852
-#: daterangeeditdialog.cpp:80 transdialog.cpp:241 transdialog.cpp:250
+#: daterangeeditdialog.cpp:80 transdialog.cpp:243 transdialog.cpp:252
 msgid "From"
 msgstr ""
 
@@ -1181,14 +1181,14 @@ msgid "Looks like a late payment"
 msgstr ""
 
 #: billsdepositsdialog.cpp:943 transactionsupdatedialog.cpp:350
-#: transdialog.cpp:689
+#: transdialog.cpp:691
 #, c-format
 msgid "Payee name has not been used before. Is the name correct?\n"
 "%s"
 msgstr ""
 
 #: billsdepositsdialog.cpp:944 transactionsupdatedialog.cpp:351
-#: transdialog.cpp:690
+#: transdialog.cpp:692
 msgid "Confirm payee name"
 msgstr ""
 
@@ -1201,16 +1201,16 @@ msgstr ""
 #: filtertransdialog.cpp:1101 filtertransdialog.cpp:1111
 #: filtertransdialog.cpp:1120 filtertransdialog.cpp:1127
 #: filtertransdialog.cpp:1133 import_export/univcsvdialog.cpp:1351
-#: optionsettingsgeneral.cpp:292 optionsettingsgeneral.cpp:317
+#: optionsettingsgeneral.cpp:302 optionsettingsgeneral.cpp:327
 #: payeedialog.cpp:202 payeedialog.cpp:207 splittransactionsdialog.cpp:576
 #: transactionsupdatedialog.cpp:370 transactionsupdatedialog.cpp:444
-#: transdialog.cpp:646 transdialog.cpp:650 transdialog.cpp:665 util.cpp:762
+#: transdialog.cpp:648 transdialog.cpp:652 transdialog.cpp:667 util.cpp:762
 msgid "Invalid value"
 msgstr ""
 
 #: billsdepositsdialog.cpp:1043 billsdepositsdialog.cpp:1046
-#: import_export/univcsvdialog.cpp:1424 stockdialog.cpp:413 transdialog.cpp:658
-#: transdialog.cpp:731 usertransactionpanel.cpp:512 webapp.cpp:565
+#: import_export/univcsvdialog.cpp:1424 stockdialog.cpp:413 transdialog.cpp:660
+#: transdialog.cpp:733 usertransactionpanel.cpp:512 webapp.cpp:565
 msgid "The opening date for the account is later than the date of this transaction"
 msgstr ""
 
@@ -1252,7 +1252,7 @@ msgid "Error"
 msgstr ""
 
 #: billsdepositsdialog.cpp:1465 splittransactionsdialog.h:80
-#: transdialog.cpp:335 usertransactionpanel.cpp:274
+#: transdialog.cpp:337 usertransactionpanel.cpp:274
 #: usertransactionpanel.cpp:581
 msgid "Split Transaction"
 msgstr ""
@@ -1265,7 +1265,7 @@ msgstr ""
 msgid "Specify where the transaction is going to"
 msgstr ""
 
-#: billsdepositsdialog.h:132 transdialog.cpp:1324
+#: billsdepositsdialog.h:132 transdialog.cpp:1326
 msgid "Specify where the transaction is coming from"
 msgstr ""
 
@@ -1273,7 +1273,7 @@ msgstr ""
 msgid "Specify which account the transfer is going to"
 msgstr ""
 
-#: billsdepositsdialog.h:134 transdialog.cpp:1319 usertransactionpanel.cpp:147
+#: billsdepositsdialog.h:134 transdialog.cpp:1321 usertransactionpanel.cpp:147
 msgid "Specify the amount for this transaction"
 msgstr ""
 
@@ -1758,7 +1758,7 @@ msgstr ""
 #: customfieldeditdialog.cpp:259 filtertransdialog.cpp:1345
 #: import_export/univcsvdialog.cpp:2187 mmframe.cpp:1387 mmframe.cpp:2652
 #: mmframe.cpp:2719 model/Model_Billsdeposits.cpp:224 payeedialog.cpp:752
-#: tagdialog.cpp:304 transdialog.cpp:749 transdialog.cpp:774
+#: tagdialog.cpp:304 transdialog.cpp:751 transdialog.cpp:776
 msgid "Do you want to continue?"
 msgstr ""
 
@@ -1821,66 +1821,66 @@ msgstr ""
 msgid "Category Manager"
 msgstr ""
 
-#: constants.cpp:72 daterangedialog.cpp:133 daterangeeditdialog.cpp:105
+#: constants.cpp:73 daterangedialog.cpp:135 daterangeeditdialog.cpp:105
 msgid "Cancel"
 msgstr ""
 
-#: constants.cpp:78
+#: constants.cpp:79
 msgid "Close"
 msgstr ""
 
-#: constants.cpp:80
+#: constants.cpp:81
 msgid "&Close "
 msgstr ""
 
-#: constants.cpp:84 import_export/qif_import_gui.cpp:761
+#: constants.cpp:85 import_export/qif_import_gui.cpp:761
 #: import_export/qif_import_gui.cpp:794 import_export/qif_import_gui.cpp:820
 #: import_export/univcsvdialog.cpp:2088 import_export/univcsvdialog.cpp:2112
 msgid "OK"
 msgstr ""
 
-#: constants.cpp:90
+#: constants.cpp:91
 msgid "Undo"
 msgstr ""
 
-#: constants.cpp:91
+#: constants.cpp:92
 msgid "Redo"
 msgstr ""
 
-#: constants.cpp:92
+#: constants.cpp:93
 msgid "Cut"
 msgstr ""
 
-#: constants.cpp:93
+#: constants.cpp:94
 msgid "Copy"
 msgstr ""
 
-#: constants.cpp:94
+#: constants.cpp:95
 msgid "Paste"
 msgstr ""
 
-#: constants.cpp:95
+#: constants.cpp:96
 msgid "Select All"
 msgstr ""
 
-#: constants.cpp:111
+#: constants.cpp:112
 msgid "64-bit"
 msgstr ""
 
-#: constants.cpp:194
+#: constants.cpp:196
 msgid "ALL"
 msgstr ""
 
-#: constants.cpp:195 mmframe.cpp:2178 model/Model_Account.cpp:39
+#: constants.cpp:197 mmframe.cpp:2178 model/Model_Account.cpp:39
 #: model/Model_Asset.cpp:36
 msgid "Open"
 msgstr ""
 
-#: constants.cpp:196 model/Model_Account.cpp:40 model/Model_Asset.cpp:35
+#: constants.cpp:198 model/Model_Account.cpp:40 model/Model_Asset.cpp:35
 msgid "Closed"
 msgstr ""
 
-#: constants.cpp:197 mmcheckingpanel.cpp:1482 mmframe.cpp:514
+#: constants.cpp:199 mmcheckingpanel.cpp:1482 mmframe.cpp:514
 msgid "Favorites"
 msgstr ""
 
@@ -1930,7 +1930,7 @@ msgid "Grouping Char"
 msgstr ""
 
 #: currencydialog.cpp:219 mmSimpleDialogs.cpp:839 model/Model_Asset.cpp:40
-#: model/Model_Budget.cpp:28 optionsettingsgeneral.cpp:226
+#: model/Model_Budget.cpp:28 optionsettingsgeneral.cpp:236
 #: optionsettingsmisc.cpp:120 reports/reportbase.cpp:200
 msgid "None"
 msgstr ""
@@ -1989,7 +1989,7 @@ msgstr ""
 #: currencydialog.h:48 maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:662 maincurrencydialog.cpp:787
 #: maincurrencydialog.cpp:811 maincurrencydialog.h:78 mmframe.cpp:1960
-#: mmframe.cpp:2188 optionsettingsgeneral.cpp:300
+#: mmframe.cpp:2188 optionsettingsgeneral.cpp:310
 msgid "Currency Manager"
 msgstr ""
 
@@ -2158,48 +2158,48 @@ msgstr ""
 msgid "Manage date ranges"
 msgstr ""
 
-#: daterangedialog.cpp:99
+#: daterangedialog.cpp:101
 msgid "Top"
 msgstr ""
 
-#: daterangedialog.cpp:108
+#: daterangedialog.cpp:110
 msgid "Edit"
 msgstr ""
 
-#: daterangedialog.cpp:116
+#: daterangedialog.cpp:118
 msgid "Bottom"
 msgstr ""
 
-#: daterangedialog.cpp:122 mmframe.cpp:2177 mmframe.cpp:2183
+#: daterangedialog.cpp:124 mmframe.cpp:2177 mmframe.cpp:2183
 msgid "New"
 msgstr ""
 
-#: daterangedialog.cpp:125 webappdialog.cpp:410
+#: daterangedialog.cpp:127 webappdialog.cpp:414
 msgid "Delete"
 msgstr ""
 
-#: daterangedialog.cpp:131 daterangeeditdialog.cpp:104
+#: daterangedialog.cpp:133 daterangeeditdialog.cpp:104
 msgid "Save"
 msgstr ""
 
-#: daterangedialog.cpp:132
+#: daterangedialog.cpp:134
 msgid "Restore default ranges"
 msgstr ""
 
-#: daterangedialog.cpp:225
+#: daterangedialog.cpp:227
 msgid "Do you want to delete the selected date range?"
 msgstr ""
 
-#: daterangedialog.cpp:226
+#: daterangedialog.cpp:228
 msgid "Delete date range"
 msgstr ""
 
-#: daterangedialog.cpp:292
+#: daterangedialog.cpp:294
 msgid "Do you really want to restore the default ranges?\n\n"
 "All customization will be lost!"
 msgstr ""
 
-#: daterangedialog.cpp:293
+#: daterangedialog.cpp:295
 msgid "Default date ranges"
 msgstr ""
 
@@ -3230,7 +3230,7 @@ msgid "To Date"
 msgstr ""
 
 #: import_export/qif_export.cpp:187 import_export/qif_import_gui.cpp:303
-#: optionsettingsgeneral.cpp:103
+#: optionsettingsgeneral.cpp:104
 msgid "Date Format"
 msgstr ""
 
@@ -3365,8 +3365,8 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:1289 import_export/univcsvdialog.cpp:1839
 #: import_export/univcsvdialog.cpp:1841 import_export/univcsvdialog.cpp:1842
 #: import_export/univcsvdialog.cpp:1857 import_export/univcsvdialog.cpp:2085
-#: themes.cpp:235 transdialog.cpp:298 transdialog.cpp:302 transdialog.cpp:308
-#: transdialog.cpp:986 transdialog.cpp:990 transdialog.cpp:997 webapp.cpp:417
+#: themes.cpp:235 transdialog.cpp:300 transdialog.cpp:304 transdialog.cpp:310
+#: transdialog.cpp:988 transdialog.cpp:992 transdialog.cpp:999 webapp.cpp:417
 #: webapp.cpp:426
 msgid "Unknown"
 msgstr ""
@@ -3711,7 +3711,7 @@ msgid "Amount field or both Withdrawal and Deposit fields are required."
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:1311 import_export/univcsvdialog.cpp:1506
-#: webappdialog.cpp:408
+#: webappdialog.cpp:412
 msgid "Import"
 msgstr ""
 
@@ -4001,7 +4001,7 @@ msgstr ""
 msgid "Unable to download history for symbol %s. Historical rates unavailable!"
 msgstr ""
 
-#: maincurrencydialog.cpp:786 optionsettingsgeneral.cpp:299
+#: maincurrencydialog.cpp:786 optionsettingsgeneral.cpp:309
 msgid "Changing base currency will delete all historical rates, proceed?"
 msgstr ""
 
@@ -4579,28 +4579,28 @@ msgstr ""
 msgid "Do you want to delete all the “%s” transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:2199
+#: mmchecking_list.cpp:2203
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:2201
+#: mmchecking_list.cpp:2205
 msgid "Do you want to perform the edit?"
 msgstr ""
 
-#: mmchecking_list.cpp:2202
+#: mmchecking_list.cpp:2206
 msgid "Closed Account Check"
 msgstr ""
 
-#: mmchecking_list.cpp:2216
+#: mmchecking_list.cpp:2220
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr ""
 
-#: mmchecking_list.cpp:2219 transdialog.cpp:751 transdialog.cpp:775
+#: mmchecking_list.cpp:2223 transdialog.cpp:753 transdialog.cpp:777
 msgid "MMEX Transaction Check"
 msgstr ""
 
@@ -4613,7 +4613,7 @@ msgid "Delete all selected transactions"
 msgstr ""
 
 #: mmcheckingpanel.cpp:301 mmframe.cpp:2183 optionsettingsmisc.cpp:113
-#: transdialog.cpp:180
+#: transdialog.cpp:181
 msgid "New Transaction"
 msgstr ""
 
@@ -6055,7 +6055,7 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: model/Model.cpp:23
+#: model/Model.cpp:23 optionsettingsgeneral.cpp:215
 msgid "Transaction"
 msgstr ""
 
@@ -6493,105 +6493,113 @@ msgstr ""
 msgid "Destination"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:74
+#: optionsettingsgeneral.cpp:75
 msgid "Display Heading"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:79 wizard_newdb.cpp:117
+#: optionsettingsgeneral.cpp:80 wizard_newdb.cpp:117
 msgid "User Name"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:84
+#: optionsettingsgeneral.cpp:85
 msgid "The User Name is used as a title for the database."
 msgstr ""
 
-#: optionsettingsgeneral.cpp:114
+#: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:117
+#: optionsettingsgeneral.cpp:118
 msgid "Date format sample:"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:130
+#: optionsettingsgeneral.cpp:131
 msgid "Base Currency"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:133 wizard_newdb.cpp:90
+#: optionsettingsgeneral.cpp:134 wizard_newdb.cpp:90
 msgid "Set Currency"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:138
+#: optionsettingsgeneral.cpp:139
 msgid "Set default database currency using 'Currency Manager'"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:163
+#: optionsettingsgeneral.cpp:164
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Manager | Edit'"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:174
+#: optionsettingsgeneral.cpp:175
 msgid "Use historical currency"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:176
+#: optionsettingsgeneral.cpp:177
 msgid "Select to use historical currency (one rate for each day), deselect to use a fixed rate"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:180
+#: optionsettingsgeneral.cpp:181
 msgid "Financial Year"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:187
+#: optionsettingsgeneral.cpp:188
 msgid "First Day"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:193
+#: optionsettingsgeneral.cpp:194
 msgid "Specify Day for start of financial year"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:197
+#: optionsettingsgeneral.cpp:198
 msgid "First Month"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:209
+#: optionsettingsgeneral.cpp:210
 msgid "Specify month for start of financial year"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:214
+#: optionsettingsgeneral.cpp:220
 msgid "Use Original Date when Pasting Transactions"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:216
+#: optionsettingsgeneral.cpp:222
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:219
+#: optionsettingsgeneral.cpp:225
 msgid "Use Original Date when Duplicating Transactions"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:221
+#: optionsettingsgeneral.cpp:227
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
 msgstr ""
 
+#: optionsettingsgeneral.cpp:230
+msgid "Use Original State when Duplicating or Pasting Transactions"
+msgstr ""
+
 #: optionsettingsgeneral.cpp:232
+msgid "Select whether to use the original state or default state when duplicating or copy and paste transactions"
+msgstr ""
+
+#: optionsettingsgeneral.cpp:242
 msgid "Transaction Sound"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:237
+#: optionsettingsgeneral.cpp:247
 msgid "Select whether to use sounds when entering transactions"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:317
+#: optionsettingsgeneral.cpp:327
 msgid "Locale"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:345
+#: optionsettingsgeneral.cpp:356
 #, c-format
 msgid "Currency value sample: %s"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:350
+#: optionsettingsgeneral.cpp:361
 msgid "Bad locale name"
 msgstr ""
 
@@ -8320,60 +8328,60 @@ msgstr ""
 msgid "Multi Transactions Update"
 msgstr ""
 
-#: transdialog.cpp:181
+#: transdialog.cpp:182
 msgid "Duplicate Transaction"
 msgstr ""
 
-#: transdialog.cpp:182
+#: transdialog.cpp:183
 msgid "Edit Transaction"
 msgstr ""
 
-#: transdialog.cpp:558
+#: transdialog.cpp:560
 msgid "Populate Transaction #"
 msgstr ""
 
-#: transdialog.cpp:579 usertransactionpanel.cpp:216
+#: transdialog.cpp:581 usertransactionpanel.cpp:216
 msgid "Manage transaction attachments"
 msgstr ""
 
-#: transdialog.cpp:749
+#: transdialog.cpp:751
 #, c-format
 msgid "Lock transaction to date: %s"
 msgstr ""
 
-#: transdialog.cpp:774
+#: transdialog.cpp:776
 msgid "The transaction will exceed the account limit."
 msgstr ""
 
-#: transdialog.cpp:1194
+#: transdialog.cpp:1196
 msgid "The two accounts have different currencies, but no advanced transaction is defined. Is this correct?"
 msgstr ""
 
-#: transdialog.cpp:1195
+#: transdialog.cpp:1197
 msgid "Currencies are different"
 msgstr ""
 
-#: transdialog.cpp:1310
+#: transdialog.cpp:1312
 msgid "Specify account the money is taken from"
 msgstr ""
 
-#: transdialog.cpp:1311
+#: transdialog.cpp:1313
 msgid "Specify account the money is moved to"
 msgstr ""
 
-#: transdialog.cpp:1312
+#: transdialog.cpp:1314
 msgid "Specify the transfer amount in the From Account."
 msgstr ""
 
-#: transdialog.cpp:1320
+#: transdialog.cpp:1322
 msgid "Specify account for the transaction"
 msgstr ""
 
-#: transdialog.cpp:1322
+#: transdialog.cpp:1324
 msgid "Specify to whom the transaction is going to"
 msgstr ""
 
-#: transdialog.cpp:1328 usertransactionpanel.cpp:100
+#: transdialog.cpp:1330 usertransactionpanel.cpp:100
 msgid "Specify the date of the transaction"
 msgstr ""
 
@@ -8585,7 +8593,7 @@ msgstr ""
 msgid "Today will be used as the transaction date"
 msgstr ""
 
-#: webapp.cpp:595 webapp.cpp:629 webappdialog.cpp:338
+#: webapp.cpp:595 webapp.cpp:629 webappdialog.cpp:342
 msgid "Unable to download attachments from the WebApp."
 msgstr ""
 
@@ -8609,7 +8617,7 @@ msgstr ""
 msgid "Transaction not downloaded: please retry to download transactions"
 msgstr ""
 
-#: webapp.cpp:632 webappdialog.cpp:339
+#: webapp.cpp:632 webappdialog.cpp:343
 msgid "Attachment download error"
 msgstr ""
 
@@ -8641,19 +8649,19 @@ msgstr ""
 msgid "Transactions download error"
 msgstr ""
 
-#: webappdialog.cpp:311
+#: webappdialog.cpp:315
 msgid "Unable to insert transaction in MMEX database"
 msgstr ""
 
-#: webappdialog.cpp:312
+#: webappdialog.cpp:316
 msgid "WebApp communication error"
 msgstr ""
 
-#: webappdialog.cpp:407
+#: webappdialog.cpp:411
 msgid "Open Attachment"
 msgstr ""
 
-#: webappdialog.cpp:409
+#: webappdialog.cpp:413
 msgid "Import and open"
 msgstr ""
 
