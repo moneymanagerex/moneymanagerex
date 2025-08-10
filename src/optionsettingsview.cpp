@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2014 Stefano Giorgio
 Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2025 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -53,9 +54,6 @@ void OptionSettingsView::Create()
     //   panelWindow panelSizer
     //     viewBox viewSizer
     //       viewChoiceSizer
-    //     trxBox trxSizer
-    //       trxChoiceSizer
-    //     colorsBox colorsSizer
     //     uiBox uiSizer
     //       uiStyleSizer
     //       uiIconSizer
@@ -94,180 +92,29 @@ void OptionSettingsView::Create()
     viewChoiceSizer->Add(m_choice_visible, g_flagsH);
 
     viewChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Category Delimiter")), g_flagsH);
-    wxArrayString list;
-    list.Add(":");
-    list.Add(": ");
-    list.Add(" : ");
 
-    wxString delimiter = Model_Infotable::instance().getString("CATEG_DELIMITER",":");
-    m_categ_delimiter_list = new wxComboBox(
-        panelWindow, wxID_ANY, "", wxDefaultPosition, wxDefaultSize,
-        list
-    );
-    m_categ_delimiter_list->SetValue(delimiter);
+    m_categ_delimiter_list = new wxComboBox(panelWindow, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, {":", ": ", " : ", "-"});
+    m_categ_delimiter_list->SetValue(Model_Infotable::instance().getString("CATEG_DELIMITER",":"));
     viewChoiceSizer->Add(m_categ_delimiter_list, g_flagsH);
 
-    m_doNotColorFuture = new wxCheckBox(
-        panelWindow, wxID_STATIC,
-        _t("Do not use color for future transactions"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
-    );
+    viewSizer->AddSpacer(10);
+    m_doNotColorFuture = new wxCheckBox(panelWindow, wxID_STATIC, _t("Do not use color for future transactions"));
     m_doNotColorFuture->SetValue(Option::instance().getDoNotColorFuture());
-    viewChoiceSizer->Add(m_doNotColorFuture, g_flagsH);
+    viewSizer->Add(m_doNotColorFuture, g_flagsV);
 
-    m_doSpecialColorReconciled = new wxCheckBox(
-        panelWindow, wxID_STATIC,
-        _t("Emphasize not reconciled transactions"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
-    );
+    m_doSpecialColorReconciled = new wxCheckBox(panelWindow, wxID_STATIC, _t("Emphasize not reconciled transactions"));
     m_doSpecialColorReconciled->SetValue(Option::instance().getDoSpecialColorReconciled());
-    viewChoiceSizer->Add(m_doSpecialColorReconciled, g_flagsH);
+    viewSizer->Add(m_doSpecialColorReconciled, g_flagsV);
 
-    m_showToolTips = new wxCheckBox(
-        panelWindow, wxID_STATIC,
-        _t("Show Tooltips"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
-    );
+    viewSizer->AddSpacer(10);
+
+    m_showToolTips = new wxCheckBox(panelWindow, wxID_STATIC, _t("Show Tooltips"));
     m_showToolTips->SetValue(Option::instance().getShowToolTips());
-    viewChoiceSizer->Add(m_showToolTips, g_flagsH);
+    viewSizer->Add(m_showToolTips, g_flagsV);
 
-    m_showMoneyTips = new wxCheckBox(
-        panelWindow, wxID_STATIC,
-        _t("Show Money Tips"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
-    );
+    m_showMoneyTips = new wxCheckBox(panelWindow, wxID_STATIC, _t("Show Money Tips"));
     m_showMoneyTips->SetValue(Option::instance().getShowMoneyTips());
-    viewChoiceSizer->Add(m_showMoneyTips, g_flagsH);
-
-    // Transaction/Budget options
-    wxStaticBox* trxBox = new wxStaticBox(panelWindow, wxID_STATIC, _t("Transaction/Budget"));
-    SetBoldFont(trxBox);
-    wxStaticBoxSizer* trxSizer = new wxStaticBoxSizer(trxBox, wxVERTICAL);
-    panelSizer->Add(trxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
-
-    m_budget_financial_years = new wxCheckBox(
-        panelWindow, wxID_STATIC,
-        _t("View Budgets as Financial Years"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
-    );
-    m_budget_financial_years->SetValue(Option::instance().getBudgetFinancialYears());
-    trxSizer->Add(m_budget_financial_years, g_flagsV);
-
-    m_budget_include_transfers = new wxCheckBox(
-        panelWindow, wxID_STATIC,
-        _t("View Budgets with 'transfer' transactions"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
-    );
-    m_budget_include_transfers->SetValue(Option::instance().getBudgetIncludeTransfers());
-    trxSizer->Add(m_budget_include_transfers, g_flagsV);
-
-    m_budget_summary_without_category = new wxCheckBox(
-        panelWindow, wxID_STATIC,
-        _t("View Budget Category Report with Summaries"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
-    );
-    m_budget_summary_without_category->SetValue(Option::instance().getBudgetSummaryWithoutCategories());
-    trxSizer->Add(m_budget_summary_without_category, g_flagsV);
-
-    // Budget Yearly/Monthly relationship if both exist
-    m_budget_override = new wxCheckBox(
-        panelWindow, wxID_STATIC,
-        _t("Override yearly budget with monthly budget"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
-    );
-    mmToolTip(m_budget_override, _t("If monthly budget exists then use this to override the yearly budget; otherwise combine them"));
-    m_budget_override->SetValue(Option::instance().getBudgetOverride());
-    trxSizer->Add(m_budget_override, g_flagsV);
-
-    // Option to deduct monthly budget from yearly budget for reporting
-    m_budget_deduct_monthly = new wxCheckBox(
-        panelWindow, wxID_STATIC,
-        _t("Subtract monthly budgets from yearly budget in reporting"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
-    );
-    mmToolTip(m_budget_deduct_monthly, _t("Yearly budget will be reduced by the amount budgeted monthly.\nTotal estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."));
-    m_budget_deduct_monthly->SetValue(Option::instance().getBudgetDeductMonthly());
-    trxSizer->Add(m_budget_deduct_monthly, g_flagsV);
-
-    wxFlexGridSizer* trxChoiceSizer = new wxFlexGridSizer(0, 2, 0, 5);
-    trxSizer->Add(trxChoiceSizer);
-
-    trxChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Budget Offset (days)")), g_flagsH);
-    m_budget_days_offset = new wxSpinCtrl(
-        panelWindow, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize,
-        wxSP_ARROW_KEYS, -30, +30
-    );
-    mmToolTip(m_budget_days_offset, _t("Adjusts the first day of month (normally 1st) for budget calculations"));
-    m_budget_days_offset->SetValue(Option::instance().getBudgetDaysOffset());
-    trxChoiceSizer->Add(m_budget_days_offset, g_flagsH);
-
-    trxChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("First Day of Month")), g_flagsH);
-    m_reporting_firstday = new wxSpinCtrl(
-        panelWindow, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize,
-        wxSP_ARROW_KEYS, 1, 28
-    );
-    mmToolTip(m_reporting_firstday, _t("Adjusts the first day of month for reporting"));
-    m_reporting_firstday->SetValue(Option::instance().getReportingFirstDay());
-    trxChoiceSizer->Add(m_reporting_firstday, g_flagsH);
-
-    trxChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("First Weekday")), g_flagsH);
-    m_reporting_first_weekday = new wxChoice(panelWindow, wxID_ANY);
-    m_reporting_first_weekday->Append(wxGetTranslation(g_days_of_week[0]));
-    m_reporting_first_weekday->Append(wxGetTranslation(g_days_of_week[1]));
-    m_reporting_first_weekday->SetSelection(Option::instance().getReportingFirstWeekday());
-    mmToolTip(m_reporting_first_weekday, _t("Adjusts the first day of week for filtering and reporting"));
-    trxChoiceSizer->Add(m_reporting_first_weekday, g_flagsH);
-
-    m_ignore_future_transactions = new wxCheckBox(
-        panelWindow, wxID_STATIC,
-        _t("Ignore Future Transactions"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
-    );
-    m_ignore_future_transactions->SetValue(Option::instance().getIgnoreFutureTransactions());
-    trxSizer->Add(m_ignore_future_transactions, g_flagsV);
-
-    m_use_trans_date_time = new wxCheckBox(panelWindow, wxID_ANY, _t("Use 'Time' in transaction recording/reporting"));
-    m_use_trans_date_time->SetValue(Option::instance().UseTransDateTime());
-    trxSizer->Add(m_use_trans_date_time, g_flagsV);
-
-    // Colours settings
-    wxStaticBox* colorsBox = new wxStaticBox(panelWindow, wxID_ANY, _t("Transaction Colors"));
-    SetBoldFont(colorsBox);
-    wxStaticBoxSizer* colorsSizer = new wxStaticBoxSizer(colorsBox, wxHORIZONTAL);
-    panelSizer->Add(colorsSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
-
-    int size_x = 30;
-    m_UDFCB1 = new wxButton(panelWindow, wxID_HIGHEST + 11, "1", wxDefaultPosition, wxSize(size_x, -1), 0);
-    m_UDFCB1->SetBackgroundColour(mmColors::userDefColor1);
-    colorsSizer->Add(m_UDFCB1, g_flagsH);
-
-    m_UDFCB2 = new wxButton(panelWindow, wxID_HIGHEST + 22, "2", wxDefaultPosition, wxSize(size_x, -1), 0);
-    m_UDFCB2->SetBackgroundColour(mmColors::userDefColor2);
-    colorsSizer->Add(m_UDFCB2, g_flagsH);
-
-    m_UDFCB3 = new wxButton(panelWindow, wxID_HIGHEST + 33, "3", wxDefaultPosition, wxSize(size_x, -1), 0);
-    m_UDFCB3->SetBackgroundColour(mmColors::userDefColor3);
-    colorsSizer->Add(m_UDFCB3, g_flagsH);
-
-    m_UDFCB4 = new wxButton(panelWindow, wxID_HIGHEST + 44, "4", wxDefaultPosition, wxSize(size_x, -1), 0);
-    m_UDFCB4->SetBackgroundColour(mmColors::userDefColor4);
-    colorsSizer->Add(m_UDFCB4, g_flagsH);
-
-    m_UDFCB5 = new wxButton(panelWindow, wxID_HIGHEST + 55, "5", wxDefaultPosition, wxSize(size_x, -1), 0);
-    m_UDFCB5->SetBackgroundColour(mmColors::userDefColor5);
-    colorsSizer->Add(m_UDFCB5, g_flagsH);
-
-    m_UDFCB6 = new wxButton(panelWindow, wxID_HIGHEST + 66, "6", wxDefaultPosition, wxSize(size_x, -1), 0);
-    m_UDFCB6->SetBackgroundColour(mmColors::userDefColor6);
-    colorsSizer->Add(m_UDFCB6, g_flagsH);
-
-    m_UDFCB7 = new wxButton(panelWindow, wxID_HIGHEST + 77, "7", wxDefaultPosition, wxSize(size_x, -1), 0);
-    m_UDFCB7->SetBackgroundColour(mmColors::userDefColor7);
-    colorsSizer->Add(m_UDFCB7, g_flagsH);
-
-    wxButton* reset = new wxButton(panelWindow, wxID_REDO, _t("Default"), wxDefaultPosition, wxDefaultSize, 0);
-    m_UDFCB7->SetBackgroundColour(mmColors::userDefColor7);
-    colorsSizer->Add(reset, g_flagsH);
+    viewSizer->Add(m_showMoneyTips, g_flagsV);
 
     // User Interface (UI) Appearance
     wxStaticBox* uiBox = new wxStaticBox(panelWindow, wxID_STATIC, _t("User Interface"));
@@ -377,11 +224,6 @@ void OptionSettingsView::Create()
     panelWindow->SetScrollRate(6, 6);
 
     this->Connect(
-        wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED,
-        wxCommandEventHandler(OptionSettingsView::OnNavTreeColorChanged),
-        nullptr, this
-    );
-    this->Connect(
         ID_DIALOG_THEMEMANAGER, wxEVT_COMMAND_BUTTON_CLICKED,
         wxCommandEventHandler(OptionSettingsView::OnThemeManagerSelected),
         nullptr, this
@@ -395,38 +237,6 @@ void OptionSettingsView::OnHTMLScaleSpin(wxSpinEvent& event)
     if (m_scale_factor->GetValue() < htmlScaleMin)
         m_scale_factor->SetValue(htmlScaleMin);
     event.Skip();
-}
-void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)
-{
-    if (event.GetId() == wxID_REDO)
-    {
-        mmLoadColorsFromDatabase(true);
-        m_UDFCB1->SetBackgroundColour(mmColors::userDefColor1);
-        m_UDFCB2->SetBackgroundColour(mmColors::userDefColor2);
-        m_UDFCB3->SetBackgroundColour(mmColors::userDefColor3);
-        m_UDFCB4->SetBackgroundColour(mmColors::userDefColor4);
-        m_UDFCB5->SetBackgroundColour(mmColors::userDefColor5);
-        m_UDFCB6->SetBackgroundColour(mmColors::userDefColor6);
-        m_UDFCB7->SetBackgroundColour(mmColors::userDefColor7);
-        return;
-    }
-
-
-    wxButton* button = wxDynamicCast(FindWindow(event.GetId()), wxButton);
-    if (button)
-    {
-        wxColour color = button->GetBackgroundColour();
-        wxColourData data;
-        data.SetChooseFull(true);
-        data.SetColour(color);
-
-        wxColourDialog dialog(this, &data);
-        if (dialog.ShowModal() == wxID_OK)
-        {
-            color = dialog.GetColourData().GetColour();
-            button->SetBackgroundColour(color);
-        }
-    }
 }
 
 void OptionSettingsView::OnThemeManagerSelected(wxCommandEvent&)
@@ -468,39 +278,11 @@ bool OptionSettingsView::SaveSettings()
     size = i[size];
     Option::instance().setToolbarIconSize(size);
 
-    Option::instance().setBudgetFinancialYears(m_budget_financial_years->GetValue());
-    Option::instance().setBudgetIncludeTransfers(m_budget_include_transfers->GetValue());
-    Option::instance().setBudgetSummaryWithoutCategories(m_budget_summary_without_category->GetValue());
-    Option::instance().setBudgetOverride(m_budget_override->GetValue());
-    Option::instance().setBudgetDeductMonthly(m_budget_deduct_monthly->GetValue());
-    Option::instance().setBudgetDaysOffset(m_budget_days_offset->GetValue());
-    Option::instance().setReportingFirstDay(m_reporting_firstday->GetValue());
-    Option::instance().setReportingFirstWeekday(
-        static_cast<wxDateTime::WeekDay>(m_reporting_first_weekday->GetSelection())
-    );
-    Option::instance().setIgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
     Option::instance().setDoNotColorFuture(m_doNotColorFuture->GetValue());
     Option::instance().setDoSpecialColorReconciled(m_doSpecialColorReconciled->GetValue());
 
     Option::instance().setShowToolTips(m_showToolTips->GetValue());
     Option::instance().setShowMoneyTips(m_showMoneyTips->GetValue());
-    Option::instance().UseTransDateTime(m_use_trans_date_time->GetValue());
-
-    mmColors::userDefColor1 = m_UDFCB1->GetBackgroundColour();
-    mmColors::userDefColor2 = m_UDFCB2->GetBackgroundColour();
-    mmColors::userDefColor3 = m_UDFCB3->GetBackgroundColour();
-    mmColors::userDefColor4 = m_UDFCB4->GetBackgroundColour();
-    mmColors::userDefColor5 = m_UDFCB5->GetBackgroundColour();
-    mmColors::userDefColor6 = m_UDFCB6->GetBackgroundColour();
-    mmColors::userDefColor7 = m_UDFCB7->GetBackgroundColour();
-
-    Model_Infotable::instance().setColour("USER_COLOR1", mmColors::userDefColor1);
-    Model_Infotable::instance().setColour("USER_COLOR2", mmColors::userDefColor2);
-    Model_Infotable::instance().setColour("USER_COLOR3", mmColors::userDefColor3);
-    Model_Infotable::instance().setColour("USER_COLOR4", mmColors::userDefColor4);
-    Model_Infotable::instance().setColour("USER_COLOR5", mmColors::userDefColor5);
-    Model_Infotable::instance().setColour("USER_COLOR6", mmColors::userDefColor6);
-    Model_Infotable::instance().setColour("USER_COLOR7", mmColors::userDefColor7);
 
     return true;
 }

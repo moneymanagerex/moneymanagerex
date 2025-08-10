@@ -209,44 +209,6 @@ void OptionSettingsGeneral::Create()
     m_month_selection->SetSelection(monthItem - 1);
     mmToolTip(m_month_selection, _t("Specify month for start of financial year"));
 
-    // Misc settings
-    generalPanelSizer->AddSpacer(15);
-
-    wxStaticBox* transactioCopyStaticBox = new wxStaticBox(general_panel, wxID_ANY, _t("Transaction"));
-    SetBoldFont(transactioCopyStaticBox);
-    wxStaticBoxSizer* transactioCopyStaticBoxSizer = new wxStaticBoxSizer(transactioCopyStaticBox, wxVERTICAL);
-    generalPanelSizer->Add(transactioCopyStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
-
-    m_use_org_date_copy_paste = new wxCheckBox(general_panel, wxID_STATIC, _t("Use Original Date when Pasting Transactions"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_use_org_date_copy_paste->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_ORG_DATE_COPYPASTE, false));
-    mmToolTip(m_use_org_date_copy_paste, _t("Select whether to use the original transaction date or current date when copying/pasting transactions"));
-    transactioCopyStaticBoxSizer->Add(m_use_org_date_copy_paste, g_flagsV);
-
-    m_use_org_date_duplicate = new wxCheckBox(general_panel, wxID_STATIC, _t("Use Original Date when Duplicating Transactions"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_use_org_date_duplicate->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_ORG_DATE_DUPLICATE, false));
-    mmToolTip(m_use_org_date_duplicate, _t("Select whether to use the original transaction date or current date when duplicating transactions"));
-    transactioCopyStaticBoxSizer->Add(m_use_org_date_duplicate, g_flagsV);
-
-    m_use_org_state_duplicate_paste = new wxCheckBox(general_panel, wxID_STATIC, _t("Use Original State when Duplicating or Pasting Transactions"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_use_org_state_duplicate_paste->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_ORG_STATE_DUPLICATE_PASTE, true));
-    mmToolTip(m_use_org_state_duplicate_paste, _t("Select whether to use the original state or default state when duplicating or copy and paste transactions"));
-    transactioCopyStaticBoxSizer->Add(m_use_org_state_duplicate_paste, g_flagsV);
-
-    wxArrayString sounds;
-    sounds.Add(_t("None"));
-    sounds.Add("drop.wav");
-    sounds.Add("cash.wav");
-
-    wxBoxSizer* soundBaseSizer = new wxBoxSizer(wxHORIZONTAL);
-    transactioCopyStaticBoxSizer->Add(soundBaseSizer, wxSizerFlags(g_flagsV).Border(wxLEFT, 0));
-    soundBaseSizer->Add(new wxStaticText(general_panel, wxID_STATIC, _t("Transaction Sound")), g_flagsH);
-    m_use_sound = new wxChoice(general_panel, wxID_STATIC
-        , wxDefaultPosition, wxSize(100, -1)
-        , sounds);
-    m_use_sound->SetSelection(Model_Setting::instance().getInt(INIDB_USE_TRANSACTION_SOUND, 0));
-    mmToolTip(m_use_sound, _t("Select whether to use sounds when entering transactions"));
-    soundBaseSizer->Add(m_use_sound, g_flagsV);
-
     Fit();
     general_panel->SetMinSize(general_panel->GetBestVirtualSize());
     general_panel->SetScrollRate(6, 6);
@@ -262,7 +224,6 @@ void OptionSettingsGeneral::OnDateFormatChanged(wxCommandEvent& /*event*/)
     }
 
 }
-
 
 void OptionSettingsGeneral::OnLocaleChanged(wxCommandEvent& /*event*/)
 {
@@ -333,11 +294,6 @@ bool OptionSettingsGeneral::SaveSettings()
     Option::instance().setDateFormat(m_date_format);
     SaveFinancialYearStart();
 
-    Model_Setting::instance().setBool(INIDB_USE_ORG_DATE_COPYPASTE, m_use_org_date_copy_paste->GetValue());
-    Model_Setting::instance().setBool(INIDB_USE_ORG_DATE_DUPLICATE, m_use_org_date_duplicate->GetValue());
-    Model_Setting::instance().setBool(INIDB_USE_ORG_STATE_DUPLICATE_PASTE, m_use_org_state_duplicate_paste->GetValue());
-    Model_Setting::instance().setInt(INIDB_USE_TRANSACTION_SOUND, m_use_sound->GetSelection());
-
     return true;
 }
 
@@ -365,6 +321,7 @@ bool OptionSettingsGeneral::doFormatDoubleValue(const wxString& locale, wxString
 
     return true;
 }
+
 void OptionSettingsGeneral::OnChangeGUILanguage(wxCommandEvent& event)
 {
     wxLanguage lang = static_cast<wxLanguage>(event.GetId() - wxID_LAST - 1);
