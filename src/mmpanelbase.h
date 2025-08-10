@@ -3,6 +3,7 @@
  Copyright (C) 2015 James Higley
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
  Copyright (C) 2025 George Ef (george.a.ef@gmail.com)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -59,8 +60,10 @@ protected:
         MENU_HEADER_HIDE,
         MENU_HEADER_SHOW_MIN,
         MENU_HEADER_SHOW_MAX = MENU_HEADER_SHOW_MIN + 99,
+        MENU_HEADER_MOVE_FIRST,
         MENU_HEADER_MOVE_LEFT,
         MENU_HEADER_MOVE_RIGHT,
+        MENU_HEADER_MOVE_LAST,
         MENU_HEADER_RESET,
     };
 
@@ -154,6 +157,7 @@ private:
     void onHeaderShow(wxCommandEvent& WXUNUSED(event));
     void onHeaderMove(wxCommandEvent& WXUNUSED(event), int dir);
     void onHeaderReset(wxCommandEvent& WXUNUSED(event));
+    void headerMoveBeginEnd(bool dir);
 };
 
 inline int mmListCtrl::getColIdSize() const
@@ -298,4 +302,3 @@ public:
 
     void windowsFreezeThaw();
 };
-

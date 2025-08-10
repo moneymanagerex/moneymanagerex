@@ -6031,12 +6031,20 @@ msgstr ""
 msgid "Move hidden column"
 msgstr ""
 
+#: mmpanelbase.cpp:558
+msgid "Move column to the beginning"
+msgstr ""
+
 #: mmpanelbase.cpp:549
 msgid "Move column left"
 msgstr ""
 
 #: mmpanelbase.cpp:551
 msgid "Move column right"
+msgstr ""
+
+#: mmpanelbase.cpp:570
+msgid "Move column to the end"
 msgstr ""
 
 #: mmpanelbase.cpp:555

@@ -6031,13 +6031,21 @@ msgstr "Diese Spalte verstecken"
 msgid "Move hidden column"
 msgstr "Versteckte Spalte verschieben"
 
+#: mmpanelbase.cpp:558
+msgid "Move column to the beginning"
+msgstr "Spalte an den Anfang verschieben"
+
 #: mmpanelbase.cpp:549
 msgid "Move column left"
 msgstr "Spalte nach links bewegen"
 
 #: mmpanelbase.cpp:551
 msgid "Move column right"
-msgstr "Spalte nach rechts bewegen"
+msgstr "Spalte nach rechts verschieben"
+
+#: mmpanelbase.cpp:570
+msgid "Move column to the end"
+msgstr "Spalte an das Ende verschieben"
 
 #: mmpanelbase.cpp:555
 msgid "Sort by this column"
@@ -8867,4 +8875,3 @@ msgstr "Fehler "
 #: wizard_update.cpp:325 wizard_update.cpp:340
 msgid "MMEX Update Check"
 msgstr "MMEX Update Überprüfung"
-
