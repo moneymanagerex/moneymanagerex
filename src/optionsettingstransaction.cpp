@@ -95,9 +95,6 @@ void OptionSettingsTransaction::Create()
     }
     default_status->SetSelection(Option::instance().getTransStatusReconciled());
 
-    wxChoice* bulk_enter = new wxChoice(home_panel, ID_DIALOG_OPTIONS_BULK_ENTER, wxDefaultPosition, wxDefaultSize, {_("Yes"), _("No")});
-    bulk_enter->SetSelection(Option::instance().getBulkTransactions() ? 0 : 1);
-
     wxFlexGridSizer* newTransflexGridSizer = new wxFlexGridSizer(0, 2, 0, 0);
     newTransflexGridSizer->AddGrowableCol(1, 0);
     transSettingsStaticBoxSizer->Add(newTransflexGridSizer);
@@ -111,8 +108,6 @@ void OptionSettingsTransaction::Create()
     newTransflexGridSizer->Add(defaultCategoryTransferChoice, g_flagsExpand);
     newTransflexGridSizer->Add(new wxStaticText(home_panel, wxID_STATIC, _t("Default Status")), g_flagsH);
     newTransflexGridSizer->Add(default_status, g_flagsExpand);
-    newTransflexGridSizer->Add(new wxStaticText(home_panel, wxID_STATIC, _t("Bulk Transactions")), g_flagsH);
-    newTransflexGridSizer->Add(bulk_enter, g_flagsExpand);
 
 
     // transaction
@@ -343,9 +338,6 @@ bool OptionSettingsTransaction::SaveSettings()
 
     itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE));
     Option::instance().setTransDateDefault(itemChoice->GetSelection());
-
-    itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_BULK_ENTER));
-    Option::instance().setBulkTransactions(itemChoice->GetSelection() == 0);
 
     return true;
 }
