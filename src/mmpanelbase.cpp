@@ -3,6 +3,7 @@
  Copyright (C) 2015 James Higley
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
  Copyright (C) 2025 George Ef (george.a.ef@gmail.com)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -523,6 +524,12 @@ void mmListCtrl::onColRightClick(wxListEvent& event)
         menu_toggle->AppendCheckItem(event_id, getColHeader(col_id, true));
         menu_toggle->Check(event_id, !isHiddenColId(col_id));
     }
+
+    if (m_col_info_id[getColId_Nr(m_sel_col_nr)].sortable){
+        menu.Append(MENU_HEADER_SORT, _t("Sort by this column"));
+        menu.Append(wxID_SEPARATOR, "");
+    }
+
     menu.AppendSubMenu(menu_toggle, _t("Hide/Show column"));
     menu.Append(MENU_HEADER_HIDE, _t("Hide this column"));
 
@@ -545,14 +552,28 @@ void mmListCtrl::onColRightClick(wxListEvent& event)
         }
         if (found)
             menu.AppendSubMenu(menu_show, _t("Move hidden column"));
-        if (m_sel_col_nr > 0)
+        menu.Append(wxID_SEPARATOR, "");
+        bool newsep = false;
+        if (m_sel_col_nr > 1) {
+            menu.Append(MENU_HEADER_MOVE_FIRST, _t("Move column to the beginning"));
+            newsep = true;
+        }
+        if (m_sel_col_nr > 0) {
             menu.Append(MENU_HEADER_MOVE_LEFT, _t("Move column left"));
-        if (m_sel_col_nr < getColNrSize() - 1)
+            newsep = true;
+        }
+        if (m_sel_col_nr < getColNrSize() - 1) {
             menu.Append(MENU_HEADER_MOVE_RIGHT, _t("Move column right"));
+            newsep = true;
+        }
+        if (m_sel_col_nr < getColNrSize() - 2) {
+            menu.Append(MENU_HEADER_MOVE_LAST, _t("Move column to the end"));
+            newsep = true;
+        }
+        if (newsep) {
+            menu.Append(wxID_SEPARATOR, "");
+        }
     }
-
-    if (m_col_info_id[getColId_Nr(m_sel_col_nr)].sortable)
-        menu.Append(MENU_HEADER_SORT, _t("Sort by this column"));
 
     menu.Append(MENU_HEADER_RESET, _t("Reset column widths"));
 
@@ -575,6 +596,10 @@ void mmListCtrl::onHeaderPopup(wxCommandEvent& event)
         onHeaderMove(event, -1);
     else if (event_id == MENU_HEADER_MOVE_RIGHT)
         onHeaderMove(event, 1);
+    else if (event_id == MENU_HEADER_MOVE_FIRST)
+        headerMoveBeginEnd(false);
+    else if (event_id == MENU_HEADER_MOVE_LAST)
+        headerMoveBeginEnd(true);
     else if (event_id == MENU_HEADER_RESET)
         onHeaderReset(event);
 }
@@ -671,6 +696,21 @@ void mmListCtrl::onHeaderMove(wxCommandEvent& WXUNUSED(event), int dir)
     Thaw();
 }
 
+void mmListCtrl::headerMoveBeginEnd(bool dir){
+    if (!m_col_id_nr.empty()) {
+        Freeze();
+        int src_nr = m_sel_col_nr;
+        int src_vo = getColVo_Nr(src_nr);
+        int dst_nr = dir ? getColNrSize() - 1  : 0;
+        if (isValidColNr(dst_nr)) {
+            shiftColumn(src_vo, dir ?  getColNrSize() - src_vo : -src_vo);
+            updateSortIcon();
+            savePreferences();
+        }
+        Thaw();
+    }
+}
+
 void mmListCtrl::onHeaderReset(wxCommandEvent& WXUNUSED(event))
 {
     Freeze();
@@ -725,4 +765,3 @@ void mmPanelBase::windowsFreezeThaw()
     else
         this->Freeze();
 }
-
