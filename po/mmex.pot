@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-05 17:54+0000\n"
+"POT-Creation-Date: 2025-08-11 22:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6019,15 +6019,19 @@ msgstr ""
 msgid "Upcoming Transactions"
 msgstr ""
 
-#: mmpanelbase.cpp:526
+#: mmpanelbase.cpp:529
+msgid "Sort by this column"
+msgstr ""
+
+#: mmpanelbase.cpp:533
 msgid "Hide/Show column"
 msgstr ""
 
-#: mmpanelbase.cpp:527
+#: mmpanelbase.cpp:534
 msgid "Hide this column"
 msgstr ""
 
-#: mmpanelbase.cpp:547
+#: mmpanelbase.cpp:554
 msgid "Move hidden column"
 msgstr ""
 
@@ -6035,11 +6039,11 @@ msgstr ""
 msgid "Move column to the beginning"
 msgstr ""
 
-#: mmpanelbase.cpp:549
+#: mmpanelbase.cpp:562
 msgid "Move column left"
 msgstr ""
 
-#: mmpanelbase.cpp:551
+#: mmpanelbase.cpp:566
 msgid "Move column right"
 msgstr ""
 
@@ -6047,11 +6051,7 @@ msgstr ""
 msgid "Move column to the end"
 msgstr ""
 
-#: mmpanelbase.cpp:555
-msgid "Sort by this column"
-msgstr ""
-
-#: mmpanelbase.cpp:557
+#: mmpanelbase.cpp:578
 msgid "Reset column widths"
 msgstr ""
 
