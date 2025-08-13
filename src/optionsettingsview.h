@@ -1,7 +1,7 @@
 /*******************************************************
 Copyright (C) 2014 Stefano Giorgio
 Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
-
+Copyright (C) 2025 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -47,19 +47,8 @@ private:
     void Create();
     void OnHTMLScaleSpin(wxSpinEvent& event);
     void OnThemeManagerSelected(wxCommandEvent&);
-    void OnNavTreeColorChanged(wxCommandEvent& event);
 
 private:
-    /// Colour Buttons.
-    wxButton* m_UDFCB1 = nullptr;
-    wxButton* m_UDFCB2 = nullptr;
-    wxButton* m_UDFCB3 = nullptr;
-    wxButton* m_UDFCB4 = nullptr;
-    wxButton* m_UDFCB5 = nullptr;
-    wxButton* m_UDFCB6 = nullptr;
-    wxButton* m_UDFCB7 = nullptr;
-
-
     wxButton* m_theme_manager = nullptr;
     wxChoice* m_theme_mode = nullptr;
     wxChoice* m_font_size_chooser = nullptr;
@@ -70,17 +59,6 @@ private:
     wxChoice* m_navigation_icon_size = nullptr;
     wxChoice* m_others_icon_size = nullptr;
     wxComboBox* m_categ_delimiter_list = nullptr;
-
-    wxCheckBox* m_budget_financial_years = nullptr;
-    wxCheckBox* m_budget_include_transfers = nullptr;
-    wxCheckBox* m_budget_summary_without_category = nullptr;
-    wxCheckBox* m_budget_override = nullptr;
-    wxCheckBox* m_budget_deduct_monthly = nullptr;
-    wxCheckBox* m_ignore_future_transactions = nullptr;
-    wxCheckBox* m_use_trans_date_time = nullptr;
-    wxSpinCtrl* m_budget_days_offset = nullptr;
-    wxSpinCtrl* m_reporting_firstday = nullptr;
-    wxChoice* m_reporting_first_weekday = nullptr;
 
     wxCheckBox* m_doNotColorFuture = nullptr;
     wxCheckBox* m_doSpecialColorReconciled = nullptr;

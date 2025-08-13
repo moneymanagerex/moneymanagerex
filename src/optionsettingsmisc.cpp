@@ -109,72 +109,6 @@ void OptionSettingsMisc::Create()
     asset_compounding_sizer->Add(m_asset_compounding, wxSizerFlags(g_flagsExpand).Proportion(0));
     othersPanelSizer->Add(asset_compounding_sizer, g_flagsBorder1V);
 
-    // New transaction dialog settings
-    wxStaticBox* transSettingsStaticBox = new wxStaticBox(misc_panel, wxID_STATIC, _t("New Transaction"));
-    SetBoldFont(transSettingsStaticBox);
-
-    wxStaticBoxSizer* transSettingsStaticBoxSizer = new wxStaticBoxSizer(transSettingsStaticBox, wxVERTICAL);
-    othersPanelSizer->Add(transSettingsStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
-
-    wxArrayString default_values;
-    default_values.Add(_t("None"));
-    default_values.Add(_t("Last Used"));
-
-    wxChoice* defaultCategoryTransferChoice = new wxChoice(misc_panel
-        , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY_TRANSFER
-        , wxDefaultPosition, wxDefaultSize, default_values);
-    defaultCategoryTransferChoice->SetSelection(Option::instance().getTransCategoryTransferNone());
-
-    wxChoice* defaultDateChoice = new wxChoice(misc_panel
-        , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE
-        , wxDefaultPosition, wxDefaultSize, default_values);
-    defaultDateChoice->SetSelection(Option::instance().getTransDateDefault());
-
-    default_values.Add(_t("Unused"));
-    wxChoice* defaultPayeeChoice = new wxChoice(misc_panel
-        , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE
-        , wxDefaultPosition, wxDefaultSize, default_values);
-    defaultPayeeChoice->SetSelection(Option::instance().getTransPayeeNone());
-
-    default_values[1] = (_t("Last used for payee"));
-    default_values.Add(_t("Use default for payee"));
-    wxChoice* defaultCategoryNonTransferChoice = new wxChoice(misc_panel
-        , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY_NONTRANSFER
-        , wxDefaultPosition, wxDefaultSize, default_values);
-    defaultCategoryNonTransferChoice->SetSelection(Option::instance().getTransCategoryNone());
-
-    wxChoice* default_status = new wxChoice(misc_panel
-        , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS);
-    for (int i = 0; i < Model_Checking::STATUS_ID_size; ++i) {
-        wxString status = Model_Checking::status_name(i);
-        default_status->Append(wxGetTranslation(status), new wxStringClientData(status));
-    }
-    default_status->SetSelection(Option::instance().getTransStatusReconciled());
-
-    wxArrayString true_false;
-    true_false.Add(_n("Yes"));
-    true_false.Add(_n("No"));
-    wxChoice* bulk_enter = new wxChoice(misc_panel, ID_DIALOG_OPTIONS_BULK_ENTER);
-    for (const auto& i : true_false)
-        bulk_enter->Append(wxGetTranslation(i), new wxStringClientData(i));
-    bulk_enter->SetSelection(Option::instance().getBulkTransactions() ? 0 : 1);
-
-    wxFlexGridSizer* newTransflexGridSizer = new wxFlexGridSizer(0, 2, 0, 0);
-    newTransflexGridSizer->AddGrowableCol(1, 0);
-    transSettingsStaticBoxSizer->Add(newTransflexGridSizer);
-    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _t("Default Date")), g_flagsH);
-    newTransflexGridSizer->Add(defaultDateChoice, g_flagsExpand);
-    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _t("Default Payee")), g_flagsH);
-    newTransflexGridSizer->Add(defaultPayeeChoice, g_flagsExpand);
-    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _t("Default Deposit/Withdrawal Category")), g_flagsH);
-    newTransflexGridSizer->Add(defaultCategoryNonTransferChoice, g_flagsExpand);
-    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _t("Default Transfer Category")), g_flagsH);
-    newTransflexGridSizer->Add(defaultCategoryTransferChoice, g_flagsExpand);
-    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _t("Default Status")), g_flagsH);
-    newTransflexGridSizer->Add(default_status, g_flagsExpand);
-    newTransflexGridSizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _t("Bulk Transactions")), g_flagsH);
-    newTransflexGridSizer->Add(bulk_enter, g_flagsExpand);
-
     //----------------------------------------------
     //a bit more space visual appearance
     othersPanelSizer->AddSpacer(10);
@@ -288,24 +222,6 @@ void OptionSettingsMisc::SaveStocksUrl()
 
 bool OptionSettingsMisc::SaveSettings()
 {
-    wxChoice* itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE));
-    Option::instance().setTransPayeeNone(itemChoice->GetSelection());
-
-    itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY_NONTRANSFER));
-    Option::instance().setTransCategoryNone(itemChoice->GetSelection());
-
-    itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY_TRANSFER));
-    Option::instance().setTransCategoryTransferNone(itemChoice->GetSelection());
-
-    itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS));
-    Option::instance().setTransStatusReconciled(itemChoice->GetSelection());
-
-    itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE));
-    Option::instance().setTransDateDefault(itemChoice->GetSelection());
-
-    itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_BULK_ENTER));
-    Option::instance().setBulkTransactions(itemChoice->GetSelection() == 0);
-
     SaveStocksUrl();
     Option::instance().setSharePrecision(m_share_precision->GetValue());
     Option::instance().setAssetCompounding(m_asset_compounding->GetSelection());

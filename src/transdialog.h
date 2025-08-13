@@ -110,6 +110,7 @@ private:
     wxBitmapButton* bAuto = nullptr;
     wxCheckBox* cAdvanced_ = nullptr;
     wxButton* m_button_cancel = nullptr;
+    wxButton* m_button_ok_new = nullptr;
     wxChoice* choiceStatus_ = nullptr;
     wxChoice* transaction_type_ = nullptr;
     mmDatePickerCtrl* dpc_ = nullptr;
@@ -170,7 +171,8 @@ private:
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,
         ID_DIALOG_TRANS_CUSTOMFIELDS,
         ID_CUSTOMFIELD,
-        ID_DIALOG_TRANS_TAGS
+        ID_DIALOG_TRANS_TAGS,
+        ID_BTN_OK_NEW
     };
 };
 

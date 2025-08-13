@@ -59,7 +59,7 @@ msgstr ""
 #: mmSimpleDialogs.cpp:1110 optiondialog.cpp:160 payeedialog.cpp:159
 #: payeedialog.cpp:592 sharetransactiondialog.cpp:358
 #: splittransactionsdialog.cpp:104 splittransactionsdialog.cpp:282
-#: tagdialog.cpp:146 transactionsupdatedialog.cpp:281 transdialog.cpp:610
+#: tagdialog.cpp:146 transactionsupdatedialog.cpp:281
 #: wizard_update.cpp:212
 msgid "&OK "
 msgstr ""
@@ -2950,7 +2950,7 @@ msgstr ""
 msgid "Export the report to a new file."
 msgstr ""
 
-#: general_report_manager.cpp:429 stockdialog.cpp:334
+#: general_report_manager.cpp:429 stockdialog.cpp:334 transdialog.cpp:614
 msgid "&Save "
 msgstr ""
 
@@ -8404,6 +8404,10 @@ msgstr ""
 
 #: transdialog.cpp:581 usertransactionpanel.cpp:216
 msgid "Manage transaction attachments"
+msgstr ""
+
+#: transdialog.cpp:616
+msgid "&Save and New"
 msgstr ""
 
 #: transdialog.cpp:751

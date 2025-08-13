@@ -179,11 +179,6 @@ public:
     void setTransCategoryTransferNone(const int value);
     int getTransCategoryTransferNone() const noexcept;
 
-    // m_bulk_transactions
-    void loadBulkTransactions();
-    void setBulkTransactions(const bool value);
-    bool getBulkTransactions() const noexcept;
-
     // m_trans_status_reconciled
     void loadTransStatusReconciled();
     void setTransStatusReconciled(const int value);
@@ -297,7 +292,6 @@ private:
     int m_homepage_incexp_range = 0;                    // HOMEPAGE_INCEXP_RANGE
 
     // stored in Model_Setting
-    bool m_bulk_transactions = false;                   // BULK_TRX
     bool m_hide_share_accounts = true;                  // HIDE_SHARE_ACCOUNTS
     bool m_hide_deleted_transactions = false;           // HIDE_DELETED_TRANSACTIONS
     bool m_budget_financial_years = false;              // BUDGET_FINANCIAL_YEARS
@@ -428,11 +422,6 @@ inline int Option::getTransCategoryNone() const noexcept
 inline int Option::getTransCategoryTransferNone() const noexcept
 {
     return m_trans_category_transfer_none;
-}
-
-inline bool Option::getBulkTransactions() const noexcept
-{
-    return m_bulk_transactions;
 }
 
 inline int Option::getTransPayeeNone() const noexcept

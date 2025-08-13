@@ -149,7 +149,6 @@ void Option::load(bool include_infotable)
     loadIconSize();
     loadToolbarIconSize();
     loadNavigationIconSize();
-    loadBulkTransactions();
     loadFontSize();
     loadCheckingRange();
 }
@@ -508,16 +507,6 @@ void Option::setTransCategoryTransferNone(const int value)
 {
     Model_Setting::instance().setInt("TRANSACTION_CATEGORY_TRANSFER_NONE", value);
     m_trans_category_transfer_none = value;
-}
-
-void Option::loadBulkTransactions()
-{
-    m_bulk_transactions = Model_Setting::instance().getBool("BULK_TRX", false);
-}
-void Option::setBulkTransactions(const bool value)
-{
-    Model_Setting::instance().setBool("BULK_TRX", value);
-    m_bulk_transactions = value;
 }
 
 void Option::loadTransStatusReconciled()

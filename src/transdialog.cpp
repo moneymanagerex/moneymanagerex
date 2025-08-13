@@ -63,6 +63,7 @@ EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
 EVT_BUTTON(wxID_FILE, mmTransDialog::OnAttachments)
 EVT_BUTTON(ID_DIALOG_TRANS_CUSTOMFIELDS, mmTransDialog::OnMoreFields)
 EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
+EVT_BUTTON(ID_BTN_OK_NEW, mmTransDialog::OnOk)
 EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
 EVT_CLOSE(mmTransDialog::OnQuit)
 wxEND_EVENT_TABLE()
@@ -607,16 +608,17 @@ void mmTransDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxButton* button_ok = new wxButton(buttons_panel, wxID_OK, _t("&OK "));
-    m_button_cancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
-
     wxBitmapButton* button_hide = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmapBundle(png::RIGHTARROW, mmBitmapButtonSize));
     mmToolTip(button_hide, _t("Show/Hide custom fields window"));
     if (m_custom_fields->GetCustomFieldsCount() == 0) {
         button_hide->Hide();
     }
 
-    buttons_sizer->Add(button_ok, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    buttons_sizer->Add(new wxButton(buttons_panel, wxID_OK, _t("&Save")), wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    if (m_mode == MODE_NEW) {
+        buttons_sizer->Add(new wxButton(buttons_panel, ID_BTN_OK_NEW, _t("&Save and New")), wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+    }
+    m_button_cancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     buttons_sizer->Add(m_button_cancel, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
     buttons_sizer->Add(button_hide, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
 
@@ -1168,7 +1170,7 @@ void mmTransDialog::OnNoteSelected(wxCommandEvent& event)
     }
 }
 
-void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
+void mmTransDialog::OnOk(wxCommandEvent& event)
 {
     m_fused_data.NOTES = textNotes_->GetValue();
     m_fused_data.TRANSACTIONNUMBER = textNumber_->GetValue();
@@ -1259,12 +1261,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     Model_Checking::Full_Data trx(tran);
     wxLogDebug("%s", trx.to_json());
 
-    bool loop = Option::instance().getBulkTransactions();
-    bool s = (wxGetKeyState(WXK_SHIFT) && !loop) || (!wxGetKeyState(WXK_SHIFT) && loop);
-    if (m_mode == MODE_NEW && s)
-        return EndModal(wxID_NEW);
-
-    EndModal(wxID_OK);
+    EndModal(m_mode == MODE_NEW && (event.GetId() == ID_BTN_OK_NEW || wxGetKeyState(WXK_SHIFT)) ? wxID_NEW : wxID_OK);
 }
 
 void mmTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))

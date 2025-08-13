@@ -68,11 +68,6 @@ private:
     wxCheckBox* m_currency_history = nullptr;
     wxString m_date_format;
 
-    wxCheckBox* m_use_org_date_copy_paste = nullptr;
-    wxCheckBox* m_use_org_date_duplicate = nullptr;
-    wxCheckBox* m_use_org_state_duplicate_paste = nullptr;
-    wxChoice* m_use_sound = nullptr;
-
     enum
     {
         ID_DIALOG_OPTIONS_BUTTON_CURRENCY = wxID_HIGHEST + 10,

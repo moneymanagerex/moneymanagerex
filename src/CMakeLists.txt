@@ -173,6 +173,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     optionsettingsmisc.h
     optionsettingsnet.cpp
     optionsettingsnet.h
+    optionsettingstransaction.cpp
+    optionsettingstransaction.h
     optionsettingsview.cpp
     optionsettingsview.h
     paths.cpp
