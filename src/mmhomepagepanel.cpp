@@ -96,6 +96,7 @@ void  mmHomePagePanel::createHtml()
         m_templateText += text.ReadLine() + "\n";
     }
 
+    formatHTML(m_templateText);
     insertDataIntoTemplate();
     fillData();
 }

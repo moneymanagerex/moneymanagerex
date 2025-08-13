@@ -81,25 +81,22 @@ install:
 - copy clcache\clcache-%clcVer%\clcache.exe clcache\clcache-%clcVer%\cl.exe
 - if exist %APPVEYOR_BUILD_FOLDER%\clcache\clcache-%clcVer%\cl.exe set "PATH=%APPVEYOR_BUILD_FOLDER%\clcache\clcache-%clcVer%;%PATH%"
 - clcache -s
-# wxWidgets
-- curl -fsSL -O %wxURL%/wxWidgets-%wxVer%.7z
-- 7z x -y "-o%wxwin%" wx*-%wxVer%*.7z
-# wxWidgets, build script from build/tools/msvs/officialbuild.bat
+# wxWidgets is not precompiled with Edge backend, so we have to compile ourselves
+- if %configuration%==Release set "wxConf=BUILD=release"
 - if not %platform:~-2%==64 (
     set "wxFlags=CPPFLAGS=/arch:SSE CFLAGS=/arch:SSE" &&
     set "cmake_gen=-DCMAKE_GENERATOR_PLATFORM=WIN32"
-  ) else (set "cmake_gen=-DCMAKE_GENERATOR_PLATFORM=x64")                                                                                        
+  ) else (set "cmake_gen=-DCMAKE_GENERATOR_PLATFORM=x64")
 - if not exist "%wxLibFolder%" (
-    echo Building wxWidgets %wxVer% &&                                                                                
+    echo Building wxWidgets %wxVer% &&
+    (curl -fsSL --fail-early -O %wxURL%/wxWidgets-%wxVer%.7z &&
+    7z x -y "-o%wxwin%" wx*-%wxVer%*.7z) &&
     cd %wxwin% &&
     cmake . -G "NMake Makefiles"
-      -DCMAKE_BUILD_TYPE=%configuration% 
+      -DCMAKE_BUILD_TYPE=%configuration%
       -DwxBUILD_SHARED=%wxShared% 
-      -DwxBUILD_OPTIMISE=ON 
-      -DwxUSE_STL=ON 
-      -DwxUSE_UNSAFE_WXSTRING_CONV=OFF 
-      -DwxBUILD_VENDOR=mmex 
-      -S . -B . &&
+      -DwxUSE_WEBVIEW_EDGE=ON 
+      -DwxBUILD_VENDOR=mmex &&
     cmake --build .
   )
 # libcurl

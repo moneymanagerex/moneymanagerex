@@ -89,8 +89,8 @@ public:
         loop_t contents;
         for (const auto & report : m_sub_reports)
             contents += report.to_row_t();
-
-        mm_html_template report(group_report_template);
+        wxString report_template = group_report_template;
+        mm_html_template report(formatHTML(report_template));
         report(L"REPORTNAME") = this->getReportTitle() + " For " + this->m_group_name;
         report(L"CONTENTS") = contents;
 

@@ -766,7 +766,7 @@ EVT_MENU(wxID_ANY, mmColorButton::OnMenuSelected)
 EVT_BUTTON(wxID_ANY, mmColorButton::OnColourButton)
 wxEND_EVENT_TABLE()
 mmColorButton::mmColorButton(wxWindow* parent, wxWindowID id, wxSize size)
-    :wxButton(parent, id, "", wxDefaultPosition, size)
+    :wxButton(parent, id, " ", wxDefaultPosition, size)
     , m_color_value(-1)
 {
 }
