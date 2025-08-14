@@ -399,6 +399,7 @@ int Model_Report::get_html(const Data* r, wxString& out)
     try
     {
         out = report.Process();
+        formatHTML(out);
     }
     catch (const syntax_ex& e)
     {
