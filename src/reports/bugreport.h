@@ -90,7 +90,8 @@ wxString mmBugReport::getHTMLText()
     }
     msg += "</ol>\n";
 
-    mm_html_template report(bugreport_template);
+    wxString report_template = bugreport_template;
+    mm_html_template report(formatHTML(report_template));
     report(L"REPORTNAME") = this->getReportTitle();
     report(L"HEADER") = _t("Please, follow these instructions before submitting a new bug report:");
     report(L"CONTENTS") = msg;

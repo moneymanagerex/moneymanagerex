@@ -177,6 +177,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
 
     wxString header = wxString::Format(_t("Version: %s"), mmex::version::string);
     html = wxString::Format(update_template, header, version, html);
+    formatHTML(html);
 
     wxBoxSizer *page1_sizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(page1_sizer);
