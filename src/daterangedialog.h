@@ -50,7 +50,7 @@ private:
     int m_subMenuBegin;
     int m_selected_row;
     bool m_hasChanged = false;
-    wxString m_subMenuHeader = "==== " + _t("More date ranges…");
+    wxString m_subMenuHeader = "==== " + _tu("More date ranges…");
 
     wxDataViewListCtrl* m_dateRangesLb = nullptr;
     wxButton* m_up_top = nullptr;
