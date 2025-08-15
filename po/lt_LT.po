@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-05 17:54+0000\n"
-"PO-Revision-Date: 2025-08-08 01:08\n"
+"POT-Creation-Date: 2025-08-14 13:35+0000\n"
+"PO-Revision-Date: 2025-08-15 01:03\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian\n"
 "Language: lt_LT\n"
@@ -55,11 +55,10 @@ msgstr "Įjungti, kad padėti mums, siunčiant nuasmenintus duomenis apie MMEX n
 #: budgetyearentrydialog.cpp:128 constants.cpp:87 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:197 filtertransdialog.cpp:827
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:368
-#: mmSimpleDialogs.cpp:1110 optiondialog.cpp:160 payeedialog.cpp:159
+#: mmSimpleDialogs.cpp:1110 optiondialog.cpp:163 payeedialog.cpp:159
 #: payeedialog.cpp:592 sharetransactiondialog.cpp:358
 #: splittransactionsdialog.cpp:104 splittransactionsdialog.cpp:282
-#: tagdialog.cpp:146 transactionsupdatedialog.cpp:281 transdialog.cpp:610
-#: wizard_update.cpp:212
+#: tagdialog.cpp:146 transactionsupdatedialog.cpp:281 wizard_update.cpp:213
 msgid "&OK "
 msgstr "&Gerai "
 
@@ -138,7 +137,7 @@ msgstr "Nurodykite ar ši sąskaita yra dažnai naudojama. Tai naudojamas, kad f
 #: payeedialog.cpp:115 payeedialog.cpp:458 reports/transactions.cpp:230
 #: sharetransactiondialog.cpp:304 splittransactionsdialog.cpp:95
 #: splittransactionsdialog.cpp:352 stockdialog.cpp:245 stocks_list.cpp:79
-#: transactionsupdatedialog.cpp:256 transdialog.cpp:586
+#: transactionsupdatedialog.cpp:256 transdialog.cpp:587
 #: usertransactionpanel.cpp:212 webappdialog.cpp:145
 msgid "Notes"
 msgstr "Pastabos"
@@ -147,7 +146,7 @@ msgstr "Pastabos"
 msgid "Enter user notes and details about this account."
 msgstr "Įveskite naudotoj pastabas ir informaciją apie šią sąskaitą."
 
-#: accountdialog.cpp:194 model/Model_Asset.cpp:31 optiondialog.cpp:37
+#: accountdialog.cpp:194 model/Model_Asset.cpp:31 optiondialog.cpp:40
 msgid "Other"
 msgstr "Kita"
 
@@ -270,8 +269,8 @@ msgstr "Sąskaitos pavadinimas "
 
 #: accountdialog.cpp:507 import_export/qif_export.cpp:633
 #: import_export/qif_import_gui.cpp:248 import_export/univcsvdialog.cpp:109
-#: optionsettingsgeneral.cpp:124 optionsettingsgeneral.cpp:302
-#: reports/htmlbuilder.cpp:245
+#: optionsettingsgeneral.cpp:124 optionsettingsgeneral.cpp:263
+#: reports/htmlbuilder.cpp:246
 msgid "Currency"
 msgstr "Valiuta"
 
@@ -285,8 +284,8 @@ msgstr "Prašome įvesti tinkamą tinklalapio adresą"
 
 #: accountdialog.cpp:521 accountdialog.cpp:530 accountdialog.cpp:535
 #: accountdialog.cpp:542 billsdepositsdialog.cpp:1043
-#: billsdepositsdialog.cpp:1046 stockdialog.cpp:413 transdialog.cpp:660
-#: transdialog.cpp:733 usertransactionpanel.cpp:512 webapp.cpp:567
+#: billsdepositsdialog.cpp:1046 stockdialog.cpp:413 transdialog.cpp:662
+#: transdialog.cpp:735 usertransactionpanel.cpp:512 webapp.cpp:567
 msgid "Invalid Date"
 msgstr "Klaidinga data"
 
@@ -364,7 +363,7 @@ msgstr "&Forumas"
 msgid "Visit MMEX forum to read and post comments and for support"
 msgstr ""
 
-#: appstartdialog.cpp:132 wizard_update.cpp:206
+#: appstartdialog.cpp:132 wizard_update.cpp:207
 msgid "&Show this dialog box at startup"
 msgstr "&Rodyti šį dialogo langą paleidžiant"
 
@@ -378,7 +377,7 @@ msgid "Open the previously opened database: %s"
 msgstr ""
 
 #: appstartdialog.cpp:208 mmframe.cpp:1879 optionsettingsgeneral.cpp:91
-#: optionsettingsgeneral.cpp:383
+#: optionsettingsgeneral.cpp:340
 msgid "System default"
 msgstr "Numatyta sistemos"
 
@@ -386,11 +385,11 @@ msgstr "Numatyta sistemos"
 msgid "User Interface Language"
 msgstr ""
 
-#: appstartdialog.cpp:229 mmframe.cpp:4109 optionsettingsgeneral.cpp:373
+#: appstartdialog.cpp:229 mmframe.cpp:4109 optionsettingsgeneral.cpp:330
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Šios programos kalba buvo pakeista. Pakeitimas įsigalios kitą kartą paleidus programą."
 
-#: appstartdialog.cpp:231 mmframe.cpp:4111 optionsettingsgeneral.cpp:375
+#: appstartdialog.cpp:231 mmframe.cpp:4111 optionsettingsgeneral.cpp:332
 msgid "Language change"
 msgstr "Kalbos pasikeitimas"
 
@@ -434,7 +433,7 @@ msgstr "Įveskite turto pavadinimą"
 #: model/Model_CustomField.cpp:30 reports/cashflow.cpp:275
 #: reports/cashflow.cpp:404 reports/incexpenses.cpp:244 reports/summary.cpp:295
 #: reports/transactions.cpp:208 stockdialog.cpp:278 stockdialog.cpp:605
-#: stockspanel.cpp:258 transactionsupdatedialog.cpp:132 transdialog.cpp:435
+#: stockspanel.cpp:258 transactionsupdatedialog.cpp:132 transdialog.cpp:436
 #: usertransactionpanel.cpp:105 webapp.cpp:564 webappdialog.cpp:138
 #: wizard_update.cpp:138
 msgid "Date"
@@ -544,7 +543,7 @@ msgstr "ID"
 #: import_export/qif_import_gui.cpp:247 import_export/univcsvdialog.cpp:105
 #: maincurrencydialog.cpp:263 mmhomepage.cpp:415 reports/incexpenses.cpp:108
 #: reports/transactions.cpp:224 transactionsupdatedialog.cpp:167
-#: transdialog.cpp:474 usertransactionpanel.cpp:139 webappdialog.cpp:141
+#: transdialog.cpp:475 usertransactionpanel.cpp:139 webappdialog.cpp:141
 msgid "Type"
 msgstr "Tipas"
 
@@ -593,9 +592,9 @@ msgstr "Patvirtinkite turto ištrynimą"
 msgid "MMEX allows fixed assets like cars, houses, land, and others to be tracked. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr ""
 
-#: assetspanel.cpp:409 assetspanel.h:124 general_report_manager.cpp:1100
+#: assetspanel.cpp:409 assetspanel.h:124 general_report_manager.cpp:1101
 #: mmframe.cpp:220 mmframe.cpp:1993 mmframe.cpp:3650 mmhomepage.cpp:527
-#: mmhomepage.cpp:576 mmhomepagepanel.cpp:235 reports/summary.cpp:266
+#: mmhomepage.cpp:576 mmhomepagepanel.cpp:236 reports/summary.cpp:266
 #: reports/summary.cpp:304
 msgid "Assets"
 msgstr "Turtas"
@@ -710,8 +709,8 @@ msgstr "Turto valdymas"
 #: import_export/qif_import_gui.cpp:87 import_export/qif_import_gui.cpp:159
 #: import_export/qif_import_gui.cpp:241 import_export/univcsvdialog.cpp:106
 #: mmchecking_list.cpp:101 reports/cashflow.cpp:405
-#: reports/transactions.cpp:214 transdialog.cpp:247 transdialog.cpp:251
-#: transdialog.cpp:504 transdialog.cpp:652 usertransactionpanel.cpp:109
+#: reports/transactions.cpp:214 transdialog.cpp:248 transdialog.cpp:252
+#: transdialog.cpp:505 transdialog.cpp:654 usertransactionpanel.cpp:109
 #: webapp.cpp:563 webappdialog.cpp:139
 msgid "Account"
 msgstr "Sąskaita"
@@ -1006,7 +1005,7 @@ msgstr "Suteikti automatinį vykdymą"
 msgid "The requested payment will occur without user interaction"
 msgstr "Prašytas mokėjimas bus atliktas be vartotojo įsikišimo"
 
-#: billsdepositsdialog.cpp:476 filtertrans.cpp:187 transdialog.cpp:427
+#: billsdepositsdialog.cpp:476 filtertrans.cpp:187 transdialog.cpp:428
 msgid "Transaction Details"
 msgstr "Operacijos informacija"
 
@@ -1018,7 +1017,7 @@ msgstr "Nurodykite datą, kurią vartotojo prašoma įvesti šią operaciją"
 msgid "Date Paid"
 msgstr "Apmokėjimo data"
 
-#: billsdepositsdialog.cpp:498 filtertransdialog.cpp:663 transdialog.cpp:1331
+#: billsdepositsdialog.cpp:498 filtertransdialog.cpp:663 transdialog.cpp:1328
 msgid "Specify the status for the transaction"
 msgstr "Nurodykite operacijos būseną"
 
@@ -1029,20 +1028,20 @@ msgstr "Nurodykite operacijos būseną"
 #: import_export/qif_import_gui.cpp:270 import_export/univcsvdialog.cpp:104
 #: import_export/univcsvdialog.cpp:513 import_export/univcsvdialog.cpp:523
 #: mmchecking_list.cpp:103 reports/transactions.cpp:218
-#: transactionsupdatedialog.cpp:150 transdialog.cpp:452
+#: transactionsupdatedialog.cpp:150 transdialog.cpp:453
 #: usertransactionpanel.cpp:178 webappdialog.cpp:140 wizard_update.cpp:138
 msgid "Status"
 msgstr "Būsena"
 
-#: billsdepositsdialog.cpp:506 transdialog.cpp:1332
+#: billsdepositsdialog.cpp:506 transdialog.cpp:1329
 msgid "Specify the type of transactions to be created."
 msgstr "Nurodykite kuriamos sąskaitos tipą."
 
-#: billsdepositsdialog.cpp:507 transdialog.cpp:469
+#: billsdepositsdialog.cpp:507 transdialog.cpp:470
 msgid "&Advanced"
 msgstr "&Išsamiau"
 
-#: billsdepositsdialog.cpp:510 transdialog.cpp:1335
+#: billsdepositsdialog.cpp:510 transdialog.cpp:1332
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Leidžia nustatyti skirtingus kiekius „Iš“ ir „Į“ sąskaitose."
 
@@ -1053,16 +1052,16 @@ msgstr "Leidžia nustatyti skirtingus kiekius „Iš“ ir „Į“ sąskaitose.
 #: mmhomepage.cpp:417 reports/cashflow.cpp:408 reports/categexp.cpp:218
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:226
 #: splittransactionsdialog.cpp:88 splittransactionsdialog.cpp:219
-#: transactionsupdatedialog.cpp:186 transdialog.cpp:491
+#: transactionsupdatedialog.cpp:186 transdialog.cpp:492
 #: usertransactionpanel.cpp:143 webappdialog.cpp:144
 msgid "Amount"
 msgstr "Suma"
 
-#: billsdepositsdialog.cpp:532 transdialog.cpp:1317
+#: billsdepositsdialog.cpp:532 transdialog.cpp:1314
 msgid "Specify the transfer amount in the To Account"
 msgstr "Nurodykite perkeliamą sumą „Į“ sąskaitoje"
 
-#: billsdepositsdialog.cpp:543 transdialog.cpp:498
+#: billsdepositsdialog.cpp:543 transdialog.cpp:499
 msgid "Open Calculator"
 msgstr ""
 
@@ -1070,7 +1069,7 @@ msgstr ""
 msgid "Specify the Account that will own the scheduled transaction"
 msgstr ""
 
-#: billsdepositsdialog.cpp:559 transdialog.cpp:244 transdialog.cpp:514
+#: billsdepositsdialog.cpp:559 transdialog.cpp:245 transdialog.cpp:515
 msgid "To"
 msgstr "Į"
 
@@ -1083,7 +1082,7 @@ msgstr "Į"
 #: mmchecking_list.cpp:102 model/Model.cpp:28 payeedialog.cpp:83
 #: payeedialog.cpp:207 payeedialog.cpp:243 reports/cashflow.cpp:406
 #: reports/payee.cpp:136 reports/transactions.cpp:216
-#: transactionsupdatedialog.cpp:199 transdialog.cpp:248 transdialog.cpp:523
+#: transactionsupdatedialog.cpp:199 transdialog.cpp:249 transdialog.cpp:524
 #: usertransactionpanel.cpp:182 webappdialog.cpp:142
 msgid "Payee"
 msgstr "Korespondentas"
@@ -1100,13 +1099,13 @@ msgstr "Korespondentas"
 #: reports/cashflow.cpp:407 reports/categexp.cpp:217 reports/categexp.cpp:456
 #: reports/transactions.cpp:220 splittransactionsdialog.cpp:81
 #: splittransactionsdialog.cpp:217 transactionsupdatedialog.cpp:223
-#: transdialog.cpp:535 transdialog.cpp:667 usertransactionpanel.cpp:189
+#: transdialog.cpp:536 transdialog.cpp:669 usertransactionpanel.cpp:189
 #: webappdialog.cpp:143
 msgid "Category"
 msgstr "Kategorija"
 
-#: billsdepositsdialog.cpp:587 billsdepositsdialog.cpp:1455 transdialog.cpp:541
-#: transdialog.cpp:1294
+#: billsdepositsdialog.cpp:587 billsdepositsdialog.cpp:1455 transdialog.cpp:542
+#: transdialog.cpp:1291
 msgid "Use split Categories"
 msgstr "Naudoti suskaldytas kategorijas"
 
@@ -1119,11 +1118,11 @@ msgstr "Naudoti suskaldytas kategorijas"
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:105
 #: reports/transactions.cpp:222 splittransactionsdialog.cpp:221
 #: splittransactionsdialog.cpp:576 transactionsupdatedialog.cpp:234
-#: transactionsupdatedialog.cpp:370 transdialog.cpp:549 transdialog.cpp:648
+#: transactionsupdatedialog.cpp:370 transdialog.cpp:550 transdialog.cpp:650
 msgid "Tags"
 msgstr ""
 
-#: billsdepositsdialog.cpp:604 transdialog.cpp:1333
+#: billsdepositsdialog.cpp:604 transdialog.cpp:1330
 msgid "Specify any associated check number or transaction number"
 msgstr "Nurodykite bet kokį susietą čekio ar operacijos numerį"
 
@@ -1131,17 +1130,17 @@ msgstr "Nurodykite bet kokį susietą čekio ar operacijos numerį"
 #: filtertransdialog.cpp:698 filtertransdialog.cpp:1944
 #: import_export/qif_export.cpp:634 import_export/qif_import_gui.cpp:89
 #: import_export/univcsvdialog.cpp:113 mmchecking_list.cpp:100
-#: reports/transactions.cpp:212 transdialog.cpp:562
+#: reports/transactions.cpp:212 transdialog.cpp:563
 #: usertransactionpanel.cpp:208
 msgid "Number"
 msgstr "Numeris"
 
-#: billsdepositsdialog.cpp:613 transdialog.cpp:569 usertransactionpanel.cpp:223
+#: billsdepositsdialog.cpp:613 transdialog.cpp:570 usertransactionpanel.cpp:223
 msgid "Select one of the frequently used notes"
 msgstr "Pasirinkti vieną iš dažniausiai naudojamų pastabų"
 
 #: billsdepositsdialog.cpp:619 transactionsupdatedialog.cpp:250
-#: transdialog.cpp:576
+#: transdialog.cpp:577
 msgid "User Colors"
 msgstr "Naudoti spalvas"
 
@@ -1154,22 +1153,22 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:342 import_export/univcsvdialog.cpp:453
 #: import_export/univcsvdialog.cpp:1351 reports/transactions.cpp:206
 #: transactionsupdatedialog.cpp:247 transactionsupdatedialog.cpp:444
-#: transdialog.cpp:591
+#: transdialog.cpp:592
 msgid "Color"
 msgstr "Spalva"
 
-#: billsdepositsdialog.cpp:640 transdialog.cpp:598 transdialog.cpp:1334
+#: billsdepositsdialog.cpp:640 transdialog.cpp:599 transdialog.cpp:1331
 #: usertransactionpanel.cpp:230
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Nurodykite bet kokias teksto pastabas, kurias norite pridėti prie šios operacijos."
 
 #: billsdepositsdialog.cpp:657 filtertransdialog.cpp:833
-#: transactionsupdatedialog.cpp:288 transdialog.cpp:614
+#: transactionsupdatedialog.cpp:288 transdialog.cpp:612
 msgid "Show/Hide custom fields window"
 msgstr "Rodyti/slėpti pasirinktinių laukų langą"
 
 #: billsdepositsdialog.cpp:829 billsdepositsdialog.cpp:852
-#: daterangeeditdialog.cpp:80 transdialog.cpp:243 transdialog.cpp:252
+#: daterangeeditdialog.cpp:80 transdialog.cpp:244 transdialog.cpp:253
 msgid "From"
 msgstr "Iš"
 
@@ -1182,14 +1181,14 @@ msgid "Looks like a late payment"
 msgstr "Panašu, kad pavėluotas mokėjimas"
 
 #: billsdepositsdialog.cpp:943 transactionsupdatedialog.cpp:350
-#: transdialog.cpp:691
+#: transdialog.cpp:693
 #, c-format
 msgid "Payee name has not been used before. Is the name correct?\n"
 "%s"
 msgstr ""
 
 #: billsdepositsdialog.cpp:944 transactionsupdatedialog.cpp:351
-#: transdialog.cpp:692
+#: transdialog.cpp:694
 msgid "Confirm payee name"
 msgstr "Patvirtinkite gavėjo vardą"
 
@@ -1202,16 +1201,16 @@ msgstr "Patvirtinkite gavėjo vardą"
 #: filtertransdialog.cpp:1101 filtertransdialog.cpp:1111
 #: filtertransdialog.cpp:1120 filtertransdialog.cpp:1127
 #: filtertransdialog.cpp:1133 import_export/univcsvdialog.cpp:1351
-#: optionsettingsgeneral.cpp:302 optionsettingsgeneral.cpp:327
+#: optionsettingsgeneral.cpp:263 optionsettingsgeneral.cpp:288
 #: payeedialog.cpp:202 payeedialog.cpp:207 splittransactionsdialog.cpp:576
 #: transactionsupdatedialog.cpp:370 transactionsupdatedialog.cpp:444
-#: transdialog.cpp:648 transdialog.cpp:652 transdialog.cpp:667 util.cpp:762
+#: transdialog.cpp:650 transdialog.cpp:654 transdialog.cpp:669 util.cpp:772
 msgid "Invalid value"
 msgstr "Neteisinga reikšmė"
 
 #: billsdepositsdialog.cpp:1043 billsdepositsdialog.cpp:1046
-#: import_export/univcsvdialog.cpp:1424 stockdialog.cpp:413 transdialog.cpp:660
-#: transdialog.cpp:733 usertransactionpanel.cpp:512 webapp.cpp:565
+#: import_export/univcsvdialog.cpp:1424 stockdialog.cpp:413 transdialog.cpp:662
+#: transdialog.cpp:735 usertransactionpanel.cpp:512 webapp.cpp:565
 msgid "The opening date for the account is later than the date of this transaction"
 msgstr "Sąskaitos atidarymo data yra vėlesnė nei šios operacijos data"
 
@@ -1254,7 +1253,7 @@ msgid "Error"
 msgstr "Klaida"
 
 #: billsdepositsdialog.cpp:1465 splittransactionsdialog.h:80
-#: transdialog.cpp:337 usertransactionpanel.cpp:274
+#: transdialog.cpp:338 usertransactionpanel.cpp:274
 #: usertransactionpanel.cpp:581
 msgid "Split Transaction"
 msgstr "Redaguoti operaciją"
@@ -1267,7 +1266,7 @@ msgstr ""
 msgid "Specify where the transaction is going to"
 msgstr "Nurodykite kur pervedimas keliauja"
 
-#: billsdepositsdialog.h:132 transdialog.cpp:1326
+#: billsdepositsdialog.h:132 transdialog.cpp:1323
 msgid "Specify where the transaction is coming from"
 msgstr "Nurodykite iš kur gaunamas pervedimas"
 
@@ -1275,7 +1274,7 @@ msgstr "Nurodykite iš kur gaunamas pervedimas"
 msgid "Specify which account the transfer is going to"
 msgstr "Nurodykite į kurią sąskaitą keliauja pervedimas"
 
-#: billsdepositsdialog.h:134 transdialog.cpp:1321 usertransactionpanel.cpp:147
+#: billsdepositsdialog.h:134 transdialog.cpp:1318 usertransactionpanel.cpp:147
 msgid "Specify the amount for this transaction"
 msgstr "Nurodykite šios operacijos sumą"
 
@@ -1328,7 +1327,7 @@ msgid "Tip: These transactions can be set up to activate - allowing the user to 
 msgstr "Patarimas: šias operacijas galima nustatyti taip, kad jos būtų suaktyvintos – vartotojas gali koreguoti bet kokias reikšmes termino dieną."
 
 #: billsdepositspanel.cpp:241 billsdepositspanel.cpp:959 mmframe.cpp:3468
-#: mmhomepagepanel.cpp:241
+#: mmhomepagepanel.cpp:242
 msgid "Scheduled Transactions"
 msgstr ""
 
@@ -1774,7 +1773,7 @@ msgstr "Ištrynus kategoriją, bus automatiškai išvalytos ir susijusios ištri
 #: customfieldeditdialog.cpp:259 filtertransdialog.cpp:1345
 #: import_export/univcsvdialog.cpp:2187 mmframe.cpp:1387 mmframe.cpp:2652
 #: mmframe.cpp:2719 model/Model_Billsdeposits.cpp:224 payeedialog.cpp:752
-#: tagdialog.cpp:304 transdialog.cpp:751 transdialog.cpp:776
+#: tagdialog.cpp:304 transdialog.cpp:753 transdialog.cpp:778
 msgid "Do you want to continue?"
 msgstr ""
 
@@ -1946,8 +1945,8 @@ msgid "Grouping Char"
 msgstr "Grupavimo rašmuo"
 
 #: currencydialog.cpp:219 mmSimpleDialogs.cpp:839 model/Model_Asset.cpp:40
-#: model/Model_Budget.cpp:28 optionsettingsgeneral.cpp:236
-#: optionsettingsmisc.cpp:120 reports/reportbase.cpp:200
+#: model/Model_Budget.cpp:28 optionsettingstransaction.cpp:64
+#: optionsettingstransaction.cpp:135 reports/reportbase.cpp:200
 msgid "None"
 msgstr "Jokia"
 
@@ -2005,7 +2004,7 @@ msgstr "(naudojant lokalę)"
 #: currencydialog.h:48 maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:662 maincurrencydialog.cpp:787
 #: maincurrencydialog.cpp:811 maincurrencydialog.h:78 mmframe.cpp:1960
-#: mmframe.cpp:2188 optionsettingsgeneral.cpp:310
+#: mmframe.cpp:2188 optionsettingsgeneral.cpp:271
 msgid "Currency Manager"
 msgstr "Valiutos tvarkyklė"
 
@@ -2057,7 +2056,7 @@ msgstr "Automatinis užbaigimas"
 msgid "Enables autocomplete on custom field"
 msgstr "Įgalina automatinį užbaigimą tinkintame lauke"
 
-#: customfieldeditdialog.cpp:167 optionsettingsview.cpp:268 util.cpp:619
+#: customfieldeditdialog.cpp:167 optionsettingstransaction.cpp:275 util.cpp:629
 msgid "Default"
 msgstr "Numatyta"
 
@@ -2833,7 +2832,7 @@ msgid "Display split transactions as a single row"
 msgstr "Rodyti padalintas operacijas kaip vieną eilutę"
 
 #: filtertransdialog.cpp:796 mmframe.cpp:2028 mmframe.cpp:2203 mmframe.cpp:3141
-#: optiondialog.cpp:220 optiondialog.h:49
+#: optiondialog.cpp:221 optiondialog.h:49
 msgid "Settings"
 msgstr "Nustatymai"
 
@@ -3015,11 +3014,11 @@ msgstr "SQL sintaksės klaida"
 msgid "Load report file:"
 msgstr "Įkelti ataskaitos failą:"
 
-#: general_report_manager.cpp:638 general_report_manager.cpp:1129
+#: general_report_manager.cpp:638 general_report_manager.cpp:1130
 msgid "General Report Manager files (*.grm)"
 msgstr "Bendrųjų ataskaitų tvarkyklės failai (*.grm)"
 
-#: general_report_manager.cpp:638 general_report_manager.cpp:1129
+#: general_report_manager.cpp:638 general_report_manager.cpp:1130
 msgid "ZIP files (*.zip)"
 msgstr "ZIP failai (*.zip)"
 
@@ -3118,11 +3117,11 @@ msgstr ""
 msgid "New Report"
 msgstr "Nauja ataskaita"
 
-#: general_report_manager.cpp:1126
+#: general_report_manager.cpp:1127
 msgid "Choose file to Save As Report"
 msgstr "Parinkite failą, kurį išsaugoti kaip ataskaitą"
 
-#: general_report_manager.cpp:1300
+#: general_report_manager.cpp:1301
 msgid "Parameters:"
 msgstr "Parametrai:"
 
@@ -3207,7 +3206,7 @@ msgstr "Lentelė"
 msgid "Unable to find Table."
 msgstr ""
 
-#: import_export/parsers.cpp:228 mmframereport.cpp:133
+#: import_export/parsers.cpp:228 mmframereport.cpp:133 optiondialog.cpp:40
 msgid "Transactions"
 msgstr "Mokėjimai"
 
@@ -3233,7 +3232,7 @@ msgstr "Parametrai"
 msgid "Log"
 msgstr "Žurnalas"
 
-#: import_export/qif_export.cpp:136 optionsettingsmisc.cpp:230
+#: import_export/qif_export.cpp:136 optionsettingsmisc.cpp:164
 msgid "CSV"
 msgstr "CSV"
 
@@ -3394,8 +3393,8 @@ msgstr "Pridėkite rungtynių informaciją prie pastabų"
 #: import_export/univcsvdialog.cpp:1289 import_export/univcsvdialog.cpp:1839
 #: import_export/univcsvdialog.cpp:1841 import_export/univcsvdialog.cpp:1842
 #: import_export/univcsvdialog.cpp:1857 import_export/univcsvdialog.cpp:2085
-#: themes.cpp:235 transdialog.cpp:300 transdialog.cpp:304 transdialog.cpp:310
-#: transdialog.cpp:988 transdialog.cpp:992 transdialog.cpp:999 webapp.cpp:417
+#: themes.cpp:235 transdialog.cpp:301 transdialog.cpp:305 transdialog.cpp:311
+#: transdialog.cpp:990 transdialog.cpp:994 transdialog.cpp:1001 webapp.cpp:417
 #: webapp.cpp:426
 msgid "Unknown"
 msgstr "Nežinoma"
@@ -3675,7 +3674,7 @@ msgstr "Perkelti aukštyn"
 msgid "Move Down"
 msgstr "Perkelti žemyn"
 
-#: import_export/univcsvdialog.cpp:573 optionsettingsmisc.cpp:241
+#: import_export/univcsvdialog.cpp:573 optionsettingsmisc.cpp:175
 msgid "Specify the delimiter to use when importing/exporting CSV files"
 msgstr "Nurodykite naudotiną skirtuką importuojant/eksportuojant CSV failus"
 
@@ -4032,7 +4031,7 @@ msgstr "Nepavyko atsisiųsti %s valiutos kursų"
 msgid "Unable to download history for symbol %s. Historical rates unavailable!"
 msgstr ""
 
-#: maincurrencydialog.cpp:786 optionsettingsgeneral.cpp:309
+#: maincurrencydialog.cpp:786 optionsettingsgeneral.cpp:270
 msgid "Changing base currency will delete all historical rates, proceed?"
 msgstr ""
 
@@ -4045,7 +4044,7 @@ msgstr ""
 msgid "Unable to download history for base symbol %s. Historical rates unavailable!"
 msgstr ""
 
-#: maincurrencydialog.cpp:874 stockspanel.cpp:480 util.cpp:690
+#: maincurrencydialog.cpp:874 stockspanel.cpp:480 util.cpp:700
 msgid "Unable to find base currency symbol!"
 msgstr ""
 
@@ -4660,7 +4659,7 @@ msgid "Locked transaction to date: %s\n\n"
 msgstr "Iki šiol užrakinta operacija: %s\n\n"
 "Suderinti sandoriai."
 
-#: mmchecking_list.cpp:2223 transdialog.cpp:753 transdialog.cpp:777
+#: mmchecking_list.cpp:2223 transdialog.cpp:755 transdialog.cpp:779
 msgid "MMEX Transaction Check"
 msgstr "MMEX operacijų patikrinimas"
 
@@ -4672,8 +4671,8 @@ msgstr ""
 msgid "Delete all selected transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:301 mmframe.cpp:2183 optionsettingsmisc.cpp:113
-#: transdialog.cpp:181
+#: mmcheckingpanel.cpp:301 mmframe.cpp:2183 optionsettingstransaction.cpp:57
+#: transdialog.cpp:182
 msgid "New Transaction"
 msgstr "Nauja operacija"
 
@@ -5172,7 +5171,7 @@ msgstr "Ignoruoti artėjančias operacijos"
 msgid "Show T&ooltips"
 msgstr "Rodyti T&patarimus"
 
-#: mmframe.cpp:1822 optionsettingsview.cpp:128
+#: mmframe.cpp:1822 optionsettingsview.cpp:111
 msgid "Show Tooltips"
 msgstr "Rodyti patarimus"
 
@@ -5180,7 +5179,7 @@ msgstr "Rodyti patarimus"
 msgid "Show &Money Tips"
 msgstr "Rodyti &pinigų patarimus"
 
-#: mmframe.cpp:1829 optionsettingsview.cpp:136
+#: mmframe.cpp:1829 optionsettingsview.cpp:115
 msgid "Show Money Tips"
 msgstr "Rodyti pinigų patarimus"
 
@@ -5553,7 +5552,7 @@ msgstr "Įrank&iai"
 msgid "&View"
 msgstr "&Rodymas"
 
-#: mmframe.cpp:2181 optiondialog.cpp:37
+#: mmframe.cpp:2181 optiondialog.cpp:40
 msgid "Dashboard"
 msgstr "Apžvalga"
 
@@ -5874,7 +5873,7 @@ msgid "General Group Report"
 msgstr "Bendra grupės ataskaita"
 
 #: mmframereport.cpp:108 mmhomepage.cpp:857 model/Model_Report.cpp:410
-#: reports/bugreport.h:110
+#: reports/bugreport.h:111
 msgid "Caught exception"
 msgstr "Pagauta išimtis"
 
@@ -6036,35 +6035,43 @@ msgstr "Turto sąskaitos"
 msgid "Currency Exchange Rates"
 msgstr "Valiutos kursai"
 
-#: mmhomepagepanel.cpp:187
+#: mmhomepagepanel.cpp:188
 msgid "Upcoming Transactions"
 msgstr "Artėjančios operacijos"
 
-#: mmpanelbase.cpp:526
-msgid "Hide/Show column"
-msgstr ""
-
-#: mmpanelbase.cpp:527
-msgid "Hide this column"
-msgstr "Slėpti šį stulpelį"
-
-#: mmpanelbase.cpp:547
-msgid "Move hidden column"
-msgstr ""
-
-#: mmpanelbase.cpp:549
-msgid "Move column left"
-msgstr ""
-
-#: mmpanelbase.cpp:551
-msgid "Move column right"
-msgstr ""
-
-#: mmpanelbase.cpp:555
+#: mmpanelbase.cpp:529
 msgid "Sort by this column"
 msgstr ""
 
-#: mmpanelbase.cpp:557
+#: mmpanelbase.cpp:533
+msgid "Hide/Show column"
+msgstr ""
+
+#: mmpanelbase.cpp:534
+msgid "Hide this column"
+msgstr "Slėpti šį stulpelį"
+
+#: mmpanelbase.cpp:554
+msgid "Move hidden column"
+msgstr ""
+
+#: mmpanelbase.cpp:558
+msgid "Move column to the beginning"
+msgstr ""
+
+#: mmpanelbase.cpp:562
+msgid "Move column left"
+msgstr ""
+
+#: mmpanelbase.cpp:566
+msgid "Move column right"
+msgstr ""
+
+#: mmpanelbase.cpp:570
+msgid "Move column to the end"
+msgstr ""
+
+#: mmpanelbase.cpp:578
 msgid "Reset column widths"
 msgstr ""
 
@@ -6117,7 +6124,7 @@ msgstr "Diagramos:"
 msgid "Show"
 msgstr "Rodyti"
 
-#: model/Model.cpp:23 optionsettingsgeneral.cpp:215
+#: model/Model.cpp:23 optionsettingstransaction.cpp:114
 msgid "Transaction"
 msgstr "Transakcija"
 
@@ -6406,27 +6413,27 @@ msgstr ""
 msgid "Year before last"
 msgstr ""
 
-#: optiondialog.cpp:37 optionsettingsattachment.cpp:65 webappdialog.cpp:146
+#: optiondialog.cpp:40 optionsettingsattachment.cpp:65 webappdialog.cpp:146
 msgid "Attachments"
 msgstr "Priedai"
 
-#: optiondialog.cpp:37
+#: optiondialog.cpp:40
 msgid "General"
 msgstr "Bendros"
 
-#: optiondialog.cpp:37
+#: optiondialog.cpp:40
 msgid "Network"
 msgstr "Tinklas"
 
-#: optiondialog.cpp:37 optionsettingsview.cpp:72
+#: optiondialog.cpp:40 optionsettingsview.cpp:70
 msgid "View"
 msgstr "Rodymas"
 
-#: optiondialog.cpp:161
+#: optiondialog.cpp:166
 msgid "&Apply "
 msgstr "&Taikyti "
 
-#: optiondialog.cpp:219
+#: optiondialog.cpp:220
 #, c-format
 msgid "%s page has been saved."
 msgstr "%s puslapis buvo išsaugotas."
@@ -6620,48 +6627,16 @@ msgstr ""
 msgid "Specify month for start of financial year"
 msgstr "Nurodykite finansinių metų pradžios mėnesį"
 
-#: optionsettingsgeneral.cpp:220
-msgid "Use Original Date when Pasting Transactions"
-msgstr "Naudoti originalią datą apdorojant įklijuojamas operacijas"
-
-#: optionsettingsgeneral.cpp:222
-msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
-msgstr "Pasirinkite ar naudoti originalią operacijos datą, ar dabartinę kai yra kopijuojamos/įklijuojamos operacijos"
-
-#: optionsettingsgeneral.cpp:225
-msgid "Use Original Date when Duplicating Transactions"
-msgstr "Dubliuodami operacijas naudokite pradinę datą"
-
-#: optionsettingsgeneral.cpp:227
-msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr "Pasirinkite, ar dubliuojant operacijas naudoti pradinę operacijos datą, ar dabartinę datą"
-
-#: optionsettingsgeneral.cpp:230
-msgid "Use Original State when Duplicating or Pasting Transactions"
-msgstr ""
-
-#: optionsettingsgeneral.cpp:232
-msgid "Select whether to use the original state or default state when duplicating or copy and paste transactions"
-msgstr ""
-
-#: optionsettingsgeneral.cpp:242
-msgid "Transaction Sound"
-msgstr "Sandorio garsas"
-
-#: optionsettingsgeneral.cpp:247
-msgid "Select whether to use sounds when entering transactions"
-msgstr "Pasirinkite ar naudoti garsus įvedant operacijas"
-
-#: optionsettingsgeneral.cpp:327
+#: optionsettingsgeneral.cpp:288
 msgid "Locale"
 msgstr "Vietiniai"
 
-#: optionsettingsgeneral.cpp:356
+#: optionsettingsgeneral.cpp:312
 #, c-format
 msgid "Currency value sample: %s"
 msgstr "Valiutos vertės pavyzdys: %s"
 
-#: optionsettingsgeneral.cpp:361
+#: optionsettingsgeneral.cpp:317
 msgid "Bad locale name"
 msgstr "Blogas lokalės pavadinimas"
 
@@ -6697,105 +6672,57 @@ msgstr ""
 msgid "Select the compounding period for the appreciation/depreciation rate of assets"
 msgstr ""
 
-#: optionsettingsmisc.cpp:121
-msgid "Last Used"
-msgstr "Paskutinį kartą naudotas"
-
-#: optionsettingsmisc.cpp:133
-msgid "Unused"
-msgstr "Nenaudojama"
-
-#: optionsettingsmisc.cpp:139
-msgid "Last used for payee"
-msgstr "Paskiausiai naudota kontrahentui"
-
-#: optionsettingsmisc.cpp:140
-msgid "Use default for payee"
-msgstr "Mokėjimo gavėjui naudoti numatytąjį"
-
-#: optionsettingsmisc.cpp:155
-msgid "Yes"
-msgstr "Taip"
-
-#: optionsettingsmisc.cpp:156
-msgid "No"
-msgstr "Ne"
-
-#: optionsettingsmisc.cpp:165
-msgid "Default Date"
-msgstr "Numatyta data"
-
-#: optionsettingsmisc.cpp:167
-msgid "Default Payee"
-msgstr "Numatytasis gavėjas"
-
-#: optionsettingsmisc.cpp:169
-msgid "Default Deposit/Withdrawal Category"
-msgstr "Numatytoji indėlio / išėmimo kategorija"
-
-#: optionsettingsmisc.cpp:171
-msgid "Default Transfer Category"
-msgstr "Numatytoji perdavimo kategorija"
-
-#: optionsettingsmisc.cpp:173
-msgid "Default Status"
-msgstr "Numatytoji būsena"
-
-#: optionsettingsmisc.cpp:175
-msgid "Bulk Transactions"
-msgstr "Masinės operacijos"
-
-#: optionsettingsmisc.cpp:186
+#: optionsettingsmisc.cpp:120
 msgid "Database"
 msgstr "Duomenų bazė"
 
-#: optionsettingsmisc.cpp:193
+#: optionsettingsmisc.cpp:127
 msgid "Backup database on startup"
 msgstr ""
 
-#: optionsettingsmisc.cpp:195
+#: optionsettingsmisc.cpp:129
 msgid "When MMEX starts,\n"
 "create the backup database: dbFile_start_YYYY-MM-DD.bak"
 msgstr ""
 
-#: optionsettingsmisc.cpp:200
+#: optionsettingsmisc.cpp:134
 msgid "Backup database on exit"
 msgstr "Atsarginė duomenų bazė išeinant"
 
-#: optionsettingsmisc.cpp:202
+#: optionsettingsmisc.cpp:136
 msgid "When MMEX shuts down and changes were made to the database,\n"
 "create or update the backup database: dbFile_update_YYYY-MM-DD.bak"
 msgstr ""
 
-#: optionsettingsmisc.cpp:210
+#: optionsettingsmisc.cpp:144
 msgid "Specify max number of backup files"
 msgstr "Nurodykite didžiausią atsarginių kopijų failų skaičių"
 
-#: optionsettingsmisc.cpp:213
+#: optionsettingsmisc.cpp:147
 msgid "Max Files"
 msgstr "Daigiausiai failų"
 
-#: optionsettingsmisc.cpp:221
+#: optionsettingsmisc.cpp:155
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
 msgstr "Nurodykite dienų skaičių ištrintoms operacijoms išsaugoti. Senesnės operacijos bus automatiškai išvalytos atidarius duomenų bazę."
 
-#: optionsettingsmisc.cpp:223
+#: optionsettingsmisc.cpp:157
 msgid "Days to retain deleted transactions"
 msgstr "Dienos ištrintoms operacijoms išsaugoti"
 
-#: optionsettingsmisc.cpp:238
+#: optionsettingsmisc.cpp:172
 msgid "Delimiter"
 msgstr "Atskyriklis"
 
-#: optionsettingsmisc.cpp:246
+#: optionsettingsmisc.cpp:180
 msgid "Filter"
 msgstr ""
 
-#: optionsettingsmisc.cpp:253
+#: optionsettingsmisc.cpp:187
 msgid "Enable combined transaction filter"
 msgstr ""
 
-#: optionsettingsmisc.cpp:255
+#: optionsettingsmisc.cpp:189
 msgid "Switch to one filter control for date and attributes"
 msgstr ""
 
@@ -6887,180 +6814,248 @@ msgstr "Nestabilus"
 msgid "Updates source"
 msgstr ""
 
-#: optionsettingsview.cpp:80
-msgid "Accounts Visible"
-msgstr "Matomos sąskaitos"
+#: optionsettingstransaction.cpp:65
+msgid "Last Used"
+msgstr "Paskutinį kartą naudotas"
 
-#: optionsettingsview.cpp:93
-msgid "Specify which accounts are visible"
-msgstr "Nurodyti, kurios sąskaitos yra matomos"
+#: optionsettingstransaction.cpp:77
+msgid "Unused"
+msgstr "Nenaudojama"
 
-#: optionsettingsview.cpp:96
-msgid "Category Delimiter"
+#: optionsettingstransaction.cpp:83
+msgid "Last used for payee"
+msgstr "Paskiausiai naudota kontrahentui"
+
+#: optionsettingstransaction.cpp:84
+msgid "Use default for payee"
+msgstr "Mokėjimo gavėjui naudoti numatytąjį"
+
+#: optionsettingstransaction.cpp:101
+msgid "Default Date"
+msgstr "Numatyta data"
+
+#: optionsettingstransaction.cpp:103
+msgid "Default Payee"
+msgstr "Numatytasis gavėjas"
+
+#: optionsettingstransaction.cpp:105
+msgid "Default Deposit/Withdrawal Category"
+msgstr "Numatytoji indėlio / išėmimo kategorija"
+
+#: optionsettingstransaction.cpp:107
+msgid "Default Transfer Category"
+msgstr "Numatytoji perdavimo kategorija"
+
+#: optionsettingstransaction.cpp:109
+msgid "Default Status"
+msgstr "Numatytoji būsena"
+
+#: optionsettingstransaction.cpp:119
+msgid "Use Original Date when Pasting Transactions"
+msgstr "Naudoti originalią datą apdorojant įklijuojamas operacijas"
+
+#: optionsettingstransaction.cpp:121
+msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
+msgstr "Pasirinkite ar naudoti originalią operacijos datą, ar dabartinę kai yra kopijuojamos/įklijuojamos operacijos"
+
+#: optionsettingstransaction.cpp:124
+msgid "Use Original Date when Duplicating Transactions"
+msgstr "Dubliuodami operacijas naudokite pradinę datą"
+
+#: optionsettingstransaction.cpp:126
+msgid "Select whether to use the original transaction date or current date when duplicating transactions"
+msgstr "Pasirinkite, ar dubliuojant operacijas naudoti pradinę operacijos datą, ar dabartinę datą"
+
+#: optionsettingstransaction.cpp:129
+msgid "Use Original State when Duplicating or Pasting Transactions"
 msgstr ""
 
-#: optionsettingsview.cpp:112
-msgid "Do not use color for future transactions"
+#: optionsettingstransaction.cpp:131
+msgid "Select whether to use the original state or default state when duplicating or copy and paste transactions"
 msgstr ""
 
-#: optionsettingsview.cpp:120
-msgid "Emphasize not reconciled transactions"
-msgstr ""
+#: optionsettingstransaction.cpp:141
+msgid "Transaction Sound"
+msgstr "Sandorio garsas"
 
-#: optionsettingsview.cpp:143
+#: optionsettingstransaction.cpp:146
+msgid "Select whether to use sounds when entering transactions"
+msgstr "Pasirinkite ar naudoti garsus įvedant operacijas"
+
+#: optionsettingstransaction.cpp:150
 msgid "Transaction/Budget"
 msgstr ""
 
-#: optionsettingsview.cpp:150
+#: optionsettingstransaction.cpp:157
 msgid "View Budgets as Financial Years"
 msgstr ""
 
-#: optionsettingsview.cpp:158
+#: optionsettingstransaction.cpp:165
 msgid "View Budgets with 'transfer' transactions"
 msgstr ""
 
-#: optionsettingsview.cpp:166
+#: optionsettingstransaction.cpp:173
 msgid "View Budget Category Report with Summaries"
 msgstr ""
 
-#: optionsettingsview.cpp:175
+#: optionsettingstransaction.cpp:182
 msgid "Override yearly budget with monthly budget"
 msgstr ""
 
-#: optionsettingsview.cpp:178
+#: optionsettingstransaction.cpp:185
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
 msgstr ""
 
-#: optionsettingsview.cpp:185
+#: optionsettingstransaction.cpp:192
 msgid "Subtract monthly budgets from yearly budget in reporting"
 msgstr ""
 
-#: optionsettingsview.cpp:188
+#: optionsettingstransaction.cpp:195
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
 "Total estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."
 msgstr ""
 
-#: optionsettingsview.cpp:195
+#: optionsettingstransaction.cpp:202
 msgid "Budget Offset (days)"
 msgstr ""
 
-#: optionsettingsview.cpp:200
+#: optionsettingstransaction.cpp:207
 msgid "Adjusts the first day of month (normally 1st) for budget calculations"
 msgstr ""
 
-#: optionsettingsview.cpp:204
+#: optionsettingstransaction.cpp:211
 msgid "First Day of Month"
 msgstr ""
 
-#: optionsettingsview.cpp:209
+#: optionsettingstransaction.cpp:216
 msgid "Adjusts the first day of month for reporting"
 msgstr ""
 
-#: optionsettingsview.cpp:213
+#: optionsettingstransaction.cpp:220
 msgid "First Weekday"
 msgstr ""
 
-#: optionsettingsview.cpp:218
+#: optionsettingstransaction.cpp:225
 msgid "Adjusts the first day of week for filtering and reporting"
 msgstr ""
 
-#: optionsettingsview.cpp:223
+#: optionsettingstransaction.cpp:230
 msgid "Ignore Future Transactions"
 msgstr ""
 
-#: optionsettingsview.cpp:229
+#: optionsettingstransaction.cpp:236
 msgid "Use 'Time' in transaction recording/reporting"
 msgstr ""
 
-#: optionsettingsview.cpp:234
+#: optionsettingstransaction.cpp:241
 msgid "Transaction Colors"
 msgstr ""
 
-#: optionsettingsview.cpp:273
+#: optionsettingsview.cpp:78
+msgid "Accounts Visible"
+msgstr "Matomos sąskaitos"
+
+#: optionsettingsview.cpp:91
+msgid "Specify which accounts are visible"
+msgstr "Nurodyti, kurios sąskaitos yra matomos"
+
+#: optionsettingsview.cpp:94
+msgid "Category Delimiter"
+msgstr ""
+
+#: optionsettingsview.cpp:101
+msgid "Do not use color for future transactions"
+msgstr ""
+
+#: optionsettingsview.cpp:105
+msgid "Emphasize not reconciled transactions"
+msgstr ""
+
+#: optionsettingsview.cpp:120
 msgid "User Interface"
 msgstr "Vartotojo aplinka"
 
-#: optionsettingsview.cpp:281
+#: optionsettingsview.cpp:128
 msgid "Style Template"
 msgstr ""
 
-#: optionsettingsview.cpp:282
+#: optionsettingsview.cpp:129
 msgid "Open Theme Manager"
 msgstr ""
 
-#: optionsettingsview.cpp:285
+#: optionsettingsview.cpp:132
 msgid "Theme"
 msgstr ""
 
-#: optionsettingsview.cpp:287
+#: optionsettingsview.cpp:134
 msgid "System"
 msgstr "Sistema"
 
-#: optionsettingsview.cpp:288
+#: optionsettingsview.cpp:135
 msgid "Light"
 msgstr ""
 
-#: optionsettingsview.cpp:289
+#: optionsettingsview.cpp:136
 msgid "Dark"
 msgstr ""
 
-#: optionsettingsview.cpp:295
+#: optionsettingsview.cpp:142
 msgid "Specify preferred theme variant to use if supported"
 msgstr ""
 
-#: optionsettingsview.cpp:299
+#: optionsettingsview.cpp:146
 msgid "HTML Scale Factor"
 msgstr ""
 
-#: optionsettingsview.cpp:317
+#: optionsettingsview.cpp:164
 msgid "Specify which scale factor is used for the report pages"
 msgstr ""
 
-#: optionsettingsview.cpp:320
+#: optionsettingsview.cpp:167
 msgid "Font Size"
 msgstr ""
 
-#: optionsettingsview.cpp:322
+#: optionsettingsview.cpp:169
 msgid "Normal"
 msgstr ""
 
-#: optionsettingsview.cpp:323
+#: optionsettingsview.cpp:170
 msgid "Enlarged"
 msgstr ""
 
-#: optionsettingsview.cpp:324
+#: optionsettingsview.cpp:171
 msgid "Large"
 msgstr ""
 
-#: optionsettingsview.cpp:325
+#: optionsettingsview.cpp:172
 msgid "Huge"
 msgstr ""
 
-#: optionsettingsview.cpp:338
+#: optionsettingsview.cpp:185
 msgid "Toolbar Icon Size"
 msgstr "Įrankių juostos piktogramos dydis"
 
-#: optionsettingsview.cpp:339
+#: optionsettingsview.cpp:186
 msgid "Navigator Icon Size"
 msgstr ""
 
-#: optionsettingsview.cpp:340
+#: optionsettingsview.cpp:187
 msgid "Others Icon Size"
 msgstr ""
 
-#: optionsettingsview.cpp:343
+#: optionsettingsview.cpp:190
 msgid "Small (16 px)"
 msgstr ""
 
-#: optionsettingsview.cpp:344
+#: optionsettingsview.cpp:191
 msgid "Normal (24 px)"
 msgstr ""
 
-#: optionsettingsview.cpp:345
+#: optionsettingsview.cpp:192
 msgid "Large (32 px)"
 msgstr ""
 
-#: optionsettingsview.cpp:346
+#: optionsettingsview.cpp:193
 msgid "Huge (48 px)"
 msgstr ""
 
@@ -7529,7 +7524,7 @@ msgstr ""
 msgid "Finally, report the bug using the GitHub <a href='%s'>online form</a> opened in a web browser."
 msgstr ""
 
-#: reports/bugreport.h:95
+#: reports/bugreport.h:96
 msgid "Please, follow these instructions before submitting a new bug report:"
 msgstr ""
 
@@ -7610,24 +7605,24 @@ msgstr ""
 msgid "Report Generated %1$s %2$s"
 msgstr ""
 
-#: reports/htmlbuilder.cpp:215
+#: reports/htmlbuilder.cpp:216
 #, c-format
 msgid "From %1$s till %2$s"
 msgstr "Nuo %1$s iki %2$s"
 
-#: reports/htmlbuilder.cpp:217
+#: reports/htmlbuilder.cpp:218
 msgid "Future"
 msgstr "Ateitis"
 
-#: reports/htmlbuilder.cpp:220 reports/mmDateRange.cpp:260
+#: reports/htmlbuilder.cpp:221 reports/mmDateRange.cpp:260
 msgid "Over Time"
 msgstr "Visas laikas"
 
-#: reports/htmlbuilder.cpp:252
+#: reports/htmlbuilder.cpp:253
 msgid "User specified start day"
 msgstr ""
 
-#: reports/htmlbuilder.cpp:259
+#: reports/htmlbuilder.cpp:260
 msgid "Future Transactions have been ignored"
 msgstr ""
 
@@ -8235,7 +8230,7 @@ msgstr "Akcijų kainos sėkmingai atnaujintos"
 msgid "Last updated %s"
 msgstr "Vėliausiai atnaujinta: %s"
 
-#: stockspanel.cpp:486 util.cpp:714 util.cpp:875
+#: stockspanel.cpp:486 util.cpp:724 util.cpp:885
 msgid "Nothing to update"
 msgstr "Nėra ką naujinti"
 
@@ -8394,60 +8389,68 @@ msgstr ""
 msgid "Multi Transactions Update"
 msgstr ""
 
-#: transdialog.cpp:182
+#: transdialog.cpp:183
 msgid "Duplicate Transaction"
 msgstr "D&ubliuoti operaciją"
 
-#: transdialog.cpp:183
+#: transdialog.cpp:184
 msgid "Edit Transaction"
 msgstr "Redaguoti operaciją"
 
-#: transdialog.cpp:560
+#: transdialog.cpp:561
 msgid "Populate Transaction #"
 msgstr "Užpildyti operaciją #"
 
-#: transdialog.cpp:581 usertransactionpanel.cpp:216
+#: transdialog.cpp:582 usertransactionpanel.cpp:216
 msgid "Manage transaction attachments"
 msgstr ""
 
-#: transdialog.cpp:751
+#: transdialog.cpp:617
+msgid "&Save"
+msgstr ""
+
+#: transdialog.cpp:619
+msgid "&Save and New"
+msgstr ""
+
+#: transdialog.cpp:753
 #, c-format
 msgid "Lock transaction to date: %s"
 msgstr ""
 
-#: transdialog.cpp:776
+#: transdialog.cpp:778
 msgid "The transaction will exceed the account limit."
 msgstr ""
 
-#: transdialog.cpp:1196
+#: transdialog.cpp:1198
 msgid "The two accounts have different currencies, but no advanced transaction is defined. Is this correct?"
 msgstr ""
 
-#: transdialog.cpp:1197
+#: transdialog.cpp:1199
 msgid "Currencies are different"
 msgstr ""
 
-#: transdialog.cpp:1312
+#: transdialog.cpp:1309
 msgid "Specify account the money is taken from"
 msgstr "Nurodykite sąskaitą, iš kurios yra paimti pinigai"
 
-#: transdialog.cpp:1313
+#: transdialog.cpp:1310
 msgid "Specify account the money is moved to"
 msgstr "Nurodykite sąskaitą, į kurią pinigai yra perkelti"
 
-#: transdialog.cpp:1314
+#: transdialog.cpp:1311
 msgid "Specify the transfer amount in the From Account."
 msgstr "Nurodykite perkeliamą sumą „Iš“ sąskaitoje."
 
-#: transdialog.cpp:1322
+#: transdialog.cpp:1319
 msgid "Specify account for the transaction"
 msgstr "Nurodykite sąskaitą operacijai"
 
-#: transdialog.cpp:1324
+#: transdialog.cpp:1321
 msgid "Specify to whom the transaction is going to"
 msgstr "Nurodykite kam pervedimas keliauja"
 
-#: transdialog.cpp:1330 usertransactionpanel.cpp:100
+#: transdialog.cpp:1327 usertransactionpanel.cpp:100
 msgid "Specify the date of the transaction"
 msgstr "Nurodykite operacijos datą"
 
@@ -8511,90 +8514,90 @@ msgstr ""
 msgid "UserTransactionPanel"
 msgstr ""
 
-#: util.cpp:747
+#: util.cpp:757
 msgid "Currency rates have been updated"
 msgstr ""
 
-#: util.cpp:846 util.cpp:941 util.cpp:947 util.cpp:978 util.cpp:1037
+#: util.cpp:856 util.cpp:951 util.cpp:957 util.cpp:988 util.cpp:1047
 msgid "JSON Parse Error"
 msgstr ""
 
-#: util.cpp:986 util.cpp:1045
+#: util.cpp:996 util.cpp:1055
 msgid "Expected response to contain a data or error string"
 msgstr ""
 
-#: util.cpp:1017
+#: util.cpp:1027
 msgid "Unable to find asset for symbol."
 msgstr ""
 
-#: util.cpp:1052
+#: util.cpp:1062
 msgid "Unable to get base currency!"
 msgstr ""
 
-#: util.cpp:1058
+#: util.cpp:1068
 msgid "USD"
 msgstr "USD"
 
-#: util.cpp:1061
+#: util.cpp:1071
 msgid "Unable to find currency 'USD', required for converting historical prices"
 msgstr ""
 
-#: util.cpp:1082
+#: util.cpp:1092
 msgid "Unable to parse price in asset history"
 msgstr ""
 
-#: util.cpp:1455 wizard_update.cpp:178
+#: util.cpp:1465 wizard_update.cpp:178
 #, c-format
 msgid "Version: %s"
 msgstr ""
 
-#: util.cpp:1456
+#: util.cpp:1466
 #, c-format
 msgid "Built on: %1$s %2$s"
 msgstr ""
 
-#: util.cpp:1457
+#: util.cpp:1467
 #, c-format
 msgid "Database version: %d"
 msgstr ""
 
-#: util.cpp:1464
+#: util.cpp:1474
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
 msgstr ""
 
-#: util.cpp:1467
+#: util.cpp:1477
 #, c-format
 msgid "Git branch: %s"
 msgstr ""
 
-#: util.cpp:1471
+#: util.cpp:1481
 msgid "MMEX is using the following support products:"
 msgstr ""
 
-#: util.cpp:1488
+#: util.cpp:1498
 msgid "Built with:"
 msgstr "Pastatyta su:"
 
-#: util.cpp:1507
+#: util.cpp:1517
 msgid "Running on:"
 msgstr "Veikia:"
 
-#: util.cpp:1521
+#: util.cpp:1531
 #, c-format
 msgid "System Locale: %s"
 msgstr ""
 
-#: util.cpp:1522
+#: util.cpp:1532
 #, c-format
 msgid "User Interface Language: %s"
 msgstr ""
 
-#: util.cpp:1745
+#: util.cpp:1755
 msgid "The complete list of closed issues is available at this link"
 msgstr ""
 
-#: util.cpp:1902
+#: util.cpp:1912
 msgid "Copy all text to clipboard"
 msgstr ""
 
@@ -8852,15 +8855,15 @@ msgstr "Nauja MMEX versija pasiekiama."
 msgid "MMEX is up to date."
 msgstr ""
 
-#: wizard_update.cpp:323 wizard_update.cpp:337
+#: wizard_update.cpp:324 wizard_update.cpp:338
 msgid "Unable to check for updates!"
 msgstr "Nepavyksta patikrinti, ar yra atnaujinimų!"
 
-#: wizard_update.cpp:324 wizard_update.cpp:338
+#: wizard_update.cpp:325 wizard_update.cpp:339
 msgid "Error: "
 msgstr "Klaida: "
 
-#: wizard_update.cpp:325 wizard_update.cpp:340
+#: wizard_update.cpp:326 wizard_update.cpp:341
 msgid "MMEX Update Check"
 msgstr "MMEX atnaujinimų tikrinimas"
 

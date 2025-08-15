@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-05 17:54+0000\n"
-"PO-Revision-Date: 2025-08-08 01:08\n"
+"POT-Creation-Date: 2025-08-14 13:35+0000\n"
+"PO-Revision-Date: 2025-08-15 01:03\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "Language: be_BY\n"
@@ -55,11 +55,10 @@ msgstr "Уключыць, каб дапамагчы нам праз дасыла
 #: budgetyearentrydialog.cpp:128 constants.cpp:87 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:197 filtertransdialog.cpp:827
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:368
-#: mmSimpleDialogs.cpp:1110 optiondialog.cpp:160 payeedialog.cpp:159
+#: mmSimpleDialogs.cpp:1110 optiondialog.cpp:163 payeedialog.cpp:159
 #: payeedialog.cpp:592 sharetransactiondialog.cpp:358
 #: splittransactionsdialog.cpp:104 splittransactionsdialog.cpp:282
-#: tagdialog.cpp:146 transactionsupdatedialog.cpp:281 transdialog.cpp:610
-#: wizard_update.cpp:212
+#: tagdialog.cpp:146 transactionsupdatedialog.cpp:281 wizard_update.cpp:213
 msgid "&OK "
 msgstr "&Добра "
 
@@ -138,7 +137,7 @@ msgstr "Абярыце, ці часта выкарыстоўваеце гэты 
 #: payeedialog.cpp:115 payeedialog.cpp:458 reports/transactions.cpp:230
 #: sharetransactiondialog.cpp:304 splittransactionsdialog.cpp:95
 #: splittransactionsdialog.cpp:352 stockdialog.cpp:245 stocks_list.cpp:79
-#: transactionsupdatedialog.cpp:256 transdialog.cpp:586
+#: transactionsupdatedialog.cpp:256 transdialog.cpp:587
 #: usertransactionpanel.cpp:212 webappdialog.cpp:145
 msgid "Notes"
 msgstr "Нататкі"
@@ -147,7 +146,7 @@ msgstr "Нататкі"
 msgid "Enter user notes and details about this account."
 msgstr "Напішыце нататкі ды звесткі аб гэтым рахунку."
 
-#: accountdialog.cpp:194 model/Model_Asset.cpp:31 optiondialog.cpp:37
+#: accountdialog.cpp:194 model/Model_Asset.cpp:31 optiondialog.cpp:40
 msgid "Other"
 msgstr "Iншае"
 
@@ -270,8 +269,8 @@ msgstr "Назва рахунка "
 
 #: accountdialog.cpp:507 import_export/qif_export.cpp:633
 #: import_export/qif_import_gui.cpp:248 import_export/univcsvdialog.cpp:109
-#: optionsettingsgeneral.cpp:124 optionsettingsgeneral.cpp:302
-#: reports/htmlbuilder.cpp:245
+#: optionsettingsgeneral.cpp:124 optionsettingsgeneral.cpp:263
+#: reports/htmlbuilder.cpp:246
 msgid "Currency"
 msgstr "Валюта"
 
@@ -285,8 +284,8 @@ msgstr "Калі ласка, пакажыце слушную спасылку"
 
 #: accountdialog.cpp:521 accountdialog.cpp:530 accountdialog.cpp:535
 #: accountdialog.cpp:542 billsdepositsdialog.cpp:1043
-#: billsdepositsdialog.cpp:1046 stockdialog.cpp:413 transdialog.cpp:660
-#: transdialog.cpp:733 usertransactionpanel.cpp:512 webapp.cpp:567
+#: billsdepositsdialog.cpp:1046 stockdialog.cpp:413 transdialog.cpp:662
+#: transdialog.cpp:735 usertransactionpanel.cpp:512 webapp.cpp:567
 msgid "Invalid Date"
 msgstr "Хібная дата"
 
@@ -364,7 +363,7 @@ msgstr ""
 msgid "Visit MMEX forum to read and post comments and for support"
 msgstr ""
 
-#: appstartdialog.cpp:132 wizard_update.cpp:206
+#: appstartdialog.cpp:132 wizard_update.cpp:207
 msgid "&Show this dialog box at startup"
 msgstr "&Паказваць гэта акно падчас старта"
 
@@ -378,7 +377,7 @@ msgid "Open the previously opened database: %s"
 msgstr ""
 
 #: appstartdialog.cpp:208 mmframe.cpp:1879 optionsettingsgeneral.cpp:91
-#: optionsettingsgeneral.cpp:383
+#: optionsettingsgeneral.cpp:340
 msgid "System default"
 msgstr "Прадвызначэнні сістэмы"
 
@@ -386,11 +385,11 @@ msgstr "Прадвызначэнні сістэмы"
 msgid "User Interface Language"
 msgstr ""
 
-#: appstartdialog.cpp:229 mmframe.cpp:4109 optionsettingsgeneral.cpp:373
+#: appstartdialog.cpp:229 mmframe.cpp:4109 optionsettingsgeneral.cpp:330
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Мова дадатка змененая. Аднак ўступіць у моц пры наступным запуску дадатка."
 
-#: appstartdialog.cpp:231 mmframe.cpp:4111 optionsettingsgeneral.cpp:375
+#: appstartdialog.cpp:231 mmframe.cpp:4111 optionsettingsgeneral.cpp:332
 msgid "Language change"
 msgstr "Выбар мовы"
 
@@ -434,7 +433,7 @@ msgstr "Пакажыце назву актыва"
 #: model/Model_CustomField.cpp:30 reports/cashflow.cpp:275
 #: reports/cashflow.cpp:404 reports/incexpenses.cpp:244 reports/summary.cpp:295
 #: reports/transactions.cpp:208 stockdialog.cpp:278 stockdialog.cpp:605
-#: stockspanel.cpp:258 transactionsupdatedialog.cpp:132 transdialog.cpp:435
+#: stockspanel.cpp:258 transactionsupdatedialog.cpp:132 transdialog.cpp:436
 #: usertransactionpanel.cpp:105 webapp.cpp:564 webappdialog.cpp:138
 #: wizard_update.cpp:138
 msgid "Date"
@@ -544,7 +543,7 @@ msgstr "ID"
 #: import_export/qif_import_gui.cpp:247 import_export/univcsvdialog.cpp:105
 #: maincurrencydialog.cpp:263 mmhomepage.cpp:415 reports/incexpenses.cpp:108
 #: reports/transactions.cpp:224 transactionsupdatedialog.cpp:167
-#: transdialog.cpp:474 usertransactionpanel.cpp:139 webappdialog.cpp:141
+#: transdialog.cpp:475 usertransactionpanel.cpp:139 webappdialog.cpp:141
 msgid "Type"
 msgstr "Тып"
 
@@ -593,9 +592,9 @@ msgstr "Спраўдзіце выдаленне актыва"
 msgid "MMEX allows fixed assets like cars, houses, land, and others to be tracked. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr ""
 
-#: assetspanel.cpp:409 assetspanel.h:124 general_report_manager.cpp:1100
+#: assetspanel.cpp:409 assetspanel.h:124 general_report_manager.cpp:1101
 #: mmframe.cpp:220 mmframe.cpp:1993 mmframe.cpp:3650 mmhomepage.cpp:527
-#: mmhomepage.cpp:576 mmhomepagepanel.cpp:235 reports/summary.cpp:266
+#: mmhomepage.cpp:576 mmhomepagepanel.cpp:236 reports/summary.cpp:266
 #: reports/summary.cpp:304
 msgid "Assets"
 msgstr "Актывы"
@@ -710,8 +709,8 @@ msgstr "Кіраванне актывамі"
 #: import_export/qif_import_gui.cpp:87 import_export/qif_import_gui.cpp:159
 #: import_export/qif_import_gui.cpp:241 import_export/univcsvdialog.cpp:106
 #: mmchecking_list.cpp:101 reports/cashflow.cpp:405
-#: reports/transactions.cpp:214 transdialog.cpp:247 transdialog.cpp:251
-#: transdialog.cpp:504 transdialog.cpp:652 usertransactionpanel.cpp:109
+#: reports/transactions.cpp:214 transdialog.cpp:248 transdialog.cpp:252
+#: transdialog.cpp:505 transdialog.cpp:654 usertransactionpanel.cpp:109
 #: webapp.cpp:563 webappdialog.cpp:139
 msgid "Account"
 msgstr "Рахунак"
@@ -1006,7 +1005,7 @@ msgstr "Дазволіць аўтаматычнае выкананне"
 msgid "The requested payment will occur without user interaction"
 msgstr "Аўтавыкананне будзе адбывацца без удзелу карыстальніка"
 
-#: billsdepositsdialog.cpp:476 filtertrans.cpp:187 transdialog.cpp:427
+#: billsdepositsdialog.cpp:476 filtertrans.cpp:187 transdialog.cpp:428
 msgid "Transaction Details"
 msgstr "Дыталі аперацыі"
 
@@ -1018,7 +1017,7 @@ msgstr "Пакажыце дату, калі карыстальніку прап�
 msgid "Date Paid"
 msgstr "Дата аплаты"
 
-#: billsdepositsdialog.cpp:498 filtertransdialog.cpp:663 transdialog.cpp:1331
+#: billsdepositsdialog.cpp:498 filtertransdialog.cpp:663 transdialog.cpp:1328
 msgid "Specify the status for the transaction"
 msgstr "Пакажыце стан аперацыі"
 
@@ -1029,20 +1028,20 @@ msgstr "Пакажыце стан аперацыі"
 #: import_export/qif_import_gui.cpp:270 import_export/univcsvdialog.cpp:104
 #: import_export/univcsvdialog.cpp:513 import_export/univcsvdialog.cpp:523
 #: mmchecking_list.cpp:103 reports/transactions.cpp:218
-#: transactionsupdatedialog.cpp:150 transdialog.cpp:452
+#: transactionsupdatedialog.cpp:150 transdialog.cpp:453
 #: usertransactionpanel.cpp:178 webappdialog.cpp:140 wizard_update.cpp:138
 msgid "Status"
 msgstr "Стан"
 
-#: billsdepositsdialog.cpp:506 transdialog.cpp:1332
+#: billsdepositsdialog.cpp:506 transdialog.cpp:1329
 msgid "Specify the type of transactions to be created."
 msgstr "Пакажыце тып новай аперацыі."
 
-#: billsdepositsdialog.cpp:507 transdialog.cpp:469
+#: billsdepositsdialog.cpp:507 transdialog.cpp:470
 msgid "&Advanced"
 msgstr "&Сума «куды»"
 
-#: billsdepositsdialog.cpp:510 transdialog.cpp:1335
+#: billsdepositsdialog.cpp:510 transdialog.cpp:1332
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Ручное пазначэнне сумы, што будзе пералічаная на рахунак «куды»."
 
@@ -1053,16 +1052,16 @@ msgstr "Ручное пазначэнне сумы, што будзе перал
 #: mmhomepage.cpp:417 reports/cashflow.cpp:408 reports/categexp.cpp:218
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:226
 #: splittransactionsdialog.cpp:88 splittransactionsdialog.cpp:219
-#: transactionsupdatedialog.cpp:186 transdialog.cpp:491
+#: transactionsupdatedialog.cpp:186 transdialog.cpp:492
 #: usertransactionpanel.cpp:143 webappdialog.cpp:144
 msgid "Amount"
 msgstr "Сума"
 
-#: billsdepositsdialog.cpp:532 transdialog.cpp:1317
+#: billsdepositsdialog.cpp:532 transdialog.cpp:1314
 msgid "Specify the transfer amount in the To Account"
 msgstr "Пакажыце суму для рахунка, куды робіцца пераказ"
 
-#: billsdepositsdialog.cpp:543 transdialog.cpp:498
+#: billsdepositsdialog.cpp:543 transdialog.cpp:499
 msgid "Open Calculator"
 msgstr ""
 
@@ -1070,7 +1069,7 @@ msgstr ""
 msgid "Specify the Account that will own the scheduled transaction"
 msgstr ""
 
-#: billsdepositsdialog.cpp:559 transdialog.cpp:244 transdialog.cpp:514
+#: billsdepositsdialog.cpp:559 transdialog.cpp:245 transdialog.cpp:515
 msgid "To"
 msgstr "Куды"
 
@@ -1083,7 +1082,7 @@ msgstr "Куды"
 #: mmchecking_list.cpp:102 model/Model.cpp:28 payeedialog.cpp:83
 #: payeedialog.cpp:207 payeedialog.cpp:243 reports/cashflow.cpp:406
 #: reports/payee.cpp:136 reports/transactions.cpp:216
-#: transactionsupdatedialog.cpp:199 transdialog.cpp:248 transdialog.cpp:523
+#: transactionsupdatedialog.cpp:199 transdialog.cpp:249 transdialog.cpp:524
 #: usertransactionpanel.cpp:182 webappdialog.cpp:142
 msgid "Payee"
 msgstr "Платнік"
@@ -1100,13 +1099,13 @@ msgstr "Платнік"
 #: reports/cashflow.cpp:407 reports/categexp.cpp:217 reports/categexp.cpp:456
 #: reports/transactions.cpp:220 splittransactionsdialog.cpp:81
 #: splittransactionsdialog.cpp:217 transactionsupdatedialog.cpp:223
-#: transdialog.cpp:535 transdialog.cpp:667 usertransactionpanel.cpp:189
+#: transdialog.cpp:536 transdialog.cpp:669 usertransactionpanel.cpp:189
 #: webappdialog.cpp:143
 msgid "Category"
 msgstr "Катыгорыя"
 
-#: billsdepositsdialog.cpp:587 billsdepositsdialog.cpp:1455 transdialog.cpp:541
-#: transdialog.cpp:1294
+#: billsdepositsdialog.cpp:587 billsdepositsdialog.cpp:1455 transdialog.cpp:542
+#: transdialog.cpp:1291
 msgid "Use split Categories"
 msgstr "Распадзяліць агульную суму па розных катыгорыях"
 
@@ -1119,11 +1118,11 @@ msgstr "Распадзяліць агульную суму па розных к�
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:105
 #: reports/transactions.cpp:222 splittransactionsdialog.cpp:221
 #: splittransactionsdialog.cpp:576 transactionsupdatedialog.cpp:234
-#: transactionsupdatedialog.cpp:370 transdialog.cpp:549 transdialog.cpp:648
+#: transactionsupdatedialog.cpp:370 transdialog.cpp:550 transdialog.cpp:650
 msgid "Tags"
 msgstr "Пазнакі"
 
-#: billsdepositsdialog.cpp:604 transdialog.cpp:1333
+#: billsdepositsdialog.cpp:604 transdialog.cpp:1330
 msgid "Specify any associated check number or transaction number"
 msgstr "Пакажыце нумар чэка або нумар аперацыі"
 
@@ -1131,17 +1130,17 @@ msgstr "Пакажыце нумар чэка або нумар аперацыі"
 #: filtertransdialog.cpp:698 filtertransdialog.cpp:1944
 #: import_export/qif_export.cpp:634 import_export/qif_import_gui.cpp:89
 #: import_export/univcsvdialog.cpp:113 mmchecking_list.cpp:100
-#: reports/transactions.cpp:212 transdialog.cpp:562
+#: reports/transactions.cpp:212 transdialog.cpp:563
 #: usertransactionpanel.cpp:208
 msgid "Number"
 msgstr "Нумар"
 
-#: billsdepositsdialog.cpp:613 transdialog.cpp:569 usertransactionpanel.cpp:223
+#: billsdepositsdialog.cpp:613 transdialog.cpp:570 usertransactionpanel.cpp:223
 msgid "Select one of the frequently used notes"
 msgstr "Нататкі, што часта выкарыстоўваюцца"
 
 #: billsdepositsdialog.cpp:619 transactionsupdatedialog.cpp:250
-#: transdialog.cpp:576
+#: transdialog.cpp:577
 msgid "User Colors"
 msgstr "Колеры карыстальніка"
 
@@ -1154,22 +1153,22 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:342 import_export/univcsvdialog.cpp:453
 #: import_export/univcsvdialog.cpp:1351 reports/transactions.cpp:206
 #: transactionsupdatedialog.cpp:247 transactionsupdatedialog.cpp:444
-#: transdialog.cpp:591
+#: transdialog.cpp:592
 msgid "Color"
 msgstr "Колер"
 
-#: billsdepositsdialog.cpp:640 transdialog.cpp:598 transdialog.cpp:1334
+#: billsdepositsdialog.cpp:640 transdialog.cpp:599 transdialog.cpp:1331
 #: usertransactionpanel.cpp:230
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Увядзіце тэкставыя нататкі да гэтай аперацыі."
 
 #: billsdepositsdialog.cpp:657 filtertransdialog.cpp:833
-#: transactionsupdatedialog.cpp:288 transdialog.cpp:614
+#: transactionsupdatedialog.cpp:288 transdialog.cpp:612
 msgid "Show/Hide custom fields window"
 msgstr "Пацказаць ці схаваць вакенца карыстальніцкіх палёў"
 
 #: billsdepositsdialog.cpp:829 billsdepositsdialog.cpp:852
-#: daterangeeditdialog.cpp:80 transdialog.cpp:243 transdialog.cpp:252
+#: daterangeeditdialog.cpp:80 transdialog.cpp:244 transdialog.cpp:253
 msgid "From"
 msgstr "Адкуль"
 
@@ -1182,14 +1181,14 @@ msgid "Looks like a late payment"
 msgstr "Падобнае на тое, што гэта пратэмінаваны плацёж"
 
 #: billsdepositsdialog.cpp:943 transactionsupdatedialog.cpp:350
-#: transdialog.cpp:691
+#: transdialog.cpp:693
 #, c-format
 msgid "Payee name has not been used before. Is the name correct?\n"
 "%s"
 msgstr ""
 
 #: billsdepositsdialog.cpp:944 transactionsupdatedialog.cpp:351
-#: transdialog.cpp:692
+#: transdialog.cpp:694
 msgid "Confirm payee name"
 msgstr "Спраўдзіце імя платніка"
 
@@ -1202,16 +1201,16 @@ msgstr "Спраўдзіце імя платніка"
 #: filtertransdialog.cpp:1101 filtertransdialog.cpp:1111
 #: filtertransdialog.cpp:1120 filtertransdialog.cpp:1127
 #: filtertransdialog.cpp:1133 import_export/univcsvdialog.cpp:1351
-#: optionsettingsgeneral.cpp:302 optionsettingsgeneral.cpp:327
+#: optionsettingsgeneral.cpp:263 optionsettingsgeneral.cpp:288
 #: payeedialog.cpp:202 payeedialog.cpp:207 splittransactionsdialog.cpp:576
 #: transactionsupdatedialog.cpp:370 transactionsupdatedialog.cpp:444
-#: transdialog.cpp:648 transdialog.cpp:652 transdialog.cpp:667 util.cpp:762
+#: transdialog.cpp:650 transdialog.cpp:654 transdialog.cpp:669 util.cpp:772
 msgid "Invalid value"
 msgstr "Хібнае значэнне"
 
 #: billsdepositsdialog.cpp:1043 billsdepositsdialog.cpp:1046
-#: import_export/univcsvdialog.cpp:1424 stockdialog.cpp:413 transdialog.cpp:660
-#: transdialog.cpp:733 usertransactionpanel.cpp:512 webapp.cpp:565
+#: import_export/univcsvdialog.cpp:1424 stockdialog.cpp:413 transdialog.cpp:662
+#: transdialog.cpp:735 usertransactionpanel.cpp:512 webapp.cpp:565
 msgid "The opening date for the account is later than the date of this transaction"
 msgstr "Дата адкрыцця рахунка пазней за дату гэтай аперацыі"
 
@@ -1253,7 +1252,7 @@ msgid "Error"
 msgstr "Памылка"
 
 #: billsdepositsdialog.cpp:1465 splittransactionsdialog.h:80
-#: transdialog.cpp:337 usertransactionpanel.cpp:274
+#: transdialog.cpp:338 usertransactionpanel.cpp:274
 #: usertransactionpanel.cpp:581
 msgid "Split Transaction"
 msgstr "Састаўная аперацыя"
@@ -1266,7 +1265,7 @@ msgstr ""
 msgid "Specify where the transaction is going to"
 msgstr "Пакажыце, куды будзе зробленае пералічэнне"
 
-#: billsdepositsdialog.h:132 transdialog.cpp:1326
+#: billsdepositsdialog.h:132 transdialog.cpp:1323
 msgid "Specify where the transaction is coming from"
 msgstr "Пакажыце адкуль будзе зробленае пералічэнне"
 
@@ -1274,7 +1273,7 @@ msgstr "Пакажыце адкуль будзе зробленае пералі
 msgid "Specify which account the transfer is going to"
 msgstr "Пакажыце рахунак, куды будзе зроблены пераказ"
 
-#: billsdepositsdialog.h:134 transdialog.cpp:1321 usertransactionpanel.cpp:147
+#: billsdepositsdialog.h:134 transdialog.cpp:1318 usertransactionpanel.cpp:147
 msgid "Specify the amount for this transaction"
 msgstr "Пакажыце суму для дадзенай аперацыі"
 
@@ -1327,7 +1326,7 @@ msgid "Tip: These transactions can be set up to activate - allowing the user to 
 msgstr "Падказка: Гэтыя аперацыі можна наладзіць для аўтаматычнай актывацыі, дазваляючы карыстальніку паказаць любыя значэнні ў дату сплаты."
 
 #: billsdepositspanel.cpp:241 billsdepositspanel.cpp:959 mmframe.cpp:3468
-#: mmhomepagepanel.cpp:241
+#: mmhomepagepanel.cpp:242
 msgid "Scheduled Transactions"
 msgstr ""
 
@@ -1768,7 +1767,7 @@ msgstr "У выніку выдалення катыгорыі будуць зн�
 #: customfieldeditdialog.cpp:259 filtertransdialog.cpp:1345
 #: import_export/univcsvdialog.cpp:2187 mmframe.cpp:1387 mmframe.cpp:2652
 #: mmframe.cpp:2719 model/Model_Billsdeposits.cpp:224 payeedialog.cpp:752
-#: tagdialog.cpp:304 transdialog.cpp:751 transdialog.cpp:776
+#: tagdialog.cpp:304 transdialog.cpp:753 transdialog.cpp:778
 msgid "Do you want to continue?"
 msgstr ""
 
@@ -1940,8 +1939,8 @@ msgid "Grouping Char"
 msgstr "Падзяляльнік групаў"
 
 #: currencydialog.cpp:219 mmSimpleDialogs.cpp:839 model/Model_Asset.cpp:40
-#: model/Model_Budget.cpp:28 optionsettingsgeneral.cpp:236
-#: optionsettingsmisc.cpp:120 reports/reportbase.cpp:200
+#: model/Model_Budget.cpp:28 optionsettingstransaction.cpp:64
+#: optionsettingstransaction.cpp:135 reports/reportbase.cpp:200
 msgid "None"
 msgstr "Няма/Ня вызначаны/а"
 
@@ -1999,7 +1998,7 @@ msgstr "(Выкарыстоўваецца лакаль)"
 #: currencydialog.h:48 maincurrencydialog.cpp:366 maincurrencydialog.cpp:437
 #: maincurrencydialog.cpp:662 maincurrencydialog.cpp:787
 #: maincurrencydialog.cpp:811 maincurrencydialog.h:78 mmframe.cpp:1960
-#: mmframe.cpp:2188 optionsettingsgeneral.cpp:310
+#: mmframe.cpp:2188 optionsettingsgeneral.cpp:271
 msgid "Currency Manager"
 msgstr "Дыспетчар валютаў"
 
@@ -2051,7 +2050,7 @@ msgstr "Аўтазапаўненне"
 msgid "Enables autocomplete on custom field"
 msgstr "Увамкнуць аўтазапаўненне карыстальніцкага поля"
 
-#: customfieldeditdialog.cpp:167 optionsettingsview.cpp:268 util.cpp:619
+#: customfieldeditdialog.cpp:167 optionsettingstransaction.cpp:275 util.cpp:629
 msgid "Default"
 msgstr "Па змаўчанні"
 
@@ -2824,7 +2823,7 @@ msgid "Display split transactions as a single row"
 msgstr "Адлюстраваць састаўныя аперацыі на адным радку"
 
 #: filtertransdialog.cpp:796 mmframe.cpp:2028 mmframe.cpp:2203 mmframe.cpp:3141
-#: optiondialog.cpp:220 optiondialog.h:49
+#: optiondialog.cpp:221 optiondialog.h:49
 msgid "Settings"
 msgstr "Налады"
 
@@ -3007,11 +3006,11 @@ msgstr "Сінтаксічная памылка SQL"
 msgid "Load report file:"
 msgstr "Запампаваць файл справаздачы:"
 
-#: general_report_manager.cpp:638 general_report_manager.cpp:1129
+#: general_report_manager.cpp:638 general_report_manager.cpp:1130
 msgid "General Report Manager files (*.grm)"
 msgstr "Файлы дыспетчара справаздачаў (*.grm)"
 
-#: general_report_manager.cpp:638 general_report_manager.cpp:1129
+#: general_report_manager.cpp:638 general_report_manager.cpp:1130
 msgid "ZIP files (*.zip)"
 msgstr "ZIP файлы (*.zip)"
 
@@ -3110,11 +3109,11 @@ msgstr "Справаздача з такой назвай ужо існуе"
 msgid "New Report"
 msgstr "Новая справаздача"
 
-#: general_report_manager.cpp:1126
+#: general_report_manager.cpp:1127
 msgid "Choose file to Save As Report"
 msgstr "Абярыце файл, куды захаваць справаздачу"
 
-#: general_report_manager.cpp:1300
+#: general_report_manager.cpp:1301
 msgid "Parameters:"
 msgstr "Параметры:"
 
@@ -3199,7 +3198,7 @@ msgstr "Табліца"
 msgid "Unable to find Table."
 msgstr ""
 
-#: import_export/parsers.cpp:228 mmframereport.cpp:133
+#: import_export/parsers.cpp:228 mmframereport.cpp:133 optiondialog.cpp:40
 msgid "Transactions"
 msgstr "Аперацыі"
 
@@ -3225,7 +3224,7 @@ msgstr "Параметры"
 msgid "Log"
 msgstr "Справаздача"
 
-#: import_export/qif_export.cpp:136 optionsettingsmisc.cpp:230
+#: import_export/qif_export.cpp:136 optionsettingsmisc.cpp:164
 msgid "CSV"
 msgstr "CSV"
 
@@ -3386,8 +3385,8 @@ msgstr "Дадаць дадзеныя, што супалі, да Нататак"
 #: import_export/univcsvdialog.cpp:1289 import_export/univcsvdialog.cpp:1839
 #: import_export/univcsvdialog.cpp:1841 import_export/univcsvdialog.cpp:1842
 #: import_export/univcsvdialog.cpp:1857 import_export/univcsvdialog.cpp:2085
-#: themes.cpp:235 transdialog.cpp:300 transdialog.cpp:304 transdialog.cpp:310
-#: transdialog.cpp:988 transdialog.cpp:992 transdialog.cpp:999 webapp.cpp:417
+#: themes.cpp:235 transdialog.cpp:301 transdialog.cpp:305 transdialog.cpp:311
+#: transdialog.cpp:990 transdialog.cpp:994 transdialog.cpp:1001 webapp.cpp:417
 #: webapp.cpp:426
 msgid "Unknown"
 msgstr "Невядома"
@@ -3667,7 +3666,7 @@ msgstr "Перасунуць вышэй"
 msgid "Move Down"
 msgstr "Перасунуць ніжэй"
 
-#: import_export/univcsvdialog.cpp:573 optionsettingsmisc.cpp:241
+#: import_export/univcsvdialog.cpp:573 optionsettingsmisc.cpp:175
 msgid "Specify the delimiter to use when importing/exporting CSV files"
 msgstr "Пакажыце, які падзельнік выкарыстоўваць падчас імпарта / экспарта CSV файлаў"
 
@@ -4024,7 +4023,7 @@ msgstr "Немагчыма спампаваць курсы валюты %s"
 msgid "Unable to download history for symbol %s. Historical rates unavailable!"
 msgstr ""
 
-#: maincurrencydialog.cpp:786 optionsettingsgeneral.cpp:309
+#: maincurrencydialog.cpp:786 optionsettingsgeneral.cpp:270
 msgid "Changing base currency will delete all historical rates, proceed?"
 msgstr ""
 
@@ -4037,7 +4036,7 @@ msgstr ""
 msgid "Unable to download history for base symbol %s. Historical rates unavailable!"
 msgstr ""
 
-#: maincurrencydialog.cpp:874 stockspanel.cpp:480 util.cpp:690
+#: maincurrencydialog.cpp:874 stockspanel.cpp:480 util.cpp:700
 msgid "Unable to find base currency symbol!"
 msgstr ""
 
@@ -4652,7 +4651,7 @@ msgid "Locked transaction to date: %s\n\n"
 msgstr "Заблакаваных аперацыяў да сёння: %s\n\n"
 "Узгодненыя аперацыі."
 
-#: mmchecking_list.cpp:2223 transdialog.cpp:753 transdialog.cpp:777
+#: mmchecking_list.cpp:2223 transdialog.cpp:755 transdialog.cpp:779
 msgid "MMEX Transaction Check"
 msgstr "Праверка аперацыяў"
 
@@ -4664,8 +4663,8 @@ msgstr ""
 msgid "Delete all selected transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:301 mmframe.cpp:2183 optionsettingsmisc.cpp:113
-#: transdialog.cpp:181
+#: mmcheckingpanel.cpp:301 mmframe.cpp:2183 optionsettingstransaction.cpp:57
+#: transdialog.cpp:182
 msgid "New Transaction"
 msgstr "Новая аперацыя"
 
@@ -5164,7 +5163,7 @@ msgstr "Ня ўлічваць запланаваныя аперацыі"
 msgid "Show T&ooltips"
 msgstr "Адлюстроўваць &падказкі"
 
-#: mmframe.cpp:1822 optionsettingsview.cpp:128
+#: mmframe.cpp:1822 optionsettingsview.cpp:111
 msgid "Show Tooltips"
 msgstr "Адлюстроўваць падказкі"
 
@@ -5172,7 +5171,7 @@ msgstr "Адлюстроўваць падказкі"
 msgid "Show &Money Tips"
 msgstr "Паказваць парады пра грошы"
 
-#: mmframe.cpp:1829 optionsettingsview.cpp:136
+#: mmframe.cpp:1829 optionsettingsview.cpp:115
 msgid "Show Money Tips"
 msgstr "Паказваць парады пра грошы"
 
@@ -5545,7 +5544,7 @@ msgstr "&Прылады"
 msgid "&View"
 msgstr "&Выгляд"
 
-#: mmframe.cpp:2181 optiondialog.cpp:37
+#: mmframe.cpp:2181 optiondialog.cpp:40
 msgid "Dashboard"
 msgstr "Панэль кіравання"
 
@@ -5879,7 +5878,7 @@ msgid "General Group Report"
 msgstr "Групавая справаздача"
 
 #: mmframereport.cpp:108 mmhomepage.cpp:857 model/Model_Report.cpp:410
-#: reports/bugreport.h:110
+#: reports/bugreport.h:111
 msgid "Caught exception"
 msgstr "Сталася выключэнне"
 
@@ -6041,35 +6040,43 @@ msgstr "Рахункі актываў"
 msgid "Currency Exchange Rates"
 msgstr "Курсы абмена валютаў"
 
-#: mmhomepagepanel.cpp:187
+#: mmhomepagepanel.cpp:188
 msgid "Upcoming Transactions"
 msgstr "Запланаваныя аперацыі"
 
-#: mmpanelbase.cpp:526
-msgid "Hide/Show column"
-msgstr ""
-
-#: mmpanelbase.cpp:527
-msgid "Hide this column"
-msgstr "Схаваць гэты слупок"
-
-#: mmpanelbase.cpp:547
-msgid "Move hidden column"
-msgstr ""
-
-#: mmpanelbase.cpp:549
-msgid "Move column left"
-msgstr ""
-
-#: mmpanelbase.cpp:551
-msgid "Move column right"
-msgstr ""
-
-#: mmpanelbase.cpp:555
+#: mmpanelbase.cpp:529
 msgid "Sort by this column"
 msgstr ""
 
-#: mmpanelbase.cpp:557
+#: mmpanelbase.cpp:533
+msgid "Hide/Show column"
+msgstr ""
+
+#: mmpanelbase.cpp:534
+msgid "Hide this column"
+msgstr "Схаваць гэты слупок"
+
+#: mmpanelbase.cpp:554
+msgid "Move hidden column"
+msgstr ""
+
+#: mmpanelbase.cpp:558
+msgid "Move column to the beginning"
+msgstr ""
+
+#: mmpanelbase.cpp:562
+msgid "Move column left"
+msgstr ""
+
+#: mmpanelbase.cpp:566
+msgid "Move column right"
+msgstr ""
+
+#: mmpanelbase.cpp:570
+msgid "Move column to the end"
+msgstr ""
+
+#: mmpanelbase.cpp:578
 msgid "Reset column widths"
 msgstr ""
 
@@ -6122,7 +6129,7 @@ msgstr "Графік:"
 msgid "Show"
 msgstr "Паказаць"
 
-#: model/Model.cpp:23 optionsettingsgeneral.cpp:215
+#: model/Model.cpp:23 optionsettingstransaction.cpp:114
 msgid "Transaction"
 msgstr "Аперацыя"
 
@@ -6413,27 +6420,27 @@ msgstr ""
 msgid "Year before last"
 msgstr ""
 
-#: optiondialog.cpp:37 optionsettingsattachment.cpp:65 webappdialog.cpp:146
+#: optiondialog.cpp:40 optionsettingsattachment.cpp:65 webappdialog.cpp:146
 msgid "Attachments"
 msgstr "Файлавыя"
 
-#: optiondialog.cpp:37
+#: optiondialog.cpp:40
 msgid "General"
 msgstr "Агульныя"
 
-#: optiondialog.cpp:37
+#: optiondialog.cpp:40
 msgid "Network"
 msgstr "Сеткавыя"
 
-#: optiondialog.cpp:37 optionsettingsview.cpp:72
+#: optiondialog.cpp:40 optionsettingsview.cpp:70
 msgid "View"
 msgstr "Выгляд"
 
-#: optiondialog.cpp:161
+#: optiondialog.cpp:166
 msgid "&Apply "
 msgstr "&Ужыць "
 
-#: optiondialog.cpp:219
+#: optiondialog.cpp:220
 #, c-format
 msgid "%s page has been saved."
 msgstr "%s налады захаваныя."
@@ -6627,48 +6634,16 @@ msgstr ""
 msgid "Specify month for start of financial year"
 msgstr "Пазначце першы месяц фінансавага года"
 
-#: optionsettingsgeneral.cpp:220
-msgid "Use Original Date when Pasting Transactions"
-msgstr "Пакінуць зыходную дату падчас капіявання"
-
-#: optionsettingsgeneral.cpp:222
-msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
-msgstr "Выкарыстоўваць зыходную або бягучую дату аперацыі пасля капіявання і ўстаўкі аперацыі"
-
-#: optionsettingsgeneral.cpp:225
-msgid "Use Original Date when Duplicating Transactions"
-msgstr "Пакінуць зыходную дату падчас дублявання"
-
-#: optionsettingsgeneral.cpp:227
-msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr "Выкарыстоўваць зыходную або бягучую дату аперацыі падчас дублявання"
-
-#: optionsettingsgeneral.cpp:230
-msgid "Use Original State when Duplicating or Pasting Transactions"
-msgstr ""
-
-#: optionsettingsgeneral.cpp:232
-msgid "Select whether to use the original state or default state when duplicating or copy and paste transactions"
-msgstr ""
-
-#: optionsettingsgeneral.cpp:242
-msgid "Transaction Sound"
-msgstr "Гук аперацыі"
-
-#: optionsettingsgeneral.cpp:247
-msgid "Select whether to use sounds when entering transactions"
-msgstr "Ці выкарыстоўваць гукі падчас увода аперацыяў"
-
-#: optionsettingsgeneral.cpp:327
+#: optionsettingsgeneral.cpp:288
 msgid "Locale"
 msgstr "Коды краіны і мовы"
 
-#: optionsettingsgeneral.cpp:356
+#: optionsettingsgeneral.cpp:312
 #, c-format
 msgid "Currency value sample: %s"
 msgstr "Прыклад значэння валюты: %s"
 
-#: optionsettingsgeneral.cpp:361
+#: optionsettingsgeneral.cpp:317
 msgid "Bad locale name"
 msgstr "Хібнае імя лакалі"
 
@@ -6704,105 +6679,57 @@ msgstr ""
 msgid "Select the compounding period for the appreciation/depreciation rate of assets"
 msgstr ""
 
-#: optionsettingsmisc.cpp:121
-msgid "Last Used"
-msgstr "З мінулай аперацыі"
-
-#: optionsettingsmisc.cpp:133
-msgid "Unused"
-msgstr "Не выкарыстоўваецца"
-
-#: optionsettingsmisc.cpp:139
-msgid "Last used for payee"
-msgstr "Апошні выкарыстаны"
-
-#: optionsettingsmisc.cpp:140
-msgid "Use default for payee"
-msgstr "Па змаўчанні для платніка"
-
-#: optionsettingsmisc.cpp:155
-msgid "Yes"
-msgstr "Так"
-
-#: optionsettingsmisc.cpp:156
-msgid "No"
-msgstr "Не"
-
-#: optionsettingsmisc.cpp:165
-msgid "Default Date"
-msgstr "Дата па змаўчанні"
-
-#: optionsettingsmisc.cpp:167
-msgid "Default Payee"
-msgstr "Платнік па змаўчанні"
-
-#: optionsettingsmisc.cpp:169
-msgid "Default Deposit/Withdrawal Category"
-msgstr "Катыгорыя па змаўчанні для спісанняў і ўнескаў"
-
-#: optionsettingsmisc.cpp:171
-msgid "Default Transfer Category"
-msgstr "Катыгорыя па змаўчанні для пераказаў"
-
-#: optionsettingsmisc.cpp:173
-msgid "Default Status"
-msgstr "Стан па змаўчанні"
-
-#: optionsettingsmisc.cpp:175
-msgid "Bulk Transactions"
-msgstr "Шматлікія аперацыі"
-
-#: optionsettingsmisc.cpp:186
+#: optionsettingsmisc.cpp:120
 msgid "Database"
 msgstr ""
 
-#: optionsettingsmisc.cpp:193
+#: optionsettingsmisc.cpp:127
 msgid "Backup database on startup"
 msgstr ""
 
-#: optionsettingsmisc.cpp:195
+#: optionsettingsmisc.cpp:129
 msgid "When MMEX starts,\n"
 "create the backup database: dbFile_start_YYYY-MM-DD.bak"
 msgstr ""
 
-#: optionsettingsmisc.cpp:200
+#: optionsettingsmisc.cpp:134
 msgid "Backup database on exit"
 msgstr "Рызервовае капіраванне базы дадзеных пры выхадзе"
 
-#: optionsettingsmisc.cpp:202
+#: optionsettingsmisc.cpp:136
 msgid "When MMEX shuts down and changes were made to the database,\n"
 "create or update the backup database: dbFile_update_YYYY-MM-DD.bak"
 msgstr ""
 
-#: optionsettingsmisc.cpp:210
+#: optionsettingsmisc.cpp:144
 msgid "Specify max number of backup files"
 msgstr "Пазначце максімальную колькасць рызервовых копіяў"
 
-#: optionsettingsmisc.cpp:213
+#: optionsettingsmisc.cpp:147
 msgid "Max Files"
 msgstr "Ліміт файлаў"
 
-#: optionsettingsmisc.cpp:221
+#: optionsettingsmisc.cpp:155
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
 msgstr "Пазначце колькасць дзён для захавання выдаленых аперацыяў. Аперацыі, што ёсць старэйшыя за гэты перыяд, будуць выдаленыя падчас адчынення базы дадзеных."
 
-#: optionsettingsmisc.cpp:223
+#: optionsettingsmisc.cpp:157
 msgid "Days to retain deleted transactions"
 msgstr "Сколькі дзён захоўваць выдаленыя аперацыі"
 
-#: optionsettingsmisc.cpp:238
+#: optionsettingsmisc.cpp:172
 msgid "Delimiter"
 msgstr "Падзельнік"
 
-#: optionsettingsmisc.cpp:246
+#: optionsettingsmisc.cpp:180
 msgid "Filter"
 msgstr ""
 
-#: optionsettingsmisc.cpp:253
+#: optionsettingsmisc.cpp:187
 msgid "Enable combined transaction filter"
 msgstr ""
 
-#: optionsettingsmisc.cpp:255
+#: optionsettingsmisc.cpp:189
 msgid "Switch to one filter control for date and attributes"
 msgstr ""
 
@@ -6894,181 +6821,249 @@ msgstr "Нестабільная"
 msgid "Updates source"
 msgstr "Крыніцы абнаўленняў"
 
-#: optionsettingsview.cpp:80
-msgid "Accounts Visible"
-msgstr "Паказваць рахункі"
+#: optionsettingstransaction.cpp:65
+msgid "Last Used"
+msgstr "З мінулай аперацыі"
 
-#: optionsettingsview.cpp:93
-msgid "Specify which accounts are visible"
-msgstr "Пазначце, якія рахункі ёсць бачныя"
+#: optionsettingstransaction.cpp:77
+msgid "Unused"
+msgstr "Не выкарыстоўваецца"
 
-#: optionsettingsview.cpp:96
-msgid "Category Delimiter"
-msgstr "Падзяляльнік катыгорыяў"
+#: optionsettingstransaction.cpp:83
+msgid "Last used for payee"
+msgstr "Апошні выкарыстаны"
 
-#: optionsettingsview.cpp:112
-msgid "Do not use color for future transactions"
+#: optionsettingstransaction.cpp:84
+msgid "Use default for payee"
+msgstr "Па змаўчанні для платніка"
+
+#: optionsettingstransaction.cpp:101
+msgid "Default Date"
+msgstr "Дата па змаўчанні"
+
+#: optionsettingstransaction.cpp:103
+msgid "Default Payee"
+msgstr "Платнік па змаўчанні"
+
+#: optionsettingstransaction.cpp:105
+msgid "Default Deposit/Withdrawal Category"
+msgstr "Катыгорыя па змаўчанні для спісанняў і ўнескаў"
+
+#: optionsettingstransaction.cpp:107
+msgid "Default Transfer Category"
+msgstr "Катыгорыя па змаўчанні для пераказаў"
+
+#: optionsettingstransaction.cpp:109
+msgid "Default Status"
+msgstr "Стан па змаўчанні"
+
+#: optionsettingstransaction.cpp:119
+msgid "Use Original Date when Pasting Transactions"
+msgstr "Пакінуць зыходную дату падчас капіявання"
+
+#: optionsettingstransaction.cpp:121
+msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
+msgstr "Выкарыстоўваць зыходную або бягучую дату аперацыі пасля капіявання і ўстаўкі аперацыі"
+
+#: optionsettingstransaction.cpp:124
+msgid "Use Original Date when Duplicating Transactions"
+msgstr "Пакінуць зыходную дату падчас дублявання"
+
+#: optionsettingstransaction.cpp:126
+msgid "Select whether to use the original transaction date or current date when duplicating transactions"
+msgstr "Выкарыстоўваць зыходную або бягучую дату аперацыі падчас дублявання"
+
+#: optionsettingstransaction.cpp:129
+msgid "Use Original State when Duplicating or Pasting Transactions"
 msgstr ""
 
-#: optionsettingsview.cpp:120
-msgid "Emphasize not reconciled transactions"
+#: optionsettingstransaction.cpp:131
+msgid "Select whether to use the original state or default state when duplicating or copy and paste transactions"
 msgstr ""
 
-#: optionsettingsview.cpp:143
+#: optionsettingstransaction.cpp:141
+msgid "Transaction Sound"
+msgstr "Гук аперацыі"
+
+#: optionsettingstransaction.cpp:146
+msgid "Select whether to use sounds when entering transactions"
+msgstr "Ці выкарыстоўваць гукі падчас увода аперацыяў"
+
+#: optionsettingstransaction.cpp:150
 msgid "Transaction/Budget"
 msgstr ""
 
-#: optionsettingsview.cpp:150
+#: optionsettingstransaction.cpp:157
 msgid "View Budgets as Financial Years"
 msgstr "Глядзець бюджэты як фінансавыя гады"
 
-#: optionsettingsview.cpp:158
+#: optionsettingstransaction.cpp:165
 msgid "View Budgets with 'transfer' transactions"
 msgstr "Прагляд з аперацыямі пераказаў"
 
-#: optionsettingsview.cpp:166
+#: optionsettingstransaction.cpp:173
 msgid "View Budget Category Report with Summaries"
 msgstr "Бюджэт па катыгорыях з вынікамі"
 
-#: optionsettingsview.cpp:175
+#: optionsettingstransaction.cpp:182
 msgid "Override yearly budget with monthly budget"
 msgstr "Перазапісаць месячны бюджэт паверх гадавога"
 
-#: optionsettingsview.cpp:178
+#: optionsettingstransaction.cpp:185
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
 msgstr "Калі існуе месячны бюджэт, выкарыстаць яго для перазапісу гадавога бюджэта; у іншым выпадку аб'яднаць іх"
 
-#: optionsettingsview.cpp:185
+#: optionsettingstransaction.cpp:192
 msgid "Subtract monthly budgets from yearly budget in reporting"
 msgstr "Адняць штомесячныя бюджэты ад гадавога бюджэту ў справаздачнасці"
 
-#: optionsettingsview.cpp:188
+#: optionsettingstransaction.cpp:195
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
 "Total estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."
 msgstr "Гадавы бюджэт будзе паменшаны на суму штомесячнага бюджэта.\n"
 "Агульны каштарыс за год будзе прадстаўлены альбо як гадавы бюджэт АБО як сума месячных бюджэтаў, у залежнасці ад таго, што больш."
 
-#: optionsettingsview.cpp:195
+#: optionsettingstransaction.cpp:202
 msgid "Budget Offset (days)"
 msgstr "Зрушэнне бюджэту (дзён)"
 
-#: optionsettingsview.cpp:200
+#: optionsettingstransaction.cpp:207
 msgid "Adjusts the first day of month (normally 1st) for budget calculations"
 msgstr ""
 
-#: optionsettingsview.cpp:204
+#: optionsettingstransaction.cpp:211
 msgid "First Day of Month"
 msgstr ""
 
-#: optionsettingsview.cpp:209
+#: optionsettingstransaction.cpp:216
 msgid "Adjusts the first day of month for reporting"
 msgstr ""
 
-#: optionsettingsview.cpp:213
+#: optionsettingstransaction.cpp:220
 msgid "First Weekday"
 msgstr ""
 
-#: optionsettingsview.cpp:218
+#: optionsettingstransaction.cpp:225
 msgid "Adjusts the first day of week for filtering and reporting"
 msgstr ""
 
-#: optionsettingsview.cpp:223
+#: optionsettingstransaction.cpp:230
 msgid "Ignore Future Transactions"
 msgstr "Ігнараваць аперацыі з датай у будучыні"
 
-#: optionsettingsview.cpp:229
+#: optionsettingstransaction.cpp:236
 msgid "Use 'Time' in transaction recording/reporting"
 msgstr ""
 
-#: optionsettingsview.cpp:234
+#: optionsettingstransaction.cpp:241
 msgid "Transaction Colors"
 msgstr "Колеры аперацыі"
 
-#: optionsettingsview.cpp:273
+#: optionsettingsview.cpp:78
+msgid "Accounts Visible"
+msgstr "Паказваць рахункі"
+
+#: optionsettingsview.cpp:91
+msgid "Specify which accounts are visible"
+msgstr "Пазначце, якія рахункі ёсць бачныя"
+
+#: optionsettingsview.cpp:94
+msgid "Category Delimiter"
+msgstr "Падзяляльнік катыгорыяў"
+
+#: optionsettingsview.cpp:101
+msgid "Do not use color for future transactions"
+msgstr ""
+
+#: optionsettingsview.cpp:105
+msgid "Emphasize not reconciled transactions"
+msgstr ""
+
+#: optionsettingsview.cpp:120
 msgid "User Interface"
 msgstr "Інтырфейс карыстальніка"
 
-#: optionsettingsview.cpp:281
+#: optionsettingsview.cpp:128
 msgid "Style Template"
 msgstr "Шаблон стыля"
 
-#: optionsettingsview.cpp:282
+#: optionsettingsview.cpp:129
 msgid "Open Theme Manager"
 msgstr "Адчыніць Дыспетчар тэмаў"
 
-#: optionsettingsview.cpp:285
+#: optionsettingsview.cpp:132
 msgid "Theme"
 msgstr "Тэма"
 
-#: optionsettingsview.cpp:287
+#: optionsettingsview.cpp:134
 msgid "System"
 msgstr "Сістэмны"
 
-#: optionsettingsview.cpp:288
+#: optionsettingsview.cpp:135
 msgid "Light"
 msgstr "Светлая"
 
-#: optionsettingsview.cpp:289
+#: optionsettingsview.cpp:136
 msgid "Dark"
 msgstr "Цёмная"
 
-#: optionsettingsview.cpp:295
+#: optionsettingsview.cpp:142
 msgid "Specify preferred theme variant to use if supported"
 msgstr "Пакажыце пераважны варыянт тэмы для выкарыстання ў выпадку ягонай падтрымкі"
 
-#: optionsettingsview.cpp:299
+#: optionsettingsview.cpp:146
 msgid "HTML Scale Factor"
 msgstr "Маштаб HTML"
 
-#: optionsettingsview.cpp:317
+#: optionsettingsview.cpp:164
 msgid "Specify which scale factor is used for the report pages"
 msgstr "Пазначце, які маштаб выкарыстоўваць для справаздачаў"
 
-#: optionsettingsview.cpp:320
+#: optionsettingsview.cpp:167
 msgid "Font Size"
 msgstr "Памер шрыфта"
 
-#: optionsettingsview.cpp:322
+#: optionsettingsview.cpp:169
 msgid "Normal"
 msgstr "Звычайны"
 
-#: optionsettingsview.cpp:323
+#: optionsettingsview.cpp:170
 msgid "Enlarged"
 msgstr "Павялічаны"
 
-#: optionsettingsview.cpp:324
+#: optionsettingsview.cpp:171
 msgid "Large"
 msgstr "Вялікі"
 
-#: optionsettingsview.cpp:325
+#: optionsettingsview.cpp:172
 msgid "Huge"
 msgstr "Буйны"
 
-#: optionsettingsview.cpp:338
+#: optionsettingsview.cpp:185
 msgid "Toolbar Icon Size"
 msgstr "Памер значкоў панэлі прыладаў"
 
-#: optionsettingsview.cpp:339
+#: optionsettingsview.cpp:186
 msgid "Navigator Icon Size"
 msgstr ""
 
-#: optionsettingsview.cpp:340
+#: optionsettingsview.cpp:187
 msgid "Others Icon Size"
 msgstr "Памер іншых значкоў"
 
-#: optionsettingsview.cpp:343
+#: optionsettingsview.cpp:190
 msgid "Small (16 px)"
 msgstr "Малы (16 px)"
 
-#: optionsettingsview.cpp:344
+#: optionsettingsview.cpp:191
 msgid "Normal (24 px)"
 msgstr "Звычайны (24 px)"
 
-#: optionsettingsview.cpp:345
+#: optionsettingsview.cpp:192
 msgid "Large (32 px)"
 msgstr "Вялікі (32 px)"
 
-#: optionsettingsview.cpp:346
+#: optionsettingsview.cpp:193
 msgid "Huge (48 px)"
 msgstr "Велізарны (48 px)"
 
@@ -7536,7 +7531,7 @@ msgstr "Перш чым перайсці па спасылцы, перакана
 msgid "Finally, report the bug using the GitHub <a href='%s'>online form</a> opened in a web browser."
 msgstr ""
 
-#: reports/bugreport.h:95
+#: reports/bugreport.h:96
 msgid "Please, follow these instructions before submitting a new bug report:"
 msgstr "Перад адпраўкай новай памылкі, калі ласка, выканайце наступныя дзеянні:"
 
@@ -7617,24 +7612,24 @@ msgstr "Прагноз"
 msgid "Report Generated %1$s %2$s"
 msgstr "Справаздача ёсць сгенераваная %1$s %2$s"
 
-#: reports/htmlbuilder.cpp:215
+#: reports/htmlbuilder.cpp:216
 #, c-format
 msgid "From %1$s till %2$s"
 msgstr "З %1$s па %2$s"
 
-#: reports/htmlbuilder.cpp:217
+#: reports/htmlbuilder.cpp:218
 msgid "Future"
 msgstr "Такія, што яшчэ адбудуцца"
 
-#: reports/htmlbuilder.cpp:220 reports/mmDateRange.cpp:260
+#: reports/htmlbuilder.cpp:221 reports/mmDateRange.cpp:260
 msgid "Over Time"
 msgstr "Увесь час"
 
-#: reports/htmlbuilder.cpp:252
+#: reports/htmlbuilder.cpp:253
 msgid "User specified start day"
 msgstr "Паказаны карыстальнікам першы дзень"
 
-#: reports/htmlbuilder.cpp:259
+#: reports/htmlbuilder.cpp:260
 msgid "Future Transactions have been ignored"
 msgstr "Будучыя аперацыі праігнараваныя"
 
@@ -8246,7 +8241,7 @@ msgstr "Каціроўкі паспяхова абноўленыя"
 msgid "Last updated %s"
 msgstr "Апошняе абнаўленне %s"
 
-#: stockspanel.cpp:486 util.cpp:714 util.cpp:875
+#: stockspanel.cpp:486 util.cpp:724 util.cpp:885
 msgid "Nothing to update"
 msgstr "Няма чаго абнаўляць"
 
@@ -8405,60 +8400,68 @@ msgstr ""
 msgid "Multi Transactions Update"
 msgstr "Абнаўленне некалькіх аперацыяў"
 
-#: transdialog.cpp:182
+#: transdialog.cpp:183
 msgid "Duplicate Transaction"
 msgstr "Зрабіць дублікат аперацыі"
 
-#: transdialog.cpp:183
+#: transdialog.cpp:184
 msgid "Edit Transaction"
 msgstr "Рыдагаваць аперацыю"
 
-#: transdialog.cpp:560
+#: transdialog.cpp:561
 msgid "Populate Transaction #"
 msgstr "Запоўніць нумар аперацыі"
 
-#: transdialog.cpp:581 usertransactionpanel.cpp:216
+#: transdialog.cpp:582 usertransactionpanel.cpp:216
 msgid "Manage transaction attachments"
 msgstr ""
 
-#: transdialog.cpp:751
+#: transdialog.cpp:617
+msgid "&Save"
+msgstr ""
+
+#: transdialog.cpp:619
+msgid "&Save and New"
+msgstr ""
+
+#: transdialog.cpp:753
 #, c-format
 msgid "Lock transaction to date: %s"
 msgstr ""
 
-#: transdialog.cpp:776
+#: transdialog.cpp:778
 msgid "The transaction will exceed the account limit."
 msgstr ""
 
-#: transdialog.cpp:1196
+#: transdialog.cpp:1198
 msgid "The two accounts have different currencies, but no advanced transaction is defined. Is this correct?"
 msgstr ""
 
-#: transdialog.cpp:1197
+#: transdialog.cpp:1199
 msgid "Currencies are different"
 msgstr "Валюты не супадаюць"
 
-#: transdialog.cpp:1312
+#: transdialog.cpp:1309
 msgid "Specify account the money is taken from"
 msgstr "Пазначце рахунак-крыніцу"
 
-#: transdialog.cpp:1313
+#: transdialog.cpp:1310
 msgid "Specify account the money is moved to"
 msgstr "Пазначце рахунак-прызначэнне"
 
-#: transdialog.cpp:1314
+#: transdialog.cpp:1311
 msgid "Specify the transfer amount in the From Account."
 msgstr "Пакажыце суму для рахунка, адкуль робіцца пераказ."
 
-#: transdialog.cpp:1322
+#: transdialog.cpp:1319
 msgid "Specify account for the transaction"
 msgstr "Пакажыце рахунак для дадзенай аперацыі"
 
-#: transdialog.cpp:1324
+#: transdialog.cpp:1321
 msgid "Specify to whom the transaction is going to"
 msgstr "Пакажыце, каму будзе зробленае пералічэнне"
 
-#: transdialog.cpp:1330 usertransactionpanel.cpp:100
+#: transdialog.cpp:1327 usertransactionpanel.cpp:100
 msgid "Specify the date of the transaction"
 msgstr "Пакажыце дату аперацыі"
 
@@ -8522,90 +8525,90 @@ msgstr "Выбар рахунка"
 msgid "UserTransactionPanel"
 msgstr ""
 
-#: util.cpp:747
+#: util.cpp:757
 msgid "Currency rates have been updated"
 msgstr "Курсы валютаў абноўленыя"
 
-#: util.cpp:846 util.cpp:941 util.cpp:947 util.cpp:978 util.cpp:1037
+#: util.cpp:856 util.cpp:951 util.cpp:957 util.cpp:988 util.cpp:1047
 msgid "JSON Parse Error"
 msgstr "Памылка аналіза JSON"
 
-#: util.cpp:986 util.cpp:1045
+#: util.cpp:996 util.cpp:1055
 msgid "Expected response to contain a data or error string"
 msgstr "На запыт чакаўся адказ, што змяшчае радок дадзеных або памылку"
 
-#: util.cpp:1017
+#: util.cpp:1027
 msgid "Unable to find asset for symbol."
 msgstr ""
 
-#: util.cpp:1052
+#: util.cpp:1062
 msgid "Unable to get base currency!"
 msgstr ""
 
-#: util.cpp:1058
+#: util.cpp:1068
 msgid "USD"
 msgstr "USD"
 
-#: util.cpp:1061
+#: util.cpp:1071
 msgid "Unable to find currency 'USD', required for converting historical prices"
 msgstr ""
 
-#: util.cpp:1082
+#: util.cpp:1092
 msgid "Unable to parse price in asset history"
 msgstr ""
 
-#: util.cpp:1455 wizard_update.cpp:178
+#: util.cpp:1465 wizard_update.cpp:178
 #, c-format
 msgid "Version: %s"
 msgstr "Вэрсія: %s"
 
-#: util.cpp:1456
+#: util.cpp:1466
 #, c-format
 msgid "Built on: %1$s %2$s"
 msgstr "Сабрана: %1$s %2$s"
 
-#: util.cpp:1457
+#: util.cpp:1467
 #, c-format
 msgid "Database version: %d"
 msgstr "Вэрсія базы дадзеных: %d"
 
-#: util.cpp:1464
+#: util.cpp:1474
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
 msgstr "Git каміт: %1$s (%2$s)"
 
-#: util.cpp:1467
+#: util.cpp:1477
 #, c-format
 msgid "Git branch: %s"
 msgstr "Галінка Git: %s"
 
-#: util.cpp:1471
+#: util.cpp:1481
 msgid "MMEX is using the following support products:"
 msgstr "MMEX выкарыстоўвае наступныя прадукты:"
 
-#: util.cpp:1488
+#: util.cpp:1498
 msgid "Built with:"
 msgstr "Сабрана з дапамогай:"
 
-#: util.cpp:1507
+#: util.cpp:1517
 msgid "Running on:"
 msgstr "Працуе на:"
 
-#: util.cpp:1521
+#: util.cpp:1531
 #, c-format
 msgid "System Locale: %s"
 msgstr ""
 
-#: util.cpp:1522
+#: util.cpp:1532
 #, c-format
 msgid "User Interface Language: %s"
 msgstr ""
 
-#: util.cpp:1745
+#: util.cpp:1755
 msgid "The complete list of closed issues is available at this link"
 msgstr ""
 
-#: util.cpp:1902
+#: util.cpp:1912
 msgid "Copy all text to clipboard"
 msgstr ""
 
@@ -8867,15 +8870,15 @@ msgstr "Даступная новая вэрсія MMEX."
 msgid "MMEX is up to date."
 msgstr ""
 
-#: wizard_update.cpp:323 wizard_update.cpp:337
+#: wizard_update.cpp:324 wizard_update.cpp:338
 msgid "Unable to check for updates!"
 msgstr "Немагчыма праверыць абнаўленні"
 
-#: wizard_update.cpp:324 wizard_update.cpp:338
+#: wizard_update.cpp:325 wizard_update.cpp:339
 msgid "Error: "
 msgstr "Памылка: "
 
-#: wizard_update.cpp:325 wizard_update.cpp:340
+#: wizard_update.cpp:326 wizard_update.cpp:341
 msgid "MMEX Update Check"
 msgstr "Праверка ці ёсць новыя вэрсіі MMEX"
 
