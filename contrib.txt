@@ -235,6 +235,8 @@ Ralf Müller
 Guillaume Crémer
 Kenneth Hughes
 Ronne Haag
+Michael Salter
+Francisco Javier Hidalgo Cantero
 
 ### 2024
 Renato
