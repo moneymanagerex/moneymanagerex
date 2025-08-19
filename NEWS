@@ -1,3 +1,56 @@
+Version 1.9.1 RC 1
+~~~~~~~~~~~~~~~~~~~~
+Released: 2025-08-18
+
+Features:
+* #7334 Copy sum on click
+* #7604 Enhancement: Context menu option to move columns to beginning/end
+* #7588 Enhancement: Use default status after copy/paste or duplicate
+* #7577 Feature: Unified date range handling
+* #7567 1.9.1 Beta Juli 23 Homepage is displayed incorrectly
+* #7559 Enhancement: Show total in stock transaction list
+* #7558 Feature: Show stock list instead of help page in Stock portfolios
+* #7557 Feature: Emphasize not reconciled transactions
+* #7530 wxWidgets 3.3.0 (now 3.3.1)
+* #7468 Last 1.9.1 Beta doesn't run on Linux
+* #7467 wxWidgets 3.2.8
+* #7445 Warning when re-opening MMEX after a system restart
+* #7441 wxWidgets 3.x STL BUILD
+* #7372 wxWidgets 3.2.7
+* #7363 Self Transfer as Revaluation
+* #7247 Refactor translation macros
+* #7190 Dashboard: No red in negative amounts and Histogram dissappeared
+* #6882 c++17
+* #5124 Update Windows wxWebView to use wxWEBVIEW_BACKEND_EDGE backend
+* #1628 Model_Attachment::REFTYPE_CHOICES
+
+Bugfixes:
+* #7580 Bug: New splits are not added in the split transaction dialog
+* #7568 Transaction form invisible
+* #7546 If you edit a scheduled payment and cancel the attachment, it disappears.
+* #7532 changing budget selection in budget reports has no effect
+* #7485 wxWidgets debug alert triggers when viewing stock panel
+* #7465 System crash deleting quote from historic view of a title
+* #7451 You must use int64 for History Id retrieved from List (otherwise it could be a negative value and lead to memory exception)
+* #7392 Report on new sub-category not showing correct result
+* #7296 MMEX crashes when selecting a specific credit card account
+* #7292 Three languages are not sorted and shown like the other languages
+* #7277 Strange Symbols Appearing in Transaction Date Filters (1.9.1 Beta1)
+* #7272 MMEX crashes when filtering on custom field only in transation report
+* #7271 Transaction Report -> link to transactions broken
+* #7229 Error on using the credit limit feature
+* #7220 Transaction Report crash if tags are selected
+* #7210 Manuually entering the same new tag in Split Transactions will cause a Constraint error
+* #7204 AppVeyor compile errors when building with wxWidgets 3.3.0
+* #7195 Creating scheduled transaction of X days
+* #7194 QIF File import error after updating to 1.9.0
+* #7192 MMEX 1.9.0: MMEX CSV export not working properly
+* #7174 SUID with unique timestamp in milliseconds
+* #6949 Q instead of ctrl+q closes the program
+* #6898 Drop-down list: 1. Remove colon `:`; 2. Replace colon `:` with 1-character ellipsis `…`
+* #5196 Poor icon rendering for different DPIs using wxGenericTreeCtrl
+* #2891 Locked transaction
+
 Version 1.9.1 Beta 1
 ~~~~~~~~~~~~~~~~~~~~
 Released: 2025-02-08
