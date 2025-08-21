@@ -1,16 +1,18 @@
-Version 1.9.1 RC 1
+Version 1.9.1 RC 2
 ~~~~~~~~~~~~~~~~~~~~
-Released: 2025-08-18
+Released: 2025-08-21
 
 Features:
 * #7334 Copy sum on click
+* #7606 Enhancement: Replace bulk transation setting option with dedicated button in transaction dialog
+* #7605 Enhancement: Combine transaction related settings in dedicated panel
 * #7604 Enhancement: Context menu option to move columns to beginning/end
 * #7588 Enhancement: Use default status after copy/paste or duplicate
 * #7577 Feature: Unified date range handling
 * #7567 1.9.1 Beta Juli 23 Homepage is displayed incorrectly
 * #7559 Enhancement: Show total in stock transaction list
-* #7558 Feature: Show stock list instead of help page in Stock portfolios
 * #7557 Feature: Emphasize not reconciled transactions
+* #7539 Improved German translation - removed warnings - small fixes
 * #7530 wxWidgets 3.3.0 (now 3.3.1)
 * #7468 Last 1.9.1 Beta doesn't run on Linux
 * #7467 wxWidgets 3.2.8

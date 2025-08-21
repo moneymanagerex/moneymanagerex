@@ -135,23 +135,23 @@ TransactionListCtrl::TransactionListCtrl(
         m_cp->isAllTrans() ?
             mmThemeMetaColour(meta::COLOR_LISTALT0A) :
             mmThemeMetaColour(meta::COLOR_LISTALT0),
-        wxNullFont
+        GetFont()
     )),
     m_attr2(new wxListItemAttr(
         *bestFontColour(mmThemeMetaColour(meta::COLOR_LIST)),
         mmThemeMetaColour(meta::COLOR_LIST),
-        wxNullFont
+        GetFont()
     )),
     m_attr3(new wxListItemAttr(
         mmThemeMetaColour(meta::COLOR_LISTFUTURE),
         m_cp->isAllTrans() ?
             mmThemeMetaColour(meta::COLOR_LISTALT0A) :
             mmThemeMetaColour(meta::COLOR_LISTALT0),
-        wxNullFont
+        GetFont()
     )),
     m_attr4(new wxListItemAttr(
         mmThemeMetaColour(meta::COLOR_LISTFUTURE),
-        wxNullColour, wxNullFont
+        wxNullColour, GetFont()
     )),
     m_attr5(new wxListItemAttr(
         *bestFontColour(m_cp->isAllTrans() ?
@@ -161,82 +161,82 @@ TransactionListCtrl::TransactionListCtrl(
         m_cp->isAllTrans() ?
             mmThemeMetaColour(meta::COLOR_LISTALT0A) :
             mmThemeMetaColour(meta::COLOR_LISTALT0),
-        wxNullFont.Bold()
+        GetFont().Bold()
     )),
     m_attr6(new wxListItemAttr(
         *bestFontColour(mmThemeMetaColour(meta::COLOR_LIST)),
         mmThemeMetaColour(meta::COLOR_LIST),
-        wxNullFont.Bold()
+        GetFont().Bold()
     )),
     m_attr11(new wxListItemAttr(
         *bestFontColour(mmColors::userDefColor1),
         mmColors::userDefColor1,
-        wxNullFont
+        GetFont()
     )),
     m_attr12(new wxListItemAttr(
         *bestFontColour(mmColors::userDefColor2),
         mmColors::userDefColor2,
-        wxNullFont
+        GetFont()
     )),
     m_attr13(new wxListItemAttr(
         *bestFontColour(mmColors::userDefColor3),
         mmColors::userDefColor3,
-        wxNullFont
+        GetFont()
     )),
     m_attr14(new wxListItemAttr(
         *bestFontColour(mmColors::userDefColor4),
         mmColors::userDefColor4,
-        wxNullFont
+        GetFont()
     )),
     m_attr15(new wxListItemAttr(
         *bestFontColour(mmColors::userDefColor5),
         mmColors::userDefColor5,
-        wxNullFont
+        GetFont()
     )),
     m_attr16(new wxListItemAttr(
         *bestFontColour(mmColors::userDefColor6),
         mmColors::userDefColor6,
-        wxNullFont
+        GetFont()
     )),
     m_attr17(new wxListItemAttr(
         *bestFontColour(mmColors::userDefColor7),
         mmColors::userDefColor7,
-        wxNullFont
+        GetFont()
     )),
     m_attr21(new wxListItemAttr(
         *bestFontColour(mmColors::userDefColor1),
         mmColors::userDefColor1,
-        wxNullFont.Bold()
+        GetFont().Bold()
     )),
     m_attr22(new wxListItemAttr(
         *bestFontColour(mmColors::userDefColor2),
         mmColors::userDefColor2,
-        wxNullFont.Bold()
+        GetFont().Bold()
     )),
     m_attr23(new wxListItemAttr(
         *bestFontColour(mmColors::userDefColor3),
         mmColors::userDefColor3,
-        wxNullFont.Bold()
+        GetFont().Bold()
     )),
     m_attr24(new wxListItemAttr(
         *bestFontColour(mmColors::userDefColor4),
         mmColors::userDefColor4,
-        wxNullFont.Bold()
+        GetFont().Bold()
     )),
     m_attr25(new wxListItemAttr(
         *bestFontColour(mmColors::userDefColor5),
         mmColors::userDefColor5,
-        wxNullFont.Bold()
+        GetFont().Bold()
     )),
     m_attr26(new wxListItemAttr(
         *bestFontColour(mmColors::userDefColor6),
         mmColors::userDefColor6,
-        wxNullFont.Bold()
+        GetFont().Bold()
     )),
     m_attr27(new wxListItemAttr(
         *bestFontColour(mmColors::userDefColor7),
         mmColors::userDefColor7,
-        wxNullFont.Bold()
+        GetFont().Bold()
     ))
 {
     wxASSERT(m_cp);

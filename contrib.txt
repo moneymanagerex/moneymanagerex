@@ -176,6 +176,7 @@ phira 	 [phira]
 
 ### German
 Renato 	 [Renato]
+Klaus Wich   [KWich]
 
 ### Hungarian
 Toroka 	 [Toroka]
@@ -237,6 +238,7 @@ Kenneth Hughes
 Ronne Haag
 Michael Salter
 Francisco Javier Hidalgo Cantero
+Austin Green
 
 ### 2024
 Renato
