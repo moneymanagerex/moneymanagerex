@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-14 13:35+0000\n"
-"PO-Revision-Date: 2025-08-15 01:03\n"
+"POT-Creation-Date: 2025-08-15 07:53+0000\n"
+"PO-Revision-Date: 2025-08-22 00:58\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -2167,19 +2167,19 @@ msgstr "&Inhoud in bulk bijwerken "
 
 #: daterangedialog.cpp:52
 msgid "Manage date ranges"
-msgstr ""
+msgstr "Beheer datumbereik"
 
 #: daterangedialog.cpp:101
 msgid "Top"
-msgstr ""
+msgstr "Bovenaan"
 
 #: daterangedialog.cpp:110
 msgid "Edit"
-msgstr ""
+msgstr "Bewerk"
 
 #: daterangedialog.cpp:118
 msgid "Bottom"
-msgstr ""
+msgstr "Onderaan"
 
 #: daterangedialog.cpp:124 mmframe.cpp:2177 mmframe.cpp:2183
 msgid "New"
@@ -2191,28 +2191,29 @@ msgstr "Verwijder"
 
 #: daterangedialog.cpp:133 daterangeeditdialog.cpp:104
 msgid "Save"
-msgstr ""
+msgstr "Opslaan"
 
 #: daterangedialog.cpp:134
 msgid "Restore default ranges"
-msgstr ""
+msgstr "Standaardbereik herstellen"
 
 #: daterangedialog.cpp:227
 msgid "Do you want to delete the selected date range?"
-msgstr ""
+msgstr "Wilt u het geselecteerde datumbereik verwijderen?"
 
 #: daterangedialog.cpp:228
 msgid "Delete date range"
-msgstr ""
+msgstr "Verwijder datumbereik"
 
 #: daterangedialog.cpp:294
 msgid "Do you really want to restore the default ranges?\n\n"
 "All customization will be lost!"
-msgstr ""
+msgstr "Wilt u echt het standaard bereik herstellen?\n\n"
+"Alle aanpassingen zullen verloren gaan!"
 
 #: daterangedialog.cpp:295
 msgid "Default date ranges"
-msgstr ""
+msgstr "Standaard datumbereik"
 
 #: daterangedialog.h:53 mmcheckingpanel.cpp:1175 mmreportspanel.cpp:910
 msgid "More date ranges…"
@@ -2220,11 +2221,11 @@ msgstr "Meer datumbereiken…"
 
 #: daterangeeditdialog.cpp:47
 msgid "Edit date range"
-msgstr ""
+msgstr "Bewerk datumbereik"
 
 #: daterangeeditdialog.cpp:47
 msgid "New date range"
-msgstr ""
+msgstr "Nieuw datumbereik"
 
 #: daterangeeditdialog.cpp:60 filtertransdialog.cpp:58 option.cpp:38
 msgid "Year"
@@ -2232,7 +2233,7 @@ msgstr "Jaar"
 
 #: daterangeeditdialog.cpp:61
 msgid "Quarter"
-msgstr ""
+msgstr "Kwartaal"
 
 #: daterangeeditdialog.cpp:62 filtertransdialog.cpp:58 option.cpp:37
 msgid "Month"
@@ -2248,39 +2249,39 @@ msgstr "Vandaag"
 
 #: daterangeeditdialog.cpp:65
 msgid "Statement date"
-msgstr ""
+msgstr "Datum afschrift"
 
 #: daterangeeditdialog.cpp:72
 msgid "Name:"
-msgstr ""
+msgstr "Naam:"
 
 #: daterangeeditdialog.cpp:79
 msgid "Range:"
-msgstr ""
+msgstr "Bereik:"
 
 #: daterangeeditdialog.cpp:86
 msgid " to "
-msgstr ""
+msgstr " tot "
 
 #: daterangeeditdialog.cpp:95
 msgid "Range code:"
-msgstr ""
+msgstr "Bereik code:"
 
 #: daterangeeditdialog.cpp:126
 msgid "Range is ok:"
-msgstr ""
+msgstr "Bereik is oké:"
 
 #: daterangeeditdialog.cpp:133 daterangeeditdialog.cpp:148
 msgid "Invalid date range definition"
-msgstr ""
+msgstr "Ongeldige definitie van datumbereik"
 
 #: daterangeeditdialog.cpp:144
 msgid "Name must not be empty"
-msgstr ""
+msgstr "Naam mag niet leeg zijn"
 
 #: daterangeeditdialog.cpp:158
 msgid "Definition error"
-msgstr ""
+msgstr "Definitie fout"
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Bills"
@@ -2836,7 +2837,7 @@ msgstr "Verwijder de huidige Sjabloon selectie"
 
 #: filtertransdialog.cpp:842
 msgid "&Reset "
-msgstr ""
+msgstr "&Reset "
 
 #: filtertransdialog.cpp:1027
 #, c-format
@@ -4627,7 +4628,7 @@ msgstr "MMEX Transactie controle"
 
 #: mmcheckingpanel.cpp:233
 msgid "Filter…"
-msgstr ""
+msgstr "Filter…"
 
 #: mmcheckingpanel.cpp:297
 msgid "Delete all selected transactions"
@@ -4689,7 +4690,7 @@ msgstr "Investering: "
 #: mmcheckingpanel.cpp:447 mmcheckingpanel.cpp:1244 mmreportspanel.cpp:103
 #: mmreportspanel.cpp:949
 msgid "Date range"
-msgstr ""
+msgstr "Datumbereik"
 
 #: mmcheckingpanel.cpp:465
 msgid "Advanced filter"
@@ -4720,7 +4721,7 @@ msgstr "Dagen tussen geselecteerde transacties: %d"
 
 #: mmcheckingpanel.cpp:1153
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
-msgstr ""
+msgstr "Geplande transacties zijn niet beschikbaar, omdat het huidige filter eindigt in het verleden"
 
 #: mmcheckingpanel.cpp:1154
 msgid "Unable to show scheduled transactions because the current filter choice extends into the future without limit."
@@ -4736,7 +4737,7 @@ msgstr "Klik om geplande transacties te verbergen."
 
 #: mmcheckingpanel.cpp:1184 mmreportspanel.cpp:917
 msgid "Edit date ranges…"
-msgstr ""
+msgstr "Bewerk datumbereik…"
 
 #: mmcheckingpanel.cpp:1188
 msgid "Advanced filter…"
@@ -5268,11 +5269,11 @@ msgstr "Thema beheer"
 
 #: mmframe.cpp:2002
 msgid "Date Range Manager"
-msgstr ""
+msgstr "Datum Bereik Manager"
 
 #: mmframe.cpp:2002
 msgid "Date Range Manager…"
-msgstr ""
+msgstr "Datum Bereik Manager…"
 
 #: mmframe.cpp:2007
 msgid "Tra&nsaction Report…"
@@ -5844,7 +5845,7 @@ msgstr "Bestand %s niet gevonden."
 msgid "General Group Report"
 msgstr "Algemeen Groepsrapport"
 
-#: mmframereport.cpp:108 mmhomepage.cpp:857 model/Model_Report.cpp:410
+#: mmframereport.cpp:108 mmhomepage.cpp:857 model/Model_Report.cpp:411
 #: reports/bugreport.h:111
 msgid "Caught exception"
 msgstr "Uitzondering vastgesteld"
@@ -6029,7 +6030,7 @@ msgstr "Verplaats verborgen kolom"
 
 #: mmpanelbase.cpp:558
 msgid "Move column to the beginning"
-msgstr ""
+msgstr "Kolom naar het begin verplaatsen"
 
 #: mmpanelbase.cpp:562
 msgid "Move column left"
@@ -6041,7 +6042,7 @@ msgstr "Verplaats kolom naar rechts"
 
 #: mmpanelbase.cpp:570
 msgid "Move column to the end"
-msgstr ""
+msgstr "Kolom naar het einde verplaatsen"
 
 #: mmpanelbase.cpp:578
 msgid "Reset column widths"
@@ -6053,7 +6054,7 @@ msgstr "Rapport"
 
 #: mmreportspanel.cpp:313
 msgid "Period…"
-msgstr ""
+msgstr "Periode…"
 
 #: mmreportspanel.cpp:323
 msgid "Period:"
@@ -6849,11 +6850,11 @@ msgstr "Selecteer of u de originele transactiedatum of de huidige datum wilt geb
 
 #: optionsettingstransaction.cpp:129
 msgid "Use Original State when Duplicating or Pasting Transactions"
-msgstr ""
+msgstr "Gebruik Originele Status bij Dupliceren of Plakken van Transacties"
 
 #: optionsettingstransaction.cpp:131
 msgid "Select whether to use the original state or default state when duplicating or copy and paste transactions"
-msgstr ""
+msgstr "Selecteer of de originele status of standaard status gebruikt moet worden bij het dupliceren of kopiëren en plakken van transacties"
 
 #: optionsettingstransaction.cpp:141
 msgid "Transaction Sound"
@@ -8391,11 +8392,11 @@ msgstr "Beheer transactie bijlagen"
 
 #: transdialog.cpp:617
 msgid "&Save"
-msgstr ""
+msgstr "&Opslaan"
 
 #: transdialog.cpp:619
 msgid "&Save and New"
-msgstr ""
+msgstr "&Opslaan en Nieuw"
 
 #: transdialog.cpp:753
 #, c-format

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-14 13:35+0000\n"
-"PO-Revision-Date: 2025-08-15 01:03\n"
+"POT-Creation-Date: 2025-08-15 07:53+0000\n"
+"PO-Revision-Date: 2025-08-22 00:58\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -5848,7 +5848,7 @@ msgstr "Le fichier %s n'a pas été trouvé."
 msgid "General Group Report"
 msgstr "Rapports généraux"
 
-#: mmframereport.cpp:108 mmhomepage.cpp:857 model/Model_Report.cpp:410
+#: mmframereport.cpp:108 mmhomepage.cpp:857 model/Model_Report.cpp:411
 #: reports/bugreport.h:111
 msgid "Caught exception"
 msgstr "Une exception a été reçue"
@@ -8774,7 +8774,7 @@ msgstr "Les portefeuilles et les comptes de titres sont spécialisés dans la ge
 
 #: wizard_newaccount.cpp:150
 msgid "Term and asset accounts are specialized bank accounts. They are intended for monitoring assets or term deposits and bonds where typically regular money goes in and comes out, outside the general income stream."
-msgstr ""
+msgstr "Les comptes à terme et d'actifs sont des comptes bancaires spécialisés. Ils ont pour objet de surveiller les capitaux et dépôts à terme sur lesquels on peut typiquement avoir des entrées et sorties régulières d'argent, en dehors du flux général des revenus."
 
 #: wizard_newaccount.cpp:166
 msgid "Base Account Currency Not set."

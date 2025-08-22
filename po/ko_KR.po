@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-14 13:35+0000\n"
-"PO-Revision-Date: 2025-08-15 01:03\n"
+"POT-Creation-Date: 2025-08-15 07:53+0000\n"
+"PO-Revision-Date: 2025-08-22 00:58\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -5830,7 +5830,7 @@ msgstr "%s 파일을 찾을 수 없습니다."
 msgid "General Group Report"
 msgstr "일반 그룹 보고서"
 
-#: mmframereport.cpp:108 mmhomepage.cpp:857 model/Model_Report.cpp:410
+#: mmframereport.cpp:108 mmhomepage.cpp:857 model/Model_Report.cpp:411
 #: reports/bugreport.h:111
 msgid "Caught exception"
 msgstr "예외 발생"
@@ -8376,7 +8376,7 @@ msgstr "거래 첨부 파일 관리"
 
 #: transdialog.cpp:617
 msgid "&Save"
-msgstr ""
+msgstr "저장(&S) "
 
 #: transdialog.cpp:619
 msgid "&Save and New"
