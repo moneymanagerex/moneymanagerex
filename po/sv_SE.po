@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-14 13:35+0000\n"
-"PO-Revision-Date: 2025-08-15 01:03\n"
+"POT-Creation-Date: 2025-08-15 07:53+0000\n"
+"PO-Revision-Date: 2025-08-22 00:59\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -2159,19 +2159,19 @@ msgstr ""
 
 #: daterangedialog.cpp:52
 msgid "Manage date ranges"
-msgstr ""
+msgstr "Hantera datumintervall"
 
 #: daterangedialog.cpp:101
 msgid "Top"
-msgstr ""
+msgstr "Övre"
 
 #: daterangedialog.cpp:110
 msgid "Edit"
-msgstr ""
+msgstr "Redigera"
 
 #: daterangedialog.cpp:118
 msgid "Bottom"
-msgstr ""
+msgstr "Nere"
 
 #: daterangedialog.cpp:124 mmframe.cpp:2177 mmframe.cpp:2183
 msgid "New"
@@ -2183,28 +2183,29 @@ msgstr "Radera"
 
 #: daterangedialog.cpp:133 daterangeeditdialog.cpp:104
 msgid "Save"
-msgstr ""
+msgstr "Spara"
 
 #: daterangedialog.cpp:134
 msgid "Restore default ranges"
-msgstr ""
+msgstr "Återställ standardintervall"
 
 #: daterangedialog.cpp:227
 msgid "Do you want to delete the selected date range?"
-msgstr ""
+msgstr "Vill du ta bort det valda datumintervallet?"
 
 #: daterangedialog.cpp:228
 msgid "Delete date range"
-msgstr ""
+msgstr "Ta bort datumintervall"
 
 #: daterangedialog.cpp:294
 msgid "Do you really want to restore the default ranges?\n\n"
 "All customization will be lost!"
-msgstr ""
+msgstr "Vill du verkligen återställa standardintervallen?\n\n"
+"Alla anpassningar kommer att gå förlorade!"
 
 #: daterangedialog.cpp:295
 msgid "Default date ranges"
-msgstr ""
+msgstr "Standard datumintervall"
 
 #: daterangedialog.h:53 mmcheckingpanel.cpp:1175 mmreportspanel.cpp:910
 msgid "More date ranges…"
@@ -2212,11 +2213,11 @@ msgstr "Fler datumintervall…"
 
 #: daterangeeditdialog.cpp:47
 msgid "Edit date range"
-msgstr ""
+msgstr "Redigera datumintervall"
 
 #: daterangeeditdialog.cpp:47
 msgid "New date range"
-msgstr ""
+msgstr "Nytt datumintervall"
 
 #: daterangeeditdialog.cpp:60 filtertransdialog.cpp:58 option.cpp:38
 msgid "Year"
@@ -2224,7 +2225,7 @@ msgstr "År"
 
 #: daterangeeditdialog.cpp:61
 msgid "Quarter"
-msgstr ""
+msgstr "Kvartal"
 
 #: daterangeeditdialog.cpp:62 filtertransdialog.cpp:58 option.cpp:37
 msgid "Month"
@@ -2244,35 +2245,35 @@ msgstr ""
 
 #: daterangeeditdialog.cpp:72
 msgid "Name:"
-msgstr ""
+msgstr "Namn:"
 
 #: daterangeeditdialog.cpp:79
 msgid "Range:"
-msgstr ""
+msgstr "Intervall:"
 
 #: daterangeeditdialog.cpp:86
 msgid " to "
-msgstr ""
+msgstr " till "
 
 #: daterangeeditdialog.cpp:95
 msgid "Range code:"
-msgstr ""
+msgstr "Intervallkod:"
 
 #: daterangeeditdialog.cpp:126
 msgid "Range is ok:"
-msgstr ""
+msgstr "Intervall är ok:"
 
 #: daterangeeditdialog.cpp:133 daterangeeditdialog.cpp:148
 msgid "Invalid date range definition"
-msgstr ""
+msgstr "Ogiltig definition av datumintervall"
 
 #: daterangeeditdialog.cpp:144
 msgid "Name must not be empty"
-msgstr ""
+msgstr "Namnet får inte vara tomt"
 
 #: daterangeeditdialog.cpp:158
 msgid "Definition error"
-msgstr ""
+msgstr "Definitionsfel"
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Bills"
@@ -2827,7 +2828,7 @@ msgstr "Ta bort aktuellt förval"
 
 #: filtertransdialog.cpp:842
 msgid "&Reset "
-msgstr ""
+msgstr "&Nollställ "
 
 #: filtertransdialog.cpp:1027
 #, c-format
@@ -4617,7 +4618,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:233
 msgid "Filter…"
-msgstr ""
+msgstr "Filter…"
 
 #: mmcheckingpanel.cpp:297
 msgid "Delete all selected transactions"
@@ -4679,7 +4680,7 @@ msgstr "Investerade: "
 #: mmcheckingpanel.cpp:447 mmcheckingpanel.cpp:1244 mmreportspanel.cpp:103
 #: mmreportspanel.cpp:949
 msgid "Date range"
-msgstr ""
+msgstr "Datumintervall"
 
 #: mmcheckingpanel.cpp:465
 msgid "Advanced filter"
@@ -4710,7 +4711,7 @@ msgstr "Dagar mellan valda transaktioner: %d"
 
 #: mmcheckingpanel.cpp:1153
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
-msgstr ""
+msgstr "Schemalagda transaktioner är inte tillgängliga, eftersom det aktuella filtret slutar i det förflutna"
 
 #: mmcheckingpanel.cpp:1154
 msgid "Unable to show scheduled transactions because the current filter choice extends into the future without limit."
@@ -4726,7 +4727,7 @@ msgstr "Klicka för att dölja schemalagda transaktioner."
 
 #: mmcheckingpanel.cpp:1184 mmreportspanel.cpp:917
 msgid "Edit date ranges…"
-msgstr ""
+msgstr "Redigera datumintervall…"
 
 #: mmcheckingpanel.cpp:1188
 msgid "Advanced filter…"
@@ -5257,11 +5258,11 @@ msgstr "Temahanterare"
 
 #: mmframe.cpp:2002
 msgid "Date Range Manager"
-msgstr ""
+msgstr "Hanterare för datumintervall"
 
 #: mmframe.cpp:2002
 msgid "Date Range Manager…"
-msgstr ""
+msgstr "Hanterare för datumintervall…"
 
 #: mmframe.cpp:2007
 msgid "Tra&nsaction Report…"
@@ -5823,7 +5824,7 @@ msgstr "Filen %s hittades inte."
 msgid "General Group Report"
 msgstr ""
 
-#: mmframereport.cpp:108 mmhomepage.cpp:857 model/Model_Report.cpp:410
+#: mmframereport.cpp:108 mmhomepage.cpp:857 model/Model_Report.cpp:411
 #: reports/bugreport.h:111
 msgid "Caught exception"
 msgstr "Fångat undantag"
@@ -6032,7 +6033,7 @@ msgstr "Rapport"
 
 #: mmreportspanel.cpp:313
 msgid "Period…"
-msgstr ""
+msgstr "Period…"
 
 #: mmreportspanel.cpp:323
 msgid "Period:"
@@ -6673,15 +6674,15 @@ msgstr "Separator"
 
 #: optionsettingsmisc.cpp:180
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: optionsettingsmisc.cpp:187
 msgid "Enable combined transaction filter"
-msgstr ""
+msgstr "Aktivera kombinerat transaktionsfilter"
 
 #: optionsettingsmisc.cpp:189
 msgid "Switch to one filter control for date and attributes"
-msgstr ""
+msgstr "Växla till en filterkontroll för datum och attribut"
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp"

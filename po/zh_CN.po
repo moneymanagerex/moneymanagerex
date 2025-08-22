@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-14 13:35+0000\n"
-"PO-Revision-Date: 2025-08-15 01:03\n"
+"POT-Creation-Date: 2025-08-15 07:53+0000\n"
+"PO-Revision-Date: 2025-08-22 00:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -5831,7 +5831,7 @@ msgstr "未找到文件 %s。"
 msgid "General Group Report"
 msgstr "常规组报告"
 
-#: mmframereport.cpp:108 mmhomepage.cpp:857 model/Model_Report.cpp:410
+#: mmframereport.cpp:108 mmhomepage.cpp:857 model/Model_Report.cpp:411
 #: reports/bugreport.h:111
 msgid "Caught exception"
 msgstr "捕获异常"

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-14 13:35+0000\n"
-"PO-Revision-Date: 2025-08-15 01:03\n"
+"POT-Creation-Date: 2025-08-15 07:53+0000\n"
+"PO-Revision-Date: 2025-08-22 00:58\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -5853,7 +5853,7 @@ msgstr "File %s non trovato."
 msgid "General Group Report"
 msgstr "Resoconto Gruppo Generale"
 
-#: mmframereport.cpp:108 mmhomepage.cpp:857 model/Model_Report.cpp:410
+#: mmframereport.cpp:108 mmhomepage.cpp:857 model/Model_Report.cpp:411
 #: reports/bugreport.h:111
 msgid "Caught exception"
 msgstr "Errore di acquisizione"
@@ -6936,7 +6936,7 @@ msgstr "Ignora Transazioni Future"
 
 #: optionsettingstransaction.cpp:236
 msgid "Use 'Time' in transaction recording/reporting"
-msgstr "Usa 'Data' nella registrazione/segnalazione delle transazioni"
+msgstr "Usa 'Ora' nella registrazione/segnalazione delle transazioni"
 
 #: optionsettingstransaction.cpp:241
 msgid "Transaction Colors"
@@ -7463,7 +7463,7 @@ msgstr "Est."
 
 #: reports/bugreport.h:56
 msgid "Bug Report"
-msgstr "Segnala un bug"
+msgstr "Segnalazione di errore"
 
 #: reports/bugreport.h:68
 msgid "Replace this text (marked with >) with detailed description of the problem."
