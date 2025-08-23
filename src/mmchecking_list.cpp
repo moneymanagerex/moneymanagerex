@@ -724,7 +724,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
 
         menu.AppendSeparator();
 
-        menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL("&Edit Transaction…", "&Edit Transactions…", selected));
+        menu.Append(MENU_TREEPOPUP_EDIT2, (1 == selected) ? _tu("&Edit Transaction…") : _tu("&Edit Transactions…"));
         if (is_nothing_selected)
             menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
@@ -751,7 +751,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
         if (is_nothing_selected || multiselect)
             menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
 
-        menu.Append(MENU_TREEPOPUP_MOVE2, wxPLURAL("&Move Transaction…", "&Move Transactions…", selected));
+        menu.Append(MENU_TREEPOPUP_MOVE2, (1 == selected) ? _tu("&Move Transaction…") : _tu("&Move Transactions…"));
         if (is_nothing_selected || type_transfer || (Model_Account::money_accounts_num() < 2) || is_foreign)
             menu.Enable(MENU_TREEPOPUP_MOVE2, false);
 
