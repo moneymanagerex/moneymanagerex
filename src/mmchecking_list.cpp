@@ -90,7 +90,7 @@ wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
         MENU_ON_SET_UDC7,
         TransactionListCtrl::onSetUserColour
     )
-wxEND_EVENT_TABLE();
+wxEND_EVENT_TABLE()
 
 const std::vector<ListColumnInfo> TransactionListCtrl::LIST_INFO = {
     { LIST_ID_ICON,        true, _n("Icon"),         25,  _FC, false },
@@ -1121,22 +1121,25 @@ void TransactionListCtrl::onNewTransaction(wxCommandEvent& event)
 
 void TransactionListCtrl::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 {
-    // check if any transactions selected
-    int sel = GetSelectedItemCount();
+    // Check if any transactions selected
+    const int sel = GetSelectedItemCount();
     if (sel < 1) return;
 
     findSelectedTransactions();
     int retainDays = Model_Setting::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30);
 
-    //ask if they want to delete
-    wxString text = (m_cp->isDeletedTrans() || retainDays == 0)?
+    // Ask if they want to delete
+    const bool isPermanent = (m_cp->isDeletedTrans() || retainDays == 0);
+    const wxString permText =
         wxString::Format(wxPLURAL("Do you want to permanently delete the selected transaction?"
-        , "Do you want to permanently delete the %i selected transactions?", sel)
-        , sel)
-        :
+                                , "Do you want to permanently delete the %i selected transactions?", sel)
+                                , sel);
+    const wxString nonPermText =
         wxString::Format(wxPLURAL("Do you want to delete the selected transaction?"
-            , "Do you want to delete the %i selected transactions?", sel)
-            , sel);
+                                , "Do you want to delete the %i selected transactions?", sel)
+                                , sel);
+
+    wxString text = isPermanent ? permText : nonPermText;
     text += "\n\n";
     text += ((m_cp->isDeletedTrans() || retainDays == 0) ? _t("Unable to undo this action.")
         : _t("Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."));

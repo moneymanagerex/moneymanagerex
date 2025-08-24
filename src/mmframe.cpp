@@ -3854,43 +3854,49 @@ void mmGUIFrame::OnHideDeletedTransactions(wxCommandEvent& WXUNUSED(event))
 void mmGUIFrame::RefreshNavigationTree()
 {
     // Save currently selected item data
-    mmTreeItemData* iData = nullptr;
+    std::unique_ptr<mmTreeItemData> dataObj;
     wxString sectionName;
     wxTreeItemId selection = m_nav_tree_ctrl->GetSelection();
     if (selection.IsOk() && selectedItemData_) {
-        iData = new mmTreeItemData(*selectedItemData_);
+        dataObj.reset(new mmTreeItemData(*selectedItemData_));
         // also save current section
         wxTreeItemId parentID = m_nav_tree_ctrl->GetItemParent(selection);
         if (parentID.IsOk() && parentID != m_nav_tree_ctrl->GetRootItem())
             sectionName = m_nav_tree_ctrl->GetItemText(parentID);
     }
     DoRecreateNavTreeControl();
+
     // Find and reselect the previously selected item
-    if (iData) {
-        // search for the item first under the selected section
+    if (dataObj) {
+        // Search for the item first under the selected section
         wxTreeItemId navTreeID = sectionName.empty() ? m_nav_tree_ctrl->GetRootItem() :
             getNavTreeChild(m_nav_tree_ctrl->GetRootItem(), sectionName);
-        if (navTreeID.IsOk())
-            navTreeID = findItemByData(navTreeID, *iData);
+        if (navTreeID.IsOk()){
+            navTreeID = findItemByData(navTreeID, dataObj);
+        }
+
         // if we didn't find it search all nodes from root
-        if (!navTreeID.IsOk())
-            navTreeID = findItemByData(m_nav_tree_ctrl->GetRootItem(), *iData);
+        if (!navTreeID.IsOk()) {
+            navTreeID = findItemByData(m_nav_tree_ctrl->GetRootItem(), dataObj);
+        }
+
         if (navTreeID.IsOk()) {
             m_nav_tree_ctrl->EnsureVisible(navTreeID);
             m_nav_tree_ctrl->SelectItem(navTreeID);
         }
-        delete(iData);
     }
 }
 
-wxTreeItemId mmGUIFrame::findItemByData(wxTreeItemId itemId, mmTreeItemData& searchData)
+wxTreeItemId mmGUIFrame::findItemByData(wxTreeItemId itemId, std::unique_ptr<mmTreeItemData> &searchData)
 {
     // Check if the current item's data matches the search data
     if (itemId.IsOk())
         return wxTreeItemId();
     if (m_nav_tree_ctrl->GetItemData(itemId)) {
-        if (*dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(itemId)) == searchData)
+        mmTreeItemData *treeObjPtr = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(itemId));
+        if(treeObjPtr && (*treeObjPtr == *searchData)) {
             return itemId;
+        }
     }
 
     wxTreeItemIdValue searchCookie;
@@ -4115,7 +4121,7 @@ void mmGUIFrame::OnChangeGUILanguage(wxCommandEvent& event)
 void mmGUIFrame::OnKeyDown(wxTreeEvent& event)
 {
     if (selectedItemData_) {
-        auto data = selectedItemData_->getString();
+        const auto data = selectedItemData_->getString();
 
         int key_code = event.GetKeyCode();
 

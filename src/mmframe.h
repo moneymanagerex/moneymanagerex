@@ -35,6 +35,8 @@ Copyright (C) 2021, 2022, 2024 Mark Whalley (mark@ipx.co.uk)
 #include "model/Model_Account.h"
 #include "fusedtransaction.h"
 
+#include <memory>
+
 //----------------------------------------------------------------------------
 class wxSQLite3Database;
 class mmPrintableBase;
@@ -150,7 +152,7 @@ private:
     void createReportsPage(mmPrintableBase* rb, bool cleanup);
     void createHelpPage(int index = mmex::HTML_INDEX);
     void refreshPanelData();
-    wxTreeItemId findItemByData(wxTreeItemId itemId, mmTreeItemData& searchData);
+    wxTreeItemId findItemByData(wxTreeItemId itemId, std::unique_ptr<mmTreeItemData> &searchData);
 
     void createHomePage();
     void createCheckingPage(
