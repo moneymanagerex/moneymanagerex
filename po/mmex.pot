@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-15 07:53+0000\n"
+"POT-Creation-Date: 2025-08-24 11:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4386,10 +4386,12 @@ msgid "New &Transfer…"
 msgstr ""
 
 #: mmchecking_list.cpp:727
+msgid "&Edit Transactions…"
+msgstr ""
+
+#: mmchecking_list.cpp:727
 msgid "&Edit Transaction…"
-msgid_plural "&Edit Transactions…"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
 
 #: mmchecking_list.cpp:731
 msgid "&Copy Transaction"
@@ -4409,10 +4411,12 @@ msgid "D&uplicate Transaction…"
 msgstr ""
 
 #: mmchecking_list.cpp:754
+msgid "&Move Transactions…"
+msgstr ""
+
+#: mmchecking_list.cpp:754
 msgid "&Move Transaction…"
-msgid_plural "&Move Transactions…"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
 
 #: mmchecking_list.cpp:760
 msgid "&View In Other Account"
