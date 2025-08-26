@@ -779,7 +779,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
     else {
         menu.Append(
             MENU_TREEPOPUP_RESTORE,
-            wxPLURAL("&Restore selected transaction…", "&Restore selected transactions…", selected)
+            (1 == selected) ? _tu("&Restore selected transaction…") : _tu("&Restore selected transactions…")
         );
         if (is_nothing_selected)
             menu.Enable(MENU_TREEPOPUP_RESTORE, false);
@@ -937,9 +937,9 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
     wxMenu* subGlobalOpMenuDelete = new wxMenu();
     subGlobalOpMenuDelete->Append(
         MENU_TREEPOPUP_DELETE2,
-        !m_cp->isDeletedTrans() ?
-            wxPLURAL("&Delete selected transaction…", "&Delete selected transactions…", selected) :
-            wxPLURAL("&Permanently delete selected transaction…", "&Permanently delete selected transactions…", selected)
+        !m_cp->isDeletedTrans() ? 
+            (1 == selected) ? _tu("&Delete selected transaction…") : _tu("&Delete selected transactions…") :
+            (1 == selected) ? _tu("&Permanently delete selected transaction…") : _tu("&Permanently delete selected transactions…")
     );
     if (is_nothing_selected)
         subGlobalOpMenuDelete->Enable(MENU_TREEPOPUP_DELETE2, false);
@@ -1121,7 +1121,7 @@ void TransactionListCtrl::onNewTransaction(wxCommandEvent& event)
 
 void TransactionListCtrl::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 {
-    // check if any transactions selected
+    // check if any transactions selected 
     int sel = GetSelectedItemCount();
     if (sel < 1) return;
 
@@ -1356,10 +1356,9 @@ void TransactionListCtrl::onMoveTransaction(wxCommandEvent& /*event*/)
         , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR);
 
     if (msgDlg.ShowModal() == wxID_YES) {
-        const wxString headerMsg = wxString::Format(
-                wxPLURAL("Moving transaction to…"
-                , "Moving %i transactions to…", sel)
-                , sel);
+        const wxString headerMsg = (1 == sel) ? _tu("Moving transaction to…") : 
+                                    wxString::Format(_tu("Moving %i transactions to…"), sel);
+
         mmSingleChoiceDialog scd(this
             , _t("Select the destination Account ")
             , headerMsg
