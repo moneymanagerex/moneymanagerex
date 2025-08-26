@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-15 07:53+0000\n"
-"PO-Revision-Date: 2025-08-22 00:58\n"
+"POT-Creation-Date: 2025-08-26 07:12+0000\n"
+"PO-Revision-Date: 2025-08-26 13:10\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -2661,7 +2661,7 @@ msgstr "개발자는 프로그램에서 보고할 수 있는 문제를 진단하
 msgid "Back"
 msgstr "뒤로"
 
-#: filtertransdialog.cpp:49 mmchecking_list.cpp:1576
+#: filtertransdialog.cpp:49 mmchecking_list.cpp:1575
 #: model/Model_Checking.cpp:45
 msgid "Unreconciled"
 msgstr "미조정"
@@ -2675,7 +2675,7 @@ msgstr "조정됨"
 msgid "Void"
 msgstr "무효"
 
-#: filtertransdialog.cpp:52 mmchecking_list.cpp:1567
+#: filtertransdialog.cpp:52 mmchecking_list.cpp:1566
 #: model/Model_Checking.cpp:48
 msgid "Follow Up"
 msgstr "후속조치"
@@ -4380,9 +4380,12 @@ msgid "New &Transfer…"
 msgstr "이체 생성(&T)…"
 
 #: mmchecking_list.cpp:727
+msgid "&Edit Transactions…"
+msgstr "거래 편집(&E)…"
+
+#: mmchecking_list.cpp:727
 msgid "&Edit Transaction…"
-msgid_plural "&Edit Transactions…"
-msgstr[0] "거래 편집(&E)…"
+msgstr "거래 편집(&E)…"
 
 #: mmchecking_list.cpp:731
 msgid "&Copy Transaction"
@@ -4400,9 +4403,12 @@ msgid "D&uplicate Transaction…"
 msgstr "거래 복제(&U)…"
 
 #: mmchecking_list.cpp:754
+msgid "&Move Transactions…"
+msgstr "거래 이동(&M)…"
+
+#: mmchecking_list.cpp:754
 msgid "&Move Transaction…"
-msgid_plural "&Move Transactions…"
-msgstr[0] "거래 이동(&M)…"
+msgstr "거래 이동(&M)…"
 
 #: mmchecking_list.cpp:760
 msgid "&View In Other Account"
@@ -4417,9 +4423,12 @@ msgid "Create Scheduled T&ransaction…"
 msgstr "예약된 거래 생성(&R)…"
 
 #: mmchecking_list.cpp:782
+msgid "&Restore selected transactions…"
+msgstr "선택한 거래 복원(&R)…"
+
+#: mmchecking_list.cpp:782
 msgid "&Restore selected transaction…"
-msgid_plural "&Restore selected transactions…"
-msgstr[0] "선택한 거래내역 복원(&R)…"
+msgstr "선택한 거래 복원(&R)…"
 
 #: mmchecking_list.cpp:788
 msgid "Restore &all transactions in current view…"
@@ -4435,14 +4444,20 @@ msgid "Cop&y Text to Clipboard"
 msgstr "텍스트를 클립보드에 복사(&Y)"
 
 #: mmchecking_list.cpp:941
+msgid "&Delete selected transactions…"
+msgstr "선택한 거래 삭제(&D)…"
+
+#: mmchecking_list.cpp:941
 msgid "&Delete selected transaction…"
-msgid_plural "&Delete selected transactions…"
-msgstr[0] "선택한 거래내역 삭제(&D)…"
+msgstr "선택한 거래 삭제(&D)…"
+
+#: mmchecking_list.cpp:942
+msgid "&Permanently delete selected transactions…"
+msgstr "선택한 거래내역을 영구적으로 삭제(&P)…"
 
 #: mmchecking_list.cpp:942
 msgid "&Permanently delete selected transaction…"
-msgid_plural "&Permanently delete selected transactions…"
-msgstr[0] "선택한 거래내역을 영구적으로 삭제(&P)…"
+msgstr "선택한 거래내역을 영구적으로 삭제(&P)…"
 
 #: mmchecking_list.cpp:950
 msgid "Delete &all transactions in current view…"
@@ -4500,16 +4515,16 @@ msgid "Do you want to delete the selected transaction?"
 msgid_plural "Do you want to delete the %i selected transactions?"
 msgstr[0] "선택한 %i개의 거래를 삭제하시겠습니까?"
 
-#: mmchecking_list.cpp:1141 mmchecking_list.cpp:1555
+#: mmchecking_list.cpp:1141 mmchecking_list.cpp:1554
 msgid "Unable to undo this action."
 msgstr "이 작업은 취소할 수 없습니다."
 
-#: mmchecking_list.cpp:1142 mmchecking_list.cpp:1554
+#: mmchecking_list.cpp:1142 mmchecking_list.cpp:1553
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr "삭제된 거래는 일시적으로 저장되며 삭제된 거래 보기에서 복원할 수 있습니다."
 
-#: mmchecking_list.cpp:1146 mmchecking_list.cpp:1559 mmchecking_list.cpp:1568
-#: mmchecking_list.cpp:1577
+#: mmchecking_list.cpp:1146 mmchecking_list.cpp:1558 mmchecking_list.cpp:1567
+#: mmchecking_list.cpp:1576
 msgid "Confirm Transaction Deletion"
 msgstr "거래 삭제 확인"
 
@@ -4537,75 +4552,78 @@ msgstr[0] "선택한 %i개의 거래를 이동하시겠습니까?"
 msgid "Confirm Transaction Move"
 msgstr "거래 이동 확인"
 
+#: mmchecking_list.cpp:1359
+msgid "Moving transaction to…"
+msgstr "거래를 이동하는 중…"
+
 #: mmchecking_list.cpp:1360
 #, c-format
-msgid "Moving transaction to…"
-msgid_plural "Moving %i transactions to…"
-msgstr[0] "%i 거래를 이동하는 중…"
+msgid "Moving %i transactions to…"
+msgstr "%i 거래를 이동하는 중…"
 
-#: mmchecking_list.cpp:1364 stocks_list.cpp:314
+#: mmchecking_list.cpp:1363 stocks_list.cpp:314
 msgid "Select the destination Account "
 msgstr "대상 계정 선택 "
 
-#: mmchecking_list.cpp:1395
+#: mmchecking_list.cpp:1394
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
 msgstr "이는 이동을 허용하지 않는 거래 또는 계정 세부정보의 일부 요소로 인해 발생합니다"
 
-#: mmchecking_list.cpp:1396
+#: mmchecking_list.cpp:1395
 msgid "Moved"
 msgstr "이동됨"
 
-#: mmchecking_list.cpp:1397
+#: mmchecking_list.cpp:1396
 msgid "Not moved"
 msgstr "이동되지 않음"
 
-#: mmchecking_list.cpp:1400
+#: mmchecking_list.cpp:1399
 msgid "Unable to move some transactions."
 msgstr "일부 거래를 이동할 수 없습니다."
 
-#: mmchecking_list.cpp:1463
+#: mmchecking_list.cpp:1462
 msgid "Scheduled transaction saved."
 msgstr "예약된 거래가 저장되었습니다."
 
-#: mmchecking_list.cpp:1480 mmcheckingpanel.cpp:1477
+#: mmchecking_list.cpp:1479 mmcheckingpanel.cpp:1477
 msgid "All Transactions"
 msgstr "모든 거래"
 
-#: mmchecking_list.cpp:1549
+#: mmchecking_list.cpp:1548
 msgid "Do you want to delete all the transactions shown?"
 msgstr "표시된 모든 거래를 삭제하시겠습니까?"
 
-#: mmchecking_list.cpp:1550
+#: mmchecking_list.cpp:1549
 msgid "Do you want to permanently delete all the transactions shown?"
 msgstr "표시된 모든 거래를 영구적으로 삭제하시겠습니까?"
 
-#: mmchecking_list.cpp:1567 mmchecking_list.cpp:1576
+#: mmchecking_list.cpp:1566 mmchecking_list.cpp:1575
 #, c-format
 msgid "Do you want to delete all the “%s” transactions shown?"
 msgstr "표시된 모든 “%s” 거래를 삭제하시겠습니까?"
 
-#: mmchecking_list.cpp:2203
+#: mmchecking_list.cpp:2202
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] "편집은 닫힌 계정과 관련된 %i 거래에 영향을 줍니다."
 
-#: mmchecking_list.cpp:2205
+#: mmchecking_list.cpp:2204
 msgid "Do you want to perform the edit?"
 msgstr "편집을 수행하시겠습니까?"
 
-#: mmchecking_list.cpp:2206
+#: mmchecking_list.cpp:2205
 msgid "Closed Account Check"
 msgstr "닫힌 계정 점검"
 
-#: mmchecking_list.cpp:2220
+#: mmchecking_list.cpp:2219
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "현재까지 잠긴 거래: %s\n\n"
 "조정된 거래입니다."
 
-#: mmchecking_list.cpp:2223 transdialog.cpp:755 transdialog.cpp:779
+#: mmchecking_list.cpp:2222 transdialog.cpp:755 transdialog.cpp:779
 msgid "MMEX Transaction Check"
 msgstr "MMEX 거래 점검"
 
@@ -6015,7 +6033,7 @@ msgstr "숨겨진 열 이동"
 
 #: mmpanelbase.cpp:558
 msgid "Move column to the beginning"
-msgstr ""
+msgstr "맨 처음으로 열 이동"
 
 #: mmpanelbase.cpp:562
 msgid "Move column left"
@@ -6027,7 +6045,7 @@ msgstr "오른쪽으로 열 이동"
 
 #: mmpanelbase.cpp:570
 msgid "Move column to the end"
-msgstr ""
+msgstr "맨 끝으로 열 이동"
 
 #: mmpanelbase.cpp:578
 msgid "Reset column widths"
@@ -8380,7 +8398,7 @@ msgstr "저장(&S) "
 
 #: transdialog.cpp:619
 msgid "&Save and New"
-msgstr ""
+msgstr "저장 후 새 거래"
 
 #: transdialog.cpp:753
 #, c-format

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-15 07:53+0000\n"
-"PO-Revision-Date: 2025-08-22 00:58\n"
+"POT-Creation-Date: 2025-08-26 07:12+0000\n"
+"PO-Revision-Date: 2025-08-26 13:10\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -2668,7 +2668,7 @@ msgstr "Les développeurs peuvent vous demander de fournir les informations pré
 msgid "Back"
 msgstr "Retour"
 
-#: filtertransdialog.cpp:49 mmchecking_list.cpp:1576
+#: filtertransdialog.cpp:49 mmchecking_list.cpp:1575
 #: model/Model_Checking.cpp:45
 msgid "Unreconciled"
 msgstr "Non pointé"
@@ -2682,7 +2682,7 @@ msgstr "Réconcilié"
 msgid "Void"
 msgstr "Nul"
 
-#: filtertransdialog.cpp:52 mmchecking_list.cpp:1567
+#: filtertransdialog.cpp:52 mmchecking_list.cpp:1566
 #: model/Model_Checking.cpp:48
 msgid "Follow Up"
 msgstr "Suivi"
@@ -4386,10 +4386,12 @@ msgid "New &Transfer…"
 msgstr "Nouveau virement…"
 
 #: mmchecking_list.cpp:727
+msgid "&Edit Transactions…"
+msgstr ""
+
+#: mmchecking_list.cpp:727
 msgid "&Edit Transaction…"
-msgid_plural "&Edit Transactions…"
-msgstr[0] "&Éditer l'opération…"
-msgstr[1] "&Éditer les opérations…"
+msgstr ""
 
 #: mmchecking_list.cpp:731
 msgid "&Copy Transaction"
@@ -4409,10 +4411,12 @@ msgid "D&uplicate Transaction…"
 msgstr "Dupliquer l'opération…"
 
 #: mmchecking_list.cpp:754
+msgid "&Move Transactions…"
+msgstr ""
+
+#: mmchecking_list.cpp:754
 msgid "&Move Transaction…"
-msgid_plural "&Move Transactions…"
-msgstr[0] "&Déplacer l'opération…"
-msgstr[1] "&Déplacer les opérations…"
+msgstr ""
 
 #: mmchecking_list.cpp:760
 msgid "&View In Other Account"
@@ -4427,10 +4431,12 @@ msgid "Create Scheduled T&ransaction…"
 msgstr "Créer une opération récurrente…"
 
 #: mmchecking_list.cpp:782
+msgid "&Restore selected transactions…"
+msgstr ""
+
+#: mmchecking_list.cpp:782
 msgid "&Restore selected transaction…"
-msgid_plural "&Restore selected transactions…"
-msgstr[0] "&Restaurer l'opération sélectionnée…"
-msgstr[1] "&Restaurer les opérations sélectionnées…"
+msgstr ""
 
 #: mmchecking_list.cpp:788
 msgid "Restore &all transactions in current view…"
@@ -4446,16 +4452,20 @@ msgid "Cop&y Text to Clipboard"
 msgstr "Copier le texte vers le presse-papiers"
 
 #: mmchecking_list.cpp:941
+msgid "&Delete selected transactions…"
+msgstr ""
+
+#: mmchecking_list.cpp:941
 msgid "&Delete selected transaction…"
-msgid_plural "&Delete selected transactions…"
-msgstr[0] "Effacer l'opération sélectionnée…"
-msgstr[1] "Effacer les opérations sélectionnées…"
+msgstr ""
+
+#: mmchecking_list.cpp:942
+msgid "&Permanently delete selected transactions…"
+msgstr ""
 
 #: mmchecking_list.cpp:942
 msgid "&Permanently delete selected transaction…"
-msgid_plural "&Permanently delete selected transactions…"
-msgstr[0] "&Supprimer définitivement l'opération sélectionnée…"
-msgstr[1] "&Supprimer définitivement les opérations sélectionnées…"
+msgstr ""
 
 #: mmchecking_list.cpp:950
 msgid "Delete &all transactions in current view…"
@@ -4515,16 +4525,16 @@ msgid_plural "Do you want to delete the %i selected transactions?"
 msgstr[0] "Voulez-vous supprimer l'opération sélectionnée ?"
 msgstr[1] "Voulez-vous supprimer les %i opérations sélectionnées ?"
 
-#: mmchecking_list.cpp:1141 mmchecking_list.cpp:1555
+#: mmchecking_list.cpp:1141 mmchecking_list.cpp:1554
 msgid "Unable to undo this action."
 msgstr "Impossible d'annuler cette action."
 
-#: mmchecking_list.cpp:1142 mmchecking_list.cpp:1554
+#: mmchecking_list.cpp:1142 mmchecking_list.cpp:1553
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr "Les transactions supprimées seront stockées temporairement et pourront être restaurées à partir de la vue Transactions supprimées."
 
-#: mmchecking_list.cpp:1146 mmchecking_list.cpp:1559 mmchecking_list.cpp:1568
-#: mmchecking_list.cpp:1577
+#: mmchecking_list.cpp:1146 mmchecking_list.cpp:1558 mmchecking_list.cpp:1567
+#: mmchecking_list.cpp:1576
 msgid "Confirm Transaction Deletion"
 msgstr "Confirmez la suppression de l'opération"
 
@@ -4554,77 +4564,79 @@ msgstr[1] "Voulez-vous déplacer les %i opérations sélectionnées ?"
 msgid "Confirm Transaction Move"
 msgstr "Confirmer le déplacement des transactions"
 
+#: mmchecking_list.cpp:1359
+msgid "Moving transaction to…"
+msgstr ""
+
 #: mmchecking_list.cpp:1360
 #, c-format
-msgid "Moving transaction to…"
-msgid_plural "Moving %i transactions to…"
-msgstr[0] "Déplacer l'opération vers…"
-msgstr[1] "Déplacement de %i transactions vers…"
+msgid "Moving %i transactions to…"
+msgstr ""
 
-#: mmchecking_list.cpp:1364 stocks_list.cpp:314
+#: mmchecking_list.cpp:1363 stocks_list.cpp:314
 msgid "Select the destination Account "
 msgstr "Sélectionner un compte de destination "
 
-#: mmchecking_list.cpp:1395
+#: mmchecking_list.cpp:1394
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
 msgstr "Cela est dû à certains éléments de l'opération ou du compte qui n'autorisent pas le déplacement"
 
-#: mmchecking_list.cpp:1396
+#: mmchecking_list.cpp:1395
 msgid "Moved"
 msgstr "Déplacé"
 
-#: mmchecking_list.cpp:1397
+#: mmchecking_list.cpp:1396
 msgid "Not moved"
 msgstr "Non déplacé"
 
-#: mmchecking_list.cpp:1400
+#: mmchecking_list.cpp:1399
 msgid "Unable to move some transactions."
 msgstr "Impossible de déplacer certaines transactions."
 
-#: mmchecking_list.cpp:1463
+#: mmchecking_list.cpp:1462
 msgid "Scheduled transaction saved."
 msgstr "Opération récurrente enregistrée."
 
-#: mmchecking_list.cpp:1480 mmcheckingpanel.cpp:1477
+#: mmchecking_list.cpp:1479 mmcheckingpanel.cpp:1477
 msgid "All Transactions"
 msgstr "Toutes les transactions"
 
-#: mmchecking_list.cpp:1549
+#: mmchecking_list.cpp:1548
 msgid "Do you want to delete all the transactions shown?"
 msgstr "Voulez-vous supprimer toutes les opérations affichées ?"
 
-#: mmchecking_list.cpp:1550
+#: mmchecking_list.cpp:1549
 msgid "Do you want to permanently delete all the transactions shown?"
 msgstr "Voulez-vous supprimer définitivement toutes les opérations affichées ?"
 
-#: mmchecking_list.cpp:1567 mmchecking_list.cpp:1576
+#: mmchecking_list.cpp:1566 mmchecking_list.cpp:1575
 #, c-format
 msgid "Do you want to delete all the “%s” transactions shown?"
 msgstr "Voulez-vous supprimer l'ensemble des «%s» opérations affichées ?"
 
-#: mmchecking_list.cpp:2203
+#: mmchecking_list.cpp:2202
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] "Vous êtes sur le point de modifier une transaction impliquant un compte fermé."
 msgstr[1] "La modification affectera %i opérations impliquant le compte fermé."
 
-#: mmchecking_list.cpp:2205
+#: mmchecking_list.cpp:2204
 msgid "Do you want to perform the edit?"
 msgstr "Voulez-vous effectuer la modification ?"
 
-#: mmchecking_list.cpp:2206
+#: mmchecking_list.cpp:2205
 msgid "Closed Account Check"
 msgstr "Vérification du compte fermé"
 
-#: mmchecking_list.cpp:2220
+#: mmchecking_list.cpp:2219
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "Transaction verrouillée à ce jour : %s\n\n"
 "Opérations rapprochées."
 
-#: mmchecking_list.cpp:2223 transdialog.cpp:755 transdialog.cpp:779
+#: mmchecking_list.cpp:2222 transdialog.cpp:755 transdialog.cpp:779
 msgid "MMEX Transaction Check"
 msgstr "Éditer l'opération"
 
