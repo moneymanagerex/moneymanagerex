@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-15 07:53+0000\n"
-"PO-Revision-Date: 2025-08-22 00:58\n"
+"POT-Creation-Date: 2025-08-26 07:12+0000\n"
+"PO-Revision-Date: 2025-08-26 13:10\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "Language: he_IL\n"
@@ -2667,7 +2667,7 @@ msgstr "מפתחים עשויים לבקש לקבל מידע המוצג כאן �
 msgid "Back"
 msgstr "אחורה"
 
-#: filtertransdialog.cpp:49 mmchecking_list.cpp:1576
+#: filtertransdialog.cpp:49 mmchecking_list.cpp:1575
 #: model/Model_Checking.cpp:45
 msgid "Unreconciled"
 msgstr "לא מותאם"
@@ -2681,7 +2681,7 @@ msgstr "מותאם"
 msgid "Void"
 msgstr "מבוטל"
 
-#: filtertransdialog.cpp:52 mmchecking_list.cpp:1567
+#: filtertransdialog.cpp:52 mmchecking_list.cpp:1566
 #: model/Model_Checking.cpp:48
 msgid "Follow Up"
 msgstr "מעקב"
@@ -4389,12 +4389,12 @@ msgid "New &Transfer…"
 msgstr "העברה ח&דשה…"
 
 #: mmchecking_list.cpp:727
+msgid "&Edit Transactions…"
+msgstr ""
+
+#: mmchecking_list.cpp:727
 msgid "&Edit Transaction…"
-msgid_plural "&Edit Transactions…"
-msgstr[0] "&הדבקת תנועה…"
-msgstr[1] "ערוך תנועה…"
-msgstr[2] "&עריכת תנועות…"
-msgstr[3] "&הדבקת תנועות…"
+msgstr ""
 
 #: mmchecking_list.cpp:731
 msgid "&Copy Transaction"
@@ -4418,12 +4418,12 @@ msgid "D&uplicate Transaction…"
 msgstr "שכ&פול תנועה…"
 
 #: mmchecking_list.cpp:754
+msgid "&Move Transactions…"
+msgstr ""
+
+#: mmchecking_list.cpp:754
 msgid "&Move Transaction…"
-msgid_plural "&Move Transactions…"
-msgstr[0] "ה&עברת תנועה…"
-msgstr[1] "ה&עברת תנועות…"
-msgstr[2] "ה&עברת תנועות…"
-msgstr[3] "ה&עברת תנועות…"
+msgstr ""
 
 #: mmchecking_list.cpp:760
 msgid "&View In Other Account"
@@ -4438,12 +4438,12 @@ msgid "Create Scheduled T&ransaction…"
 msgstr "יצירת תנועות מתוזמנת…"
 
 #: mmchecking_list.cpp:782
+msgid "&Restore selected transactions…"
+msgstr ""
+
+#: mmchecking_list.cpp:782
 msgid "&Restore selected transaction…"
-msgid_plural "&Restore selected transactions…"
-msgstr[0] "&שיחזור תנועה שנבחרה…"
-msgstr[1] "&שיחזור תנועות שנבחרו…"
-msgstr[2] "&שיחזור תנועות שנבחרו…"
-msgstr[3] "&שיחזור תנועות שנבחרו…"
+msgstr ""
 
 #: mmchecking_list.cpp:788
 msgid "Restore &all transactions in current view…"
@@ -4459,20 +4459,20 @@ msgid "Cop&y Text to Clipboard"
 msgstr "העת&קת מלל ללוח־הגזירים"
 
 #: mmchecking_list.cpp:941
+msgid "&Delete selected transactions…"
+msgstr ""
+
+#: mmchecking_list.cpp:941
 msgid "&Delete selected transaction…"
-msgid_plural "&Delete selected transactions…"
-msgstr[0] "&מחיקת תנועה שנבחרה…"
-msgstr[1] "&מחיקת תנועות שנבחרו…"
-msgstr[2] "&מחיקת תנועות שנבחרו…"
-msgstr[3] "&מחיקת תנועות שנבחרו…"
+msgstr ""
+
+#: mmchecking_list.cpp:942
+msgid "&Permanently delete selected transactions…"
+msgstr ""
 
 #: mmchecking_list.cpp:942
 msgid "&Permanently delete selected transaction…"
-msgid_plural "&Permanently delete selected transactions…"
-msgstr[0] "&מחיקת תנועה שנבחרה לצמיתות…"
-msgstr[1] "&מחיקת תנועות שנבחרו לצמיתות…"
-msgstr[2] "&מחיקת תנועות שנבחרו לצמיתות…"
-msgstr[3] "&מחיקת תנועות שנבחרו לצמיתות…"
+msgstr ""
 
 #: mmchecking_list.cpp:950
 msgid "Delete &all transactions in current view…"
@@ -4536,16 +4536,16 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: mmchecking_list.cpp:1141 mmchecking_list.cpp:1555
+#: mmchecking_list.cpp:1141 mmchecking_list.cpp:1554
 msgid "Unable to undo this action."
 msgstr ""
 
-#: mmchecking_list.cpp:1142 mmchecking_list.cpp:1554
+#: mmchecking_list.cpp:1142 mmchecking_list.cpp:1553
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr "תנועות שנמחקו יאוחסנו באופן זמני וניתן לשחזרם ממצג 'תנועות שנמחקו'."
 
-#: mmchecking_list.cpp:1146 mmchecking_list.cpp:1559 mmchecking_list.cpp:1568
-#: mmchecking_list.cpp:1577
+#: mmchecking_list.cpp:1146 mmchecking_list.cpp:1558 mmchecking_list.cpp:1567
+#: mmchecking_list.cpp:1576
 msgid "Confirm Transaction Deletion"
 msgstr "אישור מחיקת תנועה"
 
@@ -4579,57 +4579,57 @@ msgstr[3] ""
 msgid "Confirm Transaction Move"
 msgstr "אישור העברת תנועה"
 
+#: mmchecking_list.cpp:1359
+msgid "Moving transaction to…"
+msgstr ""
+
 #: mmchecking_list.cpp:1360
 #, c-format
-msgid "Moving transaction to…"
-msgid_plural "Moving %i transactions to…"
-msgstr[0] "העברת תנועה ל-…"
-msgstr[1] "העברת תנועות ל-…"
-msgstr[2] "העברת תנועות ל-…"
-msgstr[3] "העברת תנועות ל-…"
+msgid "Moving %i transactions to…"
+msgstr ""
 
-#: mmchecking_list.cpp:1364 stocks_list.cpp:314
+#: mmchecking_list.cpp:1363 stocks_list.cpp:314
 msgid "Select the destination Account "
 msgstr "בחירת בחשבון היעד "
 
-#: mmchecking_list.cpp:1395
+#: mmchecking_list.cpp:1394
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
 msgstr "נובע מכך שחלק ממרכיבי התנועה או פרטי החשבון אינם מאפשרים את ההעברה"
 
-#: mmchecking_list.cpp:1396
+#: mmchecking_list.cpp:1395
 msgid "Moved"
 msgstr "הועברו"
 
-#: mmchecking_list.cpp:1397
+#: mmchecking_list.cpp:1396
 msgid "Not moved"
 msgstr "לא הועברו"
 
-#: mmchecking_list.cpp:1400
+#: mmchecking_list.cpp:1399
 msgid "Unable to move some transactions."
 msgstr ""
 
-#: mmchecking_list.cpp:1463
+#: mmchecking_list.cpp:1462
 msgid "Scheduled transaction saved."
 msgstr "תנועות מתוזמנות נשמרו."
 
-#: mmchecking_list.cpp:1480 mmcheckingpanel.cpp:1477
+#: mmchecking_list.cpp:1479 mmcheckingpanel.cpp:1477
 msgid "All Transactions"
 msgstr "כל התנועות"
 
-#: mmchecking_list.cpp:1549
+#: mmchecking_list.cpp:1548
 msgid "Do you want to delete all the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1550
+#: mmchecking_list.cpp:1549
 msgid "Do you want to permanently delete all the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1567 mmchecking_list.cpp:1576
+#: mmchecking_list.cpp:1566 mmchecking_list.cpp:1575
 #, c-format
 msgid "Do you want to delete all the “%s” transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:2203
+#: mmchecking_list.cpp:2202
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
@@ -4638,22 +4638,22 @@ msgstr[1] "עריכה זו תשפיע על %i תנועות בחשבון שמסו
 msgstr[2] "עריכה זו תשפיע על %i תנועות בחשבון שמסומן כסגור."
 msgstr[3] "עריכה זו תשפיע על %i תנועות בחשבון שמסומן כסגור."
 
-#: mmchecking_list.cpp:2205
+#: mmchecking_list.cpp:2204
 msgid "Do you want to perform the edit?"
 msgstr ""
 
-#: mmchecking_list.cpp:2206
+#: mmchecking_list.cpp:2205
 msgid "Closed Account Check"
 msgstr "סימון חשבון סגור"
 
-#: mmchecking_list.cpp:2220
+#: mmchecking_list.cpp:2219
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "תנועות נעולות ליום: %s\n\n"
 "תנועות מותאמות."
 
-#: mmchecking_list.cpp:2223 transdialog.cpp:755 transdialog.cpp:779
+#: mmchecking_list.cpp:2222 transdialog.cpp:755 transdialog.cpp:779
 msgid "MMEX Transaction Check"
 msgstr "בדיקת תנועות MMEX"
 

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-15 07:53+0000\n"
-"PO-Revision-Date: 2025-08-22 00:58\n"
+"POT-Creation-Date: 2025-08-26 07:12+0000\n"
+"PO-Revision-Date: 2025-08-26 13:10\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -2661,7 +2661,7 @@ msgstr "开发人员可能会要求您提供此处显示的信息，以帮助诊
 msgid "Back"
 msgstr "返回"
 
-#: filtertransdialog.cpp:49 mmchecking_list.cpp:1576
+#: filtertransdialog.cpp:49 mmchecking_list.cpp:1575
 #: model/Model_Checking.cpp:45
 msgid "Unreconciled"
 msgstr "未核实"
@@ -2675,7 +2675,7 @@ msgstr "已核实"
 msgid "Void"
 msgstr "无效"
 
-#: filtertransdialog.cpp:52 mmchecking_list.cpp:1567
+#: filtertransdialog.cpp:52 mmchecking_list.cpp:1566
 #: model/Model_Checking.cpp:48
 msgid "Follow Up"
 msgstr "跟进"
@@ -4379,9 +4379,12 @@ msgid "New &Transfer…"
 msgstr "新增转账(&T)…"
 
 #: mmchecking_list.cpp:727
+msgid "&Edit Transactions…"
+msgstr ""
+
+#: mmchecking_list.cpp:727
 msgid "&Edit Transaction…"
-msgid_plural "&Edit Transactions…"
-msgstr[0] "编辑交易(&E)…"
+msgstr ""
 
 #: mmchecking_list.cpp:731
 msgid "&Copy Transaction"
@@ -4399,9 +4402,12 @@ msgid "D&uplicate Transaction…"
 msgstr "复制并增加交易(U)…"
 
 #: mmchecking_list.cpp:754
+msgid "&Move Transactions…"
+msgstr ""
+
+#: mmchecking_list.cpp:754
 msgid "&Move Transaction…"
-msgid_plural "&Move Transactions…"
-msgstr[0] "移动交易(&M)…"
+msgstr ""
 
 #: mmchecking_list.cpp:760
 msgid "&View In Other Account"
@@ -4416,9 +4422,12 @@ msgid "Create Scheduled T&ransaction…"
 msgstr "创建计划交易(&R)…"
 
 #: mmchecking_list.cpp:782
+msgid "&Restore selected transactions…"
+msgstr ""
+
+#: mmchecking_list.cpp:782
 msgid "&Restore selected transaction…"
-msgid_plural "&Restore selected transactions…"
-msgstr[0] "恢复所选交易(&R)…"
+msgstr ""
 
 #: mmchecking_list.cpp:788
 msgid "Restore &all transactions in current view…"
@@ -4434,14 +4443,20 @@ msgid "Cop&y Text to Clipboard"
 msgstr "复制文本到剪贴板(&Y)"
 
 #: mmchecking_list.cpp:941
+msgid "&Delete selected transactions…"
+msgstr ""
+
+#: mmchecking_list.cpp:941
 msgid "&Delete selected transaction…"
-msgid_plural "&Delete selected transactions…"
-msgstr[0] "删除所选交易(&D)…"
+msgstr ""
+
+#: mmchecking_list.cpp:942
+msgid "&Permanently delete selected transactions…"
+msgstr ""
 
 #: mmchecking_list.cpp:942
 msgid "&Permanently delete selected transaction…"
-msgid_plural "&Permanently delete selected transactions…"
-msgstr[0] "永久删除所选交易(&P)…"
+msgstr ""
 
 #: mmchecking_list.cpp:950
 msgid "Delete &all transactions in current view…"
@@ -4499,16 +4514,16 @@ msgid "Do you want to delete the selected transaction?"
 msgid_plural "Do you want to delete the %i selected transactions?"
 msgstr[0] "您是否要删除选定的 %i 个交易？"
 
-#: mmchecking_list.cpp:1141 mmchecking_list.cpp:1555
+#: mmchecking_list.cpp:1141 mmchecking_list.cpp:1554
 msgid "Unable to undo this action."
 msgstr "无法撤消此操作。"
 
-#: mmchecking_list.cpp:1142 mmchecking_list.cpp:1554
+#: mmchecking_list.cpp:1142 mmchecking_list.cpp:1553
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr "被删除的交易将被暂时保存，并可以从已删除交易视图中恢复。"
 
-#: mmchecking_list.cpp:1146 mmchecking_list.cpp:1559 mmchecking_list.cpp:1568
-#: mmchecking_list.cpp:1577
+#: mmchecking_list.cpp:1146 mmchecking_list.cpp:1558 mmchecking_list.cpp:1567
+#: mmchecking_list.cpp:1576
 msgid "Confirm Transaction Deletion"
 msgstr "确认删除交易"
 
@@ -4536,75 +4551,78 @@ msgstr[0] "您想移动选定的 %i 个交易吗？"
 msgid "Confirm Transaction Move"
 msgstr "确认交易移动"
 
+#: mmchecking_list.cpp:1359
+msgid "Moving transaction to…"
+msgstr ""
+
 #: mmchecking_list.cpp:1360
 #, c-format
-msgid "Moving transaction to…"
-msgid_plural "Moving %i transactions to…"
-msgstr[0] "正在将 %i 笔交易移动到…"
+msgid "Moving %i transactions to…"
+msgstr ""
 
-#: mmchecking_list.cpp:1364 stocks_list.cpp:314
+#: mmchecking_list.cpp:1363 stocks_list.cpp:314
 msgid "Select the destination Account "
 msgstr "选择存入账户"
 
-#: mmchecking_list.cpp:1395
+#: mmchecking_list.cpp:1394
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
 msgstr "这是由于交易或帐户详细信息的某些要素不允许转移"
 
-#: mmchecking_list.cpp:1396
+#: mmchecking_list.cpp:1395
 msgid "Moved"
 msgstr "已移动"
 
-#: mmchecking_list.cpp:1397
+#: mmchecking_list.cpp:1396
 msgid "Not moved"
 msgstr "未移动"
 
-#: mmchecking_list.cpp:1400
+#: mmchecking_list.cpp:1399
 msgid "Unable to move some transactions."
 msgstr "无法移动某些事务。"
 
-#: mmchecking_list.cpp:1463
+#: mmchecking_list.cpp:1462
 msgid "Scheduled transaction saved."
 msgstr "计划交易已保存。"
 
-#: mmchecking_list.cpp:1480 mmcheckingpanel.cpp:1477
+#: mmchecking_list.cpp:1479 mmcheckingpanel.cpp:1477
 msgid "All Transactions"
 msgstr "所有交易"
 
-#: mmchecking_list.cpp:1549
+#: mmchecking_list.cpp:1548
 msgid "Do you want to delete all the transactions shown?"
 msgstr "您想删除显示的所有交易吗？"
 
-#: mmchecking_list.cpp:1550
+#: mmchecking_list.cpp:1549
 msgid "Do you want to permanently delete all the transactions shown?"
 msgstr "您想永久删除显示的所有交易吗？"
 
-#: mmchecking_list.cpp:1567 mmchecking_list.cpp:1576
+#: mmchecking_list.cpp:1566 mmchecking_list.cpp:1575
 #, c-format
 msgid "Do you want to delete all the “%s” transactions shown?"
 msgstr "您是否要删除显示的所有“%s”交易？"
 
-#: mmchecking_list.cpp:2203
+#: mmchecking_list.cpp:2202
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] "该编辑将影响涉及已关闭账户的 %i 笔交易。"
 
-#: mmchecking_list.cpp:2205
+#: mmchecking_list.cpp:2204
 msgid "Do you want to perform the edit?"
 msgstr "您想要执行编辑吗？"
 
-#: mmchecking_list.cpp:2206
+#: mmchecking_list.cpp:2205
 msgid "Closed Account Check"
 msgstr "已关闭账户检查"
 
-#: mmchecking_list.cpp:2220
+#: mmchecking_list.cpp:2219
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "已锁定交易日期：%s\n\n"
 "已核实对账交易。"
 
-#: mmchecking_list.cpp:2223 transdialog.cpp:755 transdialog.cpp:779
+#: mmchecking_list.cpp:2222 transdialog.cpp:755 transdialog.cpp:779
 msgid "MMEX Transaction Check"
 msgstr "MMEX 交易检查"
 
