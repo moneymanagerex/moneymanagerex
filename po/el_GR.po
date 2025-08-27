@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-08-26 07:12+0000\n"
-"PO-Revision-Date: 2025-08-26 13:10\n"
+"PO-Revision-Date: 2025-08-27 07:58\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "Language: el_GR\n"
@@ -4377,11 +4377,13 @@ msgstr "Νέα &Μεταφορά…"
 
 #: mmchecking_list.cpp:727
 msgid "&Edit Transactions…"
-msgstr ""
+msgstr "&Επεξεργασία Συναλλαγής…\n\n"
+"&Επεξεργασία Συναλλαγών…"
 
 #: mmchecking_list.cpp:727
 msgid "&Edit Transaction…"
-msgstr ""
+msgstr "&Επεξεργασία Συναλλαγής…\n\n"
+"&Επεξεργασία Συναλλαγών…"
 
 #: mmchecking_list.cpp:731
 msgid "&Copy Transaction"
@@ -4402,11 +4404,11 @@ msgstr "Δ&ιπλότυπη Συναλλαγή…"
 
 #: mmchecking_list.cpp:754
 msgid "&Move Transactions…"
-msgstr ""
+msgstr "&Μετακίνηση Συναλλαγών…"
 
 #: mmchecking_list.cpp:754
 msgid "&Move Transaction…"
-msgstr ""
+msgstr "&Μετακίνηση Συναλλαγής…"
 
 #: mmchecking_list.cpp:760
 msgid "&View In Other Account"
@@ -4422,11 +4424,11 @@ msgstr "Δημιουργία Προγραμματισμένης Σ&υναλλα�
 
 #: mmchecking_list.cpp:782
 msgid "&Restore selected transactions…"
-msgstr ""
+msgstr "&Επαναφορά επιλεγμένων συναλλαγών…"
 
 #: mmchecking_list.cpp:782
 msgid "&Restore selected transaction…"
-msgstr ""
+msgstr "&Επαναφορά επιλεγμένης συναλλαγής…"
 
 #: mmchecking_list.cpp:788
 msgid "Restore &all transactions in current view…"
@@ -4443,19 +4445,21 @@ msgstr "Αντιγραφή Κειμένου στο Πρόχειρο"
 
 #: mmchecking_list.cpp:941
 msgid "&Delete selected transactions…"
-msgstr ""
+msgstr "&Διαγραφή επιλεγμένης συναλλαγής…\n\n"
+"&Διαγραφή επιλεγμένων συναλλαγών…"
 
 #: mmchecking_list.cpp:941
 msgid "&Delete selected transaction…"
-msgstr ""
+msgstr "&Διαγραφή επιλεγμένης συναλλαγής…\n\n"
+"&Διαγραφή επιλεγμένων συναλλαγών…"
 
 #: mmchecking_list.cpp:942
 msgid "&Permanently delete selected transactions…"
-msgstr ""
+msgstr "&Μόνιμη διαγραφή επιλεγμένων συναλλαγών…"
 
 #: mmchecking_list.cpp:942
 msgid "&Permanently delete selected transaction…"
-msgstr ""
+msgstr "&Μόνιμη διαγραφή της επιλεγμένης συναλλαγής…"
 
 #: mmchecking_list.cpp:950
 msgid "Delete &all transactions in current view…"
@@ -4556,12 +4560,12 @@ msgstr "Επιβεβαίωση Μετακίνησης Συναλλαγής"
 
 #: mmchecking_list.cpp:1359
 msgid "Moving transaction to…"
-msgstr ""
+msgstr "Μετακίνηση συναλλαγής σε…"
 
 #: mmchecking_list.cpp:1360
 #, c-format
 msgid "Moving %i transactions to…"
-msgstr ""
+msgstr "Μετακίνηση %i συναλλαγών σε…"
 
 #: mmchecking_list.cpp:1363 stocks_list.cpp:314
 msgid "Select the destination Account "
