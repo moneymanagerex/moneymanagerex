@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-08-26 07:12+0000\n"
-"PO-Revision-Date: 2025-08-26 13:10\n"
+"PO-Revision-Date: 2025-08-31 14:20\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -2757,13 +2757,13 @@ msgstr "Inclusief alle subcategorieën"
 #: filtertransdialog.cpp:1712 import_export/univcsvdialog.cpp:116
 #: mmchecking_list.cpp:106 model/Model_Checking.cpp:33 reports/forecast.cpp:81
 msgid "Withdrawal"
-msgstr "Opname"
+msgstr "Uitgave"
 
 #: filtertransdialog.cpp:672 filtertransdialog.cpp:1614
 #: filtertransdialog.cpp:1714 import_export/univcsvdialog.cpp:117
 #: mmchecking_list.cpp:107 model/Model_Checking.cpp:34 reports/forecast.cpp:79
 msgid "Deposit"
-msgstr "Storting"
+msgstr "Inkomsten"
 
 #: filtertransdialog.cpp:673 filtertransdialog.cpp:906
 #: filtertransdialog.cpp:1618 filtertransdialog.cpp:1718
@@ -3605,7 +3605,7 @@ msgstr "Exporteer kolomtitels"
 
 #: import_export/univcsvdialog.cpp:416
 msgid "Positive values are deposits"
-msgstr "Positieve waardes zijn stortingen"
+msgstr "Positieve waardes zijn inkomsten"
 
 #: import_export/univcsvdialog.cpp:417
 msgid "Positive values are withdrawals"
@@ -3715,7 +3715,7 @@ msgstr "Ongeldig bedrag."
 
 #: import_export/univcsvdialog.cpp:1248
 msgid "Type (withdrawal/deposit) unknown."
-msgstr "Type (opname/storting) onbekend."
+msgstr "Type (uitgaven/inkomsten) onbekend."
 
 #: import_export/univcsvdialog.cpp:1308
 msgid "Incorrect fields specified for import!"
@@ -3727,7 +3727,7 @@ msgstr "Datum veld is verplicht."
 
 #: import_export/univcsvdialog.cpp:1310
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr "Het veld Bedrag of zowel de velden Opname als Storting zijn verplicht."
+msgstr "Het veld Bedrag of zowel de velden Uitgaven als Inkomsten zijn verplicht."
 
 #: import_export/univcsvdialog.cpp:1311 import_export/univcsvdialog.cpp:1506
 #: webappdialog.cpp:412
@@ -4377,7 +4377,7 @@ msgstr "Nieuwe &Opname…"
 
 #: mmchecking_list.cpp:721
 msgid "New &Deposit…"
-msgstr "Nieuwe &Storting…"
+msgstr "Nieuwe &Inkomsten…"
 
 #: mmchecking_list.cpp:723
 msgid "New &Transfer…"
@@ -4385,11 +4385,11 @@ msgstr "Nieuwe &Overboeking…"
 
 #: mmchecking_list.cpp:727
 msgid "&Edit Transactions…"
-msgstr ""
+msgstr "&Bewerk Transacties…"
 
 #: mmchecking_list.cpp:727
 msgid "&Edit Transaction…"
-msgstr ""
+msgstr "&Bewerk Transactie…"
 
 #: mmchecking_list.cpp:731
 msgid "&Copy Transaction"
@@ -4410,11 +4410,11 @@ msgstr "D&upliceer Transactie…"
 
 #: mmchecking_list.cpp:754
 msgid "&Move Transactions…"
-msgstr ""
+msgstr "&Verplaats Transacties…"
 
 #: mmchecking_list.cpp:754
 msgid "&Move Transaction…"
-msgstr ""
+msgstr "&Verplaats Transactie…"
 
 #: mmchecking_list.cpp:760
 msgid "&View In Other Account"
@@ -4430,11 +4430,11 @@ msgstr "Creëer geplande Transactie…"
 
 #: mmchecking_list.cpp:782
 msgid "&Restore selected transactions…"
-msgstr ""
+msgstr "Herstel geselecteerde transacties…"
 
 #: mmchecking_list.cpp:782
 msgid "&Restore selected transaction…"
-msgstr ""
+msgstr "Herstel geselecteerde transactie…"
 
 #: mmchecking_list.cpp:788
 msgid "Restore &all transactions in current view…"
@@ -4451,19 +4451,19 @@ msgstr "&Kopieer tekst naar klembord"
 
 #: mmchecking_list.cpp:941
 msgid "&Delete selected transactions…"
-msgstr ""
+msgstr "Verwijder geselecteerde transacties…"
 
 #: mmchecking_list.cpp:941
 msgid "&Delete selected transaction…"
-msgstr ""
+msgstr "Verwijder geselecteerde transactie…"
 
 #: mmchecking_list.cpp:942
 msgid "&Permanently delete selected transactions…"
-msgstr ""
+msgstr "Geselecteerde transacties definitief verwijderen…"
 
 #: mmchecking_list.cpp:942
 msgid "&Permanently delete selected transaction…"
-msgstr ""
+msgstr "Geselecteerde transactie definitief verwijderen…"
 
 #: mmchecking_list.cpp:950
 msgid "Delete &all transactions in current view…"
@@ -4564,12 +4564,12 @@ msgstr "Bevestig het verplaatsen van de Transactie"
 
 #: mmchecking_list.cpp:1359
 msgid "Moving transaction to…"
-msgstr ""
+msgstr "Transactie verplaatsen naar…"
 
 #: mmchecking_list.cpp:1360
 #, c-format
 msgid "Moving %i transactions to…"
-msgstr ""
+msgstr "%i Transacties verplaatsen naar…"
 
 #: mmchecking_list.cpp:1363 stocks_list.cpp:314
 msgid "Select the destination Account "
@@ -4761,7 +4761,7 @@ msgstr "&Nieuwe opname…"
 
 #: mmcheckingpanel.cpp:1436
 msgid "&New Deposit…"
-msgstr "&Nieuwe storting…"
+msgstr "&Nieuwe inkomsten…"
 
 #: mmcheckingpanel.cpp:1437
 msgid "&New Transfer…"
@@ -7799,7 +7799,7 @@ msgstr "FX tarief"
 
 #: reports/transactions.cpp:444
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr "Alle Transacties: Opnames, Stortingen en Overboekingen"
+msgstr "Alle Transacties: Uitgaven, Inkomsten en Overboekingen"
 
 #: reports/transactions.cpp:462
 msgid "All Transactions excluding Transfers"
