@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2014 - 2021 Nikolay Akimov
- Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2025 Mark Whalley (mark@ipx.co.uk)
  Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
@@ -541,7 +541,7 @@ void mmCheckingPanel::loadFilterSettings()
 
     loadDateRanges(&m_date_range_a, &m_date_range_m, isAccount());
     if (m_use_dedicated_filter) {
-        j_doc = Model_Infotable::instance().getJdoc("CHECK_FILTER_ALL", "{}");
+        j_doc = Model_Infotable::instance().getJdoc(wxString::Format("CHECK_FILTER_DEDICATED_%lld", m_checking_id), "{}");
         int fid = 0;
         if (JSON_GetIntValue(j_doc, "FILTER_ID", fid)) {
             m_filter_id = static_cast<FILTER_ID>(fid);
@@ -641,7 +641,7 @@ void mmCheckingPanel::saveFilterSettings()
     Document j_doc;
     wxString key;
     if (m_use_dedicated_filter) {
-        key = "CHECK_FILTER_ALL";
+        key = wxString::Format("CHECK_FILTER_DEDICATED_%lld", m_checking_id);
         j_doc = Model_Infotable::instance().getJdoc(key, "{}");
         Model_Infotable::saveFilterInt(j_doc, "FILTER_ID", m_filter_id);
         Model_Infotable::saveFilterString(j_doc, "FILTER_NAME", FILTER_NAME[m_filter_id].second);

@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2025 Mark Whalley (mark@ipx.co.uk)
  Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
@@ -121,17 +121,15 @@ bool mmReportsPanel::saveReportText(bool initial)
     rb_->initial_report(initial);
 
     if (m_use_dedicated_filter) {
-        if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_RANGE || m_filter_id == mmCheckingPanel::FILTER_ID_DATE_PICKER) {
-            mmDateRange* date_range = new mmDateRange();
-            if (rb_->report_parameters() & mmPrintableBase::RepParams::DATE_RANGE)
-            {
-                wxDateTime td = m_start_date->GetValue();
-                date_range->start_date(td);
-                td = m_end_date->GetValue();
-                date_range->end_date(td);
-            }
-            rb_->date_range(date_range, 0);
+        mmDateRange* date_range = new mmDateRange();
+        if (rb_->report_parameters() & mmPrintableBase::RepParams::DATE_RANGE)
+        {
+            wxDateTime td = m_start_date->GetValue();
+            date_range->start_date(td);
+            td = m_end_date->GetValue();
+            date_range->end_date(td);
         }
+        rb_->date_range(date_range, 0);
     }
     else {
         if (m_date_ranges)
@@ -227,8 +225,7 @@ void mmReportsPanel::loadFilterSettings() {
         m_date_range_m = m_date_range_a.size();
     }
 
-    // for the moment use bank account filter, tbd.
-    Document j_doc = Model_Infotable::instance().getJdoc("CHECK_FILTER_ALL" , "{}");
+    Document j_doc = Model_Infotable::instance().getJdoc(wxString::Format("REPORT_FILTER_DEDICATED_%lld", rb_->getReportId()), "{}");
 
     int fid = 0;
     if (JSON_GetIntValue(j_doc, "FILTER_ID", fid)) {
@@ -266,7 +263,7 @@ void mmReportsPanel::loadFilterSettings() {
 
 void mmReportsPanel::saveFilterSettings() {
     if (m_use_dedicated_filter) {
-        wxString key = "CHECK_FILTER_ALL";
+        wxString key = wxString::Format("REPORT_FILTER_DEDICATED_%lld", rb_->getReportId());
         Document j_doc = Model_Infotable::instance().getJdoc(key, "{}");
         Model_Infotable::saveFilterInt(j_doc, "FILTER_ID", m_filter_id);
         Model_Infotable::saveFilterString(j_doc, "FILTER_NAME", mmCheckingPanel::getFilterName(m_filter_id));
