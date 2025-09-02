@@ -4741,8 +4741,8 @@ msgid "Scheduled transactions are not available, because the current filter ends
 msgstr "Geplante Buchungen können nicht angezeigt werden, da der aktuelle Filter in der Vergangenheit endet"
 
 #: mmcheckingpanel.cpp:1154
-msgid "Unable to show scheduled transactions because the current filter choice extends into the future without limit."
-msgstr "Geplante Buchungen können nicht angezeigt werden, da sich die aktuelle Filterauswahl uneingeschränkt auf die Zukunft erstreckt."
+#msgid "Unable to show scheduled transactions because the current filter choice extends into the future without limit."
+#msgstr "Geplante Buchungen können nicht angezeigt werden, da sich die aktuelle Filterauswahl uneingeschränkt auf die Zukunft erstreckt."
 
 #: mmcheckingpanel.cpp:1155
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
@@ -6720,12 +6720,12 @@ msgid "Filter"
 msgstr "Filter"
 
 #: optionsettingsmisc.cpp:187
-msgid "Enable combined transaction filter"
-msgstr "Kombinierten Buchungsfilter aktivieren"
+msgid "Enable date range filter per account or report"
+msgstr "Individuelle Datumsfilter für jedes Konto und Bericht aktivieren"
 
 #: optionsettingsmisc.cpp:189
-msgid "Switch to one filter control for date and attributes"
-msgstr "Eine kombinierte Schaltfläche für Datumsbereiche und Filter verwenden"
+msgid "Store filter values per account or report and not globally"
+msgstr "Filtereinstellungen individuell per Konto und Bericht abspeichern und nicht global"
 
 #: optionsettingsnet.cpp:65
 msgid "WebApp"
@@ -8882,4 +8882,3 @@ msgstr "Fehler "
 #: wizard_update.cpp:326 wizard_update.cpp:341
 msgid "MMEX Update Check"
 msgstr "MMEX Update Überprüfung"
-

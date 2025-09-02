@@ -53,7 +53,7 @@ private:
     wxSpinCtrl* m_share_precision = nullptr;
     wxCheckBox* m_refresh_quotes_on_open = nullptr;
     wxChoice* m_asset_compounding = nullptr;
-    wxCheckBox* m_use_combined_transaction_filter = nullptr;
+    wxCheckBox* m_store_account_specific_filter = nullptr;
 
     enum
     {

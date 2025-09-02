@@ -118,7 +118,7 @@ private:
     int m_shift = 0;
 
     // New filtering
-    bool m_use_dedicated_filter;
+    bool m_use_account_specific_filter;
     int m_date_range_m = -1;
     wxString htmlreport_;
 
