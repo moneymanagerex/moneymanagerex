@@ -1368,35 +1368,34 @@ PBank der Hypotheken Payee
         aufgerufen werden.
     </p>
 
+
     <h3>Allgemein</h3>
+    <h4>Zeige Überschrift</h4>
     <dl>
-        <dt>Datenbasisname</dt>
+        <dt>Benutzername</dt>
         <dd>Dieses Feld wird als Titel auf der Startseite und in den Berichten verwendet.</dd>
         <dd>Ein leeres Feld entfernt den Titel.</dd>
-
-        <dt>Sprache der Benutzeroberfläche</dt>
-        <dd>Hier kann entweder die Systemsprache oder eine spezifische Sprache aus dem Auswahlmenü gewählt werden.
-            Es ist ein MMEX Neustart erforderlich, bevor alle GUI-Elemente in der neuen Sprache angezeigt werden.
-        </dt>
-
-        <dt>Datumsformat</dt>
-        <dd>Die Datumsformateinstellung steuert die Datumsdarstellung</dd>
-
-        <dt>Währung</dt>
-        <dd>Die Basiswährungseinstellung wird verwendet, um die Währung der Datenbank einzustellen.
-           Einzelne Konten beutzen diese Einstellung als Vorgabe, können aber falls erforderlich auch in den Kontoeinstellungen spezifisch
-           konfiguriert werden.</dd>
-
-        <dt>Geschäftsjahr</dt>
-        <dd>Stellt den Beginn des Geschäftsjahres ein, im Gegensatz zu dem Kalenderjahr. Dieses kann für Berichte und Budgets
-          benutzt werden.</dd>
-
-        <dt>Originaldatum… beibehalten</dt>
-        <dd>Wenn markiert wird beim Einfügen einer Buchung das Originaldatum und nicht das aktuelle verwendet.</dd>
-
-        <dt>Buchungs-Ton</dt>
-        <dd>Hier kann ein Ton gesetzt werden, der bei einer Buchungseingabe abgespielt wird.</dd>
     </dl>
+
+    <h4>Sprache der Benutzeroberfläche</h4>
+    Hier kann entweder die Systemsprache oder eine spezifische Sprache aus dem Auswahlmenü gewählt werden.
+    Es ist ein MMEX Neustart erforderlich, bevor alle GUI-Elemente in der neuen Sprache angezeigt werden.
+
+    <h4>Datumsformat</h4>
+    Die Datumsformateinstellung steuert die Datumsdarstellung
+
+    <h4>Währung</h4>
+        <dl>
+            <dt>Basiswährung</dt>
+            <dd>Die Basiswährungseinstellung wird verwendet, um die Währung der Datenbank einzustellen.
+            Einzelne Konten beutzen diese Einstellung als Vorgabe, können aber falls erforderlich auch in den Kontoeinstellungen spezifisch
+            konfiguriert werden.</dd>
+        </dl>
+
+    <h4>Geschäftsjahr</h4>
+    Stellt den Beginn des Geschäftsjahres ein, im Gegensatz zu dem Kalenderjahr. Dieses kann für Berichte und Budgets
+    benutzt werden
+
 
     <h3>Ansichtseinstellungen</h3>
     <p>
@@ -1408,15 +1407,15 @@ PBank der Hypotheken Payee
         <dt>Sichtbare Konten</dt>
         <dd>Dieses legt fest welche Konten, abhängig vom Status, im Navigator angezeigt werden.</dd>
 
-        <dt>Kategorientrenner</dt>
+        <dt>Kategorientrennzeichen</dt>
         <dd>Legt das Trennzeicghen zwischen Kategorie und Unterkategorie(n) fest.</dd>
 
-        <dt>Keine Farben für zukünftige Buchungen</dt>
+        <dt>Für zukünftige Buchungen keine Farben benutzen</dt>
         <dd>Deaktiviert die buchungsspezifischen Farben für zukünftige Buchungen. Dieses werden damit
             einheitlich angezeigt.</dd>
 
         <dt>Nicht bestätigte Buchungen herausheben</dt>
-        <dd>Alle nicht bestätigten Buchungen werden hervorgehoben für einen besseren Überblick angezeigt.</dd>
+        <dd>Alle nicht bestätigten Buchungen werden für einen besseren Überblick hervorgehoben angezeigt.</dd>
 
         <dt>Anwendungstips anzeigen</dt>
         <dd>Aktiviert Anwendungstips für alle Bedienelemente, die beim Darüberfahren mit der Maus angezeigt werden.</dd>
@@ -1425,19 +1424,12 @@ PBank der Hypotheken Payee
         <dd>Aktiviert zufällige Anlagehinweise in der Buchungsübersicht.</dd>
     </dl>
 
-    <h4>Buchung/Budget</h4>
-    tbd.
-
-    <h4>Buchungsfarben</h4>
-    Erlaubt individuelle Farben für die Markierung von Buchungen zu definieren. Mit der <samp>Standard</samp> Schaltfläche
-    werden diese wieder auf die Programmvorgabe zurückgesetzt.
-
     <h4>Benutzerschnittstelle</h4>
     <dl>
         <dt>Stilvorlage</dt>
         <dd>Ruft den Designverwaltung auf, um ein Design für MMEX auszusuchen.</dd>
 
-        <dt>Thema</dt>
+        <dt>Design</dt>
         <dd>Erlaubt es ein helles oder ein dunkles Thema auszuwählen.</dd>
 
         <dt>HTML Skalierungsfaktor</dt>
@@ -1452,67 +1444,96 @@ PBank der Hypotheken Payee
 
 
     <h3>Übersicht</h3>
-    <dl>
-        <dt>TODO</dt>
-        <dd>TODO</dd>
-    </dl>
+    TODO
+
+
+    <h3>Buchungen</h3>
+    Enthält alle Einstellungen die das Verhalten der Buchungen festlegen.
+
+    <h4>Neue Buchung</h4>
+    Ändert die Voreinstellugen für Buchungen im Buchungsdialag.
+
+    <h4>Buchung</h4>
+        <dt>Originaldatum… beibehalten</dt>
+        <dd>Wenn gesetzt wird beim Einfügen oder Verdoppeln einer Buchung das Originaldatum und nicht das aktuelle verwendet.</dd>
+
+        <dt>Originalstatus beim Duplizieren oder Kopieren und Einfügen einer Buchung verwenden</dt>
+        <dd>Standardmäßig wird bei eienr neuen Buchung der Status auf den Standardstatus getsetzt, der unter Neue Buchung - Standardstatus
+            konfiguriert wurde. Mit dieser Einstellung wird stattdessen der originale Buchungsstatus (z.B. Überprüft) beibehalten.</dd>
+
+        <dt>Buchungs-Ton</dt>
+        <dd>Hier kann ein Klang ausgewählt werden, der bei einer Buchungseingabe abgespielt wird.</dd>
+
+    <h4>Buchung/Budget</h4>
+    Diese Einstellungen beeinflussen die Budgetierung.
+
+    <h4>Buchungsfarben</h4>
+    Erlaubt es individuelle Farben für die Markierung von Buchungen zu definieren. Mit der <samp>Standard</samp> Schaltfläche
+    werden diese wieder auf die Programmvorgabe zurückgesetzt.
 
 
     <h3>Anlagen</h3>
-    <dl>
-        <dt>TODO</dt>
-        <dd>TODO</dd>
-    </dl>
+    Definiert den Ort für das Anlagenverzeichnis.
 
 
     <h3>Netzwerk</h3>
-    <dl>
-        <dt>WebApp</dt>
-        <dd>Stellen Sie URL und GUID Ihrer WebApp Installation Daten-Sync ermöglichen.
-                            Die Parameter können in WebApp 'Guide' Seite. Parameters can be found in WebApp Guide
-            page.</dd>
-    </dl>
+
+    <h4>WebApp</h4>
+    Konfiguration der URL und GUID ihrer WebApp Installation für die Daten-Synchronisation.
+    Die Parameter können in WebApp 'Guide' gefunden werden.
 
 
     <h3>Andere</h3>
-    <dl>
+    Verschiedene Einstellungen
+
+    <h4>Wertpapiere</h4>
         <dt>Webseite für Börsenkurse</dt>
-        <dd>   Diese URL wird durch die Refresh-Taste auf der Aktienanlagen Seite verwendet.
-        Diese URL wird auch durch die Neu / Bearbeiten Auf Dialog verwendet, die Web-Seite für die gelisteten Aktie anzuzeigen.
-        Der Standardwert ist Yahoo Finance.
-                            Alternativ können auch andere Websites können bei Bedarf verwendet werden..</dd>
+        <dd>Diese URL wird für die Aktualiserung der Wertpapierkurse verwendet. Eine Aktualiserung wird entweder durch die
+        Refresh-Taste auf der Wertpapierseite
+        oder im  Neu / Bearbeiten Dialog angst0ßen. Die URL wird auch als Basis URL verwendet, um die Web-Seite für die ausgewählte
+        Aktie anzuzeigen.
+        Der Standardwert ist Yahoo Finance. Alternativ können auch andere Websites verwendet werden.</dd>
 
-        <dt>Neue Buchungen</dt>
-        <dd>Ändert die Standardeinstellungen für die Neu / Bearbeiten Buchungen Dialog</dd>
+    <h4>Assets</h4>
+    TBD.
 
-        <dt>Databank</dt>
-        <dd>Bestimmt ob und wie Sicherungen der Datenbank von MMEX durchgeführt werden:
-            <dl>
-                <dt>Datenbank beim Start sichern</dt>
-                <dd>Dies kopiert beim Start von MMEX die Datenbank in eine neue Datei mit dem heutigen Datum.</dd>
-                <dd>Die Datei wird beim nächsten Start nicht überschrieben. Wenn es mehr als die Maximalzahl an Backup
-                  dateien gibt, wird die älteste Datei gelöscht.</dd>
+    <h4>Databank</h4>
+    Bestimmt ob und wie Sicherungen der Datenbank von MMEX durchgeführt werden
+    <dl>
+        <dt>Datenbank beim Start sichern</dt>
+        <dd>Dieses kopiert beim Start von MMEX die Datenbank in eine neue Datei mit dem heutigen Datum.</dd>
+        <dd>Die Datei wird beim nächsten Start nicht überschrieben. Wenn es mehr als die Maximalzahl an Backup
+            dateien gibt, wird die älteste Datei gelöscht.</dd>
 
-                <dt>Datenbank beim Beenden sichern</dt>
-                <dd>Dies kopiert beim Beenden von MMEX die Datenbank in eine neue Datei mit dem heutigen Datum.</dd>
-                <dd>Wenn weitere Änderungen am selben Tag vorgenommen werden, wird die vorhandene Sicherung überschrieben.
-                  Wenn es mehr als die Maximalzahl an Backup Dateien gibt, wird die älteste Datei gelöscht.
-                </dd>
-            </dl>
+        <dt>Datenbank beim Beenden sichern</dt>
+        <dd>Dies kopiert beim Beenden von MMEX die Datenbank in eine neue Datei mit dem heutigen Datum.</dd>
+        <dd>Wenn weitere Änderungen am selben Tag vorgenommen werden, wird die vorhandene Sicherung überschrieben.
+            Wenn es mehr als die Maximalzahl an Backup Dateien gibt, wird die älteste Datei gelöscht.
         </dd>
 
-        <dt>CSV-Trennzeichen</dt>
+        <dt>Maximale Anzahl an Dateien</dt>
+        <dd>Konfiguriert die maximale Anzahl an Sicherungskopien.</dd>
+
+        <dt>Tage für die Aufbewahrung gelöschter Buchungen</dt>
+        <dd>Konfiguriet wieviele Tage gelöschte Buchungen aufbewahrt und wierderhergestellt werden können.
+            Anschliesend werden die Buchungen endgültig gelöscht.</dd>
+
+    </dl>
+
+    <h4>CSV</h4>
+        <dt>Trennzeichen</dt>
         <dd>Dieses wird als Trennzeichen verwendet um CSV-Dateien parsen. Dies ist nützlich,
           um die Standardeinstellung <kbd>,</kbd> zu ändern wenn Währungen benutzt werden, die <kbd>,</kbd> für den
           Dezimaltrenner verwenden.
-      .</dd>
+        </dd>
 
-      <!--<s><dt>Aktivieren Online-Währung ...</dt>
-       <dd>Aktivieren Sie Währungen zu ermöglichen, über das Internet aktualisiert werden.</dd>
-      </s>-->
-    </dl>
-
-
+    <h4>Filter</h4>
+        <dt>Individuelle Datumsfilter für jedes Konto und Bericht aktivieren</dt>
+        <dd>Wenn die Option nicht aktiviert ist (Voreinstellung) wird für all Konten und Berichte der gleiche Datumsbereich versendet.
+            Wenn der Datumsbereich für ein Konto oder Bericht geändert wird, wird diese Änderung für alle anderen mit übernommen.
+            Damit können die Buchungen in verschieden Konten einfach miteinander verglichen werden.
+        </dd>
+        <dd>Wenn die Option aktiviert ist, wird für jedes Konto und Bericht ein eigener Datumsbereich verwendet und gespeichert.</dd>
 
 
     <!--Frequently Asked Questions-->

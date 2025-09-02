@@ -70,6 +70,7 @@ Schrempfi
 goe
 STiGMaTa_ch
 Kai Kajus Noack
+Klaus Wich
 
 ### Greek
 Panagiotis Pentzeridis
@@ -111,7 +112,7 @@ Torbjorn Kvande
 ### Polish
 Damian_pl
 Andrzej
-Jerzy Machnicki 
+Jerzy Machnicki
 
 ### Portuguese (Brazilian)
 Jose Carlos
@@ -187,7 +188,7 @@ Maurizio 	 [Mau13]
 ### Polish
 Damian_pl
 
-### Russian 
+### Russian
 Nikolay 	 [Nikolay]
 
 ### Spanish
