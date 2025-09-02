@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-26 07:12+0000\n"
-"PO-Revision-Date: 2025-08-27 07:58\n"
+"POT-Creation-Date: 2025-09-01 06:44+0000\n"
+"PO-Revision-Date: 2025-09-02 14:33\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "Language: el_GR\n"
@@ -2212,7 +2212,7 @@ msgstr ""
 msgid "Default date ranges"
 msgstr "Προεπιλεγμένο εύρος ημερομηνιών"
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1175 mmreportspanel.cpp:910
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1175 mmreportspanel.cpp:907
 msgid "More date ranges…"
 msgstr ""
 
@@ -3401,7 +3401,7 @@ msgstr "Γραμμή %zu \t %s\n"
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr "Αριθμός γραμμών που διαβάζονται από το αρχείο QIF: %zu σε %lld ms"
 
-#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:485
+#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:482
 msgid "Accounts:"
 msgstr "Λογαριασμοί:"
 
@@ -4695,7 +4695,7 @@ msgid "Invested: "
 msgstr "Επενδύεται: "
 
 #: mmcheckingpanel.cpp:447 mmcheckingpanel.cpp:1244 mmreportspanel.cpp:103
-#: mmreportspanel.cpp:949
+#: mmreportspanel.cpp:946
 msgid "Date range"
 msgstr "Εύρος ημερομηνιών"
 
@@ -4742,7 +4742,7 @@ msgstr "Κάντε κλικ για να εμφανίσετε τις προγρα
 msgid "Click to hide scheduled transactions."
 msgstr "Κάντε κλικ για να αποκρύψετε προγραμματισμένες συναλλαγές."
 
-#: mmcheckingpanel.cpp:1184 mmreportspanel.cpp:917
+#: mmcheckingpanel.cpp:1184 mmreportspanel.cpp:914
 msgid "Edit date ranges…"
 msgstr "Επεξεργασία εύρους ημερομηνιών…"
 
@@ -5909,7 +5909,7 @@ msgstr "Εμφάνιση της περίληψης των κατηγοριών �
 msgid "Stocks Report"
 msgstr "Αναφορά Αποθεμάτων"
 
-#: mmframereport.cpp:317 mmreportspanel.cpp:526
+#: mmframereport.cpp:317 mmreportspanel.cpp:523
 msgid "Hide"
 msgstr "Απόκρυψη"
 
@@ -6055,52 +6055,52 @@ msgstr "Μετακίνηση στήλης στο τέλος"
 msgid "Reset column widths"
 msgstr "Επαναφορά πλάτους στηλών"
 
-#: mmreportspanel.cpp:176
+#: mmreportspanel.cpp:174
 msgid "Report"
 msgstr "Αναφορά"
 
-#: mmreportspanel.cpp:313
+#: mmreportspanel.cpp:310
 msgid "Period…"
 msgstr "Περίοδος…"
 
-#: mmreportspanel.cpp:323
+#: mmreportspanel.cpp:320
 msgid "Period:"
 msgstr "Περίοδος:"
 
-#: mmreportspanel.cpp:383 mmreportspanel.cpp:399 model/Model_Report.cpp:87
+#: mmreportspanel.cpp:380 mmreportspanel.cpp:396 model/Model_Report.cpp:87
 msgid "Date:"
 msgstr "Ημερομηνία:"
 
-#: mmreportspanel.cpp:415 model/Model_Report.cpp:89
+#: mmreportspanel.cpp:412 model/Model_Report.cpp:89
 msgid "Time:"
 msgstr "Ώρα:"
 
-#: mmreportspanel.cpp:430 model/Model_Report.cpp:90
+#: mmreportspanel.cpp:427 model/Model_Report.cpp:90
 msgid "Year:"
 msgstr "Έτος:"
 
-#: mmreportspanel.cpp:453
+#: mmreportspanel.cpp:450
 msgid "Budget:"
 msgstr "Προϋπολογισμός:"
 
-#: mmreportspanel.cpp:490 reports/reportbase.cpp:196
+#: mmreportspanel.cpp:487 reports/reportbase.cpp:196
 #: reports/transactions.cpp:86
 msgid "All Accounts"
 msgstr "Όλοι οι λογαριασμοί"
 
-#: mmreportspanel.cpp:491
+#: mmreportspanel.cpp:488
 msgid "Specific Accounts…"
 msgstr "Συγκεκριμένοι Λογαριασμοί…"
 
-#: mmreportspanel.cpp:505
+#: mmreportspanel.cpp:502
 msgid "Future Months:"
 msgstr "Μελλοντικοί Μήνες:"
 
-#: mmreportspanel.cpp:520
+#: mmreportspanel.cpp:517
 msgid "Chart:"
 msgstr "Γράφημα:"
 
-#: mmreportspanel.cpp:525
+#: mmreportspanel.cpp:522
 msgid "Show"
 msgstr "Εμφάνιση"
 
