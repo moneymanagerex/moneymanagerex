@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -45,7 +46,7 @@ public:
     int64 getDateSelection() const;
     int getAccountSelection() const;
     int getChartSelection() const;
-    int getForwardMonths() const;   
+    int getForwardMonths() const;
     const wxString getAccountNames() const;
     void chart(int selection);
     void setAccounts(int selection, const wxString& name);
@@ -107,11 +108,11 @@ protected:
     wxSharedPtr<wxArrayString> accountArray_;
     wxSharedPtr<wxArrayString> selectedAccountArray_;
     bool m_only_active = false;
+    int m_id = -1;
 
 private:
     bool m_initial = true;
     int m_account_selection = 0;
-    int m_id = -1;
     int m_parameters = 0;
     wxString m_settings = "";
 };

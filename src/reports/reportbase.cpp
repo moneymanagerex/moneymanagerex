@@ -2,6 +2,7 @@
  Copyright (C) 2013 James Higley
  Copyright (C) 2020 Nikolay Akimov
  Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -27,7 +28,7 @@
 #include "util.h"
 
 mmPrintableBase::mmPrintableBase(const wxString& title)
-    : m_title(title)    
+    : m_title(title)
 {
 }
 
@@ -177,8 +178,8 @@ void mmPrintableBase::restoreReportSettings()
 }
 
 void mmPrintableBase::date_range(const mmDateRange* date_range, int selection)
-{ 
-    this->m_date_range = date_range; 
+{
+    this->m_date_range = date_range;
     this->m_date_selection = selection;
 }
 
@@ -282,6 +283,9 @@ mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
 : mmPrintableBase(report->REPORTNAME)
 , m_report(report)
 {
+    if (m_id == -1) {
+        m_id = report->REPORTID.ToLong(); // Store reportid if no id is provided
+    }
 }
 
 wxString mmGeneralReport::getHTMLText()
@@ -324,7 +328,7 @@ wxString mmGeneralReport::getHTMLText()
 
     return out;
 }
- 
+
 int mmGeneralReport::report_parameters()
 {
     int params = 0;
@@ -358,4 +362,3 @@ void mm_html_template::load_context()
     const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
     if (currency) currency->to_template(*this);
 }
-
