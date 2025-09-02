@@ -1467,6 +1467,8 @@ PBank Of Mortgage Payee
         <kbd><samp>File</samp> → <samp>Print…</samp></kbd> menu.
     </p>
 
+
+
     <h2>Settings</h2>
     <aside class="sticky notes">
         Some settings require after a change a restart of the program to be effective.
@@ -1484,35 +1486,37 @@ PBank Of Mortgage Payee
     </p>
 
     <h3>General Panel</h3>
+    <h4>Display Heading</h4>
     <dl>
         <dt>User Name</dt>
         <dd>This field is used as a title on the Dashboard, and on Reports.</dd>
+
         <dd>Leaving this field blank, will remove the Dashboard and
             Report titles.</dd>
-        <dt>Base Currency</dt>
-        <dd>The base currency setting is used to set the
-            currency of the database. Individual accounts will use
-            this as the default, but can be changed if different
-            currencies as required.</dd>
-        <dt>Date Format</dt>
-        <dd>The date format setting is used to control how dates
-            should be displayed <s>and also how dates should be parsed
-            when importing QIF, CSV files.</s></dd>
-        <dt>Financial Year</dt>
-        <dd>Sets the start Day and Month for a Financial Year
-            period, as opposed to a calendar year. This is used in
-            Budgets and Reports.</dd>
-        <dt>Use Original date…</dt>
-        <dd>Activate to use the date of the transaction date when
-            using paste transaction, in account view.</dd>
-        <dt>Use Transaction Sound…</dt>
-        <dd>Activate to plays a sound when a transaction is entered.</dd>
     </dl>
 
+    <h4>User Interface Language</h4>
+    Allows the selection of the user interface language, requires a restart of the program!
+
+    <h4>Date Format</h4>
+    The date format setting is used to control how dates are displayed.
+
+    <h4>Currency</h4>
+        <dl>
+            <dt>Base Currency</dt>
+            <dd>The base currency setting is used to set the
+                currency of the database. Individual accounts will use
+                this as the default, but can be changed if different
+                currencies as required.</dd>
+        </dl>
+
+    <h4>Financial Year</h4>
+    Sets the start Day and Month for a Financial Year period, as opposed to a calendar year. This is used in
+    Budgets and Reports.
+
+
     <h3>View Panel</h3>
-    <p>
-        These settings control the appearance of the MMEX. It is subdivided in several sections:
-    </p>
+    These settings control the appearance of the MMEX. It is subdivided in several sections:
 
     <h4>View</h4>
     <dl>
@@ -1535,12 +1539,6 @@ PBank Of Mortgage Payee
         <dd>Enables randomly selected money tips in the transaction view.</dd>
     </dl>
 
-    <h4>Transaction/Budget</h4>
-    tbd.
-
-    <h4>Transaction Colors</h4>
-    Allows the definition of individual colors, which can mark transactions. The <samp>Default</samp> button resets
-    the defintions to original ones.
 
     <h4>User Interface</h4>
     <dl>
@@ -1561,60 +1559,102 @@ PBank Of Mortgage Payee
     </dl>
 
     <h3>Dashboard Panel</h3>
-    <dl>
-        <dt>TODO</dt>
-        <dd>TODO</dd>
-    </dl>
+    TODO
+
+
+    <h3>Transactions Panel</h3>
+    Contains all transaction related settings.
+
+    <h4>New Transaction</h4>
+    Changes the default settings for the New/Edit Transactions Dialog.
+
+    <h4>Transaction</h4>
+        <dt>Use Original date… </dt>
+        <dd>Activate the related setting to use the original transaction date, when
+            pasting or duplicating a transaction in the account view.</dd>
+
+        <dt>Use Original state when Duplicating or Pasting Transactions</dt>
+        <dd>Per default the state of a duplicated or pasted transaction is set to the Default Status defined in the settings panel
+            for new transactions. If this option is active the original state is kept (e.g. Reconciled)</dd>
+
+        <dt>Transaction Sound…</dt>
+        <dd>Activate to play a sound when a transaction is entered.</dd>
+
+    <h4>Transaction/Budget</h4>
+    These settings control the budget handling.
+
+    <h4>Transaction Colors</h4>
+    Allows the definition of individual colors, which can mark transactions. The <samp>Default</samp> button resets
+    the colors to original ones.
+
 
     <h3>Attachments Panel</h3>
-    <dl>
-        <dt>TODO</dt>
-        <dd>TODO</dd>
-    </dl>
+    Define the location of the attachments folder.
+
 
     <h3>Network Panel</h3>
-    <dl>
-        <dt>WebApp settings</dt>
-        <dd>Set URL and GUID of your WebApp installation to allow
-            data sync. Parameters can be found in WebApp Guide
-            page.</dd>
-    </dl>
+
+    <h4>WebApp</h4>
+    <dd>Set URL and GUID of your WebApp installation to allow
+        data sync. Parameters can be found in WebApp Guide
+        page.</dd>
+
 
     <h3>Other Panel</h3>
-    <dl>
+    Miscelleanous settings
+
+    <h4>Stocks</h4>
         <dt>Stock Quote Web Page</dt>
         <dd>This URL is used by the Refresh button on the Stock
             Investments page. This URL is also used by the New/Edit
             Stock dialog, to display the web page for the listed stock.
             The default is yahoo finance. Alternatively other sites can
             be used if necessary.</dd>
-        <dt>New Transaction</dt>
-        <dd>Changes the default settings for the New/Edit
-            Transactions Dialog</dd>
-        <dt>Database</dt>
-        <dd>Sets the way the backups are performed when MMEX starts.
-            <dl>
-                <dt>Create a new backup when MMEX Start</dt>
-                <dd>This copies the database to a new file with today’s
-                    date, when MMEX Starts.</dd>
-                <dd>The file will not be over written when MMEX starts
-                    up again. When there are more that 4 backup files,
-                    the oldest file is deleted.</dd>
-                <dt>Backup database on exit</dt>
-                <dd>When MMEX shuts down, the existing database will be
-                    copied to a backup database file for that day when
-                    changes to the database have been detected. When
-                    changes are made on the same day, the existing
-                    backup is over written. When there are more that 4
-                    backup files, the oldest file is deleted.</dd>
-            </dl>
-        </dd>
-        <dt>CSV Delimiter</dt>
+
+    <h4>Assets</h4>
+    TBD.
+
+    <h4>Database</h4>
+    Sets the way backups of the MMEX database are performed
+    <dl>
+        <dt>Backup database on start up</dt>
+        <dd>This copies the database to a new file with today’s
+            date, when MMEX Starts.</dd>
+        <dd>The file will not be over written when MMEX starts
+            up again. When there are more than "Max Files" backup files,
+            the oldest file is deleted.</dd>
+
+        <dt>Backup database on exit</dt>
+        <dd>When MMEX shuts down, the existing database will be
+            copied to a backup database file for that day when
+            changes to the database have been detected. When
+            changes are made on the same day, the existing
+            backup is over written. When there are more than "Max Files"
+            backup files, the oldest file is deleted.</dd>
+
+        <dt>Max Files</dt>
+        <dd>Maximum number of backup files to retain.</dd>
+
+        <dt>Days to retain deleted transactions</dt>
+        <dd>The number of days deleted transactions are retained and can be restored before they are finally deleted.</dd>
+    </dl>
+
+    <h4>CSV</h4>
+        <dt>Delimiter</dt>
         <dd>This is used as the delimiting character when parsing
             CSV files. This is useful to modify from the default
             <kbd>,</kbd> when dealing with currencies that use
             <kbd>,</kbd> to denote decimal points in amounts.</dd>
-    </dl>
+
+    <h4>Filter</h4>
+        <dt>Enable date range filter per account or report</dt>
+        <dd>If deactivated (default), all accounts and reports use the same date range. If the date range is changed in one
+            account or report the new range is also applied to all other accounts or reports. This allows a quick comparision of time periods between
+            accounts and reports.
+        </dd>
+        <dd>If activated, the selected date range for each account or report will be stored seperately
+            for an individual view of the accounts or reports</dd>
+
 
     <!--Frequently Asked Questions-->
     <h2>Frequently Asked Questions</h2>

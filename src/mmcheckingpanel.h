@@ -141,7 +141,7 @@ private:
     // set by showTips()
     bool m_show_tips = false;
 
-    bool m_use_dedicated_filter;
+    bool m_use_account_specific_filter;
 
     mmGUIFrame* m_frame = nullptr;
     wxButton* m_bitmapTransFilter = nullptr;

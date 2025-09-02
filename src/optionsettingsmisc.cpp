@@ -62,10 +62,15 @@ void OptionSettingsMisc::Create()
     misc_panel->SetSizer(othersPanelSizer);
     othersPanelSizer0->Add(misc_panel, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    wxStaticText* itemStaticTextURL = new wxStaticText(misc_panel, wxID_STATIC, _t("Stock Quote Web Page"));
-    SetBoldFont(itemStaticTextURL);
+    wxStaticBox* stockStaticBox = new wxStaticBox(misc_panel, wxID_STATIC, _t("Stocks"));
+    SetBoldFont(stockStaticBox);
+    wxStaticBoxSizer* stockStaticBoxSizer = new wxStaticBoxSizer(stockStaticBox, wxVERTICAL);
+    othersPanelSizer->Add(stockStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    othersPanelSizer->Add(itemStaticTextURL, g_flagsV);
+    wxStaticText* itemStaticTextURL = new wxStaticText(misc_panel, wxID_STATIC, _t("Stock Quote Web Page"));
+    //SetBoldFont(itemStaticTextURL);
+
+    stockStaticBoxSizer->Add(itemStaticTextURL, g_flagsV);
 
     wxArrayString list;
     list.Add(mmex::weblink::DefStockUrl);
@@ -78,7 +83,7 @@ void OptionSettingsMisc::Create()
         , wxDefaultPosition, wxDefaultSize, list);
     itemListOfURL->SetValue(stockURL);
 
-    othersPanelSizer->Add(itemListOfURL, wxSizerFlags(g_flagsExpand).Proportion(0));
+    stockStaticBoxSizer->Add(itemListOfURL, wxSizerFlags(g_flagsExpand).Proportion(0));
     mmToolTip(itemListOfURL, _t("Clear the field to Reset the value to system default."));
 
     // Share Precision
@@ -94,9 +99,14 @@ void OptionSettingsMisc::Create()
     m_refresh_quotes_on_open = new wxCheckBox(misc_panel, wxID_REFRESH, _t("Refresh at Startup"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_refresh_quotes_on_open->SetValue(Model_Setting::instance().getBool("REFRESH_STOCK_QUOTES_ON_OPEN", false));
     share_precision_sizer->Add(m_refresh_quotes_on_open, wxSizerFlags(g_flagsH).Border(wxLEFT, 20));
-    othersPanelSizer->Add(share_precision_sizer, g_flagsBorder1V);
+    stockStaticBoxSizer->Add(share_precision_sizer, g_flagsBorder1V);
 
     // Asset Compounding
+    wxStaticBox* assetStaticBox = new wxStaticBox(misc_panel, wxID_STATIC, _t("Assets"));
+    SetBoldFont(assetStaticBox);
+    wxStaticBoxSizer* assetStaticBoxSizer = new wxStaticBoxSizer(assetStaticBox, wxVERTICAL);
+    othersPanelSizer->Add(assetStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+
     wxFlexGridSizer* asset_compounding_sizer = new wxFlexGridSizer(0, 3, 0, 0);
     asset_compounding_sizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _t("Asset Compounding Period")), g_flagsH);
     m_asset_compounding = new wxChoice(misc_panel, ID_DIALOG_OPTIONS_ASSET_COMPOUNDING);
@@ -107,11 +117,12 @@ void OptionSettingsMisc::Create()
         _t("Select the compounding period for the appreciation/depreciation rate of assets")
     );
     asset_compounding_sizer->Add(m_asset_compounding, wxSizerFlags(g_flagsExpand).Proportion(0));
-    othersPanelSizer->Add(asset_compounding_sizer, g_flagsBorder1V);
+    //othersPanelSizer->Add(asset_compounding_sizer, g_flagsBorder1V);
+    assetStaticBoxSizer->Add(asset_compounding_sizer, g_flagsV);
 
     //----------------------------------------------
     //a bit more space visual appearance
-    othersPanelSizer->AddSpacer(10);
+    //othersPanelSizer->AddSpacer(10);
 
     wxBoxSizer* itemBoxSizerStockURL = new wxBoxSizer(wxVERTICAL);
     othersPanelSizer->Add(itemBoxSizerStockURL);
@@ -183,11 +194,11 @@ void OptionSettingsMisc::Create()
 
     othersPanelSizer->Add(filterStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    m_use_combined_transaction_filter = new wxCheckBox(misc_panel, ID_DIALOG_OPTIONS_CHK_FILTER
-        , _t("Enable combined transaction filter"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_use_combined_transaction_filter->SetValue(Option::instance().getUseCombinedTransactionFilter());
-    m_use_combined_transaction_filter->SetToolTip(_t("Switch to one filter control for date and attributes"));
-    filterStaticBoxSizer->Add(m_use_combined_transaction_filter, g_flagsV);
+    m_store_account_specific_filter = new wxCheckBox(misc_panel, ID_DIALOG_OPTIONS_CHK_FILTER
+        , _t("Enable date range filter per account or report"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_store_account_specific_filter->SetValue(Option::instance().getUsePerAccountFilter());
+    m_store_account_specific_filter->SetToolTip(_t("Store filter values per account or report and not globally"));
+    filterStaticBoxSizer->Add(m_store_account_specific_filter, g_flagsV);
 
     wxCommandEvent evt;
     OptionSettingsMisc::OnBackupChanged(evt);
@@ -236,7 +247,7 @@ bool OptionSettingsMisc::SaveSettings()
     Model_Setting::instance().setInt("DELETED_TRANS_RETAIN_DAYS", m_deleted_trans_retain_days->GetValue());
     Model_Setting::instance().setBool("REFRESH_STOCK_QUOTES_ON_OPEN", m_refresh_quotes_on_open->IsChecked());
 
-    Option::instance().setUseCombinedTransactionFilter(m_use_combined_transaction_filter->IsChecked());
+    Option::instance().setUsePerAccountFilter(m_store_account_specific_filter->IsChecked());
 
     wxTextCtrl* st = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4));
     const wxString& delim = st->GetValue();

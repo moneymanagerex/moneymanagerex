@@ -247,11 +247,10 @@ public:
     void setDoSpecialColorReconciled(const bool value);
     bool getDoSpecialColorReconciled() const noexcept;
 
-    // m_use_combined_transaction_filter
-    void loadUseCombinedTransactionFilter();
-    void setUseCombinedTransactionFilter(const bool value);
-    bool getUseCombinedTransactionFilter() const noexcept;
-
+    // m_store_account_specific_filter
+    void loadUsePerAccountFilter();
+    void setUsePerAccountFilter(const bool value);
+    bool getUsePerAccountFilter() const noexcept;
 
     // m_show_tooltips
     void loadShowToolTips();
@@ -302,7 +301,7 @@ private:
     bool m_ignore_future_transactions = false;          // IGNORE_FUTURE_TRANSACTIONS
     bool m_do_not_color_future = true;                  // DO_NOT_COLOR_FUTURE_TRANSACTIONS
     bool m_do_special_color_reconciled = true;          // SPECIAL_COLOR_RECONCILED_TRANSACTIONS
-    bool m_use_combined_transaction_filter = false;     // USE_COMBINED_TRANSACTION_FILTER
+    bool m_store_account_specific_filter = false;       // USE_PER_ACCOUNT_FILTER
     bool m_show_tooltips = true;                        // IGNORE_SHOW_TOOLTIPS
     bool m_show_moneytips = true;                       // IGNORE_SHOW_MONEYTIPS
     bool m_use_trans_datetime = false;                  // TRANSACTION_USE_DATE_TIME
@@ -523,9 +522,9 @@ inline bool Option::getDoSpecialColorReconciled() const noexcept
     return m_do_special_color_reconciled;
 }
 
-inline bool Option::getUseCombinedTransactionFilter() const noexcept
+inline bool Option::getUsePerAccountFilter() const noexcept
 {
-    return m_use_combined_transaction_filter;
+    return m_store_account_specific_filter;
 }
 
 inline bool Option::getShowToolTips() const noexcept

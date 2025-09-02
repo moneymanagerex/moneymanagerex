@@ -4738,10 +4738,6 @@ msgstr ""
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1154
-msgid "Unable to show scheduled transactions because the current filter choice extends into the future without limit."
-msgstr ""
-
 #: mmcheckingpanel.cpp:1155
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr ""
@@ -6716,11 +6712,11 @@ msgid "Filter"
 msgstr ""
 
 #: optionsettingsmisc.cpp:187
-msgid "Enable combined transaction filter"
+msgid "Enable date range filter per account or report"
 msgstr ""
 
 #: optionsettingsmisc.cpp:189
-msgid "Switch to one filter control for date and attributes"
+msgid "Store filter values per account or report and not globally"
 msgstr ""
 
 #: optionsettingsnet.cpp:65

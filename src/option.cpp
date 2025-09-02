@@ -130,7 +130,7 @@ void Option::load(bool include_infotable)
     loadUseTransDateTime();
     loadDoNotColorFuture();
     loadDoSpecialColorReconciled();
-    loadUseCombinedTransactionFilter();
+    loadUsePerAccountFilter();
     loadShowToolTips();
     loadShowMoneyTips();
     loadTransPayeeNone();
@@ -447,14 +447,14 @@ void Option::setDoSpecialColorReconciled(const bool value)
     m_do_special_color_reconciled = value;
 }
 
-void Option::loadUseCombinedTransactionFilter()
+void Option::loadUsePerAccountFilter()
 {
-    m_use_combined_transaction_filter = Model_Setting::instance().getBool("USE_COMBINED_TRANSACTION_FILTER", true);
+    m_store_account_specific_filter = Model_Setting::instance().getBool("USE_PER_ACCOUNT_FILTER", true);
 }
-void Option::setUseCombinedTransactionFilter(const bool value)
+void Option::setUsePerAccountFilter(const bool value)
 {
-    Model_Setting::instance().setBool("USE_COMBINED_TRANSACTION_FILTER", value);
-    m_use_combined_transaction_filter = value;
+    Model_Setting::instance().setBool("USE_PER_ACCOUNT_FILTER", value);
+    m_store_account_specific_filter = value;
 }
 
 
