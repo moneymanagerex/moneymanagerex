@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-08-26 07:12+0000\n"
-"PO-Revision-Date: 2025-08-26 13:10\n"
+"POT-Creation-Date: 2025-09-01 06:44+0000\n"
+"PO-Revision-Date: 2025-09-02 14:33\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -2207,7 +2207,7 @@ msgstr "Vill du verkligen återställa standardintervallen?\n\n"
 msgid "Default date ranges"
 msgstr "Standard datumintervall"
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1175 mmreportspanel.cpp:910
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1175 mmreportspanel.cpp:907
 msgid "More date ranges…"
 msgstr "Fler datumintervall…"
 
@@ -3399,7 +3399,7 @@ msgstr "Rad %zu \t %s\n"
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr "Antal rader som läses från QIF-filen: %zu på %lld ms"
 
-#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:485
+#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:482
 msgid "Accounts:"
 msgstr "Konton:"
 
@@ -4690,7 +4690,7 @@ msgid "Invested: "
 msgstr "Investerade: "
 
 #: mmcheckingpanel.cpp:447 mmcheckingpanel.cpp:1244 mmreportspanel.cpp:103
-#: mmreportspanel.cpp:949
+#: mmreportspanel.cpp:946
 msgid "Date range"
 msgstr "Datumintervall"
 
@@ -4737,7 +4737,7 @@ msgstr "Klicka för att visa schemalagda transaktioner. Den här funktionen fung
 msgid "Click to hide scheduled transactions."
 msgstr "Klicka för att dölja schemalagda transaktioner."
 
-#: mmcheckingpanel.cpp:1184 mmreportspanel.cpp:917
+#: mmcheckingpanel.cpp:1184 mmreportspanel.cpp:914
 msgid "Edit date ranges…"
 msgstr "Redigera datumintervall…"
 
@@ -5893,7 +5893,7 @@ msgstr ""
 msgid "Stocks Report"
 msgstr ""
 
-#: mmframereport.cpp:317 mmreportspanel.cpp:526
+#: mmframereport.cpp:317 mmreportspanel.cpp:523
 msgid "Hide"
 msgstr "Dölj"
 
@@ -6039,52 +6039,52 @@ msgstr ""
 msgid "Reset column widths"
 msgstr "Återställ kolumnbredder"
 
-#: mmreportspanel.cpp:176
+#: mmreportspanel.cpp:174
 msgid "Report"
 msgstr "Rapport"
 
-#: mmreportspanel.cpp:313
+#: mmreportspanel.cpp:310
 msgid "Period…"
 msgstr "Period…"
 
-#: mmreportspanel.cpp:323
+#: mmreportspanel.cpp:320
 msgid "Period:"
 msgstr "Period:"
 
-#: mmreportspanel.cpp:383 mmreportspanel.cpp:399 model/Model_Report.cpp:87
+#: mmreportspanel.cpp:380 mmreportspanel.cpp:396 model/Model_Report.cpp:87
 msgid "Date:"
 msgstr "Datum:"
 
-#: mmreportspanel.cpp:415 model/Model_Report.cpp:89
+#: mmreportspanel.cpp:412 model/Model_Report.cpp:89
 msgid "Time:"
 msgstr "Tid:"
 
-#: mmreportspanel.cpp:430 model/Model_Report.cpp:90
+#: mmreportspanel.cpp:427 model/Model_Report.cpp:90
 msgid "Year:"
 msgstr "år:"
 
-#: mmreportspanel.cpp:453
+#: mmreportspanel.cpp:450
 msgid "Budget:"
 msgstr "Budget:"
 
-#: mmreportspanel.cpp:490 reports/reportbase.cpp:196
+#: mmreportspanel.cpp:487 reports/reportbase.cpp:196
 #: reports/transactions.cpp:86
 msgid "All Accounts"
 msgstr "Alla konton"
 
-#: mmreportspanel.cpp:491
+#: mmreportspanel.cpp:488
 msgid "Specific Accounts…"
 msgstr "Specifika konton…"
 
-#: mmreportspanel.cpp:505
+#: mmreportspanel.cpp:502
 msgid "Future Months:"
 msgstr "Framtida månader:"
 
-#: mmreportspanel.cpp:520
+#: mmreportspanel.cpp:517
 msgid "Chart:"
 msgstr ""
 
-#: mmreportspanel.cpp:525
+#: mmreportspanel.cpp:522
 msgid "Show"
 msgstr "Visa"
 
