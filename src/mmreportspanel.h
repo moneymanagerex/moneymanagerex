@@ -98,7 +98,6 @@ private:
     mmCheckingPanel::FILTER_ID m_filter_id;
 
 private:
-    void OnDateRangeChanged(wxCommandEvent& event);
     void OnYearChanged(wxCommandEvent& event);
     void OnBudgetChanged(wxCommandEvent & event);
     void OnStartEndDateChanged(wxDateEvent& event);

@@ -41,7 +41,6 @@
 #include <iomanip>
 
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
-    EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
     EVT_CHOICE(ID_CHOICE_YEAR, mmReportsPanel::OnYearChanged)
     EVT_CHOICE(ID_CHOICE_BUDGET, mmReportsPanel::OnBudgetChanged)
     EVT_CHOICE(ID_CHOICE_ACCOUNTS, mmReportsPanel::OnAccountChanged)
@@ -129,6 +128,17 @@ bool mmReportsPanel::saveReportText(bool initial)
         date_range->end_date(td);
     }
     rb_->date_range(date_range, 0);
+
+    if (rb_->report_parameters() & (mmPrintableBase::RepParams::BUDGET_DATES | mmPrintableBase::RepParams::ONLY_YEARS))
+    {
+        int selectedItem = m_date_ranges->GetSelection();
+        wxString id_str = "0";
+        wxStringClientData* obj =
+            static_cast<wxStringClientData*>(m_date_ranges->GetClientObject(selectedItem));
+        if (obj) id_str = obj->GetData();
+        int64 id = std::stoll(id_str.ToStdString());
+        rb_->setSelection(id);
+    }
 
     StringBuffer json_buffer;
     Writer<StringBuffer> json_writer(json_buffer);
@@ -478,23 +488,6 @@ void mmReportsPanel::OnBudgetChanged(wxCommandEvent& event)
     rb_->setReportSettings();
 }
 
-
-void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& WXUNUSED(event))
-{
-    auto i = this->m_date_ranges->GetSelection();
-    const mmDateRange* date_range = static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(i));
-    if (date_range)
-    {
-        m_start_date->Enable(false);
-        this->m_start_date->SetValue(date_range->start_date());
-        m_end_date->Enable(false);
-        this->m_end_date->SetValue(date_range->end_date());
-        rb_->setSelection(i);
-        rb_->setReportSettings();
-    }
-    saveReportText(false);
-}
-
 void mmReportsPanel::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
 {
     if (rb_)
@@ -594,19 +587,6 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
     const wxString uri = escapedURI.BuildUnescapedURI();
     wxString sData;
 
-    if (rb_->report_parameters() & rb_->RepParams::DATE_RANGE)
-    {
-        auto idx = this->m_date_ranges->GetSelection();
-        const mmDateRange* date_range = static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(idx));
-        if (date_range)
-        {
-            this->m_start_date->SetValue(date_range->start_date());
-            this->m_end_date->SetValue(date_range->end_date());
-            rb_->setSelection(idx);
-            rb_->setReportSettings();
-            rb_->m_filter.setDateRange(date_range->start_date(), date_range->end_date());
-        }
-    }
     wxRegEx pattern(R"(^(https?:)|(file:)\/\/)");
     if (pattern.Matches(uri))
     {
