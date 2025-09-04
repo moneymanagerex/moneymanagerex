@@ -1104,8 +1104,8 @@ void mmCheckingPanel::onFilterDate(wxCommandEvent& event)
     m_bitmapTransFilter->SetLabel(m_current_date_range.getName());
     m_bitmapTransFilter->SetBitmap(mmBitmapBundle((i > 0 ? png::TRANSFILTER_ACTIVE : png::TRANSFILTER), mmBitmapButtonSize));
 
-    fromDateCtrl->SetValue(m_current_date_range.checking_start());
-    toDateCtrl->SetValue(m_current_date_range.checking_end());
+    fromDateCtrl->SetValue(m_current_date_range.reporting_start());
+    toDateCtrl->SetValue(m_current_date_range.checking_end().IsValid() ? m_current_date_range.checking_end() : wxDateTime::Now());
 
     refreshList();
 }

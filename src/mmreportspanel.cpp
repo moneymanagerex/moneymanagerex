@@ -842,8 +842,8 @@ void mmReportsPanel::updateFilter()
         m_bitmapDataPeriodFilterBtn->SetLabel(m_current_date_range.getName());
         m_bitmapDataPeriodFilterBtn->SetBitmap(mmBitmapBundle((m_current_date_range.getName() != m_date_range_a[0].getName() ? png::TRANSFILTER_ACTIVE : png::TRANSFILTER), mmBitmapButtonSize));
 
-        m_start_date->SetValue(m_current_date_range.checking_start().IsValid() ? m_current_date_range.checking_start() : wxDateTime(static_cast <time_t>(0)));
-        m_end_date->SetValue(m_current_date_range.checking_end().IsValid() ? m_current_date_range.checking_end() : wxDateTime::Today());
+        m_start_date->SetValue(m_current_date_range.reporting_start());
+        m_end_date->SetValue(m_current_date_range.reporting_end());
     }
     else if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_PICKER) {
         m_bitmapDataPeriodFilterBtn->SetLabel(_t("Date range"));
