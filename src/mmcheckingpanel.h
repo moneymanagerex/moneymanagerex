@@ -27,7 +27,6 @@ Copyright (C) 2025 Klaus Wich
 #include "mmpanelbase.h"
 #include "constants.h"
 #include "fusedtransaction.h"
-#include "reports/mmDateRange.h"
 #include "model/Model_Account.h"
 #include <map>
 //----------------------------------------------------------------------------
