@@ -44,8 +44,12 @@ wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_CHOICE(ID_CHOICE_YEAR, mmReportsPanel::OnYearChanged)
     EVT_CHOICE(ID_CHOICE_BUDGET, mmReportsPanel::OnBudgetChanged)
     EVT_CHOICE(ID_CHOICE_ACCOUNTS, mmReportsPanel::OnAccountChanged)
-    EVT_DATE_CHANGED(wxID_ANY, mmReportsPanel::OnStartEndDateChanged)
-    EVT_TIME_CHANGED(wxID_ANY, mmReportsPanel::OnStartEndDateChanged)
+    EVT_DATE_CHANGED(ID_CHOICE_START_DATE, mmReportsPanel::OnStartEndDateChanged)
+    EVT_TIME_CHANGED(ID_CHOICE_START_DATE, mmReportsPanel::OnStartEndDateChanged)
+    EVT_DATE_CHANGED(ID_CHOICE_END_DATE, mmReportsPanel::OnStartEndDateChanged)
+    EVT_TIME_CHANGED(ID_CHOICE_END_DATE, mmReportsPanel::OnStartEndDateChanged)
+    EVT_DATE_CHANGED(ID_CHOICE_SINGLE_DATE, mmReportsPanel::OnSingleDateChanged)
+    EVT_TIME_CHANGED(ID_CHOICE_SINGLE_DATE, mmReportsPanel::OnSingleDateChanged)
     EVT_CHOICE(ID_CHOICE_CHART, mmReportsPanel::OnChartChanged)
     EVT_SPINCTRL(ID_CHOICE_FORWARD_MONTHS, mmReportsPanel::OnForwardMonthsChangedSpin)
     EVT_TEXT_ENTER(ID_CHOICE_FORWARD_MONTHS, mmReportsPanel::OnForwardMonthsChangedText)
@@ -308,12 +312,12 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
             long date_style = wxDP_DROPDOWN | wxDP_SHOWCENTURY;
-            m_start_date = new mmDatePickerCtrl(itemPanel3, ID_CHOICE_START_DATE
+            m_single_date = new mmDatePickerCtrl(itemPanel3, ID_CHOICE_SINGLE_DATE
                 , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, date_style);
-            m_start_date->SetValue(wxDateTime::Today());
-            m_start_date->Enable(true);
+            m_single_date->SetValue(wxDateTime::Today());
+            m_single_date->Enable(true);
 
-            itemBoxSizerHeader->Add(m_start_date, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->Add(m_single_date, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
         else if (rp & rb_->RepParams::MONTHES)
@@ -505,6 +509,14 @@ void mmReportsPanel::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
             saveReportText(false);
             rb_->setReportSettings();
         }
+    }
+}
+
+void mmReportsPanel::OnSingleDateChanged(wxDateEvent& event)
+{
+    if (rb_) {
+        saveReportText(false);
+        rb_->setReportSettings();
     }
 }
 
