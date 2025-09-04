@@ -456,12 +456,12 @@ wxDateTime DateRange2::checking_end() const
 
 wxDateTime DateRange2::reporting_start() const
 {
-    return checking_start().IsValid() ? checking_start() : wxDateTime(DATE_MIN);
+    return checking_start();
 }
 
 wxDateTime DateRange2::reporting_end() const
 {
-    return checking_end().IsValid() ? checking_end() : wxDateTime(DATE_MAX);
+    return checking_end();
 }
 
 const wxString DateRange2::checking_tooltip() const

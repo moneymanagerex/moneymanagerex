@@ -221,12 +221,12 @@ void mmCheckingPanel::createControls()
     tmprange.setSpec(m_date_range_a[0]);  // set to all
 
     fromDateCtrl = new wxDatePickerCtrl(this, mmID_DATE_PICK_LOW, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
-    fromDateCtrl->SetValue(tmprange.checking_start());
+    fromDateCtrl->SetValue(tmprange.checking_start().IsValid() ? tmprange.checking_start() : DATE_MIN);
     fromDateCtrl->SetRange(wxInvalidDateTime, wxDateTime::Now());
     sizerHCtrl->Add(fromDateCtrl, g_flagsH);
 
     toDateCtrl = new wxDatePickerCtrl(this, mmID_DATE_PICK_HIGH, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
-    toDateCtrl->SetValue(tmprange.checking_end());
+    toDateCtrl->SetValue(tmprange.checking_end().IsValid() ? tmprange.checking_end() : wxDateTime::Now());
     sizerHCtrl->Add(toDateCtrl, g_flagsH);
 
     m_btnTransDetailFilter = new wxButton(this, mmID_FILTER_TRANSACTION_DETAIL, _tu("Filter…"));  // Filter for transaction details
@@ -434,8 +434,8 @@ void mmCheckingPanel::updateFilter(bool firstinit)
     if (m_filter_id == FILTER_ID_DATE_RANGE) {
         m_bitmapTransFilter->SetLabel(m_current_date_range.getName());
         m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
-        fromDateCtrl->SetValue(m_current_date_range.checking_start());
-        toDateCtrl->SetValue(m_current_date_range.checking_end());
+        fromDateCtrl->SetValue(m_current_date_range.checking_start().IsValid() ? m_current_date_range.checking_start() : DATE_MIN);
+        toDateCtrl->SetValue(m_current_date_range.checking_end().IsValid() ? m_current_date_range.checking_end() : wxDateTime::Now());
     }
     else if (m_filter_id == FILTER_ID_DATE_PICKER) {
         m_bitmapTransFilter->SetLabel(_t("Date range"));
@@ -1104,7 +1104,7 @@ void mmCheckingPanel::onFilterDate(wxCommandEvent& event)
     m_bitmapTransFilter->SetLabel(m_current_date_range.getName());
     m_bitmapTransFilter->SetBitmap(mmBitmapBundle((i > 0 ? png::TRANSFILTER_ACTIVE : png::TRANSFILTER), mmBitmapButtonSize));
 
-    fromDateCtrl->SetValue(m_current_date_range.reporting_start());
+    fromDateCtrl->SetValue(m_current_date_range.checking_start().IsValid() ? m_current_date_range.checking_start() : DATE_MIN);
     toDateCtrl->SetValue(m_current_date_range.checking_end().IsValid() ? m_current_date_range.checking_end() : wxDateTime::Now());
 
     refreshList();
