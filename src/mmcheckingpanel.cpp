@@ -525,6 +525,7 @@ void mmCheckingPanel::loadFilterSettings()
                 m_current_date_range.setSpec(m_date_range_a[0]); // init with 'all'
             }
         }
+        if (isAccount()) m_current_date_range.setDateS(Model_Account::DateOf(m_account->STATEMENTDATE));
     }
     else if (m_filter_id == FILTER_ID_DATE_PICKER) {
         wxString p_filter;
