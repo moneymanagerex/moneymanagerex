@@ -592,16 +592,6 @@ void mmCheckingPanel::filterList()
 {
     m_lc->m_trans.clear();
 
-    wxString date_start_str, date_end_str;
-    if (m_filter_id == FILTER_ID_DATE_PICKER) {
-        date_start_str = (fromDateCtrl->GetValue().IsValid() ? fromDateCtrl->GetValue() : wxDateTime(static_cast<time_t>(0))).FormatISODate();
-        date_end_str = (toDateCtrl->GetValue().IsValid() ? toDateCtrl->GetValue() : (wxDateTime::Now() + wxTimeSpan::Days(30))).FormatISODate() + "~";
-    }
-    else {
-        date_start_str = m_current_date_range.checking_start_str();
-        date_end_str = m_current_date_range.checking_end().IsValid() ? m_current_date_range.checking_end_str() : (wxDateTime::Now() + wxTimeSpan::Days(30)).FormatISODate() + "~";
-    }
-
     int sn = 0; // sequence number
     m_flow = 0.0;
     m_balance = m_account ? m_account->INITIALBAL : 0.0;
@@ -641,6 +631,26 @@ void mmCheckingPanel::filterList()
     const auto trans_tags = Model_Taglink::instance().get_all(tranRefType);
     const auto trans_attachments = Model_Attachment::instance().get_all(Model_Checking::refTypeName);
 
+    wxString date_start_str, date_end_str;
+    wxDateTime date_end = wxDateTime::Now() + wxTimeSpan::Days(30);
+    if (m_filter_id == FILTER_ID_DATE_PICKER) {
+        date_start_str = (fromDateCtrl->GetValue().IsValid() ? fromDateCtrl->GetValue() : wxDateTime(static_cast<time_t>(0))).FormatISODate();
+        date_end_str = (toDateCtrl->GetValue().IsValid() ? toDateCtrl->GetValue() : date_end).FormatISODate() + "~";
+    } else {
+        date_start_str = m_current_date_range.checking_start_str();
+        // find last un-deleted transaction and use that if later than current date + 30 days
+        for (auto it = trans.rbegin(); it != trans.rend(); ++it)
+        {
+            const Model_Checking::Data* tran = &(*it);
+            if (tran && ( isDeletedTrans() || tran->DELETEDTIME.IsEmpty()))
+            {
+                date_end = (Model_Checking::TRANSDATE(tran) > date_end) ? Model_Checking::TRANSDATE(tran) : date_end;
+                break;
+            }
+        }
+        date_end_str = m_current_date_range.checking_end().IsValid() ? m_current_date_range.checking_end_str() : 
+            date_end.FormatISODate() + "~";
+    }
     std::map<int64, Model_Budgetsplittransaction::Data_Set> bills_splits;
     std::map<int64, Model_Taglink::Data_Set> bills_tags;
     std::map<int64, Model_Attachment::Data_Set> bills_attachments;
