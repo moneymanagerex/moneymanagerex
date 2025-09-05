@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-09-01 06:44+0000\n"
-"PO-Revision-Date: 2025-09-02 14:33\n"
+"POT-Creation-Date: 2025-09-02 22:33+0000\n"
+"PO-Revision-Date: 2025-09-05 00:56\n"
 "Last-Translator: \n"
 "Language-Team: Tamil\n"
 "Language: ta_IN\n"
@@ -230,7 +230,7 @@ msgstr "கணக்கு இருப்பு குறைந்த வரம
 msgid "Credit"
 msgstr "கடன்"
 
-#: accountdialog.cpp:262 mmcheckingpanel.cpp:419
+#: accountdialog.cpp:262 mmcheckingpanel.cpp:414
 msgid "Credit Limit:"
 msgstr "கடன் வரம்பு:"
 
@@ -595,8 +595,8 @@ msgstr ""
 
 #: assetspanel.cpp:409 assetspanel.h:124 general_report_manager.cpp:1101
 #: mmframe.cpp:220 mmframe.cpp:1993 mmframe.cpp:3650 mmhomepage.cpp:527
-#: mmhomepage.cpp:576 mmhomepagepanel.cpp:236 reports/summary.cpp:266
-#: reports/summary.cpp:304
+#: mmhomepage.cpp:576 mmhomepagepanel.cpp:236 optionsettingsmisc.cpp:105
+#: reports/summary.cpp:266 reports/summary.cpp:304
 msgid "Assets"
 msgstr "சொத்துக்கள்"
 
@@ -609,7 +609,7 @@ msgstr "சொத்துக்கள்"
 msgid "All"
 msgstr "எல்லாம்"
 
-#: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:300
+#: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:295
 #: stockspanel.cpp:144
 msgid "&New "
 msgstr "&புதிய "
@@ -628,13 +628,13 @@ msgstr "சொத்து பரிவர்த்தனைகளைப் ப�
 
 #: assetspanel.cpp:474 attachmentdialog.cpp:354 billsdepositspanel.cpp:293
 #: categdialog.cpp:319 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
-#: mmcheckingpanel.cpp:304 payeedialog.cpp:882 stockspanel.cpp:158
+#: mmcheckingpanel.cpp:299 payeedialog.cpp:882 stockspanel.cpp:158
 #: tagdialog.cpp:132
 msgid "&Edit "
 msgstr "&திருத்து "
 
 #: assetspanel.cpp:479 billsdepositspanel.cpp:303 budgetyeardialog.cpp:103
-#: categdialog.cpp:323 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:296
+#: categdialog.cpp:323 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:291
 #: stockdialog.cpp:319 stockspanel.cpp:163 tagdialog.cpp:137
 msgid "&Delete "
 msgstr "&அழி "
@@ -643,13 +643,13 @@ msgstr "&அழி "
 msgid "Delete Asset"
 msgstr "சொத்து விவரத்தை அழி"
 
-#: assetspanel.cpp:487 billsdepositspanel.cpp:321 mmcheckingpanel.cpp:332
+#: assetspanel.cpp:487 billsdepositspanel.cpp:321 mmcheckingpanel.cpp:327
 #: stockspanel.cpp:176
 msgid "Open attachments"
 msgstr "இணைப்புகளைத் திறக்கவும்"
 
 #: assetspanel.cpp:494 assetspanel.cpp:495 categdialog.cpp:304
-#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:363 payeedialog.cpp:588
+#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:358 payeedialog.cpp:588
 #: tagdialog.cpp:117
 msgid "Search"
 msgstr "தேடு"
@@ -658,22 +658,22 @@ msgstr "தேடு"
 msgid "Enter any string to find related assets"
 msgstr "தேடல்"
 
-#: assetspanel.cpp:499 filtertransdialog.cpp:711 mmcheckingpanel.cpp:367
+#: assetspanel.cpp:499 filtertransdialog.cpp:711 mmcheckingpanel.cpp:362
 #: payeedialog.cpp:137
 msgid "Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria."
 msgstr ""
 
-#: assetspanel.cpp:500 filtertransdialog.cpp:712 mmcheckingpanel.cpp:368
+#: assetspanel.cpp:500 filtertransdialog.cpp:712 mmcheckingpanel.cpp:363
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”."
 msgstr ""
 
-#: assetspanel.cpp:501 filtertransdialog.cpp:713 mmcheckingpanel.cpp:369
+#: assetspanel.cpp:501 filtertransdialog.cpp:713 mmcheckingpanel.cpp:364
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”."
 msgstr ""
 
-#: assetspanel.cpp:502 filtertransdialog.cpp:714 mmcheckingpanel.cpp:370
+#: assetspanel.cpp:502 filtertransdialog.cpp:714 mmcheckingpanel.cpp:365
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) at the beginning to find any string in the middle of the sentence."
 msgstr ""
@@ -1332,7 +1332,7 @@ msgstr "உதவிக்குறிப்பு: இந்த பரிவர
 msgid "Scheduled Transactions"
 msgstr "திட்டமிடப்பட்ட பரிவர்த்தனைகள்"
 
-#: billsdepositspanel.cpp:298 mmcheckingpanel.cpp:309
+#: billsdepositspanel.cpp:298 mmcheckingpanel.cpp:304
 msgid "D&uplicate "
 msgstr "ந&கல் "
 
@@ -1340,19 +1340,19 @@ msgstr "ந&கல் "
 msgid "Delete Scheduled Transaction"
 msgstr "திட்டமிடப்பட்ட பரிவர்த்தனையை நீக்கு"
 
-#: billsdepositspanel.cpp:308 mmcheckingpanel.cpp:317
+#: billsdepositspanel.cpp:308 mmcheckingpanel.cpp:312
 msgid "Ente&r"
 msgstr "உள்ளிடவு&ம்"
 
-#: billsdepositspanel.cpp:309 mmcheckingpanel.cpp:318
+#: billsdepositspanel.cpp:309 mmcheckingpanel.cpp:313
 msgid "Enter Next Scheduled Transaction Occurrence"
 msgstr "அடுத்த திட்டமிடப்பட்ட பரிவர்த்தனை நிகழ்வை உள்ளிடவும்"
 
-#: billsdepositspanel.cpp:313 mmcheckingpanel.cpp:322
+#: billsdepositspanel.cpp:313 mmcheckingpanel.cpp:317
 msgid "&Skip"
 msgstr "தவிர்"
 
-#: billsdepositspanel.cpp:314 mmcheckingpanel.cpp:323
+#: billsdepositspanel.cpp:314 mmcheckingpanel.cpp:318
 msgid "Skip Next Scheduled Transaction Occurrence"
 msgstr "அடுத்த திட்டமிடப்பட்ட பரிவர்த்தனை நிகழ்வைத் தவிர்க்கவும்"
 
@@ -1886,7 +1886,7 @@ msgstr "திற"
 msgid "Closed"
 msgstr "மூடப்பட்டது"
 
-#: constants.cpp:199 mmcheckingpanel.cpp:1482 mmframe.cpp:514
+#: constants.cpp:199 mmcheckingpanel.cpp:1358 mmframe.cpp:514
 msgid "Favorites"
 msgstr "விருப்பங்கள்"
 
@@ -1937,7 +1937,7 @@ msgstr "குழுப் பிரிவு குறியீடு"
 
 #: currencydialog.cpp:219 mmSimpleDialogs.cpp:839 model/Model_Asset.cpp:40
 #: model/Model_Budget.cpp:28 optionsettingstransaction.cpp:64
-#: optionsettingstransaction.cpp:135 reports/reportbase.cpp:200
+#: optionsettingstransaction.cpp:135 reports/reportbase.cpp:201
 msgid "None"
 msgstr "ஏதுமில்லை"
 
@@ -2212,7 +2212,7 @@ msgstr ""
 msgid "Default date ranges"
 msgstr ""
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1175 mmreportspanel.cpp:907
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1073 mmreportspanel.cpp:819
 msgid "More date ranges…"
 msgstr ""
 
@@ -2778,7 +2778,7 @@ msgstr "தொகை வரம்பு"
 msgid "Enter any string to find it in transaction notes"
 msgstr "பரிவர்த்தனை குறிப்புகளில் அதைக் கண்டறிய எந்த சரத்தையும் உள்ளிடவும்"
 
-#: filtertransdialog.cpp:715 mmcheckingpanel.cpp:371 payeedialog.cpp:141
+#: filtertransdialog.cpp:715 mmcheckingpanel.cpp:366 payeedialog.cpp:141
 msgid "Use regex: to match using regular expressions."
 msgstr "ரெஜெக்ஸைப் பயன்படுத்தவும்: வழக்கமான வெளிப்பாடுகளைப் பயன்படுத்தி பொருத்தவும்."
 
@@ -2914,7 +2914,7 @@ msgstr "வடிகட்டி அமைப்புகள் மாற்ற�
 msgid "Please confirm"
 msgstr "தயவுசெய்து உறுதிப்படுத்தவும்"
 
-#: filtertransdialog.cpp:2285 reports/reportbase.cpp:229
+#: filtertransdialog.cpp:2285 reports/reportbase.cpp:230
 msgid "Choose Accounts"
 msgstr "கணக்கை தேர்ந்தெடு"
 
@@ -3217,7 +3217,7 @@ msgstr "அளவுருக்கள்"
 msgid "Log"
 msgstr "பதிவு"
 
-#: import_export/qif_export.cpp:136 optionsettingsmisc.cpp:164
+#: import_export/qif_export.cpp:136 optionsettingsmisc.cpp:175
 msgid "CSV"
 msgstr "CSV"
 
@@ -3403,7 +3403,7 @@ msgstr "வரி %zu %s\n"
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr "QIF கோப்பிலிருந்து படிக்கப்பட்ட வரிகளின் எண்ணிக்கை: %zu இல் %lld ms"
 
-#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:482
+#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:398
 msgid "Accounts:"
 msgstr "கணக்குகள்:"
 
@@ -3659,7 +3659,7 @@ msgstr "மேலே நகர்த்து"
 msgid "Move Down"
 msgstr "கீழே நகர்த்து"
 
-#: import_export/univcsvdialog.cpp:573 optionsettingsmisc.cpp:175
+#: import_export/univcsvdialog.cpp:573 optionsettingsmisc.cpp:186
 msgid "Specify the delimiter to use when importing/exporting CSV files"
 msgstr "CSV கோப்பு இறக்கும்/ஏற்றும் போது பயன்படும் எல்லைக்குறியீட்டை குறிப்பிடு"
 
@@ -4588,7 +4588,7 @@ msgstr ""
 msgid "Scheduled transaction saved."
 msgstr ""
 
-#: mmchecking_list.cpp:1479 mmcheckingpanel.cpp:1477
+#: mmchecking_list.cpp:1479 mmcheckingpanel.cpp:1353
 msgid "All Transactions"
 msgstr ""
 
@@ -4630,140 +4630,124 @@ msgstr ""
 msgid "MMEX Transaction Check"
 msgstr ""
 
-#: mmcheckingpanel.cpp:233
+#: mmcheckingpanel.cpp:232
 msgid "Filter…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:297
+#: mmcheckingpanel.cpp:292
 msgid "Delete all selected transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:301 mmframe.cpp:2183 optionsettingstransaction.cpp:57
+#: mmcheckingpanel.cpp:296 mmframe.cpp:2183 optionsettingstransaction.cpp:57
 #: transdialog.cpp:182
 msgid "New Transaction"
 msgstr "புதிய பரிமாற்றம்"
 
-#: mmcheckingpanel.cpp:305
+#: mmcheckingpanel.cpp:300
 msgid "Edit all selected transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:310
+#: mmcheckingpanel.cpp:305
 msgid "Duplicate selected transaction"
 msgstr ""
 
-#: mmcheckingpanel.cpp:348
+#: mmcheckingpanel.cpp:343
 msgid "&Restore "
 msgstr ""
 
-#: mmcheckingpanel.cpp:349
+#: mmcheckingpanel.cpp:344
 msgid "Restore selected transaction"
 msgstr ""
 
-#: mmcheckingpanel.cpp:366
+#: mmcheckingpanel.cpp:361
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr ""
 
-#: mmcheckingpanel.cpp:384
+#: mmcheckingpanel.cpp:379
 msgid "Click to copy to clipboard"
 msgstr ""
 
-#: mmcheckingpanel.cpp:403
+#: mmcheckingpanel.cpp:398
 msgid "Account Bal: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:407
+#: mmcheckingpanel.cpp:402
 msgid "Reconciled Bal: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:409
+#: mmcheckingpanel.cpp:404
 msgid "Diff: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:413
+#: mmcheckingpanel.cpp:408
 msgid "Filtered Flow: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:429
+#: mmcheckingpanel.cpp:424
 msgid "Market Value: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:430
+#: mmcheckingpanel.cpp:425
 msgid "Invested: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:447 mmcheckingpanel.cpp:1244 mmreportspanel.cpp:103
-#: mmreportspanel.cpp:946
+#: mmcheckingpanel.cpp:441 mmcheckingpanel.cpp:1131 mmreportspanel.cpp:103
+#: mmreportspanel.cpp:857
 msgid "Date range"
 msgstr ""
 
-#: mmcheckingpanel.cpp:465
-msgid "Advanced filter"
-msgstr ""
-
-#: mmcheckingpanel.cpp:611
-msgid "(Date range)"
-msgstr ""
-
-#: mmcheckingpanel.cpp:1008 mmcheckingpanel.cpp:1026 webapp.cpp:620
+#: mmcheckingpanel.cpp:908 mmcheckingpanel.cpp:926 webapp.cpp:620
 msgid "Attachment"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1077
+#: mmcheckingpanel.cpp:977
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1081
+#: mmcheckingpanel.cpp:981
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1086
+#: mmcheckingpanel.cpp:986
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1153
-msgid "Scheduled transactions are not available, because the current filter ends in the past"
-msgstr ""
-
-#: mmcheckingpanel.cpp:1154
-msgid "Unable to show scheduled transactions because the current filter choice extends into the future without limit."
-msgstr ""
-
-#: mmcheckingpanel.cpp:1155
+#: mmcheckingpanel.cpp:1053
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1156
+#: mmcheckingpanel.cpp:1053
+msgid "Scheduled transactions are not available, because the current filter ends in the past"
+msgstr ""
+
+#: mmcheckingpanel.cpp:1054
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1184 mmreportspanel.cpp:914
+#: mmcheckingpanel.cpp:1081 mmreportspanel.cpp:826
 msgid "Edit date ranges…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1188
-msgid "Advanced filter…"
-msgstr ""
-
-#: mmcheckingpanel.cpp:1435
+#: mmcheckingpanel.cpp:1311
 msgid "&New Withdrawal…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1436
+#: mmcheckingpanel.cpp:1312
 msgid "&New Deposit…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1437
+#: mmcheckingpanel.cpp:1313
 msgid "&New Transfer…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1479
+#: mmcheckingpanel.cpp:1355
 msgid "Deleted Transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1487
+#: mmcheckingpanel.cpp:1363
 #, c-format
 msgid "Account View: %s"
 msgstr ""
@@ -5894,7 +5878,7 @@ msgstr ""
 msgid "Stocks Report"
 msgstr ""
 
-#: mmframereport.cpp:317 mmreportspanel.cpp:523
+#: mmframereport.cpp:317 mmreportspanel.cpp:439
 msgid "Hide"
 msgstr ""
 
@@ -5906,8 +5890,8 @@ msgstr ""
 msgid "&Forward"
 msgstr ""
 
-#: mmhomepage.cpp:63 mmhomepage.cpp:85 reports/summary.cpp:268
-#: reports/summary.cpp:305
+#: mmhomepage.cpp:63 mmhomepage.cpp:85 optionsettingsmisc.cpp:65
+#: reports/summary.cpp:268 reports/summary.cpp:305
 msgid "Stocks"
 msgstr "பங்குகள்"
 
@@ -6040,52 +6024,48 @@ msgstr ""
 msgid "Reset column widths"
 msgstr ""
 
-#: mmreportspanel.cpp:174
+#: mmreportspanel.cpp:138
 msgid "Report"
 msgstr ""
 
-#: mmreportspanel.cpp:310
+#: mmreportspanel.cpp:275
 msgid "Period…"
 msgstr ""
 
-#: mmreportspanel.cpp:320
-msgid "Period:"
-msgstr ""
-
-#: mmreportspanel.cpp:380 mmreportspanel.cpp:396 model/Model_Report.cpp:87
+#: mmreportspanel.cpp:296 mmreportspanel.cpp:312 model/Model_Report.cpp:87
 msgid "Date:"
 msgstr ""
 
-#: mmreportspanel.cpp:412 model/Model_Report.cpp:89
+#: mmreportspanel.cpp:328 model/Model_Report.cpp:89
 msgid "Time:"
 msgstr ""
 
-#: mmreportspanel.cpp:427 model/Model_Report.cpp:90
+#: mmreportspanel.cpp:343 model/Model_Report.cpp:90
 msgid "Year:"
 msgstr ""
 
-#: mmreportspanel.cpp:450
+#: mmreportspanel.cpp:366
 msgid "Budget:"
 msgstr ""
 
-#: mmreportspanel.cpp:487 reports/reportbase.cpp:196
+#: mmreportspanel.cpp:403 reports/reportbase.cpp:197
 #: reports/transactions.cpp:86
 msgid "All Accounts"
 msgstr ""
 
-#: mmreportspanel.cpp:488
+#: mmreportspanel.cpp:404
 msgid "Specific Accounts…"
 msgstr ""
 
-#: mmreportspanel.cpp:502
+#: mmreportspanel.cpp:418
 msgid "Future Months:"
 msgstr ""
 
-#: mmreportspanel.cpp:517
+#: mmreportspanel.cpp:433
 msgid "Chart:"
 msgstr ""
 
-#: mmreportspanel.cpp:522
+#: mmreportspanel.cpp:438
 msgid "Show"
 msgstr ""
 
@@ -6609,86 +6589,86 @@ msgstr ""
 msgid "Last N Days"
 msgstr ""
 
-#: optionsettingsmisc.cpp:65
+#: optionsettingsmisc.cpp:70
 msgid "Stock Quote Web Page"
 msgstr "பங்கு விலை வலைப்பக்கம்"
 
-#: optionsettingsmisc.cpp:82
+#: optionsettingsmisc.cpp:87
 msgid "Clear the field to Reset the value to system default."
 msgstr ""
 
-#: optionsettingsmisc.cpp:86
+#: optionsettingsmisc.cpp:91
 msgid "Share Precision"
 msgstr ""
 
-#: optionsettingsmisc.cpp:91
+#: optionsettingsmisc.cpp:96
 msgid "Set the precision for Share prices"
 msgstr ""
 
-#: optionsettingsmisc.cpp:94
+#: optionsettingsmisc.cpp:99
 msgid "Refresh at Startup"
 msgstr ""
 
-#: optionsettingsmisc.cpp:101
+#: optionsettingsmisc.cpp:111
 msgid "Asset Compounding Period"
 msgstr ""
 
-#: optionsettingsmisc.cpp:107
+#: optionsettingsmisc.cpp:117
 msgid "Select the compounding period for the appreciation/depreciation rate of assets"
 msgstr ""
 
-#: optionsettingsmisc.cpp:120
+#: optionsettingsmisc.cpp:131
 msgid "Database"
 msgstr ""
 
-#: optionsettingsmisc.cpp:127
+#: optionsettingsmisc.cpp:138
 msgid "Backup database on startup"
 msgstr ""
 
-#: optionsettingsmisc.cpp:129
+#: optionsettingsmisc.cpp:140
 msgid "When MMEX starts,\n"
 "create the backup database: dbFile_start_YYYY-MM-DD.bak"
 msgstr ""
 
-#: optionsettingsmisc.cpp:134
+#: optionsettingsmisc.cpp:145
 msgid "Backup database on exit"
 msgstr ""
 
-#: optionsettingsmisc.cpp:136
+#: optionsettingsmisc.cpp:147
 msgid "When MMEX shuts down and changes were made to the database,\n"
 "create or update the backup database: dbFile_update_YYYY-MM-DD.bak"
 msgstr ""
 
-#: optionsettingsmisc.cpp:144
+#: optionsettingsmisc.cpp:155
 msgid "Specify max number of backup files"
 msgstr ""
 
-#: optionsettingsmisc.cpp:147
+#: optionsettingsmisc.cpp:158
 msgid "Max Files"
 msgstr ""
 
-#: optionsettingsmisc.cpp:155
+#: optionsettingsmisc.cpp:166
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
 msgstr ""
 
-#: optionsettingsmisc.cpp:157
+#: optionsettingsmisc.cpp:168
 msgid "Days to retain deleted transactions"
 msgstr ""
 
-#: optionsettingsmisc.cpp:172
+#: optionsettingsmisc.cpp:183
 msgid "Delimiter"
 msgstr ""
 
-#: optionsettingsmisc.cpp:180
+#: optionsettingsmisc.cpp:191
 msgid "Filter"
 msgstr ""
 
-#: optionsettingsmisc.cpp:187
-msgid "Enable combined transaction filter"
+#: optionsettingsmisc.cpp:198
+msgid "Enable date range filter per account or report"
 msgstr ""
 
-#: optionsettingsmisc.cpp:189
-msgid "Switch to one filter control for date and attributes"
+#: optionsettingsmisc.cpp:200
+msgid "Store filter values per account or report and not globally"
 msgstr ""
 
 #: optionsettingsnet.cpp:65
@@ -7704,7 +7684,7 @@ msgstr ""
 msgid "Payee Report"
 msgstr ""
 
-#: reports/reportbase.cpp:202 reports/transactions.cpp:125
+#: reports/reportbase.cpp:203 reports/transactions.cpp:125
 msgid "Accounts: "
 msgstr ""
 
