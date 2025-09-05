@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-09-02 22:33+0000\n"
+"POT-Creation-Date: 2025-09-05 08:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1889,7 +1889,7 @@ msgstr ""
 msgid "Closed"
 msgstr ""
 
-#: constants.cpp:199 mmcheckingpanel.cpp:1358 mmframe.cpp:514
+#: constants.cpp:199 mmcheckingpanel.cpp:1359 mmframe.cpp:514
 msgid "Favorites"
 msgstr ""
 
@@ -2217,7 +2217,7 @@ msgstr ""
 msgid "Default date ranges"
 msgstr ""
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1073 mmreportspanel.cpp:819
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1074 mmreportspanel.cpp:811
 msgid "More date ranges…"
 msgstr ""
 
@@ -3408,7 +3408,7 @@ msgstr ""
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:398
+#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:412
 msgid "Accounts:"
 msgstr ""
 
@@ -4597,7 +4597,7 @@ msgstr ""
 msgid "Scheduled transaction saved."
 msgstr ""
 
-#: mmchecking_list.cpp:1479 mmcheckingpanel.cpp:1353
+#: mmchecking_list.cpp:1479 mmcheckingpanel.cpp:1354
 msgid "All Transactions"
 msgstr ""
 
@@ -4702,63 +4702,63 @@ msgstr ""
 msgid "Invested: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:441 mmcheckingpanel.cpp:1131 mmreportspanel.cpp:103
-#: mmreportspanel.cpp:857
+#: mmcheckingpanel.cpp:441 mmcheckingpanel.cpp:1132 mmreportspanel.cpp:106
+#: mmreportspanel.cpp:849
 msgid "Date range"
 msgstr ""
 
-#: mmcheckingpanel.cpp:908 mmcheckingpanel.cpp:926 webapp.cpp:620
+#: mmcheckingpanel.cpp:909 mmcheckingpanel.cpp:927 webapp.cpp:620
 msgid "Attachment"
 msgstr ""
 
-#: mmcheckingpanel.cpp:977
+#: mmcheckingpanel.cpp:978
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr ""
 
-#: mmcheckingpanel.cpp:981
+#: mmcheckingpanel.cpp:982
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:986
+#: mmcheckingpanel.cpp:987
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1053
+#: mmcheckingpanel.cpp:1054
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1053
+#: mmcheckingpanel.cpp:1054
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1054
+#: mmcheckingpanel.cpp:1055
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1081 mmreportspanel.cpp:826
+#: mmcheckingpanel.cpp:1082 mmreportspanel.cpp:818
 msgid "Edit date ranges…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1311
+#: mmcheckingpanel.cpp:1312
 msgid "&New Withdrawal…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1312
+#: mmcheckingpanel.cpp:1313
 msgid "&New Deposit…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1313
+#: mmcheckingpanel.cpp:1314
 msgid "&New Transfer…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1355
+#: mmcheckingpanel.cpp:1356
 msgid "Deleted Transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1363
+#: mmcheckingpanel.cpp:1364
 #, c-format
 msgid "Account View: %s"
 msgstr ""
@@ -5904,7 +5904,7 @@ msgstr ""
 msgid "Stocks Report"
 msgstr ""
 
-#: mmframereport.cpp:317 mmreportspanel.cpp:439
+#: mmframereport.cpp:317 mmreportspanel.cpp:453
 msgid "Hide"
 msgstr ""
 
@@ -6050,48 +6050,48 @@ msgstr ""
 msgid "Reset column widths"
 msgstr ""
 
-#: mmreportspanel.cpp:138
+#: mmreportspanel.cpp:152
 msgid "Report"
 msgstr ""
 
-#: mmreportspanel.cpp:275
+#: mmreportspanel.cpp:289
 msgid "Period…"
 msgstr ""
 
-#: mmreportspanel.cpp:296 mmreportspanel.cpp:312 model/Model_Report.cpp:87
+#: mmreportspanel.cpp:310 mmreportspanel.cpp:326 model/Model_Report.cpp:88
 msgid "Date:"
 msgstr ""
 
-#: mmreportspanel.cpp:328 model/Model_Report.cpp:89
+#: mmreportspanel.cpp:342 model/Model_Report.cpp:89
 msgid "Time:"
 msgstr ""
 
-#: mmreportspanel.cpp:343 model/Model_Report.cpp:90
+#: mmreportspanel.cpp:357 model/Model_Report.cpp:90
 msgid "Year:"
 msgstr ""
 
-#: mmreportspanel.cpp:366
+#: mmreportspanel.cpp:380
 msgid "Budget:"
 msgstr ""
 
-#: mmreportspanel.cpp:403 reports/reportbase.cpp:197
+#: mmreportspanel.cpp:417 reports/reportbase.cpp:197
 #: reports/transactions.cpp:86
 msgid "All Accounts"
 msgstr ""
 
-#: mmreportspanel.cpp:404
+#: mmreportspanel.cpp:418
 msgid "Specific Accounts…"
 msgstr ""
 
-#: mmreportspanel.cpp:418
+#: mmreportspanel.cpp:432
 msgid "Future Months:"
 msgstr ""
 
-#: mmreportspanel.cpp:433
+#: mmreportspanel.cpp:447
 msgid "Chart:"
 msgstr ""
 
-#: mmreportspanel.cpp:438
+#: mmreportspanel.cpp:452
 msgid "Show"
 msgstr ""
 
@@ -6259,7 +6259,7 @@ msgstr ""
 msgid "Begin date:"
 msgstr ""
 
-#: model/Model_Report.cpp:88
+#: model/Model_Report.cpp:87
 msgid "End date:"
 msgstr ""
 
