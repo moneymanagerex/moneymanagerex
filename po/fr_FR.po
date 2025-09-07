@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-09-02 22:33+0000\n"
-"PO-Revision-Date: 2025-09-05 00:56\n"
+"POT-Creation-Date: 2025-09-05 23:20+0000\n"
+"PO-Revision-Date: 2025-09-07 16:29\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -1889,7 +1889,7 @@ msgstr "Ouvert"
 msgid "Closed"
 msgstr "Fermé"
 
-#: constants.cpp:199 mmcheckingpanel.cpp:1358 mmframe.cpp:514
+#: constants.cpp:199 mmcheckingpanel.cpp:1369 mmframe.cpp:514
 msgid "Favorites"
 msgstr "Comptes favoris"
 
@@ -2216,7 +2216,7 @@ msgstr "Voulez-vous vraiment restaurer les plages par défaut ?\n\n"
 msgid "Default date ranges"
 msgstr "Plages de dates par défaut"
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1073 mmreportspanel.cpp:819
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1084 mmreportspanel.cpp:811
 msgid "More date ranges…"
 msgstr "Plus de plages de dates…"
 
@@ -3410,7 +3410,7 @@ msgstr "Ligne %zu \t %s\n"
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr "Nombre de Lignes lues dans le fichier QIF: %zu en %lld ms"
 
-#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:398
+#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:412
 msgid "Accounts:"
 msgstr "Comptes :"
 
@@ -4597,7 +4597,7 @@ msgstr "Impossible de déplacer certaines transactions."
 msgid "Scheduled transaction saved."
 msgstr "Opération récurrente enregistrée."
 
-#: mmchecking_list.cpp:1479 mmcheckingpanel.cpp:1353
+#: mmchecking_list.cpp:1479 mmcheckingpanel.cpp:1364
 msgid "All Transactions"
 msgstr "Toutes les transactions"
 
@@ -4701,63 +4701,63 @@ msgstr "Valeur de marché : "
 msgid "Invested: "
 msgstr "Investi : "
 
-#: mmcheckingpanel.cpp:441 mmcheckingpanel.cpp:1131 mmreportspanel.cpp:103
-#: mmreportspanel.cpp:857
+#: mmcheckingpanel.cpp:441 mmcheckingpanel.cpp:1142 mmreportspanel.cpp:106
+#: mmreportspanel.cpp:849
 msgid "Date range"
 msgstr "Intervalle de dates"
 
-#: mmcheckingpanel.cpp:908 mmcheckingpanel.cpp:926 webapp.cpp:620
+#: mmcheckingpanel.cpp:919 mmcheckingpanel.cpp:937 webapp.cpp:620
 msgid "Attachment"
 msgstr "Pièces jointes"
 
-#: mmcheckingpanel.cpp:977
+#: mmcheckingpanel.cpp:988
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr "Transactions sélectionnées : %zu"
 
-#: mmcheckingpanel.cpp:981
+#: mmcheckingpanel.cpp:992
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr "Solde des transactions sélectionnées : %s"
 
-#: mmcheckingpanel.cpp:986
+#: mmcheckingpanel.cpp:997
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr "Jours entre les transactions sélectionnées : %d"
 
-#: mmcheckingpanel.cpp:1053
+#: mmcheckingpanel.cpp:1064
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr "Cliquez pour afficher les opérations planifiées. Il est préférable que cette fonctionnalité soit utilisée avec des filtres applicables dans le futur (par exemple, le mois courant)."
 
-#: mmcheckingpanel.cpp:1053
+#: mmcheckingpanel.cpp:1064
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr "Les opérations planifiées ne sont pas disponibles car le filtre en cours se termine dans le passé"
 
-#: mmcheckingpanel.cpp:1054
+#: mmcheckingpanel.cpp:1065
 msgid "Click to hide scheduled transactions."
 msgstr "Cliquez pour masquer les opérations planifiées."
 
-#: mmcheckingpanel.cpp:1081 mmreportspanel.cpp:826
+#: mmcheckingpanel.cpp:1092 mmreportspanel.cpp:818
 msgid "Edit date ranges…"
 msgstr "Editer les plages de dates…"
 
-#: mmcheckingpanel.cpp:1311
+#: mmcheckingpanel.cpp:1322
 msgid "&New Withdrawal…"
 msgstr "&Nouveau retrait…"
 
-#: mmcheckingpanel.cpp:1312
+#: mmcheckingpanel.cpp:1323
 msgid "&New Deposit…"
 msgstr "&Nouveau dépôt…"
 
-#: mmcheckingpanel.cpp:1313
+#: mmcheckingpanel.cpp:1324
 msgid "&New Transfer…"
 msgstr "&Nouveau Virement…"
 
-#: mmcheckingpanel.cpp:1355
+#: mmcheckingpanel.cpp:1366
 msgid "Deleted Transactions"
 msgstr "Opérations supprimées"
 
-#: mmcheckingpanel.cpp:1363
+#: mmcheckingpanel.cpp:1374
 #, c-format
 msgid "Account View: %s"
 msgstr "Vue du compte : %s"
@@ -5901,7 +5901,7 @@ msgstr "Résumé des catégories du budget"
 msgid "Stocks Report"
 msgstr "Rapport des titres"
 
-#: mmframereport.cpp:317 mmreportspanel.cpp:439
+#: mmframereport.cpp:317 mmreportspanel.cpp:453
 msgid "Hide"
 msgstr "Cacher"
 
@@ -6047,48 +6047,48 @@ msgstr "Déplacer la colonne vers la fin"
 msgid "Reset column widths"
 msgstr "Réinitialiser la largeur des colonnes"
 
-#: mmreportspanel.cpp:138
+#: mmreportspanel.cpp:152
 msgid "Report"
 msgstr "Rapport"
 
-#: mmreportspanel.cpp:275
+#: mmreportspanel.cpp:289
 msgid "Period…"
 msgstr "Période…"
 
-#: mmreportspanel.cpp:296 mmreportspanel.cpp:312 model/Model_Report.cpp:87
+#: mmreportspanel.cpp:310 mmreportspanel.cpp:326 model/Model_Report.cpp:88
 msgid "Date:"
 msgstr "Date :"
 
-#: mmreportspanel.cpp:328 model/Model_Report.cpp:89
+#: mmreportspanel.cpp:342 model/Model_Report.cpp:89
 msgid "Time:"
 msgstr "Heure :"
 
-#: mmreportspanel.cpp:343 model/Model_Report.cpp:90
+#: mmreportspanel.cpp:357 model/Model_Report.cpp:90
 msgid "Year:"
 msgstr "An:"
 
-#: mmreportspanel.cpp:366
+#: mmreportspanel.cpp:380
 msgid "Budget:"
 msgstr "Budget:"
 
-#: mmreportspanel.cpp:403 reports/reportbase.cpp:197
+#: mmreportspanel.cpp:417 reports/reportbase.cpp:197
 #: reports/transactions.cpp:86
 msgid "All Accounts"
 msgstr "Tous les Comptes"
 
-#: mmreportspanel.cpp:404
+#: mmreportspanel.cpp:418
 msgid "Specific Accounts…"
 msgstr "Comptes spécifiques…"
 
-#: mmreportspanel.cpp:418
+#: mmreportspanel.cpp:432
 msgid "Future Months:"
 msgstr "Mois à venir:"
 
-#: mmreportspanel.cpp:433
+#: mmreportspanel.cpp:447
 msgid "Chart:"
 msgstr "Graphique:"
 
-#: mmreportspanel.cpp:438
+#: mmreportspanel.cpp:452
 msgid "Show"
 msgstr "Affiche"
 
@@ -6254,7 +6254,7 @@ msgstr "Erreur sur le bénéficiaire"
 msgid "Begin date:"
 msgstr "Date de début :"
 
-#: model/Model_Report.cpp:88
+#: model/Model_Report.cpp:87
 msgid "End date:"
 msgstr "Date de fin :"
 

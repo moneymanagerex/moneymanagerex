@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-09-02 22:33+0000\n"
-"PO-Revision-Date: 2025-09-05 00:56\n"
+"POT-Creation-Date: 2025-09-05 23:20+0000\n"
+"PO-Revision-Date: 2025-09-07 16:29\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -1883,7 +1883,7 @@ msgstr "열림"
 msgid "Closed"
 msgstr "닫힘"
 
-#: constants.cpp:199 mmcheckingpanel.cpp:1358 mmframe.cpp:514
+#: constants.cpp:199 mmcheckingpanel.cpp:1369 mmframe.cpp:514
 msgid "Favorites"
 msgstr "즐겨찾기"
 
@@ -2210,7 +2210,7 @@ msgstr "정말 기본 범위를 복원하시겠습니까?\n\n"
 msgid "Default date ranges"
 msgstr "기본 날짜 범위"
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1073 mmreportspanel.cpp:819
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1084 mmreportspanel.cpp:811
 msgid "More date ranges…"
 msgstr "더 많은 날짜 범위…"
 
@@ -3402,7 +3402,7 @@ msgstr "줄 %zu \t %s\n"
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr "QIF 파일에서 읽은 줄 수: %zu (%lldms)"
 
-#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:398
+#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:412
 msgid "Accounts:"
 msgstr "계정:"
 
@@ -4585,7 +4585,7 @@ msgstr "일부 거래를 이동할 수 없습니다."
 msgid "Scheduled transaction saved."
 msgstr "예약된 거래가 저장되었습니다."
 
-#: mmchecking_list.cpp:1479 mmcheckingpanel.cpp:1353
+#: mmchecking_list.cpp:1479 mmcheckingpanel.cpp:1364
 msgid "All Transactions"
 msgstr "모든 거래"
 
@@ -4688,63 +4688,63 @@ msgstr "시장 가격: "
 msgid "Invested: "
 msgstr "투자: "
 
-#: mmcheckingpanel.cpp:441 mmcheckingpanel.cpp:1131 mmreportspanel.cpp:103
-#: mmreportspanel.cpp:857
+#: mmcheckingpanel.cpp:441 mmcheckingpanel.cpp:1142 mmreportspanel.cpp:106
+#: mmreportspanel.cpp:849
 msgid "Date range"
 msgstr "날짜 범위"
 
-#: mmcheckingpanel.cpp:908 mmcheckingpanel.cpp:926 webapp.cpp:620
+#: mmcheckingpanel.cpp:919 mmcheckingpanel.cpp:937 webapp.cpp:620
 msgid "Attachment"
 msgstr "첨부 파일"
 
-#: mmcheckingpanel.cpp:977
+#: mmcheckingpanel.cpp:988
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr "선택한 거래: %zu"
 
-#: mmcheckingpanel.cpp:981
+#: mmcheckingpanel.cpp:992
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr "선택한 거래 잔액: %s"
 
-#: mmcheckingpanel.cpp:986
+#: mmcheckingpanel.cpp:997
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr "선택한 거래 사이의 일 수: %d"
 
-#: mmcheckingpanel.cpp:1053
+#: mmcheckingpanel.cpp:1064
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr "클릭하여 예약된 거래를 표시합니다. 이 기능은 미래로 확장되는 필터 선택 사항(예: 이번 달)과 가장 잘 작동합니다."
 
-#: mmcheckingpanel.cpp:1053
+#: mmcheckingpanel.cpp:1064
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr "현재 필터가 과거로 종료되므로 예약된 거래를 사용할 수 없음"
 
-#: mmcheckingpanel.cpp:1054
+#: mmcheckingpanel.cpp:1065
 msgid "Click to hide scheduled transactions."
 msgstr "예약된 거래를 숨기려면 클릭하세요."
 
-#: mmcheckingpanel.cpp:1081 mmreportspanel.cpp:826
+#: mmcheckingpanel.cpp:1092 mmreportspanel.cpp:818
 msgid "Edit date ranges…"
 msgstr "날짜 범위 편집…"
 
-#: mmcheckingpanel.cpp:1311
+#: mmcheckingpanel.cpp:1322
 msgid "&New Withdrawal…"
 msgstr "출금 생성(&N)…"
 
-#: mmcheckingpanel.cpp:1312
+#: mmcheckingpanel.cpp:1323
 msgid "&New Deposit…"
 msgstr "입금 생성(&N)…"
 
-#: mmcheckingpanel.cpp:1313
+#: mmcheckingpanel.cpp:1324
 msgid "&New Transfer…"
 msgstr "이체 생성(&N)…"
 
-#: mmcheckingpanel.cpp:1355
+#: mmcheckingpanel.cpp:1366
 msgid "Deleted Transactions"
 msgstr "삭제된 거래"
 
-#: mmcheckingpanel.cpp:1363
+#: mmcheckingpanel.cpp:1374
 #, c-format
 msgid "Account View: %s"
 msgstr "계정 보기: %s"
@@ -5889,7 +5889,7 @@ msgstr "예산 범주 요약"
 msgid "Stocks Report"
 msgstr "주식 보고서"
 
-#: mmframereport.cpp:317 mmreportspanel.cpp:439
+#: mmframereport.cpp:317 mmreportspanel.cpp:453
 msgid "Hide"
 msgstr "숨기기"
 
@@ -6035,48 +6035,48 @@ msgstr "맨 끝으로 열 이동"
 msgid "Reset column widths"
 msgstr "열 너비 초기화"
 
-#: mmreportspanel.cpp:138
+#: mmreportspanel.cpp:152
 msgid "Report"
 msgstr "보고서"
 
-#: mmreportspanel.cpp:275
+#: mmreportspanel.cpp:289
 msgid "Period…"
 msgstr "기간…"
 
-#: mmreportspanel.cpp:296 mmreportspanel.cpp:312 model/Model_Report.cpp:87
+#: mmreportspanel.cpp:310 mmreportspanel.cpp:326 model/Model_Report.cpp:88
 msgid "Date:"
 msgstr "날짜:"
 
-#: mmreportspanel.cpp:328 model/Model_Report.cpp:89
+#: mmreportspanel.cpp:342 model/Model_Report.cpp:89
 msgid "Time:"
 msgstr "시간:"
 
-#: mmreportspanel.cpp:343 model/Model_Report.cpp:90
+#: mmreportspanel.cpp:357 model/Model_Report.cpp:90
 msgid "Year:"
 msgstr "연도:"
 
-#: mmreportspanel.cpp:366
+#: mmreportspanel.cpp:380
 msgid "Budget:"
 msgstr "예산:"
 
-#: mmreportspanel.cpp:403 reports/reportbase.cpp:197
+#: mmreportspanel.cpp:417 reports/reportbase.cpp:197
 #: reports/transactions.cpp:86
 msgid "All Accounts"
 msgstr "모든 계정"
 
-#: mmreportspanel.cpp:404
+#: mmreportspanel.cpp:418
 msgid "Specific Accounts…"
 msgstr "특정 계정…"
 
-#: mmreportspanel.cpp:418
+#: mmreportspanel.cpp:432
 msgid "Future Months:"
 msgstr "다음 달:"
 
-#: mmreportspanel.cpp:433
+#: mmreportspanel.cpp:447
 msgid "Chart:"
 msgstr "차트:"
 
-#: mmreportspanel.cpp:438
+#: mmreportspanel.cpp:452
 msgid "Show"
 msgstr "표시"
 
@@ -6246,7 +6246,7 @@ msgstr "거래처 오류"
 msgid "Begin date:"
 msgstr "시작 날짜:"
 
-#: model/Model_Report.cpp:88
+#: model/Model_Report.cpp:87
 msgid "End date:"
 msgstr "종료 날짜:"
 
