@@ -242,6 +242,7 @@ Francisco Javier Hidalgo Cantero
 Austin Green
 Vincenzo Apicella
 Martin Speckhardt
+Adam Gallagher
 
 ### 2024
 Renato

@@ -1,6 +1,6 @@
-Version 1.9.1 RC 3
+Version 1.9.1 RC 4
 ~~~~~~~~~~~~~~~~~~~~
-Released: 2025-08-21
+Released: 2025-09-07
 
 Features:
 * #7334 Copy sum on click
@@ -22,11 +22,13 @@ Features:
 * #7363 Self Transfer as Revaluation
 * #7247 Refactor translation macros
 * #7190 Dashboard: No red in negative amounts and Histogram dissappeared
+* #7150 Refine date ranges in transaction panels
 * #6882 c++17
 * #5124 Update Windows wxWebView to use wxWEBVIEW_BACKEND_EDGE backend
 * #1628 Model_Attachment::REFTYPE_CHOICES
 
 Bugfixes:
+* #7663 Future transactions not displayed if > 30 days after end of unbounded range end
 * #7580 Bug: New splits are not added in the split transaction dialog
 * #7568 Transaction form invisible
 * #7546 If you edit a scheduled payment and cancel the attachment, it disappears.
