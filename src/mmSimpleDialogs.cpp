@@ -935,7 +935,7 @@ mmDateYearMonth::mmDateYearMonth(wxWindow *parent) :
 bool mmDateYearMonth::Create(wxWindow* parent, wxWindowID id)
 {
     int y =
-#ifdef __WXGTK__
+#if defined (__WXGTK__) || defined(__WXMAC__)
         48;
 #else
         24;
