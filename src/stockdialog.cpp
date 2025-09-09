@@ -124,10 +124,12 @@ void mmStockDialog::UpdateControls()
     this->SetTitle(m_edit ? _t("Edit Stock Investment") : _t("New Stock Investment"));
     if (m_account_id > -1) {  // do not use for overview
         Model_Account::Data* account = Model_Account::instance().get(m_account_id);
-
         if (m_stock) {
             m_value_investment->SetLabelText(Model_Account::toCurrency(Model_Stock::instance().CurrentValue(m_stock), account));
         }
+    }
+    else {
+        m_value_investment->SetLabelText(wxString::Format(wxT("%.2f"), m_stock->CURRENTPRICE * m_stock->NUMSHARES));
     }
 
     //Disable history buttons on new stocks
@@ -146,6 +148,18 @@ void mmStockDialog::UpdateControls()
     m_purchase_date_ctrl->Enable(!m_edit || initial_shares);
     m_purchase_price_ctrl->Enable(!m_edit || initial_shares);
     m_commission_ctrl->Enable(!m_edit || initial_shares);
+
+    // Disable in stock overview:
+    m_stock_name_ctrl->Enable(m_account_id > -1);
+    m_stock_symbol_ctrl->Enable(m_account_id > -1);
+    m_current_price_ctrl->Enable(m_account_id > -1);
+    m_notes_ctrl->Enable(m_account_id > -1);
+
+    // Hide in stock overview:
+    m_date_label->Show(m_account_id > -1);
+    m_purchase_date_ctrl->Show(m_account_id > -1);
+    m_itemButtonOK->Show(m_account_id > -1);
+
 
     m_stock_symbol_ctrl->SetValue(m_stock_symbol_ctrl->GetValue().Upper());
 }
@@ -194,9 +208,9 @@ void mmStockDialog::CreateControls()
     mmToolTip(m_stock_symbol_ctrl, _t("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
 
     //Date
-    wxStaticText* date_label = new wxStaticText(itemPanel5, wxID_STATIC, _t("*Date"));
-    itemFlexGridSizer6->Add(date_label, g_flagsH);
-    date_label->SetFont(this->GetFont().Bold());
+    m_date_label = new wxStaticText(itemPanel5, wxID_STATIC, _t("*Date"));
+    itemFlexGridSizer6->Add(m_date_label, g_flagsH);
+    m_date_label->SetFont(this->GetFont().Bold());
     m_purchase_date_ctrl = new mmDatePickerCtrl(itemPanel5, ID_DPC_STOCK_PDATE);
     itemFlexGridSizer6->Add(m_purchase_date_ctrl->mmGetLayout(false));
     mmToolTip(m_purchase_date_ctrl, _t("Specify the initial date of the stock investment\nUsed when creating the initial Share transaction."));
@@ -242,10 +256,11 @@ void mmStockDialog::CreateControls()
     //
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Current Value")), g_flagsH);
     m_value_investment = new wxStaticText(itemPanel5, ID_STATIC_STOCK_VALUE, "--");
-    itemFlexGridSizer6->Add(m_value_investment, g_flagsH);
+    m_value_investment->SetFont(this->GetFont().Bold());
+    itemFlexGridSizer6->Add(m_value_investment, wxSizerFlags().Align(wxALIGN_RIGHT | wxEXPAND).Border(wxALL, 10).Proportion(1));
 
     //
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Notes")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Notes")), wxSizerFlags().Left().Bottom().Border(wxLEFT, 5).Border(wxBOTTOM,0));
     wxBoxSizer* iconsSizer = new wxBoxSizer(wxHORIZONTAL);
     itemFlexGridSizer6->Add(iconsSizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
     m_bAttachments = new wxBitmapButton(itemPanel5, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));
@@ -334,12 +349,13 @@ void mmStockDialog::CreateControls()
     wxStdDialogButtonSizer*  buttonsOK_CANCEL_sizer = new wxStdDialogButtonSizer;
     leftBoxSizer->Add(buttonsOK_CANCEL_sizer, wxSizerFlags(g_flagsV).Centre());
 
-    wxButton* itemButtonOK = new wxButton(this, wxID_SAVE, _t("&Save "));
+    m_itemButtonOK = new wxButton(this, wxID_SAVE, _t("&Save "));
     wxButton* itemButton30 = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CloseLabel));
 
-    if (m_edit)
+    if (m_edit) {
         itemButton30->SetFocus();
-    buttonsOK_CANCEL_sizer->Add(itemButtonOK, g_flagsH);
+    }
+    buttonsOK_CANCEL_sizer->Add(m_itemButtonOK, g_flagsH);
     buttonsOK_CANCEL_sizer->Add(itemButton30, g_flagsH);
 }
 
