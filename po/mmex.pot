@@ -8176,6 +8176,10 @@ msgstr ""
 msgid "Stock Portfolio: %s"
 msgstr ""
 
+#: stockspanel.cpp:409
+msgid "Stock Portfolios Overview"
+msgstr ""
+
 #: stockspanel.cpp:417
 #, c-format
 msgid "Cash Balance: %s"
