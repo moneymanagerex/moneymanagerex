@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
  Copyright (C) 2016 Stefano Giorgio
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -109,6 +110,17 @@ Model_Translink::Data_Set Model_Translink::TranslinkList(const int64 link_entry_
     return translink_list;
 }
 
+Model_Translink::Data_Set Model_Translink::TranslinkListBySymbol(const wxString symbol)
+{
+    Model_Translink::Data_Set result;
+    Model_Stock::Data_Set stocks = Model_Stock::instance().find(Model_Stock::SYMBOL(symbol));
+    for (auto& stock : stocks) {
+       Model_Translink::Data_Set t = Model_Translink::instance().find(Model_Translink::LINKRECORDID(stock.STOCKID));
+       result.insert(result.end(), t.begin(), t.end());
+    }
+    return result;
+}
+
 bool Model_Translink::HasShares(const int64 stock_id)
 {
     if (TranslinkList<Model_Stock>(stock_id).empty())
@@ -212,4 +224,3 @@ bool Model_Translink::ShareAccountId(int64& stock_entry_id)
 
     return false;
 }
-

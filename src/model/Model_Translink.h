@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
  Copyright (C) 2016 Stefano Giorgio
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -72,10 +73,17 @@ public:
     template <typename T>
     static Model_Translink::Data_Set TranslinkList(const int64 link_id);
 
+    /*
+    Return the link record for the symbol
+    Equivalent SQL statements:
+    SELECT * FROM TRANSLINK_V1 WHERE LINKRECORDID IN (SELECT STOCKID FROM STOCK_V1 WHERE SYMBOL = ?)
+    */
+    static Model_Translink::Data_Set TranslinkListBySymbol(const wxString symbol);
+
     static bool HasShares(const int64 stock_id);
 
     /*
-    Return the link record for the checking account 
+    Return the link record for the checking account
     Equivalent SQL statements:
     select * from TRANSLINK_V1 where CHECKINGACCOUNTID = checking_id;
     */
@@ -84,7 +92,7 @@ public:
     /* Remove all records associated with the Translink list */
     template <typename T>
     static void RemoveTransLinkRecords(const int64 entry_id);
- 
+
     /* Remove the checking account entry and its associated transfer transaction. */
     static void RemoveTranslinkEntry(const int64 checking_account_id);
 

@@ -102,4 +102,4 @@ public:
     static const wxString refTypeName;
 };
 
-#endif // 
+#endif //

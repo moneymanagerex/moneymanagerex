@@ -8181,10 +8181,14 @@ msgstr "Los"
 msgid "Stock Portfolio: %s"
 msgstr "Wertpapierdepot: %s"
 
+#: stockspanel.cpp:409
+msgid "Stock Portfolios Overview"
+msgstr "Wertpapierübersicht"
+
 #: stockspanel.cpp:417
 #, c-format
 msgid "Cash Balance: %s"
-msgstr "Zahlungsbilanz: %s"
+msgstr "Kontostand: %s"
 
 #: stockspanel.cpp:418
 #, c-format
@@ -8862,4 +8866,3 @@ msgstr "Fehler "
 #: wizard_update.cpp:326 wizard_update.cpp:341
 msgid "MMEX Update Check"
 msgstr "MMEX Update Überprüfung"
-

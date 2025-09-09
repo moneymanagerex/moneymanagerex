@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2010-2021 Nikolay Akimov
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -61,6 +62,8 @@ private:
     static const std::vector<ListColumnInfo> LIST_INFO;
     mmStocksPanel* m_stock_panel;
     long m_selected_row = -1;
+    double m_investedVal;
+    double m_marketVal;
 
 public:
     StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID winid = wxID_ANY);
@@ -68,8 +71,9 @@ public:
 
     void doRefreshItems(int64 trx_id = -1);
     long get_selectedIndex();
-    wxString getStockInfo(int selectedIndex) const;
+    wxString getStockInfo(int selectedIndex, bool addtotal) const;
     int initVirtualListControl(int64 trx_id = -1);
+    void getInvestmentBalance(double& invested, double& current);
 
     void OnNewStocks(wxCommandEvent& event);
     void OnDeleteStocks(wxCommandEvent& event);
@@ -86,6 +90,7 @@ private:
     double GetRealGainLoss(long item) const;
     static double getRealGainLoss(const Model_Stock::Data& stock);
     void sortList();
+    void createSummary();
 
     // required overrides for virtual style list control
     virtual int getSortIcon(bool asc) const override;
