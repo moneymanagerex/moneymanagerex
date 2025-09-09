@@ -273,7 +273,7 @@ wxListCtrl* mmStocksPanel::InitStockTxnListCtrl(wxWindow* parent)
 // Load stock transactions into the list control
 void mmStocksPanel::LoadStockTransactions(wxListCtrl* listCtrl, wxString symbol, int64 stockId)
 {
-    Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList<Model_Stock>(stockId);
+    Model_Translink::Data_Set stock_list;
     Model_Checking::Data_Set checking_list;
     if (symbol.IsEmpty()) {
         stock_list = Model_Translink::TranslinkList<Model_Stock>(stockId);
@@ -687,7 +687,6 @@ void mmStocksPanel::DisplayAccountDetails(int64 accountID)
         m_currency = Model_Account::currency(account);
     }
 
-    //updateHeader();
     enableEditDeleteButtons(false);
     m_lc->initVirtualListControl();
 
