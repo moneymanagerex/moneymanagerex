@@ -169,7 +169,7 @@ void mmCheckingPanel::loadAccount(int64 account_id)
     m_use_account_specific_filter = Option::instance().getUsePerAccountFilter();
 
     loadFilterSettings();
-    updateFilter(m_use_account_specific_filter);
+    updateFilter();
     if (m_filter_id == FILTER_ID_ADVANCED || m_filter_id_ext == FILTER_ID_ADVANCED) {
         wxString j_str = Model_Infotable::instance().getString(
             wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
@@ -433,7 +433,8 @@ void mmCheckingPanel::updateFilter(bool firstinit)
 {
     if (m_filter_id == FILTER_ID_DATE_RANGE) {
         m_bitmapTransFilter->SetLabel(m_current_date_range.getName());
-        m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
+        // Set active if other than 'all'
+        m_bitmapTransFilter->SetBitmap(mmBitmapBundle((m_current_date_range.getName() == m_date_range_a[0].getName()) ? png::TRANSFILTER : png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
         fromDateCtrl->SetValue(m_current_date_range.checking_start().IsValid() ? m_current_date_range.checking_start() : DATE_MIN);
         toDateCtrl->SetValue(m_current_date_range.checking_end().IsValid() ? m_current_date_range.checking_end() : wxDateTime::Now());
     }
@@ -448,6 +449,7 @@ void mmCheckingPanel::updateFilter(bool firstinit)
     else if (firstinit) {
         m_current_date_range.setSpec(m_date_range_a[0]); // init with 'all'
         m_bitmapTransFilter->SetLabel(m_current_date_range.getName());
+        m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
     }
 
     if (!isDeletedTrans()) {
@@ -506,8 +508,13 @@ void mmCheckingPanel::loadFilterSettings()
     loadDateRanges(&m_date_range_a, &m_date_range_m, isAccount());
     j_doc = Model_Infotable::instance().getJdoc(m_use_account_specific_filter ? wxString::Format("CHECK_FILTER_DEDICATED_%lld", m_checking_id) : "CHECK_FILTER_ALL", "{}");
     int fid = 0;
+
     if (JSON_GetIntValue(j_doc, "FILTER_ID", fid)) {
         m_filter_id = static_cast<FILTER_ID>(fid);
+    } else
+    {
+        m_filter_id = FILTER_ID_DATE_RANGE;
+        m_current_date_range.setSpec(m_date_range_a[0]); // init with 'all'
     }
     if (m_filter_id == FILTER_ID_DATE_RANGE) {
         wxString j_filter;
