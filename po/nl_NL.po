@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-09-05 23:20+0000\n"
-"PO-Revision-Date: 2025-09-07 16:29\n"
+"POT-Creation-Date: 2025-09-08 22:39+0000\n"
+"PO-Revision-Date: 2025-09-09 13:28\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -2215,7 +2215,7 @@ msgstr "Wilt u echt het standaard bereik herstellen?\n\n"
 msgid "Default date ranges"
 msgstr "Standaard datumbereik"
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1084 mmreportspanel.cpp:811
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1084 mmreportspanel.cpp:813
 msgid "More date ranges…"
 msgstr "Meer datumbereiken…"
 
@@ -3408,7 +3408,7 @@ msgstr "Regel %zu \t %s\n"
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr "Aantal gelezen regels van QIF-bestand: %zu in %lld ms"
 
-#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:412
+#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:414
 msgid "Accounts:"
 msgstr "Rekeningen:"
 
@@ -4700,7 +4700,7 @@ msgid "Invested: "
 msgstr "Investering: "
 
 #: mmcheckingpanel.cpp:441 mmcheckingpanel.cpp:1142 mmreportspanel.cpp:106
-#: mmreportspanel.cpp:849
+#: mmreportspanel.cpp:851
 msgid "Date range"
 msgstr "Datumbereik"
 
@@ -4735,7 +4735,7 @@ msgstr "Geplande transacties zijn niet beschikbaar, omdat het huidige filter ein
 msgid "Click to hide scheduled transactions."
 msgstr "Klik om geplande transacties te verbergen."
 
-#: mmcheckingpanel.cpp:1092 mmreportspanel.cpp:818
+#: mmcheckingpanel.cpp:1092 mmreportspanel.cpp:820
 msgid "Edit date ranges…"
 msgstr "Bewerk datumbereik…"
 
@@ -5898,7 +5898,7 @@ msgstr "Begroting Categorie Samenvatting"
 msgid "Stocks Report"
 msgstr "Aandelen Rapport"
 
-#: mmframereport.cpp:317 mmreportspanel.cpp:453
+#: mmframereport.cpp:317 mmreportspanel.cpp:455
 msgid "Hide"
 msgstr "Verberg Rapporten"
 
@@ -6044,48 +6044,48 @@ msgstr "Kolom naar het einde verplaatsen"
 msgid "Reset column widths"
 msgstr "Reset kolombreedtes"
 
-#: mmreportspanel.cpp:152
+#: mmreportspanel.cpp:154
 msgid "Report"
 msgstr "Rapport"
 
-#: mmreportspanel.cpp:289
+#: mmreportspanel.cpp:291
 msgid "Period…"
 msgstr "Periode…"
 
-#: mmreportspanel.cpp:310 mmreportspanel.cpp:326 model/Model_Report.cpp:88
+#: mmreportspanel.cpp:312 mmreportspanel.cpp:328 model/Model_Report.cpp:88
 msgid "Date:"
 msgstr "Datum:"
 
-#: mmreportspanel.cpp:342 model/Model_Report.cpp:89
+#: mmreportspanel.cpp:344 model/Model_Report.cpp:89
 msgid "Time:"
 msgstr "Tijd:"
 
-#: mmreportspanel.cpp:357 model/Model_Report.cpp:90
+#: mmreportspanel.cpp:359 model/Model_Report.cpp:90
 msgid "Year:"
 msgstr "Jaar:"
 
-#: mmreportspanel.cpp:380
+#: mmreportspanel.cpp:382
 msgid "Budget:"
 msgstr "Budget:"
 
-#: mmreportspanel.cpp:417 reports/reportbase.cpp:197
+#: mmreportspanel.cpp:419 reports/reportbase.cpp:197
 #: reports/transactions.cpp:86
 msgid "All Accounts"
 msgstr "Alle rekeningen"
 
-#: mmreportspanel.cpp:418
+#: mmreportspanel.cpp:420
 msgid "Specific Accounts…"
 msgstr "Specifieke rekeningen…"
 
-#: mmreportspanel.cpp:432
+#: mmreportspanel.cpp:434
 msgid "Future Months:"
 msgstr "Toekomstige maanden:"
 
-#: mmreportspanel.cpp:447
+#: mmreportspanel.cpp:449
 msgid "Chart:"
 msgstr "Grafiek:"
 
-#: mmreportspanel.cpp:452
+#: mmreportspanel.cpp:454
 msgid "Show"
 msgstr "Toon"
 

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-09-05 23:20+0000\n"
-"PO-Revision-Date: 2025-09-07 16:29\n"
+"POT-Creation-Date: 2025-09-08 22:39+0000\n"
+"PO-Revision-Date: 2025-09-09 13:28\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -2210,7 +2210,7 @@ msgstr ""
 msgid "Default date ranges"
 msgstr ""
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1084 mmreportspanel.cpp:811
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1084 mmreportspanel.cpp:813
 msgid "More date ranges…"
 msgstr "更多日期范围..."
 
@@ -3402,7 +3402,7 @@ msgstr "行 %zu \t %s\n"
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr "从 QIF 文件读取的行数：%zu in %lld ms"
 
-#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:412
+#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:414
 msgid "Accounts:"
 msgstr "账户："
 
@@ -4688,7 +4688,7 @@ msgid "Invested: "
 msgstr "已投资： "
 
 #: mmcheckingpanel.cpp:441 mmcheckingpanel.cpp:1142 mmreportspanel.cpp:106
-#: mmreportspanel.cpp:849
+#: mmreportspanel.cpp:851
 msgid "Date range"
 msgstr ""
 
@@ -4723,7 +4723,7 @@ msgstr ""
 msgid "Click to hide scheduled transactions."
 msgstr "单击即可隐藏计划的交易。"
 
-#: mmcheckingpanel.cpp:1092 mmreportspanel.cpp:818
+#: mmcheckingpanel.cpp:1092 mmreportspanel.cpp:820
 msgid "Edit date ranges…"
 msgstr ""
 
@@ -5890,7 +5890,7 @@ msgstr "预算类别汇总"
 msgid "Stocks Report"
 msgstr "股票报告"
 
-#: mmframereport.cpp:317 mmreportspanel.cpp:453
+#: mmframereport.cpp:317 mmreportspanel.cpp:455
 msgid "Hide"
 msgstr "隐藏"
 
@@ -6036,48 +6036,48 @@ msgstr ""
 msgid "Reset column widths"
 msgstr "重置列宽度"
 
-#: mmreportspanel.cpp:152
+#: mmreportspanel.cpp:154
 msgid "Report"
 msgstr "报告"
 
-#: mmreportspanel.cpp:289
+#: mmreportspanel.cpp:291
 msgid "Period…"
 msgstr ""
 
-#: mmreportspanel.cpp:310 mmreportspanel.cpp:326 model/Model_Report.cpp:88
+#: mmreportspanel.cpp:312 mmreportspanel.cpp:328 model/Model_Report.cpp:88
 msgid "Date:"
 msgstr "日期："
 
-#: mmreportspanel.cpp:342 model/Model_Report.cpp:89
+#: mmreportspanel.cpp:344 model/Model_Report.cpp:89
 msgid "Time:"
 msgstr "时间："
 
-#: mmreportspanel.cpp:357 model/Model_Report.cpp:90
+#: mmreportspanel.cpp:359 model/Model_Report.cpp:90
 msgid "Year:"
 msgstr "年份："
 
-#: mmreportspanel.cpp:380
+#: mmreportspanel.cpp:382
 msgid "Budget:"
 msgstr "预算："
 
-#: mmreportspanel.cpp:417 reports/reportbase.cpp:197
+#: mmreportspanel.cpp:419 reports/reportbase.cpp:197
 #: reports/transactions.cpp:86
 msgid "All Accounts"
 msgstr "所有账户"
 
-#: mmreportspanel.cpp:418
+#: mmreportspanel.cpp:420
 msgid "Specific Accounts…"
 msgstr "特定帐户…"
 
-#: mmreportspanel.cpp:432
+#: mmreportspanel.cpp:434
 msgid "Future Months:"
 msgstr "未来月份："
 
-#: mmreportspanel.cpp:447
+#: mmreportspanel.cpp:449
 msgid "Chart:"
 msgstr "图表："
 
-#: mmreportspanel.cpp:452
+#: mmreportspanel.cpp:454
 msgid "Show"
 msgstr "显示"
 

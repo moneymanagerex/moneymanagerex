@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-09-05 23:20+0000\n"
-"PO-Revision-Date: 2025-09-07 16:29\n"
+"POT-Creation-Date: 2025-09-08 22:39+0000\n"
+"PO-Revision-Date: 2025-09-09 13:28\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: aboutdialog.cpp:48
 msgid "License agreement"
-msgstr "Lizenzvereinbarungen"
+msgstr "LizenzvereinbarungenSend this log to MMEX support team:"
 
 #: aboutdialog.cpp:181 mmframe.cpp:2219
 msgid "About"
@@ -590,7 +590,7 @@ msgstr "Löschen des Vermögenswertes bestätigen"
 
 #: assetspanel.cpp:379
 msgid "MMEX allows fixed assets like cars, houses, land, and others to be tracked. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "Mit MMEX können andere Vermögenswerte wie Autos, Häuser, Grundstücke und andere Anlagen verfolgt werden. Für jeden Vermögenswert kann eine jährliche Wertänderung festgelegt werden. Der Gesamtwert aller Vermögenswerte wird zum Gesamtvermögen hinzugefügt."
+msgstr "Mit MMEX können sonstige Vermögenswerte wie Autos, Häuser, Grundstücke und weitere Anlagen verfolgt werden. Für jeden verfolgten Vermögenswert kann eine jährliche Wertänderung festgelegt werden. Der Gesamtwert aller sonstigen Vermögenswerte wird zum Gesamtvermögen hinzugefügt."
 
 #: assetspanel.cpp:409 assetspanel.h:124 general_report_manager.cpp:1101
 #: mmframe.cpp:220 mmframe.cpp:1993 mmframe.cpp:3650 mmhomepage.cpp:527
@@ -1146,7 +1146,7 @@ msgstr "Benutzer-Farben"
 
 #: billsdepositsdialog.cpp:623
 msgid "Organize attachments of this scheduled transaction"
-msgstr "Anlagen zu dieser Buchung verwalten"
+msgstr "Anlagen zu dieser geplanten Buchung verwalten"
 
 #: billsdepositsdialog.cpp:633 filtertrans.cpp:198 filtertransdialog.cpp:718
 #: filtertransdialog.cpp:1111 filtertransdialog.cpp:1976
@@ -1354,7 +1354,7 @@ msgstr "&überspringen"
 
 #: billsdepositspanel.cpp:314 mmcheckingpanel.cpp:318
 msgid "Skip Next Scheduled Transaction Occurrence"
-msgstr "Nächste wiederkehrende Buchung überspringen"
+msgstr "Nächste geplante Buchung überspringen"
 
 #: billsdepositspanel.cpp:423
 msgid "Enter next Occurrence…"
@@ -2216,7 +2216,7 @@ msgstr "Wollen Sie wirklich die Standardbereiche wiederherstellen?\n\n"
 msgid "Default date ranges"
 msgstr "Standard Datumsbereiche"
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1084 mmreportspanel.cpp:811
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1084 mmreportspanel.cpp:813
 msgid "More date ranges…"
 msgstr "Weitere Datumsbereiche…"
 
@@ -2593,7 +2593,7 @@ msgstr "Ungültiger Dateiinhalt, bitte kontaktieren Sie den MMEX-Support!"
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
 msgstr "Senden Sie dieses Protokoll an das MMEX-Support-Team:\n"
-"Drücken Sie \"OK\" zum Speichern der Datei oder \"Abbrechen\" um zu beenden"
+"Drücken Sie \"OK\" zum Speichern der Datei oder \"Abbrechen\" zum Beenden"
 
 #: dbupgrade.cpp:242 dbupgrade.cpp:285
 msgid "MMEX debug"
@@ -3411,7 +3411,7 @@ msgstr "Zeile %zu \t %s\n"
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr "Anzahl der aus der QIF-Datei gelesenen Zeilen: %zu in %lld ms"
 
-#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:412
+#: import_export/qif_import_gui.cpp:543 mmreportspanel.cpp:414
 msgid "Accounts:"
 msgstr "Konten:"
 
@@ -4496,7 +4496,7 @@ msgstr "&Ungeprüft"
 
 #: mmchecking_list.cpp:972
 msgid "&Reconciled"
-msgstr "&Überprüft"
+msgstr "Überprüft"
 
 #: mmchecking_list.cpp:975
 msgid "&Void"
@@ -4705,7 +4705,7 @@ msgid "Invested: "
 msgstr "Investiert: "
 
 #: mmcheckingpanel.cpp:441 mmcheckingpanel.cpp:1142 mmreportspanel.cpp:106
-#: mmreportspanel.cpp:849
+#: mmreportspanel.cpp:851
 msgid "Date range"
 msgstr "Datumsbereich"
 
@@ -4740,7 +4740,7 @@ msgstr "Geplante Buchungen können nicht angezeigt werden, da der aktuelle Filte
 msgid "Click to hide scheduled transactions."
 msgstr "Klicken, um die geplanten Buchungen auszublenden."
 
-#: mmcheckingpanel.cpp:1092 mmreportspanel.cpp:818
+#: mmcheckingpanel.cpp:1092 mmreportspanel.cpp:820
 msgid "Edit date ranges…"
 msgstr "Datumsbereiche bearbeiten…"
 
@@ -5748,9 +5748,9 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View → 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr "Wertpapierkonten beinhalten Wertpapierbuchungen\n\n"
-"Wertpapierbuchungen werden innerhalb der Depotansicht nach der Auswahl des Wertpapiers in der zugehörigen Ansicht angelegt.\n"
-"Diese Konten werden erst sichtbar, wenn dem Wertpapierkonto ein Wertpapier zugeordnet wurde, oder dieses über das Menü Ansicht -->'Wertpapierkonten anzeigen' aktiviert wurde.\n"
+msgstr "Wertpapierkonten enthalten Wertpapierbuchungen\n\n"
+"Wertpapierbuchungen werden innerhalb der Depotansicht nach der Auswahl des Wertpapiers in der zugehörigen Ansicht angelegt.\n\n"
+"Diese Konten werden erst sichtbar, wenn dem Wertpapierkonto ein Wertpapier zugeordnet wurde, oder die Anzeige über das Menü Ansicht -->'Wertpapierkonten anzeigen' aktiviert wurde.\n"
 "Wertpapierkonten können auch normale Buchungen auf ein reguläres Konto enthalten."
 
 #: mmframe.cpp:2948
@@ -5904,7 +5904,7 @@ msgstr "Budgetkategorie Zusammenfassung"
 msgid "Stocks Report"
 msgstr "Wertpapierbericht"
 
-#: mmframereport.cpp:317 mmreportspanel.cpp:453
+#: mmframereport.cpp:317 mmreportspanel.cpp:455
 msgid "Hide"
 msgstr "ausgeblendet"
 
@@ -6050,48 +6050,48 @@ msgstr "Spalte an das Ende verschieben"
 msgid "Reset column widths"
 msgstr "Spaltenbreite zurücksetzen"
 
-#: mmreportspanel.cpp:152
+#: mmreportspanel.cpp:154
 msgid "Report"
 msgstr "Bericht"
 
-#: mmreportspanel.cpp:289
+#: mmreportspanel.cpp:291
 msgid "Period…"
 msgstr "Zeitraum…"
 
-#: mmreportspanel.cpp:310 mmreportspanel.cpp:326 model/Model_Report.cpp:88
+#: mmreportspanel.cpp:312 mmreportspanel.cpp:328 model/Model_Report.cpp:88
 msgid "Date:"
 msgstr "Datum:"
 
-#: mmreportspanel.cpp:342 model/Model_Report.cpp:89
+#: mmreportspanel.cpp:344 model/Model_Report.cpp:89
 msgid "Time:"
 msgstr "Zeit:"
 
-#: mmreportspanel.cpp:357 model/Model_Report.cpp:90
+#: mmreportspanel.cpp:359 model/Model_Report.cpp:90
 msgid "Year:"
 msgstr "Jahr:"
 
-#: mmreportspanel.cpp:380
+#: mmreportspanel.cpp:382
 msgid "Budget:"
 msgstr "Budget:"
 
-#: mmreportspanel.cpp:417 reports/reportbase.cpp:197
+#: mmreportspanel.cpp:419 reports/reportbase.cpp:197
 #: reports/transactions.cpp:86
 msgid "All Accounts"
 msgstr "Alle Konten"
 
-#: mmreportspanel.cpp:418
+#: mmreportspanel.cpp:420
 msgid "Specific Accounts…"
 msgstr "Bestimmte Konten…"
 
-#: mmreportspanel.cpp:432
+#: mmreportspanel.cpp:434
 msgid "Future Months:"
 msgstr "Zukünftige Monate:"
 
-#: mmreportspanel.cpp:447
+#: mmreportspanel.cpp:449
 msgid "Chart:"
 msgstr "Diagramm:"
 
-#: mmreportspanel.cpp:452
+#: mmreportspanel.cpp:454
 msgid "Show"
 msgstr "Anzeigen"
 
@@ -7771,11 +7771,11 @@ msgstr "Kommission"
 
 #: reports/summarystocks.cpp:119 stocks_list.cpp:73
 msgid "Realized Gain/Loss"
-msgstr "Realisierter Gewinn / Verlust"
+msgstr "Realisierter G/V"
 
 #: reports/summarystocks.cpp:120 stocks_list.cpp:74
 msgid "Unrealized Gain/Loss"
-msgstr "Nicht realisierter Gewinn/Verlust"
+msgstr "Nicht realisierter G/V"
 
 #: reports/summarystocks.cpp:244
 msgid "Stocks Performance Charts"
@@ -7959,7 +7959,7 @@ msgstr "Geben Sie die bezahlte Gebühren ein.\n"
 
 #: stockdialog.cpp:232 stocks_list.cpp:75
 msgid "Curr. Share Price"
-msgstr "Akt. Wertpapierkurs"
+msgstr "Akt. Kurs"
 
 #: stockdialog.cpp:236
 msgid "Enter current stock/share price."
@@ -7975,11 +7975,11 @@ msgstr "Kursverlauf"
 
 #: stockdialog.cpp:297 stocks_list.cpp:77
 msgid "Price Date"
-msgstr "Preisdatum"
+msgstr "Kursdatum"
 
 #: stockdialog.cpp:301
 msgid "Specify the stock/share price date."
-msgstr "Kursdatum"
+msgstr "Geben Sie das Kursdatum an."
 
 #: stockdialog.cpp:316
 msgid "Download Stock Price history"
@@ -8089,11 +8089,11 @@ msgstr "Kursverlauf Fehler"
 
 #: stocks_list.cpp:70
 msgid "Share Total"
-msgstr "Anteile gesamt"
+msgstr "∑ Anteile"
 
 #: stocks_list.cpp:71
 msgid "Avg Share Price"
-msgstr "Durchschnittspreis der Aktie"
+msgstr "⌀ Kaufpreis"
 
 #: stocks_list.cpp:76
 msgid "Curr. Total Value"
@@ -8105,11 +8105,11 @@ msgstr "&Neue Wertpapieranlage…"
 
 #: stocks_list.cpp:139
 msgid "&Adjust Trade"
-msgstr "Handel &anpassen"
+msgstr "Neue Buchung"
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
-msgstr "Wertpapierbuchung anzeigen"
+msgstr "Wertpapierbuchungen anzeigen"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment…"
@@ -8142,7 +8142,7 @@ msgstr "Bestand > 0"
 
 #: stockspanel.cpp:148
 msgid "&Adjust Trade "
-msgstr "Handel &anpassen "
+msgstr "Neue Buchung"
 
 #: stockspanel.cpp:149
 msgid "Add Stock Transactions"
@@ -8150,7 +8150,7 @@ msgstr "Wertpapierbuchung hinzufügen"
 
 #: stockspanel.cpp:154 stockspanel.cpp:220
 msgid "View Stock Transactions"
-msgstr "Wertpapierbuchung anzeigen"
+msgstr "Wertpapierbuchungen anzeigen"
 
 #: stockspanel.cpp:164
 msgid "Delete Stock Investment"
