@@ -1475,8 +1475,8 @@ void TransactionListCtrl::onFind(wxCommandEvent&)
         "{ \"FILTER\": \"" + mmCheckingPanel::FILTER_NAME_ADVANCED + "\" }"
     );
     // Navigate to the All Transactions panel
-    wxTreeItemId currentId = m_cp->m_frame->GetNavTreeSelection();
     m_cp->m_frame->setNavTreeSection(wxTRANSLATE("All Transactions"));
+    wxTreeItemId currentId = m_cp->m_frame->GetNavTreeSelection();
     wxTreeItemId allTransactionsId = m_cp->m_frame->GetNavTreeSelection();
     if (currentId.IsOk() && currentId == allTransactionsId) {
         m_cp->m_trans_filter_dlg.reset(
