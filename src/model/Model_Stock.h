@@ -1,7 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
  Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -25,15 +24,9 @@
 #include "db/DB_Table_Stock_V1.h"
 #include "Model_Account.h"
 
-
 class Model_Stock : public Model<DB_Table_STOCK_V1>
 {
 public:
-    enum SpecialSQLQueries {
-        ALL_STOCKS_COMBINED_BY_SYMBOL,
-        ALL_STOCKS_TOTALS
-    };
-
     using Model<DB_Table_STOCK_V1>::remove;
     Model_Stock();
     ~Model_Stock();
@@ -107,11 +100,6 @@ public:
 
 public:
     static const wxString refTypeName;
-
-    const Data_Set getSpecial(SpecialSQLQueries queryname, const bool greaterZero);
-
-private:
-    inline static wxSQLite3Database* g_db_;  // db ref
 };
 
 #endif //

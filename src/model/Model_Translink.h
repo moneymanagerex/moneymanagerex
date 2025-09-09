@@ -31,8 +31,6 @@ class Model_Translink : public Model<DB_Table_TRANSLINK_V1>
 public:
     enum CHECKING_TYPE { AS_INCOME_EXPENSE = 32701, AS_TRANSFER }; /* Transfers ignore accounting */
 
-    enum TransSQLQueryName {ALL_LINKS_BY_SYMBOL};
-
 public:
     Model_Translink();
     ~Model_Translink();
@@ -75,6 +73,13 @@ public:
     template <typename T>
     static Model_Translink::Data_Set TranslinkList(const int64 link_id);
 
+    /*
+    Return the link record for the symbol
+    Equivalent SQL statements:
+    SELECT * FROM TRANSLINK_V1 WHERE LINKRECORDID IN (SELECT STOCKID FROM STOCK_V1 WHERE SYMBOL = ?)
+    */
+    static Model_Translink::Data_Set TranslinkListBySymbol(const wxString symbol);
+
     static bool HasShares(const int64 stock_id);
 
     /*
@@ -96,12 +101,8 @@ public:
     /* Return true with the account id of the first share entry in the stock translink list */
     static bool ShareAccountId(int64& stock_entry_id);
 
-    const Model_Translink::Data_Set getSpecialSQL(TransSQLQueryName queryname, wxString par);
-
 private:
 
     static Model_Translink::Data* SetTranslink(const int64 checking_id, const CHECKING_TYPE checking_type
         , const wxString& link_type, const int64 link_record_id);
-
-    inline static wxSQLite3Database* g_db_;  // db ref
 };

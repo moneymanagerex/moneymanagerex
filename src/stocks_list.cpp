@@ -449,7 +449,6 @@ void StocksListCtrl::doRefreshItems(int64 trx_id)
 
 int StocksListCtrl::initVirtualListControl(int64 trx_id)
 {
-    m_stock_panel->updateHeader();
     /* Clear all the records */
     DeleteAllItems();
 
@@ -461,11 +460,13 @@ int StocksListCtrl::initVirtualListControl(int64 trx_id)
                 );
     }
     else { // create summary
-        m_stocks = Model_Stock::instance().getSpecial(
-                        Model_Stock::ALL_STOCKS_COMBINED_BY_SYMBOL,
-                        m_stock_panel->getFilter() // ? GREATER : GREATER_OR_EQUAL)
+        m_stocks = Model_Stock::instance().find(
+                        Model_Stock::NUMSHARES(0.0, m_stock_panel->getFilter() ? GREATER : GREATER_OR_EQUAL)
                 );
+        createSummary();
     }
+
+    m_stock_panel->updateHeader();
     sortList();
 
     int cnt = 0, selected_item = -1;
@@ -555,4 +556,45 @@ void StocksListCtrl::sortList()
         break;
     }
     if (!getSortAsc()) std::reverse(m_stocks.begin(), m_stocks.end());
+}
+
+void StocksListCtrl::createSummary()
+{
+    Model_Stock::Data_Set stocks_summary;
+    Model_Stock::Data prevStock;
+    wxString prevSymbol = "";
+    m_investedVal = 0;
+    m_marketVal = 0;
+
+    std::sort(m_stocks.begin(), m_stocks.end());
+    std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySYMBOL());
+
+    for (Model_Stock::Data stock : m_stocks) {
+        if (stock.SYMBOL != prevSymbol) {
+            if (!prevSymbol.IsEmpty()) {
+                stocks_summary.push_back(prevStock);
+            }
+            prevSymbol = stock.SYMBOL;
+            prevStock = stock;
+        }
+        else {
+            prevStock.NUMSHARES += stock.NUMSHARES;
+            prevStock.VALUE += stock.VALUE;
+            prevStock.COMMISSION += stock.COMMISSION;
+            prevStock.PURCHASEPRICE = (prevStock.VALUE - prevStock.COMMISSION)/ prevStock.NUMSHARES;
+            prevStock.NOTES += (prevStock.NOTES.IsEmpty() ? "" : " - ") + stock.NOTES;
+        }
+        m_investedVal += stock.VALUE + stock.COMMISSION;
+        m_marketVal += stock.CURRENTPRICE * stock.NUMSHARES;
+
+    }
+    stocks_summary.push_back(prevStock);
+
+    m_stocks = stocks_summary;
+}
+
+void StocksListCtrl::getInvestmentBalance(double& invested, double& current)
+{
+    invested = m_investedVal;
+    current = m_marketVal;
 }

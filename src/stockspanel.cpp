@@ -193,6 +193,8 @@ void mmStocksPanel::CreateControls()
     BoxSizerVBottom->Add(stock_details_, g_flagsExpandBorder1);
 
     updateExtraStocksData(-1);
+
+    updateHeader();
 }
 
 int mmStocksPanel::AddStockTransaction(int selectedIndex)
@@ -279,7 +281,7 @@ void mmStocksPanel::LoadStockTransactions(wxListCtrl* listCtrl, wxString symbol,
         stock_list = Model_Translink::TranslinkList<Model_Stock>(stockId);
     }
     else {  // search for all
-        stock_list = Model_Translink::instance().getSpecialSQL(Model_Translink::ALL_LINKS_BY_SYMBOL, symbol);
+        stock_list = Model_Translink::TranslinkListBySymbol(symbol);
     }
 
     for (const auto& trans : stock_list) {
@@ -423,13 +425,9 @@ void mmStocksPanel::updateHeader()
     }
     else {
         header_text_->SetLabelText(wxString::Format(_t("Stock Portfolios Overview")));
-        Model_Stock::Data_Set stocktotalvalues = Model_Stock::instance().getSpecial(
-                Model_Stock::ALL_STOCKS_TOTALS,
-                getFilter() // ? GREATER : GREATER_OR_EQUAL)
-        );
-        cashBalance = 0;
-        marketValue = stocktotalvalues[0].CURRENTPRICE;
-        InvestedVal = stocktotalvalues[0].PURCHASEPRICE + stocktotalvalues[0].COMMISSION;
+        if (m_lc) {
+            m_lc->getInvestmentBalance(InvestedVal, marketValue);
+        }
     }
 
     const wxString& diffStr = Model_Currency::toCurrency(marketValue > InvestedVal ? marketValue - InvestedVal : InvestedVal - marketValue, m_currency);

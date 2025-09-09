@@ -37,8 +37,6 @@ Model_Translink::~Model_Translink()
 */
 Model_Translink& Model_Translink::instance(wxSQLite3Database* db)
 {
-    g_db_ = db;  // store for internal use
-
     Model_Translink& ins = Singleton<Model_Translink>::instance();
     ins.db_ = db;
     ins.destroy_cache();
@@ -110,6 +108,17 @@ Model_Translink::Data_Set Model_Translink::TranslinkList(const int64 link_entry_
         , Model_Translink::LINKRECORDID(link_entry_id));
 
     return translink_list;
+}
+
+Model_Translink::Data_Set Model_Translink::TranslinkListBySymbol(const wxString symbol)
+{
+    Model_Translink::Data_Set result;
+    Model_Stock::Data_Set stocks = Model_Stock::instance().find(Model_Stock::SYMBOL(symbol));
+    for (auto& stock : stocks) {
+       Model_Translink::Data_Set t = Model_Translink::instance().find(Model_Translink::LINKRECORDID(stock.STOCKID));
+       result.insert(result.end(), t.begin(), t.end());
+    }
+    return result;
 }
 
 bool Model_Translink::HasShares(const int64 stock_id)
@@ -214,40 +223,4 @@ bool Model_Translink::ShareAccountId(int64& stock_entry_id)
     }
 
     return false;
-}
-
-
-const Model_Translink::Data_Set Model_Translink::getSpecialSQL(TransSQLQueryName queryname, wxString par)
-{
-    Data_Set result;
-    try
-    {
-        wxString query_special;
-
-        switch(queryname) {
-            case ALL_LINKS_BY_SYMBOL:
-                query_special = "SELECT * FROM TRANSLINK_V1 WHERE LINKRECORDID IN (SELECT STOCKID FROM STOCK_V1 WHERE SYMBOL = ?)";
-                break;
-
-            default:
-                return result; // return empty!
-        }
-
-        wxSQLite3Statement sqlStmt = g_db_->PrepareStatement(query_special);
-        sqlStmt.Bind(1, par);
-        wxSQLite3ResultSet q = sqlStmt.ExecuteQuery();
-
-        while(q.NextRow())
-        {
-            Self::Data entity(q, this);
-            result.push_back(std::move(entity));
-        }
-        q.Finalize();
-    }
-    catch(const wxSQLite3Exception &e)
-    {
-        wxLogError("%s: Exception %s", this->name().utf8_str(), e.GetMessage().utf8_str());
-    }
-
-    return result;
 }
