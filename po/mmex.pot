@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-09-10 19:13+0000\n"
+"POT-Creation-Date: 2025-09-09 18:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -231,7 +231,7 @@ msgstr ""
 msgid "Credit"
 msgstr ""
 
-#: accountdialog.cpp:262 mmcheckingpanel.cpp:395
+#: accountdialog.cpp:262 mmcheckingpanel.cpp:414
 msgid "Credit Limit:"
 msgstr ""
 
@@ -609,7 +609,7 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:276
+#: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:295
 #: stockspanel.cpp:145
 msgid "&New "
 msgstr ""
@@ -628,13 +628,13 @@ msgstr ""
 
 #: assetspanel.cpp:474 attachmentdialog.cpp:354 billsdepositspanel.cpp:293
 #: categdialog.cpp:319 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
-#: mmcheckingpanel.cpp:280 payeedialog.cpp:882 stockspanel.cpp:159
+#: mmcheckingpanel.cpp:299 payeedialog.cpp:882 stockspanel.cpp:159
 #: tagdialog.cpp:132
 msgid "&Edit "
 msgstr ""
 
 #: assetspanel.cpp:479 billsdepositspanel.cpp:303 budgetyeardialog.cpp:103
-#: categdialog.cpp:323 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:272
+#: categdialog.cpp:323 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:291
 #: stockdialog.cpp:337 stockspanel.cpp:164 tagdialog.cpp:137
 msgid "&Delete "
 msgstr ""
@@ -643,13 +643,13 @@ msgstr ""
 msgid "Delete Asset"
 msgstr ""
 
-#: assetspanel.cpp:487 billsdepositspanel.cpp:321 mmcheckingpanel.cpp:308
+#: assetspanel.cpp:487 billsdepositspanel.cpp:321 mmcheckingpanel.cpp:327
 #: stockspanel.cpp:177
 msgid "Open attachments"
 msgstr ""
 
 #: assetspanel.cpp:494 assetspanel.cpp:495 categdialog.cpp:304
-#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:339 payeedialog.cpp:588
+#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:358 payeedialog.cpp:588
 #: tagdialog.cpp:117
 msgid "Search"
 msgstr ""
@@ -658,22 +658,22 @@ msgstr ""
 msgid "Enter any string to find related assets"
 msgstr ""
 
-#: assetspanel.cpp:499 filtertransdialog.cpp:711 mmcheckingpanel.cpp:343
+#: assetspanel.cpp:499 filtertransdialog.cpp:711 mmcheckingpanel.cpp:362
 #: payeedialog.cpp:137
 msgid "Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria."
 msgstr ""
 
-#: assetspanel.cpp:500 filtertransdialog.cpp:712 mmcheckingpanel.cpp:344
+#: assetspanel.cpp:500 filtertransdialog.cpp:712 mmcheckingpanel.cpp:363
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”."
 msgstr ""
 
-#: assetspanel.cpp:501 filtertransdialog.cpp:713 mmcheckingpanel.cpp:345
+#: assetspanel.cpp:501 filtertransdialog.cpp:713 mmcheckingpanel.cpp:364
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”."
 msgstr ""
 
-#: assetspanel.cpp:502 filtertransdialog.cpp:714 mmcheckingpanel.cpp:346
+#: assetspanel.cpp:502 filtertransdialog.cpp:714 mmcheckingpanel.cpp:365
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) at the beginning to find any string in the middle of the sentence."
 msgstr ""
@@ -1334,7 +1334,7 @@ msgstr ""
 msgid "Scheduled Transactions"
 msgstr ""
 
-#: billsdepositspanel.cpp:298 mmcheckingpanel.cpp:285
+#: billsdepositspanel.cpp:298 mmcheckingpanel.cpp:304
 msgid "D&uplicate "
 msgstr ""
 
@@ -1342,19 +1342,19 @@ msgstr ""
 msgid "Delete Scheduled Transaction"
 msgstr ""
 
-#: billsdepositspanel.cpp:308 mmcheckingpanel.cpp:293
+#: billsdepositspanel.cpp:308 mmcheckingpanel.cpp:312
 msgid "Ente&r"
 msgstr ""
 
-#: billsdepositspanel.cpp:309 mmcheckingpanel.cpp:294
+#: billsdepositspanel.cpp:309 mmcheckingpanel.cpp:313
 msgid "Enter Next Scheduled Transaction Occurrence"
 msgstr ""
 
-#: billsdepositspanel.cpp:313 mmcheckingpanel.cpp:298
+#: billsdepositspanel.cpp:313 mmcheckingpanel.cpp:317
 msgid "&Skip"
 msgstr ""
 
-#: billsdepositspanel.cpp:314 mmcheckingpanel.cpp:299
+#: billsdepositspanel.cpp:314 mmcheckingpanel.cpp:318
 msgid "Skip Next Scheduled Transaction Occurrence"
 msgstr ""
 
@@ -1889,7 +1889,7 @@ msgstr ""
 msgid "Closed"
 msgstr ""
 
-#: constants.cpp:199 mmcheckingpanel.cpp:1321 mmframe.cpp:515
+#: constants.cpp:199 mmcheckingpanel.cpp:1376 mmframe.cpp:515
 msgid "Favorites"
 msgstr ""
 
@@ -2217,7 +2217,7 @@ msgstr ""
 msgid "Default date ranges"
 msgstr ""
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1061 mmreportspanel.cpp:813
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1091 mmreportspanel.cpp:813
 msgid "More date ranges…"
 msgstr ""
 
@@ -2667,7 +2667,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: filtertransdialog.cpp:49 mmchecking_list.cpp:1571
+#: filtertransdialog.cpp:49 mmchecking_list.cpp:1575
 #: model/Model_Checking.cpp:45
 msgid "Unreconciled"
 msgstr ""
@@ -2681,7 +2681,7 @@ msgstr ""
 msgid "Void"
 msgstr ""
 
-#: filtertransdialog.cpp:52 mmchecking_list.cpp:1562
+#: filtertransdialog.cpp:52 mmchecking_list.cpp:1566
 #: model/Model_Checking.cpp:48
 msgid "Follow Up"
 msgstr ""
@@ -2784,7 +2784,7 @@ msgstr ""
 msgid "Enter any string to find it in transaction notes"
 msgstr ""
 
-#: filtertransdialog.cpp:715 mmcheckingpanel.cpp:347 payeedialog.cpp:141
+#: filtertransdialog.cpp:715 mmcheckingpanel.cpp:366 payeedialog.cpp:141
 msgid "Use regex: to match using regular expressions."
 msgstr ""
 
@@ -4525,16 +4525,16 @@ msgid_plural "Do you want to delete the %i selected transactions?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1141 mmchecking_list.cpp:1550
+#: mmchecking_list.cpp:1141 mmchecking_list.cpp:1554
 msgid "Unable to undo this action."
 msgstr ""
 
-#: mmchecking_list.cpp:1142 mmchecking_list.cpp:1549
+#: mmchecking_list.cpp:1142 mmchecking_list.cpp:1553
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr ""
 
-#: mmchecking_list.cpp:1146 mmchecking_list.cpp:1554 mmchecking_list.cpp:1563
-#: mmchecking_list.cpp:1572
+#: mmchecking_list.cpp:1146 mmchecking_list.cpp:1558 mmchecking_list.cpp:1567
+#: mmchecking_list.cpp:1576
 msgid "Confirm Transaction Deletion"
 msgstr ""
 
@@ -4597,39 +4597,39 @@ msgstr ""
 msgid "Scheduled transaction saved."
 msgstr ""
 
-#: mmchecking_list.cpp:1475 mmcheckingpanel.cpp:1316
+#: mmchecking_list.cpp:1478 mmcheckingpanel.cpp:1371
 msgid "All Transactions"
 msgstr ""
 
-#: mmchecking_list.cpp:1544
+#: mmchecking_list.cpp:1548
 msgid "Do you want to delete all the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1545
+#: mmchecking_list.cpp:1549
 msgid "Do you want to permanently delete all the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1562 mmchecking_list.cpp:1571
+#: mmchecking_list.cpp:1566 mmchecking_list.cpp:1575
 #, c-format
 msgid "Do you want to delete all the “%s” transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:2198
+#: mmchecking_list.cpp:2202
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:2200
+#: mmchecking_list.cpp:2204
 msgid "Do you want to perform the edit?"
 msgstr ""
 
-#: mmchecking_list.cpp:2201
+#: mmchecking_list.cpp:2205
 msgid "Closed Account Check"
 msgstr ""
 
-#: mmchecking_list.cpp:2215
+#: mmchecking_list.cpp:2219
 #, c-format
 msgid ""
 "Locked transaction to date: %s\n"
@@ -4637,128 +4637,128 @@ msgid ""
 "Reconciled transactions."
 msgstr ""
 
-#: mmchecking_list.cpp:2218 transdialog.cpp:755 transdialog.cpp:779
+#: mmchecking_list.cpp:2222 transdialog.cpp:755 transdialog.cpp:779
 msgid "MMEX Transaction Check"
 msgstr ""
 
-#: mmcheckingpanel.cpp:213
+#: mmcheckingpanel.cpp:232
 msgid "Filter…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:273
+#: mmcheckingpanel.cpp:292
 msgid "Delete all selected transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:277 mmframe.cpp:2185 optionsettingstransaction.cpp:57
+#: mmcheckingpanel.cpp:296 mmframe.cpp:2185 optionsettingstransaction.cpp:57
 #: transdialog.cpp:182
 msgid "New Transaction"
 msgstr ""
 
-#: mmcheckingpanel.cpp:281
+#: mmcheckingpanel.cpp:300
 msgid "Edit all selected transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:286
+#: mmcheckingpanel.cpp:305
 msgid "Duplicate selected transaction"
 msgstr ""
 
-#: mmcheckingpanel.cpp:324
+#: mmcheckingpanel.cpp:343
 msgid "&Restore "
 msgstr ""
 
-#: mmcheckingpanel.cpp:325
+#: mmcheckingpanel.cpp:344
 msgid "Restore selected transaction"
 msgstr ""
 
-#: mmcheckingpanel.cpp:342
+#: mmcheckingpanel.cpp:361
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr ""
 
-#: mmcheckingpanel.cpp:360
+#: mmcheckingpanel.cpp:379
 msgid "Click to copy to clipboard"
 msgstr ""
 
-#: mmcheckingpanel.cpp:379
+#: mmcheckingpanel.cpp:398
 msgid "Account Bal: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:383
+#: mmcheckingpanel.cpp:402
 msgid "Reconciled Bal: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:385
+#: mmcheckingpanel.cpp:404
 msgid "Diff: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:389
+#: mmcheckingpanel.cpp:408
 msgid "Filtered Flow: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:405
+#: mmcheckingpanel.cpp:424
 msgid "Market Value: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:406
+#: mmcheckingpanel.cpp:425
 msgid "Invested: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:423 mmcheckingpanel.cpp:1119 mmreportspanel.cpp:106
+#: mmcheckingpanel.cpp:442 mmcheckingpanel.cpp:1149 mmreportspanel.cpp:106
 #: mmreportspanel.cpp:851
 msgid "Date range"
 msgstr ""
 
-#: mmcheckingpanel.cpp:896 mmcheckingpanel.cpp:914 webapp.cpp:620
+#: mmcheckingpanel.cpp:926 mmcheckingpanel.cpp:944 webapp.cpp:620
 msgid "Attachment"
 msgstr ""
 
-#: mmcheckingpanel.cpp:965
+#: mmcheckingpanel.cpp:995
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr ""
 
-#: mmcheckingpanel.cpp:969
+#: mmcheckingpanel.cpp:999
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:974
+#: mmcheckingpanel.cpp:1004
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1041
+#: mmcheckingpanel.cpp:1071
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1041
+#: mmcheckingpanel.cpp:1071
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1042
+#: mmcheckingpanel.cpp:1072
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1069 mmreportspanel.cpp:820
+#: mmcheckingpanel.cpp:1099 mmreportspanel.cpp:820
 msgid "Edit date ranges…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1274
+#: mmcheckingpanel.cpp:1329
 msgid "&New Withdrawal…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1275
+#: mmcheckingpanel.cpp:1330
 msgid "&New Deposit…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1276
+#: mmcheckingpanel.cpp:1331
 msgid "&New Transfer…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1318
+#: mmcheckingpanel.cpp:1373
 msgid "Deleted Transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1326
+#: mmcheckingpanel.cpp:1381
 #, c-format
 msgid "Account View: %s"
 msgstr ""
