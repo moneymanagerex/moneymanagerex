@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013, 2014, 2020, 2021, 2022 Nikolay Akimov
- Copyright (C) 2021-2024 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2025 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public as published by
@@ -1469,14 +1469,10 @@ void TransactionListCtrl::onFind(wxCommandEvent&)
         return;
     // save the filter as the "Advanced" filter for All Transactions
     Model_Infotable::instance().setString("CHECK_FILTER_ID_ADV_-1", rightClickFilter_);
-    // set All Transactions to use the "Advanced" filter
-    Model_Infotable::instance().setString(
-        "CHECK_FILTER_-1",
-        "{ \"FILTER\": \"" + mmCheckingPanel::FILTER_NAME_ADVANCED + "\" }"
-    );
+ 
     // Navigate to the All Transactions panel
-    m_cp->m_frame->setNavTreeSection(wxTRANSLATE("All Transactions"));
     wxTreeItemId currentId = m_cp->m_frame->GetNavTreeSelection();
+    m_cp->m_frame->setNavTreeSection(wxTRANSLATE("All Transactions"));
     wxTreeItemId allTransactionsId = m_cp->m_frame->GetNavTreeSelection();
     if (currentId.IsOk() && currentId == allTransactionsId) {
         m_cp->m_trans_filter_dlg.reset(
