@@ -2,7 +2,7 @@
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2011, 2012 Stefano Giorgio
 Copyright (C) 2013, 2014 Nikolay Akimov
-Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021-2025 Mark Whalley (mark@ipx.co.uk)
 Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
@@ -52,11 +52,9 @@ public:
 
     enum FILTER_ID
     {
-        FILTER_ID_DATE = 0,
-        FILTER_ID_ADVANCED,
+        FILTER_ID_DATE = 0,     // Not currently used
         FILTER_ID_DATE_RANGE,
-        FILTER_ID_DATE_PICKER,
-        FILTER_ID_size
+        FILTER_ID_DATE_PICKER
     };
 
 public:
@@ -106,7 +104,6 @@ private:
 
     static const std::vector<std::pair<FILTER_ID, wxString> > FILTER_NAME;
     static const wxString FILTER_NAME_DATE;
-    static const wxString FILTER_NAME_ADVANCED;
 
 private:
     // set by constructor or loadAccount()
@@ -126,7 +123,7 @@ private:
 
     // set by gui
     FILTER_ID m_filter_id;
-    FILTER_ID m_filter_id_ext;
+    bool m_filter_advanced;
     DateRange2 m_current_date_range = DateRange2();
     bool m_scheduled_enable;
     bool m_scheduled_selected;
@@ -166,6 +163,7 @@ private:
     wxVector<wxBitmapBundle> m_images;
     TransactionListCtrl* m_lc = nullptr;
     wxSharedPtr<mmFilterTransactionsDialog> m_trans_filter_dlg;
+
 
 private:
     bool create(

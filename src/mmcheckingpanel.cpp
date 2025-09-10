@@ -53,13 +53,9 @@
 const std::vector<std::pair<mmCheckingPanel::FILTER_ID, wxString> > mmCheckingPanel::FILTER_NAME =
 {
     { mmCheckingPanel::FILTER_ID_DATE,     wxString("Date") },
-    { mmCheckingPanel::FILTER_ID_ADVANCED, wxString("Advanced") },
     { mmCheckingPanel::FILTER_ID_DATE_RANGE, wxString("DateRange") },
     { mmCheckingPanel::FILTER_ID_DATE_PICKER, wxString("DatePicker") },
-    { mmCheckingPanel::FILTER_ID_size, wxString("") },
 };
-
-const wxString mmCheckingPanel::FILTER_NAME_ADVANCED = FILTER_NAME[FILTER_ID_ADVANCED].second;
 
 //----------------------------------------------------------------------------
 
@@ -116,7 +112,7 @@ mmCheckingPanel::mmCheckingPanel(
         m_currency = Model_Currency::GetBaseCurrency();
     }
     m_use_account_specific_filter = Option::instance().getUsePerAccountFilter();
-    loadFilterSettings();
+    loadDateRanges(&m_date_range_a, &m_date_range_m, isAccount());
 
     create(parent);
     Fit();
@@ -138,14 +134,8 @@ bool mmCheckingPanel::create(
 
     this->windowsFreezeThaw();
     createControls();
+    loadFilterSettings();
     updateFilter(true);
-    if (m_filter_id == FILTER_ID_ADVANCED || m_filter_id_ext == FILTER_ID_ADVANCED) {
-        wxString j_str = Model_Infotable::instance().getString(
-            wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
-            "{}"
-        );
-        m_trans_filter_dlg = new mmFilterTransactionsDialog(parent, m_account_id, false, j_str);
-    }
     updateFilterTooltip();
 
     refreshList();
@@ -170,15 +160,6 @@ void mmCheckingPanel::loadAccount(int64 account_id)
 
     loadFilterSettings();
     updateFilter();
-    if (m_filter_id == FILTER_ID_ADVANCED || m_filter_id_ext == FILTER_ID_ADVANCED) {
-        wxString j_str = Model_Infotable::instance().getString(
-            wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
-            "{}"
-        );
-        m_trans_filter_dlg.reset(
-            new mmFilterTransactionsDialog(this, m_account_id, false, j_str)
-        );
-    }
     updateFilterTooltip();
 
     refreshList();
@@ -452,6 +433,9 @@ void mmCheckingPanel::updateFilter(bool firstinit)
         m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
     }
 
+    m_btnTransDetailFilter->SetBitmap(mmBitmapBundle(m_filter_advanced ?
+                                png::TRANSFILTER_ACTIVE : png::TRANSFILTER, mmBitmapButtonSize));
+
     if (!isDeletedTrans()) {
         m_header_scheduled->SetValue(m_scheduled_selected);
         m_header_scheduled->Enable(m_scheduled_enable);
@@ -467,9 +451,6 @@ void mmCheckingPanel::updateFilterTooltip()
     else {
         m_btnTransDetailFilter->UnsetToolTip();
     }
-    m_btnTransDetailFilter->SetBitmap(mmBitmapBundle(m_filter_id_ext == FILTER_ID_ADVANCED && m_trans_filter_dlg && m_trans_filter_dlg->mmIsSomethingChecked() ?
-                                                            png::TRANSFILTER_ACTIVE : png::TRANSFILTER,
-                                                     mmBitmapButtonSize));
 }
 
 void mmCheckingPanel::setFilterDate(DateRange2::Spec& spec)
@@ -489,13 +470,10 @@ void mmCheckingPanel::setFilterDate(DateRange2::Spec& spec)
 
 void mmCheckingPanel::setFilterAdvanced()
 {
-    m_filter_id = FILTER_ID_ADVANCED;
-    m_current_date_range = DateRange2();
-    m_scheduled_enable = (!isDeletedTrans() &&
-        m_current_date_range.checking_end() != wxInvalidDateTime
-    );
-    saveFilterSettings();
+    loadFilterSettings();
     updateFilter();
+    updateFilterTooltip();
+    refreshList();
 }
 
 //----------------------------------------------------------------------------
@@ -505,7 +483,6 @@ void mmCheckingPanel::loadFilterSettings()
     Document j_doc;
     m_scheduled_selected = false;
 
-    loadDateRanges(&m_date_range_a, &m_date_range_m, isAccount());
     j_doc = Model_Infotable::instance().getJdoc(m_use_account_specific_filter ? wxString::Format("CHECK_FILTER_DEDICATED_%lld", m_checking_id) : "CHECK_FILTER_ALL", "{}");
     int fid = 0;
 
@@ -550,11 +527,10 @@ void mmCheckingPanel::loadFilterSettings()
         JSON_GetBoolValue(j_doc, "SCHEDULED", m_scheduled_selected);
     }
 
-    j_doc = Model_Infotable::instance().getJdoc(wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id), "{}");
-    bool isext = false;
-    JSON_GetBoolValue(j_doc, "FILTER_ADVANCED", isext);
-
-    m_filter_id_ext = isext ? FILTER_ID_ADVANCED : FILTER_ID_size;
+    wxString j_str = Model_Infotable::instance().getString(
+            wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),"{}");
+    m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, m_account_id, false, j_str));
+    m_filter_advanced = m_trans_filter_dlg->mmIsSomethingChecked() ? true : false;
     updateScheduledEnable();
 }
 
@@ -581,11 +557,7 @@ void mmCheckingPanel::saveFilterSettings()
     Model_Infotable::instance().setJdoc(key, j_doc);
 
     key = wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id);
-    j_doc = Model_Infotable::instance().getJdoc(key, "{}");
-    Model_Infotable::saveFilterBool(j_doc, "FILTER_ADVANCED", m_filter_id_ext == FILTER_ID_ADVANCED);
-    Model_Infotable::saveFilterString(j_doc, "FILTER_ADVANCED_SETTINGS", m_filter_id_ext == FILTER_ID_ADVANCED ? m_trans_filter_dlg->mmGetJsonSettings(false) : "");
-
-    Model_Infotable::instance().setJdoc(key, j_doc);
+    Model_Infotable::instance().setString(key, m_filter_advanced ? m_trans_filter_dlg->mmGetJsonSettings() : "{}");
 }
 
 //----------------------------------------------------------------------------
@@ -745,7 +717,7 @@ void mmCheckingPanel::filterList()
             Fused_Transaction::Full_Data(bills[bill_i], tran_date, repeat_num, bills_splits, bills_tags);
 
         bool expandSplits = false;
-        if (m_filter_id == FILTER_ID_ADVANCED || m_filter_id_ext == FILTER_ID_ADVANCED) {
+        if (m_filter_advanced) {
             int txnMatch = m_trans_filter_dlg->mmIsRecordMatches(*tran, full_tran.m_splits);
             if (txnMatch) {
                 expandSplits = (txnMatch < static_cast<int>(full_tran.m_splits.size()) + 1);
@@ -822,15 +794,13 @@ void mmCheckingPanel::filterList()
                 m_flow += account_flow;
             continue;
         }
-        // else {
-        // assertion: m_filter_id == FILTER_ID_ADVANCED || m_filter_id_ext == FILTER_ID_ADVANCED
-        // assertion: Model_Checking::is_transfer(full_tran.TRANSCODE) == false
+  
         int splitIndex = 1;
         wxString tranTagnames = full_tran.TAGNAMES;
         wxString tranDisplaySN = full_tran.displaySN;
         wxString tranDisplayID = full_tran.displayID;
         for (const auto& split : full_tran.m_splits) {
-            if (m_filter_id == FILTER_ID_ADVANCED || m_filter_id_ext == FILTER_ID_ADVANCED) {
+            if (m_filter_advanced) {
               if (!m_trans_filter_dlg->mmIsSplitRecordMatches<Model_Splittransaction>(split))
                   continue;
             }
@@ -845,7 +815,7 @@ void mmCheckingPanel::filterList()
             Model_Checking::Data splitWithTxnNotes = full_tran;
             Model_Checking::Data splitWithSplitNotes = full_tran;
             splitWithSplitNotes.NOTES = split.NOTES;
-            if (m_filter_id == FILTER_ID_ADVANCED || m_filter_id_ext == FILTER_ID_ADVANCED) {
+            if (m_filter_advanced) {
               if (
                   !m_trans_filter_dlg->mmIsRecordMatches<Model_Checking>(splitWithSplitNotes, true) &&
                   !m_trans_filter_dlg->mmIsRecordMatches<Model_Checking>(splitWithTxnNotes, true)
@@ -1160,41 +1130,16 @@ void mmCheckingPanel::datePickProceed() {
 
 void mmCheckingPanel::onFilterAdvanced(wxCommandEvent& WXUNUSED(event))
 {
-    if (!m_trans_filter_dlg) {
         wxString j_str = Model_Infotable::instance().getString(
             wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
             "{}"
         );
         m_trans_filter_dlg.reset(
-            new mmFilterTransactionsDialog(this, m_account_id, false, j_str)
+            new mmFilterTransactionsDialog(this, m_checking_id, false, j_str)
         );
-    }
-    const wxString save_j_str = m_trans_filter_dlg->mmGetJsonSettings();
-    int status = m_trans_filter_dlg->ShowModal();
-    if (status != wxID_OK) {
-        if (m_filter_id == FILTER_ID_ADVANCED || m_filter_id_ext == FILTER_ID_ADVANCED) {
-            m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, m_account_id, false, save_j_str));
-            if (m_trans_filter_dlg->mmIsSomethingChecked()) {
-                m_filter_id_ext = FILTER_ID_ADVANCED;
-                m_btnTransDetailFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
-            }
-            else {
-                m_filter_id_ext = FILTER_ID_size;  // reset to unused value
-                m_btnTransDetailFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
-            }
-        }
-        return;
-    }
-
-    if (m_trans_filter_dlg->mmIsSomethingChecked()) {
-        m_filter_id_ext = FILTER_ID_ADVANCED;
-        m_btnTransDetailFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
-    }
-    else {
-        m_filter_id_ext = FILTER_ID_size;  // reset to unused value
-        m_btnTransDetailFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
-    }
-    saveFilterSettings();
+    m_trans_filter_dlg->ShowModal();
+    loadFilterSettings();
+    updateFilter();
     updateFilterTooltip();
     refreshList();
 }
