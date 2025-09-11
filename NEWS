@@ -1,6 +1,6 @@
-Version 1.9.1 RC 5
+Version 1.9.1
 ~~~~~~~~~~~~~~~~~~~~
-Released: 2025-09-09
+Released: 2025-09-12
 
 Features:
 * #7334 Copy sum on click
@@ -44,6 +44,7 @@ Bugfixes:
 * #7277 Strange Symbols Appearing in Transaction Date Filters (1.9.1 Beta1)
 * #7272 MMEX crashes when filtering on custom field only in transation report
 * #7271 Transaction Report -> link to transactions broken
+* #7235 Change ending date for Monthly Category report?
 * #7229 Error on using the credit limit feature
 * #7220 Transaction Report crash if tags are selected
 * #7210 Manuually entering the same new tag in Split Transactions will cause a Constraint error
