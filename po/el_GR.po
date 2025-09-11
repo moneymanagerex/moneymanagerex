@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-09-09 18:21+0000\n"
-"PO-Revision-Date: 2025-09-10 16:17\n"
+"POT-Creation-Date: 2025-09-10 19:15+0000\n"
+"PO-Revision-Date: 2025-09-11 22:13\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "Language: el_GR\n"
@@ -230,7 +230,7 @@ msgstr "Κατώτατο όριο υπόλοιπου λογαριασμού. Μ�
 msgid "Credit"
 msgstr "Πίστωση"
 
-#: accountdialog.cpp:262 mmcheckingpanel.cpp:414
+#: accountdialog.cpp:262 mmcheckingpanel.cpp:395
 msgid "Credit Limit:"
 msgstr "Πιστωτικό Όριο:"
 
@@ -608,7 +608,7 @@ msgstr "Περιουσιακά στοιχεία"
 msgid "All"
 msgstr "Όλοι"
 
-#: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:295
+#: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:276
 #: stockspanel.cpp:145
 msgid "&New "
 msgstr "&Νέο "
@@ -627,13 +627,13 @@ msgstr "Προβολή Συναλλαγών Περιουσιακού Στοιχ�
 
 #: assetspanel.cpp:474 attachmentdialog.cpp:354 billsdepositspanel.cpp:293
 #: categdialog.cpp:319 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
-#: mmcheckingpanel.cpp:299 payeedialog.cpp:882 stockspanel.cpp:159
+#: mmcheckingpanel.cpp:280 payeedialog.cpp:882 stockspanel.cpp:159
 #: tagdialog.cpp:132
 msgid "&Edit "
 msgstr "&Επεξεργασία "
 
 #: assetspanel.cpp:479 billsdepositspanel.cpp:303 budgetyeardialog.cpp:103
-#: categdialog.cpp:323 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:291
+#: categdialog.cpp:323 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:272
 #: stockdialog.cpp:337 stockspanel.cpp:164 tagdialog.cpp:137
 msgid "&Delete "
 msgstr "&Διαγραφή "
@@ -642,13 +642,13 @@ msgstr "&Διαγραφή "
 msgid "Delete Asset"
 msgstr "Διαγραφή Περιουσιακού Στοιχείου"
 
-#: assetspanel.cpp:487 billsdepositspanel.cpp:321 mmcheckingpanel.cpp:327
+#: assetspanel.cpp:487 billsdepositspanel.cpp:321 mmcheckingpanel.cpp:308
 #: stockspanel.cpp:177
 msgid "Open attachments"
 msgstr "Άνοιγμα συνημμένων"
 
 #: assetspanel.cpp:494 assetspanel.cpp:495 categdialog.cpp:304
-#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:358 payeedialog.cpp:588
+#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:339 payeedialog.cpp:588
 #: tagdialog.cpp:117
 msgid "Search"
 msgstr "Αναζήτηση"
@@ -657,22 +657,22 @@ msgstr "Αναζήτηση"
 msgid "Enter any string to find related assets"
 msgstr "Εισάγετε οποιαδήποτε συμβολοσειρά για να βρείτε σχετιζόμενα περιουσιακά στοιχεία"
 
-#: assetspanel.cpp:499 filtertransdialog.cpp:711 mmcheckingpanel.cpp:362
+#: assetspanel.cpp:499 filtertransdialog.cpp:711 mmcheckingpanel.cpp:343
 #: payeedialog.cpp:137
 msgid "Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria."
 msgstr ""
 
-#: assetspanel.cpp:500 filtertransdialog.cpp:712 mmcheckingpanel.cpp:363
+#: assetspanel.cpp:500 filtertransdialog.cpp:712 mmcheckingpanel.cpp:344
 #: payeedialog.cpp:138
 msgid "Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”."
 msgstr ""
 
-#: assetspanel.cpp:501 filtertransdialog.cpp:713 mmcheckingpanel.cpp:364
+#: assetspanel.cpp:501 filtertransdialog.cpp:713 mmcheckingpanel.cpp:345
 #: payeedialog.cpp:139
 msgid "Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”."
 msgstr ""
 
-#: assetspanel.cpp:502 filtertransdialog.cpp:714 mmcheckingpanel.cpp:365
+#: assetspanel.cpp:502 filtertransdialog.cpp:714 mmcheckingpanel.cpp:346
 #: payeedialog.cpp:140
 msgid "Use the asterisk (*) at the beginning to find any string in the middle of the sentence."
 msgstr ""
@@ -1331,7 +1331,7 @@ msgstr "Συμβουλή: Αυτές οι συναλλαγές μπορούν ν
 msgid "Scheduled Transactions"
 msgstr "Προγραμματισμένες συναλλαγές"
 
-#: billsdepositspanel.cpp:298 mmcheckingpanel.cpp:304
+#: billsdepositspanel.cpp:298 mmcheckingpanel.cpp:285
 msgid "D&uplicate "
 msgstr "Δ\n"
 "Διπλότυπη "
@@ -1340,19 +1340,19 @@ msgstr "Δ\n"
 msgid "Delete Scheduled Transaction"
 msgstr "Διαγραφή Προγραμματισμένης Συναλλαγής"
 
-#: billsdepositspanel.cpp:308 mmcheckingpanel.cpp:312
+#: billsdepositspanel.cpp:308 mmcheckingpanel.cpp:293
 msgid "Ente&r"
 msgstr ""
 
-#: billsdepositspanel.cpp:309 mmcheckingpanel.cpp:313
+#: billsdepositspanel.cpp:309 mmcheckingpanel.cpp:294
 msgid "Enter Next Scheduled Transaction Occurrence"
 msgstr "Εισαγωγή Επόμενης Εκτέλεσης Προγραμματισμένης Συναλλαγής"
 
-#: billsdepositspanel.cpp:313 mmcheckingpanel.cpp:317
+#: billsdepositspanel.cpp:313 mmcheckingpanel.cpp:298
 msgid "&Skip"
 msgstr "&Παράβλεψη"
 
-#: billsdepositspanel.cpp:314 mmcheckingpanel.cpp:318
+#: billsdepositspanel.cpp:314 mmcheckingpanel.cpp:299
 msgid "Skip Next Scheduled Transaction Occurrence"
 msgstr "Παράλειψη Επόμενης Εκτέλεσης Προγραμματισμένης Συναλλαγής"
 
@@ -1886,7 +1886,7 @@ msgstr "Ανοικτοί"
 msgid "Closed"
 msgstr "Κλειστός"
 
-#: constants.cpp:199 mmcheckingpanel.cpp:1376 mmframe.cpp:515
+#: constants.cpp:199 mmcheckingpanel.cpp:1321 mmframe.cpp:515
 msgid "Favorites"
 msgstr "Αγαπημένοι"
 
@@ -2212,7 +2212,7 @@ msgstr ""
 msgid "Default date ranges"
 msgstr "Προεπιλεγμένο εύρος ημερομηνιών"
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1091 mmreportspanel.cpp:813
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1061 mmreportspanel.cpp:813
 msgid "More date ranges…"
 msgstr ""
 
@@ -2661,7 +2661,7 @@ msgstr "Οι προγραμματιστές μπορούν να σας ζητή�
 msgid "Back"
 msgstr "Πίσω"
 
-#: filtertransdialog.cpp:49 mmchecking_list.cpp:1575
+#: filtertransdialog.cpp:49 mmchecking_list.cpp:1571
 #: model/Model_Checking.cpp:45
 msgid "Unreconciled"
 msgstr "Ανεπιβεβαίωτη"
@@ -2675,7 +2675,7 @@ msgstr "Τακτοποιημένο"
 msgid "Void"
 msgstr "Άκυρο"
 
-#: filtertransdialog.cpp:52 mmchecking_list.cpp:1566
+#: filtertransdialog.cpp:52 mmchecking_list.cpp:1562
 #: model/Model_Checking.cpp:48
 msgid "Follow Up"
 msgstr "Παρακολούθηση"
@@ -2778,7 +2778,7 @@ msgstr "Εύρος Ποσότητας"
 msgid "Enter any string to find it in transaction notes"
 msgstr "Εισάγετε οποιαδήποτε φράση για να τη βρείτε στις σημειώσεις μιας συναλλαγής"
 
-#: filtertransdialog.cpp:715 mmcheckingpanel.cpp:366 payeedialog.cpp:141
+#: filtertransdialog.cpp:715 mmcheckingpanel.cpp:347 payeedialog.cpp:141
 msgid "Use regex: to match using regular expressions."
 msgstr "Χρήση regex: για αντιστοίχιση με τη χρήση κανονικών εκφράσεων."
 
@@ -4519,16 +4519,16 @@ msgid_plural "Do you want to delete the %i selected transactions?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:1141 mmchecking_list.cpp:1554
+#: mmchecking_list.cpp:1141 mmchecking_list.cpp:1550
 msgid "Unable to undo this action."
 msgstr ""
 
-#: mmchecking_list.cpp:1142 mmchecking_list.cpp:1553
+#: mmchecking_list.cpp:1142 mmchecking_list.cpp:1549
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr "Οι διαγραμμένες συναλλαγές θα αποθηκευτούν προσωρινά και μπορούν να αποκατασταθούν από την προβολή Διαγραμμένων Συναλλαγών."
 
-#: mmchecking_list.cpp:1146 mmchecking_list.cpp:1558 mmchecking_list.cpp:1567
-#: mmchecking_list.cpp:1576
+#: mmchecking_list.cpp:1146 mmchecking_list.cpp:1554 mmchecking_list.cpp:1563
+#: mmchecking_list.cpp:1572
 msgid "Confirm Transaction Deletion"
 msgstr "Επιβεβαιώστε τη διαγραφή της συναλλαγής"
 
@@ -4591,166 +4591,166 @@ msgstr "Δεν είναι δυνατή η μετακίνηση μερικών σ
 msgid "Scheduled transaction saved."
 msgstr "Η Προγραμματισμένη συναλλαγή αποθηκεύτηκε."
 
-#: mmchecking_list.cpp:1478 mmcheckingpanel.cpp:1371
+#: mmchecking_list.cpp:1475 mmcheckingpanel.cpp:1316
 msgid "All Transactions"
 msgstr "Όλες οι συναλλαγές"
 
-#: mmchecking_list.cpp:1548
+#: mmchecking_list.cpp:1544
 msgid "Do you want to delete all the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1549
+#: mmchecking_list.cpp:1545
 msgid "Do you want to permanently delete all the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1566 mmchecking_list.cpp:1575
+#: mmchecking_list.cpp:1562 mmchecking_list.cpp:1571
 #, c-format
 msgid "Do you want to delete all the “%s” transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:2202
+#: mmchecking_list.cpp:2198
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] "Πρόκειται να επεξεργαστείτε μια συναλλαγή που περιλαμβάνει έναν λογαριασμό που είναι κλειστός."
 msgstr[1] "Η επεξεργασία θα επηρεάσει %i συναλλαγές που περιλαμβάνουν ένα λογαριασμό που είναι κλειστός."
 
-#: mmchecking_list.cpp:2204
+#: mmchecking_list.cpp:2200
 msgid "Do you want to perform the edit?"
 msgstr ""
 
-#: mmchecking_list.cpp:2205
+#: mmchecking_list.cpp:2201
 msgid "Closed Account Check"
 msgstr "Έλεγχος Κλειστού Λογαριασμού"
 
-#: mmchecking_list.cpp:2219
+#: mmchecking_list.cpp:2215
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "Κλειδωμένη συναλλαγή μέχρι την ημερομηνία: %s."
 
-#: mmchecking_list.cpp:2222 transdialog.cpp:755 transdialog.cpp:779
+#: mmchecking_list.cpp:2218 transdialog.cpp:755 transdialog.cpp:779
 msgid "MMEX Transaction Check"
 msgstr "Έλεγχος Συναλλαγής MMEX"
 
-#: mmcheckingpanel.cpp:232
+#: mmcheckingpanel.cpp:213
 msgid "Filter…"
 msgstr "Φίλτρο…"
 
-#: mmcheckingpanel.cpp:292
+#: mmcheckingpanel.cpp:273
 msgid "Delete all selected transactions"
 msgstr "Διαγραφή όλων των επιλεγμένων συναλλαγών"
 
-#: mmcheckingpanel.cpp:296 mmframe.cpp:2185 optionsettingstransaction.cpp:57
+#: mmcheckingpanel.cpp:277 mmframe.cpp:2185 optionsettingstransaction.cpp:57
 #: transdialog.cpp:182
 msgid "New Transaction"
 msgstr "Νέα συναλλαγή"
 
-#: mmcheckingpanel.cpp:300
+#: mmcheckingpanel.cpp:281
 msgid "Edit all selected transactions"
 msgstr "Επεξεργασία όλων των επιλεγμένων συναλλαγών"
 
-#: mmcheckingpanel.cpp:305
+#: mmcheckingpanel.cpp:286
 msgid "Duplicate selected transaction"
 msgstr "Αντιγραφή επιλεγμένης συναλλαγής"
 
-#: mmcheckingpanel.cpp:343
+#: mmcheckingpanel.cpp:324
 msgid "&Restore "
 msgstr "&Επαναφορά "
 
-#: mmcheckingpanel.cpp:344
+#: mmcheckingpanel.cpp:325
 msgid "Restore selected transaction"
 msgstr "Επαναφορά της επιλεγμένης συναλλαγής"
 
-#: mmcheckingpanel.cpp:361
+#: mmcheckingpanel.cpp:342
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr "Εισάγετε κάποια φράση για να τη βρείτε στις σημειώσεις της κοντινότερης συναλλαγής"
 
-#: mmcheckingpanel.cpp:379
+#: mmcheckingpanel.cpp:360
 msgid "Click to copy to clipboard"
 msgstr "Κάντε κλικ για αντιγραφή στο πρόχειρο"
 
-#: mmcheckingpanel.cpp:398
+#: mmcheckingpanel.cpp:379
 msgid "Account Bal: "
 msgstr "Υπόλοιπο λογαριασμού: "
 
-#: mmcheckingpanel.cpp:402
+#: mmcheckingpanel.cpp:383
 msgid "Reconciled Bal: "
 msgstr "Τακτοποιημένο υπόλοιπο: "
 
-#: mmcheckingpanel.cpp:404
+#: mmcheckingpanel.cpp:385
 msgid "Diff: "
 msgstr "Διαφορά: "
 
-#: mmcheckingpanel.cpp:408
+#: mmcheckingpanel.cpp:389
 msgid "Filtered Flow: "
 msgstr "Φιλτραρισμένη Ροή: "
 
-#: mmcheckingpanel.cpp:424
+#: mmcheckingpanel.cpp:405
 msgid "Market Value: "
 msgstr "Αξία Αγοράς: "
 
-#: mmcheckingpanel.cpp:425
+#: mmcheckingpanel.cpp:406
 msgid "Invested: "
 msgstr "Επενδύεται: "
 
-#: mmcheckingpanel.cpp:442 mmcheckingpanel.cpp:1149 mmreportspanel.cpp:106
+#: mmcheckingpanel.cpp:423 mmcheckingpanel.cpp:1119 mmreportspanel.cpp:106
 #: mmreportspanel.cpp:851
 msgid "Date range"
 msgstr "Εύρος ημερομηνιών"
 
-#: mmcheckingpanel.cpp:926 mmcheckingpanel.cpp:944 webapp.cpp:620
+#: mmcheckingpanel.cpp:896 mmcheckingpanel.cpp:914 webapp.cpp:620
 msgid "Attachment"
 msgstr "Συνημμένο"
 
-#: mmcheckingpanel.cpp:995
+#: mmcheckingpanel.cpp:965
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr "Επιλεγμένες συναλλαγές: %zu"
 
-#: mmcheckingpanel.cpp:999
+#: mmcheckingpanel.cpp:969
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr "Υπόλοιπο επιλεγμένων συναλλαγών: %s"
 
-#: mmcheckingpanel.cpp:1004
+#: mmcheckingpanel.cpp:974
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr "Ημέρες μεταξύ επιλεγμένων συναλλαγών: %d"
 
-#: mmcheckingpanel.cpp:1071
+#: mmcheckingpanel.cpp:1041
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr "Κάντε κλικ για να εμφανίσετε τις προγραμματισμένες συναλλαγές. Αυτή η λειτουργία λειτουργεί καλύτερα με επιλογές φίλτρων που επεκτείνονται στο μέλλον (π.χ., Τρέχων Μήνας)."
 
-#: mmcheckingpanel.cpp:1071
+#: mmcheckingpanel.cpp:1041
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr "Οι προγραμματισμένες συναλλαγές δεν είναι διαθέσιμες, επειδή το τρέχον φίλτρο τελειώνει στο παρελθόν"
 
-#: mmcheckingpanel.cpp:1072
+#: mmcheckingpanel.cpp:1042
 msgid "Click to hide scheduled transactions."
 msgstr "Κάντε κλικ για να αποκρύψετε προγραμματισμένες συναλλαγές."
 
-#: mmcheckingpanel.cpp:1099 mmreportspanel.cpp:820
+#: mmcheckingpanel.cpp:1069 mmreportspanel.cpp:820
 msgid "Edit date ranges…"
 msgstr "Επεξεργασία εύρους ημερομηνιών…"
 
-#: mmcheckingpanel.cpp:1329
+#: mmcheckingpanel.cpp:1274
 msgid "&New Withdrawal…"
 msgstr "&Νέα Ανάληψη…"
 
-#: mmcheckingpanel.cpp:1330
+#: mmcheckingpanel.cpp:1275
 msgid "&New Deposit…"
 msgstr "&Νέα Κατάθεση…"
 
-#: mmcheckingpanel.cpp:1331
+#: mmcheckingpanel.cpp:1276
 msgid "&New Transfer…"
 msgstr "&Νέα Μεταφορά…"
 
-#: mmcheckingpanel.cpp:1373
+#: mmcheckingpanel.cpp:1318
 msgid "Deleted Transactions"
 msgstr "Διαγραμμένες Συναλλαγές"
 
-#: mmcheckingpanel.cpp:1381
+#: mmcheckingpanel.cpp:1326
 #, c-format
 msgid "Account View: %s"
 msgstr "Προβολή Λογαριασμού: %s"
