@@ -37,6 +37,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Payee.h"
 #include "model/Model_Tag.h"
 
+#include "reports/mmDateRange.h"
+
 enum tab_id {
     LOG_TAB = 1,
     TRX_TAB = 2,
@@ -181,27 +183,65 @@ void mmQIFImportDialog::CreateControls()
     //Filtering Details --------------------------------------------
     wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _t("Filtering Details:"));
     wxStaticBoxSizer* filter_sizer = new wxStaticBoxSizer(static_box, wxVERTICAL);
-    wxFlexGridSizer* flex_sizer2 = new wxFlexGridSizer(0, 2, 0, 0);
-    filter_sizer->Add(flex_sizer2, g_flagsExpand);
+
+    // Create a horizontal sizer to hold the date and duplicate columns
+    wxBoxSizer* filter_grid_sizer = new wxBoxSizer(wxHORIZONTAL);
+    filter_sizer->Add(filter_grid_sizer, g_flagsExpand);
+
+    // Left column for dates
+    wxFlexGridSizer* dates_sizer = new wxFlexGridSizer(0, 2, 0, 0);
 
     // From Date
     dateFromCheckBox_ = new wxCheckBox(static_box, wxID_FILE8, _t("From Date")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     fromDateCtrl_ = new mmDatePickerCtrl(static_box, wxID_STATIC, wxDefaultDateTime
         , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
-    fromDateCtrl_->SetMinSize(wxSize(150, -1));
     fromDateCtrl_->Enable(false);
-    flex_sizer2->Add(dateFromCheckBox_, g_flagsH);
-    flex_sizer2->Add(fromDateCtrl_, g_flagsH);
+    dates_sizer->Add(dateFromCheckBox_, g_flagsH);
+    dates_sizer->Add(fromDateCtrl_, g_flagsH);
 
     // To Date
     dateToCheckBox_ = new wxCheckBox(static_box, wxID_FILE9, _t("To Date")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     toDateCtrl_ = new mmDatePickerCtrl(static_box, wxID_STATIC, wxDefaultDateTime
-        , wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN);
+        , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
     toDateCtrl_->Enable(false);
-    flex_sizer2->Add(dateToCheckBox_, g_flagsH);
-    flex_sizer2->Add(toDateCtrl_, g_flagsH);
+    dates_sizer->Add(dateToCheckBox_, g_flagsH);
+    dates_sizer->Add(toDateCtrl_, g_flagsH);
+
+    // Right column for duplicates
+    wxFlexGridSizer* dup_sizer = new wxFlexGridSizer(0, 2, 0, 0);
+
+    // Duplicate Transactions Method
+    dupTransCheckBox_ = new wxCheckBox(static_box, wxID_FILE3, _t("Duplicates")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    dupTransMethod_ = new wxChoice(static_box, wxID_ANY);
+    dupTransMethod_->Append(_t("By transaction number"));
+    dupTransMethod_->Append(_t("By amount and exact date"));
+    dupTransMethod_->Append(_t("By amount and nearby date"));
+    dupTransMethod_->SetSelection(0);
+    dupTransMethod_->Enable(false);
+    dup_sizer->Add(dupTransCheckBox_, g_flagsH);
+    dup_sizer->Add(dupTransMethod_, g_flagsH);
+
+    // Duplicate Transactions Action
+    wxStaticText* dupTransActionLabel = new wxStaticText(static_box, wxID_STATIC, _t("Action"));
+    dupTransAction_ = new wxChoice(static_box, wxID_ANY);
+    dupTransAction_->Append(_t("Skip"));
+    dupTransAction_->Append(_t("Flag as duplicate"));
+    dupTransAction_->SetSelection(0);
+    dupTransAction_->Enable(false);
+    dup_sizer->Add(dupTransActionLabel, g_flagsH);
+    dup_sizer->Add(dupTransAction_, g_flagsH);
+
+    filter_grid_sizer->Add(dates_sizer, g_flagsH);
+
+    // Add vertical line separator
+    wxStaticLine* vline = new wxStaticLine(static_box, wxID_ANY, wxDefaultPosition,
+        wxDefaultSize, wxLI_VERTICAL);
+    filter_grid_sizer->Add(vline, wxSizerFlags().Left().Border(wxLEFT | wxRIGHT, 5).Expand());
+
+    filter_grid_sizer->Add(dup_sizer, g_flagsH);
 
     //Data viewer ----------------------------------------------
     wxNotebook* qif_notebook = new wxNotebook(this
@@ -296,7 +336,6 @@ void mmQIFImportDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     payeeMatchAddNotes_->Disable();
 
-
     // Date Format Settings
     m_dateFormatStr = Option::instance().getDateFormat();
 
@@ -314,6 +353,7 @@ void mmQIFImportDialog::CreateControls()
         , wxCommandEventHandler(mmQIFImportDialog::OnDateMaskChange), nullptr, this);
 
     wxFlexGridSizer* flex_sizer_b = new wxFlexGridSizer(0, 3, 0, 0);
+
     flex_sizer_b->Add(accountNumberCheckBox_, g_flagsBorder1H);
     flex_sizer_b->Add(payeeMatchCheckBox_, g_flagsBorder1H);
     flex_sizer_b->AddSpacer(1);
@@ -325,7 +365,6 @@ void mmQIFImportDialog::CreateControls()
     date_sizer->Add(dateFormat, g_flagsBorder1H);
     date_sizer->Add(choiceDateFormat_, g_flagsBorder1H);
     flex_sizer_b->Add(date_sizer, g_flagsH);
-
 
     wxStaticText* decamalCharText = new wxStaticText(this, wxID_STATIC, _t("Decimal Char"));
     m_choiceDecimalSeparator = new mmChoiceAmountMask(this, wxID_ANY);
@@ -394,6 +433,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     m_QIFpayeeNames.clear();
     m_payee_names.clear();
     m_payee_names.Add(_t("Unknown"));
+    m_duplicateTransactions.clear();  // Clear the list of matched transactions
     wxString catDelimiter = Model_Infotable::instance().getString("CATEG_DELIMITER", ":");
 
     wxFileInputStream input(m_FileNameStr);
@@ -916,6 +956,10 @@ void mmQIFImportDialog::OnCheckboxClick(wxCommandEvent& event)
         fromDateCtrl_->Enable(dateFromCheckBox_->IsChecked());
         toDateCtrl_->Enable(dateToCheckBox_->IsChecked());
         return;
+    case wxID_FILE3:
+        dupTransMethod_->Enable(dupTransCheckBox_->IsChecked());
+        dupTransAction_->Enable(dupTransCheckBox_->IsChecked());
+        return;
     case wxID_FILE6:
         t = t | PAYEE_TAB;
         break;
@@ -1218,7 +1262,10 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         joinSplit(trx_data_set, m_splitDataSets);
         saveSplit();
 
-        sMsg = _t("Import finished successfully") + "\n" + wxString::Format(_t("Total Imported: %zu"), trx_data_set.size());
+        sMsg = _t("Import finished successfully") + "\n" +
+            wxString::Format(_t("Total Imported: %zu"), trx_data_set.size()) + "\n" +
+            wxString::Format(_t("Duplicates Detected: %zu"), m_duplicateTransactions.size());
+
         trx_data_set.clear();
         vQIF_trxs_.clear();
         btnOK_->Enable(false);
@@ -1537,6 +1584,79 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
         }
 
     }
+
+    // Check for duplicates according to user choice
+    if (dupTransCheckBox_->IsChecked())
+    {
+        bool isDuplicate = false;
+        int dupMethod = dupTransMethod_->GetSelection();
+        int dupAction = dupTransAction_->GetSelection();
+
+        if (dupMethod == 0) // By transaction number
+        {
+            if (!trx->TRANSACTIONNUMBER.empty())
+            {
+                const auto existing_transactions = Model_Checking::instance().find(
+                    Model_Checking::TRANSACTIONNUMBER(trx->TRANSACTIONNUMBER),
+                    Model_Checking::DELETEDTIME(wxEmptyString, EQUAL));
+
+                isDuplicate = !existing_transactions.empty();
+            }
+        }
+        else if (dupMethod == 1 || dupMethod == 2) // By amount and date (exact or nearby)
+        {
+            wxDateTime startDate, endDate;
+            wxString trxDateStr = trx->TRANSDATE;
+
+            if (dupMethod == 1) // exact date
+            {
+                startDate = endDate = wxDateTime();
+                startDate.ParseISODate(trxDateStr);
+                endDate = startDate;
+            }
+            else // nearby date
+            {
+                wxDateTime trxDate;
+                trxDate.ParseISODate(trxDateStr);
+                startDate = trxDate;
+                endDate = trxDate;
+                startDate.Subtract(wxDateSpan::Days(4));
+                endDate.Add(wxDateSpan::Days(2));
+            }
+
+            wxString startDateStr = startDate.FormatISODate() + "T00:00:00";
+            wxString endDateStr = mmDateRange::getDayEnd(endDate).FormatISOCombined();
+
+            const auto potential_matches = Model_Checking::instance().find(
+                Model_Checking::TRANSAMOUNT(trx->TRANSAMOUNT),
+                Model_Checking::TRANSDATE(startDateStr, GREATER_OR_EQUAL),
+                Model_Checking::TRANSDATE(endDateStr, LESS_OR_EQUAL),
+                Model_Checking::DELETEDTIME(wxEmptyString, EQUAL));
+
+            for (const auto& existingTrx : potential_matches)
+            {
+                bool alreadyMatched = m_duplicateTransactions.find(existingTrx.TRANSID) != m_duplicateTransactions.end();
+                if (!alreadyMatched)
+                {
+                    isDuplicate = true;
+                    m_duplicateTransactions.insert(existingTrx.TRANSID);
+                    break;
+                }
+            }
+        }
+
+        if (isDuplicate)
+        {
+            if (dupAction == 0) // Skip
+            {
+                msg = _t("Transaction skipped as duplicate");
+                return false;
+            }
+            else if (dupAction == 1) // Flag as duplicate
+                trx->STATUS = Model_Checking::STATUS_KEY_DUPLICATE;
+        }
+    }
+
     return true;
 }
 
