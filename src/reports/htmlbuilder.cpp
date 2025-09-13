@@ -241,7 +241,7 @@ void mmHTMLBuilder::addHeader(int level, const wxString& header)
 void mmHTMLBuilder::addReportCurrency()
 {
     wxString base_currency_symbol;
-    Model_Currency::GetBaseCurrencySymbol(base_currency_symbol);
+    wxASSERT_MSG(Model_Currency::GetBaseCurrencySymbol(base_currency_symbol), "Could not find base currency symbol");
 
     addHeader(5, wxString::Format("%s: %s", _t("Currency"), base_currency_symbol));
 }
