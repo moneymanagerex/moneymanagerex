@@ -463,7 +463,8 @@ int StocksListCtrl::initVirtualListControl(int64 trx_id)
         m_stocks = Model_Stock::instance().find(
                         Model_Stock::NUMSHARES(0.0, m_stock_panel->getFilter() ? GREATER : GREATER_OR_EQUAL)
                 );
-        createSummary();
+        if (!m_stocks.empty()) 
+            createSummary();
     }
 
     m_stock_panel->updateHeader();
