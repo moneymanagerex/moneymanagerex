@@ -243,6 +243,8 @@ Austin Green
 Vincenzo Apicella
 Martin Speckhardt
 Adam Gallagher
+John Weaving
+Jonathan Thomas
 
 ### 2024
 Renato
