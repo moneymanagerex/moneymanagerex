@@ -122,10 +122,15 @@ private:
     mmChoiceAmountMask* m_choiceDecimalSeparator = nullptr;
     wxCheckBox* colorCheckBox_ = nullptr;
     mmColorButton* mmColorBtn_ = nullptr;
+    wxChoice* dupTransMethod_ = nullptr;
+    wxChoice* dupTransAction_ = nullptr;
+    wxCheckBox* dupTransCheckBox_ = nullptr;
 
     bool payeeIsNotes_ = false; //Include payee field in notes
     std::map<std::pair <int64, wxString>, std::map<int, std::pair<wxString, wxRegEx>> > payeeMatchPatterns_;
     bool payeeRegExInitialized_ = false;
+
+    std::set<int64> m_duplicateTransactions; // Keep track of matched transaction IDs
 
     enum LIST_ID
     {
