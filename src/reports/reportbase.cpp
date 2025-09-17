@@ -167,7 +167,7 @@ void mmPrintableBase::restoreReportSettings()
 
             const Value& a = j_doc["ACCOUNTS"].GetArray();
             for (const auto& v : a.GetArray()) {
-                accountSelections->Add(v.GetString());
+                accountSelections->Add(wxString::FromUTF8(v.GetString()));
             }
         }
         accountArray_ = selectedAccountArray_ = accountSelections;
