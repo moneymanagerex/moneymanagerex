@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-09-10 19:15+0000\n"
+"POT-Creation-Date: 2025-09-17 07:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2186,7 +2186,7 @@ msgstr ""
 msgid "New"
 msgstr ""
 
-#: daterangedialog.cpp:127 webappdialog.cpp:414
+#: daterangedialog.cpp:127 webappdialog.cpp:411
 msgid "Delete"
 msgstr ""
 
@@ -3731,7 +3731,7 @@ msgid "Amount field or both Withdrawal and Deposit fields are required."
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:1311 import_export/univcsvdialog.cpp:1506
-#: webappdialog.cpp:412
+#: webappdialog.cpp:409
 msgid "Import"
 msgstr ""
 
@@ -8647,7 +8647,7 @@ msgstr ""
 msgid "Today will be used as the transaction date"
 msgstr ""
 
-#: webapp.cpp:595 webapp.cpp:629 webappdialog.cpp:342
+#: webapp.cpp:595 webapp.cpp:629 webappdialog.cpp:339
 msgid "Unable to download attachments from the WebApp."
 msgstr ""
 
@@ -8671,7 +8671,7 @@ msgstr ""
 msgid "Transaction not downloaded: please retry to download transactions"
 msgstr ""
 
-#: webapp.cpp:632 webappdialog.cpp:343
+#: webapp.cpp:632 webappdialog.cpp:340
 msgid "Attachment download error"
 msgstr ""
 
@@ -8703,19 +8703,19 @@ msgstr ""
 msgid "Transactions download error"
 msgstr ""
 
-#: webappdialog.cpp:315
+#: webappdialog.cpp:312
 msgid "Unable to insert transaction in MMEX database"
 msgstr ""
 
-#: webappdialog.cpp:316
+#: webappdialog.cpp:313
 msgid "WebApp communication error"
 msgstr ""
 
-#: webappdialog.cpp:411
+#: webappdialog.cpp:408
 msgid "Open Attachment"
 msgstr ""
 
-#: webappdialog.cpp:413
+#: webappdialog.cpp:410
 msgid "Import and open"
 msgstr ""
 
