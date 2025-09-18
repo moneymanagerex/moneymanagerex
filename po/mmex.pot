@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-09-18 12:48+0000\n"
+"POT-Creation-Date: 2025-09-18 13:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -428,7 +428,7 @@ msgstr ""
 
 #: assetdialog.cpp:192 assetspanel.cpp:53 assetspanel.cpp:842
 #: filtertrans.cpp:199 filtertransdialog.cpp:990 filtertransdialog.cpp:997
-#: import_export/ofx_import_gui.cpp:1841 import_export/qif_export.cpp:626
+#: import_export/ofx_import_gui.cpp:1844 import_export/qif_export.cpp:626
 #: import_export/qif_import_gui.cpp:90 import_export/univcsvdialog.cpp:103
 #: maincurrencydialog.cpp:253 maincurrencydialog.cpp:270 mmchecking_list.cpp:98
 #: model/Model_CustomField.cpp:30 reports/cashflow.cpp:275
@@ -1049,7 +1049,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:521 billsdepositspanel.cpp:112 budgetingpanel.cpp:70
 #: filtertrans.cpp:206 filtertransdialog.cpp:1091 filtertransdialog.cpp:1101
-#: import_export/ofx_import_gui.cpp:1842 import_export/qif_export.cpp:632
+#: import_export/ofx_import_gui.cpp:1845 import_export/qif_export.cpp:632
 #: import_export/univcsvdialog.cpp:108 maincurrencydialog.cpp:624
 #: mmchecking_list.cpp:927 mmhomepage.cpp:343 mmhomepage.cpp:417
 #: reports/cashflow.cpp:408 reports/categexp.cpp:218
@@ -1094,7 +1094,7 @@ msgstr ""
 #: billsdepositspanel.cpp:109 budgetingpanel.cpp:68 filtertrans.cpp:204
 #: filtertransdialog.cpp:58 filtertransdialog.cpp:631
 #: filtertransdialog.cpp:1045 filtertransdialog.cpp:1051
-#: filtertransdialog.cpp:1873 import_export/ofx_import_gui.cpp:1847
+#: filtertransdialog.cpp:1873 import_export/ofx_import_gui.cpp:1850
 #: import_export/qif_export.cpp:631 import_export/qif_import_gui.cpp:94
 #: import_export/qif_import_gui.cpp:305 import_export/univcsvdialog.cpp:110
 #: import_export/univcsvdialog.cpp:518 mmchecking_list.cpp:104
@@ -1250,11 +1250,11 @@ msgid ""
 msgstr ""
 
 #: billsdepositsdialog.cpp:1394 images_list.cpp:504
-#: import_export/ofx_import_gui.cpp:293 import_export/ofx_import_gui.cpp:333
-#: import_export/ofx_import_gui.cpp:345 import_export/ofx_import_gui.cpp:381
-#: import_export/ofx_import_gui.cpp:1121 import_export/ofx_import_gui.cpp:1128
-#: import_export/ofx_import_gui.cpp:1135 import_export/ofx_import_gui.cpp:1142
-#: import_export/ofx_import_gui.cpp:1150 import_export/univcsvdialog.cpp:1587
+#: import_export/ofx_import_gui.cpp:295 import_export/ofx_import_gui.cpp:335
+#: import_export/ofx_import_gui.cpp:347 import_export/ofx_import_gui.cpp:383
+#: import_export/ofx_import_gui.cpp:1124 import_export/ofx_import_gui.cpp:1131
+#: import_export/ofx_import_gui.cpp:1138 import_export/ofx_import_gui.cpp:1145
+#: import_export/ofx_import_gui.cpp:1153 import_export/univcsvdialog.cpp:1587
 #: maincurrencydialog.cpp:482 mmframe.cpp:4079 splittransactionsdialog.cpp:409
 #: stockspanel.cpp:491 stockspanel.cpp:492 themes.cpp:316 themes.cpp:335
 #: webappdialog.cpp:185 webappdialog.cpp:190
@@ -1837,7 +1837,7 @@ msgid "Category Manager"
 msgstr ""
 
 #: constants.cpp:73 daterangedialog.cpp:135 daterangeeditdialog.cpp:105
-#: import_export/ofx_import_gui.cpp:769 import_export/ofx_import_gui.cpp:942
+#: import_export/ofx_import_gui.cpp:771 import_export/ofx_import_gui.cpp:945
 msgid "Cancel"
 msgstr ""
 
@@ -1849,8 +1849,8 @@ msgstr ""
 msgid "&Close "
 msgstr ""
 
-#: constants.cpp:85 import_export/ofx_import_gui.cpp:767
-#: import_export/ofx_import_gui.cpp:1918 import_export/qif_import_gui.cpp:801
+#: constants.cpp:85 import_export/ofx_import_gui.cpp:769
+#: import_export/ofx_import_gui.cpp:1921 import_export/qif_import_gui.cpp:801
 #: import_export/qif_import_gui.cpp:834 import_export/qif_import_gui.cpp:860
 #: import_export/univcsvdialog.cpp:2088 import_export/univcsvdialog.cpp:2112
 msgid "OK"
@@ -3165,207 +3165,207 @@ msgstr ""
 msgid "Cannot set 'Uncategorized' as the default category for the payee"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:95 import_export/ofx_import_gui.cpp:746
+#: import_export/ofx_import_gui.cpp:95 import_export/ofx_import_gui.cpp:748
 msgid "Toggle to update payee's default category (P) or apply to this transaction only"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:293
+#: import_export/ofx_import_gui.cpp:295
 msgid "Please select a row to delete."
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:333
+#: import_export/ofx_import_gui.cpp:335
 msgid "Please select an existing payee."
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:345
+#: import_export/ofx_import_gui.cpp:347
 msgid "Please select an existing payee or enter a new payee name."
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:381
+#: import_export/ofx_import_gui.cpp:383
 #, c-format
 msgid "Invalid regular expression '%s' in row %d: please correct the pattern"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:599
+#: import_export/ofx_import_gui.cpp:601
 msgid "Payee Confirmation Required"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:621
+#: import_export/ofx_import_gui.cpp:623
 #, c-format
 msgid "Transaction %d of %d (%d total in file)"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:623
+#: import_export/ofx_import_gui.cpp:625
 #, c-format
 msgid "Estimated completion time: %.1f minutes"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:623
+#: import_export/ofx_import_gui.cpp:625
 msgid "Estimating time..."
-msgstr ""
-
-#: import_export/ofx_import_gui.cpp:627
-#, c-format
-msgid "Transaction Number (FITID): %s"
-msgstr ""
-
-#: import_export/ofx_import_gui.cpp:628
-#, c-format
-msgid "Date: %s"
 msgstr ""
 
 #: import_export/ofx_import_gui.cpp:629
 #, c-format
-msgid "Amount: %s"
+msgid "Transaction Number (FITID): %s"
 msgstr ""
 
 #: import_export/ofx_import_gui.cpp:630
 #, c-format
+msgid "Date: %s"
+msgstr ""
+
+#: import_export/ofx_import_gui.cpp:631
+#, c-format
+msgid "Amount: %s"
+msgstr ""
+
+#: import_export/ofx_import_gui.cpp:632
+#, c-format
 msgid "Type: %s"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:635
+#: import_export/ofx_import_gui.cpp:637
 msgid "Regex Pattern"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:646
+#: import_export/ofx_import_gui.cpp:648
 #, c-format
 msgid "Memo: %s"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:649
+#: import_export/ofx_import_gui.cpp:651
 msgid "No matching payee found."
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:650 import_export/ofx_import_gui.cpp:656
+#: import_export/ofx_import_gui.cpp:652 import_export/ofx_import_gui.cpp:658
 #, c-format
 msgid "Match Confidence: %.1f%% (%s)"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:655
+#: import_export/ofx_import_gui.cpp:657
 #, c-format
 msgid "Suggested Payee: '%s'"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:678
+#: import_export/ofx_import_gui.cpp:680
 msgid "Do you want to use an existing payee or create a new one?"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:680
+#: import_export/ofx_import_gui.cpp:682
 msgid "Use Existing Payee"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:681
+#: import_export/ofx_import_gui.cpp:683
 msgid "Create New Payee"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:688
+#: import_export/ofx_import_gui.cpp:690
 msgid "Select Existing Payee:"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:720
+#: import_export/ofx_import_gui.cpp:722
 msgid "New Payee Name:"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:723
+#: import_export/ofx_import_gui.cpp:725
 msgid "Convert to Title Case"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:731 import_export/ofx_import_gui.h:94
+#: import_export/ofx_import_gui.cpp:733 import_export/ofx_import_gui.h:94
 msgid "Uncategorized"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:750
+#: import_export/ofx_import_gui.cpp:752
 msgid "Select Category for Payee:"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:753
+#: import_export/ofx_import_gui.cpp:755
 msgid "Define/Update Regex Patterns"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:756
+#: import_export/ofx_import_gui.cpp:758
 msgid "Edit Regex Patterns:"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:760
+#: import_export/ofx_import_gui.cpp:762
 msgid "Insert Row"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:761
+#: import_export/ofx_import_gui.cpp:763
 msgid "Delete Row"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:885
+#: import_export/ofx_import_gui.cpp:888
 msgid "Import OFX File"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:891
+#: import_export/ofx_import_gui.cpp:894
 msgid "OFX File:"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:893
+#: import_export/ofx_import_gui.cpp:896
 msgid "Browse"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:899
+#: import_export/ofx_import_gui.cpp:902
 msgid "Account:"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:910
+#: import_export/ofx_import_gui.cpp:913
 msgid "Use existing regex patterns to automatically match payees"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:915
+#: import_export/ofx_import_gui.cpp:918
 msgid "Use fuzzy payee matching if exact match and regex matching not successful"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:919
+#: import_export/ofx_import_gui.cpp:922
 msgid "Minimum Fuzzy Match Confidence Level:"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:932
+#: import_export/ofx_import_gui.cpp:935
 msgid "Mark transactions automatically imported with Fuzzy Match as 'Follow Up'"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:936
+#: import_export/ofx_import_gui.cpp:939
 msgid "Prompt to confirm each fuzzy match"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:941 import_export/univcsvdialog.cpp:1311
+#: import_export/ofx_import_gui.cpp:944 import_export/univcsvdialog.cpp:1311
 #: import_export/univcsvdialog.cpp:1506 webappdialog.cpp:409
 msgid "Import"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1022
+#: import_export/ofx_import_gui.cpp:1025
 msgid "Choose OFX file"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1121
+#: import_export/ofx_import_gui.cpp:1124
 msgid "No OFX file selected."
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1128
+#: import_export/ofx_import_gui.cpp:1131
 msgid "No account selected."
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1135
+#: import_export/ofx_import_gui.cpp:1138
 msgid "Invalid account selection."
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1142
+#: import_export/ofx_import_gui.cpp:1145
 msgid "Invalid account ID."
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1150
+#: import_export/ofx_import_gui.cpp:1153
 #, c-format
 msgid "Account ID %s does not exist."
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1812
+#: import_export/ofx_import_gui.cpp:1815
 msgid "OFX Import Summary"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1826
+#: import_export/ofx_import_gui.cpp:1829
 #, c-format
 msgid ""
 "Import Statistics:\n"
@@ -3376,46 +3376,46 @@ msgid ""
 "- Time Taken: %s"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1840
+#: import_export/ofx_import_gui.cpp:1843
 msgid "FITID"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1843
+#: import_export/ofx_import_gui.cpp:1846
 msgid "OFX Payee"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1844
+#: import_export/ofx_import_gui.cpp:1847
 msgid "Imported Payee"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1845
+#: import_export/ofx_import_gui.cpp:1848
 msgid "Match Mode"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1846
+#: import_export/ofx_import_gui.cpp:1849
 msgid "Match Pattern/Confidence"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1848
+#: import_export/ofx_import_gui.cpp:1851
 msgid "Transaction Type"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1971
+#: import_export/ofx_import_gui.cpp:1974
 #, c-format
 msgid "%d hours"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1977
+#: import_export/ofx_import_gui.cpp:1980
 #, c-format
 msgid "%d minutes"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1983
+#: import_export/ofx_import_gui.cpp:1986
 #, c-format
 msgid "%d seconds"
 msgstr ""
 
-#: import_export/ofx_import_gui.cpp:1987
+#: import_export/ofx_import_gui.cpp:1990
 msgid "0 sec"
 msgstr ""
 
