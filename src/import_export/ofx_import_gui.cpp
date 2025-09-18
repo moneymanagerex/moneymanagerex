@@ -158,8 +158,9 @@ void mmPayeeSelectionDialog::OnUseExistingPayee(wxCommandEvent& /*event*/)
     regexGrid_->AppendRows(1);
     wxInt64ClientData* clientData = dynamic_cast<wxInt64ClientData*>(payeeChoice_->GetClientObject(payeeChoice_->GetSelection()));
     LoadRegexPatterns(clientData);
-    UpdateOKButton(wxCommandEvent());
-    OnPayeeChoice(wxCommandEvent());
+    wxCommandEvent evt;
+    UpdateOKButton(evt);
+    OnPayeeChoice(evt);
     Layout();
 }
 
@@ -194,7 +195,8 @@ void mmPayeeSelectionDialog::OnCreateNewPayee(wxCommandEvent& /*event*/)
     regexGrid_->AppendRows(1);
     regexGrid_->SetCellValue(0, 0, regexPattern_);
     deleteRowButton_->Enable(regexGrid_->GetNumberRows() > 0);
-    UpdateOKButton(wxCommandEvent());
+    wxCommandEvent evt;
+    UpdateOKButton(evt);
     Layout();
 }
 
@@ -818,7 +820,8 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
         regexGrid_->SetColSize(0, 50);
     regexGrid_->ForceRefresh();
 
-    UpdateOKButton(wxCommandEvent());
+    wxCommandEvent evt;
+    UpdateOKButton(evt);
 }
 
 void mmPayeeSelectionDialog::OnPayeeChoice(wxCommandEvent& event)
