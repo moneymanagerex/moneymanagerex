@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2025 Klaus Wich
+Copyright (C) 2025 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -68,6 +69,7 @@ private:
     wxCheckBox* m_budget_deduct_monthly = nullptr;
     wxCheckBox* m_ignore_future_transactions = nullptr;
     wxCheckBox* m_use_trans_date_time = nullptr;
+    wxCheckBox* m_treat_date_as_SN = nullptr;
     wxSpinCtrl* m_budget_days_offset = nullptr;
     wxSpinCtrl* m_reporting_firstday = nullptr;
     wxChoice* m_reporting_first_weekday = nullptr;
