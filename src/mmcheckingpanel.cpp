@@ -935,8 +935,6 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
                 /* attach    */ false
             );
 
-            Model_Currency::Data* currency = m_account ? m_currency : nullptr;
-
             double flow = 0;
             wxString maxDate;
             wxString minDate;
@@ -944,11 +942,11 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
             while (true) {
                 item = m_lc->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
                 if (item == -1) break;
-                if (currency)
-                    flow += Model_Checking::account_flow(
-                        m_lc->m_trans[item],
-                        m_account_id
-                    );
+                Model_Currency::Data* curr = Model_Account::currency(Model_Account::instance().get(m_lc->m_trans[item].ACCOUNTID));
+                if ((m_account_id < 0) && Model_Checking::is_transfer(m_lc->m_trans[item].TRANSCODE)) continue;
+                double convrate = (curr != m_currency) ? convrate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, m_lc->m_trans[item].TRANSDATE) : 
+                                                         convrate = 1.0; 
+                flow += convrate * Model_Checking::account_flow(m_lc->m_trans[item], (m_account_id < 0) ? m_lc->m_trans[item].ACCOUNTID : m_account_id);
                 wxString transdate = m_lc->m_trans[item].TRANSDATE;
                 if (minDate > transdate || minDate.empty()) minDate = transdate;
                 if (maxDate < transdate || maxDate.empty()) maxDate = transdate;
@@ -960,16 +958,15 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
             int days = max_date.Subtract(min_date).GetDays();
 
             wxString msg;
-            wxString selectedBal = Model_Currency::toCurrency(flow, currency);
+            wxString selectedBal = Model_Currency::toCurrency(flow, m_currency);
             m_info_panel_selectedbal = selectedBal;
             msg = wxString::Format(_t("Transactions selected: %zu"), selected.size());
             msg += "\n";
-            if (currency) {
-                msg += wxString::Format(
-                    _t("Selected transactions balance: %s"), selectedBal
+            msg += wxString::Format(
+                    _t("Selected transactions total: %s"), 
+                    selectedBal
                 );
-                msg += "\n";
-            }
+            msg += "\n";
             msg += wxString::Format(
                 _t("Days between selected transactions: %d"),
                 days
