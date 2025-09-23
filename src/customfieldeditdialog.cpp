@@ -1,6 +1,8 @@
 /*******************************************************
 Copyright (C) 2016 Gabriele-V
 Copyright (C) 2020 - 2022 Nikolay Akimov
+Copyright (C) 2025  Mark Whalley (mark@ipx.co.uk)
+
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -166,8 +168,7 @@ void mmCustomFieldEditDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Default")), g_flagsH);
     m_itemDefault = new wxTextCtrl(itemPanel5, wxID_ANY, "");
-    m_itemDefault->SetToolTip(_t("Enter the default for this field\n"
-        "For date/time insert 'Now' to make current date/time as default"));
+    mmToolTip(m_itemDefault, _t("Enter the default for this field"));
     itemFlexGridSizer6->Add(m_itemDefault, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Choices")), g_flagsH);
