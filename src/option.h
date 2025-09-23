@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2025 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -159,6 +159,12 @@ public:
     bool UseTransDateTime(const bool value);
     bool UseTransDateTime() const noexcept;
 
+    // m_treat_date_as_SN
+    void loadTreatDateAsSN();
+    bool TreatDateAsSN(const bool value);
+    bool TreatDateAsSN() const noexcept;
+
+
     // m_budget_deduct_monthly: Deduct monthly budget from yearly budget
     void loadBudgetDeductMonthly();
     void setBudgetDeductMonthly(const bool value);
@@ -305,6 +311,7 @@ private:
     bool m_show_tooltips = true;                        // IGNORE_SHOW_TOOLTIPS
     bool m_show_moneytips = true;                       // IGNORE_SHOW_MONEYTIPS
     bool m_use_trans_datetime = false;                  // TRANSACTION_USE_DATE_TIME
+    bool m_treat_date_as_SN = true;                     // TRANSACTION_TREAT_DATE_AS_SN
     int m_trans_payee_none = Option::NONE;              // TRANSACTION_PAYEE_NONE
     int m_trans_category_none = Option::NONE;           // TRANSACTION_CATEGORY_NONE
     int m_trans_category_transfer_none = Option::NONE;  // TRANSACTION_CATEGORY_TRANSFER_NONE
@@ -471,6 +478,11 @@ inline bool Option::getBudgetSummaryWithoutCategories() const noexcept
 inline bool Option::UseTransDateTime() const noexcept
 {
     return m_use_trans_datetime;
+}
+
+inline bool Option::TreatDateAsSN() const noexcept
+{
+    return m_treat_date_as_SN;
 }
 
 inline bool Option::getBudgetOverride() const noexcept

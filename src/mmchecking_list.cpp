@@ -427,6 +427,9 @@ void TransactionListCtrl::sortList()
         getColHeader(getSortColId(1), true), getSortAsc(1) ? L"\u25B2" : L"\u25BC"
     );
     m_cp->m_header_sortOrder->SetLabelText(sortText);
+    m_balance_valid = (getSortColId(0) == LIST_ID_SN) ? true :
+                      ((getSortColId(0) == LIST_ID_DATE) && (Option::instance().TreatDateAsSN()))
+                       ? true : false;
 
     if (getSortColId(0) == LIST_ID_SN)
         m_cp->showTips(_t("SN (Sequence Number) has the same order as Date/ID (or Date/Time/ID if Time is enabled)."));
@@ -493,7 +496,10 @@ void TransactionListCtrl::sortTransactions(int col_id, bool ascend)
         sortBy(SorterByNOTES(), ascend);
         break;
     case TransactionListCtrl::LIST_ID_DATE:
-        sortBy(Model_Checking::SorterByTRANSDATE_DATE(), ascend);
+        if (Option::instance().TreatDateAsSN())
+            sortBy(Fused_Transaction::SorterByFUSEDTRANSSN(), ascend);
+        else
+            sortBy(Model_Checking::SorterByTRANSDATE_DATE(), ascend);
         break;
     case TransactionListCtrl::LIST_ID_TIME:
         sortBy(Model_Checking::SorterByTRANSDATE_TIME(), ascend);
@@ -1946,7 +1952,9 @@ const wxString TransactionListCtrl::getItem(long item, int col_id) const
             value = "* " + value;
         return value;
     case LIST_ID_BALANCE:
-        return Model_Currency::toString(fused.ACCOUNT_BALANCE, m_cp->m_currency);
+        if (m_balance_valid)
+            value = Model_Currency::toString(fused.ACCOUNT_BALANCE, m_cp->m_currency);
+        return value;
     case LIST_ID_CREDIT:
         return Model_Currency::toString(
             m_cp->m_account->CREDITLIMIT + fused.ACCOUNT_BALANCE,

@@ -2,7 +2,7 @@
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2011, 2012 Stefano Giorgio
 Copyright (C) 2013, 2014, 2020, 2021 Nikolay Akimov
-Copyright (C) 2021-2024 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021-2025 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -127,6 +127,7 @@ private:
     long m_topItemIndex = -1; // where to display the list again after refresh
     wxString m_today;
     bool m_firstSort = true;
+    bool m_balance_valid = false;
     wxString rightClickFilter_;
     wxString copyText_;
     std::vector<Fused_Transaction::IdRepeat> m_selectedForCopy; // copied transactions

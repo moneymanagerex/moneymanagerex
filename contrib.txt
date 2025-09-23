@@ -245,6 +245,7 @@ Martin Speckhardt
 Adam Gallagher
 John Weaving
 Jonathan Thomas
+Erik Behrendt
 
 ### 2024
 Renato
