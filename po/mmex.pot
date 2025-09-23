@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-09-23 15:17+0000\n"
+"POT-Creation-Date: 2025-09-23 20:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,7 +54,7 @@ msgstr ""
 #: assetdialog.cpp:320 attachmentdialog.cpp:149 billsdepositsdialog.cpp:650
 #: budgetentrydialog.cpp:160 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:87 currencydialog.cpp:259
-#: customfieldeditdialog.cpp:197 filtertransdialog.cpp:827
+#: customfieldeditdialog.cpp:198 filtertransdialog.cpp:827
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:407
 #: mmSimpleDialogs.cpp:1125 optiondialog.cpp:163 payeedialog.cpp:159
 #: payeedialog.cpp:592 sharetransactiondialog.cpp:358
@@ -414,7 +414,7 @@ msgstr ""
 msgid "Asset Details"
 msgstr ""
 
-#: assetdialog.cpp:184 assetspanel.cpp:52 customfieldeditdialog.cpp:135
+#: assetdialog.cpp:184 assetspanel.cpp:52 customfieldeditdialog.cpp:137
 #: customfieldlistdialog.cpp:48 import_export/qif_import_gui.cpp:286
 #: import_export/qif_import_gui.cpp:299 import_export/qif_import_gui.cpp:309
 #: import_export/univcsvdialog.cpp:512 import_export/univcsvdialog.cpp:522
@@ -1769,8 +1769,8 @@ msgstr ""
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
 msgstr ""
 
-#: categdialog.cpp:504 customfieldeditdialog.cpp:237
-#: customfieldeditdialog.cpp:259 filtertransdialog.cpp:1345
+#: categdialog.cpp:504 customfieldeditdialog.cpp:238
+#: customfieldeditdialog.cpp:260 filtertransdialog.cpp:1345
 #: import_export/univcsvdialog.cpp:2187 mmframe.cpp:1391 mmframe.cpp:2658
 #: mmframe.cpp:2725 model/Model_Billsdeposits.cpp:224 payeedialog.cpp:752
 #: tagdialog.cpp:304 transdialog.cpp:753 transdialog.cpp:778
@@ -1897,7 +1897,7 @@ msgstr ""
 msgid "Closed"
 msgstr ""
 
-#: constants.cpp:199 mmcheckingpanel.cpp:1321 mmframe.cpp:517
+#: constants.cpp:199 mmcheckingpanel.cpp:1318 mmframe.cpp:517
 msgid "Favorites"
 msgstr ""
 
@@ -2010,104 +2010,102 @@ msgstr ""
 msgid "Currency Manager"
 msgstr ""
 
-#: customfieldeditdialog.cpp:112
+#: customfieldeditdialog.cpp:114
 msgid "Custom Field Details"
 msgstr ""
 
-#: customfieldeditdialog.cpp:123 customfieldlistdialog.cpp:47
+#: customfieldeditdialog.cpp:125 customfieldlistdialog.cpp:47
 msgid "Attribute of"
 msgstr ""
 
-#: customfieldeditdialog.cpp:131
+#: customfieldeditdialog.cpp:133
 msgid "Select the item that the custom field is associated with"
 msgstr ""
 
-#: customfieldeditdialog.cpp:139
+#: customfieldeditdialog.cpp:141
 msgid "Enter the name of the custom field"
 msgstr ""
 
-#: customfieldeditdialog.cpp:142
+#: customfieldeditdialog.cpp:144
 msgid "Field Type"
 msgstr ""
 
-#: customfieldeditdialog.cpp:148
+#: customfieldeditdialog.cpp:150
 msgid "Select type of custom field"
 msgstr ""
 
-#: customfieldeditdialog.cpp:151
+#: customfieldeditdialog.cpp:153
 msgid "Tooltip"
 msgstr ""
 
-#: customfieldeditdialog.cpp:153
+#: customfieldeditdialog.cpp:155
 msgid "Enter the tooltip that will be shown"
 msgstr ""
 
-#: customfieldeditdialog.cpp:156
+#: customfieldeditdialog.cpp:158
 msgid "RegEx"
 msgstr ""
 
-#: customfieldeditdialog.cpp:158
+#: customfieldeditdialog.cpp:160
 msgid "Enter the RegEx to validate field"
 msgstr ""
 
-#: customfieldeditdialog.cpp:161
+#: customfieldeditdialog.cpp:163
 msgid "Autocomplete"
 msgstr ""
 
-#: customfieldeditdialog.cpp:164
+#: customfieldeditdialog.cpp:166
 msgid "Enables autocomplete on custom field"
 msgstr ""
 
-#: customfieldeditdialog.cpp:167 optionsettingstransaction.cpp:280 util.cpp:629
+#: customfieldeditdialog.cpp:169 optionsettingstransaction.cpp:280 util.cpp:629
 msgid "Default"
 msgstr ""
 
-#: customfieldeditdialog.cpp:169
-msgid ""
-"Enter the default for this field\n"
-"For date/time insert 'Now' to make current date/time as default"
+#: customfieldeditdialog.cpp:171
+msgid "Enter the default for this field"
 msgstr ""
 
-#: customfieldeditdialog.cpp:173 customfieldeditdialog.cpp:223
+#: customfieldeditdialog.cpp:174 customfieldeditdialog.cpp:224
 msgid "Choices"
 msgstr ""
 
-#: customfieldeditdialog.cpp:175
+#: customfieldeditdialog.cpp:176
 msgid "Enter the choices for this field separated with a semicolon"
 msgstr ""
 
-#: customfieldeditdialog.cpp:178
+#: customfieldeditdialog.cpp:179
 msgid "Digits scale"
 msgstr ""
 
-#: customfieldeditdialog.cpp:180
+#: customfieldeditdialog.cpp:181
 msgid "Enter the decimal digits scale allowed"
 msgstr ""
 
-#: customfieldeditdialog.cpp:183
+#: customfieldeditdialog.cpp:184
 msgid "Panel's column"
 msgstr ""
 
-#: customfieldeditdialog.cpp:188
+#: customfieldeditdialog.cpp:189
 msgid "Select a value to represent the item on a panel"
 msgstr ""
 
-#: customfieldeditdialog.cpp:223 filtertransdialog.cpp:1008
+#: customfieldeditdialog.cpp:224 filtertransdialog.cpp:1008
 #: filtertransdialog.cpp:1045 filtertransdialog.cpp:1077
 #: filtertransdialog.cpp:1669 reports/myusage.cpp:102 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Empty value"
 msgstr ""
 
-#: customfieldeditdialog.cpp:236
+#: customfieldeditdialog.cpp:237
 msgid "Changing field type will delete all content!"
 msgstr ""
 
-#: customfieldeditdialog.cpp:238 customfieldeditdialog.cpp:260
+#: customfieldeditdialog.cpp:239 customfieldeditdialog.cpp:261
 msgid "Custom Field Change"
 msgstr ""
 
-#: customfieldeditdialog.cpp:258
+#: customfieldeditdialog.cpp:259
 msgid "Modified choices available: ones removed will be cleaned!"
 msgstr ""
 
@@ -2225,7 +2223,7 @@ msgstr ""
 msgid "Default date ranges"
 msgstr ""
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1061 mmreportspanel.cpp:813
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1058 mmreportspanel.cpp:813
 msgid "More date ranges…"
 msgstr ""
 
@@ -4895,7 +4893,7 @@ msgstr ""
 msgid "Scheduled transaction saved."
 msgstr ""
 
-#: mmchecking_list.cpp:1481 mmcheckingpanel.cpp:1316
+#: mmchecking_list.cpp:1481 mmcheckingpanel.cpp:1313
 msgid "All Transactions"
 msgstr ""
 
@@ -5000,7 +4998,7 @@ msgstr ""
 msgid "Invested: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:423 mmcheckingpanel.cpp:1119 mmreportspanel.cpp:106
+#: mmcheckingpanel.cpp:423 mmcheckingpanel.cpp:1116 mmreportspanel.cpp:106
 #: mmreportspanel.cpp:851
 msgid "Date range"
 msgstr ""
@@ -5009,54 +5007,54 @@ msgstr ""
 msgid "Attachment"
 msgstr ""
 
-#: mmcheckingpanel.cpp:965
+#: mmcheckingpanel.cpp:963
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr ""
 
-#: mmcheckingpanel.cpp:969
+#: mmcheckingpanel.cpp:966
 #, c-format
-msgid "Selected transactions balance: %s"
+msgid "Selected transactions total: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:974
+#: mmcheckingpanel.cpp:971
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1041
+#: mmcheckingpanel.cpp:1038
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1041
+#: mmcheckingpanel.cpp:1038
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1042
+#: mmcheckingpanel.cpp:1039
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1069 mmreportspanel.cpp:820
+#: mmcheckingpanel.cpp:1066 mmreportspanel.cpp:820
 msgid "Edit date ranges…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1274
+#: mmcheckingpanel.cpp:1271
 msgid "&New Withdrawal…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1275
+#: mmcheckingpanel.cpp:1272
 msgid "&New Deposit…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1276
+#: mmcheckingpanel.cpp:1273
 msgid "&New Transfer…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1318
+#: mmcheckingpanel.cpp:1315
 msgid "Deleted Transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1326
+#: mmcheckingpanel.cpp:1323
 #, c-format
 msgid "Account View: %s"
 msgstr ""
