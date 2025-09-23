@@ -431,7 +431,7 @@ bool Option::UseTransDateTime(const bool value)
 
 void Option::loadTreatDateAsSN()
 {
-    m_use_trans_datetime = Model_Setting::instance().getBool("TRANSACTION_TREAT_DATE_AS_SN", true);
+    m_treat_date_as_SN = Model_Setting::instance().getBool("TRANSACTION_TREAT_DATE_AS_SN", true);
 }
 
 bool Option::TreatDateAsSN(const bool value)
