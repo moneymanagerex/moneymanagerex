@@ -1,9 +1,5 @@
-Version 1.9.2 Beta 1
-~~~~~~~~~~~~~~~~~~~~
-Released: 2025-09-13
-
 Version 1.9.1
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
 Released: 2025-09-12
 
 Features:
@@ -63,7 +59,7 @@ Bugfixes:
 * #2891 Locked transaction
 
 Version 1.9.0
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
 Released: 2025-02-07
 
 Features:
@@ -108,7 +104,7 @@ Bugfixes:
 * #6871 Database encryption change to AES256
 
 Version 1.8.1
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
 Released: 2024-11-29
 
 Features:
@@ -146,7 +142,7 @@ Bugfixes:
 
 
 Version 1.8.0
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
 Released: 2024-04-29
 
 Features:
@@ -198,7 +194,7 @@ Bugfixes:
 
 
 Version 1.7.0
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
 Released: 2023-12-26
 
 Features:
