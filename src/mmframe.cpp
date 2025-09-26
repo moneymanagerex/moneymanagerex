@@ -864,7 +864,8 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
         Model_Account::TYPE_ID itemId = std::get<0>(item);
         int itemImg = std::get<1>(item);
         int dataType =
-            itemId == Model_Account::TYPE_ID_ASSET ? mmTreeItemData::ASSETS :
+            itemId == Model_Account::TYPE_ID_INVESTMENT ? mmTreeItemData::HELP_PAGE_STOCKS :
+            itemId == Model_Account::TYPE_ID_ASSET      ? mmTreeItemData::ASSETS :
             mmTreeItemData::CHECKING;
         int64 dataId = dataType == mmTreeItemData::CHECKING ? -(4+itemId) : -1;
         accountSection[itemId] = addNavTreeSection(
@@ -1583,6 +1584,9 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         return OnGeneralReportManager(e);
     case mmTreeItemData::HELP_REPORT:
         return mmDoHideReportsDialog();
+    case mmTreeItemData::HELP_PAGE_STOCKS:
+        acct_id = -1;
+        break;
     case mmTreeItemData::INVESTMENT: {
         acct_id = iData->getId();
         Model_Account::Data* account = Model_Account::instance().get(acct_id);
@@ -1636,7 +1640,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         }
         break;
     } }
-    if (acct_id == -1 || acct_id <= -3) // isAllTrans, isGroup
+    if (acct_id == -1 || acct_id <= -3) // isAllTrans/Stock Portfolios, isGroup
     { 
         menu.Append(
             MENU_TREEPOPUP_ACCOUNT_NEW,
