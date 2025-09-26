@@ -144,7 +144,6 @@ private:
     void AddCategoryToChoice(wxChoice* choice, long long categId, const std::map<long long, Model_Category::Data>& categoryMap, int level);
 
     double matchConfidence_;
-    int totalTransactions_;
     wxString matchMethod_;
     wxStaticText* confidenceLabel_;
     wxString suggestedPayeeName_;
@@ -174,6 +173,7 @@ private:
     int newTransactions_;
     wxLongLong importStartTime_;
     bool categoryManuallyChanged_;
+    int totalTransactions_;
     wxString memo_;
 };
 

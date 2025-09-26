@@ -627,7 +627,7 @@ void mmCheckingPanel::filterList()
                 break;
             }
         }
-        date_end_str = m_current_date_range.checking_end().IsValid() ? m_current_date_range.checking_end_str() : 
+        date_end_str = m_current_date_range.checking_end().IsValid() ? m_current_date_range.checking_end_str() :
             date_end.FormatISODate() + "~";
     }
     std::map<int64, Model_Budgetsplittransaction::Data_Set> bills_splits;
@@ -794,7 +794,7 @@ void mmCheckingPanel::filterList()
                 m_flow += account_flow;
             continue;
         }
-  
+
         int splitIndex = 1;
         wxString tranTagnames = full_tran.TAGNAMES;
         wxString tranDisplaySN = full_tran.displaySN;
@@ -944,8 +944,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
                 if (item == -1) break;
                 Model_Currency::Data* curr = Model_Account::currency(Model_Account::instance().get(m_lc->m_trans[item].ACCOUNTID));
                 if ((m_account_id < 0) && Model_Checking::is_transfer(m_lc->m_trans[item].TRANSCODE)) continue;
-                double convrate = (curr != m_currency) ? convrate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, m_lc->m_trans[item].TRANSDATE) : 
-                                                         convrate = 1.0; 
+                double convrate = (curr != m_currency) ? Model_CurrencyHistory::getDayRate(curr->CURRENCYID, m_lc->m_trans[item].TRANSDATE) : 1.0;
                 flow += convrate * Model_Checking::account_flow(m_lc->m_trans[item], (m_account_id < 0) ? m_lc->m_trans[item].ACCOUNTID : m_account_id);
                 wxString transdate = m_lc->m_trans[item].TRANSDATE;
                 if (minDate > transdate || minDate.empty()) minDate = transdate;
@@ -963,7 +962,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
             msg = wxString::Format(_t("Transactions selected: %zu"), selected.size());
             msg += "\n";
             msg += wxString::Format(
-                    _t("Selected transactions total: %s"), 
+                    _t("Selected transactions total: %s"),
                     selectedBal
                 );
             msg += "\n";
