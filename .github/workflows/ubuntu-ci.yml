@@ -101,7 +101,9 @@ jobs:
         id: appimage-build
         run: |
           cd /home/runner/work/moneymanagerex/moneymanagerex/build
-          wget -O appimage-builder https://github.com/AppImageCrafters/appimage-builder/releases/download/v1.1.0/appimage-builder-1.1.0-x86_64.AppImage
+          wget -O appimage-builder-x86_64.AppImage.tar https://github.com/Lord-Kamina/appimage-builder/releases/download/continuous/appimage-builder_x86_64-AppImage.tar
+          tar xvf appimage-builder-x86_64.AppImage.tar --transform='s/.*\///'
+          mv appimage-builder-*-x86_64.AppImage appimage-builder
           chmod +x appimage-builder
           cp ../.appimage-builder.yml .
           sed -i "s/version: latest/version: $(grep '^Version ' ../NEWS | head -n 1 | sed 's/Version //;s/ /-/;s/ /./')/" .appimage-builder.yml
