@@ -91,11 +91,14 @@ private:
     static double getRealGainLoss(const Model_Stock::Data& stock);
     void sortList();
     void createSummary();
+    wxSharedPtr<wxListItemAttr> m_attr1;  // Style for loss
+    wxSharedPtr<wxListItemAttr> m_attr2;  // style for loss alternate
 
     // required overrides for virtual style list control
     virtual int getSortIcon(bool asc) const override;
     virtual wxString OnGetItemText(long item, long col_nr) const override;
     virtual int OnGetItemImage(long item) const override;
+    virtual wxListItemAttr* OnGetItemAttr(long item) const override;
     void OnColClick(wxListEvent& event) override;
 
     void OnMouseRightClick(wxMouseEvent& event);
