@@ -4,7 +4,7 @@
  Copyright (C) 2013 - 2022 Nikolay Akimov
  Copyright (C) 2014 James Higley
  Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
- Copyright (C) 2021, 2022, 2024 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021, 2022, 2024-2025 Mark Whalley (mark@ipx.co.uk)
  Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
@@ -864,8 +864,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
         Model_Account::TYPE_ID itemId = std::get<0>(item);
         int itemImg = std::get<1>(item);
         int dataType =
-            itemId == Model_Account::TYPE_ID_INVESTMENT ? mmTreeItemData::HELP_PAGE_STOCKS :
-            itemId == Model_Account::TYPE_ID_ASSET      ? mmTreeItemData::ASSETS :
+            itemId == Model_Account::TYPE_ID_ASSET ? mmTreeItemData::ASSETS :
             mmTreeItemData::CHECKING;
         int64 dataId = dataType == mmTreeItemData::CHECKING ? -(4+itemId) : -1;
         accountSection[itemId] = addNavTreeSection(
@@ -1556,10 +1555,13 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
     if (!iData)
         return;
 
+    int64 acct_id = 0;
     selectedItemData_ = iData;
+    int itemType = iData->getType();
     wxCommandEvent e;
     wxMenu menu;
-    switch (iData->getType()) {
+
+    switch (itemType) {
     case mmTreeItemData::HOME_PAGE:
         return OnThemeManager(e);
     case mmTreeItemData::HELP_BUDGET:
@@ -1582,7 +1584,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
     case mmTreeItemData::HELP_REPORT:
         return mmDoHideReportsDialog();
     case mmTreeItemData::INVESTMENT: {
-        int64 acct_id = iData->getId();
+        acct_id = iData->getId();
         Model_Account::Data* account = Model_Account::instance().get(acct_id);
         if (account) {
             menu.Append(
@@ -1602,7 +1604,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         break;
     }
     case mmTreeItemData::CHECKING: {
-        int64 acct_id = iData->getId();
+        acct_id = iData->getId();
         if (acct_id >= 1) { // isAccount
             Model_Account::Data* account = Model_Account::instance().get(acct_id);
             if (!account)
@@ -1632,49 +1634,49 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             AppendImportMenu(menu);
             PopupMenu(&menu, pt);
         }
-        else if (acct_id == -1 || acct_id <= -3) { // isAllTrans, isGroup
-            menu.Append(
-                MENU_TREEPOPUP_ACCOUNT_NEW,
-                _tu("&New Account…")
-            );
-            menu.Append(
-                MENU_TREEPOPUP_ACCOUNT_EDIT,
-                _tu("&Edit Account…")
-            );
-            menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _t("Account &List"));
-            menu.AppendSeparator();
-            menu.Append(
-                MENU_TREEPOPUP_ACCOUNT_DELETE,
-                _tu("&Delete Account…")
-            );
-            menu.AppendSeparator();
-
-            AppendImportMenu(menu);
-
-            menu.AppendSeparator();
-            wxMenu* viewAccounts(new wxMenu);
-            viewAccounts->AppendRadioItem(
-                MENU_TREEPOPUP_ACCOUNT_VIEWALL,
-                _t("&All")
-            )->Check(m_temp_view == VIEW_ACCOUNTS_ALL_STR);
-            viewAccounts->AppendRadioItem(
-                MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE,
-                _t("&Favorites")
-            )->Check(m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR);
-            viewAccounts->AppendRadioItem(
-                MENU_TREEPOPUP_ACCOUNT_VIEWOPEN,
-                _t("&Open")
-            )->Check(m_temp_view == VIEW_ACCOUNTS_OPEN_STR);
-            viewAccounts->AppendRadioItem(
-                MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED,
-                _t("&Closed")
-            )->Check(m_temp_view == VIEW_ACCOUNTS_CLOSED_STR);
-            menu.AppendSubMenu(viewAccounts, _t("Accounts &Visible"));
-
-            PopupMenu(&menu, pt);
-        }
         break;
-    }
+    } }
+    if (acct_id == -1 || acct_id <= -3) // isAllTrans, isGroup
+    { 
+        menu.Append(
+            MENU_TREEPOPUP_ACCOUNT_NEW,
+            _tu("&New Account…")
+        );
+        menu.Append(
+            MENU_TREEPOPUP_ACCOUNT_EDIT,
+            _tu("&Edit Account…")
+        );
+        menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _t("Account &List"));
+        menu.AppendSeparator();
+        menu.Append(
+            MENU_TREEPOPUP_ACCOUNT_DELETE,
+            _tu("&Delete Account…")
+        );
+        menu.AppendSeparator();
+
+        AppendImportMenu(menu);
+
+        menu.AppendSeparator();
+        wxMenu* viewAccounts(new wxMenu);
+        viewAccounts->AppendRadioItem(
+            MENU_TREEPOPUP_ACCOUNT_VIEWALL,
+            _t("&All")
+        )->Check(m_temp_view == VIEW_ACCOUNTS_ALL_STR);
+        viewAccounts->AppendRadioItem(
+            MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE,
+            _t("&Favorites")
+        )->Check(m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR);
+        viewAccounts->AppendRadioItem(
+            MENU_TREEPOPUP_ACCOUNT_VIEWOPEN,
+            _t("&Open")
+        )->Check(m_temp_view == VIEW_ACCOUNTS_OPEN_STR);
+        viewAccounts->AppendRadioItem(
+            MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED,
+            _t("&Closed")
+        )->Check(m_temp_view == VIEW_ACCOUNTS_CLOSED_STR);
+        menu.AppendSubMenu(viewAccounts, _t("Accounts &Visible"));
+
+        PopupMenu(&menu, pt);
     }
 }
 //----------------------------------------------------------------------------
