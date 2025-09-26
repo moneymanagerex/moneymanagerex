@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-09-18 13:25+0000\n"
-"PO-Revision-Date: 2025-09-19 00:57\n"
+"POT-Creation-Date: 2025-09-23 20:41+0000\n"
+"PO-Revision-Date: 2025-09-26 00:56\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "Language: ro_RO\n"
@@ -53,7 +53,7 @@ msgstr "Permite să ne ajute să trimitem date anonime despre utilizarea MMEX."
 #: assetdialog.cpp:320 attachmentdialog.cpp:149 billsdepositsdialog.cpp:650
 #: budgetentrydialog.cpp:160 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:128 constants.cpp:87 currencydialog.cpp:259
-#: customfieldeditdialog.cpp:197 filtertransdialog.cpp:827
+#: customfieldeditdialog.cpp:198 filtertransdialog.cpp:827
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:407
 #: mmSimpleDialogs.cpp:1125 optiondialog.cpp:163 payeedialog.cpp:159
 #: payeedialog.cpp:592 sharetransactiondialog.cpp:358
@@ -413,7 +413,7 @@ msgstr "Editați tranzacția de active"
 msgid "Asset Details"
 msgstr "Detaliile Bunului"
 
-#: assetdialog.cpp:184 assetspanel.cpp:52 customfieldeditdialog.cpp:135
+#: assetdialog.cpp:184 assetspanel.cpp:52 customfieldeditdialog.cpp:137
 #: customfieldlistdialog.cpp:48 import_export/qif_import_gui.cpp:286
 #: import_export/qif_import_gui.cpp:299 import_export/qif_import_gui.cpp:309
 #: import_export/univcsvdialog.cpp:512 import_export/univcsvdialog.cpp:522
@@ -575,7 +575,7 @@ msgstr "Editează activul…"
 msgid "&Delete Asset…"
 msgstr "Șterge activul…"
 
-#: assetspanel.cpp:107 billsdepositspanel.cpp:433 mmchecking_list.cpp:768
+#: assetspanel.cpp:107 billsdepositspanel.cpp:433 mmchecking_list.cpp:774
 #: stocks_list.cpp:147
 msgid "&Organize Attachments…"
 msgstr "&Organizează atașamentele…"
@@ -1049,7 +1049,7 @@ msgstr "Permite stabilirea de sume diferite în conturile DE LA și CĂTRE."
 #: filtertrans.cpp:206 filtertransdialog.cpp:1091 filtertransdialog.cpp:1101
 #: import_export/ofx_import_gui.cpp:1845 import_export/qif_export.cpp:632
 #: import_export/univcsvdialog.cpp:108 maincurrencydialog.cpp:624
-#: mmchecking_list.cpp:927 mmhomepage.cpp:343 mmhomepage.cpp:417
+#: mmchecking_list.cpp:933 mmhomepage.cpp:343 mmhomepage.cpp:417
 #: reports/cashflow.cpp:408 reports/categexp.cpp:218
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:226
 #: splittransactionsdialog.cpp:88 splittransactionsdialog.cpp:219
@@ -1768,8 +1768,8 @@ msgstr "Există tranzacții șterse care utilizează această categorie sau unul
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
 msgstr "Ștergerea categoriei va șterge automat și tranzacțiile șterse asociate."
 
-#: categdialog.cpp:504 customfieldeditdialog.cpp:237
-#: customfieldeditdialog.cpp:259 filtertransdialog.cpp:1345
+#: categdialog.cpp:504 customfieldeditdialog.cpp:238
+#: customfieldeditdialog.cpp:260 filtertransdialog.cpp:1345
 #: import_export/univcsvdialog.cpp:2187 mmframe.cpp:1391 mmframe.cpp:2658
 #: mmframe.cpp:2725 model/Model_Billsdeposits.cpp:224 payeedialog.cpp:752
 #: tagdialog.cpp:304 transdialog.cpp:753 transdialog.cpp:778
@@ -1896,7 +1896,7 @@ msgstr "Deschis"
 msgid "Closed"
 msgstr "Închis"
 
-#: constants.cpp:199 mmcheckingpanel.cpp:1321 mmframe.cpp:517
+#: constants.cpp:199 mmcheckingpanel.cpp:1318 mmframe.cpp:517
 msgid "Favorites"
 msgstr "Favorite"
 
@@ -1946,8 +1946,8 @@ msgid "Grouping Char"
 msgstr "Car. de Grupare"
 
 #: currencydialog.cpp:219 mmSimpleDialogs.cpp:854 model/Model_Asset.cpp:40
-#: model/Model_Budget.cpp:28 optionsettingstransaction.cpp:64
-#: optionsettingstransaction.cpp:135 reports/reportbase.cpp:201
+#: model/Model_Budget.cpp:28 optionsettingstransaction.cpp:65
+#: optionsettingstransaction.cpp:136 reports/reportbase.cpp:201
 msgid "None"
 msgstr "Nici una"
 
@@ -2009,104 +2009,102 @@ msgstr "(Folosind Locale)"
 msgid "Currency Manager"
 msgstr "Managerul de Valute"
 
-#: customfieldeditdialog.cpp:112
+#: customfieldeditdialog.cpp:114
 msgid "Custom Field Details"
 msgstr "Detaliile câmpului personalizat"
 
-#: customfieldeditdialog.cpp:123 customfieldlistdialog.cpp:47
+#: customfieldeditdialog.cpp:125 customfieldlistdialog.cpp:47
 msgid "Attribute of"
 msgstr "Atributul lui"
 
-#: customfieldeditdialog.cpp:131
+#: customfieldeditdialog.cpp:133
 msgid "Select the item that the custom field is associated with"
 msgstr "Selectați elementul cu care este asociat câmpul personalizat"
 
-#: customfieldeditdialog.cpp:139
+#: customfieldeditdialog.cpp:141
 msgid "Enter the name of the custom field"
 msgstr "Introduceți numele câmpului personalizat"
 
-#: customfieldeditdialog.cpp:142
+#: customfieldeditdialog.cpp:144
 msgid "Field Type"
 msgstr "Tip camp"
 
-#: customfieldeditdialog.cpp:148
+#: customfieldeditdialog.cpp:150
 msgid "Select type of custom field"
 msgstr "Selectați tipul câmpului personalizat"
 
-#: customfieldeditdialog.cpp:151
+#: customfieldeditdialog.cpp:153
 msgid "Tooltip"
 msgstr ""
 
-#: customfieldeditdialog.cpp:153
+#: customfieldeditdialog.cpp:155
 msgid "Enter the tooltip that will be shown"
 msgstr "Introduceți indiciile care vor fi afișate"
 
-#: customfieldeditdialog.cpp:156
+#: customfieldeditdialog.cpp:158
 msgid "RegEx"
 msgstr "RegEx"
 
-#: customfieldeditdialog.cpp:158
+#: customfieldeditdialog.cpp:160
 msgid "Enter the RegEx to validate field"
 msgstr "Introduceți RegEx pentru a valida câmpul"
 
-#: customfieldeditdialog.cpp:161
+#: customfieldeditdialog.cpp:163
 msgid "Autocomplete"
 msgstr "Autocompletare"
 
-#: customfieldeditdialog.cpp:164
+#: customfieldeditdialog.cpp:166
 msgid "Enables autocomplete on custom field"
 msgstr "Activează autocompletarea pentru câmpul personalizat"
 
-#: customfieldeditdialog.cpp:167 optionsettingstransaction.cpp:275 util.cpp:629
+#: customfieldeditdialog.cpp:169 optionsettingstransaction.cpp:280 util.cpp:629
 msgid "Default"
 msgstr "Implicit"
 
-#: customfieldeditdialog.cpp:169
-msgid "Enter the default for this field\n"
-"For date/time insert 'Now' to make current date/time as default"
-msgstr "Introduceți valoarea implicită pentru acest câmp\n"
-"Pentru data/ora inserați „Now” pentru a seta data/ora curentă ca implicită"
+#: customfieldeditdialog.cpp:171
+msgid "Enter the default for this field"
+msgstr ""
 
-#: customfieldeditdialog.cpp:173 customfieldeditdialog.cpp:223
+#: customfieldeditdialog.cpp:174 customfieldeditdialog.cpp:224
 msgid "Choices"
 msgstr "Alegeri"
 
-#: customfieldeditdialog.cpp:175
+#: customfieldeditdialog.cpp:176
 msgid "Enter the choices for this field separated with a semicolon"
 msgstr "Introduceți opțiunile pentru acest câmp, separate cu punct și virgulă"
 
-#: customfieldeditdialog.cpp:178
+#: customfieldeditdialog.cpp:179
 msgid "Digits scale"
 msgstr "Scalare zecimale"
 
-#: customfieldeditdialog.cpp:180
+#: customfieldeditdialog.cpp:181
 msgid "Enter the decimal digits scale allowed"
 msgstr "Introduceți scala de zecimale permisă"
 
-#: customfieldeditdialog.cpp:183
+#: customfieldeditdialog.cpp:184
 msgid "Panel's column"
 msgstr "Coloana panoului"
 
-#: customfieldeditdialog.cpp:188
+#: customfieldeditdialog.cpp:189
 msgid "Select a value to represent the item on a panel"
 msgstr "Selectează o valoare pentru a reprezenta elementul pe un panou"
 
-#: customfieldeditdialog.cpp:223 filtertransdialog.cpp:1008
+#: customfieldeditdialog.cpp:224 filtertransdialog.cpp:1008
 #: filtertransdialog.cpp:1045 filtertransdialog.cpp:1077
 #: filtertransdialog.cpp:1669 reports/myusage.cpp:102 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Empty value"
 msgstr "Valoare goală"
 
-#: customfieldeditdialog.cpp:236
+#: customfieldeditdialog.cpp:237
 msgid "Changing field type will delete all content!"
 msgstr "Schimbarea tipului de câmp va șterge tot conținutul!"
 
-#: customfieldeditdialog.cpp:238 customfieldeditdialog.cpp:260
+#: customfieldeditdialog.cpp:239 customfieldeditdialog.cpp:261
 msgid "Custom Field Change"
 msgstr "Modificare câmp personalizat"
 
-#: customfieldeditdialog.cpp:258
+#: customfieldeditdialog.cpp:259
 msgid "Modified choices available: ones removed will be cleaned!"
 msgstr ""
 
@@ -2223,7 +2221,7 @@ msgstr ""
 msgid "Default date ranges"
 msgstr ""
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1061 mmreportspanel.cpp:813
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1058 mmreportspanel.cpp:813
 msgid "More date ranges…"
 msgstr ""
 
@@ -2672,7 +2670,7 @@ msgstr "Dezvoltatorii vă pot cere să furnizați informații prezentate aici pe
 msgid "Back"
 msgstr "Înapoi"
 
-#: filtertransdialog.cpp:49 mmchecking_list.cpp:1571
+#: filtertransdialog.cpp:49 mmchecking_list.cpp:1577
 #: model/Model_Checking.cpp:45
 msgid "Unreconciled"
 msgstr "Nereconciliat"
@@ -2686,7 +2684,7 @@ msgstr "Reconciliată"
 msgid "Void"
 msgstr "Nulă"
 
-#: filtertransdialog.cpp:52 mmchecking_list.cpp:1562
+#: filtertransdialog.cpp:52 mmchecking_list.cpp:1568
 #: model/Model_Checking.cpp:48
 msgid "Follow Up"
 msgstr "Urmărire"
@@ -4656,46 +4654,46 @@ msgstr ""
 msgid "Sorted by"
 msgstr ""
 
-#: mmchecking_list.cpp:432
+#: mmchecking_list.cpp:435
 msgid "SN (Sequence Number) has the same order as Date/ID (or Date/Time/ID if Time is enabled)."
 msgstr ""
 
-#: mmchecking_list.cpp:434
+#: mmchecking_list.cpp:437
 msgid "ID (identification number) is increasing with the time of creation in the database."
 msgstr ""
 
-#: mmchecking_list.cpp:436
+#: mmchecking_list.cpp:439
 msgid "Balance is calculated in the order of SN (Sequence Number)."
 msgstr ""
 
-#: mmchecking_list.cpp:720
+#: mmchecking_list.cpp:726
 msgid "New &Withdrawal…"
 msgstr ""
 
-#: mmchecking_list.cpp:721
+#: mmchecking_list.cpp:727
 msgid "New &Deposit…"
 msgstr ""
 
-#: mmchecking_list.cpp:723
+#: mmchecking_list.cpp:729
 msgid "New &Transfer…"
 msgstr ""
 
-#: mmchecking_list.cpp:727
+#: mmchecking_list.cpp:733
 msgid "&Edit Transactions…"
 msgstr ""
 
-#: mmchecking_list.cpp:727
+#: mmchecking_list.cpp:733
 msgid "&Edit Transaction…"
 msgstr ""
 
-#: mmchecking_list.cpp:731
+#: mmchecking_list.cpp:737
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] "&Copiază Tranzacția"
 msgstr[1] "&Copiază Tranzacțiile"
 msgstr[2] "&Copiază Tranzacțiile"
 
-#: mmchecking_list.cpp:740
+#: mmchecking_list.cpp:746
 #, c-format
 msgid "&Paste Transaction"
 msgid_plural "&Paste Transactions (%d)"
@@ -4703,112 +4701,112 @@ msgstr[0] "&Lipește Tranzacția"
 msgstr[1] "&Lipește Tranzacțiile (%d)"
 msgstr[2] "&Lipește Tranzacțiile (%d)"
 
-#: mmchecking_list.cpp:750
+#: mmchecking_list.cpp:756
 msgid "D&uplicate Transaction…"
 msgstr "D&uplică Tranzacția…"
 
-#: mmchecking_list.cpp:754
+#: mmchecking_list.cpp:760
 msgid "&Move Transactions…"
 msgstr ""
 
-#: mmchecking_list.cpp:754
+#: mmchecking_list.cpp:760
 msgid "&Move Transaction…"
 msgstr ""
 
-#: mmchecking_list.cpp:760
+#: mmchecking_list.cpp:766
 msgid "&View In Other Account"
 msgstr "Vizualizează în cont Altele"
 
-#: mmchecking_list.cpp:764
+#: mmchecking_list.cpp:770
 msgid "&View Split Categories"
 msgstr "&Vizualizează categorii de divizare"
 
-#: mmchecking_list.cpp:774
+#: mmchecking_list.cpp:780
 msgid "Create Scheduled T&ransaction…"
 msgstr ""
 
-#: mmchecking_list.cpp:782
+#: mmchecking_list.cpp:788
 msgid "&Restore selected transactions…"
 msgstr ""
 
-#: mmchecking_list.cpp:782
+#: mmchecking_list.cpp:788
 msgid "&Restore selected transaction…"
 msgstr ""
 
-#: mmchecking_list.cpp:788
+#: mmchecking_list.cpp:794
 msgid "Restore &all transactions in current view…"
 msgstr ""
 
-#: mmchecking_list.cpp:926
+#: mmchecking_list.cpp:932
 #, c-format
 msgid "&Find all transactions with %s '%s'"
 msgstr "Găsește toate tranzacțiile cu %s '%s'"
 
-#: mmchecking_list.cpp:932
+#: mmchecking_list.cpp:938
 msgid "Cop&y Text to Clipboard"
 msgstr ""
 
-#: mmchecking_list.cpp:941
+#: mmchecking_list.cpp:947
 msgid "&Delete selected transactions…"
 msgstr ""
 
-#: mmchecking_list.cpp:941
+#: mmchecking_list.cpp:947
 msgid "&Delete selected transaction…"
 msgstr ""
 
-#: mmchecking_list.cpp:942
+#: mmchecking_list.cpp:948
 msgid "&Permanently delete selected transactions…"
 msgstr ""
 
-#: mmchecking_list.cpp:942
+#: mmchecking_list.cpp:948
 msgid "&Permanently delete selected transaction…"
 msgstr ""
 
-#: mmchecking_list.cpp:950
+#: mmchecking_list.cpp:956
 msgid "Delete &all transactions in current view…"
 msgstr ""
 
-#: mmchecking_list.cpp:951
+#: mmchecking_list.cpp:957
 msgid "Permanently delete &all transactions in current view…"
 msgstr ""
 
-#: mmchecking_list.cpp:956
+#: mmchecking_list.cpp:962
 msgid "Delete Viewed “&Follow Up” Transactions…"
 msgstr ""
 
-#: mmchecking_list.cpp:960
+#: mmchecking_list.cpp:966
 msgid "Delete Viewed “&Unreconciled” Transactions…"
 msgstr ""
 
-#: mmchecking_list.cpp:963
+#: mmchecking_list.cpp:969
 msgid "De&lete "
 msgstr ""
 
-#: mmchecking_list.cpp:969
+#: mmchecking_list.cpp:975
 msgid "&Unreconciled"
 msgstr "&Nereconciliat"
 
-#: mmchecking_list.cpp:972
+#: mmchecking_list.cpp:978
 msgid "&Reconciled"
 msgstr "&Reconciliată"
 
-#: mmchecking_list.cpp:975
+#: mmchecking_list.cpp:981
 msgid "&Void"
 msgstr "&Nulă"
 
-#: mmchecking_list.cpp:978
+#: mmchecking_list.cpp:984
 msgid "&Follow Up"
 msgstr "&Urmărire"
 
-#: mmchecking_list.cpp:981
+#: mmchecking_list.cpp:987
 msgid "D&uplicate"
 msgstr "D&uplică"
 
-#: mmchecking_list.cpp:984
+#: mmchecking_list.cpp:990
 msgid "Mar&k as"
 msgstr ""
 
-#: mmchecking_list.cpp:1133
+#: mmchecking_list.cpp:1139
 #, c-format
 msgid "Do you want to permanently delete the selected transaction?"
 msgid_plural "Do you want to permanently delete the %i selected transactions?"
@@ -4816,7 +4814,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: mmchecking_list.cpp:1137
+#: mmchecking_list.cpp:1143
 #, c-format
 msgid "Do you want to delete the selected transaction?"
 msgid_plural "Do you want to delete the %i selected transactions?"
@@ -4824,20 +4822,20 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: mmchecking_list.cpp:1141 mmchecking_list.cpp:1550
+#: mmchecking_list.cpp:1147 mmchecking_list.cpp:1556
 msgid "Unable to undo this action."
 msgstr ""
 
-#: mmchecking_list.cpp:1142 mmchecking_list.cpp:1549
+#: mmchecking_list.cpp:1148 mmchecking_list.cpp:1555
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr "Tranzacțiile șterse vor fi stocate temporar și pot fi restaurate din vizualizarea \"Tranzacții șterse\"."
 
-#: mmchecking_list.cpp:1146 mmchecking_list.cpp:1554 mmchecking_list.cpp:1563
-#: mmchecking_list.cpp:1572
+#: mmchecking_list.cpp:1152 mmchecking_list.cpp:1560 mmchecking_list.cpp:1569
+#: mmchecking_list.cpp:1578
 msgid "Confirm Transaction Deletion"
 msgstr "Confirmă Ștergerea Tranzacției"
 
-#: mmchecking_list.cpp:1207
+#: mmchecking_list.cpp:1213
 #, c-format
 msgid "Do you want to restore the selected transaction?"
 msgid_plural "Do you want to restore the %i selected transactions?"
@@ -4845,15 +4843,15 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: mmchecking_list.cpp:1216 mmchecking_list.cpp:1255
+#: mmchecking_list.cpp:1222 mmchecking_list.cpp:1261
 msgid "Confirm Transaction Restore"
 msgstr ""
 
-#: mmchecking_list.cpp:1254
+#: mmchecking_list.cpp:1260
 msgid "Do you want to restore all of the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1350
+#: mmchecking_list.cpp:1356
 #, c-format
 msgid "Do you want to move the selected transaction?"
 msgid_plural "Do you want to move the %i selected transactions?"
@@ -4861,61 +4859,61 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: mmchecking_list.cpp:1355
+#: mmchecking_list.cpp:1361
 msgid "Confirm Transaction Move"
 msgstr ""
 
-#: mmchecking_list.cpp:1359
+#: mmchecking_list.cpp:1365
 msgid "Moving transaction to…"
 msgstr ""
 
-#: mmchecking_list.cpp:1360
+#: mmchecking_list.cpp:1366
 #, c-format
 msgid "Moving %i transactions to…"
 msgstr ""
 
-#: mmchecking_list.cpp:1363 stocks_list.cpp:316
+#: mmchecking_list.cpp:1369 stocks_list.cpp:316
 msgid "Select the destination Account "
 msgstr ""
 
-#: mmchecking_list.cpp:1394
+#: mmchecking_list.cpp:1400
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
 msgstr "Acest lucru se datorează unor elemente ale tranzacției sau un detaliu al contului care nu permit mutarea"
 
-#: mmchecking_list.cpp:1395
+#: mmchecking_list.cpp:1401
 msgid "Moved"
 msgstr "Mutat"
 
-#: mmchecking_list.cpp:1396
+#: mmchecking_list.cpp:1402
 msgid "Not moved"
 msgstr "Nu s-a mutat"
 
-#: mmchecking_list.cpp:1399
+#: mmchecking_list.cpp:1405
 msgid "Unable to move some transactions."
 msgstr ""
 
-#: mmchecking_list.cpp:1462
+#: mmchecking_list.cpp:1468
 msgid "Scheduled transaction saved."
 msgstr ""
 
-#: mmchecking_list.cpp:1475 mmcheckingpanel.cpp:1316
+#: mmchecking_list.cpp:1481 mmcheckingpanel.cpp:1313
 msgid "All Transactions"
 msgstr "Toate tranzacţiile"
 
-#: mmchecking_list.cpp:1544
+#: mmchecking_list.cpp:1550
 msgid "Do you want to delete all the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1545
+#: mmchecking_list.cpp:1551
 msgid "Do you want to permanently delete all the transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:1562 mmchecking_list.cpp:1571
+#: mmchecking_list.cpp:1568 mmchecking_list.cpp:1577
 #, c-format
 msgid "Do you want to delete all the “%s” transactions shown?"
 msgstr ""
 
-#: mmchecking_list.cpp:2198
+#: mmchecking_list.cpp:2206
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
@@ -4923,22 +4921,22 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: mmchecking_list.cpp:2200
+#: mmchecking_list.cpp:2208
 msgid "Do you want to perform the edit?"
 msgstr ""
 
-#: mmchecking_list.cpp:2201
+#: mmchecking_list.cpp:2209
 msgid "Closed Account Check"
 msgstr ""
 
-#: mmchecking_list.cpp:2215
+#: mmchecking_list.cpp:2223
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "Tranzacția blocată până la data: %s\n\n"
 "Tranzacții conciliate."
 
-#: mmchecking_list.cpp:2218 transdialog.cpp:755 transdialog.cpp:779
+#: mmchecking_list.cpp:2226 transdialog.cpp:755 transdialog.cpp:779
 msgid "MMEX Transaction Check"
 msgstr "Verificare tranzacție MMEX"
 
@@ -4950,7 +4948,7 @@ msgstr ""
 msgid "Delete all selected transactions"
 msgstr "Șterge toate tranzacțiile selectate"
 
-#: mmcheckingpanel.cpp:277 mmframe.cpp:2189 optionsettingstransaction.cpp:57
+#: mmcheckingpanel.cpp:277 mmframe.cpp:2189 optionsettingstransaction.cpp:58
 #: transdialog.cpp:182
 msgid "New Transaction"
 msgstr "Tranzacție Nouă"
@@ -5003,7 +5001,7 @@ msgstr ""
 msgid "Invested: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:423 mmcheckingpanel.cpp:1119 mmreportspanel.cpp:106
+#: mmcheckingpanel.cpp:423 mmcheckingpanel.cpp:1116 mmreportspanel.cpp:106
 #: mmreportspanel.cpp:851
 msgid "Date range"
 msgstr ""
@@ -5012,54 +5010,54 @@ msgstr ""
 msgid "Attachment"
 msgstr ""
 
-#: mmcheckingpanel.cpp:965
+#: mmcheckingpanel.cpp:963
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr ""
 
-#: mmcheckingpanel.cpp:969
+#: mmcheckingpanel.cpp:966
 #, c-format
-msgid "Selected transactions balance: %s"
+msgid "Selected transactions total: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:974
+#: mmcheckingpanel.cpp:971
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1041
+#: mmcheckingpanel.cpp:1038
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1041
+#: mmcheckingpanel.cpp:1038
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1042
+#: mmcheckingpanel.cpp:1039
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1069 mmreportspanel.cpp:820
+#: mmcheckingpanel.cpp:1066 mmreportspanel.cpp:820
 msgid "Edit date ranges…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1274
+#: mmcheckingpanel.cpp:1271
 msgid "&New Withdrawal…"
 msgstr "&Retragere nouă…"
 
-#: mmcheckingpanel.cpp:1275
+#: mmcheckingpanel.cpp:1272
 msgid "&New Deposit…"
 msgstr "&Depozit nou…"
 
-#: mmcheckingpanel.cpp:1276
+#: mmcheckingpanel.cpp:1273
 msgid "&New Transfer…"
 msgstr "&Transfer nou…"
 
-#: mmcheckingpanel.cpp:1318
+#: mmcheckingpanel.cpp:1315
 msgid "Deleted Transactions"
 msgstr "Tranzacții șterse"
 
-#: mmcheckingpanel.cpp:1326
+#: mmcheckingpanel.cpp:1323
 #, c-format
 msgid "Account View: %s"
 msgstr ""
@@ -6398,7 +6396,7 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: model/Model.cpp:23 optionsettingstransaction.cpp:114
+#: model/Model.cpp:23 optionsettingstransaction.cpp:115
 msgid "Transaction"
 msgstr ""
 
@@ -7090,140 +7088,144 @@ msgstr ""
 msgid "Updates source"
 msgstr ""
 
-#: optionsettingstransaction.cpp:65
+#: optionsettingstransaction.cpp:66
 msgid "Last Used"
 msgstr ""
 
-#: optionsettingstransaction.cpp:77
+#: optionsettingstransaction.cpp:78
 msgid "Unused"
 msgstr ""
 
-#: optionsettingstransaction.cpp:83
+#: optionsettingstransaction.cpp:84
 msgid "Last used for payee"
 msgstr ""
 
-#: optionsettingstransaction.cpp:84
+#: optionsettingstransaction.cpp:85
 msgid "Use default for payee"
 msgstr ""
 
-#: optionsettingstransaction.cpp:101
+#: optionsettingstransaction.cpp:102
 msgid "Default Date"
 msgstr "Data implicită"
 
-#: optionsettingstransaction.cpp:103
+#: optionsettingstransaction.cpp:104
 msgid "Default Payee"
 msgstr "Beneficiar implicit"
 
-#: optionsettingstransaction.cpp:105
+#: optionsettingstransaction.cpp:106
 msgid "Default Deposit/Withdrawal Category"
 msgstr "Categoria implicită de depunere/retragere"
 
-#: optionsettingstransaction.cpp:107
+#: optionsettingstransaction.cpp:108
 msgid "Default Transfer Category"
 msgstr "Categoria de transfer implicită"
 
-#: optionsettingstransaction.cpp:109
+#: optionsettingstransaction.cpp:110
 msgid "Default Status"
 msgstr "Stare implicită"
 
-#: optionsettingstransaction.cpp:119
+#: optionsettingstransaction.cpp:120
 msgid "Use Original Date when Pasting Transactions"
 msgstr "Folosește data originală la lipirea tranzacțiilor"
 
-#: optionsettingstransaction.cpp:121
+#: optionsettingstransaction.cpp:122
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
 msgstr "Alege dacă să fie folosită data originală a tranzacției sau data curentă, atunci cînd se copiază/lipesc tranzacții"
 
-#: optionsettingstransaction.cpp:124
+#: optionsettingstransaction.cpp:125
 msgid "Use Original Date when Duplicating Transactions"
 msgstr ""
 
-#: optionsettingstransaction.cpp:126
+#: optionsettingstransaction.cpp:127
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
 msgstr ""
 
-#: optionsettingstransaction.cpp:129
+#: optionsettingstransaction.cpp:130
 msgid "Use Original State when Duplicating or Pasting Transactions"
 msgstr ""
 
-#: optionsettingstransaction.cpp:131
+#: optionsettingstransaction.cpp:132
 msgid "Select whether to use the original state or default state when duplicating or copy and paste transactions"
 msgstr ""
 
-#: optionsettingstransaction.cpp:141
+#: optionsettingstransaction.cpp:142
 msgid "Transaction Sound"
 msgstr ""
 
-#: optionsettingstransaction.cpp:146
+#: optionsettingstransaction.cpp:147
 msgid "Select whether to use sounds when entering transactions"
 msgstr "Selectează dacă să se folosească sunete la introducerea tranzacțiilor."
 
-#: optionsettingstransaction.cpp:150
+#: optionsettingstransaction.cpp:151
 msgid "Transaction/Budget"
 msgstr "Tranzacție/Buget"
 
-#: optionsettingstransaction.cpp:157
+#: optionsettingstransaction.cpp:158
 msgid "View Budgets as Financial Years"
 msgstr ""
 
-#: optionsettingstransaction.cpp:165
+#: optionsettingstransaction.cpp:166
 msgid "View Budgets with 'transfer' transactions"
 msgstr ""
 
-#: optionsettingstransaction.cpp:173
+#: optionsettingstransaction.cpp:174
 msgid "View Budget Category Report with Summaries"
 msgstr ""
 
-#: optionsettingstransaction.cpp:182
+#: optionsettingstransaction.cpp:183
 msgid "Override yearly budget with monthly budget"
 msgstr ""
 
-#: optionsettingstransaction.cpp:185
+#: optionsettingstransaction.cpp:186
 msgid "If monthly budget exists then use this to override the yearly budget; otherwise combine them"
 msgstr ""
 
-#: optionsettingstransaction.cpp:192
+#: optionsettingstransaction.cpp:193
 msgid "Subtract monthly budgets from yearly budget in reporting"
 msgstr ""
 
-#: optionsettingstransaction.cpp:195
+#: optionsettingstransaction.cpp:196
 msgid "Yearly budget will be reduced by the amount budgeted monthly.\n"
 "Total estimate for the year will be reported as either the yearly budget OR the sum of the monthly budgets, whichever is greater."
 msgstr ""
 
-#: optionsettingstransaction.cpp:202
+#: optionsettingstransaction.cpp:203
 msgid "Budget Offset (days)"
 msgstr ""
 
-#: optionsettingstransaction.cpp:207
+#: optionsettingstransaction.cpp:208
 msgid "Adjusts the first day of month (normally 1st) for budget calculations"
 msgstr ""
 
-#: optionsettingstransaction.cpp:211
+#: optionsettingstransaction.cpp:212
 msgid "First Day of Month"
 msgstr ""
 
-#: optionsettingstransaction.cpp:216
+#: optionsettingstransaction.cpp:217
 msgid "Adjusts the first day of month for reporting"
 msgstr ""
 
-#: optionsettingstransaction.cpp:220
+#: optionsettingstransaction.cpp:221
 msgid "First Weekday"
 msgstr ""
 
-#: optionsettingstransaction.cpp:225
+#: optionsettingstransaction.cpp:226
 msgid "Adjusts the first day of week for filtering and reporting"
 msgstr ""
 
-#: optionsettingstransaction.cpp:230
+#: optionsettingstransaction.cpp:231
 msgid "Ignore Future Transactions"
 msgstr ""
 
-#: optionsettingstransaction.cpp:236
+#: optionsettingstransaction.cpp:237
 msgid "Use 'Time' in transaction recording/reporting"
 msgstr ""
 
 #: optionsettingstransaction.cpp:241
+msgid "Sort Date identically to Sequence Number (SN)"
+msgstr ""
+
+#: optionsettingstransaction.cpp:246
 msgid "Transaction Colors"
 msgstr ""
 
