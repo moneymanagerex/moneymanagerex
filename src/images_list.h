@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2014, 2015 Nikolay Akimov
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2025 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,7 +28,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 enum meta {
     THEME_NAME,
     THEME_AUTHOR,
-    THEME_DESCRIPTION,  
+    THEME_DESCRIPTION,
     THEME_URL,
     COLOR_NAVPANEL,
     COLOR_NAVPANEL_FONT,
@@ -47,6 +48,7 @@ enum meta {
     COLOR_REPORT_PERF,
     COLOR_REPORT_FORECOLOR,
     COLOR_REPORT_PALETTE,
+    COLOR_HIDDEN,
     // The end
     MAX_METADATA
 };
@@ -104,59 +106,59 @@ enum png {
     PAYEE,
     CURR,
     TAG,
-    FILTER, 
+    FILTER,
     GRM,
-    OPTIONS, 
-    NEW_TRX, 
+    OPTIONS,
+    NEW_TRX,
     NEW_NEWS,
     NEWS,
-    CURRATES, 
-    FULLSCREEN, 
+    CURRATES,
+    FULLSCREEN,
     PRINT,
-    ABOUT, 
+    ABOUT,
     HELP,
 
     // Navigation
     NAV_HOME,
-    ALLTRANSACTIONS, 
+    ALLTRANSACTIONS,
     NAV_FILTER,
     NAV_GRM,
     NAV_HELP,
     FAVOURITE,
-    SAVINGS_NORMAL, 
+    SAVINGS_NORMAL,
     CC_NORMAL,
-    CASH_NORMAL, 
+    CASH_NORMAL,
     LOAN_ACC_NORMAL,
     TERM_NORMAL,
-    STOCKS_NORMAL, 
+    STOCKS_NORMAL,
     ASSET_NORMAL,
     ACCOUNT_CLOSED,
     RECURRING,
     TRASH,
     BUDGET,
     PIE_CHART,
-    
+
     // Status
     UNRECONCILED,
     RECONCILED,
     DUPLICATE_STAT,
     FOLLOW_UP,
-    VOID_STAT, 
+    VOID_STAT,
     PROFIT,
     LOSS,
     LED_OFF,
-    LED_GREEN, 
-    LED_YELLOW, 
+    LED_GREEN,
+    LED_YELLOW,
     LED_RED,
     RUN,
-    RUN_AUTO, 
+    RUN_AUTO,
 
     // Assets
     PROPERTY,
     CAR,
-    HOUSEHOLD_OBJ, 
+    HOUSEHOLD_OBJ,
     ART,
-    JEWELLERY, 
+    JEWELLERY,
     CASH,
     OTHER,
 

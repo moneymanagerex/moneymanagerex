@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2015, 2016, 2020, 2022 Nikolay Akimov
  Copyright (C) 2022 Mark Whalleuy (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -70,7 +71,7 @@ public:
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
         , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX | wxRESIZE_BORDER);
-    
+
     int64 getCategId() const;
     bool getRefreshRequested() const;
     bool mmIsUsed() const;
@@ -95,6 +96,7 @@ private:
     void OnCategoryRelocation(wxCommandEvent& /*event*/);
     void OnExpandOrCollapseToggle(wxCommandEvent& event);
     void OnShowHiddenToggle(wxCommandEvent& /*event*/);
+    void OnClearSettings(wxCommandEvent& /*event*/);
     void OnTextChanged(wxCommandEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
@@ -112,8 +114,8 @@ private:
     wxButton* m_buttonSelect = nullptr;
     wxButton* m_buttonDelete = nullptr;
     wxBitmapButton* m_buttonRelocate = nullptr;
-    wxToggleButton* m_tbCollapse = nullptr;
-    wxToggleButton* m_tbExpand = nullptr;
+    wxButton* m_tbCollapse = nullptr;
+    wxButton* m_tbExpand = nullptr;
     wxToggleButton* m_tbShowAll = nullptr;
     wxTreeItemId m_selectedItemId;
     wxTreeItemId root_;
@@ -126,18 +128,21 @@ private:
     std::map<int64, std::vector<Model_Category::Data>> m_categ_children;
     bool m_processExpandCollapse = true;
     wxColour NormalColor_;
+    wxColour m_hiddenColor;
     bool m_refresh_requested = false;
     wxString m_maskStr;
 
     enum
     {
-        MENU_ITEM_HIDE = wxID_HIGHEST + 1500,
+        MENU_ITEM_EDIT = wxID_HIGHEST + 1500,
+        MENU_ITEM_HIDE,
         MENU_ITEM_UNHIDE,
-        MENU_ITEM_CLEAR,
         MENU_ITEM_DELETE,
+        MENU_ITEM_ADD,
         ID_DIALOG_CATEGORY,
         ID_EXPAND,
-        ID_COLLAPSE
+        ID_COLLAPSE,
+        ID_CLEAR
     };
 };
 
