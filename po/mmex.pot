@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-09-26 16:20+0000\n"
+"POT-Creation-Date: 2025-09-28 13:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -386,11 +386,11 @@ msgstr ""
 msgid "User Interface Language"
 msgstr ""
 
-#: appstartdialog.cpp:229 mmframe.cpp:4131 optionsettingsgeneral.cpp:330
+#: appstartdialog.cpp:229 mmframe.cpp:4136 optionsettingsgeneral.cpp:330
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr ""
 
-#: appstartdialog.cpp:231 mmframe.cpp:4133 optionsettingsgeneral.cpp:332
+#: appstartdialog.cpp:231 mmframe.cpp:4138 optionsettingsgeneral.cpp:332
 msgid "Language change"
 msgstr ""
 
@@ -577,7 +577,7 @@ msgid "&Delete Asset…"
 msgstr ""
 
 #: assetspanel.cpp:107 billsdepositspanel.cpp:433 mmchecking_list.cpp:774
-#: stocks_list.cpp:147
+#: stocks_list.cpp:158
 msgid "&Organize Attachments…"
 msgstr ""
 
@@ -627,14 +627,14 @@ msgid "View Asset Transactions"
 msgstr ""
 
 #: assetspanel.cpp:474 attachmentdialog.cpp:354 billsdepositspanel.cpp:293
-#: categdialog.cpp:319 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
+#: categdialog.cpp:324 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
 #: mmcheckingpanel.cpp:280 payeedialog.cpp:882 stockspanel.cpp:159
 #: tagdialog.cpp:132
 msgid "&Edit "
 msgstr ""
 
 #: assetspanel.cpp:479 billsdepositspanel.cpp:303 budgetyeardialog.cpp:103
-#: categdialog.cpp:323 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:272
+#: categdialog.cpp:328 maincurrencydialog.cpp:304 mmcheckingpanel.cpp:272
 #: stockdialog.cpp:337 stockspanel.cpp:164 tagdialog.cpp:137
 msgid "&Delete "
 msgstr ""
@@ -648,7 +648,7 @@ msgstr ""
 msgid "Open attachments"
 msgstr ""
 
-#: assetspanel.cpp:494 assetspanel.cpp:495 categdialog.cpp:304
+#: assetspanel.cpp:494 assetspanel.cpp:495 categdialog.cpp:309
 #: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:339 payeedialog.cpp:588
 #: tagdialog.cpp:117
 msgid "Search"
@@ -805,7 +805,7 @@ msgstr ""
 msgid "Confirm Attachment Deletion"
 msgstr ""
 
-#: attachmentdialog.cpp:351 categdialog.cpp:315 customfieldlistdialog.cpp:255
+#: attachmentdialog.cpp:351 categdialog.cpp:320 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:312 maincurrencydialog.cpp:539
 #: payeedialog.cpp:881 stockdialog.cpp:339 tagdialog.cpp:128
 msgid "&Add "
@@ -1249,13 +1249,13 @@ msgid ""
 "Leave blank if the payments continue forever."
 msgstr ""
 
-#: billsdepositsdialog.cpp:1394 images_list.cpp:504
+#: billsdepositsdialog.cpp:1394 images_list.cpp:506
 #: import_export/ofx_import_gui.cpp:295 import_export/ofx_import_gui.cpp:335
 #: import_export/ofx_import_gui.cpp:347 import_export/ofx_import_gui.cpp:383
 #: import_export/ofx_import_gui.cpp:1124 import_export/ofx_import_gui.cpp:1131
 #: import_export/ofx_import_gui.cpp:1138 import_export/ofx_import_gui.cpp:1145
 #: import_export/ofx_import_gui.cpp:1153 import_export/univcsvdialog.cpp:1587
-#: maincurrencydialog.cpp:482 mmframe.cpp:4085 splittransactionsdialog.cpp:409
+#: maincurrencydialog.cpp:482 mmframe.cpp:4090 splittransactionsdialog.cpp:409
 #: stockspanel.cpp:491 stockspanel.cpp:492 themes.cpp:316 themes.cpp:335
 #: webappdialog.cpp:185 webappdialog.cpp:190
 msgid "Error"
@@ -1644,79 +1644,87 @@ msgstr ""
 msgid "C&ollapse All"
 msgstr ""
 
-#: categdialog.cpp:267
+#: categdialog.cpp:266
 msgid "E&xpand All"
 msgstr ""
 
-#: categdialog.cpp:272 maincurrencydialog.cpp:186
+#: categdialog.cpp:270 maincurrencydialog.cpp:186
 msgid "&Show All"
 msgstr ""
 
-#: categdialog.cpp:274
+#: categdialog.cpp:272
 msgid "Show all hidden categories"
 msgstr ""
 
-#: categdialog.cpp:317
+#: categdialog.cpp:276
+msgid "Clear Settings"
+msgstr ""
+
+#: categdialog.cpp:277
+msgid "Remove hidden setting from all categories"
+msgstr ""
+
+#: categdialog.cpp:322 categdialog.cpp:816
 msgid "Add a new category"
 msgstr ""
 
-#: categdialog.cpp:321
+#: categdialog.cpp:326
 msgid "Edit the name of an existing category"
 msgstr ""
 
-#: categdialog.cpp:325
+#: categdialog.cpp:330
 msgid "Delete an existing category. The category is unable to be used by existing transactions."
 msgstr ""
 
-#: categdialog.cpp:330 maincurrencydialog.cpp:225
+#: categdialog.cpp:335 maincurrencydialog.cpp:225
 msgid "&Select"
 msgstr ""
 
-#: categdialog.cpp:332
+#: categdialog.cpp:337
 msgid "Select the currently selected category as the selected category for the transaction"
 msgstr ""
 
-#: categdialog.cpp:345
+#: categdialog.cpp:349
 msgid "Name contains category delimiter."
 msgstr ""
 
-#: categdialog.cpp:346
+#: categdialog.cpp:350
 msgid "The colon (:) character is used to separate categories and subcategories and therefore should not be used in the name"
 msgstr ""
 
-#: categdialog.cpp:348
+#: categdialog.cpp:352
 msgid "Category Manager: Invalid Name"
 msgstr ""
 
-#: categdialog.cpp:356
+#: categdialog.cpp:360
 msgid "Enter the name for the new category:"
 msgstr ""
 
-#: categdialog.cpp:357
+#: categdialog.cpp:361
 msgid "Add Category"
 msgstr ""
 
-#: categdialog.cpp:368 categdialog.cpp:377 categdialog.cpp:626
+#: categdialog.cpp:372 categdialog.cpp:381 categdialog.cpp:633
 msgid "A category with this name already exists for the parent"
 msgstr ""
 
-#: categdialog.cpp:368 categdialog.cpp:377
+#: categdialog.cpp:372 categdialog.cpp:381
 msgid "Category Manager: Adding Error"
 msgstr ""
 
-#: categdialog.cpp:429
+#: categdialog.cpp:435
 msgid "Unable to move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
 msgstr ""
 
-#: categdialog.cpp:430
+#: categdialog.cpp:436
 msgid "A subcategory with this name already exists"
 msgstr ""
 
-#: categdialog.cpp:442
+#: categdialog.cpp:448
 msgid "Target category is a descendant"
 msgstr ""
 
-#: categdialog.cpp:449
+#: categdialog.cpp:455
 #, c-format
 msgid ""
 "Do you want to move\n"
@@ -1725,51 +1733,51 @@ msgid ""
 "“%2$s”?"
 msgstr ""
 
-#: categdialog.cpp:451
+#: categdialog.cpp:457
 msgid "Top level"
 msgstr ""
 
-#: categdialog.cpp:452
+#: categdialog.cpp:458
 msgid "Confirm Move"
 msgstr ""
 
-#: categdialog.cpp:469
+#: categdialog.cpp:476
 msgid "Category in use."
 msgstr ""
 
-#: categdialog.cpp:469
+#: categdialog.cpp:476
 msgid "Subcategory in use."
 msgstr ""
 
-#: categdialog.cpp:471
+#: categdialog.cpp:478
 msgid ""
 "Tip: Change all transactions using this Category to\n"
 "another Category using the merge command:"
 msgstr ""
 
-#: categdialog.cpp:474
+#: categdialog.cpp:481
 msgid ""
 "Tip: Change all transactions using this Subcategory to\n"
 "another Category using the merge command:"
 msgstr ""
 
-#: categdialog.cpp:477
+#: categdialog.cpp:484
 msgid "Tools → Merge → Categories"
 msgstr ""
 
-#: categdialog.cpp:479
+#: categdialog.cpp:486
 msgid "Category Manager: Delete Error"
 msgstr ""
 
-#: categdialog.cpp:502
+#: categdialog.cpp:509
 msgid "Deleted transactions exist which use this category or one of its descendants."
 msgstr ""
 
-#: categdialog.cpp:503
+#: categdialog.cpp:510
 msgid "Deleting the category will also automatically purge the associated deleted transactions."
 msgstr ""
 
-#: categdialog.cpp:504 customfieldeditdialog.cpp:238
+#: categdialog.cpp:511 customfieldeditdialog.cpp:238
 #: customfieldeditdialog.cpp:260 filtertransdialog.cpp:1345
 #: import_export/univcsvdialog.cpp:2187 mmframe.cpp:1391 mmframe.cpp:2664
 #: mmframe.cpp:2731 model/Model_Billsdeposits.cpp:224 payeedialog.cpp:752
@@ -1777,62 +1785,58 @@ msgstr ""
 msgid "Do you want to continue?"
 msgstr ""
 
-#: categdialog.cpp:505
+#: categdialog.cpp:512
 msgid "Confirm Category Deletion"
 msgstr ""
 
-#: categdialog.cpp:614 tagdialog.cpp:245
+#: categdialog.cpp:621 tagdialog.cpp:245
 #, c-format
 msgid "Enter a new name for '%s'"
 msgstr ""
 
-#: categdialog.cpp:615
+#: categdialog.cpp:622 categdialog.cpp:809
 msgid "Edit Category"
 msgstr ""
 
-#: categdialog.cpp:627
+#: categdialog.cpp:634
 msgid "Category Manager: Editing Error"
 msgstr ""
 
-#: categdialog.cpp:684 mmframe.cpp:3978
+#: categdialog.cpp:691 mmframe.cpp:3983
 msgid "Merge categories completed"
 msgstr ""
 
-#: categdialog.cpp:685 mmframe.cpp:3979 mmframe.cpp:3993 mmframe.cpp:4008
+#: categdialog.cpp:692 mmframe.cpp:3984 mmframe.cpp:3998 mmframe.cpp:4013
 #: payeedialog.cpp:833
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr ""
 
-#: categdialog.cpp:687 mmframe.cpp:3981
+#: categdialog.cpp:694 mmframe.cpp:3986
 msgid "Merge categories result"
 msgstr ""
 
-#: categdialog.cpp:763
+#: categdialog.cpp:789
 msgid "Do you want to unhide all categories?"
 msgstr ""
 
-#: categdialog.cpp:764
+#: categdialog.cpp:790
 msgid "Unhide all categories"
 msgstr ""
 
-#: categdialog.cpp:792
+#: categdialog.cpp:811
 msgid "Hide Selected Category"
 msgstr ""
 
-#: categdialog.cpp:793
+#: categdialog.cpp:812
 msgid "Unhide Selected Category"
 msgstr ""
 
-#: categdialog.cpp:795
+#: categdialog.cpp:814
 msgid "Remove Category"
 msgstr ""
 
-#: categdialog.cpp:798
-msgid "Clear Settings"
-msgstr ""
-
-#: categdialog.h:68 mmframe.cpp:1964 mmframe.cpp:2198
+#: categdialog.h:69 mmframe.cpp:1964 mmframe.cpp:2198
 msgid "Category Manager"
 msgstr ""
 
@@ -1897,7 +1901,7 @@ msgstr ""
 msgid "Closed"
 msgstr ""
 
-#: constants.cpp:199 mmcheckingpanel.cpp:1318 mmframe.cpp:517
+#: constants.cpp:199 mmcheckingpanel.cpp:1317 mmframe.cpp:517
 msgid "Favorites"
 msgstr ""
 
@@ -2223,7 +2227,7 @@ msgstr ""
 msgid "Default date ranges"
 msgstr ""
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1058 mmreportspanel.cpp:813
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1057 mmreportspanel.cpp:813
 msgid "More date ranges…"
 msgstr ""
 
@@ -2906,9 +2910,9 @@ msgstr ""
 msgid "The entered name is already in use"
 msgstr ""
 
-#: filtertransdialog.cpp:2206 images_list.cpp:327 images_list.cpp:417
-#: images_list.cpp:428 images_list.cpp:463 images_list.cpp:492
-#: images_list.cpp:498 import_export/qif_import_gui.cpp:803
+#: filtertransdialog.cpp:2206 images_list.cpp:329 images_list.cpp:419
+#: images_list.cpp:430 images_list.cpp:465 images_list.cpp:494
+#: images_list.cpp:500 import_export/qif_import_gui.cpp:803
 #: import_export/qif_import_gui.cpp:806 import_export/univcsvdialog.cpp:1103
 msgid "Warning"
 msgstr ""
@@ -3121,41 +3125,41 @@ msgstr ""
 msgid "Parameters:"
 msgstr ""
 
-#: images_list.cpp:326
+#: images_list.cpp:328
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
 msgstr ""
 
-#: images_list.cpp:416
+#: images_list.cpp:418
 #, c-format
 msgid "File '%1$s' missing or invalid in chosen theme '%2$s'"
 msgstr ""
 
-#: images_list.cpp:427
+#: images_list.cpp:429
 #, c-format
 msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr ""
 
-#: images_list.cpp:460
+#: images_list.cpp:462
 msgid "and more…"
 msgstr ""
 
-#: images_list.cpp:462
+#: images_list.cpp:464
 #, c-format
 msgid "There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s"
 msgstr ""
 
-#: images_list.cpp:491
+#: images_list.cpp:493
 #, c-format
 msgid "Theme %s not found; it may no longer be supported. Reverting to the default theme."
 msgstr ""
 
-#: images_list.cpp:498
+#: images_list.cpp:500
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
 msgstr ""
 
-#: images_list.cpp:503
+#: images_list.cpp:505
 msgid "No workable theme found, the installation may be corrupt"
 msgstr ""
 
@@ -4869,7 +4873,7 @@ msgstr ""
 msgid "Moving %i transactions to…"
 msgstr ""
 
-#: mmchecking_list.cpp:1369 stocks_list.cpp:316
+#: mmchecking_list.cpp:1369 stocks_list.cpp:327
 msgid "Select the destination Account "
 msgstr ""
 
@@ -4893,7 +4897,7 @@ msgstr ""
 msgid "Scheduled transaction saved."
 msgstr ""
 
-#: mmchecking_list.cpp:1481 mmcheckingpanel.cpp:1313
+#: mmchecking_list.cpp:1481 mmcheckingpanel.cpp:1312
 msgid "All Transactions"
 msgstr ""
 
@@ -4998,7 +5002,7 @@ msgstr ""
 msgid "Invested: "
 msgstr ""
 
-#: mmcheckingpanel.cpp:423 mmcheckingpanel.cpp:1116 mmreportspanel.cpp:106
+#: mmcheckingpanel.cpp:423 mmcheckingpanel.cpp:1115 mmreportspanel.cpp:106
 #: mmreportspanel.cpp:851
 msgid "Date range"
 msgstr ""
@@ -5007,54 +5011,54 @@ msgstr ""
 msgid "Attachment"
 msgstr ""
 
-#: mmcheckingpanel.cpp:963
+#: mmcheckingpanel.cpp:962
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr ""
 
-#: mmcheckingpanel.cpp:966
+#: mmcheckingpanel.cpp:965
 #, c-format
 msgid "Selected transactions total: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:971
+#: mmcheckingpanel.cpp:970
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1038
+#: mmcheckingpanel.cpp:1037
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1038
+#: mmcheckingpanel.cpp:1037
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1039
+#: mmcheckingpanel.cpp:1038
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1066 mmreportspanel.cpp:820
+#: mmcheckingpanel.cpp:1065 mmreportspanel.cpp:820
 msgid "Edit date ranges…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1271
+#: mmcheckingpanel.cpp:1270
 msgid "&New Withdrawal…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1272
+#: mmcheckingpanel.cpp:1271
 msgid "&New Deposit…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1273
+#: mmcheckingpanel.cpp:1272
 msgid "&New Transfer…"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1315
+#: mmcheckingpanel.cpp:1314
 msgid "Deleted Transactions"
 msgstr ""
 
-#: mmcheckingpanel.cpp:1323
+#: mmcheckingpanel.cpp:1322
 #, c-format
 msgid "Account View: %s"
 msgstr ""
@@ -6122,23 +6126,23 @@ msgstr ""
 msgid "Select new account type for %s"
 msgstr ""
 
-#: mmframe.cpp:3992 payeedialog.cpp:832
+#: mmframe.cpp:3997 payeedialog.cpp:832
 msgid "Merge payees completed"
 msgstr ""
 
-#: mmframe.cpp:3996 payeedialog.cpp:836
+#: mmframe.cpp:4001 payeedialog.cpp:836
 msgid "Merge payees result"
 msgstr ""
 
-#: mmframe.cpp:4007
+#: mmframe.cpp:4012
 msgid "Merge tags completed"
 msgstr ""
 
-#: mmframe.cpp:4011
+#: mmframe.cpp:4016
 msgid "Merge tags result"
 msgstr ""
 
-#: mmframe.cpp:4084
+#: mmframe.cpp:4089
 #, c-format
 msgid "File %s not found."
 msgstr ""
@@ -8398,39 +8402,39 @@ msgstr ""
 msgid "Curr. Total Value"
 msgstr ""
 
-#: stocks_list.cpp:138
+#: stocks_list.cpp:149
 msgid "&New Stock Investment…"
 msgstr ""
 
-#: stocks_list.cpp:140
+#: stocks_list.cpp:151
 msgid "&Adjust Trade"
 msgstr ""
 
-#: stocks_list.cpp:141
+#: stocks_list.cpp:152
 msgid "&View Stock Transactions"
 msgstr ""
 
-#: stocks_list.cpp:143
+#: stocks_list.cpp:154
 msgid "&Edit Stock Investment…"
 msgstr ""
 
-#: stocks_list.cpp:145
+#: stocks_list.cpp:156
 msgid "&Delete Stock Investment…"
 msgstr ""
 
-#: stocks_list.cpp:148
+#: stocks_list.cpp:159
 msgid "Stock &Web Page"
 msgstr ""
 
-#: stocks_list.cpp:292
+#: stocks_list.cpp:303
 msgid "Do you want to delete the stock investment?"
 msgstr ""
 
-#: stocks_list.cpp:293
+#: stocks_list.cpp:304
 msgid "Confirm Stock Investment Deletion"
 msgstr ""
 
-#: stocks_list.cpp:315
+#: stocks_list.cpp:326
 #, c-format
 msgid "Moving Transaction from %s to"
 msgstr ""
