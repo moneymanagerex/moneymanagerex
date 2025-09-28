@@ -3845,9 +3845,14 @@ void mmGUIFrame::OnViewToolbar(wxCommandEvent &event)
     Model_Setting::instance().setBool("SHOWTOOLBAR", event.IsChecked());
 }
 
-void mmGUIFrame::OnViewLinks(wxCommandEvent &event)
+void mmGUIFrame::OnViewLinks(wxCommandEvent& WXUNUSED(event))
 {
-    m_mgr.GetPane("Navigation").Show(event.IsChecked());
+    if (m_mgr.GetPane("Navigation").IsShown()) {
+        m_mgr.GetPane("Navigation").Hide();
+    }
+    else {
+        m_mgr.GetPane("Navigation").Show();
+    }
     m_mgr.Update();
 }
 

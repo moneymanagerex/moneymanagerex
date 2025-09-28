@@ -63,8 +63,8 @@ wxBEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
 wxEND_EVENT_TABLE()
 
 const std::vector<ListColumnInfo> StocksListCtrl::LIST_INFO = {
-    { LIST_ID_ICON,           true, _n("Icon"),                 25,  _FL, false },
-    { LIST_ID_ID,             true, _n("ID"),                   _WA, _FR, true },
+    { LIST_ID_ICON,           true, _n("Icon"),                 25,  _FC, false },
+    { LIST_ID_ID,             true, _n("ID"),                   _WA, _FL, true },
     { LIST_ID_DATE,           true, _n("*Date"),                _WH, _FL, true },
     { LIST_ID_NAME,           true, _n("Company Name"),         _WH, _FL, true },
     { LIST_ID_SYMBOL,         true, _n("Symbol"),               _WH, _FL, true },
@@ -84,7 +84,17 @@ StocksListCtrl::StocksListCtrl(
     mmStocksPanel* cp, wxWindow *parent, wxWindowID winid
 ) :
     mmListCtrl(parent, winid),
-    m_stock_panel(cp)
+    m_stock_panel(cp),
+    m_attr1(new wxListItemAttr(
+            mmThemeMetaColour(meta::COLOR_REPORT_DEBIT),
+            mmThemeMetaColour(meta::COLOR_LISTALT0),
+            GetFont()
+        )),
+    m_attr2(new wxListItemAttr(
+            mmThemeMetaColour(meta::COLOR_REPORT_DEBIT),
+            mmThemeMetaColour(meta::COLOR_LIST),
+            GetFont()
+        ))
 {
     wxVector<wxBitmapBundle> images;
     images.push_back(mmBitmapBundle(png::PROFIT));
@@ -105,8 +115,9 @@ StocksListCtrl::StocksListCtrl(
     createColumns();
 
     initVirtualListControl();
-    if (!m_stocks.empty())
+    if (!m_stocks.empty()) {
         EnsureVisible(m_stocks.size() - 1);
+    }
 }
 
 StocksListCtrl::~StocksListCtrl()
@@ -463,7 +474,7 @@ int StocksListCtrl::initVirtualListControl(int64 trx_id)
         m_stocks = Model_Stock::instance().find(
                         Model_Stock::NUMSHARES(0.0, m_stock_panel->getFilter() ? GREATER : GREATER_OR_EQUAL)
                 );
-        if (!m_stocks.empty()) 
+        if (!m_stocks.empty())
             createSummary();
     }
 
@@ -598,4 +609,9 @@ void StocksListCtrl::getInvestmentBalance(double& invested, double& current)
 {
     invested = m_investedVal;
     current = m_marketVal;
+}
+
+wxListItemAttr* StocksListCtrl::OnGetItemAttr(long item) const
+{
+    return (item % 2) ? (GetGainLoss(item) < 0 ? m_attr2.get() : attr2_.get()) : GetGainLoss(item) < 0 ? m_attr1.get() : attr1_.get();
 }

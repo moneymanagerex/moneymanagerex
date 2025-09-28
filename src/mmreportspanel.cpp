@@ -514,7 +514,7 @@ void mmReportsPanel::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
     }
 }
 
-void mmReportsPanel::OnSingleDateChanged(wxDateEvent& event)
+void mmReportsPanel::OnSingleDateChanged(wxDateEvent& WXUNUSED(event))
 {
     if (rb_) {
         saveReportText(false);

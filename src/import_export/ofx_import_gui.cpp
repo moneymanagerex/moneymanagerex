@@ -80,7 +80,7 @@ wxString DecodeHTMLEntities(const wxString& input)
 
 
 
-void mmPayeeSelectionDialog::OnCategorySelection(wxCommandEvent& event)
+void mmPayeeSelectionDialog::OnCategorySelection(wxCommandEvent& WXUNUSED(event))
 {
     int sel = categoryChoice_->GetSelection();
     long long selectedCategoryId = GetSelectedCategoryID();
@@ -325,7 +325,7 @@ void mmPayeeSelectionDialog::OnTitleCase(wxCommandEvent& /*event*/)
     newPayeeTextCtrl_->SetValue(result);
 }
 
-void mmPayeeSelectionDialog::OnOK(wxCommandEvent& event)
+void mmPayeeSelectionDialog::OnOK(wxCommandEvent& WXUNUSED(event))
 {
     if (useExistingRadio_->GetValue())
     {
@@ -599,7 +599,7 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
                                                int newTransactions, wxLongLong importStartTime, double matchConfidence, const wxString& matchMethod,
                                                int totalTransactions)
     : wxDialog(parent, wxID_ANY, _("Payee Confirmation Required"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER),
-      suggestedPayeeName_(suggestedPayeeName), matchConfidence_(matchConfidence), matchMethod_(matchMethod), confidenceLabel_(nullptr),
+      matchConfidence_(matchConfidence), matchMethod_(matchMethod), confidenceLabel_(nullptr), suggestedPayeeName_(suggestedPayeeName),
       useExistingRadio_(nullptr), createNewRadio_(nullptr), payeeChoice_(nullptr), newPayeeTextCtrl_(nullptr), titleCaseButton_(nullptr),
       categoryChoice_(nullptr), updateRegexCheckBox_(nullptr), regexGrid_(nullptr), okButton_(nullptr), updateCategoryButton_(nullptr),
       insertRowButton_(nullptr), deleteRowButton_(nullptr), existingPayeeLabel_(nullptr), newPayeeLabel_(nullptr), payeeSizer_(nullptr),
@@ -1692,7 +1692,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
             result.matchMode = matchMethod;
             result.matchConfidence = matchConfidence;
 
-            if (usedRegex && matchRegexPattern)
+            if (usedRegex && !matchRegexPattern.IsEmpty())
             {
                 result.matchRegexPattern = matchRegexPattern;
             }
@@ -1991,5 +1991,3 @@ wxString mmOFXImportSummaryDialog::FormatTimeTaken(double seconds) const
     }
     return result;
 }
-
-
