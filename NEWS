@@ -62,10 +62,6 @@ Bugfixes:
 * #5196 Poor icon rendering for different DPIs using wxGenericTreeCtrl
 * #2891 Locked transaction
 
-Version 1.9.1 Beta 1
-~~~~~~~~~~~~~~~~~~~~
-Released: 2025-02-08
-
 Version 1.9.0
 ~~~~~~~~~~~~~~~~~~~~
 Released: 2025-02-07
