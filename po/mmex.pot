@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-09-28 13:06+0000\n"
+"POT-Creation-Date: 2025-09-29 17:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1019,7 +1019,7 @@ msgstr ""
 msgid "Date Paid"
 msgstr ""
 
-#: billsdepositsdialog.cpp:498 filtertransdialog.cpp:663 transdialog.cpp:1328
+#: billsdepositsdialog.cpp:498 filtertransdialog.cpp:663 transdialog.cpp:1325
 msgid "Specify the status for the transaction"
 msgstr ""
 
@@ -1035,7 +1035,7 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: billsdepositsdialog.cpp:506 transdialog.cpp:1329
+#: billsdepositsdialog.cpp:506 transdialog.cpp:1326
 msgid "Specify the type of transactions to be created."
 msgstr ""
 
@@ -1043,7 +1043,7 @@ msgstr ""
 msgid "&Advanced"
 msgstr ""
 
-#: billsdepositsdialog.cpp:510 transdialog.cpp:1332
+#: billsdepositsdialog.cpp:510 transdialog.cpp:1329
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr ""
 
@@ -1060,7 +1060,7 @@ msgstr ""
 msgid "Amount"
 msgstr ""
 
-#: billsdepositsdialog.cpp:532 transdialog.cpp:1314
+#: billsdepositsdialog.cpp:532 transdialog.cpp:1311
 msgid "Specify the transfer amount in the To Account"
 msgstr ""
 
@@ -1103,13 +1103,13 @@ msgstr ""
 #: reports/categexp.cpp:217 reports/categexp.cpp:456
 #: reports/transactions.cpp:220 splittransactionsdialog.cpp:81
 #: splittransactionsdialog.cpp:217 transactionsupdatedialog.cpp:223
-#: transdialog.cpp:536 transdialog.cpp:669 usertransactionpanel.cpp:189
-#: webappdialog.cpp:143
+#: transdialog.cpp:536 transdialog.cpp:669 transdialog.cpp:1074
+#: usertransactionpanel.cpp:189 webappdialog.cpp:143
 msgid "Category"
 msgstr ""
 
 #: billsdepositsdialog.cpp:587 billsdepositsdialog.cpp:1455 transdialog.cpp:542
-#: transdialog.cpp:1291
+#: transdialog.cpp:1288
 msgid "Use split Categories"
 msgstr ""
 
@@ -1121,12 +1121,12 @@ msgstr ""
 #: filtertransdialog.cpp:1951 import_export/qif_import_gui.cpp:95
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:105
 #: reports/transactions.cpp:222 splittransactionsdialog.cpp:221
-#: splittransactionsdialog.cpp:576 transactionsupdatedialog.cpp:234
+#: splittransactionsdialog.cpp:577 transactionsupdatedialog.cpp:234
 #: transactionsupdatedialog.cpp:370 transdialog.cpp:550 transdialog.cpp:650
 msgid "Tags"
 msgstr ""
 
-#: billsdepositsdialog.cpp:604 transdialog.cpp:1330
+#: billsdepositsdialog.cpp:604 transdialog.cpp:1327
 msgid "Specify any associated check number or transaction number"
 msgstr ""
 
@@ -1161,7 +1161,7 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: billsdepositsdialog.cpp:640 transdialog.cpp:599 transdialog.cpp:1331
+#: billsdepositsdialog.cpp:640 transdialog.cpp:599 transdialog.cpp:1328
 #: usertransactionpanel.cpp:230
 msgid "Specify any text notes you want to add to this transaction."
 msgstr ""
@@ -1207,9 +1207,10 @@ msgstr ""
 #: filtertransdialog.cpp:1120 filtertransdialog.cpp:1127
 #: filtertransdialog.cpp:1133 import_export/univcsvdialog.cpp:1351
 #: optionsettingsgeneral.cpp:263 optionsettingsgeneral.cpp:288
-#: payeedialog.cpp:202 payeedialog.cpp:207 splittransactionsdialog.cpp:576
+#: payeedialog.cpp:202 payeedialog.cpp:207 splittransactionsdialog.cpp:577
 #: transactionsupdatedialog.cpp:370 transactionsupdatedialog.cpp:444
-#: transdialog.cpp:650 transdialog.cpp:654 transdialog.cpp:669 util.cpp:772
+#: transdialog.cpp:650 transdialog.cpp:654 transdialog.cpp:669
+#: transdialog.cpp:1074 util.cpp:772
 msgid "Invalid value"
 msgstr ""
 
@@ -1255,7 +1256,7 @@ msgstr ""
 #: import_export/ofx_import_gui.cpp:1124 import_export/ofx_import_gui.cpp:1131
 #: import_export/ofx_import_gui.cpp:1138 import_export/ofx_import_gui.cpp:1145
 #: import_export/ofx_import_gui.cpp:1153 import_export/univcsvdialog.cpp:1587
-#: maincurrencydialog.cpp:482 mmframe.cpp:4090 splittransactionsdialog.cpp:409
+#: maincurrencydialog.cpp:482 mmframe.cpp:4090 splittransactionsdialog.cpp:410
 #: stockspanel.cpp:491 stockspanel.cpp:492 themes.cpp:316 themes.cpp:335
 #: webappdialog.cpp:185 webappdialog.cpp:190
 msgid "Error"
@@ -1275,7 +1276,7 @@ msgstr ""
 msgid "Specify where the transaction is going to"
 msgstr ""
 
-#: billsdepositsdialog.h:132 transdialog.cpp:1323
+#: billsdepositsdialog.h:132 transdialog.cpp:1320
 msgid "Specify where the transaction is coming from"
 msgstr ""
 
@@ -1283,7 +1284,7 @@ msgstr ""
 msgid "Specify which account the transfer is going to"
 msgstr ""
 
-#: billsdepositsdialog.h:134 transdialog.cpp:1318 usertransactionpanel.cpp:147
+#: billsdepositsdialog.h:134 transdialog.cpp:1315 usertransactionpanel.cpp:147
 msgid "Specify the amount for this transaction"
 msgstr ""
 
@@ -4444,7 +4445,7 @@ msgstr ""
 msgid "New tag entered"
 msgstr ""
 
-#: mmTextCtrl.cpp:88 splittransactionsdialog.cpp:596
+#: mmTextCtrl.cpp:88 splittransactionsdialog.cpp:597
 msgid "Invalid Value"
 msgstr ""
 
@@ -8208,11 +8209,11 @@ msgstr ""
 msgid "&Remove Split"
 msgstr ""
 
-#: splittransactionsdialog.cpp:409
+#: splittransactionsdialog.cpp:410
 msgid "Invalid Total Amount"
 msgstr ""
 
-#: splittransactionsdialog.cpp:596
+#: splittransactionsdialog.cpp:597
 msgid "Please enter a valid monetary amount"
 msgstr ""
 
@@ -8714,35 +8715,35 @@ msgstr ""
 msgid "The transaction will exceed the account limit."
 msgstr ""
 
-#: transdialog.cpp:1198
+#: transdialog.cpp:1195
 msgid "The two accounts have different currencies, but no advanced transaction is defined. Is this correct?"
 msgstr ""
 
-#: transdialog.cpp:1199
+#: transdialog.cpp:1196
 msgid "Currencies are different"
 msgstr ""
 
-#: transdialog.cpp:1309
+#: transdialog.cpp:1306
 msgid "Specify account the money is taken from"
 msgstr ""
 
-#: transdialog.cpp:1310
+#: transdialog.cpp:1307
 msgid "Specify account the money is moved to"
 msgstr ""
 
-#: transdialog.cpp:1311
+#: transdialog.cpp:1308
 msgid "Specify the transfer amount in the From Account."
 msgstr ""
 
-#: transdialog.cpp:1319
+#: transdialog.cpp:1316
 msgid "Specify account for the transaction"
 msgstr ""
 
-#: transdialog.cpp:1321
+#: transdialog.cpp:1318
 msgid "Specify to whom the transaction is going to"
 msgstr ""
 
-#: transdialog.cpp:1327 usertransactionpanel.cpp:100
+#: transdialog.cpp:1324 usertransactionpanel.cpp:100
 msgid "Specify the date of the transaction"
 msgstr ""
 
