@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2025 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -142,7 +143,7 @@ private:
         wxString Notes;
         bool valid = true;
         wxString PayeeMatchNotes;
-        std::map<int, wxString> customFieldData;
+        std::map<int64, wxString> customFieldData;
     };
 private:
     EDialogType dialogType_ = EDialogType::DIALOG_TYPE_IMPORT_CSV;
@@ -151,7 +152,6 @@ private:
     wxString delimit_ = ",";
     wxString decimal_;
 
-    std::vector < std::pair <int, int>> csvFieldOrder_;
     wxListBox* csvFieldCandicate_ = nullptr;
     wxListBox* csvListBox_ = nullptr;
 
@@ -167,7 +167,8 @@ private:
     wxSpinCtrl* m_spinIgnoreFirstRows_ = nullptr;
     wxSpinCtrl* m_spinIgnoreLastRows_ = nullptr;
 
-    std::map<int, wxString> CSVFieldName_;
+    std::map <int, std::pair<wxString, int64> > CSVFieldName_; // index, name, id (for custom fields id)
+    std::vector < std::pair <int, int>> csvFieldOrder_; // index, width
 private:
     wxChoice* choiceDateFormat_ = nullptr;
     wxChoice* m_choiceEncoding = nullptr;
