@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 // --------- CashFlow base class
 
 mmReportCashFlow::mmReportCashFlow(const wxString& name)
-    : mmPrintableBase(name), m_today(Option::instance().UseTransDateTime() ? wxDateTime::Now() : wxDateTime(23,59,59,999))
+    : mmPrintableBase(name), m_today(wxDateTime::Now().ResetTime())
 {
     m_only_active = true;
 }
