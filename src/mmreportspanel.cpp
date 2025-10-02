@@ -128,9 +128,9 @@ bool mmReportsPanel::saveReportText(bool initial)
     {
         mmDateRange* date_range = new mmDateRange();
         wxDateTime td = m_start_date->GetValue();
-        date_range->start_date(td);
+        date_range->start_date(td.ResetTime()); // Start of Day
         td = m_end_date->GetValue();
-        date_range->end_date(td);
+        date_range->end_date(td.ResetTime().Add(wxTimeSpan(23,59,59,999))); // End of Day
         rb_->date_range(date_range, 0);
     }
 
@@ -298,12 +298,12 @@ void mmReportsPanel::CreateControls()
 
             m_start_date = new mmDatePickerCtrl(itemPanel3, ID_CHOICE_START_DATE
                 , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
-            itemBoxSizerHeader->Add(m_start_date->mmGetLayoutWithTime(), 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->Add(m_start_date, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
 
             m_end_date = new mmDatePickerCtrl(itemPanel3, ID_CHOICE_END_DATE
                 , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
-            itemBoxSizerHeader->Add(m_end_date->mmGetLayoutWithTime(), 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->Add(m_end_date, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
         else if (rp & rb_->RepParams::SINGLE_DATE)
