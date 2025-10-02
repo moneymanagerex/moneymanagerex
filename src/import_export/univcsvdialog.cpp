@@ -3,7 +3,7 @@
  Copyright (c) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
  Copyright (C) 2015, 2019, 2021 Nikolay Akimov
  Copyright (C) 2015 Yosef
- Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2022, 2025 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -99,23 +99,23 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     decimal_(Model_Currency::GetBaseCurrency()->DECIMAL_POINT),
     depositType_(Model_Checking::TYPE_NAME_DEPOSIT)
 {
-    CSVFieldName_[UNIV_CSV_ID]          = _n("ID");
-    CSVFieldName_[UNIV_CSV_DATE]        = _n("Date");
-    CSVFieldName_[UNIV_CSV_STATUS]      = _n("Status");
-    CSVFieldName_[UNIV_CSV_TYPE]        = _n("Type");
-    CSVFieldName_[UNIV_CSV_ACCOUNT]     = _n("Account");
-    CSVFieldName_[UNIV_CSV_PAYEE]       = _n("Payee");
-    CSVFieldName_[UNIV_CSV_AMOUNT]      = _n("Amount");
-    CSVFieldName_[UNIV_CSV_CURRENCY]    = _n("Currency");
-    CSVFieldName_[UNIV_CSV_CATEGORY]    = _n("Category");
-    CSVFieldName_[UNIV_CSV_SUBCATEGORY] = _n("SubCategory");
-    CSVFieldName_[UNIV_CSV_TAGS]        = _n("Tags");
-    CSVFieldName_[UNIV_CSV_TRANSNUM]    = _n("Number");
-    CSVFieldName_[UNIV_CSV_NOTES]       = _n("Notes");
-    CSVFieldName_[UNIV_CSV_DONTCARE]    = _n("Don't Care");
-    CSVFieldName_[UNIV_CSV_WITHDRAWAL]  = _n("Withdrawal");
-    CSVFieldName_[UNIV_CSV_DEPOSIT]     = _n("Deposit");
-    CSVFieldName_[UNIV_CSV_BALANCE]     = _n("Balance");   
+    CSVFieldName_[UNIV_CSV_ID].first          = _n("ID");
+    CSVFieldName_[UNIV_CSV_DATE].first        = _n("Date");
+    CSVFieldName_[UNIV_CSV_STATUS].first      = _n("Status");
+    CSVFieldName_[UNIV_CSV_TYPE].first        = _n("Type");
+    CSVFieldName_[UNIV_CSV_ACCOUNT].first     = _n("Account");
+    CSVFieldName_[UNIV_CSV_PAYEE].first       = _n("Payee");
+    CSVFieldName_[UNIV_CSV_AMOUNT].first      = _n("Amount");
+    CSVFieldName_[UNIV_CSV_CURRENCY].first    = _n("Currency");
+    CSVFieldName_[UNIV_CSV_CATEGORY].first    = _n("Category");
+    CSVFieldName_[UNIV_CSV_SUBCATEGORY].first = _n("SubCategory");
+    CSVFieldName_[UNIV_CSV_TAGS].first        = _n("Tags");
+    CSVFieldName_[UNIV_CSV_TRANSNUM].first    = _n("Number");
+    CSVFieldName_[UNIV_CSV_NOTES].first       = _n("Notes");
+    CSVFieldName_[UNIV_CSV_DONTCARE].first    = _n("Don't Care");
+    CSVFieldName_[UNIV_CSV_WITHDRAWAL].first  = _n("Withdrawal");
+    CSVFieldName_[UNIV_CSV_DEPOSIT].first     = _n("Deposit");
+    CSVFieldName_[UNIV_CSV_BALANCE].first     = _n("Balance");   
 
     wxString header;
     switch (dialogType_)
@@ -283,20 +283,23 @@ void mmUnivCSVDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, 0, nullptr, wxLB_SINGLE | wxLB_NEEDED_SB);
     itemBoxSizer3->Add(csvFieldCandicate_, 1, wxGROW | wxALL, 1);
     for (const auto& it : CSVFieldName_)
-        csvFieldCandicate_->Append(wxGetTranslation(it.second), new mmListBoxItem(it.first, it.second));
+        csvFieldCandicate_->Append(wxGetTranslation(it.second.first), new mmListBoxItem(it.first, it.second.first));
 
     //Custom Fields
     Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::REFTYPE(Model_Checking::refTypeName));
     if (!fields.empty())
     {
         std::sort(fields.begin(), fields.end(), SorterByDESCRIPTION());
+        int customField = 1;    // Start of custom fields numbering
         for (const Model_CustomField::Data& entry : fields)
         {
             // Can't use an enum for the field index since there can be infinite custom fields
-            // Instead we offset the last enum by the custom FIELDID to get a unique index for each
-            int csvField = UNIV_CSV_LAST + entry.FIELDID.GetValue();
-            CSVFieldName_[csvField] = entry.DESCRIPTION;
+            // Instead we offset the last enum by a custom field offset and store the custom field id
+            int csvField = UNIV_CSV_LAST + customField;
+            CSVFieldName_[csvField].first = entry.DESCRIPTION;
+            CSVFieldName_[csvField].second = entry.FIELDID.GetValue();
             csvFieldCandicate_->Append(entry.DESCRIPTION, new mmListBoxItem(csvField, entry.DESCRIPTION));
+            customField++;
         }
     }
 
@@ -799,7 +802,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
 
                 for (const auto& entry : CSVFieldName_)
                 {
-                    if (entry.second == value || wxGetTranslation(entry.second) == value)
+                    if (entry.second.first == value || wxGetTranslation(entry.second.first) == value)
                     {
                         int key = entry.first;
                         csvFieldOrder_.push_back(std::make_pair(key,-1));
@@ -808,11 +811,13 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
                     else if (value.StartsWith("UDF: "))
                     {
                         // remove the "UDF: "
-                        int fieldId = wxAtoi(value.Mid(5));
+                        int64 fieldId = std::atoll(value.Mid(5).c_str());
                         // need to check for validity since the custom field may have been deleted
-                        if(CSVFieldName_.find(fieldId + UNIV_CSV_LAST) != CSVFieldName_.end())
-                            csvFieldOrder_.push_back(std::make_pair(UNIV_CSV_LAST + fieldId, -1));
+                        if (fieldId == entry.second.second)
+                        {
+                            csvFieldOrder_.push_back(std::make_pair(entry.first, -1));
                         break;
+                        }
                     }
                 }
             }
@@ -1023,9 +1028,9 @@ void mmUnivCSVDialog::OnRemove(wxCommandEvent& WXUNUSED(event))
 
 const wxString mmUnivCSVDialog::getCSVFieldName(int index) const
 {
-    std::map<int, wxString>::const_iterator it = CSVFieldName_.find(index);
+    std::map <int, std::pair<wxString, int64> >::const_iterator it = CSVFieldName_.find(index);
     if (it != CSVFieldName_.end()) {
-        return (it->second);
+        return (it->second.first);
     }
 
     return wxTRANSLATE("Unknown");
@@ -1037,7 +1042,7 @@ void mmUnivCSVDialog::OnLoad()
     if (IsImporter() && m_choiceAmountFieldSign->GetCount() > DefindByType) m_choiceAmountFieldSign->Delete(DefindByType);
     for (const auto& entry : csvFieldOrder_)
     {
-        const wxString& item_name = CSVFieldName_[entry.first];
+        const wxString& item_name = CSVFieldName_[entry.first].first;
         csvListBox_->Append(wxGetTranslation(item_name), new mmListBoxItem(entry.first, item_name));
         if (IsImporter())
         {
@@ -1061,7 +1066,7 @@ void mmUnivCSVDialog::OnLoad()
     {
         std::vector<std::pair<int, int>>::const_iterator loc = find_if(csvFieldOrder_.begin(), csvFieldOrder_.end(), [&entry](const std::pair<int, int> &element) {return element.first == entry.first; });
         if (loc == csvFieldOrder_.end() || entry.first == UNIV_CSV_DONTCARE || entry.first == UNIV_CSV_NOTES) {
-            csvFieldCandicate_->Append(wxGetTranslation(entry.second), new mmListBoxItem(entry.first, entry.second));
+            csvFieldCandicate_->Append(wxGetTranslation(entry.second.first), new mmListBoxItem(entry.first, entry.second.first));
         }
     }
 }
@@ -1198,10 +1203,10 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
         if (i > UNIV_CSV_LAST) // This is a custom field
         {
             //"UDF: <FIELDID>"
-            json_writer.String(("UDF: " + std::to_string(i - UNIV_CSV_LAST)).c_str());
+            json_writer.String(("UDF: " + CSVFieldName_[i].second.ToString()).c_str());
         }
         else
-            json_writer.String(CSVFieldName_[i].utf8_str());
+            json_writer.String(CSVFieldName_[i].first.utf8_str());
     }
     json_writer.EndArray();
 
@@ -1601,7 +1606,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
         pTxFile->AddNewLine();
         for (std::vector<std::pair<int, int>>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++sit)
         {
-            pTxFile->AddNewItem(wxGetTranslation(CSVFieldName_[(*sit).first]));
+            pTxFile->AddNewItem(wxGetTranslation(CSVFieldName_[(*sit).first].first));
         }
     }
 
@@ -1719,7 +1724,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                     if (it.first > UNIV_CSV_LAST) // Custom Fields
                     {
                         // Get field content
-                        Model_CustomFieldData::Data* data = Model_CustomFieldData::instance().get(it.first - UNIV_CSV_LAST, pBankTransaction.TRANSID);
+                        Model_CustomFieldData::Data* data = Model_CustomFieldData::instance().get(CSVFieldName_[it.first].second, pBankTransaction.TRANSID);
                         if (data)
                         {
                             // format date fields
@@ -2031,7 +2036,7 @@ void mmUnivCSVDialog::update_preview()
                         default:
                             if (it > UNIV_CSV_LAST) // Custom Fields
                             {
-                                Model_CustomFieldData::Data* data = Model_CustomFieldData::instance().get(it - UNIV_CSV_LAST, pBankTransaction.TRANSID);
+                                Model_CustomFieldData::Data* data = Model_CustomFieldData::instance().get(CSVFieldName_[it].second, pBankTransaction.TRANSID);
                                 if (data)
                                 {
                                     // Format date fields
@@ -2161,7 +2166,7 @@ void mmUnivCSVDialog::OnStandard(wxCommandEvent& WXUNUSED(event))
                      , UNIV_CSV_CATEGORY, UNIV_CSV_SUBCATEGORY, UNIV_CSV_AMOUNT, UNIV_CSV_CURRENCY, UNIV_CSV_TRANSNUM, UNIV_CSV_NOTES };
     for (const auto i : standard)
     {
-        csvListBox_->Append(wxGetTranslation(CSVFieldName_[i]), new mmListBoxItem(i, CSVFieldName_[i]));
+        csvListBox_->Append(wxGetTranslation(CSVFieldName_[i].first), new mmListBoxItem(i, CSVFieldName_[i].first));
         csvFieldOrder_.push_back(std::make_pair(i, -1));
     }
 
@@ -2169,7 +2174,7 @@ void mmUnivCSVDialog::OnStandard(wxCommandEvent& WXUNUSED(event))
     int rest[] = { UNIV_CSV_NOTES, UNIV_CSV_DONTCARE, UNIV_CSV_WITHDRAWAL, UNIV_CSV_DEPOSIT, UNIV_CSV_BALANCE };
     for (const auto i : rest)
     {
-        csvFieldCandicate_->Append(wxGetTranslation(CSVFieldName_[i]), new mmListBoxItem(i, CSVFieldName_[i]));
+        csvFieldCandicate_->Append(wxGetTranslation(CSVFieldName_[i].first), new mmListBoxItem(i, CSVFieldName_[i].first));
     }
 
     update_preview();
@@ -2600,7 +2605,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         break;
     default:
         if (index > UNIV_CSV_LAST) // custom fields
-            holder.customFieldData[index - UNIV_CSV_LAST] = token;
+            holder.customFieldData[CSVFieldName_[index].second] = token;
         break;
     }
 }
