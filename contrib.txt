@@ -303,6 +303,7 @@ Theodoros Triparolis
 Emanuele Pizzurno
 David Rasley
 Robert Dougherty
+Christoph Röcker
 
 ### 2023
 Renato
