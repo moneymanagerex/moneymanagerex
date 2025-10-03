@@ -3037,6 +3037,11 @@ msgstr ""
 msgid "New Empty Report…"
 msgstr ""
 
+#: general_report_manager.cpp:812
+msgid "Duplicate Report"
+msgstr ""
+
+
 #: general_report_manager.cpp:774
 msgid "New Sample Report"
 msgstr ""
@@ -3071,6 +3076,10 @@ msgstr ""
 
 #: general_report_manager.cpp:792
 msgid "Sync Report…"
+msgstr ""
+
+#: general_report_manager.cpp:860
+msgid "Report \"%s\" has been modified. Do you want to save it?"
 msgstr ""
 
 #: general_report_manager.cpp:890 general_report_manager.cpp:1079
