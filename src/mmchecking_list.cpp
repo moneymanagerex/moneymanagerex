@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013, 2014, 2020, 2021, 2022 Nikolay Akimov
- Copyright (C) 2021-2025 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2024 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public as published by
@@ -427,9 +427,6 @@ void TransactionListCtrl::sortList()
         getColHeader(getSortColId(1), true), getSortAsc(1) ? L"\u25B2" : L"\u25BC"
     );
     m_cp->m_header_sortOrder->SetLabelText(sortText);
-    m_balance_valid = (getSortColId(0) == LIST_ID_SN) ? true :
-                      ((getSortColId(0) == LIST_ID_DATE) && (Option::instance().TreatDateAsSN()))
-                       ? true : false;
 
     if (getSortColId(0) == LIST_ID_SN)
         m_cp->showTips(_t("SN (Sequence Number) has the same order as Date/ID (or Date/Time/ID if Time is enabled)."));
@@ -496,10 +493,7 @@ void TransactionListCtrl::sortTransactions(int col_id, bool ascend)
         sortBy(SorterByNOTES(), ascend);
         break;
     case TransactionListCtrl::LIST_ID_DATE:
-        if (Option::instance().TreatDateAsSN())
-            sortBy(Fused_Transaction::SorterByFUSEDTRANSSN(), ascend);
-        else
-            sortBy(Model_Checking::SorterByTRANSDATE_DATE(), ascend);
+        sortBy(Model_Checking::SorterByTRANSDATE_DATE(), ascend);
         break;
     case TransactionListCtrl::LIST_ID_TIME:
         sortBy(Model_Checking::SorterByTRANSDATE_TIME(), ascend);
@@ -730,7 +724,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
 
         menu.AppendSeparator();
 
-        menu.Append(MENU_TREEPOPUP_EDIT2, (1 == selected) ? _tu("&Edit Transaction…") : _tu("&Edit Transactions…"));
+        menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL("&Edit Transaction…", "&Edit Transactions…", selected));
         if (is_nothing_selected)
             menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
@@ -757,7 +751,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
         if (is_nothing_selected || multiselect)
             menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
 
-        menu.Append(MENU_TREEPOPUP_MOVE2, (1 == selected) ? _tu("&Move Transaction…") : _tu("&Move Transactions…"));
+        menu.Append(MENU_TREEPOPUP_MOVE2, wxPLURAL("&Move Transaction…", "&Move Transactions…", selected));
         if (is_nothing_selected || type_transfer || (Model_Account::money_accounts_num() < 2) || is_foreign)
             menu.Enable(MENU_TREEPOPUP_MOVE2, false);
 
@@ -785,7 +779,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
     else {
         menu.Append(
             MENU_TREEPOPUP_RESTORE,
-            (1 == selected) ? _tu("&Restore selected transaction…") : _tu("&Restore selected transactions…")
+            wxPLURAL("&Restore selected transaction…", "&Restore selected transactions…", selected)
         );
         if (is_nothing_selected)
             menu.Enable(MENU_TREEPOPUP_RESTORE, false);
@@ -943,9 +937,9 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
     wxMenu* subGlobalOpMenuDelete = new wxMenu();
     subGlobalOpMenuDelete->Append(
         MENU_TREEPOPUP_DELETE2,
-        !m_cp->isDeletedTrans() ? 
-            (1 == selected) ? _tu("&Delete selected transaction…") : _tu("&Delete selected transactions…") :
-            (1 == selected) ? _tu("&Permanently delete selected transaction…") : _tu("&Permanently delete selected transactions…")
+        !m_cp->isDeletedTrans() ?
+            wxPLURAL("&Delete selected transaction…", "&Delete selected transactions…", selected) :
+            wxPLURAL("&Permanently delete selected transaction…", "&Permanently delete selected transactions…", selected)
     );
     if (is_nothing_selected)
         subGlobalOpMenuDelete->Enable(MENU_TREEPOPUP_DELETE2, false);
@@ -1127,8 +1121,8 @@ void TransactionListCtrl::onNewTransaction(wxCommandEvent& event)
 
 void TransactionListCtrl::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 {
-    // check if any transactions selected 
-    int sel = GetSelectedItemCount();
+    // Check if any transactions selected
+    const int sel = GetSelectedItemCount();
     if (sel < 1) return;
 
     findSelectedTransactions();
@@ -1362,9 +1356,10 @@ void TransactionListCtrl::onMoveTransaction(wxCommandEvent& /*event*/)
         , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR);
 
     if (msgDlg.ShowModal() == wxID_YES) {
-        const wxString headerMsg = (1 == sel) ? _tu("Moving transaction to…") : 
-                                    wxString::Format(_tu("Moving %i transactions to…"), sel);
-
+        const wxString headerMsg = wxString::Format(
+                wxPLURAL("Moving transaction to…"
+                , "Moving %i transactions to…", sel)
+                , sel);
         mmSingleChoiceDialog scd(this
             , _t("Select the destination Account ")
             , headerMsg
@@ -1475,7 +1470,11 @@ void TransactionListCtrl::onFind(wxCommandEvent&)
         return;
     // save the filter as the "Advanced" filter for All Transactions
     Model_Infotable::instance().setString("CHECK_FILTER_ID_ADV_-1", rightClickFilter_);
- 
+    // set All Transactions to use the "Advanced" filter
+    Model_Infotable::instance().setString(
+        "CHECK_FILTER_-1",
+        "{ \"FILTER\": \"" + mmCheckingPanel::getFilterName(mmCheckingPanel::FILTER_ID_DATE_PICKER) + "\" }"
+    );
     // Navigate to the All Transactions panel
     wxTreeItemId currentId = m_cp->m_frame->GetNavTreeSelection();
     m_cp->m_frame->setNavTreeSection(wxTRANSLATE("All Transactions"));
@@ -1952,9 +1951,7 @@ const wxString TransactionListCtrl::getItem(long item, int col_id) const
             value = "* " + value;
         return value;
     case LIST_ID_BALANCE:
-        if (m_balance_valid)
-            value = Model_Currency::toString(fused.ACCOUNT_BALANCE, m_cp->m_currency);
-        return value;
+        return Model_Currency::toString(fused.ACCOUNT_BALANCE, m_cp->m_currency);
     case LIST_ID_CREDIT:
         return Model_Currency::toString(
             m_cp->m_account->CREDITLIMIT + fused.ACCOUNT_BALANCE,

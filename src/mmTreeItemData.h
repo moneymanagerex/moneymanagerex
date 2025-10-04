@@ -49,7 +49,7 @@ public:
     };
 
 private:
-    int type_;
+    int type_ = -1;
     int64 id_ = -1;
     wxString stringData_;
     wxSharedPtr<mmPrintableBase> report_;
@@ -82,5 +82,4 @@ inline bool operator==(const mmTreeItemData& lhs, const mmTreeItemData& rhs)
         lhs.getId()     == rhs.getId() &&
         lhs.getString() == rhs.getString()
     );
-};
-
+}
