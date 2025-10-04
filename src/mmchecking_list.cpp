@@ -1473,7 +1473,7 @@ void TransactionListCtrl::onFind(wxCommandEvent&)
     // set All Transactions to use the "Advanced" filter
     Model_Infotable::instance().setString(
         "CHECK_FILTER_-1",
-        "{ \"FILTER\": \"" + mmCheckingPanel::FILTER_NAME_ADVANCED + "\" }"
+        "{ \"FILTER\": \"" + mmCheckingPanel::getFilterName(mmCheckingPanel::FILTER_ID_DATE_PICKER) + "\" }"
     );
     // Navigate to the All Transactions panel
     wxTreeItemId currentId = m_cp->m_frame->GetNavTreeSelection();
