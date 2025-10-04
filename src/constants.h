@@ -116,6 +116,7 @@ extern const wxString ATTACHMENTS_FOLDER_APPDATA;
 
 extern const wxString INIDB_NEWS_LAST_READ_DATE;
 
+extern const wxDateTime DATE_MIN;
 extern const wxDateTime DATE_MAX;
 
 extern const wxArrayString g_locales();

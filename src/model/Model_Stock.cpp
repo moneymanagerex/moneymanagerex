@@ -411,4 +411,3 @@ void Model_Stock::UpdatePosition(Model_Stock::Data* stock_entry)
     }
     Model_Stock::instance().save(stock_entry);
 }
-

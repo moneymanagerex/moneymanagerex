@@ -257,6 +257,7 @@ public:
     ~mmDatePickerCtrl();
     void SetValue(const wxDateTime &dt);    // Override
     bool Enable(bool state=true);           // Override
+    bool Show(bool state=true);             // Override
     wxBoxSizer* mmGetLayout(bool showTimeCtrl = true);
     wxBoxSizer* mmGetLayoutWithTime();
     wxDateTime GetValue();

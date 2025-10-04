@@ -96,25 +96,26 @@ jobs:
       #    inputs: ${{ github.workspace }}/build/mmex*.deb
       #    upload-signing-artifacts: true
 
-      # see #7562 - commenting build out for now.,..
-      #- name: Generate AppImage
-      #  if: ${{ matrix.os == 'ubuntu-22.04' }}
-      #  id: appimage-build
-      #  run: |
-      #    cd /home/runner/work/moneymanagerex/moneymanagerex/build
-      #    wget -O appimage-builder https://github.com/AppImageCrafters/appimage-builder/releases/download/v1.1.0/appimage-builder-1.1.0-x86_64.AppImage
-      #    chmod +x appimage-builder
-      #    cp ../.appimage-builder.yml .
-      #    sed -i "s/version: latest/version: $(grep '^Version ' ../NEWS | head -n 1 | sed 's/Version //;s/ /-/;s/ /./')/" .appimage-builder.yml
-      #    ./appimage-builder --recipe .appimage-builder.yml
-      #    echo "artifact_name=$(ls MMEX*.AppImage)" >> $GITHUB_OUTPUT
+      - name: Generate AppImage
+        if: ${{ matrix.os == 'ubuntu-22.04' }}
+        id: appimage-build
+        run: |
+          cd /home/runner/work/moneymanagerex/moneymanagerex/build
+          wget -O appimage-builder-x86_64.AppImage.tar https://github.com/Lord-Kamina/appimage-builder/releases/download/continuous/appimage-builder_x86_64-AppImage.tar
+          tar xvf appimage-builder-x86_64.AppImage.tar --transform='s/.*\///'
+          mv appimage-builder-*-x86_64.AppImage appimage-builder
+          chmod +x appimage-builder
+          cp ../.appimage-builder.yml .
+          sed -i "s/version: latest/version: $(grep '^Version ' ../NEWS | head -n 1 | sed 's/Version //;s/ /-/;s/ /./')/" .appimage-builder.yml
+          ./appimage-builder --recipe .appimage-builder.yml
+          echo "artifact_name=$(ls MMEX*.AppImage)" >> $GITHUB_OUTPUT
 
-      #- name: Upload AppImage
-      #  if: ${{ matrix.os == 'ubuntu-22.04' && github.event_name == 'pull_request'}}
-      #  uses: actions/upload-artifact@v4
-      #  with:
-      #    name: ${{ steps.appimage-build.outputs.artifact_name }}
-      #    path: ${{ github.workspace }}/build/MMEX*.AppImage
+      - name: Upload AppImage
+        if: ${{ matrix.os == 'ubuntu-22.04' && github.event_name == 'pull_request'}}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.appimage-build.outputs.artifact_name }}
+          path: ${{ github.workspace }}/build/MMEX*.AppImage
       
       #- name: Sign and Upload AppImage
       #  if: ${{ matrix.os == 'ubuntu-22.04' && github.event_name == 'push' && github.repository == 'moneymanagerex/moneymanagerex'}}

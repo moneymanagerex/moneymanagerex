@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2025 Klaus Wich
+Copyright (C) 2025 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -237,6 +238,10 @@ void OptionSettingsTransaction::Create()
     m_use_trans_date_time->SetValue(Option::instance().UseTransDateTime());
     trxSizer->Add(m_use_trans_date_time, g_flagsV);
 
+    m_treat_date_as_SN = new wxCheckBox(home_panel, wxID_ANY, _t("Sort Date identically to Sequence Number (SN)"));
+    m_treat_date_as_SN->SetValue(Option::instance().TreatDateAsSN());
+    trxSizer->Add(m_treat_date_as_SN, g_flagsV);
+
     // Colors settings
     wxStaticBox* colorsBox = new wxStaticBox(home_panel, wxID_ANY, _t("Transaction Colors"));
     SetBoldFont(colorsBox);
@@ -307,6 +312,7 @@ bool OptionSettingsTransaction::SaveSettings()
     );
     Option::instance().setIgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
     Option::instance().UseTransDateTime(m_use_trans_date_time->GetValue());
+    Option::instance().TreatDateAsSN(m_treat_date_as_SN->GetValue());
 
     mmColors::userDefColor1 = m_UDFCB1->GetBackgroundColour();
     mmColors::userDefColor2 = m_UDFCB2->GetBackgroundColour();

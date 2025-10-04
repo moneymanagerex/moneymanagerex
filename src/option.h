@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2025 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -159,6 +159,12 @@ public:
     bool UseTransDateTime(const bool value);
     bool UseTransDateTime() const noexcept;
 
+    // m_treat_date_as_SN
+    void loadTreatDateAsSN();
+    bool TreatDateAsSN(const bool value);
+    bool TreatDateAsSN() const noexcept;
+
+
     // m_budget_deduct_monthly: Deduct monthly budget from yearly budget
     void loadBudgetDeductMonthly();
     void setBudgetDeductMonthly(const bool value);
@@ -247,11 +253,10 @@ public:
     void setDoSpecialColorReconciled(const bool value);
     bool getDoSpecialColorReconciled() const noexcept;
 
-    // m_use_combined_transaction_filter
-    void loadUseCombinedTransactionFilter();
-    void setUseCombinedTransactionFilter(const bool value);
-    bool getUseCombinedTransactionFilter() const noexcept;
-
+    // m_store_account_specific_filter
+    void loadUsePerAccountFilter();
+    void setUsePerAccountFilter(const bool value);
+    bool getUsePerAccountFilter() const noexcept;
 
     // m_show_tooltips
     void loadShowToolTips();
@@ -302,10 +307,11 @@ private:
     bool m_ignore_future_transactions = false;          // IGNORE_FUTURE_TRANSACTIONS
     bool m_do_not_color_future = true;                  // DO_NOT_COLOR_FUTURE_TRANSACTIONS
     bool m_do_special_color_reconciled = true;          // SPECIAL_COLOR_RECONCILED_TRANSACTIONS
-    bool m_use_combined_transaction_filter = false;     // USE_COMBINED_TRANSACTION_FILTER
+    bool m_store_account_specific_filter = false;       // USE_PER_ACCOUNT_FILTER
     bool m_show_tooltips = true;                        // IGNORE_SHOW_TOOLTIPS
     bool m_show_moneytips = true;                       // IGNORE_SHOW_MONEYTIPS
     bool m_use_trans_datetime = false;                  // TRANSACTION_USE_DATE_TIME
+    bool m_treat_date_as_SN = true;                     // TRANSACTION_TREAT_DATE_AS_SN
     int m_trans_payee_none = Option::NONE;              // TRANSACTION_PAYEE_NONE
     int m_trans_category_none = Option::NONE;           // TRANSACTION_CATEGORY_NONE
     int m_trans_category_transfer_none = Option::NONE;  // TRANSACTION_CATEGORY_TRANSFER_NONE
@@ -474,6 +480,11 @@ inline bool Option::UseTransDateTime() const noexcept
     return m_use_trans_datetime;
 }
 
+inline bool Option::TreatDateAsSN() const noexcept
+{
+    return m_treat_date_as_SN;
+}
+
 inline bool Option::getBudgetOverride() const noexcept
 {
     return m_budget_override;
@@ -523,9 +534,9 @@ inline bool Option::getDoSpecialColorReconciled() const noexcept
     return m_do_special_color_reconciled;
 }
 
-inline bool Option::getUseCombinedTransactionFilter() const noexcept
+inline bool Option::getUsePerAccountFilter() const noexcept
 {
-    return m_use_combined_transaction_filter;
+    return m_store_account_specific_filter;
 }
 
 inline bool Option::getShowToolTips() const noexcept

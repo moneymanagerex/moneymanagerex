@@ -1070,14 +1070,17 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         m_fused_data.TRANSAMOUNT = 0;
     }
 
-    if (m_local_splits.empty() && cbCategory_->mmIsValid())
+    if (cbCategory_->IsEnabled() && !cbCategory_->GetValue().IsEmpty() && !cbCategory_->mmIsValid()) {
+        mmErrorDialogs::ToolTip4Object(cbCategory_, _t("Invalid value"), _t("Category"), wxICON_ERROR);
+        return;
+    }
+    wxLogDebug("Cat Valid %d, Cat Is Empty %d, Cat value [%s]", cbCategory_->mmIsValid(), cbCategory_->GetValue().IsEmpty(), cbCategory_->GetValue());
+    if (m_local_splits.empty())
     {
         Split s;
         s.SPLITTRANSAMOUNT = m_fused_data.TRANSAMOUNT;
-        s.CATEGID = cbCategory_->mmGetCategoryId();
-        tagTextCtrl_->ValidateTagText();
-        s.TAGS = tagTextCtrl_->GetTagIDs();
-        s.NOTES = textNotes_->GetValue();
+        if (cbCategory_->mmIsValid())
+            s.CATEGID = cbCategory_->mmGetCategoryId();
         m_local_splits.push_back(s);
     }
 
@@ -1090,13 +1093,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         if (m_local_splits.size() == 1) {
             m_fused_data.CATEGID = m_local_splits[0].CATEGID;
             m_fused_data.TRANSAMOUNT = m_local_splits[0].SPLITTRANSAMOUNT;
-            textNotes_->SetValue(m_local_splits[0].NOTES);
             m_textAmount->SetValue(m_fused_data.TRANSAMOUNT);
-            tagTextCtrl_->Clear();
-            wxString tagnames;
-            for (const auto& tag : m_local_splits[0].TAGS)
-                tagnames.Append(Model_Tag::instance().get(tag)->TAGNAME + " ");
-            tagTextCtrl_->SetText(tagnames);
             m_local_splits.clear();
         }
 

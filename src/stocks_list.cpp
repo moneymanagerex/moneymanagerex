@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2010-2021 Nikolay Akimov
  Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -62,8 +63,8 @@ wxBEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
 wxEND_EVENT_TABLE()
 
 const std::vector<ListColumnInfo> StocksListCtrl::LIST_INFO = {
-    { LIST_ID_ICON,           true, _n("Icon"),                 25,  _FL, false },
-    { LIST_ID_ID,             true, _n("ID"),                   _WA, _FR, true },
+    { LIST_ID_ICON,           true, _n("Icon"),                 25,  _FC, false },
+    { LIST_ID_ID,             true, _n("ID"),                   _WA, _FL, true },
     { LIST_ID_DATE,           true, _n("*Date"),                _WH, _FL, true },
     { LIST_ID_NAME,           true, _n("Company Name"),         _WH, _FL, true },
     { LIST_ID_SYMBOL,         true, _n("Symbol"),               _WH, _FL, true },
@@ -83,7 +84,17 @@ StocksListCtrl::StocksListCtrl(
     mmStocksPanel* cp, wxWindow *parent, wxWindowID winid
 ) :
     mmListCtrl(parent, winid),
-    m_stock_panel(cp)
+    m_stock_panel(cp),
+    m_attr1(new wxListItemAttr(
+            mmThemeMetaColour(meta::COLOR_REPORT_DEBIT),
+            mmThemeMetaColour(meta::COLOR_LISTALT0),
+            GetFont()
+        )),
+    m_attr2(new wxListItemAttr(
+            mmThemeMetaColour(meta::COLOR_REPORT_DEBIT),
+            mmThemeMetaColour(meta::COLOR_LIST),
+            GetFont()
+        ))
 {
     wxVector<wxBitmapBundle> images;
     images.push_back(mmBitmapBundle(png::PROFIT));
@@ -104,8 +115,9 @@ StocksListCtrl::StocksListCtrl(
     createColumns();
 
     initVirtualListControl();
-    if (!m_stocks.empty())
+    if (!m_stocks.empty()) {
         EnsureVisible(m_stocks.size() - 1);
+    }
 }
 
 StocksListCtrl::~StocksListCtrl()
@@ -131,7 +143,7 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
     }
     m_stock_panel->OnListItemSelected(m_selected_row);
 
-    bool hide_menu_item = (m_selected_row < 0);
+    bool enable_menu_item = m_selected_row > -1 && m_stock_panel->m_account_id > -1;
 
     wxMenu menu;
     menu.Append(MENU_TREEPOPUP_NEW, _tu("&New Stock Investment…"));
@@ -146,12 +158,13 @@ void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _tu("&Organize Attachments…"));
     menu.Append(wxID_INDEX, _t("Stock &Web Page"));
 
-    menu.Enable(MENU_TREEPOPUP_EDIT, !hide_menu_item);
-    menu.Enable(MENU_TREEPOPUP_ADDTRANS, !hide_menu_item && m_stocks[m_selected_row].NUMSHARES > 0);
-    menu.Enable(MENU_TREEPOPUP_VIEWTRANS, !hide_menu_item);
-    menu.Enable(MENU_TREEPOPUP_DELETE, !hide_menu_item);
-    menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, !hide_menu_item);
-    menu.Enable(wxID_INDEX, !hide_menu_item);
+    menu.Enable(MENU_TREEPOPUP_NEW, m_stock_panel->m_account_id > -1);
+    menu.Enable(MENU_TREEPOPUP_EDIT,  m_selected_row > -1);
+    menu.Enable(MENU_TREEPOPUP_ADDTRANS, enable_menu_item && m_stocks[m_selected_row].NUMSHARES > 0);
+    menu.Enable(MENU_TREEPOPUP_VIEWTRANS, m_selected_row > -1);
+    menu.Enable(MENU_TREEPOPUP_DELETE, enable_menu_item);
+    menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, enable_menu_item);
+    menu.Enable(wxID_INDEX, m_selected_row > -1);
 
     PopupMenu(&menu, event.GetPosition());
 
@@ -304,7 +317,7 @@ void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
 void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
-    
+
     const auto& accounts = Model_Account::instance().find(
         Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT));
     if (accounts.empty()) return;
@@ -385,8 +398,10 @@ void StocksListCtrl::OnListItemActivated(wxListEvent& event)
 {
     if ((event.GetId() == wxID_ADD) || (event.GetId() == MENU_TREEPOPUP_ADDTRANS))
     {
-        m_stock_panel->AddStockTransaction(m_selected_row);
-        m_stock_panel->m_frame->RefreshNavigationTree();
+        if (m_stock_panel->AddStockTransaction(m_selected_row) == wxID_OK)
+        {
+            m_stock_panel->m_frame->RefreshNavigationTree();
+        }
     }
     else if ((event.GetId() == wxID_VIEW_DETAILS) || (event.GetId() == MENU_TREEPOPUP_VIEWTRANS))
     {
@@ -445,16 +460,25 @@ void StocksListCtrl::doRefreshItems(int64 trx_id)
 
 int StocksListCtrl::initVirtualListControl(int64 trx_id)
 {
-    m_stock_panel->updateHeader();
     /* Clear all the records */
     DeleteAllItems();
 
     // TODO
-    int currentSelection = m_stock_panel->getFilter();
-    if (currentSelection)
-        m_stocks = Model_Stock::instance().find(Model_Stock::HELDAT(m_stock_panel->m_account_id), Model_Stock::NUMSHARES(0.0, GREATER));
-    else
-        m_stocks = Model_Stock::instance().find(Model_Stock::HELDAT(m_stock_panel->m_account_id));
+    if (m_stock_panel->m_account_id > -1 ) {
+        m_stocks = Model_Stock::instance().find(
+                        Model_Stock::HELDAT(m_stock_panel->m_account_id),
+                        Model_Stock::NUMSHARES(0.0, m_stock_panel->getFilter() ? GREATER : GREATER_OR_EQUAL)
+                );
+    }
+    else { // create summary
+        m_stocks = Model_Stock::instance().find(
+                        Model_Stock::NUMSHARES(0.0, m_stock_panel->getFilter() ? GREATER : GREATER_OR_EQUAL)
+                );
+        if (!m_stocks.empty())
+            createSummary();
+    }
+
+    m_stock_panel->updateHeader();
     sortList();
 
     int cnt = 0, selected_item = -1;
@@ -544,4 +568,50 @@ void StocksListCtrl::sortList()
         break;
     }
     if (!getSortAsc()) std::reverse(m_stocks.begin(), m_stocks.end());
+}
+
+void StocksListCtrl::createSummary()
+{
+    Model_Stock::Data_Set stocks_summary;
+    Model_Stock::Data prevStock;
+    wxString prevSymbol = "";
+    m_investedVal = 0;
+    m_marketVal = 0;
+
+    std::sort(m_stocks.begin(), m_stocks.end());
+    std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySYMBOL());
+
+    for (Model_Stock::Data stock : m_stocks) {
+        if (stock.SYMBOL != prevSymbol) {
+            if (!prevSymbol.IsEmpty()) {
+                stocks_summary.push_back(prevStock);
+            }
+            prevSymbol = stock.SYMBOL;
+            prevStock = stock;
+        }
+        else {
+            prevStock.NUMSHARES += stock.NUMSHARES;
+            prevStock.VALUE += stock.VALUE;
+            prevStock.COMMISSION += stock.COMMISSION;
+            prevStock.PURCHASEPRICE = (prevStock.VALUE - prevStock.COMMISSION)/ prevStock.NUMSHARES;
+            prevStock.NOTES += (prevStock.NOTES.IsEmpty() ? "" : " - ") + stock.NOTES;
+        }
+        m_investedVal += stock.VALUE + stock.COMMISSION;
+        m_marketVal += stock.CURRENTPRICE * stock.NUMSHARES;
+
+    }
+    stocks_summary.push_back(prevStock);
+
+    m_stocks = stocks_summary;
+}
+
+void StocksListCtrl::getInvestmentBalance(double& invested, double& current)
+{
+    invested = m_investedVal;
+    current = m_marketVal;
+}
+
+wxListItemAttr* StocksListCtrl::OnGetItemAttr(long item) const
+{
+    return (item % 2) ? (GetGainLoss(item) < 0 ? m_attr2.get() : attr2_.get()) : GetGainLoss(item) < 0 ? m_attr1.get() : attr1_.get();
 }

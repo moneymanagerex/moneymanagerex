@@ -90,7 +90,7 @@ wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
         MENU_ON_SET_UDC7,
         TransactionListCtrl::onSetUserColour
     )
-wxEND_EVENT_TABLE()
+wxEND_EVENT_TABLE();
 
 const std::vector<ListColumnInfo> TransactionListCtrl::LIST_INFO = {
     { LIST_ID_ICON,        true, _n("Icon"),         25,  _FC, false },
@@ -1128,18 +1128,15 @@ void TransactionListCtrl::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
     findSelectedTransactions();
     int retainDays = Model_Setting::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30);
 
-    // Ask if they want to delete
-    const bool isPermanent = (m_cp->isDeletedTrans() || retainDays == 0);
-    const wxString permText =
+    //ask if they want to delete
+    wxString text = (m_cp->isDeletedTrans() || retainDays == 0)?
         wxString::Format(wxPLURAL("Do you want to permanently delete the selected transaction?"
-                                , "Do you want to permanently delete the %i selected transactions?", sel)
-                                , sel);
-    const wxString nonPermText =
+        , "Do you want to permanently delete the %i selected transactions?", sel)
+        , sel)
+        :
         wxString::Format(wxPLURAL("Do you want to delete the selected transaction?"
-                                , "Do you want to delete the %i selected transactions?", sel)
-                                , sel);
-
-    wxString text = isPermanent ? permText : nonPermText;
+            , "Do you want to delete the %i selected transactions?", sel)
+            , sel);
     text += "\n\n";
     text += ((m_cp->isDeletedTrans() || retainDays == 0) ? _t("Unable to undo this action.")
         : _t("Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."));

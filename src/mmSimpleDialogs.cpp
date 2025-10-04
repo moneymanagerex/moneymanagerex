@@ -690,6 +690,21 @@ bool mmDatePickerCtrl::Enable(bool state)
     return response;
 }
 
+bool mmDatePickerCtrl::Show(bool state)
+{
+    bool response = datePicker_->Show(state);
+    if (timePicker_) {
+        timePicker_->Show(state);
+    }
+    if (itemStaticTextWeek_) {
+        itemStaticTextWeek_->Show(state);
+    }
+    if (spinButton_) {
+        spinButton_->Show(state);
+    }
+    return response;
+}
+
 // Gets the full layout including spin buttons, time picker, and day of week
 wxBoxSizer* mmDatePickerCtrl::mmGetLayout(bool showTimeCtrl)
 {
@@ -935,7 +950,7 @@ mmDateYearMonth::mmDateYearMonth(wxWindow *parent) :
 bool mmDateYearMonth::Create(wxWindow* parent, wxWindowID id)
 {
     int y =
-#ifdef __WXGTK__
+#if defined (__WXGTK__) || defined(__WXMAC__)
         48;
 #else
         24;

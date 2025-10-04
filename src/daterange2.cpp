@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "daterange2.h"
+#include "constants.h"
 #include "option.h"
 
 const DateRange2::PERIOD_INFO_t DateRange2::PERIOD_INFO[] =
@@ -455,14 +456,12 @@ wxDateTime DateRange2::checking_end() const
 
 wxDateTime DateRange2::reporting_start() const
 {
-    // TODO
-    return wxInvalidDateTime;
+    return checking_start();
 }
 
 wxDateTime DateRange2::reporting_end() const
 {
-    // TODO
-    return wxInvalidDateTime;
+    return checking_end();
 }
 
 const wxString DateRange2::checking_tooltip() const

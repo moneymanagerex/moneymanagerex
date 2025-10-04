@@ -119,7 +119,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, const w
 
 void mmFilterTransactionsDialog::mmDoInitVariables()
 {
-    m_use_date_filter = isReportMode_ || Option::instance().getUseCombinedTransactionFilter();
+    m_use_date_filter = isReportMode_; //|| Option::instance().getUsePerAccountFilter();
 
     m_custom_fields = new mmCustomDataTransaction(this, 0, ID_CUSTOMFIELDS + (isReportMode_ ? 100 : 0));
 

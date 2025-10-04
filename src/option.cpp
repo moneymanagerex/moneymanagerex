@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2016 - 2021 Nikolay Akimov
- Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021-2025 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -128,9 +128,10 @@ void Option::load(bool include_infotable)
     loadBudgetDeductMonthly();
     loadIgnoreFutureTransactions();
     loadUseTransDateTime();
+    loadTreatDateAsSN();
     loadDoNotColorFuture();
     loadDoSpecialColorReconciled();
-    loadUseCombinedTransactionFilter();
+    loadUsePerAccountFilter();
     loadShowToolTips();
     loadShowMoneyTips();
     loadTransPayeeNone();
@@ -417,11 +418,27 @@ void Option::loadUseTransDateTime()
 {
     m_use_trans_datetime = Model_Setting::instance().getBool("TRANSACTION_USE_DATE_TIME", false);
 }
+
 bool Option::UseTransDateTime(const bool value)
 {
     if (value != m_use_trans_datetime) {
         Model_Setting::instance().setBool("TRANSACTION_USE_DATE_TIME", value);
         m_use_trans_datetime = value;
+        return true;
+    }
+    return false;
+}
+
+void Option::loadTreatDateAsSN()
+{
+    m_treat_date_as_SN = Model_Setting::instance().getBool("TRANSACTION_TREAT_DATE_AS_SN", true);
+}
+
+bool Option::TreatDateAsSN(const bool value)
+{
+    if (value != m_treat_date_as_SN) {
+        Model_Setting::instance().setBool("TRANSACTION_TREAT_DATE_AS_SN", value);
+        m_treat_date_as_SN = value;
         return true;
     }
     return false;
@@ -447,14 +464,14 @@ void Option::setDoSpecialColorReconciled(const bool value)
     m_do_special_color_reconciled = value;
 }
 
-void Option::loadUseCombinedTransactionFilter()
+void Option::loadUsePerAccountFilter()
 {
-    m_use_combined_transaction_filter = Model_Setting::instance().getBool("USE_COMBINED_TRANSACTION_FILTER", true);
+    m_store_account_specific_filter = Model_Setting::instance().getBool("USE_PER_ACCOUNT_FILTER", true);
 }
-void Option::setUseCombinedTransactionFilter(const bool value)
+void Option::setUsePerAccountFilter(const bool value)
 {
-    Model_Setting::instance().setBool("USE_COMBINED_TRANSACTION_FILTER", value);
-    m_use_combined_transaction_filter = value;
+    Model_Setting::instance().setBool("USE_PER_ACCOUNT_FILTER", value);
+    m_store_account_specific_filter = value;
 }
 
 

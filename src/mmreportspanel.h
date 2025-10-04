@@ -67,6 +67,7 @@ public:
     {
         ID_CHOICE_DATE_RANGE = wxID_HIGHEST + 555,
         ID_CHOICE_ACCOUNTS,
+        ID_CHOICE_SINGLE_DATE,
         ID_CHOICE_START_DATE,
         ID_CHOICE_END_DATE,
         ID_CHOICE_TIME,
@@ -85,7 +86,7 @@ private:
     std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
     std::vector<DateRange2::Spec> m_date_range_a = {};
     wxChoice* m_date_ranges = nullptr;
-    mmDatePickerCtrl *m_start_date = nullptr, *m_end_date = nullptr;
+    mmDatePickerCtrl *m_single_date = nullptr, *m_start_date = nullptr, *m_end_date = nullptr;
     wxTimePickerCtrl *m_time = nullptr;
     wxWebView * browser_ = nullptr;
     mmPrintableBase* rb_ = nullptr;
@@ -98,10 +99,10 @@ private:
     mmCheckingPanel::FILTER_ID m_filter_id;
 
 private:
-    void OnDateRangeChanged(wxCommandEvent& event);
     void OnYearChanged(wxCommandEvent& event);
     void OnBudgetChanged(wxCommandEvent & event);
     void OnStartEndDateChanged(wxDateEvent& event);
+    void OnSingleDateChanged(wxDateEvent& event);
     void OnAccountChanged(wxCommandEvent& event);
     void OnChartChanged(wxCommandEvent& event);
     void OnForwardMonthsChangedSpin(wxSpinEvent& event);
@@ -118,7 +119,7 @@ private:
     int m_shift = 0;
 
     // New filtering
-    bool m_use_dedicated_filter;
+    bool m_use_account_specific_filter;
     int m_date_range_m = -1;
     wxString htmlreport_;
 

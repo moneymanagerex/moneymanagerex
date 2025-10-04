@@ -1,7 +1,7 @@
 /*******************************************************
 Copyright (C) 2006-2012 Madhan Kanagavel
 Copyright (C) 2013 - 2016, 2020 - 2022 Nikolay Akimov
-Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2022,2025 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -374,6 +374,7 @@ void mmSplitTransactionDialog::createNewRow(const bool enabled)
 
 void mmSplitTransactionDialog::activateNewRow()
 {
+    int focus_offset = (m_splits_widgets.at(row_num_).category->GetValue().empty()) ? -1 : 0;
     if (row_num_ < (static_cast<int>(m_splits_widgets.size()) - 1)) {
         row_num_ = row_num_ + 1;
         if (row_num_ >= static_cast<int>(m_splits.size()))
@@ -385,7 +386,7 @@ void mmSplitTransactionDialog::activateNewRow()
         m_splits_widgets.at(row_num_).amount->Enable(true);
         m_splits_widgets.at(row_num_).tags->Enable(true);
         m_splits_widgets.at(row_num_).other->Enable(true);
-        m_splits_widgets.at(row_num_).category->SetFocus();
+        m_splits_widgets.at(row_num_+focus_offset).category->SetFocus();
     }
     else {
         createNewRow(true);

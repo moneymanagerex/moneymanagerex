@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2014, 2015, 2021 Nikolay Akimov
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2025 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -167,16 +168,17 @@ const std::map<int, std::tuple<wxString, wxString, bool> > metaDataTrans()
     md[COLOR_LISTFUTURE]       = std::make_tuple("/colors/listFutureDate",      "#7486A8", false);
     md[COLOR_HTMLPANEL_BACK]   = std::make_tuple("/colors/htmlPanel/background", "",       false);
     md[COLOR_HTMLPANEL_FORE]   = std::make_tuple("/colors/htmlPanel/foreColor",  "",       false);
-    md[COLOR_REPORT_ALTROW]    = std::make_tuple("/colors/reports/altRow",      "#F5F5F5", false);    
+    md[COLOR_REPORT_ALTROW]    = std::make_tuple("/colors/reports/altRow",      "#F5F5F5", false);
     md[COLOR_REPORT_CREDIT]    = std::make_tuple("/colors/reports/credit",      "#50B381", false);
     md[COLOR_REPORT_DEBIT]     = std::make_tuple("/colors/reports/debit",       "#F75E51", false);
     md[COLOR_REPORT_DELTA]     = std::make_tuple("/colors/reports/delta",       "#008FFB", false);
     md[COLOR_REPORT_PERF]      = std::make_tuple("/colors/reports/perf",       "#FF6307", false);
-    md[COLOR_REPORT_FORECOLOR] = std::make_tuple("/colors/reports/foreColor",   "#373D3F", false);  
+    md[COLOR_REPORT_FORECOLOR] = std::make_tuple("/colors/reports/foreColor",   "#373D3F", false);
     md[COLOR_REPORT_PALETTE]   = std::make_tuple("/colors/reports/palette",  "#008FFB "
             "#00E396 #FEB019 #FF4560 #775DD0 #3F51B5 #03A9F4 #4cAF50 #F9CE1D #FF9800 "
             "#33B2DF #546E7A #D4526E #13D8AA #A5978B #4ECDC4 #81D4FA #546E7A #FD6A6A "
             "#2B908F #F9A3A4 #90EE7E #FA4443 #69D2E7 #449DD1 #F86624",                     false);
+    md[COLOR_HIDDEN]           = std::make_tuple("/colors/other/hidden",    "#81D4FA", false);
 
     return md;
 };
@@ -252,7 +254,7 @@ wxVector<wxBitmapBundle> navtree_images_list(const int size)
         images.push_back(img.second);
     for (const auto& img : acc_images(x))
          images.push_back(img.second);
-         
+
     return (images);
 }
 
@@ -274,7 +276,7 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
     wxLogDebug("Scanning [%s] for Theme [%s]", themeDir, myTheme);
     if (!directory.IsOpened()) {
         wxLogDebug("}}}");
-        return false;  
+        return false;
     }
 
     bool themeMatched = false;
@@ -312,7 +314,7 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
 
                 if (fileEntryName.IsDir())
                     continue;   // We can skip directories
-                
+
                 if (metaPhase) {
                     // For this phase we are only interested in the metadata and checking
                     // if theme has dark-mode components
@@ -344,12 +346,12 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                         continue;
                 }
 
-                // Remove dark mode prefix 
-                if (darkFound && darkMode) 
+                // Remove dark mode prefix
+                if (darkFound && darkMode)
                     fileName = fileName.substr(5);
 
                 // If the file does not match an icon file then just load into VFS / tmp
-                if (!iconName2enum.count(fileName)) {                                        
+                if (!iconName2enum.count(fileName)) {
 #if defined(__WXMSW__) || defined(__WXMAC__)
                     wxMemoryOutputStream memOut(nullptr);
                     themeStream.Read(memOut);
@@ -361,7 +363,7 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                         fileName, buffer->GetBufferStart(), buffer->GetBufferSize()
                     );
                     wxLogDebug("Theme: '%s' File: '%s' has been copied to VFS", thisTheme, fileName);
-#else                    
+#else
                     const wxString theme_file = mmex::getTempFolder() + fileName;
                     wxFileOutputStream fileOut(theme_file);
                     if (!fileOut.IsOk())
@@ -408,7 +410,7 @@ bool checkThemeContents(wxArrayString *filesinTheme)
 
     // Check for required files
     const wxString neededFiles[] = { "master.css", "" };
-    
+
     for (int i = 0; !neededFiles[i].IsEmpty(); i++)
     {
         const wxString realName = (darkFound && darkMode) ? neededFiles[i].AfterLast('-') : neededFiles[i];
@@ -470,12 +472,12 @@ void reverttoDefaultTheme()
     Model_Setting::instance().setTheme("default");
     darkFound = false;
     processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().getTheme(), true);
-    processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().getTheme(), false);  
+    processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().getTheme(), false);
 }
 
 void LoadTheme()
 {
-    darkMode = ( (mmex::isDarkMode() && (Option::THEME_MODE::AUTO == Option::instance().getThemeMode())) 
+    darkMode = ( (mmex::isDarkMode() && (Option::THEME_MODE::AUTO == Option::instance().getThemeMode()))
                     || (Option::THEME_MODE::DARK == Option::instance().getThemeMode()));
     filesInVFS = new wxArrayString();
 
@@ -492,7 +494,7 @@ void LoadTheme()
                 , Model_Setting::instance().getTheme()), _t("Warning"), wxOK | wxICON_WARNING);
             reverttoDefaultTheme();
         }
-    
+
     if (!checkThemeContents(filesInVFS.get()))
     {
         wxMessageBox(wxString::Format(_t("Theme %s has missing items and is incompatible. Reverting to default theme"), Model_Setting::instance().getTheme()), _t("Warning"), wxOK | wxICON_WARNING);
@@ -504,14 +506,14 @@ void LoadTheme()
                 , _t("Error"), wxOK | wxICON_ERROR);
             exit(EXIT_FAILURE);
         }
-    } 
+    }
 }
 
 void CloseTheme()
 {
     // Release icons - needed before app closure
     // https://github.com/wxWidgets/wxWidgets/issues/22862
-    for (int i = 0; i < numSizes; i++) 
+    for (int i = 0; i < numSizes; i++)
         for (int j = 0; j < MAX_PNG; j++)
             programIconBundles[i][j].reset();
 }
