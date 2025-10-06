@@ -885,7 +885,7 @@ void mmPayeeSelectionDialog::OnPayeeChoice(wxCommandEvent& event)
 }
 
 mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
-    : wxDialog(parent, wxID_ANY, _("Import OFX File"), wxDefaultPosition, wxSize(500, 360), wxCAPTION | wxCLOSE_BOX | wxMINIMIZE_BOX), fileNameCtrl_(nullptr),
+    : wxDialog(parent, wxID_ANY, _("Import OFX file"), wxDefaultPosition, wxSize(500, 360), wxCAPTION | wxCLOSE_BOX | wxMINIMIZE_BOX), fileNameCtrl_(nullptr),
       accountDropDown_(nullptr), account_id_(0), payeeRegExCheckBox_(nullptr), useFuzzyMatchingCheckBox_(nullptr), fuzzyConfidenceChoice_(nullptr),
       markFuzzyFollowUpCheckBox_(nullptr), transferCategId_(-1), importStartTime_(0), promptFuzzyConfirmationCheckBox_(nullptr)
 {
