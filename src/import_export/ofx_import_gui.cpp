@@ -87,7 +87,7 @@ void mmPayeeSelectionDialog::OnCategorySelection(wxCommandEvent& WXUNUSED(event)
     if (selectedCategoryId == -1)
     {
         updateCategoryButton_->Enable(false);
-        updateCategoryButton_->SetToolTip(_("Cannot set 'Uncategorized' as the default category for the payee"));
+        updateCategoryButton_->SetToolTip(_tu("Unable to set “Uncategorized” as the default category for the payee"));
     }
     else
     {
