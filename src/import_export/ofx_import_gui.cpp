@@ -893,7 +893,7 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
 
     mainSizer->Add(new wxStaticText(this, wxID_ANY, _("OFX File:")), 0, wxALL, 5);
     fileNameCtrl_ = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
-    wxButton* browseButton = new wxButton(this, wxID_OPEN, _("Browse"));
+    wxButton* browseButton = new wxButton(this, wxID_OPEN, _("Browse…"));
     wxBoxSizer* fileSizer = new wxBoxSizer(wxHORIZONTAL);
     fileSizer->Add(fileNameCtrl_, 1, wxALL | wxEXPAND, 5);
     fileSizer->Add(browseButton, 0, wxALL, 5);
