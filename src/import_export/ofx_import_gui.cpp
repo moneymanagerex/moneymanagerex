@@ -1827,11 +1827,11 @@ mmOFXImportSummaryDialog::mmOFXImportSummaryDialog(wxWindow* parent, const std::
     wxStaticText* statsText =
         new wxStaticText(this, wxID_ANY,
                          wxString::Format(_("Import Statistics:\n"
-                                            "- Total Transactions: %d\n"
-                                            "- Automatically Imported: %d\n"
-                                            "- New Payees Created: %d\n"
-                                            "- Manually Allocated to Payees: %d\n"
-                                            "- Time Taken: %s"),
+                                            "- Total Transactions: %1$d\n"
+                                            "- Automatically Imported: %2$d\n"
+                                            "- New Payees Created: %3$d\n"
+                                            "- Manually Allocated to Payees: %4$d\n"
+                                            "- Time Taken: %5$s"),
                                           totalTransactions_, autoImportedCount_, newPayeesCreated_, manuallyAllocated_, FormatTimeTaken(elapsedTimeSec)));
     mainSizer->Add(statsText, 0, wxALL | wxEXPAND, 10);
 
