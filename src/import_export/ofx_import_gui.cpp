@@ -380,7 +380,7 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& WXUNUSED(event))
                 wxRegEx re(pattern, wxRE_ADVANCED);
                 if (!re.IsValid())
                 {
-                    wxMessageBox(wxString::Format(_tu("Invalid regular expression “%s” in row %d: please correct the pattern"), pattern, i + 1), _("Error"),
+                    wxMessageBox(wxString::Format(_tu("Invalid regular expression “%1$s” in row %2$d: please correct the pattern"), pattern, i + 1), _("Error"),
                                  wxOK | wxICON_ERROR);
                     return;
                 }
