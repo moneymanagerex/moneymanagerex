@@ -1742,7 +1742,7 @@ void mmGUIFrame::createMenu()
     importMenu->AppendSeparator();
     importMenu->Append(MENU_IMPORT_QIF, _tu("&QIF File…"), _t("Import from QIF file"));
     importMenu->AppendSeparator();
-    importMenu->Append(MENU_IMPORT_OFX, _tu("&OFX File…")), _t("Import from OFX file"));
+    importMenu->Append(MENU_IMPORT_OFX, _tu("&OFX File…"), _t("Import from OFX file"));
     importMenu->AppendSeparator();
     importMenu->Append(MENU_IMPORT_WEBAPP, _tu("&WebApp…"), _t("Import from the WebApp"));
 
