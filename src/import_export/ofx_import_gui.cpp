@@ -622,7 +622,7 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     wxStaticText* progressLabel = new wxStaticText(
         this, wxID_ANY, wxString::Format(_("Transaction %d of %d (%d total in file)"), currentTransaction_ + 1, newTransactions_, totalTransactions_));
     mainSizer->Add(progressLabel, 0, wxALL, 5);
-    wxString etaText = (avgTimePerTrans > 0) ? wxString::Format(_("Estimated completion time: %.1f minutes"), estimatedTimeMin) : _("Estimating time...");
+    wxString etaText = (avgTimePerTrans > 0) ? wxString::Format(_("Estimated completion time: %.1f minutes"), estimatedTimeMin) : _tu("Estimating time…");
     mainSizer->Add(new wxStaticText(this, wxID_ANY, etaText), 0, wxALL, 5);
 
     // Transaction info
@@ -893,7 +893,7 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
 
     mainSizer->Add(new wxStaticText(this, wxID_ANY, _("OFX File:")), 0, wxALL, 5);
     fileNameCtrl_ = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
-    wxButton* browseButton = new wxButton(this, wxID_OPEN, _("Browse…"));
+    wxButton* browseButton = new wxButton(this, wxID_OPEN, _tu("Browse…"));
     wxBoxSizer* fileSizer = new wxBoxSizer(wxHORIZONTAL);
     fileSizer->Add(fileNameCtrl_, 1, wxALL | wxEXPAND, 5);
     fileSizer->Add(browseButton, 0, wxALL, 5);
