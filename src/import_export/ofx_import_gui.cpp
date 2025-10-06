@@ -620,7 +620,7 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     double estimatedTimeMin = estimatedTimeSec / 60.0;
 
     wxStaticText* progressLabel = new wxStaticText(
-        this, wxID_ANY, wxString::Format(_("Transaction %d of %d (%d total in file)"), currentTransaction_ + 1, newTransactions_, totalTransactions_));
+        this, wxID_ANY, wxString::Format(_("Transaction %1$d of %2$d (%3$d total in file)"), currentTransaction_ + 1, newTransactions_, totalTransactions_));
     mainSizer->Add(progressLabel, 0, wxALL, 5);
     wxString etaText = (avgTimePerTrans > 0) ? wxString::Format(_("Estimated completion time: %.1f minutes"), estimatedTimeMin) : _tu("Estimating time…");
     mainSizer->Add(new wxStaticText(this, wxID_ANY, etaText), 0, wxALL, 5);
