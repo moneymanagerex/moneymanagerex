@@ -127,16 +127,16 @@ mmAddAccountTypePage::mmAddAccountTypePage(mmAddAccountWizard *parent)
         wxString type = Model_Account::type_name(i);
         itemChoiceType_->Append(wxGetTranslation(type), new wxStringClientData(type));
     }
-    mmToolTip(itemChoiceType_, _t("Specify the type of account to be created."));
+    mmToolTip(itemChoiceType_, _t("Specify the account type to be created."));
     itemChoiceType_->SetSelection(Model_Account::TYPE_ID_CHECKING);
 
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
 
-    mainSizer->Add( new wxStaticText(this, wxID_ANY, _t("Type of Account")), 0, wxALL, 5 );
+    mainSizer->Add( new wxStaticText(this, wxID_ANY, _t("Account Type")), 0, wxALL, 5 );
     mainSizer->Add( itemChoiceType_, 0 /* No stretching*/, wxALL, 5 /* Border Size */);
 
     wxString textMsg = "\n";
-    textMsg << _t("Select the type of account to create:") << "\n\n"
+    textMsg << _t("Select the account type to create:") << "\n\n"
             << _t("General bank accounts cover a wide variety of account\n"
             "types like Cash, Checking, Loans, and Credit cards.");
     mainSizer->Add(new wxStaticText(this, wxID_ANY, textMsg), 0, wxALL, 5);
