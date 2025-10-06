@@ -92,7 +92,7 @@ void mmPayeeSelectionDialog::OnCategorySelection(wxCommandEvent& WXUNUSED(event)
     else
     {
         updateCategoryButton_->Enable(true);
-        updateCategoryButton_->SetToolTip(_("Toggle to update payee's default category (P) or apply to this transaction only"));
+        updateCategoryButton_->SetToolTip(_("Toggle to update payee’s default category (P) or apply to this transaction only"));
     }
     categoryManuallyChanged_ = true; // Mark as manually changed
     wxLogDebug("Category manually changed to '%s' (ID=%lld)", categoryChoice_->GetString(sel), selectedCategoryId);
@@ -380,7 +380,7 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& WXUNUSED(event))
                 wxRegEx re(pattern, wxRE_ADVANCED);
                 if (!re.IsValid())
                 {
-                    wxMessageBox(wxString::Format(_("Invalid regular expression '%s' in row %d: please correct the pattern"), pattern, i + 1), _("Error"),
+                    wxMessageBox(wxString::Format(_("Invalid regular expression “%s” in row %d: please correct the pattern"), pattern, i + 1), _("Error"),
                                  wxOK | wxICON_ERROR);
                     return;
                 }
@@ -745,7 +745,7 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     categoryChoice_->SetSelection(0);
 
     updateCategoryButton_ = new wxButton(this, ID_UPDATE_CATEGORY, "P", wxDefaultPosition, wxSize(25, -1));
-    updateCategoryButton_->SetToolTip(_("Toggle to update payee's default category (P) or apply to this transaction only"));
+    updateCategoryButton_->SetToolTip(_("Toggle to update payee’s default category (P) or apply to this transaction only"));
     wxBoxSizer* categoryButtonSizer = new wxBoxSizer(wxHORIZONTAL);
     categoryButtonSizer->Add(categoryChoice_, 1, wxEXPAND, 0);
     categoryButtonSizer->Add(updateCategoryButton_, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, 5);
@@ -932,7 +932,7 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
     mainSizer->Add(fuzzyConfidenceChoice_, 0, wxALL | wxEXPAND, 5);
 
     markFuzzyFollowUpCheckBox_ =
-        new wxCheckBox(this, wxID_ANY, _("Mark transactions automatically imported with Fuzzy Match as 'Follow Up'"), wxDefaultPosition, wxDefaultSize);
+        new wxCheckBox(this, wxID_ANY, _tu("Mark transactions automatically imported with Fuzzy Match as “Follow Up”"), wxDefaultPosition, wxDefaultSize);
     markFuzzyFollowUpCheckBox_->SetValue(false);
     mainSizer->Add(markFuzzyFollowUpCheckBox_, 0, wxALL, 5);
 
