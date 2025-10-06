@@ -654,7 +654,7 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     }
     else if (matchConfidence_ > 50.0) // Show suggested payee and confidence only if confidence > 50%
     {
-        mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Suggested Payee: '%s'"), suggestedPayeeName_)), 0, wxALL, 5);
+        mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_tu("Suggested Payee: “%s”"), suggestedPayeeName_)), 0, wxALL, 5);
         confidenceLabel_ = new wxStaticText(this, wxID_ANY, wxString::Format(_("Match Confidence: %.1f%% (%s)"), matchConfidence_, matchMethod_));
         mainSizer->Add(confidenceLabel_, 0, wxALL, 5);
 
