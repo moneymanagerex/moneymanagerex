@@ -915,7 +915,7 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
     mainSizer->Add(payeeRegExCheckBox_, 0, wxALL, 5);
 
     useFuzzyMatchingCheckBox_ =
-        new wxCheckBox(this, wxID_ANY, _("Use fuzzy payee matching if exact match and regex matching not successful"), wxDefaultPosition, wxDefaultSize);
+        new wxCheckBox(this, wxID_ANY, _("Use fuzzy payee matching if exact match and regex matching are unsuccessful"), wxDefaultPosition, wxDefaultSize);
     useFuzzyMatchingCheckBox_->SetValue(true);
     mainSizer->Add(useFuzzyMatchingCheckBox_, 0, wxALL, 5);
 
