@@ -272,13 +272,14 @@ sqlListCtrl::sqlListCtrl(mmGeneralReportManager* grm, wxWindow *parent, wxWindow
 {
 }
 
-mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent, wxSQLite3Database* db)
+mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent, wxSQLite3Database* db, wxString itemname)
     : m_db(db)
 {
     this->SetFont(parent->GetFont());
     Create(parent);
     mmSetSize(this);
     Centre();
+    SelectTreeItemByName(m_treeCtrl, itemname);
 }
 
 mmGeneralReportManager::~mmGeneralReportManager()
@@ -1528,3 +1529,35 @@ void mmGeneralReportManager::DownloadAndStoreReport(const wxString& groupName, c
     m_selectedReportID = Model_Report::instance().save(report);
 }
 #endif
+
+
+// Generic support routines - should be moved to a common modul
+void SelectTreeItemByName(wxTreeCtrl* treeCtrl, const wxString& name)
+{
+    wxTreeItemId root = treeCtrl->GetRootItem();
+    if (root.IsOk()) {
+        wxTreeItemId found = FindTreeItemByName(treeCtrl, root, name);
+        if (found.IsOk()) {
+            treeCtrl->SelectItem(found);
+            treeCtrl->EnsureVisible(found);  // Scroll to item
+        }
+    }
+}
+
+wxTreeItemId FindTreeItemByName(wxTreeCtrl* treeCtrl, const wxTreeItemId& parent, const wxString& name)
+{
+    if (treeCtrl->GetItemText(parent) == name) {
+        return parent;
+    }
+
+    wxTreeItemIdValue cookie;
+    wxTreeItemId child = treeCtrl->GetFirstChild(parent, cookie);
+    while (child.IsOk()) {
+        wxTreeItemId found = FindTreeItemByName(treeCtrl, child, name);
+        if (found.IsOk()) {
+            return found;
+        }
+        child = treeCtrl->GetNextChild(parent, cookie);
+    }
+    return wxTreeItemId();  // Not Found
+}

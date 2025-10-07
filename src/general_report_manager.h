@@ -58,7 +58,7 @@ public:
     mmGeneralReportManager() {}
     ~mmGeneralReportManager();
 
-    mmGeneralReportManager(wxWindow* parent, wxSQLite3Database* db);
+    mmGeneralReportManager(wxWindow* parent, wxSQLite3Database* db, wxString itemname);
     wxString OnGetItemText(long item, long col_nr) const;
 #ifdef MMEX_USE_REPORT_SYNC
     bool syncReport(int64 id);
@@ -169,3 +169,8 @@ private:
     };
 
 };
+
+
+// General support routines - may be moved to common modul
+void SelectTreeItemByName(wxTreeCtrl* treeCtrl, const wxString& name);
+wxTreeItemId FindTreeItemByName(wxTreeCtrl* treeCtrl, const wxTreeItemId& parent, const wxString& name);
