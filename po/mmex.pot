@@ -3132,7 +3132,19 @@ msgid "Choose file to Save As Report"
 msgstr ""
 
 #: general_report_manager.cpp:1301
-msgid "Parameters:"
+msgid "Parameters"
+msgstr ""
+
+#: general_report_manager.cpp:1542
+msgid "Copy name:"
+msgstr ""
+
+#: general_report_manager.cpp:1543
+msgid "Copy all column names"
+msgstr ""
+
+#: general_report_manager.cpp:1544
+msgid "Copy as SQL SELECT"
 msgstr ""
 
 #: images_list.cpp:328

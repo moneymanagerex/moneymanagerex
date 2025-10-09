@@ -261,6 +261,9 @@ wxBEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
     EVT_CONTEXT_MENU(mmGeneralReportManager::OnContextMenu)
     EVT_MENU(wxID_EXECUTE, mmGeneralReportManager::OnRun)
     EVT_MENU(wxID_SAVE, mmGeneralReportManager::OnUpdateReport)
+    EVT_MENU(ID_SQL_COPY, mmGeneralReportManager::OnSQLTreeCopy)
+    EVT_MENU(ID_SQL_COPY_ALL, mmGeneralReportManager::OnSQLTreeCopy)
+    EVT_MENU(ID_SQL_COPY_SELECT, mmGeneralReportManager::OnSQLTreeCopy)
     EVT_MENU(wxID_ANY, mmGeneralReportManager::OnMenuSelected)   // MUST be last EVT_MENU entry !
 
     EVT_CLOSE(mmGeneralReportManager::OnCloseWindow)
@@ -502,7 +505,7 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
         pnl1->SetSizer(bSizerp1);
 
         wxSplitterWindow *splitter_sql = new wxSplitterWindow(pnl1, wxID_ANY);
-        splitter_sql->SetSashGravity(0.9);
+        splitter_sql->SetSashGravity(0.8);
         splitter_sql->SetMinimumPaneSize(150); // Smallest size of panels
         bSizerp1->Add(splitter_sql, g_flagsExpand);
 
@@ -527,6 +530,7 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
             , wxTreeEventHandler(mmGeneralReportManager::OnBeginDrag)
             , nullptr, this);
 #endif // wxUSE_DRAG_AND_DROP
+        m_dbView->Bind(wxEVT_TREE_ITEM_RIGHT_CLICK, &mmGeneralReportManager::OnSQLTreeRightClick, this);
 
         wxPanel *pnl2 = new wxPanel(splittermain, wxID_ANY);
         wxBoxSizer* bSizerp2 = new wxBoxSizer(wxVERTICAL);
@@ -1530,8 +1534,47 @@ void mmGeneralReportManager::DownloadAndStoreReport(const wxString& groupName, c
 }
 #endif
 
+void mmGeneralReportManager::OnSQLTreeRightClick(wxTreeEvent& event)
+{
+    wxTreeItemId item = event.GetItem();
+    if (!item.IsOk()) return;
+    wxMenu menu;
+    menu.Append(ID_SQL_COPY, _t("Copy name"));
+    menu.Append(ID_SQL_COPY_ALL, _t("Copy all column names"));
+    menu.Append(ID_SQL_COPY_SELECT, _t("Copy as SQL SELECT"));
+    menu.Enable(ID_SQL_COPY_ALL, m_dbView->ItemHasChildren(item));
+    menu.Enable(ID_SQL_COPY_SELECT, m_dbView->ItemHasChildren(item));
+    PopupMenu(&menu);
+}
 
-// Generic support routines - should be moved to a common modul
+void mmGeneralReportManager::OnSQLTreeCopy(wxCommandEvent& event)
+{
+    wxTreeItemId item = m_dbView->GetSelection();
+    wxString result;
+    if (item.IsOk()) {
+        int id = event.GetId();
+        switch(id) {
+            case ID_SQL_COPY:
+                result = m_dbView->GetItemText(item);
+                break;
+            case ID_SQL_COPY_ALL:
+                result = GetChildNamesAsCommaList(m_dbView, item);
+                break;
+            case ID_SQL_COPY_SELECT:
+                result = "SELECT " + GetChildNamesAsCommaList(m_dbView, item) + " FROM " + m_dbView->GetItemText(item);
+                break;
+        }
+        if (!result.IsEmpty()) {
+            if (wxTheClipboard->Open()) {
+                wxTheClipboard->Clear();
+                wxTheClipboard->SetData(new wxTextDataObject(result));
+                wxTheClipboard->Close();
+            }
+        }
+    }
+}
+
+// Generic support routines - can be moved to a common modul
 void SelectTreeItemByName(wxTreeCtrl* treeCtrl, const wxString& name)
 {
     wxTreeItemId root = treeCtrl->GetRootItem();
@@ -1560,4 +1603,26 @@ wxTreeItemId FindTreeItemByName(wxTreeCtrl* treeCtrl, const wxTreeItemId& parent
         child = treeCtrl->GetNextChild(parent, cookie);
     }
     return wxTreeItemId();  // Not Found
+}
+
+wxString GetChildNamesAsCommaList(wxTreeCtrl* treeCtrl, const wxTreeItemId& item)
+{
+    if (!item.IsOk() || !treeCtrl->ItemHasChildren(item)) {
+        return "";
+    }
+
+    wxString result;
+    wxTreeItemIdValue cookie;
+    wxTreeItemId child = treeCtrl->GetFirstChild(item, cookie);
+
+    while (child.IsOk()) {
+        wxString name = treeCtrl->GetItemText(child);
+        if (!result.IsEmpty()) {
+            result += ", ";
+        }
+        result += name;
+        child = treeCtrl->GetNextChild(item, cookie);
+    }
+
+    return result;
 }

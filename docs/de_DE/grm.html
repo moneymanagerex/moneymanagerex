@@ -38,11 +38,9 @@
             <kbd><samp>Berichte</samp></kbd> klicken.</li>
         <li>Wähle den Menüpunkt: <kbd><samp>Neuer Leerer Bericht</samp></kbd>.</li>
         <li>Optional: Gib den Namen einer neuen Berichtsgruppe oder wähle eine bestehende aus.</li>
-        <li>Gib dem neuen Bericht einen Namen.</li>
-        <li>Wenn erforderlich benenne Berichte mit der rechten Maustaste auf den Menüpunkt:
-            <kbd><samp>Bericht umbenennen</samp></kbd> um.</li>
-        <li>Die folgende Registerkarten werden angezeigt: Ausgabe, SQL, Lua, Vorlage und
-            Beschreibung.</li>
+        <li>Gib dem neuen Bericht einen Namen (Berichte können auch noch später mit der rechten Maustaste auf den Menüpunkt:
+            <kbd><samp>Bericht umbenennen</samp></kbd> umbenannt werden)</li>
+        <li>Die folgende Registerkarten werden angezeigt: Ausgabe, SQL, Lua, Vorlage und Beschreibung.</li>
         <li>
             Wähle die Registerkarte SQL, kopiere das SQL-Skript in das Editor-Fenster,
             überprüfe, dass das SQL-Skript mit einem Semikolon endet und bestätige die Schaltfläche "<kbd><samp>Speichern</samp></kbd>".
@@ -63,29 +61,46 @@
         SQL-Skript zu übertragen.
         Dafür stehen vier Optionen zur Verfügung: <var>&single_date</var>,
         <var>&begin_date</var>, <var>&end_date</var>, <var>&budget_years</var>.
-        Für den Fall, dass das SQL-Skript einen der oben genannten Parameter enthält wird dieser durch das Datum aus einem Kalender-Widget ersetzt.
+        Für den Fall, dass das SQL-Skript einen der oben genannten Parameter enthält wird dieser durch das Datum aus einem Kalender-Widget ersetzt.<br>
         Dieses SQL-Skript liefert zum Beispiel alle Kontensalden für das
         angegebene Datum:
     </p>
-<pre><code class="language-sql">with b as  (
-    select ACCOUNTID, STATUS
-        , (case when TRANSCODE = 'Deposit' then TRANSAMOUNT else -TRANSAMOUNT end) as TRANSAMOUNT
-        , TRANSDATE
-    from CHECKINGACCOUNT
-    union all
-    select TOACCOUNTID, STATUS, TOTRANSAMOUNT ,TRANSDATE
-    from CHECKINGACCOUNT
-    where TRANSCODE = 'Transfer'
-    )
-select a.ACCOUNTNAME,
-total(TRANSAMOUNT) + a.INITIALBAL as Balance
-from ACCOUNTLIST as a, b
-where a.STATUS = 'Open'
-    and b.ACCOUNTID = a.ACCOUNTID
-    and b.STATUS &lt;&gt; 'V'
-    and b.TRANSDATE &lt;= '<var>&single_date</var>'
-group by a.ACCOUNTNAME order by a.ACCOUNTNAME asc;
-</code></pre>
+    <pre><code class="language-sql">
+            with b as (
+            select
+                ACCOUNTID,
+                STATUS,
+                (case when TRANSCODE = 'Deposit' then TRANSAMOUNT else -TRANSAMOUNT end) as TRANSAMOUNT,
+                TRANSDATE
+            from
+                CHECKINGACCOUNT_V1
+
+            union all
+
+            select
+                TOACCOUNTID,
+                STATUS,
+                TOTRANSAMOUNT,
+                TRANSDATE
+            from
+                CHECKINGACCOUNT_V1
+                where TRANSCODE = 'Transfer'
+            )
+
+            select
+            a.ACCOUNTNAME,
+            total(TRANSAMOUNT) + a.INITIALBAL as Balance
+            from ACCOUNTLIST_V1
+            as a, b
+            where a.STATUS = 'Open'
+                and b.ACCOUNTID = a.ACCOUNTID
+                and b.STATUS <> 'V'
+                and b.TRANSDATE <= '&single_date'
+            group
+                by a.ACCOUNTNAME
+            order
+                by a.ACCOUNTNAME asc;
+    </code></pre><br>
     <img class="shadow" alt="GRM Report Ausgabe mit einem einzigen Datumsparameter
     Beispiel" src="../en_US/grm_custom_date.png">
 

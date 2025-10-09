@@ -89,6 +89,8 @@ private:
     void OnContextMenu(wxContextMenuEvent& event);
     void OnSelChanged(wxTreeEvent& event);
     void OnSelChanging(wxTreeEvent& event);
+    void OnSQLTreeRightClick(wxTreeEvent& event);
+    void OnSQLTreeCopy(wxCommandEvent& event);
     void viewControls(bool enable);
     void renameReport(int64 id);
     bool deleteReport(int64 id);
@@ -165,12 +167,16 @@ private:
         ID_DESCRIPTION,
         ID_REPORT_LIST,
         ID_GITHUB_SYNC,
-        ID_ACTIVE
+        ID_ACTIVE,
+        ID_SQL_COPY,
+        ID_SQL_COPY_ALL,
+        ID_SQL_COPY_SELECT
     };
 
 };
 
 
-// General support routines - may be moved to common modul
+// General support routines - can be moved to a common modul
 void SelectTreeItemByName(wxTreeCtrl* treeCtrl, const wxString& name);
 wxTreeItemId FindTreeItemByName(wxTreeCtrl* treeCtrl, const wxTreeItemId& parent, const wxString& name);
+wxString GetChildNamesAsCommaList(wxTreeCtrl* treeCtrl, const wxTreeItemId& item);
