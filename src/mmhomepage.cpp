@@ -77,9 +77,11 @@ const wxString htmlWidgetStocks::getHTMLText()
     const wxDate today = wxDate::Today();
 
     wxString output = "";
-    const auto &accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT, EQUAL));
+    Model_Account::Data_Set accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT, EQUAL));
     if (!accounts.empty())
     {
+        std::stable_sort(accounts.begin(), accounts.end(), SorterByACCOUNTNAME());
+
         output = R"(<div class="shadow">)";
         output += "<table class ='sortable table'><col style='width: 50%'><col style='width: 12.5%'><col style='width: 12.5%'><col style='width: 12.5%'><col style='width: 12.5%'><thead><tr class='active'><th>\n";
         output += _t("Stocks") + "</th><th class = 'text-right'>" + _t("Gain/Loss") + "</th>\n";
