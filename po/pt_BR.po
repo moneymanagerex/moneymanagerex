@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-10-02 12:02+0000\n"
-"PO-Revision-Date: 2025-10-03 00:55\n"
+"PO-Revision-Date: 2025-10-10 00:56\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -590,7 +590,7 @@ msgstr "Confirmar a exclusão do Bem"
 
 #: assetspanel.cpp:379
 msgid "MMEX allows fixed assets like cars, houses, land, and others to be tracked. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr ""
+msgstr "O MMEX permite que você controle ativos fixos como carros, casas, terras e outras. Cada ativo pode se valorizar a uma taxa anual, depreciar a uma taxa anual, ou simplesmente não alterar o seu valor. O total de ativos é adicionado ao patrimônio financeiro total."
 
 #: assetspanel.cpp:409 assetspanel.h:124 general_report_manager.cpp:1101
 #: mmframe.cpp:223 mmframe.cpp:2005 mmframe.cpp:3672 mmhomepage.cpp:527
@@ -730,7 +730,7 @@ msgstr "Descrição"
 
 #: attachmentdialog.cpp:54
 msgid "File"
-msgstr "Ficheiro"
+msgstr "Arquivo"
 
 #: attachmentdialog.cpp:62
 msgid "Attachment folder not defined."
@@ -926,7 +926,7 @@ msgstr "Diário"
 
 #: billsdepositsdialog.cpp:56
 msgid "In (n) Days"
-msgstr "Daqui a (n) Dias"
+msgstr "Em %s Dias"
 
 #: billsdepositsdialog.cpp:57
 msgid "In (n) Months"
@@ -1292,12 +1292,12 @@ msgstr "Indique o montante a ser transferido"
 #: billsdepositspanel.cpp:61
 #, c-format
 msgid "In %s Days"
-msgstr "Daqui a %s Dias"
+msgstr "Em %s Dias"
 
 #: billsdepositspanel.cpp:62
 #, c-format
 msgid "In %s Months"
-msgstr "Daqui a %s Meses"
+msgstr "Em %s Meses"
 
 #: billsdepositspanel.cpp:63
 #, c-format
@@ -1425,7 +1425,7 @@ msgstr[1] "%d dias restantes"
 
 #: billsdepositspanel.cpp:650
 msgid "Do you want to delete the scheduled transaction?"
-msgstr ""
+msgstr "Tem certeza que deseja excluir a transação agendada?"
 
 #: billsdepositspanel.cpp:651
 msgid "Confirm Deletion"
@@ -1728,7 +1728,10 @@ msgid "Do you want to move\n"
 "“%1$s”\n"
 "to:\n"
 "“%2$s”?"
-msgstr ""
+msgstr "Você quer mover\n"
+"“%1$s”\n"
+"para:\n"
+"“%2$s”?"
 
 #: categdialog.cpp:457
 msgid "Top level"
@@ -3169,11 +3172,11 @@ msgstr ""
 
 #: import_export/ofx_import_gui.cpp:295
 msgid "Please select a row to delete."
-msgstr ""
+msgstr "Por favor, selecione uma linha para excluir."
 
 #: import_export/ofx_import_gui.cpp:335
 msgid "Please select an existing payee."
-msgstr ""
+msgstr "Por favor, selecione uma categoria existente"
 
 #: import_export/ofx_import_gui.cpp:347
 msgid "Please select an existing payee or enter a new payee name."
@@ -3200,7 +3203,7 @@ msgstr ""
 
 #: import_export/ofx_import_gui.cpp:625
 msgid "Estimating time..."
-msgstr ""
+msgstr "Tempo estimado..."
 
 #: import_export/ofx_import_gui.cpp:629
 #, c-format
@@ -3210,17 +3213,17 @@ msgstr ""
 #: import_export/ofx_import_gui.cpp:630
 #, c-format
 msgid "Date: %s"
-msgstr ""
+msgstr "Data: %s"
 
 #: import_export/ofx_import_gui.cpp:631
 #, c-format
 msgid "Amount: %s"
-msgstr ""
+msgstr "Valor: %s"
 
 #: import_export/ofx_import_gui.cpp:632
 #, c-format
 msgid "Type: %s"
-msgstr ""
+msgstr "Tipo: %s"
 
 #: import_export/ofx_import_gui.cpp:637
 msgid "Regex Pattern"
@@ -3267,11 +3270,11 @@ msgstr ""
 
 #: import_export/ofx_import_gui.cpp:725
 msgid "Convert to Title Case"
-msgstr ""
+msgstr "Converter maiúsculas e minúsculas"
 
 #: import_export/ofx_import_gui.cpp:733 import_export/ofx_import_gui.h:94
 msgid "Uncategorized"
-msgstr ""
+msgstr "Sem categorias"
 
 #: import_export/ofx_import_gui.cpp:752
 msgid "Select Category for Payee:"
@@ -3287,27 +3290,27 @@ msgstr ""
 
 #: import_export/ofx_import_gui.cpp:762
 msgid "Insert Row"
-msgstr ""
+msgstr "Inserir linhas"
 
 #: import_export/ofx_import_gui.cpp:763
 msgid "Delete Row"
-msgstr ""
+msgstr "Excluir linha"
 
 #: import_export/ofx_import_gui.cpp:888
 msgid "Import OFX File"
-msgstr ""
+msgstr "Importar Arquivo OFX"
 
 #: import_export/ofx_import_gui.cpp:894
 msgid "OFX File:"
-msgstr ""
+msgstr "Arquivo OFX:"
 
 #: import_export/ofx_import_gui.cpp:896
 msgid "Browse"
-msgstr ""
+msgstr "Navegar"
 
 #: import_export/ofx_import_gui.cpp:902
 msgid "Account:"
-msgstr ""
+msgstr "Contas:"
 
 #: import_export/ofx_import_gui.cpp:913
 msgid "Use existing regex patterns to automatically match payees"
@@ -3400,17 +3403,17 @@ msgstr ""
 #: import_export/ofx_import_gui.cpp:1974
 #, c-format
 msgid "%d hours"
-msgstr ""
+msgstr "%d horas"
 
 #: import_export/ofx_import_gui.cpp:1980
 #, c-format
 msgid "%d minutes"
-msgstr ""
+msgstr "%d minutos"
 
 #: import_export/ofx_import_gui.cpp:1986
 #, c-format
 msgid "%d seconds"
-msgstr ""
+msgstr "%d segundos"
 
 #: import_export/ofx_import_gui.cpp:1990
 msgid "0 sec"
@@ -5168,7 +5171,7 @@ msgstr "Relatório Personalizado"
 
 #: mmframe.cpp:1490
 msgid "Do you want to delete the account?"
-msgstr ""
+msgstr "Tem certeza de que deseja excluir esta conta?"
 
 #: mmframe.cpp:1494
 msgid "This will also delete any associated Shares."
@@ -6102,7 +6105,8 @@ msgstr "Escolha a Conta para Exclusão"
 #, c-format
 msgid "Do you you want to delete\n"
 "%1$s account: %2$s?"
-msgstr ""
+msgstr "Tem certeza que deseja excluir a\n"
+"conta %1$s: %2$s?"
 
 #: mmframe.cpp:3802 mmframe.cpp:3829
 msgid "Change Account Type"
@@ -6494,7 +6498,12 @@ msgid "A scheduled transaction will exceed the account limit.\n\n"
 "Current Balance: %2$6.2f\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f"
-msgstr ""
+msgstr "Uma transação agendada excederá o limite da sua conta.\n\n"
+"Conta: %1$s\n"
+"Saldo atual: %2$6.2f\n"
+"Valor da transação: %3$6.2f\n"
+"%4$s: %5$6.2f\n\n"
+"Você deseja continuar"
 
 #: model/Model_Billsdeposits.cpp:227
 msgid "MMEX Scheduled Transaction Check"
@@ -9138,7 +9147,7 @@ msgstr "Uma nova versão do MMEX está disponível."
 
 #: wizard_update.cpp:146
 msgid "MMEX is up to date."
-msgstr ""
+msgstr "O MMEX está atualizado."
 
 #: wizard_update.cpp:324 wizard_update.cpp:338
 msgid "Unable to check for updates!"

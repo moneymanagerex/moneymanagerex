@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-10-02 12:02+0000\n"
-"PO-Revision-Date: 2025-10-03 00:55\n"
+"PO-Revision-Date: 2025-10-10 00:56\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -1661,7 +1661,7 @@ msgstr "Einstellungen löschen"
 
 #: categdialog.cpp:277
 msgid "Remove hidden setting from all categories"
-msgstr ""
+msgstr "Einstellung ausgeblendet aus allen Kategorien entfernen"
 
 #: categdialog.cpp:322 categdialog.cpp:816
 msgid "Add a new category"
@@ -2616,7 +2616,7 @@ msgstr "Debug-Datei speichern"
 
 #: dbupgrade.cpp:285
 msgid "DB maintenance completed, please close and re-open MMEX!"
-msgstr "DB-Wartung abgeschlossen, starten Sie MMEX bitte neu!"
+msgstr "DB-Wartung abgeschlossen, bitte starten Sie MMEX neu!"
 
 #: dbwrapper.cpp:78
 msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatibility with the MMEX mobile apps."
@@ -2973,7 +2973,7 @@ msgstr "Änderungen speichern."
 
 #: general_report_manager.cpp:433
 msgid "&Run"
-msgstr "&starten"
+msgstr "Sta&rten"
 
 #: general_report_manager.cpp:435
 msgid "Run selected report."
@@ -3396,7 +3396,7 @@ msgstr ""
 
 #: import_export/ofx_import_gui.cpp:1847
 msgid "Imported Payee"
-msgstr ""
+msgstr "Importierter Zahlungsempfänger"
 
 #: import_export/ofx_import_gui.cpp:1848
 msgid "Match Mode"
@@ -3408,7 +3408,7 @@ msgstr ""
 
 #: import_export/ofx_import_gui.cpp:1851
 msgid "Transaction Type"
-msgstr ""
+msgstr "Buchungsart"
 
 #: import_export/ofx_import_gui.cpp:1974
 #, c-format
@@ -3657,7 +3657,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:231
 msgid "Flag as duplicate"
-msgstr ""
+msgstr "Als Duplikat markieren"
 
 #: import_export/qif_import_gui.cpp:261 import_export/univcsvdialog.cpp:498
 msgid "Data"
