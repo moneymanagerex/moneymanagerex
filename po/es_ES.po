@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-10-02 12:02+0000\n"
-"PO-Revision-Date: 2025-10-03 00:55\n"
+"PO-Revision-Date: 2025-10-10 00:56\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1661,7 +1661,7 @@ msgstr "Eliminar Ajustes"
 
 #: categdialog.cpp:277
 msgid "Remove hidden setting from all categories"
-msgstr ""
+msgstr "Eliminar ajustes ocultos de todas las categorías"
 
 #: categdialog.cpp:322 categdialog.cpp:816
 msgid "Add a new category"
@@ -2067,7 +2067,7 @@ msgstr "Predeterminado"
 
 #: customfieldeditdialog.cpp:171
 msgid "Enter the default for this field"
-msgstr ""
+msgstr "Introduzca el valor por defecto para este campo"
 
 #: customfieldeditdialog.cpp:174 customfieldeditdialog.cpp:224
 msgid "Choices"
@@ -3175,15 +3175,15 @@ msgstr ""
 
 #: import_export/ofx_import_gui.cpp:295
 msgid "Please select a row to delete."
-msgstr ""
+msgstr "Por favor, seleccione una fila para eliminar."
 
 #: import_export/ofx_import_gui.cpp:335
 msgid "Please select an existing payee."
-msgstr ""
+msgstr "Por favor, seleccione un beneficiario existente."
 
 #: import_export/ofx_import_gui.cpp:347
 msgid "Please select an existing payee or enter a new payee name."
-msgstr ""
+msgstr "Por favor, seleccione un beneficiario existente o introduzca un nuevo nombre de beneficiario."
 
 #: import_export/ofx_import_gui.cpp:383
 #, c-format
@@ -3192,26 +3192,26 @@ msgstr ""
 
 #: import_export/ofx_import_gui.cpp:601
 msgid "Payee Confirmation Required"
-msgstr ""
+msgstr "Se requiere confirmar el beneficiario"
 
 #: import_export/ofx_import_gui.cpp:623
 #, c-format
 msgid "Transaction %d of %d (%d total in file)"
-msgstr ""
+msgstr "Transacción %d de %d (total en archivo %d)"
 
 #: import_export/ofx_import_gui.cpp:625
 #, c-format
 msgid "Estimated completion time: %.1f minutes"
-msgstr ""
+msgstr "Tiempo estimado de finalización: %.1f minutos"
 
 #: import_export/ofx_import_gui.cpp:625
 msgid "Estimating time..."
-msgstr ""
+msgstr "Estimación del tiempo..."
 
 #: import_export/ofx_import_gui.cpp:629
 #, c-format
 msgid "Transaction Number (FITID): %s"
-msgstr ""
+msgstr "Número de transacción (FITID): %s"
 
 #: import_export/ofx_import_gui.cpp:630
 #, c-format
@@ -3244,7 +3244,7 @@ msgstr "No se encontró ningún beneficiario coincidente."
 #: import_export/ofx_import_gui.cpp:652 import_export/ofx_import_gui.cpp:658
 #, c-format
 msgid "Match Confidence: %.1f%% (%s)"
-msgstr ""
+msgstr "Intervalo de confianza de la coincidencia: %.1f%% (%s)"
 
 #: import_export/ofx_import_gui.cpp:657
 #, c-format
@@ -3253,87 +3253,87 @@ msgstr "Beneficiario sugerido: '%s'"
 
 #: import_export/ofx_import_gui.cpp:680
 msgid "Do you want to use an existing payee or create a new one?"
-msgstr ""
+msgstr "¿Desea utilizar un beneficiario existente o crear uno nuevo?"
 
 #: import_export/ofx_import_gui.cpp:682
 msgid "Use Existing Payee"
-msgstr ""
+msgstr "Usar beneficiario existente"
 
 #: import_export/ofx_import_gui.cpp:683
 msgid "Create New Payee"
-msgstr ""
+msgstr "Crear nuevo beneficiario"
 
 #: import_export/ofx_import_gui.cpp:690
 msgid "Select Existing Payee:"
-msgstr ""
+msgstr "Seleccionar beneficiario existente:"
 
 #: import_export/ofx_import_gui.cpp:722
 msgid "New Payee Name:"
-msgstr ""
+msgstr "Nuevo nombre de beneficiario:"
 
 #: import_export/ofx_import_gui.cpp:725
 msgid "Convert to Title Case"
-msgstr ""
+msgstr "Convertir a mayúsculas"
 
 #: import_export/ofx_import_gui.cpp:733 import_export/ofx_import_gui.h:94
 msgid "Uncategorized"
-msgstr ""
+msgstr "Sin categorizar"
 
 #: import_export/ofx_import_gui.cpp:752
 msgid "Select Category for Payee:"
-msgstr ""
+msgstr "Seleccionar categoría para beneficiario:"
 
 #: import_export/ofx_import_gui.cpp:755
 msgid "Define/Update Regex Patterns"
-msgstr ""
+msgstr "Establecer/actualizar patrones de expresión regular"
 
 #: import_export/ofx_import_gui.cpp:758
 msgid "Edit Regex Patterns:"
-msgstr ""
+msgstr "Editar patrones de expresión regular:"
 
 #: import_export/ofx_import_gui.cpp:762
 msgid "Insert Row"
-msgstr ""
+msgstr "Insertar fila"
 
 #: import_export/ofx_import_gui.cpp:763
 msgid "Delete Row"
-msgstr ""
+msgstr "Eliminar fila"
 
 #: import_export/ofx_import_gui.cpp:888
 msgid "Import OFX File"
-msgstr ""
+msgstr "Importar archivo OFX"
 
 #: import_export/ofx_import_gui.cpp:894
 msgid "OFX File:"
-msgstr ""
+msgstr "Archivo OFX:"
 
 #: import_export/ofx_import_gui.cpp:896
 msgid "Browse"
-msgstr ""
+msgstr "Examinar"
 
 #: import_export/ofx_import_gui.cpp:902
 msgid "Account:"
-msgstr ""
+msgstr "Cuenta:"
 
 #: import_export/ofx_import_gui.cpp:913
 msgid "Use existing regex patterns to automatically match payees"
-msgstr ""
+msgstr "Usar patrones de expresiones regulares existentes para coincidir automáticamente los beneficiarios"
 
 #: import_export/ofx_import_gui.cpp:918
 msgid "Use fuzzy payee matching if exact match and regex matching not successful"
-msgstr ""
+msgstr "Usar una coincidencia inexacta con el beneficiario si la coincidencia exacta y la coincidencia de expresiones regulares no han tenido éxito"
 
 #: import_export/ofx_import_gui.cpp:922
 msgid "Minimum Fuzzy Match Confidence Level:"
-msgstr ""
+msgstr "Nivel mínimo de intervalo de confianza para la coincidencia inexacta:"
 
 #: import_export/ofx_import_gui.cpp:935
 msgid "Mark transactions automatically imported with Fuzzy Match as 'Follow Up'"
-msgstr ""
+msgstr "Marcar las transacciones importadas automáticamente usando coincidencia inexacta como 'Requiere seguimiento'"
 
 #: import_export/ofx_import_gui.cpp:939
 msgid "Prompt to confirm each fuzzy match"
-msgstr ""
+msgstr "Pedir confirmación para cada coincidencia inexacta"
 
 #: import_export/ofx_import_gui.cpp:944 import_export/univcsvdialog.cpp:1316
 #: import_export/univcsvdialog.cpp:1511 webappdialog.cpp:409
@@ -3342,32 +3342,32 @@ msgstr "Importar"
 
 #: import_export/ofx_import_gui.cpp:1025
 msgid "Choose OFX file"
-msgstr ""
+msgstr "Elegir archivo OFX"
 
 #: import_export/ofx_import_gui.cpp:1124
 msgid "No OFX file selected."
-msgstr ""
+msgstr "Ningún archivo OFX seleccionado."
 
 #: import_export/ofx_import_gui.cpp:1131
 msgid "No account selected."
-msgstr ""
+msgstr "Ninguna cuenta seleccionada."
 
 #: import_export/ofx_import_gui.cpp:1138
 msgid "Invalid account selection."
-msgstr ""
+msgstr "Cuenta seleccionada no válida."
 
 #: import_export/ofx_import_gui.cpp:1145
 msgid "Invalid account ID."
-msgstr ""
+msgstr "ID de cuenta no válida."
 
 #: import_export/ofx_import_gui.cpp:1153
 #, c-format
 msgid "Account ID %s does not exist."
-msgstr ""
+msgstr "El ID de cuenta %s no existe."
 
 #: import_export/ofx_import_gui.cpp:1815
 msgid "OFX Import Summary"
-msgstr ""
+msgstr "Resumen de importación OFX"
 
 #: import_export/ofx_import_gui.cpp:1829
 #, c-format
@@ -3381,11 +3381,11 @@ msgstr ""
 
 #: import_export/ofx_import_gui.cpp:1843
 msgid "FITID"
-msgstr ""
+msgstr "FITID"
 
 #: import_export/ofx_import_gui.cpp:1846
 msgid "OFX Payee"
-msgstr ""
+msgstr "Beneficiario OFX"
 
 #: import_export/ofx_import_gui.cpp:1847
 msgid "Imported Payee"
@@ -3397,7 +3397,7 @@ msgstr "Modo de coincidencia"
 
 #: import_export/ofx_import_gui.cpp:1849
 msgid "Match Pattern/Confidence"
-msgstr ""
+msgstr "Coincidir patrón/intervalo de confianza"
 
 #: import_export/ofx_import_gui.cpp:1851
 msgid "Transaction Type"
@@ -5019,7 +5019,7 @@ msgstr "Transacciones seleccionadas: %zu"
 #: mmcheckingpanel.cpp:965
 #, c-format
 msgid "Selected transactions total: %s"
-msgstr ""
+msgstr "Total de transacciones seleccionadas: %s"
 
 #: mmcheckingpanel.cpp:970
 #, c-format
@@ -8489,7 +8489,7 @@ msgstr "Cartera de acciones: %s"
 
 #: stockspanel.cpp:427
 msgid "Stock Portfolios Overview"
-msgstr ""
+msgstr "Vista general de la cartera de acciones"
 
 #: stockspanel.cpp:439
 #, c-format

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2025-10-02 12:02+0000\n"
-"PO-Revision-Date: 2025-10-03 00:55\n"
+"PO-Revision-Date: 2025-10-10 00:56\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -1661,7 +1661,7 @@ msgstr "Wis instellingen"
 
 #: categdialog.cpp:277
 msgid "Remove hidden setting from all categories"
-msgstr ""
+msgstr "Verwijder verborgen instelling uit alle categorieën"
 
 #: categdialog.cpp:322 categdialog.cpp:816
 msgid "Add a new category"
