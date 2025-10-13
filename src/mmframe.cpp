@@ -1742,7 +1742,7 @@ void mmGUIFrame::createMenu()
     importMenu->AppendSeparator();
     importMenu->Append(MENU_IMPORT_QIF, _tu("&QIF File…"), _t("Import from QIF file"));
     importMenu->AppendSeparator();
-    importMenu->Append(MENU_IMPORT_OFX, _("&OFX File..."));
+    importMenu->Append(MENU_IMPORT_OFX, _tu("&OFX File…"), _t("Import from OFX file"));
     importMenu->AppendSeparator();
     importMenu->Append(MENU_IMPORT_WEBAPP, _tu("&WebApp…"), _t("Import from the WebApp"));
 
@@ -3342,7 +3342,7 @@ void mmGUIFrame::OnShowAppStartDialog(wxCommandEvent& WXUNUSED(event))
 void mmGUIFrame::OnExportToHtml(wxCommandEvent& WXUNUSED(event))
 {
     wxString fileName = wxFileSelector(
-        _t("Choose HTML file to Export"),
+        _t("Choose HTML file to export"),
         wxEmptyString, wxEmptyString, wxEmptyString,
         "*.html",
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT

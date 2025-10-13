@@ -109,7 +109,7 @@ void mmAttachmentDialog::Create(wxWindow* parent, const wxString& name)
             RefName = "";
         }       
         if (RefName.IsEmpty())
-            WindowTitle = wxString::Format(_t("Attachment Manager | %s | %lld"), wxGetTranslation(m_RefType), m_RefId);
+            WindowTitle = wxString::Format(_t("Attachment Manager | %1$s | %2$lld"), wxGetTranslation(m_RefType), m_RefId);
         else
             WindowTitle = wxString::Format(_t("Attachment Manager | %1$s | %2$s"), wxGetTranslation(m_RefType), RefName);
     } else

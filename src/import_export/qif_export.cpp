@@ -255,7 +255,7 @@ void mmQIFExportDialog::OnButtonClear(wxCommandEvent& WXUNUSED(event))
 void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
 {
     bSelectedAccounts_->UnsetToolTip();
-    mmMultiChoiceDialog s_acc(this, _t("Choose Account to Export from:")
+    mmMultiChoiceDialog s_acc(this, _t("Choose account to export from:")
         , _t("QIF Export"), m_accounts_name);
 
     int i = 0;
@@ -315,7 +315,7 @@ void mmQIFExportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
     switch (m_type)
     {
     case QIF:
-        fileName = wxFileSelector(_t("Choose QIF data file to Export")
+        fileName = wxFileSelector(_t("Choose QIF data file to export")
             , wxEmptyString, fileName, wxEmptyString
             , _t("QIF Files (*.qif)") + "|*.qif;*.QIF"
             , wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
@@ -323,7 +323,7 @@ void mmQIFExportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
             correctEmptyFileExt("qif", fileName);
         break;
     case JSON:
-        fileName = wxFileSelector(_t("Choose JSON data file to Export")
+        fileName = wxFileSelector(_t("Choose JSON data file to export")
             , wxEmptyString, fileName, wxEmptyString
             , _t("JSON Files (*.json)") + "|*.json;*.JSON"
             , wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
@@ -331,7 +331,7 @@ void mmQIFExportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
             correctEmptyFileExt("json", fileName);
         break;
     case CSV:
-        fileName = wxFileSelector(_t("Choose CSV data file to Export")
+        fileName = wxFileSelector(_t("Choose CSV data file to export")
             , wxEmptyString, fileName, wxEmptyString
             , _t("CSV Files (*.csv)") + "|*.csv;*.CSV"
             , wxFD_SAVE | wxFD_OVERWRITE_PROMPT);

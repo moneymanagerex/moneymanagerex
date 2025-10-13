@@ -477,7 +477,7 @@ void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
     bool ok = onlineQuoteRefresh(sError);
     if (ok)
     {
-        const wxString header = _t("Stock prices successfully updated");
+        const wxString header = _t("Stock prices updated successfully");
         stock_details_->SetLabelText(header);
         stock_details_short_->SetLabelText(wxString::Format(_t("Last updated %s"), strLastUpdate_));
         wxMessageDialog msgDlg(this, sError, header);
