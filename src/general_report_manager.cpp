@@ -2,6 +2,7 @@
  Copyright (C) 2011 Stefano Giorgio
  Copyright (C) 2014 -2017 Nikolay Akimov
  Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -45,6 +46,8 @@
 using namespace rapidjson;
 
 class mmGeneralReportManager;
+
+#ifdef MMEX_USE_REPORT_SYNC  // probably should be removed completly since unused
 class SyncReportThread : public wxThread
 {
 public:
@@ -67,6 +70,7 @@ private:
     int64 m_id;
     mmGeneralReportManager* m_manager;
 };
+#endif
 
 static const wxString SAMPLE_ASSETS_LUA =
 R"(local total_balance = 0
@@ -98,46 +102,46 @@ R"(<!DOCTYPE html>
 <div class = "row">
 <div class = "col-xs-2"></div>
 <div class = "col-xs-8">
-<table class="table sortable">
-<thead>
-    <tr>
-        <th>STARTDATE</th>
-        <th>ASSETNAME</th>
-        <th>ASSETTYPE</th>
-        <th>VALUE</th>
-        <th>NOTES</th>
-    </tr>
-</thead>
-<tbody>
-    <TMPL_LOOP NAME=CONTENTS>
-        <tr>
-        <td><TMPL_VAR STARTDATE></td>
-        <td><TMPL_VAR ASSETNAME></td>
-        <td><TMPL_VAR ASSETTYPE></td>
-        <td class="money" sorttable_customkey="<TMPL_VAR VALUE>"><TMPL_VAR VALUE></td>
-        <td><TMPL_VAR NOTES></td>
-    </tr>
-    </TMPL_LOOP>
-</tbody>
-<tfoot>
-    <tr class="total">
-        <td colspan=3>Total Assets: </td>
-        <td class="money"><TMPL_VAR ASSET_BALANCE></td>
-        <td></td>
-    </tr>
-</tfoot>
-</table>
+    <table class="table sortable">
+        <thead>
+            <tr>
+                <th>STARTDATE</th>
+                <th>ASSETNAME</th>
+                <th>ASSETTYPE</th>
+                <th>VALUE</th>
+                <th>NOTES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <TMPL_LOOP NAME=CONTENTS>
+                <tr>
+                    <td><TMPL_VAR STARTDATE></td>
+                    <td><TMPL_VAR ASSETNAME></td>
+                    <td><TMPL_VAR ASSETTYPE></td>
+                    <td class="money" sorttable_customkey="<TMPL_VAR VALUE>"><TMPL_VAR VALUE></td>
+                    <td><TMPL_VAR NOTES></td>
+                </tr>
+            </TMPL_LOOP>
+        </tbody>
+        <tfoot>
+            <tr class="total">
+                <td colspan=3>Total Assets: </td>
+                <td class="money"><TMPL_VAR ASSET_BALANCE></td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
 </div></div></div>
 <TMPL_LOOP ERRORS>
-    <hr>    <TMPL_VAR ERROR>
+    <hr> <TMPL_VAR ERROR>
 </TMPL_LOOP>
 
 </body>
 <script>
     <!-- Format double to base currency -->
     function currency(n) {
-        n = parseFloat(n);
-        n =  isNaN(n) ? 0 : n.toFixed(2);
+        n = parseFloat(n.toString().replace(",", "."));
+        n = isNaN(n) ? 0 : n.toFixed(2);
         var out = n.toString().replace(".", "|");
         out = out.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "<TMPL_VAR GROUP_SEPARATOR>");
         out = out.replace("|", "<TMPL_VAR DECIMAL_POINT>");
@@ -156,7 +160,7 @@ R"(<!DOCTYPE html>
 </html>
 )";
 
-static const char *HTT_CONTEINER =
+static const char *HTT_CONTAINER =
 R"(<!DOCTYPE html>
 <html>
 <head>
@@ -181,7 +185,7 @@ R"(<!DOCTYPE html>
 <div class = "row">
 <div class = "col-xs-2"></div>
 <div class = "col-xs-8">
-<table class = "table">
+<table class = "table sortable">
 <thead>
     <tr>
 %s
@@ -194,7 +198,6 @@ R"(<!DOCTYPE html>
         </tr>
     </TMPL_LOOP>
 </tbody>
-
 </table>
 </div>
 </div>
@@ -207,8 +210,8 @@ R"(<!DOCTYPE html>
 <script>
     <!-- Format double to base currency -->
     function currency(n) {
-        n = parseFloat(n);
-        n =  isNaN(n) ? 0 : n.toFixed(2);
+        n = parseFloat(n.toString().replace(",", "."));
+        n = isNaN(n) ? 0 : n.toFixed(2);
         var out = n.toString().replace(".", "|");
         out = out.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "<TMPL_VAR GROUP_SEPARATOR>");
         out = out.replace("|", "<TMPL_VAR DECIMAL_POINT>");
@@ -249,12 +252,21 @@ wxBEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
     EVT_BUTTON(wxID_CLOSE, mmGeneralReportManager::OnClose)
     EVT_BUTTON(ID_TEST, mmGeneralReportManager::OnSqlTest)
     EVT_BUTTON(wxID_NEW, mmGeneralReportManager::OnNewTemplate)
-    //EVT_TREE_END_LABEL_EDIT(ID_REPORT_LIST, mmGeneralReportManager::OnLabelChanged)
+    #ifdef MMEX_USE_REPORT_SYNC
+        EVT_BUTTON(ID_GITHUB_SYNC, mmGeneralReportManager::OnSyncFromGitHub)
+        EVT_BUTTON(wxID_ANY, mmGeneralReportManager::OnSyncReportComplete)  // Handle button click event
+    #endif
     EVT_TREE_SEL_CHANGED(ID_REPORT_LIST, mmGeneralReportManager::OnSelChanged)
-    EVT_TREE_ITEM_MENU(ID_REPORT_LIST, mmGeneralReportManager::OnItemRightClick)
-    EVT_MENU(wxID_ANY, mmGeneralReportManager::OnMenuSelected)
-    EVT_BUTTON(ID_GITHUB_SYNC, mmGeneralReportManager::OnSyncFromGitHub)
-    EVT_BUTTON(wxID_ANY, mmGeneralReportManager::OnSyncReportComplete)  // Handle button click event
+    EVT_TREE_SEL_CHANGING(ID_REPORT_LIST, mmGeneralReportManager::OnSelChanging)
+    EVT_CONTEXT_MENU(mmGeneralReportManager::OnContextMenu)
+    EVT_MENU(wxID_EXECUTE, mmGeneralReportManager::OnRun)
+    EVT_MENU(wxID_SAVE, mmGeneralReportManager::OnUpdateReport)
+    EVT_MENU(ID_SQL_COPY, mmGeneralReportManager::OnSQLTreeCopy)
+    EVT_MENU(ID_SQL_COPY_ALL, mmGeneralReportManager::OnSQLTreeCopy)
+    EVT_MENU(ID_SQL_COPY_SELECT, mmGeneralReportManager::OnSQLTreeCopy)
+    EVT_MENU(wxID_ANY, mmGeneralReportManager::OnMenuSelected)   // MUST be last EVT_MENU entry !
+
+    EVT_CLOSE(mmGeneralReportManager::OnCloseWindow)
 wxEND_EVENT_TABLE()
 
 sqlListCtrl::sqlListCtrl(mmGeneralReportManager* grm, wxWindow *parent, wxWindowID winid)
@@ -263,13 +275,14 @@ sqlListCtrl::sqlListCtrl(mmGeneralReportManager* grm, wxWindow *parent, wxWindow
 {
 }
 
-mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent, wxSQLite3Database* db)
+mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent, wxSQLite3Database* db, wxString itemname)
     : m_db(db)
 {
     this->SetFont(parent->GetFont());
     Create(parent);
     mmSetSize(this);
     Centre();
+    SelectTreeItemByName(m_treeCtrl, itemname);
 }
 
 mmGeneralReportManager::~mmGeneralReportManager()
@@ -289,20 +302,20 @@ bool mmGeneralReportManager::Create(wxWindow* parent
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style, name);
 
-    wxAcceleratorEntry entries[2];
-    entries[0].Set(wxACCEL_NORMAL, WXK_F9, wxID_EXECUTE);
-    entries[1].Set(wxACCEL_CTRL, 'S', wxID_SAVE);
-    wxAcceleratorTable accel(2, entries);
-    SetAcceleratorTable(accel);
-
-    Connect(wxID_EXECUTE, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(mmGeneralReportManager::OnRun), nullptr, this);
+    const wxAcceleratorEntry entries[] = {
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F9, wxID_EXECUTE),
+        wxAcceleratorEntry(wxACCEL_CTRL, static_cast<int>('S'), wxID_SAVE),
+        wxAcceleratorEntry(wxACCEL_CTRL, static_cast<int>('N'), ID_NEW_EMPTY)
+    };
+    wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
+    SetAcceleratorTable(tab);
 
     CreateControls();
     fillControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
     SetIcon(mmex::getProgramIcon());
-    Centre();
+
     return true;
 }
 
@@ -333,6 +346,9 @@ void mmGeneralReportManager::fillControls()
         wxTreeItemId item = m_treeCtrl->AppendItem(no_group ? m_rootItem : group
             , wxString::Format("%s%s", (record.ACTIVE.GetValue() ? L"" : L"\u2717 "), record.REPORTNAME));
         m_treeCtrl->SetItemData(item, new MyTreeItemData(record.REPORTID, record.GROUPNAME));
+        if (!record.ACTIVE.GetValue()) {
+            m_treeCtrl->SetItemTextColour(item, mmThemeMetaColour(meta::COLOR_HIDDEN));
+        }
 
         if (m_selectedReportID == record.REPORTID)
         {
@@ -363,13 +379,11 @@ void mmGeneralReportManager::CreateControls()
     /****************************************
      Navigation tree
      ***************************************/
-
     wxPanel* left_panel = new wxPanel(splitter_main, wxID_ANY);
     wxBoxSizer* left_sizer = new wxBoxSizer(wxVERTICAL);
 
     m_treeCtrl = new wxTreeCtrl(left_panel, ID_REPORT_LIST, wxDefaultPosition, wxDefaultSize,
         wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_NO_LINES | wxTR_TWIST_BUTTONS);
-    m_treeCtrl->Bind(wxEVT_RIGHT_DOWN, &mmGeneralReportManager::OnRightClick, this);
     mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL);
     mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL_FONT, true);
     left_sizer->Add(m_treeCtrl, g_flagsExpand);
@@ -409,22 +423,21 @@ void mmGeneralReportManager::CreateControls()
     wxBoxSizer* buttonPanelSizer = new wxBoxSizer(wxHORIZONTAL);
     button_panel->SetSizer(buttonPanelSizer);
 
-    //
-    m_buttonOpen = new wxButton(button_panel, wxID_OPEN, _t("&Import"));
-    buttonPanelSizer->Add(m_buttonOpen, g_flagsH);
-    mmToolTip(m_buttonOpen, _t("Locate and load a report file."));
+    m_buttonImport = new wxButton(button_panel, wxID_OPEN, _t("&Import"));
+    buttonPanelSizer->Add(m_buttonImport, g_flagsH);
+    mmToolTip(m_buttonImport, _t("Locate and load a report file."));
 
-    m_buttonSaveAs = new wxButton(button_panel, wxID_SAVEAS, _t("&Export"));
-    buttonPanelSizer->Add(m_buttonSaveAs, g_flagsH);
-    mmToolTip(m_buttonSaveAs, _t("Export the report to a new file."));
+    m_buttonExport = new wxButton(button_panel, wxID_SAVEAS, _t("&Export"));
+    buttonPanelSizer->Add(m_buttonExport, g_flagsH);
+    mmToolTip(m_buttonExport, _t("Export the report to a new file."));
     buttonPanelSizer->AddSpacer(50);
 
-/*
+#ifdef MMEX_USE_REPORT_SYNC
     m_buttonSync = new wxButton(button_panel, ID_GITHUB_SYNC, _("&Sync from GitHub"));
     buttonPanelSizer->Add(m_buttonSync, g_flagsH);
     mmToolTip(m_buttonSync, _("Fetch latest reports from GitHub repository"));
     buttonPanelSizer->AddSpacer(50);
-*/
+#endif
 
     m_buttonSave = new wxButton(button_panel, wxID_SAVE, _t("&Save "));
     buttonPanelSizer->Add(m_buttonSave, g_flagsH);
@@ -434,6 +447,7 @@ void mmGeneralReportManager::CreateControls()
     buttonPanelSizer->Add(m_buttonRun, g_flagsH);
     mmToolTip(m_buttonRun, _t("Run selected report."));
 
+    buttonPanelSizer->AddSpacer(50);
     wxButton* button_Close = new wxButton(button_panel, wxID_CLOSE, wxGetTranslation(g_CloseLabel));
     buttonPanelSizer->Add(button_Close, g_flagsH);
     //mmToolTip(button_Close, _t("Save changes before closing. Changes without Save will be lost."));
@@ -471,7 +485,6 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     case ID_LUA_CONTENT: label = _t("Lua");  break;
     case ID_TEMPLATE: label = _t("Template");  break;
     case ID_DESCRIPTION: label = _t("Description"); break;
-    //default: ;
     }
     if (FindWindow(type + MAGIC_NUM)) return;
 
@@ -484,7 +497,7 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     {
         wxBoxSizer *sizermain = new wxBoxSizer(wxVERTICAL);
         wxSplitterWindow *splittermain = new wxSplitterWindow(panel, wxID_ANY);
-        splittermain->SetMinimumPaneSize(50); 
+        splittermain->SetMinimumPaneSize(50);
         sizermain->Add(splittermain, 1, wxEXPAND,0 );
 
         wxPanel *pnl1 = new wxPanel(splittermain, wxID_ANY);
@@ -492,11 +505,12 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
         pnl1->SetSizer(bSizerp1);
 
         wxSplitterWindow *splitter_sql = new wxSplitterWindow(pnl1, wxID_ANY);
-        splitter_sql->SetSashGravity(0.9);
+        splitter_sql->SetSashGravity(0.8);
         splitter_sql->SetMinimumPaneSize(150); // Smallest size of panels
         bSizerp1->Add(splitter_sql, g_flagsExpand);
 
         MinimalEditor* templateText = new MinimalEditor(splitter_sql, type);
+        templateText->SetLexerSql();
 
 #if defined (__WXMSW__)
         long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
@@ -516,6 +530,7 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
             , wxTreeEventHandler(mmGeneralReportManager::OnBeginDrag)
             , nullptr, this);
 #endif // wxUSE_DRAG_AND_DROP
+        m_dbView->Bind(wxEVT_TREE_ITEM_RIGHT_CLICK, &mmGeneralReportManager::OnSQLTreeRightClick, this);
 
         wxPanel *pnl2 = new wxPanel(splittermain, wxID_ANY);
         wxBoxSizer* bSizerp2 = new wxBoxSizer(wxVERTICAL);
@@ -555,6 +570,12 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     else
     {
         MinimalEditor* editorText = new MinimalEditor(panel, type);
+        if (type == ID_LUA_CONTENT) {
+            editorText->SetLexerLua();
+        }
+        else if (type == ID_TEMPLATE) {
+            editorText->SetLexerHtml();
+        }
         sizer->Add(editorText, g_flagsExpand);
     }
 
@@ -566,7 +587,7 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& WXUNUSED(event))
 {
     MinimalEditor* sqlText = wxDynamicCast(FindWindow(ID_SQL_CONTENT), MinimalEditor);
     wxStaticText* info = wxDynamicCast(FindWindow(wxID_INFO), wxStaticText);
-    
+
     wxString sql = sqlText->GetStringSelection().empty() ? sqlText->GetValue() : sqlText->GetStringSelection();
 
     wxString SqlError;
@@ -706,6 +727,7 @@ bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
     }
     return true;
 }
+
 void mmGeneralReportManager::OnUpdateReport(wxCommandEvent& WXUNUSED(event))
 {
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
@@ -725,8 +747,23 @@ void mmGeneralReportManager::OnUpdateReport(wxCommandEvent& WXUNUSED(event))
         report->DESCRIPTION = descriptionText->GetValue();
 
         Model_Report::instance().save(report);
+        templateText->SetSavePoint();  // reset change flags
+        SqlScriptText->SetSavePoint();
+        LuaScriptText->SetSavePoint();
+        descriptionText->SetSavePoint();
         browser_->SetPage(report->DESCRIPTION, "");
     }
+}
+
+bool mmGeneralReportManager::isModified() {
+    MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
+    MinimalEditor* SqlScriptText = static_cast<MinimalEditor*>(FindWindow(ID_SQL_CONTENT));
+    MinimalEditor* LuaScriptText = static_cast<MinimalEditor*>(FindWindow(ID_LUA_CONTENT));
+    MinimalEditor* descriptionText = static_cast<MinimalEditor*>(FindWindow(ID_DESCRIPTION));
+    return (templateText && templateText->IsModified()) ||
+            (SqlScriptText && SqlScriptText->IsModified()) ||
+            (LuaScriptText && LuaScriptText->IsModified()) ||
+            (descriptionText && descriptionText->IsModified());
 }
 
 void mmGeneralReportManager::OnRun(wxCommandEvent& WXUNUSED(event))
@@ -739,6 +776,7 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& WXUNUSED(event))
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
+        CheckAndSaveChanges();
         wxNotebook* n = static_cast<wxNotebook*>(FindWindow(ID_NOTEBOOK));
         n->SetSelection(ID_TAB_OUT);
         browser_->ClearBackground();
@@ -749,75 +787,94 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& WXUNUSED(event))
         browser_->LoadURL(name);
     }
 }
-void mmGeneralReportManager::OnRightClick(wxMouseEvent& event) {
-    wxTreeItemId id = m_treeCtrl->HitTest(event.GetPosition());
-    if (!id.IsOk())
-        id = m_treeCtrl->GetRootItem();
-    wxTreeEvent evt(wxEVT_TREE_ITEM_MENU, m_treeCtrl, id);
-    GetEventHandler()->AddPendingEvent(evt);
-}
 
-void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
+void mmGeneralReportManager::OnContextMenu(wxContextMenuEvent& event)
 {
-    wxTreeItemId id = event.GetItem();
-    m_treeCtrl ->SelectItem(id);
-    int64 report_id = -1;
+    wxPoint pt = event.GetPosition();
+    if (pt == wxDefaultPosition) {
+        pt = wxGetMousePosition();
+    }
+    pt = ScreenToClient(pt);
+    if (!m_treeCtrl->GetRect().Contains(pt)) {
+        return; // Event not from TreeCtrl, ignore it!
+    }
+    wxPoint treePt = m_treeCtrl->ScreenToClient(wxGetMousePosition());
+    wxTreeItemId id = m_treeCtrl->HitTest(treePt);
+    if (!id.IsOk()) {
+        id = m_treeCtrl->GetRootItem();
+    }
+    m_treeCtrl->SelectItem(id);
     MyTreeItemData *iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(id));
-    if (iData) report_id = iData->get_report_id();
+    int64 report_id = iData ? iData->get_report_id() : -1;
     Model_Report::Data *report = Model_Report::instance().get(report_id);
 
     wxMenu* samplesMenu = new wxMenu;
     samplesMenu->Append(ID_NEW_SAMPLE_ASSETS, _tu("Assets…"));
 
-    wxMenu customReportMenu;
-    customReportMenu.Append(ID_NEW_EMPTY, _tu("New Empty Report…"));
-    customReportMenu.Append(wxID_ANY, _t("New Sample Report"), samplesMenu);
-    customReportMenu.AppendSeparator();
-    if (report)
-        customReportMenu.Append(ID_GROUP, _tu("Change Group…"));
-    else
-        customReportMenu.Append(ID_GROUP, _tu("Rename Group…"));
-    customReportMenu.Append(ID_UNGROUP, _t("UnGroup"));
-    customReportMenu.Append(ID_RENAME, _tu("Rename Report…"));
-    customReportMenu.AppendSeparator();
+    wxMenu* ctxMenu = new wxMenu;
+    ctxMenu->Append(ID_NEW_EMPTY, _tu("New Empty Report…"));
+    ctxMenu->Append(ID_DUPLICATE, _tu("Duplicate Report"));
+    ctxMenu->Append(wxID_ANY, _t("New Sample Report"), samplesMenu);
+    ctxMenu->AppendSeparator();
+    ctxMenu->Append(ID_GROUP, (report) ?_tu("Change Group…") : _tu("Rename Group…"));
+    ctxMenu->Append(ID_UNGROUP, _t("UnGroup"));
+    ctxMenu->Append(ID_RENAME, _tu("Rename Report…"));
+    ctxMenu->AppendSeparator();
 
-    wxMenuItem* menuItemActive = new wxMenuItem(&customReportMenu, ID_ACTIVE,
+    wxMenuItem* menuItemActive = new wxMenuItem(ctxMenu, ID_ACTIVE,
         _t("Active"), _t("Show/Hide report in Navigator"), wxITEM_CHECK);
-    customReportMenu.Append(menuItemActive);
+    ctxMenu->Append(menuItemActive);
 
-    customReportMenu.AppendSeparator();
-    customReportMenu.Append(ID_DELETE, _tu("Delete Report…"));
+    ctxMenu->AppendSeparator();
+    ctxMenu->Append(ID_DELETE, _tu("Delete Report…"));
 
-    customReportMenu.AppendSeparator();
-    customReportMenu.Append(ID_SYNC, _tu("Sync Report…"));
+    #ifdef MMEX_USE_REPORT_SYNC
+    ctxMenu->AppendSeparator();
+    ctxMenu->Append(ID_SYNC, _tu("Sync Report…"));
+    #endif
 
-    if (report)
-    {
-        customReportMenu.Enable(ID_UNGROUP, !report->GROUPNAME.empty());
+    if (report) {
+        ctxMenu->Enable(ID_UNGROUP, !report->GROUPNAME.empty());
         menuItemActive->Check(report->ACTIVE.GetValue());
     }
-    else
-    {
-        if (m_selectedGroup == "")
-            customReportMenu.Enable(ID_GROUP, false);
-
-        customReportMenu.Enable(ID_UNGROUP, false);
-        customReportMenu.Enable(ID_RENAME, false);
-        customReportMenu.Enable(ID_ACTIVE, false);
-        customReportMenu.Enable(ID_DELETE, false);
-        customReportMenu.Enable(ID_SYNC, false);
+    else {
+        ctxMenu->Enable(ID_GROUP, m_selectedGroup != "");
+        ctxMenu->Enable(ID_UNGROUP, false);
+        ctxMenu->Enable(ID_RENAME, false);
+        ctxMenu->Enable(ID_ACTIVE, false);
+        ctxMenu->Enable(ID_DELETE, false);
+        ctxMenu->Enable(ID_DUPLICATE, false);
+        #ifdef MMEX_USE_REPORT_SYNC
+        ctxMenu->Enable(ID_SYNC, false);
+        #endif
     }
-    PopupMenu(&customReportMenu);
+
+    PopupMenu(ctxMenu);
 }
 
 void mmGeneralReportManager::viewControls(bool enable)
 {
     m_buttonRun->Enable(enable);
-    m_buttonSaveAs->Enable(enable);
+    m_buttonExport->Enable(enable);
     m_buttonSave->Enable(enable);
     if (!enable)
     {
         m_selectedGroup = "";
+    }
+}
+
+void mmGeneralReportManager::OnSelChanging(wxTreeEvent& WXUNUSED(event))
+{
+    CheckAndSaveChanges();
+}
+
+void mmGeneralReportManager::CheckAndSaveChanges() {
+    if (isModified()) {
+        if (wxMessageBox(wxString::Format(_t("Report \"%s\" has been modified. Do you want to save it?"), m_treeCtrl->GetItemText(m_selectedItemID)),
+                        _t("General Report Manager"), wxYES_NO) == wxYES) {
+            wxCommandEvent dummyEvent;
+            OnUpdateReport(dummyEvent);
+        }
     }
 }
 
@@ -854,13 +911,15 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         MinimalEditor* descriptionText = static_cast<MinimalEditor*>(FindWindow(ID_DESCRIPTION));
 
         templateText->ChangeValue(report->TEMPLATECONTENT);
-        templateText->SetLexerHtml();
+        templateText->SetSavePoint();
         SqlScriptText->ChangeValue(report->SQLCONTENT);
-        SqlScriptText->SetLexerSql();
+        SqlScriptText->SetSavePoint();
         LuaScriptText->ChangeValue(report->LUACONTENT);
-        LuaScriptText->SetLexerLua();
+        LuaScriptText->SetSavePoint();
         wxString description = report->DESCRIPTION;
         descriptionText->ChangeValue(description);
+        descriptionText->SetSavePoint();
+
         if (!description.Contains("<!DOCTYPE html"))
             description.Replace("\n", "<BR>\n");
 
@@ -875,32 +934,30 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 
         viewControls(true);
     }
+    else {
+        for (size_t n = editors_notebook->GetPageCount() - 1; n >= 1; n--)
+            editors_notebook->DeletePage(n);
+        browser_->SetPage("", "about:blank");
+    }
 }
-
-/*void mmGeneralReportManager::OnLabelChanged(wxTreeEvent& event)
-{
-    event.Veto();
-}*/
 
 void mmGeneralReportManager::renameReport(int64 id)
 {
     Model_Report::Data * report = Model_Report::instance().get(id);
-    if (report)
-    {
+    if (report) {
         wxString label = wxGetTextFromUser(_t("Enter the name for the report")
             , _t("General Report Manager"), report->REPORTNAME);
         label.Trim();
 
         if (Model_Report::instance().find(Model_Report::REPORTNAME(label)).empty()
-            && !label.empty())
-        {
+            && !label.empty()) {
             report->REPORTNAME = label;
             Model_Report::instance().save(report);
-            fillControls();
         }
     }
 }
 
+#ifdef MMEX_USE_REPORT_SYNC
 bool mmGeneralReportManager::syncReport(int64 id)
 {
     Model_Report::Data * report = Model_Report::instance().get(id);
@@ -913,12 +970,12 @@ bool mmGeneralReportManager::syncReport(int64 id)
         if (iError == wxYES)
         {
             DownloadAndStoreReport(report->GROUPNAME, report->REPORTNAME, "");
-            fillControls();
             return true;
         }
     }
     return false;
 }
+#endif
 
 bool mmGeneralReportManager::deleteReport(int64 id)
 {
@@ -934,7 +991,7 @@ bool mmGeneralReportManager::deleteReport(int64 id)
             Model_Report::instance().remove(id);
             m_selectedReportID = -1;
             m_selectedItemID = m_rootItem;
-            fillControls();
+            //fillControls();
             return true;
         }
     }
@@ -948,6 +1005,28 @@ void mmGeneralReportManager::changeReportState(int64 id)
     {
         report->ACTIVE = (report->ACTIVE + 1) % 2;
         Model_Report::instance().save(report);
+    }
+}
+
+void mmGeneralReportManager::duplicateReport(int64 id)
+{
+    Model_Report::Data* report = Model_Report::instance().get(id);
+    if (report) {
+        wxString label = wxGetTextFromUser(_t("Enter the name for the report")
+            , _t("General Report Manager"), report->REPORTNAME);
+        label.Trim();
+
+        if (Model_Report::instance().find(Model_Report::REPORTNAME(label)).empty() && !label.empty()) {
+            Model_Report::Data* new_report = Model_Report::instance().create();
+            new_report->GROUPNAME = report->GROUPNAME;
+            new_report->REPORTNAME = label;
+            new_report->SQLCONTENT = report->SQLCONTENT;
+            new_report->LUACONTENT = report->LUACONTENT ;
+            new_report->TEMPLATECONTENT = report->TEMPLATECONTENT;
+            new_report->DESCRIPTION = report->DESCRIPTION;
+            new_report->ACTIVE = report->ACTIVE;
+            m_selectedReportID = Model_Report::instance().save(new_report);
+        }
     }
 }
 
@@ -1002,45 +1081,43 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 {
     int id = event.GetId();
 
-    if (id == ID_NEW_EMPTY || id == ID_NEW_SAMPLE_ASSETS)
-    {
+    if (id == ID_NEW_EMPTY || id == ID_NEW_SAMPLE_ASSETS) {
         newReport(id);
-        fillControls();
-        return;
     }
-
-    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
-    if (iData)
-    {
-        int64 report_id = iData->get_report_id();
-
-        if (report_id > -1)
-        {
-            switch (id){
-            case ID_RENAME:
-                this->renameReport(report_id);
-                break;
-            case ID_DELETE:
-                this->deleteReport(report_id);
-                break;
-            case ID_SYNC:
-                this->syncReport(report_id);
-                // Create and start sync thread
-                {
-                    // SyncReportThread* thread = new SyncReportThread(report_id, this);
-                    // thread->Create();
-                    // thread->Run();
-                }
-                break;
-            case ID_GROUP:
-                this->changeReportGroup(report_id, false);
-                break;
-            case ID_UNGROUP:
-                this->changeReportGroup(report_id, true);
-                break;
-            case ID_ACTIVE:
-                this->changeReportState(report_id);
-                break;
+    else {
+        MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
+        int64 report_id = iData ? iData->get_report_id() : -1;
+        if (report_id > -1) {
+            switch (id) {
+                case ID_RENAME:
+                    this->renameReport(report_id);
+                    break;
+                case ID_DELETE:
+                    this->deleteReport(report_id);
+                    break;
+                #ifdef MMEX_USE_REPORT_SYNC
+                case ID_SYNC:
+                    this->syncReport(report_id);
+                    // Create and start sync thread
+                    {
+                        // SyncReportThread* thread = new SyncReportThread(report_id, this);
+                        // thread->Create();
+                        // thread->Run();
+                    }
+                    break;
+                #endif
+                case ID_GROUP:
+                    this->changeReportGroup(report_id, false);
+                    break;
+                case ID_UNGROUP:
+                    this->changeReportGroup(report_id, true);
+                    break;
+                case ID_ACTIVE:
+                    this->changeReportState(report_id);
+                    break;
+                case ID_DUPLICATE:
+                    duplicateReport(report_id);
+                    break;
             }
         }
         else if (id == ID_GROUP)
@@ -1048,7 +1125,6 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
             this->renameReportGroup(m_selectedGroup);
         }
     }
-
     fillControls();
 }
 
@@ -1168,6 +1244,12 @@ wxString sqlListCtrl::OnGetItemText(long item, long col_nr) const
 
 void mmGeneralReportManager::OnClose(wxCommandEvent& WXUNUSED(event))
 {
+    CheckAndSaveChanges();
+    EndModal(wxID_OK);
+}
+
+void mmGeneralReportManager::OnCloseWindow(wxCloseEvent& WXUNUSED(event)){
+    CheckAndSaveChanges();
     EndModal(wxID_OK);
 }
 
@@ -1289,13 +1371,18 @@ const wxString mmGeneralReportManager::getTemplate(wxString& sql)
     this->getColumns(sql, colHeaders);
     for (const auto& col : colHeaders)
     {
-        header += wxString::Format("        <th>%s</th>\n", col.first);
-        if (col.second == WXSQLITE_FLOAT)
-            body += wxString::Format("        <td class = \"money\"><TMPL_VAR \"%s\"></td>\n", col.first);
-        else if (col.second == WXSQLITE_INTEGER)
-            body += wxString::Format("        <td class = \"text-right\"><TMPL_VAR \"%s\"></td>\n", col.first);
-        else
+        if (col.second == WXSQLITE_FLOAT) {
+            header += wxString::Format("        <th class=\"sorttable_numeric\">%s</th>\n", col.first);
+            body += wxString::Format("        <td class=\"money\"><TMPL_VAR \"%s\"></td>\n", col.first);
+        }
+        else if (col.second == WXSQLITE_INTEGER) {
+            header += wxString::Format("        <th class=\"sorttable_numeric\">%s</th>\n", col.first);
+            body += wxString::Format("        <td class=\"text-right\"><TMPL_VAR \"%s\"></td>\n", col.first);
+        }
+        else {
+            header += wxString::Format("        <th>%s</th>\n", col.first);
             body += wxString::Format("        <td><TMPL_VAR \"%s\"></td>\n", col.first);
+        }
     }
 
     wxString params = rep_params.empty() ? "" : _t("Parameters:");
@@ -1307,8 +1394,8 @@ const wxString mmGeneralReportManager::getTemplate(wxString& sql)
             }
         }
     }
-    wxString htt = HTT_CONTEINER;
-    return wxString::Format(formatHTML(htt), header, body, params);
+    wxString htt = HTT_CONTAINER;
+    return wxString::Format(formatHTML(htt), header.length() > 0 ? header.RemoveLast() : header, body.length() > 0 ? body.RemoveLast() : body, params);
 }
 
 #if wxUSE_DRAG_AND_DROP
@@ -1340,6 +1427,7 @@ void mmGeneralReportManager::OnNewWindow(wxWebViewEvent& evt)
 }
 
 // Event handler implementation
+#ifdef MMEX_USE_REPORT_SYNC
 void mmGeneralReportManager::OnSyncReportComplete(wxCommandEvent& WXUNUSED(event))
 {
     wxMessageBox("Report sync completed successfully.", "Sync Complete", wxOK | wxICON_INFORMATION);
@@ -1444,4 +1532,97 @@ void mmGeneralReportManager::DownloadAndStoreReport(const wxString& groupName, c
 
     m_selectedReportID = Model_Report::instance().save(report);
 }
+#endif
 
+void mmGeneralReportManager::OnSQLTreeRightClick(wxTreeEvent& event)
+{
+    wxTreeItemId item = event.GetItem();
+    if (!item.IsOk()) return;
+    wxMenu menu;
+    menu.Append(ID_SQL_COPY, _t("Copy name"));
+    menu.Append(ID_SQL_COPY_ALL, _t("Copy all column names"));
+    menu.Append(ID_SQL_COPY_SELECT, _t("Copy as SQL SELECT"));
+    menu.Enable(ID_SQL_COPY_ALL, m_dbView->ItemHasChildren(item));
+    menu.Enable(ID_SQL_COPY_SELECT, m_dbView->ItemHasChildren(item));
+    PopupMenu(&menu);
+}
+
+void mmGeneralReportManager::OnSQLTreeCopy(wxCommandEvent& event)
+{
+    wxTreeItemId item = m_dbView->GetSelection();
+    wxString result;
+    if (item.IsOk()) {
+        int id = event.GetId();
+        switch(id) {
+            case ID_SQL_COPY:
+                result = m_dbView->GetItemText(item);
+                break;
+            case ID_SQL_COPY_ALL:
+                result = GetChildNamesAsCommaList(m_dbView, item);
+                break;
+            case ID_SQL_COPY_SELECT:
+                result = "SELECT " + GetChildNamesAsCommaList(m_dbView, item) + " FROM " + m_dbView->GetItemText(item);
+                break;
+        }
+        if (!result.IsEmpty()) {
+            if (wxTheClipboard->Open()) {
+                wxTheClipboard->Clear();
+                wxTheClipboard->SetData(new wxTextDataObject(result));
+                wxTheClipboard->Close();
+            }
+        }
+    }
+}
+
+// Generic support routines - can be moved to a common modul
+void SelectTreeItemByName(wxTreeCtrl* treeCtrl, const wxString& name)
+{
+    wxTreeItemId root = treeCtrl->GetRootItem();
+    if (root.IsOk()) {
+        wxTreeItemId found = FindTreeItemByName(treeCtrl, root, name);
+        if (found.IsOk()) {
+            treeCtrl->SelectItem(found);
+            treeCtrl->EnsureVisible(found);  // Scroll to item
+        }
+    }
+}
+
+wxTreeItemId FindTreeItemByName(wxTreeCtrl* treeCtrl, const wxTreeItemId& parent, const wxString& name)
+{
+    if (treeCtrl->GetItemText(parent) == name) {
+        return parent;
+    }
+
+    wxTreeItemIdValue cookie;
+    wxTreeItemId child = treeCtrl->GetFirstChild(parent, cookie);
+    while (child.IsOk()) {
+        wxTreeItemId found = FindTreeItemByName(treeCtrl, child, name);
+        if (found.IsOk()) {
+            return found;
+        }
+        child = treeCtrl->GetNextChild(parent, cookie);
+    }
+    return wxTreeItemId();  // Not Found
+}
+
+wxString GetChildNamesAsCommaList(wxTreeCtrl* treeCtrl, const wxTreeItemId& item)
+{
+    if (!item.IsOk() || !treeCtrl->ItemHasChildren(item)) {
+        return "";
+    }
+
+    wxString result;
+    wxTreeItemIdValue cookie;
+    wxTreeItemId child = treeCtrl->GetFirstChild(item, cookie);
+
+    while (child.IsOk()) {
+        wxString name = treeCtrl->GetItemText(child);
+        if (!result.IsEmpty()) {
+            result += ", ";
+        }
+        result += name;
+        child = treeCtrl->GetNextChild(item, cookie);
+    }
+
+    return result;
+}

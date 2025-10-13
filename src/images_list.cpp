@@ -172,13 +172,25 @@ const std::map<int, std::tuple<wxString, wxString, bool> > metaDataTrans()
     md[COLOR_REPORT_CREDIT]    = std::make_tuple("/colors/reports/credit",      "#50B381", false);
     md[COLOR_REPORT_DEBIT]     = std::make_tuple("/colors/reports/debit",       "#F75E51", false);
     md[COLOR_REPORT_DELTA]     = std::make_tuple("/colors/reports/delta",       "#008FFB", false);
-    md[COLOR_REPORT_PERF]      = std::make_tuple("/colors/reports/perf",       "#FF6307", false);
+    md[COLOR_REPORT_PERF]      = std::make_tuple("/colors/reports/perf",        "#FF6307", false);
     md[COLOR_REPORT_FORECOLOR] = std::make_tuple("/colors/reports/foreColor",   "#373D3F", false);
     md[COLOR_REPORT_PALETTE]   = std::make_tuple("/colors/reports/palette",  "#008FFB "
             "#00E396 #FEB019 #FF4560 #775DD0 #3F51B5 #03A9F4 #4cAF50 #F9CE1D #FF9800 "
             "#33B2DF #546E7A #D4526E #13D8AA #A5978B #4ECDC4 #81D4FA #546E7A #FD6A6A "
             "#2B908F #F9A3A4 #90EE7E #FA4443 #69D2E7 #449DD1 #F86624",                     false);
-    md[COLOR_HIDDEN]           = std::make_tuple("/colors/other/hidden",    "#81D4FA", false);
+    md[COLOR_HIDDEN]           = std::make_tuple("/colors/other/hidden",         "#81D4FA", false);
+    md[COLOR_GRM_LINENUMBER]   = std::make_tuple("/colors/grm/linenumber",       "#6b6c6dff", false);
+    md[COLOR_GRM_LINENUMBER_BG] = std::make_tuple("/colors/grm/linenumberbackground", "#ddddddff", false);
+    md[COLOR_GRM_MARKER]       = std::make_tuple("/colors/grm/marker",           "#d5dceb96", false);
+    md[COLOR_GRM_KEYWORD]      = std::make_tuple("/colors/grm/keyword",          "#2532e9ff", false);
+    md[COLOR_GRM_KEYATTRIBUTE] = std::make_tuple("/colors/grm/keyattribute",     "#18da59ff", false);
+    md[COLOR_GRM_STRING]       = std::make_tuple("/colors/grm/string",           "#9c41f1ff", false);
+    md[COLOR_GRM_COMMENT]      = std::make_tuple("/colors/grm/comment",          "#909a9eff", false);
+    md[COLOR_GRM_IDENTIFIER]   = std::make_tuple("/colors/grm/identifier",       "#d38e40d0", false);
+    md[COLOR_GRM_UNKNOWN]      = std::make_tuple("/colors/grm/unknown",          "#f6fa1ed8", false);
+    md[COLOR_GRM_OPERATOR]     = std::make_tuple("/colors/grm/operator",         "#3ba5d6ff", false);
+    md[COLOR_GRM_NUMBER]       = std::make_tuple("/colors/grm/number",           "#ff0d0dff", false);
+    md[COLOR_GRM_SPECIAL]      = std::make_tuple("/colors/grm/special",          "#e70870ff", false);
 
     return md;
 };

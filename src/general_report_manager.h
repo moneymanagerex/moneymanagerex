@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2011 Stefano Giorgio
  Copyright (C) 2014 Nikolay Akimov
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -30,6 +31,9 @@
 #include <sys/time.h>
 #endif
 
+
+// #define MMEX_USE_REPORT_SYNC 1 // Remove comment to activate report sync (not functional yet)
+
 class wxSQLite3Database;
 class mmGeneralReportManager;
 
@@ -51,13 +55,15 @@ class mmGeneralReportManager: public wxDialog
 
 public:
     /// Constructors
-    mmGeneralReportManager( ) {}
+    mmGeneralReportManager() {}
     ~mmGeneralReportManager();
 
-    mmGeneralReportManager(wxWindow* parent, wxSQLite3Database* db);
+    mmGeneralReportManager(wxWindow* parent, wxSQLite3Database* db, wxString itemname);
     wxString OnGetItemText(long item, long col_nr) const;
-
+#ifdef MMEX_USE_REPORT_SYNC
     bool syncReport(int64 id);
+#endif
+
 private:
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
@@ -77,43 +83,50 @@ private:
     void OnExportReport(wxCommandEvent& event);
     void OnRun(wxCommandEvent& event);
     void OnClose(wxCommandEvent& event);
+    void OnCloseWindow(wxCloseEvent& event);
     void OnSqlTest(wxCommandEvent& event);
     void OnNewTemplate(wxCommandEvent& event);
-    void OnItemRightClick(wxTreeEvent& event);
-    void OnRightClick(wxMouseEvent& event);
+    void OnContextMenu(wxContextMenuEvent& event);
     void OnSelChanged(wxTreeEvent& event);
-    void OnSyncReportComplete(wxCommandEvent&);
-    //void OnLabelChanged(wxTreeEvent& event);
+    void OnSelChanging(wxTreeEvent& event);
+    void OnSQLTreeRightClick(wxTreeEvent& event);
+    void OnSQLTreeCopy(wxCommandEvent& event);
     void viewControls(bool enable);
     void renameReport(int64 id);
     bool deleteReport(int64 id);
     bool changeReportGroup(int64 id, bool ungroup);
     void changeReportState(int64 id);
+    void duplicateReport(int64 id);
     bool renameReportGroup(const wxString& GroupName);
     void OnMenuSelected(wxCommandEvent& event);
     void newReport(int sample = ID_NEW_EMPTY);
     void createEditorTab(wxNotebook* notebook, int type);
     void createOutputTab(wxNotebook* notebook, int type);
     void showHelp();
+    bool isModified();
 
     bool getColumns(const wxString& sql, std::vector<std::pair<wxString, int> > &colHeaders);
     void getSqlTableInfo(std::vector<std::pair<wxString, wxArrayString>> &sqlTableInfo);
     bool getSqlQuery(/*in*/ wxString& sql, /*out*/ std::vector <std::vector <wxString> > &sqlQueryData, wxString& SqlError);
     const wxString getTemplate(wxString& sql);
     void OnNewWindow(wxWebViewEvent& evt);
+    void CheckAndSaveChanges();
 
+#ifdef MMEX_USE_REPORT_SYNC
+    void OnSyncReportComplete(wxCommandEvent&);
     void OnSyncFromGitHub(wxCommandEvent& WXUNUSED(event));
     void DownloadAndStoreReport(const wxString& groupName, const wxString& reportName, const wxString& reportPath);
+#endif
 
     std::vector <std::vector <wxString> > m_sqlQueryData;
 
     wxSQLite3Database* m_db = nullptr;
     wxWebView* browser_ = nullptr;
 
-    wxButton* m_buttonOpen = nullptr;
-    //wxButton* m_buttonSync = nullptr;
+    wxButton* m_buttonImport = nullptr;
+    wxButton* m_buttonSync = nullptr;
     wxButton* m_buttonSave = nullptr;
-    wxButton* m_buttonSaveAs = nullptr;
+    wxButton* m_buttonExport = nullptr;
     wxButton* m_buttonRun = nullptr;
     wxTreeCtrl* m_treeCtrl = nullptr;
     wxTreeCtrl* m_dbView = nullptr;
@@ -126,6 +139,7 @@ private:
 #if wxUSE_DRAG_AND_DROP
     void OnBeginDrag(wxTreeEvent& event);
 #endif // wxUSE_DRAG_AND_DROP
+
 
     enum
     {
@@ -141,6 +155,7 @@ private:
         ID_DELETE,
         ID_SYNC,
         ID_RENAME,
+        ID_DUPLICATE,
         ID_GROUP,
         ID_UNGROUP,
         ID_NOTEBOOK,
@@ -152,8 +167,16 @@ private:
         ID_DESCRIPTION,
         ID_REPORT_LIST,
         ID_GITHUB_SYNC,
-        ID_ACTIVE
+        ID_ACTIVE,
+        ID_SQL_COPY,
+        ID_SQL_COPY_ALL,
+        ID_SQL_COPY_SELECT
     };
 
 };
 
+
+// General support routines - can be moved to a common modul
+void SelectTreeItemByName(wxTreeCtrl* treeCtrl, const wxString& name);
+wxTreeItemId FindTreeItemByName(wxTreeCtrl* treeCtrl, const wxTreeItemId& parent, const wxString& name);
+wxString GetChildNamesAsCommaList(wxTreeCtrl* treeCtrl, const wxTreeItemId& item);
