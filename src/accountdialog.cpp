@@ -135,7 +135,7 @@ void mmNewAcctDialog::CreateControls()
     }
     if (Model_Account::type_id(m_account->ACCOUNTTYPE, -1) == -1)
         itemChoice61->Append(m_account->ACCOUNTTYPE);
-    mmToolTip(itemChoice61, _t("Specify the type of account to be created."));
+    mmToolTip(itemChoice61, _t("Specify the account type to be created."));
     grid_sizer->Add(itemChoice61, g_flagsExpand);
     itemChoice61->SetSelection(0);
 
