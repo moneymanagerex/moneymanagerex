@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-10-02 12:02+0000\n"
+"POT-Creation-Date: 2025-10-13 13:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -593,7 +593,7 @@ msgstr ""
 msgid "MMEX allows fixed assets like cars, houses, land, and others to be tracked. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr ""
 
-#: assetspanel.cpp:409 assetspanel.h:124 general_report_manager.cpp:1101
+#: assetspanel.cpp:409 assetspanel.h:124 general_report_manager.cpp:1177
 #: mmframe.cpp:223 mmframe.cpp:2005 mmframe.cpp:3672 mmhomepage.cpp:527
 #: mmhomepage.cpp:576 mmhomepagepanel.cpp:236 optionsettingsmisc.cpp:105
 #: reports/summary.cpp:266 reports/summary.cpp:304
@@ -726,7 +726,7 @@ msgstr ""
 msgid "Value"
 msgstr ""
 
-#: attachmentdialog.cpp:53 general_report_manager.cpp:473
+#: attachmentdialog.cpp:53 general_report_manager.cpp:487
 msgid "Description"
 msgstr ""
 
@@ -861,7 +861,7 @@ msgstr ""
 msgid "Delete attachment failed"
 msgstr ""
 
-#: attachmentdialog.cpp:523 general_report_manager.cpp:702
+#: attachmentdialog.cpp:523 general_report_manager.cpp:723
 msgid "Unable to open file:"
 msgstr ""
 
@@ -1250,7 +1250,7 @@ msgid ""
 "Leave blank if the payments continue forever."
 msgstr ""
 
-#: billsdepositsdialog.cpp:1394 images_list.cpp:506
+#: billsdepositsdialog.cpp:1394 images_list.cpp:518
 #: import_export/ofx_import_gui.cpp:295 import_export/ofx_import_gui.cpp:335
 #: import_export/ofx_import_gui.cpp:347 import_export/ofx_import_gui.cpp:383
 #: import_export/ofx_import_gui.cpp:1124 import_export/ofx_import_gui.cpp:1131
@@ -2911,9 +2911,9 @@ msgstr ""
 msgid "The entered name is already in use"
 msgstr ""
 
-#: filtertransdialog.cpp:2206 images_list.cpp:329 images_list.cpp:419
-#: images_list.cpp:430 images_list.cpp:465 images_list.cpp:494
-#: images_list.cpp:500 import_export/qif_import_gui.cpp:803
+#: filtertransdialog.cpp:2206 images_list.cpp:341 images_list.cpp:431
+#: images_list.cpp:442 images_list.cpp:477 images_list.cpp:506
+#: images_list.cpp:512 import_export/qif_import_gui.cpp:803
 #: import_export/qif_import_gui.cpp:806 import_export/univcsvdialog.cpp:1108
 msgid "Warning"
 msgstr ""
@@ -2938,205 +2938,215 @@ msgstr ""
 msgid "Customize Transaction Report"
 msgstr ""
 
-#: general_report_manager.cpp:315 mmframe.cpp:3277 mmframereport.cpp:317
+#: general_report_manager.cpp:328 mmframe.cpp:3277 mmframereport.cpp:317
 #: reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
 msgstr ""
 
-#: general_report_manager.cpp:413 import_export/univcsvdialog.cpp:541
+#: general_report_manager.cpp:426 import_export/univcsvdialog.cpp:541
 #: themes.cpp:189
 msgid "&Import"
 msgstr ""
 
-#: general_report_manager.cpp:415
+#: general_report_manager.cpp:428
 msgid "Locate and load a report file."
 msgstr ""
 
-#: general_report_manager.cpp:417 import_export/univcsvdialog.cpp:543
+#: general_report_manager.cpp:430 import_export/univcsvdialog.cpp:543
 msgid "&Export"
 msgstr ""
 
-#: general_report_manager.cpp:419
+#: general_report_manager.cpp:432
 msgid "Export the report to a new file."
 msgstr ""
 
-#: general_report_manager.cpp:429 stockdialog.cpp:352
+#: general_report_manager.cpp:436
+msgid "&Sync from GitHub"
+msgstr ""
+
+#: general_report_manager.cpp:438
+msgid "Fetch latest reports from GitHub repository"
+msgstr ""
+
+#: general_report_manager.cpp:442 stockdialog.cpp:352
 msgid "&Save "
 msgstr ""
 
-#: general_report_manager.cpp:431
+#: general_report_manager.cpp:444
 msgid "Save changes."
 msgstr ""
 
-#: general_report_manager.cpp:433
+#: general_report_manager.cpp:446
 msgid "&Run"
 msgstr ""
 
-#: general_report_manager.cpp:435
+#: general_report_manager.cpp:448
 msgid "Run selected report."
 msgstr ""
 
-#: general_report_manager.cpp:447
+#: general_report_manager.cpp:461
 msgid "Output"
 msgstr ""
 
-#: general_report_manager.cpp:470
+#: general_report_manager.cpp:484
 msgid "SQL"
 msgstr ""
 
-#: general_report_manager.cpp:471
+#: general_report_manager.cpp:485
 msgid "Lua"
 msgstr ""
 
-#: general_report_manager.cpp:472
+#: general_report_manager.cpp:486
 msgid "Template"
 msgstr ""
 
-#: general_report_manager.cpp:525
+#: general_report_manager.cpp:540
 msgid "&Test"
 msgstr ""
 
-#: general_report_manager.cpp:526
+#: general_report_manager.cpp:541
 msgid "Create Template"
 msgstr ""
 
-#: general_report_manager.cpp:578
+#: general_report_manager.cpp:599
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
 msgstr[0] ""
 msgstr[1] ""
 
-#: general_report_manager.cpp:605
+#: general_report_manager.cpp:626
 msgid "SQL Syntax Error"
 msgstr ""
 
-#: general_report_manager.cpp:636
+#: general_report_manager.cpp:657
 msgid "Load report file:"
 msgstr ""
 
-#: general_report_manager.cpp:638 general_report_manager.cpp:1130
+#: general_report_manager.cpp:659 general_report_manager.cpp:1206
 msgid "General Report Manager files (*.grm)"
 msgstr ""
 
-#: general_report_manager.cpp:638 general_report_manager.cpp:1130
+#: general_report_manager.cpp:659 general_report_manager.cpp:1206
 msgid "ZIP files (*.zip)"
 msgstr ""
 
-#: general_report_manager.cpp:703 general_report_manager.cpp:891
-#: general_report_manager.cpp:1080 general_report_manager.h:64 mmframe.cpp:2025
+#: general_report_manager.cpp:724 general_report_manager.cpp:874
+#: general_report_manager.cpp:949 general_report_manager.cpp:1016
+#: general_report_manager.cpp:1156 general_report_manager.h:70 mmframe.cpp:2025
 #: mmframe.cpp:2204
 msgid "General Report Manager"
 msgstr ""
 
-#: general_report_manager.cpp:770
+#: general_report_manager.cpp:812
 msgid "Assets…"
 msgstr ""
 
-#: general_report_manager.cpp:773
+#: general_report_manager.cpp:815
 msgid "New Empty Report…"
 msgstr ""
 
-#: general_report_manager.cpp:812
+#: general_report_manager.cpp:816
 msgid "Duplicate Report"
 msgstr ""
 
-
-#: general_report_manager.cpp:774
+#: general_report_manager.cpp:817
 msgid "New Sample Report"
 msgstr ""
 
-#: general_report_manager.cpp:777
+#: general_report_manager.cpp:819
 msgid "Change Group…"
 msgstr ""
 
-#: general_report_manager.cpp:779
+#: general_report_manager.cpp:819
 msgid "Rename Group…"
 msgstr ""
 
-#: general_report_manager.cpp:780
+#: general_report_manager.cpp:820
 msgid "UnGroup"
 msgstr ""
 
-#: general_report_manager.cpp:781
+#: general_report_manager.cpp:821
 msgid "Rename Report…"
 msgstr ""
 
-#: general_report_manager.cpp:785
+#: general_report_manager.cpp:825
 msgid "Active"
 msgstr ""
 
-#: general_report_manager.cpp:785
+#: general_report_manager.cpp:825
 msgid "Show/Hide report in Navigator"
 msgstr ""
 
-#: general_report_manager.cpp:789
+#: general_report_manager.cpp:829
 msgid "Delete Report…"
 msgstr ""
 
-#: general_report_manager.cpp:792
+#: general_report_manager.cpp:833
 msgid "Sync Report…"
 msgstr ""
 
-#: general_report_manager.cpp:860
+#: general_report_manager.cpp:873
+#, c-format
 msgid "Report \"%s\" has been modified. Do you want to save it?"
 msgstr ""
 
-#: general_report_manager.cpp:890 general_report_manager.cpp:1079
+#: general_report_manager.cpp:948 general_report_manager.cpp:1015
+#: general_report_manager.cpp:1155
 msgid "Enter the name for the report"
 msgstr ""
 
-#: general_report_manager.cpp:909
+#: general_report_manager.cpp:966
 msgid "Pull Report Title:"
 msgstr ""
 
-#: general_report_manager.cpp:928
+#: general_report_manager.cpp:985
 msgid "Delete the Report Title:"
 msgstr ""
 
-#: general_report_manager.cpp:967 general_report_manager.cpp:1060
+#: general_report_manager.cpp:1046 general_report_manager.cpp:1136
 msgid "Enter or choose name for the new report group"
 msgstr ""
 
-#: general_report_manager.cpp:968
+#: general_report_manager.cpp:1047
 msgid "Change report group"
 msgstr ""
 
-#: general_report_manager.cpp:984
+#: general_report_manager.cpp:1063
 msgid "Enter or choose name for the new group"
 msgstr ""
 
-#: general_report_manager.cpp:985
+#: general_report_manager.cpp:1064
 msgid "Rename Group"
 msgstr ""
 
-#: general_report_manager.cpp:1061
+#: general_report_manager.cpp:1137
 msgid "Add Report Group"
 msgstr ""
 
-#: general_report_manager.cpp:1074
+#: general_report_manager.cpp:1150
 #, c-format
 msgid "New Report %s"
 msgstr ""
 
-#: general_report_manager.cpp:1087
+#: general_report_manager.cpp:1163
 msgid "A report with this name already exists"
 msgstr ""
 
-#: general_report_manager.cpp:1087 general_report_manager.cpp:1094
+#: general_report_manager.cpp:1163 general_report_manager.cpp:1170
 msgid "New Report"
 msgstr ""
 
-#: general_report_manager.cpp:1127
+#: general_report_manager.cpp:1203
 msgid "Choose file to Save As Report"
 msgstr ""
 
-#: general_report_manager.cpp:1301
-msgid "Parameters"
+#: general_report_manager.cpp:1388
+msgid "Parameters:"
 msgstr ""
 
 #: general_report_manager.cpp:1542
-msgid "Copy name:"
+msgid "Copy name"
 msgstr ""
 
 #: general_report_manager.cpp:1543
@@ -3147,41 +3157,41 @@ msgstr ""
 msgid "Copy as SQL SELECT"
 msgstr ""
 
-#: images_list.cpp:328
+#: images_list.cpp:340
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
 msgstr ""
 
-#: images_list.cpp:418
+#: images_list.cpp:430
 #, c-format
 msgid "File '%1$s' missing or invalid in chosen theme '%2$s'"
 msgstr ""
 
-#: images_list.cpp:429
+#: images_list.cpp:441
 #, c-format
 msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
 msgstr ""
 
-#: images_list.cpp:462
+#: images_list.cpp:474
 msgid "and more…"
 msgstr ""
 
-#: images_list.cpp:464
+#: images_list.cpp:476
 #, c-format
 msgid "There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s"
 msgstr ""
 
-#: images_list.cpp:493
+#: images_list.cpp:505
 #, c-format
 msgid "Theme %s not found; it may no longer be supported. Reverting to the default theme."
 msgstr ""
 
-#: images_list.cpp:500
+#: images_list.cpp:512
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
 msgstr ""
 
-#: images_list.cpp:505
+#: images_list.cpp:517
 msgid "No workable theme found, the installation may be corrupt"
 msgstr ""
 
