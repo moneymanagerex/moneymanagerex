@@ -87,12 +87,12 @@ void mmPayeeSelectionDialog::OnCategorySelection(wxCommandEvent& WXUNUSED(event)
     if (selectedCategoryId == -1)
     {
         updateCategoryButton_->Enable(false);
-        updateCategoryButton_->SetToolTip(_("Cannot set 'Uncategorized' as the default category for the payee"));
+        updateCategoryButton_->SetToolTip(_tu("Unable to set “Uncategorized” as the default category for the payee"));
     }
     else
     {
         updateCategoryButton_->Enable(true);
-        updateCategoryButton_->SetToolTip(_("Toggle to update payee's default category (P) or apply to this transaction only"));
+        updateCategoryButton_->SetToolTip(_tu("Toggle to update payee’s default category (P) or apply to this transaction only"));
     }
     categoryManuallyChanged_ = true; // Mark as manually changed
     wxLogDebug("Category manually changed to '%s' (ID=%lld)", categoryChoice_->GetString(sel), selectedCategoryId);
@@ -380,7 +380,7 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& WXUNUSED(event))
                 wxRegEx re(pattern, wxRE_ADVANCED);
                 if (!re.IsValid())
                 {
-                    wxMessageBox(wxString::Format(_("Invalid regular expression '%s' in row %d: please correct the pattern"), pattern, i + 1), _("Error"),
+                    wxMessageBox(wxString::Format(_tu("Invalid regular expression “%1$s” in row %2$d: please correct the pattern"), pattern, i + 1), _("Error"),
                                  wxOK | wxICON_ERROR);
                     return;
                 }
@@ -620,13 +620,13 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     double estimatedTimeMin = estimatedTimeSec / 60.0;
 
     wxStaticText* progressLabel = new wxStaticText(
-        this, wxID_ANY, wxString::Format(_("Transaction %d of %d (%d total in file)"), currentTransaction_ + 1, newTransactions_, totalTransactions_));
+        this, wxID_ANY, wxString::Format(_("Transaction %1$d of %2$d (%3$d total in file)"), currentTransaction_ + 1, newTransactions_, totalTransactions_));
     mainSizer->Add(progressLabel, 0, wxALL, 5);
-    wxString etaText = (avgTimePerTrans > 0) ? wxString::Format(_("Estimated completion time: %.1f minutes"), estimatedTimeMin) : _("Estimating time...");
+    wxString etaText = (avgTimePerTrans > 0) ? wxString::Format(_("Estimated completion time: %.1f minutes"), estimatedTimeMin) : _tu("Estimating time…");
     mainSizer->Add(new wxStaticText(this, wxID_ANY, etaText), 0, wxALL, 5);
 
     // Transaction info
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Transaction Number (FITID): %s"), fitid)), 0, wxLEFT | wxRIGHT | wxTOP, 5);
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Financial Institution Transaction Identification (FITID): %s"), fitid)), 0, wxLEFT | wxRIGHT | wxTOP, 5);
     mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Date: %s"), date)), 0, wxALL, 5);
     mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Amount: %s"), amount)), 0, wxALL, 5);
     mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Type: %s"), transType)), 0, wxALL, 5);
@@ -654,7 +654,7 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     }
     else if (matchConfidence_ > 50.0) // Show suggested payee and confidence only if confidence > 50%
     {
-        mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_("Suggested Payee: '%s'"), suggestedPayeeName_)), 0, wxALL, 5);
+        mainSizer->Add(new wxStaticText(this, wxID_ANY, wxString::Format(_tu("Suggested Payee: “%s”"), suggestedPayeeName_)), 0, wxALL, 5);
         confidenceLabel_ = new wxStaticText(this, wxID_ANY, wxString::Format(_("Match Confidence: %.1f%% (%s)"), matchConfidence_, matchMethod_));
         mainSizer->Add(confidenceLabel_, 0, wxALL, 5);
 
@@ -745,7 +745,7 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     categoryChoice_->SetSelection(0);
 
     updateCategoryButton_ = new wxButton(this, ID_UPDATE_CATEGORY, "P", wxDefaultPosition, wxSize(25, -1));
-    updateCategoryButton_->SetToolTip(_("Toggle to update payee's default category (P) or apply to this transaction only"));
+    updateCategoryButton_->SetToolTip(_tu("Toggle to update payee’s default category (P) or apply to this transaction only"));
     wxBoxSizer* categoryButtonSizer = new wxBoxSizer(wxHORIZONTAL);
     categoryButtonSizer->Add(categoryChoice_, 1, wxEXPAND, 0);
     categoryButtonSizer->Add(updateCategoryButton_, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, 5);
@@ -885,7 +885,7 @@ void mmPayeeSelectionDialog::OnPayeeChoice(wxCommandEvent& event)
 }
 
 mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
-    : wxDialog(parent, wxID_ANY, _("Import OFX File"), wxDefaultPosition, wxSize(500, 360), wxCAPTION | wxCLOSE_BOX | wxMINIMIZE_BOX), fileNameCtrl_(nullptr),
+    : wxDialog(parent, wxID_ANY, _("Import OFX file"), wxDefaultPosition, wxSize(500, 360), wxCAPTION | wxCLOSE_BOX | wxMINIMIZE_BOX), fileNameCtrl_(nullptr),
       accountDropDown_(nullptr), account_id_(0), payeeRegExCheckBox_(nullptr), useFuzzyMatchingCheckBox_(nullptr), fuzzyConfidenceChoice_(nullptr),
       markFuzzyFollowUpCheckBox_(nullptr), transferCategId_(-1), importStartTime_(0), promptFuzzyConfirmationCheckBox_(nullptr)
 {
@@ -893,7 +893,7 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
 
     mainSizer->Add(new wxStaticText(this, wxID_ANY, _("OFX File:")), 0, wxALL, 5);
     fileNameCtrl_ = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
-    wxButton* browseButton = new wxButton(this, wxID_OPEN, _("Browse"));
+    wxButton* browseButton = new wxButton(this, wxID_OPEN, _tu("Browse…"));
     wxBoxSizer* fileSizer = new wxBoxSizer(wxHORIZONTAL);
     fileSizer->Add(fileNameCtrl_, 1, wxALL | wxEXPAND, 5);
     fileSizer->Add(browseButton, 0, wxALL, 5);
@@ -915,7 +915,7 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
     mainSizer->Add(payeeRegExCheckBox_, 0, wxALL, 5);
 
     useFuzzyMatchingCheckBox_ =
-        new wxCheckBox(this, wxID_ANY, _("Use fuzzy payee matching if exact match and regex matching not successful"), wxDefaultPosition, wxDefaultSize);
+        new wxCheckBox(this, wxID_ANY, _("Use fuzzy payee matching if exact match and regex matching are unsuccessful"), wxDefaultPosition, wxDefaultSize);
     useFuzzyMatchingCheckBox_->SetValue(true);
     mainSizer->Add(useFuzzyMatchingCheckBox_, 0, wxALL, 5);
 
@@ -932,7 +932,7 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
     mainSizer->Add(fuzzyConfidenceChoice_, 0, wxALL | wxEXPAND, 5);
 
     markFuzzyFollowUpCheckBox_ =
-        new wxCheckBox(this, wxID_ANY, _("Mark transactions automatically imported with Fuzzy Match as 'Follow Up'"), wxDefaultPosition, wxDefaultSize);
+        new wxCheckBox(this, wxID_ANY, _tu("Mark transactions automatically imported with Fuzzy Match as “Follow Up”"), wxDefaultPosition, wxDefaultSize);
     markFuzzyFollowUpCheckBox_->SetValue(false);
     mainSizer->Add(markFuzzyFollowUpCheckBox_, 0, wxALL, 5);
 
@@ -1827,11 +1827,11 @@ mmOFXImportSummaryDialog::mmOFXImportSummaryDialog(wxWindow* parent, const std::
     wxStaticText* statsText =
         new wxStaticText(this, wxID_ANY,
                          wxString::Format(_("Import Statistics:\n"
-                                            "- Total Transactions: %d\n"
-                                            "- Automatically Imported: %d\n"
-                                            "- New Payees Created: %d\n"
-                                            "- Manually Allocated to Payees: %d\n"
-                                            "- Time Taken: %s"),
+                                            "- Total Transactions: %1$d\n"
+                                            "- Automatically Imported: %2$d\n"
+                                            "- New Payees Created: %3$d\n"
+                                            "- Manually Allocated to Payees: %4$d\n"
+                                            "- Time Taken: %5$s"),
                                           totalTransactions_, autoImportedCount_, newPayeesCreated_, manuallyAllocated_, FormatTimeTaken(elapsedTimeSec)));
     mainSizer->Add(statsText, 0, wxALL | wxEXPAND, 10);
 

@@ -337,7 +337,7 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                         wxString metaData(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
                         if (metaData_doc.Parse(metaData.utf8_str()).HasParseError()) {
                             wxMessageBox(
-                                wxString::Format(_t("Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."), thisTheme),
+                                wxString::Format(_tu("Metadata JSON in Theme “%s” is unable to be parsed and looks badly constructed, please correct."), thisTheme),
                                 _t("Warning"),
                                 wxOK | wxICON_WARNING
                             );

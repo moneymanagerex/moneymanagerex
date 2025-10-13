@@ -912,7 +912,7 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
 {
     m_FileNameStr = file_name_ctrl_->GetValue();
 
-    m_FileNameStr = wxFileSelector(_t("Choose QIF data file to Import")
+    m_FileNameStr = wxFileSelector(_t("Choose QIF data file to import")
         , wxEmptyString, m_FileNameStr, wxEmptyString
         , _t("QIF Files (*.qif)") + "|*.qif;*.QIF"
         , wxFD_OPEN | wxFD_CHANGE_DIR | wxFD_FILE_MUST_EXIST, this); //TODO: Remove UI Blinking
@@ -1089,7 +1089,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
 
     wxString sMsg;
-    wxMessageDialog msgDlg(this, _t("Do you want to import all transaction?")
+    wxMessageDialog msgDlg(this, _t("Do you want to import all transactions?")
         + "\n" + _t("All missing account, payees and categories will be created.")
         , _t("Confirm Import")
         , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
@@ -1262,7 +1262,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         joinSplit(trx_data_set, m_splitDataSets);
         saveSplit();
 
-        sMsg = _t("Import finished successfully") + "\n" +
+        sMsg = _t("Import finished successfully.") + "\n" +
             wxString::Format(_t("Total Imported: %zu"), trx_data_set.size()) + "\n" +
             wxString::Format(_t("Duplicates Detected: %zu"), m_duplicateTransactions.size());
 

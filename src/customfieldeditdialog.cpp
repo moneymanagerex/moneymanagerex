@@ -147,7 +147,7 @@ void mmCustomFieldEditDialog::CreateControls()
         wxString type = Model_CustomField::type_name(i);
         m_itemType->Append(wxGetTranslation(type), new wxStringClientData(type));
     }
-    mmToolTip(m_itemType, _t("Select type of custom field"));
+    mmToolTip(m_itemType, _t("Select the custom field type"));
     itemFlexGridSizer6->Add(m_itemType, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Tooltip")), g_flagsH);

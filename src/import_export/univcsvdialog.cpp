@@ -563,8 +563,8 @@ void mmUnivCSVDialog::CreateControls()
         , wxCommandEventHandler(mmUnivCSVDialog::OnButtonClear), nullptr, this);
 
     const wxString file_tooltip = IsImporter()
-        ? (IsXML() ? _t("Choose XML data file to Import") : _t("Choose CSV data file to Import"))
-        : (IsXML() ? _t("Choose XML data file to Export") : _t("Choose CSV data file to Export"));
+        ? (IsXML() ? _t("Choose XML data file to import") : _t("Choose CSV data file to import"))
+        : (IsXML() ? _t("Choose XML data file to export") : _t("Choose CSV data file to export"));
     mmToolTip(button_browse, file_tooltip);
 
     mmToolTip(m_choice_preset_name, _t("Preset name"));
@@ -1493,11 +1493,11 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     }
     progressDlg.Update(linesToImport);
 
-    wxString msg = wxString::Format(_t("Total Lines: %ld"), totalLines);
+    wxString msg = wxString::Format(_t("Total lines: %ld"), totalLines);
     msg << "\n";
-    msg << wxString::Format(_t("Lines Selected to Import: %ld"), linesToImport);
+    msg << wxString::Format(_t("Lines selected to import: %ld"), linesToImport);
     msg << "\n\n";
-    msg << wxString::Format(_t("Empty Lines: %ld"), countEmptyLines);
+    msg << wxString::Format(_t("Empty lines: %ld"), countEmptyLines);
     msg << "\n";
     msg << wxString::Format(_t("Imported: %ld"), nImportedLines);
     msg << "\n";
