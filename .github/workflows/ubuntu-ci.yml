@@ -79,7 +79,7 @@ jobs:
           echo "artifact_name=$(ls mmex*.deb)" >> $GITHUB_OUTPUT
           
       - name: Upload DEB Package
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name == 'push' && github.repository == 'moneymanagerex/moneymanagerex' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.mmex-build.outputs.artifact_name }}
@@ -111,7 +111,7 @@ jobs:
           echo "artifact_name=$(ls MMEX*.AppImage)" >> $GITHUB_OUTPUT
 
       - name: Upload AppImage
-        if: ${{ matrix.os == 'ubuntu-22.04' && github.event_name == 'pull_request'}}
+        if: ${{ matrix.os == 'ubuntu-22.04' && github.event_name == 'push' && github.repository == 'moneymanagerex/moneymanagerex' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.appimage-build.outputs.artifact_name }}
