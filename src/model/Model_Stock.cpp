@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
- Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2022,2025 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -192,7 +192,7 @@ double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const 
         for (const auto& linkrecord : linkrecords)
         {
             Model_Checking::Data* txn = Model_Checking::instance().get(linkrecord.CHECKINGACCOUNTID);
-            if (txn->DELETEDTIME.IsEmpty() && Model_Checking::TRANSDATE(txn).FormatISODate() <= strDate) {
+            if (txn->TRANSID > -1 && txn->DELETEDTIME.IsEmpty() && Model_Checking::TRANSDATE(txn).FormatISODate() <= strDate) {
                 numShares += Model_Shareinfo::instance().ShareEntry(linkrecord.CHECKINGACCOUNTID)->SHARENUMBER;
             }
         }
@@ -229,7 +229,7 @@ double Model_Stock::RealGainLoss(const Data* r, bool to_base_curr)
     for (const auto &trans : trans_list)
     {
         Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
-        if (checking_entry && checking_entry->DELETEDTIME.IsEmpty()) checking_list.push_back(*checking_entry);
+        if (checking_entry->TRANSID > -1 && checking_entry->DELETEDTIME.IsEmpty()) checking_list.push_back(*checking_entry);
     }
     std::stable_sort(checking_list.begin(), checking_list.end(), SorterByTRANSDATE());
 
@@ -300,7 +300,7 @@ double Model_Stock::UnrealGainLoss(const Data* r, bool to_base_curr)
             for (const auto &trans : trans_list)
             {
                 Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
-                if (checking_entry && checking_entry->DELETEDTIME.IsEmpty()) checking_list.push_back(*checking_entry);
+                if (checking_entry->TRANSID > -1 && checking_entry->DELETEDTIME.IsEmpty()) checking_list.push_back(*checking_entry);
             }
             std::stable_sort(checking_list.begin(), checking_list.end(), SorterByTRANSDATE());
 
@@ -365,7 +365,7 @@ void Model_Stock::UpdatePosition(Model_Stock::Data* stock_entry)
     for (const auto &trans : trans_list)
     {
         Model_Checking::Data* checking_entry = Model_Checking::instance().get(trans.CHECKINGACCOUNTID);
-        if (checking_entry && checking_entry->DELETEDTIME.IsEmpty() && Model_Checking::status_id(checking_entry->STATUS) != Model_Checking::STATUS_ID_VOID)
+        if (checking_entry->TRANSID > -1 && checking_entry->DELETEDTIME.IsEmpty() && Model_Checking::status_id(checking_entry->STATUS) != Model_Checking::STATUS_ID_VOID)
             checking_list.push_back(*checking_entry);
     }
     std::stable_sort(checking_list.begin(), checking_list.end(), SorterByTRANSDATE());
