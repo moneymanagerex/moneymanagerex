@@ -246,6 +246,7 @@ Adam Gallagher
 John Weaving
 Jonathan Thomas
 Erik Behrendt
+Christoph Röcker
 
 ### 2024
 Renato
