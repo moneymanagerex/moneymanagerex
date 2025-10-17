@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-10-13 17:15+0000\n"
+"POT-Creation-Date: 2025-10-17 09:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,8 +79,8 @@ msgstr ""
 msgid "Account Type:"
 msgstr ""
 
-#: accountdialog.cpp:138
-msgid "Specify the type of account to be created."
+#: accountdialog.cpp:138 wizard_newaccount.cpp:130
+msgid "Specify the account type to be created."
 msgstr ""
 
 #: accountdialog.cpp:142
@@ -5909,11 +5909,11 @@ msgid "&Next →"
 msgstr ""
 
 #: mmframe.cpp:2439
-msgid "Unable to find previously opened database.\n"
+msgid "Unable to find previously opened database."
 msgstr ""
 
 #: mmframe.cpp:2441
-msgid "Password not entered for encrypted database.\n"
+msgid "Password not entered for encrypted database."
 msgstr ""
 
 #: mmframe.cpp:2460
@@ -9077,10 +9077,6 @@ msgstr ""
 msgid ""
 "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
-msgstr ""
-
-#: wizard_newaccount.cpp:130
-msgid "Specify the account type to be created."
 msgstr ""
 
 #: wizard_newaccount.cpp:135
