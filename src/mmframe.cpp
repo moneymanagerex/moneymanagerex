@@ -2436,7 +2436,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         );
         this->SetTitle(note);
 
-        wxString msgStr = _t("Unable to find previously opened database.) + "\n";
+        wxString msgStr = _t("Unable to find previously opened database.") + "\n";
         if (!passwordCheckPassed)
             msgStr = _t("Password not entered for encrypted database.") + "\n";
 
