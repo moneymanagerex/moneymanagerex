@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-10-13 17:15+0000\n"
-"PO-Revision-Date: 2025-10-17 00:57\n"
+"POT-Creation-Date: 2025-10-17 09:52+0000\n"
+"PO-Revision-Date: 2025-10-20 17:36\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -78,8 +78,8 @@ msgstr "Insira o Nome da Conta. Este nome poderá ser alterado a qualquer moment
 msgid "Account Type:"
 msgstr "Tipo de Conta:"
 
-#: accountdialog.cpp:138
-msgid "Specify the type of account to be created."
+#: accountdialog.cpp:138 wizard_newaccount.cpp:130
+msgid "Specify the account type to be created."
 msgstr "Especifique o tipo de conta a ser criado."
 
 #: accountdialog.cpp:142
@@ -759,7 +759,7 @@ msgstr "Pasta de anexos não encontrada."
 #: attachmentdialog.cpp:112
 #, c-format
 msgid "Attachment Manager | %1$s | %2$lld"
-msgstr ""
+msgstr "Gerenciador de Anexos | %1$s | %2$lld"
 
 #: attachmentdialog.cpp:114
 #, c-format
@@ -2036,7 +2036,7 @@ msgstr "Tipo de Campo"
 
 #: customfieldeditdialog.cpp:150
 msgid "Select the custom field type"
-msgstr ""
+msgstr "Selecione o tipo de campo personalizado"
 
 #: customfieldeditdialog.cpp:153
 msgid "Tooltip"
@@ -2678,7 +2678,7 @@ msgstr "Voltar"
 #: filtertransdialog.cpp:49 mmchecking_list.cpp:1577
 #: model/Model_Checking.cpp:45
 msgid "Unreconciled"
-msgstr "Não Pago"
+msgstr "Não-reconciliada"
 
 #: filtertransdialog.cpp:50 mmhomepage.cpp:526 mmhomepage.cpp:711
 #: model/Model_Checking.cpp:46
@@ -2766,7 +2766,7 @@ msgstr "Incluir todas as subcategorias"
 #: filtertransdialog.cpp:1712 import_export/univcsvdialog.cpp:116
 #: mmchecking_list.cpp:106 model/Model_Checking.cpp:33 reports/forecast.cpp:81
 msgid "Withdrawal"
-msgstr "Retirada"
+msgstr "Pagamento"
 
 #: filtertransdialog.cpp:672 filtertransdialog.cpp:1614
 #: filtertransdialog.cpp:1714 import_export/univcsvdialog.cpp:117
@@ -2960,11 +2960,11 @@ msgstr "Exportar o relatório para um novo arquivo."
 
 #: general_report_manager.cpp:436
 msgid "&Sync from GitHub"
-msgstr ""
+msgstr "&Sincronizar do GitHub"
 
 #: general_report_manager.cpp:438
 msgid "Fetch latest reports from GitHub repository"
-msgstr ""
+msgstr "Obter os relatórios mais recentes do repositório do GitHub"
 
 #: general_report_manager.cpp:442 stockdialog.cpp:352
 msgid "&Save "
@@ -3046,7 +3046,7 @@ msgstr "Novo Relatório em Branco…"
 
 #: general_report_manager.cpp:816
 msgid "Duplicate Report"
-msgstr ""
+msgstr "Duplicar Relatório"
 
 #: general_report_manager.cpp:817
 msgid "New Sample Report"
@@ -3087,7 +3087,7 @@ msgstr ""
 #: general_report_manager.cpp:873
 #, c-format
 msgid "Report \"%s\" has been modified. Do you want to save it?"
-msgstr ""
+msgstr "O Relatório \"%S\" foi modificado. Deseja salvá-lo?"
 
 #: general_report_manager.cpp:948 general_report_manager.cpp:1015
 #: general_report_manager.cpp:1155
@@ -3141,24 +3141,24 @@ msgstr "Escolha o arquivo para Salvar como Relatório"
 
 #: general_report_manager.cpp:1388
 msgid "Parameters:"
-msgstr ""
+msgstr "Parâmetros:"
 
 #: general_report_manager.cpp:1542
 msgid "Copy name"
-msgstr ""
+msgstr "Copiar nome"
 
 #: general_report_manager.cpp:1543
 msgid "Copy all column names"
-msgstr ""
+msgstr "Copiar todos os nomes das colunas"
 
 #: general_report_manager.cpp:1544
 msgid "Copy as SQL SELECT"
-msgstr ""
+msgstr "Copiar como SQL SELECT"
 
 #: images_list.cpp:340
 #, c-format
 msgid "Metadata JSON in Theme “%s” is unable to be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "Metadado JSON no tema '%s' não pode ser analisado e parece mal construído, por favor corrija."
 
 #: images_list.cpp:430
 #, c-format
@@ -3195,11 +3195,11 @@ msgstr "Nenhum tema viável encontrado, a instalação pode estar corrompida"
 
 #: import_export/ofx_import_gui.cpp:90
 msgid "Unable to set “Uncategorized” as the default category for the payee"
-msgstr ""
+msgstr "Não é possível definir \"Não Categorizado\" como a categoria padrão para o beneficiário"
 
 #: import_export/ofx_import_gui.cpp:95 import_export/ofx_import_gui.cpp:748
 msgid "Toggle to update payee’s default category (P) or apply to this transaction only"
-msgstr ""
+msgstr "Alternar para atualizar a categoria padrão do beneficiário (P) ou aplicar apenas a esta transação"
 
 #: import_export/ofx_import_gui.cpp:295
 msgid "Please select a row to delete."
@@ -3216,7 +3216,7 @@ msgstr ""
 #: import_export/ofx_import_gui.cpp:383
 #, c-format
 msgid "Invalid regular expression “%1$s” in row %2$d: please correct the pattern"
-msgstr ""
+msgstr "Expressão regular inválida “%1$s” na linha %2$d: por favor, corrija o padrão"
 
 #: import_export/ofx_import_gui.cpp:601
 msgid "Payee Confirmation Required"
@@ -3225,7 +3225,7 @@ msgstr ""
 #: import_export/ofx_import_gui.cpp:623
 #, c-format
 msgid "Transaction %1$d of %2$d (%3$d total in file)"
-msgstr ""
+msgstr "Transação %1$d de %2$d (%3$d total em arquivo)"
 
 #: import_export/ofx_import_gui.cpp:625
 #, c-format
@@ -3234,12 +3234,12 @@ msgstr ""
 
 #: import_export/ofx_import_gui.cpp:625
 msgid "Estimating time…"
-msgstr ""
+msgstr "Estimando o tempo…"
 
 #: import_export/ofx_import_gui.cpp:629
 #, c-format
 msgid "Financial Institution Transaction Identification (FITID): %s"
-msgstr ""
+msgstr "Identificação de transação da instituição financeira (FITID): %s"
 
 #: import_export/ofx_import_gui.cpp:630
 #, c-format
@@ -3277,7 +3277,7 @@ msgstr ""
 #: import_export/ofx_import_gui.cpp:657
 #, c-format
 msgid "Suggested Payee: “%s”"
-msgstr ""
+msgstr "Beneficiário sugerido: “%s”"
 
 #: import_export/ofx_import_gui.cpp:680
 msgid "Do you want to use an existing payee or create a new one?"
@@ -3329,7 +3329,7 @@ msgstr "Excluir linha"
 
 #: import_export/ofx_import_gui.cpp:888
 msgid "Import OFX file"
-msgstr ""
+msgstr "Importar Arquivo OFX"
 
 #: import_export/ofx_import_gui.cpp:894
 msgid "OFX File:"
@@ -3337,7 +3337,7 @@ msgstr "Arquivo OFX:"
 
 #: import_export/ofx_import_gui.cpp:896
 msgid "Browse…"
-msgstr ""
+msgstr "Navegar…"
 
 #: import_export/ofx_import_gui.cpp:902
 msgid "Account:"
@@ -3349,7 +3349,7 @@ msgstr ""
 
 #: import_export/ofx_import_gui.cpp:918
 msgid "Use fuzzy payee matching if exact match and regex matching are unsuccessful"
-msgstr ""
+msgstr "Usar correspondência difusa se correspondência exata e correspondência de expressão regular não forem bem sucedidas"
 
 #: import_export/ofx_import_gui.cpp:922
 msgid "Minimum Fuzzy Match Confidence Level:"
@@ -3357,7 +3357,7 @@ msgstr ""
 
 #: import_export/ofx_import_gui.cpp:935
 msgid "Mark transactions automatically imported with Fuzzy Match as “Follow Up”"
-msgstr ""
+msgstr "Marcar transações automaticamente importadas com correspondência difusa como \"Acompanhar\""
 
 #: import_export/ofx_import_gui.cpp:939
 msgid "Prompt to confirm each fuzzy match"
@@ -3405,7 +3405,12 @@ msgid "Import Statistics:\n"
 "- New Payees Created: %3$d\n"
 "- Manually Allocated to Payees: %4$d\n"
 "- Time Taken: %5$s"
-msgstr ""
+msgstr "Estatísticas da importação:\n"
+"- Total de Transações: %1$d\n"
+"- Automaticamente importado: %2$d\n"
+"- Novos Favorecidos Criados: %3$d\n"
+"- Manualmente Alocado para Favorecidos: %4$d\n"
+"- Tempo levado: %5$s"
 
 #: import_export/ofx_import_gui.cpp:1843
 msgid "FITID"
@@ -3569,7 +3574,7 @@ msgstr "Limpar"
 
 #: import_export/qif_export.cpp:258
 msgid "Choose account to export from:"
-msgstr ""
+msgstr "Escolha a conta a ser exportada de:"
 
 #: import_export/qif_export.cpp:259 import_export/qif_export.cpp:365
 msgid "QIF Export"
@@ -3577,7 +3582,7 @@ msgstr "Exportar para QIF"
 
 #: import_export/qif_export.cpp:318
 msgid "Choose QIF data file to export"
-msgstr ""
+msgstr "Escolha o arquivo QIF a ser exportado"
 
 #: import_export/qif_export.cpp:320 import_export/qif_import_gui.cpp:917
 msgid "QIF Files (*.qif)"
@@ -3585,7 +3590,7 @@ msgstr "Arquivos QIF (* .qif)"
 
 #: import_export/qif_export.cpp:326
 msgid "Choose JSON data file to export"
-msgstr ""
+msgstr "Escolha o arquivo JSON a ser exportado"
 
 #: import_export/qif_export.cpp:328
 msgid "JSON Files (*.json)"
@@ -3760,11 +3765,11 @@ msgstr "Correspondido para %1$s por padrão %2$s"
 
 #: import_export/qif_import_gui.cpp:915
 msgid "Choose QIF data file to import"
-msgstr ""
+msgstr "Escolha o arquivo QIF a ser exportado"
 
 #: import_export/qif_import_gui.cpp:1092
 msgid "Do you want to import all transactions?"
-msgstr ""
+msgstr "Deseja importar todas as transações?"
 
 #: import_export/qif_import_gui.cpp:1093
 msgid "All missing account, payees and categories will be created."
@@ -3805,7 +3810,7 @@ msgstr "Importando transações Divididas"
 
 #: import_export/qif_import_gui.cpp:1265
 msgid "Import finished successfully."
-msgstr ""
+msgstr "Importação finalizada com sucesso."
 
 #: import_export/qif_import_gui.cpp:1266
 #, c-format
@@ -4097,17 +4102,17 @@ msgstr "Linhas rejeitadas:"
 #: import_export/univcsvdialog.cpp:1496 stockdialog.cpp:620
 #, c-format
 msgid "Total lines: %ld"
-msgstr ""
+msgstr "Total de linhas: %ld"
 
 #: import_export/univcsvdialog.cpp:1498
 #, c-format
 msgid "Lines selected to import: %ld"
-msgstr ""
+msgstr "Linhas selecionadas para importação: %ld"
 
 #: import_export/univcsvdialog.cpp:1500
 #, c-format
 msgid "Empty lines: %ld"
-msgstr ""
+msgstr "Linhas vazias: %ld"
 
 #: import_export/univcsvdialog.cpp:1502
 #, c-format
@@ -5344,11 +5349,11 @@ msgstr "&Limpar Arquivos Recentes"
 
 #: mmframe.cpp:1745
 msgid "&OFX File…"
-msgstr ""
+msgstr "&Arquivo OFX…"
 
 #: mmframe.cpp:1745
 msgid "Import from OFX file"
-msgstr ""
+msgstr "Importar do arquivo OFX"
 
 #: mmframe.cpp:1747
 msgid "&WebApp…"
@@ -5903,12 +5908,12 @@ msgid "&Next →"
 msgstr "&Próximo →"
 
 #: mmframe.cpp:2439
-msgid "Unable to find previously opened database.\n"
-msgstr "Não foi possível localizar banco de dados aberto anteriormente.\n"
+msgid "Unable to find previously opened database."
+msgstr "Não foi possível encontrar o banco de dados aberto anteriormente."
 
 #: mmframe.cpp:2441
-msgid "Password not entered for encrypted database.\n"
-msgstr "Senha não inserida para banco de dados criptografado.\n"
+msgid "Password not entered for encrypted database."
+msgstr "Senha não inserida para banco de dados criptografado."
 
 #: mmframe.cpp:2460
 msgid "portable mode"
@@ -6095,7 +6100,7 @@ msgstr "Problema encontrado ao atualizar o WebApp, verifique o servidor da Web e
 
 #: mmframe.cpp:3345
 msgid "Choose HTML file to export"
-msgstr ""
+msgstr "Escolha o arquivo HTML para exportar"
 
 #: mmframe.cpp:3697 mmframe.cpp:3704
 msgid "Downloading stock prices from Yahoo"
@@ -8335,7 +8340,7 @@ msgstr "Cotações importadas do CSV:"
 #: stockdialog.cpp:622
 #, c-format
 msgid "Total imported: %ld"
-msgstr ""
+msgstr "Total importado: %ld"
 
 #: stockdialog.cpp:630
 msgid "Importing CSV"
@@ -8530,7 +8535,7 @@ msgstr "Perda: %s"
 
 #: stockspanel.cpp:480
 msgid "Stock prices updated successfully"
-msgstr ""
+msgstr "Preços das ações atualizados com sucesso"
 
 #: stockspanel.cpp:482 stockspanel.cpp:666
 #, c-format
@@ -9077,17 +9082,13 @@ msgid "This is generally the name of a financial institution\n"
 msgstr "Geralmente este é o nome da instituição financeira\n"
 "onde a conta é mantida. Por exemplo: 'Banco ABC'."
 
-#: wizard_newaccount.cpp:130
-msgid "Specify the account type to be created."
-msgstr ""
-
 #: wizard_newaccount.cpp:135
 msgid "Account Type"
-msgstr ""
+msgstr "Tipo de Conta"
 
 #: wizard_newaccount.cpp:139
 msgid "Select the account type to create:"
-msgstr ""
+msgstr "Especifique o tipo de conta a ser criado:"
 
 #: wizard_newaccount.cpp:140
 msgid "General bank accounts cover a wide variety of account\n"

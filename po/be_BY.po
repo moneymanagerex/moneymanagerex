@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-10-13 17:15+0000\n"
-"PO-Revision-Date: 2025-10-17 00:57\n"
+"POT-Creation-Date: 2025-10-17 09:52+0000\n"
+"PO-Revision-Date: 2025-10-20 17:36\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "Language: be_BY\n"
@@ -78,9 +78,9 @@ msgstr "Пакажыце назву рахунка. Гэтая назва мож
 msgid "Account Type:"
 msgstr "Тып рахунка:"
 
-#: accountdialog.cpp:138
-msgid "Specify the type of account to be created."
-msgstr "Вызначыце тып рахунка, што будзе створаны."
+#: accountdialog.cpp:138 wizard_newaccount.cpp:130
+msgid "Specify the account type to be created."
+msgstr ""
 
 #: accountdialog.cpp:142
 msgid "Account Status:"
@@ -5921,11 +5921,11 @@ msgid "&Next →"
 msgstr "&Наступны →"
 
 #: mmframe.cpp:2439
-msgid "Unable to find previously opened database.\n"
+msgid "Unable to find previously opened database."
 msgstr ""
 
 #: mmframe.cpp:2441
-msgid "Password not entered for encrypted database.\n"
+msgid "Password not entered for encrypted database."
 msgstr ""
 
 #: mmframe.cpp:2460
@@ -9088,10 +9088,6 @@ msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
 msgstr "Як правіла, гэта назва фінансавай установы,\n"
 "дзе знаходзіцца рахунак. Напрыклад, «Прыёрбанк»."
-
-#: wizard_newaccount.cpp:130
-msgid "Specify the account type to be created."
-msgstr ""
 
 #: wizard_newaccount.cpp:135
 msgid "Account Type"

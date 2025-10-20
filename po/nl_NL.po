@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-10-13 17:15+0000\n"
-"PO-Revision-Date: 2025-10-17 00:57\n"
+"POT-Creation-Date: 2025-10-17 09:52+0000\n"
+"PO-Revision-Date: 2025-10-20 17:36\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -78,9 +78,9 @@ msgstr "Voer de naam van de rekening in. Deze kan op elk moment worden hernoemd.
 msgid "Account Type:"
 msgstr "Rekening Type:"
 
-#: accountdialog.cpp:138
-msgid "Specify the type of account to be created."
-msgstr "Geef het type rekening op dat moet worden aangemaakt."
+#: accountdialog.cpp:138 wizard_newaccount.cpp:130
+msgid "Specify the account type to be created."
+msgstr "Specifieer het te creëren rekeningtype."
 
 #: accountdialog.cpp:142
 msgid "Account Status:"
@@ -3201,7 +3201,7 @@ msgstr "Kan “Niet gecategoriseerd” niet instellen als standaard categorie vo
 
 #: import_export/ofx_import_gui.cpp:95 import_export/ofx_import_gui.cpp:748
 msgid "Toggle to update payee’s default category (P) or apply to this transaction only"
-msgstr "Wissel om de standaardcategorie van de begunstigde (P) bij te werken, of pas dit alleen toe op deze transactie"
+msgstr "Wissel om de standaard categorie van de begunstigde (P) bij te werken, of pas dit alleen toe op deze transactie"
 
 #: import_export/ofx_import_gui.cpp:295
 msgid "Please select a row to delete."
@@ -5909,12 +5909,12 @@ msgid "&Next →"
 msgstr "&Volgende →"
 
 #: mmframe.cpp:2439
-msgid "Unable to find previously opened database.\n"
-msgstr "Kan eerder geopende databank niet vinden.\n"
+msgid "Unable to find previously opened database."
+msgstr "Kan eerder geopende database niet vinden."
 
 #: mmframe.cpp:2441
-msgid "Password not entered for encrypted database.\n"
-msgstr "Wachtwoord niet ingevoerd voor versleutelde databank.\n"
+msgid "Password not entered for encrypted database."
+msgstr "Wachtwoord niet ingevoerd voor versleutelde database."
 
 #: mmframe.cpp:2460
 msgid "portable mode"
@@ -9079,10 +9079,6 @@ msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
 msgstr "Dit is meestal de naam van de financiële instelling waar\n"
 "de rekening is ondergebracht. Bijvoorbeeld 'Rabobank'."
-
-#: wizard_newaccount.cpp:130
-msgid "Specify the account type to be created."
-msgstr "Specifieer het te creëren rekeningtype."
 
 #: wizard_newaccount.cpp:135
 msgid "Account Type"

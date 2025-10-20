@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-10-13 17:15+0000\n"
-"PO-Revision-Date: 2025-10-17 00:57\n"
+"POT-Creation-Date: 2025-10-17 09:52+0000\n"
+"PO-Revision-Date: 2025-10-20 17:36\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -78,9 +78,9 @@ msgstr "输入账户名称，名称可随时更改。"
 msgid "Account Type:"
 msgstr "账户类型："
 
-#: accountdialog.cpp:138
-msgid "Specify the type of account to be created."
-msgstr "指定要创建的账户的类型。"
+#: accountdialog.cpp:138 wizard_newaccount.cpp:130
+msgid "Specify the account type to be created."
+msgstr ""
 
 #: accountdialog.cpp:142
 msgid "Account Status:"
@@ -5893,12 +5893,12 @@ msgid "&Next →"
 msgstr "下一步(&N) →"
 
 #: mmframe.cpp:2439
-msgid "Unable to find previously opened database.\n"
-msgstr "找不到以前打开的数据库。\n"
+msgid "Unable to find previously opened database."
+msgstr ""
 
 #: mmframe.cpp:2441
-msgid "Password not entered for encrypted database.\n"
-msgstr "未输入加密数据库的密码。\n"
+msgid "Password not entered for encrypted database."
+msgstr ""
 
 #: mmframe.cpp:2460
 msgid "portable mode"
@@ -9064,10 +9064,6 @@ msgstr "指定账户的描述性名称。"
 msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
 msgstr "这通常是账户所在金融机构的名称。例如：“ABC Bank”。"
-
-#: wizard_newaccount.cpp:130
-msgid "Specify the account type to be created."
-msgstr ""
 
 #: wizard_newaccount.cpp:135
 msgid "Account Type"
