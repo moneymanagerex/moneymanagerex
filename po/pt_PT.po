@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-10-13 17:15+0000\n"
-"PO-Revision-Date: 2025-10-17 00:57\n"
+"POT-Creation-Date: 2025-10-17 09:52+0000\n"
+"PO-Revision-Date: 2025-10-20 17:36\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -78,9 +78,9 @@ msgstr "Introduz o nome da conta. Este nome poderá ser alterado posteriormente.
 msgid "Account Type:"
 msgstr "Tipo de Conta:"
 
-#: accountdialog.cpp:138
-msgid "Specify the type of account to be created."
-msgstr "Especifique o tipo da conta a criar."
+#: accountdialog.cpp:138 wizard_newaccount.cpp:130
+msgid "Specify the account type to be created."
+msgstr ""
 
 #: accountdialog.cpp:142
 msgid "Account Status:"
@@ -5907,12 +5907,12 @@ msgid "&Next →"
 msgstr "&Próximo →"
 
 #: mmframe.cpp:2439
-msgid "Unable to find previously opened database.\n"
-msgstr "Não é possível aceder à base de dados aberta anteriormente.\n"
+msgid "Unable to find previously opened database."
+msgstr ""
 
 #: mmframe.cpp:2441
-msgid "Password not entered for encrypted database.\n"
-msgstr "Não foi introduzida a palavra-passe para a base de dados encriptada.\n"
+msgid "Password not entered for encrypted database."
+msgstr ""
 
 #: mmframe.cpp:2460
 msgid "portable mode"
@@ -9078,10 +9078,6 @@ msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
 msgstr "Isto é geralmente o nome da instituição financeira\n"
 "onde é mantida a conta. Por exemplo: 'Caixa Geral de Depósitos'."
-
-#: wizard_newaccount.cpp:130
-msgid "Specify the account type to be created."
-msgstr ""
 
 #: wizard_newaccount.cpp:135
 msgid "Account Type"

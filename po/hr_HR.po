@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-10-13 17:15+0000\n"
-"PO-Revision-Date: 2025-10-17 00:57\n"
+"POT-Creation-Date: 2025-10-17 09:52+0000\n"
+"PO-Revision-Date: 2025-10-20 18:22\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "Language: hr_HR\n"
@@ -78,9 +78,9 @@ msgstr "Unesi ime računa. Ime možeš promijeniti u bilo koje vrijeme."
 msgid "Account Type:"
 msgstr "Tip računa:"
 
-#: accountdialog.cpp:138
-msgid "Specify the type of account to be created."
-msgstr "Odredi vrstu računa, koji želiš stvoriti."
+#: accountdialog.cpp:138 wizard_newaccount.cpp:130
+msgid "Specify the account type to be created."
+msgstr ""
 
 #: accountdialog.cpp:142
 msgid "Account Status:"
@@ -5906,11 +5906,11 @@ msgid "&Next →"
 msgstr "&Dalje →"
 
 #: mmframe.cpp:2439
-msgid "Unable to find previously opened database.\n"
+msgid "Unable to find previously opened database."
 msgstr ""
 
 #: mmframe.cpp:2441
-msgid "Password not entered for encrypted database.\n"
+msgid "Password not entered for encrypted database."
 msgstr ""
 
 #: mmframe.cpp:2460
@@ -9065,10 +9065,6 @@ msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
 msgstr "Ovdje se općenito zadaje ime financijske ustanove\n"
 "u kojoj se nalazi račun. Na primjer: „ABC banka”."
-
-#: wizard_newaccount.cpp:130
-msgid "Specify the account type to be created."
-msgstr ""
 
 #: wizard_newaccount.cpp:135
 msgid "Account Type"

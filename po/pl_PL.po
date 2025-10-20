@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-10-13 17:15+0000\n"
-"PO-Revision-Date: 2025-10-17 00:57\n"
+"POT-Creation-Date: 2025-10-17 09:52+0000\n"
+"PO-Revision-Date: 2025-10-20 17:36\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -78,9 +78,9 @@ msgstr "Wprowadź nazwę konta. Możesz ją zmienić później."
 msgid "Account Type:"
 msgstr "Typ konta:"
 
-#: accountdialog.cpp:138
-msgid "Specify the type of account to be created."
-msgstr "Określ typ tworzonego konta."
+#: accountdialog.cpp:138 wizard_newaccount.cpp:130
+msgid "Specify the account type to be created."
+msgstr ""
 
 #: accountdialog.cpp:142
 msgid "Account Status:"
@@ -212,7 +212,7 @@ msgstr "Włącz/wyłącz blokadę transakcji"
 
 #: accountdialog.cpp:242
 msgid "Reconciled Date:"
-msgstr "Data uzgodnienia:"
+msgstr "Data rozliczenia:"
 
 #: accountdialog.cpp:244
 msgid "The date of the transaction lock"
@@ -2263,7 +2263,7 @@ msgstr "tydzień"
 
 #: daterangeeditdialog.cpp:64 option.cpp:59 reports/mmDateRange.cpp:81
 msgid "Today"
-msgstr "dzisiaj"
+msgstr "Dzisiaj"
 
 #: daterangeeditdialog.cpp:65
 msgid "Statement date"
@@ -2557,7 +2557,7 @@ msgstr "Aktualizacja bazy danych MMEX do wersji %i nie powiodła się!"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
-msgstr "Odzyskaj bazę danych z utworzonej automatycznie kopii i spróbuj ponownie lub skontaktuj się ze wsparciem MMEX"
+msgstr "Odzyskaj bazę danych z utworzonej automatycznie kopii i spróbuj ponownie lub skontaktuj się ze wsparciem aplikacji MMEX"
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:122
 msgid "MMEX database upgrade"
@@ -4501,7 +4501,7 @@ msgstr "Zalecenie: Użyj 'kopiuj' (Ctrl+C) i 'wklej' (Ctrl+V) do często używan
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of the .mmb database file."
-msgstr ""
+msgstr "Wskazówka: Pamiętaj o wykonywaniu kopii zapasowych pliku bazy danych .mmb."
 
 #: mmTips.h:26
 msgid "Tip: If the .mmb database file is unencrypted, anyone who has the knowledge can open the database file and read the contents. Ensure that any sensitive financial information stored is properly secured."
@@ -4981,7 +4981,7 @@ msgstr "Sprawdzanie transakcji MMEX"
 
 #: mmcheckingpanel.cpp:213
 msgid "Filter…"
-msgstr ""
+msgstr "Filtruj…"
 
 #: mmcheckingpanel.cpp:273
 msgid "Delete all selected transactions"
@@ -5022,7 +5022,7 @@ msgstr "Bilans konta: "
 
 #: mmcheckingpanel.cpp:383
 msgid "Reconciled Bal: "
-msgstr "Bilans uzgodnionych: "
+msgstr "Bilans rozliczonych: "
 
 #: mmcheckingpanel.cpp:385
 msgid "Diff: "
@@ -5066,7 +5066,7 @@ msgstr "Liczba dni pomiędzy wybranymi transakcjami: %d"
 
 #: mmcheckingpanel.cpp:1037
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
-msgstr ""
+msgstr "Kliknij, aby pokazać zaplanowane transakcje. Ta funkcja działa najlepiej z filtrowaniem, które obejmuje okres w przyszłości (np. bieżący miesiąc)."
 
 #: mmcheckingpanel.cpp:1037
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
@@ -5074,7 +5074,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:1038
 msgid "Click to hide scheduled transactions."
-msgstr ""
+msgstr "Kliknij, aby ukryć zaplanowane transakcje."
 
 #: mmcheckingpanel.cpp:1065 mmreportspanel.cpp:820
 msgid "Edit date ranges…"
@@ -5184,7 +5184,7 @@ msgstr "Transakcje auto-powtarzane"
 
 #: mmframe.cpp:880 mmframe.cpp:1997 mmframe.cpp:3124
 msgid "Budget Planner"
-msgstr ""
+msgstr "Planer budżetu"
 
 #: mmframe.cpp:998
 msgid "Cash Ledger"
@@ -5590,7 +5590,7 @@ msgstr "Scal kategorie, beneficjentów i tagi"
 
 #: mmframe.cpp:1997
 msgid "&Budget Planner…"
-msgstr ""
+msgstr "&Planer budżetu…"
 
 #: mmframe.cpp:2001
 msgid "&Scheduled Transactions"
@@ -5928,11 +5928,11 @@ msgid "&Next →"
 msgstr "&Następny →"
 
 #: mmframe.cpp:2439
-msgid "Unable to find previously opened database.\n"
+msgid "Unable to find previously opened database."
 msgstr ""
 
 #: mmframe.cpp:2441
-msgid "Password not entered for encrypted database.\n"
+msgid "Password not entered for encrypted database."
 msgstr ""
 
 #: mmframe.cpp:2460
@@ -6359,11 +6359,11 @@ msgstr "Najbliższe transakcje do wykonania"
 
 #: mmpanelbase.cpp:529
 msgid "Sort by this column"
-msgstr ""
+msgstr "Sortuj według tej kolumny"
 
 #: mmpanelbase.cpp:533
 msgid "Hide/Show column"
-msgstr ""
+msgstr "Ukryj/pokaż kolumny"
 
 #: mmpanelbase.cpp:534
 msgid "Hide this column"
@@ -6371,27 +6371,27 @@ msgstr "Ukryj kolumnę"
 
 #: mmpanelbase.cpp:554
 msgid "Move hidden column"
-msgstr ""
+msgstr "Przenieś ukrytą kolumnę"
 
 #: mmpanelbase.cpp:558
 msgid "Move column to the beginning"
-msgstr ""
+msgstr "Przenieś kolumnę na początek"
 
 #: mmpanelbase.cpp:562
 msgid "Move column left"
-msgstr ""
+msgstr "Przenieść kolumnę w lewo"
 
 #: mmpanelbase.cpp:566
 msgid "Move column right"
-msgstr ""
+msgstr "Przesuń kolumnę w prawo"
 
 #: mmpanelbase.cpp:570
 msgid "Move column to the end"
-msgstr ""
+msgstr "Przenieś kolumnę na koniec"
 
 #: mmpanelbase.cpp:578
 msgid "Reset column widths"
-msgstr ""
+msgstr "Resetuj szerokość kolumn"
 
 #: mmreportspanel.cpp:154
 msgid "Report"
@@ -6623,35 +6623,35 @@ msgstr "Błąd akcji"
 
 #: option.cpp:51
 msgid "All to week"
-msgstr ""
+msgstr "Wszystkie do tygodnia"
 
 #: option.cpp:52
 msgid "All to month"
-msgstr ""
+msgstr "Wszystkie do miesiąca"
 
 #: option.cpp:53
 msgid "All to year"
-msgstr ""
+msgstr "Wszystkie do roku"
 
 #: option.cpp:54
 msgid "Current year"
-msgstr ""
+msgstr "Bieżący rok"
 
 #: option.cpp:55
 msgid "Current financial year"
-msgstr ""
+msgstr "Bieżący rok finansowy"
 
 #: option.cpp:56
 msgid "Current quarter"
-msgstr ""
+msgstr "Bieżący kwartał"
 
 #: option.cpp:57
 msgid "Current month"
-msgstr ""
+msgstr "bieżący miesiąc"
 
 #: option.cpp:58
 msgid "Current week"
-msgstr ""
+msgstr "Bieżący tydzień"
 
 #: option.cpp:60
 msgid "From statement"
@@ -6663,15 +6663,15 @@ msgstr ""
 
 #: option.cpp:63
 msgid "From current year to week"
-msgstr ""
+msgstr "Od bieżącego roku do tygodnia"
 
 #: option.cpp:64
 msgid "From current year to month"
-msgstr ""
+msgstr "Od bieżącego roku do miesiąca"
 
 #: option.cpp:65
 msgid "From current month to week"
-msgstr ""
+msgstr "Od bieżącego miesiąca do tygodnia"
 
 #: option.cpp:66
 msgid "Previous year"
@@ -6707,7 +6707,7 @@ msgstr ""
 
 #: option.cpp:74
 msgid "From previous to current week"
-msgstr ""
+msgstr "Od poprzedniego do bieżącego tygodnia"
 
 #: option.cpp:75
 msgid "From 1 year ago"
@@ -6908,12 +6908,13 @@ msgstr "Ustaw walutę"
 
 #: optionsettingsgeneral.cpp:139
 msgid "Set default database currency using 'Currency Manager'"
-msgstr ""
+msgstr "Ustaw domyślną walutę bazy danych używając Menadżera walut"
 
 #: optionsettingsgeneral.cpp:164
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Manager | Edit'"
-msgstr ""
+msgstr "Formatowanie na podstawie ustawień językowych.\n"
+"Pozostaw puste, aby ustawić format ręcznie w oknie Manadżer walut | Edytuj"
 
 #: optionsettingsgeneral.cpp:175
 msgid "Use historical currency"
@@ -6958,7 +6959,7 @@ msgstr "Błędna nazwa ustawień regionalnych"
 
 #: optionsettingshome.cpp:92
 msgid "Last N Days"
-msgstr "Ostatnie N dni"
+msgstr "ostatnie N dni"
 
 #: optionsettingsmisc.cpp:70
 msgid "Stock Quote Web Page"
@@ -6994,7 +6995,7 @@ msgstr "Baza danych"
 
 #: optionsettingsmisc.cpp:138
 msgid "Backup database on startup"
-msgstr ""
+msgstr "Kopia zapasowa bazy danych przy starcie"
 
 #: optionsettingsmisc.cpp:140
 msgid "When MMEX starts,\n"
@@ -7003,7 +7004,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:145
 msgid "Backup database on exit"
-msgstr "Kopia bazy danych przy wyjściu"
+msgstr "Kopia zapasowa bazy danych przy zamknięciu"
 
 #: optionsettingsmisc.cpp:147
 msgid "When MMEX shuts down and changes were made to the database,\n"
@@ -7012,7 +7013,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:155
 msgid "Specify max number of backup files"
-msgstr "Określ max ilość kopii bezpieczeństwa"
+msgstr "Określ maksymalną liczbę kopii zapasowanych"
 
 #: optionsettingsmisc.cpp:158
 msgid "Max Files"
@@ -7020,11 +7021,11 @@ msgstr "Maks. plików"
 
 #: optionsettingsmisc.cpp:166
 msgid "Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."
-msgstr "Określ liczbę dni do zachowania usuniętych transakcji. Transakcje starsze od niej zostaną automatycznie wyczyszczone podczas otwierania bazy danych."
+msgstr "Określ liczbę dni, przez które przechowywane będą usunięte transakcje. Starsze transakcje zostaną automatycznie wyczyszczone podczas otwierania bazy danych."
 
 #: optionsettingsmisc.cpp:168
 msgid "Days to retain deleted transactions"
-msgstr "Dni do zachowania usuniętych transakcji"
+msgstr "Okres przechowywania usuniętych transakcji"
 
 #: optionsettingsmisc.cpp:183
 msgid "Delimiter"
@@ -7032,7 +7033,7 @@ msgstr "Separator pól CSV"
 
 #: optionsettingsmisc.cpp:191
 msgid "Filter"
-msgstr ""
+msgstr "Filtruj"
 
 #: optionsettingsmisc.cpp:198
 msgid "Enable date range filter per account or report"
@@ -7286,11 +7287,11 @@ msgstr "Separator kategorii"
 
 #: optionsettingsview.cpp:101
 msgid "Do not use color for future transactions"
-msgstr ""
+msgstr "Nie używaj koloru dla przyszłych transakcji"
 
 #: optionsettingsview.cpp:105
 msgid "Emphasize not reconciled transactions"
-msgstr ""
+msgstr "Podkreśl nierozliczone transakcje"
 
 #: optionsettingsview.cpp:120
 msgid "User Interface"
@@ -7970,7 +7971,7 @@ msgstr "Łącznie"
 
 #: reports/mmDateRange.cpp:75
 msgid "Current Month"
-msgstr "bieżący miesiąc"
+msgstr "Bieżący miesiąc"
 
 #: reports/mmDateRange.cpp:89
 msgid "Current Month to Date"
@@ -8039,7 +8040,7 @@ msgstr "ostatnie %i dni"
 
 #: reports/mmDateRange.cpp:313
 msgid "Since Today"
-msgstr "od dzisiaj"
+msgstr "Od dzisiaj"
 
 #: reports/mmDateRange.cpp:322
 msgid "Since 1 Month Ago"
@@ -8986,7 +8987,7 @@ msgstr "Niewłaściwe konto WebApp"
 
 #: webapp.cpp:566
 msgid "Today will be used as the transaction date"
-msgstr "Aktualny dzień będzie używany jako data transakcji"
+msgstr "Bieżący dzień będzie używany jako data transakcji"
 
 #: webapp.cpp:595 webapp.cpp:629 webappdialog.cpp:339
 msgid "Unable to download attachments from the WebApp."
@@ -9094,10 +9095,6 @@ msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
 msgstr "Zazwyczaj jest to nazwa instytucji finansowej,\n"
 "w której prowadzony jest rachunek. Np.: 'Bank ABC'."
-
-#: wizard_newaccount.cpp:130
-msgid "Specify the account type to be created."
-msgstr ""
 
 #: wizard_newaccount.cpp:135
 msgid "Account Type"

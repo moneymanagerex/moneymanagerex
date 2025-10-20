@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-10-13 17:15+0000\n"
-"PO-Revision-Date: 2025-10-17 00:57\n"
+"POT-Creation-Date: 2025-10-17 09:52+0000\n"
+"PO-Revision-Date: 2025-10-20 17:36\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -78,9 +78,9 @@ msgstr "계정의 이름을 입력하세요. 계정 이름은 언제든지 수�
 msgid "Account Type:"
 msgstr "계정 유형:"
 
-#: accountdialog.cpp:138
-msgid "Specify the type of account to be created."
-msgstr "생성될 계정의 유형을 선택하세요."
+#: accountdialog.cpp:138 wizard_newaccount.cpp:130
+msgid "Specify the account type to be created."
+msgstr "생성할 계정 유형을 지정하세요."
 
 #: accountdialog.cpp:142
 msgid "Account Status:"
@@ -5898,12 +5898,12 @@ msgid "&Next →"
 msgstr "다음(&N) →"
 
 #: mmframe.cpp:2439
-msgid "Unable to find previously opened database.\n"
-msgstr "이전에 열었던 데이터베이스를 찾을 수 없습니다.\n"
+msgid "Unable to find previously opened database."
+msgstr ""
 
 #: mmframe.cpp:2441
-msgid "Password not entered for encrypted database.\n"
-msgstr "암호화된 데이터베이스에 비밀번호가 입력되지 않았습니다.\n"
+msgid "Password not entered for encrypted database."
+msgstr ""
 
 #: mmframe.cpp:2460
 msgid "portable mode"
@@ -9069,10 +9069,6 @@ msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
 msgstr "일반적으로 계정이 있는 금융 기관의 \n"
 "이름입니다. 예: 'KB국민은행'."
-
-#: wizard_newaccount.cpp:130
-msgid "Specify the account type to be created."
-msgstr "생성할 계정 유형을 지정하세요."
 
 #: wizard_newaccount.cpp:135
 msgid "Account Type"
