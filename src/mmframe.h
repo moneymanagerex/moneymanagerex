@@ -191,6 +191,7 @@ private:
     void OnChangeEncryptPassword(wxCommandEvent& event);
     void OnVacuumDB(wxCommandEvent& event);
     void OnDebugDB(wxCommandEvent& event);
+    void OnCookieReset(wxCommandEvent& event);
     void OnSaveAs(wxCommandEvent& event);
     void OnExportToCSV(wxCommandEvent& event);
     void OnExportToXML(wxCommandEvent& event);
@@ -378,6 +379,7 @@ private:
         MENU_CHANGE_ENCRYPT_PASSWORD,
         MENU_DB_VACUUM,
         MENU_DB_DEBUG,
+        MENU_DB_COOKIE_RESET,
         MENU_ONLINE_UPD_CURRENCY_RATE,
         MENU_ACCOUNT_REALLOCATE,
         MENU_DIAGNOSTICS,

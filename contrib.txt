@@ -247,6 +247,8 @@ John Weaving
 Jonathan Thomas
 Erik Behrendt
 Christoph Röcker
+Khaled Zoghbor
+Andrew Tomsa
 
 ### 2024
 Renato
