@@ -133,6 +133,7 @@ EVT_MENU(MENU_CONVERT_ENC_DB, mmGUIFrame::OnConvertEncryptedDB)
 EVT_MENU(MENU_CHANGE_ENCRYPT_PASSWORD, mmGUIFrame::OnChangeEncryptPassword)
 EVT_MENU(MENU_DB_VACUUM, mmGUIFrame::OnVacuumDB)
 EVT_MENU(MENU_DB_DEBUG, mmGUIFrame::OnDebugDB)
+EVT_MENU(MENU_DB_COOKIE_RESET, mmGUIFrame::OnCookieReset)
 
 EVT_MENU(MENU_ASSETS, mmGUIFrame::OnAssets)
 EVT_MENU(MENU_CURRENCY, mmGUIFrame::OnCurrency)
@@ -2055,10 +2056,14 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemCheckDB = new wxMenuItem(menuTools, MENU_DB_DEBUG
         , _tu("Database Check and De&bug…")
         , _t("Generate database report or fix errors"));
+    wxMenuItem* menuItemResetCookies = new wxMenuItem(menuTools, MENU_DB_COOKIE_RESET
+        , _tu("Reset Web API Cookies…")
+        , _t("Used to reset stored cookies for web API access"));
     menuDatabase->Append(menuItemConvertDB);
     menuDatabase->Append(menuItemChangeEncryptPassword);
     menuDatabase->Append(menuItemVacuumDB);
     menuDatabase->Append(menuItemCheckDB);
+    menuDatabase->Append(menuItemResetCookies);
     menuTools->AppendSubMenu(menuDatabase, _t("&Database")
         , _t("Database management"));
     menuItemChangeEncryptPassword->Enable(false);
@@ -2741,6 +2746,23 @@ void mmGUIFrame::OnDebugDB(wxCommandEvent& /*event*/)
     }
 }
 //----------------------------------------------------------------------------
+
+void mmGUIFrame::OnCookieReset(wxCommandEvent& /*event*/)
+{
+     wxMessageDialog msgDlg(
+        this,
+        wxString::Format("%s\n\n%s", _t("Reset cookies used for Web API access."), _t("Do you want to continue?")),
+        _t("Cookie Reset"),
+        wxYES_NO | wxNO_DEFAULT | wxICON_WARNING
+    );
+    if (msgDlg.ShowModal() == wxID_YES) {
+        Model_Setting::instance().setString("YAHOO_FINANCE_COOKIE", "");
+        Model_Setting::instance().setString("YAHOO_FINANCE_CRUMB", "");
+        wxMessageBox(_t("Cookies have been reset"), _t("Cookie Reset"));
+    }
+}
+//----------------------------------------------------------------------------
+
 
 void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
 {
