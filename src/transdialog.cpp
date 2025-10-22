@@ -616,7 +616,7 @@ void mmTransDialog::CreateControls()
 
     buttons_sizer->Add(new wxButton(buttons_panel, wxID_OK, _t("&Save")), wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
     if (m_mode == MODE_NEW) {
-        buttons_sizer->Add(new wxButton(buttons_panel, ID_BTN_OK_NEW, _t("&Save and New")), wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
+        buttons_sizer->Add(new wxButton(buttons_panel, ID_BTN_OK_NEW, _t("Save and &New")), wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
     }
     m_button_cancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     buttons_sizer->Add(m_button_cancel, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
