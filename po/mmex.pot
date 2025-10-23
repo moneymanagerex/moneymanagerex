@@ -1090,6 +1090,10 @@ msgstr ""
 msgid "Payee"
 msgstr ""
 
+#: transdialog.cpp:450
+msgid "Set date to today"
+msgstr ""
+
 #: billsdepositsdialog.cpp:581 billsdepositsdialog.cpp:963
 #: billsdepositspanel.cpp:109 budgetingpanel.cpp:68 filtertrans.cpp:204
 #: filtertransdialog.cpp:58 filtertransdialog.cpp:631

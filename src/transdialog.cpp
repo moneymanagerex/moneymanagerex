@@ -66,6 +66,9 @@ EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
 EVT_BUTTON(ID_BTN_OK_NEW, mmTransDialog::OnOk)
 EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
 EVT_CLOSE(mmTransDialog::OnQuit)
+
+EVT_MENU(wxID_SAVE, mmTransDialog::mmTransDialog::OnOk)
+EVT_MENU(ID_BTN_OK_NEW, mmTransDialog::mmTransDialog::OnOk)
 wxEND_EVENT_TABLE()
 
 mmTransDialog::~mmTransDialog()
@@ -254,9 +257,11 @@ void mmTransDialog::dataToControls()
     }
 
     //Advanced
-    cAdvanced_->Enable(m_transfer);
+    cAdvanced_->Show(m_transfer);
     cAdvanced_->SetValue(m_advanced && m_transfer);
-    toTextAmount_->Enable(m_advanced && m_transfer);
+    toTextAmount_->Show(m_advanced && m_transfer);
+
+    bSwitch_->Show(m_transfer);
 
     //Amounts
     if (!skip_amount_init_)
@@ -440,19 +445,10 @@ void mmTransDialog::CreateControls()
     dpc_ = new mmDatePickerCtrl(this, ID_DIALOG_TRANS_BUTTONDATE);
     flex_sizer->Add(dpc_->mmGetLayout());
 
-    flex_sizer->AddSpacer(1);
-
-    // Status --------------------------------------------
-    choiceStatus_ = new wxChoice(this, ID_DIALOG_TRANS_STATUS);
-
-    for (int i = 0; i < Model_Checking::STATUS_ID_size; ++i) {
-        wxString status = Model_Checking::status_name(i);
-        choiceStatus_->Append(wxGetTranslation(status), new wxStringClientData(status));
-    }
-
-    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _t("Status")), g_flagsH);
-    flex_sizer->Add(choiceStatus_, g_flagsH);
-    flex_sizer->AddSpacer(1);
+    wxBitmapButton* today = new wxBitmapButton(this, wxID_ANY, mmBitmapBundle(png::ACC_CLOCK, mmBitmapButtonSize));
+    today->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnToday), nullptr, this);
+    mmToolTip(today, _t("Set date to today"));
+    flex_sizer->Add(today, g_flagsH);
 
     // Type --------------------------------------------
     transaction_type_ = new wxChoice(this, ID_DIALOG_TRANS_TYPE);
@@ -509,7 +505,11 @@ void mmTransDialog::CreateControls()
     cbAccount_->SetMinSize(cbAccount_->GetSize());
     flex_sizer->Add(account_label_, g_flagsH);
     flex_sizer->Add(cbAccount_, g_flagsExpand);
-    flex_sizer->AddSpacer(1);
+
+    bSwitch_ = new wxBitmapButton(this, wxID_ANY, mmBitmapBundle(png::UPDATE, mmBitmapButtonSize));
+    bSwitch_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnSwitch), nullptr, this);
+    mmToolTip(bSwitch_, _t("Exchange to and from accounts"));
+    flex_sizer->Add(bSwitch_, g_flagsH);
 
     // To Account ------------------------------------------------
     to_acc_label_ = new wxStaticText(this, mmID_TOACCOUNT_LABEL, _t("To"));
@@ -530,9 +530,7 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(cbPayee_, g_flagsExpand);
     flex_sizer->AddSpacer(1);
 
-
     // Category -------------------------------------------------
-
     categ_label_ = new wxStaticText(this, ID_DIALOG_TRANS_CATEGLABEL2, _t("Category"));
     categ_label_->SetFont(this->GetFont().Bold());
     cbCategory_ = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize
@@ -552,8 +550,19 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(tagTextCtrl_, g_flagsExpand);
     flex_sizer->AddSpacer(1);
 
-    // Number  ---------------------------------------------
+    // Status --------------------------------------------
+    choiceStatus_ = new wxChoice(this, ID_DIALOG_TRANS_STATUS);
 
+    for (int i = 0; i < Model_Checking::STATUS_ID_size; ++i) {
+        wxString status = Model_Checking::status_name(i);
+        choiceStatus_->Append(wxGetTranslation(status), new wxStringClientData(status));
+    }
+
+    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _t("Status")), g_flagsH);
+    flex_sizer->Add(choiceStatus_, g_flagsH);
+    flex_sizer->AddSpacer(1);
+
+    // Number  ---------------------------------------------
     textNumber_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition, wxDefaultSize);
 
     bAuto = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmapBundle(png::TRXNUM, mmBitmapButtonSize));
@@ -640,6 +649,13 @@ void mmTransDialog::CreateControls()
     SetMinSize(min_size_);
     box_sizer3->SetMinSize(panelSize);
     m_custom_fields->SetMinSize(panelSize);
+
+    const wxAcceleratorEntry entries[] = {
+        wxAcceleratorEntry(wxACCEL_CTRL, static_cast<int>('S'), wxID_SAVE),
+        wxAcceleratorEntry(wxACCEL_CTRL, static_cast<int>('N'), ID_BTN_OK_NEW)
+    };
+    wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
+    SetAcceleratorTable(tab);
 }
 
 bool mmTransDialog::ValidateData()
@@ -1036,6 +1052,18 @@ void mmTransDialog::OnCalculator(wxCommandEvent& WXUNUSED(event))
 {
     calcPopup_->SetTarget(calcTarget_);
     calcPopup_->Popup();
+}
+
+void mmTransDialog::OnSwitch(wxCommandEvent& WXUNUSED(event))
+{
+    wxString temp = cbToAccount_->GetValue();
+    cbToAccount_->ChangeValue(cbAccount_->GetValue());
+    cbAccount_->ChangeValue(temp);
+}
+
+void mmTransDialog::OnToday(wxCommandEvent& WXUNUSED(event))
+{
+    dpc_->SetValue(wxDateTime::Today());
 }
 
 void mmTransDialog::OnAutoTransNum(wxCommandEvent& WXUNUSED(event))
