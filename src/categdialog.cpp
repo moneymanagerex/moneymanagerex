@@ -43,6 +43,7 @@ EVT_BUTTON(wxID_CANCEL, mmCategDialog::OnCancel)
 EVT_BUTTON(wxID_ADD, mmCategDialog::OnAdd)
 EVT_BUTTON(wxID_REMOVE, mmCategDialog::OnDelete)
 EVT_BUTTON(wxID_EDIT, mmCategDialog::OnEdit)
+EVT_TOGGLEBUTTON(wxID_SELECTALL, mmCategDialog::OnShowHiddenToggle)
 EVT_TEXT(wxID_FIND, mmCategDialog::OnTextChanged)
 EVT_TREE_SEL_CHANGED(wxID_ANY, mmCategDialog::OnSelChanged)
 EVT_TREE_ITEM_RIGHT_CLICK(wxID_ANY, mmCategDialog::OnSelChanged)
@@ -270,8 +271,6 @@ void mmCategDialog::CreateControls()
     m_tbShowAll = new wxToggleButton(this, wxID_SELECTALL, _t("&Show All"), wxDefaultPosition
         , wxDefaultSize);
     mmToolTip(m_tbShowAll, _t("Show all hidden categories"));
-    m_tbShowAll->Connect(wxID_SELECTALL, wxEVT_TOGGLEBUTTON
-        , wxCommandEventHandler(mmCategDialog::OnShowHiddenToggle), nullptr, this);
 
     wxButton* clearBtn = new wxButton(this, ID_CLEAR, _t("Clear Settings"));
     mmToolTip(clearBtn, _t("Remove hidden setting from all categories"));
@@ -286,7 +285,7 @@ void mmCategDialog::CreateControls()
     itemBoxSizer33->AddSpacer(15);
     itemBoxSizer33->Add(m_buttonRelocate, g_flagsH);
     itemBoxSizer33->AddSpacer(10);
-     itemBoxSizer33->Add(clearBtn, g_flagsH);
+    itemBoxSizer33->Add(clearBtn, g_flagsH);
 
 #if defined (__WXGTK__) || defined (__WXMAC__)
     m_treeCtrl = new mmCategDialogTreeCtrl(this, wxID_ANY,
