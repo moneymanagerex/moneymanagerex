@@ -166,8 +166,8 @@ const wxString mmex::weblink::WebApp         = "https://github.com/moneymanagere
 const wxString mmex::weblink::Chiark         = "https://www.chiark.greenend.org.uk/~sgtatham/bugs.html";
 const wxString mmex::weblink::Crowdin        = "https://crowdin.com/project/moneymanagerex/";
 
-// Will display the stock page when using Looks up the current value
-const wxString mmex::weblink::DefStockUrl = "http://finance.yahoo.com/echarts?s=%s";
+// Will display the stock page when looking up the current value
+const wxString mmex::weblink::DefStockUrl = "https://finance.yahoo.com/quote/%s";
 
 // Yahoo API
 const wxString mmex::weblink::YahooQuotes = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=%s&fields=regularMarketPrice,currency,shortName";
