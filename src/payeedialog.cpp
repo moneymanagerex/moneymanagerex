@@ -459,6 +459,7 @@ mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString
     ColName_[PAYEE_WEBSITE] = _t("Website");
     ColName_[PAYEE_NOTES] = _t("Notes");
     ColName_[PAYEE_PATTERN] = _t("Match Pattern");
+    ColName_[PAYEE_USED] = _t("Used");
 
     this->SetFont(parent->GetFont());
     m_hiddenColor = mmThemeMetaColour(meta::COLOR_HIDDEN);
@@ -549,7 +550,7 @@ void mmPayeeDialog::CreateControls()
         wxLC_REPORT | wxLC_AUTOARRANGE);
     payeeListBox_->SetMinSize(wxSize(250, 100));
 
-    wxListItem col0, col1, col2, col3, col4, col5, col6;
+    wxListItem col0, col1, col2, col3, col4, col5, col6, col7;
 
     col0.SetId(PAYEE_NAME);
     col0.SetText(ColName_[PAYEE_NAME]);
@@ -586,6 +587,12 @@ void mmPayeeDialog::CreateControls()
     col6.SetText(ColName_[PAYEE_PATTERN]);
     col6.SetWidth(150);
     payeeListBox_->InsertColumn(6, col6);
+
+    col7.SetId(PAYEE_USED);
+    col7.SetText(ColName_[PAYEE_USED]);
+    col7.SetAlign(wxLIST_FORMAT_RIGHT);
+    col7.SetWidth(50);
+    payeeListBox_->InsertColumn(7, col7);
 
     mainBoxSizer->Add(payeeListBox_, wxSizerFlags(g_flagsExpand).Border(wxALL, 10));
 
@@ -708,6 +715,10 @@ void mmPayeeDialog::addPayeeDataIntoItem(long idx, const Model_Payee::Data* paye
     }
     payeeListBox_->SetItem(idx, 6, value);
     payeeListBox_->SetItemTextColour(idx, payee->ACTIVE == 0 ? m_hiddenColor : m_normalColor);
+
+    //payeeListBox_->SetItem(idx, 7, Model_Payee::instance().is_used(payee_idx_map_[idx]) ? L"\u2713" : L"");
+    int count = Model_Payee::instance().getUseCount(payee_idx_map_[idx]);
+    payeeListBox_->SetItem(idx, 7, wxString::Format("%d", count));
 }
 
 void mmPayeeDialog::OnListItemSelected(wxListEvent& WXUNUSED(event))

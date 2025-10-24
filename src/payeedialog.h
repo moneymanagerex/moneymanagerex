@@ -91,7 +91,8 @@ private:
         PAYEE_NUMBER,
         PAYEE_WEBSITE,
         PAYEE_NOTES,
-        PAYEE_PATTERN
+        PAYEE_PATTERN,
+        PAYEE_USED
     };
 
     enum menu_items

@@ -7452,6 +7452,10 @@ msgstr ""
 msgid "Match Pattern"
 msgstr ""
 
+#: payeedialog.cpp:462
+msgid "Used"
+msgstr ""
+
 #: payeedialog.cpp:612
 msgid "Show hidden"
 msgstr ""
