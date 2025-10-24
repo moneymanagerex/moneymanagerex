@@ -5189,6 +5189,7 @@ msgstr ""
 
 #: mmframe.cpp:1451 mmframe.cpp:1471 mmframe.cpp:2020 mmframe.cpp:2207
 #: mmframe.cpp:3131
+#: payeedialog.cpp:976
 msgid "Transaction Report"
 msgstr ""
 

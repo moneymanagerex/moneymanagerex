@@ -81,6 +81,8 @@ public:
     void DisableTools();
     int64 getPayeeId() const;
     bool getRefreshRequested() const;
+    bool getAddActionRequested() const;
+    std::list<int64> getSelectedPayees();
 
 private:
     enum cols
@@ -105,6 +107,7 @@ private:
         MENU_ORGANIZE_ATTACHMENTS,
         MENU_ITEM_HIDE,
         MENU_ITEM_UNHIDE,
+        MENU_SHOW_TRANSACTIONS,
         MENU_RELOCATE_PAYEE  // Must be last!
     };
 
@@ -119,9 +122,11 @@ private:
     wxString m_maskStr;
     int m_sort = cols::PAYEE_NAME, m_lastSort = cols::PAYEE_NAME;
     bool refreshRequested_ = false, m_sortReverse = false;
+    bool m_addActionRequested = false;
     bool m_showHiddenPayees = true;
     std::map<int, wxString> ColName_;
     std::map<long, int64> payee_idx_map_;
+    std::list<int64> m_itemsSelected;
 
     wxColour m_normalColor;
     wxColour m_hiddenColor;
@@ -143,7 +148,7 @@ private:
     void OnOrganizeAttachments();
     void OnPayeeRelocate();
     int64 FindSelectedPayee();
-    void FindSelectedPayees(std::list<int64>& indexes);
+    void FindSelectedPayees();
     std::vector<std::pair<int64, long>> getSelected();
     void OnCancel(wxCommandEvent& /*event*/);
     void OnOk(wxCommandEvent& /*event*/);
@@ -165,6 +170,7 @@ inline void mmPayeeDialog::DisableTools() { m_magicButton->Disable(); }
 inline int64 mmPayeeDialog::getPayeeId() const { return m_payee_id; }
 inline bool mmPayeeDialog::getRefreshRequested() const { return refreshRequested_; }
 inline void mmPayeeDialog::OnListItemDeselected(wxListEvent& WXUNUSED(event)) { m_payee_id = -1; }
-
+inline bool mmPayeeDialog::getAddActionRequested() const { return m_addActionRequested;};
+inline std::list<int64> mmPayeeDialog::getSelectedPayees() { return m_itemsSelected;};
 
 #endif // MM_EX_PAYEEDIALOG_H_

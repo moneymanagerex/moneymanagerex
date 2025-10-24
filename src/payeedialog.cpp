@@ -485,11 +485,12 @@ int64 mmPayeeDialog::FindSelectedPayee()
     return sel != -1 ? payee_idx_map_[sel] : -1;
 }
 
-void mmPayeeDialog::FindSelectedPayees(std::list<int64> & indexes)
+void mmPayeeDialog::FindSelectedPayees()
 {
+    m_itemsSelected.clear();
     long idx = payeeListBox_->GetFirstSelected();
     while (idx != -1) {
-        indexes.push_back(payee_idx_map_[idx]);
+        m_itemsSelected.push_back(payee_idx_map_[idx]);
         idx = payeeListBox_->GetNextSelected(idx);
     }
 }
@@ -507,9 +508,8 @@ std::vector<std::pair<int64, long>> mmPayeeDialog::getSelected() {
 bool mmPayeeDialog::isPayeeWithStateSelected(bool hidden)
 {
     bool result = false;
-    std::list<int64> itemsSelected;
-    FindSelectedPayees(itemsSelected);
-    for(int64 p : itemsSelected) {
+    FindSelectedPayees();
+    for(int64 p : m_itemsSelected) {
         const auto* payee = Model_Payee::instance().get(p);
         if (payee->ACTIVE == hidden ? 0 : 1) {
             result = true;
@@ -768,10 +768,8 @@ void mmPayeeDialog::EditPayee()
 
 void mmPayeeDialog::DeletePayee()
 {
-    std::list<int64> itemsSelected;
-    FindSelectedPayees(itemsSelected);
-
-    for(int64 p : itemsSelected) {
+    FindSelectedPayees();
+    for (int64 p : m_itemsSelected) {
         const auto* payee = Model_Payee::instance().get(p);
         if (payee)
         {
@@ -930,9 +928,15 @@ void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
             }
             payeeListBox_->Refresh();
             break;
-    }
-    default: break;
-    }
+        }
+        case MENU_SHOW_TRANSACTIONS:
+        {
+            FindSelectedPayees();
+            m_addActionRequested = true;
+            EndModal(wxID_OK);
+        }
+        default: break;
+        }
 }
 
 void mmPayeeDialog::ToggleHide(long idx, bool state) {
@@ -969,11 +973,13 @@ void mmPayeeDialog::OnItemRightClick(wxListEvent& event)
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ORGANIZE_ATTACHMENTS, _t("&Attachment Manager")));
     mainMenu.AppendSeparator();
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_RELOCATE_PAYEE, _t("Merge &Payee")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_SHOW_TRANSACTIONS, _t("Transaction Report")));
 
     int nb = payeeListBox_->GetSelectedItemCount();
 
     mainMenu.Enable(MENU_EDIT_PAYEE, nb == 1);
     mainMenu.Enable(MENU_RELOCATE_PAYEE, nb == 1);
+    mainMenu.Enable(MENU_SHOW_TRANSACTIONS, nb == 1);
     mainMenu.Enable(MENU_ORGANIZE_ATTACHMENTS, nb == 1);
     mainMenu.Enable(MENU_REMOVE_CATEGORY, nb > 0);
 
