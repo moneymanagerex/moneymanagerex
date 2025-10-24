@@ -249,7 +249,7 @@ void mmCalculatorPopup::OnDismiss()
 #ifdef __WXMSW__
     // On MSW check if the button was used to dismiss to prevent the popup from reopening
     wxPoint mousePos = wxGetMousePosition();
-    dismissedByButton_ = (GetParent()->GetClientRect().Contains(GetParent()->ScreenToClient(mousePos)))
+    dismissedByButton_ = (GetParent()->GetClientRect().Contains(GetParent()->ScreenToClient(mousePos)));
 #endif
     if (target_) {
         valueTextCtrl_->Calculate();
