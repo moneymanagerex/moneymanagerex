@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2012 - 2016, 2020 - 2022 Nikolay Akimov
  Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -97,7 +98,7 @@ void mmEditPayeeDialog::CreateControls()
     fgSizer1->Add(new wxStaticText(this, wxID_STATIC, title), g_flagsH);
     m_category = new mmComboBoxCategory(this, mmID_CATEGORY, wxDefaultSize, -1, true);
     mmToolTip(m_category, _t("The category used as default for this payee"));
-    fgSizer1->Add(m_category, g_flagsExpand);                     
+    fgSizer1->Add(m_category, g_flagsExpand);
 
     // Reference
     fgSizer1->Add(new wxStaticText(this, wxID_STATIC, _t("Reference")), g_flagsH);
@@ -145,7 +146,7 @@ void mmEditPayeeDialog::CreateControls()
     //Move up button
     wxBitmapButton* itemButton_MoveUp = new wxBitmapButton(this, wxID_UP, mmBitmapBundle(png::UPARROW, mmBitmapButtonSize));
     patternButton_Arranger->Add(itemButton_MoveUp, wxSizerFlags().Align(wxALIGN_LEFT).Border(wxBOTTOM,5));
-    
+
     //Move down button
     wxBitmapButton* itemButton_MoveDown = new wxBitmapButton(this, wxID_DOWN, mmBitmapBundle(png::DOWNARROW, mmBitmapButtonSize));
     patternButton_Arranger->Add(itemButton_MoveDown, wxSizerFlags().Align(wxALIGN_LEFT).Border(wxTOP, 5));
@@ -241,7 +242,7 @@ void mmEditPayeeDialog::OnOk(wxCommandEvent& /*event*/)
     }
     else
         return mmErrorDialogs::ToolTip4Object(m_payeeName, _t("A payee with this name already exists"), _t("Payee"));
-    
+
     EndModal(wxID_OK);
 }
 
@@ -429,6 +430,7 @@ wxBEGIN_EVENT_TABLE(mmPayeeDialog, wxDialog)
 EVT_BUTTON(wxID_CANCEL, mmPayeeDialog::OnCancel)
 EVT_BUTTON(wxID_OK, mmPayeeDialog::OnOk)
 EVT_BUTTON(wxID_APPLY, mmPayeeDialog::OnMagicButton)
+EVT_TOGGLEBUTTON(wxID_SELECTALL, mmPayeeDialog::OnShowHiddenToggle)
 EVT_TEXT(wxID_FIND, mmPayeeDialog::OnTextChanged)
 EVT_LIST_COL_CLICK(wxID_ANY, mmPayeeDialog::OnSort)
 EVT_LIST_ITEM_ACTIVATED(wxID_ANY, mmPayeeDialog::OnListItemActivated)
@@ -447,7 +449,7 @@ mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString
     m_payee_choose(payee_choose)
     , m_init_selected_payee(payee_selected)
     , m_sort(PAYEE_NAME)
-    , m_lastSort(PAYEE_NAME)    
+    , m_lastSort(PAYEE_NAME)
 {
     ColName_[PAYEE_NAME] = _t("Name");
     ColName_[PAYEE_HIDDEN] = _t("Hidden");
@@ -458,8 +460,11 @@ mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString
     ColName_[PAYEE_NOTES] = _t("Notes");
     ColName_[PAYEE_PATTERN] = _t("Match Pattern");
 
-
     this->SetFont(parent->GetFont());
+    m_hiddenColor = mmThemeMetaColour(meta::COLOR_HIDDEN);
+    m_normalColor = this->GetForegroundColour();
+
+    m_showHiddenPayees = Model_Setting::instance().getBool("SHOW_HIDDEN_PAYEES", true);
     Create(parent, name);
 
     const wxAcceleratorEntry entries[] =
@@ -475,28 +480,43 @@ mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString
 
 int64 mmPayeeDialog::FindSelectedPayee()
 {
-    int sel = payeeListBox_->GetFocusedItem();
-    if (-1 != sel)
-    {
-        return (payee_idx_map_[sel]);
-    } else
-        return -1;
+    long sel = payeeListBox_->GetFocusedItem();
+    return sel != -1 ? payee_idx_map_[sel] : -1;
 }
+
 void mmPayeeDialog::FindSelectedPayees(std::list<int64> & indexes)
 {
-    long itemIndex = -1;    
-
-    while ((itemIndex = payeeListBox_->GetNextItem(itemIndex,
-          wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND) {
-        // Got the selected item index
-        wxLogDebug(payeeListBox_->GetItemText(itemIndex));
-        indexes.push_back(payee_idx_map_[itemIndex]);
-    }
-    if (itemIndex == -1 && indexes.empty()) {
-        indexes.push_back(-1);
+    long idx = payeeListBox_->GetFirstSelected();
+    while (idx != -1) {
+        indexes.push_back(payee_idx_map_[idx]);
+        idx = payeeListBox_->GetNextSelected(idx);
     }
 }
 
+std::vector<std::pair<int64, long>> mmPayeeDialog::getSelected() {
+    std::vector<std::pair<int64, long>> result;
+    long idx = payeeListBox_->GetFirstSelected();
+    while (idx != -1) {
+        result.emplace_back(payee_idx_map_[idx], idx);
+        idx = payeeListBox_->GetNextSelected(idx);
+    }
+    return result;
+}
+
+bool mmPayeeDialog::isPayeeWithStateSelected(bool hidden)
+{
+    bool result = false;
+    std::list<int64> itemsSelected;
+    FindSelectedPayees(itemsSelected);
+    for(int64 p : itemsSelected) {
+        const auto* payee = Model_Payee::instance().get(p);
+        if (payee->ACTIVE == hidden ? 0 : 1) {
+            result = true;
+            break;
+        }
+    }
+    return result;
+}
 
 void mmPayeeDialog::Create(wxWindow* parent, const wxString &name)
 {
@@ -582,6 +602,12 @@ void mmPayeeDialog::CreateControls()
     mmToolTip(m_magicButton, _t("Other tools"));
     tools_sizer2->Add(m_magicButton, g_flagsH);
 
+    m_tbShowAll = new wxToggleButton(buttons_panel, wxID_SELECTALL, _t("Show hidden"), wxDefaultPosition
+        , wxDefaultSize);
+    m_tbShowAll->SetValue(m_showHiddenPayees);
+    mmToolTip(m_tbShowAll, _t("Show hidden payees"));
+    tools_sizer2->Add(m_tbShowAll, g_flagsH);
+
     m_maskTextCtrl = new wxSearchCtrl(buttons_panel, wxID_FIND);
     m_maskTextCtrl->SetFocus();
     tools_sizer2->Prepend(m_maskTextCtrl, g_flagsExpand);
@@ -604,13 +630,13 @@ void mmPayeeDialog::fillControls()
     payeeListBox_->DeleteAllItems();
     payee_idx_map_.clear();
     m_payee_id = -1;
-    
-    Model_Payee::Data_Set payees = Model_Payee::instance().FilterPayees(m_maskStr);
+
+    Model_Payee::Data_Set payees = Model_Payee::instance().FilterPayees(m_maskStr, m_showHiddenPayees);
     switch (m_sort)
     {
     case PAYEE_HIDDEN:
         std::stable_sort(payees.begin(), payees.end(), SorterByACTIVE());
-        break;    
+        break;
     case PAYEE_CATEGORY:
         std::stable_sort(payees.begin(), payees.end(), [] (Model_Payee::Data x, Model_Payee::Data y)
         {
@@ -620,13 +646,13 @@ void mmPayeeDialog::fillControls()
                     , Model_Category::instance().full_name(y.CATEGID)) < 0
                 );
         });
-        break;  
+        break;
     case PAYEE_NUMBER:
         std::stable_sort(payees.begin(), payees.end(), SorterByNUMBER());
-        break; 
+        break;
     case PAYEE_WEBSITE:
         std::stable_sort(payees.begin(), payees.end(), SorterByWEBSITE());
-        break;   
+        break;
     case PAYEE_NOTES:
         std::stable_sort(payees.begin(), payees.end(), SorterByNOTES());
         break;
@@ -636,50 +662,52 @@ void mmPayeeDialog::fillControls()
     case PAYEE_NAME:
     default:
         std::stable_sort(payees.begin(), payees.end(), SorterByPAYEENAME());
-        break; 
+        break;
     }
 
     if (m_sortReverse)
         std::reverse(payees.begin(), payees.end());
 
-    int idx = 0;
-    for (const auto& payee : payees)
-    {
+    long idx = 0;
+    for (const auto& payee : payees) {
         wxListItem item;
         item.SetId(idx);
         payee_idx_map_[idx] = payee.PAYEEID.GetValue();
         payeeListBox_->InsertItem(item);
-        const wxString full_category_name = Model_Category::instance().full_name(payee.CATEGID);
-        payeeListBox_->SetItem(idx, 0, payee.PAYEENAME);
-        if (!m_init_selected_payee.IsEmpty() && payee.PAYEENAME.CmpNoCase(m_init_selected_payee) == 0) {
-            payeeListBox_->Select(idx);
-        }
-        payeeListBox_->SetItem(idx, 1, payee.ACTIVE == 0 ? L"\u2713" : L"");        
-        payeeListBox_->SetItem(idx, 2, full_category_name);
-        payeeListBox_->SetItem(idx, 3, payee.NUMBER);
-        payeeListBox_->SetItem(idx, 4, payee.WEBSITE);
-        wxString value = payee.NOTES;
-        value.Replace("\n", " ");
-        payeeListBox_->SetItem(idx, 5, value);
-        value = "";
-        if (!payee.PATTERN.IsEmpty())
-        {
-            Document json_doc;
-            if (json_doc.Parse(payee.PATTERN.utf8_str()).HasParseError()) {
-                json_doc.Parse("{}");
-            }
-            for (auto& member : json_doc.GetObject()) {
-                if (!value.IsEmpty()) { value.Append(" "); }
-                value.Append(wxString::FromUTF8(member.value.GetString()));
-            }
-        }
-        payeeListBox_->SetItem(idx, 6, value);
-        
+        addPayeeDataIntoItem(idx, &payee);
         idx++;
     }
     if (payeeListBox_->GetSelectedItemCount() > 0)
         payeeListBox_->EnsureVisible(payeeListBox_->GetFirstSelected());
     this->Thaw();
+}
+
+void mmPayeeDialog::addPayeeDataIntoItem(long idx, const Model_Payee::Data* payee)
+{
+    payeeListBox_->SetItem(idx, 0, payee->PAYEENAME);
+    /*if (!m_init_selected_payee.IsEmpty() && payee->PAYEENAME.CmpNoCase(m_init_selected_payee) == 0) {
+        payeeListBox_->Select(idx);
+    }*/
+    payeeListBox_->SetItem(idx, 1, payee->ACTIVE == 0 ? L"\u2713" : L"");
+    payeeListBox_->SetItem(idx, 2, Model_Category::instance().full_name(payee->CATEGID));
+    payeeListBox_->SetItem(idx, 3, payee->NUMBER);
+    payeeListBox_->SetItem(idx, 4, payee->WEBSITE);
+    wxString value = payee->NOTES;
+    value.Replace("\n", " ");
+    payeeListBox_->SetItem(idx, 5, value);
+    value = "";
+    if (!payee->PATTERN.IsEmpty()) {
+        Document json_doc;
+        if (json_doc.Parse(payee->PATTERN.utf8_str()).HasParseError()) {
+            json_doc.Parse("{}");
+        }
+        for (auto& member : json_doc.GetObject()) {
+            if (!value.IsEmpty()) { value.Append(" "); }
+            value.Append(wxString::FromUTF8(member.value.GetString()));
+        }
+    }
+    payeeListBox_->SetItem(idx, 6, value);
+    payeeListBox_->SetItemTextColour(idx, payee->ACTIVE == 0 ? m_hiddenColor : m_normalColor);
 }
 
 void mmPayeeDialog::OnListItemSelected(wxListEvent& WXUNUSED(event))
@@ -695,6 +723,7 @@ void mmPayeeDialog::OnListItemActivated(wxListEvent& WXUNUSED(event))
     else
         EditPayee();
 }
+
 void mmPayeeDialog::OnTextChanged(wxCommandEvent& event)
 {
     m_maskStr = event.GetString().Prepend("*");
@@ -712,12 +741,17 @@ void mmPayeeDialog::AddPayee()
 void mmPayeeDialog::EditPayee()
 {
     Model_Payee::Data *payee = Model_Payee::instance().get(m_payee_id);
-    if (payee)
-    {
+    if (payee) {
         mmEditPayeeDialog dlg(this, payee);
-        dlg.ShowModal();
-        refreshRequested_ = true;
-        fillControls();
+        if (dlg.ShowModal() == wxID_OK) {
+            if (!m_showHiddenPayees && payee->ACTIVE == 0) {  // is hidden, refresh to remove Item
+                fillControls();
+            }
+            else {
+                addPayeeDataIntoItem(payeeListBox_->GetFocusedItem(), payee);
+            }
+        }
+        //refreshRequested_ = true;
     }
 }
 
@@ -778,38 +812,50 @@ void mmPayeeDialog::DeletePayee()
                 m_payee_id = -1;
                 refreshRequested_ = true;
                 fillControls();
-            }    
+            }
        }
     }
 }
 
 void mmPayeeDialog::DefineDefaultCategory()
 {
-    Model_Payee::Data *payee = Model_Payee::instance().get(m_payee_id);
-    if (payee)
-    {
-        mmCategDialog dlg(this, true, payee->CATEGID);
-        if (dlg.ShowModal() == wxID_OK)
-        {
-            payee->CATEGID = dlg.getCategId();
-            refreshRequested_ = true;
-            Model_Payee::instance().save(payee);
-            mmWebApp::MMEX_WebApp_UpdatePayee();
-            fillControls();
+    std::vector<std::pair<int64, long>> itemsSelected = getSelected();
+    int nb = size(itemsSelected);
+    if (nb > 0) {
+        Model_Payee::Data *payee;
+        if (nb == 1) {
+            payee = Model_Payee::instance().get(m_payee_id);
         }
+        mmCategDialog dlg(this, true, nb == 1 ? payee->CATEGID : -1);
+        if (dlg.ShowModal() == wxID_OK) {
+            for(std::pair<int64, long> p : itemsSelected) {
+                payee = Model_Payee::instance().get(p.first);
+                payee->CATEGID = dlg.getCategId();
+                Model_Payee::instance().save(payee);
+                mmWebApp::MMEX_WebApp_UpdatePayee();
+                addPayeeDataIntoItem(p.second, payee);
+            }
+        }
+    }
+    else {
+        mmCategDialog dlg(this, false, -1);  // show category dialog only
+        dlg.ShowModal();
     }
 }
 
 void mmPayeeDialog::RemoveDefaultCategory()
 {
-    Model_Payee::Data *payee = Model_Payee::instance().get(m_payee_id);
-    if (payee)
-    {
-        payee->CATEGID = -1;
-        refreshRequested_ = true;
-        Model_Payee::instance().save(payee);
-        mmWebApp::MMEX_WebApp_UpdatePayee();
-        fillControls();
+    std::vector<std::pair<int64, long>> itemsSelected = getSelected();
+    int nb = size(itemsSelected);
+    if (nb > 0) {
+        Model_Payee::Data *payee;
+        for(std::pair<int64, long> p : itemsSelected) {
+            payee = Model_Payee::instance().get(p.first);
+            payee->CATEGID = -1;
+            Model_Payee::instance().save(payee);
+            mmWebApp::MMEX_WebApp_UpdatePayee();
+            addPayeeDataIntoItem(p.second, payee);
+        }
     }
 }
 
@@ -842,14 +888,49 @@ void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
 {
     switch(event.GetId())
     {
-    case MENU_DEFINE_CATEGORY: DefineDefaultCategory() ; break;
-    case MENU_REMOVE_CATEGORY: RemoveDefaultCategory() ; break;
-    case MENU_NEW_PAYEE: AddPayee(); break;
-    case MENU_EDIT_PAYEE: EditPayee(); break;
-    case MENU_DELETE_PAYEE: DeletePayee(); break;
-    case MENU_ORGANIZE_ATTACHMENTS: OnOrganizeAttachments(); break;
-    case MENU_RELOCATE_PAYEE: OnPayeeRelocate(); break;
+        case MENU_DEFINE_CATEGORY: DefineDefaultCategory() ; break;
+        case MENU_REMOVE_CATEGORY: RemoveDefaultCategory() ; break;
+        case MENU_NEW_PAYEE: AddPayee(); break;
+        case MENU_EDIT_PAYEE: EditPayee(); break;
+        case MENU_DELETE_PAYEE: DeletePayee(); break;
+        case MENU_ORGANIZE_ATTACHMENTS: OnOrganizeAttachments(); break;
+        case MENU_RELOCATE_PAYEE: OnPayeeRelocate(); break;
+        case MENU_ITEM_HIDE:
+        {
+            long idx = payeeListBox_->GetFirstSelected();
+            while (idx != -1) {
+                ToggleHide(idx, false);
+                idx = payeeListBox_->GetNextSelected(idx);
+            }
+            if (!m_showHiddenPayees) {
+                fillControls();
+            }
+            else {
+                payeeListBox_->Refresh();
+            }
+            break;
+        }
+        case MENU_ITEM_UNHIDE:
+        {
+            long idx = payeeListBox_->GetFirstSelected();
+            while (idx != -1) {
+                ToggleHide(idx, true);
+                idx = payeeListBox_->GetNextSelected(idx);
+            }
+            payeeListBox_->Refresh();
+            break;
+    }
     default: break;
+    }
+}
+
+void mmPayeeDialog::ToggleHide(long idx, bool state) {
+    Model_Payee::Data *payee = Model_Payee::instance().get(payee_idx_map_[idx]);
+    if (payee && payee->PAYEEID > -1) {
+        payee->ACTIVE = state ? 1 : 0;
+        Model_Payee::instance().save(payee);
+        payeeListBox_->SetItemTextColour(idx, state ? m_normalColor : m_hiddenColor);
+        payeeListBox_->SetItem(idx, 1, state ? L"" : L"\u2713");
     }
 }
 
@@ -861,39 +942,34 @@ void mmPayeeDialog::OnMagicButton(wxCommandEvent& WXUNUSED(event))
 
 void mmPayeeDialog::OnItemRightClick(wxListEvent& event)
 {
-    if (!m_magicButton->IsEnabled()) return;
-
-    m_payee_id = FindSelectedPayee();
-
-    wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY) ;
-    evt.SetEventObject(this);
-
-    Model_Payee::Data* payee = Model_Payee::instance().get(m_payee_id);
-
     wxMenu mainMenu;
-    if (payee) mainMenu.SetTitle(payee->PAYEENAME);
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_DEFINE_CATEGORY, _t("Define &Category")));
-    if (!payee) mainMenu.Enable(MENU_DEFINE_CATEGORY, false);
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_REMOVE_CATEGORY, _t("Remove Ca&tegory")));
-    if (!payee) mainMenu.Enable(MENU_REMOVE_CATEGORY, false);
-    mainMenu.AppendSeparator();
-
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_NEW_PAYEE, _t("&Add ")));
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_EDIT_PAYEE, _t("&Edit ")));
-    if (!payee) mainMenu.Enable(MENU_EDIT_PAYEE, false);
+    mainMenu.AppendSeparator();
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_HIDE, _t("Hide Selected")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_UNHIDE, _t("Unhide Selected")));
+    mainMenu.AppendSeparator();
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_DELETE_PAYEE, _t("&Remove ")));
-    std::list<int64> selected;
-    FindSelectedPayees(selected);
-    if (!payee || selected.front() == -1) mainMenu.Enable(MENU_DELETE_PAYEE, false);
     mainMenu.AppendSeparator();
-
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_NEW_PAYEE, _t("&Add ")));
+    mainMenu.AppendSeparator();
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_DEFINE_CATEGORY, _t("Define &Category")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_REMOVE_CATEGORY, _t("Remove Ca&tegory")));
+    mainMenu.AppendSeparator();
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ORGANIZE_ATTACHMENTS, _t("&Attachment Manager")));
-    if (!payee) mainMenu.Enable(MENU_ORGANIZE_ATTACHMENTS, false);
     mainMenu.AppendSeparator();
-
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_RELOCATE_PAYEE, _t("Merge &Payee")));
-    //SetToolTip(_t("Change all transactions using one Payee to another Payee"));
-    if (!payee) mainMenu.Enable(MENU_RELOCATE_PAYEE, false);
+
+    int nb = payeeListBox_->GetSelectedItemCount();
+
+    mainMenu.Enable(MENU_EDIT_PAYEE, nb == 1);
+    mainMenu.Enable(MENU_RELOCATE_PAYEE, nb == 1);
+    mainMenu.Enable(MENU_ORGANIZE_ATTACHMENTS, nb == 1);
+    mainMenu.Enable(MENU_REMOVE_CATEGORY, nb > 0);
+
+    mainMenu.Enable(MENU_ITEM_HIDE, nb > 0 && isPayeeWithStateSelected(false));
+    mainMenu.Enable(MENU_ITEM_UNHIDE, nb > 0 && m_showHiddenPayees && isPayeeWithStateSelected(true));
+
+    mainMenu.Enable(MENU_DELETE_PAYEE, nb > 0);
 
     PopupMenu(&mainMenu);
     event.Skip();
@@ -904,17 +980,24 @@ void mmPayeeDialog::OnSort(wxListEvent& event)
     m_lastSort = m_sort;
     m_sort = event.GetColumn();
     if (m_sort == m_lastSort)
-            m_sortReverse = !m_sortReverse;
+        m_sortReverse = !m_sortReverse;
     fillControls();
 }
 
-void mmPayeeDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmPayeeDialog::OnShowHiddenToggle(wxCommandEvent& /*event*/)
+{
+    m_showHiddenPayees = m_tbShowAll->GetValue();
+    Model_Setting::instance().setBool("SHOW_HIDDEN_PAYEES", m_showHiddenPayees);
+    fillControls();
+}
+
+void mmPayeeDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     m_payee_id = -1;
     EndModal(wxID_CANCEL);
 }
 
-void mmPayeeDialog::OnOk(wxCommandEvent& /*event*/)
+void mmPayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     if (payeeListBox_->GetItemCount() < 1)
         AddPayee();

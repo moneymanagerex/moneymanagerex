@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
  Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -51,13 +52,15 @@ Model_Payee& Model_Payee::instance()
     return Singleton<Model_Payee>::instance();
 }
 
-const Model_Payee::Data_Set Model_Payee::FilterPayees(const wxString& payee_pattern)
+const Model_Payee::Data_Set Model_Payee::FilterPayees(const wxString& payee_pattern, bool includeInActive)
 {
     Data_Set payees;
     for (auto &payee : this->all(Model_Payee::COL_PAYEENAME))
     {
-        if (payee.PAYEENAME.Lower().Matches(payee_pattern.Lower().Append("*")))
+        if (payee.PAYEENAME.Lower().Matches(payee_pattern.Lower().Append("*")) &&
+            (includeInActive || payee.ACTIVE == 1)) {
             payees.push_back(payee);
+            }
     }
     return payees;
 }

@@ -7452,6 +7452,14 @@ msgstr ""
 msgid "Match Pattern"
 msgstr ""
 
+#: payeedialog.cpp:612
+msgid "Show hidden"
+msgstr ""
+
+#: payeedialog.cpp:615
+msgid "Show hidden payees"
+msgstr ""
+
 #: payeedialog.cpp:735
 msgid "Payee in use."
 msgstr ""
@@ -7498,6 +7506,14 @@ msgstr ""
 
 #: payeedialog.cpp:894
 msgid "Merge &Payee"
+msgstr ""
+
+#: payeedialog.cpp:948
+msgid "Hide Selected"
+msgstr ""
+
+#: payeedialog.cpp:949
+msgid "Unhide Selected"
 msgstr ""
 
 #: primitive.cpp:94
