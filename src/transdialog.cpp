@@ -65,10 +65,12 @@ EVT_BUTTON(ID_DIALOG_TRANS_CUSTOMFIELDS, mmTransDialog::OnMoreFields)
 EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
 EVT_BUTTON(ID_BTN_OK_NEW, mmTransDialog::OnOk)
 EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
+EVT_BUTTON(ID_DIALOG_TRANS_TODAY, mmTransDialog::OnToday)
 EVT_CLOSE(mmTransDialog::OnQuit)
 
 EVT_MENU(wxID_SAVE, mmTransDialog::mmTransDialog::OnOk)
 EVT_MENU(ID_BTN_OK_NEW, mmTransDialog::mmTransDialog::OnOk)
+EVT_MENU(ID_DIALOG_TRANS_TODAY, mmTransDialog::OnToday)
 wxEND_EVENT_TABLE()
 
 mmTransDialog::~mmTransDialog()
@@ -445,7 +447,7 @@ void mmTransDialog::CreateControls()
     dpc_ = new mmDatePickerCtrl(this, ID_DIALOG_TRANS_BUTTONDATE);
     flex_sizer->Add(dpc_->mmGetLayout());
 
-    wxBitmapButton* today = new wxBitmapButton(this, wxID_ANY, mmBitmapBundle(png::ACC_CLOCK, mmBitmapButtonSize));
+    wxBitmapButton* today = new wxBitmapButton(this, ID_DIALOG_TRANS_TODAY, mmBitmapBundle(png::ACC_CLOCK, mmBitmapButtonSize));
     today->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnToday), nullptr, this);
     mmToolTip(today, _t("Set date to today"));
     flex_sizer->Add(today, g_flagsH);
@@ -652,7 +654,9 @@ void mmTransDialog::CreateControls()
 
     const wxAcceleratorEntry entries[] = {
         wxAcceleratorEntry(wxACCEL_CTRL, static_cast<int>('S'), wxID_SAVE),
-        wxAcceleratorEntry(wxACCEL_CTRL, static_cast<int>('N'), ID_BTN_OK_NEW)
+        wxAcceleratorEntry(wxACCEL_CTRL, static_cast<int>('N'), ID_BTN_OK_NEW),
+        wxAcceleratorEntry(wxACCEL_CTRL, static_cast<int>('+'), ID_DIALOG_TRANS_TODAY),
+        wxAcceleratorEntry(wxACCEL_CTRL, WXK_NUMPAD_ADD, ID_DIALOG_TRANS_TODAY)
     };
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
     SetAcceleratorTable(tab);
