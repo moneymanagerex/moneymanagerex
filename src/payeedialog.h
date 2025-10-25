@@ -108,6 +108,7 @@ private:
         MENU_ITEM_HIDE,
         MENU_ITEM_UNHIDE,
         MENU_SHOW_TRANSACTIONS,
+        MENU_SHOW_HIDDEN,
         MENU_RELOCATE_PAYEE  // Must be last!
     };
 

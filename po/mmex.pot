@@ -628,7 +628,7 @@ msgstr ""
 
 #: assetspanel.cpp:474 attachmentdialog.cpp:354 billsdepositspanel.cpp:293
 #: categdialog.cpp:324 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
-#: mmcheckingpanel.cpp:280 payeedialog.cpp:882 stockspanel.cpp:159
+#: mmcheckingpanel.cpp:280 payeedialog.cpp:972 stockspanel.cpp:159
 #: tagdialog.cpp:132
 msgid "&Edit "
 msgstr ""
@@ -807,7 +807,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:351 categdialog.cpp:320 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:315 maincurrencydialog.cpp:539
-#: payeedialog.cpp:881 stockdialog.cpp:339 tagdialog.cpp:128
+#: payeedialog.cpp:977 stockdialog.cpp:339 tagdialog.cpp:128
 msgid "&Add "
 msgstr ""
 
@@ -817,7 +817,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:356 customfieldlistdialog.cpp:258
 #: import_export/univcsvdialog.cpp:319 maincurrencydialog.cpp:541
-#: payeedialog.cpp:884
+#: payeedialog.cpp:975
 msgid "&Remove "
 msgstr ""
 
@@ -7449,7 +7449,7 @@ msgstr ""
 msgid "A payee with this name already exists"
 msgstr ""
 
-#: payeedialog.cpp:459
+#: payeedialog.cpp:461
 msgid "Match Pattern"
 msgstr ""
 
@@ -7457,8 +7457,8 @@ msgstr ""
 msgid "Used"
 msgstr ""
 
-#: payeedialog.cpp:612
-msgid "Show hidden"
+#: payeedialog.cpp:613
+msgid "Show &hidden"
 msgstr ""
 
 #: payeedialog.cpp:615
@@ -7497,28 +7497,32 @@ msgstr ""
 msgid "Confirm Payee Deletion"
 msgstr ""
 
-#: payeedialog.cpp:875
+#: payeedialog.cpp:972
+msgid "&Hide Selected"
+msgstr ""
+
+#: payeedialog.cpp:973
+msgid "&Show Selected"
+msgstr ""
+
+#: payeedialog.cpp:979
 msgid "Define &Category"
 msgstr ""
 
-#: payeedialog.cpp:877
-msgid "Remove Ca&tegory"
+#: payeedialog.cpp:980
+msgid "Remove Categor&y"
 msgstr ""
 
-#: payeedialog.cpp:890
-msgid "&Attachment Manager"
+#: payeedialog.cpp:882
+msgid "Attachment &Manager"
 msgstr ""
 
-#: payeedialog.cpp:894
+#: payeedialog.cpp:984
 msgid "Merge &Payee"
 msgstr ""
 
-#: payeedialog.cpp:948
-msgid "Hide Selected"
-msgstr ""
-
-#: payeedialog.cpp:949
-msgid "Unhide Selected"
+#: payeedialog.cpp:985
+msgid "&Transaction Report"
 msgstr ""
 
 #: primitive.cpp:94

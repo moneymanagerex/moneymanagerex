@@ -472,7 +472,8 @@ mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString
     {
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F2, MENU_EDIT_PAYEE),
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_INSERT, MENU_NEW_PAYEE),
-        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_DELETE, MENU_DELETE_PAYEE)
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_DELETE, MENU_DELETE_PAYEE),
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_CONTROL_H, MENU_SHOW_HIDDEN)
     };
 
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
@@ -550,49 +551,14 @@ void mmPayeeDialog::CreateControls()
         wxLC_REPORT | wxLC_AUTOARRANGE);
     payeeListBox_->SetMinSize(wxSize(250, 100));
 
-    wxListItem col0, col1, col2, col3, col4, col5, col6, col7;
-
-    col0.SetId(PAYEE_NAME);
-    col0.SetText(ColName_[PAYEE_NAME]);
-    col0.SetWidth(150);
-    payeeListBox_->InsertColumn(0, col0);
-
-    col1.SetId(PAYEE_HIDDEN);
-    col1.SetText(ColName_[PAYEE_HIDDEN]);
-    col1.SetAlign(wxLIST_FORMAT_CENTER);
-    col1.SetWidth(50);
-    payeeListBox_->InsertColumn(1, col1);
-
-    col2.SetId(PAYEE_CATEGORY);
-    col2.SetText(ColName_[PAYEE_CATEGORY]);
-    col2.SetWidth(250);
-    payeeListBox_->InsertColumn(2, col2);
-
-    col3.SetId(PAYEE_NUMBER);
-    col3.SetText(ColName_[PAYEE_NUMBER]);
-    col3.SetWidth(150);
-    payeeListBox_->InsertColumn(3, col3);
-
-    col4.SetId(PAYEE_WEBSITE);
-    col4.SetText(ColName_[PAYEE_WEBSITE]);
-    col4.SetWidth(150);
-    payeeListBox_->InsertColumn(4, col4);
-
-    col5.SetId(PAYEE_NOTES);
-    col5.SetText(ColName_[PAYEE_NOTES]);
-    col5.SetWidth(150);
-    payeeListBox_->InsertColumn(5, col5);
-
-    col6.SetId(PAYEE_PATTERN);
-    col6.SetText(ColName_[PAYEE_PATTERN]);
-    col6.SetWidth(150);
-    payeeListBox_->InsertColumn(6, col6);
-
-    col7.SetId(PAYEE_USED);
-    col7.SetText(ColName_[PAYEE_USED]);
-    col7.SetAlign(wxLIST_FORMAT_RIGHT);
-    col7.SetWidth(50);
-    payeeListBox_->InsertColumn(7, col7);
+    payeeListBox_->InsertColumn(PAYEE_NAME, ColName_[PAYEE_NAME], wxLIST_FORMAT_LEFT, 150);
+    payeeListBox_->InsertColumn(PAYEE_HIDDEN, ColName_[PAYEE_HIDDEN], wxLIST_FORMAT_CENTER, 50);
+    payeeListBox_->InsertColumn(PAYEE_CATEGORY, ColName_[PAYEE_CATEGORY], wxLIST_FORMAT_LEFT, 250);
+    payeeListBox_->InsertColumn(PAYEE_NUMBER, ColName_[PAYEE_NUMBER], wxLIST_FORMAT_LEFT, 150);
+    payeeListBox_->InsertColumn(PAYEE_WEBSITE, ColName_[PAYEE_WEBSITE], wxLIST_FORMAT_LEFT, 150);
+    payeeListBox_->InsertColumn(PAYEE_NOTES, ColName_[PAYEE_NOTES], wxLIST_FORMAT_LEFT, 150);
+    payeeListBox_->InsertColumn(PAYEE_PATTERN, ColName_[PAYEE_PATTERN], wxLIST_FORMAT_LEFT, 150);
+    payeeListBox_->InsertColumn(PAYEE_USED, ColName_[PAYEE_USED], wxLIST_FORMAT_RIGHT, 50);
 
     mainBoxSizer->Add(payeeListBox_, wxSizerFlags(g_flagsExpand).Border(wxALL, 10));
 
@@ -609,16 +575,16 @@ void mmPayeeDialog::CreateControls()
     mmToolTip(m_magicButton, _t("Other tools"));
     tools_sizer2->Add(m_magicButton, g_flagsH);
 
-    m_tbShowAll = new wxToggleButton(buttons_panel, wxID_SELECTALL, _t("Show hidden"), wxDefaultPosition
+    m_tbShowAll = new wxToggleButton(buttons_panel, wxID_SELECTALL, _t("Show &hidden"), wxDefaultPosition
         , wxDefaultSize);
     m_tbShowAll->SetValue(m_showHiddenPayees);
-    mmToolTip(m_tbShowAll, _t("Show hidden payees"));
+    mmToolTip(m_tbShowAll, _t("Show hidden payees") + " (Ctrl-h)");
     tools_sizer2->Add(m_tbShowAll, g_flagsH);
 
     m_maskTextCtrl = new wxSearchCtrl(buttons_panel, wxID_FIND);
     m_maskTextCtrl->SetFocus();
     tools_sizer2->Prepend(m_maskTextCtrl, g_flagsExpand);
-    tools_sizer2->Prepend(new wxStaticText(buttons_panel, wxID_STATIC, _t("Search")), g_flagsH);
+    tools_sizer2->Prepend(new wxStaticText(buttons_panel, wxID_STATIC, _t("&Search")), g_flagsH);
 
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     tools_sizer->Add(buttons_sizer, wxSizerFlags(g_flagsV).Center());
@@ -692,9 +658,9 @@ void mmPayeeDialog::fillControls()
 void mmPayeeDialog::addPayeeDataIntoItem(long idx, const Model_Payee::Data* payee)
 {
     payeeListBox_->SetItem(idx, 0, payee->PAYEENAME);
-    /*if (!m_init_selected_payee.IsEmpty() && payee->PAYEENAME.CmpNoCase(m_init_selected_payee) == 0) {
+    if (!m_init_selected_payee.IsEmpty() && payee->PAYEENAME.CmpNoCase(m_init_selected_payee) == 0) {
         payeeListBox_->Select(idx);
-    }*/
+    }
     payeeListBox_->SetItem(idx, 1, payee->ACTIVE == 0 ? L"\u2713" : L"");
     payeeListBox_->SetItem(idx, 2, Model_Category::instance().full_name(payee->CATEGID));
     payeeListBox_->SetItem(idx, 3, payee->NUMBER);
@@ -716,7 +682,6 @@ void mmPayeeDialog::addPayeeDataIntoItem(long idx, const Model_Payee::Data* paye
     payeeListBox_->SetItem(idx, 6, value);
     payeeListBox_->SetItemTextColour(idx, payee->ACTIVE == 0 ? m_hiddenColor : m_normalColor);
 
-    //payeeListBox_->SetItem(idx, 7, Model_Payee::instance().is_used(payee_idx_map_[idx]) ? L"\u2713" : L"");
     int count = Model_Payee::instance().getUseCount(payee_idx_map_[idx]);
     payeeListBox_->SetItem(idx, 7, wxString::Format("%d", count));
 }
@@ -934,6 +899,14 @@ void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
             FindSelectedPayees();
             m_addActionRequested = true;
             EndModal(wxID_OK);
+            break;
+        }
+        case MENU_SHOW_HIDDEN: 
+        {
+            m_showHiddenPayees = m_tbShowAll->GetValue();
+            Model_Setting::instance().setBool("SHOW_HIDDEN_PAYEES", m_showHiddenPayees);
+            fillControls();
+            break;
         }
         default: break;
         }
@@ -960,20 +933,20 @@ void mmPayeeDialog::OnItemRightClick(wxListEvent& event)
     wxMenu mainMenu;
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_EDIT_PAYEE, _t("&Edit ")));
     mainMenu.AppendSeparator();
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_HIDE, _t("Hide Selected")));
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_UNHIDE, _t("Unhide Selected")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_HIDE, _t("&Hide Selected")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_UNHIDE, _t("&Show Selected")));
     mainMenu.AppendSeparator();
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_DELETE_PAYEE, _t("&Remove ")));
     mainMenu.AppendSeparator();
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_NEW_PAYEE, _t("&Add ")));
     mainMenu.AppendSeparator();
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_DEFINE_CATEGORY, _t("Define &Category")));
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_REMOVE_CATEGORY, _t("Remove Ca&tegory")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_REMOVE_CATEGORY, _t("Remove Categor&y")));
     mainMenu.AppendSeparator();
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ORGANIZE_ATTACHMENTS, _t("&Attachment Manager")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ORGANIZE_ATTACHMENTS, _t("Attachment &Manager")));
     mainMenu.AppendSeparator();
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_RELOCATE_PAYEE, _t("Merge &Payee")));
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_SHOW_TRANSACTIONS, _t("Transaction Report")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_SHOW_TRANSACTIONS, _t("&Transaction Report")));
 
     int nb = payeeListBox_->GetSelectedItemCount();
 
@@ -1001,7 +974,7 @@ void mmPayeeDialog::OnSort(wxListEvent& event)
     fillControls();
 }
 
-void mmPayeeDialog::OnShowHiddenToggle(wxCommandEvent& /*event*/)
+void mmPayeeDialog::OnShowHiddenToggle(wxCommandEvent& WXUNUSED(event))
 {
     m_showHiddenPayees = m_tbShowAll->GetValue();
     Model_Setting::instance().setBool("SHOW_HIDDEN_PAYEES", m_showHiddenPayees);
