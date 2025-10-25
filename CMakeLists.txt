@@ -139,7 +139,12 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     # Detect Linux distribution (if possible)
     find_program(LSB_RELEASE lsb_release
         DOC "tool to read linux distribution name")
-    if(LSB_RELEASE)
+	if(EXISTS /etc/arch-release)
+		execute_process(COMMAND  uname -r
+			OUTPUT_VARIABLE LINUX_DISTRO_REL
+			OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
+		set(LINUX_DISTRO "Arch")
+    elseif(LSB_RELEASE)
         execute_process(COMMAND lsb_release -is
             OUTPUT_VARIABLE LINUX_DISTRO
             OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
@@ -154,27 +159,20 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
             OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
         string(REPLACE "\"" "" LINUX_DISTRO_DESCRIPTION "${LINUX_DISTRO_DESCRIPTION}")
         string(REPLACE " " "." LINUX_DISTRO_DESCRIPTION "${LINUX_DISTRO_DESCRIPTION}")
-    else()
-        if(EXISTS /etc/slackware-version)
-            file(STRINGS /etc/slackware-version LINUX_DISTRO LIMIT_COUNT 1)
-            if(LINUX_DISTRO MATCHES "^([^.]+) +([0-9.]+)")
-                set(LINUX_DISTRO "${CMAKE_MATCH_1}")
-                set(LINUX_DISTRO_REL ${CMAKE_MATCH_2})
-            endif()
-        # Check if cmake is new enough for querying host-specific system information:
-        # https://cmake.org/cmake/help/latest/command/cmake_host_system_information.html
-        elseif(EXISTS /etc/os-release AND ${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.22.0")
-            cmake_host_system_information(RESULT LINUX_DISTRO QUERY DISTRIB_NAME)
-            cmake_host_system_information(RESULT LINUX_DISTRO_REL QUERY DISTRIB_VERSION)
-        elseif(EXISTS /etc/arch-release)
-            execute_process(COMMAND  uname -r
-                OUTPUT_VARIABLE LINUX_DISTRO_REL
-                OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-            set(LINUX_DISTRO "Arch")
-        else()
-            message(SEND_ERROR "lsb_release tool not found.")
-        endif()
-    endif()
+	elseif(EXISTS /etc/slackware-version)
+		file(STRINGS /etc/slackware-version LINUX_DISTRO LIMIT_COUNT 1)
+		if(LINUX_DISTRO MATCHES "^([^.]+) +([0-9.]+)")
+			set(LINUX_DISTRO "${CMAKE_MATCH_1}")
+			set(LINUX_DISTRO_REL ${CMAKE_MATCH_2})
+		endif()
+    # Check if cmake is new enough for querying host-specific system information:
+    # https://cmake.org/cmake/help/latest/command/cmake_host_system_information.html
+    elseif(EXISTS /etc/os-release AND ${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.22.0")
+        cmake_host_system_information(RESULT LINUX_DISTRO QUERY DISTRIB_NAME)
+        cmake_host_system_information(RESULT LINUX_DISTRO_REL QUERY DISTRIB_VERSION)
+	else()
+		message(SEND_ERROR "OS information not found.")
+	endif()
     if(NOT LINUX_DISTRO OR NOT LINUX_DISTRO_REL)
         message(SEND_ERROR "Could not find a GNU/Linux distribution info")
     endif()
@@ -859,25 +857,8 @@ elseif(WIN32)
 endif()
 
 if(LINUX_DISTRO STREQUAL "Arch")
-    # Use dedicated tool to build Arch Linux package
     set(CMAKE_INSTALL_PREFIX /usr)
-    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-        set(ARCHLINUX_ARCH x86_64)
-    else()
-        set(ARCHLINUX_ARCH i686)
-    endif()
     string(REPLACE - . CPACK_PACKAGE_VERSION ${MMEX_VERSION_FULL})
-    configure_file(util/PKGBUILD.in PKGBUILD @ONLY)
-
-    # allow use reserved for cpack package target
-    cmake_policy(PUSH)
-    if(POLICY CMP0037)
-        cmake_policy(SET CMP0037 OLD)
-    endif()
-    add_custom_target(package
-        COMMAND sh -c "if [ `id -u` -eq 0 ]; then chown nobody -R . && runuser nobody -c makepkg; else makepkg; fi"
-        VERBATIM)
-    cmake_policy(POP)
 else()
     # workarount for old CMake without DEB-DEFAULT/RPM-DEFAULT support
     if(CMAKE_VERSION VERSION_LESS 3.6)
