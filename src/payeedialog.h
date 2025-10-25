@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2012 - 2016, 2020 - 2022 Nikolay Akimov
  Copyright (C) 2021,2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -26,6 +27,7 @@
 #include <wx/dataview.h>
 #include <wx/srchctrl.h>
 #include <wx/grid.h>
+#include <wx/tglbtn.h>
 #include <map>
 #include <list>
 #include "mmSimpleDialogs.h"
@@ -39,6 +41,7 @@ public:
     mmEditPayeeDialog();
     mmEditPayeeDialog(wxWindow* parent, Model_Payee::Data* payee, const wxString &name = "mmEditPayeeDialog");
     ~mmEditPayeeDialog();
+    Model_Payee::Data* getChangedPayee();
 
 private:
     Model_Payee::Data* m_payee = nullptr;
@@ -61,8 +64,11 @@ private:
     void OnMoveDown(wxCommandEvent& /*event*/);
     void OnPatternTableChanged(wxGridEvent& event);
     void OnPatternTableSize(wxSizeEvent&);
-
 };
+
+inline Model_Payee::Data* mmEditPayeeDialog::getChangedPayee() { return m_payee; }
+
+
 
 class mmPayeeDialog : public wxDialog
 {
@@ -75,6 +81,8 @@ public:
     void DisableTools();
     int64 getPayeeId() const;
     bool getRefreshRequested() const;
+    bool getAddActionRequested() const;
+    std::list<int64> getSelectedPayees();
 
 private:
     enum cols
@@ -85,7 +93,8 @@ private:
         PAYEE_NUMBER,
         PAYEE_WEBSITE,
         PAYEE_NOTES,
-        PAYEE_PATTERN
+        PAYEE_PATTERN,
+        PAYEE_USED
     };
 
     enum menu_items
@@ -96,22 +105,32 @@ private:
         MENU_EDIT_PAYEE,
         MENU_DELETE_PAYEE,
         MENU_ORGANIZE_ATTACHMENTS,
-        MENU_RELOCATE_PAYEE
+        MENU_ITEM_HIDE,
+        MENU_ITEM_UNHIDE,
+        MENU_SHOW_TRANSACTIONS,
+        MENU_SHOW_HIDDEN,
+        MENU_RELOCATE_PAYEE  // Must be last!
     };
 
     wxListView* payeeListBox_ = nullptr;
     wxSearchCtrl* m_maskTextCtrl = nullptr;
     wxBitmapButton* m_magicButton = nullptr;
+    wxToggleButton* m_tbShowAll = nullptr;
 
     int64 m_payee_id = -1;
     bool m_payee_choose = false;
     wxString m_init_selected_payee;
-    //int m_payee_rename = -1;
     wxString m_maskStr;
     int m_sort = cols::PAYEE_NAME, m_lastSort = cols::PAYEE_NAME;
     bool refreshRequested_ = false, m_sortReverse = false;
+    bool m_addActionRequested = false;
+    bool m_showHiddenPayees = true;
     std::map<int, wxString> ColName_;
     std::map<long, int64> payee_idx_map_;
+    std::list<int64> m_itemsSelected;
+
+    wxColour m_normalColor;
+    wxColour m_hiddenColor;
 
 private:
     mmPayeeDialog() {}
@@ -119,6 +138,8 @@ private:
     void Create(wxWindow* parent, const wxString &name);
     void CreateControls();
     void fillControls();
+    void addPayeeDataIntoItem(long idx, const Model_Payee::Data* payee);
+    bool isPayeeWithStateSelected(bool hidden);
 
     void AddPayee();
     void EditPayee();
@@ -128,7 +149,8 @@ private:
     void OnOrganizeAttachments();
     void OnPayeeRelocate();
     int64 FindSelectedPayee();
-    void FindSelectedPayees(std::list<int64>& indexes);
+    void FindSelectedPayees();
+    std::vector<std::pair<int64, long>> getSelected();
     void OnCancel(wxCommandEvent& /*event*/);
     void OnOk(wxCommandEvent& /*event*/);
 
@@ -140,12 +162,16 @@ private:
     void OnTextChanged(wxCommandEvent& event);
     void OnMagicButton(wxCommandEvent& event);
     void OnSort(wxListEvent& event);
+    void OnShowHiddenToggle(wxCommandEvent& event);
+
+    void ToggleHide(long idx, bool state);
 };
 
 inline void mmPayeeDialog::DisableTools() { m_magicButton->Disable(); }
 inline int64 mmPayeeDialog::getPayeeId() const { return m_payee_id; }
 inline bool mmPayeeDialog::getRefreshRequested() const { return refreshRequested_; }
 inline void mmPayeeDialog::OnListItemDeselected(wxListEvent& WXUNUSED(event)) { m_payee_id = -1; }
-
+inline bool mmPayeeDialog::getAddActionRequested() const { return m_addActionRequested;};
+inline std::list<int64> mmPayeeDialog::getSelectedPayees() { return m_itemsSelected;};
 
 #endif // MM_EX_PAYEEDIALOG_H_
