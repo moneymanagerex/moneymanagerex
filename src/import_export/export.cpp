@@ -449,7 +449,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
 
     if (!attachments.empty())
     {
-        const wxString folder = Model_Infotable::instance().getString("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
+        //const wxString folder = Model_Infotable::instance().getString("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
         json_writer.Key("ATTACHMENTS");
         json_writer.StartArray();
         for (const auto &entry : attachments) {

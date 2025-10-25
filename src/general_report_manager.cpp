@@ -1080,7 +1080,9 @@ bool mmGeneralReportManager::renameReportGroup(const wxString& GroupName)
 void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 {
     int id = event.GetId();
-
+    if (id != ID_DELETE) {
+        CheckAndSaveChanges();
+    }
     if (id == ID_NEW_EMPTY || id == ID_NEW_SAMPLE_ASSETS) {
         newReport(id);
     }

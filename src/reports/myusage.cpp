@@ -131,7 +131,7 @@ wxString mmReportMyUsage::getHTMLText()
         GraphData gd;
         GraphSeries data_usage;
 
-        wxArrayString labels;
+        //wxArrayString labels;
 
         std::stable_sort(usage_vector.begin(), usage_vector.end(), [](const std::pair<wxString, int>& left, const std::pair<wxString, int>& right) {
             return left.second > right.second;});
@@ -151,9 +151,9 @@ wxString mmReportMyUsage::getHTMLText()
             hb.addChart(gd);
         }
     }
-    
-    hb.addDivContainer("shadow"); 
-    { 
+
+    hb.addDivContainer("shadow");
+    {
         hb.startTable();
         {
             hb.startThead();
@@ -180,7 +180,7 @@ wxString mmReportMyUsage::getHTMLText()
         }
         hb.endTable();
     }
-    hb.endDiv(); 
+    hb.endDiv();
 
     hb.end();
 

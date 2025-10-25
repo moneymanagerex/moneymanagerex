@@ -393,7 +393,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     delete date_range;
 
     //Chart
-    wxArrayString labels;
+    //wxArrayString labels;
     if (getChartSelection() == 0)
     {
         GraphData gd;

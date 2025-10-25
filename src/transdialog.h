@@ -3,6 +3,7 @@
  Copyright (C) 2011-2017 Nikolay Akimov
  Copyright (C) 2011-2017 Stefano Giorgio [stef145g]
  Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -89,6 +90,8 @@ private:
     void OnTextEntered(wxCommandEvent& event);
     void OnAdvanceChecked(wxCommandEvent& event);
     void OnCalculator(wxCommandEvent& event);
+    void OnSwitch(wxCommandEvent& event);
+    void OnToday(wxCommandEvent& event);
     void SetTooltips();
     void SetCategoryForPayee(const Model_Payee::Data *payee = nullptr);
 private:
@@ -116,6 +119,7 @@ private:
     mmDatePickerCtrl* dpc_ = nullptr;
     mmTagTextCtrl* tagTextCtrl_ = nullptr;
     wxButton* bCalc_ = nullptr;
+    wxButton* bSwitch_ = nullptr;
     mmCalculatorPopup* calcPopup_ = nullptr;
     mmTextCtrl* calcTarget_ = nullptr;
 
@@ -172,6 +176,7 @@ private:
         ID_DIALOG_TRANS_CUSTOMFIELDS,
         ID_CUSTOMFIELD,
         ID_DIALOG_TRANS_TAGS,
+        ID_DIALOG_TRANS_TODAY,
         ID_BTN_OK_NEW
     };
 };
