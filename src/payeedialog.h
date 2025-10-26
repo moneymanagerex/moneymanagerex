@@ -69,6 +69,12 @@ private:
 inline Model_Payee::Data* mmEditPayeeDialog::getChangedPayee() { return m_payee; }
 
 
+struct RowData {
+    int64 payeeId;
+    bool active;
+    int count;
+    int tidx;  // only used for selections!
+};
 
 class mmPayeeDialog : public wxDialog
 {
@@ -78,7 +84,6 @@ class mmPayeeDialog : public wxDialog
 public:
     ~mmPayeeDialog();
     mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString& name = "mmPayeeDialog", const wxString& payee_selected = wxEmptyString);
-    void DisableTools();
     int64 getPayeeId() const;
     bool getRefreshRequested() const;
     bool getAddActionRequested() const;
@@ -117,7 +122,6 @@ private:
     wxBitmapButton* m_magicButton = nullptr;
     wxToggleButton* m_tbShowAll = nullptr;
 
-    int64 m_payee_id = -1;
     bool m_payee_choose = false;
     wxString m_init_selected_payee;
     wxString m_maskStr;
@@ -125,12 +129,11 @@ private:
     bool refreshRequested_ = false, m_sortReverse = false;
     bool m_addActionRequested = false;
     bool m_showHiddenPayees = true;
-    std::map<int, wxString> ColName_;
-    std::map<long, int64> payee_idx_map_;
-    std::list<int64> m_itemsSelected;
+    std::list<RowData*> m_selectedItems;
 
     wxColour m_normalColor;
     wxColour m_hiddenColor;
+    std::vector<RowData*> m_rowData;
 
 private:
     mmPayeeDialog() {}
@@ -138,8 +141,8 @@ private:
     void Create(wxWindow* parent, const wxString &name);
     void CreateControls();
     void fillControls();
-    void addPayeeDataIntoItem(long idx, const Model_Payee::Data* payee);
-    bool isPayeeWithStateSelected(bool hidden);
+    void addPayeeDataIntoItem(long idx, const Model_Payee::Data* payee, int count);
+    bool isPayeeWithStateSelected(bool state);
 
     void AddPayee();
     void EditPayee();
@@ -148,15 +151,11 @@ private:
     void RemoveDefaultCategory();
     void OnOrganizeAttachments();
     void OnPayeeRelocate();
-    int64 FindSelectedPayee();
     void FindSelectedPayees();
-    std::vector<std::pair<int64, long>> getSelected();
     void OnCancel(wxCommandEvent& /*event*/);
     void OnOk(wxCommandEvent& /*event*/);
 
     void OnListItemActivated(wxListEvent& event);
-    void OnListItemSelected(wxListEvent& event);
-    void OnListItemDeselected(wxListEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxListEvent& event);
     void OnTextChanged(wxCommandEvent& event);
@@ -165,13 +164,12 @@ private:
     void OnShowHiddenToggle(wxCommandEvent& event);
 
     void ToggleHide(long idx, bool state);
+    int CompareRows(RowData* r1, RowData* r2);
+    static int wxCALLBACK SortCallback(long itemData1, long itemData2, long sortData);
+
 };
 
-inline void mmPayeeDialog::DisableTools() { m_magicButton->Disable(); }
-inline int64 mmPayeeDialog::getPayeeId() const { return m_payee_id; }
 inline bool mmPayeeDialog::getRefreshRequested() const { return refreshRequested_; }
-inline void mmPayeeDialog::OnListItemDeselected(wxListEvent& WXUNUSED(event)) { m_payee_id = -1; }
 inline bool mmPayeeDialog::getAddActionRequested() const { return m_addActionRequested;};
-inline std::list<int64> mmPayeeDialog::getSelectedPayees() { return m_itemsSelected;};
 
 #endif // MM_EX_PAYEEDIALOG_H_
