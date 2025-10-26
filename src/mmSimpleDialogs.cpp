@@ -742,6 +742,8 @@ wxBoxSizer* mmDatePickerCtrl::mmGetLayoutWithTime()
 
 void mmDatePickerCtrl::OnDateChanged(wxDateEvent& event)
 {
+    if (datePicker_->GetValue().GetCentury() < 1)
+        datePicker_->SetValue(datePicker_->GetValue().Add(wxDateSpan::Years(2000)));
     if (timePicker_)
         dt_.ParseISOCombined(datePicker_->GetValue().FormatISODate() + "T" + timePicker_->GetValue().FormatISOTime());
     else
