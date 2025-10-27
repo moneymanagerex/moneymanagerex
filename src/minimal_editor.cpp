@@ -31,7 +31,7 @@ wxEND_EVENT_TABLE()
 MinimalEditor::MinimalEditor(wxWindow* parent, wxWindowID id)
     : wxStyledTextCtrl(parent, id)
 {
-    int font_size = this->GetFont().GetPointSize();
+    int font_size = this->GetFont().GetPointSize() - 1;
     m_font = wxFont(font_size, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
     this->SetFont(m_font);
 }
