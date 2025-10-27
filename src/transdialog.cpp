@@ -451,7 +451,10 @@ void mmTransDialog::CreateControls()
     wxBitmapBundle bundle = mmBitmapBundle(png::ACC_CLOCK, mmBitmapButtonSize);
     wxBitmapButton* today = new wxBitmapButton(static_box, ID_DIALOG_TRANS_TODAY, bundle);
     today->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnToday), nullptr, this);
-    mmToolTip(today, _t("Set date to today"));
+
+    const wxString tooltiptext = _t("Set date to today (Ctrl+;)");
+    mmToolTip(today, tooltiptext);
+    wxChar hotkeyToday = ExtractHotkeyChar(tooltiptext, '.');
     flex_sizer->Add(today, g_flagsH);
 
     // Type --------------------------------------------
@@ -657,8 +660,7 @@ void mmTransDialog::CreateControls()
     const wxAcceleratorEntry entries[] = {
         wxAcceleratorEntry(wxACCEL_CTRL, static_cast<int>('S'), wxID_SAVE),
         wxAcceleratorEntry(wxACCEL_CTRL, static_cast<int>('N'), ID_BTN_OK_NEW),
-        wxAcceleratorEntry(wxACCEL_CTRL, static_cast<int>('+'), ID_DIALOG_TRANS_TODAY),
-        wxAcceleratorEntry(wxACCEL_CTRL, WXK_NUMPAD_ADD, ID_DIALOG_TRANS_TODAY)
+        wxAcceleratorEntry(wxACCEL_CTRL, static_cast<int>(hotkeyToday), ID_DIALOG_TRANS_TODAY),
     };
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
     SetAcceleratorTable(tab);
