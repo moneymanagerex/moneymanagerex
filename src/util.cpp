@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013-2022 Nikolay Akimov
  Copyright (C) 2021-2024 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -650,7 +651,7 @@ wxString cleanseNumberString(const wxString& str,const bool decimal)
     } else
     {
         wxRegEx pattern(R"([\., ])");
-        pattern.ReplaceAll(&content, wxEmptyString);           
+        pattern.ReplaceAll(&content, wxEmptyString);
     }
     return content;
 }
@@ -988,14 +989,14 @@ bool getCoincapInfoFromSymbol(const wxString& symbol, wxString& out_id, double& 
         output = _t("JSON Parse Error");
         return false;
     }
-    
+
     if (!json_doc.HasMember("data") || !json_doc["data"].IsArray()) {
         if (json_doc.HasMember("error") && json_doc["error"].IsString()) {
             output = wxString::Format("Error from coincap API: %s", json_doc["error"].GetString());
         } else {
             output = _t("Expected response to contain a data or error string");
         }
-        
+
         return false;
     }
 
@@ -1789,7 +1790,7 @@ wxImageList* createImageList(const int size)
 }
 
 // Ideally we would use wxToolTip::Enable() to enable or disable tooltips globally.
-// but this only works on some platforms! 
+// but this only works on some platforms!
 void mmToolTip(wxWindow* widget, const wxString& tip)
 {
     if (Option::instance().getShowToolTips()) widget->SetToolTip(tip);
@@ -1802,7 +1803,7 @@ wxString HTMLEncode(const wxString& input)
     {
         wxUniChar c = input.GetChar(pos);
         if (c.IsAscii())
-            switch(static_cast<char>(c)) 
+            switch(static_cast<char>(c))
             {
                 case '&':  output.Append("&amp;");      break;
                 case '\"': output.Append("&quot;");     break;
@@ -1843,12 +1844,12 @@ void mmSetSize(wxWindow* w)
     }
     else if (name == "General Reports Manager") {
         my_size = Model_Infotable::instance().getSize("GRM_DIALOG_SIZE");
-    } 
+    }
     else if (name == "mmEditPayeeDialog") {
-        my_size = Model_Infotable::instance().getSize("EDITPAYEE_DIALOG_SIZE"); 
+        my_size = Model_Infotable::instance().getSize("EDITPAYEE_DIALOG_SIZE");
     }
     else if (name == "mmEditSplitOther") {
-        my_size = Model_Infotable::instance().getSize("EDITSPLITOTHER_DIALOG_SIZE"); 
+        my_size = Model_Infotable::instance().getSize("EDITSPLITOTHER_DIALOG_SIZE");
     }
     else if (name == "Transactions Dialog") {
         my_size = Model_Infotable::instance().getSize("TRANSACTION_DIALOG_SIZE");
@@ -1925,4 +1926,26 @@ void mmHtmlWindow::OnMenuSelected(wxCommandEvent& event)
             wxTheClipboard->Close();
         }
     }
+}
+
+// -------------------
+wxChar ExtractHotkeyChar(const wxString& input, wxChar defaultChar)
+{
+    wxChar result = defaultChar;
+    const wxString patternStart = "(Ctrl+";
+
+    int startPos = input.Find(patternStart);
+    if (startPos != wxNOT_FOUND) {
+        int keyPos = startPos + patternStart.Length();
+        if (keyPos < static_cast<int>(input.Length())) {
+            int endPos = input.find(")", keyPos);
+            if (endPos != wxNOT_FOUND) {
+                wxString keyPart = input.SubString(keyPos, endPos - 1);
+                keyPart.Trim(true).Trim(false);
+                if (keyPart.Length() == 1)
+                    result = keyPart[0];
+            }
+        }
+    }
+    return result;
 }

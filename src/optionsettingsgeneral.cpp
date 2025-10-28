@@ -73,14 +73,14 @@ void OptionSettingsGeneral::Create()
 
     // Display Header Settings
     wxStaticBox* headerStaticBox = new wxStaticBox(general_panel, wxID_STATIC, _t("Display Heading"));
-    SetBoldFont(headerStaticBox);
+
 
     wxStaticBoxSizer* headerStaticBoxSizer = new wxStaticBoxSizer(headerStaticBox, wxHORIZONTAL);
 
-    headerStaticBoxSizer->Add(new wxStaticText(general_panel, wxID_STATIC, _t("User Name")), g_flagsH);
+    headerStaticBoxSizer->Add(new wxStaticText(headerStaticBox, wxID_STATIC, _t("User Name")), g_flagsH);
 
     wxString userName = Model_Infotable::instance().getString("USERNAME", "");
-    wxTextCtrl* userNameTextCtr = new wxTextCtrl(general_panel, ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME, userName);
+    wxTextCtrl* userNameTextCtr = new wxTextCtrl(headerStaticBox, ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME, userName);
     userNameTextCtr->SetMinSize(wxSize(200, -1));
     mmToolTip(userNameTextCtr, _t("The User Name is used as a title for the database."));
     headerStaticBoxSizer->Add(userNameTextCtr, g_flagsExpand);
@@ -91,11 +91,11 @@ void OptionSettingsGeneral::Create()
     const auto langName = language == wxLANGUAGE_DEFAULT ? _t("System default") : wxLocale::GetLanguageName(language);
 
     wxStaticBox* langStaticBox = new wxStaticBox(general_panel, wxID_STATIC, _t("User Interface Language"));
-    SetBoldFont(langStaticBox);
+
     wxStaticBoxSizer* langFormatStaticBoxSizer = new wxStaticBoxSizer(langStaticBox, wxHORIZONTAL);
     generalPanelSizer->Add(langFormatStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    wxButton* langButton = new wxButton(general_panel, ID_DIALOG_OPTIONS_BUTTON_LANG, wxGetTranslation(langName));
+    wxButton* langButton = new wxButton(langStaticBox, ID_DIALOG_OPTIONS_BUTTON_LANG, wxGetTranslation(langName));
     langButton->SetMinSize(wxSize(200, -1));
     langFormatStaticBoxSizer->Add(langButton, g_flagsH);
     mmToolTip(langButton, _t("Change user interface language"));
@@ -118,22 +118,22 @@ void OptionSettingsGeneral::Create()
     dateFormatStaticBoxSizer->Add(new wxStaticText(dateFormatStaticBox, wxID_STATIC, _t("Date format sample:")), wxSizerFlags(g_flagsH).Border(wxLEFT, 15));
     dateFormatStaticBoxSizer->Add(m_sample_date_text, wxSizerFlags(g_flagsH).Border(wxLEFT, 5));
     m_sample_date_text->SetLabelText(mmGetDateTimeForDisplay(wxDateTime::Now().FormatISODate()));
-    SetBoldFont(dateFormatStaticBox);
+
 
     // Currency Settings
     wxStaticBox* currencyStaticBox = new wxStaticBox(general_panel, wxID_STATIC, _t("Currency"));
-    SetBoldFont(currencyStaticBox);
+
     m_currencyStaticBoxSizer = new wxStaticBoxSizer(currencyStaticBox, wxVERTICAL);
     generalPanelSizer->Add(m_currencyStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxBoxSizer* currencyBaseSizer = new wxBoxSizer(wxHORIZONTAL);
     m_currencyStaticBoxSizer->Add(currencyBaseSizer, wxSizerFlags(g_flagsV).Border(wxLEFT, 0));
-    currencyBaseSizer->Add(new wxStaticText(general_panel, wxID_STATIC, _t("Base Currency")), g_flagsH);
+    currencyBaseSizer->Add(new wxStaticText(currencyStaticBox, wxID_STATIC, _t("Base Currency")), g_flagsH);
 
     Model_Currency::Data* currency = Model_Currency::instance().get(Option::instance().getBaseCurrencyID());
     wxString currName = currency ? currency->CURRENCYNAME : _t("Set Currency");
     m_currency_id = currency ? currency->CURRENCYID : -1;
-    baseCurrencyComboBox_ = new mmComboBoxCurrency(general_panel, ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
+    baseCurrencyComboBox_ = new mmComboBoxCurrency(currencyStaticBox, ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
     baseCurrencyComboBox_->SetMinSize(wxSize(200, -1));
     baseCurrencyComboBox_->ChangeValue(currName);
     mmToolTip(baseCurrencyComboBox_, _t("Set default database currency using 'Currency Manager'"));
@@ -147,20 +147,20 @@ void OptionSettingsGeneral::Create()
         wxBoxSizer* localeBaseSizer = new wxBoxSizer(wxHORIZONTAL);
         m_currencyStaticBoxSizer->Add(localeBaseSizer, wxSizerFlags(g_flagsV).Border(wxLEFT, 0));
 
-        m_itemListOfLocales = new wxComboBox(general_panel, ID_DIALOG_OPTIONS_LOCALE, ""
+        m_itemListOfLocales = new wxComboBox(currencyStaticBox, ID_DIALOG_OPTIONS_LOCALE, ""
             , wxDefaultPosition, wxDefaultSize, g_locales());
         m_itemListOfLocales->SetValue(locale);
         m_itemListOfLocales->AutoComplete(g_locales());
         m_itemListOfLocales->SetMinSize(wxSize(100, -1));
         localeBaseSizer->Add(m_itemListOfLocales, g_flagsH);
 
-        m_sample_value_text = new wxStaticText(general_panel, wxID_STATIC, "redefined elsewhere");
+        m_sample_value_text = new wxStaticText(currencyStaticBox, wxID_STATIC, "redefined elsewhere");
         localeBaseSizer->Add(m_sample_value_text, wxSizerFlags(g_flagsH).Border(wxLEFT, 15));
         wxString result;
         doFormatDoubleValue(locale, result);
         m_sample_value_text->SetLabelText(wxGetTranslation(result));
 
-        m_currencyStaticBoxSizer->Add(new wxStaticText(general_panel, wxID_STATIC
+        m_currencyStaticBoxSizer->Add(new wxStaticText(currencyStaticBox, wxID_STATIC
             , _t("Format derived from locale.\n"
                 "Leave blank to manually set format via 'Currency Manager | Edit'")),
             wxSizerFlags(g_flagsV).Border(wxTOP, 0).Border(wxLEFT, 5));
@@ -172,42 +172,48 @@ void OptionSettingsGeneral::Create()
 
     m_currencyStaticBoxSizer->AddSpacer(15);
 
-    m_currency_history = new wxCheckBox(general_panel, wxID_STATIC, _t("Use historical currency"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_currency_history = new wxCheckBox(currencyStaticBox, wxID_STATIC, _t("Use historical currency"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_currency_history->SetValue(Option::instance().getUseCurrencyHistory());
     mmToolTip(m_currency_history, _t("Select to use historical currency (one rate for each day), deselect to use a fixed rate"));
     m_currencyStaticBoxSizer->Add(m_currency_history, g_flagsV);
 
     // Financial Year Settings
     wxStaticBox* financialYearStaticBox = new wxStaticBox(general_panel, wxID_ANY, _t("Financial Year"));
-    SetBoldFont(financialYearStaticBox);
+
     wxStaticBoxSizer* financialYearStaticBoxSizer = new wxStaticBoxSizer(financialYearStaticBox, wxVERTICAL);
     wxFlexGridSizer* financialYearStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 0);
     generalPanelSizer->Add(financialYearStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
     financialYearStaticBoxSizer->Add(financialYearStaticBoxSizerGrid);
 
-    financialYearStaticBoxSizerGrid->Add(new wxStaticText(general_panel, wxID_STATIC, _t("First Day")), g_flagsH);
+    financialYearStaticBoxSizerGrid->Add(new wxStaticText(financialYearStaticBox, wxID_STATIC, _t("First Day")), g_flagsH);
     int day = Model_Infotable::instance().getInt("FINANCIAL_YEAR_START_DAY", 1);
 
-    wxSpinCtrl *textFPSDay = new wxSpinCtrl(general_panel, ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY,
+    wxSpinCtrl *textFPSDay = new wxSpinCtrl(financialYearStaticBox, ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 31, day);
     textFPSDay->SetValue(day);
     mmToolTip(textFPSDay, _t("Specify Day for start of financial year"));
 
     financialYearStaticBoxSizerGrid->Add(textFPSDay, g_flagsH);
 
-    financialYearStaticBoxSizerGrid->Add(new wxStaticText(general_panel, wxID_STATIC, _t("First Month")), g_flagsH);
+    financialYearStaticBoxSizerGrid->Add(new wxStaticText(financialYearStaticBox, wxID_STATIC, _t("First Month")), g_flagsH);
 
     wxArrayString financialMonthsSelection;
     for (wxDateTime::Month m = wxDateTime::Jan; m <= wxDateTime::Dec; m = wxDateTime::Month(m + 1))
         financialMonthsSelection.Add(wxGetTranslation(wxDateTime::GetEnglishMonthName(m, wxDateTime::Name_Abbr)));
 
-    m_month_selection = new wxChoice(general_panel, ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_MONTH
+    m_month_selection = new wxChoice(financialYearStaticBox, ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_MONTH
         , wxDefaultPosition, wxSize(100, -1), financialMonthsSelection);
     financialYearStaticBoxSizerGrid->Add(m_month_selection, g_flagsH);
 
     int monthItem = Model_Infotable::instance().getInt("FINANCIAL_YEAR_START_MONTH", 7);
     m_month_selection->SetSelection(monthItem - 1);
     mmToolTip(m_month_selection, _t("Specify month for start of financial year"));
+
+    SetBoldFontToStaticBoxHeader(dateFormatStaticBox);
+    SetBoldFontToStaticBoxHeader(langStaticBox);
+    SetBoldFontToStaticBoxHeader(headerStaticBox);
+    SetBoldFontToStaticBoxHeader(currencyStaticBox);
+    SetBoldFontToStaticBoxHeader(financialYearStaticBox);
 
     Fit();
     general_panel->SetMinSize(general_panel->GetBestVirtualSize());

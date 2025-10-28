@@ -76,7 +76,7 @@ mmUpdateWizard::mmUpdateWizard(wxWindow* parent, const Document& json_releases, 
         , wxDefaultPosition, wxDefaultSize
         , wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, "mmUpdateWizard");
 
-    if (isDialogCreated) 
+    if (isDialogCreated)
     {
         SetMinSize(wxSize(600, 400));
 
@@ -146,7 +146,9 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
     auto version = new_releases.empty() ? _t("MMEX is up to date.") : _t("A new version of MMEX is available.");
     if (!new_releases.empty()) {
 
+#if defined(__APPLE__) || defined(__WXMSW__)
         const auto ver_num = new_tag.Mid(1);
+#endif
 
 #if defined(__APPLE__)
         new_html_url.Replace("/tag/", "/download/");

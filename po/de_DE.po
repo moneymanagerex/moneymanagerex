@@ -1088,6 +1088,11 @@ msgstr "Zu"
 msgid "Payee"
 msgstr "Auftraggeber / Begünstigter"
 
+#: transdialog.cpp:450
+msgid "Set date to today (Ctrl+;)"
+msgstr "Datum auf heute setzen (Ctrl+,)"
+
+
 #: billsdepositsdialog.cpp:581 billsdepositsdialog.cpp:963
 #: billsdepositspanel.cpp:109 budgetingpanel.cpp:68 filtertrans.cpp:204
 #: filtertransdialog.cpp:58 filtertransdialog.cpp:631
@@ -9211,4 +9216,3 @@ msgstr "Fehler "
 #: wizard_update.cpp:326 wizard_update.cpp:341
 msgid "MMEX Update Check"
 msgstr "MMEX Update Überprüfung"
-
