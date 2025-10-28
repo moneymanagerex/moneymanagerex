@@ -476,19 +476,15 @@ wxTreeItemId mmGUIFrame::getNavTreeChild(const wxTreeItemId& section, const wxSt
     return child;
 }
 
-bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
+void mmGUIFrame::setNavTreeSection(const wxString &sectionName)
 {
+    // Set the NavTreeCtrl and prevent any event code being executed for now.
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    bool found = false;
     wxTreeItemId section = getNavTreeChild(m_nav_tree_ctrl->GetRootItem(), sectionName);
     if (section.IsOk()) {
-        // Set the NavTreeCtrl and prevent any event code being executed for now.
         m_nav_tree_ctrl->SelectItem(section);
-        //processPendingEvents();
-        found = true;
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
-    return found;
 }
 
 bool mmGUIFrame::setNavTreeSectionChild(const wxString& sectionName, const wxString& childName)
@@ -3580,9 +3576,10 @@ void mmGUIFrame::createCheckingPage(int64 checking_id, const std::vector<int64> 
             (checking_id == -2 && cp->isDeletedTrans()) ||
             (checking_id >= 1 && cp->isAccount() && newCreditDisplayed == creditDisplayed_)
         ) {
-            cp->refreshList();
-            if (cp->isAccount())
+            if (cp->isAccount()) {
                 cp->loadAccount(checking_id);
+            }
+            cp->refreshList();
             done = true;
         }
     }

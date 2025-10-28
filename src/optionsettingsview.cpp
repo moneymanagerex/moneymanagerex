@@ -68,21 +68,20 @@ void OptionSettingsView::Create()
 
     // View Options
     wxStaticBox* viewBox = new wxStaticBox(panelWindow, wxID_STATIC, _t("View"));
-    SetBoldFont(viewBox);
     wxStaticBoxSizer* viewSizer = new wxStaticBoxSizer(viewBox, wxVERTICAL);
     panelSizer->Add(viewSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxFlexGridSizer* viewChoiceSizer = new wxFlexGridSizer(0, 2, 0, 5);
     viewSizer->Add(viewChoiceSizer);
 
-    viewChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Accounts Visible")), g_flagsH);
+    viewChoiceSizer->Add(new wxStaticText(viewBox, wxID_STATIC, _t("Accounts Visible")), g_flagsH);
     const wxString vAccts = Model_Setting::instance().getViewAccounts();
     wxArrayString view_accounts;
     view_accounts.Add(VIEW_ACCOUNTS_ALL_STR);
     view_accounts.Add(VIEW_ACCOUNTS_OPEN_STR);
     view_accounts.Add(VIEW_ACCOUNTS_FAVORITES_STR);
 
-    m_choice_visible = new wxChoice(panelWindow, wxID_ANY);
+    m_choice_visible = new wxChoice(viewBox, wxID_ANY);
     for (const auto& entry : view_accounts) {
         m_choice_visible->Append(wxGetTranslation(entry), new wxStringClientData(entry));
         if (entry == vAccts)
@@ -91,63 +90,63 @@ void OptionSettingsView::Create()
     mmToolTip(m_choice_visible, _t("Specify which accounts are visible"));
     viewChoiceSizer->Add(m_choice_visible, g_flagsH);
 
-    viewChoiceSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Category Delimiter")), g_flagsH);
+    viewChoiceSizer->Add(new wxStaticText(viewBox, wxID_STATIC, _t("Category Delimiter")), g_flagsH);
 
-    m_categ_delimiter_list = new wxComboBox(panelWindow, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, {":", ": ", " : ", "-"});
+    m_categ_delimiter_list = new wxComboBox(viewBox, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, {":", ": ", " : ", "-"});
     m_categ_delimiter_list->SetValue(Model_Infotable::instance().getString("CATEG_DELIMITER",":"));
     viewChoiceSizer->Add(m_categ_delimiter_list, g_flagsH);
 
     viewSizer->AddSpacer(10);
-    m_doNotColorFuture = new wxCheckBox(panelWindow, wxID_STATIC, _t("Do not use color for future transactions"));
+
+    m_doNotColorFuture = new wxCheckBox(viewBox, wxID_STATIC, _t("Do not use color for future transactions"));
     m_doNotColorFuture->SetValue(Option::instance().getDoNotColorFuture());
     viewSizer->Add(m_doNotColorFuture, g_flagsV);
 
-    m_doSpecialColorReconciled = new wxCheckBox(panelWindow, wxID_STATIC, _t("Emphasize not reconciled transactions"));
+    m_doSpecialColorReconciled = new wxCheckBox(viewBox, wxID_STATIC, _t("Emphasize not reconciled transactions"));
     m_doSpecialColorReconciled->SetValue(Option::instance().getDoSpecialColorReconciled());
     viewSizer->Add(m_doSpecialColorReconciled, g_flagsV);
 
     viewSizer->AddSpacer(10);
 
-    m_showToolTips = new wxCheckBox(panelWindow, wxID_STATIC, _t("Show Tooltips"));
+    m_showToolTips = new wxCheckBox(viewBox, wxID_STATIC, _t("Show Tooltips"));
     m_showToolTips->SetValue(Option::instance().getShowToolTips());
     viewSizer->Add(m_showToolTips, g_flagsV);
 
-    m_showMoneyTips = new wxCheckBox(panelWindow, wxID_STATIC, _t("Show Money Tips"));
+    m_showMoneyTips = new wxCheckBox(viewBox, wxID_STATIC, _t("Show Money Tips"));
     m_showMoneyTips->SetValue(Option::instance().getShowMoneyTips());
     viewSizer->Add(m_showMoneyTips, g_flagsV);
 
     // User Interface (UI) Appearance
     wxStaticBox* uiBox = new wxStaticBox(panelWindow, wxID_STATIC, _t("User Interface"));
-    SetBoldFont(uiBox);
     wxStaticBoxSizer* uiSizer = new wxStaticBoxSizer(uiBox, wxVERTICAL);
     panelSizer->Add(uiSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxFlexGridSizer* uiStyleSizer = new wxFlexGridSizer(0, 2, 0, 5);
     uiSizer->Add(uiStyleSizer);
 
-    uiStyleSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Style Template")), g_flagsH);
-    m_theme_manager = new wxButton(panelWindow, ID_DIALOG_THEMEMANAGER, _t("Open Theme Manager"));
+    uiStyleSizer->Add(new wxStaticText(uiBox, wxID_STATIC, _t("Style Template")), g_flagsH);
+    m_theme_manager = new wxButton(uiBox, ID_DIALOG_THEMEMANAGER, _t("Open Theme Manager"));
     uiStyleSizer->Add(m_theme_manager, g_flagsH);
 
-    uiStyleSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Theme")), g_flagsH);
+    uiStyleSizer->Add(new wxStaticText(uiBox, wxID_STATIC, _t("Theme")), g_flagsH);
     wxArrayString theme_mode_values;
     theme_mode_values.Add(_t("System"));
     theme_mode_values.Add(_t("Light"));
     theme_mode_values.Add(_t("Dark"));
 
     m_theme_mode = new wxChoice(
-        panelWindow, wxID_RESIZE_FRAME, wxDefaultPosition, wxDefaultSize,
+        uiBox, wxID_RESIZE_FRAME, wxDefaultPosition, wxDefaultSize,
         theme_mode_values
     );
     mmToolTip(m_theme_mode, _t("Specify preferred theme variant to use if supported"));
     m_theme_mode->SetSelection(Option::instance().getThemeMode());
     uiStyleSizer->Add(m_theme_mode, g_flagsH);
 
-    uiStyleSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("HTML Scale Factor")), g_flagsH);
+    uiStyleSizer->Add(new wxStaticText(uiBox, wxID_STATIC, _t("HTML Scale Factor")), g_flagsH);
     htmlScaleMax = 300;
     htmlScaleMin = 25;
     m_scale_factor = new wxSpinCtrl(
-        panelWindow, ID_DIALOG_HTML_SCALE, wxEmptyString, wxDefaultPosition, wxDefaultSize,
+        uiBox, ID_DIALOG_HTML_SCALE, wxEmptyString, wxDefaultPosition, wxDefaultSize,
         wxSP_ARROW_KEYS, htmlScaleMin, htmlScaleMax
     );
 #ifdef __WXMAC__ // Workaround for bug https://github.com/wxWidgets/wxWidgets/issues/12968
@@ -164,7 +163,7 @@ void OptionSettingsView::Create()
     mmToolTip(m_scale_factor, _t("Specify which scale factor is used for the report pages"));
     uiStyleSizer->Add(m_scale_factor, g_flagsH);
 
-    uiStyleSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Font Size")), g_flagsH);
+    uiStyleSizer->Add(new wxStaticText(uiBox, wxID_STATIC, _t("Font Size")), g_flagsH);
     wxArrayString font_choice;
     font_choice.Add(_t("Normal"));
     font_choice.Add(_t("Enlarged"));
@@ -172,7 +171,7 @@ void OptionSettingsView::Create()
     font_choice.Add(_t("Huge"));
 
     m_font_size_chooser = new wxChoice(
-        panelWindow, wxID_RESIZE_FRAME, wxDefaultPosition, wxDefaultSize,
+        uiBox, wxID_RESIZE_FRAME, wxDefaultPosition, wxDefaultSize,
         font_choice
     );
     m_font_size_chooser->SetSelection(Option::instance().getFontSize());
@@ -182,9 +181,9 @@ void OptionSettingsView::Create()
     wxFlexGridSizer* uiIconSizer = new wxFlexGridSizer(0, 3, 0, 5);
     uiSizer->Add(uiIconSizer);
 
-    uiIconSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Toolbar Icon Size")), g_flagsH);
-    uiIconSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Navigator Icon Size")), g_flagsH);
-    uiIconSizer->Add(new wxStaticText(panelWindow, wxID_STATIC, _t("Others Icon Size")), g_flagsH);
+    uiIconSizer->Add(new wxStaticText(uiBox, wxID_STATIC, _t("Toolbar Icon Size")), g_flagsH);
+    uiIconSizer->Add(new wxStaticText(uiBox, wxID_STATIC, _t("Navigator Icon Size")), g_flagsH);
+    uiIconSizer->Add(new wxStaticText(uiBox, wxID_STATIC, _t("Others Icon Size")), g_flagsH);
 
     const wxString settings_choice[] = {
         _n("Small (16 px)"),
@@ -193,9 +192,9 @@ void OptionSettingsView::Create()
         _n("Huge (48 px)")
     };
 
-    m_toolbar_icon_size = new wxChoice(panelWindow, wxID_RESIZE_FRAME);
-    m_navigation_icon_size = new wxChoice(panelWindow, wxID_RESIZE_FRAME);
-    m_others_icon_size = new wxChoice(panelWindow, wxID_RESIZE_FRAME);
+    m_toolbar_icon_size = new wxChoice(uiBox, wxID_RESIZE_FRAME);
+    m_navigation_icon_size = new wxChoice(uiBox, wxID_RESIZE_FRAME);
+    m_others_icon_size = new wxChoice(uiBox, wxID_RESIZE_FRAME);
 
     for (const auto& entry : settings_choice) {
         m_toolbar_icon_size->Append(wxGetTranslation(entry), new wxStringClientData(entry));
@@ -219,6 +218,8 @@ void OptionSettingsView::Create()
     uiIconSizer->Add(m_navigation_icon_size, g_flagsH);
     uiIconSizer->Add(m_others_icon_size, g_flagsH);
 
+    SetBoldFontToStaticBoxHeader(viewBox);
+    SetBoldFontToStaticBoxHeader(uiBox);
     Fit();
     panelWindow->SetMinSize(panelWindow->GetBestVirtualSize());
     panelWindow->SetScrollRate(6, 6);
