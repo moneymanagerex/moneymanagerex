@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 Copyright (C) 2021, 2022 Nikolay Akimov
+Copyright (C) 2025 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -77,10 +78,9 @@ void OptionSettingsHome::Create()
 
     // Income vs Expense
     wxStaticBox* totalsStaticBox = new wxStaticBox(home_panel, wxID_STATIC, _t("Income vs. Expenses"));
-    SetBoldFont(totalsStaticBox);
     wxStaticBoxSizer* totalsStaticBoxSizer = new wxStaticBoxSizer(totalsStaticBox, wxHORIZONTAL);
     homePanelSizer->Add(totalsStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
-    m_incExpChoice = new wxChoice(home_panel, wxID_ANY);
+    m_incExpChoice = new wxChoice(totalsStaticBox, wxID_ANY);
     // Show/hide the number text box depending on the choice selection
     m_incExpChoice->Bind(wxEVT_CHOICE, [this](wxCommandEvent& event) {
         nDays_->Show(event.GetInt() == 15);
@@ -98,7 +98,7 @@ void OptionSettingsHome::Create()
     totalsStaticBoxSizer->Add(m_incExpChoice, g_flagsH);
 
     m_inc_vs_exp_date_range = m_all_date_ranges[sel_id];
-    nDays_ = new wxSpinCtrl(home_panel, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS,
+    nDays_ = new wxSpinCtrl(totalsStaticBox, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS,
         1, (wxDate::Today() - wxDateTime(1, wxDate::Month::Jan, 1900)).GetDays(),
         Model_Infotable::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14));
     nDays_->Bind(wxEVT_SPINCTRL, [this](wxSpinEvent& event) {
@@ -106,6 +106,7 @@ void OptionSettingsHome::Create()
         event.Skip();
     });
     totalsStaticBoxSizer->Add(nDays_, g_flagsH);
+    SetBoldFontToStaticBoxHeader(totalsStaticBox);
     Fit();
     home_panel->SetMinSize(home_panel->GetBestVirtualSize());
     nDays_->Show(sel_id == 15);

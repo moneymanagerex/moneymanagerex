@@ -162,7 +162,7 @@ void mmCheckingPanel::loadAccount(int64 account_id)
     updateFilter();
     updateFilterTooltip();
 
-    refreshList();
+    //refreshList();
     showTips();
     enableButtons(false, false, false, false, false, false);
 }
