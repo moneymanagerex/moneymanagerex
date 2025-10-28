@@ -75,7 +75,7 @@ public:
     void setHelpFileIndex();
 
 
-    bool setNavTreeSection(const wxString &sectionName);
+    void setNavTreeSection(const wxString &sectionName);
     void setNavTreeAccount(const wxString& accountName);
     void menuPrintingEnable(bool enable);
     void OnToggleFullScreen(wxCommandEvent& WXUNUSED(event));
