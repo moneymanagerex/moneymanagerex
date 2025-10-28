@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013-2022 Nikolay Akimov
  Copyright (C) 2021,2024 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -220,3 +221,6 @@ private:
     void OnMouseRightClick(wxMouseEvent&);
     void OnMenuSelected(wxCommandEvent& event);
 };
+
+// -------------------
+wxChar ExtractHotkeyChar(const wxString& input, wxChar defaultChar = '\0');
