@@ -648,7 +648,7 @@ void mmPayeeDialog::fillControls()
 
         payeeListBox_->InsertItem(item);
         addPayeeDataIntoItem(idx, &payee, rdata->count);
-        payeeListBox_->SetItemData(idx, reinterpret_cast<long>(rdata));
+        payeeListBox_->SetItemData(idx, reinterpret_cast<wxIntPtr>(rdata));
 
         idx++;
     }
