@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 Stefano Giorgio
+Copyright (C) 2025 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,6 +31,6 @@ class OptionSettingsBase : public wxPanel
 public:
     virtual bool SaveSettings() = 0;
 
-    wxControl* SetBoldFont(wxControl* control);
+    void SetBoldFontToStaticBoxHeader(wxStaticBox* staticBox);
     bool GetIniDatabaseCheckboxValue(const wxString& dbField, bool defaultState);
 };

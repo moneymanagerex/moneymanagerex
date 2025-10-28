@@ -63,12 +63,11 @@ void OptionSettingsMisc::Create()
     othersPanelSizer0->Add(misc_panel, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxStaticBox* stockStaticBox = new wxStaticBox(misc_panel, wxID_STATIC, _t("Stocks"));
-    SetBoldFont(stockStaticBox);
+
     wxStaticBoxSizer* stockStaticBoxSizer = new wxStaticBoxSizer(stockStaticBox, wxVERTICAL);
     othersPanelSizer->Add(stockStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    wxStaticText* itemStaticTextURL = new wxStaticText(misc_panel, wxID_STATIC, _t("Stock Quote Web Page"));
-    //SetBoldFont(itemStaticTextURL);
+    wxStaticText* itemStaticTextURL = new wxStaticText(stockStaticBox, wxID_STATIC, _t("Stock Quote Web Page"));
 
     stockStaticBoxSizer->Add(itemStaticTextURL, g_flagsV);
 
@@ -79,7 +78,7 @@ void OptionSettingsMisc::Create()
     //list.Add("https://www.ifcmarkets.co.in/en/market-data/stocks-prices/%s");
 
     wxString stockURL = Model_Infotable::instance().getString("STOCKURL", mmex::weblink::DefStockUrl);
-    wxComboBox* itemListOfURL = new wxComboBox(misc_panel, ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL, ""
+    wxComboBox* itemListOfURL = new wxComboBox(stockStaticBox, ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL, ""
         , wxDefaultPosition, wxDefaultSize, list);
     itemListOfURL->SetValue(stockURL);
 
@@ -88,7 +87,7 @@ void OptionSettingsMisc::Create()
 
     // Share Precision
     wxFlexGridSizer* share_precision_sizer = new wxFlexGridSizer(0, 3, 0, 0);
-    share_precision_sizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _t("Share Precision")), g_flagsH);
+    share_precision_sizer->Add(new wxStaticText(stockStaticBox, wxID_STATIC, _t("Share Precision")), g_flagsH);
 
     m_share_precision = new wxSpinCtrl(misc_panel, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize
         , wxSP_ARROW_KEYS, 2, 10, Option::instance().getSharePrecision());
@@ -96,20 +95,19 @@ void OptionSettingsMisc::Create()
     mmToolTip(m_share_precision, _t("Set the precision for Share prices"));
     share_precision_sizer->Add(m_share_precision, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    m_refresh_quotes_on_open = new wxCheckBox(misc_panel, wxID_REFRESH, _t("Refresh at Startup"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_refresh_quotes_on_open = new wxCheckBox(stockStaticBox, wxID_REFRESH, _t("Refresh at Startup"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_refresh_quotes_on_open->SetValue(Model_Setting::instance().getBool("REFRESH_STOCK_QUOTES_ON_OPEN", false));
     share_precision_sizer->Add(m_refresh_quotes_on_open, wxSizerFlags(g_flagsH).Border(wxLEFT, 20));
     stockStaticBoxSizer->Add(share_precision_sizer, g_flagsBorder1V);
 
     // Asset Compounding
     wxStaticBox* assetStaticBox = new wxStaticBox(misc_panel, wxID_STATIC, _t("Assets"));
-    SetBoldFont(assetStaticBox);
     wxStaticBoxSizer* assetStaticBoxSizer = new wxStaticBoxSizer(assetStaticBox, wxVERTICAL);
     othersPanelSizer->Add(assetStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxFlexGridSizer* asset_compounding_sizer = new wxFlexGridSizer(0, 3, 0, 0);
-    asset_compounding_sizer->Add(new wxStaticText(misc_panel, wxID_STATIC, _t("Asset Compounding Period")), g_flagsH);
-    m_asset_compounding = new wxChoice(misc_panel, ID_DIALOG_OPTIONS_ASSET_COMPOUNDING);
+    asset_compounding_sizer->Add(new wxStaticText(assetStaticBox, wxID_STATIC, _t("Asset Compounding Period")), g_flagsH);
+    m_asset_compounding = new wxChoice(assetStaticBox, ID_DIALOG_OPTIONS_ASSET_COMPOUNDING);
     for (const auto& a : Option::COMPOUNDING_NAME)
         m_asset_compounding->Append(wxGetTranslation(a.second));
     m_asset_compounding->SetSelection(Option::instance().getAssetCompounding());
@@ -129,19 +127,17 @@ void OptionSettingsMisc::Create()
 
     // Database Settings
     wxStaticBox* databaseStaticBox = new wxStaticBox(misc_panel, wxID_STATIC, _t("Database"));
-    SetBoldFont(databaseStaticBox);
-
     wxStaticBoxSizer* databaseStaticBoxSizer = new wxStaticBoxSizer(databaseStaticBox, wxVERTICAL);
     othersPanelSizer->Add(databaseStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    wxCheckBox* databaseCheckBox = new wxCheckBox(misc_panel, ID_DIALOG_OPTIONS_CHK_BACKUP
+    wxCheckBox* databaseCheckBox = new wxCheckBox(databaseStaticBox, ID_DIALOG_OPTIONS_CHK_BACKUP
         , _t("Backup database on startup"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     databaseCheckBox->SetValue(GetIniDatabaseCheckboxValue("BACKUPDB", false));
     databaseCheckBox->SetToolTip(_t("When MMEX starts,\n"
         "create the backup database: dbFile_start_YYYY-MM-DD.bak"));
     databaseStaticBoxSizer->Add(databaseCheckBox, g_flagsV);
 
-    wxCheckBox* databaseUpdateCheckBox = new wxCheckBox(misc_panel, ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE
+    wxCheckBox* databaseUpdateCheckBox = new wxCheckBox(databaseStaticBox, ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE
         , _t("Backup database on exit"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     databaseUpdateCheckBox->SetValue(GetIniDatabaseCheckboxValue("BACKUPDB_UPDATE", true));
     databaseUpdateCheckBox->SetToolTip(_t("When MMEX shuts down and changes were made to the database,\n"
@@ -149,23 +145,23 @@ void OptionSettingsMisc::Create()
     databaseStaticBoxSizer->Add(databaseUpdateCheckBox, g_flagsV);
 
     int max = Model_Setting::instance().getInt("MAX_BACKUP_FILES", 4);
-    m_max_files = new wxSpinCtrl(misc_panel, wxID_ANY
+    m_max_files = new wxSpinCtrl(databaseStaticBox, wxID_ANY
         , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 999, max);
     m_max_files->SetValue(max);
     mmToolTip(m_max_files, _t("Specify max number of backup files"));
 
     wxFlexGridSizer* flex_sizer2 = new wxFlexGridSizer(0, 2, 0, 0);
-    flex_sizer2->Add(new wxStaticText(misc_panel, wxID_STATIC, _t("Max Files")), g_flagsH);
+    flex_sizer2->Add(new wxStaticText(databaseStaticBox, wxID_STATIC, _t("Max Files")), g_flagsH);
     flex_sizer2->Add(m_max_files, g_flagsH);
     databaseStaticBoxSizer->Add(flex_sizer2);
 
     int days = Model_Setting::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30);
-    m_deleted_trans_retain_days = new wxSpinCtrl(misc_panel, wxID_ANY
+    m_deleted_trans_retain_days = new wxSpinCtrl(databaseStaticBox, wxID_ANY
         , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 999, days);
     m_deleted_trans_retain_days->SetValue(days);
     mmToolTip(m_deleted_trans_retain_days, _t("Specify number of days to retain deleted transactions. Transactions older than this will be automatically purged upon database open."));
     wxFlexGridSizer* flex_sizer3 = new wxFlexGridSizer(0, 2, 0, 0);
-    flex_sizer3->Add(new wxStaticText(misc_panel, wxID_STATIC, _t("Days to retain deleted transactions")), g_flagsH);
+    flex_sizer3->Add(new wxStaticText(databaseStaticBox, wxID_STATIC, _t("Days to retain deleted transactions")), g_flagsH);
     flex_sizer3->Add(m_deleted_trans_retain_days, g_flagsBorder1H);
     databaseStaticBoxSizer->Add(flex_sizer3);
 
@@ -173,15 +169,14 @@ void OptionSettingsMisc::Create()
     const wxString delimiter = Model_Infotable::instance().getString("DELIMITER", mmex::DEFDELIMTER);
 
     wxStaticBox* csvStaticBox = new wxStaticBox(misc_panel, wxID_ANY, _t("CSV"));
-    SetBoldFont(csvStaticBox);
     wxStaticBoxSizer* csvStaticBoxSizer = new wxStaticBoxSizer(csvStaticBox, wxVERTICAL);
 
     othersPanelSizer->Add(csvStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
     wxFlexGridSizer* csvStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 10);
     csvStaticBoxSizer->Add(csvStaticBoxSizerGrid, g_flagsV);
 
-    csvStaticBoxSizerGrid->Add(new wxStaticText(misc_panel, wxID_STATIC, _t("Delimiter")), g_flagsH);
-    wxTextCtrl* textDelimiter4 = new wxTextCtrl(misc_panel
+    csvStaticBoxSizerGrid->Add(new wxStaticText(csvStaticBox, wxID_STATIC, _t("Delimiter")), g_flagsH);
+    wxTextCtrl* textDelimiter4 = new wxTextCtrl(csvStaticBox
         , ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4, delimiter);
     mmToolTip(textDelimiter4, _t("Specify the delimiter to use when importing/exporting CSV files"));
     textDelimiter4->SetMaxLength(1);
@@ -189,12 +184,11 @@ void OptionSettingsMisc::Create()
 
     // Filter Settings
     wxStaticBox* filterStaticBox = new wxStaticBox(misc_panel, wxID_STATIC, _t("Filter"));
-    SetBoldFont(filterStaticBox);
     wxStaticBoxSizer* filterStaticBoxSizer = new wxStaticBoxSizer(filterStaticBox, wxVERTICAL);
 
     othersPanelSizer->Add(filterStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    m_store_account_specific_filter = new wxCheckBox(misc_panel, ID_DIALOG_OPTIONS_CHK_FILTER
+    m_store_account_specific_filter = new wxCheckBox(filterStaticBox, ID_DIALOG_OPTIONS_CHK_FILTER
         , _t("Enable date range filter per account or report"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_store_account_specific_filter->SetValue(Option::instance().getUsePerAccountFilter());
     m_store_account_specific_filter->SetToolTip(_t("Store filter values per account or report and not globally"));
@@ -202,6 +196,12 @@ void OptionSettingsMisc::Create()
 
     wxCommandEvent evt;
     OptionSettingsMisc::OnBackupChanged(evt);
+
+    SetBoldFontToStaticBoxHeader(stockStaticBox);
+    SetBoldFontToStaticBoxHeader(assetStaticBox);
+    SetBoldFontToStaticBoxHeader(databaseStaticBox);
+    SetBoldFontToStaticBoxHeader(csvStaticBox);
+    SetBoldFontToStaticBoxHeader(filterStaticBox);
 
     Fit();
     misc_panel->SetMinSize(misc_panel->GetBestVirtualSize());

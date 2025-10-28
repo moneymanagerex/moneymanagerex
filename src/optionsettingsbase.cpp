@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 Stefano Giorgio
+Copyright (C) 2025 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,13 +19,17 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "optionsettingsbase.h"
 
-wxControl* OptionSettingsBase::SetBoldFont(wxControl* control)
+void OptionSettingsBase::SetBoldFontToStaticBoxHeader(wxStaticBox* staticBox)
 {
-    wxFont control_font = control->GetFont();
-    control_font.SetWeight(wxFONTWEIGHT_BOLD);
-    control->SetFont(control_font);
+    wxFont font = staticBox->GetFont();
+    font.SetWeight(wxFONTWEIGHT_BOLD);
+    staticBox->SetFont(font);
 
-    return control;
+    for (wxWindow* child : staticBox->GetChildren()) {
+        font = child->GetFont();
+        font.SetWeight(wxFONTWEIGHT_NORMAL);
+        child->SetFont(font);
+    }
 }
 
 bool OptionSettingsBase::GetIniDatabaseCheckboxValue(const wxString& dbField, bool defaultState)
