@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2025-02-04 16:22:20.096031.
+ *          AUTO GENERATED at 2025-10-30 10:03:57.076008.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -18,7 +18,7 @@
 #include <vector>
 #include <wx/string.h>
 
-const int dbLatestVersion = 20;
+const int dbLatestVersion = 21;
 
 const std::vector<wxString> dbUpgradeQuery =
 {
@@ -434,6 +434,19 @@ const std::vector<wxString> dbUpgradeQuery =
         
         -- To alleviate future issues we are normalizing the TRANSDATE column
         UPDATE CHECKINGACCOUNT_V1 SET TRANSDATE = TRANSDATE || 'T00:00:00' WHERE LENGTH(TRANSDATE)=10;
+    )",
+
+    // Upgrade to version 21
+    R"(
+        -- db tidy, fix corrupt indices
+        REINDEX;
+        
+        -- Yahoo stock URL correction #7736
+        UPDATE INFOTABLE_V1 SET INFOVALUE="https://finance.yahoo.com/quote/%s" WHERE INFONAME="STOCKURL" AND INFOVALUE="http://finance.yahoo.com/echarts?s=%s";
+        
+        -- Fix currency format for Hungarian Forint #6128
+        UPDATE CURRENCYFORMATS_V1 SET SFX_SYMBOL=PFX_SYMBOL, PFX_SYMBOL=""  WHERE CURRENCY_SYMBOL="HUF" AND SFX_SYMBOL="";
+        
     )",
 
 };
