@@ -702,7 +702,7 @@ wxBoxSizer* mmDatePickerCtrl::mmGetLayoutWithTime()
 
 void mmDatePickerCtrl::OnDateChanged(wxDateEvent& event)
 {
-#ifndef __LINUX__   // https://github.com/moneymanagerex/moneymanagerex/issues/7821#issuecomment-3469664935
+#ifdef __WXMAC__  // https://github.com/moneymanagerex/moneymanagerex/issues/7821
     if (datePicker_->GetValue().GetCentury() < 1)
         datePicker_->SetValue(datePicker_->GetValue().Add(wxDateSpan::Years(2000)));
 #endif
