@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
  Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -49,7 +50,7 @@ public:
     static Model_Payee& instance();
 
 public:
-    const Data_Set FilterPayees(const wxString& payee_pattern);
+    const Data_Set FilterPayees(const wxString& payee_pattern, bool includeInActive = true);
 
     /**
     * Return the Data record pointer for the given payee name
@@ -72,8 +73,10 @@ public:
     static bool is_used(const Data* record);
     static bool is_used(const Data& record);
 
+    static int getUseCount(int64 id);
+
 public:
     static const wxString refTypeName;
 };
 
-#endif // 
+#endif //
