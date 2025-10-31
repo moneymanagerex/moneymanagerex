@@ -165,7 +165,7 @@ private:
 
     void ToggleHide(long idx, bool state);
     int CompareRows(RowData* r1, RowData* r2);
-    static int wxCALLBACK SortCallback(long itemData1, long itemData2, long sortData);
+    static int wxCALLBACK SortCallback(wxIntPtr itemData1, wxIntPtr itemData2, wxIntPtr sortData);
 
 };
 

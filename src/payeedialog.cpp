@@ -966,7 +966,7 @@ int mmPayeeDialog::CompareRows(RowData* r1, RowData* r2)
     return m_sortReverse ? cmp : -cmp;
 }
 
-int wxCALLBACK mmPayeeDialog::SortCallback(long itemData1, long itemData2, long sortData)
+int wxCALLBACK mmPayeeDialog::SortCallback(wxIntPtr itemData1, wxIntPtr itemData2, wxIntPtr sortData)
 {
     mmPayeeDialog* self = reinterpret_cast<mmPayeeDialog*>(sortData);
     RowData* row1 = reinterpret_cast<RowData*>(itemData1);
