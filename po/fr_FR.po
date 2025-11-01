@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-10-28 15:27+0000\n"
-"PO-Revision-Date: 2025-10-31 00:59\n"
+"POT-Creation-Date: 2025-10-31 10:43+0000\n"
+"PO-Revision-Date: 2025-11-01 23:17\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -55,8 +55,8 @@ msgstr "Activer pour nous aider à envoyer des données anonymes sur l'utilisati
 #: budgetyearentrydialog.cpp:128 constants.cpp:87 currencydialog.cpp:259
 #: customfieldeditdialog.cpp:198 filtertransdialog.cpp:827
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:407
-#: mmSimpleDialogs.cpp:1087 optiondialog.cpp:163 payeedialog.cpp:159
-#: payeedialog.cpp:592 sharetransactiondialog.cpp:358
+#: mmSimpleDialogs.cpp:1089 optiondialog.cpp:163 payeedialog.cpp:161
+#: payeedialog.cpp:585 sharetransactiondialog.cpp:358
 #: splittransactionsdialog.cpp:104 splittransactionsdialog.cpp:282
 #: tagdialog.cpp:146 transactionsupdatedialog.cpp:281 wizard_update.cpp:215
 msgid "&OK "
@@ -134,7 +134,7 @@ msgstr "Précisez si ce compte est fréquemment utilisé. Cette option permet de
 #: filtertransdialog.cpp:705 filtertransdialog.cpp:1969
 #: import_export/qif_export.cpp:635 import_export/qif_import_gui.cpp:97
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:110
-#: payeedialog.cpp:115 payeedialog.cpp:458 reports/transactions.cpp:230
+#: payeedialog.cpp:117 payeedialog.cpp:553 reports/transactions.cpp:230
 #: sharetransactiondialog.cpp:304 splittransactionsdialog.cpp:95
 #: splittransactionsdialog.cpp:352 stockdialog.cpp:263 stocks_list.cpp:80
 #: transactionsupdatedialog.cpp:256 transdialog.cpp:603
@@ -274,11 +274,11 @@ msgstr "Nom du compte "
 msgid "Currency"
 msgstr "Devise"
 
-#: accountdialog.cpp:513 payeedialog.cpp:199
+#: accountdialog.cpp:513 payeedialog.cpp:201
 msgid "Invalid URL"
 msgstr "Adresse URL invalide"
 
-#: accountdialog.cpp:513 payeedialog.cpp:199
+#: accountdialog.cpp:513 payeedialog.cpp:201
 msgid "Please enter a valid URL"
 msgstr "Merci de saisir une adresse URL valide"
 
@@ -385,11 +385,11 @@ msgstr "Valeurs par défaut du système"
 msgid "User Interface Language"
 msgstr "Langue de l'interface utilisateur"
 
-#: appstartdialog.cpp:229 mmframe.cpp:4155 optionsettingsgeneral.cpp:336
+#: appstartdialog.cpp:229 mmframe.cpp:4165 optionsettingsgeneral.cpp:336
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "La langue utilisée pour cette application a été changée. Le changement prendra effet lors du prochain démarrage de l'application."
 
-#: appstartdialog.cpp:231 mmframe.cpp:4157 optionsettingsgeneral.cpp:338
+#: appstartdialog.cpp:231 mmframe.cpp:4167 optionsettingsgeneral.cpp:338
 msgid "Language change"
 msgstr "Changement de langue"
 
@@ -417,7 +417,7 @@ msgstr "Détails de l'actif"
 #: customfieldlistdialog.cpp:48 import_export/qif_import_gui.cpp:286
 #: import_export/qif_import_gui.cpp:299 import_export/qif_import_gui.cpp:309
 #: import_export/univcsvdialog.cpp:515 import_export/univcsvdialog.cpp:525
-#: maincurrencydialog.cpp:76 payeedialog.cpp:452 reports/summarystocks.cpp:112
+#: maincurrencydialog.cpp:76 payeedialog.cpp:547 reports/summarystocks.cpp:112
 msgid "Name"
 msgstr "Nom"
 
@@ -593,7 +593,7 @@ msgid "MMEX allows fixed assets like cars, houses, land, and others to be tracke
 msgstr "MMEX vous permet de suivre l'évolution financière d'actifs fixes comme des voitures, des maisons, du terrain ou autres. La valeur de chaque actif peut augmenter ou se déprécier annuellement, en fonction d'un taux donné, ou ne pas changer. Le total de ces actifs est ajouté à la valeur financière totale de vos avoirs."
 
 #: assetspanel.cpp:409 assetspanel.h:124 general_report_manager.cpp:1179
-#: mmframe.cpp:224 mmframe.cpp:2002 mmframe.cpp:3691 mmhomepage.cpp:529
+#: mmframe.cpp:224 mmframe.cpp:2002 mmframe.cpp:3701 mmhomepage.cpp:529
 #: mmhomepage.cpp:578 mmhomepagepanel.cpp:236 optionsettingsmisc.cpp:104
 #: reports/summary.cpp:266 reports/summary.cpp:304
 msgid "Assets"
@@ -627,7 +627,7 @@ msgstr "Afficher les opérations associées à l'actif"
 
 #: assetspanel.cpp:474 attachmentdialog.cpp:354 billsdepositspanel.cpp:293
 #: categdialog.cpp:323 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
-#: mmcheckingpanel.cpp:280 payeedialog.cpp:882 stockspanel.cpp:159
+#: mmcheckingpanel.cpp:280 payeedialog.cpp:929 stockspanel.cpp:159
 #: tagdialog.cpp:132
 msgid "&Edit "
 msgstr "Éditer "
@@ -648,8 +648,7 @@ msgid "Open attachments"
 msgstr "Ouvrir les pièces jointes"
 
 #: assetspanel.cpp:494 assetspanel.cpp:495 categdialog.cpp:308
-#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:339 payeedialog.cpp:588
-#: tagdialog.cpp:117
+#: maincurrencydialog.cpp:209 mmcheckingpanel.cpp:339 tagdialog.cpp:117
 msgid "Search"
 msgstr "Rechercher"
 
@@ -658,22 +657,22 @@ msgid "Enter any string to find related assets"
 msgstr "Entrez une chaîne de caractères pour rechercher l'actif correspondant"
 
 #: assetspanel.cpp:499 filtertransdialog.cpp:711 mmcheckingpanel.cpp:343
-#: payeedialog.cpp:137
+#: payeedialog.cpp:139
 msgid "Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria."
 msgstr "Conseils : Vous pouvez utiliser des caractères génériques - point d'interrogation (?), astérisque (*) - dans vos critères de recherche."
 
 #: assetspanel.cpp:500 filtertransdialog.cpp:712 mmcheckingpanel.cpp:344
-#: payeedialog.cpp:138
+#: payeedialog.cpp:140
 msgid "Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”."
 msgstr "Utilisez le point d'interrogation (?) pour remplacer un caractère unique. Par exemple, rechercher 's?' permet de trouver 'sol' et 'sel'."
 
 #: assetspanel.cpp:501 filtertransdialog.cpp:713 mmcheckingpanel.cpp:345
-#: payeedialog.cpp:139
+#: payeedialog.cpp:141
 msgid "Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”."
 msgstr "Utilisez l'astérisque (*) pour remplacer n'importe quel nombre de caractères. Par exemple, rechercher 's*n' permet de trouver 'son' et 'sapin'."
 
 #: assetspanel.cpp:502 filtertransdialog.cpp:714 mmcheckingpanel.cpp:346
-#: payeedialog.cpp:140
+#: payeedialog.cpp:142
 msgid "Use the asterisk (*) at the beginning to find any string in the middle of the sentence."
 msgstr "Placez l'astérisque (*) au début pour rechercher une chaîne donnée en milieu de phrase."
 
@@ -771,7 +770,7 @@ msgstr "Gestionnaire de pièces jointes | %1$s | %2$s"
 msgid "Attachment Manager | New %s"
 msgstr "Gestionnaire de pièces jointes | Nouveau %s"
 
-#: attachmentdialog.cpp:156 customfieldlistdialog.cpp:94 payeedialog.cpp:582
+#: attachmentdialog.cpp:156 customfieldlistdialog.cpp:94 payeedialog.cpp:569
 msgid "Other tools"
 msgstr "Autres outils"
 
@@ -805,7 +804,7 @@ msgstr "Confirmez la suppression de la pièce jointe"
 
 #: attachmentdialog.cpp:351 categdialog.cpp:319 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:315 maincurrencydialog.cpp:539
-#: payeedialog.cpp:881 stockdialog.cpp:339 tagdialog.cpp:128
+#: payeedialog.cpp:936 stockdialog.cpp:339 tagdialog.cpp:128
 msgid "&Add "
 msgstr "&Ajouter "
 
@@ -815,7 +814,7 @@ msgstr "&Ouvert "
 
 #: attachmentdialog.cpp:356 customfieldlistdialog.cpp:258
 #: import_export/univcsvdialog.cpp:319 maincurrencydialog.cpp:541
-#: payeedialog.cpp:884
+#: payeedialog.cpp:934
 msgid "&Remove "
 msgstr "Effacer"
 
@@ -1080,8 +1079,8 @@ msgstr "Vers"
 #: filtertransdialog.cpp:1866 import_export/qif_export.cpp:630
 #: import_export/qif_import_gui.cpp:92 import_export/qif_import_gui.cpp:294
 #: import_export/univcsvdialog.cpp:107 import_export/univcsvdialog.cpp:510
-#: mmchecking_list.cpp:102 model/Model.cpp:28 payeedialog.cpp:83
-#: payeedialog.cpp:207 payeedialog.cpp:243 reports/cashflow.cpp:406
+#: mmchecking_list.cpp:102 model/Model.cpp:28 payeedialog.cpp:85
+#: payeedialog.cpp:209 payeedialog.cpp:245 reports/cashflow.cpp:406
 #: reports/payee.cpp:136 reports/transactions.cpp:216
 #: transactionsupdatedialog.cpp:199 transdialog.cpp:254 transdialog.cpp:531
 #: usertransactionpanel.cpp:182 webappdialog.cpp:142
@@ -1096,7 +1095,7 @@ msgstr "Tiers"
 #: import_export/qif_export.cpp:631 import_export/qif_import_gui.cpp:94
 #: import_export/qif_import_gui.cpp:305 import_export/univcsvdialog.cpp:110
 #: import_export/univcsvdialog.cpp:521 mmchecking_list.cpp:104
-#: mmhomepage.cpp:184 payeedialog.cpp:202 reports/budgetcategorysummary.cpp:191
+#: mmhomepage.cpp:184 payeedialog.cpp:204 reports/budgetcategorysummary.cpp:191
 #: reports/budgetingperf.cpp:131 reports/cashflow.cpp:407
 #: reports/categexp.cpp:217 reports/categexp.cpp:456
 #: reports/transactions.cpp:220 splittransactionsdialog.cpp:81
@@ -1205,7 +1204,7 @@ msgstr "Confirmer le nom du bénéficiaire"
 #: filtertransdialog.cpp:1120 filtertransdialog.cpp:1127
 #: filtertransdialog.cpp:1133 import_export/univcsvdialog.cpp:1356
 #: optionsettingsgeneral.cpp:269 optionsettingsgeneral.cpp:294
-#: payeedialog.cpp:202 payeedialog.cpp:207 splittransactionsdialog.cpp:577
+#: payeedialog.cpp:204 payeedialog.cpp:209 splittransactionsdialog.cpp:577
 #: transactionsupdatedialog.cpp:370 transactionsupdatedialog.cpp:444
 #: transdialog.cpp:674 transdialog.cpp:678 transdialog.cpp:693
 #: transdialog.cpp:1110 util.cpp:773
@@ -1254,7 +1253,7 @@ msgstr "Indiquer le nombre de paiements à effectuer. \n"
 #: import_export/ofx_import_gui.cpp:1124 import_export/ofx_import_gui.cpp:1131
 #: import_export/ofx_import_gui.cpp:1138 import_export/ofx_import_gui.cpp:1145
 #: import_export/ofx_import_gui.cpp:1153 import_export/univcsvdialog.cpp:1592
-#: maincurrencydialog.cpp:482 mmframe.cpp:4109 splittransactionsdialog.cpp:410
+#: maincurrencydialog.cpp:482 mmframe.cpp:4119 splittransactionsdialog.cpp:410
 #: stockspanel.cpp:491 stockspanel.cpp:492 themes.cpp:316 themes.cpp:335
 #: webappdialog.cpp:185 webappdialog.cpp:190
 msgid "Error"
@@ -1334,7 +1333,7 @@ msgstr "MMEX permet de paramétrer des paiements réguliers en tant qu'opératio
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr "Astuce : Ces transactions peuvent être configurées pour l'activation - Cela permet à l'utilisateur d'ajuster les valeurs et la date d'échéance."
 
-#: billsdepositspanel.cpp:241 billsdepositspanel.cpp:959 mmframe.cpp:3508
+#: billsdepositspanel.cpp:241 billsdepositspanel.cpp:959 mmframe.cpp:3518
 #: mmhomepagepanel.cpp:242
 msgid "Scheduled Transactions"
 msgstr "Opérations récurrentes"
@@ -1483,7 +1482,7 @@ msgstr "Montant :"
 msgid "Enter the amount budgeted for this category."
 msgstr "Entrez le montant budgétisé pour cette catégorie."
 
-#: budgetentrydialog.cpp:155 payeedialog.cpp:119
+#: budgetentrydialog.cpp:155 payeedialog.cpp:121
 msgid "Enter notes to describe this budget entry"
 msgstr "Entrer des commentaires pour décrire cette ligne de budget"
 
@@ -1782,7 +1781,7 @@ msgstr "La suppression de la catégorie effacera également automatiquement les 
 #: customfieldeditdialog.cpp:260 filtertransdialog.cpp:1345
 #: import_export/univcsvdialog.cpp:2192 mmframe.cpp:1388 mmframe.cpp:2665
 #: mmframe.cpp:2732 mmframe.cpp:2750 model/Model_Billsdeposits.cpp:224
-#: payeedialog.cpp:752 tagdialog.cpp:304 transdialog.cpp:777
+#: payeedialog.cpp:760 tagdialog.cpp:304 transdialog.cpp:777
 #: transdialog.cpp:802
 msgid "Do you want to continue?"
 msgstr "Voulez-vous continuer ?"
@@ -1804,17 +1803,17 @@ msgstr "Modifier la catégorie"
 msgid "Category Manager: Editing Error"
 msgstr "Gestionnaire de catégories : Éditer l'erreur"
 
-#: categdialog.cpp:690 mmframe.cpp:4002
+#: categdialog.cpp:690 mmframe.cpp:4012
 msgid "Merge categories completed"
 msgstr "Fusion des catégories réalisée"
 
-#: categdialog.cpp:691 mmframe.cpp:4003 mmframe.cpp:4017 mmframe.cpp:4032
-#: payeedialog.cpp:833
+#: categdialog.cpp:691 mmframe.cpp:4013 mmframe.cpp:4027 mmframe.cpp:4042
+#: payeedialog.cpp:846
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Les enregistrements ont été mis à jour dans la base de données : %i"
 
-#: categdialog.cpp:693 mmframe.cpp:4005
+#: categdialog.cpp:693 mmframe.cpp:4015
 msgid "Merge categories result"
 msgstr "Résultat de la fusion des catégories"
 
@@ -1952,7 +1951,7 @@ msgstr "Virgule"
 msgid "Grouping Char"
 msgstr "Caractère de regroupement"
 
-#: currencydialog.cpp:219 mmSimpleDialogs.cpp:816 model/Model_Asset.cpp:40
+#: currencydialog.cpp:219 mmSimpleDialogs.cpp:818 model/Model_Asset.cpp:40
 #: model/Model_Budget.cpp:28 optionsettingstransaction.cpp:64
 #: optionsettingstransaction.cpp:133 reports/reportbase.cpp:201
 msgid "None"
@@ -1992,7 +1991,7 @@ msgstr "Toutes les modifications seront perdues sans mise à jour"
 
 #: currencydialog.cpp:284 currencydialog.cpp:291 currencydialog.cpp:309
 #: import_export/univcsvdialog.cpp:2700 maincurrencydialog.cpp:624
-#: mmSimpleDialogs.cpp:992
+#: mmSimpleDialogs.cpp:994
 msgid "Invalid Entry"
 msgstr "Saisie non valide"
 
@@ -2797,7 +2796,7 @@ msgstr "Plage de montants"
 msgid "Enter any string to find it in transaction notes"
 msgstr "Entrer une chaine de caractères à rechercher dans les notes d'opérations"
 
-#: filtertransdialog.cpp:715 mmcheckingpanel.cpp:347 payeedialog.cpp:141
+#: filtertransdialog.cpp:715 mmcheckingpanel.cpp:347 payeedialog.cpp:143
 msgid "Use regex: to match using regular expressions."
 msgstr "Utiliser une expression de contrôle pour faire correspondre des expressions régulières."
 
@@ -2836,7 +2835,7 @@ msgstr "Combiner les transactions fractionnées"
 msgid "Display split transactions as a single row"
 msgstr "Afficher les transactions fractionnées en une seule ligne"
 
-#: filtertransdialog.cpp:796 mmframe.cpp:2037 mmframe.cpp:2216 mmframe.cpp:3181
+#: filtertransdialog.cpp:796 mmframe.cpp:2037 mmframe.cpp:2216 mmframe.cpp:3191
 #: optiondialog.cpp:221 optiondialog.h:49
 msgid "Settings"
 msgstr "Paramètres"
@@ -2941,7 +2940,7 @@ msgstr "Sélectionner les comptes"
 msgid "Customize Transaction Report"
 msgstr "Personnaliser le rapport d'opération"
 
-#: general_report_manager.cpp:328 mmframe.cpp:3295 mmframereport.cpp:317
+#: general_report_manager.cpp:328 mmframe.cpp:3305 mmframereport.cpp:317
 #: reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
 msgstr "Rapports"
@@ -3456,7 +3455,7 @@ msgid "0 sec"
 msgstr ""
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2258
-#: mmSimpleDialogs.cpp:1002
+#: mmSimpleDialogs.cpp:1004
 msgid "Unable to open file."
 msgstr "Impossible d'ouvrir le fichier."
 
@@ -3536,8 +3535,8 @@ msgstr "JSON"
 msgid "QIF"
 msgstr "QIF"
 
-#: import_export/qif_export.cpp:152 mmframe.cpp:3776 mmframe.cpp:3780
-#: mmframe.cpp:3794 mmframe.cpp:3798
+#: import_export/qif_export.cpp:152 mmframe.cpp:3786 mmframe.cpp:3790
+#: mmframe.cpp:3804 mmframe.cpp:3808
 msgid "Accounts"
 msgstr "Comptes"
 
@@ -3626,7 +3625,7 @@ msgid "Exporting"
 msgstr "Exportation en cours"
 
 #: import_export/qif_export.cpp:485 import_export/qif_import_gui.cpp:443
-#: import_export/qif_import_gui.cpp:1100 mmframe.cpp:3717
+#: import_export/qif_import_gui.cpp:1100 mmframe.cpp:3727
 msgid "Please wait…"
 msgstr "Veuillez patienter…"
 
@@ -4161,7 +4160,7 @@ msgstr "Une erreur s'est produite lors de la suppression du fichier existant. Le
 msgid "Destination file error"
 msgstr "Erreur de fichier de destination"
 
-#: import_export/univcsvdialog.cpp:1592 mmSimpleDialogs.cpp:1010
+#: import_export/univcsvdialog.cpp:1592 mmSimpleDialogs.cpp:1012
 msgid "Invalid Account"
 msgstr "Nom du compte invalide"
 
@@ -4358,107 +4357,107 @@ msgstr "Impossible de télécharger l'historique pour le symbole %s. Historique 
 msgid "Unable to find base currency symbol!"
 msgstr "Impossible de trouver le symbole de la devise de base !"
 
-#: mmSimpleDialogs.cpp:759 mmSimpleDialogs.cpp:771
+#: mmSimpleDialogs.cpp:761 mmSimpleDialogs.cpp:773
 msgid "&Clear color"
 msgstr "Enlever la couleur"
 
-#: mmSimpleDialogs.cpp:762 mmSimpleDialogs.cpp:776
+#: mmSimpleDialogs.cpp:764 mmSimpleDialogs.cpp:778
 #, c-format
 msgid "Color #&%i"
 msgstr "Colorer en #%i"
 
-#: mmSimpleDialogs.cpp:932
+#: mmSimpleDialogs.cpp:934
 msgid "Subtract one year"
 msgstr "Soustraire un an"
 
-#: mmSimpleDialogs.cpp:933
+#: mmSimpleDialogs.cpp:935
 msgid "Subtract one month"
 msgstr "Soustraire un mois"
 
-#: mmSimpleDialogs.cpp:934
+#: mmSimpleDialogs.cpp:936
 msgid "Add one month"
 msgstr "Ajouter un mois"
 
-#: mmSimpleDialogs.cpp:935
+#: mmSimpleDialogs.cpp:937
 msgid "Add one year"
 msgstr "Ajouter un an"
 
-#: mmSimpleDialogs.cpp:991
+#: mmSimpleDialogs.cpp:993
 #, c-format
 msgid "Entry %s is invalid"
 msgstr "L'entrée %s n'est pas correcte"
 
-#: mmSimpleDialogs.cpp:997
+#: mmSimpleDialogs.cpp:999
 msgid "Invalid Category"
 msgstr "Catégorie saisie non valable"
 
-#: mmSimpleDialogs.cpp:997
+#: mmSimpleDialogs.cpp:999
 msgid "Please select an existing category"
 msgstr "Veuillez sélectionner une catégorie existante"
 
-#: mmSimpleDialogs.cpp:1002
+#: mmSimpleDialogs.cpp:1004
 msgid "File name is empty."
 msgstr "Le nom du fichier est vide."
 
-#: mmSimpleDialogs.cpp:1003
+#: mmSimpleDialogs.cpp:1005
 msgid "Please select the file for this operation."
 msgstr "Merci de sélectionner un fichier pour cette opération."
 
-#: mmSimpleDialogs.cpp:1013
+#: mmSimpleDialogs.cpp:1015
 msgid "Please select the account for this transaction."
 msgstr "Merci de sélectionner le compte pour cette opération."
 
-#: mmSimpleDialogs.cpp:1015
+#: mmSimpleDialogs.cpp:1017
 msgid "Please specify which account the transfer is going to."
 msgstr "Introduire le compte où va le transfert."
 
-#: mmSimpleDialogs.cpp:1017
+#: mmSimpleDialogs.cpp:1019
 msgid "Selection can be made by using the dropdown button."
 msgstr "La sélection peut être faite en utilisant la liste déroulante."
 
-#: mmSimpleDialogs.cpp:1020
+#: mmSimpleDialogs.cpp:1022
 msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr "Activer le bouton fournira une zone de sélection où le compte peut être sélectionné."
 
-#: mmSimpleDialogs.cpp:1029
+#: mmSimpleDialogs.cpp:1031
 msgid "Invalid Payee"
 msgstr "Tiers non valable"
 
-#: mmSimpleDialogs.cpp:1030
+#: mmSimpleDialogs.cpp:1032
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr "Encoder un nouveau Tiers, ou faire une sélection dans la liste déroulante. "
 
-#: mmSimpleDialogs.cpp:1038 mmSimpleDialogs.cpp:1050
+#: mmSimpleDialogs.cpp:1040 mmSimpleDialogs.cpp:1052
 msgid "Invalid Name"
 msgstr "Nom invalide"
 
-#: mmSimpleDialogs.cpp:1041 mmSimpleDialogs.cpp:1053
+#: mmSimpleDialogs.cpp:1043 mmSimpleDialogs.cpp:1055
 msgid "Already exist!"
 msgstr "Existe déjà !"
 
-#: mmSimpleDialogs.cpp:1043
+#: mmSimpleDialogs.cpp:1045
 msgid "Please type in a non empty name."
 msgstr "Merci d'encoder un nom."
 
-#: mmSimpleDialogs.cpp:1055
+#: mmSimpleDialogs.cpp:1057
 msgid "Please type in a non empty symbol."
 msgstr "Entrer un symbole non vide."
 
-#: mmSimpleDialogs.cpp:1158
+#: mmSimpleDialogs.cpp:1160
 msgid "Enter tags to search, optionally separated by the operators '&' and '|'."
 msgstr "Saisissez les mots-clés à rechercher, éventuellement séparés par les opérateurs '&' and '|'."
 
-#: mmSimpleDialogs.cpp:1159
+#: mmSimpleDialogs.cpp:1161
 msgid "The default operator between consecutive tags is AND, use '|' to change the operator to OR."
 msgstr "L'opérateur par défaut entre des mots-clés consécutifs est ET, utilisez '|' pour changer l'opérateur en OU."
 
-#: mmSimpleDialogs.cpp:1758
+#: mmSimpleDialogs.cpp:1760
 #, c-format
 msgid "Create new tag '%s'?"
 msgstr "Créer une nouvelle étiquette \"%s\" ?"
 
-#: mmSimpleDialogs.cpp:1758
+#: mmSimpleDialogs.cpp:1760
 msgid "New tag entered"
 msgstr "Nouvelle étiquette saisie"
 
@@ -5161,7 +5160,7 @@ msgstr "Barre d'outils"
 msgid "Auto Repeat Transactions"
 msgstr "Opération auto-récurrente"
 
-#: mmframe.cpp:877 mmframe.cpp:1994 mmframe.cpp:3142
+#: mmframe.cpp:877 mmframe.cpp:1994 mmframe.cpp:3152
 msgid "Budget Planner"
 msgstr "Planificateur budgétaire"
 
@@ -5186,7 +5185,7 @@ msgid "Name in use"
 msgstr "Nom en cours d'utilisation"
 
 #: mmframe.cpp:1447 mmframe.cpp:1467 mmframe.cpp:2016 mmframe.cpp:2203
-#: mmframe.cpp:3127
+#: mmframe.cpp:3137
 msgid "Transaction Report"
 msgstr "Liste des opérations"
 
@@ -5198,7 +5197,7 @@ msgstr "Voulez-vous supprimer le compte ?"
 msgid "This will also delete any associated Shares."
 msgstr "Ceci supprimera également l'ensemble des actions associées."
 
-#: mmframe.cpp:1494 mmframe.cpp:3806
+#: mmframe.cpp:1494 mmframe.cpp:3816
 msgid "Confirm Account Deletion"
 msgstr "Confirmez la suppression du compte"
 
@@ -5514,7 +5513,7 @@ msgstr "Télécharger les cours des devises et des actions"
 msgid "&Payee Manager…"
 msgstr "&Gestionnaire des Tiers …"
 
-#: mmframe.cpp:1957 mmframe.cpp:2198 payeedialog.cpp:506
+#: mmframe.cpp:1957 mmframe.cpp:2198 payeedialog.cpp:521
 msgid "Payee Manager"
 msgstr "Gestionnaire des Tiers"
 
@@ -5615,7 +5614,7 @@ msgstr "Gestionnaire de champs personnalisés…"
 msgid "Refresh &WebApp…"
 msgstr "Actualiser la Webapp…"
 
-#: mmframe.cpp:2032 mmframe.cpp:3219 mmframe.cpp:3227
+#: mmframe.cpp:2032 mmframe.cpp:3229 mmframe.cpp:3237
 msgid "Refresh WebApp"
 msgstr "Rafraîchir Webapp"
 
@@ -5875,11 +5874,11 @@ msgstr "Plein Écran"
 msgid "&Settings"
 msgstr "Paramètres"
 
-#: mmframe.cpp:2227 mmframe.cpp:2231 mmframe.cpp:3288 optionsettingsnet.cpp:130
+#: mmframe.cpp:2227 mmframe.cpp:2231 mmframe.cpp:3298 optionsettingsnet.cpp:130
 msgid "News"
 msgstr "Infos"
 
-#: mmframe.cpp:2233 mmframe.cpp:2948 mmframe.cpp:3245 mmhelppanel.cpp:69
+#: mmframe.cpp:2233 mmframe.cpp:2948 mmframe.cpp:3255 mmhelppanel.cpp:69
 msgid "Help"
 msgstr "Aide"
 
@@ -6101,87 +6100,91 @@ msgstr "Les comptes de titres servent à la gestion des valeurs mobilières. \n"
 msgid "Share Account Creation"
 msgstr "Création de compte d'actions"
 
-#: mmframe.cpp:3179
+#: mmframe.cpp:3070
+msgid "Transactions per payee"
+msgstr "Opérations par bénéficiaire"
+
+#: mmframe.cpp:3189
 msgid "Settings have been updated."
 msgstr "Les paramètres ont été mis à jour."
 
-#: mmframe.cpp:3180
+#: mmframe.cpp:3190
 msgid "Some settings take effect only after an application restart."
 msgstr "Certains paramètres ne prennent effet qu'après le redémarrage de l'application."
 
-#: mmframe.cpp:3219
+#: mmframe.cpp:3229
 msgid "Accounts, Payees, and Categories Updated"
 msgstr "Comptes, bénéficiaires et catégories mis à jour"
 
-#: mmframe.cpp:3226
+#: mmframe.cpp:3236
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr "Problème rencontré lors de la mise à jour de la WebApp, vérifiez les paramètres du serveur Web et de la WebApp"
 
-#: mmframe.cpp:3363
+#: mmframe.cpp:3373
 msgid "Choose HTML file to export"
 msgstr ""
 
-#: mmframe.cpp:3716 mmframe.cpp:3723
+#: mmframe.cpp:3726 mmframe.cpp:3733
 msgid "Downloading stock prices from Yahoo"
 msgstr "Téléchargement du cours des actions depuis Yahoo"
 
-#: mmframe.cpp:3760 stockspanel.cpp:566
+#: mmframe.cpp:3770 stockspanel.cpp:566
 #, c-format
 msgid "%1$s on %2$s"
 msgstr "%1$s sur %2$s"
 
-#: mmframe.cpp:3776
+#: mmframe.cpp:3786
 msgid "No account available to edit!"
 msgstr "Aucun compte valable!"
 
-#: mmframe.cpp:3780
+#: mmframe.cpp:3790
 msgid "Choose Account to Edit"
 msgstr "Sélectionner le compte à éditer"
 
-#: mmframe.cpp:3794
+#: mmframe.cpp:3804
 msgid "No account available to delete!"
 msgstr "Aucun compte valable!"
 
-#: mmframe.cpp:3798
+#: mmframe.cpp:3808
 msgid "Choose Account to Delete"
 msgstr "Sélectionner le compte à supprimer"
 
-#: mmframe.cpp:3802
+#: mmframe.cpp:3812
 #, c-format
 msgid "Do you you want to delete\n"
 "%1$s account: %2$s?"
 msgstr "Êtes-vous sûr de vouloir supprimer le compte %1$s : %2$s ?"
 
-#: mmframe.cpp:3821 mmframe.cpp:3848
+#: mmframe.cpp:3831 mmframe.cpp:3858
 msgid "Change Account Type"
 msgstr "Modifier le type de compte"
 
-#: mmframe.cpp:3821
+#: mmframe.cpp:3831
 msgid "Select account"
 msgstr "Sélectionner un compte"
 
-#: mmframe.cpp:3847
+#: mmframe.cpp:3857
 #, c-format
 msgid "Select new account type for %s"
 msgstr "Sélectionnez un nouveau type de compte pour %s"
 
-#: mmframe.cpp:4016 payeedialog.cpp:832
+#: mmframe.cpp:4026 payeedialog.cpp:845
 msgid "Merge payees completed"
 msgstr "Fusion des tiers terminée"
 
-#: mmframe.cpp:4020 payeedialog.cpp:836
+#: mmframe.cpp:4030 payeedialog.cpp:849
 msgid "Merge payees result"
 msgstr "Résultat de la fusion des tiers"
 
-#: mmframe.cpp:4031
+#: mmframe.cpp:4041
 msgid "Merge tags completed"
 msgstr "Fusion des étiquettes réalisée"
 
-#: mmframe.cpp:4035
+#: mmframe.cpp:4045
 msgid "Merge tags result"
 msgstr "Résultat de la fusion des étiquettes"
 
-#: mmframe.cpp:4108
+#: mmframe.cpp:4118
 #, c-format
 msgid "File %s not found."
 msgstr "Le fichier %s n'a pas été trouvé."
@@ -6592,7 +6595,7 @@ msgstr "Choix unique"
 msgid "MultiChoice"
 msgstr "Choix multiple"
 
-#: model/Model_Payee.cpp:81
+#: model/Model_Payee.cpp:84
 msgid "Payee Error"
 msgstr "Erreur sur le bénéficiaire"
 
@@ -7382,117 +7385,145 @@ msgstr "Grand (32 px)"
 msgid "Huge (48 px)"
 msgstr "Énorme (48 px)"
 
-#: payeedialog.cpp:55
+#: payeedialog.cpp:57
 msgid "Edit Payee"
 msgstr "Editer le bénéficiaire"
 
-#: payeedialog.cpp:85
+#: payeedialog.cpp:87
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
 msgstr "Saisir le nom du bénéficiaire. Ce nom peut être modifié à tout moment."
 
-#: payeedialog.cpp:89 payeedialog.cpp:453
+#: payeedialog.cpp:91 payeedialog.cpp:548
 msgid "Hidden"
 msgstr "Masqué"
 
-#: payeedialog.cpp:91
+#: payeedialog.cpp:93
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
 msgstr "Indique si le bénéficiaire doit être masqué et non présenté dans la liste des bénéficiaires pour les nouvelles transactions"
 
-#: payeedialog.cpp:96 payeedialog.cpp:455
+#: payeedialog.cpp:98 payeedialog.cpp:549
 msgid "Default Category"
 msgstr "Catégorie par défaut"
 
-#: payeedialog.cpp:96 payeedialog.cpp:455
+#: payeedialog.cpp:98 payeedialog.cpp:549
 msgid "Last Used Category"
 msgstr "Dernière catégorie utilisée"
 
-#: payeedialog.cpp:99
+#: payeedialog.cpp:101
 msgid "The category used as default for this payee"
 msgstr "La catégorie utilisée par défaut pour ce bénéficiaire"
 
-#: payeedialog.cpp:103 payeedialog.cpp:456
+#: payeedialog.cpp:105 payeedialog.cpp:551
 msgid "Reference"
 msgstr "Référence"
 
-#: payeedialog.cpp:105
+#: payeedialog.cpp:107
 msgid "A reference to be used for the payee, e.g. bank account number"
 msgstr "Une référence à utiliser pour le bénéficiaire, par exemple le numéro de compte bancaire"
 
-#: payeedialog.cpp:109 payeedialog.cpp:457
+#: payeedialog.cpp:111 payeedialog.cpp:552
 msgid "Website"
 msgstr "Site Internet"
 
-#: payeedialog.cpp:111
+#: payeedialog.cpp:113
 msgid "Website URL associated with the payee"
 msgstr "URL du site Internet associée au bénéficiaire"
 
-#: payeedialog.cpp:122
+#: payeedialog.cpp:124
 msgid "Match Patterns\n"
 "on Import"
 msgstr "Schémas de correspondance en importation"
 
-#: payeedialog.cpp:136
+#: payeedialog.cpp:138
 msgid "Enter any string to match this payee on import.\n"
 "Patterns are tested in the order entered here."
 msgstr "Saisissez n'importe quelle chaîne de caractères pour faire correspondre ce bénéficiaire lors de l'importation.\n"
 "Les schémas sont testés dans l'ordre saisi ici."
 
-#: payeedialog.cpp:243
+#: payeedialog.cpp:245
 msgid "A payee with this name already exists"
 msgstr "Un tiers portant ce nom existe déjà"
 
-#: payeedialog.cpp:459
+#: payeedialog.cpp:554
 msgid "Match Pattern"
 msgstr "Schéma de correspondance"
 
-#: payeedialog.cpp:735
+#: payeedialog.cpp:555
+msgid "Used"
+msgstr "Utilisé"
+
+#: payeedialog.cpp:572
+msgid "Show &hidden"
+msgstr "Afficher les &masqués"
+
+#: payeedialog.cpp:575
+msgid "Show hidden payees"
+msgstr "Afficher les bénéficiaires cachés"
+
+#: payeedialog.cpp:581
+msgid "&Search"
+msgstr "&Rechercher"
+
+#: payeedialog.cpp:743
 msgid "Payee in use."
 msgstr "Tiers utilisé."
 
-#: payeedialog.cpp:740
+#: payeedialog.cpp:748
 msgid "It will be not removed"
 msgstr "Il ne sera pas supprimé"
 
-#: payeedialog.cpp:742
+#: payeedialog.cpp:750
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
 msgstr "Astuce : Attribuez toutes les opérations utilisant ce tiers à\n"
 "un autre tiers en utilisant la commande Fusionner :"
 
-#: payeedialog.cpp:744
+#: payeedialog.cpp:752
 msgid "Tools → Merge → Payees"
 msgstr "Outils → Fusionner → Tiers"
 
-#: payeedialog.cpp:745
+#: payeedialog.cpp:753
 msgid "Payee Manager: Delete Error"
 msgstr "Gestionnaire des tiers : Erreur de suppression"
 
-#: payeedialog.cpp:750
+#: payeedialog.cpp:758
 msgid "Deleted transactions exist which use this payee."
 msgstr "Il existe des transactions supprimées qui utilisent ce bénéficiaire."
 
-#: payeedialog.cpp:751
+#: payeedialog.cpp:759
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
 msgstr "La suppression du bénéficiaire purgera également automatiquement les opérations associées supprimées."
 
-#: payeedialog.cpp:753
+#: payeedialog.cpp:761
 msgid "Confirm Payee Deletion"
 msgstr "Confirmez la suppression du bénéficiaire"
 
-#: payeedialog.cpp:875
+#: payeedialog.cpp:931
+msgid "&Hide Selected"
+msgstr "Cacher la sélection"
+
+#: payeedialog.cpp:932
+msgid "&Show Selected"
+msgstr "&Afficher la sélection"
+
+#: payeedialog.cpp:938
 msgid "Define &Category"
 msgstr "Définir une catégorie"
 
-#: payeedialog.cpp:877
-msgid "Remove Ca&tegory"
-msgstr "Supprimer une catégorie"
+#: payeedialog.cpp:939
+msgid "Remove Categor&y"
+msgstr "Supprimer la catégorie"
 
-#: payeedialog.cpp:890
-msgid "&Attachment Manager"
-msgstr "&Gestionnaire de pièces jointes"
+#: payeedialog.cpp:941
+msgid "Attachment &Manager"
+msgstr "Gestionnaire de pièces jointes"
 
-#: payeedialog.cpp:894
+#: payeedialog.cpp:943
 msgid "Merge &Payee"
 msgstr "Fusionner les tiers"
+
+#: payeedialog.cpp:944
+msgid "&Transaction Report"
+msgstr "Rapport d'&opérations"
 
 #: primitive.cpp:94
 msgid "February"
