@@ -1,6 +1,38 @@
-Version 1.9.2 Beta 1
+Version 1.9.2 RC 1
 ~~~~~~~~~~~~~~~~~~~~
-Released: 2025-09-13
+Released: 2025-11-03
+
+Features:
+* #7821 2-digit years are interpreted as the first century, instead of being in the closest century
+* #7758 Allow Finance/Yahoo cookie and crumb to be reset
+* #7724 [Bug] Transaction list sorting by Date column is broken and can cause application crash (v1.9.1/1.9.2)
+* #6771 Avoiding duplicate entries on CSV Import
+* #3710 OFX import/export support
+* #7781 Enhanced and refactored General Report Manager
+* #7803 Pull in latest version of GRM reports
+* #7819 Payee manager enhancements
+* #7818 Bugfix and transaction dialog enhancements
+
+Bugfixes:
+* #7780 App crash on click on specific Stock Portfolio name after changing of sort order
+* #7765 Reporting Start and End date issues
+* #7761 CSV Import - Custom Fields Fail to Populate
+* #7745 Save and Save and New has the same keyboard shortcut
+* #7742 MacOS random crashes on exit
+* #7737 MMEX crashes - stock portfolio account closed
+* #7736 Default Stock URL should be: finance.yahoo.com/quote/%s
+* #7710 v1.9.1 Crash on opening when it auto attempts to import WebApp transactions
+* #7700 MMEX crashes after clicking on Stock Portfolios
+* #7692 SOLVED (but please recheck) v1.9.1: Assertion before graphic "Summary", "Where the Money Goes/Comes From"
+* #7688 Base currency in reports is not displayed
+* #7562 AppImage build failure... github.com/AppImageCrafters/appimage-builder/issues/375
+* #6868 Please allow `Now` to be translated and to work with localized versions of MMEX
+* #6462 Notes are duplicated for some split transactions
+* #6233 All Transactions view - Selected Transactions Amount
+* #6128 Please set the default `Symbol Location` = `Suffix` for `Currency Code` = `HUF`
+* #7793 Fixed sorting of investment accounts in stocks widget
+* #7830 Refactor setting dialog static box assignments and remove double list refresh
+* #7829 Derive accelerator key from (translated) tooltip text
 
 Version 1.9.1
 ~~~~~~~~~~~~~~~~~~~~
