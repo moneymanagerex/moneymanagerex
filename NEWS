@@ -8,16 +8,16 @@ Features:
 * #7724 [Bug] Transaction list sorting by Date column is broken and can cause application crash (v1.9.1/1.9.2)
 * #6771 Avoiding duplicate entries on CSV Import
 * #3710 OFX import/export support
-* #pr7781 Enhanced and refactored General Report Manager
-* #pr7803 Pull in latest version of GRM reports
-* #pr7819 Payee manager enhancements
-* #pr7818 Bugfix and transaction dialog enhancements
+* #7781 Enhanced and refactored General Report Manager
+* #7803 Pull in latest version of GRM reports
+* #7819 Payee manager enhancements
+* #7818 Bugfix and transaction dialog enhancements
 
 Bugfixes:
 * #7780 App crash on click on specific Stock Portfolio name after changing of sort order
 * #7765 Reporting Start and End date issues
 * #7761 CSV Import - Custom Fields Fail to Populate
-* #7745 "Save" and "Save and New" has the same keyboard shortcut
+* #7745 Save and Save and New has the same keyboard shortcut
 * #7742 MacOS random crashes on exit
 * #7737 MMEX crashes - stock portfolio account closed
 * #7736 Default Stock URL should be: https://finance.yahoo.com/quote/%s
@@ -30,9 +30,9 @@ Bugfixes:
 * #6462 Notes are duplicated for some split transactions
 * #6233 All Transactions view - Selected Transactions Amount
 * #6128 Please set the default `Symbol Location` = `Suffix` for `Currency Code` = `HUF`
-* #pr7793 Fixed sorting of investment accounts in stocks widget
-* #pr7830 Refactor setting dialog static box assignments and remove double list refresh
-* #pr7829 Derive accelerator key from (translated) tooltip text
+* #7793 Fixed sorting of investment accounts in stocks widget
+* #7830 Refactor setting dialog static box assignments and remove double list refresh
+* #7829 Derive accelerator key from (translated) tooltip text
 
 Version 1.9.1
 ~~~~~~~~~~~~~~~~~~~~
