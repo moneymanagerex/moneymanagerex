@@ -20,12 +20,12 @@ Bugfixes:
 * #7745 Save and Save and New has the same keyboard shortcut
 * #7742 MacOS random crashes on exit
 * #7737 MMEX crashes - stock portfolio account closed
-* #7736 Default Stock URL should be: https://finance.yahoo.com/quote/%s
+* #7736 Default Stock URL should be: finance.yahoo.com/quote/%s
 * #7710 v1.9.1 Crash on opening when it auto attempts to import WebApp transactions
 * #7700 MMEX crashes after clicking on Stock Portfolios
 * #7692 SOLVED (but please recheck) v1.9.1: Assertion before graphic "Summary", "Where the Money Goes/Comes From"
 * #7688 Base currency in reports is not displayed
-* #7562 AppImage build failure... https://github.com/AppImageCrafters/appimage-builder/issues/375
+* #7562 AppImage build failure... github.com/AppImageCrafters/appimage-builder/issues/375
 * #6868 Please allow `Now` to be translated and to work with localized versions of MMEX
 * #6462 Notes are duplicated for some split transactions
 * #6233 All Transactions view - Selected Transactions Amount
