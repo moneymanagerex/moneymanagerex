@@ -812,7 +812,7 @@ void mmCategDialog::OnItemRightClick(wxTreeEvent& event)
     mainMenu.AppendSeparator();
     mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_DELETE, _t("&Remove Category")));
     mainMenu.AppendSeparator();
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_ADD, _t("&New Category…")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_ADD, _tu("&New Category…")));
 
     bool bItemHidden = (m_treeCtrl->GetItemTextColour(m_selectedItemId) != NormalColor_);
     mainMenu.Enable(MENU_ITEM_EDIT, m_selectedItemId != root_);
