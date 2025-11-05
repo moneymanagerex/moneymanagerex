@@ -161,7 +161,7 @@ void transactionsUpdateDialog::CreateControls()
     m_status_choice->Select(0);
 
     grid_sizer->Add(m_status_checkbox, g_flagsH);
-    grid_sizer->Add(m_status_choice, g_flagsH);
+    grid_sizer->Add(m_status_choice, g_flagsExpand);
 
     // Type --------------------------------------------
     m_type_checkbox = new wxCheckBox(this, wxID_ANY, _t("Type")
@@ -180,7 +180,7 @@ void transactionsUpdateDialog::CreateControls()
 
 
     grid_sizer->Add(m_type_checkbox, g_flagsH);
-    grid_sizer->Add(m_type_choice, g_flagsH);
+    grid_sizer->Add(m_type_choice, g_flagsExpand);
 
     // Amount Field --------------------------------------------
     m_amount_checkbox = new wxCheckBox(this, wxID_ANY, _t("Amount")

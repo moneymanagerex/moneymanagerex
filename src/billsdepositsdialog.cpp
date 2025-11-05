@@ -498,7 +498,7 @@ void mmBDDialog::CreateControls()
     mmToolTip(m_choice_status, _t("Specify the status for the transaction"));
 
     transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _t("Status")), g_flagsH);
-    transPanelSizer->Add(m_choice_status, g_flagsH);
+    transPanelSizer->Add(m_choice_status, g_flagsExpand);
     transPanelSizer->AddSpacer(1);
 
     // Type --------------------------------------------
@@ -510,11 +510,11 @@ void mmBDDialog::CreateControls()
     mmToolTip(cAdvanced_, _t("Allows the setting of different amounts in the FROM and TO accounts."));
 
     wxBoxSizer* typeSizer = new wxBoxSizer(wxHORIZONTAL);
-    typeSizer->Add(m_choice_transaction_type, g_flagsH);
+    typeSizer->Add(m_choice_transaction_type, g_flagsExpand);
     typeSizer->Add(cAdvanced_, g_flagsH);
 
     transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _t("Type")), g_flagsH);
-    transPanelSizer->Add(typeSizer);
+    transPanelSizer->Add(typeSizer, g_flagsExpand);
     transPanelSizer->AddSpacer(1);
 
     // Amount Fields --------------------------------------------

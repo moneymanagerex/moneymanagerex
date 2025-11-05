@@ -476,8 +476,8 @@ void mmTransDialog::CreateControls()
     wxBoxSizer* typeSizer = new wxBoxSizer(wxHORIZONTAL);
 
     flex_sizer->Add(new wxStaticText(static_box, wxID_STATIC, _t("Type")), g_flagsH);
-    flex_sizer->Add(typeSizer);
-    typeSizer->Add(transaction_type_, g_flagsH);
+    flex_sizer->Add(typeSizer, g_flagsExpand);
+    typeSizer->Add(transaction_type_, g_flagsExpand);
     typeSizer->Add(cAdvanced_, g_flagsH);
     flex_sizer->AddSpacer(1);
 
@@ -566,7 +566,7 @@ void mmTransDialog::CreateControls()
     }
 
     flex_sizer->Add(new wxStaticText(static_box, wxID_STATIC, _t("Status")), g_flagsH);
-    flex_sizer->Add(choiceStatus_, g_flagsH);
+    flex_sizer->Add(choiceStatus_, g_flagsExpand);
     flex_sizer->AddSpacer(1);
 
     // Number  ---------------------------------------------
