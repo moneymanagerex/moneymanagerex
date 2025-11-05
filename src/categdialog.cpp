@@ -785,8 +785,8 @@ void mmCategDialog::OnMenuSelected(wxCommandEvent& event)
 
 void mmCategDialog::OnClearSettings(wxCommandEvent& /*event*/)
 {
-    wxMessageDialog msgDlg(this, _t("Do you want to unhide all categories?")
-            , _t("Unhide all categories")
+    wxMessageDialog msgDlg(this, _t("Do you want to show all categories?")
+            , _t("Show all categories")
             , wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
     if (msgDlg.ShowModal() == wxID_YES)
     {
@@ -805,14 +805,14 @@ void mmCategDialog::OnClearSettings(wxCommandEvent& /*event*/)
 void mmCategDialog::OnItemRightClick(wxTreeEvent& event)
 {
     wxMenu mainMenu;
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_EDIT, _t("Edit Category")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_EDIT, _tu("&Edit Category…")));
     mainMenu.AppendSeparator();
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_HIDE, _t("Hide Selected Category")));
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_UNHIDE, _t("Unhide Selected Category")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_HIDE, _t("&Hide Selected Category")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_UNHIDE, _t("&Show Selected Category")));
     mainMenu.AppendSeparator();
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_DELETE, _t("Remove Category")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_DELETE, _t("&Remove Category")));
     mainMenu.AppendSeparator();
-    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_ADD, _t("Add a new category")));
+    mainMenu.Append(new wxMenuItem(&mainMenu, MENU_ITEM_ADD, _tu("&New Category…")));
 
     bool bItemHidden = (m_treeCtrl->GetItemTextColour(m_selectedItemId) != NormalColor_);
     mainMenu.Enable(MENU_ITEM_EDIT, m_selectedItemId != root_);
