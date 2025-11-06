@@ -316,17 +316,17 @@ void mmCategDialog::CreateControls()
     wxStdDialogButtonSizer* itemBoxSizer66 = new wxStdDialogButtonSizer;
     buttonsSizer->Add(itemBoxSizer66, wxSizerFlags(g_flagsV).Border(wxALL, 0).Center());
 
-    m_buttonAdd = new wxButton(buttonsPanel, wxID_ADD, _t("&Add "));
+    m_buttonAdd = new wxButton(buttonsPanel, wxID_ADD, _t("&New "));
     itemBoxSizer66->Add(m_buttonAdd, g_flagsH);
-    mmToolTip(m_buttonAdd, _t("Add a new category"));
+    mmToolTip(m_buttonAdd, _t("New category"));
 
     m_buttonEdit = new wxButton(buttonsPanel, wxID_EDIT, _t("&Edit "));
     itemBoxSizer66->Add(m_buttonEdit, g_flagsH);
-    mmToolTip(m_buttonEdit, _t("Edit the name of an existing category"));
+    mmToolTip(m_buttonEdit, _t("Edit category"));
 
     m_buttonDelete = new wxButton(buttonsPanel, wxID_REMOVE, _t("&Delete "));
     itemBoxSizer66->Add(m_buttonDelete, g_flagsH);
-    mmToolTip(m_buttonDelete, _t("Delete an existing category. The category is unable to be used by existing transactions."));
+    mmToolTip(m_buttonDelete, _t("Delete category. The category is unable to be used by existing transactions."));
 
     wxStdDialogButtonSizer* itemBoxSizer9 = new wxStdDialogButtonSizer;
     buttonsSizer->Add(itemBoxSizer9, wxSizerFlags(g_flagsV).Border(wxALL, 0).Center());
