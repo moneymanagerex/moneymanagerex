@@ -375,9 +375,11 @@ void mmBudgetingPanel::initVirtualListControl()
 
     // Readjust dates by the Budget Offset Option
     Option::instance().addBudgetDateOffset(dtBegin);
-    m_budget_offset_date = dtBegin.FormatISODate();
+    m_budget_offset_date = dtBegin.FormatISODate();   
     Option::instance().addBudgetDateOffset(dtEnd);
-    mmSpecifiedRange date_range(dtBegin, dtEnd);
+    mmDateRange date_range;
+    date_range.start_date(dtBegin.ResetTime()); // Start of Day
+    date_range.end_date(dtEnd.ResetTime().Add(wxTimeSpan(23,59,59,999))); // End of Day
 
     //Get statistics
     Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod_, budgetAmt_, budgetNotes_);
