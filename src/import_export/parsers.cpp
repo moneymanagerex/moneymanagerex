@@ -140,7 +140,7 @@ bool FileXML::Load(const wxString& fileName, unsigned int itemsInLine)
 
     // Open file
     wxXmlDocument xmlFile;
-    if (!xmlFile.Load(fileName, encoding_))
+    if (!xmlFile.Load(fileName))
     {
         mmErrorDialogs::MessageError(pParentWindow_
             , _t("File is not in Excel XML Spreadsheet 2003 format."), _t("Parsing error"));

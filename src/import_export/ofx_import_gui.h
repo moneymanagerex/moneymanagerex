@@ -141,7 +141,7 @@ private:
     void UpdateOKButton(wxCommandEvent& event);
     void LoadRegexPatterns(wxInt64ClientData* payeeIdData);
     void LoadRegexPatterns(const wxString& payeeName);
-    void AddCategoryToChoice(wxChoice* choice, long long categId, const std::map<long long, Model_Category::Data>& categoryMap, int level);
+    void AddCategoryToChoice(wxChoice* choice, long long categId, const std::map<long long, Model_Category::Data>& catMap, int level);
 
     double matchConfidence_;
     wxString matchMethod_;

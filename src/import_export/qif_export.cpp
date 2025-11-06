@@ -39,12 +39,12 @@ wxBEGIN_EVENT_TABLE(mmQIFExportDialog, wxDialog)
     EVT_CLOSE(mmQIFExportDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
-mmQIFExportDialog::mmQIFExportDialog(wxWindow *parent, int type, int64 account_id)
+mmQIFExportDialog::mmQIFExportDialog(wxWindow *parent, int ntype, int64 account_id)
 {
-    m_type = type;
+    m_type = ntype;
     m_account_id = account_id;
     wxString type_name;
-    switch (type)
+    switch (ntype)
     {
     case (QIF): type_name = _t("Export as QIF file"); break;
     case (JSON): type_name = _t("Export as JSON file"); break;
@@ -131,14 +131,14 @@ void mmQIFExportDialog::CreateControls()
     tab1_sizer->Add(flex_sizer, wxSizerFlags(g_flagsV).Left());
 
     // Type -------------------------------------------------
-    wxStaticText* type = new wxStaticText(main_tab, wxID_STATIC, _t("Type"));
+    wxStaticText* sttype = new wxStaticText(main_tab, wxID_STATIC, _t("Type"));
     wxChoice* typeCheckBox = new wxChoice(main_tab, wxID_ANY);
     typeCheckBox->AppendString(_t("CSV"));
     typeCheckBox->AppendString(_t("JSON"));
     typeCheckBox->AppendString(_t("QIF"));
     typeCheckBox->SetSelection(m_type);
     typeCheckBox->SetMinSize(min_size);
-    flex_sizer->Add(type, g_flagsH);
+    flex_sizer->Add(sttype, g_flagsH);
     flex_sizer->Add(typeCheckBox, g_flagsH);
 
     // Categories -------------------------------------------------

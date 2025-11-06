@@ -317,7 +317,7 @@ const wxString DateRange2::Spec::checking_description() const
     return sb.buffer;
 }
 
-DateRange2::DateRange2(wxDateTime date_s, wxDateTime date_t) :
+DateRange2::DateRange2(wxDateTime ds, wxDateTime dt) :
     firstDay{
         Option::instance().getReportingFirstDay(),
         Option::instance().getFinancialFirstDay()
@@ -331,8 +331,8 @@ DateRange2::DateRange2(wxDateTime date_s, wxDateTime date_t) :
     ),
     spec(Spec())
 {
-    setDateT(date_t);
-    setDateS(date_s);
+    setDateT(dt);
+    setDateS(ds);
 }
 
 // return true if parse is successful

@@ -35,7 +35,7 @@ public:
     mmQIFExportDialog() {}
     //virtual ~mmQIFExportDialog() {}
 
-    mmQIFExportDialog(wxWindow* parent, int type, int64 account_id);
+    mmQIFExportDialog(wxWindow* parent, int ntype, int64 account_id);
 
     bool Create(wxWindow* parent
         , const wxString& caption
