@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-11-06 15:20+0000\n"
+"POT-Creation-Date: 2025-11-06 15:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -609,8 +609,8 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:276
-#: stockspanel.cpp:145
+#: assetspanel.cpp:460 billsdepositspanel.cpp:289 categdialog.cpp:319
+#: mmcheckingpanel.cpp:276 stockspanel.cpp:145
 msgid "&New "
 msgstr ""
 
@@ -804,7 +804,7 @@ msgstr ""
 msgid "Confirm Attachment Deletion"
 msgstr ""
 
-#: attachmentdialog.cpp:351 categdialog.cpp:319 customfieldlistdialog.cpp:255
+#: attachmentdialog.cpp:351 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:315 maincurrencydialog.cpp:539
 #: payeedialog.cpp:936 stockdialog.cpp:339 tagdialog.cpp:128
 msgid "&Add "
@@ -1665,15 +1665,15 @@ msgid "Remove hidden setting from all categories"
 msgstr ""
 
 #: categdialog.cpp:321
-msgid "Add a new category"
+msgid "New category"
 msgstr ""
 
 #: categdialog.cpp:325
-msgid "Edit the name of an existing category"
+msgid "Edit category"
 msgstr ""
 
 #: categdialog.cpp:329
-msgid "Delete an existing category. The category is unable to be used by existing transactions."
+msgid "Delete category. The category is unable to be used by existing transactions."
 msgstr ""
 
 #: categdialog.cpp:334 maincurrencydialog.cpp:225
