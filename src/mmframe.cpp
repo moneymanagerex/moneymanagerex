@@ -3068,9 +3068,9 @@ void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
         std::list<int64> selections = dlg.getSelectedPayees();
         Model_Payee::Data *payee = Model_Payee::instance().get(selections.front());
         wxString filter = wxString::Format("{\"LABEL\":\"%s\",\"PAYEE\":\"%s\"}",_t("Transactions per payee"), payee->PAYEENAME);
-        wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, filter));
-        if (dlg->ShowModal() == wxID_OK) {
-            mmReportTransactions* rs = new mmReportTransactions(dlg);
+        wxSharedPtr<mmFilterTransactionsDialog> pdlg(new mmFilterTransactionsDialog(this, filter));
+        if (pdlg->ShowModal() == wxID_OK) {
+            mmReportTransactions* rs = new mmReportTransactions(pdlg);
             createReportsPage(rs, true);
         }
     }

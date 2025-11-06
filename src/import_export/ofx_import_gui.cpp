@@ -572,10 +572,10 @@ void mmPayeeSelectionDialog::LoadRegexPatterns(const wxString& payeeName)
     regexGrid_->SetCellValue(1, 0, "");
 }
 
-void mmPayeeSelectionDialog::AddCategoryToChoice(wxChoice* choice, long long categId, const std::map<long long, Model_Category::Data>& categoryMap, int level)
+void mmPayeeSelectionDialog::AddCategoryToChoice(wxChoice* choice, long long categId, const std::map<long long, Model_Category::Data>& catMap, int level)
 {
-    auto it = categoryMap.find(categId);
-    if (it == categoryMap.end())
+    auto it = catMap.find(categId);
+    if (it == catMap.end())
         return;
 
     const Model_Category::Data& category = it->second;
@@ -587,10 +587,10 @@ void mmPayeeSelectionDialog::AddCategoryToChoice(wxChoice* choice, long long cat
     wxString clientData = wxString::Format("%lld", categId);
     choice->Append(itemText, new wxStringClientData(clientData));
 
-    for (const auto& child : categoryMap)
+    for (const auto& child : catMap)
     {
         if (child.second.PARENTID.GetValue() == categId)
-            AddCategoryToChoice(choice, child.first, categoryMap, level + 1);
+            AddCategoryToChoice(choice, child.first, catMap, level + 1);
     }
 }
 

@@ -2009,11 +2009,11 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
     // Group By
     if (groupByCheckBox_->IsChecked())
     {
-        const wxString groupBy = bGroupBy_->GetStringSelection();
-        if (!groupBy.empty())
+        const wxString grpBy = bGroupBy_->GetStringSelection();
+        if (!grpBy.empty())
         {
             json_writer.Key((i18n ? _t("Group By") : "GROUPBY").utf8_str());
-            json_writer.String(groupBy.utf8_str());
+            json_writer.String(grpBy.utf8_str());
         }
     }
 

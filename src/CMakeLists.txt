@@ -17,7 +17,7 @@ else()
     check_cxx_compiler_flag(-Wduplicated-branches Wduplicated-branches)
     check_cxx_compiler_flag(-Wnull-dereference Wnull-dereference)
     check_cxx_compiler_flag(-Wlogical-op Wlogical-op)
-    add_compile_options(-Wall -Wextra -Wno-unknown-pragmas -Wformat=2
+    add_compile_options(-Wall -Wextra -Wno-unknown-pragmas -Wshadow -Wformat=2
         $<$<BOOL:${Wduplicated-cond}>:-Wduplicated-cond>
         $<$<BOOL:${Wduplicated-branches}>:-Wduplicated-branches>
         $<$<BOOL:${Wnull-dereference}>:-Wnull-dereference>
