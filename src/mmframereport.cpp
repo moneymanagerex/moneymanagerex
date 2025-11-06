@@ -296,8 +296,7 @@ void mmGUIFrame::mmDoHideReportsDialog()
         "My Usage",
         "Payees",
         "Summary of Accounts",
-        "Budget Performance",
-        "Budget Category Summary",
+        "Budgets",
         "Stocks Report",
     };
 
