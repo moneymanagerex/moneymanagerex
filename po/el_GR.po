@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-10-31 10:43+0000\n"
-"PO-Revision-Date: 2025-11-01 23:17\n"
+"POT-Creation-Date: 2025-11-06 15:59+0000\n"
+"PO-Revision-Date: 2025-11-07 00:59\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "Language: el_GR\n"
@@ -608,8 +608,8 @@ msgstr "Περιουσιακά στοιχεία"
 msgid "All"
 msgstr "Όλοι"
 
-#: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:276
-#: stockspanel.cpp:145
+#: assetspanel.cpp:460 billsdepositspanel.cpp:289 categdialog.cpp:319
+#: mmcheckingpanel.cpp:276 stockspanel.cpp:145
 msgid "&New "
 msgstr "&Νέο "
 
@@ -802,7 +802,7 @@ msgstr ""
 msgid "Confirm Attachment Deletion"
 msgstr "Επιβεβαίωση Διαγραφής Συνημμένου"
 
-#: attachmentdialog.cpp:351 categdialog.cpp:319 customfieldlistdialog.cpp:255
+#: attachmentdialog.cpp:351 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:315 maincurrencydialog.cpp:539
 #: payeedialog.cpp:936 stockdialog.cpp:339 tagdialog.cpp:128
 msgid "&Add "
@@ -1662,16 +1662,16 @@ msgstr "Καθαρισμός Ρυθμίσεων"
 msgid "Remove hidden setting from all categories"
 msgstr "Αφαίρεση κρυφής ρύθμισης από όλες τις κατηγορίες"
 
-#: categdialog.cpp:321 categdialog.cpp:815
-msgid "Add a new category"
-msgstr "Εισάγετε μια νέα κατηγορία"
+#: categdialog.cpp:321
+msgid "New category"
+msgstr ""
 
 #: categdialog.cpp:325
-msgid "Edit the name of an existing category"
-msgstr "Επεξεργασθείτε το όνομα μιας υπάρχουσας κατηγορίας"
+msgid "Edit category"
+msgstr ""
 
 #: categdialog.cpp:329
-msgid "Delete an existing category. The category is unable to be used by existing transactions."
+msgid "Delete category. The category is unable to be used by existing transactions."
 msgstr ""
 
 #: categdialog.cpp:334 maincurrencydialog.cpp:225
@@ -1792,7 +1792,7 @@ msgstr "Επιβεβαίωση Διαγραφής Κατηγορίας"
 msgid "Enter a new name for '%s'"
 msgstr "Εισάγετε ένα νέο όνομα για %s'"
 
-#: categdialog.cpp:621 categdialog.cpp:808
+#: categdialog.cpp:621
 msgid "Edit Category"
 msgstr "Επεξεργασία Κατηγορίας"
 
@@ -1815,24 +1815,32 @@ msgid "Merge categories result"
 msgstr "Συγχώνευση αποτελεσμάτων κατηγοριών"
 
 #: categdialog.cpp:788
-msgid "Do you want to unhide all categories?"
-msgstr ""
+msgid "Do you want to show all categories?"
+msgstr "Θέλετε να εμφανίσετε όλες τις κατηγορίες;"
 
 #: categdialog.cpp:789
-msgid "Unhide all categories"
-msgstr "Επανεμφάνιση όλων των κατηγοριών"
+msgid "Show all categories"
+msgstr "Εμφάνιση όλων των κατηγοριών"
+
+#: categdialog.cpp:808
+msgid "&Edit Category…"
+msgstr "&Επεξεργασία Κατηγορίας…"
 
 #: categdialog.cpp:810
-msgid "Hide Selected Category"
-msgstr "Απόκρυψη Επιλεγμένης Κατηγορίας"
+msgid "&Hide Selected Category"
+msgstr "&Απόκρυψη Επιλεγμένης Κατηγορίας"
 
 #: categdialog.cpp:811
-msgid "Unhide Selected Category"
-msgstr "Επανεμφάνιση Επιλεγμένης Κατηγορίας"
+msgid "&Show Selected Category"
+msgstr "&Εμφάνιση Επιλεγμένης Κατηγορίας"
 
 #: categdialog.cpp:813
-msgid "Remove Category"
-msgstr "Αφαίρεση κατηγορίας"
+msgid "&Remove Category"
+msgstr "&Αφαίρεση κατηγορίας"
+
+#: categdialog.cpp:815
+msgid "&New Category…"
+msgstr "&Νέα Κατηγορία…"
 
 #: categdialog.h:69 mmframe.cpp:1961 mmframe.cpp:2199
 msgid "Category Manager"
@@ -2931,7 +2939,7 @@ msgstr "Επιλέξτε λογαριασμούς"
 msgid "Customize Transaction Report"
 msgstr "Προσαρμογή Αναφοράς Συναλλαγών"
 
-#: general_report_manager.cpp:328 mmframe.cpp:3305 mmframereport.cpp:317
+#: general_report_manager.cpp:328 mmframe.cpp:3305 mmframereport.cpp:316
 #: reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
 msgstr "Αναφορές"
@@ -6242,7 +6250,7 @@ msgstr "Εμφάνιση της περίληψης των κατηγοριών �
 msgid "Stocks Report"
 msgstr "Αναφορά Αποθεμάτων"
 
-#: mmframereport.cpp:317 mmreportspanel.cpp:455
+#: mmframereport.cpp:316 mmreportspanel.cpp:455
 msgid "Hide"
 msgstr "Απόκρυψη"
 

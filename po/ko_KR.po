@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-10-31 10:43+0000\n"
-"PO-Revision-Date: 2025-11-01 23:17\n"
+"POT-Creation-Date: 2025-11-06 15:59+0000\n"
+"PO-Revision-Date: 2025-11-07 00:59\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -608,8 +608,8 @@ msgstr "자산"
 msgid "All"
 msgstr "전체"
 
-#: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:276
-#: stockspanel.cpp:145
+#: assetspanel.cpp:460 billsdepositspanel.cpp:289 categdialog.cpp:319
+#: mmcheckingpanel.cpp:276 stockspanel.cpp:145
 msgid "&New "
 msgstr "생성(&N) "
 
@@ -802,7 +802,7 @@ msgstr "첨부 파일을 삭제하시겠습니까?"
 msgid "Confirm Attachment Deletion"
 msgstr "첨부 파일 삭제 확인"
 
-#: attachmentdialog.cpp:351 categdialog.cpp:319 customfieldlistdialog.cpp:255
+#: attachmentdialog.cpp:351 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:315 maincurrencydialog.cpp:539
 #: payeedialog.cpp:936 stockdialog.cpp:339 tagdialog.cpp:128
 msgid "&Add "
@@ -1659,17 +1659,17 @@ msgstr "설정 지우기"
 msgid "Remove hidden setting from all categories"
 msgstr "모든 범주에서 숨겨진 설정 제거"
 
-#: categdialog.cpp:321 categdialog.cpp:815
-msgid "Add a new category"
-msgstr "새 범주 추가"
+#: categdialog.cpp:321
+msgid "New category"
+msgstr ""
 
 #: categdialog.cpp:325
-msgid "Edit the name of an existing category"
-msgstr "기존 범주의 이름 편집"
+msgid "Edit category"
+msgstr ""
 
 #: categdialog.cpp:329
-msgid "Delete an existing category. The category is unable to be used by existing transactions."
-msgstr "기존 범주를 삭제합니다. 해당 범주는 기존 거래에서 사용할 수 없습니다."
+msgid "Delete category. The category is unable to be used by existing transactions."
+msgstr ""
 
 #: categdialog.cpp:334 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1789,7 +1789,7 @@ msgstr "범주 삭제 확인"
 msgid "Enter a new name for '%s'"
 msgstr "'%s'에 대한 새 이름 입력"
 
-#: categdialog.cpp:621 categdialog.cpp:808
+#: categdialog.cpp:621
 msgid "Edit Category"
 msgstr "범주 편집"
 
@@ -1812,24 +1812,32 @@ msgid "Merge categories result"
 msgstr "범주 병합 결과"
 
 #: categdialog.cpp:788
-msgid "Do you want to unhide all categories?"
+msgid "Do you want to show all categories?"
 msgstr "모든 범주를 표시하시겠습니까?"
 
 #: categdialog.cpp:789
-msgid "Unhide all categories"
+msgid "Show all categories"
 msgstr "모든 범주 보이기"
 
+#: categdialog.cpp:808
+msgid "&Edit Category…"
+msgstr "범주 편집(&E)…"
+
 #: categdialog.cpp:810
-msgid "Hide Selected Category"
-msgstr "선택된 범주 숨기기"
+msgid "&Hide Selected Category"
+msgstr "선택된 범주 숨기기(&H)"
 
 #: categdialog.cpp:811
-msgid "Unhide Selected Category"
-msgstr "선택된 범주 보이기"
+msgid "&Show Selected Category"
+msgstr "선택된 범주 보이기(&S)"
 
 #: categdialog.cpp:813
-msgid "Remove Category"
-msgstr "범주 제거"
+msgid "&Remove Category"
+msgstr "범주 제거(&R)"
+
+#: categdialog.cpp:815
+msgid "&New Category…"
+msgstr "범주 추가(&N)…"
 
 #: categdialog.h:69 mmframe.cpp:1961 mmframe.cpp:2199
 msgid "Category Manager"
@@ -2933,7 +2941,7 @@ msgstr "계정 선택"
 msgid "Customize Transaction Report"
 msgstr "사용자정의 거래 보고서"
 
-#: general_report_manager.cpp:328 mmframe.cpp:3305 mmframereport.cpp:317
+#: general_report_manager.cpp:328 mmframe.cpp:3305 mmframereport.cpp:316
 #: reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
 msgstr "보고서"
@@ -6095,7 +6103,7 @@ msgstr "주식 계정 생성"
 
 #: mmframe.cpp:3070
 msgid "Transactions per payee"
-msgstr ""
+msgstr "거래처별 거래 내역"
 
 #: mmframe.cpp:3189
 msgid "Settings have been updated."
@@ -6243,7 +6251,7 @@ msgstr "예산 범주 요약"
 msgid "Stocks Report"
 msgstr "주식 보고서"
 
-#: mmframereport.cpp:317 mmreportspanel.cpp:455
+#: mmframereport.cpp:316 mmreportspanel.cpp:455
 msgid "Hide"
 msgstr "숨기기"
 
@@ -7449,19 +7457,19 @@ msgstr "패턴 일치"
 
 #: payeedialog.cpp:555
 msgid "Used"
-msgstr ""
+msgstr "사용됨"
 
 #: payeedialog.cpp:572
 msgid "Show &hidden"
-msgstr ""
+msgstr "숨김 항목 보이기(&H)"
 
 #: payeedialog.cpp:575
 msgid "Show hidden payees"
-msgstr ""
+msgstr "숨겨진 거래처 보이기"
 
 #: payeedialog.cpp:581
 msgid "&Search"
-msgstr ""
+msgstr "찾기(&S)"
 
 #: payeedialog.cpp:743
 msgid "Payee in use."
@@ -7497,11 +7505,11 @@ msgstr "거래처 삭제 확인"
 
 #: payeedialog.cpp:931
 msgid "&Hide Selected"
-msgstr ""
+msgstr "선택된 항목 숨기기(&H)"
 
 #: payeedialog.cpp:932
 msgid "&Show Selected"
-msgstr ""
+msgstr "선택된 항목 보이기(&S)"
 
 #: payeedialog.cpp:938
 msgid "Define &Category"
@@ -7509,11 +7517,11 @@ msgstr "범주 정의(&C)"
 
 #: payeedialog.cpp:939
 msgid "Remove Categor&y"
-msgstr ""
+msgstr "범주 제거(&Y)"
 
 #: payeedialog.cpp:941
 msgid "Attachment &Manager"
-msgstr ""
+msgstr "첨부 관리자(&M)"
 
 #: payeedialog.cpp:943
 msgid "Merge &Payee"
@@ -7521,7 +7529,7 @@ msgstr "거래처 병합(&P)"
 
 #: payeedialog.cpp:944
 msgid "&Transaction Report"
-msgstr ""
+msgstr "거래 보고서(&T)"
 
 #: primitive.cpp:94
 msgid "February"

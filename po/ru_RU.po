@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-10-31 10:43+0000\n"
-"PO-Revision-Date: 2025-11-01 23:18\n"
+"POT-Creation-Date: 2025-11-06 15:59+0000\n"
+"PO-Revision-Date: 2025-11-07 00:59\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -80,7 +80,7 @@ msgstr "Тип счёта:"
 
 #: accountdialog.cpp:138 wizard_newaccount.cpp:130
 msgid "Specify the account type to be created."
-msgstr ""
+msgstr "Укажите тип создаваемого счёта."
 
 #: accountdialog.cpp:142
 msgid "Account Status:"
@@ -466,7 +466,7 @@ msgstr "Текущее значение"
 
 #: assetdialog.cpp:231
 msgid "The current value of the asset"
-msgstr ""
+msgstr "Текущая стоимость актива"
 
 #: assetdialog.cpp:234
 msgid "Change in Value"
@@ -478,7 +478,7 @@ msgstr "Выберите, если происходит изменение ст�
 
 #: assetdialog.cpp:246
 msgid "Compounding Period"
-msgstr ""
+msgstr "Период капитализации"
 
 #: assetdialog.cpp:251
 msgid "Select the compounding period for the appreciation/depreciation rate"
@@ -608,8 +608,8 @@ msgstr "Активы"
 msgid "All"
 msgstr "Все"
 
-#: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:276
-#: stockspanel.cpp:145
+#: assetspanel.cpp:460 billsdepositspanel.cpp:289 categdialog.cpp:319
+#: mmcheckingpanel.cpp:276 stockspanel.cpp:145
 msgid "&New "
 msgstr "С&оздать"
 
@@ -802,7 +802,7 @@ msgstr "Вы хотите удалить это вложение?"
 msgid "Confirm Attachment Deletion"
 msgstr "Подтверждение удаление вложения"
 
-#: attachmentdialog.cpp:351 categdialog.cpp:319 customfieldlistdialog.cpp:255
+#: attachmentdialog.cpp:351 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:315 maincurrencydialog.cpp:539
 #: payeedialog.cpp:936 stockdialog.cpp:339 tagdialog.cpp:128
 msgid "&Add "
@@ -1175,7 +1175,7 @@ msgstr "Из"
 
 #: billsdepositsdialog.cpp:898
 msgid "The payment date is after the due date. Is this intended?"
-msgstr ""
+msgstr "Дата платежа позже даты погашения. Так и задумано?"
 
 #: billsdepositsdialog.cpp:899
 msgid "Looks like a late payment"
@@ -1666,17 +1666,17 @@ msgstr "Очистить настройки"
 msgid "Remove hidden setting from all categories"
 msgstr ""
 
-#: categdialog.cpp:321 categdialog.cpp:815
-msgid "Add a new category"
-msgstr "Добавление новой категории"
+#: categdialog.cpp:321
+msgid "New category"
+msgstr ""
 
 #: categdialog.cpp:325
-msgid "Edit the name of an existing category"
-msgstr "Редактирование названия существующей категории"
+msgid "Edit category"
+msgstr ""
 
 #: categdialog.cpp:329
-msgid "Delete an existing category. The category is unable to be used by existing transactions."
-msgstr "Удаление существующей категории. Категория не должна использоваться."
+msgid "Delete category. The category is unable to be used by existing transactions."
+msgstr ""
 
 #: categdialog.cpp:334 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1796,7 +1796,7 @@ msgstr "Подтвердите удаление категории"
 msgid "Enter a new name for '%s'"
 msgstr "Введите новое имя для '%s'"
 
-#: categdialog.cpp:621 categdialog.cpp:808
+#: categdialog.cpp:621
 msgid "Edit Category"
 msgstr "Редактировать категорию"
 
@@ -1819,24 +1819,32 @@ msgid "Merge categories result"
 msgstr "Результат слияния категорий"
 
 #: categdialog.cpp:788
-msgid "Do you want to unhide all categories?"
-msgstr "Вы хотите показать все категории?"
+msgid "Do you want to show all categories?"
+msgstr ""
 
 #: categdialog.cpp:789
-msgid "Unhide all categories"
-msgstr "Раскрыть все категории"
+msgid "Show all categories"
+msgstr ""
+
+#: categdialog.cpp:808
+msgid "&Edit Category…"
+msgstr ""
 
 #: categdialog.cpp:810
-msgid "Hide Selected Category"
-msgstr "Скрыть категорию"
+msgid "&Hide Selected Category"
+msgstr ""
 
 #: categdialog.cpp:811
-msgid "Unhide Selected Category"
-msgstr "Не скрывать категорию"
+msgid "&Show Selected Category"
+msgstr ""
 
 #: categdialog.cpp:813
-msgid "Remove Category"
-msgstr "Удалить категорию"
+msgid "&Remove Category"
+msgstr ""
+
+#: categdialog.cpp:815
+msgid "&New Category…"
+msgstr ""
 
 #: categdialog.h:69 mmframe.cpp:1961 mmframe.cpp:2199
 msgid "Category Manager"
@@ -2248,7 +2256,7 @@ msgstr "Год"
 
 #: daterangeeditdialog.cpp:61
 msgid "Quarter"
-msgstr ""
+msgstr "Квартал"
 
 #: daterangeeditdialog.cpp:62 filtertransdialog.cpp:58 option.cpp:37
 msgid "Month"
@@ -2625,7 +2633,7 @@ msgstr "Алгоритм шифрования по умолчанию был и�
 
 #: dbwrapper.cpp:79
 msgid "Rekeying with the new cipher will prevent opening this database in older versions of MMEX."
-msgstr ""
+msgstr "Переключение ключа на новый шифр не позволит открыть эту базу данных в старых версиях MMEX."
 
 #: dbwrapper.cpp:80
 msgid "Do you want to update the database?"
@@ -2651,7 +2659,9 @@ msgstr "Невозможно открыть файл"
 msgid "An incorrect password was provided for an encrypted file,\n"
 "or\n"
 "an attempt was made to open a file that is not a database file."
-msgstr ""
+msgstr "Был введён неправильный пароль для зашифрованного файла.\n"
+"или\n"
+"была попытка открыть файл, который не является файлом базы данных."
 
 #: dbwrapper.cpp:122 import_export/qif_import_gui.cpp:1210 webapp.cpp:120
 #, c-format
@@ -2940,7 +2950,7 @@ msgstr "Выберите счёта"
 msgid "Customize Transaction Report"
 msgstr "Настроить отчет по транзакциям"
 
-#: general_report_manager.cpp:328 mmframe.cpp:3305 mmframereport.cpp:317
+#: general_report_manager.cpp:328 mmframe.cpp:3305 mmframereport.cpp:316
 #: reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
 msgstr "Отчёты"
@@ -4500,7 +4510,7 @@ msgstr ""
 
 #: mmTips.h:26
 msgid "Tip: If the .mmb database file is unencrypted, anyone who has the knowledge can open the database file and read the contents. Ensure that any sensitive financial information stored is properly secured."
-msgstr ""
+msgstr "Совет: если файл базы данных .mmb не зашифрован, любой, кто обладает соответствующими знаниями, может открыть этот файл и прочитать его содержимое. Убедитесь, что вся конфиденциальная финансовая информация, хранящаяся в базе, надлежащим образом защищена."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
@@ -4736,11 +4746,11 @@ msgstr "Дублировать транзакцию…"
 
 #: mmchecking_list.cpp:760
 msgid "&Move Transactions…"
-msgstr ""
+msgstr "&Переместить транзакции…"
 
 #: mmchecking_list.cpp:760
 msgid "&Move Transaction…"
-msgstr ""
+msgstr "&Переместить транзакцию…"
 
 #: mmchecking_list.cpp:766
 msgid "&View In Other Account"
@@ -5340,7 +5350,7 @@ msgstr "Новая база данных"
 
 #: mmframe.cpp:1722
 msgid "&Open Database…"
-msgstr ""
+msgstr "Открыть базу данных…"
 
 #: mmframe.cpp:1722 mmframe.cpp:2191
 msgid "Open Database"
@@ -5932,7 +5942,7 @@ msgstr "&Далее →"
 
 #: mmframe.cpp:2440
 msgid "Unable to find previously opened database."
-msgstr ""
+msgstr "Невозможно найти ранее открытую базу данных."
 
 #: mmframe.cpp:2442
 msgid "Password not entered for encrypted database."
@@ -5946,7 +5956,9 @@ msgstr "портативный режим"
 msgid "Attempting to open a database that has been marked as opened by another instance of MMEX.\n"
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX."
-msgstr ""
+msgstr "Попытка открыть базу данных, отмеченную как \"открытой\" другим экземпляром MMEX.\n"
+"Чтобы избежать потери данных или конфликтов, настоятельно рекомендуется закрыть все остальные приложения, которые могут использовать эту базу.\n\n"
+"Если ничего другого не запущено, возможно, база данных осталась открытой из‑за непредвиденного закрытия программы во время предыдущего использования MMEX."
 
 #: mmframe.cpp:2497
 msgid "Do you want to open the database?"
@@ -6268,7 +6280,7 @@ msgstr "Бюджет по категории"
 msgid "Stocks Report"
 msgstr "Отчёт по котировкам"
 
-#: mmframereport.cpp:317 mmreportspanel.cpp:455
+#: mmframereport.cpp:316 mmreportspanel.cpp:455
 msgid "Hide"
 msgstr "Скрыть"
 
@@ -7004,7 +7016,7 @@ msgstr "Обновить при запуске"
 
 #: optionsettingsmisc.cpp:109
 msgid "Asset Compounding Period"
-msgstr ""
+msgstr "Период капитализации актива"
 
 #: optionsettingsmisc.cpp:115
 msgid "Select the compounding period for the appreciation/depreciation rate of assets"
@@ -7208,7 +7220,7 @@ msgstr "Выберите, использовать ли первоначальн
 
 #: optionsettingstransaction.cpp:127
 msgid "Use Original State when Duplicating or Pasting Transactions"
-msgstr ""
+msgstr "Использовать исходную дату при дублировании или вставке транзакций"
 
 #: optionsettingstransaction.cpp:129
 msgid "Select whether to use the original state or default state when duplicating or copy and paste transactions"
@@ -7290,7 +7302,7 @@ msgstr "Использовать «Время» в записи транзакц
 
 #: optionsettingstransaction.cpp:237
 msgid "Sort Date identically to Sequence Number (SN)"
-msgstr ""
+msgstr "Сортировать по дате в соответствии с порядковым номером (SN)"
 
 #: optionsettingstransaction.cpp:242
 msgid "Transaction Colors"
@@ -7310,11 +7322,11 @@ msgstr "Разделитель категорий"
 
 #: optionsettingsview.cpp:101
 msgid "Do not use color for future transactions"
-msgstr ""
+msgstr "Не использовать цвета для будущих транзакций"
 
 #: optionsettingsview.cpp:105
 msgid "Emphasize not reconciled transactions"
-msgstr ""
+msgstr "Выделять не выверенные транзакции"
 
 #: optionsettingsview.cpp:120
 msgid "User Interface"
