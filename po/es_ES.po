@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-10-31 10:43+0000\n"
-"PO-Revision-Date: 2025-11-01 23:18\n"
+"POT-Creation-Date: 2025-11-06 15:59+0000\n"
+"PO-Revision-Date: 2025-11-07 00:59\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -608,8 +608,8 @@ msgstr "Activos"
 msgid "All"
 msgstr "Todas"
 
-#: assetspanel.cpp:460 billsdepositspanel.cpp:289 mmcheckingpanel.cpp:276
-#: stockspanel.cpp:145
+#: assetspanel.cpp:460 billsdepositspanel.cpp:289 categdialog.cpp:319
+#: mmcheckingpanel.cpp:276 stockspanel.cpp:145
 msgid "&New "
 msgstr "&Nuevo "
 
@@ -802,7 +802,7 @@ msgstr "¿Realmente desea eliminar este adjunto?"
 msgid "Confirm Attachment Deletion"
 msgstr "Confirmar eliminación de adjunto"
 
-#: attachmentdialog.cpp:351 categdialog.cpp:319 customfieldlistdialog.cpp:255
+#: attachmentdialog.cpp:351 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:315 maincurrencydialog.cpp:539
 #: payeedialog.cpp:936 stockdialog.cpp:339 tagdialog.cpp:128
 msgid "&Add "
@@ -1662,17 +1662,17 @@ msgstr "Eliminar Ajustes"
 msgid "Remove hidden setting from all categories"
 msgstr "Eliminar ajustes ocultos de todas las categorías"
 
-#: categdialog.cpp:321 categdialog.cpp:815
-msgid "Add a new category"
-msgstr "Añadir una nueva categoría"
+#: categdialog.cpp:321
+msgid "New category"
+msgstr ""
 
 #: categdialog.cpp:325
-msgid "Edit the name of an existing category"
-msgstr "Editar el nombre de una categoría existente"
+msgid "Edit category"
+msgstr ""
 
 #: categdialog.cpp:329
-msgid "Delete an existing category. The category is unable to be used by existing transactions."
-msgstr "Eliminar una categoría existente. La categoría no puede estar en uso por ninguna transacción."
+msgid "Delete category. The category is unable to be used by existing transactions."
+msgstr ""
 
 #: categdialog.cpp:334 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1793,7 +1793,7 @@ msgstr "Confirmar eliminación de la categoría"
 msgid "Enter a new name for '%s'"
 msgstr "Introducir un nuevo nombre para %s'"
 
-#: categdialog.cpp:621 categdialog.cpp:808
+#: categdialog.cpp:621
 msgid "Edit Category"
 msgstr "Editar categoría"
 
@@ -1816,24 +1816,32 @@ msgid "Merge categories result"
 msgstr "Resultado de la combinación de categorías"
 
 #: categdialog.cpp:788
-msgid "Do you want to unhide all categories?"
-msgstr "¿Desea mostrar todas las categorías?"
+msgid "Do you want to show all categories?"
+msgstr ""
 
 #: categdialog.cpp:789
-msgid "Unhide all categories"
-msgstr "Mostrar todas las categorías"
+msgid "Show all categories"
+msgstr ""
+
+#: categdialog.cpp:808
+msgid "&Edit Category…"
+msgstr ""
 
 #: categdialog.cpp:810
-msgid "Hide Selected Category"
-msgstr "Ocultar categoría seleccionada"
+msgid "&Hide Selected Category"
+msgstr ""
 
 #: categdialog.cpp:811
-msgid "Unhide Selected Category"
-msgstr "Mostrar categoría seleccionada"
+msgid "&Show Selected Category"
+msgstr ""
 
 #: categdialog.cpp:813
-msgid "Remove Category"
-msgstr "Eliminar categoría"
+msgid "&Remove Category"
+msgstr ""
+
+#: categdialog.cpp:815
+msgid "&New Category…"
+msgstr ""
 
 #: categdialog.h:69 mmframe.cpp:1961 mmframe.cpp:2199
 msgid "Category Manager"
@@ -2939,7 +2947,7 @@ msgstr "Seleccionar cuentas"
 msgid "Customize Transaction Report"
 msgstr "Personalizar informe de transacción"
 
-#: general_report_manager.cpp:328 mmframe.cpp:3305 mmframereport.cpp:317
+#: general_report_manager.cpp:328 mmframe.cpp:3305 mmframereport.cpp:316
 #: reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
 msgstr "Informes"
@@ -6254,7 +6262,7 @@ msgstr "Resumen de categoría de presupuesto"
 msgid "Stocks Report"
 msgstr "Informe de acciones"
 
-#: mmframereport.cpp:317 mmreportspanel.cpp:455
+#: mmframereport.cpp:316 mmreportspanel.cpp:455
 msgid "Hide"
 msgstr "Ocultar"
 
