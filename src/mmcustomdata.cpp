@@ -762,9 +762,8 @@ bool mmCustomData::ValidateCustomValues(int64)
     for (const auto &field : m_fields)
     {
         wxWindowID controlID = GetBaseID() + field_index++ * FIELDMULTIPLIER;
-        wxWindowID labelID = controlID + CONTROLOFFSET;
 
-        wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(labelID, m_dialog));
+        wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(controlID, m_dialog));
         if (!cb || !cb->GetValue())
             continue;
 
