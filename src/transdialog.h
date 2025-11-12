@@ -174,10 +174,10 @@ private:
         mmID_ACCOUNTNAME,
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,
         ID_DIALOG_TRANS_CUSTOMFIELDS,
-        ID_CUSTOMFIELD,
         ID_DIALOG_TRANS_TAGS,
         ID_DIALOG_TRANS_TODAY,
-        ID_BTN_OK_NEW
+        ID_BTN_OK_NEW,
+        ID_CUSTOMFIELDS      // must be last in the list
     };
 };
 

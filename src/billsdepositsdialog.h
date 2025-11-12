@@ -192,7 +192,7 @@ private:
         ID_PANEL_REPORTS_HEADER_PANEL,
         ID_PANEL_REPORTS_STATIC_HEADER,
         ID_BTN_CUSTOMFIELDS,
-        ID_CUSTOMFIELDS,
+        ID_CUSTOMFIELDS    // must be last in the list  
     };
 };
 
