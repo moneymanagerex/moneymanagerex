@@ -272,7 +272,7 @@ private:
         ID_PERIOD_CB,
         ID_ACCOUNT_CB,
         ID_DATE_RANGE_CB,
-        ID_CUSTOMFIELDS
+        ID_CUSTOMFIELDS     // must be last in the list
     };
 };
 

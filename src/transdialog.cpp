@@ -143,7 +143,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent,
 
     int64 ref_id = (m_mode == MODE_NEW) ? 0 : (m_fused_data.m_repeat_num == 0) ?
         m_fused_data.TRANSID : -(m_fused_data.m_bdid);
-    m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELD);
+    m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELDS);
 
     // If duplicate then we may need to copy the attachments
     if (m_mode == MODE_DUP && Model_Infotable::instance().getBool("ATTACHMENTSDUPLICATE", false))
