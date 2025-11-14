@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-11-06 15:59+0000\n"
-"PO-Revision-Date: 2025-11-07 00:59\n"
+"POT-Creation-Date: 2025-11-12 23:40+0000\n"
+"PO-Revision-Date: 2025-11-14 01:00\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -1664,15 +1664,15 @@ msgstr "Remove hidden setting from all categories"
 
 #: categdialog.cpp:321
 msgid "New category"
-msgstr ""
+msgstr "Nuova categoria"
 
 #: categdialog.cpp:325
 msgid "Edit category"
-msgstr ""
+msgstr "Modifica categoria"
 
 #: categdialog.cpp:329
 msgid "Delete category. The category is unable to be used by existing transactions."
-msgstr ""
+msgstr "Elimina categoria. La categoria non può essere utilizzata dalle transazioni esistenti."
 
 #: categdialog.cpp:334 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -3046,7 +3046,7 @@ msgstr "File ZIP (*. zip)"
 #: general_report_manager.cpp:1158 general_report_manager.h:70 mmframe.cpp:2022
 #: mmframe.cpp:2205
 msgid "General Report Manager"
-msgstr "Gestore Generale del Rapporto"
+msgstr "Gestore Generale del Resoconto"
 
 #: general_report_manager.cpp:812
 msgid "Assets…"
@@ -3313,7 +3313,7 @@ msgstr "Nuovo Nome Beneficiario:"
 
 #: import_export/ofx_import_gui.cpp:725
 msgid "Convert to Title Case"
-msgstr ""
+msgstr "Converti in Title Case"
 
 #: import_export/ofx_import_gui.cpp:733 import_export/ofx_import_gui.h:94
 msgid "Uncategorized"
@@ -3382,11 +3382,11 @@ msgstr "Importa"
 
 #: import_export/ofx_import_gui.cpp:1025
 msgid "Choose OFX file"
-msgstr ""
+msgstr "Scegli file OFX"
 
 #: import_export/ofx_import_gui.cpp:1124
 msgid "No OFX file selected."
-msgstr ""
+msgstr "Nessun file OFX selezionato."
 
 #: import_export/ofx_import_gui.cpp:1131
 msgid "No account selected."
@@ -3398,16 +3398,16 @@ msgstr "Selezione del conto non valida."
 
 #: import_export/ofx_import_gui.cpp:1145
 msgid "Invalid account ID."
-msgstr ""
+msgstr "ID conto non valido."
 
 #: import_export/ofx_import_gui.cpp:1153
 #, c-format
 msgid "Account ID %s does not exist."
-msgstr ""
+msgstr "L'ID conto %s non esiste."
 
 #: import_export/ofx_import_gui.cpp:1815
 msgid "OFX Import Summary"
-msgstr ""
+msgstr "Riepilogo importazione OFX"
 
 #: import_export/ofx_import_gui.cpp:1829
 #, c-format
@@ -3417,7 +3417,12 @@ msgid "Import Statistics:\n"
 "- New Payees Created: %3$d\n"
 "- Manually Allocated to Payees: %4$d\n"
 "- Time Taken: %5$s"
-msgstr ""
+msgstr "Statistiche d'importazione:\n"
+"- Transazioni Totali: %1$d\n"
+"- Importate Automaticamente: %2$d\n"
+"- Nuovi Beneficiari Creati: %3$d\n"
+"- Assegnate Manualmente ai Beneficiari: %4$d\n"
+"- Tempo Impiegato: %5$s"
 
 #: import_export/ofx_import_gui.cpp:1843
 msgid "FITID"
@@ -3433,11 +3438,11 @@ msgstr "Beneficiario Importato"
 
 #: import_export/ofx_import_gui.cpp:1848
 msgid "Match Mode"
-msgstr ""
+msgstr "Modalità di corrispondenza"
 
 #: import_export/ofx_import_gui.cpp:1849
 msgid "Match Pattern/Confidence"
-msgstr ""
+msgstr "Modello / Grado di corrispondenza"
 
 #: import_export/ofx_import_gui.cpp:1851
 msgid "Transaction Type"
@@ -3772,7 +3777,7 @@ msgstr "Corrispondenza con %1$s sul modello %2$s"
 
 #: import_export/qif_import_gui.cpp:915
 msgid "Choose QIF data file to import"
-msgstr ""
+msgstr "Scegli il file dati QIF da importare"
 
 #: import_export/qif_import_gui.cpp:1092
 msgid "Do you want to import all transactions?"
@@ -3817,7 +3822,7 @@ msgstr "Importazione categorie suddivise"
 
 #: import_export/qif_import_gui.cpp:1265
 msgid "Import finished successfully."
-msgstr ""
+msgstr "Importazione completata con successo."
 
 #: import_export/qif_import_gui.cpp:1266
 #, c-format
@@ -3827,7 +3832,7 @@ msgstr "Totale importato: %zu"
 #: import_export/qif_import_gui.cpp:1267
 #, c-format
 msgid "Duplicates Detected: %zu"
-msgstr ""
+msgstr "Duplicati rilevati: %zu"
 
 #: import_export/qif_import_gui.cpp:1278 import_export/univcsvdialog.cpp:1543
 msgid "Imported transactions discarded by user!"
@@ -3873,7 +3878,7 @@ msgstr "Categoria della Transazione non corretta"
 
 #: import_export/qif_import_gui.cpp:1652
 msgid "Transaction skipped as duplicate"
-msgstr ""
+msgstr "Transazione saltata come duplicata"
 
 #: import_export/qif_import_gui.cpp:1709
 #, c-format
@@ -5357,11 +5362,11 @@ msgstr "&Cancella cronologia file"
 
 #: mmframe.cpp:1742
 msgid "&OFX File…"
-msgstr ""
+msgstr "&File OFX…"
 
 #: mmframe.cpp:1742
 msgid "Import from OFX file"
-msgstr ""
+msgstr "Importa da file OFX"
 
 #: mmframe.cpp:1744
 msgid "&WebApp…"
@@ -5666,11 +5671,11 @@ msgstr "Genera un report sullo stato del database o ne corregge gli errori"
 
 #: mmframe.cpp:2056
 msgid "Reset Web API Cookies…"
-msgstr ""
+msgstr "Reimposta i cookie dell'API Web…"
 
 #: mmframe.cpp:2057
 msgid "Used to reset stored cookies for web API access"
-msgstr ""
+msgstr "Usato per reimpostare i cookie memorizzati per l'accesso all'API web"
 
 #: mmframe.cpp:2063
 msgid "&Database"
