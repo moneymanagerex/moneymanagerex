@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-11-06 15:59+0000\n"
-"PO-Revision-Date: 2025-11-07 00:59\n"
+"POT-Creation-Date: 2025-11-12 23:40+0000\n"
+"PO-Revision-Date: 2025-11-14 01:00\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -1661,15 +1661,15 @@ msgstr "모든 범주에서 숨겨진 설정 제거"
 
 #: categdialog.cpp:321
 msgid "New category"
-msgstr ""
+msgstr "범주 추가"
 
 #: categdialog.cpp:325
 msgid "Edit category"
-msgstr ""
+msgstr "범주 편집"
 
 #: categdialog.cpp:329
 msgid "Delete category. The category is unable to be used by existing transactions."
-msgstr ""
+msgstr "범주를 삭제합니다. 해당 범주는 기존 거래에서 사용할 수 없습니다."
 
 #: categdialog.cpp:334 maincurrencydialog.cpp:225
 msgid "&Select"

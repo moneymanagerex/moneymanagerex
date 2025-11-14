@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-11-06 15:59+0000\n"
-"PO-Revision-Date: 2025-11-07 00:59\n"
+"POT-Creation-Date: 2025-11-12 23:40+0000\n"
+"PO-Revision-Date: 2025-11-14 01:00\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -1664,15 +1664,15 @@ msgstr "Einstellung ausgeblendet aus allen Kategorien entfernen"
 
 #: categdialog.cpp:321
 msgid "New category"
-msgstr ""
+msgstr "Neue Kategorie"
 
 #: categdialog.cpp:325
 msgid "Edit category"
-msgstr ""
+msgstr "Kategorie bearbeiten"
 
 #: categdialog.cpp:329
 msgid "Delete category. The category is unable to be used by existing transactions."
-msgstr ""
+msgstr "Löschen einer existierenden Kategorie. Die Kategorie kann nicht von bestehenden Buchungen verwendet werden."
 
 #: categdialog.cpp:334 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1818,31 +1818,31 @@ msgstr "Ergebnis der Zusammenführung von Kategorien"
 
 #: categdialog.cpp:788
 msgid "Do you want to show all categories?"
-msgstr ""
+msgstr "Sollen alle Kategorien angezeigt werden?"
 
 #: categdialog.cpp:789
 msgid "Show all categories"
-msgstr ""
+msgstr "Alle Kategorien anzeigen."
 
 #: categdialog.cpp:808
 msgid "&Edit Category…"
-msgstr ""
+msgstr "Kategorie &bearbeiten…"
 
 #: categdialog.cpp:810
 msgid "&Hide Selected Category"
-msgstr ""
+msgstr "Ausgewählte Kategorie &ausblenden"
 
 #: categdialog.cpp:811
 msgid "&Show Selected Category"
-msgstr ""
+msgstr "&Ausgeblendete Kategorie wieder anzeigen"
 
 #: categdialog.cpp:813
 msgid "&Remove Category"
-msgstr ""
+msgstr "Kategorie &löschen"
 
 #: categdialog.cpp:815
 msgid "&New Category…"
-msgstr ""
+msgstr "&Neue Kategorie…"
 
 #: categdialog.h:69 mmframe.cpp:1961 mmframe.cpp:2199
 msgid "Category Manager"
@@ -3903,7 +3903,7 @@ msgstr "Ist mir egal"
 #: mmhomepage.cpp:535 mmhomepage.cpp:712 reports/cashflow.cpp:409
 #: reports/summary.cpp:270 reports/summary.cpp:306
 msgid "Balance"
-msgstr "Kontostand"
+msgstr "Gesamt"
 
 #: import_export/univcsvdialog.cpp:124 mmframe.cpp:1737
 msgid "Import from CSV file"
@@ -6117,7 +6117,7 @@ msgstr "Wertpapierkonto erstellen"
 
 #: mmframe.cpp:3070
 msgid "Transactions per payee"
-msgstr ""
+msgstr "Buchungen pro Zahlungsempfänger"
 
 #: mmframe.cpp:3189
 msgid "Settings have been updated."
@@ -6500,7 +6500,7 @@ msgstr "Darlehen"
 
 #: model/Model_Account.cpp:32
 msgid "Term"
-msgstr "Festgeld"
+msgstr "Termingeld"
 
 #: model/Model_Account.cpp:35 stockspanel.cpp:266
 msgid "Shares"
@@ -6561,12 +6561,12 @@ msgid "A scheduled transaction will exceed the account limit.\n\n"
 "Current Balance: %2$6.2f\n"
 "Transaction amount: %3$6.2f\n"
 "%4$s: %5$6.2f"
-msgstr "Eine wiederholte Buchung überschreitet Ihr Kontolimit.\n\n"
+msgstr "Eine geplante Buchung überschreitet das Kontolimit.\n\n"
 "Konto: %1$s\n"
 "Aktueller Kontostand: %2$6.2f\n"
 "Transaktionsbetrag: %3$6.2f\n"
 "%4$s: %5$6.2f\n\n"
-"Möchten Sie fortfahren"
+"Möchten Sie fortfahren?"
 
 #: model/Model_Billsdeposits.cpp:227
 msgid "MMEX Scheduled Transaction Check"
@@ -7473,19 +7473,19 @@ msgstr "Muster abgleichen"
 
 #: payeedialog.cpp:555
 msgid "Used"
-msgstr ""
+msgstr "Benutzt"
 
 #: payeedialog.cpp:572
 msgid "Show &hidden"
-msgstr ""
+msgstr "Ausgeblendete &anzeigen"
 
 #: payeedialog.cpp:575
 msgid "Show hidden payees"
-msgstr ""
+msgstr "Zeige ausgeblendete Zahlungsempfänger"
 
 #: payeedialog.cpp:581
 msgid "&Search"
-msgstr ""
+msgstr "&Suchen"
 
 #: payeedialog.cpp:743
 msgid "Payee in use."
@@ -7522,11 +7522,11 @@ msgstr "Bestätigung der Löschung des Zahlungsempfängers"
 
 #: payeedialog.cpp:931
 msgid "&Hide Selected"
-msgstr ""
+msgstr "Ausgewählte &ausblenden"
 
 #: payeedialog.cpp:932
 msgid "&Show Selected"
-msgstr ""
+msgstr "Ausgewählte anzeigen"
 
 #: payeedialog.cpp:938
 msgid "Define &Category"
@@ -7534,11 +7534,11 @@ msgstr "&Kategorie definieren"
 
 #: payeedialog.cpp:939
 msgid "Remove Categor&y"
-msgstr ""
+msgstr "Kategorie &löschen"
 
 #: payeedialog.cpp:941
 msgid "Attachment &Manager"
-msgstr ""
+msgstr "Anlagenverwaltung"
 
 #: payeedialog.cpp:943
 msgid "Merge &Payee"
@@ -7546,7 +7546,7 @@ msgstr "Zahlungsem&pfänger zusammenführen"
 
 #: payeedialog.cpp:944
 msgid "&Transaction Report"
-msgstr ""
+msgstr "&Buchungsbericht"
 
 #: primitive.cpp:94
 msgid "February"

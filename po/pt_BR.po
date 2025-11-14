@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-11-06 15:59+0000\n"
-"PO-Revision-Date: 2025-11-07 00:59\n"
+"POT-Creation-Date: 2025-11-12 23:40+0000\n"
+"PO-Revision-Date: 2025-11-14 01:00\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -669,12 +669,12 @@ msgstr "Use interrogação (?) para substituir um único caractere na busca—po
 #: assetspanel.cpp:501 filtertransdialog.cpp:713 mmcheckingpanel.cpp:345
 #: payeedialog.cpp:141
 msgid "Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”."
-msgstr ""
+msgstr "Use o asterisco (*) para localizar qualquer número de caracteres - por exemplo, c*o localiza 'crédito', e 'crediário' e 'cartão', etc."
 
 #: assetspanel.cpp:502 filtertransdialog.cpp:714 mmcheckingpanel.cpp:346
 #: payeedialog.cpp:142
 msgid "Use the asterisk (*) at the beginning to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Use o asterisco (*) no começo para encontrar quaisquer caracteres no meio da frase."
 
 #: assetspanel.cpp:577
 #, c-format
@@ -1186,7 +1186,8 @@ msgstr "Parece um pagamento atrasado"
 #, c-format
 msgid "Payee name has not been used before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "Nome do beneficiário não pode ter sido usado antes. O nome está correto?\n"
+"%s"
 
 #: billsdepositsdialog.cpp:944 transactionsupdatedialog.cpp:351
 #: transdialog.cpp:718
@@ -1663,15 +1664,15 @@ msgstr "Remover a configuração oculta de todas as categorias"
 
 #: categdialog.cpp:321
 msgid "New category"
-msgstr ""
+msgstr "Nova categoria"
 
 #: categdialog.cpp:325
 msgid "Edit category"
-msgstr ""
+msgstr "Editar categoria"
 
 #: categdialog.cpp:329
 msgid "Delete category. The category is unable to be used by existing transactions."
-msgstr ""
+msgstr "Excluir categoria. A categoria não pode estar sendo usada em transações existentes."
 
 #: categdialog.cpp:334 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1818,31 +1819,31 @@ msgstr "Resultado da Mesclagem de Categorias"
 
 #: categdialog.cpp:788
 msgid "Do you want to show all categories?"
-msgstr ""
+msgstr "Deseja mostrar todas as categorias?"
 
 #: categdialog.cpp:789
 msgid "Show all categories"
-msgstr ""
+msgstr "Mostrar todas as categorias"
 
 #: categdialog.cpp:808
 msgid "&Edit Category…"
-msgstr ""
+msgstr "&Editar Categoria..."
 
 #: categdialog.cpp:810
 msgid "&Hide Selected Category"
-msgstr ""
+msgstr "&Ocultar a categoria selecionada"
 
 #: categdialog.cpp:811
 msgid "&Show Selected Category"
-msgstr ""
+msgstr "&Mostrar Categoria Selecionada"
 
 #: categdialog.cpp:813
 msgid "&Remove Category"
-msgstr ""
+msgstr "&Remover Categoria"
 
 #: categdialog.cpp:815
 msgid "&New Category…"
-msgstr ""
+msgstr "&Nova Categoria…"
 
 #: categdialog.h:69 mmframe.cpp:1961 mmframe.cpp:2199
 msgid "Category Manager"
@@ -2135,7 +2136,7 @@ msgstr "Gerenciador de Campos Personalizados"
 
 #: customfieldlistdialog.cpp:165
 msgid "Do you want to delete the custom field and all its data?"
-msgstr ""
+msgstr "Deseja excluir o campo personalizado e todos os seus dados?"
 
 #: customfieldlistdialog.cpp:166
 msgid "Confirm Custom Field Deletion"
@@ -2167,7 +2168,8 @@ msgstr "Atualizar Conteúdo do Campo Personalizado"
 #: customfieldlistdialog.cpp:196 customfieldlistdialog.cpp:208
 msgid "Do you want to update blank custom field content?\n"
 "Select No if you want to abort the replace procedure."
-msgstr ""
+msgstr "Deseja atualizar o conteúdo em branco?\n"
+"Selecione Não se quiser abortar o procedimento."
 
 #: customfieldlistdialog.cpp:204
 msgid "Replace with"
@@ -2582,7 +2584,7 @@ msgstr "Atualização do banco de dados do MMEX para a versão %i instalada com 
 
 #: dbupgrade.cpp:121
 msgid "It is recommended to optimize the database with Tools → Database → Optimize Database…"
-msgstr ""
+msgstr "É recomendável otimizar o banco de dados emm Ferramentas → Banco de dados → Otimizar Banco de Dados…"
 
 #: dbupgrade.cpp:183
 msgid "Load debug file"
@@ -2645,7 +2647,7 @@ msgstr "Quando o arquivo de banco de dados está sendo aberto:"
 
 #: dbwrapper.cpp:114
 msgid "Path required to be specified to another database file."
-msgstr ""
+msgstr "Caminho necessário para ser especificado em outro arquivo de banco de dados."
 
 #: dbwrapper.cpp:114
 msgid "Unable to open file"
@@ -2655,7 +2657,9 @@ msgstr "Não foi possível abrir o arquivo"
 msgid "An incorrect password was provided for an encrypted file,\n"
 "or\n"
 "an attempt was made to open a file that is not a database file."
-msgstr ""
+msgstr "Uma senha incorreta foi fornecida para um arquivo criptografado\n"
+"ou\n"
+"uma tentativa de abrir um arquivo que não é um de banco de dados."
 
 #: dbwrapper.cpp:122 import_export/qif_import_gui.cpp:1210 webapp.cpp:120
 #, c-format
@@ -3090,7 +3094,7 @@ msgstr "Excluir Relatório…"
 
 #: general_report_manager.cpp:833
 msgid "Sync Report…"
-msgstr ""
+msgstr "Sincronizar Relatório…"
 
 #: general_report_manager.cpp:873
 #, c-format
@@ -3104,7 +3108,7 @@ msgstr "Inserir um nome para o relatório"
 
 #: general_report_manager.cpp:966
 msgid "Pull Report Title:"
-msgstr ""
+msgstr "Puxar título do relatório:"
 
 #: general_report_manager.cpp:985
 msgid "Delete the Report Title:"
@@ -3190,7 +3194,7 @@ msgstr "Existem %1$d ícones faltando ou inválidos no tema escolhido '%2$s': %3
 #: images_list.cpp:505
 #, c-format
 msgid "Theme %s not found; it may no longer be supported. Reverting to the default theme."
-msgstr ""
+msgstr "Tema %s não encontrado, ele pode não ser mais suportado. Revertendo para o tema padrão."
 
 #: images_list.cpp:512
 #, c-format
@@ -3219,7 +3223,7 @@ msgstr "Por favor, selecione uma categoria existente"
 
 #: import_export/ofx_import_gui.cpp:347
 msgid "Please select an existing payee or enter a new payee name."
-msgstr ""
+msgstr "Por favor, selecione um favorecido existente ou insira um novo nome de favorecido."
 
 #: import_export/ofx_import_gui.cpp:383
 #, c-format
@@ -3228,7 +3232,7 @@ msgstr "Expressão regular inválida “%1$s” na linha %2$d: por favor, corrij
 
 #: import_export/ofx_import_gui.cpp:601
 msgid "Payee Confirmation Required"
-msgstr ""
+msgstr "Confirmação de Favorecido Necessária"
 
 #: import_export/ofx_import_gui.cpp:623
 #, c-format
@@ -3238,7 +3242,7 @@ msgstr "Transação %1$d de %2$d (%3$d total em arquivo)"
 #: import_export/ofx_import_gui.cpp:625
 #, c-format
 msgid "Estimated completion time: %.1f minutes"
-msgstr ""
+msgstr "Tempo de conclusão estimado: %.1f minutos"
 
 #: import_export/ofx_import_gui.cpp:625
 msgid "Estimating time…"
@@ -3266,21 +3270,21 @@ msgstr "Tipo: %s"
 
 #: import_export/ofx_import_gui.cpp:637
 msgid "Regex Pattern"
-msgstr ""
+msgstr "Padrão Regex"
 
 #: import_export/ofx_import_gui.cpp:648
 #, c-format
 msgid "Memo: %s"
-msgstr ""
+msgstr "Lembrete: %s"
 
 #: import_export/ofx_import_gui.cpp:651
 msgid "No matching payee found."
-msgstr ""
+msgstr "Nenhum favorecido correspondente encontrado."
 
 #: import_export/ofx_import_gui.cpp:652 import_export/ofx_import_gui.cpp:658
 #, c-format
 msgid "Match Confidence: %.1f%% (%s)"
-msgstr ""
+msgstr "Confiança de Correspondência: %.1f%% (%s)"
 
 #: import_export/ofx_import_gui.cpp:657
 #, c-format
@@ -3289,23 +3293,23 @@ msgstr "Beneficiário sugerido: “%s”"
 
 #: import_export/ofx_import_gui.cpp:680
 msgid "Do you want to use an existing payee or create a new one?"
-msgstr ""
+msgstr "Deseja usar um beneficiário existente ou criar um novo?"
 
 #: import_export/ofx_import_gui.cpp:682
 msgid "Use Existing Payee"
-msgstr ""
+msgstr "Usar Beneficiário Existente"
 
 #: import_export/ofx_import_gui.cpp:683
 msgid "Create New Payee"
-msgstr ""
+msgstr "Criar Novo Beneficiário"
 
 #: import_export/ofx_import_gui.cpp:690
 msgid "Select Existing Payee:"
-msgstr ""
+msgstr "Selecione o Beneficiário Existente:"
 
 #: import_export/ofx_import_gui.cpp:722
 msgid "New Payee Name:"
-msgstr ""
+msgstr "Nome do Novo Beneficiário:"
 
 #: import_export/ofx_import_gui.cpp:725
 msgid "Convert to Title Case"
@@ -3317,15 +3321,15 @@ msgstr "Sem categorias"
 
 #: import_export/ofx_import_gui.cpp:752
 msgid "Select Category for Payee:"
-msgstr ""
+msgstr "Selecione a Categoria para o Beneficiário:"
 
 #: import_export/ofx_import_gui.cpp:755
 msgid "Define/Update Regex Patterns"
-msgstr ""
+msgstr "Definir/Atualizar padrões de Regex"
 
 #: import_export/ofx_import_gui.cpp:758
 msgid "Edit Regex Patterns:"
-msgstr ""
+msgstr "Editar Padrões Regex:"
 
 #: import_export/ofx_import_gui.cpp:762
 msgid "Insert Row"
@@ -3353,7 +3357,7 @@ msgstr "Contas:"
 
 #: import_export/ofx_import_gui.cpp:913
 msgid "Use existing regex patterns to automatically match payees"
-msgstr ""
+msgstr "Usar padrões de expressão regular existentes para combinar automaticamente os beneficiários"
 
 #: import_export/ofx_import_gui.cpp:918
 msgid "Use fuzzy payee matching if exact match and regex matching are unsuccessful"
@@ -3378,32 +3382,32 @@ msgstr "Importar"
 
 #: import_export/ofx_import_gui.cpp:1025
 msgid "Choose OFX file"
-msgstr ""
+msgstr "Escolha o arquivo OFX"
 
 #: import_export/ofx_import_gui.cpp:1124
 msgid "No OFX file selected."
-msgstr ""
+msgstr "Nenhum arquivo OFX selecionado."
 
 #: import_export/ofx_import_gui.cpp:1131
 msgid "No account selected."
-msgstr ""
+msgstr "Nenhuma conta selecionada."
 
 #: import_export/ofx_import_gui.cpp:1138
 msgid "Invalid account selection."
-msgstr ""
+msgstr "Seleção de conta inválida."
 
 #: import_export/ofx_import_gui.cpp:1145
 msgid "Invalid account ID."
-msgstr ""
+msgstr "ID de conta inválido."
 
 #: import_export/ofx_import_gui.cpp:1153
 #, c-format
 msgid "Account ID %s does not exist."
-msgstr ""
+msgstr "ID da conta %s não existe."
 
 #: import_export/ofx_import_gui.cpp:1815
 msgid "OFX Import Summary"
-msgstr ""
+msgstr "Resumo de Importação OFX"
 
 #: import_export/ofx_import_gui.cpp:1829
 #, c-format
@@ -3422,27 +3426,27 @@ msgstr "Estatísticas da importação:\n"
 
 #: import_export/ofx_import_gui.cpp:1843
 msgid "FITID"
-msgstr ""
+msgstr "FITID"
 
 #: import_export/ofx_import_gui.cpp:1846
 msgid "OFX Payee"
-msgstr ""
+msgstr "Favorecido OFX"
 
 #: import_export/ofx_import_gui.cpp:1847
 msgid "Imported Payee"
-msgstr ""
+msgstr "Favorecido Importado"
 
 #: import_export/ofx_import_gui.cpp:1848
 msgid "Match Mode"
-msgstr ""
+msgstr "Modo de combinação"
 
 #: import_export/ofx_import_gui.cpp:1849
 msgid "Match Pattern/Confidence"
-msgstr ""
+msgstr "Corresponder Padrão/Confiança"
 
 #: import_export/ofx_import_gui.cpp:1851
 msgid "Transaction Type"
-msgstr ""
+msgstr "Tipo de Transação"
 
 #: import_export/ofx_import_gui.cpp:1974
 #, c-format
@@ -3461,7 +3465,7 @@ msgstr "%d segundos"
 
 #: import_export/ofx_import_gui.cpp:1990
 msgid "0 sec"
-msgstr ""
+msgstr "0 seg"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:2258
 #: mmSimpleDialogs.cpp:1004
@@ -4197,7 +4201,7 @@ msgstr "Digite o valor"
 
 #: import_export/univcsvdialog.cpp:2689
 msgid "Please, type the word indicating positive values in the CSV file, e.g., 'credit'."
-msgstr ""
+msgstr "Por favor, digite a palavra indicando valores positivos no arquivo CSV, por exemplo, 'crédito'."
 
 #: import_export/univcsvdialog.cpp:2699
 msgid "Amount sign must be defined by type when 'Type' is selected for import"
@@ -4292,7 +4296,7 @@ msgstr "Excluir histórico de valores de moeda para dias e moedas não utilizada
 
 #: maincurrencydialog.cpp:365
 msgid "Do you want to delete the selected currency?"
-msgstr ""
+msgstr "Deseja excluir a moeda selecionada?"
 
 #: maincurrencydialog.cpp:394
 msgid "Base Currency Selection"
@@ -4337,7 +4341,7 @@ msgstr "Nenhuma moeda selecionada!"
 
 #: maincurrencydialog.cpp:661
 msgid "Do you want to add dates without any details?"
-msgstr ""
+msgstr "Deseja adicionar datas sem quaisquer detalhes?"
 
 #: maincurrencydialog.cpp:688
 #, c-format
@@ -4355,7 +4359,7 @@ msgstr "Alterar a moeda base apagará todas as cotações históricas, continuar
 
 #: maincurrencydialog.cpp:810
 msgid "Do you want to update the currency rates?"
-msgstr ""
+msgstr "Deseja atualizar as taxas de câmbio?"
 
 #: maincurrencydialog.cpp:831
 #, c-format
@@ -4495,7 +4499,7 @@ msgstr "Recomendação: Faça um backup de seu arquivo .mmb regularmente."
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, ensure the .mmb database file is backed up before doing so."
-msgstr ""
+msgstr "Recomendação: Se estiver fazendo um upgrade para uma nova versão do MMEX, lembre-se de fazer um backup do seu arquivo .mmb antes efetuar a atualização."
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
