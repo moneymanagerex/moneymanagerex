@@ -73,8 +73,6 @@ public:
     static bool is_used(const Data* record);
     static bool is_used(const Data& record);
 
-    static int getUseCount(int64 id);
-
 public:
     static const wxString refTypeName;
 };

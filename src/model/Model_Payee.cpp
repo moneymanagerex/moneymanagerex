@@ -178,20 +178,3 @@ bool Model_Payee::is_used(const Data& record)
 {
     return is_used(&record);
 }
-
-int Model_Payee::getUseCount(int64 id) {
-    int count = 0;
-
-    const auto &trans = Model_Checking::instance().find(Model_Checking::PAYEEID(id));
-    if (!trans.empty()) {
-        for (const auto& txn : trans) {
-            if (txn.DELETEDTIME.IsEmpty()) {
-                count++;
-            }
-        }
-    }
-    const auto &bills = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(id));
-    count += size(bills);
-
-    return count;
-}

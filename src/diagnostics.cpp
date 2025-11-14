@@ -22,6 +22,10 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #include "paths.h"
 #include "diagnostics.h"
 #include "util.h"
+#include "model/Model_Account.h"
+#include "model/Model_Category.h"
+#include "model/Model_Checking.h"
+#include "model/Model_Payee.h"
 #include "model/Model_Setting.h"
 #include "reports/htmlbuilder.h"
 #include <wx/display.h>
@@ -102,9 +106,39 @@ void mmDiagnosticsDialog::RefreshView()
     html << "</b></p>";
 
     html << "<p>";
-    html << "#3222: Screen geometry";
+    html << "<h1>Database Info</h1>";
     html << "<br>";
-
+    html << "<table>";
+    // Accounts info
+    auto all_accounts = Model_Account::instance().all_accounts(false);
+    auto all_accounts_open = Model_Account::instance().all_accounts(true);
+    html << "<tr><td><b>Accounts</b></td><td>open: " << all_accounts_open.size() 
+         << ", closed: " << all_accounts.size() - all_accounts_open.size()
+         << "</td></tr>";
+    // Transactions info
+    auto all_transactions = Model_Checking::instance().all();
+    html << "<tr><td><b>Transactions</b></td><td>" << all_transactions.size() 
+         << "</td></tr>";
+    // Payee info
+    auto all_payees = Model_Payee::instance().all_payees(false);
+    auto all_payees_nothidden = Model_Payee::instance().all_payees(true);
+    html << "<tr><td><b>Payees</b></td><td>total: " << all_payees.size() 
+         << " (visible: " << all_payees_nothidden.size() 
+         << ", hidden: " << all_payees.size() - all_payees_nothidden.size() << ")"
+         << "</td></tr>";
+    // Category info
+    auto all_categories = Model_Category::instance().all_categories(false);
+    auto all_categories_nothidden = Model_Category::instance().all_categories(true);
+    html << "<tr><td><b>Categories</b></td><td>total: " << all_categories.size() 
+         << " (visible: " << all_categories_nothidden.size() 
+         << ", hidden: " << all_categories.size() - all_categories_nothidden.size() << ")"
+         << "</td></tr>";
+    html << "</table>";
+    html << "</p>";
+    
+    html << "<p>";  
+    html << "<h1>Screen geometry</h1>";
+    html << "<br>";
     // Saved dimensions
     int valX = Model_Setting::instance().getInt("ORIGINX", -1);
     int valY = Model_Setting::instance().getInt("ORIGINY", -1);
