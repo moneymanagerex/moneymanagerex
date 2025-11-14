@@ -428,7 +428,6 @@ void mmEditPayeeDialog::ResizeDialog()
 wxIMPLEMENT_DYNAMIC_CLASS(mmPayeeDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmPayeeDialog, wxDialog)
-EVT_BUTTON(wxID_CANCEL, mmPayeeDialog::OnCancel)
 EVT_BUTTON(wxID_OK, mmPayeeDialog::OnOk)
 EVT_BUTTON(wxID_APPLY, mmPayeeDialog::OnMagicButton)
 EVT_TOGGLEBUTTON(wxID_SELECTALL, mmPayeeDialog::OnShowHiddenToggle)
@@ -463,7 +462,6 @@ mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F2, MENU_EDIT_PAYEE),
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_INSERT, MENU_NEW_PAYEE),
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_DELETE, MENU_DELETE_PAYEE),
-        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_CONTROL_H, MENU_SHOW_HIDDEN)
     };
 
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
@@ -531,6 +529,15 @@ void mmPayeeDialog::Create(wxWindow* parent, const wxString &name)
 
     SetIcon(mmex::getProgramIcon());
 
+    // Calculate payee usage
+    for (const auto& txn : Model_Checking::instance().all()) {
+        if (txn.DELETEDTIME.IsEmpty()) {
+            m_payeeUsage[txn.PAYEEID]++;
+        }
+    }
+    for (const auto &bills : Model_Billsdeposits::instance().all()) {
+        m_payeeUsage[bills.PAYEEID]++;
+    }
     fillControls();
     mmSetSize(this);
     Centre();
@@ -582,11 +589,9 @@ void mmPayeeDialog::CreateControls()
 
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     tools_sizer->Add(buttons_sizer, wxSizerFlags(g_flagsV).Center());
-    wxButton* buttonOK = new wxButton(buttons_panel, wxID_OK, _t("&OK "));
-    wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
+    wxButton* btnClose = new wxButton(buttons_panel, wxID_OK, wxGetTranslation(g_CloseLabel));
 
-    buttons_sizer->Add(buttonOK, g_flagsH);
-    buttons_sizer->Add(btnCancel, g_flagsH);
+    buttons_sizer->Add(btnClose, g_flagsH);
 
     this->SetSizerAndFit(mainBoxSizer);
 }
@@ -643,7 +648,7 @@ void mmPayeeDialog::fillControls()
         RowData* rdata = new RowData;
         rdata->payeeId = payee.PAYEEID;
         rdata->active = payee.ACTIVE == 1;
-        rdata->count = Model_Payee::instance().getUseCount(payee.PAYEEID);
+        rdata->count = m_payeeUsage[payee.PAYEEID];
         m_rowData.push_back(rdata);
 
         payeeListBox_->InsertItem(item);
@@ -702,8 +707,12 @@ void mmPayeeDialog::OnListItemActivated(wxListEvent& WXUNUSED(event))
 
 void mmPayeeDialog::OnTextChanged(wxCommandEvent& event)
 {
-    m_maskStr = event.GetString().Prepend("*");
+    m_maskStr = event.GetString();
+    if (!m_maskStr.IsEmpty())
+        m_maskStr = m_maskStr.Lower().Prepend("*");
     fillControls();
+    m_maskTextCtrl->SetFocus();
+    m_maskTextCtrl->SetInsertionPointEnd();
 }
 
 void mmPayeeDialog::AddPayee()
@@ -993,11 +1002,6 @@ void mmPayeeDialog::OnShowHiddenToggle(wxCommandEvent& WXUNUSED(event))
     m_showHiddenPayees = m_tbShowAll->GetValue();
     Model_Setting::instance().setBool("SHOW_HIDDEN_PAYEES", m_showHiddenPayees);
     fillControls();
-}
-
-void mmPayeeDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
-{
-    EndModal(wxID_CANCEL);
 }
 
 void mmPayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))

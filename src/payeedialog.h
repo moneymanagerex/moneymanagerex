@@ -130,6 +130,7 @@ private:
     bool m_addActionRequested = false;
     bool m_showHiddenPayees = true;
     std::list<RowData*> m_selectedItems;
+    std::map<int64, int> m_payeeUsage;
 
     wxColour m_normalColor;
     wxColour m_hiddenColor;
@@ -152,7 +153,6 @@ private:
     void OnOrganizeAttachments();
     void OnPayeeRelocate();
     void FindSelectedPayees();
-    void OnCancel(wxCommandEvent& /*event*/);
     void OnOk(wxCommandEvent& /*event*/);
 
     void OnListItemActivated(wxListEvent& event);
