@@ -336,7 +336,7 @@ void mmTransDialog::dataToControls()
     cbToAccount_->Show(m_transfer);
     Layout();
 
-    bool has_split = !(m_local_splits.size() <= 1);
+    bool has_split = !m_local_splits.empty();
     if (!skip_category_init_)
     {
         bSplit_->UnsetToolTip();

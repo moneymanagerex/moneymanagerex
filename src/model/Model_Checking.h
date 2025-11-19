@@ -254,6 +254,8 @@ public:
     static bool is_transfer(const Data* r);
     static bool is_deposit(const wxString& r);
     static bool is_deposit(const Data* r);
+    static bool is_split(const Data* r);
+    static bool is_split(const Data& r);
     static void getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int64 accountID = -1);
     static void getEmptyData(Data &data, int64 accountID);
 

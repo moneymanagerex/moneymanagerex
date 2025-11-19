@@ -111,7 +111,7 @@ void mmReportCashFlow::getTransactions()
         bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(), trx.TOACCOUNTID) != m_account_id.end();
         if (!isAccountFound && !isToAccountFound)
             continue; // skip account
-        if (trx.CATEGID == -1) {
+        if (Model_Checking::is_split(trx)) {
             Model_Checking::Data *transaction = Model_Checking::instance().get(trx.TRANSID);
             for (const auto& split_item : Model_Checking::split(transaction)) {
                 trx.CATEGID = split_item.CATEGID;
@@ -162,7 +162,7 @@ void mmReportCashFlow::getTransactions()
             trx.TRANSCODE = entry.TRANSCODE;
             trx.TRANSAMOUNT = entry.TRANSAMOUNT;
             trx.TOTRANSAMOUNT = entry.TOTRANSAMOUNT;
-            if (entry.CATEGID == -1) {
+            if (!Model_Billsdeposits::split(entry).empty()) {
                 for (const auto& split_item : Model_Billsdeposits::split(entry)) {
                     trx.CATEGID = split_item.CATEGID;
                     trx.TRANSAMOUNT = split_item.SPLITTRANSAMOUNT;

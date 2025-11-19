@@ -250,6 +250,7 @@ Christoph Röcker
 Khaled Zoghbor
 Andrew Tomsa
 David Benjamin
+Jean-Michel Louiset
 
 ### 2024
 Renato
