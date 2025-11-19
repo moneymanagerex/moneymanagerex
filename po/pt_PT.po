@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-11-12 23:40+0000\n"
-"PO-Revision-Date: 2025-11-14 01:00\n"
+"POT-Creation-Date: 2025-11-14 16:33+0000\n"
+"PO-Revision-Date: 2025-11-16 23:25\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -56,9 +56,9 @@ msgstr "Ative para ajudar-nos ao enviar dados anónimos de utilização do MMEX.
 #: customfieldeditdialog.cpp:198 filtertransdialog.cpp:827
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:407
 #: mmSimpleDialogs.cpp:1089 optiondialog.cpp:163 payeedialog.cpp:161
-#: payeedialog.cpp:585 sharetransactiondialog.cpp:358
-#: splittransactionsdialog.cpp:104 splittransactionsdialog.cpp:282
-#: tagdialog.cpp:146 transactionsupdatedialog.cpp:281 wizard_update.cpp:215
+#: sharetransactiondialog.cpp:358 splittransactionsdialog.cpp:104
+#: splittransactionsdialog.cpp:282 tagdialog.cpp:146
+#: transactionsupdatedialog.cpp:281 wizard_update.cpp:215
 msgid "&OK "
 msgstr "&OK "
 
@@ -134,7 +134,7 @@ msgstr "Selecione caso esta conta seja utilizada frequentemente. Isto é usado p
 #: filtertransdialog.cpp:705 filtertransdialog.cpp:1969
 #: import_export/qif_export.cpp:635 import_export/qif_import_gui.cpp:97
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:110
-#: payeedialog.cpp:117 payeedialog.cpp:553 reports/transactions.cpp:230
+#: payeedialog.cpp:117 payeedialog.cpp:560 reports/transactions.cpp:230
 #: sharetransactiondialog.cpp:304 splittransactionsdialog.cpp:95
 #: splittransactionsdialog.cpp:352 stockdialog.cpp:263 stocks_list.cpp:80
 #: transactionsupdatedialog.cpp:256 transdialog.cpp:603
@@ -417,7 +417,7 @@ msgstr "Detalhes do Ativo"
 #: customfieldlistdialog.cpp:48 import_export/qif_import_gui.cpp:286
 #: import_export/qif_import_gui.cpp:299 import_export/qif_import_gui.cpp:309
 #: import_export/univcsvdialog.cpp:515 import_export/univcsvdialog.cpp:525
-#: maincurrencydialog.cpp:76 payeedialog.cpp:547 reports/summarystocks.cpp:112
+#: maincurrencydialog.cpp:76 payeedialog.cpp:554 reports/summarystocks.cpp:112
 msgid "Name"
 msgstr "Nome"
 
@@ -627,7 +627,7 @@ msgstr "Ver Transações de Ativo"
 
 #: assetspanel.cpp:474 attachmentdialog.cpp:354 billsdepositspanel.cpp:293
 #: categdialog.cpp:323 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
-#: mmcheckingpanel.cpp:280 payeedialog.cpp:929 stockspanel.cpp:159
+#: mmcheckingpanel.cpp:280 payeedialog.cpp:938 stockspanel.cpp:159
 #: tagdialog.cpp:132
 msgid "&Edit "
 msgstr "&Editar "
@@ -770,7 +770,7 @@ msgstr "Gestor de Anexos £ %1$s £ %2$s"
 msgid "Attachment Manager | New %s"
 msgstr "Gestor de Anexos | Novo %s"
 
-#: attachmentdialog.cpp:156 customfieldlistdialog.cpp:94 payeedialog.cpp:569
+#: attachmentdialog.cpp:156 customfieldlistdialog.cpp:94 payeedialog.cpp:576
 msgid "Other tools"
 msgstr "Outras Ferramentas"
 
@@ -804,7 +804,7 @@ msgstr "Confirmar Eliminação do Anexo"
 
 #: attachmentdialog.cpp:351 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:315 maincurrencydialog.cpp:539
-#: payeedialog.cpp:936 stockdialog.cpp:339 tagdialog.cpp:128
+#: payeedialog.cpp:945 stockdialog.cpp:339 tagdialog.cpp:128
 msgid "&Add "
 msgstr "&Adicionar "
 
@@ -814,7 +814,7 @@ msgstr "&Abrir "
 
 #: attachmentdialog.cpp:356 customfieldlistdialog.cpp:258
 #: import_export/univcsvdialog.cpp:319 maincurrencydialog.cpp:541
-#: payeedialog.cpp:934
+#: payeedialog.cpp:943
 msgid "&Remove "
 msgstr "&Remover "
 
@@ -1781,7 +1781,7 @@ msgstr "Apagar a categoria removerá também, automaticamente, as transações e
 #: customfieldeditdialog.cpp:260 filtertransdialog.cpp:1345
 #: import_export/univcsvdialog.cpp:2192 mmframe.cpp:1388 mmframe.cpp:2665
 #: mmframe.cpp:2732 mmframe.cpp:2750 model/Model_Billsdeposits.cpp:224
-#: payeedialog.cpp:760 tagdialog.cpp:304 transdialog.cpp:777
+#: payeedialog.cpp:769 tagdialog.cpp:304 transdialog.cpp:777
 #: transdialog.cpp:802
 msgid "Do you want to continue?"
 msgstr "Deseja continuar?"
@@ -1808,7 +1808,7 @@ msgid "Merge categories completed"
 msgstr "Fusão de categorias completa"
 
 #: categdialog.cpp:691 mmframe.cpp:4013 mmframe.cpp:4027 mmframe.cpp:4042
-#: payeedialog.cpp:846
+#: payeedialog.cpp:855
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Os registos foram atualizados na base de dados: %i"
@@ -2669,16 +2669,16 @@ msgstr "Erro: %s"
 msgid "Opening MMEX Database – Error"
 msgstr "Abrir a base de dados MMEX — Erro"
 
-#: diagnostics.cpp:51
+#: diagnostics.cpp:55
 msgid "Diagnostics"
 msgstr "Diagnósticos"
 
-#: diagnostics.cpp:88 relocatecategorydialog.cpp:134
+#: diagnostics.cpp:92 relocatecategorydialog.cpp:134
 #: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:135 themes.cpp:195
 msgid "&Close"
 msgstr "&Fechar"
 
-#: diagnostics.cpp:101
+#: diagnostics.cpp:105
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
 msgstr "Os programadores podem solicitar as informações aqui apresentadas para ajudar a diagnosticar problemas que possa reportar sobre o programa."
 
@@ -5522,7 +5522,7 @@ msgstr "Transferir cotações de Moeda e Ações"
 msgid "&Payee Manager…"
 msgstr "&Gestor de entidades…"
 
-#: mmframe.cpp:1957 mmframe.cpp:2198 payeedialog.cpp:521
+#: mmframe.cpp:1957 mmframe.cpp:2198 payeedialog.cpp:519
 msgid "Payee Manager"
 msgstr "Gerenciador de Beneficiários"
 
@@ -6179,11 +6179,11 @@ msgstr "Selecionar conta"
 msgid "Select new account type for %s"
 msgstr "Selecione o novo tipo de conta para %s"
 
-#: mmframe.cpp:4026 payeedialog.cpp:845
+#: mmframe.cpp:4026 payeedialog.cpp:854
 msgid "Merge payees completed"
 msgstr "Fusão de beneficiários concluída"
 
-#: mmframe.cpp:4030 payeedialog.cpp:849
+#: mmframe.cpp:4030 payeedialog.cpp:858
 msgid "Merge payees result"
 msgstr "Resultado da fusão de beneficiários"
 
@@ -7407,7 +7407,7 @@ msgstr "Editar Beneficiário"
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
 msgstr "Digite o nome do Beneficiário. Este nome pode ser alterado a qualquer momento."
 
-#: payeedialog.cpp:91 payeedialog.cpp:548
+#: payeedialog.cpp:91 payeedialog.cpp:555
 msgid "Hidden"
 msgstr "Oculto"
 
@@ -7415,11 +7415,11 @@ msgstr "Oculto"
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
 msgstr "Indique se o beneficiário deve ser ocultado e não apresentado na lista de beneficiários para novas transações"
 
-#: payeedialog.cpp:98 payeedialog.cpp:549
+#: payeedialog.cpp:98 payeedialog.cpp:556
 msgid "Default Category"
 msgstr "Categoria Padrão"
 
-#: payeedialog.cpp:98 payeedialog.cpp:549
+#: payeedialog.cpp:98 payeedialog.cpp:556
 msgid "Last Used Category"
 msgstr "Última Categoria Utilizada"
 
@@ -7427,7 +7427,7 @@ msgstr "Última Categoria Utilizada"
 msgid "The category used as default for this payee"
 msgstr "A categoria usada como padrão para este beneficiário"
 
-#: payeedialog.cpp:105 payeedialog.cpp:551
+#: payeedialog.cpp:105 payeedialog.cpp:558
 msgid "Reference"
 msgstr "Referência"
 
@@ -7435,7 +7435,7 @@ msgstr "Referência"
 msgid "A reference to be used for the payee, e.g. bank account number"
 msgstr "Uma referência a utilizar pelo beneficiário, por exemplo, número de conta bancária"
 
-#: payeedialog.cpp:111 payeedialog.cpp:552
+#: payeedialog.cpp:111 payeedialog.cpp:559
 msgid "Website"
 msgstr "Página Web"
 
@@ -7459,83 +7459,83 @@ msgstr "Digite qualquer sequência de caracteres que corresponda a este benefici
 msgid "A payee with this name already exists"
 msgstr "Já existe um beneficiário com este nome"
 
-#: payeedialog.cpp:554
+#: payeedialog.cpp:561
 msgid "Match Pattern"
 msgstr "Padrão de Correspondência"
 
-#: payeedialog.cpp:555
+#: payeedialog.cpp:562
 msgid "Used"
 msgstr ""
 
-#: payeedialog.cpp:572
+#: payeedialog.cpp:579
 msgid "Show &hidden"
 msgstr ""
 
-#: payeedialog.cpp:575
+#: payeedialog.cpp:582
 msgid "Show hidden payees"
 msgstr ""
 
-#: payeedialog.cpp:581
+#: payeedialog.cpp:588
 msgid "&Search"
 msgstr ""
 
-#: payeedialog.cpp:743
+#: payeedialog.cpp:752
 msgid "Payee in use."
 msgstr "Beneficiário em uso."
 
-#: payeedialog.cpp:748
+#: payeedialog.cpp:757
 msgid "It will be not removed"
 msgstr "Não será removido"
 
-#: payeedialog.cpp:750
+#: payeedialog.cpp:759
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
 msgstr "Sugestão: Transfira todas as transações deste beneficiário para outro usando o comando fundir:"
 
-#: payeedialog.cpp:752
+#: payeedialog.cpp:761
 msgid "Tools → Merge → Payees"
 msgstr "Ferramentas → Fundir → Beneficiários"
 
-#: payeedialog.cpp:753
+#: payeedialog.cpp:762
 msgid "Payee Manager: Delete Error"
 msgstr "Gerenciador de Favorecidos: Excluir erro"
 
-#: payeedialog.cpp:758
+#: payeedialog.cpp:767
 msgid "Deleted transactions exist which use this payee."
 msgstr "Existem transações eliminadas deste beneficiário."
 
-#: payeedialog.cpp:759
+#: payeedialog.cpp:768
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
 msgstr "Eliminar o beneficiário também apagará automaticamente as transações eliminadas associadas."
 
-#: payeedialog.cpp:761
+#: payeedialog.cpp:770
 msgid "Confirm Payee Deletion"
 msgstr "Confirmar Eliminação do Beneficiário"
 
-#: payeedialog.cpp:931
+#: payeedialog.cpp:940
 msgid "&Hide Selected"
 msgstr ""
 
-#: payeedialog.cpp:932
+#: payeedialog.cpp:941
 msgid "&Show Selected"
 msgstr ""
 
-#: payeedialog.cpp:938
+#: payeedialog.cpp:947
 msgid "Define &Category"
 msgstr "Definir &Categoria"
 
-#: payeedialog.cpp:939
+#: payeedialog.cpp:948
 msgid "Remove Categor&y"
 msgstr ""
 
-#: payeedialog.cpp:941
+#: payeedialog.cpp:950
 msgid "Attachment &Manager"
 msgstr ""
 
-#: payeedialog.cpp:943
+#: payeedialog.cpp:952
 msgid "Merge &Payee"
 msgstr "Mesclar beneficiários"
 
-#: payeedialog.cpp:944
+#: payeedialog.cpp:953
 msgid "&Transaction Report"
 msgstr ""
 

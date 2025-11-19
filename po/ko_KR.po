@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-11-12 23:40+0000\n"
-"PO-Revision-Date: 2025-11-14 01:00\n"
+"POT-Creation-Date: 2025-11-14 16:33+0000\n"
+"PO-Revision-Date: 2025-11-16 23:25\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -56,9 +56,9 @@ msgstr "MMEX 사용에 대한 데이터를 익명으로 보낼 수 있습니다.
 #: customfieldeditdialog.cpp:198 filtertransdialog.cpp:827
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:407
 #: mmSimpleDialogs.cpp:1089 optiondialog.cpp:163 payeedialog.cpp:161
-#: payeedialog.cpp:585 sharetransactiondialog.cpp:358
-#: splittransactionsdialog.cpp:104 splittransactionsdialog.cpp:282
-#: tagdialog.cpp:146 transactionsupdatedialog.cpp:281 wizard_update.cpp:215
+#: sharetransactiondialog.cpp:358 splittransactionsdialog.cpp:104
+#: splittransactionsdialog.cpp:282 tagdialog.cpp:146
+#: transactionsupdatedialog.cpp:281 wizard_update.cpp:215
 msgid "&OK "
 msgstr "확인(&O) "
 
@@ -134,7 +134,7 @@ msgstr "자주 사용하는 계정인지 선택하세요. 이것은 계정 표�
 #: filtertransdialog.cpp:705 filtertransdialog.cpp:1969
 #: import_export/qif_export.cpp:635 import_export/qif_import_gui.cpp:97
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:110
-#: payeedialog.cpp:117 payeedialog.cpp:553 reports/transactions.cpp:230
+#: payeedialog.cpp:117 payeedialog.cpp:560 reports/transactions.cpp:230
 #: sharetransactiondialog.cpp:304 splittransactionsdialog.cpp:95
 #: splittransactionsdialog.cpp:352 stockdialog.cpp:263 stocks_list.cpp:80
 #: transactionsupdatedialog.cpp:256 transdialog.cpp:603
@@ -417,7 +417,7 @@ msgstr "자산 세부정보"
 #: customfieldlistdialog.cpp:48 import_export/qif_import_gui.cpp:286
 #: import_export/qif_import_gui.cpp:299 import_export/qif_import_gui.cpp:309
 #: import_export/univcsvdialog.cpp:515 import_export/univcsvdialog.cpp:525
-#: maincurrencydialog.cpp:76 payeedialog.cpp:547 reports/summarystocks.cpp:112
+#: maincurrencydialog.cpp:76 payeedialog.cpp:554 reports/summarystocks.cpp:112
 msgid "Name"
 msgstr "이름"
 
@@ -627,7 +627,7 @@ msgstr "자산 거래 보기"
 
 #: assetspanel.cpp:474 attachmentdialog.cpp:354 billsdepositspanel.cpp:293
 #: categdialog.cpp:323 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
-#: mmcheckingpanel.cpp:280 payeedialog.cpp:929 stockspanel.cpp:159
+#: mmcheckingpanel.cpp:280 payeedialog.cpp:938 stockspanel.cpp:159
 #: tagdialog.cpp:132
 msgid "&Edit "
 msgstr "편집(&E) "
@@ -770,7 +770,7 @@ msgstr "첨부 관리자 | %1$s | %2$s"
 msgid "Attachment Manager | New %s"
 msgstr "첨부 관리자 | 새 %s"
 
-#: attachmentdialog.cpp:156 customfieldlistdialog.cpp:94 payeedialog.cpp:569
+#: attachmentdialog.cpp:156 customfieldlistdialog.cpp:94 payeedialog.cpp:576
 msgid "Other tools"
 msgstr "기타 도구"
 
@@ -804,7 +804,7 @@ msgstr "첨부 파일 삭제 확인"
 
 #: attachmentdialog.cpp:351 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:315 maincurrencydialog.cpp:539
-#: payeedialog.cpp:936 stockdialog.cpp:339 tagdialog.cpp:128
+#: payeedialog.cpp:945 stockdialog.cpp:339 tagdialog.cpp:128
 msgid "&Add "
 msgstr "추가(&A)"
 
@@ -814,7 +814,7 @@ msgstr "열기(&O)"
 
 #: attachmentdialog.cpp:356 customfieldlistdialog.cpp:258
 #: import_export/univcsvdialog.cpp:319 maincurrencydialog.cpp:541
-#: payeedialog.cpp:934
+#: payeedialog.cpp:943
 msgid "&Remove "
 msgstr "제거(&R)"
 
@@ -1775,7 +1775,7 @@ msgstr "범주를 삭제하면 삭제된 거래도 자동으로 제거됩니다.
 #: customfieldeditdialog.cpp:260 filtertransdialog.cpp:1345
 #: import_export/univcsvdialog.cpp:2192 mmframe.cpp:1388 mmframe.cpp:2665
 #: mmframe.cpp:2732 mmframe.cpp:2750 model/Model_Billsdeposits.cpp:224
-#: payeedialog.cpp:760 tagdialog.cpp:304 transdialog.cpp:777
+#: payeedialog.cpp:769 tagdialog.cpp:304 transdialog.cpp:777
 #: transdialog.cpp:802
 msgid "Do you want to continue?"
 msgstr "계속하시겠습니까?"
@@ -1802,7 +1802,7 @@ msgid "Merge categories completed"
 msgstr "범주 병합 완료"
 
 #: categdialog.cpp:691 mmframe.cpp:4013 mmframe.cpp:4027 mmframe.cpp:4042
-#: payeedialog.cpp:846
+#: payeedialog.cpp:855
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "데이터베이스에서 레코드가 업데이트되었습니다: %i"
@@ -2663,16 +2663,16 @@ msgstr "오류: %s"
 msgid "Opening MMEX Database – Error"
 msgstr "MMEX 데이터베이스 열기 – 오류"
 
-#: diagnostics.cpp:51
+#: diagnostics.cpp:55
 msgid "Diagnostics"
 msgstr "진단"
 
-#: diagnostics.cpp:88 relocatecategorydialog.cpp:134
+#: diagnostics.cpp:92 relocatecategorydialog.cpp:134
 #: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:135 themes.cpp:195
 msgid "&Close"
 msgstr "닫기(&C) "
 
-#: diagnostics.cpp:101
+#: diagnostics.cpp:105
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
 msgstr "개발자는 프로그램에서 보고할 수 있는 문제를 진단하기 위해 여기에 제시된 정보를 제공하도록 요청할 수 있습니다."
 
@@ -5513,7 +5513,7 @@ msgstr "통화 및 주가 내려받기"
 msgid "&Payee Manager…"
 msgstr "거래처 관리자(&P)…"
 
-#: mmframe.cpp:1957 mmframe.cpp:2198 payeedialog.cpp:521
+#: mmframe.cpp:1957 mmframe.cpp:2198 payeedialog.cpp:519
 msgid "Payee Manager"
 msgstr "거래처 관리자"
 
@@ -6169,11 +6169,11 @@ msgstr "계정 선택"
 msgid "Select new account type for %s"
 msgstr "%s의 새 계정 유형을 선택"
 
-#: mmframe.cpp:4026 payeedialog.cpp:845
+#: mmframe.cpp:4026 payeedialog.cpp:854
 msgid "Merge payees completed"
 msgstr "거래처 병합 완료"
 
-#: mmframe.cpp:4030 payeedialog.cpp:849
+#: mmframe.cpp:4030 payeedialog.cpp:858
 msgid "Merge payees result"
 msgstr "거래처 병합 결과"
 
@@ -7399,7 +7399,7 @@ msgstr "거래처 편집"
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
 msgstr "거래처 이름을 입력합니다. 이 이름은 언제든지 변경할 수 있습니다."
 
-#: payeedialog.cpp:91 payeedialog.cpp:548
+#: payeedialog.cpp:91 payeedialog.cpp:555
 msgid "Hidden"
 msgstr "숨김"
 
@@ -7407,11 +7407,11 @@ msgstr "숨김"
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
 msgstr "거래처가 새 거래의 거래처 목록에 표시되지 않고 숨겨야 하는지 여부를 나타냅니다"
 
-#: payeedialog.cpp:98 payeedialog.cpp:549
+#: payeedialog.cpp:98 payeedialog.cpp:556
 msgid "Default Category"
 msgstr "기본 범주"
 
-#: payeedialog.cpp:98 payeedialog.cpp:549
+#: payeedialog.cpp:98 payeedialog.cpp:556
 msgid "Last Used Category"
 msgstr "마지막으로 사용한 범주"
 
@@ -7419,7 +7419,7 @@ msgstr "마지막으로 사용한 범주"
 msgid "The category used as default for this payee"
 msgstr "이 거래처에 기본값으로 사용할 범주"
 
-#: payeedialog.cpp:105 payeedialog.cpp:551
+#: payeedialog.cpp:105 payeedialog.cpp:558
 msgid "Reference"
 msgstr "참조"
 
@@ -7427,7 +7427,7 @@ msgstr "참조"
 msgid "A reference to be used for the payee, e.g. bank account number"
 msgstr "거래처에 사용할 참조(예: 은행 계좌 번호)"
 
-#: payeedialog.cpp:111 payeedialog.cpp:552
+#: payeedialog.cpp:111 payeedialog.cpp:559
 msgid "Website"
 msgstr "웹사이트"
 
@@ -7451,83 +7451,83 @@ msgstr "가져올 때 이 거래처와 일치하는 문자열을 입력합니다
 msgid "A payee with this name already exists"
 msgstr "같은 이름의 거래처가 이미 있습니다"
 
-#: payeedialog.cpp:554
+#: payeedialog.cpp:561
 msgid "Match Pattern"
 msgstr "패턴 일치"
 
-#: payeedialog.cpp:555
+#: payeedialog.cpp:562
 msgid "Used"
 msgstr "사용됨"
 
-#: payeedialog.cpp:572
+#: payeedialog.cpp:579
 msgid "Show &hidden"
 msgstr "숨김 항목 보이기(&H)"
 
-#: payeedialog.cpp:575
+#: payeedialog.cpp:582
 msgid "Show hidden payees"
 msgstr "숨겨진 거래처 보이기"
 
-#: payeedialog.cpp:581
+#: payeedialog.cpp:588
 msgid "&Search"
 msgstr "찾기(&S)"
 
-#: payeedialog.cpp:743
+#: payeedialog.cpp:752
 msgid "Payee in use."
 msgstr "사용 중인 거래처입니다."
 
-#: payeedialog.cpp:748
+#: payeedialog.cpp:757
 msgid "It will be not removed"
 msgstr "제거되지 않습니다"
 
-#: payeedialog.cpp:750
+#: payeedialog.cpp:759
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
 msgstr "팁: 병합 명령을 사용하여 이 거래처를 사용하는 모든 거래를 다른 거래처로 변경하세요:"
 
-#: payeedialog.cpp:752
+#: payeedialog.cpp:761
 msgid "Tools → Merge → Payees"
 msgstr "도구 → 병합 → 거래처"
 
-#: payeedialog.cpp:753
+#: payeedialog.cpp:762
 msgid "Payee Manager: Delete Error"
 msgstr "거래처 관리자: 삭제 오류"
 
-#: payeedialog.cpp:758
+#: payeedialog.cpp:767
 msgid "Deleted transactions exist which use this payee."
 msgstr "이 거래처를 사용하는 삭제된 거래가 있습니다."
 
-#: payeedialog.cpp:759
+#: payeedialog.cpp:768
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
 msgstr "거래처를 삭제하면 삭제된 거래에서도 자동으로 제거됩니다."
 
-#: payeedialog.cpp:761
+#: payeedialog.cpp:770
 msgid "Confirm Payee Deletion"
 msgstr "거래처 삭제 확인"
 
-#: payeedialog.cpp:931
+#: payeedialog.cpp:940
 msgid "&Hide Selected"
 msgstr "선택된 항목 숨기기(&H)"
 
-#: payeedialog.cpp:932
+#: payeedialog.cpp:941
 msgid "&Show Selected"
 msgstr "선택된 항목 보이기(&S)"
 
-#: payeedialog.cpp:938
+#: payeedialog.cpp:947
 msgid "Define &Category"
 msgstr "범주 정의(&C)"
 
-#: payeedialog.cpp:939
+#: payeedialog.cpp:948
 msgid "Remove Categor&y"
 msgstr "범주 제거(&Y)"
 
-#: payeedialog.cpp:941
+#: payeedialog.cpp:950
 msgid "Attachment &Manager"
 msgstr "첨부 관리자(&M)"
 
-#: payeedialog.cpp:943
+#: payeedialog.cpp:952
 msgid "Merge &Payee"
 msgstr "거래처 병합(&P)"
 
-#: payeedialog.cpp:944
+#: payeedialog.cpp:953
 msgid "&Transaction Report"
 msgstr "거래 보고서(&T)"
 
