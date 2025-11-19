@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-11-12 23:40+0000\n"
-"PO-Revision-Date: 2025-11-14 01:01\n"
+"POT-Creation-Date: 2025-11-14 16:33+0000\n"
+"PO-Revision-Date: 2025-11-16 23:25\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "Language: tr_TR\n"
@@ -56,9 +56,9 @@ msgstr "MMEX kullanımı hakkında genel veriler göndererek bize yardımcı olu
 #: customfieldeditdialog.cpp:198 filtertransdialog.cpp:827
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:407
 #: mmSimpleDialogs.cpp:1089 optiondialog.cpp:163 payeedialog.cpp:161
-#: payeedialog.cpp:585 sharetransactiondialog.cpp:358
-#: splittransactionsdialog.cpp:104 splittransactionsdialog.cpp:282
-#: tagdialog.cpp:146 transactionsupdatedialog.cpp:281 wizard_update.cpp:215
+#: sharetransactiondialog.cpp:358 splittransactionsdialog.cpp:104
+#: splittransactionsdialog.cpp:282 tagdialog.cpp:146
+#: transactionsupdatedialog.cpp:281 wizard_update.cpp:215
 msgid "&OK "
 msgstr "&TMM "
 
@@ -134,7 +134,7 @@ msgstr "Eğer sık kullandığınız bir hesap ise seçiniz. Bu seçim görünt�
 #: filtertransdialog.cpp:705 filtertransdialog.cpp:1969
 #: import_export/qif_export.cpp:635 import_export/qif_import_gui.cpp:97
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:110
-#: payeedialog.cpp:117 payeedialog.cpp:553 reports/transactions.cpp:230
+#: payeedialog.cpp:117 payeedialog.cpp:560 reports/transactions.cpp:230
 #: sharetransactiondialog.cpp:304 splittransactionsdialog.cpp:95
 #: splittransactionsdialog.cpp:352 stockdialog.cpp:263 stocks_list.cpp:80
 #: transactionsupdatedialog.cpp:256 transdialog.cpp:603
@@ -417,7 +417,7 @@ msgstr "Varlık Detayları"
 #: customfieldlistdialog.cpp:48 import_export/qif_import_gui.cpp:286
 #: import_export/qif_import_gui.cpp:299 import_export/qif_import_gui.cpp:309
 #: import_export/univcsvdialog.cpp:515 import_export/univcsvdialog.cpp:525
-#: maincurrencydialog.cpp:76 payeedialog.cpp:547 reports/summarystocks.cpp:112
+#: maincurrencydialog.cpp:76 payeedialog.cpp:554 reports/summarystocks.cpp:112
 msgid "Name"
 msgstr "Ad"
 
@@ -627,7 +627,7 @@ msgstr "Varlık İşlemlerini Göster"
 
 #: assetspanel.cpp:474 attachmentdialog.cpp:354 billsdepositspanel.cpp:293
 #: categdialog.cpp:323 customfieldlistdialog.cpp:257 maincurrencydialog.cpp:540
-#: mmcheckingpanel.cpp:280 payeedialog.cpp:929 stockspanel.cpp:159
+#: mmcheckingpanel.cpp:280 payeedialog.cpp:938 stockspanel.cpp:159
 #: tagdialog.cpp:132
 msgid "&Edit "
 msgstr "Düz&enle"
@@ -770,7 +770,7 @@ msgstr "Ek Yöneticisi | %1$s | %2$s"
 msgid "Attachment Manager | New %s"
 msgstr "Ek Yöneticisi | Yeni %s"
 
-#: attachmentdialog.cpp:156 customfieldlistdialog.cpp:94 payeedialog.cpp:569
+#: attachmentdialog.cpp:156 customfieldlistdialog.cpp:94 payeedialog.cpp:576
 msgid "Other tools"
 msgstr "Diğer araçlar"
 
@@ -804,7 +804,7 @@ msgstr "İlişik Silme Onayı"
 
 #: attachmentdialog.cpp:351 customfieldlistdialog.cpp:255
 #: import_export/univcsvdialog.cpp:315 maincurrencydialog.cpp:539
-#: payeedialog.cpp:936 stockdialog.cpp:339 tagdialog.cpp:128
+#: payeedialog.cpp:945 stockdialog.cpp:339 tagdialog.cpp:128
 msgid "&Add "
 msgstr "&Ekle"
 
@@ -814,7 +814,7 @@ msgstr "&Aç"
 
 #: attachmentdialog.cpp:356 customfieldlistdialog.cpp:258
 #: import_export/univcsvdialog.cpp:319 maincurrencydialog.cpp:541
-#: payeedialog.cpp:934
+#: payeedialog.cpp:943
 msgid "&Remove "
 msgstr "&Kaldır"
 
@@ -1778,7 +1778,7 @@ msgstr "Kategoriyi silmek, ilişkili silinmiş işlemleri de otomatik olarak tem
 #: customfieldeditdialog.cpp:260 filtertransdialog.cpp:1345
 #: import_export/univcsvdialog.cpp:2192 mmframe.cpp:1388 mmframe.cpp:2665
 #: mmframe.cpp:2732 mmframe.cpp:2750 model/Model_Billsdeposits.cpp:224
-#: payeedialog.cpp:760 tagdialog.cpp:304 transdialog.cpp:777
+#: payeedialog.cpp:769 tagdialog.cpp:304 transdialog.cpp:777
 #: transdialog.cpp:802
 msgid "Do you want to continue?"
 msgstr "Devam etmek istiyor musunuz?"
@@ -1805,7 +1805,7 @@ msgid "Merge categories completed"
 msgstr "Kategorileri birleştirme tamamlandı"
 
 #: categdialog.cpp:691 mmframe.cpp:4013 mmframe.cpp:4027 mmframe.cpp:4042
-#: payeedialog.cpp:846
+#: payeedialog.cpp:855
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Veritabanındaki güncellenen kayıtlar: %i"
@@ -2662,16 +2662,16 @@ msgstr "Hata: %s"
 msgid "Opening MMEX Database – Error"
 msgstr ""
 
-#: diagnostics.cpp:51
+#: diagnostics.cpp:55
 msgid "Diagnostics"
 msgstr "Teşhis"
 
-#: diagnostics.cpp:88 relocatecategorydialog.cpp:134
+#: diagnostics.cpp:92 relocatecategorydialog.cpp:134
 #: relocatepayeedialog.cpp:132 relocatetagdialog.cpp:135 themes.cpp:195
 msgid "&Close"
 msgstr "&Kapat"
 
-#: diagnostics.cpp:101
+#: diagnostics.cpp:105
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
 msgstr "Geliştiriciler, programla bildirebileceğiniz sorunları teşhis etmenize yardımcı olmak için burada sunulan bilgileri sağlamanızı isteyebilir."
 
@@ -5515,7 +5515,7 @@ msgstr "Para Birimi ve Hisse Senedi Oranlarını indir"
 msgid "&Payee Manager…"
 msgstr "&Alacaklı Yöneticisi…"
 
-#: mmframe.cpp:1957 mmframe.cpp:2198 payeedialog.cpp:521
+#: mmframe.cpp:1957 mmframe.cpp:2198 payeedialog.cpp:519
 msgid "Payee Manager"
 msgstr "Alacaklı Yöneticisi"
 
@@ -6171,11 +6171,11 @@ msgstr "Hesap seçin"
 msgid "Select new account type for %s"
 msgstr "%s için yeni hesap türünü seçin"
 
-#: mmframe.cpp:4026 payeedialog.cpp:845
+#: mmframe.cpp:4026 payeedialog.cpp:854
 msgid "Merge payees completed"
 msgstr "Alacaklıları birleştirme işlemi tamamlandı"
 
-#: mmframe.cpp:4030 payeedialog.cpp:849
+#: mmframe.cpp:4030 payeedialog.cpp:858
 msgid "Merge payees result"
 msgstr "Alacakları birleştirme sonucu"
 
@@ -7397,7 +7397,7 @@ msgstr "Alacaklı Düzenle"
 msgid "Enter the Name of the Payee. This name can be renamed at any time."
 msgstr "Alacaklının adını girin. Bu ad herhangi bir zamanda değiştirilebilir."
 
-#: payeedialog.cpp:91 payeedialog.cpp:548
+#: payeedialog.cpp:91 payeedialog.cpp:555
 msgid "Hidden"
 msgstr "Gizli"
 
@@ -7405,11 +7405,11 @@ msgstr "Gizli"
 msgid "Indicate whether the payee should hidden and not presented in the payee list for new transactions"
 msgstr "Alacaklının gizlenmesi ve yeni işlemler için alacaklı listesinde sunulmaması gerekip gerekmediğini belirtin"
 
-#: payeedialog.cpp:98 payeedialog.cpp:549
+#: payeedialog.cpp:98 payeedialog.cpp:556
 msgid "Default Category"
 msgstr "Varsayılan Kategori"
 
-#: payeedialog.cpp:98 payeedialog.cpp:549
+#: payeedialog.cpp:98 payeedialog.cpp:556
 msgid "Last Used Category"
 msgstr "Son Kullanılan Kategori"
 
@@ -7417,7 +7417,7 @@ msgstr "Son Kullanılan Kategori"
 msgid "The category used as default for this payee"
 msgstr "Bu alacaklı için varsayılan olarak kullanılan kategori"
 
-#: payeedialog.cpp:105 payeedialog.cpp:551
+#: payeedialog.cpp:105 payeedialog.cpp:558
 msgid "Reference"
 msgstr "Referans"
 
@@ -7425,7 +7425,7 @@ msgstr "Referans"
 msgid "A reference to be used for the payee, e.g. bank account number"
 msgstr "Alacaklı için kullanılacak bir referans, örneğin banka hesap numarası"
 
-#: payeedialog.cpp:111 payeedialog.cpp:552
+#: payeedialog.cpp:111 payeedialog.cpp:559
 msgid "Website"
 msgstr "İnternet Sitesi"
 
@@ -7449,83 +7449,83 @@ msgstr "İçe aktarmada bu alacaklı ile eşleşecek herhangi bir dize girin.\n"
 msgid "A payee with this name already exists"
 msgstr "Bu ada sahip bir alacaklı zaten var"
 
-#: payeedialog.cpp:554
+#: payeedialog.cpp:561
 msgid "Match Pattern"
 msgstr "Desen Eşleştir"
 
-#: payeedialog.cpp:555
+#: payeedialog.cpp:562
 msgid "Used"
 msgstr ""
 
-#: payeedialog.cpp:572
+#: payeedialog.cpp:579
 msgid "Show &hidden"
 msgstr ""
 
-#: payeedialog.cpp:575
+#: payeedialog.cpp:582
 msgid "Show hidden payees"
 msgstr ""
 
-#: payeedialog.cpp:581
+#: payeedialog.cpp:588
 msgid "&Search"
 msgstr ""
 
-#: payeedialog.cpp:743
+#: payeedialog.cpp:752
 msgid "Payee in use."
 msgstr "Alacaklı kullanımda."
 
-#: payeedialog.cpp:748
+#: payeedialog.cpp:757
 msgid "It will be not removed"
 msgstr "Kaldırılmayacak"
 
-#: payeedialog.cpp:750
+#: payeedialog.cpp:759
 msgid "Tip: Change all transactions using this Payee to another Payee using the merge command:"
 msgstr "İpucu: Birleştirme komutunu kullanarak bu Alacaklı kullanan tüm işlemleri başka bir Alacaklı ile değiştirin:"
 
-#: payeedialog.cpp:752
+#: payeedialog.cpp:761
 msgid "Tools → Merge → Payees"
 msgstr "Araçlar → Birleştir → Alacaklılar"
 
-#: payeedialog.cpp:753
+#: payeedialog.cpp:762
 msgid "Payee Manager: Delete Error"
 msgstr "Alacaklı Yöneticisi: Sil hatası"
 
-#: payeedialog.cpp:758
+#: payeedialog.cpp:767
 msgid "Deleted transactions exist which use this payee."
 msgstr "Bu alacaklıyı kullanan silinmiş işlemler mevcut."
 
-#: payeedialog.cpp:759
+#: payeedialog.cpp:768
 msgid "Deleting the payee will also automatically purge the associated deleted transactions."
 msgstr "Alacaklının silinmesi, ilgili silinen işlemlerin de otomatik olarak temizlenmesine neden olur."
 
-#: payeedialog.cpp:761
+#: payeedialog.cpp:770
 msgid "Confirm Payee Deletion"
 msgstr "Alacaklı Silme İşlemini Onayla"
 
-#: payeedialog.cpp:931
+#: payeedialog.cpp:940
 msgid "&Hide Selected"
 msgstr ""
 
-#: payeedialog.cpp:932
+#: payeedialog.cpp:941
 msgid "&Show Selected"
 msgstr ""
 
-#: payeedialog.cpp:938
+#: payeedialog.cpp:947
 msgid "Define &Category"
 msgstr "&Kategori tanımla"
 
-#: payeedialog.cpp:939
+#: payeedialog.cpp:948
 msgid "Remove Categor&y"
 msgstr ""
 
-#: payeedialog.cpp:941
+#: payeedialog.cpp:950
 msgid "Attachment &Manager"
 msgstr ""
 
-#: payeedialog.cpp:943
+#: payeedialog.cpp:952
 msgid "Merge &Payee"
 msgstr "Alacaklı &Birleştir"
 
-#: payeedialog.cpp:944
+#: payeedialog.cpp:953
 msgid "&Transaction Report"
 msgstr ""
 
