@@ -713,7 +713,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
     {
         // Only for new/duplicate transactions: if user want to autofill last category used for payee.
         // If this is a Split Transaction, ignore displaying last category for payee
-        if (payee->CATEGID != -1 && m_bill_data.local_splits.empty()
+        if (m_bill_data.local_splits.empty()
             && (Option::instance().getTransCategoryNone() == Option::LASTUSED ||
                 Option::instance().getTransCategoryNone() == Option::DEFAULT)
             && (!Model_Category::is_hidden(payee->CATEGID) && !Model_Category::is_hidden(payee->CATEGID)))
@@ -1403,7 +1403,7 @@ void mmBDDialog::OnsetPrevOrNextRepeatDate(wxCommandEvent& event)
 
 void mmBDDialog::activateSplitTransactionsDlg()
 {
-    if (m_bill_data.CATEGID > -1 && m_bill_data.local_splits.empty())
+    if (m_bill_data.local_splits.empty())
     {
         if (!textAmount_->GetDouble(m_bill_data.TRANSAMOUNT))
         {

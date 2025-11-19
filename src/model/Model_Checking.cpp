@@ -302,6 +302,21 @@ bool Model_Checking::is_deposit(const Data* r)
     return is_deposit(r->TRANSCODE);
 }
 
+bool Model_Checking::is_split(const Data* r)
+{
+    if (split(r).empty())
+        return false;
+    else
+        return true;
+
+}
+
+bool Model_Checking::is_split(const Data& r)
+{
+    return is_split(&r);
+
+}
+
 Model_Checking::Full_Data::Full_Data() :
     Data(0), TAGNAMES(""),
     ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),

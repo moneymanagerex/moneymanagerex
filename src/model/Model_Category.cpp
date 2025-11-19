@@ -326,7 +326,7 @@ void Model_Category::getCategoryStats(
 
         int64 categID = transaction.CATEGID;
 
-        if (categID > -1)
+        if (splits[transaction.id()].empty())
         {
             if (Model_Checking::type_id(transaction) != Model_Checking::TYPE_ID_TRANSFER)
             {
