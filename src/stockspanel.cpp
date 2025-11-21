@@ -77,6 +77,7 @@ bool mmStocksPanel::Create(wxWindow *parent
 
     this->windowsFreezeThaw();
     Model_Usage::instance().pageview(this);
+    mmThemeAutoColour(this, true);
     return true;
 }
 
@@ -121,9 +122,9 @@ void mmStocksPanel::CreateControls()
     itemBoxSizerVHeader->Add(header_total_, 1, wxALL, 1);
 
     /* ---------------------- */
-    wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow(this
+    mmSplitterWindow* itemSplitterWindow10 = new mmSplitterWindow(this
         , wxID_ANY, wxDefaultPosition, wxSize(200, 200)
-        , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
+        , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER, mmThemeMetaColour(meta::COLOR_LISTPANEL));
 
     m_lc = new StocksListCtrl(this, itemSplitterWindow10, wxID_ANY);
 

@@ -1241,6 +1241,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     popupWindow_ = new mmTagCtrlPopupWindow(this, btn_dropdown_);
     wxScrolledWindow* scrolledWindow = new wxScrolledWindow(popupWindow_);
     tagCheckListBox_ = new wxCheckListBox(scrolledWindow, wxID_ANY, wxDefaultPosition, wxDefaultSize, {}, wxLB_SORT);
+    mmThemeAutoColour(scrolledWindow, true);
     tagCheckListBox_->SetFont(GetFont());
     tagCheckListBox_->Bind(wxEVT_CHECKLISTBOX, &mmTagTextCtrl::OnPopupCheckboxSelected, this);
 
@@ -1256,6 +1257,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     Layout();
     btn_dropdown_->Refresh();
     btn_dropdown_->Update();
+    mmThemeAutoColour(this, true);
 }
 
 void mmTagTextCtrl::createDropButton(wxSize btnSize)
@@ -1857,4 +1859,25 @@ void mmTagTextCtrl::SetTags(const wxArrayInt64& tagIds)
         tagString.Append(tag.first + " ");
 
     textCtrl_->SetText(tagString);
+}
+
+mmSplitterWindow::mmSplitterWindow(wxWindow* parent
+    , wxWindowID id
+    , const wxPoint& pos
+    , const wxSize& size
+    , long style
+    , const wxColour& colour)
+    : wxSplitterWindow(parent, id, pos, size, style), m_colour(colour)
+{
+}
+
+void mmSplitterWindow::DrawSash(wxDC& dc)
+{
+    dc.SetBrush(m_colour);
+    dc.SetPen(*wxTRANSPARENT_PEN);
+
+    if (GetSplitMode() == wxSPLIT_HORIZONTAL)
+        dc.DrawRectangle(0, GetSashPosition(), GetSize().GetWidth(), GetSashSize());
+    else
+        dc.DrawRectangle(GetSashPosition(), 0, GetSashSize(), GetSize().GetHeight());
 }

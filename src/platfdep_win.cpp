@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 //----------------------------------------------------------------------------
 #include "platfdep.h"
+#include "option.h"
 #include <wx/stdpaths.h>
 #include <wx/filename.h>
 #include <wx/settings.h>
@@ -74,4 +75,8 @@ const wxFileName mmex::GetResourceDir()
 }
 //-----------------------------------------------------------------------------
 
-bool mmex::isDarkMode() { return wxSystemSettings::GetAppearance().AreAppsDark(); }
+bool mmex::isDarkMode()
+{
+    return (Option::instance().getThemeMode() == Option::THEME_MODE::DARK
+        || (Option::instance().getThemeMode() == Option::THEME_MODE::AUTO && wxSystemSettings::GetAppearance().AreAppsDark()));
+}   

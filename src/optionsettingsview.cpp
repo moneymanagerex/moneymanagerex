@@ -98,21 +98,21 @@ void OptionSettingsView::Create()
 
     viewSizer->AddSpacer(10);
 
-    m_doNotColorFuture = new wxCheckBox(viewBox, wxID_STATIC, _t("Do not use color for future transactions"));
+    m_doNotColorFuture = new wxCheckBox(viewBox, wxID_ANY, _t("Do not use color for future transactions"));
     m_doNotColorFuture->SetValue(Option::instance().getDoNotColorFuture());
     viewSizer->Add(m_doNotColorFuture, g_flagsV);
 
-    m_doSpecialColorReconciled = new wxCheckBox(viewBox, wxID_STATIC, _t("Emphasize not reconciled transactions"));
+    m_doSpecialColorReconciled = new wxCheckBox(viewBox, wxID_ANY, _t("Emphasize not reconciled transactions"));
     m_doSpecialColorReconciled->SetValue(Option::instance().getDoSpecialColorReconciled());
     viewSizer->Add(m_doSpecialColorReconciled, g_flagsV);
 
     viewSizer->AddSpacer(10);
 
-    m_showToolTips = new wxCheckBox(viewBox, wxID_STATIC, _t("Show Tooltips"));
+    m_showToolTips = new wxCheckBox(viewBox, wxID_ANY, _t("Show Tooltips"));
     m_showToolTips->SetValue(Option::instance().getShowToolTips());
     viewSizer->Add(m_showToolTips, g_flagsV);
 
-    m_showMoneyTips = new wxCheckBox(viewBox, wxID_STATIC, _t("Show Money Tips"));
+    m_showMoneyTips = new wxCheckBox(viewBox, wxID_ANY, _t("Show Money Tips"));
     m_showMoneyTips->SetValue(Option::instance().getShowMoneyTips());
     viewSizer->Add(m_showMoneyTips, g_flagsV);
 

@@ -283,7 +283,8 @@ mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
 : mmPrintableBase(report->REPORTNAME)
 , m_report(report)
 {
-    if (m_id == -1) {
+    if (m_id == -1 && report->REPORTID >= LONG_MIN && report->REPORTID <= LONG_MAX)
+        {
         m_id = report->REPORTID.ToLong(); // Store reportid if no id is provided
     }
 }

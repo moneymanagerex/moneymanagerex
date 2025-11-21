@@ -280,6 +280,7 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent, wxSQLite3Databa
 {
     this->SetFont(parent->GetFont());
     Create(parent);
+    mmThemeAutoColour(this, true);
     mmSetSize(this);
     Centre();
     SelectTreeItemByName(m_treeCtrl, itemname);
@@ -372,7 +373,7 @@ void mmGeneralReportManager::CreateControls()
     this->SetSizer(main_box_sizer);
     wxBoxSizer* top_sizer = new wxBoxSizer(wxHORIZONTAL);
     main_box_sizer->Add(top_sizer, 1, wxGROW | wxALL);
-    wxSplitterWindow* splitter_main = new wxSplitterWindow(this, wxID_ANY);
+    mmSplitterWindow* splitter_main = new mmSplitterWindow(this, wxID_ANY);
     splitter_main->SetMinimumPaneSize(200);
     top_sizer->Add(splitter_main, 1, wxEXPAND, 0);
 
@@ -496,15 +497,15 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     if (type == ID_SQL_CONTENT)
     {
         wxBoxSizer *sizermain = new wxBoxSizer(wxVERTICAL);
-        wxSplitterWindow *splittermain = new wxSplitterWindow(panel, wxID_ANY);
-        splittermain->SetMinimumPaneSize(50);
+        mmSplitterWindow *splittermain = new mmSplitterWindow(panel, wxID_ANY);
+        splittermain->SetMinimumPaneSize(50); 
         sizermain->Add(splittermain, 1, wxEXPAND,0 );
 
         wxPanel *pnl1 = new wxPanel(splittermain, wxID_ANY);
         wxBoxSizer *bSizerp1 = new wxBoxSizer(wxVERTICAL);
         pnl1->SetSizer(bSizerp1);
 
-        wxSplitterWindow *splitter_sql = new wxSplitterWindow(pnl1, wxID_ANY);
+        mmSplitterWindow *splitter_sql = new mmSplitterWindow(pnl1, wxID_ANY);
         splitter_sql->SetSashGravity(0.8);
         splitter_sql->SetMinimumPaneSize(150); // Smallest size of panels
         bSizerp1->Add(splitter_sql, g_flagsExpand);

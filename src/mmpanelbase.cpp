@@ -58,6 +58,7 @@ mmListCtrl::mmListCtrl(wxWindow* parent, wxWindowID winid) :
         wxNullFont
     ))
 {
+    SetWindowStyle(GetWindowStyle() | wxBORDER_NONE);
 }
 
 mmListCtrl::~mmListCtrl()

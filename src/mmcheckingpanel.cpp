@@ -115,6 +115,7 @@ mmCheckingPanel::mmCheckingPanel(
     loadDateRanges(&m_date_range_a, &m_date_range_m, isAccount());
 
     create(parent);
+    mmThemeAutoColour(this, true);
     Fit();
 }
 
@@ -234,11 +235,11 @@ void mmCheckingPanel::createControls()
 
     /* ---------------------- */
 
-    wxSplitterWindow* splitterListFooter = new wxSplitterWindow(
+    mmSplitterWindow* splitterListFooter = new mmSplitterWindow(
         this, wxID_ANY, wxDefaultPosition, wxSize(200, 200),
-        wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER
+        wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER, mmThemeMetaColour(meta::COLOR_LISTPANEL) 
     );
-
+    
     m_images.push_back(mmBitmapBundle(png::UNRECONCILED));
     m_images.push_back(mmBitmapBundle(png::RECONCILED));
     m_images.push_back(mmBitmapBundle(png::VOID_STAT));
@@ -255,7 +256,6 @@ void mmCheckingPanel::createControls()
         splitterListFooter, wxID_ANY, wxDefaultPosition, wxDefaultSize,
         wxNO_BORDER | wxTAB_TRAVERSAL
     );
-    mmThemeMetaColour(panelFooter, meta::COLOR_LISTPANEL);
 
     splitterListFooter->SplitHorizontally(m_lc, panelFooter);
     splitterListFooter->SetMinimumPaneSize(100);

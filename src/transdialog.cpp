@@ -154,6 +154,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent,
 
     this->SetFont(parent->GetFont());
     Create(parent);
+    mmThemeAutoColour(this, true);
     dataToControls();
 
     mmSetSize(this);
@@ -639,7 +640,7 @@ void mmTransDialog::CreateControls()
     buttons_sizer->Add(button_hide, wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
 
     if (m_mode == MODE_EDIT) m_button_cancel->SetFocus();
-
+    mmThemeAutoColour(buttons_panel, true);
     buttons_sizer->Realize();
 
     // Custom fields -----------------------------------

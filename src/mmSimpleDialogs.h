@@ -427,4 +427,17 @@ inline void mmTagTextCtrl::Reinitialize() { init(); }
 inline void mmTagTextCtrl::SetText(const wxString& text) { textCtrl_->SetText(text); }
 inline bool mmTagTextCtrl::IsEmpty() const { return textCtrl_->IsEmpty(); }
 inline void mmTagTextCtrl::Clear() { textCtrl_->ClearAll(); }
+
+class mmSplitterWindow : public wxSplitterWindow
+{
+
+public:
+    mmSplitterWindow(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
+                     long style = wxSP_3D, const wxColour& colour = wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE));
+
+    void DrawSash(wxDC& dc) override;
+
+private:
+    wxColour m_colour;
+};
 #endif // MM_EX_MMSIMPLEDIALOGS_H_

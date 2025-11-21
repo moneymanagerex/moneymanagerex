@@ -66,6 +66,7 @@ bool mmAppStartDialog::Create(wxWindow* parent, wxWindowID id, const wxString& c
         CentreOnScreen();
     }
 
+    mmThemeAutoColour(this, true);
     return ok;
 }
 
@@ -129,7 +130,7 @@ void mmAppStartDialog::CreateControls()
     wxBoxSizer* itemBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer10, 0, wxALIGN_LEFT | wxALL, 5);
 
-    itemCheckBox = new wxCheckBox(this, wxID_STATIC, _t("&Show this dialog box at startup"), wxDefaultPosition,
+    itemCheckBox = new wxCheckBox(this, wxID_ANY, _t("&Show this dialog box at startup"), wxDefaultPosition,
         wxDefaultSize, wxCHK_2STATE);
     bool showBeginApp = Model_Setting::instance().getBool("SHOWBEGINAPP", true);
     itemCheckBox->SetValue(showBeginApp);

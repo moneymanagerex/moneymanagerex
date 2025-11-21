@@ -62,7 +62,7 @@ m_payee(payee)
     mmSetSize(this);
     Centre();
     SetIcon(mmex::getProgramIcon());
-
+    mmThemeAutoColour(this, true);
     fillControls();
 }
 
@@ -523,7 +523,7 @@ void mmPayeeDialog::Create(wxWindow* parent, const wxString &name)
     }
 
     CreateControls();
-
+    mmThemeAutoColour(this, true);
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 

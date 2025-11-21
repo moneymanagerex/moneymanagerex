@@ -410,6 +410,10 @@ bool OnInitImpl(mmGUIApp* app)
     }
 
     app->m_frame = new mmGUIFrame(app, mmex::getProgramName(), wxPoint(valX, valY), wxSize(valW, valH));
+    #ifdef __WXMSW__
+        enableMSWDarkMode(app->m_frame, mmex::isDarkMode());
+    #endif
+
     ok = ok && app->m_frame->Show();
 
     /* Was App Maximized? */

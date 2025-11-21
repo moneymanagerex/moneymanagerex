@@ -160,6 +160,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int64 bdID, bool duplicate, bool enterO
 
     this->SetFont(parent->GetFont());
     Create(parent);
+    mmThemeAutoColour(this, true);
 }
 
 bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption

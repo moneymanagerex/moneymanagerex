@@ -34,6 +34,9 @@
 
 class mmGUIApp;
 
+bool isDark(wxColour c);
+void mmThemeAutoColour(wxWindow* object, bool recursive);
+void enableMSWDarkMode(wxWindow* object, bool darkMode);
 wxString JSON_PrettyFormated(rapidjson::Document& j_doc);
 wxString JSON_Formated(rapidjson::Document& j_doc);
 rapidjson::Value* JSON_GetValue(rapidjson::Document& j_doc, const rapidjson::MemoryStream::Ch* name);

@@ -172,7 +172,7 @@ void OptionSettingsGeneral::Create()
 
     m_currencyStaticBoxSizer->AddSpacer(15);
 
-    m_currency_history = new wxCheckBox(currencyStaticBox, wxID_STATIC, _t("Use historical currency"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_currency_history = new wxCheckBox(currencyStaticBox, wxID_ANY, _t("Use historical currency"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_currency_history->SetValue(Option::instance().getUseCurrencyHistory());
     mmToolTip(m_currency_history, _t("Select to use historical currency (one rate for each day), deselect to use a fixed rate"));
     m_currencyStaticBoxSizer->Add(m_currency_history, g_flagsV);

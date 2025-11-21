@@ -54,6 +54,8 @@ mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefTyp
     ColName_[ATTACHMENT_FILENAME] = _t("File");
 
     Create(parent, name);
+    mmThemeAutoColour(this, true);
+    mmThemeMetaColour(attachmentListBox_, meta::COLOR_LISTPANEL, true);
 
     const wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
 

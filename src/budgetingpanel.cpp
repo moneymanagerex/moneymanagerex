@@ -82,6 +82,7 @@ mmBudgetingPanel::mmBudgetingPanel(int64 budgetYearID
     , budgetYearID_(budgetYearID)
 {
     Create(parent, winid, pos, size, style, name);
+    mmThemeAutoColour(this, true);
 }
 
 bool mmBudgetingPanel::Create(wxWindow *parent
@@ -93,6 +94,7 @@ bool mmBudgetingPanel::Create(wxWindow *parent
 
     this->windowsFreezeThaw();
     CreateControls();
+    mmThemeAutoColour(this, true);
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 

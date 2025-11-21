@@ -45,6 +45,7 @@ mmBudgetEntryDialog::mmBudgetEntryDialog(wxWindow* parent
     budgetEntry_ = entry;
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _t("Budget Year Entry"), wxDefaultPosition, wxSize(500, 300), style);
+    mmThemeAutoColour(this, true);
 }
 
 bool mmBudgetEntryDialog::Create(wxWindow* parent

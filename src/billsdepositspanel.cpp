@@ -195,6 +195,7 @@ mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid
     this->tips_.Add(_t("Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."));
 
     Create(parent, winid, pos, size, style, name);
+    mmThemeAutoColour(this, true);
 }
 
 bool mmBillsDepositsPanel::Create(wxWindow *parent
@@ -256,9 +257,9 @@ void mmBillsDepositsPanel::CreateControls()
     */
 
     /* ---------------------- */
-    wxSplitterWindow* itemSplitterWindowBillsDeposit = new wxSplitterWindow(this
+    mmSplitterWindow* itemSplitterWindowBillsDeposit = new mmSplitterWindow(this
         , wxID_ANY, wxDefaultPosition, wxSize(200, 200)
-        , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
+        , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER, mmThemeMetaColour(meta::COLOR_LISTPANEL));
 
     wxVector<wxBitmapBundle> images;
     images.push_back(mmBitmapBundle(png::FOLLOW_UP));
@@ -268,12 +269,11 @@ void mmBillsDepositsPanel::CreateControls()
     images.push_back(mmBitmapBundle(png::DOWNARROW));
 
     m_lc = new billsDepositsListCtrl(this, itemSplitterWindowBillsDeposit);
-
+    
     m_lc->SetSmallImages(images);
 
     wxPanel* bdPanel = new wxPanel(itemSplitterWindowBillsDeposit, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
-    mmThemeMetaColour(bdPanel, meta::COLOR_LISTPANEL);
 
     itemSplitterWindowBillsDeposit->SplitHorizontally(m_lc, bdPanel);
     itemSplitterWindowBillsDeposit->SetMinimumPaneSize(100);
