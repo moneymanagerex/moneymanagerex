@@ -44,6 +44,7 @@ mmBudgetYearDialog::mmBudgetYearDialog(wxWindow* parent)
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _t("Budget Editor"), wxDefaultPosition, wxSize(500, 300), style);
+    mmThemeAutoColour(this, true);
 }
 
 bool mmBudgetYearDialog::Create(wxWindow* parent, wxWindowID id,

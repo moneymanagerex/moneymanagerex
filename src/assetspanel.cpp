@@ -23,6 +23,7 @@
 #include "attachmentdialog.h"
 #include "constants.h"
 #include "images_list.h"
+#include "mmSimpleDialogs.h"
 
 #include "model/allmodel.h"
 #include <wx/srchctrl.h>
@@ -360,6 +361,7 @@ mmAssetsPanel::mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID win
     , tips_()
 {
     Create(parent, winid, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, name);
+    mmThemeAutoColour(this, true);
 }
 
 bool mmAssetsPanel::Create(wxWindow *parent
@@ -402,7 +404,7 @@ void mmAssetsPanel::CreateControls()
     wxPanel* headerPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition
         , wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
     itemBoxSizer9->Add(headerPanel, g_flagsBorder1V);
-
+    
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
 
@@ -424,8 +426,8 @@ void mmAssetsPanel::CreateControls()
 
     /* ---------------------- */
 
-    wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow( this, wxID_STATIC,
-        wxDefaultPosition, wxSize(200, 200), wxSP_3DBORDER|wxSP_3DSASH|wxNO_BORDER);
+    mmSplitterWindow* itemSplitterWindow10 = new mmSplitterWindow( this, wxID_STATIC,
+        wxDefaultPosition, wxSize(200, 200), wxSP_3DBORDER|wxSP_3DSASH|wxNO_BORDER, mmThemeMetaColour(meta::COLOR_LISTPANEL));
 
     m_lc = new mmAssetsListCtrl(this, itemSplitterWindow10, wxID_ANY);
 
@@ -444,8 +446,6 @@ void mmAssetsPanel::CreateControls()
 
     wxPanel* assets_panel = new wxPanel(itemSplitterWindow10, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
-    mmThemeMetaColour(assets_panel, meta::COLOR_LISTPANEL);
-
     itemSplitterWindow10->SplitHorizontally(m_lc, assets_panel);
     itemSplitterWindow10->SetMinimumPaneSize(100);
     itemSplitterWindow10->SetSashGravity(1.0);

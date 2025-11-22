@@ -65,6 +65,7 @@ bool relocatePayeeDialog::Create(wxWindow* parent
     wxDialog::Create( parent, id, caption, pos, size, style, name);
 
     CreateControls();
+    mmThemeAutoColour(this, true);
     IsOkOk();
 
     SetIcon(mmex::getProgramIcon());

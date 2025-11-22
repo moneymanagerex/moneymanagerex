@@ -53,6 +53,21 @@ class ModelBase;
 class mmGUIApp;
 //----------------------------------------------------------------------------
 
+
+class mmToolbarArt : public wxAuiDefaultToolBarArt
+{
+public:
+    virtual wxAuiToolBarArt* Clone()
+    {
+        return new mmToolbarArt(*this);
+    }
+
+private:
+    virtual void DrawPlainBackground(wxDC& dc, wxWindow* wnd, const wxRect& rect);
+    virtual void DrawButton(wxDC& dc, wxWindow* wnd, const wxAuiToolBarItem& item, const wxRect& rect);
+};
+
+
 class mmGUIFrame : public wxFrame
 {
 public:

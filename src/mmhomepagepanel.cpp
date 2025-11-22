@@ -121,6 +121,7 @@ void mmHomePagePanel::createControls()
     Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmHomePagePanel::OnNewWindow, this, mmID_BROWSER);
 
     itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 0);
+    mmThemeAutoColour(browser_, false);
 }
 
 void mmHomePagePanel::PrintPage()

@@ -94,6 +94,7 @@ mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, const Model_Currency::Data 
     Create(parent);
     SetMinSize(wxSize(300, 420));
     Fit();
+    mmThemeAutoColour(this, true);
 }
 
 bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id

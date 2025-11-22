@@ -118,6 +118,9 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
 
     SetEvtHandlerEnabled(false);
     CreateControls();
+    mmThemeAutoColour(this, true);
+    mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL);
+    mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL_FONT, true);
     fillControls();
 
     m_treeCtrl->CollapseAll();
@@ -295,8 +298,6 @@ void mmCategDialog::CreateControls()
         , wxDefaultPosition, wxSize(200, 380)
         , wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES);
 #endif
-    mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL);
-    mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL_FONT, true);
     itemBoxSizer3->Add(m_treeCtrl, g_flagsExpand);
 
     wxPanel* searchPanel = new wxPanel(this, wxID_ANY);

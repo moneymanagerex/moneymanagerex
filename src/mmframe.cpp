@@ -91,6 +91,44 @@
 int REPEAT_TRANS_DELAY_TIME = 3000; // 3 seconds
 //----------------------------------------------------------------------------
 
+void mmToolbarArt::DrawPlainBackground(wxDC& dc, wxWindow* wnd, const wxRect& rect)
+{
+    dc.GradientFillLinear(rect, mmThemeMetaColour(meta::COLOR_TOOLBAR), mmThemeMetaColour(meta::COLOR_TOOLBAR));
+}
+
+void mmToolbarArt::DrawButton(wxDC& dc, wxWindow* wnd, const wxAuiToolBarItem& item, const wxRect& rect)
+{
+    wxColour clr = mmThemeMetaColour(meta::COLOR_TOOLBAR);
+    bool dark = isDark(mmThemeMetaColour(meta::COLOR_TOOLBAR));
+    int bmpX = 0, bmpY = 0;
+
+    const wxBitmap& bmp = item.GetCurrentBitmapFor(wnd);
+    const wxSize bmpSize = bmp.GetLogicalSize();
+
+    bmpX = rect.x + (rect.width / 2) - (bmpSize.x / 2);
+    bmpY = rect.y + (rect.height / 2) - (bmpSize.y / 2);
+
+    if (!(item.GetState() & wxAUI_BUTTON_STATE_DISABLED))
+    {
+
+        if (item.GetState() & wxAUI_BUTTON_STATE_PRESSED)
+        {
+            dc.SetPen(wxPen(m_highlightColour));
+            dc.SetBrush(wxBrush(m_highlightColour.ChangeLightness(dark ? 10 : 140)));
+            dc.DrawRectangle(rect);
+        }
+        else if (item.GetState() & wxAUI_BUTTON_STATE_HOVER)
+        {
+            dc.SetPen(wxPen(m_highlightColour));
+            dc.SetBrush(wxBrush(m_highlightColour.ChangeLightness(dark ? 40 : 170)));
+            dc.DrawRectangle(rect);
+        }
+    }
+    dc.DrawBitmap(bmp, bmpX, bmpY, true);
+}
+
+//----------------------------------------------------------------------------
+
 wxBEGIN_EVENT_TABLE(mmGUIFrame, wxFrame)
 EVT_MENU(MENU_NEW, mmGUIFrame::OnNew)
 EVT_MENU(MENU_OPEN, mmGUIFrame::OnOpen)
@@ -236,7 +274,7 @@ wxArrayString mmGUIFrame::account_section_all()
     }
     return type_section;
 }
-//----------------------------------------------------------------------------
+               //----------------------------------------------------------------------------
 
 mmGUIFrame::mmGUIFrame(
     mmGUIApp* app,
@@ -282,6 +320,7 @@ mmGUIFrame::mmGUIFrame(
 
 #if wxUSE_STATUSBAR
     CreateStatusBar();
+    mmThemeMetaColour(GetStatusBar(), meta::COLOR_LISTPANEL);
 #endif // wxUSE_STATUSBAR
     m_recentFiles = new mmFileHistory(); // TODO Max files
     m_recentFiles->SetMenuPathStyle(wxFH_PATH_SHOW_ALWAYS);
@@ -308,14 +347,19 @@ mmGUIFrame::mmGUIFrame(
         );
 
     // change look and feel of wxAuiManager
-    m_mgr.GetArtProvider()->SetMetric(16, 0);
+    toolBar_->SetArtProvider(new mmToolbarArt);
+    m_mgr.GetArtProvider()->SetColour(wxAUI_DOCKART_BACKGROUND_COLOUR, mmThemeMetaColour(meta::COLOR_TOOLBAR));
+    m_mgr.GetArtProvider()->SetColour(wxAUI_DOCKART_SASH_COLOUR, mmThemeMetaColour(meta::COLOR_LISTPANEL));
+    m_mgr.GetArtProvider()->SetColour(wxAUI_DOCKART_BORDER_COLOUR, mmThemeMetaColour(meta::COLOR_LISTPANEL));
+    m_mgr.GetArtProvider()->SetMetric(16, 0);   
     m_mgr.GetArtProvider()->SetMetric(3, 1);
 
     // "commit" all changes made to wxAuiManager
     m_mgr.GetPane("Navigation").Caption(_t("Navigator"));
     m_mgr.GetPane("toolbar").Caption(_t("Toolbar"));
+    m_mgr.GetPane("toolbar").PaneBorder(false);
     m_mgr.Update();
-
+    
     // Show license agreement at first open
     if (Model_Setting::instance().getString(INIDB_SEND_USAGE_STATS, "") == "") {
         mmAboutDialog(this, 4).ShowModal();
@@ -364,6 +408,8 @@ mmGUIFrame::mmGUIFrame(
             this->GetEventHandler()->AddPendingEvent(evt);
         }
     }
+    wxColour c = mmThemeMetaColour(COLOR_LISTPANEL);
+    mmThemeMetaColour(this, isDark(c) ? c.ChangeLightness(140) : c.ChangeLightness(70));
 }
 //----------------------------------------------------------------------------
 
@@ -2165,7 +2211,7 @@ void mmGUIFrame::createMenu()
     menuBar_->Append(menuView, _t("&View"));
     menuBar_->Append(menuHelp, _t("&Help"));
     SetMenuBar(menuBar_);
-
+    
     menuBar_->Check(MENU_VIEW_HIDE_SHARE_ACCOUNTS, !Option::instance().getHideShareAccounts());
     menuBar_->Check(MENU_VIEW_HIDE_DELETED_TRANSACTIONS, !Option::instance().getHideDeletedTransactions());
     menuBar_->Check(MENU_VIEW_BUDGET_FINANCIAL_YEARS, Option::instance().getBudgetFinancialYears());

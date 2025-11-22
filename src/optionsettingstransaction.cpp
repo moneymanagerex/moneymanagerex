@@ -150,7 +150,7 @@ void OptionSettingsTransaction::Create()
     homePanelSizer->Add(trxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     m_budget_financial_years = new wxCheckBox(
-        trxBox, wxID_STATIC,
+        trxBox, wxID_ANY,
         _t("View Budgets as Financial Years"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
     );
@@ -158,7 +158,7 @@ void OptionSettingsTransaction::Create()
     trxSizer->Add(m_budget_financial_years, g_flagsV);
 
     m_budget_include_transfers = new wxCheckBox(
-        trxBox, wxID_STATIC,
+        trxBox, wxID_ANY,
         _t("View Budgets with 'transfer' transactions"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
     );
@@ -166,7 +166,7 @@ void OptionSettingsTransaction::Create()
     trxSizer->Add(m_budget_include_transfers, g_flagsV);
 
     m_budget_summary_without_category = new wxCheckBox(
-        trxBox, wxID_STATIC,
+        trxBox, wxID_ANY,
         _t("View Budget Category Report with Summaries"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
     );
@@ -175,7 +175,7 @@ void OptionSettingsTransaction::Create()
 
     // Budget Yearly/Monthly relationship if both exist
     m_budget_override = new wxCheckBox(
-        trxBox, wxID_STATIC,
+        trxBox, wxID_ANY,
         _t("Override yearly budget with monthly budget"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
     );
@@ -185,7 +185,7 @@ void OptionSettingsTransaction::Create()
 
     // Option to deduct monthly budget from yearly budget for reporting
     m_budget_deduct_monthly = new wxCheckBox(
-        trxBox, wxID_STATIC,
+        trxBox, wxID_ANY,
         _t("Subtract monthly budgets from yearly budget in reporting"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
     );
@@ -223,7 +223,7 @@ void OptionSettingsTransaction::Create()
     trxChoiceSizer->Add(m_reporting_first_weekday, g_flagsH);
 
     m_ignore_future_transactions = new wxCheckBox(
-        trxBox, wxID_STATIC,
+        trxBox, wxID_ANY,
         _t("Ignore Future Transactions"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
     );

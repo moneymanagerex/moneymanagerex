@@ -159,7 +159,9 @@ const std::map<int, std::tuple<wxString, wxString, bool> > metaDataTrans()
     md[THEME_URL]              = std::make_tuple("/colors/url",                 "",        false);
     md[COLOR_NAVPANEL_FONT]    = std::make_tuple("/colors/navigationPanelFont", "",        false);
     md[COLOR_NAVPANEL]         = std::make_tuple("/colors/navigationPanel",     "",        false);
-    md[COLOR_LISTPANEL]        = std::make_tuple("/colors/listPanel",           "",        false);
+    md[COLOR_TOOLBAR]          = std::make_tuple("/colors/toolbar",             wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE).GetAsString(wxC2S_HTML_SYNTAX), false);
+    md[COLOR_BUTTON]           = std::make_tuple("/colors/button",              "",        false);
+    md[COLOR_LISTPANEL]        = std::make_tuple("/colors/listPanel",           wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE).GetAsString(wxC2S_HTML_SYNTAX), false);
     md[COLOR_LIST]             = std::make_tuple("/colors/list",                "#FFFFFF", false);
     md[COLOR_LISTALT0]         = std::make_tuple("/colors/listAlternative1",    "#F0F5EB", false);
     md[COLOR_LISTALT0A]        = std::make_tuple("/colors/listAlternative2",    "#E0E7F0", false);
@@ -558,18 +560,25 @@ const wxColour mmThemeMetaColour(int ref)
     return wxColour(c);
 }
 
+void mmThemeMetaColour(wxWindow* object, wxColour c, bool foreground)
+{
+    if (foreground)
+        object->SetForegroundColour(c);
+    else
+    {
+        object->SetBackgroundColour(c);
+        object->SetForegroundColour(*bestFontColour(c));
+    }
+
+    enableMSWDarkMode(object, darkMode);
+}
+
 void mmThemeMetaColour(wxWindow *object, int ref, bool foreground)
 {
     const wxString c = mmThemeMetaString(ref);
+
     if (!c.empty())
-    {
-        if (foreground)
-            object->SetForegroundColour(wxColour(c));
-        else {
-            object->SetBackgroundColour(wxColour(c));
-            object->SetForegroundColour(*bestFontColour(c));
-        }
-    }
+        mmThemeMetaColour(object, wxColour(c), foreground);
 }
 
 const std::vector<wxColour> mmThemeMetaColourArray(int ref)

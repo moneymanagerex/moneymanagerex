@@ -35,10 +35,11 @@
 #include <wx/xml/xml.h>
 #include <wx/fs_mem.h>
 #include <wx/webview.h>
-
+#include <wx/dataview.h>
 #include "build.h"
 #include "util.h"
 #include "constants.h"
+#include "images_list.h"
 #include "option.h"
 #include "platfdep.h"
 #include "paths.h"
@@ -48,9 +49,76 @@
 #include "model/Model_Currency.h"
 #include "model/Model_CurrencyHistory.h"
 
+#ifdef __WXMSW__
+#pragma comment(lib, "dwmapi.lib")
+#include <dwmapi.h>
+#endif
+
 using namespace rapidjson;
 
-// Return a JSON formatted string in readable form
+bool isDark(wxColour c)
+{
+    return (((5 * c.Green()) + (2 * c.Red()) + c.Blue()) <= (8 * 128));
+}
+
+void mmThemeAutoColour(wxWindow* object, bool recursive)
+    {
+    bool darkMode = mmex::isDarkMode();
+    size_t type = typeid(*object).hash_code();
+    wxString bg, fg;
+
+    if (type == typeid(wxButton).hash_code() || type == typeid(wxBitmapButton).hash_code())
+    {
+        bg = mmThemeMetaString(COLOR_BUTTON);
+        if (bg.empty())
+        {
+            fg = bg.empty() && darkMode ? "#FFFFFF" : "#000000";
+        }
+    }
+    else if (type == typeid(wxTreeCtrl).hash_code())
+    {
+        bg = mmThemeMetaString(COLOR_NAVPANEL);
+        fg = mmThemeMetaString(COLOR_NAVPANEL_FONT);
+    }
+    else if (type == typeid(wxDataViewListCtrl).hash_code())
+    {
+        recursive = false;
+    }
+    else
+    {
+        wxDialog* dlg = dynamic_cast<wxDialog*>(object);
+        wxPanel* panel = dynamic_cast<wxPanel*>(object);
+        if (darkMode || dlg || panel)
+            bg = mmThemeMetaString(COLOR_LISTPANEL);
+    }
+
+    if (!bg.empty())
+    {
+        object->SetBackgroundColour(wxColour(bg));
+        object->SetForegroundColour(fg.empty() ? *bestFontColour(bg) : fg);
+    }
+    else if (!fg.empty())
+        object->SetForegroundColour(fg);
+
+    if (recursive)
+        for (auto& child : object->GetChildren())
+            mmThemeAutoColour(child, recursive);
+
+    enableMSWDarkMode(object, darkMode);
+}
+
+void enableMSWDarkMode(wxWindow* object, bool darkMode)
+{
+#ifdef __WXMSW__
+    if (darkMode)
+    {
+        BOOL enabled = TRUE;
+        DwmSetWindowAttribute(object->GetHWND(), DWMWA_USE_IMMERSIVE_DARK_MODE, &enabled, sizeof(enabled));
+        SetWindowTheme(object->GetHWND(), L"DarkMode_Explorer", NULL);
+    }
+#endif
+}
+    // Return a JSON formatted string in readable form
 wxString JSON_PrettyFormated(rapidjson::Document& j_doc)
 {
     StringBuffer j_buffer;

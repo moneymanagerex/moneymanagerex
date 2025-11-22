@@ -48,8 +48,9 @@ enum meta {
     COLOR_REPORT_PERF,
     COLOR_REPORT_FORECOLOR,
     COLOR_REPORT_PALETTE,
+    COLOR_TOOLBAR,
+    COLOR_BUTTON,
     COLOR_HIDDEN,
-
     COLOR_GRM_LINENUMBER,
     COLOR_GRM_LINENUMBER_BG,
     COLOR_GRM_MARKER,
@@ -232,5 +233,6 @@ const wxString mmThemeMetaString(int ref);
 long mmThemeMetaLong(int ref);
 const wxColour mmThemeMetaColour(int ref);
 void mmThemeMetaColour(wxWindow *object, int ref, bool foreground = false);
+void mmThemeMetaColour(wxWindow* object, wxColour c, bool foreground = false);
 const std::vector<wxColour> mmThemeMetaColourArray(int ref);
 const wxBitmapBundle mmBitmapBundle(const int ref, const int defSize = -1);

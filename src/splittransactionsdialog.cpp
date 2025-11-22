@@ -55,6 +55,7 @@ mmEditSplitOther::mmEditSplitOther(wxWindow *parent, Model_Currency::Data* curre
         return;
 
     CreateControls();
+    mmThemeAutoColour(this, true);
     mmSetSize(this);
     Centre();
     SetIcon(mmex::getProgramIcon());
@@ -183,6 +184,7 @@ bool mmSplitTransactionDialog::Create(wxWindow* parent
     wxDialog::Create( parent, id, caption, pos, size, style, name);
 
     CreateControls();
+    mmThemeAutoColour(this, true);
     FillControls();
     row_num_ = m_splits.size() - 1;
     if (!is_view_only_)
