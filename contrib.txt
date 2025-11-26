@@ -251,6 +251,7 @@ Khaled Zoghbor
 Andrew Tomsa
 David Benjamin
 Jean-Michel Louiset
+Thomas Keenan
 
 ### 2024
 Renato

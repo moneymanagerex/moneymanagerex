@@ -61,8 +61,9 @@ bool isDark(wxColour c)
     return (((5 * c.Green()) + (2 * c.Red()) + c.Blue()) <= (8 * 128));
 }
 
-void mmThemeAutoColour(wxWindow* object, bool recursive)
-    {
+void mmThemeAutoColour([[maybe_unused]] wxWindow* object, [[maybe_unused]] bool recursive)
+{
+#ifndef __WXOSX__
     bool darkMode = mmex::isDarkMode();
     size_t type = typeid(*object).hash_code();
     wxString bg, fg;
@@ -105,9 +106,10 @@ void mmThemeAutoColour(wxWindow* object, bool recursive)
             mmThemeAutoColour(child, recursive);
 
     enableMSWDarkMode(object, darkMode);
+#endif
 }
 
-void enableMSWDarkMode(wxWindow* object, bool darkMode)
+void enableMSWDarkMode([[maybe_unused]] wxWindow* object, [[maybe_unused]] bool darkMode)
 {
 #ifdef __WXMSW__
     if (darkMode)
