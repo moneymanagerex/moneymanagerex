@@ -1,11 +1,12 @@
-Version 1.9.2 RC 1
+Version 1.9.2 RC 2
 ~~~~~~~~~~~~~~~~~~~~
-Released: 2025-11-03
+Released: 2025-11-27
 
 Features:
 * #7821 2-digit years are interpreted as the first century, instead of being in the closest century
 * #7758 Allow Finance/Yahoo cookie and crumb to be reset
 * #7724 [Bug] Transaction list sorting by Date column is broken and can cause application crash (v1.9.1/1.9.2)
+* #7308 Allow toolbar color to be customized
 * #6771 Avoiding duplicate entries on CSV Import
 * #3710 OFX import/export support
 * #7781 Enhanced and refactored General Report Manager
@@ -14,6 +15,10 @@ Features:
 * #7818 Bugfix and transaction dialog enhancements
 
 Bugfixes:
+* #7863 error occurred when saving the transaction
+* #7851 Budget overview issue
+* #7847 Crash updating Payees
+* #7807 Reports/Categories/Where the money goes totals incorrect
 * #7780 App crash on click on specific Stock Portfolio name after changing of sort order
 * #7765 Reporting Start and End date issues
 * #7761 CSV Import - Custom Fields Fail to Populate
