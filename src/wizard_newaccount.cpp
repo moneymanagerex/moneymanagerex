@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
-Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2022, 2025  Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -41,7 +41,8 @@ mmAddAccountWizard::mmAddAccountWizard(wxFrame *frame)
             "To help get started, begin by making a list of all the "
             "financial institutions where the accounts are held.");
 
-    new wxStaticText(page1, wxID_ANY, noteString);
+    wxStaticText* noteText = new wxStaticText(page1, wxID_ANY, noteString);
+    noteText->Wrap(600);
 
     mmAddAccountTypePage* page2 = new mmAddAccountTypePage(this);
     mmAddAccountNamePage* page3 = new mmAddAccountNamePage(this);
@@ -112,7 +113,9 @@ mmAddAccountNamePage::mmAddAccountNamePage(mmAddAccountWizard* parent)
     helpMsg  << "\n" << _t("Specify a descriptive name for the account.") << "\n"
             << _t("This is generally the name of a financial institution\n"
             "where the account is held. For example: 'ABC Bank'.");
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, helpMsg ), 0, wxALL, 5);
+    wxStaticText* helpText = new wxStaticText(this, wxID_ANY, helpMsg);
+    helpText->Wrap(600);
+    mainSizer->Add(helpText, 0, wxALL, 5);
 
     SetSizer(mainSizer);
     mainSizer->Fit(this);
@@ -139,19 +142,25 @@ mmAddAccountTypePage::mmAddAccountTypePage(mmAddAccountWizard *parent)
     textMsg << _t("Select the account type to create:") << "\n\n"
             << _t("General bank accounts cover a wide variety of account\n"
             "types like Cash, Checking, Loans, and Credit cards.");
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, textMsg), 0, wxALL, 5);
+    wxStaticText* textText = new wxStaticText(this, wxID_ANY, textMsg);
+    textText->Wrap(600);
+    mainSizer->Add(textText, 0, wxALL, 5);
 
     textMsg = "\n";
     textMsg << _t("Investment and Share accounts are specialized accounts that\n"
         "have stock/mutual fund investments associated with them.");
-    mainSizer->Add( new wxStaticText(this, wxID_ANY,textMsg), 0, wxALL, 5);
+    textText = new wxStaticText(this, wxID_ANY, textMsg);
+    textText->Wrap(600);
+    mainSizer->Add(textText, 0, wxALL, 5);
 
     textMsg = "\n";
     textMsg << _t("Term and asset accounts are specialized bank accounts. "
         "They are intended for monitoring assets or term deposits and bonds "
         "where typically regular money goes in and comes out, outside "
         "the general income stream.");
-    mainSizer->Add( new wxStaticText(this, wxID_ANY,textMsg), 0, wxALL, 5);
+    textText = new wxStaticText(this, wxID_ANY, textMsg);
+    textText->Wrap(600);
+    mainSizer->Add(textText, 0, wxALL, 5);
 
     SetSizer(mainSizer);
     mainSizer->Fit(this);

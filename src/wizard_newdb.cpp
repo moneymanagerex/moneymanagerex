@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2025 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -42,7 +43,8 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
         "The database can later be encrypted if required by "
         "using the setting: “Save Database As…” and changing the "
         "filetype before saving.");
-    new wxStaticText(page1, wxID_ANY, displayMsg);
+    wxStaticText* displayText = new wxStaticText(page1, wxID_ANY, displayMsg);
+    displayText->Wrap(600);
 
     mmNewDatabaseWizardPage* page2 = new mmNewDatabaseWizardPage(this);
 
@@ -108,7 +110,9 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
         "Options. New accounts, will use this currency by\n"
         "default, and can be changed when editing account details.");
     helpMsg += "\n";
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, helpMsg), 0, wxALL, 5);
+    wxStaticText* helpText = new wxStaticText(this, wxID_ANY, helpMsg);
+    helpText->Wrap(600);
+    mainSizer->Add(helpText, 0, wxALL, 5);
 
 
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
@@ -123,7 +127,9 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
 
     helpMsg = _t("(Optional) Specify a title or name.") + "\n";
     helpMsg += _t("Used as a database title for displayed and printed reports.");
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, helpMsg), 0, wxALL, 5);
+    helpText = new wxStaticText(this, wxID_ANY, helpMsg);
+    helpText->Wrap(600);
+    mainSizer->Add(helpText, 0, wxALL, 5);
 
     SetSizer(mainSizer);
     mainSizer->Fit(this);
