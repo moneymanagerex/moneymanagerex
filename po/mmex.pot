@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-11-26 16:56+0000\n"
+"POT-Creation-Date: 2025-11-28 11:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,7 +79,7 @@ msgstr ""
 msgid "Account Type:"
 msgstr ""
 
-#: accountdialog.cpp:139 wizard_newaccount.cpp:130
+#: accountdialog.cpp:139 wizard_newaccount.cpp:133
 msgid "Specify the account type to be created."
 msgstr ""
 
@@ -307,7 +307,7 @@ msgid "Scheduled transactions for this account are scheduled before this date."
 msgstr ""
 
 #: accountdialog.h:41 mmframe.cpp:1962 mmframe.cpp:2239
-#: wizard_newaccount.cpp:87 wizard_newaccount.cpp:94 wizard_newaccount.cpp:168
+#: wizard_newaccount.cpp:88 wizard_newaccount.cpp:95 wizard_newaccount.cpp:177
 msgid "New Account"
 msgstr ""
 
@@ -5327,7 +5327,7 @@ msgstr ""
 msgid "&New Database…"
 msgstr ""
 
-#: mmframe.cpp:1767 mmframe.cpp:2236 wizard_newdb.cpp:136
+#: mmframe.cpp:1767 mmframe.cpp:2236 wizard_newdb.cpp:142
 msgid "New Database"
 msgstr ""
 
@@ -6898,7 +6898,7 @@ msgstr ""
 msgid "Display Heading"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:80 wizard_newdb.cpp:117
+#: optionsettingsgeneral.cpp:80 wizard_newdb.cpp:121
 msgid "User Name"
 msgstr ""
 
@@ -6918,7 +6918,7 @@ msgstr ""
 msgid "Base Currency"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:134 wizard_newdb.cpp:90
+#: optionsettingsgeneral.cpp:134 wizard_newdb.cpp:92
 msgid "Set Currency"
 msgstr ""
 
@@ -9125,65 +9125,65 @@ msgstr ""
 msgid "The next pages will help create a new account. To help get started, begin by making a list of all the financial institutions where the accounts are held."
 msgstr ""
 
-#: wizard_newaccount.cpp:87
+#: wizard_newaccount.cpp:88
 msgid "Account Name Invalid"
 msgstr ""
 
-#: wizard_newaccount.cpp:94
+#: wizard_newaccount.cpp:95
 msgid "An account with this name already exists"
 msgstr ""
 
-#: wizard_newaccount.cpp:108
+#: wizard_newaccount.cpp:109
 msgid "Name of the Account"
 msgstr ""
 
-#: wizard_newaccount.cpp:112
+#: wizard_newaccount.cpp:113
 msgid "Specify a descriptive name for the account."
 msgstr ""
 
-#: wizard_newaccount.cpp:113
+#: wizard_newaccount.cpp:114
 msgid ""
 "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
 msgstr ""
 
-#: wizard_newaccount.cpp:135
+#: wizard_newaccount.cpp:138
 msgid "Account Type"
 msgstr ""
 
-#: wizard_newaccount.cpp:139
+#: wizard_newaccount.cpp:142
 msgid "Select the account type to create:"
 msgstr ""
 
-#: wizard_newaccount.cpp:140
+#: wizard_newaccount.cpp:143
 msgid ""
 "General bank accounts cover a wide variety of account\n"
 "types like Cash, Checking, Loans, and Credit cards."
 msgstr ""
 
-#: wizard_newaccount.cpp:145
+#: wizard_newaccount.cpp:150
 msgid ""
 "Investment and Share accounts are specialized accounts that\n"
 "have stock/mutual fund investments associated with them."
 msgstr ""
 
-#: wizard_newaccount.cpp:150
+#: wizard_newaccount.cpp:157
 msgid "Term and asset accounts are specialized bank accounts. They are intended for monitoring assets or term deposits and bonds where typically regular money goes in and comes out, outside the general income stream."
 msgstr ""
 
-#: wizard_newaccount.cpp:166
+#: wizard_newaccount.cpp:175
 msgid "Base Account Currency Not set."
 msgstr ""
 
-#: wizard_newaccount.cpp:167
+#: wizard_newaccount.cpp:176
 msgid "Set that first using Tools → Settings… menu and then add a new account."
 msgstr ""
 
-#: wizard_newdb.cpp:30
+#: wizard_newdb.cpp:31
 msgid "New Database Wizard"
 msgstr ""
 
-#: wizard_newdb.cpp:36
+#: wizard_newdb.cpp:37
 msgid ""
 "The next pages will help create a new database.\n"
 "\n"
@@ -9192,11 +9192,11 @@ msgid ""
 "The database can later be encrypted if required by using the setting: “Save Database As…” and changing the filetype before saving."
 msgstr ""
 
-#: wizard_newdb.cpp:103
+#: wizard_newdb.cpp:105
 msgid "Base Currency for account"
 msgstr ""
 
-#: wizard_newdb.cpp:106
+#: wizard_newdb.cpp:108
 msgid ""
 "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed in\n"
@@ -9204,15 +9204,15 @@ msgid ""
 "default, and can be changed when editing account details."
 msgstr ""
 
-#: wizard_newdb.cpp:124
+#: wizard_newdb.cpp:128
 msgid "(Optional) Specify a title or name."
 msgstr ""
 
-#: wizard_newdb.cpp:125
+#: wizard_newdb.cpp:129
 msgid "Used as a database title for displayed and printed reports."
 msgstr ""
 
-#: wizard_newdb.cpp:136
+#: wizard_newdb.cpp:142
 msgid "Base Currency Not Set"
 msgstr ""
 
