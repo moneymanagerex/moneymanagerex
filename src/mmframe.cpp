@@ -512,12 +512,15 @@ void mmGUIFrame::processPendingEvents()
 //----------------------------------------------------------------------------
 wxTreeItemId mmGUIFrame::getNavTreeChild(const wxTreeItemId& section, const wxString& childName) const
 {
-    wxTreeItemIdValue cookie;
-    wxTreeItemId child = m_nav_tree_ctrl->GetFirstChild(section, cookie);
-    while (child.IsOk()) {
-        if (m_nav_tree_ctrl->GetItemText(child) == childName)
-            break;
-        child = m_nav_tree_ctrl->GetNextChild(section, cookie);
+    wxTreeItemId child;
+    if (section) {
+        wxTreeItemIdValue cookie;
+        child = m_nav_tree_ctrl->GetFirstChild(section, cookie);
+        while (child.IsOk()) {
+            if (m_nav_tree_ctrl->GetItemText(child) == childName)
+                break;
+            child = m_nav_tree_ctrl->GetNextChild(section, cookie);
+        }
     }
     return child;
 }
