@@ -700,6 +700,199 @@ Schermata di Deposito: I prelievi sono mostrati come negativi.
     <p>
         Questo renderebbe il beneficiario libero così da esser eliminabile.
     </p>
+	
+	<h2>Lavorare con le Etichette (Tags)</h2>
+	<aside class="sticky notes">
+		Una transazione può contenere più Etichette.  
+		Questo le rende perfette per analisi trasversali e complesse.
+	</aside>
+	<p>
+    Le <dfn>Etichette</dfn> (o <b>Tags</b>) sono uno strumento avanzato di classificazione che permette 
+    di aggiungere informazioni contestuali alle transazioni, indipendentemente dalla loro Categoria, 
+    dal Conto o dal Beneficiario. Mentre le Categorie descrivono la natura della spesa o dell’entrata, 
+    le Etichette descrivono il <b>contesto</b>, il <b>progetto</b>, la <b>persona</b>, l’<b>evento</b> 
+    o lo <b>scopo</b> della transazione.
+	</p>
+
+
+	<h3>Perché esistono le Etichette e quando usarle</h3>
+
+	<p>
+		Le Etichette sono state introdotte per permettere una classificazione più flessibile rispetto alle 
+		Categorie. Una Categoria definisce “che tipo” di transazione è stata effettuata; una Etichetta 
+		definisce “per quale scopo” o “in quale contesto” quella transazione è stata fatta.
+	</p>
+
+	<p>
+		Sono utili in particolare quando:
+	</p>
+
+	<ul>
+		<li><b>Un evento coinvolge molte spese diverse</b> (viaggi, feste, cene, lavori domestici).</li>
+		<li><b>Serve dividere le spese tra persone</b> (famiglia, coppie, coinquilini, gruppi di viaggio).</li>
+		<li><b>Si desidera tracciare un progetto nel tempo</b> (ristrutturazioni, attività professionali).</li>
+		<li><b>Si gestiscono più immobili</b> e si vuole separare i costi senza duplicare categorie.</li>
+		<li><b>Una spesa appartiene a più ambiti contemporaneamente</b>.</li>
+	</ul>
+
+	<p>
+		Le Etichette permettono quindi di analizzare le operazioni da più punti di vista senza complicare 
+		la struttura delle categorie.
+	</p>
+
+
+
+	<h3>Aggiungere Etichette a una Transazione</h3>
+
+	<p>
+		Il campo <b>Etichette</b> è presente nella finestra “Nuova/Modifica Transazione”.  
+		Qui è possibile:
+	</p>
+
+	<ul>
+		<li>Digitare una Etichetta e premere <kbd>Invio</kbd> per crearla</li>
+		<li>Selezionare una Etichetta già esistente</li>
+		<li>Aggiungere più Etichette in successione</li>
+	</ul>
+
+	<p><i><img src="../it_IT/tag1.gif" alt="Campo Etichette in Nuova Transazione" class="shadow" /></i></p>
+
+	<aside class="sticky tips">
+		Se digiti una Etichetta inesistente, MMEX ti proporrà automaticamente di crearla.
+	</aside>
+	<br>
+	<br>
+	<br>
+
+
+
+	<p>
+		Le Etichette funzionano anche nelle <b>transazioni suddivise (split)</b>.
+		<p><i><img src="../it_IT/tags_split_transactions.jpg" alt="Campo Etichette in Nuova Transazione" class="shadow" /></i></p>
+	<br><br>
+	</p>
+
+
+
+	<h3>Organizzare e Gestire le Etichette</h3>
+
+	<p>
+		Tutte le Etichette possono essere visualizzate e modificate tramite:
+	</p>
+
+	<p><kbd><samp>Strumenti</samp> → <samp>Gestore Etichette…</samp></kbd></p>
+
+	<p><i><p><i><img src="../it_IT/organizetags.jpg" alt="Organize Tags dialog" class="shadow"/></i></p>
+
+	<p>
+		Da questa finestra è possibile:
+	</p>
+
+	<ul>
+		<li><b>Creare</b> nuove Etichette</li>
+		<li><b>Rinominare</b> Etichette esistenti</li>
+		<li><b>Disattivare</b> Etichette non più utilizzate</li>
+		<li><b>Eliminare</b> Etichette non collegate a transazioni</li>
+	</ul>
+
+
+	<h3>Regole e limitazioni nei nomi delle Etichette</h3>
+
+	<p>
+		Per garantire corretto funzionamento nei report, nel database e nei filtri, i nomi delle Etichette 
+		devono rispettare alcune regole fondamentali:
+	</p>
+
+	<ul>
+		<li>
+			<b>Non sono ammessi spazi nei nomi delle Etichette.</b><br>
+			Usare:
+			<ul>
+				<li>Underscore (<code>_</code>): <em>Viaggio_New_York</em></li>
+				<li>Oppure tutto attaccato: <em>ViaggioNewYork</em></li>
+			</ul>
+		</li>
+
+		<li><b>Non utilizzare i caratteri “:” o “/”.</b></li>
+
+		<li>
+			<b>Evitare caratteri speciali complessi</b>  
+			(<code>[ ] { } ( ) % $ # @ ! ? *</code>).
+		</li>
+
+		<li><b>Le Etichette non distinguono maiuscole/minuscole</b> (case-insensitive).</li>
+	<aside class="sticky tips">
+		Convenzioni consigliate: <code>NomeEtichetta</code> o <code>Nome_Etichetta</code>.
+	</aside>
+		<li><b>Ogni Etichetta deve essere univoca.</b></li>
+
+		<li><b>Le Etichette possono contenere numeri.</b></li>
+
+		<li><b>Mantenere nomi brevi e leggibili.</b></li>
+	</ul>
+
+
+
+	<h3>Utilizzare le Etichette nei Resoconti</h3>
+
+	<p>
+		Il <b>Resoconto Transazioni</b> consente di filtrare le operazioni utilizzando le Etichette.
+	</p>
+
+	<p><kbd><samp>Resoconti</samp> → <samp>Transazioni</samp></kbd></p>
+
+	<p><i><img src="../it_IT/Transaction_Report_with_Tag.jpg" alt="Filtro Etichette Evidenziato nel Resoconto Transazioni"/></i></p>
+
+	<p>
+		Tipi di filtro disponibili:
+	</p>
+
+	<aside class="sticky notes">
+		Il raggruppamento per Etichette non è ancora disponibile nei report ufficiali.
+	</aside>
+<ul>
+    <li>
+        <b>EtichettaA</b> → Filtra le transazioni con questa Etichetta.<br>
+        <i>Risultato:</i> verranno visualizzate tutte le transazioni che contengono
+        esclusivamente l'etichetta <b>EtichettaA</b> o che includono <b>TagA</b> insieme ad altre Etichette.
+    </li>
+
+    <li>
+        <b>EtichettaA | EtichettaB</b> → Logica OR.<br>
+        <i>Risultato:</i> verranno mostrate tutte le transazioni che contengono
+        almeno una delle Etichette specificate.
+        Ad esempio, una transazione sarà inclusa se contiene <b>EtichettaA</b>, se contiene <b>EtichettaB</b>,
+        o se contiene entrambe.
+    </li>
+
+    <li>
+        <b>EtichettaA EtichettaB</b> → Logica AND.<br>
+        <i>Risultato:</i> verranno visualizzate solo le transazioni che contengono
+        contemporaneamente entrambe le Etichette <b>EtichettaA</b> e <b>EtichettaA</b>.
+        Transazioni che possiedono solo una delle due Etichette saranno escluse.
+    </li>
+</ul>
+
+
+	<h3>Esempi e Scenari Reali</h3>
+
+	<h4>• Viaggio</h4>
+	<p>Hotel, taxi, ristoranti → Etichetta: <b>Vacanze2025</b></p>
+
+	<h4>• Ristrutturazione</h4>
+	<p>Materiali, manodopera, permessi → Etichetta: <b>RistrutturazioneBagno</b></p>
+
+	<h4>• Condivisione spese</h4>
+	<p>Alimentari, bollette, trasporti → Etichetta: <b>Marco</b>, <b>Angela</b></p>
+
+	<h4>• Gestione immobili</h4>
+	<p>Utenze, manutenzioni, IMU → Etichetta: <b>CasaCentro</b></p>
+
+
+	<aside class="sticky tips">
+		Le Etichette funzionano anche nelle transazioni importate da CSV e QIF.
+	</aside>
+		
 
     <h2>Importare i dati finanziari</h2>
 
