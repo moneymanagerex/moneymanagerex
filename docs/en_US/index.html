@@ -922,15 +922,179 @@
     </ul>
 
 
-    <h2>Working with Tags</h2>
-    <p>
-        TODO, some information is available here:
-        <a href="https://github.com/moneymanagerex/moneymanagerex/issues/5439" target="_blank">Addition of "classes" or "tags" #5439</a>.
-    </p>
-    <p>
-        To update information about Tags, update
-        <a href="https://github.com/moneymanagerex/moneymanagerex/blob/master/docs/en_US/index.html" target="_blank">https://github.com/moneymanagerex/moneymanagerex/blob/master/docs/en_US/index.html</a>.
-    </p>
+	<h2>Working with Tags</h2>
+	<aside class="sticky notes">
+		A single transaction can contain multiple Tags.  
+		This makes Tags ideal for cross-category and multi-context analysis.
+	</aside>
+	<p>
+		<dfn>Tags</dfn> are an advanced classification tool that allow you to assign contextual 
+		information to transactions, independently of Categories, Accounts, or Payees. While 
+		Categories describe the nature of an expense or income, Tags describe the <b>purpose</b>, 
+		<b>project</b>, <b>person</b>, <b>event</b>, or <b>context</b> related to that transaction.
+	</p>
+
+
+	<h3>Why Tags exist and when to use them</h3>
+
+	<p>
+		Tags were introduced to provide a more flexible classification system than Categories alone.
+		A Category defines “what type” of transaction was made; a Tag defines “why” the transaction 
+		was made or “in which context” it belongs.
+	</p>
+
+	<p>Tags are especially useful when:</p>
+
+	<ul>
+		<li><b>An event involves many different expenses</b> (trips, parties, celebrations, home projects).</li>
+		<li><b>You need to split expenses between people</b> (partners, family members, roommates).</li>
+		<li><b>You want to track a project over time</b> (renovation, work activities, hobbies).</li>
+		<li><b>You manage multiple properties</b> and want to separate costs without duplicating Categories.</li>
+		<li><b>A transaction belongs to more than one logical context</b>.</li>
+	</ul>
+
+	<p>
+		Using Tags keeps your Category structure clean while allowing deep and flexible analysis.
+	</p>
+
+
+	<h3>Adding Tags to a Transaction</h3>
+
+	<p>
+		The <b>Tags</b> field is available in the New/Edit Transaction window.  
+		You can:
+	</p>
+
+	<ul>
+		<li>Type a Tag name and press <kbd>Enter</kbd> to create it</li>
+		<li>Select an existing Tag from the dropdown list</li>
+		<li>Add multiple Tags by typing them sequentially</li>
+	</ul>
+
+	<p><i><img src="../en_US/tag1.gif" alt="New/Edit Transaction window showing the Tags field" class="shadow"/></i></p>
+
+	<aside class="sticky tips">
+		If you enter a Tag that does not exist, MMEX will prompt you to create it.
+	</aside>
+	<br><br><br>
+	<p>
+		Tags also work with <b>split transactions</b>, allowing you to classify complex entries 
+		with multiple Categories.
+	<br><br>
+	<p><i><img src="../en_US/tags_split_transactions.jpg" alt="New/Edit Transaction window showing the Tags field" class="shadow"/></i></p>
+	
+	</p>
+
+
+	<h3>Organizing and Managing Tags</h3>
+
+	<p>
+		All Tags can be viewed and modified using:
+	</p>
+
+	<p><kbd><samp>Tools</samp> → <samp>Tag Manager…</samp></kbd></p>
+
+	<p><i><p><i><img src="../en_US/organizetags.jpg" alt="Organize Tags dialog" class="shadow"/></i></p>
+
+	<p>
+		From this window you can:
+	</p>
+
+	<ul>
+		<li><b>Create</b> new Tags</li>
+		<li><b>Rename</b> existing Tags</li>
+		<li><b>Disable</b> Tags that are no longer in use</li>
+		<li><b>Delete</b> Tags not assigned to any transaction</li>
+	</ul>
+
+
+	<h4>Rules and limitations for Tag names</h4>
+
+	<p>
+		Tag names must follow specific rules to ensure correct behavior within MMEX reports, 
+		search filters, the database, and import/export systems:
+	</p>
+
+	<ul>
+
+		<li>
+			<b>Spaces are not allowed in Tag names.</b><br>
+			To represent multiple words, use:
+			<ul>
+				<li>Underscore (<code>_</code>) → <em>Trip_New_York</em></li>
+				<li>Or write everything together → <em>TripNewYork</em></li>
+			</ul>
+		</li>
+
+		<li><b>Do not use the characters “:” or “/”.</b><br>
+			These characters interfere with QIF/CSV import formats.
+		</li>
+
+		<li>
+			<b>Avoid complex special characters</b> such as  
+			<code>[ ] { } ( ) % $ # @ ! ? *</code>.
+		</li>
+
+		<li>
+			<b>Tags are case-insensitive.</b><br>
+			<em>holiday2025</em>, <em>Holiday2025</em> and <em>HOLIDAY2025</em> are considered identical.
+		</li>
+
+		<li><b>Each Tag must be unique.</b></li>
+	<aside class="sticky tips">
+		Recommended naming styles: <code>WordWord</code> or <code>Word_Word</code>  
+		(avoid spaces and special characters).
+	</aside>
+		<li><b>Numbers are allowed in Tag names.</b><br>
+			Examples: <em>BBQ2025</em>, <em>Renovation2024</em>, <em>Trip_2023</em>.
+		</li>
+
+		<li>
+			<b>Keep Tag names short and meaningful.</b><br>
+			Very long names reduce readability in reports.
+		</li>
+
+	</ul>
+
+
+
+
+
+	<h3>Using Tags in Reports</h3>
+
+	<p>
+		The <b>Transaction Report</b> fully supports Tag-based filtering.
+	</p>
+
+	<p><kbd><samp>Reports</samp> → <samp>Transactions</samp></kbd></p>
+
+	<p><i><img src="../en_US/tags_split_transactions.jpg" alt="Transaction Report with Tag filter highlighted"/></i></p>
+	<aside class="sticky notes">
+		Grouping by Tags is not yet available in official MMEX reports.
+	</aside>
+
+	<p>Filter options include:</p>
+
+	<ul>
+		<li><b>TagA</b> → Show transactions with TagA</li>
+		<li><b>TagA | TagB</b> → OR logic (at least one Tag matches)</li>
+		<li><b>TagA TagB</b> → AND logic (both Tags must match)</li>
+	</ul>
+
+
+	<h3>Examples and Real-life Scenarios</h3>
+
+	<h4>• Travel</h4>
+	<p>Hotels, taxis, restaurants → Tag: <b>Vacation2025</b></p>
+
+	<h4>• Renovation</h4>
+	<p>Materials, labor, tools → Tag: <b>BathroomRenovation</b></p>
+
+	<h4>• Shared expenses</h4>
+	<p>Groceries, utilities → Tags: <b>Marco</b>, <b>Angela</b></p>
+
+	<h4>• Property management</h4>
+	<p>Bills, maintenance, taxes → Tag: <b>CityCenterHouse</b></p>
 
     <h2>Working with Currencies</h2>
     <p>
