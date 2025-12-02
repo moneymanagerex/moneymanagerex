@@ -1068,7 +1068,7 @@
 
 	<p><kbd><samp>Reports</samp> → <samp>Transactions</samp></kbd></p>
 
-	<p><i><img src="../en_US/tags_split_transactions.jpg" alt="Transaction Report with Tag filter highlighted"/></i></p>
+	<p><i><img src="../en_US/Transaction_Report_with_Tag.jpg" alt="Transaction Report with Tag filter highlighted"/></i></p>
 	<aside class="sticky notes">
 		Grouping by Tags is not yet available in official MMEX reports.
 	</aside>
@@ -1076,10 +1076,28 @@
 	<p>Filter options include:</p>
 
 	<ul>
-		<li><b>TagA</b> → Show transactions with TagA</li>
-		<li><b>TagA | TagB</b> → OR logic (at least one Tag matches)</li>
-		<li><b>TagA TagB</b> → AND logic (both Tags must match)</li>
-	</ul>
+    <li>
+        <b>TagA</b> → Filters transactions that contain this Tag.<br>
+        <i>Result:</i> all transactions that include <b>TagA</b> will be displayed,
+        whether the Tag appears alone or together with other Tags.
+    </li>
+
+    <li>
+        <b>TagA | TagB</b> → OR logic.<br>
+        <i>Result:</i> all transactions that contain at least one of the specified Tags
+        will be shown.  
+        A transaction will be included if it contains <b>TagA</b>, or <b>TagB</b>,
+        or both.
+    </li>
+
+    <li>
+        <b>TagA TagB</b> → AND logic.<br>
+        <i>Result:</i> only transactions that contain both <b>TagA</b> and <b>TagB</b>
+        at the same time will be displayed.  
+        Transactions that contain only one of the two Tags will be excluded.
+    </li>
+</ul>
+
 
 
 	<h3>Examples and Real-life Scenarios</h3>
@@ -2011,3 +2029,4 @@ cp ~/.mmex/mmexini.db3 /media/disk/mmex/share/mmex</kbd></pre>
     </small></p></footer>
 </body>
 </html>
+
