@@ -39,7 +39,7 @@ Microsoft Windows
    - one of `wxMSW-3.*.*-vc141_Dev.7z` or `wxMSW-3.*.*-vc141_x64_Dev.7z`
    - one of `wxMSW-3.*.*-vc141_ReleaseDLL.7z`
      or `wxMSW-3.*.*-vc141_x64_ReleaseDLL.7z`
-   
+
    Unpack archives to `c:\wxWidgets\` or `c:\Program Files\wxWidgets\`.
 
    You may select different directory but then `wxwin` environment variable
@@ -61,7 +61,7 @@ Microsoft Windows
 
    Change `x86` parameter to `amd64` for native 64-bit build.
 
-**IMPORTANT**  
+**IMPORTANT**
 __All following commands must be run from this command prompt!__
 
 5. Clone [MMEX official Git repository] with submodules using command-line:
@@ -96,7 +96,7 @@ __All following commands must be run from this command prompt!__
        cd c:\curl-<version>\build
        set "PATH=%PATH%;%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\bin"
        cmake -G "Visual Studio 17 2022" -A x64 -DBUILD_CURL_EXE=OFF -DHTTP_ONLY=ON ^
-         -DENABLE_MANUAL=OFF -DBUILD_TESTING=OFF -DCURL_STATICLIB=ON ^
+         -DENABLE_MANUAL=OFF -DBUILD_TESTING=OFF -DCURL_STATICLIB=ON -DCURL_USE_LIBPSL=OFF ^
          -DCURL_USE_SCHANNEL=ON -DCMAKE_INSTALL_PREFIX=c:\libcurl ..
        set "CL=/MP"
        cmake --build . --target install --config Release --clean-first ^
@@ -104,7 +104,7 @@ __All following commands must be run from this command prompt!__
 
    Replace `-A x64` with `-A Win32` to remove 64-bit support.
 
-8. Then you should follow one of  
+8. Then you should follow one of
    [Visual Studio project] | [Visual Studio CLI] | [Visual Studio CMake]
 
 ### Visual Studio GUI with project file
@@ -179,7 +179,7 @@ CMake_ option installed.
            "name": "CMAKE_PREFIX_PATH",
            "value": "c:\libcurl"
          }
-        
+
    See detailed instructions for [configuring CMake projects] from Microsoft _Visual C++ Team Blog_.
 
 4. Run `CMake`->`Install`->`Project MMEX` menu command before debugging
@@ -217,7 +217,7 @@ macOS with Homebrew
 Current stable version that has been tested with MMEX is v3.2.8
 
 1. Download Sources
-        
+
         /bin/bash -c "$(curl -fsSL -O https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.8/wxWidgets-3.2.8.tar.bz2)"
         tar xzf wxWidgets-*.tar.bz2
 
@@ -325,7 +325,7 @@ If you want the stable 1.7.0 version of mmex:
 If you want the latest (possibly unstable) version of the trunk:
 
     git clone --recursive https://github.com/moneymanagerex/moneymanagerex
-	
+
 #### 4. Compile and Create Package
 
 Got to the directory, where you downloaded the sources from github.
@@ -344,11 +344,11 @@ E.g. for the trunk version the output should be something like:
     -- Branch         : master
     -- Host system    : Linux x86_64
     -- Target system  : Linux x86_64
-    -- Build types    : 
+    -- Build types    :
     -- Generator      : Unix Makefiles
     -- Install prefix : /usr/local
     -- DB encryption  : ON
-    -- 
+    --
     -- Versions
     -- --========--
     -- Linux 6.1.38
@@ -388,7 +388,7 @@ If the build was ok the last message should be something like:
 
     For testing without installing you can run
     ../_CPack_Packages/Linux/DEB/mmex-1.7.1-Beta.1-Linux/usr/bin/mmex
-    
+
 #### 5. Install MMEX Package
 
 | Distribution         | Install package from local file              |

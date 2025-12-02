@@ -91,14 +91,14 @@
 int REPEAT_TRANS_DELAY_TIME = 3000; // 3 seconds
 //----------------------------------------------------------------------------
 
-void mmToolbarArt::DrawPlainBackground(wxDC& dc, wxWindow* wnd, const wxRect& rect)
+void mmToolbarArt::DrawPlainBackground(wxDC& dc, wxWindow* WXUNUSED(wnd), const wxRect& rect)
 {
     dc.GradientFillLinear(rect, mmThemeMetaColour(meta::COLOR_TOOLBAR), mmThemeMetaColour(meta::COLOR_TOOLBAR));
 }
 
 void mmToolbarArt::DrawButton(wxDC& dc, wxWindow* wnd, const wxAuiToolBarItem& item, const wxRect& rect)
 {
-    wxColour clr = mmThemeMetaColour(meta::COLOR_TOOLBAR);
+    //wxColour clr = mmThemeMetaColour(meta::COLOR_TOOLBAR);
     bool dark = isDark(mmThemeMetaColour(meta::COLOR_TOOLBAR));
     int bmpX = 0, bmpY = 0;
 
@@ -512,12 +512,15 @@ void mmGUIFrame::processPendingEvents()
 //----------------------------------------------------------------------------
 wxTreeItemId mmGUIFrame::getNavTreeChild(const wxTreeItemId& section, const wxString& childName) const
 {
-    wxTreeItemIdValue cookie;
-    wxTreeItemId child = m_nav_tree_ctrl->GetFirstChild(section, cookie);
-    while (child.IsOk()) {
-        if (m_nav_tree_ctrl->GetItemText(child) == childName)
-            break;
-        child = m_nav_tree_ctrl->GetNextChild(section, cookie);
+    wxTreeItemId child;
+    if (section) {
+        wxTreeItemIdValue cookie;
+        child = m_nav_tree_ctrl->GetFirstChild(section, cookie);
+        while (child.IsOk()) {
+            if (m_nav_tree_ctrl->GetItemText(child) == childName)
+                break;
+            child = m_nav_tree_ctrl->GetNextChild(section, cookie);
+        }
     }
     return child;
 }
