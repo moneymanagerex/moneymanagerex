@@ -252,6 +252,7 @@ Andrew Tomsa
 David Benjamin
 Jean-Michel Louiset
 Thomas Keenan
+Bill Black
 
 ### 2024
 Renato

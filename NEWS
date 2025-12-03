@@ -13,6 +13,9 @@ Features:
 * #7803 Pull in latest version of GRM reports
 * #7819 Payee manager enhancements
 * #7818 Bugfix and transaction dialog enhancements
+* #7911 Updated documentation: expanded Tags section, added screenshots and GIFs
+* #7913 Documentation Update: Complete rewrite of the Tags section with images and GIF + Improved translation: Adding Initial Shares to Stock
+* #7824 Fix Arch Linux support
 
 Bugfixes:
 * #7863 error occurred when saving the transaction
@@ -38,6 +41,9 @@ Bugfixes:
 * #7793 Fixed sorting of investment accounts in stocks widget
 * #7830 Refactor setting dialog static box assignments and remove double list refresh
 * #7829 Derive accelerator key from (translated) tooltip text
+* #7694 The New Database Wizard window is extremely wide
+* #7914 Misc fixes
+* #7916 Fix missing images and improve Tags documentation (en_US + it_IT)
 
 Version 1.9.1
 ~~~~~~~~~~~~~~~~~~~~
