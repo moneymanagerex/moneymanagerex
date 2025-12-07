@@ -234,7 +234,10 @@ void mmWebAppDialog::fillControls()
         data.emplace_back(WebTran.Notes); //WEBTRAN_NOTES
         data.emplace_back(WebTran.Attachments); //WEBTRAN_ATTACHMENTS
 
-        webtranListBox_->AppendItem(data, static_cast<wxUIntPtr>(WebTran.ID.GetValue()));
+        wxVector<wxVariant> wxData;
+        std::copy(data.begin(), data.end(), wxData.begin());
+
+        webtranListBox_->AppendItem(wxData, static_cast<wxUIntPtr>(WebTran.ID.GetValue()));
     }
 
     if (!WebAppTransactions_.empty())
