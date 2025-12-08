@@ -2505,10 +2505,13 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 void mmGUIFrame::SetDataBaseParameters(const wxString& fileName)
 {
     wxFileName fname(fileName);
-    wxString title = wxString::Format("%s - %s", fname.GetFullName(), mmex::getProgramName());
+    wxString title = wxString::Format("%s - %s (%s) %s", 
+                        fname.GetFullName(), 
+                        mmex::getProgramName(), 
+                        mmex::getTitleProgramVersion(),
+                        wxGetOsDescription());
     if (mmex::isPortableMode())
-        title = wxString::Format("%s [%s]", title, _t("portable mode"));
-
+        title << " [" << _t("portable mode") << "]";
     SetTitle(title);
 
     if (m_db) {
