@@ -114,7 +114,7 @@ const wxString mmex::getTitleProgramVersion()
         "";
 #endif
 
-    return wxString::Format("%s %s", mmex::version::string, architecture);
+    return wxString::Format("%s %s", mmex::version::string, architecture).Trim();
 }
 
 int mmex::version::getDbLatestVersion()
