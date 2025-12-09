@@ -176,43 +176,442 @@ e il sistema viene arrestato vengono mantenute fino a 4 copie di backup per ogni
             per impostare il livello di backup richiesto.</li>
     </ul>
 
-    <h2>Creare un Nuovo Database</h2>
-    <p>
-        Quando si avvia MMEX, tenterà di caricare l'ultimo database
-        che è stato aperto. Se non esiste alcun database, all'utente viene presentata l'opzione di aprire un database esistente o
-        di crearne uno nuovo.
-    </p>
-    <p>
-        Se è necessario creare un nuovo file di database, dal menu selezionare
-       <kbd><samp>File</samp> &rarr; <samp>Nuovo Database</samp></kbd>.
-    </p>
-    <p>
-        Questo vi chiederà di specificare un nuovo nome per il file di database<code>.mmb</code>, in corrispondenza della posizione specificata. Ora viene creato il nuovo file di database
-        e la <dfn>creazione guidata Database</dfn> verrà visualizzata per aiutarvi a inizializzare il nuovo database e assistervi nel creare il vostro primo conto.
-    </p>
-    <p>
-        La creazione guidata Database vi chiederà di impostare la Valuta Base
-       e un nome utente.
-    </p>
-    <p>
-        MMEX è dotato di un set predefinito di valute che è possibile utilizzare,
-        per avere corrispondenza con la valuta del vostro paese. I nuovi account
-        useranno questa impostazione <dfn>Base Currency</dfn> come predefinita. Questo
-        permette agli account di diversi paesi di riflettere il valore in
-        la valuta di base.
-    </p>
-    <p>
-        Per contribuire a identificare lo scopo del database, un <dfn>User Name</dfn> è
-        richiesto. Questo è opzionale, perché è utilizzato solo come titolo nella pagina iniziale
-        e nei report.
-    </p>
-    <p>
-        Entrambe queste impostazioni possono essere modificate successivamente, se necessario, selezionando il menu:  <kbd><samp>Strumenti</samp> &rarr; <samp>Opzioni</samp></kbd>.
-    </p>
-    <p>
-        Il nome del database verrà visualizzato sulla barra del titolo per aiutarvi a ricordare quale file di database è aperto.
-        <s> il nuovo file di database <code>.mmb</code> non è crittografato.</s>
-    </p>
+	<!-- ======================================== -->
+	<!--    Creare e gestire un Nuovo Database    -->
+	<!-- ======================================== -->
+
+	<h2>Creare e gestire un Nuovo Database</h2>
+
+	<p>
+		In MMEX tutte le informazioni finanziarie (Conti, Transazioni, Categorie, Valute, Etichette,
+		Allegati, Impostazioni e altro) risiedono all’interno di un <dfn>Database</dfn>.
+		Questo capitolo spiega come creare un nuovo database, come gestirlo, come usare la crittografia,
+		come aprirlo su altri dispositivi e come effettuare backup affidabili.
+	</p>
+
+	<hr />
+
+	<h3>Introduzione ai database MMEX</h3>
+
+	<p>
+		Un database MMEX è un file SQLite e può avere due estensioni:
+	</p>
+
+	<ul>
+		<li><code>.mmb</code> – formato standard, non criptato;</li>
+		<li><code>.emb</code> – formato criptato e protetto da password.</li>
+	</ul>
+
+	<p>
+		MMEX può gestire più database: personale, famiglia, lavoro, test, ecc.
+		Il nome del file aperto è sempre visibile nella <strong>barra del titolo</strong> del programma.
+	</p>
+
+	<aside class="sticky tips">
+		Se utilizzi più database, adotta una convenzione chiara nei nomi (es. <code>Personale_2025.mmb</code>,
+		<code>Studio.emb</code>).
+	</aside>
+
+	<img src="../it_IT/images/creare_db_01.png" alt="Schermata iniziale senza database" class="shadow" />
+	<!-- Questa immagine dovrebbe mostrare MMEX all'avvio quando non trova un database e propone “Apri Database” o “Nuovo Database”. -->
+
+
+	<h3>Creare un nuovo Database (.mmb)</h3>
+
+	<p>
+		Per creare un nuovo database seleziona:
+	</p>
+
+	<p>
+		<kbd><samp>File</samp> → <samp>Nuovo Database…</samp></kbd>
+	</p>
+
+	<p>
+		Verrà chiesto di indicare:
+	</p>
+
+	<ul>
+		<li>la cartella di salvataggio;</li>
+		<li>il nome del file (es. <code>Finanze.mmb</code>).</li>
+	</ul>
+
+	<img src="../it_IT/images/creare_db_02.png" alt="Salvataggio nuovo file .mmb" class="shadow" />
+	<!-- L’immagine dovrebbe mostrare la finestra “Salva con nome” con estensione .mmb selezionata. -->
+
+	<p>
+		Una volta salvato il file, si aprirà la <strong>Creazione guidata Database</strong>.
+	</p>
+
+	<h4>Impostazioni iniziali: Valuta Base e Nome Utente</h4>
+
+	<p>
+		La procedura guidata richiede due informazioni fondamentali:
+	</p>
+
+	<ul>
+		<li><strong>Valuta Base</strong> → valuta predefinita del database;</li>
+		<li><strong>Nome Utente</strong> (opzionale) → appare nella Home Page e in alcuni report.</li>
+	</ul>
+
+	<img src="../it_IT/images/creare_db_03.png" alt="Wizard creazione database: valuta e nome utente" class="shadow" />
+	<!-- L’immagine dovrebbe mostrare il wizard con selezione Valuta Base e Nome Utente. -->
+	
+	<aside class="sticky notes">
+		La scelta della Valuta Base influisce sui report e sui tassi di cambio.
+	</aside>
+	
+	<p>
+		In seguito è sempre possibile modificare questi parametri tramite:
+	</p>
+
+	<p>
+		<kbd><samp>Strumenti</samp> → <samp>Impostazioni…</samp></kbd>
+	</p>
+
+	<h3>Database non criptati (.mmb)</h3>
+
+	<p>
+		I file <code>.mmb</code> sono database SQLite non protetti.  
+		Sono leggibili da qualsiasi installazione MMEX e anche da strumenti esterni.
+	</p>
+	
+	<aside class="sticky notes">
+		I file <code>.mmb</code> non sono protetti: chiunque abbia accesso al file può leggere i tuoi dati.
+	</aside>
+	
+	<ul>
+		<li>Uso consigliato su PC privati e sicuri;</li>
+		<li>Nessuna richiesta di password;</li>
+		<li>Prestazioni leggermente migliori all’apertura.</li>
+	</ul>
+
+
+
+	<h3>Database criptati (.emb)</h3>
+
+	<p>
+		I file <code>.emb</code> applicano crittografia AES e richiedono una password per essere aperti.
+		Sono la scelta più sicura quando il database va salvato in cloud, trasferito o usato su dispositivi condivisi.
+	</p>
+
+	<ul>
+		<li>Protezione totale dei dati;</li>
+		<li>Nessun accesso senza password;</li>
+		<li>Compatibilità completa con tutte le funzioni MMEX.</li>
+	</ul>
+
+
+
+	<aside class="sticky notes">
+		Se perdi la password, il database non è recuperabile.
+	</aside>
+
+	<h4>Convertire da .mmb a .emb</h4>
+
+	<p>
+		Per convertire un database esistente in un file criptato:
+	</p>
+	<aside class="sticky tips">
+		Dopo la conversione il vecchio <code>.mmb</code> rimane comunque sul disco: eliminalo manualmente se non serve più.
+	</aside>
+
+	<p>
+		<kbd><samp>File</samp> → <samp>Salva Database Come…</samp></kbd>
+	</p>
+	
+	<p>
+		Seleziona <strong>Encrypted Database (.emb)</strong>.
+	</p>
+	
+	<img src="../it_IT/images/creare_db_04.png" alt="Salvataggio database criptato" class="shadow" />
+	<!-- L’immagine dovrebbe mostrare la finestra “Salva Database Come” con estensione .emb selezionata. -->
+
+
+
+
+	<h4>Convertire da .emb a .mmb</h4>
+
+	<p>
+		Apri il file criptato, inserisci la password, quindi salva con:
+	</p>
+
+	<p>
+		<kbd><samp>File</samp> → <samp>Salva Database Come…</samp></kbd>
+	</p>
+
+
+
+	<h3>Aprire un database su un altro dispositivo</h3>
+
+	<p>
+		I file <code>.mmb</code> e <code>.emb</code> non sono legati al computer su cui sono stati creati:
+		puoi copiarli e aprirli ovunque.
+	</p>
+
+	<aside class="sticky tips">
+		Usa la stessa versione MMEX su tutti i dispositivi per evitare incompatibilità.
+	</aside>
+
+	<img src="../it_IT/images/creare_db_05.png" alt="Apertura database su altro dispositivo" class="shadow" />
+	<!-- L’immagine dovrebbe mostrare apertura di un file .emb su un altro PC con richiesta password. -->
+
+	<ul>
+		<li>Copia il file sul nuovo dispositivo;</li>
+		<li>Aprilo con <kbd>File → Apri Database…</kbd>;</li>
+		<li>Se è criptato, inserisci la password.</li>
+	</ul>
+
+
+
+	<h3>Problemi comuni e soluzioni</h3>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Problema</th>
+				<th>Causa</th>
+				<th>Soluzione</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Password rifiutata</td>
+				<td>Maiuscole/Minuscole o tastiera errata</td>
+				<td>Controllare layout tastiera e Caps Lock</td>
+			</tr>
+			<tr>
+				<td>File corrotto</td>
+				<td>Interruzione durante il salvataggio</td>
+				<td>Ripristinare un backup</td>
+			</tr>
+			<tr>
+				<td>Versione non compatibile</td>
+				<td>MMEX troppo vecchio</td>
+				<td>Aggiornare all’ultima versione</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h3>Differenze tra .mmb e .emb</h3>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Caratteristica</th>
+				<th>.mmb</th>
+				<th>.emb</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Sicurezza</td>
+				<td>Bassa</td>
+				<td>Alta (criptato)</td>
+			</tr>
+			<tr>
+				<td>Password richiesta</td>
+				<td>No</td>
+				<td>Sì</td>
+			</tr>
+			<tr>
+				<td>Prestazioni</td>
+				<td>Leggermente più veloce</td>
+				<td>Piccolo overhead</td>
+			</tr>
+			<tr>
+				<td>Accesso da strumenti esterni</td>
+				<td>Possibile (SQLite)</td>
+				<td>Impossibile</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<hr />
+
+	<h3>Gestire più database</h3>
+
+	<p>
+		Puoi passare rapidamente tra i database recenti usando:
+	</p>
+	
+	
+	<p>
+		<kbd><samp>File</samp> → <samp>File recenti…</samp></kbd>
+	</p>
+
+	<img src="../it_IT/images/creare_db_06.png" alt="Lista File recenti" class="shadow" />
+	<!-- L’immagine dovrebbe mostrare il menu File → File recenti con più database elencati. -->
+
+
+
+
+	<!-- ============================== -->
+	<!--            BACKUP              -->
+	<!-- ============================== -->
+
+	<h3>Backup del Database</h3>
+	
+	<p>
+		MMEX genera copie di sicurezza (file <code>.bak</code>) per proteggere i tuoi dati da errori,
+		arresti inattesi, file corrotti o problemi di compatibilità con versioni precedenti.
+	</p>
+
+	<img src="../it_IT/images/creare_db_07.png" alt="Opzioni di backup" class="shadow" />
+	<!-- L’immagine dovrebbe mostrare le Opzioni → Altro con i campi relativi ai backup. -->
+
+	<h4>Impostazioni di Backup</h4>
+
+	<p>
+		Le impostazioni si trovano in:
+	</p>
+
+	<p>
+		<kbd><samp>Strumenti</samp> → <samp>Impostazioni</samp> → <samp>Altro</samp></kbd>
+	</p>
+
+	<p>
+		Le opzioni disponibili sono:
+	</p>
+
+	<ul>
+		<li><strong>Backup del database all'avvio</strong>: crea un backup ogni volta che MMEX viene avviato.</li>
+		<li><strong>Backup del database all'avvio</strong>: crea un backup quando MMEX viene chiuso e solo se c'è una modifica al DB.</li>
+		<li><strong>Numero massimo di File</strong>: numero massimo di backup da conservare.</li>
+		<li><strong>Giorni di conservazione delle transazioni eliminate</strong>: giorni dopo i quali cancellare definitivamente le transazioni eliminate.</li>
+	</ul>
+
+	<aside class="sticky notes">
+		I file di backup vengono creati <strong>nella stessa cartella del database principale</strong>.
+		MMEX attualmente <strong>non permette di scegliere una cartella diversa</strong>.
+	</aside>
+
+	<h4>I file .bak</h4>
+
+	<p>
+		Ogni backup generato ha estensione <code>.bak</code>.  
+		A livello pratico, si tratta di copie del file <code>.mmb</code>.
+	</p>
+
+	<aside class="sticky notes">
+		MMEX non apre i file <code>.bak</code> direttamente: per usarli devi rinominarli in <code>.mmb</code>.
+	</aside>
+
+	<h4>Ripristinare un Backup</h4>
+
+	<ol>
+		<li>Chiudi MMEX.</li>
+		<li>Vai nella cartella dove si trova il database: lì troverai anche i file <code>.bak</code>.</li>
+		<li>Copia il file backup che vuoi usare.</li>
+		<li>Rinomina la copia da <code>nomefile.bak</code> a <code>nomefile.mmb</code>.</li>
+		<li>Apri il nuovo file tramite <kbd>File → Apri Database…</kbd>.</li>
+	</ol>
+
+	<h4>Downgrade di Versione</h4>
+
+	<p>
+		Se torni a una versione precedente di MMEX, il database più recente potrebbe non aprirsi.
+		In questo caso:
+	</p>
+
+	<ul>
+		<li>Rinomina l'attuale database (es. <code>Finanze.mmb → Finanze-old.mmb</code>).</li>
+		<li>Rinomina un backup precedente a <code>Finanze.mmb</code>.</li>
+		<li>Aprilo tramite la versione precedente di MMEX.</li>
+	</ul>
+
+	<h4>Backup come “istantanee storiche”</h4>
+
+	<p>
+		Quando apri un backup molto vecchio, MMEX applica automaticamente tutte le transazioni
+		pianificate che risultano “scadute” da quella data fino a oggi.
+	</p>
+
+	<aside class="sticky tips">
+		Per evitare che MMEX modifichi automaticamente il contenuto del backup, imposta ogni
+		transazione pianificata con l’opzione
+		<strong>“Richiedi all’utente di inserire il pagamento”</strong>.  
+		In questo modo MMEX chiede conferma prima di applicare transazioni future,
+		mantenendo intatta l’istantanea.
+	</aside>
+
+	<p>
+		Se vuoi comunque pulire le transazioni applicate:
+	</p>
+
+	<ul>
+		<li>Ripristina il backup in un file separato.</li>
+		<li>Lascia che MMEX applichi le transazioni pianificate.</li>
+		<li>Ordina la vista <em>Tutte le transazioni</em> per <strong>Ultima modifica</strong>.</li>
+		<li>Elimina le transazioni aggiunte automaticamente.</li>
+	</ul>
+
+	<h4>Backup “immutabile”</h4>
+
+	<p>
+		MMEX non può bloccare in sola lettura un file di backup, ma puoi farlo tu a livello di sistema.
+	</p>
+
+	<aside class="sticky notes">
+		Per mantenere un backup immutabile, copia il file in una posizione
+		<strong>in sola lettura</strong> (es. una cartella con permessi limitati o una chiavetta USB
+		con protezione da scrittura).
+	</aside>
+
+	<h4>Problemi Comuni</h4>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Problema</th>
+				<th>Causa</th>
+				<th>Soluzione</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Nessun file .bak generato</td>
+				<td>Backup disattivi o permessi cartella insufficienti</td>
+				<td>Controlla Strumenti → Impostazioni → Altro</td>
+			</tr>
+			<tr>
+				<td>Nomi di backup molto lunghi</td>
+				<td>Apertura accidentale di file .bak come database principale</td>
+				<td>Identifica e utilizza sempre il file .mmb principale</td>
+			</tr>
+			<tr>
+				<td>Troppo spazio occupato</td>
+				<td>Max Files impostato troppo alto</td>
+				<td>Riduci il valore o cancella manualmente i backup più vecchi</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h4>Buone Pratiche</h4>
+
+	<aside class="sticky notes">
+		Considera il file <code>.mmb</code>/<code>.emb</code> come la tua versione “attiva”
+		e i file <code>.bak</code> come un’assicurazione.
+	</aside>
+
+	<ul>
+		<li>Conserva almeno 5–10 copie rotative.</li>
+		<li>Controlla periodicamente che i backup si generino correttamente.</li>
+		<li>Fai un backup manuale prima di modifiche importanti.</li>
+		<li>Copia i backup in un altro disco/servizio per sicurezza aggiuntiva.</li>
+	</ul>
+
+
+
+
+
+
+
+
+
+	<!-- ============================== -->
+	<!--        Creare nuovi conti      -->
+	<!-- ============================== -->
+
 
     <h2>Creare nuovi conti</h2>
     <p>
