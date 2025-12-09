@@ -511,155 +511,200 @@
 
 	<h3>Database Backup</h3>
 
-
-	<p>
-    MMEX generates backup copies (<code>.bak</code> files) to protect your data from errors,
-    crashes, corruption, or incompatibilities caused by newer database versions.
-	</p>
-
-	<img src="../en_US/images/create_db_07.png" alt="Database backup options" class="shadow" />
-	<!-- The image should show Tools → Options → Others with Backup options visible. -->
-
-	<h4>Backup Settings</h4>
-
-	<p>
-		Backup settings are available at:
-	</p>
-
-	<p>
-		<kbd><samp>Tools</samp> → <samp>Settings</samp> → <samp>Other</samp></kbd>
-	</p>
-
-	<p>
-		The available backup options are:
-	</p>
-
-	<ul>
-		<li><strong>Backup database on startup</strong>: creates a backup whenever MMEX starts.</li>
-		<li><strong>Backup database on exit</strong>: creates a backup whenever MMEX closes.</li>
-		<li><strong>Max Files</strong>: sets the maximum number of backup files to keep.</li>
-		<li><strong>Days to retain deleted transactions</strong>: the number of days after which deleted transactions are permanently removed.</li>
-	</ul>
-
-	<aside class="sticky notes">
-		Backup files are always created in the <strong>same folder as the main database</strong>.
-		MMEX currently <strong>does not allow choosing a different backup directory</strong>.
-	</aside>
-
-	<h4>.bak Files</h4>
-
-	<p>
-		Every backup created by MMEX uses the <code>.bak</code> extension.  
-		These are simply copies of your <code>.mmb</code> database made at specific times.
-	</p>
-
-	<aside class="sticky notes">
-		MMEX cannot open <code>.bak</code> files directly — rename them to <code>.mmb</code> to use them as normal databases.
-	</aside>
-
-	<h4>How to Restore a Backup</h4>
-
-	<ol>
-		<li>Close MMEX.</li>
-		<li>Locate the backup files in the same folder where your database is stored.</li>
-		<li>Create a copy of the desired <code>.bak</code> file.</li>
-		<li>Rename the copy from <code>filename.bak</code> to <code>filename.mmb</code>.</li>
-		<li>Open the restored file via <kbd>File → Open Database…</kbd>.</li>
-	</ol>
-
-	<h4>Version Downgrade</h4>
-
-	<p>
-		When you revert to an older version of MMEX, the updated database may no longer open.
-		In such cases:
-	</p>
-
-	<ul>
-		<li>Rename your current database (e.g., <code>Finances.mmb</code> → <code>Finances-old.mmb</code>).</li>
-		<li>Pick a backup made before the upgrade and rename it to <code>Finances.mmb</code>.</li>
-		<li>Open that backup with the older MMEX version.</li>
-	</ul>
-
-	<h4>Backups as Historical Snapshots</h4>
-
-	<p>
-		When opening an old backup, MMEX automatically applies any scheduled transactions
-		that fall between the backup date and the current date.  
-		This may modify balances and alter the historical snapshot.
-	</p>
-
-	<aside class="sticky tips">
-		To preserve historical backups unchanged, enable the option
-		<strong>“Ask user to enter the payment”</strong> for each scheduled transaction.
-		This prevents MMEX from automatically inserting overdue scheduled entries when
-		opening an older backup.
-	</aside>
-
-	<p>
-		If you still want to identify and remove newly added transactions:
-	</p>
-
-	<ul>
-		<li>Restore the backup as a separate database file.</li>
-		<li>Let MMEX apply the scheduled transactions.</li>
-		<li>Sort <em>All Transactions</em> by <strong>Last Updated</strong>.</li>
-		<li>Delete the transactions automatically added by MMEX.</li>
-	</ul>
-
-	<h4>Immutable Backups</h4>
-
-	<p>
-		MMEX cannot internally mark a database file as read-only, but you can enforce this
-		at the operating system level.
-	</p>
-
-	<aside class="sticky notes">
-		To keep a backup permanently unchanged, store a copy in a <strong>read-only location</strong>
-		(e.g. a folder with restricted permissions or a write-protected USB stick).
-	</aside>
-
-	<h4>Common Backup Issues</h4>
-
-	<table>
-		<thead>
-			<tr>
-				<th>Issue</th>
-				<th>Cause</th>
-				<th>Solution</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>No .bak files created</td>
-				<td>Backups disabled or insufficient folder permissions</td>
-				<td>Check Tools → Settings → Other and verify write access</td>
-			</tr>
-			<tr>
-				<td>Backup filenames become very long</td>
-				<td>A .bak file was mistakenly opened and used as the main database</td>
-				<td>Identify and always use the correct <code>.mmb</code> database</td>
-			</tr>
-			<tr>
-				<td>Backups consume large amounts of space</td>
-				<td>Max Files set too high</td>
-				<td>Reduce Max Files or delete older backups manually</td>
-			</tr>
-		</tbody>
-	</table>
-
-	<h4>Best Practices</h4>
-	
-	<aside class="sticky notes">
-		Treat your <code>.mmb</code>/<code>.emb</code> file as the active version,
-		and <code>.bak</code> files as your safety net.
-	</aside>
-	
-	<ul>
-		<li>Maintain 5–10 rotating backups.</li>
-		<li>Verify periodically that backup creation works correctly.</li>
-		<li>Create a manual backup before making major changes.</li>
-		<li>Copy important backups to another drive or cloud storage.</li>
-	</ul>
+    <p>
+        MMEX generates backup copies (<code>.bak</code> files) to protect your data from errors,
+        unexpected shutdowns, corruption, or incompatibilities with older database formats.
+    </p>
+    
+    <img src="en_US/images/create_db_07.png" alt="Backup options" class="shadow" />
+    <!-- The image should show Tools → Settings → Other with the backup options. -->
+    
+    <h4>Backup Settings</h4>
+    
+    <p>
+        Backup options are located under:
+    </p>
+    
+    <p>
+        <kbd><samp>Tools</samp> → <samp>Settings</samp> → <samp>Other</samp></kbd>
+    </p>
+    
+    <p>The available options are:</p>
+    
+    <ul>
+        <li><strong>Backup database on startup</strong>: creates a backup <strong>only if changes were made</strong> since the previous session.</li>
+        <li><strong>Backup database on exit</strong>: creates a backup <strong>only if changes were made</strong> during the current session.</li>
+        <li><strong>Max Files</strong>: maximum number of backup files to keep.</li>
+        <li><strong>Days to retain deleted transactions</strong>: number of days before permanently removing deleted transactions.</li>
+    </ul>
+    
+    <aside class="sticky notes">
+        Backup files are always stored in the <strong>same folder as the main database</strong>.  
+        MMEX does not currently allow selecting a different backup location.
+    </aside>
+    
+    <h4>How Backup Files Are Generated</h4>
+    
+    <p>
+        The backup filename is always based on the name of the main database
+        (<code>dbname.mmb</code>), with a suffix added automatically by MMEX:
+    </p>
+    
+    <ul>
+        <li><strong>On startup</strong>: <code>dbname_start_YYYY-MM-DD.bak</code></li>
+        <li><strong>On exit</strong>: <code>dbname_update_YYYY-MM-DD.bak</code></li>
+    </ul>
+    
+    <aside class="sticky notes">
+        A backup is created <strong>only when the database has been modified</strong>.
+    </aside>
+    
+    <h4>Backups Created on the Same Day</h4>
+    
+    <p>
+        During a single day, MMEX may create up to:
+    </p>
+    
+    <ul>
+        <li>one <code>_start_YYYY-MM-DD.bak</code> file (backup on startup), and</li>
+        <li>one <code>_update_YYYY-MM-DD.bak</code> file (backup on exit).</li>
+    </ul>
+    
+    <p>
+        Once a backup for that day has been created, MMEX <strong>does not update or overwrite it</strong>.
+        Backup files are static snapshots of the database at the time they were created.
+    </p>
+    
+    <p>
+        If additional changes are made during the same day:
+    </p>
+    
+    <ul>
+        <li><strong>only the main database file</strong> (<code>.mmb</code>) is updated,</li>
+        <li>the existing <code>.bak</code> files remain unchanged,</li>
+        <li>MMEX <strong>does not create further backups</strong> on the same date.</li>
+    </ul>
+    
+    <aside class="sticky tips">
+        This behavior prevents the folder from filling with redundant backups while keeping a single daily snapshot.
+    </aside>
+    
+    <h4>.bak Files</h4>
+    
+    <p>
+        A <code>.bak</code> file is a static copy of the database as it existed at a specific moment.
+        MMEX never modifies or overwrites existing backup files.
+    </p>
+    
+    <aside class="sticky notes">
+        MMEX cannot open <code>.bak</code> files directly.  
+        To restore one, rename it to <code>dbname.mmb</code>.
+    </aside>
+    
+    <h4>How to Restore a Backup Safely</h4>
+    
+    <ol>
+        <li>Close MMEX.</li>
+        <li>Locate the folder containing the database and its backups.</li>
+    
+        <li>
+            Rename the main database (<code>dbname.mmb</code>) to something like:<br>
+            <code>Last_dbname.mmb</code>  
+            to avoid filename conflicts.
+        </li>
+    
+        <li>
+            Make a copy of the backup you want to restore (right-click → copy → paste).
+        </li>
+    
+        <li>
+            Rename the copied backup from:<br>
+            <code>dbname_start_YYYY-MM-DD.bak</code> or <code>dbname_update_YYYY-MM-DD.bak</code><br>
+            to:<br>
+            <code>dbname.mmb</code>
+        </li>
+    
+        <li>
+            Open the renamed file using <kbd>File → Open Database…</kbd>.
+        </li>
+    </ol>
+    
+    <aside class="sticky tips">
+        This process ensures that your active database is preserved and prevents accidental overwriting.
+    </aside>
+    
+    <h4>Backups as Historical Snapshots</h4>
+    
+    <p>
+        Opening an older backup may cause MMEX to automatically apply scheduled transactions
+        that fall between the backup date and the current date.
+    </p>
+    
+    <aside class="sticky tips">
+        To keep a historical snapshot unchanged, enable  
+        <strong>“Ask user to enter the payment”</strong> in all scheduled transactions.
+    </aside>
+    
+    <ul>
+        <li>Restore the backup into a separate file.</li>
+        <li>Allow scheduled transactions to be applied.</li>
+        <li>Sort <em>All Transactions</em> by <strong>Last Updated</strong>.</li>
+        <li>Delete the automatically added scheduled transactions.</li>
+    </ul>
+    
+    <h4>Immutable Backups</h4>
+    
+    <p>
+        MMEX cannot mark a database file as read-only, but operating systems can.
+    </p>
+    
+    <aside class="sticky notes">
+        To preserve a backup permanently, store the <code>.bak</code> file in a
+        <strong>read-only location</strong> such as a write-protected USB drive.
+    </aside>
+    
+    <h4>Common Backup Issues</h4>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Issue</th>
+                <th>Cause</th>
+                <th>Solution</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>No .bak files created</td>
+                <td>Backups disabled or no database changes made</td>
+                <td>Check Tools → Settings → Other</td>
+            </tr>
+            <tr>
+                <td>Very long filenames</td>
+                <td>A backup file was mistakenly opened as the main database</td>
+                <td>Always use the <code>.mmb</code> file as your active database</td>
+            </tr>
+            <tr>
+                <td>Too many .bak files</td>
+                <td>Max Files set too high</td>
+                <td>Reduce the limit or clean older backups manually</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h4>Best Practices</h4>
+    
+    <ul>
+        <li>Keep 5–10 rotating backups.</li>
+        <li>Verify periodically that backups are generated correctly.</li>
+        <li>Create a manual backup before major changes.</li>
+        <li>Store backups on another drive or cloud service for safety.</li>
+    </ul>
+    
+    <aside class="sticky notes">
+        Consider your <code>.mmb</code>/<code>.emb</code> file as your active workspace  
+        and your <code>.bak</code> files as your insurance.
+    </aside>
 
 
  
