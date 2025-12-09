@@ -452,113 +452,194 @@ e il sistema viene arrestato vengono mantenute fino a 4 copie di backup per ogni
 <h3>Backup del Database</h3>
 
 <p>
-    MMEX crea automaticamente copie di sicurezza del database con estensione <code>.bak</code>,
-    secondo le impostazioni definite in <kbd><samp>Strumenti</samp> → <samp>Impostazioni</samp> → <samp>Altro</samp></kbd>.
-    I backup servono a proteggere i dati da errori, file corrotti o aggiornamenti non compatibili.
+    MMEX genera copie di sicurezza (file <code>.bak</code>) per proteggere i tuoi dati da errori,
+    arresti inattesi, file corrotti o problemi di compatibilità con versioni precedenti.
 </p>
 
 <img src="it_IT/images/creare_db_07.png" alt="Opzioni di backup" class="shadow" />
+<!-- L’immagine dovrebbe mostrare le Opzioni → Altro con i campi relativi ai backup. -->
 
-<h4>Come vengono generati i file di backup</h4>
+<h4>Impostazioni di Backup</h4>
+
+<p>Le impostazioni si trovano in:</p>
 
 <p>
-    Il nome del file di backup si basa sempre sul nome del database principale (<code>nomefile.mmb</code>),
-    e MMEX aggiunge automaticamente un suffisso che indica il momento della creazione.
+    <kbd><samp>Strumenti</samp> → <samp>Impostazioni</samp> → <samp>Altro</samp></kbd>
+</p>
+
+<p>Le opzioni disponibili sono:</p>
+
+<ul>
+    <li><strong>Backup del database all’avvio</strong>: crea un file di backup a ogni apertura di MMEX.</li>
+    <li><strong>Backup del database alla chiusura</strong>: crea un backup solo se il database ha subito modifiche.</li>
+    <li><strong>Numero massimo di File</strong>: numero massimo di file <code>.bak</code> da conservare.</li>
+    <li><strong>Giorni di conservazione delle transazioni eliminate</strong>: giorni dopo i quali le transazioni eliminate vengono rimosse definitivamente.</li>
+</ul>
+
+<aside class="sticky notes">
+    I file di backup vengono creati <strong>nella stessa cartella del database principale</strong>.
+    MMEX attualmente <strong>non permette di scegliere una cartella diversa</strong>.
+</aside>
+
+<h4>Come vengono generati i file .bak</h4>
+
+<p>
+    Il nome del file di backup deriva sempre dal nome del database principale
+    (<code>nomefile.mmb</code>).  
+    MMEX aggiunge automaticamente un suffisso al nome per distinguere il tipo di backup:
 </p>
 
 <ul>
     <li>
-        <strong>All’avvio (startup)</strong>  
-        Se l’opzione è attiva:<br>
+        <strong>All’avvio (startup)</strong>:  
         <code>nomefile_start_YYYY-MM-DD.bak</code>
     </li>
     <li>
-        <strong>Alla chiusura (exit)</strong>  
-        Se sono state fatte modifiche nel database:<br>
+        <strong>Alla chiusura (exit)</strong> — solo se il database è stato modificato:  
         <code>nomefile_update_YYYY-MM-DD.bak</code>
     </li>
 </ul>
 
 <aside class="sticky notes">
-    I file di backup vengono sempre salvati nella <strong>stessa cartella del database principale</strong>.
-    Non è possibile scegliere una posizione diversa dalle impostazioni.
+    Se non sono state effettuate modifiche al database, MMEX <strong>non</strong> genera il file
+    <code>_update</code> alla chiusura.
 </aside>
 
-<h4>Quando MMEX genera un nuovo file .bak</h4>
+<h4>I file .bak</h4>
 
-<ul>
-    <li>Alla chiusura: <strong>solo se il database è stato modificato</strong> (es. aggiunta/modifica/eliminazione di transazioni).</li>
-    <li>All’avvio: viene sempre generato un nuovo backup <strong>se l’opzione è attiva</strong>.</li>
-</ul>
+<p>
+    Un file <code>.bak</code> è una copia identica del database <code>.mmb</code>
+    al momento della creazione.  
+    Ogni backup è indipendente e non sovrascrive i precedenti.
+</p>
+
+<aside class="sticky notes">
+    MMEX non apre direttamente i file <code>.bak</code>: per usarne uno come database,
+    devi rinominarlo in <code>nomefile.mmb</code>.
+</aside>
 
 <h4>Come ripristinare correttamente un backup</h4>
 
 <ol>
     <li>Chiudi MMEX.</li>
-    <li>Apri la cartella contenente il database e i relativi backup.</li>
+    <li>Vai nella cartella dove si trova il database e i file <code>.bak</code>.</li>
 
     <li>
-        Rinomina il file principale <code>nomefile.mmb</code> per sicurezza, ad esempio:<br>
+        Per evitare conflitti, rinomina il database principale <code>nomefile.mmb</code> in qualcosa come:<br>
         <code>Last_nomefile.mmb</code>
     </li>
 
     <li>
-        Fai una copia del file di backup che vuoi ripristinare (tasto destro → copia → incolla).  
-        Questo evita di modificare l’originale.
+        Copia il file di backup che desideri ripristinare
+        (tasto destro → copia → incolla nella stessa cartella).
     </li>
 
     <li>
-        Rinomina la copia del backup da:<br>
-        <code>nomefile_update_YYYY-MM-DD.bak</code><br>
+        Rinomina la copia da:
+        <br><code>nomefile_update_YYYY-MM-DD.bak</code><br>
+        oppure<br>
+        <code>nomefile_start_YYYY-MM-DD.bak</code><br>
         a:<br>
         <code>nomefile.mmb</code>
     </li>
 
-    <li>Apri il file rinominato tramite <kbd>File → Apri Database…</kbd>.</li>
+    <li>Apri MMEX e carica il file tramite <kbd>File → Apri Database…</kbd>.</li>
 </ol>
 
 <aside class="sticky tips">
-    Evita di aprire direttamente un file <code>.bak</code>.  
-    MMEX non supporta questa operazione: è necessario rinominare il file in <code>.mmb</code>.
+    Questa procedura assicura che il database originale non venga sovrascritto
+    e che non vi siano file con nomi duplicati nella stessa cartella.
 </aside>
 
-<h4>Nota sui molti backup generati</h4>
+<h4>Numerosi file di backup</h4>
 
 <p>
-    Se mantieni attive sia l’opzione “backup all’avvio” sia “backup alla chiusura”, MMEX può generare
-    numerosi file <code>.bak</code>, uno per ciascuna sessione di lavoro.  
-    Non vengono sovrascritti: ognuno mantiene la data nel nome.
+    Se sono attive sia l’opzione “backup all’avvio” che “backup alla chiusura”,
+    MMEX potrebbe generare diversi file <code>.bak</code> ogni giorno.
+    I file non vengono sovrascritti e ogni backup mantiene la data nel nome,
+    così da semplificare l’individuazione di una versione precedente.
 </p>
 
 <aside class="sticky notes">
-    Se il tuo database è molto attivo, valuta di ridurre il numero massimo di backup nella sezione
-    <strong>Max Files</strong>.
+    Se il tuo database è molto attivo, considera di ridurre il valore di
+    <strong>Max Files</strong> per evitare che la cartella diventi troppo grande.
 </aside>
 
-<h4>Backups come istantanee storiche</h4>
+<h4>Backup come “istantanee storiche”</h4>
 
 <p>
-    Aprire un backup molto datato può far sì che MMEX applichi automaticamente
-    tutte le transazioni pianificate non ancora registrate.
+    Quando apri un backup molto vecchio, MMEX può applicare automaticamente
+    tutte le transazioni pianificate scadute tra la data del backup e quella attuale.
 </p>
 
 <aside class="sticky tips">
-    Per evitare modifiche automatiche, imposta le transazioni pianificate con l’opzione
-    <strong>“Richiedi all’utente di inserire il pagamento”</strong>.  
-    In questo modo ogni transazione futura verrà chiesta manualmente, mantenendo immutata l’istantanea.
+    Per evitare modifiche indesiderate, imposta ogni transazione pianificata con
+    l’opzione <strong>“Richiedi all’utente di inserire il pagamento”</strong>.
+    In questo modo MMEX chiederà conferma prima di aggiungere transazioni future.
 </aside>
 
-<h4>Backup immutabili</h4>
+<p>
+    Se invece desideri ripulire manualmente le transazioni aggiunte automaticamente:
+</p>
+
+<ul>
+    <li>Ripristina il backup in un file separato.</li>
+    <li>Lascia che MMEX applichi le transazioni pianificate.</li>
+    <li>Ordina la vista <em>Tutte le transazioni</em> per <strong>Ultima modifica</strong>.</li>
+    <li>Elimina le transazioni aggiunte automaticamente.</li>
+</ul>
+
+<h4>Backup “immutabile”</h4>
 
 <p>
-    MMEX non può impostare un file come sola lettura.  
-    Tuttavia puoi farlo a livello di sistema operativo.
+    MMEX non può bloccare un file come “sola lettura”, ma puoi farlo tramite il sistema operativo.
 </p>
 
 <aside class="sticky notes">
-    Per conservare un backup permanente, copia il file <code>.bak</code> su una
-    <strong>cartella o unità in sola lettura</strong> (es. USB con blocco scrittura).
+    Per preservare un backup in modo permanente, copia il file <code>.bak</code>
+    su un dispositivo o una cartella configurata come <strong>sola lettura</strong>.
 </aside>
+
+<h4>Problemi Comuni</h4>
+
+<table>
+    <thead>
+        <tr>
+            <th>Problema</th>
+            <th>Causa</th>
+            <th>Soluzione</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Nessun file .bak generato</td>
+            <td>Backup disattivi o permessi insufficienti</td>
+            <td>Controlla Strumenti → Impostazioni → Altro</td>
+        </tr>
+        <tr>
+            <td>Nomi molto lunghi</td>
+            <td>Apertura accidentale di un <code>.bak</code> come database principale</td>
+            <td>Usa sempre il file <code>.mmb</code> come database principale</td>
+        </tr>
+        <tr>
+            <td>Troppi file di backup</td>
+            <td>Valore “Max Files” troppo alto</td>
+            <td>Riduci il numero massimo oppure elimina i più vecchi</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4>Buone Pratiche</h4>
+
+<ul>
+    <li>Mantieni 5–10 backup rotativi.</li>
+    <li>Verifica periodicamente che i backup vengano generati correttamente.</li>
+    <li>Esegui un backup manuale prima di modifiche importanti.</li>
+    <li>Copia i file di backup su un altro disco o servizio cloud per maggiore sicurezza.</li>
+</ul>
+
+<aside class="sticky notes">
+    Considera il file <code>.mmb</code>/<code>.emb</code> come la versione “attiva”
 
 
 
