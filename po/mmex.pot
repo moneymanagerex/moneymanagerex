@@ -5323,7 +5323,11 @@ msgstr ""
 msgid "Accounts &Visible"
 msgstr ""
 
-#: mmframe.cpp:1770
+#: mmframe.cpp:170
+msgid "Open theme manager…"
+msgstr ""
+
+#: mmframe.cpp:1767
 msgid "&New Database…"
 msgstr ""
 
@@ -7926,10 +7930,12 @@ msgid "Cash Flow - Transactions"
 msgstr ""
 
 #: reports/categexp.cpp:206
+# mmframe.cpp:1716
 msgid "Collapse All"
 msgstr ""
 
 #: reports/categexp.cpp:207
+# mmframe.cpp:1715
 msgid "Expand All"
 msgstr ""
 
