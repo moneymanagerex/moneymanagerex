@@ -53,6 +53,7 @@
 #include "mmreportspanel.h"
 #include "mmSimpleDialogs.h"
 #include "mmHook.h"
+#include "uicontrols/reconciledialog.h"
 #include "optiondialog.h"
 #include "payeedialog.h"
 #include "relocatecategorydialog.h"
@@ -184,6 +185,7 @@ EVT_MENU(MENU_THEME_MANAGER, mmGUIFrame::OnEmptyTreePopUp)
 EVT_MENU(MENU_DATE_RANGE_MANAGER, mmGUIFrame::OnDateRangeManager)
 EVT_MENU(MENU_TREEPOPUP_LAUNCHWEBSITE, mmGUIFrame::OnLaunchAccountWebsite)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, mmGUIFrame::OnAccountAttachments)
+EVT_MENU(MENU_TREEPOPUP_RECONCILE, mmGUIFrame::OnReconcileAccount)
 EVT_MENU(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbar)
 EVT_MENU(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinks)
 EVT_MENU(MENU_VIEW_HIDE_SHARE_ACCOUNTS, mmGUIFrame::OnHideShareAccounts)
@@ -1398,6 +1400,19 @@ void mmGUIFrame::OnAccountAttachments(wxCommandEvent& /*event*/)
     mmAttachmentDialog dlg(this, refType, refId);
     dlg.ShowModal();
 }
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::OnReconcileAccount(wxCommandEvent& WXUNUSED(event))
+{
+    Model_Account::Data* account = Model_Account::instance().get(selectedItemData_->getId());
+    if (account) {
+        mmCheckingPanel* cp = wxDynamicCast(panelCurrent_, mmCheckingPanel);
+        mmReconcileDialog dlg(wxGetTopLevelParent(this), account, cp);
+        if (dlg.ShowModal() == wxID_OK) {
+            cp->refreshList();
+        }
+    }
+}
 
 //----------------------------------------------------------------------------
 void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
@@ -1618,17 +1633,14 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         acct_id = iData->getId();
         Model_Account::Data* account = Model_Account::instance().get(acct_id);
         if (account) {
-            menu.Append(
-                MENU_TREEPOPUP_EDIT,
-                _tu("&Edit Account…")
-            );
-            menu.Append(
-                MENU_TREEPOPUP_DELETE,
-                _tu("&Delete Account…")
-            );
+            menu.Append(MENU_TREEPOPUP_RECONCILE, _t("&Reconcile Account"));
             menu.AppendSeparator();
             menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _t("&Launch Account Website"));
             menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _tu("&Attachment Manager…"));
+            menu.AppendSeparator();
+            menu.Append(MENU_TREEPOPUP_EDIT, _tu("&Edit Account…"));
+            menu.Append(MENU_TREEPOPUP_DELETE, _tu("&Delete Account…"));
+
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
             PopupMenu(&menu, pt);
         }
@@ -1640,25 +1652,18 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             Model_Account::Data* account = Model_Account::instance().get(acct_id);
             if (!account)
                 break;
-            menu.Append(
-                MENU_TREEPOPUP_EDIT,
-                _tu("&Edit Account…")
-            );
-            menu.Append(
-                MENU_TREEPOPUP_REALLOCATE,
-                _tu("&Change Account Type…")
-            );
-            menu.AppendSeparator();
-            menu.Append(
-                MENU_TREEPOPUP_DELETE,
-                _tu("&Delete Account…")
-            );
+            menu.Append(MENU_TREEPOPUP_RECONCILE, _t("&Reconcile Account"));;
             menu.AppendSeparator();
             menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _t("&Launch Account Website"));
-            menu.Append(
-                MENU_TREEPOPUP_ACCOUNTATTACHMENTS,
-                _tu("&Attachment Manager…")
-            );
+            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS,_tu("&Attachment Manager…"));
+            menu.AppendSeparator();
+            AppendImportMenu(menu);
+            menu.AppendSeparator();
+            menu.Append(MENU_TREEPOPUP_EDIT, _tu("&Edit Account…"));
+            menu.Append(MENU_TREEPOPUP_REALLOCATE, _tu("&Change Account Type…"));
+            menu.AppendSeparator();
+            menu.Append(MENU_TREEPOPUP_DELETE, _tu("&Delete Account…"));
+
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
             menu.Enable(MENU_TREEPOPUP_REALLOCATE, account->ACCOUNTTYPE != Model_Account::TYPE_NAME_SHARES && account->ACCOUNTTYPE != Model_Account::TYPE_NAME_INVESTMENT && account->ACCOUNTTYPE != Model_Account::TYPE_NAME_ASSET);
             menu.AppendSeparator();
@@ -2489,9 +2494,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 void mmGUIFrame::SetDataBaseParameters(const wxString& fileName)
 {
     wxFileName fname(fileName);
-    wxString title = wxString::Format("%s - %s (%s) %s", 
-                        fname.GetFullName(), 
-                        mmex::getProgramName(), 
+    wxString title = wxString::Format("%s - %s (%s) %s",
+                        fname.GetFullName(),
+                        mmex::getProgramName(),
                         mmex::getTitleProgramVersion(),
                         wxGetOsDescription());
     if (mmex::isPortableMode())

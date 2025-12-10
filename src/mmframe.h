@@ -201,6 +201,7 @@ private:
     void SetDataBaseParameters(const wxString& fileName);
     void OnLaunchAccountWebsite(wxCommandEvent& event);
     void OnAccountAttachments(wxCommandEvent& event);
+    void OnReconcileAccount(wxCommandEvent& event);
 private:
     void OnNew(wxCommandEvent& event);
     void OnOpen(wxCommandEvent& event);
@@ -410,6 +411,7 @@ private:
         MENU_TREEPOPUP_MOVE,
         MENU_TREEPOPUP_DELETE,
         MENU_TREEPOPUP_REALLOCATE,
+        MENU_TREEPOPUP_RECONCILE,
 
         MENU_TREEPOPUP_EXPAND_ALL,
         MENU_TREEPOPUP_COLLAPSE_ALL,
