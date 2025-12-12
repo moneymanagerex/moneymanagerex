@@ -18,9 +18,6 @@
 
 #pragma once
 
-#include <wx/sizer.h>
-#include <vector>
-
 #include "mmSimpleDialogs.h"
 #include "mmcheckingpanel.h"
 #include "model/Model_Account.h"

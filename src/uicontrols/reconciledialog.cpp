@@ -20,11 +20,6 @@
 #include "constants.h"
 #include "images_list.h"
 #include "option.h"
-#include <wx/wx.h>
-#include <wx/filedlg.h>
-#include <wx/bitmap.h>
-#include <wx/iconbndl.h>
-
 #include "reports/mmDateRange.h"
 #include "model/Model_Checking.h"
 #include "model/Model_Payee.h"
@@ -450,11 +445,10 @@ void mmReconcileDialog::editTransaction(wxListCtrl* list, long item)
 long mmReconcileDialog::getListIndexByDate(const Model_Checking::Data* trx, wxListCtrl* list)
 {
     int64 id;
-    Model_Checking::Data* trl;
     long idx = -1;
     for (long i = 0; i < list->GetItemCount(); ++i) {
         id = m_itemDataMap[list->GetItemData(i)];
-        trl = Model_Checking::instance().get(id);
+        Model_Checking::Data* trl = Model_Checking::instance().get(id);
         if (trx->TRANSDATE.Left(10) < trl->TRANSDATE.Left(10)) {
             idx = i;
             break;
