@@ -82,6 +82,7 @@ public:
     //static support function
     static wxString getFilterName(FILTER_ID id);
     static void loadDateRanges(std::vector<DateRange2::Spec>* date_range_ptr, int* range_m, bool isaccount);
+    double GetReconciledBalance() const;
 
 
 private:
@@ -210,6 +211,7 @@ private:
     void onSearchTxtEntered(wxCommandEvent& event);
     void onButtonRightDown(wxMouseEvent& event);
     void onInfoPanelClick(wxMouseEvent& event, wxStaticText* infoPanel);
+    void onReconcile(wxCommandEvent& event);
 
     wxString getPanelTitle() const;
     static void mmPlayTransactionSound();
@@ -219,5 +221,6 @@ inline bool mmCheckingPanel::isAllTrans() const { return m_checking_id == -1; }
 inline bool mmCheckingPanel::isDeletedTrans() const { return m_checking_id == -2; }
 inline bool mmCheckingPanel::isGroup() const { return m_checking_id <= -3; }
 inline bool mmCheckingPanel::isAccount() const { return m_checking_id >= 1; }
+inline double mmCheckingPanel::GetReconciledBalance() const { return m_reconciled_balance;}
 
 #endif // MM_EX_CHECKINGPANEL_H_

@@ -5,6 +5,7 @@ Copyright (C) 2013, 2022 Nikolay Akimov
 Copyright (C) 2014 James Higley
 Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 Copyright (C) 2021, 2022, 2024 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -194,11 +195,13 @@ private:
     void DoUpdateFilterNavigation(wxTreeItemId& parent_item);
     void DoUpdateBudgetNavigation(wxTreeItemId& parent_item);
     void showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt);
+    void showEmptyTreePopupMenu(const wxPoint& pt);
     void AppendImportMenu(wxMenu& menu);
     void showBeginAppDialog(bool fromScratch = false);
     void SetDataBaseParameters(const wxString& fileName);
     void OnLaunchAccountWebsite(wxCommandEvent& event);
     void OnAccountAttachments(wxCommandEvent& event);
+    void OnReconcileAccount(wxCommandEvent& event);
 private:
     void OnNew(wxCommandEvent& event);
     void OnOpen(wxCommandEvent& event);
@@ -269,9 +272,8 @@ private:
     void OnTransactionReport(wxCommandEvent& event);
     void OnCustomFieldsManager(wxCommandEvent& event);
     void OnGeneralReportManager(wxCommandEvent& event);
-    void OnThemeManager(wxCommandEvent& event);
+    void OnEmptyTreePopUp(wxCommandEvent& event);
     void OnDateRangeManager(wxCommandEvent& event);
-    void OnColumnOrderManager(wxCommandEvent& event);
     void OnRefreshWebApp(wxCommandEvent&);
     bool OnRefreshWebApp(bool is_silent);
 
@@ -284,9 +286,8 @@ private:
     void OnReportBug(wxCommandEvent& event);
     void OnDiagnostics(wxCommandEvent& event);
 private:
-    void OnItemRightClick(wxTreeEvent& event);
-    void OnItemMenu(wxTreeEvent& event);
     void OnSelChanged(wxTreeEvent& event);
+    void OnTreeRightClick(wxMouseEvent& event);
     void OnPopupDeleteAccount(wxCommandEvent& event);
     void OnPopupEditAccount(wxCommandEvent& event);
     void OnPopupReallocateAccount(wxCommandEvent& event);
@@ -294,7 +295,6 @@ private:
     void OnViewAccountsTemporaryChange(wxCommandEvent& event);
 
     void OnTreeItemExpanded(wxTreeEvent& event);
-    void OnTreeItemCollapsing(wxTreeEvent&);
     void OnTreeItemCollapsed(wxTreeEvent& event);
 
     void OnDropFiles(wxDropFilesEvent& event);
@@ -303,6 +303,8 @@ private:
     void processPendingEvents();
     void ReallocateAccount(int64 accountID);
     void mmDoHideReportsDialog();
+    void navTreeSelection(wxTreeItemId selectedItem);
+
 private:
     /* Recent Files */
     wxSharedPtr<mmFileHistory> m_recentFiles;
@@ -409,6 +411,12 @@ private:
         MENU_TREEPOPUP_MOVE,
         MENU_TREEPOPUP_DELETE,
         MENU_TREEPOPUP_REALLOCATE,
+        MENU_TREEPOPUP_RECONCILE,
+
+        MENU_TREEPOPUP_EXPAND_ALL,
+        MENU_TREEPOPUP_COLLAPSE_ALL,
+        MENU_TREEPOPUP_CONFIG_NAV,
+        MENU_TREEPOPUP_THEME,
 
         // Transaction Report Filter
         MENU_TREEPOPUP_FILTER_EDIT,

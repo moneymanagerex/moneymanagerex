@@ -108,7 +108,8 @@ void mmCalendarPopup::OnEndSelection(wxCalendarEvent& event)
 // mmCalculatorPopup
 //----------------------------------------------------------------------------
 
-mmCalculatorPopup::mmCalculatorPopup(wxWindow* parent, mmTextCtrl* target) : wxPopupTransientWindow(parent, wxBORDER_THEME | wxPU_CONTAINS_CONTROLS), target_(target)
+mmCalculatorPopup::mmCalculatorPopup(wxWindow* parent, mmTextCtrl* target, bool trigger) : 
+    wxPopupTransientWindow(parent, wxBORDER_THEME | wxPU_CONTAINS_CONTROLS), target_(target), trigger_(trigger)
 {
     panel = new wxWindow(this, wxID_ANY);
     font = parent->GetFont();
@@ -253,7 +254,13 @@ void mmCalculatorPopup::OnDismiss()
 #endif
     if (target_) {
         valueTextCtrl_->Calculate();
-        target_->ChangeValue(valueTextCtrl_->GetValue());
+        if (trigger_) {
+            target_->SetValue(valueTextCtrl_->GetValue());
+        } 
+        else { 
+            target_->ChangeValue(valueTextCtrl_->GetValue());
+        }
+        //target_->ChangeValue(valueTextCtrl_->GetValue());
         target_->Enable(true);
         target_->SetFocus();
     }

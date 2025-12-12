@@ -44,7 +44,7 @@ class wxButton;
 class mmCalculatorPopup : public wxPopupTransientWindow
 {
 public:
-    mmCalculatorPopup(wxWindow* parent, mmTextCtrl* target = nullptr);
+    mmCalculatorPopup(wxWindow* parent, mmTextCtrl* target = nullptr, bool trigger = false);
     virtual ~mmCalculatorPopup();
 
     void SetValue(wxString& value);
@@ -59,6 +59,7 @@ protected:
 private:
     bool dismissedByButton_ = false;
     mmTextCtrl* target_;
+    bool trigger_;
     mmTextCtrl* valueTextCtrl_ = nullptr;
     wxSize btnSize;
     wxFont font;
