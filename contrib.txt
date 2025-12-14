@@ -253,6 +253,8 @@ David Benjamin
 Jean-Michel Louiset
 Thomas Keenan
 Bill Black
+Glenn Fowler
+Dausto Cobianchi
 
 ### 2024
 Renato
