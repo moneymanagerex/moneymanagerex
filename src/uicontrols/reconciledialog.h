@@ -85,9 +85,6 @@ private:
     void OnRightFocusKill(wxFocusEvent& event);
     void handleListFocusKill(wxListCtrl* list);
 
-    //void OnButtonFocus(wxFocusEvent& event);
-    //void OnButtonFocusKill(wxFocusEvent& event);
-
     void setListItemData(const Model_Checking::Data* trx, wxListCtrl* list, long item);
     void processRightClick(wxListCtrl* list, long item);
     void processLeftClick(wxListCtrl* list, wxPoint pt);

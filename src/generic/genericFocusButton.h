@@ -18,7 +18,7 @@
 
 #pragma once
 
-#include <wx/wx.h>
+#include "defs.h"
 
 class genFocusButton : public wxButton
 {
