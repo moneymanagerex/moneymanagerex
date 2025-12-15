@@ -22,6 +22,8 @@
 #include "mmcheckingpanel.h"
 #include "model/Model_Account.h"
 #include "model/Model_Checking.h"
+#include "generic/genericFocusButton.h"
+#include "generic/genericFocusBitmapButton.h"
 
 
 class mmReconcileDialog: public wxDialog
@@ -42,11 +44,11 @@ private:
     wxStaticText*         m_differenceCtrl;
     wxListCtrl*           m_listLeft;
     wxListCtrl*           m_listRight;
-    wxButton*             m_btnCancel;
-    wxButton*             m_btnReconcile;
-    wxButton*             m_btnReconcileLater;
-    wxButton*             m_btnCalc;
-    wxButton*             m_btnEdit;
+    genFocusButton*       m_btnCancel;
+    genFocusButton*       m_btnReconcile;
+    genFocusButton*       m_btnReconcileLater;
+    genFocusBitmapButton* m_btnCalc;
+    genFocusButton*       m_btnEdit;
     std::vector<int64>    m_itemDataMap;
     wxVector<wxBitmapBundle> m_images;
 
@@ -73,8 +75,18 @@ private:
     void OnRightItemLeftClick(wxMouseEvent& event);
     void OnRightItemRightClick(wxMouseEvent& event);
 
-    void OnLeftSelected(wxListEvent& event);
-    void OnRightSelected(wxListEvent& event);
+    void OnListKeyDown(wxKeyEvent& event);
+
+    void OnLeftFocus(wxFocusEvent& event);
+    void OnRightFocus(wxFocusEvent& event);
+    void handleListFocus(wxListCtrl* list);
+
+    void OnLeftFocusKill(wxFocusEvent& event);
+    void OnRightFocusKill(wxFocusEvent& event);
+    void handleListFocusKill(wxListCtrl* list);
+
+    //void OnButtonFocus(wxFocusEvent& event);
+    //void OnButtonFocusKill(wxFocusEvent& event);
 
     void setListItemData(const Model_Checking::Data* trx, wxListCtrl* list, long item);
     void processRightClick(wxListCtrl* list, long item);

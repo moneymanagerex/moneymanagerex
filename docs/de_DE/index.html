@@ -591,6 +591,37 @@
         (Menü <kbd><samp>Extras</samp> → <samp>Einstellungen…</samp></kbd> Abschnitt <kbd>Andere</kbd>.)
     </p>
 
+    <h4>Abgleichsdialog</h4>
+    <p>Für einen komfortablen Buchungsabgleich kann der Buchungsabgleichdialog verwendet werden.</p
+    <p>Er wird entweder aus dem Navigator Kontextemü geöffnet (Rechtsklick auf das Konto):</p>
+    <p><img class="shadow" alt='Navigator account context menu' src='../en_US/transactions/reconcilecontextmenu.png'></p>
+    <br>
+    <p>oder direkt aus der Kontoansicht mit der entsprechenden Schaltfläche:</p>
+    <p><img class="shadow" alt='Reconcile button' src='../en_US/transactions/reconcilebutton.png'></p>
+    <br>
+    <p>Der Dialog zeigt alle ungeprüften Buchungen bis zum heutigen Tag sortiert nach Einnahmen und Ausgaben an:</p>
+    <p><img class="shadow" alt='Reconcile dialog' src='../en_US/transactions/reconciledialog.png'></p>
+
+    <aside class="sticky tips">
+        Eine Buchung kann auch mit <kbd class="key">Leer</kbd> Taste markiert bzw. unmarkiert werden.<br> Mit den Tasten <kbd class="key">&#8595;</kbd> und <kbd class="key">&#8593;</kbd> wird
+        zu den nächsten Listeneinträgen navigiert, <br>mit <kbd class="key">&#8594;</kbd> and <kbd class="key">&#8592;</kbd> wird die Liste gewechselt.
+    </aside>
+
+    <ul>
+        <li>Im Eingabefeld <kbd>Kontostand</kbd> wird der endgültige Kontostand eingetragen.</li>
+        <li>Das Feld <kbd>Differenz</kbd> zeigt die differenz zwischen dem abgeglichen Betrag und dem <kbd>SKontostand</kbd>.</li>
+        <li>Eingehende Überweisungen sind mit <kbd>'&lt;'</kbd>, abgehende mit <kbd>'&gt;'</kbd> markiert.</li>
+        <br>
+        <li>Mit einem (linken) Mausklick kann eine Buchung für den Abgleich markiert oder eine markierte Buchung unmarkiert werden.</li>
+        <li>Mit <kbd><samp>Alle umschalten</samp></kbd> werden alle nicht markierten Buchungen zum Abgleich hinzzugefügt, bzw. wenn alle markiert sind alle Markierugnen gelöscht.</li>
+        <br>
+        <li>Mit <kbd><samp>Bearbeiten</samp></kbd> (oder rechte Maustaste) kann die ausgeählte Buchung bearbeitet werden, ohne den Abgleich zu verlassen.</li>
+        <li>Mit <kbd><samp>Neu</samp></kbd> (or rechte Maustaste im freien Listbereich) lkann eine fehlende Buchng hinzugefügt werden.</li>
+        <br>
+        <li>Mit <kbd><samp>Abgleichen</samp></kbd> werden alle markierten Buchungen auf <b>"Geprüft"</b> gesetzt und der Dialog wird geschlossen.</li>
+        <li>Mit <kbd><samp>Später abgleichen </samp></kbd> werden alle markierten Buchungen auf <b>"Nachverfolgung"</b> gesetzt und der Dialog wird geschlossen.</li>
+    </ul>
+
 
     <h3>Buchungen zur Nachverfolgung markieren</h3>
     <p>
@@ -619,7 +650,7 @@
     <h3>Buchungssuche</h3>
 
     <aside class="sticky tips">
-        Das leistungsfähigste Werkzeug zur suche nach Buchungsinformationen sind die
+        Das leistungsfähigste Werkzeug zur Suche nach Buchungsinformationen sind die
         <a href="#trx_report">gefilterten Buchungsberichte</a>.
     </aside>
     <p>

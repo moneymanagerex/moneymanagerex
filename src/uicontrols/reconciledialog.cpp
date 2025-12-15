@@ -73,24 +73,29 @@ void mmReconcileDialog::CreateControls()
 
     topSizer->Add(m_amountCtrl, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 5);
 
-    m_btnCalc = new wxBitmapButton(topPanel, wxID_ANY, mmBitmapBundle(png::CALCULATOR, mmBitmapButtonSize));
+    m_btnCalc = new genFocusBitmapButton(topPanel, wxID_ANY, mmBitmapBundle(png::CALCULATOR, mmBitmapButtonSize));
     m_btnCalc->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &mmReconcileDialog::OnCalculator, this);
+    m_btnCalc->SetCanFocus(false);
     mmToolTip(m_btnCalc, _t("Open Calculator"));
     topSizer->Add(m_btnCalc, 0, wxRIGHT, 20);
     m_calculaterPopup = new mmCalculatorPopup(m_btnCalc, m_amountCtrl, true);
+    m_calculaterPopup->SetCanFocus(false);
     int nh = m_btnCalc->GetSize().GetHeight() - 10;
 
     topSizer->AddStretchSpacer();
-    m_btnEdit = new wxButton(topPanel, wxID_ANY, _t("&Edit"), wxDefaultPosition, wxSize(-1, nh));
+    m_btnEdit = new genFocusButton(topPanel, wxID_ANY, _t("&Edit"), wxDefaultPosition, wxSize(-1, nh));
     m_btnEdit->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnEdit, this);
+    m_btnEdit->SetCanFocus(false);
     topSizer->Add(m_btnEdit, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 5);
 
-    wxButton* btn = new wxButton(topPanel, wxID_ANY, _t("&New"), wxDefaultPosition, wxSize(-1, nh));
+    genFocusButton* btn = new genFocusButton(topPanel, wxID_ANY, _t("&New"), wxDefaultPosition, wxSize(-1, nh));
     btn->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnNew, this);
+    btn->SetCanFocus(false);
     topSizer->Add(btn, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
 
-    btn = new wxButton(topPanel, wxID_ANY, _t("&Toggle all"));
+    btn = new genFocusButton(topPanel, wxID_ANY, _t("&Toggle all"));
     btn->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnToggle, this);
+    btn->SetCanFocus(false);
     topSizer->Add(btn, 0, wxRIGHT, 20);
 
     topPanel->SetSizer(topSizer);
@@ -119,7 +124,9 @@ void mmReconcileDialog::CreateControls()
 
     m_listLeft->Bind(wxEVT_LEFT_DOWN, &mmReconcileDialog::OnLeftItemLeftClick, this);
     m_listLeft->Bind(wxEVT_RIGHT_DOWN, &mmReconcileDialog::OnLeftItemRightClick, this);
-    m_listLeft->Bind(wxEVT_LIST_ITEM_SELECTED, &mmReconcileDialog::OnLeftSelected, this);
+    m_listLeft->Bind(wxEVT_KEY_DOWN, &mmReconcileDialog::OnListKeyDown, this);
+    m_listLeft->Bind(wxEVT_SET_FOCUS, &mmReconcileDialog::OnLeftFocus, this);
+    m_listLeft->Bind(wxEVT_KILL_FOCUS, &mmReconcileDialog::OnLeftFocusKill, this);
 
     m_listLeft->SetSmallImages(m_images);
     m_listLeft->SetNormalImages(m_images);
@@ -139,7 +146,9 @@ void mmReconcileDialog::CreateControls()
 
     m_listRight->Bind(wxEVT_LEFT_DOWN, &mmReconcileDialog::OnRightItemLeftClick, this);
     m_listRight->Bind(wxEVT_RIGHT_DOWN, &mmReconcileDialog::OnRightItemRightClick, this);
-    m_listRight->Bind(wxEVT_LIST_ITEM_SELECTED, &mmReconcileDialog::OnRightSelected, this);
+    m_listRight->Bind(wxEVT_KEY_DOWN, &mmReconcileDialog::OnListKeyDown, this);
+    m_listRight->Bind(wxEVT_SET_FOCUS, &mmReconcileDialog::OnRightFocus, this);
+    m_listRight->Bind(wxEVT_KILL_FOCUS, &mmReconcileDialog::OnRightFocusKill, this);
 
     m_listRight->SetSmallImages(m_images);
     m_listRight->SetNormalImages(m_images);
@@ -157,6 +166,7 @@ void mmReconcileDialog::CreateControls()
 
     // --- Result: ----
     wxPanel* resPanelOut = new wxPanel(this);
+    resPanelOut->SetCanFocus(false);
     wxBoxSizer* resPanelOutSizer = new wxBoxSizer(wxHORIZONTAL);
 
     wxPanel* resPanel = new wxPanel(resPanelOut);
@@ -164,14 +174,17 @@ void mmReconcileDialog::CreateControls()
 
     resSizer->Add(new wxStaticText(resPanel, wxID_ANY, _t("Previous balance:")), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
     m_previousCtrl = new wxStaticText(resPanel, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT);
+    m_previousCtrl->SetCanFocus(false);
     resSizer->Add(m_previousCtrl, 0, wxALIGN_RIGHT, 20);
 
     resSizer->Add(new wxStaticText(resPanel, wxID_ANY, _t("Cleared Balance:")), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
     m_clearedBalanceCtrl = new wxStaticText(resPanel, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT);
+    m_clearedBalanceCtrl->SetCanFocus(false);
     resSizer->Add(m_clearedBalanceCtrl, 0, wxALIGN_RIGHT, 20);
 
     resSizer->Add(new wxStaticText(resPanel, wxID_ANY, _t("Statement ending:")), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
     m_endingCtrl = new wxStaticText(resPanel, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT);
+    m_endingCtrl->SetCanFocus(false);
     resSizer->Add(m_endingCtrl, 0, wxALIGN_RIGHT, 20);
 
     m_differenceLabel = new wxStaticText(resPanel, wxID_ANY, _t("Difference: "));
@@ -179,11 +192,12 @@ void mmReconcileDialog::CreateControls()
     m_differenceCtrl = new wxStaticText(resPanel, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT);
     int labelWidth = 100;
     m_differenceCtrl->SetMinSize(wxSize(labelWidth, -1));
+    m_differenceCtrl->SetCanFocus(false);
     resSizer->Add(m_differenceCtrl, 0, wxALIGN_RIGHT, 20);
-
     resPanel->SetSizer(resSizer);
 
     resPanelOutSizer->AddStretchSpacer(1);
+    resPanel->SetCanFocus(false);
     resPanelOutSizer->Add(resPanel, 0, wxALL, 10);
     resPanelOut->SetSizer(resPanelOutSizer);
 
@@ -191,12 +205,13 @@ void mmReconcileDialog::CreateControls()
     wxPanel* bottomPanel = new wxPanel(this);
     wxBoxSizer* bottomSizer = new wxBoxSizer(wxHORIZONTAL);
 
-    m_btnCancel          = new wxButton(bottomPanel, wxID_CANCEL, _t("&Cancel "));
-    m_btnReconcile       = new wxButton(bottomPanel, wxID_OK, _t("&Reconcile"));
-    m_btnReconcileLater  = new wxButton(bottomPanel, wxID_ANY, _t("Reconcile &later"));
+    m_btnCancel          = new genFocusButton(bottomPanel, wxID_CANCEL, _t("&Cancel "));
 
-    m_btnReconcile->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnClose, this);
+    m_btnReconcileLater  = new genFocusButton(bottomPanel, wxID_ANY, _t("Reconcile &later"));
     m_btnReconcileLater->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnClose, this);
+
+    m_btnReconcile       = new genFocusButton(bottomPanel, wxID_OK, _t("&Reconcile"));
+    m_btnReconcile->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnClose, this);
 
     bottomSizer->AddStretchSpacer();
     bottomSizer->Add(m_btnCancel, 0, wxRIGHT, 10);
@@ -342,7 +357,7 @@ void mmReconcileDialog::OnRightItemLeftClick(wxMouseEvent& event)
 void mmReconcileDialog::processLeftClick(wxListCtrl* list, wxPoint pt)
 {
     int flags = 0;
-    long idx =  list->HitTest(pt, flags);
+    long idx = list->HitTest(pt, flags);
     if (idx != -1) {
         wxListItem item;
         item.SetId(idx);
@@ -377,6 +392,81 @@ void mmReconcileDialog::processRightClick(wxListCtrl* list, long item)
     else {
         newTransaction();
     }
+}
+
+void mmReconcileDialog::OnListKeyDown(wxKeyEvent& event)
+{
+    wxListCtrl* list = nullptr;
+    if (m_listLeft->GetSelectedItemCount() > 0) {
+        list = m_listLeft;
+    }
+    else if (m_listRight->GetSelectedItemCount() > 0) {
+        list = m_listRight;
+    }
+    if (list) {
+        switch(event.GetKeyCode()) {
+            case WXK_LEFT:
+            case WXK_RIGHT:
+                list = list == m_listLeft ? m_listRight : m_listLeft;
+                list->SetFocus();
+                if (list->GetItemCount() > 0) {
+                    long idx = list->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_FOCUSED);
+                    list->SetItemState(idx > -1 ? idx : 0, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+                }
+                break;
+            case WXK_SPACE:
+                long idx = list->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+                if (idx > -1) {
+                    wxListItem item;
+                    item.SetId(idx);
+                    if (list->GetItem(item)) {
+                        list->SetItemImage(item, item.GetImage() == 0 ? 1 : 0);
+                        UpdateAll();
+                    }
+                }
+                break;
+        }
+    }
+    event.Skip();
+}
+
+void mmReconcileDialog::OnLeftFocus(wxFocusEvent& event)
+{
+    handleListFocus(m_listLeft);
+    event.Skip();
+}
+
+void mmReconcileDialog::OnRightFocus(wxFocusEvent& event)
+{
+    handleListFocus(m_listRight);
+    event.Skip();
+}
+
+void mmReconcileDialog::handleListFocus(wxListCtrl* list)
+{
+    wxLogDebug("OnFocus for %s", list == m_listLeft ? "Left" : list == m_listRight ? "Right" :  "None");
+    if (list->GetItemCount() > 0) {
+        long idx = list->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_FOCUSED);
+        list->SetItemState(idx > -1 ? idx : 0, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+    }
+}
+
+void mmReconcileDialog::OnLeftFocusKill(wxFocusEvent& event)
+{
+    handleListFocusKill(m_listLeft);
+    event.Skip();
+}
+
+void mmReconcileDialog::OnRightFocusKill(wxFocusEvent& event)
+{
+    handleListFocusKill(m_listRight);
+    event.Skip();
+}
+
+void mmReconcileDialog::handleListFocusKill(wxListCtrl* list)
+{
+    wxLogDebug("OnFocusKill for %s", list == m_listLeft ? "Left" : list == m_listRight ? "Right" :  "None");
+    resetListSelections(list);
 }
 
 void mmReconcileDialog::OnNew(wxCommandEvent& WXUNUSED(event))
@@ -520,18 +610,6 @@ void mmReconcileDialog::OnToggle(wxCommandEvent& WXUNUSED(event))
     resetListSelections(m_listLeft);
     resetListSelections(m_listRight);
     DoWindowsFreezeThaw(this);
-}
-
-void mmReconcileDialog::OnLeftSelected(wxListEvent& event)
-{
-    resetListSelections(m_listRight);
-    event.Skip();
-}
-
-void mmReconcileDialog::OnRightSelected(wxListEvent& event)
-{
-    resetListSelections(m_listLeft);
-    event.Skip();
 }
 
 void mmReconcileDialog::resetListSelections(wxListCtrl* list)
