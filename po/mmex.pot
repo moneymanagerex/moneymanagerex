@@ -5324,8 +5324,16 @@ msgstr ""
 msgid "Accounts &Visible"
 msgstr ""
 
-#: mmframe.cpp:170
-msgid "Open theme manager…"
+#: mmframe.cpp:1715
+msgid "Co&llapse All"
+msgstr ""
+
+#: mmframe.cpp:1715
+msgid "&Expand All"
+msgstr ""
+
+#: mmframe.cpp:1715
+msgid "&Collapse All"
 msgstr ""
 
 #: mmframe.cpp:1767
@@ -5597,7 +5605,7 @@ msgstr ""
 msgid "&Assets"
 msgstr ""
 
-#: mmframe.cpp:2057
+#: mmframe.cpp:2057 mmframe.cpp:1717
 msgid "T&heme Manager…"
 msgstr ""
 
@@ -7975,12 +7983,10 @@ msgid "Cash Flow - Transactions"
 msgstr ""
 
 #: reports/categexp.cpp:206
-# mmframe.cpp:1716
 msgid "Collapse All"
 msgstr ""
 
 #: reports/categexp.cpp:207
-# mmframe.cpp:1715
 msgid "Expand All"
 msgstr ""
 

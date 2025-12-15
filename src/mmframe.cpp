@@ -1701,7 +1701,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         menu.AppendSubMenu(viewAccounts, _t("Accounts &Visible"));
 
         menu.AppendSeparator();
-        menu.Append(MENU_TREEPOPUP_COLLAPSE_ALL, _tu("Collapse All"));
+        menu.Append(MENU_TREEPOPUP_COLLAPSE_ALL, _tu("Co&llapse All"));
 
         PopupMenu(&menu, pt);
     }
@@ -1711,10 +1711,10 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
 void mmGUIFrame::showEmptyTreePopupMenu(const wxPoint& pt)
 {
     wxMenu menu;
-    menu.Append(MENU_TREEPOPUP_EXPAND_ALL, _tu("Expand All"));
-    menu.Append(MENU_TREEPOPUP_COLLAPSE_ALL, _tu("Collapse All"));
+    menu.Append(MENU_TREEPOPUP_EXPAND_ALL, _tu("&Expand All"));
+    menu.Append(MENU_TREEPOPUP_COLLAPSE_ALL, _tu("&Collapse All"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_THEME, _tu("Open theme manager…"));
+    menu.Append(MENU_TREEPOPUP_THEME, _tu("T&heme Manager…"));
     PopupMenu(&menu, pt);
 }
 
