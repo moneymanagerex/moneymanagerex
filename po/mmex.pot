@@ -436,7 +436,7 @@ msgstr ""
 #: reports/transactions.cpp:208 stockdialog.cpp:296 stockdialog.cpp:624
 #: stockspanel.cpp:265 transactionsupdatedialog.cpp:132 transdialog.cpp:445
 #: usertransactionpanel.cpp:105 webapp.cpp:564 webappdialog.cpp:138
-#: wizard_update.cpp:138
+#: wizard_update.cpp:138 reconciledialog.cpp:96
 msgid "Date"
 msgstr ""
 
@@ -510,6 +510,7 @@ msgid "Edit Transaction Details"
 msgstr ""
 
 #: assetdialog.cpp:322 constants.cpp:75 sharetransactiondialog.cpp:360
+#: reconciledialog.cpp:200
 msgid "&Cancel "
 msgstr ""
 
@@ -1055,7 +1056,7 @@ msgstr ""
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:226
 #: splittransactionsdialog.cpp:89 splittransactionsdialog.cpp:221
 #: transactionsupdatedialog.cpp:186 transdialog.cpp:496
-#: usertransactionpanel.cpp:143 webappdialog.cpp:144
+#: usertransactionpanel.cpp:143 webappdialog.cpp:144 reconciledialog.cpp:98
 msgid "Amount"
 msgstr ""
 
@@ -1063,7 +1064,7 @@ msgstr ""
 msgid "Specify the transfer amount in the To Account"
 msgstr ""
 
-#: billsdepositsdialog.cpp:544 transdialog.cpp:503
+#: billsdepositsdialog.cpp:544 transdialog.cpp:503 reconciledialog.cpp:83
 msgid "Open Calculator"
 msgstr ""
 
@@ -1085,7 +1086,7 @@ msgstr ""
 #: payeedialog.cpp:209 payeedialog.cpp:245 reports/cashflow.cpp:406
 #: reports/payee.cpp:136 reports/transactions.cpp:216
 #: transactionsupdatedialog.cpp:199 transdialog.cpp:255 transdialog.cpp:532
-#: usertransactionpanel.cpp:182 webappdialog.cpp:142
+#: usertransactionpanel.cpp:182 webappdialog.cpp:142 reconciledialog.cpp:97
 msgid "Payee"
 msgstr ""
 
@@ -1559,7 +1560,7 @@ msgstr ""
 msgid "Actual: "
 msgstr ""
 
-#: budgetingpanel.cpp:253 budgetingpanel.cpp:261 reports/budgetingperf.cpp:355
+#: budgetingpanel.cpp:253 budgetingpanel.cpp:261 reports/budgetingperf.cpp:355 reconciledialog.cpp:182
 msgid "Difference: "
 msgstr ""
 
@@ -5323,7 +5324,19 @@ msgstr ""
 msgid "Accounts &Visible"
 msgstr ""
 
-#: mmframe.cpp:1770
+#: mmframe.cpp:1715
+msgid "Co&llapse All"
+msgstr ""
+
+#: mmframe.cpp:1715
+msgid "&Expand All"
+msgstr ""
+
+#: mmframe.cpp:1715
+msgid "&Collapse All"
+msgstr ""
+
+#: mmframe.cpp:1767
 msgid "&New Database…"
 msgstr ""
 
@@ -5592,7 +5605,7 @@ msgstr ""
 msgid "&Assets"
 msgstr ""
 
-#: mmframe.cpp:2057
+#: mmframe.cpp:2057 mmframe.cpp:1717
 msgid "T&heme Manager…"
 msgstr ""
 
@@ -7685,6 +7698,50 @@ msgstr ""
 
 #: primitive.cpp:116
 msgid "Wed"
+msgstr ""
+
+#: reconciledialog.cpp:58
+msgid "Reconcile account"
+msgstr ""
+
+#: reconciledialog.cpp:75 reconciledialog.cpp:178
+msgid "Statement ending:"
+msgstr ""
+
+#: reconciledialog.cpp:89
+msgid "&Edit"
+msgstr ""
+
+#: reconciledialog.cpp:93
+msgid "&New"
+msgstr ""
+
+#: reconciledialog.cpp:97
+msgid "&Toggle all"
+msgstr ""
+
+#: reconciledialog.cpp:120
+msgid "Payments / Transfers outgoing"
+msgstr ""
+
+#: reconciledialog.cpp:140
+msgid "Deposits / Transfers incoming"
+msgstr ""
+
+#: reconciledialog.cpp:170
+msgid "Previous balance:"
+msgstr ""
+
+#: reconciledialog.cpp:174
+msgid "Cleared Balance:"
+msgstr ""
+
+#: reconciledialog.cpp:201
+msgid "&Reconcile"
+msgstr ""
+
+#: reconciledialog.cpp:202
+msgid "Reconcile &later"
 msgstr ""
 
 #: relocatecategorydialog.cpp:103

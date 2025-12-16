@@ -229,12 +229,12 @@
             to set up the level of backup required.</li>
     </ul>
 
- 
+
 	<!-- ====================================== -->
 	<!--    Create and Manage a New Database    -->
 	<!-- ====================================== -->
- 
- 
+
+
 	<h2>Create and Manage a New Database</h2>
 
 	<p>
@@ -379,15 +379,15 @@
 	<aside class="sticky tips">
 		After conversion, the original <code>.mmb</code> file remains on disk: delete it manually
 		if it is no longer required.
-	</aside>	
+	</aside>
 	<p>
 		Choose <strong>Encrypted Database (.emb)</strong>.
 	</p>
-	
+
 	<!--<img src="../en_US/images/create_db_04.png" alt="Saving an encrypted database" class="shadow" /> -->
 	<!-- The image should show the “Save Database As” dialog with .emb selected. -->
 
-	
+
 
 	<h4>Convert from .emb to .mmb</h4>
 
@@ -422,7 +422,7 @@
 	</ul>
 
 
-	
+
 
 	<h3>Common Problems and Solutions</h3>
 
@@ -515,156 +515,156 @@
         MMEX generates backup copies (<code>.bak</code> files) to protect your data from errors,
         unexpected shutdowns, corruption, or incompatibilities with older database formats.
     </p>
-    
+
     <img src="en_US/images/create_db_07.png" alt="Backup options" class="shadow" />
     <!-- The image should show Tools → Settings → Other with the backup options. -->
-    
+
     <h4>Backup Settings</h4>
-    
+
     <p>
         Backup options are located under:
     </p>
-    
+
     <p>
         <kbd><samp>Tools</samp> → <samp>Settings</samp> → <samp>Other</samp></kbd>
     </p>
-    
+
     <p>The available options are:</p>
-    
+
     <ul>
         <li><strong>Backup database on startup</strong>: creates a backup <strong>only if changes were made</strong> since the previous session.</li>
         <li><strong>Backup database on exit</strong>: creates a backup <strong>only if changes were made</strong> during the current session.</li>
         <li><strong>Max Files</strong>: maximum number of backup files to keep.</li>
         <li><strong>Days to retain deleted transactions</strong>: number of days before permanently removing deleted transactions.</li>
     </ul>
-    
+
     <aside class="sticky notes">
-        Backup files are always stored in the <strong>same folder as the main database</strong>.  
+        Backup files are always stored in the <strong>same folder as the main database</strong>.
         MMEX does not currently allow selecting a different backup location.
     </aside>
-    
+
     <h4>How Backup Files Are Generated</h4>
-    
+
     <p>
         The backup filename is always based on the name of the main database
         (<code>dbname.mmb</code>), with a suffix added automatically by MMEX:
     </p>
-    
+
     <ul>
         <li><strong>On startup</strong>: <code>dbname_start_YYYY-MM-DD.bak</code></li>
         <li><strong>On exit</strong>: <code>dbname_update_YYYY-MM-DD.bak</code></li>
     </ul>
-    
+
     <aside class="sticky notes">
         A backup is created <strong>only when the database has been modified</strong>.
     </aside>
-    
+
     <h4>Backups Created on the Same Day</h4>
-    
+
     <p>
         During a single day, MMEX may create up to:
     </p>
-    
+
     <ul>
         <li>one <code>_start_YYYY-MM-DD.bak</code> file (backup on startup), and</li>
         <li>one <code>_update_YYYY-MM-DD.bak</code> file (backup on exit).</li>
     </ul>
-    
+
     <p>
         Once a backup for that day has been created, MMEX <strong>does not update or overwrite it</strong>.
         Backup files are static snapshots of the database at the time they were created.
     </p>
-    
+
     <p>
         If additional changes are made during the same day:
     </p>
-    
+
     <ul>
         <li><strong>only the main database file</strong> (<code>.mmb</code>) is updated,</li>
         <li>the existing <code>.bak</code> files remain unchanged,</li>
         <li>MMEX <strong>does not create further backups</strong> on the same date.</li>
     </ul>
-    
+
     <aside class="sticky tips">
         This behavior prevents the folder from filling with redundant backups while keeping a single daily snapshot.
     </aside>
-    
+
     <h4>.bak Files</h4>
-    
+
     <p>
         A <code>.bak</code> file is a static copy of the database as it existed at a specific moment.
         MMEX never modifies or overwrites existing backup files.
     </p>
-    
+
     <aside class="sticky notes">
-        MMEX cannot open <code>.bak</code> files directly.  
+        MMEX cannot open <code>.bak</code> files directly.
         To restore one, rename it to <code>dbname.mmb</code>.
     </aside>
-    
+
     <h4>How to Restore a Backup Safely</h4>
-    
+
     <ol>
         <li>Close MMEX.</li>
         <li>Locate the folder containing the database and its backups.</li>
-    
+
         <li>
             Rename the main database (<code>dbname.mmb</code>) to something like:<br>
-            <code>Last_dbname.mmb</code>  
+            <code>Last_dbname.mmb</code>
             to avoid filename conflicts.
         </li>
-    
+
         <li>
             Make a copy of the backup you want to restore (right-click → copy → paste).
         </li>
-    
+
         <li>
             Rename the copied backup from:<br>
             <code>dbname_start_YYYY-MM-DD.bak</code> or <code>dbname_update_YYYY-MM-DD.bak</code><br>
             to:<br>
             <code>dbname.mmb</code>
         </li>
-    
+
         <li>
             Open the renamed file using <kbd>File → Open Database…</kbd>.
         </li>
     </ol>
-    
+
     <aside class="sticky tips">
         This process ensures that your active database is preserved and prevents accidental overwriting.
     </aside>
-    
+
     <h4>Backups as Historical Snapshots</h4>
-    
+
     <p>
         Opening an older backup may cause MMEX to automatically apply scheduled transactions
         that fall between the backup date and the current date.
     </p>
-    
+
     <aside class="sticky tips">
-        To keep a historical snapshot unchanged, enable  
+        To keep a historical snapshot unchanged, enable
         <strong>“Ask user to enter the payment”</strong> in all scheduled transactions.
     </aside>
-    
+
     <ul>
         <li>Restore the backup into a separate file.</li>
         <li>Allow scheduled transactions to be applied.</li>
         <li>Sort <em>All Transactions</em> by <strong>Last Updated</strong>.</li>
         <li>Delete the automatically added scheduled transactions.</li>
     </ul>
-    
+
     <h4>Immutable Backups</h4>
-    
+
     <p>
         MMEX cannot mark a database file as read-only, but operating systems can.
     </p>
-    
+
     <aside class="sticky notes">
         To preserve a backup permanently, store the <code>.bak</code> file in a
         <strong>read-only location</strong> such as a write-protected USB drive.
     </aside>
-    
+
     <h4>Common Backup Issues</h4>
-    
+
     <table>
         <thead>
             <tr>
@@ -691,26 +691,26 @@
             </tr>
         </tbody>
     </table>
-    
+
     <h4>Best Practices</h4>
-    
+
     <ul>
         <li>Keep 5–10 rotating backups.</li>
         <li>Verify periodically that backups are generated correctly.</li>
         <li>Create a manual backup before major changes.</li>
         <li>Store backups on another drive or cloud service for safety.</li>
     </ul>
-    
+
     <aside class="sticky notes">
-        Consider your <code>.mmb</code>/<code>.emb</code> file as your active workspace  
+        Consider your <code>.mmb</code>/<code>.emb</code> file as your active workspace
         and your <code>.bak</code> files as your insurance.
     </aside>
 
 
- 
- 
- 
- 
+
+
+
+
 
     <h2>Creating New Accounts</h2>
     <p>
@@ -936,7 +936,9 @@
         button to save the account information.
     </p>
 
-    <h2>Creating New Transactions</h2>
+    <h2>Working with Transactions</h2>
+
+    <h3>Creating New Transactions</h3>
     <p>
         Once you have created a new account, and selected the required
         account from the Navigator, or the Dashboard, the displayed
@@ -1087,7 +1089,7 @@
 
     <h3>Reconciling and Balancing Transactions</h3>
     <aside class="sticky tips">
-        To mark a transaction as reconciled, just select
+        To mark a transaction as reconciled in the account view, just select
         the transaction and press the <kbd><kbd>R</kbd></kbd> key. To mark a
         transaction as unreconciled, just select the
         transaction and press the <kbd><kbd>U</kbd></kbd> key.
@@ -1106,6 +1108,39 @@
         statement, the user can select to set the default as Reconciled
         when creating transactions in the Settings.
     </p>
+
+    <h4>Reconcile dialog</h4>
+    <p>For a convinient reconcile, a reconcile dialog is provided.</p
+    <p>It can be either openend from the navigator right-click contextual menu of the account:</p>
+    <p><img class="shadow" alt='Navigator account context menu' src='../en_US/transactions/reconcilecontextmenu.png'></p>4
+    <br>
+    <p>Or directly in the account view with the provided button:</p>
+    <p><img class="shadow" alt='Reconcile button' src='../en_US/transactions/reconcilebutton.png'></p>
+    <br>
+    <p>The dialog displays all pending transactions up to the current date sorted in two columns for payments and deposits:</p>
+    <p><img class="shadow" alt='Reconcile dialog' src='../en_US/transactions/reconciledialog.png'></p>
+
+    <aside class="sticky tips">
+        A transaction can also be selected and deselected for reconcile with <kbd class="key">SPACE</kbd>.<br> With the <kbd class="key">&#8595;</kbd> and <kbd class="key">&#8593;</kbd> keys
+        the list items can be selected,<br>With the <kbd class="key">&#8594;</kbd> and <kbd class="key">&#8592;</kbd> the lists will be changed.
+    </aside>
+
+    <ul>
+        <li>In the field <kbd>Statement ending</kbd> the final amount of the last statement can be entered.</li>
+        <li>The field <kbd>difference</kbd> shows the difference between the cleared balance and the <kbd>Statement ending</kbd> value.</li>
+        <li>Incoming transfers are prefixed with <kbd>'&lt;'</kbd>, outging transfers with <kbd>'&gt;'</kbd>.</li>
+        <br>
+        <li>An unchecked transaction is selected with a left mouse click and included in the reconcile. A mouse click on a checked transaction will deselect the transaction from the reconcile.</li>
+        <li>With <kbd><samp>Toggle all</samp></kbd> all not marked transactions are checked, or if all are checked, all transactions are unchecked.</li>
+        <br>
+        <li>With <kbd><samp>Edit</samp></kbd> (or a right mouse click) the selected transaction can be modified without interrupting the reconcile.</li>
+        <li>With <kbd><samp>New</samp></kbd> (or a right mouse click in the empty list area) missing transactions can be added.</li>
+        <br>
+        <li>With <kbd><samp>Reconcile</samp></kbd> all marked transactions will be set into the state <b>"Reconciled"</b> and the dialog is closed.</li>
+        <li>With <kbd><samp>Reconcile later</samp></kbd> all marked transactions will be set into the state <b>"Follow-Up"</b> and the dialog is closed.</li>
+    </ul>
+
+
 
     <h3>Flagging transactions for followup</h3>
     <aside class="sticky tips">
@@ -1356,13 +1391,13 @@
 
 	<h2>Working with Tags</h2>
 	<aside class="sticky notes">
-		A single transaction can contain multiple Tags.  
+		A single transaction can contain multiple Tags.
 		This makes Tags ideal for cross-category and multi-context analysis.
 	</aside>
 	<p>
-		<dfn>Tags</dfn> are an advanced classification tool that allow you to assign contextual 
-		information to transactions, independently of Categories, Accounts, or Payees. While 
-		Categories describe the nature of an expense or income, Tags describe the <b>purpose</b>, 
+		<dfn>Tags</dfn> are an advanced classification tool that allow you to assign contextual
+		information to transactions, independently of Categories, Accounts, or Payees. While
+		Categories describe the nature of an expense or income, Tags describe the <b>purpose</b>,
 		<b>project</b>, <b>person</b>, <b>event</b>, or <b>context</b> related to that transaction.
 	</p>
 
@@ -1371,7 +1406,7 @@
 
 	<p>
 		Tags were introduced to provide a more flexible classification system than Categories alone.
-		A Category defines “what type” of transaction was made; a Tag defines “why” the transaction 
+		A Category defines “what type” of transaction was made; a Tag defines “why” the transaction
 		was made or “in which context” it belongs.
 	</p>
 
@@ -1393,7 +1428,7 @@
 	<h3>Adding Tags to a Transaction</h3>
 
 	<p>
-		The <b>Tags</b> field is available in the New/Edit Transaction window.  
+		The <b>Tags</b> field is available in the New/Edit Transaction window.
 		You can:
 	</p>
 
@@ -1410,11 +1445,11 @@
 	</aside>
 	<br><br><br>
 	<p>
-		Tags also work with <b>split transactions</b>, allowing you to classify complex entries 
+		Tags also work with <b>split transactions</b>, allowing you to classify complex entries
 		with multiple Categories.
 	<br><br>
 	<p><i><img src="../en_US/tags_split_transactions.jpg" alt="New/Edit Transaction window showing the Tags field" class="shadow"/></i></p>
-	
+
 	</p>
 
 
@@ -1443,7 +1478,7 @@
 	<h4>Rules and limitations for Tag names</h4>
 
 	<p>
-		Tag names must follow specific rules to ensure correct behavior within MMEX reports, 
+		Tag names must follow specific rules to ensure correct behavior within MMEX reports,
 		search filters, the database, and import/export systems:
 	</p>
 
@@ -1463,7 +1498,7 @@
 		</li>
 
 		<li>
-			<b>Avoid complex special characters</b> such as  
+			<b>Avoid complex special characters</b> such as
 			<code>[ ] { } ( ) % $ # @ ! ? *</code>.
 		</li>
 
@@ -1474,7 +1509,7 @@
 
 		<li><b>Each Tag must be unique.</b></li>
 	<aside class="sticky tips">
-		Recommended naming styles: <code>WordWord</code> or <code>Word_Word</code>  
+		Recommended naming styles: <code>WordWord</code> or <code>Word_Word</code>
 		(avoid spaces and special characters).
 	</aside>
 		<li><b>Numbers are allowed in Tag names.</b><br>
@@ -1517,7 +1552,7 @@
     <li>
         <b>TagA | TagB</b> → OR logic.<br>
         <i>Result:</i> all transactions that contain at least one of the specified Tags
-        will be shown.  
+        will be shown.
         A transaction will be included if it contains <b>TagA</b>, or <b>TagB</b>,
         or both.
     </li>
@@ -1525,7 +1560,7 @@
     <li>
         <b>TagA TagB</b> → AND logic.<br>
         <i>Result:</i> only transactions that contain both <b>TagA</b> and <b>TagB</b>
-        at the same time will be displayed.  
+        at the same time will be displayed.
         Transactions that contain only one of the two Tags will be excluded.
     </li>
 </ul>
@@ -2461,4 +2496,3 @@ cp ~/.mmex/mmexini.db3 /media/disk/mmex/share/mmex</kbd></pre>
     </small></p></footer>
 </body>
 </html>
-

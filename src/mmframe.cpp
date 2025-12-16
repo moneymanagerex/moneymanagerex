@@ -53,6 +53,7 @@
 #include "mmreportspanel.h"
 #include "mmSimpleDialogs.h"
 #include "mmHook.h"
+#include "uicontrols/reconciledialog.h"
 #include "optiondialog.h"
 #include "payeedialog.h"
 #include "relocatecategorydialog.h"
@@ -180,10 +181,11 @@ EVT_MENU(MENU_TRANSACTIONREPORT, mmGUIFrame::OnTransactionReport)
 EVT_MENU(MENU_REFRESH_WEBAPP, mmGUIFrame::OnRefreshWebApp)
 EVT_MENU(wxID_BROWSE, mmGUIFrame::OnCustomFieldsManager)
 EVT_MENU(wxID_VIEW_LIST, mmGUIFrame::OnGeneralReportManager)
-EVT_MENU(MENU_THEME_MANAGER, mmGUIFrame::OnThemeManager)
+EVT_MENU(MENU_THEME_MANAGER, mmGUIFrame::OnEmptyTreePopUp)
 EVT_MENU(MENU_DATE_RANGE_MANAGER, mmGUIFrame::OnDateRangeManager)
 EVT_MENU(MENU_TREEPOPUP_LAUNCHWEBSITE, mmGUIFrame::OnLaunchAccountWebsite)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, mmGUIFrame::OnAccountAttachments)
+EVT_MENU(MENU_TREEPOPUP_RECONCILE, mmGUIFrame::OnReconcileAccount)
 EVT_MENU(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbar)
 EVT_MENU(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinks)
 EVT_MENU(MENU_VIEW_HIDE_SHARE_ACCOUNTS, mmGUIFrame::OnHideShareAccounts)
@@ -206,16 +208,17 @@ EVT_MENU(MENU_TREEPOPUP_EDIT, mmGUIFrame::OnPopupEditAccount)
 EVT_MENU(MENU_TREEPOPUP_REALLOCATE, mmGUIFrame::OnPopupReallocateAccount)
 EVT_MENU(MENU_TREEPOPUP_DELETE, mmGUIFrame::OnPopupDeleteAccount)
 
+EVT_MENU(MENU_TREEPOPUP_EXPAND_ALL, mmGUIFrame::OnEmptyTreePopUp)
+EVT_MENU(MENU_TREEPOPUP_COLLAPSE_ALL, mmGUIFrame::OnEmptyTreePopUp)
+EVT_MENU(MENU_TREEPOPUP_THEME, mmGUIFrame::OnEmptyTreePopUp)
+
 EVT_MENU(MENU_TREEPOPUP_FILTER_DELETE, mmGUIFrame::OnPopupDeleteFilter)
 EVT_MENU(MENU_TREEPOPUP_FILTER_RENAME, mmGUIFrame::OnPopupRenameFilter)
 EVT_MENU(MENU_TREEPOPUP_FILTER_EDIT, mmGUIFrame::OnPopupEditFilter)
 
-EVT_TREE_ITEM_MENU(wxID_ANY, mmGUIFrame::OnItemMenu)
-EVT_TREE_ITEM_ACTIVATED(ID_NAVTREECTRL, mmGUIFrame::OnItemRightClick)
 EVT_TREE_ITEM_EXPANDED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemExpanded)
-EVT_TREE_ITEM_COLLAPSING(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemCollapsing)
 EVT_TREE_ITEM_COLLAPSED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemCollapsed)
-EVT_TREE_KEY_DOWN(wxID_ANY, mmGUIFrame::OnKeyDown)
+//EVT_TREE_KEY_DOWN(wxID_ANY, mmGUIFrame::OnKeyDown)
 
 EVT_DROP_FILES(mmGUIFrame::OnDropFiles)
 
@@ -351,7 +354,7 @@ mmGUIFrame::mmGUIFrame(
     m_mgr.GetArtProvider()->SetColour(wxAUI_DOCKART_BACKGROUND_COLOUR, mmThemeMetaColour(meta::COLOR_TOOLBAR));
     m_mgr.GetArtProvider()->SetColour(wxAUI_DOCKART_SASH_COLOUR, mmThemeMetaColour(meta::COLOR_LISTPANEL));
     m_mgr.GetArtProvider()->SetColour(wxAUI_DOCKART_BORDER_COLOUR, mmThemeMetaColour(meta::COLOR_LISTPANEL));
-    m_mgr.GetArtProvider()->SetMetric(16, 0);   
+    m_mgr.GetArtProvider()->SetMetric(16, 0);
     m_mgr.GetArtProvider()->SetMetric(3, 1);
 
     // "commit" all changes made to wxAuiManager
@@ -359,7 +362,7 @@ mmGUIFrame::mmGUIFrame(
     m_mgr.GetPane("toolbar").Caption(_t("Toolbar"));
     m_mgr.GetPane("toolbar").PaneBorder(false);
     m_mgr.Update();
-    
+
     // Show license agreement at first open
     if (Model_Setting::instance().getString(INIDB_SEND_USAGE_STATS, "") == "") {
         mmAboutDialog(this, 4).ShowModal();
@@ -824,11 +827,8 @@ void mmGUIFrame::createControls()
         wxTreeEventHandler(mmGUIFrame::OnSelChanged),
         nullptr, this
     );
-    m_nav_tree_ctrl->Connect(
-        ID_NAVTREECTRL, wxEVT_TREE_ITEM_RIGHT_CLICK,
-        wxTreeEventHandler(mmGUIFrame::OnSelChanged),
-        nullptr, this
-    );
+    m_nav_tree_ctrl->Bind(wxEVT_RIGHT_DOWN, &mmGUIFrame::OnTreeRightClick, this);
+
 
     homePanel_ = new wxPanel(
         this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
@@ -1169,17 +1169,6 @@ void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& event)
     navTreeStateToJson();
 }
 
-void mmGUIFrame::OnTreeItemCollapsing(wxTreeEvent& /*event*/)
-{
-    /*
-    mmTreeItemData* iData =
-        dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(event.GetItem()));
-*/
-    // disallow collapsing of HOME item
-    //if (mmTreeItemData::HOME_PAGE == iData->getType())
-    //    event.Veto();
-}
-
 void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)
 {
     mmTreeItemData* iData =
@@ -1270,13 +1259,16 @@ void mmGUIFrame::navTreeStateToJson()
 
 void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
 {
-    if (!m_db)
-        return;
+    if (m_db) {
+        wxTreeItemId item = event.GetItem();
+        if (item) {
+            navTreeSelection(item);
+        }
+    }
+}
 
-    wxTreeItemId selectedItem = event.GetItem();
-    if (!selectedItem)
-        return;
-
+void mmGUIFrame::navTreeSelection(wxTreeItemId selectedItem)
+{
     mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(selectedItem));
     if (!iData)
         return;
@@ -1367,6 +1359,21 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
 }
 //----------------------------------------------------------------------------
 
+void mmGUIFrame::OnTreeRightClick(wxMouseEvent& event)
+{
+    wxPoint pos = event.GetPosition();
+    int flags = 0;
+    wxTreeItemId item = m_nav_tree_ctrl->HitTest(pos, flags);
+    if (item.IsOk()) {
+        m_nav_tree_ctrl->SelectItem(item);
+        showTreePopupMenu(item, ScreenToClient(wxGetMousePosition()));
+    }
+    else {
+        showEmptyTreePopupMenu(ScreenToClient(wxGetMousePosition()));
+    }
+}
+//----------------------------------------------------------------------------
+
 void mmGUIFrame::OnLaunchAccountWebsite(wxCommandEvent& /*event*/)
 {
     if (!selectedItemData_)
@@ -1392,6 +1399,19 @@ void mmGUIFrame::OnAccountAttachments(wxCommandEvent& /*event*/)
     int64 refId = selectedItemData_->getId();
     mmAttachmentDialog dlg(this, refType, refId);
     dlg.ShowModal();
+}
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::OnReconcileAccount(wxCommandEvent& WXUNUSED(event))
+{
+    Model_Account::Data* account = Model_Account::instance().get(selectedItemData_->getId());
+    if (account) {
+        mmCheckingPanel* cp = wxDynamicCast(panelCurrent_, mmCheckingPanel);
+        mmReconcileDialog dlg(wxGetTopLevelParent(this), account, cp);
+        if (dlg.ShowModal() == wxID_OK) {
+            cp->refreshList();
+        }
+    }
 }
 
 //----------------------------------------------------------------------------
@@ -1553,30 +1573,6 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnItemMenu(wxTreeEvent& event)
-{
-    wxTreeItemId selectedItem = event.GetItem();
-    m_nav_tree_ctrl->SelectItem(selectedItem);
-    if (menuBar_->FindItem(MENU_ORGCATEGS)->IsEnabled())
-        showTreePopupMenu(selectedItem, ScreenToClient(wxGetMousePosition()));
-    else
-        wxMessageBox(
-            _t("MMEX has been opened without an active database."),
-            _t("MMEX: Menu Popup Error"),
-            wxOK | wxICON_EXCLAMATION
-        );
-}
-//----------------------------------------------------------------------------
-
-void mmGUIFrame::OnItemRightClick(wxTreeEvent& event)
-{
-    wxTreeItemId selectedItem = event.GetItem();
-    m_nav_tree_ctrl->SelectItem(selectedItem);
-
-    OnSelChanged(event);
-}
-//----------------------------------------------------------------------------
-
 void mmGUIFrame::AppendImportMenu(wxMenu& menu)
 {
     wxMenu* importFrom(new wxMenu);
@@ -1610,7 +1606,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
 
     switch (itemType) {
     case mmTreeItemData::HOME_PAGE:
-        return OnThemeManager(e);
+        return showEmptyTreePopupMenu(pt);
     case mmTreeItemData::HELP_BUDGET:
     case mmTreeItemData::BUDGET:
         return OnBudgetSetupDialog(e);
@@ -1637,17 +1633,14 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         acct_id = iData->getId();
         Model_Account::Data* account = Model_Account::instance().get(acct_id);
         if (account) {
-            menu.Append(
-                MENU_TREEPOPUP_EDIT,
-                _tu("&Edit Account…")
-            );
-            menu.Append(
-                MENU_TREEPOPUP_DELETE,
-                _tu("&Delete Account…")
-            );
+            menu.Append(MENU_TREEPOPUP_RECONCILE, _t("&Reconcile Account"));
             menu.AppendSeparator();
             menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _t("&Launch Account Website"));
             menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _tu("&Attachment Manager…"));
+            menu.AppendSeparator();
+            menu.Append(MENU_TREEPOPUP_EDIT, _tu("&Edit Account…"));
+            menu.Append(MENU_TREEPOPUP_DELETE, _tu("&Delete Account…"));
+
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
             PopupMenu(&menu, pt);
         }
@@ -1659,25 +1652,18 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             Model_Account::Data* account = Model_Account::instance().get(acct_id);
             if (!account)
                 break;
-            menu.Append(
-                MENU_TREEPOPUP_EDIT,
-                _tu("&Edit Account…")
-            );
-            menu.Append(
-                MENU_TREEPOPUP_REALLOCATE,
-                _tu("&Change Account Type…")
-            );
-            menu.AppendSeparator();
-            menu.Append(
-                MENU_TREEPOPUP_DELETE,
-                _tu("&Delete Account…")
-            );
+            menu.Append(MENU_TREEPOPUP_RECONCILE, _t("&Reconcile Account"));;
             menu.AppendSeparator();
             menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _t("&Launch Account Website"));
-            menu.Append(
-                MENU_TREEPOPUP_ACCOUNTATTACHMENTS,
-                _tu("&Attachment Manager…")
-            );
+            menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS,_tu("&Attachment Manager…"));
+            menu.AppendSeparator();
+            AppendImportMenu(menu);
+            menu.AppendSeparator();
+            menu.Append(MENU_TREEPOPUP_EDIT, _tu("&Edit Account…"));
+            menu.Append(MENU_TREEPOPUP_REALLOCATE, _tu("&Change Account Type…"));
+            menu.AppendSeparator();
+            menu.Append(MENU_TREEPOPUP_DELETE, _tu("&Delete Account…"));
+
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
             menu.Enable(MENU_TREEPOPUP_REALLOCATE, account->ACCOUNTTYPE != Model_Account::TYPE_NAME_SHARES && account->ACCOUNTTYPE != Model_Account::TYPE_NAME_INVESTMENT && account->ACCOUNTTYPE != Model_Account::TYPE_NAME_ASSET);
             menu.AppendSeparator();
@@ -1708,27 +1694,30 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
 
         menu.AppendSeparator();
         wxMenu* viewAccounts(new wxMenu);
-        viewAccounts->AppendRadioItem(
-            MENU_TREEPOPUP_ACCOUNT_VIEWALL,
-            _t("&All")
-        )->Check(m_temp_view == VIEW_ACCOUNTS_ALL_STR);
-        viewAccounts->AppendRadioItem(
-            MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE,
-            _t("&Favorites")
-        )->Check(m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR);
-        viewAccounts->AppendRadioItem(
-            MENU_TREEPOPUP_ACCOUNT_VIEWOPEN,
-            _t("&Open")
-        )->Check(m_temp_view == VIEW_ACCOUNTS_OPEN_STR);
-        viewAccounts->AppendRadioItem(
-            MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED,
-            _t("&Closed")
-        )->Check(m_temp_view == VIEW_ACCOUNTS_CLOSED_STR);
+        viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWALL, _t("&All"))->Check(m_temp_view == VIEW_ACCOUNTS_ALL_STR);
+        viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE, _t("&Favorites"))->Check(m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR);
+        viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWOPEN, _t("&Open"))->Check(m_temp_view == VIEW_ACCOUNTS_OPEN_STR);
+        viewAccounts->AppendRadioItem(MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED, _t("&Closed"))->Check(m_temp_view == VIEW_ACCOUNTS_CLOSED_STR);
         menu.AppendSubMenu(viewAccounts, _t("Accounts &Visible"));
+
+        menu.AppendSeparator();
+        menu.Append(MENU_TREEPOPUP_COLLAPSE_ALL, _tu("Co&llapse All"));
 
         PopupMenu(&menu, pt);
     }
 }
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::showEmptyTreePopupMenu(const wxPoint& pt)
+{
+    wxMenu menu;
+    menu.Append(MENU_TREEPOPUP_EXPAND_ALL, _tu("&Expand All"));
+    menu.Append(MENU_TREEPOPUP_COLLAPSE_ALL, _tu("&Collapse All"));
+    menu.AppendSeparator();
+    menu.Append(MENU_TREEPOPUP_THEME, _tu("T&heme Manager…"));
+    PopupMenu(&menu, pt);
+}
+
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnViewAccountsTemporaryChange(wxCommandEvent& e)
@@ -2214,7 +2203,7 @@ void mmGUIFrame::createMenu()
     menuBar_->Append(menuView, _t("&View"));
     menuBar_->Append(menuHelp, _t("&Help"));
     SetMenuBar(menuBar_);
-    
+
     menuBar_->Check(MENU_VIEW_HIDE_SHARE_ACCOUNTS, !Option::instance().getHideShareAccounts());
     menuBar_->Check(MENU_VIEW_HIDE_DELETED_TRANSACTIONS, !Option::instance().getHideDeletedTransactions());
     menuBar_->Check(MENU_VIEW_BUDGET_FINANCIAL_YEARS, Option::instance().getBudgetFinancialYears());
@@ -2505,9 +2494,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 void mmGUIFrame::SetDataBaseParameters(const wxString& fileName)
 {
     wxFileName fname(fileName);
-    wxString title = wxString::Format("%s - %s (%s) %s", 
-                        fname.GetFullName(), 
-                        mmex::getProgramName(), 
+    wxString title = wxString::Format("%s - %s (%s) %s",
+                        fname.GetFullName(),
+                        mmex::getProgramName(),
                         mmex::getTitleProgramVersion(),
                         wxGetOsDescription());
     if (mmex::isPortableMode())
@@ -3255,10 +3244,19 @@ void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))
     createHomePage();
 }
 
-void mmGUIFrame::OnThemeManager(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnEmptyTreePopUp(wxCommandEvent& event)
 {
-    mmThemesDialog dlg(this);
-    dlg.ShowModal();
+    int id = event.GetId();
+    if (id == MENU_TREEPOPUP_EXPAND_ALL) {
+        m_nav_tree_ctrl->ExpandAll();
+    }
+    else if (id == MENU_TREEPOPUP_COLLAPSE_ALL) {
+        m_nav_tree_ctrl->CollapseAll();
+    }
+    else if (id == MENU_TREEPOPUP_THEME) {
+        mmThemesDialog tdlg(this);
+        tdlg.ShowModal();
+    }
 }
 
 void mmGUIFrame::OnDateRangeManager(wxCommandEvent& WXUNUSED(event))
@@ -4220,7 +4218,7 @@ void mmGUIFrame::OnChangeGUILanguage(wxCommandEvent& event)
         );
 }
 
-void mmGUIFrame::OnKeyDown(wxTreeEvent& event)
+/*void mmGUIFrame::OnKeyDown(wxTreeEvent& event)
 {
     if (selectedItemData_) {
         auto data = selectedItemData_->getString();
@@ -4233,7 +4231,7 @@ void mmGUIFrame::OnKeyDown(wxTreeEvent& event)
         }
     }
     event.Skip();
-}
+}*/
 
 void mmGUIFrame::DoUpdateBudgetNavigation(wxTreeItemId& parent_item)
 {
