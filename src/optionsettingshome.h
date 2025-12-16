@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2021 Nikolay Akimov
+Copyright (C) 2021 Nikolay Akimov
+Copyright (C) 2025 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -47,6 +48,7 @@ private:
     void Create();
     wxSharedPtr<mmDateRange> m_inc_vs_exp_date_range;
     std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
+    wxCheckBox* m_ignore_future_transactions_home = nullptr;
 
 private:
     wxChoice* m_incExpChoice = nullptr;
