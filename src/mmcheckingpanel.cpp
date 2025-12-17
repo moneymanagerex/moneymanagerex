@@ -41,6 +41,8 @@
 #include "assetdialog.h"
 #include "billsdepositsdialog.h"
 #include "daterangedialog.h"
+#include "uicontrols/reconciledialog.h"
+
 #include <wx/clipbrd.h>
 #include <float.h>
 
@@ -173,7 +175,7 @@ void mmCheckingPanel::loadAccount(int64 account_id)
 void mmCheckingPanel::createControls()
 {
     wxBoxSizer* sizerV = new wxBoxSizer(wxVERTICAL);
-    this->SetSizer(sizerV);
+    //this->SetSizer(sizerV);
 
     /* ---------------------- */
 
@@ -228,7 +230,18 @@ void mmCheckingPanel::createControls()
     }
     m_header_sortOrder = new wxStaticText(this, wxID_STATIC, "");
     sizerHCtrl->Add(m_header_sortOrder, g_flagsH);
-    sizerVHeader->Add(sizerHCtrl, g_flagsBorder1H);
+
+    if (isAccount()) {
+        sizerHCtrl->AddStretchSpacer(1);
+        sizerHCtrl->AddSpacer(100);
+
+        wxBitmapButton* btn = new wxBitmapButton(this, wxID_ANY, mmBitmapBundle(png::TRXNUM, mmBitmapButtonSize));
+        mmToolTip(btn, _t("Reconcile"));
+        btn->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &mmCheckingPanel::onReconcile, this);
+        sizerHCtrl->Add(btn, 0, wxALIGN_CENTER_VERTICAL, 5);
+    }
+
+    sizerV->Add(sizerHCtrl, 0, wxEXPAND | wxALL, 10);
 
     m_bitmapTransFilter->Connect(wxEVT_RIGHT_DOWN,
         wxMouseEventHandler(mmCheckingPanel::onButtonRightDown), nullptr, this);
@@ -237,9 +250,9 @@ void mmCheckingPanel::createControls()
 
     mmSplitterWindow* splitterListFooter = new mmSplitterWindow(
         this, wxID_ANY, wxDefaultPosition, wxSize(200, 200),
-        wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER, mmThemeMetaColour(meta::COLOR_LISTPANEL) 
+        wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER, mmThemeMetaColour(meta::COLOR_LISTPANEL)
     );
-    
+
     m_images.push_back(mmBitmapBundle(png::UNRECONCILED));
     m_images.push_back(mmBitmapBundle(png::RECONCILED));
     m_images.push_back(mmBitmapBundle(png::VOID_STAT));
@@ -262,6 +275,8 @@ void mmCheckingPanel::createControls()
     splitterListFooter->SetSashGravity(1.0);
 
     sizerV->Add(splitterListFooter, g_flagsExpandBorder1);
+
+    this->SetSizerAndFit(sizerV);
 
     wxBoxSizer* sizerVFooter = new wxBoxSizer(wxVERTICAL);
     panelFooter->SetSizer(sizerVFooter);
@@ -365,6 +380,7 @@ void mmCheckingPanel::createControls()
                            onInfoPanelClick(event, infoPanel);
                        });
 
+    this->Fit();
     //Show tips when no any transaction selected
     showTips();
 }
@@ -1303,6 +1319,13 @@ void mmCheckingPanel::onInfoPanelClick(wxMouseEvent& event, wxStaticText* infoPa
     event.Skip();
 }
 
+void mmCheckingPanel::onReconcile(wxCommandEvent& WXUNUSED(event))
+{
+    mmReconcileDialog dlg(wxGetTopLevelParent(this), m_account, this);
+    if (dlg.ShowModal() == wxID_OK) {
+        refreshList();
+    }
+}
 
 //----------------------------------------------------------------------------
 
