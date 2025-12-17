@@ -8873,11 +8873,11 @@ msgid "&Toggle all"
 msgstr ""
 
 #: uicontrols/reconciledialog.cpp:120
-msgid "Payments / Transfers outgoing"
+msgid "Withdrawals"
 msgstr ""
 
 #: uicontrols/reconciledialog.cpp:142
-msgid "Deposits / Transfers incoming"
+msgid "Deposits"
 msgstr ""
 
 #: uicontrols/reconciledialog.cpp:175
