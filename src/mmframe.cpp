@@ -1666,8 +1666,6 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
 
             menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, !account->WEBSITE.IsEmpty());
             menu.Enable(MENU_TREEPOPUP_REALLOCATE, account->ACCOUNTTYPE != Model_Account::TYPE_NAME_SHARES && account->ACCOUNTTYPE != Model_Account::TYPE_NAME_INVESTMENT && account->ACCOUNTTYPE != Model_Account::TYPE_NAME_ASSET);
-            menu.AppendSeparator();
-            AppendImportMenu(menu);
             PopupMenu(&menu, pt);
         }
         break;
