@@ -105,9 +105,10 @@ void mmReconcileDialog::CreateControls()
 
     auto addColumns = [](wxListCtrl* list) {
         list->InsertColumn(0, "",            wxLIST_FORMAT_CENTRE, 30);
-        list->InsertColumn(1, _t("Date"),    wxLIST_FORMAT_CENTRE, 80);
-        list->InsertColumn(2, _t("Payee"),   wxLIST_FORMAT_LEFT);
-        list->InsertColumn(3, _t("Amount"),  wxLIST_FORMAT_RIGHT, 80);
+        list->InsertColumn(1, _t("Date"),    wxLIST_FORMAT_CENTRE);
+        list->InsertColumn(2, _t("Number"),  wxLIST_FORMAT_RIGHT);
+        list->InsertColumn(3, _t("Payee"),   wxLIST_FORMAT_LEFT);
+        list->InsertColumn(4, _t("Amount"),  wxLIST_FORMAT_RIGHT);
     };
 
     wxPanel* leftlistPanel = new wxPanel(midPanel);
@@ -284,7 +285,7 @@ void mmReconcileDialog::UpdateAll()
     double clearedbalance = m_reconciledBalance;
     for (long i = 0; i < m_listLeft->GetItemCount(); ++i) {
         if (isListItemChecked(m_listLeft, i)) {
-            wxString itext = m_listLeft->GetItemText(i, 3);
+            wxString itext = m_listLeft->GetItemText(i, 4);
             double value;
             if (itext.ToDouble(&value)) {
                clearedbalance -= value;
@@ -293,7 +294,7 @@ void mmReconcileDialog::UpdateAll()
     }
     for (long i = 0; i < m_listRight->GetItemCount(); ++i) {
         if (isListItemChecked(m_listRight, i)) {
-            wxString itext = m_listRight->GetItemText(i, 3);
+            wxString itext = m_listRight->GetItemText(i, 4);
             double value;
             if (itext.ToDouble(&value)) {
                clearedbalance += value;
@@ -576,8 +577,9 @@ void mmReconcileDialog::setListItemData(const Model_Checking::Data* trx, wxListC
     wxString prefix = trx->TRANSCODE == "Transfer" ? (trx->TOACCOUNTID == m_account->ACCOUNTID ? "< " : "> ") : "";
     wxString payeeName = (trx->TRANSCODE == "Transfer") ? Model_Account::get_account_name(trx->TOACCOUNTID == m_account->ACCOUNTID ? trx->ACCOUNTID : trx->TOACCOUNTID): Model_Payee::get_payee_name(trx->PAYEEID);
     list->SetItem(item, 1, mmGetDateTimeForDisplay(trx->TRANSDATE));
-    list->SetItem(item, 2, prefix + payeeName);
-    list->SetItem(item, 3, wxString::Format("%.2f", trx->TRANSAMOUNT));
+    list->SetItem(item, 2, trx->TRANSACTIONNUMBER);
+    list->SetItem(item, 3, prefix + payeeName);
+    list->SetItem(item, 4, wxString::Format("%.2f", trx->TRANSAMOUNT));
     list->SetItemImage(item, trx->STATUS == "F" ? 1 : 0);
 }
 
@@ -634,17 +636,20 @@ bool mmReconcileDialog::isListItemChecked(wxListCtrl* list, long item)
 
 void mmReconcileDialog::OnSize(wxSizeEvent& event)
 {
-    wxSize size = m_listLeft->GetSize();
-    int nwidth = size.GetWidth() - 190;
-    if (nwidth > 0) {
-        m_listLeft->SetColumnWidth(2, nwidth);
-    }
+    auto setColWidth = [] (wxListCtrl* list) {
+        int w = 0;
+        for (int i = 0; i < list->GetColumnCount(); i++) {
+            w += (i != 3) ? list->GetColumnWidth(i) : 0;
+        }
+        wxSize size = list->GetSize();
+        int nwidth = size.GetWidth() - w;
+        if (nwidth > 0) {
+            list->SetColumnWidth(3, nwidth);
+        }
+    };
 
-    size = m_listRight->GetSize();
-    nwidth = size.GetWidth() - 190;
-    if (nwidth > 0) {
-        m_listRight->SetColumnWidth(2, nwidth);
-    }
+    setColWidth(m_listLeft);
+    setColWidth(m_listRight);
 
     event.Skip();
 }
