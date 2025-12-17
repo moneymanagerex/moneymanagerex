@@ -117,7 +117,7 @@ void mmReconcileDialog::CreateControls()
     m_images.push_back(mmBitmapBundle(png::UNRECONCILED));
     m_images.push_back(mmBitmapBundle(png::RECONCILED));
 
-    wxStaticText* leftLabel = new wxStaticText(leftlistPanel, wxID_ANY, _t("Payments / Transfers outgoing"));
+    wxStaticText* leftLabel = new wxStaticText(leftlistPanel, wxID_ANY, _t("Withdrawals"));
     m_listLeft = new wxListCtrl(leftlistPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT | wxLC_SINGLE_SEL);
     addColumns(m_listLeft);
     m_listLeft->SetMinSize(wxSize(250,100));
@@ -139,7 +139,7 @@ void mmReconcileDialog::CreateControls()
     wxPanel* rightlistPanel = new wxPanel(midPanel);
     wxBoxSizer* rightSizer = new wxBoxSizer(wxVERTICAL);
 
-    wxStaticText* rightLabel = new wxStaticText(rightlistPanel, wxID_ANY, _t("Deposits / Transfers incoming"));
+    wxStaticText* rightLabel = new wxStaticText(rightlistPanel, wxID_ANY, _t("Deposits"));
     m_listRight = new wxListCtrl(rightlistPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT | wxLC_SINGLE_SEL);
     addColumns(m_listRight);
     m_listRight->SetMinSize(wxSize(250,100));
