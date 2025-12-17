@@ -310,6 +310,9 @@ void mmReconcileDialog::UpdateAll()
     m_previousCtrl->SetLabel(wxString::Format("%.2f", m_reconciledBalance));
     m_clearedBalanceCtrl->SetLabel(wxString::Format("%.2f", clearedbalance));
     m_endingCtrl->SetLabel(wxString::Format("%.2f", endbalance));
+    m_endingCtrl->SetMinSize(m_endingCtrl->GetBestSize());
+    m_endingCtrl->GetParent()->Layout();
+
     double diff = clearedbalance - endbalance;
     m_differenceCtrl->SetLabel(wxString::Format("%.2f", diff));
 
