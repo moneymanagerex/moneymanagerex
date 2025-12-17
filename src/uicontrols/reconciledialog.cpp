@@ -80,15 +80,14 @@ void mmReconcileDialog::CreateControls()
     topSizer->Add(m_btnCalc, 0, wxRIGHT, 20);
     m_calculaterPopup = new mmCalculatorPopup(m_btnCalc, m_amountCtrl, true);
     m_calculaterPopup->SetCanFocus(false);
-    int nh = m_btnCalc->GetSize().GetHeight() - 10;
 
     topSizer->AddStretchSpacer();
-    m_btnEdit = new genFocusButton(topPanel, wxID_ANY, _t("&Edit"), wxDefaultPosition, wxSize(-1, nh));
+    m_btnEdit = new genFocusButton(topPanel, wxID_ANY, _t("&Edit"));
     m_btnEdit->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnEdit, this);
     m_btnEdit->SetCanFocus(false);
     topSizer->Add(m_btnEdit, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 5);
 
-    genFocusButton* btn = new genFocusButton(topPanel, wxID_ANY, _t("&New"), wxDefaultPosition, wxSize(-1, nh));
+    genFocusButton* btn = new genFocusButton(topPanel, wxID_ANY, _t("&New"));
     btn->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnNew, this);
     btn->SetCanFocus(false);
     topSizer->Add(btn, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
