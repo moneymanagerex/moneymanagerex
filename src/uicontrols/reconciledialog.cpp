@@ -424,6 +424,9 @@ void mmReconcileDialog::OnListKeyDown(wxKeyEvent& event)
                     item.SetId(idx);
                     if (list->GetItem(item)) {
                         list->SetItemImage(item, item.GetImage() == 0 ? 1 : 0);
+                        if (idx < list->GetItemCount() - 1) {
+                            list->SetItemState(idx + 1, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+                        }
                         UpdateAll();
                     }
                 }
