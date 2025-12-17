@@ -68,7 +68,7 @@ void mmReconcileDialog::CreateControls()
     wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
 
     topSizer->Add(new wxStaticText(topPanel, wxID_ANY, _t("Statement ending:")), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 5);
-    m_amountCtrl = new mmTextCtrl(topPanel, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+    m_amountCtrl = new mmTextCtrl(topPanel, wxID_ANY, "", wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     m_amountCtrl->Bind(wxEVT_TEXT, &mmReconcileDialog::OnAmountChanged, this);
 
     topSizer->Add(m_amountCtrl, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 5);
