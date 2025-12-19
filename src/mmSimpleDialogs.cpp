@@ -761,7 +761,7 @@ void mmColorButton::OnMenuSelected(wxCommandEvent& event)
 {
     m_color_value = event.GetId() - wxID_HIGHEST;
     SetBackgroundColour(getUDColour(m_color_value));
-    SetForegroundColour(*bestFontColour(getUDColour(m_color_value)));
+    SetForegroundColour(m_color_value <= 0 ? getUDColour(m_color_value) : *bestFontColour(getUDColour(m_color_value)));
     if (GetSize().GetX() > 40)
     {
         if (m_color_value <= 0) {
