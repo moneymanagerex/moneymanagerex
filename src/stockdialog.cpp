@@ -185,7 +185,7 @@ void mmStockDialog::CreateControls()
     wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(itemStaticBoxSizer4Static, wxVERTICAL);
     leftBoxSizer->Add(itemStaticBoxSizer4, g_flagsExpand);
 
-    wxPanel* itemPanel5 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    wxPanel* itemPanel5 = new wxPanel(itemStaticBoxSizer4Static, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemStaticBoxSizer4->Add(itemPanel5, g_flagsV);
 
     wxFlexGridSizer* itemFlexGridSizer6 = new wxFlexGridSizer(0, 2, 0, 0);
@@ -270,7 +270,7 @@ void mmStockDialog::CreateControls()
     iconsSizer->Add(m_bAttachments, g_flagsH);
     iconsSizer->Add(itemButton31, g_flagsH);
 
-    m_notes_ctrl = new wxTextCtrl(this, wxID_STATIC, "", wxDefaultPosition, wxSize(200, 90), wxTE_MULTILINE);
+    m_notes_ctrl = new wxTextCtrl(itemStaticBoxSizer4Static, wxID_STATIC, "", wxDefaultPosition, wxSize(200, 90), wxTE_MULTILINE);
     itemStaticBoxSizer4->Add(m_notes_ctrl, g_flagsExpand);
     itemStaticBoxSizer4->AddSpacer(1);
     mmToolTip(m_notes_ctrl, _t("Enter notes associated with this investment"));
@@ -285,7 +285,7 @@ void mmStockDialog::CreateControls()
     wxStaticBoxSizer* historyStaticBoxSizer = new wxStaticBoxSizer(historyStaticBox, wxVERTICAL);
     rightBoxSizer->Add(historyStaticBoxSizer, g_flagsExpand);
 
-    m_price_listbox = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxSize(250, 150)
+    m_price_listbox = new wxListCtrl(historyStaticBox, wxID_ANY, wxDefaultPosition, wxSize(250, 150)
         , wxLC_REPORT);
     historyStaticBoxSizer->Add(m_price_listbox, g_flagsExpand);
     mmToolTip(m_price_listbox, _t("Stock Price History"));
@@ -305,7 +305,7 @@ void mmStockDialog::CreateControls()
     m_price_listbox->InsertColumn(1, col1);
 
     //History Buttons
-    wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
+    wxPanel* buttons_panel = new wxPanel(historyStaticBox, wxID_ANY);
     historyStaticBoxSizer->Add(buttons_panel, wxSizerFlags(g_flagsV).Centre());
     wxBoxSizer* buttons_sizer = new wxBoxSizer(wxVERTICAL);
     buttons_panel->SetSizer(buttons_sizer);
@@ -510,7 +510,6 @@ void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account, const
     ShareTransactionDialog share_dialog(this, m_stock);
     share_dialog.ShowModal();
 }
-
 
 void mmStockDialog::OnListItemSelected(wxListEvent& event)
 {
