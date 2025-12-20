@@ -1490,7 +1490,7 @@ void mmBDDialog::setCategoryLabel()
     bool is_split = !m_bill_data.local_splits.empty();
     textAmount_->Enable(!is_split);
     bCalc_->Enable(!is_split);
-    wxButton* bSplit = static_cast<wxBitmapButton*>(FindWindow(ID_DIALOG_TRANS_BUTTONSPLIT));
+    wxBitmapButton* bSplit = static_cast<wxBitmapButton*>(FindWindow(ID_DIALOG_TRANS_BUTTONSPLIT));
     bSplit->Enable(!m_transfer);
     cbCategory_->Enable(!is_split);
     Layout();
