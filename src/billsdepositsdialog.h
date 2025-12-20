@@ -90,7 +90,7 @@ private:
     bool autoExecuteSilent_ = false;
     bool m_advanced = false;
 private:
-    wxButton* bCalc_ = nullptr;
+    wxBitmapButton* bCalc_ = nullptr;
     mmCalculatorPopup* calcPopup_ = nullptr;
     wxTextCtrl* textNumber_ = nullptr;
     mmTextCtrl* textAmount_ = nullptr;
@@ -104,7 +104,7 @@ private:
     mmComboBoxPayee* cbPayee_ = nullptr;
     mmComboBoxAccount* cbAccount_ = nullptr;
     mmComboBoxAccount* cbToAccount_ = nullptr;
-    wxButton* bAttachments_ = nullptr;
+    wxBitmapButton* bAttachments_ = nullptr;
     wxButton* m_button_cancel = nullptr;
     mmColorButton* bColours_ = nullptr;
     wxCheckBox* cAdvanced_ = nullptr;
@@ -192,7 +192,7 @@ private:
         ID_PANEL_REPORTS_HEADER_PANEL,
         ID_PANEL_REPORTS_STATIC_HEADER,
         ID_BTN_CUSTOMFIELDS,
-        ID_CUSTOMFIELDS    // must be last in the list  
+        ID_CUSTOMFIELDS    // must be last in the list
     };
 };
 

@@ -152,7 +152,7 @@ private:
     wxButton* m_btnEnter = nullptr;
     wxButton* m_btnSkip = nullptr;
     wxButton* m_btnRestore = nullptr;
-    wxButton* m_btnAttachment = nullptr;
+    wxBitmapButton* m_btnAttachment = nullptr;
     wxStaticText* m_header_text = nullptr;
     wxBitmapToggleButton* m_header_scheduled = nullptr;
     wxStaticText* m_header_sortOrder = nullptr;
