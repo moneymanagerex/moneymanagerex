@@ -398,62 +398,92 @@ void mmUnivCSVDialog::CreateControls()
         flex_sizer->Add(m_textDelimiter, g_flagsH);
     }
 
-    // Date Picker
     if (!IsImporter())
     {
-        // Checkbox which provides the option to only export transactions between 2 dates
-        m_haveDatesCheckBox = new wxCheckBox(itemPanel7, wxID_ANY, _t("Only Export Transactions Between 2 Dates"));
-        flex_sizer->Add(m_haveDatesCheckBox, g_flagsH);
+
+        wxPanel* itemPanel71 = new wxPanel(itemPanel7, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+
+        wxFlexGridSizer* flex_sizer71 = new wxFlexGridSizer(0,1, 0, 0);
+        itemPanel71->SetSizer(flex_sizer71);
+
+        // Option to export stocks
+        m_exportStocksCheckBox = new wxCheckBox(itemPanel71, wxID_ANY, _t("Only Export Stocks"));
+        flex_sizer71->Add(m_exportStocksCheckBox, g_flagsH);
+        m_exportStocksCheckBox->Bind(wxEVT_CHECKBOX, &mmUnivCSVDialog::OnHaveStocksChange, this);
+
+
+        // Option to export stocks/transaction only between two dates
+        m_haveDatesCheckBox = new wxCheckBox(itemPanel71, wxID_ANY, _t("Only Export Transactions Between 2 Dates"));
+        flex_sizer71->Add(m_haveDatesCheckBox, g_flagsH);
         m_haveDatesCheckBox->Bind(wxEVT_CHECKBOX, &mmUnivCSVDialog::OnHaveDatesChange, this);
 
-        // 2 Date Pickers, one for the date from which the exported transactions will begin and one for the date in which the exported transactions will end
-        wxStaticText* itemStaticText7771 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_t("Start Date:")));
-        itemStaticText7771->SetFont(staticBoxFontSetting);
-        flex_sizer->Add(itemStaticText7771, g_flagsH);
+        wxPanel* itemPanel72 = new wxPanel(itemPanel71, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
 
-        m_date_picker_start = new mmDatePickerCtrl(itemPanel7, wxID_STATIC,wxDefaultDateTime
+        wxGridSizer* grid_sizer72 = new wxGridSizer(2,0, 0, 0);
+        itemPanel72->SetSizer(grid_sizer72);
+        // 2 Date Pickers, one for the date from which the exported transactions will begin and one for the date in which the exported transactions will end
+        wxStaticText* itemStaticText7771 = new wxStaticText(itemPanel72, wxID_STATIC, wxString(_t("Start Date:")));
+        itemStaticText7771->SetFont(staticBoxFontSetting);
+        grid_sizer72->Add(itemStaticText7771, g_flagsH);
+
+        m_date_picker_start = new mmDatePickerCtrl(itemPanel72, wxID_STATIC,wxDefaultDateTime
     , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
         mmToolTip(m_date_picker_start, _t("Specify which date the report must start at"));
         wxDateTime specificDate(1, wxDateTime::Jan, 1970);
         m_date_picker_start->SetValue(specificDate);
-        flex_sizer->Add(m_date_picker_start, g_flagsH);
+        grid_sizer72->Add(m_date_picker_start, g_flagsH);
         m_date_picker_start->Bind(wxEVT_DATE_CHANGED, &mmUnivCSVDialog::OnStartDateChange, this);
         // In the beginning the date pickers are disabled since the checkbox is not checked
         m_date_picker_start->Enable(false);
 
-        wxStaticText* itemStaticText7772 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_t("End Date:")));
+        wxStaticText* itemStaticText7772 = new wxStaticText(itemPanel72, wxID_STATIC, wxString(_t("End Date:")));
         itemStaticText7772->SetFont(staticBoxFontSetting);
-        flex_sizer->Add(itemStaticText7772, g_flagsH);
+        grid_sizer72->Add(itemStaticText7772, g_flagsH);
 
-        m_date_picker_end = new mmDatePickerCtrl(itemPanel7, wxID_STATIC,wxDefaultDateTime
+        m_date_picker_end = new mmDatePickerCtrl(itemPanel72, wxID_STATIC,wxDefaultDateTime
     , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
         mmToolTip(m_date_picker_end, _t("Specify which date the report must end at"));
         m_date_picker_end->SetValue(wxDateTime::Today());
-        flex_sizer->Add(m_date_picker_end, g_flagsH);
+        grid_sizer72->Add(m_date_picker_end, g_flagsH);
         m_date_picker_end->Bind(wxEVT_DATE_CHANGED, &mmUnivCSVDialog::OnEndDateChange, this);
         m_date_picker_end->Enable(false);
+
+        flex_sizer71->Add(itemPanel72, 0, wxEXPAND | wxALL, 1);
+        flex_sizer->Add(itemPanel71, 0, wxEXPAND | wxALL, 1);
+
     }
 
-    // Option to export stocks
+    // 2 different versions of the encoding text and button so that it looks good on both the importing menu and the exporting menu
     if (!IsImporter())
     {
-        //Checkbox which provides the option to only export stocks
-        m_exportStocksCheckBox = new wxCheckBox(itemPanel7, wxID_ANY, _t("Only Export Stocks"));
-        flex_sizer->Add(m_exportStocksCheckBox, g_flagsH);
-        m_exportStocksCheckBox->Bind(wxEVT_CHECKBOX, &mmUnivCSVDialog::OnHaveStocksChange, this);
+        wxPanel* itemPanel73 = new wxPanel(itemPanel7, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxFlexGridSizer* flex_sizer73 = new wxFlexGridSizer(1,0, 0, 0);
+        itemPanel73->SetSizer(flex_sizer73);
+
+        wxStaticText* itemStaticText88 = new wxStaticText(itemPanel73, wxID_STATIC, wxString(_t("Encoding:")));
+        itemStaticText88->SetFont(staticBoxFontSetting);
+        flex_sizer73->Add(itemStaticText88, g_flagsH);
+
+        m_choiceEncoding = new wxChoice(itemPanel73, ID_ENCODING);
+        for (const auto &i : g_encoding)
+            m_choiceEncoding->Append(wxGetTranslation(i.second.second), new wxStringClientData(i.second.second));
+        m_choiceEncoding->SetSelection(0);
+        flex_sizer73->Add(m_choiceEncoding, g_flagsH);
+        flex_sizer->Add(itemPanel73, 0, wxEXPAND | wxALL, 1);
     }
+    else
+    {
+        wxStaticText* itemStaticText88 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_t("Encoding:")));
+        itemStaticText88->SetFont(staticBoxFontSetting);
+        flex_sizer->Add(itemStaticText88, g_flagsH);
 
-    //Encoding
-    wxStaticText* itemStaticText88 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_t("Encoding:")));
-    itemStaticText88->SetFont(staticBoxFontSetting);
-    flex_sizer->Add(itemStaticText88, g_flagsH);
+        m_choiceEncoding = new wxChoice(itemPanel7, ID_ENCODING);
+        for (const auto &i : g_encoding)
+            m_choiceEncoding->Append(wxGetTranslation(i.second.second), new wxStringClientData(i.second.second));
+        m_choiceEncoding->SetSelection(0);
 
-    m_choiceEncoding = new wxChoice(itemPanel7, ID_ENCODING);
-    for (const auto &i : g_encoding)
-        m_choiceEncoding->Append(wxGetTranslation(i.second.second), new wxStringClientData(i.second.second));
-    m_choiceEncoding->SetSelection(0);
-
-    flex_sizer->Add(m_choiceEncoding, g_flagsH);
+        flex_sizer->Add(m_choiceEncoding, g_flagsH);
+    }
 
     // Option to add column titles to exported files.
     if (!IsImporter())
