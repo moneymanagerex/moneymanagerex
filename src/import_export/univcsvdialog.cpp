@@ -1698,13 +1698,10 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
     }
 
     double account_balance = from_account->INITIALBAL;
-    wxString content;
 
     //If the user wants to export transactions
     if (m_exportStocksCheckBox->GetValue()==false)
     {
-        content="Transactions";
-
         // Write transactions to file.
         Model_Checking::Data_Set txns = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(fromAccountID), Model_Checking::TOACCOUNTID(fromAccountID));
         std::sort(txns.begin(), txns.end());
@@ -1842,8 +1839,6 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
     }
     else //Else if the user wants to export stocks
     {
-        content="Stocks";
-
         Model_Stock::Data_Set txns = Model_Stock::instance().find(Model_Stock::HELDAT(fromAccountID));
         std::sort(txns.begin(), txns.end());
         std::stable_sort(txns.begin(), txns.end(), SorterBySTOCKID());
@@ -1916,7 +1911,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
         }
     }
     pTxFile->Save(fileName);
-    const wxString& msg = wxString::Format(_t("%T exported: %ld"), content, numRecords);
+    const wxString& msg = wxString::Format(_t("Transactions/Stocks exported: %ld"), numRecords);
     mmErrorDialogs::MessageWarning(this, msg, _t("Export"));
 }
 
