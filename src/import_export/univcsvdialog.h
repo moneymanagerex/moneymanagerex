@@ -124,7 +124,17 @@ private:
         UNIV_CSV_WITHDRAWAL,
         UNIV_CSV_DEPOSIT,
         UNIV_CSV_BALANCE,
-        UNIV_CSV_LAST
+        UNIV_CSV_LAST,
+        UNIV_CSV_COMPANY_NAME,
+        UNIV_CSV_SYMBOL,
+        UNIV_CSV_SHARE_TOTAL,
+        UNIV_CSV_CURRENT_PRICE,
+        UNIV_CSV_AVG_SHARE_PRICE,
+        UNIV_CSV_TOTAL_COST,
+        UNIV_CSV_REAL_GAIN,
+        UNIV_CSV_UNREAL_GAIN,
+        UNIV_CSV_CURRENT_TOTAL_VALUE,
+        UNIV_CSV_COMMISSION
     };
 
 private:
@@ -164,6 +174,10 @@ private:
     wxChoice* m_choice_preset_name = nullptr;
     wxTextCtrl* log_field_ = nullptr;
     wxTextCtrl* m_textDelimiter = nullptr;
+    wxCheckBox* m_haveDatesCheckBox = nullptr;
+    mmDatePickerCtrl* m_date_picker_start = nullptr;
+    mmDatePickerCtrl* m_date_picker_end = nullptr;
+    wxCheckBox* m_exportStocksCheckBox = nullptr;
     wxSpinCtrl* m_spinIgnoreFirstRows_ = nullptr;
     wxSpinCtrl* m_spinIgnoreLastRows_ = nullptr;
 
@@ -227,6 +241,10 @@ private:
     void OnListBox(wxCommandEvent& event);
     void OnColumnResize(wxListEvent& event);
     void OnDelimiterChange(wxCommandEvent&);
+    void OnHaveStocksChange(wxCommandEvent& event);
+    void OnHaveDatesChange(wxCommandEvent& event);
+    void OnStartDateChange(wxDateEvent& event);
+    void OnEndDateChange(wxDateEvent& event);
     void OnDecimalChange(wxCommandEvent& event);
     void OnButtonClear(wxCommandEvent& event);
     void OnFileNameEntered(wxCommandEvent& event);
