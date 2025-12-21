@@ -359,6 +359,14 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     model/Model_Usage.cpp
     model/Model_Usage.h
 
+    generic/genericFocusButton.cpp
+    generic/genericFocusButton.h
+    generic/genericFocusBitmapButton.cpp
+    generic/genericFocusBitmapButton.h
+
+    uicontrols/reconciledialog.cpp
+    uicontrols/reconciledialog.h
+
     "${CMAKE_CURRENT_BINARY_DIR}/versions.h"
     "platfdep_${MMEX_PLATFDEP}"
 
