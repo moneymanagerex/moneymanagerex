@@ -861,70 +861,166 @@ e il sistema viene arrestato vengono mantenute fino a 4 copie di backup per ogni
         </li>
     </ul>
 
-    <h3>Finestra di dialogo Nuova/Modifica Operazione</h3>
+<h3>Finestra di dialogo Nuova/Modifica Transazione</h3>
     <p>
-        Questa finestra di dialogo apparirà per le nuove operazioni. Usa questa finestra per inserire i seguenti dettagli:
+        Quando si inserisce una nuova transazione, viene visualizzata una finestra di dialogo.
+        Utilizza questa finestra per inserire i seguenti dettagli:
     </p>
     <dl>
         <dt id="Date">Data</dt>
-        <dd>Questa è generalmente la data della transazione.
-            Per impostazione predefinita è il giorno corrente ma può essere modificato.</dd>
-        <dt>Stato</dt>
-        <dd>Stato - il valore predefinito è Nessuno, ma può essere cambiato in
-            Riconciliato dalle impostazioni delle impostazioni.</dd>
+        <dd>
+            Generalmente è la data della transazione.
+            Per impostazione predefinita viene utilizzata la data corrente, ma può essere modificata.
+        </dd>
+    
+        <dt>Status</dt>
+        <dd>
+            Il valore predefinito è Nessuno, ma può essere modificato in
+            Riconciliata tramite le impostazioni delle opzioni.
+        </dd>
+    
         <dt>Tipo</dt>
         <dd>
             Tipi di Transazione:
             <dl>
                 <dt>Prelievo</dt>
-                <dd>è uno dei casi in cui si effettua un pagamento ed è una spesa.</dd>
+                <dd>
+                    Indica un pagamento effettuato ed è considerato una spesa.
+                </dd>
                 <dt>Deposito</dt>
-                <dd>è una operazione in cui il denaro viene ricevuto ed è un reddito.</dd>
+                <dd>
+                    Indica una somma di denaro ricevuta ed è considerata un’entrata.
+                </dd>
                 <dt>Trasferimento</dt>
-                <dd>è un'operazione in cui viene effettuato un prelievo da un conto ed è depositato in un altro.
-                    Questo tipo di transazione non è incluso nei calcoli
-                    di Entrate/Spese.</dd>
+                <dd>
+                    Indica un’operazione in cui una somma viene prelevata da un conto
+                    e depositata in un altro conto.
+                    Questo tipo di transazione non viene incluso nei calcoli
+                    di Entrate/Uscite.
+                </dd>
             </dl>
         </dd>
+    
         <dt>Importo</dt>
-        <dd>Inserisci l'importo per la transazione. Il secondo campo dell'importo è associato alla casella di controllo Avanzate e sarà attivato solo per le transazioni di Trasferimento.</dd>
-        <dt>Avanzate</dt>
-        <dd>Per una transazione di riferimento, quando l'importo nel Conto Da è diverso al Conto A, la differenza è registrata nei campi separati. Questo vale per le modifiche al tasso di valuta.</dd>
-        <dt>Stato della transazione</dt>
-        <dd><dl>
-            <dt>Non Riconciliata</dt>
-            <dd>Quando inserisci una transazione, inizialmente è nello stato Non Riconciliata. Il che significa che la transazione non è stata riconciliata con il bilancio aziendale della tua carta bancaria/di credito.</dd>
-            <dt>Riconciliata</dt>
-            <dd>Una volta controllata e verificata con le informazioni di bilancio dell'azienda di una carta di credito, la transazione è contrassegnabile come riconciliata.</dd>
-            <dt>Nullo</dt>
-            <dd>Se hai inserito una transazione che in seguito è divenuta non valida o hai annullato la transazione, invece di eliminare la transazione, puoi anche contrassegnarla come nulla così che ne avrai traccia.</dd>
-            <dt>Contrassegna come "Da Monitorare"</dt>
-            <dd>Questo stato contrassegna le transazioni come necessitanti di ulteriori azioni. Per esempio, ricevi una dichiarazione del bilancio dall'istituzione finanziaria e noti che l'importo della transazione è differente tra ciò che hai registrato e ciò che è nella dichiarazione. Puoi contrassegnarlo come un flag per seguire così che tu possa proseguire con l'istituzione finanziaria.</dd>
-            <dt>Duplica</dt>
-            <dd>Lo stato sarà modificato automaticamente a duplicato se riconosciuta come tale.</dd>
-        </dl></dd>
+        <dd>
+            Inserisci l’importo della transazione.
+            Il secondo campo importo è associato alla casella di controllo Avanzato
+            e viene attivato solo per le transazioni di tipo Trasferimento.
+        </dd>
+    
+        <dt>Avanzato</dt>
+        <dd>
+            Per una transazione di trasferimento, quando l’importo del conto di origine
+            è diverso da quello del conto di destinazione, la differenza viene registrata
+            in campi separati. Questa funzione può essere utilizzata per gestire
+            le variazioni dei tassi di cambio.
+        </dd>
+    
+        <dt>Stato della Transazione</dt>
+        <dd>
+            <dl>
+                <dt>Non riconciliata</dt>
+                <dd>
+                    Quando inserisci una transazione, inizialmente si trova nello stato
+                    di Non riconciliata. Ciò significa che la transazione non è ancora
+                    stata verificata rispetto al saldo della banca o della carta di credito.
+                </dd>
+    
+                <dt>Riconciliata</dt>
+                <dd>
+                    Dopo che la transazione è stata controllata e verificata
+                    confrontandola con il saldo fornito dalla banca o dalla società
+                    emittente della carta di credito, può essere contrassegnata
+                    come riconciliata.
+                </dd>
+    
+                <dt>Annullata</dt>
+                <dd>
+                    Se hai inserito una transazione che successivamente risulta
+                    non valida o è stata annullata, invece di eliminarla puoi
+                    contrassegnarla come annullata, mantenendo comunque
+                    una traccia della transazione.
+                </dd>
+    
+                <dt>Segna per follow-up</dt>
+                <dd>
+                    Questo stato indica che la transazione richiede ulteriori verifiche.
+                    Ad esempio, se ricevi un estratto conto dall’istituto finanziario
+                    e noti che l’importo registrato è diverso da quello riportato
+                    nell’estratto, puoi contrassegnare la transazione come
+                    Segna per follow-up per poterla verificare successivamente
+                    con l’istituto finanziario.
+                </dd>
+    
+                <dt>Duplicata</dt>
+                <dd>
+                    Lo stato viene impostato automaticamente su Duplicata
+                    se la transazione viene riconosciuta come tale.
+                </dd>
+            </dl>
+        </dd>
+    
         <dt id="Payee">Beneficiario</dt>
-        <dd>Questa è una persona o un'organizzazione a/da cui il denaro va/proviene.</dd>
-        <dd>Cliccando sul pulsante payee si apre la finestra di dialogo del beneficiario. Puoi selezionare il beneficiario da quella finestra o crearne uno nuovo per l'uso immediato.</dd>
+        <dd>
+            È la persona o l’organizzazione verso cui il denaro viene pagato
+            o da cui viene ricevuto.
+        </dd>
+        <dd>
+            Facendo clic sul pulsante del beneficiario si apre l’elenco a discesa.
+            Puoi selezionare un beneficiario esistente oppure crearne uno nuovo
+            per un utilizzo immediato.
+        </dd>
+    
         <dt id="Category">Categoria</dt>
         <dd>
             <aside class="sticky notes">
-                Non usare la stessa categoria per le transazioni di Deposito e Prelievo
+                Non utilizzare la stessa categoria per le transazioni di
+                Deposito e Prelievo.
             </aside>
-            La categoria indica il tipo di spesa/reddito per l'operazione.</dd>
-        <dd>Cliccando sul pulsante categoria si apre la finestra di dialogo di categoria.
-            Puoi selezionare la categoria dalla finestra o crearne una nuova per l'uso immediato.</dd>
-        <dt>Suddividi</dt>
-        <dd>Questo check-box attiverà la finestra operazioni Split</dd>
-        <dd>Le Transazioni Divise consentono a categorie multiple di esser registrate per una transazione singola.</dd>
-        <dd>Potete permettere a una transazione di avere categorie di Entrata e Spesa registrate come depositi e prelievi, dato il tipo di transazione generale osservato e rimanente positivo, per le transazioni di Deposito e Prelievo.</dd>
-        <dt id="Number">Numero di operazione</dt>
-        <dd>Questo campo serve a inserire ogni tipo di numero associato alla transazione come il numero di controllo.</dd>
+            La categoria identifica il tipo di spesa o di entrata
+            associata alla transazione.
+        </dd>
+        <dd>
+            Facendo clic sul pulsante della categoria si apre l’elenco a discesa.
+            Puoi selezionare una categoria esistente oppure crearne una nuova
+            per un utilizzo immediato.
+        </dd>
+    
+        <dt>Suddivisione</dt>
+        <dd>
+            Questa casella di controllo attiva la finestra di dialogo
+            Suddivisione Transazione.
+        </dd>
+        <dd>
+            La suddivisione della transazione consente di registrare
+            più categorie per una singola transazione.
+        </dd>
+        <dd>
+            Consente inoltre di registrare categorie di Entrata e Uscita
+            come depositi e prelievi, a condizione che il tipo di transazione
+            complessivo sia rispettato e rimanga positivo per le transazioni
+            di Deposito e Prelievo.
+        </dd>
+    
+        <dt id="Number">Numero della transazione</dt>
+        <dd>
+            Questo campo consente di inserire qualsiasi numero associato
+            alla transazione, ad esempio il numero di un assegno.
+        </dd>
+    
         <dt id="Notes">Note</dt>
-        <dd>Questo campo è utilizzabile per registrare ogni nota speciale riguardante la transazione. Il pulsante sotto Note è utilizzabile per selezionare le note del campo usate comunemente.</dd>
+        <dd>
+            Questo campo può essere utilizzato per registrare eventuali note
+            relative alla transazione.
+            Il pulsante sotto il campo Note consente di selezionare
+            note comunemente utilizzate.
+        </dd>
     </dl>
 
-    <h3>Modifica e aggiornamento delle operazioni</h3>
+
+
+    
+    <h3>Modifica e aggiornamento delle transazioni</h3>
     <p>
         La modifica delle transazioni esistenti è eseguibile in diversi modi:
     </p>
@@ -941,7 +1037,7 @@ e il sistema viene arrestato vengono mantenute fino a 4 copie di backup per ogni
 
     <h3>Filtro operazione negli account</h3>
     <aside class="sticky notes">
-        Si consiglia cautela quando si eliminano le operazioni.
+        Si consiglia cautela quando si eliminano le transazioni.
     </aside>
     <p>
         Le transazioni sono filtrabili dai filtri fissi o usando il Filtro della Transazione nella Vista del Conto. Questo consentirà all'utente di limitare le transazioni visibili a quelle definite dal filtro appropriato. Queste transazioni filtrate sono facilmente selezionabili e modificabili individualmente.
@@ -950,14 +1046,123 @@ e il sistema viene arrestato vengono mantenute fino a 4 copie di backup per ogni
         Queste transazioni visibili sono inoltre eliminabili in massa se desiderato.
     </p>
 
-    <h3>Riconciliazione e saldo delle operazioni</h3>
+
+    <h4>Finestra di dialogo Riconciliazione</h4>
+    
+    <p>
+        Per una riconciliazione pratica e veloce, MMEX mette a disposizione
+        una finestra di dialogo dedicata alla riconciliazione.
+    </p>
+    
+    <p>
+        È possibile aprirla dal menu contestuale del conto nel Navigatore
+        facendo clic con il tasto destro:
+    </p>
+    
+    <p>
+        <img class="shadow" alt="Menu contestuale del conto nel Navigatore"
+             src="../it_IT/transactions/reconcilecontextmenu.png">
+    </p>
+    
+    <br>
+    
+    <p>
+        In alternativa, è possibile aprirla direttamente dalla vista del conto
+        tramite l’apposito pulsante:
+    </p>
+    
+    <p>
+        <img class="shadow" alt="Pulsante Riconciliazione"
+             src="../it_IT/transactions/reconcilebutton.png">
+    </p>
+    
+    <br>
+    
+    <p>
+        La finestra mostra tutte le transazioni in sospeso fino alla data corrente,
+        ordinate in due colonne separate per <strong>Prelievi</strong> e <strong>Depositi</strong>:
+    </p>
+    
+    <p>
+        <img class="shadow" alt="Finestra di dialogo Riconciliazione"
+             src="../it_IT/transactions/reconciledialog.png">
+    </p>
+    
+    <aside class="sticky tips">
+        Una transazione può essere selezionata o deselezionata per la riconciliazione
+        anche premendo il tasto <kbd class="key">SPAZIO</kbd>.<br>
+        Con i tasti <kbd class="key">&#8595;</kbd> e <kbd class="key">&#8593;</kbd>
+        è possibile spostarsi tra le voci dell’elenco.<br>
+        Con i tasti <kbd class="key">&#8594;</kbd> e <kbd class="key">&#8592;</kbd>
+        è possibile passare da una lista all’altra.
+    </aside>
+    
+    <ul>
+        <li>
+            Nel campo <kbd>Chiusura estratto conto</kbd> è possibile inserire
+            il saldo finale dell’ultimo estratto conto.
+        </li>
+        <li>
+            Il campo <kbd>Differenza</kbd> mostra la differenza tra il saldo riconciliato
+            e il valore inserito in <kbd>Chiusura estratto conto</kbd>.
+        </li>
+        <li>
+            I trasferimenti in entrata sono contrassegnati dal simbolo <kbd>&lt;</kbd>,
+            quelli in uscita dal simbolo <kbd>&gt;</kbd>.
+        </li>
+    
+        <br>
+    
+        <li>
+            Una transazione non selezionata può essere inclusa nella riconciliazione
+            con un clic del mouse.
+            Facendo clic su una transazione già selezionata, questa viene esclusa
+            dalla riconciliazione.
+        </li>
+        <li>
+            Con <kbd><samp>Seleziona tutto</samp></kbd> tutte le transazioni non selezionate
+            vengono contrassegnate; se invece sono già tutte selezionate,
+            verranno deselezionate.
+        </li>
+    
+        <br>
+    
+        <li>
+            Con <kbd><samp>Modifica</samp></kbd> (oppure con il clic destro del mouse)
+            è possibile modificare la transazione selezionata senza interrompere
+            la procedura di riconciliazione.
+        </li>
+        <li>
+            Con <kbd><samp>Nuova</samp></kbd> (oppure con il clic destro del mouse
+            in un’area vuota dell’elenco) è possibile aggiungere
+            eventuali transazioni mancanti.
+        </li>
+    
+        <br>
+    
+        <li>
+            Con <kbd><samp>Riconcilia</samp></kbd> tutte le transazioni selezionate
+            vengono impostate allo stato <strong>“Riconciliata”</strong>
+            e la finestra viene chiusa.
+        </li>
+        <li>
+            Con <kbd><samp>Riconcilia più tardi</samp></kbd> tutte le transazioni selezionate
+            vengono impostate allo stato <strong>“Segna per follow-up”</strong>
+            e la finestra viene chiusa.
+        </li>
+    </ul>
+
+
+    
+    
+    <h3>Riconciliazione e saldo delle transazioni</h3>
     <aside class="sticky tips">
         Per contrassegnare una transazione come riconciliata, basta selezionare la transazione e cliccare il tasto <kbd><kbd>R</kbd></kbd>. Per contrassegnare una transazione come non riconciliata, basta selezionarla e cliccare il tasto <kbd><kbd>U</kbd></kbd>.
     </aside>
     <dl>
         <dt>Transazioni non confermate</dt>
         <dd>Questo significa che non sono state verificate con la dichiarazione dall'istituzione finanziaria.</dd>
-        <dt>Operazioni confermate</dt>
+        <dt>Transazioni confermate</dt>
         <dd>Una transazione è considerabile riconciliata quando i suoi dettagli corrisponono a quelli dall'istituzione finanziaria.</dd>
     </dl>
     <p>
@@ -1207,7 +1412,7 @@ Schermata di Deposito: I prelievi sono mostrati come negativi.
 	</ul>
 
 	<p>
-		Le Etichette permettono quindi di analizzare le operazioni da più punti di vista senza complicare 
+		Le Etichette permettono quindi di analizzare le transazioni da più punti di vista senza complicare 
 		la struttura delle categorie.
 	</p>
 
@@ -1307,7 +1512,7 @@ Schermata di Deposito: I prelievi sono mostrati come negativi.
 	<h3>Utilizzare le Etichette nei Resoconti</h3>
 
 	<p>
-		Il <b>Resoconto Transazioni</b> consente di filtrare le operazioni utilizzando le Etichette.
+		Il <b>Resoconto Transazioni</b> consente di filtrare le transazioni utilizzando le Etichette.
 	</p>
 
 	<p><kbd><samp>Resoconti</samp> → <samp>Transazioni</samp></kbd></p>
