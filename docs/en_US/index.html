@@ -1191,7 +1191,403 @@
 
 
 
-	<!-- ====================== Section 8 ====================== -->
+
+
+
+
+
+
+	<!-- ====================== Section 9 ====================== -->
+	<!--               		  Custom Fields                      -->
+	<!-- ======================================================= -->
+
+<h2 id="custom-fields">Custom Fields</h2>
+
+	<aside class="sticky notes">
+	  <b>Custom Fields</b> are user-defined advanced fields that add <b>structured extra data</b> to transactions
+	  (and, depending on the MMEX version, to other objects).
+	  They become especially powerful when combined with <b>CSV/XML Import/Export</b> and <b>Reports</b>:
+	  you can preserve “extra columns” coming from banks/Excel/other finance apps and turn them into data you can filter,
+	  display, and reuse consistently over time.
+	</aside>
+
+	<p>
+	  In MMEX, a transaction already has standard fields (Date, Payee, Category, Amount, Notes, etc.).
+	  In real life, however, information is often needed that <b>does not have a natural place</b> in these fields:
+	  a <b>case ID</b>, a <b>payment method</b>, an <b>internal code</b>, a <b>project</b>, a <b>contract</b>,
+	  a <b>due date</b>, a <b>tag-based classification</b>, a <b>bank balance</b> reported in the CSV, or the
+	  <b>transaction type</b> used by the bank (DD, CHQ, BGC…).
+	  Custom Fields are designed for exactly this purpose: they turn “informal” columns into <b>consistent data</b>,
+	  so you can import them, filter them, display them as columns, and use them in reports.
+	</p>
+
+	<h3 id="custom-fields-why">Why Custom Fields were introduced</h3>
+	<aside class="sticky tips">
+	  If you are currently “overusing” Notes to store codes, IDs, references, or pseudo-tags,
+	  Custom Fields are often the cleaner long-term solution: Notes remain free text,
+	  while Custom Fields become <b>proper extra columns</b>.
+	</aside>
+	<p>
+	  Many users import years of history from other finance apps or from bank/Excel exports.
+	  Those files frequently include extra columns (tags, comments, transaction type, references, balances, custom flags)
+	  that are extremely valuable for analysis and reconciliation, but cannot be reliably stored inside standard fields
+	  without losing meaning (for example, forcing a bank “transaction type” into Category is a compromise).
+	  Custom Fields were introduced to:
+	 </p>
+	<ul>
+	  <li><b>preserve extra columns</b> during imports (CSV/XML) without stuffing everything into Notes;</li>
+	  <li><b>separate different concepts</b> (Category ≠ Payment method ≠ Project ≠ Bank transaction type);</li>
+	  <li><b>enable advanced filters and reporting</b> based on consistent structured data;</li>
+	  <li><b>adapt MMEX</b> to personal or semi-professional workflows (projects, cases, cost centers).</li>
+	</ul>
+
+
+	<h3 id="custom-fields-concepts">Key concepts (before you start)</h3>
+	<aside class="sticky notes">
+	  A good Custom Fields design starts with: “What report do I want in 6 months?”
+	  If you need reliable filters, pick types and rules that prevent inconsistent input.
+	</aside>
+	<p>
+	  Before creating dozens of fields, it is advisable to define three key concepts:
+	</p>
+	<ul>
+	  <li>
+		<b>Definition</b>: the field exists because you create it in the <i>Custom Fields Manager</i>
+		(name/description, type, options, validation, tooltip…).
+	  </li>
+	  <li>
+		<b>Value</b>: what you enter for each transaction (e.g. “Card”, “CASE-2025-0142”, “Me”, “Warranty 24 months”).
+	  </li>
+	  <li>
+		<b>Consistency</b>: data is useful only if it stays consistent (choice lists, boolean, dates, RegEx rules).	
+		Otherwise, it just becomes “another note”.
+	  </li>
+	</ul>
+
+
+
+	<h3 id="custom-fields-manager">Managing fields: Custom Fields Manager</h3>
+	<aside class="sticky tips">
+	  Open it from:
+	  <kbd><samp>Tools</samp> → <samp>Custom Fields Manager…</samp></kbd>
+	</aside>
+
+	<p>
+	  In the <b>Custom Fields Manager</b> you create, edit, and remove field definitions. A definition typically includes:
+	</p>
+	<ul>
+	  <li><b>Description/Name</b> – the label shown in the transaction editor;</li>
+	  <li><b>Type</b> – drives controls and validation (String, Integer, Decimal, Boolean, Date, Time, Single choice, Multi choice);</li>
+	  <li><b>Default value</b> – helps manual entry when the value is often the same;</li>
+	  <li><b>RegEx</b> – optional validation pattern (IDs, codes, internal formats);</li>
+	  <li><b>Tooltip</b> – short guidance shown on hover;</li>
+	  <li><b>Panel’s column (UDFC01…UDFC05)</b> – map the field to a visible transaction-panel column;</li>
+	  <li><b>Massive content update</b> – bulk find/replace to normalize existing values.</li>
+	</ul>
+
+	<figure>
+	  <img src="images/custom_fields_manager_overview.png" alt="Custom Fields Manager overview">
+	  <figcaption>
+		Overview of the Custom Fields Manager with three example fields:
+		Payment method (Single choice), Reference (Text with RegEx) and Warranty end (Date),
+		with panel columns assigned to UDFC01 and UDFC02.
+	  </figcaption>
+	</figure>
+	<aside class="sticky notes">
+	  Renaming a field’s <b>Description</b> usually does not break existing data:
+	  internally, values are linked using a field identifier (FIELDID), not the visible text label.
+	  This matters for import presets too: you can rename fields without rebuilding mappings.
+	</aside>
+	<figure>
+	  <img src="images/custom_field_edit_reference.png" alt="Edit Custom Field: Reference">
+	  <figcaption>
+		Configuration details of the custom field “Reference”.
+		The Tooltip guides the user, the regular expression enforces the PRAT-YYYY-NNNN format,
+		and the panel column allows the value to be displayed in UDFC02.
+	  </figcaption>
+	</figure>
+
+
+
+	<h3 id="custom-fields-types">Field types and validation (with practical examples)</h3>
+	<p>
+	  The choice of field type is not cosmetic: it determines what MMEX considers valid,
+	  how values are imported from CSV/XML, and how reliable it will be to filter and report that data.
+	</p>
+	<aside class="sticky notes">
+	  During CSV/XML import, if a value does not match the expected type (e.g. text in a Date field, or a choice not present 
+	  in the list), MMEX reports an error. This is intentional: MMEX aims to avoid silently importing “dirty” data. 
+	  This is an advantage, because you immediately realize that the CSV needs to be corrected or normalized.
+	</aside>
+	<dl>
+	  <dt><b>String</b></dt>
+	  <dd>
+		Free text. Great for IDs and structured short text. Can be validated by <b>RegEx</b>.
+		<br><b>Example</b>: “Case reference” with <code>CASE-\d{4}-\d{4}</code> forces values like <code>CASE-2025-0142</code>.
+	  </dd>
+
+	  <dt><b>Integer</b></dt>
+	  <dd>
+		Whole numbers only. Useful for counters/quantities.
+		<br><b>Example</b>: “Loyalty points”, “Receipt number”.
+	  </dd>
+
+	  <dt><b>Decimal</b></dt>
+	  <dd>
+		Numbers with decimals. Precision (“Digits Scale”) can normalize imported data.
+		<br><b>Example</b>: “VAT %”, “FX rate”, “Discount %”.
+	  </dd>
+
+	  <dt><b>Boolean</b></dt>
+	  <dd>
+		True/False flags for quick filtering.
+		<br><b>Example</b>: “Tax-deductible”, “Reimbursable”, “Company card”.
+	  </dd>
+
+	  <dt><b>Date</b></dt>
+	  <dd>
+		Calendar dates.
+		<br><b>Example</b>: “Subscription renewal”, “Warranty end”.
+	  </dd>
+
+	  <dt><b>Time</b></dt>
+	  <dd>
+		Time-of-day (hh, hh:mm, hh:mm:ss). Helpful when multiple transactions share the same date.
+		<br><b>Example</b>: “Payment time”.
+	  </dd>
+
+	  <dt><b>Single choice</b></dt>
+	  <dd>
+		Dropdown list. The best way to keep consistent classification.
+		<br><b>Example</b>: “Payment method” = Card;Cash;Transfer;PayPal.
+	  </dd>
+
+	  <dt><b>Multi choice</b></dt>
+	  <dd>
+		Multiple selections (often separated by <code>;</code>).
+		This is the closest “tag-like” approach, but controlled.
+		<br><b>Example</b>: “Tags” = Home;Car;Health;Work.
+	  </dd>
+	</dl>
+
+
+
+	<h3 id="custom-fields-when">When to use them (useful scenarios)</h3>
+	<p>
+	  Custom Fields are useful whenever you want to separate <b>accounting</b>(Categories, accounts, transfers) 
+	  from <b>operational classification</b> (projects, people, methods, codes, reconciliations). Typical scenarios include:
+	</p>
+
+	<h4>1) Payment method (Card/Cash/Bank transfer…)</h4>
+	<p>
+	  Categories describe “what you bought”. Payment method describes “how you paid”.
+	  With a “Payment method” custom field you can answer: “How much did I spend in cash last quarter?”
+	  without polluting categories.
+	</p>
+
+	<h4>2) Projects / cases / cost centers</h4>
+	<p>
+	  Add a “Project” field to track cross-category initiatives:
+	  Category = “Home:Materials”, Project = “Bathroom renovation”.
+	  You keep both category reporting and project-based reporting.
+	</p>
+
+	<h4>3) Lossless historical import from other software</h4>
+	<p>
+	  When importing data from apps or banks that provide extra columns (tags, comments, bank transaction type, daily balances), Custom Fields are the correct way 
+	  to bring everything into MMEX without compressing information into the Notes field. This is exactly one of the reasons why this feature 
+	  is considered “powerful”: it allows faithful and verifiable migrations.
+	</p>
+
+	<h4>4) Controls and deadlines (warranties, renewals, contracts)</h4>
+	<p>
+	  Using Date and Boolean fields, you can build a simple system to track deadlines such as “Warranty end” and “Renewed (Yes/No)”. 
+	  Even though MMEX is not a full management system, this helps filter and locate related transactions and documents.
+	</p>
+
+	<h3 id="custom-fields-assign">Assigning values in transactions</h3>
+	<p>
+	  Once at least one Custom Field is defined for transactions, the <b>New/Edit Transaction</b> dialog
+	  displays a (usually expandable) <i>Custom Fields</i> section, where you can enter values
+	  specific to that transaction.
+	</p>
+	<aside class="sticky notes">
+	  <b>Important exception (Split)</b>: Custom Fields are associated with the <b>parent transaction</b>,
+	  not with individual split lines. In practice, all split lines share the same Custom Field values.
+	  If you need a different value for each split line, you must use separate transactions or model
+	  the information differently (e.g. distinct categories, notes, or payees).
+	</aside>
+
+	<figure>
+	  <img src="images/custom_fields_new_transaction.gif" alt="Entering Custom Fields in a new transaction">
+	  <figcaption>
+		Entering Custom Field values while creating a new transaction:
+		expanding the dedicated section, filling in the values, and saving the transaction.
+	  </figcaption>
+	</figure>
+
+
+	<h3 id="custom-fields-panel-columns">Showing fields in the transaction panel (UDFC01–UDFC05)</h3>
+	<p>
+	  To see values directly in the account view, you can map up to <b>5</b> custom fields to the special columns
+	  <code>UDFC01…UDFC05</code>.
+	</p>
+	<ol>
+	  <li>In Custom Fields Manager, set <b>Panel’s column</b> to <samp>UDFC01…UDFC05</samp> for the fields you want.</li>
+	  <li>Open an account and right-click the column header area.</li>
+	  <li>Use <kbd><samp>Hide/Show Columns</samp></kbd> and enable the UDFC columns you need.</li>
+	</ol>
+	<aside class="sticky tips">
+	  You can choose different UDFC combinations for different accounts.
+	  Example: in a “Card” account you may show Payment method and Circuit; in a “Bank” account you may show Reference and Project.
+	</aside>
+	<figure>
+	  <img src="images/transaction_panel_udfc_columns.png" alt="UDFC columns in the transaction panel">
+	  <figcaption>
+		Custom Fields displayed as columns in the transaction panel
+		using UDFC01 (Payment method) and UDFC02 (Reference).
+	  </figcaption>
+	</figure>
+
+
+
+	<h3 id="custom-fields-import">Custom Fields in CSV/XML import (the most powerful use case)</h3>
+	<aside class="sticky tips">
+	  When importing from Excel or a bank, design your Custom Fields first and then adapt the CSV: this reduces errors and results in a cleaner import.
+	</aside>
+
+	<p>
+	  In the CSV import dialog (and similarly for XML), MMEX displays the list of assignable fields.
+	  After the standard fields, you will also find the <b>Custom Fields</b>, typically identified
+	  by entries such as <code>UDF: FIELDID</code> next to the field description.
+	  This allows you to map <b>any</b> extra column in your CSV to an existing Custom Field.
+	</p>
+
+	<figure>
+	  <img src="images/csv_import_custom_fields_mapping.png" alt="CSV import with Custom Fields mapping">
+	  <figcaption>
+		CSV import dialog showing file columns mapped to Custom Fields,
+		displayed alongside standard fields.
+	  </figcaption>
+	</figure>
+	<aside class="sticky notes">
+	  <b>Important behavior (default values)</b>:
+	  the “Default value” defined in the Custom Fields Manager is intended for manual entry.
+	  During CSV/XML import, an empty cell is <b>not</b> automatically filled with the custom field’s default value:
+	  it remains empty in order to faithfully match the source data.
+	  If you need a default value during import, you must prefill the CSV (e.g. using Excel) or provide an explicit “default” column.
+	</aside>
+
+	<p>
+	  Recommended procedure (robust and repeatable):
+	</p>
+
+	<ol>
+	  <li><b>Create the fields</b> in the Custom Fields Manager (correct type, choices, RegEx, tooltip).</li>
+	  <li><b>Prepare the CSV</b> with one column per Custom Field (clear header names, consistent values).</li>
+	  <li><b>Map the columns</b> in the import dialog, assigning each column to the correct field (standard or custom).</li>
+	  <li><b>Run the import</b> and review the log: validation errors point to rows or columns that need correction.</li>
+	  <li><b>Save an import preset</b> (if available in your version) so the mapping can be reused.</li>
+	</ol>
+
+
+	<h3 id="custom-fields-export">Export and sharing: what to expect</h3>
+	<p>
+	  When exporting to CSV/XML, the behavior depends on the version and the type of export selected.
+	  In general, if the goal is to “transfer data” from one MMEX database to another or to create an
+	  interoperable backup, it is advisable to verify that the export also includes Custom Fields and to always test with a small file first.
+	</p>
+
+	<aside class="sticky tips">
+	  If you need to migrate data between two MMEX databases, first export/import a small sample
+	  (20–50 transactions), verify that Custom Fields have been transferred correctly,
+	  and only then proceed with the full historical data.
+	</aside>
+
+	<h3 id="custom-fields-reports">Using Custom Fields in reports & filters</h3>
+	<p>
+	  Custom Fields can be used in three main ways:
+	</p>
+	<ul>
+	  <li><b>Transaction filters / Transaction reports</b>: if supported by your version, you can also filter by Custom Field.</li>
+	  <li><b>UDFC columns</b>: for quick visual analysis directly in the account view.</li>
+	  <li><b>SQL reports</b> (General Report Manager): the most powerful and flexible option, allowing joins and aggregations.</li>
+	</ul>
+
+
+	<p>
+	  For advanced users (or those who want a “professional” manual): Custom Field values are stored in a dedicated table
+	  and linked to transactions via the transaction ID (REFID). This makes it possible to create SQL reports
+	  that also extract and aggregate Custom Field data.
+	</p>
+	<aside class="sticky notes">
+	  This example is intentionally “simple”: in practice, you will also want to filter by FIELDID
+	  (that is, “which field”), because CUSTOMFIELDDATA_V1 contains values from multiple fields.
+	  The idea, however, is clear: once the data is structured, you can build highly targeted reports.
+	</aside>
+	<pre><code class="language-sql">SELECT
+		a.TRANSDATE,
+		a.TRANSAMOUNT,
+		p.PAYEENAME,
+		c.CONTENT AS CustomValue
+	FROM CHECKINGACCOUNT_V1 a
+	LEFT JOIN PAYEE_V1 p ON p.PAYEEID = a.PAYEEID
+	LEFT JOIN CUSTOMFIELDDATA_V1 c ON c.REFID = a.TRANSID
+	WHERE c.CONTENT = 'Card'
+	ORDER BY a.TRANSDATE;</code></pre>
+
+
+
+	<h3 id="custom-fields-limits">Current limitations and exceptions to be aware of</h3>
+	<ul>
+	  <li>
+		<b>Split transactions</b>: Custom Fields apply to the <b>parent transaction</b>, not to individual split lines (all split lines share the same values).
+	  </li>
+	  <li>
+		<b>Limited visible columns</b>: in the account view you can display up to 5 fields using UDFC01–UDFC05.
+		This does not limit the total number of Custom Fields, only those shown as columns in the grid.
+	  </li>
+	  <li>
+		<b>Import validation</b>: when using choices or RegEx, “dirty” CSV files will generate errors. This is expected behavior, but it requires normalizing 
+		the source data (e.g. Excel cleanup, simple regexes, controlled values).
+	  </li>
+	  <li>
+		<b>Deletion</b>: removing a field definition may result in loss of the associated values.
+		Always make a database backup before performing structural changes.
+	  </li>
+	  <li>
+		<b>Version compatibility</b>: if you rely on Custom Field import/export features, make sure you are using a version 
+		that properly supports them. If you notice unexpected behavior (e.g. mapping works but data is not imported), the first check should often be updating MMEX.
+	  </li>
+	</ul>
+
+	<h3 id="custom-fields-best-practices">Best practices (recommended workflow)</h3>
+	<aside class="sticky tips">
+	  If you need a “tag-like” behavior, the most practical solution is to
+	  create a <b>Multi choice</b> field named “Tag” with a controlled vocabulary (e.g. Home;Car;Health;Work).
+	  This gives you consistent, filterable, and importable tags, avoiding typing errors (e.g. “Car” vs “car” vs “CAR0”).
+	</aside>
+	<p>
+	  A robust workflow (especially for historical imports) is:
+	</p>
+	<ol>
+	  <li><b>Design a small number of well-defined fields</b> (method, project, reference, controlled tags).</li>
+	  <li><b>Prefer Single/Multi choice</b> when you need consistency and reliable reports (instead of free text).</li>
+	  <li><b>Add Tooltips</b> to remind yourself (or others) of the input rules.</li>
+	  <li><b>Test with a small CSV</b> (10–20 rows) and verify import, filters, and columns.</li>
+	  <li><b>Only then</b> import the full history and evaluate any normalization using Massive content update.</li>
+	</ol>
+
+
+
+
+
+
+
+
+
+
+	<!-- ====================== Section 9 ====================== -->
 	<!--               Searching for Information                -->
 	<!-- ======================================================= -->
 	<h2 id="searching_for_information">Searching for Information</h2>
@@ -1234,7 +1630,7 @@
             <samp>Margaret</samp></li>
     </ul>
 
-	<!-- ====================== Section 9 ====================== -->
+	<!-- ====================== Section 10 ====================== -->
 	<!--                  Working with Payees                   -->
 	<!-- ======================================================= -->
 	<h2 id="payees">Working with Payees</h2>
@@ -1293,7 +1689,7 @@
         This would then make the payee free so it can then be deleted.
     </p>
 
-	<!-- ====================== Section 10 ====================== -->
+	<!-- ====================== Section 11 ====================== -->
 	<!--                 Working with Categories                -->
 	<!-- ======================================================= -->
 	<h2 id="categories">Working with Categories</h2>
@@ -1426,7 +1822,7 @@
     </ul>
 
 
-	<!-- ====================== Section 11 ====================== -->
+	<!-- ====================== Section 12 ====================== -->
 	<!--                    Working with Tags                   -->
 	<!-- ======================================================= -->
 	<h2 id="tags">Working with Tags</h2>
@@ -1625,7 +2021,7 @@
 
 
 
-	<!-- ====================== Section 12 ====================== -->
+	<!-- ====================== Section 13 ====================== -->
 	<!--                  Working with Currencies               -->
 	<!-- ======================================================= -->
 	<h2 id="currencies">Working with Currencies</h2>
@@ -1678,7 +2074,7 @@
 
 
 
-	<!-- ====================== Section 13 ====================== -->
+	<!-- ====================== Section 14 ====================== -->
 	<!--                Importing financial data                -->
 	<!-- ======================================================= -->
 	<h2 id="importing_financial_data">Importing financial data</h2>
@@ -1767,6 +2163,12 @@
         using the right-click contextual menu in the account view.
     </p>
 
+	<p>
+	  When importing CSV files that contain extra columns (such as payment methods, references,
+	  project codes, or bank-specific transaction types), consider using
+	  <a href="#custom-fields">Custom Fields</a> to preserve this information as structured data
+	  instead of placing everything into Notes.
+	</p>
 
     <h3>Importing from XML Files</h3>
     <aside class="sticky notes">
@@ -1876,7 +2278,7 @@ PBank Of Mortgage Payee
         payees ready to use inserting new transaction.
     </p>
 
-	<!-- ====================== Section 14 ====================== -->
+	<!-- ====================== Section 15 ====================== -->
 	<!--                   Exporting data                       -->
 	<!-- ======================================================= -->
 	<h2 id="exporting_data">Exporting data</h2>
@@ -1939,7 +2341,7 @@ PBank Of Mortgage Payee
 
 
 
-	<!-- ====================== Section 15 ====================== -->
+	<!-- ====================== Section 16 ====================== -->
 	<!--                Scheduled Transactions                  -->
 	<!-- ======================================================= -->
 	<h2 id="scheduled_transactions">Scheduled Transactions</h2>
@@ -2034,7 +2436,7 @@ PBank Of Mortgage Payee
         <kbd><samp>Create Scheduled Transaction…</samp></kbd>.
     </p>
 
-	<!-- ====================== Section 16 ====================== -->
+	<!-- ====================== Section 17 ====================== -->
 	<!--                   Stocks and Shares                    -->
 	<!-- ======================================================= -->
 	<h2 id="stocks_and_shares">Stocks and Shares</h2>
@@ -2047,7 +2449,7 @@ PBank Of Mortgage Payee
         Stocks, Shares and Share Dividend Management in MMEX</a>
     </p>
 
-	<!-- ====================== Section 17 ====================== -->
+	<!-- ====================== Section 18 ====================== -->
 	<!--                   Asset Management                     -->
 	<!-- ======================================================= -->
 	<h2 id="asset_management">Asset Management</h2>
@@ -2084,7 +2486,7 @@ PBank Of Mortgage Payee
             transfers depending on the state of the “Transfer” checkbox.</li>
     </ul>
 
-	<!-- ====================== Section 18 ====================== -->
+	<!-- ====================== Section 19 ====================== -->
 	<!--                       Budgeting                        -->
 	<!-- ======================================================= -->
 	<h2 id="budgeting">Budgeting</h2>
@@ -2095,7 +2497,7 @@ PBank Of Mortgage Payee
 
 
 
-	<!-- ====================== Section 19 ====================== -->
+	<!-- ====================== Section 20 ====================== -->
 	<!--                        Reports                         -->
 	<!-- ======================================================= -->
 	<h2 id="reports">Reports</h2>
@@ -2147,6 +2549,12 @@ PBank Of Mortgage Payee
         For a Transaction Report, the resulting list of transactions can
         be printed or saved as a HTML file.
     </p>
+	<p>
+	  If your transactions use <a href="#custom-fields">Custom Fields</a>, these can also be leveraged
+	  in filters and reports (depending on the version), or more extensively through SQL-based reports
+	  in the General Report Manager.
+	</p>
+
 
     <h4>Transfer transactions in Transaction Reports</h4>
     <p>
@@ -2195,7 +2603,7 @@ PBank Of Mortgage Payee
 
 
 
-	<!-- ====================== Section 20 ====================== -->
+	<!-- ====================== Section 21 ====================== -->
 	<!--                        Settings                        -->
 	<!-- ======================================================= -->
 	<h2 id="settings">Settings</h2>
@@ -2386,7 +2794,7 @@ PBank Of Mortgage Payee
 
 
     <!--Frequently Asked Questions-->
-	<!-- ====================== Section 21 ====================== -->
+	<!-- ====================== Section 22 ====================== -->
 	<!--              Frequently Asked Questions                -->
 	<!-- ======================================================= -->
 	<h2 id="faq">Frequently Asked Questions</h2>
