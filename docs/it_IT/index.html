@@ -861,7 +861,7 @@ e il sistema viene arrestato vengono mantenute fino a 4 copie di backup per ogni
         </li>
     </ul>
 
-<h3>Finestra di dialogo Nuova/Modifica Transazione</h3>
+	<h3>Finestra di dialogo Nuova/Modifica Transazione</h3>
     <p>
         Quando si inserisce una nuova transazione, viene visualizzata una finestra di dialogo.
         Utilizza questa finestra per inserire i seguenti dettagli:
@@ -1184,7 +1184,410 @@ e il sistema viene arrestato vengono mantenute fino a 4 copie di backup per ogni
         Premere <kbd><kbd>Ctrl</kbd>+<kbd>0</kbd></kbd> lo modificherà nuovamente al colore della transazione predefinito di mmex.
     </p>
 
+
+
+
+
+
+
+
 	<!-- ====================== Section 8 ====================== -->
+	<!--                   Campi Personalizzati                  -->
+	<!-- ======================================================= -->
+
+
+<h2 id="custom-fields">Campi personalizzati (Custom Fields)</h2>
+
+	<aside class="sticky notes">
+	  I <b>Campi personalizzati</b> (Custom Fields) sono campi avanzati definiti dall’utente che aggiungono
+	  <b>informazioni strutturate</b> alle transazioni (e, a seconda della versione, ad altri oggetti).
+	  Sono particolarmente potenti se usati insieme a <b>Importa/Esporta CSV/XML</b> e ai <b>Resoconti</b>:
+	  ti permettono di “non perdere” colonne extra provenienti da banca/Excel/altri software e di trasformarle
+	  in dati filtrabili, confrontabili e riutilizzabili nel tempo.
+	</aside>
+
+	<p>
+	  In MMEX una transazione ha già campi standard (Data, Beneficiario, Categoria, Importo, Note, ecc.).
+	  Nella vita reale però spesso servono informazioni che <b>non hanno un posto naturale</b> in questi campi:
+	  un <b>ID pratica</b>, un <b>metodo di pagamento</b>, un <b>codice interno</b>, un <b>progetto</b>, un <b>contratto</b>,
+	  una <b>scadenza</b>, una <b>classificazione “a tag”</b>, un <b>saldo banca</b> riportato nel CSV, oppure il
+	  <b>tipo transazione</b> usato dalla banca (DD, CHQ, BGC…).
+	  I Campi personalizzati servono proprio a questo: trasformano colonne “informali” in <b>dati coerenti</b>,
+	  così puoi importarli, filtrarli, mostrarli in colonne e usarli nei resoconti.
+	</p>
+
+	<h3 id="custom-fields-why">Perché sono stati introdotti</h3>
+	<aside class="sticky tips">
+	  Se oggi stai “abusando” delle Note per infilarci codici, ID, riferimenti o tag,
+	  i Campi personalizzati sono spesso la soluzione più pulita: le Note restano testo libero,
+	  mentre i Campi Personalizzati diventano <b>colonne strutturate</b>.
+	</aside>
+	<p>
+	  Molti utenti importano anni di storico da altri software o da esportazioni bancarie/Excel. Questi file contengono
+	  spesso colonne extra (tag, commenti, “transaction type”, riferimenti, saldo, flag personalizzati) che sono utilissime
+	  per analisi e riconciliazioni, ma che MMEX non può “indovinare” dentro i campi standard senza perdere informazione
+	  o mescolare significati (per esempio mettere un “Transaction Type” dentro Categoria è un compromesso che limita
+	  l’analisi). I Campi personalizzati sono stati introdotti per:
+	</p>
+	<ul>
+	  <li><b>conservare colonne aggiuntive</b> durante importazioni (CSV/XML) senza doverle incollare nelle Note;</li>
+	  <li><b>separare concetti diversi</b> (es. Categoria ≠ Metodo pagamento ≠ Progetto ≠ Tipo banca);</li>
+	  <li><b>abilitare filtri e report avanzati</b> basati su campi coerenti e validati;</li>
+	  <li><b>rendere MMEX adattabile</b> a flussi di lavoro personali o “semi-professionali” (progetti, commesse, pratiche).</li>
+	</ul>
+
+
+
+	<h3 id="custom-fields-concepts">Concetti chiave (prima di iniziare)</h3>
+	<aside class="sticky notes">
+	  Un buon progetto di Campi Personalizzati nasce dalla domanda: “Che report voglio ottenere tra 6 mesi?”
+	  Se il report richiede filtri affidabili, scegli tipi e regole che evitino scritture incoerenti.
+	</aside>
+	<p>
+	  Prima di creare decine di campi, conviene fissare 3 concetti:
+	</p>
+	<ul>
+	  <li>
+		<b>Definizione</b>: il campo “esiste” perché lo crei nel <i>Gestore Campo Personalizzato</i>
+		(nome/descrizione, tipo, opzioni, validazione, tooltip…).
+	  </li>
+	  <li>
+		<b>Valore</b>: è ciò che inserisci nella singola transazione (es. “Carta”, “PRAT-2025-0142”, “Io”, “Garanzia 24 mesi”).
+	  </li>
+	  <li>
+		<b>Coerenza</b>: il valore ha senso se resta coerente nel tempo (liste di scelta, booleani, date, regole RegEx).
+		Altrimenti diventa “solo un’altra nota”.
+	  </li>
+	</ul>
+
+
+
+	<h3 id="custom-fields-manager">Gestire i campi: Gestore Campo Personalizzato</h3>
+	<aside class="sticky tips">
+	  Apri il gestore da:
+	  <kbd><samp>Strumenti</samp> → <samp>Gestore Campo Personalizzato…</samp></kbd>
+	</aside>
+
+	<p>
+	  Nel <b>Gestore Campo Personalizzato</b> definisci, modifichi e rimuovi i campi. Ogni definizione include tipicamente:
+	</p>
+	<ul>
+	  <li><b>Descrizione/Nome</b> – l’etichetta mostrata all’utente nella finestra transazione;</li>
+	  <li><b>Tipo</b> – determina formato, controlli e validazione (Stringa, Intero, Decimale, Booleano, Data, Ora, Scelta singola, Scelta multipla);</li>
+	  <li><b>Valore predefinito</b> – aiuta l’inserimento manuale quando “quasi sempre” il valore è quello;</li>
+	  <li><b>RegEx</b> – validazione per imporre pattern (es. “PRAT-YYYY-NNNN”, IBAN, codici interni);</li>
+	  <li><b>Tooltip</b> – micro-guida contestuale (“Inserisci il codice pratica in formato PRAT-2025-0001”);</li>
+	  <li><b>Colonna del Pannello (UDFC01…UDFC05)</b> – collega il campo a una colonna visibile nel pannello transazioni;</li>
+	  <li><b>Massive content update</b> – funzione di aggiornamento massivo (utile per migrazioni e normalizzazioni).</li>
+	</ul>
+
+	<figure>
+	  <img src="images/custom_fields_manager_overview.png" alt="Gestore Campo Personalizzato - panoramica">
+	  <figcaption>
+		Panoramica del Gestore Campo Personalizzato con tre campi di esempio:
+		Metodo pagamento (Scelta singola), Riferimento (Testo con RegEx) e Fine garanzia (Data),
+		con colonne del pannello assegnate a UDFC01 e UDFC02.
+	  </figcaption>
+	</figure>
+	<aside class="sticky notes">
+	  Rinominare la <b>Descrizione</b> di un campo di solito non “rompe” i dati: internamente MMEX collega i valori
+	  tramite un identificatore del campo (FIELDID), non tramite il testo che vedi a schermo. Questo è fondamentale
+	  anche per i preset di importazione: puoi rinominare i campi senza dover rifare tutto da zero.
+	</aside>
+	<figure>
+	  <img src="images/custom_field_edit_reference.png" alt="Modifica Campo Personalizzato - Riferimento">
+	  <figcaption>
+		Dettaglio di configurazione del campo personalizzato “Riferimento”.
+		Il Suggerimento guida l’utente, l’Espressione regolare impone il formato PRAT-AAAA-NNNN
+		e la Colonna del pannello consente la visualizzazione del valore in UDFC02.
+	  </figcaption>
+	</figure>
+
+
+
+	<h3 id="custom-fields-types">Tipi di campo e validazione (con esempi pratici)</h3>
+	<p>
+	  La scelta del tipo non è estetica: determina cosa MMEX considera valido, come importa i valori da CSV/XML,
+	  e quanto sarà affidabile filtrare/riportare quei dati.
+	</p>
+	<aside class="sticky notes">
+	  In importazione CSV/XML, se un valore non rispetta il tipo (es. testo in un campo Data, o una scelta non presente
+	  nella lista), MMEX segnala l’errore: l’obiettivo è <b>non importare dati “sporchi” in silenzio</b>.
+	  Questo è un vantaggio: ti accorgi subito che il CSV va corretto o normalizzato.
+	</aside>
+	<dl>
+	  <dt><b>Stringa</b></dt>
+	  <dd>
+		Testo libero. Ideale per ID, riferimenti, note brevi strutturate. Puoi applicare una <b>RegEx</b> per imporre un formato.
+		<br><b>Esempio</b>: “Riferimento pratica” con RegEx <code>PRAT-\d{4}-\d{4}</code> obbliga valori tipo <code>PRAT-2025-0142</code>.
+	  </dd>
+
+	  <dt><b>Intero</b></dt>
+	  <dd>
+		Numeri interi (senza decimali). Utile per contatori o quantità.
+		<br><b>Esempio</b>: “Punti fedeltà” o “Numero scontrino”.
+	  </dd>
+
+	  <dt><b>Decimale</b></dt>
+	  <dd>
+		Numeri con decimali. Puoi impostare la precisione (“Digits Scale”): in import i valori vengono normalizzati.
+		<br><b>Esempio</b>: “IVA %”, “Cambio valuta”, “Sconto %”, “Consumo kWh”.
+	  </dd>
+
+	  <dt><b>Booleano</b></dt>
+	  <dd>
+		Vero/Falso. Serve per flag semplici e report immediati.
+		<br><b>Esempio</b>: “Detraibile”, “Spesa rimborsabile”, “Pagato con carta aziendale”.
+	  </dd>
+
+	  <dt><b>Data</b></dt>
+	  <dd>
+		Date di calendario. Perfetto per scadenze e controlli periodici.
+		<br><b>Esempio</b>: “Scadenza abbonamento”, “Fine garanzia”, “Rinnovo assicurazione”.
+	  </dd>
+
+	  <dt><b>Ora</b></dt>
+	  <dd>
+		Orari (hh, hh:mm, hh:mm:ss). Utile se vuoi distinguere transazioni nello stesso giorno.
+		<br><b>Esempio</b>: “Ora pagamento” per scontrini o pagamenti ripetuti nello stesso giorno.
+	  </dd>
+
+	  <dt><b>Scelta singola</b></dt>
+	  <dd>
+		Elenco a scelta (dropdown). È la base per trasformare un campo in “categoria parallela” o “tag controllato”.
+		<br><b>Esempio</b>: “Metodo di pagamento” = Carta;Contanti;Bonifico;PayPal.
+	  </dd>
+
+	  <dt><b>Scelta multipla</b></dt>
+	  <dd>
+		Più scelte nello stesso campo (tipicamente separate da <code>;</code>).
+		È il modo più vicino a una vera funzione “Tag”, ma con vocabolario controllato.
+		<br><b>Esempio</b>: “Tag” = Casa;Auto;Salute;Lavoro.
+	  </dd>
+	</dl>
+
+
+	<h3 id="custom-fields-when">Quando usarli (scenari utili)</h3>
+	<p>
+	  I Campi personalizzati sono utili ogni volta che vuoi separare la <b>contabilità</b> (Categorie, conti, trasferimenti)
+	  dalla <b>classificazione operativa</b> (progetti, persone, metodi, codici, riconciliazioni). Ecco scenari tipici:
+	</p>
+
+	<h4>1) Metodo di pagamento (Carta/Contanti/Bonifico…)</h4>
+	<p>
+	  Le categorie descrivono “cosa hai comprato” (Spesa, Carburante, Bollette). Il metodo descrive “come hai pagato”.
+	  Creando un campo “Metodo pagamento” (Scelta singola) puoi poi filtrare: “quanto ho speso con il bancomat negli ultimi 3 mesi?”
+	  senza sporcare le categorie.
+	</p>
+
+	<h4>2) Progetti, commesse, pratiche, centri di costo</h4>
+	<p>
+	  Se segui lavori/progetti (anche personali: “Ristrutturazione”, “Viaggio 2026”, “Bambini”), puoi creare un campo “Progetto”
+	  e usarlo come “dimensione parallela” alle categorie. Esempio: Categoria = “Casa:Materiali”, Progetto = “Ristrutturazione bagno”.
+	  Così hai sia analisi per categoria, sia analisi per progetto.
+	</p>
+
+	<h4>3) Import storico “lossless” da altri software</h4>
+	<p>
+	  Se importi da app/banche che hanno colonne extra (tag, commenti, tipo banca, saldo giornaliero), i Campi Personalizzati sono il modo
+	  corretto di portare tutto in MMEX senza comprimere informazioni nelle Note. È esattamente uno dei motivi per cui questa funzione
+	  è considerata “potente”: ti permette migrazioni fedeli e verificabili.
+	</p>
+
+	<h4>4) Controlli e scadenze (garanzie, rinnovi, contratti)</h4>
+	<p>
+	  Con campi Data/Booleano puoi costruire un sistema semplice per segnare scadenze: “Fine garanzia” e “Rinnovato (Sì/No)”.
+	  Anche se MMEX non è un gestionale, questo aiuta a filtrare e trovare transazioni/documenti collegati.
+	</p>
+
+	<h3 id="custom-fields-assign">Come assegnarli nelle transazioni</h3>
+	<p>
+	  Quando esiste almeno un campo definito per le transazioni, nella finestra <b>Nuova/Modifica transazione</b>
+	  compare una sezione (tipicamente espandibile) dedicata ai <i>Campi Personalizzati</i>. Qui inserisci i valori
+	  per quella transazione.
+	</p>
+	<aside class="sticky notes">
+	  <b>Eccezione importante (Split)</b>: i Campi personalizzati sono associati alla <b>transazione principale</b>,
+	  non alle singole righe di una transazione suddivisa. In pratica: tutte le righe di split condividono gli stessi Campi Personalizzati.
+	  Se ti serve un valore diverso per ogni riga, devi usare transazioni separate oppure codificare l’informazione in modo diverso
+	  (categorie/note/beneficiari distinti).
+	</aside>
+	<figure>
+	  <img src="images/custom_fields_new_transaction.gif" alt="Inserimento Campi Personalizzati in una nuova transazione">
+	  <figcaption>
+		Inserimento dei Campi Personalizzati durante la creazione di una nuova transazione:
+		espansione della sezione dedicata, compilazione dei valori e salvataggio.
+	  </figcaption>
+	</figure>
+
+
+
+	<h3 id="custom-fields-panel-columns">Visualizzare i campi nel pannello transazioni (UDFC01–UDFC05)</h3>
+	<p>
+	  Se vuoi “vedere subito” i valori senza aprire ogni transazione, puoi collegare fino a <b>5</b> campi personalizzati
+	  alle colonne speciali <code>UDFC01…UDFC05</code>. Questo trasforma il campo in una colonna visibile nel conto.
+	</p>
+	<ol>
+	  <li>Nel Gestore Campo Personalizzato imposta <b>Colonna del Pannello</b> su <samp>UDFC01…UDFC05</samp> per i campi che vuoi vedere.</li>
+	  <li>Apri un conto e fai clic destro sull’intestazione delle colonne.</li>
+	  <li>Usa <kbd><samp>Nascondi/Mostra colonne</samp></kbd> e abilita le colonne UDFC desiderate.</li>
+	</ol>
+	<aside class="sticky tips">
+	  Puoi scegliere combinazioni diverse di UDFC per conti diversi.
+	  Esempio: nel conto “Carta” mostri Metodo pagamento e Circuito; nel conto “Banca” mostri Riferimento e Progetto.
+	</aside>
+	<figure>
+	  <img src="images/transaction_panel_udfc_columns.png" alt="Colonne UDFC nel pannello transazioni">
+	  <figcaption>
+		Visualizzazione dei Campi Personalizzati come colonne nel pannello delle transazioni
+		tramite UDFC01 (Metodo pagamento) e UDFC02 (Riferimento).
+	  </figcaption>
+	</figure>
+
+
+
+	<h3 id="custom-fields-import">Campi Personalizzati in importazione CSV/XML (il caso d’uso più potente)</h3>
+	<aside class="sticky tips">
+	  Se importi da Excel o banca, progetta prima i campi e poi adatta il CSV: riduci errori e import più “puliti”.
+	</aside>
+
+	<p>
+	  Nella finestra di import CSV (e, in modo analogo, in XML), MMEX mostra l’elenco dei campi assegnabili.
+	  Dopo i campi standard trovi anche i <b>Campi personalizzati</b>, identificati tipicamente come voci del tipo
+	  <code>UDF: FIELDID</code> accanto alla descrizione del campo.
+	  In questo modo puoi mappare <b>qualunque</b> colonna extra del tuo CSV su un campo personalizzato esistente.
+	</p>
+
+	<figure>
+	  <img src="images/csv_import_custom_fields_mapping.png" alt="Importazione CSV con mappatura Campi Personalizzati">
+	  <figcaption>
+		Finestra di importazione CSV con mappatura delle colonne del file
+		verso i Campi Personalizzati, visualizzati insieme ai campi standard.
+	  </figcaption>
+	</figure>
+	<aside class="sticky notes">
+	  <b>Comportamento importante (valori predefiniti)</b>:
+	  il “Valore predefinito” del Gestore Campo Personalizzato è pensato per l’inserimento manuale.
+	  In import CSV/XML, una cella vuota <b>non</b> viene automaticamente riempita col valore predefinito:
+	  resta vuota, per rispettare fedelmente il sorgente.
+	  Se vuoi un default in import, devi precompilare il CSV (es. con Excel) oppure usare una colonna “default” esplicita.
+	</aside>
+
+	<p>
+	  Procedura consigliata (robusta e ripetibile):
+	</p>
+
+	<ol>
+	  <li><b>Crea i campi</b> nel Gestore Campo Personalizzato (tipo corretto, scelte, RegEx, tooltip).</li>
+	  <li><b>Prepara il CSV</b> con una colonna per ogni Campo Personalizzato (nomi chiari in intestazione, valori coerenti).</li>
+	  <li><b>Mappa le colonne</b> nella finestra import: assegna ogni colonna al campo corretto (standard o custom).</li>
+	  <li><b>Esegui import</b> e controlla il log: gli errori di validazione indicano righe/colonne da correggere.</li>
+	  <li><b>Salva un preset</b> di import (se disponibile nella tua versione) così il mapping diventa riutilizzabile.</li>
+	</ol>
+
+
+	<h3 id="custom-fields-export">Export e condivisione: cosa aspettarsi</h3>
+	<p>
+	  Quando esporti in CSV/XML, il comportamento dipende dalla versione e dal tipo di export scelto.
+	  In generale, se lo scopo è “trasferire dati” da un MMEX a un altro o fare backup interoperabile,
+	  conviene verificare che l’export includa anche i campi personalizzati e fare sempre un test su un file piccolo.
+	</p>
+
+	<aside class="sticky tips">
+	  Se devi migrare dati tra due database MMEX, prima esporta/importa un campione 
+	  (20–50 transazioni), verifica che i Campi Personalizzati siano arrivati correttamente 
+	  e solo dopo procedi con lo storico completo.
+	</aside>
+
+	<h3 id="custom-fields-reports">Usarli nei resoconti e nei filtri</h3>
+	<p>
+	  I Campi personalizzati possono entrare in gioco in tre modi principali:
+	</p>
+	<ul>
+	  <li><b>Filtro transazioni / Resoconto transazioni</b>: se la tua versione lo supporta, puoi filtrare anche per Campo Personalizzato.</li>
+	  <li><b>Colonne UDFC</b>: come “analisi visiva” rapida direttamente nella vista conto.</li>
+	  <li><b>Resoconti SQL</b> (General Report Manager): è il metodo più potente e flessibile, perché puoi fare join e aggregazioni.</li>
+	</ul>
+
+
+	<p>
+	  Per utenti avanzati (o per chi vuole un manuale “professionale”): i valori dei Campi Personalizzati sono salvati in una tabella
+	  dedicata e collegati alle transazioni tramite l’ID della transazione (REFID). Questo rende possibile creare resoconti SQL
+	  che estraggono e aggregano anche i campi personalizzati.
+	</p>
+	<aside class="sticky notes">
+	  Questo esempio è volutamente “semplice”: nella pratica vorrai filtrare anche per FIELDID (cioè “quale campo”),
+	  perché CUSTOMFIELDDATA_V1 contiene valori di più campi. L’idea però è chiara: una volta che i dati sono strutturati,
+	  puoi farci report davvero mirati.
+	</aside>
+	<pre><code class="language-sql">SELECT
+		a.TRANSDATE,
+		a.TRANSAMOUNT,
+		p.PAYEENAME,
+		c.CONTENT AS CustomValue
+	FROM CHECKINGACCOUNT_V1 a
+	LEFT JOIN PAYEE_V1 p ON p.PAYEEID = a.PAYEEID
+	LEFT JOIN CUSTOMFIELDDATA_V1 c ON c.REFID = a.TRANSID
+	WHERE c.CONTENT = 'Carta'
+	ORDER BY a.TRANSDATE;</code></pre>
+
+
+
+	<h3 id="custom-fields-limits">Limitazioni attuali ed eccezioni da conoscere</h3>
+	<ul>
+	  <li>
+		<b>Split</b>: i Campi Personalizzati sono per transazione principale, non per singola riga di split (tutte le righe condividono i valori).
+	  </li>
+	  <li>
+		<b>Colonne visibili limitate</b>: in vista conto puoi mostrare al massimo 5 campi tramite UDFC01–UDFC05.
+		Questo non limita i campi totali, ma solo quelli “in colonna” nella griglia.
+	  </li>
+	  <li>
+		<b>Validazione in import</b>: se usi scelte/RegEx, i CSV “sporchi” generano errori. È corretto, ma va gestito
+		normalizzando i sorgenti (Excel/regex semplici/valori controllati).
+	  </li>
+	  <li>
+		<b>Cancellazione</b>: rimuovere una definizione di campo può comportare perdita dei relativi valori.
+		Fai sempre un backup del database prima di interventi strutturali.
+	  </li>
+	  <li>
+		<b>Compatibilità versione</b>: se stai lavorando con funzioni import/export dei Campi Personalizzati, assicurati di usare una versione
+		che le supporti correttamente. Se noti comportamenti strani (mappo ma non importa), spesso la prima verifica è aggiornare MMEX.
+	  </li>
+	</ul>  
+
+	<h3 id="custom-fields-best-practices">Best practice (workflow consigliato)</h3>
+	<aside class="sticky tips">
+	  Se ti serve un comportamento “tipo tag”, la soluzione più pratica è:
+	  crea un campo <b>Scelta multipla</b> chiamato “Tag” con un vocabolario definito (es. Casa;Auto;Salute;Lavoro).
+	  Otterrai tag coerenti, filtrabili e importabili, evitando errori di scrittura (es. “Auto” vs “auto” vs “AUT0”).
+	</aside>
+	<p>
+	  Un flusso robusto (soprattutto per import storici) è:
+	</p>
+	<ol>
+	  <li><b>Progetta pochi campi</b> ma ben definiti (metodo, progetto, riferimento, tag controllati).</li>
+	  <li><b>Preferisci Scelta singola/multipla</b> quando vuoi coerenza e report affidabili (al posto di stringhe libere).</li>
+	  <li><b>Aggiungi Tooltip</b> per ricordare a te (o ad altri) le regole di compilazione.</li>
+	  <li><b>Testa con un CSV piccolo</b> (10–20 righe) e verifica import/filtri/colonne.</li>
+	  <li><b>Solo dopo</b> importa lo storico completo e valuta eventuali normalizzazioni con Massive content update.</li>
+	</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- ====================== Section 9 ====================== -->
 	<!--                 Lavorare con le Valute                  -->
 	<!-- ======================================================= -->
 	<h2 id="currencies">Lavorare con le Valute</h2>
@@ -1225,7 +1628,7 @@ e il sistema viene arrestato vengono mantenute fino a 4 copie di backup per ogni
 
 
 
-	<!-- ====================== Section 9 ====================== -->
+	<!-- ====================== Section 10 ====================== -->
 	<!--               Lavorare con le Categorie                 -->
 	<!-- ======================================================= -->
 	<h2 id="categories">Lavorare con le Categorie</h2>
@@ -1321,7 +1724,7 @@ Schermata di Deposito: I prelievi sono mostrati come negativi.
 
 
 
-	<!-- ====================== Section 10 ===================== -->
+	<!-- ====================== Section 11 ===================== -->
 	<!--               Lavorare con i Beneficiari               -->
 	<!-- ======================================================= -->
 	<h2 id="payees">Lavorare con i Beneficiari</h2>
@@ -1374,7 +1777,7 @@ Schermata di Deposito: I prelievi sono mostrati come negativi.
         Questo renderebbe il beneficiario libero così da esser eliminabile.
     </p>
 	
-	<!-- ====================== Section 11 ===================== -->
+	<!-- ====================== Section 12 ===================== -->
 	<!--            Lavorare con le Etichette (Tags)            -->
 	<!-- ======================================================= -->
 	<h2 id="tags">Lavorare con le Etichette (Tags)</h2>
@@ -1570,7 +1973,7 @@ Schermata di Deposito: I prelievi sono mostrati come negativi.
 	</aside>
 		
 
-	<!-- ====================== Section 12 ===================== -->
+	<!-- ====================== Section 13 ===================== -->
 	<!--             Importare i dati finanziari                 -->
 	<!-- ======================================================= -->
 	<h2 id="importing_financial_data">Importare i dati finanziari</h2>
@@ -1702,6 +2105,14 @@ PBanca del Beneficiario del Mutuo
         Dopo l'importazione da QIF, tutte le transazioni dovranno avere un Contrassegno di Proseguimento come proprio stato. Puoi contrassegnare tutte le transazioni con tale flag usando i comandi d'impostazione dello stato di massa usando il menu del click destro nella vista del conto.
     </p>
 
+	<p>
+	  Quando importi CSV che contengono colonne aggiuntive (come metodo di pagamento, riferimenti,
+	  codici progetto o tipi transazione della banca), è consigliabile usare i
+	  <a href="#custom-fields">Campi personalizzati</a> per conservare queste informazioni
+	  come dati strutturati invece di inserirle nelle Note.
+	</p>
+
+
     <h3>Importazione Da File XML</h3>
     <aside class="sticky notes">
         L'importazione è effettuata dal primo foglio di lavoro nella cartella di lavoro.
@@ -1711,7 +2122,7 @@ PBanca del Beneficiario del Mutuo
         Il metodo d'importazione e la selezione del campo è uguale all'importazione da CSV.
     </p>
 
-	<!-- ====================== Section 13 ===================== -->
+	<!-- ====================== Section 14 ===================== -->
 	<!--                    Esportare i dati                    -->
 	<!-- ======================================================= -->
 	<h2 id="exporting_data">Esportare i dati</h2>
@@ -1758,7 +2169,7 @@ PBanca del Beneficiario del Mutuo
     <p>
         MMEX può esportare un conto in un file del formato QIF. Questo formato è anche utilizzabile da MMEX per ricaricare in un conto.</p>
 
-	<!-- ====================== Section 14 ===================== -->
+	<!-- ====================== Section 15 ===================== -->
 	<!--               Transazioni Ricorrenti                   -->
 	<!-- ======================================================= -->
 	<h2 id="scheduled_transactions">Transazioni Ricorrenti</h2>
@@ -1827,7 +2238,7 @@ PBanca del Beneficiario del Mutuo
         </li>
     </ol>
 
-	<!-- ====================== Section 15 ===================== -->asset
+	<!-- ====================== Section 16 ===================== -->asset
 	<!--                   Titoli e Azioni                      -->
 	<!-- ======================================================= -->
 	<h2 id="stocks_and_shares">Titoli e Azioni</h2>
@@ -1839,7 +2250,7 @@ PBanca del Beneficiario del Mutuo
         Ulteriori dettagli fanno riferimento a <a href="../stocks_and_shares.html?lang=it_IT">Titoli, Azioni e Gestione dei Dividendi Azionari in MMEX</a>
     </p>
 
-	<!-- ====================== Section 16 ===================== -->
+	<!-- ====================== Section 17 ===================== -->
 	<!--                 Gestione dei Cespiti                 -->
 	<!-- ======================================================= -->
 	<h2 id="asset_management">Gestione dei Cespiti</h2>
@@ -1866,14 +2277,14 @@ PBanca del Beneficiario del Mutuo
         <li>Le Transazioni dei Cespiti sono trattabili come Entrate/Spese o come trasferimenti in base allo stato della casella di controllo "Trasferimento".</li>
     </ul>
 
-	<!-- ====================== Section 17 ===================== -->
+	<!-- ====================== Section 18 ===================== -->
 	<!--                        Budgeting                        -->
 	<!-- ======================================================= -->
 	<h2 id="budgeting">Budgeting</h2>
 
     <a href="../budget.html?lang=it_IT">Budgeting in MMEX</a>
 
-	<!-- ====================== Section 18 ===================== -->
+	<!-- ====================== Section 19 ===================== -->
 	<!--                        Resoconti                         -->
 	<!-- ======================================================= -->
 	<h2 id="reports">Resoconti</h2>
@@ -1913,6 +2324,13 @@ PBanca del Beneficiario del Mutuo
     <p>
         Per un Rapporto di Transazione, l'elenco di transazioni risultante è stampabile o salvabile come file HTML.
     </p>
+	<p>
+	  Se utilizzi i <a href="#custom-fields">Campi personalizzati</a>, questi possono essere sfruttati
+	  anche nei filtri e nei resoconti (in base alla versione), oppure in modo avanzato tramite
+	  resoconti SQL nel General Report Manager.
+	</p>
+
+
 
     <h4>Transazioni di trasferimento nei Resoconti di Transazione</h4>
     <p>
@@ -1948,7 +2366,7 @@ PBanca del Beneficiario del Mutuo
         Una volta visualizzato un rapporto, puoi stamparlo usando il menu <kbd><samp>File</samp> &rarr; <samp>Stampa&hellip;</samp></kbd>.
     </p>
 
-	<!-- ====================== Section 19 ===================== -->
+	<!-- ====================== Section 20 ===================== -->
 	<!--                Impostazioni di MMEX                     -->
 	<!-- ======================================================= -->
 	<h2 id="settings">Impostazioni di MMEX</h2>
@@ -2016,7 +2434,7 @@ PBanca del Beneficiario del Mutuo
     </dl>
 
     <!--Frequently Asked Questions-->
-	<!-- ====================== Section 20 ===================== -->
+	<!-- ====================== Section 21 ===================== -->
 	<!--                  Domande Frequenti (FAQ)               -->
 	<!-- ======================================================= -->
 	<h2 id="faq">Domande Frequenti</h2>
