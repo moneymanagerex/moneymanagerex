@@ -181,7 +181,7 @@ EVT_MENU(MENU_TRANSACTIONREPORT, mmGUIFrame::OnTransactionReport)
 EVT_MENU(MENU_REFRESH_WEBAPP, mmGUIFrame::OnRefreshWebApp)
 EVT_MENU(wxID_BROWSE, mmGUIFrame::OnCustomFieldsManager)
 EVT_MENU(wxID_VIEW_LIST, mmGUIFrame::OnGeneralReportManager)
-EVT_MENU(MENU_THEME_MANAGER, mmGUIFrame::OnThemeMaanger)
+EVT_MENU(MENU_THEME_MANAGER, mmGUIFrame::OnThemeManager)
 EVT_MENU(MENU_DATE_RANGE_MANAGER, mmGUIFrame::OnDateRangeManager)
 EVT_MENU(MENU_TREEPOPUP_LAUNCHWEBSITE, mmGUIFrame::OnLaunchAccountWebsite)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, mmGUIFrame::OnAccountAttachments)
@@ -3242,7 +3242,7 @@ void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))
     createHomePage();
 }
 
-void mmGUIFrame::OnThemeMaanger(wxCommandEvent& event)
+void mmGUIFrame::OnThemeManager(wxCommandEvent& event)
 {
     mmThemesDialog tdlg(this);
     tdlg.ShowModal();
