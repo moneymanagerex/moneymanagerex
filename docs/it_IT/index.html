@@ -318,6 +318,21 @@
 		Il nome del file aperto è sempre visibile nella <strong>barra del titolo</strong> del programma.
 	</p>
 
+    <p>
+        Questo dettaglio è particolarmente utile quando si lavora con più database:
+        la barra del titolo consente di identificare immediatamente quale database
+        è attualmente aperto, riducendo il rischio di inserire o modificare dati
+        nel file sbagliato.
+    </p>
+
+    
+    <p>
+    All’avvio, MMEX tenta automaticamente di caricare l’ultimo database utilizzato.
+    Se non viene trovato alcun database, all’utente viene proposto di
+    <strong>aprire un database esistente</strong> oppure di
+    <strong>crearne uno nuovo</strong>.
+    </p>
+    
 	<aside class="sticky tips">
 		Se utilizzi più database, adotta una convenzione chiara nei nomi (es. <code>Personale_2025.mmb</code>,
 		<code>Studio.emb</code>).
@@ -325,6 +340,7 @@
 
 	<img src="../it_IT/images/creare_db_01.png" alt="Schermata iniziale senza database" class="shadow" />
 	<!-- Questa immagine dovrebbe mostrare MMEX all'avvio quando non trova un database e propone “Apri Database” o “Nuovo Database”. -->
+
 
 
 	<h3>Creare un nuovo Database (.mmb)</h3>
@@ -353,6 +369,14 @@
 		Una volta salvato il file, si aprirà la <strong>Creazione guidata Database</strong>.
 	</p>
 
+    <p>
+        La procedura guidata accompagna l’utente nei primi passaggi fondamentali,
+        aiutandolo non solo a configurare il database, ma anche a
+        <strong>creare il primo conto</strong>, necessario per iniziare a registrare
+        le transazioni.
+    </p>
+
+    
 	<h4>Impostazioni iniziali: Valuta Base e Nome Utente</h4>
 
 	<p>
@@ -364,13 +388,39 @@
 		<li><strong>Nome Utente</strong> (opzionale) → appare nella Home Page e in alcuni report.</li>
 	</ul>
 
+
+    <p>
+        MMEX include un insieme di <strong>valute predefinite</strong>, generalmente allineate
+        alla valuta del Paese dell’utente.  
+        La <strong>Valuta Base</strong> rappresenta il riferimento principale del database:
+        tutti i report e i totali complessivi fanno capo a questa valuta.
+    </p>
+    
+    <p>
+        È possibile creare conti in <strong>valute diverse</strong> dalla Valuta Base.
+        MMEX gestisce automaticamente i <strong>tassi di cambio</strong>, permettendo di
+        confrontare correttamente importi espressi in valute differenti.
+    </p>
+    
+    <p>
+        La gestione completa delle valute, dei tassi di cambio e delle conversioni
+        è descritta in dettaglio nel capitolo dedicato alle
+        <a href="#currencies">Valute</a>.
+    </p>
+
+    
 	<img src="../it_IT/images/creare_db_03.png" alt="Wizard creazione database: valuta e nome utente" class="shadow" />
 	<!-- L’immagine dovrebbe mostrare il wizard con selezione Valuta Base e Nome Utente. -->
 	
 	<aside class="sticky notes">
 		La scelta della Valuta Base influisce sui report e sui tassi di cambio.
 	</aside>
-	
+
+    <p>
+    La Valuta Base consente inoltre di gestire conti in valute diverse,
+    mantenendo una visione coerente del valore complessivo.
+    </p>
+    
 	<p>
 		In seguito è sempre possibile modificare questi parametri tramite:
 	</p>
@@ -567,7 +617,7 @@
     arresti inattesi, file corrotti o problemi di compatibilità con versioni precedenti.
 </p>
 
-<img src="it_IT/images/creare_db_07.png" alt="impostazioni di backup" class="shadow" />
+<img src="../it_IT/images/creare_db_07.png" alt="impostazioni di backup" class="shadow" />
 <!-- L’immagine dovrebbe mostrare le impostazioni → Altro con i campi relativi ai backup. -->
 
 <h4>Impostazioni di Backup</h4>
@@ -755,186 +805,235 @@
 	<!-- ====================== Section 6 ====================== -->
 	<!--                    Creare nuovi conti                   -->
 	<!-- ======================================================= -->
-	<h2 id="new_accounts">Creare nuovi conti</h2>
-    <p>
-        Quando si crea un nuovo file di database, vi verrà automaticamente
-        chiesto di creare un nuovo conto.
-    </p>
-    <aside class="sticky tips">
-        Utilizzare l'icona della barra degli strumenti per la selezione rapida di: Creazione guidata Conto.
-    </aside>
-    <p>
-        Per creare manualmente un nuovo conto, dal Menu, selezionare
-        <kbd><samp>Conti</samp> &rarr; <samp>Nuovo conto</samp></kbd>.
-    </p>
-    <p>
-        Questo visualizzerà la procedura guidata <dfn>Aggiungi Conto</dfn>. La procedura guidata vi
-        assisterà nella raccolta delle informazioni importanti del
-        Nome e il tipo di Conto. Il tipo di Account non è modificabile, ma il nome può
-        essere cambiato durante la modifica delle informazioni relative all'account.
-    </p>
-    <p>
-        <dfn>Nome del conto</dfn>: questo è un campo obbligatorio. La raccomandazione è di denominare il vostro conto in modo univoco e legato alla
-        realtà del conto. Esempio: con CityBank, abbiamo un conto di risparmio
-        e una carta di credito Visa. Potresti  chiamare i tuoi conti come <q>CitiBank risparmio</q> e <q>Citibank Visa</q>.
-    </p>
-    <p>
-        <dfn>Tipo di Conti</dfn>: MMEX supporta diversi tipi di Conti.
-    </p>
-    <dl>
-        <dt>Conto corrente</dt>
-        <dd>
-            Questo è il tipo più comune di conto utilizzato per MMEX, e
-            in grado di gestire le tipologie di conto più comuni, come i
-            conti correnti, conti deposito, e conti della carta di credito. Conosciuto
-            anche come Conto Bancario, supporta tre tipi di
-            transazioni. Queste sono prelievo, deposito e trasferimento.
-        </dd>
-        <dt>Conti Titoli</dt>
-        <dd>
-            Simili ai conti correnti con l'eccezione che appaiono nella propria sezione della home page e possono essere visualizzati o nascosti per l'uso quotidiano. Per una spiegazione più approfondita vedere l'esempio di setup di un conto.
-        </dd>
-        <dd>
-            Questi tipi di conti coprono specifiche tipologie quali: 
-            Conti a Termine in contanti, Conti di ipoteca bancaria, Conti di Prestito, o
-            Conti di investimento con versamenti o spese regolari di cui tu
-            voglia tener traccia. Questi conti hanno la loro sezione di
-            saldo nella Pagina Iniziale. Anche questi conti supportano tre
-        tipi di transazioni.
-        </dd>
-        <dt>Conto d'investimento</dt>
-        <dd>
-            L'altro tipo di account che MMEX supporta è un conto d'investimento. Questo tipo di conto ti permette di controllare
-            azioni/obbligazioni/fondicomuni di investimento e possibilmente altri
-            investimenti che potreste possedere.
-        </dd>
-    </dl>
+<h2 id="new_accounts">Creare nuovi conti</h2>
+<p>
+    Quando si crea un nuovo file di database, verrà automaticamente
+    richiesto di creare un nuovo conto.
+</p>
+<aside class="sticky tips">
+    Utilizza l’icona della barra degli strumenti per accedere rapidamente alla procedura guidata di aggiunta del conto.
+</aside>
+<p>
+    Per creare manualmente un nuovo conto, dal menu seleziona
+    <kbd><samp>Conti</samp> → <samp>Nuovo conto…</samp></kbd>.
+</p>
+<p>
+    Verrà avviata la <dfn>Procedura guidata Aggiungi Conto</dfn>. La procedura guidata
+    assisterà nella raccolta delle informazioni importanti relative al Nome e al Tipo
+    di Conto. Il Tipo di Conto non può essere modificato una volta creato,
+    ma il nome del conto può essere cambiato successivamente modificando
+    le informazioni del conto.
+</p>
 
-    <p>
-        Per impostare correttamente i conti, è necessario avere informazioni sul saldo
-        per i conti che vuoi aggiungere a MMEX. Puoi ottenere queste
-        informazioni dai tuoi estratti conto più recenti della banca, degli investimenti
-        e delle carte di credito. Per monitorare ulteriori informazioni su questo conto,
-        opzionalmente puoi inserire i dettagli del tuo conto come Numero di conto
-        Detenuto presso, Sito web, Informazioni di contatto e Informazioni di accesso. È possibile inserire delle note aggiuntive sul conto nel campo delle note.
-    </p>
-    <p>
-        Gran parte dei conti hanno una sorta di saldo al loro interno, ad esempio, in un conto della carta di credito, hai un saldo corrente di $2304,67, potresti mettere quel valore nel campo del saldo iniziale. Procedendo, dovrai solo aggiungere transazioni oltre quella data quando avevi il bilancio.
-    </p>
-    <p>
-        Lo <dfn>Stato del Conto</dfn> è impostabile su Aperto o Chiuso. I conti chiusi sono semplicemente chiusi. Non sono più attivi. Impostare questo stato è solo un modo per disordinare la tua vista nel pannello di navigazione della vista ad albero. Le impostazioni permanenti sono effettuate cambiando le impostazioni della Vista sul Menu, <kbd><samp>Strumenti</samp> &rarr; <samp>impostazioni</samp></kbd>, puoi nascondere i conti chiusi. Vedi i <a href="#navtree">Suggerimenti sull'Albero di Navigazione</a>.
-    </p>
-    <p>
-        Valuta: Questa è inizialmente impostata alla Valuta di Base del database
-        che è stata impostata inizialmente durante la sua creazione. Puoi
-        impostare la valuta che è associata a questo conto e può essere
-        diversa da quella di base.
-    </p>
-    <p>
-        Il tasso di cambio per la valuta è modificabile usando il menu: <kbd><samp>Strumenti</samp> &rarr; <samp>Organizza >Valuta</samp></kbd>.
-    </p>
-    <p>
-        Esempio: Vivi negli USA usando i Dollari US e hai un conto bancario italiano che usa l'Euro. Gran parte dei tuoi conti sono in USD. Qual è il reale valore del tuo conto bancario italiano? Cambiando il tasso di cambio per l'Euro <s>italiano</s>, puoi ottenere il valore corretto dei tuoi conti.
-    </p>
-    <p>
-        Puoi anche contrassegnare i conti come <dfn>Conto Preferito</dfn>>. Questo, ancora, è usato per modificare i conti visibili nella barra di navigazione. Vedi <a href="#navtree">Suggerimenti sull'Albero di Navigazione</a>.
-    </p>
+<p>
+    La procedura guidata accompagna l’utente attraverso i passaggi iniziali
+    necessari per iniziare a lavorare con MMEX e garantisce che almeno un conto
+    venga correttamente creato prima di poter registrare le transazioni.
+</p>
 
-    <h4>Esempio di configurazione di un conto</h4>
-    <p>
-        Abbiamo un conto di risparmio con $1250, un conto corrente con $500, una MasterCard da £250, una Carta Visa con $475, un mutuo immobiliare di $230,965 e un fondo d'istruzione per mandare i figli all'università in futuro correntemente a $5000 con interessi.
-    </p>
-    <p>
-        Impostiamo i seguenti conti:
-    </p>
-    <table>
-        <thead><tr>
-            <th>Tipo di conto</th>
-            <th>Nome del conto</th>
-            <th class="right">Saldo iniziale</th>
-        </tr></thead>
-        <tbody style="vertical-align:top;border-top:1px solid black">
-            <tr>
-                <td rowspan="4">Assegno/risparmio</td>
-                <td>Risparmi</td>
-                <td class="right">$1.250,00</td>
-            </tr>
-            <tr>
-                <td>Controlla</td>
-                <td class="right">$500.00</td>
-            </tr>
-            <tr>
-                <td>MasterCard</td>
-                <td class="right negative">-$250.00</td>
-            </tr>
-            <tr>
-                <td>Visa Card</td>
-                <td class="right negative">-$475.00</td>
-            </tr>
-        </tbody>
-        <tbody style="vertical-align:top;border-top:1px solid black">
-            <tr>
-                <td rowspan="2">Conto Deposito a Termine</td>
-                <td>Mutuo casa</td>
-                <td class="right negative">-$230,965.00</td>
-            </tr>
-            <tr>
-                <td>Fondo per l'educazione</td>
-                <td class="right">$5,000.00</td>
-            </tr>
-        </tbody>
-    </table>
+<p>
+    <dfn>Nome del conto</dfn>: questo è un campo obbligatorio. Si consiglia di
+    assegnare ai conti nomi univoci e coerenti con i conti del mondo reale.
+    Esempio: con CitiBank abbiamo un conto di risparmio e una carta di credito Visa.
+    Potresti chiamare i tuoi conti <q>CitiBank Risparmio</q> e <q>CitiBank Visa</q>.
+</p>
+<p>
+    <dfn>Tipo di Conto</dfn>: MMEX supporta diversi tipi di conti.
+</p>
 
-    <p>
-        Sulla Pagina Home, i bilanci sarebbero $1025 per i conti Bancari e a $-225,965 per i Conti a Termine
-    </p>
-    <p>
-        Quando un pagamento è effettuato dal tuo Conto di Risparmio alla tua MasterCard con una Transazione di Trasferimento, il bilancio sulla pagina home rimane uguale. Quando è effettuato un pagamento dai tuoi risparmi al tuo mutuo immobiliare, il bilancio sulla home page rifletterà il pagamento. Ora puoi determinare l'importo di denaro che hai su base giornaliera. I pagamenti regolari, inoltre, sono configurabili dal tuo conto di risparmio al conto del tuo mutuo usando le Transazioni Ricorrenti.
-    </p>
+<dl>
+    <dt>Conto corrente</dt>
+    <dd>
+        Questo è il tipo di conto più comune utilizzato in MMEX e rappresenta
+        i conti bancari standard. Può gestire la maggior parte dei conti di uso
+        quotidiano, come conti correnti, conti di risparmio e carte di credito.
+        Conosciuto anche come Conto Bancario, supporta tre tipi di transazioni:
+        prelievi, depositi e trasferimenti.
+    </dd>
 
-    <h4 id="navtree">Suggerimenti sul Navigatore</h4>
-    <aside class="sticky notes">
-        Quando vengono creati più account, il Navigatore e la Dashboard
-        possono diventare molto grandi.
-    </aside>
-    <ul>
-        <li>
-            Espandi/contrai i rami del conto
-            utilizzando i nodi +/- del Navigatore.
-        </li>
-        <li>
-            Facendo clic con il tasto destro del mouse su <s>qualsiasi nome di un conto</s> nel Navigatore,
-            consente di visualizzare tutti gli account o solo quelli preferiti,
-            modificando temporaneamente le impostazioni permanenti
-            e altre impostazioni utili.
-        </li>
-        <li>
-            Questa visualizzazione può essere modificata temporaneamente
-            per mostrare o nascondere la sezione appropriata.
-            Per rendere permanente la modifica, cambia l'impostazione utilizzando il menu:
-            <kbd><samp>Strumenti</samp> → <samp>impostazioni…</samp> →
-            <samp>Aspetto</samp></kbd>.
-        </li>
-    </ul>
+    <dt>Conti a Termine</dt>
+    <dd>
+        I Conti a Termine sono simili ai conti correnti, con la differenza che
+        appaiono in una sezione separata della Dashboard e possono essere
+        mostrati o nascosti durante l’uso quotidiano.
+    </dd>
+    <dd>
+        Questi conti sono pensati per prodotti finanziari specializzati come
+        conti a termine in contanti, mutui, prestiti personali o altri conti
+        con entrate o uscite regolari che devono essere monitorate nel tempo.
+        Hanno una propria sezione di saldo nella Dashboard e supportano anch’essi
+        prelievi, depositi e trasferimenti.
+    </dd>
 
-    <h3>Modificare le informazioni sul conto</h3>
-    <p>
-        Una volta creato un conto, puoi modificare ogni informazione del conto nei seguenti modi:
-    </p>
-    <ul>
-        <li>
-            Usando il menu <kbd><samp>Conti</samp> &rarr; <samp>Modifica Conto</samp></kbd>: L'elenco dei conti sarà mostrato dov'è selezionato il conto necessario.
-        </li>
-        <li>
-            Selezionando il nome del conto nel pannello di navigazione: Clicca col destro per aprire il menu popup e seleziona <kbd><samp>Modifica Conto</samp></kbd>.
-        </li>
-    </ul>
-    <p>
-        Questo farà comparire la finestra di informazioni del conto dove sono modificabili i campi richiesti.
-    </p>
-    <p>
-        Modifica i dettagli del conto, poi usa il pulsante <kbd><samp>OK</samp></kbd> per salvare le informazioni del conto.
-    </p>
+    <dt>Conto di investimento</dt>
+    <dd>
+        I Conti di investimento consentono di tenere traccia di investimenti
+        quali azioni, obbligazioni, fondi comuni e altri strumenti finanziari
+        posseduti. Questo tipo di conto è progettato specificamente per
+        monitorare le attività di investimento e le loro prestazioni nel tempo.
+    </dd>
+</dl>
+
+<p>
+   Per configurare correttamente i conti, è necessario disporre delle informazioni
+    sul saldo dei conti che si desidera aggiungere a MMEX. È possibile ottenere
+    queste informazioni dagli estratti conto bancari, di investimento e delle carte
+    di credito più recenti. Per tracciare informazioni aggiuntive su questo conto,
+    è possibile inserire facoltativamente dettagli come numero di conto,
+    istituto, sito web, informazioni di contatto e dettagli di accesso.
+    È inoltre possibile inserire note aggiuntive nel campo delle note.
+</p>
+<p>
+    La maggior parte dei conti presenta un saldo iniziale. Ad esempio, se in un
+    conto di carta di credito il saldo corrente è di $2.304,67, è possibile
+    inserire tale valore nel campo del saldo iniziale.
+    Da quel momento in poi, sarà necessario aggiungere solo le transazioni
+    avvenute dopo quella data.
+</p>
+<p>
+    Lo <dfn>Stato del conto</dfn> può essere impostato su Aperto o Chiuso.
+    I conti chiusi non sono più attivi. Impostare questo stato è semplicemente
+    un modo per ridurre il disordine nella visualizzazione del Navigatore.
+    Le impostazioni permanenti si modificano dal menu
+    <kbd><samp>Strumenti</samp> →
+    <samp>Impostazioni…</samp></kbd>, dove è possibile nascondere i conti chiusi.
+    Vedi <a href="#navtree">Suggerimenti sul Navigatore</a>.
+</p>
+<p>
+    Valuta: inizialmente è impostata sulla Valuta Base del database,
+    definita al momento della creazione del database. È possibile impostare
+    una valuta associata a questo conto diversa dalla valuta di base.
+</p>
+<p>
+    Il tasso di cambio della valuta può essere modificato utilizzando il menu:
+    <kbd><samp>Strumenti</samp> → <samp>Gestione Valute…</samp></kbd>.
+</p>
+<p>
+    Esempio: vivi negli Stati Uniti e utilizzi Dollari USA, ma possiedi
+    un conto bancario italiano in Euro. La maggior parte dei tuoi conti è in USD.
+    Qual è il valore reale del tuo conto bancario italiano? Modificando il
+    tasso di cambio dell’Euro <s>italiano</s>, puoi ottenere il valore corretto
+    dei tuoi conti.
+</p>
+<p>
+    È inoltre possibile contrassegnare i conti come <dfn>Conto Preferito</dfn>.
+    Questa funzione viene utilizzata per modificare i conti visibili nel Navigatore.
+    Vedi <a href="#navtree">Suggerimenti sul Navigatore</a>.
+</p>
+
+<h4>Esempio di configurazione di un conto</h4>
+<p>
+    Abbiamo un conto di risparmio con $1.250, un conto corrente con $500,
+    una MasterCard con un debito di $250, una carta Visa con un debito di $475,
+    un mutuo immobiliare di $230.965 e un fondo per l’istruzione dei figli
+    del valore di $5.000 che produce interessi.
+</p>
+<p>
+    Imposteremmo i seguenti conti:
+</p>
+<table>
+    <thead><tr>
+        <th>Tipo di conto</th>
+        <th>Nome del conto</th>
+        <th class="right">Saldo iniziale</th>
+    </tr></thead>
+    <tbody style="vertical-align:top;border-top:1px solid black">
+        <tr>
+            <td rowspan="4">Corrente/Risparmio</td>
+            <td>Risparmio</td>
+            <td class="right">$1.250,00</td>
+        </tr>
+        <tr>
+            <td>Corrente</td>
+            <td class="right">$500,00</td>
+        </tr>
+        <tr>
+            <td>MasterCard</td>
+            <td class="right negative">-$250,00</td>
+        </tr>
+        <tr>
+            <td>Visa</td>
+            <td class="right negative">-$475,00</td>
+        </tr>
+    </tbody>
+    <tbody style="vertical-align:top;border-top:1px solid black">
+        <tr>
+            <td rowspan="2">A Termine</td>
+            <td>Mutuo Casa</td>
+            <td class="right negative">-$230.965,00</td>
+        </tr>
+        <tr>
+            <td>Fondo Istruzione</td>
+            <td class="right">$5.000,00</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    Nella Dashboard i saldi sarebbero $1.025 per i conti bancari
+    e -$225.965 per i conti a termine.
+</p>
+<p>
+    Quando viene effettuato un pagamento dal conto di Risparmio alla MasterCard
+    tramite una transazione di Trasferimento, il saldo nella Dashboard rimane
+    invariato. Quando invece viene effettuato un pagamento dal risparmio al
+    mutuo immobiliare, il saldo nella Dashboard rifletterà il pagamento.
+    In questo modo è possibile determinare l’importo di denaro disponibile
+    quotidianamente. I pagamenti regolari possono inoltre essere configurati
+    dal conto di risparmio al conto del mutuo utilizzando le Transazioni Pianificate.
+</p>
+
+<h4 id="navtree">Suggerimenti sul Navigatore</h4>
+<aside class="sticky notes">
+    Con l’aumentare del numero di conti, il Navigatore e la Dashboard
+    possono diventare molto estesi.
+</aside>
+<ul>
+    <li>
+        Espandi/Contrai i rami dei conti utilizzando i nodi +/- nel Navigatore.
+    </li>
+    <li>
+        Facendo clic con il tasto destro del mouse su <s>qualsiasi nome di conto</s>
+        nel Navigatore, è possibile visualizzare tutti i conti o solo quelli preferiti,
+        modificando temporaneamente le impostazioni permanenti e accedendo ad
+        altre opzioni utili.
+    </li>
+    <li>
+        Queste visualizzazioni possono essere modificate temporaneamente per
+        mostrare o nascondere la sezione appropriata.
+        Per rendere permanente la modifica, cambia l’impostazione dal menu:
+        <kbd><samp>Strumenti</samp> → <samp>Impostazioni…</samp> →
+        <samp>Vista</samp></kbd>.
+    </li>
+</ul>
+
+<h3>Modificare le informazioni del conto</h3>
+<p>
+    Dopo aver creato un conto, è possibile modificare qualsiasi informazione
+    del conto nei seguenti modi:
+</p>
+<ul>
+    <li>
+        Utilizzando il menu
+        <kbd><samp>Conti</samp> →
+            <samp>Modifica Conto…</samp></kbd>:
+        verrà visualizzato l’elenco dei conti dal quale selezionare quello desiderato.
+    </li>
+    <li>
+        Selezionando il nome del conto nel Navigatore:
+        fare clic con il tasto destro per aprire il menu contestuale e selezionare
+        <kbd><samp>Modifica Conto…</samp></kbd>.
+    </li>
+</ul>
+<p>
+    Verrà visualizzata la finestra delle informazioni del conto, dalla quale
+    sarà possibile modificare i campi desiderati.
+</p>
+<p>
+    Modifica i dettagli del conto, quindi utilizza il pulsante
+    <kbd><samp>OK</samp></kbd> per salvare le informazioni del conto.
+</p>
+
 
 
 
@@ -1721,13 +1820,181 @@
     </p>
 
 
+    <!-- ====================== Section 10 ====================== -->
+    <!--             Cercare informazioni in MMEX                -->
+    <!-- ======================================================= -->
+    <h2 id="searching_for_information">Cercare informazioni</h2>
+    
+    <h3>Trovare le transazioni</h3>
+    
+    <aside class="sticky tips">
+        Gli strumenti più potenti per individuare transazioni specifiche sono i
+        <a href="#trx_report">Resoconti di Transazione</a>.
+    </aside>
+    
+    <p>
+        MMEX mette a disposizione diversi strumenti per aiutare l’utente a trovare
+        transazioni specifiche all’interno del database.
+    </p>
+    
+    <p>
+        Il metodo più immediato consiste nell’utilizzare il campo di
+        <strong>ricerca rapida</strong> disponibile nella vista del conto.
+        È possibile cercare all’interno del campo <dfn>Note</dfn> delle transazioni
+        direttamente dalla lista delle operazioni.
+    </p>
+    
+    <p>
+        Nella parte inferiore dell’elenco delle transazioni, nella vista del conto,
+        inserisci il testo da cercare nel campo situato a destra dell’icona a forma
+        di <strong>lente di ingrandimento</strong>.
+        Fai clic sulla lente oppure premi il tasto
+        <kbd><samp>Invio</samp></kbd> per avviare la ricerca.
+    </p>
+    
+    <aside class="sticky notes">
+        La ricerca è <strong>sensibile alle maiuscole e minuscole</strong>.
+    </aside>
+    
+    <p>
+        La ricerca rapida analizza <strong>tutti i campi visibili delle transazioni</strong>
+        presenti nella vista corrente.  
+        Se il numero di transazioni è elevato (migliaia o decine di migliaia),
+        l’operazione può richiedere alcuni secondi.
+    </p>
+    
+    <aside class="sticky tips">
+        Per migliorare le prestazioni, limita prima l’ambito della ricerca
+        selezionando un singolo conto o un intervallo di date.
+    </aside>
+    
+    <p>
+        Per ricerche più avanzate (per importo, data, categoria, beneficiario,
+        campi personalizzati, ecc.) è consigliato utilizzare il
+        <strong>Filtro Transazioni</strong> o i <strong>Resoconti di Transazione</strong>,
+        che offrono criteri molto più dettagliati.
+    </p>
+    
+    <h3>Trovare i beneficiari</h3>
+    
+    <p>
+        Per cercare uno specifico beneficiario, apri il
+        <dfn>Gestore Beneficiari</dfn> dal menu:
+    </p>
+    
+    <p>
+        <kbd><samp>Strumenti</samp> → <samp>Gestore Beneficiari…</samp></kbd>
+    </p>
+    
+    <p>
+        Nella finestra di gestione dei beneficiari, utilizza il campo di ricerca
+        situato nella parte inferiore della finestra.
+        La ricerca <strong>non distingue tra maiuscole e minuscole</strong> e,
+        mentre digiti, l’elenco dei beneficiari viene filtrato automaticamente
+        mostrando tutte le corrispondenze.
+    </p>
+    
+    <p>
+        Se non conosci il nome esatto o l’ortografia del beneficiario,
+        puoi utilizzare i <strong>caratteri jolly</strong>:
+    </p>
+    
+    <ul>
+        <li>
+            <kbd><kbd>?</kbd></kbd> (punto interrogativo) per sostituire
+            <strong>un singolo carattere</strong>
+        </li>
+        <li>
+            <kbd><kbd>*</kbd></kbd> (asterisco) per sostituire
+            <strong>uno o più caratteri</strong>
+        </li>
+    </ul>
+    
+    <h4>Esempi</h4>
+    
+    <ul>
+        <li>
+            Cercando <kbd>Cit?</kbd> verrà trovato <samp>Citi</samp> ma non
+            <samp>Citizens</samp>
+        </li>
+        <li>
+            Cercando <kbd>Mar*</kbd> verranno trovati sia <samp>Maria</samp>
+            sia <samp>Margarita</samp>
+        </li>
+    </ul>
+    
+    <p>
+        Per maggiori dettagli sulla gestione dei beneficiari e sulle opzioni
+        disponibili, consulta la sezione dedicata al
+        <a href="#payee">Gestore Beneficiari</a>.
+    </p>
+    
+    <h3>Note importanti sul comportamento delle ricerche</h3>
+    
+    <aside class="sticky notes">
+        Il comportamento della ricerca può variare a seconda del contesto
+        (vista conto, Filtro Transazioni, Gestore Categorie, Resoconti).
+    </aside>
+    
+    <p>
+        Alcuni campi, come le <strong>Categorie</strong> e le
+        <strong>Sottocategorie</strong>, adottano logiche di ricerca differenti
+        a seconda della finestra in cui vengono utilizzati.
+    </p>
+    
+    <p>
+        Ad esempio:
+    </p>
+    
+    <ul>
+        <li>
+            Nel <strong>Gestore Categorie</strong> è possibile cercare anche
+            all’interno delle sottocategorie.
+        </li>
+        <li>
+            Nella finestra di <strong>Inserimento/Modifica Transazione</strong>,
+            la selezione rapida delle categorie segue una logica diversa e
+            supporta l’autocompletamento gerarchico tramite il carattere <kbd>:</kbd>.
+        </li>
+    </ul>
+    
+    <aside class="sticky tips">
+        Nella selezione delle categorie, puoi digitare:
+        <kbd>B : T : H</kbd> per selezionare rapidamente
+        <samp>Bolletta:Telefono:Casa</samp> (esempio).
+    </aside>
+    
+    <p>
+        Anche la ricerca nei <strong>Campi Personalizzati</strong> presenta
+        alcune limitazioni:
+    </p>
+    
+    <ul>
+        <li>
+            È possibile filtrare per valore esatto.
+        </li>
+        <li>
+            Non è sempre possibile filtrare semplicemente per
+            <em>presenza/assenza</em> di un campo.
+        </li>
+        <li>
+            Per analisi avanzate, spesso è utile ordinare l’elenco delle
+            transazioni per colonna e selezionare manualmente gli intervalli
+            di interesse.
+        </li>
+    </ul>
+    
+    <aside class="sticky notes">
+        MMEX è in continua evoluzione: il comportamento delle ricerche e
+        delle prestazioni può cambiare tra una versione e l’altra.
+    </aside>
 
 
 
 
 
 
-	<!-- ====================== Section 10 ====================== -->
+	<!-- ====================== Section 11 ====================== -->
 	<!--               Lavorare con le Categorie                 -->
 	<!-- ======================================================= -->
 	<h2 id="categories">Lavorare con le Categorie</h2>
@@ -1823,7 +2090,7 @@ Schermata di Deposito: I prelievi sono mostrati come negativi.
 
 
 
-	<!-- ====================== Section 11 ===================== -->
+	<!-- ====================== Section 12 ===================== -->
 	<!--               Lavorare con i Beneficiari               -->
 	<!-- ======================================================= -->
 	<h2 id="payees">Lavorare con i Beneficiari</h2>
@@ -1876,7 +2143,7 @@ Schermata di Deposito: I prelievi sono mostrati come negativi.
         Questo renderebbe il beneficiario libero così da esser eliminabile.
     </p>
 	
-	<!-- ====================== Section 12 ===================== -->
+	<!-- ====================== Section 13 ===================== -->
 	<!--            Lavorare con le Etichette (Tags)            -->
 	<!-- ======================================================= -->
 	<h2 id="tags">Lavorare con le Etichette (Tags)</h2>
@@ -2072,7 +2339,7 @@ Schermata di Deposito: I prelievi sono mostrati come negativi.
 	</aside>
 		
 
-	<!-- ====================== Section 13 ===================== -->
+	<!-- ====================== Section 14 ===================== -->
 	<!--             Importare i dati finanziari                 -->
 	<!-- ======================================================= -->
 	<h2 id="importing_financial_data">Importare i dati finanziari</h2>
@@ -2221,7 +2488,7 @@ PBanca del Beneficiario del Mutuo
         Il metodo d'importazione e la selezione del campo è uguale all'importazione da CSV.
     </p>
 
-	<!-- ====================== Section 14 ===================== -->
+	<!-- ====================== Section 15 ===================== -->
 	<!--                    Esportare i dati                    -->
 	<!-- ======================================================= -->
 	<h2 id="exporting_data">Esportare i dati</h2>
@@ -2268,7 +2535,7 @@ PBanca del Beneficiario del Mutuo
     <p>
         MMEX può esportare un conto in un file del formato QIF. Questo formato è anche utilizzabile da MMEX per ricaricare in un conto.</p>
 
-	<!-- ====================== Section 15 ===================== -->
+	<!-- ====================== Section 16 ===================== -->
 	<!--               Transazioni Ricorrenti                   -->
 	<!-- ======================================================= -->
 	<h2 id="scheduled_transactions">Transazioni Ricorrenti</h2>
@@ -2337,7 +2604,7 @@ PBanca del Beneficiario del Mutuo
         </li>
     </ol>
 
-	<!-- ====================== Section 16 ===================== -->asset
+	<!-- ====================== Section 17 ===================== -->asset
 	<!--                   Titoli e Azioni                      -->
 	<!-- ======================================================= -->
 	<h2 id="stocks_and_shares">Titoli e Azioni</h2>
@@ -2349,7 +2616,7 @@ PBanca del Beneficiario del Mutuo
         Ulteriori dettagli fanno riferimento a <a href="../stocks_and_shares.html?lang=it_IT">Titoli, Azioni e Gestione dei Dividendi Azionari in MMEX</a>
     </p>
 
-	<!-- ====================== Section 17 ===================== -->
+	<!-- ====================== Section 18 ===================== -->
 	<!--                 Gestione dei Cespiti                 -->
 	<!-- ======================================================= -->
 	<h2 id="asset_management">Gestione dei Cespiti</h2>
@@ -2376,14 +2643,14 @@ PBanca del Beneficiario del Mutuo
         <li>Le Transazioni dei Cespiti sono trattabili come Entrate/Spese o come trasferimenti in base allo stato della casella di controllo "Trasferimento".</li>
     </ul>
 
-	<!-- ====================== Section 18 ===================== -->
+	<!-- ====================== Section 19 ===================== -->
 	<!--                        Budgeting                        -->
 	<!-- ======================================================= -->
 	<h2 id="budgeting">Budgeting</h2>
 
     <a href="../budget.html?lang=it_IT">Budgeting in MMEX</a>
 
-	<!-- ====================== Section 19 ===================== -->
+	<!-- ====================== Section 20 ===================== -->
 	<!--                        Resoconti                         -->
 	<!-- ======================================================= -->
 	<h2 id="reports">Resoconti</h2>
@@ -2465,7 +2732,7 @@ PBanca del Beneficiario del Mutuo
         Una volta visualizzato un rapporto, puoi stamparlo usando il menu <kbd><samp>File</samp> &rarr; <samp>Stampa&hellip;</samp></kbd>.
     </p>
 
-	<!-- ====================== Section 20 ===================== -->
+	<!-- ====================== Section 21 ===================== -->
 	<!--                Impostazioni di MMEX                     -->
 	<!-- ======================================================= -->
 	<h2 id="settings">Impostazioni di MMEX</h2>
@@ -2533,7 +2800,7 @@ PBanca del Beneficiario del Mutuo
     </dl>
 
     <!--Frequently Asked Questions-->
-	<!-- ====================== Section 21 ===================== -->
+	<!-- ====================== Section 22 ===================== -->
 	<!--                  Domande Frequenti (FAQ)               -->
 	<!-- ======================================================= -->
 	<h2 id="faq">Domande Frequenti</h2>
