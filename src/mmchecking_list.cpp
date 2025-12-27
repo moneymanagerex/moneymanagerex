@@ -943,7 +943,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
     wxMenu* subGlobalOpMenuDelete = new wxMenu();
     subGlobalOpMenuDelete->Append(
         MENU_TREEPOPUP_DELETE2,
-        !m_cp->isDeletedTrans() ? 
+        !m_cp->isDeletedTrans() ?
             (1 == selected) ? _tu("&Delete selected transaction…") : _tu("&Delete selected transactions…") :
             (1 == selected) ? _tu("&Permanently delete selected transaction…") : _tu("&Permanently delete selected transactions…")
     );
@@ -1127,7 +1127,7 @@ void TransactionListCtrl::onNewTransaction(wxCommandEvent& event)
 
 void TransactionListCtrl::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 {
-    // check if any transactions selected 
+    // check if any transactions selected
     int sel = GetSelectedItemCount();
     if (sel < 1) return;
 
@@ -1362,7 +1362,7 @@ void TransactionListCtrl::onMoveTransaction(wxCommandEvent& /*event*/)
         , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR);
 
     if (msgDlg.ShowModal() == wxID_YES) {
-        const wxString headerMsg = (1 == sel) ? _tu("Moving transaction to…") : 
+        const wxString headerMsg = (1 == sel) ? _tu("Moving transaction to…") :
                                     wxString::Format(_tu("Moving %i transactions to…"), sel);
 
         mmSingleChoiceDialog scd(this
@@ -1475,7 +1475,7 @@ void TransactionListCtrl::onFind(wxCommandEvent&)
         return;
     // save the filter as the "Advanced" filter for All Transactions
     Model_Infotable::instance().setString("CHECK_FILTER_ID_ADV_-1", rightClickFilter_);
- 
+
     // Navigate to the All Transactions panel
     wxTreeItemId currentId = m_cp->m_frame->GetNavTreeSelection();
     m_cp->m_frame->setNavTreeSection(wxTRANSLATE("All Transactions"));
@@ -1735,13 +1735,18 @@ void TransactionListCtrl::onDuplicateTransaction(wxCommandEvent& WXUNUSED(event)
     Fused_Transaction::IdRepeat id = m_selected_id[0];
 
     mmTransDialog dlg(this, m_cp->m_account_id, {id.first, id.second != 0}, true);
-    if (dlg.ShowModal() != wxID_CANCEL) {
-        m_selected_id.clear();
-        m_pasted_id.push_back({dlg.GetTransactionID(), 0});
-        m_cp->mmPlayTransactionSound();
-        refreshVisualList();
-    }
-    m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
+
+    int i = wxID_CANCEL;
+    do {
+        i = dlg.ShowModal();
+        if (i != wxID_CANCEL) {
+            m_selected_id.clear();
+            m_pasted_id.push_back({dlg.GetTransactionID(), 0});
+            m_cp->mmPlayTransactionSound();
+            refreshVisualList();
+        }
+        m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
+    } while (i == wxID_NEW);
 }
 
 void TransactionListCtrl::onEnterScheduled(wxCommandEvent& WXUNUSED(event))
