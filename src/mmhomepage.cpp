@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2014 - 2021 Nikolay Akimov
 Copyright (C) 2021-2023 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -457,17 +458,19 @@ const wxString htmlWidgetStatistics::getHTMLText()
     json_writer.String(_t("Transaction Statistics").utf8_str());
 
     wxSharedPtr<mmDateRange> date_range;
-    if (Option::instance().getIgnoreFutureTransactions())
+    /*if (Option::instance().getIgnoreFutureTransactions())
         date_range = new mmCurrentMonthToDate;
     else
-        date_range = new mmCurrentMonth;
+        date_range = new mmCurrentMonth;*/
 
     Model_Checking::Data_Set all_trans;
-    if (Option::instance().getIgnoreFutureTransactions()) {
+    if (Option::instance().getIgnoreFutureTransactionsHomePage()) {
+        date_range = new mmCurrentMonthToDate;
         all_trans = Model_Checking::instance().find(
             Model_Checking::TRANSDATE(wxDateTime(23,59,59,999), LESS_OR_EQUAL));
     }
     else {
+        date_range = new mmCurrentMonth;
         all_trans = Model_Checking::instance().all();
     }
     int countFollowUp = 0;
@@ -658,19 +661,19 @@ void htmlWidgetAccounts::get_account_stats()
 {
 
     wxSharedPtr<mmDateRange> date_range;
-    if (Option::instance().getIgnoreFutureTransactions())
+    /*if (Option::instance().getIgnoreFutureTransactions())
         date_range = new mmCurrentMonthToDate;
     else
-        date_range = new mmCurrentMonth;
+        date_range = new mmCurrentMonth;*/
 
     Model_Checking::Data_Set all_trans;
-    if (Option::instance().getIgnoreFutureTransactions())
-    {
+    if (Option::instance().getIgnoreFutureTransactionsHomePage()) {
+        date_range = new mmCurrentMonthToDate;
         all_trans = Model_Checking::instance().find(Model_Checking::TRANSDATE(
             Option::instance().UseTransDateTime() ? wxDateTime::Now() : wxDateTime(23, 59, 59, 999), LESS_OR_EQUAL));
     }
-    else
-    {
+    else {
+        date_range = new mmCurrentMonth;
         all_trans = Model_Checking::instance().all();
     }
 

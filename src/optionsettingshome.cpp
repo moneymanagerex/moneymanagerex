@@ -106,7 +106,20 @@ void OptionSettingsHome::Create()
         event.Skip();
     });
     totalsStaticBoxSizer->Add(nDays_, g_flagsH);
+
+    wxStaticBox* sBox = new wxStaticBox(home_panel, wxID_STATIC, _t("Miscellaneous"));
+    wxStaticBoxSizer* trxSizer = new wxStaticBoxSizer(sBox, wxVERTICAL);
+    homePanelSizer->Add(trxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+    m_ignore_future_transactions_home = new wxCheckBox(
+    sBox, wxID_ANY,
+    _t("Ignore Future Transactions"),
+    wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
+    );
+    m_ignore_future_transactions_home->SetValue(Option::instance().getIgnoreFutureTransactionsHomePage());
+    trxSizer->Add(m_ignore_future_transactions_home, g_flagsV);
+
     SetBoldFontToStaticBoxHeader(totalsStaticBox);
+    SetBoldFontToStaticBoxHeader(sBox);
     Fit();
     home_panel->SetMinSize(home_panel->GetBestVirtualSize());
     nDays_->Show(sel_id == 15);
@@ -120,6 +133,7 @@ bool OptionSettingsHome::SaveSettings()
     Option::instance().setHomePageIncExpRange(sel_id);
     if (sel_id == 15)
         Model_Infotable::instance().setInt("HOMEPAGE_INCEXP_DAYS", nDays_->GetValue());
+    Option::instance().setIgnoreFutureTransactionsHomePage(m_ignore_future_transactions_home->GetValue());
     return true;
 }
 
