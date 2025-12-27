@@ -255,6 +255,11 @@ Thomas Keenan
 Bill Black
 Glenn Fowler
 Dausto Cobianchi
+Rolando Aurisicchio
+Lajos Pásztor
+Samantha Priyadarshana
+Timur Yilmaz
+Jay Saka
 
 ### 2024
 Renato

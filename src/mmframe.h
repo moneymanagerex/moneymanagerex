@@ -226,6 +226,7 @@ private:
     void OnQuit(wxCommandEvent& event);
     void OnBillsDeposits(wxCommandEvent& event);
     void OnAssets(wxCommandEvent& event);
+    void OnThemeManager(wxCommandEvent& event);
     void OnGotoAccount(wxCommandEvent& WXUNUSED(event));
     void OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event));
 private:
