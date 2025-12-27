@@ -16,8 +16,11 @@ Features:
 * #7911 Updated documentation: expanded Tags section, added screenshots and GIFs
 * #7913 Documentation Update: Complete rewrite of the Tags section with images and GIF + Improved translation: Adding Initial Shares to Stock
 * #7824 Fix Arch Linux support
+* #7940 New Features: Navigator expand/collapse all popup menu - Reconcile dialog 
+* #7923 Header of MMEX
 
 Bugfixes:
+* #7972 Cannot invoke Theme Manager from menus
 * #7863 error occurred when saving the transaction
 * #7851 Budget overview issue
 * #7847 Crash updating Payees
