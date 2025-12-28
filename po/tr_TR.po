@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-12-17 15:21+0000\n"
-"PO-Revision-Date: 2025-12-19 01:04\n"
+"POT-Creation-Date: 2025-12-20 14:04+0000\n"
+"PO-Revision-Date: 2025-12-27 19:12\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "Language: tr_TR\n"
@@ -56,7 +56,7 @@ msgstr "MMEX kullanımı hakkında genel veriler göndererek bize yardımcı olu
 #: customfieldeditdialog.cpp:199 filtertransdialog.cpp:828
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:408
 #: mmSimpleDialogs.cpp:1096 optiondialog.cpp:164 payeedialog.cpp:161
-#: sharetransactiondialog.cpp:359 splittransactionsdialog.cpp:105
+#: sharetransactiondialog.cpp:360 splittransactionsdialog.cpp:105
 #: splittransactionsdialog.cpp:284 tagdialog.cpp:146
 #: transactionsupdatedialog.cpp:281 wizard_update.cpp:215
 msgid "&OK "
@@ -80,7 +80,7 @@ msgstr "Hesap Tipi:"
 
 #: accountdialog.cpp:139 wizard_newaccount.cpp:133
 msgid "Specify the account type to be created."
-msgstr ""
+msgstr "Lütfen oluşturulacak hesap türünü seçiniz."
 
 #: accountdialog.cpp:143
 msgid "Account Status:"
@@ -135,7 +135,7 @@ msgstr "Eğer sık kullandığınız bir hesap ise seçiniz. Bu seçim görünt�
 #: import_export/qif_export.cpp:635 import_export/qif_import_gui.cpp:98
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:110
 #: payeedialog.cpp:117 payeedialog.cpp:560 reports/transactions.cpp:230
-#: sharetransactiondialog.cpp:305 splittransactionsdialog.cpp:96
+#: sharetransactiondialog.cpp:306 splittransactionsdialog.cpp:96
 #: splittransactionsdialog.cpp:354 stockdialog.cpp:263 stocks_list.cpp:80
 #: transactionsupdatedialog.cpp:256 transdialog.cpp:604
 #: usertransactionpanel.cpp:212 webappdialog.cpp:145
@@ -291,7 +291,7 @@ msgstr "Geçersiz Tarih"
 
 #: accountdialog.cpp:522
 msgid "Opening date is unable to be in the future"
-msgstr ""
+msgstr "Açılış tarihi ileri bir tarih olamaz."
 
 #: accountdialog.cpp:531
 msgid "Transactions for this account already exist before this date"
@@ -320,7 +320,7 @@ msgstr "&Yeni Veritabanı"
 
 #: appstartdialog.cpp:106
 msgid "Create new MMEX database file"
-msgstr ""
+msgstr "Yeni MMEX veritabanı dosyası oluşturun"
 
 #: appstartdialog.cpp:109
 msgid "Open &Existing Database"
@@ -328,7 +328,7 @@ msgstr "Varolan Veritabanını Aç"
 
 #: appstartdialog.cpp:110
 msgid "Open MMEX database file"
-msgstr ""
+msgstr "MMEX veritabanı dosyasını aç"
 
 #: appstartdialog.cpp:113 mmframe.cpp:1917
 msgid "User Interface &Language"
@@ -345,7 +345,7 @@ msgstr "Kullanım Kılavuzu"
 
 #: appstartdialog.cpp:118
 msgid "Read MMEX user manual"
-msgstr ""
+msgstr "MMEX kullanıcı kılavuzunu okuyun"
 
 #: appstartdialog.cpp:121 mmframe.cpp:2112
 msgid "&Website"
@@ -357,11 +357,11 @@ msgstr "En son haberler ve güncellemeler için MMEX internet sitesini ziyaret e
 
 #: appstartdialog.cpp:126 mmframe.cpp:2129
 msgid "&Forum"
-msgstr ""
+msgstr "&Destek Forumu"
 
 #: appstartdialog.cpp:127 mmframe.cpp:2130
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "MMEX forumunu ziyaret et"
 
 #: appstartdialog.cpp:133 wizard_update.cpp:209
 msgid "&Show this dialog box at startup"
@@ -432,7 +432,7 @@ msgstr "Varlık adını giriniz"
 #: maincurrencydialog.cpp:254 maincurrencydialog.cpp:271 mmchecking_list.cpp:98
 #: model/Model_CustomField.cpp:30 reports/cashflow.cpp:275
 #: reports/cashflow.cpp:404 reports/incexpenses.cpp:244 reports/summary.cpp:295
-#: reports/transactions.cpp:208 stockdialog.cpp:296 stockdialog.cpp:624
+#: reports/transactions.cpp:208 stockdialog.cpp:296 stockdialog.cpp:623
 #: stockspanel.cpp:265 transactionsupdatedialog.cpp:132 transdialog.cpp:445
 #: uicontrols/reconciledialog.cpp:108 usertransactionpanel.cpp:105
 #: webapp.cpp:564 webappdialog.cpp:138 wizard_update.cpp:138
@@ -466,7 +466,7 @@ msgstr "Bugünkü Değer"
 
 #: assetdialog.cpp:232
 msgid "The current value of the asset"
-msgstr ""
+msgstr "Varlığın mevcut değeri"
 
 #: assetdialog.cpp:235
 msgid "Change in Value"
@@ -478,11 +478,11 @@ msgstr "Varlığın değeri zamanla değişiyorsa bunu belirtiniz"
 
 #: assetdialog.cpp:247
 msgid "Compounding Period"
-msgstr ""
+msgstr "Faiz hesaplama dönemi"
 
 #: assetdialog.cpp:252
 msgid "Select the compounding period for the appreciation/depreciation rate"
-msgstr ""
+msgstr "Değerleme oranı için bileşik dönem seçiniz"
 
 #: assetdialog.cpp:257
 msgid "% Rate"
@@ -504,11 +504,11 @@ msgstr "Varlıkla ilgili notlar"
 msgid "New Transaction Details"
 msgstr "Yeni İşlem Ayrıntıları"
 
-#: assetdialog.cpp:287 sharetransactiondialog.cpp:330
+#: assetdialog.cpp:287 sharetransactiondialog.cpp:331
 msgid "Edit Transaction Details"
 msgstr "İşlem Ayrıntıları Düzenle"
 
-#: assetdialog.cpp:322 constants.cpp:75 sharetransactiondialog.cpp:360
+#: assetdialog.cpp:322 constants.cpp:75 sharetransactiondialog.cpp:361
 #: uicontrols/reconciledialog.cpp:208
 msgid "&Cancel "
 msgstr "İ&ptal"
@@ -660,27 +660,27 @@ msgstr "İlgili varlığı bulmak için herhangi bir dize giriniz"
 #: assetspanel.cpp:499 filtertransdialog.cpp:712 mmcheckingpanel.cpp:358
 #: payeedialog.cpp:139
 msgid "Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria."
-msgstr ""
+msgstr "İpucu: Arama kriterlerinde joker karakterler (?), () kullanılabilir."
 
 #: assetspanel.cpp:500 filtertransdialog.cpp:713 mmcheckingpanel.cpp:359
 #: payeedialog.cpp:140
 msgid "Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”."
-msgstr ""
+msgstr "Herhangi bir tek karakteri bulmak için (?) kullanın; örn. ‘s?t’ → ‘sat’, ‘set’."
 
 #: assetspanel.cpp:501 filtertransdialog.cpp:714 mmcheckingpanel.cpp:360
 #: payeedialog.cpp:141
 msgid "Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”."
-msgstr ""
+msgstr "Herhangi bir sayıda karakteri bulmak için yıldız (*) kullanın — örneğin, ‘s*d’ ifadesi ‘sad’ ve ‘started’ sonuçlarını verir."
 
 #: assetspanel.cpp:502 filtertransdialog.cpp:715 mmcheckingpanel.cpp:361
 #: payeedialog.cpp:142
 msgid "Use the asterisk (*) at the beginning to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Cümlenin ortasındaki herhangi bir diziyi bulmak için başta yıldız (*) kullanın."
 
 #: assetspanel.cpp:577
 #, c-format
 msgid "Initial: %s"
-msgstr ""
+msgstr "İlk harf: %s"
 
 #: assetspanel.cpp:577 stockspanel.cpp:439 stockspanel.cpp:624
 #, c-format
@@ -717,7 +717,7 @@ msgstr "Hesap"
 
 #: assetspanel.cpp:843 stockspanel.cpp:268
 msgid "Trade Type"
-msgstr ""
+msgstr "Ticaret Türü"
 
 #: assetspanel.cpp:844 import_export/qif_import_gui.cpp:97
 #: maincurrencydialog.cpp:281
@@ -759,7 +759,7 @@ msgstr "Ekler klasörü bulunamadı."
 #: attachmentdialog.cpp:114
 #, c-format
 msgid "Attachment Manager | %1$s | %2$lld"
-msgstr ""
+msgstr "Ek Yöneticisi | %1$s | %2$lld"
 
 #: attachmentdialog.cpp:116
 #, c-format
@@ -1821,7 +1821,7 @@ msgstr "Kategorileri birleştirme sonuçları"
 
 #: categdialog.cpp:789
 msgid "Do you want to show all categories?"
-msgstr ""
+msgstr "Tüm kategorileri göstermek istiyor musunuz?"
 
 #: categdialog.cpp:790
 msgid "Show all categories"
@@ -2213,7 +2213,7 @@ msgstr "Sil"
 
 #: daterangedialog.cpp:133 daterangeeditdialog.cpp:104
 msgid "Save"
-msgstr ""
+msgstr "Kaydet"
 
 #: daterangedialog.cpp:134
 msgid "Restore default ranges"
@@ -2517,7 +2517,7 @@ msgid "Transfer"
 msgstr "Aktarma"
 
 #: db/DB_Table_Category_V1.h:170 model/Model_Account.cpp:33
-#: sharetransactiondialog.cpp:492 sharetransactiondialog.cpp:496
+#: sharetransactiondialog.cpp:493 sharetransactiondialog.cpp:497
 msgid "Investment"
 msgstr "Yatırım"
 
@@ -3973,7 +3973,7 @@ msgid "Preview"
 msgstr "Önizleme"
 
 #: import_export/univcsvdialog.cpp:566 import_export/univcsvdialog.cpp:2224
-#: stockdialog.cpp:534
+#: stockdialog.cpp:533
 msgid "Choose CSV data file to import"
 msgstr "Alınacak CSV veri dosyası seçin"
 
@@ -4104,7 +4104,7 @@ msgstr "Satır %ld: alımı tamamlandı."
 msgid "Rejected rows:"
 msgstr "Reddedilen satırlar:"
 
-#: import_export/univcsvdialog.cpp:1496 stockdialog.cpp:620
+#: import_export/univcsvdialog.cpp:1496 stockdialog.cpp:619
 #, c-format
 msgid "Total lines: %ld"
 msgstr ""
@@ -4134,7 +4134,7 @@ msgstr "Hatalı: %ld"
 msgid "Log file written to: %s"
 msgstr "Yazılan log dosyası : %s"
 
-#: import_export/univcsvdialog.cpp:1510 stockdialog.cpp:628
+#: import_export/univcsvdialog.cpp:1510 stockdialog.cpp:627
 msgid "Please confirm saving"
 msgstr "Lütfen kaydetmeyi onaylayın"
 
@@ -4255,7 +4255,7 @@ msgid "Historical Currency Options"
 msgstr "Tarihsel Para Seçenekleri"
 
 #: maincurrencydialog.cpp:259 stockdialog.cpp:303 stockdialog.cpp:322
-#: stockdialog.cpp:624 stockspanel.cpp:269
+#: stockdialog.cpp:623 stockspanel.cpp:269
 msgid "Price"
 msgstr "Fiyat"
 
@@ -8051,7 +8051,7 @@ msgstr "Son 12 Ay"
 msgid "Current Year"
 msgstr "Bu Yıl"
 
-#: reports/mmDateRange.cpp:172 stockdialog.cpp:669
+#: reports/mmDateRange.cpp:172 stockdialog.cpp:668
 msgid "Current Year to Date"
 msgstr "Bu Yıl (Bugüne kadar)"
 
@@ -8201,83 +8201,83 @@ msgstr "En çok"
 msgid "Average"
 msgstr "Ortalama"
 
-#: sharetransactiondialog.cpp:63
+#: sharetransactiondialog.cpp:64
 msgid "Add Share Transaction"
 msgstr "Borsa (pay) İşlemi Ekle"
 
-#: sharetransactiondialog.cpp:70 sharetransactiondialog.h:43
+#: sharetransactiondialog.cpp:71 sharetransactiondialog.h:43
 msgid "Edit Share Transaction"
 msgstr "Borsa (pay) İşlemi Düzenle"
 
-#: sharetransactiondialog.cpp:221 stockdialog.cpp:184
+#: sharetransactiondialog.cpp:222 stockdialog.cpp:184
 msgid "Stock Investment Details"
 msgstr "Menkul Değer Yatırım Ayrıntıları"
 
-#: sharetransactiondialog.cpp:231 stockdialog.cpp:195 stocks_list.cpp:69
+#: sharetransactiondialog.cpp:232 stockdialog.cpp:195 stocks_list.cpp:69
 msgid "Company Name"
 msgstr "Firma Adı"
 
-#: sharetransactiondialog.cpp:235 stockdialog.cpp:198
+#: sharetransactiondialog.cpp:236 stockdialog.cpp:198
 msgid "Enter the stock company name"
 msgstr "Menkul Kıymeti Firması adı girin"
 
-#: sharetransactiondialog.cpp:238 stockdialog.cpp:201
+#: sharetransactiondialog.cpp:239 stockdialog.cpp:201
 msgid "Stock Symbol"
 msgstr "Hisse senedi Sembolü"
 
-#: sharetransactiondialog.cpp:245 stockdialog.cpp:208
+#: sharetransactiondialog.cpp:246 stockdialog.cpp:208
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
 msgstr "Menkul değer simgesi girin (İsteğe bağlı) Kuru içer. Örn: IBM.BE"
 
-#: sharetransactiondialog.cpp:248
+#: sharetransactiondialog.cpp:249
 msgid "Share Lot"
 msgstr "Hisse (pay) lotu"
 
-#: sharetransactiondialog.cpp:255
+#: sharetransactiondialog.cpp:256
 msgid "Enter the LOT that this parcel os shares belong to"
 msgstr "İlgili hisselerin bu paketinin lotunu girin"
 
-#: sharetransactiondialog.cpp:258
+#: sharetransactiondialog.cpp:259
 msgid "Share Number"
 msgstr "Numarayı Paylaş"
 
-#: sharetransactiondialog.cpp:265
+#: sharetransactiondialog.cpp:266
 msgid "Enter number of shares held"
 msgstr "Sahip olunan hisse adedini giriniz"
 
-#: sharetransactiondialog.cpp:271
+#: sharetransactiondialog.cpp:272
 msgid "Share Price"
 msgstr "Fiyatı Paylaş"
 
-#: sharetransactiondialog.cpp:279
+#: sharetransactiondialog.cpp:280
 msgid "Enter the current value for a single share unit"
 msgstr "Tek menkul değer birimi için güncel değeri girin."
 
-#: sharetransactiondialog.cpp:285 stockdialog.cpp:241
+#: sharetransactiondialog.cpp:286 stockdialog.cpp:241
 msgid "Deductible Comm."
 msgstr ""
 
-#: sharetransactiondialog.cpp:295
+#: sharetransactiondialog.cpp:296
 msgid "Enter any commission paid"
 msgstr "Ödenen Komisyonu Girin"
 
-#: sharetransactiondialog.cpp:299 sharetransactiondialog.cpp:522
+#: sharetransactiondialog.cpp:300 sharetransactiondialog.cpp:523
 msgid "Use Deductible Comm. split Categories"
 msgstr ""
 
-#: sharetransactiondialog.cpp:309 stockdialog.cpp:267
+#: sharetransactiondialog.cpp:310 stockdialog.cpp:267
 msgid "Manage stock attachments"
 msgstr ""
 
-#: sharetransactiondialog.cpp:314 stockdialog.cpp:269
+#: sharetransactiondialog.cpp:315 stockdialog.cpp:269
 msgid "Display the web page for the specified Stock symbol"
 msgstr "Özel bir hisse senedi simgesi için web sayfasını göster"
 
-#: sharetransactiondialog.cpp:324 stockdialog.cpp:276
+#: sharetransactiondialog.cpp:325 stockdialog.cpp:276
 msgid "Enter notes associated with this investment"
 msgstr "Bu yatırımla ilişkili notları girin"
 
-#: sharetransactiondialog.cpp:330
+#: sharetransactiondialog.cpp:331
 msgid "Add Transaction Details"
 msgstr "İşlem Ayrıntılarını Ekle"
 
@@ -8393,84 +8393,84 @@ msgstr "Hisse Senedi Fiyatını geçmişe ekle"
 msgid "Held At"
 msgstr "Hesap"
 
-#: stockdialog.cpp:547
+#: stockdialog.cpp:546
 msgid "Stock History CSV Import"
 msgstr "Hisse Senedi Geçmişi CSV Alımı"
 
-#: stockdialog.cpp:548 stockdialog.cpp:564
+#: stockdialog.cpp:547 stockdialog.cpp:563
 msgid "Quotes imported from CSV: "
 msgstr "CSV'den alınan fiyatlar:"
 
-#: stockdialog.cpp:622
+#: stockdialog.cpp:621
 #, c-format
 msgid "Total imported: %ld"
 msgstr ""
 
-#: stockdialog.cpp:630
+#: stockdialog.cpp:629
 msgid "Importing CSV"
 msgstr "CVS alınıyor."
 
-#: stockdialog.cpp:661 stockdialog.cpp:691
+#: stockdialog.cpp:660 stockdialog.cpp:690
 msgid "5 Days"
 msgstr "5 Gün"
 
-#: stockdialog.cpp:662 stockdialog.cpp:693
+#: stockdialog.cpp:661 stockdialog.cpp:692
 msgid "1 Month"
 msgstr "1 Ay"
 
-#: stockdialog.cpp:663 stockdialog.cpp:694
+#: stockdialog.cpp:662 stockdialog.cpp:693
 msgid "3 Months"
 msgstr "3 Ay"
 
-#: stockdialog.cpp:664
+#: stockdialog.cpp:663
 msgid "6 Months"
 msgstr "6 Ay"
 
-#: stockdialog.cpp:665
+#: stockdialog.cpp:664
 msgid "1 Year"
 msgstr "1 Yıl"
 
-#: stockdialog.cpp:666
+#: stockdialog.cpp:665
 msgid "2 Years"
 msgstr "2 Yıl"
 
-#: stockdialog.cpp:667
+#: stockdialog.cpp:666
 msgid "5 Years"
 msgstr "5 Yıl"
 
-#: stockdialog.cpp:668
+#: stockdialog.cpp:667
 msgid "10 Years"
 msgstr "10 Yıl"
 
-#: stockdialog.cpp:670
+#: stockdialog.cpp:669
 msgid "Max"
 msgstr "En çok"
 
-#: stockdialog.cpp:676
+#: stockdialog.cpp:675
 msgid "Specify type frequency of stock history"
 msgstr "Menkul değer geçmişi sıklığını belirtin"
 
-#: stockdialog.cpp:677 stockdialog.cpp:701
+#: stockdialog.cpp:676 stockdialog.cpp:700
 msgid "Stock History Update"
 msgstr "Menkul Değer Geçmişi Güncelleme"
 
-#: stockdialog.cpp:690
+#: stockdialog.cpp:689
 msgid "1 Day"
 msgstr "1 Gün"
 
-#: stockdialog.cpp:692
+#: stockdialog.cpp:691
 msgid "1 Week"
 msgstr "1 Hafta"
 
-#: stockdialog.cpp:700
+#: stockdialog.cpp:699
 msgid "Specify interval of stock history"
 msgstr "Menkul değer geçmişi sıklığını belirtin"
 
-#: stockdialog.cpp:715 stockdialog.cpp:719
+#: stockdialog.cpp:714 stockdialog.cpp:718
 msgid "Stock history not found."
 msgstr "Menkul değer geçmişi bulunamadı."
 
-#: stockdialog.cpp:716 stockdialog.cpp:828
+#: stockdialog.cpp:715 stockdialog.cpp:827
 msgid "Stock History Error"
 msgstr "Menkul Değer Geçmişi Hatası"
 
