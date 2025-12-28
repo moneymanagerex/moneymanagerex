@@ -302,11 +302,29 @@
 		<strong>title bar</strong>.
 	</p>
 
+    <p>
+        At startup, MMEX automatically attempts to load the last database that was used.
+        If no database is found, the user is prompted to
+        <strong>open an existing database</strong> or
+        <strong>create a new one</strong>.
+    </p>
+
+
+    
 	<aside class="sticky tips">
 		If you use multiple databases, adopt a clear naming convention
 		(e.g. <code>Personal_2025.mmb</code>, <code>Business.emb</code>).
 	</aside>
 
+    <p>
+        This is especially useful when working with multiple databases:
+        the title bar makes it easy to immediately identify which database
+        is currently open, reducing the risk of entering or modifying data
+        in the wrong file.
+    </p>
+
+    
+    
 	<img src="../en_US/images/create_db_01.png" alt="Initial screen without database" class="shadow" />
 	<!-- The image should show MMEX at startup when no database is found, offering “Open Database” or “New Database”. -->
 
@@ -338,6 +356,15 @@
 		Once the file is saved, the <strong>New Database Wizard</strong> will start.
 	</p>
 
+    <p>
+        The wizard guides the user through the initial setup steps,
+        helping not only to configure the database, but also to
+        <strong>create the first account</strong>, which is required
+        before transactions can be recorded.
+    </p>
+
+
+    
 	<h4>Initial Settings: Base Currency and User Name</h4>
 
 	<p>
@@ -349,6 +376,29 @@
 		<li><strong>User Name</strong> (optional) → displayed on the Home Page and in some reports.</li>
 	</ul>
 
+    <p>
+        MMEX includes a set of <strong>predefined currencies</strong>, usually aligned
+        with the user’s country settings.
+        The <strong>Base Currency</strong> represents the main reference currency
+        for the database: all reports and overall totals are calculated using this currency.
+    </p>
+    
+    <p>
+        It is possible to create accounts in <strong>different currencies</strong>
+        from the Base Currency.
+        MMEX automatically manages <strong>exchange rates</strong>, allowing
+        amounts expressed in different currencies to be compared correctly.
+    </p>
+    
+    <p>
+        A complete explanation of currency management, exchange rates, and conversions
+        is provided in the dedicated
+        <a href="#currencies">Currencies</a> section.
+    </p>
+
+
+
+    
 	<img src="../en_US/images/create_db_03.png" alt="Wizard: Base Currency and User Name" class="shadow" />
 	<!-- The image should show the wizard with Base Currency and User Name selection. -->
 
@@ -356,6 +406,13 @@
 		The Base Currency affects reports and exchange rate conversions.
 	</aside>
 
+    <p>
+        The Base Currency also allows accounts in different currencies to be managed
+        while maintaining a consistent overall view of the total value.
+    </p>
+
+    
+    
 	<p>
 		These settings can be changed later via:
 	</p>
@@ -761,81 +818,91 @@
         requested to create a new account.
     </p>
     <aside class="sticky tips">
-        Use the toolbar icon to quickly open the Add Account Wizard.
+        Use the toolbar icon for quick access to the Add Account Wizard.
     </aside>
     <p>
-        To manually create a new account, from the Menu, Select
+        To manually create a new account, from the menu, select
         <kbd><samp>Accounts</samp> → <samp>New Account…</samp></kbd>.
     </p>
     <p>
         This will bring up the <dfn>Add Account Wizard</dfn>. The wizard will
         assist in collecting the important information of the Name and Type
-        of Account. The Type of Account is not changeable, but the name can
-        changed when editing account information.
+        of Account. The Account Type cannot be changed once it has been created,
+        but the account name can be modified later when editing the
+        account information.
     </p>
+
+    <p>
+        The wizard guides the user through the initial setup steps required
+        to start working with MMEX and ensures that at least one account
+        is properly created before transactions can be recorded.
+    </p>
+
     <p>
         <dfn>Name of the Account</dfn>: This is a required field. The
         recommendation is to name your accounts uniquely and in relation to
-        real world accounts. Example: With CitiBank, we have a Savings
+        real-world accounts. Example: With CitiBank, we have a Savings
         account and a credit card Visa account. You could name your
         accounts as <q>CitiBank Savings</q> and <q>Citibank Visa</q>.
     </p>
     <p>
         <dfn>Type of Account</dfn>: MMEX supports several types of accounts.
     </p>
+    
     <dl>
         <dt>Checking Account</dt>
         <dd>
-            This is the most common type of account used for MMEX, and
-            can handle most common account types, such as checking
-            accounts, savings accounts, and credit card accounts. Also
-            known as Bank Account, and supports three kinds of
-            transactions. These are withdrawal, deposit and transfers.
+            This is the most common type of account used in MMEX and represents
+            standard bank accounts. It can handle most everyday account types,
+            such as checking accounts, savings accounts, and credit card accounts.
+            Also known as a Bank Account, it supports three kinds of transactions:
+            withdrawals, deposits, and transfers.
         </dd>
+    
         <dt>Term Accounts</dt>
         <dd>
-            Similar to Checking Accounts with the exception that they
-            appear in their own section on the Dashboard and can be shown
-            or hidden for normal day usage. For a better explanation see
-            the account setup example.
+            Term Accounts are similar to Checking Accounts, with the difference
+            that they appear in a separate section on the Dashboard and can be
+            shown or hidden during normal daily use.
         </dd>
         <dd>
-            These kinds of accounts cover specialized accounts such as Cash
-            Term Accounts, Bank Mortgage accounts, Loan accounts, or
-            investment accounts with regular income or expenditure that you
-            need to keep track of. These accounts have their own balance
-            section on the Dashboard. These accounts also, supports three
-            kinds of transactions.
+            These accounts are intended for specialized financial products such as
+            cash term accounts, mortgage loans, personal loans, or other accounts
+            with regular income or expenses that need to be tracked over time.
+            They have their own balance section on the Dashboard and also support
+            withdrawals, deposits, and transfers.
         </dd>
+    
         <dt>Investment Account</dt>
         <dd>
-            The other type of account that MMEX supports is an
-            Investment Account. This type of account allows you to track
-            stock/bonds/mutual funds investments and possibly other
-            investments you may own.
+            Investment Accounts allow you to track investments such as stocks,
+            bonds, mutual funds, and other financial instruments you may own.
+            This account type is designed specifically for monitoring investment
+            holdings and performance over time.
         </dd>
     </dl>
 
+ 
+
     <p>
-        To properly setup accounts, you should have balance information
+       To properly set up accounts, you should have balance information
         for the accounts you want to add to MMEX. You can get this
         information from your most recent bank, investment and credit card
         statements. To track additional information about this account,
-        optionally you can enter your account details such as Account
-        Number, Held At, Website, Contact info and Access Info. You can
+        optionally you can enter your account details such as account number,
+        institution, website, contact information, and access details. You can
         enter additional notes about the account in the notes field.
     </p>
     <p>
         Most accounts have some kind of balance in them, for example say
         in a credit card account, you have a current balance of $2,304.67,
-        you could put that value in the initial balance field. Going
-        forward you only need to add transactions beyond that date when you
-        had the balance.
+        you could put that value in the initial balance field. 
+        From that point forward, you only need to add transactions that occurred after that date.
     </p>
     <p>
         The <dfn>Account Status</dfn> can be set to Open or Closed. Closed
         accounts are just that. They are no longer active. Setting this
-        status is just a way to de-clutter your view in the
+        status is just a way to declutter your view in the
         Navigator. Permanent settings are made by changing the View
         on the Menu, <kbd><samp>Tools</samp> →
         <samp>Settings…</samp></kbd>, you can hide the closed
@@ -859,7 +926,7 @@
         correct value of your accounts.
     </p>
     <p>
-        You also can mark accounts as a <dfn>Favorite Account</dfn>. This again
+        You can also mark accounts as a <dfn>Favorite Account</dfn>. This again
         is used to change the accounts that are visible in the Navigator.
         See <a href="#navtree">Navigator Tips</a>.
     </p>
@@ -943,7 +1010,7 @@
             settings.
         </li>
         <li>
-            This views can be temporarily changed to show or hide the
+            These views can be temporarily changed to show or hide the
             appropriate section.
             To make the change permanent, change the setting using the menu:
             <kbd><samp>Tools</samp> → <samp>Settings…</samp> →
@@ -961,7 +1028,7 @@
             Using menu
             <kbd><samp>Accounts</samp> →
                 <samp>Edit Account…</samp></kbd>:
-            The list of account will be displayed where the
+           The list of accounts will be displayed where the
             required account is selected.
         </li>
         <li>
@@ -1612,48 +1679,173 @@
 
 
 
-	<!-- ====================== Section 9 ====================== -->
-	<!--               Searching for Information                -->
-	<!-- ======================================================= -->
-	<h2 id="searching_for_information">Searching for Information</h2>
-
+    <!-- ====================== Section 9 ====================== -->
+    <!--              Searching for Information                  -->
+    <!-- ======================================================= -->
+    <h2 id="searching_for_information">Searching for Information</h2>
+    
     <h3>Finding Transactions</h3>
+    
     <aside class="sticky tips">
-        The most powerful tools for finding particular transaction information
-        are the <a href="#trx_report">Transaction Reports</a>.
+        The most powerful tools for finding specific transaction data are the
+        <a href="#trx_report">Transaction Reports</a>.
     </aside>
+    
     <p>
-        The MMEX provides several utilities to help users find specific transactions.
-        The <a href="#Notes">Notes</a> field of transactions can be searched from the
-        account view. At the bottom of the transaction listing in the account view,
-        input your search query in the text box to the right of the magnifying glass.
-        Click the magnifying glass or press the <kbd><samp>Enter</samp></kbd> key to
-        search the transactions in that account. The search is case sensitive.
+        MMEX provides several tools to help users locate specific transactions
+        within the database.
     </p>
-
+    
+    <p>
+        The quickest way to search transactions is by using the
+        <strong>quick search</strong> field available in the account view.
+        This search operates primarily on the <dfn>Notes</dfn> field and other
+        visible transaction fields.
+    </p>
+    
+    <p>
+        At the bottom of the transaction list in the account view, enter your
+        search text in the field to the right of the
+        <strong>magnifying glass</strong> icon.
+        Click the magnifying glass or press the
+        <kbd><samp>Enter</samp></kbd> key to start the search.
+    </p>
+    
+    <aside class="sticky notes">
+        The quick search is <strong>case-sensitive</strong>.
+    </aside>
+    
+    <p>
+        The search is applied only to the currently displayed account and
+        processes all visible transactions.
+        When working with large datasets (thousands of transactions),
+        search operations may take a few seconds to complete.
+    </p>
+    
+    <aside class="sticky tips">
+        To improve performance, narrow the scope first by selecting a single
+        account or limiting the date range.
+    </aside>
+    
+    <p>
+        For advanced searches based on amount, date, category, payee,
+        custom fields, or complex criteria, it is recommended to use
+        <strong>Transaction Filters</strong> or
+        <strong>Transaction Reports</strong>, which provide far more detailed
+        control.
+    </p>
+    
     <h3>Finding Payees</h3>
+    
     <p>
-        In order to find particular payees, open Payee Manager using the menu item:
-        <kbd><samp>Tools</samp> → <samp>Payee Manager…</samp></kbd>.
+        To locate a specific payee, open the
+        <dfn>Payee Manager</dfn> using:
     </p>
+    
     <p>
-        In the payee management window, use the search field at the bottom to type your
-        query. The search is not case-sensitive, and as you type the payee list will be
-        filtered with any matches.
+        <kbd><samp>Tools</samp> → <samp>Payee Manager…</samp></kbd>
     </p>
+    
     <p>
-        If you do not know the exact name or spelling of a payee, you can use the
-        <kbd><kbd>?</kbd></kbd> (question mark) wildcard as a substitute for a single
-        character, or the <kbd><kbd>*</kbd></kbd> (asterisk) wildcard as a substitute
-        for one or more characters.
+        In the payee management window, use the search field at the bottom
+        of the dialog.
+        This search is <strong>not case-sensitive</strong>, and the payee list
+        is filtered dynamically as you type.
     </p>
-    <h4>Examples:</h4>
+    
+    <p>
+        If you do not know the exact name or spelling of a payee, you can use
+        <strong>wildcards</strong>:
+    </p>
+    
     <ul>
-        <li>Searching <kbd>Cit?</kbd> will find <samp>Citi</samp> but not
-            <samp>Citizens</samp></li>
-        <li>Searching <kbd>Mar*</kbd> will find both <samp>Mary</samp> and
-            <samp>Margaret</samp></li>
+        <li>
+            <kbd><kbd>?</kbd></kbd> (question mark) to substitute
+            <strong>a single character</strong>
+        </li>
+        <li>
+            <kbd><kbd>*</kbd></kbd> (asterisk) to substitute
+            <strong>one or more characters</strong>
+        </li>
     </ul>
+    
+    <h4>Examples</h4>
+    
+    <ul>
+        <li>
+            Searching for <kbd>Cit?</kbd> will match <samp>Citi</samp> but not
+            <samp>Citizens</samp>
+        </li>
+        <li>
+            Searching for <kbd>Mar*</kbd> will match both <samp>Mary</samp>
+            and <samp>Margaret</samp>
+        </li>
+    </ul>
+    
+    <p>
+        For more details about managing payees, see the
+        <a href="#payee">Payee Manager</a> section.
+    </p>
+    
+    <h3>Important Notes About Search Behavior</h3>
+    
+    <aside class="sticky notes">
+        Search behavior may vary depending on the context
+        (Account View, Transaction Filters, Category Manager, Reports).
+    </aside>
+    
+    <p>
+        Some fields, such as <strong>Categories</strong> and
+        <strong>Subcategories</strong>, follow different search and selection
+        rules depending on where they are used.
+    </p>
+    
+    <p>
+        For example:
+    </p>
+    
+    <ul>
+        <li>
+            In the <strong>Category Manager</strong>, searches can match
+            both categories and subcategories.
+        </li>
+        <li>
+            In the <strong>New/Edit Transaction</strong> dialog, category
+            selection uses hierarchical auto-completion based on the
+            <kbd>:</kbd> separator.
+        </li>
+    </ul>
+    
+    <aside class="sticky tips">
+        When selecting categories, you can type:
+        <kbd>B : T : H</kbd> to quickly select
+        <samp>Bills:Telephone:Home</samp> (example).
+    </aside>
+    
+    <p>
+        Searching within <strong>Custom Fields</strong> also has some limitations:
+    </p>
+    
+    <ul>
+        <li>
+            Filtering by exact field value is supported.
+        </li>
+        <li>
+            Filtering simply by the presence or absence of a custom field
+            is not always available.
+        </li>
+        <li>
+            For advanced analysis, sorting transactions by column and
+            reviewing results manually may be required.
+        </li>
+    </ul>
+    
+    <aside class="sticky notes">
+        MMEX is under active development, and search behavior and performance
+        may evolve between releases.
+    </aside>
+
+
 
 	<!-- ====================== Section 10 ====================== -->
 	<!--                  Working with Payees                   -->
