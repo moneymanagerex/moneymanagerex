@@ -97,6 +97,8 @@ void mmTransDialog::SetEventHandlers()
 // Used to determine if we need to refresh the tag text ctrl after
 // accelerator hints are shown which only occurs once.
 static bool altRefreshDone;
+// store used date between two invocations for save & new
+static wxDateTime previousDate;
 
 mmTransDialog::mmTransDialog(wxWindow* parent,
     int64 account_id,
@@ -206,11 +208,17 @@ void mmTransDialog::dataToControls()
 
     if (!skip_date_init_) //Date
     {
-        bool is_time_used = Option::instance().UseTransDateTime();
         wxDateTime trx_date;
-        const wxString mask = is_time_used ? "%Y-%m-%dT%H:%M:%S" : "%Y-%m-%d";
-        if (!trx_date.ParseFormat(m_fused_data.TRANSDATE, mask))
-            trx_date.ParseDate(m_fused_data.TRANSDATE);
+        if (previousDate.IsValid()) {
+            trx_date = previousDate;
+        }
+        else {
+            bool is_time_used = Option::instance().UseTransDateTime();
+            const wxString mask = is_time_used ? "%Y-%m-%dT%H:%M:%S" : "%Y-%m-%d";
+            if (!trx_date.ParseFormat(m_fused_data.TRANSDATE, mask)) {
+                trx_date.ParseDate(m_fused_data.TRANSDATE);
+            }
+        }
         dpc_->SetValue(trx_date);
         dpc_->SetFocus();
         skip_date_init_ = true;
@@ -632,7 +640,7 @@ void mmTransDialog::CreateControls()
     }
 
     buttons_sizer->Add(new wxButton(buttons_panel, wxID_OK, _t("&Save")), wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
-    if (m_mode == MODE_NEW) {
+    if (m_mode == MODE_NEW || m_mode == MODE_DUP) {
         buttons_sizer->Add(new wxButton(buttons_panel, ID_BTN_OK_NEW, _t("Save and &New")), wxSizerFlags(g_flagsH).Border(wxBOTTOM | wxRIGHT, 10));
     }
     m_button_cancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
@@ -1293,9 +1301,16 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
 
     const Model_Checking::Data& tran(*r);
     Model_Checking::Full_Data trx(tran);
-    wxLogDebug("%s", trx.to_json());
+    //wxLogDebug("%s", trx.to_json());
 
-    EndModal(m_mode == MODE_NEW && (event.GetId() == ID_BTN_OK_NEW || wxGetKeyState(WXK_SHIFT)) ? wxID_NEW : wxID_OK);
+    if (event.GetId() == ID_BTN_OK_NEW) {
+        previousDate = dpc_->GetValue();  // store date for next invocation
+    }
+    else {
+        previousDate = wxDateTime();
+    }
+
+    EndModal((m_mode == MODE_NEW || m_mode == MODE_DUP) && (event.GetId() == ID_BTN_OK_NEW || wxGetKeyState(WXK_SHIFT)) ? wxID_NEW : wxID_OK);
 }
 
 void mmTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
@@ -1314,6 +1329,7 @@ void mmTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
         mmAttachmentManage::DeleteAllAttachments(RefType, -1);
         Model_CustomFieldData::instance().DeleteAllData(RefType, -1);
     }
+    previousDate = wxDateTime(); // invalidate!
     EndModal(wxID_CANCEL);
 }
 
