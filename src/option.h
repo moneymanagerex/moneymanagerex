@@ -243,6 +243,11 @@ public:
     void setIgnoreFutureTransactions(const bool value);
     bool getIgnoreFutureTransactions() const noexcept;
 
+    // m_ignore_future_transactions_homepage
+    void loadIgnoreFutureTransactionsHomePage();
+    void setIgnoreFutureTransactionsHomePage(const bool value);
+    bool getIgnoreFutureTransactionsHomePage() const noexcept;
+
     // m_doNotColorFuture
     void loadDoNotColorFuture();
     void setDoNotColorFuture(const bool value);
@@ -305,6 +310,7 @@ private:
     bool m_budget_override = false;                     // BUDGET_OVERRIDE
     bool m_budget_deduct_monthly = false;               // BUDGET_DEDUCT_MONTH_FROM_YEAR
     bool m_ignore_future_transactions = false;          // IGNORE_FUTURE_TRANSACTIONS
+    bool m_ignore_future_transactions_home = false;     // IGNORE_FUTURE_TRANSACTIONS_HOMEPAGE
     bool m_do_not_color_future = true;                  // DO_NOT_COLOR_FUTURE_TRANSACTIONS
     bool m_do_special_color_reconciled = true;          // SPECIAL_COLOR_RECONCILED_TRANSACTIONS
     bool m_store_account_specific_filter = false;       // USE_PER_ACCOUNT_FILTER
@@ -522,6 +528,11 @@ inline bool Option::doSendUsageStats() const noexcept
 inline bool Option::getIgnoreFutureTransactions() const noexcept
 {
     return m_ignore_future_transactions;
+}
+
+inline bool Option::getIgnoreFutureTransactionsHomePage() const noexcept
+{
+    return m_ignore_future_transactions_home;
 }
 
 inline bool Option::getDoNotColorFuture() const noexcept
