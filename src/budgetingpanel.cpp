@@ -751,7 +751,7 @@ void budgetingListCtrl::OnMouseMove(wxMouseEvent& event)
         if (icon == -1)
             tooltip = _("No budget defined");
         else if (icon == 1)
-            tooltip = _("Critical: budget exceeded – stop spending");
+            tooltip = _("Critical: budget exceeded! Stop spending");
         else if (icon == 0)
             tooltip = _("Within budget limits");
         else if (icon == 2)
