@@ -57,6 +57,8 @@ class wxCheckBox;
 #define ID_FIRST_ROW 10108
 #define ID_LAST_ROW 10109
 #define ID_UD_DECIMAL 10110
+#define wxID_CHECKBOX_CLICK 10111
+#define wxID_DATES_CHECKBOX_CLICK 10112
 ////@end control identifiers
 
 /*!
