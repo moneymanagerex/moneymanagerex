@@ -260,6 +260,8 @@ Lajos Pásztor
 Samantha Priyadarshana
 Timur Yilmaz
 Jay Saka
+Andreas Löwenhagen
+John David Bowman
 
 ### 2024
 Renato

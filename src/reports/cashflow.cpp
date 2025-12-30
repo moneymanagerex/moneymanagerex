@@ -73,7 +73,8 @@ void mmReportCashFlow::getTransactions()
     m_account_id.clear();
     m_forecastVector.clear();
 
-    wxString todayString = m_today.FormatISOCombined();
+    wxDateTime endOfToday = mmDateRange::getDayEnd(m_today);
+    wxString todayString = endOfToday.FormatISOCombined();
     wxDateTime endDate = mmDateRange::getDayEnd(m_today.Add(wxDateSpan::Months(getForwardMonths())));
 
     // Get initial Balance as of today
@@ -101,7 +102,7 @@ void mmReportCashFlow::getTransactions()
 
     // Now gather all transations posted after today
     Model_Checking::Data_Set transactions = Model_Checking::instance().find(
-        Model_Checking::TRANSDATE(m_today, GREATER),
+        Model_Checking::TRANSDATE(endOfToday, GREATER),
         Model_Checking::TRANSDATE(endDate, LESS),
         Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
     );
