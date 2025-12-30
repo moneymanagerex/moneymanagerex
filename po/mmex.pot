@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-12-28 23:51+0000\n"
+"POT-Creation-Date: 2025-12-30 22:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -431,8 +431,8 @@ msgstr ""
 #: import_export/ofx_import_gui.cpp:1844 import_export/qif_export.cpp:626
 #: import_export/qif_import_gui.cpp:91 import_export/univcsvdialog.cpp:103
 #: maincurrencydialog.cpp:254 maincurrencydialog.cpp:271 mmchecking_list.cpp:98
-#: model/Model_CustomField.cpp:30 reports/cashflow.cpp:275
-#: reports/cashflow.cpp:404 reports/incexpenses.cpp:244 reports/summary.cpp:295
+#: model/Model_CustomField.cpp:30 reports/cashflow.cpp:276
+#: reports/cashflow.cpp:405 reports/incexpenses.cpp:244 reports/summary.cpp:295
 #: reports/transactions.cpp:208 stockdialog.cpp:296 stockdialog.cpp:623
 #: stockspanel.cpp:265 transactionsupdatedialog.cpp:132 transdialog.cpp:453
 #: uicontrols/reconciledialog.cpp:108 usertransactionpanel.cpp:105
@@ -710,7 +710,7 @@ msgstr ""
 #: filtertransdialog.cpp:1816 import_export/qif_export.cpp:629
 #: import_export/qif_import_gui.cpp:90 import_export/qif_import_gui.cpp:162
 #: import_export/qif_import_gui.cpp:282 import_export/univcsvdialog.cpp:106
-#: mmchecking_list.cpp:101 reports/cashflow.cpp:405
+#: mmchecking_list.cpp:101 reports/cashflow.cpp:406
 #: reports/transactions.cpp:214 transdialog.cpp:262 transdialog.cpp:266
 #: transdialog.cpp:517 transdialog.cpp:687 usertransactionpanel.cpp:109
 #: webapp.cpp:563 webappdialog.cpp:139
@@ -1052,7 +1052,7 @@ msgstr ""
 #: import_export/ofx_import_gui.cpp:1845 import_export/qif_export.cpp:632
 #: import_export/univcsvdialog.cpp:108 maincurrencydialog.cpp:625
 #: mmchecking_list.cpp:933 mmhomepage.cpp:346 mmhomepage.cpp:420
-#: reports/cashflow.cpp:408 reports/categexp.cpp:218
+#: reports/cashflow.cpp:409 reports/categexp.cpp:218
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:226
 #: splittransactionsdialog.cpp:89 splittransactionsdialog.cpp:221
 #: transactionsupdatedialog.cpp:186 transdialog.cpp:504
@@ -1085,7 +1085,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:93 import_export/qif_import_gui.cpp:295
 #: import_export/univcsvdialog.cpp:107 import_export/univcsvdialog.cpp:510
 #: mmchecking_list.cpp:102 model/Model.cpp:28 payeedialog.cpp:85
-#: payeedialog.cpp:209 payeedialog.cpp:245 reports/cashflow.cpp:406
+#: payeedialog.cpp:209 payeedialog.cpp:245 reports/cashflow.cpp:407
 #: reports/payee.cpp:136 reports/transactions.cpp:216
 #: transactionsupdatedialog.cpp:199 transdialog.cpp:263 transdialog.cpp:540
 #: uicontrols/reconciledialog.cpp:110 usertransactionpanel.cpp:182
@@ -1102,7 +1102,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:306 import_export/univcsvdialog.cpp:110
 #: import_export/univcsvdialog.cpp:521 mmchecking_list.cpp:104
 #: mmhomepage.cpp:185 payeedialog.cpp:204 reports/budgetcategorysummary.cpp:191
-#: reports/budgetingperf.cpp:131 reports/cashflow.cpp:407
+#: reports/budgetingperf.cpp:131 reports/cashflow.cpp:408
 #: reports/categexp.cpp:217 reports/categexp.cpp:456
 #: reports/transactions.cpp:220 splittransactionsdialog.cpp:82
 #: splittransactionsdialog.cpp:219 transactionsupdatedialog.cpp:223
@@ -3898,7 +3898,7 @@ msgid "Don't Care"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:118 mmchecking_list.cpp:108
-#: mmhomepage.cpp:538 mmhomepage.cpp:715 reports/cashflow.cpp:409
+#: mmhomepage.cpp:538 mmhomepage.cpp:715 reports/cashflow.cpp:410
 #: reports/summary.cpp:270 reports/summary.cpp:306
 msgid "Balance"
 msgstr ""
@@ -6309,7 +6309,7 @@ msgid "Cash Balance"
 msgstr ""
 
 #: mmhomepage.cpp:91 mmhomepage.cpp:585 reports/budgetingperf.cpp:142
-#: reports/cashflow.cpp:276 reports/categexp.cpp:219 reports/categexp.cpp:497
+#: reports/cashflow.cpp:277 reports/categexp.cpp:219 reports/categexp.cpp:497
 #: reports/summary.cpp:303 stockspanel.cpp:271
 msgid "Total"
 msgstr ""
@@ -7913,32 +7913,32 @@ msgstr ""
 msgid "Please, follow these instructions before submitting a new bug report:"
 msgstr ""
 
-#: reports/cashflow.cpp:245 reports/cashflow.cpp:374
+#: reports/cashflow.cpp:246 reports/cashflow.cpp:375
 #, c-format
 msgid "%1$s (%2$i month)"
 msgid_plural "%1$s (%2$i months)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: reports/cashflow.cpp:277 reports/categexp.cpp:424
+#: reports/cashflow.cpp:278 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
 #: reports/payee.cpp:139
 msgid "Difference"
 msgstr ""
 
-#: reports/cashflow.cpp:278 reports/cashflow.cpp:410
+#: reports/cashflow.cpp:279 reports/cashflow.cpp:411
 msgid "Cumulative Difference"
 msgstr ""
 
-#: reports/cashflow.cpp:333
+#: reports/cashflow.cpp:334
 msgid "Cash Flow - Daily"
 msgstr ""
 
-#: reports/cashflow.cpp:347
+#: reports/cashflow.cpp:348
 msgid "Cash Flow - Monthly"
 msgstr ""
 
-#: reports/cashflow.cpp:361
+#: reports/cashflow.cpp:362
 msgid "Cash Flow - Transactions"
 msgstr ""
 
