@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-12-17 15:21+0000\n"
-"PO-Revision-Date: 2025-12-19 01:04\n"
+"POT-Creation-Date: 2025-12-20 14:04+0000\n"
+"PO-Revision-Date: 2025-12-26 01:04\n"
 "Last-Translator: \n"
 "Language-Team: Bulgarian\n"
 "Language: bg_BG\n"
@@ -56,7 +56,7 @@ msgstr "Разреши, за да ни помогнеш с изпращанет�
 #: customfieldeditdialog.cpp:199 filtertransdialog.cpp:828
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:408
 #: mmSimpleDialogs.cpp:1096 optiondialog.cpp:164 payeedialog.cpp:161
-#: sharetransactiondialog.cpp:359 splittransactionsdialog.cpp:105
+#: sharetransactiondialog.cpp:360 splittransactionsdialog.cpp:105
 #: splittransactionsdialog.cpp:284 tagdialog.cpp:146
 #: transactionsupdatedialog.cpp:281 wizard_update.cpp:215
 msgid "&OK "
@@ -135,7 +135,7 @@ msgstr "Изберете дали този акаунт се ползва чес
 #: import_export/qif_export.cpp:635 import_export/qif_import_gui.cpp:98
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:110
 #: payeedialog.cpp:117 payeedialog.cpp:560 reports/transactions.cpp:230
-#: sharetransactiondialog.cpp:305 splittransactionsdialog.cpp:96
+#: sharetransactiondialog.cpp:306 splittransactionsdialog.cpp:96
 #: splittransactionsdialog.cpp:354 stockdialog.cpp:263 stocks_list.cpp:80
 #: transactionsupdatedialog.cpp:256 transdialog.cpp:604
 #: usertransactionpanel.cpp:212 webappdialog.cpp:145
@@ -432,7 +432,7 @@ msgstr "Въведи името на актива"
 #: maincurrencydialog.cpp:254 maincurrencydialog.cpp:271 mmchecking_list.cpp:98
 #: model/Model_CustomField.cpp:30 reports/cashflow.cpp:275
 #: reports/cashflow.cpp:404 reports/incexpenses.cpp:244 reports/summary.cpp:295
-#: reports/transactions.cpp:208 stockdialog.cpp:296 stockdialog.cpp:624
+#: reports/transactions.cpp:208 stockdialog.cpp:296 stockdialog.cpp:623
 #: stockspanel.cpp:265 transactionsupdatedialog.cpp:132 transdialog.cpp:445
 #: uicontrols/reconciledialog.cpp:108 usertransactionpanel.cpp:105
 #: webapp.cpp:564 webappdialog.cpp:138 wizard_update.cpp:138
@@ -504,11 +504,11 @@ msgstr "Въведете бележки свързани с този актив"
 msgid "New Transaction Details"
 msgstr "Детайли за транзакция"
 
-#: assetdialog.cpp:287 sharetransactiondialog.cpp:330
+#: assetdialog.cpp:287 sharetransactiondialog.cpp:331
 msgid "Edit Transaction Details"
 msgstr "Промяна на детайли по транзакция"
 
-#: assetdialog.cpp:322 constants.cpp:75 sharetransactiondialog.cpp:360
+#: assetdialog.cpp:322 constants.cpp:75 sharetransactiondialog.cpp:361
 #: uicontrols/reconciledialog.cpp:208
 msgid "&Cancel "
 msgstr "&Отказ"
@@ -2510,7 +2510,7 @@ msgid "Transfer"
 msgstr "Трансфер"
 
 #: db/DB_Table_Category_V1.h:170 model/Model_Account.cpp:33
-#: sharetransactiondialog.cpp:492 sharetransactiondialog.cpp:496
+#: sharetransactiondialog.cpp:493 sharetransactiondialog.cpp:497
 msgid "Investment"
 msgstr "Инвестиция"
 
@@ -3963,7 +3963,7 @@ msgid "Preview"
 msgstr "Преглед"
 
 #: import_export/univcsvdialog.cpp:566 import_export/univcsvdialog.cpp:2224
-#: stockdialog.cpp:534
+#: stockdialog.cpp:533
 msgid "Choose CSV data file to import"
 msgstr "Избери CSV файл за импорт"
 
@@ -4094,7 +4094,7 @@ msgstr "Ред %ld: ОК, внесен."
 msgid "Rejected rows:"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1496 stockdialog.cpp:620
+#: import_export/univcsvdialog.cpp:1496 stockdialog.cpp:619
 #, c-format
 msgid "Total lines: %ld"
 msgstr ""
@@ -4124,7 +4124,7 @@ msgstr "Грешки: %ld"
 msgid "Log file written to: %s"
 msgstr "Файл-дневник в: %s"
 
-#: import_export/univcsvdialog.cpp:1510 stockdialog.cpp:628
+#: import_export/univcsvdialog.cpp:1510 stockdialog.cpp:627
 msgid "Please confirm saving"
 msgstr "Моля потвърдете записването"
 
@@ -4245,7 +4245,7 @@ msgid "Historical Currency Options"
 msgstr ""
 
 #: maincurrencydialog.cpp:259 stockdialog.cpp:303 stockdialog.cpp:322
-#: stockdialog.cpp:624 stockspanel.cpp:269
+#: stockdialog.cpp:623 stockspanel.cpp:269
 msgid "Price"
 msgstr ""
 
@@ -8017,7 +8017,7 @@ msgstr ""
 msgid "Current Year"
 msgstr "Текуща година"
 
-#: reports/mmDateRange.cpp:172 stockdialog.cpp:669
+#: reports/mmDateRange.cpp:172 stockdialog.cpp:668
 msgid "Current Year to Date"
 msgstr "Текуща година към дата"
 
@@ -8167,83 +8167,83 @@ msgstr ""
 msgid "Average"
 msgstr ""
 
-#: sharetransactiondialog.cpp:63
+#: sharetransactiondialog.cpp:64
 msgid "Add Share Transaction"
 msgstr ""
 
-#: sharetransactiondialog.cpp:70 sharetransactiondialog.h:43
+#: sharetransactiondialog.cpp:71 sharetransactiondialog.h:43
 msgid "Edit Share Transaction"
 msgstr ""
 
-#: sharetransactiondialog.cpp:221 stockdialog.cpp:184
+#: sharetransactiondialog.cpp:222 stockdialog.cpp:184
 msgid "Stock Investment Details"
 msgstr "Детайли за акционни инвестиции"
 
-#: sharetransactiondialog.cpp:231 stockdialog.cpp:195 stocks_list.cpp:69
+#: sharetransactiondialog.cpp:232 stockdialog.cpp:195 stocks_list.cpp:69
 msgid "Company Name"
 msgstr ""
 
-#: sharetransactiondialog.cpp:235 stockdialog.cpp:198
+#: sharetransactiondialog.cpp:236 stockdialog.cpp:198
 msgid "Enter the stock company name"
 msgstr "Въведете името на акционната компания"
 
-#: sharetransactiondialog.cpp:238 stockdialog.cpp:201
+#: sharetransactiondialog.cpp:239 stockdialog.cpp:201
 msgid "Stock Symbol"
 msgstr ""
 
-#: sharetransactiondialog.cpp:245 stockdialog.cpp:208
+#: sharetransactiondialog.cpp:246 stockdialog.cpp:208
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
 msgstr "Въведете символана акците. (По желание) Включително и обмен, например: IBM.BE"
 
-#: sharetransactiondialog.cpp:248
+#: sharetransactiondialog.cpp:249
 msgid "Share Lot"
 msgstr ""
 
-#: sharetransactiondialog.cpp:255
+#: sharetransactiondialog.cpp:256
 msgid "Enter the LOT that this parcel os shares belong to"
 msgstr ""
 
-#: sharetransactiondialog.cpp:258
+#: sharetransactiondialog.cpp:259
 msgid "Share Number"
 msgstr ""
 
-#: sharetransactiondialog.cpp:265
+#: sharetransactiondialog.cpp:266
 msgid "Enter number of shares held"
 msgstr "Въведи броя дялове, които притежаваш"
 
-#: sharetransactiondialog.cpp:271
+#: sharetransactiondialog.cpp:272
 msgid "Share Price"
 msgstr ""
 
-#: sharetransactiondialog.cpp:279
+#: sharetransactiondialog.cpp:280
 msgid "Enter the current value for a single share unit"
 msgstr ""
 
-#: sharetransactiondialog.cpp:285 stockdialog.cpp:241
+#: sharetransactiondialog.cpp:286 stockdialog.cpp:241
 msgid "Deductible Comm."
 msgstr ""
 
-#: sharetransactiondialog.cpp:295
+#: sharetransactiondialog.cpp:296
 msgid "Enter any commission paid"
 msgstr "Въведи каква комисионна се изплаща"
 
-#: sharetransactiondialog.cpp:299 sharetransactiondialog.cpp:522
+#: sharetransactiondialog.cpp:300 sharetransactiondialog.cpp:523
 msgid "Use Deductible Comm. split Categories"
 msgstr ""
 
-#: sharetransactiondialog.cpp:309 stockdialog.cpp:267
+#: sharetransactiondialog.cpp:310 stockdialog.cpp:267
 msgid "Manage stock attachments"
 msgstr ""
 
-#: sharetransactiondialog.cpp:314 stockdialog.cpp:269
+#: sharetransactiondialog.cpp:315 stockdialog.cpp:269
 msgid "Display the web page for the specified Stock symbol"
 msgstr ""
 
-#: sharetransactiondialog.cpp:324 stockdialog.cpp:276
+#: sharetransactiondialog.cpp:325 stockdialog.cpp:276
 msgid "Enter notes associated with this investment"
 msgstr "Въведи бележки свързани с тази инвестиция"
 
-#: sharetransactiondialog.cpp:330
+#: sharetransactiondialog.cpp:331
 msgid "Add Transaction Details"
 msgstr ""
 
@@ -8355,84 +8355,84 @@ msgstr ""
 msgid "Held At"
 msgstr "Държи се в"
 
-#: stockdialog.cpp:547
+#: stockdialog.cpp:546
 msgid "Stock History CSV Import"
 msgstr ""
 
-#: stockdialog.cpp:548 stockdialog.cpp:564
+#: stockdialog.cpp:547 stockdialog.cpp:563
 msgid "Quotes imported from CSV: "
 msgstr ""
 
-#: stockdialog.cpp:622
+#: stockdialog.cpp:621
 #, c-format
 msgid "Total imported: %ld"
 msgstr ""
 
-#: stockdialog.cpp:630
+#: stockdialog.cpp:629
 msgid "Importing CSV"
 msgstr "Импортиране на CSV"
 
-#: stockdialog.cpp:661 stockdialog.cpp:691
+#: stockdialog.cpp:660 stockdialog.cpp:690
 msgid "5 Days"
 msgstr ""
 
-#: stockdialog.cpp:662 stockdialog.cpp:693
+#: stockdialog.cpp:661 stockdialog.cpp:692
 msgid "1 Month"
 msgstr ""
 
-#: stockdialog.cpp:663 stockdialog.cpp:694
+#: stockdialog.cpp:662 stockdialog.cpp:693
 msgid "3 Months"
 msgstr ""
 
-#: stockdialog.cpp:664
+#: stockdialog.cpp:663
 msgid "6 Months"
 msgstr ""
 
-#: stockdialog.cpp:665
+#: stockdialog.cpp:664
 msgid "1 Year"
 msgstr ""
 
-#: stockdialog.cpp:666
+#: stockdialog.cpp:665
 msgid "2 Years"
 msgstr ""
 
-#: stockdialog.cpp:667
+#: stockdialog.cpp:666
 msgid "5 Years"
 msgstr ""
 
-#: stockdialog.cpp:668
+#: stockdialog.cpp:667
 msgid "10 Years"
 msgstr ""
 
-#: stockdialog.cpp:670
+#: stockdialog.cpp:669
 msgid "Max"
 msgstr ""
 
-#: stockdialog.cpp:676
+#: stockdialog.cpp:675
 msgid "Specify type frequency of stock history"
 msgstr ""
 
-#: stockdialog.cpp:677 stockdialog.cpp:701
+#: stockdialog.cpp:676 stockdialog.cpp:700
 msgid "Stock History Update"
 msgstr ""
 
-#: stockdialog.cpp:690
+#: stockdialog.cpp:689
 msgid "1 Day"
 msgstr ""
 
-#: stockdialog.cpp:692
+#: stockdialog.cpp:691
 msgid "1 Week"
 msgstr ""
 
-#: stockdialog.cpp:700
+#: stockdialog.cpp:699
 msgid "Specify interval of stock history"
 msgstr ""
 
-#: stockdialog.cpp:715 stockdialog.cpp:719
+#: stockdialog.cpp:714 stockdialog.cpp:718
 msgid "Stock history not found."
 msgstr ""
 
-#: stockdialog.cpp:716 stockdialog.cpp:828
+#: stockdialog.cpp:715 stockdialog.cpp:827
 msgid "Stock History Error"
 msgstr ""
 
