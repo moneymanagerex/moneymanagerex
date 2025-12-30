@@ -3242,7 +3242,7 @@ void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))
     createHomePage();
 }
 
-void mmGUIFrame::OnThemeManager(wxCommandEvent& event)
+void mmGUIFrame::OnThemeManager(wxCommandEvent& WXUNUSED(event))
 {
     mmThemesDialog tdlg(this);
     tdlg.ShowModal();
