@@ -728,40 +728,31 @@ void mmBudgetingPanel::OnListItemActivated(int selectedIndex)
 
 void budgetingListCtrl::OnMouseMove(wxMouseEvent& event)
 {
-    long item = -1;
+    long row = -1;
+    long column = -1;
     int flags = 0;
 
-    item = HitTest(event.GetPosition(), flags);
+    row = HitTest(event.GetPosition(), flags, &column);
 
-    if (item >= 0)
+    if (LIST_ID_ICON == column && row >= 0)
     {
-        wxRect iconRect;
-        GetSubItemRect(item, LIST_ID_ICON, iconRect);
-
-        if (!iconRect.Contains(event.GetPosition()))
-        {
-            SetToolTip(wxEmptyString);
-            event.Skip();
-            return;
-        }
-
         wxString tooltip;
-        int icon = cp_->GetItemImage(item);
+        int icon = cp_->GetItemImage(row);
 
-        if (icon == -1)
+        if (-1 == icon)
             tooltip = _("No budget defined");
-        else if (icon == 1)
+        else if (mmBudgetingPanel::ICON_VOID == icon)
             tooltip = _("Critical: budget exceeded! Stop spending");
-        else if (icon == 0)
+        else if (mmBudgetingPanel::ICON_RECONCILLED == icon)
             tooltip = _("Within budget limits");
-        else if (icon == 2)
+        else if (mmBudgetingPanel::ICON_FOLLOWUP == icon)
             tooltip = _("Alert: budget close to or over limit");
 
-        SetToolTip(tooltip);
+        mmToolTip(this, tooltip);
     }
     else
     {
-        SetToolTip(wxEmptyString);
+        UnsetToolTip();
     }
 
     event.Skip();

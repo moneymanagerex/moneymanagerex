@@ -109,7 +109,6 @@ public:
 
     wxString BuildPage() const { return m_lc->BuildPage(GetPanelTitle()); }
 
-private:
     enum EIcons
     {
         ICON_RECONCILLED,
@@ -117,6 +116,7 @@ private:
         ICON_FOLLOWUP
     };
 
+private:
     std::vector<std::pair<int64, int64> > budget_;
     std::map<int64, std::pair<int, bool > > displayDetails_; //map categid to level of the category, whether category is visible, and whether any subtree is visible 
     std::map<int64, std::pair<double, double> > budgetTotals_;
