@@ -99,21 +99,21 @@ wxBEGIN_EVENT_TABLE(billsDepositsListCtrl, mmListCtrl)
 wxEND_EVENT_TABLE()
 
 const std::vector<ListColumnInfo> billsDepositsListCtrl::LIST_INFO = {
-    { LIST_ID_ICON,         true, _n("Icon"),        25,  _FL, false },
+    { LIST_ID_ICON,         true, _n("Icon"),        25,  _FC, false },
     { LIST_ID_ID,           true, _n("ID"),          _WA, _FR, true },
     { LIST_ID_PAYMENT_DATE, true, _n("Date Paid"),   _WH, _FL, true },
     { LIST_ID_DUE_DATE,     true, _n("Date Due"),    _WH, _FL, true },
     { LIST_ID_ACCOUNT,      true, _n("Account"),     _WH, _FL, true },
     { LIST_ID_PAYEE,        true, _n("Payee"),       _WH, _FL, true },
-    { LIST_ID_STATUS,       true, _n("Status"),      _WH, _FL, true },
+    { LIST_ID_STATUS,       true, _n("Status"),      _WH, _FC, true },
     { LIST_ID_CATEGORY,     true, _n("Category"),    _WH, _FL, true },
     { LIST_ID_TAGS,         true, _n("Tags"),        200, _FL, true },
-    { LIST_ID_TYPE,         true, _n("Type"),        _WH, _FL, true },
-    { LIST_ID_AMOUNT,       true, _n("Amount"),      _WH, _FR, true },
+    { LIST_ID_WITHDRAWAL,   true, _n("Withdrawal"),  _WH, _FR, true },
+    { LIST_ID_DEPOSIT,      true, _n("Deposit"),     _WH, _FR, true },
     { LIST_ID_FREQUENCY,    true, _n("Frequency"),   _WH, _FL, true },
     { LIST_ID_REPEATS,      true, _n("Repetitions"), _WH, _FR, true },
     { LIST_ID_AUTO,         true, _n("Autorepeat"),  _WH, _FL, true },
-    { LIST_ID_DAYS,         true, _n("Payment"),     _WH, _FL, true },
+    { LIST_ID_REMAINING,    true, _n("Remaining"),   _WH, _FL, true },
     { LIST_ID_NUMBER,       true, _n("Number"),      _WH, _FL, true },
     { LIST_ID_NOTES,        true, _n("Notes"),       150, _FL, true },
 };
@@ -463,10 +463,50 @@ wxString mmBillsDepositsPanel::getItem(long item, int col_id)
         return bill.CATEGNAME;
     case billsDepositsListCtrl::LIST_ID_TAGS:
         return bill.TAGNAMES;
-    case billsDepositsListCtrl::LIST_ID_TYPE:
-        return wxGetTranslation(bill.TRANSCODE);
-    case billsDepositsListCtrl::LIST_ID_AMOUNT:
-        return Model_Account::toCurrency(bill.TRANSAMOUNT, Model_Account::instance().get(bill.ACCOUNTID));
+    case billsDepositsListCtrl::LIST_ID_WITHDRAWAL:
+        {
+            wxString value = wxEmptyString;
+            int64 accountid;
+            double transamount;
+            if (Model_Checking::type_id(bill.TRANSCODE) == Model_Checking::TYPE_ID_WITHDRAWAL) {
+                accountid = bill.ACCOUNTID; transamount = bill.TRANSAMOUNT;
+            }
+            else if (Model_Checking::type_id(bill.TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER) {
+                accountid = bill.ACCOUNTID; transamount = bill.TRANSAMOUNT;
+            }
+            else
+                return value;
+            Model_Account::Data* account = Model_Account::instance().get(accountid);
+            Model_Currency::Data* currency = account ?
+                Model_Currency::instance().get(account->CURRENCYID) : nullptr;
+            if (currency)
+                value = Model_Currency::toCurrency(transamount, currency);
+            if (!value.IsEmpty() && Model_Checking::status_id(bill.STATUS) == Model_Checking::STATUS_ID_VOID)
+                value = "* " + value;
+            return value;
+        }
+    case billsDepositsListCtrl::LIST_ID_DEPOSIT:
+        {
+            wxString value = wxEmptyString;
+            int64 accountid;
+            double transamount;
+            if (Model_Checking::type_id(bill.TRANSCODE) == Model_Checking::TYPE_ID_DEPOSIT) {
+                accountid = bill.ACCOUNTID; transamount = bill.TRANSAMOUNT;
+            }
+            else if (Model_Checking::type_id(bill.TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER) {
+                accountid = bill.TOACCOUNTID; transamount = bill.TOTRANSAMOUNT;
+            }
+            else
+                return value;
+            Model_Account::Data* account = Model_Account::instance().get(accountid);
+            Model_Currency::Data* currency = account ?
+                Model_Currency::instance().get(account->CURRENCYID) : nullptr;
+            if (currency)
+                value = Model_Currency::toCurrency(transamount, currency);
+            if (!value.IsEmpty() && Model_Checking::status_id(bill.STATUS) == Model_Checking::STATUS_ID_VOID)
+                value = "* " + value;
+            return value;
+        }
     case billsDepositsListCtrl::LIST_ID_FREQUENCY:
         return GetFrequency(&bill);
     case billsDepositsListCtrl::LIST_ID_REPEATS: {
@@ -486,7 +526,7 @@ wxString mmBillsDepositsPanel::getItem(long item, int col_id)
             _t("Manual");
         return repeatSTR;
     }
-    case billsDepositsListCtrl::LIST_ID_DAYS:
+    case billsDepositsListCtrl::LIST_ID_REMAINING:
         return GetRemainingDays(&bill);
     case billsDepositsListCtrl::LIST_ID_NUMBER:
         return bill.TRANSACTIONNUMBER;
@@ -545,10 +585,12 @@ const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits:
     int daysOverdue = Model_Billsdeposits::NEXTOCCURRENCEDATE(item)
         .Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
 
+    // add a warning marker (*) in front, such that it is visible
+    // to the user even when the Remaining column is too narrow.
     wxString text =
-        (daysOverdue < 0) ? wxString::Format(wxPLURAL("%d day overdue!", "%d days overdue!", -daysOverdue), -daysOverdue) :
-        (daysRemaining < 0) ? wxString::Format(wxPLURAL("%d day delay!", "%d days delay!", -daysRemaining), -daysRemaining) :
-        wxString::Format(wxPLURAL("%d day remaining", "%d days remaining", daysRemaining), daysRemaining);
+        (daysOverdue < 0) ? "*" + wxString::Format(wxPLURAL("%d day overdue", "%d days overdue", -daysOverdue), -daysOverdue) :
+        (daysRemaining < 0) ? "*" + wxString::Format(wxPLURAL("%d day delay", "%d days delay", -daysRemaining), -daysRemaining) :
+        wxString::Format(wxPLURAL("%d day", "%d days", daysRemaining), daysRemaining);
 
     return text;
 }
@@ -773,11 +815,11 @@ void mmBillsDepositsPanel::sortList()
     case billsDepositsListCtrl::LIST_ID_CATEGORY:
         std::stable_sort(bills_.begin(), bills_.end(), SorterByCATEGNAME());
         break;
-    case billsDepositsListCtrl::LIST_ID_TYPE:
-        std::stable_sort(bills_.begin(), bills_.end(), SorterByTRANSCODE());
+    case billsDepositsListCtrl::LIST_ID_WITHDRAWAL:
+        std::stable_sort(bills_.begin(), bills_.end(), Model_Billsdeposits::SorterByWITHDRAWAL());
         break;
-    case billsDepositsListCtrl::LIST_ID_AMOUNT:
-        std::stable_sort(bills_.begin(), bills_.end(), SorterByTRANSAMOUNT());
+    case billsDepositsListCtrl::LIST_ID_DEPOSIT:
+        std::stable_sort(bills_.begin(), bills_.end(), Model_Billsdeposits::SorterByDEPOSIT());
         break;
     case billsDepositsListCtrl::LIST_ID_FREQUENCY:
         std::stable_sort(bills_.begin(), bills_.end()
@@ -801,37 +843,9 @@ void mmBillsDepositsPanel::sortList()
                 return xn == Model_Billsdeposits::REPEAT_NUM_INFINITY && yn == Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
         });
         break;
-    case billsDepositsListCtrl::LIST_ID_DAYS:
-        std::stable_sort(bills_.begin(), bills_.end()
-            , [&](const Model_Billsdeposits::Data& x, const Model_Billsdeposits::Data& y)
-        {
-            bool x_useText = false;
-            wxString x_text = this->GetRemainingDays(&x);
-            long x_num = 0;
-            if (isdigit(x_text[0]))
-            {
-                x_num = wxAtoi(x_text);
-                wxString removed;
-                if (x_text.EndsWith(wxString("!"), &removed))
-                    x_num = -x_num;
-            }
-            else
-                x_useText = true;
-
-            bool y_useText = false;
-            wxString y_text = this->GetRemainingDays(&y);
-            long y_num = 0;
-            if (isdigit(y_text[0]))
-            {
-                y_num = wxAtoi(y_text);
-                wxString removed;
-                if (y_text.EndsWith(wxString("!"), &removed))
-                    y_num = -y_num;
-            }
-            else
-                y_useText = true;
-            return ((!x_useText && !y_useText) ? x_num < y_num : x_text < y_text);
-        });
+    case billsDepositsListCtrl::LIST_ID_REMAINING:
+        // in almost all cases, sorting by remaining days is equivalent to sorting by TRANSDATE
+        std::stable_sort(bills_.begin(), bills_.end(), SorterByTRANSDATE());
         break;
     case billsDepositsListCtrl::LIST_ID_NOTES:
         std::stable_sort(bills_.begin(), bills_.end(), SorterByNOTES());

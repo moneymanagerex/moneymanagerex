@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-12-31 10:31+0000\n"
+"POT-Creation-Date: 2025-12-28 23:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,7 +131,7 @@ msgstr ""
 
 #: accountdialog.cpp:186 assetdialog.cpp:269 assetspanel.cpp:58
 #: billsdepositsdialog.cpp:629 billsdepositspanel.cpp:118
-#: budgetentrydialog.cpp:152 budgetingpanel.cpp:74 filtertrans.cpp:207
+#: budgetentrydialog.cpp:152 budgetingpanel.cpp:73 filtertrans.cpp:207
 #: filtertransdialog.cpp:706 filtertransdialog.cpp:1970
 #: import_export/qif_export.cpp:635 import_export/qif_import_gui.cpp:98
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:110
@@ -431,8 +431,8 @@ msgstr ""
 #: import_export/ofx_import_gui.cpp:1844 import_export/qif_export.cpp:626
 #: import_export/qif_import_gui.cpp:91 import_export/univcsvdialog.cpp:103
 #: maincurrencydialog.cpp:254 maincurrencydialog.cpp:271 mmchecking_list.cpp:98
-#: model/Model_CustomField.cpp:30 reports/cashflow.cpp:276
-#: reports/cashflow.cpp:405 reports/incexpenses.cpp:244 reports/summary.cpp:295
+#: model/Model_CustomField.cpp:30 reports/cashflow.cpp:275
+#: reports/cashflow.cpp:404 reports/incexpenses.cpp:244 reports/summary.cpp:295
 #: reports/transactions.cpp:208 stockdialog.cpp:296 stockdialog.cpp:623
 #: stockspanel.cpp:265 transactionsupdatedialog.cpp:132 transdialog.cpp:453
 #: uicontrols/reconciledialog.cpp:108 usertransactionpanel.cpp:105
@@ -526,7 +526,7 @@ msgstr ""
 msgid "Do you want to create one?"
 msgstr ""
 
-#: assetspanel.cpp:51 billsdepositspanel.cpp:102 budgetingpanel.cpp:68
+#: assetspanel.cpp:51 billsdepositspanel.cpp:102 budgetingpanel.cpp:67
 #: mmchecking_list.cpp:96 stocks_list.cpp:66
 msgid "Icon"
 msgstr ""
@@ -710,7 +710,7 @@ msgstr ""
 #: filtertransdialog.cpp:1816 import_export/qif_export.cpp:629
 #: import_export/qif_import_gui.cpp:90 import_export/qif_import_gui.cpp:162
 #: import_export/qif_import_gui.cpp:282 import_export/univcsvdialog.cpp:106
-#: mmchecking_list.cpp:101 reports/cashflow.cpp:406
+#: mmchecking_list.cpp:101 reports/cashflow.cpp:405
 #: reports/transactions.cpp:214 transdialog.cpp:262 transdialog.cpp:266
 #: transdialog.cpp:517 transdialog.cpp:687 usertransactionpanel.cpp:109
 #: webapp.cpp:563 webappdialog.cpp:139
@@ -1047,12 +1047,12 @@ msgstr ""
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr ""
 
-#: billsdepositsdialog.cpp:522 billsdepositspanel.cpp:112 budgetingpanel.cpp:71
+#: billsdepositsdialog.cpp:522 billsdepositspanel.cpp:112 budgetingpanel.cpp:70
 #: filtertrans.cpp:206 filtertransdialog.cpp:1092 filtertransdialog.cpp:1102
 #: import_export/ofx_import_gui.cpp:1845 import_export/qif_export.cpp:632
 #: import_export/univcsvdialog.cpp:108 maincurrencydialog.cpp:625
 #: mmchecking_list.cpp:933 mmhomepage.cpp:346 mmhomepage.cpp:420
-#: reports/cashflow.cpp:409 reports/categexp.cpp:218
+#: reports/cashflow.cpp:408 reports/categexp.cpp:218
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:226
 #: splittransactionsdialog.cpp:89 splittransactionsdialog.cpp:221
 #: transactionsupdatedialog.cpp:186 transdialog.cpp:504
@@ -1085,7 +1085,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:93 import_export/qif_import_gui.cpp:295
 #: import_export/univcsvdialog.cpp:107 import_export/univcsvdialog.cpp:510
 #: mmchecking_list.cpp:102 model/Model.cpp:28 payeedialog.cpp:85
-#: payeedialog.cpp:209 payeedialog.cpp:245 reports/cashflow.cpp:407
+#: payeedialog.cpp:209 payeedialog.cpp:245 reports/cashflow.cpp:406
 #: reports/payee.cpp:136 reports/transactions.cpp:216
 #: transactionsupdatedialog.cpp:199 transdialog.cpp:263 transdialog.cpp:540
 #: uicontrols/reconciledialog.cpp:110 usertransactionpanel.cpp:182
@@ -1094,7 +1094,7 @@ msgid "Payee"
 msgstr ""
 
 #: billsdepositsdialog.cpp:582 billsdepositsdialog.cpp:964
-#: billsdepositspanel.cpp:109 budgetingpanel.cpp:69 filtertrans.cpp:204
+#: billsdepositspanel.cpp:109 budgetingpanel.cpp:68 filtertrans.cpp:204
 #: filtertransdialog.cpp:58 filtertransdialog.cpp:632
 #: filtertransdialog.cpp:1046 filtertransdialog.cpp:1052
 #: filtertransdialog.cpp:1874 import_export/ofx_import_gui.cpp:1850
@@ -1102,7 +1102,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:306 import_export/univcsvdialog.cpp:110
 #: import_export/univcsvdialog.cpp:521 mmchecking_list.cpp:104
 #: mmhomepage.cpp:185 payeedialog.cpp:204 reports/budgetcategorysummary.cpp:191
-#: reports/budgetingperf.cpp:131 reports/cashflow.cpp:408
+#: reports/budgetingperf.cpp:131 reports/cashflow.cpp:407
 #: reports/categexp.cpp:217 reports/categexp.cpp:456
 #: reports/transactions.cpp:220 splittransactionsdialog.cpp:82
 #: splittransactionsdialog.cpp:219 transactionsupdatedialog.cpp:223
@@ -1315,7 +1315,7 @@ msgstr ""
 msgid "Every %s Months"
 msgstr ""
 
-#: billsdepositspanel.cpp:113 budgetingpanel.cpp:70 reports/myusage.cpp:163
+#: billsdepositspanel.cpp:113 budgetingpanel.cpp:69 reports/myusage.cpp:163
 msgid "Frequency"
 msgstr ""
 
@@ -1516,76 +1516,60 @@ msgstr ""
 msgid "View Budget Category Summary"
 msgstr ""
 
-#: budgetingpanel.cpp:72 reports/budgetcategorysummary.cpp:148
+#: budgetingpanel.cpp:71 reports/budgetcategorysummary.cpp:148
 #: reports/budgetcategorysummary.cpp:192
 msgid "Estimated"
 msgstr ""
 
-#: budgetingpanel.cpp:73 reports/budgetcategorysummary.cpp:149
+#: budgetingpanel.cpp:72 reports/budgetcategorysummary.cpp:149
 #: reports/budgetcategorysummary.cpp:193
 msgid "Actual"
 msgstr ""
 
-#: budgetingpanel.cpp:174
+#: budgetingpanel.cpp:173
 #, c-format
 msgid "Financial Year: %s - %li"
 msgstr ""
 
-#: budgetingpanel.cpp:178 reports/budget.cpp:95
+#: budgetingpanel.cpp:177 reports/budget.cpp:95
 #, c-format
 msgid "Year: %s"
 msgstr ""
 
-#: budgetingpanel.cpp:183
+#: budgetingpanel.cpp:182
 #, c-format
 msgid "Month: %s"
 msgstr ""
 
-#: budgetingpanel.cpp:189
+#: budgetingpanel.cpp:188
 #, c-format
 msgid "%1$s    Start Date of: %2$s"
 msgstr ""
 
-#: budgetingpanel.cpp:192
+#: budgetingpanel.cpp:191
 #, c-format
 msgid "Budget Planner for %s"
 msgstr ""
 
-#: budgetingpanel.cpp:249
+#: budgetingpanel.cpp:248
 msgid "Income: "
 msgstr ""
 
-#: budgetingpanel.cpp:250 budgetingpanel.cpp:258
+#: budgetingpanel.cpp:249 budgetingpanel.cpp:257
 msgid "Estimated: "
 msgstr ""
 
-#: budgetingpanel.cpp:252 budgetingpanel.cpp:260
+#: budgetingpanel.cpp:251 budgetingpanel.cpp:259
 msgid "Actual: "
 msgstr ""
 
-#: budgetingpanel.cpp:254 budgetingpanel.cpp:262 reports/budgetingperf.cpp:355
+#: budgetingpanel.cpp:253 budgetingpanel.cpp:261 reports/budgetingperf.cpp:355
 #: uicontrols/reconciledialog.cpp:190
 msgid "Difference: "
 msgstr ""
 
-#: budgetingpanel.cpp:257
+#: budgetingpanel.cpp:256
 msgid "Expenses: "
-msgstr ""
-
-#: budgetingpanel.cpp:752
-msgid "No budget defined"
-msgstr ""
-
-#: budgetingpanel.cpp:754
-msgid "Critical: budget exceeded! Stop spending"
-msgstr ""
-
-#: budgetingpanel.cpp:756
-msgid "Within budget limits"
-msgstr ""
-
-#: budgetingpanel.cpp:758
-msgid "Alert: budget close to or over limit"
 msgstr ""
 
 #: budgetyeardialog.cpp:46
@@ -2226,7 +2210,7 @@ msgstr ""
 msgid "New"
 msgstr ""
 
-#: daterangedialog.cpp:127 webappdialog.cpp:417
+#: daterangedialog.cpp:127 webappdialog.cpp:411
 msgid "Delete"
 msgstr ""
 
@@ -3395,7 +3379,7 @@ msgid "Prompt to confirm each fuzzy match"
 msgstr ""
 
 #: import_export/ofx_import_gui.cpp:944 import_export/univcsvdialog.cpp:1316
-#: import_export/univcsvdialog.cpp:1511 webappdialog.cpp:415
+#: import_export/univcsvdialog.cpp:1511 webappdialog.cpp:409
 msgid "Import"
 msgstr ""
 
@@ -3914,7 +3898,7 @@ msgid "Don't Care"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:118 mmchecking_list.cpp:108
-#: mmhomepage.cpp:538 mmhomepage.cpp:715 reports/cashflow.cpp:410
+#: mmhomepage.cpp:538 mmhomepage.cpp:715 reports/cashflow.cpp:409
 #: reports/summary.cpp:270 reports/summary.cpp:306
 msgid "Balance"
 msgstr ""
@@ -6325,7 +6309,7 @@ msgid "Cash Balance"
 msgstr ""
 
 #: mmhomepage.cpp:91 mmhomepage.cpp:585 reports/budgetingperf.cpp:142
-#: reports/cashflow.cpp:277 reports/categexp.cpp:219 reports/categexp.cpp:497
+#: reports/cashflow.cpp:276 reports/categexp.cpp:219 reports/categexp.cpp:497
 #: reports/summary.cpp:303 stockspanel.cpp:271
 msgid "Total"
 msgstr ""
@@ -7929,32 +7913,32 @@ msgstr ""
 msgid "Please, follow these instructions before submitting a new bug report:"
 msgstr ""
 
-#: reports/cashflow.cpp:246 reports/cashflow.cpp:375
+#: reports/cashflow.cpp:245 reports/cashflow.cpp:374
 #, c-format
 msgid "%1$s (%2$i month)"
 msgid_plural "%1$s (%2$i months)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: reports/cashflow.cpp:278 reports/categexp.cpp:424
+#: reports/cashflow.cpp:277 reports/categexp.cpp:424
 #: reports/incexpenses.cpp:212 reports/incexpenses.cpp:247
 #: reports/payee.cpp:139
 msgid "Difference"
 msgstr ""
 
-#: reports/cashflow.cpp:279 reports/cashflow.cpp:411
+#: reports/cashflow.cpp:278 reports/cashflow.cpp:410
 msgid "Cumulative Difference"
 msgstr ""
 
-#: reports/cashflow.cpp:334
+#: reports/cashflow.cpp:333
 msgid "Cash Flow - Daily"
 msgstr ""
 
-#: reports/cashflow.cpp:348
+#: reports/cashflow.cpp:347
 msgid "Cash Flow - Monthly"
 msgstr ""
 
-#: reports/cashflow.cpp:362
+#: reports/cashflow.cpp:361
 msgid "Cash Flow - Transactions"
 msgstr ""
 
@@ -9117,7 +9101,7 @@ msgstr ""
 msgid "Today will be used as the transaction date"
 msgstr ""
 
-#: webapp.cpp:595 webapp.cpp:629 webappdialog.cpp:345
+#: webapp.cpp:595 webapp.cpp:629 webappdialog.cpp:339
 msgid "Unable to download attachments from the WebApp."
 msgstr ""
 
@@ -9141,7 +9125,7 @@ msgstr ""
 msgid "Transaction not downloaded: please retry to download transactions"
 msgstr ""
 
-#: webapp.cpp:632 webappdialog.cpp:346
+#: webapp.cpp:632 webappdialog.cpp:340
 msgid "Attachment download error"
 msgstr ""
 
@@ -9173,19 +9157,19 @@ msgstr ""
 msgid "Transactions download error"
 msgstr ""
 
-#: webappdialog.cpp:318
+#: webappdialog.cpp:312
 msgid "Unable to insert transaction in MMEX database"
 msgstr ""
 
-#: webappdialog.cpp:319
+#: webappdialog.cpp:313
 msgid "WebApp communication error"
 msgstr ""
 
-#: webappdialog.cpp:414
+#: webappdialog.cpp:408
 msgid "Open Attachment"
 msgstr ""
 
-#: webappdialog.cpp:416
+#: webappdialog.cpp:410
 msgid "Import and open"
 msgstr ""
 
