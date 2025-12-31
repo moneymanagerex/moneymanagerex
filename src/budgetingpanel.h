@@ -29,6 +29,7 @@ class mmBudgetingPanel;
 
 /* Custom ListCtrl class that implements virtual LC style */
 class budgetingListCtrl : public mmListCtrl
+
 {
     DECLARE_NO_COPY_CLASS(budgetingListCtrl)
     wxDECLARE_EVENT_TABLE();
@@ -60,6 +61,7 @@ public:
 
     void OnListItemSelected(wxListEvent& event);
     void OnListItemActivated(wxListEvent& event);
+    void OnMouseMove(wxMouseEvent& event);
 
 private:
     wxSharedPtr<wxListItemAttr> attr3_; // style3
