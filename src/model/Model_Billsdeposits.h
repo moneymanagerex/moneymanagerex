@@ -108,7 +108,53 @@ public:
         wxString real_payee_name() const;
         wxString TAGNAMES;
     };
+
     typedef std::vector<Full_Data> Full_Data_Set;
+
+    struct SorterByWITHDRAWAL
+    {
+        template<class DATA>
+        bool operator()(const DATA& x, const DATA& y)
+        {
+            int64 x_accountid = -1, y_accountid = -1;
+            double x_transamount, y_transamount;
+            if (Model_Checking::type_id(x.TRANSCODE) == Model_Checking::TYPE_ID_WITHDRAWAL) {
+                x_accountid = x.ACCOUNTID; x_transamount = x.TRANSAMOUNT;
+            }
+            else if (Model_Checking::type_id(x.TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER) {
+                x_accountid = x.ACCOUNTID; x_transamount = x.TRANSAMOUNT;
+            }
+            if (Model_Checking::type_id(y.TRANSCODE) == Model_Checking::TYPE_ID_WITHDRAWAL) {
+                y_accountid = y.ACCOUNTID; y_transamount = y.TRANSAMOUNT;
+            }
+            else if (Model_Checking::type_id(y.TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER) {
+                y_accountid = y.ACCOUNTID; y_transamount = y.TRANSAMOUNT;
+            }
+            return x_accountid != -1 && (y_accountid == -1 || x_transamount < y_transamount);
+        }
+    };
+    struct SorterByDEPOSIT
+    {
+        template<class DATA>
+        bool operator()(const DATA& x, const DATA& y)
+        {
+            int64 x_accountid = -1, y_accountid = -1;
+            double x_transamount, y_transamount;
+            if (Model_Checking::type_id(x.TRANSCODE) == Model_Checking::TYPE_ID_DEPOSIT) {
+                x_accountid = x.ACCOUNTID; x_transamount = x.TRANSAMOUNT;
+            }
+            else if (Model_Checking::type_id(x.TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER) {
+                x_accountid = x.TOACCOUNTID; x_transamount = x.TOTRANSAMOUNT;
+            }
+            if (Model_Checking::type_id(y.TRANSCODE) == Model_Checking::TYPE_ID_DEPOSIT) {
+                y_accountid = y.ACCOUNTID; y_transamount = y.TRANSAMOUNT;
+            }
+            else if (Model_Checking::type_id(y.TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER) {
+                y_accountid = y.TOACCOUNTID; y_transamount = y.TOTRANSAMOUNT;
+            }
+            return x_accountid != -1 && (y_accountid == -1 || x_transamount < y_transamount);
+        }
+    };
 
 public:
     /**
