@@ -843,6 +843,15 @@ void mmBillsDepositsPanel::sortList()
                 return xn == Model_Billsdeposits::REPEAT_NUM_INFINITY && yn == Model_Billsdeposits::REPEAT_NUM_UNKNOWN;
         });
         break;
+    case billsDepositsListCtrl::LIST_ID_AUTO:
+        std::stable_sort(bills_.begin(), bills_.end()
+            , [&](const Model_Billsdeposits::Full_Data& x, const Model_Billsdeposits::Full_Data& y)
+        {
+            int x_auto = x.REPEATS.GetValue() / BD_REPEATS_MULTIPLEX_BASE;
+            int y_auto = y.REPEATS.GetValue() / BD_REPEATS_MULTIPLEX_BASE;
+            return x_auto < y_auto;
+        });
+        break;
     case billsDepositsListCtrl::LIST_ID_REMAINING:
         // in almost all cases, sorting by remaining days is equivalent to sorting by TRANSDATE
         std::stable_sort(bills_.begin(), bills_.end(), SorterByTRANSDATE());
