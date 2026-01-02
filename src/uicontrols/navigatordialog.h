@@ -18,71 +18,54 @@
 
 #pragma once
 
-#include <wx/wx.h>
-#include <wx/treelist.h>
-#include <wx/sizer.h>
-#include <vector>
-
-#include "daterange2.h"
+#include "defs.h"
+//#include "daterange2.h"
 #include "navigatortypes.h"
+#include "generic/generictreelistdialog.h"
+#include "generic/genericFocusButton.h"
 
 
 typedef std::vector<wxTreeListItem> wxTreeListItems;
 
 
-class mmNavigatorDialog: public wxDialog
+class mmNavigatorDialog: public genericTreeListDialog
 {
     wxDECLARE_DYNAMIC_CLASS(mmNavigatorDialog);
-    wxDECLARE_EVENT_TABLE();
 
 public:
     mmNavigatorDialog();
+    ~mmNavigatorDialog();
     mmNavigatorDialog(wxWindow* parent);
 
     enum {
-        BTN_BASE = 0,
-        BTN_UP_TOP,
-        BTN_UP,
-        BTN_EDIT,
+        BTN_EDIT = BTN_size,
         BTN_NEW,
-        BTN_DOWN,
-        BTN_DOWN_BOTTOM,
         BTN_DELETE,
-        BTN_DEFAULT
+        BTN_RESET_NAMES
     };
 
+protected:
+    void createColumns() override;
+    void closeAction() override;
+    void createMiddleElements(wxBoxSizer* itemBox) override;
+    void createBottomElements(wxBoxSizer* itemBox) override;
+    void fillControls(wxTreeListItem root) override;
+    void updateControlState(int selIdx, wxClientData* selData) override;
+    void setDefault() override;
+    void copyTreeItemData(wxTreeListItem src, wxTreeListItem dst) override;
+
 private:
-    wxTreeListCtrl* m_treeList;
-    wxButton* m_up_top = nullptr;
-    wxBitmapButton* m_up = nullptr;
+    const std::string DIALOG_SIZE  = "NAVIGATOR_DIALOG_SIZE";
+
     wxButton* m_edit = nullptr;
-    wxBitmapButton* m_down = nullptr;
-    wxButton* m_down_bottom = nullptr;
     wxButton* m_delete = nullptr;
 
-    void createControls();
-    void fillControls();
     wxTreeListItem appendAccountItem(wxTreeListItem parent, NavigatorTypesInfo* ainfo);
-
-    void OnTop(wxCommandEvent&);
-    void OnUp(wxCommandEvent&);
-    void OnEdit(wxCommandEvent&);
-    void OnDown(wxCommandEvent&);
-    void OnBottom(wxCommandEvent&);
-    void OnNew(wxCommandEvent&);
-    void OnClose(wxCommandEvent&);
-    void OnCancel(wxCommandEvent&);
-    void OnDelete(wxCommandEvent&);
-    void OnDefault(wxCommandEvent&);
-    void OnTreeSelectionChange(wxTreeListEvent&);
-    void OnTreeItemChecked(wxTreeListEvent&);
-
-    void updateButtonState();
-    void moveSelectedItem(int direction);
-    void moveItemData(wxTreeListItem sel, wxTreeListItem newItem);
-    wxTreeListItems getChildrenList(wxTreeListItem parent);
-    void cloneSubtree(wxTreeListItem src, wxTreeListItem dstParent);
-    int findItemIndex(const wxTreeListItems& items, const wxTreeListItem& target);
-    void copyTreeItemData(wxTreeListItem src, wxTreeListItem dst);
     void updateItemsRecursive(wxTreeListItem item);
+
+    void OnEdit(wxCommandEvent&);
+    void OnNew(wxCommandEvent&);
+    void OnDelete(wxCommandEvent&);
+    void OnNameReset(wxCommandEvent&);
+    void OnTreeItemChecked(wxTreeListEvent&);
 };

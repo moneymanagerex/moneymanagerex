@@ -325,3 +325,39 @@ const Model_Account::Data_Set Model_Account::FilterAccounts(const wxString& acco
     }
     return accounts;
 }
+
+void Model_Account::resetAccountType(wxString oldtype)
+{
+    for (auto item : Model_Account::instance().find(ACCOUNTTYPE(oldtype))) {
+        Model_Account::Data* adata = this->get(item.ACCOUNTNAME);
+        adata->ACCOUNTTYPE = "Checking";
+        this->save(adata);
+    }
+}
+
+void Model_Account::resetUnknownAccountTypes()
+{
+    for (const auto &account : this->all(COL_ACCOUNTNAME)) {
+        if (NavigatorTypes::instance().type_id(account.ACCOUNTTYPE, -1) == -1) {
+            Model_Account::Data* adata = this->get(account.ACCOUNTNAME);
+            adata->ACCOUNTTYPE = "Checking";
+            this->save(adata);
+        }
+    }
+}
+
+wxArrayString Model_Account::getUsedAccountTypes(bool skip_closed)
+{
+    wxArrayString usedTypes;
+    for (auto &account : this->all(Model_Account::COL_ACCOUNTTYPE))
+    {
+        if (skip_closed && status_id(account) == STATUS_ID_CLOSED)
+            continue;
+        if (type_id(account) == NavigatorTypes::TYPE_ID_INVESTMENT)
+            continue;
+        if (usedTypes.Index(account.ACCOUNTTYPE) == wxNOT_FOUND) {
+            usedTypes.Add(account.ACCOUNTTYPE);
+        }
+    }
+    return usedTypes;
+}

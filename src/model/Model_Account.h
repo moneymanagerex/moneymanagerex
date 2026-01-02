@@ -28,7 +28,7 @@
 #include "Model_Checking.h"
 #include "Model_Billsdeposits.h"
 
-#include "navigator/navigatortypes.h"  // remove later
+#include "uicontrols/navigatortypes.h"  // remove later
 
 class Model_Account : public Model<DB_Table_ACCOUNTLIST_V1>
 {
@@ -131,11 +131,9 @@ public:
 
 public:
     static const wxString refTypeName;
-
-    void loadCustomAccountTypes();
-    void setCustomAccountType(wxString newType);
-    const wxArrayString deleteCustomAccountType(wxString delType);
-    const wxArrayString getCustomAccountTypes() const noexcept;
+    void resetAccountType(wxString oldtype);
+    void resetUnknownAccountTypes();
+    wxArrayString getUsedAccountTypes(bool skip_closed = true);
 };
 //----------------------------------------------------------------------------
 

@@ -359,15 +359,21 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     model/Model_Usage.cpp
     model/Model_Usage.h
 
+    generic/generictreelistdialog.cpp
+    generic/generictreelistdialog.h
+
     uicontrols/reconciledialog.cpp
     uicontrols/reconciledialog.h
-
-    navigator/navigatordialog.cpp
-    navigator/navigatordialog.h
-    navigator/navigatoreditdialog.cpp
-    navigator/navigatoreditdialog.h
-    navigator/navigatortypes.cpp
-    navigator/navigatortypes.h
+    uicontrols/toolbardialog.cpp
+    uicontrols/toolbardialog.h
+    uicontrols/toolbarsettings.cpp
+    uicontrols/toolbarsettings.h
+    uicontrols/navigatordialog.cpp
+    uicontrols/navigatordialog.h
+    uicontrols/navigatoreditdialog.cpp
+    uicontrols/navigatoreditdialog.h
+    uicontrols/navigatortypes.cpp
+    uicontrols/navigatortypes.h
 
     "${CMAKE_CURRENT_BINARY_DIR}/versions.h"
     "platfdep_${MMEX_PLATFDEP}"

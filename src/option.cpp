@@ -29,7 +29,7 @@
 #include "maincurrencydialog.h"
 #include "model/Model_Currency.h"
 #include "model/Model_CurrencyHistory.h"
-#include "navigator/navigatortypes.h"
+#include "uicontrols/navigatortypes.h"
 
 
 const std::vector<std::pair<Option::COMPOUNDING_ID, wxString> > Option::COMPOUNDING_NAME =
@@ -654,7 +654,7 @@ void Option::setCheckingRange(const wxArrayString &a)
 }
 void Option::parseCheckingRange()
 {
-    wxLogDebug("{{{ Option::parseCheckingRange()");
+    //wxLogDebug("{{{ Option::parseCheckingRange()");
 
     m_checking_range_a.clear();
     m_checking_range_m = 0;
@@ -692,11 +692,11 @@ void Option::parseCheckingRange()
     if (m_checking_range_m == 0)
         m_checking_range_m = m_checking_range_a.size();
 
-    wxLogDebug("m=[%d], n=[%zu]", m_checking_range_m, m_checking_range_a.size());
+    /*wxLogDebug("m=[%d], n=[%zu]", m_checking_range_m, m_checking_range_a.size());
     for ([[maybe_unused]] DateRange2::Spec &spec : m_checking_range_a) {
         wxLogDebug("label=[%s], name=[%s]", spec.getLabel(), spec.getName());
     }
-    wxLogDebug("}}}");
+    wxLogDebug("}}}");*/
 }
 
 int Option::getHtmlScale() const noexcept
