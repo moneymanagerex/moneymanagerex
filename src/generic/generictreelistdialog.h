@@ -1,5 +1,5 @@
 /*******************************************************
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025, 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
 #pragma once
 
 #include "defs.h"
-#include "generic/genericFocusButton.h"
-#include "generic/genericFocusBitmapButton.h"
+
 
 typedef std::vector<wxTreeListItem> wxTreeListItems;
 
