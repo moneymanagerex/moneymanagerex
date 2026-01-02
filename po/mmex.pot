@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2025-12-31 16:05+0000\n"
+"POT-Creation-Date: 2026-01-02 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1353,7 +1353,7 @@ msgstr ""
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr ""
 
-#: billsdepositspanel.cpp:242 billsdepositspanel.cpp:973 mmframe.cpp:3572
+#: billsdepositspanel.cpp:242 billsdepositspanel.cpp:982 mmframe.cpp:3572
 #: mmhomepagepanel.cpp:243
 msgid "Scheduled Transactions"
 msgstr ""
