@@ -153,6 +153,8 @@ void Option::load(bool include_infotable)
     loadNavigationIconSize();
     loadFontSize();
     loadCheckingRange();
+
+    loadShowNavigatorCashLedger();
 }
 
 wxLanguage Option::getLanguageID(const bool get_db)
@@ -774,4 +776,14 @@ void Option::setLanguage(const wxLanguage& language)
         LANGUAGE_PARAMETER,
         wxLocale::GetLanguageCanonicalName(language)
     );
+}
+
+void Option::loadShowNavigatorCashLedger()
+{
+    m_show_navigator_cashLedger = Model_Setting::instance().getBool("NAVIGATOR_SHOW_CASHLEDGER", true);
+}
+void Option::setShowNavigatorCashLedger(const bool value)
+{
+    Model_Setting::instance().setBool("NAVIGATOR_SHOW_CASHLEDGER", value);
+    m_show_navigator_cashLedger = value;
 }

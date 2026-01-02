@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "optionsettingsview.h"
 #include "images_list.h"
 #include "themes.h"
+#include "navigator/navigatordialog.h"
 #include "util.h"
 
 #include <wx/colordlg.h>
@@ -178,7 +179,7 @@ void OptionSettingsView::Create()
     uiStyleSizer->Add(m_font_size_chooser, g_flagsH);
 
     // Icons
-    wxFlexGridSizer* uiIconSizer = new wxFlexGridSizer(0, 3, 0, 5);
+    wxFlexGridSizer* uiIconSizer = new wxFlexGridSizer(0, 2, 0, 5);
     uiSizer->Add(uiIconSizer);
 
     uiIconSizer->Add(new wxStaticText(uiBox, wxID_STATIC, _t("Toolbar Icon Size")), g_flagsH);
@@ -218,8 +219,24 @@ void OptionSettingsView::Create()
     uiIconSizer->Add(m_navigation_icon_size, g_flagsH);
     uiIconSizer->Add(m_others_icon_size, g_flagsH);
 
+    // Navigator Appearance
+    wxStaticBox* navBox = new wxStaticBox(panelWindow, wxID_STATIC, _t("Navigator display"));
+
+    wxStaticBoxSizer* navSizer = new wxStaticBoxSizer(navBox, wxVERTICAL);
+    panelSizer->Add(navSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+
+    m_navigator_cfg = new wxButton(navBox, ID_DIALOG_NAVIGATOR_CONFIG, _t("Edit navigator entries"));
+    navSizer->Add(m_navigator_cfg, g_flagsV);
+
+    m_navShowCashLedger = new wxCheckBox(navBox, wxID_STATIC, _t("Show cash ledger for portfolios"));
+    m_navShowCashLedger->SetValue(Option::instance().getShowNavigatorCashLedger());
+    navSizer->Add(m_navShowCashLedger, g_flagsV);
+
     SetBoldFontToStaticBoxHeader(viewBox);
     SetBoldFontToStaticBoxHeader(uiBox);
+    SetBoldFontToStaticBoxHeader(navBox);
+
+    // -------------------
     Fit();
     panelWindow->SetMinSize(panelWindow->GetBestVirtualSize());
     panelWindow->SetScrollRate(6, 6);
@@ -227,6 +244,11 @@ void OptionSettingsView::Create()
     this->Connect(
         ID_DIALOG_THEMEMANAGER, wxEVT_COMMAND_BUTTON_CLICKED,
         wxCommandEventHandler(OptionSettingsView::OnThemeManagerSelected),
+        nullptr, this
+    );
+    this->Connect(
+        ID_DIALOG_NAVIGATOR_CONFIG, wxEVT_COMMAND_BUTTON_CLICKED,
+        wxCommandEventHandler(OptionSettingsView::OnNavigationConfigSelected),
         nullptr, this
     );
 }
@@ -243,6 +265,12 @@ void OptionSettingsView::OnHTMLScaleSpin(wxSpinEvent& event)
 void OptionSettingsView::OnThemeManagerSelected(wxCommandEvent&)
 {
     mmThemesDialog dlg(this);
+    dlg.ShowModal();
+}
+
+void OptionSettingsView::OnNavigationConfigSelected(wxCommandEvent&)
+{
+    mmNavigatorDialog dlg(this);
     dlg.ShowModal();
 }
 
@@ -285,5 +313,7 @@ bool OptionSettingsView::SaveSettings()
     Option::instance().setShowToolTips(m_showToolTips->GetValue());
     Option::instance().setShowMoneyTips(m_showMoneyTips->GetValue());
 
+    Option::instance().setShowNavigatorCashLedger(m_navShowCashLedger->GetValue());
+    
     return true;
 }
