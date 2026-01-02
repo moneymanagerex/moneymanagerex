@@ -48,12 +48,20 @@ mmNavigatorDialog::mmNavigatorDialog(wxWindow* parent):genericTreeListDialog(par
     init();  // must be called first!!
     SetSize(Model_Infotable::instance().getSize(DIALOG_SIZE));
     m_treeList->Bind(wxEVT_TREELIST_ITEM_CHECKED, &mmNavigatorDialog::OnTreeItemChecked, this);
-
 }
 
 void mmNavigatorDialog::createColumns() {
     m_treeList->AppendColumn(_t("Name"), 250);
     m_treeList->AppendColumn(_t("Selection name"));
+
+    // Add imagelist
+    const auto navIconSize = Option::instance().getNavigationIconSize();
+    wxImageList* imageList = new wxImageList(navIconSize, navIconSize);
+    for (const auto& bundle : navtree_images_list(navIconSize)) {
+        wxBitmap bitmap = bundle.GetBitmap(wxSize(navIconSize, navIconSize));
+        imageList->Add(bitmap);
+    }
+    m_treeList->SetImageList(imageList);
 }
 
 void mmNavigatorDialog::createMiddleElements(wxBoxSizer* itemBox) {
