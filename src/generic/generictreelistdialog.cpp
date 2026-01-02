@@ -227,7 +227,7 @@ int genericTreeListDialog::findItemIndex(const wxTreeListItems& items, const wxT
 {
     for (int i = 0; i < static_cast<int>(items.size()); ++i) {
         if (items[i] == target)
-            return static_cast<int>(i);
+            return i;
     }
     return -1;
 }

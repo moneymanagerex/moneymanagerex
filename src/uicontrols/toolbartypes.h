@@ -30,7 +30,7 @@ class ToolBarEntries
         enum TYPE_ID {
             TOOLBAR_BTN,
             TOOLBAR_SEPARATOR,
-            TOOLBAR_SṔACER,
+            TOOLBAR_SPACER,
             TOOLBAR_STRETCH
         };
 
