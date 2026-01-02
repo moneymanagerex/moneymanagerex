@@ -152,11 +152,12 @@ void mmPrintableBase::restoreReportSettings()
 
     m_account_selection = -1;
     int selection = 0;
+    int acc_size = NavigatorTypes::instance().getNumberOfAccountTypes();
     if (j_doc.HasMember("ACCOUNTSELECTION") && j_doc["ACCOUNTSELECTION"].IsInt()) {
         selection = j_doc["ACCOUNTSELECTION"].GetInt();
-        if (selection > (Model_Account::TYPE_ID_size + 2)) selection = 0;
+        if (selection > (acc_size + 2)) selection = 0;
     }
-    if (selection > (Model_Account::TYPE_ID_size + 2))
+    if (selection > acc_size)
         selection = 0;
 
     accountArray_ = selectedAccountArray_ = nullptr;
@@ -172,7 +173,7 @@ void mmPrintableBase::restoreReportSettings()
         }
         accountArray_ = selectedAccountArray_ = accountSelections;
     } else if (selection > 1)
-        setAccounts(selection, Model_Account::type_name(selection - 2));
+        setAccounts(selection, NavigatorTypes::instance().type_name(selection - 2));
 
     m_account_selection = selection;
 }

@@ -21,10 +21,11 @@
 #include "singleton.h"
 #include "images_list.h"
 
+#include "model/Model_Account.h"
+
 NavigatorTypes::NavigatorTypes()
 {
     SetToDefault();
-    loadFromInfoTable();
 }
 
 NavigatorTypes& NavigatorTypes::instance()
@@ -32,37 +33,53 @@ NavigatorTypes& NavigatorTypes::instance()
     return Singleton<NavigatorTypes>::instance();
 }
 
-void NavigatorTypes::SetToDefault() {
-    m_entries = {  // init with default entries
-        { NAV_ENTRY_DASHBOARD,                _nu("Dashboard"),              -1, img::HOUSE_PNG,              NAV_TYP_PANEL, true},
-        { NAV_ENTRY_ALL_TRANSACTIONS,         _nu("All Transactions"),       -1, img::ALLTRANSACTIONS_PNG,    NAV_TYP_PANEL, true},
-        { NAV_ENTRY_SCHEDULED_TRANSACTIONS,   _nu("Scheduled Transactions"), -1, img::SCHEDULE_PNG,           NAV_TYP_PANEL, true},
-        { NAV_ENTRY_FAVORITES,                _nu("Favorites"),              -1, img::FAVOURITE_PNG,          NAV_TYP_PANEL, true},
+void NavigatorTypes::SetToDefault()
+{
+    m_navigator_entries = {  // init with default entries
+        { NAV_ENTRY_DASHBOARD,              _nu("Dashboard"),              "",                -1, img::HOUSE_PNG,              NAV_TYP_PANEL_STATIC, true},
+        { NAV_ENTRY_ALL_TRANSACTIONS,       _nu("All Transactions"),       "",                -1, img::ALLTRANSACTIONS_PNG,    NAV_TYP_PANEL,        true},
+        { NAV_ENTRY_SCHEDULED_TRANSACTIONS, _nu("Scheduled Transactions"), "",                -1, img::SCHEDULE_PNG,           NAV_TYP_PANEL,        true},
+        { NAV_ENTRY_FAVORITES,              _nu("Favorites"),              "",                -1, img::FAVOURITE_PNG,          NAV_TYP_PANEL,        true},
 
-        { Model_Account::TYPE_ID_CHECKING,    _nu("Bank Accounts"),          -1, img::SAVINGS_ACC_NORMAL_PNG, NAV_TYP_ACCOUNT, true},
-        { Model_Account::TYPE_ID_CREDIT_CARD, _nu("Credit Card Accounts"),   -1, img::CARD_ACC_NORMAL_PNG,    NAV_TYP_ACCOUNT, true},
-        { Model_Account::TYPE_ID_CASH,        _nu("Cash Accounts"),          -1, img::CASH_ACC_NORMAL_PNG,    NAV_TYP_ACCOUNT, true},
-        { Model_Account::TYPE_ID_LOAN,        _nu("Loan Accounts"),          -1, img::LOAN_ACC_NORMAL_PNG,    NAV_TYP_ACCOUNT, true},
-        { Model_Account::TYPE_ID_TERM,        _nu("Term Accounts"),          -1, img::TERMACCOUNT_NORMAL_PNG, NAV_TYP_ACCOUNT, true},
-        { Model_Account::TYPE_ID_INVESTMENT,  _nu("Stock Portfolios"),       -1, img::STOCK_ACC_NORMAL_PNG,   NAV_TYP_OTHER, true},
-        { Model_Account::TYPE_ID_SHARES,      _nu("Share Accounts"),         -1, img::STOCK_ACC_NORMAL_PNG,   NAV_TYP_OTHER, true},
-        { Model_Account::TYPE_ID_ASSET,       _nu("Assets"),                 -1, img::ASSET_NORMAL_PNG,       NAV_TYP_OTHER, true},
+        { TYPE_ID_CHECKING,                 _nu("Bank Accounts"),          _n("Checking"),    -1, img::SAVINGS_ACC_NORMAL_PNG, NAV_TYP_ACCOUNT,      true},
+        { TYPE_ID_CREDIT_CARD,              _nu("Credit Card Accounts"),   _n("Credit Card"), -1, img::CARD_ACC_NORMAL_PNG,    NAV_TYP_ACCOUNT,      true},
+        { TYPE_ID_CASH,                     _nu("Cash Accounts"),          _n("Cash"),        -1, img::CASH_ACC_NORMAL_PNG,    NAV_TYP_ACCOUNT,      true},
+        { TYPE_ID_LOAN,                     _nu("Loan Accounts"),          _n("Loan"),        -1, img::LOAN_ACC_NORMAL_PNG,    NAV_TYP_ACCOUNT,      true},
+        { TYPE_ID_TERM,                     _nu("Term Accounts"),          _n("Term"),        -1, img::TERMACCOUNT_NORMAL_PNG, NAV_TYP_ACCOUNT,      true},
+        { TYPE_ID_INVESTMENT,               _nu("Stock Portfolios"),       _n("Investment"),  -1, img::STOCK_ACC_NORMAL_PNG,   NAV_TYP_STOCK,        true},
+        { TYPE_ID_SHARES,                   _nu("Share Accounts"),         _n("Shares"),      -1, img::STOCK_ACC_NORMAL_PNG,   NAV_TYP_OTHER,        true},
+        { TYPE_ID_ASSET,                    _nu("Assets"),                 _n("Asset"),       -1, img::ASSET_NORMAL_PNG,       NAV_TYP_OTHER,        true},
 
-        { NAV_ENTRY_BUDGET_PLANNER,           _nu("Budget Planner"),         -1, img::CALENDAR_PNG,           NAV_TYP_PANEL, true},
-        { NAV_ENTRY_TRANSACTION_REPORT,       _nu("Transaction Report"),     -1, img::FILTER_PNG,             NAV_TYP_PANEL, true},
-        { NAV_ENTRY_REPORTS,                  _nu("Reports"),                -1, img::PIECHART_PNG,           NAV_TYP_PANEL, true},
-        { NAV_ENTRY_GRM,                      _nu("General Report Manager"), -1, img::CUSTOMSQL_GRP_PNG,      NAV_TYP_PANEL, true},
-        { NAV_ENTRY_DELETED_TRANSACTIONS,     _nu("Deleted Transactions"),   -1, img::TRASH_PNG,              NAV_TYP_PANEL, true},
-        { NAV_ENTRY_HELP,                     _nu("Help"),                   -1, img::HELP_PNG,               NAV_TYP_PANEL, true},
+        { NAV_ENTRY_BUDGET_PLANNER,         _nu("Budget Planner"),         "",                -1, img::CALENDAR_PNG,           NAV_TYP_PANEL,        true},
+        { NAV_ENTRY_TRANSACTION_REPORT,     _nu("Transaction Report"),     "",                -1, img::FILTER_PNG,             NAV_TYP_PANEL,        true},
+        { NAV_ENTRY_REPORTS,                _nu("Reports"),                "",                -1, img::PIECHART_PNG,           NAV_TYP_PANEL,        true},
+        { NAV_ENTRY_GRM,                    _nu("General Report Manager"), "",                -1, img::CUSTOMSQL_GRP_PNG,      NAV_TYP_PANEL,        true},
+        { NAV_ENTRY_DELETED_TRANSACTIONS,   _nu("Deleted Transactions"),   "",                -1, img::TRASH_PNG,              NAV_TYP_PANEL,        true},
+        { NAV_ENTRY_HELP,                   _nu("Help"),                   "",                -1, img::HELP_PNG,               NAV_TYP_PANEL,        true},
     };
     m_maxId = NAV_ENTRY_size -1;
+
+    m_type_choices = {
+        { TYPE_ID_CASH,        0, _n("Cash") },
+        { TYPE_ID_CHECKING,    1, _n("Checking") },
+        { TYPE_ID_CREDIT_CARD, 2, _n("Credit Card") },
+        { TYPE_ID_LOAN,        3, _n("Loan") },
+        { TYPE_ID_TERM,        4, _n("Term") },
+        { TYPE_ID_INVESTMENT,  5, _n("Investment") },
+        { TYPE_ID_ASSET,       6, _n("Asset") },
+        //{ TYPE_ID_SHARES,      7, _n("Shares") },
+    };
 }
 
-bool NavigatorTypes::DeleteEntry(NavigatorTypesInfo* info) {
+bool NavigatorTypes::DeleteEntry(NavigatorTypesInfo* info)
+{
     bool result = false;
-    for (int i = 0; i < static_cast<int>(m_entries.size()); i++) {
-        if (&m_entries[i] == info) {
-            m_entries.erase(m_entries.begin() + i);
+    for (int i = 0; i < static_cast<int>(m_navigator_entries.size()); i++) {
+        if (&m_navigator_entries[i] == info) {
+            if (info->seq_no == m_maxId) {
+                m_maxId--;
+            }
+            m_navigator_entries.erase(m_navigator_entries.begin() + i);
             result = true;
             break;
         }
@@ -70,16 +87,18 @@ bool NavigatorTypes::DeleteEntry(NavigatorTypesInfo* info) {
     return result;
 }
 
-NavigatorTypesInfo* NavigatorTypes::getFirstAccount() {
+NavigatorTypesInfo* NavigatorTypes::getFirstAccount()
+{
     t_lastIdx = 0;
-    t_previous = &m_entries[0];
+    t_previous = &m_navigator_entries[0];
     return t_previous;
 }
 
-NavigatorTypesInfo* NavigatorTypes::getNextAccount(NavigatorTypesInfo* previous) {
+NavigatorTypesInfo* NavigatorTypes::getNextAccount(NavigatorTypesInfo* previous)
+{
     if (previous == t_previous) {
         t_lastIdx++;
-        t_previous = t_lastIdx < size(m_entries) ? &m_entries[t_lastIdx] : nullptr;
+        t_previous = t_lastIdx < size(m_navigator_entries) ? &m_navigator_entries[t_lastIdx] : nullptr;
     }
     else {
         wxLogError("Invalid use of NavigatorTypes::getNextAccount");
@@ -88,32 +107,34 @@ NavigatorTypesInfo* NavigatorTypes::getNextAccount(NavigatorTypesInfo* previous)
     return t_previous;
 }
 
-NavigatorTypesInfo* NavigatorTypes::getFirstActiveEntry() {
+NavigatorTypesInfo* NavigatorTypes::getFirstActiveEntry()
+{
     t_lastIdx = 0;
     bool found = false;
-    while (t_lastIdx < size(m_entries)){
-        if (m_entries[t_lastIdx].active) {
+    while (t_lastIdx < size(m_navigator_entries)){
+        if (m_navigator_entries[t_lastIdx].active) {
             found = true;
             break;
         }
         t_lastIdx++;
     }
-    t_previous = found ? &m_entries[t_lastIdx]: nullptr;
+    t_previous = found ? &m_navigator_entries[t_lastIdx]: nullptr;
     return t_previous;
 }
 
-NavigatorTypesInfo* NavigatorTypes::getNextActiveEntry(NavigatorTypesInfo* previous) {
+NavigatorTypesInfo* NavigatorTypes::getNextActiveEntry(NavigatorTypesInfo* previous)
+{
     if (previous == t_previous) {
         t_lastIdx++;
         bool found = false;
-        while (t_lastIdx < size(m_entries)){
-            if (m_entries[t_lastIdx].active) {
+        while (t_lastIdx < size(m_navigator_entries)){
+            if (m_navigator_entries[t_lastIdx].active) {
                 found = true;
                 break;
             }
             t_lastIdx++;
         }
-        t_previous = found ? &m_entries[t_lastIdx] : nullptr;
+        t_previous = found ? &m_navigator_entries[t_lastIdx] : nullptr;
     }
     else {
         wxLogError("Invalid use of NavigatorTypes::getNextAccount");
@@ -122,22 +143,34 @@ NavigatorTypesInfo* NavigatorTypes::getNextActiveEntry(NavigatorTypesInfo* previ
     return t_previous;
 }
 
-void NavigatorTypes::SaveSequenceAndState() {
+void NavigatorTypes::SaveSequenceAndState()
+{
+    m_maxId = 0;
+    m_type_choices.clear();
+
     wxString key = "NAVIGATOR_SETTINGS";
     Document j_doc = Model_Infotable::instance().getJdoc(key, "{}");
     j_doc.SetObject();
     rapidjson::Value array(rapidjson::kArrayType);
 
-    for (int i = 0; i < static_cast<int>(m_entries.size()); i++) {
-        rapidjson::Value value(m_entries[i].name.ToUTF8().data(), j_doc.GetAllocator());
+    for (auto& entry : m_navigator_entries) {
+        rapidjson::Value value(entry.name.ToUTF8().data(), j_doc.GetAllocator());
+        rapidjson::Value cvalue(entry.choice.ToUTF8().data(), j_doc.GetAllocator());
         rapidjson::Value obj(rapidjson::kObjectType);
-        obj.AddMember("id",      m_entries[i].id,      j_doc.GetAllocator());
-        obj.AddMember("name",    value,                j_doc.GetAllocator());
-        obj.AddMember("seq_no",  m_entries[i].seq_no,  j_doc.GetAllocator());
-        obj.AddMember("imageId", m_entries[i].imageId, j_doc.GetAllocator());
-        obj.AddMember("navTyp",  m_entries[i].navTyp,  j_doc.GetAllocator());
-        obj.AddMember("active",  m_entries[i].active,  j_doc.GetAllocator());
+        obj.AddMember("id",      entry.id,      j_doc.GetAllocator());
+        obj.AddMember("name",    value,         j_doc.GetAllocator());
+        obj.AddMember("choice",  cvalue,        j_doc.GetAllocator());
+        obj.AddMember("seq_no",  entry.seq_no,  j_doc.GetAllocator());
+        obj.AddMember("imageId", entry.imageId, j_doc.GetAllocator());
+        obj.AddMember("navTyp",  entry.navTyp,  j_doc.GetAllocator());
+        obj.AddMember("active",  entry.active,  j_doc.GetAllocator());
         array.PushBack(obj, j_doc.GetAllocator());
+        if (entry.seq_no > m_maxId) {
+            m_maxId = entry.seq_no;
+        }
+        if (entry.navTyp > NAV_TYP_PANEL) { // || entry.navTyp == NAV_TYP_OTHER) {
+            updateTypeChoiceName(entry.id, entry.seq_no, entry.choice);
+        }
     }
     j_doc.AddMember("data", array, j_doc.GetAllocator());
 
@@ -146,76 +179,161 @@ void NavigatorTypes::SaveSequenceAndState() {
     sortEntriesBySeq();
 }
 
-NavigatorTypesInfo& NavigatorTypes::FindOrCreateEntry(int searchId) {
-    if (searchId > -1) {
-        auto it = std::find_if(m_entries.begin(), m_entries.end(),
-        [searchId](const NavigatorTypesInfo& entry) {
-            return entry.id == searchId;
-        });
-        if (it != m_entries.end()) {
-            return *it;
+NavigatorTypesInfo* NavigatorTypes::FindEntry(int searchId)
+{
+    for (auto& entry : m_navigator_entries) {
+        if (entry.id == searchId) {
+            return &entry;
         }
     }
-    NavigatorTypesInfo newEntry;
-    newEntry.id = searchId > -1 ? searchId : ++m_maxId;
-    if (newEntry.id > m_maxId) {
-        m_maxId = newEntry.id;
-    }
-    m_entries.emplace_back(std::move(newEntry));
-    return m_entries.back();
+    return nullptr;
 }
 
-void NavigatorTypes::loadFromInfoTable() {
+wxString NavigatorTypes::FindEntryName(int searchId)
+{
+    for (auto& entry : m_navigator_entries) {
+        if (entry.id == searchId) {
+            return entry.name;
+        }
+    }
+    return "";
+}
+
+NavigatorTypesInfo* NavigatorTypes::FindOrCreateEntry(int searchId)
+{
+   NavigatorTypesInfo* info = FindEntry(searchId);
+   if (!info) {
+        NavigatorTypesInfo newEntry;
+        newEntry.id = ++m_maxId;
+        m_navigator_entries.emplace_back(std::move(newEntry));
+        info = &m_navigator_entries.back();
+   }
+   return info;
+}
+
+void NavigatorTypes::LoadFromInfoTable()
+{
     wxString key = "NAVIGATOR_SETTINGS";
     Document doc = Model_Infotable::instance().getJdoc(key, "{}");
     if (!doc.HasMember("data") || !doc["data"].IsArray()) {
-        wxLogDebug("Navigatortypes: No data found in settings => use default");
         return;
     }
     const rapidjson::Value& array = doc["data"];
     for (rapidjson::SizeType i = 0; i < array.Size(); ++i) {
-
         const rapidjson::Value& obj = array[i];
         int id = -1;
         if (obj.HasMember("id") && obj["id"].IsInt()) {
             id = obj["id"].GetInt();
         }
-        if (id == -1) {
+         if (id == -1) {
             wxLogError("NAVIGATOR_SETTINGS - invalid content!");
             return;
         }
-        NavigatorTypesInfo& info = FindOrCreateEntry(id);
+        NavigatorTypesInfo* info = FindOrCreateEntry(id);
         if (obj.HasMember("name") && obj["name"].IsString()) {
             const char* chars = obj["name"].GetString();
-            wxString newName = wxString::FromUTF8(chars);
-            if (info.name != newName) {
-                info.name = newName;
-            }
+            info->name = wxString::FromUTF8(chars);
+        }
+        if (obj.HasMember("choice") && obj["choice"].IsString()) {
+            const char* chars = obj["choice"].GetString();
+            info->choice = wxString::FromUTF8(chars);
         }
         if (obj.HasMember("seq_no") && obj["seq_no"].IsInt()) {
-            info.seq_no = obj["seq_no"].GetInt();
+            info->seq_no = obj["seq_no"].GetInt();
+            if (info->seq_no > m_maxId) {
+                m_maxId = info->seq_no;
+            }
         }
         if (obj.HasMember("active") && obj["active"].IsBool()) {
-            info.active = obj["active"].GetBool();
+            info->active = obj["active"].GetBool();
         }
         if (obj.HasMember("imageId") && obj["imageId"].IsInt()) {
-            info.imageId = obj["imageId"].GetInt();
+            info->imageId = obj["imageId"].GetInt();
         }
         if (obj.HasMember("navTyp") && obj["navTyp"].IsInt()) {
-            info.navTyp = obj["navTyp"].GetInt();
+            info->navTyp = obj["navTyp"].GetInt();
+        }
+        // Clean up if necessary:
+        if (info->name.IsEmpty()) {
+            info->name = "UNKNOWN";
+        }
+        if (info->choice.IsEmpty()) {
+            info->choice = info->name;
+        }
+        if (info->navTyp == NAV_TYP_ACCOUNT || info->navTyp == NAV_TYP_OTHER) {
+            updateTypeChoiceName(info->id, info->seq_no, info->choice);
         }
     }
     sortEntriesBySeq();
 }
 
-void NavigatorTypes::sortEntriesBySeq() {
-    std::stable_sort(m_entries.begin(), m_entries.end(), [](NavigatorTypesInfo a, NavigatorTypesInfo b)
+void NavigatorTypes::sortEntriesBySeq()
+{
+    std::stable_sort(m_navigator_entries.begin(), m_navigator_entries.end(), [](NavigatorTypesInfo a, NavigatorTypesInfo b)
+    {
+        return (a.seq_no < b.seq_no);
+    });
+
+    std::stable_sort(m_type_choices.begin(), m_type_choices.end(), [](AccountItem a, AccountItem b)
     {
         return (a.seq_no < b.seq_no);
     });
 }
 
-wxArrayString* NavigatorTypes::GetCustomCheckingAccounts()
+wxString NavigatorTypes::getAccountSectionName(int account_type)
 {
-    return &m_customChecking;
+    NavigatorTypesInfo* info = FindEntry(account_type);
+    return info ? info->name : "";
+}
+
+// Account choice names for selection
+int NavigatorTypes::getNumberOfAccountTypes()
+{
+    return static_cast<int>(m_type_choices.size());
+};
+
+NavigatorTypes::AccountItem* NavigatorTypes::getAccountTypeItem(int idx)
+{
+    return &m_type_choices[idx];
+}
+
+const wxString NavigatorTypes::type_name(int id)
+{
+    for (AccountItem entry : m_type_choices) {
+        if (entry.id == id) {
+            return entry.name;
+        }
+    }
+    return "";
+}
+
+int NavigatorTypes::type_id(const wxString& name, int default_id)
+{
+    for (AccountItem entry : m_type_choices) {
+        if (entry.name == name) {
+            return entry.id;
+        }
+    }
+    return default_id;
+}
+
+void NavigatorTypes::updateTypeChoiceName(int id, int seq_no, wxString name)
+{
+    for (AccountItem entry : m_type_choices) {
+        if (entry.id == id) {
+            entry.name = name;
+            entry.seq_no = seq_no;
+            return;
+        }
+    }
+    // Not found => create new entry
+    m_type_choices.push_back(AccountItem(id, seq_no, name));
+}
+
+void NavigatorTypes::SetTrashStatus(bool state)
+{
+    NavigatorTypesInfo* info = FindEntry(NAV_ENTRY_DELETED_TRANSACTIONS);
+    if (info) {
+        info->active = state;
+    }
 }

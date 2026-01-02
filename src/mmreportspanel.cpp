@@ -39,6 +39,8 @@
 #include <vector>
 #include <string>
 #include <iomanip>
+#include "navigator/navigatortypes.h"
+
 
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_CHOICE(ID_CHOICE_YEAR, mmReportsPanel::OnYearChanged)
@@ -418,9 +420,9 @@ void mmReportsPanel::CreateControls()
             m_accounts = new wxChoice(itemPanel3, ID_CHOICE_ACCOUNTS);
             m_accounts->Append(_t("All Accounts"));
             m_accounts->Append(_tu("Specific Accounts…"));
-            for (int i = 0; i < Model_Account::TYPE_ID_size; ++i) {
-                wxString type = Model_Account::type_name(i);
-                m_accounts->Append(wxGetTranslation(type), new wxStringClientData(type));
+            for (int i = 0; i < NavigatorTypes::instance().getNumberOfAccountTypes(); ++i) {
+                wxString type = NavigatorTypes::instance().type_name(i);
+                m_accounts->Append(type, new wxStringClientData(type));
             }
             m_accounts->SetSelection(rb_->getAccountSelection());
 

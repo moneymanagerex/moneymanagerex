@@ -150,14 +150,14 @@ void mmHomePagePanel::insertDataIntoTemplate()
 
     // Accounts
     htmlWidgetAccounts account_stats;
-    m_frames["ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_CHECKING);
-    m_frames["CARD_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_CREDIT_CARD);
-    m_frames["CASH_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_CASH);
-    m_frames["LOAN_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_LOAN);
-    m_frames["TERM_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_TERM);
+    m_frames["ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_CHECKING);
+    m_frames["CARD_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_CREDIT_CARD);
+    m_frames["CASH_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_CASH);
+    m_frames["LOAN_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_LOAN);
+    m_frames["TERM_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_TERM);
 
-    account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_ASSET);
-    account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_SHARES);
+    account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_ASSET);
+    account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_SHARES);
 
 
     //Stocks

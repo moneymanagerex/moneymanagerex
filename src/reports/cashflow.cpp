@@ -79,7 +79,7 @@ void mmReportCashFlow::getTransactions()
 
     // Get initial Balance as of today
     for (const auto& account : Model_Account::instance().find(
-        Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT, NOT_EQUAL),
+        Model_Account::ACCOUNTTYPE(NavigatorTypes::instance().getInvestmentAccountStr(), NOT_EQUAL),
         Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL)
     )) {
         if (accountArray_ && std::find(accountArray_->begin(), accountArray_->end(), account.ACCOUNTNAME) == accountArray_->end()) {
