@@ -22,7 +22,7 @@
 struct TypeDataRef : public wxClientData
 {
     ToolBarEntries::ToolBarEntry* ref;
-    TypeDataRef(ToolBarEntries::ToolBarEntry* r): ref(r) {}
+    explicit TypeDataRef(ToolBarEntries::ToolBarEntry* r): ref(r) {}
 };
 
 
@@ -30,6 +30,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(mmToolbarDialog, wxDialog);
 
 mmToolbarDialog::mmToolbarDialog()
 {
+    m_delete = nullptr;
 }
 
 mmToolbarDialog::~mmToolbarDialog()
