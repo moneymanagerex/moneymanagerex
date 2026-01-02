@@ -73,7 +73,7 @@ void mmReconcileDialog::CreateControls()
 
     topSizer->Add(m_amountCtrl, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 5);
 
-    m_btnCalc = new genFocusBitmapButton(topPanel, wxID_ANY, mmBitmapBundle(png::CALCULATOR, mmBitmapButtonSize));
+    m_btnCalc = new wxBitmapButton(topPanel, wxID_ANY, mmBitmapBundle(png::CALCULATOR, mmBitmapButtonSize));
     m_btnCalc->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &mmReconcileDialog::OnCalculator, this);
     m_btnCalc->SetCanFocus(false);
     mmToolTip(m_btnCalc, _t("Open Calculator"));
@@ -82,17 +82,17 @@ void mmReconcileDialog::CreateControls()
     m_calculaterPopup->SetCanFocus(false);
 
     topSizer->AddStretchSpacer();
-    m_btnEdit = new genFocusButton(topPanel, wxID_ANY, _t("&Edit"));
+    m_btnEdit = new wxButton(topPanel, wxID_ANY, _t("&Edit"));
     m_btnEdit->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnEdit, this);
     m_btnEdit->SetCanFocus(false);
     topSizer->Add(m_btnEdit, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 5);
 
-    genFocusButton* btn = new genFocusButton(topPanel, wxID_ANY, _t("&New"));
+    wxButton* btn = new wxButton(topPanel, wxID_ANY, _t("&New"));
     btn->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnNew, this);
     btn->SetCanFocus(false);
     topSizer->Add(btn, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
 
-    btn = new genFocusButton(topPanel, wxID_ANY, _t("&Toggle all"));
+    btn = new wxButton(topPanel, wxID_ANY, _t("&Toggle all"));
     btn->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnToggle, this);
     btn->SetCanFocus(false);
     topSizer->Add(btn, 0, wxRIGHT, 20);
@@ -205,12 +205,12 @@ void mmReconcileDialog::CreateControls()
     wxPanel* bottomPanel = new wxPanel(this);
     wxBoxSizer* bottomSizer = new wxBoxSizer(wxHORIZONTAL);
 
-    m_btnCancel          = new genFocusButton(bottomPanel, wxID_CANCEL, _t("&Cancel "));
+    m_btnCancel          = new wxButton(bottomPanel, wxID_CANCEL, _t("&Cancel "));
 
-    m_btnReconcileLater  = new genFocusButton(bottomPanel, wxID_ANY, _t("Reconcile &later"));
+    m_btnReconcileLater  = new wxButton(bottomPanel, wxID_ANY, _t("Reconcile &later"));
     m_btnReconcileLater->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnClose, this);
 
-    m_btnReconcile       = new genFocusButton(bottomPanel, wxID_OK, _t("&Reconcile"));
+    m_btnReconcile       = new wxButton(bottomPanel, wxID_OK, _t("&Reconcile"));
     m_btnReconcile->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnClose, this);
 
     bottomSizer->AddStretchSpacer();
@@ -450,7 +450,6 @@ void mmReconcileDialog::OnRightFocus(wxFocusEvent& event)
 
 void mmReconcileDialog::handleListFocus(wxListCtrl* list)
 {
-    wxLogDebug("OnFocus for %s", list == m_listLeft ? "Left" : list == m_listRight ? "Right" :  "None");
     if (list->GetItemCount() > 0) {
         long idx = list->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_FOCUSED);
         list->SetItemState(idx > -1 ? idx : 0, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
@@ -471,7 +470,6 @@ void mmReconcileDialog::OnRightFocusKill(wxFocusEvent& event)
 
 void mmReconcileDialog::handleListFocusKill(wxListCtrl* list)
 {
-    wxLogDebug("OnFocusKill for %s", list == m_listLeft ? "Left" : list == m_listRight ? "Right" :  "None");
     resetListSelections(list);
 }
 

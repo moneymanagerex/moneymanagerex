@@ -22,8 +22,6 @@
 #include "mmcheckingpanel.h"
 #include "model/Model_Account.h"
 #include "model/Model_Checking.h"
-#include "generic/genericFocusButton.h"
-#include "generic/genericFocusBitmapButton.h"
 
 
 class mmReconcileDialog: public wxDialog
@@ -44,11 +42,11 @@ private:
     wxStaticText*         m_differenceCtrl;
     wxListCtrl*           m_listLeft;
     wxListCtrl*           m_listRight;
-    genFocusButton*       m_btnCancel;
-    genFocusButton*       m_btnReconcile;
-    genFocusButton*       m_btnReconcileLater;
-    genFocusBitmapButton* m_btnCalc;
-    genFocusButton*       m_btnEdit;
+    wxButton*             m_btnCancel;
+    wxButton*             m_btnReconcile;
+    wxButton*             m_btnReconcileLater;
+    wxBitmapButton*       m_btnCalc;
+    wxButton*             m_btnEdit;
     std::vector<int64>    m_itemDataMap;
     wxVector<wxBitmapBundle> m_images;
 
