@@ -42,6 +42,7 @@
 #include "billsdepositsdialog.h"
 #include "daterangedialog.h"
 #include "uicontrols/reconciledialog.h"
+#include "uicontrols/navigatortypes.h"
 
 #include <wx/clipbrd.h>
 #include <float.h>
@@ -106,7 +107,6 @@ mmCheckingPanel::mmCheckingPanel(
         m_currency = Model_Account::currency(m_account);
     }
     else if (isGroup()) {
-        m_account_type = -(m_checking_id.ToLong() + 4);
         m_group_ids = std::set<int64>(group_ids.begin(), group_ids.end());
         m_currency = Model_Currency::GetBaseCurrency();
     }
@@ -155,7 +155,6 @@ void mmCheckingPanel::loadAccount(int64 account_id)
     m_lc->setVisibleItemIndex(-1);
     m_checking_id = account_id;
     m_account_id = account_id;
-    m_account_type = -1;
     m_group_ids = {};
     m_account = Model_Account::instance().get(m_account_id);
     m_currency = Model_Account::currency(m_account);
@@ -415,7 +414,7 @@ void mmCheckingPanel::updateHeader()
             m_header_credit->SetValue(limit);
             m_header_credit->Show();
         }
-        if (Model_Account::type_id(m_account) == Model_Account::TYPE_ID_INVESTMENT || Model_Account::type_id(m_account) == Model_Account::TYPE_ID_ASSET)
+        if (Model_Account::type_id(m_account) == NavigatorTypes::TYPE_ID_INVESTMENT || Model_Account::type_id(m_account) == NavigatorTypes::TYPE_ID_ASSET)
         {
             std::pair<double, double> investment_bal = Model_Account::investment_balance(m_account);
             summary.Append(wxString::Format("     %s%s", _t("Market Value: "), Model_Account::toCurrency(investment_bal.first, m_account)));
@@ -1338,8 +1337,13 @@ wxString mmCheckingPanel::getPanelTitle() const
     else if (isGroup()) {
         if (m_checking_id == -3)
             return _t("Favorites");
-        else
-            return wxGetTranslation(mmGUIFrame::ACCOUNT_SECTION[m_account_type]);
+        else {
+            int account_Type = -(static_cast<int>(m_checking_id.GetValue()) + 4);
+            if (account_Type >= NavigatorTypes::TYPE_ID_size) {
+                account_Type += NavigatorTypes::NAV_IDXDIFF;
+            }
+            return NavigatorTypes::instance().getAccountSectionName(account_Type);
+        }
     }
     else if (m_account)
         return wxString::Format(_t("Account View: %s"), m_account->ACCOUNTNAME);

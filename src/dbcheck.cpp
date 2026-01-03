@@ -25,12 +25,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #include "model/Model_Category.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Stock.h"
+#include "uicontrols/navigatortypes.h"
+
 
 bool dbCheck::checkDB()
 {
     bool result = true;
     result = checkAccounts();
-    
+
     return result;
 }
 
@@ -57,7 +59,7 @@ bool dbCheck::checkAccounts()
     // Stocks
     const auto &stocks = Model_Stock::instance().all();
     for (const auto& stock : stocks)
-        if (!Model_Account::instance().get(stock.HELDAT) || (Model_Account::type_id(Model_Account::instance().get(stock.HELDAT)) != Model_Account::TYPE_ID_INVESTMENT))
+        if (!Model_Account::instance().get(stock.HELDAT) || (Model_Account::type_id(Model_Account::instance().get(stock.HELDAT)) != NavigatorTypes::TYPE_ID_INVESTMENT))
         {
             result = false;
         }

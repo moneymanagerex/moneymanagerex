@@ -47,9 +47,12 @@ private:
     void Create();
     void OnHTMLScaleSpin(wxSpinEvent& event);
     void OnThemeManagerSelected(wxCommandEvent&);
+    void OnNavigationConfigSelected(wxCommandEvent&);
+    void OnToolbarConfigSelected(wxCommandEvent&);
 
 private:
     wxButton* m_theme_manager = nullptr;
+    //wxButton* m_navigator_cfg;
     wxChoice* m_theme_mode = nullptr;
     wxChoice* m_font_size_chooser = nullptr;
     wxChoice* m_choice_visible = nullptr;
@@ -66,9 +69,13 @@ private:
     wxCheckBox* m_showToolTips = nullptr;
     wxCheckBox* m_showMoneyTips = nullptr;
 
+    wxCheckBox* m_navShowCashLedger = nullptr;
+
     enum
     {
         ID_DIALOG_THEMEMANAGER = wxID_HIGHEST + 100,
-        ID_DIALOG_HTML_SCALE
+        ID_DIALOG_HTML_SCALE,
+        ID_DIALOG_NAVIGATOR_CONFIG,
+        ID_DIALOG_TOOLBAR_CONFIG
     };
 };
