@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2013-2020 Nikolay Akimov
 Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2026  Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -155,6 +156,7 @@ void mmQIFImportDialog::CreateControls()
     for (const auto &i : g_encoding)
         m_choiceEncoding->Append(wxGetTranslation(i.second.second), new wxStringClientData(i.second.second));
     m_choiceEncoding->SetSelection(0);
+    m_choiceEncoding->Bind(wxEVT_CHOICE, &mmQIFImportDialog::OnFileNameChanged, this);
 
     flex_sizer->Add(m_choiceEncoding, g_flagsH);
 
@@ -438,8 +440,14 @@ bool mmQIFImportDialog::mmReadQIFFile()
     wxString catDelimiter = Model_Infotable::instance().getString("CATEG_DELIMITER", ":");
 
     wxFileInputStream input(m_FileNameStr);
-    wxConvAuto conv = g_encoding.at(m_choiceEncoding->GetSelection()).first;
-    wxTextInputStream text(input, "\x09", conv);
+    wxTextInputStream* text;
+    if (m_choiceEncoding->GetSelection() == 0) {
+        text = new wxTextInputStream(input);
+    }
+    else {
+        wxConvAuto conv = g_encoding.at(m_choiceEncoding->GetSelection()).first;
+        text = new wxTextInputStream(input, "\x09", conv);
+    }
 
     wxProgressDialog progressDlg(_tu("Please wait…"), _t("Scanning")
         , 0, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
@@ -463,7 +471,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     while (input.IsOk() && !input.Eof())
     {
         ++numLines;
-        const wxString lineStr = text.ReadLine();
+        const wxString lineStr = text->ReadLine();
         if (lineStr.IsEmpty())
             continue;
 
