@@ -40,6 +40,7 @@ mmToolbarDialog::~mmToolbarDialog()
 
 mmToolbarDialog::mmToolbarDialog(wxWindow* parent):genericTreeListDialog(parent, _t("Toolbar configuration"))
 {
+    m_delete = nullptr;
     init(wxTL_3STATE | wxTL_SINGLE | wxTL_NO_HEADER);
     SetSize(Model_Infotable::instance().getSize(DIALOG_SIZE));
 }

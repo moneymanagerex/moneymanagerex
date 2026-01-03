@@ -950,9 +950,8 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
                 accountSection[navinfo->type] = addNavTreeSection(root, tname, navinfo->imageId, mmTreeItemData::ASSETS, -1);
                 break;
 
-            // treat all others as banking accounts:
             default:
-                if (navinfo->type > NavigatorTypes::NAV_ENTRY_HELP) {
+                if (navinfo->type > NavigatorTypes::NAV_ENTRY_HELP) { // Treat all custom accounts as checking accounts:
                     int id = (navinfo->type < acc_size + NavigatorTypes::NAV_IDXDIFF) ? navinfo->type - NavigatorTypes::NAV_IDXDIFF : 0;
                     accountSection[id] = addNavTreeSection(root, tname, navinfo->imageId,
                         mmTreeItemData::CHECKING, - (4 + id));

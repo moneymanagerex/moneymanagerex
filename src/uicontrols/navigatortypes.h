@@ -125,7 +125,6 @@ class NavigatorTypes
         std::vector<NavigatorTypesInfo*> m_account_type_entries;
         long unsigned int   m_lastIdx;
         NavigatorTypesInfo* m_previous;
-        wxArrayString       m_customChecking;
 
         void sortEntriesBySeq();
         int getMaxId();
