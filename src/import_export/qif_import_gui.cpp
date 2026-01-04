@@ -1285,13 +1285,11 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         vQIF_trxs_.clear();
         btnOK_->Enable(false);
         progressDlg.Destroy();
-
-        save_file_name();
     }
-    else
-    {
+    else {
         sMsg = _t("Imported transactions discarded by user!"); //TODO: strange message may be _t("Import has discarded by user!")
     }
+    save_file_name();
     wxMessageDialog(this, sMsg, _t("Import from QIF file"), wxOK | wxICON_WARNING).ShowModal();
     *log_field_ << sMsg << "\n";
 
@@ -1326,6 +1324,7 @@ void mmQIFImportDialog::saveSplit()
     Model_Splittransaction::instance().ReleaseSavepoint();
     Model_Taglink::instance().ReleaseSavepoint();
 }
+
 void mmQIFImportDialog::joinSplit(Model_Checking::Cache &destination
     , std::vector<Model_Splittransaction::Cache> &target)
 {
