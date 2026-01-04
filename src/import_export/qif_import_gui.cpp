@@ -74,6 +74,12 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int64 account_id, const w
     Create(parent);
     mmThemeAutoColour(this, true);
     SetMinSize(wxSize(500, 300));
+    SetSize(Model_Infotable::instance().getSize(DIALOG_SIZE));
+}
+
+mmQIFImportDialog::~mmQIFImportDialog()
+{
+    Model_Infotable::instance().setSize(DIALOG_SIZE, GetSize());
 }
 
 wxString mmQIFImportDialog::OnGetItemText(long item, long column) const
