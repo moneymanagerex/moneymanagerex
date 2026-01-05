@@ -3,6 +3,7 @@ Version 1.9.2 RC 2
 Released: 2025-11-27
 
 Features:
+* #7980 Refine scheduled transactions panel
 * #7946 Transaction dialog Save and new enhancements
 * #7947 Dedicated Flag to show/hide future transactions on dashboard
 * #7821 2-digit years are interpreted as the first century, instead of being in the closest century
@@ -22,6 +23,7 @@ Features:
 * #7923 Header of MMEX
 
 Bugfixes:
+* #7975 Add descriptive tooltips to budget status icons in the Budgeting Panel
 * #7984 Cash Flow -> Transactions - Current Day Transactions are displayed as if not already reconciled
 * #7972 Cannot invoke Theme Manager from menus
 * #7863 error occurred when saving the transaction

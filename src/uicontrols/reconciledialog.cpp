@@ -73,6 +73,7 @@ void mmReconcileDialog::CreateControls()
 
     topSizer->Add(m_amountCtrl, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 5);
 
+#ifndef __WXOSX__   // Issue https://github.com/moneymanagerex/moneymanagerex/issues/8000
     m_btnCalc = new wxBitmapButton(topPanel, wxID_ANY, mmBitmapBundle(png::CALCULATOR, mmBitmapButtonSize));
     m_btnCalc->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &mmReconcileDialog::OnCalculator, this);
     m_btnCalc->SetCanFocus(false);
@@ -80,6 +81,7 @@ void mmReconcileDialog::CreateControls()
     topSizer->Add(m_btnCalc, 0, wxRIGHT, 20);
     m_calculaterPopup = new mmCalculatorPopup(m_btnCalc, m_amountCtrl, true);
     m_calculaterPopup->SetCanFocus(false);
+#endif
 
     topSizer->AddStretchSpacer();
     m_btnEdit = new wxButton(topPanel, wxID_ANY, _t("&Edit"));
