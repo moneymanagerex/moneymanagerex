@@ -664,7 +664,14 @@ void mmReconcileDialog::OnClose(wxCommandEvent& event)
 {
     auto saveItem = [](int64 id, bool state, bool final) {
         Model_Checking::Data* trx = Model_Checking::instance().get(id);
-        trx->STATUS = state ? (final ? "R" : "F") : "";
+        if (state) {
+            trx->STATUS = final ? "R" : "F";
+        }
+        else {
+            if (trx->STATUS == "F") {
+                trx->STATUS = "";
+            }
+        }
         Model_Checking::instance().save(trx);
     };
 
