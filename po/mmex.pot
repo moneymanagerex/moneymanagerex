@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-02 11:07+0000\n"
+"POT-Creation-Date: 2026-01-06 10:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -435,7 +435,7 @@ msgstr ""
 #: reports/cashflow.cpp:405 reports/incexpenses.cpp:244 reports/summary.cpp:295
 #: reports/transactions.cpp:208 stockdialog.cpp:296 stockdialog.cpp:623
 #: stockspanel.cpp:265 transactionsupdatedialog.cpp:132 transdialog.cpp:453
-#: uicontrols/reconciledialog.cpp:108 usertransactionpanel.cpp:105
+#: uicontrols/reconciledialog.cpp:125 usertransactionpanel.cpp:105
 #: webapp.cpp:564 webappdialog.cpp:138 wizard_update.cpp:138
 msgid "Date"
 msgstr ""
@@ -510,7 +510,7 @@ msgid "Edit Transaction Details"
 msgstr ""
 
 #: assetdialog.cpp:322 constants.cpp:75 sharetransactiondialog.cpp:361
-#: uicontrols/reconciledialog.cpp:208
+#: uicontrols/reconciledialog.cpp:226
 msgid "&Cancel "
 msgstr ""
 
@@ -1056,7 +1056,7 @@ msgstr ""
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:226
 #: splittransactionsdialog.cpp:89 splittransactionsdialog.cpp:221
 #: transactionsupdatedialog.cpp:186 transdialog.cpp:504
-#: uicontrols/reconciledialog.cpp:111 usertransactionpanel.cpp:143
+#: uicontrols/reconciledialog.cpp:128 usertransactionpanel.cpp:143
 #: webappdialog.cpp:144
 msgid "Amount"
 msgstr ""
@@ -1066,7 +1066,7 @@ msgid "Specify the transfer amount in the To Account"
 msgstr ""
 
 #: billsdepositsdialog.cpp:544 transdialog.cpp:511
-#: uicontrols/reconciledialog.cpp:79
+#: uicontrols/reconciledialog.cpp:89
 msgid "Open Calculator"
 msgstr ""
 
@@ -1088,7 +1088,7 @@ msgstr ""
 #: payeedialog.cpp:209 payeedialog.cpp:245 reports/cashflow.cpp:407
 #: reports/payee.cpp:136 reports/transactions.cpp:216
 #: transactionsupdatedialog.cpp:199 transdialog.cpp:263 transdialog.cpp:540
-#: uicontrols/reconciledialog.cpp:110 usertransactionpanel.cpp:182
+#: uicontrols/reconciledialog.cpp:127 usertransactionpanel.cpp:182
 #: webappdialog.cpp:142
 msgid "Payee"
 msgstr ""
@@ -1138,7 +1138,7 @@ msgstr ""
 #: import_export/qif_export.cpp:634 import_export/qif_import_gui.cpp:92
 #: import_export/univcsvdialog.cpp:113 mmchecking_list.cpp:100
 #: reports/transactions.cpp:212 transdialog.cpp:588
-#: uicontrols/reconciledialog.cpp:109 usertransactionpanel.cpp:208
+#: uicontrols/reconciledialog.cpp:126 usertransactionpanel.cpp:208
 msgid "Number"
 msgstr ""
 
@@ -1578,7 +1578,7 @@ msgid "Actual: "
 msgstr ""
 
 #: budgetingpanel.cpp:254 budgetingpanel.cpp:262 reports/budgetingperf.cpp:355
-#: uicontrols/reconciledialog.cpp:190
+#: uicontrols/reconciledialog.cpp:208
 msgid "Difference: "
 msgstr ""
 
@@ -2866,7 +2866,7 @@ msgid "Display split transactions as a single row"
 msgstr ""
 
 #: filtertransdialog.cpp:797 mmframe.cpp:2073 mmframe.cpp:2252 mmframe.cpp:3230
-#: optiondialog.cpp:222 optiondialog.h:49
+#: optiondialog.cpp:222 optiondialog.h:49 uicontrols/reconciledialog.cpp:114
 msgid "Settings"
 msgstr ""
 
@@ -8870,48 +8870,68 @@ msgstr ""
 msgid "Transactions Dialog"
 msgstr ""
 
-#: uicontrols/reconciledialog.cpp:53
+#: uicontrols/reconciledialog.cpp:57
 msgid "Reconcile account"
 msgstr ""
 
-#: uicontrols/reconciledialog.cpp:70 uicontrols/reconciledialog.cpp:185
+#: uicontrols/reconciledialog.cpp:79 uicontrols/reconciledialog.cpp:203
 msgid "Statement ending:"
 msgstr ""
 
-#: uicontrols/reconciledialog.cpp:85
+#: uicontrols/reconciledialog.cpp:96
 msgid "&Edit"
 msgstr ""
 
-#: uicontrols/reconciledialog.cpp:90
+#: uicontrols/reconciledialog.cpp:101
 msgid "&New"
 msgstr ""
 
-#: uicontrols/reconciledialog.cpp:95
+#: uicontrols/reconciledialog.cpp:106
 msgid "&Toggle all"
 msgstr ""
 
-#: uicontrols/reconciledialog.cpp:120
+#: uicontrols/reconciledialog.cpp:129
+msgid "State"
+msgstr ""
+
+#: uicontrols/reconciledialog.cpp:138
 msgid "Withdrawals"
 msgstr ""
 
-#: uicontrols/reconciledialog.cpp:142
+#: uicontrols/reconciledialog.cpp:160
 msgid "Deposits"
 msgstr ""
 
-#: uicontrols/reconciledialog.cpp:175
+#: uicontrols/reconciledialog.cpp:193
 msgid "Previous balance:"
 msgstr ""
 
-#: uicontrols/reconciledialog.cpp:180
+#: uicontrols/reconciledialog.cpp:198
 msgid "Cleared Balance:"
 msgstr ""
 
-#: uicontrols/reconciledialog.cpp:210
+#: uicontrols/reconciledialog.cpp:228
 msgid "Reconcile &later"
 msgstr ""
 
-#: uicontrols/reconciledialog.cpp:213
+#: uicontrols/reconciledialog.cpp:231
 msgid "&Reconcile"
+msgstr ""
+
+#: uicontrols/reconciledialog.cpp:520
+msgid "Show state column"
+msgstr ""
+
+#: uicontrols/reconciledialog.cpp:521
+msgid "Show number column"
+msgstr ""
+
+#: uicontrols/reconciledialog.cpp:523
+msgid "Include void transactions"
+msgstr ""
+
+#: uicontrols/reconciledialog.cpp:524
+msgid "Include duplicated transactions"
 msgstr ""
 
 #: usertransactionpanel.cpp:110
