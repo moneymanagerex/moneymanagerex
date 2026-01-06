@@ -310,7 +310,7 @@
     </p>
 
 
-    
+
 	<aside class="sticky tips">
 		If you use multiple databases, adopt a clear naming convention
 		(e.g. <code>Personal_2025.mmb</code>, <code>Business.emb</code>).
@@ -323,8 +323,8 @@
         in the wrong file.
     </p>
 
-    
-    
+
+
 	<img src="../en_US/images/create_db_01.png" alt="Initial screen without database" class="shadow" />
 	<!-- The image should show MMEX at startup when no database is found, offering “Open Database” or “New Database”. -->
 
@@ -364,7 +364,7 @@
     </p>
 
 
-    
+
 	<h4>Initial Settings: Base Currency and User Name</h4>
 
 	<p>
@@ -382,14 +382,14 @@
         The <strong>Base Currency</strong> represents the main reference currency
         for the database: all reports and overall totals are calculated using this currency.
     </p>
-    
+
     <p>
         It is possible to create accounts in <strong>different currencies</strong>
         from the Base Currency.
         MMEX automatically manages <strong>exchange rates</strong>, allowing
         amounts expressed in different currencies to be compared correctly.
     </p>
-    
+
     <p>
         A complete explanation of currency management, exchange rates, and conversions
         is provided in the dedicated
@@ -398,7 +398,7 @@
 
 
 
-    
+
 	<img src="../en_US/images/create_db_03.png" alt="Wizard: Base Currency and User Name" class="shadow" />
 	<!-- The image should show the wizard with Base Currency and User Name selection. -->
 
@@ -411,8 +411,8 @@
         while maintaining a consistent overall view of the total value.
     </p>
 
-    
-    
+
+
 	<p>
 		These settings can be changed later via:
 	</p>
@@ -848,7 +848,7 @@
     <p>
         <dfn>Type of Account</dfn>: MMEX supports several types of accounts.
     </p>
-    
+
     <dl>
         <dt>Checking Account</dt>
         <dd>
@@ -858,7 +858,7 @@
             Also known as a Bank Account, it supports three kinds of transactions:
             withdrawals, deposits, and transfers.
         </dd>
-    
+
         <dt>Term Accounts</dt>
         <dd>
             Term Accounts are similar to Checking Accounts, with the difference
@@ -872,7 +872,7 @@
             They have their own balance section on the Dashboard and also support
             withdrawals, deposits, and transfers.
         </dd>
-    
+
         <dt>Investment Account</dt>
         <dd>
             Investment Accounts allow you to track investments such as stocks,
@@ -882,7 +882,7 @@
         </dd>
     </dl>
 
- 
+
 
     <p>
        To properly set up accounts, you should have balance information
@@ -896,7 +896,7 @@
     <p>
         Most accounts have some kind of balance in them, for example say
         in a credit card account, you have a current balance of $2,304.67,
-        you could put that value in the initial balance field. 
+        you could put that value in the initial balance field.
         From that point forward, you only need to add transactions that occurred after that date.
     </p>
     <p>
@@ -1225,14 +1225,18 @@
     </p>
 
     <h4>Reconcile dialog</h4>
-    <p>For a convinient reconcile, a reconcile dialog is provided.</p
+    <p>For a convinient reconcile, a reconcile dialog is provided.</p>
+
+    <h5>Opening the dialog</h5>
     <p>It can be either openend from the navigator right-click contextual menu of the account:</p>
-    <p><img class="shadow" alt='Navigator account context menu' src='../en_US/transactions/reconcilecontextmenu.png'></p>4
+    <p><img class="shadow" alt='Navigator account context menu' src='../en_US/transactions/reconcilecontextmenu.png'></p>
     <br>
     <p>Or directly in the account view with the provided button:</p>
     <p><img class="shadow" alt='Reconcile button' src='../en_US/transactions/reconcilebutton.png'></p>
     <br>
-    <p>The dialog displays all pending transactions up to the current date sorted in two columns for payments and deposits:</p>
+
+    <h5>Dialog window</h5>
+    <p>The dialog displays all pending transactions up to the current date sorted in two columns: one for withdrawels (payments and including transfers) and one for deposits including incoming transfers:</p>
     <p><img class="shadow" alt='Reconcile dialog' src='../en_US/transactions/reconciledialog.png'></p>
 
     <aside class="sticky tips">
@@ -1254,6 +1258,13 @@
         <li>With <kbd><samp>Reconcile</samp></kbd> all marked transactions will be set into the state <b>"Reconciled"</b> and the dialog is closed.</li>
         <li>With <kbd><samp>Reconcile later</samp></kbd> all marked transactions will be set into the state <b>"Follow-Up"</b> and the dialog is closed.</li>
     </ul>
+
+
+    <h5>Dialog settings</h5>
+    With the settings button in top right corner, the display of the reconcile dialog can be configured:
+    <p><img class="shadow" alt='Reconcile dialog settings' src='../en_US/transactions/reconcilesettings.png'></p>
+    <p>These options are stored and reapplied with the next invokement.</p>
+    <p>Per default "void" transactions are not shown in the dialog.</p>
 
 
 
@@ -1683,26 +1694,26 @@
     <!--              Searching for Information                  -->
     <!-- ======================================================= -->
     <h2 id="searching_for_information">Searching for Information</h2>
-    
+
     <h3>Finding Transactions</h3>
-    
+
     <aside class="sticky tips">
         The most powerful tools for finding specific transaction data are the
         <a href="#trx_report">Transaction Reports</a>.
     </aside>
-    
+
     <p>
         MMEX provides several tools to help users locate specific transactions
         within the database.
     </p>
-    
+
     <p>
         The quickest way to search transactions is by using the
         <strong>quick search</strong> field available in the account view.
         This search operates primarily on the <dfn>Notes</dfn> field and other
         visible transaction fields.
     </p>
-    
+
     <p>
         At the bottom of the transaction list in the account view, enter your
         search text in the field to the right of the
@@ -1710,23 +1721,23 @@
         Click the magnifying glass or press the
         <kbd><samp>Enter</samp></kbd> key to start the search.
     </p>
-    
+
     <aside class="sticky notes">
         The quick search is <strong>case-sensitive</strong>.
     </aside>
-    
+
     <p>
         The search is applied only to the currently displayed account and
         processes all visible transactions.
         When working with large datasets (thousands of transactions),
         search operations may take a few seconds to complete.
     </p>
-    
+
     <aside class="sticky tips">
         To improve performance, narrow the scope first by selecting a single
         account or limiting the date range.
     </aside>
-    
+
     <p>
         For advanced searches based on amount, date, category, payee,
         custom fields, or complex criteria, it is recommended to use
@@ -1734,30 +1745,30 @@
         <strong>Transaction Reports</strong>, which provide far more detailed
         control.
     </p>
-    
+
     <h3>Finding Payees</h3>
-    
+
     <p>
         To locate a specific payee, open the
         <dfn>Payee Manager</dfn> using:
     </p>
-    
+
     <p>
         <kbd><samp>Tools</samp> → <samp>Payee Manager…</samp></kbd>
     </p>
-    
+
     <p>
         In the payee management window, use the search field at the bottom
         of the dialog.
         This search is <strong>not case-sensitive</strong>, and the payee list
         is filtered dynamically as you type.
     </p>
-    
+
     <p>
         If you do not know the exact name or spelling of a payee, you can use
         <strong>wildcards</strong>:
     </p>
-    
+
     <ul>
         <li>
             <kbd><kbd>?</kbd></kbd> (question mark) to substitute
@@ -1768,9 +1779,9 @@
             <strong>one or more characters</strong>
         </li>
     </ul>
-    
+
     <h4>Examples</h4>
-    
+
     <ul>
         <li>
             Searching for <kbd>Cit?</kbd> will match <samp>Citi</samp> but not
@@ -1781,29 +1792,29 @@
             and <samp>Margaret</samp>
         </li>
     </ul>
-    
+
     <p>
         For more details about managing payees, see the
         <a href="#payee">Payee Manager</a> section.
     </p>
-    
+
     <h3>Important Notes About Search Behavior</h3>
-    
+
     <aside class="sticky notes">
         Search behavior may vary depending on the context
         (Account View, Transaction Filters, Category Manager, Reports).
     </aside>
-    
+
     <p>
         Some fields, such as <strong>Categories</strong> and
         <strong>Subcategories</strong>, follow different search and selection
         rules depending on where they are used.
     </p>
-    
+
     <p>
         For example:
     </p>
-    
+
     <ul>
         <li>
             In the <strong>Category Manager</strong>, searches can match
@@ -1815,17 +1826,17 @@
             <kbd>:</kbd> separator.
         </li>
     </ul>
-    
+
     <aside class="sticky tips">
         When selecting categories, you can type:
         <kbd>B : T : H</kbd> to quickly select
         <samp>Bills:Telephone:Home</samp> (example).
     </aside>
-    
+
     <p>
         Searching within <strong>Custom Fields</strong> also has some limitations:
     </p>
-    
+
     <ul>
         <li>
             Filtering by exact field value is supported.
@@ -1839,7 +1850,7 @@
             reviewing results manually may be required.
         </li>
     </ul>
-    
+
     <aside class="sticky notes">
         MMEX is under active development, and search behavior and performance
         may evolve between releases.
