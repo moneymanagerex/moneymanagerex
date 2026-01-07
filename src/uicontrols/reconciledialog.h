@@ -37,7 +37,7 @@ private:
 
     enum
     {
-        ID_CHECK_SHOW_STATE_COL = wxID_HIGHEST + 1,
+        ID_CHECK_SHOW_STATUS_COL = wxID_HIGHEST + 1,
         ID_CHECK_SHOW_NUMBER_COL,
         ID_CHECK_INCLUDE_VOID,
         ID_CHECK_INCLUDE_DUPLICATE,
@@ -46,7 +46,7 @@ private:
 
     enum
     {
-        SETTING_SHOW_STATE_COL,
+        SETTING_SHOW_STATUS_COL,
         SETTING_SHOW_NUMBER_COL,
         SETTING_INCLUDE_VOID,
         SETTING_INCLUDE_DUPLICATE,
