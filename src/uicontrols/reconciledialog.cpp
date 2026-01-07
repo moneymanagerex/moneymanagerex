@@ -243,7 +243,7 @@ void mmReconcileDialog::CreateControls()
     Bind(wxEVT_MENU, &mmReconcileDialog::OnMenuItemChecked, this, ID_CHECK_SHOW_STATE_COL);
     Bind(wxEVT_MENU, &mmReconcileDialog::OnMenuItemChecked, this, ID_CHECK_SHOW_NUMBER_COL);
     Bind(wxEVT_MENU, &mmReconcileDialog::OnMenuItemChecked, this, ID_CHECK_INCLUDE_VOID);
-    Bind(wxEVT_MENU, &mmReconcileDialog::OnMenuItemChecked, this, ID_CHECK_INCLUDE_DUPLICATED);
+    Bind(wxEVT_MENU, &mmReconcileDialog::OnMenuItemChecked, this, ID_CHECK_INCLUDE_DUPLICATE);
 
     // --- Main layout ---
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
@@ -521,12 +521,12 @@ void mmReconcileDialog::OnSettings(wxCommandEvent& WXUNUSED(event))
     menu.AppendCheckItem(ID_CHECK_SHOW_NUMBER_COL, _tu("Show number column"));
     menu.AppendSeparator();
     menu.AppendCheckItem(ID_CHECK_INCLUDE_VOID, _tu("Include void transactions"));
-    menu.AppendCheckItem(ID_CHECK_INCLUDE_DUPLICATED, _tu("Include duplicated transactions"));
+    menu.AppendCheckItem(ID_CHECK_INCLUDE_DUPLICATE, _tu("Include duplicate transactions"));
 
     menu.FindItem(ID_CHECK_SHOW_STATE_COL)->Check(m_settings[SETTING_SHOW_STATE_COL]);
     menu.FindItem(ID_CHECK_SHOW_NUMBER_COL)->Check(m_settings[SETTING_SHOW_NUMBER_COL]);
     menu.FindItem(ID_CHECK_INCLUDE_VOID)->Check(m_settings[SETTING_INCLUDE_VOID]);
-    menu.FindItem(ID_CHECK_INCLUDE_DUPLICATED)->Check(m_settings[SETTING_INCLUDE_DUPLICATED]);
+    menu.FindItem(ID_CHECK_INCLUDE_DUPLICATE)->Check(m_settings[SETTING_INCLUDE_DUPLICATED]);
     PopupMenu(&menu);
     //event.Skip();
 }
@@ -552,7 +552,7 @@ void mmReconcileDialog::OnMenuItemChecked(wxCommandEvent& event)
             FillControls();
             UpdateAll();
             break;
-        case ID_CHECK_INCLUDE_DUPLICATED:
+        case ID_CHECK_INCLUDE_DUPLICATE:
             FillControls();
             UpdateAll();
             break;
