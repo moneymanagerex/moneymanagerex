@@ -263,7 +263,7 @@ void UserTransactionPanel::DataToControls()
     m_payee->SetLabelText(Model_Payee::get_payee_name(m_payee_id));
 
     m_category_id = m_checking_entry->CATEGID;
-    m_category->SetLabelText(Model_Category::full_name(m_category_id));
+    m_category->SetValue(Model_Category::full_name(m_category_id));
 
     m_entered_number->SetValue(m_checking_entry->TRANSACTIONNUMBER);
     m_entered_notes->SetValue(m_checking_entry->NOTES);
