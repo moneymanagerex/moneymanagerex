@@ -39,7 +39,7 @@ mmReconcileDialog::~mmReconcileDialog()
 {
     wxSize size = GetSize();
     Model_Infotable::instance().setSize("RECONCILE_DIALOG_SIZE", size);
-    Model_Infotable::instance().setBool("RECONCILE_DIALOG_SHOW_STATE_COL", m_settings[SETTING_SHOW_STATE_COL]);
+    Model_Infotable::instance().setBool("RECONCILE_DIALOG_SHOW_STATUS_COL", m_settings[SETTING_SHOW_STATUS_COL]);
     Model_Infotable::instance().setBool("RECONCILE_DIALOG_SHOW_NUMBER_COL", m_settings[SETTING_SHOW_NUMBER_COL]);
     Model_Infotable::instance().setBool("RECONCILE_DIALOG_INCLUDE_VOID", m_settings[SETTING_INCLUDE_VOID]);
     Model_Infotable::instance().setBool("RECONCILE_DIALOG_INCLUDE_DUPLICATE", m_settings[SETTING_INCLUDE_DUPLICATE]);
@@ -126,7 +126,7 @@ void mmReconcileDialog::CreateControls()
         list->InsertColumn(2, _t("Number"),  wxLIST_FORMAT_RIGHT);
         list->InsertColumn(3, _t("Payee"),   wxLIST_FORMAT_LEFT);
         list->InsertColumn(4, _t("Amount"),  wxLIST_FORMAT_RIGHT);
-        list->InsertColumn(5, _t("State"),   wxLIST_FORMAT_CENTRE, 50);
+        list->InsertColumn(5, _t("Status"),  wxLIST_FORMAT_CENTRE, 60);
     };
 
     wxPanel* leftlistPanel = new wxPanel(midPanel);
@@ -240,7 +240,7 @@ void mmReconcileDialog::CreateControls()
     bottomPanel->SetSizer(bottomSizer);
 
     // -- settings menu ---
-    Bind(wxEVT_MENU, &mmReconcileDialog::OnMenuItemChecked, this, ID_CHECK_SHOW_STATE_COL);
+    Bind(wxEVT_MENU, &mmReconcileDialog::OnMenuItemChecked, this, ID_CHECK_SHOW_STATUS_COL);
     Bind(wxEVT_MENU, &mmReconcileDialog::OnMenuItemChecked, this, ID_CHECK_SHOW_NUMBER_COL);
     Bind(wxEVT_MENU, &mmReconcileDialog::OnMenuItemChecked, this, ID_CHECK_INCLUDE_VOID);
     Bind(wxEVT_MENU, &mmReconcileDialog::OnMenuItemChecked, this, ID_CHECK_INCLUDE_DUPLICATE);
@@ -449,19 +449,19 @@ void mmReconcileDialog::OnListKeyDown(wxKeyEvent& event)
                 list = list == m_listLeft ? m_listRight : m_listLeft;
                 list->SetFocus();
                 if (list->GetItemCount() > 0) {
-                    long idx = list->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_FOCUSED);
-                    list->SetItemState(idx > -1 ? idx : 0, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+                    long idx = list->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATUS_FOCUSED);
+                    list->SetItemStatus(idx > -1 ? idx : 0, wxLIST_STATUS_SELECTED, wxLIST_STATUS_SELECTED);
                 }
                 break;
             case WXK_SPACE:
-                long idx = list->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+                long idx = list->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATUS_SELECTED);
                 if (idx > -1) {
                     wxListItem item;
                     item.SetId(idx);
                     if (list->GetItem(item)) {
                         list->SetItemImage(item, item.GetImage() == 0 ? 1 : 0);
                         if (idx < list->GetItemCount() - 1) {
-                            list->SetItemState(idx + 1, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+                            list->SetItemStatus(idx + 1, wxLIST_STATUS_SELECTED, wxLIST_STATUS_SELECTED);
                         }
                         UpdateAll();
                     }
@@ -487,8 +487,8 @@ void mmReconcileDialog::OnRightFocus(wxFocusEvent& event)
 void mmReconcileDialog::handleListFocus(wxListCtrl* list)
 {
     if (list->GetItemCount() > 0) {
-        long idx = list->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_FOCUSED);
-        list->SetItemState(idx > -1 ? idx : 0, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+        long idx = list->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATUS_FOCUSED);
+        list->SetItemStatus(idx > -1 ? idx : 0, wxLIST_STATUS_SELECTED, wxLIST_STATUS_SELECTED);
     }
 }
 
@@ -517,13 +517,13 @@ void mmReconcileDialog::OnNew(wxCommandEvent& WXUNUSED(event))
 void mmReconcileDialog::OnSettings(wxCommandEvent& WXUNUSED(event))
 {
     wxMenu menu;
-    menu.AppendCheckItem(ID_CHECK_SHOW_STATE_COL, _tu("Show state column"));
+    menu.AppendCheckItem(ID_CHECK_SHOW_STATUS_COL, _tu("Show status column"));
     menu.AppendCheckItem(ID_CHECK_SHOW_NUMBER_COL, _tu("Show number column"));
     menu.AppendSeparator();
     menu.AppendCheckItem(ID_CHECK_INCLUDE_VOID, _tu("Include void transactions"));
     menu.AppendCheckItem(ID_CHECK_INCLUDE_DUPLICATE, _tu("Include duplicate transactions"));
 
-    menu.FindItem(ID_CHECK_SHOW_STATE_COL)->Check(m_settings[SETTING_SHOW_STATE_COL]);
+    menu.FindItem(ID_CHECK_SHOW_STATUS_COL)->Check(m_settings[SETTING_SHOW_STATUS_COL]);
     menu.FindItem(ID_CHECK_SHOW_NUMBER_COL)->Check(m_settings[SETTING_SHOW_NUMBER_COL]);
     menu.FindItem(ID_CHECK_INCLUDE_VOID)->Check(m_settings[SETTING_INCLUDE_VOID]);
     menu.FindItem(ID_CHECK_INCLUDE_DUPLICATE)->Check(m_settings[SETTING_INCLUDE_DUPLICATE]);
@@ -544,7 +544,7 @@ void mmReconcileDialog::OnMenuItemChecked(wxCommandEvent& event)
             showHideColumn(event.IsChecked(), 2, 0);
             resizeColumns();
             break;
-        case ID_CHECK_SHOW_STATE_COL:
+        case ID_CHECK_SHOW_STATUS_COL:
             showHideColumn(event.IsChecked(), 5, 1);
             resizeColumns();
             break;
@@ -605,7 +605,7 @@ void mmReconcileDialog::OnEdit(wxCommandEvent& WXUNUSED(event))
         list = m_listRight;
     }
     if (list) {
-        long item = list->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+        long item = list->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATUS_SELECTED);
         editTransaction(list, item);
     }
 }
@@ -648,7 +648,7 @@ void mmReconcileDialog::moveItemData(wxListCtrl* list, int row1, int row2)
     }
     long rowData = list->GetItemData(row1);
     bool rowischecked = isListItemChecked(list, row1);
-    list->SetItemState(row1, 0, wxLIST_STATE_SELECTED);
+    list->SetItemStatus(row1, 0, wxLIST_STATUS_SELECTED);
 
     list->DeleteItem(row1);
 
@@ -662,7 +662,7 @@ void mmReconcileDialog::moveItemData(wxListCtrl* list, int row1, int row2)
     }
     list->SetItemData(item, rowData);
     list->SetItemImage(item, rowischecked ? 1 : 0);
-    list->SetItemState(item, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+    list->SetItemStatus(item, wxLIST_STATUS_SELECTED, wxLIST_STATUS_SELECTED);
 }
 
 void mmReconcileDialog::setListItemData(const Model_Checking::Data* trx, wxListCtrl* list, long item)
@@ -710,9 +710,9 @@ void mmReconcileDialog::OnToggle(wxCommandEvent& WXUNUSED(event))
 void mmReconcileDialog::resetListSelections(wxListCtrl* list)
 {
     if (list->GetSelectedItemCount() > 0) {
-        long item = list->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+        long item = list->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATUS_SELECTED);
         if (item > -1) {
-            list->SetItemState(item, 0, wxLIST_STATE_SELECTED);
+            list->SetItemStatus(item, 0, wxLIST_STATUS_SELECTED);
         }
     }
 }
@@ -757,8 +757,8 @@ void mmReconcileDialog::applyColumnSettings()
     m_colwidth[0] = m_listLeft->GetColumnWidth(2);
     m_colwidth[1] = m_listLeft->GetColumnWidth(5);
 
-    m_settings[SETTING_SHOW_STATE_COL] = Model_Infotable::instance().getBool("RECONCILE_DIALOG_SHOW_STATE_COL", true);
-    if (!m_settings[SETTING_SHOW_STATE_COL]) {
+    m_settings[SETTING_SHOW_STATUS_COL] = Model_Infotable::instance().getBool("RECONCILE_DIALOG_SHOW_STATUS_COL", true);
+    if (!m_settings[SETTING_SHOW_STATUS_COL]) {
         showHideColumn(false, 5, 1);
     }
 
@@ -771,9 +771,9 @@ void mmReconcileDialog::applyColumnSettings()
 
 void mmReconcileDialog::OnClose(wxCommandEvent& event)
 {
-    auto saveItem = [](int64 id, bool state, bool final) {
+    auto saveItem = [](int64 id, bool status, bool final) {
         Model_Checking::Data* trx = Model_Checking::instance().get(id);
-        if (state) {
+        if (status) {
             trx->STATUS = final ? "R" : "F";
         }
         else {
@@ -787,7 +787,7 @@ void mmReconcileDialog::OnClose(wxCommandEvent& event)
     if (event.GetId() != wxID_CANCEL) {
         Model_Infotable::instance().setString(wxString::Format("RECONCILE_ACCOUNT_%lld_END_BALANCE", m_account->ACCOUNTID), m_endingCtrl->GetLabelText());
 
-        // Save state:
+        // Save status:
         for (long i = 0; i < m_listLeft->GetItemCount(); ++i) {
             saveItem(m_itemDataMap[m_listLeft->GetItemData(i)], isListItemChecked(m_listLeft, i), event.GetId() == wxID_OK);
         }
