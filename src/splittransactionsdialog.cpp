@@ -213,7 +213,6 @@ void mmSplitTransactionDialog::CreateControls()
 
     flexGridSizer_ = new wxFlexGridSizer(0, 4, 0, 0);
     flexGridSizer_->AddGrowableCol(0, 0);
-    flexGridSizer_->AddGrowableCol(3, 0);
     dialogMainSizerV->Add(flexGridSizer_, g_flagsExpand);
 
     wxStaticText* categoryText = new wxStaticText(slider_, wxID_STATIC, _t("Category"));
@@ -351,16 +350,20 @@ void mmSplitTransactionDialog::createNewRow(const bool enabled)
     mmTagTextCtrl* ntag = new mmTagTextCtrl(slider_, mmID_MAX + row);
     ntag->Enable(enabled);
 
-    wxButton* nother = new wxButton(slider_, mmID_MAX + row, _t("Notes"));
+    wxPanel* btnPanel = new wxPanel(slider_);
+    wxBoxSizer* btnSizer = new wxBoxSizer(wxHORIZONTAL);
+    wxButton* nother = new wxButton(btnPanel, mmID_MAX + row, _t("Notes"));
     nother->SetBitmap(mmBitmapBundle(png::UNRECONCILED,mmBitmapButtonSize));
     nother->Connect(mmID_MAX + row, wxEVT_BUTTON
             , wxCommandEventHandler(mmSplitTransactionDialog::OnOtherButton), nullptr, this);
     nother->Enable(enabled);
+    btnSizer->Add(nother);
+    btnPanel->SetSizer(btnSizer);
 
     flexGridSizer_->Add(ncbc, g_flagsExpand);
     flexGridSizer_->Add(nval, g_flagsH);
     flexGridSizer_->Add(ntag, g_flagsExpand);
-    flexGridSizer_->Add(nother, g_flagsH);
+    flexGridSizer_->Add(btnPanel, g_flagsH);
 
     SplitWidget sw = {ncbc, nval, ntag, nother};
     m_splits_widgets.push_back(sw);
