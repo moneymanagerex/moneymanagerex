@@ -42,7 +42,7 @@ mmReconcileDialog::~mmReconcileDialog()
     Model_Infotable::instance().setBool("RECONCILE_DIALOG_SHOW_STATE_COL", m_settings[SETTING_SHOW_STATE_COL]);
     Model_Infotable::instance().setBool("RECONCILE_DIALOG_SHOW_NUMBER_COL", m_settings[SETTING_SHOW_NUMBER_COL]);
     Model_Infotable::instance().setBool("RECONCILE_DIALOG_INCLUDE_VOID", m_settings[SETTING_INCLUDE_VOID]);
-    Model_Infotable::instance().setBool("RECONCILE_DIALOG_INCLUDE_DUPLICATED", m_settings[SETTING_INCLUDE_DUPLICATED]);
+    Model_Infotable::instance().setBool("RECONCILE_DIALOG_INCLUDE_DUPLICATE", m_settings[SETTING_INCLUDE_DUPLICATE]);
 }
 
 mmReconcileDialog::mmReconcileDialog(wxWindow* parent, Model_Account::Data* account, mmCheckingPanel* cp)
@@ -58,7 +58,7 @@ mmReconcileDialog::mmReconcileDialog(wxWindow* parent, Model_Account::Data* acco
     CreateControls();
 
     m_settings[SETTING_INCLUDE_VOID] = Model_Infotable::instance().getBool("RECONCILE_DIALOG_INCLUDE_VOID", false);
-    m_settings[SETTING_INCLUDE_DUPLICATED] =  Model_Infotable::instance().getBool("RECONCILE_DIALOG_INCLUDE_DUPLICATED", true);
+    m_settings[SETTING_INCLUDE_DUPLICATE] =  Model_Infotable::instance().getBool("RECONCILE_DIALOG_INCLUDE_DUPLICATE", true);
 
     FillControls(true);
     UpdateAll();
@@ -293,13 +293,13 @@ void mmReconcileDialog::FillControls(bool init)
     m_listLeft->DeleteAllItems();
     m_listRight->DeleteAllItems();
     long item;
-    m_hiddenDuplicatedBalance = 0.0;
+    m_hiddenDuplicateBalance = 0.0;
     for (const auto& trx : all_trans) {
         if (!m_settings[SETTING_INCLUDE_VOID] && trx.STATUS == "V") {
             continue;
         }
-        if (!m_settings[SETTING_INCLUDE_DUPLICATED] && trx.STATUS == "D") {
-            m_hiddenDuplicatedBalance += trx.TRANSAMOUNT;
+        if (!m_settings[SETTING_INCLUDE_DUPLICATE] && trx.STATUS == "D") {
+            m_hiddenDuplicateBalance += trx.TRANSAMOUNT;
             continue;
         }
         if (trx.TRANSCODE == "Deposit" || (trx.TRANSCODE == "Transfer" && trx.TOACCOUNTID == m_account->ACCOUNTID)) {
@@ -349,7 +349,7 @@ void mmReconcileDialog::UpdateAll()
     m_endingCtrl->SetMinSize(m_endingCtrl->GetBestSize());
     m_endingCtrl->GetParent()->Layout();
 
-    double diff = clearedbalance - endbalance - m_hiddenDuplicatedBalance;
+    double diff = clearedbalance - endbalance - m_hiddenDuplicateBalance;
     m_differenceCtrl->SetLabel(wxString::Format("%.2f", diff));
 
     wxFont font = m_differenceCtrl->GetFont();
@@ -526,7 +526,7 @@ void mmReconcileDialog::OnSettings(wxCommandEvent& WXUNUSED(event))
     menu.FindItem(ID_CHECK_SHOW_STATE_COL)->Check(m_settings[SETTING_SHOW_STATE_COL]);
     menu.FindItem(ID_CHECK_SHOW_NUMBER_COL)->Check(m_settings[SETTING_SHOW_NUMBER_COL]);
     menu.FindItem(ID_CHECK_INCLUDE_VOID)->Check(m_settings[SETTING_INCLUDE_VOID]);
-    menu.FindItem(ID_CHECK_INCLUDE_DUPLICATE)->Check(m_settings[SETTING_INCLUDE_DUPLICATED]);
+    menu.FindItem(ID_CHECK_INCLUDE_DUPLICATE)->Check(m_settings[SETTING_INCLUDE_DUPLICATE]);
     PopupMenu(&menu);
     //event.Skip();
 }
