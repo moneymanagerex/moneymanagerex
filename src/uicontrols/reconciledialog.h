@@ -73,7 +73,7 @@ private:
     Model_Account::Data*  m_account;
     mmCheckingPanel*      m_checkingPanel;
     double                m_reconciledBalance;
-    double                m_hiddenDuplicatedBalance;
+    double                m_hiddenDuplicateBalance;
     bool                  m_ignore;
     bool                  m_settings[SETTING_size];
     int                   m_colwidth[2]; // Store width for hidable columns
