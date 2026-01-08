@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-07 16:04+0000\n"
+"POT-Creation-Date: 2026-01-08 11:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,7 +139,7 @@ msgstr ""
 #: sharetransactiondialog.cpp:306 splittransactionsdialog.cpp:96
 #: splittransactionsdialog.cpp:355 stockdialog.cpp:263 stocks_list.cpp:80
 #: transactionsupdatedialog.cpp:256 transdialog.cpp:612
-#: usertransactionpanel.cpp:212 webappdialog.cpp:145
+#: usertransactionpanel.cpp:213 webappdialog.cpp:145
 msgid "Notes"
 msgstr ""
 
@@ -286,7 +286,7 @@ msgstr ""
 #: accountdialog.cpp:522 accountdialog.cpp:531 accountdialog.cpp:536
 #: accountdialog.cpp:543 billsdepositsdialog.cpp:1044
 #: billsdepositsdialog.cpp:1047 stockdialog.cpp:432 transdialog.cpp:695
-#: transdialog.cpp:768 usertransactionpanel.cpp:512 webapp.cpp:567
+#: transdialog.cpp:768 usertransactionpanel.cpp:514 webapp.cpp:567
 msgid "Invalid Date"
 msgstr ""
 
@@ -435,7 +435,7 @@ msgstr ""
 #: reports/cashflow.cpp:405 reports/incexpenses.cpp:244 reports/summary.cpp:295
 #: reports/transactions.cpp:208 stockdialog.cpp:296 stockdialog.cpp:623
 #: stockspanel.cpp:265 transactionsupdatedialog.cpp:132 transdialog.cpp:453
-#: uicontrols/reconciledialog.cpp:125 usertransactionpanel.cpp:105
+#: uicontrols/reconciledialog.cpp:125 usertransactionpanel.cpp:106
 #: webapp.cpp:564 webappdialog.cpp:138 wizard_update.cpp:138
 msgid "Date"
 msgstr ""
@@ -545,7 +545,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:264
 #: mmhomepage.cpp:418 reports/incexpenses.cpp:108 reports/transactions.cpp:224
 #: transactionsupdatedialog.cpp:167 transdialog.cpp:487
-#: usertransactionpanel.cpp:139 webappdialog.cpp:141
+#: usertransactionpanel.cpp:140 webappdialog.cpp:141
 msgid "Type"
 msgstr ""
 
@@ -712,7 +712,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:282 import_export/univcsvdialog.cpp:106
 #: mmchecking_list.cpp:101 reports/cashflow.cpp:406
 #: reports/transactions.cpp:214 transdialog.cpp:262 transdialog.cpp:266
-#: transdialog.cpp:517 transdialog.cpp:687 usertransactionpanel.cpp:109
+#: transdialog.cpp:517 transdialog.cpp:687 usertransactionpanel.cpp:110
 #: webapp.cpp:563 webappdialog.cpp:139
 msgid "Account"
 msgstr ""
@@ -1031,7 +1031,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:516 import_export/univcsvdialog.cpp:526
 #: mmchecking_list.cpp:103 reports/transactions.cpp:218
 #: transactionsupdatedialog.cpp:150 transdialog.cpp:577
-#: usertransactionpanel.cpp:178 webappdialog.cpp:140 wizard_update.cpp:138
+#: usertransactionpanel.cpp:179 webappdialog.cpp:140 wizard_update.cpp:138
 msgid "Status"
 msgstr ""
 
@@ -1056,7 +1056,7 @@ msgstr ""
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:226
 #: splittransactionsdialog.cpp:89 splittransactionsdialog.cpp:220
 #: transactionsupdatedialog.cpp:186 transdialog.cpp:504
-#: uicontrols/reconciledialog.cpp:128 usertransactionpanel.cpp:143
+#: uicontrols/reconciledialog.cpp:128 usertransactionpanel.cpp:144
 #: webappdialog.cpp:144
 msgid "Amount"
 msgstr ""
@@ -1088,7 +1088,7 @@ msgstr ""
 #: payeedialog.cpp:209 payeedialog.cpp:245 reports/cashflow.cpp:407
 #: reports/payee.cpp:136 reports/transactions.cpp:216
 #: transactionsupdatedialog.cpp:199 transdialog.cpp:263 transdialog.cpp:540
-#: uicontrols/reconciledialog.cpp:127 usertransactionpanel.cpp:182
+#: uicontrols/reconciledialog.cpp:127 usertransactionpanel.cpp:183
 #: webappdialog.cpp:142
 msgid "Payee"
 msgstr ""
@@ -1107,7 +1107,7 @@ msgstr ""
 #: reports/transactions.cpp:220 splittransactionsdialog.cpp:82
 #: splittransactionsdialog.cpp:218 transactionsupdatedialog.cpp:223
 #: transdialog.cpp:550 transdialog.cpp:702 transdialog.cpp:1119
-#: usertransactionpanel.cpp:189 webappdialog.cpp:143
+#: usertransactionpanel.cpp:190 webappdialog.cpp:143
 msgid "Category"
 msgstr ""
 
@@ -1138,11 +1138,11 @@ msgstr ""
 #: import_export/qif_export.cpp:634 import_export/qif_import_gui.cpp:92
 #: import_export/univcsvdialog.cpp:113 mmchecking_list.cpp:100
 #: reports/transactions.cpp:212 transdialog.cpp:588
-#: uicontrols/reconciledialog.cpp:126 usertransactionpanel.cpp:208
+#: uicontrols/reconciledialog.cpp:126 usertransactionpanel.cpp:209
 msgid "Number"
 msgstr ""
 
-#: billsdepositsdialog.cpp:614 transdialog.cpp:595 usertransactionpanel.cpp:223
+#: billsdepositsdialog.cpp:614 transdialog.cpp:595 usertransactionpanel.cpp:224
 msgid "Select one of the frequently used notes"
 msgstr ""
 
@@ -1165,7 +1165,7 @@ msgid "Color"
 msgstr ""
 
 #: billsdepositsdialog.cpp:641 transdialog.cpp:624 transdialog.cpp:1381
-#: usertransactionpanel.cpp:230
+#: usertransactionpanel.cpp:231
 msgid "Specify any text notes you want to add to this transaction."
 msgstr ""
 
@@ -1219,7 +1219,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1044 billsdepositsdialog.cpp:1047
 #: import_export/univcsvdialog.cpp:1429 stockdialog.cpp:432 transdialog.cpp:695
-#: transdialog.cpp:768 usertransactionpanel.cpp:512 webapp.cpp:565
+#: transdialog.cpp:768 usertransactionpanel.cpp:514 webapp.cpp:565
 msgid "The opening date for the account is later than the date of this transaction"
 msgstr ""
 
@@ -1266,8 +1266,8 @@ msgid "Error"
 msgstr ""
 
 #: billsdepositsdialog.cpp:1466 splittransactionsdialog.h:80
-#: transdialog.cpp:354 usertransactionpanel.cpp:274
-#: usertransactionpanel.cpp:581
+#: transdialog.cpp:354 usertransactionpanel.cpp:275
+#: usertransactionpanel.cpp:583
 msgid "Split Transaction"
 msgstr ""
 
@@ -1287,7 +1287,7 @@ msgstr ""
 msgid "Specify which account the transfer is going to"
 msgstr ""
 
-#: billsdepositsdialog.h:134 transdialog.cpp:1368 usertransactionpanel.cpp:147
+#: billsdepositsdialog.h:134 transdialog.cpp:1368 usertransactionpanel.cpp:148
 msgid "Specify the amount for this transaction"
 msgstr ""
 
@@ -8813,7 +8813,7 @@ msgstr ""
 msgid "Populate Transaction #"
 msgstr ""
 
-#: transdialog.cpp:607 usertransactionpanel.cpp:216
+#: transdialog.cpp:607 usertransactionpanel.cpp:217
 msgid "Manage transaction attachments"
 msgstr ""
 
@@ -8862,7 +8862,7 @@ msgstr ""
 msgid "Specify to whom the transaction is going to"
 msgstr ""
 
-#: transdialog.cpp:1377 usertransactionpanel.cpp:100
+#: transdialog.cpp:1377 usertransactionpanel.cpp:101
 msgid "Specify the date of the transaction"
 msgstr ""
 
@@ -8934,55 +8934,55 @@ msgstr ""
 msgid "Include duplicated transactions"
 msgstr ""
 
-#: usertransactionpanel.cpp:110
+#: usertransactionpanel.cpp:111
 msgid "Select Account"
 msgstr ""
 
-#: usertransactionpanel.cpp:112
+#: usertransactionpanel.cpp:113
 msgid "Specify the associated Account that will contain this transaction"
 msgstr ""
 
-#: usertransactionpanel.cpp:127
+#: usertransactionpanel.cpp:128
 msgid "Withdraw funds from or deposit funds to this Account."
 msgstr ""
 
-#: usertransactionpanel.cpp:130
+#: usertransactionpanel.cpp:131
 msgid "&Transfer"
 msgstr ""
 
-#: usertransactionpanel.cpp:133
+#: usertransactionpanel.cpp:134
 msgid "Funds transfer from/to this account. Uncheck to set as Expense/Income."
 msgstr ""
 
-#: usertransactionpanel.cpp:156
+#: usertransactionpanel.cpp:157
 msgid "Currency used for this transaction."
 msgstr ""
 
-#: usertransactionpanel.cpp:176
+#: usertransactionpanel.cpp:177
 msgid "Specify the status for this transaction"
 msgstr ""
 
-#: usertransactionpanel.cpp:183
+#: usertransactionpanel.cpp:184
 msgid "Select Payee"
 msgstr ""
 
-#: usertransactionpanel.cpp:184
+#: usertransactionpanel.cpp:185
 msgid "Specify a person, Company or Organisation for this transaction."
 msgstr ""
 
-#: usertransactionpanel.cpp:193
+#: usertransactionpanel.cpp:194
 msgid "Specify the category for this transaction"
 msgstr ""
 
-#: usertransactionpanel.cpp:206
+#: usertransactionpanel.cpp:207
 msgid "Specify a transaction code or associated check details"
 msgstr ""
 
-#: usertransactionpanel.cpp:342
+#: usertransactionpanel.cpp:343
 msgid "Select the required account"
 msgstr ""
 
-#: usertransactionpanel.cpp:343
+#: usertransactionpanel.cpp:344
 msgid "Account Selection"
 msgstr ""
 
