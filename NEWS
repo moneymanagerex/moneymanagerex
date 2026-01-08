@@ -1,6 +1,6 @@
-Version 1.9.2 RC 2
+Version 1.9.2 RC 3
 ~~~~~~~~~~~~~~~~~~~~
-Released: 2025-11-27
+Released: 2026-01-07
 
 Features:
 * #7980 Refine scheduled transactions panel
@@ -24,6 +24,7 @@ Features:
 
 Bugfixes:
 * #7975 Add descriptive tooltips to budget status icons in the Budgeting Panel
+* #7949 Reconcile dialog issues
 * #7984 Cash Flow -> Transactions - Current Day Transactions are displayed as if not already reconciled
 * #7972 Cannot invoke Theme Manager from menus
 * #7863 error occurred when saving the transaction
