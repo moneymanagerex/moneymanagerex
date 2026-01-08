@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-06 10:06+0000\n"
+"POT-Creation-Date: 2026-01-07 16:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,7 +58,7 @@ msgstr ""
 #: import_export/qif_export.cpp:239 import_export/qif_import_gui.cpp:408
 #: mmSimpleDialogs.cpp:1096 optiondialog.cpp:164 payeedialog.cpp:161
 #: sharetransactiondialog.cpp:360 splittransactionsdialog.cpp:105
-#: splittransactionsdialog.cpp:284 tagdialog.cpp:146
+#: splittransactionsdialog.cpp:283 tagdialog.cpp:146
 #: transactionsupdatedialog.cpp:281 wizard_update.cpp:215
 msgid "&OK "
 msgstr ""
@@ -137,7 +137,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:110
 #: payeedialog.cpp:117 payeedialog.cpp:560 reports/transactions.cpp:230
 #: sharetransactiondialog.cpp:306 splittransactionsdialog.cpp:96
-#: splittransactionsdialog.cpp:354 stockdialog.cpp:263 stocks_list.cpp:80
+#: splittransactionsdialog.cpp:355 stockdialog.cpp:263 stocks_list.cpp:80
 #: transactionsupdatedialog.cpp:256 transdialog.cpp:612
 #: usertransactionpanel.cpp:212 webappdialog.cpp:145
 msgid "Notes"
@@ -1054,7 +1054,7 @@ msgstr ""
 #: mmchecking_list.cpp:933 mmhomepage.cpp:346 mmhomepage.cpp:420
 #: reports/cashflow.cpp:409 reports/categexp.cpp:218
 #: reports/incexpenses.cpp:109 reports/transactions.cpp:226
-#: splittransactionsdialog.cpp:89 splittransactionsdialog.cpp:221
+#: splittransactionsdialog.cpp:89 splittransactionsdialog.cpp:220
 #: transactionsupdatedialog.cpp:186 transdialog.cpp:504
 #: uicontrols/reconciledialog.cpp:128 usertransactionpanel.cpp:143
 #: webappdialog.cpp:144
@@ -1105,7 +1105,7 @@ msgstr ""
 #: reports/budgetingperf.cpp:131 reports/cashflow.cpp:408
 #: reports/categexp.cpp:217 reports/categexp.cpp:456
 #: reports/transactions.cpp:220 splittransactionsdialog.cpp:82
-#: splittransactionsdialog.cpp:219 transactionsupdatedialog.cpp:223
+#: splittransactionsdialog.cpp:218 transactionsupdatedialog.cpp:223
 #: transdialog.cpp:550 transdialog.cpp:702 transdialog.cpp:1119
 #: usertransactionpanel.cpp:189 webappdialog.cpp:143
 msgid "Category"
@@ -1123,8 +1123,8 @@ msgstr ""
 #: filtertransdialog.cpp:1745 filtertransdialog.cpp:1760
 #: filtertransdialog.cpp:1952 import_export/qif_import_gui.cpp:96
 #: import_export/univcsvdialog.cpp:112 mmchecking_list.cpp:105
-#: reports/transactions.cpp:222 splittransactionsdialog.cpp:223
-#: splittransactionsdialog.cpp:579 transactionsupdatedialog.cpp:234
+#: reports/transactions.cpp:222 splittransactionsdialog.cpp:222
+#: splittransactionsdialog.cpp:582 transactionsupdatedialog.cpp:234
 #: transactionsupdatedialog.cpp:370 transdialog.cpp:564 transdialog.cpp:683
 msgid "Tags"
 msgstr ""
@@ -1210,7 +1210,7 @@ msgstr ""
 #: filtertransdialog.cpp:1121 filtertransdialog.cpp:1128
 #: filtertransdialog.cpp:1134 import_export/univcsvdialog.cpp:1356
 #: optionsettingsgeneral.cpp:269 optionsettingsgeneral.cpp:294
-#: payeedialog.cpp:204 payeedialog.cpp:209 splittransactionsdialog.cpp:579
+#: payeedialog.cpp:204 payeedialog.cpp:209 splittransactionsdialog.cpp:582
 #: transactionsupdatedialog.cpp:370 transactionsupdatedialog.cpp:444
 #: transdialog.cpp:683 transdialog.cpp:687 transdialog.cpp:702
 #: transdialog.cpp:1119 util.cpp:843
@@ -1259,7 +1259,7 @@ msgstr ""
 #: import_export/ofx_import_gui.cpp:1124 import_export/ofx_import_gui.cpp:1131
 #: import_export/ofx_import_gui.cpp:1138 import_export/ofx_import_gui.cpp:1145
 #: import_export/ofx_import_gui.cpp:1153 import_export/univcsvdialog.cpp:1592
-#: maincurrencydialog.cpp:483 mmframe.cpp:4173 splittransactionsdialog.cpp:412
+#: maincurrencydialog.cpp:483 mmframe.cpp:4173 splittransactionsdialog.cpp:415
 #: stockspanel.cpp:492 stockspanel.cpp:493 themes.cpp:316 themes.cpp:335
 #: webappdialog.cpp:185 webappdialog.cpp:190
 msgid "Error"
@@ -4493,7 +4493,7 @@ msgstr ""
 msgid "New tag entered"
 msgstr ""
 
-#: mmTextCtrl.cpp:88 splittransactionsdialog.cpp:599
+#: mmTextCtrl.cpp:88 splittransactionsdialog.cpp:602
 msgid "Invalid Value"
 msgstr ""
 
@@ -6334,7 +6334,7 @@ msgstr ""
 
 #: mmhomepage.cpp:131 mmhomepage.cpp:638 mmhomepage.cpp:755
 #: reports/incexpenses.cpp:280 reports/payee.cpp:167
-#: reports/summarystocks.cpp:163 splittransactionsdialog.cpp:262
+#: reports/summarystocks.cpp:163 splittransactionsdialog.cpp:261
 msgid "Total:"
 msgstr ""
 
@@ -8317,19 +8317,19 @@ msgstr ""
 msgid "Enter notes to describe this split transaction"
 msgstr ""
 
-#: splittransactionsdialog.cpp:250
+#: splittransactionsdialog.cpp:249
 msgid "&Add Split"
 msgstr ""
 
-#: splittransactionsdialog.cpp:255
+#: splittransactionsdialog.cpp:254
 msgid "&Remove Split"
 msgstr ""
 
-#: splittransactionsdialog.cpp:412
+#: splittransactionsdialog.cpp:415
 msgid "Invalid Total Amount"
 msgstr ""
 
-#: splittransactionsdialog.cpp:599
+#: splittransactionsdialog.cpp:602
 msgid "Please enter a valid monetary amount"
 msgstr ""
 
