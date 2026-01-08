@@ -1,7 +1,8 @@
 /*******************************************************
 Copyright (C) 2014 Nikolay Akimov
 Copyright (C) 2015 Stefano Giorgio
-Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2026 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -262,7 +263,7 @@ void UserTransactionPanel::DataToControls()
     m_payee->SetLabelText(Model_Payee::get_payee_name(m_payee_id));
 
     m_category_id = m_checking_entry->CATEGID;
-    m_category->SetLabelText(Model_Category::full_name(m_category_id));
+    m_category->SetValue(Model_Category::full_name(m_category_id));
 
     m_entered_number->SetValue(m_checking_entry->TRANSACTIONNUMBER);
     m_entered_notes->SetValue(m_checking_entry->NOTES);
@@ -425,6 +426,7 @@ void UserTransactionPanel::OnAttachments(wxCommandEvent& WXUNUSED(event))
 
 bool UserTransactionPanel::ValidCheckingAccountEntry()
 {
+    m_category_id = m_category->mmGetCategoryId();  // update from selection
     return (m_account_id != -1) && (m_payee_id != -1 || TransactionType() == Model_Checking::TYPE_ID_TRANSFER) && (m_category_id != -1) && (!m_entered_amount->GetValue().IsEmpty());
 }
 
@@ -504,14 +506,14 @@ int64 UserTransactionPanel::SaveChecking()
 {
     double initial_amount = 0;
     m_entered_amount->checkValue(initial_amount);
-    
+
     const Model_Account::Data* account = Model_Account::instance().get(m_account_id);
     wxDateTime trxDate = m_date_selector->GetValue();
     if (trxDate.FormatISODate() < account->INITIALDATE)
     {
         mmErrorDialogs::ToolTip4Object(m_account, _t("The opening date for the account is later than the date of this transaction"), _t("Invalid Date"));
         return -1;
-    }  
+    }
 
     if (!m_checking_entry) {
         m_checking_entry = Model_Checking::instance().create();
@@ -582,4 +584,3 @@ void UserTransactionPanel::OnCategs(wxCommandEvent& WXUNUSED(event))
         }
     }
 }
-
