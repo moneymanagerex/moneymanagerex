@@ -362,6 +362,13 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     uicontrols/reconciledialog.cpp
     uicontrols/reconciledialog.h
 
+    navigator/navigatordialog.cpp
+    navigator/navigatordialog.h
+    navigator/navigatoreditdialog.cpp
+    navigator/navigatoreditdialog.h
+    navigator/navigatortypes.cpp
+    navigator/navigatortypes.h
+
     "${CMAKE_CURRENT_BINARY_DIR}/versions.h"
     "platfdep_${MMEX_PLATFDEP}"
 
