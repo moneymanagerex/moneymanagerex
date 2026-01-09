@@ -139,7 +139,7 @@ public:
 
 inline NavigatorTypes::TYPE_ID Model_Account::type_id(const Data* account)
 {
-    return static_cast<NavigatorTypes::TYPE_ID>(NavigatorTypes::instance().type_id(account->ACCOUNTTYPE));
+    return static_cast<NavigatorTypes::TYPE_ID>(NavigatorTypes::instance().getTypeIdFromDBName(account->ACCOUNTTYPE));
 }
 
 inline NavigatorTypes::TYPE_ID Model_Account::type_id(const Data& account)

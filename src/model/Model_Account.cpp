@@ -338,7 +338,7 @@ void Model_Account::resetAccountType(wxString oldtype)
 void Model_Account::resetUnknownAccountTypes()
 {
     for (const auto &account : this->all(COL_ACCOUNTNAME)) {
-        if (NavigatorTypes::instance().type_id(account.ACCOUNTTYPE, -1) == -1) {
+        if (NavigatorTypes::instance().getTypeIdFromDBName(account.ACCOUNTTYPE, -1) == -1) {
             Model_Account::Data* adata = this->get(account.ACCOUNTNAME);
             adata->ACCOUNTTYPE = "Checking";
             this->save(adata);

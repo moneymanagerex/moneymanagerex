@@ -93,7 +93,8 @@ class NavigatorTypes
 
         wxString getAccountSectionName(int account_type);
         const wxString type_name(int id);
-        int type_id(const wxString& name, int default_id = TYPE_ID_CHECKING);
+        int getTypeIdFromDBName(const wxString& dbname, int default_id = TYPE_ID_CHECKING);
+        int getTypeIdFromChoice(const wxString& choice, int default_id = TYPE_ID_CHECKING);
         int getNumberOfAccountTypes();
 
         int getAccountTypeIdx(const wxString& atypename);

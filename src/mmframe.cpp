@@ -987,7 +987,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
                 (m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR && !Model_Account::FAVORITEACCT(account))) {
                 continue;
             }
-            account_type = NavigatorTypes::instance().type_id(account.ACCOUNTTYPE);
+            account_type = NavigatorTypes::instance().getTypeIdFromDBName(account.ACCOUNTTYPE);
             if (account_type == NavigatorTypes::TYPE_ID_SHARES && hideShareAccounts)
                 continue;
 
