@@ -123,7 +123,7 @@ class NavigatorTypes
     private:
         std::vector<NavigatorTypesInfo*> m_navigator_entries;
         std::vector<NavigatorTypesInfo*> m_account_type_entries;
-        long unsigned int   m_lastIdx = 0;
+        long unsigned int   m_lastIdx;
         NavigatorTypesInfo* m_previous;
         wxArrayString       m_customChecking;
 
