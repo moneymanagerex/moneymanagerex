@@ -57,7 +57,7 @@ protected:
     virtual void setDefault();
     virtual void copyTreeItemData(wxTreeListItem src, wxTreeListItem dst);
 
-    void init();
+    void init(long liststyle = wxTL_3STATE | wxTL_SINGLE);
     void updateButtonState();
     void reloadTree();
 
@@ -67,7 +67,6 @@ private:
     wxBitmapButton* m_down = nullptr;
     wxButton*       m_down_bottom = nullptr;
 
-    void createControls();
     void moveSelectedItem(int direction);
     void moveItemData(wxTreeListItem sel, wxTreeListItem newItem);
     wxTreeListItems getChildrenList(wxTreeListItem parent);

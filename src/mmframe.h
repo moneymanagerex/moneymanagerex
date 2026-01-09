@@ -104,6 +104,7 @@ public:
 
     void SetTrashState(bool state);
     void SetShareAccountState(bool state);
+    void PopulateToolBar(bool update = true);
 
 private:
     static const std::vector<std::pair<NavigatorTypes::TYPE_ID, wxString> > ACCOUNT_SECTION_TABLE;
@@ -188,6 +189,7 @@ private:
     /*save Settings LASTFILENAME AUIPERSPECTIVE SIZES*/
     void saveSettings();
     void menuEnableItems(bool enable);
+    void toolbarEnableItems(bool enable);
     wxTreeItemId addNavTreeSection(const wxTreeItemId& root, const wxString& sectionName, int sectionImg,
                                    int dataType, int64 dataId = -1);
     wxTreeItemId addNavTreeItem(const wxTreeItemId& root, const wxString& itemName, int itemImg,
@@ -281,6 +283,9 @@ private:
     void OnRefreshWebApp(wxCommandEvent&);
     bool OnRefreshWebApp(bool is_silent);
 
+    void OnTransactionsAll(wxCommandEvent& event);
+    void OnTransactionsDel(wxCommandEvent& event);
+
     void OnHelp(wxCommandEvent& event);
     void OnShowAppStartDialog(wxCommandEvent& WXUNUSED(event));
     void OnCheckUpdate(wxCommandEvent& event);
@@ -308,7 +313,6 @@ private:
     void ReallocateAccount(int64 accountID);
     void mmDoHideReportsDialog();
     void navTreeSelection(wxTreeItemId selectedItem);
-
 private:
     /* Recent Files */
     wxSharedPtr<mmFileHistory> m_recentFiles;
@@ -324,9 +328,15 @@ private:
     wxSharedPtr<CommitCallbackHook> m_commit_callback_hook;
     wxSharedPtr<UpdateCallbackHook> m_update_callback_hook;
     void ShutdownDatabase();
+
+private:
+    void OnToolbarRightClick(wxMouseEvent& event);
+
 private:
     // any class wishing to process wxWindows events must use this macro
     wxDECLARE_EVENT_TABLE();
+
+public:
     enum
     {
         /* Main Menu  */
@@ -343,7 +353,6 @@ private:
         MENU_ORGCATEGS,
         MENU_ORGPAYEE,
         MENU_ORGTAGS,
-        MENU_BUDGETSETUPDIALOG,
         MENU_CHECKUPDATE,
         MENU_IMPORT,
         MENU_IMPORT_UNIVCSV,
