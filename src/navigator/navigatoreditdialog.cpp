@@ -44,12 +44,30 @@ mmNavigatorEditDialog::mmNavigatorEditDialog(wxWindow* parent, NavigatorTypesInf
 
     if (info) {
         m_nameTextCtrl->SetValue(info->name);
-        if (info->navTyp == NavigatorTypes::NAV_TYP_PANEL) {
-            m_activeCheckBox->SetValue(info->active);
-        }
-        else {
-            m_aktivLabel->Show(false);
-            m_activeCheckBox->Show(false);
+        switch(info->navTyp) {
+            case NavigatorTypes::NAV_TYP_PANEL:
+                m_activeCheckBox->SetValue(info->active);
+                m_choiceLabel->Show(false);
+                m_choiceTextCtrl->Show(false);
+                break;
+
+            case NavigatorTypes::NAV_TYP_STOCK:
+                m_choiceLabel->Show(false);
+                m_choiceTextCtrl->Show(false);
+                m_aktivLabel->Show(false);
+                m_activeCheckBox->Show(false);
+                break;
+
+            case NavigatorTypes::NAV_TYP_PANEL_STATIC:
+                m_activeCheckBox->SetValue(false);
+                m_choiceLabel->Show(false);
+                m_choiceTextCtrl->Show(false);
+                break;
+
+            default:
+                m_aktivLabel->Show(false);
+                m_activeCheckBox->Show(false);
+                m_choiceTextCtrl->SetValue(info->choice);
         }
         m_cbIcon->SetSelection(info->imageId);
     }
@@ -77,17 +95,24 @@ void mmNavigatorEditDialog::CreateControls()
     uiStyleSizer->AddGrowableCol(1, 0);
     uiSizer->Add(uiStyleSizer);
 
-    wxStaticText* nameLabel = new wxStaticText(uiBox, wxID_ANY, "Name:");
+    wxStaticText* nameLabel = new wxStaticText(uiBox, wxID_ANY, _t("Name:"));
     m_nameTextCtrl = new wxTextCtrl(uiBox, wxID_ANY, "", wxDefaultPosition, wxSize(200, -1));
     m_nameTextCtrl->Bind(wxEVT_TEXT, &mmNavigatorEditDialog::OnNewText, this);
 
     uiStyleSizer->Add(nameLabel, g_flagsH);
     uiStyleSizer->Add(m_nameTextCtrl, g_flagsExpand);
 
-    m_aktivLabel = new wxStaticText(uiBox, wxID_ANY, "Aktiv:");
+    m_choiceLabel = new wxStaticText(uiBox, wxID_ANY, _t("Selection name:"));
+    m_choiceTextCtrl = new wxTextCtrl(uiBox, wxID_ANY, "", wxDefaultPosition, wxSize(200, -1));
+    m_choiceTextCtrl->Bind(wxEVT_TEXT, &mmNavigatorEditDialog::OnNewText, this);
+
+    uiStyleSizer->Add(m_choiceLabel, g_flagsH);
+    uiStyleSizer->Add(m_choiceTextCtrl, g_flagsExpand);
+
+    m_aktivLabel = new wxStaticText(uiBox, wxID_ANY, _t("Show:"));
     m_activeCheckBox = new wxCheckBox(uiBox, wxID_ANY, "");
 
-    wxStaticText* iconLabel = new wxStaticText(uiBox, wxID_ANY, "Icon:");
+    wxStaticText* iconLabel = new wxStaticText(uiBox, wxID_ANY, _t("Symbol:"));
 
     wxVector<wxBitmapBundle> images = navtree_images_list();
     const auto navIconSize = Option::instance().getNavigationIconSize();
@@ -128,6 +153,10 @@ void mmNavigatorEditDialog::CreateControls()
 void mmNavigatorEditDialog::updateInfo(NavigatorTypesInfo* info)
 {
     info->name = m_nameTextCtrl->GetValue();
+    info->choice = m_choiceTextCtrl->GetValue();
+    if (info->choice.IsEmpty()) {
+        info->choice = info->name;
+    }
     info->imageId = m_cbIcon->GetSelection();
     if (info->navTyp == NavigatorTypes::NAV_TYP_PANEL) {
         info->active = m_activeCheckBox->GetValue();
