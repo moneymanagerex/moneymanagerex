@@ -4106,7 +4106,9 @@ wxSizer* mmGUIFrame::cleanupHomePanel(bool new_sizer)
 {
     wxASSERT(homePanel_);
 
-    homePanel_->DestroyChildren();
+    if (!new_sizer) {
+        homePanel_->DestroyChildren();
+    }
     homePanel_->SetSizer(new_sizer ? new wxBoxSizer(wxHORIZONTAL) : nullptr);
 
     return homePanel_->GetSizer();
