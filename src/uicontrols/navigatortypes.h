@@ -23,9 +23,10 @@
 
 
 struct NavigatorTypesInfo {
-    int id;
-    wxString name;
-    wxString choice;
+    int type;
+    wxString name;      // Visible name in navigator
+    wxString choice;    // Name used in selection lists
+    wxString dbaccid;   // DB Account identifier (not to be translated!)
     int seq_no;
     int imageId;
     int navTyp;
@@ -33,23 +34,14 @@ struct NavigatorTypesInfo {
 };
 
 
-
 class NavigatorTypes
 {
-    public:
-        struct AccountItem {
-            int id;
-            int seq_no;
-            wxString name;
-            AccountItem(int i, int s, wxString n) : id(i), seq_no(s), name(n) {}
-        };
-
     public:
         enum {
             NAV_TYP_PANEL_STATIC = 0,
             NAV_TYP_PANEL,
-            NAV_TYP_ACCOUNT,
             NAV_TYP_STOCK,
+            NAV_TYP_ACCOUNT,
             NAV_TYP_OTHER
         };
 
@@ -80,14 +72,18 @@ class NavigatorTypes
             NAV_ENTRY_size
         };
 
+        static const int NAV_IDXDIFF = NavigatorTypes::NAV_ENTRY_size - NavigatorTypes::TYPE_ID_size;
+
     public:
         NavigatorTypes();
+        ~NavigatorTypes();
         static NavigatorTypes& instance();
-        void LoadFromInfoTable();
+        void LoadFromDB(bool keepnames = false);
         NavigatorTypesInfo* getFirstAccount();
         NavigatorTypesInfo* getNextAccount(NavigatorTypesInfo* previous);
         NavigatorTypesInfo* getFirstActiveEntry();
         NavigatorTypesInfo* getNextActiveEntry(NavigatorTypesInfo* previous);
+
         void SaveSequenceAndState();
         void SetToDefault();
         bool DeleteEntry(NavigatorTypesInfo* info);
@@ -99,7 +95,16 @@ class NavigatorTypes
         const wxString type_name(int id);
         int type_id(const wxString& name, int default_id = TYPE_ID_CHECKING);
         int getNumberOfAccountTypes();
-        NavigatorTypes::AccountItem* getAccountTypeItem(int idx);
+
+        int getAccountTypeIdx(const wxString& atypename);
+        int getAccountTypeIdx(int account_type);
+        wxString getAccountTypeName(int idx);
+        bool isAccountTypeAsset(int idx);
+        NavigatorTypesInfo* getAccountTypeItem(int idx);
+        wxArrayString getAccountSelectionNames(wxString filter = "");
+        wxString getAccountDbTypeFromChoice(const wxString& choiceName);
+        wxArrayString getUsedAccountTypeNames();
+        wxString getAccountDbTypeFromName(const wxString& typeName);
 
         wxString getInvestmentAccountStr() {return type_name(NavigatorTypes::TYPE_ID_INVESTMENT);};
         bool isInvestmentAccount(wxString accountType) {return accountType == type_name(NavigatorTypes::TYPE_ID_INVESTMENT);};
@@ -110,19 +115,18 @@ class NavigatorTypes
         wxString getCashAccountStr() {return type_name(NavigatorTypes::TYPE_ID_CASH);};
 
         void SetTrashStatus(bool state);
+        void SetShareAccountStatus(bool state);
+        static wxString GetTranslatedName(NavigatorTypesInfo*);
+        static wxString GetTranslatedSelection(NavigatorTypesInfo*);
 
 
     private:
-        std::vector<NavigatorTypesInfo> m_navigator_entries;
-        std::vector<AccountItem> m_type_choices;
-
-        long unsigned int t_lastIdx;
-        NavigatorTypesInfo* t_previous;
-        int m_maxId;
-
-        wxArrayString m_customChecking;
+        std::vector<NavigatorTypesInfo*> m_navigator_entries;
+        std::vector<NavigatorTypesInfo*> m_account_type_entries;
+        long unsigned int   m_lastIdx;
+        NavigatorTypesInfo* m_previous;
+        wxArrayString       m_customChecking;
 
         void sortEntriesBySeq();
-        void updateTypeChoiceName(int id, int seq_no, wxString name);
-
+        int getMaxId();
 };

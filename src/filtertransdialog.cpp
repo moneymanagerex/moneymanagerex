@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "validators.h"
 
 #include "model/allmodel.h"
-#include "navigator/navigatortypes.h"
+#include "uicontrols/navigatortypes.h"
 
 #include <wx/display.h>
 #include <wx/regex.h>

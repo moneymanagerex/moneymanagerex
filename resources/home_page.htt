@@ -51,22 +51,12 @@
         </tr>
         <tr valign="top">
             <td width="50%">
-                <div class='shadow'>
-
                 <!--Accounts-->
-
-                <TMPL_VAR ACCOUNTS_INFO>
-                <TMPL_VAR CARD_ACCOUNTS_INFO>
-                <TMPL_VAR CASH_ACCOUNTS_INFO>
-                <TMPL_VAR LOAN_ACCOUNTS_INFO>
-                <TMPL_VAR TERM_ACCOUNTS_INFO>
-                <TMPL_VAR SHARE_ACCOUNTS_INFO>
-                </div>
-
-                <!--Stocks-->
-                <TMPL_VAR STOCKS_INFO>
-                <!--Assets-->
-                <TMPL_VAR ASSETS_INFO>
+                <TMPL_VAR ACCOUNTS_1>
+                <TMPL_VAR ACCOUNTS_2>
+                <TMPL_VAR ACCOUNTS_3>
+                <TMPL_VAR ACCOUNTS_4>
+                <TMPL_VAR ACCOUNTS_5>
                 <!--Currency-->
                 <TMPL_VAR CURRENCY_RATES>
             </td>

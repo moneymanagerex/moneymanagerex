@@ -32,11 +32,6 @@ mmHistoryItem::mmHistoryItem()
     purchasePrice = numShares = 0.0;
 }
 
-double mmHistoryData::getDailyBalanceAt(const Model_Account::Data *account, const wxDate& date)
-{
-    return Model_Stock::instance().getDailyBalanceAt(account, date);
-}
-
 mmReportSummaryByDate::mmReportSummaryByDate(int mode)
 : mmPrintableBase(wxString::Format("Accounts Balance - %s", (mode == MONTHLY ? "Monthly" : "Yearly")))
 , mode_(mode)
@@ -75,20 +70,14 @@ double mmReportSummaryByDate::getCheckingDailyBalanceAt(const Model_Account::Dat
     return account->INITIALBAL;
 }
 
-double mmReportSummaryByDate::getInvestingDailyBalanceAt(const Model_Account::Data* account, const wxDate& date)
-{
-    return arHistory.getDailyBalanceAt(account, date);
-}
-
 std::pair<double, double> mmReportSummaryByDate::getDailyBalanceAt(const Model_Account::Data* account, const wxDate& date)
 {
-    if (date.FormatISODate() < account->INITIALDATE)
-        return {0.0, 0.0};
-
-    std::pair<double /*cash bal*/, double /*market bal*/> bal;
-    bal.first = getCheckingDailyBalanceAt(account, date);
-    if (Model_Account::type_id(account) == NavigatorTypes::TYPE_ID_INVESTMENT) {
-        bal.second = getInvestingDailyBalanceAt(account, date);
+    std::pair<double /*cash bal*/, double /*market bal*/> bal = { 0.0, 0.0 };
+    if (date.FormatISODate() >= account->INITIALDATE) {
+        bal.first = getCheckingDailyBalanceAt(account, date);
+        if (Model_Account::type_id(account) == NavigatorTypes::TYPE_ID_INVESTMENT) {
+            bal.second = Model_Stock::instance().getDailyBalanceAt(account, date);
+        }
     }
     return bal;
 }
@@ -175,68 +164,69 @@ wxString mmReportSummaryByDate::getHTMLText()
     }
 
     //  prepare the dates array
-    int c = 0;
     while (dateStart <= dateEnd) {
         if (mode_ == MONTHLY) {
             dateEnd.SetToLastMonthDay(dateEnd.GetMonth(), dateEnd.GetYear());
         }
         arDates.push_back(dateEnd);
         dateEnd -= span;
-        if (++c > 10 ) break;
     }
     std::reverse(arDates.begin(), arDates.end());
 
+    wxString m_temp_view = Model_Setting::instance().getViewAccounts();
+
     for (const auto & end_date : arDates) {
         double total = 0.0;
-        double assetBalance = 0;
         BalanceEntry totBalanceEntry;
         totBalanceEntry.date = end_date;
         wxDate begin_date = end_date;
         begin_date.SetDay(1);
-        wxLogDebug(wxString::Format("Processing %d", begin_date.GetYear()));
 
         if (mode_ == YEARLY)
             begin_date.SetMonth(wxDateTime::Jan);
 
-        std::pair<double, double> balancePerDay[acc_size] = {};
+        int idx;
+        double balancePerDay[acc_size + 1] = {};
         for (const auto& account : Model_Account::instance().all()) {
-            balancePerDay[Model_Account::type_id(account)].first += getDailyBalanceAt(&account, end_date).first * getDayRate(account.CURRENCYID, end_date);
-            //balancePerDay[Model_Account::type_id(account)].second += getDailyBalanceAt(&account, end_date).second * getDayRate(account.CURRENCYID, end_date);
+            if ((m_temp_view == VIEW_ACCOUNTS_OPEN_STR && Model_Account::status_id(account) != Model_Account::STATUS_ID_OPEN) ||
+                (m_temp_view == VIEW_ACCOUNTS_CLOSED_STR && Model_Account::status_id(account) == Model_Account::STATUS_ID_OPEN) ||
+                (m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR && !Model_Account::FAVORITEACCT(account))) {
+                continue;
+            }
+
+            idx = NavigatorTypes::instance().getAccountTypeIdx(account.ACCOUNTTYPE);
+            if (idx == -1) {
+                idx = NavigatorTypes::instance().getAccountTypeIdx(NavigatorTypes::TYPE_ID_CHECKING);
+            }
+            if (idx > -1) {
+                std::pair<double, double> dailybal = getDailyBalanceAt(&account, end_date);
+                balancePerDay[idx] += dailybal.first * getDayRate(account.CURRENCYID, end_date);
+                if (Model_Account::type_id(account) == NavigatorTypes::TYPE_ID_INVESTMENT) {
+                    balancePerDay[idx] += dailybal.second * getDayRate(account.CURRENCYID, end_date);
+                }
+            }
         }
 
-        for (const auto& asset : Model_Asset::instance().all()) {
-            assetBalance += Model_Asset::instance().valueAtDate(&asset, end_date).second * getDayRate(asset.CURRENCYID, end_date);
+        idx = NavigatorTypes::instance().getAccountTypeIdx(NavigatorTypes::TYPE_ID_ASSET);
+        if (idx > -1) {
+            for (const auto& asset : Model_Asset::instance().all()) {
+                balancePerDay[idx] += Model_Asset::instance().valueAtDate(&asset, end_date).second * getDayRate(asset.CURRENCYID, end_date);
+            }
         }
 
         int k = -1;
         for (int i = 0; i < acc_size; ++i) {
-            NavigatorTypes::AccountItem* item = NavigatorTypes::instance().getAccountTypeItem(i);
-            int id = NavigatorTypes::instance().type_id(item->name);
-
-            if (id != NavigatorTypes::TYPE_ID_ASSET) {
-                totBalanceEntry.values.push_back(balancePerDay[id].first);
-                gs_data[++k].values.push_back(balancePerDay[id].first);
-            }
-            else {
-                totBalanceEntry.values.push_back(assetBalance);
-                gs_data[++k].values.push_back(assetBalance);
-            }
-
-            gs_data[k].name = NavigatorTypes::instance().FindEntryName(id);
+            totBalanceEntry.values.push_back(balancePerDay[i]);
+            gs_data[++k].values.push_back(balancePerDay[i]);
+            total += balancePerDay[i];
+            gs_data[k].name = NavigatorTypes::instance().getAccountTypeName(i);
             gs_data[k].type = "column";
-            wxLogDebug("summary: [%d] added %s for id %d", k, gs_data[k].name, id);
         }
-
-        for (int i = 0; i < acc_size; i++) {
-            total += balancePerDay[i].first;
-        }
-
-        totBalanceEntry.values.push_back(total+assetBalance);
-
-        gs_data[++k].values.push_back(total+assetBalance);
+        totBalanceEntry.values.push_back(total);
+        totBalanceData.push_back(totBalanceEntry);
+        gs_data[++k].values.push_back(total);
         gs_data[k].name = _t("Balance");
         gs_data[k].type = "line";
-        totBalanceData.push_back(totBalanceEntry);
     }
 
     bool hasAccounts[acc_size + 1];
@@ -249,20 +239,20 @@ wxString mmReportSummaryByDate::getHTMLText()
             hasAccounts[i] = false;
         }
     }
-    hasAccounts[acc_size] = true;  // Balance
+    hasAccounts[acc_size] = true;  // always include Balance
 
     //Chart
     if (getChartSelection() == 0) {
-        int k = 0;
-        for (int i = 0; i <  acc_size + 1; i++) {
-            if (!hasAccounts[i]) {
-                continue;
+        for (int i = 0; i <  (acc_size + 1); i++) {
+            if (hasAccounts[i]) {
+                gd.series.push_back(gs_data[i]);
             }
-            gd.series.push_back(gs_data[i]);
+        }
+        // create Labels:
+        for (unsigned int i = 0; i < totBalanceData.size(); i++) {
             gd.labels.push_back(mode_ == MONTHLY ?
-                                wxString::Format("%s %i", wxGetTranslation(wxDateTime::GetEnglishMonthName(totBalanceData[k].date.GetMonth())), totBalanceData[k].date.GetYear()) :
-                                wxString::Format("%i", totBalanceData[k].date.GetYear()));
-            k++;
+                                wxString::Format("%s %i", wxGetTranslation(wxDateTime::GetEnglishMonthName(totBalanceData[i].date.GetMonth())), totBalanceData[i].date.GetYear()) :
+                                wxString::Format("%i", totBalanceData[i].date.GetYear()));
         }
 
         gd.type = GraphData::STACKEDBARLINE;
@@ -312,9 +302,6 @@ wxString mmReportSummaryByDate::getHTMLText()
     hb.endDiv();
 
     hb.end();
-
-    //wxLogDebug("======= mmReportSummaryByDateMontly::getHTMLText =======");
-    //wxLogDebug("%s", hb.getHTMLText());
 
     return hb.getHTMLText();
 }

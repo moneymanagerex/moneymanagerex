@@ -64,6 +64,8 @@
 #include <wx/statline.h>
 #include <wx/dialog.h>
 #include <wx/numformatter.h>
+#include <wx/treelist.h>
+#include <wx/bmpcbox.h>
 
 #ifdef _MSC_VER
 #pragma warning (disable:4100)
@@ -76,4 +78,3 @@
 #define wxPLURAL_U8(singular, plural, n) wxPLURAL(wxString::FromUTF8(singular), wxString::FromUTF8(plural), n)
 
 #endif // MM_EX_DEFS_H_
-

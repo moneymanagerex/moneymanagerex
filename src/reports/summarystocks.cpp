@@ -29,7 +29,7 @@
 #include "model/Model_Currency.h"
 #include "model/Model_CurrencyHistory.h"
 #include "model/Model_StockHistory.h"
-#include "navigator/navigatortypes.h"
+#include "uicontrols/navigatortypes.h"
 
 #include <algorithm>
 
