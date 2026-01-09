@@ -517,6 +517,8 @@ int64 UserTransactionPanel::SaveChecking()
 
     if (!m_checking_entry) {
         m_checking_entry = Model_Checking::instance().create();
+        m_checking_entry->COLOR = 0;  // only set if new transaction, otherwise retain old value!
+        m_checking_entry->FOLLOWUPID = 0;
     }
 
     m_checking_entry->ACCOUNTID = m_account_id;
@@ -530,9 +532,7 @@ int64 UserTransactionPanel::SaveChecking()
     m_checking_entry->NOTES = m_entered_notes->GetValue();
     m_checking_entry->CATEGID = m_category_id;
     m_checking_entry->TRANSDATE = trxDate.FormatISOCombined();
-    m_checking_entry->FOLLOWUPID = 0;
     m_checking_entry->TOTRANSAMOUNT = m_checking_entry->TRANSAMOUNT;
-    m_checking_entry->COLOR = 0;
 
     return Model_Checking::instance().save(m_checking_entry);
 }
