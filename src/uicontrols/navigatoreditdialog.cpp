@@ -20,10 +20,6 @@
 #include "constants.h"
 #include "images_list.h"
 #include "option.h"
-#include <wx/wx.h>
-#include <wx/filedlg.h>
-#include <wx/bitmap.h>
-#include <wx/iconbndl.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmNavigatorEditDialog, wxDialog);
 

@@ -2258,7 +2258,7 @@ void  mmGUIFrame::PopulateToolBar(bool update)
                     toolBar_->AddStretchSpacer();
                     break;
 
-                case ToolBarEntries::TOOLBAR_SṔACER:
+                case ToolBarEntries::TOOLBAR_SPACER:
                     toolBar_->AddSpacer(toolbar_icon_size);
                     break;
             }
