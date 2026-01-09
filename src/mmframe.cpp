@@ -864,7 +864,7 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
 
     int acc_size = NavigatorTypes::instance().getNumberOfAccountTypes(); // Call first to guarantee proper init!
-    wxTreeItemId accountSection[acc_size];
+    std::vector<wxTreeItemId> accountSection(acc_size);
 
     if (home_page) {
         createHomePage();

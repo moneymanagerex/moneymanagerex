@@ -113,7 +113,7 @@ wxString mmReportSummaryByDate::getHTMLText()
 
     GraphData gd;
     int acc_size = NavigatorTypes::instance().getNumberOfAccountTypes();
-    GraphSeries gs_data[acc_size + 1];    // +1 as we add balance to the end
+    std::vector<GraphSeries> gs_data(acc_size + 1);    // +1 as we add balance to the end);
 
     std::vector<wxDate> arDates;
 
@@ -186,7 +186,8 @@ wxString mmReportSummaryByDate::getHTMLText()
             begin_date.SetMonth(wxDateTime::Jan);
 
         int idx;
-        double balancePerDay[acc_size + 1] = {};
+        std::vector<double> balancePerDay(acc_size +1);
+        std::fill(balancePerDay.begin(), balancePerDay.end(), 0.0);
         for (const auto& account : Model_Account::instance().all()) {
             if ((m_temp_view == VIEW_ACCOUNTS_OPEN_STR && Model_Account::status_id(account) != Model_Account::STATUS_ID_OPEN) ||
                 (m_temp_view == VIEW_ACCOUNTS_CLOSED_STR && Model_Account::status_id(account) == Model_Account::STATUS_ID_OPEN) ||
@@ -229,17 +230,19 @@ wxString mmReportSummaryByDate::getHTMLText()
         gs_data[k].type = "line";
     }
 
-    bool hasAccounts[acc_size + 1];
+    std::vector<bool> hasAccounts;
     for (int i = 0; i <  acc_size; i++) {
+        bool av;
         for (double value :  gs_data[i].values) {
+            av = false;
             if (value != 0) {
-                hasAccounts[i] = true;
+                av = true;
                 break;
             }
-            hasAccounts[i] = false;
         }
+        hasAccounts.push_back(av);
     }
-    hasAccounts[acc_size] = true;  // always include Balance
+    hasAccounts.push_back(true);  // always include Balance
 
     //Chart
     if (getChartSelection() == 0) {
