@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-08 11:46+0000\n"
+"POT-Creation-Date: 2026-01-10 11:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -386,11 +386,11 @@ msgstr ""
 msgid "User Interface Language"
 msgstr ""
 
-#: appstartdialog.cpp:230 mmframe.cpp:4219 optionsettingsgeneral.cpp:336
+#: appstartdialog.cpp:230 mmframe.cpp:4221 optionsettingsgeneral.cpp:336
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr ""
 
-#: appstartdialog.cpp:232 mmframe.cpp:4221 optionsettingsgeneral.cpp:338
+#: appstartdialog.cpp:232 mmframe.cpp:4223 optionsettingsgeneral.cpp:338
 msgid "Language change"
 msgstr ""
 
@@ -596,7 +596,7 @@ msgstr ""
 
 #: assetspanel.cpp:411 assetspanel.h:124 general_report_manager.cpp:1180
 #: mmframe.cpp:265 mmframe.cpp:2038 mmframe.cpp:3755 mmhomepage.cpp:532
-#: mmhomepage.cpp:581 mmhomepagepanel.cpp:237 optionsettingsmisc.cpp:104
+#: mmhomepage.cpp:581 mmhomepagepanel.cpp:238 optionsettingsmisc.cpp:104
 #: reports/summary.cpp:266 reports/summary.cpp:304
 msgid "Assets"
 msgstr ""
@@ -1259,7 +1259,7 @@ msgstr ""
 #: import_export/ofx_import_gui.cpp:1124 import_export/ofx_import_gui.cpp:1131
 #: import_export/ofx_import_gui.cpp:1138 import_export/ofx_import_gui.cpp:1145
 #: import_export/ofx_import_gui.cpp:1153 import_export/univcsvdialog.cpp:1592
-#: maincurrencydialog.cpp:483 mmframe.cpp:4173 splittransactionsdialog.cpp:415
+#: maincurrencydialog.cpp:483 mmframe.cpp:4175 splittransactionsdialog.cpp:415
 #: stockspanel.cpp:492 stockspanel.cpp:493 themes.cpp:316 themes.cpp:335
 #: webappdialog.cpp:185 webappdialog.cpp:190
 msgid "Error"
@@ -6231,7 +6231,7 @@ msgstr ""
 msgid "Merge tags result"
 msgstr ""
 
-#: mmframe.cpp:4172
+#: mmframe.cpp:4174
 #, c-format
 msgid "File %s not found."
 msgstr ""
