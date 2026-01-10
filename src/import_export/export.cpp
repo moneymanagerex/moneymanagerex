@@ -30,6 +30,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_CustomFieldData.h"
 #include "model/Model_CustomField.h"
 #include "model/Model_Tag.h"
+#include "uicontrols/navigatortypes.h"
 
 mmExportTransaction::mmExportTransaction()
 {}
@@ -263,22 +264,22 @@ const wxString mmExportTransaction::getCategoriesQIF()
     return buffer_qif;
 }
 
-//map Quicken !Account type strings to Model_Account::TYPE_ID
+//map Quicken !Account type strings to NavigatorTypes::TYPE_ID
 // (not sure whether these need to be translated)
 const std::unordered_map<wxString, int> mmExportTransaction::m_QIFaccountTypes =
 {
-    std::make_pair(wxString("Cash"), Model_Account::TYPE_ID_CASH), //Cash Flow: Cash Account
-    std::make_pair(wxString("Bank"), Model_Account::TYPE_ID_CHECKING), //Cash Flow: Checking Account
-    std::make_pair(wxString("CCard"), Model_Account::TYPE_ID_CREDIT_CARD), //Cash Flow: Credit Card Account
-    std::make_pair(wxString("Invst"), Model_Account::TYPE_ID_INVESTMENT), //Investing: Investment Account
-    std::make_pair(wxString("Oth A"), Model_Account::TYPE_ID_CHECKING), //Property & Debt: Asset
-    std::make_pair(wxString("Oth L"), Model_Account::TYPE_ID_CHECKING), //Property & Debt: Liability
-    std::make_pair(wxString("Invoice"), Model_Account::TYPE_ID_CHECKING), //Invoice (Quicken for Business only)
+    std::make_pair(wxString("Cash"), NavigatorTypes::TYPE_ID_CASH), //Cash Flow: Cash Account
+    std::make_pair(wxString("Bank"), NavigatorTypes::TYPE_ID_CHECKING), //Cash Flow: Checking Account
+    std::make_pair(wxString("CCard"), NavigatorTypes::TYPE_ID_CREDIT_CARD), //Cash Flow: Credit Card Account
+    std::make_pair(wxString("Invst"), NavigatorTypes::TYPE_ID_INVESTMENT), //Investing: Investment Account
+    std::make_pair(wxString("Oth A"), NavigatorTypes::TYPE_ID_CHECKING), //Property & Debt: Asset
+    std::make_pair(wxString("Oth L"), NavigatorTypes::TYPE_ID_CHECKING), //Property & Debt: Liability
+    std::make_pair(wxString("Invoice"), NavigatorTypes::TYPE_ID_CHECKING), //Invoice (Quicken for Business only)
 };
 
 const wxString mmExportTransaction::qif_acc_type(const wxString& mmex_type)
 {
-    int mmex_typeId = Model_Account::type_id(mmex_type, -1);
+    int mmex_typeId = NavigatorTypes::instance().getTypeIdFromDBName(mmex_type, -1);
     wxString qif_acc_type = m_QIFaccountTypes.begin()->first;
     for (const auto &item : m_QIFaccountTypes) {
         if (item.second == mmex_typeId) {
@@ -291,12 +292,12 @@ const wxString mmExportTransaction::qif_acc_type(const wxString& mmex_type)
 
 const wxString mmExportTransaction::mm_acc_type(const wxString& qif_type)
 {
-    wxString mm_acc_type = Model_Account::TYPE_NAME_CASH;
+    wxString mm_acc_type = NavigatorTypes::instance().getCashAccountStr();
     for (const auto &item : m_QIFaccountTypes)
     {
         if (item.first == qif_type)
         {
-            mm_acc_type = Model_Account::type_name(item.second);
+            mm_acc_type = NavigatorTypes::instance().type_name(item.second);
             break;
         }
     }
