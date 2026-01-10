@@ -222,6 +222,7 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
 {
     const wxString uri = evt.GetURL();
     wxString sData;
+    int winid = -1;
 
     wxRegEx pattern(R"(^(https?:)|(file:)\/\/)");
     if (pattern.Matches(uri))
@@ -235,14 +236,12 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
     else if (uri.StartsWith("assets:", &sData))
     {
         m_frame->setNavTreeSection(_t("Assets"));
-        wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
-        m_frame->GetEventHandler()->AddPendingEvent(event);
+        winid = MENU_ASSETS;
     }
     else if (uri.StartsWith("billsdeposits:", &sData))
     {
         m_frame->setNavTreeSection(_t("Scheduled Transactions"));
-        wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
-        m_frame->GetEventHandler()->AddPendingEvent(event);
+        winid = MENU_BILLSDEPOSITS;
     }
     else if (uri.StartsWith("acct:", &sData))
     {
@@ -253,8 +252,7 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
         {
             m_frame->setGotoAccountID(account->id());
             m_frame->setNavTreeAccount(account->ACCOUNTNAME);
-            wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-            m_frame->GetEventHandler()->AddPendingEvent(event);
+            winid = MENU_GOTOACCOUNT;
         }
     }
     else if (uri.StartsWith("stock:", &sData))
@@ -266,12 +264,13 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
         {
             m_frame->setGotoAccountID(account->id());
             m_frame->setNavTreeAccount(account->ACCOUNTNAME);
-            wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
-            m_frame->GetEventHandler()->AddPendingEvent(event);
+            winid = MENU_STOCKS;
         }
     }
-
-    evt.Skip();
+    if (winid > -1) {
+        wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, winid);
+        wxPostEvent(m_frame, event);
+    }
 }
 
 void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
