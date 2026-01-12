@@ -113,7 +113,7 @@ bool ShareTransactionDialog::Create(wxWindow* parent, wxWindowID id, const wxStr
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 

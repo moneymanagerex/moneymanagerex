@@ -77,7 +77,7 @@ bool mmStocksPanel::Create(wxWindow *parent
 
     this->windowsFreezeThaw();
     Model_Usage::instance().pageview(this);
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
     return true;
 }
 

@@ -78,7 +78,7 @@ bool mmTagDialog::Create(wxWindow* parent, wxWindowID id
     SetEvtHandlerEnabled(false);
 
     CreateControls();
-
+    mmThemeAutoColour(this);
     SetEvtHandlerEnabled(true);
 
     GetSizer()->Fit(this);

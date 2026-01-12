@@ -61,6 +61,7 @@ bool mmQIFExportDialog::Create(wxWindow* parent, const wxString& caption, wxWind
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
+    mmThemeAutoColour(this);
     fillControls();
 
     SetIcon(mmex::getProgramIcon());

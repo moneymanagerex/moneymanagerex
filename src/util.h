@@ -35,7 +35,7 @@
 class mmGUIApp;
 
 bool isDark(wxColour c);
-void mmThemeAutoColour(wxWindow* object, bool recursive);
+void mmThemeAutoColour(wxWindow* object, bool recursive = true);
 void enableMSWDarkMode(wxWindow* object, bool darkMode);
 wxString JSON_PrettyFormated(rapidjson::Document& j_doc);
 wxString JSON_Formated(rapidjson::Document& j_doc);

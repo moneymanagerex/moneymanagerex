@@ -40,6 +40,7 @@
 #include "util.h"
 #include "constants.h"
 #include "images_list.h"
+#include "mmSimpleDialogs.h"
 #include "option.h"
 #include "platfdep.h"
 #include "paths.h"
@@ -52,6 +53,24 @@
 #ifdef __WXMSW__
 #pragma comment(lib, "dwmapi.lib")
 #include <dwmapi.h>
+
+WNDPROC editProc_ = nullptr;
+WNDPROC choiceProc_ = nullptr;
+HBRUSH hbrush_ = CreateSolidBrush(RGB(255,255,255));
+COLORREF fg_color_ = RGB(0, 0, 0);
+COLORREF bg_color_ = RGB(255, 255, 255);
+
+LRESULT CALLBACK EditSubclassProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+    if (msg == WM_CTLCOLOREDIT || msg == WM_CTLCOLORSTATIC)
+    {
+        HDC hdc = (HDC)wParam;
+        SetBkColor(hdc, bg_color_);
+        SetTextColor(hdc, fg_color_);
+        return (LRESULT)hbrush_;
+    }
+    return CallWindowProc(editProc_, hWnd, msg, wParam, lParam);
+}
 #endif
 
 using namespace rapidjson;
@@ -67,7 +86,7 @@ void mmThemeAutoColour([[maybe_unused]] wxWindow* object, [[maybe_unused]] bool 
     bool darkMode = mmex::isDarkMode();
     size_t type = typeid(*object).hash_code();
     wxString bg, fg;
-
+    
     if (type == typeid(wxButton).hash_code() || type == typeid(wxBitmapButton).hash_code())
     {
         bg = mmThemeMetaString(COLOR_BUTTON);
@@ -83,7 +102,34 @@ void mmThemeAutoColour([[maybe_unused]] wxWindow* object, [[maybe_unused]] bool 
     }
     else if (type == typeid(wxDataViewListCtrl).hash_code())
     {
+        bg = mmThemeMetaString(COLOR_LIST);
         recursive = false;
+    }
+    else if (type == typeid(wxListCtrl).hash_code())
+    {
+        bg = mmThemeMetaString(COLOR_LIST);
+    }
+    else if (type == typeid(mmComboBox).hash_code())
+    {
+        bg = mmThemeMetaString(COLOR_TEXTCONTROL);
+        fg = mmThemeMetaString(COLOR_TEXTCONTROL_FONT);
+#ifdef __WXMSW__
+        wxColour bgColor = wxColour(bg);
+        wxColour fgColor = wxColour(fg);
+        // base background color of the control when it is not being edited
+        hbrush_ = CreateSolidBrush(RGB(bgColor.Red(), bgColor.Green(), bgColor.Blue()));
+        // background color of the control while it has focus
+        bg_color_ = RGB(bgColor.Red(), bgColor.Green(), bgColor.Blue());
+        // text color (both focused and non-focused)
+        fg_color_ = RGB(fgColor.Red(), fgColor.Green(), fgColor.Blue());
+        editProc_ = (WNDPROC)SetWindowLongPtr(object->GetHandle(), GWLP_WNDPROC, (LONG_PTR)EditSubclassProc);
+#endif
+        
+    }
+    else if (type == typeid(wxTextCtrl).hash_code() || type == typeid(mmTextCtrl).hash_code())
+    {
+        bg = mmThemeMetaString(COLOR_TEXTCONTROL);
+        fg = mmThemeMetaString(COLOR_TEXTCONTROL_FONT);
     }
     else
     {

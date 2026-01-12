@@ -271,7 +271,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
     Model_Checking::Data* refTxn = Model_Checking::instance().get(m_ref_id);
     if (refTxn && !refTxn->DELETEDTIME.IsEmpty()) scrolled_window->Disable();
     m_static_box->Hide();
-    mmThemeAutoColour(scrolled_window, true);
+    mmThemeAutoColour(scrolled_window);
     return true;
 }
 

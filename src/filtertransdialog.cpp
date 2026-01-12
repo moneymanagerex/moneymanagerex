@@ -507,7 +507,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     {
         m_custom_fields->ShowCustomPanel();
     }
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
 }
 
 void mmFilterTransactionsDialog::mmDoInitSettingNameChoice(wxString sel) const

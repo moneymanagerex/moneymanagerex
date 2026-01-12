@@ -416,6 +416,7 @@ private:
     wxColour borderColor_ = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWFRAME);
     wxBitmap dropArrow_;
     wxBitmap dropArrowInactive_;
+    bool repaint_allowed_ = true;
     bool initialRefreshDone_ = false;
     int panelHeight_, textOffset_;
     wxColour bgColorEnabled_ = wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX);
