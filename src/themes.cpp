@@ -135,6 +135,7 @@ mmThemesDialog::mmThemesDialog(wxWindow *parent, const wxString &name)
 {
     this->SetFont(parent->GetFont());
     Create(parent, name);
+    mmThemeAutoColour(this);
 }
 
 void mmThemesDialog::Create(wxWindow* parent, const wxString &name)

@@ -118,7 +118,7 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
 
     SetEvtHandlerEnabled(false);
     CreateControls();
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
     mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL);
     mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL_FONT, true);
     fillControls();

@@ -19,6 +19,7 @@
 #include "daterangeeditdialog.h"
 #include "constants.h"
 #include "images_list.h"
+#include "util.h"
 
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmDateRangeEditDialog, wxDialog);
@@ -48,6 +49,7 @@ mmDateRangeEditDialog::mmDateRangeEditDialog(wxWindow* parent, wxString* name_pt
     m_name_ptr = name_ptr;
     m_range_ptr = range_ptr;
     CreateControls();
+    mmThemeAutoColour(this);
     SetIcon(mmex::getProgramIcon());
     Centre();
 }

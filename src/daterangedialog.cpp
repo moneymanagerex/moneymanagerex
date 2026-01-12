@@ -21,6 +21,7 @@
 #include "constants.h"
 #include "images_list.h"
 #include "option.h"
+#include "util.h"
 
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmDateRangeDialog, wxDialog);
@@ -51,6 +52,7 @@ mmDateRangeDialog::mmDateRangeDialog(wxWindow* parent, std::vector<DateRange2::S
     this->SetFont(parent->GetFont());
     Create(parent, -1, _t("Manage date ranges"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX, "");
     CreateControls();
+    mmThemeAutoColour(this);
     SetIcon(mmex::getProgramIcon());
     fillControls();
     GetSizer()->SetSizeHints(this);

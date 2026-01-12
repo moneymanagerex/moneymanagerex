@@ -71,6 +71,7 @@ mmStockDialog::mmStockDialog(wxWindow* parent
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(400, 300), style, name);
+    mmThemeAutoColour(this);
 }
 
 bool mmStockDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption

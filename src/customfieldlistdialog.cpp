@@ -51,7 +51,7 @@ mmCustomFieldListDialog::mmCustomFieldListDialog (wxWindow* parent)
 
     this->SetFont(parent->GetFont());
     Create(parent);
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
 }
 
 void mmCustomFieldListDialog::Create(wxWindow* parent)

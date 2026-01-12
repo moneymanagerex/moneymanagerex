@@ -71,7 +71,7 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int64 account_id, const w
 
     this->SetFont(parent->GetFont());
     Create(parent);
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
     SetMinSize(wxSize(500, 300));
 }
 

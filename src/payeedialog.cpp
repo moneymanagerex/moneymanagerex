@@ -62,7 +62,7 @@ m_payee(payee)
     mmSetSize(this);
     Centre();
     SetIcon(mmex::getProgramIcon());
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
     fillControls();
 }
 
@@ -452,7 +452,6 @@ mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString
 {
     this->SetFont(parent->GetFont());
     m_hiddenColor = mmThemeMetaColour(meta::COLOR_HIDDEN);
-    m_normalColor = this->GetForegroundColour();
 
     m_showHiddenPayees = Model_Setting::instance().getBool("SHOW_HIDDEN_PAYEES", true);
     Create(parent, name);
@@ -523,7 +522,8 @@ void mmPayeeDialog::Create(wxWindow* parent, const wxString &name)
     }
 
     CreateControls();
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
+    m_normalColor = this->GetForegroundColour();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 

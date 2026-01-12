@@ -48,7 +48,7 @@ mmAboutDialog::mmAboutDialog(wxWindow* parent, int tabToOpenNo)
         ? _t("License agreement")
         : wxString::Format("%s %s", ::mmex::getProgramName(), ::mmex::getTitleProgramVersion());
     createWindow(parent, caption, tabToOpenNo);
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
 }
 
 bool mmAboutDialog::createWindow(wxWindow* parent

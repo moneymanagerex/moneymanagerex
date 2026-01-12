@@ -78,7 +78,7 @@ mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent)
     Create(parent);
     this->SetMinSize(wxSize(550, 300));
     this->Connect(wxID_ANY, wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(mmNewAcctDialog::OnChangeFocus), nullptr, this);
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
 }
 
 mmNewAcctDialog::~mmNewAcctDialog()

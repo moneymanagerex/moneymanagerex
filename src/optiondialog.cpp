@@ -70,7 +70,7 @@ bool mmOptionsDialog::Create(wxWindow* parent
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
     this->SetInitialSize();

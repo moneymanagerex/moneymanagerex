@@ -158,6 +158,7 @@ bool mmUnivCSVDialog::Create(wxWindow* parent
     SetMinSize(GetSize());
     SetIcon(mmex::getProgramIcon());
     Centre();
+    mmThemeAutoColour(this);
    return true;
 }
 

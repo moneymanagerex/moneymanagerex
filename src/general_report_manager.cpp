@@ -280,7 +280,7 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent, wxSQLite3Databa
 {
     this->SetFont(parent->GetFont());
     Create(parent);
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
     mmSetSize(this);
     Centre();
     SelectTreeItemByName(m_treeCtrl, itemname);

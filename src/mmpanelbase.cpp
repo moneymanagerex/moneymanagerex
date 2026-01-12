@@ -59,6 +59,7 @@ mmListCtrl::mmListCtrl(wxWindow* parent, wxWindowID winid) :
     ))
 {
     SetWindowStyle(GetWindowStyle() | wxBORDER_NONE);
+    mmThemeAutoColour(this);
 }
 
 mmListCtrl::~mmListCtrl()

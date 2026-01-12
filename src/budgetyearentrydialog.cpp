@@ -41,7 +41,7 @@ mmBudgetYearEntryDialog::mmBudgetYearEntryDialog(wxWindow* parent
     withMonth_ = withMonth;
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _t("Budget Entry Details"), wxDefaultPosition, wxSize(500, 300), style);
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
     if (withMonth_)
         this->SetTitle(_t("Budget Month Entry"));
 }

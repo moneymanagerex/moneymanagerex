@@ -82,7 +82,7 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     bEnableSelect_ ? SetMinSize(wxSize(200, 350)) : SetMinSize(wxSize(500, 350));
     mmSetSize(this);
     Centre();
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
 }
 
 bool mmMainCurrencyDialog::Create(wxWindow* parent

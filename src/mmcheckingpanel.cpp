@@ -117,7 +117,7 @@ mmCheckingPanel::mmCheckingPanel(
     loadDateRanges(&m_date_range_a, &m_date_range_m, isAccount());
 
     create(parent);
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
     Fit();
 }
 

@@ -279,6 +279,7 @@ mmComboBox::mmComboBox(wxWindow* parent, wxWindowID id, wxSize size)
 {
     Bind(wxEVT_CHAR_HOOK, &mmComboBox::OnKeyPressed, this);
     Bind(wxEVT_CHAR, &mmComboBox::OnKeyPressed, this);
+    mmThemeAutoColour(this);
 }
 
 void mmComboBox::OnDropDown(wxCommandEvent&)
@@ -1089,6 +1090,7 @@ mmMultiChoiceDialog::mmMultiChoiceDialog(
     if (parent) this->SetFont(parent->GetFont());
 
     wxMultiChoiceDialog::Create(parent, message, caption, items);
+    mmThemeAutoColour(this);
     SetMinSize(wxSize(220, 384));
     SetIcon(mmex::getProgramIcon());
 
@@ -1109,6 +1111,7 @@ mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow* parent, const wxString& mes
 {
     if (parent) this->SetFont(parent->GetFont());
     wxSingleChoiceDialog::Create(parent, message, caption, choices);
+    mmThemeAutoColour(this);
     SetMinSize(wxSize(220, 384));
     SetIcon(mmex::getProgramIcon());
 
@@ -1125,6 +1128,7 @@ mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow* parent, const wxString& mes
     wxArrayString choices;
     for (const auto& item : accounts) choices.Add(item.ACCOUNTNAME);
     wxSingleChoiceDialog::Create(parent, message, caption, choices);
+    mmThemeAutoColour(this);
     SetMinSize(wxSize(220, 384));
     SetIcon(mmex::getProgramIcon());
 
@@ -1140,6 +1144,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     bool operatorAllowed, const wxPoint& pos, const wxSize& size, long style)
     : wxPanel(), operatorAllowed_(operatorAllowed)
 {
+    wxColour fgColor;
 #ifdef __WXMAC__
     if (mmex::isDarkMode())
     {
@@ -1152,8 +1157,11 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
         style |= wxBORDER_THEME;
         bgColorDisabled_ = wxColour(251, 251, 251);
     }
+    fgColor = *bestFontColour(bgColorEnabled_);
 #else
     style |= wxBORDER_NONE;
+    bgColorEnabled_ = mmThemeMetaColour(COLOR_TEXTCONTROL);
+    fgColor = mmThemeMetaColour(COLOR_TEXTCONTROL_FONT);
 #endif
     Create(parent, id, pos, size, style);
     SetFont(parent->GetFont());
@@ -1182,17 +1190,16 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     textCtrl_->StyleSetForeground(1, *wxBLACK);
     textCtrl_->StyleSetFont(0, parent->GetFont());
     textCtrl_->StyleSetBackground(0, bgColorEnabled_);
-    textCtrl_->StyleSetForeground(0, wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOXTEXT));
+    textCtrl_->StyleSetForeground(0, fgColor);
     textCtrl_->StyleSetBackground(wxSTC_STYLE_DEFAULT, bgColorEnabled_);
-    textCtrl_->StyleSetForeground(wxSTC_STYLE_DEFAULT, wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOXTEXT));
-    textCtrl_->SetCaretForeground(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOXTEXT));
-    textCtrl_->SetMaxClientSize(wxSize(-1, textCtrl_->TextHeight(0)));
+    textCtrl_->StyleSetForeground(wxSTC_STYLE_DEFAULT, fgColor);
+    textCtrl_->SetCaretForeground(fgColor);
+    textCtrl_->SetMaxClientSize(wxSize(-1, textCtrl_->TextHeight(0)+2));
     textCtrl_->SetWordChars("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_.,;:!?'\"()[]{}<>/\\|-_=+*&^%@#$~");
 
     // Text ctrl event handlers
     textCtrl_->Bind(wxEVT_CHAR, &mmTagTextCtrl::OnTextChanged, this);
     textCtrl_->Bind(wxEVT_STC_CLIPBOARD_PASTE, &mmTagTextCtrl::OnPaste, this);
-    textCtrl_->Bind(wxEVT_PAINT, &mmTagTextCtrl::OnPaint, this);
     Bind(wxEVT_PAINT, &mmTagTextCtrl::OnPaint, this);
     textCtrl_->Bind(wxEVT_KILL_FOCUS, &mmTagTextCtrl::OnKillFocus, this);
     textCtrl_->Bind(wxEVT_CHAR_HOOK, &mmTagTextCtrl::OnKeyPressed, this);
@@ -1206,10 +1213,21 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     wxSize btnSize;
 #ifdef __WXMSW__
     panelHeight_ = textCtrl_->TextHeight(0) + 8;
-    textOffset_ = 2;
-    h_sizer->Add(textCtrl_, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, textOffset_);
+    textOffset_ = 3;
+    h_sizer->Add(textCtrl_, 1, wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT, textOffset_);
     wxWindowDC dc(this);
     btnSize = wxRendererNative::Get().GetCollapseButtonSize(this, dc);
+    textCtrl_->Bind(wxEVT_STC_PAINTED, [this](wxStyledTextEvent&)
+    {
+        if (!repaint_allowed_)
+        {
+            repaint_allowed_ = true;
+            return;
+        }
+
+        repaint_allowed_ = false;
+        Refresh();
+    });
 #elif __WXGTK__
     panelHeight_ = std::max(textCtrl_->TextHeight(0) + 2, 34);
     textOffset_ = 8;
@@ -1264,7 +1282,7 @@ mmTagTextCtrl::mmTagTextCtrl(wxWindow* parent, wxWindowID id,
     Layout();
     btn_dropdown_->Refresh();
     btn_dropdown_->Update();
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
 }
 
 void mmTagTextCtrl::createDropButton(wxSize btnSize)
@@ -1273,25 +1291,26 @@ void mmTagTextCtrl::createDropButton(wxSize btnSize)
     // On Windows draw the drop arrow and store the bitmap to be used in the paint override
     wxWindowDC dc(this);
     btnSize.SetWidth(btnSize.GetWidth() - 2);
-    btnSize.SetHeight(panelHeight_ - 3);
-    btn_dropdown_ = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxPoint(-1, 1), btnSize, wxBORDER_NONE, wxDefaultValidator, "btn_dropdown_");
-    btn_dropdown_->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
+    btnSize.SetHeight(panelHeight_);
+    btn_dropdown_ = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxPoint(-1, 0), btnSize, wxBORDER_NONE, wxDefaultValidator, "btn_dropdown_");
     btn_dropdown_->Bind(wxEVT_PAINT, &mmTagTextCtrl::OnPaintButton, this);
 
-    // Recreate the Native windows-style drop arrow
-    // Begin the image with a transparent background
+    // Recreate the Native windows-style drop arrow    
     wxImage img(btnSize);
     img.InitAlpha();
-    unsigned char* alpha = img.GetAlpha();
-    memset(alpha, wxIMAGE_ALPHA_TRANSPARENT, img.GetWidth() * img.GetHeight());
+    wxBitmap bg = wxBitmap(img);
 
-    dropArrow_ = wxBitmap(img);
     // Normal wxDC doesn't play nice with an alpha channel in Windows
     // so use a wxGraphicsContext to draw the image in the bitmap
-    wxGraphicsContext* gc = wxGraphicsContext::Create(dropArrow_);
-    gc->SetAntialiasMode(wxANTIALIAS_NONE);
+    wxGraphicsContext* gc = wxGraphicsContext::Create(bg);
+
+    wxRect2DDouble rect(0, 0, btnSize.GetWidth(), btnSize.GetHeight());
+    gc->SetBrush(wxBrush(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX)));
+    gc->DrawRectangle(rect);
+    delete gc;
+
     int arrowX = (btnSize.GetWidth() - 8) / 2;
-    int arrowY = btnSize.GetHeight() / 2;
+    int arrowY = (btnSize.GetHeight() - 2) / 2;
 
     wxPoint2DDouble ptstart[2] = {
         wxPoint(arrowX, arrowY),     // top L
@@ -1323,33 +1342,43 @@ void mmTagTextCtrl::createDropButton(wxSize btnSize)
         wxPoint(arrowX + 4, arrowY + 4)  // light shadow bottom center R
     };
 
+    dropArrow_ = bg;
+    dropArrowInactive_ = bg;
+    gc = wxGraphicsContext::Create(dropArrow_);
+    wxGraphicsContext* gc2 = wxGraphicsContext::Create(dropArrowInactive_);
+    gc->SetAntialiasMode(wxANTIALIAS_NONE);
+    gc2->SetAntialiasMode(wxANTIALIAS_NONE);
+
     // draw shadow
     wxColour color = wxSystemSettings::GetColour(wxSYS_COLOUR_3DSHADOW);
-    color.SetRGBA(0xA6000000 | color.GetRGB());
+    color.SetRGBA(0x90000000 | color.GetRGB());
     gc->SetPen(color);
     gc->StrokeLines(2, sptstart, sptend);
+    color.SetRGBA(0x46000000 | color.GetRGB());
+    gc2->SetPen(color);
+    gc2->StrokeLines(2, sptstart, sptend);
 
     // draw triangle
     color = wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT);
-    color.SetRGBA(0xA6000000 | color.GetRGB());
+    color.SetRGBA(0x90000000 | color.GetRGB());
     gc->SetPen(color);
     gc->StrokeLines(2, ptstart, ptend);
+    color.SetRGBA(0x46000000 | color.GetRGB());
+    gc2->SetPen(color);
+    gc2->StrokeLines(2, ptstart, ptend);
 
     // draw light shadow
     color = wxSystemSettings::GetColour(wxSYS_COLOUR_3DLIGHT);
-    color.SetRGBA(0xA6000000 | color.GetRGB());
+    color.SetRGBA(0x90000000 | color.GetRGB());
     gc->SetPen(color);
     gc->StrokeLines(2, lsptstart, lsptend);
+    color.SetRGBA(0x46000000 | color.GetRGB());
+    gc2->SetPen(color);
+    gc2->StrokeLines(2, lsptstart, lsptend);
 
     delete gc;
+    delete gc2;
 
-    // Duplicate the image and adjust opacity to create the "inactive" drop arrow
-    wxImage inactiveImg(dropArrow_.ConvertToImage());
-    for (int i = 0; i < inactiveImg.GetWidth(); i++)
-        for (int j = 0; j < inactiveImg.GetHeight(); j++)
-            inactiveImg.SetAlpha(i, j, inactiveImg.GetAlpha(i, j) * 0.5);
-
-    dropArrowInactive_ = wxBitmap(inactiveImg);
 #else
     // Begin the image with a transparent background
     wxImage img(btnSize);
@@ -1650,12 +1679,11 @@ void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
 
 #ifndef __WXMAC__
     // paint a TextCtrl over the background -- not currently used on macOS due to dark mode bug
-    wxWindowDC dc(this);
+    wxPaintDC dc(this);
     wxRegion clipRegion(GetClientRect());
     if (btn_dropdown_->GetClientRect().Contains(btn_dropdown_->ScreenToClient(wxGetMousePosition())))
     {
-        wxRect btnRect(btn_dropdown_->GetClientRect());
-        btnRect.x += textCtrl_->GetSize().GetWidth() + textOffset_;
+        wxRect btnRect(btn_dropdown_->GetRect());
         btnRect.y = 1;
         btnRect.height -= 2;
         btnRect.width -= 1;
@@ -1666,8 +1694,6 @@ void mmTagTextCtrl::OnPaint(wxPaintEvent& event)
 #endif
 
 #ifdef __WXMSW__
-    dc.DrawBitmap(textCtrl_->IsEnabled() ? dropArrow_ : dropArrowInactive_, wxPoint(textCtrl_->GetSize().GetWidth() + textOffset_, 0));
-
     dc.DestroyClippingRegion();
 
     borderColor_ = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWFRAME);

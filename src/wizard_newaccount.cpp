@@ -54,6 +54,7 @@ mmAddAccountWizard::mmAddAccountWizard(wxFrame *frame)
 
     // allow the wizard to size itself around the pages
     GetPageAreaSizer()->Add(page1);
+    mmThemeAutoColour(this);
     this->CentreOnParent();
 }
 

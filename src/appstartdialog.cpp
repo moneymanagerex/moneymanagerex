@@ -66,7 +66,7 @@ bool mmAppStartDialog::Create(wxWindow* parent, wxWindowID id, const wxString& c
         CentreOnScreen();
     }
 
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
     return ok;
 }
 

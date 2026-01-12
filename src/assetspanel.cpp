@@ -361,7 +361,7 @@ mmAssetsPanel::mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID win
     , tips_()
 {
     Create(parent, winid, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, name);
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
 }
 
 bool mmAssetsPanel::Create(wxWindow *parent

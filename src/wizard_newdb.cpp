@@ -54,6 +54,7 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
 
     // allow the wizard to size itself around the pages
     GetPageAreaSizer()->Add(page1);
+    mmThemeAutoColour(this);
 }
 
 bool mmNewDatabaseWizard::RunIt(bool modal)

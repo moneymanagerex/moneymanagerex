@@ -195,7 +195,7 @@ mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid
     this->tips_.Add(_t("Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."));
 
     Create(parent, winid, pos, size, style, name);
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
 }
 
 bool mmBillsDepositsPanel::Create(wxWindow *parent

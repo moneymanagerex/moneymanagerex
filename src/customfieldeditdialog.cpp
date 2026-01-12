@@ -68,7 +68,7 @@ bool mmCustomFieldEditDialog::Create(wxWindow* parent
     GetSizer()->SetSizeHints(this);
     SetIcon(mmex::getProgramIcon());
     Centre();
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
     return true;
 }
 

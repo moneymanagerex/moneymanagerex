@@ -156,7 +156,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent,
 
     this->SetFont(parent->GetFont());
     Create(parent);
-    mmThemeAutoColour(this, true);
+    mmThemeAutoColour(this);
     dataToControls();
 
     mmSetSize(this);
@@ -485,7 +485,7 @@ void mmTransDialog::CreateControls()
     wxBoxSizer* typeSizer = new wxBoxSizer(wxHORIZONTAL);
 
     flex_sizer->Add(new wxStaticText(static_box, wxID_STATIC, _t("Type")), g_flagsH);
-    flex_sizer->Add(typeSizer, g_flagsExpand);
+    flex_sizer->Add(typeSizer, wxSizerFlags(g_flagsExpand).Border(0));
     typeSizer->Add(transaction_type_, g_flagsExpand);
     typeSizer->Add(cAdvanced_, g_flagsH);
     flex_sizer->AddSpacer(1);

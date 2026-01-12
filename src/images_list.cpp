@@ -193,7 +193,9 @@ const std::map<int, std::tuple<wxString, wxString, bool> > metaDataTrans()
     md[COLOR_GRM_OPERATOR]     = std::make_tuple("/colors/grm/operator",         "#3ba5d6ff", false);
     md[COLOR_GRM_NUMBER]       = std::make_tuple("/colors/grm/number",           "#ff0d0dff", false);
     md[COLOR_GRM_SPECIAL]      = std::make_tuple("/colors/grm/special",          "#e70870ff", false);
-
+    md[COLOR_TEXTCONTROL]      = std::make_tuple("/colors/textControl",         wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX).GetAsString(wxC2S_HTML_SYNTAX), false);
+    md[COLOR_TEXTCONTROL_FONT] = std::make_tuple("/colors/textControlFont",     wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOXTEXT).GetAsString(wxC2S_HTML_SYNTAX), false);
+    
     return md;
 };
 
