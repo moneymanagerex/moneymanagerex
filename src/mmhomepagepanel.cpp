@@ -2,6 +2,7 @@
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2014 - 2020 Nikolay Akimov
 Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -245,14 +246,13 @@ void mmHomePagePanel::fillData()
 
     const auto name = getVFname4print("hp", m_templateText);
     browser_->LoadURL(name);
-
 }
 
 void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
 {
     const wxString uri = evt.GetURL();
-    wxString sData;
-    int winid = -1;
+    wxString sData = "";
+    int cmdInt = -1;
 
     wxRegEx pattern(R"(^(https?:)|(file:)\/\/)");
     if (pattern.Matches(uri))
@@ -265,40 +265,25 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
     }
     else if (uri.StartsWith("assets:", &sData))
     {
-        m_frame->setNavTreeSection(_t("Assets"));
-        winid = MENU_ASSETS;
+        cmdInt = NavigatorTypes::TYPE_ID_ASSET;
     }
     else if (uri.StartsWith("billsdeposits:", &sData))
     {
-        m_frame->setNavTreeSection(_t("Scheduled Transactions"));
-        winid = MENU_BILLSDEPOSITS;
+        cmdInt = NavigatorTypes::NAV_ENTRY_SCHEDULED_TRANSACTIONS;
     }
     else if (uri.StartsWith("acct:", &sData))
     {
-        wxLongLong_t id = -1;
-        sData.ToLongLong(&id);
-        const Model_Account::Data* account = Model_Account::instance().get(id);
-        if (account)
-        {
-            m_frame->setGotoAccountID(account->id());
-            m_frame->setNavTreeAccount(account->ACCOUNTNAME);
-            winid = MENU_GOTOACCOUNT;
-        }
+        cmdInt = NavigatorTypes::TYPE_ID_CHECKING;
     }
     else if (uri.StartsWith("stock:", &sData))
     {
-        wxLongLong_t id = -1;
-        sData.ToLongLong(&id);
-        const Model_Account::Data* account = Model_Account::instance().get(id);
-        if (account)
-        {
-            m_frame->setGotoAccountID(account->id());
-            m_frame->setNavTreeAccount(account->ACCOUNTNAME);
-            winid = MENU_STOCKS;
-        }
+        cmdInt = NavigatorTypes::TYPE_ID_INVESTMENT;
     }
-    if (winid > -1) {
-        wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, winid);
+
+    if (cmdInt > -1) {
+        wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+        event.SetInt(cmdInt);
+        event.SetString(sData);
         wxPostEvent(m_frame, event);
         evt.Veto();  // Inhibit a wxEVT_WEBVIEW_NEWWINDOW_FEATURES event, which will crash!
     }

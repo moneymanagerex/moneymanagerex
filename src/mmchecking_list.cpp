@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013, 2014, 2020, 2021, 2022 Nikolay Akimov
  Copyright (C) 2021-2025 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public as published by
@@ -1423,7 +1424,7 @@ void TransactionListCtrl::onViewOtherAccount(wxCommandEvent& /*event*/)
     int64 gotoAccountID = (m_cp->m_account_id == tran.ACCOUNTID) ? tran.TOACCOUNTID : tran.ACCOUNTID;
     wxString gotoAccountName = (m_cp->m_account_id == tran.ACCOUNTID) ? tran.TOACCOUNTNAME : tran.ACCOUNTNAME;
 
-    m_cp->m_frame->setNavTreeAccount(gotoAccountName);
+    m_cp->m_frame->selectNavTreeItem(gotoAccountName);
     m_cp->m_frame->setGotoAccountID(gotoAccountID, id);
     wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
     m_cp->m_frame->GetEventHandler()->AddPendingEvent(event);

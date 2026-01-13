@@ -5,7 +5,7 @@ Copyright (C) 2013, 2022 Nikolay Akimov
 Copyright (C) 2014 James Higley
 Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 Copyright (C) 2021, 2022, 2024 Mark Whalley (mark@ipx.co.uk)
-Copyright (C) 2025 Klaus Wich
+Copyright (C) 2025, 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -92,7 +92,8 @@ public:
 
 
     void setNavTreeSection(const wxString &sectionName);
-    void setNavTreeAccount(const wxString& accountName);
+    void setNavTreeSectionById(int sectionid);
+    void selectNavTreeItem(const wxString& accountName);
     void menuPrintingEnable(bool enable);
     void OnToggleFullScreen(wxCommandEvent& WXUNUSED(event));
     void OnResetView(wxCommandEvent& WXUNUSED(event));
@@ -147,7 +148,7 @@ private:
     mmTreeItemData* selectedItemData_ = nullptr;
 
     wxTreeItemId getNavTreeChild(const wxTreeItemId& section, const wxString& childName) const;
-    bool setNavTreeSectionChild(const wxString& sectionName, const wxString& childName);
+    bool findAndSelectNavTreeItem(const wxTreeItemId& parent, const wxString& accountName);
 
     /* printing */
     int helpFileIndex_ = -1;
@@ -162,6 +163,7 @@ private:
     void resetNavTreeControl();
     void cleanupNavTreeControl(wxTreeItemId& item);
     wxSizer* cleanupHomePanel(bool new_sizer = true);
+    void updateHomePagePanel(mmPanelBase* panel);
     bool openFile(const wxString& fileName, bool openingNew, const wxString &password = "");
     void InitializeModelTables();
     bool createDataStore(const wxString& fileName, const wxString &passwd, bool openingNew);
@@ -232,8 +234,8 @@ private:
     void OnBillsDeposits(wxCommandEvent& event);
     void OnAssets(wxCommandEvent& event);
     void OnThemeManager(wxCommandEvent&);
-    void OnGotoAccount(wxCommandEvent& WXUNUSED(event));
-    void OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event));
+    void OnGotoAccount(wxCommandEvent& event);
+    //void OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event));
 private:
     void OnHideShareAccounts(wxCommandEvent &event);
     void OnHideDeletedTransactions(wxCommandEvent& event);

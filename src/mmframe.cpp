@@ -5,7 +5,7 @@
  Copyright (C) 2014 James Higley
  Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
  Copyright (C) 2021, 2022, 2024-2025 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025, 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -231,12 +231,10 @@ EVT_MENU(MENU_TREEPOPUP_FILTER_EDIT, mmGUIFrame::OnPopupEditFilter)
 
 EVT_TREE_ITEM_EXPANDED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemExpanded)
 EVT_TREE_ITEM_COLLAPSED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemCollapsed)
-//EVT_TREE_KEY_DOWN(wxID_ANY, mmGUIFrame::OnKeyDown)
 
 EVT_DROP_FILES(mmGUIFrame::OnDropFiles)
 
 EVT_MENU(MENU_GOTOACCOUNT, mmGUIFrame::OnGotoAccount)
-EVT_MENU(MENU_STOCKS, mmGUIFrame::OnGotoStocksAccount)
 
 /* Navigation Panel */
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_NEW, mmGUIFrame::OnNewAccount)
@@ -527,40 +525,57 @@ void mmGUIFrame::setNavTreeSection(const wxString &sectionName)
     if (section.IsOk()) {
         m_nav_tree_ctrl->SelectItem(section);
     }
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
-}
-
-bool mmGUIFrame::setNavTreeSectionChild(const wxString& sectionName, const wxString& childName)
-{
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    bool found = false;
-    wxTreeItemId section = getNavTreeChild(
-        m_nav_tree_ctrl->GetRootItem(),
-        sectionName
-    );
-    if (section.IsOk() && m_nav_tree_ctrl->ItemHasChildren(section)) {
-        m_nav_tree_ctrl->ExpandAllChildren(section);
-        wxTreeItemId child = getNavTreeChild(section, childName);
-        if (child.IsOk()) {
-            // Set the NavTreeCtrl and prevent any event code being executed for now.
-            m_nav_tree_ctrl->SelectItem(child);
-            //processPendingEvents();
-            found = true;
-        }
+    else {
+        m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
-    return found;
 }
 
-void mmGUIFrame::setNavTreeAccount(const wxString& accountName)
+void mmGUIFrame::setNavTreeSectionById(int sectionid)
 {
-    if (setNavTreeSectionChild(_t("Favorites"), accountName))
-        return;
-    /*for (NavigatorTypes::TYPE_ID account_type : account_types) {
-        const wxString sectionName = wxGetTranslation(ACCOUNT_SECTION[account_type]);
-        if (setNavTreeSectionChild(sectionName, accountName))
-            return;
-    }*/
+    wxString secname = NavigatorTypes::instance().getAccountSectionName(sectionid);
+    selectNavTreeItem(secname);
+}
+
+
+void mmGUIFrame::selectNavTreeItem(const wxString& accountName)
+{
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
+    if (!findAndSelectNavTreeItem(m_nav_tree_ctrl->GetRootItem(), accountName)) {
+        m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
+    }
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
+}
+
+bool mmGUIFrame::findAndSelectNavTreeItem(const wxTreeItemId& treeitem, const wxString& itemName)  // recursive!
+{
+    if (!treeitem.IsOk()) {
+        return false;
+    }
+
+    if (m_nav_tree_ctrl->GetItemText(treeitem) == itemName) {
+        wxTreeItemId p = treeitem;
+        while (p.IsOk() && p != m_nav_tree_ctrl->GetRootItem()) {
+            m_nav_tree_ctrl->Expand(p);
+            p = m_nav_tree_ctrl->GetItemParent(p);
+        }
+
+        m_nav_tree_ctrl->SelectItem(treeitem);
+        m_nav_tree_ctrl->SetFocusedItem(treeitem);
+        m_nav_tree_ctrl->EnsureVisible(treeitem);
+
+        return true;
+    }
+
+    wxTreeItemIdValue cookie;
+    wxTreeItemId child = m_nav_tree_ctrl->GetFirstChild(treeitem, cookie);
+    while (child.IsOk()) {
+        if (findAndSelectNavTreeItem(child, itemName)) {
+            return true;
+        }
+       child = m_nav_tree_ctrl->GetNextChild(treeitem, cookie);
+    }
+    return false;
 }
 
 //----------------------------------------------------------------------------
@@ -2929,7 +2944,7 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
     if (account_id > 0) {
         setGotoAccountID(account_id);
         Model_Account::Data* account = Model_Account::instance().get(account_id);
-        setNavTreeAccount(account->ACCOUNTNAME);
+        selectNavTreeItem(account->ACCOUNTNAME);
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
         this->GetEventHandler()->AddPendingEvent(evt);
     }
@@ -2963,7 +2978,7 @@ void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
         Model_Account::Data* account = Model_Account::instance().get(univCSVDialog.ImportedAccountID());
         if (account) {
             createCheckingPage(account->ACCOUNTID);
-            setNavTreeAccount(account->ACCOUNTNAME);
+            selectNavTreeItem(account->ACCOUNTNAME);
         }
     }
 }
@@ -2982,7 +2997,7 @@ void mmGUIFrame::OnImportXML(wxCommandEvent& /*event*/)
         Model_Account::Data* account = Model_Account::instance().get(univCSVDialog.ImportedAccountID());
         if (account) {
             createCheckingPage(account->ACCOUNTID);
-            setNavTreeAccount(account->ACCOUNTNAME);
+            selectNavTreeItem(account->ACCOUNTNAME);
         }
     }
 }
@@ -3160,7 +3175,7 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& event)
     Model_Account::Data * account = Model_Account::instance().get(gotoAccountID_);
     if (account) {
         createCheckingPage(gotoAccountID_);
-        setNavTreeAccount(account->ACCOUNTNAME);
+        selectNavTreeItem(account->ACCOUNTNAME);
     }
 
     if (i == wxID_NEW)
@@ -3527,7 +3542,6 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
 {
     if (!rs) return;
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-
     DoWindowsFreezeThaw(homePanel_);
     wxSizer *sizer = cleanupHomePanel();
     panelCurrent_ = new mmReportsPanel(
@@ -3735,26 +3749,55 @@ void mmGUIFrame::createStocksAccountPage(int64 accountID)
 
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnGotoAccount(wxCommandEvent& WXUNUSED(event))
+void mmGUIFrame::OnGotoAccount(wxCommandEvent& event)
 {
-    bool proper_type = false;
-    Model_Account::Data *acc = Model_Account::instance().get(gotoAccountID_);
-    if (acc)
-        proper_type = Model_Account::type_id(acc) != NavigatorTypes::TYPE_ID_INVESTMENT;
-    if (proper_type)
-        createCheckingPage(gotoAccountID_);
-    m_nav_tree_ctrl->Refresh();
-}
+    int cmdInt = event.GetInt();
+    switch(cmdInt)
+    {
+        case NavigatorTypes::TYPE_ID_CHECKING:
+            {
+                wxString accid = event.GetString();
+                wxLongLong_t id = -1;
+                accid.ToLongLong(&id);
+                setGotoAccountID(id);
+                Model_Account::Data *account = Model_Account::instance().get(gotoAccountID_);
+                if (account) {
+                    if (Model_Account::type_id(account) != NavigatorTypes::TYPE_ID_INVESTMENT) {
+                        createCheckingPage(gotoAccountID_);
+                        selectNavTreeItem(account->ACCOUNTNAME);
+                    }
+                }
+            }
+            break;
 
-void mmGUIFrame::OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event))
-{
-    bool proper_type = false;
-    Model_Account::Data *acc = Model_Account::instance().get(gotoAccountID_);
-    if (acc)
-        proper_type = Model_Account::type_id(acc) == NavigatorTypes::TYPE_ID_INVESTMENT;
-    if (proper_type)
-        createStocksAccountPage(gotoAccountID_);
-    m_nav_tree_ctrl->Refresh();
+        case NavigatorTypes::TYPE_ID_INVESTMENT:
+            {
+                wxString accid = event.GetString();
+                wxLongLong_t id = -1;
+                accid.ToLongLong(&id);
+                setGotoAccountID(id);
+                Model_Account::Data *account = Model_Account::instance().get(gotoAccountID_);
+                if (account) {
+                    if (Model_Account::type_id(account) == NavigatorTypes::TYPE_ID_INVESTMENT) {
+                        createStocksAccountPage(gotoAccountID_);
+                        selectNavTreeItem(account->ACCOUNTNAME);
+                    }
+                }
+            }
+            break;
+
+        case NavigatorTypes::NAV_ENTRY_SCHEDULED_TRANSACTIONS:
+            setNavTreeSectionById(cmdInt);
+            createBillsDeposits();
+            break;
+
+        case NavigatorTypes::TYPE_ID_ASSET:
+            OnAssets(event);
+            break;
+
+        default:
+            wxLogDebug("OnGotoAccount: unknown event %d", cmdInt);
+    }
 }
 
 void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
@@ -4241,21 +4284,6 @@ void mmGUIFrame::OnChangeGUILanguage(wxCommandEvent& event)
             _t("Language change")
         );
 }
-
-/*void mmGUIFrame::OnKeyDown(wxTreeEvent& event)
-{
-    if (selectedItemData_) {
-        auto data = selectedItemData_->getString();
-
-        int key_code = event.GetKeyCode();
-
-        if (key_code == WXK_RETURN || key_code == WXK_NUMPAD_ENTER) {
-            if (data == "item@Transaction Report")
-                OnTransactionReport(event);
-        }
-    }
-    event.Skip();
-}*/
 
 void mmGUIFrame::DoUpdateBudgetNavigation(wxTreeItemId& parent_item)
 {
