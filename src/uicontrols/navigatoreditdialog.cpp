@@ -49,7 +49,8 @@ mmNavigatorEditDialog::mmNavigatorEditDialog(wxWindow* parent, const NavigatorTy
                 break;
 
             case NavigatorTypes::NAV_TYP_PANEL_STATIC:
-                m_activeCheckBox->SetValue(false);
+                m_aktivLabel->Show(false);
+                m_activeCheckBox->Show(false);
                 m_choiceLabel->Show(false);
                 m_choiceTextCtrl->Show(false);
                 break;
