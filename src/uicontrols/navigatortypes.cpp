@@ -396,10 +396,20 @@ const wxString NavigatorTypes::type_name(int id)
     return "";
 }
 
-int NavigatorTypes::type_id(const wxString& name, int default_id)
+int NavigatorTypes::getTypeIdFromDBName(const wxString& dbname, int default_id)
 {
     for (NavigatorTypesInfo* entry : m_navigator_entries) {
-        if (entry->dbaccid == name) {
+        if (entry->dbaccid == dbname) {
+            return entry->type;
+        }
+    }
+    return default_id;
+}
+
+int NavigatorTypes::getTypeIdFromChoice(const wxString& choice, int default_id)
+{
+    for (NavigatorTypesInfo* entry : m_navigator_entries) {
+        if (entry->choice == choice) {
             return entry->type;
         }
     }

@@ -731,37 +731,6 @@ int Option::AccountImageId(const int64 account_id, const bool def, const bool ig
     if (info) {
         selectedImage = info->imageId;
     }
-    /*else {
-        switch (acctType)
-        {
-        case (NavigatorTypes::TYPE_ID_CHECKING) :
-            selectedImage = img::SAVINGS_ACC_NORMAL_PNG;
-            break;
-        case (NavigatorTypes::TYPE_ID_TERM) :
-            selectedImage = img::TERMACCOUNT_NORMAL_PNG;
-            break;
-        case (NavigatorTypes::TYPE_ID_INVESTMENT) :
-            selectedImage = img::STOCK_ACC_NORMAL_PNG;
-            break;
-        case (NavigatorTypes::TYPE_ID_CREDIT_CARD) :
-            selectedImage = img::CARD_ACC_NORMAL_PNG;
-            break;
-        case (NavigatorTypes::TYPE_ID_CASH) :
-            selectedImage = img::CASH_ACC_NORMAL_PNG;
-            break;
-        case (NavigatorTypes::TYPE_ID_LOAN) :
-            selectedImage = img::LOAN_ACC_NORMAL_PNG;
-            break;
-        case (NavigatorTypes::TYPE_ID_ASSET) :
-            selectedImage = img::ASSET_NORMAL_PNG;
-            break;
-        case (NavigatorTypes::TYPE_ID_SHARES) :
-            selectedImage = img::LOAN_ACC_NORMAL_PNG;
-            break;
-        //default:
-        //    wxASSERT(false);
-        }
-    }*/
     return selectedImage;
 }
 

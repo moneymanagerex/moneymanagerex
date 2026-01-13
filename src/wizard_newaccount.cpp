@@ -177,7 +177,7 @@ bool mmAddAccountTypePage::TransferDataFromWindow()
     }
 
     parent_->currencyID_ = currencyID;
-    parent_->accountType_ = NavigatorTypes::instance().type_id(itemChoiceType_->GetString(itemChoiceType_->GetSelection()));
+    parent_->accountType_ = NavigatorTypes::instance().getTypeIdFromChoice(itemChoiceType_->GetString(itemChoiceType_->GetSelection()));
 
     return true;
 }

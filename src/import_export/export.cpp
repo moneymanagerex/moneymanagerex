@@ -279,7 +279,7 @@ const std::unordered_map<wxString, int> mmExportTransaction::m_QIFaccountTypes =
 
 const wxString mmExportTransaction::qif_acc_type(const wxString& mmex_type)
 {
-    int mmex_typeId = NavigatorTypes::instance().type_id(mmex_type, -1);
+    int mmex_typeId = NavigatorTypes::instance().getTypeIdFromDBName(mmex_type, -1);
     wxString qif_acc_type = m_QIFaccountTypes.begin()->first;
     for (const auto &item : m_QIFaccountTypes) {
         if (item.second == mmex_typeId) {
