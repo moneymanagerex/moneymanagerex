@@ -3176,6 +3176,9 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& WXUNUSED(event))
         setNavTreeSection(_t("Transaction Report"));
         createReportsPage(rs, true);
     }
+    else {
+        m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
+    }
 }
 
 void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& WXUNUSED(event))
