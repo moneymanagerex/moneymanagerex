@@ -7434,6 +7434,42 @@ msgstr ""
 msgid "Huge (48 px)"
 msgstr ""
 
+#: optionsettingsview.cpp:222
+msgid "Navigator display"
+msgstr ""
+
+#: optionsettingsview.cpp:226
+msgid "Show all transacttions"
+msgstr ""
+
+#: optionsettingsview.cpp:230
+msgid "Show scheduled transactions"
+msgstr ""
+
+#: optionsettingsview.cpp:234
+msgid "Show favorites"
+msgstr ""
+
+#: optionsettingsview.cpp:238
+msgid "Show cash ledger for portfolios"
+msgstr ""
+
+#: optionsettingsview.cpp:242
+msgid "Show budget planner"
+msgstr ""
+
+#: optionsettingsview.cpp:246
+msgid "Show reports")
+msgstr ""
+
+#: optionsettingsview.cpp:250
+msgid "Show general report manager"
+msgstr ""
+
+#: optionsettingsview.cpp:254
+msgid "Show help"
+msgstr ""
+
 #: payeedialog.cpp:57
 msgid "Edit Payee"
 msgstr ""
