@@ -25,6 +25,7 @@
 
 NavigatorTypes::NavigatorTypes()
 {
+    m_lastIdx = 0;
     SetToDefault();
     sortEntriesBySeq();
 }
