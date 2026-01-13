@@ -18,20 +18,25 @@
 
 #pragma once
 
-#include <wx/wx.h>
-#include <wx/treelist.h>
-#include <wx/sizer.h>
-#include <vector>
-
-#include "daterange2.h"
+#include "defs.h"
+//#include "daterange2.h"
 #include "generic/generictreelistdialog.h"
+#include "toolbartypes.h"
+#include "constants.h"
+#include "generic/genericFocusButton.h"
 
 
 class mmToolbarDialog: public genericTreeListDialog
 {
 private:
     wxDECLARE_DYNAMIC_CLASS(mmToolbarDialog);
-    //wxDECLARE_EVENT_TABLE();
+
+    enum {
+        BTN_NEW_SEPARATOR = BTN_size,
+        BTN_NEW_SPACE,
+        BTN_NEW_STRETCHER,
+        BTN_DELETE,
+    };
 
 public:
     mmToolbarDialog();
@@ -39,14 +44,21 @@ public:
     mmToolbarDialog(wxWindow* parent);
 
 private:
-    void fillControls(wxTreeListItem root);
-    /*
-    void createColumns();
-    void closeAction();
-    void createMiddleElements();
-    void createBottomElements();
+    const std::string DIALOG_SIZE  = "TOOLBAR_DIALOG_SIZE";
 
-    void updateControlState(int selIdx, wxClientData* selData);
-    void setDefault();
-    */
+    wxButton* m_delete;
+
+    void fillControls(wxTreeListItem root) override;
+    void createColumns() override;
+    wxTreeListItem appendItem(wxTreeListItem parent, ToolBarEntries::ToolBarEntry* ainfo);
+    void createBottomElements(wxBoxSizer* itemBox) override;
+    void updateControlState(int selIdx, wxClientData* selData) override;
+    void copyTreeItemData(wxTreeListItem src, wxTreeListItem dst) override;
+    void closeAction() override;
+    void setDefault() override;
+
+    void OnNew(wxCommandEvent&);
+    void OnDelete(wxCommandEvent&);
+
+    void updateTree();
 };

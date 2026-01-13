@@ -196,7 +196,7 @@ void OptionSettingsView::Create()
     uiStyleSizer->Add(m_font_size_chooser, g_flagsH);
 
     // Icons
-    wxFlexGridSizer* uiIconSizer = new wxFlexGridSizer(0, 2, 0, 5);
+    wxFlexGridSizer* uiIconSizer = new wxFlexGridSizer(0, 3, 0, 5);
     uiSizer->Add(uiIconSizer);
 
     uiIconSizer->Add(new wxStaticText(uiBox, wxID_STATIC, _t("Toolbar Icon Size")), g_flagsH);

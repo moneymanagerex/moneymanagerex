@@ -85,6 +85,8 @@
 #include "model/allmodel.h"
 
 #include "uicontrols/navigatortypes.h"
+#include "uicontrols/toolbartypes.h"
+#include "uicontrols/toolbardialog.h"
 
 #include <wx/fs_mem.h>
 #include <wx/busyinfo.h>
@@ -161,6 +163,11 @@ EVT_MENU(wxID_PREFERENCES, mmGUIFrame::OnOptions)
 EVT_MENU(wxID_NEW, mmGUIFrame::OnNewTransaction)
 EVT_MENU(wxID_REFRESH, mmGUIFrame::refreshPanelData)
 EVT_MENU(MENU_BUDGETSETUPDIALOG, mmGUIFrame::OnBudgetSetupDialog)
+
+EVT_MENU(MENU_TRANSACTIONS_ALL, mmGUIFrame::OnTransactionsAll)
+EVT_MENU(MENU_TRANSACTIONS_DEL, mmGUIFrame::OnTransactionsDel)
+
+
 EVT_MENU(wxID_HELP, mmGUIFrame::OnHelp)
 EVT_MENU(MENU_CHECKUPDATE, mmGUIFrame::OnCheckUpdate)
 EVT_MENU(MENU_ANNOUNCEMENTMAILING, mmGUIFrame::OnBeNotified)
@@ -177,6 +184,7 @@ EVT_MENU(MENU_CHANGE_ENCRYPT_PASSWORD, mmGUIFrame::OnChangeEncryptPassword)
 EVT_MENU(MENU_DB_VACUUM, mmGUIFrame::OnVacuumDB)
 EVT_MENU(MENU_DB_DEBUG, mmGUIFrame::OnDebugDB)
 EVT_MENU(MENU_DB_COOKIE_RESET, mmGUIFrame::OnCookieReset)
+
 
 EVT_MENU(MENU_ASSETS, mmGUIFrame::OnAssets)
 EVT_MENU(MENU_CURRENCY, mmGUIFrame::OnCurrency)
@@ -342,6 +350,9 @@ mmGUIFrame::mmGUIFrame(
     m_mgr.GetPane("toolbar").Caption(_t("Toolbar"));
     m_mgr.GetPane("toolbar").PaneBorder(false);
     m_mgr.Update();
+
+    // store reference for toolbar updates
+    ToolBarEntries::instance().SetToolbarParent(this);
 
     // Show license agreement at first open
     if (Model_Setting::instance().getString(INIDB_SEND_USAGE_STATS, "") == "") {
@@ -752,6 +763,11 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_DB_VACUUM)->Enable(enable);
     menuBar_->FindItem(MENU_DB_DEBUG)->Enable(enable);
 
+    toolbarEnableItems(enable);
+}
+
+void mmGUIFrame::toolbarEnableItems(bool enable)
+{
     toolBar_->EnableTool(MENU_NEWACCT, enable);
     toolBar_->EnableTool(MENU_HOMEPAGE, enable);
     toolBar_->EnableTool(MENU_ORGPAYEE, enable);
@@ -765,6 +781,12 @@ void mmGUIFrame::menuEnableItems(bool enable)
     toolBar_->EnableTool(wxID_PRINT, enable);
     toolBar_->EnableTool(MENU_ORGTAGS, enable);
     toolBar_->EnableTool(MENU_RATES, enable);
+
+    toolBar_->EnableTool(MENU_BILLSDEPOSITS, enable);
+    toolBar_->EnableTool(MENU_BUDGETSETUPDIALOG, enable);
+    toolBar_->EnableTool(MENU_TRANSACTIONS_ALL, enable);
+    toolBar_->EnableTool(MENU_TRANSACTIONS_DEL, enable);
+
     toolBar_->Refresh();
     toolBar_->Update();
 }
@@ -799,7 +821,6 @@ void mmGUIFrame::createControls()
         nullptr, this
     );
     m_nav_tree_ctrl->Bind(wxEVT_RIGHT_DOWN, &mmGUIFrame::OnTreeRightClick, this);
-
 
     homePanel_ = new wxPanel(
         this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
@@ -2194,62 +2215,73 @@ void mmGUIFrame::createMenu()
 
 void mmGUIFrame::createToolBar()
 {
-    const int toolbar_icon_size = Option::instance().getToolbarIconSize();
     const long style = wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL | wxAUI_TB_PLAIN_BACKGROUND;
 
     toolBar_ = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, style);
     toolBar_->SetToolBorderPadding(1);
     mmThemeMetaColour(toolBar_, meta::COLOR_LISTPANEL);
-    //toolBar_->SetToolBitmapSize(wxSize(toolbar_icon_size, toolbar_icon_size));  // adjust tool size to match the icon size being used
+    toolBar_->Bind(wxEVT_RIGHT_DOWN, &mmGUIFrame::OnToolbarRightClick, this);
 
-    toolBar_->AddTool(MENU_NEW, _t("New"), mmBitmapBundle(png::NEW_DB, toolbar_icon_size), _t("New Database"));
-    toolBar_->AddTool(MENU_OPEN, _t("Open"), mmBitmapBundle(png::OPEN, toolbar_icon_size), _t("Open Database"));
-    toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_NEWACCT, _t("New Account"), mmBitmapBundle(png::NEW_ACC, toolbar_icon_size), _t("New Account"));
-    toolBar_->AddTool(MENU_HOMEPAGE, _t("Dashboard"), mmBitmapBundle(png::HOME, toolbar_icon_size), _t("Open Dashboard"));
-    toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_NEW, _t("New"), mmBitmapBundle(png::NEW_TRX, toolbar_icon_size), _t("New Transaction"));
-    toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_ORGPAYEE, _t("Payee Manager"), mmBitmapBundle(png::PAYEE, toolbar_icon_size), _t("Payee Manager"));
-    toolBar_->AddTool(MENU_ORGCATEGS, _t("Category Manager"), mmBitmapBundle(png::CATEGORY, toolbar_icon_size), _t("Category Manager"));
-    toolBar_->AddTool(MENU_ORGTAGS, _t("Tag Manager"), mmBitmapBundle(png::TAG, toolbar_icon_size), _t("Tag Manager"));
-    toolBar_->AddTool(MENU_CURRENCY, _t("Currency Manager"), mmBitmapBundle(png::CURR, toolbar_icon_size), _t("Currency Manager"));
-    toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_TRANSACTIONREPORT, _t("Transaction Report"), mmBitmapBundle(png::FILTER, toolbar_icon_size), _t("Transaction Report"));
-    toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_VIEW_LIST, _t("General Report Manager"), mmBitmapBundle(png::GRM, toolbar_icon_size), _t("General Report Manager"));
-    toolBar_->AddTool(MENU_RATES, _t("Download Rates"), mmBitmapBundle(png::CURRATES, toolbar_icon_size), _t("Download currency and stock rates"));
+    PopulateToolBar(false);
+}
 
-    toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_PRINT, _t("&Print"), mmBitmapBundle(png::PRINT, toolbar_icon_size), _t("Print"));
-    toolBar_->AddSeparator();
+void  mmGUIFrame::PopulateToolBar(bool update)
+{
+    const int toolbar_icon_size = Option::instance().getToolbarIconSize();
+    toolBar_->ClearTools();
+    ToolBarEntries::ToolBarEntry* ainfo = ToolBarEntries::instance().getFirstEntry();
+    while (ainfo != nullptr) {
+        if (ainfo->active) {
+            switch (ainfo->type) {
+                case ToolBarEntries::TOOLBAR_BTN:
+                    if (ainfo->toolId == MENU_ANNOUNCEMENTMAILING) {
+                        wxString news_array;
+                        for (const auto& entry : websiteNewsArray_) {
+                            news_array += entry.Title + "\n";
+                        }
+                        if (news_array.empty()) {
+                            news_array = _t("News");
+                        }
+                        const auto news_ico = (websiteNewsArray_.size() > 0) ? mmBitmapBundle(png::NEW_NEWS, toolbar_icon_size) : mmBitmapBundle(png::NEWS, toolbar_icon_size);
+                        toolBar_->AddTool(MENU_ANNOUNCEMENTMAILING, _t("News"), news_ico, news_array);
+                    }
+                    else {
+                        toolBar_->AddTool(ainfo->toolId, ainfo->label, mmBitmapBundle(ainfo->imageId, toolbar_icon_size), wxGetTranslation(ainfo->helpstring));
+                    }
+                    break;
 
-    toolBar_->AddStretchSpacer();
+                case ToolBarEntries::TOOLBAR_SEPARATOR:
+                    toolBar_->AddSeparator();
+                    break;
 
-    toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _t("Full Screen") + "\tF11", mmBitmapBundle(png::FULLSCREEN, toolbar_icon_size), _t("Toggle full screen"));
-    toolBar_->AddTool(wxID_PREFERENCES, _t("&Settings"), mmBitmapBundle(png::OPTIONS, toolbar_icon_size), _t("Settings"));
-    toolBar_->AddSeparator();
+                case ToolBarEntries::TOOLBAR_STRETCH:
+                    toolBar_->AddStretchSpacer();
+                    break;
 
-
-    wxString news_array;
-    for (const auto& entry : websiteNewsArray_)
-    {
-        news_array += entry.Title + "\n";
+                case ToolBarEntries::TOOLBAR_SṔACER:
+                    toolBar_->AddSpacer(toolbar_icon_size);
+                    break;
+            }
+        }
+        ainfo = ToolBarEntries::instance().getNextEntry(ainfo);
     }
-    if (news_array.empty())
-    {
-        news_array = _t("News");
-    }
-    const auto news_ico = (websiteNewsArray_.size() > 0) ? mmBitmapBundle(png::NEW_NEWS, toolbar_icon_size) : mmBitmapBundle(png::NEWS, toolbar_icon_size);
-
-    toolBar_->AddTool(MENU_ANNOUNCEMENTMAILING, _t("News"), news_ico, news_array);
-    toolBar_->AddTool(wxID_ABOUT, _t("&About"), mmBitmapBundle(png::ABOUT, toolbar_icon_size), _t("About"));
-    toolBar_->AddTool(wxID_HELP, _t("&Help") + "\tF1", mmBitmapBundle(png::HELP, toolbar_icon_size), _t("Help"));
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
+
+    if (update) {
+        toolbarEnableItems(m_db);
+        m_mgr.Update();
+    }
 }
+
+
+void mmGUIFrame::OnToolbarRightClick(wxMouseEvent& WXUNUSED(event))
+{
+    mmToolbarDialog dlg(this);
+    dlg.ShowModal();
+}
+
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::InitializeModelTables()
@@ -3172,6 +3204,16 @@ void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& WXUNUSED(event))
     setNavTreeSection(_t("Budget Planner"));
 }
 
+void mmGUIFrame::OnTransactionsAll(wxCommandEvent& WXUNUSED(event))
+{
+    createCheckingPage(-1);
+}
+
+void mmGUIFrame::OnTransactionsDel(wxCommandEvent& WXUNUSED(event))
+{
+    createCheckingPage(-2);
+}
+
 void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& WXUNUSED(event))
 {
     if (m_db) {
@@ -3676,7 +3718,6 @@ void mmGUIFrame::createStocksAccountPage(int64 accountID)
         sp->DisplayAccountDetails(accountID);
     }
     else {
-        //updateNavTreeControl();
         DoWindowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmStocksPanel(accountID, this, homePanel_);
