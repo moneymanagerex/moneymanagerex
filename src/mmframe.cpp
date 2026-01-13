@@ -3176,6 +3176,9 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& WXUNUSED(event))
         setNavTreeSection(_t("Transaction Report"));
         createReportsPage(rs, true);
     }
+    else {
+        m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
+    }
 }
 
 void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& WXUNUSED(event))
@@ -4106,9 +4109,7 @@ wxSizer* mmGUIFrame::cleanupHomePanel(bool new_sizer)
 {
     wxASSERT(homePanel_);
 
-    if (!new_sizer) {
-        homePanel_->DestroyChildren();
-    }
+    homePanel_->DestroyChildren();
     homePanel_->SetSizer(new_sizer ? new wxBoxSizer(wxHORIZONTAL) : nullptr);
 
     return homePanel_->GetSizer();
