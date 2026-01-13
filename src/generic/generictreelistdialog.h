@@ -46,7 +46,7 @@ protected:
         BTN_size
     };
 
-    wxTreeListCtrl* m_treeList;
+    wxTreeListCtrl* m_treeList = nullptr;
 
     virtual void createColumns();
     virtual void closeAction();

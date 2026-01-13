@@ -139,7 +139,7 @@ void mmToolbarDialog::OnNew(wxCommandEvent& event)
         ainfo = data->ref;
     }
     ToolBarEntries::instance().newEntry(event.GetId() == BTN_NEW_SEPARATOR ? ToolBarEntries::TOOLBAR_SEPARATOR :
-                                        (event.GetId() == BTN_NEW_SPACE ? ToolBarEntries::TOOLBAR_SṔACER : ToolBarEntries::TOOLBAR_STRETCH), ainfo);
+                                        (event.GetId() == BTN_NEW_SPACE ? ToolBarEntries::TOOLBAR_SPACER : ToolBarEntries::TOOLBAR_STRETCH), ainfo);
     reloadTree();
     updateButtonState();
 }

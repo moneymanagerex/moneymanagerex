@@ -29,7 +29,7 @@
 struct NavData : public wxClientData
 {
     NavigatorTypesInfo* ref;
-    NavData(NavigatorTypesInfo* r): ref(r) {}
+    explicit NavData(NavigatorTypesInfo* r): ref(r) {}
 };
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmNavigatorDialog, wxDialog);
