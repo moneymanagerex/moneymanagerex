@@ -103,6 +103,7 @@ public:
     wxTreeItemId GetNavTreeSelection() const;
 
     void SetTrashState(bool state);
+    void SetShareAccountState(bool state);
 
 private:
     static const std::vector<std::pair<NavigatorTypes::TYPE_ID, wxString> > ACCOUNT_SECTION_TABLE;

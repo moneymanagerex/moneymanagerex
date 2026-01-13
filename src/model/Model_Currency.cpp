@@ -23,7 +23,7 @@
 #include "Model_Account.h"
 #include "Model_Checking.h"
 #include "Model_Stock.h"
-#include "navigator/navigatortypes.h"
+#include "uicontrols/navigatortypes.h"
 #include "option.h"
 #include "util.h"
 
@@ -380,4 +380,3 @@ int Model_Currency::precision(int64 account_id)
     }
     else return 2;
 }
-

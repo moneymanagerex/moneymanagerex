@@ -29,7 +29,7 @@
 
 #include "usertransactionpanel.h"
 #include "accountdialog.h"
-#include "navigator/navigatortypes.h"
+#include "uicontrols/navigatortypes.h"
 
 #include <wx/valnum.h>
 

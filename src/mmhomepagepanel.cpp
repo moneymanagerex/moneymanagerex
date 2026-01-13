@@ -139,8 +139,7 @@ void mmHomePagePanel::insertDataIntoTemplate()
 
     // Get locale to pass to reports for Apexcharts
     wxString locale = Model_Infotable::instance().getString("LOCALE", "en-US"); // Stay blank of not set, currency override handled in Apexcharts call.
-    if (locale == "")
-    {
+    if (locale == "") {
         locale = "en-US";
     }
     locale.Replace("_", "-");
@@ -149,25 +148,56 @@ void mmHomePagePanel::insertDataIntoTemplate()
     double tBalance = 0.0, tReconciled = 0.0;
 
     // Accounts
-    htmlWidgetAccounts account_stats;
-    m_frames["ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_CHECKING);
-    m_frames["CARD_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_CREDIT_CARD);
-    m_frames["CASH_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_CASH);
-    m_frames["LOAN_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_LOAN);
-    m_frames["TERM_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_TERM);
-
-    account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_ASSET);
-    account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_SHARES);
-
-
-    //Stocks
     htmlWidgetStocks stocks_widget;
-    m_frames["STOCKS_INFO"] = stocks_widget.getHTMLText();
-    tBalance += stocks_widget.get_total();
+    htmlWidgetAccounts account_stats;
 
-    htmlWidgetAssets assets;
-    m_frames["ASSETS_INFO"] = assets.getHTMLText();
-    tBalance += Model_Asset::instance().balance();
+    int accountCount = 0;
+    wxString AccountsInfo;
+    bool isAccount = false;
+
+    NavigatorTypesInfo* navinfo = NavigatorTypes::instance().getFirstActiveEntry();
+    while (navinfo) {
+        if (navinfo->navTyp == NavigatorTypes::NAV_TYP_ACCOUNT) {
+            if (!isAccount) {
+                isAccount = true;
+                accountCount++;
+                AccountsInfo = wxString::Format("ACCOUNTS_%d", accountCount);
+                m_frames[AccountsInfo] = R"(<div class="shadow">)";
+            }
+            m_frames[AccountsInfo] += account_stats.displayAccounts(tBalance, tReconciled, navinfo->type);
+        }
+        else if (navinfo->type == NavigatorTypes::TYPE_ID_INVESTMENT) {
+            if (isAccount) {
+               m_frames[AccountsInfo] += "</div>";
+            }
+            isAccount = false;
+            accountCount++;
+            AccountsInfo = wxString::Format("ACCOUNTS_%d", accountCount);
+
+            m_frames[AccountsInfo]= stocks_widget.getHTMLText();
+            tBalance += stocks_widget.get_total();
+
+            account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_SHARES);
+
+        }
+        else if (navinfo->type == NavigatorTypes::TYPE_ID_ASSET) {
+            if (isAccount) {
+               m_frames[AccountsInfo] += "</div>";
+            }
+            isAccount = false;
+            accountCount++;
+            AccountsInfo = wxString::Format("ACCOUNTS_%d", accountCount);
+
+            htmlWidgetAssets assets;
+            m_frames[AccountsInfo] = assets.getHTMLText();
+            tBalance += Model_Asset::instance().balance();
+            account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_ASSET);
+        }
+        navinfo = NavigatorTypes::instance().getNextActiveEntry(navinfo);
+    }
+    if (isAccount) {
+        m_frames[AccountsInfo] +="</div>";
+    }
 
     htmlWidgetGrandTotals grand_totals;
     m_frames["GRAND_TOTAL"] = grand_totals.getHTMLText(tBalance, tReconciled

@@ -42,6 +42,7 @@
 #include "billsdepositsdialog.h"
 #include "daterangedialog.h"
 #include "uicontrols/reconciledialog.h"
+#include "uicontrols/navigatortypes.h"
 
 #include <wx/clipbrd.h>
 #include <float.h>

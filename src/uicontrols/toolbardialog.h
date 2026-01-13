@@ -22,37 +22,31 @@
 #include <wx/treelist.h>
 #include <wx/sizer.h>
 #include <vector>
-#include <wx/bmpcbox.h>
 
 #include "daterange2.h"
-#include "navigatortypes.h"
+#include "generic/generictreelistdialog.h"
 
 
-typedef std::vector<wxTreeListItem> wxTreeListItems;
-
-
-class mmNavigatorEditDialog: public wxDialog
+class mmToolbarDialog: public genericTreeListDialog
 {
-    wxDECLARE_DYNAMIC_CLASS(mmNavigatorEditDialog);
-    wxDECLARE_EVENT_TABLE();
+private:
+    wxDECLARE_DYNAMIC_CLASS(mmToolbarDialog);
+    //wxDECLARE_EVENT_TABLE();
 
 public:
-    mmNavigatorEditDialog();
-    mmNavigatorEditDialog(wxWindow* parent, NavigatorTypesInfo* info);
-    void updateInfo(NavigatorTypesInfo* info);
-    void OnNewText(wxCommandEvent& event);
+    mmToolbarDialog();
+    ~mmToolbarDialog() override;
+    mmToolbarDialog(wxWindow* parent);
 
 private:
-    bool m_hasChanged = false;
+    void fillControls(wxTreeListItem root);
+    /*
+    void createColumns();
+    void closeAction();
+    void createMiddleElements();
+    void createBottomElements();
 
-    wxTextCtrl* m_nameTextCtrl;
-    wxStaticText* m_choiceLabel;
-    wxTextCtrl* m_choiceTextCtrl;
-    wxCheckBox* m_activeCheckBox;
-    wxStaticText* m_aktivLabel;
-    wxBitmapComboBox* m_cbIcon;
-    wxIcon m_selectedIcon;
-    wxButton* m_saveButton;
-
-    void CreateControls();
+    void updateControlState(int selIdx, wxClientData* selData);
+    void setDefault();
+    */
 };

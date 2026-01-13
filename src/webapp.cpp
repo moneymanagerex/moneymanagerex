@@ -27,7 +27,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Attachment.h"
 #include "model/Model_Category.h"
 #include "model/Model_Infotable.h"
-#include "navigator/navigatortypes.h"
+#include "uicontrols/navigatortypes.h"
 
 
 //Expected WebAppVersion

@@ -129,13 +129,7 @@ void mmNewAcctDialog::CreateControls()
 
     grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _t("Account Type:")), g_flagsH);
 
-    wxChoice* itemChoice61 = new wxChoice(this, ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
-    for (int i = 0; i < NavigatorTypes::instance().getNumberOfAccountTypes(); ++i) {
-        NavigatorTypes::AccountItem* item = NavigatorTypes::instance().getAccountTypeItem(i);
-        itemChoice61->Append(item->name, new wxStringClientData(item->name));
-    }
-    if (NavigatorTypes::instance().type_id(m_account->ACCOUNTTYPE, -1) == -1)
-        itemChoice61->Append(m_account->ACCOUNTTYPE);
+    wxChoice* itemChoice61 = new wxChoice(this, ID_DIALOG_NEWACCT_COMBO_ACCTTYPE, wxDefaultPosition, wxDefaultSize, NavigatorTypes::instance().getAccountSelectionNames());
     mmToolTip(itemChoice61, _t("Specify the account type to be created."));
     grid_sizer->Add(itemChoice61, g_flagsExpand);
     itemChoice61->SetSelection(0);

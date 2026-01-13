@@ -19,7 +19,7 @@
 
 #include "wizard_newaccount.h"
 #include "mmhomepagepanel.h"
-#include "navigator/navigatortypes.h"
+#include "uicontrols/navigatortypes.h"
 #include "../resources/addacctwiz.xpm"
 
 wxBEGIN_EVENT_TABLE(mmAddAccountNamePage, wxWizardPageSimple)
@@ -127,13 +127,9 @@ mmAddAccountTypePage::mmAddAccountTypePage(mmAddAccountWizard *parent)
     : wxWizardPageSimple(parent)
     , parent_(parent)
 {
-    itemChoiceType_ = new wxChoice(this, wxID_ANY);
-    for (int i = 0; i < NavigatorTypes::instance().getNumberOfAccountTypes(); ++i) {
-        NavigatorTypes::AccountItem* item = NavigatorTypes::instance().getAccountTypeItem(i);
-        itemChoiceType_->Append(item->name, new wxStringClientData(item->name));
-    }
+    itemChoiceType_ = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, NavigatorTypes::instance().getAccountSelectionNames());
     mmToolTip(itemChoiceType_, _t("Specify the account type to be created."));
-    itemChoiceType_->SetSelection(NavigatorTypes::TYPE_ID_CHECKING);
+    itemChoiceType_->SetSelection(0);
 
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
 

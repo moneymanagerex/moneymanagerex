@@ -36,7 +36,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Category.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Tag.h"
-#include "navigator/navigatortypes.h"
+#include "uicontrols/navigatortypes.h"
 
 #include "reports/mmDateRange.h"
 

@@ -419,6 +419,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:300 import_export/qif_import_gui.cpp:310
 #: import_export/univcsvdialog.cpp:516 import_export/univcsvdialog.cpp:526
 #: maincurrencydialog.cpp:76 payeedialog.cpp:554 reports/summarystocks.cpp:112
+#: navigatordialog.cpp:82 navigatoreditdialog.cpp:91
 msgid "Name"
 msgstr ""
 
@@ -509,8 +510,8 @@ msgstr ""
 msgid "Edit Transaction Details"
 msgstr ""
 
-#: assetdialog.cpp:322 constants.cpp:75 sharetransactiondialog.cpp:361
-#: uicontrols/reconciledialog.cpp:226
+#: assetdialog.cpp:322 constants.cpp:75 sharetransactiondialog.cpp:3611
+#: uicontrols/reconciledialog.cpp:226 navigatoreditdialog.cpp:129
 msgid "&Cancel "
 msgstr ""
 
@@ -2241,6 +2242,7 @@ msgid "New"
 msgstr ""
 
 #: daterangedialog.cpp:129 webappdialog.cpp:417
+#: navigatordialog.cpp:123
 msgid "Delete"
 msgstr ""
 
@@ -2710,6 +2712,7 @@ msgstr ""
 
 #: diagnostics.cpp:92 relocatecategorydialog.cpp:135
 #: relocatepayeedialog.cpp:133 relocatetagdialog.cpp:136 themes.cpp:196
+#: navigatordialog.cpp:138
 msgid "&Close"
 msgstr ""
 
@@ -3000,6 +3003,7 @@ msgid "Fetch latest reports from GitHub repository"
 msgstr ""
 
 #: general_report_manager.cpp:443 stockdialog.cpp:353
+#: navigatoreditdialog.cpp:128
 msgid "&Save "
 msgstr ""
 
@@ -5362,7 +5366,11 @@ msgstr ""
 msgid "T&heme Manager…"
 msgstr ""
 
-#: mmframe.cpp:1757
+#: mmframe.cpp:1759
+msgid "&Navigator configuration…"
+msgstr ""
+
+#: mmframe.cpp:1767
 msgid "&New Database…"
 msgstr ""
 
@@ -6484,7 +6492,7 @@ msgstr ""
 msgid "Chart:"
 msgstr ""
 
-#: mmreportspanel.cpp:454
+#: mmreportspanel.cpp:454 navigatoreditdialog.cpp:105
 msgid "Show"
 msgstr ""
 
@@ -6670,6 +6678,38 @@ msgstr ""
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
+msgstr ""
+
+#: navigatordialog.cpp:60
+msgid "Navigator and account type configuration"
+msgstr ""
+
+#: navigatordialog.cpp:83 navigatoreditdialog.cpp:98
+msgid "Selection name"
+msgstr ""
+
+#: navigatordialog.cpp:128 navigatordialog.cpp:287
+msgid "Reset names"
+msgstr ""
+
+#: navigatordialog.cpp:132 navigatordialog.cpp:268
+msgid "Restore default"
+msgstr ""
+
+#: navigatordialog.cpp:267
+msgid "Do you really want to restore the default values?\n\nAll customization will be lost!"
+msgstr ""
+
+#: navigatordialog.cpp:286
+msgid "Do you really want to reset the configured names?"
+msgstr ""
+
+#: navigatoreditdialog.cpp:41
+msgid "Edit navigator entry"
+msgstr ""
+
+#: navigatoreditdialog.cpp:41
+msgid "New account type"
 msgstr ""
 
 #: option.cpp:51
@@ -8202,6 +8242,7 @@ msgid "Summary of Stocks"
 msgstr ""
 
 #: reports/summarystocks.cpp:113 stockdialog.cpp:427 stocks_list.cpp:70
+#: navigatoreditdialog.cpp:108
 msgid "Symbol"
 msgstr ""
 
