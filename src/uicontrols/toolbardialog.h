@@ -1,5 +1,5 @@
 /*******************************************************
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025, 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,7 +22,6 @@
 #include "generic/generictreelistdialog.h"
 #include "toolbartypes.h"
 #include "constants.h"
-#include "generic/genericFocusButton.h"
 
 
 class mmToolbarDialog: public genericTreeListDialog
