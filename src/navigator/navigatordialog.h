@@ -52,9 +52,6 @@ public:
     };
 
 private:
-    bool m_hasChanged = false;
-    int m_selected_row = 0;
-
     wxTreeListCtrl* m_treeList;
     wxButton* m_up_top = nullptr;
     wxBitmapButton* m_up = nullptr;
@@ -63,23 +60,24 @@ private:
     wxButton* m_down_bottom = nullptr;
     wxButton* m_delete = nullptr;
 
+    void createControls();
+    void fillControls();
+    wxTreeListItem appendAccountItem(wxTreeListItem parent, NavigatorTypesInfo* ainfo);
+
     void OnTop(wxCommandEvent&);
     void OnUp(wxCommandEvent&);
     void OnEdit(wxCommandEvent&);
     void OnDown(wxCommandEvent&);
     void OnBottom(wxCommandEvent&);
     void OnNew(wxCommandEvent&);
-    void OnOk(wxCommandEvent&);
+    void OnClose(wxCommandEvent&);
     void OnCancel(wxCommandEvent&);
     void OnDelete(wxCommandEvent&);
     void OnDefault(wxCommandEvent&);
     void OnTreeSelectionChange(wxTreeListEvent&);
     void OnTreeItemChecked(wxTreeListEvent&);
 
-    void createControls();
-    void fillControls();
     void updateButtonState();
-    void appendAccountItem(wxTreeListItem parent, NavigatorTypesInfo* ainfo);
     void moveSelectedItem(int direction);
     void moveItemData(wxTreeListItem sel, wxTreeListItem newItem);
     wxTreeListItems getChildrenList(wxTreeListItem parent);

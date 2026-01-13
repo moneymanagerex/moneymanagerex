@@ -220,12 +220,12 @@ void OptionSettingsView::Create()
     uiIconSizer->Add(m_others_icon_size, g_flagsH);
 
     // Navigator Appearance
-    wxStaticBox* navBox = new wxStaticBox(panelWindow, wxID_STATIC, _t("Navigator display"));
+    wxStaticBox* navBox = new wxStaticBox(panelWindow, wxID_STATIC, _t("Navigator display / Account types"));
 
     wxStaticBoxSizer* navSizer = new wxStaticBoxSizer(navBox, wxVERTICAL);
     panelSizer->Add(navSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    m_navigator_cfg = new wxButton(navBox, ID_DIALOG_NAVIGATOR_CONFIG, _t("Edit navigator entries"));
+    m_navigator_cfg = new wxButton(navBox, ID_DIALOG_NAVIGATOR_CONFIG, _t("Edit navigator entries and account types"));
     navSizer->Add(m_navigator_cfg, g_flagsV);
 
     m_navShowCashLedger = new wxCheckBox(navBox, wxID_STATIC, _t("Show cash ledger for portfolios"));
@@ -314,6 +314,6 @@ bool OptionSettingsView::SaveSettings()
     Option::instance().setShowMoneyTips(m_showMoneyTips->GetValue());
 
     Option::instance().setShowNavigatorCashLedger(m_navShowCashLedger->GetValue());
-    
+
     return true;
 }

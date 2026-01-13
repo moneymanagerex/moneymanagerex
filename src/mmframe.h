@@ -102,8 +102,10 @@ public:
     void SetNavTreeSelection(wxTreeItemId id);
     wxTreeItemId GetNavTreeSelection() const;
 
+    void SetTrashState(bool state);
+
 private:
-    static const std::vector<std::pair<Model_Account::TYPE_ID, wxString> > ACCOUNT_SECTION_TABLE;
+    static const std::vector<std::pair<NavigatorTypes::TYPE_ID, wxString> > ACCOUNT_SECTION_TABLE;
     static wxArrayString account_section_all();
 
 private:
@@ -185,10 +187,10 @@ private:
     /*save Settings LASTFILENAME AUIPERSPECTIVE SIZES*/
     void saveSettings();
     void menuEnableItems(bool enable);
-    wxTreeItemId addNavTreeSection(
-        const wxTreeItemId& root, const wxString& sectionName, int sectionImg,
-        int dataType, int64 dataId = -1
-    );
+    wxTreeItemId addNavTreeSection(const wxTreeItemId& root, const wxString& sectionName, int sectionImg,
+                                   int dataType, int64 dataId = -1);
+    wxTreeItemId addNavTreeItem(const wxTreeItemId& root, const wxString& itemName, int itemImg,
+                                int dataType, int64 dataId);
     void DoRecreateNavTreeControl(bool home_page = false);
     void DoUpdateReportNavigation(wxTreeItemId& parent_item);
     void DoUpdateGRMNavigation(wxTreeItemId& parent_item);

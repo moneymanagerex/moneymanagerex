@@ -23,22 +23,19 @@
 #include "images_list.h"
 #include "option.h"
 #include "navigatoreditdialog.h"
+#include "Model_Account.h"
+#include "mmframe.h"
 
 struct NavData : public wxClientData
 {
     NavigatorTypesInfo* ref;
-    NavData(NavigatorTypesInfo* r): ref(r) {
-       // wxLogDebug("NavData (ID=%d) wurde angelegt", ref->id);
-    }
-    /*~NavData() {
-       // wxLogDebug("NavData (ID=%d) wurde gelöscht", ref->id);
-    }*/
+    NavData(NavigatorTypesInfo* r): ref(r) {}
 };
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmNavigatorDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmNavigatorDialog, wxDialog)
-  EVT_BUTTON(wxID_OK, mmNavigatorDialog::OnOk)
+  EVT_BUTTON(wxID_CLOSE, mmNavigatorDialog::OnClose)
   EVT_BUTTON(BTN_UP_TOP, mmNavigatorDialog::OnTop)
   EVT_BUTTON(BTN_UP, mmNavigatorDialog::OnUp)
   EVT_BUTTON(BTN_EDIT, mmNavigatorDialog::OnEdit)
@@ -59,27 +56,13 @@ mmNavigatorDialog::mmNavigatorDialog()
 mmNavigatorDialog::mmNavigatorDialog(wxWindow* parent)
 {
     this->SetFont(parent->GetFont());
-    Create(parent, -1, _t("Navigator configuration"), wxDefaultPosition, wxSize(-1, -1), wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX, "");
+    Create(parent, -1, _t("Navigator and account type configuration"), wxDefaultPosition, wxSize(-1, -1), wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX, "");
     createControls();
     SetIcon(mmex::getProgramIcon());
     fillControls();
     Centre();
     SetMinSize(wxSize(300, 700));
     Fit();
-}
-
-void mmNavigatorDialog::fillControls()
-{
-    m_treeList->DeleteAllItems();
-    wxTreeListItem root = m_treeList->GetRootItem();
-
-    NavigatorTypesInfo* ainfo = NavigatorTypes::instance().getFirstAccount();
-    while (ainfo != nullptr) {
-        appendAccountItem(root, ainfo);
-        ainfo = NavigatorTypes::instance().getNextAccount(ainfo);
-    }
-    m_treeList->Expand(root);
-
 }
 
 void mmNavigatorDialog::createControls()
@@ -95,10 +78,8 @@ void mmNavigatorDialog::createControls()
 
     m_treeList = new wxTreeListCtrl(this, wxID_ANY, wxDefaultPosition, wxSize(400, 300),
                                     wxTL_3STATE |wxTL_SINGLE);
-    m_treeList->AppendColumn(_t("Entry"), 250);
-    m_treeList->AppendColumn(_t("ID"));
-    m_treeList->AppendColumn(_t("CurIdx"));
-    m_treeList->AppendColumn(_t("Type"));
+    m_treeList->AppendColumn(_t("Name"), 250);
+    m_treeList->AppendColumn(_t("Selection name"));
     const auto navIconSize = Option::instance().getNavigationIconSize();
     wxImageList* imageList = new wxImageList(navIconSize, navIconSize);
     for (const auto& bundle : navtree_images_list(navIconSize)) {
@@ -145,22 +126,34 @@ void mmNavigatorDialog::createControls()
     wxBoxSizer* btnSizer = new wxBoxSizer(wxHORIZONTAL);
     mainBoxSizer->Add(btnSizer, g_flagsCenter);
 
-    btnSizer->Add(new wxButton(this, wxID_OK, _t("&Save")), 0, wxALL, 5);
+    btnSizer->Add(new wxButton(this, wxID_CLOSE, _t("&Close")), 0, wxALL, 5);
     btnSizer->Add(new wxButton(this, BTN_DEFAULT, _t("Restore default")), 0, wxALL, 5);
-    btnSizer->Add(new wxButton(this, wxID_CANCEL, _t("Cancel")), 0, wxALL, 5);
 
     this->Layout();
 }
 
-void mmNavigatorDialog::appendAccountItem(wxTreeListItem parent, NavigatorTypesInfo* ainfo)
+void mmNavigatorDialog::fillControls()
+{
+    m_treeList->DeleteAllItems();
+    wxTreeListItem root = m_treeList->GetRootItem();
+
+    NavigatorTypesInfo* ainfo = NavigatorTypes::instance().getFirstAccount();
+    while (ainfo != nullptr) {
+        appendAccountItem(root, ainfo);
+        ainfo = NavigatorTypes::instance().getNextAccount(ainfo);
+    }
+    m_treeList->Expand(root);
+
+}
+
+wxTreeListItem mmNavigatorDialog::appendAccountItem(wxTreeListItem parent, NavigatorTypesInfo* ainfo)
 {
     wxTreeListItem item = m_treeList->AppendItem(parent, ainfo->name);
-    m_treeList->SetItemText(item, 1, wxString::Format(wxT("%i"), ainfo->id));
-    m_treeList->SetItemText(item, 2, wxString::Format(wxT("%i"), ainfo->seq_no));
-    m_treeList->SetItemText(item, 3, wxString::Format(wxT("%i"), ainfo->navTyp));
+    m_treeList->SetItemText(item, 1, ainfo->navTyp > NavigatorTypes::NAV_TYP_PANEL ? ainfo->choice : "");
     m_treeList->SetItemImage(item, ainfo->imageId);
     m_treeList->SetItemData(item, new NavData(ainfo));
     m_treeList->CheckItem(item, ainfo->navTyp != NavigatorTypes::NAV_TYP_PANEL ? wxCHK_UNDETERMINED : (ainfo->active ? wxCHK_CHECKED : wxCHK_UNCHECKED));
+    return item;
 }
 
 void mmNavigatorDialog::OnTop(wxCommandEvent&)
@@ -190,8 +183,6 @@ void mmNavigatorDialog::OnTreeItemChecked(wxTreeListEvent& event)
     wxTreeListItem item = event.GetItem();
     NavData* data = static_cast<NavData*> (m_treeList->GetItemData(item));
     if (data->ref->navTyp != NavigatorTypes::NAV_TYP_PANEL) {
-        wxLogDebug("Item '%s' can not be deactivated",
-                        m_treeList->GetItemText(item));
         m_treeList->CheckItem(item, wxCHK_UNDETERMINED);
     }
 }
@@ -203,10 +194,13 @@ void mmNavigatorDialog::OnEdit(wxCommandEvent&)
     mmNavigatorEditDialog dlg(this, data->ref);
     if (dlg.ShowModal() == wxID_OK) {
         dlg.updateInfo(data->ref);
-        m_treeList->SetItemImage(item, data->ref->imageId);
-        if (data->ref->navTyp == NavigatorTypes::NAV_TYP_PANEL) {
+        if (data->ref->navTyp == NavigatorTypes::NAV_TYP_ACCOUNT || data->ref->navTyp == NavigatorTypes::NAV_TYP_OTHER) {
+            m_treeList->SetItemText(item, 1, data->ref->choice);
+        }
+        else if (data->ref->navTyp == NavigatorTypes::NAV_TYP_PANEL) {
             m_treeList->CheckItem(item, data->ref->active ? wxCHK_CHECKED : wxCHK_UNCHECKED);
         }
+        m_treeList->SetItemImage(item, data->ref->imageId);
         m_treeList->SetItemText(item, 0, data->ref->name);
     }
 }
@@ -215,10 +209,11 @@ void mmNavigatorDialog::OnNew(wxCommandEvent&)
 {
     mmNavigatorEditDialog dlg(this, nullptr);
     if (dlg.ShowModal() == wxID_OK) {
-        NavigatorTypesInfo& info = NavigatorTypes::instance().FindOrCreateEntry(-1);
-        info.navTyp = NavigatorTypes::NAV_TYP_ACCOUNT;
-        dlg.updateInfo(&info);
-        appendAccountItem(m_treeList->GetRootItem(), &info);
+        NavigatorTypesInfo* info = NavigatorTypes::instance().FindOrCreateEntry(-1);
+        info->navTyp = NavigatorTypes::NAV_TYP_ACCOUNT;
+        dlg.updateInfo(info);
+        m_treeList->Select(appendAccountItem(m_treeList->GetRootItem(), info));
+        updateButtonState();
     }
 }
 
@@ -248,11 +243,11 @@ void mmNavigatorDialog::OnDelete(wxCommandEvent&)
     }
 }
 
-void mmNavigatorDialog::OnOk(wxCommandEvent&)
+void mmNavigatorDialog::OnClose(wxCommandEvent&)
 {
     updateItemsRecursive(m_treeList->GetRootItem());
     NavigatorTypes::instance().SaveSequenceAndState();
-    EndModal(wxID_OK);
+    EndModal(wxID_CLOSE);
 }
 
 void mmNavigatorDialog::OnDefault(wxCommandEvent&)
@@ -267,7 +262,7 @@ void mmNavigatorDialog::OnDefault(wxCommandEvent&)
 }
 
 void mmNavigatorDialog::updateButtonState() {
-    int m_selected_row = -1;
+    int selIdx = -1;
     int count = 0;
     bool nonfixed = false;
 
@@ -276,18 +271,18 @@ void mmNavigatorDialog::updateButtonState() {
         wxTreeListItem parent = m_treeList->GetItemParent(sel);
         if (parent.IsOk()) {
             wxTreeListItems siblings = getChildrenList(parent);
-            m_selected_row = findItemIndex(siblings, sel);
+            selIdx = findItemIndex(siblings, sel);
             count  = static_cast<int>(siblings.size());
         }
         NavData* data = static_cast<NavData*> (m_treeList->GetItemData(sel));
         nonfixed = data->ref->id >= NavigatorTypes::NAV_ENTRY_size;
     }
-    bool isvalid = m_selected_row > -1;
-    m_up_top->Enable(m_selected_row > 0);
-    m_up->Enable(m_selected_row > 0);
+    bool isvalid = selIdx > -1;
+    m_up_top->Enable(selIdx > 0);
+    m_up->Enable(selIdx > 0);
     m_edit->Enable(isvalid);
-    m_down->Enable(isvalid && m_selected_row < count- 1);
-    m_down_bottom->Enable(isvalid && m_selected_row < count - 1);
+    m_down->Enable(isvalid && selIdx < count- 1);
+    m_down_bottom->Enable(isvalid && selIdx < count - 1);
     m_delete->Enable(nonfixed);
 }
 
@@ -330,7 +325,6 @@ void mmNavigatorDialog::moveItemData(wxTreeListItem sel, wxTreeListItem newItem)
     }
     m_treeList->DeleteItem(sel);
     m_treeList->Select(newItem);
-    m_hasChanged = true;
 }
 
 wxTreeListItems mmNavigatorDialog::getChildrenList(wxTreeListItem parent)
@@ -355,27 +349,6 @@ void mmNavigatorDialog::cloneSubtree(wxTreeListItem src, wxTreeListItem dstParen
     }
 }
 
-void mmNavigatorDialog::updateItemsRecursive(wxTreeListItem item)
-{
-    int idx = 0;
-    wxTreeListItem child = m_treeList->GetFirstChild(item);
-    while (child.IsOk()) {
-        NavData* data = static_cast<NavData*> (m_treeList->GetItemData(child));
-        NavigatorTypesInfo* ainfo = data->ref;
-        if (ainfo) {
-            data->ref->seq_no = idx++;
-            data->ref->name = m_treeList->GetItemText(child);
-            data->ref->active = m_treeList->GetCheckedState(child) == wxCHK_CHECKED || data->ref->navTyp != NavigatorTypes::NAV_TYP_PANEL;
-            updateItemsRecursive(child);
-            child = m_treeList->GetNextSibling(child);
-        }
-        else {
-            wxLogError("ERROR mmNavigatorDialog: Invalid item ref data!");
-            break;
-        }
-    }
-}
-
 int mmNavigatorDialog::findItemIndex(const wxTreeListItems& items, const wxTreeListItem& target)
 {
     for (int i = 0; i < static_cast<int>(items.size()); ++i) {
@@ -385,7 +358,6 @@ int mmNavigatorDialog::findItemIndex(const wxTreeListItems& items, const wxTreeL
     return -1;
 }
 
-// --- Support functions ---
 void mmNavigatorDialog::copyTreeItemData(wxTreeListItem src, wxTreeListItem dst) {
     const int colCount = m_treeList->GetColumnCount();
     for (int c = 1; c < colCount; ++c) {
@@ -396,4 +368,28 @@ void mmNavigatorDialog::copyTreeItemData(wxTreeListItem src, wxTreeListItem dst)
     m_treeList->SetItemImage(dst, data->ref->imageId);
     m_treeList->SetItemData(dst, new NavData(data->ref));
     m_treeList->CheckItem(dst, data->ref->navTyp != NavigatorTypes::NAV_TYP_PANEL ? wxCHK_UNDETERMINED : data->ref->active ? wxCHK_CHECKED : wxCHK_UNCHECKED);
+}
+
+void mmNavigatorDialog::updateItemsRecursive(wxTreeListItem item)
+{
+    int idx = 0;
+    wxTreeListItem child = m_treeList->GetFirstChild(item);
+    while (child.IsOk()) {
+        NavData* data = static_cast<NavData*> (m_treeList->GetItemData(child));
+        NavigatorTypesInfo* ainfo = data->ref;
+        if (ainfo) {
+            data->ref->seq_no = idx++;
+            data->ref->active = m_treeList->GetCheckedState(child) == wxCHK_CHECKED || data->ref->navTyp != NavigatorTypes::NAV_TYP_PANEL;
+            updateItemsRecursive(child);
+            child = m_treeList->GetNextSibling(child);
+            // Special for Trash:
+            if (data->ref->id == NavigatorTypes::NAV_ENTRY_DELETED_TRANSACTIONS) {
+                Option::instance().setHideDeletedTransactions(!data->ref->active);
+                mmGUIFrame* mainFrame = wxDynamicCast(this->GetParent(), mmGUIFrame);
+                if (mainFrame) {
+                    mainFrame->SetTrashState(data->ref->active);
+                }
+            }
+        }
+    }
 }

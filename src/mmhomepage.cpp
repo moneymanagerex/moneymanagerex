@@ -78,7 +78,7 @@ const wxString htmlWidgetStocks::getHTMLText()
     const wxDate today = wxDate::Today();
 
     wxString output = "";
-    Model_Account::Data_Set accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT, EQUAL));
+    Model_Account::Data_Set accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(NavigatorTypes::instance().getInvestmentAccountStr(), EQUAL));
     if (!accounts.empty())
     {
         std::stable_sort(accounts.begin(), accounts.end(), SorterByACCOUNTNAME());
@@ -567,7 +567,7 @@ htmlWidgetGrandTotals::~htmlWidgetGrandTotals()
 
 const wxString htmlWidgetAssets::getHTMLText()
 {
-    Model_Account::Data_Set asset_accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_ASSET));
+    Model_Account::Data_Set asset_accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(NavigatorTypes::instance().getAssetAccountStr()));
     if (asset_accounts.empty())
         return wxEmptyString;
 
@@ -691,7 +691,7 @@ void htmlWidgetAccounts::get_account_stats()
 
 }
 
-const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tReconciled, int type = Model_Account::TYPE_ID_CHECKING)
+const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tReconciled, int type = NavigatorTypes::TYPE_ID_CHECKING)
 {
     static const std::vector < std::pair <wxString, wxString> > typeStr
     {
@@ -723,7 +723,7 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tRe
     double tabBalance = 0.0, tabReconciled = 0.0;
     wxString vAccts = Model_Setting::instance().getViewAccounts();
     auto accounts = Model_Account::instance().find(
-        Model_Account::ACCOUNTTYPE(Model_Account::type_name(type)),
+        Model_Account::ACCOUNTTYPE(NavigatorTypes::instance().type_name(type)),
         Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL)
     );
     std::stable_sort(accounts.begin(), accounts.end(), SorterByACCOUNTNAME());

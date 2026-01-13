@@ -29,6 +29,7 @@
 #include "model/Model_Currency.h"
 #include "model/Model_CurrencyHistory.h"
 #include "model/Model_StockHistory.h"
+#include "navigator/navigatortypes.h"
 
 #include <algorithm>
 
@@ -53,7 +54,7 @@ void  mmReportSummaryStocks::RefreshData()
 
     for (const auto& a : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
-        if (Model_Account::type_id(a) != Model_Account::TYPE_ID_INVESTMENT) continue;
+        if (Model_Account::type_id(a) != NavigatorTypes::TYPE_ID_INVESTMENT) continue;
         if (Model_Account::status_id(a) != Model_Account::STATUS_ID_OPEN) continue;
 
         account.id = a.id();

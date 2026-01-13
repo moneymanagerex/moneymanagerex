@@ -319,7 +319,7 @@ void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
     if (m_selected_row == -1) return;
 
     const auto& accounts = Model_Account::instance().find(
-        Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT));
+        Model_Account::ACCOUNTTYPE(NavigatorTypes::instance().getInvestmentAccountStr()));
     if (accounts.empty()) return;
 
     const Model_Account::Data* from_account = Model_Account::instance().get(m_stock_panel->m_account_id);
