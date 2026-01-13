@@ -270,6 +270,7 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
     if (winid > -1) {
         wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, winid);
         wxPostEvent(m_frame, event);
+        evt.Veto();  // Inhibit a wxEVT_WEBVIEW_NEWWINDOW_FEATURES event, which will crash!
     }
 }
 
