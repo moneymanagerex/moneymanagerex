@@ -55,6 +55,10 @@ protected:
 private:
     const std::string DIALOG_SIZE  = "NAVIGATOR_DIALOG_SIZE";
 
+#ifdef __WXMAC__
+    int m_spaces;   // For MAC workaround
+#endif
+
     wxButton* m_edit = nullptr;
     wxButton* m_delete = nullptr;
 

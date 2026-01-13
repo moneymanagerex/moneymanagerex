@@ -47,7 +47,14 @@ mmToolbarDialog::mmToolbarDialog(wxWindow* parent):genericTreeListDialog(parent,
 
 void mmToolbarDialog::createColumns() {
     m_treeList->AppendColumn("");
-    m_treeList->SetImageList(ToolBarEntries::instance().getImageList());
+    wxImageList* imageList = ToolBarEntries::instance().getImageList();
+    m_treeList->SetImageList(imageList);
+
+#ifdef __WXMAC__
+    int iconWidth = imageList->GetSize().GetWidth();
+    int spaceWidth = m_treeList->GetTextExtent(" ").GetWidth();
+    m_spaces = (iconWidth / spaceWidth) + 1;
+#endif
 }
 
 void mmToolbarDialog::closeAction() {
@@ -109,9 +116,15 @@ void mmToolbarDialog::fillControls(wxTreeListItem root)
 
 wxTreeListItem mmToolbarDialog::appendItem(wxTreeListItem parent, ToolBarEntries::ToolBarEntry* ainfo)
 {
-    wxTreeListItem item = m_treeList->AppendItem(parent, ainfo->type == ToolBarEntries::TOOLBAR_BTN ? wxGetTranslation(ainfo->helpstring) :
+   wxString text = ainfo->type == ToolBarEntries::TOOLBAR_BTN ? wxGetTranslation(ainfo->helpstring) :
         (ainfo->type == ToolBarEntries::TOOLBAR_SEPARATOR ? std::string(60, '-') :
-        (ainfo->type == ToolBarEntries::TOOLBAR_STRETCH ? "| <<<<<=== " + _t("Spacer") + " ===>>>>> |" : "|         " + _t("Spacer") + "         |")));
+        (ainfo->type == ToolBarEntries::TOOLBAR_STRETCH ? "| <<<<<=== " + _t("Spacer") + " ===>>>>> |" : "|         " + _t("Spacer") + "         |"));
+#ifdef __WXMAC__
+    if (ainfo->type == ToolBarEntries::TOOLBAR_BTN) {
+        text.Prepend(wxString(' ', m_spaces));
+    }
+#endif
+    wxTreeListItem item = m_treeList->AppendItem(parent, text);
     if (ainfo->type == ToolBarEntries::TOOLBAR_BTN) {
         m_treeList->SetItemImage(item, ainfo->imageListID);
     }

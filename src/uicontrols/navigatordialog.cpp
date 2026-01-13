@@ -62,6 +62,12 @@ void mmNavigatorDialog::createColumns() {
         imageList->Add(bitmap);
     }
     m_treeList->SetImageList(imageList);
+
+#ifdef __WXMAC__
+    int iconWidth = imageList->GetSize().GetWidth();
+    int spaceWidth = m_treeList->GetTextExtent(" ").GetWidth();
+    m_spaces = (iconWidth / spaceWidth) + 1;
+#endif
 }
 
 void mmNavigatorDialog::createMiddleElements(wxBoxSizer* itemBox) {
@@ -102,7 +108,14 @@ void mmNavigatorDialog::fillControls(wxTreeListItem root)
 
 wxTreeListItem mmNavigatorDialog::appendAccountItem(wxTreeListItem parent, NavigatorTypesInfo* ainfo)
 {
-    wxTreeListItem item = m_treeList->AppendItem(parent, NavigatorTypes::GetTranslatedName(ainfo));
+    #ifdef __WXMAC__
+        wxString text = NavigatorTypes::GetTranslatedName(ainfo);
+        text.Prepend(wxString(' ', m_spaces));
+        wxTreeListItem item = m_treeList->AppendItem(parent, text);
+    #else
+        wxTreeListItem item = m_treeList->AppendItem(parent, NavigatorTypes::GetTranslatedName(ainfo));
+    #endif
+
     m_treeList->SetItemText(item, 1, ainfo->navTyp > NavigatorTypes::NAV_TYP_PANEL ? NavigatorTypes::GetTranslatedSelection(ainfo) : "");
     m_treeList->SetItemImage(item, ainfo->imageId);
     m_treeList->SetItemData(item, new NavData(ainfo));

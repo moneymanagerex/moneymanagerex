@@ -44,6 +44,10 @@ public:
 private:
     const std::string DIALOG_SIZE  = "TOOLBAR_DIALOG_SIZE";
 
+#ifdef __WXMAC__
+    int m_spaces;   // For MAC workaround
+#endif
+
     wxButton* m_delete;
 
     void fillControls(wxTreeListItem root) override;
