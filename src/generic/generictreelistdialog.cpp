@@ -132,7 +132,7 @@ void genericTreeListDialog::init(long liststyle)  // Must be called in construct
 void genericTreeListDialog::updateButtonState() {
     int selIdx = -1;
     int count = 0;
-    wxClientData* clientdata;
+    wxClientData* clientdata = nullptr;
 
     wxTreeListItem sel = m_treeList->GetSelection();
     if (sel.IsOk()) {

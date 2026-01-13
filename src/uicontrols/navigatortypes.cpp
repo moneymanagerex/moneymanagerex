@@ -26,6 +26,7 @@
 NavigatorTypes::NavigatorTypes()
 {
     m_lastIdx = 0;
+    m_previous = nullptr;
     SetToDefault();
     sortEntriesBySeq();
 }
