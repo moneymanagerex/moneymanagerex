@@ -26,6 +26,8 @@ static const wxString TOOLBAR_INFO_KEY = "TOOLBAR_SETTINGS";
 
 ToolBarEntries::ToolBarEntries()
 {
+    m_lastIdx = 0;
+    m_previous = nullptr;
     m_toolbarParent = nullptr;
     Load();
 }
