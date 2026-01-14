@@ -1,6 +1,6 @@
-Version 1.9.2 RC 3
+Version 1.9.2 RC 4
 ~~~~~~~~~~~~~~~~~~~~
-Released: 2026-01-07
+Released: 2026-01-14
 
 Features:
 * #7980 Refine scheduled transactions panel
@@ -23,6 +23,9 @@ Features:
 * #7923 Header of MMEX
 
 Bugfixes:
+* #8026 Dashboard/Account View overlay issue
+* #8009 Correct dark mode colors on some dialogs (Windows)
+* #7984 Cash Flow -> Transactions - Current Day Transactions are displayed as if not already reconciled
 * #7975 Add descriptive tooltips to budget status icons in the Budgeting Panel
 * #7949 Reconcile dialog issues
 * #7984 Cash Flow -> Transactions - Current Day Transactions are displayed as if not already reconciled
