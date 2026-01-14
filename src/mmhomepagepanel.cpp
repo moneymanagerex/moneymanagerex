@@ -228,10 +228,12 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
     if (pattern.Matches(uri))
     {
         wxLaunchDefaultBrowser(uri);
+        evt.Veto();
     }
     else if (uri.StartsWith("memory:", &sData))
     {
         wxLaunchDefaultBrowser(sData);
+        evt.Veto();
     }
     else if (uri.StartsWith("assets:", &sData))
     {

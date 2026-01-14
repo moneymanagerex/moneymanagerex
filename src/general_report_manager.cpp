@@ -2,7 +2,7 @@
  Copyright (C) 2011 Stefano Giorgio
  Copyright (C) 2014 -2017 Nikolay Akimov
  Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025, 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -498,7 +498,7 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     {
         wxBoxSizer *sizermain = new wxBoxSizer(wxVERTICAL);
         mmSplitterWindow *splittermain = new mmSplitterWindow(panel, wxID_ANY);
-        splittermain->SetMinimumPaneSize(50); 
+        splittermain->SetMinimumPaneSize(50);
         sizermain->Add(splittermain, 1, wxEXPAND,0 );
 
         wxPanel *pnl1 = new wxPanel(splittermain, wxID_ANY);
@@ -1421,11 +1421,10 @@ void mmGeneralReportManager::OnNewWindow(wxWebViewEvent& evt)
     const wxString uri = evt.GetURL();
 
     wxRegEx pattern(R"(^(https?:)|(file:)\/\/)");
-    if (pattern.Matches(uri))
-    {
+    if (pattern.Matches(uri)) {
         wxLaunchDefaultBrowser(uri);
+        evt.Veto();
     }
-
     evt.Skip();
 }
 
