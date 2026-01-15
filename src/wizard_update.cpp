@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2014 Gabriele-V
  Copyright (C) 2020, 2021 Nikolay Akimov
+ Copyright (C) 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -225,7 +226,7 @@ void mmUpdateWizard::OnNewWindow(wxWebViewEvent& evt)
 {
     const wxString uri = evt.GetURL();
     wxLaunchDefaultBrowser(uri);
-
+    evt.Veto();
     evt.Skip();
 }
 

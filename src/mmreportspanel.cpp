@@ -605,10 +605,13 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
     if (pattern.Matches(uri))
     {
         wxLaunchDefaultBrowser(uri);
-    } else if (uri.StartsWith("back:", &sData))
+        evt.Veto();
+    }
+    else if (uri.StartsWith("back:", &sData))
     {
         browser_->GoBack();
-    } else if (uri.StartsWith("viewtrans:", &sData))
+    }
+    else if (uri.StartsWith("viewtrans:", &sData))
     {
         wxStringTokenizer tokenizer(sData, ":");
         int i =0;
