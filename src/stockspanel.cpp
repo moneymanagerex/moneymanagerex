@@ -314,7 +314,7 @@ void mmStocksPanel::FillListRow(wxListCtrl* listCtrl, long index, const Model_Ch
 
     int precision = share_entry.SHARENUMBER == floor(share_entry.SHARENUMBER) ? 0 : Option::instance().getSharePrecision();
     listCtrl->SetItem(index, 2, wxString::FromDouble(share_entry.SHARENUMBER, precision));
-    listCtrl->SetItem(index, 3, Model_Checking::trade_type_name(Model_Checking::type_id(txn.TRANSCODE)));
+    listCtrl->SetItem(index, 3, wxGetTranslation(Model_Checking::trade_type_name(Model_Checking::type_id(txn.TRANSCODE))));
     listCtrl->SetItem(index, 4, wxString::FromDouble(share_entry.SHAREPRICE, Option::instance().getSharePrecision()));
     listCtrl->SetItem(index, 5, wxString::FromDouble(share_entry.SHARECOMMISSION, 2));
     double total = share_entry.SHARENUMBER * share_entry.SHAREPRICE + share_entry.SHARECOMMISSION;
