@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-13 15:49+0000\n"
-"PO-Revision-Date: 2026-01-14 10:55\n"
+"POT-Creation-Date: 2026-01-15 10:30+0000\n"
+"PO-Revision-Date: 2026-01-16 01:07\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -58,7 +58,7 @@ msgstr "Zaznacz, aby nam pomóc, przesyłając anonimowe dane o używaniu MMEX."
 #: mmSimpleDialogs.cpp:1098 optiondialog.cpp:164 payeedialog.cpp:161
 #: sharetransactiondialog.cpp:360 splittransactionsdialog.cpp:105
 #: splittransactionsdialog.cpp:283 tagdialog.cpp:146
-#: transactionsupdatedialog.cpp:281 wizard_update.cpp:215
+#: transactionsupdatedialog.cpp:281 wizard_update.cpp:216
 msgid "&OK "
 msgstr "&OK "
 
@@ -363,7 +363,7 @@ msgstr "&Forum"
 msgid "Visit MMEX forum to read and post comments and for support"
 msgstr "Odwiedź forum MMEX, aby czytać i publikować komentarze oraz uzyskać wsparcie"
 
-#: appstartdialog.cpp:133 wizard_update.cpp:209
+#: appstartdialog.cpp:133 wizard_update.cpp:210
 msgid "&Show this dialog box at startup"
 msgstr "&Pokaż to okno przy starcie programu"
 
@@ -435,7 +435,7 @@ msgstr "Wprowadź nazwę aktywów"
 #: reports/transactions.cpp:208 stockdialog.cpp:297 stockdialog.cpp:624
 #: stockspanel.cpp:265 transactionsupdatedialog.cpp:132 transdialog.cpp:453
 #: uicontrols/reconciledialog.cpp:125 usertransactionpanel.cpp:106
-#: webapp.cpp:564 webappdialog.cpp:138 wizard_update.cpp:138
+#: webapp.cpp:564 webappdialog.cpp:138 wizard_update.cpp:139
 msgid "Date"
 msgstr "Data"
 
@@ -595,7 +595,7 @@ msgstr ""
 
 #: assetspanel.cpp:411 assetspanel.h:124 general_report_manager.cpp:1180
 #: mmframe.cpp:265 mmframe.cpp:2038 mmframe.cpp:3758 mmhomepage.cpp:532
-#: mmhomepage.cpp:581 mmhomepagepanel.cpp:238 optionsettingsmisc.cpp:104
+#: mmhomepage.cpp:581 mmhomepagepanel.cpp:240 optionsettingsmisc.cpp:104
 #: reports/summary.cpp:266 reports/summary.cpp:304
 msgid "Assets"
 msgstr "Aktywa"
@@ -1029,7 +1029,7 @@ msgstr "Określ status dla tej transakcji"
 #: import_export/univcsvdialog.cpp:517 import_export/univcsvdialog.cpp:527
 #: mmchecking_list.cpp:103 reports/transactions.cpp:218
 #: transactionsupdatedialog.cpp:150 transdialog.cpp:577
-#: usertransactionpanel.cpp:179 webappdialog.cpp:140 wizard_update.cpp:138
+#: usertransactionpanel.cpp:179 webappdialog.cpp:140 wizard_update.cpp:139
 msgid "Status"
 msgstr "Status"
 
@@ -1351,7 +1351,7 @@ msgid "Tip: These transactions can be set up to activate - allowing the user to 
 msgstr "Wskazówka: Te transakcje mogą być aktywowane w przyszłości - pozwalając użytkownikowi wybrać dowolną wartość daty realizacji."
 
 #: billsdepositspanel.cpp:242 billsdepositspanel.cpp:982 mmframe.cpp:3575
-#: mmhomepagepanel.cpp:243
+#: mmhomepagepanel.cpp:245
 msgid "Scheduled Transactions"
 msgstr "Zaplanowane transakcje"
 
@@ -2276,7 +2276,7 @@ msgstr ""
 msgid "Default date ranges"
 msgstr ""
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1073 mmreportspanel.cpp:813
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1073 mmreportspanel.cpp:816
 msgid "More date ranges…"
 msgstr ""
 
@@ -3185,15 +3185,15 @@ msgstr "Wybierz plik do zapisania jako raport"
 msgid "Parameters:"
 msgstr ""
 
-#: general_report_manager.cpp:1545
+#: general_report_manager.cpp:1544
 msgid "Copy name"
 msgstr ""
 
-#: general_report_manager.cpp:1546
+#: general_report_manager.cpp:1545
 msgid "Copy all column names"
 msgstr ""
 
-#: general_report_manager.cpp:1547
+#: general_report_manager.cpp:1546
 msgid "Copy as SQL SELECT"
 msgstr ""
 
@@ -4697,7 +4697,7 @@ msgstr "Powszechny błąd inwestorów: zapominanie o przeciwwadze."
 
 #: mmchecking_list.cpp:99 model/Model_CustomField.cpp:31
 #: reports/transactions.cpp:210 transactionsupdatedialog.cpp:142
-#: wizard_update.cpp:138
+#: wizard_update.cpp:139
 msgid "Time"
 msgstr "Czas"
 
@@ -5076,7 +5076,7 @@ msgid "Invested: "
 msgstr ""
 
 #: mmcheckingpanel.cpp:439 mmcheckingpanel.cpp:1131 mmreportspanel.cpp:106
-#: mmreportspanel.cpp:851
+#: mmreportspanel.cpp:854
 msgid "Date range"
 msgstr ""
 
@@ -5111,7 +5111,7 @@ msgstr ""
 msgid "Click to hide scheduled transactions."
 msgstr "Kliknij, aby ukryć zaplanowane transakcje."
 
-#: mmcheckingpanel.cpp:1081 mmreportspanel.cpp:820
+#: mmcheckingpanel.cpp:1081 mmreportspanel.cpp:823
 msgid "Edit date ranges…"
 msgstr ""
 
@@ -5943,7 +5943,7 @@ msgstr "&Ustawienia"
 msgid "News"
 msgstr "Nowości"
 
-#: mmframe.cpp:2269 mmframe.cpp:2987 mmframe.cpp:3312 mmhelppanel.cpp:69
+#: mmframe.cpp:2269 mmframe.cpp:2987 mmframe.cpp:3312 mmhelppanel.cpp:70
 msgid "Help"
 msgstr "Pomoc"
 
@@ -6318,11 +6318,11 @@ msgstr "Raport giełdy"
 msgid "Hide"
 msgstr "Ukryj"
 
-#: mmhelppanel.cpp:65
+#: mmhelppanel.cpp:66
 msgid "&Back"
 msgstr "< Cofnij"
 
-#: mmhelppanel.cpp:66
+#: mmhelppanel.cpp:67
 msgid "&Forward"
 msgstr "Dalej >"
 
@@ -7190,11 +7190,11 @@ msgstr "Sprawdzaj aktualizacje przy starcie"
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
 msgstr "Zaznacz, aby sprawdzać dostępność nowej wersji MMEX podczas uruchomienia"
 
-#: optionsettingsnet.cpp:169 wizard_update.cpp:111
+#: optionsettingsnet.cpp:169 wizard_update.cpp:112
 msgid "Stable"
 msgstr "wersje stabilne"
 
-#: optionsettingsnet.cpp:170 wizard_update.cpp:111
+#: optionsettingsnet.cpp:170 wizard_update.cpp:112
 msgid "Unstable"
 msgstr "wersje rozwojowe"
 
@@ -9039,7 +9039,7 @@ msgstr ""
 msgid "Unable to parse price in asset history"
 msgstr ""
 
-#: util.cpp:1582 wizard_update.cpp:180
+#: util.cpp:1582 wizard_update.cpp:181
 #, c-format
 msgid "Version: %s"
 msgstr "Wersja: %s"
@@ -9331,35 +9331,35 @@ msgstr "Używane jako tytuł w wyświetlanych i drukowanych raportach."
 msgid "Base Currency Not Set"
 msgstr "Nie ustawiono waluty bazowej"
 
-#: wizard_update.cpp:75
+#: wizard_update.cpp:76
 msgid "Update Wizard"
 msgstr "Kreator uaktualnienia"
 
-#: wizard_update.cpp:103
+#: wizard_update.cpp:104
 msgid "Historical releases:"
 msgstr "Wydania historyczne:"
 
-#: wizard_update.cpp:138
+#: wizard_update.cpp:139
 msgid "Version"
 msgstr "Wersja"
 
-#: wizard_update.cpp:146
+#: wizard_update.cpp:147
 msgid "A new version of MMEX is available."
 msgstr "Jest dostępna nowa wersja MMEX."
 
-#: wizard_update.cpp:146
+#: wizard_update.cpp:147
 msgid "MMEX is up to date."
 msgstr ""
 
-#: wizard_update.cpp:326 wizard_update.cpp:340
+#: wizard_update.cpp:327 wizard_update.cpp:341
 msgid "Unable to check for updates!"
 msgstr "Nie można sprawdzić uaktualnień!"
 
-#: wizard_update.cpp:327 wizard_update.cpp:341
+#: wizard_update.cpp:328 wizard_update.cpp:342
 msgid "Error: "
 msgstr "Błąd: "
 
-#: wizard_update.cpp:328 wizard_update.cpp:343
+#: wizard_update.cpp:329 wizard_update.cpp:344
 msgid "MMEX Update Check"
 msgstr "Sprawdzanie aktualizacji MMEX"
 

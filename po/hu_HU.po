@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-13 15:49+0000\n"
-"PO-Revision-Date: 2026-01-14 10:55\n"
+"POT-Creation-Date: 2026-01-15 10:30+0000\n"
+"PO-Revision-Date: 2026-01-16 01:07\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -58,7 +58,7 @@ msgstr "Engedélyezze az MMEX használatáról adatok anonim küldését, hogy s
 #: mmSimpleDialogs.cpp:1098 optiondialog.cpp:164 payeedialog.cpp:161
 #: sharetransactiondialog.cpp:360 splittransactionsdialog.cpp:105
 #: splittransactionsdialog.cpp:283 tagdialog.cpp:146
-#: transactionsupdatedialog.cpp:281 wizard_update.cpp:215
+#: transactionsupdatedialog.cpp:281 wizard_update.cpp:216
 msgid "&OK "
 msgstr "&Rendben "
 
@@ -363,7 +363,7 @@ msgstr "&Fórum"
 msgid "Visit MMEX forum to read and post comments and for support"
 msgstr "MMEX-fórum látogatása megjegyzések olvasásához és közzétételéhez, valamint támogatásért"
 
-#: appstartdialog.cpp:133 wizard_update.cpp:209
+#: appstartdialog.cpp:133 wizard_update.cpp:210
 msgid "&Show this dialog box at startup"
 msgstr "Induláskor &jelenjen meg ez a párbeszédpanel"
 
@@ -435,7 +435,7 @@ msgstr "Eszköz nevének megadása"
 #: reports/transactions.cpp:208 stockdialog.cpp:297 stockdialog.cpp:624
 #: stockspanel.cpp:265 transactionsupdatedialog.cpp:132 transdialog.cpp:453
 #: uicontrols/reconciledialog.cpp:125 usertransactionpanel.cpp:106
-#: webapp.cpp:564 webappdialog.cpp:138 wizard_update.cpp:138
+#: webapp.cpp:564 webappdialog.cpp:138 wizard_update.cpp:139
 msgid "Date"
 msgstr "Dátum"
 
@@ -595,7 +595,7 @@ msgstr "Az MMEX lehetővé teszi a tárgyi eszközök, például autók, házak,
 
 #: assetspanel.cpp:411 assetspanel.h:124 general_report_manager.cpp:1180
 #: mmframe.cpp:265 mmframe.cpp:2038 mmframe.cpp:3758 mmhomepage.cpp:532
-#: mmhomepage.cpp:581 mmhomepagepanel.cpp:238 optionsettingsmisc.cpp:104
+#: mmhomepage.cpp:581 mmhomepagepanel.cpp:240 optionsettingsmisc.cpp:104
 #: reports/summary.cpp:266 reports/summary.cpp:304
 msgid "Assets"
 msgstr "Eszközök"
@@ -1029,7 +1029,7 @@ msgstr "Ügylet állapotának megadása"
 #: import_export/univcsvdialog.cpp:517 import_export/univcsvdialog.cpp:527
 #: mmchecking_list.cpp:103 reports/transactions.cpp:218
 #: transactionsupdatedialog.cpp:150 transdialog.cpp:577
-#: usertransactionpanel.cpp:179 webappdialog.cpp:140 wizard_update.cpp:138
+#: usertransactionpanel.cpp:179 webappdialog.cpp:140 wizard_update.cpp:139
 msgid "Status"
 msgstr "Állapot"
 
@@ -1352,7 +1352,7 @@ msgid "Tip: These transactions can be set up to activate - allowing the user to 
 msgstr "Tipp: ezek a tranzakciók aktiválandóvá tehetők - így akár az összeg az esedékesség napján módosítható."
 
 #: billsdepositspanel.cpp:242 billsdepositspanel.cpp:982 mmframe.cpp:3575
-#: mmhomepagepanel.cpp:243
+#: mmhomepagepanel.cpp:245
 msgid "Scheduled Transactions"
 msgstr "Ütemezett ügyletek"
 
@@ -2271,7 +2271,7 @@ msgstr "Szeretné visszaállítani az alapértelmezett tartományokat?\n\n"
 msgid "Default date ranges"
 msgstr "Alapértelmezett dátumtartományok"
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1073 mmreportspanel.cpp:813
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1073 mmreportspanel.cpp:816
 msgid "More date ranges…"
 msgstr "További dátumtartományok…"
 
@@ -3178,15 +3178,15 @@ msgstr "Fájl kijelölése jelentésként mentésre"
 msgid "Parameters:"
 msgstr "Paraméterek:"
 
-#: general_report_manager.cpp:1545
+#: general_report_manager.cpp:1544
 msgid "Copy name"
 msgstr "Név másolása"
 
-#: general_report_manager.cpp:1546
+#: general_report_manager.cpp:1545
 msgid "Copy all column names"
 msgstr "Az összes oszlopnév másolása"
 
-#: general_report_manager.cpp:1547
+#: general_report_manager.cpp:1546
 msgid "Copy as SQL SELECT"
 msgstr "SQL SELECT másolása ként"
 
@@ -4694,7 +4694,7 @@ msgstr "A befektetők gyakori tévedése: Elfelejtik a portfóliót egyensúlyba
 
 #: mmchecking_list.cpp:99 model/Model_CustomField.cpp:31
 #: reports/transactions.cpp:210 transactionsupdatedialog.cpp:142
-#: wizard_update.cpp:138
+#: wizard_update.cpp:139
 msgid "Time"
 msgstr "Idő"
 
@@ -5059,7 +5059,7 @@ msgid "Invested: "
 msgstr "Befektetett: "
 
 #: mmcheckingpanel.cpp:439 mmcheckingpanel.cpp:1131 mmreportspanel.cpp:106
-#: mmreportspanel.cpp:851
+#: mmreportspanel.cpp:854
 msgid "Date range"
 msgstr "Dátumtartomány"
 
@@ -5094,7 +5094,7 @@ msgstr "Az ütemezett ügyletek nem érhetők el, mert a jelenlegi szűrő a mú
 msgid "Click to hide scheduled transactions."
 msgstr "Kattintson az ütemezett ügyletek elrejtéséhez."
 
-#: mmcheckingpanel.cpp:1081 mmreportspanel.cpp:820
+#: mmcheckingpanel.cpp:1081 mmreportspanel.cpp:823
 msgid "Edit date ranges…"
 msgstr "Dátumtartományok szerkesztése…"
 
@@ -5926,7 +5926,7 @@ msgstr "&Beállítások"
 msgid "News"
 msgstr "Hírek"
 
-#: mmframe.cpp:2269 mmframe.cpp:2987 mmframe.cpp:3312 mmhelppanel.cpp:69
+#: mmframe.cpp:2269 mmframe.cpp:2987 mmframe.cpp:3312 mmhelppanel.cpp:70
 msgid "Help"
 msgstr "Súgó"
 
@@ -6304,11 +6304,11 @@ msgstr "Részvények jelentés"
 msgid "Hide"
 msgstr "Elrejt"
 
-#: mmhelppanel.cpp:65
+#: mmhelppanel.cpp:66
 msgid "&Back"
 msgstr "Vissza"
 
-#: mmhelppanel.cpp:66
+#: mmhelppanel.cpp:67
 msgid "&Forward"
 msgstr "Előre"
 
@@ -7182,11 +7182,11 @@ msgstr "Frissítések ellenőrzése indításkor"
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
 msgstr "Engedélyezi, annak ellenőrzését induláskor, hogy az MMEX-ből van-e új, elérhető verzió"
 
-#: optionsettingsnet.cpp:169 wizard_update.cpp:111
+#: optionsettingsnet.cpp:169 wizard_update.cpp:112
 msgid "Stable"
 msgstr "Stabil"
 
-#: optionsettingsnet.cpp:170 wizard_update.cpp:111
+#: optionsettingsnet.cpp:170 wizard_update.cpp:112
 msgid "Unstable"
 msgstr "Nem stabil"
 
@@ -9027,7 +9027,7 @@ msgstr "Nem sikerült találni az „USD”-pénznem, amely szükséges az előz
 msgid "Unable to parse price in asset history"
 msgstr "Nem sikerült elemezni az árat az eszközelőzményekben"
 
-#: util.cpp:1582 wizard_update.cpp:180
+#: util.cpp:1582 wizard_update.cpp:181
 #, c-format
 msgid "Version: %s"
 msgstr "Verzió: %s"
@@ -9322,35 +9322,35 @@ msgstr "Adatbázis címeként használják megjelenített és nyomtatott jelent�
 msgid "Base Currency Not Set"
 msgstr "Alap pénznem nincs beállítva"
 
-#: wizard_update.cpp:75
+#: wizard_update.cpp:76
 msgid "Update Wizard"
 msgstr "Frissítési varázsló"
 
-#: wizard_update.cpp:103
+#: wizard_update.cpp:104
 msgid "Historical releases:"
 msgstr "Korábbi kiadások:"
 
-#: wizard_update.cpp:138
+#: wizard_update.cpp:139
 msgid "Version"
 msgstr "Verzió"
 
-#: wizard_update.cpp:146
+#: wizard_update.cpp:147
 msgid "A new version of MMEX is available."
 msgstr "MMEX új verziója elérhető."
 
-#: wizard_update.cpp:146
+#: wizard_update.cpp:147
 msgid "MMEX is up to date."
 msgstr "MMEX naprakész."
 
-#: wizard_update.cpp:326 wizard_update.cpp:340
+#: wizard_update.cpp:327 wizard_update.cpp:341
 msgid "Unable to check for updates!"
 msgstr "Nem sikerült ellenőrizni a frissítéseket!"
 
-#: wizard_update.cpp:327 wizard_update.cpp:341
+#: wizard_update.cpp:328 wizard_update.cpp:342
 msgid "Error: "
 msgstr "Hiba: "
 
-#: wizard_update.cpp:328 wizard_update.cpp:343
+#: wizard_update.cpp:329 wizard_update.cpp:344
 msgid "MMEX Update Check"
 msgstr "MMEX frissítési ellenőrzés"
 
