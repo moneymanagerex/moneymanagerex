@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-13 15:49+0000\n"
-"PO-Revision-Date: 2026-01-14 10:55\n"
+"POT-Creation-Date: 2026-01-15 10:30+0000\n"
+"PO-Revision-Date: 2026-01-16 01:07\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Language: zh_TW\n"
@@ -58,7 +58,7 @@ msgstr "啟用以幫助我們發送有關 MMEX 使用情況的匿名資料。"
 #: mmSimpleDialogs.cpp:1098 optiondialog.cpp:164 payeedialog.cpp:161
 #: sharetransactiondialog.cpp:360 splittransactionsdialog.cpp:105
 #: splittransactionsdialog.cpp:283 tagdialog.cpp:146
-#: transactionsupdatedialog.cpp:281 wizard_update.cpp:215
+#: transactionsupdatedialog.cpp:281 wizard_update.cpp:216
 msgid "&OK "
 msgstr "(&O) 確定"
 
@@ -363,7 +363,7 @@ msgstr "論壇(&F)"
 msgid "Visit MMEX forum to read and post comments and for support"
 msgstr "請造訪 MMEX 論壇閱讀和發表評論並尋求協助"
 
-#: appstartdialog.cpp:133 wizard_update.cpp:209
+#: appstartdialog.cpp:133 wizard_update.cpp:210
 msgid "&Show this dialog box at startup"
 msgstr "網站(&W)"
 
@@ -435,7 +435,7 @@ msgstr "請輸入資產名稱"
 #: reports/transactions.cpp:208 stockdialog.cpp:297 stockdialog.cpp:624
 #: stockspanel.cpp:265 transactionsupdatedialog.cpp:132 transdialog.cpp:453
 #: uicontrols/reconciledialog.cpp:125 usertransactionpanel.cpp:106
-#: webapp.cpp:564 webappdialog.cpp:138 wizard_update.cpp:138
+#: webapp.cpp:564 webappdialog.cpp:138 wizard_update.cpp:139
 msgid "Date"
 msgstr "日期"
 
@@ -595,7 +595,7 @@ msgstr ""
 
 #: assetspanel.cpp:411 assetspanel.h:124 general_report_manager.cpp:1180
 #: mmframe.cpp:265 mmframe.cpp:2038 mmframe.cpp:3758 mmhomepage.cpp:532
-#: mmhomepage.cpp:581 mmhomepagepanel.cpp:238 optionsettingsmisc.cpp:104
+#: mmhomepage.cpp:581 mmhomepagepanel.cpp:240 optionsettingsmisc.cpp:104
 #: reports/summary.cpp:266 reports/summary.cpp:304
 msgid "Assets"
 msgstr "資產"
@@ -1029,7 +1029,7 @@ msgstr "選擇交易的狀態"
 #: import_export/univcsvdialog.cpp:517 import_export/univcsvdialog.cpp:527
 #: mmchecking_list.cpp:103 reports/transactions.cpp:218
 #: transactionsupdatedialog.cpp:150 transdialog.cpp:577
-#: usertransactionpanel.cpp:179 webappdialog.cpp:140 wizard_update.cpp:138
+#: usertransactionpanel.cpp:179 webappdialog.cpp:140 wizard_update.cpp:139
 msgid "Status"
 msgstr "狀態"
 
@@ -1351,7 +1351,7 @@ msgid "Tip: These transactions can be set up to activate - allowing the user to 
 msgstr "提示：這些交易紀錄可以設定為啟動 - 允許使用者在到期日調整金額大小。"
 
 #: billsdepositspanel.cpp:242 billsdepositspanel.cpp:982 mmframe.cpp:3575
-#: mmhomepagepanel.cpp:243
+#: mmhomepagepanel.cpp:245
 msgid "Scheduled Transactions"
 msgstr "排程交易紀錄"
 
@@ -2261,7 +2261,7 @@ msgstr ""
 msgid "Default date ranges"
 msgstr ""
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1073 mmreportspanel.cpp:813
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1073 mmreportspanel.cpp:816
 msgid "More date ranges…"
 msgstr ""
 
@@ -3165,15 +3165,15 @@ msgstr "選擇要另存為報表的檔案"
 msgid "Parameters:"
 msgstr ""
 
-#: general_report_manager.cpp:1545
+#: general_report_manager.cpp:1544
 msgid "Copy name"
 msgstr ""
 
-#: general_report_manager.cpp:1546
+#: general_report_manager.cpp:1545
 msgid "Copy all column names"
 msgstr ""
 
-#: general_report_manager.cpp:1547
+#: general_report_manager.cpp:1546
 msgid "Copy as SQL SELECT"
 msgstr ""
 
@@ -4677,7 +4677,7 @@ msgstr "投資人常犯的錯誤：忘記再平衡。"
 
 #: mmchecking_list.cpp:99 model/Model_CustomField.cpp:31
 #: reports/transactions.cpp:210 transactionsupdatedialog.cpp:142
-#: wizard_update.cpp:138
+#: wizard_update.cpp:139
 msgid "Time"
 msgstr "時間"
 
@@ -5035,7 +5035,7 @@ msgid "Invested: "
 msgstr ""
 
 #: mmcheckingpanel.cpp:439 mmcheckingpanel.cpp:1131 mmreportspanel.cpp:106
-#: mmreportspanel.cpp:851
+#: mmreportspanel.cpp:854
 msgid "Date range"
 msgstr ""
 
@@ -5070,7 +5070,7 @@ msgstr ""
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1081 mmreportspanel.cpp:820
+#: mmcheckingpanel.cpp:1081 mmreportspanel.cpp:823
 msgid "Edit date ranges…"
 msgstr ""
 
@@ -5902,7 +5902,7 @@ msgstr "設定(&S)"
 msgid "News"
 msgstr "新聞"
 
-#: mmframe.cpp:2269 mmframe.cpp:2987 mmframe.cpp:3312 mmhelppanel.cpp:69
+#: mmframe.cpp:2269 mmframe.cpp:2987 mmframe.cpp:3312 mmhelppanel.cpp:70
 msgid "Help"
 msgstr "輔助說明"
 
@@ -6277,11 +6277,11 @@ msgstr "股票報表"
 msgid "Hide"
 msgstr "隱藏"
 
-#: mmhelppanel.cpp:65
+#: mmhelppanel.cpp:66
 msgid "&Back"
 msgstr "返回(&B)"
 
-#: mmhelppanel.cpp:66
+#: mmhelppanel.cpp:67
 msgid "&Forward"
 msgstr "往前(&F)"
 
@@ -7151,11 +7151,11 @@ msgstr "啟動時檢查更新"
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
 msgstr "啟用此項目以在程式啟動時自動檢查是否有新的 MMEX 版本可用"
 
-#: optionsettingsnet.cpp:169 wizard_update.cpp:111
+#: optionsettingsnet.cpp:169 wizard_update.cpp:112
 msgid "Stable"
 msgstr "穩定"
 
-#: optionsettingsnet.cpp:170 wizard_update.cpp:111
+#: optionsettingsnet.cpp:170 wizard_update.cpp:112
 msgid "Unstable"
 msgstr "不穩定"
 
@@ -8996,7 +8996,7 @@ msgstr ""
 msgid "Unable to parse price in asset history"
 msgstr ""
 
-#: util.cpp:1582 wizard_update.cpp:180
+#: util.cpp:1582 wizard_update.cpp:181
 #, c-format
 msgid "Version: %s"
 msgstr "版本：%s"
@@ -9285,35 +9285,35 @@ msgstr "用作顯示和列印報表的資料庫標題。"
 msgid "Base Currency Not Set"
 msgstr "未設定基準貨幣"
 
-#: wizard_update.cpp:75
+#: wizard_update.cpp:76
 msgid "Update Wizard"
 msgstr "更新精靈"
 
-#: wizard_update.cpp:103
+#: wizard_update.cpp:104
 msgid "Historical releases:"
 msgstr "歷史版本："
 
-#: wizard_update.cpp:138
+#: wizard_update.cpp:139
 msgid "Version"
 msgstr "版本"
 
-#: wizard_update.cpp:146
+#: wizard_update.cpp:147
 msgid "A new version of MMEX is available."
 msgstr ""
 
-#: wizard_update.cpp:146
+#: wizard_update.cpp:147
 msgid "MMEX is up to date."
 msgstr ""
 
-#: wizard_update.cpp:326 wizard_update.cpp:340
+#: wizard_update.cpp:327 wizard_update.cpp:341
 msgid "Unable to check for updates!"
 msgstr "無法檢查更新"
 
-#: wizard_update.cpp:327 wizard_update.cpp:341
+#: wizard_update.cpp:328 wizard_update.cpp:342
 msgid "Error: "
 msgstr "錯誤： "
 
-#: wizard_update.cpp:328 wizard_update.cpp:343
+#: wizard_update.cpp:329 wizard_update.cpp:344
 msgid "MMEX Update Check"
 msgstr "檢查最新版本"
 

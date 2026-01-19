@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-13 15:49+0000\n"
-"PO-Revision-Date: 2026-01-14 10:55\n"
+"POT-Creation-Date: 2026-01-15 10:30+0000\n"
+"PO-Revision-Date: 2026-01-16 01:07\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "Language: be_BY\n"
@@ -58,7 +58,7 @@ msgstr "Уключыць, каб дапамагчы нам праз дасыла
 #: mmSimpleDialogs.cpp:1098 optiondialog.cpp:164 payeedialog.cpp:161
 #: sharetransactiondialog.cpp:360 splittransactionsdialog.cpp:105
 #: splittransactionsdialog.cpp:283 tagdialog.cpp:146
-#: transactionsupdatedialog.cpp:281 wizard_update.cpp:215
+#: transactionsupdatedialog.cpp:281 wizard_update.cpp:216
 msgid "&OK "
 msgstr "&Добра "
 
@@ -363,7 +363,7 @@ msgstr ""
 msgid "Visit MMEX forum to read and post comments and for support"
 msgstr ""
 
-#: appstartdialog.cpp:133 wizard_update.cpp:209
+#: appstartdialog.cpp:133 wizard_update.cpp:210
 msgid "&Show this dialog box at startup"
 msgstr "&Паказваць гэта акно падчас старта"
 
@@ -435,7 +435,7 @@ msgstr "Пакажыце назву актыва"
 #: reports/transactions.cpp:208 stockdialog.cpp:297 stockdialog.cpp:624
 #: stockspanel.cpp:265 transactionsupdatedialog.cpp:132 transdialog.cpp:453
 #: uicontrols/reconciledialog.cpp:125 usertransactionpanel.cpp:106
-#: webapp.cpp:564 webappdialog.cpp:138 wizard_update.cpp:138
+#: webapp.cpp:564 webappdialog.cpp:138 wizard_update.cpp:139
 msgid "Date"
 msgstr "Дата"
 
@@ -595,7 +595,7 @@ msgstr ""
 
 #: assetspanel.cpp:411 assetspanel.h:124 general_report_manager.cpp:1180
 #: mmframe.cpp:265 mmframe.cpp:2038 mmframe.cpp:3758 mmhomepage.cpp:532
-#: mmhomepage.cpp:581 mmhomepagepanel.cpp:238 optionsettingsmisc.cpp:104
+#: mmhomepage.cpp:581 mmhomepagepanel.cpp:240 optionsettingsmisc.cpp:104
 #: reports/summary.cpp:266 reports/summary.cpp:304
 msgid "Assets"
 msgstr "Актывы"
@@ -1029,7 +1029,7 @@ msgstr "Пакажыце стан аперацыі"
 #: import_export/univcsvdialog.cpp:517 import_export/univcsvdialog.cpp:527
 #: mmchecking_list.cpp:103 reports/transactions.cpp:218
 #: transactionsupdatedialog.cpp:150 transdialog.cpp:577
-#: usertransactionpanel.cpp:179 webappdialog.cpp:140 wizard_update.cpp:138
+#: usertransactionpanel.cpp:179 webappdialog.cpp:140 wizard_update.cpp:139
 msgid "Status"
 msgstr "Стан"
 
@@ -1350,7 +1350,7 @@ msgid "Tip: These transactions can be set up to activate - allowing the user to 
 msgstr "Падказка: Гэтыя аперацыі можна наладзіць для аўтаматычнай актывацыі, дазваляючы карыстальніку паказаць любыя значэнні ў дату сплаты."
 
 #: billsdepositspanel.cpp:242 billsdepositspanel.cpp:982 mmframe.cpp:3575
-#: mmhomepagepanel.cpp:243
+#: mmhomepagepanel.cpp:245
 msgid "Scheduled Transactions"
 msgstr ""
 
@@ -2271,7 +2271,7 @@ msgstr ""
 msgid "Default date ranges"
 msgstr ""
 
-#: daterangedialog.h:53 mmcheckingpanel.cpp:1073 mmreportspanel.cpp:813
+#: daterangedialog.h:53 mmcheckingpanel.cpp:1073 mmreportspanel.cpp:816
 msgid "More date ranges…"
 msgstr ""
 
@@ -3178,15 +3178,15 @@ msgstr "Абярыце файл, куды захаваць справаздач�
 msgid "Parameters:"
 msgstr ""
 
-#: general_report_manager.cpp:1545
+#: general_report_manager.cpp:1544
 msgid "Copy name"
 msgstr ""
 
-#: general_report_manager.cpp:1546
+#: general_report_manager.cpp:1545
 msgid "Copy all column names"
 msgstr ""
 
-#: general_report_manager.cpp:1547
+#: general_report_manager.cpp:1546
 msgid "Copy as SQL SELECT"
 msgstr ""
 
@@ -4690,7 +4690,7 @@ msgstr "Распаўсюджаная памылка інвестараў: заб
 
 #: mmchecking_list.cpp:99 model/Model_CustomField.cpp:31
 #: reports/transactions.cpp:210 transactionsupdatedialog.cpp:142
-#: wizard_update.cpp:138
+#: wizard_update.cpp:139
 msgid "Time"
 msgstr "Час"
 
@@ -5069,7 +5069,7 @@ msgid "Invested: "
 msgstr ""
 
 #: mmcheckingpanel.cpp:439 mmcheckingpanel.cpp:1131 mmreportspanel.cpp:106
-#: mmreportspanel.cpp:851
+#: mmreportspanel.cpp:854
 msgid "Date range"
 msgstr ""
 
@@ -5104,7 +5104,7 @@ msgstr ""
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
-#: mmcheckingpanel.cpp:1081 mmreportspanel.cpp:820
+#: mmcheckingpanel.cpp:1081 mmreportspanel.cpp:823
 msgid "Edit date ranges…"
 msgstr ""
 
@@ -5936,7 +5936,7 @@ msgstr "&Налады"
 msgid "News"
 msgstr "Навіны"
 
-#: mmframe.cpp:2269 mmframe.cpp:2987 mmframe.cpp:3312 mmhelppanel.cpp:69
+#: mmframe.cpp:2269 mmframe.cpp:2987 mmframe.cpp:3312 mmhelppanel.cpp:70
 msgid "Help"
 msgstr "Даведка"
 
@@ -6314,11 +6314,11 @@ msgstr "Справаздача па каціроўках"
 msgid "Hide"
 msgstr "Схаваць"
 
-#: mmhelppanel.cpp:65
+#: mmhelppanel.cpp:66
 msgid "&Back"
 msgstr "&Назад"
 
-#: mmhelppanel.cpp:66
+#: mmhelppanel.cpp:67
 msgid "&Forward"
 msgstr "&Наперад"
 
@@ -7185,11 +7185,11 @@ msgstr "Правяраць наяўнасць новай вэрсіі дадат
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
 msgstr "Увамкніце, каб аўтаматычна правяраць наяўнасць новай вэрсіі MMEX пры запуску дадатка"
 
-#: optionsettingsnet.cpp:169 wizard_update.cpp:111
+#: optionsettingsnet.cpp:169 wizard_update.cpp:112
 msgid "Stable"
 msgstr "Стабільная"
 
-#: optionsettingsnet.cpp:170 wizard_update.cpp:111
+#: optionsettingsnet.cpp:170 wizard_update.cpp:112
 msgid "Unstable"
 msgstr "Нестабільная"
 
@@ -9032,7 +9032,7 @@ msgstr ""
 msgid "Unable to parse price in asset history"
 msgstr ""
 
-#: util.cpp:1582 wizard_update.cpp:180
+#: util.cpp:1582 wizard_update.cpp:181
 #, c-format
 msgid "Version: %s"
 msgstr "Вэрсія: %s"
@@ -9325,35 +9325,35 @@ msgstr "Загаловак для адлюстравання ў дадатку �
 msgid "Base Currency Not Set"
 msgstr "Асноўная валюта не абраная"
 
-#: wizard_update.cpp:75
+#: wizard_update.cpp:76
 msgid "Update Wizard"
 msgstr "Майстар абнаўлення"
 
-#: wizard_update.cpp:103
+#: wizard_update.cpp:104
 msgid "Historical releases:"
 msgstr "Папярэднія выпускі:"
 
-#: wizard_update.cpp:138
+#: wizard_update.cpp:139
 msgid "Version"
 msgstr "Вэрсія"
 
-#: wizard_update.cpp:146
+#: wizard_update.cpp:147
 msgid "A new version of MMEX is available."
 msgstr "Даступная новая вэрсія MMEX."
 
-#: wizard_update.cpp:146
+#: wizard_update.cpp:147
 msgid "MMEX is up to date."
 msgstr ""
 
-#: wizard_update.cpp:326 wizard_update.cpp:340
+#: wizard_update.cpp:327 wizard_update.cpp:341
 msgid "Unable to check for updates!"
 msgstr "Немагчыма праверыць абнаўленні"
 
-#: wizard_update.cpp:327 wizard_update.cpp:341
+#: wizard_update.cpp:328 wizard_update.cpp:342
 msgid "Error: "
 msgstr "Памылка: "
 
-#: wizard_update.cpp:328 wizard_update.cpp:343
+#: wizard_update.cpp:329 wizard_update.cpp:344
 msgid "MMEX Update Check"
 msgstr "Праверка ці ёсць новыя вэрсіі MMEX"
 
