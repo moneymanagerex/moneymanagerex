@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-15 10:30+0000\n"
+"POT-Creation-Date: 2026-01-20 16:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -8919,7 +8919,7 @@ msgid "&Reconcile"
 msgstr ""
 
 #: uicontrols/reconciledialog.cpp:520
-msgid "Show state column"
+msgid "Show status column"
 msgstr ""
 
 #: uicontrols/reconciledialog.cpp:521
@@ -8931,7 +8931,7 @@ msgid "Include void transactions"
 msgstr ""
 
 #: uicontrols/reconciledialog.cpp:524
-msgid "Include duplicated transactions"
+msgid "Include duplicate transactions"
 msgstr ""
 
 #: usertransactionpanel.cpp:111
