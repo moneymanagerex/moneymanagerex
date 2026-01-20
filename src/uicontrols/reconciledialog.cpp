@@ -517,11 +517,11 @@ void mmReconcileDialog::OnNew(wxCommandEvent& WXUNUSED(event))
 void mmReconcileDialog::OnSettings(wxCommandEvent& WXUNUSED(event))
 {
     wxMenu menu;
-    menu.AppendCheckItem(ID_CHECK_SHOW_STATE_COL, _tu("Show state column"));
+    menu.AppendCheckItem(ID_CHECK_SHOW_STATE_COL, _tu("Show status column"));
     menu.AppendCheckItem(ID_CHECK_SHOW_NUMBER_COL, _tu("Show number column"));
     menu.AppendSeparator();
     menu.AppendCheckItem(ID_CHECK_INCLUDE_VOID, _tu("Include void transactions"));
-    menu.AppendCheckItem(ID_CHECK_INCLUDE_DUPLICATED, _tu("Include duplicated transactions"));
+    menu.AppendCheckItem(ID_CHECK_INCLUDE_DUPLICATED, _tu("Include duplicate transactions"));
 
     menu.FindItem(ID_CHECK_SHOW_STATE_COL)->Check(m_settings[SETTING_SHOW_STATE_COL]);
     menu.FindItem(ID_CHECK_SHOW_NUMBER_COL)->Check(m_settings[SETTING_SHOW_NUMBER_COL]);
