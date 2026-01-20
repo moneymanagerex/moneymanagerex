@@ -209,6 +209,7 @@ Michael Ellis
 Glenn Howe
 Francesco Orabona
 John Weaving
+Alexander Ewald
 
 ### 2025
 Renato
