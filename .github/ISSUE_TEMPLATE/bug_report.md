@@ -13,7 +13,8 @@ MMEX version:
  - [ ] 1.8.1
  - [ ] 1.8.2
  - [ ] 1.9.0
- - [x] 1.9.1
+ - [ ] 1.9.1
+ - [x] 1.9.2
  - [ ] Other (please specify)
 
 Note: bug reporters are expected to have verified the bug still exists
