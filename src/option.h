@@ -281,6 +281,12 @@ public:
     const std::vector<DateRange2::Spec> getCheckingRangeA() const noexcept;
     int getCheckingRangeM() const noexcept;
 
+    // m_show_navigator_cashLedger
+    void loadShowNavigatorCashLedger();
+    void setShowNavigatorCashLedger(const bool value);
+    bool getShowNavigatorCashLedger() const noexcept;
+
+    
 private:
     bool m_database_updated = false;
     wxLanguage m_language = wxLANGUAGE_UNKNOWN;
@@ -318,6 +324,8 @@ private:
     bool m_show_moneytips = true;                       // IGNORE_SHOW_MONEYTIPS
     bool m_use_trans_datetime = false;                  // TRANSACTION_USE_DATE_TIME
     bool m_treat_date_as_SN = true;                     // TRANSACTION_TREAT_DATE_AS_SN
+    bool m_show_navigator_cashLedger = true;            // NAVIGATOR_SHOW_CASHLEDGER
+
     int m_trans_payee_none = Option::NONE;              // TRANSACTION_PAYEE_NONE
     int m_trans_category_none = Option::NONE;           // TRANSACTION_CATEGORY_NONE
     int m_trans_category_transfer_none = Option::NONE;  // TRANSACTION_CATEGORY_TRANSFER_NONE
@@ -573,4 +581,9 @@ inline const std::vector<DateRange2::Spec> Option::getCheckingRangeA() const noe
 inline int Option::getCheckingRangeM() const noexcept
 {
     return m_checking_range_m;
+}
+
+inline bool Option::getShowNavigatorCashLedger() const noexcept
+{
+    return m_show_navigator_cashLedger;
 }

@@ -2,6 +2,7 @@
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2014 - 2020 Nikolay Akimov
 Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -139,8 +140,7 @@ void mmHomePagePanel::insertDataIntoTemplate()
 
     // Get locale to pass to reports for Apexcharts
     wxString locale = Model_Infotable::instance().getString("LOCALE", "en-US"); // Stay blank of not set, currency override handled in Apexcharts call.
-    if (locale == "")
-    {
+    if (locale == "") {
         locale = "en-US";
     }
     locale.Replace("_", "-");
@@ -149,25 +149,56 @@ void mmHomePagePanel::insertDataIntoTemplate()
     double tBalance = 0.0, tReconciled = 0.0;
 
     // Accounts
-    htmlWidgetAccounts account_stats;
-    m_frames["ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_CHECKING);
-    m_frames["CARD_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_CREDIT_CARD);
-    m_frames["CASH_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_CASH);
-    m_frames["LOAN_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_LOAN);
-    m_frames["TERM_ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_TERM);
-
-    account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_ASSET);
-    account_stats.displayAccounts(tBalance, tReconciled, Model_Account::TYPE_ID_SHARES);
-
-
-    //Stocks
     htmlWidgetStocks stocks_widget;
-    m_frames["STOCKS_INFO"] = stocks_widget.getHTMLText();
-    tBalance += stocks_widget.get_total();
+    htmlWidgetAccounts account_stats;
 
-    htmlWidgetAssets assets;
-    m_frames["ASSETS_INFO"] = assets.getHTMLText();
-    tBalance += Model_Asset::instance().balance();
+    int accountCount = 0;
+    wxString AccountsInfo;
+    bool isAccount = false;
+
+    NavigatorTypesInfo* navinfo = NavigatorTypes::instance().getFirstActiveEntry();
+    while (navinfo) {
+        if (navinfo->navTyp == NavigatorTypes::NAV_TYP_ACCOUNT) {
+            if (!isAccount) {
+                isAccount = true;
+                accountCount++;
+                AccountsInfo = wxString::Format("ACCOUNTS_%d", accountCount);
+                m_frames[AccountsInfo] = R"(<div class="shadow">)";
+            }
+            m_frames[AccountsInfo] += account_stats.displayAccounts(tBalance, tReconciled, navinfo->type);
+        }
+        else if (navinfo->type == NavigatorTypes::TYPE_ID_INVESTMENT) {
+            if (isAccount) {
+               m_frames[AccountsInfo] += "</div>";
+            }
+            isAccount = false;
+            accountCount++;
+            AccountsInfo = wxString::Format("ACCOUNTS_%d", accountCount);
+
+            m_frames[AccountsInfo]= stocks_widget.getHTMLText();
+            tBalance += stocks_widget.get_total();
+
+            account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_SHARES);
+
+        }
+        else if (navinfo->type == NavigatorTypes::TYPE_ID_ASSET) {
+            if (isAccount) {
+               m_frames[AccountsInfo] += "</div>";
+            }
+            isAccount = false;
+            accountCount++;
+            AccountsInfo = wxString::Format("ACCOUNTS_%d", accountCount);
+
+            htmlWidgetAssets assets;
+            m_frames[AccountsInfo] = assets.getHTMLText();
+            tBalance += Model_Asset::instance().balance();
+            account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_ASSET);
+        }
+        navinfo = NavigatorTypes::instance().getNextActiveEntry(navinfo);
+    }
+    if (isAccount) {
+        m_frames[AccountsInfo] +="</div>";
+    }
 
     htmlWidgetGrandTotals grand_totals;
     m_frames["GRAND_TOTAL"] = grand_totals.getHTMLText(tBalance, tReconciled
@@ -215,14 +246,13 @@ void mmHomePagePanel::fillData()
 
     const auto name = getVFname4print("hp", m_templateText);
     browser_->LoadURL(name);
-
 }
 
 void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
 {
     const wxString uri = evt.GetURL();
-    wxString sData;
-    int winid = -1;
+    wxString sData = "";
+    int cmdInt = -1;
 
     wxRegEx pattern(R"(^(https?:)|(file:)\/\/)");
     if (pattern.Matches(uri))
@@ -237,40 +267,25 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
     }
     else if (uri.StartsWith("assets:", &sData))
     {
-        m_frame->setNavTreeSection(_t("Assets"));
-        winid = MENU_ASSETS;
+        cmdInt = NavigatorTypes::TYPE_ID_ASSET;
     }
     else if (uri.StartsWith("billsdeposits:", &sData))
     {
-        m_frame->setNavTreeSection(_t("Scheduled Transactions"));
-        winid = MENU_BILLSDEPOSITS;
+        cmdInt = NavigatorTypes::NAV_ENTRY_SCHEDULED_TRANSACTIONS;
     }
     else if (uri.StartsWith("acct:", &sData))
     {
-        wxLongLong_t id = -1;
-        sData.ToLongLong(&id);
-        const Model_Account::Data* account = Model_Account::instance().get(id);
-        if (account)
-        {
-            m_frame->setGotoAccountID(account->id());
-            m_frame->setNavTreeAccount(account->ACCOUNTNAME);
-            winid = MENU_GOTOACCOUNT;
-        }
+        cmdInt = NavigatorTypes::TYPE_ID_CHECKING;
     }
     else if (uri.StartsWith("stock:", &sData))
     {
-        wxLongLong_t id = -1;
-        sData.ToLongLong(&id);
-        const Model_Account::Data* account = Model_Account::instance().get(id);
-        if (account)
-        {
-            m_frame->setGotoAccountID(account->id());
-            m_frame->setNavTreeAccount(account->ACCOUNTNAME);
-            winid = MENU_STOCKS;
-        }
+        cmdInt = NavigatorTypes::TYPE_ID_INVESTMENT;
     }
-    if (winid > -1) {
-        wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, winid);
+
+    if (cmdInt > -1) {
+        wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+        event.SetInt(cmdInt);
+        event.SetString(sData);
         wxPostEvent(m_frame, event);
         evt.Veto();  // Inhibit a wxEVT_WEBVIEW_NEWWINDOW_FEATURES event, which will crash!
     }

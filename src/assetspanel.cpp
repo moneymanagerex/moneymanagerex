@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2015 -2021 Nikolay Akimov
  Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -404,7 +405,7 @@ void mmAssetsPanel::CreateControls()
     wxPanel* headerPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition
         , wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
     itemBoxSizer9->Add(headerPanel, g_flagsBorder1V);
-    
+
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
 
@@ -950,7 +951,7 @@ void mmAssetsPanel::GotoAssetAccount(const int selected_index)
 
 void mmAssetsPanel::SetAccountParameters(const Model_Account::Data* account)
 {
-    m_frame->setNavTreeAccount(account->ACCOUNTNAME);
+    m_frame->selectNavTreeItem(account->ACCOUNTNAME);
     m_frame->setGotoAccountID(account->ACCOUNTID);
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
     m_frame->GetEventHandler()->AddPendingEvent(evt);

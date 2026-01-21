@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2025 George Ef (george.a.ef@gmail.com)
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -23,7 +24,11 @@
 
 class ChoicesName {
 public:
-    struct Item { int id; wxString name; };
+    struct Item {
+        int id;
+        wxString name;
+        Item(int i, wxString n) : id(i), name(n) {}
+    };
 
 private:
     const std::vector<Item> array;
@@ -55,4 +60,3 @@ public:
     const wxString getName(int id) const;
     int findKeyName(const wxString& keyOrName, int default_id);
 };
-

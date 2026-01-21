@@ -29,6 +29,7 @@
 
 #include "usertransactionpanel.h"
 #include "accountdialog.h"
+#include "uicontrols/navigatortypes.h"
 
 #include <wx/valnum.h>
 
@@ -415,8 +416,8 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     m_asset->NOTES            = m_notes->GetValue().Trim();
     m_asset->ASSETNAME        = name;
     m_asset->ASSETSTATUS      = Model_Asset::status_name(Model_Asset::STATUS_ID_OPEN);
-    m_asset->VALUECHANGEMODE  = Model_Asset::changemode_name(Model_Asset::CHANGEMODE_ID_PERCENTAGE);  
-    m_asset->CURRENCYID       = -1; 
+    m_asset->VALUECHANGEMODE  = Model_Asset::changemode_name(Model_Asset::CHANGEMODE_ID_PERCENTAGE);
+    m_asset->CURRENCYID       = -1;
     m_asset->VALUE            = value;
     m_asset->VALUECHANGE      = Model_Asset::change_name(valueChangeType);
     m_asset->VALUECHANGERATE  = valueChangeRate;
@@ -473,7 +474,7 @@ void mmAssetDialog::CreateAssetAccount()
 {
     Model_Account::Data* asset_account = Model_Account::instance().create();
     asset_account->ACCOUNTNAME = m_asset->ASSETTYPE;
-    asset_account->ACCOUNTTYPE = Model_Account::TYPE_NAME_ASSET;
+    asset_account->ACCOUNTTYPE = NavigatorTypes::instance().getAssetAccountStr();
     asset_account->FAVORITEACCT = "FALSE";
     asset_account->STATUS = Model_Account::STATUS_NAME_OPEN;
     asset_account->INITIALBAL = 0;
@@ -512,7 +513,7 @@ void mmAssetDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
     const wxString& RefType = Model_Asset::refTypeName;
     int64 RefId;
-    
+
     if (!this->m_asset)
         RefId = 0;
     else

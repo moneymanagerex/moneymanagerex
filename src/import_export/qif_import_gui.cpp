@@ -37,6 +37,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Category.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Tag.h"
+#include "uicontrols/navigatortypes.h"
 
 #include "reports/mmDateRange.h"
 
@@ -1704,7 +1705,7 @@ int64 mmQIFImportDialog::getOrCreateAccounts()
 
             const auto type = item.second.find(AccountType) != item.second.end() ? item.second.at(AccountType) : "";
             account->ACCOUNTTYPE = mmExportTransaction::mm_acc_type(type);
-            //Model_Account::TYPE_NAME_CHECKING;
+            //NavigatorTypes::TYPE_NAME_CHECKING;
             account->ACCOUNTNAME = item.first;
             account->INITIALBAL = 0;
             account->INITIALDATE = wxDate::Today().FormatISODate();

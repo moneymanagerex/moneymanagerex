@@ -19,6 +19,7 @@
 
 #include "wizard_newaccount.h"
 #include "mmhomepagepanel.h"
+#include "uicontrols/navigatortypes.h"
 #include "../resources/addacctwiz.xpm"
 
 wxBEGIN_EVENT_TABLE(mmAddAccountNamePage, wxWizardPageSimple)
@@ -66,7 +67,7 @@ void mmAddAccountWizard::RunIt()
 
         account->FAVORITEACCT = "TRUE";
         account->STATUS = Model_Account::STATUS_NAME_OPEN;
-        account->ACCOUNTTYPE = Model_Account::type_name(accountType_);
+        account->ACCOUNTTYPE = NavigatorTypes::instance().type_name(accountType_);
         account->ACCOUNTNAME = accountName_;
         account->INITIALBAL = 0;
         account->INITIALDATE = wxDate::Today().FormatISODate();
@@ -126,13 +127,9 @@ mmAddAccountTypePage::mmAddAccountTypePage(mmAddAccountWizard *parent)
     : wxWizardPageSimple(parent)
     , parent_(parent)
 {
-    itemChoiceType_ = new wxChoice(this, wxID_ANY);
-    for (int i = 0; i < Model_Account::TYPE_ID_size; ++i) {
-        wxString type = Model_Account::type_name(i);
-        itemChoiceType_->Append(wxGetTranslation(type), new wxStringClientData(type));
-    }
+    itemChoiceType_ = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, NavigatorTypes::instance().getAccountSelectionNames());
     mmToolTip(itemChoiceType_, _t("Specify the account type to be created."));
-    itemChoiceType_->SetSelection(Model_Account::TYPE_ID_CHECKING);
+    itemChoiceType_->SetSelection(0);
 
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
 
@@ -180,7 +177,7 @@ bool mmAddAccountTypePage::TransferDataFromWindow()
     }
 
     parent_->currencyID_ = currencyID;
-    parent_->accountType_ = itemChoiceType_->GetSelection();
+    parent_->accountType_ = NavigatorTypes::instance().getTypeIdFromChoice(itemChoiceType_->GetString(itemChoiceType_->GetSelection()));
 
     return true;
 }

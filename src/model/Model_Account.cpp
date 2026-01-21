@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
  Copyright (C) 2014, 2020 - 2022 Nikolay Akimov
+ Copyright (C) 2025 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -24,30 +25,11 @@
 #include "Model_Shareinfo.h"
 #include <unordered_set>
 
-ChoicesName Model_Account::TYPE_CHOICES = ChoicesName({
-    { TYPE_ID_CASH,        _n("Cash") },
-    { TYPE_ID_CHECKING,    _n("Checking") },
-    { TYPE_ID_CREDIT_CARD, _n("Credit Card") },
-    { TYPE_ID_LOAN,        _n("Loan") },
-    { TYPE_ID_TERM,        _n("Term") },
-    { TYPE_ID_INVESTMENT,  _n("Investment") },
-    { TYPE_ID_ASSET,       _n("Asset") },
-    { TYPE_ID_SHARES,      _n("Shares") },
-});
 
 ChoicesName Model_Account::STATUS_CHOICES = ChoicesName({
     { STATUS_ID_OPEN,   _n("Open") },
     { STATUS_ID_CLOSED, _n("Closed") }
 });
-
-const wxString Model_Account::TYPE_NAME_CASH        = type_name(TYPE_ID_CASH);
-const wxString Model_Account::TYPE_NAME_CHECKING    = type_name(TYPE_ID_CHECKING);
-const wxString Model_Account::TYPE_NAME_CREDIT_CARD = type_name(TYPE_ID_CREDIT_CARD);
-const wxString Model_Account::TYPE_NAME_LOAN        = type_name(TYPE_ID_LOAN);
-const wxString Model_Account::TYPE_NAME_TERM        = type_name(TYPE_ID_TERM);
-const wxString Model_Account::TYPE_NAME_INVESTMENT  = type_name(TYPE_ID_INVESTMENT);
-const wxString Model_Account::TYPE_NAME_ASSET       = type_name(TYPE_ID_ASSET);
-const wxString Model_Account::TYPE_NAME_SHARES      = type_name(TYPE_ID_SHARES);
 
 const wxString Model_Account::STATUS_NAME_OPEN   = status_name(STATUS_ID_OPEN);
 const wxString Model_Account::STATUS_NAME_CLOSED = status_name(STATUS_ID_CLOSED);
@@ -72,7 +54,6 @@ Model_Account& Model_Account::instance(wxSQLite3Database* db)
     ins.destroy_cache();
     ins.ensure(db);
     ins.preload();
-
     return ins;
 }
 
@@ -89,7 +70,7 @@ wxArrayString Model_Account::all_checking_account_names(bool skip_closed)
     {
         if (skip_closed && status_id(account) == STATUS_ID_CLOSED)
             continue;
-        if (type_id(account) == TYPE_ID_SHARES)
+        if (type_id(account) == NavigatorTypes::TYPE_ID_SHARES)
             continue;
         if (account.ACCOUNTNAME.empty())
             continue;
@@ -105,7 +86,7 @@ const std::map<wxString, int64> Model_Account::all_accounts(bool skip_closed)
     {
         if (skip_closed && status_id(account) == STATUS_ID_CLOSED)
             continue;
-        if (type_id(account) == TYPE_ID_SHARES)
+        if (type_id(account) == NavigatorTypes::TYPE_ID_SHARES)
             continue;
         if (account.ACCOUNTNAME.empty())
             continue;
@@ -183,7 +164,7 @@ Model_Currency::Data* Model_Account::currency(const Data* r)
         return Model_Currency::GetBaseCurrency();
     }
 }
-    
+
 Model_Currency::Data* Model_Account::currency(const Data& r)
 {
     return currency(&r);
@@ -223,7 +204,7 @@ double Model_Account::balance(const Data* r)
     double sum = r->INITIALBAL;
     for (const auto& tran: transactionsByDateTimeId(r))
     {
-        sum += Model_Checking::account_flow(tran, r->ACCOUNTID); 
+        sum += Model_Checking::account_flow(tran, r->ACCOUNTID);
     }
 
     return sum;
@@ -260,7 +241,7 @@ std::pair<double, double> Model_Account::investment_balance(const Data& r)
 wxString Model_Account::toCurrency(double value, const Data* r)
 {
     return Model_Currency::toCurrency(value, currency(r));
-}    
+}
 
 wxString Model_Account::toString(double value, const Data* r, int precision)
 {
@@ -304,13 +285,13 @@ bool Model_Account::is_used(const Model_Currency::Data& c)
 int Model_Account::money_accounts_num()
 {
     return
-        Model_Account::instance().find(ACCOUNTTYPE(TYPE_NAME_CASH)).size()
-        + Model_Account::instance().find(ACCOUNTTYPE(TYPE_NAME_CHECKING)).size()
-        + Model_Account::instance().find(ACCOUNTTYPE(TYPE_NAME_CREDIT_CARD)).size()
-        + Model_Account::instance().find(ACCOUNTTYPE(TYPE_NAME_LOAN)).size()
-        + Model_Account::instance().find(ACCOUNTTYPE(TYPE_NAME_TERM)).size()
-        + Model_Account::instance().find(ACCOUNTTYPE(TYPE_NAME_ASSET)).size()
-        + Model_Account::instance().find(ACCOUNTTYPE(TYPE_NAME_SHARES)).size();
+        Model_Account::instance().find(ACCOUNTTYPE(NavigatorTypes::instance().type_name(NavigatorTypes::TYPE_ID_CASH))).size()
+        + Model_Account::instance().find(ACCOUNTTYPE(NavigatorTypes::instance().type_name(NavigatorTypes::TYPE_ID_CHECKING))).size()
+        + Model_Account::instance().find(ACCOUNTTYPE(NavigatorTypes::instance().type_name(NavigatorTypes::TYPE_ID_CREDIT_CARD))).size()
+        + Model_Account::instance().find(ACCOUNTTYPE(NavigatorTypes::instance().type_name(NavigatorTypes::TYPE_ID_LOAN))).size()
+        + Model_Account::instance().find(ACCOUNTTYPE(NavigatorTypes::instance().type_name(NavigatorTypes::TYPE_ID_TERM))).size()
+        + Model_Account::instance().find(ACCOUNTTYPE(NavigatorTypes::instance().type_name(NavigatorTypes::TYPE_ID_ASSET))).size()
+        + Model_Account::instance().find(ACCOUNTTYPE(NavigatorTypes::instance().type_name(NavigatorTypes::TYPE_ID_SHARES))).size();
 }
 
 bool Model_Account::Exist(const wxString& account_name)
@@ -337,10 +318,46 @@ const Model_Account::Data_Set Model_Account::FilterAccounts(const wxString& acco
     {
         if (skip_closed && status_id(account) == STATUS_ID_CLOSED)
             continue;
-        if (type_id(account) == TYPE_ID_INVESTMENT)
+        if (type_id(account) == NavigatorTypes::TYPE_ID_INVESTMENT)
             continue;
         if (account.ACCOUNTNAME.Lower().Matches(account_pattern.Lower().Append("*")))
             accounts.push_back(account);
     }
     return accounts;
+}
+
+void Model_Account::resetAccountType(wxString oldtype)
+{
+    for (auto item : Model_Account::instance().find(ACCOUNTTYPE(oldtype))) {
+        Model_Account::Data* adata = this->get(item.ACCOUNTNAME);
+        adata->ACCOUNTTYPE = "Checking";
+        this->save(adata);
+    }
+}
+
+void Model_Account::resetUnknownAccountTypes()
+{
+    for (const auto &account : this->all(COL_ACCOUNTNAME)) {
+        if (NavigatorTypes::instance().getTypeIdFromDBName(account.ACCOUNTTYPE, -1) == -1) {
+            Model_Account::Data* adata = this->get(account.ACCOUNTNAME);
+            adata->ACCOUNTTYPE = "Checking";
+            this->save(adata);
+        }
+    }
+}
+
+wxArrayString Model_Account::getUsedAccountTypes(bool skip_closed)
+{
+    wxArrayString usedTypes;
+    for (auto &account : this->all(Model_Account::COL_ACCOUNTTYPE))
+    {
+        if (skip_closed && status_id(account) == STATUS_ID_CLOSED)
+            continue;
+        if (type_id(account) == NavigatorTypes::TYPE_ID_INVESTMENT)
+            continue;
+        if (usedTypes.Index(account.ACCOUNTTYPE) == wxNOT_FOUND) {
+            usedTypes.Add(account.ACCOUNTTYPE);
+        }
+    }
+    return usedTypes;
 }

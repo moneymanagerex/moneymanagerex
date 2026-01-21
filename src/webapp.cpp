@@ -27,6 +27,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Attachment.h"
 #include "model/Model_Category.h"
 #include "model/Model_Infotable.h"
+#include "uicontrols/navigatortypes.h"
+
 
 //Expected WebAppVersion
 const wxString WebAppParam::ApiExpectedVersion = "1.0.1";
@@ -178,7 +180,7 @@ bool mmWebApp::WebApp_UpdateAccount()
 
     for (const auto &account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
-        if (Model_Account::type_id(account) != Model_Account::TYPE_ID_INVESTMENT && Model_Account::status_id(account) != Model_Account::STATUS_ID_CLOSED)
+        if (Model_Account::type_id(account) != NavigatorTypes::TYPE_ID_INVESTMENT && Model_Account::status_id(account) != Model_Account::STATUS_ID_CLOSED)
         {
             json_writer.StartObject();
             json_writer.Key("AccountName");
@@ -481,7 +483,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
         //Search first bank account
         for (const auto &FirstAccount : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
         {
-            if (Model_Account::type_id(FirstAccount) != Model_Account::TYPE_ID_INVESTMENT && Model_Account::type_id(FirstAccount) != Model_Account::TYPE_ID_TERM)
+            if (Model_Account::type_id(FirstAccount) != NavigatorTypes::TYPE_ID_INVESTMENT && Model_Account::type_id(FirstAccount) != NavigatorTypes::TYPE_ID_TERM)
             {
                 accountName = FirstAccount.ACCOUNTNAME;
                 AccountID = FirstAccount.ACCOUNTID;
