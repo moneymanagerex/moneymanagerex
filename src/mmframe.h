@@ -5,7 +5,7 @@ Copyright (C) 2013, 2022 Nikolay Akimov
 Copyright (C) 2014 James Higley
 Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 Copyright (C) 2021, 2022, 2024 Mark Whalley (mark@ipx.co.uk)
-Copyright (C) 2025 Klaus Wich
+Copyright (C) 2025, 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -92,7 +92,8 @@ public:
 
 
     void setNavTreeSection(const wxString &sectionName);
-    void setNavTreeAccount(const wxString& accountName);
+    void setNavTreeSectionById(int sectionid);
+    void selectNavTreeItem(const wxString& accountName);
     void menuPrintingEnable(bool enable);
     void OnToggleFullScreen(wxCommandEvent& WXUNUSED(event));
     void OnResetView(wxCommandEvent& WXUNUSED(event));
@@ -102,8 +103,12 @@ public:
     void SetNavTreeSelection(wxTreeItemId id);
     wxTreeItemId GetNavTreeSelection() const;
 
+    void SetTrashState(bool state);
+    void SetShareAccountState(bool state);
+    void PopulateToolBar(bool update = true);
+
 private:
-    static const std::vector<std::pair<Model_Account::TYPE_ID, wxString> > ACCOUNT_SECTION_TABLE;
+    static const std::vector<std::pair<NavigatorTypes::TYPE_ID, wxString> > ACCOUNT_SECTION_TABLE;
     static wxArrayString account_section_all();
 
 private:
@@ -143,7 +148,7 @@ private:
     mmTreeItemData* selectedItemData_ = nullptr;
 
     wxTreeItemId getNavTreeChild(const wxTreeItemId& section, const wxString& childName) const;
-    bool setNavTreeSectionChild(const wxString& sectionName, const wxString& childName);
+    bool findAndSelectNavTreeItem(const wxTreeItemId& parent, const wxString& accountName);
 
     /* printing */
     int helpFileIndex_ = -1;
@@ -158,6 +163,7 @@ private:
     void resetNavTreeControl();
     void cleanupNavTreeControl(wxTreeItemId& item);
     wxSizer* cleanupHomePanel(bool new_sizer = true);
+    void updateHomePagePanel(mmPanelBase* panel);
     bool openFile(const wxString& fileName, bool openingNew, const wxString &password = "");
     void InitializeModelTables();
     bool createDataStore(const wxString& fileName, const wxString &passwd, bool openingNew);
@@ -185,10 +191,11 @@ private:
     /*save Settings LASTFILENAME AUIPERSPECTIVE SIZES*/
     void saveSettings();
     void menuEnableItems(bool enable);
-    wxTreeItemId addNavTreeSection(
-        const wxTreeItemId& root, const wxString& sectionName, int sectionImg,
-        int dataType, int64 dataId = -1
-    );
+    void toolbarEnableItems(bool enable);
+    wxTreeItemId addNavTreeSection(const wxTreeItemId& root, const wxString& sectionName, int sectionImg,
+                                   int dataType, int64 dataId = -1);
+    wxTreeItemId addNavTreeItem(const wxTreeItemId& root, const wxString& itemName, int itemImg,
+                                int dataType, int64 dataId);
     void DoRecreateNavTreeControl(bool home_page = false);
     void DoUpdateReportNavigation(wxTreeItemId& parent_item);
     void DoUpdateGRMNavigation(wxTreeItemId& parent_item);
@@ -227,8 +234,8 @@ private:
     void OnBillsDeposits(wxCommandEvent& event);
     void OnAssets(wxCommandEvent& event);
     void OnThemeManager(wxCommandEvent&);
-    void OnGotoAccount(wxCommandEvent& WXUNUSED(event));
-    void OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event));
+    void OnGotoAccount(wxCommandEvent& event);
+    //void OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event));
 private:
     void OnHideShareAccounts(wxCommandEvent &event);
     void OnHideDeletedTransactions(wxCommandEvent& event);
@@ -278,6 +285,9 @@ private:
     void OnRefreshWebApp(wxCommandEvent&);
     bool OnRefreshWebApp(bool is_silent);
 
+    void OnTransactionsAll(wxCommandEvent& event);
+    void OnTransactionsDel(wxCommandEvent& event);
+
     void OnHelp(wxCommandEvent& event);
     void OnShowAppStartDialog(wxCommandEvent& WXUNUSED(event));
     void OnCheckUpdate(wxCommandEvent& event);
@@ -305,7 +315,6 @@ private:
     void ReallocateAccount(int64 accountID);
     void mmDoHideReportsDialog();
     void navTreeSelection(wxTreeItemId selectedItem);
-
 private:
     /* Recent Files */
     wxSharedPtr<mmFileHistory> m_recentFiles;
@@ -321,9 +330,15 @@ private:
     wxSharedPtr<CommitCallbackHook> m_commit_callback_hook;
     wxSharedPtr<UpdateCallbackHook> m_update_callback_hook;
     void ShutdownDatabase();
+
+private:
+    void OnToolbarRightClick(wxMouseEvent& event);
+
 private:
     // any class wishing to process wxWindows events must use this macro
     wxDECLARE_EVENT_TABLE();
+
+public:
     enum
     {
         /* Main Menu  */
@@ -340,7 +355,6 @@ private:
         MENU_ORGCATEGS,
         MENU_ORGPAYEE,
         MENU_ORGTAGS,
-        MENU_BUDGETSETUPDIALOG,
         MENU_CHECKUPDATE,
         MENU_IMPORT,
         MENU_IMPORT_UNIVCSV,

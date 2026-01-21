@@ -23,6 +23,7 @@
 #include "Model_Account.h"
 #include "Model_Checking.h"
 #include "Model_Stock.h"
+#include "uicontrols/navigatortypes.h"
 #include "option.h"
 #include "util.h"
 
@@ -152,7 +153,7 @@ std::map<wxDateTime, int> Model_Currency::DateUsed(int64 CurrencyID)
     const auto &accounts = Model_Account::instance().find(CURRENCYID(CurrencyID));
     for (const auto &account : accounts)
     {
-        if (Model_Account::type_id(account) == Model_Account::TYPE_ID_INVESTMENT)
+        if (Model_Account::type_id(account) == NavigatorTypes::TYPE_ID_INVESTMENT)
         {
             for (const auto& tran : Model_Stock::instance().find(Model_Stock::HELDAT(account.ACCOUNTID)))
             {
@@ -379,4 +380,3 @@ int Model_Currency::precision(int64 account_id)
     }
     else return 2;
 }
-

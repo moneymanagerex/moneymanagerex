@@ -21,6 +21,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "optionsettingsview.h"
 #include "images_list.h"
 #include "themes.h"
+#include "uicontrols/navigatordialog.h"
+#include "uicontrols/toolbardialog.h"
 #include "util.h"
 
 #include <wx/colordlg.h>
@@ -96,19 +98,35 @@ void OptionSettingsView::Create()
     m_categ_delimiter_list->SetValue(Model_Infotable::instance().getString("CATEG_DELIMITER",":"));
     viewChoiceSizer->Add(m_categ_delimiter_list, g_flagsH);
 
-    viewSizer->AddSpacer(10);
+    // Toolbar Appearance
+    viewChoiceSizer->Add(new wxStaticText(viewBox, wxID_STATIC, _t("Toolbar")), g_flagsH);
+    viewChoiceSizer->Add(new wxButton(viewBox, ID_DIALOG_TOOLBAR_CONFIG, _t("Edit")), g_flagsH);
 
-    m_doNotColorFuture = new wxCheckBox(viewBox, wxID_ANY, _t("Do not use color for future transactions"));
+    // Navigator Appearance
+    viewChoiceSizer->Add(new wxStaticText(viewBox, wxID_STATIC, _t("Navigator and account types")), g_flagsH);
+    viewChoiceSizer->Add(new wxButton(viewBox, ID_DIALOG_NAVIGATOR_CONFIG, _t("Edit")), g_flagsH);
+
+    viewChoiceSizer->Add(new wxStaticText(viewBox, wxID_STATIC, " "), g_flagsH);  //Placeholder
+    m_navShowCashLedger = new wxCheckBox(viewBox, wxID_STATIC, _t("Show cash ledger for portfolios"));
+    m_navShowCashLedger->SetValue(Option::instance().getShowNavigatorCashLedger());
+    viewChoiceSizer->Add(m_navShowCashLedger, g_flagsH);
+
+    viewChoiceSizer->AddSpacer(10);
+    viewChoiceSizer->AddSpacer(10);
+
+    viewChoiceSizer->Add(new wxStaticText(viewBox, wxID_STATIC, _t("Transactions")), g_flagsH);
+    m_doNotColorFuture = new wxCheckBox(viewBox, wxID_STATIC, _t("Do not use color for future transactions"));
     m_doNotColorFuture->SetValue(Option::instance().getDoNotColorFuture());
-    viewSizer->Add(m_doNotColorFuture, g_flagsV);
+    viewChoiceSizer->Add(m_doNotColorFuture, g_flagsH);
 
-    m_doSpecialColorReconciled = new wxCheckBox(viewBox, wxID_ANY, _t("Emphasize not reconciled transactions"));
+    viewChoiceSizer->Add(new wxStaticText(viewBox, wxID_STATIC, " "), g_flagsH);  //Placeholder
+    m_doSpecialColorReconciled = new wxCheckBox(viewBox, wxID_STATIC, _t("Emphasize not reconciled transactions"));
     m_doSpecialColorReconciled->SetValue(Option::instance().getDoSpecialColorReconciled());
-    viewSizer->Add(m_doSpecialColorReconciled, g_flagsV);
+    viewChoiceSizer->Add(m_doSpecialColorReconciled, g_flagsV);
 
     viewSizer->AddSpacer(10);
 
-    m_showToolTips = new wxCheckBox(viewBox, wxID_ANY, _t("Show Tooltips"));
+    m_showToolTips = new wxCheckBox(viewBox, wxID_STATIC, _t("Show Tooltips"));
     m_showToolTips->SetValue(Option::instance().getShowToolTips());
     viewSizer->Add(m_showToolTips, g_flagsV);
 
@@ -218,8 +236,25 @@ void OptionSettingsView::Create()
     uiIconSizer->Add(m_navigation_icon_size, g_flagsH);
     uiIconSizer->Add(m_others_icon_size, g_flagsH);
 
+    // Navigator Appearance
+    /*
+    wxStaticBox* navBox = new wxStaticBox(panelWindow, wxID_STATIC, _t("Navigator display / Account types"));
+
+    wxStaticBoxSizer* navSizer = new wxStaticBoxSizer(navBox, wxVERTICAL);
+    panelSizer->Add(navSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+
+    m_navigator_cfg = new wxButton(navBox, ID_DIALOG_NAVIGATOR_CONFIG, _t("Edit navigator entries and account types"));
+    navSizer->Add(m_navigator_cfg, g_flagsV);
+
+    m_navShowCashLedger = new wxCheckBox(navBox, wxID_STATIC, _t("Show cash ledger for portfolios"));
+    m_navShowCashLedger->SetValue(Option::instance().getShowNavigatorCashLedger());
+    navSizer->Add(m_navShowCashLedger, g_flagsV);*/
+
     SetBoldFontToStaticBoxHeader(viewBox);
     SetBoldFontToStaticBoxHeader(uiBox);
+    //SetBoldFontToStaticBoxHeader(navBox);
+
+    // -------------------
     Fit();
     panelWindow->SetMinSize(panelWindow->GetBestVirtualSize());
     panelWindow->SetScrollRate(6, 6);
@@ -227,6 +262,16 @@ void OptionSettingsView::Create()
     this->Connect(
         ID_DIALOG_THEMEMANAGER, wxEVT_COMMAND_BUTTON_CLICKED,
         wxCommandEventHandler(OptionSettingsView::OnThemeManagerSelected),
+        nullptr, this
+    );
+    this->Connect(
+        ID_DIALOG_NAVIGATOR_CONFIG, wxEVT_COMMAND_BUTTON_CLICKED,
+        wxCommandEventHandler(OptionSettingsView::OnNavigationConfigSelected),
+        nullptr, this
+    );
+    this->Connect(
+        ID_DIALOG_TOOLBAR_CONFIG, wxEVT_COMMAND_BUTTON_CLICKED,
+        wxCommandEventHandler(OptionSettingsView::OnToolbarConfigSelected),
         nullptr, this
     );
 }
@@ -245,6 +290,19 @@ void OptionSettingsView::OnThemeManagerSelected(wxCommandEvent&)
     mmThemesDialog dlg(this);
     dlg.ShowModal();
 }
+
+void OptionSettingsView::OnNavigationConfigSelected(wxCommandEvent&)
+{
+    mmNavigatorDialog dlg(this);
+    dlg.ShowModal();
+}
+
+void OptionSettingsView::OnToolbarConfigSelected(wxCommandEvent&)
+{
+    mmToolbarDialog dlg(this);
+    dlg.ShowModal();
+}
+
 
 bool OptionSettingsView::SaveSettings()
 {
@@ -284,6 +342,8 @@ bool OptionSettingsView::SaveSettings()
 
     Option::instance().setShowToolTips(m_showToolTips->GetValue());
     Option::instance().setShowMoneyTips(m_showMoneyTips->GetValue());
+
+    Option::instance().setShowNavigatorCashLedger(m_navShowCashLedger->GetValue());
 
     return true;
 }

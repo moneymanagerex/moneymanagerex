@@ -38,6 +38,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "validators.h"
 
 #include "model/allmodel.h"
+#include "uicontrols/navigatortypes.h"
+
 #include <wx/display.h>
 #include <wx/regex.h>
 #include <wx/valnum.h>
@@ -147,7 +149,7 @@ void mmFilterTransactionsDialog::mmDoInitVariables()
 
     m_accounts_name.clear();
     const auto accounts = Model_Account::instance().find(
-        Model_Account::ACCOUNTTYPE(Model_Account::TYPE_NAME_INVESTMENT, NOT_EQUAL));
+        Model_Account::ACCOUNTTYPE(NavigatorTypes::instance().type_name(NavigatorTypes::TYPE_ID_INVESTMENT), NOT_EQUAL));
     for (const auto& acc : accounts)
     {
         m_accounts_name.push_back(acc.ACCOUNTNAME);

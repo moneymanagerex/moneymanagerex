@@ -40,11 +40,11 @@ public:
     Model_StockHistory::Data_Set stockHist;
 };
 
-class mmHistoryData : public std::vector<mmHistoryItem>
+/*class mmHistoryData : public std::vector<mmHistoryItem>
 {
 public:
-    double getDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
-};
+    //double getDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
+};*/
 
 class mmReportSummaryByDate : public mmPrintableBase
 {
@@ -56,12 +56,12 @@ protected:
 private:
     int mode_;
     std::map<int64, std::map<wxDate, double>> accountsBalanceMap;
-    mmHistoryData   arHistory;
+    std::vector<mmHistoryItem> arHistory;
     std::map<wxString, double> currencyDateRateCache;
 
     std::map<wxDate, double> createCheckingBalanceMap(const Model_Account::Data& account);
     double getCheckingDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
-    double getInvestingDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
+    //double getInvestingDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
     std::pair<double, double> getDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
     double getDayRate(int64 currencyid, const wxDate& date);
 };

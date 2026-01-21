@@ -419,6 +419,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:300 import_export/qif_import_gui.cpp:310
 #: import_export/univcsvdialog.cpp:516 import_export/univcsvdialog.cpp:526
 #: maincurrencydialog.cpp:76 payeedialog.cpp:554 reports/summarystocks.cpp:112
+#: navigatordialog.cpp:58 navigatoreditdialog.cpp:91
 msgid "Name"
 msgstr ""
 
@@ -509,8 +510,8 @@ msgstr ""
 msgid "Edit Transaction Details"
 msgstr ""
 
-#: assetdialog.cpp:322 constants.cpp:75 sharetransactiondialog.cpp:361
-#: uicontrols/reconciledialog.cpp:226
+#: assetdialog.cpp:322 constants.cpp:75 sharetransactiondialog.cpp:3611
+#: uicontrols/reconciledialog.cpp:226 navigatoreditdialog.cpp:129
 msgid "&Cancel "
 msgstr ""
 
@@ -2241,6 +2242,7 @@ msgid "New"
 msgstr ""
 
 #: daterangedialog.cpp:129 webappdialog.cpp:417
+#: navigatordialog.cpp:123 toolbardialog.cpp:73
 msgid "Delete"
 msgstr ""
 
@@ -2710,6 +2712,7 @@ msgstr ""
 
 #: diagnostics.cpp:92 relocatecategorydialog.cpp:135
 #: relocatepayeedialog.cpp:133 relocatetagdialog.cpp:136 themes.cpp:196
+#: generictreelistdialog.cpp:117
 msgid "&Close"
 msgstr ""
 
@@ -3000,6 +3003,7 @@ msgid "Fetch latest reports from GitHub repository"
 msgstr ""
 
 #: general_report_manager.cpp:443 stockdialog.cpp:353
+#: navigatoreditdialog.cpp:128
 msgid "&Save "
 msgstr ""
 
@@ -3186,6 +3190,14 @@ msgstr ""
 
 #: general_report_manager.cpp:1546
 msgid "Copy as SQL SELECT"
+msgstr ""
+
+#: generictreelistdialog.cpp:110 generictreelistdialog.cpp:289
+msgid "Restore default"
+msgstr ""
+
+#: generictreelistdialog.cpp:288
+msgid "Do you really want to restore the default values?\n\nAll customization will be lost!"
 msgstr ""
 
 #: images_list.cpp:344
@@ -5362,7 +5374,11 @@ msgstr ""
 msgid "T&heme Manager…"
 msgstr ""
 
-#: mmframe.cpp:1757
+#: mmframe.cpp:1759
+msgid "&Navigator configuration…"
+msgstr ""
+
+#: mmframe.cpp:1767
 msgid "&New Database…"
 msgstr ""
 
@@ -6484,7 +6500,7 @@ msgstr ""
 msgid "Chart:"
 msgstr ""
 
-#: mmreportspanel.cpp:454
+#: mmreportspanel.cpp:454 navigatoreditdialog.cpp:105
 msgid "Show"
 msgstr ""
 
@@ -6670,6 +6686,34 @@ msgstr ""
 
 #: model/Model_Stock.cpp:55
 msgid "Stock Error"
+msgstr ""
+
+#: navigatordialog.cpp:60
+msgid "Navigator and account type configuration"
+msgstr ""
+
+#: navigatordialog.cpp:59 navigatoreditdialog.cpp:98
+msgid "Selection name"
+msgstr ""
+
+#: navigatordialog.cpp:87 navigatordialog.cpp:185
+msgid "Reset names"
+msgstr ""
+
+#: navigatordialog.cpp:89
+msgid "Reset the standard names to default values"
+msgstr ""
+
+#: navigatordialog.cpp:184
+msgid "Do you really want to reset the configured names?"
+msgstr ""
+
+#: navigatoreditdialog.cpp:41
+msgid "Edit navigator entry"
+msgstr ""
+
+#: navigatoreditdialog.cpp:41
+msgid "New account type"
 msgstr ""
 
 #: option.cpp:51
@@ -7434,6 +7478,42 @@ msgstr ""
 msgid "Huge (48 px)"
 msgstr ""
 
+#: optionsettingsview.cpp:222
+msgid "Navigator display"
+msgstr ""
+
+#: optionsettingsview.cpp:226
+msgid "Show all transacttions"
+msgstr ""
+
+#: optionsettingsview.cpp:230
+msgid "Show scheduled transactions"
+msgstr ""
+
+#: optionsettingsview.cpp:234
+msgid "Show favorites"
+msgstr ""
+
+#: optionsettingsview.cpp:238
+msgid "Show cash ledger for portfolios"
+msgstr ""
+
+#: optionsettingsview.cpp:242
+msgid "Show budget planner"
+msgstr ""
+
+#: optionsettingsview.cpp:246
+msgid "Show reports")
+msgstr ""
+
+#: optionsettingsview.cpp:250
+msgid "Show general report manager"
+msgstr ""
+
+#: optionsettingsview.cpp:254
+msgid "Show help"
+msgstr ""
+
 #: payeedialog.cpp:57
 msgid "Edit Payee"
 msgstr ""
@@ -8166,6 +8246,7 @@ msgid "Summary of Stocks"
 msgstr ""
 
 #: reports/summarystocks.cpp:113 stockdialog.cpp:427 stocks_list.cpp:70
+#: navigatoreditdialog.cpp:108
 msgid "Symbol"
 msgstr ""
 
@@ -8765,8 +8846,32 @@ msgstr ""
 msgid "Do you want to use the theme? Please note that this will only take effect when MMEX is re-started."
 msgstr ""
 
-#: transactionsupdatedialog.cpp:211
-msgid "Transfer To"
+#: themes.cpp:346
+msgid "Do you want to use the theme? Please note that this will only take effect when MMEX is re-started."
+msgstr ""
+
+#: toolbardialog.cpp:39
+msgid "Toolbar configuration"
+msgstr ""
+
+#: toolbardialog.cpp:44
+msgid "Entry"
+msgstr ""
+
+#: toolbardialog.cpp:60
+msgid "Add separator"
+msgstr ""
+
+#: toolbardialog.cpp:64
+msgid "Add space"
+msgstr ""
+
+#: toolbardialog.cpp:68
+msgid "Add stretch space"
+msgstr ""
+
+#: toolbardialog.cpp:113
+msgid "Spacer"
 msgstr ""
 
 #: transactionsupdatedialog.cpp:235 transactionsupdatedialog.cpp:258

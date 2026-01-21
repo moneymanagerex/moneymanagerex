@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2021-2025 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025, 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -39,6 +39,8 @@
 #include <vector>
 #include <string>
 #include <iomanip>
+#include "uicontrols/navigatortypes.h"
+
 
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_CHOICE(ID_CHOICE_YEAR, mmReportsPanel::OnYearChanged)
@@ -418,10 +420,7 @@ void mmReportsPanel::CreateControls()
             m_accounts = new wxChoice(itemPanel3, ID_CHOICE_ACCOUNTS);
             m_accounts->Append(_t("All Accounts"));
             m_accounts->Append(_tu("Specific Accounts…"));
-            for (int i = 0; i < Model_Account::TYPE_ID_size; ++i) {
-                wxString type = Model_Account::type_name(i);
-                m_accounts->Append(wxGetTranslation(type), new wxStringClientData(type));
-            }
+            m_accounts->Append(NavigatorTypes::instance().getUsedAccountTypeNames());
             m_accounts->SetSelection(rb_->getAccountSelection());
 
             itemBoxSizerHeader->Add(m_accounts, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
@@ -496,18 +495,10 @@ void mmReportsPanel::OnBudgetChanged(wxCommandEvent& event)
 
 void mmReportsPanel::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
 {
-    if (rb_)
-    {
+    if (rb_) {
         int sel = m_accounts->GetSelection();
-        if ((sel == 1) || (sel != rb_->getAccountSelection()))
-        {
-            wxString accountSelection;
-            wxStringClientData* type_obj = static_cast<wxStringClientData *>(m_accounts->GetClientObject(sel));
-            if (type_obj) {
-                accountSelection = type_obj->GetData();
-            }
-            rb_->setAccounts(sel, accountSelection);
-
+        if ((sel == 1) || (sel != rb_->getAccountSelection())) {
+            rb_->setAccounts(sel, NavigatorTypes::instance().getAccountDbTypeFromName(m_accounts->GetString(sel)));
             saveReportText(false);
             rb_->setReportSettings();
         }
@@ -671,7 +662,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
             {
                 const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
                 if (account) {
-                    m_frame->setNavTreeAccount(account->ACCOUNTNAME);
+                    m_frame->selectNavTreeItem(account->ACCOUNTNAME);
                     m_frame->setGotoAccountID(transaction->ACCOUNTID, { transID, 0 });
                     wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
                     m_frame->GetEventHandler()->AddPendingEvent(event);

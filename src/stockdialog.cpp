@@ -499,7 +499,7 @@ void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account, const
     if (name.empty()) return;
     Model_Account::Data* share_account = Model_Account::instance().create();
     share_account->ACCOUNTNAME = name;
-    share_account->ACCOUNTTYPE = Model_Account::TYPE_NAME_SHARES;
+    share_account->ACCOUNTTYPE = NavigatorTypes::instance().getShareAccountStr();
 
     share_account->FAVORITEACCT = "FALSE";
     share_account->STATUS = Model_Account::STATUS_NAME_OPEN;
