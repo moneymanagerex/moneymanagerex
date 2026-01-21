@@ -32,24 +32,24 @@
 
 #include "univcsvdialog.h"
 
-#include "images_list.h"
+#include "Model_Stock.h"
+#include "categdialog.h"
 #include "constants.h"
+#include "images_list.h"
 #include "mmSimpleDialogs.h"
+#include "option.h"
+#include "parsers.h"
 #include "paths.h"
+#include "payeedialog.h"
 #include "platfdep.h"
 #include "util.h"
-#include "option.h"
-#include "util.h"
 #include "webapp.h"
-#include "parsers.h"
-#include "payeedialog.h"
-#include "categdialog.h"
 
-#include "model/Model_Setting.h"
-#include "model/Model_Infotable.h"
-#include "model/Model_Payee.h"
 #include "model/Model_Category.h"
 #include "model/Model_CustomFieldData.h"
+#include "model/Model_Infotable.h"
+#include "model/Model_Payee.h"
+#include "model/Model_Setting.h"
 #include "model/Model_Tag.h"
 
 enum tab_id {
@@ -73,7 +73,8 @@ EVT_BUTTON(wxID_STANDARD, mmUnivCSVDialog::OnStandard)
 EVT_BUTTON(wxID_BROWSE, mmUnivCSVDialog::OnFileBrowse)
 EVT_LISTBOX_DCLICK(wxID_ANY, mmUnivCSVDialog::OnListBox)
 EVT_CHOICE(wxID_ANY, mmUnivCSVDialog::OnChoiceChanged)
-EVT_CHECKBOX(wxID_ANY, mmUnivCSVDialog::OnCheckboxClick)
+EVT_CHECKBOX(wxID_CHECKBOX_CLICK, mmUnivCSVDialog::OnCheckboxClick)
+EVT_CHECKBOX(wxID_DATES_CHECKBOX_CLICK, mmUnivCSVDialog::OnHaveDatesChange)
 EVT_MENU(wxID_HIGHEST, mmUnivCSVDialog::OnMenuSelected)
 EVT_LIST_COL_END_DRAG(wxID_ANY, mmUnivCSVDialog::OnColumnResize)
 wxEND_EVENT_TABLE()
@@ -99,23 +100,34 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     decimal_(Model_Currency::GetBaseCurrency()->DECIMAL_POINT),
     depositType_(Model_Checking::TYPE_NAME_DEPOSIT)
 {
-    CSVFieldName_[UNIV_CSV_ID].first          = _n("ID");
-    CSVFieldName_[UNIV_CSV_DATE].first        = _n("Date");
-    CSVFieldName_[UNIV_CSV_STATUS].first      = _n("Status");
-    CSVFieldName_[UNIV_CSV_TYPE].first        = _n("Type");
-    CSVFieldName_[UNIV_CSV_ACCOUNT].first     = _n("Account");
-    CSVFieldName_[UNIV_CSV_PAYEE].first       = _n("Payee");
-    CSVFieldName_[UNIV_CSV_AMOUNT].first      = _n("Amount");
-    CSVFieldName_[UNIV_CSV_CURRENCY].first    = _n("Currency");
-    CSVFieldName_[UNIV_CSV_CATEGORY].first    = _n("Category");
-    CSVFieldName_[UNIV_CSV_SUBCATEGORY].first = _n("SubCategory");
-    CSVFieldName_[UNIV_CSV_TAGS].first        = _n("Tags");
-    CSVFieldName_[UNIV_CSV_TRANSNUM].first    = _n("Number");
-    CSVFieldName_[UNIV_CSV_NOTES].first       = _n("Notes");
-    CSVFieldName_[UNIV_CSV_DONTCARE].first    = _n("Don't Care");
-    CSVFieldName_[UNIV_CSV_WITHDRAWAL].first  = _n("Withdrawal");
-    CSVFieldName_[UNIV_CSV_DEPOSIT].first     = _n("Deposit");
-    CSVFieldName_[UNIV_CSV_BALANCE].first     = _n("Balance");   
+    CSVFieldName_[UNIV_CSV_ID].first                    = _n("ID");
+    CSVFieldName_[UNIV_CSV_DATE].first                  = _n("Date");
+    CSVFieldName_[UNIV_CSV_STATUS].first                = _n("Status");
+    CSVFieldName_[UNIV_CSV_TYPE].first                  = _n("Type");
+    CSVFieldName_[UNIV_CSV_ACCOUNT].first               = _n("Account");
+    CSVFieldName_[UNIV_CSV_PAYEE].first                 = _n("Payee");
+    CSVFieldName_[UNIV_CSV_AMOUNT].first                = _n("Amount");
+    CSVFieldName_[UNIV_CSV_CURRENCY].first              = _n("Currency");
+    CSVFieldName_[UNIV_CSV_CATEGORY].first              = _n("Category");
+    CSVFieldName_[UNIV_CSV_SUBCATEGORY].first           = _n("SubCategory");
+    CSVFieldName_[UNIV_CSV_TAGS].first                  = _n("Tags");
+    CSVFieldName_[UNIV_CSV_TRANSNUM].first              = _n("Number");
+    CSVFieldName_[UNIV_CSV_NOTES].first                 = _n("Notes");
+    CSVFieldName_[UNIV_CSV_DONTCARE].first              = _n("Don't Care");
+    CSVFieldName_[UNIV_CSV_WITHDRAWAL].first            = _n("Withdrawal");
+    CSVFieldName_[UNIV_CSV_DEPOSIT].first               = _n("Deposit");
+    CSVFieldName_[UNIV_CSV_BALANCE].first               = _n("Balance");
+    CSVFieldName_[UNIV_CSV_NOTES].first                 = _n("Notes");
+    CSVFieldName_[UNIV_CSV_COMPANY_NAME].first          = _n("Company Name");
+    CSVFieldName_[UNIV_CSV_SYMBOL].first                = _n("Symbol");
+    CSVFieldName_[UNIV_CSV_SHARE_TOTAL].first           = _n("Share Total");
+    CSVFieldName_[UNIV_CSV_CURRENT_PRICE].first         = _n("Current Price");
+    CSVFieldName_[UNIV_CSV_AVG_SHARE_PRICE].first       = _n("Avg Share Price");
+    CSVFieldName_[UNIV_CSV_TOTAL_COST].first            = _n("Total Cost");
+    CSVFieldName_[UNIV_CSV_REAL_GAIN].first             = _n("Don't Care");
+    CSVFieldName_[UNIV_CSV_UNREAL_GAIN].first           = _n("Withdrawal");
+    CSVFieldName_[UNIV_CSV_CURRENT_TOTAL_VALUE].first   = _n("Current Total Value");
+    CSVFieldName_[UNIV_CSV_COMMISSION].first            = _n("Commission");
 
     wxString header;
     switch (dialogType_)
@@ -387,17 +399,92 @@ void mmUnivCSVDialog::CreateControls()
         flex_sizer->Add(m_textDelimiter, g_flagsH);
     }
 
-    //Encoding
-    wxStaticText* itemStaticText88 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_t("Encoding:")));
-    itemStaticText88->SetFont(staticBoxFontSetting);
-    flex_sizer->Add(itemStaticText88, g_flagsH);
+    if (!IsImporter())
+    {
 
-    m_choiceEncoding = new wxChoice(itemPanel7, ID_ENCODING);
-    for (const auto &i : g_encoding)
-        m_choiceEncoding->Append(wxGetTranslation(i.second.second), new wxStringClientData(i.second.second));
-    m_choiceEncoding->SetSelection(0);
+        wxPanel* itemPanel71 = new wxPanel(itemPanel7, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
 
-    flex_sizer->Add(m_choiceEncoding, g_flagsH);
+        wxFlexGridSizer* flex_sizer71 = new wxFlexGridSizer(0,1, 0, 0);
+        itemPanel71->SetSizer(flex_sizer71);
+
+        // Option to export stocks
+        m_exportStocksCheckBox = new wxCheckBox(itemPanel71, wxID_ANY, _t("Only Export Stocks"));
+        flex_sizer71->Add(m_exportStocksCheckBox, g_flagsH);
+        m_exportStocksCheckBox->Bind(wxEVT_CHECKBOX, &mmUnivCSVDialog::OnHaveStocksChange, this);
+
+
+        // Option to export stocks/transaction only between two dates
+        m_haveDatesCheckBox = new wxCheckBox(itemPanel71, wxID_ANY, _t("Only Export Transactions Between 2 Dates"));
+        flex_sizer71->Add(m_haveDatesCheckBox, g_flagsH);
+        m_haveDatesCheckBox->Bind(wxEVT_CHECKBOX, &mmUnivCSVDialog::OnHaveDatesChange, this);
+
+        wxPanel* itemPanel72 = new wxPanel(itemPanel71, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+
+        wxGridSizer* grid_sizer72 = new wxGridSizer(2,0, 0, 0);
+        itemPanel72->SetSizer(grid_sizer72);
+        // 2 Date Pickers, one for the date from which the exported transactions will begin and one for the date in which the exported transactions will end
+        wxStaticText* itemStaticText7771 = new wxStaticText(itemPanel72, wxID_STATIC, wxString(_t("Start Date:")));
+        itemStaticText7771->SetFont(staticBoxFontSetting);
+        grid_sizer72->Add(itemStaticText7771, g_flagsH);
+
+        m_date_picker_start = new mmDatePickerCtrl(itemPanel72, wxID_STATIC,wxDefaultDateTime
+    , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+        mmToolTip(m_date_picker_start, _t("Specify which date the report must start at"));
+        wxDateTime specificDate(1, wxDateTime::Jan, 1970);
+        m_date_picker_start->SetValue(specificDate);
+        grid_sizer72->Add(m_date_picker_start, g_flagsH);
+        m_date_picker_start->Bind(wxEVT_DATE_CHANGED, &mmUnivCSVDialog::OnStartDateChange, this);
+        // In the beginning the date pickers are disabled since the checkbox is not checked
+        m_date_picker_start->Enable(false);
+
+        wxStaticText* itemStaticText7772 = new wxStaticText(itemPanel72, wxID_STATIC, wxString(_t("End Date:")));
+        itemStaticText7772->SetFont(staticBoxFontSetting);
+        grid_sizer72->Add(itemStaticText7772, g_flagsH);
+
+        m_date_picker_end = new mmDatePickerCtrl(itemPanel72, wxID_STATIC,wxDefaultDateTime
+    , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+        mmToolTip(m_date_picker_end, _t("Specify which date the report must end at"));
+        m_date_picker_end->SetValue(wxDateTime::Today());
+        grid_sizer72->Add(m_date_picker_end, g_flagsH);
+        m_date_picker_end->Bind(wxEVT_DATE_CHANGED, &mmUnivCSVDialog::OnEndDateChange, this);
+        m_date_picker_end->Enable(false);
+
+        flex_sizer71->Add(itemPanel72, 0, wxEXPAND | wxALL, 1);
+        flex_sizer->Add(itemPanel71, 0, wxEXPAND | wxALL, 1);
+
+    }
+
+    // 2 different versions of the encoding text and button so that it looks good on both the importing menu and the exporting menu
+    if (!IsImporter())
+    {
+        wxPanel* itemPanel73 = new wxPanel(itemPanel7, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxFlexGridSizer* flex_sizer73 = new wxFlexGridSizer(1,0, 0, 0);
+        itemPanel73->SetSizer(flex_sizer73);
+
+        wxStaticText* itemStaticText88 = new wxStaticText(itemPanel73, wxID_STATIC, wxString(_t("Encoding:")));
+        itemStaticText88->SetFont(staticBoxFontSetting);
+        flex_sizer73->Add(itemStaticText88, g_flagsH);
+
+        m_choiceEncoding = new wxChoice(itemPanel73, ID_ENCODING);
+        for (const auto &i : g_encoding)
+            m_choiceEncoding->Append(wxGetTranslation(i.second.second), new wxStringClientData(i.second.second));
+        m_choiceEncoding->SetSelection(0);
+        flex_sizer73->Add(m_choiceEncoding, g_flagsH);
+        flex_sizer->Add(itemPanel73, 0, wxEXPAND | wxALL, 1);
+    }
+    else
+    {
+        wxStaticText* itemStaticText88 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_t("Encoding:")));
+        itemStaticText88->SetFont(staticBoxFontSetting);
+        flex_sizer->Add(itemStaticText88, g_flagsH);
+
+        m_choiceEncoding = new wxChoice(itemPanel7, ID_ENCODING);
+        for (const auto &i : g_encoding)
+            m_choiceEncoding->Append(wxGetTranslation(i.second.second), new wxStringClientData(i.second.second));
+        m_choiceEncoding->SetSelection(0);
+
+        flex_sizer->Add(m_choiceEncoding, g_flagsH);
+    }
 
     // Option to add column titles to exported files.
     if (!IsImporter())
@@ -1559,9 +1646,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 
 void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
 {
-    // date and amount are required
-    if (!isIndexPresent(UNIV_CSV_DATE) || (!isIndexPresent(UNIV_CSV_AMOUNT)
-        && (!isIndexPresent(UNIV_CSV_WITHDRAWAL) || !isIndexPresent(UNIV_CSV_DEPOSIT))))
+    // date and amount are required if the user is exporting transactions
+    if (m_exportStocksCheckBox->GetValue()==false && ( !isIndexPresent(UNIV_CSV_DATE) || (!isIndexPresent(UNIV_CSV_AMOUNT)
+        && (!isIndexPresent(UNIV_CSV_WITHDRAWAL) || !isIndexPresent(UNIV_CSV_DEPOSIT)))))
     {
         return mmErrorDialogs::MessageWarning(this
             , _t("Incorrect fields specified for export! Requires at least Date and Amount.")
@@ -1611,143 +1698,222 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
         }
     }
 
-    // Write transactions to file.
     double account_balance = from_account->INITIALBAL;
 
-    Model_Checking::Data_Set txns = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(fromAccountID), Model_Checking::TOACCOUNTID(fromAccountID));
-    std::sort(txns.begin(), txns.end());
-    std::stable_sort(txns.begin(), txns.end(), SorterByTRANSDATE());
-
-    for (const auto& pBankTransaction : txns)
+    //If the user wants to export transactions
+    if (m_exportStocksCheckBox->GetValue()==false)
     {
-        if (Model_Checking::status_id(pBankTransaction) == Model_Checking::STATUS_ID_VOID || !pBankTransaction.DELETEDTIME.IsEmpty())
-            continue;
+        // Write transactions to file.
+        Model_Checking::Data_Set txns = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(fromAccountID), Model_Checking::TOACCOUNTID(fromAccountID));
+        std::sort(txns.begin(), txns.end());
+        std::stable_sort(txns.begin(), txns.end(), SorterByTRANSDATE());
 
-        Model_Checking::Full_Data tran(pBankTransaction, split, tags);
-        bool has_split = tran.has_split();
-        double value = Model_Checking::account_flow(pBankTransaction, fromAccountID);
-        account_balance += value;
-
-        if (!has_split)
+        for (const auto& pBankTransaction : txns)
         {
-            Model_Splittransaction::Data *splt = Model_Splittransaction::instance().create();
-            splt->TRANSID = tran.TRANSID;
-            splt->CATEGID = tran.CATEGID;
-            splt->SPLITTRANSAMOUNT = value;
-            tran.m_splits.push_back(*splt);
-        }
+            if (Model_Checking::status_id(pBankTransaction) == Model_Checking::STATUS_ID_VOID || !pBankTransaction.DELETEDTIME.IsEmpty())
+                continue;
 
-        for (const auto& splt : tran.m_splits)
-        {
-            pTxFile->AddNewLine();
+            Model_Checking::Full_Data tran(pBankTransaction, split, tags);
+            bool has_split = tran.has_split();
+            double value = Model_Checking::account_flow(pBankTransaction, fromAccountID);
+            account_balance += value;
 
-            Model_Category::Data* category = Model_Category::instance().get(splt.CATEGID);
-
-            double amt = splt.SPLITTRANSAMOUNT;
-            if (Model_Checking::type_id(pBankTransaction) == Model_Checking::TYPE_ID_WITHDRAWAL
-                && has_split) {
-                amt = -amt;
-            }
-            const wxString amount = Model_Currency::toStringNoFormatting(amt, currency);
-            const wxString amount_abs = Model_Currency::toStringNoFormatting(fabs(amt), currency);
-
-            for (const auto& it : csvFieldOrder_)
+            if (!has_split)
             {
-                wxString entry = "";
-                ITransactionsFile::ItemType itemType = ITransactionsFile::TYPE_STRING;
-                switch (it.first)
-                {
-                case UNIV_CSV_DATE:
-                    entry = mmGetDateTimeForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(), date_format_);
-                    break;
-                case UNIV_CSV_PAYEE:
-                    entry = tran.real_payee_name(fromAccountID);
-                    break;
-                case UNIV_CSV_AMOUNT:
-                    entry = amount;
-                    itemType = ITransactionsFile::TYPE_NUMBER;
-                    break;
-                case UNIV_CSV_ACCOUNT:
-                    entry = tran.get_account_name(fromAccountID);
-                    break;
-                case UNIV_CSV_CURRENCY:
-                    entry = tran.get_currency_code(fromAccountID);
-                    break;
-                case UNIV_CSV_CATEGORY:
-                    if (category)
-                    {
-                        if (isIndexPresent(UNIV_CSV_SUBCATEGORY) && category->PARENTID != -1)
-                            entry = wxGetTranslation(Model_Category::full_name(category->PARENTID, ":"));
-                        else
-                            entry = wxGetTranslation(Model_Category::full_name(category->CATEGID, ":"));
-                    }
-                    break;
-                case UNIV_CSV_SUBCATEGORY:
-                    if(category && category->PARENTID != -1)
-                        entry = wxGetTranslation(category->CATEGNAME);
-                    break;
-                case UNIV_CSV_TAGS:
-                {
-                    wxString splitTags;
-                    for (const auto& tag : Model_Taglink::instance().get(Model_Splittransaction::refTypeName, splt.SPLITTRANSID))
-                        splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
-                    entry = tran.TAGNAMES;
-                    if (!splitTags.IsEmpty())
-                        entry.Append((tran.TAGNAMES.IsEmpty() ? "" : " ") + splitTags);
-                    break;
-                }
-                case UNIV_CSV_TRANSNUM:
-                    entry = pBankTransaction.TRANSACTIONNUMBER;
-                    break;
-                case UNIV_CSV_NOTES:
-                    entry = wxString(pBankTransaction.NOTES).Trim();
-                    entry.Replace("\n", "\\n");
-                    break;
-                case UNIV_CSV_DEPOSIT:
-                    entry = (value > 0.0) ? amount : "";
-                    itemType = ITransactionsFile::TYPE_NUMBER;
-                    break;
-                case UNIV_CSV_WITHDRAWAL:
-                    entry = value >= 0.0 ? "" : amount_abs;
-                    itemType = ITransactionsFile::TYPE_NUMBER;
-                    break;
-                case UNIV_CSV_BALANCE:
-                    entry = Model_Currency::toStringNoFormatting(account_balance, currency);
-                    itemType = ITransactionsFile::TYPE_NUMBER;
-                    break;
-                case UNIV_CSV_TYPE:
-                    entry = Model_Checking::type_name(Model_Checking::type_id(pBankTransaction));
-                    break;
-                case UNIV_CSV_ID:
-                    entry = wxString::Format("%lld", tran.TRANSID);
-                    break;
-                default:
-                    if (it.first > UNIV_CSV_LAST) // Custom Fields
-                    {
-                        // Get field content
-                        Model_CustomFieldData::Data* data = Model_CustomFieldData::instance().get(CSVFieldName_[it.first].second, pBankTransaction.TRANSID);
-                        if (data)
-                        {
-                            // format date fields
-                            if (Model_CustomField::type_id(Model_CustomField::instance().get(data->FIELDID)) == Model_CustomField::TYPE_ID_DATE)
-                                entry = mmGetDateTimeForDisplay(data->CONTENT, date_format_);
-                            else
-                                entry = data->CONTENT;
-                        }
-                    }
-                    break;
-                }
-                pTxFile->AddNewItem(entry, itemType);
+                Model_Splittransaction::Data *splt = Model_Splittransaction::instance().create();
+                splt->TRANSID = tran.TRANSID;
+                splt->CATEGID = tran.CATEGID;
+                splt->SPLITTRANSAMOUNT = value;
+                tran.m_splits.push_back(*splt);
             }
 
-            ++numRecords;
+            for (const auto& splt : tran.m_splits)
+            {
+                //Export the transaction only if the transaction is between the selected dates or if the user select to export all the transactions regardless of their date
+                if (Model_Checking::TRANSDATE(pBankTransaction).IsBetween(m_date_picker_start->GetValue(),m_date_picker_end->GetValue()) || m_haveDatesCheckBox->IsChecked()==false )
+                {
+                    pTxFile->AddNewLine();
+
+                    Model_Category::Data* category = Model_Category::instance().get(splt.CATEGID);
+
+                    double amt = splt.SPLITTRANSAMOUNT;
+                    if (Model_Checking::type_id(pBankTransaction) == Model_Checking::TYPE_ID_WITHDRAWAL
+                        && has_split) {
+                        amt = -amt;
+                        }
+                    const wxString amount = Model_Currency::toStringNoFormatting(amt, currency);
+                    const wxString amount_abs = Model_Currency::toStringNoFormatting(fabs(amt), currency);
+
+                    for (const auto& it : csvFieldOrder_)
+                    {
+                        wxString entry = "";
+                        ITransactionsFile::ItemType itemType = ITransactionsFile::TYPE_STRING;
+                        switch (it.first)
+                        {
+                        case UNIV_CSV_DATE:
+                            entry = mmGetDateTimeForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(), date_format_);
+                            break;
+                        case UNIV_CSV_PAYEE:
+                            entry = tran.real_payee_name(fromAccountID);
+                            break;
+                        case UNIV_CSV_AMOUNT:
+                            entry = amount;
+                            itemType = ITransactionsFile::TYPE_NUMBER;
+                            break;
+                        case UNIV_CSV_ACCOUNT:
+                            entry = tran.get_account_name(fromAccountID);
+                            break;
+                        case UNIV_CSV_CURRENCY:
+                            entry = tran.get_currency_code(fromAccountID);
+                            break;
+                        case UNIV_CSV_CATEGORY:
+                            if (category)
+                            {
+                                if (isIndexPresent(UNIV_CSV_SUBCATEGORY) && category->PARENTID != -1)
+                                    entry = wxGetTranslation(Model_Category::full_name(category->PARENTID, ":"));
+                                else
+                                    entry = wxGetTranslation(Model_Category::full_name(category->CATEGID, ":"));
+                            }
+                            break;
+                        case UNIV_CSV_SUBCATEGORY:
+                            if(category && category->PARENTID != -1)
+                                entry = wxGetTranslation(category->CATEGNAME);
+                            break;
+                        case UNIV_CSV_TAGS:
+                        {
+                            wxString splitTags;
+                            for (const auto& tag : Model_Taglink::instance().get(Model_Splittransaction::refTypeName, splt.SPLITTRANSID))
+                                splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
+                            entry = tran.TAGNAMES;
+                            if (!splitTags.IsEmpty())
+                                entry.Append((tran.TAGNAMES.IsEmpty() ? "" : " ") + splitTags);
+                            break;
+                        }
+                        case UNIV_CSV_TRANSNUM:
+                            entry = pBankTransaction.TRANSACTIONNUMBER;
+                            break;
+                        case UNIV_CSV_NOTES:
+                            entry = wxString(pBankTransaction.NOTES).Trim();
+                            entry.Replace("\n", "\\n");
+                            break;
+                        case UNIV_CSV_DEPOSIT:
+                            entry = (value > 0.0) ? amount : "";
+                            itemType = ITransactionsFile::TYPE_NUMBER;
+                            break;
+                        case UNIV_CSV_WITHDRAWAL:
+                            entry = value >= 0.0 ? "" : amount_abs;
+                            itemType = ITransactionsFile::TYPE_NUMBER;
+                            break;
+                        case UNIV_CSV_BALANCE:
+                            entry = Model_Currency::toStringNoFormatting(account_balance, currency);
+                            itemType = ITransactionsFile::TYPE_NUMBER;
+                            break;
+                        case UNIV_CSV_TYPE:
+                            entry = Model_Checking::type_name(Model_Checking::type_id(pBankTransaction));
+                            break;
+                        case UNIV_CSV_ID:
+                            entry = wxString::Format("%lld", tran.TRANSID);
+                            break;
+                        default:
+                            if (it.first > UNIV_CSV_LAST) // Custom Fields
+                            {
+                                // Get field content
+                                Model_CustomFieldData::Data* data = Model_CustomFieldData::instance().get(CSVFieldName_[it.first].second, pBankTransaction.TRANSID);
+                                if (data)
+                                {
+                                    // format date fields
+                                    if (Model_CustomField::type_id(Model_CustomField::instance().get(data->FIELDID)) == Model_CustomField::TYPE_ID_DATE)
+                                        entry = mmGetDateTimeForDisplay(data->CONTENT, date_format_);
+                                    else
+                                        entry = data->CONTENT;
+                                }
+                            }
+                            break;
+                        }
+                        pTxFile->AddNewItem(entry, itemType);
+                    }
+
+                    ++numRecords;
+                }
+            }
         }
     }
+    else //Else if the user wants to export stocks
+    {
+        Model_Stock::Data_Set txns = Model_Stock::instance().find(Model_Stock::HELDAT(fromAccountID));
+        std::sort(txns.begin(), txns.end());
+        std::stable_sort(txns.begin(), txns.end(), SorterBySTOCKID());
 
+        for (const auto& pStockTrancsaction : txns)
+        {
+            //If the transaction happened between the dates that the user selected or if the user selected to export all the transactions regardless of date then the row is added to the preview
+            if (Model_Stock::PURCHASEDATE(pStockTrancsaction).IsBetween(m_date_picker_start->GetValue(),m_date_picker_end->GetValue()) || m_haveDatesCheckBox->GetValue()==false)
+            {
+                pTxFile->AddNewLine();
+
+                for (const auto& it : csvFieldOrder_)
+                {
+                    wxString entry = "";
+                    ITransactionsFile::ItemType itemType = ITransactionsFile::TYPE_STRING;
+                    switch (it.first)
+                    {
+                    case UNIV_CSV_ID:
+                        entry = wxString::Format("%lld", pStockTrancsaction.STOCKID);
+                        break;
+                    case UNIV_CSV_DATE:
+                        entry = mmGetDateTimeForDisplay(Model_Stock::PURCHASEDATE(pStockTrancsaction).FormatISODate(), date_format_);
+                        break;
+                    case UNIV_CSV_COMPANY_NAME:
+                        entry = Model_Stock::get_stock_name(pStockTrancsaction.STOCKID);
+                        break;
+                    case UNIV_CSV_SYMBOL:
+                        entry = pStockTrancsaction.SYMBOL;
+                        break;
+                    case UNIV_CSV_SHARE_TOTAL:
+                        entry = std::to_wstring(pStockTrancsaction.NUMSHARES);
+                        break;
+                    case UNIV_CSV_AVG_SHARE_PRICE:
+                        entry = std::to_wstring(pStockTrancsaction.PURCHASEPRICE);
+                        break;
+                    case UNIV_CSV_TOTAL_COST:
+                        entry = std::to_wstring(Model_Stock::InvestmentValue(pStockTrancsaction));
+                        break;
+                    case UNIV_CSV_REAL_GAIN:
+                        entry = std::to_wstring(Model_Stock::RealGainLoss(pStockTrancsaction));
+                        break;
+                    case UNIV_CSV_UNREAL_GAIN:
+                        entry = std::to_wstring(Model_Stock::UnrealGainLoss(pStockTrancsaction));
+                        break;
+                    case UNIV_CSV_CURRENT_PRICE:
+                        entry = std::to_wstring(Model_Stock::CurrentValue(pStockTrancsaction)/pStockTrancsaction.NUMSHARES);
+                        break;
+                    case UNIV_CSV_CURRENT_TOTAL_VALUE:
+                        entry = std::to_wstring(Model_Stock::CurrentValue(pStockTrancsaction));
+                        break;
+                    case UNIV_CSV_NOTES:
+                        entry = wxString(pStockTrancsaction.NOTES).Trim();
+                        break;
+                    case UNIV_CSV_COMMISSION:
+                        entry = std::to_wstring(pStockTrancsaction.COMMISSION);
+                        break;
+                    case UNIV_CSV_ACCOUNT:
+                        entry = Model_Stock::HELDAT(fromAccountID).name();
+                        break;
+                    case UNIV_CSV_CURRENCY:
+                        entry = Model_Account::currency(Model_Account::instance().get(fromAccountID))->CURRENCY_SYMBOL;
+                        break;
+                    default:
+                        break;
+                    }
+                    pTxFile->AddNewItem(entry, itemType);
+                }
+                ++numRecords;
+            }
+        }
+    }
     pTxFile->Save(fileName);
-    const wxString& msg = wxString::Format(_t("Transactions exported: %ld"), numRecords);
+    const wxString& msg = wxString::Format(_t("Transactions/Stocks exported: %ld"), numRecords);
     mmErrorDialogs::MessageWarning(this, msg, _t("Export"));
-
 }
 
 void mmUnivCSVDialog::update_preview()
@@ -1921,156 +2087,269 @@ void mmUnivCSVDialog::update_preview()
             const wxString& delimit = this->delimit_;
 
             double account_balance = from_account->INITIALBAL;
-            Model_Checking::Data_Set txns =
-                Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(fromAccountID), Model_Checking::TOACCOUNTID(fromAccountID));
-            std::sort(txns.begin(), txns.end());
-            std::stable_sort(txns.begin(), txns.end(), SorterByTRANSDATE());
-            for (const auto& pBankTransaction : txns)
+
+            //If the user wants to export transactions
+            if (m_exportStocksCheckBox->GetValue()==false)
             {
-                if (Model_Checking::status_id(pBankTransaction) == Model_Checking::STATUS_ID_VOID || !pBankTransaction.DELETEDTIME.IsEmpty())
-                    continue;
-
-                Model_Checking::Full_Data tran(pBankTransaction, split, tags);
-                bool has_split = tran.has_split();
-                double value = Model_Checking::account_flow(pBankTransaction, fromAccountID);
-                account_balance += value;
-
-                if (!has_split)
+                Model_Checking::Data_Set txns =
+        Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(fromAccountID), Model_Checking::TOACCOUNTID(fromAccountID));
+                std::sort(txns.begin(), txns.end());
+                std::stable_sort(txns.begin(), txns.end(), SorterByTRANSDATE());
+                for (const auto& pBankTransaction : txns)
                 {
-                    Model_Splittransaction::Data *splt = Model_Splittransaction::instance().create();
-                    splt->TRANSID = tran.TRANSID;
-                    splt->CATEGID = tran.CATEGID;
-                    splt->SPLITTRANSAMOUNT = value;
-                    tran.m_splits.push_back(*splt);
-                }
+                    if (Model_Checking::status_id(pBankTransaction) == Model_Checking::STATUS_ID_VOID || !pBankTransaction.DELETEDTIME.IsEmpty())
+                        continue;
 
-                for (const auto& splt : tran.m_splits)
-                {
-
-                    int col = 0;
-                    wxString buf;
-                    buf.Printf("%d", col);
-                    long itemIndex = m_list_ctrl_->InsertItem(row, buf, 0);
-                    buf.Printf("%d", row + 1);
-                    m_list_ctrl_->SetItem(itemIndex, col, buf);
-                    m_list_ctrl_->SetItemData(itemIndex, row);
-                    Model_Category::Data* category = Model_Category::instance().get(splt.CATEGID);
-
-                    Model_Currency::Data* currency = Model_Account::currency(from_account);
-
-                    double amt = splt.SPLITTRANSAMOUNT;
-                    if (Model_Checking::type_id(pBankTransaction) == Model_Checking::TYPE_ID_WITHDRAWAL
-                        && has_split) {
-                        amt = -amt;
-                    }
-                    const wxString amount = Model_Currency::toStringNoFormatting(amt, currency);
-                    const wxString amount_abs = Model_Currency::toStringNoFormatting(fabs(amt), currency);
-
-                    for (const auto& field : csvFieldOrder_)
+                    //If the transaction happened between the dates that the user selected or if the user selected to export all the transactions regardless of date then the row is added to the preview
+                    if (Model_Checking::TRANSDATE(pBankTransaction).IsBetween(m_date_picker_start->GetValue(),m_date_picker_end->GetValue()) || m_haveDatesCheckBox->GetValue()==false)
                     {
-                        int it = field.first;
-                        wxString text;
-                        switch (it)
+                        Model_Checking::Full_Data tran(pBankTransaction, split, tags);
+                        bool has_split = tran.has_split();
+                        double value = Model_Checking::account_flow(pBankTransaction, fromAccountID);
+                        account_balance += value;
+
+                        if (!has_split)
                         {
-                        case UNIV_CSV_ID:
-                            text << wxString::Format("%lld", tran.TRANSID);
-                            break;
-                        case UNIV_CSV_DATE:
-                            text << inQuotes(mmGetDateTimeForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(), date_format_), delimit);
-                            break;
-                        case UNIV_CSV_PAYEE:
-                            text << inQuotes(tran.real_payee_name(fromAccountID), delimit);
-                            break;
-                        case UNIV_CSV_ACCOUNT:
-                            text << inQuotes(tran.get_account_name(fromAccountID), delimit);
-                            break;
-                        case UNIV_CSV_CURRENCY:
-                            text << inQuotes(tran.get_currency_code(fromAccountID), delimit);
-                            break;
-                        case UNIV_CSV_AMOUNT:
-                            text << inQuotes(amount, delimit);
-                            break;
-                        case UNIV_CSV_CATEGORY:
-                            if (category)
-                            {
-                                if (isIndexPresent(UNIV_CSV_SUBCATEGORY) && category->PARENTID != -1)
-                                    text << inQuotes(Model_Category::full_name(category->PARENTID, ":"), delimit);
-                                else
-                                    text << inQuotes(Model_Category::full_name(category->CATEGID, ":"), delimit);
-                            }
-                            else text << inQuotes("", delimit);
-                            break;
-                        case UNIV_CSV_SUBCATEGORY:
-                            if (category && category->PARENTID != -1)
-                                text << inQuotes(category ? category->CATEGNAME : "", delimit);
-                            else text << inQuotes("", delimit);
-                            break;
-                        case UNIV_CSV_TAGS:
-                        {
-                            wxString splitTags;
-                            for (const auto& tag :
-                                 Model_Taglink::instance().get(Model_Splittransaction::refTypeName, splt.SPLITTRANSID))
-                                splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
-                            text << inQuotes(tran.TAGNAMES + (tran.TAGNAMES.IsEmpty() ? "" : " ") + splitTags, delimit);
-                            break;
+                            Model_Splittransaction::Data *splt = Model_Splittransaction::instance().create();
+                            splt->TRANSID = tran.TRANSID;
+                            splt->CATEGID = tran.CATEGID;
+                            splt->SPLITTRANSAMOUNT = value;
+                            tran.m_splits.push_back(*splt);
                         }
-                        case UNIV_CSV_TRANSNUM:
-                            text << inQuotes(pBankTransaction.TRANSACTIONNUMBER, delimit);
-                            break;
-                        case UNIV_CSV_NOTES:
-                            text << inQuotes(wxString(pBankTransaction.NOTES).Trim(), delimit);
-                            break;
-                        case UNIV_CSV_DEPOSIT:
-                            text << inQuotes(value > 0.0 ? amount : "", delimit);
-                            break;
-                        case UNIV_CSV_WITHDRAWAL:
-                            text << inQuotes(value >= 0.0 ? "" : amount_abs, delimit);
-                            break;
-                        case UNIV_CSV_BALANCE:
-                            text << inQuotes(Model_Currency::toString(account_balance, currency), delimit);
-                            break;
-                        case UNIV_CSV_TYPE:
-                            text << pBankTransaction.TRANSCODE;
-                            break;
-                        case UNIV_CSV_DONTCARE:
-                            break;
-                        default:
-                            if (it > UNIV_CSV_LAST) // Custom Fields
-                            {
-                                Model_CustomFieldData::Data* data = Model_CustomFieldData::instance().get(CSVFieldName_[it].second, pBankTransaction.TRANSID);
-                                if (data)
-                                {
-                                    // Format date fields
-                                    if (Model_CustomField::type_id(Model_CustomField::instance().get(data->FIELDID)) == Model_CustomField::TYPE_ID_DATE)
-                                        text << inQuotes(mmGetDateTimeForDisplay(data->CONTENT, date_format_), delimit);
-                                    else
-                                        text << inQuotes(data->CONTENT, delimit);
+
+                        for (const auto& splt : tran.m_splits)
+                        {
+                            int col = 0;
+                            wxString buf;
+                            buf.Printf("%d", col);
+                            long itemIndex = m_list_ctrl_->InsertItem(row, buf, 0);
+                            buf.Printf("%d", row + 1);
+                            m_list_ctrl_->SetItem(itemIndex, col, buf);
+                            m_list_ctrl_->SetItemData(itemIndex, row);
+                            Model_Category::Data* category = Model_Category::instance().get(splt.CATEGID);
+
+                            Model_Currency::Data* currency = Model_Account::currency(from_account);
+
+                            double amt = splt.SPLITTRANSAMOUNT;
+                            if (Model_Checking::type_id(pBankTransaction) == Model_Checking::TYPE_ID_WITHDRAWAL
+                                && has_split) {
+                                amt = -amt;
                                 }
+                            const wxString amount = Model_Currency::toStringNoFormatting(amt, currency);
+                            const wxString amount_abs = Model_Currency::toStringNoFormatting(fabs(amt), currency);
+
+                            for (const auto& field : csvFieldOrder_)
+                            {
+                                int it = field.first;
+                                wxString text;
+                                switch (it)
+                                {
+                                case UNIV_CSV_ID:
+                                    text << wxString::Format("%lld", tran.TRANSID);
+                                    break;
+                                case UNIV_CSV_DATE:
+                                    text << inQuotes(mmGetDateTimeForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(), date_format_), delimit);
+                                    break;
+                                case UNIV_CSV_PAYEE:
+                                    text << inQuotes(tran.real_payee_name(fromAccountID), delimit);
+                                    break;
+                                case UNIV_CSV_ACCOUNT:
+                                    text << inQuotes(tran.get_account_name(fromAccountID), delimit);
+                                    break;
+                                case UNIV_CSV_CURRENCY:
+                                    text << inQuotes(tran.get_currency_code(fromAccountID), delimit);
+                                    break;
+                                case UNIV_CSV_AMOUNT:
+                                    text << inQuotes(amount, delimit);
+                                    break;
+                                case UNIV_CSV_CATEGORY:
+                                    if (category)
+                                    {
+                                        if (isIndexPresent(UNIV_CSV_SUBCATEGORY) && category->PARENTID != -1)
+                                            text << inQuotes(Model_Category::full_name(category->PARENTID, ":"), delimit);
+                                        else
+                                            text << inQuotes(Model_Category::full_name(category->CATEGID, ":"), delimit);
+                                    }
+                                    else text << inQuotes("", delimit);
+                                    break;
+                                case UNIV_CSV_SUBCATEGORY:
+                                    if (category && category->PARENTID != -1)
+                                        text << inQuotes(category ? category->CATEGNAME : "", delimit);
+                                    else text << inQuotes("", delimit);
+                                    break;
+                                case UNIV_CSV_TAGS:
+                                {
+                                    wxString splitTags;
+                                    for (const auto& tag :
+                                         Model_Taglink::instance().get(Model_Splittransaction::refTypeName, splt.SPLITTRANSID))
+                                        splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
+                                    text << inQuotes(tran.TAGNAMES + (tran.TAGNAMES.IsEmpty() ? "" : " ") + splitTags, delimit);
+                                    break;
+                                }
+                                case UNIV_CSV_TRANSNUM:
+                                    text << inQuotes(pBankTransaction.TRANSACTIONNUMBER, delimit);
+                                    break;
+                                case UNIV_CSV_NOTES:
+                                    text << inQuotes(wxString(pBankTransaction.NOTES).Trim(), delimit);
+                                    break;
+                                case UNIV_CSV_DEPOSIT:
+                                    text << inQuotes(value > 0.0 ? amount : "", delimit);
+                                    break;
+                                case UNIV_CSV_WITHDRAWAL:
+                                    text << inQuotes(value >= 0.0 ? "" : amount_abs, delimit);
+                                    break;
+                                case UNIV_CSV_BALANCE:
+                                    text << inQuotes(Model_Currency::toString(account_balance, currency), delimit);
+                                    break;
+                                case UNIV_CSV_TYPE:
+                                    text << pBankTransaction.TRANSCODE;
+                                    break;
+                                default:
+                                    if (it > UNIV_CSV_LAST) // Custom Fields
+                                    {
+                                        Model_CustomFieldData::Data* data = Model_CustomFieldData::instance().get(CSVFieldName_[it].second, pBankTransaction.TRANSID);
+                                        if (data)
+                                        {
+                                            // Format date fields
+                                            if (Model_CustomField::type_id(Model_CustomField::instance().get(data->FIELDID)) == Model_CustomField::TYPE_ID_DATE)
+                                                text << inQuotes(mmGetDateTimeForDisplay(data->CONTENT, date_format_), delimit);
+                                            else
+                                                text << inQuotes(data->CONTENT, delimit);
+                                        }
+                                    }
+                                    break;
+                                }
+
+                                if (col >= m_list_ctrl_->GetColumnCount())
+                                    break;
+
+                                col++;
+                                m_list_ctrl_->SetItem(itemIndex, col, text);
                             }
-                                break;
                         }
-
-                        if (col >= m_list_ctrl_->GetColumnCount())
-                            break;
-
-                        col++;
-                        m_list_ctrl_->SetItem(itemIndex, col, text);
+                        if (++count >= MAX_ROWS_IN_PREVIEW) break;
+                        ++row;
                     }
                 }
-                if (++count >= MAX_ROWS_IN_PREVIEW) break;
-                ++row;
+                // sort to align all splits together in the preview
+                m_list_ctrl_->SortItems(
+                    [](wxIntPtr itemIndex1, wxIntPtr itemIndex2, wxIntPtr WXUNUSED(sortData))
+                    {
+                        if (itemIndex1 < itemIndex2)
+                            return -1;
+                        if (itemIndex1 > itemIndex2)
+                            return 1;
+                        return 0;
+                    },
+                    0);
+            }
+            else //Else if the user wants to export stocks
+            {
+                Model_Stock::Data_Set txns = Model_Stock::instance().find(Model_Stock::HELDAT(fromAccountID));
+                std::sort(txns.begin(), txns.end());
+                std::stable_sort(txns.begin(), txns.end(), SorterBySTOCKID());
+
+                for (const auto& pStockTrancsaction : txns)
+                {
+                    // If the transaction happened between the dates that the user selected or if the user selected to export all the transactions regardless of date then the row is added to the preview
+                    if (Model_Stock::PURCHASEDATE(pStockTrancsaction).IsBetween(m_date_picker_start->GetValue(),m_date_picker_end->GetValue()) || m_haveDatesCheckBox->GetValue()==false)
+                    {
+                        int col = 0;
+                        wxString buf;
+                        buf.Printf("%d", col);
+                        long itemIndex = m_list_ctrl_->InsertItem(row, buf, 0);
+                        buf.Printf("%d", row + 1);
+                        m_list_ctrl_->SetItem(itemIndex, col, buf);
+                        m_list_ctrl_->SetItemData(itemIndex, row);
+
+                        Model_Currency::Data* currency = Model_Account::currency(from_account);
+                        const wxString shareTotal = Model_Currency::toStringNoFormatting(pStockTrancsaction.NUMSHARES, currency);
+                        const wxString avgSharePrice = Model_Currency::toStringNoFormatting(pStockTrancsaction.PURCHASEPRICE, currency);
+                        const wxString totalCost = Model_Currency::toStringNoFormatting(Model_Stock::InvestmentValue(pStockTrancsaction), currency);
+                        const wxString realGain = Model_Currency::toStringNoFormatting(Model_Stock::RealGainLoss(pStockTrancsaction), currency);
+                        const wxString unrealGain = Model_Currency::toStringNoFormatting(Model_Stock::UnrealGainLoss(pStockTrancsaction), currency);
+                        const wxString currentPrice = Model_Currency::toStringNoFormatting(Model_Stock::CurrentValue(pStockTrancsaction)/pStockTrancsaction.NUMSHARES, currency);
+                        const wxString currentTotalValue = Model_Currency::toStringNoFormatting(Model_Stock::CurrentValue(pStockTrancsaction), currency);
+                        const wxString commission = Model_Currency::toStringNoFormatting(pStockTrancsaction.COMMISSION, currency);
+
+                        for (const auto& field : csvFieldOrder_)
+                        {
+                            int it = field.first;
+                            wxString text;
+                            switch (it)
+                            {
+                            case UNIV_CSV_ID:
+                                text << wxString::Format("%lld", pStockTrancsaction.STOCKID);
+                                break;
+                            case UNIV_CSV_DATE:
+                                text << inQuotes(mmGetDateTimeForDisplay(Model_Stock::PURCHASEDATE(pStockTrancsaction).FormatISODate(), date_format_), delimit);
+                                break;
+                            case UNIV_CSV_COMPANY_NAME:
+                                text << inQuotes(Model_Stock::get_stock_name(pStockTrancsaction.STOCKID), delimit);
+                                break;
+                            case UNIV_CSV_SYMBOL:
+                                text << inQuotes(pStockTrancsaction.SYMBOL, delimit);
+                                break;
+                            case UNIV_CSV_SHARE_TOTAL:
+                                text << inQuotes(shareTotal, delimit);
+                                break;
+                            case UNIV_CSV_AVG_SHARE_PRICE:
+                                text << inQuotes(avgSharePrice, delimit);
+                                break;
+                            case UNIV_CSV_TOTAL_COST:
+                                text << inQuotes(totalCost, delimit);
+                                break;
+                            case UNIV_CSV_REAL_GAIN:
+                                text << inQuotes(realGain, delimit);
+                                break;
+                            case UNIV_CSV_UNREAL_GAIN:
+                                text << inQuotes(unrealGain, delimit);
+                                break;
+                            case UNIV_CSV_CURRENT_PRICE:
+                                text << inQuotes(currentPrice, delimit);
+                                break;
+                            case UNIV_CSV_CURRENT_TOTAL_VALUE:
+                                text << inQuotes(currentTotalValue, delimit);
+                                break;
+                            case UNIV_CSV_NOTES:
+                                text << inQuotes(wxString(pStockTrancsaction.NOTES).Trim(), delimit);
+                                break;
+                            case UNIV_CSV_COMMISSION:
+                                text << inQuotes(commission, delimit);
+                                break;
+                            case UNIV_CSV_ACCOUNT:
+                                text << inQuotes(DB_Table_STOCK_V1::HELDAT::name(), delimit);
+                                break;
+                            case UNIV_CSV_CURRENCY:
+                                text << inQuotes(Model_Account::currency(Model_Account::instance().get(fromAccountID))->CURRENCY_SYMBOL, delimit);
+                                break;
+                            default:
+                                break;
+                            }
+
+                            if (col >= m_list_ctrl_->GetColumnCount())
+                                break;
+
+                            col++;
+                            m_list_ctrl_->SetItem(itemIndex, col, text);
+                        }
+
+                        if (++count >= MAX_ROWS_IN_PREVIEW) break;
+                        ++row;
+                    }
+                }
             }
             // sort to align all splits together in the preview
             m_list_ctrl_->SortItems(
-                [](wxIntPtr itemIndex1, wxIntPtr itemIndex2, wxIntPtr WXUNUSED(sortData))
-                {
-                    if (itemIndex1 < itemIndex2)
-                        return -1;
-                    if (itemIndex1 > itemIndex2)
-                        return 1;
-                    return 0;
-                },
-                0);
+                    [](wxIntPtr itemIndex1, wxIntPtr itemIndex2, wxIntPtr WXUNUSED(sortData))
+                    {
+                        if (itemIndex1 < itemIndex2)
+                            return -1;
+                        if (itemIndex1 > itemIndex2)
+                            return 1;
+                        return 0;
+                    },
+                    0);
         }
     }
 }
@@ -2305,6 +2584,38 @@ void mmUnivCSVDialog::OnDelimiterChange(wxCommandEvent&)
         delimit_ = delimit;
         this->update_preview();
     }
+}
+
+void mmUnivCSVDialog::OnHaveStocksChange(wxCommandEvent& event)
+{
+    this->update_preview();
+}
+
+void mmUnivCSVDialog::OnHaveDatesChange(wxCommandEvent& event)
+{
+    bool checked=event.IsChecked();
+    if (checked)
+    {
+        m_date_picker_start->Enable(true);
+        m_date_picker_end->Enable(true);
+    }
+    else
+    {
+        m_date_picker_start->Enable(false);
+        m_date_picker_end->Enable(false);
+    }
+    this->update_preview();
+
+}
+
+void mmUnivCSVDialog::OnStartDateChange(wxDateEvent& event)
+{
+    this->update_preview();
+}
+
+void mmUnivCSVDialog::OnEndDateChange(wxDateEvent& event)
+{
+    this->update_preview();
 }
 
 void mmUnivCSVDialog::OnDecimalChange(wxCommandEvent& event)
