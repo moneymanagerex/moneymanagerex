@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2013-2016 Nikolay Akimov
+Copyright (C) 2026  Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -37,9 +38,12 @@ class mmQIFImportDialog : public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmQIFImportDialog()
+    mmQIFImportDialog() 
     {
     }
+
+    ~mmQIFImportDialog();
+
     mmQIFImportDialog(wxWindow* parent, int64 account_id, const wxString& file_path = wxEmptyString);
 
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& caption = _t("Import from QIF file"), const wxPoint& pos = wxDefaultPosition,
@@ -49,6 +53,7 @@ public:
     int64 get_last_imported_acc();
 
 private:
+    const std::string DIALOG_SIZE = "QIF_IMPORT_DIALOG_SIZE";
     mmQIFImport* qif_api = nullptr;
     void CreateControls();
     void fillControls();

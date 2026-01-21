@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2013-2020 Nikolay Akimov
 Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2026  Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -73,6 +74,12 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int64 account_id, const w
     Create(parent);
     mmThemeAutoColour(this);
     SetMinSize(wxSize(500, 300));
+    SetSize(Model_Infotable::instance().getSize(DIALOG_SIZE));
+}
+
+mmQIFImportDialog::~mmQIFImportDialog()
+{
+    Model_Infotable::instance().setSize(DIALOG_SIZE, GetSize());
 }
 
 wxString mmQIFImportDialog::OnGetItemText(long item, long column) const
@@ -155,6 +162,7 @@ void mmQIFImportDialog::CreateControls()
     for (const auto &i : g_encoding)
         m_choiceEncoding->Append(wxGetTranslation(i.second.second), new wxStringClientData(i.second.second));
     m_choiceEncoding->SetSelection(0);
+    m_choiceEncoding->Bind(wxEVT_CHOICE, &mmQIFImportDialog::OnFileNameChanged, this);
 
     flex_sizer->Add(m_choiceEncoding, g_flagsH);
 
@@ -438,8 +446,14 @@ bool mmQIFImportDialog::mmReadQIFFile()
     wxString catDelimiter = Model_Infotable::instance().getString("CATEG_DELIMITER", ":");
 
     wxFileInputStream input(m_FileNameStr);
-    wxConvAuto conv = g_encoding.at(m_choiceEncoding->GetSelection()).first;
-    wxTextInputStream text(input, "\x09", conv);
+    wxTextInputStream* text;
+    if (m_choiceEncoding->GetSelection() == 0) {
+        text = new wxTextInputStream(input);
+    }
+    else {
+        wxConvAuto conv = g_encoding.at(m_choiceEncoding->GetSelection()).first;
+        text = new wxTextInputStream(input, "\x09", conv);
+    }
 
     wxProgressDialog progressDlg(_tu("Please wait…"), _t("Scanning")
         , 0, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
@@ -463,7 +477,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     while (input.IsOk() && !input.Eof())
     {
         ++numLines;
-        const wxString lineStr = text.ReadLine();
+        const wxString lineStr = text->ReadLine();
         if (lineStr.IsEmpty())
             continue;
 
@@ -1271,13 +1285,11 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         vQIF_trxs_.clear();
         btnOK_->Enable(false);
         progressDlg.Destroy();
-
-        save_file_name();
     }
-    else
-    {
+    else {
         sMsg = _t("Imported transactions discarded by user!"); //TODO: strange message may be _t("Import has discarded by user!")
     }
+    save_file_name();
     wxMessageDialog(this, sMsg, _t("Import from QIF file"), wxOK | wxICON_WARNING).ShowModal();
     *log_field_ << sMsg << "\n";
 
@@ -1312,6 +1324,7 @@ void mmQIFImportDialog::saveSplit()
     Model_Splittransaction::instance().ReleaseSavepoint();
     Model_Taglink::instance().ReleaseSavepoint();
 }
+
 void mmQIFImportDialog::joinSplit(Model_Checking::Cache &destination
     , std::vector<Model_Splittransaction::Cache> &target)
 {
