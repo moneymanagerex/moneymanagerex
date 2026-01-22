@@ -78,7 +78,7 @@ void genericTreeListDialog::init(long liststyle)  // Must be called in construct
     mainPanelSizer->Add(itemBoxVright, wxSizerFlags().Left().Border(wxALL, 5));
     itemBoxVright->AddSpacer(20);
 
-    m_up_top = new wxButton(this, BTN_UP_TOP, _tu("Top"));
+    m_up_top = new wxButton(this, BTN_UP_TOP, _tu("&Top"));
     m_up_top->SetBitmap(mmBitmapBundle(png::UPARROW, mmBitmapButtonSize));
     m_up_top->Enable(false);
     m_up_top->Bind(wxEVT_BUTTON, &genericTreeListDialog::OnTop, this);
@@ -98,7 +98,7 @@ void genericTreeListDialog::init(long liststyle)  // Must be called in construct
     m_down->Bind(wxEVT_BUTTON, &genericTreeListDialog::OnDown, this);
     itemBoxVright->Add(m_down, g_flagsV);
 
-    m_down_bottom = new wxButton(this, BTN_DOWN_BOTTOM, _tu("Bottom"));
+    m_down_bottom = new wxButton(this, BTN_DOWN_BOTTOM, _tu("&Bottom"));
     m_down_bottom->SetBitmap(mmBitmapBundle(png::DOWNARROW, mmBitmapButtonSize));
     m_down_bottom->Enable(false);
     m_down_bottom->Bind(wxEVT_BUTTON, &genericTreeListDialog::OnBottom, this);
