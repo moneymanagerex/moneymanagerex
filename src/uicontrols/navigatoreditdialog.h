@@ -21,9 +21,6 @@
 #include "defs.h"
 #include "navigatortypes.h"
 
-typedef std::vector<wxTreeListItem> wxTreeListItems;
-
-
 class mmNavigatorEditDialog: public wxDialog
 {
     wxDECLARE_DYNAMIC_CLASS(mmNavigatorEditDialog);

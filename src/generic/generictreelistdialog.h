@@ -21,8 +21,6 @@
 #include "defs.h"
 
 
-typedef std::vector<wxTreeListItem> wxTreeListItems;
-
 
 class genericTreeListDialog: public wxDialog
 {
