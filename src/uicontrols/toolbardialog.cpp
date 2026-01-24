@@ -71,11 +71,33 @@ void mmToolbarDialog::createBottomElements(wxBoxSizer* itemBox) {
     itemBox->Add(new wxButton(this, BTN_NEW_SEPARATOR, _t("Add separator")), g_flagsV);
     Bind(wxEVT_BUTTON, &mmToolbarDialog::OnNew, this, BTN_NEW_SEPARATOR);
 
+        if (wxWindow* w = FindWindow(BTN_NEW_SEPARATOR)) {
+            w->SetToolTip(_t(
+                "Insert a vertical separator line.\n"
+                "Useful to visually group toolbar buttons."
+            ));
+        }
+
     itemBox->Add(new wxButton(this, BTN_NEW_SPACE, _t("Add space")), g_flagsV);
     Bind(wxEVT_BUTTON, &mmToolbarDialog::OnNew, this, BTN_NEW_SPACE);
 
+        if (wxWindow* w = FindWindow(BTN_NEW_SPACE)) {
+            w->SetToolTip(_t(
+                "Insert a fixed-size empty space.\n"
+                "The space width is equal to one toolbar icon."
+            ));
+        }
+
     itemBox->Add(new wxButton(this, BTN_NEW_STRETCHER, _t("Add stretch space")), g_flagsV);
     Bind(wxEVT_BUTTON, &mmToolbarDialog::OnNew, this, BTN_NEW_STRETCHER);
+
+        if (wxWindow* w = FindWindow(BTN_NEW_STRETCHER)) {
+        w->SetToolTip(_t(
+            "Insert a stretchable space.\n"
+            "It takes all remaining toolbar space.\n"
+            "If multiple stretch spaces are present, the space is evenly distributed."
+        ));
+    }
 
     itemBox->AddSpacer(10);
     m_delete = new wxButton(this, BTN_DELETE, _t("&Delete"));
