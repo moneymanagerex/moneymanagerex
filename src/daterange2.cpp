@@ -20,6 +20,20 @@
 #include "constants.h"
 #include "option.h"
 
+DateDay::DateDay() :
+    dateTime{wxDateTime()}
+{
+}
+
+DateDay::DateDay(wxDateTime dateTime_new)
+{
+    dateTime = dateTime_new;
+    if (dateTime.IsValid()) {
+        // set time to noon (12:00)
+        dateTime.SetHour(12).SetMinute(0).SetSecond(0).SetMillisecond(0);
+    }
+}
+
 const DateRange2::PERIOD_INFO_t DateRange2::PERIOD_INFO[] =
 {
     { PERIOD_ID_A, "A" },
@@ -238,16 +252,16 @@ bool DateRange2::Spec::parseSpec(const wxString &str, const wxString &name_new)
     return true;
 }
 
-const wxString DateRange2::Spec::offset_range_str(int so, int eo, bool show_zero)
+const wxString DateRange2::Spec::offsetRangeStr(int so, int eo, bool show_zero)
 {
     if (so == eo) {
-        return offset_str(so, show_zero);
+        return offsetStr(so, show_zero);
     }
     else {
         StringBuilder s;
-        s.append(offset_str(so, true));
+        s.append(offsetStr(so, true));
         s.append("..");
-        s.append(offset_str(eo, true));
+        s.append(offsetStr(eo, true));
         return s.buffer;
     }
 }
@@ -259,13 +273,13 @@ const wxString DateRange2::Spec::getLabel() const
     // first range
     wxString sp1_label = PERIOD_INFO[sp1].label;
     if (sp1 == ep1) {
-        sb.append(offset_range_str(so1, eo1)); sb.sep(); sb.append(sp1_label);
+        sb.append(offsetRangeStr(so1, eo1)); sb.sep(); sb.append(sp1_label);
     }
     else {
         wxString ep1_label = PERIOD_INFO[ep1].label;
-        sb.append(offset_str(so1)); sb.sep(); sb.append(sp1_label);
+        sb.append(offsetStr(so1)); sb.sep(); sb.append(sp1_label);
         sb.sep(); sb.append(".."); sb.sep();
-        sb.append(offset_str(eo1)); sb.sep(); sb.append(ep1_label);
+        sb.append(offsetStr(eo1)); sb.sep(); sb.append(ep1_label);
     }
 
     // second range
@@ -273,13 +287,13 @@ const wxString DateRange2::Spec::getLabel() const
         sb.append(","); sb.sep();
         wxString sp2_label = PERIOD_INFO[sp2].label;
         if (sp2 == ep2) {
-            sb.append(offset_range_str(so2, eo2)); sb.sep(); sb.append(sp2_label);
+            sb.append(offsetRangeStr(so2, eo2)); sb.sep(); sb.append(sp2_label);
         }
         else {
             wxString ep2_label = PERIOD_INFO[ep2].label;
-            sb.append(offset_str(so2)); sb.sep(); sb.append(sp2_label);
+            sb.append(offsetStr(so2)); sb.sep(); sb.append(sp2_label);
             sb.sep(); sb.append(".."); sb.sep();
-            sb.append(offset_str(eo2)); sb.sep(); sb.append(ep2_label);
+            sb.append(offsetStr(eo2)); sb.sep(); sb.append(ep2_label);
         }
     }
 
@@ -301,14 +315,14 @@ const wxString DateRange2::Spec::getLabelName() const
     return s;
 }
 
-const wxString DateRange2::Spec::checking_name() const
+const wxString DateRange2::Spec::checkingName() const
 {
     wxString str = getLabel();
     // TODO
     return str;
 }
 
-const wxString DateRange2::Spec::checking_description() const
+const wxString DateRange2::Spec::checkingDescription() const
 {
     static StringBuilder sb;
     sb.reset();
@@ -317,7 +331,7 @@ const wxString DateRange2::Spec::checking_description() const
     return sb.buffer;
 }
 
-DateRange2::DateRange2(wxDateTime ds, wxDateTime dt) :
+DateRange2::DateRange2(DateDay date_s_new, DateDay date_t_new) :
     firstDay{
         Option::instance().getReportingFirstDay(),
         Option::instance().getFinancialFirstDay()
@@ -331,8 +345,8 @@ DateRange2::DateRange2(wxDateTime ds, wxDateTime dt) :
     ),
     spec(Spec())
 {
-    setDateT(dt);
-    setDateS(ds);
+    setDateS(date_s_new);
+    setDateT(date_t_new);
 }
 
 // return true if parse is successful
@@ -345,145 +359,147 @@ bool DateRange2::parseSpec(const wxString &str, const wxString &name)
     return true;
 }
 
-wxDateTime DateRange2::addOffset(wxDateTime date, int offset, PERIOD_ID period)
+void DateRange2::addOffset(DateDay &date, int offset, PERIOD_ID period)
 {
     if (offset == 0)
-        return date;
+        return;
     if (period == PERIOD_ID_Y)
-        return date + wxDateSpan::Years(offset);
+        date.add(wxDateSpan::Years(offset));
     else if (period == PERIOD_ID_Q)
-        return date + wxDateSpan::Months(3*offset);
+        date.add(wxDateSpan::Months(3*offset));
     else if (period == PERIOD_ID_M)
-        return date + wxDateSpan::Months(offset);
+        date.add(wxDateSpan::Months(offset));
     else if (period == PERIOD_ID_W)
-        return date + wxDateSpan::Weeks(offset);
+        date.add(wxDateSpan::Weeks(offset));
     else if (period == PERIOD_ID_T || period == PERIOD_ID_S)
-        return date + wxDateSpan::Days(offset);
+        date.add(wxDateSpan::Days(offset));
     else
-        return wxInvalidDateTime;
+        date = DateDay();
 }
 
-wxDateTime DateRange2::period_start(wxDateTime date, PERIOD_ID period) const
+DateDay DateRange2::periodStart(DateDay date, PERIOD_ID period) const
 {
-    if (date == wxInvalidDateTime || period < PERIOD_ID_Y || period > PERIOD_ID_S)
-        return wxInvalidDateTime;
-    wxDateTime start_date = date;
+    if (!date.isDefined() || period < PERIOD_ID_Y || period > PERIOD_ID_S)
+        return DateDay();
+    wxDateTime start_dateTime = date.getDateTime();
     if (period == PERIOD_ID_Y || period == PERIOD_ID_Q || period == PERIOD_ID_M) {
-        if (start_date.GetDay() < firstDay[spec.f])
-            start_date -= wxDateSpan::Months(1);
-        start_date.SetDay(firstDay[spec.f]);
+        if (start_dateTime.GetDay() < firstDay[spec.f])
+            start_dateTime -= wxDateSpan::Months(1);
+        start_dateTime.SetDay(firstDay[spec.f]);
         if (period == PERIOD_ID_Y) {
-            if (start_date.GetMonth() < firstMonth[spec.f])
-                start_date -= wxDateSpan::Years(1);
-            start_date.SetMonth(firstMonth[spec.f]);
+            if (start_dateTime.GetMonth() < firstMonth[spec.f])
+                start_dateTime -= wxDateSpan::Years(1);
+            start_dateTime.SetMonth(firstMonth[spec.f]);
         }
         else if (period == PERIOD_ID_Q) {
-            int m = (start_date.GetMonth() - firstMonth[spec.f] + 12) % 3;
+            int m = (start_dateTime.GetMonth() - firstMonth[spec.f] + 12) % 3;
             if (m > 0)
-                start_date -= wxDateSpan::Months(m);
+                start_dateTime -= wxDateSpan::Months(m);
         }
     }
     else if (period == PERIOD_ID_W) {
-        int d = (start_date.GetWeekDay() - firstWeekday + 7) % 7;
+        int d = (start_dateTime.GetWeekDay() - firstWeekday + 7) % 7;
         if (d > 0)
-            start_date -= wxDateSpan::Days(d);
+            start_dateTime -= wxDateSpan::Days(d);
     }
-    return start_date;
+    return DateDay(start_dateTime);
 }
 
-wxDateTime DateRange2::period_end(wxDateTime date, PERIOD_ID period) const
+DateDay DateRange2::periodEnd(DateDay date, PERIOD_ID period) const
 {
-    if (date == wxInvalidDateTime || period < PERIOD_ID_Y || period > PERIOD_ID_S)
-        return wxInvalidDateTime;
-    wxDateTime end_date = date;
+    if (!date.isDefined() || period < PERIOD_ID_Y || period > PERIOD_ID_S)
+        return DateDay();
+    wxDateTime end_dateTime = date.getDateTime();
     if (period == PERIOD_ID_Y || period == PERIOD_ID_Q || period == PERIOD_ID_M) {
-        if (end_date.GetDay() >= firstDay[spec.f])
-            end_date += wxDateSpan::Months(1);
-        end_date.SetDay(firstDay[spec.f]);
+        if (end_dateTime.GetDay() >= firstDay[spec.f])
+            end_dateTime += wxDateSpan::Months(1);
+        end_dateTime.SetDay(firstDay[spec.f]);
         if (period == PERIOD_ID_Y) {
-            if (end_date.GetMonth() > firstMonth[spec.f])
-                end_date += wxDateSpan::Years(1);
-            end_date.SetMonth(firstMonth[spec.f]);
+            if (end_dateTime.GetMonth() > firstMonth[spec.f])
+                end_dateTime += wxDateSpan::Years(1);
+            end_dateTime.SetMonth(firstMonth[spec.f]);
         }
         else if (period == PERIOD_ID_Q) {
-            int m = (firstMonth[spec.f] - end_date.GetMonth() + 12) % 3;
+            int m = (firstMonth[spec.f] - end_dateTime.GetMonth() + 12) % 3;
             if (m > 0)
-                end_date += wxDateSpan::Months(m);
+                end_dateTime += wxDateSpan::Months(m);
         }
-        end_date -= wxDateSpan::Days(1);
+        end_dateTime -= wxDateSpan::Days(1);
     }
     else if (period == PERIOD_ID_W) {
-        int d = (firstWeekday - end_date.GetWeekDay() + 6) % 7;
+        int d = (firstWeekday - end_dateTime.GetWeekDay() + 6) % 7;
         if (d > 0)
-            end_date += wxDateSpan::Days(d);
+            end_dateTime += wxDateSpan::Days(d);
     }
-    return end_date;
+    return DateDay(end_dateTime);
 }
 
-wxDateTime DateRange2::checking_start() const
+DateDay DateRange2::checkingStart() const
 {
     if (spec.sp1 == PERIOD_ID_A || spec.sp2 == PERIOD_ID_A)
-        return wxInvalidDateTime;
-    wxDateTime start_date1 = (spec.sp1 == PERIOD_ID_S) ? date_s : date_t;
-    start_date1 = addOffset(start_date1, spec.so1, spec.sp1);
-    start_date1 = period_start(start_date1, spec.sp1);
-    if (start_date1 == wxInvalidDateTime || spec.sp2 == PERIOD_ID_none || spec.ep2 == PERIOD_ID_none)
+        return DateDay();
+    DateDay start_date1 = (spec.sp1 == PERIOD_ID_S) ? date_s : date_t;
+    addOffset(start_date1, spec.so1, spec.sp1);
+    start_date1 = periodStart(start_date1, spec.sp1);
+    if (!start_date1.isDefined() || spec.sp2 == PERIOD_ID_none || spec.ep2 == PERIOD_ID_none)
         return start_date1;
-    wxDateTime start_date2 = (spec.sp2 == PERIOD_ID_S) ? date_s : date_t;
-    start_date2 = addOffset(start_date2, spec.so2, spec.sp2);
-    start_date2 = period_start(start_date2, spec.sp1 > spec.sp2 ? spec.sp1 : spec.sp2);
-    if (start_date2 == wxInvalidDateTime)
-        return wxInvalidDateTime;
-    return start_date1 <= start_date2 ? start_date1 : start_date2;
+    DateDay start_date2 = (spec.sp2 == PERIOD_ID_S) ? date_s : date_t;
+    addOffset(start_date2, spec.so2, spec.sp2);
+    start_date2 = periodStart(start_date2, spec.sp1 > spec.sp2 ? spec.sp1 : spec.sp2);
+    if (!start_date2.isDefined())
+        return DateDay();
+    return start_date1.getDateTime() <= start_date2.getDateTime() ? start_date1 : start_date2;
 }
 
-wxDateTime DateRange2::checking_end() const
+DateDay DateRange2::checkingEnd() const
 {
     if (spec.ep1 == PERIOD_ID_A || spec.ep2 == PERIOD_ID_A)
-        return wxInvalidDateTime;
-    wxDateTime end_date1 = (spec.ep1 == PERIOD_ID_S) ? date_s : date_t;
-    end_date1 = addOffset(end_date1, spec.eo1, spec.ep1);
-    end_date1 = period_end(end_date1, spec.ep1);
-    if (end_date1 == wxInvalidDateTime || spec.sp2 == PERIOD_ID_none || spec.ep2 == PERIOD_ID_none)
+        return DateDay();
+    DateDay end_date1 = (spec.ep1 == PERIOD_ID_S) ? date_s : date_t;
+    addOffset(end_date1, spec.eo1, spec.ep1);
+    end_date1 = periodEnd(end_date1, spec.ep1);
+    if (!end_date1.isDefined() || spec.sp2 == PERIOD_ID_none || spec.ep2 == PERIOD_ID_none)
         return end_date1;
-    wxDateTime end_date2 = (spec.ep2 == PERIOD_ID_S) ? date_s : date_t;
-    end_date2 = addOffset(end_date2, spec.eo2, spec.ep2);
-    end_date2 = period_end(end_date2, spec.ep1 > spec.ep2 ? spec.ep1 : spec.ep2);
-    if (end_date2 == wxInvalidDateTime)
-        return wxInvalidDateTime;
-    return end_date1 >= end_date2 ? end_date1 : end_date2;
+    DateDay end_date2 = (spec.ep2 == PERIOD_ID_S) ? date_s : date_t;
+    addOffset(end_date2, spec.eo2, spec.ep2);
+    end_date2 = periodEnd(end_date2, spec.ep1 > spec.ep2 ? spec.ep1 : spec.ep2);
+    if (!end_date2.isDefined())
+        return DateDay();
+    return end_date1.getDateTime() >= end_date2.getDateTime() ? end_date1 : end_date2;
 }
 
-wxDateTime DateRange2::reporting_start() const
+DateDay DateRange2::reportingStart() const
 {
-    return checking_start();
+    // TODO
+    return checkingStart();
 }
 
-wxDateTime DateRange2::reporting_end() const
+DateDay DateRange2::reportingEnd() const
 {
-    return checking_end();
+    // TODO
+    return checkingEnd();
 }
 
-const wxString DateRange2::checking_tooltip() const
+const wxString DateRange2::checkingTooltip() const
 {
     static StringBuilder sb;
     sb.reset();
 
-    wxDateTime date1 = checking_start();
-    wxDateTime date2 = checking_end();
-    if (date1 != wxInvalidDateTime)
-        sb.append(dateISO(date1));
+    DateDay date1 = checkingStart();
+    DateDay date2 = checkingEnd();
+    if (date1.isDefined())
+        sb.append(date1.getISO());
     sb.sep(); sb.append(".."); sb.sep();
-    if (date2 != wxInvalidDateTime)
-        sb.append(dateISO(date2));
+    if (date2.isDefined())
+        sb.append(date2.getISO());
     sb.flush();
 
     sb.append("\n");
-    sb.append(spec.checking_description());
+    sb.append(spec.checkingDescription());
     return sb.buffer;
 }
 
-const wxString DateRange2::reporting_tooltip() const
+const wxString DateRange2::reportingTooltip() const
 {
     // TODO
     return "";
@@ -495,15 +511,15 @@ DateRange2::DateRange2(
     int firstDay_new_0, int firstDay_new_1,
     wxDateTime::Month firstMonth_new_0, wxDateTime::Month firstMonth_new_1,
     wxDateTime::WeekDay firstWeekday_new,
-    wxDateTime date_t_new, wxDateTime date_s_new
+    DateDay date_s_new, DateDay date_t_new
 ) :
     firstDay{firstDay_new_0, firstDay_new_1},
     firstMonth{firstMonth_new_0, firstMonth_new_1},
     firstWeekday(firstWeekday_new),
     spec(Spec())
 {
-    setDateT(date_t_new);
     setDateS(date_s_new);
+    setDateT(date_t_new);
 }
 
 bool DateRange2::debug()
@@ -516,17 +532,17 @@ bool DateRange2::debug()
         wxASSERT_MSG(PERIOD_INFO[i].id == i, "Wrong order in DateRange2::PERIOD_INFO");
     }
 
-    wxDateTime date_t, date_s;
-    date_t.ParseISOCombined("2025-01-30T00:00:01"); // Thu
-    date_s.ParseISOCombined("2024-08-30T00:00:01"); // Fri
+    wxDateTime dateTime_s, dateTime_t;
+    dateTime_s.ParseISOCombined("2024-08-30T00:00:01"); // Fri
+    dateTime_t.ParseISOCombined("2025-01-30T00:00:01"); // Thu
     DateRange2 dr = DateRange2(
         1, 6,
         wxDateTime::Month::Jan, wxDateTime::Month::Apr,
         wxDateTime::WeekDay::Mon,
-        date_t, date_s
+        DateDay(dateTime_s), DateDay(dateTime_t)
     );
-    //wxLogDebug("INFO: date_t=[%s]", dateTimeISO(dr.getT()));
-    //wxLogDebug("INFO: date_s=[%s]", dateTimeISO(dr.getS()));
+    wxLogDebug("INFO: date_s.dateTime=[%s]", dateTimeISO(dr.getDateS().getDateTime()));
+    wxLogDebug("INFO: date_t.dateTime=[%s]", dateTimeISO(dr.getDateT().getDateTime()));
 
     struct { wxString spec; wxString sc; wxString ec; } checking[] = {
         { "A",            "",           "" },
@@ -562,14 +578,14 @@ bool DateRange2::debug()
         wxString label = dr.getLabel();
         if (label != spec)
             wxLogDebug("checking[%d] [%s]: label=[%s]", i, spec, label);
-        wxString sc = dateISO(dr.checking_start());
+        wxString sc = dr.checkingStart().getISO();
         if (sc != checking[i].sc) {
             ok = false;
             wxLogDebug("ERROR in checking[%d] [%s]: sc=[%s], expected [%s]",
                 i, spec, sc, checking[i].sc
             );
         }
-        wxString ec = dateISO(dr.checking_end());
+        wxString ec = dr.checkingEnd().getISO();
         if (ec != checking[i].ec) {
             ok = false;
             wxLogDebug("ERROR in checking[%d] [%s]: ec=[%s], expected [%s]",

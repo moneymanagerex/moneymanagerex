@@ -124,8 +124,8 @@ bool mmDateRangeEditDialog::checkRange() {
     bool rangeOk = false;
     DateRange2 rdata = DateRange2();
     if (rdata.parseSpec(m_range_edit->GetValue())) {
-        if (!rdata.checking_end().IsValid() || rdata.checking_start() <= rdata.checking_end()) {
-          m_status->SetLabelText(_t("Range is ok:") + wxString::Format(" >%s - %s<", rdata.checking_start_str(), rdata.checking_end_str()));
+        if (!rdata.checkingEnd().isDefined() || rdata.checkingStart().getDateTime() <= rdata.checkingEnd().getDateTime()) {
+          m_status->SetLabelText(_t("Range is ok:") + wxString::Format(" >%s - %s<", rdata.checkingISOStart(), rdata.checkingISOEnd()));
           m_status->SetBackgroundColour(m_defBColor);
           rangeOk = true;
         }

@@ -22,9 +22,75 @@
 #include <unordered_map>
 #include "primitive.h"
 
-// DateRange2 implements only date calculations, without time.
-// We use wxDateTime because wxWidgets does not have a type for date without time.
-// The time is set to noon (12:00), in order to avoid accidental rounding errors.
+// DateDay represents a date without time information.
+// wxWidgets does not have a dedicated type for this purpose.
+// The underlying data structure is wxDateTime, with the time part set
+// to noon (12:00), in order to avoid rounding errors around midnight.
+//
+// getISO{Start,End} are helper functions for date comparisons, e.g.,
+//   start_date.getISOStart() <= date_str <= end_date.getISOEnd()
+// checks if date_str (a date or date+time string in ISO format) is in the
+// range (start_date..end_date), where the boundary {start,end}_date is
+// inclusive if it is defined and open if it is undefined.
+
+struct DateDay
+{
+protected:
+    wxDateTime dateTime;
+
+public:
+    DateDay();
+    DateDay(wxDateTime dateTime_new);
+
+public:
+    bool isDefined() const;
+    wxDateTime getDateTime(wxDateTime defaultDateTime = wxDateTime()) const;
+    const wxString getISO(const wxString defaultISO = "") const;
+    const wxString getISOStart() const;
+    const wxString getISOEnd() const;
+    void add(wxDateSpan span);
+};
+
+inline bool DateDay::isDefined() const
+{
+    return dateTime.IsValid();
+}
+
+inline wxDateTime DateDay::getDateTime(wxDateTime defaultDateTime) const
+{
+    return dateTime.IsValid() ? dateTime : defaultDateTime;
+}
+
+inline const wxString DateDay::getISO(const wxString defaultISO) const
+{
+    return dateTime.IsValid() ? dateTime.FormatISODate() : defaultISO;
+}
+
+inline const wxString DateDay::getISOStart() const
+{
+    wxString dateISO = getISO();
+    return dateISO.append("");
+}
+
+inline const wxString DateDay::getISOEnd() const
+{
+    // note: the ASCII code of "~" is larger than any character in ISO format
+    wxString dateISO = getISO();
+    return dateISO.append("~");
+}
+
+inline void DateDay::add(wxDateSpan span)
+{
+    if (isDefined())
+        dateTime += span;
+}
+
+// DateRange2 represents a date range relative to today.
+// The range specification consists of two subranges, a selector between
+// calendar or financial year/quarter/month, and a descriptive name.
+// Each subrange consists of a start offset/period and an end offset/period.
+// To avoid instability, the date of today as well as a few user preferences,
+// are cached at construction time.
 
 class DateRange2
 {
@@ -64,7 +130,7 @@ public:
         PERIOD_ID sp2 = PERIOD_ID_none; // start period of second subrange
         PERIOD_ID ep2 = PERIOD_ID_none; // end   period of second subrange
         int f = 0;                      // index in first*[] (0=calendar, 1=financial)
-        wxString name = "";             // specificaiton name
+        wxString name = "";             // specification name
 
     public:
         Spec(
@@ -84,53 +150,53 @@ public:
         const wxString getLabel() const;
         const wxString getName() const;
         const wxString getLabelName() const;
-        const wxString checking_name() const;
-        const wxString checking_description() const;
+        const wxString checkingName() const;
+        const wxString checkingDescription() const;
 
     private:
         static void scanWhiteSpace(StringIt &str_i, StringIt str_end);
         static char scanToken(StringIt &str_i, StringIt str_end, int &token_o, PERIOD_ID &token_p);
-        static const wxString offset_str(int offset, bool show_zero = false);
-        static const wxString offset_range_str(int so, int eo, bool show_zero = false);
+        static const wxString offsetStr(int offset, bool show_zero = false);
+        static const wxString offsetRangeStr(int so, int eo, bool show_zero = false);
     };
 
 public:
-    DateRange2(wxDateTime date_s = wxInvalidDateTime, wxDateTime date_t = wxInvalidDateTime);
+    DateRange2(DateDay date_s_new = DateDay(), DateDay date_t_new = DateDay());
 
 protected:
     int firstDay[2];                  // first day in PERIOD_ID_[YQM] (1..28)
     wxDateTime::Month firstMonth[2];  // first month in PERIOD_ID_[YQ] (0..11)
     wxDateTime::WeekDay firstWeekday; // first weekday in PERIOD_ID_W (0=Sun, 1=Mon)
-    wxDateTime date_t;                // the date of PERIOD_ID_T
-    wxDateTime date_s;                // the date of PERIOD_ID_S
+    DateDay date_s;                   // the date of PERIOD_ID_S
+    DateDay date_t;                   // the date of PERIOD_ID_T
     Spec spec;                        // range specification
 
 public:
-    void setDateT(wxDateTime date = wxInvalidDateTime);
-    void setDateS(wxDateTime date = wxInvalidDateTime);
-    wxDateTime getDateT() const;
-    wxDateTime getDateS() const;
+    void setDateS(DateDay date = DateDay());
+    void setDateT(DateDay date = DateDay());
+    DateDay getDateS() const;
+    DateDay getDateT() const;
     void setSpec(const Spec &spec_new);
     bool parseSpec(const wxString &str, const wxString &name = "");
     Spec getSpec() const;
     const wxString getLabel() const;
     const wxString getName() const;
     const wxString getLabelName() const;
-    wxDateTime period_start(wxDateTime date, PERIOD_ID period) const;
-    wxDateTime period_end(wxDateTime date, PERIOD_ID period) const;
-    wxDateTime checking_start() const;
-    wxDateTime checking_end() const;
-    wxDateTime reporting_start() const;
-    wxDateTime reporting_end() const;
-    const wxString checking_start_str() const;
-    const wxString checking_end_str() const;
-    const wxString reporting_start_str() const;
-    const wxString reporting_end_str() const;
-    const wxString checking_tooltip() const;
-    const wxString reporting_tooltip() const;
+    DateDay periodStart(DateDay date, PERIOD_ID period) const;
+    DateDay periodEnd(DateDay date, PERIOD_ID period) const;
+    DateDay checkingStart() const;
+    DateDay checkingEnd() const;
+    DateDay reportingStart() const;
+    DateDay reportingEnd() const;
+    const wxString checkingISOStart() const;
+    const wxString checkingISOEnd() const;
+    const wxString reportingISOStart() const;
+    const wxString reportingISOEnd() const;
+    const wxString checkingTooltip() const;
+    const wxString reportingTooltip() const;
 
 private:
-    static wxDateTime addOffset(wxDateTime date, int offset, PERIOD_ID period);
+    static void addOffset(DateDay &date, int offset, PERIOD_ID period);
 
 #ifndef NDEBUG
 private:
@@ -138,7 +204,7 @@ private:
         int firstDay_new_0, int firstDay_new_1,
         wxDateTime::Month firstMonth_new_0, wxDateTime::Month firstMonth_new_1,
         wxDateTime::WeekDay firstWeekday_new,
-        wxDateTime date_t_new = wxInvalidDateTime, wxDateTime date_s_new = wxInvalidDateTime
+        DateDay date_t_new = DateDay(), DateDay date_s_new = DateDay()
     );
 public:
     static bool debug();
@@ -157,7 +223,7 @@ inline bool DateRange2::Spec::hasPeriodS() const
         sp2 == PERIOD_ID_S || ep2 == PERIOD_ID_S;
 }
 
-inline const wxString DateRange2::Spec::offset_str(int offset, bool show_zero)
+inline const wxString DateRange2::Spec::offsetStr(int offset, bool show_zero)
 {
     return (offset != 0) ? wxString::Format("%+d", offset) : show_zero ? "0" : "";
 }
@@ -167,36 +233,28 @@ inline const wxString DateRange2::Spec::getName() const
     return name;
 }
 
-inline void DateRange2::setDateT(wxDateTime date)
+inline void DateRange2::setDateT(DateDay date)
 {
-    // wxInvalidDateTime means today
-    if (date == wxInvalidDateTime) {
-        // get the date of today, with time set to noon (12:00)
-        date = wxDateTime(12, 0, 0, 0);
-    }
+    if (date.isDefined())
+        date_t = date;
     else {
-        // set time to noon (12:00)
-        date.SetHour(12).SetMinute(0).SetSecond(0).SetMillisecond(0);
+        // the date of today, with time set to noon (12:00)
+        wxDateTime today = wxDateTime(12, 0, 0, 0);
+        date_t = DateDay(today);
     }
-    date_t = date;
 }
 
-inline void DateRange2::setDateS(wxDateTime date)
+inline void DateRange2::setDateS(DateDay date)
 {
-    // wxInvalidDateTime means not applicable
-    if (date != wxInvalidDateTime) {
-        // set time to noon (12:00)
-        date.SetHour(12).SetMinute(0).SetSecond(0).SetMillisecond(0);
-    }
     date_s = date;
 }
 
-inline wxDateTime DateRange2::getDateT() const
+inline DateDay DateRange2::getDateT() const
 {
     return date_t;
 }
 
-inline wxDateTime DateRange2::getDateS() const
+inline DateDay DateRange2::getDateS() const
 {
     return date_s;
 }
@@ -226,23 +284,23 @@ inline const wxString DateRange2::getLabelName() const
     return spec.getLabelName();
 }
 
-inline const wxString DateRange2::checking_start_str() const
+inline const wxString DateRange2::checkingISOStart() const
 {
-    return dateISOStart(checking_start());
+    return checkingStart().getISOStart();
 }
 
-inline const wxString DateRange2::checking_end_str() const
+inline const wxString DateRange2::checkingISOEnd() const
 {
-    return dateISOEnd(checking_end());
+    return checkingEnd().getISOEnd();
 }
 
-inline const wxString DateRange2::reporting_start_str() const
+inline const wxString DateRange2::reportingISOStart() const
 {
-    return dateISOStart(reporting_start());
+    return reportingStart().getISOStart();
 }
 
-inline const wxString DateRange2::reporting_end_str() const
+inline const wxString DateRange2::reportingISOEnd() const
 {
-    return dateISOEnd(reporting_end());
+   return reportingEnd().getISOEnd();
 }
 
