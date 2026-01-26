@@ -100,7 +100,7 @@ void mmDateRangeDialog::CreateControls()
     mainPanelSizer->Add(itemBoxVright, wxSizerFlags().Left().Border(wxALL, 5));
     itemBoxVright->AddSpacer(20);
 
-    m_up_top = new wxButton(this, BTN_UP_TOP, _t("Top"));
+    m_up_top = new wxButton(this, BTN_UP_TOP, _t("&Top"));
     m_up_top->SetBitmap(mmBitmapBundle(png::UPARROW, mmBitmapButtonSize));
     m_up_top->Enable(false);
     itemBoxVright->Add(m_up_top, g_flagsV);
@@ -109,7 +109,7 @@ void mmDateRangeDialog::CreateControls()
     m_up->Enable(false);
     itemBoxVright->Add(m_up, g_flagsV);
 
-    m_edit = new wxButton(this, BTN_EDIT, _t("Edit"));
+    m_edit = new wxButton(this, BTN_EDIT, _t("&Edit"));
     m_edit->Enable(false);
     itemBoxVright->Add(m_edit, g_flagsV);
 
@@ -117,24 +117,24 @@ void mmDateRangeDialog::CreateControls()
     m_down->Enable(false);
     itemBoxVright->Add(m_down, g_flagsV);
 
-    m_down_bottom = new wxButton(this, BTN_DOWN_BOTTOM, _t("Bottom"));
+    m_down_bottom = new wxButton(this, BTN_DOWN_BOTTOM, _t("&Bottom"));
     m_down_bottom->SetBitmap(mmBitmapBundle(png::DOWNARROW, mmBitmapButtonSize));
     m_down_bottom->Enable(false);
     itemBoxVright->Add(m_down_bottom, g_flagsV);
 
     itemBoxVright->AddSpacer(15);
-    itemBoxVright->Add(new wxButton(this, BTN_NEW, _t("New")), g_flagsV);
+    itemBoxVright->Add(new wxButton(this, BTN_NEW, _t("&New")), g_flagsV);
 
     itemBoxVright->AddSpacer(15);
-    m_delete = new wxButton(this, BTN_DELETE, _t("Delete"));
+    m_delete = new wxButton(this, BTN_DELETE, _t("&Delete"));
     itemBoxVright->Add(m_delete, g_flagsV);
 
     wxBoxSizer* btnSizer = new wxBoxSizer(wxHORIZONTAL);
     mainBoxSizer->Add(btnSizer, g_flagsCenter);
 
-    btnSizer->Add(new wxButton(this, wxID_OK, _t("Save")), 0, wxALL, 5);
-    btnSizer->Add(new wxButton(this, BTN_DEFAULT, _t("Restore default ranges")), 0, wxALL, 5);
-    btnSizer->Add(new wxButton(this, wxID_CANCEL, _t("Cancel")), 0, wxALL, 5);
+    btnSizer->Add(new wxButton(this, wxID_OK, _t("&Save")), 0, wxALL, 5);
+    btnSizer->Add(new wxButton(this, BTN_DEFAULT, _t("&Restore default ranges")), 0, wxALL, 5);
+    btnSizer->Add(new wxButton(this, wxID_CANCEL, _t("&Cancel")), 0, wxALL, 5);
 
     this->Layout();
 }

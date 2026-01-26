@@ -68,13 +68,13 @@ void mmToolbarDialog::closeAction() {
 
 void mmToolbarDialog::createBottomElements(wxBoxSizer* itemBox) {
     itemBox->AddSpacer(50);
-    itemBox->Add(new wxButton(this, BTN_NEW_SEPARATOR, _t("Add separator")), g_flagsV);
+    itemBox->Add(new wxButton(this, BTN_NEW_SEPARATOR, _t("Insert &separator")), g_flagsV);
     Bind(wxEVT_BUTTON, &mmToolbarDialog::OnNew, this, BTN_NEW_SEPARATOR);
 
-    itemBox->Add(new wxButton(this, BTN_NEW_SPACE, _t("Add space")), g_flagsV);
+    itemBox->Add(new wxButton(this, BTN_NEW_SPACE, _t("Insert s&pace")), g_flagsV);
     Bind(wxEVT_BUTTON, &mmToolbarDialog::OnNew, this, BTN_NEW_SPACE);
 
-    itemBox->Add(new wxButton(this, BTN_NEW_STRETCHER, _t("Add stretch space")), g_flagsV);
+    itemBox->Add(new wxButton(this, BTN_NEW_STRETCHER, _t("Insert s&tretch space")), g_flagsV);
     Bind(wxEVT_BUTTON, &mmToolbarDialog::OnNew, this, BTN_NEW_STRETCHER);
 
     itemBox->AddSpacer(10);
