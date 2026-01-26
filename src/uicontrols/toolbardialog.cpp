@@ -97,7 +97,6 @@ void mmToolbarDialog::createBottomElements(wxBoxSizer* itemBox)
 
     itemBox->Add(stretchBtn, g_flagsV);
     Bind(wxEVT_BUTTON, &mmToolbarDialog::OnNew, this, BTN_NEW_STRETCHER);
-}
 
 
     itemBox->AddSpacer(10);
