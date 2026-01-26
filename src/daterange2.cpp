@@ -25,9 +25,9 @@ DateDay::DateDay() :
 {
 }
 
-DateDay::DateDay(wxDateTime dateTime_new)
+DateDay::DateDay(wxDateTime dateTime_new) :
+    dateTime{dateTime_new}
 {
-    dateTime = dateTime_new;
     if (dateTime.IsValid()) {
         // set time to noon (12:00)
         dateTime.SetHour(12).SetMinute(0).SetSecond(0).SetMillisecond(0);
