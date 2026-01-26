@@ -124,8 +124,8 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     CSVFieldName_[UNIV_CSV_CURRENT_PRICE].first         = _n("Current Price");
     CSVFieldName_[UNIV_CSV_AVG_SHARE_PRICE].first       = _n("Avg Share Price");
     CSVFieldName_[UNIV_CSV_TOTAL_COST].first            = _n("Total Cost");
-    CSVFieldName_[UNIV_CSV_REAL_GAIN].first             = _n("Don't Care");
-    CSVFieldName_[UNIV_CSV_UNREAL_GAIN].first           = _n("Withdrawal");
+    CSVFieldName_[UNIV_CSV_REAL_GAIN].first             = _n("Realized Gain/Loss");
+    CSVFieldName_[UNIV_CSV_UNREAL_GAIN].first           = _n("Unrealized Gain/Loss");
     CSVFieldName_[UNIV_CSV_CURRENT_TOTAL_VALUE].first   = _n("Current Total Value");
     CSVFieldName_[UNIV_CSV_COMMISSION].first            = _n("Commission");
 
