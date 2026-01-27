@@ -354,9 +354,9 @@ void mmCheckingPanel::createControls()
     sizerHButtons->Add(searchCtrl, g_flagsExpandBorder1);
     mmToolTip(searchCtrl,
         _t("Enter any string to find it in the nearest transaction data") + "\n\n" +
-        _tu("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
-        _tu("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
-        _tu("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
+        _tu("Tips: Wildcard characters such as the question mark (?) and the asterisk (*) can be used in search criteria.") + "\n" +
+        _tu("The question mark (?) is used to match a single character, for example \"s?t\" finds both \"sat\" and \"set\".") + "\n" +
+        _tu("The asterisk (*) is used to match any number of characters, for example \"s*d\" finds both \"sad\" and \"started\".") + "\n" +
         _tu("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.") + "\n" +
         _t("Use regex: to match using regular expressions.")
     );
