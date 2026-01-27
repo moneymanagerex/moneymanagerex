@@ -35,28 +35,6 @@
 
 struct DateDay
 {
-public:
-    enum PERIOD_ID
-    {
-        PERIOD_ID_A = 0, // all
-        PERIOD_ID_Y,     // year = 4 quarters = 12 months
-        PERIOD_ID_Q,     // quarter = 3 months
-        PERIOD_ID_M,     // month
-        PERIOD_ID_W,     // week = 7 days
-        PERIOD_ID_T,     // today
-        PERIOD_ID_S,     // statement date
-        PERIOD_ID_size,
-        PERIOD_ID_none = PERIOD_ID_size
-    };
-
-    typedef struct { PERIOD_ID id; wxString label; } PERIOD_INFO_t;
-    typedef std::unordered_map<char, PERIOD_ID> PERIOD_LABEL_ID_t;
-    static const PERIOD_INFO_t PERIOD_INFO[];
-    static const PERIOD_LABEL_ID_t PERIOD_LABEL_ID;
-
-private:
-    static PERIOD_LABEL_ID_t make_period_label_id();
-
 protected:
     wxDateTime dateTime;
 
@@ -74,7 +52,6 @@ public:
     const wxString getISOStart() const;
     const wxString getISOEnd() const;
     void addSpan(wxDateSpan span);
-    void addOffset(int offset, DateDay::PERIOD_ID period);
 };
 
 inline DateDay DateDay::today()
@@ -129,28 +106,51 @@ inline void DateDay::addSpan(wxDateSpan span)
 class DateRange2
 {
 public:
+    enum PERIOD_ID
+    {
+        PERIOD_ID_A = 0, // all
+        PERIOD_ID_Y,     // year = 4 quarters = 12 months
+        PERIOD_ID_Q,     // quarter = 3 months
+        PERIOD_ID_M,     // month
+        PERIOD_ID_W,     // week = 7 days
+        PERIOD_ID_T,     // today
+        PERIOD_ID_S,     // statement date
+        PERIOD_ID_size,
+        PERIOD_ID_none = PERIOD_ID_size
+    };
+
+    typedef struct { PERIOD_ID id; wxString label; } PERIOD_INFO_t;
+    typedef std::unordered_map<char, PERIOD_ID> PERIOD_LABEL_ID_t;
+    static const PERIOD_INFO_t PERIOD_INFO[];
+    static const PERIOD_LABEL_ID_t PERIOD_LABEL_ID;
+    static wxDateSpan span(int offset, PERIOD_ID period);
+
+private:
+    static PERIOD_LABEL_ID_t make_period_label_id();
+
+public:
     class Spec
     {
         friend class DateRange2;
 
     protected:
-        int so1 = 0;                                      // start offset of first subrange
-        int eo1 = 0;                                      // end   offset of first subrange
-        DateDay::PERIOD_ID sp1 = DateDay::PERIOD_ID_A;    // start period of first subrange
-        DateDay::PERIOD_ID ep1 = DateDay::PERIOD_ID_A;    // end   period of first subrange
-        int so2 = 0;                                      // start offset of second subrange
-        int eo2 = 0;                                      // end   offset of second subrange
-        DateDay::PERIOD_ID sp2 = DateDay::PERIOD_ID_none; // start period of second subrange
-        DateDay::PERIOD_ID ep2 = DateDay::PERIOD_ID_none; // end   period of second subrange
-        int f = 0;                                        // index (0=calendar, 1=financial)
-        wxString name = "";                               // specification name
+        int so1 = 0;                    // start offset of first subrange
+        int eo1 = 0;                    // end   offset of first subrange
+        PERIOD_ID sp1 = PERIOD_ID_A;    // start period of first subrange
+        PERIOD_ID ep1 = PERIOD_ID_A;    // end   period of first subrange
+        int so2 = 0;                    // start offset of second subrange
+        int eo2 = 0;                    // end   offset of second subrange
+        PERIOD_ID sp2 = PERIOD_ID_none; // start period of second subrange
+        PERIOD_ID ep2 = PERIOD_ID_none; // end   period of second subrange
+        int f = 0;                      // index in first*[] (0=calendar, 1=financial)
+        wxString name = "";             // specification name
 
     public:
         Spec(
-            int so1_new = 0, DateDay::PERIOD_ID sp1_new = DateDay::PERIOD_ID_A,
-            int eo1_new = 0, DateDay::PERIOD_ID ep1_new = DateDay::PERIOD_ID_A,
-            int so2_new = 0, DateDay::PERIOD_ID sp2_new = DateDay::PERIOD_ID_none,
-            int eo2_new = 0, DateDay::PERIOD_ID ep2_new = DateDay::PERIOD_ID_none,
+            int so1_new = 0, PERIOD_ID sp1_new = PERIOD_ID_A,
+            int eo1_new = 0, PERIOD_ID ep1_new = PERIOD_ID_A,
+            int so2_new = 0, PERIOD_ID sp2_new = PERIOD_ID_none,
+            int eo2_new = 0, PERIOD_ID ep2_new = PERIOD_ID_none,
             int f_new = 0, wxString name_new = ""
         );
 
@@ -168,7 +168,7 @@ public:
 
     private:
         static void scanWhiteSpace(StringIt &str_i, StringIt str_end);
-        static char scanToken(StringIt &str_i, StringIt str_end, int &token_o, DateDay::PERIOD_ID &token_p);
+        static char scanToken(StringIt &str_i, StringIt str_end, int &token_o, PERIOD_ID &token_p);
         static const wxString offsetStr(int offset, bool show_zero = false);
         static const wxString offsetRangeStr(int so, int eo, bool show_zero = false);
     };
@@ -195,8 +195,8 @@ public:
     const wxString getLabel() const;
     const wxString getName() const;
     const wxString getLabelName() const;
-    DateDay periodStart(DateDay date, DateDay::PERIOD_ID period) const;
-    DateDay periodEnd(DateDay date, DateDay::PERIOD_ID period) const;
+    DateDay periodStart(DateDay date, PERIOD_ID period) const;
+    DateDay periodEnd(DateDay date, PERIOD_ID period) const;
     DateDay checkingStart() const;
     DateDay checkingEnd() const;
     DateDay reportingStart() const;
@@ -229,8 +229,8 @@ inline void DateRange2::Spec::setName(const wxString &name_new)
 inline bool DateRange2::Spec::hasPeriodS() const
 {
     return
-        sp1 == DateDay::PERIOD_ID_S || ep1 == DateDay::PERIOD_ID_S ||
-        sp2 == DateDay::PERIOD_ID_S || ep2 == DateDay::PERIOD_ID_S;
+        sp1 == PERIOD_ID_S || ep1 == PERIOD_ID_S ||
+        sp2 == PERIOD_ID_S || ep2 == PERIOD_ID_S;
 }
 
 inline const wxString DateRange2::Spec::offsetStr(int offset, bool show_zero)
