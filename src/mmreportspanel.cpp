@@ -102,9 +102,10 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     if (rb_->report_parameters() & rb_->RepParams::DATE_RANGE) {
         loadFilterSettings();
         updateFilter();
+        // FIXME: getDate[ST] are not the start and end date
         if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_PICKER) {
-            m_start_date->SetValue(m_current_date_range.getDateS());
-            m_end_date->SetValue(m_current_date_range.getDateT());
+            m_start_date->SetValue(m_current_date_range.getDateS().getDateTime());
+            m_end_date->SetValue(m_current_date_range.getDateT().getDateTime());
             m_bitmapDataPeriodFilterBtn->SetLabel(_t("Date range"));
         }
     }
@@ -240,10 +241,20 @@ void mmReportsPanel::loadFilterSettings() {
         wxDateTime newdate;
         wxString::const_iterator end;
         if (JSON_GetStringValue(j_doc, "FILTER_DATE_BEGIN", p_filter)) {
-            m_current_date_range.setDateS(newdate.ParseFormat(p_filter, "%Y-%m-%d", &end) ? newdate : wxInvalidDateTime);
+            // FIXME: setDateS is the account statement date, not the start date
+            m_current_date_range.setDateS(
+                newdate.ParseFormat(p_filter, "%Y-%m-%d", &end)
+                ? DateDay(newdate)
+                : DateDay()
+            );
         }
         if (JSON_GetStringValue(j_doc, "FILTER_DATE_END", p_filter)) {
-            m_current_date_range.setDateT(newdate.ParseFormat(p_filter, "%Y-%m-%d", &end) ? newdate : wxInvalidDateTime);
+            // FIXME: setDateT is the date of today, should not be changed here
+            m_current_date_range.setDateT(
+                newdate.ParseFormat(p_filter, "%Y-%m-%d", &end)
+                ? DateDay(newdate)
+                : DateDay()
+            );
         }
     }
 }
@@ -838,8 +849,8 @@ void mmReportsPanel::updateFilter()
         m_bitmapDataPeriodFilterBtn->SetLabel(m_current_date_range.getName());
         m_bitmapDataPeriodFilterBtn->SetBitmap(mmBitmapBundle((m_current_date_range.getName() != m_date_range_a[0].getName() ? png::TRANSFILTER_ACTIVE : png::TRANSFILTER), mmBitmapButtonSize));
 
-        m_start_date->SetValue(m_current_date_range.reporting_start().IsValid() ? m_current_date_range.reporting_start() : DATE_MIN);
-        m_end_date->SetValue(m_current_date_range.reporting_end().IsValid() ? m_current_date_range.reporting_end() : DATE_MAX);
+        m_start_date->SetValue(m_current_date_range.reportingStart().getDateTime(DATE_MIN));
+        m_end_date->SetValue(m_current_date_range.reportingEnd().getDateTime(DATE_MAX));
     }
     else if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_PICKER) {
         m_bitmapDataPeriodFilterBtn->SetLabel(_t("Date range"));
