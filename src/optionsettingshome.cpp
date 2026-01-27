@@ -48,7 +48,6 @@ OptionSettingsHome::OptionSettingsHome()
     int sel_id = Option::instance().getHomePageIncExpRange();
     if (sel_id >= static_cast<int>(m_all_date_ranges.size()))
         sel_id = 0;
-    m_inc_vs_exp_date_range = m_all_date_ranges[sel_id];
 
 }
 
@@ -139,5 +138,17 @@ bool OptionSettingsHome::SaveSettings()
 
 const wxSharedPtr<mmDateRange> OptionSettingsHome::get_inc_vs_exp_date_range() const
 {
-    return m_inc_vs_exp_date_range;
+    int sel_id = Option::instance().getHomePageIncExpRange();
+    if (sel_id < 0 || sel_id >= static_cast<int>(m_all_date_ranges.size()))
+        sel_id = 0;
+
+    // Last N Days (index 15)
+    if (sel_id == 15)
+    {
+        int days = Model_Infotable::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14);
+        return wxSharedPtr<mmDateRange>(new mmLastNDays(days));
+    }
+
+    // All other data ranges
+    return m_all_date_ranges[sel_id];
 }
