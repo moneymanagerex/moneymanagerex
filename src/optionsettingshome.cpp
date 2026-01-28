@@ -142,13 +142,15 @@ const wxSharedPtr<mmDateRange> OptionSettingsHome::get_inc_vs_exp_date_range() c
     if (sel_id < 0 || sel_id >= static_cast<int>(m_all_date_ranges.size()))
         sel_id = 0;
 
-    // Last N Days (index 15)
-    if (sel_id == 15)
+    const auto& range = m_all_date_ranges[sel_id];
+
+    // Detect "Last N Days" by type, not by index
+    if (dynamic_cast<mmLastNDays*>(range.get()))
     {
         int days = Model_Infotable::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14);
         return wxSharedPtr<mmDateRange>(new mmLastNDays(days));
     }
 
-    // All other data ranges
-    return m_all_date_ranges[sel_id];
+    return range;
 }
+
