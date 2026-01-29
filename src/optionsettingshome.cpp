@@ -43,12 +43,11 @@ OptionSettingsHome::OptionSettingsHome()
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastFinancialYear()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmAllTime()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast365Days()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastNDays(Model_Infotable::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14))));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastNDays(0)));
 
     int sel_id = Option::instance().getHomePageIncExpRange();
     if (sel_id >= static_cast<int>(m_all_date_ranges.size()))
         sel_id = 0;
-    m_inc_vs_exp_date_range = m_all_date_ranges[sel_id];
 
 }
 
@@ -139,5 +138,19 @@ bool OptionSettingsHome::SaveSettings()
 
 const wxSharedPtr<mmDateRange> OptionSettingsHome::get_inc_vs_exp_date_range() const
 {
-    return m_inc_vs_exp_date_range;
+    int sel_id = Option::instance().getHomePageIncExpRange();
+    if (sel_id < 0 || sel_id >= static_cast<int>(m_all_date_ranges.size()))
+        sel_id = 0;
+
+    const auto& range = m_all_date_ranges[sel_id];
+
+    // Detect "Last N Days" by type, not by index
+    if (dynamic_cast<mmLastNDays*>(range.get()))
+    {
+        int days = Model_Infotable::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14);
+        return wxSharedPtr<mmDateRange>(new mmLastNDays(days));
+    }
+
+    return range;
 }
+
