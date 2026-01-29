@@ -43,7 +43,7 @@ OptionSettingsHome::OptionSettingsHome()
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastFinancialYear()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmAllTime()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast365Days()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastNDays(Model_Infotable::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14))));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastNDays(0)));
 
     int sel_id = Option::instance().getHomePageIncExpRange();
     if (sel_id >= static_cast<int>(m_all_date_ranges.size()))
