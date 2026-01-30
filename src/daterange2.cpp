@@ -105,7 +105,7 @@ void DateRange2::Range::scanWhiteSpace(StringIt &buffer_i, StringIt buffer_end)
 {
     const wxString ws = " \t\r\n"; 
     while (buffer_i != buffer_end && ws.Find(*buffer_i) != wxNOT_FOUND)
-        buffer_i++;
+        ++buffer_i;
 }
 
 // the returned token is one of:
@@ -160,7 +160,7 @@ char DateRange2::Range::scanToken(
     }
     if (isdigit(c)) {
         StringIt str_start = buffer_i;
-        do { buffer_i++; } while (
+        do { ++buffer_i; } while (
             buffer_i != buffer_end && (*buffer_i).IsAscii() && (*buffer_i).GetAsChar(&c)
             && isdigit(c)
         );
