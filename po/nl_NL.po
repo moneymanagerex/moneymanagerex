@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-21 16:55+0000\n"
-"PO-Revision-Date: 2026-01-23 01:08\n"
+"POT-Creation-Date: 2026-01-26 19:10+0000\n"
+"PO-Revision-Date: 2026-01-30 01:16\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -1315,8 +1315,8 @@ msgstr "Alle %s maanden"
 
 #: billsdepositspanel.cpp:111 filtertransdialog.cpp:674
 #: filtertransdialog.cpp:1615 filtertransdialog.cpp:1715
-#: import_export/univcsvdialog.cpp:117 import_export/univcsvdialog.cpp:128
-#: mmchecking_list.cpp:107 model/Model_Checking.cpp:33 reports/forecast.cpp:81
+#: import_export/univcsvdialog.cpp:117 mmchecking_list.cpp:107
+#: model/Model_Checking.cpp:33 reports/forecast.cpp:81
 msgid "Withdrawal"
 msgstr "Uitgave"
 
@@ -3191,12 +3191,13 @@ msgstr "Kopieer als SQL SELECT"
 
 #: generic/generictreelistdialog.cpp:110 generic/generictreelistdialog.cpp:289
 msgid "Restore default"
-msgstr ""
+msgstr "Standaardinstellingen herstellen"
 
 #: generic/generictreelistdialog.cpp:288
 msgid "Do you really want to restore the default values?\n\n"
 "All customization will be lost!"
-msgstr ""
+msgstr "Weet u zeker dat u de standaard waarden wilt herstellen?\n\n"
+"Alle aanpassingen zullen verloren gaan!"
 
 #: images_list.cpp:344
 #, c-format
@@ -3927,7 +3928,7 @@ msgstr "Begunstigde toegevoegd: %s"
 msgid "SubCategory"
 msgstr "Subcategorie"
 
-#: import_export/univcsvdialog.cpp:116 import_export/univcsvdialog.cpp:127
+#: import_export/univcsvdialog.cpp:116
 msgid "Don't Care"
 msgstr "Maakt niet uit"
 
@@ -3965,9 +3966,19 @@ msgstr "Gem. Aandelenkoers"
 msgid "Total Cost"
 msgstr "Totale kosten"
 
+#: import_export/univcsvdialog.cpp:127 reports/summarystocks.cpp:120
+#: stocks_list.cpp:74
+msgid "Realized Gain/Loss"
+msgstr "Gerealiseerde Winst/Verlies"
+
+#: import_export/univcsvdialog.cpp:128 reports/summarystocks.cpp:121
+#: stocks_list.cpp:75
+msgid "Unrealized Gain/Loss"
+msgstr "Ongerealiseerde Winst/Verlies"
+
 #: import_export/univcsvdialog.cpp:129
 msgid "Current Total Value"
-msgstr ""
+msgstr "Huidige Totale waarde"
 
 #: import_export/univcsvdialog.cpp:130 reports/summarystocks.cpp:119
 #: stocks_list.cpp:79 stockspanel.cpp:270
@@ -4023,27 +4034,27 @@ msgstr "CSV scheidingsteken:"
 
 #: import_export/univcsvdialog.cpp:411
 msgid "Only Export Stocks"
-msgstr ""
+msgstr "Alleen Aandelen exporteren"
 
 #: import_export/univcsvdialog.cpp:417
 msgid "Only Export Transactions Between 2 Dates"
-msgstr ""
+msgstr "Exporteer alleen transacties tussen 2 datums"
 
 #: import_export/univcsvdialog.cpp:426
 msgid "Start Date:"
-msgstr ""
+msgstr "Begindatum:"
 
 #: import_export/univcsvdialog.cpp:432
 msgid "Specify which date the report must start at"
-msgstr ""
+msgstr "Geef aan op welke datum het rapport moet beginnen op"
 
 #: import_export/univcsvdialog.cpp:440
 msgid "End Date:"
-msgstr ""
+msgstr "Einddatum:"
 
 #: import_export/univcsvdialog.cpp:446
 msgid "Specify which date the report must end at"
-msgstr ""
+msgstr "Specificeer op welke datum het rapport moet eindigen"
 
 #: import_export/univcsvdialog.cpp:492
 msgid "Export column titles"
@@ -4274,7 +4285,7 @@ msgstr "Ongeldige rekening"
 #: import_export/univcsvdialog.cpp:1915
 #, c-format
 msgid "Transactions/Stocks exported: %ld"
-msgstr ""
+msgstr "Transacties/aandelen geëxporteerd: %ld"
 
 #: import_export/univcsvdialog.cpp:2471
 #, c-format
@@ -5396,7 +5407,7 @@ msgstr "&Alles inklappen"
 
 #: mmframe.cpp:1728
 msgid "&Navigator configuration…"
-msgstr ""
+msgstr "&Navigator configuratie…"
 
 #: mmframe.cpp:1729 mmframe.cpp:2058
 msgid "T&heme Manager…"
@@ -7330,11 +7341,11 @@ msgstr "Categorie scheidingsteken"
 
 #: optionsettingsview.cpp:106
 msgid "Navigator and account types"
-msgstr ""
+msgstr "Navigatie en rekening types"
 
 #: optionsettingsview.cpp:110
 msgid "Show cash ledger for portfolios"
-msgstr ""
+msgstr "Toon het kasboek voor portefeuilles"
 
 #: optionsettingsview.cpp:118
 msgid "Do not use color for future transactions"
@@ -8171,14 +8182,6 @@ msgstr "Aankoopdatum"
 msgid "Quantity"
 msgstr "Hoeveelheid"
 
-#: reports/summarystocks.cpp:120 stocks_list.cpp:74
-msgid "Realized Gain/Loss"
-msgstr "Gerealiseerde Winst/Verlies"
-
-#: reports/summarystocks.cpp:121 stocks_list.cpp:75
-msgid "Unrealized Gain/Loss"
-msgstr "Ongerealiseerde Winst/Verlies"
-
 #: reports/summarystocks.cpp:245
 msgid "Stocks Performance Charts"
 msgstr "Prestatiegrafieken voor aandelen"
@@ -8703,7 +8706,7 @@ msgstr "Als u het label verwijdert, worden ook automatisch de bijbehorende verwi
 msgid "Confirm Tag Deletion"
 msgstr "Bevestig verwijderen label"
 
-#: themes.cpp:192 uicontrols/toolbardialog.cpp:81
+#: themes.cpp:192 uicontrols/toolbardialog.cpp:103
 msgid "&Delete"
 msgstr "&Verwijderen"
 
@@ -8846,31 +8849,31 @@ msgstr "Dialoogvenster Transacties"
 
 #: uicontrols/navigatordialog.cpp:46
 msgid "Navigator and account type configuration"
-msgstr ""
+msgstr "Navigatie en rekening type configuratie"
 
 #: uicontrols/navigatordialog.cpp:55 uicontrols/navigatoreditdialog.cpp:92
 msgid "Selection name"
-msgstr ""
+msgstr "Selectie naam"
 
 #: uicontrols/navigatordialog.cpp:93 uicontrols/navigatordialog.cpp:194
 msgid "Reset names"
-msgstr ""
+msgstr "Reset namen"
 
 #: uicontrols/navigatordialog.cpp:97
 msgid "Reset the standard names to default values"
-msgstr ""
+msgstr "Reset de standaardnamen naar de standaardwaarden"
 
 #: uicontrols/navigatordialog.cpp:193
 msgid "Do you really want to reset the configured names?"
-msgstr ""
+msgstr "Weet u zeker dat u de geconfigureerde namen wilt resetten?"
 
 #: uicontrols/navigatoreditdialog.cpp:34
 msgid "Edit navigator entry"
-msgstr ""
+msgstr "Navigator item bewerken"
 
 #: uicontrols/navigatoreditdialog.cpp:34
 msgid "New account type"
-msgstr ""
+msgstr "Nieuw rekeningtype"
 
 #: uicontrols/reconciledialog.cpp:57
 msgid "Reconcile account"
@@ -8922,7 +8925,7 @@ msgstr "&Afstemmen"
 
 #: uicontrols/reconciledialog.cpp:520
 msgid "Show status column"
-msgstr ""
+msgstr "Toon status kolom"
 
 #: uicontrols/reconciledialog.cpp:521
 msgid "Show number column"
@@ -8934,27 +8937,47 @@ msgstr "Inclusief ongeldige transacties"
 
 #: uicontrols/reconciledialog.cpp:524
 msgid "Include duplicate transactions"
-msgstr ""
+msgstr "Inclusief dubbele transacties"
 
 #: uicontrols/toolbardialog.cpp:41
 msgid "Toolbar configuration"
-msgstr ""
+msgstr "Werkbalk configuratie"
 
-#: uicontrols/toolbardialog.cpp:71
+#: uicontrols/toolbardialog.cpp:73
 msgid "Add separator"
-msgstr ""
+msgstr "Scheidingsteken toevoegen"
 
-#: uicontrols/toolbardialog.cpp:74
+#: uicontrols/toolbardialog.cpp:75
+msgid "Insert a vertical separator line.\n"
+"Useful to visually group toolbar buttons."
+msgstr "Voeg een verticale scheidingslijn in.\n"
+"Handig om knoppen op de werkbalk visueel te groeperen."
+
+#: uicontrols/toolbardialog.cpp:82
 msgid "Add space"
-msgstr ""
+msgstr "Spatie toevoegen"
 
-#: uicontrols/toolbardialog.cpp:77
+#: uicontrols/toolbardialog.cpp:84
+msgid "Insert a fixed-size empty space.\n"
+"The space width is equal to one toolbar icon."
+msgstr "Voeg een lege ruimte van vaste grootte in.\n"
+"De breedte van de ruimte is gelijk aan één werkbalkpictogram."
+
+#: uicontrols/toolbardialog.cpp:91
 msgid "Add stretch space"
-msgstr ""
+msgstr "Ruimte toevoegen"
 
-#: uicontrols/toolbardialog.cpp:121
+#: uicontrols/toolbardialog.cpp:93
+msgid "Insert a stretchable space.\n"
+"It takes all remaining toolbar space.\n"
+"If multiple stretch spaces are present, the space is evenly distributed."
+msgstr "Voeg een rekbare spatie in.\n"
+"Deze neemt alle resterende ruimte in de werkbalk in beslag.\n"
+"Als er meerdere rekbare spaties aanwezig zijn, wordt de ruimte gelijkmatig verdeeld."
+
+#: uicontrols/toolbardialog.cpp:143
 msgid "Spacer"
-msgstr ""
+msgstr "Afstandshouder"
 
 #: usertransactionpanel.cpp:111
 msgid "Select Account"

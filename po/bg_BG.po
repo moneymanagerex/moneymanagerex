@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-21 16:55+0000\n"
-"PO-Revision-Date: 2026-01-23 01:08\n"
+"POT-Creation-Date: 2026-01-26 19:10+0000\n"
+"PO-Revision-Date: 2026-01-30 01:16\n"
 "Last-Translator: \n"
 "Language-Team: Bulgarian\n"
 "Language: bg_BG\n"
@@ -1312,8 +1312,8 @@ msgstr "Всеки %s месеца"
 
 #: billsdepositspanel.cpp:111 filtertransdialog.cpp:674
 #: filtertransdialog.cpp:1615 filtertransdialog.cpp:1715
-#: import_export/univcsvdialog.cpp:117 import_export/univcsvdialog.cpp:128
-#: mmchecking_list.cpp:107 model/Model_Checking.cpp:33 reports/forecast.cpp:81
+#: import_export/univcsvdialog.cpp:117 mmchecking_list.cpp:107
+#: model/Model_Checking.cpp:33 reports/forecast.cpp:81
 msgid "Withdrawal"
 msgstr "Изтегляне"
 
@@ -3907,7 +3907,7 @@ msgstr "Добавен получател: %s"
 msgid "SubCategory"
 msgstr "Под-Категория"
 
-#: import_export/univcsvdialog.cpp:116 import_export/univcsvdialog.cpp:127
+#: import_export/univcsvdialog.cpp:116
 msgid "Don't Care"
 msgstr "Няма значение"
 
@@ -3943,6 +3943,16 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:126 reports/summarystocks.cpp:117
 #: stocks_list.cpp:73
 msgid "Total Cost"
+msgstr ""
+
+#: import_export/univcsvdialog.cpp:127 reports/summarystocks.cpp:120
+#: stocks_list.cpp:74
+msgid "Realized Gain/Loss"
+msgstr ""
+
+#: import_export/univcsvdialog.cpp:128 reports/summarystocks.cpp:121
+#: stocks_list.cpp:75
+msgid "Unrealized Gain/Loss"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:129
@@ -8126,14 +8136,6 @@ msgstr ""
 msgid "Quantity"
 msgstr "Количество"
 
-#: reports/summarystocks.cpp:120 stocks_list.cpp:74
-msgid "Realized Gain/Loss"
-msgstr ""
-
-#: reports/summarystocks.cpp:121 stocks_list.cpp:75
-msgid "Unrealized Gain/Loss"
-msgstr ""
-
 #: reports/summarystocks.cpp:245
 msgid "Stocks Performance Charts"
 msgstr ""
@@ -8654,7 +8656,7 @@ msgstr ""
 msgid "Confirm Tag Deletion"
 msgstr ""
 
-#: themes.cpp:192 uicontrols/toolbardialog.cpp:81
+#: themes.cpp:192 uicontrols/toolbardialog.cpp:103
 msgid "&Delete"
 msgstr ""
 
@@ -8891,19 +8893,35 @@ msgstr ""
 msgid "Toolbar configuration"
 msgstr ""
 
-#: uicontrols/toolbardialog.cpp:71
+#: uicontrols/toolbardialog.cpp:73
 msgid "Add separator"
 msgstr ""
 
-#: uicontrols/toolbardialog.cpp:74
+#: uicontrols/toolbardialog.cpp:75
+msgid "Insert a vertical separator line.\n"
+"Useful to visually group toolbar buttons."
+msgstr ""
+
+#: uicontrols/toolbardialog.cpp:82
 msgid "Add space"
 msgstr ""
 
-#: uicontrols/toolbardialog.cpp:77
+#: uicontrols/toolbardialog.cpp:84
+msgid "Insert a fixed-size empty space.\n"
+"The space width is equal to one toolbar icon."
+msgstr ""
+
+#: uicontrols/toolbardialog.cpp:91
 msgid "Add stretch space"
 msgstr ""
 
-#: uicontrols/toolbardialog.cpp:121
+#: uicontrols/toolbardialog.cpp:93
+msgid "Insert a stretchable space.\n"
+"It takes all remaining toolbar space.\n"
+"If multiple stretch spaces are present, the space is evenly distributed."
+msgstr ""
+
+#: uicontrols/toolbardialog.cpp:143
 msgid "Spacer"
 msgstr ""
 
