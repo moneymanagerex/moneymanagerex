@@ -129,21 +129,21 @@ char DateRange2::Range::scanToken(
         return '_';
 
     if (c == ',' || c == ';') {
-        buffer_i++;
+        ++buffer_i;
         return c;
     }
 
     if (c == 'F') {
-        buffer_i++;
+        ++buffer_i;
         return 'f';
     }
 
     if (c == '.') {
-        buffer_i++;
+        ++buffer_i;
         if (buffer_i == buffer_end || !(*buffer_i).IsAscii() || !(*buffer_i).GetAsChar(&c))
             return '_';
         if (c == '.') {
-            buffer_i++;
+            ++buffer_i;
             return '.';
         }
         else {
@@ -154,7 +154,7 @@ char DateRange2::Range::scanToken(
     char c1 = 0;
     if (c == '+' || c == '-') {
         c1 = c;
-        buffer_i++;
+        ++buffer_i;
         if (buffer_i == buffer_end || !(*buffer_i).IsAscii() || !(*buffer_i).GetAsChar(&c))
             return '_';
     }
@@ -175,7 +175,7 @@ char DateRange2::Range::scanToken(
 
     auto label_it = PERIOD_LABEL_ID.find(c);
     if (label_it != PERIOD_LABEL_ID.end()) {
-        buffer_i++;
+        ++buffer_i;
         token_p = label_it->second;
         return 'p';
     }
