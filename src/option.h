@@ -278,7 +278,7 @@ public:
     void setCheckingRange(const wxArrayString &a);
     void parseCheckingRange();
     const wxArrayString getCheckingRange() const noexcept;
-    const std::vector<DateRange2::Spec> getCheckingRangeA() const noexcept;
+    const std::vector<DateRange2::Range> getCheckingRangeA() const noexcept;
     int getCheckingRangeM() const noexcept;
 
     // m_show_navigator_cashLedger
@@ -342,7 +342,7 @@ private:
     wxArrayString m_checking_range;                     // CHECKING_RANGE
 
     // derived
-    std::vector<DateRange2::Spec> m_checking_range_a;   // m_checking_range
+    std::vector<DateRange2::Range> m_checking_range_a;  // m_checking_range
     int m_checking_range_m;                             // m_checking_range
 };
 
@@ -573,7 +573,7 @@ inline const wxArrayString Option::getCheckingRange() const noexcept
     return m_checking_range;
 }
 
-inline const std::vector<DateRange2::Spec> Option::getCheckingRangeA() const noexcept
+inline const std::vector<DateRange2::Range> Option::getCheckingRangeA() const noexcept
 {
     return m_checking_range_a;
 }

@@ -201,15 +201,15 @@ void mmCheckingPanel::createControls()
     m_bitmapTransFilter->SetMinSize(wxSize(200 + Option::instance().getIconSize() * 2, -1));
 
     DateRange2 tmprange = DateRange2();
-    tmprange.setSpec(m_date_range_a[0]);  // set to all
+    tmprange.setRange(m_date_range_a[0]);  // set to all
 
     fromDateCtrl = new wxDatePickerCtrl(this, mmID_DATE_PICK_LOW, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
-    fromDateCtrl->SetValue(tmprange.checkingStart().getDateTime(DATE_MIN));
+    fromDateCtrl->SetValue(tmprange.rangeStart().getDateTime(DATE_MIN));
     fromDateCtrl->SetRange(wxInvalidDateTime, wxDateTime::Now());
     sizerHCtrl->Add(fromDateCtrl, g_flagsH);
 
     toDateCtrl = new wxDatePickerCtrl(this, mmID_DATE_PICK_HIGH, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
-    toDateCtrl->SetValue(tmprange.checkingEnd().getDateTime(wxDateTime::Now()));
+    toDateCtrl->SetValue(tmprange.rangeEnd().getDateTime(wxDateTime::Now()));
     sizerHCtrl->Add(toDateCtrl, g_flagsH);
 
     m_btnTransDetailFilter = new wxButton(this, mmID_FILTER_TRANSACTION_DETAIL, _tu("Filter…"));  // Filter for transaction details
@@ -428,11 +428,11 @@ void mmCheckingPanel::updateHeader()
 void mmCheckingPanel::updateFilter(bool firstinit)
 {
     if (m_filter_id == FILTER_ID_DATE_RANGE) {
-        m_bitmapTransFilter->SetLabel(m_current_date_range.getName());
+        m_bitmapTransFilter->SetLabel(m_current_date_range.rangeName());
         // Set active if other than 'all'
-        m_bitmapTransFilter->SetBitmap(mmBitmapBundle((m_current_date_range.getName() == m_date_range_a[0].getName()) ? png::TRANSFILTER : png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
-        fromDateCtrl->SetValue(m_current_date_range.checkingStart().getDateTime(DATE_MIN));
-        toDateCtrl->SetValue(m_current_date_range.checkingEnd().getDateTime(wxDateTime::Now()));
+        m_bitmapTransFilter->SetBitmap(mmBitmapBundle((m_current_date_range.rangeName() == m_date_range_a[0].getName()) ? png::TRANSFILTER : png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
+        fromDateCtrl->SetValue(m_current_date_range.rangeStart().getDateTime(DATE_MIN));
+        toDateCtrl->SetValue(m_current_date_range.rangeEnd().getDateTime(wxDateTime::Now()));
     }
     else if (m_filter_id == FILTER_ID_DATE_PICKER) {
         m_bitmapTransFilter->SetLabel(_t("Date range"));
@@ -444,8 +444,8 @@ void mmCheckingPanel::updateFilter(bool firstinit)
         }
     }
     else if (firstinit) {
-        m_current_date_range.setSpec(m_date_range_a[0]); // init with 'all'
-        m_bitmapTransFilter->SetLabel(m_current_date_range.getName());
+        m_current_date_range.setRange(m_date_range_a[0]); // init with 'all'
+        m_bitmapTransFilter->SetLabel(m_current_date_range.rangeName());
         m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
     }
 
@@ -469,15 +469,15 @@ void mmCheckingPanel::updateFilterTooltip()
     }
 }
 
-void mmCheckingPanel::setFilterDate(DateRange2::Spec& spec)
+void mmCheckingPanel::setFilterDate(DateRange2::Range& range)
 {
     m_filter_id = FILTER_ID_DATE;
     m_current_date_range = DateRange2();
     if (isAccount()) m_current_date_range.setDateS(
         DateDay(Model_Account::DateOf(m_account->STATEMENTDATE))
     );
-    m_current_date_range.setSpec(spec);
-    m_scheduled_enable = !isDeletedTrans() && m_current_date_range.checkingEnd().isDefined();
+    m_current_date_range.setRange(range);
+    m_scheduled_enable = !isDeletedTrans() && m_current_date_range.rangeEnd().isDefined();
     saveFilterSettings();
     updateFilter();
 }
@@ -505,22 +505,22 @@ void mmCheckingPanel::loadFilterSettings()
     } else
     {
         m_filter_id = FILTER_ID_DATE_RANGE;
-        m_current_date_range.setSpec(m_date_range_a[0]); // init with 'all'
+        m_current_date_range.setRange(m_date_range_a[0]); // init with 'all'
     }
     if (m_filter_id == FILTER_ID_DATE_RANGE) {
         wxString j_filter;
         if (JSON_GetStringValue(j_doc, "FILTER_DATE", j_filter)) {
-            // get range spec:
+            // get range specification:
             bool notfound = true;
-            for (const auto& spec : m_date_range_a) {
-                if (spec.getName() == j_filter) {
-                    m_current_date_range.setSpec(spec);
+            for (const auto& range : m_date_range_a) {
+                if (range.getName() == j_filter) {
+                    m_current_date_range.setRange(range);
                     notfound = false;
                     break;
                 }
             }
             if (notfound) {
-                m_current_date_range.setSpec(m_date_range_a[0]); // init with 'all'
+                m_current_date_range.setRange(m_date_range_a[0]); // init with 'all'
             }
         }
         if (isAccount()) m_current_date_range.setDateS(
@@ -567,7 +567,7 @@ void  mmCheckingPanel::updateScheduledEnable()
     m_scheduled_enable = !(isDeletedTrans() || (
         m_filter_id == FILTER_ID_DATE_PICKER
         ? m_current_date_range.getDateT().isDefined() && m_current_date_range.getDateT().getDateTime() < wxDateTime::Today()
-        : m_current_date_range.checkingEnd().isDefined() && m_current_date_range.checkingEnd().getDateTime() < wxDateTime::Today()
+        : m_current_date_range.rangeEnd().isDefined() && m_current_date_range.rangeEnd().getDateTime() < wxDateTime::Today()
     ) || (
         !m_current_date_range.getDateT().isDefined() && m_current_date_range.getDateS().isDefined() && m_current_date_range.getDateS().getDateTime() < wxDateTime::Today()
     ));
@@ -579,7 +579,7 @@ void mmCheckingPanel::saveFilterSettings()
     Document j_doc = Model_Infotable::instance().getJdoc(key, "{}");
     Model_Infotable::saveFilterInt(j_doc, "FILTER_ID", m_filter_id);
     Model_Infotable::saveFilterString(j_doc, "FILTER_NAME", FILTER_NAME[m_filter_id].second);
-    Model_Infotable::saveFilterString(j_doc, "FILTER_DATE", m_current_date_range.getSpec().getName());
+    Model_Infotable::saveFilterString(j_doc, "FILTER_DATE", m_current_date_range.getRange().getName());
     Model_Infotable::saveFilterString(j_doc, "FILTER_DATE_BEGIN", fromDateCtrl->GetValue().IsValid() ? fromDateCtrl->GetValue().FormatISODate() : "");
     Model_Infotable::saveFilterString(j_doc, "FILTER_DATE_END", toDateCtrl->GetValue().IsValid() ? toDateCtrl->GetValue().FormatISODate() : "");
     if (!isDeletedTrans()) {
@@ -647,7 +647,7 @@ void mmCheckingPanel::filterList()
         date_start_str = (fromDateCtrl->GetValue().IsValid() ? fromDateCtrl->GetValue() : wxDateTime(static_cast<time_t>(0))).FormatISODate();
         date_end_str = (toDateCtrl->GetValue().IsValid() ? toDateCtrl->GetValue() : date_end).FormatISODate() + "~";
     } else {
-        date_start_str = m_current_date_range.checkingISOStart();
+        date_start_str = m_current_date_range.rangeStartISO();
         // find last un-deleted transaction and use that if later than current date + 30 days
         for (auto it = trans.rbegin(); it != trans.rend(); ++it)
         {
@@ -658,8 +658,8 @@ void mmCheckingPanel::filterList()
                 break;
             }
         }
-        date_end_str = m_current_date_range.checkingEnd().isDefined()
-            ? m_current_date_range.checkingISOEnd()
+        date_end_str = m_current_date_range.rangeEnd().isDefined()
+            ? m_current_date_range.rangeEndISO()
             : date_end.FormatISODate() + "~";
     }
     std::map<int64, Model_Budgetsplittransaction::Data_Set> bills_splits;
@@ -1114,16 +1114,16 @@ void mmCheckingPanel::onFilterDate(wxCommandEvent& event)
             DateDay(Model_Account::DateOf(m_account->STATEMENTDATE))
         );
     }
-    m_current_date_range.setSpec(m_date_range_a[i]);
+    m_current_date_range.setRange(m_date_range_a[i]);
     updateScheduledEnable();
     saveFilterSettings();
     updateFilter();
 
-    m_bitmapTransFilter->SetLabel(m_current_date_range.getName());
+    m_bitmapTransFilter->SetLabel(m_current_date_range.rangeName());
     m_bitmapTransFilter->SetBitmap(mmBitmapBundle((i > 0 ? png::TRANSFILTER_ACTIVE : png::TRANSFILTER), mmBitmapButtonSize));
 
-    fromDateCtrl->SetValue(m_current_date_range.checkingStart().getDateTime(DATE_MIN));
-    toDateCtrl->SetValue(m_current_date_range.checkingEnd().getDateTime(wxDateTime::Now()));
+    fromDateCtrl->SetValue(m_current_date_range.rangeStart().getDateTime(DATE_MIN));
+    toDateCtrl->SetValue(m_current_date_range.rangeEnd().getDateTime(wxDateTime::Now()));
 
     refreshList();
 }
@@ -1192,25 +1192,25 @@ void mmCheckingPanel::onEditDateRanges(wxCommandEvent& WXUNUSED(event))
         if (m_date_range_a.size() == 0) {
             int src_i = 0;
             int src_m = Option::instance().getCheckingRangeM();
-            for (const auto& spec : Option::instance().getCheckingRangeA()) {
+            for (const auto& range : Option::instance().getCheckingRangeA()) {
                 if (m_date_range_a.size() > mmID_FILTER_DATE_MAX - mmID_FILTER_DATE_MIN) {
                     break;
                 }
                 if (src_i == src_m) {
                     m_date_range_m = m_date_range_a.size();
                 }
-                if (isAccount() || !spec.hasPeriodS()) {
-                    m_date_range_a.push_back(spec);
+                if (isAccount() || !range.hasPeriodS()) {
+                    m_date_range_a.push_back(range);
                 }
                 src_i++;
             }
         }
         // Verify if current filter is still valid otherwise reset to "ALL"
         if (m_filter_id == FILTER_ID_DATE_RANGE) {
-            wxString curname = m_current_date_range.getName();
+            wxString curname = m_current_date_range.rangeName();
             bool isDeleted = true;
-            for (const auto& spec : m_date_range_a) {
-                if (spec.getName() == curname) {
+            for (const auto& range : m_date_range_a) {
+                if (range.getName() == curname) {
                     isDeleted = false;
                     break;
                 }
@@ -1442,20 +1442,20 @@ wxString mmCheckingPanel::getFilterName(FILTER_ID id) {
     return mmCheckingPanel::FILTER_NAME[id].second;
 }
 
-void mmCheckingPanel::loadDateRanges(std::vector<DateRange2::Spec>* date_range_ptr, int* range_m, bool isaccount) {
+void mmCheckingPanel::loadDateRanges(std::vector<DateRange2::Range>* date_range_ptr, int* range_m, bool isaccount) {
     date_range_ptr->clear();
     *range_m = -1;
     int src_i = 0;
     int src_m = Option::instance().getCheckingRangeM();
-    for (const auto& spec : Option::instance().getCheckingRangeA()) {
+    for (const auto& range : Option::instance().getCheckingRangeA()) {
         if (date_range_ptr->size() > mmID_FILTER_DATE_MAX - mmID_FILTER_DATE_MIN) {
             break;
         }
         if (src_i == src_m) {
             *range_m = date_range_ptr->size();
         }
-        if (isaccount || !spec.hasPeriodS()) {
-            date_range_ptr->push_back(spec);
+        if (isaccount || !range.hasPeriodS()) {
+            date_range_ptr->push_back(range);
         }
         src_i++;
     }

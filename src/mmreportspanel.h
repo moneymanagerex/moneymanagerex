@@ -84,7 +84,7 @@ public:
 private:
     void OnNewWindow(wxWebViewEvent& evt);
     std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
-    std::vector<DateRange2::Spec> m_date_range_a = {};
+    std::vector<DateRange2::Range> m_date_range_a = {};
     wxChoice* m_date_ranges = nullptr;
     mmDatePickerCtrl *m_single_date = nullptr, *m_start_date = nullptr, *m_end_date = nullptr;
     wxTimePickerCtrl *m_time = nullptr;

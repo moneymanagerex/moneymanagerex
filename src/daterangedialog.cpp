@@ -44,7 +44,7 @@ mmDateRangeDialog::mmDateRangeDialog()
 {
 }
 
-mmDateRangeDialog::mmDateRangeDialog(wxWindow* parent, std::vector<DateRange2::Spec>* dateRangesPtr, int* subMenuBeginPtr)
+mmDateRangeDialog::mmDateRangeDialog(wxWindow* parent, std::vector<DateRange2::Range>* dateRangesPtr, int* subMenuBeginPtr)
 {
     m_dateRangesPtr = dateRangesPtr;
     m_subMenuBeginPtr = subMenuBeginPtr;
@@ -266,13 +266,13 @@ void mmDateRangeDialog::OnOk(wxCommandEvent&)
 {
     if (m_hasChanged) {
         m_dateRangesPtr->clear();
-        DateRange2::Spec sdata = DateRange2::Spec();
-        sdata.parseSpec("A", _t("All"));
+        DateRange2::Range sdata = DateRange2::Range();
+        sdata.parseLabelName("A", _t("All"));
         m_dateRangesPtr->push_back(sdata);
         for (int k = 0; k < m_dateRangesLb->GetItemCount(); k++) {
-            sdata = DateRange2::Spec();
+            sdata = DateRange2::Range();
             if (k != m_subMenuBegin) {
-                if (sdata.parseSpec(m_dateRangesLb->GetTextValue(k, 1), m_dateRangesLb->GetTextValue(k, 0))) {
+                if (sdata.parseLabelName(m_dateRangesLb->GetTextValue(k, 1), m_dateRangesLb->GetTextValue(k, 0))) {
                     m_dateRangesPtr->push_back(sdata);
                 }
             }

@@ -665,27 +665,27 @@ void Option::parseCheckingRange()
                 m_checking_range_m = m_checking_range_a.size();
             continue;
         }
-        DateRange2::Spec spec;
-        if (!spec.parseSpec(str))
+        DateRange2::Range range;
+        if (!range.parseLabelName(str))
             continue;
-        m_checking_range_a.push_back(spec);
+        m_checking_range_a.push_back(range);
     }
 
     if (!m_checking_range_a.empty())
         goto done;
 
-    for (auto &range : CHECKING_RANGE_DEFAULT) {
-        wxString label = range.first;
+    for (auto &default_range : CHECKING_RANGE_DEFAULT) {
+        wxString label = default_range.first;
         if (label.empty()) {
             if (m_checking_range_m == 0)
                 m_checking_range_m = m_checking_range_a.size();
             continue;
         }
-        wxString name = wxGetTranslation(range.second);
-        DateRange2::Spec spec;
-        if (!spec.parseSpec(label, name))
+        wxString name = wxGetTranslation(default_range.second);
+        DateRange2::Range range;
+        if (!range.parseLabelName(label, name))
             continue;
-        m_checking_range_a.push_back(spec);
+        m_checking_range_a.push_back(range);
     }
 
     done:
@@ -693,8 +693,8 @@ void Option::parseCheckingRange()
         m_checking_range_m = m_checking_range_a.size();
 
     /*wxLogDebug("m=[%d], n=[%zu]", m_checking_range_m, m_checking_range_a.size());
-    for ([[maybe_unused]] DateRange2::Spec &spec : m_checking_range_a) {
-        wxLogDebug("label=[%s], name=[%s]", spec.getLabel(), spec.getName());
+    for ([[maybe_unused]] DateRange2::Range &range : m_checking_range_a) {
+        wxLogDebug("label=[%s], name=[%s]", range.getLabel(), range.getName());
     }
     wxLogDebug("}}}");*/
 }

@@ -123,9 +123,9 @@ void mmDateRangeEditDialog::OnRange(wxCommandEvent&)
 bool mmDateRangeEditDialog::checkRange() {
     bool rangeOk = false;
     DateRange2 rdata = DateRange2();
-    if (rdata.parseSpec(m_range_edit->GetValue())) {
-        if (!rdata.checkingEnd().isDefined() || rdata.checkingStart().getDateTime() <= rdata.checkingEnd().getDateTime()) {
-          m_status->SetLabelText(_t("Range is ok:") + wxString::Format(" >%s - %s<", rdata.checkingISOStart(), rdata.checkingISOEnd()));
+    if (rdata.parseRange(m_range_edit->GetValue())) {
+        if (!rdata.rangeEnd().isDefined() || rdata.rangeStart().getDateTime() <= rdata.rangeEnd().getDateTime()) {
+          m_status->SetLabelText(_t("Range is ok:") + wxString::Format(" >%s - %s<", rdata.rangeStartISO(), rdata.rangeEndISO()));
           m_status->SetBackgroundColour(m_defBColor);
           rangeOk = true;
         }

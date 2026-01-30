@@ -3307,7 +3307,7 @@ void mmGUIFrame::OnEmptyTreePopUp(wxCommandEvent& event)
 
 void mmGUIFrame::OnDateRangeManager(wxCommandEvent& WXUNUSED(event))
 {
-    std::vector<DateRange2::Spec> m_date_range_a = {};
+    std::vector<DateRange2::Range> m_date_range_a = {};
     int m_date_range_m;
     mmCheckingPanel::loadDateRanges(&m_date_range_a, &m_date_range_m, true);
     mmDateRangeDialog dlg(this, &m_date_range_a, &m_date_range_m);
