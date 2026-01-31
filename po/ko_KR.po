@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-21 16:55+0000\n"
-"PO-Revision-Date: 2026-01-23 01:08\n"
+"POT-Creation-Date: 2026-01-26 19:10+0000\n"
+"PO-Revision-Date: 2026-01-30 01:16\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -1315,8 +1315,8 @@ msgstr "%s개월마다"
 
 #: billsdepositspanel.cpp:111 filtertransdialog.cpp:674
 #: filtertransdialog.cpp:1615 filtertransdialog.cpp:1715
-#: import_export/univcsvdialog.cpp:117 import_export/univcsvdialog.cpp:128
-#: mmchecking_list.cpp:107 model/Model_Checking.cpp:33 reports/forecast.cpp:81
+#: import_export/univcsvdialog.cpp:117 mmchecking_list.cpp:107
+#: model/Model_Checking.cpp:33 reports/forecast.cpp:81
 msgid "Withdrawal"
 msgstr "출금"
 
@@ -3922,7 +3922,7 @@ msgstr "추가된 거래처: %s"
 msgid "SubCategory"
 msgstr "하위 범주"
 
-#: import_export/univcsvdialog.cpp:116 import_export/univcsvdialog.cpp:127
+#: import_export/univcsvdialog.cpp:116
 msgid "Don't Care"
 msgstr "상관 없음"
 
@@ -3959,6 +3959,16 @@ msgstr "평균 주가"
 #: stocks_list.cpp:73
 msgid "Total Cost"
 msgstr "총 비용"
+
+#: import_export/univcsvdialog.cpp:127 reports/summarystocks.cpp:120
+#: stocks_list.cpp:74
+msgid "Realized Gain/Loss"
+msgstr "실현 손익"
+
+#: import_export/univcsvdialog.cpp:128 reports/summarystocks.cpp:121
+#: stocks_list.cpp:75
+msgid "Unrealized Gain/Loss"
+msgstr "미실현 손익"
 
 #: import_export/univcsvdialog.cpp:129
 msgid "Current Total Value"
@@ -8162,14 +8172,6 @@ msgstr "구매 날짜"
 msgid "Quantity"
 msgstr "수량"
 
-#: reports/summarystocks.cpp:120 stocks_list.cpp:74
-msgid "Realized Gain/Loss"
-msgstr "실현 손익"
-
-#: reports/summarystocks.cpp:121 stocks_list.cpp:75
-msgid "Unrealized Gain/Loss"
-msgstr "미실현 손익"
-
 #: reports/summarystocks.cpp:245
 msgid "Stocks Performance Charts"
 msgstr "주식 실적 차트"
@@ -8694,7 +8696,7 @@ msgstr "태그를 삭제하면 삭제된 거래에서도 자동으로 제거됩�
 msgid "Confirm Tag Deletion"
 msgstr "태그 삭제 확인"
 
-#: themes.cpp:192 uicontrols/toolbardialog.cpp:81
+#: themes.cpp:192 uicontrols/toolbardialog.cpp:103
 msgid "&Delete"
 msgstr "삭제(&D) "
 
@@ -8931,19 +8933,39 @@ msgstr "중복 거래 포함"
 msgid "Toolbar configuration"
 msgstr "툴바 설정"
 
-#: uicontrols/toolbardialog.cpp:71
+#: uicontrols/toolbardialog.cpp:73
 msgid "Add separator"
 msgstr "구분 기호 추가"
 
-#: uicontrols/toolbardialog.cpp:74
+#: uicontrols/toolbardialog.cpp:75
+msgid "Insert a vertical separator line.\n"
+"Useful to visually group toolbar buttons."
+msgstr "세로 구분선을 삽입합니다.\n"
+"도구 모음 버튼을 시각적으로 그룹화하는 데 유용합니다."
+
+#: uicontrols/toolbardialog.cpp:82
 msgid "Add space"
 msgstr "공백 추가"
 
-#: uicontrols/toolbardialog.cpp:77
+#: uicontrols/toolbardialog.cpp:84
+msgid "Insert a fixed-size empty space.\n"
+"The space width is equal to one toolbar icon."
+msgstr "고정 크기의 빈 공간을 삽입합니다.\n"
+"공간의 너비는 툴바 아이콘 하나와 같습니다."
+
+#: uicontrols/toolbardialog.cpp:91
 msgid "Add stretch space"
 msgstr "늘어나는 공백 추가"
 
-#: uicontrols/toolbardialog.cpp:121
+#: uicontrols/toolbardialog.cpp:93
+msgid "Insert a stretchable space.\n"
+"It takes all remaining toolbar space.\n"
+"If multiple stretch spaces are present, the space is evenly distributed."
+msgstr "늘어나는 공간을 삽입합니다.\n"
+"이 공간은 남아 있는 툴바 공간을 모두 차지합니다.\n"
+"늘어나는 공간이 여러 개 있는 경우, 공간은 균등하게 분배됩니다."
+
+#: uicontrols/toolbardialog.cpp:143
 msgid "Spacer"
 msgstr "공백"
 

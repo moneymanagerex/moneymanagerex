@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-21 16:55+0000\n"
-"PO-Revision-Date: 2026-01-23 01:08\n"
+"POT-Creation-Date: 2026-01-26 19:10+0000\n"
+"PO-Revision-Date: 2026-01-30 01:16\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -1315,8 +1315,8 @@ msgstr "每 %s 月"
 
 #: billsdepositspanel.cpp:111 filtertransdialog.cpp:674
 #: filtertransdialog.cpp:1615 filtertransdialog.cpp:1715
-#: import_export/univcsvdialog.cpp:117 import_export/univcsvdialog.cpp:128
-#: mmchecking_list.cpp:107 model/Model_Checking.cpp:33 reports/forecast.cpp:81
+#: import_export/univcsvdialog.cpp:117 mmchecking_list.cpp:107
+#: model/Model_Checking.cpp:33 reports/forecast.cpp:81
 msgid "Withdrawal"
 msgstr "支出"
 
@@ -1995,7 +1995,7 @@ msgstr "无"
 
 #: currencydialog.cpp:223
 msgid "Space"
-msgstr "空格"
+msgstr "分隔符"
 
 #: currencydialog.cpp:228
 msgid "Scale"
@@ -3186,12 +3186,13 @@ msgstr "复制为 SQL SELECT"
 
 #: generic/generictreelistdialog.cpp:110 generic/generictreelistdialog.cpp:289
 msgid "Restore default"
-msgstr ""
+msgstr "恢复默认"
 
 #: generic/generictreelistdialog.cpp:288
 msgid "Do you really want to restore the default values?\n\n"
 "All customization will be lost!"
-msgstr ""
+msgstr "你真的要恢复默认值吗？\n\n"
+"所有自定义设置将会丢失！"
 
 #: images_list.cpp:344
 #, c-format
@@ -3922,7 +3923,7 @@ msgstr "已添加收款方：%s"
 msgid "SubCategory"
 msgstr "子类别"
 
-#: import_export/univcsvdialog.cpp:116 import_export/univcsvdialog.cpp:127
+#: import_export/univcsvdialog.cpp:116
 msgid "Don't Care"
 msgstr "不处理"
 
@@ -3960,9 +3961,19 @@ msgstr "平均股份价格"
 msgid "Total Cost"
 msgstr "总成本"
 
+#: import_export/univcsvdialog.cpp:127 reports/summarystocks.cpp:120
+#: stocks_list.cpp:74
+msgid "Realized Gain/Loss"
+msgstr "已实现收益/损失"
+
+#: import_export/univcsvdialog.cpp:128 reports/summarystocks.cpp:121
+#: stocks_list.cpp:75
+msgid "Unrealized Gain/Loss"
+msgstr "未实现收益/损失"
+
 #: import_export/univcsvdialog.cpp:129
 msgid "Current Total Value"
-msgstr ""
+msgstr "当前总价值"
 
 #: import_export/univcsvdialog.cpp:130 reports/summarystocks.cpp:119
 #: stocks_list.cpp:79 stockspanel.cpp:270
@@ -4019,27 +4030,27 @@ msgstr "CSV 分隔符："
 
 #: import_export/univcsvdialog.cpp:411
 msgid "Only Export Stocks"
-msgstr ""
+msgstr "仅导出股票"
 
 #: import_export/univcsvdialog.cpp:417
 msgid "Only Export Transactions Between 2 Dates"
-msgstr ""
+msgstr "仅导出 2 个日期之间的交易"
 
 #: import_export/univcsvdialog.cpp:426
 msgid "Start Date:"
-msgstr ""
+msgstr "开始日期："
 
 #: import_export/univcsvdialog.cpp:432
 msgid "Specify which date the report must start at"
-msgstr ""
+msgstr "指定报表必须开始的日期"
 
 #: import_export/univcsvdialog.cpp:440
 msgid "End Date:"
-msgstr ""
+msgstr "结束日期："
 
 #: import_export/univcsvdialog.cpp:446
 msgid "Specify which date the report must end at"
-msgstr ""
+msgstr "指定报表必须结束的日期"
 
 #: import_export/univcsvdialog.cpp:492
 msgid "Export column titles"
@@ -4270,7 +4281,7 @@ msgstr "无效账户"
 #: import_export/univcsvdialog.cpp:1915
 #, c-format
 msgid "Transactions/Stocks exported: %ld"
-msgstr ""
+msgstr "已导出交易/股票：%ld"
 
 #: import_export/univcsvdialog.cpp:2471
 #, c-format
@@ -5385,7 +5396,7 @@ msgstr "全部折叠(&C)"
 
 #: mmframe.cpp:1728
 msgid "&Navigator configuration…"
-msgstr ""
+msgstr "导航器配置(&N)…"
 
 #: mmframe.cpp:1729 mmframe.cpp:2058
 msgid "T&heme Manager…"
@@ -7318,11 +7329,11 @@ msgstr "类别分隔符"
 
 #: optionsettingsview.cpp:106
 msgid "Navigator and account types"
-msgstr ""
+msgstr "导航器和账户类型"
 
 #: optionsettingsview.cpp:110
 msgid "Show cash ledger for portfolios"
-msgstr ""
+msgstr "显示投资组合的现金日记账"
 
 #: optionsettingsview.cpp:118
 msgid "Do not use color for future transactions"
@@ -8157,14 +8168,6 @@ msgstr "购买日期"
 msgid "Quantity"
 msgstr "数量"
 
-#: reports/summarystocks.cpp:120 stocks_list.cpp:74
-msgid "Realized Gain/Loss"
-msgstr "已实现收益/损失"
-
-#: reports/summarystocks.cpp:121 stocks_list.cpp:75
-msgid "Unrealized Gain/Loss"
-msgstr "未实现收益/损失"
-
 #: reports/summarystocks.cpp:245
 msgid "Stocks Performance Charts"
 msgstr "股票业绩图表"
@@ -8689,7 +8692,7 @@ msgstr "删除该标签也将自动清理相关的已删除交易。"
 msgid "Confirm Tag Deletion"
 msgstr "确认删除标签"
 
-#: themes.cpp:192 uicontrols/toolbardialog.cpp:81
+#: themes.cpp:192 uicontrols/toolbardialog.cpp:103
 msgid "&Delete"
 msgstr "删除(&D)"
 
@@ -8832,31 +8835,31 @@ msgstr "交易对话框"
 
 #: uicontrols/navigatordialog.cpp:46
 msgid "Navigator and account type configuration"
-msgstr ""
+msgstr "导航器和账户类型配置"
 
 #: uicontrols/navigatordialog.cpp:55 uicontrols/navigatoreditdialog.cpp:92
 msgid "Selection name"
-msgstr ""
+msgstr "选择名称"
 
 #: uicontrols/navigatordialog.cpp:93 uicontrols/navigatordialog.cpp:194
 msgid "Reset names"
-msgstr ""
+msgstr "重置名称"
 
 #: uicontrols/navigatordialog.cpp:97
 msgid "Reset the standard names to default values"
-msgstr ""
+msgstr "将标准名称重置为默认值"
 
 #: uicontrols/navigatordialog.cpp:193
 msgid "Do you really want to reset the configured names?"
-msgstr ""
+msgstr "你真的想重置配置的名称吗？"
 
 #: uicontrols/navigatoreditdialog.cpp:34
 msgid "Edit navigator entry"
-msgstr ""
+msgstr "编辑导航器条目"
 
 #: uicontrols/navigatoreditdialog.cpp:34
 msgid "New account type"
-msgstr ""
+msgstr "新增账户类型"
 
 #: uicontrols/reconciledialog.cpp:57
 msgid "Reconcile account"
@@ -8924,23 +8927,43 @@ msgstr "包含重复交易"
 
 #: uicontrols/toolbardialog.cpp:41
 msgid "Toolbar configuration"
-msgstr ""
+msgstr "工具栏配置"
 
-#: uicontrols/toolbardialog.cpp:71
+#: uicontrols/toolbardialog.cpp:73
 msgid "Add separator"
-msgstr ""
+msgstr "添加分隔符"
 
-#: uicontrols/toolbardialog.cpp:74
+#: uicontrols/toolbardialog.cpp:75
+msgid "Insert a vertical separator line.\n"
+"Useful to visually group toolbar buttons."
+msgstr "插入一条垂直分隔线。\n"
+"有助于将工具栏按钮进行直观地分组。"
+
+#: uicontrols/toolbardialog.cpp:82
 msgid "Add space"
-msgstr ""
+msgstr "添加分隔符"
 
-#: uicontrols/toolbardialog.cpp:77
+#: uicontrols/toolbardialog.cpp:84
+msgid "Insert a fixed-size empty space.\n"
+"The space width is equal to one toolbar icon."
+msgstr "插入一个固定宽度的空白空间。\n"
+"该空间的宽度与一个工具栏图标宽度相等。"
+
+#: uicontrols/toolbardialog.cpp:91
 msgid "Add stretch space"
-msgstr ""
+msgstr "添加弹性分隔符"
 
-#: uicontrols/toolbardialog.cpp:121
+#: uicontrols/toolbardialog.cpp:93
+msgid "Insert a stretchable space.\n"
+"It takes all remaining toolbar space.\n"
+"If multiple stretch spaces are present, the space is evenly distributed."
+msgstr "插入一个可伸缩的空间。\n"
+"它将占据所有剩余的工具栏空间。\n"
+"如果有多个可伸缩空间，那么这些空间会平均分配。"
+
+#: uicontrols/toolbardialog.cpp:143
 msgid "Spacer"
-msgstr ""
+msgstr "间隔"
 
 #: usertransactionpanel.cpp:111
 msgid "Select Account"

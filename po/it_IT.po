@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-21 16:55+0000\n"
-"PO-Revision-Date: 2026-01-23 01:08\n"
+"POT-Creation-Date: 2026-01-26 19:10+0000\n"
+"PO-Revision-Date: 2026-01-30 01:16\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -588,11 +588,11 @@ msgstr "Vuoi eliminare il Cespite?"
 
 #: assetspanel.cpp:210
 msgid "Confirm Asset Deletion"
-msgstr "Conferma cancellazione del Cespite"
+msgstr "Conferma eliminazione cespite"
 
 #: assetspanel.cpp:382
 msgid "MMEX allows fixed assets like cars, houses, land, and others to be tracked. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "MMEX consente di tracciare beni durevoli come automobili, case, terreni e altri. Ogni bene può avere il suo valore aumentato a un certo tasso annuo, diminuito a un certo tasso annuo o rimanere invariato. Il totale dei beni viene aggiunto al valore patrimoniale complessivo."
+msgstr "MMEX consente di tenere traccia dei cespiti come auto, case, terreni e altri beni. Ogni cespite può aumentare di valore a un determinato tasso annuo, diminuire di valore a un determinato tasso annuo oppure non subire variazioni di valore. Il totale dei cespiti viene aggiunto al tuo patrimonio finanziario totale."
 
 #: assetspanel.cpp:412 assetspanel.h:124 general_report_manager.cpp:1180
 #: mmframe.cpp:2052 mmframe.cpp:3824 mmhomepage.cpp:534 mmhomepage.cpp:583
@@ -1315,8 +1315,8 @@ msgstr "Ogni %s Mesi"
 
 #: billsdepositspanel.cpp:111 filtertransdialog.cpp:674
 #: filtertransdialog.cpp:1615 filtertransdialog.cpp:1715
-#: import_export/univcsvdialog.cpp:117 import_export/univcsvdialog.cpp:128
-#: mmchecking_list.cpp:107 model/Model_Checking.cpp:33 reports/forecast.cpp:81
+#: import_export/univcsvdialog.cpp:117 mmchecking_list.cpp:107
+#: model/Model_Checking.cpp:33 reports/forecast.cpp:81
 msgid "Withdrawal"
 msgstr "Prelievo"
 
@@ -2975,7 +2975,7 @@ msgstr "Personalizza Resoconto Transazioni"
 #: general_report_manager.cpp:329 mmframe.cpp:3401 mmframereport.cpp:316
 #: reports/myusage.cpp:145 reports/myusage.cpp:162
 msgid "Reports"
-msgstr "Rapporti"
+msgstr "Resoconti"
 
 #: general_report_manager.cpp:427 import_export/univcsvdialog.cpp:629
 #: themes.cpp:190
@@ -3930,7 +3930,7 @@ msgstr "Aggiunto Beneficiario: %s"
 msgid "SubCategory"
 msgstr "Sotto-Categoria"
 
-#: import_export/univcsvdialog.cpp:116 import_export/univcsvdialog.cpp:127
+#: import_export/univcsvdialog.cpp:116
 msgid "Don't Care"
 msgstr "Ignora"
 
@@ -3967,6 +3967,16 @@ msgstr "Prezzo medio del titolo"
 #: stocks_list.cpp:73
 msgid "Total Cost"
 msgstr "Costo Totale"
+
+#: import_export/univcsvdialog.cpp:127 reports/summarystocks.cpp:120
+#: stocks_list.cpp:74
+msgid "Realized Gain/Loss"
+msgstr "Guadagno/Perdita realizzato"
+
+#: import_export/univcsvdialog.cpp:128 reports/summarystocks.cpp:121
+#: stocks_list.cpp:75
+msgid "Unrealized Gain/Loss"
+msgstr "Guadagno/Perdita non realizzato"
 
 #: import_export/univcsvdialog.cpp:129
 msgid "Current Total Value"
@@ -5245,7 +5255,7 @@ msgstr "Transazioni Ricorrenti"
 
 #: mmframe.cpp:1039
 msgid "Cash Ledger"
-msgstr "Libro Cassa"
+msgstr "Registro del Conto"
 
 #: mmframe.cpp:1467
 msgid "The selected item will be deleted."
@@ -5489,7 +5499,7 @@ msgstr "Barra degli S&trumenti"
 
 #: mmframe.cpp:1825
 msgid "Show/Hide the toolbar"
-msgstr "Mostra/Nasconde la Barra degli Strumenti"
+msgstr "Mostra/Nasconde la Barra degli strumenti"
 
 #: mmframe.cpp:1831
 msgid "&Navigator"
@@ -7339,11 +7349,11 @@ msgstr "Delimitatore di Categoria"
 
 #: optionsettingsview.cpp:106
 msgid "Navigator and account types"
-msgstr ""
+msgstr "Navigatore e tipi di conto"
 
 #: optionsettingsview.cpp:110
 msgid "Show cash ledger for portfolios"
-msgstr ""
+msgstr "Mostra il registro del conto per i Portafoglio"
 
 #: optionsettingsview.cpp:118
 msgid "Do not use color for future transactions"
@@ -8180,14 +8190,6 @@ msgstr "Data d'Acquisto"
 msgid "Quantity"
 msgstr "Quantità"
 
-#: reports/summarystocks.cpp:120 stocks_list.cpp:74
-msgid "Realized Gain/Loss"
-msgstr "Guadagno/Perdita realizzato"
-
-#: reports/summarystocks.cpp:121 stocks_list.cpp:75
-msgid "Unrealized Gain/Loss"
-msgstr "Guadagno/Perdita non realizzato"
-
 #: reports/summarystocks.cpp:245
 msgid "Stocks Performance Charts"
 msgstr "Diagrammi andamento azioni"
@@ -8712,7 +8714,7 @@ msgstr "Eliminando l'etichetta si elimineranno automaticamente anche le transazi
 msgid "Confirm Tag Deletion"
 msgstr "Conferma eliminazione dell'Etichetta"
 
-#: themes.cpp:192 uicontrols/toolbardialog.cpp:81
+#: themes.cpp:192 uicontrols/toolbardialog.cpp:103
 msgid "&Delete"
 msgstr "&Elimina"
 
@@ -8855,11 +8857,11 @@ msgstr "Finestra di dialogo Transazioni"
 
 #: uicontrols/navigatordialog.cpp:46
 msgid "Navigator and account type configuration"
-msgstr ""
+msgstr "Configurazione del navigatore e dei tipi di conto"
 
 #: uicontrols/navigatordialog.cpp:55 uicontrols/navigatoreditdialog.cpp:92
 msgid "Selection name"
-msgstr ""
+msgstr "Nome di selezione"
 
 #: uicontrols/navigatordialog.cpp:93 uicontrols/navigatordialog.cpp:194
 msgid "Reset names"
@@ -8875,11 +8877,11 @@ msgstr "Vuoi davvero ripristinare i nomi configurati?"
 
 #: uicontrols/navigatoreditdialog.cpp:34
 msgid "Edit navigator entry"
-msgstr ""
+msgstr "Modifica voce del navigatore"
 
 #: uicontrols/navigatoreditdialog.cpp:34
 msgid "New account type"
-msgstr ""
+msgstr "Nuovo tipo di Conto"
 
 #: uicontrols/reconciledialog.cpp:57
 msgid "Reconcile account"
@@ -8947,23 +8949,43 @@ msgstr "Includi transazioni duplicate"
 
 #: uicontrols/toolbardialog.cpp:41
 msgid "Toolbar configuration"
-msgstr ""
+msgstr "Configurazione Barra degli Strumenti"
 
-#: uicontrols/toolbardialog.cpp:71
+#: uicontrols/toolbardialog.cpp:73
 msgid "Add separator"
-msgstr ""
+msgstr "Aggiungi separatore"
 
-#: uicontrols/toolbardialog.cpp:74
+#: uicontrols/toolbardialog.cpp:75
+msgid "Insert a vertical separator line.\n"
+"Useful to visually group toolbar buttons."
+msgstr "Inserisce una linea di separazione verticale.\n"
+"Utile per raggruppare visivamente i pulsanti della barra degli strumenti."
+
+#: uicontrols/toolbardialog.cpp:82
 msgid "Add space"
-msgstr ""
+msgstr "Aggiungi spazio"
 
-#: uicontrols/toolbardialog.cpp:77
+#: uicontrols/toolbardialog.cpp:84
+msgid "Insert a fixed-size empty space.\n"
+"The space width is equal to one toolbar icon."
+msgstr "Inserisce uno spazio vuoto di dimensione fissa.\n"
+"La larghezza dello spazio è pari a quella di un’icona della barra degli strumenti."
+
+#: uicontrols/toolbardialog.cpp:91
 msgid "Add stretch space"
-msgstr ""
+msgstr "Aggiungi spazio estensibile"
 
-#: uicontrols/toolbardialog.cpp:121
+#: uicontrols/toolbardialog.cpp:93
+msgid "Insert a stretchable space.\n"
+"It takes all remaining toolbar space.\n"
+"If multiple stretch spaces are present, the space is evenly distributed."
+msgstr "Inserisce uno spazio estensibile.\n"
+"Occupa tutto lo spazio rimanente della barra degli strumenti.\n"
+"Se sono presenti più spazi estensibili, lo spazio viene distribuito in modo uniforme."
+
+#: uicontrols/toolbardialog.cpp:143
 msgid "Spacer"
-msgstr ""
+msgstr "Spaziatore"
 
 #: usertransactionpanel.cpp:111
 msgid "Select Account"
