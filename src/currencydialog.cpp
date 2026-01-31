@@ -22,7 +22,7 @@
 #include "constants.h"
 #include "util.h"
 #include "model/Model_Currency.h"
-#include "Model_CurrencyHistory.h"
+#include "model/Model_CurrencyHistory.h"
 #include "defs.h"
 #include "option.h"
 #include "paths.h"

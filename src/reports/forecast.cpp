@@ -22,7 +22,7 @@
 #include "mmex.h"
 #include "mmframe.h"
 #include "util.h"
-#include "reports/htmlbuilder.h"
+#include "htmlbuilder.h"
 #include "model/Model_Checking.h"
 
 class mm_html_template;

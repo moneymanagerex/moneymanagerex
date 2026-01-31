@@ -20,7 +20,7 @@
 #include "Model_Budget.h"
 #include "Model_Budgetyear.h"
 #include <wx/intl.h>
-#include "model/Model_Category.h"
+#include "Model_Category.h"
 #include "db/DB_Table_Budgettable_V1.h"
 #include "option.h"
 

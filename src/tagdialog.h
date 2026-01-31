@@ -22,7 +22,7 @@
 #define MM_EX_TAGDIALOG_H_
 
 #include "defs.h"
-#include "wx/dialog.h"
+#include <wx/dialog.h>
 #include <wx/srchctrl.h>
 #include <wx/listbox.h>
 #include <wx/checklst.h>

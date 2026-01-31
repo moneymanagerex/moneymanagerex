@@ -27,8 +27,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Category.h"
 #include "model/Model_Checking.h"
 #include "model/Model_Payee.h"
-#include "rapidjson/stringbuffer.h"
-#include "rapidjson/writer.h"
+#include <rapidjson/stringbuffer.h>
+#include <rapidjson/writer.h>
 #include <climits>
 #include <wx/event.h>
 #include <wx/file.h>

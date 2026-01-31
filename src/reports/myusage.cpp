@@ -18,8 +18,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "myusage.h"
-#include "reports/mmDateRange.h"
-#include "reports/htmlbuilder.h"
+#include "mmDateRange.h"
+#include "htmlbuilder.h"
 #include "model/Model_Usage.h"
 
 mmReportMyUsage::mmReportMyUsage()

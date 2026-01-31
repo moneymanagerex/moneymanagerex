@@ -28,8 +28,8 @@ Copyright (C) 2025  Mark Whalley (mark@ipx.co.uk)
 #include "paths.h"
 #include "util.h"
 
-#include "Model_CustomField.h"
-#include "Model_CustomFieldData.h"
+#include "model/Model_CustomField.h"
+#include "model/Model_CustomFieldData.h"
 
 #include <wx/spinctrl.h>
 

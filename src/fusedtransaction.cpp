@@ -16,12 +16,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "Model.h"
-#include "Model_Checking.h"
-#include "Model_Billsdeposits.h"
-#include "Model_Splittransaction.h"
-#include "Model_Budgetsplittransaction.h"
-#include "Model_Taglink.h"
+#include "model/Model.h"
+#include "model/Model_Checking.h"
+#include "model/Model_Billsdeposits.h"
+#include "model/Model_Splittransaction.h"
+#include "model/Model_Budgetsplittransaction.h"
+#include "model/Model_Taglink.h"
 #include "fusedtransaction.h"
 
 Model_Checking::Data Fused_Transaction::execute_bill(const Model_Billsdeposits::Data& r, wxString date)
