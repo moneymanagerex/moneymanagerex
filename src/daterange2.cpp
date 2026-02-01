@@ -20,81 +20,77 @@
 #include "constants.h"
 #include "option.h"
 
-DateDay::DateDay() :
-    dateTime{wxDateTime()}
+const DatePeriod::MapIdLabel DatePeriod::mapIdLabel[] =
 {
-}
-
-DateDay::DateDay(wxDateTime dateTime_new) :
-    dateTime{dateTime_new}
-{
-    if (dateTime.IsValid()) {
-        // set time to noon (12:00)
-        dateTime.SetHour(12).SetMinute(0).SetSecond(0).SetMillisecond(0);
-    }
-}
-
-const DateRange2::PERIOD_INFO_t DateRange2::PERIOD_INFO[] =
-{
-    { PERIOD_ID_A, "A" },
-    { PERIOD_ID_Y, "Y" },
-    { PERIOD_ID_Q, "Q" },
-    { PERIOD_ID_M, "M" },
-    { PERIOD_ID_W, "W" },
-    { PERIOD_ID_T, "T" },
-    { PERIOD_ID_S, "S" },
+    { _A, "A" },
+    { _Y, "Y" },
+    { _Q, "Q" },
+    { _M, "M" },
+    { _W, "W" },
+    { _T, "T" },
+    { _S, "S" },
 };
-const DateRange2::PERIOD_LABEL_ID_t DateRange2::PERIOD_LABEL_ID = make_period_label_id();
+const DatePeriod::MapLabelId DatePeriod::mapLabelId = makeLabelId();
 
-DateRange2::PERIOD_LABEL_ID_t DateRange2::make_period_label_id()
+DatePeriod::MapLabelId DatePeriod::makeLabelId()
 {
-    PERIOD_LABEL_ID_t period_label_id;
-    for (int i = 0; i < static_cast<int>(sizeof(PERIOD_INFO)/sizeof(PERIOD_INFO[0])); ++i) {
-        char c = PERIOD_INFO[i].label[0];
-        period_label_id[c] = PERIOD_INFO[i].id;
+    MapLabelId mapLabelId;
+    for (int i = 0; i < static_cast<int>(sizeof(mapIdLabel)/sizeof(mapIdLabel[0])); ++i) {
+        char c = mapIdLabel[i].label[0];
+        mapLabelId[c] = mapIdLabel[i].id;
     }
-    return period_label_id;
+    return mapLabelId;
 }
 
-wxDateSpan DateRange2::span(int offset, DateRange2::PERIOD_ID period)
+wxDateSpan DatePeriod::span(int offset, DatePeriod period)
 {
-    if (period == PERIOD_ID_Y)
+    if (period == _Y)
         return wxDateSpan::Years(offset);
-    else if (period == PERIOD_ID_Q)
+    else if (period == _Q)
         return wxDateSpan::Months(3*offset);
-    else if (period == PERIOD_ID_M)
+    else if (period == _M)
         return wxDateSpan::Months(offset);
-    else if (period == PERIOD_ID_W)
+    else if (period == _W)
         return wxDateSpan::Weeks(offset);
-    else if (period == PERIOD_ID_T || period == PERIOD_ID_S)
+    else if (period == _T || period == _S)
         return wxDateSpan::Days(offset);
     else
         return wxDateSpan();
 }
 
+DatePeriod::DatePeriod(Id id_new) :
+    id(id_new)
+{
+}
+
+DatePeriod::DatePeriod(char label)
+{
+    auto it = mapLabelId.find(label);
+    id = (it == mapLabelId.end()) ? _A : it->second;
+}
+
 DateRange2::Range::Range(
-    int so1_new, PERIOD_ID sp1_new,
-    int eo1_new, PERIOD_ID ep1_new,
-    int so2_new, PERIOD_ID sp2_new,
-    int eo2_new, PERIOD_ID ep2_new,
+    int so1_new, DatePeriod  sp1_new,
+    int eo1_new, DatePeriod  ep1_new,
+    int so2_new, DatePeriodN sp2_new,
+    int eo2_new, DatePeriodN ep2_new,
     int f_new, wxString name_new
 ) {
-    // sp1/ep1 cannot be PERIOD_ID_none
-    sp1 = (sp1_new == PERIOD_ID_none) ? PERIOD_ID_A : sp1_new;
-    ep1 = (ep1_new == PERIOD_ID_none) ? PERIOD_ID_A : ep1_new;
-    // so1/eo1 is not applicable if sp1/ep1 resp., is PERIOD_ID_A
-    so1 = (sp1 == PERIOD_ID_A) ? 0 : so1_new;
-    eo1 = (ep1 == PERIOD_ID_A) ? 0 : eo1_new;
-    // either both sp2 and ep2 are PERIOD_ID_none, or none of them
-    if (sp2_new == PERIOD_ID_none || ep2_new == PERIOD_ID_none) {
-        // so2/eo2 are not applicable if sp2/ep2 are PERIOD_ID_none
-        sp2 = PERIOD_ID_none; so2 = 0;
-        ep2 = PERIOD_ID_none; eo2 = 0;
+    sp1 = sp1_new;
+    ep1 = ep1_new;
+    // so1/eo1 is not applicable if sp1/ep1 resp., is DatePeriod::_A
+    so1 = (sp1 == DatePeriod::_A) ? 0 : so1_new;
+    eo1 = (ep1 == DatePeriod::_A) ? 0 : eo1_new;
+    // either both sp2 and ep2 are null, or none of them
+    if (sp2_new == std::nullopt || ep2_new == std::nullopt) {
+        // so2/eo2 are not applicable if sp2/ep2 are null
+        sp2 = std::nullopt; so2 = 0;
+        ep2 = std::nullopt; eo2 = 0;
     }
     else {
-        // so2/eo2 is not applicable if sp2/ep2 resp., is PERIOD_ID_A
-        sp2 = sp2_new; so2 = (sp2 == PERIOD_ID_A) ? 0 : so2_new;
-        ep2 = ep2_new; eo2 = (ep2 == PERIOD_ID_A) ? 0 : eo2_new;
+        // so2/eo2 is not applicable if sp2/ep2 resp., is DatePeriod::A
+        sp2 = sp2_new; so2 = (sp2 == DatePeriod::_A) ? 0 : so2_new;
+        ep2 = ep2_new; eo2 = (ep2 == DatePeriod::_A) ? 0 : eo2_new;
     }
     // f is either 0 (calendar) or 1 (financial)
     f = (f_new == 1) ? 1 : 0;
@@ -119,7 +115,7 @@ void DateRange2::Range::scanWhiteSpace(StringIt &buffer_i, StringIt buffer_end)
 // token_o is set if token==o; token_p is set if token==p
 char DateRange2::Range::scanToken(
     StringIt &buffer_i, StringIt buffer_end,
-    int &token_o, PERIOD_ID &token_p
+    int &token_o, DatePeriod &token_p
 ) {
     scanWhiteSpace(buffer_i, buffer_end);
     if (buffer_i == buffer_end)
@@ -173,10 +169,9 @@ char DateRange2::Range::scanToken(
     if (c1)
         return '_';
 
-    auto label_it = PERIOD_LABEL_ID.find(c);
-    if (label_it != PERIOD_LABEL_ID.end()) {
+    if (auto it = DatePeriod::mapLabelId.find(c); it != DatePeriod::mapLabelId.end()) {
         ++buffer_i;
-        token_p = label_it->second;
+        token_p = it->second;
         return 'p';
     }
 
@@ -191,16 +186,16 @@ bool DateRange2::Range::parseLabel(StringIt &buffer_i, StringIt buffer_end)
     // subrange = so ".." eo p
     // subrange = o? p
 
-    int so_new[2] = { 0, 0 }; PERIOD_ID sp_new[2] = { PERIOD_ID_none, PERIOD_ID_none };
-    int eo_new[2] = { 0, 0 }; PERIOD_ID ep_new[2] = { PERIOD_ID_none, PERIOD_ID_none };
+    int so_new[2] = { 0, 0 }; DatePeriodN sp_new[2] = { std::nullopt, std::nullopt };
+    int eo_new[2] = { 0, 0 }; DatePeriodN ep_new[2] = { std::nullopt, std::nullopt };
     int f_new = 0;
     int i = 0;     // index into {s,e}{o,p}[] (0: first subrange, 1: second subrange)
     int state = 0; // parse state: 0 (so) 1 (sp) 2 (..) 3 (eo) 4 (ep) 5 (f) 6 (;) 7
 
     while (1) {
-        char token;                         // one of [op.,@f;_]
-        int token_o = 0;                    // offset (if token == 'o')
-        PERIOD_ID token_p = PERIOD_ID_none; // period (if token == 'p')
+        char token;                           // one of [op.,@f;_]
+        int token_o = 0;                      // offset (if token == 'o')
+        DatePeriod token_p = DatePeriod::_A;  // period (if token == 'p')
         token = scanToken(buffer_i, buffer_end, token_o, token_p);
         //wxLogDebug("DEBUG: state=%d, token=%c", state, token);
         if (state == 0 && token == 'o') {
@@ -223,7 +218,7 @@ bool DateRange2::Range::parseLabel(StringIt &buffer_i, StringIt buffer_end)
             continue;
         }
         if ((state == 3 || state == 4) && token == 'p') {
-            if (sp_new[i] == PERIOD_ID_none)
+            if (sp_new[i] == std::nullopt)
                 sp_new[i] = token_p;
             ep_new[i] = token_p;
             state = 5;
@@ -251,13 +246,13 @@ bool DateRange2::Range::parseLabel(StringIt &buffer_i, StringIt buffer_end)
         break;
     }
 
-    if (state != 7) {
+    if (state != 7 || sp_new[0] == std::nullopt || ep_new[0] == std::nullopt) {
         wxLogDebug("ERROR: DateRange2::Range::parseLabel(): state=%d", state);
         return false;
     }
 
-    so1 = so_new[0]; sp1 = sp_new[0]; eo1 = eo_new[0]; ep1 = ep_new[0];
-    so2 = so_new[1]; sp2 = sp_new[1]; eo2 = eo_new[1]; ep2 = ep_new[1];
+    so1 = so_new[0]; sp1 = sp_new[0].value(); so2 = so_new[1]; sp2 = sp_new[1];
+    eo1 = eo_new[0]; ep1 = ep_new[0].value(); eo2 = eo_new[1]; ep2 = ep_new[1];
     f = f_new;
 
     return true;
@@ -303,29 +298,25 @@ const wxString DateRange2::Range::getLabel() const
     StringBuilder sb;
 
     // first range
-    wxString sp1_label = PERIOD_INFO[sp1].label;
     if (sp1 == ep1) {
-        sb.append(offsetRangeStr(so1, eo1)); sb.sep(); sb.append(sp1_label);
+        sb.append(offsetRangeStr(so1, eo1)); sb.sep(); sb.append(sp1.label());
     }
     else {
-        wxString ep1_label = PERIOD_INFO[ep1].label;
-        sb.append(offsetStr(so1)); sb.sep(); sb.append(sp1_label);
+        sb.append(offsetStr(so1)); sb.sep(); sb.append(sp1.label());
         sb.sep(); sb.append(".."); sb.sep();
-        sb.append(offsetStr(eo1)); sb.sep(); sb.append(ep1_label);
+        sb.append(offsetStr(eo1)); sb.sep(); sb.append(ep1.label());
     }
 
     // second range
-    if (sp2 != PERIOD_ID_none && ep2 != PERIOD_ID_none) {
+    if (sp2.has_value() && ep2.has_value()) {
         sb.append(","); sb.sep();
-        wxString sp2_label = PERIOD_INFO[sp2].label;
         if (sp2 == ep2) {
-            sb.append(offsetRangeStr(so2, eo2)); sb.sep(); sb.append(sp2_label);
+            sb.append(offsetRangeStr(so2, eo2)); sb.sep(); sb.append(sp2.value().label());
         }
         else {
-            wxString ep2_label = PERIOD_INFO[ep2].label;
-            sb.append(offsetStr(so2)); sb.sep(); sb.append(sp2_label);
+            sb.append(offsetStr(so2)); sb.sep(); sb.append(sp2.value().label());
             sb.sep(); sb.append(".."); sb.sep();
-            sb.append(offsetStr(eo2)); sb.sep(); sb.append(ep2_label);
+            sb.append(offsetStr(eo2)); sb.sep(); sb.append(ep2.value().label());
         }
     }
 
@@ -364,18 +355,12 @@ const wxString DateRange2::Range::checkingDescription() const
 }
 
 DateRange2::Reporting::Reporting(
-    int m_new, PERIOD_ID p_new
+    int m_new, DatePeriod p_new
 ) {
-    // p cannot be PERIOD_ID_S (statement date)
-    p = (p_new == PERIOD_ID_S) ? PERIOD_ID_T : p_new;
-
-    // m is not applicable if p is PERIOD_ID_none;
-    // if it is applicable, it cannot be 0;
-    // it is normalized to 1 if p is PERIOD_ID_A
-    m = (p == PERIOD_ID_none) ? 0
-      : (p == PERIOD_ID_A) ? 1
-      : (m_new == 0) ? 1
-      : m_new;
+    // p cannot be DatePeriod::_S (statement date)
+    p = (p_new == DatePeriod::_S) ? DatePeriod::_T : p_new;
+    // m cannot be 0; it is normalized to 1 if p is DatePeriod::_A
+    m = (m_new == 0 || p == DatePeriod::_A) ? 1 : m_new;
 }
 
 // return true if parse is successful
@@ -383,24 +368,27 @@ bool DateRange2::Reporting::parseLabel(StringIt &buffer_i, StringIt buffer_end)
 {
     // reporting = m? p
 
-    int m_new = 0; PERIOD_ID p_new = PERIOD_ID_none;
+    int m_new = 1; DatePeriod p_new = DatePeriod::_A;
     int state = 0; // parse state: 0 (m) 1 (p) 2 (;) 3
 
     while (1) {
-        char token;                         // one of [op;_]
-        int token_o = 0;                    // offset (if token == 'o')
-        PERIOD_ID token_p = PERIOD_ID_none; // period (if token == 'p')
+        char token;                           // one of [op;_]
+        int token_o = 0;                      // offset (if token == 'o')
+        DatePeriod token_p = DatePeriod::_A;  // period (if token == 'p')
         token = DateRange2::Range::scanToken(buffer_i, buffer_end, token_o, token_p);
         //wxLogDebug("DEBUG: state=%d, token=%c", state, token);
         if (state == 0 && token == 'o') {
-            m_new = token_o;
+            // m cannot be 0
+            m_new = (token_o == 0) ? 1 : token_o;
             state = 1;
             continue;
         }
         if ((state == 0 || state == 1) && token == 'p') {
-            if (m_new == 0 || token_p == PERIOD_ID_A)
+            // m is normalized to 1 if p is DatePeriod::_A
+            if (token_p == DatePeriod::_A)
                 m_new = 1;
-            p_new = (token_p == PERIOD_ID_S) ? PERIOD_ID_T : token_p;
+            // p cannot be DatePeriod::_S
+            p_new = (token_p == DatePeriod::_S) ? DatePeriod::_T : token_p;
             state = 2;
             continue;
         }
@@ -424,11 +412,8 @@ bool DateRange2::Reporting::parseLabel(StringIt &buffer_i, StringIt buffer_end)
 
 const wxString DateRange2::Reporting::getLabel() const
 {
-    if (p == PERIOD_ID_none || m == 0)
-        return "";
     StringBuilder sb;
-    wxString p_label = PERIOD_INFO[p].label;
-    sb.append(multiplierStr(m)); sb.sep(); sb.append(p_label);
+    sb.append(multiplierStr(m)); sb.sep(); sb.append(p.label());
     return sb.buffer;
 }
 
@@ -498,27 +483,27 @@ bool DateRange2::parseReporting(const wxString &buffer)
     return true;
 }
 
-DateDay DateRange2::periodStart(DateDay date, PERIOD_ID period) const
+DateDay DateRange2::periodStart(DateDay date, DatePeriod period) const
 {
-    if (!date.isDefined() || period < PERIOD_ID_Y || period > PERIOD_ID_S)
+    if (!date.isDefined() || period == DatePeriod::_A)
         return DateDay();
     wxDateTime start_dateTime = date.getDateTime();
-    if (period == PERIOD_ID_Y || period == PERIOD_ID_Q || period == PERIOD_ID_M) {
+    if (period == DatePeriod::_Y || period == DatePeriod::_Q || period == DatePeriod::_M) {
         if (start_dateTime.GetDay() < firstDay[range.f])
             start_dateTime -= wxDateSpan::Months(1);
         start_dateTime.SetDay(firstDay[range.f]);
-        if (period == PERIOD_ID_Y) {
+        if (period == DatePeriod::_Y) {
             if (start_dateTime.GetMonth() < firstMonth[range.f])
                 start_dateTime -= wxDateSpan::Years(1);
             start_dateTime.SetMonth(firstMonth[range.f]);
         }
-        else if (period == PERIOD_ID_Q) {
+        else if (period == DatePeriod::_Q) {
             int m = (start_dateTime.GetMonth() - firstMonth[range.f] + 12) % 3;
             if (m > 0)
                 start_dateTime -= wxDateSpan::Months(m);
         }
     }
-    else if (period == PERIOD_ID_W) {
+    else if (period == DatePeriod::_W) {
         int d = (start_dateTime.GetWeekDay() - firstWeekday + 7) % 7;
         if (d > 0)
             start_dateTime -= wxDateSpan::Days(d);
@@ -526,28 +511,28 @@ DateDay DateRange2::periodStart(DateDay date, PERIOD_ID period) const
     return DateDay(start_dateTime);
 }
 
-DateDay DateRange2::periodEnd(DateDay date, PERIOD_ID period) const
+DateDay DateRange2::periodEnd(DateDay date, DatePeriod period) const
 {
-    if (!date.isDefined() || period < PERIOD_ID_Y || period > PERIOD_ID_S)
+    if (!date.isDefined() || period == DatePeriod::_A)
         return DateDay();
     wxDateTime end_dateTime = date.getDateTime();
-    if (period == PERIOD_ID_Y || period == PERIOD_ID_Q || period == PERIOD_ID_M) {
+    if (period == DatePeriod::_Y || period == DatePeriod::_Q || period == DatePeriod::_M) {
         if (end_dateTime.GetDay() >= firstDay[range.f])
             end_dateTime += wxDateSpan::Months(1);
         end_dateTime.SetDay(firstDay[range.f]);
-        if (period == PERIOD_ID_Y) {
+        if (period == DatePeriod::_Y) {
             if (end_dateTime.GetMonth() > firstMonth[range.f])
                 end_dateTime += wxDateSpan::Years(1);
             end_dateTime.SetMonth(firstMonth[range.f]);
         }
-        else if (period == PERIOD_ID_Q) {
+        else if (period == DatePeriod::_Q) {
             int m = (firstMonth[range.f] - end_dateTime.GetMonth() + 12) % 3;
             if (m > 0)
                 end_dateTime += wxDateSpan::Months(m);
         }
         end_dateTime -= wxDateSpan::Days(1);
     }
-    else if (period == PERIOD_ID_W) {
+    else if (period == DatePeriod::_W) {
         int d = (firstWeekday - end_dateTime.GetWeekDay() + 6) % 7;
         if (d > 0)
             end_dateTime += wxDateSpan::Days(d);
@@ -557,18 +542,20 @@ DateDay DateRange2::periodEnd(DateDay date, PERIOD_ID period) const
 
 DateDay DateRange2::rangeStart() const
 {
-    if (range.sp1 == PERIOD_ID_A || range.sp2 == PERIOD_ID_A)
+    if (range.sp1 == DatePeriod::_A || range.sp2 == DatePeriod::_A)
         return default_start;
-    DateDay start_date1 = (range.sp1 == PERIOD_ID_S) ? date_s : date_t;
+    DateDay start_date1 = (range.sp1 == DatePeriod::_S) ? date_s : date_t;
     if (range.so1 != 0)
-        start_date1.addSpan(span(range.so1, range.sp1));
+        start_date1.addSpan(DatePeriod::span(range.so1, range.sp1));
     start_date1 = periodStart(start_date1, range.sp1);
-    if (!start_date1.isDefined() || range.sp2 == PERIOD_ID_none || range.ep2 == PERIOD_ID_none)
+    if (!start_date1.isDefined() || range.sp2 == std::nullopt || range.ep2 == std::nullopt)
         return start_date1;
-    DateDay start_date2 = (range.sp2 == PERIOD_ID_S) ? date_s : date_t;
+    DateDay start_date2 = (range.sp2 == DatePeriod::_S) ? date_s : date_t;
     if (range.so2 != 0)
-        start_date2.addSpan(span(range.so2, range.sp2));
-    start_date2 = periodStart(start_date2, range.sp1 > range.sp2 ? range.sp1 : range.sp2);
+        start_date2.addSpan(DatePeriod::span(range.so2, range.sp2.value()));
+    DatePeriod p = range.sp1.toInt() > range.sp2.value().toInt() ? range.sp1
+        : range.sp2.value();
+    start_date2 = periodStart(start_date2, p);
     if (!start_date2.isDefined())
         return DateDay();
     return start_date1 <= start_date2 ? start_date1 : start_date2;
@@ -576,18 +563,20 @@ DateDay DateRange2::rangeStart() const
 
 DateDay DateRange2::rangeEnd() const
 {
-    if (range.ep1 == PERIOD_ID_A || range.ep2 == PERIOD_ID_A)
+    if (range.ep1 == DatePeriod::_A || range.ep2 == DatePeriod::_A)
         return default_end;
-    DateDay end_date1 = (range.ep1 == PERIOD_ID_S) ? date_s : date_t;
+    DateDay end_date1 = (range.ep1 == DatePeriod::_S) ? date_s : date_t;
     if (range.eo1 != 0)
-        end_date1.addSpan(span(range.eo1, range.ep1));
+        end_date1.addSpan(DatePeriod::span(range.eo1, range.ep1));
     end_date1 = periodEnd(end_date1, range.ep1);
-    if (!end_date1.isDefined() || range.sp2 == PERIOD_ID_none || range.ep2 == PERIOD_ID_none)
+    if (!end_date1.isDefined() || range.sp2 == std::nullopt || range.ep2 == std::nullopt)
         return end_date1;
-    DateDay end_date2 = (range.ep2 == PERIOD_ID_S) ? date_s : date_t;
+    DateDay end_date2 = (range.ep2 == DatePeriod::_S) ? date_s : date_t;
     if (range.eo2 != 0)
-        end_date2.addSpan(span(range.eo2, range.ep2));
-    end_date2 = periodEnd(end_date2, range.ep1 > range.ep2 ? range.ep1 : range.ep2);
+        end_date2.addSpan(DatePeriod::span(range.eo2, range.ep2.value()));
+    DatePeriod p = range.ep1.toInt() > range.ep2.value().toInt() ? range.ep1
+        : range.ep2.value();
+    end_date2 = periodEnd(end_date2, p);
     if (!end_date2.isDefined())
         return DateDay();
     return end_date2 <= end_date1 ? end_date1 : end_date2;
@@ -600,7 +589,7 @@ DateDay DateRange2::reportingNext() const
 
     if (!range_start.isDefined() || !range_end.isDefined())
         return range_end;
-    if (reporting.p == PERIOD_ID_none || reporting.p == PERIOD_ID_A || reporting.m == 0)
+    if (reporting.p == DatePeriod::_A)
         return range_end;
 
     if (reporting.m > 0) {
@@ -608,7 +597,7 @@ DateDay DateRange2::reportingNext() const
         // (i.e., its first period contains range_start)
         DateDay next = periodEnd(range_start, reporting.p);
         if (reporting.m > 1) {
-            next.addSpan(span(reporting.m - 1, reporting.p));
+            next.addSpan(DatePeriod::span(reporting.m - 1, reporting.p));
             next = periodEnd(next, reporting.p);
         }
         return next <= range_end ? next : range_end;
@@ -618,10 +607,10 @@ DateDay DateRange2::reportingNext() const
         // (i.e., its last period contains range_end)
         DateDay next = periodEnd(range_end, reporting.p);
         DateDay next1 = next;
-        next1.addSpan(span(reporting.m, reporting.p));
+        next1.addSpan(DatePeriod::span(reporting.m, reporting.p));
         while (range_start <= next1) {
             next = next1;
-            next1.addSpan(span(reporting.m, reporting.p));
+            next1.addSpan(DatePeriod::span(reporting.m, reporting.p));
             next1 = periodEnd(next1, reporting.p);
         }
         return next <= range_end ? next : range_end;
@@ -684,9 +673,9 @@ void DateRange2::ReportingIterator::increment()
 
     int rm = a->reporting.m;
     if (rm < 0) rm = -rm;
-    PERIOD_ID rp = a->reporting.p;
+    DatePeriod rp = a->reporting.p;
     DateDay next1 = next;
-    next1.addSpan(DateRange2::span(rm, rp));
+    next1.addSpan(DatePeriod::span(rm, rp));
     next1 = a->periodEnd(next1, rp);
     if (last < next1)
         next1 = last;
@@ -709,9 +698,13 @@ bool DateRange2::debug()
     bool ok = true;
     wxLogDebug("{{{ DateRange2::debug()");
 
-    // check order in PERIOD_INFO
-    for (int i = 0; i < static_cast<int>(sizeof(PERIOD_INFO)/sizeof(PERIOD_INFO[0])); i++) {
-        wxASSERT_MSG(PERIOD_INFO[i].id == i, "Wrong order in PERIOD_INFO");
+    // check order in DatePeriod::mapIdLabel
+    int n = static_cast<int>(sizeof(DatePeriod::mapIdLabel)/sizeof(DatePeriod::mapIdLabel[0]));
+    for (int i = 0; i < n; i++) {
+        wxASSERT_MSG(
+            static_cast<int>(DatePeriod::mapIdLabel[i].id) == i,
+            "Wrong order in DatePeriod::mapIdLabel"
+        );
     }
 
     // create a DateRange2 object; default_start is undefined

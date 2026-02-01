@@ -21,131 +21,67 @@
 #include <wx/datetime.h>
 #include <unordered_map>
 #include "primitive.h"
+#include "dateday.h"
 
-// DateDay represents a date without time information.
-// wxWidgets does not have a dedicated type for this purpose.
-// The underlying data structure is wxDateTime, with the time part set
-// to noon (12:00), in order to avoid rounding errors around midnight.
-// The special value wxInvalidDateTime means "undefined" (depending on
-// the context, it may mean, e.g., "missing", or "null", or "invalid").
-//
-// dateISO{Start,End} are helper functions for date comparisons, e.g.,
-//   start.dateStartISO() <= date_str <= end.dateEndISO()
-// where `date_str` is a date or date+time string in ISO format, checks
-// if `date_str` is in the range (`start`..`end`), where each boundary
-// is inclusive if it is defined and open if it is undefined.
-
-struct DateDay
+class DatePeriod
 {
-protected:
-    wxDateTime dateTime;
+public:
+    enum Id
+    {
+        _A = 0,     // all
+        _Y,         // year = 4 quarters = 12 months
+        _Q,         // quarter = 3 months
+        _M,         // month
+        _W,         // week = 7 days
+        _T,         // day (today)
+        _S,         // day (statement date)
+        _min = _A,  // (min value)
+        _max = _S,  // (max value)
+    };
+
+    typedef struct { Id id; const wxString label; } MapIdLabel;
+    typedef std::unordered_map<char, Id> MapLabelId;
+    static const MapIdLabel mapIdLabel[];
+    static const MapLabelId mapLabelId;
+
+private:
+    static MapLabelId makeLabelId();
 
 public:
-    DateDay();
-    DateDay(wxDateTime dateTime_new);
+    static wxDateSpan span(int offset, DatePeriod period);
+
+private:
+    Id id;
 
 public:
-    static DateDay today();
+    DatePeriod(Id id_new = _A);
+    DatePeriod(char label);
 
-public:
-    bool isDefined() const;
-    wxDateTime getDateTime(wxDateTime defaultDateTime = wxDateTime()) const;
-    const wxString dateISO() const;
-    const wxString dateStartISO() const;
-    const wxString dateEndISO() const;
-    void addSpan(wxDateSpan span);
-
-    // partial operators (the undefined value is not comparable)
-    bool operator== (const DateDay& other) const;
-    bool operator!= (const DateDay& other) const;
-    bool operator<  (const DateDay& other) const;
-    bool operator>  (const DateDay& other) const;
-    bool operator<= (const DateDay& other) const;
-    bool operator>= (const DateDay& other) const;
+    int toInt() const;
+    const wxString label() const;
+    bool operator== (DatePeriod other) const;
+    bool operator== (Id other_id) const;
 };
 
-inline DateDay DateDay::today()
+using DatePeriodN = std::optional<DatePeriod>;
+
+inline int DatePeriod::toInt() const
 {
-    // get the dateTime of today, with time set to noon (12:00)
-    wxDateTime today_dateTime = wxDateTime(12, 0, 0, 0);
-    // the DateDay constructor anyway resets the time to noon
-    return DateDay(today_dateTime);
+    return static_cast<int>(id);
 }
 
-// isDefined is better name than isValid.
-// depending on the context, wxInvalidDateTime may be a valid value.
-inline bool DateDay::isDefined() const
+inline const wxString DatePeriod::label() const
 {
-    return dateTime.IsValid();
+    return mapIdLabel[toInt()].label;
 }
 
-inline wxDateTime DateDay::getDateTime(wxDateTime defaultDateTime) const
+inline bool DatePeriod::operator== (DatePeriod other) const
 {
-    return dateTime.IsValid() ? dateTime : defaultDateTime;
+    return id == other.id;
 }
-
-inline const wxString DateDay::dateISO() const
+inline bool DatePeriod::operator== (DatePeriod::Id other_id) const
 {
-    // an undefined date is represented with an empty string
-    return dateTime.IsValid() ? dateTime.FormatISODate() : "";
-}
-
-// Let `date_str` be a date or date+time string in ISO format.
-// (start.dateStartISO() <= date_str) is true iff:
-//   `start` is defined and the date part in `date_str` is greater than or equal to `start`, or
-//   `start` is undefined
-// Notice that (start.dateStartISO() < date_str) does not have the intended meaning.
-inline const wxString DateDay::dateStartISO() const
-{
-    wxString dateStr = dateISO();
-    return dateStr.append("");
-}
-
-// (date_str <= end.dateEndISO()) is true iff:
-//   `end` is defined and the date part in `date_str` is less than or equal to `end`, or
-//   `end` is undefined
-// Notice that (date_str < end.dateEndISO()) does not have the intended meaning.
-inline const wxString DateDay::dateEndISO() const
-{
-    // note: the ASCII code of "~" is greater than any character in ISO format
-    wxString dateStr = dateISO();
-    return dateStr.append("~");
-}
-
-inline void DateDay::addSpan(wxDateSpan span)
-{
-    if (isDefined())
-        dateTime += span;
-}
-
-inline bool DateDay::operator== (const DateDay& other) const
-{
-    return (dateTime == other.dateTime);
-}
-
-inline bool DateDay::operator!= (const DateDay& other) const
-{
-    return (dateTime != other.dateTime);
-}
-
-inline bool DateDay::operator< (const DateDay& other) const
-{
-    return (isDefined() && other.isDefined() && dateTime < other.dateTime);
-}
-
-inline bool DateDay::operator> (const DateDay& other) const
-{
-    return (isDefined() && other.isDefined() && dateTime > other.dateTime);
-}
-
-inline bool DateDay::operator<= (const DateDay& other) const
-{
-    return (*this == other) || (*this < other);
-}
-
-inline bool DateDay::operator>= (const DateDay& other) const
-{
-    return (*this == other) || (*this > other);
+    return id == other_id;
 }
 
 // DateRange2 represents a date range relative to today.
@@ -161,51 +97,28 @@ inline bool DateDay::operator>= (const DateDay& other) const
 class DateRange2
 {
 public:
-    enum PERIOD_ID
-    {
-        PERIOD_ID_A = 0, // all
-        PERIOD_ID_Y,     // year = 4 quarters = 12 months
-        PERIOD_ID_Q,     // quarter = 3 months
-        PERIOD_ID_M,     // month
-        PERIOD_ID_W,     // week = 7 days
-        PERIOD_ID_T,     // day (today)
-        PERIOD_ID_S,     // day (statement date)
-        PERIOD_ID_size,
-        PERIOD_ID_none = PERIOD_ID_size
-    };
-
-    typedef struct { PERIOD_ID id; wxString label; } PERIOD_INFO_t;
-    typedef std::unordered_map<char, PERIOD_ID> PERIOD_LABEL_ID_t;
-    static const PERIOD_INFO_t PERIOD_INFO[];
-    static const PERIOD_LABEL_ID_t PERIOD_LABEL_ID;
-    static wxDateSpan span(int offset, PERIOD_ID period);
-
-private:
-    static PERIOD_LABEL_ID_t make_period_label_id();
-
-public:
     class Range
     {
         friend class DateRange2;
 
     protected:
-        int so1 = 0;                    // start offset of first subrange
-        int eo1 = 0;                    // end   offset of first subrange
-        PERIOD_ID sp1 = PERIOD_ID_A;    // start period of first subrange
-        PERIOD_ID ep1 = PERIOD_ID_A;    // end   period of first subrange
-        int so2 = 0;                    // start offset of second subrange
-        int eo2 = 0;                    // end   offset of second subrange
-        PERIOD_ID sp2 = PERIOD_ID_none; // start period of second subrange
-        PERIOD_ID ep2 = PERIOD_ID_none; // end   period of second subrange
-        int f = 0;                      // index in first*[] (0=calendar, 1=financial)
-        wxString name = "";             // specification name
+        int so1 = 0;                      // start offset of first subrange
+        int eo1 = 0;                      // end   offset of first subrange
+        DatePeriod sp1 = DatePeriod::_A;  // start period of first subrange
+        DatePeriod ep1 = DatePeriod::_A;  // end   period of first subrange
+        int so2 = 0;                      // start offset of second subrange
+        int eo2 = 0;                      // end   offset of second subrange
+        DatePeriodN sp2 = std::nullopt;   // start period of second subrange
+        DatePeriodN ep2 = std::nullopt;   // end   period of second subrange
+        int f = 0;                        // index in first*[] (0=calendar, 1=financial)
+        wxString name = "";               // specification name
 
     public:
         Range(
-            int so1_new = 0, PERIOD_ID sp1_new = PERIOD_ID_A,
-            int eo1_new = 0, PERIOD_ID ep1_new = PERIOD_ID_A,
-            int so2_new = 0, PERIOD_ID sp2_new = PERIOD_ID_none,
-            int eo2_new = 0, PERIOD_ID ep2_new = PERIOD_ID_none,
+            int so1_new = 0, DatePeriod sp1_new = DatePeriod::_A,
+            int eo1_new = 0, DatePeriod ep1_new = DatePeriod::_A,
+            int so2_new = 0, DatePeriodN sp2_new = std::nullopt,
+            int eo2_new = 0, DatePeriodN ep2_new = std::nullopt,
             int f_new = 0, wxString name_new = ""
         );
 
@@ -223,7 +136,7 @@ public:
 
     private:
         static void scanWhiteSpace(StringIt &buffer_i, StringIt buffer_end);
-        static char scanToken(StringIt &buffer_i, StringIt buffer_end, int &token_o, PERIOD_ID &token_p);
+        static char scanToken(StringIt &buffer_i, StringIt buffer_end, int &token_o, DatePeriod &token_p);
         static const wxString offsetStr(int offset, bool show_zero = false);
         static const wxString offsetRangeStr(int so, int eo, bool show_zero = false);
     };
@@ -234,11 +147,11 @@ public:
         friend class DateRange2;
 
     protected:
-        int m = 0;                    // multiplier
-        PERIOD_ID p = PERIOD_ID_none; // reporting period
+        int m = 1;                      // multiplier
+        DatePeriod p = DatePeriod::_A;  // reporting period
 
     public:
-        Reporting(int m_new = 0, PERIOD_ID p_new = PERIOD_ID_none);
+        Reporting(int m_new = 1, DatePeriod p_new = DatePeriod::_A);
 
     public:
         bool parseLabel(StringIt &buffer_i, StringIt buffer_end);
@@ -249,11 +162,11 @@ public:
     };
 
 protected:
-    int firstDay[2];                  // first day in PERIOD_ID_[YQM] (1..28)
-    wxDateTime::Month firstMonth[2];  // first month in PERIOD_ID_[YQ] (0..11)
-    wxDateTime::WeekDay firstWeekday; // first weekday in PERIOD_ID_W (0=Sun, 1=Mon)
-    DateDay date_s;                   // the date of PERIOD_ID_S (MAY be undefined)
-    DateDay date_t;                   // the date of PERIOD_ID_T (MUST be defined)
+    int firstDay[2];                  // first day in PERIOD::[YQM] (1..28)
+    wxDateTime::Month firstMonth[2];  // first month in PERIOD::[YQ] (0..11)
+    wxDateTime::WeekDay firstWeekday; // first weekday in PERIOD::W (0=Sun, 1=Mon)
+    DateDay date_s;                   // the date of PERIOD::S (MAY be undefined)
+    DateDay date_t;                   // the date of PERIOD::T (MUST be defined)
     DateDay default_start;            // default start date (if range start is open)
     DateDay default_end;              // default end date (if range end is open)
     Range range;                      // range specification
@@ -295,8 +208,8 @@ public:
     const wxString rangeName() const;
     const wxString rangeLabelName() const;
     const wxString reportingLabel() const;
-    DateDay periodStart(DateDay date, PERIOD_ID period) const;
-    DateDay periodEnd(DateDay date, PERIOD_ID period) const;
+    DateDay periodStart(DateDay date, DatePeriod period) const;
+    DateDay periodEnd(DateDay date, DatePeriod period) const;
     DateDay rangeStart() const;
     DateDay rangeEnd() const;
     DateDay reportingNext() const;
@@ -361,8 +274,8 @@ inline const wxString DateRange2::Range::getName() const
 inline bool DateRange2::Range::hasPeriodS() const
 {
     return
-        sp1 == PERIOD_ID_S || ep1 == PERIOD_ID_S ||
-        sp2 == PERIOD_ID_S || ep2 == PERIOD_ID_S;
+        sp1 == DatePeriod::_S || ep1 == DatePeriod::_S ||
+        sp2 == DatePeriod::_S || ep2 == DatePeriod::_S;
 }
 
 inline const wxString DateRange2::Range::offsetStr(int offset, bool show_zero)
