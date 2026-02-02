@@ -17,20 +17,16 @@
  ********************************************************/
 
 #include "dateday.h"
-#include "constants.h"
-#include "option.h"
-
-DateDay::DateDay() :
-    dateTime{wxDateTime()}
-{
-}
+#include <wx/log.h>
 
 DateDay::DateDay(wxDateTime dateTime_new) :
     dateTime{dateTime_new}
 {
-    if (dateTime.IsValid()) {
-        // set time to noon (12:00)
-        dateTime.SetHour(12).SetMinute(0).SetSecond(0).SetMillisecond(0);
+    if (!dateTime.IsValid()) {
+        wxLogDebug("ERROR: DateDay::DateDay(): dateTime is invalid");
+        dateTime = wxDateTime(12, 0, 0, 0);
     }
+    // set time to noon (12:00)
+    dateTime.SetHour(12).SetMinute(0).SetSecond(0).SetMillisecond(0);
 }
 

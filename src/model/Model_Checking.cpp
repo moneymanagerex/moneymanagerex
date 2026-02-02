@@ -202,12 +202,12 @@ DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxString&
 
 wxDateTime Model_Checking::TRANSDATE(const Data* r)
 {
-    return Model::to_date(r->TRANSDATE);
+    return isoDateTime(r->TRANSDATE);
 }
 
 wxDateTime Model_Checking::TRANSDATE(const Data& r)
 {
-    return Model::to_date(r.TRANSDATE);
+    return isoDateTime(r.TRANSDATE);
 }
 
 double Model_Checking::account_flow(const Data* r, int64 account_id)
@@ -275,7 +275,7 @@ bool Model_Checking::is_locked(const Data* r)
         wxDateTime transaction_date;
         if (transaction_date.ParseDate(r->TRANSDATE))
         {
-            if (transaction_date <= Model_Account::DateOf(acc->STATEMENTDATE))
+            if (transaction_date <= isoDateTime(acc->STATEMENTDATE))
             {
                 val = true;
             }

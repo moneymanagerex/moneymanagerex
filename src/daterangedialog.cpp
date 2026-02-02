@@ -271,10 +271,11 @@ void mmDateRangeDialog::OnOk(wxCommandEvent&)
         m_dateRangesPtr->push_back(sdata);
         for (int k = 0; k < m_dateRangesLb->GetItemCount(); k++) {
             sdata = DateRange2::Range();
-            if (k != m_subMenuBegin) {
-                if (sdata.parseLabelName(m_dateRangesLb->GetTextValue(k, 1), m_dateRangesLb->GetTextValue(k, 0))) {
-                    m_dateRangesPtr->push_back(sdata);
-                }
+            if (k != m_subMenuBegin && sdata.parseLabelName(
+                m_dateRangesLb->GetTextValue(k, 1),
+                m_dateRangesLb->GetTextValue(k, 0)
+            )) {
+                m_dateRangesPtr->push_back(sdata);
             }
         }
         // Store new settings

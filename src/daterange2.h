@@ -35,7 +35,7 @@ public:
         _M,         // month
         _W,         // week = 7 days
         _T,         // day (today)
-        _S,         // day (statement date)
+        _S,         // day (account statement date)
         _min = _A,  // (min value)
         _max = _S,  // (max value)
     };
@@ -48,9 +48,6 @@ public:
 private:
     static MapLabelId makeLabelId();
 
-public:
-    static wxDateSpan span(int offset, DatePeriod period);
-
 private:
     Id id;
 
@@ -58,6 +55,10 @@ public:
     DatePeriod(Id id_new = _A);
     DatePeriod(char label);
 
+public:
+    static wxDateSpan span(int offset, DatePeriod period);
+
+public:
     int toInt() const;
     const wxString label() const;
     bool operator== (DatePeriod other) const;
@@ -109,8 +110,8 @@ public:
         DatePeriod ep1 = DatePeriod::_A;  // end   period of first subrange
         int so2 = 0;                      // start offset of second subrange
         int eo2 = 0;                      // end   offset of second subrange
-        DatePeriodN sp2 = std::nullopt;   // start period of second subrange
-        DatePeriodN ep2 = std::nullopt;   // end   period of second subrange
+        DatePeriodN sp2 = DatePeriodN();  // start period of second subrange
+        DatePeriodN ep2 = DatePeriodN();  // end   period of second subrange
         int f = 0;                        // index in first*[] (0=calendar, 1=financial)
         wxString name = "";               // specification name
 
@@ -118,8 +119,8 @@ public:
         Range(
             int so1_new = 0, DatePeriod  sp1_new = DatePeriod::_A,
             int eo1_new = 0, DatePeriod  ep1_new = DatePeriod::_A,
-            int so2_new = 0, DatePeriodN sp2_new = std::nullopt,
-            int eo2_new = 0, DatePeriodN ep2_new = std::nullopt,
+            int so2_new = 0, DatePeriodN sp2_new = DatePeriodN(),
+            int eo2_new = 0, DatePeriodN ep2_new = DatePeriodN(),
             int f_new = 0, wxString name_new = ""
         );
 
@@ -166,17 +167,19 @@ protected:
     int firstDay[2];                  // first day in PERIOD::[YQM] (1..28)
     wxDateTime::Month firstMonth[2];  // first month in PERIOD::[YQ] (0..11)
     wxDateTime::WeekDay firstWeekday; // first weekday in PERIOD::W (0=Sun, 1=Mon)
-    DateDay date_s;                   // the date of PERIOD::S (MAY be undefined)
-    DateDay date_t;                   // the date of PERIOD::T (MUST be defined)
-    DateDay default_start;            // default start date (if range start is open)
-    DateDay default_end;              // default end date (if range end is open)
+    DateDayN sDateN;                  // the date of PERIOD::S (account statement date)
+    DateDay  tDate;                   // the date of PERIOD::T (today)
+    DateDayN defStartDateN;           // default start date (if range start is open)
+    DateDayN defEndDateN;             // default end date (if range end is open)
     Range range;                      // range specification
     Reporting reporting;              // reporting multiplier/period
 
 public:
     DateRange2(
-        DateDay date_s_new = DateDay(), DateDay date_t_new = DateDay(),
-        DateDay default_start_new = DateDay(), DateDay default_end_new = DateDay()
+        DateDayN sDateN_new = DateDayN(),
+        DateDay  tDate_new = DateDay::today(),
+        DateDayN defStartDateN_new = DateDayN(),
+        DateDayN defEndDateN_new = DateDayN()
     );
 
 #ifndef NDEBUG
@@ -185,22 +188,24 @@ private:
         int firstDay_new_0, int firstDay_new_1,
         wxDateTime::Month firstMonth_new_0, wxDateTime::Month firstMonth_new_1,
         wxDateTime::WeekDay firstWeekday_new,
-        DateDay date_t_new = DateDay(), DateDay date_s_new = DateDay(),
-        DateDay default_start_new = DateDay(), DateDay default_end_new = DateDay()
+        DateDayN sDateN_new = DateDayN(),
+        DateDay  tDate_new = DateDay::today(),
+        DateDayN defStartDateN_new = DateDayN(),
+        DateDayN defEndDateN_new = DateDayN()
     );
 #endif
 
 public:
-    void setDateS(DateDay date = DateDay());
-    void setDateT(DateDay date = DateDay());
-    void setDefaultStart(DateDay date = DateDay());
-    void setDefaultEnd(DateDay date = DateDay());
+    void setSDateN(DateDayN sDateN_new = DateDayN());
+    void setTDate(DateDay tDate_new = DateDay::today());
+    void setDefStartDateN(DateDayN defStartDateN_new = DateDayN());
+    void setDefEndDateN(DateDayN defEndDateN_new = DateDayN());
     void setRange(const Range &range_new);
     void setReporting(const Reporting &reporting_new);
-    DateDay getDateS() const;
-    DateDay getDateT() const;
-    DateDay getDefaultStart() const;
-    DateDay getDefaultEnd() const;
+    DateDayN getSDateN() const;
+    DateDay  getTDate() const;
+    DateDayN getDefStartDateN() const;
+    DateDayN getDefEndDateN() const;
     Range getRange() const;
     Reporting getReporting() const;
     bool parseRange(const wxString &buffer, const wxString &name = "");
@@ -209,14 +214,14 @@ public:
     const wxString rangeName() const;
     const wxString rangeLabelName() const;
     const wxString reportingLabel() const;
-    DateDay periodStart(DateDay date, DatePeriod period) const;
-    DateDay periodEnd(DateDay date, DatePeriod period) const;
-    DateDay rangeStart() const;
-    DateDay rangeEnd() const;
-    DateDay reportingNext() const;
-    const wxString rangeStartISO() const;
-    const wxString rangeEndISO() const;
-    const wxString reportingNextISO() const;
+    DateDayN periodStart(DateDay date, DatePeriod period) const;
+    DateDayN periodEnd(DateDay date, DatePeriod period) const;
+    DateDayN rangeStart() const;
+    DateDayN rangeEnd() const;
+    DateDayN reportingNext() const;
+    const wxString rangeStartIsoStart() const;
+    const wxString rangeEndIsoEnd() const;
+    const wxString reportingNextIsoEnd() const;
     const wxString checkingTooltip() const;
     const wxString reportingTooltip() const;
 
@@ -225,7 +230,7 @@ public:
     {
         using iterator_category = std::input_iterator_tag;
         using difference_type = int;
-        using value_type = DateDay;
+        using value_type = DateDayN;
         using pointer = const value_type*;
         using reference = const value_type&;
 
@@ -234,14 +239,14 @@ public:
     private:
         const DateRange2* a;
         int count;
-        DateDay next, last;
+        DateDayN nextDateN, lastDateN;
 
     public:
         ReportingIterator(const DateRange2* a_new);
 
     public:
-        const DateDay& operator*();
-        const DateDay* operator->();
+        const DateDayN& operator*();
+        const DateDayN* operator->();
         ReportingIterator& operator++();
         ReportingIterator operator++(int);
         bool operator== (const ReportingIterator& other);
@@ -283,73 +288,56 @@ inline const wxString DateRange2::Range::offsetStr(int offset, bool show_zero)
 {
     return (offset != 0) ? wxString::Format("%+d", offset) : show_zero ? "0" : "";
 }
-
 inline const wxString DateRange2::Reporting::multiplierStr(int m, bool show_one)
 {
     return (m != 1 || show_one) ? wxString::Format("%+d", m) : "";
 }
 
-inline void DateRange2::setDateS(DateDay date)
+inline void DateRange2::setSDateN(DateDayN sDateN_new)
 {
-    // date_s MAY be undefined (not applicable)
-    date_s = date;
+    sDateN = sDateN_new;
 }
-
-inline void DateRange2::setDateT(DateDay date)
+inline void DateRange2::setTDate(DateDay tDate_new)
 {
-    // date_t MUST be defined
-    if (date.isDefined())
-        date_t = date;
-    else {
-        date_t = DateDay::today();
-    }
+    tDate = tDate_new;
 }
-
-inline void DateRange2::setDefaultStart(DateDay date)
+inline void DateRange2::setDefStartDateN(DateDayN defStartDateN_new)
 {
-    default_start = date;
+    defStartDateN = defStartDateN_new;
 }
-
-inline void DateRange2::setDefaultEnd(DateDay date)
+inline void DateRange2::setDefEndDateN(DateDayN defEndDateN_new)
 {
-    default_end = date;
+    defEndDateN = defEndDateN_new;
 }
-
 inline void DateRange2::setRange(const DateRange2::Range &range_new)
 {
     range = range_new;
 }
-
 inline void DateRange2::setReporting(const DateRange2::Reporting &reporting_new)
 {
     reporting = reporting_new;
 }
 
-inline DateDay DateRange2::getDateS() const
+inline DateDayN DateRange2::getSDateN() const
 {
-    return date_s;
+    return sDateN;
 }
-
-inline DateDay DateRange2::getDateT() const
+inline DateDay DateRange2::getTDate() const
 {
-    return date_t;
+    return tDate;
 }
-
-inline DateDay DateRange2::getDefaultStart() const
+inline DateDayN DateRange2::getDefStartDateN() const
 {
-    return default_start;
+    return defStartDateN;
 }
-
-inline DateDay DateRange2::getDefaultEnd() const
+inline DateDayN DateRange2::getDefEndDateN() const
 {
-    return default_end;
+    return defEndDateN;
 }
-
 inline DateRange2::Range DateRange2::getRange() const
 {
     return range;
 }
-
 inline DateRange2::Reporting DateRange2::getReporting() const
 {
     return reporting;
@@ -359,44 +347,39 @@ inline const wxString DateRange2::rangeLabel() const
 {
     return range.getLabel();
 }
-
 inline const wxString DateRange2::rangeName() const
 {
     return range.getName();
 }
-
 inline const wxString DateRange2::rangeLabelName() const
 {
     return range.getLabelName();
 }
-
 inline const wxString DateRange2::reportingLabel() const
 {
     return reporting.getLabel();
 }
 
-inline const wxString DateRange2::rangeStartISO() const
+inline const wxString DateRange2::rangeStartIsoStart() const
 {
-    return rangeStart().dateStartISO();
+    return DateDay::isoStartN(rangeStart());
+}
+inline const wxString DateRange2::rangeEndIsoEnd() const
+{
+    return DateDay::isoEndN(rangeEnd());
+}
+inline const wxString DateRange2::reportingNextIsoEnd() const
+{
+    return DateDay::isoEndN(reportingNext());
 }
 
-inline const wxString DateRange2::rangeEndISO() const
+inline const DateDayN& DateRange2::ReportingIterator::operator*()
 {
-    return rangeEnd().dateEndISO();
+    return nextDateN;
 }
-
-inline const wxString DateRange2::reportingNextISO() const
+inline const DateDayN* DateRange2::ReportingIterator::operator->()
 {
-    return reportingNext().dateEndISO();
-}
-
-inline const DateDay& DateRange2::ReportingIterator::operator*()
-{
-    return next;
-}
-inline const DateDay* DateRange2::ReportingIterator::operator->()
-{
-    return &next;
+    return &nextDateN;
 }
 inline DateRange2::ReportingIterator& DateRange2::ReportingIterator::operator++()
 {

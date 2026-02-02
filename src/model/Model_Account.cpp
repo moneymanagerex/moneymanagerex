@@ -262,7 +262,6 @@ bool Model_Account::FAVORITEACCT(const Data* r)
 {
     return r->FAVORITEACCT.CmpNoCase("TRUE") == 0;
 }
-
 bool Model_Account::FAVORITEACCT(const Data& r)
 {
     return FAVORITEACCT(&r);
@@ -299,11 +298,6 @@ bool Model_Account::Exist(const wxString& account_name)
     Data_Set list = instance().find(ACCOUNTNAME(account_name));
 
     return !list.empty();
-}
-
-wxDateTime Model_Account::DateOf(const wxString& date_str)
-{
-    return Model::to_date(date_str);
 }
 
 bool Model_Account::BoolOf(int64 value)

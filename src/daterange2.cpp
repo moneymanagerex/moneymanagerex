@@ -42,6 +42,17 @@ DatePeriod::MapLabelId DatePeriod::makeLabelId()
     return mapLabelId;
 }
 
+DatePeriod::DatePeriod(Id id_new) :
+    id(id_new)
+{
+}
+
+DatePeriod::DatePeriod(char label)
+{
+    auto it = mapLabelId.find(label);
+    id = (it == mapLabelId.end()) ? _A : it->second;
+}
+
 wxDateSpan DatePeriod::span(int offset, DatePeriod period)
 {
     if (period == _Y)
@@ -58,17 +69,6 @@ wxDateSpan DatePeriod::span(int offset, DatePeriod period)
         return wxDateSpan();
 }
 
-DatePeriod::DatePeriod(Id id_new) :
-    id(id_new)
-{
-}
-
-DatePeriod::DatePeriod(char label)
-{
-    auto it = mapLabelId.find(label);
-    id = (it == mapLabelId.end()) ? _A : it->second;
-}
-
 DateRange2::Range::Range(
     int so1_new, DatePeriod  sp1_new,
     int eo1_new, DatePeriod  ep1_new,
@@ -83,10 +83,10 @@ DateRange2::Range::Range(
     so1 = (sp1 == DatePeriod::_A) ? 0 : so1_new;
     eo1 = (ep1 == DatePeriod::_A) ? 0 : eo1_new;
     // either both sp2 and ep2 are null, or none of them
-    if (sp2_new == std::nullopt || ep2_new == std::nullopt) {
+    if (!sp2_new.has_value() || !ep2_new.has_value()) {
         // so2/eo2 are not applicable if sp2/ep2 are null
-        sp2 = std::nullopt; so2 = 0;
-        ep2 = std::nullopt; eo2 = 0;
+        sp2 = DatePeriodN(); so2 = 0;
+        ep2 = DatePeriodN(); eo2 = 0;
     }
     else {
         // so2/eo2 is not applicable if sp2/ep2 resp., is DatePeriod::A
@@ -187,8 +187,8 @@ bool DateRange2::Range::parseLabel(StringIt &buffer_i, StringIt buffer_end)
     // subrange = so ".." eo p
     // subrange = o? p
 
-    int so_new[2] = { 0, 0 }; DatePeriodN sp_new[2] = { std::nullopt, std::nullopt };
-    int eo_new[2] = { 0, 0 }; DatePeriodN ep_new[2] = { std::nullopt, std::nullopt };
+    int so_new[2] = { 0, 0 }; DatePeriodN sp_new[2] = { DatePeriodN(), DatePeriodN() };
+    int eo_new[2] = { 0, 0 }; DatePeriodN ep_new[2] = { DatePeriodN(), DatePeriodN() };
     int f_new = 0;
     int i = 0;     // index into {s,e}{o,p}[] (0: first subrange, 1: second subrange)
     int state = 0; // parse state: 0 (so) 1 (sp) 2 (..) 3 (eo) 4 (ep) 5 (f) 6 (;) 7
@@ -219,7 +219,7 @@ bool DateRange2::Range::parseLabel(StringIt &buffer_i, StringIt buffer_end)
             continue;
         }
         if ((state == 3 || state == 4) && token == 'p') {
-            if (sp_new[i] == std::nullopt)
+            if (!sp_new[i].has_value())
                 sp_new[i] = token_p;
             ep_new[i] = token_p;
             state = 5;
@@ -247,7 +247,7 @@ bool DateRange2::Range::parseLabel(StringIt &buffer_i, StringIt buffer_end)
         break;
     }
 
-    if (state != 7 || sp_new[0] == std::nullopt || ep_new[0] == std::nullopt) {
+    if (state != 7 || !sp_new[0].has_value() || !ep_new[0].has_value()) {
         wxLogDebug("ERROR: DateRange2::Range::parseLabel(): state=%d", state);
         return false;
     }
@@ -358,7 +358,7 @@ const wxString DateRange2::Range::checkingDescription() const
 DateRange2::Reporting::Reporting(
     int m_new, DatePeriod p_new
 ) :
-    // p cannot be DatePeriod::_S (statement date)
+    // p cannot be DatePeriod::_S (account statement date)
     // m cannot be 0; it is normalized to 1 if p is DatePeriod::_A
     p((p_new == DatePeriod::_S) ? DatePeriod::_T : p_new),
     m((m_new == 0 || p == DatePeriod::_A) ? 1 : m_new)
@@ -420,8 +420,10 @@ const wxString DateRange2::Reporting::getLabel() const
 }
 
 DateRange2::DateRange2(
-    DateDay date_s_new, DateDay date_t_new,
-    DateDay default_start_new, DateDay default_end_new
+    DateDayN sDateN_new,
+    DateDay  tDate_new,
+    DateDayN defStartDateN_new,
+    DateDayN defEndDateN_new
 ) :
     firstDay{
         Option::instance().getReportingFirstDay(),
@@ -434,13 +436,13 @@ DateRange2::DateRange2(
     firstWeekday(
         Option::instance().getReportingFirstWeekday()
     ),
+    sDateN(sDateN_new),
+    tDate(tDate_new),
+    defStartDateN(defStartDateN_new),
+    defEndDateN(defEndDateN_new),
     range(Range()),
     reporting(Reporting())
 {
-    setDateS(date_s_new);
-    setDateT(date_t_new);
-    setDefaultStart(default_start_new);
-    setDefaultEnd(default_end_new);
 }
 
 #ifndef NDEBUG
@@ -448,19 +450,21 @@ DateRange2::DateRange2(
     int firstDay_new_0, int firstDay_new_1,
     wxDateTime::Month firstMonth_new_0, wxDateTime::Month firstMonth_new_1,
     wxDateTime::WeekDay firstWeekday_new,
-    DateDay date_s_new, DateDay date_t_new,
-    DateDay default_start_new, DateDay default_end_new
+    DateDayN sDateN_new,
+    DateDay  tDate_new,
+    DateDayN defStartDateN_new,
+    DateDayN defEndDateN_new
 ) :
     firstDay{firstDay_new_0, firstDay_new_1},
     firstMonth{firstMonth_new_0, firstMonth_new_1},
     firstWeekday(firstWeekday_new),
+    sDateN(sDateN_new),
+    tDate(tDate_new),
+    defStartDateN(defStartDateN_new),
+    defEndDateN(defEndDateN_new),
     range(Range()),
     reporting(Reporting())
 {
-    setDateS(date_s_new);
-    setDateT(date_t_new);
-    setDefaultStart(default_start_new);
-    setDefaultEnd(default_end_new);
 }
 #endif
 
@@ -485,137 +489,150 @@ bool DateRange2::parseReporting(const wxString &buffer)
     return true;
 }
 
-DateDay DateRange2::periodStart(DateDay date, DatePeriod period) const
+DateDayN DateRange2::periodStart(DateDay date, DatePeriod period) const
 {
-    if (!date.isDefined() || period == DatePeriod::_A)
-        return DateDay();
-    wxDateTime start_dateTime = date.getDateTime();
+    if (period == DatePeriod::_A)
+        return DateDayN();
+    wxDateTime s = date.getDateTime();
     if (period == DatePeriod::_Y || period == DatePeriod::_Q || period == DatePeriod::_M) {
-        if (start_dateTime.GetDay() < firstDay[range.f])
-            start_dateTime -= wxDateSpan::Months(1);
-        start_dateTime.SetDay(firstDay[range.f]);
+        if (s.GetDay() < firstDay[range.f])
+            s -= wxDateSpan::Months(1);
+        s.SetDay(firstDay[range.f]);
         if (period == DatePeriod::_Y) {
-            if (start_dateTime.GetMonth() < firstMonth[range.f])
-                start_dateTime -= wxDateSpan::Years(1);
-            start_dateTime.SetMonth(firstMonth[range.f]);
+            if (s.GetMonth() < firstMonth[range.f])
+                s -= wxDateSpan::Years(1);
+            s.SetMonth(firstMonth[range.f]);
         }
         else if (period == DatePeriod::_Q) {
-            int m = (start_dateTime.GetMonth() - firstMonth[range.f] + 12) % 3;
+            int m = (s.GetMonth() - firstMonth[range.f] + 12) % 3;
             if (m > 0)
-                start_dateTime -= wxDateSpan::Months(m);
+                s -= wxDateSpan::Months(m);
         }
     }
     else if (period == DatePeriod::_W) {
-        int d = (start_dateTime.GetWeekDay() - firstWeekday + 7) % 7;
+        int d = (s.GetWeekDay() - firstWeekday + 7) % 7;
         if (d > 0)
-            start_dateTime -= wxDateSpan::Days(d);
+            s -= wxDateSpan::Days(d);
     }
-    return DateDay(start_dateTime);
+    return DateDay(s);
 }
 
-DateDay DateRange2::periodEnd(DateDay date, DatePeriod period) const
+DateDayN DateRange2::periodEnd(DateDay date, DatePeriod period) const
 {
-    if (!date.isDefined() || period == DatePeriod::_A)
-        return DateDay();
-    wxDateTime end_dateTime = date.getDateTime();
+    if (period == DatePeriod::_A)
+        return DateDayN();
+    wxDateTime e = date.getDateTime();
     if (period == DatePeriod::_Y || period == DatePeriod::_Q || period == DatePeriod::_M) {
-        if (end_dateTime.GetDay() >= firstDay[range.f])
-            end_dateTime += wxDateSpan::Months(1);
-        end_dateTime.SetDay(firstDay[range.f]);
+        if (e.GetDay() >= firstDay[range.f])
+            e += wxDateSpan::Months(1);
+        e.SetDay(firstDay[range.f]);
         if (period == DatePeriod::_Y) {
-            if (end_dateTime.GetMonth() > firstMonth[range.f])
-                end_dateTime += wxDateSpan::Years(1);
-            end_dateTime.SetMonth(firstMonth[range.f]);
+            if (e.GetMonth() > firstMonth[range.f])
+                e += wxDateSpan::Years(1);
+            e.SetMonth(firstMonth[range.f]);
         }
         else if (period == DatePeriod::_Q) {
-            int m = (firstMonth[range.f] - end_dateTime.GetMonth() + 12) % 3;
+            int m = (firstMonth[range.f] - e.GetMonth() + 12) % 3;
             if (m > 0)
-                end_dateTime += wxDateSpan::Months(m);
+                e += wxDateSpan::Months(m);
         }
-        end_dateTime -= wxDateSpan::Days(1);
+        e -= wxDateSpan::Days(1);
     }
     else if (period == DatePeriod::_W) {
-        int d = (firstWeekday - end_dateTime.GetWeekDay() + 6) % 7;
+        int d = (firstWeekday - e.GetWeekDay() + 6) % 7;
         if (d > 0)
-            end_dateTime += wxDateSpan::Days(d);
+            e += wxDateSpan::Days(d);
     }
-    return DateDay(end_dateTime);
+    return DateDay(e);
 }
 
-DateDay DateRange2::rangeStart() const
+DateDayN DateRange2::rangeStart() const
 {
     if (range.sp1 == DatePeriod::_A || range.sp2 == DatePeriod::_A)
-        return default_start;
-    DateDay start_date1 = (range.sp1 == DatePeriod::_S) ? date_s : date_t;
+        return defStartDateN;
+    DateDayN s1N = (range.sp1 == DatePeriod::_S) ? sDateN : tDate;
+    if (!s1N.has_value())
+        return DateDayN();
+    DateDay s1 = s1N.value();
     if (range.so1 != 0)
-        start_date1.addSpan(DatePeriod::span(range.so1, range.sp1));
-    start_date1 = periodStart(start_date1, range.sp1);
-    if (!start_date1.isDefined() || range.sp2 == std::nullopt || range.ep2 == std::nullopt)
-        return start_date1;
-    DateDay start_date2 = (range.sp2 == DatePeriod::_S) ? date_s : date_t;
+        s1.addSpan(DatePeriod::span(range.so1, range.sp1));
+    s1 = periodStart(s1, range.sp1).value();
+    if (!range.sp2.has_value())
+        return s1;
+    DateDayN s2N = (range.sp2 == DatePeriod::_S) ? sDateN : tDate;
+    if (!s2N.has_value())
+        return DateDayN();
+    DateDay s2 = s2N.value();
     if (range.so2 != 0)
-        start_date2.addSpan(DatePeriod::span(range.so2, range.sp2.value()));
+        s2.addSpan(DatePeriod::span(range.so2, range.sp2.value()));
     DatePeriod p = range.sp1.toInt() > range.sp2.value().toInt() ? range.sp1
         : range.sp2.value();
-    start_date2 = periodStart(start_date2, p);
-    if (!start_date2.isDefined())
-        return DateDay();
-    return start_date1 <= start_date2 ? start_date1 : start_date2;
+    s2 = periodStart(s2, p).value();
+    return s1 <= s2 ? s1 : s2;
 }
 
-DateDay DateRange2::rangeEnd() const
+DateDayN DateRange2::rangeEnd() const
 {
     if (range.ep1 == DatePeriod::_A || range.ep2 == DatePeriod::_A)
-        return default_end;
-    DateDay end_date1 = (range.ep1 == DatePeriod::_S) ? date_s : date_t;
+        return defEndDateN;
+    DateDayN e1N = (range.ep1 == DatePeriod::_S) ? sDateN : tDate;
+    if (!e1N.has_value())
+        return DateDayN();
+    DateDay e1 = e1N.value();
     if (range.eo1 != 0)
-        end_date1.addSpan(DatePeriod::span(range.eo1, range.ep1));
-    end_date1 = periodEnd(end_date1, range.ep1);
-    if (!end_date1.isDefined() || range.sp2 == std::nullopt || range.ep2 == std::nullopt)
-        return end_date1;
-    DateDay end_date2 = (range.ep2 == DatePeriod::_S) ? date_s : date_t;
+        e1.addSpan(DatePeriod::span(range.eo1, range.ep1));
+    e1 = periodEnd(e1, range.ep1).value();
+    if (!range.ep2.has_value())
+        return e1;
+    DateDayN e2N = (range.ep2 == DatePeriod::_S) ? sDateN : tDate;
+    if (!e2N.has_value())
+        return DateDayN();
+    DateDay e2 = e2N.value();
     if (range.eo2 != 0)
-        end_date2.addSpan(DatePeriod::span(range.eo2, range.ep2.value()));
+        e2.addSpan(DatePeriod::span(range.eo2, range.ep2.value()));
     DatePeriod p = range.ep1.toInt() > range.ep2.value().toInt() ? range.ep1
         : range.ep2.value();
-    end_date2 = periodEnd(end_date2, p);
-    if (!end_date2.isDefined())
-        return DateDay();
-    return end_date2 <= end_date1 ? end_date1 : end_date2;
+    e2 = periodEnd(e2, p).value();
+    return e2 <= e1 ? e1 : e2;
 }
 
-DateDay DateRange2::reportingNext() const
+DateDayN DateRange2::reportingNext() const
 {
-    DateDay range_start = rangeStart();
-    DateDay range_end = rangeEnd();
+    DateDayN sN = rangeStart();
+    DateDayN eN = rangeEnd();
+    if (!sN.has_value() || !eN.has_value())
+        return eN;
 
-    if (!range_start.isDefined() || !range_end.isDefined())
-        return range_end;
+    DateDay s = sN.value();
+    DateDay e = eN.value();
+    if (s > e)
+        return DateDayN();
+
     if (reporting.p == DatePeriod::_A)
-        return range_end;
+        return e;
 
     if (reporting.m > 0) {
-        // return the end of the multi-period aligned at range_start
-        // (i.e., its first period contains range_start)
-        DateDay next = periodEnd(range_start, reporting.p);
+        // return the end of the multi-period aligned at s
+        // (i.e., its first period contains s)
+        DateDay next = periodEnd(s, reporting.p).value();
         if (reporting.m > 1) {
             next.addSpan(DatePeriod::span(reporting.m - 1, reporting.p));
-            next = periodEnd(next, reporting.p);
+            next = periodEnd(next, reporting.p).value();
         }
-        return next <= range_end ? next : range_end;
+        return next <= e ? next : e;
     }
     else { // if (reporting.m < 0)
-        // return the end of the multi-period aligned at range_end
-        // (i.e., its last period contains range_end)
-        DateDay next = periodEnd(range_end, reporting.p);
+        // return the end of the multi-period aligned at e
+        // (i.e., its last period contains e)
+        DateDay next = periodEnd(e, reporting.p).value();
         DateDay next1 = next;
         next1.addSpan(DatePeriod::span(reporting.m, reporting.p));
-        while (range_start <= next1) {
+        while (s <= next1) {
             next = next1;
             next1.addSpan(DatePeriod::span(reporting.m, reporting.p));
-            next1 = periodEnd(next1, reporting.p);
+            next1 = periodEnd(next1, reporting.p).value();
         }
-        return next <= range_end ? next : range_end;
+        return next <= e ? next : e;
     }
 }
 
@@ -624,13 +641,13 @@ const wxString DateRange2::checkingTooltip() const
     static StringBuilder sb;
     sb.reset();
 
-    DateDay date1 = rangeStart();
-    DateDay date2 = rangeEnd();
-    if (date1.isDefined())
-        sb.append(date1.dateISO());
+    DateDayN s = rangeStart();
+    DateDayN e = rangeEnd();
+    if (s.has_value())
+        sb.append(s.value().isoDate());
     sb.sep(); sb.append(".."); sb.sep();
-    if (date2.isDefined())
-        sb.append(date2.dateISO());
+    if (e.has_value())
+        sb.append(e.value().isoDate());
     sb.flush();
 
     sb.append("\n");
@@ -647,28 +664,27 @@ const wxString DateRange2::reportingTooltip() const
 DateRange2::ReportingIterator::ReportingIterator(const DateRange2* a_new) :
     a(a_new),
     count(0),
-    next(a_new->reportingNext()),
-    last(a_new->rangeEnd())
+    nextDateN(a_new->reportingNext()),
+    lastDateN(a_new->rangeEnd())
 {
 }
 
 void DateRange2::ReportingIterator::increment()
 {
-    // The iterator reaches the end when `next` is equal to `last` (this includes
-    // the special case of open end, in which `last` is undefined).
-    // `count` is initialized to 0 and set to -1 at the end.
-    // Notice that the iterator returns at least one DateDay before it reaches the end.
+    // The iterator reaches the end when (nextDateN == lastDateN)
+    // (this includes the special case of open end, in which lastDateN is null).
+    // count is initialized to 0 and set to -1 at the end.
+    // Notice that the iterator returns at least one DateDayN before it reaches the end.
 
     if (count == -1)
         return;
-    if (next == last) {
+    if (!nextDateN.has_value() || nextDateN == lastDateN) {
         count = -1;
         return;
     }
-    if (!next.isDefined() || !last.isDefined()) {
-        // This should not happen.
-        // If one of `next` and `last` is undefined, the other should also be undefined.
-        wxLogDebug("ERROR in DateRange2::ReportingIterator: only one of `next` and `last` is defined");
+    if (!nextDateN.has_value() || !lastDateN.has_value()) {
+        // this should not happen
+        wxLogDebug("ERROR in DateRange2::ReportingIterator: only one of nextDateN, lastDateN is null");
         count = -1;
         return;
     }
@@ -676,22 +692,23 @@ void DateRange2::ReportingIterator::increment()
     int rm = a->reporting.m;
     if (rm < 0) rm = -rm;
     DatePeriod rp = a->reporting.p;
-    DateDay next1 = next;
+    // assertion: rp is not DatePeriod::_A
+    DateDay next1 = nextDateN.value();
     next1.addSpan(DatePeriod::span(rm, rp));
-    next1 = a->periodEnd(next1, rp);
-    if (last < next1)
-        next1 = last;
+    next1 = a->periodEnd(next1, rp).value();
+    if (lastDateN.value() < next1)
+        next1 = lastDateN.value();
 
-    if (next1 <= next) {
-        // This should not happen.
-        // `next` must strictly increase in each step.
-        wxLogDebug("ERROR in DateRange2::ReportingIterator: cannot increment `next`");
+    if (next1 <= nextDateN.value()) {
+        // this should not happen
+        // nextDateN must strictly increase in each step
+        wxLogDebug("ERROR in DateRange2::ReportingIterator: cannot increment");
         count = -1;
         return;
     }
 
     ++count;
-    next = next1;
+    nextDateN = next1;
 }
 
 #ifndef NDEBUG
@@ -709,22 +726,22 @@ bool DateRange2::debug()
         );
     }
 
-    // create a DateRange2 object; default_start is undefined
-    wxDateTime dateTime_s, dateTime_t, date_default_end;
-    dateTime_s.ParseISOCombined("2024-08-30T00:00:01"); // Fri
-    dateTime_t.ParseISOCombined("2025-01-30T00:00:01"); // Thu
-    date_default_end.ParseISODate("2025-01-31"); // Fri
+    // create a DateRange2 object; defStartDateN is null
+    wxDateTime sDateTime, tDateTime, defEndDateTime;
+    sDateTime.ParseISOCombined("2024-08-30T00:00:01"); // Fri
+    tDateTime.ParseISOCombined("2025-01-30T00:00:01"); // Thu
+    defEndDateTime.ParseISODate("2025-01-31"); // Fri
     DateRange2 dr = DateRange2(
         1, 6,
         wxDateTime::Month::Jan, wxDateTime::Month::Apr,
         wxDateTime::WeekDay::Mon,
-        DateDay(dateTime_s), DateDay(dateTime_t),
-        DateDay(), DateDay(date_default_end)
+        DateDay(sDateTime), DateDay(tDateTime),
+        DateDayN(), DateDay(defEndDateTime)
     );
-    wxLogDebug("INFO: date_s.dateTime=[%s]", dateTimeISO(dr.getDateS().getDateTime()));
-    wxLogDebug("INFO: date_t.dateTime=[%s]", dateTimeISO(dr.getDateT().getDateTime()));
-    wxLogDebug("INFO: default_start=[%s]", dr.getDefaultStart().dateISO());
-    wxLogDebug("INFO: default_end=[%s]", dr.getDefaultEnd().dateISO());
+    wxLogDebug("INFO: sDateN.dateTime=[%s]", dateTimeISO(dr.getSDateN().value().getDateTime()));
+    wxLogDebug("INFO: tDate.dateTime=[%s]", dateTimeISO(dr.getTDate().getDateTime()));
+    wxLogDebug("INFO: defStartDateN=[%s]", DateDay::isoDateN(dr.getDefStartDateN()));
+    wxLogDebug("INFO: defEndDateN=[%s]", DateDay::isoDateN(dr.getDefEndDateN()));
 
     struct {
         wxString range_label; wxString reporting_label;
@@ -782,7 +799,7 @@ bool DateRange2::debug()
             wxLogDebug("test[%d] [%s]: reporting_label=[%s]", i, label, reporting_label);
 
         // check range start
-        wxString range_start = dr.rangeStart().dateISO();
+        wxString range_start = DateDay::isoDateN(dr.rangeStart());
         if (range_start != test[i].range_start) {
             ok = false;
             wxLogDebug("ERROR in test[%d] [%s]: range_start=[%s], expected [%s]",
@@ -791,7 +808,7 @@ bool DateRange2::debug()
         }
 
         // check range end
-        wxString range_end = dr.rangeEnd().dateISO();
+        wxString range_end = DateDay::isoDateN(dr.rangeEnd());
         if (range_end != test[i].range_end) {
             ok = false;
             wxLogDebug("ERROR in test[%d] [%s]: range_end=[%s], expected [%s]",
@@ -804,7 +821,7 @@ bool DateRange2::debug()
         int reporting_count = 0;
         for (auto it = dr.cbegin(); it != dr.cend(); ++it) {
             ++reporting_count;
-            //wxLogDebug("  count=%d, next=[%s]", reporting_count, (*it).dateISO());
+            //wxLogDebug("  count=%d, next=[%s]", reporting_count, DateDay::isoDateN(*it));
         }
         if (reporting_count != test[i].reporting_count) {
             ok = false;

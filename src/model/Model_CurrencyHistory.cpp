@@ -60,7 +60,7 @@ Model_CurrencyHistory::Data* Model_CurrencyHistory::get(const int64& currencyID,
 
 wxDate Model_CurrencyHistory::CURRDATE(const Data& hist)
 {
-    return Model::to_date(hist.CURRDATE);
+    return isoDateTime(hist.CURRDATE);
 }
 
 DB_Table_CURRENCYHISTORY_V1::CURRDATE Model_CurrencyHistory::CURRDATE(const wxDate& date, OP op)
@@ -122,8 +122,8 @@ double Model_CurrencyHistory::getDayRate(int64 currencyID, const wxDate& Date)
 
         if (!DataPrevious.empty() && !DataNext.empty())
         {
-            const wxTimeSpan spanPast = Date.Subtract(Model::to_date(DataPrevious.back().CURRDATE));
-            const wxTimeSpan spanFuture = Model::to_date(DataNext[0].CURRDATE).Subtract(Date);
+            const wxTimeSpan spanPast = Date.Subtract(isoDateTime(DataPrevious.back().CURRDATE));
+            const wxTimeSpan spanFuture = isoDateTime(DataNext[0].CURRDATE).Subtract(Date);
 
             return spanPast <= spanFuture ? DataPrevious.back().CURRVALUE : DataNext[0].CURRVALUE;
         }

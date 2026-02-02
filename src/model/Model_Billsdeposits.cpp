@@ -63,20 +63,20 @@ Model_Billsdeposits& Model_Billsdeposits::instance(wxSQLite3Database* db)
 
 wxDate Model_Billsdeposits::TRANSDATE(const Data* r)
 {
-    return Model::to_date(r->TRANSDATE);
+    return isoDateTime(r->TRANSDATE);
 }
 wxDate Model_Billsdeposits::TRANSDATE(const Data& r)
 {
-    return Model::to_date(r.TRANSDATE);
+    return isoDateTime(r.TRANSDATE);
 }
 
 wxDate Model_Billsdeposits::NEXTOCCURRENCEDATE(const Data* r)
 {
-    return Model::to_date(r->NEXTOCCURRENCEDATE);
+    return isoDateTime(r->NEXTOCCURRENCEDATE);
 }
 wxDate Model_Billsdeposits::NEXTOCCURRENCEDATE(const Data& r)
 {
-    return Model::to_date(r.NEXTOCCURRENCEDATE);
+    return isoDateTime(r.NEXTOCCURRENCEDATE);
 }
 
 Model_Checking::TYPE_ID Model_Billsdeposits::type_id(const Data* r)

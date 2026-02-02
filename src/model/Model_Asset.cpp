@@ -107,12 +107,12 @@ DB_Table_ASSETS_V1::STARTDATE Model_Asset::STARTDATE(const wxDate& date, OP op)
 
 wxDate Model_Asset::STARTDATE(const Data* r)
 {
-    return Model::to_date(r->STARTDATE);
+    return isoDateTime(r->STARTDATE);
 }
 
 wxDate Model_Asset::STARTDATE(const Data& r)
 {
-    return Model::to_date(r.STARTDATE);
+    return isoDateTime(r.STARTDATE);
 }
 
 Model_Currency::Data* Model_Asset::currency(const Data* /* r */)

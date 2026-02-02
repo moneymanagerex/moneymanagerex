@@ -72,6 +72,10 @@ bool isValidURI(const wxString& validate);
 
 //----------------------------------------------------------------------------
 
+wxDateTime isoDateTime(const wxString& str_date);
+
+//----------------------------------------------------------------------------
+
 extern const wxString MONTHS[12];
 extern const wxString MONTHS_SHORT[12];
 extern const wxString g_days_of_week[7];

@@ -63,12 +63,12 @@ Model_Stock& Model_Stock::instance()
 
 wxDate Model_Stock::PURCHASEDATE(const Data* stock)
 {
-    return Model::to_date(stock->PURCHASEDATE);
+    return isoDateTime(stock->PURCHASEDATE);
 }
 
 wxDate Model_Stock::PURCHASEDATE(const Data& stock)
 {
-    return Model::to_date(stock.PURCHASEDATE);
+    return isoDateTime(stock.PURCHASEDATE);
 }
 
 /** Original value of Stocks */

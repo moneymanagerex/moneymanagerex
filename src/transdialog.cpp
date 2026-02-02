@@ -780,7 +780,7 @@ bool mmTransDialog::ValidateData()
     /* Check if transaction is to proceed.*/
     if (Model_Account::BoolOf(account->STATEMENTLOCKED))
     {
-        if (dpc_->GetValue() <= Model_Account::DateOf(account->STATEMENTDATE))
+        if (dpc_->GetValue() <= isoDateTime(account->STATEMENTDATE))
         {
             if (wxMessageBox(wxString::Format(
                 _t("Lock transaction to date: %s") + "\n\n" + _t("Do you want to continue?")

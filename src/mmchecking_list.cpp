@@ -1522,7 +1522,7 @@ void TransactionListCtrl::onMarkTransaction(wxCommandEvent& event)
     for (int row = 0; row < GetItemCount(); row++) {
         if (GetItemState(row, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED) {
             Model_Account::Data* account = Model_Account::instance().get(m_trans[row].ACCOUNTID);
-            const auto statement_date = Model_Account::DateOf(account->STATEMENTDATE).FormatISODate();
+            const auto statement_date = isoDateTime(account->STATEMENTDATE).FormatISODate();
             wxString strDate = Model_Checking::TRANSDATE(m_trans[row]).FormatISODate();
             if (!Model_Account::BoolOf(account->STATEMENTLOCKED)
                 || strDate > statement_date
@@ -2224,7 +2224,7 @@ bool TransactionListCtrl::checkTransactionLocked(int64 accountID, const wxString
     if (Model_Account::BoolOf(account->STATEMENTLOCKED)) {
         wxDateTime transaction_date;
         if (transaction_date.ParseDate(transdate)) {
-            if (transaction_date <= Model_Account::DateOf(account->STATEMENTDATE)) {
+            if (transaction_date <= isoDateTime(account->STATEMENTDATE)) {
                 wxMessageBox(wxString::Format(
                     _t("Locked transaction to date: %s\n\n"
                       "Reconciled transactions.")
