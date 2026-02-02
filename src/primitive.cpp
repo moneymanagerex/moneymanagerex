@@ -96,6 +96,11 @@ wxDateTime isoDateTime(const wxString& str_date)
     if (auto it = cache.find(str_date); it != cache.end())
         return it->second;
 
+    // reset cache if it is too big
+    if (cache.size() > 50000) {
+        cache.clear();
+    }
+
     // str_date is in ISO 8601 format "YYYY-MM-DD"
     wxDateTime date;
     date.ParseISOCombined(str_date) || date.ParseISODate(str_date);

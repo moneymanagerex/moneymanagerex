@@ -421,7 +421,7 @@ const wxString mmGetDateTimeForDisplay(const wxString &datetime_iso, const wxStr
         cache_format = format;
     }
 
-    // Reset cache if it is too big.
+    // reset cache if it is too big
     if (cache.size() > 2000) {
         cache.clear();
     }
