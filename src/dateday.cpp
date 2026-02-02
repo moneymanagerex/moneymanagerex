@@ -30,3 +30,18 @@ DateDay::DateDay(wxDateTime dateTime_new) :
     dateTime.SetHour(12).SetMinute(0).SetSecond(0).SetMillisecond(0);
 }
 
+DateDayN::DateDayN(DateDay dateDay_new) :
+    dateDayN(dateDay_new)
+{
+}
+DateDayN::DateDayN(wxDateTime dateTimeN_new)
+{
+    *this = dateTimeN_new.IsValid()
+        ? DateDayN(DateDay(dateTimeN_new))
+        : DateDayN();
+}
+DateDayN::DateDayN(const wxString& isoDateN_new)
+{
+    *this = DateDayN(isoDateTime(isoDateN_new));
+}
+

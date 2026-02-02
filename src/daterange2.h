@@ -362,15 +362,15 @@ inline const wxString DateRange2::reportingLabel() const
 
 inline const wxString DateRange2::rangeStartIsoStart() const
 {
-    return DateDay::isoStartN(rangeStart());
+    return rangeStart().isoStartN();
 }
 inline const wxString DateRange2::rangeEndIsoEnd() const
 {
-    return DateDay::isoEndN(rangeEnd());
+    return rangeEnd().isoEndN();
 }
 inline const wxString DateRange2::reportingNextIsoEnd() const
 {
-    return DateDay::isoEndN(reportingNext());
+    return reportingNext().isoEndN();
 }
 
 inline const DateDayN& DateRange2::ReportingIterator::operator*()

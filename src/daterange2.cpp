@@ -738,10 +738,10 @@ bool DateRange2::debug()
         DateDay(sDateTime), DateDay(tDateTime),
         DateDayN(), DateDay(defEndDateTime)
     );
-    wxLogDebug("INFO: sDateN.dateTime=[%s]", dateTimeISO(dr.getSDateN().value().getDateTime()));
+    wxLogDebug("INFO: sDateN.dateTime=[%s]", dateTimeISO(dr.getSDateN().getDateTimeN()));
     wxLogDebug("INFO: tDate.dateTime=[%s]", dateTimeISO(dr.getTDate().getDateTime()));
-    wxLogDebug("INFO: defStartDateN=[%s]", DateDay::isoDateN(dr.getDefStartDateN()));
-    wxLogDebug("INFO: defEndDateN=[%s]", DateDay::isoDateN(dr.getDefEndDateN()));
+    wxLogDebug("INFO: defStartDateN=[%s]", dr.getDefStartDateN().isoDateN());
+    wxLogDebug("INFO: defEndDateN=[%s]", dr.getDefEndDateN().isoDateN());
 
     struct {
         wxString range_label; wxString reporting_label;
@@ -799,7 +799,7 @@ bool DateRange2::debug()
             wxLogDebug("test[%d] [%s]: reporting_label=[%s]", i, label, reporting_label);
 
         // check range start
-        wxString range_start = DateDay::isoDateN(dr.rangeStart());
+        wxString range_start = dr.rangeStart().isoDateN();
         if (range_start != test[i].range_start) {
             ok = false;
             wxLogDebug("ERROR in test[%d] [%s]: range_start=[%s], expected [%s]",
@@ -808,7 +808,7 @@ bool DateRange2::debug()
         }
 
         // check range end
-        wxString range_end = DateDay::isoDateN(dr.rangeEnd());
+        wxString range_end = dr.rangeEnd().isoDateN();
         if (range_end != test[i].range_end) {
             ok = false;
             wxLogDebug("ERROR in test[%d] [%s]: range_end=[%s], expected [%s]",
@@ -821,7 +821,7 @@ bool DateRange2::debug()
         int reporting_count = 0;
         for (auto it = dr.cbegin(); it != dr.cend(); ++it) {
             ++reporting_count;
-            //wxLogDebug("  count=%d, next=[%s]", reporting_count, DateDay::isoDateN(*it));
+            //wxLogDebug("  count=%d, next=[%s]", reporting_count, (*it).isoDateN());
         }
         if (reporting_count != test[i].reporting_count) {
             ok = false;

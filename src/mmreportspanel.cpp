@@ -105,7 +105,7 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
         // FIXME: get[ST]Date are not the start and end date
         if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_PICKER) {
             m_start_date->SetValue(
-                DateDay::dateTimeN(m_current_date_range.getSDateN())
+                m_current_date_range.getSDateN().getDateTimeN()
             );
             m_end_date->SetValue(
                 m_current_date_range.getTDate().getDateTime()

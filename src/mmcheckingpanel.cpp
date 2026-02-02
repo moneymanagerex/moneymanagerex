@@ -452,7 +452,7 @@ void mmCheckingPanel::updateFilter(bool firstinit)
         if (firstinit) {
             // FIXME: get[ST]Date are not the start and end date
             fromDateCtrl->SetValue(
-                DateDay::dateTimeN(m_current_date_range.getSDateN())
+                m_current_date_range.getSDateN().getDateTimeN()
             );
             toDateCtrl->SetValue(
                 m_current_date_range.getTDate().getDateTime()
@@ -490,7 +490,7 @@ void mmCheckingPanel::setFilterDate(DateRange2::Range& range)
     m_filter_id = FILTER_ID_DATE;
     m_current_date_range = DateRange2();
     if (isAccount()) {
-        m_current_date_range.setSDateN(DateDay::dateDayN(m_account->STATEMENTDATE));
+        m_current_date_range.setSDateN(DateDayN(m_account->STATEMENTDATE));
     }
     m_current_date_range.setRange(range);
     m_scheduled_enable = !isDeletedTrans() && m_current_date_range.rangeEnd().has_value();
@@ -540,7 +540,7 @@ void mmCheckingPanel::loadFilterSettings()
             }
         }
         if (isAccount()) {
-            m_current_date_range.setSDateN(DateDay::dateDayN(m_account->STATEMENTDATE));
+            m_current_date_range.setSDateN(DateDayN(m_account->STATEMENTDATE));
         }
     }
     else if (m_filter_id == FILTER_ID_DATE_PICKER) {
@@ -658,9 +658,9 @@ void mmCheckingPanel::filterList()
     wxString date_start_str, date_end_str;
     wxDateTime date_end = wxDateTime::Now() + wxTimeSpan::Days(30);
     if (m_filter_id == FILTER_ID_DATE_PICKER) {
-        date_start_str = DateDay::dateDayN(fromDateCtrl->GetValue())
+        date_start_str = DateDayN(fromDateCtrl->GetValue())
             .value_or(DateDay::min()).isoStart();
-        date_end_str = DateDay::dateDayN(toDateCtrl->GetValue())
+        date_end_str = DateDayN(toDateCtrl->GetValue())
             .value_or(DateDay(date_end)).isoEnd();
     } else {
         date_start_str = m_current_date_range.rangeStartIsoStart();
@@ -1125,7 +1125,7 @@ void mmCheckingPanel::onFilterDate(wxCommandEvent& event)
     m_filter_id = FILTER_ID_DATE_RANGE;
     m_current_date_range = DateRange2();
     if (isAccount()) {
-        m_current_date_range.setSDateN(DateDay::dateDayN(m_account->STATEMENTDATE));
+        m_current_date_range.setSDateN(DateDayN(m_account->STATEMENTDATE));
     }
     m_current_date_range.setRange(m_date_range_a[i]);
     updateScheduledEnable();
@@ -1167,11 +1167,11 @@ void mmCheckingPanel::datePickProceed() {
     m_filter_id = FILTER_ID_DATE_PICKER;
     // FIXME: setSDateN is the account statement date, not the start date
     m_current_date_range.setSDateN(
-        DateDay::dateDayN(fromDateCtrl->GetValue()).value_or(DateDay::min())
+        DateDayN(fromDateCtrl->GetValue()).value_or(DateDay::min())
     );
     // FIXME: setTDate is the date of today, should not be changed here
     m_current_date_range.setTDate(
-        DateDay::dateDayN(toDateCtrl->GetValue())
+        DateDayN(toDateCtrl->GetValue())
             .value_or(DateDay(wxDateTime::Now().Add(wxDateSpan(0,0,0,30))))
     );
 

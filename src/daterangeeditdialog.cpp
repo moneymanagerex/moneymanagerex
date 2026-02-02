@@ -128,7 +128,7 @@ bool mmDateRangeEditDialog::checkRange() {
         DateDayN eN = rdata.rangeEnd();
         if (!sN.has_value() || !eN.has_value() || sN.value() <= eN.value()) {
             m_status->SetLabelText(_t("Range is ok:") + wxString::Format(" >%s - %s<",
-                DateDay::isoDateN(sN), DateDay::isoDateN(eN)
+                sN.isoDateN(), eN.isoDateN()
             ));
           m_status->SetBackgroundColour(m_defBColor);
           rangeOk = true;
