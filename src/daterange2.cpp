@@ -75,9 +75,10 @@ DateRange2::Range::Range(
     int so2_new, DatePeriodN sp2_new,
     int eo2_new, DatePeriodN ep2_new,
     int f_new, wxString name_new
-) {
-    sp1 = sp1_new;
-    ep1 = ep1_new;
+) :
+    sp1(sp1_new),
+    ep1(ep1_new)
+{
     // so1/eo1 is not applicable if sp1/ep1 resp., is DatePeriod::_A
     so1 = (sp1 == DatePeriod::_A) ? 0 : so1_new;
     eo1 = (ep1 == DatePeriod::_A) ? 0 : eo1_new;
@@ -356,11 +357,12 @@ const wxString DateRange2::Range::checkingDescription() const
 
 DateRange2::Reporting::Reporting(
     int m_new, DatePeriod p_new
-) {
+) :
     // p cannot be DatePeriod::_S (statement date)
-    p = (p_new == DatePeriod::_S) ? DatePeriod::_T : p_new;
     // m cannot be 0; it is normalized to 1 if p is DatePeriod::_A
-    m = (m_new == 0 || p == DatePeriod::_A) ? 1 : m_new;
+    p((p_new == DatePeriod::_S) ? DatePeriod::_T : p_new),
+    m((m_new == 0 || p == DatePeriod::_A) ? 1 : m_new)
+{
 }
 
 // return true if parse is successful

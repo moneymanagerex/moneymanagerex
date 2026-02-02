@@ -19,6 +19,7 @@
 # pragma once
 
 #include <wx/datetime.h>
+#include <optional>
 #include <unordered_map>
 #include "primitive.h"
 #include "dateday.h"
@@ -115,8 +116,8 @@ public:
 
     public:
         Range(
-            int so1_new = 0, DatePeriod sp1_new = DatePeriod::_A,
-            int eo1_new = 0, DatePeriod ep1_new = DatePeriod::_A,
+            int so1_new = 0, DatePeriod  sp1_new = DatePeriod::_A,
+            int eo1_new = 0, DatePeriod  ep1_new = DatePeriod::_A,
             int so2_new = 0, DatePeriodN sp2_new = std::nullopt,
             int eo2_new = 0, DatePeriodN ep2_new = std::nullopt,
             int f_new = 0, wxString name_new = ""
