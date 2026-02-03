@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-26 19:10+0000\n"
+"POT-Creation-Date: 2026-02-02 15:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2516,7 +2516,7 @@ msgstr ""
 msgid "Water Tax"
 msgstr ""
 
-#: db/DB_Table_Category_V1.h:161 optionsettingshome.cpp:110
+#: db/DB_Table_Category_V1.h:161 optionsettingshome.cpp:109
 msgid "Miscellaneous"
 msgstr ""
 
@@ -6292,7 +6292,7 @@ msgstr ""
 msgid "Forecast Report"
 msgstr ""
 
-#: mmframereport.cpp:169 optionsettingshome.cpp:80
+#: mmframereport.cpp:169 optionsettingshome.cpp:79
 msgid "Income vs. Expenses"
 msgstr ""
 
@@ -7009,11 +7009,11 @@ msgstr ""
 msgid "Bad locale name"
 msgstr ""
 
-#: optionsettingshome.cpp:92
+#: optionsettingshome.cpp:91
 msgid "Last N Days"
 msgstr ""
 
-#: optionsettingshome.cpp:115 optionsettingstransaction.cpp:227
+#: optionsettingshome.cpp:114 optionsettingstransaction.cpp:227
 msgid "Ignore Future Transactions"
 msgstr ""
 
