@@ -34,7 +34,7 @@ static const wxString TIPS [] =
     _n("Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."),
     _n("Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"),
 
-    _n("Never endorse a loan. If the borrower—a friend, a family member, a significant other, or whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."),
+    _n("Never endorse a loan. If the borrower, whether a friend, a family member, a significant other, or someone else, misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."),
 
     _n("Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."),
     _n("Grocery tip: Make a shopping list. A shopping list saves money by helping to avoid buying products that are not required. The simplest way is to track consumables as they are used. A magnetic notepad on the fridge can help to write down items that need to be bought."),
@@ -64,7 +64,7 @@ static const wxString STOCKTIPS[] = {
     _n("Sample of UK (HSBC HLDG) share: HSBA.L"),
     _n("Before starting to invest, have a fully funded emergency fund."),
     _n("Before starting to invest, know your cash flow (have a budget)."),
-    _n("Before starting to invest, pay off consumer debt—especially credit cards."),
+    _n("Before starting to invest, pay off consumer debt, especially credit cards."),
     _n("Before starting to invest, make net worth the primary tracking metric."),
     _n("Before starting to invest, clarify the goals and the priorities."),
     _n("Before starting to invest, understand the investing basics."),
