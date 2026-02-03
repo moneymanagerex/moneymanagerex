@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-# pragma once
+#pragma once
 
 #include <wx/datetime.h>
 #include <optional>
@@ -45,6 +45,7 @@ public:
     DateDay(wxDateTime dateTime_new);
 
 public:
+    static const wxTimeSpan htol; // half-day tolerance
     static DateDay today();
     static DateDay min();
     static DateDay max();
@@ -82,6 +83,7 @@ inline DateDay DateDay::min()
 inline DateDay DateDay::max()
 {
     // same date as in DATE_MAX
+    // TODO: the datetime is 12 hours larger than DATE_MAX; check for overflow
     wxDateTime max_dateTime;
     max_dateTime.ParseISOCombined("2999-12-31T12:00:00");
     return DateDay(max_dateTime);
@@ -123,29 +125,32 @@ inline void DateDay::addSpan(wxDateSpan spanDay)
     dateTime += spanDay;
 }
 
+// the dateTime in both operands is set to noon, therefore
+// a simple comparison of dateTime is sufficient;
+// for more robustness we compare with a tolerance of half day.
 inline bool DateDay::operator== (const DateDay& other) const
 {
-    return (dateTime == other.dateTime);
+    return (dateTime < other.dateTime + htol && dateTime + htol >= other.dateTime);
 }
 inline bool DateDay::operator!= (const DateDay& other) const
 {
-    return (dateTime != other.dateTime);
+    return (dateTime >= other.dateTime + htol || dateTime + htol < other.dateTime);
 }
 inline bool DateDay::operator< (const DateDay& other) const
 {
-    return dateTime < other.dateTime;
+    return dateTime + htol < other.dateTime;
 }
 inline bool DateDay::operator> (const DateDay& other) const
 {
-    return dateTime > other.dateTime;
+    return dateTime >= other.dateTime + htol;
 }
 inline bool DateDay::operator<= (const DateDay& other) const
 {
-    return (dateTime <= other.dateTime);
+    return (dateTime < other.dateTime + htol);
 }
 inline bool DateDay::operator>= (const DateDay& other) const
 {
-    return (dateTime >= other.dateTime);
+    return (dateTime + htol >= other.dateTime);
 }
 
 struct DateDayN

@@ -30,6 +30,8 @@ DateDay::DateDay(wxDateTime dateTime_new) :
     dateTime.SetHour(12).SetMinute(0).SetSecond(0).SetMillisecond(0);
 }
 
+const wxTimeSpan DateDay::htol = wxTimeSpan::Hours(12);
+
 DateDayN::DateDayN(DateDay dateDay_new) :
     dateDayN(dateDay_new)
 {
