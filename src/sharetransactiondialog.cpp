@@ -168,7 +168,7 @@ void ShareTransactionDialog::DataToControls()
                 Model_Checking::Data* checking_entry = Model_Checking::instance().get(m_translink_entry->CHECKINGACCOUNTID);
                 if (checking_entry)
                 {
-                    m_transaction_panel->TransactionDate(Model_Checking::TRANSDATE(checking_entry));
+                    m_transaction_panel->TransactionDate(Model_Checking::getTransDateTime(checking_entry));
                     m_transaction_panel->SetTransactionValue(GetAmount(std::abs(m_share_entry->SHARENUMBER)
                         , m_share_entry->SHAREPRICE, m_share_entry->SHARECOMMISSION), true);
                     m_transaction_panel->SetTransactionAccount(Model_Account::get_account_name(checking_entry->ACCOUNTID));

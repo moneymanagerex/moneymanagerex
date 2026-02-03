@@ -42,6 +42,6 @@ DateDayN::DateDayN(wxDateTime dateTimeN_new)
 }
 DateDayN::DateDayN(const wxString& isoDateN_new)
 {
-    *this = DateDayN(isoDateTime(isoDateN_new));
+    *this = DateDayN(parseDateTime(isoDateN_new));
 }
 

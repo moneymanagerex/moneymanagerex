@@ -92,7 +92,7 @@ void mmReportCashFlow::getTransactions()
         m_account_id.push_back(account.ACCOUNTID);
 
         for (const auto& tran : Model_Account::transactionsByDateTimeId(account)) {
-            wxString strDate = Model_Checking::TRANSDATE(tran).FormatISOCombined();
+            wxString strDate = Model_Checking::getTransDateTime(tran).FormatISOCombined();
             // Do not include asset or stock transfers in income expense calculations.
             if (Model_Checking::foreignTransactionAsTransfer(tran) || (strDate > todayString))
                 continue;
@@ -231,7 +231,7 @@ wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
     // squash the data by month or day
     for (const auto& trx : m_forecastVector)
     {
-        dt = Model_Checking::TRANSDATE(trx);
+        dt = Model_Checking::getTransDateTime(trx);
         wxString date = dt.FormatISODate();
         if (monthly)
         {

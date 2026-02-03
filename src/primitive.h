@@ -72,7 +72,7 @@ bool isValidURI(const wxString& validate);
 
 //----------------------------------------------------------------------------
 
-wxDateTime isoDateTime(const wxString& str_date);
+wxDateTime parseDateTime(const wxString& str_date);
 
 //----------------------------------------------------------------------------
 

@@ -589,7 +589,7 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
 {
     if (item < 0 || item >= static_cast<int>(m_trans.size())) return 0;
 
-    bool in_the_future = Model_Checking::TRANSDATE(m_trans[item]).FormatISOCombined() > m_today;
+    bool in_the_future = Model_Checking::getTransDateTime(m_trans[item]).FormatISOCombined() > m_today;
     if (in_the_future && Option::instance().getDoNotColorFuture()) {
         return (item % 2 ? m_attr3.get() : m_attr4.get());
     }
@@ -815,7 +815,7 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
             break;
         case LIST_ID_DATE: {
             copyText_ = menuItemText = mmGetDateTimeForDisplay(m_trans[row].TRANSDATE);
-            wxString strDate = Model_Checking::TRANSDATE(m_trans[row]).FormatISODate();
+            wxString strDate = Model_Checking::getTransDateTime(m_trans[row]).FormatISODate();
             rightClickFilter_ = "{\n\"DATE1\": \"" + strDate + "\",\n\"DATE2\" : \"" + strDate + "T23:59:59" + "\"\n}";
             break;
         }
@@ -1522,8 +1522,8 @@ void TransactionListCtrl::onMarkTransaction(wxCommandEvent& event)
     for (int row = 0; row < GetItemCount(); row++) {
         if (GetItemState(row, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED) {
             Model_Account::Data* account = Model_Account::instance().get(m_trans[row].ACCOUNTID);
-            const auto statement_date = isoDateTime(account->STATEMENTDATE).FormatISODate();
-            wxString strDate = Model_Checking::TRANSDATE(m_trans[row]).FormatISODate();
+            const auto statement_date = parseDateTime(account->STATEMENTDATE).FormatISODate();
+            wxString strDate = Model_Checking::getTransDateTime(m_trans[row]).FormatISODate();
             if (!Model_Account::BoolOf(account->STATEMENTLOCKED)
                 || strDate > statement_date
             ) {
@@ -2224,7 +2224,7 @@ bool TransactionListCtrl::checkTransactionLocked(int64 accountID, const wxString
     if (Model_Account::BoolOf(account->STATEMENTLOCKED)) {
         wxDateTime transaction_date;
         if (transaction_date.ParseDate(transdate)) {
-            if (transaction_date <= isoDateTime(account->STATEMENTDATE)) {
+            if (transaction_date <= parseDateTime(account->STATEMENTDATE)) {
                 wxMessageBox(wxString::Format(
                     _t("Locked transaction to date: %s\n\n"
                       "Reconciled transactions.")

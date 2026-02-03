@@ -169,7 +169,7 @@ inline Model_Account::STATUS_ID Model_Account::status_id(const Data& account)
 
 inline wxDateTime Model_Account::get_date_by_string(const wxString& date_str)
 {
-    return isoDateTime(date_str);
+    return parseDateTime(date_str);
 }
 
 inline bool Model_Account::is_positive(int value)

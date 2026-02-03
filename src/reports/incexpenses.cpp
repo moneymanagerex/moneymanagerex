@@ -163,9 +163,9 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         double convRate = 1;
         // We got this far, get the currency conversion rate for this account
         if (account) convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID, transaction.TRANSDATE);
-        int year = Model_Checking::TRANSDATE(transaction).GetYear();
+        int year = Model_Checking::getTransDateTime(transaction).GetYear();
 
-        int idx = year * 100 + Model_Checking::TRANSDATE(transaction).GetMonth();
+        int idx = year * 100 + Model_Checking::getTransDateTime(transaction).GetMonth();
 
         if (Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_DEPOSIT) {
             incomeExpensesStats[idx].first += transaction.TRANSAMOUNT * convRate;

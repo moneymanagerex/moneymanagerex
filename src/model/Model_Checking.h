@@ -20,6 +20,7 @@
 #define MODEL_CHECKING_H
 
 #include "choices.h"
+#include "dateday.h"
 #include "db/DB_Table_Checkingaccount_V1.h"
 #include "Model.h"
 #include "Model_Splittransaction.h"
@@ -216,9 +217,10 @@ public:
     static const Split_Data_Set split(const Data& r);
 
 public:
+    static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxString& date_iso_str, OP op = EQUAL);
+    static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const DateDay& date, OP op = EQUAL);
     static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxDateTime& date, OP op = EQUAL);
     static DB_Table_CHECKINGACCOUNT_V1::DELETEDTIME DELETEDTIME(const wxString& date, OP op = EQUAL);
-    static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxString& date_iso_str, OP op = EQUAL);
     static DB_Table_CHECKINGACCOUNT_V1::STATUS STATUS(STATUS_ID status, OP op = EQUAL);
     static DB_Table_CHECKINGACCOUNT_V1::TRANSCODE TRANSCODE(TYPE_ID type, OP op = EQUAL);
     static DB_Table_CHECKINGACCOUNT_V1::TRANSACTIONNUMBER TRANSACTIONNUMBER(const wxString& num, OP op = EQUAL);
@@ -238,8 +240,8 @@ public:
     static STATUS_ID status_id(const Data* r);
     static STATUS_ID status_id(const Data& r);
 
-    static wxDate TRANSDATE(const Data* r);
-    static wxDate TRANSDATE(const Data& r);
+    static wxDate getTransDateTime(const Data* r);
+    static wxDate getTransDateTime(const Data& r);
 
     static double account_flow(const Data* r, int64 account_id);
     static double account_flow(const Data& r, int64 account_id);

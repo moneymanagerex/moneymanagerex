@@ -26,6 +26,7 @@ Copyright (C) 2025 Klaus Wich
 #include "option.h"
 #include "optionsettingshome.h"
 #include "constants.h"
+#include "dateday.h"
 #include "reports/reportbase.h"
 
 #include "model/Model_Stock.h"
@@ -286,7 +287,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
     std::vector< std::tuple<int, wxString, wxString, double, const Model_Account::Data*, wxString> > bd_days;
     for (const auto& entry : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_TRANSDATE))
     {
-        int daysPayment = Model_Billsdeposits::TRANSDATE(&entry)
+        int daysPayment = Model_Billsdeposits::getTransDateTime(&entry)
             .Subtract(today).GetDays();
         if (daysPayment > 14)
             break; // Done searching for all to include
@@ -469,7 +470,7 @@ const wxString htmlWidgetStatistics::getHTMLText()
     if (Option::instance().getIgnoreFutureTransactionsHomePage()) {
         date_range = new mmCurrentMonthToDate;
         all_trans = Model_Checking::instance().find(
-            Model_Checking::TRANSDATE(wxDateTime(23,59,59,999), LESS_OR_EQUAL));
+            Model_Checking::TRANSDATE(DateDay::today(), LESS_OR_EQUAL));
     }
     else {
         date_range = new mmCurrentMonth;

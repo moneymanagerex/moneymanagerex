@@ -18,6 +18,7 @@
 
 #include "reconciledialog.h"
 #include "constants.h"
+#include "dateday.h"
 #include "images_list.h"
 #include "option.h"
 #include "reports/mmDateRange.h"
@@ -272,13 +273,13 @@ void mmReconcileDialog::FillControls(bool init)
         Model_Checking::ACCOUNTID(m_account->ACCOUNTID),
         Model_Checking::STATUS(Model_Checking::STATUS_ID_RECONCILED, NOT_EQUAL),
         Model_Checking::DELETEDTIME(wxEmptyString, EQUAL),
-        Model_Checking::TRANSDATE(wxDateTime(23,59,59,999), LESS_OR_EQUAL)
+        Model_Checking::TRANSDATE(DateDay::today(), LESS_OR_EQUAL)
     );
     Model_Checking::Data_Set all_trans2 = Model_Checking::instance().find(  // get transfers
         Model_Checking::TOACCOUNTID(m_account->ACCOUNTID),
         Model_Checking::STATUS(Model_Checking::STATUS_ID_RECONCILED, NOT_EQUAL),
         Model_Checking::DELETEDTIME(wxEmptyString, EQUAL),
-        Model_Checking::TRANSDATE(wxDateTime(23,59,59,999), LESS_OR_EQUAL)
+        Model_Checking::TRANSDATE(DateDay::today(), LESS_OR_EQUAL)
     );
 
     all_trans.insert(all_trans.end(), all_trans2.begin(), all_trans2.end());

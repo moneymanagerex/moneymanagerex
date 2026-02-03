@@ -1152,7 +1152,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             wxString msg;
             if (completeTransaction(entry, trx, msg))
             {
-                wxString strDate = Model_Checking::TRANSDATE(trx).FormatISODate();
+                wxString strDate = Model_Checking::getTransDateTime(trx).FormatISODate();
                 if (dateFromCheckBox_->IsChecked() && strDate < begin_date)
                     continue;
                 if (dateToCheckBox_->IsChecked() && strDate > end_date)

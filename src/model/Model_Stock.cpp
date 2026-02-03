@@ -63,12 +63,12 @@ Model_Stock& Model_Stock::instance()
 
 wxDate Model_Stock::PURCHASEDATE(const Data* stock)
 {
-    return isoDateTime(stock->PURCHASEDATE);
+    return parseDateTime(stock->PURCHASEDATE);
 }
 
 wxDate Model_Stock::PURCHASEDATE(const Data& stock)
 {
-    return isoDateTime(stock.PURCHASEDATE);
+    return parseDateTime(stock.PURCHASEDATE);
 }
 
 /** Original value of Stocks */
@@ -192,7 +192,7 @@ double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const 
         for (const auto& linkrecord : linkrecords)
         {
             Model_Checking::Data* txn = Model_Checking::instance().get(linkrecord.CHECKINGACCOUNTID);
-            if (txn->TRANSID > -1 && txn->DELETEDTIME.IsEmpty() && Model_Checking::TRANSDATE(txn).FormatISODate() <= strDate) {
+            if (txn->TRANSID > -1 && txn->DELETEDTIME.IsEmpty() && Model_Checking::getTransDateTime(txn).FormatISODate() <= strDate) {
                 numShares += Model_Shareinfo::instance().ShareEntry(linkrecord.CHECKINGACCOUNTID)->SHARENUMBER;
             }
         }

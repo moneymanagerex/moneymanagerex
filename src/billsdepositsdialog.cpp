@@ -25,6 +25,7 @@
 #include "attachmentdialog.h"
 #include "categdialog.h"
 #include "constants.h"
+#include "dateday.h"
 #include "images_list.h"
 #include "option.h"
 #include "mmSimpleDialogs.h"
@@ -1472,7 +1473,7 @@ void mmBDDialog::setCategoryLabel()
     {
         Model_Checking::Data_Set transactions = Model_Checking::instance().find(
             Model_Checking::TRANSCODE(Model_Checking::TYPE_ID_TRANSFER, EQUAL)
-            , Model_Checking::TRANSDATE(wxDateTime(23,59,59,999), LESS_OR_EQUAL));
+            , Model_Checking::TRANSDATE(DateDay::today(), LESS_OR_EQUAL));
 
         if (!transactions.empty())
         {

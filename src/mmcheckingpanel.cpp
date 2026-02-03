@@ -668,8 +668,8 @@ void mmCheckingPanel::filterList()
         for (auto it = trans.rbegin(); it != trans.rend(); ++it) {
             const Model_Checking::Data* tran = &(*it);
             if (tran && (isDeletedTrans() || tran->DELETEDTIME.IsEmpty())) {
-                if (date_end < Model_Checking::TRANSDATE(tran))
-                    date_end = Model_Checking::TRANSDATE(tran);
+                if (date_end < Model_Checking::getTransDateTime(tran))
+                    date_end = Model_Checking::getTransDateTime(tran);
                 // FIXME: early break
                 break;
             }
@@ -718,7 +718,7 @@ void mmCheckingPanel::filterList()
         const Model_Checking::Data* tran = nullptr;
 
         if (trans_it != trans.end())
-            tran_date = Model_Checking::TRANSDATE(*trans_it).FormatISOCombined();
+            tran_date = Model_Checking::getTransDateTime(*trans_it).FormatISOCombined();
         if (trans_it != trans.end() &&
             (bills_it == bills_index.end() || tran_date.Left(10) <= std::get<1>(*bills_it).Left(10))
         ) {

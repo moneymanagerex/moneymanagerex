@@ -90,7 +90,7 @@ bool isValidURI(const wxString& validate)
 
 //----------------------------------------------------------------------------
 
-wxDateTime isoDateTime(const wxString& str_date)
+wxDateTime parseDateTime(const wxString& str_date)
 {
     static std::unordered_map<wxString, wxDateTime> cache;
     if (auto it = cache.find(str_date); it != cache.end())
