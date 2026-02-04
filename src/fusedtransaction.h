@@ -19,12 +19,12 @@
 #ifndef MM_EX_FUSED_TRANSACTION_H_
 #define MM_EX_FUSED_TRANSACTION_H_
 
-#include "Model.h"
-#include "Model_Checking.h"
-#include "Model_Billsdeposits.h"
-#include "Model_Splittransaction.h"
-#include "Model_Budgetsplittransaction.h"
-#include "Model_Taglink.h"
+#include "model/Model.h"
+#include "model/Model_Checking.h"
+#include "model/Model_Billsdeposits.h"
+#include "model/Model_Splittransaction.h"
+#include "model/Model_Budgetsplittransaction.h"
+#include "model/Model_Taglink.h"
 
 class Fused_Transaction
 {

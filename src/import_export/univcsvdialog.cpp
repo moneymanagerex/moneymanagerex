@@ -32,7 +32,7 @@
 
 #include "univcsvdialog.h"
 
-#include "Model_Stock.h"
+#include "model/Model_Stock.h"
 #include "categdialog.h"
 #include "constants.h"
 #include "images_list.h"

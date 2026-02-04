@@ -142,7 +142,7 @@ private:
     const Model_Report::Data* m_report;
 };
 
-#include "html_template.h"
+#include <html_template.h>
 class mm_html_template: public html_template
 {
 public:

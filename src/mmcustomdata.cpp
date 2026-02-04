@@ -23,8 +23,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "util.h"
 #include "mmSimpleDialogs.h"
 #include "validators.h"
-#include "Model_Currency.h"
-#include "Model_CustomFieldData.h"
+#include "model/Model_Currency.h"
+#include "model/Model_CustomFieldData.h"
 
 #include <wx/timectrl.h>
 #include <wx/collpane.h>

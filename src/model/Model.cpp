@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "model/Model.h"
-#include "model/allmodel.h"
+#include "Model.h"
+#include "allmodel.h"
 
 ChoicesName ModelBase::REFTYPE_CHOICES = ChoicesName({
     { REFTYPE_ID_TRANSACTION,       _n("Transaction") },

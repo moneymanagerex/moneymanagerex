@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 #include <wx/dialog.h>
-#include "Model_Checking.h"
+#include "model/Model_Checking.h"
 #include "mmSimpleDialogs.h"
 
 class mmDatePickerCtrl;

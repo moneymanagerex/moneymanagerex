@@ -21,7 +21,7 @@
 
 #include "defs.h"
 #include <wx/dialog.h>
-#include "Model_CustomField.h"
+#include "model/Model_CustomField.h"
 class wxChoice;
 class wxCheckBox;
 class wxSpinCtrl;

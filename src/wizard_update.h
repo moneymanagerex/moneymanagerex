@@ -17,7 +17,7 @@
  ********************************************************/
 #pragma once
 
-#include "rapidjson/document.h"
+#include <rapidjson/document.h>
 #include "option.h"
 #include <wx/webview.h>
 #include <wx/wizard.h>

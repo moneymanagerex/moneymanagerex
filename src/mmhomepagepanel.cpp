@@ -26,7 +26,7 @@ Copyright (C) 2026 Klaus Wich
 #include "mmframe.h"
 #include "paths.h"
 
-#include "html_template.h"
+#include <html_template.h>
 #include "billsdepositspanel.h"
 #include <algorithm>
 #include <cmath>

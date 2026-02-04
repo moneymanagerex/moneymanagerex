@@ -18,13 +18,13 @@
  ********************************************************/
 
 #include "summarystocks.h"
-#include "reports/htmlbuilder.h"
+#include "htmlbuilder.h"
 
 #include "constants.h"
 #include "stockspanel.h"
 #include "budget.h"
 #include "util.h"
-#include "reports/mmDateRange.h"
+#include "mmDateRange.h"
 #include "model/Model_Account.h"
 #include "model/Model_Currency.h"
 #include "model/Model_CurrencyHistory.h"

@@ -31,7 +31,7 @@
 #include "option.h"
 #include "reports/reportbase.h"
 
-#include "rapidjson/error/en.h"
+#include <rapidjson/error/en.h>
 
 #include "model/Model_Infotable.h"
 #include "model/Model_Report.h"

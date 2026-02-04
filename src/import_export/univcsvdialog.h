@@ -24,7 +24,7 @@
 #include <map>
 #include <wx/dialog.h>
 #include <wx/dataview.h>
-#include "Model_Checking.h"
+#include "model/Model_Checking.h"
 #include "mmSimpleDialogs.h"
 class wxSpinCtrl;
 class wxSpinEvent;
