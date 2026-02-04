@@ -33,14 +33,16 @@ DateDay::DateDay(wxDateTime dateTime_new) :
 const wxTimeSpan DateDay::htol = wxTimeSpan::Hours(12);
 
 DateDayN::DateDayN(DateDay dateDay_new) :
-    dateDayN(dateDay_new)
+    dateTimeN(dateDay_new.dateTime)
 {
 }
-DateDayN::DateDayN(wxDateTime dateTimeN_new)
+DateDayN::DateDayN(wxDateTime dateTimeN_new) :
+    dateTimeN{dateTimeN_new}
 {
-    *this = dateTimeN_new.IsValid()
-        ? DateDayN(DateDay(dateTimeN_new))
-        : DateDayN();
+    if (dateTimeN.IsValid()) {
+        // set time to noon (12:00)
+        dateTimeN.SetHour(12).SetMinute(0).SetSecond(0).SetMillisecond(0);
+    }
 }
 DateDayN::DateDayN(const wxString& isoDateN_new)
 {

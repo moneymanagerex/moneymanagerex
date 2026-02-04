@@ -26,10 +26,10 @@
 // wxWidgets does not have a dedicated type for this purpose.
 // The underlying data structure is wxDateTime, with the time part set
 // to noon (12:00), in order to avoid rounding errors around midnight.
-// 
+// The underlying value cannot be wxInvalidDateTime.
+//
 // DateDayN is an optional (nullable) DateDay.
-// Notice that wxInvalidDateTime is not used. DateDay is always defined
-// and valid, while the null value in DateDayN is std::nullopt.
+// The underlying null value is wxInvalidDateTime.
 //
 // iso{Start,End} are helper functions for date comparisons, e.g.,
 //   start.isoStart() <= isoDate <= end.isoEnd()
@@ -38,6 +38,8 @@
 
 struct DateDay
 {
+    friend struct DateDayN;
+
 protected:
     wxDateTime dateTime;
 
@@ -64,6 +66,35 @@ public:
     bool operator>  (const DateDay& other) const;
     bool operator<= (const DateDay& other) const;
     bool operator>= (const DateDay& other) const;
+};
+
+struct DateDayN
+{
+    friend struct DateDay;
+
+private:
+    wxDateTime dateTimeN;
+
+public:
+    DateDayN() = default;
+    DateDayN(DateDay dateDay_new);
+    DateDayN(wxDateTime dateTimeN_new);
+    DateDayN(const wxString& isoDateN_new);
+
+public:
+    bool has_value() const;
+    DateDay value() const;
+    DateDay value_or(DateDay defDateDay) const;
+
+public:
+    wxDateTime getDateTimeN() const;
+    const wxString isoDateN() const;
+    const wxString isoStartN() const;
+    const wxString isoEndN() const;
+
+public:
+    bool operator== (const DateDayN& other) const;
+    bool operator!= (const DateDayN& other) const;
 };
 
 inline DateDay DateDay::today()
@@ -153,37 +184,22 @@ inline bool DateDay::operator>= (const DateDay& other) const
     return (dateTime + htol >= other.dateTime);
 }
 
-struct DateDayN
+inline bool DateDayN::has_value() const
 {
-private:
-    std::optional<DateDay> dateDayN;
-
-public:
-    DateDayN() = default;
-    DateDayN(DateDay dateDay_new);
-    DateDayN(wxDateTime dateTimeN_new);
-    DateDayN(const wxString& isoDateN_new);
-
-public:
-    bool has_value() const { return dateDayN.has_value(); };
-    DateDay& value() { return dateDayN.value(); };
-    const DateDay& value() const { return dateDayN.value(); };
-    const DateDay& value_or(DateDay dateDay) const { return dateDayN.value_or(dateDay); };
-
-public:
-    wxDateTime getDateTimeN() const;
-    const wxString isoDateN() const;
-    const wxString isoStartN() const;
-    const wxString isoEndN() const;
-
-public:
-    bool operator== (const DateDayN& other) const;
-    bool operator!= (const DateDayN& other) const;
-};
+    return dateTimeN.IsValid();
+}
+inline DateDay DateDayN::value() const
+{
+    return DateDay(dateTimeN);
+}
+inline DateDay DateDayN::value_or(DateDay defDateDay) const
+{
+    return dateTimeN.IsValid() ? DateDay(dateTimeN) : defDateDay;
+}
 
 inline wxDateTime DateDayN::getDateTimeN() const
 {
-    return has_value() ? value().getDateTime() : wxInvalidDateTime;
+    return dateTimeN;
 }
 inline const wxString DateDayN::isoDateN() const
 {
@@ -200,10 +216,12 @@ inline const wxString DateDayN::isoEndN() const
 
 inline bool DateDayN::operator== (const DateDayN& other) const
 {
-    return (dateDayN == other.dateDayN);
+    return (!has_value() && !other.has_value())
+        || (has_value() && other.has_value() && value() == other.value());
 }
 inline bool DateDayN::operator!= (const DateDayN& other) const
 {
-    return (dateDayN != other.dateDayN);
+    return (has_value() || other.has_value())
+        && (!has_value() || !other.has_value() || value() != other.value());
 }
 
