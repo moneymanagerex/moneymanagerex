@@ -43,11 +43,13 @@ OptionSettingsHome::OptionSettingsHome()
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastFinancialYear()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmAllTime()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast365Days()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastNDays(0)));
+    // mmLastNDays must be last entry in the list
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastNDays(Model_Infotable::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14))));
 
     int sel_id = Option::instance().getHomePageIncExpRange();
     if (sel_id >= static_cast<int>(m_all_date_ranges.size()))
         sel_id = 0;
+    m_inc_vs_exp_date_range = m_all_date_ranges[sel_id];
 
 }
 
@@ -82,13 +84,13 @@ void OptionSettingsHome::Create()
     m_incExpChoice = new wxChoice(totalsStaticBox, wxID_ANY);
     // Show/hide the number text box depending on the choice selection
     m_incExpChoice->Bind(wxEVT_CHOICE, [this](wxCommandEvent& event) {
-        nDays_->Show(event.GetInt() == 15);
+        nDays_->Show(event.GetInt() == static_cast<int>(m_all_date_ranges.size() - 1));
     });
 
     for (const auto & date_range : m_all_date_ranges) {
         m_incExpChoice->Append(date_range.get()->local_title());
     }
-    m_incExpChoice->SetString(15, _t("Last N Days"));
+    m_incExpChoice->SetString(static_cast<int>(m_all_date_ranges.size() - 1), _t("Last N Days"));
 
     int sel_id = Option::instance().getHomePageIncExpRange();
     if (sel_id < 0 || static_cast<size_t>(sel_id) >= m_all_date_ranges.size())
@@ -121,7 +123,7 @@ void OptionSettingsHome::Create()
     SetBoldFontToStaticBoxHeader(sBox);
     Fit();
     home_panel->SetMinSize(home_panel->GetBestVirtualSize());
-    nDays_->Show(sel_id == 15);
+    nDays_->Show(sel_id == static_cast<int>(m_all_date_ranges.size() - 1));
     home_panel->SetScrollRate(6, 6);
 }
 
@@ -130,7 +132,7 @@ bool OptionSettingsHome::SaveSettings()
 {
     int sel_id = m_incExpChoice->GetSelection();
     Option::instance().setHomePageIncExpRange(sel_id);
-    if (sel_id == 15)
+    if (sel_id == static_cast<int>(m_all_date_ranges.size() - 1))
         Model_Infotable::instance().setInt("HOMEPAGE_INCEXP_DAYS", nDays_->GetValue());
     Option::instance().setIgnoreFutureTransactionsHomePage(m_ignore_future_transactions_home->GetValue());
     return true;
@@ -138,19 +140,6 @@ bool OptionSettingsHome::SaveSettings()
 
 const wxSharedPtr<mmDateRange> OptionSettingsHome::get_inc_vs_exp_date_range() const
 {
-    int sel_id = Option::instance().getHomePageIncExpRange();
-    if (sel_id < 0 || sel_id >= static_cast<int>(m_all_date_ranges.size()))
-        sel_id = 0;
-
-    const auto& range = m_all_date_ranges[sel_id];
-
-    // Detect "Last N Days" by type, not by index
-    if (dynamic_cast<mmLastNDays*>(range.get()))
-    {
-        int days = Model_Infotable::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14);
-        return wxSharedPtr<mmDateRange>(new mmLastNDays(days));
-    }
-
-    return range;
+    return m_inc_vs_exp_date_range;
 }
 
