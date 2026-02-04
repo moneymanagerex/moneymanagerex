@@ -21,7 +21,7 @@ Copyright (C) 2025 Klaus Wich
 #include <algorithm>
 #include <cmath>
 #include "mmhomepage.h"
-#include "html_template.h"
+#include <html_template.h>
 #include "billsdepositspanel.h"
 #include "option.h"
 #include "optionsettingshome.h"

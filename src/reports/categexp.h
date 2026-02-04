@@ -24,7 +24,7 @@
 #include "reportbase.h"
 #include "util.h"
 #include <vector>
-#include "Model_Category.h"
+#include "model/Model_Category.h"
 
 class mmReportCategoryExpenses : public mmPrintableBase
 {

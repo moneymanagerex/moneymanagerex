@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-21 16:55+0000\n"
-"PO-Revision-Date: 2026-01-23 01:08\n"
+"POT-Creation-Date: 2026-01-26 19:10+0000\n"
+"PO-Revision-Date: 2026-01-30 01:16\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -1315,8 +1315,8 @@ msgstr "A Cada %s Meses"
 
 #: billsdepositspanel.cpp:111 filtertransdialog.cpp:674
 #: filtertransdialog.cpp:1615 filtertransdialog.cpp:1715
-#: import_export/univcsvdialog.cpp:117 import_export/univcsvdialog.cpp:128
-#: mmchecking_list.cpp:107 model/Model_Checking.cpp:33 reports/forecast.cpp:81
+#: import_export/univcsvdialog.cpp:117 mmchecking_list.cpp:107
+#: model/Model_Checking.cpp:33 reports/forecast.cpp:81
 msgid "Withdrawal"
 msgstr "Pagamento"
 
@@ -3193,12 +3193,13 @@ msgstr "Copiar como SQL SELECT"
 
 #: generic/generictreelistdialog.cpp:110 generic/generictreelistdialog.cpp:289
 msgid "Restore default"
-msgstr ""
+msgstr "Restaurar padrão"
 
 #: generic/generictreelistdialog.cpp:288
 msgid "Do you really want to restore the default values?\n\n"
 "All customization will be lost!"
-msgstr ""
+msgstr "Você realmente deseja restaurar para os valores padrão?\n\n"
+"Toda a customização será perdida!"
 
 #: images_list.cpp:344
 #, c-format
@@ -3929,7 +3930,7 @@ msgstr "Beneficiário %s adicionado"
 msgid "SubCategory"
 msgstr "Subcategoria"
 
-#: import_export/univcsvdialog.cpp:116 import_export/univcsvdialog.cpp:127
+#: import_export/univcsvdialog.cpp:116
 msgid "Don't Care"
 msgstr "Não se preocupe"
 
@@ -3967,9 +3968,19 @@ msgstr "Preço médio da Ação"
 msgid "Total Cost"
 msgstr "Total Investido"
 
+#: import_export/univcsvdialog.cpp:127 reports/summarystocks.cpp:120
+#: stocks_list.cpp:74
+msgid "Realized Gain/Loss"
+msgstr "Ganho/Perda Realizada"
+
+#: import_export/univcsvdialog.cpp:128 reports/summarystocks.cpp:121
+#: stocks_list.cpp:75
+msgid "Unrealized Gain/Loss"
+msgstr "Ganho/Perda Não Realizada"
+
 #: import_export/univcsvdialog.cpp:129
 msgid "Current Total Value"
-msgstr ""
+msgstr "Valor Total Atual"
 
 #: import_export/univcsvdialog.cpp:130 reports/summarystocks.cpp:119
 #: stocks_list.cpp:79 stockspanel.cpp:270
@@ -4025,27 +4036,27 @@ msgstr "Delimitador CSV:"
 
 #: import_export/univcsvdialog.cpp:411
 msgid "Only Export Stocks"
-msgstr ""
+msgstr "Exportar somente ações"
 
 #: import_export/univcsvdialog.cpp:417
 msgid "Only Export Transactions Between 2 Dates"
-msgstr ""
+msgstr "Exportar somente transações entre 2 datas"
 
 #: import_export/univcsvdialog.cpp:426
 msgid "Start Date:"
-msgstr ""
+msgstr "Data inicial:"
 
 #: import_export/univcsvdialog.cpp:432
 msgid "Specify which date the report must start at"
-msgstr ""
+msgstr "Especifique em qual data o relatório deve começar"
 
 #: import_export/univcsvdialog.cpp:440
 msgid "End Date:"
-msgstr ""
+msgstr "Data final:"
 
 #: import_export/univcsvdialog.cpp:446
 msgid "Specify which date the report must end at"
-msgstr ""
+msgstr "Especifique em qual data o relatório deve terminar"
 
 #: import_export/univcsvdialog.cpp:492
 msgid "Export column titles"
@@ -4276,7 +4287,7 @@ msgstr "Conta Inválida"
 #: import_export/univcsvdialog.cpp:1915
 #, c-format
 msgid "Transactions/Stocks exported: %ld"
-msgstr ""
+msgstr "Transações/Ações exportadas: %ld"
 
 #: import_export/univcsvdialog.cpp:2471
 #, c-format
@@ -5399,7 +5410,7 @@ msgstr "&Recolher tudo"
 
 #: mmframe.cpp:1728
 msgid "&Navigator configuration…"
-msgstr ""
+msgstr "Configuração do &Navegador…"
 
 #: mmframe.cpp:1729 mmframe.cpp:2058
 msgid "T&heme Manager…"
@@ -7338,11 +7349,11 @@ msgstr "Delimitador de categoria"
 
 #: optionsettingsview.cpp:106
 msgid "Navigator and account types"
-msgstr ""
+msgstr "Navegador e tipos de conta"
 
 #: optionsettingsview.cpp:110
 msgid "Show cash ledger for portfolios"
-msgstr ""
+msgstr "Mostrar livro caixa para portfólios"
 
 #: optionsettingsview.cpp:118
 msgid "Do not use color for future transactions"
@@ -8179,14 +8190,6 @@ msgstr "Data da compra"
 msgid "Quantity"
 msgstr "Quantidade"
 
-#: reports/summarystocks.cpp:120 stocks_list.cpp:74
-msgid "Realized Gain/Loss"
-msgstr "Ganho/Perda Realizada"
-
-#: reports/summarystocks.cpp:121 stocks_list.cpp:75
-msgid "Unrealized Gain/Loss"
-msgstr "Ganho/Perda Não Realizada"
-
 #: reports/summarystocks.cpp:245
 msgid "Stocks Performance Charts"
 msgstr "Gráficos de Desempenho de Ações"
@@ -8711,7 +8714,7 @@ msgstr "A exclusão da etiqueta também limpará automaticamente as transações
 msgid "Confirm Tag Deletion"
 msgstr "Confirme a Exclusão da Etiqueta"
 
-#: themes.cpp:192 uicontrols/toolbardialog.cpp:81
+#: themes.cpp:192 uicontrols/toolbardialog.cpp:103
 msgid "&Delete"
 msgstr "&Excluir"
 
@@ -8854,31 +8857,31 @@ msgstr "Transações"
 
 #: uicontrols/navigatordialog.cpp:46
 msgid "Navigator and account type configuration"
-msgstr ""
+msgstr "Configuração de Navegador e tipo de conta"
 
 #: uicontrols/navigatordialog.cpp:55 uicontrols/navigatoreditdialog.cpp:92
 msgid "Selection name"
-msgstr ""
+msgstr "Nome da seleção"
 
 #: uicontrols/navigatordialog.cpp:93 uicontrols/navigatordialog.cpp:194
 msgid "Reset names"
-msgstr ""
+msgstr "Redefinir nomes"
 
 #: uicontrols/navigatordialog.cpp:97
 msgid "Reset the standard names to default values"
-msgstr ""
+msgstr "Redefinir os nomes padrão para os valores padrão"
 
 #: uicontrols/navigatordialog.cpp:193
 msgid "Do you really want to reset the configured names?"
-msgstr ""
+msgstr "Tem certeza de que deseja redefinir os nomes configurados?"
 
 #: uicontrols/navigatoreditdialog.cpp:34
 msgid "Edit navigator entry"
-msgstr ""
+msgstr "Editar entrada de navegador"
 
 #: uicontrols/navigatoreditdialog.cpp:34
 msgid "New account type"
-msgstr ""
+msgstr "Novo tipo de conta"
 
 #: uicontrols/reconciledialog.cpp:57
 msgid "Reconcile account"
@@ -8902,7 +8905,7 @@ msgstr "&Alternar tudo"
 
 #: uicontrols/reconciledialog.cpp:129
 msgid "State"
-msgstr ""
+msgstr "Status"
 
 #: uicontrols/reconciledialog.cpp:138
 msgid "Withdrawals"
@@ -8930,39 +8933,59 @@ msgstr "&Reconciliar"
 
 #: uicontrols/reconciledialog.cpp:520
 msgid "Show status column"
-msgstr ""
+msgstr "Mostrar coluna de status"
 
 #: uicontrols/reconciledialog.cpp:521
 msgid "Show number column"
-msgstr ""
+msgstr "Mostrar coluna de número"
 
 #: uicontrols/reconciledialog.cpp:523
 msgid "Include void transactions"
-msgstr ""
+msgstr "Incluir transações nulas"
 
 #: uicontrols/reconciledialog.cpp:524
 msgid "Include duplicate transactions"
-msgstr ""
+msgstr "Incluir transações duplicadas"
 
 #: uicontrols/toolbardialog.cpp:41
 msgid "Toolbar configuration"
-msgstr ""
+msgstr "Configuração da barra de ferramentas."
 
-#: uicontrols/toolbardialog.cpp:71
+#: uicontrols/toolbardialog.cpp:73
 msgid "Add separator"
-msgstr ""
+msgstr "Adicionar separador"
 
-#: uicontrols/toolbardialog.cpp:74
+#: uicontrols/toolbardialog.cpp:75
+msgid "Insert a vertical separator line.\n"
+"Useful to visually group toolbar buttons."
+msgstr "Inserir uma linha vertical de separador.\n"
+"Útil para visualizar grupo de botões da barra de ferramentas."
+
+#: uicontrols/toolbardialog.cpp:82
 msgid "Add space"
-msgstr ""
+msgstr "Adicionar espaço"
 
-#: uicontrols/toolbardialog.cpp:77
+#: uicontrols/toolbardialog.cpp:84
+msgid "Insert a fixed-size empty space.\n"
+"The space width is equal to one toolbar icon."
+msgstr "Insira um espaço vazio de tamanho fixo.\n"
+"A largura do espaço é igual a um ícone da barra de ferramentas."
+
+#: uicontrols/toolbardialog.cpp:91
 msgid "Add stretch space"
-msgstr ""
+msgstr "Adicionar espaço elástico"
 
-#: uicontrols/toolbardialog.cpp:121
+#: uicontrols/toolbardialog.cpp:93
+msgid "Insert a stretchable space.\n"
+"It takes all remaining toolbar space.\n"
+"If multiple stretch spaces are present, the space is evenly distributed."
+msgstr "Insere um espaço adaptável.\n"
+"Toma todo o espaço restante da barra de ferramentas.\n"
+"Se vários espaços adaptáveis estiverem presentes, o espaço será distribuído uniformemente."
+
+#: uicontrols/toolbardialog.cpp:143
 msgid "Spacer"
-msgstr ""
+msgstr "Espaçador"
 
 #: usertransactionpanel.cpp:111
 msgid "Select Account"

@@ -24,9 +24,9 @@
 #include "attachmentdialog.h"
 #include "mmreportspanel.h"
 #include "reports/htmlbuilder.h"
-#include "model/Model_Setting.h"
-#include "LuaGlue/LuaGlue.h"
-#include "sqlite3mc_amalgamation.h"
+#include "Model_Setting.h"
+#include <LuaGlue/LuaGlue.h>
+#include <sqlite3mc_amalgamation.h>
 #include <wx/fs_mem.h>
 
 #if defined (__WXMSW__)

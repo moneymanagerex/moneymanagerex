@@ -23,7 +23,7 @@
 #include "images_list.h"
 #include "option.h"
 #include "navigatoreditdialog.h"
-#include "Model_Account.h"
+#include "model/Model_Account.h"
 #include "mmframe.h"
 
 struct NavData : public wxClientData

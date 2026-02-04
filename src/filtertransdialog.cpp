@@ -709,13 +709,14 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     itemPanelSizer->Add(notesCheckBox_, g_flagsH);
 
     notesEdit_ = new wxTextCtrl(itemPanel, wxID_ANY);
-    itemPanelSizer->Add(notesEdit_, g_flagsExpand);
-    mmToolTip(notesEdit_, _t("Enter any string to find it in transaction notes") + "\n\n" +
-        _tu("Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria.") + "\n" +
-        _tu("Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”.") + "\n" +
-        _tu("Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”.") + "\n" +
-        _tu("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.") + "\n" +
-        _t("Use regex: to match using regular expressions."));
+    mmToolTip(notesEdit_,
+        _t("Enter any string to find it in transaction notes.") + "\n\n" +
+        _tu("Tips: Wildcard characters such as the question mark (?) and the asterisk (*) can be used in search criteria.") + "\n" +
+        _tu("The question mark (?) matches a single character, for example \"s?t\" finds both \"sat\" and \"set\".") + "\n" +
+        _tu("The asterisk (*) matches any number of characters, for example \"s*d\" finds both \"sad\" and \"started\".") + "\n" +
+        _t("Use regex: to match using regular expressions.")
+    );
+
 
     // Colour
     colorCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Color"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);

@@ -413,7 +413,7 @@ else()
     endif()
 endif()
 
-target_include_directories(${MMEX_EXE} PUBLIC . model db)
+target_include_directories(${MMEX_EXE} PUBLIC .)
 target_link_libraries(${MMEX_EXE} PUBLIC
     wxSQLite3
     RapidJSON

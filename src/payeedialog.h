@@ -23,7 +23,7 @@
 #define MM_EX_PAYEEDIALOG_H_
 
 #include "defs.h"
-#include "Model_Payee.h"
+#include "model/Model_Payee.h"
 #include <wx/dataview.h>
 #include <wx/srchctrl.h>
 #include <wx/grid.h>

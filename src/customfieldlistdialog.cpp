@@ -24,7 +24,7 @@ Copyright (C) 2016, 2020 - 2022 Nikolay Akimov
 #include "mmSimpleDialogs.h"
 #include "paths.h"
 #include "util.h"
-#include "Model_CustomFieldData.h"
+#include "model/Model_CustomFieldData.h"
 
 #include <wx/dataview.h>
 #include <wx/mimetype.h>

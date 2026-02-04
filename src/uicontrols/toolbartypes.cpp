@@ -19,7 +19,7 @@
 #include "toolbartypes.h"
 #include "mmframe.h"
 #include "constants.h"
-#include "Model_Setting.h"
+#include "model/Model_Setting.h"
 
 
 static const wxString TOOLBAR_INFO_KEY = "TOOLBAR_SETTINGS";

@@ -25,7 +25,7 @@
 #include "paths.h"
 #include "reports/htmlbuilder.h"
 #include "model/Model_Setting.h"
-#include "rapidjson/error/en.h"
+#include <rapidjson/error/en.h>
 
 #include <wx/webview.h>
 #include <wx/webviewfshandler.h>

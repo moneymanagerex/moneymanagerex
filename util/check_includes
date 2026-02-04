@@ -1,0 +1,497 @@
+#!/usr/bin/env perl
+# vim: tw=96 ts=4 sw=4 expandtab foldmethod=marker
+# {{{ copyright
+
+# Copyright (C) 2026 George Ef (george.a.ef@gmail.com)
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+# }}}
+# {{{ changelog
+
+# * 2026-01-31: George Ef <george.a.ef@gmail.com>
+#   v1: create first version
+
+# }}}
+# {{{ note
+
+# this program must be executed from the "moneymanagerex" project directory,
+# which contains 3rd/, src/, util/, etc.
+
+# see:
+#   src/CMakeLists.txt -> target_include_directories
+#   $BUILD/src/CMakeFiles/mmex.dir/flags.make -> CXX_INCLUDES
+# the CXX include paths are the following:
+#   $BUILD/src
+#   src/.
+#   3rd/fmt/include
+#   3rd/wxsqlite3/include
+#   (wxWidgets)
+#   3rd/wxsqlite3/src
+#   3rd/rapidjson/include
+#   3rd/cgitemplate
+#   3rd/LuaGlue/include
+#   (system)
+
+# symbols
+# * $SRC_DIR
+#   the directory of the source file.
+#   equal to "src" or a directory under src/ (e.g., "src/model").
+# * $SRC_FILE
+#   the source file name, without a directory path.
+# * $DST_DIR
+#   the directory of the target file, to be included from the source file.
+#   it can be under src/ (e.g., "src/model"), or out of src/ (e.g., "3rd").
+# * $DST_FILE
+#   the target file name, without a directory path.
+
+# the normalized #include directive, inside a source file "$SRC_DIR/$SRC_FILE",
+# for a target file "$DST_DIR/$DST_FILE", is the following:
+# if $DST_DIR is out of src/:
+#   #include <$DST_SUBDIR/$DST_FILE>
+#   example:
+#     <wx/log.h> is found in (wxWidgets)/include/
+#     <wx/wxsqlite3.h> is found in 3rd/wxsqlite3/include/
+# else if $DST_DIR is equal to $SRC_DIR:
+#   #include "$DST_FILE"
+#   example in source file src/mmhomepage.cpp:
+#     "constants.h" is found in src/
+#   example in source file src/model/allmodels.h:
+#     "Model_Account.h" is found in src/model/
+# else if $DST_DIR is equal to src/
+#   #include "$DST_FILE"
+#   example in source file src/model/Model.h
+#     "choices.h" is found in src/
+# else if $DST_DIR is equal to "src/$DST_SUBDIR"
+#   #include "$DST_SUBDIR/$DST_FILE"
+#   example in source file src/accountdialog.h:
+#     "model/Model_Account.h" is found in src/model/
+#   example in source file src/reports/cashflow.cpp:
+#     "model/Model_Account.h" is found in src/model/
+
+# }}}
+
+# {{{ use
+
+use strict;
+use File::Basename qw( dirname basename );
+use File::Find qw( find );
+use File::Spec;
+
+# }}}
+# {{{ var
+
+# program name
+my $prog_name = basename( $0 );
+
+# log level
+my $level_warn  = 2; # 0: none, 1: not found, 2: fix
+my $level_info  = 0; # 0: none, 1: target path
+my $level_debug = 0; # 0: none, 1: main, 2: old
+
+# }}}
+# {{{ log
+# {{{ const
+
+# fold open and close markers
+my @log_fold_markers = ( "{{{", "}}}" );
+
+# separation level
+my $log_sep_l = 2;
+
+# }}}
+# {{{ var
+
+# state variables with initial values
+my $log_fold_n = 0;   # number of flushed open folds
+my @log_fold_a = ();  # ( [ $sep_f, $label ], ... ) pending open folds
+my $log_sep_s = 0;    # separation state (0: begin, 1: open, 2: close, 3: plain, 4: error)
+my $log_sep_f = 0;    # separation flag
+
+# }}}
+
+# {{{ sub log_callerf( $d=0 ) -> $package::$sub
+# $d : caller depth
+
+sub log_callerf { my( $d ) = @_;
+    $d = 0 unless defined $d;
+    return ( caller( 1+$d ) )[3];
+}
+
+# }}}
+# {{{ sub log_open( $x="" )
+
+sub log_open { my( $x ) = @_;
+    $x = "" unless defined $x;
+    push( @log_fold_a, [ $log_sep_f, $x ] );
+    $log_sep_f = 0;
+}
+
+# }}}
+# {{{ sub log_close()
+
+my $log_cnt_empty = 3;
+
+sub log_close {
+    # {{{ if there is a pending open fold close it
+
+    if( @log_fold_a > 0 ) {
+        # restore $log_sep_f
+        $log_sep_f = $log_fold_a[-1]->[0];
+        pop( @log_fold_a );
+    }
+
+    # }}}
+    # {{{ if there is a flushed open fold close it
+
+    elsif( $log_fold_n > 0 ) {
+        # print separation
+        if( $log_sep_f ) {
+            if( $log_sep_s == 4 || ( $log_sep_s >= 2 && $log_sep_l >= 1 ) ) {
+                print "\n";
+            }
+        }
+
+        # print close marker
+        print $log_fold_markers[1] if $log_fold_markers[1] ne '';
+        print "\n";
+
+        # update state
+        $log_fold_n -= 1;
+        $log_sep_s = 2;
+        $log_sep_f = 0;
+    }
+
+    # }}}
+    # {{{ otherwise print error
+
+    elsif( $log_cnt_empty > 0 ) {
+        print "\nERROR: " . log_callerf(1) .
+            ": log_close() without matching log_open().\n";
+        $log_cnt_empty--;
+        if( $log_cnt_empty == 0 ) {
+            print "\nWARNING: " . log_callerf(0) .
+                ": the previous message will not be printed again.\n";
+        }
+        $log_sep_s = 4;
+        $log_sep_f = 1;
+    }
+
+    # }}}
+}
+
+# }}}
+# {{{ sub log_sep()
+
+sub log_sep {
+    $log_sep_f = 1;
+}
+
+# }}}
+# {{{ sub log_flush( $e=0 )
+
+sub log_flush { my( $e ) = @_;
+    $e = 0 unless defined $e;
+    # {{{ flush all pending open folds
+
+    my $marker = $log_fold_markers[0];
+
+    while( @log_fold_a > 0 ) {
+        # print separation
+        if( $log_fold_a[0]->[0] ) {
+            if( $log_sep_s >= 2 ||
+                ( $log_sep_s == 1 && $log_sep_l >= 2 ) ||
+                ( $log_sep_s == 0 && $log_sep_l >= 4 )
+            ) {
+                print "\n";
+            }
+        }
+
+        # print open marker and label
+        my $x = $log_fold_a[0]->[1];
+        # assertion: $marker ne '' || $x ne ''
+        print $marker if $marker ne '';
+        if( $x ne '' ) {
+            print " " if $marker ne '';
+            print $x;
+        }
+        print "\n";
+
+        # update state
+        $log_fold_n += 1;
+        shift( @log_fold_a );
+        $log_sep_s = 1;
+    }
+
+    # }}}
+    # {{{ print separation (before next message)
+
+    if( $e ) {
+        print "\n";
+    } elsif( $log_sep_f ) {
+        if( $log_sep_s >= 2 ||
+            ( $log_sep_s == 1 && $log_sep_l >= 2 ) ||
+            ( $log_sep_s == 0 && $log_sep_l >= 4 )
+        ) {
+            print "\n";
+        }
+    }
+
+    # }}}
+    # {{{ update state (after next message)
+
+    $log_sep_s = $e ? 4 : 3;
+    $log_sep_f = $e ? 1 : 0;
+
+    # }}}
+}
+
+# }}}
+
+# {{{ sub log_fatal( $x )
+
+sub log_fatal { my( $x ) = @_;
+    log_flush(1);
+    print STDERR "FATAL ERROR: " . $x;
+}
+
+# }}}
+# {{{ sub log_error( $x )
+
+sub log_error { my( $x ) = @_;
+    log_flush(1);
+    print STDERR "ERROR: " . $x;
+}
+
+# }}}
+# {{{ sub log_warn(  $x )
+
+sub log_warn { my( $x ) = @_;
+    log_flush();
+    print "WARNING: " . $x;
+}
+
+# }}}
+# {{{ sub log_info(  $x )
+
+sub log_info { my( $x ) = @_;
+    log_flush();
+    print "INFO: " . $x;
+}
+
+# }}}
+# {{{ sub log_debug( $x )
+
+sub log_debug { my( $x ) = @_;
+    log_flush();
+    print "DEBUG: " . $x;
+}
+
+sub log_debugf { my( $x ) = @_;
+    log_debug( log_callerf(1) . $x );
+}
+
+# }}}
+# {{{ sub log_plain( $x )
+
+sub log_plain { my( $x ) = @_;
+    log_flush();
+    print $x;
+}
+
+# }}}
+
+# {{{ sub log_init()
+
+sub log_init {
+    # state variables have been defined together with their initial values
+}
+
+# }}}
+# {{{ sub log_quit()
+# called at the end of program execution
+
+sub log_quit {
+    # {{{ flush pending open folds
+
+    my $m = $log_fold_n + scalar(@log_fold_a);
+    if( $m > 0 ) {
+        log_flush(1);
+        print STDERR "ERROR: " . log_callerf(1) .
+            ": there are $m open folds.\n";
+    }
+
+    # }}}
+    # {{{ close all open folds
+
+    while( $log_fold_n > 0 || @log_fold_a > 0 ) {
+        log_close();
+    }
+
+    # }}}
+    # {{{ print separation
+
+    if( $log_sep_f ) {
+        if( $log_sep_s == 4 || ( $log_sep_s >= 2 && $log_sep_l >= 3 ) ) {
+            print "\n";
+        }
+    }
+
+    # }}}
+}
+
+# }}}
+# }}}
+
+# {{{ sub check_include
+
+sub check_include { my( $src_dir, $include_type, $dst ) = @_;
+    if( $level_debug >= 1 ) {
+        log_debug( "check_include( [$src_dir], [$include_type], [$dst] )\n" );
+    }
+
+    my( $dst_vol, $dst_subdir, $dst_file ) = File::Spec->splitpath( $dst );
+    # note: $dst_subdir is either empty or it contains a trailing "/"
+    if( $level_debug >= 2 ) {
+        log_debug( "check_include: [$dst_subdir], [$dst_file]\n" );
+    }
+
+    if( $include_type eq '""' ) {
+        my( $dst_path, $dst_fix ) = ( "", "" );
+        if( $dst_subdir eq "" && -f "$src_dir$dst_file" ) {
+            $dst_path = "$src_dir$dst_file";
+        }
+        elsif( $dst_subdir eq "" && -f "$src_dir$dst_file.in" ) {
+            $dst_path = "$src_dir$dst_file";
+        }
+        elsif( $dst_subdir eq "" && -f "src/model/$dst_file" ) {
+            $dst_path = "src/model/$dst_file";
+            $dst_fix = "model/$dst_file";
+        }
+        elsif( $dst_subdir eq "" && -f "src/db/$dst_file" ) {
+            $dst_path = "src/db/$dst_file";
+            $dst_fix = "db/$dst_file";
+        }
+        elsif( -f "src/$dst" ) {
+            $dst_path = "src/$dst";
+            if( "src/$dst_subdir" eq $src_dir ) {
+                $dst_fix = "$dst_file";
+            }
+        }
+
+        if( $dst_path ne "" && $level_info >= 1 ) {
+            log_info( "\"$dst\" -> [$dst_path]\n" );
+        }
+        if( $dst_fix ne "" && $level_warn >= 2 ) {
+            log_warn( "\"$dst\" -> \"$dst_fix\"\n" );
+        }
+        elsif( $dst_path eq "" && $level_warn >= 1 ) {
+            log_warn( "\"$dst\": not found\n" );
+        }
+    }
+}
+
+# }}}
+# {{{ sub find_preprocess
+
+sub find_preprocess {
+    return sort @_;
+}
+
+# }}}
+# {{{ sub find_wanted
+
+sub find_wanted {
+    return unless -f $_ && $_ =~ /[.](cpp|h)$/;
+
+    my $src_path = $_;
+    my( $src_vol, $src_dir, $src_file ) = File::Spec->splitpath( $src_path );
+    # note: $src_dir contains a trailing "/"
+
+    my $src_fd; unless( open( $src_fd, $src_path ) ) {
+        log_error( "cannot open [$src_path]\n" );
+        return;
+    }
+    log_open( $src_path );
+    while( my $line = <$src_fd> ) {
+        if( $line =~ m!^\s*#include\s+(["<"])(.*)([">])! ) {
+            check_include( $src_dir, $1 . $3, $2 );
+        }
+    }
+    log_close();
+    close $src_fd;
+}
+
+# }}}
+
+# {{{ main
+
+{
+    # {{{ init
+
+    log_init();
+
+    # }}}
+    # {{{ check working directory
+    unless (-d "3rd" && -d "src") {
+        print STDERR "\nERROR: this program must be executed from the moneymanagerex directory\n";
+        exit(1);
+    }
+
+    # }}}
+    # {{{ process program flags
+
+    while( @ARGV > 0 ) {
+        $_ = shift;
+        if( $_ =~ /^-w([0-2])$/ ) {
+            $level_warn = 0 + $1;
+        }
+        elsif( $_ =~ /^-i([0-2])$/ ) {
+            $level_info = 0 + $1;
+        }
+        elsif( $_ =~ /^-d([0-2])$/ ) {
+            $level_debug = 0 + $1;
+        }
+        else    {
+            print STDERR
+'usage: '. $prog_name .' [$flag]*
+
+$flag
+    -w[0-2] : set level of warning messages
+    -i[0-2] : set level of info messages
+    -d[0-2] : set level of debug messages
+';
+            exit(1);
+        }
+    }
+
+    # }}}
+    # {{{ process source files
+
+    find({
+        wanted => \&find_wanted,
+        preprocess => \&find_preprocess,
+        no_chdir => 1
+    }, ("src") );
+
+    # }}}
+    # {{{ quit
+
+    log_quit();
+
+    # }}}
+}
+
+# }}}
