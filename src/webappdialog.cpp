@@ -155,7 +155,7 @@ void mmWebAppDialog::CreateControls()
     tools_sizer->Add(buttons_sizer, wxSizerFlags(g_flagsV).Center());
     wxButton* buttonOK = new wxButton(buttons_panel, wxID_OK, _t("&Import all "));
     buttonOK->Enable(false);
-    wxButton* buttonApply = new wxButton(buttons_panel, wxID_APPLY, _t("Import and open all "));
+    wxButton* buttonApply = new wxButton(buttons_panel, wxID_APPLY, _t("Im&port and open all "));
     buttonApply->Enable(false);
     wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
@@ -411,10 +411,10 @@ void mmWebAppDialog::OnItemRightClick(wxDataViewEvent& event)
     evt.SetEventObject(this);
 
     wxSharedPtr<wxMenu> mainMenu(new wxMenu);
-    mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_OPEN_ATTACHMENT, _t("Open Attachment")));
-    mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_IMPORT_WEBTRAN, _t("Import")));
-    mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_IMPORTOPEN_WEBTRAN, _t("Import and open")));
-    mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_DELETE_WEBTRAN, _t("Delete")));
+    mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_OPEN_ATTACHMENT, _t("&Open Attachment")));
+    mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_IMPORT_WEBTRAN, _t("&Import")));
+    mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_IMPORTOPEN_WEBTRAN, _t("Im&port and open")));
+    mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_DELETE_WEBTRAN, _t("&Delete")));
     if (Selected.size() != 1) mainMenu->Enable(MENU_OPEN_ATTACHMENT, false);
 
     PopupMenu(mainMenu.get());

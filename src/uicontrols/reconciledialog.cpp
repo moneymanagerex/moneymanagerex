@@ -76,7 +76,7 @@ void mmReconcileDialog::CreateControls()
     topPanel->SetAutoLayout(true);
     wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
 
-    topSizer->Add(new wxStaticText(topPanel, wxID_ANY, _t("Statement ending:")), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 5);
+    topSizer->Add(new wxStaticText(topPanel, wxID_ANY, _t("Statement ending balance:")), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 5);
     m_amountCtrl = new mmTextCtrl(topPanel, wxID_ANY, "", wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     m_amountCtrl->Bind(wxEVT_TEXT, &mmReconcileDialog::OnAmountChanged, this);
 
@@ -190,22 +190,22 @@ void mmReconcileDialog::CreateControls()
     wxPanel* resPanel = new wxPanel(resPanelOut);
     wxFlexGridSizer* resSizer = new wxFlexGridSizer(2, 5, 5);
 
-    resSizer->Add(new wxStaticText(resPanel, wxID_ANY, _t("Previous balance:")), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
+    resSizer->Add(new wxStaticText(resPanel, wxID_ANY, _t("Statement opening balance:")), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
     m_previousCtrl = new wxStaticText(resPanel, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT);
     m_previousCtrl->SetCanFocus(false);
     resSizer->Add(m_previousCtrl, 0, wxALIGN_RIGHT, 20);
 
-    resSizer->Add(new wxStaticText(resPanel, wxID_ANY, _t("Cleared Balance:")), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
+    resSizer->Add(new wxStaticText(resPanel, wxID_ANY, _t("Cleared balance:")), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
     m_clearedBalanceCtrl = new wxStaticText(resPanel, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT);
     m_clearedBalanceCtrl->SetCanFocus(false);
     resSizer->Add(m_clearedBalanceCtrl, 0, wxALIGN_RIGHT, 20);
 
-    resSizer->Add(new wxStaticText(resPanel, wxID_ANY, _t("Statement ending:")), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
+    resSizer->Add(new wxStaticText(resPanel, wxID_ANY, _t("Statement ending balance:")), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
     m_endingCtrl = new wxStaticText(resPanel, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT);
     m_endingCtrl->SetCanFocus(false);
     resSizer->Add(m_endingCtrl, 0, wxALIGN_RIGHT, 20);
 
-    m_differenceLabel = new wxStaticText(resPanel, wxID_ANY, _t("Difference: "));
+    m_differenceLabel = new wxStaticText(resPanel, wxID_ANY, _t("Difference:"));
     resSizer->Add(m_differenceLabel,  0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
     m_differenceCtrl = new wxStaticText(resPanel, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT);
     int labelWidth = 100;
@@ -225,10 +225,10 @@ void mmReconcileDialog::CreateControls()
 
     m_btnCancel          = new wxButton(bottomPanel, wxID_CANCEL, _t("&Cancel "));
 
-    m_btnReconcileLater  = new wxButton(bottomPanel, wxID_ANY, _t("Reconcile &later"));
+    m_btnReconcileLater  = new wxButton(bottomPanel, wxID_ANY, _t("Finish la&ter"));
     m_btnReconcileLater->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnClose, this);
 
-    m_btnReconcile       = new wxButton(bottomPanel, wxID_OK, _t("&Reconcile"));
+    m_btnReconcile       = new wxButton(bottomPanel, wxID_OK, _t("Fi&nished"));
     m_btnReconcile->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnClose, this);
 
     bottomSizer->AddStretchSpacer();
