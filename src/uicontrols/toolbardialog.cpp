@@ -70,7 +70,7 @@ void mmToolbarDialog::createBottomElements(wxBoxSizer* itemBox)
 {
     itemBox->AddSpacer(50);
 
-    wxButton* sepBtn = new wxButton(this, BTN_NEW_SEPARATOR, _t("Add separator"));
+    wxButton* sepBtn = new wxButton(this, BTN_NEW_SEPARATOR, _t("Insert &separator"));
     sepBtn->SetToolTip(_t(
         "Insert a vertical separator line.\n"
         "Useful to visually group toolbar buttons."
@@ -79,7 +79,7 @@ void mmToolbarDialog::createBottomElements(wxBoxSizer* itemBox)
     itemBox->Add(sepBtn, g_flagsV);
     Bind(wxEVT_BUTTON, &mmToolbarDialog::OnNew, this, BTN_NEW_SEPARATOR);
 
-    wxButton* spaceBtn = new wxButton(this, BTN_NEW_SPACE, _t("Add space"));
+    wxButton* spaceBtn = new wxButton(this, BTN_NEW_SPACE, _t("Insert s&pace"));
     spaceBtn->SetToolTip(_t(
         "Insert a fixed-size empty space.\n"
         "The space width is equal to one toolbar icon."
@@ -88,7 +88,7 @@ void mmToolbarDialog::createBottomElements(wxBoxSizer* itemBox)
     itemBox->Add(spaceBtn, g_flagsV);
     Bind(wxEVT_BUTTON, &mmToolbarDialog::OnNew, this, BTN_NEW_SPACE);
 
-    wxButton* stretchBtn = new wxButton(this, BTN_NEW_STRETCHER, _t("Add stretch space"));
+    wxButton* stretchBtn = new wxButton(this, BTN_NEW_STRETCHER, _t("Insert s&tretch space"));
     stretchBtn->SetToolTip(_t(
         "Insert a stretchable space.\n"
         "It takes all remaining toolbar space.\n"
