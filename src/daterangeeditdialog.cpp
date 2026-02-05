@@ -103,8 +103,8 @@ void mmDateRangeEditDialog::CreateControls()
     mainBoxSizer->Add(m_status, wxSizerFlags().Align(wxALIGN_CENTER).Border(wxALL, 5));
 
     wxBoxSizer* btnSizer = new wxBoxSizer(wxHORIZONTAL);
-    btnSizer->Add(new wxButton(this, wxID_OK, _("Save")), 0, wxALL, 5);
-    btnSizer->Add(new wxButton(this, wxID_CANCEL, _("Cancel")), 0, wxALL, 5);
+    btnSizer->Add(new wxButton(this, wxID_OK, _("&Save")), 0, wxALL, 5);
+    btnSizer->Add(new wxButton(this, wxID_CANCEL, _("&Cancel")), 0, wxALL, 5);
     mainBoxSizer->Add(btnSizer, g_flagsCenter);
 
     updateControlsFromRange(*m_range_ptr);
