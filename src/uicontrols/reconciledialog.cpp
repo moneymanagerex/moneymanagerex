@@ -190,7 +190,7 @@ void mmReconcileDialog::CreateControls()
     wxPanel* resPanel = new wxPanel(resPanelOut);
     wxFlexGridSizer* resSizer = new wxFlexGridSizer(2, 5, 5);
 
-    resSizer->Add(new wxStaticText(resPanel, wxID_ANY, _t("Previous balance:")), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
+    resSizer->Add(new wxStaticText(resPanel, wxID_ANY, _t("Opening balance:")), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
     m_previousCtrl = new wxStaticText(resPanel, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT);
     m_previousCtrl->SetCanFocus(false);
     resSizer->Add(m_previousCtrl, 0, wxALIGN_RIGHT, 20);
