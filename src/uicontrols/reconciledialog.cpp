@@ -225,10 +225,10 @@ void mmReconcileDialog::CreateControls()
 
     m_btnCancel          = new wxButton(bottomPanel, wxID_CANCEL, _t("&Cancel "));
 
-    m_btnReconcileLater  = new wxButton(bottomPanel, wxID_ANY, _t("Reconcile &later"));
+    m_btnReconcileLater  = new wxButton(bottomPanel, wxID_ANY, _t("Finish la&ter"));
     m_btnReconcileLater->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnClose, this);
 
-    m_btnReconcile       = new wxButton(bottomPanel, wxID_OK, _t("&Reconcile"));
+    m_btnReconcile       = new wxButton(bottomPanel, wxID_OK, _t("Fi&nished"));
     m_btnReconcile->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnClose, this);
 
     bottomSizer->AddStretchSpacer();
