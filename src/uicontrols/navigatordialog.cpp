@@ -71,7 +71,7 @@ void mmNavigatorDialog::createColumns() {
 }
 
 void mmNavigatorDialog::createMiddleElements(wxBoxSizer* itemBox) {
-    m_edit = new wxButton(this, BTN_EDIT, _t("Edit"));
+    m_edit = new wxButton(this, BTN_EDIT, _t("&Edit"));
     Bind(wxEVT_BUTTON, &mmNavigatorDialog::OnEdit, this, BTN_EDIT);
     m_edit->Enable(false);
     itemBox->Add(m_edit, g_flagsV);
@@ -79,18 +79,18 @@ void mmNavigatorDialog::createMiddleElements(wxBoxSizer* itemBox) {
 
 void mmNavigatorDialog::createBottomElements(wxBoxSizer* itemBox) {
     itemBox->AddSpacer(15);
-    itemBox->Add(new wxButton(this, BTN_NEW, _t("New")), g_flagsV);
+    itemBox->Add(new wxButton(this, BTN_NEW, _t("&New")), g_flagsV);
     Bind(wxEVT_BUTTON, &mmNavigatorDialog::OnNew, this, BTN_NEW);
 
     itemBox->AddSpacer(15);
-    m_delete = new wxButton(this, BTN_DELETE, _t("Delete"));
+    m_delete = new wxButton(this, BTN_DELETE, _t("&Delete"));
     Bind(wxEVT_BUTTON, &mmNavigatorDialog::OnDelete, this, BTN_DELETE);
 
     m_delete->Enable(false);
     itemBox->Add(m_delete, g_flagsV);
 
     itemBox->AddSpacer(70);
-    wxButton* btn = new wxButton(this, BTN_RESET_NAMES, _t("Reset names"));
+    wxButton* btn = new wxButton(this, BTN_RESET_NAMES, _t("&Reset names"));
     Bind(wxEVT_BUTTON, &mmNavigatorDialog::OnNameReset, this, BTN_RESET_NAMES);
 
     itemBox->Add(btn, 0, wxALL, 5);
