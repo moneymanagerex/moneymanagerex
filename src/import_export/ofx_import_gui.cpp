@@ -721,7 +721,7 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
 
     newPayeeLabel_ = new wxStaticText(this, wxID_ANY, _("New Payee Name:"));
     newPayeeTextCtrl_ = new wxTextCtrl(this, wxID_ANY, memo_); // Changed from suggestedPayeeName_ to memo_
-    titleCaseButton_ = new wxButton(this, ID_TITLE_CASE, "T", wxDefaultPosition, wxSize(25, -1));
+    titleCaseButton_ = new wxButton(this, ID_TITLE_CASE, "&T", wxDefaultPosition, wxSize(25, -1));
     titleCaseButton_->SetToolTip(_("Convert to Title Case"));
     wxBoxSizer* newPayeeInnerSizer = new wxBoxSizer(wxHORIZONTAL);
     newPayeeInnerSizer->Add(newPayeeTextCtrl_, 1, wxEXPAND, 0);
@@ -744,7 +744,7 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     }
     categoryChoice_->SetSelection(0);
 
-    updateCategoryButton_ = new wxButton(this, ID_UPDATE_CATEGORY, "P", wxDefaultPosition, wxSize(25, -1));
+    updateCategoryButton_ = new wxButton(this, ID_UPDATE_CATEGORY, "&P", wxDefaultPosition, wxSize(25, -1));
     updateCategoryButton_->SetToolTip(_tu("Toggle to update payee’s default category (P) or apply to this transaction only"));
     wxBoxSizer* categoryButtonSizer = new wxBoxSizer(wxHORIZONTAL);
     categoryButtonSizer->Add(categoryChoice_, 1, wxEXPAND, 0);
@@ -759,16 +759,16 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     mainSizer->Add(regexGrid_, 1, wxALL | wxEXPAND, 2);
 
     wxBoxSizer* regexButtonSizer = new wxBoxSizer(wxHORIZONTAL);
-    insertRowButton_ = new wxButton(this, ID_INSERT_ROW, _("Insert Row"));
-    deleteRowButton_ = new wxButton(this, ID_DELETE_ROW, _("Delete Row"));
+    insertRowButton_ = new wxButton(this, ID_INSERT_ROW, _("&Insert Row"));
+    deleteRowButton_ = new wxButton(this, ID_DELETE_ROW, _("&Delete Row"));
     regexButtonSizer->Add(insertRowButton_, 0, wxRIGHT, 5);
     regexButtonSizer->Add(deleteRowButton_, 0, wxRIGHT, 5);
     mainSizer->Add(regexButtonSizer, 0, wxLEFT | wxRIGHT | wxBOTTOM, 5);
 
     wxBoxSizer* buttonSizer = new wxBoxSizer(wxHORIZONTAL);
-    okButton_ = new wxButton(this, wxID_OK, _("OK"));
+    okButton_ = new wxButton(this, wxID_OK, _("&OK"));
     buttonSizer->Add(okButton_, 0, wxALL, 5);
-    buttonSizer->Add(new wxButton(this, wxID_CANCEL, _("Cancel")), 0, wxALL, 5);
+    buttonSizer->Add(new wxButton(this, wxID_CANCEL, _("&Cancel")), 0, wxALL, 5);
     mainSizer->Add(buttonSizer, 0, wxALIGN_CENTER | wxALL, 5);
 
     SetSizer(mainSizer);
@@ -893,7 +893,7 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
 
     mainSizer->Add(new wxStaticText(this, wxID_ANY, _("OFX File:")), 0, wxALL, 5);
     fileNameCtrl_ = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
-    wxButton* browseButton = new wxButton(this, wxID_OPEN, _tu("Browse…"));
+    wxButton* browseButton = new wxButton(this, wxID_OPEN, _tu("&Browse…"));
     wxBoxSizer* fileSizer = new wxBoxSizer(wxHORIZONTAL);
     fileSizer->Add(fileNameCtrl_, 1, wxALL | wxEXPAND, 5);
     fileSizer->Add(browseButton, 0, wxALL, 5);
@@ -941,8 +941,8 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
     mainSizer->Add(promptFuzzyConfirmationCheckBox_, 0, wxALL, 5);
 
     wxBoxSizer* buttonSizer = new wxBoxSizer(wxHORIZONTAL);
-    buttonSizer->Add(new wxButton(this, wxID_OK, _("Import")), 0, wxALL, 5);
-    buttonSizer->Add(new wxButton(this, wxID_CANCEL, _("Cancel")), 0, wxALL, 5);
+    buttonSizer->Add(new wxButton(this, wxID_OK, _("&Import")), 0, wxALL, 5);
+    buttonSizer->Add(new wxButton(this, wxID_CANCEL, _("&Cancel")), 0, wxALL, 5);
     mainSizer->Add(buttonSizer, 0, wxALIGN_CENTER | wxALL, 5);
 
     SetSizer(mainSizer);
@@ -1918,7 +1918,7 @@ mmOFXImportSummaryDialog::mmOFXImportSummaryDialog(wxWindow* parent, const std::
 
     mainSizer->Add(scrolledWindow, 1, wxALL | wxEXPAND, 5);
 
-    wxButton* okButton = new wxButton(this, wxID_OK, _("OK"));
+    wxButton* okButton = new wxButton(this, wxID_OK, _("&OK"));
     mainSizer->Add(okButton, 0, wxALIGN_CENTER | wxALL, 5);
 
     SetSizer(mainSizer);
