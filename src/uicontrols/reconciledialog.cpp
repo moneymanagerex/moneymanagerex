@@ -229,7 +229,7 @@ void mmReconcileDialog::CreateControls()
     m_btnReconcileLater  = new wxButton(bottomPanel, wxID_ANY, _t("Finish la&ter"));
     m_btnReconcileLater->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnClose, this);
 
-    m_btnReconcile       = new wxButton(bottomPanel, wxID_OK, _t("Fi&nished"));
+    m_btnReconcile       = new wxButton(bottomPanel, wxID_OK, _t("&Done"));
     m_btnReconcile->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnClose, this);
 
     bottomSizer->AddStretchSpacer();
