@@ -168,9 +168,9 @@ table {
         else if (groupBy == mmFilterTransactionsDialog::GROUPBY_DAY)
             sortLabel = mmGetDateTimeForDisplay(transaction.TRANSDATE);
         else if (groupBy == mmFilterTransactionsDialog::GROUPBY_MONTH)
-            sortLabel = Model_Checking::TRANSDATE(transaction).Format("%Y-%m");
+            sortLabel = Model_Checking::getTransDateTime(transaction).Format("%Y-%m");
         else if (groupBy == mmFilterTransactionsDialog::GROUPBY_YEAR)
-            sortLabel = Model_Checking::TRANSDATE(transaction).Format("%Y");
+            sortLabel = Model_Checking::getTransDateTime(transaction).Format("%Y");
 
         if (sortLabel != lastSortLabel)
         {

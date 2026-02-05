@@ -29,7 +29,7 @@ class mmDateRangeDialog: public wxDialog
 
 public:
     mmDateRangeDialog();
-    mmDateRangeDialog(wxWindow* parent, std::vector<DateRange2::Spec>* dateRangesPtr, int* subMenuBeginPtr);
+    mmDateRangeDialog(wxWindow* parent, std::vector<DateRange2::Range>* dateRangesPtr, int* subMenuBeginPtr);
 
     enum
     {
@@ -45,7 +45,7 @@ public:
     };
 
 private:
-    std::vector<DateRange2::Spec>* m_dateRangesPtr;
+    std::vector<DateRange2::Range>* m_dateRangesPtr;
     int* m_subMenuBeginPtr;
     int m_subMenuBegin;
     int m_selected_row;

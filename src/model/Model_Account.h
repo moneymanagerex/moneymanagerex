@@ -22,6 +22,7 @@
 #define MODEL_ACCOUNT_H
 
 #include "choices.h"
+#include "dateday.h"
 #include "db/DB_Table_Accountlist_V1.h"
 #include "Model.h"
 #include "Model_Currency.h"
@@ -121,7 +122,6 @@ public:
 
     static bool Exist(const wxString& account_name);
 
-    static wxDateTime DateOf(const wxString& date_str);
     static bool BoolOf(int64 value);
     static bool is_positive(int value);
     static wxDateTime get_date_by_string(const wxString& date_str);
@@ -169,7 +169,7 @@ inline Model_Account::STATUS_ID Model_Account::status_id(const Data& account)
 
 inline wxDateTime Model_Account::get_date_by_string(const wxString& date_str)
 {
-    return Model::to_date(date_str);
+    return parseDateTime(date_str);
 }
 
 inline bool Model_Account::is_positive(int value)

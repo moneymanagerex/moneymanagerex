@@ -314,7 +314,7 @@ void Model_Category::getCategoryStats(
 
         const double convRate = Model_CurrencyHistory::getDayRate(
             Model_Account::instance().get(transaction.ACCOUNTID)->CURRENCYID, transaction.TRANSDATE);
-        wxDateTime d = Model_Checking::TRANSDATE(transaction);
+        wxDateTime d = Model_Checking::getTransDateTime(transaction);
 
         int month = 0;
         if (group_by_month)

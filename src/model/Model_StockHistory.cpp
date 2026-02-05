@@ -59,7 +59,7 @@ Model_StockHistory::Data* Model_StockHistory::get(const wxString& symbol, const 
 
 wxDate Model_StockHistory::DATE(const Data& hist)
 {
-    return Model::to_date(hist.DATE);
+    return parseDateTime(hist.DATE);
 }
 
 DB_Table_STOCKHISTORY_V1::DATE Model_StockHistory::DATE(const wxDate& date, OP op)

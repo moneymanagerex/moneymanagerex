@@ -780,7 +780,7 @@ bool mmTransDialog::ValidateData()
     /* Check if transaction is to proceed.*/
     if (Model_Account::BoolOf(account->STATEMENTLOCKED))
     {
-        if (dpc_->GetValue() <= Model_Account::DateOf(account->STATEMENTDATE))
+        if (dpc_->GetValue() <= parseDateTime(account->STATEMENTDATE))
         {
             if (wxMessageBox(wxString::Format(
                 _t("Lock transaction to date: %s") + "\n\n" + _t("Do you want to continue?")
@@ -1085,7 +1085,7 @@ void mmTransDialog::OnToday(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::OnAutoTransNum(wxCommandEvent& WXUNUSED(event))
     {
-    auto d = Model_Checking::TRANSDATE(m_fused_data).Subtract(wxDateSpan::Months(12));
+    auto d = Model_Checking::getTransDateTime(m_fused_data).Subtract(wxDateSpan::Months(12));
     double next_number = 0, temp_num;
     const auto numbers = Model_Checking::instance().find(
         Model_Checking::ACCOUNTID(m_fused_data.ACCOUNTID, EQUAL)

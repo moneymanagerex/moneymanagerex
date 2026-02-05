@@ -39,7 +39,8 @@ public:
     };
 
 private:
-    std::vector<DateRange2::Spec>* m_date_ranges_ptr;
+    // FIXME: not used
+    std::vector<DateRange2::Range>* m_date_ranges_ptr;
     int m_selected_row;
     wxString* m_name_ptr;
     wxString* m_range_ptr;

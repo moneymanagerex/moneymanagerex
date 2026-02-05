@@ -173,12 +173,10 @@ public:
 
 public:
     // This relates the 'Date Due' field
-    static wxDate TRANSDATE(const Data* r);
-    // This relates the 'Date Due' field
-    static wxDate TRANSDATE(const Data& r);
+    static wxDate getTransDateTime(const Data* r);
+    static wxDate getTransDateTime(const Data& r);
     // This relates the 'Date Paid' field
     static wxDate NEXTOCCURRENCEDATE(const Data* r);
-    // This relates the 'Date Paid' field
     static wxDate NEXTOCCURRENCEDATE(const Data& r);
     static Model_Checking::TYPE_ID type_id(const Data* r);
     static Model_Checking::TYPE_ID type_id(const Data& r);

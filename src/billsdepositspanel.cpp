@@ -580,7 +580,7 @@ const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits:
         return _t("Inactive");
     }
     
-    int daysRemaining = Model_Billsdeposits::TRANSDATE(item)
+    int daysRemaining = Model_Billsdeposits::getTransDateTime(item)
         .Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
     int daysOverdue = Model_Billsdeposits::NEXTOCCURRENCEDATE(item)
         .Subtract(this->getToday()).GetSeconds().GetValue() / 86400;

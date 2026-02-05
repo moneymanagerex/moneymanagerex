@@ -81,7 +81,7 @@ public:
 
     //static support function
     static wxString getFilterName(FILTER_ID id);
-    static void loadDateRanges(std::vector<DateRange2::Spec>* date_range_ptr, int* range_m, bool isaccount);
+    static void loadDateRanges(std::vector<DateRange2::Range>* date_range_ptr, int* range_m, bool isaccount);
     double GetReconciledBalance() const;
 
 
@@ -118,7 +118,7 @@ private:
     std::set<int64> m_group_ids = {};           // applicable if m_checking_id <= -3
     Model_Account::Data* m_account = nullptr;   // non-null if m_checking_id >= 1
     Model_Currency::Data* m_currency = nullptr; // currency of m_account, or base currency
-    std::vector<DateRange2::Spec> m_date_range_a = {};
+    std::vector<DateRange2::Range> m_date_range_a = {};
     int m_date_range_m = -1;
 
     // set by gui
@@ -177,7 +177,7 @@ private:
     void updateHeader();
     void updateFilter(bool firstinit = false);
     void updateFilterTooltip();
-    void setFilterDate(DateRange2::Spec& spec);
+    void setFilterDate(DateRange2::Range& range);
     void setFilterAdvanced();
     void loadFilterSettings();
     void saveFilterSettings();

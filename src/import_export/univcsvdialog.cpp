@@ -1730,7 +1730,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
             for (const auto& splt : tran.m_splits)
             {
                 //Export the transaction only if the transaction is between the selected dates or if the user select to export all the transactions regardless of their date
-                if (Model_Checking::TRANSDATE(pBankTransaction).IsBetween(m_date_picker_start->GetValue(),m_date_picker_end->GetValue()) || m_haveDatesCheckBox->IsChecked()==false )
+                if (Model_Checking::getTransDateTime(pBankTransaction).IsBetween(m_date_picker_start->GetValue(),m_date_picker_end->GetValue()) || m_haveDatesCheckBox->IsChecked()==false )
                 {
                     pTxFile->AddNewLine();
 
@@ -1751,7 +1751,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                         switch (it.first)
                         {
                         case UNIV_CSV_DATE:
-                            entry = mmGetDateTimeForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(), date_format_);
+                            entry = mmGetDateTimeForDisplay(Model_Checking::getTransDateTime(pBankTransaction).FormatISODate(), date_format_);
                             break;
                         case UNIV_CSV_PAYEE:
                             entry = tran.real_payee_name(fromAccountID);
@@ -2101,7 +2101,7 @@ void mmUnivCSVDialog::update_preview()
                         continue;
 
                     //If the transaction happened between the dates that the user selected or if the user selected to export all the transactions regardless of date then the row is added to the preview
-                    if (Model_Checking::TRANSDATE(pBankTransaction).IsBetween(m_date_picker_start->GetValue(),m_date_picker_end->GetValue()) || m_haveDatesCheckBox->GetValue()==false)
+                    if (Model_Checking::getTransDateTime(pBankTransaction).IsBetween(m_date_picker_start->GetValue(),m_date_picker_end->GetValue()) || m_haveDatesCheckBox->GetValue()==false)
                     {
                         Model_Checking::Full_Data tran(pBankTransaction, split, tags);
                         bool has_split = tran.has_split();
@@ -2148,7 +2148,7 @@ void mmUnivCSVDialog::update_preview()
                                     text << wxString::Format("%lld", tran.TRANSID);
                                     break;
                                 case UNIV_CSV_DATE:
-                                    text << inQuotes(mmGetDateTimeForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(), date_format_), delimit);
+                                    text << inQuotes(mmGetDateTimeForDisplay(Model_Checking::getTransDateTime(pBankTransaction).FormatISODate(), date_format_), delimit);
                                     break;
                                 case UNIV_CSV_PAYEE:
                                     text << inQuotes(tran.real_payee_name(fromAccountID), delimit);

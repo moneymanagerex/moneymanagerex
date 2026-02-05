@@ -887,8 +887,8 @@ void mmAssetsPanel::BindAssetListEvents(wxListCtrl* listCtrl)
         this->FillAssetListRow(listCtrl, index, *txn);
 
         listCtrl->SortItems([](wxIntPtr item1, wxIntPtr item2, wxIntPtr) -> int {
-            auto date1 = Model_Checking::TRANSDATE(Model_Checking::instance().get(item1));
-            auto date2 = Model_Checking::TRANSDATE(Model_Checking::instance().get(item2));
+            auto date1 = Model_Checking::getTransDateTime(Model_Checking::instance().get(item1));
+            auto date2 = Model_Checking::getTransDateTime(Model_Checking::instance().get(item2));
             return date1.IsEarlierThan(date2) ? -1 : (date1.IsLaterThan(date2) ? 1 : 0);
         }, 0);
     });

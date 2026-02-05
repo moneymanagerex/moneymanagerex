@@ -107,12 +107,12 @@ DB_Table_ASSETS_V1::STARTDATE Model_Asset::STARTDATE(const wxDate& date, OP op)
 
 wxDate Model_Asset::STARTDATE(const Data* r)
 {
-    return Model::to_date(r->STARTDATE);
+    return parseDateTime(r->STARTDATE);
 }
 
 wxDate Model_Asset::STARTDATE(const Data& r)
 {
-    return Model::to_date(r.STARTDATE);
+    return parseDateTime(r.STARTDATE);
 }
 
 Model_Currency::Data* Model_Asset::currency(const Data* /* r */)
@@ -173,7 +173,7 @@ std::pair<double, double> Model_Asset::valueAtDate(const Data* r, const wxDate& 
               continue;
             }
 
-            const wxDate tranDate = Model_Checking::TRANSDATE(tran);
+            const wxDate tranDate = Model_Checking::getTransDateTime(tran);
             if (tranDate > date) break;
 
             if (last == date) last = tranDate;

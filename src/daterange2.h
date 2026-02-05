@@ -19,118 +19,168 @@
 # pragma once
 
 #include <wx/datetime.h>
+#include <optional>
 #include <unordered_map>
 #include "primitive.h"
+#include "dateday.h"
 
-// DateRange2 implements only date calculations, without time.
-// We use wxDateTime because wxWidgets does not have a type for date without time.
-// The time is set to noon (12:00), in order to avoid accidental rounding errors.
+class DatePeriod
+{
+public:
+    enum Id
+    {
+        _A = 0,     // all
+        _Y,         // year = 4 quarters = 12 months
+        _Q,         // quarter = 3 months
+        _M,         // month
+        _W,         // week = 7 days
+        _T,         // day (today)
+        _S,         // day (account statement date)
+        _min = _A,  // (min value)
+        _max = _S,  // (max value)
+    };
+
+    typedef struct { Id id; const wxString label; } MapIdLabel;
+    typedef std::unordered_map<char, Id> MapLabelId;
+    static const MapIdLabel mapIdLabel[];
+    static const MapLabelId mapLabelId;
+
+private:
+    static MapLabelId makeLabelId();
+
+private:
+    Id id;
+
+public:
+    DatePeriod(Id id_new = _A);
+    DatePeriod(char label);
+
+public:
+    static wxDateSpan span(int offset, DatePeriod period);
+
+public:
+    int toInt() const;
+    const wxString label() const;
+    bool operator== (DatePeriod other) const;
+    bool operator== (Id other_id) const;
+};
+
+using DatePeriodN = std::optional<DatePeriod>;
+
+inline int DatePeriod::toInt() const
+{
+    return static_cast<int>(id);
+}
+
+inline const wxString DatePeriod::label() const
+{
+    return mapIdLabel[toInt()].label;
+}
+
+inline bool DatePeriod::operator== (DatePeriod other) const
+{
+    return id == other.id;
+}
+inline bool DatePeriod::operator== (DatePeriod::Id other_id) const
+{
+    return id == other_id;
+}
+
+// DateRange2 represents a date range relative to today.
+// The range specification consists of the following:
+//   two subranges
+//   a reporting multiplier/period
+//   a selector between calendar or financial year/quarter/month
+//   a descriptive name
+// Each subrange consists of a start offset/period and an end offset/period.
+// To avoid instability, the date of today as well as a few user preferences,
+// are cached at construction time.
 
 class DateRange2
 {
 public:
-    enum PERIOD_ID
-    {
-        PERIOD_ID_A = 0, // all
-        PERIOD_ID_Y,     // year = 4 quarters = 12 months
-        PERIOD_ID_Q,     // quarter = 3 months
-        PERIOD_ID_M,     // month
-        PERIOD_ID_W,     // week = 7 days
-        PERIOD_ID_T,     // today
-        PERIOD_ID_S,     // statement date
-        PERIOD_ID_size,
-        PERIOD_ID_none = PERIOD_ID_size
-    };
-
-private:
-    typedef struct { PERIOD_ID id; wxString label; } PERIOD_INFO_t;
-    static const PERIOD_INFO_t PERIOD_INFO[];
-    typedef std::unordered_map<char, PERIOD_ID> PERIOD_LABEL_ID_t;
-    static PERIOD_LABEL_ID_t PERIOD_LABEL_ID;
-    static PERIOD_LABEL_ID_t make_period_label_id();
-
-public:
-    class Spec
+    class Range
     {
         friend class DateRange2;
 
     protected:
-        int so1 = 0;                    // start offset of first subrange
-        int eo1 = 0;                    // end   offset of first subrange
-        PERIOD_ID sp1 = PERIOD_ID_A;    // start period of first subrange
-        PERIOD_ID ep1 = PERIOD_ID_A;    // end   period of first subrange
-        int so2 = 0;                    // start offset of second subrange
-        int eo2 = 0;                    // end   offset of second subrange
-        PERIOD_ID sp2 = PERIOD_ID_none; // start period of second subrange
-        PERIOD_ID ep2 = PERIOD_ID_none; // end   period of second subrange
-        int f = 0;                      // index in first*[] (0=calendar, 1=financial)
-        wxString name = "";             // specificaiton name
+        int so1 = 0;                      // start offset of first subrange
+        int eo1 = 0;                      // end   offset of first subrange
+        DatePeriod sp1 = DatePeriod::_A;  // start period of first subrange
+        DatePeriod ep1 = DatePeriod::_A;  // end   period of first subrange
+        int so2 = 0;                      // start offset of second subrange
+        int eo2 = 0;                      // end   offset of second subrange
+        DatePeriodN sp2 = DatePeriodN();  // start period of second subrange
+        DatePeriodN ep2 = DatePeriodN();  // end   period of second subrange
+        int f = 0;                        // index in first*[] (0=calendar, 1=financial)
+        wxString name = "";               // specification name
 
     public:
-        Spec(
-            int so1_new = 0, PERIOD_ID sp1_new = PERIOD_ID_A,
-            int eo1_new = 0, PERIOD_ID ep1_new = PERIOD_ID_A,
-            int so2_new = 0, PERIOD_ID sp2_new = PERIOD_ID_none,
-            int eo2_new = 0, PERIOD_ID ep2_new = PERIOD_ID_none,
+        Range(
+            int so1_new = 0, DatePeriod  sp1_new = DatePeriod::_A,
+            int eo1_new = 0, DatePeriod  ep1_new = DatePeriod::_A,
+            int so2_new = 0, DatePeriodN sp2_new = DatePeriodN(),
+            int eo2_new = 0, DatePeriodN ep2_new = DatePeriodN(),
             int f_new = 0, wxString name_new = ""
         );
 
     public:
-        bool parseLabel(StringIt &str_i, StringIt str_end);
-        void parseName(StringIt &str_i, StringIt str_end);
         void setName(const wxString &name_new);
-        bool parseSpec(const wxString &str, const wxString &name_new = "");
-        bool hasPeriodS() const;
+        bool parseLabel(StringIt &buffer_i, StringIt buffer_end);
+        void parseName(StringIt &buffer_i, StringIt buffer_end);
+        bool parseLabelName(const wxString &buffer, const wxString &name_new = "");
         const wxString getLabel() const;
         const wxString getName() const;
         const wxString getLabelName() const;
-        const wxString checking_name() const;
-        const wxString checking_description() const;
+        const wxString checkingName() const;
+        const wxString checkingDescription() const;
+        bool hasPeriodS() const;
 
     private:
-        static void scanWhiteSpace(StringIt &str_i, StringIt str_end);
-        static char scanToken(StringIt &str_i, StringIt str_end, int &token_o, PERIOD_ID &token_p);
-        static const wxString offset_str(int offset, bool show_zero = false);
-        static const wxString offset_range_str(int so, int eo, bool show_zero = false);
+        static void scanWhiteSpace(StringIt &buffer_i, StringIt buffer_end);
+        static char scanToken(StringIt &buffer_i, StringIt buffer_end, int &token_o, DatePeriod &token_p);
+        static const wxString offsetStr(int offset, bool show_zero = false);
+        static const wxString offsetRangeStr(int so, int eo, bool show_zero = false);
     };
 
 public:
-    DateRange2(wxDateTime date_s = wxInvalidDateTime, wxDateTime date_t = wxInvalidDateTime);
+    class Reporting
+    {
+        friend class DateRange2;
+
+    protected:
+        int m = 1;                      // multiplier
+        DatePeriod p = DatePeriod::_A;  // reporting period
+
+    public:
+        Reporting(int m_new = 1, DatePeriod p_new = DatePeriod::_A);
+
+    public:
+        bool parseLabel(StringIt &buffer_i, StringIt buffer_end);
+        const wxString getLabel() const;
+
+    private:
+        static const wxString multiplierStr(int m, bool show_one = false);
+    };
 
 protected:
-    int firstDay[2];                  // first day in PERIOD_ID_[YQM] (1..28)
-    wxDateTime::Month firstMonth[2];  // first month in PERIOD_ID_[YQ] (0..11)
-    wxDateTime::WeekDay firstWeekday; // first weekday in PERIOD_ID_W (0=Sun, 1=Mon)
-    wxDateTime date_t;                // the date of PERIOD_ID_T
-    wxDateTime date_s;                // the date of PERIOD_ID_S
-    Spec spec;                        // range specification
+    int firstDay[2];                  // first day in PERIOD::[YQM] (1..28)
+    wxDateTime::Month firstMonth[2];  // first month in PERIOD::[YQ] (0..11)
+    wxDateTime::WeekDay firstWeekday; // first weekday in PERIOD::W (0=Sun, 1=Mon)
+    DateDayN sDateN;                  // the date of PERIOD::S (account statement date)
+    DateDay  tDate;                   // the date of PERIOD::T (today)
+    DateDayN defStartDateN;           // default start date (if range start is open)
+    DateDayN defEndDateN;             // default end date (if range end is open)
+    Range range;                      // range specification
+    Reporting reporting;              // reporting multiplier/period
 
 public:
-    void setDateT(wxDateTime date = wxInvalidDateTime);
-    void setDateS(wxDateTime date = wxInvalidDateTime);
-    wxDateTime getDateT() const;
-    wxDateTime getDateS() const;
-    void setSpec(const Spec &spec_new);
-    bool parseSpec(const wxString &str, const wxString &name = "");
-    Spec getSpec() const;
-    const wxString getLabel() const;
-    const wxString getName() const;
-    const wxString getLabelName() const;
-    wxDateTime period_start(wxDateTime date, PERIOD_ID period) const;
-    wxDateTime period_end(wxDateTime date, PERIOD_ID period) const;
-    wxDateTime checking_start() const;
-    wxDateTime checking_end() const;
-    wxDateTime reporting_start() const;
-    wxDateTime reporting_end() const;
-    const wxString checking_start_str() const;
-    const wxString checking_end_str() const;
-    const wxString reporting_start_str() const;
-    const wxString reporting_end_str() const;
-    const wxString checking_tooltip() const;
-    const wxString reporting_tooltip() const;
-
-private:
-    static wxDateTime addOffset(wxDateTime date, int offset, PERIOD_ID period);
+    DateRange2(
+        DateDayN sDateN_new = DateDayN(),
+        DateDay  tDate_new = DateDay::today(),
+        DateDayN defStartDateN_new = DateDayN(),
+        DateDayN defEndDateN_new = DateDayN()
+    );
 
 #ifndef NDEBUG
 private:
@@ -138,111 +188,234 @@ private:
         int firstDay_new_0, int firstDay_new_1,
         wxDateTime::Month firstMonth_new_0, wxDateTime::Month firstMonth_new_1,
         wxDateTime::WeekDay firstWeekday_new,
-        wxDateTime date_t_new = wxInvalidDateTime, wxDateTime date_s_new = wxInvalidDateTime
+        DateDayN sDateN_new = DateDayN(),
+        DateDay  tDate_new = DateDay::today(),
+        DateDayN defStartDateN_new = DateDayN(),
+        DateDayN defEndDateN_new = DateDayN()
     );
+#endif
+
+public:
+    void setSDateN(DateDayN sDateN_new = DateDayN());
+    void setTDate(DateDay tDate_new = DateDay::today());
+    void setDefStartDateN(DateDayN defStartDateN_new = DateDayN());
+    void setDefEndDateN(DateDayN defEndDateN_new = DateDayN());
+    void setRange(const Range &range_new);
+    void setReporting(const Reporting &reporting_new);
+    DateDayN getSDateN() const;
+    DateDay  getTDate() const;
+    DateDayN getDefStartDateN() const;
+    DateDayN getDefEndDateN() const;
+    Range getRange() const;
+    Reporting getReporting() const;
+    bool parseRange(const wxString &buffer, const wxString &name = "");
+    bool parseReporting(const wxString &buffer);
+    const wxString rangeLabel() const;
+    const wxString rangeName() const;
+    const wxString rangeLabelName() const;
+    const wxString reportingLabel() const;
+    DateDayN periodStart(DateDay date, DatePeriod period) const;
+    DateDayN periodEnd(DateDay date, DatePeriod period) const;
+    DateDayN rangeStart() const;
+    DateDayN rangeEnd() const;
+    DateDayN reportingNext() const;
+    const wxString rangeStartIsoStart() const;
+    const wxString rangeEndIsoEnd() const;
+    const wxString reportingNextIsoEnd() const;
+    const wxString checkingTooltip() const;
+    const wxString reportingTooltip() const;
+
+public:
+    struct ReportingIterator
+    {
+        using iterator_category = std::input_iterator_tag;
+        using difference_type = int;
+        using value_type = DateDayN;
+        using pointer = const value_type*;
+        using reference = const value_type&;
+
+        friend class DateRange2;
+
+    private:
+        const DateRange2* a;
+        int count;
+        DateDayN nextDateN, lastDateN;
+
+    public:
+        ReportingIterator(const DateRange2* a_new);
+
+    public:
+        const DateDayN& operator*();
+        const DateDayN* operator->();
+        ReportingIterator& operator++();
+        ReportingIterator operator++(int);
+        bool operator== (const ReportingIterator& other);
+        bool operator!= (const ReportingIterator& other);
+        bool operator== (int other_count);
+        bool operator!= (int other_count);
+
+    private:
+        void increment();
+    };
+
+    ReportingIterator cbegin() const;
+    int cend() const;
+
+#ifndef NDEBUG
 public:
     static bool debug();
 #endif
 };
 
-inline void DateRange2::Spec::setName(const wxString &name_new)
+inline void DateRange2::Range::setName(const wxString &name_new)
 {
     name = name_new;
 }
 
-inline bool DateRange2::Spec::hasPeriodS() const
-{
-    return
-        sp1 == PERIOD_ID_S || ep1 == PERIOD_ID_S ||
-        sp2 == PERIOD_ID_S || ep2 == PERIOD_ID_S;
-}
-
-inline const wxString DateRange2::Spec::offset_str(int offset, bool show_zero)
-{
-    return (offset != 0) ? wxString::Format("%+d", offset) : show_zero ? "0" : "";
-}
-
-inline const wxString DateRange2::Spec::getName() const
+inline const wxString DateRange2::Range::getName() const
 {
     return name;
 }
 
-inline void DateRange2::setDateT(wxDateTime date)
+inline bool DateRange2::Range::hasPeriodS() const
 {
-    // wxInvalidDateTime means today
-    if (date == wxInvalidDateTime) {
-        // get the date of today, with time set to noon (12:00)
-        date = wxDateTime(12, 0, 0, 0);
-    }
-    else {
-        // set time to noon (12:00)
-        date.SetHour(12).SetMinute(0).SetSecond(0).SetMillisecond(0);
-    }
-    date_t = date;
+    return
+        sp1 == DatePeriod::_S || ep1 == DatePeriod::_S ||
+        sp2 == DatePeriod::_S || ep2 == DatePeriod::_S;
 }
 
-inline void DateRange2::setDateS(wxDateTime date)
+inline const wxString DateRange2::Range::offsetStr(int offset, bool show_zero)
 {
-    // wxInvalidDateTime means not applicable
-    if (date != wxInvalidDateTime) {
-        // set time to noon (12:00)
-        date.SetHour(12).SetMinute(0).SetSecond(0).SetMillisecond(0);
-    }
-    date_s = date;
+    return (offset != 0) ? wxString::Format("%+d", offset) : show_zero ? "0" : "";
+}
+inline const wxString DateRange2::Reporting::multiplierStr(int m, bool show_one)
+{
+    return (m != 1 || show_one) ? wxString::Format("%+d", m) : "";
 }
 
-inline wxDateTime DateRange2::getDateT() const
+inline void DateRange2::setSDateN(DateDayN sDateN_new)
 {
-    return date_t;
+    sDateN = sDateN_new;
+}
+inline void DateRange2::setTDate(DateDay tDate_new)
+{
+    tDate = tDate_new;
+}
+inline void DateRange2::setDefStartDateN(DateDayN defStartDateN_new)
+{
+    defStartDateN = defStartDateN_new;
+}
+inline void DateRange2::setDefEndDateN(DateDayN defEndDateN_new)
+{
+    defEndDateN = defEndDateN_new;
+}
+inline void DateRange2::setRange(const DateRange2::Range &range_new)
+{
+    range = range_new;
+}
+inline void DateRange2::setReporting(const DateRange2::Reporting &reporting_new)
+{
+    reporting = reporting_new;
 }
 
-inline wxDateTime DateRange2::getDateS() const
+inline DateDayN DateRange2::getSDateN() const
 {
-    return date_s;
+    return sDateN;
+}
+inline DateDay DateRange2::getTDate() const
+{
+    return tDate;
+}
+inline DateDayN DateRange2::getDefStartDateN() const
+{
+    return defStartDateN;
+}
+inline DateDayN DateRange2::getDefEndDateN() const
+{
+    return defEndDateN;
+}
+inline DateRange2::Range DateRange2::getRange() const
+{
+    return range;
+}
+inline DateRange2::Reporting DateRange2::getReporting() const
+{
+    return reporting;
 }
 
-inline void DateRange2::setSpec(const DateRange2::Spec &spec_new)
+inline const wxString DateRange2::rangeLabel() const
 {
-    spec = spec_new;
+    return range.getLabel();
+}
+inline const wxString DateRange2::rangeName() const
+{
+    return range.getName();
+}
+inline const wxString DateRange2::rangeLabelName() const
+{
+    return range.getLabelName();
+}
+inline const wxString DateRange2::reportingLabel() const
+{
+    return reporting.getLabel();
 }
 
-inline DateRange2::Spec DateRange2::getSpec() const
+inline const wxString DateRange2::rangeStartIsoStart() const
 {
-    return spec;
+    return rangeStart().isoStartN();
+}
+inline const wxString DateRange2::rangeEndIsoEnd() const
+{
+    return rangeEnd().isoEndN();
+}
+inline const wxString DateRange2::reportingNextIsoEnd() const
+{
+    return reportingNext().isoEndN();
 }
 
-inline const wxString DateRange2::getLabel() const
+inline const DateDayN& DateRange2::ReportingIterator::operator*()
 {
-    return spec.getLabel();
+    return nextDateN;
+}
+inline const DateDayN* DateRange2::ReportingIterator::operator->()
+{
+    return &nextDateN;
+}
+inline DateRange2::ReportingIterator& DateRange2::ReportingIterator::operator++()
+{
+    increment();
+    return *this;
+}
+inline DateRange2::ReportingIterator DateRange2::ReportingIterator::operator++(int)
+{
+    DateRange2::ReportingIterator tmp = *this;
+    ++(*this);
+    return tmp;
+}
+inline bool DateRange2::ReportingIterator::operator== (const ReportingIterator& other)
+{
+    return count == other.count;
+}
+inline bool DateRange2::ReportingIterator::operator!= (const ReportingIterator& other)
+{
+    return count != other.count;
+}
+inline bool DateRange2::ReportingIterator::operator== (int other_count)
+{
+    return count == other_count;
+}
+inline bool DateRange2::ReportingIterator::operator!= (int other_count)
+{
+    return count != other_count;
 }
 
-inline const wxString DateRange2::getName() const
+inline DateRange2::ReportingIterator DateRange2::cbegin() const
 {
-    return spec.getName();
+    return ReportingIterator(this);
 }
 
-inline const wxString DateRange2::getLabelName() const
+inline int DateRange2::cend() const
 {
-    return spec.getLabelName();
-}
-
-inline const wxString DateRange2::checking_start_str() const
-{
-    return dateISOStart(checking_start());
-}
-
-inline const wxString DateRange2::checking_end_str() const
-{
-    return dateISOEnd(checking_end());
-}
-
-inline const wxString DateRange2::reporting_start_str() const
-{
-    return dateISOStart(reporting_start());
-}
-
-inline const wxString DateRange2::reporting_end_str() const
-{
-    return dateISOEnd(reporting_end());
+    return -1;
 }
 

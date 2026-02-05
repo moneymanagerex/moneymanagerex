@@ -107,7 +107,7 @@ bool mmFilterTransactions::mmIsRecordMatches(const Model_Checking::Data &tran
     , const std::map<int64, Model_Splittransaction::Data_Set>& split)
 {
     bool ok = true;
-    wxString strDate = Model_Checking::TRANSDATE(tran).FormatISOCombined();
+    wxString strDate = Model_Checking::getTransDateTime(tran).FormatISOCombined();
     if (m_accountFilter
         && (std::find(m_accountList.begin(), m_accountList.end(), tran.ACCOUNTID) == m_accountList.end())
         && (std::find(m_accountList.begin(), m_accountList.end(), tran.TOACCOUNTID) == m_accountList.end()))

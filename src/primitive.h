@@ -72,6 +72,10 @@ bool isValidURI(const wxString& validate);
 
 //----------------------------------------------------------------------------
 
+wxDateTime parseDateTime(const wxString& str_date);
+
+//----------------------------------------------------------------------------
+
 extern const wxString MONTHS[12];
 extern const wxString MONTHS_SHORT[12];
 extern const wxString g_days_of_week[7];
@@ -85,21 +89,6 @@ inline const wxString mmGetMonthName(const wxDateTime::Month& month)
 inline wxString dateTimeISO(wxDateTime dateTime)
 {
     return (dateTime == wxInvalidDateTime) ? "" : dateTime.FormatISOCombined();
-}
-
-inline wxString dateISO(wxDateTime date)
-{
-    return (date == wxInvalidDateTime) ? "" : date.FormatISODate();
-}
-
-inline wxString dateISOStart(wxDateTime date)
-{
-    return dateISO(date).append("");
-}
-
-inline wxString dateISOEnd(wxDateTime date)
-{
-    return dateISO(date).append("~");
 }
 
 bool mmParseISODate(const wxString& in_str, wxDateTime& out_date);

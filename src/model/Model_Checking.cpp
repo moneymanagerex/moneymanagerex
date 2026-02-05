@@ -168,6 +168,33 @@ const Model_Splittransaction::Data_Set Model_Checking::split(const Data& r)
     return Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID));
 }
 
+DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxString& date_iso_str, OP op)
+{
+    return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_iso_str, op);
+}
+
+DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const DateDay& date, OP op)
+{
+    // EQUAL and NOT_EQUAL should not be used for date comparisons.
+    // if needed, create an equivalent AND/OR combination of two other operators.
+    wxString bound =
+        (op == GREATER_OR_EQUAL || op == LESS) ? date.isoStart()
+        : (op == LESS_OR_EQUAL || op == GREATER) ? date.isoEnd()
+        : date.isoDate();
+    return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(bound, op);
+}
+
+DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxDateTime& date, OP op)
+{
+    // the boundary has granularity of a day
+    return TRANSDATE(DateDay(date), op);
+}
+
+DB_Table_CHECKINGACCOUNT_V1::DELETEDTIME Model_Checking::DELETEDTIME(const wxString& date, OP op)
+{
+    return DB_Table_CHECKINGACCOUNT_V1::DELETEDTIME(date, op);
+}
+
 DB_Table_CHECKINGACCOUNT_V1::STATUS Model_Checking::STATUS(STATUS_ID status, OP op)
 {
     return DB_Table_CHECKINGACCOUNT_V1::STATUS(status_key(status), op);
@@ -183,31 +210,14 @@ DB_Table_CHECKINGACCOUNT_V1::TRANSACTIONNUMBER Model_Checking::TRANSACTIONNUMBER
     return DB_Table_CHECKINGACCOUNT_V1::TRANSACTIONNUMBER(num, op);
 }
 
-DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxDateTime& date, OP op)
+wxDateTime Model_Checking::getTransDateTime(const Data* r)
 {
-    if (date.FormatISOTime() == "00:00:00")
-        return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date.FormatISODate(), op);
-    return TRANSDATE(date.FormatISOCombined(), op);
+    return parseDateTime(r->TRANSDATE);
 }
 
-DB_Table_CHECKINGACCOUNT_V1::DELETEDTIME Model_Checking::DELETEDTIME(const wxString& date, OP op)
+wxDateTime Model_Checking::getTransDateTime(const Data& r)
 {
-    return DB_Table_CHECKINGACCOUNT_V1::DELETEDTIME(date, op);
-}
-
-DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxString& date_iso_str, OP op)
-{
-    return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_iso_str, op);
-}
-
-wxDateTime Model_Checking::TRANSDATE(const Data* r)
-{
-    return Model::to_date(r->TRANSDATE);
-}
-
-wxDateTime Model_Checking::TRANSDATE(const Data& r)
-{
-    return Model::to_date(r.TRANSDATE);
+    return parseDateTime(r.TRANSDATE);
 }
 
 double Model_Checking::account_flow(const Data* r, int64 account_id)
@@ -275,7 +285,7 @@ bool Model_Checking::is_locked(const Data* r)
         wxDateTime transaction_date;
         if (transaction_date.ParseDate(r->TRANSDATE))
         {
-            if (transaction_date <= Model_Account::DateOf(acc->STATEMENTDATE))
+            if (transaction_date <= parseDateTime(acc->STATEMENTDATE))
             {
                 val = true;
             }
@@ -460,7 +470,7 @@ bool Model_Checking::Full_Data::is_foreign_transfer() const
 wxString Model_Checking::Full_Data::info() const
 {
     // TODO more info
-    wxDate date = Model_Checking::TRANSDATE(this);
+    wxDate date = Model_Checking::getTransDateTime(this);
     wxString info = wxGetTranslation(wxDate::GetEnglishWeekDayName(date.GetWeekDay()));
     return info;
 }

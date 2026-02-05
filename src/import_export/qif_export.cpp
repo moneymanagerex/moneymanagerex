@@ -495,7 +495,7 @@ void mmQIFExportDialog::mmExportQIF()
         for (const auto& transaction : transactions)
         {
             if (!transaction.DELETEDTIME.IsEmpty()) continue;
-            wxString strDate = Model_Checking::TRANSDATE(transaction).FormatISODate();
+            wxString strDate = Model_Checking::getTransDateTime(transaction).FormatISODate();
             //Filtering
             if (dateFromCheckBox_->IsChecked() && strDate < begin_date)
                 continue;

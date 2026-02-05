@@ -102,9 +102,14 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     if (rb_->report_parameters() & rb_->RepParams::DATE_RANGE) {
         loadFilterSettings();
         updateFilter();
+        // FIXME: get[ST]Date are not the start and end date
         if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_PICKER) {
-            m_start_date->SetValue(m_current_date_range.getDateS());
-            m_end_date->SetValue(m_current_date_range.getDateT());
+            m_start_date->SetValue(
+                m_current_date_range.getSDateN().getDateTimeN()
+            );
+            m_end_date->SetValue(
+                m_current_date_range.getTDate().getDateTime()
+            );
             m_bitmapDataPeriodFilterBtn->SetLabel(_t("Date range"));
         }
     }
@@ -191,15 +196,15 @@ void mmReportsPanel::loadFilterSettings() {
     m_date_range_m = -1;
     int src_i = 0;
     int src_m = Option::instance().getCheckingRangeM();
-    for (const auto& spec : Option::instance().getCheckingRangeA()) {
+    for (const auto& range : Option::instance().getCheckingRangeA()) {
         if (m_date_range_a.size() > ID_FILTER_DATE_MAX - ID_FILTER_DATE_MIN) {
             break;
         }
         if (src_i == src_m) {
             m_date_range_m = m_date_range_a.size();
         }
-        if (!spec.hasPeriodS()) {
-            m_date_range_a.push_back(spec);
+        if (!range.hasPeriodS()) {
+            m_date_range_a.push_back(range);
         }
         src_i++;
     }
@@ -222,17 +227,17 @@ void mmReportsPanel::loadFilterSettings() {
         wxString j_filter;
         bool notfound = true;
         if (JSON_GetStringValue(j_doc, "FILTER_DATE", j_filter)) {
-            // get range spec:
-            for (const auto& spec : m_date_range_a) {
-                if (spec.getName() == j_filter) {
-                    m_current_date_range.setSpec(spec);
+            // get range specification:
+            for (const auto& range : m_date_range_a) {
+                if (range.getName() == j_filter) {
+                    m_current_date_range.setRange(range);
                     notfound = false;
                     break;
                 }
             }
         }
         if (notfound) {
-            m_current_date_range.setSpec(m_date_range_a[0]); // init with 'all'
+            m_current_date_range.setRange(m_date_range_a[0]); // init with 'all'
         }
     }
     else if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_PICKER) {
@@ -240,10 +245,20 @@ void mmReportsPanel::loadFilterSettings() {
         wxDateTime newdate;
         wxString::const_iterator end;
         if (JSON_GetStringValue(j_doc, "FILTER_DATE_BEGIN", p_filter)) {
-            m_current_date_range.setDateS(newdate.ParseFormat(p_filter, "%Y-%m-%d", &end) ? newdate : wxInvalidDateTime);
+            // FIXME: setSDateN is the account statement date, not the start date
+            m_current_date_range.setSDateN(
+                newdate.ParseFormat(p_filter, "%Y-%m-%d", &end)
+                ? DateDay(newdate)
+                : DateDayN()
+            );
         }
         if (JSON_GetStringValue(j_doc, "FILTER_DATE_END", p_filter)) {
-            m_current_date_range.setDateT(newdate.ParseFormat(p_filter, "%Y-%m-%d", &end) ? newdate : wxInvalidDateTime);
+            // FIXME: setTDate is the date of today, should not be changed here
+            m_current_date_range.setTDate(
+                newdate.ParseFormat(p_filter, "%Y-%m-%d", &end)
+                ? DateDay(newdate)
+                : DateDay::today()
+            );
         }
     }
 }
@@ -253,7 +268,7 @@ void mmReportsPanel::saveFilterSettings() {
     Document j_doc = Model_Infotable::instance().getJdoc(key, "{}");
     Model_Infotable::saveFilterInt(j_doc, "FILTER_ID", m_filter_id);
     Model_Infotable::saveFilterString(j_doc, "FILTER_NAME", mmCheckingPanel::getFilterName(m_filter_id));
-    Model_Infotable::saveFilterString(j_doc, "FILTER_DATE", m_current_date_range.getSpec().getName());
+    Model_Infotable::saveFilterString(j_doc, "FILTER_DATE", m_current_date_range.getRange().getName());
     if (m_start_date) {
         Model_Infotable::saveFilterString(j_doc, "FILTER_DATE_BEGIN", m_start_date->GetValue().IsValid() ? m_start_date->GetValue().FormatISODate() : "");
     }
@@ -825,7 +840,7 @@ void mmReportsPanel::onFilterDateMenu(wxCommandEvent& event)
     }
 
     m_current_date_range = DateRange2();
-    m_current_date_range.setSpec(m_date_range_a[i]);
+    m_current_date_range.setRange(m_date_range_a[i]);
 
     m_filter_id = mmCheckingPanel::FILTER_ID_DATE_RANGE;
     updateFilter();
@@ -835,11 +850,15 @@ void mmReportsPanel::onFilterDateMenu(wxCommandEvent& event)
 void mmReportsPanel::updateFilter()
 {
     if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_RANGE) {
-        m_bitmapDataPeriodFilterBtn->SetLabel(m_current_date_range.getName());
-        m_bitmapDataPeriodFilterBtn->SetBitmap(mmBitmapBundle((m_current_date_range.getName() != m_date_range_a[0].getName() ? png::TRANSFILTER_ACTIVE : png::TRANSFILTER), mmBitmapButtonSize));
+        m_bitmapDataPeriodFilterBtn->SetLabel(m_current_date_range.rangeName());
+        m_bitmapDataPeriodFilterBtn->SetBitmap(mmBitmapBundle((m_current_date_range.rangeName() != m_date_range_a[0].getName() ? png::TRANSFILTER_ACTIVE : png::TRANSFILTER), mmBitmapButtonSize));
 
-        m_start_date->SetValue(m_current_date_range.reporting_start().IsValid() ? m_current_date_range.reporting_start() : DATE_MIN);
-        m_end_date->SetValue(m_current_date_range.reporting_end().IsValid() ? m_current_date_range.reporting_end() : DATE_MAX);
+        m_start_date->SetValue(
+            m_current_date_range.rangeStart().value_or(DateDay::min()).getDateTime()
+        );
+        m_end_date->SetValue(
+            m_current_date_range.rangeEnd().value_or(DateDay::max()).getDateTime()
+        );
     }
     else if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_PICKER) {
         m_bitmapDataPeriodFilterBtn->SetLabel(_t("Date range"));
@@ -854,32 +873,32 @@ void mmReportsPanel::onEditDateRanges(wxCommandEvent& WXUNUSED(event))
         if (m_date_range_a.size() == 0) {
             int src_i = 0;
             int src_m = Option::instance().getCheckingRangeM();
-            for (const auto& spec : Option::instance().getCheckingRangeA()) {
+            for (const auto& range : Option::instance().getCheckingRangeA()) {
                 if (m_date_range_a.size() > ID_FILTER_DATE_MAX - ID_FILTER_DATE_MIN) {
                     break;
                 }
                 if (src_i == src_m) {
                     m_date_range_m = m_date_range_a.size();
                 }
-                if (!spec.hasPeriodS()) {
-                    m_date_range_a.push_back(spec);
+                if (!range.hasPeriodS()) {
+                    m_date_range_a.push_back(range);
                 }
                 src_i++;
             }
         }
         // Verify if current filter is still valid otherwise reset to "ALL"
         if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_RANGE) {
-            wxString curname = m_current_date_range.getName();
+            wxString curname = m_current_date_range.rangeName();
             bool isDeleted = true;
-            for (const auto& spec : m_date_range_a) {
-                if (spec.getName() == curname) {
+            for (const auto& range : m_date_range_a) {
+                if (range.getName() == curname) {
                     isDeleted = false;
                     break;
                 }
             }
             if (isDeleted) {
                 m_current_date_range = DateRange2();
-                m_current_date_range.setSpec(m_date_range_a[0]);
+                m_current_date_range.setRange(m_date_range_a[0]);
 
                 m_filter_id = mmCheckingPanel::FILTER_ID_DATE_RANGE;
                 updateFilter();
