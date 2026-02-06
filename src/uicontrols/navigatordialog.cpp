@@ -90,11 +90,11 @@ void mmNavigatorDialog::createBottomElements(wxBoxSizer* itemBox) {
     itemBox->Add(m_delete, g_flagsV);
 
     itemBox->AddSpacer(70);
-    wxButton* btn = new wxButton(this, BTN_RESET_NAMES, _t("Re&set names"));
+    wxButton* btn = new wxButton(this, BTN_RESET_NAMES, _t("Re&store default names"));
     Bind(wxEVT_BUTTON, &mmNavigatorDialog::OnNameReset, this, BTN_RESET_NAMES);
 
     itemBox->Add(btn, 0, wxALL, 5);
-    mmToolTip(btn, _t("Reset the standard names to default values"));
+    mmToolTip(btn, _t("Restore default names"));
 }
 
 void mmNavigatorDialog::fillControls(wxTreeListItem root)
