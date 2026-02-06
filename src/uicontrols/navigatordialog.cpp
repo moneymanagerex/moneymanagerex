@@ -190,8 +190,8 @@ void mmNavigatorDialog::setDefault()
 
 void mmNavigatorDialog::OnNameReset(wxCommandEvent&)
 {
-    if (wxMessageBox(_t("Do you really want to reset the configured names?")
-        , _t("Reset names")
+    if (wxMessageBox(_t("Do you really want to restore the default names?")
+        , _t("Restore default names")
         , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION) == wxYES)
     {
         NavigatorTypes::instance().SetToDefault();
