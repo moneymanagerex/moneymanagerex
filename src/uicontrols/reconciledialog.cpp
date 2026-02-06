@@ -127,7 +127,7 @@ void mmReconcileDialog::CreateControls()
         list->InsertColumn(2, _t("Number"),  wxLIST_FORMAT_RIGHT);
         list->InsertColumn(3, _t("Payee"),   wxLIST_FORMAT_LEFT);
         list->InsertColumn(4, _t("Amount"),  wxLIST_FORMAT_RIGHT);
-        list->InsertColumn(5, _t("State"),   wxLIST_FORMAT_CENTRE, 50);
+        list->InsertColumn(5, _t("Status"),  wxLIST_FORMAT_CENTRE, 50);
     };
 
     wxPanel* leftlistPanel = new wxPanel(midPanel);
