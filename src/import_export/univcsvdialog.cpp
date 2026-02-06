@@ -509,7 +509,7 @@ void mmUnivCSVDialog::CreateControls()
         m_choiceAmountFieldSign->SetSelection(PositiveIsDeposit);
         flex_sizer->Add(m_choiceAmountFieldSign, g_flagsH);
 
-        wxStaticText* itemStaticTextDigits = new wxStaticText(itemPanel7, wxID_ANY, _t("Decimal Char"));
+        wxStaticText* itemStaticTextDigits = new wxStaticText(itemPanel7, wxID_ANY, _t("Decimal Char:"));
         flex_sizer->Add(itemStaticTextDigits, g_flagsH);
         m_choiceDecimalSeparator = new mmChoiceAmountMask(itemPanel7, ID_UD_DECIMAL);
         flex_sizer->Add(m_choiceDecimalSeparator, g_flagsH);
