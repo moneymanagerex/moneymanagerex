@@ -891,7 +891,7 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
 {
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, _("OFX File:")), 0, wxALL, 5);
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, _("&OFX File:")), 0, wxALL, 5);
     fileNameCtrl_ = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
     wxButton* browseButton = new wxButton(this, wxID_OPEN, _tu("&Browse…"));
     wxBoxSizer* fileSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -899,7 +899,7 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
     fileSizer->Add(browseButton, 0, wxALL, 5);
     mainSizer->Add(fileSizer, 0, wxEXPAND);
 
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Account:")), 0, wxALL, 5);
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, _("&Account:")), 0, wxALL, 5);
     accountDropDown_ = new wxChoice(this, wxID_ANY);
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
@@ -910,16 +910,16 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
     }
     mainSizer->Add(accountDropDown_, 0, wxALL | wxEXPAND, 5);
 
-    payeeRegExCheckBox_ = new wxCheckBox(this, wxID_ANY, _("Use existing regex patterns to automatically match payees"), wxDefaultPosition, wxDefaultSize);
+    payeeRegExCheckBox_ = new wxCheckBox(this, wxID_ANY, _("Use &existing regex patterns to automatically match payees"), wxDefaultPosition, wxDefaultSize);
     payeeRegExCheckBox_->SetValue(true);
     mainSizer->Add(payeeRegExCheckBox_, 0, wxALL, 5);
 
     useFuzzyMatchingCheckBox_ =
-        new wxCheckBox(this, wxID_ANY, _("Use fuzzy payee matching if exact match and regex matching are unsuccessful"), wxDefaultPosition, wxDefaultSize);
+        new wxCheckBox(this, wxID_ANY, _("Use &fuzzy payee matching if exact match and regex matching are unsuccessful"), wxDefaultPosition, wxDefaultSize);
     useFuzzyMatchingCheckBox_->SetValue(true);
     mainSizer->Add(useFuzzyMatchingCheckBox_, 0, wxALL, 5);
 
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Minimum Fuzzy Match Confidence Level:")), 0, wxALL, 5);
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Minimum Fuzzy Match &Confidence Level:")), 0, wxALL, 5);
     fuzzyConfidenceChoice_ = new wxChoice(this, wxID_ANY);
     for (int i = 100; i >= 40; i -= 1)
     {
@@ -932,11 +932,11 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
     mainSizer->Add(fuzzyConfidenceChoice_, 0, wxALL | wxEXPAND, 5);
 
     markFuzzyFollowUpCheckBox_ =
-        new wxCheckBox(this, wxID_ANY, _tu("Mark transactions automatically imported with Fuzzy Match as “Follow Up”"), wxDefaultPosition, wxDefaultSize);
+        new wxCheckBox(this, wxID_ANY, _tu("&Mark transactions automatically imported with Fuzzy Match as “Follow Up”"), wxDefaultPosition, wxDefaultSize);
     markFuzzyFollowUpCheckBox_->SetValue(false);
     mainSizer->Add(markFuzzyFollowUpCheckBox_, 0, wxALL, 5);
 
-    promptFuzzyConfirmationCheckBox_ = new wxCheckBox(this, wxID_ANY, _("Prompt to confirm each fuzzy match"), wxDefaultPosition, wxDefaultSize);
+    promptFuzzyConfirmationCheckBox_ = new wxCheckBox(this, wxID_ANY, _("Prompt to &confirm each fuzzy match"), wxDefaultPosition, wxDefaultSize);
     promptFuzzyConfirmationCheckBox_->SetValue(false);
     mainSizer->Add(promptFuzzyConfirmationCheckBox_, 0, wxALL, 5);
 
