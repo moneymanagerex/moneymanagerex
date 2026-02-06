@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-01-26 19:10+0000\n"
-"PO-Revision-Date: 2026-01-30 01:16\n"
+"POT-Creation-Date: 2026-02-05 11:20+0000\n"
+"PO-Revision-Date: 2026-02-06 01:16\n"
 "Last-Translator: \n"
 "Language-Team: Lithuanian\n"
 "Language: lt_LT\n"
@@ -53,7 +53,7 @@ msgstr "Įjungti, kad padėti mums, siunčiant nuasmenintus duomenis apie MMEX n
 #: assetdialog.cpp:322 attachmentdialog.cpp:150 billsdepositsdialog.cpp:651
 #: budgetentrydialog.cpp:161 budgetyeardialog.cpp:117
 #: budgetyearentrydialog.cpp:129 constants.cpp:87 currencydialog.cpp:260
-#: customfieldeditdialog.cpp:199 filtertransdialog.cpp:830
+#: customfieldeditdialog.cpp:199 filtertransdialog.cpp:831
 #: import_export/qif_export.cpp:240 import_export/qif_import_gui.cpp:417
 #: mmSimpleDialogs.cpp:1098 optiondialog.cpp:164 payeedialog.cpp:161
 #: sharetransactiondialog.cpp:360 splittransactionsdialog.cpp:105
@@ -131,7 +131,7 @@ msgstr "Nurodykite ar ši sąskaita yra dažnai naudojama. Tai naudojamas, kad f
 #: accountdialog.cpp:180 assetdialog.cpp:270 assetspanel.cpp:59
 #: billsdepositsdialog.cpp:629 billsdepositspanel.cpp:118
 #: budgetentrydialog.cpp:152 budgetingpanel.cpp:74 filtertrans.cpp:207
-#: filtertransdialog.cpp:708 filtertransdialog.cpp:1972
+#: filtertransdialog.cpp:708 filtertransdialog.cpp:1973
 #: import_export/qif_export.cpp:636 import_export/qif_import_gui.cpp:106
 #: import_export/univcsvdialog.cpp:115 import_export/univcsvdialog.cpp:120
 #: mmchecking_list.cpp:111 payeedialog.cpp:117 payeedialog.cpp:560
@@ -427,7 +427,7 @@ msgid "Enter the name of the asset"
 msgstr "Įveskite turto pavadinimą"
 
 #: assetdialog.cpp:194 assetspanel.cpp:55 assetspanel.cpp:843
-#: filtertrans.cpp:199 filtertransdialog.cpp:993 filtertransdialog.cpp:1000
+#: filtertrans.cpp:199 filtertransdialog.cpp:994 filtertransdialog.cpp:1001
 #: import_export/ofx_import_gui.cpp:1844 import_export/qif_export.cpp:627
 #: import_export/qif_import_gui.cpp:99 import_export/univcsvdialog.cpp:104
 #: maincurrencydialog.cpp:254 maincurrencydialog.cpp:271 mmchecking_list.cpp:99
@@ -539,7 +539,7 @@ msgstr "ID"
 
 #: assetspanel.cpp:56 billsdepositsdialog.cpp:517 customfieldlistdialog.cpp:49
 #: filtertrans.cpp:205 filtertransdialog.cpp:60 filtertransdialog.cpp:669
-#: filtertransdialog.cpp:1067 filtertransdialog.cpp:1918
+#: filtertransdialog.cpp:1068 filtertransdialog.cpp:1919
 #: import_export/qif_export.cpp:135 import_export/qif_export.cpp:629
 #: import_export/qif_import_gui.cpp:102 import_export/qif_import_gui.cpp:297
 #: import_export/univcsvdialog.cpp:106 maincurrencydialog.cpp:264
@@ -602,8 +602,8 @@ msgstr "Turtas"
 
 #: assetspanel.cpp:421 assetspanel.cpp:698 assetspanel.cpp:715
 #: daterangedialog.cpp:270 daterangeeditdialog.cpp:61 filtertransdialog.cpp:227
-#: filtertransdialog.cpp:591 filtertransdialog.cpp:916
-#: filtertransdialog.cpp:2320 import_export/qif_export.cpp:76
+#: filtertransdialog.cpp:591 filtertransdialog.cpp:917
+#: filtertransdialog.cpp:2321 import_export/qif_export.cpp:76
 #: import_export/qif_export.cpp:77 import_export/qif_export.cpp:155
 #: option.cpp:52 stockspanel.cpp:105
 msgid "All"
@@ -659,21 +659,18 @@ msgstr "Įveskite bet kokį terminą, kad rasti susijusį turtą"
 
 #: assetspanel.cpp:500 filtertransdialog.cpp:714 mmcheckingpanel.cpp:357
 #: payeedialog.cpp:139
-msgid "Tips: Wildcard characters—question mark (?), asterisk (*)—can be used in search criteria."
+msgid "Tips: Wildcard characters such as the question mark (?) and the asterisk (*) can be used in search criteria."
 msgstr ""
 
-#: assetspanel.cpp:501 filtertransdialog.cpp:715 mmcheckingpanel.cpp:358
-#: payeedialog.cpp:140
-msgid "Use the question mark (?) to find any single character—for example, “s?t” finds “sat” and “set”."
+#: assetspanel.cpp:501 mmcheckingpanel.cpp:358
+msgid "The question mark (?) is used to match a single character, for example \"s?t\" finds both \"sat\" and \"set\"."
 msgstr ""
 
-#: assetspanel.cpp:502 filtertransdialog.cpp:716 mmcheckingpanel.cpp:359
-#: payeedialog.cpp:141
-msgid "Use the asterisk (*) to find any number of characters—for example, “s*d” finds “sad” and “started”."
+#: assetspanel.cpp:502 mmcheckingpanel.cpp:359
+msgid "The asterisk (*) is used to match any number of characters, for example \"s*d\" finds both \"sad\" and \"started\"."
 msgstr ""
 
-#: assetspanel.cpp:503 filtertransdialog.cpp:717 mmcheckingpanel.cpp:360
-#: payeedialog.cpp:142
+#: assetspanel.cpp:503 mmcheckingpanel.cpp:360 payeedialog.cpp:142
 msgid "Use the asterisk (*) at the beginning to find any string in the middle of the sentence."
 msgstr ""
 
@@ -704,8 +701,8 @@ msgstr "Turto valdymas"
 
 #: assetspanel.cpp:842 billsdepositsdialog.cpp:550 billsdepositsdialog.cpp:839
 #: billsdepositsdialog.cpp:852 billsdepositspanel.cpp:106 filtertrans.cpp:201
-#: filtertransdialog.cpp:60 filtertransdialog.cpp:588 filtertransdialog.cpp:983
-#: filtertransdialog.cpp:1818 import_export/qif_export.cpp:630
+#: filtertransdialog.cpp:60 filtertransdialog.cpp:588 filtertransdialog.cpp:984
+#: filtertransdialog.cpp:1819 import_export/qif_export.cpp:630
 #: import_export/qif_import_gui.cpp:98 import_export/qif_import_gui.cpp:171
 #: import_export/qif_import_gui.cpp:291 import_export/univcsvdialog.cpp:107
 #: mmchecking_list.cpp:102 reports/cashflow.cpp:406
@@ -1022,8 +1019,8 @@ msgid "Specify the status for the transaction"
 msgstr "Nurodykite operacijos būseną"
 
 #: billsdepositsdialog.cpp:501 billsdepositspanel.cpp:108 filtertrans.cpp:203
-#: filtertransdialog.cpp:657 filtertransdialog.cpp:1061
-#: filtertransdialog.cpp:1907 import_export/qif_export.cpp:628
+#: filtertransdialog.cpp:657 filtertransdialog.cpp:1062
+#: filtertransdialog.cpp:1908 import_export/qif_export.cpp:628
 #: import_export/qif_import_gui.cpp:299 import_export/qif_import_gui.cpp:310
 #: import_export/qif_import_gui.cpp:320 import_export/univcsvdialog.cpp:105
 #: import_export/univcsvdialog.cpp:604 import_export/univcsvdialog.cpp:614
@@ -1046,7 +1043,7 @@ msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Leidžia nustatyti skirtingus kiekius „Iš“ ir „Į“ sąskaitose."
 
 #: billsdepositsdialog.cpp:522 budgetingpanel.cpp:71 filtertrans.cpp:206
-#: filtertransdialog.cpp:1094 filtertransdialog.cpp:1104
+#: filtertransdialog.cpp:1095 filtertransdialog.cpp:1105
 #: import_export/ofx_import_gui.cpp:1845 import_export/qif_export.cpp:633
 #: import_export/univcsvdialog.cpp:109 maincurrencydialog.cpp:625
 #: mmchecking_list.cpp:934 mmhomepage.cpp:348 mmhomepage.cpp:422
@@ -1078,8 +1075,8 @@ msgstr "Į"
 
 #: billsdepositsdialog.cpp:570 billsdepositsdialog.cpp:840
 #: billsdepositspanel.cpp:107 filtertrans.cpp:202 filtertransdialog.cpp:60
-#: filtertransdialog.cpp:625 filtertransdialog.cpp:1011
-#: filtertransdialog.cpp:1869 import_export/qif_export.cpp:631
+#: filtertransdialog.cpp:625 filtertransdialog.cpp:1012
+#: filtertransdialog.cpp:1870 import_export/qif_export.cpp:631
 #: import_export/qif_import_gui.cpp:101 import_export/qif_import_gui.cpp:304
 #: import_export/univcsvdialog.cpp:108 import_export/univcsvdialog.cpp:598
 #: mmchecking_list.cpp:103 model/Model.cpp:28 payeedialog.cpp:85
@@ -1094,8 +1091,8 @@ msgstr "Korespondentas"
 #: billsdepositsdialog.cpp:582 billsdepositsdialog.cpp:964
 #: billsdepositspanel.cpp:109 budgetingpanel.cpp:69 filtertrans.cpp:204
 #: filtertransdialog.cpp:60 filtertransdialog.cpp:634
-#: filtertransdialog.cpp:1048 filtertransdialog.cpp:1054
-#: filtertransdialog.cpp:1876 import_export/ofx_import_gui.cpp:1850
+#: filtertransdialog.cpp:1049 filtertransdialog.cpp:1055
+#: filtertransdialog.cpp:1877 import_export/ofx_import_gui.cpp:1850
 #: import_export/qif_export.cpp:632 import_export/qif_import_gui.cpp:103
 #: import_export/qif_import_gui.cpp:315 import_export/univcsvdialog.cpp:111
 #: import_export/univcsvdialog.cpp:609 mmchecking_list.cpp:105
@@ -1116,10 +1113,10 @@ msgstr "Naudoti suskaldytas kategorijas"
 
 #: billsdepositsdialog.cpp:596 billsdepositsdialog.cpp:970
 #: billsdepositspanel.cpp:110 filtertransdialog.cpp:650
-#: filtertransdialog.cpp:1075 filtertransdialog.cpp:1080
-#: filtertransdialog.cpp:1643 filtertransdialog.cpp:1655
-#: filtertransdialog.cpp:1747 filtertransdialog.cpp:1762
-#: filtertransdialog.cpp:1954 import_export/qif_import_gui.cpp:104
+#: filtertransdialog.cpp:1076 filtertransdialog.cpp:1081
+#: filtertransdialog.cpp:1644 filtertransdialog.cpp:1656
+#: filtertransdialog.cpp:1748 filtertransdialog.cpp:1763
+#: filtertransdialog.cpp:1955 import_export/qif_import_gui.cpp:104
 #: import_export/univcsvdialog.cpp:113 mmchecking_list.cpp:106
 #: reports/transactions.cpp:222 splittransactionsdialog.cpp:222
 #: splittransactionsdialog.cpp:582 transactionsupdatedialog.cpp:234
@@ -1132,7 +1129,7 @@ msgid "Specify any associated check number or transaction number"
 msgstr "Nurodykite bet kokį susietą čekio ar operacijos numerį"
 
 #: billsdepositsdialog.cpp:607 billsdepositspanel.cpp:117 filtertrans.cpp:200
-#: filtertransdialog.cpp:701 filtertransdialog.cpp:1947
+#: filtertransdialog.cpp:701 filtertransdialog.cpp:1948
 #: import_export/qif_export.cpp:635 import_export/qif_import_gui.cpp:100
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:101
 #: reports/transactions.cpp:212 transdialog.cpp:588
@@ -1153,8 +1150,8 @@ msgstr "Naudoti spalvas"
 msgid "Organize attachments of this scheduled transaction"
 msgstr ""
 
-#: billsdepositsdialog.cpp:634 filtertrans.cpp:198 filtertransdialog.cpp:721
-#: filtertransdialog.cpp:1114 filtertransdialog.cpp:1979
+#: billsdepositsdialog.cpp:634 filtertrans.cpp:198 filtertransdialog.cpp:722
+#: filtertransdialog.cpp:1115 filtertransdialog.cpp:1980
 #: import_export/qif_import_gui.cpp:391 import_export/univcsvdialog.cpp:544
 #: import_export/univcsvdialog.cpp:1444 reports/transactions.cpp:206
 #: transactionsupdatedialog.cpp:247 transactionsupdatedialog.cpp:444
@@ -1167,7 +1164,7 @@ msgstr "Spalva"
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Nurodykite bet kokias teksto pastabas, kurias norite pridėti prie šios operacijos."
 
-#: billsdepositsdialog.cpp:658 filtertransdialog.cpp:836
+#: billsdepositsdialog.cpp:658 filtertransdialog.cpp:837
 #: transactionsupdatedialog.cpp:288 transdialog.cpp:637
 msgid "Show/Hide custom fields window"
 msgstr "Rodyti/slėpti pasirinktinių laukų langą"
@@ -1198,14 +1195,14 @@ msgid "Confirm payee name"
 msgstr "Patvirtinkite gavėjo vardą"
 
 #: billsdepositsdialog.cpp:964 billsdepositsdialog.cpp:970
-#: billsdepositsdialog.cpp:1395 filtertransdialog.cpp:983
-#: filtertransdialog.cpp:993 filtertransdialog.cpp:1000
-#: filtertransdialog.cpp:1033 filtertransdialog.cpp:1054
-#: filtertransdialog.cpp:1061 filtertransdialog.cpp:1067
-#: filtertransdialog.cpp:1075 filtertransdialog.cpp:1094
-#: filtertransdialog.cpp:1104 filtertransdialog.cpp:1114
-#: filtertransdialog.cpp:1123 filtertransdialog.cpp:1130
-#: filtertransdialog.cpp:1136 import_export/univcsvdialog.cpp:1444
+#: billsdepositsdialog.cpp:1395 filtertransdialog.cpp:984
+#: filtertransdialog.cpp:994 filtertransdialog.cpp:1001
+#: filtertransdialog.cpp:1034 filtertransdialog.cpp:1055
+#: filtertransdialog.cpp:1062 filtertransdialog.cpp:1068
+#: filtertransdialog.cpp:1076 filtertransdialog.cpp:1095
+#: filtertransdialog.cpp:1105 filtertransdialog.cpp:1115
+#: filtertransdialog.cpp:1124 filtertransdialog.cpp:1131
+#: filtertransdialog.cpp:1137 import_export/univcsvdialog.cpp:1444
 #: optionsettingsgeneral.cpp:269 optionsettingsgeneral.cpp:294
 #: payeedialog.cpp:204 payeedialog.cpp:209 splittransactionsdialog.cpp:582
 #: transactionsupdatedialog.cpp:370 transactionsupdatedialog.cpp:444
@@ -1313,14 +1310,14 @@ msgid "Every %s Months"
 msgstr "Kiekvieną %s mėnesį"
 
 #: billsdepositspanel.cpp:111 filtertransdialog.cpp:674
-#: filtertransdialog.cpp:1615 filtertransdialog.cpp:1715
+#: filtertransdialog.cpp:1616 filtertransdialog.cpp:1716
 #: import_export/univcsvdialog.cpp:117 mmchecking_list.cpp:107
 #: model/Model_Checking.cpp:33 reports/forecast.cpp:81
 msgid "Withdrawal"
 msgstr "Išėmimas"
 
 #: billsdepositspanel.cpp:112 filtertransdialog.cpp:675
-#: filtertransdialog.cpp:1617 filtertransdialog.cpp:1717
+#: filtertransdialog.cpp:1618 filtertransdialog.cpp:1718
 #: import_export/univcsvdialog.cpp:118 mmchecking_list.cpp:108
 #: model/Model_Checking.cpp:34 reports/forecast.cpp:79
 msgid "Deposit"
@@ -1580,7 +1577,6 @@ msgid "Actual: "
 msgstr "Tikrai: "
 
 #: budgetingpanel.cpp:254 budgetingpanel.cpp:262 reports/budgetingperf.cpp:355
-#: uicontrols/reconciledialog.cpp:208
 msgid "Difference: "
 msgstr "Skirtumas: "
 
@@ -1812,7 +1808,7 @@ msgid "Deleting the category will also automatically purge the associated delete
 msgstr "Ištrynus kategoriją, bus automatiškai išvalytos ir susijusios ištrintos operacijos."
 
 #: categdialog.cpp:511 customfieldeditdialog.cpp:239
-#: customfieldeditdialog.cpp:261 filtertransdialog.cpp:1348
+#: customfieldeditdialog.cpp:261 filtertransdialog.cpp:1349
 #: import_export/univcsvdialog.cpp:2472 mmframe.cpp:1467 mmframe.cpp:2730
 #: mmframe.cpp:2797 mmframe.cpp:2815 model/Model_Billsdeposits.cpp:224
 #: payeedialog.cpp:769 tagdialog.cpp:304 transdialog.cpp:786
@@ -1883,7 +1879,7 @@ msgstr ""
 msgid "Category Manager"
 msgstr ""
 
-#: constants.cpp:73 daterangedialog.cpp:137 daterangeeditdialog.cpp:107
+#: constants.cpp:73 daterangeeditdialog.cpp:107
 #: import_export/ofx_import_gui.cpp:771 import_export/ofx_import_gui.cpp:945
 msgid "Cancel"
 msgstr "Atšaukti"
@@ -2136,9 +2132,9 @@ msgstr "Skydelio stulpelis"
 msgid "Select a value to represent the item on a panel"
 msgstr "Pasirinkite vertę, kuri pavaizduotų elementą skydelyje"
 
-#: customfieldeditdialog.cpp:225 filtertransdialog.cpp:1011
-#: filtertransdialog.cpp:1048 filtertransdialog.cpp:1080
-#: filtertransdialog.cpp:1672 reports/myusage.cpp:102 webappdialog.cpp:185
+#: customfieldeditdialog.cpp:225 filtertransdialog.cpp:1012
+#: filtertransdialog.cpp:1049 filtertransdialog.cpp:1081
+#: filtertransdialog.cpp:1673 reports/myusage.cpp:102 webappdialog.cpp:185
 #: webappdialog.cpp:190
 msgid "Empty value"
 msgstr "Tuščia reikšmė"
@@ -2228,33 +2224,38 @@ msgid "Manage date ranges"
 msgstr ""
 
 #: daterangedialog.cpp:103 generic/generictreelistdialog.cpp:81
-msgid "Top"
+msgid "&Top"
 msgstr ""
 
-#: daterangedialog.cpp:112 optionsettingsview.cpp:103
-#: optionsettingsview.cpp:107 uicontrols/navigatordialog.cpp:74
-msgid "Edit"
+#: daterangedialog.cpp:112 uicontrols/navigatordialog.cpp:74
+#: uicontrols/reconciledialog.cpp:96
+msgid "&Edit"
 msgstr ""
 
 #: daterangedialog.cpp:120 generic/generictreelistdialog.cpp:101
-msgid "Bottom"
+msgid "&Bottom"
 msgstr ""
 
 #: daterangedialog.cpp:126 uicontrols/navigatordialog.cpp:82
-msgid "New"
-msgstr "Naujas"
+#: uicontrols/reconciledialog.cpp:101
+msgid "&New"
+msgstr ""
 
-#: daterangedialog.cpp:129 uicontrols/navigatordialog.cpp:86
-#: webappdialog.cpp:417
-msgid "Delete"
-msgstr "Ištrinti"
+#: daterangedialog.cpp:129 themes.cpp:192 uicontrols/navigatordialog.cpp:86
+#: uicontrols/toolbardialog.cpp:103 webappdialog.cpp:417
+msgid "&Delete"
+msgstr "&Ištrinti"
 
-#: daterangedialog.cpp:135 daterangeeditdialog.cpp:106
-msgid "Save"
+#: daterangedialog.cpp:135 transdialog.cpp:642
+msgid "&Save"
 msgstr ""
 
 #: daterangedialog.cpp:136
-msgid "Restore default ranges"
+msgid "&Restore default ranges"
+msgstr ""
+
+#: daterangedialog.cpp:137
+msgid "&Cancel"
 msgstr ""
 
 #: daterangedialog.cpp:229
@@ -2324,6 +2325,10 @@ msgstr ""
 
 #: daterangeeditdialog.cpp:97
 msgid "Range code:"
+msgstr ""
+
+#: daterangeeditdialog.cpp:106
+msgid "Save"
 msgstr ""
 
 #: daterangeeditdialog.cpp:128
@@ -2519,7 +2524,7 @@ msgstr "Namų mokesčiai"
 msgid "Water Tax"
 msgstr "Vandens mokesčiai"
 
-#: db/DB_Table_Category_V1.h:161 optionsettingshome.cpp:110
+#: db/DB_Table_Category_V1.h:161 optionsettingshome.cpp:111
 msgid "Miscellaneous"
 msgstr "Įvairūs"
 
@@ -2547,8 +2552,8 @@ msgstr "Kitos pajamos"
 msgid "Other Expenses"
 msgstr "Kitos išlaidos"
 
-#: db/DB_Table_Category_V1.h:169 filtertransdialog.cpp:919
-#: filtertransdialog.cpp:1621 filtertransdialog.cpp:1721
+#: db/DB_Table_Category_V1.h:169 filtertransdialog.cpp:920
+#: filtertransdialog.cpp:1622 filtertransdialog.cpp:1722
 #: import_export/qif_import_gui.cpp:534 import_export/qif_import_gui.cpp:664
 #: model/Model_Checking.cpp:35
 msgid "Transfer"
@@ -2747,7 +2752,7 @@ msgstr "Stebima"
 msgid "Duplicate"
 msgstr "Dubliuota"
 
-#: filtertransdialog.cpp:56 filtertransdialog.cpp:1904
+#: filtertransdialog.cpp:56 filtertransdialog.cpp:1905
 msgid "All Except Reconciled"
 msgstr "Visos išskyrus Suderintas"
 
@@ -2807,17 +2812,17 @@ msgstr "Laikotarpių diapazonas"
 msgid "Date Range"
 msgstr "Laikotarpis"
 
-#: filtertransdialog.cpp:643 filtertransdialog.cpp:1892
+#: filtertransdialog.cpp:643 filtertransdialog.cpp:1893
 msgid "Include all subcategories"
 msgstr ""
 
-#: filtertransdialog.cpp:676 filtertransdialog.cpp:909
-#: filtertransdialog.cpp:1621 filtertransdialog.cpp:1721
+#: filtertransdialog.cpp:676 filtertransdialog.cpp:910
+#: filtertransdialog.cpp:1622 filtertransdialog.cpp:1722
 msgid "Transfer Out"
 msgstr "Perkelti"
 
-#: filtertransdialog.cpp:677 filtertransdialog.cpp:1619
-#: filtertransdialog.cpp:1719
+#: filtertransdialog.cpp:677 filtertransdialog.cpp:1620
+#: filtertransdialog.cpp:1720
 msgid "Transfer In"
 msgstr "Perkelti į"
 
@@ -2826,66 +2831,74 @@ msgid "Amount Range"
 msgstr "Sumos intervalas"
 
 #: filtertransdialog.cpp:713
-msgid "Enter any string to find it in transaction notes"
-msgstr "Įveskite bet kurią eilutę, kad ją rastumėte operacijų pastabose"
+msgid "Enter any string to find it in transaction notes."
+msgstr ""
 
-#: filtertransdialog.cpp:718 mmcheckingpanel.cpp:361 payeedialog.cpp:143
+#: filtertransdialog.cpp:715 payeedialog.cpp:140
+msgid "The question mark (?) matches a single character, for example \"s?t\" finds both \"sat\" and \"set\"."
+msgstr ""
+
+#: filtertransdialog.cpp:716 payeedialog.cpp:141
+msgid "The asterisk (*) matches any number of characters, for example \"s*d\" finds both \"sad\" and \"started\"."
+msgstr ""
+
+#: filtertransdialog.cpp:717 mmcheckingpanel.cpp:361 payeedialog.cpp:143
 msgid "Use regex: to match using regular expressions."
 msgstr "Naudokite reguliarųjį reiškinį:, kad atitiktumėte naudodami reguliariąsias išraiškas."
 
-#: filtertransdialog.cpp:740
+#: filtertransdialog.cpp:741
 msgid "Presentation Options"
 msgstr "Pranešimo nuostatos"
 
-#: filtertransdialog.cpp:754 filtertransdialog.cpp:1123
-#: filtertransdialog.cpp:1752 filtertransdialog.cpp:2005
+#: filtertransdialog.cpp:755 filtertransdialog.cpp:1124
+#: filtertransdialog.cpp:1753 filtertransdialog.cpp:2006
 msgid "Hide Columns"
 msgstr "Nerodyti stulpelių"
 
-#: filtertransdialog.cpp:763 filtertransdialog.cpp:1130
-#: filtertransdialog.cpp:2018
+#: filtertransdialog.cpp:764 filtertransdialog.cpp:1131
+#: filtertransdialog.cpp:2019
 msgid "Group By"
 msgstr "Grupuoti pagal"
 
-#: filtertransdialog.cpp:772
+#: filtertransdialog.cpp:773
 msgid "Specify how the report should be grouped"
 msgstr "Nurodykite, kaip ataskaita turėtų būti grupuojama"
 
-#: filtertransdialog.cpp:775 filtertransdialog.cpp:1136
-#: filtertransdialog.cpp:2029
+#: filtertransdialog.cpp:776 filtertransdialog.cpp:1137
+#: filtertransdialog.cpp:2030
 msgid "Chart"
 msgstr "Diagramos"
 
-#: filtertransdialog.cpp:784
+#: filtertransdialog.cpp:785
 msgid "Specify which chart will be included in the report"
 msgstr ""
 
-#: filtertransdialog.cpp:787 filtertransdialog.cpp:2038
+#: filtertransdialog.cpp:788 filtertransdialog.cpp:2039
 msgid "Combine Splits"
 msgstr "Sujungti padalijimus"
 
-#: filtertransdialog.cpp:790
+#: filtertransdialog.cpp:791
 msgid "Display split transactions as a single row"
 msgstr "Rodyti padalintas operacijas kaip vieną eilutę"
 
-#: filtertransdialog.cpp:799 mmframe.cpp:2087 mmframe.cpp:3267
+#: filtertransdialog.cpp:800 mmframe.cpp:2087 mmframe.cpp:3267
 #: optiondialog.cpp:222 optiondialog.h:49 uicontrols/reconciledialog.cpp:114
 msgid "Settings"
 msgstr "Nustatymai"
 
-#: filtertransdialog.cpp:812
+#: filtertransdialog.cpp:813
 msgid "Save active values into current Preset selection"
 msgstr "Išsaugokite aktyvias reikšmes į esamą išankstinio nustatymo pasirinkimą"
 
-#: filtertransdialog.cpp:816
+#: filtertransdialog.cpp:817
 msgid "Delete current Preset selection"
 msgstr "Ištrinti esamą išankstinio nustatymo pasirinkimą"
 
-#: filtertransdialog.cpp:845
+#: filtertransdialog.cpp:846
 msgid "&Reset "
 msgstr ""
 
-#: filtertransdialog.cpp:1030
+#: filtertransdialog.cpp:1031
 #, c-format
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
@@ -2893,78 +2906,78 @@ msgid "This name does not currently match any payees.\n"
 msgstr "Šis vardas šiuo metu neatitinka jokio mokėjimo gavėjo.\n"
 "Ar norite ir toliau juo naudotis %s"
 
-#: filtertransdialog.cpp:1222
+#: filtertransdialog.cpp:1223
 msgid "Hide Report Columns"
 msgstr "Slėpti ataskaitos stulpelius"
 
-#: filtertransdialog.cpp:1348 mmframe.cpp:1468
+#: filtertransdialog.cpp:1349 mmframe.cpp:1468
 msgid "Settings item deletion"
 msgstr "Nustatymų elemento ištrynimas"
 
-#: filtertransdialog.cpp:1348
+#: filtertransdialog.cpp:1349
 msgid "The selected item will be deleted"
 msgstr "Pasirinktas elementas bus ištrintas"
 
-#: filtertransdialog.cpp:1681
+#: filtertransdialog.cpp:1682
 msgid "Filtering Details: "
 msgstr "Filtro informacija: "
 
-#: filtertransdialog.cpp:1811
+#: filtertransdialog.cpp:1812
 msgid "Label"
 msgstr "Žyma"
 
-#: filtertransdialog.cpp:1844
+#: filtertransdialog.cpp:1845
 msgid "Since"
 msgstr "Nuo"
 
-#: filtertransdialog.cpp:1846
+#: filtertransdialog.cpp:1847
 msgid "Before"
 msgstr "Prieš"
 
-#: filtertransdialog.cpp:1859
+#: filtertransdialog.cpp:1860
 msgid "Period"
 msgstr "Laikotarpis"
 
-#: filtertransdialog.cpp:1930
+#: filtertransdialog.cpp:1931
 msgid "Amount Min."
 msgstr "Suma Min."
 
-#: filtertransdialog.cpp:1938
+#: filtertransdialog.cpp:1939
 msgid "Amount Max."
 msgstr "Suma Max."
 
-#: filtertransdialog.cpp:2185 mmframe.cpp:1496
+#: filtertransdialog.cpp:2186 mmframe.cpp:1496
 msgid "Please Enter"
 msgstr "Įveskite"
 
-#: filtertransdialog.cpp:2185 mmframe.cpp:1496
+#: filtertransdialog.cpp:2186 mmframe.cpp:1496
 msgid "Setting Name"
 msgstr "Nustatymo pavadinimas"
 
-#: filtertransdialog.cpp:2209 import_export/univcsvdialog.cpp:1196
+#: filtertransdialog.cpp:2210 import_export/univcsvdialog.cpp:1196
 msgid "The entered name is already in use"
 msgstr "Įvestas vardas jau naudojamas"
 
-#: filtertransdialog.cpp:2209 images_list.cpp:345 images_list.cpp:435
+#: filtertransdialog.cpp:2210 images_list.cpp:345 images_list.cpp:435
 #: images_list.cpp:446 images_list.cpp:481 images_list.cpp:510
 #: images_list.cpp:516 import_export/qif_import_gui.cpp:819
 #: import_export/qif_import_gui.cpp:822 import_export/univcsvdialog.cpp:1196
 msgid "Warning"
 msgstr "Dėmesio"
 
-#: filtertransdialog.cpp:2238
+#: filtertransdialog.cpp:2239
 msgid "Do you want to save them before continuing?"
 msgstr "Ar norite juos išsaugoti prieš tęsdami?"
 
-#: filtertransdialog.cpp:2238
+#: filtertransdialog.cpp:2239
 msgid "Filter settings have changed"
 msgstr "Filtro nustatymai pasikeitė"
 
-#: filtertransdialog.cpp:2238
+#: filtertransdialog.cpp:2239
 msgid "Please confirm"
 msgstr "Prašome patvirtinti"
 
-#: filtertransdialog.cpp:2288 reports/reportbase.cpp:231
+#: filtertransdialog.cpp:2289 reports/reportbase.cpp:231
 msgid "Choose Accounts"
 msgstr "Pasirinkite sąskaitas"
 
@@ -2978,7 +2991,7 @@ msgid "Reports"
 msgstr "Ataskaitos"
 
 #: general_report_manager.cpp:427 import_export/univcsvdialog.cpp:629
-#: themes.cpp:190
+#: themes.cpp:190 webappdialog.cpp:415
 msgid "&Import"
 msgstr "&Importuoti"
 
@@ -3194,7 +3207,7 @@ msgid "Copy as SQL SELECT"
 msgstr ""
 
 #: generic/generictreelistdialog.cpp:110 generic/generictreelistdialog.cpp:289
-msgid "Restore default"
+msgid "&Restore default"
 msgstr ""
 
 #: generic/generictreelistdialog.cpp:288
@@ -3411,7 +3424,7 @@ msgid "Prompt to confirm each fuzzy match"
 msgstr ""
 
 #: import_export/ofx_import_gui.cpp:944 import_export/univcsvdialog.cpp:1404
-#: import_export/univcsvdialog.cpp:1599 webappdialog.cpp:415
+#: import_export/univcsvdialog.cpp:1599
 msgid "Import"
 msgstr "Importuoti"
 
@@ -4649,7 +4662,7 @@ msgid "Category Manager tip: Pressing 2 key combination will cycle through all c
 msgstr ""
 
 #: mmTips.h:37
-msgid "Never endorse a loan. If the borrower—a friend, a family member, a significant other, or whoever—misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
+msgid "Never endorse a loan. If the borrower, whether a friend, a family member, a significant other, or someone else, misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
 msgstr ""
 
 #: mmTips.h:39
@@ -4742,7 +4755,7 @@ msgid "Before starting to invest, know your cash flow (have a budget)."
 msgstr ""
 
 #: mmTips.h:67
-msgid "Before starting to invest, pay off consumer debt—especially credit cards."
+msgid "Before starting to invest, pay off consumer debt, especially credit cards."
 msgstr ""
 
 #: mmTips.h:68
@@ -6292,7 +6305,7 @@ msgstr "Iš kur gaunami pinigai"
 msgid "Forecast Report"
 msgstr "Prognozės ataskaita"
 
-#: mmframereport.cpp:169 optionsettingshome.cpp:80
+#: mmframereport.cpp:169 optionsettingshome.cpp:81
 msgid "Income vs. Expenses"
 msgstr ""
 
@@ -6386,6 +6399,7 @@ msgid "Expenses"
 msgstr "Išlaidos"
 
 #: mmhomepage.cpp:432 reports/incexpenses.cpp:117
+#: uicontrols/reconciledialog.cpp:208
 msgid "Difference:"
 msgstr "Skirtumas:"
 
@@ -7005,11 +7019,11 @@ msgstr "Valiutos vertės pavyzdys: %s"
 msgid "Bad locale name"
 msgstr "Blogas lokalės pavadinimas"
 
-#: optionsettingshome.cpp:92
+#: optionsettingshome.cpp:93
 msgid "Last N Days"
 msgstr ""
 
-#: optionsettingshome.cpp:115 optionsettingstransaction.cpp:227
+#: optionsettingshome.cpp:116 optionsettingstransaction.cpp:227
 msgid "Ignore Future Transactions"
 msgstr ""
 
@@ -7330,6 +7344,10 @@ msgstr "Nurodyti, kurios sąskaitos yra matomos"
 
 #: optionsettingsview.cpp:95
 msgid "Category Delimiter"
+msgstr ""
+
+#: optionsettingsview.cpp:103 optionsettingsview.cpp:107
+msgid "Edit"
 msgstr ""
 
 #: optionsettingsview.cpp:106
@@ -8697,10 +8715,6 @@ msgstr ""
 msgid "Confirm Tag Deletion"
 msgstr ""
 
-#: themes.cpp:192 uicontrols/toolbardialog.cpp:103
-msgid "&Delete"
-msgstr "&Ištrinti"
-
 #: themes.cpp:194
 msgid "&Use"
 msgstr "&Naudoti"
@@ -8785,10 +8799,6 @@ msgstr "Užpildyti operaciją #"
 msgid "Manage transaction attachments"
 msgstr ""
 
-#: transdialog.cpp:642
-msgid "&Save"
-msgstr ""
-
 #: transdialog.cpp:644
 msgid "Save and &New"
 msgstr ""
@@ -8846,8 +8856,8 @@ msgstr ""
 msgid "Selection name"
 msgstr ""
 
-#: uicontrols/navigatordialog.cpp:93 uicontrols/navigatordialog.cpp:194
-msgid "Reset names"
+#: uicontrols/navigatordialog.cpp:93
+msgid "&Reset names"
 msgstr ""
 
 #: uicontrols/navigatordialog.cpp:97
@@ -8856,6 +8866,10 @@ msgstr ""
 
 #: uicontrols/navigatordialog.cpp:193
 msgid "Do you really want to reset the configured names?"
+msgstr ""
+
+#: uicontrols/navigatordialog.cpp:194
+msgid "Reset names"
 msgstr ""
 
 #: uicontrols/navigatoreditdialog.cpp:34
@@ -8871,15 +8885,7 @@ msgid "Reconcile account"
 msgstr ""
 
 #: uicontrols/reconciledialog.cpp:79 uicontrols/reconciledialog.cpp:203
-msgid "Statement ending:"
-msgstr ""
-
-#: uicontrols/reconciledialog.cpp:96
-msgid "&Edit"
-msgstr ""
-
-#: uicontrols/reconciledialog.cpp:101
-msgid "&New"
+msgid "Statement ending balance:"
 msgstr ""
 
 #: uicontrols/reconciledialog.cpp:106
@@ -8899,19 +8905,19 @@ msgid "Deposits"
 msgstr ""
 
 #: uicontrols/reconciledialog.cpp:193
-msgid "Previous balance:"
+msgid "Statement opening balance:"
 msgstr ""
 
 #: uicontrols/reconciledialog.cpp:198
-msgid "Cleared Balance:"
+msgid "Cleared balance:"
 msgstr ""
 
 #: uicontrols/reconciledialog.cpp:228
-msgid "Reconcile &later"
+msgid "Finish la&ter"
 msgstr ""
 
 #: uicontrols/reconciledialog.cpp:231
-msgid "&Reconcile"
+msgid "Fi&nished"
 msgstr ""
 
 #: uicontrols/reconciledialog.cpp:520
@@ -8935,7 +8941,7 @@ msgid "Toolbar configuration"
 msgstr ""
 
 #: uicontrols/toolbardialog.cpp:73
-msgid "Add separator"
+msgid "Insert &separator"
 msgstr ""
 
 #: uicontrols/toolbardialog.cpp:75
@@ -8944,7 +8950,7 @@ msgid "Insert a vertical separator line.\n"
 msgstr ""
 
 #: uicontrols/toolbardialog.cpp:82
-msgid "Add space"
+msgid "Insert s&pace"
 msgstr ""
 
 #: uicontrols/toolbardialog.cpp:84
@@ -8953,7 +8959,7 @@ msgid "Insert a fixed-size empty space.\n"
 msgstr ""
 
 #: uicontrols/toolbardialog.cpp:91
-msgid "Add stretch space"
+msgid "Insert s&tretch space"
 msgstr ""
 
 #: uicontrols/toolbardialog.cpp:93
@@ -9216,8 +9222,8 @@ msgid "&Import all "
 msgstr "&Importuoti viską "
 
 #: webappdialog.cpp:158
-msgid "Import and open all "
-msgstr "Importuoti ir atverti viską "
+msgid "Im&port and open all "
+msgstr ""
 
 #: webappdialog.cpp:205
 msgid "Unable to download transactions from the WebApp."
@@ -9236,12 +9242,12 @@ msgid "WebApp communication error"
 msgstr "WebApp ryšio klaida"
 
 #: webappdialog.cpp:414
-msgid "Open Attachment"
-msgstr "Atverti priedą"
+msgid "&Open Attachment"
+msgstr ""
 
 #: webappdialog.cpp:416
-msgid "Import and open"
-msgstr "Importuoti ir atverti"
+msgid "Im&port and open"
+msgstr ""
 
 #: wizard_newaccount.cpp:32
 msgid "Add Account Wizard"
