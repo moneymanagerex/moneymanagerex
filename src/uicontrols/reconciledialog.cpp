@@ -104,7 +104,7 @@ void mmReconcileDialog::CreateControls()
     btn->SetCanFocus(false);
     topSizer->Add(btn, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
 
-    btn = new wxButton(topPanel, wxID_ANY, _t("&Toggle all"));
+    btn = new wxButton(topPanel, wxID_ANY, _t("&All (un)cleared"));
     btn->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnToggle, this);
     btn->SetCanFocus(false);
     topSizer->Add(btn, 0, wxRIGHT, 20);
