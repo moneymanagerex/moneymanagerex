@@ -178,7 +178,7 @@ void mmSetOwnFont(wxStaticText* w, const wxFont& font)
 void mmReportsPanel::loadFilterSettings() {
     wxString key = m_use_account_specific_filter
         ? wxString::Format("REPORT_FILTER_DEDICATED_%d", m_rb->getTypeId())
-        : "CHECK_FILTER_ALL";
+        : "REPORT_FILTER_ALL";
     Document j_doc = Model_Infotable::instance().getJdoc(key, "{}");
 
     int fid = 0;
@@ -236,7 +236,7 @@ void mmReportsPanel::loadFilterSettings() {
 void mmReportsPanel::saveFilterSettings() {
     wxString key = m_use_account_specific_filter
         ? wxString::Format("REPORT_FILTER_DEDICATED_%d", m_rb->getTypeId())
-        : "CHECK_FILTER_ALL";
+        : "REPORT_FILTER_ALL";
     Document j_doc = Model_Infotable::instance().getJdoc(key, "{}");
     Model_Infotable::saveFilterInt(j_doc, "FILTER_ID", m_filter_id);
     Model_Infotable::saveFilterString(j_doc, "FILTER_NAME",
@@ -244,25 +244,33 @@ void mmReportsPanel::saveFilterSettings() {
     );
 
     if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_RANGE) {
-        if (!m_date_range.rangeName().IsEmpty())
+        if (!m_date_range.rangeName().IsEmpty()) {
             Model_Infotable::saveFilterString(j_doc, "FILTER_DATE", m_date_range.rangeName());
-        else
+            Model_Infotable::saveFilterString(j_doc, "FILTER_DATE_BEGIN", "");
+            Model_Infotable::saveFilterString(j_doc, "FILTER_DATE_END", "");
+        }
+        else {
             wxLogError("mmReportsPanel::saveFilterSettings(): m_date_range.rangeName() is empty");
+        }
     }
     else if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_PICKER) {
-        if (w_start_date_picker)
+        if (w_start_date_picker) {
             Model_Infotable::saveFilterString(j_doc, "FILTER_DATE_BEGIN",
                 DateDayN(w_start_date_picker->GetValue()).isoDateN()
             );
-        else
+        }
+        else {
             wxLogError("mmReportsPanel::saveFilterSettings(): w_start_date_picker is null");
-
-        if (w_end_date_picker)
+        }
+        if (w_end_date_picker) {
             Model_Infotable::saveFilterString(j_doc, "FILTER_DATE_END",
                 DateDayN(w_end_date_picker->GetValue()).isoDateN()
             );
-        else
+        }
+        else {
             wxLogError("mmReportsPanel::saveFilterSettings(): w_end_date_picker is null");
+        }
+        Model_Infotable::saveFilterString(j_doc, "FILTER_DATE", "");
     }
 
     Model_Infotable::instance().setJdoc(key, j_doc);
@@ -754,37 +762,6 @@ void mmReportsPanel::onSingleDateChanged(wxDateEvent& WXUNUSED(event))
     }
 }
 
-void mmReportsPanel::onStartEndDateChanged(wxDateEvent& event)
-{
-    wxObject* eo = event.GetEventObject();
-    if (eo) {
-        wxDateTime start_dateTime = w_start_date_picker->GetValue();
-        wxDateTime end_dateTime = w_end_date_picker->GetValue();
-        if (w_start_date_picker->isItMyDateControl(eo)) {
-            //wxLogDebug("Start date changed to %s", start_dateTime.FormatISODate());
-            if (start_dateTime > end_dateTime) {
-                w_end_date_picker->SetValue(start_dateTime);
-                wxLogDebug("End date changed to %s", start_dateTime.FormatISODate());
-            }
-        }
-        else if (w_end_date_picker->isItMyDateControl(eo)) {
-            if (start_dateTime > end_dateTime) {
-                w_start_date_picker->SetValue(end_dateTime);
-                wxLogDebug("Start date changed to %s", end_dateTime.FormatISODate());
-            }
-        }
-    }
-
-    m_filter_id = mmCheckingPanel::FILTER_ID_DATE_PICKER;
-    updateFilter();
-    saveFilterSettings();
-
-    if (m_rb) {
-        saveReportText(false);
-        m_rb->saveReportSettings();
-    }
-}
-
 void mmReportsPanel::onChartChanged(wxCommandEvent& WXUNUSED(event))
 {
     if (!m_rb)
@@ -902,6 +879,37 @@ void mmReportsPanel::onDateRangeEdit(wxCommandEvent& WXUNUSED(event))
 
         updateFilter();
         saveFilterSettings();
+    }
+}
+
+void mmReportsPanel::onStartEndDateChanged(wxDateEvent& event)
+{
+    wxObject* eo = event.GetEventObject();
+    if (eo) {
+        wxDateTime start_dateTime = w_start_date_picker->GetValue();
+        wxDateTime end_dateTime = w_end_date_picker->GetValue();
+        if (w_start_date_picker->isItMyDateControl(eo)) {
+            //wxLogDebug("Start date changed to %s", start_dateTime.FormatISODate());
+            if (start_dateTime > end_dateTime) {
+                w_end_date_picker->SetValue(start_dateTime);
+                wxLogDebug("End date changed to %s", start_dateTime.FormatISODate());
+            }
+        }
+        else if (w_end_date_picker->isItMyDateControl(eo)) {
+            if (start_dateTime > end_dateTime) {
+                w_start_date_picker->SetValue(end_dateTime);
+                wxLogDebug("Start date changed to %s", end_dateTime.FormatISODate());
+            }
+        }
+    }
+
+    m_filter_id = mmCheckingPanel::FILTER_ID_DATE_PICKER;
+    updateFilter();
+    saveFilterSettings();
+
+    if (m_rb) {
+        saveReportText(false);
+        m_rb->saveReportSettings();
     }
 }
 
