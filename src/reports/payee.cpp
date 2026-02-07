@@ -29,12 +29,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <algorithm>
 
-mmReportPayeeExpenses::mmReportPayeeExpenses()
-    : ReportBase(_n("Payee Report"))
-    , positiveTotal_(0.0)
-    , negativeTotal_(0.0)
+mmReportPayeeExpenses::mmReportPayeeExpenses() :
+    ReportBase(_n("Payee Report")),
+    positiveTotal_(0.0),
+    negativeTotal_(0.0)
 {
-    setReportParameters(TYPE_ID::Payees);
+    setReportParameters(REPORT_ID::Payees);
 }
 
 mmReportPayeeExpenses::~mmReportPayeeExpenses()

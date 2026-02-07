@@ -16,8 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_REPORTPAYEE_H_
-#define MM_EX_REPORTPAYEE_H_
+#pragma once
 
 #include "reportbase.h"
 #include "util.h"
@@ -27,25 +26,40 @@
 class mmReportPayeeExpenses : public ReportBase
 {
 public:
+    enum TYPE {
+        INCOME = 0,
+        EXPENSES,
+        MAX
+    };
+
+private:
+    // structure for sorting of data
+    struct data_holder
+    {
+        wxString name;
+        int64 payee;
+        double incomes;
+        double expenses;
+    };
+
+public:
     mmReportPayeeExpenses();
     virtual ~mmReportPayeeExpenses();
 
+public:
     virtual void refreshData();
     virtual wxString getHTMLText();
 
 protected:
-    void getPayeeStats(std::map<int64, std::pair<double, double> > &payeeStats
-        , mmDateRange* date_range, bool ignoreFuture) const;
-
-    enum TYPE {INCOME = 0, EXPENSES, MAX};
+    void getPayeeStats(
+        std::map<int64, std::pair<double, double> > &payeeStats,
+        mmDateRange* date_range, bool ignoreFuture
+    ) const;
 
 private:
-    // structure for sorting of data
-    struct data_holder { wxString name; int64 payee; double incomes; double expenses; };
     std::vector<data_holder> data_;
     std::vector<ValuePair> valueList_;
     double positiveTotal_;
     double negativeTotal_;
 };
 
-#endif //MM_EX_REPORTPAYEE_H_

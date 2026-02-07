@@ -36,7 +36,7 @@
 mmReportSummaryStocks::mmReportSummaryStocks()
     : ReportBase(_n("Summary of Stocks"))
 {
-    setReportParameters(TYPE_ID::StocksReportSummary);
+    setReportParameters(REPORT_ID::StocksReportSummary);
 }
 
 void  mmReportSummaryStocks::refreshData()
@@ -244,7 +244,7 @@ wxString mmReportSummaryStocks::getHTMLText()
 mmReportChartStocks::mmReportChartStocks()
     : ReportBase(_n("Stocks Performance Charts"))
 {
-    setReportParameters(TYPE_ID::StocksReportPerformance);
+    setReportParameters(REPORT_ID::StocksReportPerformance);
 }
 
 mmReportChartStocks::~mmReportChartStocks()

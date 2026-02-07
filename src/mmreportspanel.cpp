@@ -107,7 +107,7 @@ bool mmReportsPanel::Create(
 
     saveReportText();
 
-    ReportBase::TYPE_ID id = m_rb->getTypeId();
+    ReportBase::REPORT_ID id = m_rb->getReportId();
     this->SetLabel(id < 0 ? "Custom Report" : m_rb->getTitle(false));
 
     return true;
@@ -177,7 +177,7 @@ void mmSetOwnFont(wxStaticText* w, const wxFont& font)
 // function only used for new filter
 void mmReportsPanel::loadFilterSettings() {
     wxString key = m_use_account_specific_filter
-        ? wxString::Format("REPORT_FILTER_DEDICATED_%d", m_rb->getTypeId())
+        ? wxString::Format("REPORT_FILTER_DEDICATED_%d", m_rb->getReportId())
         : "REPORT_FILTER_ALL";
     Document j_doc = Model_Infotable::instance().getJdoc(key, "{}");
 
@@ -235,7 +235,7 @@ void mmReportsPanel::loadFilterSettings() {
 
 void mmReportsPanel::saveFilterSettings() {
     wxString key = m_use_account_specific_filter
-        ? wxString::Format("REPORT_FILTER_DEDICATED_%d", m_rb->getTypeId())
+        ? wxString::Format("REPORT_FILTER_DEDICATED_%d", m_rb->getReportId())
         : "REPORT_FILTER_ALL";
     Document j_doc = Model_Infotable::instance().getJdoc(key, "{}");
     Model_Infotable::saveFilterInt(j_doc, "FILTER_ID", m_filter_id);
@@ -460,7 +460,7 @@ void mmReportsPanel::CreateControls()
                 const wxString& name = e.BUDGETYEARNAME;
 
                 // Only years for performance report
-                if (m_rb->getTypeId() == ReportBase::TYPE_ID::BudgetCategorySummary ||
+                if (m_rb->getReportId() == ReportBase::REPORT_ID::BudgetCategorySummary ||
                     name.length() == 4
                 ) {
                     w_year_choice->Append(name, new wxStringClientData(wxString::Format("%lld", e.BUDGETYEARID)));

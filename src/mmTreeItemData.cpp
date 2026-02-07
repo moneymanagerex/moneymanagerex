@@ -52,7 +52,7 @@ mmTreeItemData::mmTreeItemData(const wxString& data, ReportBase* report)
     , stringData_(data)
     , report_(report)
 {
-    const wxString& n = wxString::Format("REPORT_%d", report_->getTypeId());
+    const wxString& n = wxString::Format("REPORT_%d", report_->getReportId());
     const wxString& settings = Model_Infotable::instance().getString(n, "");
     report_->setReportSettings(settings);
 }

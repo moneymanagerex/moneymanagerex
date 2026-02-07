@@ -39,8 +39,8 @@ mmReportSummaryByDate::mmReportSummaryByDate(mmReportSummaryByDate::PERIOD_ID pe
     m_period_id(period_id)
 {
     setReportParameters((period_id == PERIOD_ID::MONTH)
-        ? TYPE_ID::MonthlySummaryofAccounts
-        : TYPE_ID::YearlySummaryofAccounts
+        ? REPORT_ID::MonthlySummaryofAccounts
+        : REPORT_ID::YearlySummaryofAccounts
     );
 }
 

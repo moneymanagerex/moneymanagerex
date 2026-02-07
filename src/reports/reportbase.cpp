@@ -36,11 +36,11 @@ ReportBase::~ReportBase()
 {
 }
 
-void ReportBase::setReportParameters(ReportBase::TYPE_ID type_id)
+void ReportBase::setReportParameters(ReportBase::REPORT_ID report_id)
 {
-    m_type_id = type_id;
+    m_report_id = report_id;
 
-    switch (type_id) {
+    switch (report_id) {
     case MyUsage:                     m_parameters = M_DATE_RANGE | M_CHART; break;
     case MonthlySummaryofAccounts:    m_parameters = M_CHART; break;
     case YearlySummaryofAccounts:     m_parameters = M_CHART; break;
@@ -67,9 +67,9 @@ void ReportBase::setReportParameters(ReportBase::TYPE_ID type_id)
 
 void ReportBase::saveReportSettings()
 {
-    TYPE_ID type_id = getTypeId();
-    wxLogDebug("%d - %s", type_id, m_title);
-    if (type_id < 0)
+    REPORT_ID report_id = getReportId();
+    wxLogDebug("%d - %s", report_id, m_title);
+    if (report_id < 0)
         return;
 
     Document j_doc;
@@ -115,7 +115,7 @@ void ReportBase::saveReportSettings()
     json_writer.EndObject();
 
     if (isActive) {
-        const wxString& rj_key = wxString::Format("REPORT_%d", type_id);
+        const wxString& rj_key = wxString::Format("REPORT_%d", report_id);
         const wxString& rj_value = wxString::FromUTF8(json_buffer.GetString());
         Model_Infotable::instance().setString(rj_key, rj_value);
         m_settings = rj_value;
@@ -267,8 +267,8 @@ mmGeneralReport::mmGeneralReport(const Model_Report::Data* report) :
     m_report(report)
 {
     // Store reportid if no id is provided
-    if (m_type_id == -1 && report->REPORTID >= LONG_MIN && report->REPORTID <= LONG_MAX) {
-        m_type_id = static_cast<ReportBase::TYPE_ID>(int(report->REPORTID.ToLong()));
+    if (m_report_id == -1 && report->REPORTID >= LONG_MIN && report->REPORTID <= LONG_MAX) {
+        m_report_id = static_cast<ReportBase::REPORT_ID>(int(report->REPORTID.ToLong()));
     }
 }
 

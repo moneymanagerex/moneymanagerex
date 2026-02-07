@@ -339,7 +339,7 @@ mmReportCashFlowDaily::mmReportCashFlowDaily()
     : mmReportCashFlow(_n("Cash Flow - Daily"))
 {
     this->setForwardMonths(12);
-    setReportParameters(TYPE_ID::DailyCashFlow);
+    setReportParameters(REPORT_ID::DailyCashFlow);
 }
 
 wxString mmReportCashFlowDaily::getHTMLText()
@@ -353,7 +353,7 @@ mmReportCashFlowMonthly::mmReportCashFlowMonthly()
     : mmReportCashFlow(_n("Cash Flow - Monthly"))
 {
     this->setForwardMonths(120);
-    setReportParameters(TYPE_ID::MonthlyCashFlow);
+    setReportParameters(REPORT_ID::MonthlyCashFlow);
 }
 
 wxString mmReportCashFlowMonthly::getHTMLText()
@@ -366,7 +366,7 @@ wxString mmReportCashFlowMonthly::getHTMLText()
 mmReportCashFlowTransactions::mmReportCashFlowTransactions()
     : mmReportCashFlow(_n("Cash Flow - Transactions"))
 {
-    setReportParameters(TYPE_ID::TransactionsCashFlow);
+    setReportParameters(REPORT_ID::TransactionsCashFlow);
 }
 
 wxString mmReportCashFlowTransactions::getHTMLText()

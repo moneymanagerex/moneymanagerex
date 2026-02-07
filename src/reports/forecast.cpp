@@ -29,7 +29,7 @@ class mm_html_template;
 
 mmReportForecast::mmReportForecast(): ReportBase(_n("Forecast"))
 {
-    setReportParameters(TYPE_ID::ForecastReport);
+    setReportParameters(REPORT_ID::ForecastReport);
 }
 
 mmReportForecast::~mmReportForecast()

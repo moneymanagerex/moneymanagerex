@@ -25,7 +25,7 @@
 
 mmReportBudget::mmReportBudget(): ReportBase("mmReportBudget")
 {
-    setReportParameters(TYPE_ID::UNUSED);
+    setReportParameters(REPORT_ID::NONE);
 }
 
 mmReportBudget::~mmReportBudget()

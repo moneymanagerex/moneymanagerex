@@ -30,7 +30,7 @@ class wxArrayString;
 class ReportBase
 {
 public:
-    enum TYPE_ID {
+    enum REPORT_ID {
         MyUsage = 0,
         MonthlySummaryofAccounts,
         YearlySummaryofAccounts,
@@ -51,7 +51,7 @@ public:
         ForecastReport,
         BugReport,
         CategoryOverTimePerformance,
-        UNUSED = -1
+        NONE = -1
     };
 
     enum PARAM_MASK
@@ -69,7 +69,7 @@ public:
     };
 
 protected:
-    TYPE_ID m_type_id = TYPE_ID::UNUSED;
+    REPORT_ID m_report_id = REPORT_ID::NONE;
     wxString m_title;
     int m_parameters = 0;
     wxString m_settings = "";
@@ -96,7 +96,7 @@ public:
     virtual void refreshData() {}
     virtual wxString getHTMLText() = 0;
 
-    void setReportParameters(TYPE_ID type_id);
+    void setReportParameters(REPORT_ID report_id);
     void setReportSettings(const wxString& settings);
     void setDateRange(const mmDateRange* date_range);
     void setDateSelection(int64 sel);
@@ -104,7 +104,7 @@ public:
     void setAccounts(int selection, const wxString& type_name);
     void setChartSelection(int selection);
 
-    TYPE_ID getTypeId() const;
+    REPORT_ID getReportId() const;
     const wxString getReportSettings() const;
     int64 getDateSelection() const;
     int getForwardMonths() const;
@@ -127,7 +127,7 @@ inline void ReportBase::setForwardMonths(int sel) { m_forward_months = sel; }
 inline void ReportBase::setChartSelection(int selection) { m_chart_selection = selection; }
 
 // get
-inline ReportBase::TYPE_ID ReportBase::getTypeId() const { return m_type_id; }
+inline ReportBase::REPORT_ID ReportBase::getReportId() const { return m_report_id; }
 inline const wxString ReportBase::getReportSettings() const { return m_settings; }
 inline int64 ReportBase::getDateSelection() const { return this->m_date_selection; }
 inline int ReportBase::getForwardMonths() const { return this->m_forward_months; }
