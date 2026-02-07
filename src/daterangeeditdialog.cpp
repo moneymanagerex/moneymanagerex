@@ -33,7 +33,7 @@ const wxArrayString sTokenPeriods = { "", "A", "Y", "Q", "M", "W", "T", "S" };
 const char *sCountValues[] = {
     "-12", "-11", "-10", "-9", "-8", "-7", "-6", "-5", "-4", "-3", "-2", "-1",
     "",
-    "+1", "+2", "+3", "+4", "+5", "+6", "+7", "+8", "9", "+10", "+11", "+12"
+    "+1", "+2", "+3", "+4", "+5", "+6", "+7", "+8", "+9", "+10", "+11", "+12"
 };
 const wxArrayString sCount = { 25, sCountValues };
 
@@ -135,12 +135,12 @@ void mmDateRangeEditDialog::OnRange(wxCommandEvent&)
 
 bool mmDateRangeEditDialog::checkRange() {
     bool rangeOk = false;
-    DateRange2 rdata = DateRange2();
-    if (rdata.parseRange(m_range_edit->GetValue())) {
-        DateDayN sN = rdata.rangeStart();
-        DateDayN eN = rdata.rangeEnd();
+    DateRange2 date_range = DateRange2();
+    if (date_range.parseRange(m_range_edit->GetValue())) {
+        DateDayN sN = date_range.rangeStart();
+        DateDayN eN = date_range.rangeEnd();
         if (!sN.has_value() || !eN.has_value() || sN.value() <= eN.value()) {
-            m_status->SetLabelText(_t("Range is ok:") + wxString::Format(" >%s - %s<",
+            m_status->SetLabelText(_t("Range is ok:") + wxString::Format(" [%s .. %s]",
                 sN.isoDateN(), eN.isoDateN()
             ));
             m_status->SetBackgroundColour(m_defBColor);

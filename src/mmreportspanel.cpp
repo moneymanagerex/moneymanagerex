@@ -192,8 +192,12 @@ void mmReportsPanel::loadFilterSettings() {
 
     loadDateRanges(&m_date_range_a, &m_date_range_m);
     if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_RANGE) {
-        // Load m_date_range from settings.
-        // The start/end date pickers are configured later in updateFilter().
+        // recreate m_date_range in order to reload parameters from setting,
+        // refresh the date of today, and clear the default start/end dates
+        m_date_range = DateRange2();
+
+        // load m_date_range from settings.
+        // the start/end date pickers are configured later in updateFilter().
         wxString j_filter;
         bool found = false;
         if (JSON_GetStringValue(j_doc, "FILTER_DATE", j_filter)) {
@@ -210,9 +214,6 @@ void mmReportsPanel::loadFilterSettings() {
             // init with 'All'
             m_date_range.setRange(m_date_range_a[0]);
         }
-        // clear default start/end dates
-        m_date_range.setDefStartDateN();
-        m_date_range.setDefEndDateN();
     }
     else if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_PICKER) {
         // Load start/end date pickers from settings.
@@ -293,7 +294,8 @@ void mmReportsPanel::updateFilter()
             png::TRANSFILTER_ACTIVE,
             mmBitmapButtonSize
         ));
-        // set date range to default ('All') and copy default start/end dates from pickers
+        // set date range to default ('All') and copy default start/end dates from pickers.
+        m_date_range = DateRange2();
         m_date_range.setRange(DateRange2::Range());
         m_date_range.setDefStartDateN(DateDayN(w_start_date_picker->GetValue()));
         m_date_range.setDefEndDateN(DateDayN(w_end_date_picker->GetValue()));
@@ -861,9 +863,10 @@ void mmReportsPanel::onDateRangeSelect(wxCommandEvent& event)
         return;
     }
 
+    // recreate m_date_range in order to reload parameters from setting,
+    // refresh the date of today, and clear the default start/end dates
+    m_date_range = DateRange2();
     m_date_range.setRange(m_date_range_a[i]);
-    m_date_range.setDefStartDateN();
-    m_date_range.setDefEndDateN();
 
     m_filter_id = mmCheckingPanel::FILTER_ID_DATE_RANGE;
     updateFilter();
@@ -879,6 +882,10 @@ void mmReportsPanel::onDateRangeEdit(wxCommandEvent& WXUNUSED(event))
     loadDateRanges(&m_date_range_a, &m_date_range_m);
 
     if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_RANGE) {
+        // recreate m_date_range in order to reload parameters from setting,
+        // refresh the date of today, and clear the default start/end dates
+        m_date_range = DateRange2();
+
         // find and reload the range specification (it may have been changed)
         bool found = false;
         for (const auto& range : m_date_range_a) {
@@ -892,10 +899,6 @@ void mmReportsPanel::onDateRangeEdit(wxCommandEvent& WXUNUSED(event))
             // set range to 'All'
             m_date_range.setRange(m_date_range_a[0]);
         }
-
-        // clear default start/end dates
-        m_date_range.setDefStartDateN();
-        m_date_range.setDefEndDateN();
 
         updateFilter();
         saveFilterSettings();
