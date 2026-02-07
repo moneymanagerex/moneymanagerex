@@ -75,10 +75,10 @@ const char *group_report_template = R"(
 </html>
 )";
 
-class mmGeneralGroupReport : public mmPrintableBase
+class mmGeneralGroupReport : public ReportBase
 {
 public:
-    mmGeneralGroupReport(const wxString& groupname) : mmPrintableBase(_n("General Group Report"))
+    mmGeneralGroupReport(const wxString& groupname) : ReportBase(_n("General Group Report"))
         , m_group_name(groupname)
     {
         m_sub_reports = Model_Report::instance().find(Model_Report::GROUPNAME(groupname));
@@ -91,7 +91,7 @@ public:
             contents += report.to_row_t();
         wxString report_template = group_report_template;
         mm_html_template report(formatHTML(report_template));
-        report(L"REPORTNAME") = this->getReportTitle() + " For " + this->m_group_name;
+        report(L"REPORTNAME") = this->getTitle() + " For " + this->m_group_name;
         report(L"CONTENTS") = contents;
 
         wxString out = wxEmptyString;
@@ -197,10 +197,20 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
         m_nav_tree_ctrl->SetItemData(reportsSummary, new mmTreeItemData(mmTreeItemData::MENU_REPORT, "Summary of Accounts"));
 
         wxTreeItemId accMonthly = m_nav_tree_ctrl->AppendItem(reportsSummary, _t("Monthly"), img::PIECHART_PNG, img::PIECHART_PNG);
-        m_nav_tree_ctrl->SetItemData(accMonthly, new mmTreeItemData("Monthly Summary of Accounts", new mmReportSummaryByDateMontly()));
+        m_nav_tree_ctrl->SetItemData(
+            accMonthly,
+            new mmTreeItemData("Monthly Summary of Accounts",
+                new mmReportSummaryByDate(mmReportSummaryByDate::PERIOD_ID::MONTH)
+            )
+        );
 
         wxTreeItemId accYearly = m_nav_tree_ctrl->AppendItem(reportsSummary, _t("Yearly"), img::PIECHART_PNG, img::PIECHART_PNG);
-        m_nav_tree_ctrl->SetItemData(accYearly, new mmTreeItemData("Yearly Summary of Accounts", new mmReportSummaryByDateYearly()));
+        m_nav_tree_ctrl->SetItemData(
+            accYearly,
+            new mmTreeItemData("Yearly Summary of Accounts",
+                new mmReportSummaryByDate(mmReportSummaryByDate::PERIOD_ID::YEAR)
+            )
+        );
     }
 
     //////////////////////////////////////////////////////////////////

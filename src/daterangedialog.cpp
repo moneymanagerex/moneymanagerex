@@ -18,39 +18,55 @@
 
 #include "daterangedialog.h"
 #include "daterangeeditdialog.h"
+#include "mmcheckingpanel.h"
+#include "mmreportspanel.h"
 #include "constants.h"
 #include "images_list.h"
 #include "option.h"
 #include "util.h"
 
-
 wxIMPLEMENT_DYNAMIC_CLASS(mmDateRangeDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmDateRangeDialog, wxDialog)
-  EVT_BUTTON(wxID_OK, mmDateRangeDialog::OnOk)
-  EVT_BUTTON(BTN_UP_TOP, mmDateRangeDialog::OnTop)
-  EVT_BUTTON(BTN_UP, mmDateRangeDialog::OnUp)
-  EVT_BUTTON(BTN_EDIT, mmDateRangeDialog::OnEdit)
-  EVT_BUTTON(BTN_DOWN, mmDateRangeDialog::OnDown)
+  EVT_BUTTON(wxID_OK,         mmDateRangeDialog::OnOk)
+  EVT_BUTTON(BTN_UP_TOP,      mmDateRangeDialog::OnTop)
+  EVT_BUTTON(BTN_UP,          mmDateRangeDialog::OnUp)
+  EVT_BUTTON(BTN_EDIT,        mmDateRangeDialog::OnEdit)
+  EVT_BUTTON(BTN_DOWN,        mmDateRangeDialog::OnDown)
   EVT_BUTTON(BTN_DOWN_BOTTOM, mmDateRangeDialog::OnBottom)
-  EVT_BUTTON(BTN_NEW, mmDateRangeDialog::OnNew)
-  EVT_BUTTON(BTN_DELETE, mmDateRangeDialog::OnDelete)
-  EVT_BUTTON(BTN_DEFAULT, mmDateRangeDialog::OnDefault)
+  EVT_BUTTON(BTN_NEW,         mmDateRangeDialog::OnNew)
+  EVT_BUTTON(BTN_DELETE,      mmDateRangeDialog::OnDelete)
+  EVT_BUTTON(BTN_DEFAULT,     mmDateRangeDialog::OnDefault)
   EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmDateRangeDialog::OnDateRangeSelected)
 wxEND_EVENT_TABLE()
-
 
 mmDateRangeDialog::mmDateRangeDialog()
 {
 }
 
-mmDateRangeDialog::mmDateRangeDialog(wxWindow* parent, std::vector<DateRange2::Range>* dateRangesPtr, int* subMenuBeginPtr)
+mmDateRangeDialog::mmDateRangeDialog(
+    wxWindow* parent,
+    mmDateRangeDialog::TYPE_ID type_id
+) :
+    m_type_id(type_id)
 {
-    m_dateRangesPtr = dateRangesPtr;
-    m_subMenuBeginPtr = subMenuBeginPtr;
-    m_subMenuBegin = *subMenuBeginPtr;
     this->SetFont(parent->GetFont());
-    Create(parent, -1, _t("Manage date ranges"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX, "");
+    if (m_type_id == TYPE_ID_CHECKING)
+        mmCheckingPanel::loadDateRanges(&m_date_range_a, &m_date_range_m, true);
+    else if (m_type_id == TYPE_ID_REPORTING)
+        mmReportsPanel::loadDateRanges(&m_date_range_a, &m_date_range_m, true);
+        
+    Create(
+        parent, -1,
+        (m_type_id == TYPE_ID_DASHBOARD ? _t("Manage dashboard date ranges")
+            : m_type_id == TYPE_ID_CHECKING ? _t("Manage checking date ranges")
+            : m_type_id == TYPE_ID_REPORTING ? _t("Manage reporting date ranges")
+            : _t("Manage date ranges")
+        ),
+        wxDefaultPosition, wxDefaultSize,
+        wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX,
+        ""
+    );
     CreateControls();
     mmThemeAutoColour(this);
     SetIcon(mmex::getProgramIcon());
@@ -64,19 +80,19 @@ void mmDateRangeDialog::fillControls()
 {
     m_dateRangesLb->DeleteAllItems();
     bool submenumissing = true;
-   for (size_t k = 1; k < m_dateRangesPtr->size(); k++) {
-        if (k == static_cast<size_t>(m_subMenuBegin)) {
+    for (size_t k = 1; k < m_date_range_a.size(); k++) {
+        if (k == static_cast<size_t>(m_date_range_m)) {
             insertItemToLb(-1, m_subMenuHeader, "========");
             submenumissing = false;
         }
-        insertItemToLb(-1, (*m_dateRangesPtr)[k].getName(), (*m_dateRangesPtr)[k].getLabel());
+        insertItemToLb(-1, m_date_range_a[k].getName(), m_date_range_a[k].getLabel());
     }
     if (submenumissing) {
         insertItemToLb(-1, m_subMenuHeader, "========");
-        m_subMenuBegin = m_dateRangesLb->GetItemCount() -1;
+        m_date_range_m = m_dateRangesLb->GetItemCount() - 1;
     }
     else {
-        m_subMenuBegin--;
+        --m_date_range_m;
     }
 }
 
@@ -91,9 +107,16 @@ void mmDateRangeDialog::CreateControls()
     wxBoxSizer* itemBoxVleft = new wxBoxSizer(wxVERTICAL);
     mainPanelSizer->Add(itemBoxVleft, g_flagsExpand);
 
-    m_dateRangesLb = new wxDataViewListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxDV_ROW_LINES | wxDV_NO_HEADER);
-    m_dateRangesLb->AppendTextColumn("", wxDATAVIEW_CELL_INERT, wxCOL_WIDTH_AUTOSIZE, wxALIGN_LEFT);
-    m_dateRangesLb->AppendTextColumn("", wxDATAVIEW_CELL_INERT, wxCOL_WIDTH_AUTOSIZE, wxALIGN_LEFT);
+    m_dateRangesLb = new wxDataViewListCtrl(
+        this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+        wxDV_ROW_LINES | wxDV_NO_HEADER
+    );
+    m_dateRangesLb->AppendTextColumn("",
+        wxDATAVIEW_CELL_INERT, wxCOL_WIDTH_AUTOSIZE, wxALIGN_LEFT
+    );
+    m_dateRangesLb->AppendTextColumn("",
+        wxDATAVIEW_CELL_INERT, wxCOL_WIDTH_AUTOSIZE, wxALIGN_LEFT
+    );
     itemBoxVleft->Add(m_dateRangesLb, g_flagsExpand);
 
     wxBoxSizer* itemBoxVright = new wxBoxSizer(wxVERTICAL);
@@ -113,7 +136,9 @@ void mmDateRangeDialog::CreateControls()
     m_edit->Enable(false);
     itemBoxVright->Add(m_edit, g_flagsV);
 
-    m_down = new wxBitmapButton(this, BTN_DOWN, mmBitmapBundle(png::DOWNARROW, mmBitmapButtonSize));
+    m_down = new wxBitmapButton(
+        this, BTN_DOWN, mmBitmapBundle(png::DOWNARROW, mmBitmapButtonSize)
+    );
     m_down->Enable(false);
     itemBoxVright->Add(m_down, g_flagsV);
 
@@ -145,11 +170,11 @@ void mmDateRangeDialog::OnTop(wxCommandEvent&)
     m_dateRangesLb->DeleteItem(m_selected_row);
     m_dateRangesLb->UnselectRow(m_dateRangesLb->GetSelectedRow());
     m_dateRangesLb->PrependItem(data);
-    if (m_selected_row == m_subMenuBegin) {
-        m_subMenuBegin = 0;
+    if (m_selected_row == m_date_range_m) {
+        m_date_range_m = 0;
     }
-    else if (m_selected_row > m_subMenuBegin) {
-        m_subMenuBegin++;
+    else if (m_selected_row > m_date_range_m) {
+        ++m_date_range_m;
     }
     m_selected_row = 0;
     updateButtonState();
@@ -159,11 +184,11 @@ void mmDateRangeDialog::OnTop(wxCommandEvent&)
 void mmDateRangeDialog::OnUp(wxCommandEvent&)
 {
     exchangeItemData(m_selected_row, m_selected_row - 1);
-    if (m_selected_row == m_subMenuBegin) {
-        m_subMenuBegin--;
+    if (m_selected_row == m_date_range_m) {
+        --m_date_range_m;
     }
-    else if (m_selected_row == m_subMenuBegin + 1) {
-        m_subMenuBegin++;
+    else if (m_selected_row == m_date_range_m + 1) {
+        ++m_date_range_m;
     }
     m_selected_row--;
     updateButtonState();
@@ -184,11 +209,11 @@ void mmDateRangeDialog::OnEdit(wxCommandEvent&)
 void mmDateRangeDialog::OnDown(wxCommandEvent&)
 {
     exchangeItemData(m_selected_row, m_selected_row + 1);
-    if (m_selected_row == m_subMenuBegin) {
-        m_subMenuBegin++;
+    if (m_selected_row == m_date_range_m) {
+        ++m_date_range_m;
     }
-    else if (m_selected_row == m_subMenuBegin - 1) {
-        m_subMenuBegin--;
+    else if (m_selected_row == m_date_range_m - 1) {
+        --m_date_range_m;
     }
     m_selected_row++;
     updateButtonState();
@@ -200,11 +225,11 @@ void mmDateRangeDialog::OnBottom(wxCommandEvent&)
     m_dateRangesLb->DeleteItem(m_selected_row);
     m_dateRangesLb->UnselectRow(m_dateRangesLb->GetSelectedRow());
     m_dateRangesLb->AppendItem(data);
-    if (m_selected_row == m_subMenuBegin) {
-        m_subMenuBegin = m_dateRangesLb->GetItemCount() - 1;
+    if (m_selected_row == m_date_range_m) {
+        m_date_range_m = m_dateRangesLb->GetItemCount() - 1;
     }
-    else if (m_selected_row < m_subMenuBegin) {
-        m_subMenuBegin--;
+    else if (m_selected_row < m_date_range_m) {
+        --m_date_range_m;
     }
     m_selected_row = m_dateRangesLb->GetItemCount() - 1;
     updateButtonState();
@@ -225,21 +250,23 @@ void mmDateRangeDialog::OnNew(wxCommandEvent&)
 
 void mmDateRangeDialog::OnDelete(wxCommandEvent&)
 {
-    if (m_selected_row > -1 && m_selected_row < m_dateRangesLb->GetItemCount()) {
-       if (wxMessageBox(_t("Do you want to delete the selected date range?")
-            , _t("Delete date range")
-            , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION) == wxYES)
-        {
-            m_dateRangesLb->DeleteItem(m_selected_row);
-            m_dateRangesLb->UnselectRow(m_dateRangesLb->GetSelectedRow());
-            if (m_selected_row < m_subMenuBegin) {
-                m_subMenuBegin--;
-            }
-            m_selected_row = -1;
-            updateButtonState(false);
-            m_hasChanged = true;
-        }
+    if (m_selected_row < 0 || m_selected_row >= m_dateRangesLb->GetItemCount())
+        return;
+    if (wxMessageBox(
+        _t("Do you want to delete the selected date range?"),
+        _t("Delete date range"),
+        wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION
+    ) != wxYES)
+        return;
+
+    m_dateRangesLb->DeleteItem(m_selected_row);
+    m_dateRangesLb->UnselectRow(m_dateRangesLb->GetSelectedRow());
+    if (m_selected_row < m_date_range_m) {
+        --m_date_range_m;
     }
+    m_selected_row = -1;
+    updateButtonState(false);
+    m_hasChanged = true;
 }
 
 void mmDateRangeDialog::OnDateRangeSelected(wxDataViewEvent& event)
@@ -253,10 +280,10 @@ void mmDateRangeDialog::updateButtonState(bool setselected) {
     bool isvalid = m_selected_row > -1;
     m_up_top->Enable(m_selected_row > 0);
     m_up->Enable(m_selected_row > 0);
-    m_edit->Enable(isvalid && m_selected_row != m_subMenuBegin);
+    m_edit->Enable(isvalid && m_selected_row != m_date_range_m);
     m_down->Enable(isvalid && m_selected_row < m_dateRangesLb->GetItemCount() - 1);
     m_down_bottom->Enable(isvalid && m_selected_row < m_dateRangesLb->GetItemCount() - 1);
-    m_delete->Enable(isvalid && m_selected_row != m_subMenuBegin);
+    m_delete->Enable(isvalid && m_selected_row != m_date_range_m);
     if (setselected) {
         m_dateRangesLb->SelectRow(m_selected_row);
     }
@@ -264,45 +291,61 @@ void mmDateRangeDialog::updateButtonState(bool setselected) {
 
 void mmDateRangeDialog::OnOk(wxCommandEvent&)
 {
-    if (m_hasChanged) {
-        m_dateRangesPtr->clear();
-        DateRange2::Range sdata = DateRange2::Range();
-        sdata.parseLabelName("A", _t("All"));
-        m_dateRangesPtr->push_back(sdata);
-        for (int k = 0; k < m_dateRangesLb->GetItemCount(); k++) {
-            sdata = DateRange2::Range();
-            if (k != m_subMenuBegin && sdata.parseLabelName(
-                m_dateRangesLb->GetTextValue(k, 1),
-                m_dateRangesLb->GetTextValue(k, 0)
-            )) {
-                m_dateRangesPtr->push_back(sdata);
-            }
-        }
-        // Store new settings
-        wxArrayString arr;
-        for (size_t k = 0; k < m_dateRangesPtr->size(); k++) {
-            if (k == static_cast<size_t>(m_subMenuBegin + 1)) {
-                arr.Add("");
-            }
-            arr.Add((*m_dateRangesPtr)[k].getLabelName());
-        }
-        Option::instance().setCheckingRange(arr);
-        *m_subMenuBeginPtr = m_subMenuBegin + 1;
+    if (!m_hasChanged) {
+        EndModal(wxID_CANCEL);
+        return;
     }
-    EndModal(m_hasChanged ? wxID_OK : wxID_CANCEL);
+
+    m_date_range_a.clear();
+    DateRange2::Range sdata = DateRange2::Range();
+    sdata.parseLabelName("A", _t("All"));
+    m_date_range_a.push_back(sdata);
+    for (int k = 0; k < m_dateRangesLb->GetItemCount(); k++) {
+        sdata = DateRange2::Range();
+        if (k != m_date_range_m && sdata.parseLabelName(
+            m_dateRangesLb->GetTextValue(k, 1),
+            m_dateRangesLb->GetTextValue(k, 0)
+        )) {
+            m_date_range_a.push_back(sdata);
+        }
+    }
+
+    // Store new settings
+    wxArrayString arr;
+    for (size_t k = 0; k < m_date_range_a.size(); k++) {
+        if (k == static_cast<size_t>(m_date_range_m + 1)) {
+            arr.Add("");
+        }
+        arr.Add(m_date_range_a[k].getLabelName());
+    }
+    if (m_type_id == TYPE_ID_CHECKING)
+        Option::instance().setCheckingRange(arr);
+    else if (m_type_id == TYPE_ID_REPORTING)
+        Option::instance().setReportingRange(arr);
+
+    ++m_date_range_m;
+
+    EndModal(wxID_OK);
 }
 
 void mmDateRangeDialog::OnDefault(wxCommandEvent&)
 {
-    if (wxMessageBox(_t("Do you really want to restore the default ranges?\n\nAll customization will be lost!")
-        , _t("Default date ranges")
-        , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION) == wxYES)
-    {
-        m_dateRangesPtr->clear();
-        wxArrayString arr;
-        Option::instance().setCheckingRange(arr);  // delete stored settings
-        EndModal(wxID_OK);
-    }
+    if (wxMessageBox(
+        _t("Do you really want to restore the default ranges?\n\nAll customization will be lost!"),
+        _t("Default date ranges"),
+        wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION
+    ) != wxYES)
+        return;
+
+    m_date_range_a.clear();
+    wxArrayString arr;
+    // delete stored settings
+    if (m_type_id == TYPE_ID_CHECKING)
+        Option::instance().setCheckingRange(arr);
+    else if (m_type_id == TYPE_ID_REPORTING)
+        Option::instance().setReportingRange(arr);
+
+    EndModal(wxID_OK);
 }
 
 // --- Support functions ---

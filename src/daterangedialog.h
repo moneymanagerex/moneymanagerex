@@ -21,15 +21,18 @@
 #include "daterange2.h"
 #include <wx/dataview.h>
 
-
 class mmDateRangeDialog: public wxDialog
 {
     wxDECLARE_DYNAMIC_CLASS(mmFilterTransactionsDialog);
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmDateRangeDialog();
-    mmDateRangeDialog(wxWindow* parent, std::vector<DateRange2::Range>* dateRangesPtr, int* subMenuBeginPtr);
+    enum TYPE_ID
+    {
+        TYPE_ID_DASHBOARD = 0,
+        TYPE_ID_CHECKING,
+        TYPE_ID_REPORTING
+    };
 
     enum
     {
@@ -44,10 +47,14 @@ public:
         BTN_DEFAULT
     };
 
+public:
+    mmDateRangeDialog();
+    mmDateRangeDialog(wxWindow* parent, TYPE_ID type_id);
+
 private:
-    std::vector<DateRange2::Range>* m_dateRangesPtr;
-    int* m_subMenuBeginPtr;
-    int m_subMenuBegin;
+    TYPE_ID m_type_id = TYPE_ID_CHECKING;
+    std::vector<DateRange2::Range> m_date_range_a;
+    int m_date_range_m;
     int m_selected_row;
     bool m_hasChanged = false;
     wxString m_subMenuHeader = "==== " + _tu("More date ranges…");
@@ -60,6 +67,7 @@ private:
     wxButton* m_down_bottom = nullptr;
     wxButton* m_delete = nullptr;
 
+private:
     void CreateControls();
     void fillControls();
     void updateButtonState(bool setselected = true);

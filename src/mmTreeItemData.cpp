@@ -47,17 +47,17 @@ mmTreeItemData::mmTreeItemData(int type, int64 id, const wxString& data)
     , report_(nullptr)
 {}
 
-mmTreeItemData::mmTreeItemData(const wxString& data, mmPrintableBase* report)
+mmTreeItemData::mmTreeItemData(const wxString& data, ReportBase* report)
     : type_(mmTreeItemData::REPORT)
     , stringData_(data)
     , report_(report)
 {
-    const wxString& n = wxString::Format("REPORT_%d", report_->getReportId());
+    const wxString& n = wxString::Format("REPORT_%d", report_->getTypeId());
     const wxString& settings = Model_Infotable::instance().getString(n, "");
-    report_->initReportSettings(settings);
+    report_->setReportSettings(settings);
 }
 
-mmTreeItemData::mmTreeItemData(mmPrintableBase* report, const wxString& data)
+mmTreeItemData::mmTreeItemData(ReportBase* report, const wxString& data)
     : type_(mmTreeItemData::GRM)
     , stringData_(data)
     , report_(report)

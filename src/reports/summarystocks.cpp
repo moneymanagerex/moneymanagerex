@@ -34,12 +34,12 @@
 #include <algorithm>
 
 mmReportSummaryStocks::mmReportSummaryStocks()
-    : mmPrintableBase(_n("Summary of Stocks"))
+    : ReportBase(_n("Summary of Stocks"))
 {
-    setReportParameters(Reports::StocksReportSummary);
+    setReportParameters(TYPE_ID::StocksReportSummary);
 }
 
-void  mmReportSummaryStocks::RefreshData()
+void  mmReportSummaryStocks::refreshData()
 {
     m_stocks.clear();
     m_real_gain_loss_sum_total = 0.0;
@@ -95,12 +95,12 @@ void  mmReportSummaryStocks::RefreshData()
 wxString mmReportSummaryStocks::getHTMLText()
 {
     // Grab the data  
-    RefreshData();
+    refreshData();
 
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle());
+    hb.addReportHeader(getTitle());
 
     hb.addDivContainer("shadow");
     {
@@ -242,9 +242,9 @@ wxString mmReportSummaryStocks::getHTMLText()
 }
 
 mmReportChartStocks::mmReportChartStocks()
-    : mmPrintableBase(_n("Stocks Performance Charts"))
+    : ReportBase(_n("Stocks Performance Charts"))
 {
-    setReportParameters(Reports::StocksReportPerformance);
+    setReportParameters(TYPE_ID::StocksReportPerformance);
 }
 
 mmReportChartStocks::~mmReportChartStocks()
@@ -256,7 +256,7 @@ wxString mmReportChartStocks::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
+    hb.addReportHeader(getTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
     wxTimeSpan dtDiff = m_date_range->end_date() - m_date_range->start_date();
     if (m_date_range->is_with_date() && dtDiff.GetDays() <= 366)
         hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), true);
@@ -271,7 +271,8 @@ wxString mmReportChartStocks::getHTMLText()
 
         symbols.Add(stock.SYMBOL);
         int dataCount = 0, freq = 1;
-        auto histData = Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(stock.SYMBOL),
+        auto histData = Model_StockHistory::instance().find(
+            Model_StockHistory::SYMBOL(stock.SYMBOL),
             Model_StockHistory::DATE(m_date_range->start_date(), GREATER_OR_EQUAL),
             Model_StockHistory::DATE(m_date_range->end_date(), LESS_OR_EQUAL));
         std::stable_sort(histData.begin(), histData.end(), SorterByDATE());

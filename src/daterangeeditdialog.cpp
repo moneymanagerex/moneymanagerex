@@ -21,22 +21,21 @@
 #include "images_list.h"
 #include "util.h"
 
-
 wxIMPLEMENT_DYNAMIC_CLASS(mmDateRangeEditDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmDateRangeEditDialog, wxDialog)
-  EVT_BUTTON(wxID_OK, mmDateRangeEditDialog::OnOk)
+  EVT_BUTTON(wxID_OK,      mmDateRangeEditDialog::OnOk)
   EVT_TEXT(TXT_CTRL_RANGE, mmDateRangeEditDialog::OnRange)
-  EVT_CHOICE(CTRL_ANY, mmDateRangeEditDialog::OnUpdateRangeFromControls)
+  EVT_CHOICE(CTRL_ANY,     mmDateRangeEditDialog::OnUpdateRangeFromControls)
 wxEND_EVENT_TABLE()
 
-
-const wxArrayString sTokenPeriods = { "", "A", "Y", "Q", "M", "W", "T", "S"};
-const char *sCountValues[] = {"-12", "-11", "-10", "-9", "-8", "-7", "-6", "-5", "-4", "-3", "-2", "-1",
-                              "",
-                              "+1", "+2", "+3", "+4", "+5", "+6", "+7", "+8", "9", "+10", "+11", "+12"};
-const wxArrayString sCount = {25, sCountValues};
-
+const wxArrayString sTokenPeriods = { "", "A", "Y", "Q", "M", "W", "T", "S" };
+const char *sCountValues[] = {
+    "-12", "-11", "-10", "-9", "-8", "-7", "-6", "-5", "-4", "-3", "-2", "-1",
+    "",
+    "+1", "+2", "+3", "+4", "+5", "+6", "+7", "+8", "9", "+10", "+11", "+12"
+};
+const wxArrayString sCount = { 25, sCountValues };
 
 mmDateRangeEditDialog::mmDateRangeEditDialog()
 {
@@ -45,7 +44,13 @@ mmDateRangeEditDialog::mmDateRangeEditDialog()
 mmDateRangeEditDialog::mmDateRangeEditDialog(wxWindow* parent, wxString* name_ptr, wxString* range_ptr)
 {
     this->SetFont(parent->GetFont());
-    Create(parent, -1, name_ptr->IsEmpty() ? _t("New date range") : _t("Edit date range"), wxDefaultPosition, wxSize(550, 250), wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX, "");
+    Create(
+        parent, -1,
+        name_ptr->IsEmpty() ? _t("New date range") : _t("Edit date range"),
+        wxDefaultPosition, wxSize(550, 250),
+        wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX,
+        ""
+    );
     m_name_ptr = name_ptr;
     m_range_ptr = range_ptr;
     CreateControls();
@@ -74,7 +79,11 @@ void mmDateRangeEditDialog::CreateControls()
     textPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Name:")), g_flagsH);
     m_name_edit = new wxTextCtrl(this, TXT_CTRL_NAME, *m_name_ptr);
     textPanelSizer->AddSpacer(20);
-    textPanelSizer->Add(m_name_edit, wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 1).Proportion(1));
+    textPanelSizer->Add(
+        m_name_edit,
+        wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL)
+            .Border(wxALL, 1).Proportion(1)
+    );
     mainBoxSizer->Add(textPanelSizer, g_flagsExpand);
 
     wxBoxSizer* ctrlPanelSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -96,7 +105,11 @@ void mmDateRangeEditDialog::CreateControls()
     wxBoxSizer* rangePanelSizer = new wxBoxSizer(wxHORIZONTAL);
     rangePanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Range code:")), g_flagsH);
     m_range_edit = new wxTextCtrl(this, TXT_CTRL_RANGE, *m_range_ptr);
-    rangePanelSizer->Add(m_range_edit, wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTRE_VERTICAL).Border(wxALL, 1).Proportion(1));
+    rangePanelSizer->Add(
+        m_range_edit,
+        wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTRE_VERTICAL)
+            .Border(wxALL, 1).Proportion(1)
+    );
     mainBoxSizer->Add(rangePanelSizer, g_flagsExpand);
 
     m_status = new wxStaticText(this, wxID_STATIC, "");
@@ -130,8 +143,8 @@ bool mmDateRangeEditDialog::checkRange() {
             m_status->SetLabelText(_t("Range is ok:") + wxString::Format(" >%s - %s<",
                 sN.isoDateN(), eN.isoDateN()
             ));
-          m_status->SetBackgroundColour(m_defBColor);
-          rangeOk = true;
+            m_status->SetBackgroundColour(m_defBColor);
+            rangeOk = true;
         }
     }
 
@@ -147,21 +160,21 @@ void mmDateRangeEditDialog::OnOk(wxCommandEvent&)
     wxString msg = "";
     bool saveIt = true;
     if (m_name_edit->GetValue().IsEmpty()) {
-      msg << _t("Name must not be empty") << ("\n");
-      saveIt = false;
+        msg << _t("Name must not be empty") << ("\n");
+        saveIt = false;
     }
     if (!checkRange()) {
-      msg << _t("Invalid date range definition");
-      saveIt = false;
+        msg << _t("Invalid date range definition");
+        saveIt = false;
     }
 
-    if(saveIt) {
+    if (saveIt) {
         *m_name_ptr = m_name_edit->GetValue();
         *m_range_ptr = m_range_edit->GetValue();
         EndModal(wxID_OK);
     }
     else {
-      wxMessageBox(msg, _t("Definition error"), wxOK | wxICON_ERROR);
+        wxMessageBox(msg, _t("Definition error"), wxOK | wxICON_ERROR);
     }
 }
 
@@ -171,9 +184,12 @@ void mmDateRangeEditDialog::OnUpdateRangeFromControls(wxCommandEvent&)
     m_count2->Enable(m_period2->GetSelection() > 1);
 
     wxString result = "";
-    result << (m_count1->IsEnabled() ? m_count1->GetStringSelection() + " ": "") << sTokenPeriods[m_period1->GetSelection()];
+    result << (m_count1->IsEnabled() ? m_count1->GetStringSelection() + " ": "")
+        << sTokenPeriods[m_period1->GetSelection()];
     if (m_period2->GetSelection() > 0) {
-        result << " .. " << (m_count2->IsEnabled() ? m_count2->GetStringSelection() + " " : "") << sTokenPeriods[m_period2->GetSelection()];
+        result << " .. "
+            << (m_count2->IsEnabled() ? m_count2->GetStringSelection() + " " : "")
+            << sTokenPeriods[m_period2->GetSelection()];
     }
     m_range_edit->ChangeValue(result);
 
@@ -199,8 +215,7 @@ void mmDateRangeEditDialog::updateControlsFromRange(wxString range)
 
         bool firstselection = true;
         wxStringTokenizer tokenizer(range, " ");
-        while (tokenizer.HasMoreTokens())
-        {
+        while (tokenizer.HasMoreTokens()) {
             wxString token = tokenizer.GetNextToken();
             int idx;
             if (token.ToInt(&idx)) {

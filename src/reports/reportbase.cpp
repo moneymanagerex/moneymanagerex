@@ -27,111 +27,102 @@
 #include "model/Model_Account.h"
 #include "util.h"
 
-mmPrintableBase::mmPrintableBase(const wxString& title)
+ReportBase::ReportBase(const wxString& title)
     : m_title(title)
 {
 }
 
-mmPrintableBase::~mmPrintableBase()
+ReportBase::~ReportBase()
 {
 }
 
-void mmPrintableBase::setReportParameters(int id)
+void ReportBase::setReportParameters(ReportBase::TYPE_ID type_id)
 {
-    m_id = id;
+    m_type_id = type_id;
 
-    switch (id) {
-    case MyUsage:                     m_parameters = DATE_RANGE | CHART; break;
-    case MonthlySummaryofAccounts:    m_parameters = CHART; break;
-    case YearlySummaryofAccounts:     m_parameters = CHART; break;
-    case WheretheMoneyGoes:           m_parameters = DATE_RANGE | CHART | ACCOUNTS_LIST; break;
-    case WheretheMoneyComesFrom:      m_parameters = DATE_RANGE | CHART | ACCOUNTS_LIST; break;
-    case CategoriesSummary:           m_parameters = DATE_RANGE | CHART | ACCOUNTS_LIST; break;
-    case CategoriesMonthly:           m_parameters = DATE_RANGE | CHART | ACCOUNTS_LIST; break;
-    case Payees:                      m_parameters = DATE_RANGE | CHART; break;
-    case IncomevsExpensesSummary:     m_parameters = DATE_RANGE | ACCOUNTS_LIST; break;
-    case IncomevsExpensesMonthly:     m_parameters = DATE_RANGE | ACCOUNTS_LIST | CHART; break;
-    case BudgetPerformance:           m_parameters = BUDGET_DATES | ACCOUNTS_LIST; break;
-    case BudgetCategorySummary:       m_parameters = BUDGET_DATES | CHART; break;
-    case MonthlyCashFlow:             m_parameters = FORWARD_MONTHS | ACCOUNTS_LIST | CHART; break;
-    case DailyCashFlow:               m_parameters = FORWARD_MONTHS | ACCOUNTS_LIST | CHART; break;
-    case TransactionsCashFlow:        m_parameters = FORWARD_MONTHS | ACCOUNTS_LIST | CHART; break;
-    case StocksReportPerformance:     m_parameters = DATE_RANGE; break;
-    case StocksReportSummary:         m_parameters = NONE; break;
-    case ForecastReport:              m_parameters = DATE_RANGE; break;
-    case BugReport:                   m_parameters = NONE; break;
-    case CategoryOverTimePerformance: m_parameters = MONTHES | CHART | ACCOUNTS_LIST; break;
-    default:                          m_parameters = NONE; break;
+    switch (type_id) {
+    case MyUsage:                     m_parameters = M_DATE_RANGE | M_CHART; break;
+    case MonthlySummaryofAccounts:    m_parameters = M_CHART; break;
+    case YearlySummaryofAccounts:     m_parameters = M_CHART; break;
+    case WheretheMoneyGoes:           m_parameters = M_DATE_RANGE | M_ACCOUNT | M_CHART; break;
+    case WheretheMoneyComesFrom:      m_parameters = M_DATE_RANGE | M_ACCOUNT | M_CHART; break;
+    case CategoriesSummary:           m_parameters = M_DATE_RANGE | M_ACCOUNT | M_CHART; break;
+    case CategoriesMonthly:           m_parameters = M_DATE_RANGE | M_ACCOUNT | M_CHART; break;
+    case Payees:                      m_parameters = M_DATE_RANGE | M_CHART; break;
+    case IncomevsExpensesSummary:     m_parameters = M_DATE_RANGE | M_ACCOUNT; break;
+    case IncomevsExpensesMonthly:     m_parameters = M_DATE_RANGE | M_ACCOUNT | M_CHART; break;
+    case BudgetPerformance:           m_parameters = M_BUDGET | M_ACCOUNT; break;
+    case BudgetCategorySummary:       m_parameters = M_BUDGET | M_CHART; break;
+    case MonthlyCashFlow:             m_parameters = M_FORWARD_MONTHS | M_ACCOUNT | M_CHART; break;
+    case DailyCashFlow:               m_parameters = M_FORWARD_MONTHS | M_ACCOUNT | M_CHART; break;
+    case TransactionsCashFlow:        m_parameters = M_FORWARD_MONTHS | M_ACCOUNT | M_CHART; break;
+    case StocksReportPerformance:     m_parameters = M_DATE_RANGE; break;
+    case StocksReportSummary:         m_parameters = M_NONE; break;
+    case ForecastReport:              m_parameters = M_DATE_RANGE; break;
+    case BugReport:                   m_parameters = M_NONE; break;
+    case CategoryOverTimePerformance: m_parameters = M_MONTHS | M_ACCOUNT | M_CHART; break;
+    default:                          m_parameters = M_NONE; break;
     }
 }
 
-void mmPrintableBase::setReportSettings()
+void ReportBase::saveReportSettings()
 {
-    int ID = getReportId();
-    wxLogDebug("%d - %s", ID, m_title);
+    TYPE_ID type_id = getTypeId();
+    wxLogDebug("%d - %s", type_id, m_title);
+    if (type_id < 0)
+        return;
 
     Document j_doc;
-    if (ID >= 0)
-    {
-        StringBuffer json_buffer;
-        PrettyWriter<StringBuffer> json_writer(json_buffer);
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    bool isActive = false;
 
-        bool isActive = false;
+    json_writer.StartObject();
 
-        json_writer.StartObject();
+    if ((m_parameters & M_DATE_RANGE) || (m_parameters & M_BUDGET)) {
+        isActive = true;
+        json_writer.Key("REPORTPERIOD");
+        json_writer.Int64(m_date_selection.GetValue());
+    }
 
-        if ((m_parameters & DATE_RANGE) || (m_parameters & BUDGET_DATES))
-        {
-            json_writer.Key("REPORTPERIOD");
-            json_writer.Int64(m_date_selection.GetValue());
-            isActive = true;
-        }
+    if (m_parameters & M_ACCOUNT) {
+        isActive = true;
+        json_writer.Key("ACCOUNTSELECTION");
+        json_writer.Int(m_account_selection);
 
-        if (m_parameters & ACCOUNTS_LIST)
-        {
-            isActive = true;
-            json_writer.Key("ACCOUNTSELECTION");
-            json_writer.Int(m_account_selection);
-
-            if (selectedAccountArray_ && !selectedAccountArray_->IsEmpty())
-            {
-                json_writer.Key("ACCOUNTS");
-
-                json_writer.StartArray();
-                for (const auto& entry : *selectedAccountArray_)
-                {
-                    json_writer.String(entry.utf8_str());
-                }
-                json_writer.EndArray();
+        if (m_account_selected_a && !m_account_selected_a->IsEmpty()) {
+            json_writer.Key("ACCOUNTS");
+            json_writer.StartArray();
+            for (const auto& entry : *m_account_selected_a) {
+                json_writer.String(entry.utf8_str());
             }
+            json_writer.EndArray();
         }
+    }
 
-        if (m_parameters & CHART)
-        {
-            isActive = true;
-            json_writer.Key("CHART");
-            json_writer.Int(m_chart_selection);
-        }
+    if (m_parameters & M_CHART) {
+        isActive = true;
+        json_writer.Key("CHART");
+        json_writer.Int(m_chart_selection);
+    }
 
-        if (m_parameters & FORWARD_MONTHS)
-        {
-            isActive = true;
-            json_writer.Key("FORWARDMONTHS");
-            json_writer.Int(m_forward_months);
-        }
+    if (m_parameters & M_FORWARD_MONTHS) {
+        isActive = true;
+        json_writer.Key("FORWARDMONTHS");
+        json_writer.Int(m_forward_months);
+    }
 
-        json_writer.EndObject();
-        if (isActive)
-        {
-            const wxString& rj_key = wxString::Format("REPORT_%d", ID);
-            const wxString& rj_value = wxString::FromUTF8(json_buffer.GetString());
-            Model_Infotable::instance().setString(rj_key, rj_value);
-            m_settings = rj_value;
-        }
+    json_writer.EndObject();
+
+    if (isActive) {
+        const wxString& rj_key = wxString::Format("REPORT_%d", type_id);
+        const wxString& rj_value = wxString::FromUTF8(json_buffer.GetString());
+        Model_Infotable::instance().setString(rj_key, rj_value);
+        m_settings = rj_value;
     }
 }
 
-void mmPrintableBase::restoreReportSettings()
+void ReportBase::restoreReportSettings()
 {
     Document j_doc;
     if (j_doc.Parse(m_settings.c_str()).HasParseError())
@@ -160,9 +151,8 @@ void mmPrintableBase::restoreReportSettings()
     if (selection > acc_size)
         selection = 0;
 
-    accountArray_ = selectedAccountArray_ = nullptr;
-    if (selection == 1)
-    {
+    m_account_a = m_account_selected_a = nullptr;
+    if (selection == 1) {
         wxArrayString* accountSelections = new wxArrayString();
         if (j_doc.HasMember("ACCOUNTS") && j_doc["ACCOUNTS"].IsArray()) {
 
@@ -171,30 +161,24 @@ void mmPrintableBase::restoreReportSettings()
                 accountSelections->Add(wxString::FromUTF8(v.GetString()));
             }
         }
-        accountArray_ = selectedAccountArray_ = accountSelections;
-    } else if (selection > 1)
+        m_account_a = m_account_selected_a = accountSelections;
+    }
+    else if (selection > 1) {
         setAccounts(selection, NavigatorTypes::instance().type_name(selection - 2));
+    }
 
     m_account_selection = selection;
 }
 
-void mmPrintableBase::date_range(const mmDateRange* date_range, int selection)
-{
-    this->m_date_range = date_range;
-    this->m_date_selection = selection;
-}
-
-const wxString mmPrintableBase::getAccountNames() const
+const wxString ReportBase::getAccountNames() const
 {
     wxString accountsMsg;
-    if (accountArray_)
-    {
-        for (const auto& entry : *accountArray_) {
+    if (m_account_a) {
+        for (const auto& entry : *m_account_a) {
             accountsMsg.Append((accountsMsg.empty() ? "" : ", ") + entry);
         }
     }
-    else
-    {
+    else {
         accountsMsg << _t("All Accounts");
     }
 
@@ -205,88 +189,86 @@ const wxString mmPrintableBase::getAccountNames() const
     return accountsMsg;
 }
 
-void mmPrintableBase::setAccounts(int selection, const wxString& name)
+void ReportBase::setAccounts(int selection, const wxString& type_name)
 {
-    if ((selection == 1) || (m_account_selection != selection))
+    if (selection != 1 && m_account_selection == selection)
+        return;
+
+    m_account_selection = selection;
+
+    switch (selection)
     {
-        m_account_selection = selection;
-
-        switch (selection)
-        {
-        case 0: // All Accounts
-            accountArray_ = nullptr;
-            break;
-        case 1: // Select Accounts
-        {
-            wxArrayString accounts;
-            auto a = Model_Account::instance().all();
-            std::stable_sort(a.begin(), a.end(), SorterByACCOUNTNAME());
-            for (const auto& item : a) {
-                if (m_only_active && item.STATUS != Model_Account::STATUS_NAME_OPEN)
-                    continue;
-                accounts.Add(item.ACCOUNTNAME);
-            }
-
-            auto parent = wxWindow::FindWindowById(mmID_REPORTS);
-            mmMultiChoiceDialog mcd(parent ? parent : 0, _t("Choose Accounts"), wxGetTranslation(m_title), accounts);
-
-            if (selectedAccountArray_ && !selectedAccountArray_->IsEmpty())
-            {
-                wxArrayInt selected;
-                int i = 0;
-                for (const auto &account : accounts)
-                {
-                    if (wxNOT_FOUND != selectedAccountArray_->Index(account))
-                        selected.Add(i);
-                    i++;
-                }
-                mcd.SetSelections(selected);
-            }
-
-            if (mcd.ShowModal() == wxID_OK)
-            {
-                wxArrayString* accountSelections = new wxArrayString();
-                for (const auto &i : mcd.GetSelections()) {
-                    accountSelections->Add(accounts[i]);
-                }
-                selectedAccountArray_ = accountArray_ = accountSelections;
-            }
-        }
+    case 0: // All Accounts
+        m_account_a = nullptr;
         break;
-        default: // All of Account type
-        {
-            wxArrayString* accountSelections = new wxArrayString();
-            auto accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(name)
-                , Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL));
-            for (const auto &i : accounts) {
-                accountSelections->Add(i.ACCOUNTNAME);
-            }
-            accountArray_ = accountSelections;
+    case 1: // Select Accounts
+    {
+        wxArrayString accounts;
+        auto a = Model_Account::instance().all();
+        std::stable_sort(a.begin(), a.end(), SorterByACCOUNTNAME());
+        for (const auto& item : a) {
+            if (m_only_active && item.STATUS != Model_Account::STATUS_NAME_OPEN)
+                continue;
+            accounts.Add(item.ACCOUNTNAME);
         }
+
+        auto parent = wxWindow::FindWindowById(mmID_REPORTS);
+        mmMultiChoiceDialog mcd(parent ? parent : 0,
+            _t("Choose Accounts"), wxGetTranslation(m_title), accounts
+        );
+
+        if (m_account_selected_a && !m_account_selected_a->IsEmpty()) {
+            wxArrayInt selected;
+            int i = 0;
+            for (const auto &account : accounts) {
+                if (wxNOT_FOUND != m_account_selected_a->Index(account))
+                    selected.Add(i);
+                ++i;
+            }
+            mcd.SetSelections(selected);
+        }
+
+        if (mcd.ShowModal() == wxID_OK) {
+            wxArrayString* accountSelections = new wxArrayString();
+            for (const auto &i : mcd.GetSelections()) {
+                accountSelections->Add(accounts[i]);
+            }
+            m_account_selected_a = m_account_a = accountSelections;
         }
     }
+    break;
+    default: // All of Account type
+    {
+        wxArrayString* accountSelections = new wxArrayString();
+        auto accounts = Model_Account::instance().find(
+            Model_Account::ACCOUNTTYPE(type_name),
+            Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL)
+        );
+        for (const auto &i : accounts) {
+            accountSelections->Add(i.ACCOUNTNAME);
+        }
+        m_account_a = accountSelections;
+    } }
 }
 
-const wxString mmPrintableBase::getReportTitle(bool translate) const
+const wxString ReportBase::getTitle(bool translate) const
 {
     wxString title = translate ? wxGetTranslation(m_title) : m_title;
-    if (m_date_range)
-    {
+    if (m_date_range) {
         title += " - " + (translate ? m_date_range->local_title() : m_date_range->title());
     }
     return title;
 }
 
-
 //----------------------------------------------------------------------
 
-mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
-: mmPrintableBase(report->REPORTNAME)
-, m_report(report)
+mmGeneralReport::mmGeneralReport(const Model_Report::Data* report) :
+    ReportBase(report->REPORTNAME),
+    m_report(report)
 {
-    if (m_id == -1 && report->REPORTID >= LONG_MIN && report->REPORTID <= LONG_MAX)
-        {
-        m_id = report->REPORTID.ToLong(); // Store reportid if no id is provided
+    // Store reportid if no id is provided
+    if (m_type_id == -1 && report->REPORTID >= LONG_MIN && report->REPORTID <= LONG_MAX) {
+        m_type_id = static_cast<ReportBase::TYPE_ID>(int(report->REPORTID.ToLong()));
     }
 }
 
@@ -331,20 +313,19 @@ wxString mmGeneralReport::getHTMLText()
     return out;
 }
 
-int mmGeneralReport::report_parameters()
+int mmGeneralReport::getParameters()
 {
     int params = 0;
     const auto content = m_report->SQLCONTENT.Lower();
-    if (content.Contains("&begin_date")
-        || content.Contains("&end_date"))
-        params |= DATE_RANGE;
+    if (content.Contains("&begin_date") || content.Contains("&end_date"))
+        params |= M_DATE_RANGE;
     else if (content.Contains("&single_date"))
-        params |= SINGLE_DATE;
+        params |= M_SINGLE_DATE;
     else if (content.Contains("&only_years"))
-        params |= ONLY_YEARS;
+        params |= M_YEAR;
 
     if (content.Contains("&single_time"))
-        params |= TIME;
+        params |= M_TIME;
 
     return params;
 }

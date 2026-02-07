@@ -31,7 +31,7 @@
 #include <float.h>
 
 mmReportTransactions::mmReportTransactions(wxSharedPtr<mmFilterTransactionsDialog>& transDialog)
-    : mmPrintableBase("Transaction Report")
+    : ReportBase("Transaction Report")
     , trans_()
     , m_transDialog(transDialog)
 {
@@ -114,9 +114,16 @@ table {
 
     hb.init(false, extra_style);
     wxString label = m_transDialog->mmGetLabelString();
-    hb.addReportHeader(wxString::Format("%s %s%s", getReportTitle(), !label.IsEmpty() ? ": " : "", label),
+    hb.addReportHeader(
+        wxString::Format(
+            "%s %s%s",
+            getTitle(),
+            !label.IsEmpty() ? ": " : "",
+            label
+        ),
         ((m_transDialog->mmIsRangeChecked()) ? m_transDialog->mmGetStartDay() : 1),
-        ((m_transDialog->mmIsRangeChecked()) ? m_transDialog->mmIsFutureIgnored() : false ));
+        ((m_transDialog->mmIsRangeChecked()) ? m_transDialog->mmIsFutureIgnored() : false )
+    );
     wxDateTime start,end;
     start.ParseISODate(m_transDialog->mmGetBeginDate());
     end.ParseISODate(m_transDialog->mmGetEndDate());

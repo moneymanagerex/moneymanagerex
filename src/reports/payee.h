@@ -24,13 +24,13 @@
 #include <map>
 #include <vector>
 
-class mmReportPayeeExpenses : public mmPrintableBase
+class mmReportPayeeExpenses : public ReportBase
 {
 public:
     mmReportPayeeExpenses();
     virtual ~mmReportPayeeExpenses();
 
-    virtual void RefreshData();
+    virtual void refreshData();
     virtual wxString getHTMLText();
 
 protected:

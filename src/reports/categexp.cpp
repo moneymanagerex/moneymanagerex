@@ -32,7 +32,7 @@
 
 mmReportCategoryExpenses::mmReportCategoryExpenses
 (const wxString& title, enum TYPE type)
-    : mmPrintableBase(title)
+    : ReportBase(title)
     , type_(type)
 {
 }
@@ -58,15 +58,17 @@ double mmReportCategoryExpenses::AppendData([[maybe_unused]] const std::vector<m
     return amt + subamount;
 }
 
-void  mmReportCategoryExpenses::RefreshData()
+void  mmReportCategoryExpenses::refreshData()
 {
     data_.clear();
     std::map<int64, std::map<int, double> > categoryStats;
-    Model_Category::instance().getCategoryStats(categoryStats
-        , accountArray_
-        , const_cast<mmDateRange*>(m_date_range)
-        , Option::instance().getIgnoreFutureTransactions()
-        , false);
+    Model_Category::instance().getCategoryStats(
+        categoryStats,
+        m_account_a,
+        const_cast<mmDateRange*>(m_date_range),
+        Option::instance().getIgnoreFutureTransactions(),
+        false
+    );
 
     data_holder line;
     int groupID = 0;
@@ -106,7 +108,7 @@ bool DataSorter(const ValueTrio& x, const ValueTrio& y)
 wxString mmReportCategoryExpenses::getHTMLText()
 {
     // Grab the data
-    RefreshData();
+    refreshData();
 
     // Data is presorted by name
     std::vector<data_holder> sortedData(data_);
@@ -171,13 +173,13 @@ wxString mmReportCategoryExpenses::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
 
-    hb.addReportHeader(getReportTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
-    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+    hb.addReportHeader(getTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
+    hb.DisplayDateHeading(m_date_range);
     hb.DisplayFooter(getAccountNames());
     // Prime the filter
     m_filter.clear();
     m_filter.setDateRange(m_date_range->start_date(), m_date_range->end_date());
-    m_filter.setAccountList(accountArray_);
+    m_filter.setAccountList(m_account_a);
 
     // Chart
     if (getChartSelection() == 0)
@@ -302,29 +304,29 @@ wxString mmReportCategoryExpenses::getHTMLText()
 mmReportCategoryExpensesGoes::mmReportCategoryExpensesGoes()
     : mmReportCategoryExpenses(_n("Where the Money Goes"), TYPE::GOES)
 {
-    setReportParameters(Reports::WheretheMoneyGoes);
+    setReportParameters(TYPE_ID::WheretheMoneyGoes);
 }
 
 mmReportCategoryExpensesComes::mmReportCategoryExpensesComes()
     : mmReportCategoryExpenses(_n("Where the Money Comes From"), TYPE::COME)
 {
-    setReportParameters(Reports::WheretheMoneyComesFrom);
+    setReportParameters(TYPE_ID::WheretheMoneyComesFrom);
 }
 
 mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories()
     : mmReportCategoryExpenses(_n("Categories Summary"), TYPE::MONTHLY)
 {
     m_chart_selection = 1;
-    setReportParameters(Reports::CategoriesMonthly);
+    setReportParameters(TYPE_ID::CategoriesMonthly);
 }
 
 //----------------------------------------------------------------------------
 
 mmReportCategoryOverTimePerformance::mmReportCategoryOverTimePerformance()
-    : mmPrintableBase(_n("Category Income/Expenses"))
+    : ReportBase(_n("Category Income/Expenses"))
 {
     m_date_range = new mmLast12Months();
-    setReportParameters(Reports::CategoryOverTimePerformance);
+    setReportParameters(TYPE_ID::CategoryOverTimePerformance);
 }
 //----------------------------------------------------------------------------
 mmReportCategoryOverTimePerformance::~mmReportCategoryOverTimePerformance()
@@ -345,29 +347,36 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
 
     //Get statistic
     std::map<int64, std::map<int, double> > categoryStats;
-    Model_Category::instance().getCategoryStats(categoryStats
-        , accountArray_
-        , date_range
-        , Option::instance().getIgnoreFutureTransactions());
+    Model_Category::instance().getCategoryStats(
+        categoryStats,
+        m_account_a,
+        date_range,
+        Option::instance().getIgnoreFutureTransactions()
+    );
 
     //Init totals
     //Type(Withdrawal/Income/Summ), month, value
     std::map<int, std::map<int, double> > totals;
 
     // structure for sorting of data
-    struct html_data_holder { int64 catID; int64 subCatID; wxString name; double period[MONTHS_IN_PERIOD]; double overall; } line;
+    struct html_data_holder
+    {
+        int64 catID;
+        int64 subCatID;
+        wxString name;
+        double period[MONTHS_IN_PERIOD];
+        double overall;
+    } line;
     std::vector<html_data_holder> data;
     std::map<wxString, int64> categories = Model_Category::all_categories();
-    for (const auto& category : categories)
-    {
+    for (const auto& category : categories) {
         int64 categID = category.second;
         line.catID = categID;
         line.subCatID = -1;
         line.name = category.first;
         line.overall = 0;
         unsigned month = 0;
-        for (const auto& i : categoryStats[categID])
-        {
+        for (const auto& i : categoryStats[categID]) {
             double value = i.second;
             line.period[month++] = value;
             line.overall += value;
@@ -381,13 +390,13 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
+    hb.addReportHeader(getTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
     hb.DisplayDateHeading(sd, ed, true);
     hb.DisplayFooter(getAccountNames());
     // Prime the filter
     m_filter.clear();
     m_filter.setDateRange(sd, ed);
-    m_filter.setAccountList(accountArray_);
+    m_filter.setAccountList(m_account_a);
 
     const wxDateTime start_date = date_range->start_date();
     delete date_range;

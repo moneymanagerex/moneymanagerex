@@ -3095,7 +3095,7 @@ void mmGUIFrame::refreshPanelData()
     case mmID_REPORTS:
         if (activeReport_) {
             mmReportsPanel* reportsPanel = wxDynamicCast(panelCurrent_, mmReportsPanel);
-            if (reportsPanel) createReportsPage(reportsPanel->getPrintableBase(), false);
+            if (reportsPanel) createReportsPage(reportsPanel->getReportBase(), false);
         }
         break;
     default:
@@ -3307,10 +3307,7 @@ void mmGUIFrame::OnEmptyTreePopUp(wxCommandEvent& event)
 
 void mmGUIFrame::OnDateRangeManager(wxCommandEvent& WXUNUSED(event))
 {
-    std::vector<DateRange2::Range> m_date_range_a = {};
-    int m_date_range_m;
-    mmCheckingPanel::loadDateRanges(&m_date_range_a, &m_date_range_m, true);
-    mmDateRangeDialog dlg(this, &m_date_range_a, &m_date_range_m);
+    mmDateRangeDialog dlg(this, mmDateRangeDialog::TYPE_ID_CHECKING);
     if (dlg.ShowModal() == wxID_OK) {
         refreshPanelData();
     }
@@ -3397,7 +3394,7 @@ void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnReportBug(wxCommandEvent& WXUNUSED(event))
 {
-    mmPrintableBase* br = new mmBugReport();
+    ReportBase* br = new mmBugReport();
     setNavTreeSection(_t("Reports"));
     createReportsPage(br, true);
 }
@@ -3538,7 +3535,7 @@ void mmGUIFrame::createHomePage()
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
+void mmGUIFrame::createReportsPage(ReportBase* rs, bool cleanup)
 {
     if (!rs) return;
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);

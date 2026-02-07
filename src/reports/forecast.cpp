@@ -27,9 +27,9 @@
 
 class mm_html_template;
 
-mmReportForecast::mmReportForecast(): mmPrintableBase(_n("Forecast"))
+mmReportForecast::mmReportForecast(): ReportBase(_n("Forecast"))
 {
-    setReportParameters(Reports::ForecastReport);
+    setReportParameters(TYPE_ID::ForecastReport);
 }
 
 mmReportForecast::~mmReportForecast()
@@ -44,30 +44,30 @@ wxString mmReportForecast::getHTMLText()
     
     if (m_date_range && m_date_range->is_with_date()) {
         all_trans = Model_Checking::instance().find(
-            Model_Checking::TRANSDATE(m_date_range->start_date(), GREATER_OR_EQUAL),
-            Model_Checking::TRANSDATE(m_date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL)
+            Model_Checking::TRANSDATE(DateDay(m_date_range->start_date()), GREATER_OR_EQUAL),
+            Model_Checking::TRANSDATE(DateDay(m_date_range->end_date()), LESS_OR_EQUAL)
         );
     }
     else {
         all_trans = Model_Checking::instance().all();
     }
 
-    for (const auto & trx : all_trans)
-    {
+    for (const auto & trx : all_trans) {
         if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER || Model_Checking::foreignTransactionAsTransfer(trx))
             continue;
-        const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
+        const double convRate = Model_CurrencyHistory::getDayRate(
+            Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID,
+            trx.TRANSDATE
+        );
         amount_by_day[trx.TRANSDATE].first += Model_Checking::account_outflow(trx, trx.ACCOUNTID) * convRate;
         amount_by_day[trx.TRANSDATE].second += Model_Checking::account_inflow(trx, trx.ACCOUNTID) * convRate;
     }
 
-    
-
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
-    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+    hb.addReportHeader(getTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
+    hb.DisplayDateHeading(m_date_range);
 
     GraphData gd;
     GraphSeries gsWithdrawal, gsDeposit;

@@ -23,9 +23,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Usage.h"
 
 mmReportMyUsage::mmReportMyUsage()
-: mmPrintableBase(_n("MMEX Usage Frequency"))
+: ReportBase(_n("MMEX Usage Frequency"))
 {
-    setReportParameters(Reports::MyUsage);
+    setReportParameters(TYPE_ID::MyUsage);
 }
 
 mmReportMyUsage::~mmReportMyUsage()
@@ -39,10 +39,12 @@ wxString mmReportMyUsage::getHTMLText()
     wxDateTime _start_date, _end_date;
 
     if (m_date_range && m_date_range->is_with_date()) {
-        all_usage = Model_Usage::instance().find(Model_Usage::USAGEDATE(m_date_range->start_date().FormatISODate(), GREATER_OR_EQUAL)
-            , Model_Usage::USAGEDATE(m_date_range->end_date().FormatISODate(), LESS_OR_EQUAL));
-        _start_date=m_date_range->start_date();
-        _end_date=m_date_range->end_date();
+        all_usage = Model_Usage::instance().find(
+            Model_Usage::USAGEDATE(m_date_range->start_date().FormatISODate(), GREATER_OR_EQUAL),
+            Model_Usage::USAGEDATE(m_date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL)
+        );
+        _start_date = m_date_range->start_date();
+        _end_date = m_date_range->end_date();
     }
     else {
         all_usage = Model_Usage::instance().all();
@@ -52,8 +54,7 @@ wxString mmReportMyUsage::getHTMLText()
 
     std::map<wxString, int> usage_by_module;
 
-    for (const auto & usage : all_usage)
-    {
+    for (const auto & usage : all_usage) {
          Document json_doc;
          if (json_doc.Parse(usage.JSONCONTENT.utf8_str()).HasParseError())
              continue;
@@ -65,8 +66,7 @@ wxString mmReportMyUsage::getHTMLText()
              continue;
          Value u = json_doc["usage"].GetArray();
 
-         for (Value::ConstValueIterator it = u.Begin(); it != u.End(); ++it)
-         {
+         for (Value::ConstValueIterator it = u.Begin(); it != u.End(); ++it) {
              if (!it->IsObject()) continue;
              const auto pobj = it->GetObject();
 
@@ -80,14 +80,12 @@ wxString mmReportMyUsage::getHTMLText()
 
              const wxString rep_name = wxString::FromUTF8(pobj["name"].GetString());
              wxRegEx pattern(R"(^([a-zA-Z0-9_ \/]+)( - ([a-zA-Z0-9_ ]+))?$)");
-             if (pattern.Matches(rep_name))
-             {
+             if (pattern.Matches(rep_name)) {
                  const wxString rep_name_1 = pattern.GetMatch(rep_name, 1);
                  const wxString rep_name_2 = pattern.GetMatch(rep_name, 3);
                  module += " / " + wxGetTranslation(rep_name_1) + (rep_name_2.empty() ? "" : " - " + wxGetTranslation(rep_name_2));
              }
-             else
-             {
+             else {
                  module += " / " + rep_name;
              }
 
@@ -110,8 +108,7 @@ wxString mmReportMyUsage::getHTMLText()
     }
 
     loop_t contents;
-    for (auto it = usage_by_frequency.begin(); it != usage_by_frequency.end(); ++it)
-    {
+    for (auto it = usage_by_frequency.begin(); it != usage_by_frequency.end(); ++it) {
         row_t r;
 
         r(L"MODULE_NAME") = it->second;
@@ -120,11 +117,11 @@ wxString mmReportMyUsage::getHTMLText()
         contents += r;
     }
 
-   // Build the report
+    // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
-    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+    hb.addReportHeader(getTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
+    hb.DisplayDateHeading(m_date_range);
 
     if (getChartSelection() == 0)
     {

@@ -19,7 +19,7 @@
 #pragma once
 #include "reportbase.h"
 
-class mmReportMyUsage: public mmPrintableBase
+class mmReportMyUsage: public ReportBase
 {
 public:
     mmReportMyUsage();

@@ -18,64 +18,19 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-//----------------------------------------------------------------------------
-#ifndef MM_EX_REPORTBASE_H_
-#define MM_EX_REPORTBASE_H_
-//----------------------------------------------------------------------------
+#pragma once
+
 #include "filtertrans.h"
 #include "mmDateRange.h"
 #include "option.h"
 #include "model/Model_Report.h"
 class wxString;
 class wxArrayString;
-//----------------------------------------------------------------------------
 
-class mmPrintableBase
+class ReportBase
 {
 public:
-    mmPrintableBase(const wxString& title);
-    virtual ~mmPrintableBase();
-    virtual wxString getHTMLText() = 0;
-    virtual void RefreshData() {}
-    virtual const wxString getReportTitle(bool translate = true) const;
-    virtual int report_parameters();
-    int getReportId() { return m_id; }
-    void date_range(const mmDateRange* date_range, int selection);
-    void initial_report(bool initial);
-
-    int64 getDateSelection() const;
-    int getAccountSelection() const;
-    int getChartSelection() const;
-    int getForwardMonths() const;
-    const wxString getAccountNames() const;
-    void chart(int selection);
-    void setAccounts(int selection, const wxString& name);
-    void setSelection(int64 sel);
-    void setForwardMonths(int sel);
-    void setReportSettings();
-    void setReportParameters(int id);
-    const wxString getReportSettings() const;
-    void restoreReportSettings();
-    void initReportSettings(const wxString& settings);
-
-public:
-    mmFilterTransactions m_filter;
-    static const char * m_template;
-    enum RepParams
-    {
-        NONE = 0
-        , SINGLE_DATE = 1
-        , DATE_RANGE = 2
-        , TIME = 4
-        , MONTHES = 8
-        , BUDGET_DATES = 16
-        , ONLY_YEARS = 32
-        , ACCOUNTS_LIST = 64
-        , CHART = 128
-        , FORWARD_MONTHS = 256
-    };
-
-    enum Reports {
+    enum TYPE_ID {
         MyUsage = 0,
         MonthlySummaryofAccounts,
         YearlySummaryofAccounts,
@@ -99,44 +54,94 @@ public:
         UNUSED = -1
     };
 
-protected:
-    int m_chart_selection = 0;
-    int64 m_date_selection = 0;
-    int m_forward_months = 24;
-    wxString m_title;
-    const mmDateRange* m_date_range = nullptr;
-    wxSharedPtr<wxArrayString> accountArray_;
-    wxSharedPtr<wxArrayString> selectedAccountArray_;
-    bool m_only_active = false;
-    int m_id = -1;
+    enum PARAM_MASK
+    {
+        M_NONE           = 0,
+        M_SINGLE_DATE    = 1,
+        M_DATE_RANGE     = 2,
+        M_TIME           = 4,
+        M_MONTHS         = 8,
+        M_BUDGET         = 16,
+        M_YEAR           = 32,
+        M_ACCOUNT        = 64,
+        M_CHART          = 128,
+        M_FORWARD_MONTHS = 256
+    };
 
-private:
-    bool m_initial = true;
-    int m_account_selection = 0;
+protected:
+    TYPE_ID m_type_id = TYPE_ID::UNUSED;
+    wxString m_title;
     int m_parameters = 0;
     wxString m_settings = "";
+    const mmDateRange* m_date_range = nullptr;
+    int64 m_date_selection = 0;
+    int m_forward_months = 24;
+    wxSharedPtr<wxArrayString> m_account_a;
+    wxSharedPtr<wxArrayString> m_account_selected_a;
+    int m_account_selection = 0;
+    bool m_only_active = false;
+    int m_chart_selection = 0;
+
+public:
+    mmFilterTransactions m_filter;
+    static const char * m_template;
+
+public:
+    ReportBase(const wxString& title);
+    virtual ~ReportBase();
+
+public:
+    virtual const wxString getTitle(bool translate = true) const;
+    virtual int getParameters();
+    virtual void refreshData() {}
+    virtual wxString getHTMLText() = 0;
+
+    void setReportParameters(TYPE_ID type_id);
+    void setReportSettings(const wxString& settings);
+    void setDateRange(const mmDateRange* date_range);
+    void setDateSelection(int64 sel);
+    void setForwardMonths(int sel);
+    void setAccounts(int selection, const wxString& type_name);
+    void setChartSelection(int selection);
+
+    TYPE_ID getTypeId() const;
+    const wxString getReportSettings() const;
+    int64 getDateSelection() const;
+    int getForwardMonths() const;
+    int getAccountSelection() const;
+    const wxString getAccountNames() const;
+    int getChartSelection() const;
+
+    void saveReportSettings();
+    void restoreReportSettings();
 };
 
-inline void mmPrintableBase::setSelection(int64 sel) { m_date_selection = sel; }
-inline int64 mmPrintableBase::getDateSelection() const { return this->m_date_selection; }
-inline void mmPrintableBase::setForwardMonths(int sel) { m_forward_months = sel; }
-inline int mmPrintableBase::getForwardMonths() const { return this->m_forward_months; }
-inline int mmPrintableBase::getAccountSelection() const { return this->m_account_selection; }
-inline int mmPrintableBase::getChartSelection() const { return this->m_chart_selection; }
-inline void mmPrintableBase::chart(int selection) { m_chart_selection = selection; }
-inline void mmPrintableBase::initial_report(bool initial) { m_initial = initial; }
-inline  int mmPrintableBase::report_parameters() { return m_parameters; }
-inline  const wxString mmPrintableBase::getReportSettings() const { return m_settings; }
-inline void mmPrintableBase::initReportSettings(const wxString & settings) { m_settings = settings; }
+// virtual
+inline int ReportBase::getParameters() { return m_parameters; }
 
-class mmGeneralReport : public mmPrintableBase
+// set
+inline void ReportBase::setReportSettings(const wxString & settings) { m_settings = settings; }
+inline void ReportBase::setDateRange(const mmDateRange* date_range) { m_date_range = date_range; }
+inline void ReportBase::setDateSelection(int64 sel) { m_date_selection = sel; }
+inline void ReportBase::setForwardMonths(int sel) { m_forward_months = sel; }
+inline void ReportBase::setChartSelection(int selection) { m_chart_selection = selection; }
+
+// get
+inline ReportBase::TYPE_ID ReportBase::getTypeId() const { return m_type_id; }
+inline const wxString ReportBase::getReportSettings() const { return m_settings; }
+inline int64 ReportBase::getDateSelection() const { return this->m_date_selection; }
+inline int ReportBase::getForwardMonths() const { return this->m_forward_months; }
+inline int ReportBase::getAccountSelection() const { return this->m_account_selection; }
+inline int ReportBase::getChartSelection() const { return this->m_chart_selection; }
+
+class mmGeneralReport : public ReportBase
 {
 public:
     explicit mmGeneralReport(const Model_Report::Data* report);
 
 public:
     wxString getHTMLText();
-    virtual int report_parameters();
+    virtual int getParameters();
 
 private:
     const Model_Report::Data* m_report;
@@ -152,5 +157,3 @@ private:
     void load_context();
 };
 
-//----------------------------------------------------------------------------
-#endif // MM_EX_REPORTBASE_H_

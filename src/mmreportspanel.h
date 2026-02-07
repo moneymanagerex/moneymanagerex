@@ -18,8 +18,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_REPORTSPANEL_H_
-#define MM_EX_REPORTSPANEL_H_
+#pragma once
 
 #include "mmpanelbase.h"
 #include "mmSimpleDialogs.h"
@@ -35,95 +34,99 @@ class mmReportsPanel : public mmPanelBase
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmReportsPanel(mmPrintableBase* rb,
-        bool cleanupReport,
+    enum RepPanel
+    {
+        ID_UNUSED = wxID_HIGHEST + 555,
+        ID_ACCOUNT_CHOICE,
+        ID_SINGLE_DATE_PICKER,
+        ID_START_DATE_PICKER,
+        ID_END_DATE_PICKER,
+        ID_TIME_PICKER,
+        ID_YEAR_CHOICE,
+        ID_BUDGET_CHOICE,
+        ID_CHART_CHOICE,
+        ID_FORWARD_MONTHS,
+        ID_DATE_RANGE_BUTTON,
+        ID_DATE_RANGE_MIN,
+        ID_DATE_RANGE_MAX = ID_DATE_RANGE_MIN + 99,
+        ID_DATE_RANGE_EDIT,
+    };
+
+private:
+    ReportBase* m_rb = nullptr;
+    std::vector<DateRange2::Range> m_date_range_a = {};
+    int m_date_range_m = -1;
+    DateRange2 m_date_range = DateRange2();
+    mmCheckingPanel::FILTER_ID m_filter_id;
+    bool m_cleanup;
+    int m_shift = 0;
+    bool m_use_account_specific_filter;
+    wxString u_html_report;
+    bool u_cleanup_mem = false;
+
+private:
+    mmGUIFrame*       w_frame              = nullptr;
+    wxWebView*        w_browser            = nullptr;
+    wxButton*         w_date_range_button  = nullptr;
+    mmDatePickerCtrl* w_single_date_picker = nullptr;
+    mmDatePickerCtrl* w_start_date_picker  = nullptr;
+    mmDatePickerCtrl* w_end_date_picker    = nullptr;
+    wxTimePickerCtrl* w_time_picker        = nullptr;
+    wxChoice*         w_year_choice        = nullptr;
+    wxSpinCtrl*       w_forward_months     = nullptr;
+    wxChoice*         w_account_choice     = nullptr;
+    wxChoice*         w_chart_choice       = nullptr;
+
+public:
+    mmReportsPanel(
+        ReportBase* rb,
+        bool cleanup,
         wxWindow *parent,
         mmGUIFrame *frame,
         wxWindowID winid = wxID_ANY,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = "mmReportsPanel");
+        const wxString& name = "mmReportsPanel"
+    );
     ~mmReportsPanel();
 
-    bool Create(wxWindow *parent, wxWindowID winid,
+public:
+    bool Create(
+        wxWindow *parent, wxWindowID winid,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = "mmReportsPanel");
-
+        const wxString& name = "mmReportsPanel"
+    );
     void CreateControls();
     void loadFilterSettings();
     void saveFilterSettings();
     void sortList() {}
-
     bool saveReportText(bool initial = true);
-    mmPrintableBase* getPrintableBase();
+    ReportBase* getReportBase();
     void PrintPage();
 
-    mmGUIFrame *m_frame = nullptr;
-
-    enum RepPanel
-    {
-        ID_CHOICE_DATE_RANGE = wxID_HIGHEST + 555,
-        ID_CHOICE_ACCOUNTS,
-        ID_CHOICE_SINGLE_DATE,
-        ID_CHOICE_START_DATE,
-        ID_CHOICE_END_DATE,
-        ID_CHOICE_TIME,
-        ID_CHOICE_YEAR,
-        ID_CHOICE_BUDGET,
-        ID_CHOICE_CHART,
-        ID_CHOICE_FORWARD_MONTHS,
-        ID_FILTER_PERIOD,
-        ID_FILTER_DATE_MIN,
-        ID_FILTER_DATE_MAX = ID_FILTER_DATE_MIN + 99,
-        ID_EDIT_DATE_RANGES,
-    };
+public:
+    static void loadDateRanges(std::vector<DateRange2::Range>* date_range_a, int* date_range_m, bool all_ranges = false);
 
 private:
-    void OnNewWindow(wxWebViewEvent& evt);
-    std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
-    std::vector<DateRange2::Range> m_date_range_a = {};
-    wxChoice* m_date_ranges = nullptr;
-    mmDatePickerCtrl *m_single_date = nullptr, *m_start_date = nullptr, *m_end_date = nullptr;
-    wxTimePickerCtrl *m_time = nullptr;
-    wxWebView * browser_ = nullptr;
-    mmPrintableBase* rb_ = nullptr;
-    wxChoice* m_accounts = nullptr;
-    wxChoice* m_chart = nullptr;
-    wxSpinCtrl *m_forwardMonths = nullptr;
-
-    wxButton* m_bitmapDataPeriodFilterBtn = nullptr;
-    DateRange2 m_current_date_range = DateRange2();
-    mmCheckingPanel::FILTER_ID m_filter_id;
-
-private:
-    void OnYearChanged(wxCommandEvent& event);
-    void OnBudgetChanged(wxCommandEvent & event);
-    void OnStartEndDateChanged(wxDateEvent& event);
-    void OnSingleDateChanged(wxDateEvent& event);
-    void OnAccountChanged(wxCommandEvent& event);
-    void OnChartChanged(wxCommandEvent& event);
-    void OnForwardMonthsChangedSpin(wxSpinEvent& event);
-    void OnForwardMonthsChangedText(wxCommandEvent& event);
-    void OnShiftPressed(wxCommandEvent& event);
-    void OnPeriodSelectPopup(wxCommandEvent& event);
-    void onFilterDateMenu(wxCommandEvent& event);
-    void onEditDateRanges(wxCommandEvent& event);
+    void onNewWindow(wxWebViewEvent& evt);
+    void onYearChanged(wxCommandEvent& event);
+    void onBudgetChanged(wxCommandEvent & event);
+    void onStartEndDateChanged(wxDateEvent& event);
+    void onSingleDateChanged(wxDateEvent& event);
+    void onAccountChanged(wxCommandEvent& event);
+    void onChartChanged(wxCommandEvent& event);
+    void onForwardMonthsChangedSpin(wxSpinEvent& event);
+    void onForwardMonthsChangedText(wxCommandEvent& event);
+    void onShiftPressed(wxCommandEvent& event);
+    void onDateRangePopup(wxCommandEvent& event);
+    void onDateRangeSelect(wxCommandEvent& event);
+    void onDateRangeEdit(wxCommandEvent& event);
 
     void updateFilter();
-
-    bool cleanup_;
-    bool cleanupmem_ = false;
-    int m_shift = 0;
-
-    // New filtering
-    bool m_use_account_specific_filter;
-    int m_date_range_m = -1;
-    wxString htmlreport_;
-
 };
 
-inline mmPrintableBase* mmReportsPanel::getPrintableBase() { return rb_; }
-#endif
+inline ReportBase* mmReportsPanel::getReportBase() { return m_rb; }
+

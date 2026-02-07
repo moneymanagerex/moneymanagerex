@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 mmReportBudgetingPerformance::mmReportBudgetingPerformance()
 {
-    setReportParameters(Reports::BudgetPerformance);
+    setReportParameters(TYPE_ID::BudgetPerformance);
 }
 
 mmReportBudgetingPerformance::~mmReportBudgetingPerformance()
@@ -92,7 +92,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
 
     std::map<int64, std::map<int, double> > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
-        , accountArray_
+        , m_account_a
         , &date_range
         , Option::instance().getIgnoreFutureTransactions()
         , true
@@ -118,7 +118,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     // Prime the filter
     m_filter.clear();
     m_filter.setDateRange(yearBegin, yearEnd);
-    m_filter.setAccountList(accountArray_);
+    m_filter.setAccountList(m_account_a);
 
     hb.addDivContainer("shadow");
     {

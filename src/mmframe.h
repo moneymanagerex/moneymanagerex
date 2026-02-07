@@ -38,7 +38,7 @@ Copyright (C) 2025, 2026 Klaus Wich
 
 //----------------------------------------------------------------------------
 class wxSQLite3Database;
-class mmPrintableBase;
+class ReportBase;
 class mmPanelBase;
 class mmHomePagePanel;
 class mmTreeItemData;
@@ -169,7 +169,7 @@ private:
     bool createDataStore(const wxString& fileName, const wxString &passwd, bool openingNew);
     void createMenu();
     void createToolBar();
-    void createReportsPage(mmPrintableBase* rb, bool cleanup);
+    void createReportsPage(ReportBase* rb, bool cleanup);
     void createHelpPage(int index = mmex::HTML_INDEX);
     void refreshPanelData();
     wxTreeItemId findItemByData(wxTreeItemId itemId, mmTreeItemData& searchData);

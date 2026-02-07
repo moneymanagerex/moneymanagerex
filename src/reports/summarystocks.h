@@ -24,11 +24,11 @@
 
 class mmHTMLBuilder;
 
-class mmReportSummaryStocks : public mmPrintableBase
+class mmReportSummaryStocks : public ReportBase
 {
 public:
     mmReportSummaryStocks();
-    virtual void RefreshData();
+    virtual void refreshData();
     virtual wxString getHTMLText();
 
 private:
@@ -43,7 +43,7 @@ private:
     double m_stock_balance = 0.0;
 };
 
-class mmReportChartStocks : public mmPrintableBase
+class mmReportChartStocks : public ReportBase
 {
 public:
     mmReportChartStocks();

@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 // --------- CashFlow base class
 
 mmReportCashFlow::mmReportCashFlow(const wxString& name)
-    : mmPrintableBase(name), m_today(wxDateTime::Now().ResetTime())
+    : ReportBase(name), m_today(wxDateTime::Now().ResetTime())
 {
     m_only_active = true;
 }
@@ -82,7 +82,10 @@ void mmReportCashFlow::getTransactions()
         Model_Account::ACCOUNTTYPE(NavigatorTypes::instance().getInvestmentAccountStr(), NOT_EQUAL),
         Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL)
     )) {
-        if (accountArray_ && std::find(accountArray_->begin(), accountArray_->end(), account.ACCOUNTNAME) == accountArray_->end()) {
+        if (m_account_a &&
+            std::find(m_account_a->begin(), m_account_a->end(), account.ACCOUNTNAME) ==
+                m_account_a->end()
+        ) {
             continue;
         }
 
@@ -243,8 +246,10 @@ wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    const wxString& headingStr = wxString::Format(wxPLURAL("%1$s (%2$i month)", "%1$s (%2$i months)" , getForwardMonths())
-        , getReportTitle(), getForwardMonths());
+    const wxString& headingStr = wxString::Format(
+        wxPLURAL("%1$s (%2$i month)", "%1$s (%2$i months)", getForwardMonths()),
+        getTitle(), getForwardMonths()
+    );
     hb.addReportHeader(headingStr, 1, false);
     hb.DisplayFooter(getAccountNames());
 
@@ -334,7 +339,7 @@ mmReportCashFlowDaily::mmReportCashFlowDaily()
     : mmReportCashFlow(_n("Cash Flow - Daily"))
 {
     this->setForwardMonths(12);
-    setReportParameters(Reports::DailyCashFlow);
+    setReportParameters(TYPE_ID::DailyCashFlow);
 }
 
 wxString mmReportCashFlowDaily::getHTMLText()
@@ -348,7 +353,7 @@ mmReportCashFlowMonthly::mmReportCashFlowMonthly()
     : mmReportCashFlow(_n("Cash Flow - Monthly"))
 {
     this->setForwardMonths(120);
-    setReportParameters(Reports::MonthlyCashFlow);
+    setReportParameters(TYPE_ID::MonthlyCashFlow);
 }
 
 wxString mmReportCashFlowMonthly::getHTMLText()
@@ -361,7 +366,7 @@ wxString mmReportCashFlowMonthly::getHTMLText()
 mmReportCashFlowTransactions::mmReportCashFlowTransactions()
     : mmReportCashFlow(_n("Cash Flow - Transactions"))
 {
-    setReportParameters(Reports::TransactionsCashFlow);
+    setReportParameters(TYPE_ID::TransactionsCashFlow);
 }
 
 wxString mmReportCashFlowTransactions::getHTMLText()
@@ -372,8 +377,10 @@ wxString mmReportCashFlowTransactions::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    const wxString& headingStr = wxString::Format(wxPLURAL("%1$s (%2$i month)", "%1$s (%2$i months)" , getForwardMonths())
-        , getReportTitle(), getForwardMonths());
+    const wxString& headingStr = wxString::Format(
+        wxPLURAL("%1$s (%2$i month)", "%1$s (%2$i months)" , getForwardMonths()),
+        getTitle(), getForwardMonths()
+    );
     hb.addReportHeader(headingStr, 1, false);
     hb.DisplayFooter(getAccountNames());
 

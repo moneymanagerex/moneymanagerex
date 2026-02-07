@@ -83,11 +83,16 @@ const std::vector<Model_Report::Values> Model_Report::SqlPlaceHolders()
     const wxString def_time = wxDateTime::Now().FormatISOTime();
 
     const std::vector<Model_Report::Values> v = {
-    {"&begin_date", "mmDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE, _t("Begin date:")},
-    {"&end_date", "mmDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_END_DATE, _t("End date:")},
-    {"&single_date", "mmDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_SINGLE_DATE, _t("Date:")},
-    {"&single_time", "wxTimePickerCtrl", def_time, mmReportsPanel::RepPanel::ID_CHOICE_TIME, _t("Time:")},
-    {"&only_years", "wxChoice", def_date, mmReportsPanel::RepPanel::ID_CHOICE_YEAR, _t("Year:")},
+        { "&begin_date", "mmDatePickerCtrl", def_date,
+            mmReportsPanel::ID_START_DATE_PICKER, _t("Begin date:") },
+        { "&end_date", "mmDatePickerCtrl", def_date,
+            mmReportsPanel::ID_END_DATE_PICKER, _t("End date:") },
+        { "&single_date", "mmDatePickerCtrl", def_date,
+            mmReportsPanel::RepPanel::ID_SINGLE_DATE_PICKER, _t("Date:") },
+        { "&single_time", "wxTimePickerCtrl", def_time,
+            mmReportsPanel::ID_TIME_PICKER, _t("Time:") },
+        { "&only_years", "wxChoice", def_date,
+            mmReportsPanel::ID_YEAR_CHOICE, _t("Year:")},
     };
     return v;
 }

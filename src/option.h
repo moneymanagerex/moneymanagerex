@@ -43,6 +43,7 @@ public:
     static const std::vector<std::pair<COMPOUNDING_ID, wxString> > COMPOUNDING_NAME;
     static const std::vector<std::pair<COMPOUNDING_ID, int> > COMPOUNDING_N;
     static const std::vector<std::pair<wxString, wxString> > CHECKING_RANGE_DEFAULT;
+    static const std::vector<std::pair<wxString, wxString> > REPORTING_RANGE_DEFAULT;
 
 public:
     Option();
@@ -281,6 +282,14 @@ public:
     const std::vector<DateRange2::Range> getCheckingRangeA() const noexcept;
     int getCheckingRangeM() const noexcept;
 
+    // m_reporting_range, m_reporting_range_a, m_reporting_range_m
+    void loadReportingRange();
+    void setReportingRange(const wxArrayString &a);
+    void parseReportingRange();
+    const wxArrayString getReportingRange() const noexcept;
+    const std::vector<DateRange2::Range> getReportingRangeA() const noexcept;
+    int getReportingRangeM() const noexcept;
+
     // m_show_navigator_cashLedger
     void loadShowNavigatorCashLedger();
     void setShowNavigatorCashLedger(const bool value);
@@ -340,10 +349,13 @@ private:
     int m_toolbar_icon_size = 32;                       // TOOLBARICONSIZE
     int m_navigation_icon_size = 24;                    // NAVIGATIONICONSIZE
     wxArrayString m_checking_range;                     // CHECKING_RANGE
+    wxArrayString m_reporting_range;                    // REPORTING_RANGE
 
     // derived
     std::vector<DateRange2::Range> m_checking_range_a;  // m_checking_range
     int m_checking_range_m;                             // m_checking_range
+    std::vector<DateRange2::Range> m_reporting_range_a; // m_reporting_range
+    int m_reporting_range_m;                            // m_reporting_range
 };
 
 inline void Option::setDatabaseUpdated(const bool value)
@@ -581,6 +593,21 @@ inline const std::vector<DateRange2::Range> Option::getCheckingRangeA() const no
 inline int Option::getCheckingRangeM() const noexcept
 {
     return m_checking_range_m;
+}
+
+inline const wxArrayString Option::getReportingRange() const noexcept
+{
+    return m_reporting_range;
+}
+
+inline const std::vector<DateRange2::Range> Option::getReportingRangeA() const noexcept
+{
+    return m_reporting_range_a;
+}
+
+inline int Option::getReportingRangeM() const noexcept
+{
+    return m_reporting_range_m;
 }
 
 inline bool Option::getShowNavigatorCashLedger() const noexcept

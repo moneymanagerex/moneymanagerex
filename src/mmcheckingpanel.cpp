@@ -55,39 +55,39 @@
 
 const std::vector<std::pair<mmCheckingPanel::FILTER_ID, wxString> > mmCheckingPanel::FILTER_NAME =
 {
-    { mmCheckingPanel::FILTER_ID_DATE,     wxString("Date") },
-    { mmCheckingPanel::FILTER_ID_DATE_RANGE, wxString("DateRange") },
+    { mmCheckingPanel::FILTER_ID_DATE,        wxString("Date") },
+    { mmCheckingPanel::FILTER_ID_DATE_RANGE,  wxString("DateRange") },
     { mmCheckingPanel::FILTER_ID_DATE_PICKER, wxString("DatePicker") },
 };
 
 //----------------------------------------------------------------------------
 
 wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
-    EVT_BUTTON(wxID_NEW,             mmCheckingPanel::onNewTransaction)
-    EVT_BUTTON(wxID_EDIT,            mmCheckingPanel::onEditTransaction)
-    EVT_BUTTON(wxID_DUPLICATE,       mmCheckingPanel::onDuplicateTransaction)
-    EVT_BUTTON(wxID_UNDELETE,        mmCheckingPanel::onRestoreTransaction)
-    EVT_BUTTON(wxID_REMOVE,          mmCheckingPanel::onDeleteTransaction)
-    EVT_BUTTON(wxID_PASTE,           mmCheckingPanel::onEnterScheduled)
-    EVT_BUTTON(wxID_IGNORE,          mmCheckingPanel::onSkipScheduled)
-    EVT_BUTTON(wxID_FILE,            mmCheckingPanel::onOpenAttachment)
-    EVT_BUTTON(mmID_FILTER,          mmCheckingPanel::onFilterPopup)
-    EVT_BUTTON(mmID_FILTER_TRANSACTION_DETAIL, mmCheckingPanel::onFilterAdvanced)
-    EVT_MENU(mmID_FILTER_ADVANCED,   mmCheckingPanel::onFilterAdvanced)
-    EVT_MENU(mmID_EDIT_DATE_RANGES,  mmCheckingPanel::onEditDateRanges)
-    EVT_TOGGLEBUTTON(mmID_SCHEDULED, mmCheckingPanel::onScheduled)
+    EVT_BUTTON(wxID_NEW,           mmCheckingPanel::onNewTransaction)
+    EVT_BUTTON(wxID_EDIT,          mmCheckingPanel::onEditTransaction)
+    EVT_BUTTON(wxID_DUPLICATE,     mmCheckingPanel::onDuplicateTransaction)
+    EVT_BUTTON(wxID_UNDELETE,      mmCheckingPanel::onRestoreTransaction)
+    EVT_BUTTON(wxID_REMOVE,        mmCheckingPanel::onDeleteTransaction)
+    EVT_BUTTON(wxID_PASTE,         mmCheckingPanel::onEnterScheduled)
+    EVT_BUTTON(wxID_IGNORE,        mmCheckingPanel::onSkipScheduled)
+    EVT_BUTTON(wxID_FILE,          mmCheckingPanel::onOpenAttachment)
+    EVT_BUTTON(ID_FILTER,          mmCheckingPanel::onFilterPopup)
+    EVT_BUTTON(ID_FILTER_TRANS,    mmCheckingPanel::onFilterAdvanced)
+    EVT_MENU(ID_FILTER_ADVANCED,   mmCheckingPanel::onFilterAdvanced)
+    EVT_MENU(ID_DATE_RANGE_EDIT,   mmCheckingPanel::onEditDateRanges)
+    EVT_TOGGLEBUTTON(ID_SCHEDULED, mmCheckingPanel::onScheduled)
     EVT_MENU_RANGE(
-        mmID_FILTER_DATE_MIN,
-        mmID_FILTER_DATE_MAX,
+        ID_DATE_RANGE_MIN,
+        ID_DATE_RANGE_MAX,
         mmCheckingPanel::onFilterDate)
     EVT_MENU_RANGE(
         Model_Checking::TYPE_ID_WITHDRAWAL,
         Model_Checking::TYPE_ID_TRANSFER,
         mmCheckingPanel::onNewTransaction
     )
-    EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::onSearchTxtEntered)
-    EVT_DATE_CHANGED(mmID_DATE_PICK_LOW,  mmCheckingPanel::onDatePickLow)
-    EVT_DATE_CHANGED(mmID_DATE_PICK_HIGH,  mmCheckingPanel::onDatePickHigh)
+    EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND,  mmCheckingPanel::onSearchTxtEntered)
+    EVT_DATE_CHANGED(ID_DATE_PICKER_LOW,  mmCheckingPanel::onDatePickLow)
+    EVT_DATE_CHANGED(ID_DATE_PICKER_HIGH, mmCheckingPanel::onDatePickHigh)
     wxEND_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
@@ -194,7 +194,7 @@ void mmCheckingPanel::createControls()
     sizerVHeader->Add(sizerHInfo, g_flagsBorder1V);
 
     wxBoxSizer* sizerHCtrl = new wxBoxSizer(wxHORIZONTAL);
-    m_bitmapTransFilter = new wxButton(this, mmID_FILTER);
+    m_bitmapTransFilter = new wxButton(this, ID_FILTER);
     m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
     sizerHCtrl->Add(m_bitmapTransFilter, g_flagsH);
 
@@ -203,20 +203,21 @@ void mmCheckingPanel::createControls()
     DateRange2 tmprange = DateRange2();
     tmprange.setRange(m_date_range_a[0]);  // set to all
 
-    fromDateCtrl = new wxDatePickerCtrl(this, mmID_DATE_PICK_LOW, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
+    fromDateCtrl = new wxDatePickerCtrl(this, ID_DATE_PICKER_LOW, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
     fromDateCtrl->SetValue(
         tmprange.rangeStart().value_or(DateDay::min()).getDateTime()
     );
     fromDateCtrl->SetRange(wxInvalidDateTime, wxDateTime::Now());
     sizerHCtrl->Add(fromDateCtrl, g_flagsH);
 
-    toDateCtrl = new wxDatePickerCtrl(this, mmID_DATE_PICK_HIGH, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
+    toDateCtrl = new wxDatePickerCtrl(this, ID_DATE_PICKER_HIGH, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
     toDateCtrl->SetValue(
         tmprange.rangeEnd().value_or(DateDay::today()).getDateTime()
     );
     sizerHCtrl->Add(toDateCtrl, g_flagsH);
 
-    m_btnTransDetailFilter = new wxButton(this, mmID_FILTER_TRANSACTION_DETAIL, _tu("Filter…"));  // Filter for transaction details
+    // Filter for transaction details
+    m_btnTransDetailFilter = new wxButton(this, ID_FILTER_TRANS, _tu("Filter…"));
     m_btnTransDetailFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
     m_btnTransDetailFilter->SetMinSize(wxSize(150 + Option::instance().getIconSize() * 2, -1));
     sizerHCtrl->Add(m_btnTransDetailFilter, g_flagsH);
@@ -225,7 +226,7 @@ void mmCheckingPanel::createControls()
         sizerHCtrl->AddSpacer(15);
         const auto& size = m_bitmapTransFilter->GetSize().GetY();
         m_header_scheduled = new wxBitmapToggleButton(
-            this, mmID_SCHEDULED, mmBitmapBundle(png::RECURRING),
+            this, ID_SCHEDULED, mmBitmapBundle(png::RECURRING),
             wxDefaultPosition, wxSize(size, size)
         );
         sizerHCtrl->Add(m_header_scheduled, g_flagsH);
@@ -1092,7 +1093,7 @@ void mmCheckingPanel::onFilterPopup(wxCommandEvent& event)
     wxMenu menu;
     int i = 0;
     while (i < m_date_range_m) {
-        menu.Append(mmID_FILTER_DATE_MIN + i, m_date_range_a[i].getName());
+        menu.Append(ID_DATE_RANGE_MIN + i, m_date_range_a[i].getName());
         i++;
     }
 
@@ -1103,13 +1104,13 @@ void mmCheckingPanel::onFilterPopup(wxCommandEvent& event)
         wxMenu* menu_more(new wxMenu);
         menu.AppendSubMenu(menu_more, _tu("More date ranges…"));
         while (i < static_cast<int>(m_date_range_a.size())) {
-            menu_more->Append(mmID_FILTER_DATE_MIN + i, m_date_range_a[i].getName());
+            menu_more->Append(ID_DATE_RANGE_MIN + i, m_date_range_a[i].getName());
             i++;
         }
     }
 
     menu.AppendSeparator();
-    menu.Append(mmID_EDIT_DATE_RANGES, _tu("Edit date ranges…"));
+    menu.Append(ID_DATE_RANGE_EDIT, _tu("Edit date ranges…"));
 
     PopupMenu(&menu);
     m_bitmapTransFilter->Layout();
@@ -1118,7 +1119,7 @@ void mmCheckingPanel::onFilterPopup(wxCommandEvent& event)
 
 void mmCheckingPanel::onFilterDate(wxCommandEvent& event)
 {
-    int i = event.GetId() - mmID_FILTER_DATE_MIN;
+    int i = event.GetId() - ID_DATE_RANGE_MIN;
     if (i < 0 || i >= static_cast<int>(m_date_range_a.size()))
         return;
 
@@ -1200,38 +1201,25 @@ void mmCheckingPanel::onFilterAdvanced(wxCommandEvent& WXUNUSED(event))
 
 void mmCheckingPanel::onEditDateRanges(wxCommandEvent& WXUNUSED(event))
 {
-    mmDateRangeDialog dlg(this, &m_date_range_a, &m_date_range_m);
-    if (dlg.ShowModal() == wxID_OK) {
-        if (m_date_range_a.size() == 0) {
-            int src_i = 0;
-            int src_m = Option::instance().getCheckingRangeM();
-            for (const auto& range : Option::instance().getCheckingRangeA()) {
-                if (m_date_range_a.size() > mmID_FILTER_DATE_MAX - mmID_FILTER_DATE_MIN) {
-                    break;
-                }
-                if (src_i == src_m) {
-                    m_date_range_m = m_date_range_a.size();
-                }
-                if (isAccount() || !range.hasPeriodS()) {
-                    m_date_range_a.push_back(range);
-                }
-                src_i++;
+    mmDateRangeDialog dlg(this, mmDateRangeDialog::TYPE_ID_CHECKING);
+    if (dlg.ShowModal() != wxID_OK)
+        return;
+
+    loadDateRanges(&m_date_range_a, &m_date_range_m, isAccount());
+
+    // Verify if current filter is still valid otherwise reset to "ALL"
+    if (m_filter_id == FILTER_ID_DATE_RANGE) {
+        wxString curname = m_current_date_range.rangeName();
+        bool isDeleted = true;
+        for (const auto& range : m_date_range_a) {
+            if (range.getName() == curname) {
+                isDeleted = false;
+                break;
             }
         }
-        // Verify if current filter is still valid otherwise reset to "ALL"
-        if (m_filter_id == FILTER_ID_DATE_RANGE) {
-            wxString curname = m_current_date_range.rangeName();
-            bool isDeleted = true;
-            for (const auto& range : m_date_range_a) {
-                if (range.getName() == curname) {
-                    isDeleted = false;
-                    break;
-                }
-            }
-            if (isDeleted) {
-                wxCommandEvent evt = wxCommandEvent(wxEVT_NULL, mmID_FILTER_DATE_MIN);
-                onFilterDate(evt);
-            }
+        if (isDeleted) {
+            wxCommandEvent evt = wxCommandEvent(wxEVT_NULL, ID_DATE_RANGE_MIN);
+            onFilterDate(evt);
         }
     }
 }
@@ -1306,8 +1294,8 @@ void mmCheckingPanel::onButtonRightDown(wxMouseEvent& event)
 {
     int id = event.GetId();
     switch (id) {
-    case mmID_FILTER: {
-        wxCommandEvent evt(wxID_ANY, mmID_FILTER_ADVANCED);
+    case ID_FILTER: {
+        wxCommandEvent evt(wxID_ANY, ID_FILTER_ADVANCED);
         onFilterAdvanced(evt);
         break;
     }
@@ -1455,24 +1443,29 @@ wxString mmCheckingPanel::getFilterName(FILTER_ID id) {
     return mmCheckingPanel::FILTER_NAME[id].second;
 }
 
-void mmCheckingPanel::loadDateRanges(std::vector<DateRange2::Range>* date_range_ptr, int* range_m, bool isaccount) {
-    date_range_ptr->clear();
-    *range_m = -1;
+void mmCheckingPanel::loadDateRanges(
+    std::vector<DateRange2::Range>* date_range_a,
+    int* date_range_m,
+    bool all_ranges
+) {
+    date_range_a->clear();
+    *date_range_m = -1;
     int src_i = 0;
     int src_m = Option::instance().getCheckingRangeM();
     for (const auto& range : Option::instance().getCheckingRangeA()) {
-        if (date_range_ptr->size() > mmID_FILTER_DATE_MAX - mmID_FILTER_DATE_MIN) {
+        if (date_range_a->size() > ID_DATE_RANGE_MAX - ID_DATE_RANGE_MIN) {
             break;
         }
         if (src_i == src_m) {
-            *range_m = date_range_ptr->size();
+            *date_range_m = date_range_a->size();
         }
-        if (isaccount || !range.hasPeriodS()) {
-            date_range_ptr->push_back(range);
+        if (all_ranges || !range.hasPeriodS()) {
+            date_range_a->push_back(range);
         }
         src_i++;
     }
-    if (*range_m < 0) {
-        *range_m = date_range_ptr->size();
+    if (*date_range_m < 0) {
+        *date_range_m = date_range_a->size();
     }
 }
+

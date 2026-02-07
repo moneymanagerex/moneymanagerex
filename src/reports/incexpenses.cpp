@@ -32,9 +32,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 
 mmReportIncomeExpenses::mmReportIncomeExpenses()
-    : mmPrintableBase(_n("Income vs. Expenses Summary"))
+    : ReportBase(_n("Income vs. Expenses Summary"))
 {
-    setReportParameters(Reports::IncomevsExpensesSummary);
+    setReportParameters(TYPE_ID::IncomevsExpensesSummary);
 }
 
 mmReportIncomeExpenses::~mmReportIncomeExpenses()
@@ -46,23 +46,27 @@ wxString mmReportIncomeExpenses::getHTMLText()
     // Grab the data
     std::pair<double, double> income_expenses_pair;
     for (const auto& transaction : Model_Checking::instance().find(
-        Model_Checking::TRANSDATE(m_date_range->start_date(), GREATER_OR_EQUAL)
-        , Model_Checking::TRANSDATE(m_date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL)
-        , Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)))
-    {
-        // Do not include asset or stock transfers or deleted transactions in income expense calculations.
-        if (Model_Checking::foreignTransactionAsTransfer(transaction) || !transaction.DELETEDTIME.IsEmpty())
+        Model_Checking::TRANSDATE(DateDay(m_date_range->start_date()), GREATER_OR_EQUAL),
+        Model_Checking::TRANSDATE(DateDay(m_date_range->end_date()), LESS_OR_EQUAL),
+        Model_Checking::DELETEDTIME(wxEmptyString, EQUAL),
+        Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
+    )) {
+        // Do not include asset or stock transfers
+        if (Model_Checking::foreignTransactionAsTransfer(transaction))
             continue;
 
         Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
-        if (accountArray_)
-        {
-            if (!account || wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME))
+        if (m_account_a) {
+            if (!account || wxNOT_FOUND == m_account_a->Index(account->ACCOUNTNAME))
                 continue;
         }
         double convRate = 1;
         // We got this far, get the currency conversion rate for this account
-        if (account) convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID, transaction.TRANSDATE);
+        if (account) {
+            convRate = Model_CurrencyHistory::getDayRate(
+                Model_Account::currency(account)->CURRENCYID, transaction.TRANSDATE
+            );
+        }
 
         if (Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_DEPOSIT)
             income_expenses_pair.first += transaction.TRANSAMOUNT * convRate;
@@ -73,8 +77,8 @@ wxString mmReportIncomeExpenses::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
-    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+    hb.addReportHeader(getTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
+    hb.DisplayDateHeading(m_date_range);
     hb.DisplayFooter(getAccountNames());
 
     // Chart
@@ -130,9 +134,9 @@ wxString mmReportIncomeExpenses::getHTMLText()
 }
 
 mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly()
-    : mmPrintableBase(_n("Income vs. Expenses Monthly"))
+    : ReportBase(_n("Income vs. Expenses Monthly"))
 {
-    setReportParameters(Reports::IncomevsExpensesMonthly);
+    setReportParameters(TYPE_ID::IncomevsExpensesMonthly);
 }
 
 mmReportIncomeExpensesMonthly::~mmReportIncomeExpensesMonthly()
@@ -144,25 +148,29 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     // Grab the data
     const wxDateTime start_date = m_date_range->start_date();
     std::map<int, std::pair<double, double> > incomeExpensesStats;
-    //TODO: init all the map values with 0.0
+    // TODO: init all the map values with 0.0
     for (const auto& transaction : Model_Checking::instance().find(
-        Model_Checking::TRANSDATE(start_date, GREATER_OR_EQUAL)
-        , Model_Checking::TRANSDATE(m_date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL)
-        , Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)))
-    {
-        // Do not include asset or stock transfers or deleted transactions in income expense calculations.
-        if (Model_Checking::foreignTransactionAsTransfer(transaction) || !transaction.DELETEDTIME.IsEmpty())
+        Model_Checking::TRANSDATE(DateDay(start_date), GREATER_OR_EQUAL),
+        Model_Checking::TRANSDATE(DateDay(m_date_range->end_date()), LESS_OR_EQUAL),
+        Model_Checking::DELETEDTIME(wxEmptyString, EQUAL),
+        Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
+    )) {
+        // Do not include asset or stock transfers
+        if (Model_Checking::foreignTransactionAsTransfer(transaction))
             continue;
 
         Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
-        if (accountArray_)
-        {
-            if (!account || wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME))
+        if (m_account_a) {
+            if (!account || wxNOT_FOUND == m_account_a->Index(account->ACCOUNTNAME))
                 continue;
         }
         double convRate = 1;
         // We got this far, get the currency conversion rate for this account
-        if (account) convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID, transaction.TRANSDATE);
+        if (account) {
+            convRate = Model_CurrencyHistory::getDayRate(
+                Model_Account::currency(account)->CURRENCYID, transaction.TRANSDATE
+            );
+        }
         int year = Model_Checking::getTransDateTime(transaction).GetYear();
 
         int idx = year * 100 + Model_Checking::getTransDateTime(transaction).GetMonth();
@@ -178,8 +186,8 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
-    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+    hb.addReportHeader(getTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
+    hb.DisplayDateHeading(m_date_range);
     hb.DisplayFooter(getAccountNames());
 
     // Chart

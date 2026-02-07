@@ -30,18 +30,18 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <algorithm>
 
 mmReportPayeeExpenses::mmReportPayeeExpenses()
-    : mmPrintableBase(_n("Payee Report"))
+    : ReportBase(_n("Payee Report"))
     , positiveTotal_(0.0)
     , negativeTotal_(0.0)
 {
-    setReportParameters(Reports::Payees);
+    setReportParameters(TYPE_ID::Payees);
 }
 
 mmReportPayeeExpenses::~mmReportPayeeExpenses()
 {
 }
 
-void  mmReportPayeeExpenses::RefreshData()
+void  mmReportPayeeExpenses::refreshData()
 {
     data_.clear();
     valueList_.clear();
@@ -49,8 +49,11 @@ void  mmReportPayeeExpenses::RefreshData()
     negativeTotal_ = 0.0;
 
     std::map<int64, std::pair<double, double> > payeeStats;
-    getPayeeStats(payeeStats, const_cast<mmDateRange*>(m_date_range)
-        , Option::instance().getIgnoreFutureTransactions());
+    getPayeeStats(
+        payeeStats,
+        const_cast<mmDateRange*>(m_date_range),
+        Option::instance().getIgnoreFutureTransactions()
+    );
 
     data_holder line;
 
@@ -92,13 +95,13 @@ void  mmReportPayeeExpenses::RefreshData()
 wxString mmReportPayeeExpenses::getHTMLText()
 {
     // Grab the data
-    RefreshData();
+    refreshData();
 
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
-    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+    hb.addReportHeader(getTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
+    hb.DisplayDateHeading(m_date_range);
     // Prime the filter
     m_filter.clear();
     m_filter.setDateRange(m_date_range->start_date(), m_date_range->end_date());
@@ -180,47 +183,50 @@ wxString mmReportPayeeExpenses::getHTMLText()
     return hb.getHTMLText();
 }
 
-void mmReportPayeeExpenses::getPayeeStats(std::map<int64, std::pair<double, double> > &payeeStats
-                                          , mmDateRange* date_range, bool WXUNUSED(ignoreFuture)) const
-{
-// FIXME: do not ignore ignoreFuture param
-    const auto &transactions = Model_Checking::instance().find(
-        Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
-        , Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
-        , Model_Checking::TRANSDATE(date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL));
+void mmReportPayeeExpenses::getPayeeStats(
+    std::map<int64, std::pair<double, double> > &payeeStats,
+    mmDateRange* date_range,
+    bool WXUNUSED(ignoreFuture)
+) const {
+    // FIXME: do not ignore ignoreFuture param
     const auto all_splits = Model_Splittransaction::instance().get_all();
-    for (const auto& trx: transactions)
-    {
-        if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER || !trx.DELETEDTIME.IsEmpty()) continue;
+    const auto &transactions = Model_Checking::instance().find(
+        Model_Checking::TRANSDATE(DateDay(date_range->start_date()), GREATER_OR_EQUAL),
+        Model_Checking::TRANSDATE(DateDay(date_range->end_date()), LESS_OR_EQUAL),
+        Model_Checking::DELETEDTIME(wxEmptyString, EQUAL),
+        Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
+    );
+    for (const auto& trx: transactions) {
+        // Transfer transactions do not have a payee
+        if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER)
+            continue;
 
-        // Do not include asset or stock transfers in income expense calculations.
+        // Do not include asset or stock transfers
         if (Model_Checking::foreignTransactionAsTransfer(trx))
             continue;
 
-        const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
+        const double convRate = Model_CurrencyHistory::getDayRate(
+            Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID,
+            trx.TRANSDATE
+        );
 
         Model_Splittransaction::Data_Set splits;
         if (all_splits.count(trx.id())) splits = all_splits.at(trx.id());
-        if (splits.empty())
-        {
+        if (splits.empty()) {
             if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_DEPOSIT)
                 payeeStats[trx.PAYEEID].first += trx.TRANSAMOUNT * convRate;
             else
                 payeeStats[trx.PAYEEID].second -= trx.TRANSAMOUNT * convRate;
         }
-        else
-        {
-            for (const auto& entry : splits)
-            {
-                if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_DEPOSIT)
-                {
+        else {
+            for (const auto& entry : splits) {
+                if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_DEPOSIT) {
                     if (entry.SPLITTRANSAMOUNT >= 0)
                         payeeStats[trx.PAYEEID].first += entry.SPLITTRANSAMOUNT * convRate;
                     else
                         payeeStats[trx.PAYEEID].second += entry.SPLITTRANSAMOUNT * convRate;
                 }
-                else
-                {
+                else {
                     if (entry.SPLITTRANSAMOUNT < 0)
                         payeeStats[trx.PAYEEID].first -= entry.SPLITTRANSAMOUNT * convRate;
                     else

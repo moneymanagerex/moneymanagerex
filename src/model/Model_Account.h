@@ -124,7 +124,6 @@ public:
 
     static bool BoolOf(int64 value);
     static bool is_positive(int value);
-    static wxDateTime get_date_by_string(const wxString& date_str);
 
     const Data_Set FilterAccounts(const wxString& account_pattern, bool skip_closed = false);
 
@@ -165,11 +164,6 @@ inline Model_Account::STATUS_ID Model_Account::status_id(const Data* account)
 inline Model_Account::STATUS_ID Model_Account::status_id(const Data& account)
 {
     return status_id(&account);
-}
-
-inline wxDateTime Model_Account::get_date_by_string(const wxString& date_str)
-{
-    return parseDateTime(date_str);
 }
 
 inline bool Model_Account::is_positive(int value)
