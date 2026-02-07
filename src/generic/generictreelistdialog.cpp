@@ -107,7 +107,7 @@ void genericTreeListDialog::init(long liststyle)  // Must be called in construct
 
     createBottomElements(itemBoxVright);  // to be overwritten
 
-    wxButton* btn = new wxButton(this, BTN_DEFAULT, _tu("&Restore default"));
+    wxButton* btn = new wxButton(this, BTN_DEFAULT, _tu("&Restore defaults"));
     itemBoxVright->Add(btn, 0, wxALL, 5);
     btn->Bind(wxEVT_BUTTON, &genericTreeListDialog::OnDefault, this);
 
@@ -286,7 +286,7 @@ void genericTreeListDialog::OnCloseWin(wxCloseEvent&)  // for dialog menu
 void genericTreeListDialog::OnDefault(wxCommandEvent&)
 {
     if (wxMessageBox(_tu("Do you really want to restore the default values?\n\nAll customization will be lost!")
-        , _tu("&Restore default")
+        , _tu("&Restore defaults")
         , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION) == wxYES)
     {
         setDefault();

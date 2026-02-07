@@ -376,7 +376,7 @@ void mmQIFImportDialog::CreateControls()
     date_sizer->Add(choiceDateFormat_, g_flagsBorder1H);
     flex_sizer_b->Add(date_sizer, g_flagsH);
 
-    wxStaticText* decamalCharText = new wxStaticText(this, wxID_STATIC, _t("Decimal Char"));
+    wxStaticText* decamalCharText = new wxStaticText(this, wxID_STATIC, _t("Decimal Char:"));
     m_choiceDecimalSeparator = new mmChoiceAmountMask(this, wxID_ANY);
     wxBoxSizer* decamalCharSizer = new wxBoxSizer(wxHORIZONTAL);
     decamalCharSizer->Add(decamalCharText, g_flagsBorder1H);
