@@ -23,9 +23,9 @@
 #include "mmframe.h"
 #include "htmlbuilder.h"
 
-mmReportBudget::mmReportBudget(): mmPrintableBase("mmReportBudget")
+mmReportBudget::mmReportBudget(): ReportBase("mmReportBudget")
 {
-    setReportParameters(Reports::UNUSED);
+    setReportParameters(REPORT_ID::NONE);
 }
 
 mmReportBudget::~mmReportBudget()

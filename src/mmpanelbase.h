@@ -53,7 +53,9 @@ class mmListCtrl : public wxListCtrl
 {
 protected:
     wxDECLARE_EVENT_TABLE();
-    enum {
+
+    enum
+    {
         MENU_HEADER_SORT = wxID_HIGHEST + 2000,
         MENU_HEADER_TOGGLE_MIN,
         MENU_HEADER_TOGGLE_MAX = MENU_HEADER_TOGGLE_MIN + 99,

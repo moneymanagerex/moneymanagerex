@@ -29,7 +29,6 @@
 #include <ios>
 #include <float.h>
 
-
 namespace tags
 {
     static const char END_SIMPLE[] = R"(</body>)";
@@ -226,6 +225,11 @@ void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDate
 
     wxString t = wxString::Format(tags::HEADER, 4, sDate, 4);
     this->html_.Replace("<TMPL_VAR DATE_HEADING>", t);
+}
+
+void mmHTMLBuilder::DisplayDateHeading(const mmDateRange* date_range)
+{
+    DisplayDateHeading(date_range->start_date(), date_range->end_date(), date_range->is_with_date());
 }
 
 void mmHTMLBuilder::DisplayFooter(const wxString& footer)

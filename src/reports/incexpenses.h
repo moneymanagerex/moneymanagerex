@@ -22,7 +22,7 @@
 
 #include "reportbase.h"
 
-class mmReportIncomeExpenses : public mmPrintableBase
+class mmReportIncomeExpenses : public ReportBase
 {
 public:
     mmReportIncomeExpenses();
@@ -31,7 +31,7 @@ public:
 };
 
 /////////////////////////////////////////////////////////////////////////////////////
-class mmReportIncomeExpensesMonthly : public mmPrintableBase
+class mmReportIncomeExpensesMonthly : public ReportBase
 {
 public:
     mmReportIncomeExpensesMonthly();

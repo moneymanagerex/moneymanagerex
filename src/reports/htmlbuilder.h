@@ -26,6 +26,7 @@
 #include "model/Model_Currency.h"
 #include <html_template.h>
 #include "util.h"
+#include "mmDateRange.h"
 
 struct GraphSeries
 {
@@ -51,6 +52,7 @@ public:
     ~mmHTMLBuilder() {}
 
     void DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange = true, bool withNoEndDate = false);
+    void DisplayDateHeading(const mmDateRange* date_range);
     void DisplayFooter(const wxString& footer);
     /** Starts a new HMTL report */
     void init(bool simple = false, const wxString& extra_style = "");

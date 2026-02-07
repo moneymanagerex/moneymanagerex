@@ -41,7 +41,7 @@ const char* bugreport_template = R"(
 </html>
 )";
 
-class mmBugReport: public mmPrintableBase
+class mmBugReport: public ReportBase
 {
 public:
     mmBugReport();
@@ -53,7 +53,7 @@ private:
 };
 
 mmBugReport::mmBugReport()
-    : mmPrintableBase(_n("Bug Report"))
+    : ReportBase(_n("Bug Report"))
 {
 }
 
@@ -92,7 +92,7 @@ wxString mmBugReport::getHTMLText()
 
     wxString report_template = bugreport_template;
     mm_html_template report(formatHTML(report_template));
-    report(L"REPORTNAME") = this->getReportTitle();
+    report(L"REPORTNAME") = this->getTitle();
     report(L"HEADER") = _t("Please, follow these instructions before submitting a new bug report:");
     report(L"CONTENTS") = msg;
     report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().getHtmlScale() * 3 / 2);

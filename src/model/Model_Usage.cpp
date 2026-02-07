@@ -184,14 +184,14 @@ void Model_Usage::pageview(const wxWindow* window, long plt /* = 0 msec*/)
     pageview(wxURI(documentPath).BuildURI(), documentTitle, plt);
 }
 
-void Model_Usage::pageview(const wxWindow* window, const mmPrintableBase* rb, long plt /* = 0 msec*/)
+void Model_Usage::pageview(const wxWindow* window, const ReportBase* rb, long plt /* = 0 msec*/)
 {
     if (!window) return;
     if (window->GetName().IsEmpty()) return;
 
     const wxWindow *current = window;
 
-    wxString documentTitle = rb->getReportTitle(false);
+    wxString documentTitle = rb->getTitle(false);
 
     wxString documentPath;
     while (current)

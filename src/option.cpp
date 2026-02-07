@@ -31,7 +31,6 @@
 #include "model/Model_CurrencyHistory.h"
 #include "uicontrols/navigatortypes.h"
 
-
 const std::vector<std::pair<Option::COMPOUNDING_ID, wxString> > Option::COMPOUNDING_NAME =
 {
     { Option::COMPOUNDING_ID_DAY,   _n("Day") },
@@ -61,6 +60,39 @@ const std::vector<std::pair<wxString, wxString> > Option::CHECKING_RANGE_DEFAULT
     { "T",            _n("Today") },
     { "S .. A",       _n("From statement") },
     { "1 S .. A",     _n("From 1 day after statement") },
+    { "",             "" },
+    { "Y .. W",       _n("From current year to week") },
+    { "Y .. M",       _n("From current year to month") },
+    { "M .. W",       _n("From current month to week") },
+    { "-1 Y",         _n("Previous year") },
+    { "-1 M",         _n("Previous month") },
+    { "-1 W",         _n("Previous week") },
+    { "-1 Y .. A",    _n("From previous year") },
+    { "-1 Y .. M",    _n("From previous year to month") },
+    { "-1 M .. A",    _n("From previous month") },
+    { "-1 M .. W",    _n("From previous month to week") },
+    { "-1 W .. A",    _n("From previous week") },
+    { "-1 W .. W",    _n("From previous to current week") },
+    { "T .. A, -1 Y", _n("From 1 year ago") },
+    { "T .. A, -1 Q", _n("From 1 quarter ago") },
+    { "T .. A, -1 M", _n("From 1 month ago") },
+    { "T .. A, -1 W", _n("From 1 week ago") },
+    { "-2 Y",         _n("Year before last") },
+};
+
+const std::vector<std::pair<wxString, wxString> > Option::REPORTING_RANGE_DEFAULT =
+{
+    { "A",            _n("All") },
+    { "A .. W",       _n("All to week") },
+    { "A .. M",       _n("All to month") },
+    { "A .. Q",       _n("All to quarter") },
+    { "A .. Y",       _n("All to year") },
+    { "Y",            _n("Current year") },
+    { "Y F",          _n("Current financial year") },
+    { "Q",            _n("Current quarter") },
+    { "M",            _n("Current month") },
+    { "W",            _n("Current week") },
+    { "T",            _n("Today") },
     { "",             "" },
     { "Y .. W",       _n("From current year to week") },
     { "Y .. M",       _n("From current year to month") },
@@ -155,6 +187,7 @@ void Option::load(bool include_infotable)
     loadNavigationIconSize();
     loadFontSize();
     loadCheckingRange();
+    loadReportingRange();
 
     loadShowNavigatorCashLedger();
 }
@@ -694,6 +727,64 @@ void Option::parseCheckingRange()
 
     /*wxLogDebug("m=[%d], n=[%zu]", m_checking_range_m, m_checking_range_a.size());
     for ([[maybe_unused]] DateRange2::Range &range : m_checking_range_a) {
+        wxLogDebug("label=[%s], name=[%s]", range.getLabel(), range.getName());
+    }
+    wxLogDebug("}}}");*/
+}
+
+void Option::loadReportingRange()
+{
+    m_reporting_range = Model_Setting::instance().getArrayString("REPORTING_RANGE");
+    parseReportingRange();
+}
+void Option::setReportingRange(const wxArrayString &a)
+{
+    Model_Setting::instance().setArrayString("REPORTING_RANGE", a);
+    m_reporting_range = a;
+    parseReportingRange();
+}
+void Option::parseReportingRange()
+{
+    //wxLogDebug("{{{ Option::parseReportingRange()");
+
+    m_reporting_range_a.clear();
+    m_reporting_range_m = 0;
+
+    for (wxString &str : m_reporting_range) {
+        if (str.empty()) {
+            if (m_reporting_range_m == 0)
+                m_reporting_range_m = m_reporting_range_a.size();
+            continue;
+        }
+        DateRange2::Range range;
+        if (!range.parseLabelName(str))
+            continue;
+        m_reporting_range_a.push_back(range);
+    }
+
+    if (!m_reporting_range_a.empty())
+        goto done;
+
+    for (auto &default_range : REPORTING_RANGE_DEFAULT) {
+        wxString label = default_range.first;
+        if (label.empty()) {
+            if (m_reporting_range_m == 0)
+                m_reporting_range_m = m_reporting_range_a.size();
+            continue;
+        }
+        wxString name = wxGetTranslation(default_range.second);
+        DateRange2::Range range;
+        if (!range.parseLabelName(label, name))
+            continue;
+        m_reporting_range_a.push_back(range);
+    }
+
+    done:
+    if (m_reporting_range_m == 0)
+        m_reporting_range_m = m_reporting_range_a.size();
+
+    /*wxLogDebug("m=[%d], n=[%zu]", m_reporting_range_m, m_reporting_range_a.size());
+    for ([[maybe_unused]] DateRange2::Range &range : m_reporting_range_a) {
         wxLogDebug("label=[%s], name=[%s]", range.getLabel(), range.getName());
     }
     wxLogDebug("}}}");*/

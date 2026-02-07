@@ -27,7 +27,7 @@ class mmHTMLBuilder;
  Class: mmReportBudget : This class is a base class for Budget Reports.
         This class should not be used to create objects.
  *************************************************************************/
-class mmReportBudget : public mmPrintableBase
+class mmReportBudget : public ReportBase
 {
 public:
     mmReportBudget();

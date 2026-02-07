@@ -81,9 +81,8 @@ public:
 
     //static support function
     static wxString getFilterName(FILTER_ID id);
-    static void loadDateRanges(std::vector<DateRange2::Range>* date_range_ptr, int* range_m, bool isaccount);
+    static void loadDateRanges(std::vector<DateRange2::Range>* date_range_a, int* date_range_m, bool all_ranges = false);
     double GetReconciledBalance() const;
-
 
 private:
     friend class TransactionListCtrl;
@@ -92,19 +91,18 @@ private:
     wxDECLARE_EVENT_TABLE();
     enum
     {
-        mmID_FILTER = wxID_HIGHEST + 50,
-        mmID_FILTER_DATE_MIN,
-        mmID_FILTER_DATE_MAX = mmID_FILTER_DATE_MIN + 99,
-        mmID_FILTER_ADVANCED,
-        mmID_FILTER_TRANSACTION_DETAIL,
-        mmID_DATE_PICK_LOW,
-        mmID_DATE_PICK_HIGH,
-        mmID_EDIT_DATE_RANGES,
-        mmID_SCHEDULED,
+        ID_FILTER = wxID_HIGHEST + 50,
+        ID_DATE_RANGE_MIN,
+        ID_DATE_RANGE_MAX = ID_DATE_RANGE_MIN + 99,
+        ID_FILTER_ADVANCED,
+        ID_FILTER_TRANS,
+        ID_DATE_PICKER_LOW,
+        ID_DATE_PICKER_HIGH,
+        ID_DATE_RANGE_EDIT,
+        ID_SCHEDULED,
     };
 
     static const std::vector<std::pair<FILTER_ID, wxString> > FILTER_NAME;
-    static const wxString FILTER_NAME_DATE;
 
 private:
     // set by constructor or loadAccount()

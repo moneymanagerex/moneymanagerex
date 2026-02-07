@@ -16,8 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef _MM_EX_REPORTSUMMARY_H_
-#define _MM_EX_REPORTSUMMARY_H_
+#pragma once
 
 #include "reportbase.h"
 #include <vector>
@@ -25,57 +24,43 @@
 #include "model/Model.h"
 #include "model/Model_Account.h"
 
-
 class mmHistoryItem
 {
 public:
     mmHistoryItem();
 
-    int64       acctId;
-    int64       stockId;
-    wxDate      purchaseDate;
-    wxString    purchaseDateStr;
-    double      purchasePrice;
-    double      numShares;
+    int64    acctId;
+    int64    stockId;
+    wxDate   purchaseDate;
+    wxString purchaseDateStr;
+    double   purchasePrice;
+    double   numShares;
     Model_StockHistory::Data_Set stockHist;
 };
 
-/*class mmHistoryData : public std::vector<mmHistoryItem>
+class mmReportSummaryByDate : public ReportBase
 {
 public:
-    //double getDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
-};*/
+    enum PERIOD_ID
+    {
+        MONTH = 0,
+        YEAR
+    };
 
-class mmReportSummaryByDate : public mmPrintableBase
-{
-public:
-    mmReportSummaryByDate(int mode);
-    wxString getHTMLText();
-protected:
-    enum TYPE { MONTHLY = 0, YEARLY };
 private:
-    int mode_;
-    std::map<int64, std::map<wxDate, double>> accountsBalanceMap;
-    std::vector<mmHistoryItem> arHistory;
-    std::map<wxString, double> currencyDateRateCache;
+    PERIOD_ID m_period_id;
+    std::map<int64, std::map<wxDate, double>> m_account_date_balance;
+    std::vector<mmHistoryItem> m_stock_a;
+    std::map<wxString, double> m_currencyDateRateCache;
 
-    std::map<wxDate, double> createCheckingBalanceMap(const Model_Account::Data& account);
-    double getCheckingDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
-    //double getInvestingDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
-    std::pair<double, double> getDailyBalanceAt(const Model_Account::Data* account, const wxDate& date);
-    double getDayRate(int64 currencyid, const wxDate& date);
-};
-
-class mmReportSummaryByDateMontly : public mmReportSummaryByDate
-{
 public:
-    mmReportSummaryByDateMontly();
+    mmReportSummaryByDate(PERIOD_ID period_id);
+    wxString getHTMLText();
+
+private:
+    std::map<wxDate, double> loadCheckingDateBalance(const Model_Account::Data& account);
+    double getCheckingBalance(const Model_Account::Data* account, const wxDate& date);
+    std::pair<double, double> getBalance(const Model_Account::Data* account, const wxDate& date);
+    double getCurrencyDateRate(int64 currencyid, const wxDate& date);
 };
 
-class mmReportSummaryByDateYearly : public mmReportSummaryByDate
-{
-public:
-    mmReportSummaryByDateYearly();
-};
-
-#endif //_MM_EX_REPORTSUMMARY_H_

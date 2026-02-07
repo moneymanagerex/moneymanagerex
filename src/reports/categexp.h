@@ -26,7 +26,7 @@
 #include <vector>
 #include "model/Model_Category.h"
 
-class mmReportCategoryExpenses : public mmPrintableBase
+class mmReportCategoryExpenses : public ReportBase
 {
 public:
     // structure for sorting of data
@@ -35,7 +35,7 @@ public:
     explicit mmReportCategoryExpenses(const wxString& title, enum TYPE type);
     virtual ~mmReportCategoryExpenses();
 
-    virtual void RefreshData();
+    virtual void refreshData();
     double AppendData(const std::vector<data_holder>& data, std::map<int64, std::map<int, double>>& categoryStats,
         const DB_Table_CATEGORY_V1::Data* category, int64 groupID, int level);
     virtual wxString getHTMLText();
@@ -67,7 +67,7 @@ public:
 
 //----------------------------------------------------------------------------
 
-class mmReportCategoryOverTimePerformance : public mmPrintableBase
+class mmReportCategoryOverTimePerformance : public ReportBase
 {
 public:
     mmReportCategoryOverTimePerformance();

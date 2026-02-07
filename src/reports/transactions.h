@@ -25,7 +25,7 @@
 
 class mmBankTransaction;
 
-class mmReportTransactions : public mmPrintableBase
+class mmReportTransactions : public ReportBase
 {
 public:
     ~mmReportTransactions();
