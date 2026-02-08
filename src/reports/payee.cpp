@@ -95,6 +95,7 @@ void ReportFlowByPayee::loadData(mmDateRange* date_range, bool WXUNUSED(ignoreFu
         }
 
         // NOTE: call to getDayRate() in every transaction is slow
+        // if "Use historical currency" is enabled in settings
         const double convRate = Model_CurrencyHistory::getDayRate(
             Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID,
             trx.TRANSDATE
