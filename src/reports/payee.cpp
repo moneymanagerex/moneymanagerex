@@ -32,8 +32,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 ReportFlowByPayee::Data::Data() :
     payee_name(""),
-    inflow(0.0),
-    outflow(0.0),
+    flow_pos(0.0),
+    flow_neg(0.0),
     flow(0.0)
 {
 }
@@ -52,9 +52,9 @@ void ReportFlowByPayee::updateData(Data& data, Model_Checking::TYPE_ID type_id, 
 {
     double flow = (type_id == Model_Checking::TYPE_ID_DEPOSIT) ? amount : -amount;
     if (flow > 0.0)
-        data.inflow += flow;
+        data.flow_pos += flow;
     else if (flow < 0.0)
-        data.outflow += -flow;
+        data.flow_neg += flow;
     data.flow += flow;
 }
 
@@ -89,8 +89,8 @@ void ReportFlowByPayee::loadData(mmDateRange* date_range, bool WXUNUSED(ignoreFu
         if (new_payee) {
             Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
             data.payee_name = payee ? payee->PAYEENAME : "";
-            data.inflow = 0.0;
-            data.outflow = 0.0;
+            data.flow_pos = 0.0;
+            data.flow_neg = 0.0;
             data.flow = 0.0;
         }
 
@@ -127,9 +127,9 @@ void  ReportFlowByPayee::refreshData()
     for (const auto& it : m_id_data) {
         m_order_net_flow.push_back(it.first);
         m_order_abs_flow.push_back(it.first);
-        m_total.inflow  += it.second.inflow;
-        m_total.outflow += it.second.outflow;
-        m_total.flow    += it.second.flow;
+        m_total.flow_pos += it.second.flow_pos;
+        m_total.flow_neg += it.second.flow_neg;
+        m_total.flow     += it.second.flow;
     }
 
     // order by net flow
@@ -211,8 +211,8 @@ wxString ReportFlowByPayee::getHTMLText()
                             wxString::Format("viewtrans:-1:-1:%lld", payee_id),
                             data.payee_name
                         );
-                        hb.addMoneyCell(data.inflow);
-                        hb.addMoneyCell(data.outflow);
+                        hb.addMoneyCell(data.flow_pos);
+                        hb.addMoneyCell(data.flow_neg);
                         hb.addMoneyCell(data.flow);
                     }
                     hb.endTableRow();
@@ -223,8 +223,8 @@ wxString ReportFlowByPayee::getHTMLText()
             hb.startTfoot();
             {
                 std::vector<double> total;
-                total.push_back(m_total.inflow);
-                total.push_back(m_total.outflow);
+                total.push_back(m_total.flow_pos);
+                total.push_back(m_total.flow_neg);
                 total.push_back(m_total.flow);
                 hb.addMoneyTotalRow(_t("Total:"), 4, total);
             }

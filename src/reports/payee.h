@@ -29,8 +29,8 @@ private:
     struct Data
     {
         wxString payee_name;
-        double inflow;
-        double outflow;
+        double flow_pos;
+       double flow_neg;
         double flow;
 
         Data();
