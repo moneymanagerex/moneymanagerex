@@ -54,6 +54,6 @@ private:
     static void updateData(Data& data, Model_Checking::TYPE_ID type_id, double amount);
 
 private:
-    void loadData(mmDateRange* date_range, bool ignoreFuture);
+    void loadData();
 };
 

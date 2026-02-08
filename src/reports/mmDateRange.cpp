@@ -23,10 +23,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "option.h"
 #include <wx/intl.h>
 
-mmDateRange::mmDateRange() : today_(wxDateTime::Today())
-    , today_end_(wxDateTime(23, 59, 59, 999))
-    , future_(DATE_MAX)
-    , futureIgnored_(false)
+mmDateRange::mmDateRange() :
+    today_(wxDateTime::Today()),
+    today_end_(wxDateTime(23, 59, 59, 999)),
+    future_(DATE_MAX),
+    futureIgnored_(false)
 {
     start_date_ = today_;
     end_date_ = today_end_;

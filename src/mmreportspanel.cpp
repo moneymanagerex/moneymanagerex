@@ -119,12 +119,7 @@ bool mmReportsPanel::saveReportText(bool initial)
         return false;
 
     if (m_rb->getParameters() & ReportBase::M_DATE_RANGE) {
-        mmDateRange* date_range = new mmDateRange();
-        wxDateTime td = w_start_date_picker->GetValue();
-        date_range->start_date(td.ResetTime()); // Start of Day
-        td = w_end_date_picker->GetValue();
-        date_range->end_date(td.ResetTime().Add(wxTimeSpan(23,59,59,999))); // End of Day
-        m_rb->setDateRange(date_range);
+        m_rb->setDateRange(m_date_range);
         m_rb->setDateSelection(0);
     }
 

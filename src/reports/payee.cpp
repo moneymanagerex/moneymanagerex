@@ -58,16 +58,14 @@ void ReportFlowByPayee::updateData(Data& data, Model_Checking::TYPE_ID type_id, 
     data.flow += flow;
 }
 
-void ReportFlowByPayee::loadData(mmDateRange* date_range, bool WXUNUSED(ignoreFuture))
+void ReportFlowByPayee::loadData()
 {
-    // FIXME: do not ignore ignoreFuture param
-
     m_id_data.clear();
 
     const auto all_splits = Model_Splittransaction::instance().get_all();
     const auto &trx_a = Model_Checking::instance().find(
-        Model_Checking::TRANSDATE(DateDay(date_range->start_date()), GREATER_OR_EQUAL),
-        Model_Checking::TRANSDATE(DateDay(date_range->end_date()), LESS_OR_EQUAL),
+        Model_Checking::TRANSDATE(m_date_range2.rangeStart().value(), GREATER_OR_EQUAL),
+        Model_Checking::TRANSDATE(m_date_range2.rangeEnd().value(), LESS_OR_EQUAL),
         Model_Checking::DELETEDTIME(wxEmptyString, EQUAL),
         Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
     );
@@ -117,10 +115,7 @@ void ReportFlowByPayee::loadData(mmDateRange* date_range, bool WXUNUSED(ignoreFu
 
 void  ReportFlowByPayee::refreshData()
 {
-    loadData(
-        const_cast<mmDateRange*>(m_date_range),
-        Option::instance().getIgnoreFutureTransactions()
-    );
+    loadData();
 
     m_order_net_flow.clear();
     m_total = Data();

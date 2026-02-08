@@ -36,6 +36,15 @@ ReportBase::~ReportBase()
 {
 }
 
+const wxString ReportBase::getTitle(bool translate) const
+{
+    wxString title = getTranslation(translate, m_title);
+    if (m_date_range) {
+        title += " - " + getTranslation(translate, m_date_range->title());
+    }
+    return title;
+}
+
 void ReportBase::setReportParameters(ReportBase::REPORT_ID report_id)
 {
     m_report_id = report_id;
@@ -63,6 +72,87 @@ void ReportBase::setReportParameters(ReportBase::REPORT_ID report_id)
     case CategoryOverTimePerformance: m_parameters = M_MONTHS | M_ACCOUNT | M_CHART; break;
     default:                          m_parameters = M_NONE; break;
     }
+}
+
+void ReportBase::setAccounts(int selection, const wxString& type_name)
+{
+    if (selection != 1 && m_account_selection == selection)
+        return;
+
+    m_account_selection = selection;
+
+    switch (selection)
+    {
+    case 0: // All Accounts
+        m_account_a = nullptr;
+        break;
+    case 1: // Select Accounts
+    {
+        wxArrayString accounts;
+        auto a = Model_Account::instance().all();
+        std::stable_sort(a.begin(), a.end(), SorterByACCOUNTNAME());
+        for (const auto& item : a) {
+            if (m_only_active && item.STATUS != Model_Account::STATUS_NAME_OPEN)
+                continue;
+            accounts.Add(item.ACCOUNTNAME);
+        }
+
+        auto parent = wxWindow::FindWindowById(mmID_REPORTS);
+        mmMultiChoiceDialog mcd(parent ? parent : 0,
+            _t("Choose Accounts"), wxGetTranslation(m_title), accounts
+        );
+
+        if (m_account_selected_a && !m_account_selected_a->IsEmpty()) {
+            wxArrayInt selected;
+            int i = 0;
+            for (const auto &account : accounts) {
+                if (wxNOT_FOUND != m_account_selected_a->Index(account))
+                    selected.Add(i);
+                ++i;
+            }
+            mcd.SetSelections(selected);
+        }
+
+        if (mcd.ShowModal() == wxID_OK) {
+            wxArrayString* accountSelections = new wxArrayString();
+            for (const auto &i : mcd.GetSelections()) {
+                accountSelections->Add(accounts[i]);
+            }
+            m_account_selected_a = m_account_a = accountSelections;
+        }
+    }
+    break;
+    default: // All of Account type
+    {
+        wxArrayString* accountSelections = new wxArrayString();
+        auto accounts = Model_Account::instance().find(
+            Model_Account::ACCOUNTTYPE(type_name),
+            Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL)
+        );
+        for (const auto &i : accounts) {
+            accountSelections->Add(i.ACCOUNTNAME);
+        }
+        m_account_a = accountSelections;
+    } }
+}
+
+const wxString ReportBase::getAccountNames() const
+{
+    wxString accountsMsg;
+    if (m_account_a) {
+        for (const auto& entry : *m_account_a) {
+            accountsMsg.Append((accountsMsg.empty() ? "" : ", ") + entry);
+        }
+    }
+    else {
+        accountsMsg << _t("All Accounts");
+    }
+
+    if (accountsMsg.empty()) {
+        accountsMsg = _t("None");
+    }
+    accountsMsg.Prepend(_t("Accounts: "));
+    return accountsMsg;
 }
 
 void ReportBase::saveReportSettings()
@@ -168,96 +258,6 @@ void ReportBase::restoreReportSettings()
     }
 
     m_account_selection = selection;
-}
-
-const wxString ReportBase::getAccountNames() const
-{
-    wxString accountsMsg;
-    if (m_account_a) {
-        for (const auto& entry : *m_account_a) {
-            accountsMsg.Append((accountsMsg.empty() ? "" : ", ") + entry);
-        }
-    }
-    else {
-        accountsMsg << _t("All Accounts");
-    }
-
-    if (accountsMsg.empty()) {
-        accountsMsg = _t("None");
-    }
-    accountsMsg.Prepend(_t("Accounts: "));
-    return accountsMsg;
-}
-
-void ReportBase::setAccounts(int selection, const wxString& type_name)
-{
-    if (selection != 1 && m_account_selection == selection)
-        return;
-
-    m_account_selection = selection;
-
-    switch (selection)
-    {
-    case 0: // All Accounts
-        m_account_a = nullptr;
-        break;
-    case 1: // Select Accounts
-    {
-        wxArrayString accounts;
-        auto a = Model_Account::instance().all();
-        std::stable_sort(a.begin(), a.end(), SorterByACCOUNTNAME());
-        for (const auto& item : a) {
-            if (m_only_active && item.STATUS != Model_Account::STATUS_NAME_OPEN)
-                continue;
-            accounts.Add(item.ACCOUNTNAME);
-        }
-
-        auto parent = wxWindow::FindWindowById(mmID_REPORTS);
-        mmMultiChoiceDialog mcd(parent ? parent : 0,
-            _t("Choose Accounts"), wxGetTranslation(m_title), accounts
-        );
-
-        if (m_account_selected_a && !m_account_selected_a->IsEmpty()) {
-            wxArrayInt selected;
-            int i = 0;
-            for (const auto &account : accounts) {
-                if (wxNOT_FOUND != m_account_selected_a->Index(account))
-                    selected.Add(i);
-                ++i;
-            }
-            mcd.SetSelections(selected);
-        }
-
-        if (mcd.ShowModal() == wxID_OK) {
-            wxArrayString* accountSelections = new wxArrayString();
-            for (const auto &i : mcd.GetSelections()) {
-                accountSelections->Add(accounts[i]);
-            }
-            m_account_selected_a = m_account_a = accountSelections;
-        }
-    }
-    break;
-    default: // All of Account type
-    {
-        wxArrayString* accountSelections = new wxArrayString();
-        auto accounts = Model_Account::instance().find(
-            Model_Account::ACCOUNTTYPE(type_name),
-            Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL)
-        );
-        for (const auto &i : accounts) {
-            accountSelections->Add(i.ACCOUNTNAME);
-        }
-        m_account_a = accountSelections;
-    } }
-}
-
-const wxString ReportBase::getTitle(bool translate) const
-{
-    wxString title = translate ? wxGetTranslation(m_title) : m_title;
-    if (m_date_range) {
-        title += " - " + (translate ? m_date_range->local_title() : m_date_range->title());
-    }
-    return title;
 }
 
 //----------------------------------------------------------------------

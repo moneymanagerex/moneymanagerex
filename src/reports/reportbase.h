@@ -22,6 +22,7 @@
 
 #include "filtertrans.h"
 #include "mmDateRange.h"
+#include "daterange2.h"
 #include "option.h"
 #include "model/Model_Report.h"
 class wxString;
@@ -73,7 +74,8 @@ protected:
     wxString m_title;
     int m_parameters = 0;
     wxString m_settings = "";
-    const mmDateRange* m_date_range = nullptr;
+    mmDateRange* m_date_range = nullptr;
+    DateRange2 m_date_range2;
     int64 m_date_selection = 0;
     int m_forward_months = 24;
     wxSharedPtr<wxArrayString> m_account_a;
@@ -96,9 +98,10 @@ public:
     virtual void refreshData() {}
     virtual wxString getHTMLText() = 0;
 
+public:
     void setReportParameters(REPORT_ID report_id);
     void setReportSettings(const wxString& settings);
-    void setDateRange(const mmDateRange* date_range);
+    void setDateRange(const DateRange2& date_range2);
     void setDateSelection(int64 sel);
     void setForwardMonths(int sel);
     void setAccounts(int selection, const wxString& type_name);
@@ -121,7 +124,17 @@ inline int ReportBase::getParameters() { return m_parameters; }
 
 // set
 inline void ReportBase::setReportSettings(const wxString & settings) { m_settings = settings; }
-inline void ReportBase::setDateRange(const mmDateRange* date_range) { m_date_range = date_range; }
+inline void ReportBase::setDateRange(const DateRange2& date_range2)
+{
+    m_date_range2 = date_range2;
+    m_date_range = new mmDateRange();
+    m_date_range->start_date(date_range2.rangeStart().value().getDateTime()
+        .ResetTime()
+    );
+    m_date_range->end_date(date_range2.rangeEnd().value().getDateTime()
+        .ResetTime().Add(wxTimeSpan(23,59,59,999))
+    );
+}
 inline void ReportBase::setDateSelection(int64 sel) { m_date_selection = sel; }
 inline void ReportBase::setForwardMonths(int sel) { m_forward_months = sel; }
 inline void ReportBase::setChartSelection(int selection) { m_chart_selection = selection; }

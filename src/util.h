@@ -65,6 +65,8 @@ struct WebsiteNews
     wxString Description;
 };
 
+//----------------------------------------------------------------------------
+
 class mmListBoxItem: public wxClientData
 {
 public:
@@ -91,6 +93,11 @@ void correctEmptyFileExt(const wxString& ext, wxString & fileName );
 
 void mmLoadColorsFromDatabase(const bool def = false);
 wxString formatHTML(wxString& html);
+
+inline wxString getTranslation(bool translate, const wxString& text)
+{
+    return translate ? wxGetTranslation(text) : text;
+}
 
 //----------------------------------------------------------------------------
 
