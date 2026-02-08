@@ -30,6 +30,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <algorithm>
 
+ReportFlowByPayee::Data::Data() :
+    payee_name(""),
+    inflow(0.0),
+    outflow(0.0),
+    flow(0.0)
+{
+}
+
 ReportFlowByPayee::ReportFlowByPayee() :
     ReportBase(_n("Payee Report"))
 {
@@ -114,7 +122,7 @@ void  ReportFlowByPayee::refreshData()
     );
 
     m_order_net_flow.clear();
-    m_total = Data{"", 0.0, 0.0, 0.0};
+    m_total = Data();
     for (const auto& it : m_id_data) {
         m_order_net_flow.push_back(it.first);
         m_order_abs_flow.push_back(it.first);

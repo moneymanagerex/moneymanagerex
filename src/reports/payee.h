@@ -32,6 +32,8 @@ private:
         double inflow;
         double outflow;
         double flow;
+
+        Data();
     };
 
 private:
