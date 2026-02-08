@@ -25,28 +25,20 @@
 
 class ReportFlowByPayee : public ReportBase
 {
-public:
-    enum TYPE {
-        INCOME = 0,
-        EXPENSES,
-        MAX
-    };
-
 private:
-    // structure for sorting of data
-    struct PayeeData
+    struct Data
     {
-        wxString name;
-        int64 id;
-        double incomes;
-        double expenses;
+        wxString payee_name;
+        double inflow;
+        double outflow;
+        double flow;
     };
 
 private:
-    std::vector<PayeeData> m_payee_data_a;
-    std::vector<ValuePair> m_name_flow_a;
-    double m_flow_pos;
-    double m_flow_neg;
+    std::map<int64, Data> m_id_data;
+    std::vector<int64> m_order_net_flow;
+    std::vector<int64> m_order_abs_flow;
+    Data m_total;
 
 public:
     ReportFlowByPayee();
@@ -56,10 +48,10 @@ public:
     virtual void refreshData();
     virtual wxString getHTMLText();
 
-protected:
-    void loadPayeeFlow(
-        std::map<int64, std::pair<double, double>> &payee_flow_a,
-        mmDateRange* date_range, bool ignoreFuture
-    ) const;
+private:
+    static void updateData(Data& data, Model_Checking::TYPE_ID type_id, double amount);
+
+private:
+    void loadData(mmDateRange* date_range, bool ignoreFuture);
 };
 

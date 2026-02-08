@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2006-2012
 Copyright (C) 2021          Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2026          George Ef (george.a.ef@gmail.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,9 +31,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <algorithm>
 
 ReportFlowByPayee::ReportFlowByPayee() :
-    ReportBase(_n("Payee Report")),
-    m_flow_pos(0.0),
-    m_flow_neg(0.0)
+    ReportBase(_n("Payee Report"))
 {
     setReportParameters(REPORT_ID::Payees);
 }
@@ -41,49 +40,112 @@ ReportFlowByPayee::~ReportFlowByPayee()
 {
 }
 
+void ReportFlowByPayee::updateData(Data& data, Model_Checking::TYPE_ID type_id, double amount)
+{
+    double flow = (type_id == Model_Checking::TYPE_ID_DEPOSIT) ? amount : -amount;
+    if (flow > 0.0)
+        data.inflow += flow;
+    else if (flow < 0.0)
+        data.outflow += -flow;
+    data.flow += flow;
+}
+
+void ReportFlowByPayee::loadData(mmDateRange* date_range, bool WXUNUSED(ignoreFuture))
+{
+    // FIXME: do not ignore ignoreFuture param
+
+    m_id_data.clear();
+
+    const auto all_splits = Model_Splittransaction::instance().get_all();
+    const auto &trx_a = Model_Checking::instance().find(
+        Model_Checking::TRANSDATE(DateDay(date_range->start_date()), GREATER_OR_EQUAL),
+        Model_Checking::TRANSDATE(DateDay(date_range->end_date()), LESS_OR_EQUAL),
+        Model_Checking::DELETEDTIME(wxEmptyString, EQUAL),
+        Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
+    );
+    for (const auto& trx: trx_a) {
+        // Do not include asset or stock transfers
+        if (Model_Checking::foreignTransactionAsTransfer(trx))
+            continue;
+
+        Model_Checking::TYPE_ID type_id = Model_Checking::type_id(trx);
+        // Transfer transactions do not have a payee
+        if (type_id == Model_Checking::TYPE_ID_TRANSFER)
+            continue;
+
+        int64 payee_id = trx.PAYEEID;
+        if (payee_id < 0)
+            continue;
+        auto [it, new_payee] = m_id_data.try_emplace(trx.PAYEEID, Data{});
+        Data& data = it->second;
+        if (new_payee) {
+            Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
+            data.payee_name = payee ? payee->PAYEENAME : "";
+            data.inflow = 0.0;
+            data.outflow = 0.0;
+            data.flow = 0.0;
+        }
+
+        // NOTE: call to getDayRate() in every transaction is slow
+        const double convRate = Model_CurrencyHistory::getDayRate(
+            Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID,
+            trx.TRANSDATE
+        );
+
+        Model_Splittransaction::Data_Set splits;
+        if (all_splits.count(trx.id()))
+            splits = all_splits.at(trx.id());
+        if (splits.empty()) {
+            updateData(data, type_id, trx.TRANSAMOUNT * convRate);
+        }
+        else {
+            for (const auto& split : splits) {
+                updateData(data, type_id, split.SPLITTRANSAMOUNT * convRate);
+            }
+        }
+    }
+}
+
 void  ReportFlowByPayee::refreshData()
 {
-    m_payee_data_a.clear();
-    m_name_flow_a.clear();
-    m_flow_pos = 0.0;
-    m_flow_neg = 0.0;
-
-    std::map<int64, std::pair<double, double>> payee_flow_a;
-    loadPayeeFlow(
-        payee_flow_a,
+    loadData(
         const_cast<mmDateRange*>(m_date_range),
         Option::instance().getIgnoreFutureTransactions()
     );
 
-    for (const auto& payee_flow : payee_flow_a) {
-        Model_Payee::Data* payee = Model_Payee::instance().get(payee_flow.first);
-        PayeeData payee_data;
-        payee_data.name = payee ? payee->PAYEENAME : "";
-        payee_data.id = payee ? payee->PAYEEID : -1;
-        payee_data.incomes = payee_flow.second.first;
-        payee_data.expenses = payee_flow.second.second;
-        m_payee_data_a.push_back(payee_data);
-
-        m_flow_pos += payee_flow.second.first;
-        m_flow_neg += payee_flow.second.second;
+    m_order_net_flow.clear();
+    m_total = Data{"", 0.0, 0.0, 0.0};
+    for (const auto& it : m_id_data) {
+        m_order_net_flow.push_back(it.first);
+        m_order_abs_flow.push_back(it.first);
+        m_total.inflow  += it.second.inflow;
+        m_total.outflow += it.second.outflow;
+        m_total.flow    += it.second.flow;
     }
 
-    // order by net flow (incomes + expenses)
-    std::stable_sort(m_payee_data_a.begin(), m_payee_data_a.end(),
-        [](const PayeeData& x, const PayeeData& y) {
-            if (x.expenses + x.incomes != y.expenses + y.incomes)
-                return x.expenses + x.incomes < y.expenses + y.incomes;
-            else
-                return x.name < y.name;
+    // order by net flow
+    std::stable_sort(m_order_net_flow.begin(), m_order_net_flow.end(),
+        [this](int64 x_id, int64 y_id) {
+            double x_flow = m_id_data[x_id].flow;
+            double y_flow = m_id_data[y_id].flow;
+            return (x_flow < y_flow) ? true
+                : (x_flow > y_flow) ? false
+                : m_id_data[x_id].payee_name < m_id_data[y_id].payee_name;
         }
     );
 
-    for (const auto& payee_data : m_payee_data_a) {
-        ValuePair name_flow;
-        name_flow.label = payee_data.name;
-        name_flow.amount = payee_data.incomes + payee_data.expenses;
-        m_name_flow_a.push_back(name_flow);
+    // order by abs flow
+    m_order_abs_flow.clear();
+    for (int64 payee_id : m_order_net_flow) {
+        m_order_abs_flow.push_back(payee_id);
     }
+    std::stable_sort(m_order_abs_flow.begin(), m_order_abs_flow.end(),
+        [this](int64 x_id, int64 y_id) {
+            double x_flow = m_id_data[x_id].flow;
+            double y_flow = m_id_data[y_id].flow;
+            return abs(x_flow) > abs(y_flow);
+        }
+    );
 }
 
 wxString ReportFlowByPayee::getHTMLText()
@@ -101,26 +163,18 @@ wxString ReportFlowByPayee::getHTMLText()
     m_filter.setDateRange(m_date_range->start_date(), m_date_range->end_date());
 
     // Add the chart
-    if (!m_name_flow_a.empty() && (getChartSelection() == 0)) {
+    if (!m_order_abs_flow.empty() && (getChartSelection() == 0)) {
         GraphData gd;
         GraphSeries data_usage;
-        std::stable_sort(m_name_flow_a.begin(), m_name_flow_a.end(),
-            [](const ValuePair& left, const ValuePair& right) {
-                return abs(left.amount) > abs(right.amount);
-            }
-        );
-        for (const auto &name_flow : m_name_flow_a) {
-            data_usage.values.push_back(name_flow.amount);
-            gd.labels.push_back(name_flow.label);
-        }
 
         data_usage.name = _t("Payees");
-        gd.series.push_back(data_usage);
-        
-        if (!gd.series.empty()) {
-            gd.type = GraphData::PIE;
-            hb.addChart(gd);
+        for (int64 payee_id : m_order_abs_flow) {
+            gd.labels.push_back(m_id_data[payee_id].payee_name);
+            data_usage.values.push_back(m_id_data[payee_id].flow);
         }
+        gd.series.push_back(data_usage);
+        gd.type = GraphData::PIE;
+        hb.addChart(gd);
     }
 
     hb.addDivContainer("shadow"); 
@@ -133,23 +187,24 @@ wxString ReportFlowByPayee::getHTMLText()
                 hb.addTableHeaderCell(_t("Payee"));
                 hb.addTableHeaderCell(_t("Incomes"), "text-right");
                 hb.addTableHeaderCell(_t("Expenses"), "text-right");
-                hb.addTableHeaderCell(_t("Difference"), "text-right");
+                hb.addTableHeaderCell(_t("Net flow"), "text-right");
                 hb.endTableRow();
             }
             hb.endThead();
 
             hb.startTbody();
             {
-                for (const auto& payee_data : m_payee_data_a) {
+                for (int64 payee_id : m_order_net_flow) {
+                    const Data& data = m_id_data[payee_id];
                     hb.startTableRow();
                     {
                         hb.addTableCellLink(
-                            wxString::Format("viewtrans:-1:-1:%lld", payee_data.id),
-                            payee_data.name
+                            wxString::Format("viewtrans:-1:-1:%lld", payee_id),
+                            data.payee_name
                         );
-                        hb.addMoneyCell(payee_data.incomes);
-                        hb.addMoneyCell(payee_data.expenses);
-                        hb.addMoneyCell(payee_data.incomes + payee_data.expenses);
+                        hb.addMoneyCell(data.inflow);
+                        hb.addMoneyCell(data.outflow);
+                        hb.addMoneyCell(data.flow);
                     }
                     hb.endTableRow();
                 }
@@ -158,11 +213,11 @@ wxString ReportFlowByPayee::getHTMLText()
         
             hb.startTfoot();
             {
-                std::vector <double> totals;
-                totals.push_back(m_flow_pos);
-                totals.push_back(m_flow_neg);
-                totals.push_back(m_flow_pos + m_flow_neg);
-                hb.addMoneyTotalRow(_t("Total:"), 4, totals);
+                std::vector<double> total;
+                total.push_back(m_total.inflow);
+                total.push_back(m_total.outflow);
+                total.push_back(m_total.flow);
+                hb.addMoneyTotalRow(_t("Total:"), 4, total);
             }
             hb.endTfoot();
         }
@@ -178,57 +233,3 @@ wxString ReportFlowByPayee::getHTMLText()
     return hb.getHTMLText();
 }
 
-void ReportFlowByPayee::loadPayeeFlow(
-    std::map<int64, std::pair<double, double>> &payee_flow_a,
-    mmDateRange* date_range,
-    bool WXUNUSED(ignoreFuture)
-) const {
-    // FIXME: do not ignore ignoreFuture param
-    const auto all_splits = Model_Splittransaction::instance().get_all();
-    const auto &transactions = Model_Checking::instance().find(
-        Model_Checking::TRANSDATE(DateDay(date_range->start_date()), GREATER_OR_EQUAL),
-        Model_Checking::TRANSDATE(DateDay(date_range->end_date()), LESS_OR_EQUAL),
-        Model_Checking::DELETEDTIME(wxEmptyString, EQUAL),
-        Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
-    );
-    for (const auto& trx: transactions) {
-        // Transfer transactions do not have a payee
-        if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER)
-            continue;
-
-        // Do not include asset or stock transfers
-        if (Model_Checking::foreignTransactionAsTransfer(trx))
-            continue;
-
-        const double convRate = Model_CurrencyHistory::getDayRate(
-            Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID,
-            trx.TRANSDATE
-        );
-
-        Model_Splittransaction::Data_Set splits;
-        if (all_splits.count(trx.id()))
-            splits = all_splits.at(trx.id());
-        if (splits.empty()) {
-            if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_DEPOSIT)
-                payee_flow_a[trx.PAYEEID].first += trx.TRANSAMOUNT * convRate;
-            else if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_WITHDRAWAL)
-                payee_flow_a[trx.PAYEEID].second -= trx.TRANSAMOUNT * convRate;
-        }
-        else {
-            for (const auto& entry : splits) {
-                if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_DEPOSIT) {
-                    if (entry.SPLITTRANSAMOUNT >= 0)
-                        payee_flow_a[trx.PAYEEID].first += entry.SPLITTRANSAMOUNT * convRate;
-                    else
-                        payee_flow_a[trx.PAYEEID].second += entry.SPLITTRANSAMOUNT * convRate;
-                }
-                else if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_WITHDRAWAL) {
-                    if (entry.SPLITTRANSAMOUNT < 0)
-                        payee_flow_a[trx.PAYEEID].first -= entry.SPLITTRANSAMOUNT * convRate;
-                    else
-                        payee_flow_a[trx.PAYEEID].second -= entry.SPLITTRANSAMOUNT * convRate;
-                }
-            }
-        }
-    }
-}
