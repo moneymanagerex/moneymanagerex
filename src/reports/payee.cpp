@@ -29,52 +29,48 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <algorithm>
 
-mmReportPayeeExpenses::mmReportPayeeExpenses() :
+ReportFlowByPayee::ReportFlowByPayee() :
     ReportBase(_n("Payee Report")),
-    positiveTotal_(0.0),
-    negativeTotal_(0.0)
+    m_flow_pos(0.0),
+    m_flow_neg(0.0)
 {
     setReportParameters(REPORT_ID::Payees);
 }
 
-mmReportPayeeExpenses::~mmReportPayeeExpenses()
+ReportFlowByPayee::~ReportFlowByPayee()
 {
 }
 
-void  mmReportPayeeExpenses::refreshData()
+void  ReportFlowByPayee::refreshData()
 {
-    data_.clear();
-    valueList_.clear();
-    positiveTotal_ = 0.0;
-    negativeTotal_ = 0.0;
+    m_payee_data_a.clear();
+    m_name_flow_a.clear();
+    m_flow_pos = 0.0;
+    m_flow_neg = 0.0;
 
-    std::map<int64, std::pair<double, double> > payeeStats;
-    getPayeeStats(
-        payeeStats,
+    std::map<int64, std::pair<double, double>> payee_flow_a;
+    loadPayeeFlow(
+        payee_flow_a,
         const_cast<mmDateRange*>(m_date_range),
         Option::instance().getIgnoreFutureTransactions()
     );
 
-    data_holder line;
+    for (const auto& payee_flow : payee_flow_a) {
+        Model_Payee::Data* payee = Model_Payee::instance().get(payee_flow.first);
+        PayeeData payee_data;
+        payee_data.name = payee ? payee->PAYEENAME : "";
+        payee_data.id = payee ? payee->PAYEEID : -1;
+        payee_data.incomes = payee_flow.second.first;
+        payee_data.expenses = payee_flow.second.second;
+        m_payee_data_a.push_back(payee_data);
 
-    for (const auto& entry : payeeStats)
-    {
-        positiveTotal_ += entry.second.first;
-        negativeTotal_ += entry.second.second;
-
-        Model_Payee::Data* payee = Model_Payee::instance().get(entry.first);
-
-        line.name = payee ? payee->PAYEENAME : "";
-        line.payee = payee ? payee->PAYEEID : -1;
-        line.incomes = entry.second.first;
-        line.expenses = entry.second.second;
-        data_.push_back(line);
+        m_flow_pos += payee_flow.second.first;
+        m_flow_neg += payee_flow.second.second;
     }
 
-    //Order by expenses + deposits diff
-    std::stable_sort(data_.begin(), data_.end()
-        , [](const data_holder& x, const data_holder& y)
-        {
+    // order by net flow (incomes + expenses)
+    std::stable_sort(m_payee_data_a.begin(), m_payee_data_a.end(),
+        [](const PayeeData& x, const PayeeData& y) {
             if (x.expenses + x.incomes != y.expenses + y.incomes)
                 return x.expenses + x.incomes < y.expenses + y.incomes;
             else
@@ -82,17 +78,15 @@ void  mmReportPayeeExpenses::refreshData()
         }
     );
 
-
-    for (const auto& entry : data_) {
-        ValuePair vt;
-        vt.label = entry.name;
-        vt.amount = entry.incomes + entry.expenses;
-        valueList_.push_back(vt);
+    for (const auto& payee_data : m_payee_data_a) {
+        ValuePair name_flow;
+        name_flow.label = payee_data.name;
+        name_flow.amount = payee_data.incomes + payee_data.expenses;
+        m_name_flow_a.push_back(name_flow);
     }
-
 }
 
-wxString mmReportPayeeExpenses::getHTMLText()
+wxString ReportFlowByPayee::getHTMLText()
 {
     // Grab the data
     refreshData();
@@ -107,23 +101,23 @@ wxString mmReportPayeeExpenses::getHTMLText()
     m_filter.setDateRange(m_date_range->start_date(), m_date_range->end_date());
 
     // Add the chart
-    if (!valueList_.empty() && (getChartSelection() == 0))
-    {
+    if (!m_name_flow_a.empty() && (getChartSelection() == 0)) {
         GraphData gd;
         GraphSeries data_usage;
-        std::stable_sort(valueList_.begin(), valueList_.end(), [](const ValuePair& left, const ValuePair& right) {
-            return abs(left.amount) > abs(right.amount); });
-        for (const auto &stats : valueList_)
-        {
-            data_usage.values.push_back(stats.amount);
-            gd.labels.push_back(stats.label);
+        std::stable_sort(m_name_flow_a.begin(), m_name_flow_a.end(),
+            [](const ValuePair& left, const ValuePair& right) {
+                return abs(left.amount) > abs(right.amount);
+            }
+        );
+        for (const auto &name_flow : m_name_flow_a) {
+            data_usage.values.push_back(name_flow.amount);
+            gd.labels.push_back(name_flow.label);
         }
 
         data_usage.name = _t("Payees");
         gd.series.push_back(data_usage);
         
-        if (!gd.series.empty())
-        {
+        if (!gd.series.empty()) {
             gd.type = GraphData::PIE;
             hb.addChart(gd);
         }
@@ -146,15 +140,16 @@ wxString mmReportPayeeExpenses::getHTMLText()
 
             hb.startTbody();
             {
-                for (const auto& entry : data_)
-                {
+                for (const auto& payee_data : m_payee_data_a) {
                     hb.startTableRow();
                     {
-                        hb.addTableCellLink(wxString::Format("viewtrans:-1:-1:%lld", entry.payee)
-                            , entry.name);
-                        hb.addMoneyCell(entry.incomes);
-                        hb.addMoneyCell(entry.expenses);
-                        hb.addMoneyCell(entry.incomes + entry.expenses);
+                        hb.addTableCellLink(
+                            wxString::Format("viewtrans:-1:-1:%lld", payee_data.id),
+                            payee_data.name
+                        );
+                        hb.addMoneyCell(payee_data.incomes);
+                        hb.addMoneyCell(payee_data.expenses);
+                        hb.addMoneyCell(payee_data.incomes + payee_data.expenses);
                     }
                     hb.endTableRow();
                 }
@@ -164,9 +159,9 @@ wxString mmReportPayeeExpenses::getHTMLText()
             hb.startTfoot();
             {
                 std::vector <double> totals;
-                totals.push_back(positiveTotal_);
-                totals.push_back(negativeTotal_);
-                totals.push_back(positiveTotal_ + negativeTotal_);
+                totals.push_back(m_flow_pos);
+                totals.push_back(m_flow_neg);
+                totals.push_back(m_flow_pos + m_flow_neg);
                 hb.addMoneyTotalRow(_t("Total:"), 4, totals);
             }
             hb.endTfoot();
@@ -183,8 +178,8 @@ wxString mmReportPayeeExpenses::getHTMLText()
     return hb.getHTMLText();
 }
 
-void mmReportPayeeExpenses::getPayeeStats(
-    std::map<int64, std::pair<double, double> > &payeeStats,
+void ReportFlowByPayee::loadPayeeFlow(
+    std::map<int64, std::pair<double, double>> &payee_flow_a,
     mmDateRange* date_range,
     bool WXUNUSED(ignoreFuture)
 ) const {
@@ -211,26 +206,27 @@ void mmReportPayeeExpenses::getPayeeStats(
         );
 
         Model_Splittransaction::Data_Set splits;
-        if (all_splits.count(trx.id())) splits = all_splits.at(trx.id());
+        if (all_splits.count(trx.id()))
+            splits = all_splits.at(trx.id());
         if (splits.empty()) {
             if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_DEPOSIT)
-                payeeStats[trx.PAYEEID].first += trx.TRANSAMOUNT * convRate;
-            else
-                payeeStats[trx.PAYEEID].second -= trx.TRANSAMOUNT * convRate;
+                payee_flow_a[trx.PAYEEID].first += trx.TRANSAMOUNT * convRate;
+            else if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_WITHDRAWAL)
+                payee_flow_a[trx.PAYEEID].second -= trx.TRANSAMOUNT * convRate;
         }
         else {
             for (const auto& entry : splits) {
                 if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_DEPOSIT) {
                     if (entry.SPLITTRANSAMOUNT >= 0)
-                        payeeStats[trx.PAYEEID].first += entry.SPLITTRANSAMOUNT * convRate;
+                        payee_flow_a[trx.PAYEEID].first += entry.SPLITTRANSAMOUNT * convRate;
                     else
-                        payeeStats[trx.PAYEEID].second += entry.SPLITTRANSAMOUNT * convRate;
+                        payee_flow_a[trx.PAYEEID].second += entry.SPLITTRANSAMOUNT * convRate;
                 }
-                else {
+                else if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_WITHDRAWAL) {
                     if (entry.SPLITTRANSAMOUNT < 0)
-                        payeeStats[trx.PAYEEID].first -= entry.SPLITTRANSAMOUNT * convRate;
+                        payee_flow_a[trx.PAYEEID].first -= entry.SPLITTRANSAMOUNT * convRate;
                     else
-                        payeeStats[trx.PAYEEID].second -= entry.SPLITTRANSAMOUNT * convRate;
+                        payee_flow_a[trx.PAYEEID].second -= entry.SPLITTRANSAMOUNT * convRate;
                 }
             }
         }

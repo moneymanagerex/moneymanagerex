@@ -186,7 +186,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
     if (hidden_reports.Index("Payees") == wxNOT_FOUND)
     {
         wxTreeItemId payeesOverTime = m_nav_tree_ctrl->AppendItem(parent_item, _t("Payees"), img::PIECHART_PNG, img::PIECHART_PNG);
-        m_nav_tree_ctrl->SetItemData(payeesOverTime, new mmTreeItemData("Payee Report", new mmReportPayeeExpenses()));
+        m_nav_tree_ctrl->SetItemData(payeesOverTime, new mmTreeItemData("Payee Report", new ReportFlowByPayee()));
     }
 
     //////////////////////////////////////////////////////////////////

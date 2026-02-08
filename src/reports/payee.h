@@ -23,7 +23,7 @@
 #include <map>
 #include <vector>
 
-class mmReportPayeeExpenses : public ReportBase
+class ReportFlowByPayee : public ReportBase
 {
 public:
     enum TYPE {
@@ -34,32 +34,32 @@ public:
 
 private:
     // structure for sorting of data
-    struct data_holder
+    struct PayeeData
     {
         wxString name;
-        int64 payee;
+        int64 id;
         double incomes;
         double expenses;
     };
 
+private:
+    std::vector<PayeeData> m_payee_data_a;
+    std::vector<ValuePair> m_name_flow_a;
+    double m_flow_pos;
+    double m_flow_neg;
+
 public:
-    mmReportPayeeExpenses();
-    virtual ~mmReportPayeeExpenses();
+    ReportFlowByPayee();
+    virtual ~ReportFlowByPayee();
 
 public:
     virtual void refreshData();
     virtual wxString getHTMLText();
 
 protected:
-    void getPayeeStats(
-        std::map<int64, std::pair<double, double> > &payeeStats,
+    void loadPayeeFlow(
+        std::map<int64, std::pair<double, double>> &payee_flow_a,
         mmDateRange* date_range, bool ignoreFuture
     ) const;
-
-private:
-    std::vector<data_holder> data_;
-    std::vector<ValuePair> valueList_;
-    double positiveTotal_;
-    double negativeTotal_;
 };
 
