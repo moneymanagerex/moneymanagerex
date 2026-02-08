@@ -27,6 +27,7 @@
 #include <html_template.h>
 #include "util.h"
 #include "mmDateRange.h"
+#include "daterange2.h"
 
 struct GraphSeries
 {
@@ -51,9 +52,11 @@ public:
     mmHTMLBuilder();
     ~mmHTMLBuilder() {}
 
-    void DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange = true, bool withNoEndDate = false);
-    void DisplayDateHeading(const mmDateRange* date_range);
-    void DisplayFooter(const wxString& footer);
+    void displayDateHeading(const wxString& header);
+    void displayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange = true, bool withNoEndDate = false);
+    void displayDateHeading(const mmDateRange* date_range);
+    void displayDateHeading(const DateRange2& date_range);
+    void displayFooter(const wxString& footer);
     /** Starts a new HMTL report */
     void init(bool simple = false, const wxString& extra_style = "");
 

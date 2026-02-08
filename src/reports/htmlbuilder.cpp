@@ -208,31 +208,54 @@ void mmHTMLBuilder::addReportHeader(const wxString& name, int startDay, bool fut
     endDiv();
 }
 
-void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange, bool withNoEndDate)
+void mmHTMLBuilder::displayDateHeading(const wxString& header)
 {
-    wxString sDate;
+    wxString t = wxString::Format(tags::HEADER, 4, header, 4);
+    this->html_.Replace("<TMPL_VAR DATE_HEADING>", t);
+}
+
+void mmHTMLBuilder::displayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange, bool withNoEndDate)
+{
+    wxString header;
     if (withDateRange && startDate.IsValid() && endDate.IsValid()) {
-        sDate << wxString::Format(_t("From %1$s till %2$s")
+        header << wxString::Format(_t("From %1$s till %2$s")
             , mmGetDateTimeForDisplay(startDate.FormatISODate())
             , withNoEndDate ? _t("Future") : mmGetDateTimeForDisplay(endDate.FormatISODate()));
     }
     else if (!withDateRange) {
-        sDate << _t("Over Time");
+        header << _t("Over Time");
     }
     else {
         wxASSERT(false);
     }
-
-    wxString t = wxString::Format(tags::HEADER, 4, sDate, 4);
-    this->html_.Replace("<TMPL_VAR DATE_HEADING>", t);
+    displayDateHeading(header);
 }
 
-void mmHTMLBuilder::DisplayDateHeading(const mmDateRange* date_range)
+void mmHTMLBuilder::displayDateHeading(const mmDateRange* date_range)
 {
-    DisplayDateHeading(date_range->start_date(), date_range->end_date(), date_range->is_with_date());
+    displayDateHeading(date_range->start_date(), date_range->end_date(), date_range->is_with_date());
 }
 
-void mmHTMLBuilder::DisplayFooter(const wxString& footer)
+void mmHTMLBuilder::displayDateHeading(const DateRange2& date_range)
+{
+    DateDayN range_start = date_range.rangeStart();
+    DateDayN range_end = date_range.rangeEnd();
+    wxString header;
+    if (range_start.has_value() || range_end.has_value()) {
+        header << wxString::Format(_t("From %1$s till %2$s"),
+            range_start.has_value() ? mmGetDateTimeForDisplay(range_start.value().isoDate())
+                : _t("Past"),
+            range_end.has_value() ? mmGetDateTimeForDisplay(range_end.value().isoDate())
+                : _t("Future")
+        );
+    }
+    else {
+        header << _t("Over Time");
+    }
+    displayDateHeading(header);
+}
+
+void mmHTMLBuilder::displayFooter(const wxString& footer)
 {
     this->html_.Replace("<TMPL_VAR FOOTER>", footer);
 }

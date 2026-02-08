@@ -39,8 +39,9 @@ ReportBase::~ReportBase()
 const wxString ReportBase::getTitle(bool translate) const
 {
     wxString title = getTranslation(translate, m_title);
-    if (m_date_range) {
-        title += " - " + getTranslation(translate, m_date_range->title());
+    if (!m_date_range2.rangeName().empty()) {
+        // range name is already translated
+        title += " - " + m_date_range2.rangeName();
     }
     return title;
 }

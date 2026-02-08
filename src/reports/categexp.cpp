@@ -65,7 +65,7 @@ void  mmReportCategoryExpenses::refreshData()
     Model_Category::instance().getCategoryStats(
         categoryStats,
         m_account_a,
-        const_cast<mmDateRange*>(m_date_range),
+        m_date_range,
         Option::instance().getIgnoreFutureTransactions(),
         false
     );
@@ -174,8 +174,8 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.init();
 
     hb.addReportHeader(getTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
-    hb.DisplayDateHeading(m_date_range);
-    hb.DisplayFooter(getAccountNames());
+    hb.displayDateHeading(m_date_range);
+    hb.displayFooter(getAccountNames());
     // Prime the filter
     m_filter.clear();
     m_filter.setDateRange(m_date_range->start_date(), m_date_range->end_date());
@@ -391,8 +391,8 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addReportHeader(getTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
-    hb.DisplayDateHeading(sd, ed, true);
-    hb.DisplayFooter(getAccountNames());
+    hb.displayDateHeading(sd, ed, true);
+    hb.displayFooter(getAccountNames());
     // Prime the filter
     m_filter.clear();
     m_filter.setDateRange(sd, ed);

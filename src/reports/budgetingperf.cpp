@@ -114,7 +114,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     hb.init();
 
     hb.addReportHeader(headingStr, 1, Option::instance().getIgnoreFutureTransactions());
-    hb.DisplayDateHeading(yearBegin, yearEnd);
+    hb.displayDateHeading(yearBegin, yearEnd);
     // Prime the filter
     m_filter.clear();
     m_filter.setDateRange(yearBegin, yearEnd);

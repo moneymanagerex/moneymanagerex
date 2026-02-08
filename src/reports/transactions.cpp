@@ -127,9 +127,9 @@ table {
     wxDateTime start,end;
     start.ParseISODate(m_transDialog->mmGetBeginDate());
     end.ParseISODate(m_transDialog->mmGetEndDate());
-    hb.DisplayDateHeading(start, end
+    hb.displayDateHeading(start, end
         , m_transDialog->mmIsRangeChecked() || m_transDialog->mmIsDateRangeChecked());
-    hb.DisplayFooter(_t("Accounts: ") + accounts_label);
+    hb.displayFooter(_t("Accounts: ") + accounts_label);
 
     m_noOfCols = (m_transDialog->mmIsHideColumnsChecked()) ? m_transDialog->mmGetHideColumnsID().GetCount() : 11;
     const wxString& AttRefType = Model_Checking::refTypeName;

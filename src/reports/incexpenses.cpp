@@ -78,8 +78,8 @@ wxString mmReportIncomeExpenses::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addReportHeader(getTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
-    hb.DisplayDateHeading(m_date_range);
-    hb.DisplayFooter(getAccountNames());
+    hb.displayDateHeading(m_date_range);
+    hb.displayFooter(getAccountNames());
 
     // Chart
     GraphData gd;
@@ -187,8 +187,8 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addReportHeader(getTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
-    hb.DisplayDateHeading(m_date_range);
-    hb.DisplayFooter(getAccountNames());
+    hb.displayDateHeading(m_date_range);
+    hb.displayFooter(getAccountNames());
 
     // Chart
     wxDateSpan s = m_date_range->end_date().GetLastMonthDay().DiffAsDateSpan(start_date);

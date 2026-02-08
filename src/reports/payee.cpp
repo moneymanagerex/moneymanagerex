@@ -161,7 +161,7 @@ wxString ReportFlowByPayee::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addReportHeader(getTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
-    hb.DisplayDateHeading(m_date_range);
+    hb.displayDateHeading(m_date_range2);
     // Prime the filter
     m_filter.clear();
     m_filter.setDateRange(m_date_range->start_date(), m_date_range->end_date());

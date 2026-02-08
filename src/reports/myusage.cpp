@@ -121,7 +121,7 @@ wxString mmReportMyUsage::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addReportHeader(getTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
-    hb.DisplayDateHeading(m_date_range);
+    hb.displayDateHeading(m_date_range);
 
     if (getChartSelection() == 0)
     {

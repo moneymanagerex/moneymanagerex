@@ -251,7 +251,7 @@ wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
         getTitle(), getForwardMonths()
     );
     hb.addReportHeader(headingStr, 1, false);
-    hb.DisplayFooter(getAccountNames());
+    hb.displayFooter(getAccountNames());
 
     GraphData gd;
     GraphSeries gs;
@@ -382,7 +382,7 @@ wxString mmReportCashFlowTransactions::getHTMLText()
         getTitle(), getForwardMonths()
     );
     hb.addReportHeader(headingStr, 1, false);
-    hb.DisplayFooter(getAccountNames());
+    hb.displayFooter(getAccountNames());
 
     // Display graph
     GraphData gd;

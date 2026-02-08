@@ -276,6 +276,7 @@ void mmReportsPanel::updateFilter()
     if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_RANGE) {
         w_date_range_button->SetLabel(m_date_range.rangeName());
         w_date_range_button->SetBitmap(mmBitmapBundle(
+            // FIXME: refine the condition below
             (m_date_range.rangeName() != m_date_range_a[0].getName()
                 ? png::TRANSFILTER_ACTIVE
                 : png::TRANSFILTER
@@ -299,7 +300,9 @@ void mmReportsPanel::updateFilter()
         ));
         // set date range to default ('All') and copy default start/end dates from pickers.
         m_date_range = DateRange2();
-        m_date_range.setRange(DateRange2::Range());
+        DateRange2::Range range = m_date_range.getRange();
+        range.setName(_t("Date range"));
+        m_date_range.setRange(range);
         m_date_range.setDefStartDateN(DateDayN(w_start_date_picker->GetValue()));
         m_date_range.setDefEndDateN(DateDayN(w_end_date_picker->GetValue()));
     }
