@@ -104,7 +104,7 @@ void mmReconcileDialog::CreateControls()
     btn->SetCanFocus(false);
     topSizer->Add(btn, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
 
-    btn = new wxButton(topPanel, wxID_ANY, _t("&Toggle all"));
+    btn = new wxButton(topPanel, wxID_ANY, _t("&All (un)cleared"));
     btn->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnToggle, this);
     btn->SetCanFocus(false);
     topSizer->Add(btn, 0, wxRIGHT, 20);
@@ -127,7 +127,7 @@ void mmReconcileDialog::CreateControls()
         list->InsertColumn(2, _t("Number"),  wxLIST_FORMAT_RIGHT);
         list->InsertColumn(3, _t("Payee"),   wxLIST_FORMAT_LEFT);
         list->InsertColumn(4, _t("Amount"),  wxLIST_FORMAT_RIGHT);
-        list->InsertColumn(5, _t("State"),   wxLIST_FORMAT_CENTRE, 50);
+        list->InsertColumn(5, _t("Status"),  wxLIST_FORMAT_CENTRE, 50);
     };
 
     wxPanel* leftlistPanel = new wxPanel(midPanel);
@@ -229,7 +229,7 @@ void mmReconcileDialog::CreateControls()
     m_btnReconcileLater  = new wxButton(bottomPanel, wxID_ANY, _t("Finish la&ter"));
     m_btnReconcileLater->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnClose, this);
 
-    m_btnReconcile       = new wxButton(bottomPanel, wxID_OK, _t("Fi&nished"));
+    m_btnReconcile       = new wxButton(bottomPanel, wxID_OK, _t("&Done"));
     m_btnReconcile->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnClose, this);
 
     bottomSizer->AddStretchSpacer();
@@ -518,11 +518,11 @@ void mmReconcileDialog::OnNew(wxCommandEvent& WXUNUSED(event))
 void mmReconcileDialog::OnSettings(wxCommandEvent& WXUNUSED(event))
 {
     wxMenu menu;
-    menu.AppendCheckItem(ID_CHECK_SHOW_STATE_COL, _tu("Show status column"));
-    menu.AppendCheckItem(ID_CHECK_SHOW_NUMBER_COL, _tu("Show number column"));
+    menu.AppendCheckItem(ID_CHECK_SHOW_STATE_COL, _tu("Show &status column"));
+    menu.AppendCheckItem(ID_CHECK_SHOW_NUMBER_COL, _tu("Show &number column"));
     menu.AppendSeparator();
-    menu.AppendCheckItem(ID_CHECK_INCLUDE_VOID, _tu("Include void transactions"));
-    menu.AppendCheckItem(ID_CHECK_INCLUDE_DUPLICATED, _tu("Include duplicate transactions"));
+    menu.AppendCheckItem(ID_CHECK_INCLUDE_VOID, _tu("Include &void transactions"));
+    menu.AppendCheckItem(ID_CHECK_INCLUDE_DUPLICATED, _tu("Include &duplicate transactions"));
 
     menu.FindItem(ID_CHECK_SHOW_STATE_COL)->Check(m_settings[SETTING_SHOW_STATE_COL]);
     menu.FindItem(ID_CHECK_SHOW_NUMBER_COL)->Check(m_settings[SETTING_SHOW_NUMBER_COL]);
