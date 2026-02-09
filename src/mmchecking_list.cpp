@@ -28,7 +28,7 @@
 #include "billsdepositsdialog.h"
 #include "constants.h"
 #include "filtertransdialog.h"
-#include "fusedtransaction.h"
+#include "journal.h"
 #include "images_list.h"
 #include "mmchecking_list.h"
 #include "mmcheckingpanel.h"
@@ -458,10 +458,10 @@ void TransactionListCtrl::sortTransactions(int col_id, bool ascend)
 
     switch (col_id) {
     case TransactionListCtrl::LIST_ID_SN:
-        sortBy(Fused_Transaction::SorterByFUSEDTRANSSN(), ascend);
+        sortBy(Journal::SorterByJOURNALSN(), ascend);
         break;
     case TransactionListCtrl::LIST_ID_ID:
-        sortBy(Fused_Transaction::SorterByFUSEDTRANSID(), ascend);
+        sortBy(Journal::SorterByJOURNALID(), ascend);
         break;
     case TransactionListCtrl::LIST_ID_NUMBER:
         sortBy(Model_Checking::SorterByNUMBER(), ascend);
@@ -498,7 +498,7 @@ void TransactionListCtrl::sortTransactions(int col_id, bool ascend)
         break;
     case TransactionListCtrl::LIST_ID_DATE:
         if (Option::instance().TreatDateAsSN())
-            sortBy(Fused_Transaction::SorterByFUSEDTRANSSN(), ascend);
+            sortBy(Journal::SorterByJOURNALSN(), ascend);
         else
             sortBy(Model_Checking::SorterByTRANSDATE_DATE(), ascend);
         break;
@@ -710,10 +710,10 @@ void TransactionListCtrl::onMouseRightClick(wxMouseEvent& event)
     bool have_category = false;
     bool is_foreign = false;
     if (selected == 1) {
-        Fused_Transaction::IdRepeat id = m_selected_id[0];
-        Fused_Transaction::Full_Data tran = !id.second ?
-            Fused_Transaction::Full_Data(*Model_Checking::instance().get(id.first)) :
-            Fused_Transaction::Full_Data(*Model_Billsdeposits::instance().get(id.first));
+        Journal::IdRepeat id = m_selected_id[0];
+        Journal::Full_Data tran = !id.second ?
+            Journal::Full_Data(*Model_Checking::instance().get(id.first)) :
+            Journal::Full_Data(*Model_Billsdeposits::instance().get(id.first));
 
         if (Model_Checking::type_id(tran.TRANSCODE) == Model_Checking::TYPE_ID_TRANSFER)
             type_transfer = true;
@@ -1311,7 +1311,7 @@ void TransactionListCtrl::onEditTransaction(wxCommandEvent& /*event*/)
     }
 
     // edit single transaction
-    Fused_Transaction::IdRepeat id = m_selected_id[0];
+    Journal::IdRepeat id = m_selected_id[0];
     if (!id.second) {
         Model_Checking::Data* checking_entry = Model_Checking::instance().get(id.first);
         if (checkTransactionLocked(checking_entry->ACCOUNTID, checking_entry->TRANSDATE))
@@ -1415,11 +1415,11 @@ void TransactionListCtrl::onViewOtherAccount(wxCommandEvent& /*event*/)
 {
     // we can only get here for a single transfer transaction
     findSelectedTransactions();
-    Fused_Transaction::IdRepeat id = m_selected_id[0];
+    Journal::IdRepeat id = m_selected_id[0];
 
-    Fused_Transaction::Full_Data tran = !id.second ?
-        Fused_Transaction::Full_Data(*Model_Checking::instance().get(id.first)) :
-        Fused_Transaction::Full_Data(*Model_Billsdeposits::instance().get(id.first));
+    Journal::Full_Data tran = !id.second ?
+        Journal::Full_Data(*Model_Checking::instance().get(id.first)) :
+        Journal::Full_Data(*Model_Billsdeposits::instance().get(id.first));
 
     int64 gotoAccountID = (m_cp->m_account_id == tran.ACCOUNTID) ? tran.TOACCOUNTID : tran.ACCOUNTID;
     wxString gotoAccountName = (m_cp->m_account_id == tran.ACCOUNTID) ? tran.TOACCOUNTNAME : tran.ACCOUNTNAME;
@@ -1435,7 +1435,7 @@ void TransactionListCtrl::onViewSplitTransaction(wxCommandEvent& /*event*/)
     // we can only view a single transaction
     if (GetSelectedItemCount() != 1) return;
     findSelectedTransactions();
-    Fused_Transaction::IdRepeat id = m_selected_id[0];
+    Journal::IdRepeat id = m_selected_id[0];
 
     m_cp->displaySplitCategories({id.first, id.second != 0});
 }
@@ -1445,7 +1445,7 @@ void TransactionListCtrl::onOrganizeAttachments(wxCommandEvent& /*event*/)
     // we only support a single transaction
     if (GetSelectedItemCount() != 1) return;
     findSelectedTransactions();
-    Fused_Transaction::IdRepeat id = m_selected_id[0];
+    Journal::IdRepeat id = m_selected_id[0];
 
     const wxString refType = !id.second ?
         Model_Checking::refTypeName :
@@ -1460,7 +1460,7 @@ void TransactionListCtrl::onCreateReoccurance(wxCommandEvent& /*event*/)
      // we only support a single transaction
     if (GetSelectedItemCount() != 1) return;
     findSelectedTransactions();
-    Fused_Transaction::IdRepeat id = m_selected_id[0];
+    Journal::IdRepeat id = m_selected_id[0];
 
     if (!id.second) {
         mmBDDialog dlg(this, 0, false, false);
@@ -1592,11 +1592,11 @@ void TransactionListCtrl::onSelectAll(wxCommandEvent& WXUNUSED(event))
 {
     m_selected_id.clear();
     SetEvtHandlerEnabled(false);
-    std::set<Fused_Transaction::IdRepeat> unique_ids;
+    std::set<Journal::IdRepeat> unique_ids;
     for (int row = 0; row < GetItemCount(); row++) {
         SetItemState(row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         const auto& tran = m_trans[row];
-        Fused_Transaction::IdRepeat id = { !tran.m_repeat_num ? tran.TRANSID : tran.m_bdid, tran.m_repeat_num };
+        Journal::IdRepeat id = { !tran.m_repeat_num ? tran.TRANSID : tran.m_bdid, tran.m_repeat_num };
         if (unique_ids.find(id) == unique_ids.end()) {
             m_selected_id.push_back(id);
             unique_ids.insert(id);
@@ -1733,7 +1733,7 @@ void TransactionListCtrl::onDuplicateTransaction(wxCommandEvent& WXUNUSED(event)
     // we can only duplicate a single transaction
     if (GetSelectedItemCount() != 1) return;
     findSelectedTransactions();
-    Fused_Transaction::IdRepeat id = m_selected_id[0];
+    Journal::IdRepeat id = m_selected_id[0];
 
     mmTransDialog dlg(this, m_cp->m_account_id, {id.first, id.second != 0}, true);
 
@@ -1754,7 +1754,7 @@ void TransactionListCtrl::onEnterScheduled(wxCommandEvent& WXUNUSED(event))
 {
     if (GetSelectedItemCount() != 1) return;
     findSelectedTransactions();
-    Fused_Transaction::IdRepeat id = m_selected_id[0];
+    Journal::IdRepeat id = m_selected_id[0];
 
     if (id.second == 1) {
         mmBDDialog dlg(this, id.first, false, true);
@@ -1768,7 +1768,7 @@ void TransactionListCtrl::onSkipScheduled(wxCommandEvent& WXUNUSED(event))
 {
     if (GetSelectedItemCount() != 1) return;
     findSelectedTransactions();
-    Fused_Transaction::IdRepeat id = m_selected_id[0];
+    Journal::IdRepeat id = m_selected_id[0];
 
     if (id.second == 1) {
         Model_Billsdeposits::instance().completeBDInSeries(id.first);
@@ -1816,7 +1816,7 @@ void TransactionListCtrl::onOpenAttachment(wxCommandEvent& WXUNUSED(event))
     // we can only open a single transaction
     if (GetSelectedItemCount() != 1) return;
     findSelectedTransactions();
-    Fused_Transaction::IdRepeat id = m_selected_id[0];
+    Journal::IdRepeat id = m_selected_id[0];
 
     const wxString refType = !id.second ?
         Model_Checking::refTypeName :
@@ -1854,48 +1854,48 @@ const wxString TransactionListCtrl::getItem(long item, int col_id) const
     // TODO: add isHiddenColId(col_id)
     if (isDisabledColId(col_id))
         return "";
-    const Fused_Transaction::Full_Data& fused = m_trans.at(item);
+    const Journal::Full_Data& journal = m_trans.at(item);
 
     wxString value = wxEmptyString;
     wxDateTime datetime;
     wxString dateFormat = Option::instance().getDateFormat();
     switch (col_id) {
     case LIST_ID_SN:
-        return fused.displaySN;
+        return journal.displaySN;
     case LIST_ID_ID:
-        return fused.displayID;
+        return journal.displayID;
     case LIST_ID_ACCOUNT:
-        return fused.ACCOUNTNAME;
+        return journal.ACCOUNTNAME;
     case LIST_ID_DATE:
-        return mmGetDateForDisplay(fused.TRANSDATE);
+        return mmGetDateForDisplay(journal.TRANSDATE);
     case LIST_ID_TIME:
-        return mmGetTimeForDisplay(fused.TRANSDATE);
+        return mmGetTimeForDisplay(journal.TRANSDATE);
     case LIST_ID_NUMBER:
-        return fused.TRANSACTIONNUMBER;
+        return journal.TRANSACTIONNUMBER;
     case LIST_ID_CATEGORY:
-        return fused.CATEGNAME;
+        return journal.CATEGNAME;
     case LIST_ID_PAYEE_STR:
-        return fused.is_foreign_transfer() ?
-            (Model_Checking::type_id(fused.TRANSCODE) == Model_Checking::TYPE_ID_DEPOSIT ? "< " : "> ") + fused.PAYEENAME :
-            fused.PAYEENAME;
+        return journal.is_foreign_transfer() ?
+            (Model_Checking::type_id(journal.TRANSCODE) == Model_Checking::TYPE_ID_DEPOSIT ? "< " : "> ") + journal.PAYEENAME :
+            journal.PAYEENAME;
     case LIST_ID_STATUS:
-        return fused.is_foreign() ? "< " + fused.STATUS : fused.STATUS;
+        return journal.is_foreign() ? "< " + journal.STATUS : journal.STATUS;
     case LIST_ID_NOTES: {
-        value = fused.NOTES;
-        if (!fused.displayID.Contains(".")) {
-            for (const auto& split : fused.m_splits)
+        value = journal.NOTES;
+        if (!journal.displayID.Contains(".")) {
+            for (const auto& split : journal.m_splits)
                 value += wxString::Format(" %s", split.NOTES);
         }
         value.Replace("\n", " ");
-        if (fused.has_attachment())
+        if (journal.has_attachment())
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value.Trim(false);
     }
     case LIST_ID_TAGS:
-        value = fused.TAGNAMES;
-        if (!fused.displayID.Contains(".")) {
+        value = journal.TAGNAMES;
+        if (!journal.displayID.Contains(".")) {
             const wxString splitRefType = Model_Splittransaction::refTypeName;
-            for (const auto& split : fused.m_splits) {
+            for (const auto& split : journal.m_splits) {
                 wxString tagnames;
                 std::map<wxString, int64> tags = Model_Taglink::instance().get(splitRefType, split.SPLITTRANSID);
                 std::map<wxString, int64, caseInsensitiveComparator> sortedTags(tags.begin(), tags.end());
@@ -1907,22 +1907,22 @@ const wxString TransactionListCtrl::getItem(long item, int col_id) const
         }
         return value.Trim();
     case LIST_ID_DELETEDTIME:
-        datetime.ParseISOCombined(fused.DELETEDTIME);
+        datetime.ParseISOCombined(journal.DELETEDTIME);
         if(!datetime.IsValid())
             return wxString("");
         return mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
     case LIST_ID_UDFC01:
-        return UDFCFormatHelper(fused.UDFC_type[0], fused.UDFC_content[0]);
+        return UDFCFormatHelper(journal.UDFC_type[0], journal.UDFC_content[0]);
     case LIST_ID_UDFC02:
-        return UDFCFormatHelper(fused.UDFC_type[1], fused.UDFC_content[1]);
+        return UDFCFormatHelper(journal.UDFC_type[1], journal.UDFC_content[1]);
     case LIST_ID_UDFC03:
-        return UDFCFormatHelper(fused.UDFC_type[2], fused.UDFC_content[2]);
+        return UDFCFormatHelper(journal.UDFC_type[2], journal.UDFC_content[2]);
     case LIST_ID_UDFC04:
-        return UDFCFormatHelper(fused.UDFC_type[3], fused.UDFC_content[3]);
+        return UDFCFormatHelper(journal.UDFC_type[3], journal.UDFC_content[3]);
     case LIST_ID_UDFC05:
-        return UDFCFormatHelper(fused.UDFC_type[4], fused.UDFC_content[4]);
+        return UDFCFormatHelper(journal.UDFC_type[4], journal.UDFC_content[4]);
     case LIST_ID_UPDATEDTIME:
-        datetime.ParseISOCombined(fused.LASTUPDATEDTIME);
+        datetime.ParseISOCombined(journal.LASTUPDATEDTIME);
         if (!datetime.IsValid())
             return wxString("");
         return mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
@@ -1931,39 +1931,39 @@ const wxString TransactionListCtrl::getItem(long item, int col_id) const
     switch (col_id) {
     case LIST_ID_WITHDRAWAL:
         if (!m_cp->isAccount()) {
-            Model_Account::Data* account = Model_Account::instance().get(fused.ACCOUNTID_W);
+            Model_Account::Data* account = Model_Account::instance().get(journal.ACCOUNTID_W);
             Model_Currency::Data* currency = account ?
                 Model_Currency::instance().get(account->CURRENCYID) : nullptr;
             if (currency)
-                value = Model_Currency::toCurrency(fused.TRANSAMOUNT_W, currency);
+                value = Model_Currency::toCurrency(journal.TRANSAMOUNT_W, currency);
         }
-        else if (fused.ACCOUNTID_W == m_cp->m_account_id) {
-            value = Model_Currency::toString(fused.TRANSAMOUNT_W, m_cp->m_currency);
+        else if (journal.ACCOUNTID_W == m_cp->m_account_id) {
+            value = Model_Currency::toString(journal.TRANSAMOUNT_W, m_cp->m_currency);
         }
-        if (!value.IsEmpty() && Model_Checking::status_id(fused.STATUS) == Model_Checking::STATUS_ID_VOID)
+        if (!value.IsEmpty() && Model_Checking::status_id(journal.STATUS) == Model_Checking::STATUS_ID_VOID)
             value = "* " + value;
         return value;
     case LIST_ID_DEPOSIT:
         if (!m_cp->isAccount()) {
-            Model_Account::Data* account = Model_Account::instance().get(fused.ACCOUNTID_D);
+            Model_Account::Data* account = Model_Account::instance().get(journal.ACCOUNTID_D);
             Model_Currency::Data* currency = account ?
                 Model_Currency::instance().get(account->CURRENCYID) : nullptr;
             if (currency)
-                value = Model_Currency::toCurrency(fused.TRANSAMOUNT_D, currency);
+                value = Model_Currency::toCurrency(journal.TRANSAMOUNT_D, currency);
         }
-        else if (fused.ACCOUNTID_D == m_cp->m_account_id) {
-            value = Model_Currency::toString(fused.TRANSAMOUNT_D, m_cp->m_currency);
+        else if (journal.ACCOUNTID_D == m_cp->m_account_id) {
+            value = Model_Currency::toString(journal.TRANSAMOUNT_D, m_cp->m_currency);
         }
-        if (!value.IsEmpty() && Model_Checking::status_id(fused.STATUS) == Model_Checking::STATUS_ID_VOID)
+        if (!value.IsEmpty() && Model_Checking::status_id(journal.STATUS) == Model_Checking::STATUS_ID_VOID)
             value = "* " + value;
         return value;
     case LIST_ID_BALANCE:
         if (m_balance_valid)
-            value = Model_Currency::toString(fused.ACCOUNT_BALANCE, m_cp->m_currency);
+            value = Model_Currency::toString(journal.ACCOUNT_BALANCE, m_cp->m_currency);
         return value;
     case LIST_ID_CREDIT:
         return Model_Currency::toString(
-            m_cp->m_account->CREDITLIMIT + fused.ACCOUNT_BALANCE,
+            m_cp->m_account->CREDITLIMIT + journal.ACCOUNT_BALANCE,
             m_cp->m_currency
         );
     }
@@ -1976,10 +1976,10 @@ void TransactionListCtrl::setExtraTransactionData(const bool single)
     int repeat_num = 0;
     bool isForeign = false;
     if (single) {
-        Fused_Transaction::IdRepeat id = m_selected_id[0];
-        Fused_Transaction::Data tran = !id.second ?
-            Fused_Transaction::Data(*Model_Checking::instance().get(id.first)) :
-            Fused_Transaction::Data(*Model_Billsdeposits::instance().get(id.first));
+        Journal::IdRepeat id = m_selected_id[0];
+        Journal::Data tran = !id.second ?
+            Journal::Data(*Model_Checking::instance().get(id.first)) :
+            Journal::Data(*Model_Billsdeposits::instance().get(id.first));
         if (Model_Checking::foreignTransaction(tran))
             isForeign = true;
         repeat_num = id.second;
@@ -2000,11 +2000,11 @@ void TransactionListCtrl::markItem(long selectedItem)
     return;
 }
 
-void TransactionListCtrl::setSelectedId(Fused_Transaction::IdRepeat sel_id)
+void TransactionListCtrl::setSelectedId(Journal::IdRepeat sel_id)
 {
     int i = 0;
-    for (const auto& fused : m_trans) {
-        if (fused.m_repeat_num == sel_id.second && fused.TRANSID == sel_id.first) {
+    for (const auto& journal : m_trans) {
+        if (journal.m_repeat_num == sel_id.second && journal.TRANSID == sel_id.first) {
             SetItemState(i, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
             SetItemState(i, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
             m_topItemIndex = i;
@@ -2019,7 +2019,7 @@ void TransactionListCtrl::findSelectedTransactions()
     // find the selected transactions
     long x = 0;
     m_selected_id.clear();
-    std::set<Fused_Transaction::IdRepeat> unique_ids;
+    std::set<Journal::IdRepeat> unique_ids;
     for (const auto& tran : m_trans) {
         if (GetItemState(x++, wxLIST_STATE_SELECTED) != wxLIST_STATE_SELECTED)
             continue;
@@ -2118,7 +2118,7 @@ void TransactionListCtrl::markSelectedTransaction()
 {
     long i = 0;
     for (const auto & tran : m_trans) {
-        Fused_Transaction::IdRepeat id = { !tran.m_repeat_num ? tran.TRANSID : tran.m_bdid,
+        Journal::IdRepeat id = { !tran.m_repeat_num ? tran.TRANSID : tran.m_bdid,
             tran.m_repeat_num };
         //reset any selected items in the list
         if (GetItemState(i, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
@@ -2192,9 +2192,9 @@ bool TransactionListCtrl::checkForClosedAccounts()
 {
     int closedTrx = 0;
     for (const auto& id : m_selected_id) {
-        Fused_Transaction::Data tran = !id.second ?
-            Fused_Transaction::Data(*Model_Checking::instance().get(id.first)) :
-            Fused_Transaction::Data(*Model_Billsdeposits::instance().get(id.first));
+        Journal::Data tran = !id.second ?
+            Journal::Data(*Model_Checking::instance().get(id.first)) :
+            Journal::Data(*Model_Billsdeposits::instance().get(id.first));
         Model_Account::Data* account = Model_Account::instance().get(tran.ACCOUNTID);
         if (account && Model_Account::STATUS_ID_CLOSED == Model_Account::status_id(account)) {
             closedTrx++;

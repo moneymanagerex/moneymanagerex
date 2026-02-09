@@ -26,7 +26,7 @@
 #include "mmcustomdata.h"
 #include "defs.h"
 #include "mmSimpleDialogs.h"
-#include "fusedtransaction.h"
+#include "journal.h"
 
 #include "model/Model_Checking.h"
 #include "model/Model_Payee.h"
@@ -46,11 +46,13 @@ public:
     mmTransDialog() {}
     virtual ~mmTransDialog();
 
-    mmTransDialog(wxWindow* parent
-        , int64 account_id
-        , Fused_Transaction::IdB fused_id
-        , bool duplicate = false
-        , int type = Model_Checking::TYPE_ID_WITHDRAWAL);
+    mmTransDialog(
+        wxWindow* parent,
+        int64 account_id,
+        Journal::IdB journal_id,
+        bool duplicate = false,
+        int type = Model_Checking::TYPE_ID_WITHDRAWAL
+    );
 
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
@@ -62,9 +64,9 @@ public:
     );
 
     void SetDialogTitle(const wxString& title);
-    int64 GetAccountID() { return m_fused_data.ACCOUNTID; }
-    int64 GetToAccountID() { return m_fused_data.TOACCOUNTID; }
-    int64 GetTransactionID() { return m_fused_data.TRANSID; }
+    int64 GetAccountID() { return m_journal_data.ACCOUNTID; }
+    int64 GetToAccountID() { return m_journal_data.TOACCOUNTID; }
+    int64 GetTransactionID() { return m_journal_data.TRANSID; }
 
 private:
     wxSharedPtr<mmCustomData> m_custom_fields;
@@ -132,7 +134,7 @@ private:
     int64 m_account_id = -1;
     wxString m_status;
 
-    Fused_Transaction::Data m_fused_data;
+    Journal::Data m_journal_data;
     std::vector<Split> m_local_splits;
 
     std::vector<wxString> frequentNotes_;

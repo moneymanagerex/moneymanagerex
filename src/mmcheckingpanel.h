@@ -26,7 +26,7 @@ Copyright (C) 2025 Klaus Wich
 #include <wx/tglbtn.h>
 #include "mmpanelbase.h"
 #include "constants.h"
-#include "fusedtransaction.h"
+#include "journal.h"
 #include "model/Model_Account.h"
 #include <map>
 //----------------------------------------------------------------------------
@@ -76,8 +76,8 @@ public:
     void refreshList();
     wxString BuildPage() const;
     void resetColumnView();
-    void setSelectedTransaction(Fused_Transaction::IdRepeat fused_id);
-    void displaySplitCategories(Fused_Transaction::IdB fused_id);
+    void setSelectedTransaction(Journal::IdRepeat journal_id);
+    void displaySplitCategories(Journal::IdB journal_id);
 
     //static support function
     static wxString getFilterName(FILTER_ID id);

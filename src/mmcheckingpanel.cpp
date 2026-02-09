@@ -22,7 +22,7 @@
 #include "filtertransdialog.h"
 #include "mmcheckingpanel.h"
 #include "mmchecking_list.h"
-#include "fusedtransaction.h"
+#include "journal.h"
 #include "paths.h"
 #include "constants.h"
 #include "images_list.h"
@@ -730,7 +730,7 @@ void mmCheckingPanel::filterList()
             bill_i = std::get<0>(*bills_it);
             tran_date = std::get<1>(*bills_it);
             repeat_num = std::get<2>(*bills_it);
-            bill_tran = Fused_Transaction::execute_bill(bills[bill_i], tran_date);
+            bill_tran = Journal::execute_bill(bills[bill_i], tran_date);
             tran = &bill_tran;
             bills_it++;
         }
@@ -760,9 +760,9 @@ void mmCheckingPanel::filterList()
         if (tran_date < date_start_str || tran_date > date_end_str)
             continue;
 
-        Fused_Transaction::Full_Data full_tran = (repeat_num == 0) ?
-            Fused_Transaction::Full_Data(*tran, trans_splits, trans_tags) :
-            Fused_Transaction::Full_Data(bills[bill_i], tran_date, repeat_num, bills_splits, bills_tags);
+        Journal::Full_Data full_tran = (repeat_num == 0) ?
+            Journal::Full_Data(*tran, trans_splits, trans_tags) :
+            Journal::Full_Data(bills[bill_i], tran_date, repeat_num, bills_splits, bills_tags);
 
         bool expandSplits = false;
         if (m_filter_advanced) {
@@ -912,7 +912,7 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, int repeat_num, bo
                 break;
         }
 
-        Fused_Transaction::Full_Data full_tran(m_lc->m_trans[x]);
+        Journal::Full_Data full_tran(m_lc->m_trans[x]);
         wxString miniStr = full_tran.info();
         //Show only first line but full string set as tooltip
         if (miniStr.Find("\n") > 1 && !miniStr.IsEmpty()) {
@@ -1395,20 +1395,20 @@ void mmCheckingPanel::resetColumnView()
     m_lc->refreshVisualList();
 }
 
-void mmCheckingPanel::setSelectedTransaction(Fused_Transaction::IdRepeat fused_id)
+void mmCheckingPanel::setSelectedTransaction(Journal::IdRepeat journal_id)
 {
-    m_lc->setSelectedId(fused_id);
+    m_lc->setSelectedId(journal_id);
     refreshList();
     m_lc->SetFocus();
 }
 
-void mmCheckingPanel::displaySplitCategories(Fused_Transaction::IdB fused_id)
+void mmCheckingPanel::displaySplitCategories(Journal::IdB journal_id)
 {
-    Fused_Transaction::Data fused = !fused_id.second ?
-        Fused_Transaction::Data(*Model_Checking::instance().get(fused_id.first)) :
-        Fused_Transaction::Data(*Model_Billsdeposits::instance().get(fused_id.first));
+    Journal::Data journal = !journal_id.second ?
+        Journal::Data(*Model_Checking::instance().get(journal_id.first)) :
+        Journal::Data(*Model_Billsdeposits::instance().get(journal_id.first));
     std::vector<Split> splits;
-    for (const auto& split : Fused_Transaction::split(fused)) {
+    for (const auto& split : Journal::split(journal)) {
         Split s;
         s.CATEGID          = split.CATEGID;
         s.SPLITTRANSAMOUNT = split.SPLITTRANSAMOUNT;

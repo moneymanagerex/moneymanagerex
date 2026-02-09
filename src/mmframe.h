@@ -34,7 +34,7 @@ Copyright (C) 2025, 2026 Klaus Wich
 #include "util.h"
 #include "paths.h"
 #include "model/Model_Account.h"
-#include "fusedtransaction.h"
+#include "journal.h"
 
 //----------------------------------------------------------------------------
 class wxSQLite3Database;
@@ -80,7 +80,7 @@ public:
     ~mmGUIFrame();
 
 public:
-    void setGotoAccountID(int64 account_id, Fused_Transaction::IdRepeat fused_id = {-1, 0});
+    void setGotoAccountID(int64 account_id, Journal::IdRepeat journal_id = {-1, 0});
     bool financialYearIsDifferent()
     {
         return Option::instance().getFinancialFirstDay() != 1 ||
@@ -127,7 +127,7 @@ private:
     bool db_lockInPlace;
 
     int64 gotoAccountID_ = -1;
-    Fused_Transaction::IdRepeat gotoTransID_ = { -1, 0 };
+    Journal::IdRepeat gotoTransID_ = { -1, 0 };
 
     /* There are 2 kinds of reports */
     bool activeReport_ = false;

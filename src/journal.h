@@ -16,8 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_FUSED_TRANSACTION_H_
-#define MM_EX_FUSED_TRANSACTION_H_
+#pragma once
 
 #include "model/Model.h"
 #include "model/Model_Checking.h"
@@ -26,7 +25,7 @@
 #include "model/Model_Budgetsplittransaction.h"
 #include "model/Model_Taglink.h"
 
-class Fused_Transaction
+class Journal
 {
 public:
     // id represents TRANSID if !is_bill, or BDID otherwise
@@ -76,7 +75,7 @@ public:
     };
     typedef std::vector<Full_Data> Full_Data_Set;
 
-    struct SorterByFUSEDTRANSID
+    struct SorterByJOURNALID
     { 
         template<class DATA>
         bool operator()(const DATA& x, const DATA& y)
@@ -87,7 +86,7 @@ public:
         }
     };
 
-    struct SorterByFUSEDTRANSSN
+    struct SorterByJOURNALSN
     { 
         template<class DATA>
         bool operator()(const DATA& x, const DATA& y)
@@ -97,8 +96,7 @@ public:
     };
 
     static void getEmptyData(Data &data, int64 account_id);
-    static bool getFusedData(Data &data, IdB fused_id);
+    static bool getJournalData(Data &data, IdB journal_id);
     static const Model_Splittransaction::Data_Set split(Data &r);
 };
 
-#endif

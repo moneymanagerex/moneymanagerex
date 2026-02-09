@@ -24,7 +24,7 @@ Copyright (C) 2021-2025 Mark Whalley (mark@ipx.co.uk)
 
 #include "mmpanelbase.h"
 #include "mmcheckingpanel.h"
-#include "fusedtransaction.h"
+#include "journal.h"
 
 class mmCheckingPanel;
 
@@ -123,16 +123,16 @@ private:
     };
 
 private:
-    Fused_Transaction::Full_Data_Set m_trans;
+    Journal::Full_Data_Set m_trans;
     long m_topItemIndex = -1; // where to display the list again after refresh
     wxString m_today;
     bool m_firstSort = true;
     bool m_balance_valid = false;
     wxString rightClickFilter_;
     wxString copyText_;
-    std::vector<Fused_Transaction::IdRepeat> m_selectedForCopy; // copied transactions
-    std::vector<Fused_Transaction::IdRepeat> m_pasted_id;       // last pasted transactions
-    std::vector<Fused_Transaction::IdRepeat> m_selected_id;     // selected transactions
+    std::vector<Journal::IdRepeat> m_selectedForCopy; // copied transactions
+    std::vector<Journal::IdRepeat> m_pasted_id;       // last pasted transactions
+    std::vector<Journal::IdRepeat> m_selected_id;     // selected transactions
 
     DECLARE_NO_COPY_CLASS(TransactionListCtrl)
     wxDECLARE_EVENT_TABLE();
@@ -216,9 +216,9 @@ private:
     const wxString getItem(long item, int col_id) const;
     void setExtraTransactionData(const bool single);
     void markItem(long selectedItem);
-    void setSelectedId(Fused_Transaction::IdRepeat sel_id);
-    std::vector<Fused_Transaction::IdRepeat> getSelectedId() const;
-    std::vector<Fused_Transaction::IdRepeat> getSelectedForCopy() const;
+    void setSelectedId(Journal::IdRepeat sel_id);
+    std::vector<Journal::IdRepeat> getSelectedId() const;
+    std::vector<Journal::IdRepeat> getSelectedForCopy() const;
     void findSelectedTransactions();
     int getColNr_X(int xPos);
     void doSearchText(const wxString& value);
@@ -231,11 +231,11 @@ private:
 
 //----------------------------------------------------------------------------
 
-inline std::vector<Fused_Transaction::IdRepeat> TransactionListCtrl::getSelectedId() const
+inline std::vector<Journal::IdRepeat> TransactionListCtrl::getSelectedId() const
 {
     return m_selected_id;
 }
-inline std::vector<Fused_Transaction::IdRepeat> TransactionListCtrl::getSelectedForCopy() const
+inline std::vector<Journal::IdRepeat> TransactionListCtrl::getSelectedForCopy() const
 {
     return m_selectedForCopy;
 }
