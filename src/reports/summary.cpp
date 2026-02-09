@@ -173,8 +173,6 @@ wxString mmReportSummaryByDate::getHTMLText()
     }
     std::reverse(arDates.begin(), arDates.end());
 
-    wxString m_temp_view = Model_Setting::instance().getViewAccounts();
-
     for (const auto & end_date : arDates) {
         double total = 0.0;
         BalanceEntry totBalanceEntry;
@@ -189,12 +187,6 @@ wxString mmReportSummaryByDate::getHTMLText()
         std::vector<double> balancePerDay(acc_size +1);
         std::fill(balancePerDay.begin(), balancePerDay.end(), 0.0);
         for (const auto& account : Model_Account::instance().all()) {
-            if ((m_temp_view == VIEW_ACCOUNTS_OPEN_STR && Model_Account::status_id(account) != Model_Account::STATUS_ID_OPEN) ||
-                (m_temp_view == VIEW_ACCOUNTS_CLOSED_STR && Model_Account::status_id(account) == Model_Account::STATUS_ID_OPEN) ||
-                (m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR && !Model_Account::FAVORITEACCT(account))) {
-                continue;
-            }
-
             idx = NavigatorTypes::instance().getAccountTypeIdx(account.ACCOUNTTYPE);
             if (idx == -1) {
                 idx = NavigatorTypes::instance().getAccountTypeIdx(NavigatorTypes::TYPE_ID_CHECKING);
