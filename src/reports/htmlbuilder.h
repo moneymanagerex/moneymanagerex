@@ -73,7 +73,7 @@ public:
     void addReportCurrency();
     void addDateNow();
     void addOffsetIndication(int startDay);
-    void addFutureIgnoredIndication(bool ignore);
+    void addFutureIgnoredIndication();
 
     /** Start a table element */
     void startTable();

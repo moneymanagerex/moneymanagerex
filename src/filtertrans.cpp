@@ -30,70 +30,73 @@ mmFilterTransactions::mmFilterTransactions()
 
 void mmFilterTransactions::clear()
 {
-    m_dateFilter = false;
-    m_accountFilter = false;
-    m_payeeFilter = false;
-    m_categoryFilter = false;
+    m_filter_date = false;
+    m_filter_account = false;
+    m_filter_payee = false;
+    m_filter_category = false;
 }
 
+void mmFilterTransactions::setDateRange(const DateRange2& date_range)
+{
+    m_filter_date = true;
+    m_start_date = date_range.rangeStartIsoStartN();
+    m_end_date = date_range.rangeEndIsoEndN();
+}
 void mmFilterTransactions::setDateRange(wxDateTime startDate, wxDateTime endDate)
 {
-    m_dateFilter = true;
+    m_filter_date = true;
     if (startDate.FormatISOTime() == "00:00:00")
-        m_startDate = startDate.FormatISODate();
+        m_start_date = startDate.FormatISODate();
     else
-        m_startDate = startDate.FormatISOCombined();
+        m_start_date = startDate.FormatISOCombined();
 
     if (!Option::instance().UseTransDateTime())
         endDate = mmDateRange::getDayEnd(endDate);
 
-    m_endDate = endDate.FormatISOCombined();
+    m_end_date = endDate.FormatISOCombined();
 }
 
 void mmFilterTransactions::setAccountList(wxSharedPtr<wxArrayString> accountList)
 {
     if (accountList)
     {
-        m_accountList.clear();
+        m_account_a.clear();
         for (const auto &entry : *accountList)
         {
             const auto account = Model_Account::instance().get(entry);
-            if (account) m_accountList.push_back(account->ACCOUNTID);
+            if (account) m_account_a.push_back(account->ACCOUNTID);
         }
-        m_accountFilter = true;
+        m_filter_account = true;
     }
 }
 
 void mmFilterTransactions::setPayeeList(const wxArrayInt64& payeeList)
 {
-    m_payeeFilter = true;
-    m_payeeList = payeeList;
+    m_filter_payee = true;
+    m_payee_a = payeeList;
 }
 
 void mmFilterTransactions::setCategoryList(const wxArrayInt64 &categoryList)
 {
-    m_categoryFilter = true;
-    m_categoryList = categoryList;
+    m_filter_category = true;
+    m_category_a = categoryList;
 }
 
 template<class MODEL, class DATA>
-bool mmFilterTransactions::checkCategory(const DATA& tran, const std::map<int64, typename MODEL::Split_Data_Set> & splits)
-{
+bool mmFilterTransactions::checkCategory(
+    const DATA& tran,
+    const std::map<int64, typename MODEL::Split_Data_Set> & splits
+) {
     const auto it = splits.find(tran.id());
-    if (it == splits.end())
-    {
-        for (auto it2 : m_categoryList)
-        {
+    if (it == splits.end()) {
+        for (auto it2 : m_category_a) {
             if (it2 == tran.CATEGID)
                 return true;
         }
     }
-    else
-    {
-        for (const auto& split : it->second)
-        {
-            for (auto it2 : m_categoryList)
-            {
+    else {
+        for (const auto& split : it->second) {
+            for (auto it2 : m_category_a) {
                 if (it2 == split.CATEGID)
                     return true;
             }
@@ -103,20 +106,21 @@ bool mmFilterTransactions::checkCategory(const DATA& tran, const std::map<int64,
     return false;
 }
 
-bool mmFilterTransactions::mmIsRecordMatches(const Model_Checking::Data &tran
-    , const std::map<int64, Model_Splittransaction::Data_Set>& split)
-{
+bool mmFilterTransactions::mmIsRecordMatches(
+    const Model_Checking::Data &tran,
+    const std::map<int64, Model_Splittransaction::Data_Set>& split
+) {
     bool ok = true;
     wxString strDate = Model_Checking::getTransDateTime(tran).FormatISOCombined();
-    if (m_accountFilter
-        && (std::find(m_accountList.begin(), m_accountList.end(), tran.ACCOUNTID) == m_accountList.end())
-        && (std::find(m_accountList.begin(), m_accountList.end(), tran.TOACCOUNTID) == m_accountList.end()))
+    if (m_filter_account
+        && (std::find(m_account_a.begin(), m_account_a.end(), tran.ACCOUNTID) == m_account_a.end())
+        && (std::find(m_account_a.begin(), m_account_a.end(), tran.TOACCOUNTID) == m_account_a.end()))
         ok = false;
-    else if (m_dateFilter && ((strDate < m_startDate) || (strDate > m_endDate)))
+    else if (m_filter_date && ((strDate < m_start_date) || (strDate > m_end_date)))
         ok = false;
-    else if (m_payeeFilter && (std::find(m_payeeList.begin(), m_payeeList.end(), tran.PAYEEID) == m_payeeList.end()))
+    else if (m_filter_payee && (std::find(m_payee_a.begin(), m_payee_a.end(), tran.PAYEEID) == m_payee_a.end()))
         ok = false;
-    else if (m_categoryFilter && !checkCategory<Model_Checking>(tran, split))
+    else if (m_filter_category && !checkCategory<Model_Checking>(tran, split))
         ok = false;
     return ok;
 }
@@ -138,11 +142,11 @@ wxString mmFilterTransactions::getHTML()
             bool found = true;
             for (const auto& split : full_tran.m_splits)
             {
-                if (m_categoryFilter)
+                if (m_filter_category)
                 {
                     found = false;
 
-                    for (const auto& it : m_categoryList)
+                    for (const auto& it : m_category_a)
                     {
                         if (it == split.CATEGID) {
                             found = true;

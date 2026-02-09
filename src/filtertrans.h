@@ -16,21 +16,19 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#ifndef FILTERTRANS_H_
-#define FILTERTRANS_H_
+#pragma once
 
 #include "model/allmodel.h"
+#include "daterange2.h"
 
 class mmFilterTransactions
 {
-
 public:
-    // Constructors
     mmFilterTransactions();
 
-    void clear();
-
     // Filter setup methods
+    void clear();
+    void setDateRange(const DateRange2& date_range);
     void setDateRange(wxDateTime startDate, wxDateTime endDate);
     void setAccountList(wxSharedPtr<wxArrayString> accountList);
     void setPayeeList(const wxArrayInt64& payeeList);
@@ -38,28 +36,26 @@ public:
 
     // Apply Filter methods
     template<class MODEL, class DATA = typename MODEL::Data>
-    bool checkCategory(const DATA& tran, const std::map<int64, typename MODEL::Split_Data_Set> & splits);
-    bool mmIsRecordMatches(const Model_Checking::Data &tran
-        , const std::map<int64, Model_Splittransaction::Data_Set>& split);
+    bool checkCategory(
+        const DATA& tran,
+        const std::map<int64, typename MODEL::Split_Data_Set> & splits
+    );
+    bool mmIsRecordMatches(
+        const Model_Checking::Data &tran,
+        const std::map<int64, Model_Splittransaction::Data_Set>& split
+    );
 
     wxString getHTML();
 
 private:
-    // date range
-    bool m_dateFilter;
-    wxString m_startDate, m_endDate;
-    // account
-    bool m_accountFilter;
-    wxArrayInt64 m_accountList;
-    // payee
-    bool m_payeeFilter;
-    wxArrayInt64 m_payeeList;
-    // category
-    bool m_categoryFilter;
-    wxArrayInt64 m_categoryList;
-
+    bool m_filter_date;
+    bool m_filter_account;
+    bool m_filter_payee;
+    bool m_filter_category;
+    wxString m_start_date, m_end_date;
+    wxArrayInt64 m_account_a;
+    wxArrayInt64 m_payee_a;
+    wxArrayInt64 m_category_a;
     Model_Checking::Full_Data_Set m_trans;
 };
 
-#endif
-// FILTERTRANS_H_

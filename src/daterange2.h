@@ -129,6 +129,7 @@ public:
         bool parseLabel(StringIt &buffer_i, StringIt buffer_end);
         void parseName(StringIt &buffer_i, StringIt buffer_end);
         bool parseLabelName(const wxString &buffer, const wxString &name_new = "");
+        int getF() const;
         const wxString getLabel() const;
         const wxString getName() const;
         const wxString getLabelName() const;
@@ -202,6 +203,9 @@ public:
     void setDefEndDateN(DateDayN defEndDateN_new = DateDayN());
     void setRange(const Range &range_new);
     void setReporting(const Reporting &reporting_new);
+    int getFirstDay() const;
+    wxDateTime::Month getFirstMonth() const;
+    wxDateTime::WeekDay getFirstWeekday() const;
     DateDayN getSDateN() const;
     DateDay  getTDate() const;
     DateDayN getDefStartDateN() const;
@@ -219,9 +223,9 @@ public:
     DateDayN rangeStart() const;
     DateDayN rangeEnd() const;
     DateDayN reportingNext() const;
-    const wxString rangeStartIsoStart() const;
-    const wxString rangeEndIsoEnd() const;
-    const wxString reportingNextIsoEnd() const;
+    const wxString rangeStartIsoStartN() const;
+    const wxString rangeEndIsoEndN() const;
+    const wxString reportingNextIsoEndN() const;
     const wxString checkingTooltip() const;
     const wxString reportingTooltip() const;
 
@@ -272,6 +276,11 @@ inline void DateRange2::Range::setName(const wxString &name_new)
     name = name_new;
 }
 
+inline int DateRange2::Range::getF() const
+{
+    return f;
+}
+
 inline const wxString DateRange2::Range::getName() const
 {
     return name;
@@ -318,6 +327,18 @@ inline void DateRange2::setReporting(const DateRange2::Reporting &reporting_new)
     reporting = reporting_new;
 }
 
+inline int DateRange2::getFirstDay() const
+{
+    return firstDay[range.f];
+}
+inline wxDateTime::Month DateRange2::getFirstMonth() const
+{
+    return firstMonth[range.f];
+}
+inline wxDateTime::WeekDay DateRange2::getFirstWeekday() const
+{
+    return firstWeekday;
+}
 inline DateDayN DateRange2::getSDateN() const
 {
     return sDateN;
@@ -360,15 +381,15 @@ inline const wxString DateRange2::reportingLabel() const
     return reporting.getLabel();
 }
 
-inline const wxString DateRange2::rangeStartIsoStart() const
+inline const wxString DateRange2::rangeStartIsoStartN() const
 {
     return rangeStart().isoStartN();
 }
-inline const wxString DateRange2::rangeEndIsoEnd() const
+inline const wxString DateRange2::rangeEndIsoEndN() const
 {
     return rangeEnd().isoEndN();
 }
-inline const wxString DateRange2::reportingNextIsoEnd() const
+inline const wxString DateRange2::reportingNextIsoEndN() const
 {
     return reportingNext().isoEndN();
 }

@@ -664,7 +664,7 @@ void mmCheckingPanel::filterList()
         date_end_str = DateDayN(toDateCtrl->GetValue())
             .value_or(DateDay(date_end)).isoEnd();
     } else {
-        date_start_str = m_current_date_range.rangeStartIsoStart();
+        date_start_str = m_current_date_range.rangeStartIsoStartN();
         // find last un-deleted transaction and use that if later than current date + 30 days
         for (auto it = trans.rbegin(); it != trans.rend(); ++it) {
             const Model_Checking::Data* tran = &(*it);
