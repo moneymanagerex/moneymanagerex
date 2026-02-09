@@ -273,6 +273,7 @@ void mmReportsPanel::saveFilterSettings() {
 
 void mmReportsPanel::updateFilter()
 {
+    wxLogDebug("mmReportsPanel::updateFilter(): m_filter_id=%d", int(m_filter_id));
     if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_RANGE) {
         w_date_range_button->SetLabel(m_date_range.rangeName());
         w_date_range_button->SetBitmap(mmBitmapBundle(
@@ -283,13 +284,15 @@ void mmReportsPanel::updateFilter()
             ),
             mmBitmapButtonSize
         ));
-        // copy from date range to start/end pickers
         // TODO: calculate default start/end dates from model
+        m_date_range.setDefStartDateN(DateDay::min());
+        m_date_range.setDefEndDateN(DateDay::max());
+        // copy from date range to start/end pickers
         w_start_date_picker->SetValue(
-            m_date_range.rangeStart().value_or(DateDay::min()).getDateTime()
+            m_date_range.rangeStart().value().getDateTime()
         );
         w_end_date_picker->SetValue(
-            m_date_range.rangeEnd().value_or(DateDay::max()).getDateTime()
+            m_date_range.rangeEnd().value().getDateTime()
         );
     }
     else if (m_filter_id == mmCheckingPanel::FILTER_ID_DATE_PICKER) {
