@@ -16,17 +16,11 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "model/Model.h"
-#include "model/Model_Checking.h"
-#include "model/Model_Billsdeposits.h"
-#include "model/Model_Splittransaction.h"
-#include "model/Model_Budgetsplittransaction.h"
-#include "model/Model_Taglink.h"
 #include "journal.h"
 
-Model_Checking::Data Journal::execute_bill(const Model_Billsdeposits::Data& r, wxString date)
+TransactionModel::Data Journal::execute_bill(const ScheduledModel::Data& r, wxString date)
 {
-    Model_Checking::Data t;
+    TransactionModel::Data t;
     t.TRANSID           = 0;
     t.ACCOUNTID         = r.ACCOUNTID;
     t.TOACCOUNTID       = r.TOACCOUNTID;
@@ -44,9 +38,9 @@ Model_Checking::Data Journal::execute_bill(const Model_Billsdeposits::Data& r, w
     return t;
 }
 
-Model_Checking::Full_Data Journal::execute_bill_full(const Model_Billsdeposits::Data& r, wxString date)
+TransactionModel::Full_Data Journal::execute_bill_full(const ScheduledModel::Data& r, wxString date)
 {
-    Model_Checking::Full_Data t;
+    TransactionModel::Full_Data t;
     t.TRANSID           = 0;
     t.ACCOUNTID         = r.ACCOUNTID;
     t.TOACCOUNTID       = r.TOACCOUNTID;
@@ -64,12 +58,12 @@ Model_Checking::Full_Data Journal::execute_bill_full(const Model_Billsdeposits::
     return t;
 }
 
-Model_Splittransaction::Data_Set Journal::execute_splits(const Budgetsplit_Data_Set& rs)
+TransactionSplitModel::Data_Set Journal::execute_splits(const Budgetsplit_Data_Set& rs)
 {
-    Model_Splittransaction::Data_Set ts;
+    TransactionSplitModel::Data_Set ts;
     for (auto &rs1 : rs)
     {
-        Model_Splittransaction::Data ts1;
+        TransactionSplitModel::Data ts1;
         ts1.SPLITTRANSID     = rs1.SPLITTRANSID;
         ts1.TRANSID          = 0;
         ts1.CATEGID          = rs1.CATEGID;
@@ -81,22 +75,22 @@ Model_Splittransaction::Data_Set Journal::execute_splits(const Budgetsplit_Data_
 }
 
 Journal::Data::Data()
-    : Model_Checking::Data(), m_bdid(0), m_repeat_num(0)
+    : TransactionModel::Data(), m_bdid(0), m_repeat_num(0)
 {
 }
 
-Journal::Data::Data(const Model_Checking::Data& t)
-    : Model_Checking::Data(t), m_bdid(0), m_repeat_num(0)
+Journal::Data::Data(const TransactionModel::Data& t)
+    : TransactionModel::Data(t), m_bdid(0), m_repeat_num(0)
 {
 }
 
-Journal::Data::Data(const Model_Billsdeposits::Data& r)
+Journal::Data::Data(const ScheduledModel::Data& r)
     : Data(r, r.TRANSDATE, 1)
 {
 }
 
-Journal::Data::Data(const Model_Billsdeposits::Data& r, wxString date, int repeat_num)
-    : Model_Checking::Data(execute_bill(r, date)), m_bdid(r.BDID), m_repeat_num(repeat_num)
+Journal::Data::Data(const ScheduledModel::Data& r, wxString date, int repeat_num)
+    : TransactionModel::Data(execute_bill(r, date)), m_bdid(r.BDID), m_repeat_num(repeat_num)
 {
     if (m_repeat_num < 1) {
         wxFAIL;
@@ -107,48 +101,48 @@ Journal::Data::~Data()
 {
 }
 
-Journal::Full_Data::Full_Data(const Model_Checking::Data& t)
-    : Model_Checking::Full_Data(t), m_bdid(0), m_repeat_num(0)
+Journal::Full_Data::Full_Data(const TransactionModel::Data& t)
+    : TransactionModel::Full_Data(t), m_bdid(0), m_repeat_num(0)
 {
 }
 
-Journal::Full_Data::Full_Data(const Model_Checking::Data& t,
+Journal::Full_Data::Full_Data(const TransactionModel::Data& t,
     const std::map<int64 /* TRANSID */, Split_Data_Set>& splits,
     const std::map<int64 /* TRANSID */, Taglink_Data_Set>& tags)
 :
-    Model_Checking::Full_Data(t, splits, tags), m_bdid(0), m_repeat_num(0)
+    TransactionModel::Full_Data(t, splits, tags), m_bdid(0), m_repeat_num(0)
 {
 }
 
-Journal::Full_Data::Full_Data(const Model_Billsdeposits::Data& r)
+Journal::Full_Data::Full_Data(const ScheduledModel::Data& r)
     : Full_Data(r, r.TRANSDATE, 1)
 {
 }
 
-Journal::Full_Data::Full_Data(const Model_Billsdeposits::Data& r,
+Journal::Full_Data::Full_Data(const ScheduledModel::Data& r,
     wxString date, int repeat_num)
 :
-    Model_Checking::Full_Data(execute_bill_full(r, date), {}, {}),
+    TransactionModel::Full_Data(execute_bill_full(r, date), {}, {}),
     m_bdid(r.BDID), m_repeat_num(repeat_num)
 {
     if (m_repeat_num < 1) {
         wxFAIL;
     }
 
-    m_splits = execute_splits(Model_Billsdeposits::split(r));
+    m_splits = execute_splits(ScheduledModel::split(r));
 
-    m_tags = Model_Billsdeposits::taglink(r);
+    m_tags = ScheduledModel::taglink(r);
 
-    Model_Checking::Full_Data::fill_data();
+    TransactionModel::Full_Data::fill_data();
     displayID = wxString("");
 }
 
-Journal::Full_Data::Full_Data(const Model_Billsdeposits::Data& r,
+Journal::Full_Data::Full_Data(const ScheduledModel::Data& r,
     wxString date, int repeat_num,
     const std::map<int64 /* BDID */, Budgetsplit_Data_Set>& budgetsplits,
     const std::map<int64 /* BDID */, Taglink_Data_Set>& tags)
 :
-    Model_Checking::Full_Data(execute_bill_full(r, date), {}, {}),
+    TransactionModel::Full_Data(execute_bill_full(r, date), {}, {}),
     m_bdid(r.BDID), m_repeat_num(repeat_num)
 {
     if (m_repeat_num < 1) {
@@ -163,7 +157,7 @@ Journal::Full_Data::Full_Data(const Model_Billsdeposits::Data& r,
     const auto tag_it = tags.find(m_bdid);
     if (tag_it != tags.end()) m_tags = tag_it->second;
 
-    Model_Checking::Full_Data::fill_data();
+    TransactionModel::Full_Data::fill_data();
     displayID = wxString("");
 }
 
@@ -174,7 +168,7 @@ Journal::Full_Data::~Full_Data()
 
 void Journal::getEmptyData(Journal::Data &data, int64 accountID)
 {
-    Model_Checking::getEmptyData(data, accountID);
+    TransactionModel::getEmptyData(data, accountID);
     data.m_bdid = 0;
     data.m_repeat_num = 0;
 }
@@ -182,7 +176,7 @@ void Journal::getEmptyData(Journal::Data &data, int64 accountID)
 bool Journal::getJournalData(Journal::Data &data, Journal::IdB journal_id)
 {
     if (!journal_id.second) {
-        Model_Checking::Data *tran = Model_Checking::instance().get(journal_id.first);
+        TransactionModel::Data *tran = TransactionModel::instance().get(journal_id.first);
         if (!tran)
             return false;
         data.m_repeat_num = 0;
@@ -205,7 +199,7 @@ bool Journal::getJournalData(Journal::Data &data, Journal::IdB journal_id)
         data.COLOR             = tran->COLOR;
     }
     else {
-        Model_Billsdeposits::Data *bill = Model_Billsdeposits::instance().get(journal_id.first);
+        ScheduledModel::Data *bill = ScheduledModel::instance().get(journal_id.first);
         if (!bill)
             return false;
         data.m_repeat_num = 1;
@@ -230,11 +224,11 @@ bool Journal::getJournalData(Journal::Data &data, Journal::IdB journal_id)
     return true;
 }
 
-const Model_Splittransaction::Data_Set Journal::split(Journal::Data &r)
+const TransactionSplitModel::Data_Set Journal::split(Journal::Data &r)
 {
     return (r.m_repeat_num == 0) ?
-        Model_Splittransaction::instance().find(
-            Model_Splittransaction::TRANSID(r.TRANSID)) :
-        Journal::execute_splits(Model_Budgetsplittransaction::instance().find(
-            Model_Budgetsplittransaction::TRANSID(r.m_bdid)));
+        TransactionSplitModel::instance().find(
+            TransactionSplitModel::TRANSID(r.TRANSID)) :
+        Journal::execute_splits(ScheduledSplitModel::instance().find(
+            ScheduledSplitModel::TRANSID(r.m_bdid)));
 }

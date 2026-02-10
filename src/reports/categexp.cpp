@@ -18,14 +18,16 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include <algorithm>
+
+#include "model/CategoryModel.h"
+#include "model/PreferencesModel.h"
+
 #include "categexp.h"
 #include "budget.h"
 #include "images_list.h"
 #include "htmlbuilder.h"
 #include "mmDateRange.h"
-#include "option.h"
-#include <algorithm>
-#include "model/Model_Category.h"
 
 #define CATEGORY_SORT_BY_NAME        1
 #define CATEGORY_SORT_BY_AMOUNT      2
@@ -45,7 +47,7 @@ double mmReportCategoryExpenses::AppendData([[maybe_unused]] const std::vector<m
     double amt = categoryStats[category->CATEGID][0];
     if (type_ == COME && amt < 0.0) amt = 0;
     if (type_ == GOES && amt > 0.0) amt = 0;
-    Model_Category::Data_Set subcategories = Model_Category::sub_category(category);
+    CategoryModel::Data_Set subcategories = CategoryModel::sub_category(category);
     std::stable_sort(subcategories.begin(), subcategories.end(), SorterByCATEGNAME());
     std::reverse(subcategories.begin(), subcategories.end());
     double subamount = 0;
@@ -62,17 +64,17 @@ void  mmReportCategoryExpenses::refreshData()
 {
     data_.clear();
     std::map<int64, std::map<int, double> > categoryStats;
-    Model_Category::instance().getCategoryStats(
+    CategoryModel::instance().getCategoryStats(
         categoryStats,
         m_account_a,
         m_date_range,
-        Option::instance().getIgnoreFutureTransactions(),
+        PreferencesModel::instance().getIgnoreFutureTransactions(),
         false
     );
 
     data_holder line;
     int groupID = 0;
-    Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::PARENTID(-1));
+    CategoryModel::Data_Set categories = CategoryModel::instance().find(CategoryModel::PARENTID(-1));
     std::stable_sort(categories.begin(), categories.end(), SorterByCATEGNAME());
     std::reverse(categories.begin(), categories.end());
     for (const auto& category : categories)
@@ -81,7 +83,7 @@ void  mmReportCategoryExpenses::refreshData()
         if (type_ == COME && amt < 0.0) amt = 0;
         if (type_ == GOES && amt > 0.0) amt = 0;
 
-        auto subcategories = Model_Category::sub_category(category);
+        auto subcategories = CategoryModel::sub_category(category);
         std::stable_sort(subcategories.begin(), subcategories.end(), SorterByCATEGNAME());
         std::reverse(subcategories.begin(), subcategories.end());
         double subamount = 0;
@@ -132,11 +134,11 @@ wxString mmReportCategoryExpenses::getHTMLText()
             {
                 if (entry.amount < 0)
                 {
-                    expense_vector.emplace_back(Model_Category::full_name(entry.catID), entry.amount);
+                    expense_vector.emplace_back(CategoryModel::full_name(entry.catID), entry.amount);
                 }
                 else if (entry.amount > 0)
                 {
-                    income_vector.emplace_back(Model_Category::full_name(entry.catID), entry.amount);
+                    income_vector.emplace_back(CategoryModel::full_name(entry.catID), entry.amount);
                 }
             }
         }
@@ -347,11 +349,11 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
 
     //Get statistic
     std::map<int64, std::map<int, double> > categoryStats;
-    Model_Category::instance().getCategoryStats(
+    CategoryModel::instance().getCategoryStats(
         categoryStats,
         m_account_a,
         date_range,
-        Option::instance().getIgnoreFutureTransactions()
+        PreferencesModel::instance().getIgnoreFutureTransactions()
     );
 
     //Init totals
@@ -368,7 +370,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
         double overall;
     } line;
     std::vector<html_data_holder> data;
-    std::map<wxString, int64> categories = Model_Category::all_categories();
+    std::map<wxString, int64> categories = CategoryModel::all_categories();
     for (const auto& category : categories) {
         int64 categID = category.second;
         line.catID = categID;

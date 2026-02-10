@@ -18,9 +18,9 @@
 
 #pragma once
 
-#include "model/Model_Stock.h"
-#include "model/Model_Translink.h"
-#include "model/Model_Shareinfo.h"
+#include "model/StockModel.h"
+#include "model/TransactionLinkModel.h"
+#include "model/TransactionShareModel.h"
 
 class mmDatePickerCtrl;
 class mmTextCtrl;
@@ -33,8 +33,8 @@ class ShareTransactionDialog : public wxDialog
 
 public:
     ShareTransactionDialog();
-    ShareTransactionDialog(wxWindow* parent, Model_Stock::Data* stock);
-    ShareTransactionDialog(wxWindow* parent, Model_Translink::Data* transfer_entry, Model_Checking::Data* checking_entry);
+    ShareTransactionDialog(wxWindow* parent, StockModel::Data* stock);
+    ShareTransactionDialog(wxWindow* parent, TransactionLinkModel::Data* transfer_entry, TransactionModel::Data* checking_entry);
 
     int64 m_stock_id = -1;
 
@@ -57,7 +57,7 @@ private:
     void OnDeductibleSplit(wxCommandEvent& event);
 
 private:
-    Model_Stock::Data* m_stock = nullptr;
+    StockModel::Data* m_stock = nullptr;
     wxTextCtrl* m_stock_name_ctrl = nullptr;
     mmTextCtrl* m_share_num_ctrl = nullptr;
     wxTextCtrl* m_stock_symbol_ctrl = nullptr;
@@ -72,9 +72,9 @@ private:
     UserTransactionPanel* m_transaction_panel = nullptr;
     wxString m_dialog_heading;
 
-    Model_Checking::Data* m_checking_entry = nullptr;
-    Model_Translink::Data* m_translink_entry = nullptr;
-    Model_Shareinfo::Data* m_share_entry = nullptr;
+    TransactionModel::Data* m_checking_entry = nullptr;
+    TransactionLinkModel::Data* m_translink_entry = nullptr;
+    TransactionShareModel::Data* m_share_entry = nullptr;
 
     std::vector<Split> m_local_deductible_splits, m_local_non_deductible_splits;
 

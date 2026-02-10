@@ -21,9 +21,9 @@
 #include "paths.h"
 #include "constants.h"
 #include <wx/spinctrl.h>
-#include "util.h"
-#include "model/Model_Budgetyear.h"
-#include "model/Model_Budget.h"
+#include "util/util.h"
+#include "model/BudgetPeriodModel.h"
+#include "model/BudgetModel.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmBudgetYearEntryDialog, wxDialog);
 
@@ -114,7 +114,7 @@ void mmBudgetYearEntryDialog::CreateControls()
     mmToolTip(itemChoice_, _t("Specify year to base budget on"));
 
     unsigned int index = 1;
-    for (const auto& e : Model_Budgetyear::instance().all())
+    for (const auto& e : BudgetPeriodModel::instance().all())
     {
         const wxString& budgetYearString = e.BUDGETYEARNAME;
         itemChoice_->Insert(budgetYearString, index++);
@@ -148,7 +148,7 @@ void mmBudgetYearEntryDialog::OnOk(wxCommandEvent& /*event*/)
         currYearText << "-" << currMonthText;
     }
 
-    if (Model_Budgetyear::instance().Get(currYearText) != -1)
+    if (BudgetPeriodModel::instance().Get(currYearText) != -1)
     {   
         wxMessageBox(_t("Budget Year already exists")
             , _t("Budget Entry Details"), wxICON_WARNING);
@@ -156,12 +156,12 @@ void mmBudgetYearEntryDialog::OnOk(wxCommandEvent& /*event*/)
     }
     else
     {
-        Model_Budgetyear::instance().Add(currYearText);
+        BudgetPeriodModel::instance().Add(currYearText);
         if (baseYear != "None" && !baseYear.empty())
         {
-            int64 baseYearID = Model_Budgetyear::instance().Get(baseYear);
-            int64 newYearID  = Model_Budgetyear::instance().Get(currYearText);
-            Model_Budget::copyBudgetYear(newYearID, baseYearID);
+            int64 baseYearID = BudgetPeriodModel::instance().Get(baseYear);
+            int64 newYearID  = BudgetPeriodModel::instance().Get(currYearText);
+            BudgetModel::copyBudgetYear(newYearID, baseYearID);
         }
     }
 

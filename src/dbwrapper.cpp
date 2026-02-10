@@ -17,7 +17,7 @@
  ********************************************************/
 
 #include "dbwrapper.h"
-#include "util.h"
+#include "util/util.h"
 #include "paths.h"
 #include "constants.h"
 //----------------------------------------------------------------------------

@@ -19,17 +19,17 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "export.h"
 #include "constants.h"
 #include "paths.h"
-#include "util.h"
-#include "model/Model_Account.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_Category.h"
-#include "model/Model_Checking.h"
-#include "model/Model_Currency.h"
-#include "model/Model_CustomField.h"
-#include "model/Model_Payee.h"
-#include "model/Model_CustomFieldData.h"
-#include "model/Model_CustomField.h"
-#include "model/Model_Tag.h"
+#include "util/util.h"
+#include "model/AccountModel.h"
+#include "model/AttachmentModel.h"
+#include "model/CategoryModel.h"
+#include "model/TransactionModel.h"
+#include "model/CurrencyModel.h"
+#include "model/FieldModel.h"
+#include "model/PayeeModel.h"
+#include "model/FieldValueModel.h"
+#include "model/FieldModel.h"
+#include "model/TagModel.h"
 #include "uicontrols/navigatortypes.h"
 
 mmExportTransaction::mmExportTransaction()
@@ -38,29 +38,29 @@ mmExportTransaction::mmExportTransaction()
 mmExportTransaction::~mmExportTransaction()
 {}
 
-const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full_Data& full_tran
+const wxString mmExportTransaction::getTransactionCSV(const TransactionModel::Full_Data& full_tran
     , const wxString& dateMask, bool reverce)
 {
     auto account_id = full_tran.ACCOUNTID;
     wxString buffer = "";
-    bool is_transfer = Model_Checking::is_transfer(full_tran.TRANSCODE);
-    const wxString delimiter = Model_Infotable::instance().getString("DELIMITER", mmex::DEFDELIMTER);
+    bool is_transfer = TransactionModel::is_transfer(full_tran.TRANSCODE);
+    const wxString delimiter = InfotableModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
 
-    wxString categ = full_tran.m_splits.empty() ? Model_Category::full_name(full_tran.CATEGID, ":") : "";
+    wxString categ = full_tran.m_splits.empty() ? CategoryModel::full_name(full_tran.CATEGID, ":") : "";
     wxString transNum = full_tran.TRANSACTIONNUMBER;
     wxString notes = (full_tran.NOTES);
     wxString payee = full_tran.PAYEENAME;
 
-    const auto acc_in = Model_Account::instance().get(full_tran.ACCOUNTID);
-    const auto curr_in = Model_Currency::instance().get(acc_in->CURRENCYID);
+    const auto acc_in = AccountModel::instance().get(full_tran.ACCOUNTID);
+    const auto curr_in = CurrencyModel::instance().get(acc_in->CURRENCYID);
     wxString account = acc_in->ACCOUNTNAME;
     wxString currency = curr_in->CURRENCY_SYMBOL;
 
     if (is_transfer)
     {
         account_id = reverce ? full_tran.ACCOUNTID : full_tran.TOACCOUNTID;
-        const auto acc_to = Model_Account::instance().get(full_tran.TOACCOUNTID);
-        const auto curr_to = Model_Currency::instance().get(acc_to->CURRENCYID);
+        const auto acc_to = AccountModel::instance().get(full_tran.TOACCOUNTID);
+        const auto curr_to = CurrencyModel::instance().get(acc_to->CURRENCYID);
 
         payee = reverce ? acc_to->ACCOUNTNAME : acc_in->ACCOUNTNAME;
         account = reverce ? acc_in->ACCOUNTNAME : acc_to->ACCOUNTNAME;
@@ -78,10 +78,10 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
         for (const auto &split_entry : full_tran.m_splits)
         {
             double valueSplit = split_entry.SPLITTRANSAMOUNT;
-            if (Model_Checking::type_id(full_tran) == Model_Checking::TYPE_ID_WITHDRAWAL)
+            if (TransactionModel::type_id(full_tran) == TransactionModel::TYPE_ID_WITHDRAWAL)
                 valueSplit = -valueSplit;
             const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-            const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, ":");
+            const wxString split_categ = CategoryModel::full_name(split_entry.CATEGID, ":");
 
             buffer << inQuotes(wxString::Format("%lld", full_tran.TRANSID), delimiter) << delimiter;
             buffer << inQuotes(mmGetDateTimeForDisplay(full_tran.TRANSDATE, dateMask), delimiter) << delimiter;
@@ -112,7 +112,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
 
         buffer << inQuotes(payee, delimiter) << delimiter;
         buffer << inQuotes(categ, delimiter) << delimiter;
-        double value = Model_Checking::account_flow(full_tran, account_id);
+        double value = TransactionModel::account_flow(full_tran, account_id);
         const wxString& s = wxString::FromCDouble(value, 2);
         buffer << inQuotes(s, delimiter) << delimiter;
         buffer << inQuotes(currency, delimiter) << delimiter;
@@ -125,13 +125,13 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
     return buffer;
 }
 
-const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full_Data& full_tran
+const wxString mmExportTransaction::getTransactionQIF(const TransactionModel::Full_Data& full_tran
     , const wxString& dateMask, bool reverce)
 {
-    bool transfer = Model_Checking::is_transfer(full_tran.TRANSCODE);
+    bool transfer = TransactionModel::is_transfer(full_tran.TRANSCODE);
 
     wxString buffer = "";
-    wxString categ = full_tran.m_splits.empty() ? Model_Category::full_name(full_tran.CATEGID, ":") : "";
+    wxString categ = full_tran.m_splits.empty() ? CategoryModel::full_name(full_tran.CATEGID, ":") : "";
     // Replace square brackets which are used to denote transfers in QIF
     categ.Replace("[", "(");
     categ.Replace("]", ")");
@@ -141,10 +141,10 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
 
     if (transfer)
     {
-        const auto acc_in = Model_Account::instance().get(full_tran.ACCOUNTID);
-        const auto acc_to = Model_Account::instance().get(full_tran.TOACCOUNTID);
-        const auto curr_in = Model_Currency::instance().get(acc_in->CURRENCYID);
-        const auto curr_to = Model_Currency::instance().get(acc_to->CURRENCYID);
+        const auto acc_in = AccountModel::instance().get(full_tran.ACCOUNTID);
+        const auto acc_to = AccountModel::instance().get(full_tran.TOACCOUNTID);
+        const auto curr_in = CurrencyModel::instance().get(acc_in->CURRENCYID);
+        const auto curr_to = CurrencyModel::instance().get(acc_to->CURRENCYID);
 
         categ = "[" + (reverce ? full_tran.ACCOUNTNAME : full_tran.TOACCOUNTNAME) + "]";
         payee = wxString::Format("%s %s %s -> %s %s %s"
@@ -163,12 +163,12 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         categ.Append("/");
         auto numTags = full_tran.m_tags.size();
         for (decltype(numTags) i = 0; i < numTags; i++)
-            categ.Append((i > 0 ? ":" : "") + Model_Tag::instance().get(full_tran.m_tags[i].TAGID)->TAGNAME);
+            categ.Append((i > 0 ? ":" : "") + TagModel::instance().get(full_tran.m_tags[i].TAGID)->TAGNAME);
     }
 
     buffer << "D" << mmGetDateTimeForDisplay(full_tran.TRANSDATE, dateMask) << "\n";
-    buffer << "C" << (full_tran.STATUS == Model_Checking::STATUS_KEY_RECONCILED ? "R" : "") << "\n";
-    double value = Model_Checking::account_flow(full_tran
+    buffer << "C" << (full_tran.STATUS == TransactionModel::STATUS_KEY_RECONCILED ? "R" : "") << "\n";
+    double value = TransactionModel::account_flow(full_tran
         , (reverce ? full_tran.TOACCOUNTID : full_tran.ACCOUNTID));
     const wxString& s = wxString::FromCDouble(value, 2);
     buffer << "T" << s << "\n";
@@ -185,23 +185,23 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         buffer << "M" << notes << "\n";
     }
 
-    wxString reftype = Model_Splittransaction::refTypeName;
+    wxString reftype = TransactionSplitModel::refTypeName;
     for (const auto &split_entry : full_tran.m_splits)
     {
         double valueSplit = split_entry.SPLITTRANSAMOUNT;
-        if (Model_Checking::type_id(full_tran) == Model_Checking::TYPE_ID_WITHDRAWAL)
+        if (TransactionModel::type_id(full_tran) == TransactionModel::TYPE_ID_WITHDRAWAL)
             valueSplit = -valueSplit;
         const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-        wxString split_categ = Model_Category::full_name(split_entry.CATEGID, ":");
+        wxString split_categ = CategoryModel::full_name(split_entry.CATEGID, ":");
         split_categ.Replace("/", "-");
-        Model_Taglink::Data_Set splitTags = Model_Taglink::instance().find(Model_Taglink::REFTYPE(reftype), Model_Taglink::REFID(split_entry.SPLITTRANSID));
+        TagLinkModel::Data_Set splitTags = TagLinkModel::instance().find(TagLinkModel::REFTYPE(reftype), TagLinkModel::REFID(split_entry.SPLITTRANSID));
         if (!splitTags.empty())
         {
             split_categ.Append("/");
             auto numTags = splitTags.size();
             for (decltype(numTags) i = 0; i < numTags; i++)
             {
-                split_categ.Append((i > 0 ? ":" : "") + Model_Tag::instance().get(splitTags[i].TAGID)->TAGNAME);
+                split_categ.Append((i > 0 ? ":" : "") + TagModel::instance().get(splitTags[i].TAGID)->TAGNAME);
             }
         }
         buffer << "S" << split_categ << "\n"
@@ -222,19 +222,19 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
 const wxString mmExportTransaction::getAccountHeaderQIF(int64 accountID)
 {
     wxString buffer = "";
-    wxString currency_symbol = Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL;
-    Model_Account::Data *account = Model_Account::instance().get(accountID);
+    wxString currency_symbol = CurrencyModel::GetBaseCurrency()->CURRENCY_SYMBOL;
+    AccountModel::Data *account = AccountModel::instance().get(accountID);
     if (account)
     {
         double dInitBalance = account->INITIALBAL;
-        Model_Currency::Data *currency = Model_Currency::instance().get(account->CURRENCYID);
+        CurrencyModel::Data *currency = CurrencyModel::instance().get(account->CURRENCYID);
         if (currency)
         {
             currency_symbol = currency->CURRENCY_SYMBOL;
         }
 
         const wxString currency_code = "[" + currency_symbol + "]";
-        const wxString sInitBalance = Model_Currency::toString(dInitBalance, currency);
+        const wxString sInitBalance = CurrencyModel::toString(dInitBalance, currency);
 
         buffer = wxString("!Account") << "\n"
             << "N" << account->ACCOUNTNAME << "\n"
@@ -253,10 +253,10 @@ const wxString mmExportTransaction::getCategoriesQIF()
     wxString buffer_qif = "";
 
     buffer_qif << "!Type:Cat" << "\n";
-    for (const auto& category : Model_Category::instance().all())
+    for (const auto& category : CategoryModel::instance().all())
     {
-        const wxString& categ_name = Model_Category::full_name(category.CATEGID, ":");
-        bool bIncome = Model_Category::has_income(category.CATEGID);
+        const wxString& categ_name = CategoryModel::full_name(category.CATEGID, ":");
+        bool bIncome = CategoryModel::has_income(category.CATEGID);
         buffer_qif << "N" << categ_name << "\n"
             << (bIncome ? "I" : "E") << "\n"
             << "^" << "\n";
@@ -313,8 +313,8 @@ void mmExportTransaction::getAccountsJSON(PrettyWriter<StringBuffer>& json_write
     json_writer.StartArray();
     for (const auto &entry : allAccounts4Export)
     {
-        Model_Account::Data* a = Model_Account::instance().get(entry.first);
-        const auto c = Model_Currency::instance().get(a->CURRENCYID);
+        AccountModel::Data* a = AccountModel::instance().get(entry.first);
+        const auto c = CurrencyModel::instance().get(a->CURRENCYID);
         json_writer.StartObject();
         json_writer.Key("ID");
         json_writer.Int64(a->ACCOUNTID.GetValue());
@@ -338,7 +338,7 @@ void mmExportTransaction::getPayeesJSON(PrettyWriter<StringBuffer>& json_writer,
         json_writer.Key("PAYEES");
         json_writer.StartArray();
         for (const auto& entry : allPayeess4Export) {
-            Model_Payee::Data* p = Model_Payee::instance().get(entry);
+            PayeeModel::Data* p = PayeeModel::instance().get(entry);
             if (p) {
                 json_writer.StartObject();
                 json_writer.Key("ID");
@@ -358,13 +358,13 @@ void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_wri
 {
     json_writer.Key("CATEGORIES");
     json_writer.StartArray();
-    for (const auto& category : Model_Category::instance().all())
+    for (const auto& category : CategoryModel::instance().all())
     {
         json_writer.StartObject();
         json_writer.Key("ID");
         json_writer.Int64(category.CATEGID.GetValue());
         json_writer.Key("NAME");
-        json_writer.String(Model_Category::full_name(category.CATEGID, ":").utf8_str());
+        json_writer.String(CategoryModel::full_name(category.CATEGID, ":").utf8_str());
         json_writer.EndObject();
     }
     json_writer.EndArray();
@@ -376,7 +376,7 @@ void mmExportTransaction::getTagsJSON(PrettyWriter<StringBuffer>& json_writer, w
     json_writer.StartArray();
     for (const auto& tagID : allTags4Export)
     {
-        Model_Tag::Data* tag = Model_Tag::instance().get(tagID);
+        TagModel::Data* tag = TagModel::instance().get(tagID);
         if (tag)
         {
             json_writer.StartObject();
@@ -394,21 +394,21 @@ void mmExportTransaction::getUsedCategoriesJSON(PrettyWriter<StringBuffer>& json
 {
     json_writer.Key("CATEGORIES");
     json_writer.StartArray();
-    for (const auto& category : Model_Category::instance().all())
+    for (const auto& category : CategoryModel::instance().all())
     {
-        if (!Model_Category::instance().is_used(category.CATEGID))
+        if (!CategoryModel::instance().is_used(category.CATEGID))
             continue;
         json_writer.StartObject();
         json_writer.Key("ID");
         json_writer.Int64(category.CATEGID.GetValue());
         json_writer.Key("NAME");
-        json_writer.String(Model_Category::full_name(category.CATEGID, ":").utf8_str());
+        json_writer.String(CategoryModel::full_name(category.CATEGID, ":").utf8_str());
         json_writer.EndObject();
     }
     json_writer.EndArray();
 }
 
-void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_writer, const Model_Checking::Full_Data& full_tran)
+void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_writer, const TransactionModel::Full_Data& full_tran)
 {
     json_writer.StartObject();
     full_tran.as_json(json_writer);
@@ -425,7 +425,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
         for (const auto &split_entry : full_tran.m_splits)
         {
             double valueSplit = split_entry.SPLITTRANSAMOUNT;
-            if (Model_Checking::type_id(full_tran) == Model_Checking::TYPE_ID_WITHDRAWAL) {
+            if (TransactionModel::type_id(full_tran) == TransactionModel::TYPE_ID_WITHDRAWAL) {
                 valueSplit = -valueSplit;
             }
 
@@ -436,7 +436,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
             json_writer.Double(valueSplit);
             json_writer.Key("TAGS");
             json_writer.StartArray();
-            for (const auto& tag : Model_Taglink::instance().get(Model_Splittransaction::refTypeName, split_entry.SPLITTRANSID))
+            for (const auto& tag : TagLinkModel::instance().get(TransactionSplitModel::refTypeName, split_entry.SPLITTRANSID))
                 json_writer.Int64(tag.second.GetValue());
             json_writer.EndArray();
             json_writer.EndObject();
@@ -445,12 +445,12 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
         json_writer.EndArray();
     }
 
-    const wxString RefType = Model_Checking::refTypeName;
-    Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(RefType, full_tran.id());
+    const wxString RefType = TransactionModel::refTypeName;
+    AttachmentModel::Data_Set attachments = AttachmentModel::instance().FilterAttachments(RefType, full_tran.id());
 
     if (!attachments.empty())
     {
-        //const wxString folder = Model_Infotable::instance().getString("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
+        //const wxString folder = InfotableModel::instance().getString("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
         json_writer.Key("ATTACHMENTS");
         json_writer.StartArray();
         for (const auto &entry : attachments) {
@@ -459,8 +459,8 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
         json_writer.EndArray();
     }
 
-    auto data = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(full_tran.id()));
-    auto f = Model_CustomField::instance().find(Model_CustomField::REFTYPE(RefType));
+    auto data = FieldValueModel::instance().find(FieldValueModel::REFID(full_tran.id()));
+    auto f = FieldModel::instance().find(FieldModel::REFTYPE(RefType));
     if (!data.empty())
     {
         json_writer.Key("CUSTOM_FIELDS");
@@ -468,9 +468,9 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
         for (const auto &entry : data)
         {
 
-            auto customFields = Model_CustomField::instance().find(
-                Model_CustomField::REFTYPE(RefType)
-                , Model_CustomField::FIELDID(entry.FIELDID));
+            auto customFields = FieldModel::instance().find(
+                FieldModel::REFTYPE(RefType)
+                , FieldModel::FIELDID(entry.FIELDID));
 
             for (const auto& i : customFields) {
                 json_writer.Int64(i.FIELDID.GetValue());
@@ -487,8 +487,8 @@ void mmExportTransaction::getAttachmentsJSON(PrettyWriter<StringBuffer>& json_wr
 
     if (!allAttachment4Export.empty())
     {
-        const wxString RefType = Model_Checking::refTypeName;
-        const wxString folder = Model_Infotable::instance().getString("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
+        const wxString RefType = TransactionModel::refTypeName;
+        const wxString folder = InfotableModel::instance().getString("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
         const wxString AttachmentsFolder = mmex::getPathAttachment(folder);
 
         json_writer.Key("ATTACHMENTS");
@@ -504,7 +504,7 @@ void mmExportTransaction::getAttachmentsJSON(PrettyWriter<StringBuffer>& json_wr
         json_writer.Key("ATTACHMENTS_DATA");
         json_writer.StartArray();
 
-        Model_Attachment::Data_Set attachments = Model_Attachment::instance().all();
+        AttachmentModel::Data_Set attachments = AttachmentModel::instance().all();
         for (const auto& entry : attachments)
         {
             if (entry.REFTYPE != RefType) continue;
@@ -524,14 +524,14 @@ void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_w
 
     if (!allCustomFields4Export.empty())
     {
-        const wxString RefType = Model_Checking::refTypeName;
+        const wxString RefType = TransactionModel::refTypeName;
 
         json_writer.Key("CUSTOM_FIELDS");
         json_writer.StartObject();
 
         // Data
         wxArrayInt64 cd;
-        Model_CustomFieldData::Data_Set cds = Model_CustomFieldData::instance().all();
+        FieldValueModel::Data_Set cds = FieldValueModel::instance().all();
 
         if (!cds.empty()) {
             json_writer.Key("CUSTOM_FIELDS_DATA");
@@ -554,8 +554,8 @@ void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_w
         }
 
         //Settings
-        Model_CustomField::Data_Set custom_fields = Model_CustomField::instance().find(
-            Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType)
+        FieldModel::Data_Set custom_fields = FieldModel::instance().find(
+            FieldModel::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType)
         );
 
         if (!custom_fields.empty()) {

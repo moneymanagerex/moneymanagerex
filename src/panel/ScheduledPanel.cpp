@@ -1,0 +1,990 @@
+/*******************************************************
+ Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2014 - 2022 Nikolay Akimov
+ Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ ********************************************************/
+
+#include "constants.h"
+#include "model/_all.h"
+
+#include "ScheduledPanel.h"
+
+#include "dialog/AttachmentDialog.h"
+#include "dialog/ScheduledDialog.h"
+#include "images_list.h"
+
+enum
+{
+    MENU_TREEPOPUP_NEW = wxID_HIGHEST + 1300,
+    MENU_TREEPOPUP_EDIT,
+    MENU_TREEPOPUP_DUPLICATE,
+    MENU_TREEPOPUP_DELETE,
+    MENU_POPUP_BD_ENTER_OCCUR,
+    MENU_POPUP_BD_SKIP_OCCUR,
+    MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
+    MENU_ON_SET_UDC0,
+    MENU_ON_SET_UDC1,
+    MENU_ON_SET_UDC2,
+    MENU_ON_SET_UDC3,
+    MENU_ON_SET_UDC4,
+    MENU_ON_SET_UDC5,
+    MENU_ON_SET_UDC6,
+    MENU_ON_SET_UDC7
+};
+
+const wxString BILLSDEPOSITS_REPEATS[] =
+{
+    _n("Once"),
+    _n("Weekly"),
+    _n("Fortnightly"),
+    _n("Monthly"),
+    _n("Every 2 Months"),
+    _n("Quarterly"),
+    _n("Half-Yearly"),
+    _n("Yearly"),
+    _n("Four Months"),
+    _n("Four Weeks"),
+    _n("Daily"),
+    _n("In %s Days"),
+    _n("In %s Months"),
+    _n("Every %s Days"),
+    _n("Every %s Months"),
+    _n("Monthly (last day)"),
+    _n("Monthly (last business day)")
+};
+
+wxBEGIN_EVENT_TABLE(ScheduledPanel, wxPanel)
+    EVT_BUTTON(wxID_NEW,       ScheduledPanel::OnNewBDSeries)
+    EVT_BUTTON(wxID_EDIT,      ScheduledPanel::OnEditBDSeries)
+    EVT_BUTTON(wxID_DUPLICATE, ScheduledPanel::OnDuplicateBDSeries)
+    EVT_BUTTON(wxID_DELETE,    ScheduledPanel::OnDeleteBDSeries)
+    EVT_BUTTON(wxID_PASTE,     ScheduledPanel::OnEnterBDTransaction)
+    EVT_BUTTON(wxID_IGNORE,    ScheduledPanel::OnSkipBDTransaction)
+    EVT_BUTTON(wxID_FILE,      ScheduledPanel::OnOpenAttachment)
+    EVT_BUTTON(wxID_FILE2,     ScheduledPanel::OnFilterTransactions)
+wxEND_EVENT_TABLE()
+
+wxBEGIN_EVENT_TABLE(ScheduledList, ListBase)
+    EVT_LEFT_DOWN(ScheduledList::OnListLeftClick)
+    EVT_RIGHT_DOWN(ScheduledList::OnItemRightClick)
+
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, ScheduledList::OnListItemActivated)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY,  ScheduledList::OnListItemSelected)
+    EVT_LIST_KEY_DOWN(wxID_ANY,       ScheduledList::OnListKeyDown)
+
+    EVT_MENU(MENU_TREEPOPUP_NEW,                  ScheduledList::OnNewBDSeries)
+    EVT_MENU(MENU_TREEPOPUP_EDIT,                 ScheduledList::OnEditBDSeries)
+    EVT_MENU(MENU_TREEPOPUP_DUPLICATE,            ScheduledList::OnDuplicateBDSeries)
+    EVT_MENU(MENU_TREEPOPUP_DELETE,               ScheduledList::OnDeleteBDSeries)
+    EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, ScheduledList::OnOrganizeAttachments)
+    EVT_MENU(MENU_POPUP_BD_ENTER_OCCUR,           ScheduledList::OnEnterBDTransaction)
+    EVT_MENU(MENU_POPUP_BD_SKIP_OCCUR,            ScheduledList::OnSkipBDTransaction)
+    EVT_MENU_RANGE(
+        MENU_ON_SET_UDC0, MENU_ON_SET_UDC7,
+        ScheduledList::OnSetUserColour
+    )
+wxEND_EVENT_TABLE()
+
+const std::vector<ListColumnInfo> ScheduledList::LIST_INFO = {
+    { LIST_ID_ICON,         true, _n("Icon"),        25,  _FC, false },
+    { LIST_ID_ID,           true, _n("ID"),          _WA, _FR, true },
+    { LIST_ID_PAYMENT_DATE, true, _n("Date Paid"),   _WH, _FL, true },
+    { LIST_ID_DUE_DATE,     true, _n("Date Due"),    _WH, _FL, true },
+    { LIST_ID_ACCOUNT,      true, _n("Account"),     _WH, _FL, true },
+    { LIST_ID_PAYEE,        true, _n("Payee"),       _WH, _FL, true },
+    { LIST_ID_STATUS,       true, _n("Status"),      _WH, _FC, true },
+    { LIST_ID_CATEGORY,     true, _n("Category"),    _WH, _FL, true },
+    { LIST_ID_TAGS,         true, _n("Tags"),        200, _FL, true },
+    { LIST_ID_WITHDRAWAL,   true, _n("Withdrawal"),  _WH, _FR, true },
+    { LIST_ID_DEPOSIT,      true, _n("Deposit"),     _WH, _FR, true },
+    { LIST_ID_FREQUENCY,    true, _n("Frequency"),   _WH, _FL, true },
+    { LIST_ID_REPEATS,      true, _n("Repetitions"), _WH, _FR, true },
+    { LIST_ID_AUTO,         true, _n("Autorepeat"),  _WH, _FL, true },
+    { LIST_ID_REMAINING,    true, _n("Remaining"),   _WH, _FL, true },
+    { LIST_ID_NUMBER,       true, _n("Number"),      _WH, _FL, true },
+    { LIST_ID_NOTES,        true, _n("Notes"),       150, _FL, true },
+};
+
+ScheduledList::ScheduledList(
+    ScheduledPanel* bdp, wxWindow *parent, wxWindowID winid
+) :
+    ListBase(parent, winid),
+    m_bdp(bdp)
+{
+    mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
+
+    const wxAcceleratorEntry entries[] = {
+        wxAcceleratorEntry(wxACCEL_CTRL, 'N', MENU_TREEPOPUP_NEW),
+        wxAcceleratorEntry(wxACCEL_CTRL, 'E', MENU_TREEPOPUP_EDIT),
+        wxAcceleratorEntry(wxACCEL_CTRL, 'U', MENU_TREEPOPUP_DUPLICATE),
+        wxAcceleratorEntry(wxACCEL_CTRL, 'D', MENU_TREEPOPUP_DELETE),
+        wxAcceleratorEntry(wxACCEL_CTRL, '0', MENU_ON_SET_UDC0),
+        wxAcceleratorEntry(wxACCEL_CTRL, '1', MENU_ON_SET_UDC1),
+        wxAcceleratorEntry(wxACCEL_CTRL, '2', MENU_ON_SET_UDC2),
+        wxAcceleratorEntry(wxACCEL_CTRL, '3', MENU_ON_SET_UDC3),
+        wxAcceleratorEntry(wxACCEL_CTRL, '4', MENU_ON_SET_UDC4),
+        wxAcceleratorEntry(wxACCEL_CTRL, '5', MENU_ON_SET_UDC5),
+        wxAcceleratorEntry(wxACCEL_CTRL, '6', MENU_ON_SET_UDC6),
+        wxAcceleratorEntry(wxACCEL_CTRL, '7', MENU_ON_SET_UDC7)
+    };
+    wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
+    SetAcceleratorTable(tab);
+
+    m_setting_name = "SCHEDULED";
+    o_col_order_prefix = "BD";
+    o_col_width_prefix = "BD_COL";
+    o_sort_prefix = "BD";
+    m_col_info_id = LIST_INFO;
+    m_col_id_nr = ListColumnInfo::getListId(LIST_INFO);
+    m_sort_col_id = { col_sort() };
+    createColumns();
+}
+
+ScheduledList::~ScheduledList()
+{
+    wxLogDebug("Exit ScheduledList");
+}
+
+int ScheduledList::getSortIcon(bool asc) const
+{
+    return asc ? ScheduledPanel::ICON_UPARROW : ScheduledPanel::ICON_DOWNARROW;
+}
+
+void ScheduledList::OnColClick(wxListEvent& event)
+{
+    int col_nr = (event.GetId() == MENU_HEADER_SORT) ? m_sel_col_nr : event.GetColumn();
+    if (!isValidColNr(col_nr))
+        return;
+    int col_id = getColId_Nr(col_nr);
+    if (!m_col_info_id[col_id].sortable)
+        return;
+
+    if (m_sort_col_id[0] != col_id)
+        m_sort_col_id[0] = col_id;
+    else if (event.GetId() != MENU_HEADER_SORT)
+        m_sort_asc[0] = !m_sort_asc[0];
+    updateSortIcon();
+    savePreferences();
+
+    if (m_selected_row >= 0)
+        refreshVisualList(m_bdp->initVirtualListControl(m_bdp->bills_[m_selected_row].BDID));
+    else
+        refreshVisualList(m_bdp->initVirtualListControl(-1));
+}
+
+ScheduledPanel::ScheduledPanel(wxWindow *parent, wxWindowID winid
+    , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
+{
+    m_today = wxDate::Today();
+    this->tips_.Add(_t("MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits,"
+        " or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur,"
+        " and appears on the Dashboard 14 days before the transaction is due."));
+    this->tips_.Add(_t("Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."));
+
+    Create(parent, winid, pos, size, style, name);
+    mmThemeAutoColour(this);
+}
+
+bool ScheduledPanel::Create(wxWindow *parent
+    , wxWindowID winid, const wxPoint& pos
+    , const wxSize& size, long style, const wxString& name)
+{
+    SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
+    wxPanel::Create(parent, winid, pos, size, style, name);
+
+    CreateControls();
+    GetSizer()->Fit(this);
+    GetSizer()->SetSizeHints(this);
+
+    /* Set up the transaction filter.  The transFilter dialog will be destroyed
+       when the checking panel is destroyed. */
+    transFilterActive_ = false;
+    transFilterDlg_ = new mmFilterTransactionsDialog(this, -1, false);
+
+    initVirtualListControl();
+
+    UsageModel::instance().pageview(this);
+
+    return true;
+}
+
+ScheduledPanel::~ScheduledPanel()
+{
+}
+
+void ScheduledPanel::CreateControls()
+{
+    wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxVERTICAL);
+    this->SetSizer(itemBoxSizer9);
+
+    /* ---------------------- */
+    wxPanel* headerPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition
+        , wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+    itemBoxSizer9->Add(headerPanel, g_flagsBorder1V);
+
+    wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
+    headerPanel->SetSizer(itemBoxSizerVHeader);
+
+    wxStaticText* itemStaticText9 = new wxStaticText(headerPanel, wxID_ANY
+        , _t("Scheduled Transactions"));
+    itemStaticText9->SetFont(this->GetFont().Larger().Bold());
+    itemBoxSizerVHeader->Add(itemStaticText9, g_flagsBorder1V);
+
+    /* Disable feature to judge reaction :-)
+       https://github.com/moneymanagerex/moneymanagerex/issues/5281
+
+    wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
+    itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
+
+
+    m_bitmapTransFilter = new wxButton(headerPanel, wxID_FILE2);
+    m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
+    m_bitmapTransFilter->SetLabel(_t("Transaction Filter"));
+    itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
+    */
+
+    /* ---------------------- */
+    mmSplitterWindow* itemSplitterWindowBillsDeposit = new mmSplitterWindow(this
+        , wxID_ANY, wxDefaultPosition, wxSize(200, 200)
+        , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER, mmThemeMetaColour(meta::COLOR_LISTPANEL));
+
+    wxVector<wxBitmapBundle> images;
+    images.push_back(mmBitmapBundle(png::FOLLOW_UP));
+    images.push_back(mmBitmapBundle(png::RUN_AUTO));
+    images.push_back(mmBitmapBundle(png::RUN));
+    images.push_back(mmBitmapBundle(png::UPARROW));
+    images.push_back(mmBitmapBundle(png::DOWNARROW));
+
+    m_lc = new ScheduledList(this, itemSplitterWindowBillsDeposit);
+    
+    m_lc->SetSmallImages(images);
+
+    wxPanel* bdPanel = new wxPanel(itemSplitterWindowBillsDeposit, wxID_ANY
+        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+
+    itemSplitterWindowBillsDeposit->SplitHorizontally(m_lc, bdPanel);
+    itemSplitterWindowBillsDeposit->SetMinimumPaneSize(100);
+    itemSplitterWindowBillsDeposit->SetSashGravity(1.0);
+    itemBoxSizer9->Add(itemSplitterWindowBillsDeposit, g_flagsExpandBorder1);
+
+    wxBoxSizer* itemBoxSizer4 = new wxBoxSizer(wxVERTICAL);
+    bdPanel->SetSizer(itemBoxSizer4);
+
+    wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
+    itemBoxSizer4->Add(itemBoxSizer5, g_flagsBorder1V);
+
+    wxButton* itemButtonNew = new wxButton(bdPanel, wxID_NEW, _t("&New "));
+    mmToolTip(itemButtonNew, _t("New Scheduled Transaction"));
+    itemBoxSizer5->Add(itemButtonNew, 0, wxRIGHT, 2);
+
+    wxButton* itemButton81 = new wxButton(bdPanel, wxID_EDIT, _t("&Edit "));
+    mmToolTip(itemButton81, _t("Edit Scheduled Transaction"));
+    itemBoxSizer5->Add(itemButton81, 0, wxRIGHT, 2);
+    itemButton81->Enable(false);
+
+    wxButton* itemButton82 = new wxButton(bdPanel, wxID_DUPLICATE, _t("D&uplicate "));
+    mmToolTip(itemButton82, _t("Duplicate Scheduled Transaction"));
+    itemBoxSizer5->Add(itemButton82, 0, wxRIGHT, 2);
+    itemButton82->Enable(false);
+
+    wxButton* itemButton7 = new wxButton(bdPanel, wxID_DELETE, _t("&Delete "));
+    mmToolTip(itemButton7, _t("Delete Scheduled Transaction"));
+    itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 2);
+    itemButton7->Enable(false);
+
+    wxButton* itemButton8 = new wxButton(bdPanel, wxID_PASTE, _t("Ente&r"));
+    mmToolTip(itemButton8, _t("Enter Next Scheduled Transaction Occurrence"));
+    itemBoxSizer5->Add(itemButton8, 0, wxRIGHT, 2);
+    itemButton8->Enable(false);
+
+    wxButton* buttonSkipTrans = new wxButton(bdPanel, wxID_IGNORE, _t("&Skip"));
+    mmToolTip(buttonSkipTrans, _t("Skip Next Scheduled Transaction Occurrence"));
+    itemBoxSizer5->Add(buttonSkipTrans, 0, wxRIGHT, 2);
+    buttonSkipTrans->Enable(false);
+
+    wxBitmapButton* btnAttachment_ = new wxBitmapButton(bdPanel, wxID_FILE
+        , mmBitmapBundle(png::CLIP, mmBitmapButtonSize), wxDefaultPosition
+        , wxSize(30, itemButton8->GetSize().GetY()));
+    mmToolTip(btnAttachment_, _t("Open attachments"));
+    itemBoxSizer5->Add(btnAttachment_, 0, wxRIGHT, 2);
+    btnAttachment_->Enable(false);
+
+    //Infobar-mini
+    m_infoTextMini = new wxStaticText(bdPanel, wxID_STATIC, "");
+    itemBoxSizer5->Add(m_infoTextMini, 1, wxGROW | wxTOP | wxLEFT, 5);
+
+    //Infobar
+    m_infoText = new wxStaticText(bdPanel, wxID_ANY, ""
+        , wxPoint(-1, -1), wxSize(200, -1), wxNO_BORDER | wxTE_MULTILINE | wxTE_WORDWRAP | wxST_NO_AUTORESIZE);
+    itemBoxSizer4->Add(m_infoText, g_flagsExpandBorder1);
+
+    ScheduledPanel::updateBottomPanelData(-1);
+}
+
+int ScheduledPanel::initVirtualListControl(int64 id)
+{
+    m_lc->DeleteAllItems();
+
+    bills_.clear();
+    const auto split = ScheduledSplitModel::instance().get_all();
+    for (const ScheduledModel::Data& data
+        : ScheduledModel::instance().all(ScheduledModel::COL_NEXTOCCURRENCEDATE))
+    {
+        if (transFilterActive_ && !transFilterDlg_->mmIsRecordMatches(data, split))
+            continue;
+
+        ScheduledModel::Full_Data r(data);
+        bills_.push_back(r);
+    }
+
+    sortList();
+
+    int cnt = 0, selected_item = -1;
+    for (const auto& entry: bills_)
+    {
+        if (id == entry.BDID)
+        {
+            selected_item = cnt;
+            break;
+        }
+        ++cnt;
+    }
+
+    m_lc->SetItemCount(static_cast<long>(bills_.size()));
+    return selected_item;
+}
+
+void ScheduledPanel::OnNewBDSeries(wxCommandEvent& event)
+{
+    m_lc->OnNewBDSeries(event);
+}
+
+void ScheduledPanel::OnEditBDSeries(wxCommandEvent& event)
+{
+    m_lc->OnEditBDSeries(event);
+}
+
+void ScheduledPanel::OnDuplicateBDSeries(wxCommandEvent& event)
+{
+    m_lc->OnDuplicateBDSeries(event);
+}
+
+void ScheduledPanel::OnDeleteBDSeries(wxCommandEvent& event)
+{
+    m_lc->OnDeleteBDSeries(event);
+}
+
+void ScheduledPanel::OnEnterBDTransaction(wxCommandEvent& event)
+{
+    m_lc->OnEnterBDTransaction(event);
+}
+
+void ScheduledPanel::OnSkipBDTransaction(wxCommandEvent& event)
+{
+    m_lc->OnSkipBDTransaction(event);
+    m_lc->SetFocus();
+}
+
+void ScheduledPanel::OnOpenAttachment(wxCommandEvent& event)
+{
+    m_lc->OnOpenAttachment(event);
+    m_lc->SetFocus();
+}
+
+/*******************************************************/
+void ScheduledList::OnItemRightClick(wxMouseEvent& event)
+{
+    if (m_selected_row > -1)
+        SetItemState(m_selected_row, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+    int Flags = wxLIST_HITTEST_ONITEM;
+    m_selected_row = HitTest(wxPoint(event.m_x, event.m_y), Flags);
+
+    if (m_selected_row >= 0)
+    {
+        SetItemState(m_selected_row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+        SetItemState(m_selected_row, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
+    }
+    m_bdp->updateBottomPanelData(m_selected_row);
+    bool item_active = (m_selected_row >= 0);
+    wxMenu menu;
+    menu.Append(MENU_POPUP_BD_ENTER_OCCUR, _tu("Enter next Occurrence…"));
+    menu.AppendSeparator();
+    menu.Append(MENU_POPUP_BD_SKIP_OCCUR, _t("Skip next Occurrence"));
+    menu.AppendSeparator();
+    menu.Append(MENU_TREEPOPUP_NEW, _tu("&New Scheduled Transaction…"));
+    menu.Append(MENU_TREEPOPUP_EDIT, _tu("&Edit Scheduled Transaction…"));
+    menu.Append(MENU_TREEPOPUP_DUPLICATE, _tu("D&uplicate Scheduled Transaction…"));
+    menu.AppendSeparator();
+    menu.Append(MENU_TREEPOPUP_DELETE, _tu("&Delete Scheduled Transaction…"));
+    menu.AppendSeparator();
+    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _tu("&Organize Attachments…"));
+
+    menu.Enable(MENU_POPUP_BD_ENTER_OCCUR, item_active);
+    menu.Enable(MENU_POPUP_BD_SKIP_OCCUR, item_active);
+    menu.Enable(MENU_TREEPOPUP_EDIT, item_active);
+    menu.Enable(MENU_TREEPOPUP_DUPLICATE, item_active);
+    menu.Enable(MENU_TREEPOPUP_DELETE, item_active);
+    menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, item_active);
+
+    PopupMenu(&menu, event.GetPosition());
+    this->SetFocus();
+}
+
+wxString ScheduledPanel::getItem(long item, int col_id)
+{
+    const ScheduledModel::Full_Data& bill = this->bills_.at(item);
+    switch (col_id) {
+    case ScheduledList::LIST_ID_ID:
+        return wxString::Format("%lld", bill.BDID).Trim();
+    case ScheduledList::LIST_ID_PAYMENT_DATE:
+        return mmGetDateTimeForDisplay(bill.TRANSDATE);
+    case ScheduledList::LIST_ID_DUE_DATE:
+        return mmGetDateTimeForDisplay(bill.NEXTOCCURRENCEDATE);
+    case ScheduledList::LIST_ID_ACCOUNT:
+        return bill.ACCOUNTNAME;
+    case ScheduledList::LIST_ID_PAYEE:
+        return bill.real_payee_name();
+    case ScheduledList::LIST_ID_STATUS:
+        return bill.STATUS;
+    case ScheduledList::LIST_ID_CATEGORY:
+        return bill.CATEGNAME;
+    case ScheduledList::LIST_ID_TAGS:
+        return bill.TAGNAMES;
+    case ScheduledList::LIST_ID_WITHDRAWAL:
+        {
+            wxString value = wxEmptyString;
+            int64 accountid;
+            double transamount;
+            if (TransactionModel::type_id(bill.TRANSCODE) == TransactionModel::TYPE_ID_WITHDRAWAL) {
+                accountid = bill.ACCOUNTID; transamount = bill.TRANSAMOUNT;
+            }
+            else if (TransactionModel::type_id(bill.TRANSCODE) == TransactionModel::TYPE_ID_TRANSFER) {
+                accountid = bill.ACCOUNTID; transamount = bill.TRANSAMOUNT;
+            }
+            else
+                return value;
+            AccountModel::Data* account = AccountModel::instance().get(accountid);
+            CurrencyModel::Data* currency = account ?
+                CurrencyModel::instance().get(account->CURRENCYID) : nullptr;
+            if (currency)
+                value = CurrencyModel::toCurrency(transamount, currency);
+            if (!value.IsEmpty() && TransactionModel::status_id(bill.STATUS) == TransactionModel::STATUS_ID_VOID)
+                value = "* " + value;
+            return value;
+        }
+    case ScheduledList::LIST_ID_DEPOSIT:
+        {
+            wxString value = wxEmptyString;
+            int64 accountid;
+            double transamount;
+            if (TransactionModel::type_id(bill.TRANSCODE) == TransactionModel::TYPE_ID_DEPOSIT) {
+                accountid = bill.ACCOUNTID; transamount = bill.TRANSAMOUNT;
+            }
+            else if (TransactionModel::type_id(bill.TRANSCODE) == TransactionModel::TYPE_ID_TRANSFER) {
+                accountid = bill.TOACCOUNTID; transamount = bill.TOTRANSAMOUNT;
+            }
+            else
+                return value;
+            AccountModel::Data* account = AccountModel::instance().get(accountid);
+            CurrencyModel::Data* currency = account ?
+                CurrencyModel::instance().get(account->CURRENCYID) : nullptr;
+            if (currency)
+                value = CurrencyModel::toCurrency(transamount, currency);
+            if (!value.IsEmpty() && TransactionModel::status_id(bill.STATUS) == TransactionModel::STATUS_ID_VOID)
+                value = "* " + value;
+            return value;
+        }
+    case ScheduledList::LIST_ID_FREQUENCY:
+        return GetFrequency(&bill);
+    case ScheduledList::LIST_ID_REPEATS: {
+        int numRepeats = GetNumRepeats(&bill);
+        if (numRepeats > 0)
+            return wxString::Format("%i", numRepeats).Trim();
+        else if (numRepeats == ScheduledModel::REPEAT_NUM_INFINITY)
+            return L"\x221E";  // INFITITY
+        else
+            return L"\x2015";  // HORIZONTAL BAR
+    }
+    case ScheduledList::LIST_ID_AUTO: {
+        int autoExecute = bill.REPEATS.GetValue() / BD_REPEATS_MULTIPLEX_BASE;
+        wxString repeatSTR =
+            (autoExecute == ScheduledModel::REPEAT_AUTO_SILENT) ? _t("Automated") :
+            (autoExecute == ScheduledModel::REPEAT_AUTO_MANUAL) ? _t("Suggested") :
+            _t("Manual");
+        return repeatSTR;
+    }
+    case ScheduledList::LIST_ID_REMAINING:
+        return GetRemainingDays(&bill);
+    case ScheduledList::LIST_ID_NUMBER:
+        return bill.TRANSACTIONNUMBER;
+    case ScheduledList::LIST_ID_NOTES: {
+        wxString value = bill.NOTES;
+        value.Replace("\n", " ");
+        if (AttachmentModel::NrAttachments(ScheduledModel::refTypeName, bill.BDID))
+            value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
+        return value;
+    }
+    default:
+        return wxEmptyString;
+    }
+}
+
+const wxString ScheduledPanel::GetFrequency(const ScheduledModel::Data* item) const
+{
+    int repeats = item->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+
+    wxString text = wxGetTranslation(BILLSDEPOSITS_REPEATS[repeats]);
+    if (repeats >= ScheduledModel::REPEAT_IN_X_DAYS && repeats <= ScheduledModel::REPEAT_EVERY_X_MONTHS)
+        text = wxString::Format(text, wxString::Format("%lld", item->NUMOCCURRENCES));
+    return text;
+}
+
+int ScheduledPanel::GetNumRepeats(const ScheduledModel::Data* item) const
+{
+    int repeats = item->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+    int numRepeats = item->NUMOCCURRENCES.GetValue();
+
+    if (repeats == ScheduledModel::REPEAT_ONCE)
+        numRepeats = 1;
+    else if (repeats >= ScheduledModel::REPEAT_IN_X_DAYS && repeats <= ScheduledModel::REPEAT_IN_X_MONTHS)
+        numRepeats = numRepeats > 0 ? 2 : ScheduledModel::REPEAT_NUM_UNKNOWN;
+    else if (repeats >= ScheduledModel::REPEAT_EVERY_X_DAYS && repeats <= ScheduledModel::REPEAT_EVERY_X_MONTHS)
+        numRepeats = numRepeats > 0 ? ScheduledModel::REPEAT_NUM_INFINITY : ScheduledModel::REPEAT_NUM_UNKNOWN;
+    else if (numRepeats < -1)
+    {
+        wxFAIL;
+        numRepeats = ScheduledModel::REPEAT_NUM_UNKNOWN;
+    }
+
+    return numRepeats;
+}
+
+const wxString ScheduledPanel::GetRemainingDays(const ScheduledModel::Data* item) const
+{
+    int repeats = item->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
+    if (repeats >= ScheduledModel::REPEAT_IN_X_DAYS && repeats <= ScheduledModel::REPEAT_EVERY_X_MONTHS && item->NUMOCCURRENCES < 0)
+    {
+        return _t("Inactive");
+    }
+    
+    int daysRemaining = ScheduledModel::getTransDateTime(item)
+        .Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
+    int daysOverdue = ScheduledModel::NEXTOCCURRENCEDATE(item)
+        .Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
+
+    // add a warning marker (*) in front, such that it is visible
+    // to the user even when the Remaining column is too narrow.
+    wxString text =
+        (daysOverdue < 0) ? "*" + wxString::Format(wxPLURAL("%d day overdue", "%d days overdue", -daysOverdue), -daysOverdue) :
+        (daysRemaining < 0) ? "*" + wxString::Format(wxPLURAL("%d day delay", "%d days delay", -daysRemaining), -daysRemaining) :
+        wxString::Format(wxPLURAL("%d day", "%d days", daysRemaining), daysRemaining);
+
+    return text;
+}
+
+wxString ScheduledList::OnGetItemText(long item, long col_nr) const
+{
+    return m_bdp->getItem(item, getColId_Nr(static_cast<int>(col_nr)));
+}
+
+void ScheduledList::OnListItemSelected(wxListEvent& event)
+{
+    m_selected_row = event.GetIndex();
+    m_bdp->updateBottomPanelData(m_selected_row);
+}
+
+void ScheduledList::OnListLeftClick(wxMouseEvent& event)
+{
+    int Flags = wxLIST_HITTEST_ONITEM;
+    long index = HitTest(wxPoint(event.m_x, event.m_y), Flags);
+    if (index == -1)
+    {
+        m_selected_row = -1;
+        m_bdp->updateBottomPanelData(m_selected_row);
+    }
+    event.Skip();
+}
+
+int ScheduledList::OnGetItemImage(long item) const
+{
+    // demultiplex REPEATS
+    int autoExecute = m_bdp->bills_[item].REPEATS.GetValue() / BD_REPEATS_MULTIPLEX_BASE;
+    int repeats = m_bdp->bills_[item].REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE;
+    if (repeats >= ScheduledModel::REPEAT_IN_X_DAYS && repeats <= ScheduledModel::REPEAT_EVERY_X_MONTHS && m_bdp->bills_[item].NUMOCCURRENCES < 0)
+    {
+        // inactive
+        return -1;
+    }
+
+    int daysRemaining = ScheduledModel::NEXTOCCURRENCEDATE(m_bdp->bills_[item])
+        .Subtract(m_bdp->getToday()).GetSeconds().GetValue() / 86400;
+
+    /* Returns the icon to be shown for each entry */
+    if (daysRemaining < 0)
+        return ScheduledPanel::ICON_FOLLOWUP;
+    if (autoExecute == ScheduledModel::REPEAT_AUTO_SILENT)
+        return ScheduledPanel::ICON_RUN_AUTO;
+    if (autoExecute == ScheduledModel::REPEAT_AUTO_MANUAL)
+        return ScheduledPanel::ICON_RUN;
+    return -1;
+}
+
+void ScheduledList::OnListKeyDown(wxListEvent& event)
+{
+    switch ( event.GetKeyCode() )
+    {
+    case WXK_DELETE:
+    {
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED,
+            MENU_TREEPOPUP_DELETE);
+        OnDeleteBDSeries(evt);
+    }
+    break;
+
+    default:
+        event.Skip();
+    }
+}
+
+void ScheduledList::OnNewBDSeries(wxCommandEvent& /*event*/)
+{
+    ScheduledDialog dlg(this, 0, false, false);
+    if ( dlg.ShowModal() == wxID_OK )
+        refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
+}
+
+void ScheduledList::OnEditBDSeries(wxCommandEvent& /*event*/)
+{
+    if (m_selected_row == -1) return;
+
+    ScheduledDialog dlg(this, m_bdp->bills_[m_selected_row].BDID, false, false);
+    if ( dlg.ShowModal() == wxID_OK )
+        refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
+}
+
+void ScheduledList::OnDuplicateBDSeries(wxCommandEvent& /*event*/)
+{
+    if (m_selected_row == -1) return;
+
+    ScheduledDialog dlg(this, m_bdp->bills_[m_selected_row].BDID, true, false);
+    if ( dlg.ShowModal() == wxID_OK )
+        refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
+}
+
+void ScheduledList::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
+{
+    if (m_bdp->bills_.empty()) return;
+    if (m_selected_row < 0) return;
+
+    wxMessageDialog msgDlg(this, _t("Do you want to delete the scheduled transaction?")
+        , _t("Confirm Deletion")
+        , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
+    if (msgDlg.ShowModal() == wxID_YES)
+    {
+        int64 BdId = m_bdp->bills_[m_selected_row].BDID;
+        ScheduledModel::instance().remove(BdId);
+        mmAttachmentManage::DeleteAllAttachments(ScheduledModel::refTypeName, BdId);
+        m_bdp->do_delete_custom_values(-BdId);
+        m_bdp->initVirtualListControl();
+        refreshVisualList(m_selected_row);
+    }
+}
+
+void ScheduledList::OnEnterBDTransaction(wxCommandEvent& /*event*/)
+{
+    if (m_selected_row == -1) return;
+
+    int64 id = m_bdp->bills_[m_selected_row].BDID;
+    ScheduledDialog dlg(this, id, false, true);
+    if ( dlg.ShowModal() == wxID_OK )
+    {
+        if (++m_selected_row < long(m_bdp->bills_.size()))
+            id = m_bdp->bills_[m_selected_row].BDID;
+        refreshVisualList(m_bdp->initVirtualListControl(id));
+    }
+}
+
+void ScheduledList::OnSkipBDTransaction(wxCommandEvent& /*event*/)
+{
+    if (m_selected_row == -1) return;
+
+    int64 id = m_bdp->bills_[m_selected_row].BDID;
+    ScheduledModel::instance().completeBDInSeries(id);
+    if (++m_selected_row < long(m_bdp->bills_.size()))
+        id = m_bdp->bills_[m_selected_row].BDID;
+    refreshVisualList(m_bdp->initVirtualListControl(id));
+}
+
+void ScheduledList::OnOrganizeAttachments(wxCommandEvent& /*event*/)
+{
+    if (m_selected_row == -1) return;
+
+    int64 RefId = m_bdp->bills_[m_selected_row].BDID;
+    const wxString& RefType = ScheduledModel::refTypeName;
+
+    AttachmentDialog dlg(this, RefType, RefId);
+    dlg.ShowModal();
+
+    refreshVisualList(m_bdp->initVirtualListControl(RefId));
+}
+
+void ScheduledList::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
+{
+    if (m_selected_row == -1) return;
+    int64 RefId = m_bdp->bills_[m_selected_row].BDID;
+    const wxString& RefType = ScheduledModel::refTypeName;
+
+    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
+    refreshVisualList(m_bdp->initVirtualListControl(RefId));
+}
+
+void ScheduledList::OnListItemActivated(wxListEvent& WXUNUSED(event))
+{
+    if (m_selected_row == -1) return;
+
+    ScheduledDialog dlg(this, m_bdp->bills_[m_selected_row].BDID, false, false);
+    if ( dlg.ShowModal() == wxID_OK )
+        refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
+}
+
+void ScheduledPanel::updateBottomPanelData(int selIndex)
+{
+    enableEditDeleteButtons(selIndex >= 0);
+    if (selIndex != -1)
+    {
+        m_infoTextMini->SetLabelText(CategoryModel::full_name(bills_[selIndex].CATEGID));
+        m_infoText->SetLabelText(bills_[selIndex].NOTES);
+    }
+}
+
+void ScheduledPanel::enableEditDeleteButtons(bool en)
+{
+    wxButton* bE = static_cast<wxButton*>(FindWindow(wxID_EDIT));
+    wxButton* bD = static_cast<wxButton*>(FindWindow(wxID_DELETE));
+    wxButton* bDup = static_cast<wxButton*>(FindWindow(wxID_DUPLICATE));
+    wxButton* bN = static_cast<wxButton*>(FindWindow(wxID_PASTE));
+    wxButton* bS = static_cast<wxButton*>(FindWindow(wxID_IGNORE));
+    wxButton* bA = static_cast<wxButton*>(FindWindow(wxID_FILE));
+    if (bE) bE->Enable(en);
+    if (bD) bD->Enable(en);
+    if (bDup) bDup->Enable(en);
+    if (bN) bN->Enable(en);
+    if (bS) bS->Enable(en);
+    if (bA) bA->Enable(en);
+
+    m_infoText->SetLabelText(this->tips());
+    m_infoTextMini->ClearBackground();
+}
+
+void ScheduledPanel::sortList()
+{
+    std::sort(bills_.begin(), bills_.end());
+    switch (m_lc->getSortColId())
+    {
+    case ScheduledList::LIST_ID_ID:
+        std::stable_sort(bills_.begin(), bills_.end(), SorterByBDID());
+        break;
+    case ScheduledList::LIST_ID_PAYMENT_DATE:
+        std::stable_sort(bills_.begin(), bills_.end(), SorterByTRANSDATE());
+        break;
+    case ScheduledList::LIST_ID_DUE_DATE:
+        std::stable_sort(bills_.begin(), bills_.end(), SorterByNEXTOCCURRENCEDATE());
+        break;
+    case ScheduledList::LIST_ID_ACCOUNT:
+        std::stable_sort(bills_.begin(), bills_.end(), SorterByACCOUNTNAME());
+        break;
+    case ScheduledList::LIST_ID_PAYEE:
+        std::stable_sort(bills_.begin(), bills_.end(), SorterByPAYEENAME());
+        break;
+    case ScheduledList::LIST_ID_STATUS:
+        std::stable_sort(bills_.begin(), bills_.end(), SorterBySTATUS());
+        break;
+    case ScheduledList::LIST_ID_CATEGORY:
+        std::stable_sort(bills_.begin(), bills_.end(), SorterByCATEGNAME());
+        break;
+    case ScheduledList::LIST_ID_WITHDRAWAL:
+        std::stable_sort(bills_.begin(), bills_.end(), ScheduledModel::SorterByWITHDRAWAL());
+        break;
+    case ScheduledList::LIST_ID_DEPOSIT:
+        std::stable_sort(bills_.begin(), bills_.end(), ScheduledModel::SorterByDEPOSIT());
+        break;
+    case ScheduledList::LIST_ID_FREQUENCY:
+        std::stable_sort(bills_.begin(), bills_.end()
+            , [&](const ScheduledModel::Full_Data& x, const ScheduledModel::Full_Data& y)
+        {
+            wxString x_text = this->GetFrequency(&x);
+            wxString y_text = this->GetFrequency(&y);
+            return x_text < y_text;
+        });
+        break;
+    case ScheduledList::LIST_ID_REPEATS:
+        std::stable_sort(bills_.begin(), bills_.end()
+            , [&](const ScheduledModel::Full_Data& x, const ScheduledModel::Full_Data& y)
+        {
+            int xn = this->GetNumRepeats(&x);
+            int yn = this->GetNumRepeats(&y);
+            // the order is: 1, 2, …, -1 (REPEAT_NUM_INFINITY), 0 (REPEAT_NUM_UNKNOWN)
+            if (xn > 0)
+                return yn > xn || yn == ScheduledModel::REPEAT_NUM_INFINITY || yn == ScheduledModel::REPEAT_NUM_UNKNOWN;
+            else
+                return xn == ScheduledModel::REPEAT_NUM_INFINITY && yn == ScheduledModel::REPEAT_NUM_UNKNOWN;
+        });
+        break;
+    case ScheduledList::LIST_ID_AUTO:
+        std::stable_sort(bills_.begin(), bills_.end()
+            , [&](const ScheduledModel::Full_Data& x, const ScheduledModel::Full_Data& y)
+        {
+            int x_auto = x.REPEATS.GetValue() / BD_REPEATS_MULTIPLEX_BASE;
+            int y_auto = y.REPEATS.GetValue() / BD_REPEATS_MULTIPLEX_BASE;
+            return x_auto < y_auto;
+        });
+        break;
+    case ScheduledList::LIST_ID_REMAINING:
+        // in almost all cases, sorting by remaining days is equivalent to sorting by TRANSDATE
+        std::stable_sort(bills_.begin(), bills_.end(), SorterByTRANSDATE());
+        break;
+    case ScheduledList::LIST_ID_NOTES:
+        std::stable_sort(bills_.begin(), bills_.end(), SorterByNOTES());
+        break;
+    default:
+        break;
+    }
+    if (!m_lc->getSortAsc()) std::reverse(bills_.begin(), bills_.end());
+}
+
+wxString ScheduledPanel::tips()
+{
+    return this->tips_[rand() % this->tips_.GetCount()];
+}
+
+void ScheduledList::refreshVisualList(int selected_index)
+{
+
+    if (selected_index >= static_cast<long>(m_bdp->bills_.size()) || selected_index < 0)
+        selected_index = - 1;
+    if (!m_bdp->bills_.empty()) {
+        RefreshItems(0, m_bdp->bills_.size() - 1);
+    }
+    else
+        selected_index = -1;
+
+    if (selected_index >= 0 && !m_bdp->bills_.empty())
+    {
+        SetItemState(selected_index, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+        SetItemState(selected_index, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
+        EnsureVisible(selected_index);
+    }
+    m_selected_row = selected_index;
+    m_bdp->updateBottomPanelData(selected_index);
+}
+
+void ScheduledList::RefreshList()
+{
+    if (m_bdp->bills_.size() == 0) return;
+    int64 id = -1;
+    if (m_selected_row != -1)
+    {
+        id = m_bdp->bills_[m_selected_row].BDID;
+    }
+    refreshVisualList(m_bdp->initVirtualListControl(id));
+}
+
+wxListItemAttr* ScheduledList::OnGetItemAttr(long item) const
+{
+    if (item < 0 || item >= static_cast<int>(m_bdp->bills_.size())) return 0;
+
+    int color_id = m_bdp->bills_[item].COLOR.GetValue();
+
+    static std::map<int, wxSharedPtr<wxListItemAttr> > cache;
+    if (color_id > 0)
+    {
+        color_id = std::min(7, color_id);
+        if (const auto it = cache.find(color_id); it != cache.end())
+            return it->second.get();
+        else {
+            switch (color_id)
+            {
+            case 1: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor1), mmColors::userDefColor1, wxNullFont); break;
+            case 2: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor2), mmColors::userDefColor2, wxNullFont); break;
+            case 3: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor3), mmColors::userDefColor3, wxNullFont); break;
+            case 4: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor4), mmColors::userDefColor4, wxNullFont); break;
+            case 5: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor5), mmColors::userDefColor5, wxNullFont); break;
+            case 6: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor6), mmColors::userDefColor6, wxNullFont); break;
+            case 7: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor7), mmColors::userDefColor7, wxNullFont); break;
+            }
+            return cache[color_id].get();
+        }
+    }
+
+    /* Returns the alternating background pattern */
+    return (item % 2) ? attr2_.get() : attr1_.get();
+}
+
+void ScheduledList::OnSetUserColour(wxCommandEvent& event)
+{
+    if (m_selected_row == -1) return;
+    int64 id = m_bdp->bills_[m_selected_row].BDID;
+
+    int user_color_id = event.GetId();
+    user_color_id -= MENU_ON_SET_UDC0;
+    wxLogDebug("id: %i", user_color_id);
+
+    ScheduledModel::instance().Savepoint();
+
+    ScheduledModel::Data* item = ScheduledModel::instance().get(id);
+    if (item)
+    {
+        item->COLOR = user_color_id;
+        ScheduledModel::instance().save(item);
+    }
+    ScheduledModel::instance().ReleaseSavepoint();
+
+    RefreshList();
+}
+
+void ScheduledPanel::RefreshList()
+{
+    m_lc->RefreshList();
+}
+
+void ScheduledPanel::OnFilterTransactions(wxCommandEvent& WXUNUSED(event))
+{
+
+    if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->mmIsSomethingChecked())
+    {
+        transFilterActive_ = true;
+        m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
+    }
+    else
+    {
+        transFilterActive_ = false;
+        m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
+    }
+
+    initVirtualListControl();
+}
+
+wxString  ScheduledPanel::BuildPage() const
+{
+    return m_lc->BuildPage(_t("Scheduled Transactions"));
+}
+
+void ScheduledPanel::do_delete_custom_values(int64 id)
+{
+    const wxString& RefType = TransactionModel::refTypeName;
+    FieldValueModel::DeleteAllData(RefType, id);
+}

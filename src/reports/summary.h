@@ -21,8 +21,8 @@
 #include "reportbase.h"
 #include <vector>
 #include "mmex.h"
-#include "model/Model.h"
-#include "model/Model_Account.h"
+#include "model/_Model.h"
+#include "model/AccountModel.h"
 
 class mmHistoryItem
 {
@@ -35,7 +35,7 @@ public:
     wxString purchaseDateStr;
     double   purchasePrice;
     double   numShares;
-    Model_StockHistory::Data_Set stockHist;
+    StockHistoryModel::Data_Set stockHist;
 };
 
 class mmReportSummaryByDate : public ReportBase
@@ -58,9 +58,9 @@ public:
     wxString getHTMLText();
 
 private:
-    std::map<wxDate, double> loadCheckingDateBalance(const Model_Account::Data& account);
-    double getCheckingBalance(const Model_Account::Data* account, const wxDate& date);
-    std::pair<double, double> getBalance(const Model_Account::Data* account, const wxDate& date);
+    std::map<wxDate, double> loadCheckingDateBalance(const AccountModel::Data& account);
+    double getCheckingBalance(const AccountModel::Data* account, const wxDate& date);
+    std::pair<double, double> getBalance(const AccountModel::Data* account, const wxDate& date);
     double getCurrencyDateRate(int64 currencyid, const wxDate& date);
 };
 

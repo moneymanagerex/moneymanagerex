@@ -61,51 +61,21 @@ elseif(WIN32)
 endif()
 
 add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
-    aboutdialog.cpp
-    aboutdialog.h
-    accountdialog.cpp
-    accountdialog.h
     appstartdialog.cpp
     appstartdialog.h
-    assetdialog.cpp
-    assetdialog.h
-    assetspanel.cpp
-    assetspanel.h
-    attachmentdialog.cpp
-    attachmentdialog.h
-    billsdepositsdialog.cpp
-    billsdepositsdialog.h
-    billsdepositspanel.cpp
-    billsdepositspanel.h
-    build.h
     budgetentrydialog.cpp
     budgetentrydialog.h
-    budgetingpanel.cpp
-    budgetingpanel.h
     budgetyeardialog.cpp
     budgetyeardialog.h
     budgetyearentrydialog.cpp
     budgetyearentrydialog.h
-    categdialog.cpp
-    categdialog.h
-    choices.cpp
-    choices.h
+    build.h
     constants.cpp
     constants.h
-    currencydialog.cpp
-    currencydialog.h
     customfieldeditdialog.cpp
     customfieldeditdialog.h
     customfieldlistdialog.cpp
     customfieldlistdialog.h
-    dateday.cpp
-    dateday.h
-    daterange2.cpp
-    daterange2.h
-    daterangedialog.cpp
-    daterangedialog.h
-    daterangeeditdialog.cpp
-    daterangeeditdialog.h
     dbcheck.cpp
     dbcheck.h
     dbupgrade.cpp
@@ -113,8 +83,6 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     dbwrapper.cpp
     dbwrapper.h
     defs.h
-    diagnostics.cpp
-    diagnostics.h
     filtertrans.cpp
     filtertrans.h
     filtertransdialog.cpp
@@ -129,29 +97,7 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     maincurrencydialog.h
     minimal_editor.cpp
     minimal_editor.h
-    mmcheckingpanel.cpp
-    mmcheckingpanel.h
-    mmchecking_list.cpp
-    mmchecking_list.h
-    mmcombobox.h
-    mmcustomdata.h
-    mmcustomdata.cpp
-    mmex.cpp
-    mmex.h
-    mmframe.cpp
-    mmframe.h
-    mmframereport.cpp
-    mmhelppanel.cpp
-    mmhelppanel.h
-    mmhomepagepanel.cpp
-    mmhomepagepanel.h
-    mmhomepage.cpp
-    mmhomepage.h
     mmHook.h
-    mmpanelbase.cpp
-    mmpanelbase.h
-    mmreportspanel.cpp
-    mmreportspanel.h
     mmSimpleDialogs.cpp
     mmSimpleDialogs.h
     mmTextCtrl.cpp
@@ -159,33 +105,17 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     mmTips.h
     mmTreeItemData.cpp
     mmTreeItemData.h
-    option.cpp
-    option.h
-    optiondialog.cpp
-    optiondialog.h
-    optionsettingsattachment.cpp
-    optionsettingsattachment.h
-    optionsettingsbase.cpp
-    optionsettingsbase.h
-    optionsettingsgeneral.cpp
-    optionsettingsgeneral.h
-    optionsettingshome.cpp
-    optionsettingshome.h
-    optionsettingsmisc.cpp
-    optionsettingsmisc.h
-    optionsettingsnet.cpp
-    optionsettingsnet.h
-    optionsettingstransaction.cpp
-    optionsettingstransaction.h
-    optionsettingsview.cpp
-    optionsettingsview.h
+    mmcombobox.h
+    mmcustomdata.cpp
+    mmcustomdata.h
+    mmex.cpp
+    mmex.h
+    mmframe.cpp
+    mmframe.h
+    mmframereport.cpp
     paths.cpp
     paths.h
-    payeedialog.cpp
-    payeedialog.h
     platfdep.h
-    primitive.cpp
-    primitive.h
     recentfiles.cpp
     recentfiles.h
     relocatecategorydialog.cpp
@@ -195,34 +125,19 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     relocatetagdialog.cpp
     relocatetagdialog.h
     resource.h
-    singleton.h
     sharetransactiondialog.cpp
     sharetransactiondialog.h
-    splittransactionsdialog.cpp
-    splittransactionsdialog.h
-    stockdialog.cpp
-    stockdialog.h
-    stockspanel.cpp
-    stockspanel.h
-    stocks_list.cpp
-    stocks_list.h
-    tagdialog.cpp
-    tagdialog.h
     themes.cpp
     themes.h
-    transdialog.cpp
-    transdialog.h
     transactionsupdatedialog.cpp
     transactionsupdatedialog.h
     usertransactionpanel.cpp
     usertransactionpanel.h
-    util.cpp
-    util.h
     validators.h
     webapp.cpp
+    webapp.h
     webappdialog.cpp
     webappdialog.h
-    webapp.h
     wizard_newaccount.cpp
     wizard_newaccount.h
     wizard_newdb.cpp
@@ -230,22 +145,17 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     wizard_update.cpp
     wizard_update.h
 
-    import_export/export.cpp
-    import_export/export.h
-    import_export/ofx_import_gui.cpp
-    import_export/ofx_import_gui.h
-    import_export/parsers.cpp
-    import_export/parsers.h
-    import_export/payeematchandmerge.cpp
-    import_export/payeematchandmerge.h
-    import_export/qif_export.cpp
-    import_export/qif_export.h
-    import_export/qif_import.cpp
-    import_export/qif_import_gui.cpp
-    import_export/qif_import_gui.h
-    import_export/qif_import.h
-    import_export/univcsvdialog.cpp
-    import_export/univcsvdialog.h
+    util/choices.cpp
+    util/choices.h
+    util/DateDay.cpp
+    util/DateDay.h
+    util/DateRange2.cpp
+    util/DateRange2.h
+    util/primitive.cpp
+    util/primitive.h
+    util/singleton.h
+    util/util.cpp
+    util/util.h
 
     db/DB_Table_Accountlist_V1.h
     db/DB_Table_Assets_V1.h
@@ -273,6 +183,154 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     db/DB_Table_Taglink_V1.h
     db/DB_Table_Translink_V1.h
     db/DB_Table_Usage_V1.h
+
+    model/AccountModel.cpp
+    model/AccountModel.h
+    model/AssetModel.cpp
+    model/AssetModel.h
+    model/AttachmentModel.cpp
+    model/AttachmentModel.h
+    model/BudgetModel.cpp
+    model/BudgetModel.h
+    model/BudgetPeriodModel.cpp
+    model/BudgetPeriodModel.h
+    model/CategoryModel.cpp
+    model/CategoryModel.h
+    model/CurrencyHistoryModel.cpp
+    model/CurrencyHistoryModel.h
+    model/CurrencyModel.cpp
+    model/CurrencyModel.h
+    model/FieldModel.cpp
+    model/FieldModel.h
+    model/FieldValueModel.cpp
+    model/FieldValueModel.h
+    model/InfotableModel.cpp
+    model/InfotableModel.h
+    model/PayeeModel.cpp
+    model/PayeeModel.h
+    model/PreferencesModel.cpp
+    model/PreferencesModel.h
+    model/ReportModel.cpp
+    model/ReportModel.h
+    model/ScheduledModel.cpp
+    model/ScheduledModel.h
+    model/ScheduledSplitModel.cpp
+    model/ScheduledSplitModel.h
+    model/SettingModel.cpp
+    model/SettingModel.h
+    model/StockHistoryModel.cpp
+    model/StockHistoryModel.h
+    model/StockModel.cpp
+    model/StockModel.h
+    model/TagLinkModel.cpp
+    model/TagLinkModel.h
+    model/TagModel.cpp
+    model/TagModel.h
+    model/TransactionLinkModel.cpp
+    model/TransactionLinkModel.h
+    model/TransactionModel.cpp
+    model/TransactionModel.h
+    model/TransactionShareModel.cpp
+    model/TransactionShareModel.h
+    model/TransactionSplitModel.cpp
+    model/TransactionSplitModel.h
+    model/UsageModel.cpp
+    model/UsageModel.h
+    model/_Model.cpp
+    model/_Model.h
+    model/_all.h
+
+    panel/AssetPanel.cpp
+    panel/AssetPanel.h
+    panel/BudgetPanel.cpp
+    panel/BudgetPanel.h
+    panel/DashboardPanel.cpp
+    panel/DashboardPanel.h
+    panel/DashboardWidget.cpp
+    panel/DashboardWidget.h
+    panel/HelpPanel.cpp
+    panel/HelpPanel.h
+    panel/JournalList.cpp
+    panel/JournalList.h
+    panel/JournalPanel.cpp
+    panel/JournalPanel.h
+    panel/ReportPanel.cpp
+    panel/ReportPanel.h
+    panel/ScheduledPanel.cpp
+    panel/ScheduledPanel.h
+    panel/StockList.cpp
+    panel/StockList.h
+    panel/StockPanel.cpp
+    panel/StockPanel.h
+    panel/_PanelBase.cpp
+    panel/_PanelBase.h
+
+    dialog/AboutDialog.cpp
+    dialog/AboutDialog.h
+    dialog/AccountDialog.cpp
+    dialog/AccountDialog.h
+    dialog/AssetDialog.cpp
+    dialog/AssetDialog.h
+    dialog/AttachmentDialog.cpp
+    dialog/AttachmentDialog.h
+    dialog/CategoryDialog.cpp
+    dialog/CategoryDialog.h
+    dialog/CurrencyDialog.cpp
+    dialog/CurrencyDialog.h
+    dialog/DateRangeDialog.cpp
+    dialog/DateRangeDialog.h
+    dialog/DateRangeEditDialog.cpp
+    dialog/DateRangeEditDialog.h
+    dialog/DiagnosticsDialog.cpp
+    dialog/DiagnosticsDialog.h
+    dialog/PayeeDialog.cpp
+    dialog/PayeeDialog.h
+    dialog/PreferencesDialog.cpp
+    dialog/PreferencesDialog.h
+    dialog/ScheduledDialog.cpp
+    dialog/ScheduledDialog.h
+    dialog/SplitDialog.cpp
+    dialog/SplitDialog.h
+    dialog/StockDialog.cpp
+    dialog/StockDialog.h
+    dialog/TagDialog.cpp
+    dialog/TagDialog.h
+    dialog/TransactionDialog.cpp
+    dialog/TransactionDialog.h
+
+    preferences/AttachmentPreferences.cpp
+    preferences/AttachmentPreferences.h
+    preferences/DashboardPreferences.cpp
+    preferences/DashboardPreferences.h
+    preferences/GeneralPreferences.cpp
+    preferences/GeneralPreferences.h
+    preferences/NetworkPreferences.cpp
+    preferences/NetworkPreferences.h
+    preferences/OtherPreferences.cpp
+    preferences/OtherPreferences.h
+    preferences/TransactionPreferences.cpp
+    preferences/TransactionPreferences.h
+    preferences/ViewPreferences.cpp
+    preferences/ViewPreferences.h
+    preferences/_PreferencesBase.cpp
+    preferences/_PreferencesBase.h
+
+    import_export/export.cpp
+    import_export/export.h
+    import_export/ofx_import_gui.cpp
+    import_export/ofx_import_gui.h
+    import_export/parsers.cpp
+    import_export/parsers.h
+    import_export/payeematchandmerge.cpp
+    import_export/payeematchandmerge.h
+    import_export/qif_export.cpp
+    import_export/qif_export.h
+    import_export/qif_import.cpp
+    import_export/qif_import_gui.cpp
+    import_export/qif_import_gui.h
+    import_export/qif_import.h
+    import_export/univcsvdialog.cpp
+    import_export/univcsvdialog.h
 
     reports/allreport.h
     reports/budgetcategorysummary.cpp
@@ -306,60 +364,6 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     reports/summarystocks.h
     reports/transactions.cpp
     reports/transactions.h
-
-    model/allmodel.h
-    model/Model_Account.cpp
-    model/Model_Account.h
-    model/Model_Asset.cpp
-    model/Model_Asset.h
-    model/Model_Attachment.cpp
-    model/Model_Attachment.h
-    model/Model_Billsdeposits.cpp
-    model/Model_Billsdeposits.h
-    model/Model_Budget.cpp
-    model/Model_Budget.h
-    model/Model_Budgetsplittransaction.cpp
-    model/Model_Budgetsplittransaction.h
-    model/Model_Budgetyear.cpp
-    model/Model_Budgetyear.h
-    model/Model_Category.cpp
-    model/Model_Category.h
-    model/Model_Checking.cpp
-    model/Model_Checking.h
-    model/Model_Currency.cpp
-    model/Model_Currency.h
-    model/Model_CurrencyHistory.cpp
-    model/Model_CurrencyHistory.h
-    model/Model_CustomField.cpp
-    model/Model_CustomFieldData.cpp
-    model/Model_CustomFieldData.h
-    model/Model_CustomField.h
-    model/Model.cpp
-    model/Model.h
-    model/Model_Infotable.cpp
-    model/Model_Infotable.h
-    model/Model_Payee.cpp
-    model/Model_Payee.h
-    model/Model_Report.cpp
-    model/Model_Report.h
-    model/Model_Setting.cpp
-    model/Model_Setting.h
-    model/Model_Shareinfo.cpp
-    model/Model_Shareinfo.h
-    model/Model_Splittransaction.cpp
-    model/Model_Splittransaction.h
-    model/Model_Stock.cpp
-    model/Model_Stock.h
-    model/Model_StockHistory.cpp
-    model/Model_StockHistory.h
-    model/Model_Tag.cpp
-    model/Model_Tag.h
-    model/Model_Taglink.cpp
-    model/Model_Taglink.h
-    model/Model_Translink.cpp
-    model/Model_Translink.h
-    model/Model_Usage.cpp
-    model/Model_Usage.h
 
     generic/generictreelistdialog.cpp
     generic/generictreelistdialog.h

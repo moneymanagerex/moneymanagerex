@@ -23,9 +23,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "defs.h"
 #include "mmSimpleDialogs.h"
 #include "mmTextCtrl.h"
-#include "model/Model_Translink.h"
+#include "model/TransactionLinkModel.h"
 
-class Model_Currency;
+class CurrencyModel;
 
 
 class UserTransactionPanel : public wxPanel
@@ -36,7 +36,7 @@ public:
     UserTransactionPanel();
 
     UserTransactionPanel(wxWindow *parent
-        , Model_Checking::Data* checking_entry
+        , TransactionModel::Data* checking_entry
         , bool enable_revalue = false
         , wxWindowID win_id = wxID_ANY
         , const wxPoint &pos = wxDefaultPosition
@@ -59,11 +59,11 @@ public:
     void SetTransactionCategory(const int64 categid);
 
     int TransactionType();
-    Model_Translink::CHECKING_TYPE CheckingType();
-    void CheckingType(Model_Translink::CHECKING_TYPE ct);
+    TransactionLinkModel::CHECKING_TYPE CheckingType();
+    void CheckingType(TransactionLinkModel::CHECKING_TYPE ct);
 
 private:
-    Model_Checking::Data* m_checking_entry = nullptr;
+    TransactionModel::Data* m_checking_entry = nullptr;
     bool m_enable_revalue = false;
     int64 m_transaction_id = -1;
 

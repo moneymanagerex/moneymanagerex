@@ -20,11 +20,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "mmcustomdata.h"
 #include "constants.h"
-#include "util.h"
+#include "util/util.h"
 #include "mmSimpleDialogs.h"
 #include "validators.h"
-#include "model/Model_Currency.h"
-#include "model/Model_CustomFieldData.h"
+#include "model/CurrencyModel.h"
+#include "model/FieldValueModel.h"
 
 #include <wx/timectrl.h>
 #include <wx/collpane.h>
@@ -46,14 +46,14 @@ mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int64 ref
     , m_ref_id(ref_id)
 {
     m_dialog = dialog;
-    m_fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_ref_type));
+    m_fields = FieldModel::instance().find(FieldModel::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_ref_type));
     std::sort(m_fields.begin(), m_fields.end(), SorterByDESCRIPTION());
     m_data_changed.clear();
 }
 
 mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int64 ref_id, wxWindowID base_id)
     : mmCustomData(dialog
-        , Model_Checking::refTypeName
+        , TransactionModel::refTypeName
         , ref_id)
 {
     SetBaseID(base_id);
@@ -78,13 +78,13 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
     for (const auto &field : m_fields)
     {
         bool nonDefaultData = true;
-        Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, m_ref_id);
+        FieldValueModel::Data* fieldData = FieldValueModel::instance().get(field.FIELDID, m_ref_id);
         if (!fieldData)
         {
-            fieldData = Model_CustomFieldData::instance().create();
+            fieldData = FieldValueModel::instance().create();
             fieldData->FIELDID = field.FIELDID;
             fieldData->REFID = m_ref_id;
-            fieldData->CONTENT = Model_CustomField::getDefault(field.PROPERTIES);
+            fieldData->CONTENT = FieldModel::getDefault(field.PROPERTIES);
             nonDefaultData = false;
         }
 
@@ -100,16 +100,16 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
         grid_sizer_custom->Add(Description, g_flagsH);
 
-        switch (Model_CustomField::type_id(field))
+        switch (FieldModel::type_id(field))
         {
-        case Model_CustomField::TYPE_ID_STRING:
+        case FieldModel::TYPE_ID_STRING:
         {
             const auto& data = fieldData->CONTENT;
             wxTextCtrl* CustomString = new wxTextCtrl(scrolled_window, controlID, data, wxDefaultPosition, wxDefaultSize);
-            mmToolTip(CustomString, Model_CustomField::getTooltip(field.PROPERTIES));
-            if (Model_CustomField::getAutocomplete(field.PROPERTIES))
+            mmToolTip(CustomString, FieldModel::getTooltip(field.PROPERTIES));
+            if (FieldModel::getAutocomplete(field.PROPERTIES))
             {
-                const wxArrayString& values = Model_CustomFieldData::instance().allValue(field.FIELDID);
+                const wxArrayString& values = FieldValueModel::instance().allValue(field.FIELDID);
                 CustomString->AutoComplete(values);
             }
             grid_sizer_custom->Add(CustomString, g_flagsExpand);
@@ -122,10 +122,10 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             CustomString->Connect(controlID, wxEVT_TEXT, wxCommandEventHandler(mmCustomData::OnStringChanged), nullptr, this);
             break;
         }
-        case Model_CustomField::TYPE_ID_INTEGER:
-        case Model_CustomField::TYPE_ID_DECIMAL:
+        case FieldModel::TYPE_ID_INTEGER:
+        case FieldModel::TYPE_ID_DECIMAL:
         {
-            int digitScale = Model_CustomField::getDigitScale(field.PROPERTIES);
+            int digitScale = FieldModel::getDigitScale(field.PROPERTIES);
             wxString content = cleanseNumberString(fieldData->CONTENT, digitScale > 0);
 
             double value;
@@ -134,7 +134,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             }
             else {
                 if (nonDefaultData) 
-                    SetWidgetChanged(controlID, Model_Currency::toString(value, nullptr, digitScale));
+                    SetWidgetChanged(controlID, CurrencyModel::toString(value, nullptr, digitScale));
             }
             
             mmTextCtrl* CustomDecimal = new mmTextCtrl(scrolled_window, controlID
@@ -145,12 +145,12 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             CustomDecimal->Connect(wxID_ANY, wxEVT_TEXT
                 , wxCommandEventHandler(mmCustomData::OnStringChanged), nullptr, this);
 
-            mmToolTip(CustomDecimal, Model_CustomField::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomDecimal, FieldModel::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomDecimal, g_flagsExpand);
 
             break;
         }
-        case Model_CustomField::TYPE_ID_BOOLEAN:
+        case FieldModel::TYPE_ID_BOOLEAN:
         {
             wxRadioButton* CustomBooleanF = new wxRadioButton(scrolled_window, controlID
                 , _t("False"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
@@ -165,8 +165,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                     SetWidgetChanged(controlID, data);
             }
 
-            mmToolTip(CustomBooleanF, Model_CustomField::getTooltip(field.PROPERTIES));
-            mmToolTip(CustomBooleanT, Model_CustomField::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomBooleanF, FieldModel::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomBooleanT, FieldModel::getTooltip(field.PROPERTIES));
             wxBoxSizer* boolsizer = new wxBoxSizer(wxHORIZONTAL);
             boolsizer->Add(CustomBooleanF);
             boolsizer->Add(CustomBooleanT);
@@ -177,7 +177,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
             break;
         }
-        case Model_CustomField::TYPE_ID_DATE:
+        case FieldModel::TYPE_ID_DATE:
         {
             wxDate value;
             if (!value.ParseDate(fieldData->CONTENT)) {
@@ -189,14 +189,14 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             }
 
             mmDatePickerCtrl* CustomDate = new mmDatePickerCtrl(scrolled_window, controlID, value);
-            mmToolTip(CustomDate, Model_CustomField::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomDate, FieldModel::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomDate->mmGetLayout(false));
 
             CustomDate->Connect(controlID, wxEVT_DATE_CHANGED, wxDateEventHandler(mmCustomData::OnDateChanged), nullptr, this);
 
             break;
         }
-        case Model_CustomField::TYPE_ID_TIME:
+        case FieldModel::TYPE_ID_TIME:
         {
             wxDateTime value;
             if (!value.ParseTime(fieldData->CONTENT)) {
@@ -209,21 +209,21 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
             wxTimePickerCtrl* CustomTime = new wxTimePickerCtrl(scrolled_window, controlID
                 , value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
-            mmToolTip(CustomTime, Model_CustomField::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomTime, FieldModel::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomTime, g_flagsExpand);
 
             CustomTime->Connect(controlID, wxEVT_TIME_CHANGED, wxDateEventHandler(mmCustomData::OnTimeChanged), nullptr, this);
 
             break;
         }
-        case Model_CustomField::TYPE_ID_SINGLECHOICE:
+        case FieldModel::TYPE_ID_SINGLECHOICE:
         {
-            wxArrayString Choices = Model_CustomField::getChoices(field.PROPERTIES);
+            wxArrayString Choices = FieldModel::getChoices(field.PROPERTIES);
             Choices.Sort();
 
             wxChoice* CustomChoice = new wxChoice(scrolled_window, controlID
                 , wxDefaultPosition, wxDefaultSize, Choices);
-            mmToolTip(CustomChoice, Model_CustomField::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomChoice, FieldModel::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomChoice, g_flagsExpand);
 
             if (Choices.empty()) {
@@ -241,14 +241,14 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             CustomChoice->Connect(controlID, wxEVT_CHOICE, wxCommandEventHandler(mmCustomData::OnSingleChoice), nullptr, this);
             break;
         }
-        case Model_CustomField::TYPE_ID_MULTICHOICE:
+        case FieldModel::TYPE_ID_MULTICHOICE:
         {
             const auto& content = fieldData->CONTENT;
             const auto& name = field.DESCRIPTION;
 
             wxButton* multi_choice_button = new wxButton(scrolled_window, controlID, content
                 , wxDefaultPosition, wxDefaultSize, 0L, wxDefaultValidator, name);
-            mmToolTip(multi_choice_button, Model_CustomField::getTooltip(field.PROPERTIES));
+            mmToolTip(multi_choice_button, FieldModel::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(multi_choice_button, g_flagsExpand);
 
             if (!content.empty()) {
@@ -268,7 +268,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
     scrolled_window->FitInside();
     scrolled_window->SetScrollRate(6, 6);
     box_sizer_right->Add(scrolled_window, g_flagsExpand);
-    Model_Checking::Data* refTxn = Model_Checking::instance().get(m_ref_id);
+    TransactionModel::Data* refTxn = TransactionModel::instance().get(m_ref_id);
     if (refTxn && !refTxn->DELETEDTIME.IsEmpty()) scrolled_window->Disable();
     m_static_box->Hide();
     mmThemeAutoColour(scrolled_window);
@@ -285,13 +285,13 @@ void mmCustomData::OnMultiChoice(wxCommandEvent& event)
     }
 
     const auto& name = button->GetName();
-    const wxString& type = Model_CustomField::type_name(Model_CustomField::TYPE_ID_MULTICHOICE);
+    const wxString& type = FieldModel::type_name(FieldModel::TYPE_ID_MULTICHOICE);
 
-    Model_CustomField::Data_Set fields = Model_CustomField::instance()
-        .find(Model_CustomField::REFTYPE(m_ref_type)
-            , Model_CustomField::TYPE(type)
-            , Model_CustomField::DESCRIPTION(name));
-    wxArrayString all_choices = Model_CustomField::getChoices(fields.begin()->PROPERTIES);
+    FieldModel::Data_Set fields = FieldModel::instance()
+        .find(FieldModel::REFTYPE(m_ref_type)
+            , FieldModel::TYPE(type)
+            , FieldModel::DESCRIPTION(name));
+    wxArrayString all_choices = FieldModel::getChoices(fields.begin()->PROPERTIES);
 
     const wxString& label = button->GetLabelText();
     wxArrayInt arr_selections;
@@ -324,7 +324,7 @@ void mmCustomData::OnMultiChoice(wxCommandEvent& event)
 
 size_t mmCustomData::GetActiveCustomFieldsCount() const
 {
-    const auto& data_set = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(m_ref_id));
+    const auto& data_set = FieldValueModel::instance().find(FieldValueModel::REFID(m_ref_id));
     return data_set.size();
 }
 
@@ -334,7 +334,7 @@ std::map<int64, wxString> mmCustomData::GetActiveCustomFields() const
     for (const auto& entry : m_data_changed)
     {
         int id = (entry.first - GetBaseID()) / FIELDMULTIPLIER;
-        Model_CustomField::Data *item = Model_CustomField::instance().get(m_fields[id].FIELDID);
+        FieldModel::Data *item = FieldModel::instance().get(m_fields[id].FIELDID);
         if (item) {
             values[item->FIELDID] = entry.second;
         }
@@ -469,20 +469,20 @@ const wxString mmCustomData::GetWidgetData(wxWindowID controlID) const
 bool mmCustomData::SaveCustomValues(int64 ref_id)
 {
     bool updateTimestamp = false;
-    Model_CustomFieldData::instance().Savepoint();
+    FieldValueModel::instance().Savepoint();
     int field_index = 0;
     for (const auto &field : m_fields)
     {
         wxWindowID controlID = GetBaseID() + field_index++ * FIELDMULTIPLIER;
         const auto& data = IsWidgetChanged(controlID) ? GetWidgetData(controlID) : "";
 
-        Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, ref_id);
-        Model_CustomFieldData::Data oldData;
+        FieldValueModel::Data* fieldData = FieldValueModel::instance().get(field.FIELDID, ref_id);
+        FieldValueModel::Data oldData;
         if(fieldData) oldData = *fieldData;
         if (!data.empty())
         {
             if (!fieldData) {
-                fieldData = Model_CustomFieldData::instance().create();
+                fieldData = FieldValueModel::instance().create();
             }
 
             fieldData->REFID = ref_id;
@@ -490,31 +490,31 @@ bool mmCustomData::SaveCustomValues(int64 ref_id)
             fieldData->CONTENT = data;
             wxLogDebug("Control:%i Type:%s Value:%s"
                 , controlID
-                , Model_CustomField::type_name(Model_CustomField::type_id(field))
+                , FieldModel::type_name(FieldModel::type_id(field))
                 , data);
 
             if (!fieldData->equals(&oldData)) updateTimestamp = true;
 
-            Model_CustomFieldData::instance().save(fieldData);
+            FieldValueModel::instance().save(fieldData);
         }
         else if (fieldData)
         {
-            Model_CustomFieldData::instance().remove(fieldData->FIELDATADID);
+            FieldValueModel::instance().remove(fieldData->FIELDATADID);
             updateTimestamp = true;
         }
     }
 
-    Model_CustomFieldData::instance().ReleaseSavepoint();
+    FieldValueModel::instance().ReleaseSavepoint();
 
-    if (updateTimestamp && m_ref_type == Model_Checking::refTypeName)
-        Model_Checking::instance().updateTimestamp(ref_id);        
+    if (updateTimestamp && m_ref_type == TransactionModel::refTypeName)
+        TransactionModel::instance().updateTimestamp(ref_id);        
 
     return true;
 }
 
 void mmCustomData::UpdateCustomValues(int64 ref_id)
 {
-    Model_CustomFieldData::instance().Savepoint();
+    FieldValueModel::instance().Savepoint();
     bool updateTimestamp = false;
     int field_index = 0;
     for (const auto& field : m_fields)
@@ -531,13 +531,13 @@ void mmCustomData::UpdateCustomValues(int64 ref_id)
         if (is_changed)
         {
             const auto& data = GetWidgetData(controlID);
-            Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, ref_id);
-            Model_CustomFieldData::Data oldData;
+            FieldValueModel::Data* fieldData = FieldValueModel::instance().get(field.FIELDID, ref_id);
+            FieldValueModel::Data oldData;
             if (fieldData) oldData = *fieldData;
             if (!data.empty())
             {
                 if (!fieldData) {
-                    fieldData = Model_CustomFieldData::instance().create();
+                    fieldData = FieldValueModel::instance().create();
                 }
 
                 fieldData->REFID = ref_id;
@@ -546,19 +546,19 @@ void mmCustomData::UpdateCustomValues(int64 ref_id)
 
                 if (!fieldData->equals(&oldData)) updateTimestamp = true;
 
-                Model_CustomFieldData::instance().save(fieldData);
+                FieldValueModel::instance().save(fieldData);
             }
             else if (fieldData) {
-                Model_CustomFieldData::instance().remove(fieldData->FIELDATADID);
+                FieldValueModel::instance().remove(fieldData->FIELDATADID);
                 updateTimestamp = true;
             }
         }
     }
 
-    Model_CustomFieldData::instance().ReleaseSavepoint();
+    FieldValueModel::instance().ReleaseSavepoint();
 
-    if (updateTimestamp && m_ref_type == Model_Checking::refTypeName)
-        Model_Checking::instance().updateTimestamp(ref_id);        
+    if (updateTimestamp && m_ref_type == TransactionModel::refTypeName)
+        TransactionModel::instance().updateTimestamp(ref_id);        
 }
 
 void mmCustomData::OnStringChanged(wxCommandEvent& event)
@@ -629,13 +629,13 @@ void mmCustomData::OnRadioButtonChanged(wxCommandEvent& event)
 
 int mmCustomData::GetWidgetType(wxWindowID controlID) const
 {
-    Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_ref_type));
+    FieldModel::Data_Set fields = FieldModel::instance().find(FieldModel::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_ref_type));
     int control_id = (controlID - GetBaseID()) / FIELDMULTIPLIER;
     for (const auto& entry : fields)
     {
         if (entry.FIELDID == m_fields[control_id].FIELDID)
         {
-            return Model_CustomField::type_id(entry);
+            return FieldModel::type_id(entry);
         }
     }
     wxFAIL_MSG("unknown custom field type");
@@ -647,7 +647,7 @@ int mmCustomData::GetPrecision(wxWindowID controlID) const
     int control_id = (controlID - GetBaseID()) / FIELDMULTIPLIER;
     for (const auto &field : m_fields)
     if (field.FIELDID == m_fields[control_id].FIELDID)
-            return (Model_CustomField::getDigitScale(field.PROPERTIES));
+            return (FieldModel::getDigitScale(field.PROPERTIES));
     wxFAIL_MSG("No field found");
     return -1;
 }
@@ -709,9 +709,9 @@ void mmCustomData::SetWidgetChanged(wxWindowID id, const wxString& data)
     }
 }
 
-bool mmCustomData::IsDataFound(const Model_Checking::Full_Data &tran)
+bool mmCustomData::IsDataFound(const TransactionModel::Full_Data &tran)
 {
-    const auto& data_set = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(tran.TRANSID));
+    const auto& data_set = FieldValueModel::instance().find(FieldValueModel::REFID(tran.TRANSID));
     for (const auto& filter : m_data_changed)
     {
         for (const auto& item : data_set)
@@ -768,8 +768,8 @@ bool mmCustomData::ValidateCustomValues(int64)
         if (!cb || !cb->GetValue())
             continue;
 
-        if (GetWidgetType(controlID) == Model_CustomField::TYPE_ID_DECIMAL 
-                || GetWidgetType(controlID) == Model_CustomField::TYPE_ID_INTEGER)
+        if (GetWidgetType(controlID) == FieldModel::TYPE_ID_DECIMAL 
+                || GetWidgetType(controlID) == FieldModel::TYPE_ID_INTEGER)
         {
             wxWindow* w = FindWindowById(controlID, m_dialog);
             if (w)
@@ -777,14 +777,14 @@ bool mmCustomData::ValidateCustomValues(int64)
                 mmTextCtrl* d = static_cast<mmTextCtrl*>(w);
                 double value;
                 if (d->checkValue(value, false))
-                    SetWidgetChanged(controlID, Model_Currency::toString(value, nullptr
-                                                , Model_CustomField::getDigitScale(field.PROPERTIES)));
+                    SetWidgetChanged(controlID, CurrencyModel::toString(value, nullptr
+                                                , FieldModel::getDigitScale(field.PROPERTIES)));
                 else
                     is_valid = false;
             }
         }
 
-        const wxString regExStr = Model_CustomField::getRegEx(field.PROPERTIES);
+        const wxString regExStr = FieldModel::getRegEx(field.PROPERTIES);
         if (!regExStr.empty())
         {
             const auto& data = GetWidgetData(controlID);

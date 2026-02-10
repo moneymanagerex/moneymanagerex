@@ -22,9 +22,9 @@
 #define MM_EX_REPORTCATEGEXP_H_
 
 #include "reportbase.h"
-#include "util.h"
+#include "util/util.h"
 #include <vector>
-#include "model/Model_Category.h"
+#include "model/CategoryModel.h"
 
 class mmReportCategoryExpenses : public ReportBase
 {

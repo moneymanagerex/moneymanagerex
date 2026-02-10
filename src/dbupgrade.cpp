@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 #include "dbupgrade.h"
 #include "constants.h"
-#include "util.h"
+#include "util/util.h"
 
 #include <wx/filedlg.h>
 #include <wx/filename.h>

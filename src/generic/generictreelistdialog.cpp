@@ -16,13 +16,13 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  ********************************************************/
 
-#include "generictreelistdialog.h"
-
-#include "daterangeeditdialog.h"
 #include "constants.h"
-#include "images_list.h"
-#include "option.h"
 
+#include "model/PreferencesModel.h"
+
+#include "dialog/DateRangeEditDialog.h"
+#include "generictreelistdialog.h"
+#include "images_list.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(genericTreeListDialog, wxDialog);
 

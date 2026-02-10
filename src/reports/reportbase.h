@@ -20,11 +20,13 @@
 
 #pragma once
 
-#include "filtertrans.h"
 #include "mmDateRange.h"
-#include "daterange2.h"
-#include "option.h"
-#include "model/Model_Report.h"
+#include "util/DateRange2.h"
+#include "filtertrans.h"
+
+#include "model/PreferencesModel.h"
+#include "model/ReportModel.h"
+
 class wxString;
 class wxArrayString;
 
@@ -150,14 +152,14 @@ inline int ReportBase::getChartSelection() const { return this->m_chart_selectio
 class mmGeneralReport : public ReportBase
 {
 public:
-    explicit mmGeneralReport(const Model_Report::Data* report);
+    explicit mmGeneralReport(const ReportModel::Data* report);
 
 public:
     wxString getHTMLText();
     virtual int getParameters();
 
 private:
-    const Model_Report::Data* m_report;
+    const ReportModel::Data* m_report;
 };
 
 #include <html_template.h>

@@ -16,10 +16,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "navigatoreditdialog.h"
 #include "constants.h"
+
+#include "model/PreferencesModel.h"
+
+#include "navigatoreditdialog.h"
 #include "images_list.h"
-#include "option.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmNavigatorEditDialog, wxDialog);
 
@@ -102,7 +104,7 @@ void mmNavigatorEditDialog::CreateControls()
     wxStaticText* iconLabel = new wxStaticText(uiBox, wxID_ANY, _t("Symbol") + ":");
 
     wxVector<wxBitmapBundle> images = navtree_images_list();
-    const auto navIconSize = Option::instance().getNavigationIconSize();
+    const auto navIconSize = PreferencesModel::instance().getNavigationIconSize();
     wxImageList* imageList = new wxImageList(navIconSize, navIconSize);
     for (const auto& bundle : navtree_images_list(navIconSize)) {
         wxBitmap bitmap = bundle.GetBitmap(wxSize(navIconSize, navIconSize));

@@ -21,9 +21,9 @@
 #include "forecast.h"
 #include "mmex.h"
 #include "mmframe.h"
-#include "util.h"
+#include "util/util.h"
 #include "htmlbuilder.h"
-#include "model/Model_Checking.h"
+#include "model/TransactionModel.h"
 
 class mm_html_template;
 
@@ -40,27 +40,27 @@ wxString mmReportForecast::getHTMLText()
 {
     // Grab the data
     std::map<wxString, std::pair<double, double> > amount_by_day;
-    Model_Checking::Data_Set all_trans;
+    TransactionModel::Data_Set all_trans;
     
     if (m_date_range && m_date_range->is_with_date()) {
-        all_trans = Model_Checking::instance().find(
-            Model_Checking::TRANSDATE(DateDay(m_date_range->start_date()), GREATER_OR_EQUAL),
-            Model_Checking::TRANSDATE(DateDay(m_date_range->end_date()), LESS_OR_EQUAL)
+        all_trans = TransactionModel::instance().find(
+            TransactionModel::TRANSDATE(DateDay(m_date_range->start_date()), GREATER_OR_EQUAL),
+            TransactionModel::TRANSDATE(DateDay(m_date_range->end_date()), LESS_OR_EQUAL)
         );
     }
     else {
-        all_trans = Model_Checking::instance().all();
+        all_trans = TransactionModel::instance().all();
     }
 
     for (const auto & trx : all_trans) {
-        if (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER || Model_Checking::foreignTransactionAsTransfer(trx))
+        if (TransactionModel::type_id(trx) == TransactionModel::TYPE_ID_TRANSFER || TransactionModel::foreignTransactionAsTransfer(trx))
             continue;
-        const double convRate = Model_CurrencyHistory::getDayRate(
-            Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID,
+        const double convRate = CurrencyHistoryModel::getDayRate(
+            AccountModel::instance().get(trx.ACCOUNTID)->CURRENCYID,
             trx.TRANSDATE
         );
-        amount_by_day[trx.TRANSDATE].first += Model_Checking::account_outflow(trx, trx.ACCOUNTID) * convRate;
-        amount_by_day[trx.TRANSDATE].second += Model_Checking::account_inflow(trx, trx.ACCOUNTID) * convRate;
+        amount_by_day[trx.TRANSDATE].first += TransactionModel::account_outflow(trx, trx.ACCOUNTID) * convRate;
+        amount_by_day[trx.TRANSDATE].second += TransactionModel::account_inflow(trx, trx.ACCOUNTID) * convRate;
     }
 
     // Build the report

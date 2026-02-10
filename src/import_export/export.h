@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #ifndef MM_EX_EXPORT_H_
 #define MM_EX_EXPORT_H_
 
-#include "model/Model_Checking.h"
+#include "model/TransactionModel.h"
 
 class mmExportTransaction
 {
@@ -28,15 +28,15 @@ public:
     virtual ~mmExportTransaction();
     mmExportTransaction();
 
-    static const wxString getTransactionQIF(const Model_Checking::Full_Data & tran, const wxString& dateMask, bool reverce = false);
-    static const wxString getTransactionCSV(const Model_Checking::Full_Data & tran, const wxString& dateMask, bool reverce = false);
+    static const wxString getTransactionQIF(const TransactionModel::Full_Data & tran, const wxString& dateMask, bool reverce = false);
+    static const wxString getTransactionCSV(const TransactionModel::Full_Data & tran, const wxString& dateMask, bool reverce = false);
     static const wxString getAccountHeaderQIF(int64 accountID);
     static const wxString getCategoriesQIF();
     static const std::unordered_map <wxString, int> m_QIFaccountTypes;
     static const wxString qif_acc_type(const wxString& mmex_type);
     static const wxString mm_acc_type(const wxString& qif_type);
 
-    static void getTransactionJSON(PrettyWriter<StringBuffer>& json_writer, const Model_Checking::Full_Data & tran);
+    static void getTransactionJSON(PrettyWriter<StringBuffer>& json_writer, const TransactionModel::Full_Data & tran);
     static void getCategoriesJSON(PrettyWriter<StringBuffer>& json_writer);
     static void getUsedCategoriesJSON(PrettyWriter<StringBuffer>& json_writer);
     static void getAccountsJSON(PrettyWriter<StringBuffer>& json_writer, std::map <int64 /*account ID*/, wxString>& allAccounts4Export);

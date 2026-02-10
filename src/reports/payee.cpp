@@ -18,17 +18,17 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "payee.h"
-
-#include "htmlbuilder.h"
-#include "option.h"
-#include "mmDateRange.h"
-#include "model/Model_Currency.h"
-#include "model/Model_CurrencyHistory.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Account.h"
-
 #include <algorithm>
+
+#include "model/AccountModel.h"
+#include "model/CurrencyHistoryModel.h"
+#include "model/CurrencyModel.h"
+#include "model/PayeeModel.h"
+#include "model/PreferencesModel.h"
+
+#include "payee.h"
+#include "htmlbuilder.h"
+#include "mmDateRange.h"
 
 ReportFlowByPayee::Data::Data() :
     payee_name(""),
@@ -48,9 +48,9 @@ ReportFlowByPayee::~ReportFlowByPayee()
 {
 }
 
-void ReportFlowByPayee::updateData(Data& data, Model_Checking::TYPE_ID type_id, double amount)
+void ReportFlowByPayee::updateData(Data& data, TransactionModel::TYPE_ID type_id, double amount)
 {
-    double flow = (type_id == Model_Checking::TYPE_ID_DEPOSIT) ? amount : -amount;
+    double flow = (type_id == TransactionModel::TYPE_ID_DEPOSIT) ? amount : -amount;
     if (flow > 0.0)
         data.flow_pos += flow;
     else if (flow < 0.0)
@@ -62,21 +62,21 @@ void ReportFlowByPayee::loadData()
 {
     m_id_data.clear();
 
-    const auto all_splits = Model_Splittransaction::instance().get_all();
-    const auto &trx_a = Model_Checking::instance().find(
-        Model_Checking::TRANSDATE(m_date_range2.rangeStart().value(), GREATER_OR_EQUAL),
-        Model_Checking::TRANSDATE(m_date_range2.rangeEnd().value(), LESS_OR_EQUAL),
-        Model_Checking::DELETEDTIME(wxEmptyString, EQUAL),
-        Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
+    const auto all_splits = TransactionSplitModel::instance().get_all();
+    const auto &trx_a = TransactionModel::instance().find(
+        TransactionModel::TRANSDATE(m_date_range2.rangeStart().value(), GREATER_OR_EQUAL),
+        TransactionModel::TRANSDATE(m_date_range2.rangeEnd().value(), LESS_OR_EQUAL),
+        TransactionModel::DELETEDTIME(wxEmptyString, EQUAL),
+        TransactionModel::STATUS(TransactionModel::STATUS_ID_VOID, NOT_EQUAL)
     );
     for (const auto& trx: trx_a) {
         // Do not include asset or stock transfers
-        if (Model_Checking::foreignTransactionAsTransfer(trx))
+        if (TransactionModel::foreignTransactionAsTransfer(trx))
             continue;
 
-        Model_Checking::TYPE_ID type_id = Model_Checking::type_id(trx);
+        TransactionModel::TYPE_ID type_id = TransactionModel::type_id(trx);
         // Transfer transactions do not have a payee
-        if (type_id == Model_Checking::TYPE_ID_TRANSFER)
+        if (type_id == TransactionModel::TYPE_ID_TRANSFER)
             continue;
 
         int64 payee_id = trx.PAYEEID;
@@ -85,7 +85,7 @@ void ReportFlowByPayee::loadData()
         auto [it, new_payee] = m_id_data.try_emplace(trx.PAYEEID, Data{});
         Data& data = it->second;
         if (new_payee) {
-            Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
+            PayeeModel::Data* payee = PayeeModel::instance().get(payee_id);
             data.payee_name = payee ? payee->PAYEENAME : "";
             data.flow_pos = 0.0;
             data.flow_neg = 0.0;
@@ -94,12 +94,12 @@ void ReportFlowByPayee::loadData()
 
         // NOTE: call to getDayRate() in every transaction is slow
         // if "Use historical currency" is enabled in settings
-        const double convRate = Model_CurrencyHistory::getDayRate(
-            Model_Account::instance().get(trx.ACCOUNTID)->CURRENCYID,
+        const double convRate = CurrencyHistoryModel::getDayRate(
+            AccountModel::instance().get(trx.ACCOUNTID)->CURRENCYID,
             trx.TRANSDATE
         );
 
-        Model_Splittransaction::Data_Set splits;
+        TransactionSplitModel::Data_Set splits;
         if (all_splits.count(trx.id()))
             splits = all_splits.at(trx.id());
         if (splits.empty()) {

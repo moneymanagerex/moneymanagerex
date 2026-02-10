@@ -20,11 +20,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "paths.h"
 #include "platfdep.h"
 #include "constants.h"
-#include "util.h"
+#include "util/util.h"
 #include "../resources/mmexico.xpm"
 //----------------------------------------------------------------------------
-#include "model/Model_Setting.h"
-#include "model/Model_Infotable.h"
+#include "model/SettingModel.h"
+#include "model/InfotableModel.h"
 //----------------------------------------------------------------------------
 #include <wx/filename.h>
 #include <wx/stdpaths.h>
@@ -146,7 +146,7 @@ wxString mmex::getPathDoc(EDocFile f, bool url)
         path = pattern.GetMatch(path, 1);
     }
 
-    wxString lang_code = Option::instance().getLanguageCode();
+    wxString lang_code = PreferencesModel::instance().getLanguageCode();
     if (lang_code.empty() || lang_code == "en_US") {
         lang_code = "en_GB";
     }
@@ -250,7 +250,7 @@ const wxString mmex::getPathAttachment(const wxString &attachmentsFolder)
 
     wxString AttachmentsFolder = attachmentsFolder;
     const wxString sep = wxFileName::GetPathSeparator();
-    const wxString LastDBPath = Model_Setting::instance().getLastDbPath();
+    const wxString LastDBPath = SettingModel::instance().getLastDbPath();
     const wxString& LastDBFolder = wxFileName::FileName(LastDBPath).GetPath() + sep;
     const wxString& UserFolder = mmex::GetUserDir(false).GetPath() + sep;
 
@@ -265,7 +265,7 @@ const wxString mmex::getPathAttachment(const wxString &attachmentsFolder)
 
     if (AttachmentsFolder.Last() != sep)
         AttachmentsFolder.Append(sep);
-    if (Model_Infotable::instance().getBool("ATTACHMENTSSUBFOLDER", true))
+    if (InfotableModel::instance().getBool("ATTACHMENTSSUBFOLDER", true))
         AttachmentsFolder += wxString::Format("MMEX_%s_Attachments%s", wxFileName::FileName(LastDBPath).GetName(), sep);
 
     return AttachmentsFolder;

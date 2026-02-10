@@ -22,13 +22,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "incexpenses.h"
 
 #include "htmlbuilder.h"
-#include "util.h"
+#include "util/util.h"
 #include "mmDateRange.h"
 
-#include "model/Model_Account.h"
-#include "model/Model_Checking.h"
-#include "model/Model_CurrencyHistory.h"
-#include "model/Model_Category.h"
+#include "model/AccountModel.h"
+#include "model/TransactionModel.h"
+#include "model/CurrencyHistoryModel.h"
+#include "model/CategoryModel.h"
 
 
 mmReportIncomeExpenses::mmReportIncomeExpenses()
@@ -45,17 +45,17 @@ wxString mmReportIncomeExpenses::getHTMLText()
 {
     // Grab the data
     std::pair<double, double> income_expenses_pair;
-    for (const auto& transaction : Model_Checking::instance().find(
-        Model_Checking::TRANSDATE(DateDay(m_date_range->start_date()), GREATER_OR_EQUAL),
-        Model_Checking::TRANSDATE(DateDay(m_date_range->end_date()), LESS_OR_EQUAL),
-        Model_Checking::DELETEDTIME(wxEmptyString, EQUAL),
-        Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
+    for (const auto& transaction : TransactionModel::instance().find(
+        TransactionModel::TRANSDATE(DateDay(m_date_range->start_date()), GREATER_OR_EQUAL),
+        TransactionModel::TRANSDATE(DateDay(m_date_range->end_date()), LESS_OR_EQUAL),
+        TransactionModel::DELETEDTIME(wxEmptyString, EQUAL),
+        TransactionModel::STATUS(TransactionModel::STATUS_ID_VOID, NOT_EQUAL)
     )) {
         // Do not include asset or stock transfers
-        if (Model_Checking::foreignTransactionAsTransfer(transaction))
+        if (TransactionModel::foreignTransactionAsTransfer(transaction))
             continue;
 
-        Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
+        AccountModel::Data *account = AccountModel::instance().get(transaction.ACCOUNTID);
         if (m_account_a) {
             if (!account || wxNOT_FOUND == m_account_a->Index(account->ACCOUNTNAME))
                 continue;
@@ -63,14 +63,14 @@ wxString mmReportIncomeExpenses::getHTMLText()
         double convRate = 1;
         // We got this far, get the currency conversion rate for this account
         if (account) {
-            convRate = Model_CurrencyHistory::getDayRate(
-                Model_Account::currency(account)->CURRENCYID, transaction.TRANSDATE
+            convRate = CurrencyHistoryModel::getDayRate(
+                AccountModel::currency(account)->CURRENCYID, transaction.TRANSDATE
             );
         }
 
-        if (Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_DEPOSIT)
+        if (TransactionModel::type_id(transaction) == TransactionModel::TYPE_ID_DEPOSIT)
             income_expenses_pair.first += transaction.TRANSAMOUNT * convRate;
-        else if (Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_WITHDRAWAL)
+        else if (TransactionModel::type_id(transaction) == TransactionModel::TYPE_ID_WITHDRAWAL)
             income_expenses_pair.second += transaction.TRANSAMOUNT * convRate;
     }
 
@@ -149,17 +149,17 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     const wxDateTime start_date = m_date_range->start_date();
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     // TODO: init all the map values with 0.0
-    for (const auto& transaction : Model_Checking::instance().find(
-        Model_Checking::TRANSDATE(DateDay(start_date), GREATER_OR_EQUAL),
-        Model_Checking::TRANSDATE(DateDay(m_date_range->end_date()), LESS_OR_EQUAL),
-        Model_Checking::DELETEDTIME(wxEmptyString, EQUAL),
-        Model_Checking::STATUS(Model_Checking::STATUS_ID_VOID, NOT_EQUAL)
+    for (const auto& transaction : TransactionModel::instance().find(
+        TransactionModel::TRANSDATE(DateDay(start_date), GREATER_OR_EQUAL),
+        TransactionModel::TRANSDATE(DateDay(m_date_range->end_date()), LESS_OR_EQUAL),
+        TransactionModel::DELETEDTIME(wxEmptyString, EQUAL),
+        TransactionModel::STATUS(TransactionModel::STATUS_ID_VOID, NOT_EQUAL)
     )) {
         // Do not include asset or stock transfers
-        if (Model_Checking::foreignTransactionAsTransfer(transaction))
+        if (TransactionModel::foreignTransactionAsTransfer(transaction))
             continue;
 
-        Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
+        AccountModel::Data *account = AccountModel::instance().get(transaction.ACCOUNTID);
         if (m_account_a) {
             if (!account || wxNOT_FOUND == m_account_a->Index(account->ACCOUNTNAME))
                 continue;
@@ -167,18 +167,18 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         double convRate = 1;
         // We got this far, get the currency conversion rate for this account
         if (account) {
-            convRate = Model_CurrencyHistory::getDayRate(
-                Model_Account::currency(account)->CURRENCYID, transaction.TRANSDATE
+            convRate = CurrencyHistoryModel::getDayRate(
+                AccountModel::currency(account)->CURRENCYID, transaction.TRANSDATE
             );
         }
-        int year = Model_Checking::getTransDateTime(transaction).GetYear();
+        int year = TransactionModel::getTransDateTime(transaction).GetYear();
 
-        int idx = year * 100 + Model_Checking::getTransDateTime(transaction).GetMonth();
+        int idx = year * 100 + TransactionModel::getTransDateTime(transaction).GetMonth();
 
-        if (Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_DEPOSIT) {
+        if (TransactionModel::type_id(transaction) == TransactionModel::TYPE_ID_DEPOSIT) {
             incomeExpensesStats[idx].first += transaction.TRANSAMOUNT * convRate;
         }
-        else if (Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_WITHDRAWAL) {
+        else if (TransactionModel::type_id(transaction) == TransactionModel::TYPE_ID_WITHDRAWAL) {
             incomeExpensesStats[idx].second += transaction.TRANSAMOUNT * convRate;
         }
     }

@@ -18,8 +18,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #pragma once
 
-#include "model/allmodel.h"
-#include "daterange2.h"
+#include "model/_all.h"
+#include "util/DateRange2.h"
 
 class mmFilterTransactions
 {
@@ -41,8 +41,8 @@ public:
         const std::map<int64, typename MODEL::Split_Data_Set> & splits
     );
     bool mmIsRecordMatches(
-        const Model_Checking::Data &tran,
-        const std::map<int64, Model_Splittransaction::Data_Set>& split
+        const TransactionModel::Data &tran,
+        const std::map<int64, TransactionSplitModel::Data_Set>& split
     );
 
     wxString getHTML();
@@ -56,6 +56,6 @@ private:
     wxArrayInt64 m_account_a;
     wxArrayInt64 m_payee_a;
     wxArrayInt64 m_category_a;
-    Model_Checking::Full_Data_Set m_trans;
+    TransactionModel::Full_Data_Set m_trans;
 };
 

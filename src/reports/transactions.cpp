@@ -19,16 +19,19 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "transactions.h"
-#include "attachmentdialog.h"
-#include "constants.h"
-#include "htmlbuilder.h"
-#include "util.h"
-#include "model/allmodel.h"
 #include <algorithm>
 #include <numeric>
 #include <vector>
 #include <float.h>
+
+#include "constants.h"
+#include "util/util.h"
+
+#include "model/_all.h"
+#include "dialog/AttachmentDialog.h"
+
+#include "htmlbuilder.h"
+#include "transactions.h"
 
 mmReportTransactions::mmReportTransactions(wxSharedPtr<mmFilterTransactionsDialog>& transDialog)
     : ReportBase("Transaction Report")
@@ -48,33 +51,33 @@ void mmReportTransactions::displayTotals(const std::map<int64, double>& total, s
     double grand_total = 0;
     for (const auto& [curr_id, curr_total]: total)
     {
-        const auto curr = Model_Currency::instance().get(curr_id);
-        const bool isBaseCurr = (curr->CURRENCY_SYMBOL == Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL);
+        const auto curr = CurrencyModel::instance().get(curr_id);
+        const bool isBaseCurr = (curr->CURRENCY_SYMBOL == CurrencyModel::GetBaseCurrency()->CURRENCY_SYMBOL);
         grand_total += total_in_base_curr[curr_id];
         if (total.size() > 1 || !isBaseCurr)
         {
-            const wxString totalStr_curr = isBaseCurr ? "" : Model_Currency::toCurrency(curr_total, curr);
-            const wxString totalStr = Model_Currency::toCurrency(total_in_base_curr[curr_id], Model_Currency::GetBaseCurrency());
+            const wxString totalStr_curr = isBaseCurr ? "" : CurrencyModel::toCurrency(curr_total, curr);
+            const wxString totalStr = CurrencyModel::toCurrency(total_in_base_curr[curr_id], CurrencyModel::GetBaseCurrency());
             hb.addTotalRow(curr->CURRENCY_SYMBOL, noOfCols, { totalStr_curr,  totalStr });
         }
     }
-    const wxString totalStr = Model_Currency::toCurrency(grand_total, Model_Currency::GetBaseCurrency());
+    const wxString totalStr = CurrencyModel::toCurrency(grand_total, CurrencyModel::GetBaseCurrency());
     const std::vector<wxString> v{ "", totalStr };
     hb.addTotalRow(_t("Grand Total:"), noOfCols, v);
 }
 
-void mmReportTransactions::UDFCFormatHelper(Model_CustomField::TYPE_ID type, int64 ref, wxString data, double val, int scale)
+void mmReportTransactions::UDFCFormatHelper(FieldModel::TYPE_ID type, int64 ref, wxString data, double val, int scale)
 {
-    if (type == Model_CustomField::TYPE_ID_DECIMAL || type == Model_CustomField::TYPE_ID_INTEGER)
+    if (type == FieldModel::TYPE_ID_DECIMAL || type == FieldModel::TYPE_ID_INTEGER)
         hb.addMoneyCell(val, scale);
     else if (ref != -1)
     {
-        if (type == Model_CustomField::TYPE_ID_BOOLEAN && !data.empty())
+        if (type == FieldModel::TYPE_ID_BOOLEAN && !data.empty())
         {
             bool v = wxString("TRUE|true|1").Contains(data);
             hb.addTableCell(v ? "&check;" : "&cross;", false, true);
         } else
-            hb.addTableCell(type == Model_CustomField::TYPE_ID_DATE && !data.empty() ? mmGetDateTimeForDisplay(data) : data);
+            hb.addTableCell(type == FieldModel::TYPE_ID_DATE && !data.empty() ? mmGetDateTimeForDisplay(data) : data);
     }
 }
 
@@ -89,7 +92,7 @@ wxString mmReportTransactions::getHTMLText()
         accounts_label.clear();
         allAccounts = false;
         for (const auto& acc : selected_accounts) {
-            Model_Account::Data* a = Model_Account::instance().get(acc);
+            AccountModel::Data* a = AccountModel::instance().get(acc);
             accounts_label += (accounts_label.empty() ? "" : ", ") + a->ACCOUNTNAME;
         }
     }
@@ -132,7 +135,7 @@ table {
     hb.displayFooter(_t("Accounts: ") + accounts_label);
 
     m_noOfCols = (m_transDialog->mmIsHideColumnsChecked()) ? m_transDialog->mmGetHideColumnsID().GetCount() : 11;
-    const wxString& AttRefType = Model_Checking::refTypeName;
+    const wxString& AttRefType = TransactionModel::refTypeName;
     const int groupBy = m_transDialog->mmGetGroupBy();
     const int chart = m_transDialog->mmGetChart();
     wxString lastSortLabel = "";
@@ -145,16 +148,16 @@ table {
     std::map<int64, double> grand_total_in_base_curr_extrans; //Grand - Store transactions amount daily converted to base currency - excluding TRANSFERS
     std::map<wxString, double> values_chart; // Store grouped values for chart
 
-    const wxString refType = Model_Checking::refTypeName;
-    static wxArrayString udfc_fields = Model_CustomField::UDFC_FIELDS();
-    Model_CustomField::TYPE_ID udfc_type[5];
+    const wxString refType = TransactionModel::refTypeName;
+    static wxArrayString udfc_fields = FieldModel::UDFC_FIELDS();
+    FieldModel::TYPE_ID udfc_type[5];
     int udfc_scale[5];
     for (int i = 0; i < 5; i++) {
         // note: udfc_fields starts with ""
         wxString field = udfc_fields[i+1];
-        udfc_type[i] = Model_CustomField::getUDFCType(refType, field);
-        udfc_scale[i] = Model_CustomField::getDigitScale(
-            Model_CustomField::getUDFCProperties(refType, field)
+        udfc_type[i] = FieldModel::getUDFCType(refType, field);
+        udfc_scale[i] = FieldModel::getDigitScale(
+            FieldModel::getUDFCProperties(refType, field)
         );
     }
 
@@ -175,9 +178,9 @@ table {
         else if (groupBy == mmFilterTransactionsDialog::GROUPBY_DAY)
             sortLabel = mmGetDateTimeForDisplay(transaction.TRANSDATE);
         else if (groupBy == mmFilterTransactionsDialog::GROUPBY_MONTH)
-            sortLabel = Model_Checking::getTransDateTime(transaction).Format("%Y-%m");
+            sortLabel = TransactionModel::getTransDateTime(transaction).Format("%Y-%m");
         else if (groupBy == mmFilterTransactionsDialog::GROUPBY_YEAR)
-            sortLabel = Model_Checking::getTransDateTime(transaction).Format("%Y");
+            sortLabel = TransactionModel::getTransDateTime(transaction).Format("%Y");
 
         if (sortLabel != lastSortLabel)
         {
@@ -235,21 +238,21 @@ table {
                 hb.addTableHeaderCell(_t("FX Rate"), "Rate text-right");
             if (showColumnById(mmFilterTransactionsDialog::COL_NOTES))
                 hb.addTableHeaderCell(_t("Notes"), "Notes");
-            const auto& ref_type = Model_Checking::refTypeName;
+            const auto& ref_type = TransactionModel::refTypeName;
             int colNo = mmFilterTransactionsDialog::COL_UDFC01;
-            for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS())
+            for (const auto& udfc_entry : FieldModel::UDFC_FIELDS())
             {
                 if (udfc_entry.empty()) continue;
-                const auto& name = Model_CustomField::getUDFCName(ref_type, udfc_entry);
+                const auto& name = FieldModel::getUDFCName(ref_type, udfc_entry);
                 if (showColumnById(colNo++) && name != udfc_entry)
                 {
                     wxString nameCSS = name;
-                    switch (Model_CustomField::getUDFCType(ref_type, udfc_entry)) {
-                    case Model_CustomField::TYPE_ID_DECIMAL:
-                    case Model_CustomField::TYPE_ID_INTEGER:
+                    switch (FieldModel::getUDFCType(ref_type, udfc_entry)) {
+                    case FieldModel::TYPE_ID_DECIMAL:
+                    case FieldModel::TYPE_ID_INTEGER:
                         nameCSS.Append(" text-right");
                         break;
-                    case Model_CustomField::TYPE_ID_BOOLEAN:
+                    case FieldModel::TYPE_ID_BOOLEAN:
                         nameCSS.Append(" text-center");
                         break;
                     default: break;
@@ -266,21 +269,21 @@ table {
         // If a transfer between two accounts in the list of accounts being reported then we
         // should report both the transfer in and transfer out, i.e. two transactions
         int noOfTrans = 1;
-        if ((Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_TRANSFER) &&
+        if ((TransactionModel::type_id(transaction) == TransactionModel::TYPE_ID_TRANSFER) &&
             (allAccounts ||
                 (std::find(selected_accounts.begin(), selected_accounts.end(), transaction.ACCOUNTID) != selected_accounts.end()
                     && std::find(selected_accounts.begin(), selected_accounts.end(), transaction.TOACCOUNTID) != selected_accounts.end())))
             noOfTrans = 2;
 
-        bool is_time_used = Option::instance().UseTransDateTime();
+        bool is_time_used = PreferencesModel::instance().UseTransDateTime();
         const wxString mask = is_time_used ? "%Y-%m-%dT%H:%M:%S" : "%Y-%m-%d";
 
-        auto custom_fields_data = Model_CustomFieldData::instance().get_all(Model_Checking::refTypeName);
+        auto custom_fields_data = FieldValueModel::instance().get_all(TransactionModel::refTypeName);
         while (noOfTrans--)
         {
             hb.startTableRow();
             {
-                /*  if ((Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_TRANSFER)
+                /*  if ((TransactionModel::type_id(transaction) == TransactionModel::TYPE_ID_TRANSFER)
                     && m_transDialog->getTypeCheckBox() && */
                 if (showColumnById(mmFilterTransactionsDialog::COL_ID))
                 {
@@ -315,26 +318,26 @@ table {
                     hb.addTableCell(transaction.TAGNAMES);
                 if (showColumnById(mmFilterTransactionsDialog::COL_TYPE))
                 {
-                    if (Model_Checking::foreignTransactionAsTransfer(transaction))
+                    if (TransactionModel::foreignTransactionAsTransfer(transaction))
                         hb.addTableCell("< " + wxGetTranslation(transaction.TRANSCODE));
                     else
                         hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
                 }
 
-                Model_Account::Data* acc;
-                acc = Model_Account::instance().get(transaction.ACCOUNTID);
+                AccountModel::Data* acc;
+                acc = AccountModel::instance().get(transaction.ACCOUNTID);
 
                 if (acc)
                 {
-                    const Model_Currency::Data* curr = Model_Account::currency(acc);
-                    double flow = Model_Checking::account_flow(transaction, acc->ACCOUNTID);
+                    const CurrencyModel::Data* curr = AccountModel::currency(acc);
+                    double flow = TransactionModel::account_flow(transaction, acc->ACCOUNTID);
                     if (noOfTrans || (!allAccounts && (std::find(selected_accounts.begin(), selected_accounts.end(), transaction.ACCOUNTID) == selected_accounts.end())))
                         flow = -flow;
-                    const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
+                    const double convRate = CurrencyHistoryModel::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
                     if (showColumnById(mmFilterTransactionsDialog::COL_AMOUNT))
                     {
-                        if (Model_Checking::status_id(transaction.STATUS) == Model_Checking::STATUS_ID_VOID) {
-                            double void_flow = Model_Checking::type_id(transaction.TRANSCODE) == Model_Checking::TYPE_ID_DEPOSIT ? transaction.TRANSAMOUNT : -transaction.TRANSAMOUNT;
+                        if (TransactionModel::status_id(transaction.STATUS) == TransactionModel::STATUS_ID_VOID) {
+                            double void_flow = TransactionModel::type_id(transaction.TRANSCODE) == TransactionModel::TYPE_ID_DEPOSIT ? transaction.TRANSAMOUNT : -transaction.TRANSAMOUNT;
                             hb.addCurrencyCell(void_flow, curr, -1, true);
                         }
                         else if (transaction.DELETEDTIME.IsEmpty())
@@ -344,7 +347,7 @@ table {
                     grand_total[curr->CURRENCYID] += flow;
                     total_in_base_curr[curr->CURRENCYID] += flow * convRate;
                     grand_total_in_base_curr[curr->CURRENCYID] += flow * convRate;
-                    if (Model_Checking::type_id(transaction) != Model_Checking::TYPE_ID_TRANSFER)
+                    if (TransactionModel::type_id(transaction) != TransactionModel::TYPE_ID_TRANSFER)
                     {
                         grand_total_extrans[curr->CURRENCYID] += flow;
                         grand_total_in_base_curr_extrans[curr->CURRENCYID] += flow * convRate;
@@ -364,7 +367,7 @@ table {
                 // Exchange Rate
                 if (showColumnById(mmFilterTransactionsDialog::COL_RATE))
                 {
-                    if ((Model_Checking::type_id(transaction) == Model_Checking::TYPE_ID_TRANSFER)
+                    if ((TransactionModel::type_id(transaction) == TransactionModel::TYPE_ID_TRANSFER)
                         && (transaction.TRANSAMOUNT != transaction.TOTRANSAMOUNT))
                         hb.addMoneyCell(transaction.TOTRANSAMOUNT / transaction.TRANSAMOUNT);
                     else
@@ -373,7 +376,7 @@ table {
 
                 // Attachments
                 wxString AttachmentsLink = "";
-                if (Model_Attachment::instance().NrAttachments(AttRefType, transaction.TRANSID))
+                if (AttachmentModel::instance().NrAttachments(AttRefType, transaction.TRANSID))
                 {
                     AttachmentsLink = wxString::Format(R"(<a href = "attachment:%s|%lld" target="_blank">%s</a>)",
                         AttRefType, transaction.TRANSID, mmAttachmentManage::GetAttachmentNoteSign());
@@ -388,7 +391,7 @@ table {
                 int64 udfc_id[5];
                 for (int i = 0; i < 5; i++) {
                     wxString field = udfc_fields[i+1];
-                    udfc_id[i] = Model_CustomField::getUDFCID(refType, field);
+                    udfc_id[i] = FieldModel::getUDFCID(refType, field);
                     transaction.UDFC_value[i] = -DBL_MAX;
                 }
 
@@ -529,11 +532,11 @@ table {
                         [](double previous, const auto & p) { return previous + p.second; });
                     statsAvg = values_chart.size() > 0 ? statsAvg / values_chart.size() : 0;
                     hb.addTotalRow(_t("Minimum") + " >> " + statsMin->first, 2,
-                        std::vector<wxString>{ Model_Currency::toCurrency(statsMin->second, Model_Currency::GetBaseCurrency()) });
+                        std::vector<wxString>{ CurrencyModel::toCurrency(statsMin->second, CurrencyModel::GetBaseCurrency()) });
                     hb.addTotalRow(_t("Maximum") + " >> " + statsMax->first, 2,
-                        std::vector<wxString>{ Model_Currency::toCurrency(statsMax->second, Model_Currency::GetBaseCurrency()) });
+                        std::vector<wxString>{ CurrencyModel::toCurrency(statsMax->second, CurrencyModel::GetBaseCurrency()) });
                     hb.addTotalRow(_t("Average"), 2,
-                        std::vector<wxString>{ Model_Currency::toCurrency(statsAvg, Model_Currency::GetBaseCurrency()) });
+                        std::vector<wxString>{ CurrencyModel::toCurrency(statsAvg, CurrencyModel::GetBaseCurrency()) });
                 }
                 hb.endTbody();
             }
@@ -559,18 +562,18 @@ table {
 void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
 {
     trans_.clear();
-    const auto splits = Model_Splittransaction::instance().get_all();
-    const auto tags = Model_Taglink::instance().get_all(Model_Checking::refTypeName);
+    const auto splits = TransactionSplitModel::instance().get_all();
+    const auto tags = TagLinkModel::instance().get_all(TransactionModel::refTypeName);
     bool combine_splits = dlg.get()->mmIsCombineSplitsChecked();
-    const wxString splitRefType = Model_Splittransaction::refTypeName;
-    for (const auto& tran : Model_Checking::instance().all())
+    const wxString splitRefType = TransactionSplitModel::refTypeName;
+    for (const auto& tran : TransactionModel::instance().all())
     {
-        Model_Checking::Full_Data full_tran(tran, splits, tags);
+        TransactionModel::Full_Data full_tran(tran, splits, tags);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
         if (full_tran.has_split())
         {
-            Model_Checking::Full_Data single_tran = full_tran;
+            TransactionModel::Full_Data single_tran = full_tran;
             single_tran.TRANSAMOUNT = 0;
             int splitIndex = 1;
             bool match = false;
@@ -579,22 +582,22 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
             {
                 full_tran.displayID = (wxString::Format("%lld", tran.TRANSID) + "." + wxString::Format("%i", splitIndex++));
                 full_tran.CATEGID = split.CATEGID;
-                full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
+                full_tran.CATEGNAME = CategoryModel::full_name(split.CATEGID);
                 full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
                 full_tran.NOTES = tran.NOTES;
                 full_tran.TAGNAMES = tranTagnames;
-                Model_Checking::Data splitWithTxnNotes = full_tran;
-                Model_Checking::Data splitWithSplitNotes = full_tran;
+                TransactionModel::Data splitWithTxnNotes = full_tran;
+                TransactionModel::Data splitWithSplitNotes = full_tran;
                 splitWithSplitNotes.NOTES = split.NOTES;
-                if (dlg.get()->mmIsSplitRecordMatches<Model_Splittransaction>(split)
-                    && (dlg.get()->mmIsRecordMatches<Model_Checking>(splitWithSplitNotes, true)
-                        || dlg.get()->mmIsRecordMatches<Model_Checking>(splitWithTxnNotes, true)))
+                if (dlg.get()->mmIsSplitRecordMatches<TransactionSplitModel>(split)
+                    && (dlg.get()->mmIsRecordMatches<TransactionModel>(splitWithSplitNotes, true)
+                        || dlg.get()->mmIsRecordMatches<TransactionModel>(splitWithTxnNotes, true)))
                 {
                     match = true;
                     full_tran.NOTES.Append((tran.NOTES.IsEmpty() ? "" : " ") + split.NOTES);
 
                     wxString tagnames;
-                    for (const auto& [tag_name, _] : Model_Taglink::instance().get(splitRefType, split.SPLITTRANSID))
+                    for (const auto& [tag_name, _] : TagLinkModel::instance().get(splitRefType, split.SPLITTRANSID))
                         tagnames.Append(tag_name + " ");
                     if (!tagnames.IsEmpty())
                         full_tran.TAGNAMES.Append((full_tran.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
@@ -605,7 +608,7 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
             }
             if (match && combine_splits) trans_.push_back(single_tran);
         }
-        else if (dlg.get()->mmIsRecordMatches<Model_Checking>(tran)) trans_.push_back(full_tran);
+        else if (dlg.get()->mmIsRecordMatches<TransactionModel>(tran)) trans_.push_back(full_tran);
     }
 
     std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
@@ -637,7 +640,7 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
 
 bool mmReportTransactions::showColumnById(int num)
 {
-    if (num == mmFilterTransactionsDialog::COL_TIME && !Option::instance().UseTransDateTime())
+    if (num == mmFilterTransactionsDialog::COL_TIME && !PreferencesModel::instance().UseTransDateTime())
         return false;
 
     if (m_transDialog->mmIsHideColumnsChecked())

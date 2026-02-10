@@ -19,7 +19,7 @@
 #pragma once
 
 #include "reportbase.h"
-#include "util.h"
+#include "util/util.h"
 #include <map>
 #include <vector>
 
@@ -51,7 +51,7 @@ public:
     virtual wxString getHTMLText();
 
 private:
-    static void updateData(Data& data, Model_Checking::TYPE_ID type_id, double amount);
+    static void updateData(Data& data, TransactionModel::TYPE_ID type_id, double amount);
 
 private:
     void loadData();

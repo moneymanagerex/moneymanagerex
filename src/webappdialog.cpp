@@ -16,15 +16,17 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "webappdialog.h"
-#include "images_list.h"
-#include "constants.h"
-#include "paths.h"
-#include "transdialog.h"
-#include "util.h"
-#include "webapp.h"
-#include "mmSimpleDialogs.h"
 #include <wx/timer.h>
+
+#include "constants.h"
+#include "util/util.h"
+#include "paths.h"
+
+#include "dialog/TransactionDialog.h"
+#include "webappdialog.h"
+#include "mmSimpleDialogs.h"
+#include "images_list.h"
+#include "webapp.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmWebAppDialog, wxDialog);
 
@@ -227,8 +229,8 @@ void mmWebAppDialog::fillControls()
         if (WebTran.SubCategory != wxEmptyString) Category += ":" + WebTran.SubCategory;
         data.emplace_back(Category); //WEBTRAN_CATEGORY
 
-        Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-        wxString Amount = Model_Currency::toStringNoFormatting(WebTran.Amount, currency, Model_Currency::precision(currency));
+        CurrencyModel::Data *currency = CurrencyModel::GetBaseCurrency();
+        wxString Amount = CurrencyModel::toStringNoFormatting(WebTran.Amount, currency, CurrencyModel::precision(currency));
         data.emplace_back(Amount); //WEBTRAN_AMOUNT
 
         data.emplace_back(WebTran.Notes); //WEBTRAN_NOTES
@@ -301,7 +303,7 @@ bool mmWebAppDialog::ImportWebTr(int64 WebTrID, bool open)
                 if (open)
                 {
                     //fillControls(); //TODO: Delete transaction from view
-                    mmTransDialog EditTransactionDialog(this, 1, {InsertedTransactionID, false});
+                    TransactionDialog EditTransactionDialog(this, 1, {InsertedTransactionID, false});
                     EditTransactionDialog.ShowModal();
                 }
                 refreshRequested_ = true;

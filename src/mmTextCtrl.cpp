@@ -30,47 +30,47 @@ wxEND_EVENT_TABLE()
 void mmTextCtrl::OnTextEntered(wxCommandEvent& )
 {
     Calculate( (m_alt_precision != -1) ? m_alt_precision 
-                            : Model_Currency::precision(m_currency));
+                            : CurrencyModel::precision(m_currency));
 }
 
 void mmTextCtrl::OnKillFocus(wxFocusEvent& event)
 {
     if (!ignore_focus_)
         Calculate( (m_alt_precision != -1) ? m_alt_precision 
-                            : Model_Currency::precision(m_currency));
+                            : CurrencyModel::precision(m_currency));
     event.Skip();
 }
 
 void mmTextCtrl::SetValue(double value)
 {
-    this->SetValue(Model_Currency::toString(value, m_currency));
+    this->SetValue(CurrencyModel::toString(value, m_currency));
 }
 
 void mmTextCtrl::SetValue(double value, int precision)
 {
-    this->SetValue(Model_Currency::toString(value, m_currency, precision));
+    this->SetValue(CurrencyModel::toString(value, m_currency, precision));
 }
 
 void mmTextCtrl::SetValueNoEvent(double value, int precision)
 {
-    this->ChangeValue(Model_Currency::toString(value, m_currency, precision));
+    this->ChangeValue(CurrencyModel::toString(value, m_currency, precision));
 }
 
-void mmTextCtrl::SetValue(double value, const Model_Account::Data* account, int precision)
+void mmTextCtrl::SetValue(double value, const AccountModel::Data* account, int precision)
 {
-    if (account) m_currency = Model_Currency::instance().get(account->CURRENCYID);
+    if (account) m_currency = CurrencyModel::instance().get(account->CURRENCYID);
     this->SetValue(value, precision > -1 ? precision : log10(m_currency->SCALE.GetValue()));
 }
 
-void mmTextCtrl::SetValue(double value, const Model_Currency::Data* currency, int precision)
+void mmTextCtrl::SetValue(double value, const CurrencyModel::Data* currency, int precision)
 {
-    m_currency = (currency ? currency : Model_Currency::GetBaseCurrency());
+    m_currency = (currency ? currency : CurrencyModel::GetBaseCurrency());
     this->SetValue(value, precision > -1 ? precision : log10(m_currency->SCALE.GetValue()));
 }
 
 bool mmTextCtrl::Calculate(int alt_precision)
 {
-    const wxString str = Model_Currency::fromString2CLocale(this->GetValue(), m_currency);
+    const wxString str = CurrencyModel::fromString2CLocale(this->GetValue(), m_currency);
     if (str.empty()) return false;
 
     LuaGlue state;
@@ -92,7 +92,7 @@ bool mmTextCtrl::Calculate(int alt_precision)
 
     double res = state.invokeFunction<double>("calc");
     int precision = alt_precision >= 0 ? alt_precision : log10(m_currency->SCALE.GetValue());
-    const wxString res_str = Model_Currency::toString(res, m_currency, precision);
+    const wxString res_str = CurrencyModel::toString(res, m_currency, precision);
     this->ChangeValue(res_str);
     this->SetInsertionPoint(res_str.Len());
 
@@ -102,7 +102,7 @@ bool mmTextCtrl::Calculate(int alt_precision)
 bool mmTextCtrl::GetDouble(double &amount) const
 {
     wxString amountStr = this->GetValue().Trim();
-    bool r = Model_Currency::fromString(amountStr, amount, m_currency);
+    bool r = CurrencyModel::fromString(amountStr, amount, m_currency);
     return r;
 }
 
@@ -126,7 +126,7 @@ wxChar mmTextCtrl::GetDecimalPoint()
 {
     wxString dp;
 
-    auto localeStr = Model_Infotable::instance().getString("LOCALE", "");
+    auto localeStr = InfotableModel::instance().getString("LOCALE", "");
 
     // If there is no defined locale, use the currency decimal
     if (localeStr.empty())
@@ -137,13 +137,13 @@ wxChar mmTextCtrl::GetDecimalPoint()
         }
         else
         {
-            dp = Model_Currency::GetBaseCurrency()->DECIMAL_POINT;
+            dp = CurrencyModel::GetBaseCurrency()->DECIMAL_POINT;
         }
     }
     else 
     {
         // Locale is set, so use the locale decimal
-        dp = Model_Currency::toString(1.0);
+        dp = CurrencyModel::toString(1.0);
         wxRegEx pattern2(R"([^.,])");
         pattern2.ReplaceAll(&dp, wxEmptyString);
     }

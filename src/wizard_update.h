@@ -17,11 +17,12 @@
  ********************************************************/
 #pragma once
 
-#include <rapidjson/document.h>
-#include "option.h"
 #include <wx/webview.h>
 #include <wx/wizard.h>
 #include <wx/frame.h>
+#include <rapidjson/document.h>
+
+#include "model/PreferencesModel.h"
 
 using namespace rapidjson;
 

@@ -23,7 +23,7 @@
 #include "summary.h"
 #include "constants.h"
 #include "htmlbuilder.h"
-#include "model/allmodel.h"
+#include "model/_all.h"
 #include <algorithm>
 
 mmHistoryItem::mmHistoryItem()
@@ -44,14 +44,14 @@ mmReportSummaryByDate::mmReportSummaryByDate(mmReportSummaryByDate::PERIOD_ID pe
     );
 }
 
-std::map<wxDate, double> mmReportSummaryByDate::loadCheckingDateBalance(const Model_Account::Data& account)
+std::map<wxDate, double> mmReportSummaryByDate::loadCheckingDateBalance(const AccountModel::Data& account)
 {
     std::map<wxDate, double> date_balance;
     double balance = account.INITIALBAL;
 
-    for (const auto& tran : Model_Account::transactionsByDateTimeId(account)) {
-        wxDate date = Model_Checking::getTransDateTime(tran);
-        balance += Model_Checking::account_flow(tran, account.ACCOUNTID);
+    for (const auto& tran : AccountModel::transactionsByDateTimeId(account)) {
+        wxDate date = TransactionModel::getTransDateTime(tran);
+        balance += TransactionModel::account_flow(tran, account.ACCOUNTID);
         date_balance[date] = balance;
     }
     return date_balance;
@@ -62,7 +62,7 @@ static bool sortFunction(const std::pair<wxDate, double> x, std::pair<wxDate, do
     return x.first >= y.first;
 }
 
-double mmReportSummaryByDate::getCheckingBalance(const Model_Account::Data* account, const wxDate& date)
+double mmReportSummaryByDate::getCheckingBalance(const AccountModel::Data* account, const wxDate& date)
 {
     std::map<wxDate, double> date_balance = m_account_date_balance[account->ACCOUNTID];
 
@@ -72,13 +72,13 @@ double mmReportSummaryByDate::getCheckingBalance(const Model_Account::Data* acco
     return account->INITIALBAL;
 }
 
-std::pair<double, double> mmReportSummaryByDate::getBalance(const Model_Account::Data* account, const wxDate& date)
+std::pair<double, double> mmReportSummaryByDate::getBalance(const AccountModel::Data* account, const wxDate& date)
 {
     std::pair<double /*cash bal*/, double /*market bal*/> bal = { 0.0, 0.0 };
     if (date.FormatISODate() >= account->INITIALDATE) {
         bal.first = getCheckingBalance(account, date);
-        if (Model_Account::type_id(account) == NavigatorTypes::TYPE_ID_INVESTMENT) {
-            bal.second = Model_Stock::instance().getDailyBalanceAt(account, date);
+        if (AccountModel::type_id(account) == NavigatorTypes::TYPE_ID_INVESTMENT) {
+            bal.second = StockModel::instance().getDailyBalanceAt(account, date);
         }
     }
     return bal;
@@ -92,7 +92,7 @@ double mmReportSummaryByDate::getCurrencyDateRate(int64 currencyid, const wxDate
     if (i != m_currencyDateRateCache.end())
         return (*i).second;
 
-    double value = Model_CurrencyHistory::getDayRate(currencyid, date);
+    double value = CurrencyHistoryModel::getDayRate(currencyid, date);
     m_currencyDateRateCache[key] = value;
 
     return value;
@@ -129,26 +129,26 @@ wxString mmReportSummaryByDate::getHTMLText()
 
     dateStart = wxDate::Today();
     // Calculate the report date
-    for (const auto& account: Model_Account::instance().all()) {
+    for (const auto& account: AccountModel::instance().all()) {
         const wxDate accountOpeningDate = parseDateTime(account.INITIALDATE);
         if (accountOpeningDate.IsEarlierThan(dateStart))
             dateStart = accountOpeningDate;
         m_account_date_balance[account.ACCOUNTID] = loadCheckingDateBalance(account);
-        if (Model_Account::type_id(account) != NavigatorTypes::TYPE_ID_INVESTMENT)
+        if (AccountModel::type_id(account) != NavigatorTypes::TYPE_ID_INVESTMENT)
             continue;
-        Model_Stock::Data_Set stocks = Model_Stock::instance().find(
-            Model_Stock::HELDAT(account.id())
+        StockModel::Data_Set stocks = StockModel::instance().find(
+            StockModel::HELDAT(account.id())
         );
         for (const auto& stock : stocks) {
             mmHistoryItem histItem;
             histItem.acctId = account.id();
             histItem.stockId = stock.STOCKID;
             histItem.purchasePrice = stock.PURCHASEPRICE;
-            histItem.purchaseDate = Model_Stock::PURCHASEDATE(stock);
+            histItem.purchaseDate = StockModel::PURCHASEDATE(stock);
             histItem.purchaseDateStr = stock.PURCHASEDATE;
             histItem.numShares = stock.NUMSHARES;
-            histItem.stockHist = Model_StockHistory::instance().find(
-                Model_StockHistory::SYMBOL(stock.SYMBOL)
+            histItem.stockHist = StockHistoryModel::instance().find(
+                StockHistoryModel::SYMBOL(stock.SYMBOL)
             );
             std::stable_sort(histItem.stockHist.begin(), histItem.stockHist.end(), SorterByDATE());
             std::reverse(histItem.stockHist.begin(), histItem.stockHist.end());
@@ -178,7 +178,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     }
     std::reverse(arDates.begin(), arDates.end());
 
-    wxString m_temp_view = Model_Setting::instance().getViewAccounts();
+    wxString m_temp_view = SettingModel::instance().getViewAccounts();
 
     for (const auto & end_date : arDates) {
         double total = 0.0;
@@ -193,10 +193,10 @@ wxString mmReportSummaryByDate::getHTMLText()
         int idx;
         std::vector<double> balancePerDay(acc_size +1);
         std::fill(balancePerDay.begin(), balancePerDay.end(), 0.0);
-        for (const auto& account : Model_Account::instance().all()) {
-            if ((m_temp_view == VIEW_ACCOUNTS_OPEN_STR && Model_Account::status_id(account) != Model_Account::STATUS_ID_OPEN) ||
-                (m_temp_view == VIEW_ACCOUNTS_CLOSED_STR && Model_Account::status_id(account) == Model_Account::STATUS_ID_OPEN) ||
-                (m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR && !Model_Account::FAVORITEACCT(account))) {
+        for (const auto& account : AccountModel::instance().all()) {
+            if ((m_temp_view == VIEW_ACCOUNTS_OPEN_STR && AccountModel::status_id(account) != AccountModel::STATUS_ID_OPEN) ||
+                (m_temp_view == VIEW_ACCOUNTS_CLOSED_STR && AccountModel::status_id(account) == AccountModel::STATUS_ID_OPEN) ||
+                (m_temp_view == VIEW_ACCOUNTS_FAVORITES_STR && !AccountModel::FAVORITEACCT(account))) {
                 continue;
             }
 
@@ -207,7 +207,7 @@ wxString mmReportSummaryByDate::getHTMLText()
             if (idx > -1) {
                 std::pair<double, double> dailybal = getBalance(&account, end_date);
                 balancePerDay[idx] += dailybal.first * getCurrencyDateRate(account.CURRENCYID, end_date);
-                if (Model_Account::type_id(account) == NavigatorTypes::TYPE_ID_INVESTMENT) {
+                if (AccountModel::type_id(account) == NavigatorTypes::TYPE_ID_INVESTMENT) {
                     balancePerDay[idx] += dailybal.second * getCurrencyDateRate(account.CURRENCYID, end_date);
                 }
             }
@@ -215,8 +215,8 @@ wxString mmReportSummaryByDate::getHTMLText()
 
         idx = NavigatorTypes::instance().getAccountTypeIdx(NavigatorTypes::TYPE_ID_ASSET);
         if (idx > -1) {
-            for (const auto& asset : Model_Asset::instance().all()) {
-                balancePerDay[idx] += Model_Asset::instance().valueAtDate(&asset, end_date).second * getCurrencyDateRate(asset.CURRENCYID, end_date);
+            for (const auto& asset : AssetModel::instance().all()) {
+                balancePerDay[idx] += AssetModel::instance().valueAtDate(&asset, end_date).second * getCurrencyDateRate(asset.CURRENCYID, end_date);
             }
         }
 

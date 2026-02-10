@@ -18,16 +18,19 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "htmlbuilder.h"
-#include "images_list.h"
-#include "util.h"
-#include "option.h"
-#include "constants.h"
-#include "model/Model_Currency.h"
-#include "model/Model_Infotable.h"
 #include <iomanip>
 #include <ios>
 #include <float.h>
+
+#include "constants.h"
+#include "util/util.h"
+
+#include "model/CurrencyModel.h"
+#include "model/InfotableModel.h"
+#include "model/PreferencesModel.h"
+
+#include "htmlbuilder.h"
+#include "images_list.h"
 
 namespace tags
 {
@@ -168,7 +171,7 @@ void mmHTMLBuilder::init(bool simple, const wxString& extra_style)
     {
         html_ = wxString::Format(tags::HTML
             , mmex::getProgramName()
-            , wxString::Format("%d", Option::instance().getHtmlScale())
+            , wxString::Format("%d", PreferencesModel::instance().getHtmlScale())
             , extra_style);
     }
     formatHTML(html_);
@@ -177,8 +180,8 @@ void mmHTMLBuilder::init(bool simple, const wxString& extra_style)
 void mmHTMLBuilder::showUserName()
 {
     //Show user name if provided
-    if (Option::instance().getUserName() != "")
-        addHeader(2, Option::instance().getUserName());
+    if (PreferencesModel::instance().getUserName() != "")
+        addHeader(2, PreferencesModel::instance().getUserName());
 }
 
 void mmHTMLBuilder::addReportHeader(const wxString& name, int startDay, bool futureIgnored)
@@ -270,7 +273,7 @@ void mmHTMLBuilder::addHeader(int level, const wxString& header)
 void mmHTMLBuilder::addReportCurrency()
 {
     wxString base_currency_symbol;
-    Model_Currency::GetBaseCurrencySymbol(base_currency_symbol);
+    CurrencyModel::GetBaseCurrencySymbol(base_currency_symbol);
 
     addHeader(5, wxString::Format("%s: %s", _t("Currency"), base_currency_symbol));
 }
@@ -351,17 +354,17 @@ void mmHTMLBuilder::addCurrencyTotalRow(const wxString& caption, int cols, const
 {
     std::vector<wxString> data_str;
     for (const auto& value : data)
-        data_str.push_back(Model_Currency::toCurrency(value));
+        data_str.push_back(CurrencyModel::toCurrency(value));
     this->addTotalRow(caption, cols, data_str);
 }
 
 void mmHTMLBuilder::addMoneyTotalRow(const wxString& caption, int cols, const std::vector<double>& data)
 {
     std::vector<wxString> data_str;
-    int precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
+    int precision = CurrencyModel::precision(CurrencyModel::GetBaseCurrency());
 
     for (const auto& value : data)
-        data_str.push_back(Model_Currency::toString(value, Model_Currency::GetBaseCurrency(), precision));
+        data_str.push_back(CurrencyModel::toString(value, CurrencyModel::GetBaseCurrency(), precision));
     this->addTotalRow(caption, cols, data_str);
 }
 
@@ -376,11 +379,11 @@ void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const wxString& cs
     html_ += tags::TABLE_HEADER_END;
 }
 
-void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* currency, int precision, bool isVoid)
+void mmHTMLBuilder::addCurrencyCell(double amount, const CurrencyModel::Data* currency, int precision, bool isVoid)
 {
     if (precision == -1)
-        precision = Model_Currency::precision(currency);
-    wxString s = Model_Currency::toCurrency(amount, currency, precision);
+        precision = CurrencyModel::precision(currency);
+    wxString s = CurrencyModel::toCurrency(amount, currency, precision);
     if (isVoid)
         s = wxString::Format("<s>%s</s>", s);
     const wxString f = wxString::Format(" class='money' sorttable_customkey = '%f' nowrap", amount);
@@ -392,8 +395,8 @@ void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* c
 void mmHTMLBuilder::addMoneyCell(double amount, int precision)
 {
     if (precision == -1)
-        precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
-    const wxString s = Model_Currency::toString(amount, Model_Currency::GetBaseCurrency(), precision);
+        precision = CurrencyModel::precision(CurrencyModel::GetBaseCurrency());
+    const wxString s = CurrencyModel::toString(amount, CurrencyModel::GetBaseCurrency(), precision);
     wxString f = wxString::Format(" class='money' sorttable_customkey = '%f' nowrap", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
     html_ += (amount == -DBL_MAX) ? "" : s;     // If -DBL_MAX then just display empty string
@@ -603,7 +606,7 @@ void mmHTMLBuilder::endTableCell()
 
 void mmHTMLBuilder::addChart(const GraphData& gd)
 {
-    int precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
+    int precision = CurrencyModel::precision(CurrencyModel::GetBaseCurrency());
     int k = pow10(precision);
     wxString htmlChart, htmlPieData;
     wxString divid = wxString::Format("apex%i", rand()); // Generate unique identifier for each graph
@@ -660,7 +663,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
                     , chartWidth);
     htmlChart += wxString::Format(", title: { text: '%s'}", gd.title);
 
-    wxString locale = Model_Infotable::instance().getString("LOCALE", "");
+    wxString locale = InfotableModel::instance().getString("LOCALE", "");
 
     if (locale.IsEmpty())
     {

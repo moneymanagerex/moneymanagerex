@@ -24,7 +24,7 @@
 #define MM_EX_REPORTBUDGET_CATEGORYSUMMARY_H_
 
 #include "budget.h"
-#include "util.h"
+#include "util/util.h"
 
 class mmReportBudgetCategorySummary : public mmReportBudget
 {

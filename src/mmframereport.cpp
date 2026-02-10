@@ -25,8 +25,8 @@
 #include "mmframe.h"
 #include "reports/allreport.h"
 #include "mmTreeItemData.h"
-#include "model/Model_Budgetyear.h"
-#include "model/Model_Report.h"
+#include "model/BudgetPeriodModel.h"
+#include "model/ReportModel.h"
 
 const char *group_report_template = R"(
 <!DOCTYPE html>
@@ -81,7 +81,7 @@ public:
     mmGeneralGroupReport(const wxString& groupname) : ReportBase(_n("General Group Report"))
         , m_group_name(groupname)
     {
-        m_sub_reports = Model_Report::instance().find(Model_Report::GROUPNAME(groupname));
+        m_sub_reports = ReportModel::instance().find(ReportModel::GROUPNAME(groupname));
     }
 
     wxString getHTMLText()
@@ -112,12 +112,12 @@ public:
     }
 private:
     wxString m_group_name;
-    Model_Report::Data_Set m_sub_reports;
+    ReportModel::Data_Set m_sub_reports;
 };
 
 void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 {
-    wxArrayString hidden_reports = Model_Infotable::instance().getArrayString("HIDDEN_REPORTS");
+    wxArrayString hidden_reports = InfotableModel::instance().getArrayString("HIDDEN_REPORTS");
 
     if (hidden_reports.Index("Cash Flow") == wxNOT_FOUND)
     {
@@ -215,7 +215,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 
     //////////////////////////////////////////////////////////////////
 
-    size_t i = Model_Budgetyear::instance().all().size();
+    size_t i = BudgetPeriodModel::instance().all().size();
     if (i > 0)
     {
         if (hidden_reports.Index("Budgets") == wxNOT_FOUND)
@@ -233,7 +233,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 
     ///////////////////////////////////////////////////////////////////
 
-    Model_Account::Data_Set investments_account = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(NavigatorTypes::instance().getInvestmentAccountStr(), EQUAL));
+    AccountModel::Data_Set investments_account = AccountModel::instance().find(AccountModel::ACCOUNTTYPE(NavigatorTypes::instance().getInvestmentAccountStr(), EQUAL));
     if (!investments_account.empty())
     {
         if (hidden_reports.Index("Stocks Report") == wxNOT_FOUND)
@@ -251,7 +251,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 void mmGUIFrame::DoUpdateGRMNavigation(wxTreeItemId& parent_item)
 {
     /*GRM Reports*/
-    auto records = Model_Report::instance().find(Model_Report::ACTIVE(1, EQUAL));
+    auto records = ReportModel::instance().find(ReportModel::ACTIVE(1, EQUAL));
     //Sort by group name and report name
     std::sort(records.begin(), records.end(), SorterByREPORTNAME());
     std::stable_sort(records.begin(), records.end(), SorterByGROUPNAME());
@@ -268,7 +268,7 @@ void mmGUIFrame::DoUpdateGRMNavigation(wxTreeItemId& parent_item)
             m_nav_tree_ctrl->SetItemData(group, new mmTreeItemData(new mmGeneralGroupReport(record.GROUPNAME), record.GROUPNAME));
             group_name = record.GROUPNAME;
         }
-        Model_Report::Data* r = Model_Report::instance().get(record.REPORTID);
+        ReportModel::Data* r = ReportModel::instance().get(record.REPORTID);
         wxTreeItemId item = m_nav_tree_ctrl->AppendItem(no_group ? parent_item : group, wxGetTranslation(record.REPORTNAME), img::CUSTOMSQL_PNG, img::CUSTOMSQL_PNG);
         m_nav_tree_ctrl->SetItemData(item, new mmTreeItemData(new mmGeneralReport(r), r->REPORTNAME));
     }
@@ -278,7 +278,7 @@ void mmGUIFrame::DoUpdateGRMNavigation(wxTreeItemId& parent_item)
 void mmGUIFrame::DoUpdateFilterNavigation(wxTreeItemId& parent_item)
 {
 
-    wxArrayString filter_settings = Model_Infotable::instance().getArrayString("TRANSACTIONS_FILTER", true);
+    wxArrayString filter_settings = InfotableModel::instance().getArrayString("TRANSACTIONS_FILTER", true);
     for (const auto& data : filter_settings)
     {
         Document j_doc;
@@ -310,7 +310,7 @@ void mmGUIFrame::mmDoHideReportsDialog()
         "Stocks Report",
     };
 
-    wxArrayString stored_items = Model_Infotable::instance().getArrayString("HIDDEN_REPORTS");
+    wxArrayString stored_items = InfotableModel::instance().getArrayString("HIDDEN_REPORTS");
     wxArrayInt hidden_reports;
     wxArrayString reports_name;
     wxArrayString reports_name_i10n;
@@ -328,12 +328,12 @@ void mmGUIFrame::mmDoHideReportsDialog()
 
     if (reports.ShowModal() == wxID_OK)
     {
-        Model_Infotable::instance().setString("HIDDEN_REPORTS", "[]");
+        InfotableModel::instance().setString("HIDDEN_REPORTS", "[]");
         const auto sel = reports.GetSelections();
         for (const auto& i : sel)
         {
             const auto& report_name = reports_name[i];
-            Model_Infotable::instance().prependArrayItem("HIDDEN_REPORTS", report_name, -1);
+            InfotableModel::instance().prependArrayItem("HIDDEN_REPORTS", report_name, -1);
         }
     }
     DoRecreateNavTreeControl();

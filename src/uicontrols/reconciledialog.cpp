@@ -16,19 +16,20 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "reconciledialog.h"
 #include "constants.h"
-#include "dateday.h"
-#include "images_list.h"
-#include "option.h"
-#include "reports/mmDateRange.h"
-#include "model/Model_Checking.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Account.h"
-#include "model/Model_Infotable.h"
-#include "validators.h"
-#include "transdialog.h"
+#include "util/DateDay.h"
 
+#include "model/AccountModel.h"
+#include "model/InfotableModel.h"
+#include "model/PayeeModel.h"
+#include "model/PreferencesModel.h"
+#include "model/TransactionModel.h"
+
+#include "dialog/TransactionDialog.h"
+#include "reconciledialog.h"
+#include "reports/mmDateRange.h"
+#include "images_list.h"
+#include "validators.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmReconcileDialog, wxDialog);
 
@@ -39,14 +40,14 @@ mmReconcileDialog::mmReconcileDialog()
 mmReconcileDialog::~mmReconcileDialog()
 {
     wxSize size = GetSize();
-    Model_Infotable::instance().setSize("RECONCILE_DIALOG_SIZE", size);
-    Model_Infotable::instance().setBool("RECONCILE_DIALOG_SHOW_STATE_COL", m_settings[SETTING_SHOW_STATE_COL]);
-    Model_Infotable::instance().setBool("RECONCILE_DIALOG_SHOW_NUMBER_COL", m_settings[SETTING_SHOW_NUMBER_COL]);
-    Model_Infotable::instance().setBool("RECONCILE_DIALOG_INCLUDE_VOID", m_settings[SETTING_INCLUDE_VOID]);
-    Model_Infotable::instance().setBool("RECONCILE_DIALOG_INCLUDE_DUPLICATED", m_settings[SETTING_INCLUDE_DUPLICATED]);
+    InfotableModel::instance().setSize("RECONCILE_DIALOG_SIZE", size);
+    InfotableModel::instance().setBool("RECONCILE_DIALOG_SHOW_STATE_COL", m_settings[SETTING_SHOW_STATE_COL]);
+    InfotableModel::instance().setBool("RECONCILE_DIALOG_SHOW_NUMBER_COL", m_settings[SETTING_SHOW_NUMBER_COL]);
+    InfotableModel::instance().setBool("RECONCILE_DIALOG_INCLUDE_VOID", m_settings[SETTING_INCLUDE_VOID]);
+    InfotableModel::instance().setBool("RECONCILE_DIALOG_INCLUDE_DUPLICATED", m_settings[SETTING_INCLUDE_DUPLICATED]);
 }
 
-mmReconcileDialog::mmReconcileDialog(wxWindow* parent, Model_Account::Data* account, mmCheckingPanel* cp)
+mmReconcileDialog::mmReconcileDialog(wxWindow* parent, AccountModel::Data* account, JournalPanel* cp)
 {
     m_account = account;
     m_checkingPanel = cp;
@@ -58,8 +59,8 @@ mmReconcileDialog::mmReconcileDialog(wxWindow* parent, Model_Account::Data* acco
     Create(parent, -1, _t("Reconcile account") + " '" + m_account->ACCOUNTNAME + "'", wxDefaultPosition, wxDefaultSize, wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX, "");
     CreateControls();
 
-    m_settings[SETTING_INCLUDE_VOID] = Model_Infotable::instance().getBool("RECONCILE_DIALOG_INCLUDE_VOID", false);
-    m_settings[SETTING_INCLUDE_DUPLICATED] =  Model_Infotable::instance().getBool("RECONCILE_DIALOG_INCLUDE_DUPLICATED", true);
+    m_settings[SETTING_INCLUDE_VOID] = InfotableModel::instance().getBool("RECONCILE_DIALOG_INCLUDE_VOID", false);
+    m_settings[SETTING_INCLUDE_DUPLICATED] =  InfotableModel::instance().getBool("RECONCILE_DIALOG_INCLUDE_DUPLICATED", true);
 
     FillControls(true);
     UpdateAll();
@@ -67,7 +68,7 @@ mmReconcileDialog::mmReconcileDialog(wxWindow* parent, Model_Account::Data* acco
     SetIcon(mmex::getProgramIcon());
     applyColumnSettings();
     Fit();
-    SetSize(Model_Infotable::instance().getSize("RECONCILE_DIALOG_SIZE"));
+    SetSize(InfotableModel::instance().getSize("RECONCILE_DIALOG_SIZE"));
 }
 
 void mmReconcileDialog::CreateControls()
@@ -259,7 +260,7 @@ void mmReconcileDialog::FillControls(bool init)
 {
     if (init) {
         double endval;
-        wxString endvalue = Model_Infotable::instance().getString(wxString::Format("RECONCILE_ACCOUNT_%lld_END_BALANCE", m_account->ACCOUNTID), "0.00");
+        wxString endvalue = InfotableModel::instance().getString(wxString::Format("RECONCILE_ACCOUNT_%lld_END_BALANCE", m_account->ACCOUNTID), "0.00");
         if (!endvalue.ToDouble(&endval)) {
             endval = 0;
         }
@@ -269,17 +270,17 @@ void mmReconcileDialog::FillControls(bool init)
     // get not reconciled transactions
     wxSharedPtr<mmDateRange> date_range;
     date_range = new mmCurrentMonthToDate;
-    Model_Checking::Data_Set all_trans = Model_Checking::instance().find(
-        Model_Checking::ACCOUNTID(m_account->ACCOUNTID),
-        Model_Checking::STATUS(Model_Checking::STATUS_ID_RECONCILED, NOT_EQUAL),
-        Model_Checking::DELETEDTIME(wxEmptyString, EQUAL),
-        Model_Checking::TRANSDATE(DateDay::today(), LESS_OR_EQUAL)
+    TransactionModel::Data_Set all_trans = TransactionModel::instance().find(
+        TransactionModel::ACCOUNTID(m_account->ACCOUNTID),
+        TransactionModel::STATUS(TransactionModel::STATUS_ID_RECONCILED, NOT_EQUAL),
+        TransactionModel::DELETEDTIME(wxEmptyString, EQUAL),
+        TransactionModel::TRANSDATE(DateDay::today(), LESS_OR_EQUAL)
     );
-    Model_Checking::Data_Set all_trans2 = Model_Checking::instance().find(  // get transfers
-        Model_Checking::TOACCOUNTID(m_account->ACCOUNTID),
-        Model_Checking::STATUS(Model_Checking::STATUS_ID_RECONCILED, NOT_EQUAL),
-        Model_Checking::DELETEDTIME(wxEmptyString, EQUAL),
-        Model_Checking::TRANSDATE(DateDay::today(), LESS_OR_EQUAL)
+    TransactionModel::Data_Set all_trans2 = TransactionModel::instance().find(  // get transfers
+        TransactionModel::TOACCOUNTID(m_account->ACCOUNTID),
+        TransactionModel::STATUS(TransactionModel::STATUS_ID_RECONCILED, NOT_EQUAL),
+        TransactionModel::DELETEDTIME(wxEmptyString, EQUAL),
+        TransactionModel::TRANSDATE(DateDay::today(), LESS_OR_EQUAL)
     );
 
     all_trans.insert(all_trans.end(), all_trans2.begin(), all_trans2.end());
@@ -570,20 +571,20 @@ void mmReconcileDialog::showHideColumn(bool show, int col, int cs) {
 
 void mmReconcileDialog::newTransaction()
 {
-    mmTransDialog dlg(this, m_account->ACCOUNTID, {0, false}, false, Model_Checking::TYPE_ID_WITHDRAWAL);
+    TransactionDialog dlg(this, m_account->ACCOUNTID, {0, false}, false, TransactionModel::TYPE_ID_WITHDRAWAL);
     int i = wxID_CANCEL;
     do {
         i = dlg.ShowModal();
         if (i != wxID_CANCEL) {
             m_checkingPanel->refreshList();
             int64 transid = dlg.GetTransactionID();
-            const Model_Checking::Data* trx = Model_Checking::instance().get(transid);
+            const TransactionModel::Data* trx = TransactionModel::instance().get(transid);
             addTransaction2List(trx);
         }
     } while (i == wxID_NEW);
 }
 
-void mmReconcileDialog::addTransaction2List(const Model_Checking::Data* trx)
+void mmReconcileDialog::addTransaction2List(const TransactionModel::Data* trx)
 {
     wxListCtrl* list = (trx->TRANSCODE == "Deposit" || (trx->TRANSCODE == "Transfer" && trx->TOACCOUNTID == m_account->ACCOUNTID)) ? m_listRight : m_listLeft;
     long idx = getListIndexByDate(trx, list);
@@ -614,10 +615,10 @@ void mmReconcileDialog::OnEdit(wxCommandEvent& WXUNUSED(event))
 void mmReconcileDialog::editTransaction(wxListCtrl* list, long item)
 {
     int64 transid = m_itemDataMap[list->GetItemData(item)];
-    mmTransDialog dlg(this, transid, {transid, false});
+    TransactionDialog dlg(this, transid, {transid, false});
     if (dlg.ShowModal() == wxID_OK) {
         m_checkingPanel->refreshList();
-        const Model_Checking::Data* trx = Model_Checking::instance().get(transid);
+        const TransactionModel::Data* trx = TransactionModel::instance().get(transid);
         setListItemData(trx, list, item);
         long idx = getListIndexByDate(trx, list);
         if (idx != item) {
@@ -626,13 +627,13 @@ void mmReconcileDialog::editTransaction(wxListCtrl* list, long item)
     }
 }
 
-long mmReconcileDialog::getListIndexByDate(const Model_Checking::Data* trx, wxListCtrl* list)
+long mmReconcileDialog::getListIndexByDate(const TransactionModel::Data* trx, wxListCtrl* list)
 {
     int64 id;
     long idx = -1;
     for (long i = 0; i < list->GetItemCount(); ++i) {
         id = m_itemDataMap[list->GetItemData(i)];
-        Model_Checking::Data* trl = Model_Checking::instance().get(id);
+        TransactionModel::Data* trl = TransactionModel::instance().get(id);
         if (trx->TRANSDATE.Left(10) < trl->TRANSDATE.Left(10)) {
             idx = i;
             break;
@@ -666,10 +667,10 @@ void mmReconcileDialog::moveItemData(wxListCtrl* list, int row1, int row2)
     list->SetItemState(item, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
 }
 
-void mmReconcileDialog::setListItemData(const Model_Checking::Data* trx, wxListCtrl* list, long item)
+void mmReconcileDialog::setListItemData(const TransactionModel::Data* trx, wxListCtrl* list, long item)
 {
     wxString prefix = trx->TRANSCODE == "Transfer" ? (trx->TOACCOUNTID == m_account->ACCOUNTID ? "< " : "> ") : "";
-    wxString payeeName = (trx->TRANSCODE == "Transfer") ? Model_Account::get_account_name(trx->TOACCOUNTID == m_account->ACCOUNTID ? trx->ACCOUNTID : trx->TOACCOUNTID): Model_Payee::get_payee_name(trx->PAYEEID);
+    wxString payeeName = (trx->TRANSCODE == "Transfer") ? AccountModel::get_account_name(trx->TOACCOUNTID == m_account->ACCOUNTID ? trx->ACCOUNTID : trx->TOACCOUNTID): PayeeModel::get_payee_name(trx->PAYEEID);
     list->SetItem(item, 1, mmGetDateTimeForDisplay(trx->TRANSDATE));
     list->SetItem(item, 2, trx->TRANSACTIONNUMBER);
     list->SetItem(item, 3, prefix + payeeName);
@@ -758,12 +759,12 @@ void mmReconcileDialog::applyColumnSettings()
     m_colwidth[0] = m_listLeft->GetColumnWidth(2);
     m_colwidth[1] = m_listLeft->GetColumnWidth(5);
 
-    m_settings[SETTING_SHOW_STATE_COL] = Model_Infotable::instance().getBool("RECONCILE_DIALOG_SHOW_STATE_COL", true);
+    m_settings[SETTING_SHOW_STATE_COL] = InfotableModel::instance().getBool("RECONCILE_DIALOG_SHOW_STATE_COL", true);
     if (!m_settings[SETTING_SHOW_STATE_COL]) {
         showHideColumn(false, 5, 1);
     }
 
-    m_settings[SETTING_SHOW_NUMBER_COL] = Model_Infotable::instance().getBool("RECONCILE_DIALOG_SHOW_NUMBER_COL", true);
+    m_settings[SETTING_SHOW_NUMBER_COL] = InfotableModel::instance().getBool("RECONCILE_DIALOG_SHOW_NUMBER_COL", true);
     if (!m_settings[SETTING_SHOW_NUMBER_COL]) {
         showHideColumn(false, 2, 0);
     }
@@ -773,7 +774,7 @@ void mmReconcileDialog::applyColumnSettings()
 void mmReconcileDialog::OnClose(wxCommandEvent& event)
 {
     auto saveItem = [](int64 id, bool state, bool final) {
-        Model_Checking::Data* trx = Model_Checking::instance().get(id);
+        TransactionModel::Data* trx = TransactionModel::instance().get(id);
         if (state) {
             trx->STATUS = final ? "R" : "F";
         }
@@ -782,11 +783,11 @@ void mmReconcileDialog::OnClose(wxCommandEvent& event)
                 trx->STATUS = "";
             }
         }
-        Model_Checking::instance().save(trx);
+        TransactionModel::instance().save(trx);
     };
 
     if (event.GetId() != wxID_CANCEL) {
-        Model_Infotable::instance().setString(wxString::Format("RECONCILE_ACCOUNT_%lld_END_BALANCE", m_account->ACCOUNTID), m_endingCtrl->GetLabelText());
+        InfotableModel::instance().setString(wxString::Format("RECONCILE_ACCOUNT_%lld_END_BALANCE", m_account->ACCOUNTID), m_endingCtrl->GetLabelText());
 
         // Save state:
         for (long i = 0; i < m_listLeft->GetItemCount(); ++i) {

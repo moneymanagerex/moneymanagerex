@@ -20,7 +20,7 @@
 #define MM_EX_BUDGETENTRYDIALOG_H_
 
 #include "mmTextCtrl.h"
-#include "model/Model_Budget.h"
+#include "model/BudgetModel.h"
 
 class mmBudgetEntryDialog : public wxDialog
 {
@@ -30,7 +30,7 @@ class mmBudgetEntryDialog : public wxDialog
 public:
     mmBudgetEntryDialog();
     mmBudgetEntryDialog(wxWindow* parent
-        , Model_Budget::Data* entry
+        , BudgetModel::Data* entry
         , const wxString& categoryEstimate, const wxString& CategoryActual);
 
     bool Create(wxWindow* parent, wxWindowID id
@@ -47,7 +47,7 @@ public:
     void fillControls();
 
 private:
-    Model_Budget::Data* budgetEntry_ = nullptr;
+    BudgetModel::Data* budgetEntry_ = nullptr;
     wxChoice* m_choiceItem = nullptr;
     mmTextCtrl* m_textAmount = nullptr;
     wxChoice* m_choiceType = nullptr;

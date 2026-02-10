@@ -22,7 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "reportbase.h"
 #include <vector>
-#include "util.h"
+#include "util/util.h"
 
 class mmReportCashFlow : public ReportBase
 {
@@ -34,10 +34,10 @@ protected:
     wxString getHTMLText_DayOrMonth(bool monthly = false);
     void getTransactions();
     double m_balance;
-    std::vector<Model_Checking::Data> m_forecastVector;
+    std::vector<TransactionModel::Data> m_forecastVector;
 
 private:
-    double trueAmount(const Model_Checking::Data& trx);
+    double trueAmount(const TransactionModel::Data& trx);
     wxArrayInt64 m_account_id;
     const wxDateTime m_today;
 

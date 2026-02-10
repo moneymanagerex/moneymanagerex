@@ -21,7 +21,7 @@
 
 #include "reportbase.h"
 #include "filtertransdialog.h"
-#include "model/Model_Checking.h"
+#include "model/TransactionModel.h"
 
 class mmBankTransaction;
 
@@ -35,11 +35,11 @@ public:
 
 private:
     void Run(wxSharedPtr<mmFilterTransactionsDialog>& transDialog);
-    Model_Checking::Full_Data_Set trans_;
+    TransactionModel::Full_Data_Set trans_;
     wxSharedPtr<mmFilterTransactionsDialog> m_transDialog;
     bool showColumnById(int num);
     void displayTotals(const std::map<int64, double>& total, std::map<int64, double>& total_in_base_curr, int noOfCols);
-    void UDFCFormatHelper(Model_CustomField::TYPE_ID type, int64 ref, wxString data, double val, int scale);
+    void UDFCFormatHelper(FieldModel::TYPE_ID type, int64 ref, wxString data, double val, int scale);
 
     mmHTMLBuilder hb;
     int m_noOfCols;

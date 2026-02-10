@@ -22,9 +22,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "htmlbuilder.h"
 #include "mmex.h"
 #include "mmframe.h"
-#include "model/Model_Budgetyear.h"
-#include "model/Model_Budget.h"
-#include "model/Model_Category.h"
+#include "model/BudgetPeriodModel.h"
+#include "model/BudgetModel.h"
+#include "model/CategoryModel.h"
 #include "mmDateRange.h"
 #include <string>
 
@@ -42,7 +42,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
 
     int startDay;
     wxDate::Month startMonth;
-    if (Option::instance().getBudgetFinancialYears())
+    if (PreferencesModel::instance().getBudgetFinancialYears())
     {
         GetFinancialYearValues(startDay, startMonth);
     } else
@@ -53,7 +53,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
 
     long startYear;
 
-    wxString value = Model_Budgetyear::instance().Get(m_date_selection);
+    wxString value = BudgetPeriodModel::instance().Get(m_date_selection);
     wxString budget_year;
     wxString budget_month;
 
@@ -75,32 +75,32 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     yearEnd.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
 
     // Readjust dates by the Budget Offset Option
-    Option::instance().addBudgetDateOffset(yearBegin);
-    Option::instance().addBudgetDateOffset(yearEnd);
+    PreferencesModel::instance().addBudgetDateOffset(yearBegin);
+    PreferencesModel::instance().addBudgetDateOffset(yearEnd);
     mmSpecifiedRange date_range(yearBegin, yearEnd);
 
     bool evaluateTransfer = false;
-    if (Option::instance().getBudgetIncludeTransfers())
+    if (PreferencesModel::instance().getBudgetIncludeTransfers())
     {
         evaluateTransfer = true;
     }
     //Get statistics
-    std::map<int64, Model_Budget::PERIOD_ID> budgetPeriod;
+    std::map<int64, BudgetModel::PERIOD_ID> budgetPeriod;
     std::map<int64, double> budgetAmt;
     std::map<int64, wxString> budgetNotes;
-    Model_Budget::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt, budgetNotes);
+    BudgetModel::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt, budgetNotes);
 
     std::map<int64, std::map<int, double> > categoryStats;
-    Model_Category::instance().getCategoryStats(categoryStats
+    CategoryModel::instance().getCategoryStats(categoryStats
         , m_account_a
         , &date_range
-        , Option::instance().getIgnoreFutureTransactions()
+        , PreferencesModel::instance().getIgnoreFutureTransactions()
         , true
         , (evaluateTransfer ? &budgetAmt : nullptr)
-        , Option::instance().getBudgetFinancialYears());
+        , PreferencesModel::instance().getBudgetFinancialYears());
 
     std::map<int64, std::map<int, double> > budgetStats;
-    Model_Budget::instance().getBudgetStats(budgetStats, &date_range, true);
+    BudgetModel::instance().getBudgetStats(budgetStats, &date_range, true);
 
     //Totals
     std::map<int64, double> actualTotal;
@@ -113,7 +113,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
 
-    hb.addReportHeader(headingStr, 1, Option::instance().getIgnoreFutureTransactions());
+    hb.addReportHeader(headingStr, 1, PreferencesModel::instance().getIgnoreFutureTransactions());
     hb.displayDateHeading(yearBegin, yearEnd);
     // Prime the filter
     m_filter.clear();
@@ -159,19 +159,19 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             {
                 std::map<int64, std::map<int, double>> catTotalsEstimated, catTotalsActual;
                 std::map<int64, wxString> formattedNames;
-                std::map<int64, std::vector<Model_Category::Data>> categ_children;
+                std::map<int64, std::vector<CategoryModel::Data>> categ_children;
 
-                bool budgetDeductMonthly = Option::instance().getBudgetDeductMonthly();
+                bool budgetDeductMonthly = PreferencesModel::instance().getBudgetDeductMonthly();
                 // pull categories from DB and store
-                for (Model_Category::Data category : Model_Category::instance().all(Model_Category::COL_CATEGNAME, false)) {
+                for (CategoryModel::Data category : CategoryModel::instance().all(CategoryModel::COL_CATEGNAME, false)) {
                     categ_children[category.PARENTID].push_back(category);
                 }
 
-                std::vector<Model_Category::Data> totals_stack;
-                std::vector<Model_Category::Data> categ_stack = categ_children[-1];
+                std::vector<CategoryModel::Data> totals_stack;
+                std::vector<CategoryModel::Data> categ_stack = categ_children[-1];
                 while (!categ_stack.empty())
                 {
-                    Model_Category::Data category = categ_stack.back();
+                    CategoryModel::Data category = categ_stack.back();
                     categ_stack.pop_back();
                     int64 catID = category.CATEGID;
                     double estimate = 0;
@@ -202,10 +202,10 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         actualTotal[12] += actual;
                         estimateTotal[12] += estimate;;
 
-                        wxString estimateVal = Model_Currency::toString(estimate, Model_Currency::GetBaseCurrency());
+                        wxString estimateVal = CurrencyModel::toString(estimate, CurrencyModel::GetBaseCurrency());
                         //make the href string parameters
                         std::stringstream ss;
-                        ss << "budget:" << estimateVal << "|" << Model_Currency::toString(actual, Model_Currency::GetBaseCurrency()) << "|" << catID << "|"
+                        ss << "budget:" << estimateVal << "|" << CurrencyModel::toString(actual, CurrencyModel::GetBaseCurrency()) << "|" << catID << "|"
                            << budget_year << "|" << month + 1;
                         std::string editBudgetEntry = ss.str();
 
@@ -218,7 +218,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         hb.endSpan();
                         hb.addLineBreak();
 
-                        hb.startSpan(Model_Currency::toString(actual, Model_Currency::GetBaseCurrency()), wxString::Format(" style='text-align:right;%s' nowrap"
+                        hb.startSpan(CurrencyModel::toString(actual, CurrencyModel::GetBaseCurrency()), wxString::Format(" style='text-align:right;%s' nowrap"
                             , (actual - estimate < 0) ? "color:red;" : ""));
                         hb.endSpan();
 
@@ -242,10 +242,10 @@ wxString mmReportBudgetingPerformance::getHTMLText()
 
                     // year end
                     hb.startTableCell(" style='text-align:right;' nowrap");
-                    hb.addText(Model_Currency::toString(catTotalsEstimated[catID][12], Model_Currency::GetBaseCurrency()));
+                    hb.addText(CurrencyModel::toString(catTotalsEstimated[catID][12], CurrencyModel::GetBaseCurrency()));
                     hb.addLineBreak();
 
-                    hb.addText(Model_Currency::toString(catTotalsActual[catID][12], Model_Currency::GetBaseCurrency()));
+                    hb.addText(CurrencyModel::toString(catTotalsActual[catID][12], CurrencyModel::GetBaseCurrency()));
                     hb.endTableCell();
 
                     if (catTotalsEstimated[catID][12] != 0)
@@ -273,9 +273,9 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                                 for (int m = 0; m < 12; m++)
                                 {
                                     hb.startTableCell(" style='text-align:right;' nowrap");
-                                    hb.addText(Model_Currency::toString(catTotalsEstimated[id][m], Model_Currency::GetBaseCurrency()));
+                                    hb.addText(CurrencyModel::toString(catTotalsEstimated[id][m], CurrencyModel::GetBaseCurrency()));
                                     hb.addLineBreak();
-                                    hb.startSpan(Model_Currency::toString(catTotalsActual[id][m], Model_Currency::GetBaseCurrency()), wxString::Format(" style='text-align:right;%s' nowrap"
+                                    hb.startSpan(CurrencyModel::toString(catTotalsActual[id][m], CurrencyModel::GetBaseCurrency()), wxString::Format(" style='text-align:right;%s' nowrap"
                                         , (catTotalsActual[id][m] - catTotalsEstimated[id][m] < 0) ? "color:red;" : ""));
                                     hb.endSpan();
 
@@ -283,10 +283,10 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                                 }
                                 // year total
                                 hb.startTableCell(" style='text-align:right;' nowrap");
-                                hb.addText(Model_Currency::toString(catTotalsEstimated[id][12], Model_Currency::GetBaseCurrency()));
+                                hb.addText(CurrencyModel::toString(catTotalsEstimated[id][12], CurrencyModel::GetBaseCurrency()));
                                 hb.addLineBreak();
 
-                                hb.addText(Model_Currency::toString(catTotalsActual[id][12], Model_Currency::GetBaseCurrency()));
+                                hb.addText(CurrencyModel::toString(catTotalsActual[id][12], CurrencyModel::GetBaseCurrency()));
                                 hb.endTableCell();
 
                                 if (catTotalsEstimated[id][12] != 0)
@@ -318,9 +318,9 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         for (int m = 0; m < 12; m++)
                         {
                             hb.startTableCell(" style='text-align:right;' nowrap");
-                            hb.addText(Model_Currency::toString(catTotalsEstimated[id][m], Model_Currency::GetBaseCurrency()));
+                            hb.addText(CurrencyModel::toString(catTotalsEstimated[id][m], CurrencyModel::GetBaseCurrency()));
                             hb.addLineBreak();
-                            hb.startSpan(Model_Currency::toString(catTotalsActual[id][m], Model_Currency::GetBaseCurrency()), wxString::Format(" style='text-align:right;%s' nowrap"
+                            hb.startSpan(CurrencyModel::toString(catTotalsActual[id][m], CurrencyModel::GetBaseCurrency()), wxString::Format(" style='text-align:right;%s' nowrap"
                                 , (catTotalsActual[id][m] - catTotalsEstimated[id][m] < 0) ? "color:red;" : ""));
                             hb.endSpan();
 
@@ -328,10 +328,10 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         }
                         // year total
                         hb.startTableCell(" style='text-align:right;' nowrap");
-                        hb.addText(Model_Currency::toString(catTotalsEstimated[id][12], Model_Currency::GetBaseCurrency()));
+                        hb.addText(CurrencyModel::toString(catTotalsEstimated[id][12], CurrencyModel::GetBaseCurrency()));
                         hb.addLineBreak();
 
-                        hb.addText(Model_Currency::toString(catTotalsActual[id][12], Model_Currency::GetBaseCurrency()));
+                        hb.addText(CurrencyModel::toString(catTotalsActual[id][12], CurrencyModel::GetBaseCurrency()));
                         hb.endTableCell();
                         if (catTotalsEstimated[id][12] != 0)
                         {
@@ -361,19 +361,19 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         hb.startTableCell(" style='text-align:right;' nowrap");
 
                         const double estimate = estimateTotal[m];
-                        wxString estimateVal = Model_Currency::toString(estimate, Model_Currency::GetBaseCurrency());
+                        wxString estimateVal = CurrencyModel::toString(estimate, CurrencyModel::GetBaseCurrency());
                         hb.addText(estimateVal);
                         hb.addLineBreak();
 
                         const double actual = actualTotal[m];
-                        const auto actualVal = Model_Currency::toString(actual, Model_Currency::GetBaseCurrency());
+                        const auto actualVal = CurrencyModel::toString(actual, CurrencyModel::GetBaseCurrency());
                         hb.startSpan(actualVal, wxString::Format(" style='text-align:right;%s' nowrap"
                             , (actual - estimate < 0) ? "color:red;" : ""));
                         hb.endSpan();
                         hb.addLineBreak();
 
                         const double difference = actual - estimate;
-                        const auto differenceVal = Model_Currency::toString(difference, Model_Currency::GetBaseCurrency());
+                        const auto differenceVal = CurrencyModel::toString(difference, CurrencyModel::GetBaseCurrency());
                         hb.startSpan(differenceVal, wxString::Format(" style='text-align:right;%s' nowrap"
                             , (difference < 0) ? "color:red;" : ""));
                         hb.endSpan();
@@ -393,17 +393,17 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         actualGrandTotal += actual;
                     }
                     // Grand total end
-                    const auto estimateVal = Model_Currency::toString(estimateGrandTotal, Model_Currency::GetBaseCurrency());
+                    const auto estimateVal = CurrencyModel::toString(estimateGrandTotal, CurrencyModel::GetBaseCurrency());
                     hb.startTableCell(" style='text-align:right;' nowrap");
                     hb.addText(estimateVal);
                     hb.addLineBreak();
 
-                    const auto actualVal = Model_Currency::toString(actualGrandTotal, Model_Currency::GetBaseCurrency());
+                    const auto actualVal = CurrencyModel::toString(actualGrandTotal, CurrencyModel::GetBaseCurrency());
                     hb.addText(actualVal);
                     hb.addLineBreak();
 
                     const double differenceGrandTotal = actualGrandTotal - estimateGrandTotal;
-                    const auto differenceVal = Model_Currency::toString(differenceGrandTotal, Model_Currency::GetBaseCurrency());
+                    const auto differenceVal = CurrencyModel::toString(differenceGrandTotal, CurrencyModel::GetBaseCurrency());
                     hb.startSpan(differenceVal, wxString::Format(" style='text-align:right;%s' nowrap"
                         , (differenceGrandTotal < 0) ? "color:red;" : ""));
                     hb.endSpan();

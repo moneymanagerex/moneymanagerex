@@ -24,9 +24,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "mmex.h"
 #include "mmTextCtrl.h"
-#include "util.h"
+#include "util/util.h"
 
-#include "model/Model_Account.h"
+#include "model/AccountModel.h"
 
 #include <wx/choicdlg.h>
 #include <wx/spinbutt.h>
@@ -266,7 +266,7 @@ public:
     mmSingleChoiceDialog(wxWindow *parent, const wxString& message,
         const wxString& caption, const wxArrayString& choices);
     mmSingleChoiceDialog(wxWindow* parent, const wxString& message,
-        const wxString& caption, const Model_Account::Data_Set& accounts);
+        const wxString& caption, const AccountModel::Data_Set& accounts);
     int ShowModal()
     {
         return wxSingleChoiceDialog::ShowModal();

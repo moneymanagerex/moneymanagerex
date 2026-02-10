@@ -24,8 +24,8 @@
 #include "mmex.h"
 #include "mmSimpleDialogs.h"
 #include "mmDateRange.h"
-#include "model/Model_Account.h"
-#include "util.h"
+#include "model/AccountModel.h"
+#include "util/util.h"
 
 ReportBase::ReportBase(const wxString& title)
     : m_title(title)
@@ -90,10 +90,10 @@ void ReportBase::setAccounts(int selection, const wxString& type_name)
     case 1: // Select Accounts
     {
         wxArrayString accounts;
-        auto a = Model_Account::instance().all();
+        auto a = AccountModel::instance().all();
         std::stable_sort(a.begin(), a.end(), SorterByACCOUNTNAME());
         for (const auto& item : a) {
-            if (m_only_active && item.STATUS != Model_Account::STATUS_NAME_OPEN)
+            if (m_only_active && item.STATUS != AccountModel::STATUS_NAME_OPEN)
                 continue;
             accounts.Add(item.ACCOUNTNAME);
         }
@@ -126,9 +126,9 @@ void ReportBase::setAccounts(int selection, const wxString& type_name)
     default: // All of Account type
     {
         wxArrayString* accountSelections = new wxArrayString();
-        auto accounts = Model_Account::instance().find(
-            Model_Account::ACCOUNTTYPE(type_name),
-            Model_Account::STATUS(Model_Account::STATUS_ID_CLOSED, NOT_EQUAL)
+        auto accounts = AccountModel::instance().find(
+            AccountModel::ACCOUNTTYPE(type_name),
+            AccountModel::STATUS(AccountModel::STATUS_ID_CLOSED, NOT_EQUAL)
         );
         for (const auto &i : accounts) {
             accountSelections->Add(i.ACCOUNTNAME);
@@ -208,7 +208,7 @@ void ReportBase::saveReportSettings()
     if (isActive) {
         const wxString& rj_key = wxString::Format("REPORT_%d", report_id);
         const wxString& rj_value = wxString::FromUTF8(json_buffer.GetString());
-        Model_Infotable::instance().setString(rj_key, rj_value);
+        InfotableModel::instance().setString(rj_key, rj_value);
         m_settings = rj_value;
     }
 }
@@ -263,7 +263,7 @@ void ReportBase::restoreReportSettings()
 
 //----------------------------------------------------------------------
 
-mmGeneralReport::mmGeneralReport(const Model_Report::Data* report) :
+mmGeneralReport::mmGeneralReport(const ReportModel::Data* report) :
     ReportBase(report->REPORTNAME),
     m_report(report)
 {
@@ -276,7 +276,7 @@ mmGeneralReport::mmGeneralReport(const Model_Report::Data* report) :
 wxString mmGeneralReport::getHTMLText()
 {
     wxString out;
-    int error = Model_Report::instance().get_html(this->m_report, out);
+    int error = ReportModel::instance().get_html(this->m_report, out);
     if (error != 0) {
         const char* error_template = R"(
 <!DOCTYPE html>
@@ -339,10 +339,10 @@ mm_html_template::mm_html_template(const wxString& arg_template): html_template(
 void mm_html_template::load_context()
 {
     (*this)(L"TODAY") = wxDate::Now().FormatISODate();
-    for (const auto &r: Model_Infotable::instance().all())
+    for (const auto &r: InfotableModel::instance().all())
         (*this)(r.INFONAME.ToStdWstring()) = r.INFOVALUE;
-    (*this)(L"INFOTABLE") = Model_Infotable::to_loop_t();
+    (*this)(L"INFOTABLE") = InfotableModel::to_loop_t();
 
-    const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
+    const CurrencyModel::Data* currency = CurrencyModel::GetBaseCurrency();
     if (currency) currency->to_template(*this);
 }

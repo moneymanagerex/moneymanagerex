@@ -18,13 +18,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #pragma once
-#include "util.h"
+#include "util/util.h"
 #include <wx/textctrl.h>
 #include <wx/combobox.h>
 #include <wx/string.h>
 #include "mmSimpleDialogs.h"
-#include "model/Model_Account.h"
-#include "model/Model_Payee.h"
+#include "model/AccountModel.h"
+#include "model/PayeeModel.h"
 #include <wx/richtooltip.h>
 #include "webapp.h"
 
@@ -46,9 +46,9 @@ public:
         , m_payee(payee)
     {
         if (m_payee)
-            this->AutoComplete(Model_Payee::instance().all_payee_names());
+            this->AutoComplete(PayeeModel::instance().all_payee_names());
         else
-            this->AutoComplete(Model_Account::instance().all_checking_account_names());
+            this->AutoComplete(AccountModel::instance().all_checking_account_names());
 
     }
     wxString GetValue() const
@@ -59,12 +59,12 @@ public:
     void setSelection(int &id)
     {
         if (m_payee) {
-            for (const auto &payee : Model_Payee::instance().all(Model_Payee::COL_PAYEENAME))
+            for (const auto &payee : PayeeModel::instance().all(PayeeModel::COL_PAYEENAME))
                 if (payee.PAYEEID == id) this->ChangeValue(payee.PAYEENAME);
         }
         else
         {
-            for (const auto &acc : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
+            for (const auto &acc : AccountModel::instance().all(AccountModel::COL_ACCOUNTNAME))
                 if (acc.ACCOUNTID == id) this->ChangeValue(acc.ACCOUNTNAME);
         }
     }
@@ -73,20 +73,20 @@ public:
     {
         int64 id = -1;
         if (m_payee) {
-            Model_Payee::Data * p = Model_Payee::instance().get(this->GetValue());
+            PayeeModel::Data * p = PayeeModel::instance().get(this->GetValue());
             if (p) {
                 id = p->PAYEEID;
             }
             else {
-                p = Model_Payee::instance().create();
+                p = PayeeModel::instance().create();
                 p->PAYEENAME = this->GetValue();
                 p->ACTIVE = 1;
-                Model_Payee::instance().save(p);
+                PayeeModel::instance().save(p);
                 mmWebApp::MMEX_WebApp_UpdatePayee();
             }
         }
         else {
-            Model_Account::Data* a = Model_Account::instance().get(this->GetValue());
+            AccountModel::Data* a = AccountModel::instance().get(this->GetValue());
             if (a) id = a->ACCOUNTID;
             else {
                 //TODO:

@@ -16,18 +16,21 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "constants.h"
-#include "images_list.h"
-#include "option.h"
-#include "paths.h"
-#include "themes.h"
-#include "util.h"
-#include "model/Model_Setting.h"
-#include "reports/htmlbuilder.h"
 #include <memory>
 #include <wx/mstream.h>
 #include <wx/fs_mem.h>
 #include <wx/zipstrm.h>
+
+#include "constants.h"
+#include "util/util.h"
+#include "paths.h"
+
+#include "model/PreferencesModel.h"
+#include "model/SettingModel.h"
+
+#include "reports/htmlbuilder.h"
+#include "images_list.h"
+#include "themes.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmThemesDialog, wxDialog);
 
@@ -65,7 +68,7 @@ mmThemesDialog::ThemeEntry mmThemesDialog::getThemeEntry(const wxString& name)
 
 void mmThemesDialog::addThemes(const wxString& themeDir, bool isSystem)
 {
-    wxString chosenTheme = Model_Setting::instance().getTheme();
+    wxString chosenTheme = SettingModel::instance().getTheme();
     wxDir directory(themeDir);
     wxLogDebug("Scanning Theme Dir [%s]", themeDir);
     if (!directory.IsOpened()) return;
@@ -128,7 +131,7 @@ void mmThemesDialog::addThemes(const wxString& themeDir, bool isSystem)
 
 mmThemesDialog::~mmThemesDialog()
 {
-    Model_Infotable::instance().setSize("THEMES_DIALOG_SIZE", GetSize());
+    InfotableModel::instance().setSize("THEMES_DIALOG_SIZE", GetSize());
 }
 
 mmThemesDialog::mmThemesDialog(wxWindow *parent, const wxString &name)
@@ -212,7 +215,7 @@ void mmThemesDialog::ReadThemes()
     m_themesListBox_->Clear();
     for (const auto &theme : m_themes)
         m_themesListBox_->Append(theme.name);
-    m_themesListBox_->SetStringSelection(Model_Setting::instance().getTheme());
+    m_themesListBox_->SetStringSelection(SettingModel::instance().getTheme());
     m_themesListBox_->Refresh();
     m_themesListBox_->Update();
 }
@@ -349,7 +352,7 @@ void mmThemesDialog::OnUse(wxCommandEvent&)
         wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        Model_Setting::instance().setTheme(thisTheme.name);
+        SettingModel::instance().setTheme(thisTheme.name);
         for (auto it = begin(m_themes); it != end(m_themes); ++it)
             it->isChosen = (it->name == thisTheme.name);
     }

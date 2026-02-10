@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "myusage.h"
 #include "mmDateRange.h"
 #include "htmlbuilder.h"
-#include "model/Model_Usage.h"
+#include "model/UsageModel.h"
 
 mmReportMyUsage::mmReportMyUsage()
 : ReportBase(_n("MMEX Usage Frequency"))
@@ -35,19 +35,19 @@ mmReportMyUsage::~mmReportMyUsage()
 wxString mmReportMyUsage::getHTMLText()
 {
     // Grab the data
-    Model_Usage::Data_Set all_usage;
+    UsageModel::Data_Set all_usage;
     wxDateTime _start_date, _end_date;
 
     if (m_date_range && m_date_range->is_with_date()) {
-        all_usage = Model_Usage::instance().find(
-            Model_Usage::USAGEDATE(m_date_range->start_date().FormatISODate(), GREATER_OR_EQUAL),
-            Model_Usage::USAGEDATE(m_date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL)
+        all_usage = UsageModel::instance().find(
+            UsageModel::USAGEDATE(m_date_range->start_date().FormatISODate(), GREATER_OR_EQUAL),
+            UsageModel::USAGEDATE(m_date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL)
         );
         _start_date = m_date_range->start_date();
         _end_date = m_date_range->end_date();
     }
     else {
-        all_usage = Model_Usage::instance().all();
+        all_usage = UsageModel::instance().all();
         wxASSERT(_start_date.ParseISODate(all_usage.front().USAGEDATE));
         wxASSERT(_end_date.ParseISODate(all_usage.back().USAGEDATE));
     }

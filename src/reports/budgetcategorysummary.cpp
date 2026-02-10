@@ -25,9 +25,9 @@
 #include "htmlbuilder.h"
 #include "mmex.h"
 #include "mmframe.h"
-#include "model/Model_Budgetyear.h"
-#include "model/Model_Budget.h"
-#include "model/Model_Category.h"
+#include "model/BudgetPeriodModel.h"
+#include "model/BudgetModel.h"
+#include "model/CategoryModel.h"
 #include "mmDateRange.h"
 
 mmReportBudgetCategorySummary::mmReportBudgetCategorySummary()
@@ -44,7 +44,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     // Grab the data 
     int startDay;
     wxDate::Month startMonth;
-    if (Option::instance().getBudgetFinancialYears())
+    if (PreferencesModel::instance().getBudgetFinancialYears())
     {
         GetFinancialYearValues(startDay, startMonth);
     } else
@@ -56,7 +56,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     long tmp;
     int startYear = wxDateTime::Today().GetYear();
 
-    wxString value = Model_Budgetyear::instance().Get(m_date_selection);
+    wxString value = BudgetPeriodModel::instance().Get(m_date_selection);
     wxString budget_month, budget_year = value;
 
     wxRegEx pattern("^([0-9]{4})(-([0-9]{2}))?$");
@@ -92,48 +92,48 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         yearEnd.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
 
     // Readjust dates by the Budget Offset Option
-    Option::instance().addBudgetDateOffset(yearBegin);
-    Option::instance().addBudgetDateOffset(yearEnd);
+    PreferencesModel::instance().addBudgetDateOffset(yearBegin);
+    PreferencesModel::instance().addBudgetDateOffset(yearEnd);
     mmSpecifiedRange date_range(yearBegin, yearEnd);
 
     bool evaluateTransfer = false;
-    if (Option::instance().getBudgetIncludeTransfers())
+    if (PreferencesModel::instance().getBudgetIncludeTransfers())
     {
         evaluateTransfer = true;
     }
     //Get statistics
-    std::map<int64, Model_Budget::PERIOD_ID> budgetPeriod;
+    std::map<int64, BudgetModel::PERIOD_ID> budgetPeriod;
     std::map<int64, double> budgetAmt;
     std::map<int64, wxString> budgetNotes;
-    Model_Budget::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt, budgetNotes);
+    BudgetModel::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt, budgetNotes);
 
     std::map<int64, std::map<int, double> > categoryStats;
-    Model_Category::instance().getCategoryStats(categoryStats
+    CategoryModel::instance().getCategoryStats(categoryStats
         , static_cast<wxSharedPtr<wxArrayString>>(nullptr)
-        , &date_range, Option::instance().getIgnoreFutureTransactions()
+        , &date_range, PreferencesModel::instance().getIgnoreFutureTransactions()
         , false, (evaluateTransfer ? &budgetAmt : nullptr));
 
     std::map<int64, std::map<int, double> > budgetStats;
-    Model_Budget::instance().getBudgetStats(budgetStats, &date_range, monthlyBudget);
+    BudgetModel::instance().getBudgetStats(budgetStats, &date_range, monthlyBudget);
 
 
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
     wxString headingStr = AdjustYearValues(startDay, startMonth, startYear, budget_year);
-    bool amply = Option::instance().getBudgetSummaryWithoutCategories();
+    bool amply = PreferencesModel::instance().getBudgetSummaryWithoutCategories();
     const wxString headerStartupMsg = amply
         ? _t("Budget Categories for %s") : _t("Budget Category Summary for %s");
 
     headingStr = wxString::Format(headerStartupMsg
         , headingStr + "<br>" + _t("(Estimated vs. Actual)"));
-    hb.addReportHeader(headingStr, 1, Option::instance().getIgnoreFutureTransactions());
+    hb.addReportHeader(headingStr, 1, PreferencesModel::instance().getIgnoreFutureTransactions());
     hb.displayDateHeading(yearBegin, yearEnd);
     // Prime the filter
     m_filter.clear();
     m_filter.setDateRange(yearBegin, yearEnd);
 
-    Model_Category::Data_Set categs = Model_Category::instance().find(Model_Category::PARENTID(-1));
+    CategoryModel::Data_Set categs = CategoryModel::instance().find(CategoryModel::PARENTID(-1));
     std::stable_sort(categs.begin(), categs.end(), SorterByCATEGNAME());
 
     // Chart
@@ -152,8 +152,8 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             gd.labels.push_back(category.CATEGNAME);
             gsActual.values.push_back(categoryStats[category.CATEGID][0]);
             gsEstimated.values.push_back(budgetStats[category.CATEGID][budgetMonth]);
-            for(const auto& subcat : Model_Category::sub_tree(category)){
-                gd.labels.push_back(Model_Category::full_name(subcat.CATEGID));
+            for(const auto& subcat : CategoryModel::sub_tree(category)){
+                gd.labels.push_back(CategoryModel::full_name(subcat.CATEGID));
                 gsActual.values.push_back(categoryStats[subcat.CATEGID][0]);
                 gsEstimated.values.push_back(budgetStats[subcat.CATEGID][budgetMonth]);
             }
@@ -232,7 +232,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                     }
                     
                     std::vector<int> totals_stack;
-                    Model_Category::Data_Set subcats = Model_Category::sub_tree(category);
+                    CategoryModel::Data_Set subcats = CategoryModel::sub_tree(category);
                     for (int i = 0; i < static_cast<int>(subcats.size()); i++) {
                         categLevel[subcats[i].CATEGID].first = 1;
                         estimated = budgetStats[subcats[i].CATEGID][budgetMonth];

@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 #include <wx/dialog.h>
-#include "model/Model_Checking.h"
+#include "model/TransactionModel.h"
 #include "mmSimpleDialogs.h"
 
 class mmDatePickerCtrl;
@@ -75,10 +75,10 @@ private:
     void getOrCreatePayees();
     void getOrCreateCategories();
     bool completeTransaction(std::unordered_map<int, wxString>& trx, const wxString& accName);
-    bool completeTransaction(/*in*/ const std::unordered_map<int, wxString>& i, /*out*/ Model_Checking::Data* trx, wxString& msg);
-    bool mergeTransferPair(Model_Checking::Cache& to, Model_Checking::Cache& from);
-    void appendTransfers(Model_Checking::Cache& destination, Model_Checking::Cache& target);
-    void joinSplit(Model_Checking::Cache& destination, std::vector<Model_Splittransaction::Cache>& target);
+    bool completeTransaction(/*in*/ const std::unordered_map<int, wxString>& i, /*out*/ TransactionModel::Data* trx, wxString& msg);
+    bool mergeTransferPair(TransactionModel::Cache& to, TransactionModel::Cache& from);
+    void appendTransfers(TransactionModel::Cache& destination, TransactionModel::Cache& target);
+    void joinSplit(TransactionModel::Cache& destination, std::vector<TransactionSplitModel::Cache>& target);
     void saveSplit();
     void refreshTabs(int tabs);
     void compilePayeeRegEx();
@@ -91,9 +91,9 @@ private:
     std::unordered_map<wxString, std::tuple<int64, wxString, wxString>> m_QIFpayeeNames;
     wxArrayString m_payee_names;
     std::unordered_map<wxString, int64> m_QIFcategoryNames;
-    std::vector<Model_Splittransaction::Cache> m_splitDataSets;
-    std::map<int, std::map<int, Model_Taglink::Cache>> m_splitTaglinks;
-    std::map<std::pair<int, int>, Model_Taglink::Cache> m_txnTaglinks;
+    std::vector<TransactionSplitModel::Cache> m_splitDataSets;
+    std::map<int, std::map<int, TagLinkModel::Cache>> m_splitTaglinks;
+    std::map<std::pair<int, int>, TagLinkModel::Cache> m_txnTaglinks;
 
     wxString m_accountNameStr;
     wxString m_dateFormatStr;

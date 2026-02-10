@@ -24,7 +24,7 @@
 #include <map>
 #include <wx/dialog.h>
 #include <wx/dataview.h>
-#include "model/Model_Checking.h"
+#include "model/TransactionModel.h"
 #include "mmSimpleDialogs.h"
 class wxSpinCtrl;
 class wxSpinEvent;
@@ -143,7 +143,7 @@ private:
     struct tran_holder
     {
         wxDateTime Date;
-        wxString Type = Model_Checking::TYPE_NAME_WITHDRAWAL;
+        wxString Type = TransactionModel::TYPE_NAME_WITHDRAWAL;
         wxString Status = "";
         int64 ToAccountID = -1;
         double ToAmount = 0.0;

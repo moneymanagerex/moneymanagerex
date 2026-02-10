@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "filtertrans.h"
 
-#include "attachmentdialog.h"
+#include "dialog/AttachmentDialog.h"
 #include "reports/htmlbuilder.h"
 
 mmFilterTransactions::mmFilterTransactions()
@@ -50,7 +50,7 @@ void mmFilterTransactions::setDateRange(wxDateTime startDate, wxDateTime endDate
     else
         m_start_date = startDate.FormatISOCombined();
 
-    if (!Option::instance().UseTransDateTime())
+    if (!PreferencesModel::instance().UseTransDateTime())
         endDate = mmDateRange::getDayEnd(endDate);
 
     m_end_date = endDate.FormatISOCombined();
@@ -63,7 +63,7 @@ void mmFilterTransactions::setAccountList(wxSharedPtr<wxArrayString> accountList
         m_account_a.clear();
         for (const auto &entry : *accountList)
         {
-            const auto account = Model_Account::instance().get(entry);
+            const auto account = AccountModel::instance().get(entry);
             if (account) m_account_a.push_back(account->ACCOUNTID);
         }
         m_filter_account = true;
@@ -107,11 +107,11 @@ bool mmFilterTransactions::checkCategory(
 }
 
 bool mmFilterTransactions::mmIsRecordMatches(
-    const Model_Checking::Data &tran,
-    const std::map<int64, Model_Splittransaction::Data_Set>& split
+    const TransactionModel::Data &tran,
+    const std::map<int64, TransactionSplitModel::Data_Set>& split
 ) {
     bool ok = true;
-    wxString strDate = Model_Checking::getTransDateTime(tran).FormatISOCombined();
+    wxString strDate = TransactionModel::getTransDateTime(tran).FormatISOCombined();
     if (m_filter_account
         && (std::find(m_account_a.begin(), m_account_a.end(), tran.ACCOUNTID) == m_account_a.end())
         && (std::find(m_account_a.begin(), m_account_a.end(), tran.TOACCOUNTID) == m_account_a.end()))
@@ -120,7 +120,7 @@ bool mmFilterTransactions::mmIsRecordMatches(
         ok = false;
     else if (m_filter_payee && (std::find(m_payee_a.begin(), m_payee_a.end(), tran.PAYEEID) == m_payee_a.end()))
         ok = false;
-    else if (m_filter_category && !checkCategory<Model_Checking>(tran, split))
+    else if (m_filter_category && !checkCategory<TransactionModel>(tran, split))
         ok = false;
     return ok;
 }
@@ -129,12 +129,12 @@ wxString mmFilterTransactions::getHTML()
 {
     mmHTMLBuilder hb;
     m_trans.clear();
-    const auto splits = Model_Splittransaction::instance().get_all();
-    const auto tags = Model_Taglink::instance().get_all(Model_Checking::refTypeName);
-    for (const auto& tran : Model_Checking::instance().all()) //TODO: find should be faster
+    const auto splits = TransactionSplitModel::instance().get_all();
+    const auto tags = TagLinkModel::instance().get_all(TransactionModel::refTypeName);
+    for (const auto& tran : TransactionModel::instance().all()) //TODO: find should be faster
     {
         if (!mmIsRecordMatches(tran, splits)) continue;
-        Model_Checking::Full_Data full_tran(tran, splits, tags);
+        TransactionModel::Full_Data full_tran(tran, splits, tags);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
         if (full_tran.has_split())
@@ -157,7 +157,7 @@ wxString mmFilterTransactions::getHTML()
 
                 if (found)
                 {
-                    full_tran.CATEGNAME = Model_Category::full_name(split.CATEGID);
+                    full_tran.CATEGNAME = CategoryModel::full_name(split.CATEGID);
                     full_tran.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
                     full_tran.NOTES.Append((tran.NOTES.IsEmpty() ? "" : " ") + split.NOTES);
                     m_trans.push_back(full_tran);
@@ -190,7 +190,7 @@ table {
     hb.init(false, extra_style);
     hb.addReportHeader(_t("Transaction Details"), 1, false);
 
-    const wxString& AttRefType = Model_Checking::refTypeName;
+    const wxString& AttRefType = TransactionModel::refTypeName;
     hb.addDivContainer();
     hb.addTableCellLink("back:",wxString::Format("<< %s", _t("Back")));
     hb.endDiv();
@@ -226,18 +226,18 @@ table {
         hb.addTableCell(transaction.PAYEENAME);
         hb.addTableCell(transaction.STATUS, false, true);
         hb.addTableCell(transaction.CATEGNAME);
-        if (Model_Checking::foreignTransactionAsTransfer(transaction))
+        if (TransactionModel::foreignTransactionAsTransfer(transaction))
             hb.addTableCell("< " + wxGetTranslation(transaction.TRANSCODE));
         else
             hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
 
-        Model_Account::Data* acc;
-        const Model_Currency::Data* curr;
-        acc = Model_Account::instance().get(transaction.ACCOUNTID);
-        curr = Model_Account::currency(acc);
+        AccountModel::Data* acc;
+        const CurrencyModel::Data* curr;
+        acc = AccountModel::instance().get(transaction.ACCOUNTID);
+        curr = AccountModel::currency(acc);
         if (acc)
         {
-            double flow = Model_Checking::account_flow(transaction, acc->ACCOUNTID);
+            double flow = TransactionModel::account_flow(transaction, acc->ACCOUNTID);
             hb.addCurrencyCell(flow, curr);
         }
         else
@@ -248,7 +248,7 @@ table {
 
         // Attachments
         wxString AttachmentsLink = "";
-        if (Model_Attachment::instance().NrAttachments(AttRefType, transaction.TRANSID))
+        if (AttachmentModel::instance().NrAttachments(AttRefType, transaction.TRANSID))
         {
             AttachmentsLink = wxString::Format(R"(<a href = "attachment:%s|%lld" target="_blank">%s</a>)",
                 AttRefType, transaction.TRANSID, mmAttachmentManage::GetAttachmentNoteSign());

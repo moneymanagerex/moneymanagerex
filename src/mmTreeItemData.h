@@ -21,8 +21,8 @@
 #pragma once
 
 #include "defs.h"
-#include "primitive.h"
-#include "option.h"
+#include "util/primitive.h"
+#include "model/PreferencesModel.h"
 #include "reports/reportbase.h"
 
 class mmTreeItemData : public wxTreeItemData

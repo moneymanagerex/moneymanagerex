@@ -19,16 +19,18 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "relocatepayeedialog.h"
-#include "attachmentdialog.h"
-#include "webapp.h"
-#include "paths.h"
 #include "constants.h"
-#include "util.h"
-#include "model/Model_Billsdeposits.h"
-#include "model/Model_Checking.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Attachment.h"
+#include "util/util.h"
+#include "paths.h"
+
+#include "model/ScheduledModel.h"
+#include "model/TransactionModel.h"
+#include "model/PayeeModel.h"
+#include "model/AttachmentModel.h"
+
+#include "dialog/AttachmentDialog.h"
+#include "relocatepayeedialog.h"
+#include "webapp.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(relocatePayeeDialog, wxDialog);
 
@@ -45,7 +47,7 @@ relocatePayeeDialog::relocatePayeeDialog( )
 
 relocatePayeeDialog::~relocatePayeeDialog()
 {
-    Model_Infotable::instance().setSize("RELOCATEPAYEE_DIALOG_SIZE", GetSize());
+    InfotableModel::instance().setSize("RELOCATEPAYEE_DIALOG_SIZE", GetSize());
 }
 
 relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent, int64 source_payee_id)
@@ -159,27 +161,27 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     if (ans == wxOK)
     {
-        Model_Checking::instance().Savepoint();
-        auto transactions = Model_Checking::instance().find(Model_Checking::PAYEEID(sourcePayeeID_));
+        TransactionModel::instance().Savepoint();
+        auto transactions = TransactionModel::instance().find(TransactionModel::PAYEEID(sourcePayeeID_));
         for (auto &entry : transactions) {
             entry.PAYEEID = destPayeeID_;
         }
-        m_changed_records += Model_Checking::instance().save(transactions);
-        Model_Checking::instance().ReleaseSavepoint();
+        m_changed_records += TransactionModel::instance().save(transactions);
+        TransactionModel::instance().ReleaseSavepoint();
 
-        Model_Billsdeposits::instance().Savepoint();
-        auto billsdeposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(sourcePayeeID_));
+        ScheduledModel::instance().Savepoint();
+        auto billsdeposits = ScheduledModel::instance().find(ScheduledModel::PAYEEID(sourcePayeeID_));
         for (auto &entry : billsdeposits) {
             entry.PAYEEID = destPayeeID_;
         }
-        m_changed_records += Model_Billsdeposits::instance().save(billsdeposits);
-        Model_Billsdeposits::instance().ReleaseSavepoint();
+        m_changed_records += ScheduledModel::instance().save(billsdeposits);
+        ScheduledModel::instance().ReleaseSavepoint();
 
         if (cbDeleteSourcePayee_->IsChecked())
         {
-            if (Model_Payee::instance().remove(sourcePayeeID_))
+            if (PayeeModel::instance().remove(sourcePayeeID_))
             {
-                mmAttachmentManage::DeleteAllAttachments(Model_Payee::refTypeName, sourcePayeeID_);
+                mmAttachmentManage::DeleteAllAttachments(PayeeModel::refTypeName, sourcePayeeID_);
                 mmWebApp::MMEX_WebApp_UpdatePayee();
             }
             cbSourcePayee_->mmDoReInitialize();
@@ -196,8 +198,8 @@ void relocatePayeeDialog::IsOkOk()
 
     destPayeeID_ = cbDestPayee_->mmGetId();
     sourcePayeeID_ = cbSourcePayee_->mmGetId();
-    int trxs_size = (sourcePayeeID_ < 0) ? 0 : Model_Checking::instance().find(Model_Checking::PAYEEID(sourcePayeeID_)).size();
-    int bills_size = (sourcePayeeID_ < 0) ? 0 : Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(sourcePayeeID_)).size();
+    int trxs_size = (sourcePayeeID_ < 0) ? 0 : TransactionModel::instance().find(TransactionModel::PAYEEID(sourcePayeeID_)).size();
+    int bills_size = (sourcePayeeID_ < 0) ? 0 : ScheduledModel::instance().find(ScheduledModel::PAYEEID(sourcePayeeID_)).size();
 
     if (destPayeeID_ < 0 || sourcePayeeID_ < 0
         || destPayeeID_ == sourcePayeeID_

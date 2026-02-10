@@ -19,17 +19,19 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "relocatetagdialog.h"
-#include "attachmentdialog.h"
-#include "webapp.h"
-#include "paths.h"
 #include "constants.h"
-#include "util.h"
-#include "model/Model_Billsdeposits.h"
-#include "model/Model_Checking.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_Tag.h"
+#include "util/util.h"
+#include "paths.h"
+
+#include "model/AttachmentModel.h"
+#include "model/PayeeModel.h"
+#include "model/ScheduledModel.h"
+#include "model/TagModel.h"
+#include "model/TransactionModel.h"
+
+#include "dialog/AttachmentDialog.h"
+#include "relocatetagdialog.h"
+#include "webapp.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(relocateTagDialog, wxDialog);
 
@@ -46,7 +48,7 @@ relocateTagDialog::relocateTagDialog( )
 
 relocateTagDialog::~relocateTagDialog()
 {
-    Model_Infotable::instance().setSize("RELOCATETAG_DIALOG_SIZE", GetSize());
+    InfotableModel::instance().setSize("RELOCATETAG_DIALOG_SIZE", GetSize());
 }
 
 relocateTagDialog::relocateTagDialog(wxWindow* parent, int64 source_tag_id)
@@ -91,7 +93,7 @@ void relocateTagDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
     choices_.Clear();
-    for (const auto& tag : Model_Tag::instance().all())
+    for (const auto& tag : TagModel::instance().all())
         choices_.Add(tag.TAGNAME);
     cbSourceTag_ = new wxComboBox(this, wxID_REPLACE, "", wxDefaultPosition, wxDefaultSize, choices_);
     cbSourceTag_->SetMinSize(wxSize(200, -1));
@@ -162,17 +164,17 @@ void relocateTagDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     if (ans == wxOK)
     {
-        Model_Taglink::instance().Savepoint();
-        Model_Taglink::Data_Set taglinks = Model_Taglink::instance().find(Model_Taglink::TAGID(sourceTagID_));
+        TagLinkModel::instance().Savepoint();
+        TagLinkModel::Data_Set taglinks = TagLinkModel::instance().find(TagLinkModel::TAGID(sourceTagID_));
         for (auto &entry : taglinks) {
             entry.TAGID = destTagID_;
         }
-        m_changed_records += Model_Taglink::instance().save(taglinks);
-        Model_Taglink::instance().ReleaseSavepoint();
+        m_changed_records += TagLinkModel::instance().save(taglinks);
+        TagLinkModel::instance().ReleaseSavepoint();
 
         if (cbDeleteSourceTag_->IsChecked())
         {
-            Model_Tag::instance().remove(sourceTagID_);
+            TagModel::instance().remove(sourceTagID_);
             choices_.Remove(source_tag_name);
             cbSourceTag_->Set(choices_);
             cbDestTag_->Set(choices_);
@@ -185,25 +187,25 @@ void relocateTagDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void relocateTagDialog::IsOkOk()
 {
     bool e = true;
-    Model_Tag::Data* source = Model_Tag::instance().get(cbSourceTag_->GetValue());
-    Model_Tag::Data* dest = Model_Tag::instance().get(cbDestTag_->GetValue());
+    TagModel::Data* source = TagModel::instance().get(cbSourceTag_->GetValue());
+    TagModel::Data* dest = TagModel::instance().get(cbDestTag_->GetValue());
     if (dest) destTagID_ = dest->TAGID;
     if (source) sourceTagID_ = source->TAGID;
-    int trxs_size = (sourceTagID_ < 0) ? 0 : Model_Taglink::instance().find(
-        Model_Taglink::REFTYPE(Model_Checking::refTypeName),
-        Model_Taglink::TAGID(sourceTagID_)
+    int trxs_size = (sourceTagID_ < 0) ? 0 : TagLinkModel::instance().find(
+        TagLinkModel::REFTYPE(TransactionModel::refTypeName),
+        TagLinkModel::TAGID(sourceTagID_)
     ).size();
-    int split_size = (sourceTagID_ < 0) ? 0 : Model_Taglink::instance().find(
-        Model_Taglink::REFTYPE(Model_Splittransaction::refTypeName),
-        Model_Taglink::TAGID(sourceTagID_)
+    int split_size = (sourceTagID_ < 0) ? 0 : TagLinkModel::instance().find(
+        TagLinkModel::REFTYPE(TransactionSplitModel::refTypeName),
+        TagLinkModel::TAGID(sourceTagID_)
     ).size();
-    int bills_size = (sourceTagID_ < 0) ? 0 : Model_Taglink::instance().find(
-        Model_Taglink::REFTYPE(Model_Billsdeposits::refTypeName),
-        Model_Taglink::TAGID(sourceTagID_)
+    int bills_size = (sourceTagID_ < 0) ? 0 : TagLinkModel::instance().find(
+        TagLinkModel::REFTYPE(ScheduledModel::refTypeName),
+        TagLinkModel::TAGID(sourceTagID_)
     ).size();
-    int bill_split_size = (sourceTagID_ < 0) ? 0 : Model_Taglink::instance().find(
-        Model_Taglink::REFTYPE(Model_Budgetsplittransaction::refTypeName),
-        Model_Taglink::TAGID(sourceTagID_)
+    int bill_split_size = (sourceTagID_ < 0) ? 0 : TagLinkModel::instance().find(
+        TagLinkModel::REFTYPE(ScheduledSplitModel::refTypeName),
+        TagLinkModel::TAGID(sourceTagID_)
     ).size();
 
     if (destTagID_ < 0 || sourceTagID_ < 0

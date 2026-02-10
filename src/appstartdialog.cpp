@@ -20,8 +20,8 @@
 #include "paths.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
-#include "util.h"
-#include "model/Model_Setting.h"
+#include "util/util.h"
+#include "model/SettingModel.h"
 #include "mmSimpleDialogs.h"
 
 /*******************************************************/
@@ -75,7 +75,7 @@ mmAppStartDialog::~mmAppStartDialog()
     try
     {
         bool showBeginApp = itemCheckBox->GetValue();
-        Model_Setting::instance().setBool("SHOWBEGINAPP", showBeginApp);
+        SettingModel::instance().setBool("SHOWBEGINAPP", showBeginApp);
     }
     catch (...)
     {
@@ -132,7 +132,7 @@ void mmAppStartDialog::CreateControls()
 
     itemCheckBox = new wxCheckBox(this, wxID_ANY, _t("&Show this dialog box at startup"), wxDefaultPosition,
         wxDefaultSize, wxCHK_2STATE);
-    bool showBeginApp = Model_Setting::instance().getBool("SHOWBEGINAPP", true);
+    bool showBeginApp = SettingModel::instance().getBool("SHOWBEGINAPP", true);
     itemCheckBox->SetValue(showBeginApp);
 
     itemBoxSizer10->Add(itemCheckBox, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
@@ -149,7 +149,7 @@ void mmAppStartDialog::CreateControls()
     itemBoxSizer2->Add(m_buttonClose, 0, wxALIGN_RIGHT | wxALL, 10);
     itemBoxSizer2->Add(m_buttonExit, 0, wxALIGN_RIGHT | wxALL, 10);
 
-    wxString val = Model_Setting::instance().getLastDbPath();
+    wxString val = SettingModel::instance().getLastDbPath();
     wxFileName lastfile(val);
     if (!lastfile.FileExists())
     {

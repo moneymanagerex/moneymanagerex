@@ -23,11 +23,11 @@
 #include "mmframe.h"
 #include "paths.h"
 #include "platfdep.h"
-#include "util.h"
-#include "daterange2.h"
+#include "util/util.h"
+#include "util/DateRange2.h"
 
-#include "model/Model_Setting.h"
-#include "model/Model_Usage.h"
+#include "model/SettingModel.h"
+#include "model/UsageModel.h"
 
 #include <wx/cmdline.h>
 #include <wx/display.h>
@@ -87,7 +87,7 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
     {
         wxTranslations::Set(trans);
         this->m_lang = lang;
-        Option::instance().setLanguage(lang);
+        PreferencesModel::instance().setLanguage(lang);
         return true;
     }
     else
@@ -133,7 +133,7 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
                                     "View menu to select one of the following available languages:\n\n%s",
                                     languages_list);
             m_lang = wxLANGUAGE_DEFAULT;
-            Option::instance().setLanguage(m_lang);
+            PreferencesModel::instance().setLanguage(m_lang);
         }
 
         wxDELETE(trans);
@@ -216,7 +216,7 @@ int mmGUIApp::FilterEvent(wxEvent& event)
 
         if (win && win->IsTopLevel() && win != this->m_frame) // wxDialog & wxFrame http://docs.wxwidgets.org/trunk/classwx_top_level_window.html
         {
-            Model_Usage::instance().pageview(win);
+            UsageModel::instance().pageview(win);
         }
     }
 
@@ -247,13 +247,13 @@ bool OnInitImpl(mmGUIApp* app)
         }
     }
     app->GetSettingDB()->Open(file_path);
-    Model_Setting::instance(app->GetSettingDB());
+    SettingModel::instance(app->GetSettingDB());
 
-    Model_Setting::instance().shrinkUsageTable();
-    Model_Usage::instance(app->GetSettingDB());
+    SettingModel::instance().shrinkUsageTable();
+    UsageModel::instance(app->GetSettingDB());
 
     /* Load general MMEX Custom Settings */
-    Option::instance().load(false);
+    PreferencesModel::instance().load(false);
 
     // checks (only in Debug build)
 #ifndef NDEBUG
@@ -348,7 +348,7 @@ bool OnInitImpl(mmGUIApp* app)
     wxInitAllImageHandlers();
 
     /* set preffered GUI language */
-    app->setGUILanguage(Option::instance().getLanguageID());
+    app->setGUILanguage(PreferencesModel::instance().getLanguageID());
 
     wxRect rect = GetDefaultMonitorRect();
     int defValX = rect.GetX() + 50;
@@ -357,10 +357,10 @@ bool OnInitImpl(mmGUIApp* app)
     int defValH = rect.GetHeight() / 4 * 3;
 
     // Load Dimensions of Window, if not found use the 'sensible' values
-    int valX = Model_Setting::instance().getInt("ORIGINX", defValX);
-    int valY = Model_Setting::instance().getInt("ORIGINY", defValY);
-    int valW = Model_Setting::instance().getInt("SIZEW", defValW);
-    int valH = Model_Setting::instance().getInt("SIZEH", defValH);
+    int valX = SettingModel::instance().getInt("ORIGINX", defValX);
+    int valY = SettingModel::instance().getInt("ORIGINY", defValY);
+    int valW = SettingModel::instance().getInt("SIZEW", defValW);
+    int valH = SettingModel::instance().getInt("SIZEH", defValH);
 
     // Check if it 'fits' into any of the windows
     // -- 'fit' means either an exact fit or at least 20% of application is on a visible window)
@@ -417,7 +417,7 @@ bool OnInitImpl(mmGUIApp* app)
     ok = ok && app->m_frame->Show();
 
     /* Was App Maximized? */
-    bool isMax = Model_Setting::instance().getBool("ISMAXIMIZED", true);
+    bool isMax = SettingModel::instance().getBool("ISMAXIMIZED", true);
     if (isMax)
         app->m_frame->Maximize(true);
 
@@ -468,14 +468,14 @@ int mmGUIApp::OnExit()
         m_frame->Destroy();
 #endif
 
-    Model_Usage::Data* usage = Model_Usage::instance().create();
+    UsageModel::Data* usage = UsageModel::instance().create();
     usage->USAGEDATE = wxDate::Today().FormatISODate();
 
-    wxString rj = Model_Usage::instance().To_JSON_String();
+    wxString rj = UsageModel::instance().To_JSON_String();
     wxLogDebug("RapidJson\n%s", rj);
 
     usage->JSONCONTENT = rj;
-    Model_Usage::instance().save(usage);
+    UsageModel::instance().save(usage);
 
     if (m_setting_db) {
         m_setting_db->Close();

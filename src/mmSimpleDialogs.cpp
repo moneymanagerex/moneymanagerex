@@ -26,21 +26,22 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/renderer.h>
 #include <wx/richtooltip.h>
 
-#include "mmSimpleDialogs.h"
-#include "constants.h"
-#include "images_list.h"
 #include "mmex.h"
+#include "constants.h"
+#include "util/util.h"
 #include "paths.h"
-#include "platfdep.h"
-#include "tagdialog.h"
-#include "util.h"
-#include "validators.h"
 
-#include "model/Model_Setting.h"
-#include "model/Model_Account.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Category.h"
-#include "model/Model_Tag.h"
+#include "model/AccountModel.h"
+#include "model/CategoryModel.h"
+#include "model/PayeeModel.h"
+#include "model/SettingModel.h"
+#include "model/TagModel.h"
+
+#include "dialog/TagDialog.h"
+#include "mmSimpleDialogs.h"
+#include "images_list.h"
+#include "platfdep.h"
+#include "validators.h"
 
 //------- Pop-up calendar, currently only used for MacOS only
 // See: https://github.com/moneymanagerex/moneymanagerex/issues/3139
@@ -397,7 +398,7 @@ void mmComboBox::OnKeyPressed(wxKeyEvent& event)
     else if (event.GetId() == mmID_CATEGORY && event.GetUnicodeKey() == ':')
     {
         this->SetEvtHandlerEnabled(false);
-        ChangeValue(text.Trim().Append(Model_Infotable::instance().getString("CATEG_DELIMITER", ":")));
+        ChangeValue(text.Trim().Append(InfotableModel::instance().getString("CATEG_DELIMITER", ":")));
         SetInsertionPointEnd();
         this->SetEvtHandlerEnabled(true);
     }
@@ -432,9 +433,9 @@ bool mmComboBox::mmIsValid() const
 
 void mmComboBoxAccount::init()
 {
-    all_elements_ = Model_Account::instance().all_accounts(excludeClosed_);
+    all_elements_ = AccountModel::instance().all_accounts(excludeClosed_);
     if (accountID_ > -1)
-        all_elements_[Model_Account::get_account_name(accountID_)] = accountID_;
+        all_elements_[AccountModel::get_account_name(accountID_)] = accountID_;
 }
 
 // accountID = always include this account even if it would have been excluded as closed
@@ -459,9 +460,9 @@ mmComboBoxAccount::mmComboBoxAccount(wxWindow* parent, wxWindowID id
 
 void mmComboBoxPayee::init()
 {
-    all_elements_ = Model_Payee::instance().all_payees(excludeHidden_);
+    all_elements_ = PayeeModel::instance().all_payees(excludeHidden_);
     if (payeeID_ > -1)
-        all_elements_[Model_Payee::get_payee_name(payeeID_)] = payeeID_;
+        all_elements_[PayeeModel::get_payee_name(payeeID_)] = payeeID_;
 }
 
 // payeeID = always include this payee even if it would have been excluded as inactive
@@ -484,7 +485,7 @@ mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id
 
 void mmComboBoxUsedPayee::init()
 {
-    all_elements_ = Model_Payee::instance().used_payee();
+    all_elements_ = PayeeModel::instance().used_payee();
 }
 
 mmComboBoxUsedPayee::mmComboBoxUsedPayee(wxWindow* parent, wxWindowID id, wxSize size)
@@ -504,7 +505,7 @@ mmComboBoxUsedPayee::mmComboBoxUsedPayee(wxWindow* parent, wxWindowID id, wxSize
 
 void mmComboBoxCurrency::init()
 {
-    all_elements_ = Model_Currency::instance().all_currency();
+    all_elements_ = CurrencyModel::instance().all_currency();
 }
 
 mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize size)
@@ -525,9 +526,9 @@ void mmComboBoxCategory::init()
 {
     int i = 0;
     all_elements_.clear();
-    all_categories_ = Model_Category::instance().all_categories(excludeHidden_);
+    all_categories_ = CategoryModel::instance().all_categories(excludeHidden_);
     if (catID_ > -1)
-        all_categories_.insert(std::make_pair(Model_Category::full_name(catID_)
+        all_categories_.insert(std::make_pair(CategoryModel::full_name(catID_)
             , catID_));
     for (const auto& item : all_categories_)
     {
@@ -682,7 +683,7 @@ wxBoxSizer* mmDatePickerCtrl::mmGetLayout(bool showTimeCtrl)
     date_sizer->Add(this->getSpinButton(), g_flagsH);
 #endif
     // If time picker is requested and turned on in Options, add it to the layout
-    if (showTimeCtrl && Option::instance().UseTransDateTime())
+    if (showTimeCtrl && PreferencesModel::instance().UseTransDateTime())
     {
         timePicker_ = new wxTimePickerCtrl(parent_, GetId(), dt_, wxDefaultPosition, wxDefaultSize);
         timePicker_->Bind(wxEVT_TIME_CHANGED, &mmDatePickerCtrl::OnDateChanged, this);
@@ -698,7 +699,7 @@ wxBoxSizer* mmDatePickerCtrl::mmGetLayoutWithTime()
 {
     wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
     date_sizer->Add(this, g_flagsH);
-    if (Option::instance().UseTransDateTime())
+    if (PreferencesModel::instance().UseTransDateTime())
     {
         timePicker_ = new wxTimePickerCtrl(parent_, GetId(), dt_, wxDefaultPosition, wxDefaultSize);
         timePicker_->Bind(wxEVT_TIME_CHANGED, &mmDatePickerCtrl::OnDateChanged, this);
@@ -830,7 +831,7 @@ mmChoiceAmountMask::mmChoiceAmountMask(wxWindow* parent, wxWindowID id)
         this->Append(wxGetTranslation(entry.first), new wxStringClientData(entry.second));
     }
 
-    Model_Currency::Data* base_currency = Model_Currency::GetBaseCurrency();
+    CurrencyModel::Data* base_currency = CurrencyModel::GetBaseCurrency();
     const auto decimal_point = base_currency->DECIMAL_POINT;
 
     SetDecimalChar(decimal_point);
@@ -1122,7 +1123,7 @@ mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow* parent, const wxString& mes
     Fit();
 }
 mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow* parent, const wxString& message,
-    const wxString& caption, const Model_Account::Data_Set& accounts)
+    const wxString& caption, const AccountModel::Data_Set& accounts)
 {
     if (parent) this->SetFont(parent->GetFont());
     wxArrayString choices;
@@ -1490,7 +1491,7 @@ void mmTagTextCtrl::OnKeyPressed(wxKeyEvent& event)
         int ip = textCtrl_->GetInsertionPoint();
         if (textCtrl_->GetText().IsEmpty() || ip == 0 || textCtrl_->GetTextRange(ip - 1, ip) == " ")
         {
-            mmTagDialog dlg(this, true, parseTags(textCtrl_->GetText()));
+            TagDialog dlg(this, true, parseTags(textCtrl_->GetText()));
             if (dlg.ShowModal() == wxID_OK)
             {
                 wxString selection;
@@ -1535,7 +1536,7 @@ void mmTagTextCtrl::init()
     // Initialize the tag map and dropdown checkboxes
     tag_map_.clear();
     tagCheckListBox_->Clear();
-    for (const auto& tag : Model_Tag::instance().all(DB_Table_TAG_V1::COL_TAGNAME))
+    for (const auto& tag : TagModel::instance().all(DB_Table_TAG_V1::COL_TAGNAME))
     {
         tag_map_[tag.TAGNAME] = tag.TAGID;
         tagCheckListBox_->Append(tag.TAGNAME);
@@ -1794,10 +1795,10 @@ bool mmTagTextCtrl::ValidateTagText(const wxString& tagText)
             // Prompt user to create a new tag
             if (wxMessageDialog(nullptr, wxString::Format(_t("Create new tag '%s'?"), tag), _t("New tag entered"), wxYES_NO).ShowModal() == wxID_YES)
             {
-                Model_Tag::Data* newTag = Model_Tag::instance().create();
+                TagModel::Data* newTag = TagModel::instance().create();
                 newTag->TAGNAME = tag;
                 newTag->ACTIVE = 1;
-                Model_Tag::instance().save(newTag);
+                TagModel::instance().save(newTag);
                 // Save the new tag to reference
                 tag_map_[tag] = newTag->TAGID;
                 tagCheckListBox_->Append(tag);
