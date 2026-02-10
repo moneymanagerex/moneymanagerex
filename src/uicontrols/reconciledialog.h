@@ -71,6 +71,7 @@ private:
 
     mmCalculatorPopup*    m_calculaterPopup;
     Model_Account::Data*  m_account;
+    Model_Currency::Data* m_currency;
     mmCheckingPanel*      m_checkingPanel;
     double                m_reconciledBalance;
     double                m_hiddenDuplicatedBalance;
