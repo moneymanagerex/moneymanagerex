@@ -50,7 +50,7 @@ mmReconcileDialog::mmReconcileDialog(wxWindow* parent, Model_Account::Data* acco
 {
     m_account = account;
     m_checkingPanel = cp;
-    m_reconciledBalance = cp->GetReconciledBalance();
+    m_reconciledBalance = cp->GetTodayReconciledBalance();
     m_currency = Model_Currency::instance().get(account->CURRENCYID);
 
     m_ignore  = false;

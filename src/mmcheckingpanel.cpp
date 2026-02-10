@@ -619,7 +619,7 @@ void mmCheckingPanel::filterList()
     int sn = 0; // sequence number
     m_flow = 0.0;
     m_balance = m_account ? m_account->INITIALBAL : 0.0;
-    m_reconciled_balance = m_balance;
+    m_reconciled_balance = m_today_reconciled_balance = m_balance;
     m_show_reconciled = false;
 
     const wxString tranRefType = Model_Checking::refTypeName;
@@ -750,8 +750,11 @@ void mmCheckingPanel::filterList()
             // assertion: tran->DELETEDTIME.IsEmpty()
             account_flow = Model_Checking::account_flow(tran, m_account_id);
             m_balance += account_flow;
-            if (Model_Checking::status_id(tran->STATUS) == Model_Checking::STATUS_ID_RECONCILED)
+            if (Model_Checking::status_id(tran->STATUS) == Model_Checking::STATUS_ID_RECONCILED) {
                 m_reconciled_balance += account_flow;
+                if (tran_date <= today_date)
+                    m_today_reconciled_balance += account_flow;
+            }
             else
                 m_show_reconciled = true;
         }
