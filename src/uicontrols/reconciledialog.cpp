@@ -50,7 +50,8 @@ mmReconcileDialog::mmReconcileDialog(wxWindow* parent, Model_Account::Data* acco
 {
     m_account = account;
     m_checkingPanel = cp;
-    m_reconciledBalance = cp->GetReconciledBalance();
+    m_reconciledBalance = cp->GetTodayReconciledBalance();
+    m_currency = Model_Currency::instance().get(account->CURRENCYID);
 
     m_ignore  = false;
     this->SetFont(parent->GetFont());
@@ -344,14 +345,15 @@ void mmReconcileDialog::UpdateAll()
         endbalance = 0.0;
     }
 
-    m_previousCtrl->SetLabel(wxString::Format("%.2f", m_reconciledBalance));
-    m_clearedBalanceCtrl->SetLabel(wxString::Format("%.2f", clearedbalance));
-    m_endingCtrl->SetLabel(wxString::Format("%.2f", endbalance));
+    m_previousCtrl->SetLabel(Model_Currency::toCurrency(m_reconciledBalance, m_currency));
+    m_clearedBalanceCtrl->SetLabel(Model_Currency::toCurrency(clearedbalance, m_currency));
+    m_endingCtrl->SetLabel(Model_Currency::toCurrency(endbalance, m_currency));
     m_endingCtrl->SetMinSize(m_endingCtrl->GetBestSize());
     m_endingCtrl->GetParent()->Layout();
 
     double diff = clearedbalance - endbalance - m_hiddenDuplicatedBalance;
-    m_differenceCtrl->SetLabel(wxString::Format("%.2f", diff));
+
+    m_differenceCtrl->SetLabel(Model_Currency::toCurrency(diff, m_currency));
 
     wxFont font = m_differenceCtrl->GetFont();
     int ps = m_previousCtrl->GetFont().GetPointSize();
