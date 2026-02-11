@@ -219,6 +219,6 @@ inline bool JournalPanel::isAllTrans() const { return m_checking_id == -1; }
 inline bool JournalPanel::isDeletedTrans() const { return m_checking_id == -2; }
 inline bool JournalPanel::isGroup() const { return m_checking_id <= -3; }
 inline bool JournalPanel::isAccount() const { return m_checking_id >= 1; }
-inline double JournalPanel::GetTodayReconciledBalance() const { return m_today_reconciled_balance;}
+inline double JournalPanel::GetTodayReconciledBalance() const { return m_today_reconciled_balance; }
 
 #endif // MM_EX_CHECKINGPANEL_H_

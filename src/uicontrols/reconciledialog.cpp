@@ -53,8 +53,6 @@ mmReconcileDialog::mmReconcileDialog(wxWindow* parent, AccountModel::Data* accou
     m_checkingPanel = cp;
     m_reconciledBalance = cp->GetTodayReconciledBalance();
     m_currency = CurrencyModel::instance().get(account->CURRENCYID);
-
-
     m_ignore  = false;
     this->SetFont(parent->GetFont());
 
