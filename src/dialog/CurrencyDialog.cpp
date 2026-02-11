@@ -209,7 +209,7 @@ void CurrencyDialog::CreateControls()
     radSizer->Add(mctrl_suffix);
     itemFlexGridSizer3->Add(radSizer, g_flagsExpand);
 
-    itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC, _t("Decimal Char")), g_flagsH);
+    itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC, _t("Decimal Char:")), g_flagsH);
     mctrl_decimalSep = new wxChoice(this, ID_DIALOG_CURRENCY);
     itemFlexGridSizer3->Add(mctrl_decimalSep, g_flagsExpand);
     mctrl_decimalSep->Append(_t("Dot"), new wxStringClientData("."));

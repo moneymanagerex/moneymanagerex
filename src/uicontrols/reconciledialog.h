@@ -69,14 +69,15 @@ private:
     std::vector<int64>    m_itemDataMap;
     wxVector<wxBitmapBundle> m_images;
 
-    mmCalculatorPopup*    m_calculaterPopup;
+    mmCalculatorPopup*   m_calculaterPopup;
     AccountModel::Data*  m_account;
-    JournalPanel*      m_checkingPanel;
-    double                m_reconciledBalance;
-    double                m_hiddenDuplicatedBalance;
-    bool                  m_ignore;
-    bool                  m_settings[SETTING_size];
-    int                   m_colwidth[2]; // Store width for hidable columns
+    CurrencyModel::Data* m_currency;
+    JournalPanel*        m_checkingPanel;
+    double               m_reconciledBalance;
+    double               m_hiddenDuplicatedBalance;
+    bool                 m_ignore;
+    bool                 m_settings[SETTING_size];
+    int                  m_colwidth[2]; // Store width for hidable columns
 
     void CreateControls();
     void UpdateAll();

@@ -361,7 +361,7 @@ void JournalPanel::createControls()
     sizerHButtons->Add(searchCtrl, g_flagsExpandBorder1);
     mmToolTip(searchCtrl,
         _t("Enter any string to find it in the nearest transaction data") + "\n\n" +
-        _tu("Tips: Wildcard characters such as the question mark (?) and the asterisk (*) can be used in search criteria.") + "\n" +
+        _tu("Tip: Wildcard characters such as the question mark (?) and the asterisk (*) can be used in search criteria.") + "\n" +
         _tu("The question mark (?) is used to match a single character, for example \"s?t\" finds both \"sat\" and \"set\".") + "\n" +
         _tu("The asterisk (*) is used to match any number of characters, for example \"s*d\" finds both \"sad\" and \"started\".") + "\n" +
         _tu("Use the asterisk (*) at the beginning to find any string in the middle of the sentence.") + "\n" +
@@ -622,7 +622,7 @@ void JournalPanel::filterList()
     int sn = 0; // sequence number
     m_flow = 0.0;
     m_balance = m_account ? m_account->INITIALBAL : 0.0;
-    m_reconciled_balance = m_balance;
+    m_reconciled_balance = m_today_reconciled_balance = m_balance;
     m_show_reconciled = false;
 
     const wxString tranRefType = TransactionModel::refTypeName;
@@ -753,8 +753,11 @@ void JournalPanel::filterList()
             // assertion: tran->DELETEDTIME.IsEmpty()
             account_flow = TransactionModel::account_flow(tran, m_account_id);
             m_balance += account_flow;
-            if (TransactionModel::status_id(tran->STATUS) == TransactionModel::STATUS_ID_RECONCILED)
+            if (TransactionModel::status_id(tran->STATUS) == TransactionModel::STATUS_ID_RECONCILED) {
                 m_reconciled_balance += account_flow;
+                if (tran_date <= today_date)
+                    m_today_reconciled_balance += account_flow;
+            }
             else
                 m_show_reconciled = true;
         }

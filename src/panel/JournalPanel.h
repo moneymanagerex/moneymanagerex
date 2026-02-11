@@ -82,7 +82,7 @@ public:
     //static support function
     static wxString getFilterName(FILTER_ID id);
     static void loadDateRanges(std::vector<DateRange2::Range>* date_range_a, int* date_range_m, bool all_ranges = false);
-    double GetReconciledBalance() const;
+    double GetTodayReconciledBalance() const;
 
 private:
     friend class JournalList;
@@ -130,6 +130,7 @@ private:
     double m_flow = 0.0;
     double m_balance = 0.0;
     double m_reconciled_balance = 0.0;
+    double m_today_reconciled_balance = 0.0;
     bool m_show_reconciled;
 
     // set by showTips()
@@ -218,6 +219,6 @@ inline bool JournalPanel::isAllTrans() const { return m_checking_id == -1; }
 inline bool JournalPanel::isDeletedTrans() const { return m_checking_id == -2; }
 inline bool JournalPanel::isGroup() const { return m_checking_id <= -3; }
 inline bool JournalPanel::isAccount() const { return m_checking_id >= 1; }
-inline double JournalPanel::GetReconciledBalance() const { return m_reconciled_balance;}
+inline double JournalPanel::GetTodayReconciledBalance() const { return m_today_reconciled_balance;}
 
 #endif // MM_EX_CHECKINGPANEL_H_

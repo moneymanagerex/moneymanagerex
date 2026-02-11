@@ -713,7 +713,7 @@ void mmFilterTransactionsDialog::mmDoCreateControls()
     notesEdit_ = new wxTextCtrl(itemPanel, wxID_ANY);
     mmToolTip(notesEdit_,
         _t("Enter any string to find it in transaction notes.") + "\n\n" +
-        _tu("Tips: Wildcard characters such as the question mark (?) and the asterisk (*) can be used in search criteria.") + "\n" +
+        _tu("Tip: Wildcard characters such as the question mark (?) and the asterisk (*) can be used in search criteria.") + "\n" +
         _tu("The question mark (?) matches a single character, for example \"s?t\" finds both \"sat\" and \"set\".") + "\n" +
         _tu("The asterisk (*) matches any number of characters, for example \"s*d\" finds both \"sad\" and \"started\".") + "\n" +
         _t("Use regex: to match using regular expressions.")

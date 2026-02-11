@@ -429,7 +429,7 @@ void mmUnivCSVDialog::CreateControls()
 
         m_date_picker_start = new mmDatePickerCtrl(itemPanel72, wxID_STATIC,wxDefaultDateTime
     , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
-        mmToolTip(m_date_picker_start, _t("Specify which date the report must start at"));
+        mmToolTip(m_date_picker_start, _t("Specify the report start date"));
         wxDateTime specificDate(1, wxDateTime::Jan, 1970);
         m_date_picker_start->SetValue(specificDate);
         grid_sizer72->Add(m_date_picker_start, g_flagsH);
@@ -443,7 +443,7 @@ void mmUnivCSVDialog::CreateControls()
 
         m_date_picker_end = new mmDatePickerCtrl(itemPanel72, wxID_STATIC,wxDefaultDateTime
     , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
-        mmToolTip(m_date_picker_end, _t("Specify which date the report must end at"));
+        mmToolTip(m_date_picker_end, _t("Specify the report end date"));
         m_date_picker_end->SetValue(wxDateTime::Today());
         grid_sizer72->Add(m_date_picker_end, g_flagsH);
         m_date_picker_end->Bind(wxEVT_DATE_CHANGED, &mmUnivCSVDialog::OnEndDateChange, this);
@@ -509,7 +509,7 @@ void mmUnivCSVDialog::CreateControls()
         m_choiceAmountFieldSign->SetSelection(PositiveIsDeposit);
         flex_sizer->Add(m_choiceAmountFieldSign, g_flagsH);
 
-        wxStaticText* itemStaticTextDigits = new wxStaticText(itemPanel7, wxID_ANY, _t("Decimal Char"));
+        wxStaticText* itemStaticTextDigits = new wxStaticText(itemPanel7, wxID_ANY, _t("Decimal Char:"));
         flex_sizer->Add(itemStaticTextDigits, g_flagsH);
         m_choiceDecimalSeparator = new mmChoiceAmountMask(itemPanel7, ID_UD_DECIMAL);
         flex_sizer->Add(m_choiceDecimalSeparator, g_flagsH);
