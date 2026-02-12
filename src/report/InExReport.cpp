@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "util/util.h"
-#include "mmDateRange.h"
+#include "util/DateRange.h"
 #include "htmlbuilder.h"
 
 #include "model/AccountModel.h"
@@ -27,20 +27,20 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/CurrencyHistoryModel.h"
 #include "model/CategoryModel.h"
 
-#include "incexpenses.h"
+#include "InExReport.h"
 #include "images_list.h"
 
-mmReportIncomeExpenses::mmReportIncomeExpenses()
+InExReport::InExReport()
     : ReportBase(_n("Income vs. Expenses Summary"))
 {
     setReportParameters(REPORT_ID::IncomevsExpensesSummary);
 }
 
-mmReportIncomeExpenses::~mmReportIncomeExpenses()
+InExReport::~InExReport()
 {
 }
 
-wxString mmReportIncomeExpenses::getHTMLText()
+wxString InExReport::getHTMLText()
 {
     // Grab the data
     std::pair<double, double> income_expenses_pair;
@@ -126,7 +126,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.endDiv(); 
     hb.end();
 
-    wxLogDebug("======= mmReportIncomeExpenses:getHTMLText =======");
+    wxLogDebug("======= InExReport:getHTMLText =======");
     wxLogDebug("%s", hb.getHTMLText());
 
     return hb.getHTMLText();

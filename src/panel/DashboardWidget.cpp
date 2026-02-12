@@ -39,7 +39,7 @@ Copyright (C) 2025 Klaus Wich
 #include "ScheduledPanel.h"
 
 #include "preferences/DashboardPreferences.h"
-#include "reports/reportbase.h"
+#include "report/_ReportBase.h"
 #include "uicontrols/navigatortypes.h"
 
 static const wxString TOP_CATEGS = R"(
@@ -196,7 +196,7 @@ const wxString htmlWidgetTop7Categories::getHTMLText()
 
 void htmlWidgetTop7Categories::getTopCategoryStats(
     std::vector<std::pair<wxString, double> > &categoryStats
-    , const mmDateRange* date_range) const
+    , const DateRange* date_range) const
 {
     //Temporary map
     std::map<int64 /*category*/, double> stat;
@@ -270,7 +270,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
 ////////////////////////////////////////////////////////
 
 
-htmlWidgetBillsAndDeposits::htmlWidgetBillsAndDeposits(const wxString& title, mmDateRange* date_range)
+htmlWidgetBillsAndDeposits::htmlWidgetBillsAndDeposits(const wxString& title, DateRange* date_range)
     : date_range_(date_range)
     , title_(title)
 {}
@@ -377,7 +377,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
 const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
 {
     DashboardPreferences home_options;
-    wxSharedPtr<mmDateRange> date_range(home_options.get_inc_vs_exp_date_range());
+    wxSharedPtr<DateRange> date_range(home_options.get_inc_vs_exp_date_range());
 
     double tIncome = 0.0, tExpenses = 0.0;
     std::map<int64, std::pair<double, double> > incomeExpensesStats;
@@ -462,7 +462,7 @@ const wxString htmlWidgetStatistics::getHTMLText()
     json_writer.Key("NAME");
     json_writer.String(_t("Transaction Statistics").utf8_str());
 
-    wxSharedPtr<mmDateRange> date_range;
+    wxSharedPtr<DateRange> date_range;
     /*if (PreferencesModel::instance().getIgnoreFutureTransactions())
         date_range = new mmCurrentMonthToDate;
     else
@@ -665,7 +665,7 @@ htmlWidgetAccounts::htmlWidgetAccounts()
 void htmlWidgetAccounts::get_account_stats()
 {
 
-    wxSharedPtr<mmDateRange> date_range;
+    wxSharedPtr<DateRange> date_range;
     /*if (PreferencesModel::instance().getIgnoreFutureTransactions())
         date_range = new mmCurrentMonthToDate;
     else

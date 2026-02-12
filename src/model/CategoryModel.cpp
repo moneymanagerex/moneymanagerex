@@ -17,7 +17,9 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defs.h"
 #include <tuple>
+#include "util/DateRange.h"
 
 #include "AccountModel.h"
 #include "CategoryModel.h"
@@ -25,8 +27,6 @@
 #include "PreferencesModel.h"
 #include "ScheduledModel.h"
 #include "TransactionModel.h"
-
-#include "reports/mmDateRange.h"
 
 CategoryModel::CategoryModel(): Model<DB_Table_CATEGORY_V1>()
 {
@@ -268,7 +268,7 @@ bool CategoryModel::has_income(int64 id)
 void CategoryModel::getCategoryStats(
     std::map<int64, std::map<int, double>>& categoryStats
     , wxSharedPtr<wxArrayString> accountArray
-    , mmDateRange* date_range
+    , DateRange* date_range
     , bool WXUNUSED(ignoreFuture) //TODO: deprecated
     , bool group_by_month
     , std::map<int64, double> *budgetAmt

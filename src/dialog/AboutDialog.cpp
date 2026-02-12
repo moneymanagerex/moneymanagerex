@@ -27,7 +27,7 @@
 #include "paths.h"
 
 #include "AboutDialog.h"
-#include "reports/htmlbuilder.h"
+#include "report/htmlbuilder.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(AboutDialog, wxDialog);
 

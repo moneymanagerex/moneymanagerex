@@ -18,7 +18,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
+#include "defs.h"
 #include <algorithm>
+#include "util/DateRange.h"
 
 #include "model/AccountModel.h"
 #include "model/CurrencyHistoryModel.h"
@@ -26,11 +28,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/PayeeModel.h"
 #include "model/PreferencesModel.h"
 
-#include "payee.h"
+#include "PayeeReport.h"
 #include "htmlbuilder.h"
-#include "mmDateRange.h"
 
-ReportFlowByPayee::Data::Data() :
+PayeeReport::Data::Data() :
     payee_name(""),
     flow_pos(0.0),
     flow_neg(0.0),
@@ -38,17 +39,17 @@ ReportFlowByPayee::Data::Data() :
 {
 }
 
-ReportFlowByPayee::ReportFlowByPayee() :
+PayeeReport::PayeeReport() :
     ReportBase(_n("Payee Report"))
 {
     setReportParameters(REPORT_ID::Payees);
 }
 
-ReportFlowByPayee::~ReportFlowByPayee()
+PayeeReport::~PayeeReport()
 {
 }
 
-void ReportFlowByPayee::updateData(Data& data, TransactionModel::TYPE_ID type_id, double amount)
+void PayeeReport::updateData(Data& data, TransactionModel::TYPE_ID type_id, double amount)
 {
     double flow = (type_id == TransactionModel::TYPE_ID_DEPOSIT) ? amount : -amount;
     if (flow > 0.0)
@@ -58,7 +59,7 @@ void ReportFlowByPayee::updateData(Data& data, TransactionModel::TYPE_ID type_id
     data.flow += flow;
 }
 
-void ReportFlowByPayee::loadData()
+void PayeeReport::loadData()
 {
     m_id_data.clear();
 
@@ -113,7 +114,7 @@ void ReportFlowByPayee::loadData()
     }
 }
 
-void  ReportFlowByPayee::refreshData()
+void  PayeeReport::refreshData()
 {
     loadData();
 
@@ -152,7 +153,7 @@ void  ReportFlowByPayee::refreshData()
     );
 }
 
-wxString ReportFlowByPayee::getHTMLText()
+wxString PayeeReport::getHTMLText()
 {
     // Grab the data
     refreshData();

@@ -1,6 +1,5 @@
 /*******************************************************
- Copyright (C) 2006-2012
- Copyright (C) 2017 James Higley
+ Copyright (C) 2016 Guan Lisheng (guanlisheng@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -19,22 +18,20 @@
 
 #pragma once
 
-#include "reportbase.h"
+#include "util/DateRange.h"
 
-class mmReportIncomeExpenses : public ReportBase
-{
-public:
-    mmReportIncomeExpenses();
-    virtual ~mmReportIncomeExpenses();
-    virtual wxString getHTMLText();
-};
-
-/////////////////////////////////////////////////////////////////////////////////////
-class mmReportIncomeExpensesMonthly : public ReportBase
-{
-public:
-    mmReportIncomeExpensesMonthly();
-    virtual ~mmReportIncomeExpensesMonthly();
-    virtual wxString getHTMLText();
-};
+#include "BalanceReport.h"
+#include "CategoryReport.h"
+#include "FlowReport.h"
+#include "ForecastReport.h"
+#include "InExReport.h"
+#include "PayeeReport.h"
+#include "StocksReport.h"
+#include "TransactionsReport.h"
+#include "UsageReport.h"
+#include "_ReportBase.h"
+#include "budget.h"
+#include "budgetcategorysummary.h"
+#include "budgetingperf.h"
+#include "htmlbuilder.h"
 

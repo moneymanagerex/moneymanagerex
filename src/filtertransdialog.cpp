@@ -132,27 +132,27 @@ void mmFilterTransactionsDialog::mmDoInitVariables()
 
     m_custom_fields = new mmCustomDataTransaction(this, 0, ID_CUSTOMFIELDS + (isReportMode_ ? 100 : 0));
 
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmToday()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonth()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonthToDate()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastMonth()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast30Days()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast90Days()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast3Months()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast12Months()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentYear()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentYearToDate()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastYearBefore()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentFinancialYear()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentFinancialYearToDate()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastFinancialYear()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast365Days()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmAllTime()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSinseToday()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSinse30days()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSinse90days()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSinseCurrentYear()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSinseCurrentFinancialYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmToday()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentMonth()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentMonthToDate()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLastMonth()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLast30Days()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLast90Days()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLast3Months()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLast12Months()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentYearToDate()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLastYearBefore()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentFinancialYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentFinancialYearToDate()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLastFinancialYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLast365Days()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmAllTime()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmSinseToday()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmSinse30days()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmSinse90days()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmSinseCurrentYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmSinseCurrentFinancialYear()));
 
     m_accounts_name.clear();
     const auto accounts = AccountModel::instance().find(
@@ -1861,7 +1861,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
             int sel = rangeChoice_->GetSelection();
             if (sel != wxNOT_FOUND)
             {
-                const wxSharedPtr<mmDateRange> date_range = m_all_date_ranges.at(sel);
+                const wxSharedPtr<DateRange> date_range = m_all_date_ranges.at(sel);
                 if (date_range)
                 {
                     json_writer.Key((i18n ? _t("Period") : "PERIOD").utf8_str());
@@ -2082,7 +2082,7 @@ void mmFilterTransactionsDialog::OnDateChanged(wxDateEvent& event)
         if (PreferencesModel::instance().UseTransDateTime())
             m_end_date = event.GetDate().FormatISOCombined();
         else
-            m_end_date = mmDateRange::getDayEnd(event.GetDate()).FormatISOCombined();
+            m_end_date = DateRange::getDayEnd(event.GetDate()).FormatISOCombined();
         break;
     }
 }
@@ -2369,7 +2369,7 @@ void mmFilterTransactionsDialog::OnChoice(wxCommandEvent& event)
     {
         if (sel != wxNOT_FOUND)
         {
-            wxSharedPtr<mmDateRange> dates(m_all_date_ranges.at(sel));
+            wxSharedPtr<DateRange> dates(m_all_date_ranges.at(sel));
             m_begin_date = dates->start_date().FormatISOCombined();
             m_end_date = dates->end_date().FormatISOCombined();
             wxLogDebug("%s %s", m_begin_date, m_end_date);

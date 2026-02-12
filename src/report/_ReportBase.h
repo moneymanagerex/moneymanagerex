@@ -20,7 +20,8 @@
 
 #pragma once
 
-#include "mmDateRange.h"
+#include "defs.h"
+#include "util/DateRange.h"
 #include "util/DateRange2.h"
 
 #include "model/PreferencesModel.h"
@@ -76,7 +77,7 @@ protected:
     wxString m_title;
     int m_parameters = 0;
     wxString m_settings = "";
-    mmDateRange* m_date_range = nullptr;
+    DateRange* m_date_range = nullptr;
     DateRange2 m_date_range2;
     int64 m_date_selection = 0;
     int m_forward_months = 24;
@@ -129,7 +130,7 @@ inline void ReportBase::setReportSettings(const wxString & settings) { m_setting
 inline void ReportBase::setDateRange(const DateRange2& date_range2)
 {
     m_date_range2 = date_range2;
-    m_date_range = new mmDateRange();
+    m_date_range = new DateRange();
     m_date_range->start_date(date_range2.rangeStart().value().getDateTime()
         .ResetTime()
     );

@@ -25,11 +25,10 @@
 #include <html_template.h>
 
 #include "util/util.h"
+#include "util/DateRange.h"
 #include "util/DateRange2.h"
 
 #include "model/CurrencyModel.h"
-
-#include "mmDateRange.h"
 
 struct GraphSeries
 {
@@ -56,7 +55,7 @@ public:
 
     void displayDateHeading(const wxString& header);
     void displayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange = true, bool withNoEndDate = false);
-    void displayDateHeading(const mmDateRange* date_range);
+    void displayDateHeading(const DateRange* date_range);
     void displayDateHeading(const DateRange2& date_range);
     void displayFooter(const wxString& footer);
     /** Starts a new HMTL report */

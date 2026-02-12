@@ -1,5 +1,5 @@
 /*******************************************************
- Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2006-2021
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -18,15 +18,42 @@
 
 #pragma once
 
-#include "reportbase.h"
+#include <map>
+#include <vector>
+#include "util/util.h"
+#include "_ReportBase.h"
 
-class mmReportMyUsage: public ReportBase
+class PayeeReport : public ReportBase
 {
-public:
-    mmReportMyUsage();
-    virtual ~mmReportMyUsage();
-
-    virtual wxString getHTMLText();
 private:
-    static const char * usage_template;
+    struct Data
+    {
+        wxString payee_name;
+        double flow_pos;
+       double flow_neg;
+        double flow;
+
+        Data();
+    };
+
+private:
+    std::map<int64, Data> m_id_data;
+    std::vector<int64> m_order_net_flow;
+    std::vector<int64> m_order_abs_flow;
+    Data m_total;
+
+public:
+    PayeeReport();
+    virtual ~PayeeReport();
+
+public:
+    virtual void refreshData();
+    virtual wxString getHTMLText();
+
+private:
+    static void updateData(Data& data, TransactionModel::TYPE_ID type_id, double amount);
+
+private:
+    void loadData();
 };
+

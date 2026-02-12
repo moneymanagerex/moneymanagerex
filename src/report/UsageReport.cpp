@@ -17,23 +17,24 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "mmDateRange.h"
+#include "defs.h"
+#include "util/DateRange.h"
 #include "htmlbuilder.h"
 
 #include "model/UsageModel.h"
-#include "myusage.h"
+#include "UsageReport.h"
 
-mmReportMyUsage::mmReportMyUsage()
+UsageReport::UsageReport()
 : ReportBase(_n("MMEX Usage Frequency"))
 {
     setReportParameters(REPORT_ID::MyUsage);
 }
 
-mmReportMyUsage::~mmReportMyUsage()
+UsageReport::~UsageReport()
 {
 }
 
-wxString mmReportMyUsage::getHTMLText()
+wxString UsageReport::getHTMLText()
 {
     // Grab the data
     UsageModel::Data_Set all_usage;
@@ -60,7 +61,7 @@ wxString mmReportMyUsage::getHTMLText()
          if (json_doc.Parse(usage.JSONCONTENT.utf8_str()).HasParseError())
              continue;
 
-         //wxLogDebug("======= mmReportMyUsage::getHTMLText =======");
+         //wxLogDebug("======= UsageReport::getHTMLText =======");
          //wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(json_doc));
 
          if (!json_doc.HasMember("usage") || !json_doc["usage"].IsArray())

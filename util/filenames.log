@@ -1,15 +1,16 @@
 This log shows the changes of filenames (either manual or automated)
 under src/ in increasing chronological order.
 
-+ PR ? (2026-02-11
-  choices    -> util/choices
-  dateday    -> util/DateDay
-  daterange2 -> util/DateRange2
-  primitive  -> util/primitive
-  singleton  -> util/singleton
-  util       -> util/util
++ PR ? (2026-02-12)
+  choices                            -> util/choices
+  dateday                            -> util/DateDay
+  daterange2                         -> util/DateRange2
+  primitive                          -> util/primitive
+  reports/mmDateRange                -> util/DateRange
+  singleton                          -> util/singleton
+  util                               -> util/util
 
-+ PR ? (2026-02-11)
++ PR ? (2026-02-12)
   model/Model                        -> model/_Model
   model/Model_Account                -> model/AccountModel
   model/Model_Asset                  -> model/AssetModel
@@ -40,45 +41,59 @@ under src/ in increasing chronological order.
   model/readme.txt                   -> model/_readme.txt
   option                             -> model/PreferencesModel
 
-+ PR ? (2026-02-11)
-  assetspanel        -> panel/AssetPanel
-  billsdepositspanel -> panel/ScheduledPanel
-  budgetingpanel     -> panel/BudgetPanel
-  mmchecking_list    -> panel/JournalList
-  mmcheckingpanel    -> panel/JournalPanel
-  mmhelppanel        -> panel/HelpPanel
-  mmhomepage         -> panel/DashboardWidget
-  mmhomepagepanel    -> panel/DashboardPanel
-  mmpanelbase        -> panel/_PanelBase
-  mmreportspanel     -> panel/ReportPanel
-  stocks_list        -> panel/StockList
-  stockspanel        -> panel/StockPanel
++ PR ? (2026-02-12)
+  assetspanel                        -> panel/AssetPanel
+  billsdepositspanel                 -> panel/ScheduledPanel
+  budgetingpanel                     -> panel/BudgetPanel
+  mmchecking_list                    -> panel/JournalList
+  mmcheckingpanel                    -> panel/JournalPanel
+  mmhelppanel                        -> panel/HelpPanel
+  mmhomepage                         -> panel/DashboardWidget
+  mmhomepagepanel                    -> panel/DashboardPanel
+  mmpanelbase                        -> panel/_PanelBase
+  mmreportspanel                     -> panel/ReportPanel
+  stocks_list                        -> panel/StockList
+  stockspanel                        -> panel/StockPanel
 
-+ PR ? (2026-02-11)
-  aboutdialog             -> dialog/AboutDialog
-  accountdialog           -> dialog/AccountDialog
-  assetdialog             -> dialog/AssetDialog
-  attachmentdialog        -> dialog/AttachmentDialog
-  billsdepositsdialog     -> dialog/ScheduledDialog
-  categdialog             -> dialog/CategoryDialog
-  currencydialog          -> dialog/CurrencyDialog
-  daterangedialog         -> dialog/DateRangeDialog
-  daterangeeditdialog     -> dialog/DateRangeEditDialog
-  diagnostics             -> dialog/DiagnosticsDialog
-  optiondialog            -> dialog/PreferencesDialog
-  payeedialog             -> dialog/PayeeDialog
-  splittransactionsdialog -> dialog/SplitDialog
-  stockdialog             -> dialog/StockDialog
-  tagdialog               -> dialog/TagDialog
-  transdialog             -> dialog/TransactionDialog
++ PR ? (2026-02-12)
+  aboutdialog                        -> dialog/AboutDialog
+  accountdialog                      -> dialog/AccountDialog
+  assetdialog                        -> dialog/AssetDialog
+  attachmentdialog                   -> dialog/AttachmentDialog
+  billsdepositsdialog                -> dialog/ScheduledDialog
+  categdialog                        -> dialog/CategoryDialog
+  currencydialog                     -> dialog/CurrencyDialog
+  daterangedialog                    -> dialog/DateRangeDialog
+  daterangeeditdialog                -> dialog/DateRangeEditDialog
+  diagnostics                        -> dialog/DiagnosticsDialog
+  optiondialog                       -> dialog/PreferencesDialog
+  payeedialog                        -> dialog/PayeeDialog
+  splittransactionsdialog            -> dialog/SplitDialog
+  stockdialog                        -> dialog/StockDialog
+  tagdialog                          -> dialog/TagDialog
+  transdialog                        -> dialog/TransactionDialog
 
-+ PR ? (2026-02-11)
-  optionsettingsattachment  -> preferences AttachmentPreferences
-  optionsettingsbase        -> preferences _PreferencesBase
-  optionsettingsgeneral     -> preferences GeneralPreferences
-  optionsettingshome        -> preferences DashboardPreferences
-  optionsettingsmisc        -> preferences OtherPreferences
-  optionsettingsnet         -> preferences NetworkPreferences
-  optionsettingstransaction -> preferences TransactionPreferences
-  optionsettingsview        -> preferences ViewPreferences
++ PR ? (2026-02-12)
+  optionsettingsattachment           -> preferences AttachmentPreferences
+  optionsettingsbase                 -> preferences _PreferencesBase
+  optionsettingsgeneral              -> preferences GeneralPreferences
+  optionsettingshome                 -> preferences DashboardPreferences
+  optionsettingsmisc                 -> preferences OtherPreferences
+  optionsettingsnet                  -> preferences NetworkPreferences
+  optionsettingstransaction          -> preferences TransactionPreferences
+  optionsettingsview                 -> preferences ViewPreferences
+
++ PR ? (2026-02-12)
+  reports/                           -> report/
+  report/allreport.h                 -> report/_all.h
+  report/cashflow                    -> report/FlowReport
+  report/categexp                    -> report/CategoryReport
+  report/forecast                    -> report/ForecastReport
+  report/incexpenses                 -> report/InExReport
+  report/myusage                     -> report/UsageReport
+  report/payee                       -> report/PayeeReport
+  report/reportbase                  -> report/_ReportBase
+  report/summary                     -> report/BalanceReport
+  report/summarystocks               -> report/StocksReport
+  report/transactions                -> report/TransactionsReport
 

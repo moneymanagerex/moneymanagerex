@@ -31,7 +31,7 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #include "model/TransactionModel.h"
 
 #include "DiagnosticsDialog.h"
-#include "reports/htmlbuilder.h"
+#include "report/htmlbuilder.h"
 #include "images_list.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(DiagnosticsDialog, wxDialog);

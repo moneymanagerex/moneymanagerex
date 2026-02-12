@@ -21,10 +21,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/intl.h>
 
 #include "constants.h"
-#include "mmDateRange.h"
+#include "DateRange.h"
 #include "model/PreferencesModel.h"
 
-mmDateRange::mmDateRange() :
+DateRange::DateRange() :
     today_(wxDateTime::Today()),
     today_end_(wxDateTime(23, 59, 59, 999)),
     future_(DATE_MAX),
@@ -36,28 +36,28 @@ mmDateRange::mmDateRange() :
     title_ = _n("Date Range");
 }
 
-mmDateRange::~mmDateRange()
+DateRange::~DateRange()
 {
 }
 
-void mmDateRange::destroy()
+void DateRange::destroy()
 {
     delete this;
 }
 
-const wxString mmDateRange::local_title() const
+const wxString DateRange::local_title() const
 {
     return wxGetTranslation(title_);
 }
 
-void mmDateRange::findBeginOfMonth()
+void DateRange::findBeginOfMonth()
 {
     if (this->today_.GetDay() < startDay_)
         this->start_date_.Subtract(wxDateSpan::Months(1));
     start_date_.SetDay(startDay_);
 }
 
-void mmDateRange::findEndOfMonth()
+void DateRange::findEndOfMonth()
 {
     if (this->today_.GetDay() < startDay_)
         this->end_date_.Subtract(wxDateSpan::Months(1));
@@ -65,7 +65,7 @@ void mmDateRange::findEndOfMonth()
 }
 
 mmCurrentMonth::mmCurrentMonth()
-: mmDateRange()
+: DateRange()
 {
     this->findEndOfMonth();
     this->findBeginOfMonth();
@@ -78,13 +78,13 @@ mmCurrentMonth::mmCurrentMonth()
 }
 
 mmToday::mmToday()
-: mmDateRange()
+: DateRange()
 {
     this->title_ = _n("Today");
 }
 
 mmCurrentMonthToDate::mmCurrentMonthToDate()
-: mmDateRange()
+: DateRange()
 {
     findBeginOfMonth();
     this->end_date_ = today_end_;
@@ -92,7 +92,7 @@ mmCurrentMonthToDate::mmCurrentMonthToDate()
 }
 
 mmLastMonth::mmLastMonth()
-: mmDateRange()
+: DateRange()
 {
     this->end_date_.Subtract(wxDateSpan::Months(1));
     this->findEndOfMonth();
@@ -102,7 +102,7 @@ mmLastMonth::mmLastMonth()
 }
 
 mmLast30Days::mmLast30Days()
-: mmDateRange()
+: DateRange()
 {
     this->start_date_
         .Subtract(wxDateSpan::Months(1))
@@ -112,7 +112,7 @@ mmLast30Days::mmLast30Days()
 }
 
 mmLast90Days::mmLast90Days()
-: mmDateRange()
+: DateRange()
 {
     this->start_date_
         .Subtract(wxDateSpan::Months(3))
@@ -122,7 +122,7 @@ mmLast90Days::mmLast90Days()
 }
 
 mmLast3Months::mmLast3Months()
-: mmDateRange()
+: DateRange()
 {
     this->findEndOfMonth();
     this->start_date_.Subtract(wxDateSpan::Months(2));
@@ -136,7 +136,7 @@ mmLast3Months::mmLast3Months()
 }
 
 mmLast12Months::mmLast12Months()
-: mmDateRange()
+: DateRange()
 {
     this->findEndOfMonth();
     this->start_date_.Subtract(wxDateSpan::Months(11));
@@ -150,7 +150,7 @@ mmLast12Months::mmLast12Months()
 }
 
 mmCurrentYear::mmCurrentYear()
-: mmDateRange()
+: DateRange()
 {
     this->findBeginOfMonth();
     this->start_date_.SetMonth(wxDateTime::Jan);
@@ -166,7 +166,7 @@ mmCurrentYear::mmCurrentYear()
 }
 
 mmCurrentYearToDate::mmCurrentYearToDate()
-: mmDateRange()
+: DateRange()
 {
     this->findBeginOfMonth();
     this->start_date_.SetMonth(wxDateTime::Jan);
@@ -175,7 +175,7 @@ mmCurrentYearToDate::mmCurrentYearToDate()
 }
 
 mmLastYear::mmLastYear()
-: mmDateRange()
+: DateRange()
 {
     this->findBeginOfMonth();
     this->start_date_.SetMonth(wxDateTime::Jan);
@@ -187,7 +187,7 @@ mmLastYear::mmLastYear()
 }
 
 mmLastYearBefore::mmLastYearBefore()
-: mmDateRange()
+: DateRange()
 {
     this->findBeginOfMonth();
     this->start_date_.SetMonth(wxDateTime::Jan);
@@ -199,7 +199,7 @@ mmLastYearBefore::mmLastYearBefore()
 }
 
 mmCurrentFinancialYear::mmCurrentFinancialYear()
-: mmDateRange()
+: DateRange()
 {
     int day = PreferencesModel::instance().getFinancialFirstDay();
     wxDateTime::Month month = PreferencesModel::instance().getFinancialFirstMonth();
@@ -230,7 +230,7 @@ mmCurrentFinancialYear::mmCurrentFinancialYear()
 }
 
 mmCurrentFinancialYearToDate::mmCurrentFinancialYearToDate()
-: mmDateRange()
+: DateRange()
 {
     mmCurrentFinancialYear current_financial_year;
     this->start_date_ = current_financial_year.start_date();
@@ -240,7 +240,7 @@ mmCurrentFinancialYearToDate::mmCurrentFinancialYearToDate()
 }
 
 mmLastFinancialYear::mmLastFinancialYear()
-: mmDateRange()
+: DateRange()
 {
     mmCurrentFinancialYear current_financial_year;
     this->start_date_ = current_financial_year.start_date().Subtract(wxDateSpan::Year());
@@ -250,7 +250,7 @@ mmLastFinancialYear::mmLastFinancialYear()
 }
 
 mmAllTime::mmAllTime()
-: mmDateRange()
+: DateRange()
 {
     this->start_date_.SetDay(1).SetMonth(wxDateTime::Jan).SetYear(1900);
     this->end_date_ = future_;
@@ -268,7 +268,7 @@ bool mmAllTime::is_with_date() const
 }
 
 mmSpecifiedRange::mmSpecifiedRange(const wxDateTime& start, const wxDateTime& end)
-: mmDateRange()
+: DateRange()
 {
     this->title_ = _n("Custom");
     this->start_date_ = start;
@@ -280,7 +280,7 @@ mmSpecifiedRange::mmSpecifiedRange(const wxDateTime& start, const wxDateTime& en
     }
 }
 
-mmLast365Days::mmLast365Days() : mmDateRange()
+mmLast365Days::mmLast365Days() : DateRange()
 {
     this->start_date_.Subtract(wxDateSpan::Months(12)).Add(wxDateSpan::Days(1));
     // no change to end_date_
@@ -288,7 +288,7 @@ mmLast365Days::mmLast365Days() : mmDateRange()
 }
 
 mmLastNDays::mmLastNDays(int days)
-    : mmDateRange()
+    : DateRange()
 {
     this->start_date_
         .Subtract(wxDateSpan::Days(days))
@@ -309,13 +309,13 @@ void mmLastNDays::SetRange(int days)
     this->title_ = wxString::Format(_t("Last %i Days"), days);
 }
 
-mmSinseToday::mmSinseToday() : mmDateRange()
+mmSinseToday::mmSinseToday() : DateRange()
 {
     this->end_date_ = future_;
     this->title_ = _n("Since Today");
 }
 
-mmSinse30days::mmSinse30days() : mmDateRange()
+mmSinse30days::mmSinse30days() : DateRange()
 {
     this->start_date_
         .Subtract(wxDateSpan::Months(1))
@@ -324,7 +324,7 @@ mmSinse30days::mmSinse30days() : mmDateRange()
     this->title_ = _n("Since 1 Month Ago");
 }
 
-mmSinse90days::mmSinse90days() : mmDateRange()
+mmSinse90days::mmSinse90days() : DateRange()
 {
     this->start_date_
         .Subtract(wxDateSpan::Months(3))
@@ -333,7 +333,7 @@ mmSinse90days::mmSinse90days() : mmDateRange()
     this->title_ = _n("Since 3 Months Ago");
 }
 
-mmSinseCurrentYear::mmSinseCurrentYear() : mmDateRange()
+mmSinseCurrentYear::mmSinseCurrentYear() : DateRange()
 {
     this->findBeginOfMonth();
     this->start_date_.SetMonth(wxDateTime::Jan);

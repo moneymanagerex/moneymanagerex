@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "defs.h"
 #include <wx/datetime.h>
 
-class mmDateRange
+class DateRange
 {
 protected:
     const wxDateTime today_;
@@ -35,8 +35,8 @@ protected:
     bool futureIgnored_;
 
 public:
-    mmDateRange();
-    virtual ~mmDateRange();
+    DateRange();
+    virtual ~DateRange();
     void destroy();
     const virtual wxDateTime start_date() const;
     const virtual wxDateTime end_date() const;
@@ -58,141 +58,141 @@ public:
     };
 };
 
-class mmCurrentMonth: public mmDateRange
+class mmCurrentMonth: public DateRange
 {
 public:
     mmCurrentMonth();
 };
 
-class mmToday: public mmDateRange
+class mmToday: public DateRange
 {
 public:
     mmToday();
 };
 
-class mmCurrentMonthToDate: public mmDateRange
+class mmCurrentMonthToDate: public DateRange
 {
 public:
     mmCurrentMonthToDate();
 };
 
-class mmLastMonth: public mmDateRange
+class mmLastMonth: public DateRange
 {
 public:
     mmLastMonth();
 };
 
-class mmLastNDays : public mmDateRange
+class mmLastNDays : public DateRange
 {
 public:
     mmLastNDays(int days);
     void SetRange(int days);
 };
 
-class mmLast30Days: public mmDateRange
+class mmLast30Days: public DateRange
 {
 public:
     mmLast30Days();
 };
 
-class mmLast90Days: public mmDateRange
+class mmLast90Days: public DateRange
 {
 public:
     mmLast90Days();
 };
 
-class mmLast3Months: public mmDateRange
+class mmLast3Months: public DateRange
 {
 public:
     mmLast3Months();
 };
 
-class mmLast12Months: public mmDateRange
+class mmLast12Months: public DateRange
 {
 public:
     mmLast12Months();
 };
 
-class mmCurrentYear: public mmDateRange
+class mmCurrentYear: public DateRange
 {
 public:
     mmCurrentYear();
 };
 
-class mmCurrentYearToDate: public mmDateRange
+class mmCurrentYearToDate: public DateRange
 {
 public:
     mmCurrentYearToDate();
 };
 
-class mmLastYear: public mmDateRange
+class mmLastYear: public DateRange
 {
 public:
     mmLastYear();
 };
 
-class mmLastYearBefore: public mmDateRange
+class mmLastYearBefore: public DateRange
 {
 public:
     mmLastYearBefore();
 };
 
-class mmCurrentFinancialYear: public mmDateRange
+class mmCurrentFinancialYear: public DateRange
 {
 public:
     mmCurrentFinancialYear();
 };
 
-class mmCurrentFinancialYearToDate : public mmDateRange
+class mmCurrentFinancialYearToDate : public DateRange
 {
 public:
     mmCurrentFinancialYearToDate();
 };
 
-class mmLastFinancialYear : public mmDateRange
+class mmLastFinancialYear : public DateRange
 {
 public:
     mmLastFinancialYear();
 };
 
-class mmAllTime: public mmDateRange
+class mmAllTime: public DateRange
 {
 public:
     mmAllTime();
     bool is_with_date() const;
 };
 
-class mmSpecifiedRange : public mmDateRange
+class mmSpecifiedRange : public DateRange
 {
 public:
     mmSpecifiedRange(const wxDateTime& start, const wxDateTime& end);
 };
 
-class mmLast365Days: public mmDateRange
+class mmLast365Days: public DateRange
 {
 public:
     mmLast365Days();
 };
 
-class mmSinseToday : public mmDateRange
+class mmSinseToday : public DateRange
 {
 public:
     mmSinseToday();
 };
 
-class mmSinse30days : public mmDateRange
+class mmSinse30days : public DateRange
 {
 public:
     mmSinse30days();
 };
 
-class mmSinse90days : public mmDateRange
+class mmSinse90days : public DateRange
 {
 public:
     mmSinse90days();
 };
 
-class mmSinseCurrentYear : public mmDateRange
+class mmSinseCurrentYear : public DateRange
 {
 public:
     mmSinseCurrentYear();
@@ -205,16 +205,16 @@ public:
 };
 
 
-inline const wxDateTime mmDateRange::start_date() const { return this->start_date_; }
-inline const wxDateTime mmDateRange::end_date() const { return this->end_date_; }
-inline const wxDateTime mmDateRange::future_date() const { return this->future_; }
-inline const wxDateTime mmDateRange::today() const { return this->today_; }
-inline bool mmDateRange::is_with_date() const { return true; }
-inline const wxString mmDateRange::title() const { return title_; }
-inline void mmDateRange::start_date(wxDateTime& start_date) { this->start_date_ = start_date; }
-inline void mmDateRange::end_date(wxDateTime& end_date) { this->end_date_ = end_date; }
-inline void mmDateRange::set_end_date(wxDateTime v) { end_date_ = v; }
-inline int mmDateRange::startDay() const { return this->startDay_; }
-inline bool mmDateRange::isFutureIgnored() const { return this->futureIgnored_; }
+inline const wxDateTime DateRange::start_date() const { return this->start_date_; }
+inline const wxDateTime DateRange::end_date() const { return this->end_date_; }
+inline const wxDateTime DateRange::future_date() const { return this->future_; }
+inline const wxDateTime DateRange::today() const { return this->today_; }
+inline bool DateRange::is_with_date() const { return true; }
+inline const wxString DateRange::title() const { return title_; }
+inline void DateRange::start_date(wxDateTime& start_date) { this->start_date_ = start_date; }
+inline void DateRange::end_date(wxDateTime& end_date) { this->end_date_ = end_date; }
+inline void DateRange::set_end_date(wxDateTime v) { end_date_ = v; }
+inline int DateRange::startDay() const { return this->startDay_; }
+inline bool DateRange::isFutureIgnored() const { return this->futureIgnored_; }
 
 

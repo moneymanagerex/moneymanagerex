@@ -31,7 +31,7 @@
 #include "model/SettingModel.h"
 #include "wizard_update.h"
 #include "mmTips.h"
-#include "reports/htmlbuilder.h"
+#include "report/htmlbuilder.h"
 
 wxBEGIN_EVENT_TABLE(mmUpdateWizard, wxDialog)
 wxEND_EVENT_TABLE()

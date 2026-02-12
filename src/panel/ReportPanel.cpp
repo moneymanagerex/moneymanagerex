@@ -43,7 +43,7 @@
 #include "images_list.h"
 #include "platfdep.h"
 #include "sharetransactiondialog.h"
-#include "reports/htmlbuilder.h"
+#include "report/htmlbuilder.h"
 #include "uicontrols/navigatortypes.h"
 
 wxBEGIN_EVENT_TABLE(ReportPanel, wxPanel)

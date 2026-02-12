@@ -22,7 +22,7 @@
 #include "mmex.h"
 #include "model/_Model.h"
 #include "model/AccountModel.h"
-#include "reportbase.h"
+#include "_ReportBase.h"
 
 class mmHistoryItem
 {
@@ -38,7 +38,7 @@ public:
     StockHistoryModel::Data_Set stockHist;
 };
 
-class mmReportSummaryByDate : public ReportBase
+class BalanceReport : public ReportBase
 {
 public:
     enum PERIOD_ID
@@ -54,7 +54,7 @@ private:
     std::map<wxString, double> m_currencyDateRateCache;
 
 public:
-    mmReportSummaryByDate(PERIOD_ID period_id);
+    BalanceReport(PERIOD_ID period_id);
     wxString getHTMLText();
 
 private:

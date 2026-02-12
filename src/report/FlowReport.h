@@ -21,13 +21,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <vector>
 #include "util/util.h"
-#include "reportbase.h"
+#include "_ReportBase.h"
 
-class mmReportCashFlow : public ReportBase
+class FlowReport : public ReportBase
 {
 public:
-    explicit mmReportCashFlow(const wxString& name);
-    virtual ~mmReportCashFlow();
+    explicit FlowReport(const wxString& name);
+    virtual ~FlowReport();
 
 protected:
     wxString getHTMLText_DayOrMonth(bool monthly = false);
@@ -42,21 +42,21 @@ private:
 
 };
 
-class mmReportCashFlowDaily : public mmReportCashFlow
+class mmReportCashFlowDaily : public FlowReport
 {
 public:
     mmReportCashFlowDaily();
     virtual wxString getHTMLText();
 };
 
-class mmReportCashFlowMonthly : public mmReportCashFlow
+class mmReportCashFlowMonthly : public FlowReport
 {
 public:
     mmReportCashFlowMonthly();
     virtual wxString getHTMLText();
 };
 
-class mmReportCashFlowTransactions : public mmReportCashFlow
+class mmReportCashFlowTransactions : public FlowReport
 {
 public:
     mmReportCashFlowTransactions();

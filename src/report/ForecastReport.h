@@ -18,18 +18,15 @@
 
 #pragma once
 
-#include "budget.h"
-#include "budgetcategorysummary.h"
-#include "budgetingperf.h"
-#include "cashflow.h"
-#include "categexp.h"
-#include "htmlbuilder.h"
-#include "incexpenses.h"
-#include "mmDateRange.h"
-#include "myusage.h"
-#include "payee.h"
-#include "reportbase.h"
-#include "summary.h"
-#include "summarystocks.h"
-#include "transactions.h"
-#include "forecast.h"
+#include "_ReportBase.h"
+
+class ForecastReport: public ReportBase 
+{
+public:
+    ForecastReport();
+    virtual ~ForecastReport();
+    virtual wxString getHTMLText();
+
+protected:
+};
+

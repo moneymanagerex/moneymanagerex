@@ -1,5 +1,6 @@
 /*******************************************************
- Copyright (C) 2006-2021
+ Copyright (C) 2006-2012
+ Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -18,42 +19,22 @@
 
 #pragma once
 
-#include <map>
-#include <vector>
-#include "util/util.h"
-#include "reportbase.h"
+#include "_ReportBase.h"
 
-class ReportFlowByPayee : public ReportBase
+class InExReport : public ReportBase
 {
-private:
-    struct Data
-    {
-        wxString payee_name;
-        double flow_pos;
-       double flow_neg;
-        double flow;
-
-        Data();
-    };
-
-private:
-    std::map<int64, Data> m_id_data;
-    std::vector<int64> m_order_net_flow;
-    std::vector<int64> m_order_abs_flow;
-    Data m_total;
-
 public:
-    ReportFlowByPayee();
-    virtual ~ReportFlowByPayee();
-
-public:
-    virtual void refreshData();
+    InExReport();
+    virtual ~InExReport();
     virtual wxString getHTMLText();
+};
 
-private:
-    static void updateData(Data& data, TransactionModel::TYPE_ID type_id, double amount);
-
-private:
-    void loadData();
+/////////////////////////////////////////////////////////////////////////////////////
+class mmReportIncomeExpensesMonthly : public ReportBase
+{
+public:
+    mmReportIncomeExpensesMonthly();
+    virtual ~mmReportIncomeExpensesMonthly();
+    virtual wxString getHTMLText();
 };
 

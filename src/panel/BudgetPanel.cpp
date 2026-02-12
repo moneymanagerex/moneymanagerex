@@ -21,14 +21,14 @@
 
 #include "constants.h"
 #include "mmex.h"
+#include "util/DateRange.h"
 
 #include "model/_all.h"
 #include "model/PreferencesModel.h"
 
 #include "BudgetPanel.h"
 #include "budgetentrydialog.h"
-#include "reports/budget.h"
-#include "reports/mmDateRange.h"
+#include "report/budget.h"
 #include "images_list.h"
 
 enum
@@ -382,7 +382,7 @@ void BudgetPanel::initVirtualListControl()
     PreferencesModel::instance().addBudgetDateOffset(dtBegin);
     m_budget_offset_date = dtBegin.FormatISODate();   
     PreferencesModel::instance().addBudgetDateOffset(dtEnd);
-    mmDateRange date_range;
+    DateRange date_range;
     date_range.start_date(dtBegin.ResetTime()); // Start of Day
     date_range.end_date(dtEnd.ResetTime().Add(wxTimeSpan(23,59,59,999))); // End of Day
 

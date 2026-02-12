@@ -149,6 +149,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     util/choices.h
     util/DateDay.cpp
     util/DateDay.h
+    util/DateRange.cpp
+    util/DateRange.h
     util/DateRange2.cpp
     util/DateRange2.h
     util/primitive.cpp
@@ -332,38 +334,36 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     import_export/univcsvdialog.cpp
     import_export/univcsvdialog.h
 
-    reports/allreport.h
-    reports/budgetcategorysummary.cpp
-    reports/budgetcategorysummary.h
-    reports/budget.cpp
-    reports/budget.h
-    reports/budgetingperf.cpp
-    reports/budgetingperf.h
-    reports/bugreport.h
-    reports/cashflow.cpp
-    reports/cashflow.h
-    reports/categexp.cpp
-    reports/categexp.h
-    reports/forecast.cpp
-    reports/forecast.h
-    reports/htmlbuilder.cpp
-    reports/htmlbuilder.h
-    reports/incexpenses.cpp
-    reports/incexpenses.h
-    reports/mmDateRange.cpp
-    reports/mmDateRange.h
-    reports/myusage.cpp
-    reports/myusage.h
-    reports/payee.cpp
-    reports/payee.h
-    reports/reportbase.cpp
-    reports/reportbase.h
-    reports/summary.cpp
-    reports/summary.h
-    reports/summarystocks.cpp
-    reports/summarystocks.h
-    reports/transactions.cpp
-    reports/transactions.h
+    report/BalanceReport.cpp
+    report/BalanceReport.h
+    report/CategoryReport.cpp
+    report/CategoryReport.h
+    report/FlowReport.cpp
+    report/FlowReport.h
+    report/ForecastReport.cpp
+    report/ForecastReport.h
+    report/InExReport.cpp
+    report/InExReport.h
+    report/PayeeReport.cpp
+    report/PayeeReport.h
+    report/StocksReport.cpp
+    report/StocksReport.h
+    report/TransactionsReport.cpp
+    report/TransactionsReport.h
+    report/UsageReport.cpp
+    report/UsageReport.h
+    report/_ReportBase.cpp
+    report/_ReportBase.h
+    report/_all.h
+    report/budget.cpp
+    report/budget.h
+    report/budgetcategorysummary.cpp
+    report/budgetcategorysummary.h
+    report/budgetingperf.cpp
+    report/budgetingperf.h
+    report/bugreport.h
+    report/htmlbuilder.cpp
+    report/htmlbuilder.h
 
     generic/generictreelistdialog.cpp
     generic/generictreelistdialog.h

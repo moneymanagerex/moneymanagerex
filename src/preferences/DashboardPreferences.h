@@ -22,9 +22,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "defs.h"
 #include <wx/spinctrl.h>
+#include "util/DateRange.h"
 
 #include "_PreferencesBase.h"
-#include "reports/mmDateRange.h"
 
 class DashboardPreferences : public PreferencesBase
 {
@@ -44,12 +44,12 @@ public:
 
 public:
     virtual bool SaveSettings();
-    const wxSharedPtr<mmDateRange> get_inc_vs_exp_date_range() const;
+    const wxSharedPtr<DateRange> get_inc_vs_exp_date_range() const;
 
 private:
     void Create();
-    wxSharedPtr<mmDateRange> m_inc_vs_exp_date_range;
-    std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
+    wxSharedPtr<DateRange> m_inc_vs_exp_date_range;
+    std::vector<wxSharedPtr<DateRange>> m_all_date_ranges;
     wxCheckBox* m_ignore_future_transactions_home = nullptr;
 
 private:

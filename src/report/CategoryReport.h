@@ -23,16 +23,16 @@
 #include <vector>
 #include "util/util.h"
 #include "model/CategoryModel.h"
-#include "reportbase.h"
+#include "_ReportBase.h"
 
-class mmReportCategoryExpenses : public ReportBase
+class CategoryReport : public ReportBase
 {
 public:
     // structure for sorting of data
     struct data_holder { int64 catID; int64 subCatID; wxString name; double amount; int64 categs; int level; };
     enum TYPE { GOES = 0, COME , MONTHLY, SUMMARY };
-    explicit mmReportCategoryExpenses(const wxString& title, enum TYPE type);
-    virtual ~mmReportCategoryExpenses();
+    explicit CategoryReport(const wxString& title, enum TYPE type);
+    virtual ~CategoryReport();
 
     virtual void refreshData();
     double AppendData(const std::vector<data_holder>& data, std::map<int64, std::map<int, double>>& categoryStats,
@@ -46,19 +46,19 @@ private:
     std::vector<data_holder> data_;
 };
 
-class mmReportCategoryExpensesGoes: public mmReportCategoryExpenses
+class mmReportCategoryExpensesGoes: public CategoryReport
 {
 public:
     mmReportCategoryExpensesGoes();
 };
 
-class mmReportCategoryExpensesComes : public mmReportCategoryExpenses
+class mmReportCategoryExpensesComes : public CategoryReport
 {
 public:
     mmReportCategoryExpensesComes();
 };
 
-class mmReportCategoryExpensesCategories : public mmReportCategoryExpenses
+class mmReportCategoryExpensesCategories : public CategoryReport
 {
 public:
     mmReportCategoryExpensesCategories();

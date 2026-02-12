@@ -22,11 +22,11 @@
 #include "constants.h"
 #include "mmex.h"
 #include "util/util.h"
-#include "mmDateRange.h"
+#include "util/DateRange.h"
 
 #include "model/AccountModel.h"
 #include "mmSimpleDialogs.h"
-#include "reportbase.h"
+#include "_ReportBase.h"
 
 ReportBase::ReportBase(const wxString& title)
     : m_title(title)

@@ -29,7 +29,7 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #include "model/PreferencesModel.h"
 #include "model/SettingModel.h"
 
-#include "reports/htmlbuilder.h"
+#include "report/htmlbuilder.h"
 #include "images_list.h"
 #include "themes.h"
 

@@ -25,7 +25,7 @@
 #include "htmlbuilder.h"
 
 #include "model/_all.h"
-#include "summary.h"
+#include "BalanceReport.h"
 
 mmHistoryItem::mmHistoryItem()
 {
@@ -33,7 +33,7 @@ mmHistoryItem::mmHistoryItem()
     purchasePrice = numShares = 0.0;
 }
 
-mmReportSummaryByDate::mmReportSummaryByDate(mmReportSummaryByDate::PERIOD_ID period_id) :
+BalanceReport::BalanceReport(BalanceReport::PERIOD_ID period_id) :
     ReportBase(wxString::Format(
         "Accounts Balance - %s", (period_id == PERIOD_ID::MONTH ? "Monthly" : "Yearly")
     )),
@@ -45,7 +45,7 @@ mmReportSummaryByDate::mmReportSummaryByDate(mmReportSummaryByDate::PERIOD_ID pe
     );
 }
 
-std::map<wxDate, double> mmReportSummaryByDate::loadCheckingDateBalance(const AccountModel::Data& account)
+std::map<wxDate, double> BalanceReport::loadCheckingDateBalance(const AccountModel::Data& account)
 {
     std::map<wxDate, double> date_balance;
     double balance = account.INITIALBAL;
@@ -63,7 +63,7 @@ static bool sortFunction(const std::pair<wxDate, double> x, std::pair<wxDate, do
     return x.first >= y.first;
 }
 
-double mmReportSummaryByDate::getCheckingBalance(const AccountModel::Data* account, const wxDate& date)
+double BalanceReport::getCheckingBalance(const AccountModel::Data* account, const wxDate& date)
 {
     std::map<wxDate, double> date_balance = m_account_date_balance[account->ACCOUNTID];
 
@@ -73,7 +73,7 @@ double mmReportSummaryByDate::getCheckingBalance(const AccountModel::Data* accou
     return account->INITIALBAL;
 }
 
-std::pair<double, double> mmReportSummaryByDate::getBalance(const AccountModel::Data* account, const wxDate& date)
+std::pair<double, double> BalanceReport::getBalance(const AccountModel::Data* account, const wxDate& date)
 {
     std::pair<double /*cash bal*/, double /*market bal*/> bal = { 0.0, 0.0 };
     if (date.FormatISODate() >= account->INITIALDATE) {
@@ -85,7 +85,7 @@ std::pair<double, double> mmReportSummaryByDate::getBalance(const AccountModel::
     return bal;
 }
 
-double mmReportSummaryByDate::getCurrencyDateRate(int64 currencyid, const wxDate& date)
+double BalanceReport::getCurrencyDateRate(int64 currencyid, const wxDate& date)
 {
     wxString key = wxString::Format("%lld_%s", currencyid, date.FormatDate());
 
@@ -99,7 +99,7 @@ double mmReportSummaryByDate::getCurrencyDateRate(int64 currencyid, const wxDate
     return value;
 }
 
-wxString mmReportSummaryByDate::getHTMLText()
+wxString BalanceReport::getHTMLText()
 {
     mmHTMLBuilder hb;
     wxDate dateStart = wxDate::Today();

@@ -18,6 +18,7 @@
 
 #include "constants.h"
 #include "util/DateDay.h"
+#include "util/DateRange.h"
 
 #include "model/AccountModel.h"
 #include "model/InfotableModel.h"
@@ -27,7 +28,6 @@
 
 #include "dialog/TransactionDialog.h"
 #include "reconciledialog.h"
-#include "reports/mmDateRange.h"
 #include "images_list.h"
 #include "validators.h"
 
@@ -268,7 +268,7 @@ void mmReconcileDialog::FillControls(bool init)
     }
 
     // get not reconciled transactions
-    wxSharedPtr<mmDateRange> date_range;
+    wxSharedPtr<DateRange> date_range;
     date_range = new mmCurrentMonthToDate;
     TransactionModel::Data_Set all_trans = TransactionModel::instance().find(
         TransactionModel::ACCOUNTID(m_account->ACCOUNTID),

@@ -29,24 +29,24 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 DashboardPreferences::DashboardPreferences()
 {
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonth()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonthToDate()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastMonth()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast30Days()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast90Days()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast3Months()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast12Months()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentYear()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentYearToDate()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastYear()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastYearBefore()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentFinancialYear()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentFinancialYearToDate()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastFinancialYear()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmAllTime()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast365Days()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentMonth()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentMonthToDate()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLastMonth()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLast30Days()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLast90Days()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLast3Months()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLast12Months()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentYearToDate()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLastYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLastYearBefore()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentFinancialYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentFinancialYearToDate()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLastFinancialYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmAllTime()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLast365Days()));
     // mmLastNDays must be last entry in the list
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastNDays(InfotableModel::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14))));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLastNDays(InfotableModel::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14))));
 
     int sel_id = PreferencesModel::instance().getHomePageIncExpRange();
     if (sel_id >= static_cast<int>(m_all_date_ranges.size()))
@@ -140,7 +140,7 @@ bool DashboardPreferences::SaveSettings()
     return true;
 }
 
-const wxSharedPtr<mmDateRange> DashboardPreferences::get_inc_vs_exp_date_range() const
+const wxSharedPtr<DateRange> DashboardPreferences::get_inc_vs_exp_date_range() const
 {
     return m_inc_vs_exp_date_range;
 }

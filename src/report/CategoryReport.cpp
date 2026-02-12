@@ -19,31 +19,31 @@
  ********************************************************/
 
 #include <algorithm>
+#include "util/DateRange.h"
 
 #include "model/CategoryModel.h"
 #include "model/PreferencesModel.h"
 
-#include "categexp.h"
+#include "CategoryReport.h"
 #include "budget.h"
 #include "images_list.h"
 #include "htmlbuilder.h"
-#include "mmDateRange.h"
 
 #define CATEGORY_SORT_BY_NAME        1
 #define CATEGORY_SORT_BY_AMOUNT      2
 
-mmReportCategoryExpenses::mmReportCategoryExpenses
+CategoryReport::CategoryReport
 (const wxString& title, enum TYPE type)
     : ReportBase(title)
     , type_(type)
 {
 }
 
-mmReportCategoryExpenses::~mmReportCategoryExpenses()
+CategoryReport::~CategoryReport()
 {
 }
 
-double mmReportCategoryExpenses::AppendData([[maybe_unused]] const std::vector<mmReportCategoryExpenses::data_holder> &data, std::map<int64, std::map<int, double>> &categoryStats, const DB_Table_CATEGORY_V1::Data* category, int64 groupID, int level) {
+double CategoryReport::AppendData([[maybe_unused]] const std::vector<CategoryReport::data_holder> &data, std::map<int64, std::map<int, double>> &categoryStats, const DB_Table_CATEGORY_V1::Data* category, int64 groupID, int level) {
     double amt = categoryStats[category->CATEGID][0];
     if (type_ == COME && amt < 0.0) amt = 0;
     if (type_ == GOES && amt > 0.0) amt = 0;
@@ -60,7 +60,7 @@ double mmReportCategoryExpenses::AppendData([[maybe_unused]] const std::vector<m
     return amt + subamount;
 }
 
-void  mmReportCategoryExpenses::refreshData()
+void  CategoryReport::refreshData()
 {
     data_.clear();
     std::map<int64, std::map<int, double> > categoryStats;
@@ -107,7 +107,7 @@ bool DataSorter(const ValueTrio& x, const ValueTrio& y)
         return x.label < y.label;
 }
 
-wxString mmReportCategoryExpenses::getHTMLText()
+wxString CategoryReport::getHTMLText()
 {
     // Grab the data
     refreshData();
@@ -297,26 +297,26 @@ wxString mmReportCategoryExpenses::getHTMLText()
 
     hb.end();
 
-    wxLogDebug("======= mmReportCategoryExpenses:getHTMLText =======");
+    wxLogDebug("======= CategoryReport:getHTMLText =======");
     wxLogDebug("%s", hb.getHTMLText());
 
     return hb.getHTMLText();
 }
 
 mmReportCategoryExpensesGoes::mmReportCategoryExpensesGoes()
-    : mmReportCategoryExpenses(_n("Where the Money Goes"), TYPE::GOES)
+    : CategoryReport(_n("Where the Money Goes"), TYPE::GOES)
 {
     setReportParameters(REPORT_ID::WheretheMoneyGoes);
 }
 
 mmReportCategoryExpensesComes::mmReportCategoryExpensesComes()
-    : mmReportCategoryExpenses(_n("Where the Money Comes From"), TYPE::COME)
+    : CategoryReport(_n("Where the Money Comes From"), TYPE::COME)
 {
     setReportParameters(REPORT_ID::WheretheMoneyComesFrom);
 }
 
 mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories()
-    : mmReportCategoryExpenses(_n("Categories Summary"), TYPE::MONTHLY)
+    : CategoryReport(_n("Categories Summary"), TYPE::MONTHLY)
 {
     m_chart_selection = 1;
     setReportParameters(REPORT_ID::CategoriesMonthly);
@@ -345,7 +345,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     wxDate ed = m_date_range->end_date();
     sd.Add(wxDateSpan::Months(m_date_selection.GetValue()));
     ed.Add(wxDateSpan::Months(m_date_selection.GetValue()));
-    mmDateRange* date_range = new mmSpecifiedRange(sd, ed);
+    DateRange* date_range = new mmSpecifiedRange(sd, ed);
 
     //Get statistic
     std::map<int64, std::map<int, double> > categoryStats;

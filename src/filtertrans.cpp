@@ -21,7 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "filtertrans.h"
 
 #include "dialog/AttachmentDialog.h"
-#include "reports/htmlbuilder.h"
+#include "report/htmlbuilder.h"
 
 mmFilterTransactions::mmFilterTransactions()
 {
@@ -51,7 +51,7 @@ void mmFilterTransactions::setDateRange(wxDateTime startDate, wxDateTime endDate
         m_start_date = startDate.FormatISOCombined();
 
     if (!PreferencesModel::instance().UseTransDateTime())
-        endDate = mmDateRange::getDayEnd(endDate);
+        endDate = DateRange::getDayEnd(endDate);
 
     m_end_date = endDate.FormatISOCombined();
 }

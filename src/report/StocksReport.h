@@ -19,14 +19,14 @@
 #pragma once
 
 #include <vector>
-#include "reportbase.h"
+#include "_ReportBase.h"
 
 class mmHTMLBuilder;
 
-class mmReportSummaryStocks : public ReportBase
+class StocksReport : public ReportBase
 {
 public:
-    mmReportSummaryStocks();
+    StocksReport();
     virtual void refreshData();
     virtual wxString getHTMLText();
 

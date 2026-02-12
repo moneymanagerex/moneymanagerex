@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include "reportbase.h"
+#include "_ReportBase.h"
 
 class mmHTMLBuilder;
 

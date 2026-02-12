@@ -24,20 +24,20 @@
 #include "mmframe.h"
 #include "model/TransactionModel.h"
 #include "images_list.h"
-#include "forecast.h"
+#include "ForecastReport.h"
 
 class mm_html_template;
 
-mmReportForecast::mmReportForecast(): ReportBase(_n("Forecast"))
+ForecastReport::ForecastReport(): ReportBase(_n("Forecast"))
 {
     setReportParameters(REPORT_ID::ForecastReport);
 }
 
-mmReportForecast::~mmReportForecast()
+ForecastReport::~ForecastReport()
 {
 }
 
-wxString mmReportForecast::getHTMLText()
+wxString ForecastReport::getHTMLText()
 {
     // Grab the data
     std::map<wxString, std::pair<double, double> > amount_by_day;

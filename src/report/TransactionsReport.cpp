@@ -31,22 +31,22 @@
 #include "dialog/AttachmentDialog.h"
 
 #include "htmlbuilder.h"
-#include "transactions.h"
+#include "TransactionsReport.h"
 
-mmReportTransactions::mmReportTransactions(wxSharedPtr<mmFilterTransactionsDialog>& transDialog)
+TransactionsReport::TransactionsReport(wxSharedPtr<mmFilterTransactionsDialog>& transDialog)
     : ReportBase("Transaction Report")
     , trans_()
     , m_transDialog(transDialog)
 {
 }
 
-mmReportTransactions::~mmReportTransactions()
+TransactionsReport::~TransactionsReport()
 {
     if (m_transDialog)
         m_transDialog->Destroy();
 }
 
-void mmReportTransactions::displayTotals(const std::map<int64, double>& total, std::map<int64, double>& total_in_base_curr, int noOfCols)
+void TransactionsReport::displayTotals(const std::map<int64, double>& total, std::map<int64, double>& total_in_base_curr, int noOfCols)
 {
     double grand_total = 0;
     for (const auto& [curr_id, curr_total]: total)
@@ -66,7 +66,7 @@ void mmReportTransactions::displayTotals(const std::map<int64, double>& total, s
     hb.addTotalRow(_t("Grand Total:"), noOfCols, v);
 }
 
-void mmReportTransactions::UDFCFormatHelper(FieldModel::TYPE_ID type, int64 ref, wxString data, double val, int scale)
+void TransactionsReport::UDFCFormatHelper(FieldModel::TYPE_ID type, int64 ref, wxString data, double val, int scale)
 {
     if (type == FieldModel::TYPE_ID_DECIMAL || type == FieldModel::TYPE_ID_INTEGER)
         hb.addMoneyCell(val, scale);
@@ -81,7 +81,7 @@ void mmReportTransactions::UDFCFormatHelper(FieldModel::TYPE_ID type, int64 ref,
     }
 }
 
-wxString mmReportTransactions::getHTMLText()
+wxString TransactionsReport::getHTMLText()
 {
     Run(m_transDialog);
 
@@ -559,7 +559,7 @@ table {
     return hb.getHTMLText();
 }
 
-void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
+void TransactionsReport::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
 {
     trans_.clear();
     const auto splits = TransactionSplitModel::instance().get_all();
@@ -638,7 +638,7 @@ void mmReportTransactions::Run(wxSharedPtr<mmFilterTransactionsDialog>& dlg)
     }
 }
 
-bool mmReportTransactions::showColumnById(int num)
+bool TransactionsReport::showColumnById(int num)
 {
     if (num == mmFilterTransactionsDialog::COL_TIME && !PreferencesModel::instance().UseTransDateTime())
         return false;

@@ -27,10 +27,10 @@
 #include "_PanelBase.h"
 #include "JournalPanel.h"
 #include "mmSimpleDialogs.h"
-#include "reports/reportbase.h"
+#include "report/_ReportBase.h"
 
 class mmGUIFrame;
-class mmDateRange;
+class DateRange;
 class ReportPanel : public PanelBase
 {
     wxDECLARE_EVENT_TABLE();

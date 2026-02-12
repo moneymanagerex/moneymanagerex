@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "constants.h"
 #include "paths.h"
 #include "util/util.h"
+#include "util/DateRange.h"
 
 #include "model/CategoryModel.h"
 #include "model/PayeeModel.h"
@@ -37,7 +38,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmSimpleDialogs.h"
 #include "webapp.h"
 #include "uicontrols/navigatortypes.h"
-#include "reports/mmDateRange.h"
 
 #include "qif_import_gui.h"
 #include "qif_import.h"
@@ -1642,7 +1642,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
             }
 
             wxString startDateStr = startDate.FormatISODate() + "T00:00:00";
-            wxString endDateStr = mmDateRange::getDayEnd(endDate).FormatISOCombined();
+            wxString endDateStr = DateRange::getDayEnd(endDate).FormatISOCombined();
 
             const auto potential_matches = TransactionModel::instance().find(
                 TransactionModel::TRANSAMOUNT(trx->TRANSAMOUNT),

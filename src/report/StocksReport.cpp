@@ -17,10 +17,11 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defs.h"
 #include <algorithm>
 #include "constants.h"
 #include "util/util.h"
-#include "mmDateRange.h"
+#include "util/DateRange.h"
 #include "htmlbuilder.h"
 
 #include "model/AccountModel.h"
@@ -29,17 +30,17 @@
 #include "model/StockHistoryModel.h"
 
 #include "panel/StockPanel.h"
-#include "summarystocks.h"
+#include "StocksReport.h"
 #include "budget.h"
 #include "uicontrols/navigatortypes.h"
 
-mmReportSummaryStocks::mmReportSummaryStocks()
+StocksReport::StocksReport()
     : ReportBase(_n("Summary of Stocks"))
 {
     setReportParameters(REPORT_ID::StocksReportSummary);
 }
 
-void  mmReportSummaryStocks::refreshData()
+void  StocksReport::refreshData()
 {
     m_stocks.clear();
     m_real_gain_loss_sum_total = 0.0;
@@ -92,7 +93,7 @@ void  mmReportSummaryStocks::refreshData()
     }
 }
 
-wxString mmReportSummaryStocks::getHTMLText()
+wxString StocksReport::getHTMLText()
 {
     // Grab the data  
     refreshData();

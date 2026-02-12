@@ -1,5 +1,5 @@
 /*******************************************************
- Copyright (C) 2016 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -18,15 +18,15 @@
 
 #pragma once
 
-#include "reportbase.h"
+#include "_ReportBase.h"
 
-class mmReportForecast: public ReportBase 
+class UsageReport: public ReportBase
 {
 public:
-    mmReportForecast();
-    virtual ~mmReportForecast();
+    UsageReport();
+    virtual ~UsageReport();
+
     virtual wxString getHTMLText();
-
-protected:
+private:
+    static const char * usage_template;
 };
-

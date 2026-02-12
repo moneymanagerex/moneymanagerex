@@ -19,16 +19,16 @@
 #pragma once
 
 #include "model/TransactionModel.h"
-#include "reportbase.h"
+#include "_ReportBase.h"
 #include "filtertransdialog.h"
 
 class mmBankTransaction;
 
-class mmReportTransactions : public ReportBase
+class TransactionsReport : public ReportBase
 {
 public:
-    ~mmReportTransactions();
-    mmReportTransactions(wxSharedPtr<mmFilterTransactionsDialog>& transDialog);
+    ~TransactionsReport();
+    TransactionsReport(wxSharedPtr<mmFilterTransactionsDialog>& transDialog);
 
     wxString getHTMLText();
 

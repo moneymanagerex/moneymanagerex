@@ -42,7 +42,7 @@
 #include "mmSimpleDialogs.h"
 #include "images_list.h"
 #include "platfdep.h"
-#include "reports/reportbase.h"
+#include "report/_ReportBase.h"
 
 using namespace rapidjson;
 

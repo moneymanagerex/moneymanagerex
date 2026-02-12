@@ -27,21 +27,21 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/ScheduledModel.h"
 #include "model/CurrencyHistoryModel.h"
 #include "mmframe.h"
-#include "cashflow.h"
+#include "FlowReport.h"
 
 // --------- CashFlow base class
 
-mmReportCashFlow::mmReportCashFlow(const wxString& name)
+FlowReport::FlowReport(const wxString& name)
     : ReportBase(name), m_today(wxDateTime::Now().ResetTime())
 {
     m_only_active = true;
 }
 
-mmReportCashFlow::~mmReportCashFlow()
+FlowReport::~FlowReport()
 {
 }
 
-double mmReportCashFlow::trueAmount(const TransactionModel::Data& trx)
+double FlowReport::trueAmount(const TransactionModel::Data& trx)
 {
     double amount = 0.0;
     bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(), trx.ACCOUNTID) != m_account_id.end();
@@ -69,15 +69,15 @@ double mmReportCashFlow::trueAmount(const TransactionModel::Data& trx)
     return amount;
 }
 
-void mmReportCashFlow::getTransactions()
+void FlowReport::getTransactions()
 {
     m_balance = 0.0;
     m_account_id.clear();
     m_forecastVector.clear();
 
-    wxDateTime endOfToday = mmDateRange::getDayEnd(m_today);
+    wxDateTime endOfToday = DateRange::getDayEnd(m_today);
     wxString todayString = endOfToday.FormatISOCombined();
-    wxDateTime endDate = mmDateRange::getDayEnd(m_today.Add(wxDateSpan::Months(getForwardMonths())));
+    wxDateTime endDate = DateRange::getDayEnd(m_today.Add(wxDateSpan::Months(getForwardMonths())));
 
     // Get initial Balance as of today
     for (const auto& account : AccountModel::instance().find(
@@ -210,7 +210,7 @@ void mmReportCashFlow::getTransactions()
     );
 }
 
-wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
+wxString FlowReport::getHTMLText_DayOrMonth(bool monthly)
 {
     // Grab the data
     getTransactions();
@@ -329,7 +329,7 @@ wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
 
     hb.end();
 
-    wxLogDebug("======= mmReportCashFlow:getHTMLText =======");
+    wxLogDebug("======= FlowReport:getHTMLText =======");
     wxLogDebug("%s", hb.getHTMLText());
 
     return hb.getHTMLText();
@@ -338,7 +338,7 @@ wxString mmReportCashFlow::getHTMLText_DayOrMonth(bool monthly)
 //--------- Cash Flow - Daily
 
 mmReportCashFlowDaily::mmReportCashFlowDaily()
-    : mmReportCashFlow(_n("Cash Flow - Daily"))
+    : FlowReport(_n("Cash Flow - Daily"))
 {
     this->setForwardMonths(12);
     setReportParameters(REPORT_ID::DailyCashFlow);
@@ -352,7 +352,7 @@ wxString mmReportCashFlowDaily::getHTMLText()
 //--------- Cash Flow - Monthly
 
 mmReportCashFlowMonthly::mmReportCashFlowMonthly()
-    : mmReportCashFlow(_n("Cash Flow - Monthly"))
+    : FlowReport(_n("Cash Flow - Monthly"))
 {
     this->setForwardMonths(120);
     setReportParameters(REPORT_ID::MonthlyCashFlow);
@@ -366,7 +366,7 @@ wxString mmReportCashFlowMonthly::getHTMLText()
 //--------- Cash Flow - Transactions
 
 mmReportCashFlowTransactions::mmReportCashFlowTransactions()
-    : mmReportCashFlow(_n("Cash Flow - Transactions"))
+    : FlowReport(_n("Cash Flow - Transactions"))
 {
     setReportParameters(REPORT_ID::TransactionsCashFlow);
 }

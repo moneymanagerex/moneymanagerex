@@ -31,7 +31,7 @@
 
 #include "panel/ReportPanel.h"
 #include "dialog/AttachmentDialog.h"
-#include "reports/htmlbuilder.h"
+#include "report/htmlbuilder.h"
 
 #if defined (__WXMSW__)
     #include <wx/msw/registry.h>

@@ -26,10 +26,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "defs.h"
 #include <wx/dialog.h>
 
+#include "util/DateRange.h"
 #include "mmTextCtrl.h"
 #include "mmSimpleDialogs.h"
-#include "reports/mmDateRange.h"
-#include "reports/htmlbuilder.h"
+#include "report/htmlbuilder.h"
 #include "mmcustomdata.h"
 
 class mmFilterTransactionsDialog: public wxDialog
@@ -243,7 +243,7 @@ private:
 
 private:
     wxString m_settings_json;
-    std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
+    std::vector<wxSharedPtr<DateRange>> m_all_date_ranges;
     wxString m_begin_date;
     wxString m_end_date;
     wxString m_filter_key;

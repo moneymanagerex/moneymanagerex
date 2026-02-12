@@ -236,7 +236,7 @@ void mmHTMLBuilder::displayDateHeading(const wxDateTime& startDate, const wxDate
     displayDateHeading(header);
 }
 
-void mmHTMLBuilder::displayDateHeading(const mmDateRange* date_range)
+void mmHTMLBuilder::displayDateHeading(const DateRange* date_range)
 {
     displayDateHeading(date_range->start_date(), date_range->end_date(), date_range->is_with_date());
 }

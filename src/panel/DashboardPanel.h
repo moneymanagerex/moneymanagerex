@@ -24,7 +24,7 @@
 
 class mmGUIFrame;
 class mmHTMLBuilder;
-class mmDateRange;
+class DateRange;
 
 class DashboardPanel : public PanelBase
 {

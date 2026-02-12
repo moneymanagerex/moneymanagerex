@@ -19,9 +19,10 @@ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
 #pragma once
 
+#include "defs.h"
 #include <map>
 #include <vector>
-#include "reports/mmDateRange.h"
+#include "util/DateRange.h"
 
 typedef wxLongLong int64;
 
@@ -48,11 +49,11 @@ public:
     const wxString getHTMLText();
 
 protected:
-    mmDateRange* date_range_;
+    DateRange* date_range_;
     wxString title_;
     void getTopCategoryStats(
         std::vector<std::pair<wxString, double> > &categoryStats
-        , const mmDateRange* date_range) const;
+        , const DateRange* date_range) const;
 };
 
 
@@ -61,12 +62,12 @@ class htmlWidgetBillsAndDeposits
 public:
 
     explicit htmlWidgetBillsAndDeposits(const wxString& title
-        , mmDateRange* date_range = new mmAllTime());
+        , DateRange* date_range = new mmAllTime());
     ~htmlWidgetBillsAndDeposits();
     const wxString getHTMLText();
 
 protected:
-    mmDateRange* date_range_;
+    DateRange* date_range_;
     wxString title_;
 };
 

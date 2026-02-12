@@ -57,8 +57,8 @@
 #include "dialog/TagDialog.h"
 #include "dialog/TransactionDialog.h"
 
-#include "reports/allreport.h"
-#include "reports/bugreport.h"
+#include "report/_all.h"
+#include "report/bugreport.h"
 
 #include "import_export/qif_export.h"
 #include "import_export/qif_import_gui.h"
@@ -1355,7 +1355,7 @@ void mmGUIFrame::navTreeSelection(wxTreeItemId selectedItem)
             new mmFilterTransactionsDialog(this, iData->getString())
         );
         /// FIXME memory leak
-        mmReportTransactions* rs = new mmReportTransactions(dlg);
+        TransactionsReport* rs = new TransactionsReport(dlg);
         return createReportsPage(rs, true);
     }
     case mmTreeItemData::BUDGET:
@@ -1549,7 +1549,7 @@ void mmGUIFrame::OnPopupEditFilter(wxCommandEvent& /*event*/)
     }
 
     if (is_ok) {
-        mmReportTransactions* rs = new mmReportTransactions(dlg);
+        TransactionsReport* rs = new TransactionsReport(dlg);
         createReportsPage(rs, true);
     }
 }
@@ -3135,7 +3135,7 @@ void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
         wxString filter = wxString::Format("{\"LABEL\":\"%s\",\"PAYEE\":\"%s\"}",_t("Transactions per payee"), payee->PAYEENAME);
         wxSharedPtr<mmFilterTransactionsDialog> pdlg(new mmFilterTransactionsDialog(this, filter));
         if (pdlg->ShowModal() == wxID_OK) {
-            mmReportTransactions* rs = new mmReportTransactions(pdlg);
+            TransactionsReport* rs = new TransactionsReport(pdlg);
             createReportsPage(rs, true);
         }
     }
@@ -3198,7 +3198,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& WXUNUSED(event))
         DoRecreateNavTreeControl();
     }
     if (is_ok) {
-        mmReportTransactions* rs = new mmReportTransactions(dlg);
+        TransactionsReport* rs = new TransactionsReport(dlg);
         setNavTreeSection(_t("Transaction Report"));
         createReportsPage(rs, true);
     }

@@ -23,9 +23,10 @@
 #include <float.h>
 
 #include "util/choices.h"
+#include "util/DateRange.h"
+
 #include "db/DB_Table_Budgettable_V1.h"
 #include "_Model.h"
-#include "reports/mmDateRange.h"
 
 class BudgetModel : public Model<DB_Table_BUDGETTABLE_V1>
 {
@@ -80,7 +81,7 @@ public:
         std::map<int64, wxString> &budgetNotes);
     static void getBudgetStats(
         std::map<int64, std::map<int, double> > &budgetStats
-        , mmDateRange* date_range
+        , DateRange* date_range
         , bool groupByMonth);
     static void copyBudgetYear(int64 newYearID, int64 baseYearID);
     static double getEstimate(bool is_monthly, const PERIOD_ID period, const double amount);

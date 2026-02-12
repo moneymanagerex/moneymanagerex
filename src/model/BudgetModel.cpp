@@ -97,7 +97,7 @@ void BudgetModel::getBudgetEntry(int64 budgetYearID
 
 void BudgetModel::getBudgetStats(
     std::map<int64, std::map<int, double> > &budgetStats
-    , mmDateRange* date_range
+    , DateRange* date_range
     , bool groupByMonth)
 {
     //Initialization

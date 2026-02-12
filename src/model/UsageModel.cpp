@@ -30,7 +30,7 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 #include "SettingModel.h"
 #include "UsageModel.h"
 
-#include "reports/reportbase.h"
+#include "report/_ReportBase.h"
 
 UsageModel::UsageModel()
     : Model<DB_Table_USAGE_V1>()

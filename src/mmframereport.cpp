@@ -24,7 +24,7 @@
 #include "mmframe.h"
 #include "model/BudgetPeriodModel.h"
 #include "model/ReportModel.h"
-#include "reports/allreport.h"
+#include "report/_all.h"
 #include "mmTreeItemData.h"
 #include "images_list.h"
 
@@ -159,7 +159,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
     if (hidden_reports.Index("Forecast Report") == wxNOT_FOUND)
     {
         wxTreeItemId forecastReport = m_nav_tree_ctrl->AppendItem(parent_item, _t("Forecast Report"), img::PIECHART_PNG, img::PIECHART_PNG);
-        m_nav_tree_ctrl->SetItemData(forecastReport, new mmTreeItemData("Forecast Report", new mmReportForecast()));
+        m_nav_tree_ctrl->SetItemData(forecastReport, new mmTreeItemData("Forecast Report", new ForecastReport()));
     }
 
     ///////////////////////////////////////////////////////////////////
@@ -167,7 +167,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
     if (hidden_reports.Index("Income vs Expenses") == wxNOT_FOUND)
     {
         wxTreeItemId incexpOverTime = m_nav_tree_ctrl->AppendItem(parent_item, _t("Income vs. Expenses"), img::PIECHART_PNG, img::PIECHART_PNG);
-        m_nav_tree_ctrl->SetItemData(incexpOverTime, new mmTreeItemData("Income vs Expenses", new mmReportIncomeExpenses()));
+        m_nav_tree_ctrl->SetItemData(incexpOverTime, new mmTreeItemData("Income vs Expenses", new InExReport()));
 
         wxTreeItemId incexpMonthly = m_nav_tree_ctrl->AppendItem(incexpOverTime, _t("Monthly"), img::PIECHART_PNG, img::PIECHART_PNG);
         m_nav_tree_ctrl->SetItemData(incexpMonthly, new mmTreeItemData("Income vs Expenses - Monthly", new mmReportIncomeExpensesMonthly()));
@@ -178,7 +178,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
     if (hidden_reports.Index("My Usage") == wxNOT_FOUND)
     {
         wxTreeItemId myusage = m_nav_tree_ctrl->AppendItem(parent_item, _t("My Usage"), img::PIECHART_PNG, img::PIECHART_PNG);
-        m_nav_tree_ctrl->SetItemData(myusage, new mmTreeItemData("My Usage", new mmReportMyUsage()));
+        m_nav_tree_ctrl->SetItemData(myusage, new mmTreeItemData("My Usage", new UsageReport()));
     }
 
     //////////////////////////////////////////////////////////////////////
@@ -186,7 +186,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
     if (hidden_reports.Index("Payees") == wxNOT_FOUND)
     {
         wxTreeItemId payeesOverTime = m_nav_tree_ctrl->AppendItem(parent_item, _t("Payees"), img::PIECHART_PNG, img::PIECHART_PNG);
-        m_nav_tree_ctrl->SetItemData(payeesOverTime, new mmTreeItemData("Payee Report", new ReportFlowByPayee()));
+        m_nav_tree_ctrl->SetItemData(payeesOverTime, new mmTreeItemData("Payee Report", new PayeeReport()));
     }
 
     //////////////////////////////////////////////////////////////////
@@ -200,7 +200,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
         m_nav_tree_ctrl->SetItemData(
             accMonthly,
             new mmTreeItemData("Monthly Summary of Accounts",
-                new mmReportSummaryByDate(mmReportSummaryByDate::PERIOD_ID::MONTH)
+                new BalanceReport(BalanceReport::PERIOD_ID::MONTH)
             )
         );
 
@@ -208,7 +208,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
         m_nav_tree_ctrl->SetItemData(
             accYearly,
             new mmTreeItemData("Yearly Summary of Accounts",
-                new mmReportSummaryByDate(mmReportSummaryByDate::PERIOD_ID::YEAR)
+                new BalanceReport(BalanceReport::PERIOD_ID::YEAR)
             )
         );
     }
@@ -242,7 +242,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
             m_nav_tree_ctrl->SetItemData(stocksReport, new mmTreeItemData("Stocks Report", new mmReportChartStocks()));
 
             wxTreeItemId stocksReportSummary = m_nav_tree_ctrl->AppendItem(stocksReport, _t("Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
-            m_nav_tree_ctrl->SetItemData(stocksReportSummary, new mmTreeItemData("Summary of Stocks", new mmReportSummaryStocks()));
+            m_nav_tree_ctrl->SetItemData(stocksReportSummary, new mmTreeItemData("Summary of Stocks", new StocksReport()));
         }
     }
 
