@@ -674,7 +674,7 @@ void mmReconcileDialog::setListItemData(const TransactionModel::Data* trx, wxLis
     list->SetItem(item, 1, mmGetDateTimeForDisplay(trx->TRANSDATE));
     list->SetItem(item, 2, trx->TRANSACTIONNUMBER);
     list->SetItem(item, 3, prefix + payeeName);
-    list->SetItem(item, 4, Model_Currency::toString(trx->TRANSAMOUNT,m_currency));
+    list->SetItem(item, 4, CurrencyModel::toString(trx->TRANSAMOUNT,m_currency));
     list->SetItem(item, 5, trx->STATUS);
     list->SetItemImage(item, trx->STATUS == "F" ? 1 : 0);
 }
