@@ -18,7 +18,7 @@
  ********************************************************/
 
 #include "wizard_newaccount.h"
-#include "mmhomepagepanel.h"
+#include "panel/DashboardPanel.h"
 #include "uicontrols/navigatortypes.h"
 #include "../resources/addacctwiz.xpm"
 
@@ -63,17 +63,17 @@ void mmAddAccountWizard::RunIt()
 {
     if (RunWizard(page1)) {
         // Success
-        Model_Account::Data* account = Model_Account::instance().create();
+        AccountModel::Data* account = AccountModel::instance().create();
 
         account->FAVORITEACCT = "TRUE";
-        account->STATUS = Model_Account::STATUS_NAME_OPEN;
+        account->STATUS = AccountModel::STATUS_NAME_OPEN;
         account->ACCOUNTTYPE = NavigatorTypes::instance().type_name(accountType_);
         account->ACCOUNTNAME = accountName_;
         account->INITIALBAL = 0;
         account->INITIALDATE = wxDate::Today().FormatISODate();
         account->CURRENCYID = currencyID_;
 
-        Model_Account::instance().save(account);
+        AccountModel::instance().save(account);
         acctID_ = account->ACCOUNTID;
     }
     Destroy();
@@ -92,7 +92,7 @@ void mmAddAccountNamePage::processPage(wxWizardEvent& event)
         }
         else
         {
-            if (Model_Account::instance().get(account_name))
+            if (AccountModel::instance().get(account_name))
             {
                 wxMessageBox(_t("An account with this name already exists"), _t("New Account"), wxOK|wxICON_ERROR, this);
                 event.Veto();
@@ -166,7 +166,7 @@ mmAddAccountTypePage::mmAddAccountTypePage(mmAddAccountWizard *parent)
 
 bool mmAddAccountTypePage::TransferDataFromWindow()
 {
-    int64 currencyID = Option::instance().getBaseCurrencyID();
+    int64 currencyID = PreferencesModel::instance().getBaseCurrencyID();
     if (currencyID == -1)
     {
         wxString errorMsg;

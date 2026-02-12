@@ -19,8 +19,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 #include <wx/textctrl.h>
-#include "model/Model_Currency.h"
-#include "model/Model_Account.h"
+#include "model/CurrencyModel.h"
+#include "model/AccountModel.h"
 
 class mmTextCtrl : public wxTextCtrl
 {
@@ -34,7 +34,7 @@ public:
         , const wxSize &size = wxDefaultSize
         , long style = wxTE_PROCESS_ENTER | wxALIGN_RIGHT
         , const wxValidator &validator = wxDefaultValidator
-        , const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency()
+        , const CurrencyModel::Data* currency = CurrencyModel::GetBaseCurrency()
         , const wxString &name = "mmTextCtrl")
     : wxTextCtrl(parent, id, value, pos, size, style, validator, name)
         , m_currency(currency)
@@ -44,27 +44,27 @@ public:
     void SetValue(double value, int precision);
     //SetValue without generating an event
     void SetValueNoEvent(double value, int precision);
-    void SetValue(double value, const Model_Account::Data* account, int precision = -1);
-    void SetValue(double value, const Model_Currency::Data* currency, int precision = -1);
+    void SetValue(double value, const AccountModel::Data* account, int precision = -1);
+    void SetValue(double value, const CurrencyModel::Data* currency, int precision = -1);
     bool Calculate(int alt_precision = -1);
     bool GetDouble(double &amount) const;
     bool checkValue(double &amount, bool positive_value = true);
     wxChar GetDecimalPoint();
-    void SetCurrency(const Model_Currency::Data* currency);
+    void SetCurrency(const CurrencyModel::Data* currency);
     void SetAltPrecision(int precision);
     void SetIgnoreFocusChange(bool ignore_focus);
-    const Model_Currency::Data* GetCurrency();
+    const CurrencyModel::Data* GetCurrency();
 
 private:
     int m_alt_precision = -1;
     bool ignore_focus_ = false;
     void OnTextEntered(wxCommandEvent&);
     void OnKillFocus(wxFocusEvent& event);
-    const Model_Currency::Data* m_currency = nullptr;
+    const CurrencyModel::Data* m_currency = nullptr;
     wxDECLARE_EVENT_TABLE();
 };
 
 inline void mmTextCtrl::SetAltPrecision(int precision) { m_alt_precision = precision; }
-inline const Model_Currency::Data* mmTextCtrl::GetCurrency() { return m_currency; }
-inline void mmTextCtrl::SetCurrency(const Model_Currency::Data* currency) { m_currency = currency; }
+inline const CurrencyModel::Data* mmTextCtrl::GetCurrency() { return m_currency; }
+inline void mmTextCtrl::SetCurrency(const CurrencyModel::Data* currency) { m_currency = currency; }
 inline void mmTextCtrl::SetIgnoreFocusChange(bool ignore_focus) { ignore_focus_ = ignore_focus; }

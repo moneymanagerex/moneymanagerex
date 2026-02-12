@@ -21,9 +21,9 @@
 #pragma once
 
 #include "defs.h"
-#include "primitive.h"
-#include "option.h"
-#include "reports/reportbase.h"
+#include "util/primitive.h"
+#include "model/PreferencesModel.h"
+#include "report/_ReportBase.h"
 
 class mmTreeItemData : public wxTreeItemData
 {
@@ -52,28 +52,28 @@ private:
     int type_;
     int64 id_ = -1;
     wxString stringData_;
-    wxSharedPtr<mmPrintableBase> report_;
+    wxSharedPtr<ReportBase> report_;
 
 public:
     mmTreeItemData(int type, int64 id);
     mmTreeItemData(int type, const wxString& data);
     mmTreeItemData(int type, int64 id, const wxString& data);
-    mmTreeItemData(const wxString& data, mmPrintableBase* report);
-    mmTreeItemData(mmPrintableBase* report, const wxString& data);
+    mmTreeItemData(const wxString& data, ReportBase* report);
+    mmTreeItemData(ReportBase* report, const wxString& data);
     
     ~mmTreeItemData() {}
 
     int getType() const;
     int64 getId() const;
     const wxString getString() const;
-    mmPrintableBase* getReport() const;
+    ReportBase* getReport() const;
     bool isReadOnly() const;
 };
 
 inline int mmTreeItemData::getType() const { return type_; }
 inline int64 mmTreeItemData::getId() const { return id_; }
 inline const wxString mmTreeItemData::getString() const { return stringData_; }
-inline mmPrintableBase* mmTreeItemData::getReport() const { return report_.get(); }
+inline ReportBase* mmTreeItemData::getReport() const { return report_.get(); }
 
 inline bool operator==(const mmTreeItemData& lhs, const mmTreeItemData& rhs)
 {

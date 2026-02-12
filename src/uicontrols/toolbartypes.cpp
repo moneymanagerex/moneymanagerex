@@ -16,11 +16,10 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "toolbartypes.h"
-#include "mmframe.h"
 #include "constants.h"
-#include "model/Model_Setting.h"
-
+#include "model/SettingModel.h"
+#include "mmframe.h"
+#include "toolbartypes.h"
 
 static const wxString TOOLBAR_INFO_KEY = "TOOLBAR_SETTINGS";
 
@@ -96,7 +95,7 @@ void ToolBarEntries::SortEntriesBySeq()
 }
 
 wxImageList* ToolBarEntries::getImageList(){
-    const int toolbar_icon_size = Option::instance().getToolbarIconSize();
+    const int toolbar_icon_size = PreferencesModel::instance().getToolbarIconSize();
     wxImageList* imageList = new wxImageList(toolbar_icon_size, toolbar_icon_size);
     int iidx = 0;
     ToolBarEntries::ToolBarEntry* ainfo = getFirstEntry();
@@ -168,7 +167,7 @@ bool ToolBarEntries::DeleteEntry(ToolBarEntry* info)
 }
 
 void ToolBarEntries::Save() {
-    Document j_doc = Model_Setting::instance().getJdoc(TOOLBAR_INFO_KEY, "{}");
+    Document j_doc = SettingModel::instance().getJdoc(TOOLBAR_INFO_KEY, "{}");
     j_doc.SetObject();
     rapidjson::Value array(rapidjson::kArrayType);
 
@@ -189,7 +188,7 @@ void ToolBarEntries::Save() {
         }
     }
     j_doc.AddMember("data", array, j_doc.GetAllocator());
-    Model_Setting::instance().setJdoc(TOOLBAR_INFO_KEY, j_doc);
+    SettingModel::instance().setJdoc(TOOLBAR_INFO_KEY, j_doc);
 
     if (m_toolbarParent) {  // update toolbar
         m_toolbarParent->PopulateToolBar();
@@ -199,7 +198,7 @@ void ToolBarEntries::Save() {
 void ToolBarEntries::Load() {
     m_toolbar_entries.clear();
     bool doReset = false;
-    Document doc = Model_Setting::instance().getJdoc(TOOLBAR_INFO_KEY, "{}");
+    Document doc = SettingModel::instance().getJdoc(TOOLBAR_INFO_KEY, "{}");
     if (doc.HasMember("data") && doc["data"].IsArray()) {
         try {
             const rapidjson::Value& array = doc["data"];

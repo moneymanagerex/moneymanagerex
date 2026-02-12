@@ -18,11 +18,10 @@
 
 #pragma once
 
-#include "choices.h"
 #include "defs.h"
-#include "images_list.h"
+#include "util/choices.h"
 #include "mmframe.h"
-
+#include "images_list.h"
 
 class ToolBarEntries
 {

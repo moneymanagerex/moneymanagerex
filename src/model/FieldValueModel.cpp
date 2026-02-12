@@ -1,0 +1,108 @@
+/*******************************************************
+ Copyright (C) 2016 Gabriele-V
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ ********************************************************/
+
+#include "defs.h"
+#include <wx/string.h>
+
+#include "FieldModel.h"
+#include "FieldValueModel.h"
+
+FieldValueModel::FieldValueModel()
+: Model<DB_Table_CUSTOMFIELDDATA_V1>()
+{
+}
+
+FieldValueModel::~FieldValueModel()
+{
+}
+
+/**
+* Initialize the global FieldValueModel table.
+* Reset the FieldValueModel table or create the table if it does not exist.
+*/
+FieldValueModel& FieldValueModel::instance(wxSQLite3Database* db)
+{
+    FieldValueModel& ins = Singleton<FieldValueModel>::instance();
+    ins.db_ = db;
+    ins.destroy_cache();
+    ins.ensure(db);
+
+    return ins;
+}
+
+/** Return the static instance of FieldValueModel table */
+FieldValueModel& FieldValueModel::instance()
+{
+    return Singleton<FieldValueModel>::instance();
+}
+
+FieldValueModel::Data* FieldValueModel::get(int64 FieldID, int64 RefID)
+{
+    FieldValueModel::Data_Set items = this->find(FIELDID(FieldID), REFID(RefID));
+    if (!items.empty())
+        return this->get(items[0].FIELDATADID, this->db_);
+    return nullptr;
+}
+
+std::map<int64, FieldValueModel::Data_Set> FieldValueModel::get_all(const wxString& reftype)
+{
+    FieldModel::Data_Set custom_fields = FieldModel::instance()
+        .find(FieldModel::DB_Table_CUSTOMFIELD_V1::REFTYPE(reftype));
+    std::map<int64, FieldValueModel::Data_Set> data;
+    for (const auto& entry : custom_fields)
+    {
+        for (const auto & custom_field : find(FieldValueModel::FIELDID(entry.FIELDID)))
+        {
+            data[custom_field.REFID].push_back(custom_field);
+        }
+    }
+    return data;
+}
+
+// Return all CustomFieldData value
+wxArrayString FieldValueModel::allValue(const int64 FieldID)
+{
+    wxArrayString values;
+    wxString PreviousValue;
+
+    FieldValueModel::Data_Set items = this->find(FIELDID(FieldID));
+    std::sort(items.begin(), items.end(), SorterByCONTENT());
+
+    for (const auto &item : items)
+    {
+        if (item.CONTENT != PreviousValue)
+        {
+            values.Add(item.CONTENT);
+            PreviousValue = item.CONTENT;
+        }
+    }
+    return values;
+}
+
+bool FieldValueModel::DeleteAllData(const wxString& RefType, int64 RefID)
+{
+    const auto& fields = FieldModel::instance().find(FieldModel::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType));
+
+    for (const auto& field : fields)
+    {
+        Data* data = FieldValueModel::instance().get(field.FIELDID, RefID);
+        if (data)
+            FieldValueModel::instance().remove(data->FIELDATADID);
+    }
+    return true;
+}

@@ -27,25 +27,32 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma hdrstop
 #endif
 
-#include "filtertransdialog.h"
-#include "categdialog.h"
-#include "constants.h"
-#include "images_list.h"
-#include "mmSimpleDialogs.h"
-#include "paths.h"
-#include "payeedialog.h"
-#include "util.h"
-#include "validators.h"
-
-#include "model/allmodel.h"
-#include "uicontrols/navigatortypes.h"
-
+#include "defs.h"
 #include <wx/display.h>
 #include <wx/regex.h>
 #include <wx/valnum.h>
 
-static const wxString COLUMN_NAMES[] = { "ID", "Color", "Date", "Number", "Account", "Payee", "Status", "Category", "Type", "Amount",
-                                         "Notes", "UDFC01", "UDFC02", "UDFC03", "UDFC04", "UDFC05", "Tags", "FX Rate", "Time" };
+#include "constants.h"
+#include "paths.h"
+#include "util/util.h"
+
+#include "model/_all.h"
+
+#include "dialog/CategoryDialog.h"
+#include "dialog/PayeeDialog.h"
+#include "filtertransdialog.h"
+#include "mmSimpleDialogs.h"
+#include "images_list.h"
+#include "validators.h"
+
+#include "uicontrols/navigatortypes.h"
+
+static const wxString COLUMN_NAMES[] = {
+    "ID", "Color", "Date", "Number", "Account", "Payee",
+    "Status", "Category", "Type", "Amount", "Notes",
+    "UDFC01", "UDFC02", "UDFC03", "UDFC04", "UDFC05",
+    "Tags", "FX Rate", "Time"
+};
 
 static const wxString TRANSACTION_STATUSES[] = {
     _n("Unreconciled"),
@@ -94,7 +101,7 @@ mmFilterTransactionsDialog::~mmFilterTransactionsDialog()
 {
     wxLogDebug("~mmFilterTransactionsDialog");
     if (isReportMode_)
-        Model_Infotable::instance().setSize("TRANSACTION_FILTER_SIZE", GetSize());
+        InfotableModel::instance().setSize("TRANSACTION_FILTER_SIZE", GetSize());
 }
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int64 accountID, bool isReport, wxString selected)
@@ -121,35 +128,35 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, const w
 
 void mmFilterTransactionsDialog::mmDoInitVariables()
 {
-    m_use_date_filter = isReportMode_; //|| Option::instance().getUsePerAccountFilter();
+    m_use_date_filter = isReportMode_; //|| PreferencesModel::instance().getUsePerAccountFilter();
 
     m_custom_fields = new mmCustomDataTransaction(this, 0, ID_CUSTOMFIELDS + (isReportMode_ ? 100 : 0));
 
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmToday()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonth()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonthToDate()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastMonth()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast30Days()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast90Days()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast3Months()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast12Months()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentYear()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentYearToDate()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastYearBefore()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentFinancialYear()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentFinancialYearToDate()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastFinancialYear()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast365Days()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmAllTime()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSinseToday()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSinse30days()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSinse90days()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSinseCurrentYear()));
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmSinseCurrentFinancialYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmToday()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentMonth()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentMonthToDate()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLastMonth()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLast30Days()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLast90Days()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLast3Months()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLast12Months()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentYearToDate()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLastYearBefore()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentFinancialYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmCurrentFinancialYearToDate()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLastFinancialYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmLast365Days()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmAllTime()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmSinseToday()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmSinse30days()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmSinse90days()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmSinseCurrentYear()));
+    m_all_date_ranges.push_back(wxSharedPtr<DateRange>(new mmSinseCurrentFinancialYear()));
 
     m_accounts_name.clear();
-    const auto accounts = Model_Account::instance().find(
-        Model_Account::ACCOUNTTYPE(NavigatorTypes::instance().type_name(NavigatorTypes::TYPE_ID_INVESTMENT), NOT_EQUAL));
+    const auto accounts = AccountModel::instance().find(
+        AccountModel::ACCOUNTTYPE(NavigatorTypes::instance().type_name(NavigatorTypes::TYPE_ID_INVESTMENT), NOT_EQUAL));
     for (const auto& acc : accounts)
     {
         m_accounts_name.push_back(acc.ACCOUNTNAME);
@@ -206,7 +213,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
                 acc_name = wxString::FromUTF8(j_account[i].GetString());
                 wxLogDebug("%s", acc_name);
                 accountCheckBox_->SetValue(true);
-                for (const auto& a : Model_Account::instance().find(Model_Account::ACCOUNTNAME(acc_name)))
+                for (const auto& a : AccountModel::instance().find(AccountModel::ACCOUNTNAME(acc_name)))
                 {
                     m_selected_accounts_id.push_back(a.ACCOUNTID);
                     baloon += (baloon.empty() ? "" : "\n") + a.ACCOUNTNAME;
@@ -281,10 +288,10 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
     wxString s_category = j_category.IsString() ? wxString::FromUTF8(j_category.GetString()) : "";
 
-    const wxString& delimiter = Model_Infotable::instance().getString("CATEG_DELIMITER", ":");
+    const wxString& delimiter = InfotableModel::instance().getString("CATEG_DELIMITER", ":");
     if (delimiter != ":" && s_category.Contains(":"))
     {
-        for (const auto& category : Model_Category::all_categories())
+        for (const auto& category : CategoryModel::all_categories())
         {
             wxString full_name = category.first;
             wxRegEx regex(delimiter);
@@ -382,7 +389,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
             if (j_tags[i].IsInt64())
             {
                 // Retrieve TAGNAME from TAGID
-                Model_Tag::Data* tag = Model_Tag::instance().get(int64(j_tags[i].GetInt64()));
+                TagModel::Data* tag = TagModel::instance().get(int64(j_tags[i].GetInt64()));
                 if (tag)
                 {
                     s_tag.Append(tag->TAGNAME + " ");
@@ -430,9 +437,9 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
 
     // Custom Fields
     bool is_custom_found = false;
-    const wxString RefType = Model_Checking::refTypeName;
+    const wxString RefType = TransactionModel::refTypeName;
     int field_index = 0;
-    for (const auto& i : Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType)))
+    for (const auto& i : FieldModel::instance().find(FieldModel::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType)))
     {
         const auto entry = wxString::Format("CUSTOM%lld", i.FIELDID);
         if (j_doc.HasMember(entry.c_str()))
@@ -474,7 +481,7 @@ void mmFilterTransactionsDialog::mmDoDataToControls(const wxString& json)
     }
 
     // Remove the time column from the hidden columns list if not enabled in options
-    if (!Option::instance().UseTransDateTime() && m_selected_columns_id.Index(COL_TIME) != wxNOT_FOUND)
+    if (!PreferencesModel::instance().UseTransDateTime() && m_selected_columns_id.Index(COL_TIME) != wxNOT_FOUND)
     {
         m_selected_columns_id.Remove(COL_TIME);
         if (m_selected_columns_id.IsEmpty())
@@ -521,8 +528,8 @@ void mmFilterTransactionsDialog::mmDoInitSettingNameChoice(wxString sel) const
         // Add a blank setting at the beginning. This clears all selections if the user chooses it.
         m_setting_name->Append("", new wxStringClientData("{}"));
         // Add the 'Last Used' setting which was the last setting used that wasn't saved
-        m_setting_name->Append(_t("Last Unsaved Filter"), new wxStringClientData(Model_Infotable::instance().getString(m_filter_key + "_LAST_USED", "")));
-        wxArrayString filter_settings = Model_Infotable::instance().getArrayString(m_filter_key, true);
+        m_setting_name->Append(_t("Last Unsaved Filter"), new wxStringClientData(InfotableModel::instance().getString(m_filter_key + "_LAST_USED", "")));
+        wxArrayString filter_settings = InfotableModel::instance().getArrayString(m_filter_key, true);
         for (const auto& data : filter_settings)
         {
             Document j_doc;
@@ -538,7 +545,7 @@ void mmFilterTransactionsDialog::mmDoInitSettingNameChoice(wxString sel) const
     }
     else
     {
-        Model_Account::Data* acc = Model_Account::instance().get(accountID_);
+        AccountModel::Data* acc = AccountModel::instance().get(accountID_);
         wxString account_name = acc ? acc->ACCOUNTNAME : "";
         m_setting_name->Append(account_name, new wxStringClientData(account_name));
         sel = "";
@@ -1017,7 +1024,7 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
         if (pattern.IsValid())
         {
             pattern.Compile("^(" + value + ")$", wxRE_ICASE | wxRE_ADVANCED);
-            Model_Payee::Data_Set payees = Model_Payee::instance().all();
+            PayeeModel::Data_Set payees = PayeeModel::instance().all();
             for (const auto& payee : payees)
             {
                 if (pattern.Matches(payee.PAYEENAME))
@@ -1085,8 +1092,8 @@ bool mmFilterTransactionsDialog::mmIsValuesCorrect() const
 
     if (amountRangeCheckBox_->IsChecked())
     {
-        Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
-        int currency_precision = Model_Currency::precision(currency);
+        CurrencyModel::Data* currency = CurrencyModel::GetBaseCurrency();
+        int currency_precision = CurrencyModel::precision(currency);
         double min_amount = 0;
 
         if (!amountMinEdit_->Calculate(currency_precision))
@@ -1192,7 +1199,7 @@ void mmFilterTransactionsDialog::OnQuit(wxCloseEvent& /*event*/)
 void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
 {
 
-    bool useDateTime = Option::instance().UseTransDateTime();
+    bool useDateTime = PreferencesModel::instance().UseTransDateTime();
 
     wxArrayString column_names;
     for (const auto& name : COLUMN_NAMES)
@@ -1286,7 +1293,7 @@ bool mmFilterTransactionsDialog::mmIsStatusMatches(const wxString& itemStatus) c
     }
     else if ("A" == filterStatus) // All Except Reconciled
     {
-        return Model_Checking::STATUS_KEY_RECONCILED != itemStatus;
+        return TransactionModel::STATUS_KEY_RECONCILED != itemStatus;
     }
     return false;
 }
@@ -1294,21 +1301,21 @@ bool mmFilterTransactionsDialog::mmIsStatusMatches(const wxString& itemStatus) c
 bool mmFilterTransactionsDialog::mmIsTypeMaches(const wxString& typeState, int64 accountid, int64 toaccountid) const
 {
     bool result = false;
-    if (typeState == Model_Checking::TYPE_NAME_TRANSFER && cbTypeTransferTo_->GetValue() &&
+    if (typeState == TransactionModel::TYPE_NAME_TRANSFER && cbTypeTransferTo_->GetValue() &&
         (!mmIsAccountChecked() || std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), accountid) != m_selected_accounts_id.end()))
     {
         result = true;
     }
-    else if (typeState == Model_Checking::TYPE_NAME_TRANSFER && cbTypeTransferFrom_->GetValue() &&
+    else if (typeState == TransactionModel::TYPE_NAME_TRANSFER && cbTypeTransferFrom_->GetValue() &&
              (!mmIsAccountChecked() || std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), toaccountid) != m_selected_accounts_id.end()))
     {
         result = true;
     }
-    else if (typeState == Model_Checking::TYPE_NAME_WITHDRAWAL && cbTypeWithdrawal_->IsChecked())
+    else if (typeState == TransactionModel::TYPE_NAME_WITHDRAWAL && cbTypeWithdrawal_->IsChecked())
     {
         result = true;
     }
-    else if (typeState == Model_Checking::TYPE_NAME_DEPOSIT && cbTypeDeposit_->IsChecked())
+    else if (typeState == TransactionModel::TYPE_NAME_DEPOSIT && cbTypeDeposit_->IsChecked())
     {
         result = true;
     }
@@ -1318,11 +1325,11 @@ bool mmFilterTransactionsDialog::mmIsTypeMaches(const wxString& typeState, int64
 
 double mmFilterTransactionsDialog::mmGetAmountMin() const
 {
-    Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
+    CurrencyModel::Data* currency = CurrencyModel::GetBaseCurrency();
 
     wxString amountStr = amountMinEdit_->GetValue().Trim();
     double amount = 0;
-    if (!Model_Currency::fromString(amountStr, amount, currency) || amount < 0)
+    if (!CurrencyModel::fromString(amountStr, amount, currency) || amount < 0)
         amount = 0;
 
     return amount;
@@ -1330,11 +1337,11 @@ double mmFilterTransactionsDialog::mmGetAmountMin() const
 
 double mmFilterTransactionsDialog::mmGetAmountMax() const
 {
-    Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
+    CurrencyModel::Data* currency = CurrencyModel::GetBaseCurrency();
 
     wxString amountStr = amountMaxEdit_->GetValue().Trim();
     double amount = 0;
-    if (!Model_Currency::fromString(amountStr, amount, currency) || amount < 0)
+    if (!CurrencyModel::fromString(amountStr, amount, currency) || amount < 0)
         amount = 0;
 
     return amount;
@@ -1352,9 +1359,9 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
             return;
         }
 
-        int sel_json = Model_Infotable::instance().findArrayItem(m_filter_key, mmGetLabelString());
+        int sel_json = InfotableModel::instance().findArrayItem(m_filter_key, mmGetLabelString());
         if (sel_json != wxNOT_FOUND)
-            Model_Infotable::instance().eraseArrayItem(m_filter_key, sel_json);
+            InfotableModel::instance().eraseArrayItem(m_filter_key, sel_json);
 
         m_setting_name->Delete(sel--);
         m_settings_json.clear();
@@ -1368,7 +1375,7 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
 
 bool mmFilterTransactionsDialog::mmIsPayeeMatches(int64 payeeID)
 {
-    const Model_Payee::Data* payee = Model_Payee::instance().get(payeeID);
+    const PayeeModel::Data* payee = PayeeModel::instance().get(payeeID);
     if (payee)
     {
         const wxString value = cbPayee_->mmGetPattern();
@@ -1408,40 +1415,40 @@ bool mmFilterTransactionsDialog::mmIsCategoryMatches(int64 categid)
 
 bool mmFilterTransactionsDialog::mmIsTagMatches(const wxString& refType, int64 refId, bool mergeSplitTags)
 {
-    std::map<wxString, int64> tagnames = Model_Taglink::instance().get(refType, refId);
+    std::map<wxString, int64> tagnames = TagLinkModel::instance().get(refType, refId);
 
     // If we have a split, merge the transaciton tags so that an AND condition captures cases
     // where one tag is on the base txn and the other is on the split
     std::map<wxString, int64> txnTagnames;
-    if (refType == Model_Splittransaction::refTypeName)
-        txnTagnames = Model_Taglink::instance().get(Model_Checking::refTypeName,
-                                                    Model_Splittransaction::instance().get(refId)->TRANSID);
-    else if (refType == Model_Budgetsplittransaction::refTypeName)
-        txnTagnames = Model_Taglink::instance().get(Model_Billsdeposits::refTypeName,
-                                                    Model_Budgetsplittransaction::instance().get(refId)->TRANSID);
+    if (refType == TransactionSplitModel::refTypeName)
+        txnTagnames = TagLinkModel::instance().get(TransactionModel::refTypeName,
+                                                    TransactionSplitModel::instance().get(refId)->TRANSID);
+    else if (refType == ScheduledSplitModel::refTypeName)
+        txnTagnames = TagLinkModel::instance().get(ScheduledModel::refTypeName,
+                                                    ScheduledSplitModel::instance().get(refId)->TRANSID);
 
     if (mergeSplitTags)
     {
         // Merge transaction tags and split tags. This is necessary when checking
         // if a split record matches the filter since we are using mmIsRecordMatches
         // to validate the split which gives it the wrong refType & refId
-        if (refType == Model_Checking::refTypeName)
+        if (refType == TransactionModel::refTypeName)
         {
             // Loop through checking splits and merge tags for each SPLITTRANSID
-            for (const auto& split : Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(refId)))
+            for (const auto& split : TransactionSplitModel::instance().find(TransactionSplitModel::TRANSID(refId)))
             {
                 std::map<wxString, int64> splitTagnames =
-                    Model_Taglink::instance().get(Model_Splittransaction::refTypeName, split.SPLITTRANSID);
+                    TagLinkModel::instance().get(TransactionSplitModel::refTypeName, split.SPLITTRANSID);
                 txnTagnames.insert(splitTagnames.begin(), splitTagnames.end());
             }
         }
-        else if (refType == Model_Billsdeposits::refTypeName)
+        else if (refType == ScheduledModel::refTypeName)
         {
             // Loop through scheduled txn splits and merge tags for each SPLITTRANSID
-            for (const auto& split : Model_Budgetsplittransaction::instance().find(Model_Budgetsplittransaction::TRANSID(refId)))
+            for (const auto& split : ScheduledSplitModel::instance().find(ScheduledSplitModel::TRANSID(refId)))
             {
                 std::map<wxString, int64> splitTagnames =
-                    Model_Taglink::instance().get(Model_Budgetsplittransaction::refTypeName, split.SPLITTRANSID);
+                    TagLinkModel::instance().get(ScheduledSplitModel::refTypeName, split.SPLITTRANSID);
                 txnTagnames.insert(splitTagnames.begin(), splitTagnames.end());
             }
         }
@@ -1504,10 +1511,10 @@ template <class MODEL, class DATA> bool mmFilterTransactionsDialog::mmIsRecordMa
     {
         wxString refType;
         // Check the Data type to determine the tag RefType
-        if (typeid(tran).hash_code() == typeid(Model_Checking::Data).hash_code())
-            refType = Model_Checking::refTypeName;
-        else if (typeid(tran).hash_code() == typeid(Model_Billsdeposits::Data).hash_code())
-            refType = Model_Billsdeposits::refTypeName;
+        if (typeid(tran).hash_code() == typeid(TransactionModel::Data).hash_code())
+            refType = TransactionModel::refTypeName;
+        else if (typeid(tran).hash_code() == typeid(ScheduledModel::Data).hash_code())
+            refType = ScheduledModel::refTypeName;
         if (!mmIsTagMatches(refType, tran.id(), mergeSplitTags))
             ok = false;
     }
@@ -1518,13 +1525,13 @@ template <class MODEL, class DATA> bool mmFilterTransactionsDialog::mmIsSplitRec
 {
     wxString refType;
 
-    if (typeid(split).hash_code() == typeid(Model_Splittransaction::Data).hash_code())
+    if (typeid(split).hash_code() == typeid(TransactionSplitModel::Data).hash_code())
     {
-        refType = Model_Splittransaction::refTypeName;
+        refType = TransactionSplitModel::refTypeName;
     }
-    else if (typeid(split).hash_code() == typeid(Model_Budgetsplittransaction::Data).hash_code())
+    else if (typeid(split).hash_code() == typeid(ScheduledSplitModel::Data).hash_code())
     {
-        refType = Model_Budgetsplittransaction::refTypeName;
+        refType = ScheduledSplitModel::refTypeName;
     }
 
     if (mmIsTagsChecked() && !mmIsTagMatches(refType, split.SPLITTRANSID))
@@ -1533,48 +1540,48 @@ template <class MODEL, class DATA> bool mmFilterTransactionsDialog::mmIsSplitRec
     return true;
 }
 
-template bool mmFilterTransactionsDialog::mmIsSplitRecordMatches<Model_Splittransaction>(const Model_Splittransaction::Data& split);
-template bool mmFilterTransactionsDialog::mmIsSplitRecordMatches<Model_Budgetsplittransaction>(const Model_Budgetsplittransaction::Data& split);
+template bool mmFilterTransactionsDialog::mmIsSplitRecordMatches<TransactionSplitModel>(const TransactionSplitModel::Data& split);
+template bool mmFilterTransactionsDialog::mmIsSplitRecordMatches<ScheduledSplitModel>(const ScheduledSplitModel::Data& split);
 
-int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tran, const Model_Splittransaction::Data_Set& splits)
+int mmFilterTransactionsDialog::mmIsRecordMatches(const TransactionModel::Data& tran, const TransactionSplitModel::Data_Set& splits)
 {
-    int ok = mmIsRecordMatches<Model_Checking>(tran);
+    int ok = mmIsRecordMatches<TransactionModel>(tran);
     for (const auto& split : splits)
     {
         // Need to check if the split matches using the transaction Notes & Tags as well
-        Model_Checking::Data splitWithTxnNotes(tran);
+        TransactionModel::Data splitWithTxnNotes(tran);
         splitWithTxnNotes.CATEGID = split.CATEGID;
         splitWithTxnNotes.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
-        Model_Checking::Data splitWithSplitNotes = splitWithTxnNotes;
+        TransactionModel::Data splitWithSplitNotes = splitWithTxnNotes;
         splitWithSplitNotes.NOTES = split.NOTES;
-        ok += (mmIsRecordMatches<Model_Checking>(splitWithSplitNotes, true) || mmIsRecordMatches<Model_Checking>(splitWithTxnNotes, true));
+        ok += (mmIsRecordMatches<TransactionModel>(splitWithSplitNotes, true) || mmIsRecordMatches<TransactionModel>(splitWithTxnNotes, true));
     }
     return ok;
 }
 
-int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Checking::Data& tran, const std::map<int64, Model_Splittransaction::Data_Set>& splits)
+int mmFilterTransactionsDialog::mmIsRecordMatches(const TransactionModel::Data& tran, const std::map<int64, TransactionSplitModel::Data_Set>& splits)
 {
-    const Model_Splittransaction::Data_Set* split = nullptr;
+    const TransactionSplitModel::Data_Set* split = nullptr;
     const auto& it = splits.find(tran.id());
     if (it != splits.end())
         split = &(it->second);
     return mmIsRecordMatches(tran, *split);
 }
 
-int mmFilterTransactionsDialog::mmIsRecordMatches(const Model_Billsdeposits::Data& tran, const std::map<int64, Model_Budgetsplittransaction::Data_Set>& splits)
+int mmFilterTransactionsDialog::mmIsRecordMatches(const ScheduledModel::Data& tran, const std::map<int64, ScheduledSplitModel::Data_Set>& splits)
 {
-    int ok = mmIsRecordMatches<Model_Billsdeposits>(tran);
+    int ok = mmIsRecordMatches<ScheduledModel>(tran);
     const auto& it = splits.find(tran.id());
     if (it != splits.end())
     {
         for (const auto& split : it->second)
         {
-            Model_Billsdeposits::Data splitWithTxnNotes = tran;
+            ScheduledModel::Data splitWithTxnNotes = tran;
             splitWithTxnNotes.CATEGID = split.CATEGID;
             splitWithTxnNotes.TRANSAMOUNT = split.SPLITTRANSAMOUNT;
-            Model_Billsdeposits::Data splitWithSplitNotes = splitWithTxnNotes;
+            ScheduledModel::Data splitWithSplitNotes = splitWithTxnNotes;
             splitWithSplitNotes.NOTES = split.NOTES;
-            ok += (mmIsRecordMatches<Model_Billsdeposits>(splitWithSplitNotes, true) || mmIsRecordMatches<Model_Billsdeposits>(splitWithTxnNotes, true));
+            ok += (mmIsRecordMatches<ScheduledModel>(splitWithSplitNotes, true) || mmIsRecordMatches<ScheduledModel>(splitWithTxnNotes, true));
         }
     }
     return ok;
@@ -1643,7 +1650,7 @@ const wxString mmFilterTransactionsDialog::mmGetDescriptionToolTip() const
                 {
                     if (wxGetTranslation("Tags").IsSameAs(wxString::FromUTF8(itr->name.GetString())))
                     {
-                        value += (value.empty() ? "" : " ") + Model_Tag::instance().get(int64(valArray[i].GetInt64()))->TAGNAME;
+                        value += (value.empty() ? "" : " ") + TagModel::instance().get(int64(valArray[i].GetInt64()))->TAGNAME;
                         // don't add a newline between tag operators
                         if (valArray.Size() > 1 && i < valArray.Size() - 2 && valArray[i + 1].GetType() == kStringType)
                             continue;
@@ -1747,11 +1754,11 @@ void mmFilterTransactionsDialog::mmGetDescription(mmHTMLBuilder& hb)
                     // wxLogDebug("%s", wxString::FromUTF8(itr->name.GetString()));
                     if (wxGetTranslation("Tags").IsSameAs(name))
                     {
-                        temp += (temp.empty() ? "" : (appendOperator ? " & " : " ")) + Model_Tag::instance().get(int64(a.GetInt64()))->TAGNAME;
+                        temp += (temp.empty() ? "" : (appendOperator ? " & " : " ")) + TagModel::instance().get(int64(a.GetInt64()))->TAGNAME;
                         appendOperator = true;
                     }
                     else if (wxGetTranslation("Hide Columns").IsSameAs(name) &&
-                        !(!Option::instance().UseTransDateTime() && a.GetInt() == COL_TIME))
+                        !(!PreferencesModel::instance().UseTransDateTime() && a.GetInt() == COL_TIME))
                     {
                         temp += (temp.empty() ? "" : ", ") + wxGetTranslation(COLUMN_NAMES[a.GetInt()]);
                     }
@@ -1820,7 +1827,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
         json_writer.StartArray();
         for (const auto& acc : m_selected_accounts_id)
         {
-            Model_Account::Data* a = Model_Account::instance().get(acc);
+            AccountModel::Data* a = AccountModel::instance().get(acc);
             json_writer.String(a->ACCOUNTNAME.utf8_str());
         }
         json_writer.EndArray();
@@ -1832,7 +1839,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
         if (dateRangeCheckBox_->IsChecked())
         {
             wxString from_date, to_date;
-            if (Option::instance().UseTransDateTime())
+            if (PreferencesModel::instance().UseTransDateTime())
             {
                 from_date = fromDateCtrl_->GetValue().FormatISOCombined(' ');
                 to_date = toDateControl_->GetValue().FormatISOCombined(' ');
@@ -1854,7 +1861,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
             int sel = rangeChoice_->GetSelection();
             if (sel != wxNOT_FOUND)
             {
-                const wxSharedPtr<mmDateRange> date_range = m_all_date_ranges.at(sel);
+                const wxSharedPtr<DateRange> date_range = m_all_date_ranges.at(sel);
                 if (date_range)
                 {
                     json_writer.Key((i18n ? _t("Period") : "PERIOD").utf8_str());
@@ -1878,7 +1885,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
         if (categoryComboBox_->mmIsValid())
         {
             int64 categ = categoryComboBox_->mmGetCategoryId();
-            const auto& full_name = Model_Category::full_name(categ, ":");
+            const auto& full_name = CategoryModel::full_name(categ, ":");
             json_writer.String(full_name.utf8_str());
         }
         else
@@ -1899,9 +1906,9 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
     {
         int item = choiceStatus_->GetSelection();
         wxString status;
-        if (0 <= item && item < Model_Checking::STATUS_ID_size)
-            status = Model_Checking::status_name(item);
-        else if (item == Model_Checking::STATUS_ID_size)
+        if (0 <= item && item < TransactionModel::STATUS_ID_size)
+            status = TransactionModel::status_name(item);
+        else if (item == TransactionModel::STATUS_ID_size)
             status = _n("All Except Reconciled");
         if (!status.empty())
         {
@@ -1960,7 +1967,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
             if (tag == "&" || tag == "|")
                 json_writer.String(tag.utf8_str());
             else
-                json_writer.Int64(Model_Tag::instance().get(tag)->TAGID.GetValue());
+                json_writer.Int64(TagModel::instance().get(tag)->TAGID.GetValue());
         }
 
         json_writer.EndArray();
@@ -1989,7 +1996,7 @@ const wxString mmFilterTransactionsDialog::mmGetJsonSettings(bool i18n) const
         {
             if (!i.second.empty())
             {
-                const auto field = Model_CustomField::instance().get(i.first);
+                const auto field = FieldModel::instance().get(i.first);
                 json_writer.Key(wxString::Format("CUSTOM%lld", field->FIELDID).utf8_str());
                 json_writer.String(i.second.utf8_str());
             }
@@ -2052,12 +2059,12 @@ void mmFilterTransactionsDialog::OnCategoryChange(wxEvent& event)
     {
         wxRegEx pattern("^(" + categoryComboBox_->mmGetPattern() + ")$", wxRE_ICASE | wxRE_ADVANCED);
         if (pattern.IsValid())
-            for (const auto& category : Model_Category::instance().all_categories())
+            for (const auto& category : CategoryModel::instance().all_categories())
                 if (pattern.Matches(category.first))
                 {
                     m_selected_categories_id.push_back(category.second);
                     if (mmIsCategorySubCatChecked())
-                        for (const auto& subcat : Model_Category::instance().sub_tree(Model_Category::instance().get(category.second)))
+                        for (const auto& subcat : CategoryModel::instance().sub_tree(CategoryModel::instance().get(category.second)))
                             m_selected_categories_id.push_back(subcat.CATEGID);
                 }
     }
@@ -2072,10 +2079,10 @@ void mmFilterTransactionsDialog::OnDateChanged(wxDateEvent& event)
         m_begin_date = event.GetDate().FormatISOCombined();
         break;
     case wxID_LAST:
-        if (Option::instance().UseTransDateTime())
+        if (PreferencesModel::instance().UseTransDateTime())
             m_end_date = event.GetDate().FormatISOCombined();
         else
-            m_end_date = mmDateRange::getDayEnd(event.GetDate()).FormatISOCombined();
+            m_end_date = DateRange::getDayEnd(event.GetDate()).FormatISOCombined();
         break;
     }
 }
@@ -2107,7 +2114,7 @@ bool mmFilterTransactionsDialog::mmIsCustomFieldMatches(int64 transid) const
     int matched = 0;
     for (const auto& i : cf)
     {
-        auto DataSet = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(transid));
+        auto DataSet = FieldValueModel::instance().find(FieldValueModel::REFID(transid));
         for (const auto& j : DataSet)
         {
             if (i.first == j.FIELDID)
@@ -2162,14 +2169,14 @@ void mmFilterTransactionsDialog::OnSettingsSelected(wxCommandEvent& event)
 void mmFilterTransactionsDialog::mmDoUpdateSettings()
 {
     if (isMultiAccount_ && m_setting_name->GetSelection() != wxNOT_FOUND) {
-        int i = Model_Infotable::instance().findArrayItem(m_filter_key, mmGetLabelString());
+        int i = InfotableModel::instance().findArrayItem(m_filter_key, mmGetLabelString());
         if (i != wxNOT_FOUND) {
             m_settings_json = mmGetJsonSettings();
-            Model_Infotable::instance().updateArrayItem(m_filter_key, i, m_settings_json);
+            InfotableModel::instance().updateArrayItem(m_filter_key, i, m_settings_json);
         }
     }
     if (!isReportMode_) {
-        Model_Infotable::instance().setString(
+        InfotableModel::instance().setString(
             wxString::Format("CHECK_FILTER_ID_ADV_%lld", accountID_),
             mmGetJsonSettings()
         );
@@ -2199,7 +2206,7 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
             m_setting_name->Append(user_label);
             m_setting_name->SetStringSelection(user_label);
             m_settings_json = mmGetJsonSettings();
-            Model_Infotable::instance().prependArrayItem(m_filter_key, m_settings_json, -1);
+            InfotableModel::instance().prependArrayItem(m_filter_key, m_settings_json, -1);
         }
         else if (label == user_label)
         {
@@ -2229,9 +2236,9 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
         }
         else
         {
-            const auto& filter_settings = Model_Infotable::instance().getArrayString(m_filter_key);
+            const auto& filter_settings = InfotableModel::instance().getArrayString(m_filter_key);
             const auto& l = mmGetLabelString();
-            int sel_json = Model_Infotable::instance().findArrayItem(m_filter_key, l);
+            int sel_json = InfotableModel::instance().findArrayItem(m_filter_key, l);
             const auto& json = sel_json != wxNOT_FOUND ? filter_settings[sel_json] : "";
             m_settings_json = mmGetJsonSettings();
             if (isMultiAccount_ && json != m_settings_json && !label.empty())
@@ -2265,7 +2272,7 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
             StringBuffer buffer;
             Writer<StringBuffer> writer(buffer);
             j_doc.Accept(writer);
-            Model_Infotable::instance().setString(
+            InfotableModel::instance().setString(
                 m_filter_key + "_LAST_USED",
                 wxString::FromUTF8(buffer.GetString())
             );
@@ -2273,7 +2280,7 @@ void mmFilterTransactionsDialog::mmDoSaveSettings(bool is_user_request)
             mmDoInitSettingNameChoice();
         }
     }
-    Model_Infotable::instance().setString("TRANSACTIONS_FILTER_LAST_USED", m_settings_json);
+    InfotableModel::instance().setString("TRANSACTIONS_FILTER_LAST_USED", m_settings_json);
 }
 
 void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
@@ -2293,7 +2300,7 @@ void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event
 
     for (const auto& acc : m_selected_accounts_id)
     {
-        Model_Account::Data* a = Model_Account::instance().get(acc);
+        AccountModel::Data* a = AccountModel::instance().get(acc);
         if (a && m_accounts_name.Index(a->ACCOUNTNAME) != wxNOT_FOUND)
             selected_items.Add(m_accounts_name.Index(a->ACCOUNTNAME));
     }
@@ -2309,7 +2316,7 @@ void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event
         {
             int index = entry;
             const wxString accounts_name = m_accounts_name[index];
-            const auto account = Model_Account::instance().get(accounts_name);
+            const auto account = AccountModel::instance().get(accounts_name);
             if (account)
                 m_selected_accounts_id.push_back(account->ACCOUNTID);
             baloon += accounts_name + "\n";
@@ -2324,7 +2331,7 @@ void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event
     }
     else if (m_selected_accounts_id.size() == 1)
     {
-        const Model_Account::Data* account = Model_Account::instance().get(*m_selected_accounts_id.begin());
+        const AccountModel::Data* account = AccountModel::instance().get(*m_selected_accounts_id.begin());
         if (account)
             bSelectedAccounts_->SetLabelText(account->ACCOUNTNAME);
     }
@@ -2362,7 +2369,7 @@ void mmFilterTransactionsDialog::OnChoice(wxCommandEvent& event)
     {
         if (sel != wxNOT_FOUND)
         {
-            wxSharedPtr<mmDateRange> dates(m_all_date_ranges.at(sel));
+            wxSharedPtr<DateRange> dates(m_all_date_ranges.at(sel));
             m_begin_date = dates->start_date().FormatISOCombined();
             m_end_date = dates->end_date().FormatISOCombined();
             wxLogDebug("%s %s", m_begin_date, m_end_date);
@@ -2404,7 +2411,7 @@ void mmFilterTransactionsDialog::OnComboKey(wxKeyEvent& event)
                 if (dlg.getRefreshRequested())
                     cbPayee_->mmDoReInitialize();
                 int64 payee_id = dlg.getPayeeId();
-                Model_Payee::Data* payee = Model_Payee::instance().get(payee_id);
+                PayeeModel::Data* payee = PayeeModel::instance().get(payee_id);
                 if (payee)
                 {
                     cbPayee_->ChangeValue(payee->PAYEENAME);
@@ -2419,11 +2426,11 @@ void mmFilterTransactionsDialog::OnComboKey(wxKeyEvent& event)
             auto category = categoryComboBox_->GetValue();
             if (category.empty())
             {
-                mmCategDialog dlg(this, true, -1);
+                CategoryDialog dlg(this, true, -1);
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     categoryComboBox_->mmDoReInitialize();
-                category = Model_Category::full_name(dlg.getCategId());
+                category = CategoryModel::full_name(dlg.getCategId());
                 categoryComboBox_->ChangeValue(category);
                 categoryComboBox_->SelectAll();
                 return;

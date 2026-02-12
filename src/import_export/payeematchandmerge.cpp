@@ -18,10 +18,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "payeematchandmerge.h"
+#include "defs.h"
+#include <wx/regex.h>
 #include <rapidjson/document.h>
 #include <algorithm>
-#include <wx/regex.h>
+
+#include "payeematchandmerge.h"
 
 PayeeMatchAndMerge::PayeeMatchAndMerge()
 {
@@ -60,7 +62,7 @@ bool PayeeMatchAndMerge::MatchPayee(const wxString& payeeName, PayeeMatchMode mo
 
 void PayeeMatchAndMerge::ExactMatch(const wxString& payeeName, std::vector<PayeeMatchResult>& results)
 {
-    Model_Payee::Data_Set payees = Model_Payee::instance().all(Model_Payee::COL_PAYEENAME);
+    PayeeModel::Data_Set payees = PayeeModel::instance().all(PayeeModel::COL_PAYEENAME);
     wxLogDebug("ExactMatch: Checking payeeName='%s' against %zu payees", payeeName, payees.size());
     for (const auto& payee : payees)
     {
@@ -86,7 +88,7 @@ void PayeeMatchAndMerge::ExactMatch(const wxString& payeeName, std::vector<Payee
 
 void PayeeMatchAndMerge::RegexMatch(const wxString& payeeName, std::vector<PayeeMatchResult>& results)
 {
-    Model_Payee::Data_Set payees = Model_Payee::instance().all();
+    PayeeModel::Data_Set payees = PayeeModel::instance().all();
     for (const auto& payee : payees)
     {
         if (payee.PATTERN.IsEmpty())
@@ -117,7 +119,7 @@ void PayeeMatchAndMerge::RegexMatch(const wxString& payeeName, std::vector<Payee
 
 void PayeeMatchAndMerge::FuzzyMatch(const wxString& payeeName, std::vector<PayeeMatchResult>& results)
 {
-    Model_Payee::Data_Set payees = Model_Payee::instance().all(Model_Payee::COL_PAYEENAME);
+    PayeeModel::Data_Set payees = PayeeModel::instance().all(PayeeModel::COL_PAYEENAME);
     for (const auto& payee : payees)
     {
         int distance = CalculateLevenshteinDistance(payeeName, payee.PAYEENAME);
@@ -164,7 +166,7 @@ int PayeeMatchAndMerge::CalculateLevenshteinDistance(const wxString& s1, const w
     return d[len1][len2];
 }
 
-void PayeeMatchAndMerge::LoadRegexPatterns(const Model_Payee::Data& payee, std::vector<wxString>& patterns)
+void PayeeMatchAndMerge::LoadRegexPatterns(const PayeeModel::Data& payee, std::vector<wxString>& patterns)
 {
     rapidjson::Document j_doc;
     j_doc.Parse(payee.PATTERN.mb_str());

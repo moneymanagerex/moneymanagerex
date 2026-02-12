@@ -20,8 +20,6 @@
 
 #include "defs.h"
 
-
-
 class genericTreeListDialog: public wxDialog
 {
 private:

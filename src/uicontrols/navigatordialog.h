@@ -22,8 +22,6 @@
 #include "navigatortypes.h"
 #include "generic/generictreelistdialog.h"
 
-
-
 class mmNavigatorDialog: public genericTreeListDialog
 {
     wxDECLARE_DYNAMIC_CLASS(mmNavigatorDialog);

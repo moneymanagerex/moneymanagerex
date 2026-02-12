@@ -18,7 +18,7 @@
 
 #pragma once
 
-#include "Model.h"
+#include "model/_Model.h"
 #include "db/DB_Table.h"
 
 class Model_Pragma : public Model<DB_Table>

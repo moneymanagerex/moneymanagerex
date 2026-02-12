@@ -19,10 +19,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #pragma once
-#include "defs.h"
-#include "model/Model_CustomField.h"
-#include "model/Model_Checking.h"
 
+#include "defs.h"
+#include "model/FieldModel.h"
+#include "model/TransactionModel.h"
 
 class mmDatePickerCtrl;
 class mmTextCtrl;
@@ -49,7 +49,7 @@ public:
     wxWindowID GetBaseID() const;
     void ResetRefID();
     bool IsSomeWidgetChanged() const;
-    bool IsDataFound(const Model_Checking::Full_Data &tran);
+    bool IsDataFound(const TransactionModel::Full_Data &tran);
     void ResetWidgetsChanged();
     void ClearSettings();
     bool IsCustomPanelShown() const;
@@ -65,7 +65,7 @@ private:
     wxStaticBox* m_static_box =nullptr;
     const wxString m_ref_type;
     int64 m_ref_id = -1;
-    Model_CustomField::Data_Set m_fields;
+    FieldModel::Data_Set m_fields;
     std::map<wxWindowID, wxString> m_data_changed;
     void OnStringChanged(wxCommandEvent& event);
     void OnDateChanged(wxDateEvent& event);

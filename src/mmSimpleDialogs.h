@@ -19,15 +19,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#ifndef MM_EX_MMSIMPLEDIALOGS_H_
-#define MM_EX_MMSIMPLEDIALOGS_H_
+#pragma once
 
-#include "mmex.h"
-#include "mmTextCtrl.h"
-#include "util.h"
-
-#include "model/Model_Account.h"
-
+#include "defs.h"
 #include <wx/choicdlg.h>
 #include <wx/spinbutt.h>
 #include <wx/dialog.h>
@@ -35,6 +29,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/choice.h>
 #include <wx/stc/stc.h>
 #include <wx/timectrl.h>
+
+#include "mmex.h"
+#include "util/util.h"
+#include "mmTextCtrl.h"
+
+#include "model/AccountModel.h"
 
 class wxComboBox;
 class wxTextCtrl;
@@ -266,7 +266,7 @@ public:
     mmSingleChoiceDialog(wxWindow *parent, const wxString& message,
         const wxString& caption, const wxArrayString& choices);
     mmSingleChoiceDialog(wxWindow* parent, const wxString& message,
-        const wxString& caption, const Model_Account::Data_Set& accounts);
+        const wxString& caption, const AccountModel::Data_Set& accounts);
     int ShowModal()
     {
         return wxSingleChoiceDialog::ShowModal();
@@ -442,4 +442,3 @@ public:
 private:
     wxColour m_colour;
 };
-#endif // MM_EX_MMSIMPLEDIALOGS_H_

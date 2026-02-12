@@ -18,11 +18,10 @@
 
 #pragma once
 
+#include "model/AccountModel.h"
+#include "model/TransactionModel.h"
+#include "panel/JournalPanel.h"
 #include "mmSimpleDialogs.h"
-#include "mmcheckingpanel.h"
-#include "model/Model_Account.h"
-#include "model/Model_Checking.h"
-
 
 class mmReconcileDialog: public wxDialog
 {
@@ -31,7 +30,7 @@ class mmReconcileDialog: public wxDialog
 public:
     mmReconcileDialog();
     ~mmReconcileDialog();
-    mmReconcileDialog(wxWindow* parent, Model_Account::Data* account, mmCheckingPanel* cp);
+    mmReconcileDialog(wxWindow* parent, AccountModel::Data* account, JournalPanel* cp);
 
 private:
 
@@ -69,15 +68,15 @@ private:
     std::vector<int64>    m_itemDataMap;
     wxVector<wxBitmapBundle> m_images;
 
-    mmCalculatorPopup*    m_calculaterPopup;
-    Model_Account::Data*  m_account;
-    Model_Currency::Data* m_currency;
-    mmCheckingPanel*      m_checkingPanel;
-    double                m_reconciledBalance;
-    double                m_hiddenDuplicatedBalance;
-    bool                  m_ignore;
-    bool                  m_settings[SETTING_size];
-    int                   m_colwidth[2]; // Store width for hidable columns
+    mmCalculatorPopup*   m_calculaterPopup;
+    AccountModel::Data*  m_account;
+    CurrencyModel::Data* m_currency;
+    JournalPanel*        m_checkingPanel;
+    double               m_reconciledBalance;
+    double               m_hiddenDuplicatedBalance;
+    bool                 m_ignore;
+    bool                 m_settings[SETTING_size];
+    int                  m_colwidth[2]; // Store width for hidable columns
 
     void CreateControls();
     void UpdateAll();
@@ -110,11 +109,11 @@ private:
     void OnRightFocusKill(wxFocusEvent& event);
     void handleListFocusKill(wxListCtrl* list);
 
-    void setListItemData(const Model_Checking::Data* trx, wxListCtrl* list, long item);
+    void setListItemData(const TransactionModel::Data* trx, wxListCtrl* list, long item);
     void processRightClick(wxListCtrl* list, long item);
     void processLeftClick(wxListCtrl* list, wxPoint pt);
-    void addTransaction2List(const Model_Checking::Data* trx);
-    long getListIndexByDate(const Model_Checking::Data* trx, wxListCtrl* list);
+    void addTransaction2List(const TransactionModel::Data* trx);
+    long getListIndexByDate(const TransactionModel::Data* trx, wxListCtrl* list);
     void moveItemData(wxListCtrl* list, int row1, int row2);
     void resetListSelections(wxListCtrl* list);
     void newTransaction();

@@ -16,12 +16,13 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defs.h"
+#include "constants.h"
+#include "paths.h"
+#include "util/util.h"
+#include "model/BudgetPeriodModel.h"
 #include "budgetyeardialog.h"
 #include "budgetyearentrydialog.h"
-#include "util.h"
-#include "paths.h"
-#include "constants.h"
-#include "model/Model_Budgetyear.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmBudgetYearDialog, wxDialog);
 
@@ -67,7 +68,7 @@ bool mmBudgetYearDialog::Create(wxWindow* parent, wxWindowID id,
 void mmBudgetYearDialog::fillControls()
 {
     int index = 0;
-    for (const auto& e: Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
+    for (const auto& e: BudgetPeriodModel::instance().all(BudgetPeriodModel::COL_BUDGETYEARNAME))
     {
         const wxString& payeeString = e.BUDGETYEARNAME;
         int64 budgetYearID = e.BUDGETYEARID;
@@ -145,8 +146,8 @@ void mmBudgetYearDialog::OnAddMonth(wxCommandEvent& /*event*/)
 void mmBudgetYearDialog::OnDelete(wxCommandEvent& /*event*/)
 {
     wxString budgetYearString = m_listBox->GetStringSelection();
-    int64 budgetYearID = Model_Budgetyear::instance().Get(budgetYearString);
-    Model_Budgetyear::instance().remove(budgetYearID);
+    int64 budgetYearID = BudgetPeriodModel::instance().Get(budgetYearString);
+    BudgetPeriodModel::instance().remove(budgetYearID);
     m_listBox->Clear();
     fillControls();
 }

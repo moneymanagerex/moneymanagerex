@@ -16,14 +16,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#ifndef MM_EX_WEBAPPDIALOG_H_
-#define MM_EX_WEBAPPDIALOG_H_
+#pragma once
 
 #include "defs.h"
-#include "webapp.h"
 #include <wx/dataview.h>
 #include <wx/srchctrl.h>
 #include <map>
+#include "webapp.h"
 
 class mmWebAppDialog : public wxDialog
 {
@@ -101,4 +100,3 @@ private:
     void OnButtonHelpClick(wxCommandEvent& WXUNUSED(event));
 };
 
-#endif // MM_EX_PAYEEDIALOG_H_

@@ -18,18 +18,20 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "wizard_update.h"
-#include "constants.h"
-#include "mmTips.h"
-#include "util.h"
-#include "paths.h"
-#include "reports/htmlbuilder.h"
-#include "model/Model_Setting.h"
-#include <rapidjson/error/en.h>
-
+#include "defs.h"
 #include <wx/webview.h>
 #include <wx/webviewfshandler.h>
 #include <wx/fs_mem.h>
+#include <rapidjson/error/en.h>
+
+#include "constants.h"
+#include "paths.h"
+#include "util/util.h"
+
+#include "model/SettingModel.h"
+#include "wizard_update.h"
+#include "mmTips.h"
+#include "report/htmlbuilder.h"
 
 wxBEGIN_EVENT_TABLE(mmUpdateWizard, wxDialog)
 wxEND_EVENT_TABLE()
@@ -61,7 +63,7 @@ mmUpdateWizard::~mmUpdateWizard()
 {
     clearVFprintedFiles("rep");
     bool isActive = showUpdateCheckBox_->GetValue();
-    Model_Setting::instance().setString(
+    SettingModel::instance().setString(
         "UPDATE_LAST_CHECKED_VERSION",
         (!isActive) ? top_version_ : ("v" + mmex::version::string).Lower()
     );
@@ -105,7 +107,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
         }
 
         bool is_prerelease = (r.HasMember("prerelease") && r["prerelease"].IsBool() && r["prerelease"].GetBool());
-        bool update_stable = Model_Setting::instance().getInt("UPDATESOURCE", 0) == 0;
+        bool update_stable = SettingModel::instance().getInt("UPDATESOURCE", 0) == 0;
         if (update_stable && is_prerelease)
             continue;
 
@@ -347,10 +349,10 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
     }
 
     wxLogDebug("{{{ mmUpdate::checkUpdates()");
-    bool update_stable = Model_Setting::instance().getInt("UPDATESOURCE", 0) == 0;
+    bool update_stable = SettingModel::instance().getInt("UPDATESOURCE", 0) == 0;
     const int _stable = is_stable ? update_stable : 0;
     const wxString current_tag = ("v" + mmex::version::string).Lower();
-    wxString last_checked = Model_Setting::instance().getString("UPDATE_LAST_CHECKED_VERSION", current_tag);
+    wxString last_checked = SettingModel::instance().getString("UPDATE_LAST_CHECKED_VERSION", current_tag);
 
     bool is_update_available = false;
     Version current(current_tag);

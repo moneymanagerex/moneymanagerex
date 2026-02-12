@@ -16,8 +16,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#ifndef QIF_EXPORT_H
-#define QIF_EXPORT_H
+#pragma once
 
 #include "defs.h"
 
@@ -84,4 +83,3 @@ private:
     wxArrayInt64 accounts_id_;
     wxArrayInt64 selected_accounts_id_;
 };
-#endif

@@ -69,17 +69,17 @@
 #   example in source file src/mmhomepage.cpp:
 #     "constants.h" is found in src/
 #   example in source file src/model/allmodels.h:
-#     "Model_Account.h" is found in src/model/
+#     "AccountModel.h" is found in src/model/
 # else if $DST_DIR is equal to src/
 #   #include "$DST_FILE"
-#   example in source file src/model/Model.h
+#   example in source file src/model/_Model.h
 #     "choices.h" is found in src/
 # else if $DST_DIR is equal to "src/$DST_SUBDIR"
 #   #include "$DST_SUBDIR/$DST_FILE"
 #   example in source file src/accountdialog.h:
-#     "model/Model_Account.h" is found in src/model/
+#     "model/AccountModel.h" is found in src/model/
 #   example in source file src/reports/cashflow.cpp:
-#     "model/Model_Account.h" is found in src/model/
+#     "model/AccountModel.h" is found in src/model/
 
 # }}}
 

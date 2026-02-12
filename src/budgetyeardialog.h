@@ -16,8 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_BUDGETYEARDIALOG_H_
-#define MM_EX_BUDGETYEARDIALOG_H_
+#pragma once
 
 #include "defs.h"
 
@@ -53,6 +52,4 @@ private:
     int budgetYearID_;
     enum { ID_ADD_MONTH = wxID_HIGHEST + 300 };
 };
-
-#endif
 

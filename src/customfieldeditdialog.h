@@ -16,12 +16,13 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_CUSTOMFIELDEDITDIALOG_H_
-#define MM_EX_CUSTOMFIELDEDITDIALOG_H_
+#pragma once
 
 #include "defs.h"
 #include <wx/dialog.h>
-#include "model/Model_CustomField.h"
+
+#include "model/FieldModel.h"
+
 class wxChoice;
 class wxCheckBox;
 class wxSpinCtrl;
@@ -33,9 +34,9 @@ class mmCustomFieldEditDialog : public wxDialog
 
 public:
     mmCustomFieldEditDialog() {};
-    mmCustomFieldEditDialog(wxWindow *parent, Model_CustomField::Data* field);
+    mmCustomFieldEditDialog(wxWindow *parent, FieldModel::Data* field);
 
-    Model_CustomField::Data* m_field = nullptr;
+    FieldModel::Data* m_field = nullptr;
 private:
     bool Create(wxWindow* parent
         , wxWindowID id = wxID_ANY
@@ -71,4 +72,3 @@ private:
         IDC_RATE,
     };
 };
-#endif // MM_EX_CUSTOMFIELDEDITDIALOG_H_

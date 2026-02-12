@@ -22,38 +22,36 @@ Copyright (C) 2025, 2026 Klaus Wich
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-//----------------------------------------------------------------------------
-#ifndef MM_FRAME_H_
-#define MM_FRAME_H_
-//----------------------------------------------------------------------------
+#pragma once
+
+#include "defs.h"
 #include <wx/aui/aui.h>
 #include <wx/toolbar.h>
 #include <vector>
-#include "option.h"
+
 #include "constants.h"
-#include "util.h"
 #include "paths.h"
-#include "model/Model_Account.h"
-#include "fusedtransaction.h"
+#include "util/util.h"
 
-//----------------------------------------------------------------------------
-class wxSQLite3Database;
-class mmPrintableBase;
-class mmPanelBase;
-class mmHomePagePanel;
-class mmTreeItemData;
-class mmCheckingPanel;
-class mmReportsPanel;
-class mmStockPanel;
-class mmBudgetingPanel;
-class mmBillsDepositsPanel;
-class mmFileHistory;
+#include "model/AccountModel.h"
+#include "model/PreferencesModel.h"
+#include "journal.h"
+
+class BudgetPanel;
 class CommitCallbackHook;
-class UpdateCallbackHook;
+class DashboardPanel;
+class JournalPanel;
 class ModelBase;
+class PanelBase;
+class ReportBase;
+class ReportPanel;
+class ScheduledPanel;
+class UpdateCallbackHook;
+class mmFileHistory;
 class mmGUIApp;
-//----------------------------------------------------------------------------
-
+class mmStockPanel;
+class mmTreeItemData;
+class wxSQLite3Database;
 
 class mmToolbarArt : public wxAuiDefaultToolBarArt
 {
@@ -80,11 +78,11 @@ public:
     ~mmGUIFrame();
 
 public:
-    void setGotoAccountID(int64 account_id, Fused_Transaction::IdRepeat fused_id = {-1, 0});
+    void setGotoAccountID(int64 account_id, Journal::IdRepeat journal_id = {-1, 0});
     bool financialYearIsDifferent()
     {
-        return Option::instance().getFinancialFirstDay() != 1 ||
-            Option::instance().getFinancialFirstMonth() != wxDateTime::Month::Jan;
+        return PreferencesModel::instance().getFinancialFirstDay() != 1 ||
+            PreferencesModel::instance().getFinancialFirstMonth() != wxDateTime::Month::Jan;
     }
     /// return the index (mmex::EDocFile) to return the correct file.
     int getHelpFileIndex() const;
@@ -127,7 +125,7 @@ private:
     bool db_lockInPlace;
 
     int64 gotoAccountID_ = -1;
-    Fused_Transaction::IdRepeat gotoTransID_ = { -1, 0 };
+    Journal::IdRepeat gotoTransID_ = { -1, 0 };
 
     /* There are 2 kinds of reports */
     bool activeReport_ = false;
@@ -137,7 +135,7 @@ private:
     void OnAutoRepeatTransactionsTimer(wxTimerEvent& event);
 
     /* controls */
-    mmPanelBase* panelCurrent_ = nullptr;
+    PanelBase* panelCurrent_ = nullptr;
 
     wxPanel* homePanel_ = nullptr;
     wxTreeCtrl* m_nav_tree_ctrl = nullptr;
@@ -163,13 +161,13 @@ private:
     void resetNavTreeControl();
     void cleanupNavTreeControl(wxTreeItemId& item);
     wxSizer* cleanupHomePanel(bool new_sizer = true);
-    void updateHomePagePanel(mmPanelBase* panel);
+    void updateHomePagePanel(PanelBase* panel);
     bool openFile(const wxString& fileName, bool openingNew, const wxString &password = "");
     void InitializeModelTables();
     bool createDataStore(const wxString& fileName, const wxString &passwd, bool openingNew);
     void createMenu();
     void createToolBar();
-    void createReportsPage(mmPrintableBase* rb, bool cleanup);
+    void createReportsPage(ReportBase* rb, bool cleanup);
     void createHelpPage(int index = mmex::HTML_INDEX);
     void refreshPanelData();
     wxTreeItemId findItemByData(wxTreeItemId itemId, mmTreeItemData& searchData);
@@ -464,6 +462,3 @@ public:
 inline int mmGUIFrame::getHelpFileIndex() const { return helpFileIndex_; }
 inline void mmGUIFrame::setHelpFileIndex() { helpFileIndex_ = mmex::EDocFile::HTML_INDEX; }
 inline wxTreeItemId mmGUIFrame::GetNavTreeSelection() const{ return m_nav_tree_ctrl->GetSelection(); }
-//----------------------------------------------------------------------------
-#endif // MM_FRAME_H_
-//----------------------------------------------------------------------------

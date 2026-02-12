@@ -19,13 +19,15 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "relocatecategorydialog.h"
-#include "paths.h"
-#include "categdialog.h"
 #include "constants.h"
+#include "paths.h"
+#include "util/util.h"
+
+#include "model/_all.h"
+
+#include "dialog/CategoryDialog.h"
+#include "relocatecategorydialog.h"
 #include "webapp.h"
-#include "util.h"
-#include "model/allmodel.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(relocateCategoryDialog, wxDialog);
 
@@ -42,7 +44,7 @@ relocateCategoryDialog::relocateCategoryDialog()
 
 relocateCategoryDialog::~relocateCategoryDialog()
 {
-    Model_Infotable::instance().setSize("RELOCATECATEG_DIALOG_SIZE", GetSize());
+    InfotableModel::instance().setSize("RELOCATECATEG_DIALOG_SIZE", GetSize());
 }
 
 relocateCategoryDialog::relocateCategoryDialog(wxWindow* parent
@@ -92,9 +94,9 @@ void relocateCategoryDialog::CreateControls()
 
     cbSourceCategory_ = new mmComboBoxCategory(this, wxID_LAST);
     cbSourceCategory_->SetMinSize(wxSize(200, -1));
-    Model_Category::Data* category = Model_Category::instance().get(m_sourceCatID);
+    CategoryModel::Data* category = CategoryModel::instance().get(m_sourceCatID);
     if (category)
-        cbSourceCategory_->SetValue(Model_Category::full_name(m_sourceCatID));
+        cbSourceCategory_->SetValue(CategoryModel::full_name(m_sourceCatID));
 
     cbDestCategory_ = new mmComboBoxCategory(this, wxID_NEW, wxDefaultSize, -1, true);
     cbDestCategory_->SetMinSize(wxSize(200, -1));
@@ -158,53 +160,53 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     if (wxMessageBox(_t("Please Confirm:") + "\n" + info
         , _t("Merge categories confirmation"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
     {
-        auto transactions = Model_Checking::instance()
-            .find(Model_Checking::CATEGID(m_sourceCatID));
-        auto checking_split = Model_Splittransaction::instance()
-            .find(Model_Splittransaction::CATEGID(m_sourceCatID));
-        auto billsdeposits = Model_Billsdeposits::instance()
-            .find(Model_Billsdeposits::CATEGID(m_sourceCatID));
-        auto budget = Model_Budget::instance()
-            .find(Model_Budget::CATEGID(m_sourceCatID));
-        auto budget_split = Model_Budgetsplittransaction::instance()
-            .find(Model_Budgetsplittransaction::CATEGID(m_sourceCatID));
-        auto payees = Model_Payee::instance()
-            .find(Model_Payee::CATEGID(m_sourceCatID));
+        auto transactions = TransactionModel::instance()
+            .find(TransactionModel::CATEGID(m_sourceCatID));
+        auto checking_split = TransactionSplitModel::instance()
+            .find(TransactionSplitModel::CATEGID(m_sourceCatID));
+        auto billsdeposits = ScheduledModel::instance()
+            .find(ScheduledModel::CATEGID(m_sourceCatID));
+        auto budget = BudgetModel::instance()
+            .find(BudgetModel::CATEGID(m_sourceCatID));
+        auto budget_split = ScheduledSplitModel::instance()
+            .find(ScheduledSplitModel::CATEGID(m_sourceCatID));
+        auto payees = PayeeModel::instance()
+            .find(PayeeModel::CATEGID(m_sourceCatID));
 
         for (auto &entry : transactions)
         {
             entry.CATEGID = m_destCatID;
         }
-        m_changedRecords += Model_Checking::instance().save(transactions);
+        m_changedRecords += TransactionModel::instance().save(transactions);
 
         for (auto &entry : billsdeposits)
         {
             entry.CATEGID = m_destCatID;
         }
-        m_changedRecords += Model_Billsdeposits::instance().save(billsdeposits);
+        m_changedRecords += ScheduledModel::instance().save(billsdeposits);
 
         for (auto &entry : checking_split)
         {
             entry.CATEGID = m_destCatID;
         }
-        m_changedRecords += Model_Splittransaction::instance().save(checking_split);
+        m_changedRecords += TransactionSplitModel::instance().save(checking_split);
 
         for (auto &entry : payees)
         {
             entry.CATEGID = m_destCatID;
         }
-        m_changedRecords += Model_Payee::instance().save(payees);
+        m_changedRecords += PayeeModel::instance().save(payees);
         mmWebApp::MMEX_WebApp_UpdatePayee();
 
         for (auto &entry : budget_split)
         {
             entry.CATEGID = m_destCatID;
         }
-        m_changedRecords += Model_Budgetsplittransaction::instance().save(budget_split);
+        m_changedRecords += ScheduledSplitModel::instance().save(budget_split);
 
         for (auto &entry : budget)
         {
-            Model_Budget::instance().remove(entry.BUDGETENTRYID);
+            BudgetModel::instance().remove(entry.BUDGETENTRYID);
             m_changedRecords++;
         }
 
@@ -212,8 +214,8 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         {
             if (m_sourceSubCatID == -1)
             {
-                if (Model_Category::sub_category(Model_Category::instance().get(m_sourceCatID)).empty())
-                    Model_Category::instance().remove(m_sourceCatID);
+                if (CategoryModel::sub_category(CategoryModel::instance().get(m_sourceCatID)).empty())
+                    CategoryModel::instance().remove(m_sourceCatID);
             }
 
             cbSourceCategory_->mmDoReInitialize();
@@ -230,18 +232,18 @@ void relocateCategoryDialog::IsOkOk()
     m_sourceCatID = cbSourceCategory_->mmGetCategoryId();
     int64 m_destCatID = cbDestCategory_->mmGetCategoryId();
 
-    auto transactions = Model_Checking::instance()
-        .find(Model_Checking::CATEGID(m_sourceCatID));
-    auto checking_split = Model_Splittransaction::instance()
-        .find(Model_Splittransaction::CATEGID(m_sourceCatID));
-    auto billsdeposits = Model_Billsdeposits::instance()
-        .find(Model_Billsdeposits::CATEGID(m_sourceCatID));
-    auto budget = Model_Budget::instance()
-        .find(Model_Budget::CATEGID(m_sourceCatID));
-    auto budget_split = Model_Budgetsplittransaction::instance()
-        .find(Model_Budgetsplittransaction::CATEGID(m_sourceCatID));
-    auto payees = Model_Payee::instance()
-        .find(Model_Payee::CATEGID(m_sourceCatID));
+    auto transactions = TransactionModel::instance()
+        .find(TransactionModel::CATEGID(m_sourceCatID));
+    auto checking_split = TransactionSplitModel::instance()
+        .find(TransactionSplitModel::CATEGID(m_sourceCatID));
+    auto billsdeposits = ScheduledModel::instance()
+        .find(ScheduledModel::CATEGID(m_sourceCatID));
+    auto budget = BudgetModel::instance()
+        .find(BudgetModel::CATEGID(m_sourceCatID));
+    auto budget_split = ScheduledSplitModel::instance()
+        .find(ScheduledSplitModel::CATEGID(m_sourceCatID));
+    auto payees = PayeeModel::instance()
+        .find(PayeeModel::CATEGID(m_sourceCatID));
 
     const int trxs_size = (m_sourceCatID < 0 && m_sourceSubCatID < 0) ? 0 : static_cast<int>(transactions.size());
     const int checks_size = static_cast<int>(checking_split.size());
@@ -285,11 +287,11 @@ void relocateCategoryDialog::OnComboKey(wxKeyEvent& event)
             auto category = cbSourceCategory_->GetValue();
             if (category.empty())
             {
-                mmCategDialog dlg(this, true, -1);
+                CategoryDialog dlg(this, true, -1);
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbSourceCategory_->mmDoReInitialize();
-                category = Model_Category::full_name(dlg.getCategId());
+                category = CategoryModel::full_name(dlg.getCategId());
                 cbSourceCategory_->ChangeValue(category);
                 return;
             }
@@ -301,11 +303,11 @@ void relocateCategoryDialog::OnComboKey(wxKeyEvent& event)
             auto category = cbDestCategory_->GetValue();
             if (category.empty())
             {
-                mmCategDialog dlg(this, true, -1);
+                CategoryDialog dlg(this, true, -1);
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbDestCategory_->mmDoReInitialize();
-                category = Model_Category::full_name(dlg.getCategId());
+                category = CategoryModel::full_name(dlg.getCategId());
                 cbDestCategory_->ChangeValue(category);
                 return;
             }

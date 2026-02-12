@@ -19,11 +19,13 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_RELOCATECATEGORYDIALOG_H_
-#define MM_EX_RELOCATECATEGORYDIALOG_H_
+#pragma once
+
+#include "defs.h"
+#include <wx/dialog.h>
 
 #include "mmSimpleDialogs.h"
-#include <wx/dialog.h>
+
 class wxButton;
 class wxStaticText;
 class wxButton;
@@ -71,6 +73,4 @@ private:
 };
 
 inline int relocateCategoryDialog::updatedCategoriesCount() const { return m_changedRecords; }
-
-#endif
 

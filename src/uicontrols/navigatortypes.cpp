@@ -16,12 +16,10 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "util/singleton.h"
+#include "model/AccountModel.h"
 #include "navigatortypes.h"
-
-#include "singleton.h"
 #include "images_list.h"
-
-#include "model/Model_Account.h"
 
 NavigatorTypes::NavigatorTypes()
 {
@@ -80,7 +78,7 @@ bool NavigatorTypes::DeleteEntry(NavigatorTypesInfo* info)
     for (int i = 0; i < static_cast<int>(m_navigator_entries.size()); i++) {
         if  (m_navigator_entries[i] == info) {
             // change account type of all affected accounts to Banking
-            Model_Account::instance().resetAccountType(info->dbaccid);
+            AccountModel::instance().resetAccountType(info->dbaccid);
             m_navigator_entries.erase(m_navigator_entries.begin() + i);
             result = true;
             break;
@@ -148,7 +146,7 @@ NavigatorTypesInfo* NavigatorTypes::getNextActiveEntry(NavigatorTypesInfo* previ
 void NavigatorTypes::SaveSequenceAndState()
 {
     wxString key = "NAVIGATOR_SETTINGS";
-    Document j_doc = Model_Infotable::instance().getJdoc(key, "{}");
+    Document j_doc = InfotableModel::instance().getJdoc(key, "{}");
     j_doc.SetObject();
     rapidjson::Value array(rapidjson::kArrayType);
 
@@ -169,7 +167,7 @@ void NavigatorTypes::SaveSequenceAndState()
     }
     j_doc.AddMember("data", array, j_doc.GetAllocator());
 
-    Model_Infotable::instance().setJdoc(key, j_doc);
+    InfotableModel::instance().setJdoc(key, j_doc);
 
     sortEntriesBySeq();
 }
@@ -214,7 +212,7 @@ NavigatorTypesInfo* NavigatorTypes::FindOrCreateEntry(int searchId)
 void NavigatorTypes::LoadFromDB(bool keepnames)
 {
     wxString key = "NAVIGATOR_SETTINGS";
-    Document doc = Model_Infotable::instance().getJdoc(key, "{}");
+    Document doc = InfotableModel::instance().getJdoc(key, "{}");
     if (!doc.HasMember("data") || !doc["data"].IsArray()) {
         return;
     }
@@ -374,7 +372,7 @@ wxArrayString NavigatorTypes::getAccountSelectionNames(wxString filter)
 wxArrayString NavigatorTypes::getUsedAccountTypeNames()
 {
     wxArrayString names;
-    wxArrayString usedtypes = Model_Account::instance().getUsedAccountTypes();
+    wxArrayString usedtypes = AccountModel::instance().getUsedAccountTypes();
     for (NavigatorTypesInfo* entry : m_navigator_entries) {
         if (entry->navTyp > NAV_TYP_PANEL && entry->active) {
             if (usedtypes.Index(entry->dbaccid) != wxNOT_FOUND) {

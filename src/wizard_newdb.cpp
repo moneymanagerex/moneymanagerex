@@ -18,9 +18,10 @@
  ********************************************************/
 
 #include "constants.h"
+
+#include "model/AccountModel.h"
 #include "wizard_newdb.h"
 #include "maincurrencydialog.h"
-#include "model/Model_Account.h"
 #include "../resources/addacctwiz.xpm"
 
 BEGIN_EVENT_TABLE(mmNewDatabaseWizard, wxWizard)
@@ -91,12 +92,12 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     : wxWizardPageSimple(parent)
 {
     wxString currName = _t("Set Currency");
-    const auto base_currency = Model_Currency::instance().GetBaseCurrency();
+    const auto base_currency = CurrencyModel::instance().GetBaseCurrency();
     if (base_currency)
     {
         currencyID_ = base_currency->CURRENCYID;
         currName = base_currency->CURRENCYNAME;
-        Option::instance().setBaseCurrencyID(currencyID_);
+        PreferencesModel::instance().setBaseCurrencyID(currencyID_);
     }
 
     itemButtonCurrency_ = new wxButton(this, wxID_ANY, currName, wxDefaultPosition, wxSize(220, -1), 0);
@@ -144,7 +145,7 @@ bool mmNewDatabaseWizardPage::TransferDataFromWindow()
         return false;
     }
     wxString userName = itemUserName_->GetValue().Trim();
-    Option::instance().setUserName(userName);
+    PreferencesModel::instance().setUserName(userName);
 
     return true;
 }
@@ -153,14 +154,14 @@ void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
 {
     while (true)
     {
-        currencyID_ = Option::instance().getBaseCurrencyID();
+        currencyID_ = PreferencesModel::instance().getBaseCurrencyID();
         mmMainCurrencyDialog::Execute(this, currencyID_);
-        Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
+        CurrencyModel::Data* currency = CurrencyModel::instance().get(currencyID_);
         if (currency)
         {
             itemButtonCurrency_->SetLabelText(wxGetTranslation(currency->CURRENCYNAME));
             currencyID_ = currency->CURRENCYID;
-            Option::instance().setBaseCurrencyID(currencyID_);
+            PreferencesModel::instance().setBaseCurrencyID(currencyID_);
             break;
         }
     }

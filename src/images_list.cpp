@@ -18,25 +18,28 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *******************************************************/
 
-#include "images_list.h"
-#include "model/Model_Setting.h"
-#include "option.h"
-#include "platfdep.h"
-#include "util.h"
+#include "defs.h"
+#include <memory>
+#include <map>
+#include <array>
 #include <wx/image.h>
 #include <wx/bitmap.h>
-#include <map>
 #include <wx/sharedptr.h>
-#include "paths.h"
 #include <wx/dir.h>
 #include <wx/zipstrm.h>
 #include <wx/rawbmp.h>
 #include <wx/fs_mem.h>
 #include <wx/mstream.h>
 #include <wx/tokenzr.h>
-#include <memory>
 
-#include <array>
+#include "platfdep.h"
+#include "paths.h"
+#include "util/util.h"
+
+#include "model/SettingModel.h"
+#include "model/PreferencesModel.h"
+
+#include "images_list.h"
 
 // SVG filename in Zip, the PNG enum to which it relates, whether to recolor background
 static const std::map<std::string, std::pair<int, bool>> iconName2enum = {
@@ -263,7 +266,7 @@ static const std::map<int, wxBitmapBundle> acc_images(int size)
 
 wxVector<wxBitmapBundle> navtree_images_list(const int size)
 {
-    int x = (size > 0) ? size : Option::instance().getIconSize();
+    int x = (size > 0) ? size : PreferencesModel::instance().getIconSize();
 
     wxVector<wxBitmapBundle> images;
     for (const auto& img : navtree_images(x))
@@ -277,7 +280,7 @@ wxVector<wxBitmapBundle> navtree_images_list(const int size)
 
 static int getIconSizeIdx(const int iconSize)
 {
-    const int x = (iconSize > 0) ? iconSize : Option::instance().getIconSize();
+    const int x = (iconSize > 0) ? iconSize : PreferencesModel::instance().getIconSize();
     auto it = find_if(sizes.begin(), sizes.end(), [x](const std::pair<int, int>& p) { return p.second == x; });
     if(it == sizes.end())
         return -1;
@@ -291,6 +294,7 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
     wxLogDebug("{{{ processThemes(metaPhase=%s)", metaPhase ? "YES" : "NO");
     wxLogDebug("Scanning [%s] for Theme [%s]", themeDir, myTheme);
     if (!directory.IsOpened()) {
+        // matching {{{ for next line
         wxLogDebug("}}}");
         return false;
     }
@@ -432,7 +436,7 @@ bool checkThemeContents(wxArrayString *filesinTheme)
         const wxString realName = (darkFound && darkMode) ? neededFiles[i].AfterLast('-') : neededFiles[i];
         if (wxNOT_FOUND == filesinTheme->Index(realName)) {
             wxMessageBox(wxString::Format(_t("File '%1$s' missing or invalid in chosen theme '%2$s'")
-                , neededFiles[i], Model_Setting::instance().getTheme()), _t("Warning"), wxOK | wxICON_WARNING);
+                , neededFiles[i], SettingModel::instance().getTheme()), _t("Warning"), wxOK | wxICON_WARNING);
             success = false;
         }
     }
@@ -443,7 +447,7 @@ bool checkThemeContents(wxArrayString *filesinTheme)
         if (std::get<2>(it.second) && mmThemeMetaString(it.first).IsEmpty())
         {
             wxMessageBox(wxString::Format(_t("Metadata '%1$s' missing in chosen theme '%2$s'")
-                , std::get<0>(it.second), Model_Setting::instance().getTheme()), _t("Warning"), wxOK | wxICON_WARNING);
+                , std::get<0>(it.second), SettingModel::instance().getTheme()), _t("Warning"), wxOK | wxICON_WARNING);
             success = false;
         }
     }
@@ -478,42 +482,42 @@ bool checkThemeContents(wxArrayString *filesinTheme)
             missingIcons << " " << _tu("and more…");
         }
         wxMessageBox(wxString::Format(_t("There are %1$d missing or invalid icons in chosen theme '%2$s': %3$s")
-            , erroredIcons, Model_Setting::instance().getTheme(), missingIcons), _t("Warning"), wxOK | wxICON_WARNING);
+            , erroredIcons, SettingModel::instance().getTheme(), missingIcons), _t("Warning"), wxOK | wxICON_WARNING);
     }
     return success;
 }
 
 void reverttoDefaultTheme()
 {
-    Model_Setting::instance().setTheme("default");
+    SettingModel::instance().setTheme("default");
     darkFound = false;
-    processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().getTheme(), true);
-    processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().getTheme(), false);
+    processThemes(mmex::getPathResource(mmex::THEMESDIR), SettingModel::instance().getTheme(), true);
+    processThemes(mmex::getPathResource(mmex::THEMESDIR), SettingModel::instance().getTheme(), false);
 }
 
 void LoadTheme()
 {
-    darkMode = ( (mmex::isDarkMode() && (Option::THEME_MODE::AUTO == Option::instance().getThemeMode()))
-                    || (Option::THEME_MODE::DARK == Option::instance().getThemeMode()));
+    darkMode = ( (mmex::isDarkMode() && (PreferencesModel::THEME_MODE::AUTO == PreferencesModel::instance().getThemeMode()))
+                    || (PreferencesModel::THEME_MODE::DARK == PreferencesModel::instance().getThemeMode()));
     filesInVFS = new wxArrayString();
 
     // Scan first for metadata then for the icons and other files
     darkFound = false;
-    if (processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().getTheme(), true))
-        processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().getTheme(), false);
+    if (processThemes(mmex::getPathResource(mmex::THEMESDIR), SettingModel::instance().getTheme(), true))
+        processThemes(mmex::getPathResource(mmex::THEMESDIR), SettingModel::instance().getTheme(), false);
     else
-        if (processThemes(mmex::getPathUser(mmex::USERTHEMEDIR), Model_Setting::instance().getTheme(), true))
-            processThemes(mmex::getPathUser(mmex::USERTHEMEDIR), Model_Setting::instance().getTheme(), false);
+        if (processThemes(mmex::getPathUser(mmex::USERTHEMEDIR), SettingModel::instance().getTheme(), true))
+            processThemes(mmex::getPathUser(mmex::USERTHEMEDIR), SettingModel::instance().getTheme(), false);
         else
         {
             wxMessageBox(wxString::Format(_t("Theme %s not found; it may no longer be supported. Reverting to the default theme.")
-                , Model_Setting::instance().getTheme()), _t("Warning"), wxOK | wxICON_WARNING);
+                , SettingModel::instance().getTheme()), _t("Warning"), wxOK | wxICON_WARNING);
             reverttoDefaultTheme();
         }
 
     if (!checkThemeContents(filesInVFS.get()))
     {
-        wxMessageBox(wxString::Format(_t("Theme %s has missing items and is incompatible. Reverting to default theme"), Model_Setting::instance().getTheme()), _t("Warning"), wxOK | wxICON_WARNING);
+        wxMessageBox(wxString::Format(_t("Theme %s has missing items and is incompatible. Reverting to default theme"), SettingModel::instance().getTheme()), _t("Warning"), wxOK | wxICON_WARNING);
         reverttoDefaultTheme();
         if (!checkThemeContents(filesInVFS.get()))
         {

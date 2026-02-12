@@ -17,17 +17,17 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ********************************************************/
 
-
-#include "dbupgrade.h"
-#include "constants.h"
-#include "util.h"
-
+#include "defs.h"
 #include <wx/filedlg.h>
 #include <wx/filename.h>
 #include <wx/msgdlg.h>
 #include <wx/textdlg.h>
 #include <wx/textfile.h>
 #include <wx/tokenzr.h>
+
+#include "constants.h"
+#include "util/util.h"
+#include "dbupgrade.h"
 
 int dbUpgrade::GetCurrentVersion(wxSQLite3Database * db)
 {

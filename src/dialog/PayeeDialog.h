@@ -1,0 +1,174 @@
+/*******************************************************
+ Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2012 - 2016, 2020 - 2022 Nikolay Akimov
+ Copyright (C) 2021,2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2025 Klaus Wich
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ ********************************************************/
+
+#pragma once
+
+#include "defs.h"
+#include <wx/dataview.h>
+#include <wx/srchctrl.h>
+#include <wx/grid.h>
+#include <wx/tglbtn.h>
+#include <map>
+#include <list>
+
+#include "model/PayeeModel.h"
+#include "mmSimpleDialogs.h"
+
+class PayeeDialog : public wxDialog
+{
+    wxDECLARE_DYNAMIC_CLASS(PayeeDialog);
+    wxDECLARE_EVENT_TABLE();
+
+public:
+    PayeeDialog();
+    PayeeDialog(wxWindow* parent, PayeeModel::Data* payee, const wxString &name = "PayeeDialog");
+    ~PayeeDialog();
+    PayeeModel::Data* getChangedPayee();
+
+private:
+    PayeeModel::Data* m_payee = nullptr;
+    wxTextCtrl* m_payeeName = nullptr;
+    wxCheckBox* m_hidden = nullptr;
+    mmComboBoxCategory* m_category = nullptr;
+    wxTextCtrl* m_reference = nullptr;
+    wxTextCtrl* m_website = nullptr;
+    wxTextCtrl* m_Notes = nullptr;
+    wxGrid* m_patternTable = nullptr;
+    wxBoxSizer* patternButton_Arranger = nullptr;
+
+    void CreateControls();
+    void fillControls();
+    void ResizeDialog();
+    void OnComboKey(wxKeyEvent& event);
+    void OnCancel(wxCommandEvent& /*event*/);
+    void OnOk(wxCommandEvent& /*event*/);
+    void OnMoveUp(wxCommandEvent& /*event*/);
+    void OnMoveDown(wxCommandEvent& /*event*/);
+    void OnPatternTableChanged(wxGridEvent& event);
+    void OnPatternTableSize(wxSizeEvent&);
+};
+
+inline PayeeModel::Data* PayeeDialog::getChangedPayee() { return m_payee; }
+
+
+struct RowData {
+    int64 payeeId;
+    bool active;
+    int count;
+    int tidx;  // only used for selections!
+};
+
+class mmPayeeDialog : public wxDialog
+{
+    wxDECLARE_DYNAMIC_CLASS(mmPayeeDialog);
+    wxDECLARE_EVENT_TABLE();
+
+public:
+    ~mmPayeeDialog();
+    mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString& name = "mmPayeeDialog", const wxString& payee_selected = wxEmptyString);
+    int64 getPayeeId() const;
+    bool getRefreshRequested() const;
+    bool getAddActionRequested() const;
+    std::list<int64> getSelectedPayees();
+
+private:
+    enum cols
+    {
+        PAYEE_NAME = 0,
+        PAYEE_HIDDEN,
+        PAYEE_CATEGORY,
+        PAYEE_NUMBER,
+        PAYEE_WEBSITE,
+        PAYEE_NOTES,
+        PAYEE_PATTERN,
+        PAYEE_USED
+    };
+
+    enum menu_items
+    {
+        MENU_DEFINE_CATEGORY = 1,
+        MENU_REMOVE_CATEGORY,
+        MENU_NEW_PAYEE,
+        MENU_EDIT_PAYEE,
+        MENU_DELETE_PAYEE,
+        MENU_ORGANIZE_ATTACHMENTS,
+        MENU_ITEM_HIDE,
+        MENU_ITEM_UNHIDE,
+        MENU_SHOW_TRANSACTIONS,
+        MENU_SHOW_HIDDEN,
+        MENU_RELOCATE_PAYEE  // Must be last!
+    };
+
+    wxListView* payeeListBox_ = nullptr;
+    wxSearchCtrl* m_maskTextCtrl = nullptr;
+    wxBitmapButton* m_magicButton = nullptr;
+    wxToggleButton* m_tbShowAll = nullptr;
+
+    bool m_payee_choose = false;
+    wxString m_init_selected_payee;
+    wxString m_maskStr;
+    int m_sort = cols::PAYEE_NAME, m_lastSort = cols::PAYEE_NAME;
+    bool refreshRequested_ = false, m_sortReverse = false;
+    bool m_addActionRequested = false;
+    bool m_showHiddenPayees = true;
+    std::list<RowData*> m_selectedItems;
+    std::map<int64, int> m_payeeUsage;
+
+    wxColour m_normalColor;
+    wxColour m_hiddenColor;
+    std::vector<RowData*> m_rowData;
+
+private:
+    mmPayeeDialog() {}
+
+    void Create(wxWindow* parent, const wxString &name);
+    void CreateControls();
+    void fillControls();
+    void addPayeeDataIntoItem(long idx, const PayeeModel::Data* payee, int count);
+    bool isPayeeWithStateSelected(bool state);
+
+    void AddPayee();
+    void EditPayee();
+    void DeletePayee();
+    void DefineDefaultCategory();
+    void RemoveDefaultCategory();
+    void OnOrganizeAttachments();
+    void OnPayeeRelocate();
+    void FindSelectedPayees();
+    void OnOk(wxCommandEvent& /*event*/);
+
+    void OnListItemActivated(wxListEvent& event);
+    void OnMenuSelected(wxCommandEvent& event);
+    void OnItemRightClick(wxListEvent& event);
+    void OnTextChanged(wxCommandEvent& event);
+    void OnMagicButton(wxCommandEvent& event);
+    void OnSort(wxListEvent& event);
+    void OnShowHiddenToggle(wxCommandEvent& event);
+
+    void ToggleHide(long idx, bool state);
+    int CompareRows(RowData* r1, RowData* r2);
+    static int wxCALLBACK SortCallback(wxIntPtr itemData1, wxIntPtr itemData2, wxIntPtr sortData);
+
+};
+
+inline bool mmPayeeDialog::getRefreshRequested() const { return refreshRequested_; }
+inline bool mmPayeeDialog::getAddActionRequested() const { return m_addActionRequested;};
+

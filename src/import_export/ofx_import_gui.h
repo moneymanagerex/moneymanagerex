@@ -1,13 +1,14 @@
-#ifndef OFX_IMPORT_GUI_H_
-#define OFX_IMPORT_GUI_H_
+#pragma once
 
-#include "model/Model_Category.h"
-#include "model/Model_Payee.h"
+#include "defs.h"
 #include <map>
 #include <wx/event.h>
 #include <wx/grid.h>
 #include <wx/wx.h>
 #include <wx/xml/xml.h>
+
+#include "model/CategoryModel.h"
+#include "model/PayeeModel.h"
 
 struct OFXImportResult
 {
@@ -141,7 +142,7 @@ private:
     void UpdateOKButton(wxCommandEvent& event);
     void LoadRegexPatterns(wxInt64ClientData* payeeIdData);
     void LoadRegexPatterns(const wxString& payeeName);
-    void AddCategoryToChoice(wxChoice* choice, long long categId, const std::map<long long, Model_Category::Data>& catMap, int level);
+    void AddCategoryToChoice(wxChoice* choice, long long categId, const std::map<long long, CategoryModel::Data>& catMap, int level);
 
     double matchConfidence_;
     wxString matchMethod_;
@@ -168,7 +169,7 @@ private:
     bool updatePayeeCategory_;
     bool memoAdded_;
     long long initialCategoryId_;
-    std::map<long long, Model_Category::Data> categoryMap;
+    std::map<long long, CategoryModel::Data> categoryMap;
     int currentTransaction_;
     int newTransactions_;
     wxLongLong importStartTime_;
@@ -230,4 +231,3 @@ private:
     wxScrolledWindow* scrolledWindow;
 };
 
-#endif // OFX_IMPORT_GUI_H_

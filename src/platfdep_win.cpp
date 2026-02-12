@@ -16,13 +16,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-//----------------------------------------------------------------------------
-#include "platfdep.h"
-#include "option.h"
+#include "defs.h"
 #include <wx/stdpaths.h>
 #include <wx/filename.h>
 #include <wx/settings.h>
-//----------------------------------------------------------------------------
+
+#include "platfdep.h"
+#include "model/PreferencesModel.h"
 
 /*
     The root directory of the installation of MMEX.
@@ -77,6 +77,6 @@ const wxFileName mmex::GetResourceDir()
 
 bool mmex::isDarkMode()
 {
-    return (Option::instance().getThemeMode() == Option::THEME_MODE::DARK
-        || (Option::instance().getThemeMode() == Option::THEME_MODE::AUTO && wxSystemSettings::GetAppearance().AreAppsDark()));
+    return (PreferencesModel::instance().getThemeMode() == PreferencesModel::THEME_MODE::DARK
+        || (PreferencesModel::instance().getThemeMode() == PreferencesModel::THEME_MODE::AUTO && wxSystemSettings::GetAppearance().AreAppsDark()));
 }   

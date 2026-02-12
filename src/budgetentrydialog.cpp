@@ -16,13 +16,15 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "budgetentrydialog.h"
-#include "model/Model_Category.h"
-#include "validators.h"
-#include "paths.h"
-#include <constants.h>
-#include "util.h"
+#include "constants.h"
 #include <wx/valnum.h>
+
+#include "defs.h"
+#include "paths.h"
+#include "util/util.h"
+#include "model/CategoryModel.h"
+#include "budgetentrydialog.h"
+#include "validators.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmBudgetEntryDialog, wxDialog);
 
@@ -36,7 +38,7 @@ mmBudgetEntryDialog::mmBudgetEntryDialog()
 }
 
 mmBudgetEntryDialog::mmBudgetEntryDialog(wxWindow* parent
-    , Model_Budget::Data* entry
+    , BudgetModel::Data* entry
     , const wxString& categoryEstimate
     , const wxString& CategoryActual)
     : catEstimateAmountStr_(categoryEstimate)
@@ -69,9 +71,9 @@ bool mmBudgetEntryDialog::Create(wxWindow* parent
 void mmBudgetEntryDialog::fillControls()
 {
     double amt = budgetEntry_->AMOUNT;
-    int period = Model_Budget::period_id(budgetEntry_);
+    int period = BudgetModel::period_id(budgetEntry_);
     m_choiceItem->SetSelection(period);
-    if (period == Model_Budget::PERIOD_ID_NONE && amt == 0.0)
+    if (period == BudgetModel::PERIOD_ID_NONE && amt == 0.0)
         m_choiceItem->SetSelection(DEF_FREQ_MONTHLY);
 
     if (amt <= 0.0)
@@ -98,14 +100,14 @@ void mmBudgetEntryDialog::CreateControls()
     wxFlexGridSizer* itemGridSizer2 = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanel7->SetSizer(itemGridSizer2);
     
-    const Model_Category::Data* category = Model_Category::instance().get(budgetEntry_->CATEGID);
+    const CategoryModel::Data* category = CategoryModel::instance().get(budgetEntry_->CATEGID);
     wxASSERT(category);
     
     wxStaticText* itemTextEstCatAmt = new wxStaticText(itemPanel7, wxID_STATIC, catEstimateAmountStr_);
     wxStaticText* itemTextActCatAmt = new wxStaticText(itemPanel7, wxID_STATIC, catActualAmountStr_);
     
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _t("Category: ")), g_flagsH);
-    wxString categname = Model_Category::full_name(category);
+    wxString categname = CategoryModel::full_name(category);
     wxStaticText* categNameLabel = new wxStaticText(itemPanel7, wxID_STATIC,
         (categname.size() > 50 ? wxString::FromUTF8("\u2026") + categname.substr(categname.size() - 50) : categname));
     if (categname.size() > 50) categNameLabel->SetToolTip(categname);
@@ -129,8 +131,8 @@ void mmBudgetEntryDialog::CreateControls()
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _t("Frequency:")), g_flagsH);
 
     wxArrayString period;
-    for (int i = 0; i < Model_Budget::PERIOD_ID_size; ++i) {
-        period.Add(wxGetTranslation(Model_Budget::period_name(i)));
+    for (int i = 0; i < BudgetModel::PERIOD_ID_size; ++i) {
+        period.Add(wxGetTranslation(BudgetModel::period_name(i)));
     }
     m_choiceItem = new wxChoice(
         itemPanel7, wxID_ANY,
@@ -175,7 +177,7 @@ void mmBudgetEntryDialog::OnOk(wxCommandEvent& event)
     if (!m_textAmount->checkValue(amt))
         return;
 
-    if (period == Model_Budget::PERIOD_ID_NONE && amt > 0) {
+    if (period == BudgetModel::PERIOD_ID_NONE && amt > 0) {
         m_choiceItem->SetFocus();
         m_choiceItem->SetSelection(DEF_FREQ_MONTHLY);
         event.Skip();
@@ -183,15 +185,15 @@ void mmBudgetEntryDialog::OnOk(wxCommandEvent& event)
     }
     
     if (amt == 0.0)
-        period = Model_Budget::PERIOD_ID_NONE;
+        period = BudgetModel::PERIOD_ID_NONE;
 
     if (typeSelection == DEF_TYPE_EXPENSE)
         amt = -amt;
 
-    budgetEntry_->PERIOD = Model_Budget::period_name(period);
+    budgetEntry_->PERIOD = BudgetModel::period_name(period);
     budgetEntry_->AMOUNT = amt;
     budgetEntry_->NOTES = m_Notes->GetValue();
-    Model_Budget::instance().save(budgetEntry_);
+    BudgetModel::instance().save(budgetEntry_);
 
     EndModal(wxID_OK);
 }

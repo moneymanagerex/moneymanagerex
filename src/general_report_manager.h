@@ -25,7 +25,7 @@
 #include <wx/webviewfshandler.h>
 #include <vector>
 #include <wx/dataview.h>
-#include "mmpanelbase.h"
+#include "panel/_PanelBase.h"
 
 #ifndef _WIN32
 #include <sys/time.h>
@@ -37,7 +37,7 @@
 class wxSQLite3Database;
 class mmGeneralReportManager;
 
-class sqlListCtrl : public mmListCtrl
+class sqlListCtrl : public ListBase
 {
     wxDECLARE_NO_COPY_CLASS(sqlListCtrl);
 public:

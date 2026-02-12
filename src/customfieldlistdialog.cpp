@@ -17,17 +17,19 @@ Copyright (C) 2016, 2020 - 2022 Nikolay Akimov
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "customfieldlistdialog.h"
-#include "customfieldeditdialog.h"
-#include "constants.h"
-#include "images_list.h"
-#include "mmSimpleDialogs.h"
-#include "paths.h"
-#include "util.h"
-#include "model/Model_CustomFieldData.h"
-
+#include "defs.h"
 #include <wx/dataview.h>
 #include <wx/mimetype.h>
+
+#include "constants.h"
+#include "paths.h"
+#include "util/util.h"
+
+#include "model/FieldValueModel.h"
+#include "customfieldlistdialog.h"
+#include "customfieldeditdialog.h"
+#include "mmSimpleDialogs.h"
+#include "images_list.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmCustomFieldListDialog, wxDialog);
 
@@ -102,7 +104,7 @@ void mmCustomFieldListDialog::fillControls()
 {
     fieldListBox_->DeleteAllItems();
 
-    Model_CustomField::Data_Set fields = Model_CustomField::instance().all();
+    FieldModel::Data_Set fields = FieldModel::instance().all();
     if (fields.empty()) return;
 
     std::sort(fields.begin(), fields.end(), SorterByDESCRIPTION());
@@ -147,7 +149,7 @@ void mmCustomFieldListDialog::AddField()
 
 void mmCustomFieldListDialog::EditField()
 {
-    Model_CustomField::Data *field = Model_CustomField::instance().get(m_field_id);
+    FieldModel::Data *field = FieldModel::instance().get(m_field_id);
     if (field)
     {
         mmCustomFieldEditDialog dlg(this, field);
@@ -159,7 +161,7 @@ void mmCustomFieldListDialog::EditField()
 
 void mmCustomFieldListDialog::DeleteField()
 {
-    Model_CustomField::Data *field = Model_CustomField::instance().get(m_field_id);
+    FieldModel::Data *field = FieldModel::instance().get(m_field_id);
     if (field)
     {
         int DeleteResponse = wxMessageBox(
@@ -168,7 +170,7 @@ void mmCustomFieldListDialog::DeleteField()
             , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
         if (DeleteResponse == wxYES)
         {
-            Model_CustomField::instance().Delete(m_field_id);
+            FieldModel::instance().Delete(m_field_id);
             m_field_id = -1;
             fillControls();
         }
@@ -177,7 +179,7 @@ void mmCustomFieldListDialog::DeleteField()
 
 void mmCustomFieldListDialog::UpdateField()
 {
-    Model_CustomField::Data *field = Model_CustomField::instance().get(m_field_id);
+    FieldModel::Data *field = FieldModel::instance().get(m_field_id);
     if (!field)
         return;
 
@@ -214,13 +216,13 @@ void mmCustomFieldListDialog::UpdateField()
             return;
     }
 
-    auto data = Model_CustomFieldData::instance().find(Model_CustomFieldData::FIELDID(m_field_id),
-        Model_CustomFieldData::CONTENT(txtSearch));
+    auto data = FieldValueModel::instance().find(FieldValueModel::FIELDID(m_field_id),
+        FieldValueModel::CONTENT(txtSearch));
     for (auto &d : data)
     {
         d.CONTENT = txtReplace;
     }
-    Model_CustomFieldData::instance().save(data);
+    FieldValueModel::instance().save(data);
 
     wxMessageBox(wxString::Format(wxPLURAL("%zu occurrence founded and replaced!", "%zu occurrences founded and replaced!", data.size()), data.size())
         , _t("Update Custom Field Content"), wxOK | wxICON_INFORMATION);
@@ -249,7 +251,7 @@ void mmCustomFieldListDialog::OnItemRightClick(wxDataViewEvent& event)
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY) ;
     evt.SetEventObject( this );
 
-    Model_CustomField::Data *field = Model_CustomField::instance().get(m_field_id);
+    FieldModel::Data *field = FieldModel::instance().get(m_field_id);
 
     wxMenu* mainMenu = new wxMenu;
     if (field) mainMenu->SetTitle(field->DESCRIPTION);

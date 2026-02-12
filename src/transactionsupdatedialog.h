@@ -17,13 +17,13 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_TRANSACTIONSUPDATE_H_
-#define MM_EX_TRANSACTIONSUPDATE_H_
+#pragma once
 
-#include "mmSimpleDialogs.h"
 #include "defs.h"
+#include "mmSimpleDialogs.h"
 #include "mmcombobox.h"
 #include "mmcustomdata.h"
+
 class mmTextCtrl;
 
 class transactionsUpdateDialog : public wxDialog
@@ -79,7 +79,7 @@ private:
     wxCheckBox* m_append_checkbox = nullptr;
     wxTextCtrl* m_notes_ctrl = nullptr;
     std::vector<int64> m_transaction_id;
-    Model_Currency::Data* m_currency = nullptr;
+    CurrencyModel::Data* m_currency = nullptr;
     bool m_hasTransfers = false, m_hasNonTransfers = false, m_hasSplits = false;
     wxSharedPtr<mmCustomData> m_custom_fields;
 
@@ -94,4 +94,3 @@ private:
     };
 };
 
-#endif

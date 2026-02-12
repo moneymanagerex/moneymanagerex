@@ -10,12 +10,12 @@ Creating New Database Tables
       generated files to the correct directory.
    b) Other OS: Refer to the readme.txt file in the /util directory to
       generate the files.
-3. Create associated Model_xx.h and Model_xx.cpp files and add them to
+3. Create associated *Model.h and *Model.cpp files and add them to
    the /src/model directory.
 
    a) Model_Pragma.h and Model_Pragma.cpp found in the /util directory
       can be used as a template to help in the construction of the new
-	  Model_xx.h and Model_xx.cpp files for the associated DB_Table_xx.h
+	  *Model.h and *Model.cpp files for the associated DB_Table_xx.h
 	  files.
 	  
 Updates to the Database Table

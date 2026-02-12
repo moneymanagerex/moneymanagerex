@@ -18,18 +18,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "ofx_import_gui.h"
-#include "payeematchandmerge.h"
+#include "defs.h"
 #include <wx/xml/xml.h>
 #include <wx/sstream.h>
 #include <wx/grid.h>
-#include "model/Model_Account.h"
-#include "model/Model_Category.h"
-#include "model/Model_Checking.h"
-#include "model/Model_Payee.h"
-#include <rapidjson/stringbuffer.h>
-#include <rapidjson/writer.h>
-#include <climits>
 #include <wx/event.h>
 #include <wx/file.h>
 #include <wx/filedlg.h>
@@ -38,6 +30,17 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/regex.h>
 #include <wx/settings.h>
 #include <wx/timectrl.h>
+#include <rapidjson/stringbuffer.h>
+#include <rapidjson/writer.h>
+#include <climits>
+
+#include "model/AccountModel.h"
+#include "model/CategoryModel.h"
+#include "model/TransactionModel.h"
+#include "model/PayeeModel.h"
+
+#include "ofx_import_gui.h"
+#include "payeematchandmerge.h"
 
 wxBEGIN_EVENT_TABLE(mmOFXImportDialog, wxDialog)
 EVT_BUTTON(wxID_OPEN, mmOFXImportDialog::OnBrowse)
@@ -350,7 +353,7 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& WXUNUSED(event))
 
     long long selectedCategoryId = GetSelectedCategoryID();
     bool shouldUpdateCategory = updatePayeeCategory_;
-    Model_Payee::Data* payee = Model_Payee::instance().get_one(Model_Payee::PAYEENAME(selectedPayee_));
+    PayeeModel::Data* payee = PayeeModel::instance().get_one(PayeeModel::PAYEENAME(selectedPayee_));
 
     // Handle existing payee category update
     if (useExistingRadio_->GetValue() && shouldUpdateCategory && payee && categoryManuallyChanged_)
@@ -358,7 +361,7 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& WXUNUSED(event))
         if (selectedCategoryId != payee->CATEGID.GetValue())
         {
             payee->CATEGID = selectedCategoryId;
-            Model_Payee::instance().save(payee);
+            PayeeModel::instance().save(payee);
             wxLogDebug("Updated payee '%s' category to ID=%lld", selectedPayee_, selectedCategoryId);
         }
     }
@@ -408,7 +411,7 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& WXUNUSED(event))
 
             if (!payee && createNewRadio_->GetValue())
             {
-                payee = Model_Payee::instance().create();
+                payee = PayeeModel::instance().create();
                 payee->PAYEENAME = selectedPayee_;
                 payee->CATEGID = selectedCategoryId;
                 payee->ACTIVE = 1;
@@ -416,7 +419,7 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& WXUNUSED(event))
             if (payee)
             {
                 payee->PATTERN = regexPattern_;
-                Model_Payee::instance().save(payee);
+                PayeeModel::instance().save(payee);
                 wxLogDebug("Saved regex pattern for payee '%s'", selectedPayee_);
             }
         }
@@ -426,17 +429,17 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& WXUNUSED(event))
             if (payee)
             {
                 payee->PATTERN = regexPattern_;
-                Model_Payee::instance().save(payee);
+                PayeeModel::instance().save(payee);
             }
         }
     }
     else if (createNewRadio_->GetValue() && !payee)
     {
-        payee = Model_Payee::instance().create();
+        payee = PayeeModel::instance().create();
         payee->PAYEENAME = selectedPayee_;
         payee->CATEGID = selectedCategoryId;
         payee->ACTIVE = 1;
-        Model_Payee::instance().save(payee);
+        PayeeModel::instance().save(payee);
         wxLogDebug("Created new payee '%s' with category ID=%lld", selectedPayee_, selectedCategoryId);
     }
 
@@ -494,7 +497,7 @@ void mmPayeeSelectionDialog::LoadRegexPatterns(wxInt64ClientData* payeeIdData)
     wxLogDebug("LoadRegexPatterns: Cleared to %d rows", regexGrid_->GetNumberRows());
 
     int64_t payeeId = payeeIdData ? payeeIdData->GetValue() : -1;
-    Model_Payee::Data* payee = (payeeId >= 0) ? Model_Payee::instance().get(payeeId) : nullptr;
+    PayeeModel::Data* payee = (payeeId >= 0) ? PayeeModel::instance().get(payeeId) : nullptr;
     if (payee && !payee->PATTERN.IsEmpty())
     {
         rapidjson::Document j_doc;
@@ -541,7 +544,7 @@ void mmPayeeSelectionDialog::LoadRegexPatterns(const wxString& payeeName)
     if (regexGrid_->GetNumberRows() > 0)
         regexGrid_->DeleteRows(0, regexGrid_->GetNumberRows());
 
-    Model_Payee::Data* payee = Model_Payee::instance().get_one(Model_Payee::PAYEENAME(payeeName));
+    PayeeModel::Data* payee = PayeeModel::instance().get_one(PayeeModel::PAYEENAME(payeeName));
     if (payee && !payee->PATTERN.IsEmpty())
     {
         rapidjson::Document j_doc;
@@ -572,13 +575,13 @@ void mmPayeeSelectionDialog::LoadRegexPatterns(const wxString& payeeName)
     regexGrid_->SetCellValue(1, 0, "");
 }
 
-void mmPayeeSelectionDialog::AddCategoryToChoice(wxChoice* choice, long long categId, const std::map<long long, Model_Category::Data>& catMap, int level)
+void mmPayeeSelectionDialog::AddCategoryToChoice(wxChoice* choice, long long categId, const std::map<long long, CategoryModel::Data>& catMap, int level)
 {
     auto it = catMap.find(categId);
     if (it == catMap.end())
         return;
 
-    const Model_Category::Data& category = it->second;
+    const CategoryModel::Data& category = it->second;
     wxString indent;
     for (int i = 0; i < level; ++i)
         indent += "  ";
@@ -662,7 +665,7 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
         wxInt64ClientData* suggestedPayeeIdData = nullptr;
         if (!suggestedPayeeName_.IsEmpty())
         {
-            Model_Payee::Data_Set payees = Model_Payee::instance().all(Model_Payee::COL_PAYEENAME);
+            PayeeModel::Data_Set payees = PayeeModel::instance().all(PayeeModel::COL_PAYEENAME);
             for (size_t i = 0; i < payees.size(); ++i)
             {
                 if (payees[i].PAYEENAME == suggestedPayeeName_)
@@ -689,7 +692,7 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
     payeeSizer_ = new wxBoxSizer(wxVERTICAL);
     existingPayeeLabel_ = new wxStaticText(this, wxID_ANY, _("Select Existing Payee:"));
     payeeChoice_ = new wxChoice(this, wxID_ANY);
-    Model_Payee::Data_Set payees = Model_Payee::instance().all(Model_Payee::COL_PAYEENAME);
+    PayeeModel::Data_Set payees = PayeeModel::instance().all(PayeeModel::COL_PAYEENAME);
 
     // Add a blank entry as the first item with ID -1
     payeeChoice_->Append("", new wxInt64ClientData(-1));
@@ -731,7 +734,7 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(wxWindow* parent, const wxString&
 
     categoryChoice_ = new wxChoice(this, wxID_ANY);
     categoryChoice_->Append(_("Uncategorized"), new wxStringClientData("-1"));
-    Model_Category::Data_Set categories = Model_Category::instance().all(Model_Category::COL_CATEGNAME);
+    CategoryModel::Data_Set categories = CategoryModel::instance().all(CategoryModel::COL_CATEGNAME);
     categoryMap.clear();
     for (const auto& cat : categories)
     {
@@ -839,7 +842,7 @@ void mmPayeeSelectionDialog::OnPayeeChoice(wxCommandEvent& event)
     }
 
     int64_t payeeId = clientData->GetValue();
-    Model_Payee::Data* payee = Model_Payee::instance().get(payeeId);
+    PayeeModel::Data* payee = PayeeModel::instance().get(payeeId);
     if (payee)
     {
         // Always update the category to the payee's default, regardless of manual changes
@@ -901,7 +904,7 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
 
     mainSizer->Add(new wxStaticText(this, wxID_ANY, _("&Account:")), 0, wxALL, 5);
     accountDropDown_ = new wxChoice(this, wxID_ANY);
-    for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
+    for (const auto& account : AccountModel::instance().all(AccountModel::COL_ACCOUNTNAME))
     {
         wxString accountIdStr = wxString::Format("%lld", account.ACCOUNTID.GetValue());
         int idx = accountDropDown_->Append(account.ACCOUNTNAME, new wxStringClientData(accountIdStr));
@@ -952,7 +955,7 @@ mmOFXImportDialog::mmOFXImportDialog(wxWindow* parent)
 
     useFuzzyMatchingCheckBox_->Bind(wxEVT_CHECKBOX, &mmOFXImportDialog::OnUseFuzzyMatchingToggled, this);
 
-    Model_Category::Data_Set transferCats = Model_Category::instance().find(Model_Category::CATEGNAME("Transfer"));
+    CategoryModel::Data_Set transferCats = CategoryModel::instance().find(CategoryModel::CATEGNAME("Transfer"));
     if (!transferCats.empty())
     {
         transferCategId_ = transferCats[0].CATEGID.GetValue();
@@ -989,7 +992,7 @@ void mmOFXImportDialog::OnUseFuzzyMatchingToggled(wxCommandEvent& /*event*/)
 void mmOFXImportDialog::loadRegexMappings()
 {
     payeeRegexMap_.clear();
-    Model_Payee::Data_Set payees = Model_Payee::instance().all();
+    PayeeModel::Data_Set payees = PayeeModel::instance().all();
     for (const auto& payee : payees)
     {
         if (!payee.PATTERN.IsEmpty())
@@ -1086,7 +1089,7 @@ void mmOFXImportDialog::OnBrowse(wxCommandEvent& /*event*/)
                 long long tempAccountId;
                 if (data->GetData().ToLongLong(&tempAccountId))
                 {
-                    Model_Account::Data* account = Model_Account::instance().get(tempAccountId);
+                    AccountModel::Data* account = AccountModel::instance().get(tempAccountId);
                     if (account)
                     {
                         wxString accountNum = account->ACCOUNTNUM;
@@ -1147,7 +1150,7 @@ void mmOFXImportDialog::OnImport(wxCommandEvent& /*event*/)
     }
     account_id_ = tempAccountId;
 
-    Model_Account::Data* account = Model_Account::instance().get(static_cast<int>(account_id_.GetValue()));
+    AccountModel::Data* account = AccountModel::instance().get(static_cast<int>(account_id_.GetValue()));
     if (!account)
     {
         wxMessageBox(wxString::Format(_("Account ID %s does not exist."), account_id_.ToString()), _("Error"), wxOK | wxICON_ERROR);
@@ -1390,7 +1393,7 @@ wxString mmOFXImportDialog::getPayeeName(const wxString& memo, bool& usedRegex, 
                    matchMethod, matchConfidence);
 
         // Validate the PayeeID and check if it's a true exact match
-        Model_Payee::Data* payee = Model_Payee::instance().get(candidatePayeeID);
+        PayeeModel::Data* payee = PayeeModel::instance().get(candidatePayeeID);
         if (payee && payee->PAYEEID.GetValue() == candidatePayeeID)
         {
             wxString dbPayeeName = payee->PAYEENAME;
@@ -1468,7 +1471,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
     if (!banktranlist)
         return false;
 
-    Model_Account::Data* account = Model_Account::instance().get(accountID);
+    AccountModel::Data* account = AccountModel::instance().get(accountID);
     if (!account)
         return false;
 
@@ -1493,7 +1496,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                 }
             }
             // Check if this FITID exists in the current account first
-            if (!Model_Checking::instance().find(Model_Checking::TRANSACTIONNUMBER(fitid), Model_Checking::ACCOUNTID(account->ACCOUNTID.GetValue())).empty())
+            if (!TransactionModel::instance().find(TransactionModel::TRANSACTIONNUMBER(fitid), TransactionModel::ACCOUNTID(account->ACCOUNTID.GetValue())).empty())
                 continue; // Skip if duplicate in current account
             newTransactions++;
         }
@@ -1552,7 +1555,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
             continue;
         }
 
-        Model_Checking::Data* transaction = Model_Checking::instance().create();
+        TransactionModel::Data* transaction = TransactionModel::instance().create();
         transaction->ACCOUNTID = account->ACCOUNTID;
         transaction->TRANSACTIONNUMBER = result.fitid;
         transaction->TRANSDATE = date.FormatISODate();
@@ -1561,8 +1564,8 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
 
         bool isTransfer = false;
         // Check for existing transaction in the current account first
-        Model_Checking::Data_Set sameAccountTrans =
-            Model_Checking::instance().find(Model_Checking::TRANSACTIONNUMBER(fitid), Model_Checking::ACCOUNTID(account->ACCOUNTID));
+        TransactionModel::Data_Set sameAccountTrans =
+            TransactionModel::instance().find(TransactionModel::TRANSACTIONNUMBER(fitid), TransactionModel::ACCOUNTID(account->ACCOUNTID));
         if (!sameAccountTrans.empty())
         {
             result.imported = false;
@@ -1574,7 +1577,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
         }
 
         // Only check other accounts if no duplicate in current account
-        Model_Checking::Data_Set allExistingTrans = Model_Checking::instance().find(Model_Checking::TRANSACTIONNUMBER(fitid));
+        TransactionModel::Data_Set allExistingTrans = TransactionModel::instance().find(TransactionModel::TRANSACTIONNUMBER(fitid));
         if (!allExistingTrans.empty())
         {
             for (auto& existing : allExistingTrans)
@@ -1651,10 +1654,10 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
 
                             try
                             {
-                                Model_Checking::instance().save(&existing);
+                                TransactionModel::instance().save(&existing);
                                 result.imported = true;
                                 result.transType = "Transfer";
-                                result.importedPayee = Model_Account::instance().get(existing.ACCOUNTID)->ACCOUNTNAME;
+                                result.importedPayee = AccountModel::instance().get(existing.ACCOUNTID)->ACCOUNTNAME;
                                 result.category = "Transfer";
                                 result.matchMode = "Transfer";
                                 stats.autoImportedCount++;
@@ -1697,7 +1700,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                 result.matchRegexPattern = matchRegexPattern;
             }
 
-            Model_Payee::Data* payee = Model_Payee::instance().get_one(Model_Payee::PAYEENAME(payeeName));
+            PayeeModel::Data* payee = PayeeModel::instance().get_one(PayeeModel::PAYEENAME(payeeName));
             bool payeeExisted = (payee != nullptr);
 
             bool promptForConfirmation = false;
@@ -1714,14 +1717,14 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                 {
                     payeeName = payeeDlg.GetSelectedPayee();
                     result.importedPayee = payeeName;
-                    payee = Model_Payee::instance().get_one(Model_Payee::PAYEENAME(payeeName));
+                    payee = PayeeModel::instance().get_one(PayeeModel::PAYEENAME(payeeName));
                     if (payeeDlg.IsCreateNewPayee() && !payee)
                     {
-                        Model_Payee::Data* newPayee = Model_Payee::instance().create();
+                        PayeeModel::Data* newPayee = PayeeModel::instance().create();
                         newPayee->PAYEENAME = payeeName;
                         newPayee->CATEGID = payeeDlg.GetSelectedCategoryID();
                         newPayee->ACTIVE = 1;
-                        Model_Payee::instance().save(newPayee);
+                        PayeeModel::instance().save(newPayee);
                         transaction->PAYEEID = newPayee->PAYEEID;
                         stats.newPayeesCreated++;
                     }
@@ -1731,16 +1734,16 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                         if (payeeDlg.ShouldUpdatePayeeCategory())
                         {
                             payee->CATEGID = payeeDlg.GetSelectedCategoryID();
-                            Model_Payee::instance().save(payee);
+                            PayeeModel::instance().save(payee);
                         }
                     }
                     transaction->CATEGID = payeeDlg.GetSelectedCategoryID();
-                    Model_Category::Data* category = Model_Category::instance().get(transaction->CATEGID);
+                    CategoryModel::Data* category = CategoryModel::instance().get(transaction->CATEGID);
                     result.category = category ? category->CATEGNAME : "Uncategorized";
                     if (payeeDlg.ShouldUpdateRegex() && payee)
                     {
                         payee->PATTERN = payeeDlg.GetRegexPattern();
-                        Model_Payee::instance().save(payee);
+                        PayeeModel::instance().save(payee);
                         result.regexPattern = payee->PATTERN;
                     }
                     stats.manuallyAllocated++;
@@ -1766,7 +1769,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                     transaction->PAYEEID = payee->PAYEEID;
                     transaction->CATEGID = payee->CATEGID;
                     transaction->STATUS = (matchMethod == "Fuzzy" && markFuzzyFollowUp) ? "F" : "";
-                    Model_Category::Data* category = Model_Category::instance().get(transaction->CATEGID);
+                    CategoryModel::Data* category = CategoryModel::instance().get(transaction->CATEGID);
                     result.category = category ? category->CATEGNAME : "Uncategorized";
                     stats.autoImportedCount++;
                     result.imported = true;
@@ -1790,7 +1793,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
         {
             try
             {
-                Model_Checking::instance().save(transaction);
+                TransactionModel::instance().save(transaction);
                 stats.importedTransactions++;
                 wxLogDebug("Imported: FITID='%s', Type='%s', Payee='%s', Mode='%s'", fitid, result.transType, result.importedPayee, result.matchMode);
             }

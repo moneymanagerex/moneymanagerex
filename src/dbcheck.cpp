@@ -16,17 +16,15 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ********************************************************/
 
-
 #include "dbcheck.h"
 
-#include "model/Model_Account.h"
-#include "model/Model_Attachment.h"
-#include "model/Model_Billsdeposits.h"
-#include "model/Model_Category.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Stock.h"
+#include "model/AccountModel.h"
+#include "model/AttachmentModel.h"
+#include "model/ScheduledModel.h"
+#include "model/CategoryModel.h"
+#include "model/PayeeModel.h"
+#include "model/StockModel.h"
 #include "uicontrols/navigatortypes.h"
-
 
 bool dbCheck::checkDB()
 {
@@ -41,25 +39,25 @@ bool dbCheck::checkAccounts()
     bool result = true;
 
     // Transactions
-    const auto &transactions = Model_Checking::instance().all();
+    const auto &transactions = TransactionModel::instance().all();
     for (const auto& trx : transactions)
-        if (!Model_Account::instance().get(trx.ACCOUNTID) || (Model_Checking::type_id(trx) == Model_Checking::TYPE_ID_TRANSFER && !Model_Account::instance().get(trx.TOACCOUNTID)))
+        if (!AccountModel::instance().get(trx.ACCOUNTID) || (TransactionModel::type_id(trx) == TransactionModel::TYPE_ID_TRANSFER && !AccountModel::instance().get(trx.TOACCOUNTID)))
         {
             result = false;
         }
 
     // BillsDeposits
-    const auto &bills = Model_Billsdeposits::instance().all();
+    const auto &bills = ScheduledModel::instance().all();
     for (const auto& bill : bills)
-        if (!Model_Account::instance().get(bill.ACCOUNTID) || (Model_Billsdeposits::type_id(bill) == Model_Checking::TYPE_ID_TRANSFER && !Model_Account::instance().get(bill.TOACCOUNTID)))
+        if (!AccountModel::instance().get(bill.ACCOUNTID) || (ScheduledModel::type_id(bill) == TransactionModel::TYPE_ID_TRANSFER && !AccountModel::instance().get(bill.TOACCOUNTID)))
         {
             result = false;
         }
 
     // Stocks
-    const auto &stocks = Model_Stock::instance().all();
+    const auto &stocks = StockModel::instance().all();
     for (const auto& stock : stocks)
-        if (!Model_Account::instance().get(stock.HELDAT) || (Model_Account::type_id(Model_Account::instance().get(stock.HELDAT)) != NavigatorTypes::TYPE_ID_INVESTMENT))
+        if (!AccountModel::instance().get(stock.HELDAT) || (AccountModel::type_id(AccountModel::instance().get(stock.HELDAT)) != NavigatorTypes::TYPE_ID_INVESTMENT))
         {
             result = false;
         }

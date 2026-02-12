@@ -17,21 +17,20 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#ifndef FILTERTRANSDIALOG_H_
-#define FILTERTRANSDIALOG_H_
+#pragma once
 
 #if defined(__GNUG__) && !defined(__APPLE__)
 #pragma interface "filtertransdialog.cpp"
 #endif
 
-#include "mmSimpleDialogs.h"
-#include "mmcustomdata.h"
-#include "reports/mmDateRange.h"
-#include "reports/htmlbuilder.h"
-
+#include "defs.h"
 #include <wx/dialog.h>
-#include "mmTextCtrl.h"
 
+#include "util/DateRange.h"
+#include "mmTextCtrl.h"
+#include "mmSimpleDialogs.h"
+#include "report/htmlbuilder.h"
+#include "mmcustomdata.h"
 
 class mmFilterTransactionsDialog: public wxDialog
 {
@@ -47,12 +46,12 @@ public:
 
     virtual int ShowModal();
 
-    int mmIsRecordMatches(const Model_Checking::Data &tran
-        , const Model_Splittransaction::Data_Set& splits);
-    int mmIsRecordMatches(const Model_Checking::Data &tran
-        , const std::map<int64, Model_Splittransaction::Data_Set>& splits);
-    int mmIsRecordMatches(const Model_Billsdeposits::Data &tran
-        , const std::map<int64, Model_Budgetsplittransaction::Data_Set>& splits);
+    int mmIsRecordMatches(const TransactionModel::Data &tran
+        , const TransactionSplitModel::Data_Set& splits);
+    int mmIsRecordMatches(const TransactionModel::Data &tran
+        , const std::map<int64, TransactionSplitModel::Data_Set>& splits);
+    int mmIsRecordMatches(const ScheduledModel::Data &tran
+        , const std::map<int64, ScheduledSplitModel::Data_Set>& splits);
     template<class MODEL, class DATA = typename MODEL::DATA>
     bool mmIsRecordMatches(const DATA& tran, bool mergeSplitTags = false);
     template<class MODEL, class DATA = typename MODEL::DATA>
@@ -244,7 +243,7 @@ private:
 
 private:
     wxString m_settings_json;
-    std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
+    std::vector<wxSharedPtr<DateRange>> m_all_date_ranges;
     wxString m_begin_date;
     wxString m_end_date;
     wxString m_filter_key;
@@ -300,5 +299,3 @@ inline const wxString mmFilterTransactionsDialog::mmGetCategoryPattern() const {
 inline bool mmFilterTransactionsDialog::mmIsCombineSplitsChecked() const { return combineSplitsCheckBox_->IsChecked(); }
 inline bool mmFilterTransactionsDialog::mmIsTagsChecked() const { return tagCheckBox_->IsChecked(); }
 
-#endif
-// FILTERTRANSDIALOG_H_
