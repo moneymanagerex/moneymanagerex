@@ -1,7 +1,7 @@
 This log shows the changes of filenames (either manual or automated)
 under src/ in increasing chronological order.
 
-+ PR ?
++ PR #8147 (2026-02-13)
   constants                          -> base/constants
   defs.h                             -> base/defs.h
   images_list                        -> base/images_list
@@ -14,7 +14,7 @@ under src/ in increasing chronological order.
   unix/                              -> base/OLD_unix
   win/                               -> base/OLD_win
 
-+ PR #8143 (2026-02-12), PR ?
++ PR #8143 (2026-02-12), PR #8147 (2026-02-13)
   choices                            -> util/_choices
   dateday                            -> util/mmDateDay
   daterange2                         -> util/mmDateRange2
@@ -31,7 +31,7 @@ under src/ in increasing chronological order.
   util                               -> util/_util
   validators                         -> util/mmCalcValidator
 
-+ PR #8143 (2026-02-12), PR ?
++ PR #8143 (2026-02-12), PR #8147 (2026-02-13)
   filtertrans                        -> model/TransactionFilter
   journal                            -> model/Journal
   model/Model                        -> model/_Model
@@ -64,7 +64,7 @@ under src/ in increasing chronological order.
   model/readme.txt                   -> model/_readme.txt
   option                             -> model/PreferencesModel
 
-+ PR #8143 (2026-02-12), PR ?
++ PR #8143 (2026-02-12), PR #8147 (2026-02-13)
   assetspanel                        -> panel/AssetPanel
   billsdepositspanel                 -> panel/ScheduledPanel
   budgetingpanel                     -> panel/BudgetPanel
@@ -78,7 +78,7 @@ under src/ in increasing chronological order.
   stocks_list                        -> panel/StockList
   stockspanel                        -> panel/StockPanel
 
-+ PR ?
++ PR #8147 (2026-02-13)
   categdialog                        -> manager/CategoryManager
   currencydialog                     -> manager/CurrencyManager
   customfieldlistdialog              -> manager/FieldManager
@@ -89,7 +89,7 @@ under src/ in increasing chronological order.
   tagdialog                          -> manager/TagManager
   themes                             -> manager/ThemeManager
 
-+ PR #8143 (2026-02-12), ?
++ PR #8143 (2026-02-12), #8147 (2026-02-13)
   aboutdialog                        -> dialog/AboutDialog
   accountdialog                      -> dialog/AccountDialog
   appstartdialog                     -> dialog/StartupDialog
@@ -143,7 +143,7 @@ under src/ in increasing chronological order.
   reports/summarystocks              -> report/StocksReport
   reports/transactions               -> report/TransactionsReport
 
-+ PR #8143 (2026-02-12), PR ?
++ PR #8143 (2026-02-12), PR #8147 (2026-02-13)
   webapp                             -> import_export/webapp
   webappdialog                       -> import_export/webappdialog
 
