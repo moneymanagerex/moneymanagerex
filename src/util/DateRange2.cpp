@@ -35,12 +35,12 @@ const DatePeriod::MapLabelId DatePeriod::mapLabelId = makeLabelId();
 
 DatePeriod::MapLabelId DatePeriod::makeLabelId()
 {
-    MapLabelId mapLabelId;
+    MapLabelId map;
     for (int i = 0; i < static_cast<int>(sizeof(mapIdLabel)/sizeof(mapIdLabel[0])); ++i) {
         char c = mapIdLabel[i].label[0];
-        mapLabelId[c] = mapIdLabel[i].id;
+        map[c] = mapIdLabel[i].id;
     }
-    return mapLabelId;
+    return map;
 }
 
 DatePeriod::DatePeriod(Id id_new) :
