@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #if defined(__GNUG__) && !defined(__APPLE__)
-#pragma implementation "dialog/TransactionFilterDialog.h"
+#pragma implementation "TransactionFilterDialog.h"
 #endif
 
 #ifdef __BORLANDC__
