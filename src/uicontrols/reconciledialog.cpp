@@ -210,8 +210,6 @@ void mmReconcileDialog::CreateControls()
     m_differenceLabel = new wxStaticText(resPanel, wxID_ANY, _t("Difference:"));
     resSizer->Add(m_differenceLabel,  0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 20);
     m_differenceCtrl = new wxStaticText(resPanel, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT);
-    int labelWidth = 100;
-    m_differenceCtrl->SetMinSize(wxSize(labelWidth, -1));
     m_differenceCtrl->SetCanFocus(false);
     resSizer->Add(m_differenceCtrl, 0, wxALIGN_RIGHT, 20);
     resPanel->SetSizer(resSizer);
@@ -371,6 +369,7 @@ void mmReconcileDialog::UpdateAll()
     m_btnEdit->Enable(m_listLeft->GetSelectedItemCount() > 0 || m_listRight->GetSelectedItemCount() > 0);
 
     Refresh();
+    Layout();
     Update();
 }
 
@@ -675,7 +674,7 @@ void mmReconcileDialog::setListItemData(const TransactionModel::Data* trx, wxLis
     list->SetItem(item, 1, mmGetDateTimeForDisplay(trx->TRANSDATE));
     list->SetItem(item, 2, trx->TRANSACTIONNUMBER);
     list->SetItem(item, 3, prefix + payeeName);
-    list->SetItem(item, 4, wxString::Format("%.2f", trx->TRANSAMOUNT));
+    list->SetItem(item, 4, Model_Currency::toString(trx->TRANSAMOUNT,m_currency));
     list->SetItem(item, 5, trx->STATUS);
     list->SetItemImage(item, trx->STATUS == "F" ? 1 : 0);
 }
