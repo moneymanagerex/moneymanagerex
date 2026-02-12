@@ -20,13 +20,13 @@
 
 #pragma once
 
-#include "defs.h"
-#include "util/DateRange.h"
-#include "util/DateRange2.h"
+#include "base/defs.h"
+#include "util/mmDateRange.h"
+#include "util/mmDateRange2.h"
 
 #include "model/PreferencesModel.h"
 #include "model/ReportModel.h"
-#include "filtertrans.h"
+#include "model/TransactionFilter.h"
 
 class wxString;
 class wxArrayString;
@@ -77,8 +77,8 @@ protected:
     wxString m_title;
     int m_parameters = 0;
     wxString m_settings = "";
-    DateRange* m_date_range = nullptr;
-    DateRange2 m_date_range2;
+    mmDateRange* m_date_range = nullptr;
+    mmDateRange2 m_date_range2;
     int64 m_date_selection = 0;
     int m_forward_months = 24;
     wxSharedPtr<wxArrayString> m_account_a;
@@ -104,7 +104,7 @@ public:
 public:
     void setReportParameters(REPORT_ID report_id);
     void setReportSettings(const wxString& settings);
-    void setDateRange(const DateRange2& date_range2);
+    void setDateRange(const mmDateRange2& date_range2);
     void setDateSelection(int64 sel);
     void setForwardMonths(int sel);
     void setAccounts(int selection, const wxString& type_name);
@@ -127,10 +127,10 @@ inline int ReportBase::getParameters() { return m_parameters; }
 
 // set
 inline void ReportBase::setReportSettings(const wxString & settings) { m_settings = settings; }
-inline void ReportBase::setDateRange(const DateRange2& date_range2)
+inline void ReportBase::setDateRange(const mmDateRange2& date_range2)
 {
     m_date_range2 = date_range2;
-    m_date_range = new DateRange();
+    m_date_range = new mmDateRange();
     m_date_range->start_date(date_range2.rangeStart().value().getDateTime()
         .ResetTime()
     );

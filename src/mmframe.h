@@ -24,18 +24,18 @@ Copyright (C) 2025, 2026 Klaus Wich
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/aui/aui.h>
 #include <wx/toolbar.h>
 #include <vector>
 
-#include "constants.h"
-#include "paths.h"
-#include "util/util.h"
+#include "base/constants.h"
+#include "base/paths.h"
+#include "util/_util.h"
 
 #include "model/AccountModel.h"
 #include "model/PreferencesModel.h"
-#include "journal.h"
+#include "model/Journal.h"
 
 class BudgetPanel;
 class CommitCallbackHook;

@@ -16,12 +16,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <sqlite3mc_amalgamation.h>
 
-#include "constants.h"
-#include "paths.h"
-#include "util/util.h"
+#include "base/constants.h"
+#include "base/paths.h"
+#include "util/_util.h"
 #include "dbwrapper.h"
 
 /*

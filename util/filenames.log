@@ -1,16 +1,39 @@
 This log shows the changes of filenames (either manual or automated)
 under src/ in increasing chronological order.
 
-+ PR #8143 (2026-02-12)
-  choices                            -> util/choices
-  dateday                            -> util/DateDay
-  daterange2                         -> util/DateRange2
-  primitive                          -> util/primitive
-  reports/mmDateRange                -> util/DateRange
-  singleton                          -> util/singleton
-  util                               -> util/util
++ PR ?
+  constants                          -> base/constants
+  defs.h                             -> base/defs.h
+  images_list                        -> base/images_list
+  mac/                               -> base/OLD_mac
+  paths                              -> base/paths
+  platfdep.h                         -> base/platfdep.h
+  platfdep_mac.mm                    -> base/platfdep_mac.mm
+  platfdep_unix.cpp                  -> base/platfdep_unix.cpp
+  platfdep_win.cpp                   -> base/platfdep_win.cpp
+  unix/                              -> base/OLD_unix
+  win/                               -> base/OLD_win
 
-+ PR #8143 (2026-02-12)
++ PR #8143 (2026-02-12), PR ?
+  choices                            -> util/_choices
+  dateday                            -> util/mmDateDay
+  daterange2                         -> util/mmDateRange2
+  minimal_editor                     -> util/mmMiniEditor
+  mmHook.h                           -> util/mmSQLite3Hook.h
+  mmSimpleDialogs                    -> util/_simple
+  mmTextCtrl                         -> util/mmTextCtrl
+  mmTips.h                           -> util/mmTips.h
+  mmTreeItemData                     -> util/mmTreeItemData
+  primitive                          -> util/_primitive
+  recentfiles                        -> util/mmFileHistory
+  reports/mmDateRange                -> util/mmDateRange
+  singleton                          -> util/mmSingleton
+  util                               -> util/_util
+  validators                         -> util/mmCalcValidator
+
++ PR #8143 (2026-02-12), PR ?
+  filtertrans                        -> model/TransactionFilter
+  journal                            -> model/Journal
   model/Model                        -> model/_Model
   model/Model_Account                -> model/AccountModel
   model/Model_Asset                  -> model/AssetModel
@@ -41,7 +64,7 @@ under src/ in increasing chronological order.
   model/readme.txt                   -> model/_readme.txt
   option                             -> model/PreferencesModel
 
-+ PR #8143 (2026-02-12)
++ PR #8143 (2026-02-12), PR ?
   assetspanel                        -> panel/AssetPanel
   billsdepositspanel                 -> panel/ScheduledPanel
   budgetingpanel                     -> panel/BudgetPanel
@@ -55,45 +78,72 @@ under src/ in increasing chronological order.
   stocks_list                        -> panel/StockList
   stockspanel                        -> panel/StockPanel
 
-+ PR #8143 (2026-02-12)
++ PR ?
+  categdialog                        -> manager/CategoryManager
+  currencydialog                     -> manager/CurrencyManager
+  customfieldlistdialog              -> manager/FieldManager
+  daterangedialog                    -> manager/DateRangeManager
+  general_report_manager             -> manager/GeneralReportManager
+  optiondialog                       -> manager/PreferencesManager
+  payeedialog                        -> manager/PayeeManager
+  tagdialog                          -> manager/TagManager
+  themes                             -> manager/ThemeManager
+
++ PR #8143 (2026-02-12), ?
   aboutdialog                        -> dialog/AboutDialog
   accountdialog                      -> dialog/AccountDialog
+  appstartdialog                     -> dialog/StartupDialog
   assetdialog                        -> dialog/AssetDialog
   attachmentdialog                   -> dialog/AttachmentDialog
   billsdepositsdialog                -> dialog/ScheduledDialog
-  categdialog                        -> dialog/CategoryDialog
-  currencydialog                     -> dialog/CurrencyDialog
-  daterangedialog                    -> dialog/DateRangeDialog
-  daterangeeditdialog                -> dialog/DateRangeEditDialog
+  budgetentrydialog                  -> dialog/BudgetEntryDialog
+  budgetyeardialog                   -> dialog/BudgetYearDialog
+  budgetyearentrydialog              -> dialog/BudgetYearEntryDialog
+  customfieldeditdialog              -> dialog/FieldDialog
+  daterangeeditdialog                -> dialog/DateRangeDialog
   diagnostics                        -> dialog/DiagnosticsDialog
-  optiondialog                       -> dialog/PreferencesDialog
-  payeedialog                        -> dialog/PayeeDialog
+  filtertransdialog                  -> dialog/TransactionFilterDialog
+  maincurrencydialog                 -> dialog/CurrencyChoiceDialog
+  mmcustomdata                       -> dialog/FieldValueDialog
+  relocatecategorydialog             -> dialog/MergeCategoryDialog
+  relocatepayeedialog                -> dialog/MergePayeeDialog
+  relocatetagdialog                  -> dialog/MergeTagDialog
+  sharetransactiondialog             -> dialog/TransactionShareDialog
   splittransactionsdialog            -> dialog/SplitDialog
   stockdialog                        -> dialog/StockDialog
-  tagdialog                          -> dialog/TagDialog
+  transactionsupdatedialog           -> dialog/TransactionUpdateDialog
   transdialog                        -> dialog/TransactionDialog
+  usertransactionpanel               -> dialog/TransactionLinkDialog
 
 + PR #8143 (2026-02-12)
-  optionsettingsattachment           -> preferences AttachmentPreferences
-  optionsettingsbase                 -> preferences _PreferencesBase
-  optionsettingsgeneral              -> preferences GeneralPreferences
-  optionsettingshome                 -> preferences DashboardPreferences
-  optionsettingsmisc                 -> preferences OtherPreferences
-  optionsettingsnet                  -> preferences NetworkPreferences
-  optionsettingstransaction          -> preferences TransactionPreferences
-  optionsettingsview                 -> preferences ViewPreferences
+  optionsettingsattachment           -> preferences/AttachmentPreferences
+  optionsettingsbase                 -> preferences/_PreferencesBase
+  optionsettingsgeneral              -> preferences/GeneralPreferences
+  optionsettingshome                 -> preferences/DashboardPreferences
+  optionsettingsmisc                 -> preferences/OtherPreferences
+  optionsettingsnet                  -> preferences/NetworkPreferences
+  optionsettingstransaction          -> preferences/TransactionPreferences
+  optionsettingsview                 -> preferences/ViewPreferences
 
 + PR #8143 (2026-02-12)
-  reports/                           -> report/
-  report/allreport.h                 -> report/_all.h
-  report/cashflow                    -> report/FlowReport
-  report/categexp                    -> report/CategoryReport
-  report/forecast                    -> report/ForecastReport
-  report/incexpenses                 -> report/InExReport
-  report/myusage                     -> report/UsageReport
-  report/payee                       -> report/PayeeReport
-  report/reportbase                  -> report/_ReportBase
-  report/summary                     -> report/BalanceReport
-  report/summarystocks               -> report/StocksReport
-  report/transactions                -> report/TransactionsReport
+  reports/allreport.h                -> report/_all.h
+  reports/budget                     -> report/budget
+  reports/budgetcategorysummary      -> report/budgetcategorysummary
+  reports/budgetingperf              -> report/budgetingperf
+  reports/bugreport.h                -> report/bugreport.h
+  reports/cashflow                   -> report/FlowReport
+  reports/categexp                   -> report/CategoryReport
+  reports/forecast                   -> report/ForecastReport
+  reports/htmlbuilder                -> report/htmlbuilder
+  reports/incexpenses                -> report/InExReport
+  reports/myusage                    -> report/UsageReport
+  reports/payee                      -> report/PayeeReport
+  reports/reportbase                 -> report/_ReportBase
+  reports/summary                    -> report/BalanceReport
+  reports/summarystocks              -> report/StocksReport
+  reports/transactions               -> report/TransactionsReport
+
++ PR #8143 (2026-02-12), PR ?
+  webapp                             -> import_export/webapp
+  webappdialog                       -> import_export/webappdialog
 

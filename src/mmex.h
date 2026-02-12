@@ -18,7 +18,7 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/app.h>
 #include <wx/debugrpt.h>
 #include <wx/snglinst.h>

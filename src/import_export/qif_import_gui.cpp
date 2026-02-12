@@ -18,14 +18,15 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/progdlg.h>
 #include <wx/dataview.h>
 
-#include "constants.h"
-#include "paths.h"
-#include "util/util.h"
-#include "util/DateRange.h"
+#include "base/constants.h"
+#include "base/paths.h"
+#include "util/_util.h"
+#include "util/_simple.h"
+#include "util/mmDateRange.h"
 
 #include "model/CategoryModel.h"
 #include "model/PayeeModel.h"
@@ -33,9 +34,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/TagModel.h"
 #include "model/PreferencesModel.h"
 
-#include "dialog/CategoryDialog.h"
-#include "dialog/PayeeDialog.h"
-#include "mmSimpleDialogs.h"
+#include "manager/CategoryManager.h"
+#include "manager/PayeeManager.h"
 #include "webapp.h"
 #include "uicontrols/navigatortypes.h"
 
@@ -918,7 +918,7 @@ void mmQIFImportDialog::OnShowCategDialog(wxMouseEvent&)
             }
         }
     }
-    CategoryDialog dlg(this, false, id);
+    CategoryManager dlg(this, false, id);
     dlg.ShowModal();
     if (dlg.getRefreshRequested())
     {
@@ -1642,7 +1642,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
             }
 
             wxString startDateStr = startDate.FormatISODate() + "T00:00:00";
-            wxString endDateStr = DateRange::getDayEnd(endDate).FormatISOCombined();
+            wxString endDateStr = mmDateRange::getDayEnd(endDate).FormatISOCombined();
 
             const auto potential_matches = TransactionModel::instance().find(
                 TransactionModel::TRANSAMOUNT(trx->TRANSAMOUNT),

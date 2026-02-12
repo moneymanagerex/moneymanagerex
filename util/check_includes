@@ -376,6 +376,9 @@ sub check_include { my( $src_dir, $include_type, $dst ) = @_;
         elsif( $dst_subdir eq "" && -f "$src_dir$dst_file.in" ) {
             $dst_path = "$src_dir$dst_file";
         }
+        elsif( $dst_subdir eq "" && -f "src/$dst_file.in" ) {
+            $dst_path = "src/$dst_file";
+        }
         elsif( $dst_subdir eq "" && -f "src/model/$dst_file" ) {
             $dst_path = "src/model/$dst_file";
             $dst_fix = "model/$dst_file";

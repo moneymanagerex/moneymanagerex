@@ -19,7 +19,7 @@
 
 #include <queue>
 
-#include "util/util.h"
+#include "util/_util.h"
 
 #include "AccountModel.h"
 #include "CategoryModel.h"
@@ -176,7 +176,7 @@ DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TransactionModel::TRANSDATE(const wxStrin
     return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_iso_str, op);
 }
 
-DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TransactionModel::TRANSDATE(const DateDay& date, OP op)
+DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TransactionModel::TRANSDATE(const mmDateDay& date, OP op)
 {
     // EQUAL and NOT_EQUAL should not be used for date comparisons.
     // if needed, create an equivalent AND/OR combination of two other operators.
@@ -190,7 +190,7 @@ DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TransactionModel::TRANSDATE(const DateDay
 DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TransactionModel::TRANSDATE(const wxDateTime& date, OP op)
 {
     // the boundary has granularity of a day
-    return TRANSDATE(DateDay(date), op);
+    return TRANSDATE(mmDateDay(date), op);
 }
 
 DB_Table_CHECKINGACCOUNT_V1::DELETEDTIME TransactionModel::DELETEDTIME(const wxString& date, OP op)

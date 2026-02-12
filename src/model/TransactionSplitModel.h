@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include "db/DB_Table_Splittransactions_V1.h"
 #include "_Model.h"
 #include "CurrencyModel.h"

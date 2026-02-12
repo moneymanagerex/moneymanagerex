@@ -19,9 +19,9 @@
 
 #pragma once
 
-#include "defs.h"
-#include "util/primitive.h"
-#include "util/DateRange2.h"
+#include "base/defs.h"
+#include "util/_primitive.h"
+#include "util/mmDateRange2.h"
 
 /*
    mmOptions caches the options for MMEX
@@ -279,7 +279,7 @@ public:
     void setCheckingRange(const wxArrayString &a);
     void parseCheckingRange();
     const wxArrayString getCheckingRange() const noexcept;
-    const std::vector<DateRange2::Range> getCheckingRangeA() const noexcept;
+    const std::vector<mmDateRange2::Range> getCheckingRangeA() const noexcept;
     int getCheckingRangeM() const noexcept;
 
     // m_reporting_range, m_reporting_range_a, m_reporting_range_m
@@ -287,7 +287,7 @@ public:
     void setReportingRange(const wxArrayString &a);
     void parseReportingRange();
     const wxArrayString getReportingRange() const noexcept;
-    const std::vector<DateRange2::Range> getReportingRangeA() const noexcept;
+    const std::vector<mmDateRange2::Range> getReportingRangeA() const noexcept;
     int getReportingRangeM() const noexcept;
 
     // m_show_navigator_cashLedger
@@ -342,7 +342,7 @@ private:
     int m_trans_date_default = 0;                       // TRANSACTION_DATE_DEFAULT
     bool m_send_usage_stats = true;                     // SENDUSAGESTATS
     bool m_check_news = true;                           // CHECKNEWS
-    int m_theme_mode = PreferencesModel::AUTO;                    // THEMEMODE
+    int m_theme_mode = PreferencesModel::AUTO;          // THEMEMODE
     int m_html_scale = 100;                             // HTMLSCALE
     int m_icon_size = 16;                               // ICONSIZE
     int m_font_size = 0;                                // UI_FONT_SIZE
@@ -352,10 +352,10 @@ private:
     wxArrayString m_reporting_range;                    // REPORTING_RANGE
 
     // derived
-    std::vector<DateRange2::Range> m_checking_range_a;  // m_checking_range
-    int m_checking_range_m;                             // m_checking_range
-    std::vector<DateRange2::Range> m_reporting_range_a; // m_reporting_range
-    int m_reporting_range_m;                            // m_reporting_range
+    std::vector<mmDateRange2::Range> m_checking_range_a;  // m_checking_range
+    int m_checking_range_m;                               // m_checking_range
+    std::vector<mmDateRange2::Range> m_reporting_range_a; // m_reporting_range
+    int m_reporting_range_m;                              // m_reporting_range
 };
 
 inline void PreferencesModel::setDatabaseUpdated(const bool value)
@@ -585,7 +585,7 @@ inline const wxArrayString PreferencesModel::getCheckingRange() const noexcept
     return m_checking_range;
 }
 
-inline const std::vector<DateRange2::Range> PreferencesModel::getCheckingRangeA() const noexcept
+inline const std::vector<mmDateRange2::Range> PreferencesModel::getCheckingRangeA() const noexcept
 {
     return m_checking_range_a;
 }
@@ -600,7 +600,7 @@ inline const wxArrayString PreferencesModel::getReportingRange() const noexcept
     return m_reporting_range;
 }
 
-inline const std::vector<DateRange2::Range> PreferencesModel::getReportingRangeA() const noexcept
+inline const std::vector<mmDateRange2::Range> PreferencesModel::getReportingRangeA() const noexcept
 {
     return m_reporting_range_a;
 }

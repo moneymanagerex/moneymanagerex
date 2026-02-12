@@ -24,7 +24,7 @@
 
 class mmDatePickerCtrl;
 class mmTextCtrl;
-class UserTransactionPanel;
+class TransactionLinkDialog;
 class mmGUIFrame;
 
 class AssetDialog : public wxDialog
@@ -76,7 +76,7 @@ private:
     mmTextCtrl* m_valueChangeRate = nullptr;
     wxBitmapButton* bAttachments_ = nullptr;
     wxStaticBox* m_transaction_frame = nullptr;
-    UserTransactionPanel* m_transaction_panel = nullptr;
+    TransactionLinkDialog* m_transaction_panel = nullptr;
     TransactionLinkModel::Data* m_transfer_entry = nullptr;
     TransactionModel::Data* m_checking_entry = nullptr;
     wxString m_dialog_heading = _t("New Asset");

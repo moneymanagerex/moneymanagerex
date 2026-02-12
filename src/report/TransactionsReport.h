@@ -20,7 +20,7 @@
 
 #include "model/TransactionModel.h"
 #include "_ReportBase.h"
-#include "filtertransdialog.h"
+#include "dialog/TransactionFilterDialog.h"
 
 class mmBankTransaction;
 
@@ -28,14 +28,14 @@ class TransactionsReport : public ReportBase
 {
 public:
     ~TransactionsReport();
-    TransactionsReport(wxSharedPtr<mmFilterTransactionsDialog>& transDialog);
+    TransactionsReport(wxSharedPtr<TransactionFilter>& transDialog);
 
     wxString getHTMLText();
 
 private:
-    void Run(wxSharedPtr<mmFilterTransactionsDialog>& transDialog);
+    void Run(wxSharedPtr<TransactionFilter>& transDialog);
     TransactionModel::Full_Data_Set trans_;
-    wxSharedPtr<mmFilterTransactionsDialog> m_transDialog;
+    wxSharedPtr<TransactionFilter> m_transDialog;
     bool showColumnById(int num);
     void displayTotals(const std::map<int64, double>& total, std::map<int64, double>& total_in_base_curr, int noOfCols);
     void UDFCFormatHelper(FieldModel::TYPE_ID type, int64 ref, wxString data, double val, int scale);

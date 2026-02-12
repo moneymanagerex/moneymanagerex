@@ -23,7 +23,7 @@
 #include "model/SettingModel.h"
 #include "_PanelBase.h"
 #include "ReportPanel.h"
-#include "images_list.h"
+#include "base/images_list.h"
 
 wxBEGIN_EVENT_TABLE(ListBase, wxListCtrl)
     EVT_LIST_COL_END_DRAG(wxID_ANY,    ListBase::onItemResize)

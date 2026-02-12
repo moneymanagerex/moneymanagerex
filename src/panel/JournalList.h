@@ -21,9 +21,9 @@ Copyright (C) 2021-2025 Mark Whalley (mark@ipx.co.uk)
 
 #pragma once
 
+#include "model/Journal.h"
 #include "_PanelBase.h"
 #include "JournalPanel.h"
-#include "journal.h"
 
 class JournalPanel;
 

@@ -20,15 +20,19 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/numformatter.h>
 #include <wx/timectrl.h>
 #include <wx/collpane.h>
 #include <wx/display.h>
 
-#include "constants.h"
-#include "paths.h"
-#include "util/util.h"
+#include "base/constants.h"
+#include "base/paths.h"
+#include "base/images_list.h"
+#include "util/_util.h"
+#include "util/_simple.h"
+#include "util/mmTextCtrl.h"
+#include "util/mmCalcValidator.h"
 
 #include "model/AccountModel.h"
 #include "model/AttachmentModel.h"
@@ -39,20 +43,17 @@
 #include "model/SettingModel.h"
 #include "model/TagModel.h"
 
+#include "manager/CategoryManager.h"
+#include "manager/PayeeManager.h"
+
 #include "AttachmentDialog.h"
-#include "CategoryDialog.h"
-#include "PayeeDialog.h"
+#include "FieldValueDialog.h"
 #include "SplitDialog.h"
 #include "TransactionDialog.h"
 
 #include "preferences/ViewPreferences.h"
 
-#include "mmSimpleDialogs.h"
-#include "mmTextCtrl.h"
-#include "images_list.h"
-#include "mmcustomdata.h"
-#include "validators.h"
-#include "webapp.h"
+#include "import_export/webapp.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(TransactionDialog, wxDialog);
 
@@ -994,7 +995,7 @@ void TransactionDialog::OnComboKey(wxKeyEvent& event)
             auto category = cbCategory_->GetValue();
             if (category.empty())
             {
-                CategoryDialog dlg(this, true, -1);
+                CategoryManager dlg(this, true, -1);
                 int rc = dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbCategory_->mmDoReInitialize();

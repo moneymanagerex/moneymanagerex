@@ -22,15 +22,20 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <stack>
 #include <unordered_set>
 #include <wx/fs_mem.h>
 #include <wx/busyinfo.h>
 
 #include "mmex.h"
-#include "constants.h"
-#include "util/util.h"
+#include "base/constants.h"
+#include "base/images_list.h"
+#include "util/_util.h"
+#include "util/_simple.h"
+#include "util/mmSQLite3Hook.h"
+#include "util/mmTreeItemData.h"
+#include "util/mmFileHistory.h"
 
 #include "model/_all.h"
 
@@ -45,17 +50,28 @@
 #include "panel/ScheduledPanel.h"
 #include "panel/StockPanel.h"
 
+#include "manager/CategoryManager.h"
+#include "manager/DateRangeManager.h"
+#include "manager/FieldManager.h"
+#include "manager/GeneralReportManager.h"
+#include "manager/PayeeManager.h"
+#include "manager/PreferencesManager.h"
+#include "manager/TagManager.h"
+#include "manager/ThemeManager.h"
+
 #include "dialog/AboutDialog.h"
 #include "dialog/AccountDialog.h"
 #include "dialog/AttachmentDialog.h"
-#include "dialog/CategoryDialog.h"
-#include "dialog/DateRangeDialog.h"
+#include "dialog/BudgetYearDialog.h"
+#include "dialog/CurrencyChoiceDialog.h"
 #include "dialog/DiagnosticsDialog.h"
-#include "dialog/PayeeDialog.h"
-#include "dialog/PreferencesDialog.h"
+#include "dialog/MergeCategoryDialog.h"
+#include "dialog/MergePayeeDialog.h"
+#include "dialog/MergeTagDialog.h"
 #include "dialog/ScheduledDialog.h"
-#include "dialog/TagDialog.h"
+#include "dialog/StartupDialog.h"
 #include "dialog/TransactionDialog.h"
+#include "dialog/TransactionFilterDialog.h"
 
 #include "report/_all.h"
 #include "report/bugreport.h"
@@ -71,26 +87,11 @@
 #include "uicontrols/toolbardialog.h"
 #include "uicontrols/toolbartypes.h"
 
-#include "appstartdialog.h"
-#include "budgetyeardialog.h"
-#include "customfieldlistdialog.h"
 #include "dbcheck.h"
 #include "dbupgrade.h"
 #include "dbwrapper.h"
-#include "filtertransdialog.h"
-#include "general_report_manager.h"
-#include "images_list.h"
-#include "maincurrencydialog.h"
-#include "mmHook.h"
-#include "mmSimpleDialogs.h"
-#include "mmTreeItemData.h"
-#include "recentfiles.h"
-#include "relocatecategorydialog.h"
-#include "relocatepayeedialog.h"
-#include "relocatetagdialog.h"
-#include "themes.h"
-#include "webapp.h"
-#include "webappdialog.h"
+#include "import_export/webapp.h"
+#include "import_export/webappdialog.h"
 #include "wizard_newaccount.h"
 #include "wizard_newdb.h"
 #include "wizard_update.h"
@@ -1351,8 +1352,8 @@ void mmGUIFrame::navTreeSelection(wxTreeItemId selectedItem)
         return OnTransactionReport(e);
     case mmTreeItemData::FILTER_REPORT: {
         activeReport_ = true;
-        wxSharedPtr<mmFilterTransactionsDialog> dlg(
-            new mmFilterTransactionsDialog(this, iData->getString())
+        wxSharedPtr<TransactionFilter> dlg(
+            new TransactionFilter(this, iData->getString())
         );
         /// FIXME memory leak
         TransactionsReport* rs = new TransactionsReport(dlg);
@@ -1541,7 +1542,7 @@ void mmGUIFrame::OnPopupEditFilter(wxCommandEvent& /*event*/)
 
     const auto filter_settings = InfotableModel::instance().getArrayString("TRANSACTIONS_FILTER");
 
-    wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, -1, true, data));
+    wxSharedPtr<TransactionFilter> dlg(new TransactionFilter(this, -1, true, data));
     bool is_ok = (dlg->ShowModal() == wxID_OK);
     if (filter_settings != InfotableModel::instance().getArrayString("TRANSACTIONS_FILTER")) {
         DoRecreateNavTreeControl();
@@ -3115,7 +3116,7 @@ void mmGUIFrame::SetNavTreeSelection(wxTreeItemId id) {
 
 void mmGUIFrame::OnOrgCategories(wxCommandEvent& /*event*/)
 {
-    CategoryDialog dlg(this, false, -1);
+    CategoryManager dlg(this, false, -1);
     dlg.ShowModal();
     if (dlg.getRefreshRequested()) {
         activeReport_ = false;
@@ -3133,7 +3134,7 @@ void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
         std::list<int64> selections = dlg.getSelectedPayees();
         PayeeModel::Data *payee = PayeeModel::instance().get(selections.front());
         wxString filter = wxString::Format("{\"LABEL\":\"%s\",\"PAYEE\":\"%s\"}",_t("Transactions per payee"), payee->PAYEENAME);
-        wxSharedPtr<mmFilterTransactionsDialog> pdlg(new mmFilterTransactionsDialog(this, filter));
+        wxSharedPtr<TransactionFilter> pdlg(new TransactionFilter(this, filter));
         if (pdlg->ShowModal() == wxID_OK) {
             TransactionsReport* rs = new TransactionsReport(pdlg);
             createReportsPage(rs, true);
@@ -3149,7 +3150,7 @@ void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnOrgTags(wxCommandEvent& /*event*/)
 {
-    TagDialog dlg(this);
+    TagManager dlg(this);
     dlg.ShowModal();
     if (dlg.getRefreshRequested()) {
         activeReport_ = false;
@@ -3192,7 +3193,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& WXUNUSED(event))
 
     const auto filter_settings = InfotableModel::instance().getArrayString("TRANSACTIONS_FILTER");
 
-    wxSharedPtr<mmFilterTransactionsDialog> dlg(new mmFilterTransactionsDialog(this, -1, true));
+    wxSharedPtr<TransactionFilter> dlg(new TransactionFilter(this, -1, true));
     bool is_ok = (dlg->ShowModal() == wxID_OK);
     if (filter_settings != InfotableModel::instance().getArrayString("TRANSACTIONS_FILTER")) {
         DoRecreateNavTreeControl();
@@ -3213,7 +3214,7 @@ void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& WXUNUSED(event))
         return;
 
     const auto a = BudgetPeriodModel::instance().all(BudgetPeriodModel::COL_BUDGETYEARNAME).to_json();
-    mmBudgetYearDialog(this).ShowModal();
+    BudgetYearDialog(this).ShowModal();
     const auto b = BudgetPeriodModel::instance().all(BudgetPeriodModel::COL_BUDGETYEARNAME).to_json();
     if (a != b)
         DoRecreateNavTreeControl(true);
@@ -3234,7 +3235,7 @@ void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& WXUNUSED(event))
 {
     if (m_db) {
         wxTreeItemId selectedItem = m_nav_tree_ctrl->GetSelection();
-        mmGeneralReportManager dlg(this, m_db.get(), selectedItem.IsOk() ? m_nav_tree_ctrl->GetItemText(selectedItem) : "");
+        GeneralReportManager dlg(this, m_db.get(), selectedItem.IsOk() ? m_nav_tree_ctrl->GetItemText(selectedItem) : "");
         dlg.ShowModal();
         RefreshNavigationTree();
     }
@@ -3245,7 +3246,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
     if (!m_db.get())
         return;
 
-    PreferencesDialog systemOptions(this, this->m_app);
+    PreferencesManager systemOptions(this, this->m_app);
     if (systemOptions.ShowModal() == wxID_OK) {
         //set the View Menu Option items the same as the options saved.
         menuBar_->FindItem(MENU_VIEW_BUDGET_FINANCIAL_YEARS)->Check(PreferencesModel::instance().getBudgetFinancialYears());
@@ -3276,14 +3277,14 @@ void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))
     if (!m_db)
         return;
 
-    mmCustomFieldListDialog dlg(this);
+    FieldManager dlg(this);
     dlg.ShowModal();
     createHomePage();
 }
 
 void mmGUIFrame::OnThemeManager(wxCommandEvent& WXUNUSED(event))
 {
-    mmThemesDialog tdlg(this);
+    ThemeManager tdlg(this);
     tdlg.ShowModal();
 }
 
@@ -3302,14 +3303,14 @@ void mmGUIFrame::OnEmptyTreePopUp(wxCommandEvent& event)
         DoRecreateNavTreeControl(true);
     }
     else if (id == MENU_TREEPOPUP_THEME) {
-        mmThemesDialog tdlg(this);
+        ThemeManager tdlg(this);
         tdlg.ShowModal();
     }
 }
 
 void mmGUIFrame::OnDateRangeManager(wxCommandEvent& WXUNUSED(event))
 {
-    DateRangeDialog dlg(this, DateRangeDialog::TYPE_ID_CHECKING);
+    DateRangeManager dlg(this, DateRangeManager::TYPE_ID_CHECKING);
     if (dlg.ShowModal() == wxID_OK) {
         refreshPanelData();
     }
@@ -3422,7 +3423,7 @@ void mmGUIFrame::OnPrintPage(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::showBeginAppDialog(bool fromScratch)
 {
-    mmAppStartDialog dlg(this, m_app);
+    StartupDialog dlg(this, m_app);
     if (fromScratch) {
         dlg.SetCloseButtonToExit();
     }
@@ -3833,7 +3834,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnCurrency(wxCommandEvent& /*event*/)
 {
-    mmMainCurrencyDialog(this, false, false).ShowModal();
+    CurrencyChoiceDialog(this, false, false).ShowModal();
     refreshPanelData();
 }
 //----------------------------------------------------------------------------
@@ -4121,7 +4122,7 @@ void mmGUIFrame::OnViewShowMoneyTips(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::OnCategoryRelocation(wxCommandEvent& /*event*/)
 {
-    relocateCategoryDialog dlg(this);
+    MergeCategoryDialog dlg(this);
     if (dlg.ShowModal() == wxID_OK) {
         wxString msgStr;
         msgStr << _t("Merge categories completed") << "\n\n"
@@ -4135,7 +4136,7 @@ void mmGUIFrame::OnCategoryRelocation(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnPayeeRelocation(wxCommandEvent& /*event*/)
 {
-    relocatePayeeDialog dlg(this);
+    MergePayeeDialog dlg(this);
     if (dlg.ShowModal() == wxID_OK) {
         wxString msgStr;
         msgStr << _t("Merge payees completed") << "\n\n"
@@ -4150,7 +4151,7 @@ void mmGUIFrame::OnPayeeRelocation(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnTagRelocation(wxCommandEvent& /*event*/)
 {
-    relocateTagDialog dlg(this);
+    MergeTagDialog dlg(this);
     if (dlg.ShowModal() == wxID_OK) {
         wxString msgStr;
         msgStr << _t("Merge tags completed") << "\n\n"

@@ -18,19 +18,19 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/webview.h>
 #include <wx/webviewfshandler.h>
 #include <wx/fs_mem.h>
 #include <rapidjson/error/en.h>
 
-#include "constants.h"
-#include "paths.h"
-#include "util/util.h"
+#include "base/constants.h"
+#include "base/paths.h"
+#include "util/_util.h"
+#include "util/mmTips.h"
 
 #include "model/SettingModel.h"
 #include "wizard_update.h"
-#include "mmTips.h"
 #include "report/htmlbuilder.h"
 
 wxBEGIN_EVENT_TABLE(mmUpdateWizard, wxDialog)
@@ -201,7 +201,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
 #endif
     Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmUpdateWizard::OnNewWindow, this, browser->GetId());
 
-    wxStaticText *tipsText = new wxStaticText(this, wxID_ANY, wxGetTranslation(TIPS[1]));
+    wxStaticText *tipsText = new wxStaticText(this, wxID_ANY, wxGetTranslation(mmTips[1]));
 
     page1_sizer->Add(browser, wxSizerFlags(g_flagsExpand).Border(wxTOP, 0));
     page1_sizer->Add(tipsText, g_flagsCenter);

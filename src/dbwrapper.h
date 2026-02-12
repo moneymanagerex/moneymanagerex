@@ -18,7 +18,7 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/arrstr.h>
 #include <wx/sharedptr.h>
 

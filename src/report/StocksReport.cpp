@@ -17,11 +17,11 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <algorithm>
-#include "constants.h"
-#include "util/util.h"
-#include "util/DateRange.h"
+#include "base/constants.h"
+#include "util/_util.h"
+#include "util/mmDateRange.h"
 #include "htmlbuilder.h"
 
 #include "model/AccountModel.h"

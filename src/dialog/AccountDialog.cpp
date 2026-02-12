@@ -17,12 +17,16 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/valnum.h>
 
-#include "constants.h"
-#include "paths.h"
-#include "util/util.h"
+#include "base/constants.h"
+#include "base/paths.h"
+#include "base/images_list.h"
+#include "util/_util.h"
+#include "util/_simple.h"
+#include "util/mmTextCtrl.h"
+#include "util/mmCalcValidator.h"
 
 #include "model/CurrencyModel.h"
 #include "model/InfotableModel.h"
@@ -31,12 +35,8 @@
 
 #include "AccountDialog.h"
 #include "AttachmentDialog.h"
-#include "maincurrencydialog.h"
-#include "mmSimpleDialogs.h"
-#include "mmTextCtrl.h"
-#include "images_list.h"
-#include "validators.h"
-#include "webapp.h"
+#include "CurrencyChoiceDialog.h"
+#include "import_export/webapp.h"
 
 enum {
     ID_DIALOG_NEWACCT_BUTTON_CURRENCY = wxID_HIGHEST + 1000,
@@ -386,7 +386,7 @@ void AccountDialog::OnAccountStatus(wxCommandEvent& /*event*/)
 
 void AccountDialog::OnCurrency(wxCommandEvent& /*event*/)
 {
-    if (mmMainCurrencyDialog::Execute(this, m_currencyID))
+    if (CurrencyChoiceDialog::Execute(this, m_currencyID))
     {
         CurrencyModel::Data* currency = CurrencyModel::instance().get(m_currencyID);
         wxButton* bn = static_cast<wxButton*>(FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY));

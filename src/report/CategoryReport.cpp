@@ -19,14 +19,14 @@
  ********************************************************/
 
 #include <algorithm>
-#include "util/DateRange.h"
+#include "base/images_list.h"
+#include "util/mmDateRange.h"
 
 #include "model/CategoryModel.h"
 #include "model/PreferencesModel.h"
 
 #include "CategoryReport.h"
 #include "budget.h"
-#include "images_list.h"
 #include "htmlbuilder.h"
 
 #define CATEGORY_SORT_BY_NAME        1
@@ -345,7 +345,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     wxDate ed = m_date_range->end_date();
     sd.Add(wxDateSpan::Months(m_date_selection.GetValue()));
     ed.Add(wxDateSpan::Months(m_date_selection.GetValue()));
-    DateRange* date_range = new mmSpecifiedRange(sd, ed);
+    mmDateRange* date_range = new mmSpecifiedRange(sd, ed);
 
     //Get statistic
     std::map<int64, std::map<int, double> > categoryStats;

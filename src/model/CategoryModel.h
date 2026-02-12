@@ -19,13 +19,13 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/sharedptr.h>
 
 #include "_Model.h"
 #include "db/DB_Table_Category_V1.h"
 
-class DateRange;
+class mmDateRange;
 class CategoryModel : public Model<DB_Table_CATEGORY_V1>
 {
 public:
@@ -77,7 +77,7 @@ public:
     static void getCategoryStats(
         std::map<int64, std::map<int, double>> &categoryStats
         , wxSharedPtr<wxArrayString> accountArray
-        , DateRange* date_range, bool ignoreFuture
+        , mmDateRange* date_range, bool ignoreFuture
         , bool group_by_month = true
         , std::map<int64, double >*budgetAmt = nullptr
         , bool fin_months = false);

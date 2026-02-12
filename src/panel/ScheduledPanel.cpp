@@ -18,14 +18,14 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "constants.h"
+#include "base/constants.h"
+#include "base/images_list.h"
 #include "model/_all.h"
 
 #include "ScheduledPanel.h"
 
 #include "dialog/AttachmentDialog.h"
 #include "dialog/ScheduledDialog.h"
-#include "images_list.h"
 
 enum
 {
@@ -213,7 +213,7 @@ bool ScheduledPanel::Create(wxWindow *parent
     /* Set up the transaction filter.  The transFilter dialog will be destroyed
        when the checking panel is destroyed. */
     transFilterActive_ = false;
-    transFilterDlg_ = new mmFilterTransactionsDialog(this, -1, false);
+    transFilterDlg_ = new TransactionFilter(this, -1, false);
 
     initVirtualListControl();
 

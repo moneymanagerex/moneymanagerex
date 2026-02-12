@@ -17,7 +17,7 @@
  ********************************************************/
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/webview.h>
 #include <wx/wizard.h>
 #include <wx/frame.h>

@@ -16,9 +16,11 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "constants.h"
-#include "util/DateDay.h"
-#include "util/DateRange.h"
+#include "base/constants.h"
+#include "base/images_list.h"
+#include "util/mmDateDay.h"
+#include "util/mmDateRange.h"
+#include "util/mmCalcValidator.h"
 
 #include "model/AccountModel.h"
 #include "model/InfotableModel.h"
@@ -28,8 +30,6 @@
 
 #include "dialog/TransactionDialog.h"
 #include "reconciledialog.h"
-#include "images_list.h"
-#include "validators.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmReconcileDialog, wxDialog);
 
@@ -266,19 +266,19 @@ void mmReconcileDialog::FillControls(bool init)
     }
 
     // get not reconciled transactions
-    wxSharedPtr<DateRange> date_range;
+    wxSharedPtr<mmDateRange> date_range;
     date_range = new mmCurrentMonthToDate;
     TransactionModel::Data_Set all_trans = TransactionModel::instance().find(
         TransactionModel::ACCOUNTID(m_account->ACCOUNTID),
         TransactionModel::STATUS(TransactionModel::STATUS_ID_RECONCILED, NOT_EQUAL),
         TransactionModel::DELETEDTIME(wxEmptyString, EQUAL),
-        TransactionModel::TRANSDATE(DateDay::today(), LESS_OR_EQUAL)
+        TransactionModel::TRANSDATE(mmDateDay::today(), LESS_OR_EQUAL)
     );
     TransactionModel::Data_Set all_trans2 = TransactionModel::instance().find(  // get transfers
         TransactionModel::TOACCOUNTID(m_account->ACCOUNTID),
         TransactionModel::STATUS(TransactionModel::STATUS_ID_RECONCILED, NOT_EQUAL),
         TransactionModel::DELETEDTIME(wxEmptyString, EQUAL),
-        TransactionModel::TRANSDATE(DateDay::today(), LESS_OR_EQUAL)
+        TransactionModel::TRANSDATE(mmDateDay::today(), LESS_OR_EQUAL)
     );
 
     all_trans.insert(all_trans.end(), all_trans2.begin(), all_trans2.end());

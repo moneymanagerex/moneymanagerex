@@ -17,21 +17,21 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/valnum.h>
 
-#include "constants.h"
-#include "paths.h"
-#include "util/util.h"
+#include "base/constants.h"
+#include "base/paths.h"
+#include "base/images_list.h"
+#include "util/_util.h"
+#include "util/_simple.h"
+#include "util/mmTextCtrl.h"
+#include "util/mmCalcValidator.h"
 
-#include "usertransactionpanel.h"
 #include "AssetDialog.h"
 #include "AccountDialog.h"
 #include "AttachmentDialog.h"
-#include "mmSimpleDialogs.h"
-#include "mmTextCtrl.h"
-#include "validators.h"
-#include "images_list.h"
+#include "TransactionLinkDialog.h"
 #include "uicontrols/navigatortypes.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(AssetDialog, wxDialog);
@@ -293,7 +293,7 @@ void AssetDialog::CreateControls()
     wxStaticBoxSizer* transaction_frame_sizer = new wxStaticBoxSizer(m_transaction_frame, wxVERTICAL);
     right_sizer->Add(transaction_frame_sizer, g_flagsV);
 
-    m_transaction_panel = new UserTransactionPanel(this, m_checking_entry, true, wxID_STATIC);
+    m_transaction_panel = new TransactionLinkDialog(this, m_checking_entry, true, wxID_STATIC);
     transaction_frame_sizer->Add(m_transaction_panel, g_flagsV);
     if (m_transfer_entry && m_checking_entry)
     {

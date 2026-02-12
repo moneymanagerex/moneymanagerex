@@ -20,17 +20,17 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/spinctrl.h>
 #include <wx/timectrl.h>
 
+#include "util/_simple.h"
 #include "_PanelBase.h"
 #include "JournalPanel.h"
-#include "mmSimpleDialogs.h"
 #include "report/_ReportBase.h"
 
 class mmGUIFrame;
-class DateRange;
+class mmDateRange;
 class ReportPanel : public PanelBase
 {
     wxDECLARE_EVENT_TABLE();
@@ -56,9 +56,9 @@ public:
 
 private:
     ReportBase* m_rb = nullptr;
-    std::vector<DateRange2::Range> m_date_range_a = {};
+    std::vector<mmDateRange2::Range> m_date_range_a = {};
     int m_date_range_m = -1;
-    DateRange2 m_date_range = DateRange2();
+    mmDateRange2 m_date_range = mmDateRange2();
     JournalPanel::FILTER_ID m_filter_id;
     bool m_cleanup;
     int m_shift = 0;
@@ -110,7 +110,7 @@ public:
     void PrintPage();
 
 public:
-    static void loadDateRanges(std::vector<DateRange2::Range>* date_range_a, int* date_range_m, bool all_ranges = false);
+    static void loadDateRanges(std::vector<mmDateRange2::Range>* date_range_a, int* date_range_m, bool all_ranges = false);
 
 private:
     void onNewWindow(wxWebViewEvent& evt);

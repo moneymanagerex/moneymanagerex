@@ -1,6 +1,6 @@
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <map>
 #include <wx/event.h>
 #include <wx/grid.h>

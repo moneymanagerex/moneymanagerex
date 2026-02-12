@@ -22,18 +22,18 @@ Copyright (C) 2025 Klaus Wich
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/tglbtn.h>
 #include <map>
 
-#include "constants.h"
+#include "base/constants.h"
 
 #include "model/AccountModel.h"
-#include "journal.h"
+#include "model/Journal.h"
 #include "_PanelBase.h"
 
 class JournalPanel;
-class mmFilterTransactionsDialog;
+class TransactionFilter;
 class mmGUIFrame;
 class JournalList;
 //----------------------------------------------------------------------------
@@ -83,7 +83,7 @@ public:
 
     //static support function
     static wxString getFilterName(FILTER_ID id);
-    static void loadDateRanges(std::vector<DateRange2::Range>* date_range_a, int* date_range_m, bool all_ranges = false);
+    static void loadDateRanges(std::vector<mmDateRange2::Range>* date_range_a, int* date_range_m, bool all_ranges = false);
     double GetTodayReconciledBalance() const;
 
 private:
@@ -118,13 +118,13 @@ private:
     std::set<int64> m_group_ids = {};           // applicable if m_checking_id <= -3
     AccountModel::Data* m_account = nullptr;   // non-null if m_checking_id >= 1
     CurrencyModel::Data* m_currency = nullptr; // currency of m_account, or base currency
-    std::vector<DateRange2::Range> m_date_range_a = {};
+    std::vector<mmDateRange2::Range> m_date_range_a = {};
     int m_date_range_m = -1;
 
     // set by gui
     FILTER_ID m_filter_id;
     bool m_filter_advanced;
-    DateRange2 m_current_date_range = DateRange2();
+    mmDateRange2 m_current_date_range = mmDateRange2();
     bool m_scheduled_enable;
     bool m_scheduled_selected;
 
@@ -163,7 +163,7 @@ private:
     wxString m_info_panel_selectedbal;
     wxVector<wxBitmapBundle> m_images;
     JournalList* m_lc = nullptr;
-    wxSharedPtr<mmFilterTransactionsDialog> m_trans_filter_dlg;
+    wxSharedPtr<TransactionFilter> m_trans_filter_dlg;
 
 
 private:
@@ -178,7 +178,7 @@ private:
     void updateHeader();
     void updateFilter(bool firstinit = false);
     void updateFilterTooltip();
-    void setFilterDate(DateRange2::Range& range);
+    void setFilterDate(mmDateRange2::Range& range);
     void setFilterAdvanced();
     void loadFilterSettings();
     void saveFilterSettings();

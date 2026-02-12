@@ -19,12 +19,12 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <memory>
 
 #include "model/AccountModel.h"
-#include "mmSimpleDialogs.h"
-#include "mmTextCtrl.h"
+#include "util/_simple.h"
+#include "util/mmTextCtrl.h"
 
 class AccountDialog : public wxDialog
 {

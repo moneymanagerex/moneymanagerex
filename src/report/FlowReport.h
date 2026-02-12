@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 #include <vector>
-#include "util/util.h"
+#include "util/_util.h"
 #include "_ReportBase.h"
 
 class FlowReport : public ReportBase

@@ -22,8 +22,8 @@ Copyright (C) 2025 Klaus Wich
 #include <cmath>
 #include <html_template.h>
 
-#include "constants.h"
-#include "util/DateDay.h"
+#include "base/constants.h"
+#include "util/mmDateDay.h"
 
 #include "model/AssetModel.h"
 #include "model/CategoryModel.h"
@@ -196,7 +196,7 @@ const wxString htmlWidgetTop7Categories::getHTMLText()
 
 void htmlWidgetTop7Categories::getTopCategoryStats(
     std::vector<std::pair<wxString, double> > &categoryStats
-    , const DateRange* date_range) const
+    , const mmDateRange* date_range) const
 {
     //Temporary map
     std::map<int64 /*category*/, double> stat;
@@ -270,7 +270,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
 ////////////////////////////////////////////////////////
 
 
-htmlWidgetBillsAndDeposits::htmlWidgetBillsAndDeposits(const wxString& title, DateRange* date_range)
+htmlWidgetBillsAndDeposits::htmlWidgetBillsAndDeposits(const wxString& title, mmDateRange* date_range)
     : date_range_(date_range)
     , title_(title)
 {}
@@ -377,7 +377,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
 const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
 {
     DashboardPreferences home_options;
-    wxSharedPtr<DateRange> date_range(home_options.get_inc_vs_exp_date_range());
+    wxSharedPtr<mmDateRange> date_range(home_options.get_inc_vs_exp_date_range());
 
     double tIncome = 0.0, tExpenses = 0.0;
     std::map<int64, std::pair<double, double> > incomeExpensesStats;
@@ -462,7 +462,7 @@ const wxString htmlWidgetStatistics::getHTMLText()
     json_writer.Key("NAME");
     json_writer.String(_t("Transaction Statistics").utf8_str());
 
-    wxSharedPtr<DateRange> date_range;
+    wxSharedPtr<mmDateRange> date_range;
     /*if (PreferencesModel::instance().getIgnoreFutureTransactions())
         date_range = new mmCurrentMonthToDate;
     else
@@ -472,7 +472,7 @@ const wxString htmlWidgetStatistics::getHTMLText()
     if (PreferencesModel::instance().getIgnoreFutureTransactionsHomePage()) {
         date_range = new mmCurrentMonthToDate;
         all_trans = TransactionModel::instance().find(
-            TransactionModel::TRANSDATE(DateDay::today(), LESS_OR_EQUAL));
+            TransactionModel::TRANSDATE(mmDateDay::today(), LESS_OR_EQUAL));
     }
     else {
         date_range = new mmCurrentMonth;
@@ -665,7 +665,7 @@ htmlWidgetAccounts::htmlWidgetAccounts()
 void htmlWidgetAccounts::get_account_stats()
 {
 
-    wxSharedPtr<DateRange> date_range;
+    wxSharedPtr<mmDateRange> date_range;
     /*if (PreferencesModel::instance().getIgnoreFutureTransactions())
         date_range = new mmCurrentMonthToDate;
     else

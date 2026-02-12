@@ -18,12 +18,12 @@
  ********************************************************/
 
 #include "mmex.h"
-#include "util/util.h"
+#include "base/images_list.h"
+#include "util/_util.h"
 #include "htmlbuilder.h"
 
 #include "mmframe.h"
 #include "model/TransactionModel.h"
-#include "images_list.h"
 #include "ForecastReport.h"
 
 class mm_html_template;
@@ -45,8 +45,8 @@ wxString ForecastReport::getHTMLText()
     
     if (m_date_range && m_date_range->is_with_date()) {
         all_trans = TransactionModel::instance().find(
-            TransactionModel::TRANSDATE(DateDay(m_date_range->start_date()), GREATER_OR_EQUAL),
-            TransactionModel::TRANSDATE(DateDay(m_date_range->end_date()), LESS_OR_EQUAL)
+            TransactionModel::TRANSDATE(mmDateDay(m_date_range->start_date()), GREATER_OR_EQUAL),
+            TransactionModel::TRANSDATE(mmDateDay(m_date_range->end_date()), LESS_OR_EQUAL)
         );
     }
     else {

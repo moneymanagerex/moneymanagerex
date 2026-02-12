@@ -17,11 +17,11 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "constants.h"
+#include "base/constants.h"
 
 #include "model/AccountModel.h"
 #include "wizard_newdb.h"
-#include "maincurrencydialog.h"
+#include "dialog/CurrencyChoiceDialog.h"
 #include "../resources/addacctwiz.xpm"
 
 BEGIN_EVENT_TABLE(mmNewDatabaseWizard, wxWizard)
@@ -155,7 +155,7 @@ void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
     while (true)
     {
         currencyID_ = PreferencesModel::instance().getBaseCurrencyID();
-        mmMainCurrencyDialog::Execute(this, currencyID_);
+        CurrencyChoiceDialog::Execute(this, currencyID_);
         CurrencyModel::Data* currency = CurrencyModel::instance().get(currencyID_);
         if (currency)
         {

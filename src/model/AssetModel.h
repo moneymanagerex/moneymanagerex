@@ -19,8 +19,8 @@
 
 #pragma once
 
-#include "defs.h"
-#include "util/choices.h"
+#include "base/defs.h"
+#include "util/_choices.h"
 #include "db/DB_Table_Assets_V1.h"
 #include "_Model.h"
 #include "CurrencyModel.h"

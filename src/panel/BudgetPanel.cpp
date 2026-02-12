@@ -19,17 +19,17 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "constants.h"
+#include "base/constants.h"
+#include "base/images_list.h"
 #include "mmex.h"
-#include "util/DateRange.h"
+#include "util/mmDateRange.h"
 
 #include "model/_all.h"
 #include "model/PreferencesModel.h"
 
 #include "BudgetPanel.h"
-#include "budgetentrydialog.h"
+#include "dialog/BudgetEntryDialog.h"
 #include "report/budget.h"
-#include "images_list.h"
 
 enum
 {
@@ -382,7 +382,7 @@ void BudgetPanel::initVirtualListControl()
     PreferencesModel::instance().addBudgetDateOffset(dtBegin);
     m_budget_offset_date = dtBegin.FormatISODate();   
     PreferencesModel::instance().addBudgetDateOffset(dtEnd);
-    DateRange date_range;
+    mmDateRange date_range;
     date_range.start_date(dtBegin.ResetTime()); // Start of Day
     date_range.end_date(dtEnd.ResetTime().Add(wxTimeSpan(23,59,59,999))); // End of Day
 
@@ -717,7 +717,7 @@ void BudgetPanel::OnListItemActivated(int selectedIndex)
     double actual = categoryStats_[budget_[selectedIndex].second >= 0 ? budget_[selectedIndex].second
         : budget_[selectedIndex].first][0];
 
-    mmBudgetEntryDialog dlg(this, entry, CurrencyModel::toCurrency(estimated), CurrencyModel::toCurrency(actual));
+    BudgetEntryDialog dlg(this, entry, CurrencyModel::toCurrency(estimated), CurrencyModel::toCurrency(actual));
     if (dlg.ShowModal() == wxID_OK)
     {
         initVirtualListControl();
