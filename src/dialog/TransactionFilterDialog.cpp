@@ -77,34 +77,34 @@ static const wxString CHART_OPTIONS[] = {
 // accelerator hints are shown which only occurs once.
 static bool altRefreshDone;
 
-wxIMPLEMENT_DYNAMIC_CLASS(TransactionFilter, wxDialog);
+wxIMPLEMENT_DYNAMIC_CLASS(TransactionFilterDialog, wxDialog);
 
-wxBEGIN_EVENT_TABLE(TransactionFilter, wxDialog)
-    EVT_CHAR_HOOK(                  TransactionFilter::OnComboKey)
-    EVT_CHECKBOX(wxID_ANY,          TransactionFilter::OnCheckboxClick)
-    EVT_BUTTON(wxID_OK,             TransactionFilter::OnButtonOkClick)
-    EVT_BUTTON(wxID_RESET,          TransactionFilter::OnButtonResetClick)
-    EVT_BUTTON(wxID_CLEAR,          TransactionFilter::OnButtonClearClick)
-    EVT_BUTTON(ID_BTN_CUSTOMFIELDS, TransactionFilter::OnMoreFields)
-    EVT_MENU(wxID_ANY,              TransactionFilter::OnMenuSelected)
-    EVT_DATE_CHANGED(wxID_ANY,      TransactionFilter::OnDateChanged)
-    EVT_TIME_CHANGED(wxID_ANY,      TransactionFilter::OnDateChanged)
-    EVT_CHOICE(wxID_ANY,            TransactionFilter::OnChoice)
-    EVT_BUTTON(wxID_CANCEL,         TransactionFilter::OnButtonCancelClick)
-    EVT_CLOSE(                      TransactionFilter::OnQuit)
+wxBEGIN_EVENT_TABLE(TransactionFilterDialog, wxDialog)
+    EVT_CHAR_HOOK(                  TransactionFilterDialog::OnComboKey)
+    EVT_CHECKBOX(wxID_ANY,          TransactionFilterDialog::OnCheckboxClick)
+    EVT_BUTTON(wxID_OK,             TransactionFilterDialog::OnButtonOkClick)
+    EVT_BUTTON(wxID_RESET,          TransactionFilterDialog::OnButtonResetClick)
+    EVT_BUTTON(wxID_CLEAR,          TransactionFilterDialog::OnButtonClearClick)
+    EVT_BUTTON(ID_BTN_CUSTOMFIELDS, TransactionFilterDialog::OnMoreFields)
+    EVT_MENU(wxID_ANY,              TransactionFilterDialog::OnMenuSelected)
+    EVT_DATE_CHANGED(wxID_ANY,      TransactionFilterDialog::OnDateChanged)
+    EVT_TIME_CHANGED(wxID_ANY,      TransactionFilterDialog::OnDateChanged)
+    EVT_CHOICE(wxID_ANY,            TransactionFilterDialog::OnChoice)
+    EVT_BUTTON(wxID_CANCEL,         TransactionFilterDialog::OnButtonCancelClick)
+    EVT_CLOSE(                      TransactionFilterDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
-TransactionFilter::TransactionFilter()
+TransactionFilterDialog::TransactionFilterDialog()
 {
 }
-TransactionFilter::~TransactionFilter()
+TransactionFilterDialog::~TransactionFilterDialog()
 {
-    wxLogDebug("~TransactionFilter");
+    wxLogDebug("~TransactionFilterDialog");
     if (isReportMode_)
         InfotableModel::instance().setSize("TRANSACTION_FILTER_SIZE", GetSize());
 }
 
-TransactionFilter::TransactionFilter(wxWindow* parent, int64 accountID, bool isReport, wxString selected)
+TransactionFilterDialog::TransactionFilterDialog(wxWindow* parent, int64 accountID, bool isReport, wxString selected)
     : isMultiAccount_(accountID == -1), accountID_(accountID), isReportMode_(isReport),
       m_filter_key(isReport ? "TRANSACTIONS_FILTER" : "ALL_TRANSACTIONS_FILTER")
 {
@@ -117,7 +117,7 @@ TransactionFilter::TransactionFilter(wxWindow* parent, int64 accountID, bool isR
     mmDoDataToControls(m_settings_json);
 }
 
-TransactionFilter::TransactionFilter(wxWindow* parent, const wxString& json)
+TransactionFilterDialog::TransactionFilterDialog(wxWindow* parent, const wxString& json)
     : isMultiAccount_(true), accountID_(-1), isReportMode_(true), m_filter_key("TRANSACTIONS_FILTER")
 {
     this->SetFont(parent->GetFont());
@@ -126,7 +126,7 @@ TransactionFilter::TransactionFilter(wxWindow* parent, const wxString& json)
     mmDoDataToControls(json);
 }
 
-void TransactionFilter::mmDoInitVariables()
+void TransactionFilterDialog::mmDoInitVariables()
 {
     m_use_date_filter = isReportMode_; //|| PreferencesModel::instance().getUsePerAccountFilter();
 
@@ -164,7 +164,7 @@ void TransactionFilter::mmDoInitVariables()
     m_accounts_name.Sort();
 }
 
-bool TransactionFilter::Create(wxWindow* parent, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style,
+bool TransactionFilterDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style,
                                         const wxString& name)
 {
     altRefreshDone = false; // reset the ALT refresh indicator on new dialog creation
@@ -180,12 +180,12 @@ bool TransactionFilter::Create(wxWindow* parent, wxWindowID id, const wxString& 
     return true;
 }
 
-int TransactionFilter::ShowModal()
+int TransactionFilterDialog::ShowModal()
 {
     return wxDialog::ShowModal();
 }
 
-void TransactionFilter::mmDoDataToControls(const wxString& json)
+void TransactionFilterDialog::mmDoDataToControls(const wxString& json)
 {
     Document j_doc;
     if (j_doc.Parse(json.utf8_str()).HasParseError())
@@ -519,7 +519,7 @@ void TransactionFilter::mmDoDataToControls(const wxString& json)
     mmThemeAutoColour(this);
 }
 
-void TransactionFilter::mmDoInitSettingNameChoice(wxString sel) const
+void TransactionFilterDialog::mmDoInitSettingNameChoice(wxString sel) const
 {
     m_setting_name->Clear();
 
@@ -560,7 +560,7 @@ void TransactionFilter::mmDoInitSettingNameChoice(wxString sel) const
     }
 }
 
-void TransactionFilter::mmDoCreateControls()
+void TransactionFilterDialog::mmDoCreateControls()
 {
     wxBoxSizer* box_sizer = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* box_sizer1 = new wxBoxSizer(wxHORIZONTAL);
@@ -597,7 +597,7 @@ void TransactionFilter::mmDoCreateControls()
 
     bSelectedAccounts_ = new wxButton(itemPanel, wxID_STATIC, _t("All"));
     bSelectedAccounts_->SetMinSize(wxSize(180, -1));
-    bSelectedAccounts_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(TransactionFilter::OnAccountsButton), nullptr, this);
+    bSelectedAccounts_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(TransactionFilterDialog::OnAccountsButton), nullptr, this);
     itemPanelSizer->Add(bSelectedAccounts_, g_flagsExpand);
 
 
@@ -642,13 +642,13 @@ void TransactionFilter::mmDoCreateControls()
     itemPanelSizer->Add(categoryCheckBox_, g_flagsH);
 
     categoryComboBox_ = new mmComboBoxCategory(itemPanel, mmID_CATEGORY);
-    categoryComboBox_->Bind(wxEVT_COMBOBOX, &TransactionFilter::OnCategoryChange, this);
-    categoryComboBox_->Bind(wxEVT_KILL_FOCUS, &TransactionFilter::OnCategoryChange, this);
+    categoryComboBox_->Bind(wxEVT_COMBOBOX, &TransactionFilterDialog::OnCategoryChange, this);
+    categoryComboBox_->Bind(wxEVT_KILL_FOCUS, &TransactionFilterDialog::OnCategoryChange, this);
     itemPanelSizer->Add(categoryComboBox_, g_flagsExpand);
 
     // Category sub-category checkbox
     categorySubCatCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Include all subcategories"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    categorySubCatCheckBox_->Bind(wxEVT_CHECKBOX, &TransactionFilter::OnCategoryChange, this);
+    categorySubCatCheckBox_->Bind(wxEVT_CHECKBOX, &TransactionFilterDialog::OnCategoryChange, this);
 
     itemPanelSizer->AddSpacer(1);
     itemPanelSizer->Add(categorySubCatCheckBox_, g_flagsExpand);
@@ -764,7 +764,7 @@ void TransactionFilter::mmDoCreateControls()
 
     bHideColumns_ = new wxButton(presPanel, ID_DIALOG_COLUMNS, "");
     bHideColumns_->SetMinSize(wxSize(180, -1));
-    bHideColumns_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(TransactionFilter::OnShowColumnsButton), nullptr, this);
+    bHideColumns_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(TransactionFilterDialog::OnShowColumnsButton), nullptr, this);
     presPanelSizer->Add(bHideColumns_, g_flagsExpand);
 
     // Group By
@@ -812,13 +812,13 @@ void TransactionFilter::mmDoCreateControls()
     m_setting_name = new wxChoice(this, wxID_APPLY);
     settings_box_sizer->Add(m_setting_name, g_flagsExpand);
     mmDoInitSettingNameChoice();
-    m_setting_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler(TransactionFilter::OnSettingsSelected), nullptr, this);
+    m_setting_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler(TransactionFilterDialog::OnSettingsSelected), nullptr, this);
 
     settings_box_sizer->AddSpacer(5);
     m_btnSaveAs = new wxBitmapButton(this, wxID_SAVEAS, mmBitmapBundle(png::SAVE, mmBitmapButtonSize));
     settings_box_sizer->Add(m_btnSaveAs, g_flagsH);
     mmToolTip(m_btnSaveAs, _t("Save active values into current Preset selection"));
-    m_btnSaveAs->Connect(wxID_SAVEAS, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(TransactionFilter::OnSaveSettings), nullptr, this);
+    m_btnSaveAs->Connect(wxID_SAVEAS, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(TransactionFilterDialog::OnSaveSettings), nullptr, this);
 
     m_itemButtonClear = new wxBitmapButton(this, wxID_CLEAR, mmBitmapBundle(png::CLEAR, mmBitmapButtonSize));
     mmToolTip(m_itemButtonClear, _t("Delete current Preset selection"));
@@ -908,7 +908,7 @@ void TransactionFilter::mmDoCreateControls()
         mmSetSize(this);
 }
 
-void TransactionFilter::setTransferTypeCheckBoxes()
+void TransactionFilterDialog::setTransferTypeCheckBoxes()
 {
     if (accountCheckBox_->IsChecked())
     {
@@ -930,7 +930,7 @@ void TransactionFilter::setTransferTypeCheckBoxes()
     }
 }
 
-void TransactionFilter::OnCheckboxClick(wxCommandEvent& event)
+void TransactionFilterDialog::OnCheckboxClick(wxCommandEvent& event)
 {
     int id = event.GetId();
     switch (id)
@@ -984,7 +984,7 @@ void TransactionFilter::OnCheckboxClick(wxCommandEvent& event)
     event.Skip();
 }
 
-bool TransactionFilter::mmIsValuesCorrect() const
+bool TransactionFilterDialog::mmIsValuesCorrect() const
 {
     if (accountCheckBox_->IsChecked() && m_selected_accounts_id.empty())
     {
@@ -1153,7 +1153,7 @@ bool TransactionFilter::mmIsValuesCorrect() const
     return true;
 }
 
-void TransactionFilter::OnButtonOkClick(wxCommandEvent& /*event*/)
+void TransactionFilterDialog::OnButtonOkClick(wxCommandEvent& /*event*/)
 {
     if (mmIsValuesCorrect())
     {
@@ -1162,7 +1162,7 @@ void TransactionFilter::OnButtonOkClick(wxCommandEvent& /*event*/)
     }
 }
 
-void TransactionFilter::OnButtonResetClick(wxCommandEvent& /*event*/)
+void TransactionFilterDialog::OnButtonResetClick(wxCommandEvent& /*event*/)
 {
     accountCheckBox_->SetValue(false);
     payeeCheckBox_->SetValue(false);
@@ -1180,7 +1180,7 @@ void TransactionFilter::OnButtonResetClick(wxCommandEvent& /*event*/)
     EndModal(wxID_OK);
 }
 
-void TransactionFilter::OnButtonCancelClick(wxCommandEvent& WXUNUSED(event))
+void TransactionFilterDialog::OnButtonCancelClick(wxCommandEvent& WXUNUSED(event))
 {
 #ifdef __WXMSW__
     wxWindow* w = FindFocus();
@@ -1191,12 +1191,12 @@ void TransactionFilter::OnButtonCancelClick(wxCommandEvent& WXUNUSED(event))
     EndModal(wxID_CANCEL);
 }
 
-void TransactionFilter::OnQuit(wxCloseEvent& /*event*/)
+void TransactionFilterDialog::OnQuit(wxCloseEvent& /*event*/)
 {
     EndModal(wxID_CANCEL);
 }
 
-void TransactionFilter::OnShowColumnsButton(wxCommandEvent& /*event*/)
+void TransactionFilterDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
 {
 
     bool useDateTime = PreferencesModel::instance().UseTransDateTime();
@@ -1267,14 +1267,14 @@ void TransactionFilter::OnShowColumnsButton(wxCommandEvent& /*event*/)
     }
 }
 
-bool TransactionFilter::mmIsSomethingChecked() const
+bool TransactionFilterDialog::mmIsSomethingChecked() const
 {
     return mmIsAccountChecked() || (m_use_date_filter && mmIsRangeChecked()) || (m_use_date_filter && mmIsDateRangeChecked()) || mmIsPayeeChecked() || mmIsCategoryChecked() || mmIsStatusChecked() ||
            mmIsTypeChecked() || mmIsAmountRangeMinChecked() || mmIsAmountRangeMaxChecked() || mmIsNumberChecked() || mmIsTagsChecked() || mmIsNotesChecked() ||
            mmIsColorChecked() || mmIsCustomFieldChecked();
 }
 
-const wxString TransactionFilter::mmGetStatus() const
+const wxString TransactionFilterDialog::mmGetStatus() const
 {
     wxString status;
     wxStringClientData* status_obj = static_cast<wxStringClientData*>(choiceStatus_->GetClientObject(choiceStatus_->GetSelection()));
@@ -1284,7 +1284,7 @@ const wxString TransactionFilter::mmGetStatus() const
     return status;
 }
 
-bool TransactionFilter::mmIsStatusMatches(const wxString& itemStatus) const
+bool TransactionFilterDialog::mmIsStatusMatches(const wxString& itemStatus) const
 {
     wxString filterStatus = mmGetStatus();
     if (itemStatus == filterStatus)
@@ -1298,7 +1298,7 @@ bool TransactionFilter::mmIsStatusMatches(const wxString& itemStatus) const
     return false;
 }
 
-bool TransactionFilter::mmIsTypeMaches(const wxString& typeState, int64 accountid, int64 toaccountid) const
+bool TransactionFilterDialog::mmIsTypeMaches(const wxString& typeState, int64 accountid, int64 toaccountid) const
 {
     bool result = false;
     if (typeState == TransactionModel::TYPE_NAME_TRANSFER && cbTypeTransferTo_->GetValue() &&
@@ -1323,7 +1323,7 @@ bool TransactionFilter::mmIsTypeMaches(const wxString& typeState, int64 accounti
     return result;
 }
 
-double TransactionFilter::mmGetAmountMin() const
+double TransactionFilterDialog::mmGetAmountMin() const
 {
     CurrencyModel::Data* currency = CurrencyModel::GetBaseCurrency();
 
@@ -1335,7 +1335,7 @@ double TransactionFilter::mmGetAmountMin() const
     return amount;
 }
 
-double TransactionFilter::mmGetAmountMax() const
+double TransactionFilterDialog::mmGetAmountMax() const
 {
     CurrencyModel::Data* currency = CurrencyModel::GetBaseCurrency();
 
@@ -1347,7 +1347,7 @@ double TransactionFilter::mmGetAmountMax() const
     return amount;
 }
 
-void TransactionFilter::OnButtonClearClick(wxCommandEvent& /*event*/)
+void TransactionFilterDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
 {
     int sel = m_setting_name->GetSelection();
     int size = m_setting_name->GetCount();
@@ -1373,7 +1373,7 @@ void TransactionFilter::OnButtonClearClick(wxCommandEvent& /*event*/)
     }
 }
 
-bool TransactionFilter::mmIsPayeeMatches(int64 payeeID)
+bool TransactionFilterDialog::mmIsPayeeMatches(int64 payeeID)
 {
     const PayeeModel::Data* payee = PayeeModel::instance().get(payeeID);
     if (payee)
@@ -1391,7 +1391,7 @@ bool TransactionFilter::mmIsPayeeMatches(int64 payeeID)
     return false;
 }
 
-bool TransactionFilter::mmIsNoteMatches(const wxString& note)
+bool TransactionFilterDialog::mmIsNoteMatches(const wxString& note)
 {
     const wxString value = mmGetNotes();
     if (!value.empty())
@@ -1408,12 +1408,12 @@ bool TransactionFilter::mmIsNoteMatches(const wxString& note)
         return note.IsEmpty();
 }
 
-bool TransactionFilter::mmIsCategoryMatches(int64 categid)
+bool TransactionFilterDialog::mmIsCategoryMatches(int64 categid)
 {
     return std::find(m_selected_categories_id.begin(), m_selected_categories_id.end(), categid) != m_selected_categories_id.end();
 }
 
-bool TransactionFilter::mmIsTagMatches(const wxString& refType, int64 refId, bool mergeSplitTags)
+bool TransactionFilterDialog::mmIsTagMatches(const wxString& refType, int64 refId, bool mergeSplitTags)
 {
     std::map<wxString, int64> tagnames = TagLinkModel::instance().get(refType, refId);
 
@@ -1477,7 +1477,7 @@ bool TransactionFilter::mmIsTagMatches(const wxString& refType, int64 refId, boo
     return match;
 }
 
-template <class MODEL, class DATA> bool TransactionFilter::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
+template <class MODEL, class DATA> bool TransactionFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
 {
     bool ok = true;
 
@@ -1521,7 +1521,7 @@ template <class MODEL, class DATA> bool TransactionFilter::mmIsRecordMatches(con
     return ok;
 }
 
-template <class MODEL, class DATA> bool TransactionFilter::mmIsSplitRecordMatches(const DATA& split)
+template <class MODEL, class DATA> bool TransactionFilterDialog::mmIsSplitRecordMatches(const DATA& split)
 {
     wxString refType;
 
@@ -1540,10 +1540,10 @@ template <class MODEL, class DATA> bool TransactionFilter::mmIsSplitRecordMatche
     return true;
 }
 
-template bool TransactionFilter::mmIsSplitRecordMatches<TransactionSplitModel>(const TransactionSplitModel::Data& split);
-template bool TransactionFilter::mmIsSplitRecordMatches<ScheduledSplitModel>(const ScheduledSplitModel::Data& split);
+template bool TransactionFilterDialog::mmIsSplitRecordMatches<TransactionSplitModel>(const TransactionSplitModel::Data& split);
+template bool TransactionFilterDialog::mmIsSplitRecordMatches<ScheduledSplitModel>(const ScheduledSplitModel::Data& split);
 
-int TransactionFilter::mmIsRecordMatches(const TransactionModel::Data& tran, const TransactionSplitModel::Data_Set& splits)
+int TransactionFilterDialog::mmIsRecordMatches(const TransactionModel::Data& tran, const TransactionSplitModel::Data_Set& splits)
 {
     int ok = mmIsRecordMatches<TransactionModel>(tran);
     for (const auto& split : splits)
@@ -1559,7 +1559,7 @@ int TransactionFilter::mmIsRecordMatches(const TransactionModel::Data& tran, con
     return ok;
 }
 
-int TransactionFilter::mmIsRecordMatches(const TransactionModel::Data& tran, const std::map<int64, TransactionSplitModel::Data_Set>& splits)
+int TransactionFilterDialog::mmIsRecordMatches(const TransactionModel::Data& tran, const std::map<int64, TransactionSplitModel::Data_Set>& splits)
 {
     const TransactionSplitModel::Data_Set* split = nullptr;
     const auto& it = splits.find(tran.id());
@@ -1568,7 +1568,7 @@ int TransactionFilter::mmIsRecordMatches(const TransactionModel::Data& tran, con
     return mmIsRecordMatches(tran, *split);
 }
 
-int TransactionFilter::mmIsRecordMatches(const ScheduledModel::Data& tran, const std::map<int64, ScheduledSplitModel::Data_Set>& splits)
+int TransactionFilterDialog::mmIsRecordMatches(const ScheduledModel::Data& tran, const std::map<int64, ScheduledSplitModel::Data_Set>& splits)
 {
     int ok = mmIsRecordMatches<ScheduledModel>(tran);
     const auto& it = splits.find(tran.id());
@@ -1587,7 +1587,7 @@ int TransactionFilter::mmIsRecordMatches(const ScheduledModel::Data& tran, const
     return ok;
 }
 
-const wxString TransactionFilter::mmGetDescriptionToolTip() const
+const wxString TransactionFilterDialog::mmGetDescriptionToolTip() const
 {
     wxString buffer;
     wxString data = mmGetJsonSettings(true);
@@ -1684,7 +1684,7 @@ const wxString TransactionFilter::mmGetDescriptionToolTip() const
     return buffer;
 }
 
-void TransactionFilter::mmGetDescription(mmHTMLBuilder& hb)
+void TransactionFilterDialog::mmGetDescription(mmHTMLBuilder& hb)
 {
     hb.addHeader(4, _t("Filtering Details: "));
     // Extract the parameters from the transaction dialog and add them to the report.
@@ -1787,7 +1787,7 @@ void TransactionFilter::mmGetDescription(mmHTMLBuilder& hb)
     hb.addText(buffer);
 }
 
-const wxString TransactionFilter::mmGetTypes() const
+const wxString TransactionFilterDialog::mmGetTypes() const
 {
     wxString type;
     if (cbTypeWithdrawal_->IsChecked())
@@ -1801,7 +1801,7 @@ const wxString TransactionFilter::mmGetTypes() const
     return type;
 }
 
-const wxString TransactionFilter::mmGetJsonSettings(bool i18n) const
+const wxString TransactionFilterDialog::mmGetJsonSettings(bool i18n) const
 {
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
@@ -2052,7 +2052,7 @@ const wxString TransactionFilter::mmGetJsonSettings(bool i18n) const
     return wxString::FromUTF8(json_buffer.GetString());
 }
 
-void TransactionFilter::OnCategoryChange(wxEvent& event)
+void TransactionFilterDialog::OnCategoryChange(wxEvent& event)
 {
     m_selected_categories_id.clear();
     if (!categoryComboBox_->GetValue().IsEmpty())
@@ -2071,7 +2071,7 @@ void TransactionFilter::OnCategoryChange(wxEvent& event)
     event.Skip();
 }
 
-void TransactionFilter::OnDateChanged(wxDateEvent& event)
+void TransactionFilterDialog::OnDateChanged(wxDateEvent& event)
 {
     switch (event.GetId())
     {
@@ -2087,28 +2087,28 @@ void TransactionFilter::OnDateChanged(wxDateEvent& event)
     }
 }
 
-bool TransactionFilter::mmIsAccountChecked() const
+bool TransactionFilterDialog::mmIsAccountChecked() const
 {
     return accountCheckBox_->GetValue() && !m_selected_accounts_id.empty();
 }
 
-bool TransactionFilter::mmIsAmountRangeMinChecked() const
+bool TransactionFilterDialog::mmIsAmountRangeMinChecked() const
 {
     return amountRangeCheckBox_->GetValue() && !amountMinEdit_->GetValue().IsEmpty();
 }
 
-bool TransactionFilter::mmIsAmountRangeMaxChecked() const
+bool TransactionFilterDialog::mmIsAmountRangeMaxChecked() const
 {
     return amountRangeCheckBox_->GetValue() && !amountMaxEdit_->GetValue().IsEmpty();
 }
 
-bool TransactionFilter::mmIsCustomFieldChecked() const
+bool TransactionFilterDialog::mmIsCustomFieldChecked() const
 {
     const auto cf = m_custom_fields->GetActiveCustomFields();
     return (cf.size() > 0);
 }
 
-bool TransactionFilter::mmIsCustomFieldMatches(int64 transid) const
+bool TransactionFilterDialog::mmIsCustomFieldMatches(int64 transid) const
 {
     const auto cf = m_custom_fields->GetActiveCustomFields();
     int matched = 0;
@@ -2129,7 +2129,7 @@ bool TransactionFilter::mmIsCustomFieldMatches(int64 transid) const
     return matched == static_cast<int>(cf.size());
 }
 
-int TransactionFilter::mmGetGroupBy() const
+int TransactionFilterDialog::mmGetGroupBy() const
 {
     int by = -1;
     if (groupByCheckBox_->IsChecked())
@@ -2137,7 +2137,7 @@ int TransactionFilter::mmGetGroupBy() const
     return by;
 }
 
-int TransactionFilter::mmGetChart() const
+int TransactionFilterDialog::mmGetChart() const
 {
     int by = -1;
     if (chartCheckBox_->IsChecked())
@@ -2145,12 +2145,12 @@ int TransactionFilter::mmGetChart() const
     return by;
 }
 
-void TransactionFilter::mmDoResetFilterStatus()
+void TransactionFilterDialog::mmDoResetFilterStatus()
 {
     // m_custom_fields->ResetWidgetsChanged();
 }
 
-void TransactionFilter::OnSettingsSelected(wxCommandEvent& event)
+void TransactionFilterDialog::OnSettingsSelected(wxCommandEvent& event)
 {
     if (!isMultiAccount_)
         return;
@@ -2166,7 +2166,7 @@ void TransactionFilter::OnSettingsSelected(wxCommandEvent& event)
     }
 }
 
-void TransactionFilter::mmDoUpdateSettings()
+void TransactionFilterDialog::mmDoUpdateSettings()
 {
     if (isMultiAccount_ && m_setting_name->GetSelection() != wxNOT_FOUND) {
         int i = InfotableModel::instance().findArrayItem(m_filter_key, mmGetLabelString());
@@ -2183,7 +2183,7 @@ void TransactionFilter::mmDoUpdateSettings()
     }
 }
 
-void TransactionFilter::mmDoSaveSettings(bool is_user_request)
+void TransactionFilterDialog::mmDoSaveSettings(bool is_user_request)
 {
     const auto label = mmGetLabelString();
     wxString user_label;
@@ -2283,7 +2283,7 @@ void TransactionFilter::mmDoSaveSettings(bool is_user_request)
     InfotableModel::instance().setString("TRANSACTIONS_FILTER_LAST_USED", m_settings_json);
 }
 
-void TransactionFilter::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
+void TransactionFilterDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
 {
     if (mmIsValuesCorrect())
     {
@@ -2291,7 +2291,7 @@ void TransactionFilter::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
     }
 }
 
-void TransactionFilter::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
+void TransactionFilterDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
 {
     mmMultiChoiceDialog s_acc(this, _t("Choose Accounts"), "", m_accounts_name);
 
@@ -2342,7 +2342,7 @@ void TransactionFilter::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
     }
 }
 
-void TransactionFilter::OnMoreFields(wxCommandEvent& WXUNUSED(event))
+void TransactionFilterDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 {
     wxBitmapButton* button = static_cast<wxBitmapButton*>(FindWindow(ID_BTN_CUSTOMFIELDS));
 
@@ -2358,7 +2358,7 @@ void TransactionFilter::OnMoreFields(wxCommandEvent& WXUNUSED(event))
     this->Fit();
 }
 
-void TransactionFilter::OnChoice(wxCommandEvent& event)
+void TransactionFilterDialog::OnChoice(wxCommandEvent& event)
 {
     int id = event.GetId();
     int sel = event.GetInt();
@@ -2383,7 +2383,7 @@ void TransactionFilter::OnChoice(wxCommandEvent& event)
     }
 }
 
-void TransactionFilter::OnMenuSelected(wxCommandEvent&)
+void TransactionFilterDialog::OnMenuSelected(wxCommandEvent&)
 {
     m_color_value = colorButton_->GetColorId();
     if (!m_color_value)
@@ -2394,7 +2394,7 @@ void TransactionFilter::OnMenuSelected(wxCommandEvent&)
     }
 }
 
-void TransactionFilter::OnComboKey(wxKeyEvent& event)
+void TransactionFilterDialog::OnComboKey(wxKeyEvent& event)
 {
     if (event.GetKeyCode() == WXK_RETURN)
     {

@@ -33,7 +33,7 @@ Copyright (C) 2025 Klaus Wich
 #include "_PanelBase.h"
 
 class JournalPanel;
-class TransactionFilter;
+class TransactionFilterDialog;
 class mmGUIFrame;
 class JournalList;
 //----------------------------------------------------------------------------
@@ -163,7 +163,7 @@ private:
     wxString m_info_panel_selectedbal;
     wxVector<wxBitmapBundle> m_images;
     JournalList* m_lc = nullptr;
-    wxSharedPtr<TransactionFilter> m_trans_filter_dlg;
+    wxSharedPtr<TransactionFilterDialog> m_trans_filter_dlg;
 
 
 private:

@@ -1487,7 +1487,7 @@ void JournalList::onFind(wxCommandEvent&)
     wxTreeItemId allTransactionsId = m_cp->m_frame->GetNavTreeSelection();
     if (currentId.IsOk() && currentId == allTransactionsId) {
         m_cp->m_trans_filter_dlg.reset(
-            new TransactionFilter(this, -1, false, rightClickFilter_)
+            new TransactionFilterDialog(this, -1, false, rightClickFilter_)
         );
         m_cp->setFilterAdvanced();
         refreshVisualList();

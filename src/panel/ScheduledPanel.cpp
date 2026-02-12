@@ -213,7 +213,7 @@ bool ScheduledPanel::Create(wxWindow *parent
     /* Set up the transaction filter.  The transFilter dialog will be destroyed
        when the checking panel is destroyed. */
     transFilterActive_ = false;
-    transFilterDlg_ = new TransactionFilter(this, -1, false);
+    transFilterDlg_ = new TransactionFilterDialog(this, -1, false);
 
     initVirtualListControl();
 

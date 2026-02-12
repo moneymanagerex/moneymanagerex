@@ -361,8 +361,8 @@ mmDateRange2::Reporting::Reporting(
 ) :
     // p cannot be mmDatePeriod::_S (account statement date)
     // m cannot be 0; it is normalized to 1 if p is mmDatePeriod::_A
-    p((p_new == mmDatePeriod::_S) ? mmDatePeriod::_T : p_new),
-    m((m_new == 0 || p == mmDatePeriod::_A) ? 1 : m_new)
+    m((m_new == 0 || p_new == mmDatePeriod::_A) ? 1 : m_new),
+    p((p_new == mmDatePeriod::_S) ? mmDatePeriod::_T : p_new)
 {
 }
 

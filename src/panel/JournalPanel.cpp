@@ -575,7 +575,7 @@ void JournalPanel::loadFilterSettings()
 
     wxString j_str = InfotableModel::instance().getString(
             wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),"{}");
-    m_trans_filter_dlg.reset(new TransactionFilter(this, m_account_id, false, j_str));
+    m_trans_filter_dlg.reset(new TransactionFilterDialog(this, m_account_id, false, j_str));
     m_filter_advanced = m_trans_filter_dlg->mmIsSomethingChecked() ? true : false;
     updateScheduledEnable();
 }
@@ -1196,7 +1196,7 @@ void JournalPanel::onFilterAdvanced(wxCommandEvent& WXUNUSED(event))
             "{}"
         );
         m_trans_filter_dlg.reset(
-            new TransactionFilter(this, m_checking_id, false, j_str)
+            new TransactionFilterDialog(this, m_checking_id, false, j_str)
         );
     m_trans_filter_dlg->ShowModal();
     loadFilterSettings();

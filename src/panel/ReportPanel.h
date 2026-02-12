@@ -105,7 +105,7 @@ public:
     void loadFilterSettings();
     void saveFilterSettings();
     void sortList() {}
-    bool saveReportText(bool initial = true);
+    bool saveReportText();
     ReportBase* getReportBase();
     void PrintPage();
 

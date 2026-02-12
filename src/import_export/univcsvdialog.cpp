@@ -2585,7 +2585,7 @@ void mmUnivCSVDialog::OnDelimiterChange(wxCommandEvent&)
     }
 }
 
-void mmUnivCSVDialog::OnHaveStocksChange(wxCommandEvent& event)
+void mmUnivCSVDialog::OnHaveStocksChange([[maybe_unused]] wxCommandEvent& event)
 {
     this->update_preview();
 }
@@ -2607,12 +2607,12 @@ void mmUnivCSVDialog::OnHaveDatesChange(wxCommandEvent& event)
 
 }
 
-void mmUnivCSVDialog::OnStartDateChange(wxDateEvent& event)
+void mmUnivCSVDialog::OnStartDateChange([[maybe_unused]] wxDateEvent& event)
 {
     this->update_preview();
 }
 
-void mmUnivCSVDialog::OnEndDateChange(wxDateEvent& event)
+void mmUnivCSVDialog::OnEndDateChange([[maybe_unused]] wxDateEvent& event)
 {
     this->update_preview();
 }

@@ -28,14 +28,14 @@ class TransactionsReport : public ReportBase
 {
 public:
     ~TransactionsReport();
-    TransactionsReport(wxSharedPtr<TransactionFilter>& transDialog);
+    TransactionsReport(wxSharedPtr<TransactionFilterDialog>& transDialog);
 
     wxString getHTMLText();
 
 private:
-    void Run(wxSharedPtr<TransactionFilter>& transDialog);
+    void Run(wxSharedPtr<TransactionFilterDialog>& transDialog);
     TransactionModel::Full_Data_Set trans_;
-    wxSharedPtr<TransactionFilter> m_transDialog;
+    wxSharedPtr<TransactionFilterDialog> m_transDialog;
     bool showColumnById(int num);
     void displayTotals(const std::map<int64, double>& total, std::map<int64, double>& total_in_base_curr, int noOfCols);
     void UDFCFormatHelper(FieldModel::TYPE_ID type, int64 ref, wxString data, double val, int scale);

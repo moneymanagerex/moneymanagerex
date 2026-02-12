@@ -88,7 +88,7 @@ protected:
     int m_chart_selection = 0;
 
 public:
-    mmFilterTransactions m_filter;
+    TransactionFilter m_filter;
     static const char * m_template;
 
 public:

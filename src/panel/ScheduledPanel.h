@@ -166,7 +166,7 @@ private:
     wxString tips();
 
 private:
-    wxSharedPtr<TransactionFilter> transFilterDlg_;
+    wxSharedPtr<TransactionFilterDialog> transFilterDlg_;
     ScheduledList* m_lc = nullptr;
     wxStaticText* m_infoText = nullptr;
     wxStaticText* m_infoTextMini = nullptr;

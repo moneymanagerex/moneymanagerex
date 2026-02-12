@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 #if defined(__GNUG__) && !defined(__APPLE__)
-#pragma interface "filtertransdialog.cpp"
+#pragma interface "TransactionFilterDialog.cpp"
 #endif
 
 #include "base/defs.h"
@@ -33,17 +33,17 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "FieldValueDialog.h"
 #include "report/htmlbuilder.h"
 
-class TransactionFilter: public wxDialog
+class TransactionFilterDialog: public wxDialog
 {
-    wxDECLARE_DYNAMIC_CLASS(TransactionFilter);
+    wxDECLARE_DYNAMIC_CLASS(TransactionFilterDialog);
     wxDECLARE_EVENT_TABLE();
 
 public:
     /// Constructors
-    TransactionFilter();
-    ~TransactionFilter();
-    TransactionFilter(wxWindow* parent, int64 accountID, bool isReport,  wxString selected = "");
-    TransactionFilter(wxWindow* parent, const wxString& json);
+    TransactionFilterDialog();
+    ~TransactionFilterDialog();
+    TransactionFilterDialog(wxWindow* parent, int64 accountID, bool isReport,  wxString selected = "");
+    TransactionFilterDialog(wxWindow* parent, const wxString& json);
 
     virtual int ShowModal();
 
@@ -276,27 +276,27 @@ private:
     };
 };
 
-inline const wxString TransactionFilter::mmGetBeginDate() const { return m_begin_date; }
-inline const wxString TransactionFilter::mmGetEndDate() const { return m_end_date; }
-inline int TransactionFilter::mmGetStartDay() const { return m_startDay; }
-inline bool TransactionFilter::mmIsFutureIgnored() const { return m_futureIgnored; }
-inline const wxArrayInt64 TransactionFilter::mmGetAccountsID() const { return m_selected_accounts_id; }
-inline const wxArrayInt TransactionFilter::mmGetHideColumnsID() const { return m_selected_columns_id; }
-inline bool TransactionFilter::mmIsDateRangeChecked() const { return m_use_date_filter && dateRangeCheckBox_->GetValue(); }
-inline bool TransactionFilter::mmIsRangeChecked() const { return m_use_date_filter && datesCheckBox_->IsChecked(); }
-inline const wxString TransactionFilter::mmGetNumber() const { return transNumberEdit_->GetValue(); }
-inline const wxString TransactionFilter::mmGetNotes() const { return notesEdit_->GetValue(); }
-inline bool TransactionFilter::mmIsHideColumnsChecked() const { return showColumnsCheckBox_->IsChecked(); }
-inline bool TransactionFilter::mmIsTypeChecked() const { return typeCheckBox_->IsChecked(); }
-inline bool TransactionFilter::mmIsPayeeChecked() const { return payeeCheckBox_->IsChecked(); }
-inline bool TransactionFilter::mmIsNumberChecked() const { return transNumberCheckBox_->IsChecked(); }
-inline bool TransactionFilter::mmIsNotesChecked() const { return notesCheckBox_->IsChecked(); }
-inline bool TransactionFilter::mmIsColorChecked() const { return colorCheckBox_->IsChecked(); }
-inline bool TransactionFilter::mmIsCategoryChecked() const { return categoryCheckBox_->IsChecked(); }
-inline bool TransactionFilter::mmIsCategorySubCatChecked() const { return categorySubCatCheckBox_->IsChecked(); }
-inline bool TransactionFilter::mmIsStatusChecked() const { return statusCheckBox_->IsChecked(); }
-inline const wxString TransactionFilter::mmGetLabelString() const { return  m_setting_name->GetStringSelection(); }
-inline const wxString TransactionFilter::mmGetCategoryPattern() const { return categoryComboBox_->mmGetPattern(); }
-inline bool TransactionFilter::mmIsCombineSplitsChecked() const { return combineSplitsCheckBox_->IsChecked(); }
-inline bool TransactionFilter::mmIsTagsChecked() const { return tagCheckBox_->IsChecked(); }
+inline const wxString TransactionFilterDialog::mmGetBeginDate() const { return m_begin_date; }
+inline const wxString TransactionFilterDialog::mmGetEndDate() const { return m_end_date; }
+inline int TransactionFilterDialog::mmGetStartDay() const { return m_startDay; }
+inline bool TransactionFilterDialog::mmIsFutureIgnored() const { return m_futureIgnored; }
+inline const wxArrayInt64 TransactionFilterDialog::mmGetAccountsID() const { return m_selected_accounts_id; }
+inline const wxArrayInt TransactionFilterDialog::mmGetHideColumnsID() const { return m_selected_columns_id; }
+inline bool TransactionFilterDialog::mmIsDateRangeChecked() const { return m_use_date_filter && dateRangeCheckBox_->GetValue(); }
+inline bool TransactionFilterDialog::mmIsRangeChecked() const { return m_use_date_filter && datesCheckBox_->IsChecked(); }
+inline const wxString TransactionFilterDialog::mmGetNumber() const { return transNumberEdit_->GetValue(); }
+inline const wxString TransactionFilterDialog::mmGetNotes() const { return notesEdit_->GetValue(); }
+inline bool TransactionFilterDialog::mmIsHideColumnsChecked() const { return showColumnsCheckBox_->IsChecked(); }
+inline bool TransactionFilterDialog::mmIsTypeChecked() const { return typeCheckBox_->IsChecked(); }
+inline bool TransactionFilterDialog::mmIsPayeeChecked() const { return payeeCheckBox_->IsChecked(); }
+inline bool TransactionFilterDialog::mmIsNumberChecked() const { return transNumberCheckBox_->IsChecked(); }
+inline bool TransactionFilterDialog::mmIsNotesChecked() const { return notesCheckBox_->IsChecked(); }
+inline bool TransactionFilterDialog::mmIsColorChecked() const { return colorCheckBox_->IsChecked(); }
+inline bool TransactionFilterDialog::mmIsCategoryChecked() const { return categoryCheckBox_->IsChecked(); }
+inline bool TransactionFilterDialog::mmIsCategorySubCatChecked() const { return categorySubCatCheckBox_->IsChecked(); }
+inline bool TransactionFilterDialog::mmIsStatusChecked() const { return statusCheckBox_->IsChecked(); }
+inline const wxString TransactionFilterDialog::mmGetLabelString() const { return  m_setting_name->GetStringSelection(); }
+inline const wxString TransactionFilterDialog::mmGetCategoryPattern() const { return categoryComboBox_->mmGetPattern(); }
+inline bool TransactionFilterDialog::mmIsCombineSplitsChecked() const { return combineSplitsCheckBox_->IsChecked(); }
+inline bool TransactionFilterDialog::mmIsTagsChecked() const { return tagCheckBox_->IsChecked(); }
 

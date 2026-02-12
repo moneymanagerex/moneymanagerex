@@ -74,9 +74,9 @@ ReportPanel::ReportPanel(
     const wxSize& size, long style,
     const wxString& name
 ) :
-    w_frame(frame),
     m_rb(rb),
-    m_cleanup(cleanup)
+    m_cleanup(cleanup),
+    w_frame(frame)
 {
     Create(parent, winid, pos, size, style, name);
 }
@@ -118,7 +118,7 @@ bool ReportPanel::Create(
     return true;
 }
 
-bool ReportPanel::saveReportText(bool initial)
+bool ReportPanel::saveReportText()
 {
     if (!m_rb)
         return false;
@@ -724,7 +724,7 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
         BudgetEntryDialog dlg(w_frame, entry, CurrencyModel::toCurrency(estimated), CurrencyModel::toCurrency(actual));
         if (dlg.ShowModal() == wxID_OK) {
             //refresh report
-            saveReportText(false);
+            saveReportText();
             m_rb ->saveReportSettings();
 
         }
@@ -737,14 +737,14 @@ void ReportPanel::onYearChanged(wxCommandEvent& event)
 {
     const auto i = event.GetString();
     wxLogDebug("-------- %s", i);
-    saveReportText(false);
+    saveReportText();
 }
 
 void ReportPanel::onBudgetChanged(wxCommandEvent& event)
 {
     const auto i = event.GetString();
     wxLogDebug("-------- %s", i);
-    saveReportText(false);
+    saveReportText();
     m_rb->saveReportSettings();
 }
 
@@ -754,7 +754,7 @@ void ReportPanel::onAccountChanged(wxCommandEvent& WXUNUSED(event))
         int sel = w_account_choice->GetSelection();
         if ((sel == 1) || (sel != m_rb->getAccountSelection())) {
             m_rb->setAccounts(sel, NavigatorTypes::instance().getAccountDbTypeFromName(w_account_choice->GetString(sel)));
-            saveReportText(false);
+            saveReportText();
             m_rb->saveReportSettings();
         }
     }
@@ -763,7 +763,7 @@ void ReportPanel::onAccountChanged(wxCommandEvent& WXUNUSED(event))
 void ReportPanel::onSingleDateChanged(wxDateEvent& WXUNUSED(event))
 {
     if (m_rb) {
-        saveReportText(false);
+        saveReportText();
         m_rb->saveReportSettings();
     }
 }
@@ -776,7 +776,7 @@ void ReportPanel::onChartChanged(wxCommandEvent& WXUNUSED(event))
     int sel = w_chart_choice->GetSelection();
     if (sel == 1 || sel != m_rb->getChartSelection()) {
         m_rb->setChartSelection(sel);
-        saveReportText(false);
+        saveReportText();
         m_rb->saveReportSettings();
     }
 }
@@ -789,7 +789,7 @@ void ReportPanel::onForwardMonthsChangedSpin(wxSpinEvent& WXUNUSED(event))
     int sel = w_forward_months->GetValue();
     if (sel != m_rb->getForwardMonths()) {
         m_rb->setForwardMonths(sel);
-        saveReportText(false);
+        saveReportText();
         m_rb->saveReportSettings();
     }
 }
@@ -808,7 +808,7 @@ void ReportPanel::onShiftPressed(wxCommandEvent& event)
 
     m_shift = event.GetInt();
     m_rb->setDateSelection(m_shift);
-    saveReportText(false);
+    saveReportText();
 }
 
 void ReportPanel::onDateRangePopup(wxCommandEvent& event)
@@ -914,7 +914,7 @@ void ReportPanel::onStartEndDateChanged(wxDateEvent& event)
     saveFilterSettings();
 
     if (m_rb) {
-        saveReportText(false);
+        saveReportText();
         m_rb->saveReportSettings();
     }
 }

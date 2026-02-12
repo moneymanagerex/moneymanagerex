@@ -21,10 +21,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "util/mmDateRange2.h"
 #include "_all.h"
 
-class mmFilterTransactions
+class TransactionFilter
 {
 public:
-    mmFilterTransactions();
+    TransactionFilter();
 
     // Filter setup methods
     void clear();

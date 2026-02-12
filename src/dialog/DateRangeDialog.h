@@ -25,7 +25,7 @@
 
 class DateRangeDialog: public wxDialog
 {
-    wxDECLARE_DYNAMIC_CLASS(TransactionFilter);
+    wxDECLARE_DYNAMIC_CLASS(TransactionFilterDialog);
     wxDECLARE_EVENT_TABLE();
 
 public:

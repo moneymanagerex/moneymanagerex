@@ -23,12 +23,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "dialog/AttachmentDialog.h"
 #include "report/htmlbuilder.h"
 
-mmFilterTransactions::mmFilterTransactions()
+TransactionFilter::TransactionFilter()
 {
     this->clear();
 }
 
-void mmFilterTransactions::clear()
+void TransactionFilter::clear()
 {
     m_filter_date = false;
     m_filter_account = false;
@@ -36,13 +36,13 @@ void mmFilterTransactions::clear()
     m_filter_category = false;
 }
 
-void mmFilterTransactions::setDateRange(const mmDateRange2& date_range)
+void TransactionFilter::setDateRange(const mmDateRange2& date_range)
 {
     m_filter_date = true;
     m_start_date = date_range.rangeStartIsoStartN();
     m_end_date = date_range.rangeEndIsoEndN();
 }
-void mmFilterTransactions::setDateRange(wxDateTime startDate, wxDateTime endDate)
+void TransactionFilter::setDateRange(wxDateTime startDate, wxDateTime endDate)
 {
     m_filter_date = true;
     if (startDate.FormatISOTime() == "00:00:00")
@@ -56,7 +56,7 @@ void mmFilterTransactions::setDateRange(wxDateTime startDate, wxDateTime endDate
     m_end_date = endDate.FormatISOCombined();
 }
 
-void mmFilterTransactions::setAccountList(wxSharedPtr<wxArrayString> accountList)
+void TransactionFilter::setAccountList(wxSharedPtr<wxArrayString> accountList)
 {
     if (accountList)
     {
@@ -70,20 +70,20 @@ void mmFilterTransactions::setAccountList(wxSharedPtr<wxArrayString> accountList
     }
 }
 
-void mmFilterTransactions::setPayeeList(const wxArrayInt64& payeeList)
+void TransactionFilter::setPayeeList(const wxArrayInt64& payeeList)
 {
     m_filter_payee = true;
     m_payee_a = payeeList;
 }
 
-void mmFilterTransactions::setCategoryList(const wxArrayInt64 &categoryList)
+void TransactionFilter::setCategoryList(const wxArrayInt64 &categoryList)
 {
     m_filter_category = true;
     m_category_a = categoryList;
 }
 
 template<class MODEL, class DATA>
-bool mmFilterTransactions::checkCategory(
+bool TransactionFilter::checkCategory(
     const DATA& tran,
     const std::map<int64, typename MODEL::Split_Data_Set> & splits
 ) {
@@ -106,7 +106,7 @@ bool mmFilterTransactions::checkCategory(
     return false;
 }
 
-bool mmFilterTransactions::mmIsRecordMatches(
+bool TransactionFilter::mmIsRecordMatches(
     const TransactionModel::Data &tran,
     const std::map<int64, TransactionSplitModel::Data_Set>& split
 ) {
@@ -125,7 +125,7 @@ bool mmFilterTransactions::mmIsRecordMatches(
     return ok;
 }
 
-wxString mmFilterTransactions::getHTML()
+wxString TransactionFilter::getHTML()
 {
     mmHTMLBuilder hb;
     m_trans.clear();

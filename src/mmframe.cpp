@@ -1352,8 +1352,8 @@ void mmGUIFrame::navTreeSelection(wxTreeItemId selectedItem)
         return OnTransactionReport(e);
     case mmTreeItemData::FILTER_REPORT: {
         activeReport_ = true;
-        wxSharedPtr<TransactionFilter> dlg(
-            new TransactionFilter(this, iData->getString())
+        wxSharedPtr<TransactionFilterDialog> dlg(
+            new TransactionFilterDialog(this, iData->getString())
         );
         /// FIXME memory leak
         TransactionsReport* rs = new TransactionsReport(dlg);
@@ -1542,7 +1542,7 @@ void mmGUIFrame::OnPopupEditFilter(wxCommandEvent& /*event*/)
 
     const auto filter_settings = InfotableModel::instance().getArrayString("TRANSACTIONS_FILTER");
 
-    wxSharedPtr<TransactionFilter> dlg(new TransactionFilter(this, -1, true, data));
+    wxSharedPtr<TransactionFilterDialog> dlg(new TransactionFilterDialog(this, -1, true, data));
     bool is_ok = (dlg->ShowModal() == wxID_OK);
     if (filter_settings != InfotableModel::instance().getArrayString("TRANSACTIONS_FILTER")) {
         DoRecreateNavTreeControl();
@@ -3134,7 +3134,7 @@ void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
         std::list<int64> selections = dlg.getSelectedPayees();
         PayeeModel::Data *payee = PayeeModel::instance().get(selections.front());
         wxString filter = wxString::Format("{\"LABEL\":\"%s\",\"PAYEE\":\"%s\"}",_t("Transactions per payee"), payee->PAYEENAME);
-        wxSharedPtr<TransactionFilter> pdlg(new TransactionFilter(this, filter));
+        wxSharedPtr<TransactionFilterDialog> pdlg(new TransactionFilterDialog(this, filter));
         if (pdlg->ShowModal() == wxID_OK) {
             TransactionsReport* rs = new TransactionsReport(pdlg);
             createReportsPage(rs, true);
@@ -3193,7 +3193,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& WXUNUSED(event))
 
     const auto filter_settings = InfotableModel::instance().getArrayString("TRANSACTIONS_FILTER");
 
-    wxSharedPtr<TransactionFilter> dlg(new TransactionFilter(this, -1, true));
+    wxSharedPtr<TransactionFilterDialog> dlg(new TransactionFilterDialog(this, -1, true));
     bool is_ok = (dlg->ShowModal() == wxID_OK);
     if (filter_settings != InfotableModel::instance().getArrayString("TRANSACTIONS_FILTER")) {
         DoRecreateNavTreeControl();
