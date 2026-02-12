@@ -117,7 +117,7 @@ public:
         bool operator()(const DATA& x, const DATA& y)
         {
             int64 x_accountid = -1, y_accountid = -1;
-            double x_transamount, y_transamount;
+            double x_transamount = 0.0, y_transamount = 0.0;
             if (TransactionModel::type_id(x.TRANSCODE) == TransactionModel::TYPE_ID_WITHDRAWAL) {
                 x_accountid = x.ACCOUNTID; x_transamount = x.TRANSAMOUNT;
             }
@@ -139,7 +139,7 @@ public:
         bool operator()(const DATA& x, const DATA& y)
         {
             int64 x_accountid = -1, y_accountid = -1;
-            double x_transamount, y_transamount;
+            double x_transamount = 0.0, y_transamount = 0.0;
             if (TransactionModel::type_id(x.TRANSCODE) == TransactionModel::TYPE_ID_DEPOSIT) {
                 x_accountid = x.ACCOUNTID; x_transamount = x.TRANSAMOUNT;
             }
