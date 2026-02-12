@@ -21,9 +21,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/intl.h>
 
 #include "constants.h"
-#include "model/PreferencesModel.h"
-
 #include "mmDateRange.h"
+#include "model/PreferencesModel.h"
 
 mmDateRange::mmDateRange() :
     today_(wxDateTime::Today()),

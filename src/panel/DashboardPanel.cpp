@@ -23,10 +23,10 @@ Copyright (C) 2026 Klaus Wich
 #include <cmath>
 #include <html_template.h>
 
-#include "mmex.h"
 #include "constants.h"
-#include "util/util.h"
+#include "mmex.h"
 #include "paths.h"
+#include "util/util.h"
 
 #include "model/_all.h"
 #include "model/PreferencesModel.h"

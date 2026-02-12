@@ -17,12 +17,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_SPLITTRANSACTIONS_H
-#define MODEL_SPLITTRANSACTIONS_H
+#pragma once
 
+#include "defs.h"
+#include "db/DB_Table_Splittransactions_V1.h"
 #include "_Model.h"
 #include "CurrencyModel.h"
-#include "db/DB_Table_Splittransactions_V1.h"
 
 struct Split
 {
@@ -68,4 +68,3 @@ public:
     static const wxString refTypeName;
 };
 
-#endif // 

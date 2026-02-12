@@ -16,11 +16,11 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_TAG_H
-#define MODEL_TAG_H
+#pragma once
 
-#include "_Model.h"
+#include "defs.h"
 #include "db/DB_Table_Tag_V1.h"
+#include "_Model.h"
 
 class TagModel : public Model<DB_Table_TAG_V1>
 {
@@ -55,4 +55,3 @@ public:
     int is_used(int64 id);
 };
 
-#endif // 

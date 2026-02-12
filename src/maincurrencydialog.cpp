@@ -18,6 +18,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defs.h"
 #include <vector>
 #include <wx/sstream.h>
 #include <wx/xml/xml.h>
@@ -25,8 +26,8 @@
 #include <rapidjson/document.h>
 
 #include "constants.h"
-#include "util/util.h"
 #include "paths.h"
+#include "util/util.h"
 #include "model/_all.h"
 
 #include "dialog/CurrencyDialog.h"

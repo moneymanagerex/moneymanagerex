@@ -16,11 +16,11 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_TAGLINK_H
-#define MODEL_TAGLINK_H
+#pragma once
 
-#include "_Model.h"
+#include "defs.h"
 #include "db/DB_Table_Taglink_V1.h"
+#include "_Model.h"
 
 class TagLinkModel : public Model<DB_Table_TAGLINK_V1>
 {
@@ -68,4 +68,3 @@ public:
     int update(const Data_Set& rows, const wxString& refType, int64 refId);
 };
 
-#endif // 

@@ -18,8 +18,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-#ifndef MM_EX_HELPPANEL_H_
-#define MM_EX_HELPPANEL_H_
+#pragma once
 
 #include "_PanelBase.h"
 
@@ -59,6 +58,4 @@ private:
     void OnHelpPageForward(wxCommandEvent& event);
     void OnNewWindow(wxWebViewEvent& evt);
 };
-
-#endif
 

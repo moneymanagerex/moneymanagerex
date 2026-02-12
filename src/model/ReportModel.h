@@ -16,9 +16,9 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_REPORT_H
-#define MODEL_REPORT_H
+#pragma once
 
+#include "defs.h"
 #include "_Model.h"
 #include "db/DB_Table_Report_V1.h"
 
@@ -69,4 +69,3 @@ private:
     static const std::vector<Values> SqlPlaceHolders();
 };
 
-#endif // 

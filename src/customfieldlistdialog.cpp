@@ -17,17 +17,19 @@ Copyright (C) 2016, 2020 - 2022 Nikolay Akimov
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "customfieldlistdialog.h"
-#include "customfieldeditdialog.h"
-#include "constants.h"
-#include "images_list.h"
-#include "mmSimpleDialogs.h"
-#include "paths.h"
-#include "util/util.h"
-#include "model/FieldValueModel.h"
-
+#include "defs.h"
 #include <wx/dataview.h>
 #include <wx/mimetype.h>
+
+#include "constants.h"
+#include "paths.h"
+#include "util/util.h"
+
+#include "model/FieldValueModel.h"
+#include "customfieldlistdialog.h"
+#include "customfieldeditdialog.h"
+#include "mmSimpleDialogs.h"
+#include "images_list.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmCustomFieldListDialog, wxDialog);
 

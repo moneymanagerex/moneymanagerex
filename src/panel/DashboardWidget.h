@@ -19,9 +19,9 @@ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
 #pragma once
 
-#include "reports/mmDateRange.h"
 #include <map>
 #include <vector>
+#include "reports/mmDateRange.h"
 
 typedef wxLongLong int64;
 

@@ -17,14 +17,15 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_BUDGET_H
-#define MODEL_BUDGET_H
+#pragma once
+
+#include "defs.h"
+#include <float.h>
 
 #include "util/choices.h"
 #include "db/DB_Table_Budgettable_V1.h"
 #include "_Model.h"
 #include "reports/mmDateRange.h"
-#include <float.h>
 
 class BudgetModel : public Model<DB_Table_BUDGETTABLE_V1>
 {
@@ -107,4 +108,3 @@ inline BudgetModel::PERIOD_ID BudgetModel::period_id(const Data& r)
     return period_id(&r);
 }
 
-#endif

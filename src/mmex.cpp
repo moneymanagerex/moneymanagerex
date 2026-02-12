@@ -17,18 +17,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "mmex.h"
-#include "constants.h"
-#include "mmSimpleDialogs.h"
-#include "mmframe.h"
-#include "paths.h"
-#include "platfdep.h"
-#include "util/util.h"
-#include "util/DateRange2.h"
-
-#include "model/SettingModel.h"
-#include "model/UsageModel.h"
-
+#include "defs.h"
 #include <wx/cmdline.h>
 #include <wx/display.h>
 #include <wx/fs_arc.h>
@@ -36,6 +25,20 @@
 #include <wx/fs_mem.h>
 #include <wx/imagpng.h>
 #include <wx/mstream.h>
+
+#include "constants.h"
+#include "platfdep.h"
+#include "mmex.h"
+#include "paths.h"
+#include "util/util.h"
+#include "util/DateRange2.h"
+
+#include "model/SettingModel.h"
+#include "model/UsageModel.h"
+
+#include "mmframe.h"
+#include "mmSimpleDialogs.h"
+
 //----------------------------------------------------------------------------
 wxIMPLEMENT_APP(mmGUIApp);
 //----------------------------------------------------------------------------

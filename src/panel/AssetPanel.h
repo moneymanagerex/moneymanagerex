@@ -15,10 +15,11 @@
  ********************************************************/
 
 #pragma once
+
+#include "mmframe.h"
 #include "_PanelBase.h"
 #include "model/AssetModel.h"
 #include "model/AccountModel.h"
-#include "mmframe.h"
 
 class wxListEvent;
 class AssetPanel;

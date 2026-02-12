@@ -16,9 +16,9 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_BUDGETSPLITTRANSACTIONS_H
-#define MODEL_BUDGETSPLITTRANSACTIONS_H
+#pragma once
 
+#include "defs.h"
 #include "_Model.h"
 #include "db/DB_Table_Budgetsplittransactions_V1.h"
 
@@ -55,4 +55,3 @@ public:
     static const wxString refTypeName;
 };
 
-#endif // 

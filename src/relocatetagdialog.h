@@ -19,8 +19,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_RELOCATETAGDIALOG_H_
-#define MM_EX_RELOCATETAGDIALOG_H_
+#pragma once
 
 #include "defs.h"
 #include "mmSimpleDialogs.h"
@@ -67,4 +66,3 @@ private:
 
 inline int relocateTagDialog::updatedTagsCount() const { return m_changed_records; }
 
-#endif

@@ -16,8 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_BUDGETYEARENTRYDIALOG_H_
-#define MM_EX_BUDGETYEARENTRYDIALOG_H_
+#pragma once
 
 #include "defs.h"
 
@@ -55,6 +54,4 @@ private:
     bool withMonth_ = false;
     wxSpinCtrl* textMonth_ = nullptr;
 };
-
-#endif
 

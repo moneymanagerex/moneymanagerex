@@ -18,13 +18,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_HTMLBUILDER_H_
-#define MM_EX_HTMLBUILDER_H_
+#pragma once
 
+#include "defs.h"
 #include <vector>
 #include <html_template.h>
 
-#include "defs.h"
 #include "util/util.h"
 #include "util/DateRange2.h"
 
@@ -165,4 +164,3 @@ private:
 };
 
 
-#endif

@@ -16,9 +16,9 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_WIZARD_NEWDB_H_
-#define MM_EX_WIZARD_NEWDB_H_
+#pragma once
 
+#include "defs.h"
 #include <wx/wizard.h>
 #include <wx/frame.h>
 #include <wx/textctrl.h>
@@ -56,4 +56,3 @@ private:
     wxDECLARE_EVENT_TABLE();
 };
 
-#endif // MM_EX_WIZARD_NEWDB_H_

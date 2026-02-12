@@ -18,13 +18,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_REPORTCATEGEXP_H_
-#define MM_EX_REPORTCATEGEXP_H_
+#pragma once
 
-#include "reportbase.h"
-#include "util/util.h"
 #include <vector>
+#include "util/util.h"
 #include "model/CategoryModel.h"
+#include "reportbase.h"
 
 class mmReportCategoryExpenses : public ReportBase
 {
@@ -79,4 +78,3 @@ protected:
     enum TYPE { INCOME = 0, EXPENSES, TOTAL, MAX };
 };
 
-#endif // MM_EX_REPORTCATEGEXP_H_

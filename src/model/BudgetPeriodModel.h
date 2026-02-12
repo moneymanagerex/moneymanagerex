@@ -16,9 +16,9 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_BUDGETYEAR_H
-#define MODEL_BUDGETYEAR_H
+#pragma once
 
+#include "defs.h"
 #include "_Model.h"
 #include "db/DB_Table_Budgetyear_V1.h"
 
@@ -59,4 +59,3 @@ public:
     bool Exists(const wxString& year_name);
 };
 
-#endif // 

@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  ********************************************************/
 
-#include "toolbardialog.h"
 #include "mmframe.h"
+#include "toolbardialog.h"
 
 struct TypeDataRef : public wxClientData
 {

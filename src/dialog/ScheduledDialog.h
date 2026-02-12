@@ -19,13 +19,14 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_BDDIALOG_H_
-#define MM_EX_BDDIALOG_H_
+#pragma once
 
-#include "mmSimpleDialogs.h"
+#include "defs.h"
 #include <wx/dialog.h>
+
 #include "model/ScheduledModel.h"
 #include "model/TransactionModel.h"
+#include "mmSimpleDialogs.h"
 #include "mmcustomdata.h"
 
 class wxStaticText;
@@ -196,4 +197,3 @@ private:
     };
 };
 
-#endif

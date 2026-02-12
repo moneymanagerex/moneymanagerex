@@ -17,8 +17,9 @@
  ********************************************************/
 
 #include "defs.h"
-#include "AttachmentModel.h"
 #include <wx/string.h>
+
+#include "AttachmentModel.h"
 
 AttachmentModel::AttachmentModel()
 : Model<DB_Table_ATTACHMENT_V1>()

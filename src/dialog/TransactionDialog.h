@@ -20,18 +20,18 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_TRANSDIALOG_H_
-#define MM_EX_TRANSDIALOG_H_
+#pragma once
 
-#include "mmcustomdata.h"
 #include "defs.h"
-#include "mmSimpleDialogs.h"
-#include "journal.h"
 
 #include "model/TransactionModel.h"
 #include "model/PayeeModel.h"
 #include "model/FieldValueModel.h"
 #include "model/TransactionSplitModel.h"
+#include "journal.h"
+
+#include "mmcustomdata.h"
+#include "mmSimpleDialogs.h"
 
 class mmTextCtrl;
 class wxString;
@@ -183,4 +183,3 @@ private:
     };
 };
 
-#endif

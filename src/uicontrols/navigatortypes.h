@@ -18,9 +18,8 @@
 
 #pragma once
 
-#include "util/choices.h"
 #include "defs.h"
-
+#include "util/choices.h"
 
 struct NavigatorTypesInfo {
     int type;

@@ -17,12 +17,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_ABOUTDIALOG_H_
-#define MM_EX_ABOUTDIALOG_H_
+#pragma once
 
+#include "defs.h"
 #include <wx/dialog.h>
 #include <wx/notebook.h>
-#include "defs.h"
+
 #include "util/util.h"
 
 class wxHtmlWindow;
@@ -60,4 +60,3 @@ private:
 
 };
 
-#endif // MM_EX_ABOUTDIALOG_H_

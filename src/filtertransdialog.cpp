@@ -27,27 +27,32 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma hdrstop
 #endif
 
+#include "defs.h"
 #include <wx/display.h>
 #include <wx/regex.h>
 #include <wx/valnum.h>
 
 #include "constants.h"
-#include "util/util.h"
 #include "paths.h"
+#include "util/util.h"
 
 #include "model/_all.h"
 
-#include "filtertransdialog.h"
 #include "dialog/CategoryDialog.h"
 #include "dialog/PayeeDialog.h"
+#include "filtertransdialog.h"
 #include "mmSimpleDialogs.h"
 #include "images_list.h"
 #include "validators.h"
 
 #include "uicontrols/navigatortypes.h"
 
-static const wxString COLUMN_NAMES[] = { "ID", "Color", "Date", "Number", "Account", "Payee", "Status", "Category", "Type", "Amount",
-                                         "Notes", "UDFC01", "UDFC02", "UDFC03", "UDFC04", "UDFC05", "Tags", "FX Rate", "Time" };
+static const wxString COLUMN_NAMES[] = {
+    "ID", "Color", "Date", "Number", "Account", "Payee",
+    "Status", "Category", "Type", "Amount", "Notes",
+    "UDFC01", "UDFC02", "UDFC03", "UDFC04", "UDFC05",
+    "Tags", "FX Rate", "Time"
+};
 
 static const wxString TRANSACTION_STATUSES[] = {
     _n("Unreconciled"),

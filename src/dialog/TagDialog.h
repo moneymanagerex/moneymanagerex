@@ -18,8 +18,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_TAGDIALOG_H_
-#define MM_EX_TAGDIALOG_H_
+#pragma once
 
 #include "defs.h"
 #include <wx/dialog.h>
@@ -79,4 +78,3 @@ private:
 
 inline bool TagDialog::getRefreshRequested() const { return refreshRequested_; }
 inline wxArrayString TagDialog::getSelectedTags() const { return selectedTags_; }
-#endif

@@ -16,12 +16,11 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_HOMEPAGEPANEL_H_
-#define MM_EX_HOMEPAGEPANEL_H_
+#pragma once
 
-#include "_PanelBase.h"
 #include "constants.h"
 #include "model/AccountModel.h"
+#include "_PanelBase.h"
 
 class mmGUIFrame;
 class mmHTMLBuilder;
@@ -69,4 +68,3 @@ private:
 
 };
 
-#endif

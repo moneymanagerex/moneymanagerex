@@ -16,11 +16,10 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "toolbartypes.h"
-#include "mmframe.h"
 #include "constants.h"
 #include "model/SettingModel.h"
-
+#include "mmframe.h"
+#include "toolbartypes.h"
 
 static const wxString TOOLBAR_INFO_KEY = "TOOLBAR_SETTINGS";
 

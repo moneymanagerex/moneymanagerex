@@ -16,14 +16,13 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_WIZARD_NEWACCOUNT_H_
-#define MM_EX_WIZARD_NEWACCOUNT_H_
+#pragma once
 
+#include "defs.h"
 #include <wx/wizard.h>
 #include <wx/frame.h>
 #include <wx/textctrl.h>
 #include <wx/choice.h>
-//----------------------------------------------------------------------------
 
 typedef wxLongLong int64;
 
@@ -68,6 +67,3 @@ private:
     mmAddAccountWizard* parent_ = nullptr;
 };
 
-//----------------------------------------------------------------------------
-#endif // MM_EX_WIZARD_NEWACCOUNT_H_
-//----------------------------------------------------------------------------

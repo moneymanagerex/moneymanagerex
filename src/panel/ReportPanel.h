@@ -20,12 +20,14 @@
 
 #pragma once
 
-#include "_PanelBase.h"
-#include "mmSimpleDialogs.h"
-#include "JournalPanel.h"
-#include "reports/reportbase.h"
+#include "defs.h"
 #include <wx/spinctrl.h>
 #include <wx/timectrl.h>
+
+#include "_PanelBase.h"
+#include "JournalPanel.h"
+#include "mmSimpleDialogs.h"
+#include "reports/reportbase.h"
 
 class mmGUIFrame;
 class mmDateRange;

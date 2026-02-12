@@ -21,12 +21,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "images_list.h"
 #include "mmframe.h"
-#include "reports/allreport.h"
-#include "mmTreeItemData.h"
 #include "model/BudgetPeriodModel.h"
 #include "model/ReportModel.h"
+#include "reports/allreport.h"
+#include "mmTreeItemData.h"
+#include "images_list.h"
 
 const char *group_report_template = R"(
 <!DOCTYPE html>

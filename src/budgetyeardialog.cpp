@@ -16,12 +16,13 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defs.h"
+#include "constants.h"
+#include "paths.h"
+#include "util/util.h"
+#include "model/BudgetPeriodModel.h"
 #include "budgetyeardialog.h"
 #include "budgetyearentrydialog.h"
-#include "util/util.h"
-#include "paths.h"
-#include "constants.h"
-#include "model/BudgetPeriodModel.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmBudgetYearDialog, wxDialog);
 

@@ -20,16 +20,18 @@ Copyright (C) 2025 Klaus Wich
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_CHECKINGPANEL_H_
-#define MM_EX_CHECKINGPANEL_H_
-//----------------------------------------------------------------------------
+#pragma once
+
+#include "defs.h"
 #include <wx/tglbtn.h>
-#include "_PanelBase.h"
-#include "constants.h"
-#include "journal.h"
-#include "model/AccountModel.h"
 #include <map>
-//----------------------------------------------------------------------------
+
+#include "constants.h"
+
+#include "model/AccountModel.h"
+#include "journal.h"
+#include "_PanelBase.h"
+
 class JournalPanel;
 class mmFilterTransactionsDialog;
 class mmGUIFrame;
@@ -221,4 +223,3 @@ inline bool JournalPanel::isGroup() const { return m_checking_id <= -3; }
 inline bool JournalPanel::isAccount() const { return m_checking_id >= 1; }
 inline double JournalPanel::GetTodayReconciledBalance() const { return m_today_reconciled_balance; }
 
-#endif // MM_EX_CHECKINGPANEL_H_

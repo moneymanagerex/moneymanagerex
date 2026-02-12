@@ -17,11 +17,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_CATEGORY_H
-#define MODEL_CATEGORY_H
+#pragma once
+
+#include "defs.h"
+#include <wx/sharedptr.h>
 
 #include "_Model.h"
-#include <wx/sharedptr.h>
 #include "db/DB_Table_Category_V1.h"
 
 class mmDateRange;
@@ -84,4 +85,3 @@ public:
 
 };
 
-#endif //

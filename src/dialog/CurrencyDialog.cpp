@@ -18,15 +18,15 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defs.h"
 #include <fmt/core.h>
 #include <fmt/format.h>
 #include <wx/combobox.h>
 #include <wx/valnum.h>
 
-#include "defs.h"
 #include "constants.h"
-#include "util/util.h"
 #include "paths.h"
+#include "util/util.h"
 
 #include "model/CurrencyModel.h"
 #include "model/CurrencyHistoryModel.h"

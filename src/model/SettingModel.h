@@ -18,12 +18,11 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_SETTING_H
-#define MODEL_SETTING_H
+#pragma once
 
+#include "defs.h"
 #include "_Model.h"
 #include "db/DB_Table_Setting_V1.h"
-#include "defs.h"
 
 class SettingModel : public Model<DB_Table_SETTING_V1>
 {
@@ -95,4 +94,3 @@ public:
     static row_t to_row_t();
 };
 
-#endif 

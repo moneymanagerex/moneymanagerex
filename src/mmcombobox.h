@@ -18,14 +18,17 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #pragma once
-#include "util/util.h"
+
+#include "defs.h"
 #include <wx/textctrl.h>
 #include <wx/combobox.h>
 #include <wx/string.h>
-#include "mmSimpleDialogs.h"
+#include <wx/richtooltip.h>
+
+#include "util/util.h"
 #include "model/AccountModel.h"
 #include "model/PayeeModel.h"
-#include <wx/richtooltip.h>
+#include "mmSimpleDialogs.h"
 #include "webapp.h"
 
 class mmComboBoxText : public wxTextCtrl

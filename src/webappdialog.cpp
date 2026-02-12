@@ -16,11 +16,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
+#include "defs.h"
 #include <wx/timer.h>
 
 #include "constants.h"
-#include "util/util.h"
 #include "paths.h"
+#include "util/util.h"
 
 #include "dialog/TransactionDialog.h"
 #include "webappdialog.h"

@@ -19,9 +19,10 @@
 
 #pragma once
 
+#include "defs.h"
+#include "db/DB_Table_Shareinfo_V1.h"
 #include "_Model.h"
 #include "TransactionSplitModel.h"
-#include "db/DB_Table_Shareinfo_V1.h"
 
 class TransactionShareModel : public Model<DB_Table_SHAREINFO_V1>
 {

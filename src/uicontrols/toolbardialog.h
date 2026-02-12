@@ -19,9 +19,9 @@
 #pragma once
 
 #include "defs.h"
+#include "constants.h"
 #include "generic/generictreelistdialog.h"
 #include "toolbartypes.h"
-#include "constants.h"
 
 
 class mmToolbarDialog: public genericTreeListDialog

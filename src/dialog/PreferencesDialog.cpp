@@ -22,10 +22,10 @@
 #include <wx/bookctrl.h>
 
 #include "constants.h"
-#include "util/util.h"
 #include "paths.h"
-#include "model/PreferencesModel.h"
+#include "util/util.h"
 
+#include "model/PreferencesModel.h"
 #include "PreferencesDialog.h"
 
 #include "preferences/AttachmentPreferences.h"

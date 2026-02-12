@@ -16,10 +16,11 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "export.h"
 #include "constants.h"
 #include "paths.h"
 #include "util/util.h"
+#include "export.h"
+
 #include "model/AccountModel.h"
 #include "model/AttachmentModel.h"
 #include "model/CategoryModel.h"

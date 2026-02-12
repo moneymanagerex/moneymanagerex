@@ -18,6 +18,7 @@
  ********************************************************/
 
 #pragma once
+
 #include <wx/stc/stc.h>
 
 class MinimalEditor : public wxStyledTextCtrl

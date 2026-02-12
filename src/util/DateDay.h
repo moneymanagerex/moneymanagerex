@@ -18,8 +18,10 @@
 
 #pragma once
 
-#include <wx/datetime.h>
+#include "defs.h"
 #include <optional>
+#include <wx/datetime.h>
+
 #include "primitive.h"
 
 // DateDay represents a date without time information.

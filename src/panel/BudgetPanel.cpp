@@ -19,8 +19,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "mmex.h"
 #include "constants.h"
+#include "mmex.h"
 
 #include "model/_all.h"
 #include "model/PreferencesModel.h"

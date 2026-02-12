@@ -18,8 +18,9 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
  ********************************************************/
 #pragma once
 
-#include "_Model.h"
+#include "defs.h"
 #include "db/DB_Table_Usage_V1.h"
+#include "_Model.h"
 
 class ReportBase;
 

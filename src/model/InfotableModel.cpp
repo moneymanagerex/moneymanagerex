@@ -18,9 +18,10 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "InfotableModel.h"
 #include "constants.h"
 #include "util/util.h"
+
+#include "InfotableModel.h"
 
 InfotableModel::InfotableModel()
 : Model<DB_Table_INFOTABLE_V1>()

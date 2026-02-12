@@ -18,11 +18,10 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_REPORTBUDGETING_PERFORMANCE_H_
-#define MM_EX_REPORTBUDGETING_PERFORMANCE_H_
+#pragma once
 
-#include "budget.h"
 #include <map>
+#include "budget.h"
 
 class mmReportBudgetingPerformance : public mmReportBudget
 {
@@ -36,4 +35,3 @@ private:
 
 };
 
-#endif // MM_EX_REPORTBUDGETING_PERFORMANCE_H_

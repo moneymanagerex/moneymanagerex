@@ -17,13 +17,17 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *******************************************************/
-#include "AboutDialog.h"
-#include "constants.h"
-#include "paths.h"
-#include "reports/htmlbuilder.h"
+
+#include "defs.h"
 #include <wx/statline.h>
 #include <wx/version.h>
 #include <wx/regex.h>
+
+#include "constants.h"
+#include "paths.h"
+
+#include "AboutDialog.h"
+#include "reports/htmlbuilder.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(AboutDialog, wxDialog);
 

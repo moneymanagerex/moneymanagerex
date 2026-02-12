@@ -18,9 +18,9 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_ACCOUNT_H
-#define MODEL_ACCOUNT_H
+#pragma once
 
+#include "defs.h"
 #include "util/choices.h"
 #include "util/DateDay.h"
 
@@ -173,4 +173,3 @@ inline bool AccountModel::is_positive(int value)
     return value > 0 ? true : false;
 }
 
-#endif

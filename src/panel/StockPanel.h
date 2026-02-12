@@ -19,13 +19,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_STOCKSPANEL_H_
-#define MM_EX_STOCKSPANEL_H_
+#pragma once
 
-#include "StockList.h"
-#include "_PanelBase.h"
 #include "model/TransactionShareModel.h"
 #include "mmframe.h"
+#include "_PanelBase.h"
+#include "StockList.h"
 
 class wxListEvent;
 class TransactionShareModel;
@@ -106,4 +105,3 @@ private:
     wxDateTime LastRefreshDT_;
 };
 
-#endif

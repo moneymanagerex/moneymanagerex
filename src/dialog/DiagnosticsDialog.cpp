@@ -16,11 +16,12 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defs.h"
 #include <wx/display.h>
 
 #include "constants.h"
-#include "util/util.h"
 #include "paths.h"
+#include "util/util.h"
 
 #include "model/AccountModel.h"
 #include "model/CategoryModel.h"

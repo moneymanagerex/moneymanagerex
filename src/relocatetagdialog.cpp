@@ -20,8 +20,8 @@
  ********************************************************/
 
 #include "constants.h"
-#include "util/util.h"
 #include "paths.h"
+#include "util/util.h"
 
 #include "model/AttachmentModel.h"
 #include "model/PayeeModel.h"

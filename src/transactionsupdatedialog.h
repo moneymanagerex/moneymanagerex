@@ -17,13 +17,13 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_TRANSACTIONSUPDATE_H_
-#define MM_EX_TRANSACTIONSUPDATE_H_
+#pragma once
 
-#include "mmSimpleDialogs.h"
 #include "defs.h"
+#include "mmSimpleDialogs.h"
 #include "mmcombobox.h"
 #include "mmcustomdata.h"
+
 class mmTextCtrl;
 
 class transactionsUpdateDialog : public wxDialog
@@ -94,4 +94,3 @@ private:
     };
 };
 
-#endif

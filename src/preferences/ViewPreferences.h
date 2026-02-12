@@ -20,9 +20,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #pragma once
 
-#include "_PreferencesBase.h"
+#include "defs.h"
 #include <wx/spinctrl.h>
 #include <wx/slider.h>
+
+#include "_PreferencesBase.h"
 
 class ViewPreferences : public PreferencesBase
 {

@@ -1,13 +1,14 @@
-#ifndef OFX_IMPORT_GUI_H_
-#define OFX_IMPORT_GUI_H_
+#pragma once
 
-#include "model/CategoryModel.h"
-#include "model/PayeeModel.h"
+#include "defs.h"
 #include <map>
 #include <wx/event.h>
 #include <wx/grid.h>
 #include <wx/wx.h>
 #include <wx/xml/xml.h>
+
+#include "model/CategoryModel.h"
+#include "model/PayeeModel.h"
 
 struct OFXImportResult
 {
@@ -230,4 +231,3 @@ private:
     wxScrolledWindow* scrolledWindow;
 };
 
-#endif // OFX_IMPORT_GUI_H_

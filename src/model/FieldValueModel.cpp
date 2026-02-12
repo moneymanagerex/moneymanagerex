@@ -16,9 +16,11 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "FieldValueModel.h"
-#include "FieldModel.h"
+#include "defs.h"
 #include <wx/string.h>
+
+#include "FieldModel.h"
+#include "FieldValueModel.h"
 
 FieldValueModel::FieldValueModel()
 : Model<DB_Table_CUSTOMFIELDDATA_V1>()

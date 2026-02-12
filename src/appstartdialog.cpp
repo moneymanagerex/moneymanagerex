@@ -16,12 +16,13 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "appstartdialog.h"
-#include "paths.h"
+#include "defs.h"
 #include "constants.h"
-#include "mmSimpleDialogs.h"
+#include "paths.h"
 #include "util/util.h"
 #include "model/SettingModel.h"
+#include "appstartdialog.h"
+#include "mmSimpleDialogs.h"
 #include "mmSimpleDialogs.h"
 
 /*******************************************************/

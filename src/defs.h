@@ -16,8 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_DEFS_H_
-#define MM_EX_DEFS_H_
+#pragma once
 
 // For compilers that support precompilation, includes "wx/wx.h>.
 #include <wx/wxprec.h>
@@ -77,4 +76,3 @@
 #define _tu(string_utf8) wxGetTranslation(wxString::FromUTF8(wxTRANSLATE(string_utf8)))
 #define wxPLURAL_U8(singular, plural, n) wxPLURAL(wxString::FromUTF8(singular), wxString::FromUTF8(plural), n)
 
-#endif // MM_EX_DEFS_H_

@@ -18,18 +18,20 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "wizard_update.h"
-#include "constants.h"
-#include "mmTips.h"
-#include "util/util.h"
-#include "paths.h"
-#include "reports/htmlbuilder.h"
-#include "model/SettingModel.h"
-#include <rapidjson/error/en.h>
-
+#include "defs.h"
 #include <wx/webview.h>
 #include <wx/webviewfshandler.h>
 #include <wx/fs_mem.h>
+#include <rapidjson/error/en.h>
+
+#include "constants.h"
+#include "paths.h"
+#include "util/util.h"
+
+#include "model/SettingModel.h"
+#include "wizard_update.h"
+#include "mmTips.h"
+#include "reports/htmlbuilder.h"
 
 wxBEGIN_EVENT_TABLE(mmUpdateWizard, wxDialog)
 wxEND_EVENT_TABLE()

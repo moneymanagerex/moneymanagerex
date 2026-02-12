@@ -20,10 +20,10 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "images_list.h"
-#include "_PanelBase.h"
 #include "model/SettingModel.h"
+#include "_PanelBase.h"
 #include "ReportPanel.h"
+#include "images_list.h"
 
 wxBEGIN_EVENT_TABLE(ListBase, wxListCtrl)
     EVT_LIST_COL_END_DRAG(wxID_ANY,    ListBase::onItemResize)

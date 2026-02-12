@@ -16,8 +16,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#ifndef MM_EX_EXPORT_H_
-#define MM_EX_EXPORT_H_
+#pragma once
 
 #include "model/TransactionModel.h"
 
@@ -46,4 +45,3 @@ public:
     static void getTagsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt64& allTags4Export);
 };
 
-#endif

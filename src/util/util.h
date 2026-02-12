@@ -21,6 +21,7 @@
 
 #pragma once
 
+#include "defs.h"
 #include <algorithm>
 #include <map>
 #include <curl/curl.h>
@@ -28,7 +29,6 @@
 #include <wx/valnum.h>
 #include <rapidjson/document.h>
 
-#include "defs.h"
 #include "primitive.h"
 #include "model/PreferencesModel.h"
 

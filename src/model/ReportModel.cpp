@@ -16,7 +16,13 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defs.h"
+#include <LuaGlue/LuaGlue.h>
+#include <sqlite3mc_amalgamation.h>
+#include <wx/fs_mem.h>
+
 #include "constants.h"
+#include "platfdep.h"
 #include "paths.h"
 
 #include "PreferencesModel.h"
@@ -26,11 +32,6 @@
 #include "panel/ReportPanel.h"
 #include "dialog/AttachmentDialog.h"
 #include "reports/htmlbuilder.h"
-#include "platfdep.h"
-
-#include <LuaGlue/LuaGlue.h>
-#include <sqlite3mc_amalgamation.h>
-#include <wx/fs_mem.h>
 
 #if defined (__WXMSW__)
     #include <wx/msw/registry.h>

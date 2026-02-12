@@ -19,8 +19,7 @@ Copyright (C) 2021-2025 Mark Whalley (mark@ipx.co.uk)
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_CHECKING_LIST_H_
-#define MM_EX_CHECKING_LIST_H_
+#pragma once
 
 #include "_PanelBase.h"
 #include "JournalPanel.h"
@@ -244,8 +243,6 @@ inline void JournalList::setVisibleItemIndex(long v)
 {
     m_topItemIndex = v;
 }
-
-#endif // MM_EX_CHECKING_LIST_H_
 
 inline static bool SorterByUDFC01(
     const TransactionModel::Full_Data& i, const TransactionModel::Full_Data& j

@@ -19,16 +19,16 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "constants.h"
-#include "util/util.h"
 #include "paths.h"
+#include "util/util.h"
+
+#include "model/AccountModel.h"
+#include "model/CategoryModel.h"
 
 #include "CategoryDialog.h"
 #include "SplitDialog.h"
 #include "images_list.h"
 #include "validators.h"
-
-#include "model/AccountModel.h"
-#include "model/CategoryModel.h"
 
 #include <wx/statline.h>
 

@@ -16,13 +16,15 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "budgetentrydialog.h"
-#include "model/CategoryModel.h"
-#include "validators.h"
-#include "paths.h"
-#include <constants.h>
-#include "util/util.h"
+#include "constants.h"
 #include <wx/valnum.h>
+
+#include "defs.h"
+#include "paths.h"
+#include "util/util.h"
+#include "model/CategoryModel.h"
+#include "budgetentrydialog.h"
+#include "validators.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmBudgetEntryDialog, wxDialog);
 

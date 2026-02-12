@@ -19,6 +19,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
+#include "defs.h"
 #include <wx/dcbuffer.h>
 #include <wx/popupwin.h>
 #include <wx/spinctrl.h>
@@ -26,10 +27,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/renderer.h>
 #include <wx/richtooltip.h>
 
-#include "mmex.h"
 #include "constants.h"
-#include "util/util.h"
 #include "paths.h"
+#include "mmex.h"
+#include "util/util.h"
 
 #include "model/AccountModel.h"
 #include "model/CategoryModel.h"

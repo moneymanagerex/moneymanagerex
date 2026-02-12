@@ -17,8 +17,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "TransactionShareModel.h"
 #include "TransactionModel.h"
+#include "TransactionShareModel.h"
 
 TransactionShareModel::TransactionShareModel()
 : Model<DB_Table_SHAREINFO_V1>()

@@ -19,13 +19,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_CATEGDIALOG_H_
-#define MM_EX_CATEGDIALOG_H_
-
+#pragma once
 
 #include "defs.h"
 #include <wx/srchctrl.h>
 #include <wx/tglbtn.h>
+
 #include "model/CategoryModel.h"
 
 class mmCategDialogTreeCtrl : public wxTreeCtrl
@@ -149,4 +148,3 @@ private:
 inline int64 CategoryDialog::getCategId() const { return m_categ_id; }
 inline bool CategoryDialog::getRefreshRequested() const { return m_refresh_requested; }
 
-#endif

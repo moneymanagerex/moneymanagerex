@@ -16,12 +16,11 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_REPORTTRANSACT_H_
-#define MM_EX_REPORTTRANSACT_H_
+#pragma once
 
+#include "model/TransactionModel.h"
 #include "reportbase.h"
 #include "filtertransdialog.h"
-#include "model/TransactionModel.h"
 
 class mmBankTransaction;
 
@@ -45,4 +44,3 @@ private:
     int m_noOfCols;
 };
 
-#endif // MM_EX_REPORTTRANSACT_H_

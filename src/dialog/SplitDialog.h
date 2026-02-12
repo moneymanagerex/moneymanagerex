@@ -18,15 +18,15 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_SPLITTRANSACTIONDIALOG_H_
-#define MM_EX_SPLITTRANSACTIONDIALOG_H_
+#pragma once
 
 #include "defs.h"
+#include <wx/dataview.h>
+#include <wx/vscroll.h>
+
 #include "model/TransactionModel.h"
 #include "mmSimpleDialogs.h"
 #include "mmTextCtrl.h"
-#include <wx/dataview.h>
-#include <wx/vscroll.h>
 
 class wxListCtrl;
 class wxStaticText;
@@ -125,4 +125,3 @@ private:
 
 inline std::vector<Split> SplitDialog::mmGetResult() const { return m_orig_splits; }
 
-#endif

@@ -20,11 +20,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "summary.h"
+#include <algorithm>
 #include "constants.h"
 #include "htmlbuilder.h"
+
 #include "model/_all.h"
-#include <algorithm>
+#include "summary.h"
 
 mmHistoryItem::mmHistoryItem()
 {

@@ -19,16 +19,17 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defs.h"
 #include <float.h>
 #include <algorithm>
 #include <wx/clipbrd.h>
 #include <wx/srchctrl.h>
 #include <wx/sound.h>
 
-#include "mmex.h"
 #include "constants.h"
-#include "util/util.h"
+#include "mmex.h"
 #include "paths.h"
+#include "util/util.h"
 
 #include "model/_all.h"
 #include "journal.h"

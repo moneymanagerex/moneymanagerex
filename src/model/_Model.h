@@ -18,14 +18,18 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
  ********************************************************/
 #pragma once
 
+#include "defs.h"
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
 #include <wx/datetime.h>
 #include <wx/log.h>
-#include "db/DB_Table.h"
+
+#include "defs.h"
 #include "util/singleton.h"
 #include "util/choices.h"
+
+#include "db/DB_Table.h"
 
 class wxSQLite3Statement;
 class wxSQLite3Database;

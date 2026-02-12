@@ -18,12 +18,13 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_STOCKS_LIST_H_
-#define MM_EX_STOCKS_LIST_H_
+#pragma once
 
-#include "_PanelBase.h"
+#include "defs.h"
 #include <wx/tglbtn.h>
+
 #include "model/StockModel.h"
+#include "_PanelBase.h"
 
 class wxListEvent;
 class StockPanel;
@@ -113,4 +114,3 @@ private:
 inline int StockList::col_sort() { return LIST_ID_DATE; }
 inline long StockList::get_selectedIndex() { return m_selected_row; }
 
-#endif

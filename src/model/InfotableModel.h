@@ -18,13 +18,13 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_INFOTABLE_H
-#define MODEL_INFOTABLE_H
+#pragma once
+
+#include "defs.h"
+#include "util/util.h"
 
 #include "_Model.h"
 #include "db/DB_Table_Infotable_V1.h"
-#include "defs.h"
-#include "util/util.h"
 
 class InfotableModel : public Model<DB_Table_INFOTABLE_V1>
 {
@@ -99,4 +99,3 @@ public:
     static void saveFilterInt(Document &sdoc, const char* skey, int ivalue);
 };
 
-#endif

@@ -17,15 +17,17 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_UNIVCSVDIALOG_H_
-#define MM_EX_UNIVCSVDIALOG_H_
+#pragma once
 
+#include "defs.h"
 #include <vector>
 #include <map>
 #include <wx/dialog.h>
 #include <wx/dataview.h>
+
 #include "model/TransactionModel.h"
 #include "mmSimpleDialogs.h"
+
 class wxSpinCtrl;
 class wxSpinEvent;
 class wxListBox;
@@ -304,4 +306,3 @@ inline wxString mmUnivCSVDialog::GetSettingsPrfix() const
     return IsXML() ? "XML_SETTINGS_%d" : "CSV_SETTINGS_%d";
 }
 
-#endif

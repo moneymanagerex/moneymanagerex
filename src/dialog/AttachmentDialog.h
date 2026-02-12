@@ -17,12 +17,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_ATTACHMENTDIALOG_H_
-#define MM_EX_ATTACHMENTDIALOG_H_
+#pragma once
 
+#include "defs.h"
 #include <wx/dataview.h>
 #include <map>
-#include "defs.h"
+
 #include "util/primitive.h"
 
 class AttachmentDialog : public wxDialog
@@ -104,4 +104,3 @@ private:
     static wxString m_PathSep;
 };
 
-#endif // MM_EX_ATTACHMENTDIALOG_H_

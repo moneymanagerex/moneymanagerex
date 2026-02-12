@@ -17,13 +17,14 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defs.h"
 #include <wx/platinfo.h>
 #include <wx/thread.h>
 #include <wx/intl.h>
 
 #include "constants.h"
-#include "util/util.h"
 #include "paths.h"
+#include "util/util.h"
 
 #include "PreferencesModel.h"
 #include "SettingModel.h"

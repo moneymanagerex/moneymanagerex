@@ -16,9 +16,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#ifndef MODEL_STOCKHISTORY_H
-#define MODEL_STOCKHISTORY_H
+#pragma once
 
+#include "defs.h"
 #include "_Model.h"
 #include "db/DB_Table_Stockhistory_V1.h"
 
@@ -58,4 +58,3 @@ public:
     int64 addUpdate(const wxString& symbol, const wxDate& date, double price, UPDTYPE type);
 };
 
-#endif // 

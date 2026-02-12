@@ -16,8 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_THEMES_H_
-#define MM_EX_THEMES_H_
+#pragma once
 
 #include "defs.h"
 #include <wx/bitmap.h>
@@ -81,4 +80,3 @@ private:
     };
 };
 
-#endif // MM_EX_THEMES_H_

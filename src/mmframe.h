@@ -22,16 +22,16 @@ Copyright (C) 2025, 2026 Klaus Wich
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_FRAME_H_
-#define MM_FRAME_H_
+#pragma once
 
+#include "defs.h"
 #include <wx/aui/aui.h>
 #include <wx/toolbar.h>
 #include <vector>
 
 #include "constants.h"
-#include "util/util.h"
 #include "paths.h"
+#include "util/util.h"
 
 #include "model/AccountModel.h"
 #include "model/PreferencesModel.h"
@@ -462,6 +462,3 @@ public:
 inline int mmGUIFrame::getHelpFileIndex() const { return helpFileIndex_; }
 inline void mmGUIFrame::setHelpFileIndex() { helpFileIndex_ = mmex::EDocFile::HTML_INDEX; }
 inline wxTreeItemId mmGUIFrame::GetNavTreeSelection() const{ return m_nav_tree_ctrl->GetSelection(); }
-//----------------------------------------------------------------------------
-#endif // MM_FRAME_H_
-//----------------------------------------------------------------------------

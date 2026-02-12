@@ -16,13 +16,14 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "dbwrapper.h"
-#include "util/util.h"
-#include "paths.h"
-#include "constants.h"
-//----------------------------------------------------------------------------
+#include "defs.h"
 #include <sqlite3mc_amalgamation.h>
-//----------------------------------------------------------------------------
+
+#include "constants.h"
+#include "paths.h"
+#include "util/util.h"
+#include "dbwrapper.h"
+
 /*
     SQLITE_OPEN_READWRITE
     The database is opened for reading and writing if possible, or reading

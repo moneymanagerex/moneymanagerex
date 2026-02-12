@@ -18,17 +18,19 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "mmcustomdata.h"
-#include "constants.h"
-#include "util/util.h"
-#include "mmSimpleDialogs.h"
-#include "validators.h"
-#include "model/CurrencyModel.h"
-#include "model/FieldValueModel.h"
-
+#include "defs.h"
 #include <wx/timectrl.h>
 #include <wx/collpane.h>
 #include <wx/spinctrl.h>
+
+#include "constants.h"
+#include "util/util.h"
+
+#include "model/CurrencyModel.h"
+#include "model/FieldValueModel.h"
+#include "mmSimpleDialogs.h"
+#include "mmcustomdata.h"
+#include "validators.h"
 
 mmCustomData::~mmCustomData()
 {

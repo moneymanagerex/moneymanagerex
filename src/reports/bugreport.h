@@ -17,6 +17,7 @@
  ********************************************************/
 
 #pragma once
+
 #include "reportbase.h"
 
 const char* bugreport_template = R"(

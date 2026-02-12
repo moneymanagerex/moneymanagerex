@@ -17,10 +17,10 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "AttachmentDialog.h"
-#include "images_list.h"
+#include "defs.h"
+#include <wx/mimetype.h>
+
 #include "constants.h"
-#include "mmSimpleDialogs.h"
 #include "paths.h"
 #include "util/util.h"
 
@@ -30,7 +30,9 @@
 #include "model/PayeeModel.h"
 #include "model/AttachmentModel.h"
 
-#include <wx/mimetype.h>
+#include "AttachmentDialog.h"
+#include "mmSimpleDialogs.h"
+#include "images_list.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(AttachmentDialog, wxDialog);
 

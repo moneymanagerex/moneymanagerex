@@ -18,9 +18,9 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_PAYEE_H
-#define MODEL_PAYEE_H
+#pragma once
 
+#include "defs.h"
 #include "_Model.h"
 #include "db/DB_Table_Payee_V1.h"
 
@@ -77,4 +77,3 @@ public:
     static const wxString refTypeName;
 };
 
-#endif //

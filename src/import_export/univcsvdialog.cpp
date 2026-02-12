@@ -20,19 +20,19 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defs.h"
 #include <algorithm>
 #include <cctype>
 #include <string>
 #include <memory>
 #include <regex>
-
 #include <wx/xml/xml.h>
 #include <wx/spinctrl.h>
 #include <wx/display.h>
 
 #include "constants.h"
-#include "util/util.h"
 #include "paths.h"
+#include "util/util.h"
 
 #include "model/CategoryModel.h"
 #include "model/FieldValueModel.h"

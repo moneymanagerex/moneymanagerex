@@ -17,10 +17,11 @@
  ********************************************************/
 
 #include "defs.h"
+#include <wx/string.h>
+
 #include "FieldModel.h"
 #include "FieldValueModel.h"
 #include "TransactionModel.h"
-#include <wx/string.h>
 
 ChoicesName FieldModel::TYPE_CHOICES = ChoicesName({
     { TYPE_ID_STRING,       _n("String") },

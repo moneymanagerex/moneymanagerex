@@ -17,21 +17,20 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#ifndef FILTERTRANSDIALOG_H_
-#define FILTERTRANSDIALOG_H_
+#pragma once
 
 #if defined(__GNUG__) && !defined(__APPLE__)
 #pragma interface "filtertransdialog.cpp"
 #endif
 
+#include "defs.h"
+#include <wx/dialog.h>
+
+#include "mmTextCtrl.h"
 #include "mmSimpleDialogs.h"
-#include "mmcustomdata.h"
 #include "reports/mmDateRange.h"
 #include "reports/htmlbuilder.h"
-
-#include <wx/dialog.h>
-#include "mmTextCtrl.h"
-
+#include "mmcustomdata.h"
 
 class mmFilterTransactionsDialog: public wxDialog
 {
@@ -300,5 +299,3 @@ inline const wxString mmFilterTransactionsDialog::mmGetCategoryPattern() const {
 inline bool mmFilterTransactionsDialog::mmIsCombineSplitsChecked() const { return combineSplitsCheckBox_->IsChecked(); }
 inline bool mmFilterTransactionsDialog::mmIsTagsChecked() const { return tagCheckBox_->IsChecked(); }
 
-#endif
-// FILTERTRANSDIALOG_H_

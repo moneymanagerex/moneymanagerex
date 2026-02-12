@@ -17,11 +17,11 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_BILLSDEPOSITS_H
-#define MODEL_BILLSDEPOSITS_H
+#pragma once
 
-#include "_Model.h"
+#include "defs.h"
 #include "db/DB_Table_Billsdeposits_V1.h"
+#include "_Model.h"
 #include "TransactionModel.h"
 #include "TransactionSplitModel.h"
 #include "ScheduledSplitModel.h"
@@ -222,6 +222,4 @@ public:
 public:
     static const wxString refTypeName;
 };
-
-#endif // 
 

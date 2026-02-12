@@ -16,8 +16,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#ifndef QIF_IMPORT_H
-#define QIF_IMPORT_H
+#pragma once
 
 #include "defs.h"
 #include <vector>
@@ -135,4 +134,3 @@ public:
     bool handle_qif_record(const QIF_Record & qif_record, QIF_Transaction& tran);
     bool handle_qif_line(const QIF_Line& qif_line, QIF_Transaction& tran);
 };
-#endif

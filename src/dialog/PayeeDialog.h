@@ -19,17 +19,17 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_PAYEEDIALOG_H_
-#define MM_EX_PAYEEDIALOG_H_
+#pragma once
 
 #include "defs.h"
-#include "model/PayeeModel.h"
 #include <wx/dataview.h>
 #include <wx/srchctrl.h>
 #include <wx/grid.h>
 #include <wx/tglbtn.h>
 #include <map>
 #include <list>
+
+#include "model/PayeeModel.h"
 #include "mmSimpleDialogs.h"
 
 class PayeeDialog : public wxDialog
@@ -172,4 +172,3 @@ private:
 inline bool mmPayeeDialog::getRefreshRequested() const { return refreshRequested_; }
 inline bool mmPayeeDialog::getAddActionRequested() const { return m_addActionRequested;};
 
-#endif // MM_EX_PAYEEDIALOG_H_

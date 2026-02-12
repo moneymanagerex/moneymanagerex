@@ -16,9 +16,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#ifndef MODEL_CURRENCYHISTORY_H
-#define MODEL_CURRENCYHISTORY_H
+#pragma once
 
+#include "defs.h"
 #include "_Model.h"
 #include "db/DB_Table_Currencyhistory_V1.h"
 
@@ -67,4 +67,3 @@ public:
     static void ResetCurrencyHistory();
 };
 
-#endif // 

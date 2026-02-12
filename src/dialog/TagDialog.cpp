@@ -19,8 +19,8 @@
  ********************************************************/
 
 #include "constants.h"
-#include "util/util.h"
 #include "paths.h"
+#include "util/util.h"
 
 #include "model/InfotableModel.h"
 #include "model/TagLinkModel.h"

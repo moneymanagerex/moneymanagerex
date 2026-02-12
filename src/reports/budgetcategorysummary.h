@@ -20,11 +20,11 @@
 /*************************************************************************
  Renamed after extensive modifications to original file reportbudgetsetup.cpp
 **************************************************************************/
-#ifndef MM_EX_REPORTBUDGET_CATEGORYSUMMARY_H_
-#define MM_EX_REPORTBUDGET_CATEGORYSUMMARY_H_
 
-#include "budget.h"
+#pragma once
+
 #include "util/util.h"
+#include "budget.h"
 
 class mmReportBudgetCategorySummary : public mmReportBudget
 {
@@ -37,4 +37,3 @@ public:
 private:
 };
 
-#endif // MM_EX_REPORTBUDGET_CATEGORYSUMMARY_H_

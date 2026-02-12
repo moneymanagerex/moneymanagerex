@@ -17,6 +17,7 @@
  ********************************************************/
 
 #pragma once
+
 #include "reportbase.h"
 
 class mmReportForecast: public ReportBase 

@@ -1,10 +1,11 @@
-#ifndef PAYEE_MATCH_AND_MERGE_H_
-#define PAYEE_MATCH_AND_MERGE_H_
+#pragma once
+
+#include "defs.h"
+#include <vector>
+#include <wx/string.h>
 
 #include "model/TransactionModel.h"
 #include "model/PayeeModel.h"
-#include <vector>
-#include <wx/string.h>
 
 struct PayeeMatchResult
 {
@@ -47,4 +48,3 @@ private:
     void SortAndTrimResults(std::vector<PayeeMatchResult>& results, int maxResults);
 };
 
-#endif // PAYEE_MATCH_AND_MERGE_H_

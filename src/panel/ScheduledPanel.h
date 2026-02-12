@@ -17,13 +17,13 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_BILLSDEPOSITSPANEL_H_
-#define MM_EX_BILLSDEPOSITSPANEL_H_
+#pragma once
 
-#include "filtertransdialog.h"
-#include "_PanelBase.h"
-#include "model/ScheduledModel.h"
 #include <vector>
+
+#include "model/ScheduledModel.h"
+#include "_PanelBase.h"
+#include "filtertransdialog.h"
 
 class wxListEvent;
 class ScheduledPanel;
@@ -183,4 +183,3 @@ inline int ScheduledList::col_sort() { return LIST_ID_PAYMENT_DATE; }
 
 inline wxDate ScheduledPanel::getToday() const { return m_today; }
 
-#endif

@@ -17,21 +17,21 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "summarystocks.h"
-#include "htmlbuilder.h"
-
+#include <algorithm>
 #include "constants.h"
-#include "panel/StockPanel.h"
-#include "budget.h"
 #include "util/util.h"
 #include "mmDateRange.h"
+#include "htmlbuilder.h"
+
 #include "model/AccountModel.h"
 #include "model/CurrencyModel.h"
 #include "model/CurrencyHistoryModel.h"
 #include "model/StockHistoryModel.h"
-#include "uicontrols/navigatortypes.h"
 
-#include <algorithm>
+#include "panel/StockPanel.h"
+#include "summarystocks.h"
+#include "budget.h"
+#include "uicontrols/navigatortypes.h"
 
 mmReportSummaryStocks::mmReportSummaryStocks()
     : ReportBase(_n("Summary of Stocks"))

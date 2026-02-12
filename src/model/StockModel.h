@@ -17,11 +17,11 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_STOCK_H
-#define MODEL_STOCK_H
+#pragma once
 
-#include "_Model.h"
+#include "defs.h"
 #include "db/DB_Table_Stock_V1.h"
+#include "_Model.h"
 #include "AccountModel.h"
 
 class StockModel : public Model<DB_Table_STOCK_V1>
@@ -102,4 +102,3 @@ public:
     static const wxString refTypeName;
 };
 
-#endif //

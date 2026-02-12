@@ -18,8 +18,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #pragma once
 
-#include "model/_all.h"
 #include "util/DateRange2.h"
+#include "model/_all.h"
 
 class mmFilterTransactions
 {

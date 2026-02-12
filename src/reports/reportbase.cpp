@@ -19,13 +19,14 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "reportbase.h"
 #include "constants.h"
 #include "mmex.h"
-#include "mmSimpleDialogs.h"
-#include "mmDateRange.h"
-#include "model/AccountModel.h"
 #include "util/util.h"
+#include "mmDateRange.h"
+
+#include "model/AccountModel.h"
+#include "mmSimpleDialogs.h"
+#include "reportbase.h"
 
 ReportBase::ReportBase(const wxString& title)
     : m_title(title)

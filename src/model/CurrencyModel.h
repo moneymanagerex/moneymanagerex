@@ -17,14 +17,15 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_CURRENCY_H
-#define MODEL_CURRENCY_H
+#pragma once
 
+#include <map>
+
+#include "defs.h"
 #include "util/choices.h"
 #include "db/DB_Table_Currencyformats_V1.h"
 #include "_Model.h"
 #include "InfotableModel.h" // detect base currency setting BASECURRENCYID
-#include <map>
 
 class CurrencyModel : public Model<DB_Table_CURRENCYFORMATS_V1>
 {
@@ -127,4 +128,3 @@ inline CurrencyModel::TYPE_ID CurrencyModel::type_id(const Data& r)
     return type_id(&r);
 }
 
-#endif

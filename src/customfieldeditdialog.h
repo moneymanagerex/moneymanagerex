@@ -16,12 +16,13 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_CUSTOMFIELDEDITDIALOG_H_
-#define MM_EX_CUSTOMFIELDEDITDIALOG_H_
+#pragma once
 
 #include "defs.h"
 #include <wx/dialog.h>
+
 #include "model/FieldModel.h"
+
 class wxChoice;
 class wxCheckBox;
 class wxSpinCtrl;
@@ -71,4 +72,3 @@ private:
         IDC_RATE,
     };
 };
-#endif // MM_EX_CUSTOMFIELDEDITDIALOG_H_

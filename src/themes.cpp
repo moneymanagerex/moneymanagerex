@@ -16,14 +16,15 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defs.h"
 #include <memory>
 #include <wx/mstream.h>
 #include <wx/fs_mem.h>
 #include <wx/zipstrm.h>
 
 #include "constants.h"
-#include "util/util.h"
 #include "paths.h"
+#include "util/util.h"
 
 #include "model/PreferencesModel.h"
 #include "model/SettingModel.h"

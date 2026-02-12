@@ -16,17 +16,19 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_CHECKING_H
-#define MODEL_CHECKING_H
+#pragma once
 
+#include "defs.h"
 #include "util/choices.h"
 #include "util/DateDay.h"
+
 #include "db/DB_Table_Checkingaccount_V1.h"
 #include "_Model.h"
 #include "TransactionSplitModel.h"
 #include "FieldModel.h"
 #include "TagLinkModel.h"
 // cannot include "util/util.h"
+
 const wxString mmGetTimeForDisplay(const wxString& datetime_iso);
 
 class TransactionModel : public Model<DB_Table_CHECKINGACCOUNT_V1>
@@ -348,4 +350,3 @@ inline bool TransactionModel::Full_Data::has_attachment() const
     return !ATTACHMENT_DESCRIPTION.empty();
 }
 
-#endif // 

@@ -18,6 +18,7 @@
 
 #pragma once
 
+#include "defs.h"
 #include "util/choices.h"
 #include "_Model.h"
 #include "db/DB_Table_Customfield_V1.h"

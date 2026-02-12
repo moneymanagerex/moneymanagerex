@@ -17,9 +17,9 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_ASSET_H
-#define MODEL_ASSET_H
+#pragma once
 
+#include "defs.h"
 #include "util/choices.h"
 #include "db/DB_Table_Assets_V1.h"
 #include "_Model.h"
@@ -207,4 +207,3 @@ inline AssetModel::CHANGEMODE_ID AssetModel::changemode_id(const Data& asset)
     return changemode_id(&asset);
 }
 
-#endif

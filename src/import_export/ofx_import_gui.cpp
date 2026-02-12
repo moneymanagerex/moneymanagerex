@@ -18,18 +18,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "ofx_import_gui.h"
-#include "payeematchandmerge.h"
+#include "defs.h"
 #include <wx/xml/xml.h>
 #include <wx/sstream.h>
 #include <wx/grid.h>
-#include "model/AccountModel.h"
-#include "model/CategoryModel.h"
-#include "model/TransactionModel.h"
-#include "model/PayeeModel.h"
-#include <rapidjson/stringbuffer.h>
-#include <rapidjson/writer.h>
-#include <climits>
 #include <wx/event.h>
 #include <wx/file.h>
 #include <wx/filedlg.h>
@@ -38,6 +30,17 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/regex.h>
 #include <wx/settings.h>
 #include <wx/timectrl.h>
+#include <rapidjson/stringbuffer.h>
+#include <rapidjson/writer.h>
+#include <climits>
+
+#include "model/AccountModel.h"
+#include "model/CategoryModel.h"
+#include "model/TransactionModel.h"
+#include "model/PayeeModel.h"
+
+#include "ofx_import_gui.h"
+#include "payeematchandmerge.h"
 
 wxBEGIN_EVENT_TABLE(mmOFXImportDialog, wxDialog)
 EVT_BUTTON(wxID_OPEN, mmOFXImportDialog::OnBrowse)

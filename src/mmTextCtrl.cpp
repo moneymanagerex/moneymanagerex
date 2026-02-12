@@ -16,11 +16,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "mmTextCtrl.h"
-#include "mmSimpleDialogs.h"
+#include "defs.h"
 #include <wx/log.h>
 #include <wx/richtooltip.h>
 #include <LuaGlue/LuaGlue.h>
+
+#include "mmTextCtrl.h"
+#include "mmSimpleDialogs.h"
 
 wxBEGIN_EVENT_TABLE(mmTextCtrl, wxTextCtrl)
 EVT_TEXT_ENTER(wxID_ANY, mmTextCtrl::OnTextEntered)

@@ -22,11 +22,13 @@
 
 #pragma once
 
+#include "defs.h"
 #include <unordered_set>
-#include "util/util.h"
 #include <wx/event.h>
 #include <wx/webview.h>
 #include <wx/webviewfshandler.h>
+
+#include "util/util.h"
 
 // short names for wx macros
 #define _WA wxLIST_AUTOSIZE

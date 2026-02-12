@@ -19,8 +19,10 @@
  ********************************************************/
 
 #pragma once
-#include "_Model.h"
+
+#include "defs.h"
 #include "db/DB_Table_Translink_V1.h"
+#include "_Model.h"
 #include "TransactionModel.h"
 #include "StockModel.h"
 #include "AssetModel.h"

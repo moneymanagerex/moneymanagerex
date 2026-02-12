@@ -16,9 +16,9 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MODEL_ATTACHMENT_H
-#define MODEL_ATTACHMENT_H
+#pragma once
 
+#include "defs.h"
 #include "util/choices.h"
 #include "db/DB_Table_Attachment_V1.h"
 #include "_Model.h"
@@ -64,4 +64,3 @@ public:
     wxArrayString allDescriptions();
 };
 
-#endif

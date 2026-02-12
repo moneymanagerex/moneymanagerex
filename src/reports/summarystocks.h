@@ -16,11 +16,10 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef _MM_EX_REPORTSUMMARYSTOCKS_H_
-#define _MM_EX_REPORTSUMMARYSTOCKS_H_
+#pragma once
 
-#include "reportbase.h"
 #include <vector>
+#include "reportbase.h"
 
 class mmHTMLBuilder;
 
@@ -51,4 +50,3 @@ public:
     wxString getHTMLText();
 };
 
-#endif // _MM_EX_REPORTSUMMARYSTOCKS_H_

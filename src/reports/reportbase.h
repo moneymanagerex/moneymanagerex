@@ -22,10 +22,10 @@
 
 #include "mmDateRange.h"
 #include "util/DateRange2.h"
-#include "filtertrans.h"
 
 #include "model/PreferencesModel.h"
 #include "model/ReportModel.h"
+#include "filtertrans.h"
 
 class wxString;
 class wxArrayString;

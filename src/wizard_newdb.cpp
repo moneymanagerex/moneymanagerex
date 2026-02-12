@@ -18,9 +18,10 @@
  ********************************************************/
 
 #include "constants.h"
+
+#include "model/AccountModel.h"
 #include "wizard_newdb.h"
 #include "maincurrencydialog.h"
-#include "model/AccountModel.h"
 #include "../resources/addacctwiz.xpm"
 
 BEGIN_EVENT_TABLE(mmNewDatabaseWizard, wxWizard)

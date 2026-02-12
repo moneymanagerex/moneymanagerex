@@ -16,9 +16,9 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_BUDGETENTRYDIALOG_H_
-#define MM_EX_BUDGETENTRYDIALOG_H_
+#pragma once
 
+#include "defs.h"
 #include "mmTextCtrl.h"
 #include "model/BudgetModel.h"
 
@@ -58,8 +58,5 @@ private:
 
     enum { DEF_TYPE_EXPENSE, DEF_TYPE_INCOME };
     enum { DEF_FREQ_NONE, DEF_FREQ_WEEKLY, DEF_FREQ_BIWEEKLY, DEF_FREQ_MONTHLY, DEF_FREQ_BIMONTHLY, DEF_FREQ_QUARTERLY, DEF_FREQ_HALFYEARLY, DEF_FREQ_YEARLY, DEF_FREQ_DAILY };
-
 };
-
-#endif
 

@@ -18,9 +18,10 @@
 
 #pragma once
 
-#include "util/DateRange2.h"
+#include "defs.h"
 #include <wx/dataview.h>
 
+#include "util/DateRange2.h"
 
 class DateRangeEditDialog: public wxDialog
 {

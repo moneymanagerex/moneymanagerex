@@ -21,14 +21,16 @@
  /*************************************************************************
   Renamed after extensive modifications to original file reportbudgetsetup.cpp
  **************************************************************************/
-#include "budgetcategorysummary.h"
-#include "htmlbuilder.h"
+
 #include "mmex.h"
-#include "mmframe.h"
+#include "mmDateRange.h"
+#include "htmlbuilder.h"
+
 #include "model/BudgetPeriodModel.h"
 #include "model/BudgetModel.h"
 #include "model/CategoryModel.h"
-#include "mmDateRange.h"
+#include "mmframe.h"
+#include "budgetcategorysummary.h"
 
 mmReportBudgetCategorySummary::mmReportBudgetCategorySummary()
 {

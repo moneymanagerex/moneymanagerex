@@ -17,21 +17,22 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "AssetDialog.h"
-#include "AttachmentDialog.h"
+#include "defs.h"
+#include <wx/valnum.h>
+
 #include "constants.h"
-#include "images_list.h"
-#include "mmSimpleDialogs.h"
-#include "mmTextCtrl.h"
 #include "paths.h"
 #include "util/util.h"
-#include "validators.h"
 
 #include "usertransactionpanel.h"
+#include "AssetDialog.h"
 #include "AccountDialog.h"
+#include "AttachmentDialog.h"
+#include "mmSimpleDialogs.h"
+#include "mmTextCtrl.h"
+#include "validators.h"
+#include "images_list.h"
 #include "uicontrols/navigatortypes.h"
-
-#include <wx/valnum.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(AssetDialog, wxDialog);
 
