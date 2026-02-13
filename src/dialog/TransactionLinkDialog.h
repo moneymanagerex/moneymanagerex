@@ -43,7 +43,7 @@ public:
         , const wxPoint &pos = wxDefaultPosition
         , const wxSize &size = wxDefaultSize
         , long style = wxTAB_TRAVERSAL
-        , const wxString &name = _t("TransactionLinkDialog"));
+        , const wxString &name = _t("Transaction Link Dialog"));
 
     ~TransactionLinkDialog();
 
@@ -79,7 +79,7 @@ private:
     , const wxPoint &pos = wxDefaultPosition
     , const wxSize &size = wxDefaultSize
     , long style = wxTAB_TRAVERSAL
-    , const wxString &name = _t("TransactionLinkDialog"));
+    , const wxString &name = _t("Transaction Link Dialog"));
 
     void DataToControls();
     void BindEventsAndTrigger();
