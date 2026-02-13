@@ -23,7 +23,7 @@
 
 #include "model/ScheduledModel.h"
 #include "_PanelBase.h"
-#include "filtertransdialog.h"
+#include "dialog/TransactionFilterDialog.h"
 
 class wxListEvent;
 class ScheduledPanel;
@@ -166,7 +166,7 @@ private:
     wxString tips();
 
 private:
-    wxSharedPtr<mmFilterTransactionsDialog> transFilterDlg_;
+    wxSharedPtr<TransactionFilterDialog> transFilterDlg_;
     ScheduledList* m_lc = nullptr;
     wxStaticText* m_infoText = nullptr;
     wxStaticText* m_infoTextMini = nullptr;

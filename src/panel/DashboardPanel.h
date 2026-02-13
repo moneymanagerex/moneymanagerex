@@ -18,13 +18,13 @@
 
 #pragma once
 
-#include "constants.h"
+#include "base/constants.h"
 #include "model/AccountModel.h"
 #include "_PanelBase.h"
 
 class mmGUIFrame;
 class mmHTMLBuilder;
-class DateRange;
+class mmDateRange;
 
 class DashboardPanel : public PanelBase
 {

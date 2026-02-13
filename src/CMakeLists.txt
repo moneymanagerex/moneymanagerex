@@ -61,104 +61,52 @@ elseif(WIN32)
 endif()
 
 add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
-    appstartdialog.cpp
-    appstartdialog.h
-    budgetentrydialog.cpp
-    budgetentrydialog.h
-    budgetyeardialog.cpp
-    budgetyeardialog.h
-    budgetyearentrydialog.cpp
-    budgetyearentrydialog.h
     build.h
-    constants.cpp
-    constants.h
-    customfieldeditdialog.cpp
-    customfieldeditdialog.h
-    customfieldlistdialog.cpp
-    customfieldlistdialog.h
-    dbcheck.cpp
-    dbcheck.h
-    dbupgrade.cpp
-    dbupgrade.h
-    dbwrapper.cpp
-    dbwrapper.h
-    defs.h
-    filtertrans.cpp
-    filtertrans.h
-    filtertransdialog.cpp
-    filtertransdialog.h
-    general_report_manager.cpp
-    general_report_manager.h
-    images_list.cpp
-    images_list.h
-    journal.cpp
-    journal.h
-    maincurrencydialog.cpp
-    maincurrencydialog.h
-    minimal_editor.cpp
-    minimal_editor.h
-    mmHook.h
-    mmSimpleDialogs.cpp
-    mmSimpleDialogs.h
-    mmTextCtrl.cpp
-    mmTextCtrl.h
-    mmTips.h
-    mmTreeItemData.cpp
-    mmTreeItemData.h
     mmcombobox.h
-    mmcustomdata.cpp
-    mmcustomdata.h
     mmex.cpp
     mmex.h
     mmframe.cpp
     mmframe.h
     mmframereport.cpp
-    paths.cpp
-    paths.h
-    platfdep.h
-    recentfiles.cpp
-    recentfiles.h
-    relocatecategorydialog.cpp
-    relocatecategorydialog.h
-    relocatepayeedialog.cpp
-    relocatepayeedialog.h
-    relocatetagdialog.cpp
-    relocatetagdialog.h
     resource.h
-    sharetransactiondialog.cpp
-    sharetransactiondialog.h
-    themes.cpp
-    themes.h
-    transactionsupdatedialog.cpp
-    transactionsupdatedialog.h
-    usertransactionpanel.cpp
-    usertransactionpanel.h
-    validators.h
-    webapp.cpp
-    webapp.h
-    webappdialog.cpp
-    webappdialog.h
-    wizard_newaccount.cpp
-    wizard_newaccount.h
-    wizard_newdb.cpp
-    wizard_newdb.h
-    wizard_update.cpp
-    wizard_update.h
 
-    util/choices.cpp
-    util/choices.h
-    util/DateDay.cpp
-    util/DateDay.h
-    util/DateRange.cpp
-    util/DateRange.h
-    util/DateRange2.cpp
-    util/DateRange2.h
-    util/primitive.cpp
-    util/primitive.h
-    util/singleton.h
-    util/util.cpp
-    util/util.h
+    base/constants.cpp
+    base/constants.h
+    base/defs.h
+    base/images_list.cpp
+    base/images_list.h
+    base/paths.cpp
+    base/paths.h
+    base/platfdep.h
 
+    util/_choices.cpp
+    util/_choices.h
+    util/_primitive.cpp
+    util/_primitive.h
+    util/_simple.cpp
+    util/_simple.h
+    util/_util.cpp
+    util/_util.h
+    util/mmDateDay.cpp
+    util/mmDateDay.h
+    util/mmDateRange.cpp
+    util/mmDateRange.h
+    util/mmDateRange2.cpp
+    util/mmDateRange2.h
+    util/mmFileHistory.cpp
+    util/mmFileHistory.h
+    util/mmMiniEditor.cpp
+    util/mmMiniEditor.h
+    util/mmSQLite3Hook.h
+    util/mmSingleton.h
+    util/mmTextCtrl.cpp
+    util/mmTextCtrl.h
+    util/mmTips.h
+    util/mmTreeItemData.cpp
+    util/mmTreeItemData.h
+    util/mmCalcValidator.h
+
+    db/DB_Table.h
     db/DB_Table_Accountlist_V1.h
     db/DB_Table_Assets_V1.h
     db/DB_Table_Attachment_V1.h
@@ -170,21 +118,26 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     db/DB_Table_Checkingaccount_V1.h
     db/DB_Table_Currencyformats_V1.h
     db/DB_Table_Currencyhistory_V1.h
-    db/DB_Table_Customfielddata_V1.h
     db/DB_Table_Customfield_V1.h
-    db/DB_Table.h
+    db/DB_Table_Customfielddata_V1.h
     db/DB_Table_Infotable_V1.h
     db/DB_Table_Payee_V1.h
     db/DB_Table_Report_V1.h
     db/DB_Table_Setting_V1.h
     db/DB_Table_Shareinfo_V1.h
     db/DB_Table_Splittransactions_V1.h
-    db/DB_Table_Stockhistory_V1.h
     db/DB_Table_Stock_V1.h
+    db/DB_Table_Stockhistory_V1.h
     db/DB_Table_Tag_V1.h
     db/DB_Table_Taglink_V1.h
     db/DB_Table_Translink_V1.h
     db/DB_Table_Usage_V1.h
+    db/dbcheck.cpp
+    db/dbcheck.h
+    db/dbupgrade.cpp
+    db/dbupgrade.h
+    db/dbwrapper.cpp
+    db/dbwrapper.h
 
     model/AccountModel.cpp
     model/AccountModel.h
@@ -208,6 +161,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     model/FieldValueModel.h
     model/InfotableModel.cpp
     model/InfotableModel.h
+    model/Journal.cpp
+    model/Journal.h
     model/PayeeModel.cpp
     model/PayeeModel.h
     model/PreferencesModel.cpp
@@ -228,6 +183,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     model/TagLinkModel.h
     model/TagModel.cpp
     model/TagModel.h
+    model/TransactionFilter.cpp
+    model/TransactionFilter.h
     model/TransactionLinkModel.cpp
     model/TransactionLinkModel.h
     model/TransactionModel.cpp
@@ -267,6 +224,25 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     panel/_PanelBase.cpp
     panel/_PanelBase.h
 
+    manager/CategoryManager.cpp
+    manager/CategoryManager.h
+    manager/CurrencyManager.cpp
+    manager/CurrencyManager.h
+    manager/DateRangeManager.cpp
+    manager/DateRangeManager.h
+    manager/FieldManager.cpp
+    manager/FieldManager.h
+    manager/GeneralReportManager.cpp
+    manager/GeneralReportManager.h
+    manager/PayeeManager.cpp
+    manager/PayeeManager.h
+    manager/PreferencesManager.cpp
+    manager/PreferencesManager.h
+    manager/TagManager.cpp
+    manager/TagManager.h
+    manager/ThemeManager.cpp
+    manager/ThemeManager.h
+
     dialog/AboutDialog.cpp
     dialog/AboutDialog.h
     dialog/AccountDialog.cpp
@@ -275,28 +251,44 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     dialog/AssetDialog.h
     dialog/AttachmentDialog.cpp
     dialog/AttachmentDialog.h
-    dialog/CategoryDialog.cpp
-    dialog/CategoryDialog.h
-    dialog/CurrencyDialog.cpp
-    dialog/CurrencyDialog.h
+    dialog/BudgetEntryDialog.cpp
+    dialog/BudgetEntryDialog.h
+    dialog/BudgetYearDialog.cpp
+    dialog/BudgetYearDialog.h
+    dialog/BudgetYearEntryDialog.cpp
+    dialog/BudgetYearEntryDialog.h
+    dialog/CurrencyChoiceDialog.cpp
+    dialog/CurrencyChoiceDialog.h
     dialog/DateRangeDialog.cpp
     dialog/DateRangeDialog.h
-    dialog/DateRangeEditDialog.cpp
-    dialog/DateRangeEditDialog.h
     dialog/DiagnosticsDialog.cpp
     dialog/DiagnosticsDialog.h
-    dialog/PayeeDialog.cpp
-    dialog/PayeeDialog.h
-    dialog/PreferencesDialog.cpp
-    dialog/PreferencesDialog.h
+    dialog/FieldDialog.cpp
+    dialog/FieldDialog.h
+    dialog/FieldValueDialog.cpp
+    dialog/FieldValueDialog.h
+    dialog/MergeCategoryDialog.cpp
+    dialog/MergeCategoryDialog.h
+    dialog/MergePayeeDialog.cpp
+    dialog/MergePayeeDialog.h
+    dialog/MergeTagDialog.cpp
+    dialog/MergeTagDialog.h
+    dialog/TransactionFilterDialog.cpp
+    dialog/TransactionFilterDialog.h
+    dialog/TransactionLinkDialog.cpp
+    dialog/TransactionLinkDialog.h
+    dialog/TransactionShareDialog.cpp
+    dialog/TransactionShareDialog.h
+    dialog/TransactionUpdateDialog.cpp
+    dialog/TransactionUpdateDialog.h
     dialog/ScheduledDialog.cpp
     dialog/ScheduledDialog.h
     dialog/SplitDialog.cpp
     dialog/SplitDialog.h
+    dialog/StartupDialog.cpp
+    dialog/StartupDialog.h
     dialog/StockDialog.cpp
     dialog/StockDialog.h
-    dialog/TagDialog.cpp
-    dialog/TagDialog.h
     dialog/TransactionDialog.cpp
     dialog/TransactionDialog.h
 
@@ -316,23 +308,6 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     preferences/ViewPreferences.h
     preferences/_PreferencesBase.cpp
     preferences/_PreferencesBase.h
-
-    import_export/export.cpp
-    import_export/export.h
-    import_export/ofx_import_gui.cpp
-    import_export/ofx_import_gui.h
-    import_export/parsers.cpp
-    import_export/parsers.h
-    import_export/payeematchandmerge.cpp
-    import_export/payeematchandmerge.h
-    import_export/qif_export.cpp
-    import_export/qif_export.h
-    import_export/qif_import.cpp
-    import_export/qif_import_gui.cpp
-    import_export/qif_import_gui.h
-    import_export/qif_import.h
-    import_export/univcsvdialog.cpp
-    import_export/univcsvdialog.h
 
     report/BalanceReport.cpp
     report/BalanceReport.h
@@ -365,9 +340,6 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     report/htmlbuilder.cpp
     report/htmlbuilder.h
 
-    generic/generictreelistdialog.cpp
-    generic/generictreelistdialog.h
-
     uicontrols/reconciledialog.cpp
     uicontrols/reconciledialog.h
     uicontrols/navigatordialog.cpp
@@ -381,8 +353,39 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     uicontrols/toolbartypes.cpp
     uicontrols/toolbartypes.h
 
+    import_export/export.cpp
+    import_export/export.h
+    import_export/ofx_import_gui.cpp
+    import_export/ofx_import_gui.h
+    import_export/parsers.cpp
+    import_export/parsers.h
+    import_export/payeematchandmerge.cpp
+    import_export/payeematchandmerge.h
+    import_export/qif_export.cpp
+    import_export/qif_export.h
+    import_export/qif_import.cpp
+    import_export/qif_import.h
+    import_export/qif_import_gui.cpp
+    import_export/qif_import_gui.h
+    import_export/univcsvdialog.cpp
+    import_export/univcsvdialog.h
+    import_export/webapp.cpp
+    import_export/webapp.h
+    import_export/webappdialog.cpp
+    import_export/webappdialog.h
+
+    generic/generictreelistdialog.cpp
+    generic/generictreelistdialog.h
+
+    wizard/wizard_newaccount.cpp
+    wizard/wizard_newaccount.h
+    wizard/wizard_newdb.cpp
+    wizard/wizard_newdb.h
+    wizard/wizard_update.cpp
+    wizard/wizard_update.h
+
     "${CMAKE_CURRENT_BINARY_DIR}/versions.h"
-    "platfdep_${MMEX_PLATFDEP}"
+    "base/platfdep_${MMEX_PLATFDEP}"
 
     "${MACOSX_APP_ICON_FILE}"
     "${MMEX_RC}")

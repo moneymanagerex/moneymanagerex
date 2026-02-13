@@ -19,11 +19,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/dialog.h>
 
+#include "util/_simple.h"
 #include "model/TransactionModel.h"
-#include "mmSimpleDialogs.h"
 
 class mmDatePickerCtrl;
 class wxDataViewListCtrl;

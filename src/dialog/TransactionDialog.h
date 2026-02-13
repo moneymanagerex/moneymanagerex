@@ -22,20 +22,20 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
+#include "util/_simple.h"
 
 #include "model/TransactionModel.h"
 #include "model/PayeeModel.h"
 #include "model/FieldValueModel.h"
 #include "model/TransactionSplitModel.h"
-#include "journal.h"
+#include "model/Journal.h"
 
-#include "mmcustomdata.h"
-#include "mmSimpleDialogs.h"
+#include "FieldValueDialog.h"
 
 class mmTextCtrl;
 class wxString;
-class mmCustomData;
+class FieldValueDialog;
 
 class TransactionDialog : public wxDialog
 {
@@ -69,7 +69,7 @@ public:
     int64 GetTransactionID() { return m_journal_data.TRANSID; }
 
 private:
-    wxSharedPtr<mmCustomData> m_custom_fields;
+    wxSharedPtr<FieldValueDialog> m_custom_fields;
     void CreateControls();
     void dataToControls();
     bool ValidateData();

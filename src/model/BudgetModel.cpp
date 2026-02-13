@@ -17,7 +17,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/intl.h>
 
 #include "db/DB_Table_Budgettable_V1.h"
@@ -97,7 +97,7 @@ void BudgetModel::getBudgetEntry(int64 budgetYearID
 
 void BudgetModel::getBudgetStats(
     std::map<int64, std::map<int, double> > &budgetStats
-    , DateRange* date_range
+    , mmDateRange* date_range
     , bool groupByMonth)
 {
     //Initialization

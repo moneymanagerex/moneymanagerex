@@ -20,13 +20,13 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/dataview.h>
 #include <wx/vscroll.h>
 
+#include "util/_simple.h"
+#include "util/mmTextCtrl.h"
 #include "model/TransactionModel.h"
-#include "mmSimpleDialogs.h"
-#include "mmTextCtrl.h"
 
 class wxListCtrl;
 class wxStaticText;

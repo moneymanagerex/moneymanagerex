@@ -22,15 +22,15 @@
 #include <ios>
 #include <float.h>
 
-#include "constants.h"
-#include "util/util.h"
+#include "base/constants.h"
+#include "base/images_list.h"
+#include "util/_util.h"
 
 #include "model/CurrencyModel.h"
 #include "model/InfotableModel.h"
 #include "model/PreferencesModel.h"
 
 #include "htmlbuilder.h"
-#include "images_list.h"
 
 namespace tags
 {
@@ -236,15 +236,15 @@ void mmHTMLBuilder::displayDateHeading(const wxDateTime& startDate, const wxDate
     displayDateHeading(header);
 }
 
-void mmHTMLBuilder::displayDateHeading(const DateRange* date_range)
+void mmHTMLBuilder::displayDateHeading(const mmDateRange* date_range)
 {
     displayDateHeading(date_range->start_date(), date_range->end_date(), date_range->is_with_date());
 }
 
-void mmHTMLBuilder::displayDateHeading(const DateRange2& date_range)
+void mmHTMLBuilder::displayDateHeading(const mmDateRange2& date_range)
 {
-    DateDayN range_start = date_range.rangeStart();
-    DateDayN range_end = date_range.rangeEnd();
+    mmDateDayN range_start = date_range.rangeStart();
+    mmDateDayN range_end = date_range.rangeEnd();
     wxString header;
     if (range_start.has_value() || range_end.has_value()) {
         header << wxString::Format(_t("From %1$s till %2$s"),

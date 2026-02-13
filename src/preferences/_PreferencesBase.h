@@ -19,12 +19,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #pragma once
 
-#include "defs.h"
-#include "constants.h"
+#include "base/defs.h"
+#include "base/constants.h"
+#include "util/_simple.h"
 
 #include "model/InfotableModel.h"
 #include "model/SettingModel.h"
-#include "mmSimpleDialogs.h"
 
 class PreferencesBase : public wxPanel
 {

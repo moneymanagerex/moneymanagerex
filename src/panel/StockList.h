@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/tglbtn.h>
 
 #include "model/StockModel.h"

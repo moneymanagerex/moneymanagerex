@@ -17,12 +17,14 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/mimetype.h>
 
-#include "constants.h"
-#include "paths.h"
-#include "util/util.h"
+#include "base/constants.h"
+#include "base/paths.h"
+#include "base/images_list.h"
+#include "util/_util.h"
+#include "util/_simple.h"
 
 #include "model/InfotableModel.h"
 #include "model/AssetModel.h"
@@ -31,8 +33,6 @@
 #include "model/AttachmentModel.h"
 
 #include "AttachmentDialog.h"
-#include "mmSimpleDialogs.h"
-#include "images_list.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(AttachmentDialog, wxDialog);
 

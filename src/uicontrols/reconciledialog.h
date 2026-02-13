@@ -18,10 +18,10 @@
 
 #pragma once
 
+#include "util/_simple.h"
 #include "model/AccountModel.h"
 #include "model/TransactionModel.h"
 #include "panel/JournalPanel.h"
-#include "mmSimpleDialogs.h"
 
 class mmReconcileDialog: public wxDialog
 {

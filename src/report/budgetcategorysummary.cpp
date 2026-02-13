@@ -22,9 +22,9 @@
   Renamed after extensive modifications to original file reportbudgetsetup.cpp
  **************************************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include "mmex.h"
-#include "util/DateRange.h"
+#include "util/mmDateRange.h"
 #include "htmlbuilder.h"
 
 #include "model/BudgetPeriodModel.h"

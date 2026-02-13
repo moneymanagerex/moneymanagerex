@@ -18,9 +18,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include "mmex.h"
-#include "util/util.h"
+#include "util/_util.h"
 #include "htmlbuilder.h"
 
 #include "model/AccountModel.h"
@@ -75,9 +75,9 @@ void FlowReport::getTransactions()
     m_account_id.clear();
     m_forecastVector.clear();
 
-    wxDateTime endOfToday = DateRange::getDayEnd(m_today);
+    wxDateTime endOfToday = mmDateRange::getDayEnd(m_today);
     wxString todayString = endOfToday.FormatISOCombined();
-    wxDateTime endDate = DateRange::getDayEnd(m_today.Add(wxDateSpan::Months(getForwardMonths())));
+    wxDateTime endDate = mmDateRange::getDayEnd(m_today.Add(wxDateSpan::Months(getForwardMonths())));
 
     // Get initial Balance as of today
     for (const auto& account : AccountModel::instance().find(

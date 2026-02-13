@@ -20,8 +20,8 @@
 
 #pragma once
 
-#include "defs.h"
-#include "util/util.h"
+#include "base/defs.h"
+#include "util/_util.h"
 
 #include "_Model.h"
 #include "db/DB_Table_Infotable_V1.h"

@@ -17,10 +17,10 @@
  ********************************************************/
 
 #include "ReportModel.h"
-#include "constants.h"
-#include "paths.h"
+#include "base/constants.h"
+#include "base/paths.h"
 #include "PreferencesModel.h"
-#include "platfdep.h"
+#include "base/platfdep.h"
 #include "dialog/AttachmentDialog.h"
 #include "panel/ReportPanel.h"
 #include "report/htmlbuilder.h"

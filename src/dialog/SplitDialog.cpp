@@ -18,17 +18,17 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "constants.h"
-#include "paths.h"
-#include "util/util.h"
+#include "base/constants.h"
+#include "base/paths.h"
+#include "base/images_list.h"
+#include "util/_util.h"
+#include "util/mmCalcValidator.h"
 
 #include "model/AccountModel.h"
 #include "model/CategoryModel.h"
 
-#include "CategoryDialog.h"
+#include "manager/CategoryManager.h"
 #include "SplitDialog.h"
-#include "images_list.h"
-#include "validators.h"
 
 #include <wx/statline.h>
 
@@ -515,7 +515,7 @@ void SplitDialog::OnComboKey(wxKeyEvent& event)
             auto category = cbc->GetValue();
             if (category.empty())
             {
-                CategoryDialog dlg(this, true, -1);
+                CategoryManager dlg(this, true, -1);
                 dlg.ShowModal();
                 DoWindowsFreezeThaw(this);
                 if (dlg.getRefreshRequested())

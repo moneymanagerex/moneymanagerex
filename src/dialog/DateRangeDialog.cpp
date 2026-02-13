@@ -16,371 +16,255 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "constants.h"
-#include "util/util.h"
-
-#include "model/PreferencesModel.h"
-
-#include "panel/JournalPanel.h"
-#include "panel/ReportPanel.h"
+#include "base/constants.h"
+#include "base/images_list.h"
+#include "util/_util.h"
 
 #include "DateRangeDialog.h"
-#include "DateRangeEditDialog.h"
-#include "images_list.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(DateRangeDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(DateRangeDialog, wxDialog)
-  EVT_BUTTON(wxID_OK,         DateRangeDialog::OnOk)
-  EVT_BUTTON(BTN_UP_TOP,      DateRangeDialog::OnTop)
-  EVT_BUTTON(BTN_UP,          DateRangeDialog::OnUp)
-  EVT_BUTTON(BTN_EDIT,        DateRangeDialog::OnEdit)
-  EVT_BUTTON(BTN_DOWN,        DateRangeDialog::OnDown)
-  EVT_BUTTON(BTN_DOWN_BOTTOM, DateRangeDialog::OnBottom)
-  EVT_BUTTON(BTN_NEW,         DateRangeDialog::OnNew)
-  EVT_BUTTON(BTN_DELETE,      DateRangeDialog::OnDelete)
-  EVT_BUTTON(BTN_DEFAULT,     DateRangeDialog::OnDefault)
-  EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, DateRangeDialog::OnDateRangeSelected)
+  EVT_BUTTON(wxID_OK,      DateRangeDialog::OnOk)
+  EVT_TEXT(TXT_CTRL_RANGE, DateRangeDialog::OnRange)
+  EVT_CHOICE(CTRL_ANY,     DateRangeDialog::OnUpdateRangeFromControls)
 wxEND_EVENT_TABLE()
+
+const wxArrayString sTokenPeriods = { "", "A", "Y", "Q", "M", "W", "T", "S" };
+const char *sCountValues[] = {
+    "-12", "-11", "-10", "-9", "-8", "-7", "-6", "-5", "-4", "-3", "-2", "-1",
+    "",
+    "+1", "+2", "+3", "+4", "+5", "+6", "+7", "+8", "+9", "+10", "+11", "+12"
+};
+const wxArrayString sCount = { 25, sCountValues };
 
 DateRangeDialog::DateRangeDialog()
 {
 }
 
-DateRangeDialog::DateRangeDialog(
-    wxWindow* parent,
-    DateRangeDialog::TYPE_ID type_id
-) :
-    m_type_id(type_id)
+DateRangeDialog::DateRangeDialog(wxWindow* parent, wxString* name_ptr, wxString* range_ptr)
 {
     this->SetFont(parent->GetFont());
-    if (m_type_id == TYPE_ID_CHECKING)
-        JournalPanel::loadDateRanges(&m_date_range_a, &m_date_range_m, true);
-    else if (m_type_id == TYPE_ID_REPORTING)
-        ReportPanel::loadDateRanges(&m_date_range_a, &m_date_range_m, true);
-        
     Create(
         parent, -1,
-        (m_type_id == TYPE_ID_DASHBOARD ? _t("Manage dashboard date ranges")
-            : m_type_id == TYPE_ID_CHECKING ? _t("Manage checking date ranges")
-            : m_type_id == TYPE_ID_REPORTING ? _t("Manage reporting date ranges")
-            : _t("Manage date ranges")
-        ),
-        wxDefaultPosition, wxDefaultSize,
+        name_ptr->IsEmpty() ? _t("New date range") : _t("Edit date range"),
+        wxDefaultPosition, wxSize(550, 250),
         wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX,
         ""
     );
+    m_name_ptr = name_ptr;
+    m_range_ptr = range_ptr;
     CreateControls();
     mmThemeAutoColour(this);
     SetIcon(mmex::getProgramIcon());
-    fillControls();
-    GetSizer()->SetSizeHints(this);
-    SetSize(500,700);
     Centre();
-}
-
-void DateRangeDialog::fillControls()
-{
-    m_dateRangesLb->DeleteAllItems();
-    bool submenumissing = true;
-    for (size_t k = 1; k < m_date_range_a.size(); k++) {
-        if (k == static_cast<size_t>(m_date_range_m)) {
-            insertItemToLb(-1, m_subMenuHeader, "========");
-            submenumissing = false;
-        }
-        insertItemToLb(-1, m_date_range_a[k].getName(), m_date_range_a[k].getLabel());
-    }
-    if (submenumissing) {
-        insertItemToLb(-1, m_subMenuHeader, "========");
-        m_date_range_m = m_dateRangesLb->GetItemCount() - 1;
-    }
-    else {
-        --m_date_range_m;
-    }
 }
 
 void DateRangeDialog::CreateControls()
 {
+    wxArrayString sPeriods;  // create dynamically to ensure proper translation
+    sPeriods.Add("");
+    sPeriods.Add(_("All"));
+    sPeriods.Add(_("Year"));
+    sPeriods.Add(_("Quarter"));
+    sPeriods.Add(_("Month"));
+    sPeriods.Add(_("Week"));
+    sPeriods.Add(_("Today"));
+    sPeriods.Add(_("Statement date"));
+
     wxBoxSizer* mainBoxSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainBoxSizer);
+    m_defBColor = this->GetBackgroundColour();
 
-    wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxHORIZONTAL);
-    mainBoxSizer->Add(mainPanelSizer, g_flagsExpand);
-
-    wxBoxSizer* itemBoxVleft = new wxBoxSizer(wxVERTICAL);
-    mainPanelSizer->Add(itemBoxVleft, g_flagsExpand);
-
-    m_dateRangesLb = new wxDataViewListCtrl(
-        this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-        wxDV_ROW_LINES | wxDV_NO_HEADER
+    wxBoxSizer* textPanelSizer = new wxBoxSizer(wxHORIZONTAL);
+    textPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Name:")), g_flagsH);
+    m_name_edit = new wxTextCtrl(this, TXT_CTRL_NAME, *m_name_ptr);
+    textPanelSizer->AddSpacer(20);
+    textPanelSizer->Add(
+        m_name_edit,
+        wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL)
+            .Border(wxALL, 1).Proportion(1)
     );
-    m_dateRangesLb->AppendTextColumn("",
-        wxDATAVIEW_CELL_INERT, wxCOL_WIDTH_AUTOSIZE, wxALIGN_LEFT
+    mainBoxSizer->Add(textPanelSizer, g_flagsExpand);
+
+    wxBoxSizer* ctrlPanelSizer = new wxBoxSizer(wxHORIZONTAL);
+    ctrlPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Range:")), g_flagsH);
+    m_from_st = new wxStaticText(this, wxID_STATIC, _t("From"));
+    ctrlPanelSizer->Add(m_from_st, g_flagsH);
+    m_count1 = new wxChoice(this, CTRL_ANY, wxDefaultPosition, wxDefaultSize, sCount);
+    ctrlPanelSizer->Add(m_count1, g_flagsH);
+    m_period1 = new wxChoice(this, CTRL_ANY, wxDefaultPosition, wxDefaultSize, sPeriods);
+    ctrlPanelSizer->Add(m_period1, g_flagsH);
+    m_to_st = new wxStaticText(this, wxID_STATIC, _t(" to "));
+    ctrlPanelSizer->Add(m_to_st, g_flagsH);
+    m_count2 = new wxChoice(this, CTRL_ANY, wxDefaultPosition, wxDefaultSize, sCount);
+    ctrlPanelSizer->Add(m_count2, g_flagsH);
+    m_period2 = new wxChoice(this, CTRL_ANY, wxDefaultPosition, wxDefaultSize, sPeriods);
+    ctrlPanelSizer->Add(m_period2, g_flagsH);
+    mainBoxSizer->Add(ctrlPanelSizer, g_flagsV);
+
+    wxBoxSizer* rangePanelSizer = new wxBoxSizer(wxHORIZONTAL);
+    rangePanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Range code:")), g_flagsH);
+    m_range_edit = new wxTextCtrl(this, TXT_CTRL_RANGE, *m_range_ptr);
+    rangePanelSizer->Add(
+        m_range_edit,
+        wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTRE_VERTICAL)
+            .Border(wxALL, 1).Proportion(1)
     );
-    m_dateRangesLb->AppendTextColumn("",
-        wxDATAVIEW_CELL_INERT, wxCOL_WIDTH_AUTOSIZE, wxALIGN_LEFT
-    );
-    itemBoxVleft->Add(m_dateRangesLb, g_flagsExpand);
+    mainBoxSizer->Add(rangePanelSizer, g_flagsExpand);
 
-    wxBoxSizer* itemBoxVright = new wxBoxSizer(wxVERTICAL);
-    mainPanelSizer->Add(itemBoxVright, wxSizerFlags().Left().Border(wxALL, 5));
-    itemBoxVright->AddSpacer(20);
-
-    m_up_top = new wxButton(this, BTN_UP_TOP, _t("&Top"));
-    m_up_top->SetBitmap(mmBitmapBundle(png::UPARROW, mmBitmapButtonSize));
-    m_up_top->Enable(false);
-    itemBoxVright->Add(m_up_top, g_flagsV);
-
-    m_up = new wxBitmapButton(this, BTN_UP, mmBitmapBundle(png::UPARROW, mmBitmapButtonSize));
-    m_up->Enable(false);
-    itemBoxVright->Add(m_up, g_flagsV);
-
-    m_edit = new wxButton(this, BTN_EDIT, _t("&Edit"));
-    m_edit->Enable(false);
-    itemBoxVright->Add(m_edit, g_flagsV);
-
-    m_down = new wxBitmapButton(
-        this, BTN_DOWN, mmBitmapBundle(png::DOWNARROW, mmBitmapButtonSize)
-    );
-    m_down->Enable(false);
-    itemBoxVright->Add(m_down, g_flagsV);
-
-    m_down_bottom = new wxButton(this, BTN_DOWN_BOTTOM, _t("&Bottom"));
-    m_down_bottom->SetBitmap(mmBitmapBundle(png::DOWNARROW, mmBitmapButtonSize));
-    m_down_bottom->Enable(false);
-    itemBoxVright->Add(m_down_bottom, g_flagsV);
-
-    itemBoxVright->AddSpacer(15);
-    itemBoxVright->Add(new wxButton(this, BTN_NEW, _t("&New")), g_flagsV);
-
-    itemBoxVright->AddSpacer(15);
-    m_delete = new wxButton(this, BTN_DELETE, _t("&Delete"));
-    itemBoxVright->Add(m_delete, g_flagsV);
+    m_status = new wxStaticText(this, wxID_STATIC, "");
+    mainBoxSizer->Add(m_status, wxSizerFlags().Align(wxALIGN_CENTER).Border(wxALL, 5));
 
     wxBoxSizer* btnSizer = new wxBoxSizer(wxHORIZONTAL);
+    btnSizer->Add(new wxButton(this, wxID_OK, _("&Save")), 0, wxALL, 5);
+    btnSizer->Add(new wxButton(this, wxID_CANCEL, _("&Cancel")), 0, wxALL, 5);
     mainBoxSizer->Add(btnSizer, g_flagsCenter);
 
-    btnSizer->Add(new wxButton(this, wxID_OK, _t("&Save")), 0, wxALL, 5);
-    btnSizer->Add(new wxButton(this, BTN_DEFAULT, _t("&Restore default ranges")), 0, wxALL, 5);
-    btnSizer->Add(new wxButton(this, wxID_CANCEL, _t("&Cancel")), 0, wxALL, 5);
-
+    updateControlsFromRange(*m_range_ptr);
+    if (!m_range_ptr->IsEmpty()) {
+        checkRange();
+    }
     this->Layout();
 }
 
-void DateRangeDialog::OnTop(wxCommandEvent&)
+void DateRangeDialog::OnRange(wxCommandEvent&)
 {
-    wxVector<wxVariant> data = getItemData(m_selected_row);
-    m_dateRangesLb->DeleteItem(m_selected_row);
-    m_dateRangesLb->UnselectRow(m_dateRangesLb->GetSelectedRow());
-    m_dateRangesLb->PrependItem(data);
-    if (m_selected_row == m_date_range_m) {
-        m_date_range_m = 0;
-    }
-    else if (m_selected_row > m_date_range_m) {
-        ++m_date_range_m;
-    }
-    m_selected_row = 0;
-    updateButtonState();
-    m_hasChanged = true;
+    updateControlsFromRange(m_range_edit->GetValue());
+    checkRange();
 }
 
-void DateRangeDialog::OnUp(wxCommandEvent&)
-{
-    exchangeItemData(m_selected_row, m_selected_row - 1);
-    if (m_selected_row == m_date_range_m) {
-        --m_date_range_m;
+bool DateRangeDialog::checkRange() {
+    bool rangeOk = false;
+    mmDateRange2 date_range = mmDateRange2();
+    if (date_range.parseRange(m_range_edit->GetValue())) {
+        mmDateDayN sN = date_range.rangeStart();
+        mmDateDayN eN = date_range.rangeEnd();
+        if (!sN.has_value() || !eN.has_value() || sN.value() <= eN.value()) {
+            m_status->SetLabelText(_t("Range is ok:") + wxString::Format(" [%s .. %s]",
+                sN.isoDateN(), eN.isoDateN()
+            ));
+            m_status->SetBackgroundColour(m_defBColor);
+            rangeOk = true;
+        }
     }
-    else if (m_selected_row == m_date_range_m + 1) {
-        ++m_date_range_m;
-    }
-    m_selected_row--;
-    updateButtonState();
-}
 
-void DateRangeDialog::OnEdit(wxCommandEvent&)
-{
-    wxString name = m_dateRangesLb->GetTextValue(m_selected_row, 0);
-    wxString range = m_dateRangesLb->GetTextValue(m_selected_row, 1);
-    DateRangeEditDialog dlg(this, &name, &range);
-    if (dlg.ShowModal() == wxID_OK) {
-        m_dateRangesLb->SetTextValue(name, m_selected_row, 0);
-        m_dateRangesLb->SetTextValue(range, m_selected_row, 1);
-        m_hasChanged = true;
+    if (!rangeOk) {
+        m_status->SetLabelText(_t("Invalid date range definition"));
+        m_status->SetBackgroundColour(*wxRED);
     }
-}
-
-void DateRangeDialog::OnDown(wxCommandEvent&)
-{
-    exchangeItemData(m_selected_row, m_selected_row + 1);
-    if (m_selected_row == m_date_range_m) {
-        ++m_date_range_m;
-    }
-    else if (m_selected_row == m_date_range_m - 1) {
-        --m_date_range_m;
-    }
-    m_selected_row++;
-    updateButtonState();
-}
-
-void DateRangeDialog::OnBottom(wxCommandEvent&)
-{
-    wxVector<wxVariant> data = getItemData(m_selected_row);
-    m_dateRangesLb->DeleteItem(m_selected_row);
-    m_dateRangesLb->UnselectRow(m_dateRangesLb->GetSelectedRow());
-    m_dateRangesLb->AppendItem(data);
-    if (m_selected_row == m_date_range_m) {
-        m_date_range_m = m_dateRangesLb->GetItemCount() - 1;
-    }
-    else if (m_selected_row < m_date_range_m) {
-        --m_date_range_m;
-    }
-    m_selected_row = m_dateRangesLb->GetItemCount() - 1;
-    updateButtonState();
-    m_hasChanged = true;
-}
-
-void DateRangeDialog::OnNew(wxCommandEvent&)
-{
-    wxString name, range;
-    DateRangeEditDialog dlg(this, &name, &range);
-    if (dlg.ShowModal() == wxID_OK) {
-        insertItemToLb(m_selected_row > -1 ? m_selected_row : 0, name, range);
-        m_selected_row = m_dateRangesLb->GetItemCount() - 1;
-        updateButtonState();
-        m_hasChanged = true;
-    }
-}
-
-void DateRangeDialog::OnDelete(wxCommandEvent&)
-{
-    if (m_selected_row < 0 || m_selected_row >= m_dateRangesLb->GetItemCount())
-        return;
-    if (wxMessageBox(
-        _t("Do you want to delete the selected date range?"),
-        _t("Delete date range"),
-        wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION
-    ) != wxYES)
-        return;
-
-    m_dateRangesLb->DeleteItem(m_selected_row);
-    m_dateRangesLb->UnselectRow(m_dateRangesLb->GetSelectedRow());
-    if (m_selected_row < m_date_range_m) {
-        --m_date_range_m;
-    }
-    m_selected_row = -1;
-    updateButtonState(false);
-    m_hasChanged = true;
-}
-
-void DateRangeDialog::OnDateRangeSelected(wxDataViewEvent& event)
-{
-    wxDataViewItem item = event.GetItem();
-    m_selected_row = m_dateRangesLb->ItemToRow(item);
-    updateButtonState(false);
-}
-
-void DateRangeDialog::updateButtonState(bool setselected) {
-    bool isvalid = m_selected_row > -1;
-    m_up_top->Enable(m_selected_row > 0);
-    m_up->Enable(m_selected_row > 0);
-    m_edit->Enable(isvalid && m_selected_row != m_date_range_m);
-    m_down->Enable(isvalid && m_selected_row < m_dateRangesLb->GetItemCount() - 1);
-    m_down_bottom->Enable(isvalid && m_selected_row < m_dateRangesLb->GetItemCount() - 1);
-    m_delete->Enable(isvalid && m_selected_row != m_date_range_m);
-    if (setselected) {
-        m_dateRangesLb->SelectRow(m_selected_row);
-    }
+    return rangeOk;
 }
 
 void DateRangeDialog::OnOk(wxCommandEvent&)
 {
-    if (!m_hasChanged) {
-        EndModal(wxID_CANCEL);
-        return;
+    wxString msg = "";
+    bool saveIt = true;
+    if (m_name_edit->GetValue().IsEmpty()) {
+        msg << _t("Name must not be empty") << ("\n");
+        saveIt = false;
+    }
+    if (!checkRange()) {
+        msg << _t("Invalid date range definition");
+        saveIt = false;
     }
 
-    m_date_range_a.clear();
-    DateRange2::Range sdata = DateRange2::Range();
-    sdata.parseLabelName("A", _t("All"));
-    m_date_range_a.push_back(sdata);
-    for (int k = 0; k < m_dateRangesLb->GetItemCount(); k++) {
-        sdata = DateRange2::Range();
-        if (k != m_date_range_m && sdata.parseLabelName(
-            m_dateRangesLb->GetTextValue(k, 1),
-            m_dateRangesLb->GetTextValue(k, 0)
-        )) {
-            m_date_range_a.push_back(sdata);
-        }
-    }
-
-    // Store new settings
-    wxArrayString arr;
-    for (size_t k = 0; k < m_date_range_a.size(); k++) {
-        if (k == static_cast<size_t>(m_date_range_m + 1)) {
-            arr.Add("");
-        }
-        arr.Add(m_date_range_a[k].getLabelName());
-    }
-    if (m_type_id == TYPE_ID_CHECKING)
-        PreferencesModel::instance().setCheckingRange(arr);
-    else if (m_type_id == TYPE_ID_REPORTING)
-        PreferencesModel::instance().setReportingRange(arr);
-
-    ++m_date_range_m;
-
-    EndModal(wxID_OK);
-}
-
-void DateRangeDialog::OnDefault(wxCommandEvent&)
-{
-    if (wxMessageBox(
-        _t("Do you really want to restore the default ranges?\n\nAll customization will be lost!"),
-        _t("Default date ranges"),
-        wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION
-    ) != wxYES)
-        return;
-
-    m_date_range_a.clear();
-    wxArrayString arr;
-    // delete stored settings
-    if (m_type_id == TYPE_ID_CHECKING)
-        PreferencesModel::instance().setCheckingRange(arr);
-    else if (m_type_id == TYPE_ID_REPORTING)
-        PreferencesModel::instance().setReportingRange(arr);
-
-    EndModal(wxID_OK);
-}
-
-// --- Support functions ---
-wxVector<wxVariant> DateRangeDialog::getItemData(int row) {
-    wxVector<wxVariant> data;
-    data.push_back(m_dateRangesLb->GetTextValue(row, 0));
-    data.push_back(m_dateRangesLb->GetTextValue(row, 1));
-    return data;
-}
-
-void DateRangeDialog::exchangeItemData(int row1, int row2) {
-    wxString name = m_dateRangesLb->GetTextValue(row1, 0);
-    wxString range = m_dateRangesLb->GetTextValue(row1, 1);
-    m_dateRangesLb->SetTextValue(m_dateRangesLb->GetTextValue(row2, 0), row1, 0);
-    m_dateRangesLb->SetTextValue(m_dateRangesLb->GetTextValue(row2, 1), row1, 1);
-    m_dateRangesLb->SetTextValue(name, row2, 0);
-    m_dateRangesLb->SetTextValue(range, row2, 1);
-    m_hasChanged = true;
-}
-
-void DateRangeDialog::insertItemToLb(int pos, wxString name, wxString range)
-{
-    wxVector<wxVariant> hdata;
-    hdata.push_back(name);
-    hdata.push_back(range);
-    if (pos == -1 || pos >= m_dateRangesLb->GetItemCount()) {
-        m_dateRangesLb->AppendItem(hdata);
-    }
-    else if (pos == 0) {
-        m_dateRangesLb->PrependItem(hdata);
+    if (saveIt) {
+        *m_name_ptr = m_name_edit->GetValue();
+        *m_range_ptr = m_range_edit->GetValue();
+        EndModal(wxID_OK);
     }
     else {
-        m_dateRangesLb->InsertItem(pos, hdata);
+        wxMessageBox(msg, _t("Definition error"), wxOK | wxICON_ERROR);
     }
+}
+
+void DateRangeDialog::OnUpdateRangeFromControls(wxCommandEvent&)
+{
+    m_count1->Enable(m_period1->GetSelection() > 1);  // Disable for empty and all values
+    m_count2->Enable(m_period2->GetSelection() > 1);
+
+    wxString result = "";
+    result << (m_count1->IsEnabled() ? m_count1->GetStringSelection() + " ": "")
+        << sTokenPeriods[m_period1->GetSelection()];
+    if (m_period2->GetSelection() > 0) {
+        result << " .. "
+            << (m_count2->IsEnabled() ? m_count2->GetStringSelection() + " " : "")
+            << sTokenPeriods[m_period2->GetSelection()];
+    }
+    m_range_edit->ChangeValue(result);
+
+    checkRange();
+}
+
+void DateRangeDialog::updateControlsFromRange(wxString range)
+{
+    bool valid = (range.Find(",") == wxNOT_FOUND);
+    if (valid) {
+        // Reset Ctrls:
+        m_count1->SetSelection(12);
+        m_period1->SetSelection(0);
+        m_count2->SetSelection(12);
+        m_period2->SetSelection(0);
+
+        m_to_st->Show(false);
+        m_count1->Enable(false);
+        m_count2->Enable(false);
+
+        range.Replace("..", " .. ");
+        range.Replace("+", "");
+
+        bool firstselection = true;
+        wxStringTokenizer tokenizer(range, " ");
+        while (tokenizer.HasMoreTokens()) {
+            wxString token = tokenizer.GetNextToken();
+            int idx;
+            if (token.ToInt(&idx)) {
+                if (idx > -13 && idx < 13) {
+                    if (firstselection) {
+                        m_count1->SetSelection(idx + 12);
+                        m_count1->Enable(idx != 0);
+                    }
+                    else {
+                        m_count2->SetSelection(idx + 12);
+                    }
+                }
+                else {
+                    valid = false;
+                }
+            }
+            else {
+                idx = sTokenPeriods.Index(token);
+                if (idx > wxNOT_FOUND) {
+                    if (firstselection) {
+                        m_period1->SetSelection(idx);
+                    }
+                    else {
+                        m_period2->SetSelection(idx);
+                    }
+                }
+                else {
+                    if (token == "..") {
+                        m_to_st->Show(true);
+                        m_count2->Enable(true);
+                        firstselection = false;
+                    }
+                    else {
+                        valid = false;
+                    }
+                }
+            }
+        }
+    }
+    showSelectControls(valid);
+}
+
+void DateRangeDialog::showSelectControls(bool status)
+{
+    m_from_st->Show(status);
+    m_count1->Show(status);
+    m_period1->Show(status);
+    m_to_st->Show(status);
+    m_count2->Show(status);
+    m_period2->Show(status);
 }

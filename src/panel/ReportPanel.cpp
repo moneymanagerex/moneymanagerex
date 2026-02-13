@@ -18,31 +18,31 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <vector>
 #include <string>
 #include <iomanip>
 #include <wx/wrapsizer.h>
 
 #include "mmex.h"
-#include "paths.h"
-#include "util/util.h"
+#include "base/platfdep.h"
+#include "base/paths.h"
+#include "base/images_list.h"
+#include "util/_util.h"
 
 #include "model/_all.h"
 #include "model/PreferencesModel.h"
+#include "model/TransactionFilter.h"
 
 #include "mmframe.h"
 #include "ReportPanel.h"
 
+#include "manager/DateRangeManager.h"
 #include "dialog/AssetDialog.h"
 #include "dialog/AttachmentDialog.h"
 #include "dialog/TransactionDialog.h"
-#include "dialog/DateRangeDialog.h"
-#include "budgetentrydialog.h"
-#include "filtertrans.h"
-#include "images_list.h"
-#include "platfdep.h"
-#include "sharetransactiondialog.h"
+#include "dialog/TransactionShareDialog.h"
+#include "dialog/BudgetEntryDialog.h"
 #include "report/htmlbuilder.h"
 #include "uicontrols/navigatortypes.h"
 
@@ -74,9 +74,9 @@ ReportPanel::ReportPanel(
     const wxSize& size, long style,
     const wxString& name
 ) :
-    w_frame(frame),
     m_rb(rb),
-    m_cleanup(cleanup)
+    m_cleanup(cleanup),
+    w_frame(frame)
 {
     Create(parent, winid, pos, size, style, name);
 }
@@ -118,7 +118,7 @@ bool ReportPanel::Create(
     return true;
 }
 
-bool ReportPanel::saveReportText(bool initial)
+bool ReportPanel::saveReportText()
 {
     if (!m_rb)
         return false;
@@ -194,7 +194,7 @@ void ReportPanel::loadFilterSettings() {
     if (m_filter_id == JournalPanel::FILTER_ID_DATE_RANGE) {
         // recreate m_date_range in order to reload parameters from setting,
         // refresh the date of today, and clear the default start/end dates
-        m_date_range = DateRange2();
+        m_date_range = mmDateRange2();
 
         // load m_date_range from settings.
         // the start/end date pickers are configured later in updateFilter().
@@ -256,7 +256,7 @@ void ReportPanel::saveFilterSettings() {
     else if (m_filter_id == JournalPanel::FILTER_ID_DATE_PICKER) {
         if (w_start_date_picker) {
             InfotableModel::saveFilterString(j_doc, "FILTER_DATE_BEGIN",
-                DateDayN(w_start_date_picker->GetValue()).isoDateN()
+                mmDateDayN(w_start_date_picker->GetValue()).isoDateN()
             );
         }
         else {
@@ -264,7 +264,7 @@ void ReportPanel::saveFilterSettings() {
         }
         if (w_end_date_picker) {
             InfotableModel::saveFilterString(j_doc, "FILTER_DATE_END",
-                DateDayN(w_end_date_picker->GetValue()).isoDateN()
+                mmDateDayN(w_end_date_picker->GetValue()).isoDateN()
             );
         }
         else {
@@ -290,8 +290,8 @@ void ReportPanel::updateFilter()
             mmBitmapButtonSize
         ));
         // TODO: calculate default start/end dates from model
-        m_date_range.setDefStartDateN(DateDay::min());
-        m_date_range.setDefEndDateN(DateDay::max());
+        m_date_range.setDefStartDateN(mmDateDay::min());
+        m_date_range.setDefEndDateN(mmDateDay::max());
         // copy from date range to start/end pickers
         w_start_date_picker->SetValue(
             m_date_range.rangeStart().value().getDateTime()
@@ -307,12 +307,12 @@ void ReportPanel::updateFilter()
             mmBitmapButtonSize
         ));
         // set date range to default ('All') and copy default start/end dates from pickers.
-        m_date_range = DateRange2();
-        DateRange2::Range range = m_date_range.getRange();
+        m_date_range = mmDateRange2();
+        mmDateRange2::Range range = m_date_range.getRange();
         range.setName(_t("Date range"));
         m_date_range.setRange(range);
-        m_date_range.setDefStartDateN(DateDayN(w_start_date_picker->GetValue()));
-        m_date_range.setDefEndDateN(DateDayN(w_end_date_picker->GetValue()));
+        m_date_range.setDefStartDateN(mmDateDayN(w_start_date_picker->GetValue()));
+        m_date_range.setDefEndDateN(mmDateDayN(w_end_date_picker->GetValue()));
     }
 }
 
@@ -638,7 +638,7 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
                 if (TransactionModel::foreignTransaction(*transaction)) {
                     TransactionLinkModel::Data translink = TransactionLinkModel::TranslinkRecord(transId);
                     if (translink.LINKTYPE == StockModel::refTypeName) {
-                        ShareTransactionDialog dlg(w_frame, &translink, transaction);
+                        TransactionShareDialog dlg(w_frame, &translink, transaction);
                         if (dlg.ShowModal() == wxID_OK) {
                             m_rb->getHTMLText();
                             saveReportText();
@@ -721,10 +721,10 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
         CurrencyModel::fromString(parms[1], actual, CurrencyModel::GetBaseCurrency());
 
         //open budgetEntry dialog
-        mmBudgetEntryDialog dlg(w_frame, entry, CurrencyModel::toCurrency(estimated), CurrencyModel::toCurrency(actual));
+        BudgetEntryDialog dlg(w_frame, entry, CurrencyModel::toCurrency(estimated), CurrencyModel::toCurrency(actual));
         if (dlg.ShowModal() == wxID_OK) {
             //refresh report
-            saveReportText(false);
+            saveReportText();
             m_rb ->saveReportSettings();
 
         }
@@ -737,14 +737,14 @@ void ReportPanel::onYearChanged(wxCommandEvent& event)
 {
     const auto i = event.GetString();
     wxLogDebug("-------- %s", i);
-    saveReportText(false);
+    saveReportText();
 }
 
 void ReportPanel::onBudgetChanged(wxCommandEvent& event)
 {
     const auto i = event.GetString();
     wxLogDebug("-------- %s", i);
-    saveReportText(false);
+    saveReportText();
     m_rb->saveReportSettings();
 }
 
@@ -754,7 +754,7 @@ void ReportPanel::onAccountChanged(wxCommandEvent& WXUNUSED(event))
         int sel = w_account_choice->GetSelection();
         if ((sel == 1) || (sel != m_rb->getAccountSelection())) {
             m_rb->setAccounts(sel, NavigatorTypes::instance().getAccountDbTypeFromName(w_account_choice->GetString(sel)));
-            saveReportText(false);
+            saveReportText();
             m_rb->saveReportSettings();
         }
     }
@@ -763,7 +763,7 @@ void ReportPanel::onAccountChanged(wxCommandEvent& WXUNUSED(event))
 void ReportPanel::onSingleDateChanged(wxDateEvent& WXUNUSED(event))
 {
     if (m_rb) {
-        saveReportText(false);
+        saveReportText();
         m_rb->saveReportSettings();
     }
 }
@@ -776,7 +776,7 @@ void ReportPanel::onChartChanged(wxCommandEvent& WXUNUSED(event))
     int sel = w_chart_choice->GetSelection();
     if (sel == 1 || sel != m_rb->getChartSelection()) {
         m_rb->setChartSelection(sel);
-        saveReportText(false);
+        saveReportText();
         m_rb->saveReportSettings();
     }
 }
@@ -789,7 +789,7 @@ void ReportPanel::onForwardMonthsChangedSpin(wxSpinEvent& WXUNUSED(event))
     int sel = w_forward_months->GetValue();
     if (sel != m_rb->getForwardMonths()) {
         m_rb->setForwardMonths(sel);
-        saveReportText(false);
+        saveReportText();
         m_rb->saveReportSettings();
     }
 }
@@ -808,7 +808,7 @@ void ReportPanel::onShiftPressed(wxCommandEvent& event)
 
     m_shift = event.GetInt();
     m_rb->setDateSelection(m_shift);
-    saveReportText(false);
+    saveReportText();
 }
 
 void ReportPanel::onDateRangePopup(wxCommandEvent& event)
@@ -848,7 +848,7 @@ void ReportPanel::onDateRangeSelect(wxCommandEvent& event)
 
     // recreate m_date_range in order to reload parameters from setting,
     // refresh the date of today, and clear the default start/end dates
-    m_date_range = DateRange2();
+    m_date_range = mmDateRange2();
     m_date_range.setRange(m_date_range_a[i]);
 
     m_filter_id = JournalPanel::FILTER_ID_DATE_RANGE;
@@ -858,7 +858,7 @@ void ReportPanel::onDateRangeSelect(wxCommandEvent& event)
 
 void ReportPanel::onDateRangeEdit(wxCommandEvent& WXUNUSED(event))
 {
-    DateRangeDialog dlg(this, DateRangeDialog::TYPE_ID_REPORTING);
+    DateRangeManager dlg(this, DateRangeManager::TYPE_ID_REPORTING);
     if (dlg.ShowModal() != wxID_OK)
         return;
 
@@ -867,7 +867,7 @@ void ReportPanel::onDateRangeEdit(wxCommandEvent& WXUNUSED(event))
     if (m_filter_id == JournalPanel::FILTER_ID_DATE_RANGE) {
         // recreate m_date_range in order to reload parameters from setting,
         // refresh the date of today, and clear the default start/end dates
-        m_date_range = DateRange2();
+        m_date_range = mmDateRange2();
 
         // find and reload the range specification (it may have been changed)
         bool found = false;
@@ -914,13 +914,13 @@ void ReportPanel::onStartEndDateChanged(wxDateEvent& event)
     saveFilterSettings();
 
     if (m_rb) {
-        saveReportText(false);
+        saveReportText();
         m_rb->saveReportSettings();
     }
 }
 
 void ReportPanel::loadDateRanges(
-    std::vector<DateRange2::Range>* date_range_a,
+    std::vector<mmDateRange2::Range>* date_range_a,
     int* date_range_m,
     bool all_ranges
 ) {

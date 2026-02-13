@@ -20,7 +20,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <algorithm>
 #include <cctype>
 #include <string>
@@ -30,9 +30,12 @@
 #include <wx/spinctrl.h>
 #include <wx/display.h>
 
-#include "constants.h"
-#include "paths.h"
-#include "util/util.h"
+#include "base/constants.h"
+#include "base/platfdep.h"
+#include "base/paths.h"
+#include "base/images_list.h"
+#include "util/_util.h"
+#include "util/_simple.h"
 
 #include "model/CategoryModel.h"
 #include "model/FieldValueModel.h"
@@ -43,13 +46,10 @@
 #include "model/StockModel.h"
 #include "model/TagModel.h"
 
-#include "dialog/CategoryDialog.h"
-#include "dialog/PayeeDialog.h"
+#include "manager/CategoryManager.h"
+#include "manager/PayeeManager.h"
 #include "univcsvdialog.h"
-#include "images_list.h"
-#include "mmSimpleDialogs.h"
 #include "parsers.h"
-#include "platfdep.h"
 #include "webapp.h"
 
 enum tab_id {
@@ -61,25 +61,24 @@ enum tab_id {
 wxIMPLEMENT_DYNAMIC_CLASS(mmUnivCSVDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmUnivCSVDialog, wxDialog)
-EVT_BUTTON(ID_UNIVCSVBUTTON_IMPORT, mmUnivCSVDialog::OnImport)
-EVT_BUTTON(ID_UNIVCSVBUTTON_EXPORT, mmUnivCSVDialog::OnExport)
-EVT_BUTTON(wxID_REMOVE, mmUnivCSVDialog::OnRemove)
-EVT_BUTTON(wxID_ADD, mmUnivCSVDialog::OnAdd)
-EVT_BUTTON(wxID_SAVEAS, mmUnivCSVDialog::OnSettingsSave)
-EVT_BUTTON(wxID_UP, mmUnivCSVDialog::OnMoveUp)
-EVT_BUTTON(wxID_DOWN, mmUnivCSVDialog::OnMoveDown)
-EVT_BUTTON(wxID_CLEAR, mmUnivCSVDialog::OnButtonClearClick)
-EVT_BUTTON(wxID_STANDARD, mmUnivCSVDialog::OnStandard)
-EVT_BUTTON(wxID_BROWSE, mmUnivCSVDialog::OnFileBrowse)
-EVT_LISTBOX_DCLICK(wxID_ANY, mmUnivCSVDialog::OnListBox)
-EVT_CHOICE(wxID_ANY, mmUnivCSVDialog::OnChoiceChanged)
-EVT_CHECKBOX(wxID_CHECKBOX_CLICK, mmUnivCSVDialog::OnCheckboxClick)
-EVT_CHECKBOX(wxID_DATES_CHECKBOX_CLICK, mmUnivCSVDialog::OnHaveDatesChange)
-EVT_MENU(wxID_HIGHEST, mmUnivCSVDialog::OnMenuSelected)
-EVT_LIST_COL_END_DRAG(wxID_ANY, mmUnivCSVDialog::OnColumnResize)
+    EVT_BUTTON(ID_UNIVCSVBUTTON_IMPORT,     mmUnivCSVDialog::OnImport)
+    EVT_BUTTON(ID_UNIVCSVBUTTON_EXPORT,     mmUnivCSVDialog::OnExport)
+    EVT_BUTTON(wxID_REMOVE,                 mmUnivCSVDialog::OnRemove)
+    EVT_BUTTON(wxID_ADD,                    mmUnivCSVDialog::OnAdd)
+    EVT_BUTTON(wxID_SAVEAS,                 mmUnivCSVDialog::OnSettingsSave)
+    EVT_BUTTON(wxID_UP,                     mmUnivCSVDialog::OnMoveUp)
+    EVT_BUTTON(wxID_DOWN,                   mmUnivCSVDialog::OnMoveDown)
+    EVT_BUTTON(wxID_CLEAR,                  mmUnivCSVDialog::OnButtonClearClick)
+    EVT_BUTTON(wxID_STANDARD,               mmUnivCSVDialog::OnStandard)
+    EVT_BUTTON(wxID_BROWSE,                 mmUnivCSVDialog::OnFileBrowse)
+    EVT_LISTBOX_DCLICK(wxID_ANY,            mmUnivCSVDialog::OnListBox)
+    EVT_CHOICE(wxID_ANY,                    mmUnivCSVDialog::OnChoiceChanged)
+    EVT_CHECKBOX(wxID_CHECKBOX_CLICK,       mmUnivCSVDialog::OnCheckboxClick)
+    EVT_CHECKBOX(wxID_DATES_CHECKBOX_CLICK, mmUnivCSVDialog::OnHaveDatesChange)
+    EVT_MENU(wxID_HIGHEST,                  mmUnivCSVDialog::OnMenuSelected)
+    EVT_LIST_COL_END_DRAG(wxID_ANY,         mmUnivCSVDialog::OnColumnResize)
 wxEND_EVENT_TABLE()
 
-//----------------------------------------------------------------------------
 mmUnivCSVDialog::mmUnivCSVDialog()
 {
 }
@@ -743,7 +742,7 @@ void mmUnivCSVDialog::OnShowCategDialog(wxMouseEvent&)
             }
         }
     }
-    CategoryDialog dlg(this, false, id);
+    CategoryManager dlg(this, false, id);
     dlg.ShowModal();
     if (dlg.getRefreshRequested())
     {
@@ -2586,7 +2585,7 @@ void mmUnivCSVDialog::OnDelimiterChange(wxCommandEvent&)
     }
 }
 
-void mmUnivCSVDialog::OnHaveStocksChange(wxCommandEvent& event)
+void mmUnivCSVDialog::OnHaveStocksChange([[maybe_unused]] wxCommandEvent& event)
 {
     this->update_preview();
 }
@@ -2608,12 +2607,12 @@ void mmUnivCSVDialog::OnHaveDatesChange(wxCommandEvent& event)
 
 }
 
-void mmUnivCSVDialog::OnStartDateChange(wxDateEvent& event)
+void mmUnivCSVDialog::OnStartDateChange([[maybe_unused]] wxDateEvent& event)
 {
     this->update_preview();
 }
 
-void mmUnivCSVDialog::OnEndDateChange(wxDateEvent& event)
+void mmUnivCSVDialog::OnEndDateChange([[maybe_unused]] wxDateEvent& event)
 {
     this->update_preview();
 }

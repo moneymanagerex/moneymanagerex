@@ -16,12 +16,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "constants.h"
+#include "base/constants.h"
+#include "base/images_list.h"
 
 #include "model/PreferencesModel.h"
 
 #include "navigatoreditdialog.h"
-#include "images_list.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmNavigatorEditDialog, wxDialog);
 

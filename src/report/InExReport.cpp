@@ -18,8 +18,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "util/util.h"
-#include "util/DateRange.h"
+#include "base/images_list.h"
+#include "util/_util.h"
+#include "util/mmDateRange.h"
 #include "htmlbuilder.h"
 
 #include "model/AccountModel.h"
@@ -28,7 +29,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/CategoryModel.h"
 
 #include "InExReport.h"
-#include "images_list.h"
 
 InExReport::InExReport()
     : ReportBase(_n("Income vs. Expenses Summary"))
@@ -45,8 +45,8 @@ wxString InExReport::getHTMLText()
     // Grab the data
     std::pair<double, double> income_expenses_pair;
     for (const auto& transaction : TransactionModel::instance().find(
-        TransactionModel::TRANSDATE(DateDay(m_date_range->start_date()), GREATER_OR_EQUAL),
-        TransactionModel::TRANSDATE(DateDay(m_date_range->end_date()), LESS_OR_EQUAL),
+        TransactionModel::TRANSDATE(mmDateDay(m_date_range->start_date()), GREATER_OR_EQUAL),
+        TransactionModel::TRANSDATE(mmDateDay(m_date_range->end_date()), LESS_OR_EQUAL),
         TransactionModel::DELETEDTIME(wxEmptyString, EQUAL),
         TransactionModel::STATUS(TransactionModel::STATUS_ID_VOID, NOT_EQUAL)
     )) {
@@ -149,8 +149,8 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     // TODO: init all the map values with 0.0
     for (const auto& transaction : TransactionModel::instance().find(
-        TransactionModel::TRANSDATE(DateDay(start_date), GREATER_OR_EQUAL),
-        TransactionModel::TRANSDATE(DateDay(m_date_range->end_date()), LESS_OR_EQUAL),
+        TransactionModel::TRANSDATE(mmDateDay(start_date), GREATER_OR_EQUAL),
+        TransactionModel::TRANSDATE(mmDateDay(m_date_range->end_date()), LESS_OR_EQUAL),
         TransactionModel::DELETEDTIME(wxEmptyString, EQUAL),
         TransactionModel::STATUS(TransactionModel::STATUS_ID_VOID, NOT_EQUAL)
     )) {

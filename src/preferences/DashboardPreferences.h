@@ -20,9 +20,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/spinctrl.h>
-#include "util/DateRange.h"
+#include "util/mmDateRange.h"
 
 #include "_PreferencesBase.h"
 
@@ -44,12 +44,12 @@ public:
 
 public:
     virtual bool SaveSettings();
-    const wxSharedPtr<DateRange> get_inc_vs_exp_date_range() const;
+    const wxSharedPtr<mmDateRange> get_inc_vs_exp_date_range() const;
 
 private:
     void Create();
-    wxSharedPtr<DateRange> m_inc_vs_exp_date_range;
-    std::vector<wxSharedPtr<DateRange>> m_all_date_ranges;
+    wxSharedPtr<mmDateRange> m_inc_vs_exp_date_range;
+    std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
     wxCheckBox* m_ignore_future_transactions_home = nullptr;
 
 private:

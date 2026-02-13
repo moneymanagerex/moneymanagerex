@@ -20,13 +20,13 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <vector>
 #include <html_template.h>
 
-#include "util/util.h"
-#include "util/DateRange.h"
-#include "util/DateRange2.h"
+#include "util/_util.h"
+#include "util/mmDateRange.h"
+#include "util/mmDateRange2.h"
 
 #include "model/CurrencyModel.h"
 
@@ -55,8 +55,8 @@ public:
 
     void displayDateHeading(const wxString& header);
     void displayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange = true, bool withNoEndDate = false);
-    void displayDateHeading(const DateRange* date_range);
-    void displayDateHeading(const DateRange2& date_range);
+    void displayDateHeading(const mmDateRange* date_range);
+    void displayDateHeading(const mmDateRange2& date_range);
     void displayFooter(const wxString& footer);
     /** Starts a new HMTL report */
     void init(bool simple = false, const wxString& extra_style = "");

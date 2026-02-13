@@ -1,0 +1,156 @@
+/*******************************************************
+Copyright (C) 2009 VaDiM
+Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2025 Klaus Wich
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ ********************************************************/
+#pragma once
+
+#include "defs.h"
+#include "paths.h"
+#include "versions.h"
+
+class wxString;
+
+extern const wxSizerFlags g_flagsH;
+extern const wxSizerFlags g_flagsV;
+extern const wxSizerFlags g_flagsBorder1H;
+extern const wxSizerFlags g_flagsBorder1V;
+extern const wxSizerFlags g_flagsCenter;
+extern const wxSizerFlags g_flagsExpand;
+extern const wxSizerFlags g_flagsExpandBorder1;
+
+extern const wxString g_CancelLabel;
+extern const wxString g_OkLabel;
+extern const wxString g_CloseLabel;
+
+namespace mmex
+{
+extern int MIN_DATAVERSION;
+extern const wxString DATAVERSION;
+
+extern const wxString DEFDATEFORMAT;
+extern const wxString DEFDELIMTER;
+
+/*
+        Uses for titles, reports, etc.
+        Do not use mmex::GetAppName() for such things.
+*/
+const wxString getProgramName();
+const wxString getTitleProgramVersion();
+const wxString getCaption(const wxString& caption);
+
+namespace version
+{
+    extern const wxString string;
+    extern bool isStable();
+    extern const wxString getProgramVersion();
+    int getDbLatestVersion();
+}
+
+namespace weblink
+{
+    const wxString addReferralToURL(const wxString& BaseURL, const wxString& CampSource);
+    extern const wxString AMP;
+    extern const wxString WebSite;
+    extern const wxString Releases;
+    extern const wxString Latest;
+    extern const wxString Download;
+    extern const wxString News;
+    extern const wxString NewsRSS;
+    extern const wxString Forum;
+    extern const wxString Wiki;
+    extern const wxString BugReport;
+    extern const wxString Donate;
+    extern const wxString Twitter;
+    extern const wxString Facebook;
+    extern const wxString GitHub;
+    extern const wxString GitHubLogin;
+    extern const wxString YouTube;
+    extern const wxString Slack;
+    extern const wxString SquareCashGuan;
+    extern const wxString DefStockUrl;
+    extern const wxString AppleAppStore;
+    extern const wxString GooglePlay;
+    extern const wxString WebApp;
+    extern const wxString Chiark;
+    extern const wxString Crowdin;
+    extern const wxString YahooQuotes;
+    extern const wxString YahooQuotesHistory;
+    extern const wxString CoinCapSearch;
+    extern const wxString CoinCapHistory;
+    extern const wxString GeneralReport;
+} // namespace weblink
+} // namespace mmex
+
+extern const wxString VIEW_ACCOUNTS_ALL_STR;
+extern const wxString VIEW_ACCOUNTS_OPEN_STR;
+extern const wxString VIEW_ACCOUNTS_CLOSED_STR;
+extern const wxString VIEW_ACCOUNTS_FAVORITES_STR;
+
+extern const wxString LANGUAGE_PARAMETER;
+extern const wxString INIDB_USE_TRANSACTION_SOUND;
+extern const wxString INIDB_USE_ORG_DATE_COPYPASTE;
+extern const wxString INIDB_USE_ORG_DATE_DUPLICATE;
+extern const wxString INIDB_USE_ORG_STATE_DUPLICATE_PASTE;
+extern const wxString INIDB_SEND_USAGE_STATS;
+
+extern const wxString ATTACHMENTS_FOLDER_DOCUMENTS;
+extern const wxString ATTACHMENTS_FOLDER_DATABASE;
+extern const wxString ATTACHMENTS_FOLDER_USERPROFILE;
+extern const wxString ATTACHMENTS_FOLDER_APPDATA;
+
+extern const wxString INIDB_NEWS_LAST_READ_DATE;
+
+extern const wxDateTime DATE_MIN;
+extern const wxDateTime DATE_MAX;
+
+extern const wxArrayString g_locales();
+extern const wxString g_fiat_curr();
+
+enum id
+{
+    mmID_HOMEPAGE = wxID_HIGHEST + 1,
+    mmID_BILLS,
+    mmID_STOCKS,
+    mmID_ASSETS,
+    mmID_BUDGET,
+    mmID_REPORTS,
+    mmID_CHECKING,
+    mmID_CATEGORY,
+    mmID_PAYEE,
+    mmID_SPLIT,
+    mmID_BROWSER,
+    mmID_REMOVE,
+    mmID_COLOR,
+    MENU_REPORT_BUG,
+    MENU_BILLSDEPOSITS,
+    MENU_BUDGETSETUPDIALOG,
+    MENU_STOCKS,
+    MENU_GOTOACCOUNT,
+    MENU_ASSETS,
+    MENU_VIEW_BUDGET_FINANCIAL_YEARS,
+    MENU_VIEW_BUDGET_CATEGORY_SUMMARY,
+    MENU_VIEW_BUDGET_TRANSFER_TOTAL,
+    MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS,
+    MENU_VIEW_SHOW_TOOLTIPS,
+    MENU_VIEW_SHOW_MONEYTIPS,
+    MENU_VIEW_TOGGLE_FULLSCREEN,
+    MENU_TRANSACTIONS_ALL,
+    MENU_TRANSACTIONS_DEL,
+    MENU_FAVORITES,
+    mmID_MAX,
+};

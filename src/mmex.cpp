@@ -17,7 +17,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/cmdline.h>
 #include <wx/display.h>
 #include <wx/fs_arc.h>
@@ -26,18 +26,18 @@
 #include <wx/imagpng.h>
 #include <wx/mstream.h>
 
-#include "constants.h"
-#include "platfdep.h"
+#include "base/constants.h"
+#include "base/platfdep.h"
 #include "mmex.h"
-#include "paths.h"
-#include "util/util.h"
-#include "util/DateRange2.h"
+#include "base/paths.h"
+#include "util/_util.h"
+#include "util/mmDateRange2.h"
 
 #include "model/SettingModel.h"
 #include "model/UsageModel.h"
 
 #include "mmframe.h"
-#include "mmSimpleDialogs.h"
+#include "util/_simple.h"
 
 //----------------------------------------------------------------------------
 wxIMPLEMENT_APP(mmGUIApp);
@@ -260,7 +260,7 @@ bool OnInitImpl(mmGUIApp* app)
 
     // checks (only in Debug build)
 #ifndef NDEBUG
-    ok = ok && DateRange2::debug();
+    ok = ok && mmDateRange2::debug();
 #endif
 
     /* initialize GUI with best language */

@@ -21,13 +21,14 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/dialog.h>
 
+#include "util/_simple.h"
 #include "model/ScheduledModel.h"
 #include "model/TransactionModel.h"
-#include "mmSimpleDialogs.h"
-#include "mmcustomdata.h"
+
+#include "FieldValueDialog.h"
 
 class wxStaticText;
 class mmTextCtrl;
@@ -153,7 +154,7 @@ private:
 
     void activateSplitTransactionsDlg();
     static const std::vector<std::pair<int, wxString> > BILLSDEPOSITS_REPEATS;
-    wxSharedPtr<mmCustomData> m_custom_fields;
+    wxSharedPtr<FieldValueDialog> m_custom_fields;
 
 private:
     enum
