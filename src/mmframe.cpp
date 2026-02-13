@@ -37,6 +37,9 @@
 #include "util/mmTreeItemData.h"
 #include "util/mmFileHistory.h"
 
+#include "db/dbcheck.h"
+#include "db/dbupgrade.h"
+#include "db/dbwrapper.h"
 #include "model/_all.h"
 
 #include "mmframe.h"
@@ -87,14 +90,11 @@
 #include "uicontrols/toolbardialog.h"
 #include "uicontrols/toolbartypes.h"
 
-#include "dbcheck.h"
-#include "dbupgrade.h"
-#include "dbwrapper.h"
 #include "import_export/webapp.h"
 #include "import_export/webappdialog.h"
-#include "wizard_newaccount.h"
-#include "wizard_newdb.h"
-#include "wizard_update.h"
+#include "wizard/wizard_newaccount.h"
+#include "wizard/wizard_newdb.h"
+#include "wizard/wizard_update.h"
 
 //----------------------------------------------------------------------------
 

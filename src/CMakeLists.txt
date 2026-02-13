@@ -62,12 +62,6 @@ endif()
 
 add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     build.h
-    dbcheck.cpp
-    dbcheck.h
-    dbupgrade.cpp
-    dbupgrade.h
-    dbwrapper.cpp
-    dbwrapper.h
     mmcombobox.h
     mmex.cpp
     mmex.h
@@ -75,12 +69,6 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     mmframe.h
     mmframereport.cpp
     resource.h
-    wizard_newaccount.cpp
-    wizard_newaccount.h
-    wizard_newdb.cpp
-    wizard_newdb.h
-    wizard_update.cpp
-    wizard_update.h
 
     base/constants.cpp
     base/constants.h
@@ -118,6 +106,7 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     util/mmTreeItemData.h
     util/mmCalcValidator.h
 
+    db/DB_Table.h
     db/DB_Table_Accountlist_V1.h
     db/DB_Table_Assets_V1.h
     db/DB_Table_Attachment_V1.h
@@ -129,21 +118,26 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     db/DB_Table_Checkingaccount_V1.h
     db/DB_Table_Currencyformats_V1.h
     db/DB_Table_Currencyhistory_V1.h
-    db/DB_Table_Customfielddata_V1.h
     db/DB_Table_Customfield_V1.h
-    db/DB_Table.h
+    db/DB_Table_Customfielddata_V1.h
     db/DB_Table_Infotable_V1.h
     db/DB_Table_Payee_V1.h
     db/DB_Table_Report_V1.h
     db/DB_Table_Setting_V1.h
     db/DB_Table_Shareinfo_V1.h
     db/DB_Table_Splittransactions_V1.h
-    db/DB_Table_Stockhistory_V1.h
     db/DB_Table_Stock_V1.h
+    db/DB_Table_Stockhistory_V1.h
     db/DB_Table_Tag_V1.h
     db/DB_Table_Taglink_V1.h
     db/DB_Table_Translink_V1.h
     db/DB_Table_Usage_V1.h
+    db/dbcheck.cpp
+    db/dbcheck.h
+    db/dbupgrade.cpp
+    db/dbupgrade.h
+    db/dbwrapper.cpp
+    db/dbwrapper.h
 
     model/AccountModel.cpp
     model/AccountModel.h
@@ -315,27 +309,6 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     preferences/_PreferencesBase.cpp
     preferences/_PreferencesBase.h
 
-    import_export/export.cpp
-    import_export/export.h
-    import_export/ofx_import_gui.cpp
-    import_export/ofx_import_gui.h
-    import_export/parsers.cpp
-    import_export/parsers.h
-    import_export/payeematchandmerge.cpp
-    import_export/payeematchandmerge.h
-    import_export/qif_export.cpp
-    import_export/qif_export.h
-    import_export/qif_import.cpp
-    import_export/qif_import.h
-    import_export/qif_import_gui.cpp
-    import_export/qif_import_gui.h
-    import_export/univcsvdialog.cpp
-    import_export/univcsvdialog.h
-    import_export/webapp.cpp
-    import_export/webapp.h
-    import_export/webappdialog.cpp
-    import_export/webappdialog.h
-
     report/BalanceReport.cpp
     report/BalanceReport.h
     report/CategoryReport.cpp
@@ -367,9 +340,6 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     report/htmlbuilder.cpp
     report/htmlbuilder.h
 
-    generic/generictreelistdialog.cpp
-    generic/generictreelistdialog.h
-
     uicontrols/reconciledialog.cpp
     uicontrols/reconciledialog.h
     uicontrols/navigatordialog.cpp
@@ -382,6 +352,37 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     uicontrols/toolbardialog.h
     uicontrols/toolbartypes.cpp
     uicontrols/toolbartypes.h
+
+    import_export/export.cpp
+    import_export/export.h
+    import_export/ofx_import_gui.cpp
+    import_export/ofx_import_gui.h
+    import_export/parsers.cpp
+    import_export/parsers.h
+    import_export/payeematchandmerge.cpp
+    import_export/payeematchandmerge.h
+    import_export/qif_export.cpp
+    import_export/qif_export.h
+    import_export/qif_import.cpp
+    import_export/qif_import.h
+    import_export/qif_import_gui.cpp
+    import_export/qif_import_gui.h
+    import_export/univcsvdialog.cpp
+    import_export/univcsvdialog.h
+    import_export/webapp.cpp
+    import_export/webapp.h
+    import_export/webappdialog.cpp
+    import_export/webappdialog.h
+
+    generic/generictreelistdialog.cpp
+    generic/generictreelistdialog.h
+
+    wizard/wizard_newaccount.cpp
+    wizard/wizard_newaccount.h
+    wizard/wizard_newdb.cpp
+    wizard/wizard_newdb.h
+    wizard/wizard_update.cpp
+    wizard/wizard_update.h
 
     "${CMAKE_CURRENT_BINARY_DIR}/versions.h"
     "base/platfdep_${MMEX_PLATFDEP}"
