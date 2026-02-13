@@ -19,14 +19,18 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/numdlg.h>
 #include <wx/textdlg.h>
 #include <wx/valnum.h>
 
-#include "constants.h"
-#include "paths.h"
-#include "util/util.h"
+#include "base/constants.h"
+#include "base/paths.h"
+#include "base/images_list.h"
+#include "util/_util.h"
+#include "util/_simple.h"
+#include "util/mmTextCtrl.h"
+#include "util/mmCalcValidator.h"
 
 #include "model/_all.h"
 
@@ -34,11 +38,7 @@
 #include "AttachmentDialog.h"
 #include "AccountDialog.h"
 #include "StockDialog.h"
-#include "sharetransactiondialog.h"
-#include "mmSimpleDialogs.h"
-#include "mmTextCtrl.h"
-#include "images_list.h"
-#include "validators.h"
+#include "TransactionShareDialog.h"
 
 using namespace rapidjson;
 
@@ -485,7 +485,7 @@ void StockDialog::OnSave(wxCommandEvent & /*event*/)
     {
         const wxString RefType = StockModel::refTypeName;
         mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, m_stock->STOCKID);
-        ShareTransactionDialog share_dialog(this, m_stock);
+        TransactionShareDialog share_dialog(this, m_stock);
         share_dialog.ShowModal();
     }
 
@@ -510,7 +510,7 @@ void StockDialog::CreateShareAccount(AccountModel::Data* stock_account, const wx
     share_account->CURRENCYID = stock_account->CURRENCYID;
     AccountModel::instance().save(share_account);
 
-    ShareTransactionDialog share_dialog(this, m_stock);
+    TransactionShareDialog share_dialog(this, m_stock);
     share_dialog.ShowModal();
 }
 

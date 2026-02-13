@@ -19,38 +19,38 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <float.h>
 #include <algorithm>
 #include <wx/clipbrd.h>
 #include <wx/srchctrl.h>
 #include <wx/sound.h>
 
-#include "constants.h"
+#include "base/constants.h"
 #include "mmex.h"
-#include "paths.h"
-#include "util/util.h"
+#include "base/paths.h"
+#include "base/images_list.h"
+#include "util/_util.h"
+#include "util/_simple.h"
+#include "util/mmTips.h"
+#include "util/mmCalcValidator.h"
 
 #include "model/_all.h"
-#include "journal.h"
+#include "model/Journal.h"
 
 #include "mmframe.h"
 #include "JournalPanel.h"
 #include "JournalList.h"
 
+#include "manager/DateRangeManager.h"
 #include "dialog/SplitDialog.h"
 #include "dialog/TransactionDialog.h"
-#include "dialog/DateRangeDialog.h"
 #include "dialog/AttachmentDialog.h"
 #include "dialog/AssetDialog.h"
 #include "dialog/ScheduledDialog.h"
-#include "filtertransdialog.h"
-#include "transactionsupdatedialog.h"
-#include "sharetransactiondialog.h"
-#include "mmSimpleDialogs.h"
-#include "validators.h"
-#include "images_list.h"
-#include "mmTips.h"
+#include "dialog/TransactionFilterDialog.h"
+#include "dialog/TransactionShareDialog.h"
+#include "dialog/TransactionUpdateDialog.h"
 #include "uicontrols/reconciledialog.h"
 #include "uicontrols/navigatortypes.h"
 
@@ -59,7 +59,7 @@
 const std::vector<std::pair<JournalPanel::FILTER_ID, wxString> > JournalPanel::FILTER_NAME =
 {
     { JournalPanel::FILTER_ID_DATE,        wxString("Date") },
-    { JournalPanel::FILTER_ID_DATE_RANGE,  wxString("DateRange") },
+    { JournalPanel::FILTER_ID_DATE_RANGE,  wxString("mmDateRange") },
     { JournalPanel::FILTER_ID_DATE_PICKER, wxString("DatePicker") },
 };
 
@@ -203,19 +203,19 @@ void JournalPanel::createControls()
 
     m_bitmapTransFilter->SetMinSize(wxSize(200 + PreferencesModel::instance().getIconSize() * 2, -1));
 
-    DateRange2 tmprange = DateRange2();
+    mmDateRange2 tmprange = mmDateRange2();
     tmprange.setRange(m_date_range_a[0]);  // set to all
 
     fromDateCtrl = new wxDatePickerCtrl(this, ID_DATE_PICKER_LOW, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
     fromDateCtrl->SetValue(
-        tmprange.rangeStart().value_or(DateDay::min()).getDateTime()
+        tmprange.rangeStart().value_or(mmDateDay::min()).getDateTime()
     );
     fromDateCtrl->SetRange(wxInvalidDateTime, wxDateTime::Now());
     sizerHCtrl->Add(fromDateCtrl, g_flagsH);
 
     toDateCtrl = new wxDatePickerCtrl(this, ID_DATE_PICKER_HIGH, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
     toDateCtrl->SetValue(
-        tmprange.rangeEnd().value_or(DateDay::today()).getDateTime()
+        tmprange.rangeEnd().value_or(mmDateDay::today()).getDateTime()
     );
     sizerHCtrl->Add(toDateCtrl, g_flagsH);
 
@@ -444,10 +444,10 @@ void JournalPanel::updateFilter(bool firstinit)
             mmBitmapButtonSize
         ));
         fromDateCtrl->SetValue(
-            m_current_date_range.rangeStart().value_or(DateDay::min()).getDateTime()
+            m_current_date_range.rangeStart().value_or(mmDateDay::min()).getDateTime()
         );
         toDateCtrl->SetValue(
-            m_current_date_range.rangeEnd().value_or(DateDay::today()).getDateTime()
+            m_current_date_range.rangeEnd().value_or(mmDateDay::today()).getDateTime()
         );
     }
     else if (m_filter_id == FILTER_ID_DATE_PICKER) {
@@ -489,12 +489,12 @@ void JournalPanel::updateFilterTooltip()
     }
 }
 
-void JournalPanel::setFilterDate(DateRange2::Range& range)
+void JournalPanel::setFilterDate(mmDateRange2::Range& range)
 {
     m_filter_id = FILTER_ID_DATE;
-    m_current_date_range = DateRange2();
+    m_current_date_range = mmDateRange2();
     if (isAccount()) {
-        m_current_date_range.setSDateN(DateDayN(m_account->STATEMENTDATE));
+        m_current_date_range.setSDateN(mmDateDayN(m_account->STATEMENTDATE));
     }
     m_current_date_range.setRange(range);
     m_scheduled_enable = !isDeletedTrans() && m_current_date_range.rangeEnd().has_value();
@@ -544,7 +544,7 @@ void JournalPanel::loadFilterSettings()
             }
         }
         if (isAccount()) {
-            m_current_date_range.setSDateN(DateDayN(m_account->STATEMENTDATE));
+            m_current_date_range.setSDateN(mmDateDayN(m_account->STATEMENTDATE));
         }
     }
     else if (m_filter_id == FILTER_ID_DATE_PICKER) {
@@ -555,16 +555,16 @@ void JournalPanel::loadFilterSettings()
             // FIXME: setSDateN is the account statement date, not the start date
             m_current_date_range.setSDateN(
                 newdate.ParseFormat(p_filter, "%Y-%m-%d", &end)
-                ? DateDay(newdate)
-                : DateDayN()
+                ? mmDateDay(newdate)
+                : mmDateDayN()
             );
         }
         if (JSON_GetStringValue(j_doc, "FILTER_DATE_END", p_filter)) {
             // FIXME: setTDate is the date of today, should not be changed here
             m_current_date_range.setTDate(
                 newdate.ParseFormat(p_filter, "%Y-%m-%d", &end)
-                ? DateDay(newdate)
-                : DateDay::today()
+                ? mmDateDay(newdate)
+                : mmDateDay::today()
             );
         }
     }
@@ -575,7 +575,7 @@ void JournalPanel::loadFilterSettings()
 
     wxString j_str = InfotableModel::instance().getString(
             wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),"{}");
-    m_trans_filter_dlg.reset(new mmFilterTransactionsDialog(this, m_account_id, false, j_str));
+    m_trans_filter_dlg.reset(new TransactionFilterDialog(this, m_account_id, false, j_str));
     m_filter_advanced = m_trans_filter_dlg->mmIsSomethingChecked() ? true : false;
     updateScheduledEnable();
 }
@@ -585,9 +585,9 @@ void  JournalPanel::updateScheduledEnable()
     // FIXME: get[ST]Date are not the start and end date
     m_scheduled_enable = !isDeletedTrans() && (
         m_filter_id == FILTER_ID_DATE_PICKER
-        ? m_current_date_range.getTDate() >= DateDay::today()
+        ? m_current_date_range.getTDate() >= mmDateDay::today()
         : !m_current_date_range.rangeEnd().has_value()
-            || m_current_date_range.rangeEnd().value() >= DateDay::today()
+            || m_current_date_range.rangeEnd().value() >= mmDateDay::today()
     );
 }
 
@@ -662,10 +662,10 @@ void JournalPanel::filterList()
     wxString date_start_str, date_end_str;
     wxDateTime date_end = wxDateTime::Now() + wxTimeSpan::Days(30);
     if (m_filter_id == FILTER_ID_DATE_PICKER) {
-        date_start_str = DateDayN(fromDateCtrl->GetValue())
-            .value_or(DateDay::min()).isoStart();
-        date_end_str = DateDayN(toDateCtrl->GetValue())
-            .value_or(DateDay(date_end)).isoEnd();
+        date_start_str = mmDateDayN(fromDateCtrl->GetValue())
+            .value_or(mmDateDay::min()).isoStart();
+        date_end_str = mmDateDayN(toDateCtrl->GetValue())
+            .value_or(mmDateDay(date_end)).isoEnd();
     } else {
         date_start_str = m_current_date_range.rangeStartIsoStartN();
         // find last un-deleted transaction and use that if later than current date + 30 days
@@ -679,7 +679,7 @@ void JournalPanel::filterList()
             }
         }
         date_end_str = m_current_date_range.rangeEnd()
-            .value_or(DateDay(date_end)).isoEnd();
+            .value_or(mmDateDay(date_end)).isoEnd();
     }
     std::map<int64, ScheduledSplitModel::Data_Set> bills_splits;
     std::map<int64, TagLinkModel::Data_Set> bills_tags;
@@ -1066,7 +1066,7 @@ void JournalPanel::showTips()
     if (PreferencesModel::instance().getShowMoneyTips())
         m_info_panel->SetLabelText(
             wxGetTranslation(wxString::FromUTF8(
-                TIPS[rand() % (sizeof(TIPS) / sizeof(wxString))]
+                mmTips[rand() % (sizeof(mmTips) / sizeof(wxString))]
                 .ToStdString()
             ))
         );
@@ -1130,9 +1130,9 @@ void JournalPanel::onFilterDate(wxCommandEvent& event)
         return;
 
     m_filter_id = FILTER_ID_DATE_RANGE;
-    m_current_date_range = DateRange2();
+    m_current_date_range = mmDateRange2();
     if (isAccount()) {
-        m_current_date_range.setSDateN(DateDayN(m_account->STATEMENTDATE));
+        m_current_date_range.setSDateN(mmDateDayN(m_account->STATEMENTDATE));
     }
     m_current_date_range.setRange(m_date_range_a[i]);
     updateScheduledEnable();
@@ -1143,10 +1143,10 @@ void JournalPanel::onFilterDate(wxCommandEvent& event)
     m_bitmapTransFilter->SetBitmap(mmBitmapBundle((i > 0 ? png::TRANSFILTER_ACTIVE : png::TRANSFILTER), mmBitmapButtonSize));
 
     fromDateCtrl->SetValue(
-        m_current_date_range.rangeStart().value_or(DateDay::min()).getDateTime()
+        m_current_date_range.rangeStart().value_or(mmDateDay::min()).getDateTime()
     );
     toDateCtrl->SetValue(
-        m_current_date_range.rangeEnd().value_or(DateDay::today()).getDateTime()
+        m_current_date_range.rangeEnd().value_or(mmDateDay::today()).getDateTime()
     );
 
     refreshList();
@@ -1174,12 +1174,12 @@ void JournalPanel::datePickProceed() {
     m_filter_id = FILTER_ID_DATE_PICKER;
     // FIXME: setSDateN is the account statement date, not the start date
     m_current_date_range.setSDateN(
-        DateDayN(fromDateCtrl->GetValue()).value_or(DateDay::min())
+        mmDateDayN(fromDateCtrl->GetValue()).value_or(mmDateDay::min())
     );
     // FIXME: setTDate is the date of today, should not be changed here
     m_current_date_range.setTDate(
-        DateDayN(toDateCtrl->GetValue())
-            .value_or(DateDay(wxDateTime::Now().Add(wxDateSpan(0,0,0,30))))
+        mmDateDayN(toDateCtrl->GetValue())
+            .value_or(mmDateDay(wxDateTime::Now().Add(wxDateSpan(0,0,0,30))))
     );
 
     m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
@@ -1196,7 +1196,7 @@ void JournalPanel::onFilterAdvanced(wxCommandEvent& WXUNUSED(event))
             "{}"
         );
         m_trans_filter_dlg.reset(
-            new mmFilterTransactionsDialog(this, m_checking_id, false, j_str)
+            new TransactionFilterDialog(this, m_checking_id, false, j_str)
         );
     m_trans_filter_dlg->ShowModal();
     loadFilterSettings();
@@ -1207,7 +1207,7 @@ void JournalPanel::onFilterAdvanced(wxCommandEvent& WXUNUSED(event))
 
 void JournalPanel::onEditDateRanges(wxCommandEvent& WXUNUSED(event))
 {
-    DateRangeDialog dlg(this, DateRangeDialog::TYPE_ID_CHECKING);
+    DateRangeManager dlg(this, DateRangeManager::TYPE_ID_CHECKING);
     if (dlg.ShowModal() != wxID_OK)
         return;
 
@@ -1450,7 +1450,7 @@ wxString JournalPanel::getFilterName(FILTER_ID id) {
 }
 
 void JournalPanel::loadDateRanges(
-    std::vector<DateRange2::Range>* date_range_a,
+    std::vector<mmDateRange2::Range>* date_range_a,
     int* date_range_m,
     bool all_ranges
 ) {

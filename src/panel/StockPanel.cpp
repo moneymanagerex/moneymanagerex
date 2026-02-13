@@ -19,17 +19,17 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/clipbrd.h>
 
+#include "base/images_list.h"
+#include "util/_simple.h"
+#include "util/mmTips.h"
 #include "model/_all.h"
 
 #include "StockPanel.h"
 #include "dialog/StockDialog.h"
-#include "sharetransactiondialog.h"
-#include "mmSimpleDialogs.h"
-#include "images_list.h"
-#include "mmTips.h"
+#include "dialog/TransactionShareDialog.h"
 
 class StockPanel;
 
@@ -202,7 +202,7 @@ void StockPanel::CreateControls()
 int StockPanel::AddStockTransaction(int selectedIndex)
 {
     StockModel::Data* stock = &m_lc->m_stocks[selectedIndex];
-    ShareTransactionDialog dlg(this, stock);
+    TransactionShareDialog dlg(this, stock);
     int result = dlg.ShowModal();
     if (result == wxID_OK)
     {
@@ -331,7 +331,7 @@ void StockPanel::BindListEvents(wxListCtrl* listCtrl)
         if (!txn) return;
 
         auto link = TransactionLinkModel::TranslinkRecord(txn->TRANSID);
-        ShareTransactionDialog dlg(listCtrl, &link, txn);
+        TransactionShareDialog dlg(listCtrl, &link, txn);
         dlg.ShowModal();
 
         // Update the modified row
@@ -664,7 +664,7 @@ void StockPanel::enableEditDeleteButtons(bool en)
     if (!en)
     {
         if (PreferencesModel::instance().getShowMoneyTips())
-            stock_details_->SetLabelText(wxGetTranslation(STOCKTIPS[rand() % (sizeof(STOCKTIPS) / sizeof(wxString))]));
+            stock_details_->SetLabelText(wxGetTranslation(mmStockTips[rand() % (sizeof(mmStockTips) / sizeof(wxString))]));
         stock_details_short_->SetLabelText(wxString::Format(_t("Last updated %s"), strLastUpdate_));
     }
 }

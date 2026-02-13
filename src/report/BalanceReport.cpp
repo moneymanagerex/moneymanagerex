@@ -21,7 +21,7 @@
  ********************************************************/
 
 #include <algorithm>
-#include "constants.h"
+#include "base/constants.h"
 #include "htmlbuilder.h"
 
 #include "model/_all.h"

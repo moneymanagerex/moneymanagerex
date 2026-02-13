@@ -19,17 +19,19 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/clipbrd.h>
 #include <algorithm>
 #include <wx/sound.h>
 
-#include "constants.h"
-#include "util/util.h"
+#include "base/constants.h"
+#include "base/images_list.h"
+#include "util/_util.h"
+#include "util/_simple.h"
 
 #include "model/PreferencesModel.h"
 #include "model/SettingModel.h"
-#include "journal.h"
+#include "model/Journal.h"
 
 #include "mmframe.h"
 #include "JournalList.h"
@@ -39,11 +41,9 @@
 #include "dialog/AttachmentDialog.h"
 #include "dialog/ScheduledDialog.h"
 #include "dialog/TransactionDialog.h"
-#include "filtertransdialog.h"
-#include "sharetransactiondialog.h"
-#include "transactionsupdatedialog.h"
-#include "mmSimpleDialogs.h"
-#include "images_list.h"
+#include "dialog/TransactionFilterDialog.h"
+#include "dialog/TransactionShareDialog.h"
+#include "dialog/TransactionUpdateDialog.h"
 
 //----------------------------------------------------------------------------
 
@@ -1308,7 +1308,7 @@ void JournalList::onEditTransaction(wxCommandEvent& /*event*/)
                 transid.push_back(id.first);
         if (transid.size() == 0) return;
         if (!checkForClosedAccounts()) return;
-        transactionsUpdateDialog dlg(this, transid);
+        TransactionUpdateDialog dlg(this, transid);
         if (dlg.ShowModal() == wxID_OK)
             refreshVisualList();
         return;
@@ -1324,7 +1324,7 @@ void JournalList::onEditTransaction(wxCommandEvent& /*event*/)
         if (!TransactionLinkModel::instance().find(TransactionLinkModel::CHECKINGACCOUNTID(id.first)).empty()) {
             TransactionLinkModel::Data translink = TransactionLinkModel::TranslinkRecord(id.first);
             if (translink.LINKTYPE == StockModel::refTypeName) {
-                ShareTransactionDialog dlg(this, &translink, checking_entry);
+                TransactionShareDialog dlg(this, &translink, checking_entry);
                 if (dlg.ShowModal() == wxID_OK)
                     refreshVisualList();
             }
@@ -1487,7 +1487,7 @@ void JournalList::onFind(wxCommandEvent&)
     wxTreeItemId allTransactionsId = m_cp->m_frame->GetNavTreeSelection();
     if (currentId.IsOk() && currentId == allTransactionsId) {
         m_cp->m_trans_filter_dlg.reset(
-            new mmFilterTransactionsDialog(this, -1, false, rightClickFilter_)
+            new TransactionFilterDialog(this, -1, false, rightClickFilter_)
         );
         m_cp->setFilterAdvanced();
         refreshVisualList();

@@ -18,9 +18,9 @@
 
 #pragma once
 
-#include "defs.h"
-#include "util/choices.h"
-#include "util/DateDay.h"
+#include "base/defs.h"
+#include "util/_choices.h"
+#include "util/mmDateDay.h"
 
 #include "db/DB_Table_Checkingaccount_V1.h"
 #include "_Model.h"
@@ -220,7 +220,7 @@ public:
 
 public:
     static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxString& date_iso_str, OP op = EQUAL);
-    static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const DateDay& date, OP op = EQUAL);
+    static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const mmDateDay& date, OP op = EQUAL);
     static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxDateTime& date, OP op = EQUAL);
     static DB_Table_CHECKINGACCOUNT_V1::DELETEDTIME DELETEDTIME(const wxString& date, OP op = EQUAL);
     static DB_Table_CHECKINGACCOUNT_V1::STATUS STATUS(STATUS_ID status, OP op = EQUAL);

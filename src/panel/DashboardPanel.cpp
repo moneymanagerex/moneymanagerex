@@ -23,10 +23,11 @@ Copyright (C) 2026 Klaus Wich
 #include <cmath>
 #include <html_template.h>
 
-#include "constants.h"
+#include "base/constants.h"
+#include "base/images_list.h"
 #include "mmex.h"
-#include "paths.h"
-#include "util/util.h"
+#include "base/paths.h"
+#include "util/_util.h"
 
 #include "model/_all.h"
 #include "model/PreferencesModel.h"
@@ -35,7 +36,6 @@ Copyright (C) 2026 Klaus Wich
 #include "DashboardPanel.h"
 #include "DashboardWidget.h"
 #include "ScheduledPanel.h"
-#include "images_list.h"
 
 wxBEGIN_EVENT_TABLE(DashboardPanel, wxPanel)
     EVT_WEBVIEW_NAVIGATING(wxID_ANY, DashboardPanel::OnLinkClicked)

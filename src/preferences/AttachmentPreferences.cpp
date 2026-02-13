@@ -19,14 +19,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "paths.h"
-#include "util/util.h"
+#include "base/paths.h"
+#include "util/_util.h"
+#include "util/_simple.h"
 
 #include "dialog/AttachmentDialog.h"
 
 #include "AttachmentPreferences.h"
-
-#include "mmSimpleDialogs.h"
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(AttachmentPreferences, wxPanel)

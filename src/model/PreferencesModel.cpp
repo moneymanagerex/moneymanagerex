@@ -18,9 +18,10 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "constants.h"
-#include "util/util.h"
-#include "util/singleton.h"
+#include "base/constants.h"
+#include "base/images_list.h"
+#include "util/_util.h"
+#include "util/mmSingleton.h"
 
 #include "AccountModel.h"
 #include "CurrencyHistoryModel.h"
@@ -29,9 +30,8 @@
 #include "PreferencesModel.h"
 #include "SettingModel.h"
 
-#include "maincurrencydialog.h"
+#include "dialog/CurrencyChoiceDialog.h"
 #include "uicontrols/navigatortypes.h"
-#include "images_list.h"
 
 const std::vector<std::pair<PreferencesModel::COMPOUNDING_ID, wxString> > PreferencesModel::COMPOUNDING_NAME =
 {
@@ -145,7 +145,7 @@ void PreferencesModel::load(bool include_infotable)
 
         // Ensure that base currency is set for the database.
         while (m_base_currency_id < 1) {
-            if (mmMainCurrencyDialog::Execute(m_base_currency_id)) {
+            if (CurrencyChoiceDialog::Execute(m_base_currency_id)) {
                 setBaseCurrencyID(m_base_currency_id);
                 CurrencyHistoryModel::ResetCurrencyHistory();
                 CurrencyModel::ResetBaseConversionRates();
@@ -700,7 +700,7 @@ void PreferencesModel::parseCheckingRange()
                 m_checking_range_m = m_checking_range_a.size();
             continue;
         }
-        DateRange2::Range range;
+        mmDateRange2::Range range;
         if (!range.parseLabelName(str))
             continue;
         m_checking_range_a.push_back(range);
@@ -717,7 +717,7 @@ void PreferencesModel::parseCheckingRange()
             continue;
         }
         wxString name = wxGetTranslation(default_range.second);
-        DateRange2::Range range;
+        mmDateRange2::Range range;
         if (!range.parseLabelName(label, name))
             continue;
         m_checking_range_a.push_back(range);
@@ -728,7 +728,7 @@ void PreferencesModel::parseCheckingRange()
         m_checking_range_m = m_checking_range_a.size();
 
     /*wxLogDebug("m=[%d], n=[%zu]", m_checking_range_m, m_checking_range_a.size());
-    for ([[maybe_unused]] DateRange2::Range &range : m_checking_range_a) {
+    for ([[maybe_unused]] mmDateRange2::Range &range : m_checking_range_a) {
         wxLogDebug("label=[%s], name=[%s]", range.getLabel(), range.getName());
     }
     wxLogDebug("}}}");*/
@@ -758,7 +758,7 @@ void PreferencesModel::parseReportingRange()
                 m_reporting_range_m = m_reporting_range_a.size();
             continue;
         }
-        DateRange2::Range range;
+        mmDateRange2::Range range;
         if (!range.parseLabelName(str))
             continue;
         m_reporting_range_a.push_back(range);
@@ -775,7 +775,7 @@ void PreferencesModel::parseReportingRange()
             continue;
         }
         wxString name = wxGetTranslation(default_range.second);
-        DateRange2::Range range;
+        mmDateRange2::Range range;
         if (!range.parseLabelName(label, name))
             continue;
         m_reporting_range_a.push_back(range);
@@ -786,7 +786,7 @@ void PreferencesModel::parseReportingRange()
         m_reporting_range_m = m_reporting_range_a.size();
 
     /*wxLogDebug("m=[%d], n=[%zu]", m_reporting_range_m, m_reporting_range_a.size());
-    for ([[maybe_unused]] DateRange2::Range &range : m_reporting_range_a) {
+    for ([[maybe_unused]] mmDateRange2::Range &range : m_reporting_range_a) {
         wxLogDebug("label=[%s], name=[%s]", range.getLabel(), range.getName());
     }
     wxLogDebug("}}}");*/

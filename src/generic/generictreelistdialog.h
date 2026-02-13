@@ -18,7 +18,7 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 
 class genericTreeListDialog: public wxDialog
 {

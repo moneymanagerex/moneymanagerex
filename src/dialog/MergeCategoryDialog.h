@@ -1,0 +1,76 @@
+/*******************************************************
+ Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2011 Stefano Giorgio
+ Copyright (C) 2016, 2020, 2022 Nikolay Akimov
+ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ ********************************************************/
+
+#pragma once
+
+#include "base/defs.h"
+#include <wx/dialog.h>
+
+#include "util/_simple.h"
+
+class wxButton;
+class wxStaticText;
+class wxButton;
+
+class MergeCategoryDialog : public wxDialog
+{
+    wxDECLARE_DYNAMIC_CLASS(MergeCategoryDialog);
+    wxDECLARE_EVENT_TABLE();
+
+public:
+    MergeCategoryDialog();
+    ~MergeCategoryDialog();
+    MergeCategoryDialog(wxWindow* parent, int64 sourceCatID = -1, int64 sourceSubCatID = -1);
+
+    bool Create(wxWindow* parent
+        , wxWindowID id = wxID_ANY
+        , const wxString& caption = _t("Merge Categories")
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX
+        , const wxString& name = "Merge categories");
+
+    void CreateControls();
+
+    // utility functions
+    void OnTextUpdated(wxCommandEvent&);
+    void OnFocusChange(wxChildFocusEvent& event);
+    void OnComboKey(wxKeyEvent& event);
+    void OnCancel(wxCommandEvent& event);
+    void OnOk(wxCommandEvent& event);
+
+    int updatedCategoriesCount() const;
+
+private:
+    void IsOkOk();
+    int64 m_sourceCatID = -1;
+    int64 m_sourceSubCatID = -1;
+    mmComboBoxCategory* cbSourceCategory_ = nullptr;
+    mmComboBoxCategory* cbDestCategory_ = nullptr;
+    wxCheckBox* cbDeleteSourceCategory_ = nullptr;
+    wxStaticText* m_info = nullptr;
+
+    //wxButton* m_buttonDest = nullptr;
+    int m_changedRecords = 0;
+};
+
+inline int MergeCategoryDialog::updatedCategoriesCount() const { return m_changedRecords; }
+

@@ -19,11 +19,11 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <float.h>
 
-#include "util/choices.h"
-#include "util/DateRange.h"
+#include "util/_choices.h"
+#include "util/mmDateRange.h"
 
 #include "db/DB_Table_Budgettable_V1.h"
 #include "_Model.h"
@@ -81,7 +81,7 @@ public:
         std::map<int64, wxString> &budgetNotes);
     static void getBudgetStats(
         std::map<int64, std::map<int, double> > &budgetStats
-        , DateRange* date_range
+        , mmDateRange* date_range
         , bool groupByMonth);
     static void copyBudgetYear(int64 newYearID, int64 baseYearID);
     static double getEstimate(bool is_monthly, const PERIOD_ID period, const double amount);

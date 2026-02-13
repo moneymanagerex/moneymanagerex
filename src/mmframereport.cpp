@@ -22,11 +22,11 @@
  ********************************************************/
 
 #include "mmframe.h"
+#include "base/images_list.h"
+#include "util/mmTreeItemData.h"
 #include "model/BudgetPeriodModel.h"
 #include "model/ReportModel.h"
 #include "report/_all.h"
-#include "mmTreeItemData.h"
-#include "images_list.h"
 
 const char *group_report_template = R"(
 <!DOCTYPE html>

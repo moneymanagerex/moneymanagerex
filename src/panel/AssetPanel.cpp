@@ -19,18 +19,19 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/srchctrl.h>
 
-#include "constants.h"
+#include "base/constants.h"
+#include "base/images_list.h"
+#include "util/_simple.h"
+
 #include "model/_all.h"
 
 #include "AssetPanel.h"
 
 #include "dialog/AssetDialog.h"
 #include "dialog/AttachmentDialog.h"
-#include "mmSimpleDialogs.h"
-#include "images_list.h"
 
 wxBEGIN_EVENT_TABLE(AssetList, ListBase)
     EVT_RIGHT_DOWN(AssetList::OnMouseRightClick)

@@ -16,9 +16,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "constants.h"
-#include "paths.h"
-#include "util/util.h"
+#include "base/constants.h"
+#include "base/paths.h"
+#include "util/_util.h"
+#include "util/_simple.h"
 
 #include "model/AccountModel.h"
 #include "model/AttachmentModel.h"
@@ -29,7 +30,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "qif_export.h"
 #include "export.h"
-#include "mmSimpleDialogs.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmQIFExportDialog, wxDialog);
 

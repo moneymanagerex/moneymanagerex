@@ -18,7 +18,7 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <vector>
 
 class DiagnosticsDialog : public wxDialog

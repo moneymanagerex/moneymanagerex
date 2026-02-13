@@ -16,10 +16,10 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "util/singleton.h"
+#include "util/mmSingleton.h"
 #include "model/AccountModel.h"
 #include "navigatortypes.h"
-#include "images_list.h"
+#include "base/images_list.h"
 
 NavigatorTypes::NavigatorTypes()
 {

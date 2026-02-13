@@ -19,9 +19,9 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
+#include "util/_simple.h"
 #include "model/StockModel.h"
-#include "mmSimpleDialogs.h"
 
 class mmDatePickerCtrl;
 class mmTextCtrl;

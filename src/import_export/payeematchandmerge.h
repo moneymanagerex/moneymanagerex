@@ -1,6 +1,6 @@
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <vector>
 #include <wx/string.h>
 

@@ -21,8 +21,8 @@
 
 #include <map>
 
-#include "defs.h"
-#include "util/choices.h"
+#include "base/defs.h"
+#include "util/_choices.h"
 #include "db/DB_Table_Currencyformats_V1.h"
 #include "_Model.h"
 #include "InfotableModel.h" // detect base currency setting BASECURRENCYID

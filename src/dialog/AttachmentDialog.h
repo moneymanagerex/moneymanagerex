@@ -19,11 +19,11 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/dataview.h>
 #include <map>
 
-#include "util/primitive.h"
+#include "util/_primitive.h"
 
 class AttachmentDialog : public wxDialog
 {

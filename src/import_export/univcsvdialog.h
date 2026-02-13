@@ -19,14 +19,14 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <vector>
 #include <map>
 #include <wx/dialog.h>
 #include <wx/dataview.h>
 
+#include "util/_simple.h"
 #include "model/TransactionModel.h"
-#include "mmSimpleDialogs.h"
 
 class wxSpinCtrl;
 class wxSpinEvent;

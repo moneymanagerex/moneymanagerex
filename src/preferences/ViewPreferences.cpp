@@ -18,17 +18,17 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/colordlg.h>
 
-#include "util/util.h"
+#include "base/images_list.h"
+#include "util/_util.h"
 
 #include "ViewPreferences.h"
 
+#include "manager/ThemeManager.h"
 #include "uicontrols/navigatordialog.h"
 #include "uicontrols/toolbardialog.h"
-#include "images_list.h"
-#include "themes.h"
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(ViewPreferences, wxPanel)
@@ -290,7 +290,7 @@ void ViewPreferences::OnHTMLScaleSpin(wxSpinEvent& event)
 
 void ViewPreferences::OnThemeManagerSelected(wxCommandEvent&)
 {
-    mmThemesDialog dlg(this);
+    ThemeManager dlg(this);
     dlg.ShowModal();
 }
 

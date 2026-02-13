@@ -19,8 +19,10 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "constants.h"
-#include "util/util.h"
+#include "base/constants.h"
+#include "base/images_list.h"
+#include "util/_util.h"
+#include "util/_simple.h"
 
 #include "model/_all.h"
 
@@ -29,9 +31,7 @@
 
 #include "dialog/AttachmentDialog.h"
 #include "dialog/StockDialog.h"
-#include "sharetransactiondialog.h"
-#include "images_list.h"
-#include "mmSimpleDialogs.h"
+#include "dialog/TransactionShareDialog.h"
 
 enum {
     IDC_PANEL_STOCKS_LISTCTRL = wxID_HIGHEST + 1900,

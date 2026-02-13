@@ -18,76 +18,52 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/dataview.h>
 
-#include "util/DateRange2.h"
+#include "util/mmDateRange2.h"
 
 class DateRangeDialog: public wxDialog
 {
-    wxDECLARE_DYNAMIC_CLASS(mmFilterTransactionsDialog);
+    wxDECLARE_DYNAMIC_CLASS(TransactionFilterDialog);
     wxDECLARE_EVENT_TABLE();
 
 public:
-    enum TYPE_ID
-    {
-        TYPE_ID_DASHBOARD = 0,
-        TYPE_ID_CHECKING,
-        TYPE_ID_REPORTING
-    };
+    DateRangeDialog();
+    DateRangeDialog(wxWindow* parent, wxString* name, wxString* range);
 
     enum
     {
-        BTN_BASE = 0,
-        BTN_UP_TOP,
-        BTN_UP,
-        BTN_EDIT,
-        BTN_NEW,
-        BTN_DOWN,
-        BTN_DOWN_BOTTOM,
-        BTN_DELETE,
-        BTN_DEFAULT
+        CTRL_ANY = 0,
+        TXT_CTRL_NAME = 0,
+        TXT_CTRL_RANGE
     };
 
-public:
-    DateRangeDialog();
-    DateRangeDialog(wxWindow* parent, TYPE_ID type_id);
-
 private:
-    TYPE_ID m_type_id = TYPE_ID_CHECKING;
-    std::vector<DateRange2::Range> m_date_range_a;
-    int m_date_range_m;
+    // FIXME: not used
+    std::vector<mmDateRange2::Range>* m_date_ranges_ptr;
     int m_selected_row;
-    bool m_hasChanged = false;
-    wxString m_subMenuHeader = "==== " + _tu("More date ranges…");
+    wxString* m_name_ptr;
+    wxString* m_range_ptr;
+    wxColour m_defBColor;
 
-    wxDataViewListCtrl* m_dateRangesLb = nullptr;
-    wxButton* m_up_top = nullptr;
-    wxBitmapButton* m_up = nullptr;
-    wxButton* m_edit = nullptr;
-    wxBitmapButton* m_down = nullptr;
-    wxButton* m_down_bottom = nullptr;
-    wxButton* m_delete = nullptr;
+    wxTextCtrl* m_name_edit;
+    wxTextCtrl* m_range_edit;
+    wxStaticText* m_status;
+    wxStaticText* m_to_st;
 
-private:
+    wxStaticText* m_from_st;
+    wxChoice* m_count1;
+    wxChoice* m_period1;
+    wxChoice* m_count2;
+    wxChoice* m_period2;
+
     void CreateControls();
-    void fillControls();
-    void updateButtonState(bool setselected = true);
+    bool checkRange();
+    void showSelectControls(bool status);
 
-    void OnTop(wxCommandEvent&);
-    void OnUp(wxCommandEvent&);
-    void OnEdit(wxCommandEvent&);
-    void OnDown(wxCommandEvent&);
-    void OnBottom(wxCommandEvent&);
-    void OnNew(wxCommandEvent&);
     void OnOk(wxCommandEvent&);
-    void OnCancel(wxCommandEvent&);
-    void OnDelete(wxCommandEvent&);
-    void OnDefault(wxCommandEvent&);
-    void OnDateRangeSelected(wxDataViewEvent& event);
-
-    // -- Support functions ---
-    wxVector<wxVariant> getItemData(int row);
-    void exchangeItemData(int row1, int row2);
-    void insertItemToLb(int pos, wxString name, wxString range);
+    void OnRange(wxCommandEvent&);
+    void OnUpdateRangeFromControls(wxCommandEvent&);
+    void updateControlsFromRange(wxString range);
 };

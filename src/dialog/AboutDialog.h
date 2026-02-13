@@ -19,11 +19,11 @@
 
 #pragma once
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/dialog.h>
 #include <wx/notebook.h>
 
-#include "util/util.h"
+#include "util/_util.h"
 
 class wxHtmlWindow;
 

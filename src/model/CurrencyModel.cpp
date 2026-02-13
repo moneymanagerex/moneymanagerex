@@ -21,7 +21,7 @@
 #include <fmt/core.h>
 #include <fmt/format.h>
 
-#include "util/util.h"
+#include "util/_util.h"
 
 #include "AccountModel.h"
 #include "CurrencyHistoryModel.h"

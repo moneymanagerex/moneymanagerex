@@ -18,13 +18,13 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *******************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/statline.h>
 #include <wx/version.h>
 #include <wx/regex.h>
 
-#include "constants.h"
-#include "paths.h"
+#include "base/constants.h"
+#include "base/paths.h"
 
 #include "AboutDialog.h"
 #include "report/htmlbuilder.h"

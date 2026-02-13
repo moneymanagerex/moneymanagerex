@@ -20,29 +20,29 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defs.h"
+#include "base/defs.h"
 #include <wx/calctrl.h>
 #include <wx/valnum.h>
 
-#include "constants.h"
-#include "paths.h"
-#include "util/util.h"
-#include "util/DateDay.h"
+#include "base/constants.h"
+#include "base/paths.h"
+#include "base/images_list.h"
+#include "util/_util.h"
+#include "util/_simple.h"
+#include "util/mmDateDay.h"
+#include "util/mmTextCtrl.h"
+#include "util/mmCalcValidator.h"
 
 #include "model/PayeeModel.h"
 #include "model/CurrencyHistoryModel.h"
 #include "model/PreferencesModel.h"
 
+#include "manager/CategoryManager.h"
+#include "manager/PayeeManager.h"
 #include "AttachmentDialog.h"
-#include "CategoryDialog.h"
-#include "PayeeDialog.h"
 #include "ScheduledDialog.h"
 #include "SplitDialog.h"
-#include "mmSimpleDialogs.h"
-#include "images_list.h"
-#include "validators.h"
-#include "webapp.h"
-#include "mmTextCtrl.h"
+#include "import_export/webapp.h"
 
 // the order in gui may be different than the database encoding order.
 const std::vector<std::pair<int, wxString> > ScheduledDialog::BILLSDEPOSITS_REPEATS =
@@ -786,7 +786,7 @@ void ScheduledDialog::OnComboKey(wxKeyEvent& event)
             auto category = cbCategory_->GetValue();
             if (category.empty())
             {
-                CategoryDialog dlg(this, true, -1);
+                CategoryManager dlg(this, true, -1);
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbCategory_->mmDoReInitialize();
@@ -1477,7 +1477,7 @@ void ScheduledDialog::setCategoryLabel()
     {
         TransactionModel::Data_Set transactions = TransactionModel::instance().find(
             TransactionModel::TRANSCODE(TransactionModel::TYPE_ID_TRANSFER, EQUAL)
-            , TransactionModel::TRANSDATE(DateDay::today(), LESS_OR_EQUAL));
+            , TransactionModel::TRANSDATE(mmDateDay::today(), LESS_OR_EQUAL));
 
         if (!transactions.empty())
         {
