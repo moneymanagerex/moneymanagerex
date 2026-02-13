@@ -323,7 +323,7 @@ void mmReconcileDialog::UpdateAll()
         if (isListItemChecked(m_listLeft, i)) {
             wxString itext = m_listLeft->GetItemText(i, 4);
             double value;
-            if (itext.ToDouble(&value)) {
+            if (CurrencyModel::fromString(itext, value, m_currency)) {
                clearedbalance -= value;
             }
         }
@@ -332,7 +332,7 @@ void mmReconcileDialog::UpdateAll()
         if (isListItemChecked(m_listRight, i)) {
             wxString itext = m_listRight->GetItemText(i, 4);
             double value;
-            if (itext.ToDouble(&value)) {
+            if (CurrencyModel::fromString(itext, value, m_currency)) {
                clearedbalance += value;
             }
         }
