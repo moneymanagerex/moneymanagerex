@@ -2000,7 +2000,7 @@ void mmGUIFrame::createMenu()
     wxMenu* menuTools = new wxMenu;
 
     wxMenuItem* menuItemRates = new wxMenuItem(menuTools
-        , MENU_RATES, _t("Download &Rates"), _t("Download Currency and Stock Rates"));
+        , MENU_RATES, _t("Do&wnload Rates"), _t("Download Currency and Stock Rates"));
     menuTools->Append(menuItemRates);
 
     menuTools->AppendSeparator();
